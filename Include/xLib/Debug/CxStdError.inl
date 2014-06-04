@@ -10,12 +10,14 @@
 #if   xENV_WIN
     #include "Platform/Win/CxStdError_win.inl"
 #elif xENV_UNIX
+    #include "Platform/Unix/CxStdError_unix.inl"
+
     #if   xENV_LINUX
-        #include "Platform/Unix/CxStdError_unix.inl"
+        #include "Platform/Linux/CxStdError_linux.inl"
     #elif xENV_BSD
-        #include "Platform/Unix/CxStdError_unix.inl"
+        #include "Platform/Bsd/CxStdError_bsd.inl"
     #elif xENV_APPLE
-        #include "Platform/Unix/CxStdError_unix.inl"
+        // #include "Platform/Unix/CxStdError_apple.inl"
     #endif
 #endif
 
