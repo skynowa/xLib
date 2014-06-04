@@ -33,15 +33,17 @@ private:
     typedef pthread_key_t index_t;
 #endif
 
-    void_t   _construct();
-        ///< allocates a thread storage index
-    void_t   _destruct();
-        ///< releases a thread storage index
-
     index_t  _index;
         ///< thread storage index
 
     xNO_COPY_ASSIGN(CxThreadStorage)
+
+xPLATFORM:
+    void_t   _construct_impl();
+    void_t   _destruct_impl();
+    bool_t   _isSet_impl() const xWARN_UNUSED_RV;
+    void_t  *_value_impl() const xWARN_UNUSED_RV;
+    void_t   _setValue_impl(void_t *value) const;
 };
 
 xNAMESPACE_END2(xlib, sync)

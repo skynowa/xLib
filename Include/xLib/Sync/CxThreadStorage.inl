@@ -13,6 +13,20 @@
 #include <xLib/Debug/CxStackTrace.h>
 #include <xLib/Log/CxTrace.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/CxThreadStorage_win.inl"
+#elif xENV_UNIX
+    #include "Platform/Unix/CxThreadStorage_unix.inl"
+
+    #if   xENV_LINUX
+        // #include "Platform/Linux/CxThreadStorage_linux.inl"
+    #elif xENV_BSD
+        // #include "Platform/Bsd/CxThreadStorage_bsd.inl"
+    #elif xENV_APPLE
+        // #include "Platform/Unix/CxThreadStorage_apple.inl"
+    #endif
+#endif
+
 
 xNAMESPACE_BEGIN2(xlib, sync)
 
@@ -30,50 +44,26 @@ CxThreadStorage::CxThreadStorage() :
     _index(static_cast<pthread_key_t>( - 1 ))
 #endif
 {
-    _construct();
+    _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 inline
 CxThreadStorage::~CxThreadStorage()
 {
-    _destruct();
+    _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
 CxThreadStorage::isSet() const
 {
-    void_t *pvRv = xPTR_NULL;
-
-#if   xENV_WIN
-    pvRv = ::TlsGetValue(_index);
-    xCHECK_RET(pvRv == xPTR_NULL, false);
-#elif xENV_UNIX
-    pvRv = ::pthread_getspecific(_index);
-    xCHECK_RET(pvRv == xPTR_NULL, false);
-#endif
-
-    return true;
+    return _isSet_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t *
 CxThreadStorage::value() const
 {
-    void_t *pvRv = xPTR_NULL;
-
-#if   xENV_WIN
-    xTEST_DIFF(TLS_OUT_OF_INDEXES, _index);
-
-    pvRv = ::TlsGetValue(_index);
-    xTEST_EQ((pvRv != xPTR_NULL) && (CxLastError::get() == ERROR_SUCCESS), true);
-#elif xENV_UNIX
-    xTEST_EQ(0 < _index, true);
-
-    pvRv = ::pthread_getspecific(_index);
-    xTEST_PTR(pvRv);
-#endif
-
-    return pvRv;
+    return _value_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -83,65 +73,7 @@ CxThreadStorage::setValue(
 {
     xTEST_PTR(a_value);
 
-#if   xENV_WIN
-    xTEST_DIFF(_index, TLS_OUT_OF_INDEXES);
-
-    BOOL blRv = ::TlsSetValue(_index, a_value);
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
-    xTEST_EQ(0 < _index, true);
-
-    int_t iRv = ::pthread_setspecific(_index, a_value);
-    xTEST_MSG_EQ(iRv, 0, CxLastError::format(iRv));
-#endif
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*    private
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-inline void_t
-CxThreadStorage::_construct()
-{
-    index_t indRv = (index_t)- 1;
-
-#if   xENV_WIN
-    xTEST_EQ(_index, TLS_OUT_OF_INDEXES);
-
-    indRv = ::TlsAlloc();
-    xTEST_DIFF(indRv, TLS_OUT_OF_INDEXES);
-#elif xENV_UNIX
-    xTEST_EQ(_index, static_cast<pthread_key_t>( - 1 ));
-
-    int_t iRv = ::pthread_key_create(&indRv, xPTR_NULL);
-    xTEST_MSG_EQ(iRv, 0, CxLastError::format(iRv));
-#endif
-
-    _index = indRv;
-}
-//-------------------------------------------------------------------------------------------------
-inline void_t
-CxThreadStorage::_destruct()
-{
-#if   xENV_WIN
-    xTEST_DIFF(_index, TLS_OUT_OF_INDEXES);
-
-    BOOL blRv = ::TlsFree(_index);
-    xTEST_DIFF(blRv, FALSE);
-
-    _index = TLS_OUT_OF_INDEXES;
-#elif xENV_UNIX
-    xTEST_EQ(0 < _index, true);
-
-    int_t iRv = ::pthread_key_delete(_index);
-    xTEST_MSG_EQ(iRv, 0, CxLastError::format(iRv));
-
-    _index = static_cast<pthread_key_t>( -1 );
-#endif
+    _setValue_impl(a_value);
 }
 //-------------------------------------------------------------------------------------------------
 
