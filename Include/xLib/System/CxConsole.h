@@ -122,6 +122,17 @@ private:
 #endif
 
     xNO_COPY_ASSIGN(CxConsole)
+
+xPLATFORM:
+    void_t          _construct_impl();
+    void_t          _destruct_impl();
+    std::tstring_t  _setAttributes_impl(const ExForeground &foreground,
+                        const ExBackground &background, cint_t &attributes) const xWARN_UNUSED_RV;
+    std::tstring_t  _setAttributesDef_impl() const xWARN_UNUSED_RV;
+    std::tstring_t  _read_impl() const xWARN_UNUSED_RV;
+    void_t          _write_impl(std::ctstring_t &str) const;
+    void_t          _clear_impl() const;
+    void_t          _setTitle_impl(std::ctstring_t &title) const;
 };
 
 xNAMESPACE_END2(xlib, system)
