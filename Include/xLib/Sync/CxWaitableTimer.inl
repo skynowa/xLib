@@ -4,7 +4,19 @@
  */
 
 
-#if xENV_WIN
+#if   xENV_WIN
+    #include "Platform/Win/CxWaitableTimer_win.inl"
+#elif xENV_UNIX
+    #include "Platform/Unix/CxWaitableTimer_unix.inl"
+
+    #if   xENV_LINUX
+        // #include "Platform/Linux/CxWaitableTimer_linux.inl"
+    #elif xENV_BSD
+        // #include "Platform/Bsd/CxWaitableTimer_bsd.inl"
+    #elif xENV_APPLE
+        // #include "Platform/Unix/CxWaitableTimer_apple.inl"
+    #endif
+#endif
 
 xNAMESPACE_BEGIN2(xlib, sync)
 
@@ -102,5 +114,3 @@ CxWaitableTimer::wait(
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, sync)
-
-#endif
