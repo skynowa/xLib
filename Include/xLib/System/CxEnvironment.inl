@@ -7,10 +7,20 @@
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/CxEnvironment_win.inl"
+#elif xENV_UNIX
+    #include "Platform/Unix/CxEnvironment_unix.inl"
 
-#if !xENV_WIN
-    extern char **environ;  // from <env.h>
+    #if   xENV_LINUX
+        // #include "Platform/Linux/CxEnvironment_linux.inl"
+    #elif xENV_BSD
+        // #include "Platform/Bsd/CxEnvironment_bsd.inl"
+    #elif xENV_APPLE
+        // #include "Platform/Unix/CxEnvironment_apple.inl"
+    #endif
 #endif
+
 
 xNAMESPACE_BEGIN2(xlib, system)
 
@@ -30,23 +40,7 @@ CxEnvironment::isExists(
 
     xCHECK_RET(a_varName.empty(), false);
 
-#if   xENV_WIN
-    std::tstring_t sRv;
-    sRv.resize(xPATH_MAX);
-
-    DWORD length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0),
-        static_cast<DWORD>( sRv.size() ));
-    xTEST_NA(length);
-
-    xCHECK_RET(length == 0UL && CxLastError::get() == ERROR_ENVVAR_NOT_FOUND, false);
-#elif xENV_UNIX
-    const char *pcszRv = ::getenv(a_varName.c_str());
-    xTEST_NA(pcszRv);
-
-    xCHECK_RET(pcszRv == xPTR_NULL, false);
-#endif
-
-    return true;
+    return _isExists_impl(a_varName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -86,30 +80,7 @@ CxEnvironment::var(
 
     xCHECK_RET(!isExists(a_varName), std::tstring_t());
 
-    std::tstring_t sRv;
-
-#if   xENV_WIN
-    sRv.resize(xPATH_MAX);
-
-    DWORD length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0),
-        static_cast<DWORD>( sRv.size() ));
-    xTEST_DIFF(length, 0UL);
-
-    sRv.resize(length);
-
-    if (sRv.size() < length) {
-        length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0),
-            static_cast<DWORD>( sRv.size() ));
-        xTEST_DIFF(length, 0UL);
-    }
-#elif xENV_UNIX
-    const char *pcszRv = ::getenv(a_varName.c_str());
-    xTEST_PTR(pcszRv);
-
-    sRv.assign(pcszRv);
-#endif
-
-    return sRv;
+    return _var_impl(a_varName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -122,13 +93,7 @@ CxEnvironment::setVar(
     xTEST_EQ(isVarValid(a_varName), true);
     xTEST_EQ(isVarValid(a_value), true);
 
-#if   xENV_WIN
-    BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), a_value.c_str());
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
-    int_t iRv = ::setenv(a_varName.c_str(), a_value.c_str(), true);
-    xTEST_DIFF(iRv, - 1);
-#endif
+    _setVar_impl(a_varName, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -141,20 +106,7 @@ CxEnvironment::deleteVar(
 
     xCHECK_DO(!isExists(a_varName), return);
 
-#if   xENV_WIN
-    BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), xPTR_NULL);
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
-    #if   xOS_LINUX
-        int_t iRv = ::unsetenv(a_varName.c_str());
-        xTEST_DIFF(iRv, - 1);
-    #elif xOS_FREEBSD
-        (void_t)::unsetenv(a_varName.c_str());
-    #endif
-#elif xENV_APPLE
-    int_t iRv = ::unsetenv(a_varName.c_str());
-    xTEST_DIFF(iRv, - 1);
-#endif
+    _deleteVar_impl(a_varName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -165,34 +117,7 @@ CxEnvironment::values(
 {
     xTEST_PTR(a_values);
 
-    std::vec_tstring_t args;
-
-#if   xENV_WIN
-    LPTCH lpvEnv = ::GetEnvironmentStrings();
-    xTEST_PTR(lpvEnv);
-
-    // variable strings are separated by xPTR_NULL byte,
-    // and the block is terminated by a xPTR_NULL byte
-    for (
-        LPTSTR var = static_cast<LPTSTR>( lpvEnv );
-        *var != xT('\0');
-        var += ::lstrlen(var) + 1)
-    {
-        args.push_back(var);
-    }
-
-    BOOL blRv = ::FreeEnvironmentStrings(lpvEnv);
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
-    xTEST_PTR(environ);
-
-    for (size_t i = 0; 0 != environ[i]; ++ i) {
-        args.push_back(environ[i]);
-    }
-#endif
-
-    // out
-    a_values->swap(args);
+    _values_impl(a_values);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -203,58 +128,7 @@ CxEnvironment::expandStrings(
 {
     xTEST_EQ(a_var.empty(), false);
 
-    std::tstring_t sRv;
-
-#if   xENV_WIN
-    sRv.resize(xPATH_MAX);
-
-    DWORD length = ::ExpandEnvironmentStrings(a_var.c_str(), &sRv.at(0),
-        static_cast<DWORD>( sRv.size() ));
-    xTEST_DIFF(length, 0UL);
-
-    sRv.resize(length);
-
-    if (sRv.size() < length) {
-        length = ::ExpandEnvironmentStrings(a_var.c_str(), &sRv.at(0),
-            static_cast<DWORD>( sRv.size() ));
-        xTEST_DIFF(length, 0UL);
-    }
-
-    sRv.resize(length - 1);   // remove '\0'
-#elif xENV_UNIX
-    std::ctstring_t sep = xT("%");
-
-    sRv = a_var;
-
-    for ( ; ; ) {
-        // find from left two first chars '%'
-        std::csize_t startSepPos = sRv.find(sep);
-        xCHECK_DO(startSepPos == std::tstring_t::npos, break);
-
-        std::csize_t stopSepPos  = sRv.find(sep, startSepPos + sep.size());
-        xCHECK_DO(stopSepPos == std::tstring_t::npos, break);
-
-        // copy %var% to temp string
-        std::tstring_t rawEnvVar; // %var%
-
-        rawEnvVar = CxString::cut(sRv, startSepPos, stopSepPos + sep.size());
-        xTEST_EQ(rawEnvVar.empty(), false);
-
-        std::tstring_t envVar;    // var
-
-        envVar = CxString::trimChars(rawEnvVar, sep);
-
-        // expand var to temp string
-        std::tstring_t expandedEnvVar;
-
-        expandedEnvVar = var(envVar);
-
-        // replace envVar(%var%) by expandedEnvVar
-        sRv.replace(startSepPos, rawEnvVar.size(), expandedEnvVar);
-    }
-#endif
-
-    return sRv;
+    return _expandStrings_impl(a_var);
 }
 //-------------------------------------------------------------------------------------------------
 
