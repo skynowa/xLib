@@ -34,10 +34,16 @@ private:
     CxHandle _handle;
 
     xNO_COPY_ASSIGN(CxWaitableTimer)
+
+xPLATFORM:
+
 };
 
 xNAMESPACE_END2(xlib, sync)
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#include "CxWaitableTimer.inl"
+#if xENV_WIN
+    #include "CxWaitableTimer.inl"
+#endif
+
