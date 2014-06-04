@@ -40,9 +40,9 @@ CxSocket::_send_impl(
 {
     xUNUSED(a_flags);
 
-    #if !defined(MSG_NOSIGNAL)
-        cint_t MSG_NOSIGNAL = 0x20000;
-    #endif
+#if !defined(MSG_NOSIGNAL)
+    cint_t MSG_NOSIGNAL = 0x20000;
+#endif
 
     ssize_t iRv = ::send(_handle, a_buff, a_buffSize, MSG_NOSIGNAL);
     xTEST_DIFF(iRv, ssize_t(xSOCKET_ERROR));
