@@ -60,10 +60,10 @@ CxEnvironment::_deleteVar_impl(
     std::ctstring_t &a_varName
 )
 {
-#if   xOS_LINUX
+#if   xENV_LINUX
     int_t iRv = ::unsetenv(a_varName.c_str());
     xTEST_DIFF(iRv, - 1);
-#elif xOS_FREEBSD
+#elif xENV_BSD
     (void_t)::unsetenv(a_varName.c_str());
 #endif
 }
