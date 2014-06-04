@@ -196,9 +196,9 @@ CxThread::_setCpuAffinity_impl(
     cint_t &a_procNum
 ) const
 {
-#if   xOS_LINUX
+#if   xENV_LINUX
     cpu_set_t cpuSet;
-#elif xOS_FREEBSD
+#elif xENV_BSD
     cpuset_t  cpuSet;
 #endif
 
@@ -254,10 +254,10 @@ CxThread::_setDebugName_impl(
     std::ctstring_t &a_name
 ) const
 {
-#if   xOS_LINUX
+#if   xENV_LINUX
     int_t iRv = ::prctl(PR_SET_NAME, a_name.c_str(), 0, 0, 0);
     xTEST_DIFF(iRv, - 1);
-#elif xOS_FREEBSD
+#elif xENV_BSD
     (void_t)pthread_set_name_np(id(), a_name.c_str());
 #endif
 }
