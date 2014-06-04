@@ -247,22 +247,6 @@ CxConsole::pause(
     xTEST_EQ(_stdOut.isValid(), true);
 #endif
 
-    // TODO: CxConsole::pause()
-#if xTODO
-    #if xENV_UNIX
-        std::tcout << std::endl << "Press any key to continue..." << std::endl;
-
-        ::FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-        _getch();
-    #elif xENV_UNIX
-        std::tcout << std::endl << "Press ENTER to continue..." << std::endl;
-
-        std::cin.clear();
-        std::cin.ignore(std::cin.rdbuf()->in_avail());
-        std::cin.get();
-    #endif
-#endif
-
     std::tstring_t msg;
 
 	if (a_timeoutMsec == xTIMEOUT_INFINITE) {
