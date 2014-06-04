@@ -77,52 +77,6 @@ CxProcessInfo::_ioBytes_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
-CxProcessInfo::_exeName_impl() const
-{
-    std::tstring_t sRv;
-
-#if   xENV_LINUX
-    std::ctstring_t procFile = CxString::format(xT("/proc/%ld/exe"), _id);
-
-    bool_t bRv = CxFile::isExists(procFile);
-    xCHECK_RET(!bRv, std::tstring_t());
-
-    ssize_t readed = - 1;
-    sRv.resize(xPATH_MAX);
-
-    for ( ; ; ) {
-        readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() *
-            sizeof(std::tstring_t::value_type));
-        xTEST_DIFF(readed, ssize_t(- 1));
-
-        xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) >
-            static_cast<size_t>( readed ), break);
-
-        sRv.resize(sRv.size() * 2);
-    }
-
-    sRv.resize(readed);
-#elif xENV_BSD
-    #if defined(KERN_PROC_PATHNAME)
-        int_t   mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, _id};
-
-        tchar_t buff[PATH_MAX + 1] = {0};
-        size_t  buffSize           = sizeof(buff) - 1;
-
-        int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), buff, &buffSize, xPTR_NULL, 0U);
-        xTEST_DIFF(iRv, - 1);
-
-        sRv.assign(buff);
-    #else
-        // TODO: CxProcessInfo::exeName()
-        xNOT_IMPLEMENTED_RET(std::tstring_t());
-    #endif
-#endif
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
 inline ulong_t
 CxProcessInfo::_parentId_impl() const
 {
@@ -132,61 +86,6 @@ CxProcessInfo::_parentId_impl() const
     xNOT_IMPLEMENTED
 
     return ulRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-inline void_t
-CxProcessInfo::_commandLine_impl(
-    std::vec_tstring_t *a_args
-) const
-{
-    std::string        sRv;
-    std::vec_tstring_t args;
-
-#if   xENV_LINUX
-    // TODO: CxProcessInfo::commandLine() - review
-    std::ctstring_t procPath = CxString::format(xT("/proc/%ld/cmdline"), _id);
-
-    FILE *procFile = std::fopen(procPath.c_str(), "r");
-    xTEST_PTR(procFile);
-
-    std::csize_t bufferSize       = 2048;
-    char         buff[bufferSize] = {0};
-
-    while ( std::fgets(buff, static_cast<int_t>(bufferSize), procFile) ) {
-        size_t pos = 0;
-        while (pos < bufferSize && buff[pos] != '\0' ) {
-            args.push_back(buff + pos);
-
-            pos += std::strlen(buff + pos) + 1;
-        }
-    }
-
-    xFCLOSE(procFile);
-#elif xENV_BSD
-    int_t iRv    = - 1;
-    int_t mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, _id};
-
-    std::string buff;
-    size_t      buffSize = 0;
-
-    // get buffSize
-    iRv = ::sysctl(mib, xARRAY_SIZE(mib), xPTR_NULL, &buffSize, xPTR_NULL, 0);
-    xTEST_DIFF(iRv, - 1);
-
-    buff.resize(buffSize);
-
-    iRv = ::sysctl(mib, xARRAY_SIZE(mib), &buff.at(0), &buffSize, xPTR_NULL, 0U);
-    xTEST_DIFF(iRv, - 1);
-
-    // remove xPTR_NULL terminating symbol
-    buff.resize(buffSize - 1);
-
-    CxString::split(buff, CxConst::space(), &args);
-#endif
-
-    // out
-    a_args->swap(args);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
