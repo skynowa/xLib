@@ -162,10 +162,8 @@ public:
 protected:
     // events
     // BUG: CxThread::onRun() - must pure virtual
-    virtual uint_t  onRun               (void_t *param) /* = 0 */ xWARN_UNUSED_RV;
+    virtual uint_t  onRun(void_t *param) /* = 0 */ xWARN_UNUSED_RV;
         ///< work thread function, must be override
-    //--virtual void_t    vOnEnter              ();
-    //--virtual void_t    vOnExit               ();
 
     bool_t          isTimeToExit() xWARN_UNUSED_RV;
         ///< is need to exit from work thread function
@@ -228,6 +226,42 @@ private:
         ///<
 
     xNO_COPY_ASSIGN(CxThread)
+
+xPLATFORM:
+    void_t          _create_impl(cuint_t &stackSize);
+    void_t          _kill_impl(culong_t &timeoutMsec);
+    void_t          _wait_impl(culong_t &timeoutMsec) const;
+    bool_t          _isCreated_impl() const xWARN_UNUSED_RV;
+    bool_t          _isRunning_impl() const xWARN_UNUSED_RV;
+    bool_t          _isPaused_impl() xWARN_UNUSED_RV;
+    bool_t          _isExited_impl() xWARN_UNUSED_RV;
+    void_t          _setPriority_impl(const ExPriority &priority) const;
+    ExPriority      _priority_impl() const xWARN_UNUSED_RV;
+    bool_t          _isPriorityBoost_impl() const xWARN_UNUSED_RV;
+    void_t          _setPriorityBoost_impl(cbool_t &isEnabled) const;
+    void_t          _setCpuAffinity_impl(cint_t &procNum) const;
+    void_t          _setCpuIdeal_impl(culong_t &idealCpu) const;
+    ulong_t         _cpuIdeal_impl() const xWARN_UNUSED_RV;
+    handle_t        _handle_impl() const xWARN_UNUSED_RV;
+    ulong_t         _exitStatus_impl() const xWARN_UNUSED_RV;
+    void_t          _setDebugName_impl(std::ctstring_t &name) const;
+
+    static
+    handle_t        _open_impl(culong_t &access, cbool_t &isInheritHandle, culong_t &id) xWARN_UNUSED_RV;
+    static
+    bool_t          _isCurrent_impl(const CxThread::id_t &id) xWARN_UNUSED_RV;
+    static
+    id_t            _currentId_impl() xWARN_UNUSED_RV;
+    static
+    handle_t        _currentHandle_impl() xWARN_UNUSED_RV;
+    static
+    void_t          _currentYield_impl();
+    static
+    void_t          _currentSleep_impl(culong_t &timeoutMsec);
+    static
+    int_t           _priorityMin_impl();
+    static
+    int_t           _priorityMax_impl();
 };
 
 xNAMESPACE_END2(xlib, sync)
