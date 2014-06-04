@@ -150,6 +150,9 @@ public:
 #endif
 
     xNO_COPY_ASSIGN(CxShell)
+
+xPLATFORM:
+    bool_t     _isAvailable_impl() const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, system)

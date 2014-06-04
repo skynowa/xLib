@@ -4,15 +4,6 @@
  */
 
 
-#include <xLib/Core/CxString.h>
-#include <xLib/Core/Win/CxCom.h>
-#include <xLib/Debug/CxLastError.h>
-#include <xLib/Debug/CxStdError.h>
-#include <xLib/Debug/CxStackTrace.h>
-#include <xLib/Debug/CxErrorReport.h>
-#include <xLib/Debug/CxDebugger.h>
-#include <xLib/Log/CxTrace.h>
-
 #if xCOMPILER_MINGW
     //  lib: -luuid (for IID_IPersistFile)
 #endif
@@ -27,44 +18,13 @@ xNAMESPACE_BEGIN2(xlib, system)
 
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxShell::isAvailable() const
+CxShell::_isAvailable_impl() const
 {
-    xTESTS_NA;
-
     int_t iRv = xTSYSTEM(xPTR_NULL);
-
-#if   xENV_WIN
     xCHECK_RET(iRv == 0 && CxStdError::get() == ENOENT, false);
-#elif xENV_UNIX
-    xCHECK_RET(iRv == 0, false);
-#endif
 
     return true;
 }
-//-------------------------------------------------------------------------------------------------
-inline void_t
-CxShell::execute(
-    std::ctstring_t &a_filePath,   ///< file path to binary file
-    std::ctstring_t &a_params      ///< command line params for binary file
-) const
-{
-    xTEST_NA(a_filePath);
-    xTEST_NA(a_params);
-
-    xCHECK_DO(a_filePath.empty(), return);
-    xCHECK_DO(!isAvailable(),     return);
-
-    // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
-    std::ctstring_t cmd = CxString::format(xT("%s \"%s\""), a_filePath.c_str(), a_params.c_str());
-
-    int_t iRv = xTSYSTEM(cmd.c_str());
-    xTEST_DIFF(iRv, - 1);
-}
-//-------------------------------------------------------------------------------------------------
-
-
-#if xENV_WIN
-
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 CxShell::findExecutable(
@@ -314,7 +274,5 @@ CxShell::createShortcut(
     link->Release();    link = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
-
-#endif
 
 xNAMESPACE_END2(xlib, system)
