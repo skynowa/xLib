@@ -4,16 +4,6 @@
  */
 
 
-#if   xENV_LINUX
-    #if xTEMP_DISABLED
-        #include <linux/kd.h>   // beep
-        #include <X11/Xlib.h>   // beep -lX11
-    #endif
-#elif xENV_BSD
-    #include <sys/user.h>
-    #include <sys/proc.h>
-#endif
-
 #if   xHAVE_PR_SET_DUMPABLE
     #include <sys/prctl.h>
 #elif xHAVE_RLIMIT_CORE
@@ -32,38 +22,6 @@ xNAMESPACE_BEGIN2(xlib, debug)
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-inline bool_t
-CxDebugger::_isActive_impl() const
-{
-#if   xENV_LINUX
-    // if ppid != sid, some process spawned our app, probably a debugger
-    bool_t bRv = ( ::getsid(::getpid()) != ::getppid() );
-    xCHECK_RET(!bRv, false);
-#elif xENV_BSD
-    int_t      mib[4];  xSTRUCT_ZERO(mib);
-    kinfo_proc info;    xSTRUCT_ZERO(info);
-    size_t     infoSize = 0;
-
-    mib[0] = CTL_KERN;
-    mib[1] = KERN_PROC;
-    mib[2] = KERN_PROC_PID;
-    mib[3] = ::getpid();
-
-    // if sysctl fails for some bizarre reason, we get a predictable result
-    info.ki_flag = 0;
-
-    infoSize = sizeof(info);
-
-    int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), &info, &infoSize, xPTR_NULL, 0);
-    xCHECK_RET(iRv == - 1, false);
-
-    // we're being debugged if the P_TRACED flag is set.
-    xCHECK_RET((info.ki_flag & P_TRACED) == 0, false);
-#endif
-
-    return true;
-}
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxDebugger::_coreDumpsEnable_impl(

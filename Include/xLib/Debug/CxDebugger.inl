@@ -15,12 +15,14 @@
 #if   xENV_WIN
     #include "Platform/Win/CxDebugger_win.inl"
 #elif xENV_UNIX
+    #include "Platform/Unix/CxDebugger_unix.inl"
+
     #if   xENV_LINUX
-        #include "Platform/Unix/CxDebugger_unix.inl"
+        #include "Platform/Linux/CxDebugger_linux.inl"
     #elif xENV_BSD
-        #include "Platform/Unix/CxDebugger_unix.inl"
+        #include "Platform/Bsd/CxDebugger_bsd.inl"
     #elif xENV_APPLE
-        #include "Platform/Unix/CxDebugger_unix.inl"
+        // #include "Platform/Unix/CxDebugger_apple.inl"
     #endif
 #endif
 
