@@ -12,63 +12,6 @@ xNAMESPACE_BEGIN2(xlib, filesystem)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
-inline std::tstring_t
-CxPath::_exe_impl()
-{
-    std::tstring_t sRv;
-
-#if   xOS_LINUX
-    std::ctstring_t procFile = CxString::format(xT("/proc/%ld/exe"), ::getpid());
-
-    bool_t bRv = CxFile::isExists(procFile);
-    xCHECK_RET(!bRv, std::tstring_t());
-
-    ssize_t readed = - 1;
-    sRv.resize(xPATH_MAX);
-
-    for ( ; ; ) {
-        readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() *
-            sizeof(std::tstring_t::value_type));
-        xTEST_DIFF(readed, ssize_t(- 1));
-
-        xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) >
-            static_cast<size_t>( readed ), break);
-
-        sRv.resize(sRv.size() * 2);
-    }
-
-    sRv.resize(readed);
-#elif xOS_FREEBSD
-    #if defined(KERN_PROC_PATHNAME)
-        int_t mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
-
-        tchar_t     buff[PATH_MAX + 1] = {0};
-        std::size_t buffSize           = sizeof(buff) - 1;
-
-        int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), buff, &buffSize, xPTR_NULL, 0U);
-        xTEST_DIFF(iRv, - 1);
-
-        sRv.assign(buff);
-    #else
-        std::vec_tstring_t args;
-
-        CxProcessInfo info;
-        info.setProcessId(CxProcess::currentId());
-        info.commandLine(&args);
-
-        bool_t bRv = info.commandLine(CxProcess::currentId(), &args);
-        xTEST_EQ(bRv, true);
-        xTEST_EQ(args.empty(), false);
-        xTEST_EQ(isAbsolute(args.at(0)), false);
-
-        sRv = absolute(args.at(0));
-    #endif
-#endif
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
 static void_t function() { ; }
@@ -101,12 +44,12 @@ CxPath::_standartExt_impl(
     std::tstring_t sRv;
 
     switch (a_fileExt) {
-#if xENV_UNIX
+#if xENV_APPLE
     case seExe:
         sRv = xT("");
         break;
     case seDll:
-        sRv = xT("so");
+        sRv = xT("dylib");
         break;
     case seLib:
         sRv = xT("a");
@@ -117,12 +60,12 @@ CxPath::_standartExt_impl(
     case seShell:
         sRv = xT("sh");
         break;
-#elif xENV_APPLE
+#else
     case seExe:
         sRv = xT("");
         break;
     case seDll:
-        sRv = xT("dylib");
+        sRv = xT("so");
         break;
     case seLib:
         sRv = xT("a");
@@ -151,17 +94,14 @@ CxPath::_isNameValid_impl(
 {
     std::tstring_t sRv(a_fileName);
 
-#if xENV_UNIX
+#if xENV_APPLE
    /**
     * check: excepted chars
-    * /  (forward slash)
-    * \0 (xPTR_NULL character)
+    * / (forward slash)
+    * : (colon)
     */
     {
-        std::tstring_t exceptedChars;
-        exceptedChars.push_back(xT('/'));
-        exceptedChars.push_back(xT('\0'));
-        xTEST_EQ(size_t(2), exceptedChars.size());
+        std::ctstring_t exceptedChars = xT("/:");
 
         std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
@@ -180,14 +120,17 @@ CxPath::_isNameValid_impl(
         }
 
     }
-#elif xENV_APPLE
+#else
    /**
     * check: excepted chars
-    * / (forward slash)
-    * : (colon)
+    * /  (forward slash)
+    * \0 (xPTR_NULL character)
     */
     {
-        std::ctstring_t exceptedChars = xT("/:");
+        std::tstring_t exceptedChars;
+        exceptedChars.push_back(xT('/'));
+        exceptedChars.push_back(xT('\0'));
+        xTEST_EQ(size_t(2), exceptedChars.size());
 
         std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
