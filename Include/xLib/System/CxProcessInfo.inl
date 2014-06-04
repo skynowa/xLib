@@ -17,9 +17,9 @@
     #include "Platform/Unix/CxProcessInfo_unix.inl"
 
     #if   xENV_LINUX
-        // #include "Platform/Linux/CxProcessInfo_linux.inl"
+        #include "Platform/Linux/CxProcessInfo_linux.inl"
     #elif xENV_BSD
-        // #include "Platform/Bsd/CxProcessInfo_bsd.inl"
+        #include "Platform/Bsd/CxProcessInfo_bsd.inl"
     #elif xENV_APPLE
         // #include "Platform/Unix/CxProcessInfo_apple.inl"
     #endif
