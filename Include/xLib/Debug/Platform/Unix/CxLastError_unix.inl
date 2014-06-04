@@ -1,5 +1,5 @@
 /**
- * \file  CxLastError.inl
+- * \file  CxLastError.inl
  * \brief system last error
  */
 
@@ -37,33 +37,6 @@ CxLastError::_set_impl(
 )
 {
     errno = static_cast<int_t>( a_code );
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-inline std::tstring_t
-CxLastError::_format_impl(
-    culong_t &a_code
-)
-{
-    std::tstring_t sRv;
-
-#if   xENV_LINUX
-    char buff[64 + 1] = {0};
-
-    ctchar_t *error = ::strerror_r(static_cast<int_t>( a_code ), &buff[0], xARRAY_SIZE(buff));
-    xCHECK_RET(error == xPTR_NULL, sRv.append(xT("[Cann't format error message]")));
-
-    sRv.append(error);
-#elif xENV_BSD
-    char buff[64 + 1] = {0};
-
-    int_t iRv = ::strerror_r(static_cast<int_t>( a_code ), &buff[0], xARRAY_SIZE(buff));
-    xCHECK_RET(iRv == - 1, sRv.append(xT("[Cann't format error message]")));
-
-    sRv.append(&buff[0]);
-#endif
-
-    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 

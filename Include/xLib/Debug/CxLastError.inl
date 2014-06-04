@@ -11,12 +11,14 @@
 #if   xENV_WIN
     #include "Platform/Win/CxLastError_win.inl"
 #elif xENV_UNIX
+    #include "Platform/Unix/CxLastError_unix.inl"
+
     #if   xENV_LINUX
-        #include "Platform/Unix/CxLastError_unix.inl"
+        #include "Platform/Linux/CxLastError_linux.inl"
     #elif xENV_BSD
-        #include "Platform/Unix/CxLastError_unix.inl"
+        #include "Platform/Bsd/CxLastError_bsd.inl"
     #elif xENV_APPLE
-        #include "Platform/Unix/CxLastError_unix.inl"
+        // #include "Platform/Unix/CxLastError_apple.inl"
     #endif
 #endif
 
