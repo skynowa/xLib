@@ -134,12 +134,34 @@ private:
     ExOsType       _osType;
     ExOsArch       _osArch;
 
-#if !xENV_WIN
+#if xENV_UNIX
     void_t         _passwdFileEntry(passwd *passwdEntry) const;
         ///< get password file entry
 #endif
 
     xNO_COPY_ASSIGN(CxSystemInfo)
+
+xPLATFORM:
+    ExOsType       _os_impl() xWARN_UNUSED_RV;
+    std::tstring_t _formatOsType_impl() xWARN_UNUSED_RV;
+    ExOsArch       _osArch_impl() xWARN_UNUSED_RV;
+    std::tstring_t _desktopName_impl() const xWARN_UNUSED_RV;
+    std::tstring_t _hostName_impl() const xWARN_UNUSED_RV;
+    bool_t         _isUserAdmin_impl() const xWARN_UNUSED_RV;
+    std::tstring_t _loginUserName_impl() const xWARN_UNUSED_RV;
+    std::tstring_t _userName_impl() const xWARN_UNUSED_RV;
+    std::tstring_t _userHomeDir_impl() const xWARN_UNUSED_RV;
+    std::tstring_t _userShellPath_impl() const xWARN_UNUSED_RV;
+    ulong_t        _numOfCpus_impl() const xWARN_UNUSED_RV;
+    ulong_t        _currentCpuNum_impl() const xWARN_UNUSED_RV;
+    std::tstring_t _cpuVendor_impl() const xWARN_UNUSED_RV;
+    std::tstring_t _cpuModel_impl() const xWARN_UNUSED_RV;
+    ulong_t        _cpuSpeed_impl() const xWARN_UNUSED_RV;
+    ulong_t        _cpuUsage_impl() const xWARN_UNUSED_RV;
+    ulonglong_t    _ramTotal_impl() const xWARN_UNUSED_RV;
+    ulonglong_t    _ramAvailable_impl() const xWARN_UNUSED_RV;
+    ulong_t        _ramUsage_impl() const xWARN_UNUSED_RV;
+    ulong_t        _pageSize_impl() const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, system)
