@@ -25,7 +25,7 @@ CxString::_castA_impl(
     xUNUSED(a_codePage);
 
     // TODO: CxString::castA() - Unix
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 
     return asRv;
 }
@@ -43,7 +43,7 @@ CxString::_castW_impl(
     xUNUSED(a_codePage);
 
     // TODO: CxString::castW() - Unix
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 
     return wsRv;
 }
@@ -59,7 +59,7 @@ CxString::_castToOem_impl(
     xUNUSED(a_str);
 
     // TODO: CxString::castToOem()
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 
     return dest;
 }
@@ -75,7 +75,7 @@ CxString::_castFromOem_impl(
     xUNUSED(a_str);
 
     // TODO: CxString::castFromOem()
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 
     return dest;
 }

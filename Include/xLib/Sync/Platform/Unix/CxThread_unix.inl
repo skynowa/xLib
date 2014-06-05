@@ -216,7 +216,7 @@ CxThread::_setCpuIdeal_impl(
 {
     xUNUSED(a_idealCpu);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline ulong_t
@@ -224,7 +224,7 @@ CxThread::_cpuIdeal_impl() const
 {
     ulong_t ulRv = (ulong_t) - 1;
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 
     return ulRv;
 }

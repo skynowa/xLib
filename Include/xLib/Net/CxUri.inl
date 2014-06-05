@@ -588,7 +588,7 @@ CxUri::_normilize(
     // lowcase(_scheme)
     // remove dot-segment
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline ushort_t

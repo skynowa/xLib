@@ -179,7 +179,7 @@ CxPop3Client::list(
     S: -ERR no such message, only 2 messages in maildrop
     */
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -209,7 +209,7 @@ CxPop3Client::listAt(
     S: -ERR no such message, only 2 messages in maildrop
     */
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
