@@ -21,7 +21,7 @@
     #elif xENV_BSD
         #include "Platform/Bsd/CxSystemInfo_bsd.inl"
     #elif xENV_APPLE
-        #include "Platform/Unix/CxSystemInfo_apple.inl"
+        #include "Platform/Apple/CxSystemInfo_apple.inl"
     #endif
 #endif
 
