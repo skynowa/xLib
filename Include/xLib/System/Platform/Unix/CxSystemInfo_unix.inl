@@ -61,34 +61,38 @@ CxSystemInfo::_osArch_impl()
 {
     ExOsArch oaRv = oaUnknown;
 
-    utsname info; xSTRUCT_ZERO(info);
+    std::tstring_t infoMachine;
+    {
+        utsname info; xSTRUCT_ZERO(info);
 
-    int_t iRv = ::uname(&info);
-    xTEST_DIFF(iRv, - 1);
-    // TODO: CxSystemInfo::_osArch_impl() - xTEST_DIFF(0, strlen(info.machine));
+        int_t iRv = ::uname(&info);
+        xTEST_DIFF(iRv, - 1);
+
+        infoMachine.assign(info.machine);
+    }
 
     // 32-bit checks
-    if      (CxStringCI::compare(info.machine, xT("i386"))) {
+    if      (CxStringCI::compare(infoMachine, xT("i386"))) {
         oaRv = oa32bit;
     }
-    else if (CxStringCI::compare(info.machine, xT("i486"))) {
+    else if (CxStringCI::compare(infoMachine, xT("i486"))) {
         oaRv = oa32bit;
     }
-    else if (CxStringCI::compare(info.machine, xT("i586"))) {
+    else if (CxStringCI::compare(infoMachine, xT("i586"))) {
         oaRv = oa32bit;
     }
-    else if (CxStringCI::compare(info.machine, xT("i686"))) {
+    else if (CxStringCI::compare(infoMachine, xT("i686"))) {
         oaRv = oa32bit;
     }
 
     // 64-bit checks
-    else if (CxStringCI::compare(info.machine, xT("x86_64"))) {
+    else if (CxStringCI::compare(infoMachine, xT("x86_64"))) {
         oaRv = oa64bit;
     }
-    else if (CxStringCI::compare(info.machine, xT("ia64"))) {
+    else if (CxStringCI::compare(infoMachine, xT("ia64"))) {
         oaRv = oa64bit;
     }
-    else if (CxStringCI::compare(info.machine, xT("amd64"))) {
+    else if (CxStringCI::compare(infoMachine, xT("amd64"))) {
         oaRv = oa64bit;
     }
 
