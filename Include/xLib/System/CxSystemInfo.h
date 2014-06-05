@@ -65,7 +65,7 @@ public:
     // OS
     ExOsType       os() xWARN_UNUSED_RV;
         ///< get information about the current OS
-    std::tstring_t formatOsType() xWARN_UNUSED_RV;
+    std::tstring_t formatOs() xWARN_UNUSED_RV;
         ///< format OS type
 
     ExOsArch       osArch() xWARN_UNUSED_RV;
@@ -139,7 +139,7 @@ private:
 
 xPLATFORM:
     ExOsType       _os_impl() xWARN_UNUSED_RV;
-    std::tstring_t _formatOsType_impl() xWARN_UNUSED_RV;
+    std::tstring_t _formatOs_impl() xWARN_UNUSED_RV;
     ExOsArch       _osArch_impl() xWARN_UNUSED_RV;
     std::tstring_t _desktopName_impl() const xWARN_UNUSED_RV;
     std::tstring_t _hostName_impl() const xWARN_UNUSED_RV;
