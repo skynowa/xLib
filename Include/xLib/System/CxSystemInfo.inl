@@ -17,11 +17,11 @@
     #include "Platform/Unix/CxSystemInfo_unix.inl"
 
     #if   xENV_LINUX
-        // #include "Platform/Linux/CxSystemInfo_linux.inl"
+        #include "Platform/Linux/CxSystemInfo_linux.inl"
     #elif xENV_BSD
-        // #include "Platform/Bsd/CxSystemInfo_bsd.inl"
+        #include "Platform/Bsd/CxSystemInfo_bsd.inl"
     #elif xENV_APPLE
-        // #include "Platform/Unix/CxSystemInfo_apple.inl"
+        #include "Platform/Unix/CxSystemInfo_apple.inl"
     #endif
 #endif
 
