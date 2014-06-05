@@ -57,7 +57,7 @@ CxHttpClient::get(
     xUNUSED(a_url);
     xUNUSED(a_response);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -71,7 +71,7 @@ CxHttpClient::post(
     xUNUSED(a_params);
     xUNUSED(a_response);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -81,7 +81,7 @@ CxHttpClient::options(
 {
     xUNUSED(a_url);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -91,7 +91,7 @@ CxHttpClient::trace(
 {
     xUNUSED(a_url);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -101,7 +101,7 @@ CxHttpClient::put(
 {
     xUNUSED(a_url);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -111,7 +111,7 @@ CxHttpClient::del(
 {
     xUNUSED(a_url);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -121,7 +121,7 @@ CxHttpClient::connect(
 {
     xUNUSED(a_url);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -131,7 +131,7 @@ CxHttpClient::patch(
 {
     xUNUSED(a_url);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -141,7 +141,7 @@ CxHttpClient::link(
 {
     xUNUSED(a_url);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -151,7 +151,7 @@ CxHttpClient::unlink(
 {
     xUNUSED(a_url);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -229,7 +229,7 @@ CxMimeHeader::saveToFile(
     xUNUSED(a_filePath);
 
     // TODO: CxMimeHeader::saveToFile()
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

@@ -36,7 +36,7 @@ CxMimeMessage::parse(
     xUNUSED(a_header);
     xUNUSED(a_body);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -46,7 +46,7 @@ CxMimeMessage::loadFromRawFile(
 {
     xUNUSED(a_filePath);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -56,7 +56,7 @@ CxMimeMessage::saveToRawFile(
 {
     xUNUSED(a_filePath);
 
-    xNOT_IMPLEMENTED;
+    xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 

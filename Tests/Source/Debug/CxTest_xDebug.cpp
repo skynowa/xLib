@@ -85,7 +85,7 @@ CxTest_xDebug::unit(
     xTEST_CASE("xDebug::xNOT_IMPLEMENTED_", a_caseLoops)
     {
         #if xTEST_IGNORE
-            xNOT_IMPLEMENTED;
+            xNOT_IMPLEMENTED
         #endif
     }
 
