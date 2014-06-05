@@ -51,9 +51,9 @@ CxTest_CxSystemInfo::unit(
         #endif
     }
 
-    xTEST_CASE("CxSystemInfo::formatOsType", a_caseLoops)
+    xTEST_CASE("CxSystemInfo::formatOs", a_caseLoops)
     {
-        m_sRv = CxSystemInfo().formatOsType();
+        m_sRv = CxSystemInfo().formatOs();
         xTEST_EQ(false, m_sRv.empty());
     }
 

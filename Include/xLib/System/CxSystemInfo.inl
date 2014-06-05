@@ -48,9 +48,9 @@ CxSystemInfo::os()
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxSystemInfo::formatOsType()
+CxSystemInfo::formatOs()
 {
-    return _formatOsType_impl();
+    return _formatOs_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline CxSystemInfo::ExOsArch

@@ -59,7 +59,7 @@ CxSystemInfo::_os_impl()
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxSystemInfo::_formatOsType_impl()
+CxSystemInfo::_formatOs_impl()
 {
     std::tstring_t sRv;
 
