@@ -279,7 +279,7 @@ CxSystemInfo::_currentCpuNum_impl() const
 
     ulRv = cpu;
 #else
-    #pragma message("xLib: CxSystemInfo::currentCpuNum() - n/a")
+    #pragma message("xLib: CxSystemInfo::_currentCpuNum_impl() - n/a")
     ulRv = 0UL;
 #endif
 
