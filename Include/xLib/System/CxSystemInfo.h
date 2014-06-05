@@ -18,8 +18,6 @@ public:
         /// OS type
     {
         otUnknown,
-
-    #if   xENV_WIN
         // windows family
         otWindows3,
         otWindows95,
@@ -34,15 +32,13 @@ public:
         otWindowsVista,
         otWindowsServer2008,
         otWindowsServer2008R2,
-        otWindows7
-    #elif xENV_UNIX
+        otWindows7,
         // Linux  family
         otLinux,
         // BSD family
-        otFreeBSD
-    #elif xENV_APPLE
+        otFreeBSD,
+        // Apple family
         otMac
-    #endif
     };
 
     enum ExOsArch
