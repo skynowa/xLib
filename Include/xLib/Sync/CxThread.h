@@ -48,8 +48,6 @@ public:
     typedef pthread_t id_t;     ///< ID
 #endif
 
-    volatile long_t tag;    ///< tag
-
                     CxThread(cbool_t &isAutoDelete);
         ///< constructor
     // BUG: CxThread:: ~CxThread() - must pure virtual
@@ -57,6 +55,10 @@ public:
         ///< destructor
 
     // actions
+    void_t          setTag(culong_t &tag);
+        ///< set data tag
+    ulong_t         tag() const;
+        ///< get data tag
     void_t          create(cbool_t &isPaused, cuint_t &stackSize, void_t *param);
         ///< start
     void_t          resume();
@@ -184,16 +186,18 @@ private:
         ///< exit timeout (msec)
 
     // thread data
+    volatile long_t _tag;           ///< data tag
+
 #if   xENV_WIN
-    CxHandle        _handle;                 ///< native handle
+    CxHandle        _handle;        ///< native handle
 #elif xENV_UNIX
-    handle_t        _handle;                 ///< native handle
+    handle_t        _handle;        ///< native handle
 #endif
 
-    id_t            _id;                    ///< ID
-    uint_t          _exitStatus;            ///< exit code
-    void_t         *_param;                 ///< param for job function
-    cbool_t         _isAutoDelete;          ///< is auto delete thread object
+    id_t            _id;            ///< ID
+    uint_t          _exitStatus;    ///< exit code
+    void_t         *_param;         ///< param for job function
+    cbool_t         _isAutoDelete;  ///< is auto delete thread object
 
     struct State
         ///< thread state flags
@@ -205,9 +209,9 @@ private:
     } _state;
 
     // other
-    CxEvent        *_eventStarter;              ///< starter event
-    CxEvent         _eventPause;                 ///< pause event
-    CxEvent         _eventExit;                  ///< exit event
+    CxEvent        *_eventStarter;  ///< starter event
+    CxEvent         _eventPause;    ///< pause event
+    CxEvent         _eventExit;     ///< exit event
 
     static
     exit_status_t xSTDCALL _s_jobEntry(void_t *param) xWARN_UNUSED_RV;
