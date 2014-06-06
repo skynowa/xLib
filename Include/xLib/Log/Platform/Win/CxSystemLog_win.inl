@@ -24,12 +24,12 @@ CxSystemLog::_construct_impl(
 inline void_t
 CxSystemLog::_destruct_impl()
 {
-    xTEST_PTR(_handle);
+    xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
 
     BOOL blRv = ::DeregisterEventSource(_handle);
     xTEST_DIFF(blRv, FALSE);
 
-    _handle = xPTR_NULL;
+    _handle = xNATIVE_HANDLE_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -39,6 +39,8 @@ CxSystemLog::_write_impl(
     std::ctstring_t &a_msg
 ) const
 {
+    xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
+
     WORD    level_impl = internal::enums::toCross(a_level);
     LPCTSTR strings    = a_msg.c_str();
 

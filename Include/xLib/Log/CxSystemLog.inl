@@ -33,7 +33,7 @@ inline
 CxSystemLog::CxSystemLog()
 #if xENV_WIN
     :
-    _handle(xPTR_NULL)
+    _handle(xNATIVE_HANDLE_NULL)
 #endif
 {
     _construct_impl( CxPath( CxPath::exe() ).fileBaseName() );
@@ -45,7 +45,7 @@ CxSystemLog::CxSystemLog(
 )
 #if xENV_WIN
     :
-    _handle   (xPTR_NULL)
+    _handle(xNATIVE_HANDLE_NULL)
 #endif
 {
     _construct_impl(a_logName);
@@ -96,9 +96,6 @@ CxSystemLog::write(
 {
     xCHECK_DO(!isEnabled(), return);
     xTEST_PTR(a_format);
-#if xENV_WIN
-    xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
-#endif
 
     ExLevel level = lvUnknown;
     {
