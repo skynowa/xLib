@@ -108,7 +108,7 @@
 #include <xLib/Core/xConfig.h>
 
 // POSIX
-#if !xOS_WIN
+#if xENV_UNIX
     #include <unistd.h>
 #endif
 
