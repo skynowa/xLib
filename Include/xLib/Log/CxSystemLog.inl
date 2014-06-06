@@ -12,7 +12,11 @@
     #include "Platform/Win/CxSystemLog_win.inl"
 #elif xENV_UNIX
     #if   xENV_LINUX
-        #include "Platform/Unix/CxSystemLog_unix.inl"
+        #if   xOS_LINUX
+            #include "Platform/Unix/CxSystemLog_unix.inl"
+        #elif xOS_ANDROID
+            #include "Platform/Linux/CxSystemLog_android.inl"
+        #endif
     #elif xENV_BSD
         #include "Platform/Unix/CxSystemLog_unix.inl"
     #elif xENV_APPLE
