@@ -6,7 +6,7 @@
 
 #include <Test/Net/CxTest_CxCgi.h>
 
-#include <xLib/Filesystem/CxFile.h>
+#include <xLib/IO/CxFile.h>
 #include <xLib/Net/CxCookiePv0.h>
 #include <xLib/Net/CxCookiePv1.h>
 

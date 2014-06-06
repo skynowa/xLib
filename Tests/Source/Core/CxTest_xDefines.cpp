@@ -7,7 +7,7 @@
 #include <Test/Core/CxTest_xDefines.h>
 
 #include <xLib/Core/CxString.h>
-#include <xLib/Filesystem/CxPath.h>
+#include <xLib/IO/CxPath.h>
 #include <xLib/Log/CxTrace.h>
 
 

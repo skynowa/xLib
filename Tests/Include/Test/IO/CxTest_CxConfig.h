@@ -1,5 +1,5 @@
 /**
- * \file   CxTest_CxCrc32.h
+ * \file   CxTest_CxConfig.h
  * \brief
  */
 
@@ -8,15 +8,14 @@
 
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Crypt/CxCrc32.h>
-#include <xLib/IO/CxFile.h>
+#include <xLib/IO/CxConfig.h>
 //-------------------------------------------------------------------------------------------------
-class CxTest_CxCrc32 :
+class CxTest_CxConfig :
     public CxTest
 {
 public:
-                   CxTest_CxCrc32() {}
+                    CxTest_CxConfig() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual  void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

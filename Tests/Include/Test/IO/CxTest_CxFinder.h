@@ -1,6 +1,6 @@
 /**
- * \file   CxTest_CxCrc32.h
- * \brief
+ * \file   CxTest_CxFinder.h
+ * \brief  test CxFinder
  */
 
 
@@ -8,15 +8,17 @@
 
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Crypt/CxCrc32.h>
-#include <xLib/IO/CxFile.h>
+#include <xLib/IO/CxFinder.h>
 //-------------------------------------------------------------------------------------------------
-class CxTest_CxCrc32 :
+class CxTest_CxFinder :
     public CxTest
+    ///< tests for CxFinder
 {
 public:
-                   CxTest_CxCrc32() {}
+                   CxTest_CxFinder() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
+        ///< unit test
 };
 //-------------------------------------------------------------------------------------------------
+

@@ -7,7 +7,7 @@
 #include <Test/Net/CxTest_CxPop3Client.h>
 
 #include <xLib/Core/CxString.h>
-#include <xLib/Filesystem/CxDir.h>
+#include <xLib/IO/CxDir.h>
 #include <xLib/Net/CxMimeHeader.h>
 #include <xLib/Net/CxMimeBody.h>
 

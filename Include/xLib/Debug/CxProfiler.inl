@@ -6,8 +6,8 @@
 
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/CxUtils.h>
-#include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxFile.h>
+#include <xLib/IO/CxPath.h>
+#include <xLib/IO/CxFile.h>
 
 
 xNAMESPACE_BEGIN2(xlib, debug)

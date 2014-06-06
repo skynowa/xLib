@@ -10,8 +10,8 @@
 #include <xLib/System/CxConsole.h>
 #include <xLib/Debug/CxBuildInfo.h>
 #include <xLib/Debug/CxException.h>
-#include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxFile.h>
+#include <xLib/IO/CxPath.h>
+#include <xLib/IO/CxFile.h>
 #include <xLib/Sync/CxThread.h>
 
 

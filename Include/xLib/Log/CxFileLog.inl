@@ -7,8 +7,8 @@
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/CxDateTime.h>
-#include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxFile.h>
+#include <xLib/IO/CxPath.h>
+#include <xLib/IO/CxFile.h>
 #include <xLib/Sync/CxAutoIpcMutex.h>
 
 

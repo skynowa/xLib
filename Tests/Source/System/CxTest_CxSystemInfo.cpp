@@ -7,8 +7,8 @@
 #include <Test/System/CxTest_CxSystemInfo.h>
 
 #include <xLib/Core/CxString.h>
-#include <xLib/Filesystem/CxFile.h>
-#include <xLib/Filesystem/CxDir.h>
+#include <xLib/IO/CxFile.h>
+#include <xLib/IO/CxDir.h>
 #include <xLib/Sync/CxThread.h>
 
 

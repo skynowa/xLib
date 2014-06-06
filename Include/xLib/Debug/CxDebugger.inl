@@ -8,7 +8,7 @@
 #include <xLib/System/CxSystemInfo.h>
 #include <xLib/System/CxConsole.h>
 #include <xLib/Debug/CxErrorReport.h>
-#include <xLib/Filesystem/CxPath.h>
+#include <xLib/IO/CxPath.h>
 #include <xLib/Gui/CxMsgBox.h>
 #include <xLib/System/CxEnvironment.h>
 

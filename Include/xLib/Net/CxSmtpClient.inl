@@ -13,8 +13,8 @@
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Log/CxTrace.h>
 #include <xLib/Crypt/CxBase64.h>
-#include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxFile.h>
+#include <xLib/IO/CxPath.h>
+#include <xLib/IO/CxFile.h>
 #include <xLib/Net/CxDnsClient.h>
 
 

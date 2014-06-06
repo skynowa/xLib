@@ -7,7 +7,7 @@
 #include <Test/Log/CxTest_CxFileLog.h>
 
 #include <xLib/Core/CxConst.h>
-#include <xLib/Filesystem/CxFile.h>
+#include <xLib/IO/CxFile.h>
 
 
 //-------------------------------------------------------------------------------------------------
