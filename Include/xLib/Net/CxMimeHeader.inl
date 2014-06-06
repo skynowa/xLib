@@ -7,7 +7,7 @@
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/CxLocale.h>
 #include <xLib/Crypt/CxGuid.h>
-#include <xLib/Filesystem/CxFile.h>
+#include <xLib/IO/CxFile.h>
 #include <xLib/System/CxSystemInfo.h>
 
 

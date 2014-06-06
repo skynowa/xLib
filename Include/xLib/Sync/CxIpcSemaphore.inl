@@ -5,7 +5,7 @@
 
 
 #include <xLib/Core/CxConst.h>
-#include <xLib/Filesystem/CxPath.h>
+#include <xLib/IO/CxPath.h>
 
 #if   xENV_WIN
     #include "Platform/Win/CxIpcSemaphore_win.inl"

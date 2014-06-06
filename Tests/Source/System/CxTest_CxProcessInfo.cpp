@@ -6,8 +6,8 @@
 
 #include <Test/System/CxTest_CxProcessInfo.h>
 
-#include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxFile.h>
+#include <xLib/IO/CxPath.h>
+#include <xLib/IO/CxFile.h>
 #include <xLib/Sync/CxProcess.h>
 
 //-------------------------------------------------------------------------------------------------

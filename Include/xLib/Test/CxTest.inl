@@ -5,8 +5,8 @@
 
 
 #include <xLib/Debug/CxException.h>
-#include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxDir.h>
+#include <xLib/IO/CxPath.h>
+#include <xLib/IO/CxDir.h>
 
 
 xNAMESPACE_BEGIN2(xlib, test)

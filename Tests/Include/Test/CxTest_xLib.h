@@ -62,17 +62,17 @@
 #include <Test/Debug/CxTest_CxAutoProfiler.h>
 
 
-// Filesystem
-#include <Test/Filesystem/CxTest_CxPath.h>
-#include <Test/Filesystem/CxTest_CxFileType.h>
-#include <Test/Filesystem/CxTest_CxFile.h>
-#include <Test/Filesystem/CxTest_CxFileTemp.h>
-#include <Test/Filesystem/CxTest_CxDll.h>
-#include <Test/Filesystem/CxTest_CxFinder.h>
-#include <Test/Filesystem/CxTest_CxDir.h>
-#include <Test/Filesystem/CxTest_CxVolume.h>
-#include <Test/Filesystem/CxTest_CxConfig.h>
-#include <Test/Filesystem/CxTest_CxBackup.h>
+// IO
+#include <Test/IO/CxTest_CxPath.h>
+#include <Test/IO/CxTest_CxFileType.h>
+#include <Test/IO/CxTest_CxFile.h>
+#include <Test/IO/CxTest_CxFileTemp.h>
+#include <Test/IO/CxTest_CxDll.h>
+#include <Test/IO/CxTest_CxFinder.h>
+#include <Test/IO/CxTest_CxDir.h>
+#include <Test/IO/CxTest_CxVolume.h>
+#include <Test/IO/CxTest_CxConfig.h>
+#include <Test/IO/CxTest_CxBackup.h>
 
 
 // Log

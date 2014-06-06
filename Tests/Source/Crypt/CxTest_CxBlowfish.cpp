@@ -7,7 +7,7 @@
 #include <Test/Crypt/CxTest_CxBlowfish.h>
 
 #include <xLib/Core/CxConst.h>
-#include <xLib/Filesystem/CxFile.h>
+#include <xLib/IO/CxFile.h>
 
 
 #if xHAVE_OPENSSL_CRYPTO

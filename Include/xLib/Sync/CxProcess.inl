@@ -5,10 +5,10 @@
 
 
 #include <xLib/Core/CxString.h>
-#include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxFile.h>
-#include <xLib/Filesystem/CxDll.h>
-#include <xLib/Filesystem/CxFinder.h>
+#include <xLib/IO/CxPath.h>
+#include <xLib/IO/CxFile.h>
+#include <xLib/IO/CxDll.h>
+#include <xLib/IO/CxFinder.h>
 #include <xLib/Sync/CxThread.h>
 
 #if   xENV_WIN

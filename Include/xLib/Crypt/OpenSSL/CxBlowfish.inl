@@ -6,8 +6,8 @@
 
 #if xHAVE_OPENSSL_CRYPTO
 
-#include <xLib/Filesystem/CxFile.h>
-#include <xLib/Filesystem/CxPath.h>
+#include <xLib/IO/CxFile.h>
+#include <xLib/IO/CxPath.h>
 #include <xLib/Crypt/CxCrc32.h>
 
 #if xENV_WIN
