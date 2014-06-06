@@ -107,9 +107,9 @@ set( CMAKE_SYSTEM_NAME Linux )
 #this one not so much
 set( CMAKE_SYSTEM_VERSION 1 )
 
-set( ANDROID_NDK_DEFAULT_SEARCH_PATH /opt/android-ndk )
+set( ANDROID_NDK_DEFAULT_SEARCH_PATH /opt/Libs/Android/NDK )
 set( ANDROID_NDK_SUPPORTED_VERSIONS -r6 -r5c -r5b -r5 "")
-set( ANDROID_NDK_TOOLCHAIN_DEFAULT_SEARCH_PATH /opt/android-toolchain )
+set( ANDROID_NDK_TOOLCHAIN_DEFAULT_SEARCH_PATH /opt/Libs/Android/NDK/toolchains )
 set( TOOL_OS_SUFFIX "" )
 
 macro( __TOOLCHAIN_DETECT_API_LEVEL _path )
@@ -160,7 +160,7 @@ if( EXISTS "${ANDROID_NDK}" )
   set( NDKSYSTEM "windows" )
   set( TOOL_OS_SUFFIX ".exe" )
  elseif( UNIX )
-  set( NDKSYSTEM "linux-x86" )
+  set( NDKSYSTEM "linux-x86_64" )
  else()
   message( FATAL_ERROR "Your platform is not supported" )
  endif()
@@ -179,7 +179,7 @@ if( EXISTS "${ANDROID_NDK}" )
   message( STATUS "  If you prefer to use a different API level, please define the variable: ANDROID_API_LEVEL" )
  endif()
 
- set( ANDROID_NDK_TOOLCHAIN_ROOT "${ANDROID_NDK}/toolchains/arm-linux-androideabi-4.4.3/prebuilt/${NDKSYSTEM}" )
+ set( ANDROID_NDK_TOOLCHAIN_ROOT "${ANDROID_NDK}/toolchains/arm-linux-androideabi-4.8/prebuilt/${NDKSYSTEM}" )
  set( ANDROID_NDK_SYSROOT "${ANDROID_NDK}/platforms/android-${ANDROID_API_LEVEL}/arch-arm" )
 
  __TOOLCHAIN_DETECT_API_LEVEL( "${ANDROID_NDK_SYSROOT}/usr/include/android/api-level.h" ${ANDROID_API_LEVEL} )
@@ -296,7 +296,7 @@ if( BUILD_WITH_ANDROID_NDK_TOOLCHAIN )
   set( STL_LIBRARIES_PATH "${STL_LIBRARIES_PATH}/thumb" )
  endif()
  #for some reason this is needed? TODO figure out why...
- include_directories(SYSTEM "${ANDROID_NDK_TOOLCHAIN_ROOT}/arm-linux-androideabi/include/c++/4.4.3/arm-linux-androideabi" )
+ include_directories(SYSTEM "${ANDROID_NDK_TOOLCHAIN_ROOT}/arm-linux-androideabi/include/c++/4.8/arm-linux-androideabi" )
 endif()
 
 # only search for libraries and includes in the ndk toolchain
