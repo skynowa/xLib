@@ -19,25 +19,25 @@ public:
     enum ExPriority
         /// priotity
     {
-        #if   xENV_WIN
-            tpError        = THREAD_PRIORITY_ERROR_RETURN,
-            tpIdle         = THREAD_PRIORITY_IDLE,
-            tpLowest       = THREAD_PRIORITY_LOWEST,
-            tpBelowNormal  = THREAD_PRIORITY_BELOW_NORMAL,
-            tpNormal       = THREAD_PRIORITY_NORMAL,
-            tpAboveNormal  = THREAD_PRIORITY_ABOVE_NORMAL,
-            tpHighest      = THREAD_PRIORITY_HIGHEST,
-            tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL
-        #elif xENV_UNIX
-            tpError        = - 1,
-            tpIdle         ,
-            tpLowest       = 10,
-            tpBelowNormal  ,
-            tpNormal       ,
-            tpAboveNormal  ,
-            tpHighest      ,
-            tpTimeCritical
-        #endif
+    #if   xENV_WIN
+        tpError        = THREAD_PRIORITY_ERROR_RETURN,
+        tpIdle         = THREAD_PRIORITY_IDLE,
+        tpLowest       = THREAD_PRIORITY_LOWEST,
+        tpBelowNormal  = THREAD_PRIORITY_BELOW_NORMAL,
+        tpNormal       = THREAD_PRIORITY_NORMAL,
+        tpAboveNormal  = THREAD_PRIORITY_ABOVE_NORMAL,
+        tpHighest      = THREAD_PRIORITY_HIGHEST,
+        tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL
+    #elif xENV_UNIX
+        tpError        = - 1,
+        tpIdle         ,
+        tpLowest       = 10,
+        tpBelowNormal  ,
+        tpNormal       ,
+        tpAboveNormal  ,
+        tpHighest      ,
+        tpTimeCritical
+    #endif
     };
 
 #if   xENV_WIN
@@ -169,6 +169,12 @@ protected:
         ///< is need to exit from work thread function
 
 private:
+#if   xENV_WIN
+    typedef uint_t   exit_status_t;
+#elif xENV_UNIX
+    typedef void_t * exit_status_t;
+#endif
+
     // constants
     static
     culong_t        _s_stillActiveTimeout = 2UL;
@@ -203,19 +209,13 @@ private:
     CxEvent         _eventPause;                 ///< pause event
     CxEvent         _eventExit;                  ///< exit event
 
-#if   xENV_WIN
-    typedef uint_t   exit_status_t;
-#elif xENV_UNIX
-    typedef void_t * exit_status_t;
-#endif
-
     static
     exit_status_t xSTDCALL _s_jobEntry(void_t *param) xWARN_UNUSED_RV;
         ///< callback
     bool_t          _waitResumption() xWARN_UNUSED_RV;
         ///< waiting for reset pause
-    void_t          _setStatesDefault();
-        ///< set states as default
+    void_t          _clear(cuint_t &a_exitStatus);
+        ///< clear class data
 
     // static
     static

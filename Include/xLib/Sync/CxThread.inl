@@ -45,7 +45,7 @@ CxThread::CxThread(
     _param       (xPTR_NULL),
     _isAutoDelete(a_isAutoDelete),
 
-    // flags
+    // states
     _state       (),
 
     // other
@@ -75,8 +75,7 @@ CxThread::~CxThread()
     #endif
     }
 
-    // state flags
-    _setStatesDefault();
+    _clear(0U);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -117,7 +116,7 @@ CxThread::create(
     _create_impl(a_stackSize);
     xTEST_EQ(isCurrent(_id), false);
 
-    // flags
+    // states
     {
         _state.isCreated = true;
         _state.isRunning = true;
@@ -144,7 +143,7 @@ CxThread::resume()
 
     _eventPause.set();
 
-    // flags
+    // states
     {
         /* _state.isCreated */// n/a
         /* _state.isRunning */// n/a
@@ -162,7 +161,7 @@ CxThread::pause()
 
     _eventPause.reset();
 
-    // flags
+    // states
     {
         /* _state.isCreated */// n/a
         /* _state.isRunning */// n/a
@@ -180,7 +179,7 @@ CxThread::exit()
 
     _eventExit.set();
 
-    // flags
+    // states
     {
         /* _state.isCreated */// n/a
         /* _state.isRunning */// n/a
@@ -195,25 +194,7 @@ CxThread::kill(
 )
 {
     _kill_impl(a_timeoutMsec);
-
-    // clean members
-    {
-        ulong_t ulRv = 0UL;
-
-    #if   xENV_WIN
-        _handle.close();
-    #elif xENV_UNIX
-        _handle = 0UL;
-    #endif
-
-        _id         = 0UL;
-        _exitStatus = static_cast<uint_t>( ulRv );  // saving value
-        _param      = xPTR_NULL;
-        //_isAutoDelete - n/a
-
-        // flags
-        _setStatesDefault();
-    }
+    _clear(0U);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -227,7 +208,7 @@ CxThread::wait(
 
 
 /**************************************************************************************************
-*    public: flags
+*    public: states
 *
 **************************************************************************************************/
 
@@ -645,7 +626,7 @@ CxThread::isTimeToExit()
     bRv = isPaused();
     xCHECK_RET(bRv, ! _waitResumption());
 
-    // flags
+    // states
     // n/a
 
     return false;
@@ -667,94 +648,65 @@ CxThread::_s_jobEntry(
 {
     xTEST_PTR(a_param);
 
-    uint_t uiRv = 0U;
-    bool_t bRv  = false;
+    culong_t waitVaildHandleTimeoutMsec = 500UL;
+    culong_t notInfiniteTimeoutMsec     = 10000UL;
 
     CxThread *self = static_cast<CxThread *>( a_param );
     xTEST_PTR(self);
 
     // handle must be valid
-    currentSleep(500UL);
+    currentSleep(waitVaildHandleTimeoutMsec);
 
-    CxEvent::ExObjectState osRv = self->_eventStarter->wait(10000UL);   // not infinite timeout
+    CxEvent::ExObjectState osRv = self->_eventStarter->wait(notInfiniteTimeoutMsec);
     xTEST_EQ(CxEvent::osSignaled, osRv);
 
     xPTR_DELETE(self->_eventStarter);
 
     // if created suspended thread - wait for resumption
-    if (self->isPaused()) {
-        bRv = self->_waitResumption();
+    if ( self->isPaused() ) {
+        bool_t bRv = self->_waitResumption();
         xTEST_EQ(bRv, true);
     }
 
+    uint_t exitStatus = 0U;
     {
-        // begin of thread function
-        try {
-            #if xTODO
-                self->_vHandler_OnEnter(self);
-            #endif
-        }
-        catch (...) {
-            xTEST_FAIL;
+        {
+            // TODO: CxThread::_s_jobEntry() - begin of thread function
         }
 
-        // executing of thread function
+        // run thread function
         try {
-            uiRv = self->onRun(self->_param);
+            exitStatus = self->onRun(self->_param);
         }
         catch (std::exception &e) {
-            std::string asWhat = e.what();
-            xTEST_MSG_FAIL(xS2TS(asWhat));
+            std::string what = e.what();
+            xTEST_MSG_FAIL(xS2TS(what));
         }
         catch (...) {
             xTEST_FAIL;
         }
 
-        // end of thread function
-        try {
-            #if xTODO
-                self->_vHandler_OnExit(self);
-            #endif
-        }
-        catch (...) {
-            xTEST_FAIL;
+        {
+            // TODO: CxThread::_s_jobEntry() - end of thread function
         }
     }
 
-    // clean members (is need to close ???)
-    // TODO: CxThread::_s_jobEntry() - add CxThread::dataClear()
-    {
-    #if   xENV_WIN
-        self->_handle.close();
-    #elif xENV_UNIX
-        // TODO: CxThread::_s_jobEntry() - close thread
-        // _handle.close()
-    #endif
-
-        self->_id         = 0UL;
-        self->_exitStatus = uiRv;    // ???
-        self->_param      = xPTR_NULL;
-        // self->_isAutoDelete - n/a
-
-        // flags
-        self->_setStatesDefault();
-    }
-
-#if   xENV_WIN
-    exit_status_t esExitStatus = self->_exitStatus;
-#elif xENV_UNIX
-    exit_status_t esExitStatus = &self->_exitStatus;
-#endif
-
+    self->_clear(exitStatus);
     xCHECK_DO(self->_isAutoDelete, xPTR_DELETE(self));
 
-    return esExitStatus;
+#if   xENV_WIN
+    exit_status_t esRv = exitStatus;
+#elif xENV_UNIX
+    exit_status_t esRv = &exitStatus;
+#endif
+
+    return esRv;
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
 CxThread::_waitResumption()
 {
-    // flags
+    // states
     {
         /* _state.isCreated */// n/a
         /* _state.isRunning */// n/a
@@ -769,15 +721,23 @@ CxThread::_waitResumption()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxThread::_setStatesDefault()
+CxThread::_clear(
+    cuint_t &a_exitStatus
+)
 {
-    // n/a
+#if   xENV_WIN
+    _handle.close();
+#elif xENV_UNIX
+    _handle = 0UL;
+#endif
 
-    // flags
-    {
-        _state.isCreated = false;
-        _state.isRunning = false;
-    }
+    _id         = 0UL;
+    _exitStatus = a_exitStatus;
+    _param      = xPTR_NULL;
+
+    // states
+    _state.isCreated = false;
+    _state.isRunning = false;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
