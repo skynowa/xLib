@@ -378,7 +378,7 @@ CxString::toLowerCase(
     xCHECK_RET(a_str.empty(), std::tstring_t());
     xCHECK_DO (a_str.size() < length, length = a_str.size());
 
-    return _toLowerCase_impl(a_str, a_length);
+    return _toLowerCase_impl(a_str, length);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
