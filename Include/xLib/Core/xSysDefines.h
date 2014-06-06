@@ -88,14 +88,11 @@
         ///< OS Windows
 #elif xENV_UNIX
     #if   xENV_LINUX
-        #if  !defined(__ANDROID__)
-            #define xOS_LINUX 1
-                ///< OS Linux
-        #elif defined(__ANDROID__)
+        #define xOS_LINUX 1
+            ///< OS Linux
+        #if defined(__ANDROID__)
             #define xOS_ANDROID 1
                 ///< OS Android
-        #else
-            #error xLib: unsupported OS
         #endif
     #elif xENV_BSD
         #if defined(__FreeBSD__)
