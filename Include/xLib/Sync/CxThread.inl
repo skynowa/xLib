@@ -64,7 +64,7 @@ CxThread::~CxThread()
         // TODO: CxThread::~CxThread()
     #if xTODO
         if (!bRv) {
-            kill(_s_exitTimeout);
+            kill(_s_exitTimeoutMsec);
             if (!bRv) {
                 xTEST_FAIL;
             }
@@ -100,7 +100,7 @@ CxThread::tag() const
 inline void_t
 CxThread::create(
     cbool_t &a_isPaused,
-    cuint_t &a_stackSize,
+    cuint_t &a_stackSizeBytes,
     void_t  *a_param
 )
 {
@@ -110,7 +110,7 @@ CxThread::create(
 
 #endif
     xTEST_NA(a_isPaused);
-    xTEST_NA(a_stackSize);
+    xTEST_NA(a_stackSizeBytes);
     xTEST_NA(a_param);
 
     _param = a_param;
@@ -124,7 +124,7 @@ CxThread::create(
     _eventExit.create();
 
     // start
-    _create_impl(a_stackSize);
+    _create_impl(a_stackSizeBytes);
     xTEST_EQ(isCurrent(_id), false);
 
     // states

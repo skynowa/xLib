@@ -59,7 +59,7 @@ public:
         ///< set data tag
     ulong_t         tag() const;
         ///< get data tag
-    void_t          create(cbool_t &isPaused, cuint_t &stackSize, void_t *param);
+    void_t          create(cbool_t &isPaused, cuint_t &stackSizeBytes, void_t *param);
         ///< start
     void_t          resume();
         ///< resume
@@ -179,10 +179,10 @@ private:
 
     // constants
     static
-    culong_t        _s_stillActiveTimeout = 2UL;
+    culong_t        _s_stillActiveTimeoutMsec = 2UL;
         ///< still active timeout (msec)
     static
-    culong_t        _s_exitTimeout = 5000UL;
+    culong_t        _s_exitTimeoutMsec = 5000UL;
         ///< exit timeout (msec)
 
     // thread data
@@ -232,7 +232,7 @@ private:
     xNO_COPY_ASSIGN(CxThread)
 
 xPLATFORM:
-    void_t          _create_impl(cuint_t &stackSize);
+    void_t          _create_impl(cuint_t &stackSizeBytes);
     void_t          _kill_impl(culong_t &timeoutMsec);
     void_t          _wait_impl(culong_t &timeoutMsec) const;
     bool_t          _isCreated_impl() const xWARN_UNUSED_RV;

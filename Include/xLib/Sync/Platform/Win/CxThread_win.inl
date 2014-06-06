@@ -15,13 +15,13 @@ xNAMESPACE_BEGIN2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxThread::_create_impl(
-    cuint_t &a_stackSize
+    cuint_t &a_stackSizeBytes
 )
 {
     id_t id = 0UL;
 
-    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(xPTR_NULL, a_stackSize, _s_jobEntry,
-        this, 0U, (uint_t *)&id) );
+    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(xPTR_NULL, a_stackSizeBytes,
+        _s_jobEntry, this, 0U, (uint_t *)&id) );
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
     xTEST_LESS(0UL, id);
 
