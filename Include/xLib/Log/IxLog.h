@@ -47,7 +47,7 @@ public:
 
 protected:
     std::tostringstream_t _oss; ///< string stream
-    std::tstring_t  _levelToString(cExLevel &level) const;
+    std::tstring_t  _levelString(cExLevel &level) const;
 
 private:
     bool_t          _isEnable;  ///< is enabled

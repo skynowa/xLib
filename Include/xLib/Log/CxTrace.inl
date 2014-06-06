@@ -79,7 +79,7 @@ CxTrace::write(
         xVA_END(args);
 
         if (a_level != lvPlain) {
-            msg = _levelToString(a_level) + xT(": ") + msg;
+            msg = _levelString(a_level) + xT(": ") + msg;
         }
     }
 

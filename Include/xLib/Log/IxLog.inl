@@ -47,7 +47,7 @@ IxLog::isEnabled() const
 
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-IxLog::_levelToString(
+IxLog::_levelString(
     cExLevel &a_level
 ) const
 {
