@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxThread::_create_impl(
-    cuint_t &a_stackSize
+    cuint_t &a_stackSizeBytes
 )
 {
     int_t          iRv = - 1;
@@ -29,9 +29,9 @@ CxThread::_create_impl(
     iRv = ::pthread_attr_setdetachstate(&attrs, PTHREAD_CREATE_JOINABLE);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    if (a_stackSize != 0U) {
+    if (a_stackSizeBytes != 0U) {
         // TODO: CxThread::_create_impl() - size_t size = PTHREAD_STACK_MIN + 0x4000;
-        iRv = ::pthread_attr_setstacksize(&attrs, a_stackSize);
+        iRv = ::pthread_attr_setstacksize(&attrs, a_stackSizeBytes);
         xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
     }
 
