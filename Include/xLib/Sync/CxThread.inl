@@ -36,18 +36,15 @@ inline
 CxThread::CxThread(
     cbool_t &a_isAutoDelete
 ) :
-    tag          (0UL),
-
     // data
+    _tag         (0UL),
     _handle      (),
     _id          (0UL),
     _exitStatus  (0U),
     _param       (xPTR_NULL),
     _isAutoDelete(a_isAutoDelete),
-
     // states
     _state       (),
-
     // other
     _eventStarter(xPTR_NULL),
     _eventPause  (false, false),
@@ -85,6 +82,20 @@ CxThread::~CxThread()
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+inline void_t
+CxThread::setTag(
+    culong_t &a_tag
+)
+{
+    _tag = a_tag;
+}
+//-------------------------------------------------------------------------------------------------
+inline ulong_t
+CxThread::tag() const
+{
+    return _tag;
+}
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxThread::create(
@@ -725,10 +736,12 @@ CxThread::_clear(
     cuint_t &a_exitStatus
 )
 {
+    _tag        = 0UL;
+
 #if   xENV_WIN
     _handle.close();
 #elif xENV_UNIX
-    _handle = 0UL;
+    _handle     = 0UL;
 #endif
 
     _id         = 0UL;
