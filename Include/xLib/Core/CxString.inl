@@ -398,7 +398,7 @@ CxString::toUpperCase(
 
     std::tstring_t sRv(a_str);
 
-    return _toUpperCase_impl(a_str, a_length);
+    return _toUpperCase_impl(a_str, length);
 }
 //-------------------------------------------------------------------------------------------------
 
