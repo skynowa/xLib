@@ -1,10 +1,11 @@
 #--------------------------------------------------------------------------------------------------
-# \file  CMakeVars.cmake
+# \file  CMakeVariables.cmake
 # \brief Generic CMake Variable Logging
 #--------------------------------------------------------------------------------------------------
 
 
-message("************ Generic CMake Variable **************")
+message("")
+message("************ CMake Generic Variables **************")
 
 
 message("* Project:")
@@ -139,3 +140,4 @@ message("*")
 # message("*")
 
 message("**************************************************")
+message("")
