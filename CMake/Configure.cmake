@@ -7,6 +7,7 @@
 include(CheckLibraryExists)
 include(CheckCXXSourceCompiles)
 include(FindGitRevision)
+include(FindOS)
 include(FindMySQL)
 include(FindExecInfo)
 include(FindXCB)
@@ -34,7 +35,7 @@ find_package(GitRevision REQUIRED)
 find_package(OpenSSL)
 find_package(MySQL)
 
-if (UNIX)
+if (ENV_UNIX)
     find_package(ExecInfo REQUIRED)
     find_package(XCB)
 endif()
@@ -51,9 +52,9 @@ if (OPENSSL_FOUND)
     check_library_exists(crypto BF_cfb64_encrypt "" xHAVE_OPENSSL_CRYPTO)
 endif()
 
-if (WIN32)
+if (ENV_WIN)
     # TODO: windows part
-elseif (UNIX)
+elseif (ENV_UNIX)
     # xHAVE_EXECINFO
     if (EXECINFO_FOUND)
         set(xHAVE_EXECINFO TRUE)
@@ -125,13 +126,21 @@ elseif (UNIX)
 
 
     # Linux
-    if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-
+    if (ENV_LINUX)
+        if (OS_ANDROID)
+            #
+        endif()
     endif()
 
+    # BSD
+    if (ENV_BSD)
+        if (OS_FREEBSD)
+            #
+        endif()
+    endif()
 
     # Apple
-    if (APPLE)
+    if (ENV_APPLE)
         # xHAVE_PT_DENY_ATTACH
         check_cxx_source_compiles(
             "#include <sys/types.h>
