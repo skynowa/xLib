@@ -194,7 +194,11 @@ namespace xlib
     #include <xLib/Core/Platform/Unix/xCore_unix.h>
 
     #if   xENV_LINUX
-        #include <xLib/Core/Platform/Linux/xCore_linux.h>
+        #if   xOS_ANDROID
+            #include <xLib/Core/Platform/Linux/xCore_android.h>
+        #elif xOS_LINUX
+            #include <xLib/Core/Platform/Linux/xCore_linux.h>
+        #endif
     #elif xENV_BSD
         #include <xLib/Core/Platform/Bsd/xCore_bsd.h>
     #elif xENV_APPLE
