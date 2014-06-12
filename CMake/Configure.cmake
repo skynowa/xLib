@@ -29,6 +29,7 @@ include(FindOS)
 include(FindMySQL)
 include(FindExecInfo)
 include(FindXCB)
+include(FindAddr2Line)
 
 #--------------------------------------------------------------------------------------------------
 # find packages
@@ -39,12 +40,13 @@ find_package(MySQL)
 if (ENV_UNIX)
     find_package(ExecInfo REQUIRED)
     find_package(XCB)
+    find_package(Addr2Line)
 endif()
 
 #--------------------------------------------------------------------------------------------------
 # configure
 if (GIT_REVISION_FOUND)
-    set(xHAVE_GIT_REVISION TRUE)
+    set(xHAVE_GIT_REVISION 1)
     set(xGIT_REVISION_BRANCH GIT_REVISION_BRANCH)
     set(xGIT_REVISION_HASH GIT_REVISION_HASH)
 endif()
@@ -58,12 +60,18 @@ if (ENV_WIN)
 elseif (ENV_UNIX)
     # xHAVE_EXECINFO
     if (EXECINFO_FOUND)
-        set(xHAVE_EXECINFO TRUE)
+        set(xHAVE_EXECINFO 1)
     endif()
 
     # xHAVE_XCB
     if (XCB_FOUND)
-        set(xHAVE_XCB TRUE)
+        set(xHAVE_XCB 1)
+    endif()
+
+    # xHAVE_ADDR2LINE
+    if (ADDR2LINE_FOUND)
+        set (xHAVE_ADDR2LINE 1)
+        # TODO: ADDR2LINE_FILE_PATH
     endif()
 
     # xHAVE_PR_SET_DUMPABLE
@@ -90,14 +98,6 @@ elseif (ENV_UNIX)
         }"
         xHAVE_RLIMIT_CORE
     )
-
-    # xHAVE_ADDR2LINE
-    find_file(xHAVE_ADDR2LINE "addr2line")
-    if (xHAVE_ADDR2LINE)
-        message(STATUS "xHAVE_ADDR2LINE ${xHAVE_ADDR2LINE}")
-    else()
-        message(WARNING "xHAVE_ADDR2LINE ${xHAVE_ADDR2LINE}")
-    endif()
 
     # xHAVE_SCHED_GETCPU
     check_cxx_source_compiles(
