@@ -45,10 +45,10 @@ else()
     set(XCB_FOUND FALSE)
 endif()
 
-if (XCB_FOUND)
-    message(STATUS "Found XCB: ${XCB_LIBRARIES}")
+#--------------------------------------------------------------------------------------------------
+# trace
+if (NOT XCB_FOUND AND XCB_FIND_REQUIRED)
+    message(FATAL_ERROR "XCB_FOUND: ${XCB_FOUND}")
 else()
-    if (XCB_FIND_REQUIRED)
-        message(FATAL_ERROR "Could not find XCB library")
-    endif()
+    message(STATUS "XCB_FOUND: ${XCB_FOUND}")
 endif()

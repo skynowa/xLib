@@ -28,13 +28,12 @@ else()
     set(MYSQL_LIBRARIES "")
 endif()
 
-if (MYSQL_FOUND)
-    message(STATUS "Found MySQL: ${MYSQL_LIBRARY}")
+#--------------------------------------------------------------------------------------------------
+# trace
+if (NOT MYSQL_FOUND AND MYSQL_FIND_REQUIRED)
+    message(FATAL_ERROR "MYSQL_FOUND: ${MYSQL_FOUND}")
 else()
-    if (MYSQL_FIND_REQUIRED)
-        message(STATUS "Looked for MySQL libraries named ${MYSQL_NAMES}.")
-        message(FATAL_ERROR "Could not find MySQL library")
-    endif()
+    message(STATUS "MYSQL_FOUND: ${MYSQL_FOUND}")
 endif()
 
 MARK_AS_ADVANCED(MYSQL_INCLUDES MYSQL_LIBRARY)
