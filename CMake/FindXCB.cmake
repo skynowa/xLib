@@ -41,8 +41,6 @@ endif()
 
 if (XCB_INCLUDE_DIR AND XCB_LIBRARIES)
     set(XCB_FOUND TRUE)
-else()
-    set(XCB_FOUND FALSE)
 endif()
 
 #--------------------------------------------------------------------------------------------------

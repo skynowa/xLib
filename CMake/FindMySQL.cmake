@@ -23,9 +23,6 @@ find_library(MYSQL_LIBRARY
 if (MYSQL_INCLUDES AND MYSQL_LIBRARY)
     set(MYSQL_FOUND TRUE)
     set(MYSQL_LIBRARIES ${MYSQL_LIBRARY})
-else()
-    set(MYSQL_FOUND FALSE)
-    set(MYSQL_LIBRARIES "")
 endif()
 
 #--------------------------------------------------------------------------------------------------
