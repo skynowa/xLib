@@ -30,12 +30,10 @@ else()
     )
 endif()
 
-# info
-if (NOT GIT_REVISION_FOUND)
-    if (GIT_REVISION_FIND_REQUIRED)
-        message(FATAL_ERROR "Could not find Git revision")
-    endif()
+#--------------------------------------------------------------------------------------------------
+# trace
+if (NOT GIT_REVISION_FOUND AND GIT_REVISION_FIND_REQUIRED)
+    message(FATAL_ERROR "GIT_REVISION_FOUND: ${GIT_REVISION_FOUND}")
 else()
-    message(STATUS "CMake source dir: ${CMAKE_SOURCE_DIR}")
-    message(STATUS "Found Git revision: ${GIT_REVISION_BRANCH}/${GIT_REVISION_HASH}")
+    message(STATUS "GIT_REVISION_FOUND: ${GIT_REVISION_FOUND}")
 endif()

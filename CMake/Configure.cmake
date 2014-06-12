@@ -93,9 +93,9 @@ elseif (ENV_UNIX)
     # xHAVE_ADDR2LINE
     find_file(xHAVE_ADDR2LINE "addr2line")
     if (xHAVE_ADDR2LINE)
-        message(STATUS "addr2line - found")
+        message(STATUS "xHAVE_ADDR2LINE ${xHAVE_ADDR2LINE}")
     else()
-        message(WARNING "addr2line - failed")
+        message(WARNING "xHAVE_ADDR2LINE ${xHAVE_ADDR2LINE}")
     endif()
 
     # xHAVE_SCHED_GETCPU
