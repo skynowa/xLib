@@ -8,11 +8,7 @@
 #--------------------------------------------------------------------------------------------------
 
 
-if (NOT EXISTS "${CMAKE_SOURCE_DIR}/.git")
-    set(GIT_REVISION_FOUND FALSE)
-    set(GIT_REVISION_BRANCH "")
-    set(GIT_REVISION_HASH "")
-else()
+if (EXISTS "${CMAKE_SOURCE_DIR}/.git")
     set(GIT_REVISION_FOUND TRUE)
 
     execute_process(

@@ -4,20 +4,11 @@
 #--------------------------------------------------------------------------------------------------
 
 
-include(CheckLibraryExists)
-include(CheckCXXSourceCompiles)
-include(FindGitRevision)
-include(FindOS)
-include(FindMySQL)
-include(FindExecInfo)
-include(FindXCB)
-
 #--------------------------------------------------------------------------------------------------
 # unset cache
 unset(xHAVE_GIT_REVISION    CACHE)
 unset(xGIT_REVISION_BRANCH  CACHE)
 unset(xGIT_REVISION_HASH    CACHE)
-
 unset(xHAVE_OPENSSL_CRYPTO  CACHE)
 unset(xHAVE_MYSQL           CACHE)
 unset(xHAVE_PR_SET_DUMPABLE CACHE)
@@ -28,6 +19,16 @@ unset(xHAVE_SCHED_GETCPU    CACHE)
 unset(xHAVE_ADDR2LINE       CACHE)
 unset(xHAVE_EXECINFO        CACHE)
 unset(xHAVE_XCB             CACHE)
+
+#--------------------------------------------------------------------------------------------------
+# includes
+include(CheckLibraryExists)
+include(CheckCXXSourceCompiles)
+include(FindGitRevision)
+include(FindOS)
+include(FindMySQL)
+include(FindExecInfo)
+include(FindXCB)
 
 #--------------------------------------------------------------------------------------------------
 # find packages
