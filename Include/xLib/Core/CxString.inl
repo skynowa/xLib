@@ -287,7 +287,7 @@ CxString::castCodePage(
     cuint_t        &a_codePageDest      ///< destination code page
 )
 {
-    xTEST_NA(a_source);
+    xTEST_NA(a_str);
     xTEST_NA(a_codePageSource);
     xTEST_NA(a_codePageDest);
 

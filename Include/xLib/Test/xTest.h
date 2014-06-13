@@ -246,7 +246,7 @@
 #endif
 
 #define xTEST_NA(var) \
-    ;
+    xUNUSED(var)
     ///< at this point debug code for variable is not applicable
 #define xTESTS_NA \
     ;

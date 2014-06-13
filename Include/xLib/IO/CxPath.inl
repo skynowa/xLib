@@ -274,7 +274,6 @@ CxPath::isNameValid(
 )
 {
     xTEST_NA(a_fileName);
-    xTEST_NA(a_isNormalize);
     xTEST_NA(a_fileNameValid);
 
     std::tstring_t sRv(a_fileName);
