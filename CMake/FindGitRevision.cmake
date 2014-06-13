@@ -8,9 +8,11 @@
 #--------------------------------------------------------------------------------------------------
 
 
-if (EXISTS "${CMAKE_SOURCE_DIR}/.git")
-    set(GIT_REVISION_FOUND 1)
-
+if (NOT EXISTS "${CMAKE_SOURCE_DIR}/.git")
+    set(GIT_REVISION_FOUND 0)
+    set(GIT_REVISION_BRANCH "")
+    set(GIT_REVISION_HASH "")
+else()
     execute_process(
         COMMAND git rev-parse --abbrev-ref HEAD
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
@@ -24,6 +26,14 @@ if (EXISTS "${CMAKE_SOURCE_DIR}/.git")
         OUTPUT_VARIABLE GIT_REVISION_HASH
         OUTPUT_STRIP_TRAILING_WHITESPACE
     )
+
+    if (NOT (GIT_REVISION_BRANCH AND GIT_REVISION_HASH))
+        set(GIT_REVISION_FOUND 0)
+        set(GIT_REVISION_BRANCH "")
+        set(GIT_REVISION_HASH "")
+    else()
+        set(GIT_REVISION_FOUND 1)
+    endif()
 endif()
 
 #--------------------------------------------------------------------------------------------------
