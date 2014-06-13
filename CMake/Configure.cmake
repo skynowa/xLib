@@ -16,9 +16,9 @@ unset(xHAVE_RLIMIT_CORE     CACHE)
 unset(xHAVE_PT_DENY_ATTACH  CACHE)
 unset(xHAVE_SCHED_GETCPU    CACHE)
 unset(xHAVE_SCHED_GETCPU    CACHE)
-unset(xHAVE_ADDR2LINE       CACHE)
 unset(xHAVE_EXECINFO        CACHE)
 unset(xHAVE_XCB             CACHE)
+unset(xHAVE_ADDR2LINE       CACHE)
 
 #--------------------------------------------------------------------------------------------------
 # includes
