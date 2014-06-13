@@ -10,7 +10,10 @@
 #--------------------------------------------------------------------------------------------------
 find_file(ADDR2LINE_FILE_PATH "addr2line")
 
-if (NOT ADDR2LINE_FILE_PATH STREQUAL "ADDR2LINE_FILE_PATH-NOTFOUND")
+if (ADDR2LINE_FILE_PATH STREQUAL "ADDR2LINE_FILE_PATH-NOTFOUND")
+    set(ADDR2LINE_FOUND 0)
+    set(ADDR2LINE_FILE_PATH "")
+else()
     set(ADDR2LINE_FOUND 1)
 endif()
 

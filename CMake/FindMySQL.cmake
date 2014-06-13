@@ -20,7 +20,11 @@ find_library(MYSQL_LIBRARIES
     PATH_SUFFIXES mysql
 )
 
-if (MYSQL_INCLUDES AND MYSQL_LIBRARIES)
+if (NOT (MYSQL_INCLUDES AND MYSQL_LIBRARIES))
+    set(MYSQL_FOUND 0)
+    set(MYSQL_INCLUDES "")
+    set(MYSQL_LIBRARIES "")
+else()
     set(MYSQL_FOUND 1)
 endif()
 
