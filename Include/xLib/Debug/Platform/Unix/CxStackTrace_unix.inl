@@ -147,8 +147,9 @@ CxStackTrace::_addr2Line(
     */
 
     std::snprintf(cmdLine, xARRAY_SIZE(cmdLine) - 1,
-        /* xT("addr2line -C -e %s -f -i %lx") */
-        xADDR2LINE_FILE_PATH xT(" -C -e %s -f %lx"),
+        xADDR2LINE_FILE_PATH
+        // xT(" -C -e %s -f -i %lx")
+        xT(" -C -e %s -f %lx"),
         CxPath::exe().c_str(), reinterpret_cast<ptrdiff_t>(a_symbolAddress));
 
     FILE *file = ::popen(cmdLine, xT("r"));
