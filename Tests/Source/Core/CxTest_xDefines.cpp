@@ -236,6 +236,7 @@ CxTest_xDefines::unit(
         xTEST_EQ(1, xREVIEW);
         xTEST_EQ(0, xCOMMENT);
 
+        std::size_t var = 0;
         xTEST_NA(var);
         xTESTS_NA;
         xNA;
