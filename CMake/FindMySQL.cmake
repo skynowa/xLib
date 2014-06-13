@@ -21,7 +21,7 @@ find_library(MYSQL_LIBRARY
 )
 
 if (MYSQL_INCLUDES AND MYSQL_LIBRARY)
-    set(MYSQL_FOUND TRUE)
+    set(MYSQL_FOUND 1)
     set(MYSQL_LIBRARIES ${MYSQL_LIBRARY})
 endif()
 

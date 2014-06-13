@@ -13,7 +13,7 @@ find_path(EXECINFO_INCLUDES "execinfo.h")
 find_library(EXECINFO_LIBRARIES NAMES "execinfo")
 
 if (NOT EXECINFO_INCLUDES STREQUAL "EXECINFO_INCLUDES-NOTFOUND")
-    set(EXECINFO_FOUND TRUE)
+    set(EXECINFO_FOUND 1)
 
     if (EXECINFO_LIBRARIES STREQUAL "EXECINFO_LIBRARIES-NOTFOUND")
         # Built-in, no further action is needed
