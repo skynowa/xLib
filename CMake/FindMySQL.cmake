@@ -14,15 +14,14 @@ find_path(MYSQL_INCLUDES
 )
 
 set(MYSQL_NAMES mysqlclient mysqlclient_r)
-find_library(MYSQL_LIBRARY
+find_library(MYSQL_LIBRARIES
     NAMES ${MYSQL_NAMES}
     PATHS "/usr/lib" "/usr/local/lib"
     PATH_SUFFIXES mysql
 )
 
-if (MYSQL_INCLUDES AND MYSQL_LIBRARY)
+if (MYSQL_INCLUDES AND MYSQL_LIBRARIES)
     set(MYSQL_FOUND 1)
-    set(MYSQL_LIBRARIES ${MYSQL_LIBRARY})
 endif()
 
 #--------------------------------------------------------------------------------------------------
