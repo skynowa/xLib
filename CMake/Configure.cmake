@@ -24,25 +24,19 @@ unset(xHAVE_XCB             CACHE)
 # includes
 include(CheckLibraryExists)
 include(CheckCXXSourceCompiles)
-include(FindGitRevision)
-include(FindOS)
-include(FindMySQL)
-include(FindExecInfo)
-include(FindXCB)
-include(FindAddr2Line)
 
 #--------------------------------------------------------------------------------------------------
 # find packages
 find_package(GitRevision REQUIRED)
+find_package(OS REQUIRED)
 find_package(OpenSSL)
 find_package(MySQL)
 
 if (ENV_UNIX)
-    find_package(ExecInfo REQUIRED)
-    find_package(XCB)
-    find_package(Addr2Line)
+   find_package(ExecInfo REQUIRED)
+   find_package(XCB)
+   find_package(Addr2Line)
 endif()
-
 #--------------------------------------------------------------------------------------------------
 # configure
 if (GIT_REVISION_FOUND)
