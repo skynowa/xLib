@@ -129,8 +129,6 @@ CxStackTrace::_addr2Line(
     ulong_t        *a_sourceLine
 )
 {
-    tchar_t cmdLine[1024 + 1] = {0};
-
 #if xHAVE_ADDR2LINE
    /**
     * MAN: addr2line
@@ -145,6 +143,7 @@ CxStackTrace::_addr2Line(
     *   -h --help              Display this information
     *   -v --version           Display the program's version
     */
+    tchar_t cmdLine[1024 + 1] = {0};
 
     std::snprintf(cmdLine, xARRAY_SIZE(cmdLine) - 1,
         xADDR2LINE_FILE_PATH
@@ -192,9 +191,11 @@ CxStackTrace::_addr2Line(
     int_t iRv = ::pclose(file);   file = xPTR_NULL;
     _xVERIFY(iRv != - 1);
 #else
+    xUNUSED(a_symbolAddress);
+
     *a_filePath     = CxConst::strUnknown();
     *a_functionName = CxConst::strUnknown();
-    *a_sourceLine   = CxConst::strUnknown();
+    *a_sourceLine   = 0UL;
 #endif
 }
 //-------------------------------------------------------------------------------------------------
