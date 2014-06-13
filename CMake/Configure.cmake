@@ -40,9 +40,9 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # configure
 if (GIT_REVISION_FOUND)
-    set(xHAVE_GIT_REVISION 1)
+    set(xHAVE_GIT_REVISION   1)
     set(xGIT_REVISION_BRANCH GIT_REVISION_BRANCH)
-    set(xGIT_REVISION_HASH GIT_REVISION_HASH)
+    set(xGIT_REVISION_HASH   GIT_REVISION_HASH)
 endif()
 
 if (OPENSSL_FOUND)
@@ -64,8 +64,8 @@ elseif (ENV_UNIX)
 
     # xHAVE_ADDR2LINE
     if (ADDR2LINE_FOUND)
-        set (xHAVE_ADDR2LINE 1)
-        # TODO: ADDR2LINE_FILE_PATH
+        set(xHAVE_ADDR2LINE      1)
+        set(xADDR2LINE_FILE_PATH ADDR2LINE_FILE_PATH)
     endif()
 
     # xHAVE_PR_SET_DUMPABLE

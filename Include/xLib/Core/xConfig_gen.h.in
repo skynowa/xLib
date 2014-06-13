@@ -28,6 +28,7 @@
 #cmakedefine xHAVE_SCHED_GETCPU 1
 #cmakedefine xHAVE_GETCPU 1
 #cmakedefine xHAVE_ADDR2LINE 1
+#cmakedefine xADDR2LINE_FILE_PATH xT("@ADDR2LINE_FILE_PATH@")
 #cmakedefine xHAVE_EXECINFO 1
 #cmakedefine xHAVE_XCB 1
 ///@}
