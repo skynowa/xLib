@@ -9,7 +9,7 @@
 
 
 if (EXISTS "${CMAKE_SOURCE_DIR}/.git")
-    set(GIT_REVISION_FOUND TRUE)
+    set(GIT_REVISION_FOUND 1)
 
     execute_process(
         COMMAND git rev-parse --abbrev-ref HEAD

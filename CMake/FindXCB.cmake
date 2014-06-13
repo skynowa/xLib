@@ -40,7 +40,7 @@ if (UNIX)
 endif()
 
 if (XCB_INCLUDE_DIR AND XCB_LIBRARIES)
-    set(XCB_FOUND TRUE)
+    set(XCB_FOUND 1)
 endif()
 
 #--------------------------------------------------------------------------------------------------
