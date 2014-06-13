@@ -14,6 +14,12 @@ xNAMESPACE_BEGIN2(xlib, sync)
 *
 **************************************************************************************************/
 
+xNAMESPACE_ANONYM_BEGIN
+
+const mode_t modeDefault = S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH;
+
+xNAMESPACE_ANONYM_END
+
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxIpcMutex::_create_impl(
@@ -22,7 +28,7 @@ CxIpcMutex::_create_impl(
 {
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
-    handle_t hRv = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
+    handle_t hRv = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, ::modeDefault, 1U);
     xTEST_DIFF(hRv, SEM_FAILED);
 
     _handle = hRv;
@@ -36,7 +42,7 @@ CxIpcMutex::_open_impl(
 {
     std::ctstring_t unixName = CxConst::unixSlash() + a_name;
 
-    handle_t hRv = ::sem_open(unixName.c_str(), O_RDWR, 0777, 1U);
+    handle_t hRv = ::sem_open(unixName.c_str(), O_RDWR, ::modeDefault, 1U);
     xTEST_DIFF(hRv, SEM_FAILED);
 
     _handle = hRv;

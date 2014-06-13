@@ -23,7 +23,9 @@ CxDir::_isRoot_impl() const
 inline void_t
 CxDir::_create_impl() const
 {
-    int_t iRv = ::mkdir(dirPath().c_str(), S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH);
+    const mode_t modeDefault = S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH;
+
+    int_t iRv = ::mkdir(dirPath().c_str(), modeDefault);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
