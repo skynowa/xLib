@@ -14,6 +14,12 @@ xNAMESPACE_BEGIN2(xlib, sync)
 *
 **************************************************************************************************/
 
+xNAMESPACE_ANONYM_BEGIN
+
+const mode_t modeDefault = S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH;
+
+xNAMESPACE_ANONYM_END
+
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxIpcSemaphore::_construct_impl()
@@ -39,7 +45,7 @@ CxIpcSemaphore::_create_impl(
 {
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
-    handle_t hRv = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, a_initialValue);
+    handle_t hRv = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, modeDefault, a_initialValue);
     xTEST_DIFF(hRv, SEM_FAILED);
 
     _handle = hRv;
@@ -53,7 +59,7 @@ CxIpcSemaphore::_open_impl(
 {
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
-    handle_t hRv = ::sem_open(unixName.c_str(), O_RDWR, 0777, 0U);
+    handle_t hRv = ::sem_open(unixName.c_str(), O_RDWR, modeDefault, 0U);
     xTEST_DIFF(hRv, SEM_FAILED);
 
     _handle = hRv;
