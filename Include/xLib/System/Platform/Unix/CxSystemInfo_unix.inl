@@ -156,6 +156,7 @@ CxSystemInfo::_loginUserName_impl() const
 
     // try API
     {
+    #if xHAVE_GETLOGIN_R
         char buff[xUSER_NAME_MAX + 1] = {0}; // TODO: CxSystemInfo::loginUserName() - LOGIN_NAME_MAX
 
         int_t iRv = ::getlogin_r(buff, xARRAY_SIZE(buff));
@@ -163,6 +164,13 @@ CxSystemInfo::_loginUserName_impl() const
             sRv.assign(buff);
             return sRv;
         }
+    #else
+        const char *buff = ::getlogin();
+        if (buff != xPTR_NULL) {
+            sRv.assign(buff);
+            return sRv;
+        }
+    #endif
     }
 
     // try system environment
