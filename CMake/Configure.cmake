@@ -74,7 +74,7 @@ elseif (ENV_UNIX)
 
         int main()
         {
-            ::prctl(PR_SET_DUMPABLE, 0);
+            (int)::prctl(PR_SET_DUMPABLE, 0);
             return 0;
         }"
         xHAVE_PR_SET_DUMPABLE
@@ -87,7 +87,7 @@ elseif (ENV_UNIX)
         int main()
         {
             struct rlimit limit = {0, 0}
-            ::setrlimit(RLIMIT_CORE, &limit);
+            (int)::setrlimit(RLIMIT_CORE, &limit);
             return 0;
         }"
         xHAVE_RLIMIT_CORE
@@ -100,7 +100,7 @@ elseif (ENV_UNIX)
 
         int main()
         {
-            int iRv = ::sched_getcpu();
+            (int)::sched_getcpu();
             return 0;
         }"
         xHAVE_SCHED_GETCPU
@@ -113,7 +113,7 @@ elseif (ENV_UNIX)
         int main()
         {
             unsigned int cpu = 0U;
-            int iRv = ::getcpu(&cpu, NULL, NULL);
+            (int)::getcpu(&cpu, NULL, NULL);
             return 0;
         }"
         xHAVE_GETCPU
@@ -136,6 +136,8 @@ elseif (ENV_UNIX)
     # Linux
     if (ENV_LINUX)
         if (OS_ANDROID)
+            #
+        else(OS_LINUX)
             #
         endif()
     endif()
