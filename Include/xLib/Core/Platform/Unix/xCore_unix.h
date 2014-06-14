@@ -19,6 +19,7 @@
 #include <sys/wait.h>
 #include <sys/uio.h>
 #include <sys/syscall.h>
+#include <sys/sysconf.h>
 #include <sys/param.h>
 #include <sys/mount.h>
 #include <syslog.h>
