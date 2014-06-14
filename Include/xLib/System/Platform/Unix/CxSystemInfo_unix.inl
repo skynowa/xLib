@@ -365,6 +365,7 @@ CxSystemInfo::libPthreadVersion() const
 {
     std::tstring_t buff;
 
+#if xHAVE_CS_GNU_LIBPTHREAD_VERSION
     std::size_t buffBytes;
     {
         buffBytes = ::confstr(_CS_GNU_LIBPTHREAD_VERSION, xPTR_NULL, 0);
@@ -378,6 +379,10 @@ CxSystemInfo::libPthreadVersion() const
 
     // remove terminating null byte
     buff.resize(buffBytes - 1);
+#else
+    #pragma message("xLib: CxSystemInfo::libPthreadVersion() - n/a")
+    buff = CxConst::strUnknown();
+#endif
 
     return buff;
 }
