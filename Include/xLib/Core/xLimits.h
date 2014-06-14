@@ -109,17 +109,6 @@
     ///< maximum frames for stack trace
 
 //-------------------------------------------------------------------------------------------------
-// xSEMAPHORE_VALUE_MAX
-#if   xENV_WIN
-    #define xSEMAPHORE_VALUE_MAX \
-        ( LONG_MAX ) // LONG, custom define (tested on Win7 x64)
-#elif xENV_UNIX
-    #define xSEMAPHORE_VALUE_MAX \
-        ( SEM_VALUE_MAX ) // int_t
-#endif
-    ///< semaphore maximum value
-
-//-------------------------------------------------------------------------------------------------
 // xPAGE_SIZE
 #if   xENV_WIN
     xNA

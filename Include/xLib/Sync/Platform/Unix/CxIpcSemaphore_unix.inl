@@ -31,6 +31,24 @@ CxIpcSemaphore::_destruct_impl()
     // sem_unlink
 }
 //-------------------------------------------------------------------------------------------------
+inline long_t
+CxIpcSemaphore::_valueMax_impl() const
+{
+    long_t liRv = 0;
+
+#if   defined(SEM_VALUE_MAX)
+    liRv = SEM_VALUE_MAX;
+#elif defined(_SC_SEM_VALUE_MAX)
+    liRv = ::sysconf(_SC_SEM_VALUE_MAX);
+    xTEST_DIFF(liRv, - 1);
+#else
+    #pragma message("xLib: CxIpcSemaphore::_valueMax_impl() - n/a")
+    liRv = 0L;
+#endif
+
+    return liRv;
+}
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxIpcSemaphore::_create_impl(
     clong_t         &a_initialValue,

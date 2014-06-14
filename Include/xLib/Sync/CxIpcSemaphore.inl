@@ -52,6 +52,12 @@ CxIpcSemaphore::~CxIpcSemaphore()
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
+inline long_t
+CxIpcSemaphore::valueMax() const
+{
+    return _valueMax_impl();
+}
+//-------------------------------------------------------------------------------------------------
 inline const CxIpcSemaphore::handle_t &
 CxIpcSemaphore::handle() const
 {
@@ -68,7 +74,7 @@ CxIpcSemaphore::create(
 {
     xTEST_EQ(_isValid(), false);
     xTEST_GR(CxPath::maxSize(), a_name.size());
-    xTEST_EQ(0L <= a_initialValue && a_initialValue <= xSEMAPHORE_VALUE_MAX, true);
+    xTEST_EQ(0L <= a_initialValue && a_initialValue <= valueMax(), true);
 
     _create_impl(a_initialValue, a_name);
 }

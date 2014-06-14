@@ -24,6 +24,8 @@ public:
                      CxIpcSemaphore();
     virtual         ~CxIpcSemaphore();
 
+    long_t           valueMax() const;
+        ///< maximum value
     const handle_t & handle() const xWARN_UNUSED_RV;
         ///< get handle
     void_t           create(clong_t &initialValue, std::ctstring_t &name);
@@ -48,6 +50,7 @@ private:
 xPLATFORM:
     void_t           _construct_impl();
     void_t           _destruct_impl();
+    long_t           _valueMax_impl() const;
     void_t           _create_impl(clong_t &initialValue, std::ctstring_t &name);
     void_t           _open_impl(std::ctstring_t &name);
     void_t           _post_impl() const;

@@ -26,6 +26,13 @@ CxIpcSemaphore::_destruct_impl()
     xNA;
 }
 //-------------------------------------------------------------------------------------------------
+inline long_t
+CxIpcSemaphore::_valueMax_impl() const
+{
+    // CUSTOM: LONG (tested on Win7 x64)
+    return LONG_MAX;
+}
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxIpcSemaphore::_create_impl(
     clong_t         &a_initialValue,
@@ -42,7 +49,7 @@ CxIpcSemaphore::_create_impl(
         winName  = _winName.c_str();
     }
 
-    HANDLE  hRv       = ::CreateSemaphore(xPTR_NULL, a_initialValue, xSEMAPHORE_VALUE_MAX, winName);
+    HANDLE  hRv       = ::CreateSemaphore(xPTR_NULL, a_initialValue, valueMax(), winName);
     ulong_t lastError = CxLastError::get();
     xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
     xTEST_DIFF(lastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
