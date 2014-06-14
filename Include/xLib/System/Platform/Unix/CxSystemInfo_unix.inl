@@ -355,7 +355,7 @@ CxSystemInfo::glibcVersion() const
     #endif
     }
 
-    std::tstring_t sRv = version + CxConst::space() + release;
+    std::ctstring_t sRv = version + CxConst::space() + release;
 
     return sRv;
 }
