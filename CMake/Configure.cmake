@@ -119,6 +119,19 @@ elseif (ENV_UNIX)
         xHAVE_GETCPU
     )
 
+    # xHAVE_GETLOGIN_R
+    check_cxx_source_compiles(
+        "#include <stdio.h>
+        #include <unistd.h>
+
+        int main()
+        {
+            char buff[L_cuserid + 1] = {0};
+            (int)::getlogin_r(buff, L_cuserid);
+            return 0;
+        }"
+        xHAVE_GETLOGIN_R
+    )
 
     # Linux
     if (ENV_LINUX)
