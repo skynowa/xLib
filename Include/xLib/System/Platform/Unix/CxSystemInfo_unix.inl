@@ -326,20 +326,18 @@ CxSystemInfo::_pageSize_impl() const
 inline std::tstring_t
 CxSystemInfo::glibcVersion() const
 {
-    std::tstring_t sRv;
-
     std::tstring_t version;
     {
     #if xHAVE_GNU_GET_LIBC
         ctchar_t *libc_version = ::gnu_get_libc_version();
         if (libc_version == xPTR_NULL) {
-            version += CxConst::strUnknown();
+            version = CxConst::strUnknown();
         } else {
-            version += libc_version;
+            version = libc_version;
         }
     #else
         #pragma message("xLib: CxSystemInfo::glibcVersion() - n/a")
-        version += CxConst::strUnknown();
+        version = CxConst::strUnknown();
     #endif
     }
 
@@ -348,16 +346,16 @@ CxSystemInfo::glibcVersion() const
     #if xHAVE_GNU_GET_LIBC
         ctchar_t *libc_release = ::gnu_get_libc_release();
         if (libc_release == xPTR_NULL) {
-            release += CxConst::strUnknown();
+            release = CxConst::strUnknown();
         } else {
-            release += libc_release;
+            release = libc_release;
         }
     #else
-        release += CxConst::strUnknown();
+        release = CxConst::strUnknown();
     #endif
     }
 
-    sRv = version + CxConst::space() + release;
+    std::tstring_t sRv = version + CxConst::space() + release;
 
     return sRv;
 }
