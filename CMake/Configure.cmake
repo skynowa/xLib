@@ -133,6 +133,19 @@ elseif (ENV_UNIX)
         xHAVE_GETLOGIN_R
     )
 
+    # xHAVE_GNU_GET_LIBC
+    check_cxx_source_compiles(
+        "#include <gnu/libc-version.h>
+
+        int main()
+        {
+            (const char *)::gnu_get_libc_version();
+            (const char *)::gnu_get_libc_release();
+            return 0;
+        }"
+        xHAVE_GNU_GET_LIBC
+    )
+
     # Linux
     if (ENV_LINUX)
         if (OS_ANDROID)
