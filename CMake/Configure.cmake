@@ -15,10 +15,14 @@ unset(xHAVE_PR_SET_DUMPABLE CACHE)
 unset(xHAVE_RLIMIT_CORE     CACHE)
 unset(xHAVE_PT_DENY_ATTACH  CACHE)
 unset(xHAVE_SCHED_GETCPU    CACHE)
-unset(xHAVE_SCHED_GETCPU    CACHE)
+unset(xHAVE_GETLOGIN_R      CACHE)
+unset(xHAVE_GNU_GET_LIBC    CACHE)
+unset(xHAVE_CS_GNU_LIBPTHREAD_VERSION CACHE)
+
 unset(xHAVE_EXECINFO        CACHE)
 unset(xHAVE_XCB             CACHE)
 unset(xHAVE_ADDR2LINE       CACHE)
+unset(xADDR2LINE_FILE_PATH  CACHE)
 
 #--------------------------------------------------------------------------------------------------
 # includes
@@ -144,6 +148,19 @@ elseif (ENV_UNIX)
             return 0;
         }"
         xHAVE_GNU_GET_LIBC
+    )
+
+    # xHAVE_CS_GNU_LIBPTHREAD_VERSION
+    check_cxx_source_compiles(
+        "#include <unistd.h>
+        #include <cstddef>
+
+        int main()
+        {
+            (std::size_t)::confstr(_CS_GNU_LIBPTHREAD_VERSION, NULL, 0);
+            return 0;
+        }"
+        xHAVE_CS_GNU_LIBPTHREAD_VERSION
     )
 
     # Linux

@@ -29,6 +29,8 @@
 #cmakedefine xHAVE_GETCPU 1
 #cmakedefine xHAVE_GETLOGIN_R 1
 #cmakedefine xHAVE_GNU_GET_LIBC 1
+#cmakedefine xHAVE_CS_GNU_LIBPTHREAD_VERSION 1
+
 #cmakedefine xHAVE_EXECINFO 1
 #cmakedefine xHAVE_XCB 1
 #cmakedefine xHAVE_ADDR2LINE 1
