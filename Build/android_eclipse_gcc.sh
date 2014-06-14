@@ -10,7 +10,7 @@
 # export CXX="g++"
 
 DIR_XLIB="../xLib"
-DIR_BUILD="../../xLib_android_makefile_gcc"
+DIR_BUILD="../../xLib_android_eclipse_gcc"
 
 
 # build
