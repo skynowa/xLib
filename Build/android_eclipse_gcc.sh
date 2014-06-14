@@ -18,5 +18,5 @@ export ANDROID_NDK=/opt/Libs/Android/NDK
 
 mkdir -p $DIR_BUILD
 cd $DIR_BUILD
-cmake -G"Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=$DIR_XLIB/CMake/android.toolchain.cmake -DANDROID_API_LEVEL=19 $DIR_XLIB
+cmake -G"Eclipse CDT4 - Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=$DIR_XLIB/CMake/android.toolchain.cmake -DANDROID_API_LEVEL=19 $DIR_XLIB
 # make -j4 VERBOSE=1
