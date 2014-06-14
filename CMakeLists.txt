@@ -89,12 +89,9 @@ if (ENV_UNIX)
     endif()
 
     if (OS_ANDROID)
-        set(ANDROID_NDK "/opt/Libs/Android/NDK")
-
-        include_directories("${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.8/include")
-        include_directories("${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.8/libs/armeabi-v7a/include")
-        include_directories("${ANDROID_NDK}/platforms/android-9/arch-arm/usr/include")
-        link_libraries()
+        # set(ANDROID_NDK "/opt/Libs/Android/NDK")
+        # include_directories("${ANDROID_NDK}/platforms/android-9/arch-arm/usr/include")
+        # link_libraries()
     endif()
 endif()
 
