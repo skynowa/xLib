@@ -279,7 +279,7 @@ SET( DO_NOT_CHANGE_OUTPUT_PATHS_ON_FIRST_PASS ON CACHE INTERNAL "" FORCE)
 set( CMAKE_FIND_ROOT_PATH "${ANDROID_NDK_TOOLCHAIN_ROOT}/bin" "${ANDROID_NDK_TOOLCHAIN_ROOT}/arm-linux-androideabi" "${ANDROID_NDK_SYSROOT}" "${CMAKE_INSTALL_PREFIX}" "${CMAKE_INSTALL_PREFIX}/share" )
 
 if( BUILD_WITH_ANDROID_NDK )
- set( STL_PATH "${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++" )
+ set( STL_PATH "${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.8" )
  set( STL_LIBRARIES_PATH "${STL_PATH}/libs/${ARMEABI_NDK_NAME}" )
  include_directories(SYSTEM "${STL_PATH}/include" "${STL_LIBRARIES_PATH}/include" )
 # if ( NOT ARMEABI AND NOT FORCE_ARM )
