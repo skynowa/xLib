@@ -12,7 +12,6 @@
 #include <sys/vfs.h>
 #include <sys/prctl.h>
 #include <sys/sysinfo.h>
-#include <sys/sysconf.h>
 #include <mntent.h>
 
 // #if xHAVE_GETCPU
