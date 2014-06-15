@@ -79,7 +79,6 @@ public:
             lmUnlock  = LK_UNLCK
         #elif xENV_UNIX
             lmLock    = F_LOCK,
-            lmTlock   = F_TLOCK,
             lmTryLock = F_TEST,
             lmUnlock  = F_ULOCK
         #endif
