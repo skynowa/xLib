@@ -13,7 +13,7 @@
         #if   xOS_ANDROID
             #include "Platform/Linux/xFunctions_android.inl"
         #elif xOS_LINUX
-            #include "Platform/Linux/xFunctions_linux.h"
+            // #include "Platform/Linux/xFunctions_linux.h"
         #endif
     #elif xENV_BSD
         #include "Platform/Bsd/xFunctions_bsd.h"

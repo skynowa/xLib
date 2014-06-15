@@ -205,8 +205,10 @@ CxThread::_setCpuAffinity_impl(
     CPU_ZERO(&cpuSet);
     (void_t)CPU_SET(a_procNum, &cpuSet);
 
-    int_t iRv = ::pthread_setaffinity_np(id(), sizeof(cpuSet), &cpuSet);
+    int_t iRv = ::sched_setaffinity(static_cast<pid_t>( id() ), sizeof(cpuSet), &cpuSet);
     xTEST_MSG_DIFF(- 1, iRv, CxLastError::format(iRv));
+
+    // pthread_setaffinity_np
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
