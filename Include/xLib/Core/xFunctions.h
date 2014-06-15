@@ -221,15 +221,15 @@
 
 // xLOCKING
 #if   xCOMPILER_MINGW
-    #define xLOCKING            _locking
+    #define xLOCKING            ::_locking
 #elif xCOMPILER_MS
-    #define xLOCKING            _locking
+    #define xLOCKING            ::_locking
 #elif xCOMPILER_CODEGEAR
-    #define xLOCKING            locking
+    #define xLOCKING            ::locking
 #elif xCOMPILER_GNUC
-    #define xLOCKING            lockf
+    #define xLOCKING            ::lockf
 #else
-    #define xLOCKING            locking
+    #define xLOCKING            ::locking
 #endif
 
 // xCHSIZE

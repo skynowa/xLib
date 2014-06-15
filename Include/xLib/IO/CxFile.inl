@@ -374,7 +374,7 @@ CxFile::locking(
     const off_t bytes = static_cast<off_t>( a_bytes );
 #endif
 
-    int_t iRv = ::xLOCKING(_nativeHandle(get()), a_mode, bytes);
+    int_t iRv = xLOCKING(_nativeHandle(get()), a_mode, bytes);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
