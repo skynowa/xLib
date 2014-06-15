@@ -5,13 +5,19 @@
 
 
 #if   xENV_WIN
-    #include "Platform/Win/xFunctions_win.inl"
+    #include "Platform/Win/xFunctions_win.h"
 #elif xENV_UNIX
+    // #include "Platform/Unix/xFunctions_unix.h"
+
     #if   xENV_LINUX
-        // n/a
+        #if   xOS_ANDROID
+            #include "Platform/Linux/xFunctions_android.inl"
+        #elif xOS_LINUX
+            #include "Platform/Linux/xFunctions_linux.h"
+        #endif
     #elif xENV_BSD
-        #include "Platform/Unix/xFunctions_bsd.inl"
+        #include "Platform/Bsd/xFunctions_bsd.h"
     #elif xENV_APPLE
-        #include "Platform/Unix/xFunctions_bsd.inl"
+        #include "Platform/Apple/xFunctions_apple.h"
     #endif
 #endif

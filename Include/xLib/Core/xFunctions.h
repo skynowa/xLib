@@ -335,6 +335,10 @@ xNAMESPACE_BEGIN2(xlib, core)
 #endif
     ///< implementation std::clock
 
+#if xOS_ANDROID
+    inline int lockf(int fd, int cmd, off_t ignored_len) xWARN_UNUSED_RV;
+#endif
+
 xNAMESPACE_END2(xlib, core)
 
 #include "xFunctions.inl"
