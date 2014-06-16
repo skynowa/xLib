@@ -30,12 +30,12 @@ typedef struct
 
 inline int
 sched_setaffinity(
-    pid_t            a_pid,
-    size_t           a_len,
-    cpu_set_t const *a_cpusetp
+    pid_t      a_pid,
+    size_t     a_cpusetsize,
+    cpu_set_t *a_mask
 )
 {
-    return ::syscall(__NR_sched_setaffinity, a_pid, a_len, a_cpusetp);
+    return ::syscall(__NR_sched_setaffinity, a_pid, a_cpusetsize, a_mask);
 }
 
 #endif
