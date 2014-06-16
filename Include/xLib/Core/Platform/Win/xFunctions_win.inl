@@ -7,7 +7,7 @@
 xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
-inline int_t
+inline int
 getTimeOfDay(
     timeval  *a_tv,
     timezone *a_tz

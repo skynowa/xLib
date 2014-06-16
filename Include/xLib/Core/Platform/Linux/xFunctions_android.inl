@@ -13,14 +13,14 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 inline int
 lockf(
-    int   fd,
-    int   cmd,
-    off_t len_unused
+    int   a_fd,
+    int   a_cmd,
+    off_t a_len_unused
 )
 {
-    xUNUSED(len_unused);
+    xUNUSED(a_len_unused);
 
-    return ::flock(fd, cmd);
+    return ::flock(a_fd, a_cmd);
 }
 //-------------------------------------------------------------------------------------------------
 
