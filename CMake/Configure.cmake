@@ -6,22 +6,23 @@
 
 #--------------------------------------------------------------------------------------------------
 # unset cache
-unset(xHAVE_GIT_REVISION    CACHE)
-unset(xGIT_REVISION_BRANCH  CACHE)
-unset(xGIT_REVISION_HASH    CACHE)
-unset(xHAVE_OPENSSL_CRYPTO  CACHE)
-unset(xHAVE_MYSQL           CACHE)
+unset(xHAVE_GIT_REVISION CACHE)
+unset(xGIT_REVISION_BRANCH CACHE)
+unset(xGIT_REVISION_HASH CACHE)
+unset(xHAVE_OPENSSL_CRYPTO CACHE)
+unset(xHAVE_MYSQL CACHE)
 unset(xHAVE_PR_SET_DUMPABLE CACHE)
-unset(xHAVE_RLIMIT_CORE     CACHE)
-unset(xHAVE_PT_DENY_ATTACH  CACHE)
-unset(xHAVE_SCHED_GETCPU    CACHE)
-unset(xHAVE_GETLOGIN_R      CACHE)
-unset(xHAVE_GNU_GET_LIBC    CACHE)
+unset(xHAVE_RLIMIT_CORE CACHE)
+unset(xHAVE_PT_DENY_ATTACH CACHE)
+unset(xHAVE_SCHED_GETCPU CACHE)
+unset(xHAVE_GETLOGIN_R CACHE)
+unset(xHAVE_GNU_GET_LIBC CACHE)
 unset(xHAVE_CS_GNU_LIBPTHREAD_VERSION CACHE)
+unset(xHAVE_SCHED_SETAFFINITY CACHE)
 
-unset(xHAVE_EXECINFO        CACHE)
-unset(xHAVE_XCB             CACHE)
-unset(xHAVE_ADDR2LINE       CACHE)
+unset(xHAVE_EXECINFO CACHE)
+unset(xHAVE_XCB CACHE)
+unset(xHAVE_ADDR2LINE CACHE)
 unset(xADDR2LINE_FILE_PATH  CACHE)
 
 #--------------------------------------------------------------------------------------------------
@@ -161,6 +162,30 @@ elseif (ENV_UNIX)
             return 0;
         }"
         xHAVE_CS_GNU_LIBPTHREAD_VERSION
+    )
+
+    # xHAVE_SCHED_SETAFFINITY
+    check_cxx_source_compiles(
+        "#include <sys/types.h>
+        #include <unistd.h>
+        #define _GNU_SOURCE
+        #include <sched.h>
+
+        int main()
+        {
+        #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
+            cpuset_t  cpuSet;
+        #else
+            cpu_set_t cpuSet;
+        #endif
+
+            CPU_ZERO(&cpuSet);
+            CPU_SET(1, &cpuSet);
+
+            (int)::sched_setaffinity(::getpid(), sizeof(cpuSet), &cpuSet);
+            return 0;
+        }"
+        xHAVE_SCHED_SETAFFINITY
     )
 
     # Linux
