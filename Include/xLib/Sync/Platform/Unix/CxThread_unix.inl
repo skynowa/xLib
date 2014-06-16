@@ -203,7 +203,7 @@ CxThread::_setCpuAffinity_impl(
 #endif
 
     CPU_ZERO(&cpuSet);
-    (void_t)CPU_SET(a_procNum, &cpuSet);
+    CPU_SET(a_procNum, &cpuSet);
 
     int_t iRv = ::sched_setaffinity(static_cast<pid_t>( id() ), sizeof(cpuSet), &cpuSet);
     xTEST_MSG_DIFF(- 1, iRv, CxLastError::format(iRv));
