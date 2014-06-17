@@ -23,7 +23,7 @@
 #include <sys/mount.h>
 #include <syslog.h>
 
-// filesystem
+// io
 #include <fnmatch.h>    // fnmatch
 
 // thread

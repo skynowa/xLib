@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN2(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, io)
 
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -104,4 +104,4 @@ CxFile::_setTime_impl(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, filesystem)
+xNAMESPACE_END2(xlib, io)

@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN2(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, io)
 
 /**************************************************************************************************
 *    public
@@ -326,4 +326,4 @@ CxPath::procValue(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, filesystem)
+xNAMESPACE_END2(xlib, io)

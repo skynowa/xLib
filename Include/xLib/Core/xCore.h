@@ -160,7 +160,7 @@ namespace xlib
     namespace crypt {}
     namespace db {}
     namespace debug {}
-    namespace filesystem {}
+    namespace io {}
     namespace gui {}
     namespace log {}
     namespace net {}
@@ -175,7 +175,7 @@ namespace xlib
     using namespace xlib::crypt;
     using namespace xlib::db;
     using namespace xlib::debug;
-    using namespace xlib::filesystem;
+    using namespace xlib::io;
     using namespace xlib::gui;
     using namespace xlib::log;
     using namespace xlib::net;

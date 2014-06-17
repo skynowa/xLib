@@ -9,7 +9,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/IO/CxFileType.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, io)
 
 class CxFinder
     ///< filesystem finder
@@ -82,6 +82,6 @@ xPLATFORM:
     bool_t              _moveFirst_impl() xWARN_UNUSED_RV;
 };
 
-xNAMESPACE_END2(xlib, filesystem)
+xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
 #include "CxFinder.inl"

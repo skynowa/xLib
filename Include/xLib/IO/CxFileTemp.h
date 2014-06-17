@@ -8,7 +8,7 @@
 
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, io)
 
 class CxFile;
 
@@ -35,6 +35,6 @@ xPLATFORM:
     void_t          _create_impl(FILE *stdFile);
 };
 
-xNAMESPACE_END2(xlib, filesystem)
+xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
 #include "CxFileTemp.inl"
