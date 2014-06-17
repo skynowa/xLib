@@ -44,7 +44,7 @@ onSignal(int sig)
         break;
     }
 
-    _Exit(1);
+    ::_exit(1);
 }
 void_t
 setSignalHandler()
