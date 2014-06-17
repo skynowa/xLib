@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN(std)
  */
 
 inline std::clock_t
-clock() xWARN_UNUSED_RV;
+clock() xWARN_UNUSED_RV
 {
     rusage ruUsage; xSTRUCT_ZERO(ruUsage);
 
