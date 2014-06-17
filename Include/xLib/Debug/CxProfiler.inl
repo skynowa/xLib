@@ -65,7 +65,7 @@ CxProfiler::start()
 
     }
 
-    _start = xSTD_CLOCK();
+    _start = std::clock();
     xTEST_DIFF(static_cast<clock_t>( - 1 ), _start);
 
     _isStarted = true;
@@ -80,7 +80,7 @@ CxProfiler::stop(
 
     // stop, get duration
     {
-        _stop = xSTD_CLOCK();
+        _stop = std::clock();
         xTEST_DIFF(static_cast<clock_t>( - 1 ), _stop);
 
         _duration = _stop - _start;

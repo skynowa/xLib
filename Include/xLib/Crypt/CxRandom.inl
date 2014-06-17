@@ -45,7 +45,7 @@ inline uint_t
 IxSeedPolicy::_seedTimeBased() const
 {
     timeval tv = {0, 0};
-    int_t iRv = xGETTIMEOFDAY(&tv, xPTR_NULL);
+    int_t iRv = ::gettimeofday(&tv, xPTR_NULL);
     xTEST_DIFF(iRv, - 1);
 
     return static_cast<uint_t>( tv.tv_usec );

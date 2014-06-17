@@ -33,7 +33,7 @@ sched_setaffinity(
     pid_t      a_pid,
     size_t     a_cpusetsize,
     cpu_set_t *a_mask
-)
+) xWARN_UNUSED_RV;
 {
     return ::syscall(__NR_sched_setaffinity, a_pid, a_cpusetsize, a_mask);
 }
@@ -45,7 +45,7 @@ sched_setaffinity(
 inline pid_t
 getsid(
     pid_t a_pid
-)
+) xWARN_UNUSED_RV;
 {
     return ::syscall(__NR_getsid, a_pid);
 }

@@ -7,11 +7,18 @@
 xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
+struct timezone
+    /// for gettimeofday
+{
+    int_t tz_minuteswest;
+    int_t tz_dsttime;
+};
+
 inline int
-getTimeOfDay(
-    timeval  *a_tv,
-    timezone *a_tz
-)
+gettimeofday(
+    timeval  *a_tv, ///< minutes W of Greenwich
+    timezone *a_tz  ///< type of dst correction
+) xWARN_UNUSED_RV;
 {
 #if xCOMPILER_MS || defined(_MSC_EXTENSIONS)
     ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000Ui64;
