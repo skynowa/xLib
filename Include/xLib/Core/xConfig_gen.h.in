@@ -31,6 +31,7 @@
 #cmakedefine xHAVE_GNU_GET_LIBC 1
 #cmakedefine xHAVE_CS_GNU_LIBPTHREAD_VERSION 1
 #cmakedefine xHAVE_SCHED_SETAFFINITY 1
+#cmakedefine xHAVE_GETSID 1
 
 #cmakedefine xHAVE_EXECINFO 1
 #cmakedefine xHAVE_XCB 1

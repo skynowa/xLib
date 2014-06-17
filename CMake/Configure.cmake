@@ -19,6 +19,7 @@ unset(xHAVE_GETLOGIN_R CACHE)
 unset(xHAVE_GNU_GET_LIBC CACHE)
 unset(xHAVE_CS_GNU_LIBPTHREAD_VERSION CACHE)
 unset(xHAVE_SCHED_SETAFFINITY CACHE)
+unset(xHAVE_GETSID CACHE)
 
 unset(xHAVE_EXECINFO CACHE)
 unset(xHAVE_XCB CACHE)
@@ -187,6 +188,33 @@ elseif (ENV_UNIX)
         }"
         xHAVE_SCHED_SETAFFINITY
     )
+
+    # xHAVE_GETSID
+    check_cxx_source_compiles(
+        "#include <unistd.h>
+         #include <sys/syscall.h>
+
+        int main()
+        {
+            (pid_t)::getsid(static_cast<pid_t>( 0 ));
+            return 0;
+        }"
+        xHAVE_GETSID
+    )
+
+
+    # # xHAVE_[FUNCTION_NAME]
+    # check_cxx_source_compiles(
+    #     "#include <unistd.h>
+    #     #include <sys/syscall.h>
+    #
+    #     int main()
+    #     {
+    #         [function_name];
+    #         return 0;
+    #     }"
+    #     xHAVE_[FUNCTION_NAME]
+    # )
 
     # Linux
     if (ENV_LINUX)

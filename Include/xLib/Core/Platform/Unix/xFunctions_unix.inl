@@ -40,5 +40,17 @@ sched_setaffinity(
 
 #endif
 //-------------------------------------------------------------------------------------------------
+#if !defined(xHAVE_GETSID)
+
+inline pid_t
+getsid(
+    pid_t a_pid
+)
+{
+    return ::syscall(__NR_getsid, a_pid);
+}
+
+#endif
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, core)
