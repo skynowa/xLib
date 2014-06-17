@@ -7,11 +7,17 @@
 #include <xLib/Core/CxUtils.h>
 
 
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN(std)
 
 //-------------------------------------------------------------------------------------------------
+/**
+ * clock
+ *
+ * get std::clock_t (http://bugs.vcmi.eu/view.php?id=719)
+ */
+
 inline std::clock_t
-clock()
+clock() xWARN_UNUSED_RV;
 {
     rusage ruUsage; xSTRUCT_ZERO(ruUsage);
 
@@ -26,7 +32,9 @@ clock()
 
     return clkRv;
 }
+
+#define xSTD_CLOCK  ::clock
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END(std)
 
