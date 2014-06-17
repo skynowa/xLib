@@ -38,7 +38,7 @@ option(xHAVE_DEBUG_MODE_LOG    "debug mode 'logging with plain text'"     0)
 option(xHAVE_DEBUG_MODE_NO     "debug mode 'no debugging'"                0)
 option(xHAVE_TEST_PRIVATE      "tests private data"                       0)
 option(xHAVE_TEST_TRACING      "use tracing in tests"                     1)
-option(xHAVE_TESTS             "use xLib tests"                           1)
+option(xHAVE_TESTS             "use xLib tests"                           0)
 
 # trace options
 # message("")
