@@ -77,9 +77,9 @@ CxVolume::_space_impl(
     int_t iRv = ::xSTATVFS(a_dirPath.c_str(), &info);
     xTEST_DIFF(iRv, - 1);
 
-    CxUtils::ptrAssignT(a_available, static_cast<ulonglong_t>( info.f_bavail * info.xSTATVFS_F_FRSIZE ));
-    CxUtils::ptrAssignT(a_total,     static_cast<ulonglong_t>( info.f_blocks * info.xSTATVFS_F_FRSIZE ));
-    CxUtils::ptrAssignT(a_free,      static_cast<ulonglong_t>( info.f_bfree  * info.xSTATVFS_F_FRSIZE ));
+    CxUtils::ptrAssignT(a_available, static_cast<ulonglong_t>( info.f_bavail * info.f_bsize ));
+    CxUtils::ptrAssignT(a_total,     static_cast<ulonglong_t>( info.f_blocks * info.f_bsize ));
+    CxUtils::ptrAssignT(a_free,      static_cast<ulonglong_t>( info.f_bfree  * info.f_bsize ));
 }
 //-------------------------------------------------------------------------------------------------
 
