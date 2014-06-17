@@ -9,7 +9,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxConst.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, io)
 
 class CxDir
     /// directory
@@ -81,6 +81,6 @@ xPLATFORM:
     std::tstring_t    _temp_impl() xWARN_UNUSED_RV;
 };
 
-xNAMESPACE_END2(xlib, filesystem)
+xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
 #include "CxDir.inl"

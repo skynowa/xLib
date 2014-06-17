@@ -8,7 +8,7 @@
 
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, io)
 
 class CxFileType
     /// file attribute
@@ -89,6 +89,6 @@ xPLATFORM:
     void_t            _clear_impl() const;
 };
 
-xNAMESPACE_END2(xlib, filesystem)
+xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
 #include "CxFileType.inl"

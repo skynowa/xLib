@@ -8,7 +8,7 @@
 
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, io)
 
 class CxDll
     /// dynamic linking loader
@@ -58,6 +58,6 @@ xPLATFORM:
         ///< free
 };
 
-xNAMESPACE_END2(xlib, filesystem)
+xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
 #include "CxDll.inl"

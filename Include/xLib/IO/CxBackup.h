@@ -1,6 +1,6 @@
 /**
  * \file   CxBackup.h
- * \brief  filesystem backuper
+ * \brief  backuper
  */
 
 
@@ -8,10 +8,10 @@
 
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, io)
 
 class CxBackup
-    /// filesystem backuper
+    /// backuper
 {
 public:
     enum ExPeriod
@@ -40,6 +40,6 @@ private:
     xNO_COPY_ASSIGN(CxBackup)
 };
 
-xNAMESPACE_END2(xlib, filesystem)
+xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
 #include "CxBackup.inl"

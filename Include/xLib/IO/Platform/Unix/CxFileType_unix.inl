@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN2(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, io)
 
 /**************************************************************************************************
 *    public
@@ -46,4 +46,4 @@ CxFileType::_clear_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, filesystem)
+xNAMESPACE_END2(xlib, io)

@@ -1,6 +1,6 @@
 /**
  * \file   CxBackup.inl
- * \brief  filesystem backuper
+ * \brief  backuper
  */
 
 
@@ -14,7 +14,7 @@
 #include <xLib/IO/CxVolume.h>
 
 
-xNAMESPACE_BEGIN2(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, io)
 
 /**************************************************************************************************
 *   public
@@ -128,4 +128,4 @@ CxBackup::fileExec(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, filesystem)
+xNAMESPACE_END2(xlib, io)
