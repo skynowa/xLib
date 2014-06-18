@@ -23,11 +23,15 @@
     #include "Platform/Unix/CxVolume_unix.inl"
 
     #if   xENV_LINUX
-        #include "Platform/Linux/CxVolume_linux.inl"
+        #if   xOS_ANDROID
+            // #include "Platform/Linux/CxVolume_android.inl"
+        #elif xOS_LINUX
+            #include "Platform/Linux/CxVolume_linux.inl"
+        #endif
     #elif xENV_BSD
         #include "Platform/Bsd/CxVolume_bsd.inl"
     #elif xENV_APPLE
-        #include "Platform/Unix/CxVolume_apple.inl"
+        #include "Platform/Apple/CxVolume_apple.inl"
     #endif
 #endif
 
