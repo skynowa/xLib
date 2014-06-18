@@ -279,15 +279,21 @@
 #endif
 
 // xSTATVFS (struct and function)
-#if xENV_WIN
+#if   xENV_WIN
     xNA
-#else
-    #if xOS_FREEBSD
-        #define xSTATVFS            statvfs
-        #define xSTATVFS_F_FRSIZE   f_frsize
-    #else
-        #define xSTATVFS            statfs64
-        #define xSTATVFS_F_FRSIZE   f_bsize
+#elif xENV_UNIX
+    xNA
+
+    #if   xENV_LINUX
+        #if   xOS_ANDROID
+            #define xSTATVFS    statfs
+        #elif xOS_LINUX
+            #define xSTATVFS    statfs64
+        #endif
+    #elif xENV_BSD
+        #define xSTATVFS        statvfs
+    #elif xENV_APPLE
+        #define xSTATVFS        statfs64
     #endif
 #endif
     ///< filesystem statfs (struct and function)
