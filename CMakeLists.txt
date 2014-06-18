@@ -90,7 +90,7 @@ if (ENV_UNIX)
 
     if (OS_ANDROID)
         # set(ANDROID_NDK "/opt/Libs/Android/NDK")
-         include_directories("${ANDROID_NDK}/platforms/android-9/arch-arm/usr/include")
+        # include_directories("${ANDROID_NDK}/platforms/android-9/arch-arm/usr/include")
         # link_libraries()
     endif()
 endif()
