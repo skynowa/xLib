@@ -41,16 +41,16 @@ CxVolume::_isReady_impl() const
 {
     bool_t         bRv           = false;
     std::tstring_t volumeDirPath = CxPath( path() ).slashAppend();
-    std::tstring_t oldDirPath;
+    std::tstring_t dirPathOld;
 
-    oldDirPath = CxDir::current();
-    xTEST_NA(oldDirPath);
+    dirPathOld = CxDir::current();
+    xTEST_NA(dirPathOld);
 
     int_t iRv = ::chdir(volumeDirPath.c_str());
     xTEST_NA(iRv);
     bRv = (iRv != - 1);
 
-    CxDir::setCurrent(oldDirPath);
+    CxDir::setCurrent(dirPathOld);
 
     return bRv;
 }
