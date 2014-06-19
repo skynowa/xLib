@@ -21,6 +21,12 @@ unset(xHAVE_CS_GNU_LIBPTHREAD_VERSION CACHE)
 unset(xHAVE_SCHED_SETAFFINITY CACHE)
 unset(xHAVE_GETSID CACHE)
 
+# internal
+unset(_xGNU_GET_LIBC_VERSION CACHE)
+unset(_xGNU_GET_LIBC_RELEASE CACHE)
+unset(_xCONFSTR CACHE)
+unset(_xCS_GNU_LIBPTHREAD_VERSION CACHE)
+
 unset(xHAVE_EXECINFO CACHE)
 unset(xHAVE_XCB CACHE)
 unset(xHAVE_ADDR2LINE CACHE)
@@ -75,119 +81,131 @@ elseif (ENV_UNIX)
     endif()
 
     # xHAVE_PR_SET_DUMPABLE
-    check_cxx_source_compiles(
-        "#include <sys/prctl.h>
-
-        int main()
-        {
-            (int)::prctl(PR_SET_DUMPABLE, 0);
-            return 0;
-        }"
-        xHAVE_PR_SET_DUMPABLE
-    )
+    # check_cxx_source_compiles(
+    #     "#include <sys/prctl.h>
+    #
+    #     int main()
+    #     {
+    #         (int)::prctl(PR_SET_DUMPABLE, 0);
+    #         return 0;
+    #     }"
+    #     xHAVE_PR_SET_DUMPABLE
+    # )
+    CHECK_SYMBOL_EXISTS(PR_SET_DUMPABLE "sys/prctl.h" xHAVE_PR_SET_DUMPABLE)
 
     # xHAVE_RLIMIT_CORE
-    check_cxx_source_compiles(
-        "#include <sys/resource.h>
+    # check_cxx_source_compiles(
+    #     "#include <sys/resource.h>
 
-        int main()
-        {
-            struct rlimit limit = {0, 0}
-            (int)::setrlimit(RLIMIT_CORE, &limit);
-            return 0;
-        }"
-        xHAVE_RLIMIT_CORE
-    )
+    #     int main()
+    #     {
+    #         struct rlimit limit = {0, 0}
+    #         (int)::setrlimit(RLIMIT_CORE, &limit);
+    #         return 0;
+    #     }"
+    #     xHAVE_RLIMIT_CORE
+    # )
+    CHECK_SYMBOL_EXISTS(RLIMIT_CORE "sys/resource.h" xHAVE_RLIMIT_CORE)
 
     # xHAVE_SCHED_GETCPU
-    check_cxx_source_compiles(
-        "#define _GNU_SOURCE
-        #include <sched.h>
+    # check_cxx_source_compiles(
+    #     "#define _GNU_SOURCE
+    #     #include <sched.h>
 
-        int main()
-        {
-            (int)::sched_getcpu();
-            return 0;
-        }"
-        xHAVE_SCHED_GETCPU
-    )
+    #     int main()
+    #     {
+    #         (int)::sched_getcpu();
+    #         return 0;
+    #     }"
+    #     xHAVE_SCHED_GETCPU
+    # )
+    CHECK_FUNCTION_EXISTS(::sched_getcpu xHAVE_SCHED_GETCPU)
 
     # xHAVE_GETCPU
-    check_cxx_source_compiles(
-        "#include <linux/getcpu.h>
+    # check_cxx_source_compiles(
+    #     "#include <linux/getcpu.h>
 
-        int main()
-        {
-            unsigned int cpu = 0U;
-            (int)::getcpu(&cpu, NULL, NULL);
-            return 0;
-        }"
-        xHAVE_GETCPU
-    )
+    #     int main()
+    #     {
+    #         unsigned int cpu = 0U;
+    #         (int)::getcpu(&cpu, NULL, NULL);
+    #         return 0;
+    #     }"
+    #     xHAVE_GETCPU
+    # )
+    CHECK_FUNCTION_EXISTS(::getcpu xHAVE_GETCPU)
 
     # xHAVE_GETLOGIN_R
-    check_cxx_source_compiles(
-        "#include <stdio.h>
-        #include <unistd.h>
+    # check_cxx_source_compiles(
+    #     "#include <stdio.h>
+    #     #include <unistd.h>
 
-        int main()
-        {
-            char buff[L_cuserid + 1] = {0};
-            (int)::getlogin_r(buff, L_cuserid);
-            return 0;
-        }"
-        xHAVE_GETLOGIN_R
-    )
+    #     int main()
+    #     {
+    #         char buff[L_cuserid + 1] = {0};
+    #         (int)::getlogin_r(buff, L_cuserid);
+    #         return 0;
+    #     }"
+    #     xHAVE_GETLOGIN_R
+    # )
+    CHECK_FUNCTION_EXISTS(::getlogin_r xHAVE_GETLOGIN_R)
 
     # xHAVE_GNU_GET_LIBC
-    check_cxx_source_compiles(
-        "#include <gnu/libc-version.h>
+    # check_cxx_source_compiles(
+    #     "#include <gnu/libc-version.h>
 
-        int main()
-        {
-            (const char *)::gnu_get_libc_version();
-            (const char *)::gnu_get_libc_release();
-            return 0;
-        }"
-        xHAVE_GNU_GET_LIBC
-    )
+    #     int main()
+    #     {
+    #         (const char *)::gnu_get_libc_version();
+    #         (const char *)::gnu_get_libc_release();
+    #         return 0;
+    #     }"
+    #     xHAVE_GNU_GET_LIBC
+    # )
+    CHECK_FUNCTION_EXISTS(::gnu_get_libc_version _xGNU_GET_LIBC_VERSION)
+    CHECK_FUNCTION_EXISTS(::gnu_get_libc_release _xGNU_GET_LIBC_RELEASE)
+    set(xHAVE_GNU_GET_LIBC (_xGNU_GET_LIBC_VERSION AND _xGNU_GET_LIBC_RELEASE))
 
     # xHAVE_CS_GNU_LIBPTHREAD_VERSION
-    check_cxx_source_compiles(
-        "#include <unistd.h>
-        #include <cstddef>
+    # check_cxx_source_compiles(
+    #     "#include <unistd.h>
+    #     #include <cstddef>
 
-        int main()
-        {
-            (std::size_t)::confstr(_CS_GNU_LIBPTHREAD_VERSION, NULL, 0);
-            return 0;
-        }"
-        xHAVE_CS_GNU_LIBPTHREAD_VERSION
-    )
+    #     int main()
+    #     {
+    #         (std::size_t)::confstr(_CS_GNU_LIBPTHREAD_VERSION, NULL, 0);
+    #         return 0;
+    #     }"
+    #     xHAVE_CS_GNU_LIBPTHREAD_VERSION
+    # )
+    CHECK_FUNCTION_EXISTS(::confstr _xCONFSTR)
+    CHECK_SYMBOL_EXISTS(_CS_GNU_LIBPTHREAD_VERSION "unistd.h" _xCS_GNU_LIBPTHREAD_VERSION)
+    set(xHAVE_CS_GNU_LIBPTHREAD_VERSION (_xCONFSTR AND _xCS_GNU_LIBPTHREAD_VERSION))
 
     # xHAVE_SCHED_SETAFFINITY
-    check_cxx_source_compiles(
-        "#include <sys/types.h>
-        #include <unistd.h>
-        #define _GNU_SOURCE
-        #include <sched.h>
+    # check_cxx_source_compiles(
+    #     "#include <sys/types.h>
+    #     #include <unistd.h>
+    #     #define _GNU_SOURCE
+    #     #include <sched.h>
 
-        int main()
-        {
-        #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
-            cpuset_t  cpuSet;
-        #else
-            cpu_set_t cpuSet;
-        #endif
+    #     int main()
+    #     {
+    #     #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
+    #         cpuset_t  cpuSet;
+    #     #else
+    #         cpu_set_t cpuSet;
+    #     #endif
 
-            CPU_ZERO(&cpuSet);
-            CPU_SET(1, &cpuSet);
+    #         CPU_ZERO(&cpuSet);
+    #         CPU_SET(1, &cpuSet);
 
-            (int)::sched_setaffinity(::getpid(), sizeof(cpuSet), &cpuSet);
-            return 0;
-        }"
-        xHAVE_SCHED_SETAFFINITY
-    )
+    #         (int)::sched_setaffinity(::getpid(), sizeof(cpuSet), &cpuSet);
+    #         return 0;
+    #     }"
+    #     xHAVE_SCHED_SETAFFINITY
+    # )
+    CHECK_FUNCTION_EXISTS(::sched_setaffinity xHAVE_SCHED_SETAFFINITY)
 
     # xHAVE_GETSID
     # check_cxx_source_compiles(
@@ -234,18 +252,19 @@ elseif (ENV_UNIX)
 
     # Apple
     if (ENV_APPLE)
-        # xHAVE_PT_DENY_ATTACH
-        check_cxx_source_compiles(
-            "#include <sys/types.h>
-            #include <sys/ptrace.h>
+        # # xHAVE_PT_DENY_ATTACH
+        # check_cxx_source_compiles(
+        #     "#include <sys/types.h>
+        #     #include <sys/ptrace.h>
 
-            int main()
-            {
-                ::ptrace(PT_DENY_ATTACH, 0, 0, 0);
-                return 0;
-            }"
-            xHAVE_PT_DENY_ATTACH
-        )
+        #     int main()
+        #     {
+        #         ::ptrace(PT_DENY_ATTACH, 0, 0, 0);
+        #         return 0;
+        #     }"
+        #     xHAVE_PT_DENY_ATTACH
+        # )
+        CHECK_SYMBOL_EXISTS(PT_DENY_ATTACH "sys/ptrace.h" xHAVE_PT_DENY_ATTACH)
     endif()
 endif()
 #--------------------------------------------------------------------------------------------------
