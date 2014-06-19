@@ -65,15 +65,8 @@ endif()
 if (ENV_WIN)
     # TODO: windows part
 elseif (ENV_UNIX)
-    # xHAVE_EXECINFO
-    if (EXECINFO_FOUND)
-        set(xHAVE_EXECINFO 1)
-    endif()
-
-    # xHAVE_XCB
-    if (XCB_FOUND)
-        set(xHAVE_XCB 1)
-    endif()
+    set(xHAVE_EXECINFO EXECINFO_FOUND)
+    set(xHAVE_XCB XCB_FOUND)
 
     # xHAVE_ADDR2LINE
     if (ADDR2LINE_FOUND)
