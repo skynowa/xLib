@@ -28,7 +28,15 @@ unset(xADDR2LINE_FILE_PATH  CACHE)
 
 #--------------------------------------------------------------------------------------------------
 # includes
+include(CheckFunctionExists)
+include(CheckIncludeFile)
+include(CheckIncludeFileCXX)
+include(CheckIncludeFiles)
 include(CheckLibraryExists)
+include(CheckSymbolExists)
+include(CheckPrototypeExists)
+include(CheckTypeSize)
+include(CheckCSourceCompiles)
 include(CheckCXXSourceCompiles)
 
 #--------------------------------------------------------------------------------------------------
@@ -190,18 +198,18 @@ elseif (ENV_UNIX)
     )
 
     # xHAVE_GETSID
-    check_cxx_source_compiles(
-        "#include <unistd.h>
-         #include <sys/syscall.h>
+    # check_cxx_source_compiles(
+    #     "#include <unistd.h>
+    #      #include <sys/syscall.h>
 
-        int main()
-        {
-            (pid_t)::getsid(static_cast<pid_t>( 0 ));
-            return 0;
-        }"
-        xHAVE_GETSID
-    )
-
+    #     int main()
+    #     {
+    #         (pid_t)::getsid(static_cast<pid_t>( 0 ));
+    #         return 0;
+    #     }"
+    #     xHAVE_GETSID
+    # )
+    CHECK_FUNCTION_EXISTS(::getsid xHAVE_GETSID)
 
     # # xHAVE_[FUNCTION_NAME]
     # check_cxx_source_compiles(
