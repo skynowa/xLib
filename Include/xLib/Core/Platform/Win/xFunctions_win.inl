@@ -18,7 +18,7 @@ inline int
 gettimeofday(
     timeval  *a_tv, ///< minutes W of Greenwich
     timezone *a_tz  ///< type of dst correction
-) xWARN_UNUSED_RV
+) /* xWARN_UNUSED_RV */
 {
 #if xCOMPILER_MS || defined(_MSC_EXTENSIONS)
     ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000Ui64;
