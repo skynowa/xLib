@@ -426,7 +426,7 @@ CxSystemInfo::_passwdFileEntry(
     struct passwd *pwd = ::getpwuid( ::getuid() );
     xTEST_PTR(pwd);
 
-    a_passwdEntry = passwd;
+    a_passwdEntry = pwd;
 #endif
 
 #if 0
