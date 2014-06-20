@@ -52,5 +52,28 @@ getsid(
 
 #endif
 //-------------------------------------------------------------------------------------------------
+#if !defined(xHAVE_SETMNTENT)
+
+inline FILE *
+setmntent(
+    const char *a_fileName,
+    const char *a_type
+)
+{
+    return std::fopen(a_fileName, a_type);
+}
+
+#endif
+//-------------------------------------------------------------------------------------------------
+#if !defined(xHAVE_ENDMNTENT)
+
+inline int
+endmntent(FILE *a_file)
+{
+    return std::fclose(a_file);
+}
+
+#endif
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, core)
