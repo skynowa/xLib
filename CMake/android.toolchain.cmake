@@ -233,12 +233,12 @@ set(DO_NOT_CHANGE_OUTPUT_PATHS_ON_FIRST_PASS ON CACHE INTERNAL "" FORCE)
 set(CMAKE_FIND_ROOT_PATH "${ANDROID_NDK_TOOLCHAIN_ROOT}/bin" "${ANDROID_NDK_TOOLCHAIN_ROOT}/arm-linux-androideabi" "${ANDROID_NDK_SYSROOT}" "${CMAKE_INSTALL_PREFIX}" "${CMAKE_INSTALL_PREFIX}/share")
 
 if (BUILD_WITH_ANDROID_NDK)
-    set(STL_PATH "${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.8")
+    set(STL_PATH           "${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.8")
     set(STL_LIBRARIES_PATH "${STL_PATH}/libs/${ARMEABI_NDK_NAME}")
 
     include_directories(SYSTEM "${ANDROID_NDK_SYSROOT}/usr/include")
-    include_directories(SYSTEM "${STL_PATH}/include" "${STL_LIBRARIES_PATH}/include")
-    # message("${ANDROID_NDK_SYSROOT}/usr/include")
+    include_directories(SYSTEM "${STL_PATH}/include")
+    include_directories(SYSTEM "${STL_LIBRARIES_PATH}/include")
 
     # if (NOT ARMEABI AND NOT FORCE_ARM)
     #     set(STL_LIBRARIES_PATH "${ANDROID_NDK_TOOLCHAIN_ROOT}/arm-linux-androideabi/lib/${CMAKE_SYSTEM_PROCESSOR}/thumb")
@@ -266,22 +266,22 @@ set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 set(CMAKE_CXX_FLAGS "-fPIC -DANDROID -Wno-psabi -fsigned-char")
-set(CMAKE_C_FLAGS "-fPIC -DANDROID -Wno-psabi -fsigned-char")
+set(CMAKE_C_FLAGS   "-fPIC -DANDROID -Wno-psabi -fsigned-char")
 set(FORCE_ARM OFF CACHE BOOL "Use 32-bit ARM instructions instead of Thumb-1")
 
 if (NOT FORCE_ARM)
-    #It is recommended to use the -mthumb compiler flag to force the generation
-    #of 16-bit Thumb-1 instructions (the default being 32-bit ARM ones).
+    # It is recommended to use the -mthumb compiler flag to force the generation
+    # of 16-bit Thumb-1 instructions (the default being 32-bit ARM ones).
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mthumb")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mthumb")
+    set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -mthumb")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -marm")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -marm")
+    set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -marm")
 endif()
 
 if (BUILD_WITH_ANDROID_NDK)
     set(CMAKE_CXX_FLAGS "--sysroot=\"${ANDROID_NDK_SYSROOT}\" ${CMAKE_CXX_FLAGS}")
-    set(CMAKE_C_FLAGS "--sysroot=\"${ANDROID_NDK_SYSROOT}\" ${CMAKE_C_FLAGS}")
+    set(CMAKE_C_FLAGS   "--sysroot=\"${ANDROID_NDK_SYSROOT}\" ${CMAKE_C_FLAGS}")
 
     # workaround for ugly cmake bug - compiler identification replaces all spaces (and somethimes " !!!) in compiler flags with ; symbol
     # as result identification fails if ANDROID_NDK_SYSROOT contain spaces
@@ -293,19 +293,19 @@ endif()
 if (ARMEABI_V7A)
     #these are required flags for android armv7-a
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=armv7-a -mfloat-abi=softfp")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=armv7-a -mfloat-abi=softfp")
+    set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -march=armv7-a -mfloat-abi=softfp")
 
     if (NEON)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpu=neon")
-        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mfpu=neon")
+        set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -mfpu=neon")
     elseif (VFPV3)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpu=vfpv3")
-        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mfpu=vfpv3")
+        set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -mfpu=vfpv3")
     endif()
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" CACHE STRING "c++ flags")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" CACHE STRING "c flags")
+set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}"   CACHE STRING "c flags")
 
 # -Wl,-L${LIBCPP_LINK_DIR},-lstdc++,-lsupc++
 # -L${LIBCPP_LINK_DIR} -lstdc++ -lsupc++
@@ -320,7 +320,7 @@ endif()
 
 set(CMAKE_SHARED_LINKER_FLAGS "${LINKER_FLAGS}" CACHE STRING "linker flags" FORCE)
 set(CMAKE_MODULE_LINKER_FLAGS "${LINKER_FLAGS}" CACHE STRING "linker flags" FORCE)
-set(CMAKE_EXE_LINKER_FLAGS "${LINKER_FLAGS}" CACHE STRING "linker flags" FORCE)
+set(CMAKE_EXE_LINKER_FLAGS    "${LINKER_FLAGS}" CACHE STRING "linker flags" FORCE)
 
 # set these global flags for cmake client scripts to change behavior
 set(ANDROID 1)
