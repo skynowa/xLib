@@ -75,6 +75,7 @@
 
 set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_VERSION 1)
+set(BUILD_WITH_ANDROID_NDK 1)
 set(ANDROID_NDK_DEFAULT_SEARCH_PATH /opt/Libs/Android/NDK)
 set(ANDROID_NDK_SUPPORTED_VERSIONS -r6 -r5c -r5b -r5 -r9d "")
 set(ANDROID_NDK_TOOLCHAIN_DEFAULT_SEARCH_PATH /opt/Libs/Android/NDK/toolchains)
@@ -162,7 +163,6 @@ set(ANDROID_NDK_SYSROOT "${ANDROID_NDK}/platforms/android-${ANDROID_API_LEVEL}/a
 __TOOLCHAIN_DETECT_API_LEVEL( "${ANDROID_NDK_SYSROOT}/usr/include/android/api-level.h" ${ANDROID_API_LEVEL})
 
 # message(STATUS "Using android NDK from ${ANDROID_NDK}")
-set(BUILD_WITH_ANDROID_NDK 1)
 
 # specify the cross compiler
 set(CMAKE_C_COMPILER   "${ANDROID_NDK_TOOLCHAIN_ROOT}/bin/arm-linux-androideabi-gcc${TOOL_OS_SUFFIX}"     CACHE PATH "gcc" FORCE)
@@ -235,7 +235,9 @@ set(CMAKE_FIND_ROOT_PATH "${ANDROID_NDK_TOOLCHAIN_ROOT}/bin" "${ANDROID_NDK_TOOL
 if (BUILD_WITH_ANDROID_NDK)
     set(STL_PATH "${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.8")
     set(STL_LIBRARIES_PATH "${STL_PATH}/libs/${ARMEABI_NDK_NAME}")
-    include_directories(SYSTEM "${STL_PATH}/include" "${STL_LIBRARIES_PATH}/include")
+
+    include_directories("SYSTEM ${ANDROID_NDK_SYSROOT}/usr/include" "${STL_PATH}/include" "${STL_LIBRARIES_PATH}/include")
+    # message("${ANDROID_NDK_SYSROOT}/usr/include")
 
     # if (NOT ARMEABI AND NOT FORCE_ARM)
     #     set(STL_LIBRARIES_PATH "${ANDROID_NDK_TOOLCHAIN_ROOT}/arm-linux-androideabi/lib/${CMAKE_SYSTEM_PROCESSOR}/thumb")
@@ -254,7 +256,7 @@ if (BUILD_WITH_ANDROID_NDK_TOOLCHAIN)
     endif()
 
     # for some reason this is needed? TODO figure out why...
-    include_directories(SYSTEM "${ANDROID_NDK_TOOLCHAIN_ROOT}/arm-linux-androideabi/include/c++/4.8/arm-linux-androideabi")
+    include_directories("SYSTEM ${ANDROID_NDK_TOOLCHAIN_ROOT}/arm-linux-androideabi/include/c++/4.8/arm-linux-androideabi")
 endif()
 
 # only search for libraries and includes in the ndk toolchain
