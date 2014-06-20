@@ -17,7 +17,7 @@ CxVolume::_fileSystem_impl() const
 {
     std::tstring_t sRv;
 
-#if (xHAVE_SETMNTENT && xHAVE_GETMNTENT_R && xHAVE_ENDMNTENT)
+#if xHAVE_GETMNTENT_R
     FILE *file = ::setmntent("/etc/mtab", "r");
     xTEST_PTR(file);
 
