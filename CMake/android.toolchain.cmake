@@ -236,7 +236,7 @@ if (BUILD_WITH_ANDROID_NDK)
     set(STL_PATH "${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.8")
     set(STL_LIBRARIES_PATH "${STL_PATH}/libs/${ARMEABI_NDK_NAME}")
 
-    # include_directories(SYSTEM "${ANDROID_NDK_SYSROOT}/usr/include")
+    include_directories(SYSTEM "${ANDROID_NDK_SYSROOT}/usr/include")
     include_directories(SYSTEM "${STL_PATH}/include" "${STL_LIBRARIES_PATH}/include")
     # message("${ANDROID_NDK_SYSROOT}/usr/include")
 
