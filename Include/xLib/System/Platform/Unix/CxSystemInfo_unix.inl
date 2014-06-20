@@ -401,6 +401,7 @@ CxSystemInfo::_passwdFileEntry(
 {
     xTEST_PTR(a_passwdEntry);
 
+#if xHAVE_GETPWUID_R
     long_t buffSize = - 1L;
     {
         buffSize = ::sysconf(_SC_GETPW_R_SIZE_MAX);
@@ -421,6 +422,12 @@ CxSystemInfo::_passwdFileEntry(
     int_t iRv = ::getpwuid_r(::getuid(), a_passwdEntry, &buff.at(0), buff.size(), &pwd);
     xTEST_EQ(iRv, 0);
     xTEST_PTR(pwd);
+#else
+    struct passwd *pwd = ::getpwuid( ::getuid() );
+    xTEST_PTR(pwd);
+
+    a_passwdEntry = passwd;
+#endif
 
 #if 0
     CxTracer()
