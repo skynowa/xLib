@@ -20,6 +20,7 @@ unset(xHAVE_GNU_GET_LIBC CACHE)
 unset(xHAVE_CS_GNU_LIBPTHREAD_VERSION CACHE)
 unset(xHAVE_SCHED_SETAFFINITY CACHE)
 unset(xHAVE_GETSID CACHE)
+unset(xHAVE_GETPWUID_R CACHE)
 
 # internal
 unset(_xGNU_GET_LIBC_VERSION CACHE)
@@ -226,6 +227,8 @@ elseif (ENV_UNIX)
     #     xHAVE_GETSID
     # )
     CHECK_FUNCTION_EXISTS(getsid xHAVE_GETSID)
+
+    CHECK_FUNCTION_EXISTS(getpwuid_r xHAVE_GETPWUID_R)
 
     # # xHAVE_[FUNCTION_NAME]
     # check_cxx_source_compiles(
