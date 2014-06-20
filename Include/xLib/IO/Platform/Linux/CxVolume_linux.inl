@@ -17,6 +17,7 @@ CxVolume::_fileSystem_impl() const
 {
     std::tstring_t sRv;
 
+#if (xHAVE_SETMNTENT && xHAVE_GETMNTENT_R && xHAVE_ENDMNTENT)
     FILE *file = ::setmntent("/etc/mtab", "r");
     xTEST_PTR(file);
 
@@ -38,6 +39,25 @@ CxVolume::_fileSystem_impl() const
 
     int_t iRv = ::endmntent(file);  file = xPTR_NULL;
     xTEST_EQ(iRv, 1);
+#else
+    FILE *file = ::setmntent("/etc/mnttab", "r");
+    xTEST_PTR(file);
+
+    for ( ; ; ) {
+        const mntent *mountPoint = ::getmntent(file);
+        xCHECK_DO(mountPoint == xPTR_NULL, break);
+
+        bool_t bRv = CxStringCI::compare(path(), mountPoint->mnt_dir);
+        xCHECK_DO(!bRv, continue);
+
+        sRv = (mountPoint->mnt_type == xPTR_NULL) ? CxConst::strEmpty() : mountPoint->mnt_type;
+
+        break;
+    }
+
+    int_t iRv = ::endmntent(file);  file = xPTR_NULL;
+    xTEST_EQ(iRv, 1);
+#endif
 
     return sRv;
 }
