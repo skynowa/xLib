@@ -60,8 +60,8 @@ endif()
 # configure
 if (GIT_REVISION_FOUND)
     set(xHAVE_GIT_REVISION   1)
-    set(xGIT_REVISION_BRANCH GIT_REVISION_BRANCH)
-    set(xGIT_REVISION_HASH   GIT_REVISION_HASH)
+    set(xGIT_REVISION_BRANCH ${GIT_REVISION_BRANCH})
+    set(xGIT_REVISION_HASH   ${GIT_REVISION_HASH})
 endif()
 
 if (OPENSSL_FOUND)
@@ -71,13 +71,13 @@ endif()
 if (ENV_WIN)
     # TODO: windows part
 elseif (ENV_UNIX)
-    set(xHAVE_EXECINFO EXECINFO_FOUND)
-    set(xHAVE_XCB XCB_FOUND)
+    set(xHAVE_EXECINFO ${EXECINFO_FOUND})
+    set(xHAVE_XCB ${XCB_FOUND})
 
     # xHAVE_ADDR2LINE
     if (ADDR2LINE_FOUND)
         set(xHAVE_ADDR2LINE      1)
-        set(xADDR2LINE_FILE_PATH ADDR2LINE_FILE_PATH)
+        set(xADDR2LINE_FILE_PATH ${ADDR2LINE_FILE_PATH})
     endif()
 
     # xHAVE_PR_SET_DUMPABLE
@@ -164,7 +164,10 @@ elseif (ENV_UNIX)
     # )
     CHECK_FUNCTION_EXISTS(::gnu_get_libc_version _xGNU_GET_LIBC_VERSION)
     CHECK_FUNCTION_EXISTS(::gnu_get_libc_release _xGNU_GET_LIBC_RELEASE)
-    set(xHAVE_GNU_GET_LIBC (_xGNU_GET_LIBC_VERSION AND _xGNU_GET_LIBC_RELEASE))
+
+    if (${_xGNU_GET_LIBC_VERSION} AND ${_xGNU_GET_LIBC_RELEASE})
+        set(xHAVE_GNU_GET_LIBC 1)
+    endif()
 
     # xHAVE_CS_GNU_LIBPTHREAD_VERSION
     # check_cxx_source_compiles(
@@ -180,7 +183,10 @@ elseif (ENV_UNIX)
     # )
     CHECK_FUNCTION_EXISTS(::confstr _xCONFSTR)
     CHECK_SYMBOL_EXISTS(_CS_GNU_LIBPTHREAD_VERSION "unistd.h" _xCS_GNU_LIBPTHREAD_VERSION)
-    set(xHAVE_CS_GNU_LIBPTHREAD_VERSION (_xCONFSTR AND _xCS_GNU_LIBPTHREAD_VERSION))
+
+    if (${_xCONFSTR} AND ${_xCS_GNU_LIBPTHREAD_VERSION})
+        set(xHAVE_CS_GNU_LIBPTHREAD_VERSION 1)
+    endif()
 
     # xHAVE_SCHED_SETAFFINITY
     # check_cxx_source_compiles(
