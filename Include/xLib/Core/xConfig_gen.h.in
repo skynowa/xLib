@@ -33,6 +33,9 @@
 #cmakedefine xHAVE_SCHED_SETAFFINITY 1
 #cmakedefine xHAVE_GETSID 1
 #cmakedefine xHAVE_GETPWUID_R 1
+#cmakedefine xHAVE_SETMNTENT 1
+#cmakedefine xHAVE_GETMNTENT_R 1
+#cmakedefine xHAVE_ENDMNTENT 1
 
 #cmakedefine xHAVE_EXECINFO 1
 #cmakedefine xHAVE_XCB 1
