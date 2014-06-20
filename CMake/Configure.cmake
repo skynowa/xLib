@@ -119,7 +119,7 @@ elseif (ENV_UNIX)
     #     }"
     #     xHAVE_SCHED_GETCPU
     # )
-    CHECK_FUNCTION_EXISTS(::sched_getcpu xHAVE_SCHED_GETCPU)
+    CHECK_FUNCTION_EXISTS(sched_getcpu xHAVE_SCHED_GETCPU)
 
     # xHAVE_GETCPU
     # check_cxx_source_compiles(
@@ -133,7 +133,7 @@ elseif (ENV_UNIX)
     #     }"
     #     xHAVE_GETCPU
     # )
-    CHECK_FUNCTION_EXISTS(::getcpu xHAVE_GETCPU)
+    CHECK_FUNCTION_EXISTS(getcpu xHAVE_GETCPU)
 
     # xHAVE_GETLOGIN_R
     # check_cxx_source_compiles(
@@ -148,7 +148,7 @@ elseif (ENV_UNIX)
     #     }"
     #     xHAVE_GETLOGIN_R
     # )
-    CHECK_FUNCTION_EXISTS(::getlogin_r xHAVE_GETLOGIN_R)
+    CHECK_FUNCTION_EXISTS(getlogin_r xHAVE_GETLOGIN_R)
 
     # xHAVE_GNU_GET_LIBC
     # check_cxx_source_compiles(
@@ -162,8 +162,8 @@ elseif (ENV_UNIX)
     #     }"
     #     xHAVE_GNU_GET_LIBC
     # )
-    CHECK_FUNCTION_EXISTS(::gnu_get_libc_version _xGNU_GET_LIBC_VERSION)
-    CHECK_FUNCTION_EXISTS(::gnu_get_libc_release _xGNU_GET_LIBC_RELEASE)
+    CHECK_FUNCTION_EXISTS(gnu_get_libc_version _xGNU_GET_LIBC_VERSION)
+    CHECK_FUNCTION_EXISTS(gnu_get_libc_release _xGNU_GET_LIBC_RELEASE)
 
     if (${_xGNU_GET_LIBC_VERSION} AND ${_xGNU_GET_LIBC_RELEASE})
         set(xHAVE_GNU_GET_LIBC 1)
@@ -181,7 +181,7 @@ elseif (ENV_UNIX)
     #     }"
     #     xHAVE_CS_GNU_LIBPTHREAD_VERSION
     # )
-    CHECK_FUNCTION_EXISTS(::confstr _xCONFSTR)
+    CHECK_FUNCTION_EXISTS(confstr _xCONFSTR)
     CHECK_SYMBOL_EXISTS(_CS_GNU_LIBPTHREAD_VERSION "unistd.h" _xCS_GNU_LIBPTHREAD_VERSION)
 
     if (${_xCONFSTR} AND ${_xCS_GNU_LIBPTHREAD_VERSION})
@@ -211,7 +211,7 @@ elseif (ENV_UNIX)
     #     }"
     #     xHAVE_SCHED_SETAFFINITY
     # )
-    CHECK_FUNCTION_EXISTS(::sched_setaffinity xHAVE_SCHED_SETAFFINITY)
+    CHECK_FUNCTION_EXISTS(sched_setaffinity xHAVE_SCHED_SETAFFINITY)
 
     # xHAVE_GETSID
     # check_cxx_source_compiles(
@@ -225,7 +225,7 @@ elseif (ENV_UNIX)
     #     }"
     #     xHAVE_GETSID
     # )
-    CHECK_FUNCTION_EXISTS(::getsid xHAVE_GETSID)
+    CHECK_FUNCTION_EXISTS(getsid xHAVE_GETSID)
 
     # # xHAVE_[FUNCTION_NAME]
     # check_cxx_source_compiles(
