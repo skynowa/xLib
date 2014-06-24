@@ -14,7 +14,11 @@
     #include "Platform/Unix/CxLastError_unix.inl"
 
     #if   xENV_LINUX
-        #include "Platform/Linux/CxLastError_linux.inl"
+        #if   xOS_ANDROID
+            #include "Platform/Linux/CxLastError_android.inl"
+        #elif xOS_LINUX
+            #include "Platform/Linux/CxLastError_linux.inl"
+        #endif
     #elif xENV_BSD
         #include "Platform/Bsd/CxLastError_bsd.inl"
     #elif xENV_APPLE

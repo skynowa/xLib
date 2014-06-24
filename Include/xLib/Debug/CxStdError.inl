@@ -13,7 +13,11 @@
     #include "Platform/Unix/CxStdError_unix.inl"
 
     #if   xENV_LINUX
-        #include "Platform/Linux/CxStdError_linux.inl"
+        #if   xOS_ANDROID
+            #include "Platform/Linux/CxStdError_android.inl"
+        #elif xOS_LINUX
+            #include "Platform/Linux/CxStdError_linux.inl"
+        #endif
     #elif xENV_BSD
         #include "Platform/Bsd/CxStdError_bsd.inl"
     #elif xENV_APPLE
