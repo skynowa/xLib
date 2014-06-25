@@ -53,7 +53,7 @@ IxSeedPolicy::_seedTimeBased() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-long_t
+inline long_t
 IxSeedPolicy::valueMax()
 {
    /**
