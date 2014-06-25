@@ -17,32 +17,32 @@ public:
     enum ExType
         /// attribute
     {
-        #if   xENV_WIN
-            faInvalid           = INVALID_FILE_ATTRIBUTES,
-            faNormal            = FILE_ATTRIBUTE_NORMAL,
-            faReadOnly          = FILE_ATTRIBUTE_READONLY,
-            faHidden            = FILE_ATTRIBUTE_HIDDEN,
-            faSystem            = FILE_ATTRIBUTE_SYSTEM,
-            faDirectory         = FILE_ATTRIBUTE_DIRECTORY,
-            faArchive           = FILE_ATTRIBUTE_ARCHIVE,
-            faDevice            = FILE_ATTRIBUTE_DEVICE,
-            faTemporary         = FILE_ATTRIBUTE_TEMPORARY,
-            faSparseFile        = FILE_ATTRIBUTE_SPARSE_FILE,
-            faReparsePoint      = FILE_ATTRIBUTE_REPARSE_POINT,
-            faCompressed        = FILE_ATTRIBUTE_COMPRESSED,
-            faOffline           = FILE_ATTRIBUTE_OFFLINE,
-            faNotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
-            faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
-        #elif xENV_UNIX
-            faInvalid           = (mode_t)- 1,
-            faDirectory         = S_IFDIR,
-            faCharacterDevice   = S_IFCHR,
-            faBlockDevice       = S_IFBLK,
-            faRegularFile       = S_IFREG,
-            faFifo              = S_IFIFO,
-            faSymbolicLink      = S_IFLNK,
-            faSocket            = S_IFSOCK
-        #endif
+    #if   xENV_WIN
+        faInvalid           = INVALID_FILE_ATTRIBUTES,
+        faNormal            = FILE_ATTRIBUTE_NORMAL,
+        faReadOnly          = FILE_ATTRIBUTE_READONLY,
+        faHidden            = FILE_ATTRIBUTE_HIDDEN,
+        faSystem            = FILE_ATTRIBUTE_SYSTEM,
+        faDirectory         = FILE_ATTRIBUTE_DIRECTORY,
+        faArchive           = FILE_ATTRIBUTE_ARCHIVE,
+        faDevice            = FILE_ATTRIBUTE_DEVICE,
+        faTemporary         = FILE_ATTRIBUTE_TEMPORARY,
+        faSparseFile        = FILE_ATTRIBUTE_SPARSE_FILE,
+        faReparsePoint      = FILE_ATTRIBUTE_REPARSE_POINT,
+        faCompressed        = FILE_ATTRIBUTE_COMPRESSED,
+        faOffline           = FILE_ATTRIBUTE_OFFLINE,
+        faNotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
+        faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
+    #elif xENV_UNIX
+        faInvalid           = (mode_t)- 1,
+        faDirectory         = S_IFDIR,
+        faCharacterDevice   = S_IFCHR,
+        faBlockDevice       = S_IFBLK,
+        faRegularFile       = S_IFREG,
+        faFifo              = S_IFIFO,
+        faSymbolicLink      = S_IFLNK,
+        faSocket            = S_IFSOCK
+    #endif
     };
     typedef const ExType cExType;
 
