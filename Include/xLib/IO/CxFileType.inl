@@ -117,11 +117,13 @@ CxFileType::modify(
     xTEST_NA(a_valueAdd);
 
     // get current attributes
-    types_t values = get();
+    const types_t valueRemove = static_cast<types_t>( a_valueRemove );
+    const types_t valueAdd    = static_cast<types_t>( a_valueAdd );
+    types_t       values      = get();
 
     // change bits
-    values &= ~a_valueRemove;
-    values |= a_valueAdd;
+    values &= ~valueRemove;
+    values |= valueAdd;
 
     // change the attributes
     set(values);
