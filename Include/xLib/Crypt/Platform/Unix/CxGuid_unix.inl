@@ -18,16 +18,28 @@ xNAMESPACE_BEGIN2(xlib, crypt)
 inline std::tstring_t
 CxGuid::_randomBased_impl() const
 {
-    std::tstring_t sRv;
+   /**
+    * FAQ: GUID format - "%x%x-%x-%x-%x-%x%x%x"
+    *
+    * 1 digit: 64-bit Hex number
+    * 2 digit: 32-bit Hex number
+    * 3 digit: 32-bit Hex number of the form 4xxx (4 indicates the UUID version)
+    * 4 digit: 32-bit Hex number in the range [0x8000, 0xbfff]
+    * 5 digit: 96-bit Hex number
+    */
 
-    CxStdRandom random;
+    std::tstring_t sRv;
+    CxNativeRandom random;
+    clong_t        valueMin = 0L;
+    clong_t        valueMax = IxSeedPolicy::valueMax();
 
     sRv = CxString::format("%x%x-%x-%x-%x-%x%x%x",
-        random.nextInt(), random.nextInt(),     // 64-bit Hex number
-        random.nextInt(),                       // 32-bit Hex number
-        ((random.nextInt() & 0x0FFF) | 0x4000), // 32-bit Hex number of the form 4xxx (4 indicates the UUID version)
-        random.nextInt() % 0x3FFF + 0x8000,     // 32-bit Hex number in the range [0x8000, 0xbfff]
-        random.nextInt(), random.nextInt(), random.nextInt() // 96-bit Hex number
+        random.nextInt(valueMin, valueMax), random.nextInt(valueMin, valueMax),
+        random.nextInt(valueMin, valueMax),
+        ((random.nextInt(valueMin, valueMax) & 0x0FFF) | 0x4000),
+        random.nextInt(valueMin, valueMax) % 0x3FFF + 0x8000,
+        random.nextInt(valueMin, valueMax), random.nextInt(valueMin, valueMax),
+            random.nextInt(valueMin, valueMax)
     );
 
     return sRv;
