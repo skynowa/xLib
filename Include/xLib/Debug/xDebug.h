@@ -78,10 +78,22 @@
 #endif
     ///< build pragma message
 
-#define xBUILD_TODO \
-    xBUILD_TODO_MSG("")
+#define xBUILD_MSG(label, msg) \
+    xPRAGMA( message("[" label "] " msg " - " __FILE__ ":" xSTRINGIZE(__LINE__)) )
     ///<
-#define xBUILD_TODO_MSG(msg) \
-    xPRAGMA( message("[TODO] " msg " - " __FILE__ ":" xSTRINGIZE(__LINE__)) )
-    ///<
+
+#define xBUILD_MESSAGE(msg) xBUILD_MSG("MESSAGE", msg)
+#define xBUILD_INFO(msg)    xBUILD_MSG("INFO",    msg)
+#define xBUILD_WARNING(msg) xBUILD_MSG("WARNING", msg)
+#define xBUILD_ERROR(msg)   xBUILD_MSG("ERROR",   msg)
+#define xBUILD_TODO(msg)    xBUILD_MSG("TODO",    msg)
+#define xBUILD_IMPL(msg)    xBUILD_MSG("IMPL",    msg)
+#define xBUILD_NA(msg)      xBUILD_MSG("N/A",     msg)
+#define xBUILD_FIX(msg)     xBUILD_MSG("FIX",     msg)
+#define xBUILD_REVIEW(msg)  xBUILD_MSG("REVIEW",  msg)
+#define xBUILD_SECURE(msg)  xBUILD_MSG("SECURE",  msg)
+#define xBUILD_BUG(msg)     xBUILD_MSG("BUG",     msg)
+#define xBUILD_HACK(msg)    xBUILD_MSG("HACK",    msg)
+#define xBUILD_CUSTOM(msg)  xBUILD_MSG("CUSTOM",  msg)
+#define xBUILD_MAGIC(msg)   xBUILD_MSG("MAGIC",   msg)
 //-------------------------------------------------------------------------------------------------

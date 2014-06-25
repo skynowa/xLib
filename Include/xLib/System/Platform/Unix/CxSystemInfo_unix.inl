@@ -333,7 +333,7 @@ CxSystemInfo::glibcVersion() const
             version = libc_version;
         }
     #else
-        xBUILD_TODO_MSG("CxSystemInfo::glibcVersion()");
+        xBUILD_IMPL("CxSystemInfo::glibcVersion()");
         version = CxConst::strUnknown();
     #endif
     }
@@ -377,7 +377,7 @@ CxSystemInfo::libPthreadVersion() const
     // remove terminating null byte
     buff.resize(buffBytes - 1);
 #else
-    xBUILD_TODO_MSG("CxSystemInfo::libPthreadVersion()");
+    xBUILD_IMPL("CxSystemInfo::libPthreadVersion()");
     buff = CxConst::strUnknown();
 #endif
 
