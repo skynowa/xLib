@@ -37,9 +37,8 @@ xNAMESPACE_BEGIN2(xlib, crypt)
 //-------------------------------------------------------------------------------------------------
 inline
 IxSeedPolicy::IxSeedPolicy() :
-    _seed(0U)
+    _seed( _seedTimeBased() )
 {
-    _seed = _seedTimeBased();
 }
 //-------------------------------------------------------------------------------------------------
 inline uint_t
@@ -119,9 +118,8 @@ CxNativeSeedPolicy::next()
 //-------------------------------------------------------------------------------------------------
 template <class RandomValue, class SeedPolicy>
 CxRandom<RandomValue, SeedPolicy>::CxRandom() :
-    _randMax(0)
+    _randMax( (std::numeric_limits<RandomValue>::max)() )
 {
-    _randMax = (std::numeric_limits<RandomValue>::max)();
 }
 //-------------------------------------------------------------------------------------------------
 template <class RandomValue, class SeedPolicy>

@@ -23,7 +23,7 @@ public:
         ///< next value
 
 protected:
-    uint_t         _seed; ///< current seed
+    cuint_t        _seed; ///< current seed
 
 private:
     uint_t         _seedTimeBased() const;
@@ -68,7 +68,7 @@ private:
     HCRYPTPROV     _hProv;  ///< CSP handle
 #elif xENV_UNIX
     #if (xHAVE_SRANDOM_R && xHAVE_RANDOM_R)
-        random_data    _data;   ///< data for ::srandom_r()
+        random_data _data;   ///< data for ::srandom_r()
     #endif
 #endif
 
