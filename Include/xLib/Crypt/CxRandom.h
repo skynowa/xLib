@@ -67,7 +67,9 @@ private:
 #if   xENV_WIN
     HCRYPTPROV     _hProv;  ///< CSP handle
 #elif xENV_UNIX
-    random_data    _data;   ///< data for ::srandom_r()
+    #if (xHAVE_SRANDOM_R && xHAVE_RANDOM_R)
+        random_data    _data;   ///< data for ::srandom_r()
+    #endif
 #endif
 
 xPLATFORM:
