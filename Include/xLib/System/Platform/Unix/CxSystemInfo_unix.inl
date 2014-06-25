@@ -288,16 +288,13 @@ CxSystemInfo::_currentCpuNum_impl() const
     ulRv = cpu;
 #elif defined(_SC_NPROCESSORS_ONLN)
     long_t liRv = ::sysconf(_SC_NPROCESSORS_ONLN);
-    xTEST_DIFF(liRv, - 1);
+    xTEST_DIFF(liRv, - 1L);
 
     ulRv = static_cast<ulong_t>( liRv );
 #else
     #pragma message("xLib: CxSystemInfo::_currentCpuNum_impl() - n/a")
     ulRv = 0UL;
 #endif
-
-
-
 
     return ulRv;
 }
