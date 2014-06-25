@@ -67,11 +67,8 @@
     { xTEST_MSG_FAIL(xT("Not implemented")); }
     ///< show not implemented message and return value
 //-------------------------------------------------------------------------------------------------
-#define xSTRINGIZE_EX(lex) \
-    #lex
-    ///<
 #define xSTRINGIZE(lex) \
-    xSTRINGIZE_EX(lex)
+    xLEX_TO_STR(lex)
     ///<
 
 #if   xENV_WIN
@@ -79,12 +76,12 @@
 #elif xENV_UNIX
     #define xPRAGMA(x) _Pragma(#x)
 #endif
-    ///<
+    ///< build pragma message
 
 #define xBUILD_TODO \
     xBUILD_TODO_MSG("")
     ///<
 #define xBUILD_TODO_MSG(msg) \
-    xPRAGMA( message("[TODO] " msg " - " __FILE__ ":" xSTRINGIZE(__LINE__) " - n/a") )
+    xPRAGMA( message("[TODO] " msg " - " __FILE__ ":" xSTRINGIZE(__LINE__)) )
     ///<
 //-------------------------------------------------------------------------------------------------
