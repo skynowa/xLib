@@ -69,7 +69,7 @@ CxNativeSeedPolicy::_next_impl()
 #if xHAVE_RANDOM_R
     int32_t i32Rv = 0;
 
-    int iRv = ::srandom_r(&_data, &i32Rv);
+    int iRv = ::random_r(&_data, &i32Rv);
     xTEST_DIFF(iRv, - 1);
 
     liRv = static_cast<long_t>( i32Rv );
