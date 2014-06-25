@@ -51,7 +51,7 @@ CxDebugger::_coreDumpsEnable_impl(
 
     *a_isEnable = false;
 
-    #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
+    xBUILD_TODO_MSG("CxDebugger::coreDumpsEnable()");
 #endif
 
 #if xHAVE_PT_DENY_ATTACH

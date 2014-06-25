@@ -113,7 +113,7 @@ CxStackTrace::_get_impl(
         }
     } // for
 #else
-    #pragma message("xLib: CxStackTrace::_get() - n/a")
+    xBUILD_TODO_MSG("CxStackTrace::_get()");
 #endif // xHAVE_EXECINFO
 
     // out
