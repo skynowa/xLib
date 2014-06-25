@@ -41,8 +41,8 @@ CxFile::_time_impl(
     xTEST_DIFF(iRv, - 1);
 
     // create - n/a
-    CxUtils::ptrAssignT(a_access,   info.st_atime);
-    CxUtils::ptrAssignT(a_modified, info.st_mtime);
+    CxUtils::ptrAssignT(a_access,   static_cast<const time_t &>( info.st_atime ));
+    CxUtils::ptrAssignT(a_modified, static_cast<const time_t &>( info.st_mtime ));
 }
 //-------------------------------------------------------------------------------------------------
 /*static */
