@@ -73,20 +73,18 @@
 #define xSTRINGIZE(lex) \
     xSTRINGIZE_EX(lex)
     ///<
-#define xBUILD_LOCATION \
-    __FILE__ ":" xSTRINGIZE(__LINE__) " - n/a"
-    ///<
 
 #if   xENV_WIN
     #define xPRAGMA(x) __pragma(x)
 #elif xENV_UNIX
     #define xPRAGMA(x) _Pragma(#x)
 #endif
+    ///<
 
 #define xBUILD_TODO \
     xBUILD_TODO_MSG("")
     ///<
 #define xBUILD_TODO_MSG(msg) \
-    xPRAGMA( message("[TODO] " msg " - " xBUILD_LOCATION) )
+    xPRAGMA( message("[TODO] " msg " - " __FILE__ ":" xSTRINGIZE(__LINE__) " - n/a") )
     ///<
 //-------------------------------------------------------------------------------------------------
