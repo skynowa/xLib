@@ -185,6 +185,7 @@ namespace xlib
     using namespace xlib::test;
 #endif
 
+#include <xLib/Core/xPreprocessor.h>
 #include <xLib/Core/xDefines.h>
 #include <xLib/Core/xLimits.h>
 
