@@ -501,7 +501,7 @@ CxThread::setDebugName(
     std::ctstring_t &a_name
 ) const
 {
-    xTEST_GR(_id, 0UL);
+    xTEST_GR(_id, static_cast<id_t>( 0 ));
     xTEST_GR_EQ(a_name.size(), std::size_t(32)); // TODO: CxThread::setDebugName() - MAX_NAME_SIZE = 32
 
     // TODO: CxThread::setDebugName() - xCHECK_RET(!CxDebugger().isActive(), true);
