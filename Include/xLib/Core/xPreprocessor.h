@@ -47,7 +47,11 @@
 #endif
     ///< build pragma message
 
-#define xBUILD_MSG(label, msg) \
-    xPRAGMA( message("[" label "] " msg " - " __FILE__ ":" xSTRINGIZE(__LINE__)) )
-    ///< build message
+#if xHAVE_BUILD_MSG
+    #define xBUILD_MSG(label, msg) \
+        xPRAGMA( message("[" label "] " msg " - " __FILE__ ":" xSTRINGIZE(__LINE__)) )
+        ///< build message
+#else
+    #define xBUILD_MSG(label, msg)
+#endif
 //-------------------------------------------------------------------------------------------------
