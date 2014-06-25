@@ -37,7 +37,7 @@ CxThread::_create_impl(
 
     iRv = ::pthread_create(&hid, &attrs, &_s_jobEntry, this);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
-    xTEST_MSG_EQ(true, 0UL < hid, CxLastError::format(iRv));
+    xTEST_MSG_EQ(true, hid > 0, CxLastError::format(iRv));
 
     iRv = ::pthread_attr_destroy(&attrs);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
@@ -93,7 +93,7 @@ CxThread::_isRunning_impl() const
     bool_t bRv = false;
 
     bool_t bCond1 = (_handle != 0UL);
-    bool_t bCond2 = (_id > 0UL);
+    bool_t bCond2 = (_id > 0);
     bool_t bCond3 = (_state.isRunning);
 
 #if xTODO
@@ -313,7 +313,7 @@ inline CxThread::id_t
 CxThread::_currentId_impl()
 {
     id_t ulRv = ::pthread_self();
-    xTEST_EQ(0UL < ulRv, true);
+    xTEST_EQ(ulRv > 0, true);
 
     return ulRv;
 }
@@ -322,7 +322,7 @@ inline CxThread::handle_t
 CxThread::_currentHandle_impl()
 {
     handle_t hRv = ::pthread_self();
-    xTEST_EQ(0 < hRv, true);
+    xTEST_EQ(hRv > 0, true);
 
     return hRv;
 }
