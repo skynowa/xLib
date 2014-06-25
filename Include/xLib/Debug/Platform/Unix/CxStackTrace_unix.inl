@@ -113,7 +113,7 @@ CxStackTrace::_get_impl(
         }
     } // for
 #else
-    xBUILD_TODO_MSG("CxStackTrace::_get()");
+    xBUILD_IMPL("CxStackTrace::_get()");
 #endif // xHAVE_EXECINFO
 
     // out
