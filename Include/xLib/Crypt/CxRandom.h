@@ -22,6 +22,10 @@ public:
     virtual long_t next() = 0;
         ///< next value
 
+    static
+    long_t         valueMax();
+        ///< maximum possible value
+
 protected:
     uint_t         _seed; ///< current seed
 
