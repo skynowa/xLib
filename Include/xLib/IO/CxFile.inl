@@ -272,7 +272,7 @@ CxFile::writeV(
 ) const
 {
     xTEST_PTR(a_format);
-    xTEST_PTR(a_args);
+    xTEST_NA(a_args);
 
     int_t iRv = std::xTVFPRINTF(get(), a_format, a_args);
     xTEST_LESS(- 1, iRv);
