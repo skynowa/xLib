@@ -57,6 +57,12 @@ option(xHAVE_TESTS             "use xLib tests"                           0)
 # message("")
 
 #--------------------------------------------------------------------------------------------------
+# internal vars
+unset(XLIB_LIBS        CACHE)
+unset(XLIB_FLAGS       CACHE)
+unset(XLIB_DEFINITIONS CACHE)
+
+#--------------------------------------------------------------------------------------------------
 # modules
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 include(CMake/Configure.cmake)
@@ -125,23 +131,23 @@ if (xHAVE_CPP11)
 endif()
 
 #--------------------------------------------------------------------------------------------------
-# flags
+# libs, flags
 if     (MSVC)
-    set(FLAGS "${FLAGS} /W3")
+    set(XLIB_FLAGS "${XLIB_FLAGS} /W3")
 elseif (MINGW)
-    set(LIBS ${LIBS} ws2_32 netapi32 psapi uuid ole32 mpr dbghelp)
-    set(FLAGS "${FLAGS} -pipe -Wall")
+    set(XLIB_LIBS ${XLIB_LIBS} ws2_32 netapi32 psapi uuid ole32 mpr dbghelp)
+    set(XLIB_FLAGS "${XLIB_FLAGS} -pipe -Wall")
         # -pedantic
 elseif (CMAKE_COMPILER_IS_CLANGXX)
-    set(LIBS ${LIBS} pthread rt m z)
-    set(FLAGS "${FLAGS} -pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
+    set(XLIB_LIBS ${XLIB_LIBS} pthread rt m z)
+    set(XLIB_FLAGS "${XLIB_FLAGS} -pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
         "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
         "-Wno-return-type-c-linkage -Werror "
         "-fcolor-diagnostics -Qunused-arguments")
         # -pedantic
 elseif (CMAKE_COMPILER_IS_GNUCXX)
-    set(LIBS ${LIBS} pthread rt m z)
-    set(FLAGS "${FLAGS} -pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
+    set(XLIB_LIBS ${XLIB_LIBS} pthread rt m z)
+    set(XLIB_FLAGS "${XLIB_FLAGS} -pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
         "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
         "-Wno-return-type-c-linkage -Werror")
         # -pedantic
@@ -150,20 +156,28 @@ else()
 endif()
 
 if (OS_ANDROID)
-    set(FLAGS "${FLAGS} -fexceptions")
+    unset(XLIB_LIBS        CACHE)
+    unset(XLIB_FLAGS       CACHE)
+    unset(XLIB_DEFINITIONS CACHE)
+
+    set(XLIB_LIBS gnustl_static m z log)
+    set(XLIB_FLAGS "${XLIB_FLAGS} -pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow")
+    set(XLIB_FLAGS "${XLIB_FLAGS} -Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas")
+    set(XLIB_FLAGS "${XLIB_FLAGS} -frtti -fexceptions")
+    set(XLIB_DEFINITIONS "")
 endif()
 
-if (DEFINITIONS)
-    set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_DEFINITIONS ${DEFINITIONS})
-    message("DEFINITIONS: ${DEFINITIONS}")
+if (XLIB_DEFINITIONS)
+    set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_DEFINITIONS ${XLIB_DEFINITIONS})
+    message("XLIB_DEFINITIONS: ${XLIB_DEFINITIONS}")
 endif()
 
-if (FLAGS)
-    set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS ${FLAGS})
-    message("FLAGS: ${FLAGS}")
+if (XLIB_FLAGS)
+    set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS ${XLIB_FLAGS})
+    message("XLIB_FLAGS: ${XLIB_FLAGS}")
 endif()
 
-target_link_libraries(${PROJECT_NAME} ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
+target_link_libraries(${PROJECT_NAME} ${XLIB_LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
 
 #--------------------------------------------------------------------------------------------------
 # install
