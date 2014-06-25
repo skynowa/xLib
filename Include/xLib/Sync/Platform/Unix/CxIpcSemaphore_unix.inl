@@ -40,7 +40,7 @@ CxIpcSemaphore::_valueMax_impl() const
     liRv = SEM_VALUE_MAX;
 #elif defined(_SC_SEM_VALUE_MAX)
     liRv = ::sysconf(_SC_SEM_VALUE_MAX);
-    xTEST_DIFF(liRv, - 1);
+    xTEST_DIFF(liRv, - 1L);
 #else
     #pragma message("xLib: CxIpcSemaphore::_valueMax_impl() - n/a")
     liRv = 0L;
@@ -59,7 +59,7 @@ CxIpcSemaphore::_create_impl(
     const mode_t    modeDefault = S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH;
 
     handle_t hRv = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, modeDefault, a_initialValue);
-    xTEST_DIFF(hRv, SEM_FAILED);
+    xTEST_DIFF(hRv, static_cast<handle_t>( SEM_FAILED ));
 
     _handle = hRv;
     _name   = unixName;
@@ -74,7 +74,7 @@ CxIpcSemaphore::_open_impl(
     const mode_t    modeDefault = S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH;
 
     handle_t hRv = ::sem_open(unixName.c_str(), O_RDWR, modeDefault, 0U);
-    xTEST_DIFF(hRv, SEM_FAILED);
+    xTEST_DIFF(hRv, static_cast<handle_t>( SEM_FAILED ));
 
     _handle = hRv;
     _name   = unixName;
