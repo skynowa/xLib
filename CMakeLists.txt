@@ -127,34 +127,41 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # flags
 if     (MSVC)
-    set(FLAGS ${FLAGS} "/W3")
+    set(FLAGS "${FLAGS} /W3")
 elseif (MINGW)
     set(LIBS ${LIBS} ws2_32 netapi32 psapi uuid ole32 mpr dbghelp)
-    set(FLAGS ${FLAGS} "-pipe -Wall")
+    set(FLAGS "${FLAGS} -pipe -Wall")
         # -pedantic
 elseif (CMAKE_COMPILER_IS_CLANGXX)
     set(LIBS ${LIBS} pthread rt m z)
-    set(FLAGS ${FLAGS} "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
+    set(FLAGS "${FLAGS} -pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
         "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
         "-Wno-return-type-c-linkage -Werror "
         "-fcolor-diagnostics -Qunused-arguments")
         # -pedantic
 elseif (CMAKE_COMPILER_IS_GNUCXX)
     set(LIBS ${LIBS} pthread rt m z)
-    set(FLAGS ${FLAGS} "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
+    set(FLAGS "${FLAGS} -pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
         "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
-        "-Wno-return-type-c-linkage -Werror "
-        "")
+        "-Wno-return-type-c-linkage -Werror")
         # -pedantic
 else()
     message("xLib: unknown compiler")
 endif()
 
-set_target_properties(
-    ${PROJECT_NAME} PROPERTIES
-        # COMPILE_DEFINITIONS ${DEFINITIONS}
-        COMPILE_FLAGS ${FLAGS}
-)
+if (OS_ANDROID)
+    set(FLAGS "${FLAGS} -fexceptions")
+endif()
+
+if (DEFINITIONS)
+    set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_DEFINITIONS ${DEFINITIONS})
+    message("DEFINITIONS: ${DEFINITIONS}")
+endif()
+
+if (FLAGS)
+    set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS ${FLAGS})
+    message("FLAGS: ${FLAGS}")
+endif()
 
 target_link_libraries(${PROJECT_NAME} ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
 
