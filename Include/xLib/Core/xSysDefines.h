@@ -298,91 +298,118 @@
 
 //-------------------------------------------------------------------------------------------------
 // standard C libraries
-#if xENV_WIN
-    // TODO: xSysDefines - standard C libraries
-    #if   xCOMPILER_MINGW
-        #include <bits/c++config.h> // standard C++ libraries
-    #endif
-
-    #if defined(__MSVCRT__)
-        #define xSTD_LIBC_MSVCRT 1
-            ///< Microsoft CRT
+#if   xENV_WIN
+    #if xCOMPILER_MINGW
+        #include <bits/c++config.h>
     #endif
 #elif xENV_UNIX
-    #if xOS_FREEBSD
-        // TODO: xSysDefines - standard C libraries
-    #else
-        #include <features.h> // standard C libraries
-    #endif
-
-    #include <bits/c++config.h> // standard C++ libraries
-#elif xENV_APPLE
-    #include <bits/c++config.h> // standard C++ libraries
+    #include <features.h>
+    #include <bits/c++config.h>
 #endif
 
-#if xENV_WIN
-    #if defined(__GLIBCXX__)
-        #define xSTD_LIBCPP_GNUSTDCPP 1
+#if   xENV_WIN
+    #if   defined(__MSVCRT__)
+        #define xSTD_LIBC_MSVCRT           1
+        #define xSTD_LIBC_MSVCRT_VER_MAJOR 0
+        #define xSTD_LIBC_MSVCRT_VER_MINOR 0
+        #define xSTD_LIBC_MSVCRT_VER_PATCH 0
+            ///< Microsoft CRT
+    #elif defined(__GLIBCPP__) || defined(__GLIBCXX__)
+        // GNU libstdc++ detect as C library
+        #define xSTD_LIBC_GNUSTDC           1
+        #define xSTD_LIBC_GNUSTDC_VER_MAJOR __GLIBCXX__
+        #define xSTD_LIBC_GNUSTDC_VER_MINOR 0
+        #define xSTD_LIBC_GNUSTDC_VER_PATCH 0
             ///< GNU libstdc++
+    #else
+        #warning xLib: unknown standard C library
     #endif
-#else
+#elif xENV_UNIX
     #if   defined(__GNU_LIBRARY__) || defined(__GLIBC__)
-        #define xSTD_LIBC_GNU    1
+        #define xSTD_LIBC_GNU           1
+        #define xSTD_LIBC_GNU_VER_MAJOR __GLIBC__
+        #define xSTD_LIBC_GNU_VER_MINOR __GLIBC_MINOR__
+        #define xSTD_LIBC_GNU_VER_PATCH 0
             ///< GNU glibc
     #elif defined(__UCLIBC__)
-        #define xSTD_LIBC_UC     1
+        #define xSTD_LIBC_UC           1
+        #define xSTD_LIBC_UC_VER_MAJOR __UCLIBC_MAJOR__
+        #define xSTD_LIBC_UC_VER_MINOR __UCLIBC_MINOR__
+        #define xSTD_LIBC_UC_VER_PATCH __UCLIBC_SUBLEVEL__
             ///< uClibc
     #elif defined(__CRTL_VER)
-        #define xSTD_LIBC_VMS    1
+        #define xSTD_LIBC_VMS           1
+        #define xSTD_LIBC_VMS_VER_MAJOR __CRTL_VER
+        #define xSTD_LIBC_VMS_VER_MINOR 0
+        #define xSTD_LIBC_VMS_VER_PATCH 0
             ///< VMS libc
     #elif defined(__LIBREL__) || defined(__TARGET_LIB__)
-        #define xSTD_LIBC_ZOS    1
+        #define xSTD_LIBC_ZOS           1
+        #define xSTD_LIBC_ZOS_VER_MAJOR __LIBREL__
+        #define xSTD_LIBC_ZOS_VER_MINOR 0
+        #define xSTD_LIBC_ZOS_VER_PATCH 0
             ///< z/OS libc
+    #elif defined(__BIONIC__)
+        #define xSTD_LIBC_BIONIC           1
+        #define xSTD_LIBC_BIONIC_VER_MAJOR 0
+        #define xSTD_LIBC_BIONIC_VER_MINOR 0
+        #define xSTD_LIBC_BIONIC_VER_PATCH 0
+            ///< Bionic libc
+    #elif defined(__KLIBC__)
+        #define xSTD_LIBC_K           1
+        #define xSTD_LIBC_K_VER_MAJOR __KLIBC__
+        #define xSTD_LIBC_K_VER_MINOR __KLIBC_MINOR__
+        #define xSTD_LIBC_K_VER_PATCH __KLIBC_PATCHLEVEL__
+            ///< klibc
     #else
-        // #warning xLib: unsupported standard C library
+        #warning xLib: unknown standard C library
     #endif
 #endif
-
-//-------------------------------------------------------------------------------------------------
-// TODO: xSysDefines - standard C libraries versions
-#define xSTD_LIBC_GNU_VER_MAJOR __GLIBC__
-#define xSTD_LIBC_GNU_VER_MINOR __GLIBC_MINOR__
-
-#define xSTD_LIBC_UC_VER        0
-#define xSTD_LIBC_VMS_VER       0
-#define xSTD_LIBC_ZOS_VER       0
-
 //-------------------------------------------------------------------------------------------------
 // standard C++ libraries
-#if xENV_WIN
-    #if defined(__GLIBCXX__)
-        #define xSTD_LIBCPP_GNUSTDCPP  1
+#if   xENV_WIN
+    #if   defined(__MSVCRT__)
+        #define xSTD_LIBCPP_MSVCRT           1
+        #define xSTD_LIBCPP_MSVCRT_VER_MAJOR 0
+        #define xSTD_LIBCPP_MSVCRT_VER_MINOR 0
+        #define xSTD_LIBCPP_MSVCRT_VER_PATCH 0
+            ///< Microsoft CRT
+    #elif defined(__GLIBCXX__)
+        #define xSTD_LIBCPP_GNUSTDCPP           1
+        #define xSTD_LIBCPP_GNUSTDCPP_VER_MAJOR __GLIBCXX__
+        #define xSTD_LIBCPP_GNUSTDCPP_VER_MINOR 0
+        #define xSTD_LIBCPP_GNUSTDCPP_VER_PATCH 0
             ///< GNU libstdc++
     #endif
-#else
+#elif xENV_UNIX
     #if   defined(__CPPLIB_VER)
-        #define XSTD_LIBCPP_DINKUMWARE 1
+        #define XSTD_LIBCPP_DINKUMWARE           1
+        #define xSTD_LIBCPP_DINKUMWARE_VER_MAJOR __CPPLIB_VER
+        #define xSTD_LIBCPP_DINKUMWARE_VER_MINOR 0
+        #define xSTD_LIBCPP_DINKUMWARE_VER_PATCH 0
             ///< Dinkumware
     #elif defined(__GLIBCPP__) || defined(__GLIBCXX__)
-        #define xSTD_LIBCPP_GNUSTDCPP  1
+        #define xSTD_LIBCPP_GNUSTDCPP           1
+        #define xSTD_LIBCPP_GNUSTDCPP_VER_MAJOR __GLIBCXX__
+        #define xSTD_LIBCPP_GNUSTDCPP_VER_MINOR 0
+        #define xSTD_LIBCPP_GNUSTDCPP_VER_PATCH 0
             ///< GNU libstdc++
     #elif defined(__INTEL_CXXLIB_ICC)
-        #define xSTD_LIBCPP_INTEL      1
+        #define xSTD_LIBCPP_INTEL           1
+        #define xSTD_LIBCPP_INTEL_VER_MAJOR 0
+        #define xSTD_LIBCPP_INTEL_VER_MINOR 0
+        #define xSTD_LIBCPP_INTEL_VER_PATCH 0
             ///< Intel C++ Run-Time Libraries
     #elif defined(_LIBCPP_VERSION) || defined(_LIBCPP_ABI_VERSION)
-        #define xSTD_LIBCPP_LIBCPP     1
+        #define xSTD_LIBCPP_LIBCPP           1
+        #define xSTD_LIBCPP_LIBCPP_VER_MAJOR _LIBCPP_ABI_VERSION
+        #define xSTD_LIBCPP_LIBCPP_VER_MINOR 0
+        #define xSTD_LIBCPP_LIBCPP_VER_PATCH 0
             ///< libc++
     #else
-        #warning xLib: unsupported standard C++ library
+        #warning xLib: unknown standard C++ library
     #endif
 #endif
-
-//-------------------------------------------------------------------------------------------------
-// TODO: xSysDefines - standard C++ libraries versions
-#define xSTD_LIBCPP_GNU_VER 0
-#define xSTD_LIBCPP_UC_VER  0
-#define xSTD_LIBCPP_VMS_VER 0
-#define xSTD_LIBCPP_ZOS_VER 0
 
 //-------------------------------------------------------------------------------------------------
 // static, share library
