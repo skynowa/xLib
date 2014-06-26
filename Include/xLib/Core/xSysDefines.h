@@ -9,7 +9,8 @@
 #include <cstdlib> // compilers
 #include <climits> // standard C libraries
 //-------------------------------------------------------------------------------------------------
-// Language standards
+///@name Language standards
+///@{
 #if defined(__STDC__)
     #define xLANG_STANDART_C89 1
         ///< ANSI X3.159-1989
@@ -54,8 +55,10 @@
     #define xLANG_STANDART_ECPP 1
         ///< Embedded C++
 #endif
+///@}
 //-------------------------------------------------------------------------------------------------
-// OS environment
+///@name OS environment
+///@{
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || \
         defined(__WINDOWS__)
     #define xENV_WIN   1
@@ -80,9 +83,10 @@
 #else
     #error xLib: unsupported OS environment
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// OS family
+///@name OS family
+///@{
 #if   xENV_WIN
     #define xOS_WIN 1
         ///< OS Windows
@@ -110,9 +114,10 @@
         #endif
     #endif
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// OS version
+///@name OS version
+///@{
 #define xOS_WIN_VER     WINVER
     ///< Windows version
 #define xOS_WIN_NT4     0x0400
@@ -143,9 +148,10 @@
 
 #define xOS_FREEBSD_VER __FreeBSD__
     ///< FreeBSD version
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// OS architecture
+///@name OS architecture
+///@{
 #if   defined(__alpha__) || defined(__alpha) || defined(_M_ALPHA)
     #define xARCH_ALPHA 1
         ///< architecture Alpha
@@ -220,9 +226,10 @@
 #else
     #error xLib: unsupported architecture
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// OS bits architecture
+///@name OS bits architecture
+///@{
 #if   defined(xARCH_ARM) || defined(xARCH_BLACKFIN) || defined(xARCH_INTEL_X86) || \
         defined(xARCH_MOTOROLA_68K) || defined(xARCH_SUPERH)
     #define xARCH_BITS_32 1
@@ -235,9 +242,10 @@
 #else
     #error xLib: unsupported bits architecture
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// compiler types
+///@name Compiler types
+///@{
 #if   defined(__MINGW32__) || defined(__MINGW64__)
     #define xCOMPILER_MINGW    1
         ///< compiler MinGW
@@ -258,9 +266,10 @@
 #else
     #error xLib: unsupported compiler
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// compiler version
+///@name Compiler version
+///@{
 #define xVER_FULL(major, minor, patch) \
     (major * 10000 + minor * 100 + patch)
     ///< version builder
@@ -295,9 +304,10 @@
 #define xCOMPILER_GNUC_VER_PATCHLEVEL __GNUC_PATCHLEVEL__
 #define xCOMPILER_GNUC_VER \
     xVER_FULL(xCOMPILER_GNUC_VER_MAJOR, xCOMPILER_GNUC_VER_MINOR, xCOMPILER_GNUC_VER_PATCHLEVEL)
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// standard C libraries
+///@name Standard C libraries
+///@{
 #if   xENV_WIN
     #if xCOMPILER_MINGW
         #include <bits/c++config.h>
@@ -365,8 +375,10 @@
         #warning xLib: unknown standard C library
     #endif
 #endif
+///@}
 //-------------------------------------------------------------------------------------------------
-// standard C++ libraries
+///@name Standard C++ libraries
+///@{
 #if   xENV_WIN
     #if   defined(__MSVCRT__)
         #define xSTD_LIBCPP_MSVCRT           1
@@ -410,9 +422,10 @@
         #warning xLib: unknown standard C++ library
     #endif
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// static, share library
+///@name Static, share library
+///@{
 // NOTE: In Unix this defines (_LIB, _DLL) must be set from Makefile
 #if   defined(_LIB)
     #define xLIB 1
@@ -424,9 +437,10 @@
     #define xEXE 1
         ///< executable binary
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// unicode, ansi
+///@name Unicode, ansi
+///@{
 #if defined(UNICODE) || defined(_UNICODE)
     #define xUNICODE 1
         ///< unicode
@@ -434,9 +448,10 @@
     #define xANSI    1
         ///< ansi
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// debug, release build
+///@name Debug, release build
+///@{
 #if defined(NDEBUG) || defined(_NDEBUG)
     #define xBUILD_RELEASE 1
         ///< release build
@@ -444,5 +459,5 @@
     #define xBUILD_DEBUG   1
         ///< debug build
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
