@@ -75,6 +75,7 @@ CxBuildInfo::langStandart() const
     }
 
     sRv = CxString::format(xT("%s, %s"), langStandartC.c_str(), langStandartCpp.c_str());
+    sRv = CxString::trimRightChars(sRv, ", ");
 
     return sRv;
 }
