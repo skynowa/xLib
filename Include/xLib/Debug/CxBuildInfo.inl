@@ -238,40 +238,30 @@ inline std::tstring_t
 CxBuildInfo::compiler() const
 {
     std::tstring_t sRv;
-
     std::tstring_t compilerName;
-    {
-    #if   xCOMPILER_MINGW
-        compilerName = xT("MinGW");
-    #elif xCOMPILER_MS
-        compilerName = xT("MSVC");
-    #elif xCOMPILER_CODEGEAR
-        compilerName = xT("CodeGear");
-    #elif xCOMPILER_CLANG
-        compilerName = xT("CLang");
-    #elif xCOMPILER_GNUC
-        compilerName = xT("GNUC");
-    #endif
-    }
-
     std::tstring_t compilerVersion;
-    {
-    #if   xCOMPILER_MINGW
-        #if   defined(__MINGW32__)
-            compilerVersion = CxString::cast(xCOMPILER_MINGW32_VER);
-        #elif defined(__MINGW64__)
-            compilerVersion = CxString::cast(xCOMPILER_MINGW64_VER);
-        #endif
-    #elif xCOMPILER_MS
-        compilerVersion = CxString::cast(xCOMPILER_MS_VER);
-    #elif xCOMPILER_CODEGEAR
-        compilerVersion = CxString::cast(xCOMPILER_CODEGEAR_VER);
-    #elif xCOMPILER_CLANG
-        compilerVersion = CxString::cast(xCOMPILER_CLANG_VER);
-    #elif xCOMPILER_GNUC
-        compilerVersion = CxString::cast(xCOMPILER_GNUC_VER);
+
+#if   xCOMPILER_MINGW
+    #if   defined(__MINGW32__)
+        compilerName    = xT("MinGW32");
+        compilerVersion = CxString::cast(xCOMPILER_MINGW32_VER);
+    #elif defined(__MINGW64__)
+        compilerName    = xT("MinGW64");
+        compilerVersion = CxString::cast(xCOMPILER_MINGW64_VER);
     #endif
-    }
+#elif xCOMPILER_MS
+    compilerName    = xT("MSVC");
+    compilerVersion = CxString::cast(xCOMPILER_MS_VER);
+#elif xCOMPILER_CODEGEAR
+    compilerName    = xT("CodeGear");
+    compilerVersion = CxString::cast(xCOMPILER_CODEGEAR_VER);
+#elif xCOMPILER_CLANG
+    compilerName    = xT("CLang");
+    compilerVersion = CxString::cast(xCOMPILER_CLANG_VER);
+#elif xCOMPILER_GNUC
+    compilerName    = xT("GNUC");
+    compilerVersion = CxString::cast(xCOMPILER_GNUC_VER);
+#endif
 
     sRv = CxString::format(xT("%s %s"), compilerName.c_str(), compilerVersion.c_str());
 
@@ -292,26 +282,36 @@ inline std::tstring_t
 CxBuildInfo::stdLibC() const
 {
     std::tstring_t sRv;
+    std::tstring_t stdLibCName;
+    std::tstring_t stdLibCVersion;
 
 #if   xSTD_LIBC_MSVCRT
-    sRv = xT("Microsoft CRT");
+    stdLibCName    = xT("Microsoft CRT");
+    stdLibCVersion = xSTD_LIBC_MSVCRT_VER_STR;
 #elif xSTD_LIBC_GNUSTDC
-    sRv = xT("GNU libstdc++");
+    stdLibCName    = xT("GNU libstdc++");
+    stdLibCVersion = xSTD_LIBC_GNUSTDC_VER_STR;
 #elif xSTD_LIBC_GNU
-    sRv = xT("GNU glibc");
+    stdLibCName    = xT("GNU glibc");
+    stdLibCVersion = xSTD_LIBC_GNU_VER_STR;
 #elif xSTD_LIBC_UC
-    sRv = xT("uClibc");
+    stdLibCName    = xT("uClibc");
+    stdLibCVersion = xSTD_LIBC_UC_VER_STR;
 #elif xSTD_LIBC_VMS
-    sRv = xT("VMS libc");
+    stdLibCName    = xT("VMS libc");
+    stdLibCVersion = xSTD_LIBC_VMS_VER_STR;
 #elif xSTD_LIBC_ZOS
-    sRv = xT("z/OS libc");
+    stdLibCName    = xT("z/OS libc");
+    stdLibCVersion = xSTD_LIBC_ZOS_VER_STR;
 #elif xSTD_LIBC_BIONIC
-    sRv = xT("Bionic libc");
+    stdLibCName    = xT("Bionic libc");
+    stdLibCVersion = xSTD_LIBC_BIONIC_VER_STR;
 #elif xSTD_LIBC_K
-    sRv = xT("Klibc");
+    stdLibCName    = xT("Klibc");
+    stdLibCVersion = xSTD_LIBC_K_VER_STR;
 #endif
 
-    // TODO: CxBuildInfo::stdLibC() - add version
+    sRv = CxString::format(xT("%s %s"), stdLibCName.c_str(), stdLibCVersion.c_str());
 
     return sRv;
 }
@@ -320,22 +320,30 @@ inline std::tstring_t
 CxBuildInfo::stdLibCpp() const
 {
     std::tstring_t sRv;
+    std::tstring_t stdLibCppName;
+    std::tstring_t stdLibCppVersion;
 
 #if   xSTD_LIBCPP_MSVCRT
-    sRv = xT("Microsoft CRT");
+    stdLibCppName    = xT("Microsoft CRT");
+    stdLibCppVersion = xSTD_LIBCPP_MSVCRT_VER_STR;
 #elif xSTD_LIBCPP_GNUSTDCPP
-    sRv = xT("GNU libstdc++");
+    stdLibCppName    = xT("GNU libstdc++");
+    stdLibCppVersion = xSTD_LIBCPP_GNUSTDCPP_VER_STR;
 #elif XSTD_LIBCPP_DINKUMWARE
-    sRv = xT("Dinkumware");
+    stdLibCppName    = xT("Dinkumware");
+    stdLibCppVersion = XSTD_LIBCPP_DINKUMWARE_VER_STR;
 #elif xSTD_LIBCPP_GNUSTDCPP
-    sRv = xT("GNU libstdc++");
+    stdLibCppName    = xT("GNU libstdc++");
+    stdLibCppVersion = xSTD_LIBCPP_GNUSTDCPP_VER_STR;
 #elif xSTD_LIBCPP_INTEL
-    sRv = xT("Intel C++ Run-Time Libraries");
+    stdLibCppName    = xT("Intel C++ Run-Time Libraries");
+    stdLibCppVersion = xSTD_LIBCPP_INTEL_VER_STR;
 #elif xSTD_LIBCPP_LIBCPP
-    sRv = xT("libc++");
+    stdLibCppName    = xT("libc++");
+    stdLibCppVersion = CxString::cast(xSTD_LIBCPP_LIBCPP_VER_STR;
 #endif
 
-    // TODO: CxBuildInfo::stdLibCpp() - add version
+    sRv = CxString::format(xT("%s %s"), stdLibCppName.c_str(), stdLibCppVersion.c_str());
 
     return sRv;
 }
