@@ -9,6 +9,8 @@
 #include <cstdlib> // compilers
 #include <climits> // standard C libraries
 //-------------------------------------------------------------------------------------------------
+///@name Utils
+///@{
 #define xVER_FULL(major, minor, patch) \
     (major * 10000 + minor * 100 + patch)
     ///< version builder
@@ -22,6 +24,8 @@
     #define xLINUX_KERNEL_VER KERNEL_VERSION
 #endif
     ///< get Linux kernel version
+///@}
+
 //-------------------------------------------------------------------------------------------------
 ///@name Language standards
 ///@{

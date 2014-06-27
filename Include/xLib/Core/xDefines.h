@@ -7,7 +7,8 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// lexeme utils
+///@name Lexeme utils
+///@{
 #define xLEX_TO_STR(a) \
     xT(#a)
     ///< make as string
@@ -36,9 +37,10 @@
 #define xLEX_CAT9(x1, x2, x3, x4, x5, x6, x7, x8, x9) \
     xLEX_CAT(xLEX_CAT8(x1, x2, x3, x4, x5, x6, x7, x8), x9)
     ///< concatenate 9 strings
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// xTEXT, xT
+///@name xTEXT, xT (Ansi, Unicode string)
+///@{
 #if xUNICODE
     #define xTEXT(x) \
         L##x
@@ -50,8 +52,7 @@
     #define xT(x) \
         xTEXT(x)
 #endif
-    ///< Ansi, Unicode string
-
+///@}
 //-------------------------------------------------------------------------------------------------
 // xOPTION_TEST_PRIVATE
 #if xOPTION_TEST_PRIVATE
@@ -61,9 +62,9 @@
         public
 #endif
     ///< for testing private class data
-
 //-------------------------------------------------------------------------------------------------
-// xDECL, xDECL_TEMPL
+///@name xDECL, xDECL_TEMPL
+///@{
 #if xENV_WIN && xDLL
     #if xAPI_EXPORTS
         #define xDECL \
@@ -85,7 +86,7 @@
     #define xDECL_TEMPL
         ///< export, import DLL information
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
 // xNO_VTABLE
 #if   xENV_WIN
@@ -96,7 +97,6 @@
         xNOT_AVAILABLE
 #endif
     ///< disable class virtual table (only: Windows)
-
 //-------------------------------------------------------------------------------------------------
 // xFORCE_INLINE
 #if   xCOMPILER_MINGW
@@ -116,7 +116,6 @@
         inline
 #endif
     ///< keyword "inline"
-
 //-------------------------------------------------------------------------------------------------
 // xNO_INLINE
 #if   xCOMPILER_MINGW
@@ -136,7 +135,6 @@
         xNOT_AVAILABLE
 #endif
     ///< keyword "no inline"
-
 //-------------------------------------------------------------------------------------------------
 // xSTDCALL
 #if   xENV_WIN
@@ -147,7 +145,6 @@
         xNOT_AVAILABLE
 #endif
     ///< calling convention
-
 //-------------------------------------------------------------------------------------------------
 // xOVERRIDE
 #if xOPTION_CPP11
@@ -172,7 +169,6 @@
     #endif
 #endif
     ///< keyword "override"
-
 //-------------------------------------------------------------------------------------------------
 // xPTR_NULL
 #if xLANG_STANDART_CPP11
@@ -201,42 +197,43 @@
 
 #endif
     ///< give a warning if the return value of function was not used
-
 //-------------------------------------------------------------------------------------------------
-// namespace
+///@name namespace
+///@{
 #define xNAMESPACE_ANONYM_BEGIN \
-        namespace {
-        ///< begin anonymous namespace
+    namespace {
+    ///< begin anonymous namespace
 #define xNAMESPACE_ANONYM_END \
-        }
-        ///< end anonymous namespace
+    }
+    ///< end anonymous namespace
 
 #define xNAMESPACE_BEGIN(n1) \
-        namespace n1 {
-        ///< begin namespace
+    namespace n1 {
+    ///< begin namespace
 #define xNAMESPACE_END(n1) \
-        }
-        ///< end namespace
+    }
+    ///< end namespace
 
 #define xNAMESPACE_BEGIN2(n1, n2) \
-        namespace n1 { \
-        namespace n2 {
-        ///< begin namespaces
+    namespace n1 { \
+    namespace n2 {
+    ///< begin namespaces
 #define xNAMESPACE_END2(n1, n2) \
-        }}
-        ///< end namespaces
+    }}
+    ///< end namespaces
 
 #define xNAMESPACE_BEGIN3(n1, n2, n3) \
-        namespace n1 { \
-        namespace n2 { \
-        namespace n3 {
-        ///< begin namespaces
+    namespace n1 { \
+    namespace n2 { \
+    namespace n3 {
+    ///< begin namespaces
 #define xNAMESPACE_END3(n1, n2, n3) \
-        }}}
-        ///< end namespaces
-
+    }}}
+    ///< end namespaces
+///@}
 //-------------------------------------------------------------------------------------------------
-// TODO: xDefines - converters
+///@name Converters
+///@{
 #if xUNICODE
     #define xS2TS(s) \
         ( CxString::castW(s) )
@@ -259,9 +256,10 @@
 #define xUS2S(us) \
     std::tstring_t( (us).begin(), (us).begin() + (us).size() )
     ///< convert std::ustring_t to std::tstring_t
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// utils
+///@name Utils
+///@{
 #define xPTR_DELETE(p) \
     { CxUtils::ptrDeleteT(p); }
     ///< delete object by pointer
@@ -298,10 +296,10 @@
 #define xINT_TO_BOOL(i) \
     ( CxUtils::intToBoolT(i) )
     ///< convert int_t to bool_t
-
+///@}
 //-------------------------------------------------------------------------------------------------
 // xUNUSED
-#if   xCOMPILER_MINGW || xCOMPILER_MS
+#if   (xCOMPILER_MINGW || xCOMPILER_MS)
     #define xUNUSED(arg) \
     ( static_cast<void_t>( arg ) )
 #elif xCOMPILER_CODEGEAR
@@ -315,15 +313,14 @@
     ( static_cast<void_t>( arg ) )
 #endif
     ///< hide "unused variable" warnings
-
 //-------------------------------------------------------------------------------------------------
 // xUNKNOWN_CSTRING
 #define xUNKNOWN_CSTRING \
     xT("[unknown]")
     ///< C string as unknown value
-
 //-------------------------------------------------------------------------------------------------
-// temporary enable/disable code
+///@name Temporary enable/disable code
+///@{
 #define xTEMP_ENABLED  1
     ///< temporary code enabled
 #define xTEMP_DISABLED 0
@@ -348,10 +345,10 @@
     ///< code not implemented
 #define xNOT_AVAILABLE // n/a
     ///< code not available
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// build in macros
-
+///@name Build in macros
+///@{
 // xFILE
 #if defined(__FILE__)
     #define xFILE \
@@ -428,18 +425,20 @@
 #endif
     ///< Expands to an integer starting with 0 and
     ///< incrementing by 1 every time it is used in a compiland
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// function params
+///@name Function params
+///@{
 #define xIN
     ///< incoming param
 #define xOUT
     ///< out coming param
 #define xIN_OUT
     ///< incoming and out coming param
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// var args
+///@name Var args
+///@{
 #if defined(va_start)
     #define xVA_START(val, fmt) \
         ( va_start(val, fmt) )
@@ -464,9 +463,10 @@
 #endif
     ///< Each invocation of xVA_START() must be matched by a corresponding invocation of xVA_END()
     ///< in the same function
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// qualifiers
+///@name Formattong qualifiers
+///@{
 #if   xENV_WIN
     #ifdef xARCH_BITS_32
         #define xPR_SIZET xT("u")
@@ -517,7 +517,7 @@
     #endif
 #endif
     ///< qualifiers
-
+///@}
 //-------------------------------------------------------------------------------------------------
 // xDIR_TEMP temporary directory
 #if   xENV_WIN
@@ -538,9 +538,9 @@
     #endif
 #endif
     ///< temporary directory
-
 //-------------------------------------------------------------------------------------------------
-// xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
+///@name xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
+///@{
 #if   xENV_WIN
     #define xNATIVE_HANDLE_NULL \
         ( static_cast<native_handle_t>( xPTR_NULL ) )
@@ -556,9 +556,10 @@
         ( static_cast<native_handle_t>( - 1 ) )
         ///< native handle value "invalid"
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// xSOCKET_ERROR, xSOCKET_HANDLE_INVALID
+///@name xSOCKET_ERROR, xSOCKET_HANDLE_INVALID
+///@{
 #if xENV_WIN
     #define xSOCKET_ERROR \
         ( SOCKET_ERROR )
@@ -574,7 +575,7 @@
         ( static_cast<socket_t>( - 1 ) )
         ///< socket native handle value "null"
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
 // xWND_NATIVE_HANDLE_NULL
 #if xENV_WIN
@@ -584,7 +585,8 @@
 #endif
 
 //-------------------------------------------------------------------------------------------------
-// generic test for success on any status value (for Windows XP)
+///@name Generic test for success on any status value (for Windows XP)
+///@{
 #if xENV_WIN
     #ifndef NT_SUCCESS
         #define NT_SUCCESS(Status) \
@@ -610,16 +612,16 @@
             ///< generic test for success on any status value
     #endif
 #endif
-
+///@}
 //-------------------------------------------------------------------------------------------------
 #if xENV_WIN
     #define xHOTKEY(modifier, key) \
         ((((modifier) & 0xFF) << 8) | ((key) & 0xFF))
         ///< hot key
 #endif
-
 //-------------------------------------------------------------------------------------------------
-// xFOREACH
+///@name xFOREACH
+///@{
 #define xFOREACH(it_t, it, cont) \
     for (it_t::iterator               it((cont).begin());  it != (cont).end();  ++ it)
     ///< iterate STL container (using it_t::iterator)
@@ -635,9 +637,10 @@
 #define xFOREACH_R_CONST(it_t, it, cont) \
     for (it_t::const_reverse_iterator it((cont).rbegin()); it != (cont).rend(); ++ it)
     ///< iterate STL container (using it_t::const_reverse_iterator)
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// xTHROW_REPORT, xTRY, xCATCH_ALL
+///@name xTHROW_REPORT, xTRY, xCATCH_ALL
+///@{
 #define xTHROW_REPORT(msg) \
     { \
         culong_t        lastError  = CxLastError::get(); \
@@ -662,9 +665,10 @@
         xTEST_MSG_FAIL(xT("unknown error")); \
     }
     ///< catch CxException, std::exception and all other exceptions
-
+///@}
 //-------------------------------------------------------------------------------------------------
-// class disallows
+///@name Class disallows
+///@{
 #define xNO_COPY(className) \
     private: \
         className(const className &);
@@ -691,4 +695,5 @@
         void_t* operator new []    (size_t) throw() { return xPTR_NULL; } \
         void_t  operator delete [] (void_t*)        { ; }
     ///< disallow array on heap
+///@}
 //-------------------------------------------------------------------------------------------------
