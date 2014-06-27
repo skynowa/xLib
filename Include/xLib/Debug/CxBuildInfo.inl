@@ -148,12 +148,12 @@ CxBuildInfo::os() const
             osVersion = xT("7, Windows Server 2008 R2");
         #endif
     #elif (xOS_ANDROID || xOS_LINUX)
-        cint_t version1 = (xOS_LINUX_VER & 0x00FF0000) >> 16;
-        cint_t version2 = (xOS_LINUX_VER & 0x0000FF00) >> 8;
-        cint_t version3 = (xOS_LINUX_VER & 0x000000FF) >> 0;
+        cint_t versionMajor = (xOS_LINUX_VER & 0x00FF0000) >> 16;
+        cint_t versionMinor = (xOS_LINUX_VER & 0x0000FF00) >> 8;
+        cint_t versionPatch = (xOS_LINUX_VER & 0x000000FF) >> 0;
 
-        osVersion = CxString::format(xT("%d.%d.%d"), version1, version2, version3);
-        xTEST_EQ(LINUX_VERSION_CODE, xLINUX_KERNEL_VER(version1, version2, version3));
+        osVersion = CxString::format(xT("%d.%d.%d"), versionMajor, versionMinor, versionPatch);
+        xTEST_EQ(LINUX_VERSION_CODE, xLINUX_KERNEL_VER(versionMajor, versionMinor, versionPatch));
     #elif xOS_FREEBSD
         osVersion = CxString::cast(xOS_FREEBSD_VER);
     #elif xOS_MACOSX
