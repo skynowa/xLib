@@ -356,12 +356,12 @@ CxBuildInfo::binaryType() const
 {
     std::tstring_t sRv;
 
-#if   xLIB
+#if   xEXE
+    sRv = xT("Executable binary");
+#elif xLIB
     sRv = xT("Static library");
 #elif xDLL
-    sRv = xT("Dynamic-link library");
-#else
-    sRv = xT("Executable binary");
+    sRv = xT("Share (dynamic link) library");
 #endif
 
     return sRv;
