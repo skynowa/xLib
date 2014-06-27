@@ -424,21 +424,6 @@
 #endif
 ///@}
 //-------------------------------------------------------------------------------------------------
-///@name Static, share library
-///@{
-// NOTE: In Unix this defines (_LIB, _DLL) must be set from Makefile
-#if   defined(_LIB)
-    #define xLIB 1
-        ///< static library
-#elif defined(_DLL)
-    #define xDLL 1
-        ///< dynamic-link library
-#else
-    #define xEXE 1
-        ///< executable binary
-#endif
-///@}
-//-------------------------------------------------------------------------------------------------
 ///@name Unicode, ansi
 ///@{
 #if defined(UNICODE) || defined(_UNICODE)
