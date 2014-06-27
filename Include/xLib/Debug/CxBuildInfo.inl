@@ -40,55 +40,41 @@ CxBuildInfo::datetime() const
 inline std::tstring_t
 CxBuildInfo::langStandart() const
 {
-    std::tstring_t  sRv;
-    std::ctstring_t separator = xT(", ");
+    std::tstring_t sRv;
 
-#if xLANG_STANDART_C89
-    sRv += xT("C89");
-    sRv += separator;
-#endif
+    std::tstring_t langStandartC;
+    {
+    #if   xLANG_STANDART_C89
+        langStandartC += xT("C89");
+    #elif xLANG_STANDART_C90
+        langStandartC += xT("C90");
+    #elif xLANG_STANDART_C94
+        langStandartC += xT("C94");
+    #elif xLANG_STANDART_C99
+        langStandartC += xT("C99");
+    #elif xLANG_STANDART_C11
+        langStandartC += xT("C11");
+    #else
+        xBUILD_UNKNOWN("CxBuildInfo::langStandart() - C standart");
+    #endif
+    }
 
-#if xLANG_STANDART_C90
-    sRv += xT("C90");
-    sRv += separator;
-#endif
+    std::tstring_t langStandartCpp;
+    {
+    #if xLANG_STANDART_CPP98
+        langStandartCpp += xT("C++98");
+    #elif xLANG_STANDART_CPP11
+        langStandartCpp += xT("C++11");
+    #elif xLANG_STANDART_CPP_CLI
+        langStandartCpp += xT("C++/CLI");
+    #elif xLANG_STANDART_ECPP
+        langStandartCpp += xT("EC++");
+    #else
+        xBUILD_UNKNOWN("CxBuildInfo::langStandart() - C++ standart");
+    #endif
+    }
 
-#if xLANG_STANDART_C94
-    sRv += xT("C94");
-    sRv += separator;
-#endif
-
-#if xLANG_STANDART_C99
-    sRv += xT("C99");
-    sRv += separator;
-#endif
-
-#if xLANG_STANDART_C11
-    sRv += xT("C11");
-    sRv += separator;
-#endif
-
-#if xLANG_STANDART_CPP98
-    sRv += xT("C++98");
-    sRv += separator;
-#endif
-
-#if xLANG_STANDART_CPP11
-    sRv += xT("C++11");
-    sRv += separator;
-#endif
-
-#if xLANG_STANDART_CPP_CLI
-    sRv += xT("C++/CLI");
-    sRv += separator;
-#endif
-
-#if xLANG_STANDART_ECPP
-    sRv += xT("EC++");
-    sRv += separator;
-#endif
-
-    sRv = CxString::trimRightChars(sRv, separator);
+    sRv = CxString::format(xT("%s, %s"), langStandartC.c_str(), langStandartCpp.c_str());
 
     return sRv;
 }
