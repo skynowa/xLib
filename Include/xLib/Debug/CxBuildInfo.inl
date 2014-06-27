@@ -244,23 +244,23 @@ CxBuildInfo::compiler() const
 #if   xCOMPILER_MINGW
     #if   defined(__MINGW32__)
         compilerName    = xT("MinGW32");
-        compilerVersion = CxString::cast(xCOMPILER_MINGW32_VER);
+        compilerVersion = xCOMPILER_MINGW32_VER_STR;
     #elif defined(__MINGW64__)
         compilerName    = xT("MinGW64");
-        compilerVersion = CxString::cast(xCOMPILER_MINGW64_VER);
+        compilerVersion = xCOMPILER_MINGW64_VER_STR;
     #endif
 #elif xCOMPILER_MS
     compilerName    = xT("MSVC");
-    compilerVersion = CxString::cast(xCOMPILER_MS_VER);
+    compilerVersion = xCOMPILER_MS_VER_STR;
 #elif xCOMPILER_CODEGEAR
     compilerName    = xT("CodeGear");
-    compilerVersion = CxString::cast(xCOMPILER_CODEGEAR_VER);
+    compilerVersion = xCOMPILER_CODEGEAR_VER_STR;
 #elif xCOMPILER_CLANG
     compilerName    = xT("CLang");
-    compilerVersion = CxString::cast(xCOMPILER_CLANG_VER);
+    compilerVersion = xCOMPILER_CLANG_VER_STR;
 #elif xCOMPILER_GNUC
     compilerName    = xT("GNUC");
-    compilerVersion = CxString::cast(xCOMPILER_GNUC_VER);
+    compilerVersion = xCOMPILER_GNUC_VER_STR;
 #endif
 
     sRv = CxString::format(xT("%s %s"), compilerName.c_str(), compilerVersion.c_str());
@@ -340,7 +340,7 @@ CxBuildInfo::stdLibCpp() const
     stdLibCppVersion = xSTD_LIBCPP_INTEL_VER_STR;
 #elif xSTD_LIBCPP_LIBCPP
     stdLibCppName    = xT("libc++");
-    stdLibCppVersion = CxString::cast(xSTD_LIBCPP_LIBCPP_VER_STR;
+    stdLibCppVersion = xSTD_LIBCPP_LIBCPP_VER_STR;
 #endif
 
     sRv = CxString::format(xT("%s %s"), stdLibCppName.c_str(), stdLibCppVersion.c_str());
