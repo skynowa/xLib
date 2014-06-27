@@ -9,6 +9,20 @@
 #include <cstdlib> // compilers
 #include <climits> // standard C libraries
 //-------------------------------------------------------------------------------------------------
+#define xVER_FULL(major, minor, patch) \
+    (major * 10000 + minor * 100 + patch)
+    ///< version builder
+#define xVER_STR_FULL(major, minor, patch) \
+    (major "." minor "." patch)
+    ///< version builder
+
+#if !defined(KERNEL_VERSION)
+    #define xLINUX_KERNEL_VER(a, b, c) (((a) << 16) + ((b) << 8) + (c))
+#else
+    #define xLINUX_KERNEL_VER KERNEL_VERSION
+#endif
+    ///< get Linux kernel version
+//-------------------------------------------------------------------------------------------------
 ///@name Language standards
 ///@{
 #if defined(__STDC__)
@@ -132,13 +146,6 @@
     ///< Windows Vista, Windows Server 2008
 #define xOS_WIN_7       0x0601
     ///< Windows 7, Windows Server 2008 R2
-
-#if !defined(KERNEL_VERSION)
-    #define xLINUX_KERNEL_VER(a, b, c) (((a) << 16) + ((b) << 8) + (c))
-#else
-    #define xLINUX_KERNEL_VER KERNEL_VERSION
-#endif
-    ///< get Linux kernel version
 
 #define xOS_LINUX_VER   LINUX_VERSION_CODE
     ///< Linux version
@@ -270,10 +277,6 @@
 //-------------------------------------------------------------------------------------------------
 ///@name Compiler version
 ///@{
-#define xVER_FULL(major, minor, patch) \
-    (major * 10000 + minor * 100 + patch)
-    ///< version builder
-
 // xCOMPILER_MINGW
 #define xCOMPILER_MINGW32_VER_MAJOR   __MINGW32_MAJOR_VERSION
 #define xCOMPILER_MINGW32_VER_MINOR   __MINGW32_MINOR_VERSION
@@ -323,8 +326,10 @@
         #define xSTD_LIBC_MSVCRT_VER_MAJOR 0
         #define xSTD_LIBC_MSVCRT_VER_MINOR 0
         #define xSTD_LIBC_MSVCRT_VER_PATCH 0
-        #define xSTD_LIBC_MSVCRT_VER       ?????
-        #define xSTD_LIBC_MSVCRT_VER_STR   ?????????????
+        #define xSTD_LIBC_MSVCRT_VER \
+            xVER_FULL(xSTD_LIBC_MSVCRT_VER_MAJOR, xSTD_LIBC_MSVCRT_VER_MINOR, xSTD_LIBC_MSVCRT_VER_PATCH)
+        #define xSTD_LIBC_MSVCRT_VER_STR \
+            xVER_STR_FULL(xSTD_LIBC_MSVCRT_VER_MAJOR, xSTD_LIBC_MSVCRT_VER_MINOR, xSTD_LIBC_MSVCRT_VER_PATCH)
             ///< Microsoft CRT
     #elif defined(__GLIBCPP__) || defined(__GLIBCXX__)
         // GNU libstdc++ detect as C library
@@ -332,8 +337,10 @@
         #define xSTD_LIBC_GNUSTDC_VER_MAJOR __GLIBCXX__
         #define xSTD_LIBC_GNUSTDC_VER_MINOR 0
         #define xSTD_LIBC_GNUSTDC_VER_PATCH 0
-        #define xSTD_LIBC_GNUSTDC_VER       ???????
-        #define xSTD_LIBC_GNUSTDC_VER_STR   ?????????????
+        #define xSTD_LIBC_GNUSTDC_VER \
+            xVER_FULL(xSTD_LIBC_GNUSTDC_VER_MAJOR, xSTD_LIBC_GNUSTDC_VER_MINOR, xSTD_LIBC_GNUSTDC_VER_PATCH)
+        #define xSTD_LIBC_GNUSTDC_VER_STR \
+            xVER_STR_FULL(xSTD_LIBC_GNUSTDC_VER_MAJOR, xSTD_LIBC_GNUSTDC_VER_MINOR, xSTD_LIBC_GNUSTDC_VER_PATCH)
             ///< GNU libstdc++
     #else
         #warning xLib: unknown standard C library
@@ -344,48 +351,60 @@
         #define xSTD_LIBC_GNU_VER_MAJOR __GLIBC__
         #define xSTD_LIBC_GNU_VER_MINOR __GLIBC_MINOR__
         #define xSTD_LIBC_GNU_VER_PATCH 0
-        #define xSTD_LIBC_GNU_VER       ???????????
-        #define xSTD_LIBC_GNU_VER_STR   ?????????????
+        #define xSTD_LIBC_GNU_VER \
+            xVER_FULL(xSTD_LIBC_GNU_VER_MAJOR, xSTD_LIBC_GNU_VER_MINOR, xSTD_LIBC_GNU_VER_PATCH)
+        #define xSTD_LIBC_GNU_VER_STR \
+            xVER_STR_FULL(xSTD_LIBC_GNU_VER_MAJOR, xSTD_LIBC_GNU_VER_MINOR, xSTD_LIBC_GNU_VER_PATCH)
             ///< GNU glibc
     #elif defined(__UCLIBC__)
         #define xSTD_LIBC_UC           1
         #define xSTD_LIBC_UC_VER_MAJOR __UCLIBC_MAJOR__
         #define xSTD_LIBC_UC_VER_MINOR __UCLIBC_MINOR__
         #define xSTD_LIBC_UC_VER_PATCH __UCLIBC_SUBLEVEL__
-        #define xSTD_LIBC_UC_VER       ????????
-        #define xSTD_LIBC_UC_VER_STR   ?????????????
+        #define xSTD_LIBC_UC_VER \
+            xVER_FULL(xSTD_LIBC_UC_VER_MAJOR, xSTD_LIBC_UC_VER_MINOR, xSTD_LIBC_UC_VER_PATCH)
+        #define xSTD_LIBC_UC_VER_STR \
+            xVER_STR_FULL(xSTD_LIBC_UC_VER_MAJOR, xSTD_LIBC_UC_VER_MINOR, xSTD_LIBC_UC_VER_PATCH)
             ///< uClibc
     #elif defined(__CRTL_VER)
         #define xSTD_LIBC_VMS           1
         #define xSTD_LIBC_VMS_VER_MAJOR __CRTL_VER
         #define xSTD_LIBC_VMS_VER_MINOR 0
         #define xSTD_LIBC_VMS_VER_PATCH 0
-        #define xSTD_LIBC_VMS_VER       ?????????
-        #define xSTD_LIBC_VMS_VER_STR   ?????????????
+        #define xSTD_LIBC_VMS_VER \
+            xVER_FULL(xSTD_LIBC_VMS_VER_MAJOR, xSTD_LIBC_VMS_VER_MINOR, xSTD_LIBC_VMS_VER_PATCH)
+        #define xSTD_LIBC_VMS_VER_STR \
+            xVER_STR_FULL(xSTD_LIBC_VMS_VER_MAJOR, xSTD_LIBC_VMS_VER_MINOR, xSTD_LIBC_VMS_VER_PATCH)
             ///< VMS libc
     #elif defined(__LIBREL__) || defined(__TARGET_LIB__)
         #define xSTD_LIBC_ZOS           1
         #define xSTD_LIBC_ZOS_VER_MAJOR __LIBREL__
         #define xSTD_LIBC_ZOS_VER_MINOR 0
         #define xSTD_LIBC_ZOS_VER_PATCH 0
-        #define xSTD_LIBC_ZOS_VER       ???????????????
-        #define xSTD_LIBC_ZOS_VER_STR   ?????????????
+        #define xSTD_LIBC_ZOS_VERSTR \
+            xVER_FULL(xSTD_LIBC_ZOS_VER_MAJOR, xSTD_LIBC_ZOS_VER_MINOR, xSTD_LIBC_ZOS_VER_PATCH)
+        #define xSTD_LIBC_ZOS_VER_STR \
+            xVER_STR_FULL(xSTD_LIBC_ZOS_VER_MAJOR, xSTD_LIBC_ZOS_VER_MINOR, xSTD_LIBC_ZOS_VER_PATCH)
             ///< z/OS libc
     #elif defined(__BIONIC__)
         #define xSTD_LIBC_BIONIC           1
         #define xSTD_LIBC_BIONIC_VER_MAJOR 0
         #define xSTD_LIBC_BIONIC_VER_MINOR 0
         #define xSTD_LIBC_BIONIC_VER_PATCH 0
-        #define xSTD_LIBC_BIONIC_VER       ??????????
-        #define xSTD_LIBC_BIONIC_VER_STR   ?????????????
+        #define xSTD_LIBC_BIONIC_VER \
+            xVER_FULL(xSTD_LIBC_BIONIC_VER_MAJOR, xSTD_LIBC_BIONIC_VER_MINOR, xSTD_LIBC_BIONIC_VER_PATCH)
+        #define xSTD_LIBC_BIONIC_VER_STR \
+            xVER_STR_FULL(xSTD_LIBC_BIONIC_VER_MAJOR, xSTD_LIBC_BIONIC_VER_MINOR, xSTD_LIBC_BIONIC_VER_PATCH)
             ///< Bionic libc
     #elif defined(__KLIBC__)
         #define xSTD_LIBC_K           1
         #define xSTD_LIBC_K_VER_MAJOR __KLIBC__
         #define xSTD_LIBC_K_VER_MINOR __KLIBC_MINOR__
         #define xSTD_LIBC_K_VER_PATCH __KLIBC_PATCHLEVEL__
-        #define xSTD_LIBC_K_VER       ?????????
-        #define xSTD_LIBC_K_VER_STR   ?????????????
+        #define xSTD_LIBC_K_VER \
+            xVER_FULL(xSTD_LIBC_K_VER_MAJOR, xSTD_LIBC_K_VER_MINOR, xSTD_LIBC_K_VER_PATCH)
+        #define xSTD_LIBC_K_VER_STR \
+            xVER_STR_FULL(xSTD_LIBC_K_VER_MAJOR, xSTD_LIBC_K_VER_MINOR, xSTD_LIBC_K_VER_PATCH)
             ///< klibc
     #else
         #warning xLib: unknown standard C library
@@ -401,16 +420,20 @@
         #define xSTD_LIBCPP_MSVCRT_VER_MAJOR 0
         #define xSTD_LIBCPP_MSVCRT_VER_MINOR 0
         #define xSTD_LIBCPP_MSVCRT_VER_PATCH 0
-        #define xSTD_LIBCPP_MSVCRT_VER       ?????????????
-        #define xSTD_LIBCPP_MSVCRT_VER_STR   ?????????????
+        #define xSTD_LIBCPP_MSVCRT_VER \
+            xVER_FULL(xSTD_LIBCPP_MSVCRT_VER_MAJOR, xSTD_LIBCPP_MSVCRT_VER_MINOR, xSTD_LIBCPP_MSVCRT_VER_PATCH)
+        #define xSTD_LIBCPP_MSVCRT_VER_STR \
+            xVER_STR_FULL(xSTD_LIBCPP_MSVCRT_VER_MAJOR, xSTD_LIBCPP_MSVCRT_VER_MINOR, xSTD_LIBCPP_MSVCRT_VER_PATCH)
             ///< Microsoft CRT
     #elif defined(__GLIBCXX__)
         #define xSTD_LIBCPP_GNUSTDCPP           1
         #define xSTD_LIBCPP_GNUSTDCPP_VER_MAJOR __GLIBCXX__
         #define xSTD_LIBCPP_GNUSTDCPP_VER_MINOR 0
         #define xSTD_LIBCPP_GNUSTDCPP_VER_PATCH 0
-        #define xSTD_LIBCPP_GNUSTDCPP_VER       ???????
-        #define xSTD_LIBCPP_GNUSTDCPP_VER_STR   ?????????????
+        #define xSTD_LIBCPP_GNUSTDCPP_VER \
+            xVER_FULL(xSTD_LIBCPP_GNUSTDCPP_VER_MAJOR, xSTD_LIBCPP_GNUSTDCPP_VER_MINOR, xSTD_LIBCPP_GNUSTDCPP_VER_PATCH)
+        #define xSTD_LIBCPP_GNUSTDCPP_VER_STR \
+            xVER_STR_FULL(xSTD_LIBCPP_GNUSTDCPP_VER_MAJOR, xSTD_LIBCPP_GNUSTDCPP_VER_MINOR, xSTD_LIBCPP_GNUSTDCPP_VER_PATCH)
             ///< GNU libstdc++
     #endif
 #elif xENV_UNIX
@@ -419,32 +442,40 @@
         #define xSTD_LIBCPP_DINKUMWARE_VER_MAJOR __CPPLIB_VER
         #define xSTD_LIBCPP_DINKUMWARE_VER_MINOR 0
         #define xSTD_LIBCPP_DINKUMWARE_VER_PATCH 0
-        #define xSTD_LIBCPP_DINKUMWARE_VER       ???????
-        #define xSTD_LIBCPP_DINKUMWARE_VER_STR   ?????????????
+        #define xSTD_LIBCPP_DINKUMWARE_VER \
+            xVER_FULL(xSTD_LIBCPP_DINKUMWARE_VER_MAJOR, xSTD_LIBCPP_DINKUMWARE_VER_MINOR, xSTD_LIBCPP_DINKUMWARE_VER_PATCH)
+        #define xSTD_LIBCPP_DINKUMWARE_VER_STR \
+            xVER_STR_FULL(xSTD_LIBCPP_DINKUMWARE_VER_MAJOR, xSTD_LIBCPP_DINKUMWARE_VER_MINOR, xSTD_LIBCPP_DINKUMWARE_VER_PATCH)
             ///< Dinkumware
     #elif defined(__GLIBCPP__) || defined(__GLIBCXX__)
         #define xSTD_LIBCPP_GNUSTDCPP           1
         #define xSTD_LIBCPP_GNUSTDCPP_VER_MAJOR __GLIBCXX__
         #define xSTD_LIBCPP_GNUSTDCPP_VER_MINOR 0
         #define xSTD_LIBCPP_GNUSTDCPP_VER_PATCH 0
-        #define xSTD_LIBCPP_GNUSTDCPP_VER       ??????????
-        #define xSTD_LIBCPP_GNUSTDCPP_VER_STR   ?????????????
+        #define xSTD_LIBCPP_GNUSTDCPP_VER \
+            xVER_FULL(xSTD_LIBCPP_GNUSTDCPP_VER_MAJOR, xSTD_LIBCPP_GNUSTDCPP_VER_MINOR, xSTD_LIBCPP_GNUSTDCPP_VER_PATCH)
+        #define xSTD_LIBCPP_GNUSTDCPP_VER_STR \
+            xVER_STR_FULL(xSTD_LIBCPP_GNUSTDCPP_VER_MAJOR, xSTD_LIBCPP_GNUSTDCPP_VER_MINOR, xSTD_LIBCPP_GNUSTDCPP_VER_PATCH)
             ///< GNU libstdc++
     #elif defined(__INTEL_CXXLIB_ICC)
         #define xSTD_LIBCPP_INTEL           1
         #define xSTD_LIBCPP_INTEL_VER_MAJOR 0
         #define xSTD_LIBCPP_INTEL_VER_MINOR 0
         #define xSTD_LIBCPP_INTEL_VER_PATCH 0
-        #define xSTD_LIBCPP_INTEL_VER       ?????????
-        #define xSTD_LIBCPP_INTEL_VER_STR   ?????????????
+        #define xSTD_LIBCPP_INTEL_VER \
+            xVER_FULL(xSTD_LIBCPP_INTEL_VER_MAJOR, xSTD_LIBCPP_INTEL_VER_MINOR, xSTD_LIBCPP_INTEL_VER_PATCH)
+        #define xSTD_LIBCPP_INTEL_VER_STR \
+            xVER_STR_FULL(xSTD_LIBCPP_INTEL_VER_MAJOR, xSTD_LIBCPP_INTEL_VER_MINOR, xSTD_LIBCPP_INTEL_VER_PATCH)
             ///< Intel C++ Run-Time Libraries
     #elif defined(_LIBCPP_VERSION) || defined(_LIBCPP_ABI_VERSION)
         #define xSTD_LIBCPP_LIBCPP           1
         #define xSTD_LIBCPP_LIBCPP_VER_MAJOR _LIBCPP_ABI_VERSION
         #define xSTD_LIBCPP_LIBCPP_VER_MINOR 0
         #define xSTD_LIBCPP_LIBCPP_VER_PATCH 0
-        #define xSTD_LIBCPP_LIBCPP_VER       ?????????????
-        #define xSTD_LIBCPP_LIBCPP_VER_STR   ?????????????
+        #define xSTD_LIBCPP_LIBCPP_VERSTR \
+            xVER_FULL(xSTD_LIBCPP_LIBCPP_VER_MAJOR, xSTD_LIBCPP_LIBCPP_VER_MINOR, xSTD_LIBCPP_LIBCPP_VER_PATCH)
+        #define xSTD_LIBCPP_LIBCPP_VER_STR \
+            xVER_STR_FULL(xSTD_LIBCPP_LIBCPP_VER_MAJOR, xSTD_LIBCPP_LIBCPP_VER_MINOR, xSTD_LIBCPP_LIBCPP_VER_PATCH)
             ///< libc++
     #else
         #warning xLib: unknown standard C++ library
