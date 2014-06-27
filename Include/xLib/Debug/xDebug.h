@@ -16,6 +16,7 @@
 #define xBUILD_TODO(msg)    xBUILD_MSG("TODO",    msg)
 #define xBUILD_IMPL(msg)    xBUILD_MSG("IMPL",    msg)
 #define xBUILD_NA(msg)      xBUILD_MSG("N/A",     msg)
+#define xBUILD_UNKNOWN(msg) xBUILD_MSG("UNKNOWN", msg)
 #define xBUILD_FIX(msg)     xBUILD_MSG("FIX",     msg)
 #define xBUILD_REVIEW(msg)  xBUILD_MSG("REVIEW",  msg)
 #define xBUILD_SECURE(msg)  xBUILD_MSG("SECURE",  msg)
