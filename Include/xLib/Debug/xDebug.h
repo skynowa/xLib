@@ -84,5 +84,5 @@
     ///< trace point (use CxTrace)
 #define xNOT_IMPLEMENTED \
     { xTEST_MSG_FAIL(xT("Not implemented")); }
-    ///< show not implemented message and return value
+    ///< show not implemented message
 //-------------------------------------------------------------------------------------------------
