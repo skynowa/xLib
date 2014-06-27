@@ -72,11 +72,11 @@
     }
 
 // _xREPORT_TYPE
-#if   xHAVE_DEBUG_MODE_STDOUT
+#if   xOPTION_DEBUG_MODE_STDOUT
     #define _xREPORT_TYPE CxErrorReport::rtStdout
-#elif xHAVE_DEBUG_MODE_MSGBOX
+#elif xOPTION_DEBUG_MODE_MSGBOX
     #define _xREPORT_TYPE CxErrorReport::rtMsgbox
-#elif xHAVE_DEBUG_MODE_LOG
+#elif xOPTION_DEBUG_MODE_LOG
     #define _xREPORT_TYPE CxErrorReport::rtLog
 #endif
 
@@ -256,7 +256,7 @@
     { switch (0) {case 0: case (expr):;} }
     ///< static assert
 
-#if xHAVE_TEST_TRACING
+#if xOPTION_TEST_TRACING
     #define xTEST_CASE(caseName, loops) \
         if (loops == 0) { \
             CxTrace() << xT("\tTest case: ") << xT(caseName) << xT(" - skipped"); \

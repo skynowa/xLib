@@ -170,7 +170,7 @@ namespace xlib
     namespace test {}
 }
 
-#if xHAVE_NAMESPACE_XLIB
+#if xOPTION_NAMESPACE_XLIB
     using namespace xlib::core;
     using namespace xlib::crypt;
     using namespace xlib::db;

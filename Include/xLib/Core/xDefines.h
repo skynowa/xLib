@@ -53,8 +53,8 @@
     ///< Ansi, Unicode string
 
 //-------------------------------------------------------------------------------------------------
-// xHAVE_TEST_PRIVATE
-#if xHAVE_TEST_PRIVATE
+// xOPTION_TEST_PRIVATE
+#if xOPTION_TEST_PRIVATE
     #define private \
         public
     #define protected \
@@ -150,7 +150,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // xOVERRIDE
-#if xHAVE_CPP11
+#if xOPTION_CPP11
     #define xOVERRIDE \
         override
 #else

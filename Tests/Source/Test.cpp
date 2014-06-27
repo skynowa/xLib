@@ -102,7 +102,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     #endif
     }
 
-#if xHAVE_TESTS
+#if xOPTION_TESTS
     // checks
     {
     #if xENV_UNIX
@@ -267,7 +267,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 
         manager.run(allLoops, unitLoops, caseLoops);
     }
-#endif // xHAVE_TESTS
+#endif // xOPTION_TESTS
 
     return EXIT_SUCCESS;
 }
