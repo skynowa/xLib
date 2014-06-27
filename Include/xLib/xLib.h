@@ -31,7 +31,6 @@
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/CxDateTime.h>
 
-
 // Crypt
 #include <xLib/Crypt/OpenSSL/CxBlowfish.h>
 #include <xLib/Crypt/CxBase64.h>
@@ -39,10 +38,8 @@
 #include <xLib/Crypt/CxGuid.h>
 #include <xLib/Crypt/CxRandom.h>
 
-
 // Db
 #include <xLib/Db/CxMySql.h>
-
 
 // Debug
 #include <xLib/Debug/xStdDebug.h>
@@ -57,7 +54,6 @@
 #include <xLib/Debug/CxProfiler.h>
 #include <xLib/Debug/CxAutoProfiler.h>
 
-
 // IO
 #include <xLib/IO/CxFileType.h>
 #include <xLib/IO/CxPath.h>
@@ -70,10 +66,8 @@
 #include <xLib/IO/CxBackup.h>
 #include <xLib/IO/CxConfig.h>
 
-
 // Gui
 #include <xLib/Gui/CxMsgBox.h>
-
 
 // Log
 #include <xLib/Log/IxLog.h>
@@ -81,32 +75,27 @@
 #include <xLib/Log/CxFileLog.h>
 #include <xLib/Log/CxSystemLog.h>
 
-
 // Net
 #include <xLib/Net/CxSocketInit.h>
 #include <xLib/Net/CxSocket.h>
 #include <xLib/Net/CxTcpClient.h>
 #include <xLib/Net/CxTcpServer.h>
 #include <xLib/Net/CxDnsClient.h>
-
 #include <xLib/Net/CxUri.h>
 #include <xLib/Net/CxCookiePv0.h>
 #include <xLib/Net/CxCookiePv1.h>
 #include <xLib/Net/CxMimeHeader.h>
 #include <xLib/Net/CxMimeBody.h>
 #include <xLib/Net/CxMimeMessage.h>
-
 #include <xLib/Net/CxHttpClient.h>
 #include <xLib/Net/CxPop3Client.h>
 #include <xLib/Net/CxSmtpClient.h>
 #include <xLib/Net/CxCgi.h>
 
-
 // Patterns
 #include <xLib/Patterns/CxRaii.h>
 #include <xLib/Patterns/CxSingleton.h>
 #include <xLib/Patterns/CxObserver.h>
-
 
 // Sync
 #include <xLib/Sync/CxAtomicLongInt.h>
@@ -126,14 +115,12 @@
 #include <xLib/Sync/CxWaitableTimer.h>
 #include <xLib/Sync/CxProcess.h>
 
-
 // System
 #include <xLib/System/CxConsole.h>
 #include <xLib/System/CxShell.h>
 #include <xLib/System/CxEnvironment.h>
 #include <xLib/System/CxProcessInfo.h>
 #include <xLib/System/CxSystemInfo.h>
-
 
 // Test
 #include <xLib/Test/CxTestData.h>

@@ -29,7 +29,6 @@
     #endif
 #endif
     ///< max host name length
-
 //-------------------------------------------------------------------------------------------------
 // xUSER_NAME_MAX
 #if   xENV_WIN
@@ -40,19 +39,16 @@
         ( L_cuserid )
 #endif
     ///< max user name length
-
 //-------------------------------------------------------------------------------------------------
 // xPATH_MAX
 #define xPATH_MAX \
     ( CxPath::maxSize() )
     ///< max path length
-
 //-------------------------------------------------------------------------------------------------
 // xNAME_MAX
 #define xNAME_MAX \
     ( CxPath::nameMaxSize() )
     ///< max file name length
-
 //-------------------------------------------------------------------------------------------------
 // xLINE_MAX
 #if   xENV_WIN
@@ -70,7 +66,6 @@
     #endif
 #endif
     ///< maximum length of a utility's input line, either from standard input or from a file
-
 //-------------------------------------------------------------------------------------------------
 // xENV_MAX
 #if   xENV_WIN
@@ -86,7 +81,6 @@
         ( 32767 ) // custom define
 #endif
     ///< maximum permissible string length of an environmental variable
-
 //-------------------------------------------------------------------------------------------------
 // xSTACK_TRACE_FRAMES_MAX
 #if   xENV_WIN
@@ -107,7 +101,6 @@
         ( 256 )     // custom define, this should be enough
 #endif
     ///< maximum frames for stack trace
-
 //-------------------------------------------------------------------------------------------------
 // xPAGE_SIZE
 #if   xENV_WIN
@@ -124,7 +117,6 @@
     #endif
 #endif
     ///< file system page size
-
 //-------------------------------------------------------------------------------------------------
 // xTIMEOUT_INFINITE
 #if   xENV_WIN
@@ -135,7 +127,6 @@
         ( ~(0UL) )
 #endif
     ///< infinite timeout
-
 //-------------------------------------------------------------------------------------------------
 // xSOCKET_CONNECTIONS_MAX
 #if !defined(SOMAXCONN)
@@ -145,7 +136,6 @@
     #error xLib: xSOCKET_CONNECTIONS_MAX not defined
 #endif
     ///< Maximum queue length specifiable by listen
-
 //-------------------------------------------------------------------------------------------------
 // xSOCKET_PORT_MIN, xSOCKET_PORT_MAX
 #define xSOCKET_PORT_MIN \
