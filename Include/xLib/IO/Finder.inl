@@ -47,9 +47,9 @@ Finder::Finder(
     _entry      (),
     _rootDirPath( Path(a_rootDirPath).toNative(false) ),
     _shellFilter(a_shellFilter),
-    _isMoveFirst (true)
+    _isMoveFirst(true)
 {
-    xTEST_EQ(isValid(), false);
+    xTEST_EQ(!isValid(),            false);
     xTEST_EQ(a_rootDirPath.empty(), false);
     xTEST_EQ(a_shellFilter.empty(), false);
 }
@@ -170,8 +170,8 @@ Finder::dirs(
         bool_t bRv = finder.moveNext();
         xCHECK_DO(!bRv, break);
 
-        xCHECK_DO(Const::dot()  == finder.entryName(), continue);
-        xCHECK_DO(Const::dot2() == finder.entryName(), continue);
+        xCHECK_DO(finder.entryName() == Const::dot(),  continue);
+        xCHECK_DO(finder.entryName() == Const::dot2(), continue);
 
         // set filter for dirs
         xCHECK_DO(!(FileType::faDirectory & finder.fileTypes()), continue);
@@ -206,8 +206,8 @@ Finder::files(
             bool_t bRv = finder.moveNext();
             xCHECK_DO(!bRv, break);
 
-            xCHECK_DO(Const::dot()  == finder.entryName(), continue);
-            xCHECK_DO(Const::dot2() == finder.entryName(), continue);
+            xCHECK_DO(finder.entryName() == Const::dot(),  continue);
+            xCHECK_DO(finder.entryName() == Const::dot2(), continue);
 
             // set filter for files
             xCHECK_DO(FileType::faDirectory & finder.fileTypes(), continue);
