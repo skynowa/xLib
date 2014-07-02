@@ -210,7 +210,7 @@ Test_Defines::unit(
             }
         };
 
-        int fileMode = A::FileMode::Text;
+        int fileMode = A::FileMode::Bynary;
         xUNUSED(fileMode)
     }
 
