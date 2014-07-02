@@ -192,6 +192,28 @@ Test_Defines::unit(
        xUNUSED(ptr);
     }
 
+    xTEST_CASE("Defines: xENUM", a_caseLoops)
+    {
+        class A
+        {
+        public:
+            xENUM_BEGIN(FileMode)
+                Unknown,
+                Text,
+                Bynary
+            xENUM_END
+
+            void foo()
+            {
+                int fileMode = FileMode::Text;
+                xUNUSED(fileMode)
+            }
+        };
+
+        int fileMode = A::FileMode::Text;
+        xUNUSED(fileMode)
+    }
+
     xTEST_CASE("Defines: xS2US_", a_caseLoops)
     {
 
