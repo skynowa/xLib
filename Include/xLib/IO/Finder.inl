@@ -49,7 +49,7 @@ Finder::Finder(
     _shellFilter(a_shellFilter),
     _isMoveFirst(true)
 {
-    xTEST_EQ(!isValid(),            false);
+    xTEST_EQ(isValid(),             false);
     xTEST_EQ(a_rootDirPath.empty(), false);
     xTEST_EQ(a_shellFilter.empty(), false);
 }
