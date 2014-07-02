@@ -45,7 +45,7 @@ option(xOPTION_DEBUG_MODE_LOG    "Debug mode: logging with plain text"      0)
 option(xOPTION_DEBUG_MODE_NO     "Debug mode: no debugging"                 0)
 option(xOPTION_TEST_PRIVATE      "Tests private data"                       0)
 option(xOPTION_TEST_TRACING      "Use tracing in tests"                     1)
-option(xOPTION_TESTS             "Use xLib tests"                           0)
+option(xOPTION_TESTS             "Use xLib tests"                           1)
 option(xOPTION_BUILD_MSG         "Build messages"                           0)
 
 # trace options
@@ -167,6 +167,7 @@ elseif (CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wshadow -Wno-unknown-pragmas -Wno-unused-parameter")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-variable -Wno-return-type-c-linkage")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector -Wformat -Wformat-security")
         # -pedantic
     set(XLIB_DEFINITIONS "")
 else()
