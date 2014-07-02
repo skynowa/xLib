@@ -236,10 +236,10 @@
 ///@{
 #if xUNICODE
     #define xS2TS(s) \
-        ( CxString::castW(s) )
+        ( String::castW(s) )
         ///< convert std::string to std::wstring
     #define xTS2S(ts) \
-        ( CxString::castA(ts) )
+        ( String::castA(ts) )
         ///< convert std::wstring to std::string
 #else
     #define xS2TS(s) \
@@ -261,40 +261,40 @@
 ///@name Utils
 ///@{
 #define xPTR_DELETE(p) \
-    { CxUtils::ptrDeleteT(p); }
+    { Utils::ptrDeleteT(p); }
     ///< delete object by pointer
 #define xARRAY_DELETE(p) \
-    { CxUtils::arrayDeleteT(p); }
+    { Utils::arrayDeleteT(p); }
     ///< delete array by pointer
 #define xARRAY_SIZE(a) \
-    ( CxUtils::arraySizeT(a) )
+    ( Utils::arraySizeT(a) )
     ///< get array size
 #define xARRAY_SIZE2(a) \
     ( sizeof(a) / sizeof((a)[0]) )
     ///< get array size
 #define xMEMORY_ZERO(ptr, n) \
-    { CxUtils::memoryZero(ptr, n); }
+    { Utils::memoryZero(ptr, n); }
     ///< zero buffer memory
 #define xARRAY_ZERO(a) \
-    { CxUtils::arrayZeroT(a); }
+    { Utils::arrayZeroT(a); }
     ///< zero buffer memory
 #define xSTRUCT_ZERO(s) \
-    { CxUtils::structZeroT(s); }
+    { Utils::structZeroT(s); }
     ///< zero struct memory
 #define xBUFF_FREE(buff) \
-    { CxUtils::bufferFreeT(buff); }
+    { Utils::bufferFreeT(buff); }
     ///< free buffer memory
 #define xFCLOSE(f) \
-    { CxUtils::fileClose(f); }
+    { Utils::fileClose(f); }
     ///< close file stream (FILE *)
 #define xMAX(a, b) \
-    ( CxUtils::maxT( (a), (b) ) )
+    ( Utils::maxT( (a), (b) ) )
     ///< get max value
 #define xMIN(a, b) \
-    ( CxUtils::minT( (a), (b) ) )
+    ( Utils::minT( (a), (b) ) )
     ///< get min value
 #define xINT_TO_BOOL(i) \
-    ( CxUtils::intToBoolT(i) )
+    ( Utils::intToBoolT(i) )
     ///< convert int_t to bool_t
 ///@}
 //-------------------------------------------------------------------------------------------------
@@ -643,18 +643,18 @@
 ///@{
 #define xTHROW_REPORT(msg) \
     { \
-        culong_t        lastError  = CxLastError::get(); \
-        std::cstring_t &stackTrace = CxStackTrace().toString(); \
-        CxErrorReport   report(lastError, xFILE, xLINE, xFUNCTION, stackTrace, msg); \
+        culong_t        lastError  = LastError::get(); \
+        std::cstring_t &stackTrace = StackTrace().toString(); \
+        ErrorReport   report(lastError, xFILE, xLINE, xFUNCTION, stackTrace, msg); \
         \
-        throw CxException() << report.toString(); \
+        throw Exception() << report.toString(); \
     }
     ///< like throw
 #define xTRY \
     try
     ///< like try
 #define xCATCH_ALL \
-    catch (const CxException &a_ex) {        \
+    catch (const Exception &a_ex) {        \
         xTEST_MSG_FAIL(a_ex.what());         \
     }                                        \
     catch (const std::exception &a_ex) {     \
@@ -664,7 +664,7 @@
     catch (...) {                            \
         xTEST_MSG_FAIL(xT("unknown error")); \
     }
-    ///< catch CxException, std::exception and all other exceptions
+    ///< catch Exception, std::exception and all other exceptions
 ///@}
 //-------------------------------------------------------------------------------------------------
 ///@name Class disallows

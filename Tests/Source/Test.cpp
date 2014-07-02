@@ -5,42 +5,42 @@
 
 
 #include <xLib/xLib.h>
-#include <Test/CxTest_xLib.h>
+#include <Test/Test_xLib.h>
 
 //-------------------------------------------------------------------------------------------------
 void_t
 onTerminate()
 {
-    CxTrace() << xFUNCTION;
-    CxTrace() << "Stack trace:\n" << CxStackTrace().toString();
+    Trace() << xFUNCTION;
+    Trace() << "Stack trace:\n" << StackTrace().toString();
 
     // abort();  // forces abnormal termination
 }
 void_t
 onSignal(int sig)
 {
-    CxTrace() << xFUNCTION;
-    CxTrace() << "Stack trace:\n " << CxStackTrace().toString();
+    Trace() << xFUNCTION;
+    Trace() << "Stack trace:\n " << StackTrace().toString();
 
     switch (sig) {
     case SIGABRT:
-        CxTrace() << "Caught SIGABRT: usually caused by an abort() or assert()";
+        Trace() << "Caught SIGABRT: usually caused by an abort() or assert()";
         break;
     case SIGFPE:
-        CxTrace() << "Caught SIGFPE: arithmetic exception, such as divide by zero";
+        Trace() << "Caught SIGFPE: arithmetic exception, such as divide by zero";
         break;
     case SIGILL:
-        CxTrace() << "Caught SIGILL: illegal instruction";
+        Trace() << "Caught SIGILL: illegal instruction";
         break;
     case SIGINT:
-        CxTrace() << "Caught SIGINT: interactive attention signal, probably a ctrl+c";
+        Trace() << "Caught SIGINT: interactive attention signal, probably a ctrl+c";
         break;
     case SIGSEGV:
-        CxTrace() << "Caught SIGSEGV: segfault";
+        Trace() << "Caught SIGSEGV: segfault";
         break;
     case SIGTERM:
     default:
-        CxTrace() << "Caught SIGTERM: a termination request was sent to the program";
+        Trace() << "Caught SIGTERM: a termination request was sent to the program";
         break;
     }
 
@@ -106,7 +106,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     // checks
     {
     #if xENV_UNIX
-        CxSystemInfo info;
+        SystemInfo info;
         xCHECK_MSG_RET(info.isUserAdmin(), xT("xLib_test: Can't run as root"), EXIT_FAILURE);
     #endif
     }
@@ -119,8 +119,8 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     {
         std::vec_tstring_t args;
 
-        CxProcessInfo info;
-        info.setProcessId(CxProcess::currentId());
+        ProcessInfo info;
+        info.setProcessId(Process::currentId());
         info.commandLine(&args);
 
         if (a_argsNum == 1) {
@@ -128,8 +128,8 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         }
         else if (a_argsNum == 2) {
             // usage
-            bool_t bRv = CxStringCI::compare(xT("-h"),     args.at(1)) ||
-                         CxStringCI::compare(xT("--help"), args.at(1));
+            bool_t bRv = StringCI::compare(xT("-h"),     args.at(1)) ||
+                         StringCI::compare(xT("--help"), args.at(1));
             if (!bRv) {
                 std::tcout << xT("\nxLib_test: unknown switches\n") << std::endl;
             } else {
@@ -145,10 +145,10 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         }
         else if (a_argsNum == 5) {
             // addition params
-            isUseTracing = CxString::cast<bool_t>     ( args.at(1) );
-            allLoops     = CxString::cast<ulonglong_t>( args.at(2) );
-            unitLoops    = CxString::cast<ulonglong_t>( args.at(3) );
-            caseLoops    = CxString::cast<ulonglong_t>( args.at(4) );
+            isUseTracing = String::cast<bool_t>     ( args.at(1) );
+            allLoops     = String::cast<ulonglong_t>( args.at(2) );
+            unitLoops    = String::cast<ulonglong_t>( args.at(3) );
+            caseLoops    = String::cast<ulonglong_t>( args.at(4) );
         }
         else {
             // fail
@@ -159,111 +159,111 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 
     // add and run tests
     {
-        CxTestManager manager(isUseTracing);
+        TestManager manager(isUseTracing);
 
         // Test
-        manager.add(new CxTest_xTest);
+        manager.add(new Test_xTest);
 
         // Core
-        manager.add(new CxTest_xUnits);
-        manager.add(new CxTest_xDefines);
-        manager.add(new CxTest_xLimits);
-        manager.add(new CxTest_CxUtils);
-        manager.add(new CxTest_xStdStream);
-        manager.add(new CxTest_CxHandleT);
-        manager.add(new CxTest_CxType);
-        manager.add(new CxTest_CxFlags);
-        manager.add(new CxTest_CxArray);
-        manager.add(new CxTest_CxAutoReset);
-        manager.add(new CxTest_CxChar);
-        manager.add(new CxTest_CxLocale);
-        manager.add(new CxTest_CxString);
-        manager.add(new CxTest_CxDateTime);
-        manager.add(new CxTest_CxCom);
+        manager.add(new Test_xUnits);
+        manager.add(new Test_xDefines);
+        manager.add(new Test_xLimits);
+        manager.add(new Test_Utils);
+        manager.add(new Test_xStdStream);
+        manager.add(new Test_HandleT);
+        manager.add(new Test_Type);
+        manager.add(new Test_Flags);
+        manager.add(new Test_Array);
+        manager.add(new Test_AutoReset);
+        manager.add(new Test_Char);
+        manager.add(new Test_Locale);
+        manager.add(new Test_String);
+        manager.add(new Test_DateTime);
+        manager.add(new Test_Com);
 
         // Crypt
-        manager.add(new CxTest_CxBase64);
+        manager.add(new Test_Base64);
     #if xHAVE_OPENSSL_CRYPTO
-        manager.add(new CxTest_CxBlowfish);
+        manager.add(new Test_Blowfish);
     #endif
-        manager.add(new CxTest_CxCrc32);
-        manager.add(new CxTest_CxGuid);
-        manager.add(new CxTest_CxRandom);
+        manager.add(new Test_Crc32);
+        manager.add(new Test_Guid);
+        manager.add(new Test_Random);
 
         // Db
     #if xHAVE_MYSQL
-        manager.add(new CxTest_CxMySql);
+        manager.add(new Test_MySql);
     #endif
 
         // Debug
-        manager.add(new CxTest_xDebug);
-        manager.add(new CxTest_CxBuildInfo);
-        manager.add(new CxTest_CxStdError);
-        manager.add(new CxTest_CxLastError);
-        manager.add(new CxTest_CxException);
-        manager.add(new CxTest_CxStackTrace);
-        manager.add(new CxTest_CxDebugger);
-        manager.add(new CxTest_CxErrorReport);
-        manager.add(new CxTest_CxProfiler);
-        manager.add(new CxTest_CxAutoProfiler);
+        manager.add(new Test_xDebug);
+        manager.add(new Test_BuildInfo);
+        manager.add(new Test_StdError);
+        manager.add(new Test_LastError);
+        manager.add(new Test_Exception);
+        manager.add(new Test_StackTrace);
+        manager.add(new Test_Debugger);
+        manager.add(new Test_ErrorReport);
+        manager.add(new Test_Profiler);
+        manager.add(new Test_AutoProfiler);
 
         // File system
-        manager.add(new CxTest_CxPath);
-        manager.add(new CxTest_CxFileType);
-        manager.add(new CxTest_CxFile);
-        manager.add(new CxTest_CxFileTemp);
-        manager.add(new CxTest_CxDll);
-        manager.add(new CxTest_CxFinder);
-        manager.add(new CxTest_CxDir);
-        manager.add(new CxTest_CxVolume);
-        manager.add(new CxTest_CxConfig);
-        manager.add(new CxTest_CxBackup);
+        manager.add(new Test_Path);
+        manager.add(new Test_FileType);
+        manager.add(new Test_File);
+        manager.add(new Test_FileTemp);
+        manager.add(new Test_Dll);
+        manager.add(new Test_Finder);
+        manager.add(new Test_Dir);
+        manager.add(new Test_Volume);
+        manager.add(new Test_Config);
+        manager.add(new Test_Backup);
 
         // Log
-        manager.add(new CxTest_CxTrace);
-        manager.add(new CxTest_CxFileLog);
-        manager.add(new CxTest_CxSystemLog);
+        manager.add(new Test_Trace);
+        manager.add(new Test_FileLog);
+        manager.add(new Test_SystemLog);
 
         // Net
-        manager.add(new CxTest_CxCookiePv0);
-        manager.add(new CxTest_CxCookiePv1);
-        manager.add(new CxTest_CxCgi);
-        manager.add(new CxTest_CxSocketInit);
-        manager.add(new CxTest_CxDnsClient);
-        // manager.add(new CxTest_CxTcpClient);
-        // manager.add(new CxTest_CxTcpServer);
-        manager.add(new CxTest_CxHttpClient);
+        manager.add(new Test_CookiePv0);
+        manager.add(new Test_CookiePv1);
+        manager.add(new Test_Cgi);
+        manager.add(new Test_SocketInit);
+        manager.add(new Test_DnsClient);
+        // manager.add(new Test_TcpClient);
+        // manager.add(new Test_TcpServer);
+        manager.add(new Test_HttpClient);
 
         // Patterns
-        manager.add(new CxTest_CxObserver);
-        manager.add(new CxTest_CxRaii);
-        manager.add(new CxTest_CxSingleton);
+        manager.add(new Test_Observer);
+        manager.add(new Test_Raii);
+        manager.add(new Test_Singleton);
 
         // Sync
-        manager.add(new CxTest_CxAtomicLongInt);
-        manager.add(new CxTest_CxThreadStorage);
-        manager.add(new CxTest_CxMutex);
-        manager.add(new CxTest_CxAutoMutex);
-        manager.add(new CxTest_CxIpcMutex);
-        manager.add(new CxTest_CxAutoIpcMutex);
-        // manager.add(new CxTest_CxEvent);
-        manager.add(new CxTest_CxCondition);
-        manager.add(new CxTest_CxSemaphore);
-        manager.add(new CxTest_CxIpcSemaphore);
-        // manager.add(new CxTest_CxSleeper);
-        // manager.add(new CxTest_CxThread);
-        // manager.add(new CxTest_CxThreadPool);
-        manager.add(new CxTest_CxProcess);
+        manager.add(new Test_AtomicLongInt);
+        manager.add(new Test_ThreadStorage);
+        manager.add(new Test_Mutex);
+        manager.add(new Test_AutoMutex);
+        manager.add(new Test_IpcMutex);
+        manager.add(new Test_AutoIpcMutex);
+        // manager.add(new Test_Event);
+        manager.add(new Test_Condition);
+        manager.add(new Test_Semaphore);
+        manager.add(new Test_IpcSemaphore);
+        // manager.add(new Test_Sleeper);
+        // manager.add(new Test_Thread);
+        // manager.add(new Test_ThreadPool);
+        manager.add(new Test_Process);
 
         // Gui
-        manager.add(new CxTest_CxMsgBox);
+        manager.add(new Test_MsgBox);
 
         // System
-        manager.add(new CxTest_CxEnvironment);
-        manager.add(new CxTest_CxSystemInfo);
-        manager.add(new CxTest_CxProcessInfo);
-        manager.add(new CxTest_CxConsole);
-        manager.add(new CxTest_CxShell);
+        manager.add(new Test_Environment);
+        manager.add(new Test_SystemInfo);
+        manager.add(new Test_ProcessInfo);
+        manager.add(new Test_Console);
+        manager.add(new Test_Shell);
 
         manager.run(allLoops, unitLoops, caseLoops);
     }

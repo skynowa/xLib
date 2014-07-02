@@ -6,12 +6,12 @@
 
 #include <xLib/Test/xTest.h>
 #include <xLib/Debug/xDebug.h>
-#include <xLib/Debug/CxLastError.h>
-#include <xLib/Debug/CxStdError.h>
-#include <xLib/Debug/CxErrorReport.h>
-#include <xLib/Debug/CxDebugger.h>
-#include <xLib/Debug/CxStackTrace.h>
-#include <xLib/Log/CxTrace.h>
+#include <xLib/Debug/LastError.h>
+#include <xLib/Debug/StdError.h>
+#include <xLib/Debug/ErrorReport.h>
+#include <xLib/Debug/Debugger.h>
+#include <xLib/Debug/StackTrace.h>
+#include <xLib/Log/Trace.h>
 
 
 /*******************************************************************************

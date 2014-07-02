@@ -9,75 +9,75 @@
 //-------------------------------------------------------------------------------------------------
 #define xTEST_MSG_EQ_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) == (val2)) ) { \
-        culong_t      _lastError = CxLastError::get(); \
-        CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("=="), \
-            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
-        CxDebugger().reportMake(report); \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("=="), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
     }
 #define xTEST_MSG_DIFF_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) != (val2)) ) { \
-        culong_t      _lastError = CxLastError::get(); \
-        CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("!="), \
-            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
-        CxDebugger().reportMake(report); \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("!="), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
     }
 #define xTEST_MSG_LESS_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) < (val2)) ) { \
-        culong_t      _lastError = CxLastError::get(); \
-        CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("<"), \
-            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
-        CxDebugger().reportMake(report); \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("<"), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
     }
 #define xTEST_MSG_GR_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) > (val2)) ) { \
-        culong_t      _lastError = CxLastError::get(); \
-        CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT(">"), \
-            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
-        CxDebugger().reportMake(report); \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT(">"), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
     }
 #define xTEST_MSG_LESS_EQ_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) <= (val2)) ) { \
-        culong_t      _lastError = CxLastError::get(); \
-        CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("<="), \
-            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
-        CxDebugger().reportMake(report); \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("<="), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
     }
 #define xTEST_MSG_GR_EQ_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) >= (val2)) ) { \
-        culong_t      _lastError = CxLastError::get(); \
-        CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT(">="), \
-            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
-        CxDebugger().reportMake(report); \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT(">="), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
     }
 #define xTEST_MSG_PTR_IMPL(reportType, ptr, msg) \
     if ( intptr_t(xPTR_NULL) == intptr_t(ptr) ) { \
-        culong_t      _lastError = CxLastError::get(); \
-        CxErrorReport report(reportType, xT("xPTR_NULL"), xT(#ptr), intptr_t(ptr), intptr_t(xPTR_NULL), \
-            xT("!="), _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
-        CxDebugger().reportMake(report); \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT("xPTR_NULL"), xT(#ptr), intptr_t(ptr), intptr_t(xPTR_NULL), \
+            xT("!="), _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
     }
 #define xTEST_MSG_PTR_FAIL_IMPL(reportType, ptr, msg) \
     if ( intptr_t(xPTR_NULL) != intptr_t(ptr) ) { \
-        culong_t      _lastError = CxLastError::get(); \
-        CxErrorReport report(reportType, xT("xPTR_NULL"), xT(#ptr), intptr_t(ptr), intptr_t(xPTR_NULL), \
-            xT("=="), _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
-        CxDebugger().reportMake(report); \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT("xPTR_NULL"), xT(#ptr), intptr_t(ptr), intptr_t(xPTR_NULL), \
+            xT("=="), _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
     }
 #define xTEST_MSG_FAIL_IMPL(reportType, msg) \
     if ( true ) { \
-        culong_t      _lastError = CxLastError::get(); \
-        CxErrorReport report(reportType, xT("false"), xT(""), xT(""), xT(""), xT(""), \
-            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
-        CxDebugger().reportMake(report); \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT("false"), xT(""), xT(""), xT(""), xT(""), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
     }
 
 // _xREPORT_TYPE
 #if   xOPTION_DEBUG_MODE_STDOUT
-    #define _xREPORT_TYPE CxErrorReport::rtStdout
+    #define _xREPORT_TYPE ErrorReport::rtStdout
 #elif xOPTION_DEBUG_MODE_MSGBOX
-    #define _xREPORT_TYPE CxErrorReport::rtMsgbox
+    #define _xREPORT_TYPE ErrorReport::rtMsgbox
 #elif xOPTION_DEBUG_MODE_LOG
-    #define _xREPORT_TYPE CxErrorReport::rtLog
+    #define _xREPORT_TYPE ErrorReport::rtLog
 #endif
 
 #ifdef _xREPORT_TYPE
@@ -259,9 +259,9 @@
 #if xOPTION_TEST_TRACING
     #define xTEST_CASE(caseName, loops) \
         if (loops == 0) { \
-            CxTrace() << xT("\tTest case: ") << xT(caseName) << xT(" - skipped"); \
+            Trace() << xT("\tTest case: ") << xT(caseName) << xT(" - skipped"); \
         } else { \
-            CxTrace() << xT("\tTest case: ") << xT(caseName); \
+            Trace() << xT("\tTest case: ") << xT(caseName); \
         } \
         for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
 #else

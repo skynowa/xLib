@@ -24,7 +24,7 @@
  * <pre>
  *   Data:
  *       Nx*          - namespace
- *       Cx*          - class
+ *       *          - class
  *       Sx*          - struct
  *       Ux*          - union
  *       Ex*          - enumeration

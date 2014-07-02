@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Core/xCore.h>
-#include <xLib/Core/CxChar.h>
+#include <xLib/Core/Char.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN3(xlib, core, functors)
 //-------------------------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ struct CompareCI
         const std::tstring_t::value_type &a_ch1,
         const std::tstring_t::value_type &a_ch2) const
     {
-        return CxChar(a_ch1, _locale).toLower() == CxChar(a_ch2, _locale).toLower();
+        return Char(a_ch1, _locale).toLower() == Char(a_ch2, _locale).toLower();
     }
 
     bool_t
@@ -68,7 +68,7 @@ struct CompareCI
         std::ctstring_t &a_value1,
         std::ctstring_t &a_value2) const
     {
-        return CxStringCI::compare(a_value1, a_value2);
+        return StringCI::compare(a_value1, a_value2);
     }
 
 private:
