@@ -8,7 +8,7 @@
 
 #include <xLib/Net/TcpClient.h>
 #include <xLib/Core/Core.h>
-#include <xLib/Test/Test.h>
+#include <xLib/Test/UnitTest.h>
 //-------------------------------------------------------------------------------------------------
 class Test_TcpClient :
     public UnitTest

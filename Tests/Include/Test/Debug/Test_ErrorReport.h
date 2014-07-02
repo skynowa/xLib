@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/Test.h>
+#include <xLib/Test/UnitTest.h>
 #include <xLib/Debug/ErrorReport.h>
 //-------------------------------------------------------------------------------------------------
 class Test_ErrorReport :

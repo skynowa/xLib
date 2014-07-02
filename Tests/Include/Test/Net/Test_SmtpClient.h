@@ -5,7 +5,7 @@
 
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/Test.h>
+#include <xLib/Test/UnitTest.h>
 #include <xLib/Net/SmtpClient.h>
 //-------------------------------------------------------------------------------------------------
 #if xHAVE_OPENSSL_CRYPTO

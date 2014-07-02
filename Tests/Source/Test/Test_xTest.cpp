@@ -1,16 +1,16 @@
 /**
- * \file   Test_xTest.cpp
+ * \file   Test_Test.cpp
  * \brief  test Test
  */
 
 
-#include <Test/Test/Test_xTest.h>
+#include <Test/Test/Test_Test.h>
 
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_xTest::unit(
+Test_Test::unit(
     culonglong_t &a_caseLoops
 )
 {
