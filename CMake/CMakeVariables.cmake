@@ -141,3 +141,24 @@ message("*")
 
 message("**************************************************")
 message("")
+
+
+# message("")
+# message("************ CMake All Generic Variables **************")
+
+# function(cmake_variablee_massage)
+#     message(STATUS "")
+
+#     get_cmake_property(vars VARIABLES)
+
+#     foreach(var ${vars})
+#         message(STATUS "${var}='${${var}}'")
+#     endforeach()
+
+#     message(STATUS "")
+# endfunction()
+
+# cmake_variablee_massage()
+
+# message("**************************************************")
+# message("")
