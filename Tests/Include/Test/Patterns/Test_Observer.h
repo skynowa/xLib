@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Patterns/Observer.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Observer :
-    public Test
+    public UnitTest
     ///< tests for Observer
 {
 public:

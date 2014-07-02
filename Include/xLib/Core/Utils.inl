@@ -4,8 +4,8 @@
  */
 
 
-#include <xLib/Debug/xDebug.h>
-#include <xLib/Test/xTest.h>
+#include <xLib/Debug/Debug.h>
+#include <xLib/Test/Test.h>
 
 
 xNAMESPACE_BEGIN2(xlib, core)

@@ -6,14 +6,14 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Net/Pop3Client.h>
 //-------------------------------------------------------------------------------------------------
 #if xHAVE_OPENSSL_CRYPTO
 
 class Test_Pop3Client :
-    public Test
+    public UnitTest
 {
 public:
                    Test_Pop3Client() {}

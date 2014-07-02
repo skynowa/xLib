@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Sync/IpcMutex.h>
 //-------------------------------------------------------------------------------------------------
 class Test_IpcMutex :
-    public Test
+    public UnitTest
 {
 public:
                    Test_IpcMutex() {}

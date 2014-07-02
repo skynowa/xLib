@@ -38,10 +38,10 @@ Test_SystemLog::unit(
 
     xTEST_CASE("SystemLog::write", a_caseLoops)
     {
-        IxLog::cExLevel logLevel[] = {
-            IxLog::lvEmerg, IxLog::lvAlert,   IxLog::lvCritical,
-            IxLog::lvError, IxLog::lvWarning, IxLog::lvNotice,
-            IxLog::lvInfo,  IxLog::lvDebug
+        ILog::cExLevel logLevel[] = {
+            ILog::lvEmerg, ILog::lvAlert,   ILog::lvCritical,
+            ILog::lvError, ILog::lvWarning, ILog::lvNotice,
+            ILog::lvInfo,  ILog::lvDebug
         };
 
         SystemLog log;
@@ -53,16 +53,16 @@ Test_SystemLog::unit(
 
     xTEST_CASE("SystemLog::write(cExLevel &level, ...)", a_caseLoops)
     {
-        SystemLog().write(IxLog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvUnknown),  12345);
-        SystemLog().write(IxLog::lvEmerg,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvEmerg),    12345);
-        SystemLog().write(IxLog::lvAlert,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvAlert),    12345);
-        SystemLog().write(IxLog::lvCritical, xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvCritical), 12345);
-        SystemLog().write(IxLog::lvError,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvError),    12345);
-        SystemLog().write(IxLog::lvWarning,  xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvWarning),  12345);
-        SystemLog().write(IxLog::lvNotice,   xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvNotice),   12345);
-        SystemLog().write(IxLog::lvInfo,     xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvInfo),     12345);
-        SystemLog().write(IxLog::lvDebug,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvDebug),    12345);
-        SystemLog().write(IxLog::lvPlain,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvPlain),    12345);
+        SystemLog().write(ILog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::lvUnknown),  12345);
+        SystemLog().write(ILog::lvEmerg,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvEmerg),    12345);
+        SystemLog().write(ILog::lvAlert,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvAlert),    12345);
+        SystemLog().write(ILog::lvCritical, xT("\t%s, %d"), xLEX_TO_STR(ILog::lvCritical), 12345);
+        SystemLog().write(ILog::lvError,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvError),    12345);
+        SystemLog().write(ILog::lvWarning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::lvWarning),  12345);
+        SystemLog().write(ILog::lvNotice,   xT("\t%s, %d"), xLEX_TO_STR(ILog::lvNotice),   12345);
+        SystemLog().write(ILog::lvInfo,     xT("\t%s, %d"), xLEX_TO_STR(ILog::lvInfo),     12345);
+        SystemLog().write(ILog::lvDebug,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvDebug),    12345);
+        SystemLog().write(ILog::lvPlain,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvPlain),    12345);
     }
 }
 //-------------------------------------------------------------------------------------------------

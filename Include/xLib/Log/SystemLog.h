@@ -6,13 +6,13 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
-#include "IxLog.h"
+#include <xLib/Core/Core.h>
+#include "ILog.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, log)
 
 class SystemLog :
-    public IxLog
+    public ILog
     /// logging to system event log
 {
 public:

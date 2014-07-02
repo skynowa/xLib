@@ -9,7 +9,7 @@
 #include <xLib/Core/Utils.h>
 #include <xLib/IO/Path.h>
 #include <xLib/Log/Trace.h>
-#include <xLib/Debug/xStdDebug.h>
+#include <xLib/Debug/StdDebug.h>
 
 xNAMESPACE_ANONYM_BEGIN
 

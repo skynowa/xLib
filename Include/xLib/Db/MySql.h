@@ -8,7 +8,7 @@
 
 #if xHAVE_MYSQL
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 
 #if xENV_WIN
     #include <mysql.h>

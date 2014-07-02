@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/IO/FileTemp.h>
 //-------------------------------------------------------------------------------------------------
 class Test_FileTemp :
-    public Test
+    public UnitTest
 {
 public:
                    Test_FileTemp() {}

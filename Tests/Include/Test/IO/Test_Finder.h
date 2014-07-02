@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/IO/Finder.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Finder :
-    public Test
+    public UnitTest
     ///< tests for Finder
 {
 public:

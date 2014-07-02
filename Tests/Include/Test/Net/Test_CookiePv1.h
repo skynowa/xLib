@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Net/CookiePv1.h>
 //-------------------------------------------------------------------------------------------------
 class Test_CookiePv1 :
-    public Test
+    public UnitTest
 {
 public:
                    Test_CookiePv1() {}

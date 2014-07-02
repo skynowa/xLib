@@ -4,21 +4,21 @@
  */
 
 
-#include <xLib/Core/xUnits.h>
-#include <xLib/Core/xFunctors.h>
+#include <xLib/Core/Units.h>
+#include <xLib/Core/Functors.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Char.h>
 #include <xLib/Core/Array.h>
-#include <xLib/Test/xTest.h>
-#include <xLib/Debug/xDebug.h>
+#include <xLib/Test/Test.h>
+#include <xLib/Debug/Debug.h>
 #include <xLib/Debug/LastError.h>
 #include <xLib/Debug/StdError.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Log/Trace.h>
-#include <xLib/Debug/xStdDebug.h>
+#include <xLib/Debug/StdDebug.h>
 
 #if   xENV_WIN
     #include "Platform/Win/String_win.inl"

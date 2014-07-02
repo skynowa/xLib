@@ -10,7 +10,7 @@
 #ifndef xLib_[TEMPLATE]H
 #define xLib_[TEMPLATE]H
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, [NAMESPACE])
 

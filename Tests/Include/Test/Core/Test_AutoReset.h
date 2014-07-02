@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Core/AutoReset.h>
 //-------------------------------------------------------------------------------------------------
 class Test_AutoReset :
-    public Test
+    public UnitTest
     ///< tests for AutoReset
 {
 public:

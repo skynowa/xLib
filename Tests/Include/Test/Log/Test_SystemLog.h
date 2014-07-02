@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Log/SystemLog.h>
 //-------------------------------------------------------------------------------------------------
 class Test_SystemLog:
-    public Test
+    public UnitTest
 {
 public:
                    Test_SystemLog() {}

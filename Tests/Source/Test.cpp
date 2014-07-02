@@ -165,11 +165,11 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_xTest);
 
         // Core
-        manager.add(new Test_xUnits);
-        manager.add(new Test_xDefines);
-        manager.add(new Test_xLimits);
+        manager.add(new Test_Units);
+        manager.add(new Test_Defines);
+        manager.add(new Test_Limits);
         manager.add(new Test_Utils);
-        manager.add(new Test_xStdStream);
+        manager.add(new Test_StdStream);
         manager.add(new Test_HandleT);
         manager.add(new Test_Type);
         manager.add(new Test_Flags);
@@ -196,7 +196,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     #endif
 
         // Debug
-        manager.add(new Test_xDebug);
+        manager.add(new Test_Debug);
         manager.add(new Test_BuildInfo);
         manager.add(new Test_StdError);
         manager.add(new Test_LastError);

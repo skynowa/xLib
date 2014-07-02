@@ -7,11 +7,11 @@
 #pragma once
 
 #include <xLib/Net/Socket.h>
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Socket :
-    public Test
+    public UnitTest
 {
 public:
                    Test_Socket() {}

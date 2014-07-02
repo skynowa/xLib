@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Net/Socket.h>
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, net)
 

@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Crypt/Guid.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Guid :
-    public Test
+    public UnitTest
     ///< tests for Guid
 {
 public:

@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Crypt/Base64.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Base64 :
-    public Test
+    public UnitTest
 {
 public:
                    Test_Base64() {}

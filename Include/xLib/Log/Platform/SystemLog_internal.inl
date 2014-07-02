@@ -4,7 +4,7 @@
  */
 
 
-#include <xLib/Internal/xInternal.h>
+#include <xLib/Internal/Internal.h>
 
 
 /**************************************************************************************************
@@ -15,30 +15,30 @@
 xNAMESPACE_BEGIN3(xlib, internal, enums)
 
 //-------------------------------------------------------------------------------------------------
-static Types<IxLog::ExLevel, ssize_t, 10> levels =
+static Types<ILog::ExLevel, ssize_t, 10> levels =
 {{
 #if   xENV_WIN
-    {IxLog::lvUnknown,  - 1},
-    {IxLog::lvEmerg,    EVENTLOG_ERROR_TYPE},
-    {IxLog::lvAlert,    EVENTLOG_ERROR_TYPE},
-    {IxLog::lvCritical, EVENTLOG_ERROR_TYPE},
-    {IxLog::lvError,    EVENTLOG_ERROR_TYPE},
-    {IxLog::lvWarning,  EVENTLOG_WARNING_TYPE},
-    {IxLog::lvNotice,   EVENTLOG_SUCCESS},
-    {IxLog::lvInfo,     EVENTLOG_INFORMATION_TYPE},
-    {IxLog::lvDebug,    EVENTLOG_INFORMATION_TYPE},
-    {IxLog::lvPlain,    EVENTLOG_INFORMATION_TYPE}
+    {ILog::lvUnknown,  - 1},
+    {ILog::lvEmerg,    EVENTLOG_ERROR_TYPE},
+    {ILog::lvAlert,    EVENTLOG_ERROR_TYPE},
+    {ILog::lvCritical, EVENTLOG_ERROR_TYPE},
+    {ILog::lvError,    EVENTLOG_ERROR_TYPE},
+    {ILog::lvWarning,  EVENTLOG_WARNING_TYPE},
+    {ILog::lvNotice,   EVENTLOG_SUCCESS},
+    {ILog::lvInfo,     EVENTLOG_INFORMATION_TYPE},
+    {ILog::lvDebug,    EVENTLOG_INFORMATION_TYPE},
+    {ILog::lvPlain,    EVENTLOG_INFORMATION_TYPE}
 #elif xENV_UNIX
-    {IxLog::lvUnknown,  - 1},
-    {IxLog::lvEmerg,    0},
-    {IxLog::lvAlert,    1},
-    {IxLog::lvCritical, 2},
-    {IxLog::lvError,    3},
-    {IxLog::lvWarning,  4},
-    {IxLog::lvNotice,   5},
-    {IxLog::lvInfo,     6},
-    {IxLog::lvDebug,    7},
-    {IxLog::lvPlain,    6}
+    {ILog::lvUnknown,  - 1},
+    {ILog::lvEmerg,    0},
+    {ILog::lvAlert,    1},
+    {ILog::lvCritical, 2},
+    {ILog::lvError,    3},
+    {ILog::lvWarning,  4},
+    {ILog::lvNotice,   5},
+    {ILog::lvInfo,     6},
+    {ILog::lvDebug,    7},
+    {ILog::lvPlain,    6}
 #endif
 }};
 //-------------------------------------------------------------------------------------------------
