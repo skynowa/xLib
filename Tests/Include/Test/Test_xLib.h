@@ -10,7 +10,7 @@
 #define Test_xLibH
 //-------------------------------------------------------------------------------------------------
 // Test
-#include <Test/Test/Test_xTest.h>
+#include <Test/Test/Test_Test.h>
 
 
 // Core
