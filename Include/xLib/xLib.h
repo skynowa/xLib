@@ -7,17 +7,17 @@
 #pragma once
 
 // Core
-#include <xLib/Core/xCore.h>
-#include <xLib/Core/xSysDefines.h>
-#include <xLib/Core/xConfig.h>
-#include <xLib/Core/xUnits.h>
-#include <xLib/Core/xDefines.h>
-#include <xLib/Core/xLimits.h>
-#include <xLib/Core/xVersion.h>
-#include <xLib/Core/xTypes.h>
-#include <xLib/Core/xFunctions.h>
-#include <xLib/Core/xFunctors.h>
-#include <xLib/Core/xStdStream.h>
+#include <xLib/Core/Core.h>
+#include <xLib/Core/SysDefines.h>
+#include <xLib/Core/Config.h>
+#include <xLib/Core/Units.h>
+#include <xLib/Core/Defines.h>
+#include <xLib/Core/Limits.h>
+#include <xLib/Core/Version.h>
+#include <xLib/Core/Types.h>
+#include <xLib/Core/Functions.h>
+#include <xLib/Core/Functors.h>
+#include <xLib/Core/StdStream.h>
 #include <xLib/Core/Type.h>
 #include <xLib/Core/Win/Com.h>
 #include <xLib/Core/AutoReset.h>
@@ -42,8 +42,8 @@
 #include <xLib/Db/MySql.h>
 
 // Debug
-#include <xLib/Debug/xStdDebug.h>
-#include <xLib/Debug/xDebug.h>
+#include <xLib/Debug/StdDebug.h>
+#include <xLib/Debug/Debug.h>
 #include <xLib/Debug/BuildInfo.h>
 #include <xLib/Debug/LastError.h>
 #include <xLib/Debug/StdError.h>
@@ -70,7 +70,7 @@
 #include <xLib/Gui/MsgBox.h>
 
 // Log
-#include <xLib/Log/IxLog.h>
+#include <xLib/Log/ILog.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Log/FileLog.h>
 #include <xLib/Log/SystemLog.h>
@@ -124,6 +124,6 @@
 
 // Test
 #include <xLib/Test/TestData.h>
-#include <xLib/Test/Test.h>
+#include <xLib/Test/UnitTest.h>
 #include <xLib/Test/TestManager.h>
-#include <xLib/Test/xTest.h>
+#include <xLib/Test/Test.h>

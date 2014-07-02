@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Net/Uri.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Uri :
-    public Test
+    public UnitTest
 {
 public:
                    Test_Uri() {}

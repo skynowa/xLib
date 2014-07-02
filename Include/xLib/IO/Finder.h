@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/IO/FileType.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, io)

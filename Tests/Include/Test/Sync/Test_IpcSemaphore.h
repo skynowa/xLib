@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Sync/IpcSemaphore.h>
 //-------------------------------------------------------------------------------------------------
 class Test_IpcSemaphore :
-    public Test
+    public UnitTest
 {
 public:
                    Test_IpcSemaphore() {}

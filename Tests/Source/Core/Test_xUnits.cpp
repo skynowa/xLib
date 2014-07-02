@@ -1,20 +1,20 @@
 /**
- * \file   Test_xUnits.cpp
- * \brief  test xUnits
+ * \file   Test_Units.cpp
+ * \brief  test Units
  */
 
 
-#include <Test/Core/Test_xUnits.h>
+#include <Test/Core/Test_Units.h>
 
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_xUnits::unit(
+Test_Units::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("xUnits/Bytes", a_caseLoops)
+    xTEST_CASE("Units/Bytes", a_caseLoops)
     {
         culonglong_t BYTE = 1ULL;
         culonglong_t KB   = 1024ULL;
@@ -35,9 +35,9 @@ Test_xUnits::unit(
         }
     }
 
-    xTEST_CASE("xUnits/Datetime", a_caseLoops)
+    xTEST_CASE("Units/Datetime", a_caseLoops)
     {
-        // TEST: xUnits/Datetime
+        // TEST: Units/Datetime
     }
 }
 //-------------------------------------------------------------------------------------------------

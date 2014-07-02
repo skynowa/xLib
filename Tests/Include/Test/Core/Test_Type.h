@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Core/Type.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Type :
-    public Test
+    public UnitTest
 {
 public:
                    Test_Type() {}

@@ -1,73 +1,272 @@
 /**
  * \file  Test.h
- * \brief testing
+ * \brief code testing
  */
 
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
-#include <xLib/Test/xTest.h>
-#include <xLib/Test/TestData.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, test)
+#define xTEST_MSG_EQ_IMPL(reportType, val1, val2, msg) \
+    if ( !((val1) == (val2)) ) { \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("=="), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
+    }
+#define xTEST_MSG_DIFF_IMPL(reportType, val1, val2, msg) \
+    if ( !((val1) != (val2)) ) { \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("!="), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
+    }
+#define xTEST_MSG_LESS_IMPL(reportType, val1, val2, msg) \
+    if ( !((val1) < (val2)) ) { \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("<"), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
+    }
+#define xTEST_MSG_GR_IMPL(reportType, val1, val2, msg) \
+    if ( !((val1) > (val2)) ) { \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT(">"), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
+    }
+#define xTEST_MSG_LESS_EQ_IMPL(reportType, val1, val2, msg) \
+    if ( !((val1) <= (val2)) ) { \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("<="), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
+    }
+#define xTEST_MSG_GR_EQ_IMPL(reportType, val1, val2, msg) \
+    if ( !((val1) >= (val2)) ) { \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT(">="), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
+    }
+#define xTEST_MSG_PTR_IMPL(reportType, ptr, msg) \
+    if ( intptr_t(xPTR_NULL) == intptr_t(ptr) ) { \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT("xPTR_NULL"), xT(#ptr), intptr_t(ptr), intptr_t(xPTR_NULL), \
+            xT("!="), _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
+    }
+#define xTEST_MSG_PTR_FAIL_IMPL(reportType, ptr, msg) \
+    if ( intptr_t(xPTR_NULL) != intptr_t(ptr) ) { \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT("xPTR_NULL"), xT(#ptr), intptr_t(ptr), intptr_t(xPTR_NULL), \
+            xT("=="), _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
+    }
+#define xTEST_MSG_FAIL_IMPL(reportType, msg) \
+    if ( true ) { \
+        culong_t      _lastError = LastError::get(); \
+        ErrorReport report(reportType, xT("false"), xT(""), xT(""), xT(""), xT(""), \
+            _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        Debugger().reportMake(report); \
+    }
 
-class Test
-    /// testing
-{
-public:
-    void_t *             m_pvRv;      ///< for global use
-    tchar_t              m_chRv;      ///< for global use
-    uchar_t              m_ucRv;      ///< for global use
-    bool_t               m_bRv;       ///< for global use
-    int_t                m_iRv;       ///< for global use
-    short_t              m_siRv;      ///< for global use
-    ushort_t             m_usiRv;     ///< for global use
-    uint_t               m_uiRv;      ///< for global use
-    size_t               m_stRv;      ///< for global use
-    long_t               m_liRv;      ///< for global use
-    ulong_t              m_ulRv;      ///< for global use
-    longlong_t           m_llRv;      ///< for global use
-    ulonglong_t          m_ullRv;     ///< for global use
-    float_t              m_fRv;       ///< for global use
-    double               m_dRv;       ///< for global use
-    std::tstring_t       m_sRv;       ///< for global use
-    std::ustring_t       m_usRv;      ///< for global use
-    std::vector<tchar_t> m_vchRv;     ///< for global use
-    std::vec_tstring_t   m_vsRv;      ///< for global use
-    std::map_tstring_t   m_msRv;      ///< for global use
-    std::mmap_tstring_t  m_mmsRv;     ///< for global use
-    native_handle_t      m_hRv;       ///< for global use
-
-#if xENV_WIN
-    HWND                 m_hwndRv;    ///< for global use
+// _xREPORT_TYPE
+#if   xOPTION_DEBUG_MODE_STDOUT
+    #define _xREPORT_TYPE ErrorReport::rtStdout
+#elif xOPTION_DEBUG_MODE_MSGBOX
+    #define _xREPORT_TYPE ErrorReport::rtMsgbox
+#elif xOPTION_DEBUG_MODE_LOG
+    #define _xREPORT_TYPE ErrorReport::rtLog
 #endif
 
-                         Test();
-        ///< constructor
-    virtual             ~Test() = 0;
-        ///< destructor
+#ifdef _xREPORT_TYPE
+    #define xTEST_EQ(val1, val2) \
+        xTEST_MSG_EQ_IMPL      (_xREPORT_TYPE, val1, val2, xT(""))
+    #define xTEST_MSG_EQ(val1, val2, msg) \
+        xTEST_MSG_EQ_IMPL      (_xREPORT_TYPE, val1, val2, msg)
 
-    void_t               run(culonglong_t &unitLoops, culonglong_t &caseLoops);
-        ///< run test units
-    virtual void_t       unit(culonglong_t &caseLoops) = 0;
-        ///< test unit
-    void_t               createTempDir(std::ctstring_t &dirName);
-        ///< create work dir
-    std::ctstring_t &    tempDirPath() const xWARN_UNUSED_RV;
-        ///< get work dir path
-    std::ctstring_t &    name() const xWARN_UNUSED_RV;
-        ///< get name
-    void_t               setName(std::ctstring_t &testName);
-        ///< set name
+    #define xTEST_DIFF(val1, val2) \
+        xTEST_MSG_DIFF_IMPL    (_xREPORT_TYPE, val1, val2, xT(""))
+    #define xTEST_MSG_DIFF(val1, val2, msg) \
+        xTEST_MSG_DIFF_IMPL    (_xREPORT_TYPE, val1, val2, msg)
 
-private:
-    std::tstring_t       _tempDirPath; ///< work dir path
-    std::tstring_t       _name;        ///< test name
+    #define xTEST_LESS(val1, val2) \
+        xTEST_MSG_LESS_IMPL    (_xREPORT_TYPE, val1, val2, xT(""))
+    #define xTEST_MSG_LESS(val1, val2, msg) \
+        xTEST_MSG_LESS_IMPL    (_xREPORT_TYPE, val1, val2, msg)
 
-    xNO_COPY_ASSIGN(Test)
-};
+    #define xTEST_GR(val1, val2) \
+        xTEST_MSG_GR_IMPL      (_xREPORT_TYPE, val1, val2, xT(""))
+    #define xTEST_MSG_GR(val1, val2, msg) \
+        xTEST_MSG_GR_IMPL      (_xREPORT_TYPE, val1, val2, msg)
 
-xNAMESPACE_END2(xlib, test)
+    #define xTEST_LESS_EQ(val1, val2) \
+        xTEST_MSG_LESS_EQ_IMPL (_xREPORT_TYPE, val1, val2, xT(""))
+    #define xTEST_MSG_LESS_EQ(val1, val2, msg) \
+        xTEST_MSG_LESS_EQ_IMPL (_xREPORT_TYPE, val1, val2, msg)
+
+    #define xTEST_GR_EQ(val1, val2) \
+        xTEST_MSG_GR_EQ_IMPL   (_xREPORT_TYPE, val1, val2, xT(""))
+    #define xTEST_MSG_GR_EQ(val1, val2, msg) \
+        xTEST_MSG_GR_EQ_IMPL   (_xREPORT_TYPE, val1, val2, msg)
+
+    #define xTEST_PTR(ptr) \
+        xTEST_MSG_PTR_IMPL     (_xREPORT_TYPE, ptr, xT(""))
+    #define xTEST_MSG_PTR(ptr, msg) \
+        xTEST_MSG_PTR_IMPL     (_xREPORT_TYPE, ptr, msg)
+
+    #define xTEST_PTR_FAIL(ptr) \
+        xTEST_MSG_PTR_FAIL_IMPL(_xREPORT_TYPE, ptr, xT(""))
+    #define xTEST_MSG_PTR_FAIL(ptr, msg) \
+        xTEST_MSG_PTR_FAIL_IMPL(_xREPORT_TYPE, ptr, msg)
+
+    #define xTEST_FAIL \
+        xTEST_MSG_FAIL_IMPL    (_xREPORT_TYPE, xT(""))
+    #define xTEST_MSG_FAIL(msg) \
+        xTEST_MSG_FAIL_IMPL    (_xREPORT_TYPE, msg)
+
+    #define xTEST(expr) \
+        xTEST_MSG_EQ_IMPL      (_xREPORT_TYPE, true, expr, xT(""))
+    #define xTEST_MSG(expr, msg) \
+        xTEST_MSG_EQ_IMPL      (_xREPORT_TYPE, true, expr, msg)
+
+    #define xTEST_THROW(expr, exception_t)          \
+        {                                           \
+            bool_t isExpected = false;              \
+            try {                                   \
+                expr;                               \
+            }                                       \
+            catch (const exception_t &) {           \
+                isExpected = true;                  \
+            }                                       \
+            catch (...) {                           \
+            }                                       \
+            xTEST_EQ(isExpected, true);             \
+        }
+    #define xTEST_MSG_THROW(expr, exception_t, msg) \
+        {                                           \
+            bool_t isExpected = false;              \
+            try {                                   \
+                expr;                               \
+            }                                       \
+            catch (const exception_t &) {           \
+                isExpected = true;                  \
+            }                                       \
+            catch (...) {                           \
+            }                                       \
+            xTEST_MSG_EQ(isExpected, true, msg);    \
+        }
+
+    #define xTEST_THROW_ALL(expr)                   \
+        {                                           \
+            bool_t isExpected = false;              \
+            try {                                   \
+                expr;                               \
+            }                                       \
+            catch (...) {                           \
+                isExpected = true;                  \
+            }                                       \
+            xTEST_EQ(isExpected, true);             \
+        }
+    #define xTEST_MSG_THROW_ALL(expr, msg)          \
+        {                                           \
+            bool_t isExpected = false;              \
+            try {                                   \
+                expr;                               \
+            }                                       \
+            catch (...) {                           \
+                isExpected = true;                  \
+            }                                       \
+            xTEST_MSG_EQ(isExpected, true, msg);    \
+        }
+
+    #define xTEST_THROW_NO(expr)                    \
+        {                                           \
+            bool_t isExpected = true;               \
+            try {                                   \
+                expr;                               \
+            }                                       \
+            catch (...) {                           \
+                isExpected = false;                 \
+            }                                       \
+            xTEST_EQ(isExpected, true);             \
+        }
+    #define xTEST_MSG_THROW_NO(expr, msg)           \
+        {                                           \
+            bool_t isExpected = true;               \
+            try {                                   \
+                expr;                               \
+            }                                       \
+            catch (...) {                           \
+                isExpected = false;                 \
+            }                                       \
+            xTEST_MSG_EQ(isExpected, true, msg);    \
+        }
+#else
+    // just empty macros
+    #define xTEST_EQ(val1, val2)
+    #define xTEST_MSG_EQ(val1, val2, msg)
+
+    #define xTEST_DIFF(val1, val2)
+    #define xTEST_MSG_DIFF(val1, val2, msg)
+
+    #define xTEST_LESS(val1, val2)
+    #define xTEST_MSG_LESS(val1, val2, msg)
+
+    #define xTEST_GR(val1, val2)
+    #define xTEST_MSG_GR(val1, val2, msg)
+
+    #define xTEST_LESS_EQ(val1, val2)
+    #define xTEST_MSG_LESS_EQ(val1, val2, msg)
+
+    #define xTEST_GR_EQ(val1, val2)
+    #define xTEST_MSG_GR_EQ(val1, val2, msg)
+
+    #define xTEST_PTR(ptr)
+    #define xTEST_MSG_PTR(ptr, msg)
+
+    #define xTEST_PTR_FAIL(ptr)
+    #define xTEST_MSG_PTR_FAIL(ptr, msg)
+
+    #define xTEST_FAIL
+    #define xTEST_MSG_FAIL(msg)
+
+    #define xTEST(expr)
+    #define xTEST_MSG(expr, msg)
+
+    #define xTEST_THROW(expr, exception_t)
+    #define xTEST_MSG_THROW(expr, exception_t, msg)
+
+    #define xTEST_THROW_ALL(expr)
+    #define xTEST_MSG_THROW_ALL(expr, msg)
+
+    #define xTEST_THROW_NO(expr)
+    #define xTEST_MSG_THROW_NO(expr, msg)
+#endif
+
+#define xTEST_NA(var) \
+    xUNUSED(var)
+    ///< at this point debug code for variable is not applicable
+#define xTESTS_NA \
+    ;
+    ///< at this point debug code for variables is not applicable
+
+#define xTEST_STATIC(expr) \
+    { switch (0) {case 0: case (expr):;} }
+    ///< static assert
+
+#if xOPTION_TEST_TRACING
+    #define xTEST_CASE(caseName, loops) \
+        if (loops == 0) { \
+            Trace() << xT("\tTest case: ") << xT(caseName) << xT(" - skipped"); \
+        } else { \
+            Trace() << xT("\tTest case: ") << xT(caseName); \
+        } \
+        for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
+#else
+    #define xTEST_CASE(caseName, loops) \
+        for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
+#endif
+    ///< test case
 //-------------------------------------------------------------------------------------------------
-#include "Test.inl"

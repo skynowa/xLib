@@ -1,18 +1,18 @@
 /**
  * \file   Test_xTest.h
- * \brief  test xTest
+ * \brief  test Test
  */
 
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
-#include <xLib/Test/xTest.h>
+#include <xLib/Test/Test.h>
 //-------------------------------------------------------------------------------------------------
 class Test_xTest :
-    public Test
-    ///< tests for xTest
+    public UnitTest
+    ///< tests for Test
 {
 public:
                    Test_xTest() {}

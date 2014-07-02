@@ -14,11 +14,11 @@
 
 
 // Core
-#include <Test/Core/Test_xUnits.h>
-#include <Test/Core/Test_xDefines.h>
-#include <Test/Core/Test_xLimits.h>
+#include <Test/Core/Test_Units.h>
+#include <Test/Core/Test_Defines.h>
+#include <Test/Core/Test_Limits.h>
 #include <Test/Core/Test_Utils.h>
-#include <Test/Core/Test_xStdStream.h>
+#include <Test/Core/Test_StdStream.h>
 #include <Test/Core/Test_HandleT.h>
 #include <Test/Core/Test_Type.h>
 #include <Test/Core/Test_Flags.h>
@@ -50,7 +50,7 @@
 
 
 // Debug
-#include <Test/Debug/Test_xDebug.h>
+#include <Test/Debug/Test_Debug.h>
 #include <Test/Debug/Test_BuildInfo.h>
 #include <Test/Debug/Test_StdError.h>
 #include <Test/Debug/Test_LastError.h>

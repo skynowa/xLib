@@ -8,7 +8,7 @@
 
 #if xHAVE_OPENSSL_CRYPTO
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <openssl/blowfish.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, crypt)

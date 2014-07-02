@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Patterns/Raii.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Raii :
-    public Test
+    public UnitTest
     ///< tests for Raii
 {
 public:

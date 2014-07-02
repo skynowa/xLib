@@ -6,9 +6,9 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
-#include <xLib/Test/xTest.h>
-#include <xLib/Debug/xDebug.h>
+#include <xLib/Core/Core.h>
+#include <xLib/Test/Test.h>
+#include <xLib/Debug/Debug.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 

@@ -4,7 +4,7 @@
  */
 
 
-#include <xLib/Internal/xInternal.h>
+#include <xLib/Internal/Internal.h>
 
 
 /**************************************************************************************************

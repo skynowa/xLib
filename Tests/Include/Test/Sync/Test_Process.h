@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Sync/Process.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Process :
-    public Test
+    public UnitTest
 {
 public:
                    Test_Process() {}

@@ -6,13 +6,13 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Crypt/Crc32.h>
 #include <xLib/IO/File.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Crc32 :
-    public Test
+    public UnitTest
 {
 public:
                    Test_Crc32() {}

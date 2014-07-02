@@ -1,16 +1,16 @@
 /**
- * \file   Test_xStdStream.cpp
- * \brief  test xStdStream
+ * \file   Test_StdStream.cpp
+ * \brief  test StdStream
  */
 
 
-#include <Test/Core/Test_xStdStream.h>
+#include <Test/Core/Test_StdStream.h>
 
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_xStdStream::unit(
+Test_StdStream::unit(
     culonglong_t &a_caseLoops
 )
 {

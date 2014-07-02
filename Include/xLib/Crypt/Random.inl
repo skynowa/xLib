@@ -4,9 +4,9 @@
  */
 
 
-#include <xLib/Core/xFunctions.h>
-#include <xLib/Test/xTest.h>
-#include <xLib/Debug/xDebug.h>
+#include <xLib/Core/Functions.h>
+#include <xLib/Test/Test.h>
+#include <xLib/Debug/Debug.h>
 #include <xLib/Debug/LastError.h>
 #include <xLib/Debug/StdError.h>
 #include <xLib/Debug/ErrorReport.h>

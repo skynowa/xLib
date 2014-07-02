@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Sync/AtomicLongInt.h>
 //-------------------------------------------------------------------------------------------------
 class Test_AtomicLongInt :
-    public Test
+    public UnitTest
 {
 public:
                    Test_AtomicLongInt() {}

@@ -42,16 +42,16 @@ Test_Trace::unit(
     xTEST_CASE("Trace::write(cExLevel &level, ...)", a_caseLoops)
     {
     #if xTEST_IGNORE
-        Trace().write(IxLog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvUnknown),  12345);
-        Trace().write(IxLog::lvEmerg,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvEmerg),    12345);
-        Trace().write(IxLog::lvAlert,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvAlert),    12345);
-        Trace().write(IxLog::lvCritical, xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvCritical), 12345);
-        Trace().write(IxLog::lvError,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvError),    12345);
-        Trace().write(IxLog::lvWarning,  xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvWarning),  12345);
-        Trace().write(IxLog::lvNotice,   xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvNotice),   12345);
-        Trace().write(IxLog::lvInfo,     xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvInfo),     12345);
-        Trace().write(IxLog::lvDebug,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvDebug),    12345);
-        Trace().write(IxLog::lvPlain,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvPlain),    12345);
+        Trace().write(ILog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::lvUnknown),  12345);
+        Trace().write(ILog::lvEmerg,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvEmerg),    12345);
+        Trace().write(ILog::lvAlert,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvAlert),    12345);
+        Trace().write(ILog::lvCritical, xT("\t%s, %d"), xLEX_TO_STR(ILog::lvCritical), 12345);
+        Trace().write(ILog::lvError,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvError),    12345);
+        Trace().write(ILog::lvWarning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::lvWarning),  12345);
+        Trace().write(ILog::lvNotice,   xT("\t%s, %d"), xLEX_TO_STR(ILog::lvNotice),   12345);
+        Trace().write(ILog::lvInfo,     xT("\t%s, %d"), xLEX_TO_STR(ILog::lvInfo),     12345);
+        Trace().write(ILog::lvDebug,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvDebug),    12345);
+        Trace().write(ILog::lvPlain,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvPlain),    12345);
     #endif
     }
 

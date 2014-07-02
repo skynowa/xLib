@@ -12,5 +12,5 @@ Docs/html/
 
 ################################################################################
 # files
-Include/xLib/Core/xConfig_gen.h
+Include/xLib/Core/Config_gen.h
 

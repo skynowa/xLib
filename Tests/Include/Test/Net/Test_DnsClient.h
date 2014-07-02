@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Net/DnsClient.h>
 //-------------------------------------------------------------------------------------------------
 class Test_DnsClient :
-    public Test
+    public UnitTest
 {
 public:
                    Test_DnsClient() {}

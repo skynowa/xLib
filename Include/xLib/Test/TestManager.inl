@@ -44,7 +44,7 @@ TestManager::~TestManager()
 //-------------------------------------------------------------------------------------------------
 inline void_t
 TestManager::add(
-    Test *a_test
+    UnitTest *a_test
 )
 {
     xTEST_PTR(a_test)

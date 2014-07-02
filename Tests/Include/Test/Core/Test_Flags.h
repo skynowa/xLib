@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Core/Flags.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Flags :
-    public Test
+    public UnitTest
     ///< tests for Flags
 {
 public:

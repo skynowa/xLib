@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <xLib/Core/xCore.h>
+#include <xLib/Core/Core.h>
 #include <xLib/Core/Const.h>
 #include <xLib/Test/Test.h>
 //-------------------------------------------------------------------------------------------------
@@ -21,13 +21,13 @@ public:
     virtual    ~TestManager();
         ///< destructor
 
-    void_t      add(Test *test);
+    void_t      add(UnitTest *test);
         ///< add Test
     void_t      run(culonglong_t &allLoops, culonglong_t &unitLoops, culonglong_t &caseLoops);
         ///< run all tests
 
 private:
-    typedef std::vector<Test *> container_t;
+    typedef std::vector<UnitTest *> container_t;
 
     cbool_t     _isUseTracing;  ///< is use tracing
     container_t _tests;         ///< Test's container

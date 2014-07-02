@@ -7,14 +7,14 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Core/xCore.h>
-#include <xLib/Core/xUnits.h>
-#include "IxLog.h"
+#include <xLib/Core/Core.h>
+#include <xLib/Core/Units.h>
+#include "ILog.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, log)
 
 class FileLog :
-    public IxLog
+    public ILog
     /// logging to file
 {
 public:
