@@ -117,14 +117,14 @@ Finder::isValid() const
 inline bool_t
 Finder::moveNext()
 {
-    xTEST_EQ(isValid(), true);
-
     bool_t bRv = false;
 
     if (_isMoveFirst) {
         bRv = _moveFirst();
         xCHECK_RET(!bRv, false);
     } else {
+        xTEST_EQ(isValid(), true);
+
         bRv = _moveNext_impl();
         xCHECK_RET(!bRv, false);
     }
