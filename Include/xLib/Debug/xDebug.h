@@ -35,13 +35,13 @@
     { if (expr) { do_expr; } }
     ///< check expression and do instructions
 #define xCHECK_MSG(expr, comment) \
-    { if (expr) { CxTrace() << (comment); } }
+    { if (expr) { Trace() << (comment); } }
     ///< check expression and show message with comment
 #define xCHECK_MSG_RET(expr, comment, return_expr) \
-    { if (expr) { CxTrace() << (comment); return (return_expr); } }
+    { if (expr) { Trace() << (comment); return (return_expr); } }
     ///< check expression, show message with comment and return value
 #define xCHECK_MSG_DO(expr, comment, do_expr) \
-    { if (expr) { CxTrace() << (comment); do_expr; } }
+    { if (expr) { Trace() << (comment); do_expr; } }
     ///< check expression, show message with comment and do instructions
 #define xCHECK_NA(var) \
     ;
@@ -75,13 +75,13 @@
 //-------------------------------------------------------------------------------------------------
 #define xTRACE_POINT \
     { \
-        CxTrace() \
+        Trace() \
             << "\t::: #" << xCOUNTER  << " " \
             << "in "     << xFILE     << ":" << xLINE << ", " \
             << "func: "  << xFUNCTION << ", " \
-            << "error: " << CxLastError::format() << " :::"; \
+            << "error: " << LastError::format() << " :::"; \
     }
-    ///< trace point (use CxTrace)
+    ///< trace point (use Trace)
 #define xNOT_IMPLEMENTED \
     { xTEST_MSG_FAIL(xT("Not implemented")); }
     ///< show not implemented message

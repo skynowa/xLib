@@ -1,0 +1,25 @@
+/**
+ * \file   Test_MySql.h
+ * \brief
+ */
+
+
+#pragma once
+
+#if xHAVE_MYSQL
+
+#include <xLib/Core/xCore.h>
+#include <xLib/Test/Test.h>
+#include <xLib/Db/MySql.h>
+//-------------------------------------------------------------------------------------------------
+class Test_MySql :
+    public Test
+{
+public:
+                   Test_MySql() {}
+
+    virtual void_t unit(culonglong_t &caseLoops);
+};
+//-------------------------------------------------------------------------------------------------
+
+#endif // CXMYSQL_IS_USE
