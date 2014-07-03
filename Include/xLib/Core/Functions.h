@@ -14,24 +14,24 @@
         #define xTEOF           WEOF
 
         #define xTMAIN          wmain
-        #define xTFPRINTF       std::fwprintf
-        #define xTASCTIME       std::_wasctime
+        #define xTFPRINTF       fwprintf
+        #define xTASCTIME       _wasctime
         #define xTSETLOCALE     std::_wsetlocale
-        #define xTFOPEN         std::_wfopen
-        #define xTFREOPEN       std::_wfreopen
-        #define xTFDOPEN        std::_wfdopen
+        #define xTFOPEN         _wfopen
+        #define xTFREOPEN       _wfreopen
+        #define xTFDOPEN        _wfdopen
         #define xTVSNPRINTF     ::_vsnwprintf
-        #define xTPERROR        std::_wperror
-        #define xTVSPRINTF      std::_vswprintf
-        #define xTVPRINTF       std::vwprintf
-        #define xTVFPRINTF      std::vfwprintf
-        #define xTFGETC         std::getwc
-        #define xTPUTS          std::_putws
-        #define xTPUTCHAR       std::putwchar
-        #define xTACCESS        std::_waccess
-        #define xTGETS          std::_getws
-        #define xTGETCHAR       std::getwchar
-        #define xTTMPNAM        std::_wtmpnam
+        #define xTPERROR        _wperror
+        #define xTVSPRINTF      _vswprintf
+        #define xTVPRINTF       vwprintf
+        #define xTVFPRINTF      vfwprintf
+        #define xTFGETC         getwc
+        #define xTPUTS          _putws
+        #define xTPUTCHAR       putwchar
+        #define xTACCESS        _waccess
+        #define xTGETS          _getws
+        #define xTGETCHAR       getwchar
+        #define xTTMPNAM        _wtmpnam
         #define xSTRFTIME       std::wcsftime
 
         // xTMKSTEMP
@@ -47,15 +47,15 @@
         #define xTMKSTEMP       std::mkstemp
     #endif
 
-        #define xTRENAME        std::_wrename
-        #define xTUNLINK        std::_wunlink
-        #define xTREMOVE        std::_wremove
-        #define xTFPUTS         std::fputws
-        #define xTUNGETC        std::ungetwc
-        #define xTFPUTC         std::fputwc
-        #define xTFGETS         std::fgetws
-        #define xTSTRLEN        std::wcslen
-        #define xTCHMOD         std::_wchmod
+        #define xTRENAME        _wrename
+        #define xTUNLINK        _wunlink
+        #define xTREMOVE        _wremove
+        #define xTFPUTS         fputws
+        #define xTUNGETC        ungetwc
+        #define xTFPUTC         fputwc
+        #define xTFGETS         fgetws
+        #define xTSTRLEN        wcslen
+        #define xTCHMOD         _wchmod
         #define xTSYSTEM        std::_wsystem
 
     // xTSTAT_STRUCT
@@ -119,24 +119,24 @@
         #define xTEOF           EOF
 
         #define xTMAIN          main
-        #define xTFPRINTF       std::fprintf
-        #define xTASCTIME       std::asctime
+        #define xTFPRINTF       fprintf
+        #define xTASCTIME       asctime
         #define xTSETLOCALE     std::setlocale
-        #define xTFOPEN         std::fopen
-        #define xTFREOPEN       std::freopen
-        #define xTFDOPEN        std::fdopen
+        #define xTFOPEN         fopen
+        #define xTFREOPEN       freopen
+        #define xTFDOPEN        fdopen
         #define xTVSNPRINTF     ::vsnprintf
-        #define xTPERROR        std::perror
-        #define xTVSPRINTF      std::vsprintf
-        #define xTVPRINTF       std::vprintf
-        #define xTVFPRINTF      std::vfprintf
-        #define xTFGETC         std::getc
-        #define xTPUTS          std::puts
-        #define xTPUTCHAR       std::putchar
-        #define xTACCESS        std::access
-        #define xTGETS          std::gets
-        #define xTGETCHAR       std::getchar
-        #define xTTMPNAM        std::tmpnam
+        #define xTPERROR        perror
+        #define xTVSPRINTF      vsprintf
+        #define xTVPRINTF       vprintf
+        #define xTVFPRINTF      vfprintf
+        #define xTFGETC         getc
+        #define xTPUTS          puts
+        #define xTPUTCHAR       putchar
+        #define xTACCESS        access
+        #define xTGETS          gets
+        #define xTGETCHAR       getchar
+        #define xTTMPNAM        tmpnam
         #define xSTRFTIME       std::strftime
 
         // xTMKSTEMP
@@ -152,15 +152,15 @@
         #define xTMKSTEMP       std::mktemp
     #endif
 
-        #define xTRENAME        std::rename
-        #define xTUNLINK        std::unlink
-        #define xTREMOVE        std::remove
-        #define xTFPUTS         std::fputs
-        #define xTUNGETC        std::ungetc
-        #define xTFPUTC         std::fputc
-        #define xTFGETS         std::fgets
-        #define xTSTRLEN        std::strlen
-        #define xTCHMOD         std::chmod
+        #define xTRENAME        rename
+        #define xTUNLINK        unlink
+        #define xTREMOVE        remove
+        #define xTFPUTS         fputs
+        #define xTUNGETC        ungetc
+        #define xTFPUTC         fputc
+        #define xTFGETS         fgets
+        #define xTSTRLEN        strlen
+        #define xTCHMOD         chmod
         #define xTSYSTEM        std::system
 
     // xTSTAT_STRUCT
