@@ -258,21 +258,21 @@
 ///@name Compiler types
 ///@{
 #if   defined(__MINGW32__) || defined(__MINGW64__)
-    #define xCOMPILER_MINGW    1
+    #define xCOMPILER_MINGW 1
         ///< compiler MinGW
 #elif defined(_MSC_VER) || defined(_MSC_FULL_VER) || defined(_MSC_BUILD)
-    #define xCOMPILER_MS       1
+    #define xCOMPILER_MS 1
         ///< compiler Microsoft Visual C++
 #elif defined(__BORLANDC__) || defined(__CODEGEARC__)
     #define xCOMPILER_CODEGEAR 1
         ///< compiler Borland C++, Code Gear
 #elif defined(__clang__)
     // xCOMPILER_CLANG also __GNUC__
-    #define xCOMPILER_CLANG    1
-    #define xCOMPILER_GNUC     1
+    #define xCOMPILER_CLANG 1
+    #define xCOMPILER_GNUC 1
         ///< compiler Clang
 #elif defined(__GNUC__)
-    #define xCOMPILER_GNUC     1
+    #define xCOMPILER_GNUC 1
         ///< compiler GNU C/C++
 #else
     #error xLib: unsupported compiler
@@ -515,7 +515,7 @@
     #define xUNICODE 1
         ///< unicode
 #else
-    #define xANSI    1
+    #define xANSI 1
         ///< ansi
 #endif
 ///@}
@@ -526,7 +526,7 @@
     #define xBUILD_RELEASE 1
         ///< release build
 #else
-    #define xBUILD_DEBUG   1
+    #define xBUILD_DEBUG 1
         ///< debug build
 #endif
 ///@}
