@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <xLib/Core/SysDefines.h>
+
 #if xOS_WIN
     typedef SSIZE_T                ssize_t;
     typedef const ssize_t          cssize_t;
