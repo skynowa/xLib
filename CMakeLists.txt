@@ -142,33 +142,19 @@ endif()
 
 #--------------------------------------------------------------------------------------------------
 # libs, flags
+include(CMake/CxxFlags.cmake)
+include(CMake/CMakeVariables.cmake)
+
 if     (MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W3")
     set(XLIB_DEFINITIONS "")
 elseif (MINGW)
     set(XLIB_LIBS ${XLIB_LIBS} ws2_32 netapi32 psapi uuid ole32 mpr dbghelp)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pipe -Wall -Wno-deprecated -Wextra -Wconversion")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wshadow -Wno-unknown-pragmas -Wno-unused-parameter")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-variable -Wno-return-type-c-linkage")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
-        # -pedantic
     set(XLIB_DEFINITIONS "")
 elseif (CMAKE_COMPILER_IS_CLANGXX)
     set(XLIB_LIBS ${XLIB_LIBS} pthread rt m z)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pipe -Wall -Wno-deprecated -Wextra -Wconversion")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wshadow -Wno-unused-parameter -Wno-unused-variable")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unknown-pragmas -Wno-return-type-c-linkage")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -fcolor-diagnostics -Qunused-arguments")
-        # -pedantic
     set(XLIB_DEFINITIONS "")
 elseif (CMAKE_COMPILER_IS_GNUCXX)
     set(XLIB_LIBS ${XLIB_LIBS} pthread rt m z)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pipe -Wall -Wno-deprecated -Wextra -Wconversion")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wshadow -Wno-unknown-pragmas -Wno-unused-parameter")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-variable -Wno-return-type-c-linkage")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector -Wformat -Wformat-security")
-        # -pedantic
     set(XLIB_DEFINITIONS "")
 else()
     message("xLib: unknown compiler")
@@ -179,17 +165,12 @@ if (OS_ANDROID)
     unset(XLIB_DEFINITIONS CACHE)
 
     set(XLIB_LIBS gnustl_static m z log)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pipe -Wall -Wno-deprecated -Wextra -Wconversion")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wshadow -Wno-unused-parameter -Wno-unused-variable")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unknown-pragmas -frtti -fexceptions")
     set(XLIB_DEFINITIONS "")
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 
 target_link_libraries(${PROJECT_NAME} ${XLIB_LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
-
-include(CMake/CMakeVariables.cmake)
 
 #--------------------------------------------------------------------------------------------------
 # install
