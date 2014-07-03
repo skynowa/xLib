@@ -2,16 +2,16 @@
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsyntax-only")
 # Check the code for syntax errors, but don't do anything beyond that.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmax-errors=n")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmax-errors=1")
 # Limits the maximum number of error messages to n, at which point GCC bails out rather than attempting to continue processing the source code. If n is 0 (the default), there is no limit on the number of error messages produced. If -Wfatal-errors is also specified, then -Wfatal-errors takes precedence over this option.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")
 # Inhibit all warning messages.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
 # Make all warnings into errors.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror=")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror=")
 # Make the specified warning into an error. The specifier for a warning is appended, for example -Werror=switch turns the warnings controlled by -Wswitch into errors. This switch takes a negative form, to be used to negate -Werror for specific warnings, for example -Wno-error=switch makes -Wswitch warnings not be errors, even when -Werror is in effect.
 
 # The warning message for each controllable warning includes the option which controls the warning. That option can then be used with -Werror= and -Wno-error= as described above. (Printing of the option in the warning message can be disabled using the -fno-diagnostics-show-option flag.)
@@ -108,7 +108,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wchar-subscripts")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wcomment")
 # Warn whenever a comment-start sequence ‘/*’ appears in a ‘/*’ comment, or whenever a Backslash-Newline appears in a ‘//’ comment. This warning is enabled by -Wall.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-cpp")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-cpp")
 # (C, Objective-C, C++, Objective-C++ and Fortran only)
 #
 # Suppress warning messages emitted by #warning directives.
@@ -136,15 +136,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wformat")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wformat-y2k")
 # If -Wformat is specified, also warn about strftime formats which may yield only a two-digit year.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-format-contains-nul")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-format-contains-nul")
 # If -Wformat is specified, do not warn about format strings that contain NUL bytes.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-format-extra-args")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-format-extra-args")
 # If -Wformat is specified, do not warn about excess arguments to a printf or scanf format function. The C standard specifies that such arguments are ignored.
 #
 # Where the unused arguments lie between used arguments that are specified with ‘$’ operand number specifications, normally warnings are still given, since the implementation could not know what type to pass to va_arg to skip the unused arguments. However, in the case of scanf formats, this option will suppress the warning if the unused arguments are all pointers, since the Single Unix Specification says that such unused arguments are allowed.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-format-zero-length") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-format-zero-length") # (C and Objective-C only)
 # If -Wformat is specified, do not warn about zero-length formats. The C standard specifies that zero-length formats are allowed.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wformat-nonliteral")
@@ -156,7 +156,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wformat-security")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wformat=2")
 # Enable -Wformat plus format checks not included in -Wformat. Currently equivalent to ‘-Wformat -Wformat-nonliteral -Wformat-security -Wformat-y2k’.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnonnull") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnonnull") # (C and Objective-C only)
 # Warn about passing a null pointer for arguments marked as requiring a non-null value by the nonnull function attribute.
 #
 # -Wnonnull is included in -Wall and -Wformat. It can be disabled with the -Wno-nonnull option.
@@ -172,13 +172,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Winit-self") # (C, C++, Objective-C and
 #           }
 #
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wimplicit-int") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wimplicit-int") # (C and Objective-C only)
 # Warn when a declaration does not specify a type. This warning is enabled by -Wall.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wimplicit-function-declaration") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wimplicit-function-declaration") # (C and Objective-C only)
 # Give a warning whenever a function is used before being declared. In C99 mode (-std=c99 or -std=gnu99), this warning is enabled by default and it is made into an error by -pedantic-errors. This warning is also enabled by -Wall.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wimplicit") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wimplicit") # (C and Objective-C only)
 # Same as -Wimplicit-int and -Wimplicit-function-declaration. This warning is enabled by -Wall.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wignored-qualifiers") # (C and C++ only)
@@ -290,7 +290,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunused-parameter")
 #
 # To suppress this warning use the ‘unused’ attribute (see Variable Attributes).
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-result")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-result")
 # Do not warn if a caller of a function marked with attribute warn_unused_result (see Variable Attributes) does not use its return value. The default is -Wunused-result.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunused-variable")
@@ -352,13 +352,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wuninitialized")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunknown-pragmas")
 # Warn when a #pragma directive is encountered which is not understood by GCC. If this command line option is used, warnings will even be issued for unknown pragmas in system header files. This is not the case if the warnings were only enabled by the -Wall command line option.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-pragmas")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-pragmas")
 # Do not warn about misuses of pragmas, such as incorrect parameters, invalid syntax, or conflicts between pragmas. See also ‘-Wunknown-pragmas’.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstrict-aliasing")
 # This option is only active when -fstrict-aliasing is active. It warns about code which might break the strict aliasing rules that the compiler is using for optimization. The warning does not catch all cases, but does attempt to catch the more common pitfalls. It is included in -Wall. It is equivalent to -Wstrict-aliasing=3
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstrict-aliasing=n")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstrict-aliasing=1")
 # This option is only active when -fstrict-aliasing is active. It warns about code which might break the strict aliasing rules that the compiler is using for optimization. Higher levels correspond to higher accuracy (fewer false positives). Higher levels also correspond to more effort, similar to the way -O works. -Wstrict-aliasing is equivalent to -Wstrict-aliasing=n, with n=3.
 #
 # Level 1: Most aggressive, quick, least accurate. Possibly useful when higher levels do not warn but -fstrict-aliasing still breaks the code, as it has very few false negatives. However, it has many false positives. Warns for all pointer conversions between possibly incompatible types, even if never dereferenced. Runs in the frontend only.
@@ -368,7 +368,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstrict-aliasing=n")
 # Level 3 (default for -Wstrict-aliasing): Should have very few false positives and few false negatives. Slightly slower than levels 1 or 2 when optimization is enabled. Takes care of the common pun+dereference pattern in the frontend: *(int*)&some_float. If optimization is enabled, it also runs in the backend, where it deals with multiple statement cases using flow-sensitive points-to information. Only warns when the converted pointer is dereferenced. Does not warn about incomplete types.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstrict-overflow")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstrict-overflow=n")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstrict-overflow=5")
 # This option is only active when -fstrict-overflow is active. It warns about cases where the compiler optimizes based on the assumption that signed overflow does not occur. Note that it does not warn about all cases where the code might overflow: it only warns about cases where the compiler implements some optimization. Thus this warning depends on the optimization level.
 #
 # An optimization which assumes that signed overflow does not occur is perfectly safe if the values of the variables involved are such that overflow never does, in fact, occur. Therefore this warning can easily give a false positive: a warning about code which is not actually a problem. To help focus on important issues, several warning levels are defined. No warnings are issued for the use of undefined signed overflow when estimating how many iterations a loop will require, in particular when determining whether a loop will be executed at all.
@@ -384,7 +384,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstrict-overflow=n")
 # Also warn about cases where the compiler reduces the magnitude of a constant involved in a comparison. For example: x + 2 > y will be simplified to x + 1 >= y. This is reported only at the highest warning level because this simplification applies to many comparisons, so this warning level will give a very large number of false positives.
 #
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsuggest-attribute=[pure|const|noreturn]")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsuggest-attribute=[pure|const|noreturn]")
 # Warn for cases where adding an attribute may be beneficial. The attributes currently supported are listed below.
 # -Wsuggest-attribute=pure
 # -Wsuggest-attribute=const
@@ -395,7 +395,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsuggest-attribute=[pure|const|noreturn
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Warray-bounds")
 # This option is only active when -ftree-vrp is active (default for -O2 and above). It warns about subscripts to arrays that are always out of bounds. This warning is enabled by -Wall.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-div-by-zero")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-div-by-zero")
 # Do not warn about compile-time integer division by zero. Floating point division by zero is not warned about, as it can be a legitimate way of obtaining infinities and NaNs.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsystem-headers")
@@ -411,7 +411,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfloat-equal")
 #
 # The idea behind this is that sometimes it is convenient (for the programmer) to consider floating-point values as approximations to infinitely precise real numbers. If you are doing this, then you need to compute (by analyzing the code, or in some other way) the maximum or likely maximum error that the computation introduces, and allow for it when performing comparisons (and when producing output, but that's a different problem). In particular, instead of testing for equality, you would check to see whether the two values have ranges that overlap; and this is done with the relational operators, so equality comparisons are probably mistaken.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wtraditional") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wtraditional") # (C and Objective-C only)
 # Warn about certain constructs that behave differently in traditional and ISO C. Also warn about ISO C constructs that have no traditional C equivalent, and/or problematic constructs which should be avoided.
 # Macro parameters that appear within string literals in the macro body. In traditional C macro replacement takes place within string literals, but does not in ISO C.
 # In traditional C, some preprocessor directives did not exist. Traditional preprocessors would only consider a line to be a directive if the ‘#’ appeared in column 1 on the line. Therefore -Wtraditional warns about directives that traditional C understands but would ignore because the ‘#’ does not appear as the first character on the line. It also suggests you hide directives like ‘#pragma’ not understood by traditional C by indenting them. Some traditional implementations would not recognize ‘#elif’, so it suggests avoiding it altogether.
@@ -430,31 +430,31 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wtraditional") # (C and Objective-C onl
 # Use of ISO C style function definitions. This warning intentionally is not issued for prototype declarations or variadic functions because these ISO C features will appear in your code when using libiberty's traditional C compatibility macros, PARAMS and VPARAMS. This warning is also bypassed for nested functions because that feature is already a GCC extension and thus not relevant to traditional C compatibility.
 #
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wtraditional-conversion") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wtraditional-conversion") # (C and Objective-C only)
 # Warn if a prototype causes a type conversion that is different from what would happen to the same argument in the absence of a prototype. This includes conversions of fixed point to floating and vice versa, and conversions changing the width or signedness of a fixed point argument except when the same as the default promotion.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wdeclaration-after-statement") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wdeclaration-after-statement") # (C and Objective-C only)
 # Warn when a declaration is found after a statement in a block. This construct, known from C++, was introduced with ISO C99 and is by default allowed in GCC. It is not supported by ISO C90 and was not supported by GCC versions before GCC 3.0. See Mixed Declarations.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wundef")
 # Warn if an undefined identifier is evaluated in an ‘#if’ directive.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-endif-labels")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-endif-labels")
 # Do not warn whenever an ‘#else’ or an ‘#endif’ are followed by text.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wshadow")
 # Warn whenever a local variable or type declaration shadows another variable, parameter, type, or class member (in C++), or whenever a built-in function is shadowed. Note that in C++, the compiler will not warn if a local variable shadows a struct/class/enum, but will warn if it shadows an explicit typedef.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wlarger-than=len")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wlarger-than=len")
 # Warn whenever an object of larger than len bytes is defined.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wframe-larger-than=len")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wframe-larger-than=len")
 # Warn if the size of a function frame is larger than len bytes. The computation done to determine the stack frame size is approximate and not conservative. The actual requirements may be somewhat greater than len even if you do not get a warning. In addition, any space allocated via alloca, variable-length arrays, or related constructs is not included by the compiler when determining whether or not to issue a warning.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunsafe-loop-optimizations")
 # Warn if the loop cannot be optimized because the compiler could not assume anything on the bounds of the loop indices. With -funsafe-loop-optimizations warn if the compiler made such assumptions.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-pedantic-ms-format") # (MinGW targets only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-pedantic-ms-format") # (MinGW targets only)
 # Disables the warnings about non-ISO printf / scanf format width specifiers I32, I64, and I used on Windows targets depending on the MS runtime, when you are using the options -Wformat and -pedantic without gnu-extensions.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpointer-arith")
@@ -463,10 +463,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpointer-arith")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wtype-limits")
 # Warn if a comparison is always true or always false due to the limited range of the data type, but do not warn for constant expressions. For example, warn if an unsigned variable is compared against zero with ‘<’ or ‘>=’. This warning is also enabled by -Wextra.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wbad-function-cast") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wbad-function-cast") # (C and Objective-C only)
 # Warn whenever a function call is cast to a non-matching type. For example, warn if int malloc() is cast to anything *.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wc++-compat") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wc++-compat") # (C and Objective-C only)
 # Warn about ISO C constructs that are outside of the common subset of ISO C and ISO C++, e.g. request for implicit conversion from void * to a pointer to non-void type.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wc++0x-compat") # (C++ and Objective-C++ only)
@@ -499,7 +499,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wconversion")
 #
 # For C++, also warn for confusing overload resolution for user-defined conversions; and conversions that will never use a type conversion operator: conversions to void, the same type, a base class or a reference to them. Warnings about conversions between signed and unsigned integers are disabled by default in C++ unless -Wsign-conversion is explicitly enabled.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-conversion-null") # (C++ and Objective-C++ only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-conversion-null") # (C++ and Objective-C++ only)
 # Do not warn for conversions between NULL and non-pointer types. -Wconversion-null is enabled by default.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wempty-body")
@@ -508,7 +508,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wempty-body")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wenum-compare")
 # Warn about a comparison between values of different enum types. In C++ this warning is enabled by default. In C this warning is enabled by -Wall.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wjump-misses-init") # (C, Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wjump-misses-init") # (C, Objective-C only)
 # Warn if a goto statement or a switch statement jumps forward across the initialization of a variable, or jumps backward to a label after the variable has been initialized. This only warns about variables which are initialized when they are declared. This warning is only supported for C and Objective C; in C++ this sort of branch is an error in any case.
 #
 # -Wjump-misses-init is included in -Wc++-compat. It can be disabled with the -Wno-jump-misses-init option.
@@ -528,28 +528,28 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wlogical-op")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Waggregate-return")
 # Warn if any functions that return structures or unions are defined or called. (In languages where you can return an array, this also elicits a warning.)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-attributes")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-attributes")
 # Do not warn if an unexpected __attribute__ is used, such as unrecognized attributes, function attributes applied to variables, etc. This will not stop errors for incorrect use of supported attributes.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-builtin-macro-redefined")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-builtin-macro-redefined")
 # Do not warn if certain built-in macros are redefined. This suppresses warnings for redefinition of __TIMESTAMP__, __TIME__, __DATE__, __FILE__, and __BASE_FILE__.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstrict-prototypes") # (C and Objective-C only)
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstrict-prototypes") # (C and Objective-C only)
 # Warn if a function is declared or defined without specifying the argument types. (An old-style function definition is permitted without a warning if preceded by a declaration which specifies the argument types.)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wold-style-declaration") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wold-style-declaration") # (C and Objective-C only)
 # Warn for obsolescent usages, according to the C Standard, in a declaration. For example, warn if storage-class specifiers like static are not the first things in a declaration. This warning is also enabled by -Wextra.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wold-style-definition") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wold-style-definition") # (C and Objective-C only)
 # Warn if an old-style function definition is used. A warning is given even if there is a previous prototype.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wmissing-parameter-type") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wmissing-parameter-type") # (C and Objective-C only)
 # A function parameter is declared without a type specifier in K&R-style functions:
 #           void foo(bar) { }
 #
 # This warning is also enabled by -Wextra.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wmissing-prototypes") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wmissing-prototypes") # (C and Objective-C only)
 # Warn if a global function is defined without a previous prototype declaration. This warning is issued even if the definition itself provides a prototype. The aim is to detect global functions that fail to be declared in header files.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wmissing-declarations")
@@ -571,10 +571,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wmissing-format-attribute")
 #
 # GCC will also warn about function definitions which might be candidates for format attributes. Again, these are only possible candidates. GCC will guess that format attributes might be appropriate for any function that calls a function like vprintf or vscanf, but this might not always be the case, and some functions for which format attributes are appropriate may not be detected.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-multichar")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-multichar")
 # Do not warn if a multicharacter constant (‘'FOOF'’) is used. Usually they indicate a typo in the user's code, as they have implementation-defined values, and should not be used in portable code.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnormalized=<none|id|nfc|nfkc>")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnormalized=<none|id|nfc|nfkc>")
 # In ISO C and ISO C++, two identifiers are different if they are different sequences of characters. However, sometimes when characters outside the basic ASCII character set are used, you can have two different character sequences that look the same. To avoid confusion, the ISO 10646 standard sets out some normalization rules which when applied ensure that two sequences that look the same are turned into the same sequence. GCC can warn you if you are using identifiers which have not been normalized; this option controls that warning.
 #
 # There are four levels of warning that GCC supports. The default is -Wnormalized=nfc, which warns about any identifier which is not in the ISO 10646 “C” normalized form, NFC. NFC is the recommended form for most uses.
@@ -585,16 +585,16 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnormalized=<none|id|nfc|nfkc>")
 #
 # Some characters in ISO 10646 have distinct meanings but look identical in some fonts or display methodologies, especially once formatting has been applied. For instance \u207F, “SUPERSCRIPT LATIN SMALL LETTER N”, will display just like a regular n which has been placed in a superscript. ISO 10646 defines the NFKC normalization scheme to convert all these into a standard form as well, and GCC will warn if your code is not in NFKC if you use -Wnormalized=nfkc. This warning is comparable to warning about every identifier that contains the letter O because it might be confused with the digit 0, and so is not the default, but may be useful as a local coding convention if the programming environment is unable to be fixed to display these characters distinctly.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated")
 # Do not warn about usage of deprecated features. See Deprecated Features.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
 # Do not warn about uses of functions (see Function Attributes), variables (see Variable Attributes), and types (see Type Attributes) marked as deprecated by using the deprecated attribute.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-overflow")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-overflow")
 # Do not warn about compile-time overflow in constant expressions.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Woverride-init") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Woverride-init") # (C and Objective-C only)
 # Warn if an initialized field without side effects is overridden when using designated initializers (see Designated Initializers).
 #
 # This warning is included in -Wextra. To get other -Wextra warnings without this one, use ‘-Wextra -Wno-override-init’.
@@ -627,7 +627,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpadded")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wredundant-decls")
 # Warn if anything is declared more than once in the same scope, even in cases where multiple declaration is valid and changes nothing.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnested-externs") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnested-externs") # (C and Objective-C only)
 # Warn if an extern declaration is encountered within a function.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Winline")
@@ -635,15 +635,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Winline")
 #
 # The compiler uses a variety of heuristics to determine whether or not to inline a function. For example, the compiler takes into account the size of the function being inlined and the amount of inlining that has already been done in the current function. Therefore, seemingly insignificant changes in the source program can cause the warnings produced by -Winline to appear or disappear.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-invalid-offsetof") # (C++ and Objective-C++ only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-invalid-offsetof") # (C++ and Objective-C++ only)
 # Suppress warnings from applying the ‘offsetof’ macro to a non-POD type. According to the 1998 ISO C++ standard, applying ‘offsetof’ to a non-POD type is undefined. In existing C++ implementations, however, ‘offsetof’ typically gives meaningful results even when applied to certain kinds of non-POD types. (Such as a simple ‘struct’ that fails to be a POD type only by virtue of having a constructor.) This flag is for users who are aware that they are writing nonportable code and who have deliberately chosen to ignore the warning about it.
 #
 # The restrictions on ‘offsetof’ may be relaxed in a future version of the C++ standard.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-int-to-pointer-cast")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-int-to-pointer-cast")
 # Suppress warnings from casts to pointer type of an integer of a different size. In C++, casting to a pointer type of smaller size is an error. Wint-to-pointer-cast is enabled by default.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-pointer-to-int-cast") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-pointer-to-int-cast") # (C and Objective-C only)
 # Suppress warnings from casts from a pointer to an integer type of a different size.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Winvalid-pch")
@@ -664,7 +664,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wvolatile-register-var")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wdisabled-optimization")
 # Warn if a requested optimization pass is disabled. This warning does not generally indicate that there is anything wrong with your code; it merely indicates that GCC's optimizers were unable to handle the code effectively. Often, the problem is that your code is too big or too complex; GCC will refuse to optimize programs when the optimization itself is likely to take inordinate amounts of time.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpointer-sign") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpointer-sign") # (C and Objective-C only)
 # Warn for pointer argument passing or assignment with different signedness. This option is only supported for C and Objective-C. It is implied by -Wall and by -pedantic, which can be disabled with -Wno-pointer-sign.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstack-protector")
@@ -680,5 +680,5 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Woverlength-strings")
 #
 # This option is implied by -pedantic, and can be disabled with -Wno-overlength-strings.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunsuffixed-float-constants") # (C and Objective-C only)
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunsuffixed-float-constants") # (C and Objective-C only)
  # GCC will issue a warning for any floating constant that does not have a suffix. When used together with -Wsystem-headers it will warn about such constants in system header files. This can be useful when preparing code to use with the FLOAT_CONST_DECIMAL64 pragma from the decimal floating-point extension to C99.
