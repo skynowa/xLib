@@ -1,3 +1,37 @@
+#--------------------------------------------------------------------------------------------------
+# \file  CxxFlags.cmake
+# \brief CMAKE_CXX_FLAGS for GCC 4.6.4
+#
+# Doc - https://gcc.gnu.org/onlinedocs/gcc-4.6.4/gcc/Option-Summary.html#Option-Summary
+#--------------------------------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------------------------------
+# Overall Options
+#
+# 3.2 Options Controlling the Kind of Output
+#--------------------------------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------------------------------
+# C++ Language Options
+#
+# 3.5 Options Controlling C++ Dialect
+#--------------------------------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------------------------------
+# Language Independent Options
+#
+# 3.7 Options to Control Diagnostic Messages Formatting
+#--------------------------------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------------------------------
+# Warning Options
+#
+# 3.8 Options to Request or Suppress Warnings
+#--------------------------------------------------------------------------------------------------
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsyntax-only")
 # Check the code for syntax errors, but don't do anything beyond that.
@@ -682,3 +716,39 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Woverlength-strings")
 
 ## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunsuffixed-float-constants") # (C and Objective-C only)
  # GCC will issue a warning for any floating constant that does not have a suffix. When used together with -Wsystem-headers it will warn about such constants in system header files. This can be useful when preparing code to use with the FLOAT_CONST_DECIMAL64 pragma from the decimal floating-point extension to C99.
+
+
+#--------------------------------------------------------------------------------------------------
+# Debugging Options
+#
+# 3.9 Options for Debugging Your Program or GCC
+#--------------------------------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------------------------------
+# Optimization Options
+#
+# 3.10 Options That Control Optimization
+#--------------------------------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------------------------------
+# Preprocessor Options
+#
+# 3.11 Options Controlling the Preprocessor
+#--------------------------------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------------------------------
+# Machine Dependent Options
+#
+#
+#--------------------------------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------------------------------
+# Code Generation Options
+#
+# 3.18 Options for Code Generation Conventions
+#--------------------------------------------------------------------------------------------------
+
