@@ -2,7 +2,7 @@
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsyntax-only")
 # Check the code for syntax errors, but don't do anything beyond that.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmax-errors=1")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmax-errors=0")
 # Limits the maximum number of error messages to n, at which point GCC bails out rather than attempting to continue processing the source code. If n is 0 (the default), there is no limit on the number of error messages produced. If -Wfatal-errors is also specified, then -Wfatal-errors takes precedence over this option.
 
 ## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")
@@ -18,7 +18,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
 
 # Note that specifying -Werror=foo automatically implies -Wfoo. However, -Wno-error=foo does not imply anything.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfatal-errors")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfatal-errors")
 # This option causes the compiler to abort compilation on the first error occurred rather than trying to keep going and printing further error messages.
 #
 # You can request many specific warnings with options beginning ‘-W’, for example -Wimplicit to request warnings on implicit declarations. Each of these specific warning options also has a negative form beginning ‘-Wno-’ to turn off warnings; for example, -Wno-implicit. This manual lists only one of the two forms, whichever is not the default. For further, language-specific options also refer to C++ Dialect Options and Objective-C and Objective-C++ Dialect Options.
