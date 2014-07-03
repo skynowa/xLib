@@ -398,7 +398,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Warray-bounds")
 ## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-div-by-zero")
 # Do not warn about compile-time integer division by zero. Floating point division by zero is not warned about, as it can be a legitimate way of obtaining infinities and NaNs.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsystem-headers")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsystem-headers")
 # Print warning messages for constructs found in system header files. Warnings from system headers are normally suppressed, on the assumption that they usually do not indicate real problems and would only make the compiler output harder to read. Using this command line option tells GCC to emit warnings from system headers as if they occurred in user code. However, note that using -Wall in conjunction with this option will not warn about unknown pragmas in system headers—for that, -Wunknown-pragmas must also be used.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wtrampolines")
@@ -436,7 +436,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfloat-equal")
 ## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wdeclaration-after-statement") # (C and Objective-C only)
 # Warn when a declaration is found after a statement in a block. This construct, known from C++, was introduced with ISO C99 and is by default allowed in GCC. It is not supported by ISO C90 and was not supported by GCC versions before GCC 3.0. See Mixed Declarations.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wundef")
+### set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wundef")
 # Warn if an undefined identifier is evaluated in an ‘#if’ directive.
 
 ## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-endif-labels")
