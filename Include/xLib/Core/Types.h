@@ -39,7 +39,18 @@ xNAMESPACE_BEGIN2(xlib, core)
     typedef signed long int        long_t;
     typedef const long_t           clong_t;
 
+    // longlong_t
+#if   xCOMPILER_MINGW
     typedef signed long long int   longlong_t;
+#elif xCOMPILER_MS
+    typedef signed long long int   longlong_t;
+#elif xCOMPILER_CODEGEAR
+    typedef signed long long int   longlong_t;
+#elif xCOMPILER_CLANG
+    typedef signed long long int   longlong_t;
+#elif xCOMPILER_GNUC
+    typedef int64_t   longlong_t;
+#endif
     typedef const longlong_t       clonglong_t;
 
     typedef unsigned int           uint_t;
@@ -51,7 +62,18 @@ xNAMESPACE_BEGIN2(xlib, core)
     typedef unsigned long int      ulong_t;
     typedef const ulong_t          culong_t;
 
+    // ulonglong_t
+#if   xCOMPILER_MINGW
     typedef unsigned long long int ulonglong_t;
+#elif xCOMPILER_MS
+    typedef unsigned long long int ulonglong_t;
+#elif xCOMPILER_CODEGEAR
+    typedef unsigned long long int ulonglong_t;
+#elif xCOMPILER_CLANG
+    typedef unsigned long long int ulonglong_t;
+#elif xCOMPILER_GNUC
+    typedef uint64_t               ulonglong_t;
+#endif
     typedef const ulonglong_t      culonglong_t;
 
     typedef float                  float_t;
@@ -126,35 +148,35 @@ xNAMESPACE_BEGIN(std)
     typedef const string           cstring_t;
     typedef const wstring          cwstring_t;
 
-    typedef basic_string< tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
+    typedef basic_string<tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
                                    tstring_t;
     typedef const tstring_t        ctstring_t;
 
-    typedef basic_string< uchar_t, char_traits<uchar_t>, allocator<uchar_t> >
+    typedef basic_string<uchar_t, char_traits<uchar_t>, allocator<uchar_t> >
                                    ustring_t;
     typedef const ustring_t        custring_t;
 
-    typedef basic_istream < tchar_t, char_traits<tchar_t> >
+    typedef basic_istream<tchar_t, char_traits<tchar_t> >
                                    tistream_t;
     typedef const tistream_t       ctistream_t;
 
-    typedef basic_ostream < tchar_t, char_traits<tchar_t> >
+    typedef basic_ostream<tchar_t, char_traits<tchar_t> >
                                    tostream_t;
     typedef const tostream_t       ctostream_t;
 
-    typedef basic_iostream< tchar_t, char_traits<tchar_t> >
+    typedef basic_iostream<tchar_t, char_traits<tchar_t> >
                                    tiostream_t;
     typedef const tiostream_t      ctiostream_t;
 
-    typedef basic_istringstream< tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
+    typedef basic_istringstream<tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
                                    tistringstream_t;
     typedef const tistringstream_t ctistringstream_t;
 
-    typedef basic_ostringstream< tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
+    typedef basic_ostringstream<tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
                                    tostringstream_t;
     typedef const tostringstream_t ctostringstream_t;
 
-    typedef basic_stringstream < tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
+    typedef basic_stringstream<tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
                                    tstringstream_t;
     typedef const tstringstream_t  ctstringstream_t;
 
@@ -162,11 +184,11 @@ xNAMESPACE_BEGIN(std)
                                    tifstream_t;
     typedef const tifstream_t      ctifstream_t;
 
-    typedef basic_ofstream< tchar_t, char_traits<tchar_t> >
+    typedef basic_ofstream<tchar_t, char_traits<tchar_t> >
                                    tofstream_t;
     typedef const tofstream_t      ctofstream_t;
 
-    typedef basic_fstream < tchar_t, char_traits<tchar_t> >
+    typedef basic_fstream<tchar_t, char_traits<tchar_t> >
                                    tfstream_t;
     typedef const tfstream_t       ctfstream_t;
 
