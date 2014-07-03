@@ -352,7 +352,7 @@
     ///< code for review
 #define xCOMMENT       0
     ///< comment for code
-#define xNA            ;
+#define xNA            // n/a
     ///< at this point the code is not applicable
 #define xNOT_IMPL      // n/a
     ///< code not implemented
