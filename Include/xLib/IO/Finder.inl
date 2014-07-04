@@ -153,9 +153,9 @@ Finder::close()
 /* static */
 inline void_t
 Finder::dirs(
-    std::ctstring_t    &a_rootDirPath,    ///< target root dir
-    std::ctstring_t    &a_shellFilter,    ///< shell wildcard pattern
-    cbool_t            &a_isRecursively,  ///< is recursive search
+    std::ctstring_t    &a_rootDirPath,   ///< target root dir
+    std::ctstring_t    &a_shellFilter,   ///< shell wildcard pattern
+    cbool_t            &a_isRecursively, ///< is recursive search
     std::vec_tstring_t *a_dirPaths       ///< result dir paths
 )
 {
