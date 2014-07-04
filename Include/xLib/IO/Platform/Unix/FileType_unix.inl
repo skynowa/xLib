@@ -19,7 +19,7 @@ FileType::_get_impl() const
 
     xTSTAT_STRUCT info;   xSTRUCT_ZERO(info);
 
-    int_t iRv = ::xTSTAT(filePath().c_str(), &info);
+    int_t iRv = xTSTAT(filePath().c_str(), &info);
     xTEST_NA(iRv);
     if (iRv == - 1) {
         ftRv = faInvalid;

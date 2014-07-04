@@ -754,7 +754,7 @@ String::formatV(
 
         va_list _args;
         xVA_COPY(_args, args);
-        writtenSize = std::xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
+        writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
         xVA_END(_args);
 
         assert(- 1 <  writtenSize);

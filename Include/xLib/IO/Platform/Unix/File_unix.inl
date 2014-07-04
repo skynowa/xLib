@@ -37,7 +37,7 @@ File::_time_impl(
 
     xTSTAT_STRUCT info; xSTRUCT_ZERO(info);
 
-    int_t iRv = ::xTSTAT(a_filePath.c_str(), &info);
+    int_t iRv = xTSTAT(a_filePath.c_str(), &info);
     xTEST_DIFF(iRv, - 1);
 
     // create - n/a

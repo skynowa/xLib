@@ -14,24 +14,24 @@
         #define xTEOF           WEOF
 
         #define xTMAIN          wmain
-        #define xTFPRINTF       fwprintf
-        #define xTASCTIME       _wasctime
+        #define xTFPRINTF       std::fwprintf
+        #define xTASCTIME       std::_wasctime
         #define xTSETLOCALE     std::_wsetlocale
         #define xTFOPEN         std::_wfopen
         #define xTFREOPEN       std::_wfreopen
         #define xTFDOPEN        ::_wfdopen
         #define xTVSNPRINTF     ::_vsnwprintf
-        #define xTPERROR        _wperror
-        #define xTVSPRINTF      _vswprintf
-        #define xTVPRINTF       vwprintf
+        #define xTPERROR        std::_wperror
+        #define xTVSPRINTF      std::_vswprintf
+        #define xTVPRINTF       std::vwprintf
         #define xTVFPRINTF      std::vfwprintf
         #define xTFGETC         std::getwc
-        #define xTPUTS          _putws
-        #define xTPUTCHAR       putwchar
+        #define xTPUTS          std::_putws
+        #define xTPUTCHAR       std::putwchar
         #define xTACCESS        ::_waccess
-        #define xTGETS          _getws
-        #define xTGETCHAR       getwchar
-        #define xTTMPNAM        _wtmpnam
+        #define xTGETS          std::_getws
+        #define xTGETCHAR       std::getwchar
+        #define xTTMPNAM        std::_wtmpnam
         #define xSTRFTIME       std::wcsftime
 
         // xTMKSTEMP
@@ -54,7 +54,7 @@
         #define xTUNGETC        std::ungetwc
         #define xTFPUTC         std::fputwc
         #define xTFGETS         std::fgetws
-        #define xTSTRLEN        wcslen
+        #define xTSTRLEN        std::wcslen
         #define xTCHMOD         ::_wchmod
         #define xTSYSTEM        std::_wsystem
 
@@ -73,15 +73,15 @@
 
     // xTSTAT
     #if   xCOMPILER_MINGW
-        #define xTSTAT          _wstat
+        #define xTSTAT          ::_wstat
     #elif xCOMPILER_MS
-        #define xTSTAT          _tstat64
+        #define xTSTAT          ::_tstat64
     #elif xCOMPILER_CODEGEAR
-        #define xTSTAT          _tstat
+        #define xTSTAT          ::_tstat
     #elif xCOMPILER_GNUC
-        #define xTSTAT          _wlstat
+        #define xTSTAT          ::_wlstat
     #else
-        #define xTSTAT          _wstat
+        #define xTSTAT          ::_wstat
     #endif
 
     // xSTRERROR
@@ -119,24 +119,24 @@
         #define xTEOF           EOF
 
         #define xTMAIN          main
-        #define xTFPRINTF       fprintf
-        #define xTASCTIME       asctime
+        #define xTFPRINTF       std::fprintf
+        #define xTASCTIME       std::asctime
         #define xTSETLOCALE     std::setlocale
         #define xTFOPEN         std::fopen
         #define xTFREOPEN       std::freopen
         #define xTFDOPEN        ::fdopen
         #define xTVSNPRINTF     ::vsnprintf
-        #define xTPERROR        perror
-        #define xTVSPRINTF      vsprintf
-        #define xTVPRINTF       vprintf
+        #define xTPERROR        std::perror
+        #define xTVSPRINTF      std::vsprintf
+        #define xTVPRINTF       std::vprintf
         #define xTVFPRINTF      std::vfprintf
         #define xTFGETC         std::getc
-        #define xTPUTS          puts
-        #define xTPUTCHAR       putchar
+        #define xTPUTS          std::puts
+        #define xTPUTCHAR       std::putchar
         #define xTACCESS        ::access
-        #define xTGETS          gets
-        #define xTGETCHAR       getchar
-        #define xTTMPNAM        tmpnam
+        #define xTGETS          std::gets
+        #define xTGETCHAR       std::getchar
+        #define xTTMPNAM        std::tmpnam
         #define xSTRFTIME       std::strftime
 
         // xTMKSTEMP
@@ -159,7 +159,7 @@
         #define xTUNGETC        std::ungetc
         #define xTFPUTC         std::fputc
         #define xTFGETS         std::fgets
-        #define xTSTRLEN        strlen
+        #define xTSTRLEN        std::strlen
         #define xTCHMOD         ::chmod
         #define xTSYSTEM        std::system
 
@@ -178,15 +178,15 @@
 
     // xTSTAT
     #if   xCOMPILER_MINGW
-        #define xTSTAT          stat
+        #define xTSTAT          ::stat
     #elif xCOMPILER_MS
-        #define xTSTAT          _tstat64
+        #define xTSTAT          ::_tstat64
     #elif xCOMPILER_CODEGEAR
-        #define xTSTAT          _tstat
+        #define xTSTAT          ::_tstat
     #elif xCOMPILER_GNUC
-        #define xTSTAT          lstat
+        #define xTSTAT          ::lstat
     #else
-        #define xTSTAT          stat
+        #define xTSTAT          ::stat
     #endif
 
     // xSTRERROR
@@ -254,28 +254,28 @@
 
 // xGETADDRINFO
 #if   xCOMPILER_MINGW
-    #define xGETADDRINFO        getaddrinfo
+    #define xGETADDRINFO        ::getaddrinfo
 #elif xCOMPILER_MS
-    #define xGETADDRINFO        GetAddrInfo
+    #define xGETADDRINFO        ::GetAddrInfo
 #elif xCOMPILER_CODEGEAR
-    #define xGETADDRINFO        GetAddrInfo
+    #define xGETADDRINFO        ::GetAddrInfo
 #elif xCOMPILER_GNUC
-    #define xGETADDRINFO        getaddrinfo
+    #define xGETADDRINFO        ::getaddrinfo
 #else
-    #define xGETADDRINFO        getaddrinfo
+    #define xGETADDRINFO        ::getaddrinfo
 #endif
 
 // xGETNAMEINFO
 #if   xCOMPILER_MINGW
-    #define xGETNAMEINFO        getnameinfo
+    #define xGETNAMEINFO        ::getnameinfo
 #elif xCOMPILER_MS
-    #define xGETNAMEINFO        GetNameInfo
+    #define xGETNAMEINFO        ::GetNameInfo
 #elif xCOMPILER_CODEGEAR
-    #define xGETNAMEINFO        GetNameInfo
+    #define xGETNAMEINFO        ::GetNameInfo
 #elif xCOMPILER_GNUC
-    #define xGETNAMEINFO        getnameinfo
+    #define xGETNAMEINFO        ::getnameinfo
 #else
-    #define xGETNAMEINFO        getnameinfo
+    #define xGETNAMEINFO        ::getnameinfo
 #endif
 
 // xSTATVFS (struct and function)
