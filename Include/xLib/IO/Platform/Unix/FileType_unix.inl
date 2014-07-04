@@ -35,7 +35,7 @@ FileType::_set_impl(
     ctypes_t &a_values
 ) const
 {
-    int_t iRv = ::xTCHMOD(filePath().c_str(), a_values);
+    int_t iRv = xTCHMOD(filePath().c_str(), a_values);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------

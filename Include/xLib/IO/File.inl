@@ -73,7 +73,7 @@ File::create(
 
     // create, open file
     {
-        std::FILE *file = std::xTFOPEN(a_filePath.c_str(), _openMode(a_mode).c_str());
+        std::FILE *file = xTFOPEN(a_filePath.c_str(), _openMode(a_mode).c_str());
         xTEST_PTR(file);
 
         _handle   = file;
@@ -104,7 +104,7 @@ File::reopen(
 
     // create, reopen file
     {
-        std::FILE *file = std::xTFREOPEN(a_filePath.c_str(), _openMode(a_mode).c_str(), get());
+        std::FILE *file = xTFREOPEN(a_filePath.c_str(), _openMode(a_mode).c_str(), get());
         xTEST_PTR(file);
 
         _handle   = file;
@@ -257,7 +257,7 @@ File::write(
     va_list args;
     xVA_START(args, a_format);
 
-    int_t iRv = std::xTVFPRINTF(get(), a_format, args);
+    int_t iRv = xTVFPRINTF(get(), a_format, args);
     xTEST_LESS(- 1, iRv);
 
     xVA_END(args);
@@ -274,7 +274,7 @@ File::writeV(
     xTEST_PTR(a_format);
     xTEST_NA(a_args);
 
-    int_t iRv = std::xTVFPRINTF(get(), a_format, a_args);
+    int_t iRv = xTVFPRINTF(get(), a_format, a_args);
     xTEST_LESS(- 1, iRv);
 
     return iRv;
@@ -292,7 +292,7 @@ File::readLine(
     std::tstring_t str;
     str.resize(a_maxCount + 1); // + 1 for 0
 
-    tchar_t *pszRv = std::xTFGETS(&str.at(0), static_cast<int_t>( str.size() ), get());
+    tchar_t *pszRv = xTFGETS(&str.at(0), static_cast<int_t>( str.size() ), get());
     xTEST_PTR(pszRv);
 
     // trim xPTR_NULL's from string, remove EOL
@@ -308,7 +308,7 @@ File::writeLine(
 {
     xTEST_NA(a_str);
 
-    int_t iRv = std::xTFPUTS((a_str + Const::eol()).c_str(), get());
+    int_t iRv = xTFPUTS((a_str + Const::eol()).c_str(), get());
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -328,7 +328,7 @@ File::writeChar(
 {
     xTEST_NA(a_ch);
 
-    twint_t iRv = std::xTFPUTC(a_ch, get());
+    twint_t iRv = xTFPUTC(a_ch, get());
     xTEST_DIFF(iRv, xTEOF);
     xTEST_EQ(static_cast<tchar_t>( iRv ), a_ch);
 }
@@ -340,7 +340,7 @@ File::ungetChar(
 {
     xTEST_NA(a_ch);
 
-    twint_t iRv = std::xTUNGETC(a_ch, get());
+    twint_t iRv = xTUNGETC(a_ch, get());
     xTEST_DIFF(iRv, xTEOF);
     xTEST_EQ(static_cast<tchar_t>( iRv ), a_ch);
 }
@@ -459,7 +459,7 @@ File::resize(
     const off_t _size = static_cast<off_t>( a_size );
 #endif
 
-    int_t iRv = ::xCHSIZE(_nativeHandle( get() ), _size);
+    int_t iRv = xCHSIZE(_nativeHandle( get() ), _size);
     xTEST_EQ(iRv, 0);
     xTEST_EQ(a_size, size());
 }
@@ -574,7 +574,7 @@ File::isExists(
 
     xCHECK_RET(!isFile(a_filePath), false);
 
-    int_t iRv = ::xTACCESS(a_filePath.c_str(), amExistence);
+    int_t iRv = xTACCESS(a_filePath.c_str(), amExistence);
     xCHECK_RET(iRv == - 1 && StdError::get() == ENOENT, false);
 
     return true;
@@ -617,7 +617,7 @@ File::access(
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_NA(a_mode);
 
-    int_t iRv = ::xTACCESS(a_filePath.c_str(), a_mode);
+    int_t iRv = xTACCESS(a_filePath.c_str(), a_mode);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -637,7 +637,7 @@ File::chmod(
     const mode_t mode = static_cast<mode_t>( a_mode );
 #endif
 
-    int_t iRv = ::xTCHMOD(a_filePath.c_str(), mode);
+    int_t iRv = xTCHMOD(a_filePath.c_str(), mode);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -667,7 +667,7 @@ File::remove(
 
     chmod(a_filePath, pmWrite);
 
-    int_t iRv = std::xTREMOVE(a_filePath.c_str());
+    int_t iRv = xTREMOVE(a_filePath.c_str());
     xTEST_DIFF(iRv, - 1);
     xTEST_EQ(isExists(a_filePath), false);
 }
@@ -800,7 +800,7 @@ File::unlink(
 {
     xTEST_EQ(a_filePath.empty(), false);
 
-    int_t iRv = ::xTUNLINK(a_filePath.c_str());
+    int_t iRv = xTUNLINK(a_filePath.c_str());
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -814,7 +814,7 @@ File::rename(
     xTEST_EQ(a_filePathOld.empty(), false);
     xTEST_EQ(a_filePathNew.empty(), false);
 
-    int_t iRv = std::xTRENAME(a_filePathOld.c_str(), a_filePathNew.c_str());
+    int_t iRv = xTRENAME(a_filePathOld.c_str(), a_filePathNew.c_str());
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -979,7 +979,7 @@ File::textRead(
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_PTR(a_content);
 
-    File         file;
+    File           file;
     std::tstring_t sRv;
 
     file.create(a_filePath, omBinRead, true);
@@ -1140,7 +1140,7 @@ File::textWrite(
     const ExOpenMode    &a_mode
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST_EQ(a_filePath.empty(),  false);
     xTEST_EQ(a_separator.empty(), false);
     xTEST_NA(a_content);
     xTEST_DIFF(a_mode, omUnknown);
@@ -1260,7 +1260,7 @@ File::_stdHandle(
     xTEST_NA(a_fileHandle);
     xTEST_NA(a_mode);
 
-    std::FILE *pfRv = ::xTFDOPEN(a_fileHandle, _openMode(a_mode).c_str());
+    std::FILE *pfRv = xTFDOPEN(a_fileHandle, _openMode(a_mode).c_str());
     xTEST_PTR(pfRv);
 
     return pfRv;

@@ -17,18 +17,18 @@
         #define xTFPRINTF       fwprintf
         #define xTASCTIME       _wasctime
         #define xTSETLOCALE     std::_wsetlocale
-        #define xTFOPEN         _wfopen
-        #define xTFREOPEN       _wfreopen
-        #define xTFDOPEN        _wfdopen
+        #define xTFOPEN         std::_wfopen
+        #define xTFREOPEN       std::_wfreopen
+        #define xTFDOPEN        ::_wfdopen
         #define xTVSNPRINTF     ::_vsnwprintf
         #define xTPERROR        _wperror
         #define xTVSPRINTF      _vswprintf
         #define xTVPRINTF       vwprintf
-        #define xTVFPRINTF      vfwprintf
+        #define xTVFPRINTF      std::vfwprintf
         #define xTFGETC         std::getwc
         #define xTPUTS          _putws
         #define xTPUTCHAR       putwchar
-        #define xTACCESS        _waccess
+        #define xTACCESS        ::_waccess
         #define xTGETS          _getws
         #define xTGETCHAR       getwchar
         #define xTTMPNAM        _wtmpnam
@@ -47,15 +47,15 @@
         #define xTMKSTEMP       std::mkstemp
     #endif
 
-        #define xTRENAME        _wrename
-        #define xTUNLINK        _wunlink
-        #define xTREMOVE        _wremove
-        #define xTFPUTS         fputws
-        #define xTUNGETC        ungetwc
-        #define xTFPUTC         fputwc
-        #define xTFGETS         fgetws
+        #define xTRENAME        std::_wrename
+        #define xTUNLINK        ::_wunlink
+        #define xTREMOVE        std::_wremove
+        #define xTFPUTS         std::fputws
+        #define xTUNGETC        std::ungetwc
+        #define xTFPUTC         std::fputwc
+        #define xTFGETS         std::fgetws
         #define xTSTRLEN        wcslen
-        #define xTCHMOD         _wchmod
+        #define xTCHMOD         ::_wchmod
         #define xTSYSTEM        std::_wsystem
 
     // xTSTAT_STRUCT
@@ -122,18 +122,18 @@
         #define xTFPRINTF       fprintf
         #define xTASCTIME       asctime
         #define xTSETLOCALE     std::setlocale
-        #define xTFOPEN         fopen
-        #define xTFREOPEN       freopen
-        #define xTFDOPEN        fdopen
+        #define xTFOPEN         std::fopen
+        #define xTFREOPEN       std::freopen
+        #define xTFDOPEN        ::fdopen
         #define xTVSNPRINTF     ::vsnprintf
         #define xTPERROR        perror
         #define xTVSPRINTF      vsprintf
         #define xTVPRINTF       vprintf
-        #define xTVFPRINTF      vfprintf
+        #define xTVFPRINTF      std::vfprintf
         #define xTFGETC         std::getc
         #define xTPUTS          puts
         #define xTPUTCHAR       putchar
-        #define xTACCESS        access
+        #define xTACCESS        ::access
         #define xTGETS          gets
         #define xTGETCHAR       getchar
         #define xTTMPNAM        tmpnam
@@ -152,15 +152,15 @@
         #define xTMKSTEMP       std::mktemp
     #endif
 
-        #define xTRENAME        rename
-        #define xTUNLINK        unlink
-        #define xTREMOVE        remove
-        #define xTFPUTS         fputs
-        #define xTUNGETC        ungetc
-        #define xTFPUTC         fputc
-        #define xTFGETS         fgets
+        #define xTRENAME        std::rename
+        #define xTUNLINK        ::unlink
+        #define xTREMOVE        std::remove
+        #define xTFPUTS         std::fputs
+        #define xTUNGETC        std::ungetc
+        #define xTFPUTC         std::fputc
+        #define xTFGETS         std::fgets
         #define xTSTRLEN        strlen
-        #define xTCHMOD         chmod
+        #define xTCHMOD         ::chmod
         #define xTSYSTEM        std::system
 
     // xTSTAT_STRUCT
@@ -234,15 +234,15 @@
 
 // xCHSIZE
 #if   xCOMPILER_MINGW
-    #define xCHSIZE             chsize
+    #define xCHSIZE             ::chsize
 #elif xCOMPILER_MS
-    #define xCHSIZE             _chsize_s
+    #define xCHSIZE             ::_chsize_s
 #elif xCOMPILER_CODEGEAR
-    #define xCHSIZE             chsize
+    #define xCHSIZE             ::chsize
 #elif xCOMPILER_GNUC
-    #define xCHSIZE             ftruncate
+    #define xCHSIZE             ::ftruncate
 #else
-    #define xCHSIZE             chsize
+    #define xCHSIZE             ::chsize
 #endif
 
 // xIOCTLSOCKET
