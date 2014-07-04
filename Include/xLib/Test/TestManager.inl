@@ -37,7 +37,7 @@ TestManager::TestManager(
 inline
 TestManager::~TestManager()
 {
-    std::for_each(_tests.begin(), _tests.end(), functors::Delete());
+    std::for_each(_tests.begin(), _tests.end(), Delete());
 
     xCHECK_DO(_isUseTracing, Trace() << xT("TestManager: all tests destructed."));
 }

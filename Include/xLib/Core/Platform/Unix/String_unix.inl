@@ -89,7 +89,7 @@ String::_toLowerCase_impl(
 {
     std::tstring_t sRv(a_str);
 
-    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), functors::ToLower( std::locale() ));
+    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), ToLower( std::locale() ));
 
     return sRv;
 }
@@ -103,7 +103,7 @@ String::_toUpperCase_impl(
 {
     std::tstring_t sRv(a_str);
 
-    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), functors::ToUpper( std::locale() ));
+    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), ToUpper( std::locale() ));
 
     return sRv;
 }
@@ -128,8 +128,7 @@ StringCI::_compare_impl(
     const std::locale &a_locale /* = std::locale() */   ///< locale
 )
 {
-    bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(),
-        functors::CompareCI(a_locale));
+    bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(), CompareCI(a_locale));
     xCHECK_RET(!bRv, false);
 
     return true;
