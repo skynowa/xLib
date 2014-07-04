@@ -145,7 +145,7 @@ DnsClient::nameInfo(
     tchar_t servInfo[NI_MAXSERV + 1] = {0};
 
     // TODO: DnsClient::nameInfo()
-    int_t iRv = ::xGETNAMEINFO((sockaddr *)&socketAddr, sizeof(socketAddr), &hostName[0],
+    int_t iRv = xGETNAMEINFO((sockaddr *)&socketAddr, sizeof(socketAddr), &hostName[0],
         NI_MAXHOST, &servInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     xTEST_EQ(iRv, 0);
 
@@ -167,7 +167,7 @@ DnsClient::hostAddrInfo(
     //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
     //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
 
-    int_t iRv = ::xGETADDRINFO(a_hostName.c_str(), a_port.c_str(), a_hints, a_addrInfo);
+    int_t iRv = xGETADDRINFO(a_hostName.c_str(), a_port.c_str(), a_hints, a_addrInfo);
     xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
