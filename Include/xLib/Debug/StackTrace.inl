@@ -13,16 +13,9 @@
 
 xNAMESPACE_ANONYM_BEGIN
 
-std::csize_t elementsNum   = 5;
+std::csize_t elementsNum = 5;
     ///< number of elements
-std::csize_t skipFramesNum = 2;
-   /**
-    * Skip number of frames
-    *
-    * Skip 2 first elements of a real stack - it's a class internals:
-    *   0  xLib_test  ??  0  0x46d314  xlib::StackTrace::_get() const
-    *   1  xLib_test  ??  0  0x46e090  xlib::StackTrace::toString()
-    */
+
 xNAMESPACE_ANONYM_END
 
 #if   xENV_WIN
@@ -50,12 +43,14 @@ xNAMESPACE_BEGIN2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 inline
 StackTrace::StackTrace(
+    cint_t          &a_skipFramesNum,      /* = 2 */    ///< Skip number of frames
     std::ctstring_t &a_linePrefix,         /* = xT("\t") */
     std::ctstring_t &a_elementSeparator,   /* = xT("  ") */
     std::ctstring_t &a_lineSeparator,      /* = xT("\n") */
     cbool_t         &a_isWrapFilePaths,    /* = true */
     cbool_t         &a_isFuncParamsDisable /* = true */
 ) :
+    _skipFramesNum      (a_skipFramesNum),
     _linePrefix         (a_linePrefix),
     _elementSeparator   (a_elementSeparator),
     _lineSeparator      (a_lineSeparator),

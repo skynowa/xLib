@@ -38,7 +38,7 @@ StackTrace::_get_impl(
     tchar_t **symbols = ::backtrace_symbols(stackBuff, framesNum);
     xCHECK_DO(symbols == xPTR_NULL, return);
 
-    for (int_t i = ::skipFramesNum; i < framesNum; ++ i) {
+    for (int_t i = _skipFramesNum; i < framesNum; ++ i) {
         std::tstring_t modulePath;
         std::tstring_t filePath;
         std::tstring_t fileLine;
