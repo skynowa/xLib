@@ -14,7 +14,7 @@ class StackTrace
     /// stack trace
 {
 public:
-    explicit        StackTrace(std::ctstring_t &linePrefix = xT("\t\t"),
+    explicit        StackTrace(cint_t &skipFramesNum = 2, std::ctstring_t &linePrefix = xT("\t\t"),
                         std::ctstring_t &elementSeparator = xT("  "),
                         std::ctstring_t &lineSeparator = xT("\n"),
                         cbool_t &isWrapFilePaths = true, cbool_t &isFuncParamsDisable = true);
@@ -26,6 +26,7 @@ public:
         ///< get stack trace with format output
 
 private:
+    cint_t          _skipFramesNum;
     std::ctstring_t _linePrefix;
     std::ctstring_t _elementSeparator;
     std::ctstring_t _lineSeparator;

@@ -54,7 +54,7 @@ StackTrace::_get_impl(
     symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
     symbol->MaxNameLen   = 255UL;
 
-    for (ushort_t i = ::skipFramesNum; i < framesNum; ++ i) {
+    for (ushort_t i = _skipFramesNum; i < framesNum; ++ i) {
         std::tstring_t modulePath;
         std::tstring_t filePath;
         std::tstring_t fileLine;
