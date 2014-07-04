@@ -8,7 +8,7 @@
  * \mainpage
  *
  * This library is cross-platform and can be compiled and used on
- * Linux, FreeBSD and Windows (x86, x64)
+ * Windows, Linux, BSD, Apple OS famalies (x86, x64)
  *
  * \author  author:  skynowa \n
  *          e-mail:  skynowa@gmail.com \n
@@ -17,87 +17,9 @@
  *          ICQ:     627713628 \n
  *          web:     https://bitbucket.org/skynowa/xlib
  *
- * \date    2008 - 2013
+ * \date    2008 - 2014
  *
  * \section sec_code_convention Code conventions
- *
- * <pre>
- *   Data:
- *       Nx*          - namespace
- *       *          - class
- *       Sx*          - struct
- *       Ux*          - union
- *       Ex*          - enumeration
- *       p*           - pointer
- *       *T           - template
- *       *_t          - type
- *
- *   Access:
- *       g_*          - global
- *       s_*          - static
- *       m_*          - member of some data structure
- *       fr_*         - friend
- *       a_*          - function param
- *
- *   Modify:
- *       c*           - const
- *       v*           - volatile
- *       m*           - mutable
- *
- *   Types:
- *       a*           - array
- *
- *       v*           - void_t
- *       b*           - bool_t
- *
- *       i*           - int_t
- *       ui*          - unsigned int_t
- *       uc*          - uchar_t                  (unsigned char)
- *       si*          - short_t                  (short int_t)
- *       li*          - long_t                   (long int_t)
- *       lli*         - longlong_t               (long long int_t)
- *       ui*          - uint_t                   (unsigned int_t)
- *       us*          - ushort_t                 (unsigned short int_t)
- *       ul*          - ulong_t                  (unsigned long int_t)
- *       ull*         - ulonglong_t              (unsigned long long int_t)
- *
- *       f*           - float_t
- *       d*           - double
- *       ld*          - long double
- *
- *       sz*          - C-string
- *
- *   STL types:
- *       s*           - std::tstring_t           (std::string)
- *       us*          - std::ustring_t           (std::ustring)
- *
- *       ism*         - std::tistream_t          (std::istream)
- *       osm*         - std::tostream_t          (std::ostream)
- *       iosm*        - std::tiostream_t         (std::iostream)
- *
- *       issm*        - std::tistringstream_t    (std::istringstream)
- *       ossm*        - std::tostringstream_t    (std::ostringstream)
- *       ssm*         - std::tstringstream_t     (std::stringstream)
- *
- *       ifsm*        - std::tifstream_t         (std::ifstream)
- *       ofsm*        - std::tofstream_t         (std::ofstream)
- *       fsm*         - std::tfstream_t          (std::fstream)
- *
- *       v[type]*     - std::vector
- *       d[type]*     - std::deque
- *       l[type]*     - std::list
- *
- *       st[type]*    - std::stack
- *       q[type]*     - std::queue
- *       pq[type]*    - std::priority_queue
- *
- *       s[type]*     - std::set
- *       ms[type]*    - std::multiset
- *       m[type]*     - std::map
- *       mm[type]*    - std::multimap
- *       bs[type]*    - std::bitset
- * </pre>
- *
  */
 
 
