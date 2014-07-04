@@ -8,6 +8,14 @@
 #include <Test/Test_xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+void_t onTerminate();
+void_t onSignal(int sig);
+void_t setSignalHandler();
+void_t fail();
+void_t foo1();
+void_t foo2();
+void_t foo3();
+//-------------------------------------------------------------------------------------------------
 void_t
 onTerminate()
 {
@@ -162,9 +170,12 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         TestManager manager(isUseTracing);
 
         // Test
+    #if 0
         manager.add(new Test_Test);
+    #endif
 
         // Core
+    #if 0
         manager.add(new Test_Units);
         manager.add(new Test_Defines);
         manager.add(new Test_Limits);
@@ -180,22 +191,26 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_String);
         manager.add(new Test_DateTime);
         manager.add(new Test_Com);
+    #endif
 
         // Crypt
+    #if 0
         manager.add(new Test_Base64);
-    #if xHAVE_OPENSSL_CRYPTO
+        #if xHAVE_OPENSSL_CRYPTO
         manager.add(new Test_Blowfish);
-    #endif
+        #endif
         manager.add(new Test_Crc32);
         manager.add(new Test_Guid);
         manager.add(new Test_Random);
 
         // Db
-    #if xHAVE_MYSQL
+        #if xHAVE_MYSQL
         manager.add(new Test_MySql);
+        #endif
     #endif
 
         // Debug
+    #if 0
         manager.add(new Test_Debug);
         manager.add(new Test_BuildInfo);
         manager.add(new Test_StdError);
@@ -206,25 +221,31 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_ErrorReport);
         manager.add(new Test_Profiler);
         manager.add(new Test_AutoProfiler);
+    #endif
 
         // File system
-        manager.add(new Test_Path);
-        manager.add(new Test_FileType);
-        manager.add(new Test_File);
-        manager.add(new Test_FileTemp);
-        manager.add(new Test_Dll);
+    #if 1
+//        manager.add(new Test_Path);
+//        manager.add(new Test_FileType);
+//        manager.add(new Test_File);
+//        manager.add(new Test_FileTemp);
+//        manager.add(new Test_Dll);
         manager.add(new Test_Finder);
-        manager.add(new Test_Dir);
-        manager.add(new Test_Volume);
-        manager.add(new Test_Config);
-        manager.add(new Test_Backup);
+//        manager.add(new Test_Dir);
+//        manager.add(new Test_Volume);
+//        manager.add(new Test_Config);
+//        manager.add(new Test_Backup);
+    #endif
 
         // Log
+    #if 0
         manager.add(new Test_Trace);
         manager.add(new Test_FileLog);
         manager.add(new Test_SystemLog);
+    #endif
 
         // Net
+    #if 0
         manager.add(new Test_CookiePv0);
         manager.add(new Test_CookiePv1);
         manager.add(new Test_Cgi);
@@ -233,13 +254,17 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         // manager.add(new Test_TcpClient);
         // manager.add(new Test_TcpServer);
         manager.add(new Test_HttpClient);
+    #endif
 
         // Patterns
+    #if 0
         manager.add(new Test_Observer);
         manager.add(new Test_Raii);
         manager.add(new Test_Singleton);
+    #endif
 
         // Sync
+    #if 0
         manager.add(new Test_AtomicLongInt);
         manager.add(new Test_ThreadStorage);
         manager.add(new Test_Mutex);
@@ -254,16 +279,21 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         // manager.add(new Test_Thread);
         // manager.add(new Test_ThreadPool);
         manager.add(new Test_Process);
+    #endif
 
         // Gui
+    #if 0
         manager.add(new Test_MsgBox);
+    #endif
 
         // System
+    #if 0
         manager.add(new Test_Environment);
         manager.add(new Test_SystemInfo);
         manager.add(new Test_ProcessInfo);
         manager.add(new Test_Console);
         manager.add(new Test_Shell);
+    #endif
 
         manager.run(allLoops, unitLoops, caseLoops);
     }
