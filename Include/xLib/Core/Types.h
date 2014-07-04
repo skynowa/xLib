@@ -51,7 +51,8 @@ xNAMESPACE_BEGIN2(xlib, core)
 #elif xCOMPILER_CLANG
     typedef signed long long int   longlong_t;
 #elif xCOMPILER_GNUC
-    typedef int64_t   longlong_t;
+    __extension__
+    typedef signed long long int   longlong_t;
 #endif
     typedef const longlong_t       clonglong_t;
 
@@ -74,7 +75,8 @@ xNAMESPACE_BEGIN2(xlib, core)
 #elif xCOMPILER_CLANG
     typedef unsigned long long int ulonglong_t;
 #elif xCOMPILER_GNUC
-    typedef uint64_t               ulonglong_t;
+    __extension__
+    typedef unsigned long long int ulonglong_t;
 #endif
     typedef const ulonglong_t      culonglong_t;
 
