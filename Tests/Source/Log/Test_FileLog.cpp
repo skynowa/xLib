@@ -54,7 +54,7 @@ Test_FileLog::unit(
     xTEST_CASE("FileLog::clear", a_caseLoops)
     {
         log.clear();
-        xTEST_EQ(File::size( log.filePath()), ulonglong_t(0));
+        xTEST_EQ(File::size( log.filePath()), longlong_t(0));
     }
 
     xTEST_CASE("FileLog::remove", a_caseLoops)
