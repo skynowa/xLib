@@ -683,7 +683,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Winline")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Winvalid-pch")
 # Warn if a precompiled header (see Precompiled Headers) is found in the search path but can't be used.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wlong-long")
+if (0)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wlong-long")
+else()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-long-long")
+endif()
 # Warn if ‘long long’ type is used. This is enabled by either -pedantic or -Wtraditional in ISO C90 and C++98 modes. To inhibit the warning messages, use -Wno-long-long.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wvariadic-macros")
