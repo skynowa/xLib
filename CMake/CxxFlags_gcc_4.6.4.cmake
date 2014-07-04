@@ -316,6 +316,21 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsign-promo") # (C++ and Objective-C++ 
 # 3.7 Options to Control Diagnostic Messages Formatting
 #--------------------------------------------------------------------------------------------------
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmessage-length=0")
+# Try to format error messages so that they fit on lines of about n characters. The default is 72 characters for g++ and 0 for the rest of the front ends supported by GCC. If n is zero, then no line-wrapping will be done; each error message will appear on a single line.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-show-location=once")
+# Only meaningful in line-wrapping mode. Instructs the diagnostic messages reporter to emit once source location information; that is, in case the message is too long to fit on a single physical line and has to be wrapped, the source location won't be emitted (as prefix) again, over and over, in subsequent continuation lines. This is the default behavior.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-show-location=every-line")
+# Only meaningful in line-wrapping mode. Instructs the diagnostic messages reporter to emit the same source location information (as prefix) for physical lines that result from the process of breaking a message which is too long to fit on a single line.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-diagnostics-show-option")
+# By default, each diagnostic emitted includes text which indicates the command line option that directly controls the diagnostic (if such an option is known to the diagnostic machinery). Specifying the -fno-diagnostics-show-option flag suppresses that behavior.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wcoverage-mismatch")
+# Warn if feedback profiles do not match when using the -fprofile-use option. If a source file was changed between -fprofile-gen and -fprofile-use, the files with the profile feedback can fail to match the source file and GCC can not use the profile feedback information. By default, this warning is enabled and is treated as an error. -Wno-coverage-mismatch can be used to disable the warning or -Wno-error=coverage-mismatch can be used to disable the error. Disable the error for this warning can result in poorly optimized code, so disabling the error is useful only in the case of very minor changes such as bug fixes to an existing code-base. Completely disabling the warning is not recommended.
+
 
 #--------------------------------------------------------------------------------------------------
 # Warning Options
