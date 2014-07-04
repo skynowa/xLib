@@ -315,7 +315,7 @@ File::writeLine(
 inline tchar_t
 File::readChar() const
 {
-    twint_t iRv = std::xTFGETC(get());
+    twint_t iRv = xTFGETC(get());
     xTEST_DIFF(iRv, xTEOF);
 
     return static_cast<tchar_t>( iRv );

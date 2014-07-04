@@ -25,7 +25,7 @@
         #define xTVSPRINTF      _vswprintf
         #define xTVPRINTF       vwprintf
         #define xTVFPRINTF      vfwprintf
-        #define xTFGETC         getwc
+        #define xTFGETC         std::getwc
         #define xTPUTS          _putws
         #define xTPUTCHAR       putwchar
         #define xTACCESS        _waccess
@@ -130,7 +130,7 @@
         #define xTVSPRINTF      vsprintf
         #define xTVPRINTF       vprintf
         #define xTVFPRINTF      vfprintf
-        #define xTFGETC         getc
+        #define xTFGETC         std::getc
         #define xTPUTS          puts
         #define xTPUTCHAR       putchar
         #define xTACCESS        access
