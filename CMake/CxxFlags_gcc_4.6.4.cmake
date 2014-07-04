@@ -20,6 +20,296 @@
 #--------------------------------------------------------------------------------------------------
 
 
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fabi-version=n")
+# Use version n of the C++ ABI. Version 2 is the version of the C++ ABI that first appeared in G++ 3.4. Version 1 is the version of the C++ ABI that first appeared in G++ 3.2. Version 0 will always be the version that conforms most closely to the C++ ABI specification. Therefore, the ABI obtained using version 0 will change as ABI bugs are fixed.
+#
+# The default is version 2.
+#
+# Version 3 corrects an error in mangling a constant address as a template argument.
+#
+# Version 4 implements a standard mangling for vector types.
+#
+# Version 5 corrects the mangling of attribute const/volatile on function pointer types, decltype of a plain decl, and use of a function parameter in the declaration of another parameter.
+#
+# See also -Wabi.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-access-control")
+# Turn off all access checking. This switch is mainly useful for working around bugs in the access control code.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fcheck-new")
+# Check that the pointer returned by operator new is non-null before attempting to modify the storage allocated. This check is normally unnecessary because the C++ standard specifies that operator new will only return 0 if it is declared ‘throw()’, in which case the compiler will always check the return value even without this option. In all other cases, when operator new has a non-empty exception specification, memory exhaustion is signalled by throwing std::bad_alloc. See also ‘new (nothrow)’.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fconserve-space")
+# Put uninitialized or runtime-initialized global variables into the common segment, as C does. This saves space in the executable at the cost of not diagnosing duplicate definitions. If you compile with this flag and your program mysteriously crashes after main() has completed, you may have an object that is being destroyed twice because two definitions were merged.
+
+# This option is no longer useful on most targets, now that support has been added for putting variables into BSS without making them common.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fconstexpr-depth=n")
+# Set the maximum nested evaluation depth for C++0x constexpr functions to n. A limit is needed to detect endless recursion during constant expression evaluation. The minimum specified by the standard is 512.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-deduce-init-list")
+# Disable deduction of a template type parameter as std::initializer_list from a brace-enclosed initializer list, i.e.
+#           template <class T> auto forward(T t) -> decltype (realfn (t))
+#           {
+#             return realfn (t);
+#           }
+
+#           void f()
+#           {
+#             forward({1,2}); // call forward<std::initializer_list<int>>
+#           }
+
+# This option is present because this deduction is an extension to the current specification in the C++0x working draft, and there was some concern about potential overload resolution problems.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffriend-injection")
+# Inject friend functions into the enclosing namespace, so that they are visible outside the scope of the class in which they are declared. Friend functions were documented to work this way in the old Annotated C++ Reference Manual, and versions of G++ before 4.1 always worked that way. However, in ISO C++ a friend function which is not declared in an enclosing scope can only be found using argument dependent lookup. This option causes friends to be injected as they were in earlier releases.
+
+# This option is for compatibility, and may be removed in a future release of G++.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-elide-constructors")
+# The C++ standard allows an implementation to omit creating a temporary which is only used to initialize another object of the same type. Specifying this option disables that optimization, and forces G++ to call the copy constructor in all cases.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-enforce-eh-specs")
+# Don't generate code to check for violation of exception specifications at runtime. This option violates the C++ standard, but may be useful for reducing code size in production builds, much like defining ‘NDEBUG’. This does not give user code permission to throw exceptions in violation of the exception specifications; the compiler will still optimize based on the specifications, so throwing an unexpected exception will result in undefined behavior.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffor-scope")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-for-scope")
+# If -ffor-scope is specified, the scope of variables declared in a for-init-statement is limited to the ‘for’ loop itself, as specified by the C++ standard. If -fno-for-scope is specified, the scope of variables declared in a for-init-statement extends to the end of the enclosing scope, as was the case in old versions of G++, and other (traditional) implementations of C++.
+
+# The default if neither flag is given to follow the standard, but to allow and give a warning for old-style code that would otherwise be invalid, or have different behavior.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-gnu-keywords")
+# Do not recognize typeof as a keyword, so that code can use this word as an identifier. You can use the keyword __typeof__ instead. -ansi implies -fno-gnu-keywords.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-implicit-templates")
+# Never emit code for non-inline templates which are instantiated implicitly (i.e. by use); only emit code for explicit instantiations. See Template Instantiation, for more information.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-implicit-inline-templates")
+# Don't emit code for implicit instantiations of inline templates, either. The default is to handle inlines differently so that compiles with and without optimization will need the same set of explicit instantiations.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-implement-inlines")
+# To save space, do not emit out-of-line copies of inline functions controlled by ‘#pragma implementation’. This will cause linker errors if these functions are not inlined everywhere they are called.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fms-extensions")
+# Disable pedantic warnings about constructs used in MFC, such as implicit int and getting a pointer to member function via non-standard syntax.
+
+### set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-nonansi-builtins")
+# Disable built-in declarations of functions that are not mandated by ANSI/ISO C. These include ffs, alloca, _exit, index, bzero, conjf, and other related functions.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fnothrow-opt")
+# Treat a throw() exception specification as though it were a noexcept specification to reduce or eliminate the text size overhead relative to a function with no exception specification. If the function has local variables of types with non-trivial destructors, the exception specification will actually make the function smaller because the EH cleanups for those variables can be optimized away. The semantic effect is that an exception thrown out of a function with such an exception specification will result in a call to terminate rather than unexpected.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-operator-names")
+# Do not treat the operator name keywords and, bitand, bitor, compl, not, or and xor as synonyms as keywords.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-optional-diags")
+# Disable diagnostics that the standard says a compiler does not need to issue. Currently, the only such diagnostic issued by G++ is the one for a name having multiple meanings within a class.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive")
+# Downgrade some diagnostics about nonconformant code from errors to warnings. Thus, using -fpermissive will allow some nonconforming code to compile.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-pretty-templates")
+# When an error message refers to a specialization of a function template, the compiler will normally print the signature of the template followed by the template arguments and any typedefs or typenames in the signature (e.g. void f(T) [with T = int] rather than void f(int)) so that it's clear which template is involved. When an error message refers to a specialization of a class template, the compiler will omit any template arguments which match the default template arguments for that template. If either of these behaviors make it harder to understand the error message rather than easier, using -fno-pretty-templates will disable them.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -frepo")
+# Enable automatic template instantiation at link time. This option also implies -fno-implicit-templates. See Template Instantiation, for more information.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti")
+# Disable generation of information about every class with virtual functions for use by the C++ runtime type identification features (‘dynamic_cast’ and ‘typeid’). If you don't use those parts of the language, you can save some space by using this flag. Note that exception handling uses the same information, but it will generate it as needed. The ‘dynamic_cast’ operator can still be used for casts that do not require runtime type information, i.e. casts to void * or to unambiguous base classes.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstats")
+# Emit statistics about front-end processing at the end of the compilation. This information is generally only useful to the G++ development team.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstrict-enums")
+# Allow the compiler to optimize using the assumption that a value of enumeration type can only be one of the values of the enumeration (as defined in the C++ standard; basically, a value which can be represented in the minimum number of bits needed to represent all the enumerators). This assumption may not be valid if the program uses a cast to convert an arbitrary integer value to the enumeration type.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ftemplate-depth=n")
+# Set the maximum instantiation depth for template classes to n. A limit on the template instantiation depth is needed to detect endless recursions during template class instantiation. ANSI/ISO C++ conforming programs must not rely on a maximum depth greater than 17 (changed to 1024 in C++0x).
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-threadsafe-statics")
+# Do not emit the extra code to use the routines specified in the C++ ABI for thread-safe initialization of local statics. You can use this option to reduce code size slightly in code that doesn't need to be thread-safe.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fuse-cxa-atexit")
+# Register destructors for objects with static storage duration with the __cxa_atexit function rather than the atexit function. This option is required for fully standards-compliant handling of static destructors, but will only work if your C library supports __cxa_atexit.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-use-cxa-get-exception-ptr")
+# Don't use the __cxa_get_exception_ptr runtime routine. This will cause std::uncaught_exception to be incorrect, but is necessary if the runtime routine is not available.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility-inlines-hidden")
+# This switch declares that the user does not attempt to compare pointers to inline methods where the addresses of the two functions were taken in different shared objects.
+
+# The effect of this is that GCC may, effectively, mark inline methods with __attribute__ ((visibility ("hidden"))) so that they do not appear in the export table of a DSO and do not require a PLT indirection when used within the DSO. Enabling this option can have a dramatic effect on load and link times of a DSO as it massively reduces the size of the dynamic export table when the library makes heavy use of templates.
+
+# The behavior of this switch is not quite the same as marking the methods as hidden directly, because it does not affect static variables local to the function or cause the compiler to deduce that the function is defined in only one shared object.
+
+# You may mark a method as having a visibility explicitly to negate the effect of the switch for that method. For example, if you do want to compare pointers to a particular inline method, you might mark it as having default visibility. Marking the enclosing class with explicit visibility will have no effect.
+
+# Explicitly instantiated inline methods are unaffected by this option as their linkage might otherwise cross a shared library boundary. See Template Instantiation.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility-ms-compat")
+# This flag attempts to use visibility settings to make GCC's C++ linkage model compatible with that of Microsoft Visual Studio.
+
+# The flag makes these changes to GCC's linkage model:
+# It sets the default visibility to hidden, like -fvisibility=hidden.
+# Types, but not their members, are not hidden by default.
+# The One Definition Rule is relaxed for types without explicit visibility specifications which are defined in more than one different shared object: those declarations are permitted if they would have been permitted when this option was not used.
+
+# In new code it is better to use -fvisibility=hidden and export those classes which are intended to be externally visible. Unfortunately it is possible for code to rely, perhaps accidentally, on the Visual Studio behavior.
+
+# Among the consequences of these changes are that static data members of the same type with the same name but defined in different shared objects will be different, so changing one will not change the other; and that pointers to function members defined in different shared objects may not compare equal. When this flag is given, it is a violation of the ODR to define types with the same name differently.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-weak")
+# Do not use weak symbol support, even if it is provided by the linker. By default, G++ will use weak symbols if they are available. This option exists only for testing, and should not be used by end-users; it will result in inferior code and has no benefits. This option may be removed in a future release of G++.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -nostdinc++")
+# Do not search for header files in the standard directories specific to C++, but do still search the other standard directories. (This option is used when building the C++ library.)
+
+# In addition, these optimization, warning, and code generation options have meanings only for C++ programs:
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-default-inline")
+# Do not assume ‘inline’ for functions defined inside a class scope. See Options That Control Optimization. Note that these functions will have linkage like inline functions; they just won't be inlined by default.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wabi") # (C, Objective-C, C++ and Objective-C++ only)
+# Warn when G++ generates code that is probably not compatible with the vendor-neutral C++ ABI. Although an effort has been made to warn about all such cases, there are probably some cases that are not warned about, even though G++ is generating incompatible code. There may also be cases where warnings are emitted even though the code that is generated will be compatible.
+#
+# You should rewrite your code to avoid these warnings if you are concerned about the fact that code generated by G++ may not be binary compatible with code generated by other compilers.
+#
+# The known incompatibilities in -fabi-version=2 (the default) include:
+# A template with a non-type template parameter of reference type is mangled incorrectly:
+#                extern int N;
+#                template <int &> struct S {};
+#                void n (S<N>) {2}
+#
+# This is fixed in -fabi-version=3.
+# SIMD vector types declared using __attribute ((vector_size)) are mangled in a non-standard way that does not allow for overloading of functions taking vectors of different sizes.
+#
+# The mangling is changed in -fabi-version=4.
+#
+# The known incompatibilities in -fabi-version=1 include:
+# Incorrect handling of tail-padding for bit-fields. G++ may attempt to pack data into the same byte as a base class. For example:
+#                struct A { virtual void f(); int f1 : 1; };
+#                struct B : public A { int f2 : 1; };
+#
+# In this case, G++ will place B::f2 into the same byte asA::f1; other compilers will not. You can avoid this problem by explicitly padding A so that its size is a multiple of the byte size on your platform; that will cause G++ and other compilers to layout B identically.
+# Incorrect handling of tail-padding for virtual bases. G++ does not use tail padding when laying out virtual bases. For example:
+#                struct A { virtual void f(); char c1; };
+#                struct B { B(); char c2; };
+#                struct C : public A, public virtual B {};
+#
+# In this case, G++ will not place B into the tail-padding for A; other compilers will. You can avoid this problem by explicitly padding A so that its size is a multiple of its alignment (ignoring virtual base classes); that will cause G++ and other compilers to layout C identically.
+# Incorrect handling of bit-fields with declared widths greater than that of their underlying types, when the bit-fields appear in a union. For example:
+#                union U { int i : 4096; };
+#
+# Assuming that an int does not have 4096 bits, G++ will make the union too small by the number of bits in an int.
+# Empty classes can be placed at incorrect offsets. For example:
+#                struct A {};
+#
+#                struct B {
+#                  A a;
+#                  virtual void f ();
+#                };
+#
+#                struct C : public B, public A {};
+#
+# G++ will place the A base class of C at a nonzero offset; it should be placed at offset zero. G++ mistakenly believes that the A data member of B is already at offset zero.
+# Names of template functions whose types involve typename or template template parameters can be mangled incorrectly.
+#                template <typename Q>
+#                void f(typename Q::X) {}
+#
+#                template <template <typename> class Q>
+#                void f(typename Q<int>::X) {}
+#
+# Instantiations of these templates may be mangled incorrectly.
+#
+# It also warns psABI related changes. The known psABI changes at this point include:
+# For SYSV/x86-64, when passing union with long double, it is changed to pass in memory as specified in psABI. For example:
+#                union U {
+#                  long double ld;
+#                  int i;
+#                };
+#
+# union U will always be passed in memory.
+
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wctor-dtor-privacy") # (C++ and Objective-C++ only)
+# Warn when a class seems unusable because all the constructors or destructors in that class are private, and it has neither friends nor public static member functions.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnoexcept") # (C++ and Objective-C++ only)
+# Warn when a noexcept-expression evaluates to false because of a call to a function that does not have a non-throwing exception specification (i.e. ‘throw()’ or ‘noexcept’) but is known by the compiler to never throw an exception.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnon-virtual-dtor") # (C++ and Objective-C++ only)
+# Warn when a class has virtual functions and accessible non-virtual destructor, in which case it would be possible but unsafe to delete an instance of a derived class through a pointer to the base class. This warning is also enabled if -Weffc++ is specified.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wreorder") # (C++ and Objective-C++ only)
+# Warn when the order of member initializers given in the code does not match the order in which they must be executed. For instance:
+#           struct A {
+#             int i;
+#             int j;
+#             A(): j (0), i (1) { }
+#           };
+#
+# The compiler will rearrange the member initializers for ‘i’ and ‘j’ to match the declaration order of the members, emitting a warning to that effect. This warning is enabled by -Wall.
+#
+# The following -W... options are not affected by -Wall.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Weffc++") # (C++ and Objective-C++ only)
+# Warn about violations of the following style guidelines from Scott Meyers' Effective C++ book:
+# Item 11: Define a copy constructor and an assignment operator for classes with dynamically allocated memory.
+# Item 12: Prefer initialization to assignment in constructors.
+# Item 14: Make destructors virtual in base classes.
+# Item 15: Have operator= return a reference to *this.
+# Item 23: Don't try to return a reference when you must return an object.
+
+# Also warn about violations of the following style guidelines from Scott Meyers' More Effective C++ book:
+# Item 6: Distinguish between prefix and postfix forms of increment and decrement operators.
+# Item 7: Never overload &&, ||, or ,.
+
+# When selecting this option, be aware that the standard library headers do not obey all of these guidelines; use ‘grep -v’ to filter out those warnings.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstrict-null-sentinel") # (C++ and Objective-C++ only)
+# Warn also about the use of an uncasted NULL as sentinel. When compiling only with GCC this is a valid sentinel, as NULL is defined to __null. Although it is a null pointer constant not a null pointer, it is guaranteed to be of the same size as a pointer. But this use is not portable across different compilers.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-non-template-friend") # (C++ and Objective-C++ only)
+# Disable warnings when non-templatized friend functions are declared within a template. Since the advent of explicit template specification support in G++, if the name of the friend is an unqualified-id (i.e., ‘friend foo(int)’), the C++ language specification demands that the friend declare or define an ordinary, nontemplate function. (Section 14.5.3). Before G++ implemented explicit specification, unqualified-ids could be interpreted as a particular specialization of a templatized function. Because this non-conforming behavior is no longer the default behavior for G++, -Wnon-template-friend allows the compiler to check existing code for potential trouble spots and is on by default. This new compiler behavior can be turned off with -Wno-non-template-friend which keeps the conformant compiler code but disables the helpful warning.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wold-style-cast") # (C++ and Objective-C++ only)
+# Warn if an old-style (C-style) cast to a non-void type is used within a C++ program. The new-style casts (‘dynamic_cast’, ‘static_cast’, ‘reinterpret_cast’, and ‘const_cast’) are less vulnerable to unintended effects and much easier to search for.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Woverloaded-virtual") # (C++ and Objective-C++ only)
+# Warn when a function declaration hides virtual functions from a base class. For example, in:
+#           struct A {
+#             virtual void f();
+#           };
+#
+#           struct B: public A {
+#             void f(int);
+#           };
+#
+# the A class version of f is hidden in B, and code like:
+#           B* b;
+#           b->f();
+#
+# will fail to compile.
+
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-pmf-conversions") # (C++ and Objective-C++ only)
+# Disable the diagnostic for converting a bound pointer to member function to a plain pointer.
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsign-promo") # (C++ and Objective-C++ only)
+# Warn when overload resolution chooses a promotion from unsigned or enumerated type to a signed type, over a conversion to an unsigned type of the same size. Previous versions of G++ would try to preserve unsignedness, but the standard mandates the current behavior.
+#           struct A {
+#             operator int ();
+#             A& operator = (int);
+#           };
+#
+#           main ()
+#           {
+#             A a,b;
+#             a = b;
+#           }
+#
+# In this example, G++ will synthesize a default ‘A& operator = (const A&);’, while cfront will use the user-defined ‘operator =’.
+
+
 #--------------------------------------------------------------------------------------------------
 # Language Independent Options
 #
@@ -702,13 +992,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wvolatile-register-var")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wdisabled-optimization")
 # Warn if a requested optimization pass is disabled. This warning does not generally indicate that there is anything wrong with your code; it merely indicates that GCC's optimizers were unable to handle the code effectively. Often, the problem is that your code is too big or too complex; GCC will refuse to optimize programs when the optimization itself is likely to take inordinate amounts of time.
 
-## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpointer-sign") # (C and Objective-C only)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpointer-sign") # (C and Objective-C only)
 # Warn for pointer argument passing or assignment with different signedness. This option is only supported for C and Objective-C. It is implied by -Wall and by -pedantic, which can be disabled with -Wno-pointer-sign.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wstack-protector")
 # This option is only active when -fstack-protector is active. It warns about functions that will not be protected against stack smashing.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-mudflap")
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-mudflap")
 # Suppress warnings about constructs that cannot be instrumented by -fmudflap.
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Woverlength-strings")
