@@ -158,10 +158,10 @@ SystemInfo::_ramUsage_impl() const
     int_t iRv = ::sysinfo(&info);
     xTEST_DIFF(iRv, - 1);
 
-    cdouble_t usage = static_cast<cdouble_t>( info.totalram - info.freeram );
+    ulong_t usage = info.totalram - info.freeram;
 
-    ulong_t ulRv = static_cast<ulong_t>( Utils::safeDivT(usage * 100.0, info.totalram) );
-    xTEST_EQ(static_cast<cdouble_t>( info.totalram ), usage + static_cast<cdouble_t>( info.freeram ));
+    ulong_t ulRv = static_cast<ulong_t>( Utils::safeDivT(usage * 100, info.totalram) );
+    xTEST_EQ(info.totalram, usage + info.freeram);
 
     return ulRv;
 }
