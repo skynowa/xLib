@@ -33,7 +33,7 @@ Test_FileLog::unit(
     {
         for (size_t i = 0; i < 10; ++ i) {
             log.write(xT("simple log string: %s"), xT("qwerty01234567890"));
-            xTEST_LESS(0LL, File::size( log.filePath()) );
+            xTEST_GR(File::size( log.filePath()), ulonglong_t(0));
         }
     }
 
@@ -54,7 +54,7 @@ Test_FileLog::unit(
     xTEST_CASE("FileLog::clear", a_caseLoops)
     {
         log.clear();
-        xTEST_EQ(0LL, File::size( log.filePath()) );
+        xTEST_EQ(File::size( log.filePath()), ulonglong(0));
     }
 
     xTEST_CASE("FileLog::remove", a_caseLoops)
