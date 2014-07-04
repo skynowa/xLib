@@ -159,8 +159,7 @@ String::castA(
 
     std::string asRv;
 
-    std::transform(a_str.begin(), a_str.end(), std::back_inserter(asRv),
-        functors::Narrow( std::locale() ));
+    std::transform(a_str.begin(), a_str.end(), std::back_inserter(asRv), Narrow( std::locale() ));
 
     return asRv;
 }
@@ -175,8 +174,7 @@ String::castW(
 
     std::wstring wsRv;
 
-    std::transform(a_str.begin(), a_str.end(), std::back_inserter(wsRv),
-        functors::Widen( std::locale() ));
+    std::transform(a_str.begin(), a_str.end(), std::back_inserter(wsRv), Widen( std::locale() ));
 
     return wsRv;
 }
@@ -953,7 +951,7 @@ StringCI::find(
     std::tstring_t::const_iterator cit;
 
     cit = std::search(a_str.begin() + a_pos, a_str.end(), a_target.begin(), a_target.end(),
-        functors::CompareCI(a_locale));
+        CompareCI(a_locale));
     xCHECK_RET(cit != a_str.end(), cit - a_str.begin());
 
     return std::tstring_t::npos;
