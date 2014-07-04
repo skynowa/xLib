@@ -487,7 +487,7 @@ inline bool_t
 File::isEmpty() const
 {
     longlong_t fileSize = size();
-    xTEST_DIFF(fileSize, longlong_t(- 1));
+    xTEST_DIFF(fileSize, - 1LL);
 
     return (fileSize == 0LL);
 }
@@ -898,7 +898,7 @@ File::size(
 
     file.create(a_filePath, omRead, true);
     longlong_t liRv = file.size();
-    xTEST_LESS_EQ(longlong_t(0), liRv);
+    xTEST_GR_EQ(liRv, 0LL);
 
     return liRv;
 }
