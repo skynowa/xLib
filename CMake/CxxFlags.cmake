@@ -26,7 +26,7 @@ elseif (CMAKE_COMPILER_IS_CLANGXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -fcolor-diagnostics -Qunused-arguments")
         # -pedantic
 elseif (CMAKE_COMPILER_IS_GNUCXX)
-    if (0)
+    if (1)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmax-errors=1")
         # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pipe -Wall -Wno-deprecated -Wextra -Wconversion")
