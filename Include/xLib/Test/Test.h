@@ -50,14 +50,14 @@
         Debugger().reportMake(report); \
     }
 #define xTEST_MSG_PTR_IMPL(reportType, ptr, msg) \
-    if ( intptr_t(xPTR_NULL) == intptr_t(ptr) ) { \
+    if ( intptr_t(ptr) == intptr_t(xPTR_NULL) ) { \
         culong_t    _lastError = LastError::get(); \
         ErrorReport report(reportType, xT("xPTR_NULL"), xT(#ptr), intptr_t(ptr), intptr_t(xPTR_NULL), \
             xT("!="), _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }
 #define xTEST_MSG_PTR_FAIL_IMPL(reportType, ptr, msg) \
-    if ( intptr_t(xPTR_NULL) != intptr_t(ptr) ) { \
+    if ( intptr_t(ptr) != intptr_t(xPTR_NULL) ) { \
         culong_t    _lastError = LastError::get(); \
         ErrorReport report(reportType, xT("xPTR_NULL"), xT(#ptr), intptr_t(ptr), intptr_t(xPTR_NULL), \
             xT("=="), _lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
