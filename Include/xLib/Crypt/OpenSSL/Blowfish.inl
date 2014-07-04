@@ -94,7 +94,7 @@ Blowfish::setFileKey(
     file.create(a_filePath, File::omBinRead, true);
 
     longlong_t fileSize = file.size();
-    xTEST_LESS(0LL, fileSize);
+    xTEST_GR(fileSize, longlong_t(0));
     xTEST_GR_EQ(static_cast<longlong_t>( maxKeySize() ) >= fileSize, false);
 
     fileKey.resize( static_cast<size_t>( fileSize ) );
