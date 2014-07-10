@@ -191,6 +191,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_String);
         manager.add(new Test_DateTime);
         manager.add(new Test_Com);
+        manager.add(new Test_Application);
     #endif
 
         // Crypt

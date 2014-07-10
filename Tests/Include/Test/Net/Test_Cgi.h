@@ -16,6 +16,6 @@ class Test_Cgi :
 public:
                    Test_Cgi() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

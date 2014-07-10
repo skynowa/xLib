@@ -16,7 +16,7 @@ class Test_StackTrace :
 public:
                    Test_StackTrace() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

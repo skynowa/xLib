@@ -16,7 +16,7 @@ class Test_IpcSemaphore :
 public:
                    Test_IpcSemaphore() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

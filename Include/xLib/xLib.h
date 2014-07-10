@@ -30,6 +30,7 @@
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/DateTime.h>
+#include <xLib/Core/Application.h>
 
 // Crypt
 #include <xLib/Crypt/OpenSSL/Blowfish.h>

@@ -16,7 +16,7 @@ class Test_HttpClient :
 public:
                    Test_HttpClient() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

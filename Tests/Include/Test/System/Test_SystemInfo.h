@@ -16,6 +16,6 @@ class Test_SystemInfo :
 public:
                    Test_SystemInfo() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

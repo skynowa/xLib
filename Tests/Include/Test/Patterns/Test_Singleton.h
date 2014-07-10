@@ -16,6 +16,6 @@ class Test_Singleton :
 public:
                    Test_Singleton() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

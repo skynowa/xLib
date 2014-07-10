@@ -16,6 +16,6 @@ class Test_Environment :
 public:
                    Test_Environment() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

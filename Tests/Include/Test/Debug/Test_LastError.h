@@ -16,7 +16,7 @@ class Test_LastError :
 public:
                    Test_LastError() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

@@ -16,7 +16,7 @@ class Test_SystemLog:
 public:
                    Test_SystemLog() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

@@ -16,7 +16,7 @@ class Test_FileLog :
 public:
                    Test_FileLog() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

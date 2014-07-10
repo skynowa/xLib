@@ -29,6 +29,7 @@
 #include <Test/Core/Test_String.h>
 #include <Test/Core/Test_DateTime.h>
 #include <Test/Core/Win/Test_Com.h>
+#include <Test/Core/Test_Application.h>
 
 
 // Crypt
