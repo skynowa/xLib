@@ -162,7 +162,7 @@ Path::fileExt(
         sRv = xT("dat");
         break;
     case seBackup:
-        sRv = xT("bkp");
+        sRv = xT("bak");
         break;
     case seTemp:
         sRv = xT("tmp");
