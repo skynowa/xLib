@@ -16,7 +16,7 @@ class Test_Backup :
 public:
                    Test_Backup() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

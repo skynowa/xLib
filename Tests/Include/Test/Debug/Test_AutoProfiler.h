@@ -16,6 +16,6 @@ class Test_AutoProfiler :
 public:
                    Test_AutoProfiler() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

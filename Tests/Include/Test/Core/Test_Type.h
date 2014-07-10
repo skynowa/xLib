@@ -16,6 +16,6 @@ class Test_Type :
 public:
                    Test_Type() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

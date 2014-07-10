@@ -16,6 +16,6 @@ class Test_WaitableTimer :
 public:
                    Test_WaitableTimer() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

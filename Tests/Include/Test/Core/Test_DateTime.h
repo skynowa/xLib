@@ -16,6 +16,6 @@ class Test_DateTime :
 public:
                    Test_DateTime() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

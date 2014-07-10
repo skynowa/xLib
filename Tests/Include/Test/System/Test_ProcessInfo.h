@@ -16,7 +16,7 @@ class Test_ProcessInfo :
 public:
                    Test_ProcessInfo() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

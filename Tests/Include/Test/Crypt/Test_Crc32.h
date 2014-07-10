@@ -17,6 +17,6 @@ class Test_Crc32 :
 public:
                    Test_Crc32() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

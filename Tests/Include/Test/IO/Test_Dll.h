@@ -16,6 +16,6 @@ class Test_Dll :
 public:
                    Test_Dll() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

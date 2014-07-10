@@ -16,6 +16,6 @@ class Test_ErrorReport :
 public:
                    Test_ErrorReport() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

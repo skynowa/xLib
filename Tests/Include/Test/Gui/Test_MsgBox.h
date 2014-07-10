@@ -16,7 +16,7 @@ class Test_MsgBox :
 public:
                    Test_MsgBox() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
         ///< test unit
 };
 //-------------------------------------------------------------------------------------------------

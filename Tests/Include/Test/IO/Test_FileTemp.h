@@ -16,7 +16,7 @@ class Test_FileTemp :
 public:
                    Test_FileTemp() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

@@ -16,6 +16,6 @@ class Test_Base64 :
 public:
                    Test_Base64() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

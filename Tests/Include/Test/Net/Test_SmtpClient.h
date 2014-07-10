@@ -16,7 +16,7 @@ class Test_SmtpClient :
 public:
                    Test_SmtpClient() {}
 
-    virtual void_t unit(culonglong_t &caseLoops);
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 
 #endif // xHAVE_OPENSSL_CRYPTO
