@@ -36,56 +36,6 @@ Path::_dll_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
-Path::_fileExt_impl(
-    const ExFileExt &a_fileExt
-)
-{
-    std::tstring_t sRv;
-
-    switch (a_fileExt) {
-#if xENV_APPLE
-    case seExe:
-        sRv = xT("");
-        break;
-    case seDll:
-        sRv = xT("dylib");
-        break;
-    case seLib:
-        sRv = xT("a");
-        break;
-    case seObj:
-        sRv = xT("o");
-        break;
-    case seShell:
-        sRv = xT("sh");
-        break;
-#else
-    case seExe:
-        sRv = xT("");
-        break;
-    case seDll:
-        sRv = xT("so");
-        break;
-    case seLib:
-        sRv = xT("a");
-        break;
-    case seObj:
-        sRv = xT("o");
-        break;
-    case seShell:
-        sRv = xT("sh");
-        break;
-#endif
-    default:
-        sRv = xT("");
-        break;
-    }
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
 inline bool_t
 Path::_isNameValid_impl(
     std::ctstring_t &a_fileName,                    ///< file, directory name
