@@ -146,7 +146,27 @@ Path::fileExt(
     const ExFileExt &a_fileExt
 )
 {
-    return _fileExt_impl(a_fileExt);
+    std::tstring_t sRv;
+
+    switch (a_fileExt) {
+    case seConfig:
+        sRv = xT("cfg");
+        break;
+    case seLog:
+        sRv = xT("log");
+        break;
+    case seDb:
+        sRv = xT("db");
+        break;
+    case seDat:
+        sRv = xT("dat");
+        break;
+    default:
+        sRv = _fileExt_impl(a_fileExt);
+        break;
+    }
+
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
