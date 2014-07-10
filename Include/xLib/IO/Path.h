@@ -17,11 +17,15 @@ public:
     enum ExFileExt
         /// file extension
     {
-        seExe,  ///< execute module
-        seDll,  ///< dynamically linked shared library
-        seLib,  ///< static library
-        seObj,  ///< object file
-        seShell ///< shell script file
+        seExe,    ///< execute module
+        seDll,    ///< dynamically linked shared library
+        seLib,    ///< static library
+        seObj,    ///< object file
+        seShell,  ///< shell script file
+        seConfig, ///< config file
+        seLog,    ///< log file
+        seDb,     ///< database file
+        seDat     ///< data file
     };
 
     explicit       Path(std::ctstring_t &filePath);

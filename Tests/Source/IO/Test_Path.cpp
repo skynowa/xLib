@@ -210,6 +210,18 @@ Test_Path::unit(
         #elif xENV_UNIX
             xTEST_EQ(std::tstring_t(xT("sh")), m_sRv);
         #endif
+
+        m_sRv = Path::fileExt(Path::seConfig);
+        xTEST_EQ(std::tstring_t(xT("cfg")), m_sRv);
+
+        m_sRv = Path::fileExt(Path::seLog);
+        xTEST_EQ(std::tstring_t(xT("log")), m_sRv);
+
+        m_sRv = Path::fileExt(Path::seDb);
+        xTEST_EQ(std::tstring_t(xT("db")), m_sRv);
+
+        m_sRv = Path::fileExt(Path::seDat);
+        xTEST_EQ(std::tstring_t(xT("dat")), m_sRv);
     }
 
     xTEST_CASE("Path::setDrive", a_caseLoops)
