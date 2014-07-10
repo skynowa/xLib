@@ -25,7 +25,8 @@ public:
         seConfig, ///< config file
         seLog,    ///< log file
         seDb,     ///< database file
-        seDat     ///< data file
+        seDat,    ///< data file
+        seBackup  ///< backup file
     };
 
     explicit       Path(std::ctstring_t &filePath);

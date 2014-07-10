@@ -161,6 +161,9 @@ Path::fileExt(
     case seDat:
         sRv = xT("dat");
         break;
+    case seBackup:
+        sRv = xT("bkp");
+        break;
     default:
         sRv = _fileExt_impl(a_fileExt);
         break;
