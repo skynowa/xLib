@@ -174,37 +174,37 @@ Test_Path::unit(
         }
     }
 
-    xTEST_CASE("Path::standartExt", a_caseLoops)
+    xTEST_CASE("Path::fileExt", a_caseLoops)
     {
-        m_sRv = Path::standartExt(Path::seExe);
+        m_sRv = Path::fileExt(Path::seExe);
         #if   xENV_WIN
             xTEST_EQ(std::tstring_t(xT("exe")), m_sRv);
         #elif xENV_UNIX
             xTEST_EQ(std::tstring_t(xT("")), m_sRv);
         #endif
 
-        m_sRv = Path::standartExt(Path::seDll);
+        m_sRv = Path::fileExt(Path::seDll);
         #if   xENV_WIN
             xTEST_EQ(std::tstring_t(xT("dll")), m_sRv);
         #elif xENV_UNIX
             xTEST_EQ(std::tstring_t(xT("so")), m_sRv);
         #endif
 
-        m_sRv = Path::standartExt(Path::seLib);
+        m_sRv = Path::fileExt(Path::seLib);
         #if   xENV_WIN
             xTEST_EQ(std::tstring_t(xT("lib")), m_sRv);
         #elif xENV_UNIX
             xTEST_EQ(std::tstring_t(xT("a")), m_sRv);
         #endif
 
-        m_sRv = Path::standartExt(Path::seObj);
+        m_sRv = Path::fileExt(Path::seObj);
         #if   xENV_WIN
             xTEST_EQ(std::tstring_t(xT("obj")), m_sRv);
         #elif xENV_UNIX
             xTEST_EQ(std::tstring_t(xT("o")), m_sRv);
         #endif
 
-        m_sRv = Path::standartExt(Path::seShell);
+        m_sRv = Path::fileExt(Path::seShell);
         #if   xENV_WIN
             xTEST_EQ(std::tstring_t(xT("bat")), m_sRv);
         #elif xENV_UNIX

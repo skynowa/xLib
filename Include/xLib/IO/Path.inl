@@ -142,11 +142,11 @@ Path::ext() const
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
-Path::standartExt(
-    const ExStandartExt &a_fileExt
+Path::fileExt(
+    const ExFileExt &a_fileExt
 )
 {
-    return _standartExt_impl(a_fileExt);
+    return _fileExt_impl(a_fileExt);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
