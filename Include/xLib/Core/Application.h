@@ -38,10 +38,10 @@ public:
         ///< patch version
     std::tstring_t versionType() const;
         ///< version type (RC, alpha, beta, snapshot)
-    std::tstring_t versionSring() const;
-        ///< full version information ({versionMajor}.{versionMinor}.{versionPatch}-{versionType})
     std::tstring_t versionRevision() const;
         ///< distributed revision control revision
+    std::tstring_t versionFull() const;
+        ///< full version information
 
     std::tstring_t vendorName() const;
         ///< vendor name

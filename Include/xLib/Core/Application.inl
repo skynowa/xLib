@@ -6,6 +6,7 @@
 
 #include "Application.h"
 
+#include <xLib/Core/String.h>
 #include <xLib/IO/Path.h>
 #include <xLib/System/ProcessInfo.h>
 
@@ -23,29 +24,27 @@ namespace {
 
 std::ctstring_t localeCodec     = "UTF-8";
 
-std::ctstring_t name            = "app_name";
-std::ctstring_t decription      = "decription";
-std::ctstring_t usage           = "usage";
-std::ctstring_t help            = "help";
-std::ctstring_t copyrightYears  = "2008-2014";
+std::ctstring_t name            = "[app_name]";
+std::ctstring_t decription      = "[decription]";
+std::ctstring_t usage           = "[usage]";
+std::ctstring_t help            = "[help]";
+std::ctstring_t copyrightYears  = "[2008-2014]";
 
-std::ctstring_t versionMajor    = "versionMajor";
-std::ctstring_t versionMinor    = "versionMinor";
-std::ctstring_t versionPatch    = "versionPatch";
-std::ctstring_t versionType     = "versionType";
-std::ctstring_t versionSring    = "versionSring";
-std::ctstring_t versionRevision = "[versionRevision]";
+std::ctstring_t versionMajor    = "[1]";
+std::ctstring_t versionMinor    = "[0]";
+std::ctstring_t versionPatch    = "[0]";
+std::ctstring_t versionType     = "[alpha]";
+std::ctstring_t versionRevision = "[develop/970f53b]";
 
-std::ctstring_t vendorName      = "xxxxxxxxx";
-std::ctstring_t vendorDomain    = "xxxxxxxxx";
-std::ctstring_t vendorAuthor    = "xxxxxxxxx";
-std::ctstring_t vendorUrl       = "xxxxxxxxx";
-std::ctstring_t vendorEmail     = "xxxxxxxxx";
-std::ctstring_t vendorSkype     = "xxxxxxxxx";
+std::ctstring_t vendorName      = "[Skynowa Studio]";
+std::ctstring_t vendorDomain    = "[com]";
+std::ctstring_t vendorAuthor    = "[skynowa]";
+std::ctstring_t vendorUrl       = "[http://bitbucket.org/skynowa/xlib]";
+std::ctstring_t vendorEmail     = "[skynowa@gmail.com]";
+std::ctstring_t vendorSkype     = "[skynowa777]";
 
-std::ctstring_t backupDirName  = "Backup";
-std::ctstring_t dbDirName      = "Db";
-std::ctstring_t tracePath      = "trace.log";
+std::ctstring_t backupDirName   = "Backup";
+std::ctstring_t dbDirName       = "Db";
 
 }
 //-------------------------------------------------------------------------------------------------
@@ -115,15 +114,16 @@ Application::versionType() const
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-Application::versionSring() const
-{
-    return ::versionSring;
-}
-//-------------------------------------------------------------------------------------------------
-inline std::tstring_t
 Application::versionRevision() const
 {
     return ::versionRevision;
+}
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+Application::versionFull() const
+{
+    return String::format(xT("%s.%s.%s %s %s"), versionMajor().c_str(), versionMinor().c_str(),
+        versionPatch().c_str(), versionType().c_str(), versionRevision().c_str());
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
