@@ -225,6 +225,9 @@ Test_Path::unit(
 
         m_sRv = Path::fileExt(Path::seBackup);
         xTEST_EQ(std::tstring_t(xT("bkp")), m_sRv);
+
+        m_sRv = Path::fileExt(Path::seTemp);
+        xTEST_EQ(std::tstring_t(xT("tmp")), m_sRv);
     }
 
     xTEST_CASE("Path::setDrive", a_caseLoops)
