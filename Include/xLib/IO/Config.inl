@@ -12,12 +12,6 @@
 
 xNAMESPACE_BEGIN2(xlib, io)
 
-xNAMESPACE_ANONYM_BEGIN
-
-std::ctstring_t fileExtDefault = xT("cfg");
-
-xNAMESPACE_ANONYM_END
-
 /**************************************************************************************************
 *    public: creation
 *
@@ -27,7 +21,7 @@ xNAMESPACE_ANONYM_END
 inline
 Config::Config() :
     _separator(Const::equal()),
-    _fileExt  (::fileExtDefault),
+    _fileExt  ( Path::fileExt(Path::seConfig) ),
     _filePath (),
     _config   ()
 {
@@ -43,7 +37,7 @@ Config::Config(
     std::ctstring_t &a_filePath
 ) :
     _separator(Const::equal()),
-    _fileExt  (::fileExtDefault),
+    _fileExt  ( Path::fileExt(Path::seConfig) ),
     _filePath (),
     _config   ()
 {
