@@ -167,6 +167,9 @@ Path::fileExt(
     case seTemp:
         sRv = xT("tmp");
         break;
+    case seText:
+        sRv = xT("txt");
+        break;
     default:
         sRv = _fileExt_impl(a_fileExt);
         break;
