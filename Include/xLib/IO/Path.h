@@ -27,7 +27,8 @@ public:
         seDb,     ///< database file
         seDat,    ///< data file
         seBackup, ///< backup file
-        seTemp    ///< temprary file
+        seTemp,   ///< temprary file
+        seText    ///< text file
     };
 
     explicit       Path(std::ctstring_t &filePath);
