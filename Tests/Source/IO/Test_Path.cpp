@@ -224,7 +224,7 @@ Test_Path::unit(
         xTEST_EQ(std::tstring_t(xT("dat")), m_sRv);
 
         m_sRv = Path::fileExt(Path::seBackup);
-        xTEST_EQ(std::tstring_t(xT("bkp")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("bak")), m_sRv);
 
         m_sRv = Path::fileExt(Path::seTemp);
         xTEST_EQ(std::tstring_t(xT("tmp")), m_sRv);
