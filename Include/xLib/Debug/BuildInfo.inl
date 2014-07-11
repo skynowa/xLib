@@ -336,6 +336,26 @@ BuildInfo::stdLibCpp() const
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
+BuildInfo::qt() const
+{
+    std::tstring_t sRv;
+    std::tstring_t qtName;
+    std::tstring_t qtVersion;
+
+#if QT_VERSION_STR
+    qtName    = xT("Qt");
+    qtVersion = QT_VERSION_STR;
+#else
+    qtName    = Const::strUnknown();
+    qtVersion = Const::strUnknown();
+#endif
+
+    sRv = String::format(xT("%s %s"), qtName.c_str(), qtVersion.c_str());
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
 BuildInfo::xlibVersion() const
 {
     std::tstring_t sRv;

@@ -116,6 +116,14 @@ Test_BuildInfo::unit(
         xTEST_EQ(m_sRv.empty(), false);
     }
 
+    xTEST_CASE("BuildInfo::qt", a_caseLoops)
+    {
+        BuildInfo info;
+
+        m_sRv = info.qt();
+        xTEST_EQ(m_sRv.empty(), false);
+    }
+
     xTEST_CASE("BuildInfo::xlibVersion", a_caseLoops)
     {
         BuildInfo info;

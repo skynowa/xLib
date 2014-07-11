@@ -41,8 +41,10 @@ public:
         ///< C standart library
     std::tstring_t stdLibCpp() const xWARN_UNUSED_RV;
         ///< C++ standart library
+    std::tstring_t qt() const xWARN_UNUSED_RV;
+        ///< Qt library
     std::tstring_t xlibVersion() const xWARN_UNUSED_RV;
-        ///< xLib version
+        ///< xLib library
     std::tstring_t binaryType() const xWARN_UNUSED_RV;
         ///< binary type
 
