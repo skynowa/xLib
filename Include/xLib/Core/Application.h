@@ -19,6 +19,7 @@ public:
     virtual       ~Application();
         ///< destructor
 
+    // info
     std::tstring_t name() const;
         ///< name
     std::tstring_t decription() const;
@@ -55,32 +56,42 @@ public:
         ///< vendor email
     std::tstring_t vendorSkype() const;
         ///< vendor skype
+    const BuildInfo &buildInfo() const;
+        ///< build information
 
-    void_t         args(std::vec_tstring_t *args) const;
-        ///< directory
-    std::tstring_t dirPath() const;
-        ///< directory
+    // files
     std::tstring_t filePath() const;
-        ///< file
-    std::tstring_t configFilePath() const;
+        ///< application file path
+    std::tstring_t configPath() const;
         ///< config file
+    std::tstring_t logPath() const;
+        ///< log file
+    std::tstring_t dbPath() const;
+        ///< database file
+
+    // directories
+    std::tstring_t dirPath() const;
+        ///< application directory
+    std::tstring_t configDirPath() const;
+        ///< config directory
+    std::tstring_t logDirPath() const;
+        ///< log directory
     std::tstring_t dbDirPath() const;
         ///< database directory
-    std::tstring_t dbFilePath() const;
-        ///< database file
     std::tstring_t backupDirPath() const;
         ///< database backup directory
-    std::tstring_t debugTracePath() const;
-        ///< debug trace file
     std::tstring_t tempDirPath() const;
         ///< temporary directory
 
+    // actions
+    void_t         args(std::vec_tstring_t *args) const;
+        ///< command line arguments
     bool_t         isRunnig(std::ctstring_t &appGuid) const;
         ///< check if application already running
     bool_t         selfCheck() const;
         ///< self check
-    std::tstring_t buildInfo() const;
-        ///< build information
+    virtual int_t  run() = 0;
+        ///< run application
 
 private:
     xNO_COPY_ASSIGN(Application)

@@ -7,6 +7,7 @@
 #include "Application.h"
 
 #include <xLib/Core/String.h>
+#include <xLib/Debug/BuildInfo.h>
 #include <xLib/IO/Path.h>
 #include <xLib/System/ProcessInfo.h>
 
@@ -44,7 +45,10 @@ std::ctstring_t vendorEmail     = "[skynowa@gmail.com]";
 std::ctstring_t vendorSkype     = "[skynowa777]";
 
 std::ctstring_t backupDirName   = "Backup";
+std::ctstring_t configDirName   = "Config";
+std::ctstring_t logDirName      = "Log";
 std::ctstring_t dbDirName       = "Db";
+std::ctstring_t tempDirName     = "Temp";
 
 }
 //-------------------------------------------------------------------------------------------------
@@ -58,6 +62,14 @@ inline
 Application::~Application()
 {
 }
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   info
+*
+**************************************************************************************************/
+
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 Application::name() const
@@ -162,20 +174,21 @@ Application::vendorSkype() const
     return ::vendorSkype;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
-Application::args(
-    std::vec_tstring_t *a_args  ///< [out] command line arguments
-) const
+inline const BuildInfo &
+Application::buildInfo() const
 {
-    ProcessInfo info;
-    info.commandLine(a_args);
+    static BuildInfo info;
+
+    return info;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
-Application::dirPath() const
-{
-    return Path::exeDir();
-}
+
+
+/**************************************************************************************************
+*   files
+*
+**************************************************************************************************/
+
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 Application::filePath() const
@@ -184,35 +197,91 @@ Application::filePath() const
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-Application::configFilePath() const
+Application::configPath() const
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
+    std::ctstring_t ext      = Path::fileExt(Path::seConfig);
 
-    return dirPath() + Const::slash() + basename + Path::seConfig;
+    return String::format(xT("%s/%s.%s"), configDirPath().c_str(), basename.c_str(), ext.c_str());
+}
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+Application::logPath() const
+{
+    std::ctstring_t basename = Path( filePath() ).fileBaseName();
+    std::ctstring_t ext      = Path::fileExt(Path::seLog);
+
+    return String::format(xT("%s/%s.%s"), dirPath().c_str(), basename().c_str(), ext.c_str());
+}
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+Application::dbPath() const
+{
+    std::ctstring_t basename = Path( filePath() ).fileBaseName();
+    std::ctstring_t ext      = Path::fileExt(Path::seDb);
+
+    return String::format(xT("%s/%s.%s"), dirPath().c_str(), basename().c_str(), ext.c_str());
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   directories
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+Application::dirPath() const
+{
+    return Path::exeDir();
+}
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+Application::configDirPath() const
+{
+    return String::format(xT("%s/%s"), dirPath().c_str(), ::configDirName.c_str());
+}
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+Application::logDirPath() const
+{
+    return String::format(xT("%s/%s"), dirPath().c_str(), ::logDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 Application::dbDirPath() const
 {
-    return dirPath() + Const::slash() + ::dbDirName;
-}
-//-------------------------------------------------------------------------------------------------
-inline std::tstring_t
-Application::dbFilePath() const
-{
-    return dbDirPath() + Const::slash() + name() + Path::seDb;
+    return String::format(xT("%s/%s"), dirPath().c_str(), ::dbDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 Application::backupDirPath() const
 {
-    return dbDirPath() + Const::slash() + ::backupDirName;
+    return String::format(xT("%s/%s"), dirPath().c_str(), ::backupDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-Application::debugTracePath() const
+Application::tempDirPath() const
 {
-    return dirPath() + Const::slash() + name() + Path::seLog;
+    return String::format(xT("%s/%s"), dirPath().c_str(), ::tempDirName.c_str());
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   actions
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::args(
+    std::vec_tstring_t *a_args  ///< [out] command line arguments
+) const
+{
+    ProcessInfo info;
+    info.commandLine(a_args);
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
@@ -244,17 +313,6 @@ Application::selfCheck() const
 #endif
 
     return true;
-}
-//-------------------------------------------------------------------------------------------------
-inline std::tstring_t
-Application::buildInfo() const
-{
-#if 0
-    return std::tstring_t("Qt %1")
-                .arg(QT_VERSION_STR);
-#endif
-
-    return std::tstring_t();
 }
 //-------------------------------------------------------------------------------------------------
 
