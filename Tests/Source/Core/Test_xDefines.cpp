@@ -198,20 +198,21 @@ Test_Defines::unit(
         {
         public:
             xENUM_BEGIN(FileMode)
-                Unknown,
+                Unknown = 0,
                 Text,
                 Bynary
-            xENUM_END
+            xENUM_END(FileMode);
 
-            void foo()
+            A::FileMode_t textMode() const
             {
-                int fileMode = FileMode::Text;
-                xUNUSED(fileMode)
+                A::FileMode_t fileMode = FileMode::Text;
+                return fileMode;
             }
         };
 
-        int fileMode = A::FileMode::Bynary;
-        xUNUSED(fileMode)
+        A a;
+        A::FileMode_t mode = a.textMode();
+        xTEST_EQ((int)mode, (int)A::FileMode::Text);
     }
 
     xTEST_CASE("Defines: xS2US_", a_caseLoops)

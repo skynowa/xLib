@@ -236,12 +236,14 @@
 ///@{
 #define xENUM_BEGIN(e) \
     struct e { \
-        enum \
+        enum type \
         {
     ///< begin enum
-#define xENUM_END \
+#define xENUM_END(e) \
         }; \
-    };
+    }; \
+    typedef e::type       e##_t; \
+    typedef const e::type c##e##_t
     ///< end enum
 ///@}
 //-------------------------------------------------------------------------------------------------
