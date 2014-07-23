@@ -97,6 +97,8 @@ public:
         ///< objects with automatic storage are not destroyed
     void_t         terminate() const;
         ///< calls the current terminate handler
+    void_t         abort() const;
+        ///< aborts the current process, producing an abnormal program termination
 
     // handles
     void_t         setOnExit(void_t (*callback)());
