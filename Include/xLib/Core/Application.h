@@ -90,7 +90,7 @@ public:
         ///< check if application already running
     bool_t         selfCheck() const;
         ///< self check
-    virtual int_t  run() = 0;
+    //++ virtual int_t  run() = 0;
         ///< run application
     void_t         exit(cint_t &status) const;
         ///< terminates the process normally, performing the regular cleanup,
@@ -101,6 +101,8 @@ public:
         ///< aborts the current process, producing an abnormal program termination
 
     // handles
+    void_t         setOnSignal(sighandler_t callback);
+        ///< set signal handle
     void_t         setOnExit(void_t (*callback)());
         ///< set exit handle
     void_t         setOnTerminate(void_t (*callback)());

@@ -8,29 +8,21 @@
 #include <Test/Test_xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+void_t onSignal(int signal);
+void_t onExit();
 void_t onTerminate();
-void_t onSignal(int sig);
 void_t setSignalHandler();
 void_t fail();
 void_t foo1();
 void_t foo2();
 void_t foo3();
 //-------------------------------------------------------------------------------------------------
-void_t
-onTerminate()
-{
-    Trace() << xFUNCTION;
-    Trace() << "Stack trace:\n" << StackTrace().toString();
-
-    // abort();  // forces abnormal termination
-}
-void_t
-onSignal(int sig)
+void_t onSignal(int a_signal)
 {
     Trace() << xFUNCTION;
     Trace() << "Stack trace:\n " << StackTrace().toString();
 
-    switch (sig) {
+    switch (a_signal) {
     case SIGABRT:
         Trace() << "Caught SIGABRT: usually caused by an abort() or assert()";
         break;
@@ -54,15 +46,19 @@ onSignal(int sig)
 
     ::_exit(1);
 }
-void_t
-setSignalHandler()
+void_t onExit()
 {
-    std::signal(SIGABRT, onSignal);
-    std::signal(SIGFPE,  onSignal);
-    std::signal(SIGILL,  onSignal);
-    std::signal(SIGINT,  onSignal);
-    std::signal(SIGSEGV, onSignal);
-    std::signal(SIGTERM, onSignal);
+    Trace() << xFUNCTION;
+    Trace() << "Stack trace:\n" << StackTrace().toString();
+
+    // abort();  // forces abnormal termination
+}
+void_t onTerminate()
+{
+    Trace() << xFUNCTION;
+    Trace() << "Stack trace:\n" << StackTrace().toString();
+
+    // abort();  // forces abnormal termination
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -97,13 +93,11 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     xUNUSED(a_args);
 
     {
-    #if 0
-        // FAQ: https://gist.github.com/jvranish/4441299
-        // set handlers
-        {
-            std::set_terminate(onTerminate);
-            setSignalHandler();
-        }
+    #if 1
+        Application application;
+        application.setOnSignal(onSignal);
+        application.setOnTerminate(onTerminate);
+        application.setOnExit(onExit);
 
         // test error
         foo3();
