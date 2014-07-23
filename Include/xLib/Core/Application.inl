@@ -315,5 +315,51 @@ Application::selfCheck() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
+inline void_t
+Application::exit(
+    cint_t &a_status
+) const
+{
+    (void_t)std::exit(a_status);
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::terminate() const
+{
+    (void_t)std::terminate();
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   actions
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::setOnExit(
+    void_t (*a_callback)()
+)
+{
+    xCHECK_DO(a_callback == xPTR_NULL, return);
+
+    int_t iRv = std::atexit(a_callback);
+    xTEST(iRv == 0);
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::setOnTerminate(
+    void_t (*a_callback)()
+)
+{
+    xTEST_PTR(a_callback);
+
+    void_t (*callback_old)() = xPTR_NULL;
+
+    callback_old = std::set_terminate(a_callback);
+    xUNUSED(callback_old);
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, core)

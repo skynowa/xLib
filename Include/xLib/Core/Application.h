@@ -92,6 +92,17 @@ public:
         ///< self check
     virtual int_t  run() = 0;
         ///< run application
+    void_t         exit(cint_t &status) const;
+        ///< terminates the process normally, performing the regular cleanup,
+        ///< objects with automatic storage are not destroyed
+    void_t         terminate() const;
+        ///< calls the current terminate handler
+
+    // handles
+    void_t         setOnExit(void_t (*callback)());
+        ///< set exit handle
+    void_t         setOnTerminate(void_t (*callback)());
+        ///< set terminate handle (by default, the terminate handler calls abort)
 
 private:
     xNO_COPY_ASSIGN(Application)
