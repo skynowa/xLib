@@ -34,7 +34,7 @@ Process::_create_impl(
             static_cast<ctchar_t *>( xPTR_NULL ));
         xTEST_DIFF(iRv, - 1);
 
-        (void_t)::_exit(EXIT_SUCCESS);  /* not exit() */
+        (void_t)::_exit(EXIT_SUCCESS);  /* not std::exit() */
     }
 
     _handle = pid;
