@@ -11,7 +11,6 @@
 void_t onSignal(int signal);
 void_t onExit();
 void_t onTerminate();
-void_t setSignalHandler();
 void_t fail();
 void_t foo1();
 void_t foo2();
