@@ -101,7 +101,7 @@ public:
         ///< aborts the current process, producing an abnormal program termination
 
     // handles
-    void_t         setOnSignal(int signalNum, sighandler_t callback);
+    void_t         setOnSignal(cint_t &signalNum, sighandler_t callback);
         ///< set signal handle
     void_t         setOnSignals(sighandler_t callback);
         ///< set signal handle
