@@ -20,94 +20,158 @@ public:
         ///< destructor
 
     // info
-    static
+    /* static */
     std::tstring_t name();
         ///< name
-    static
+    /* static */
+    void_t         setName(std::cstring_t &name);
+        ///< set name
+
+    /* static */
     std::tstring_t decription();
         ///< decription
-    static
+    /* static */
+    void_t         setDecription(std::cstring_t &decription);
+        ///< set decription
+
+    /* static */
     std::tstring_t copyrightYears();
-        ///< 2009-2014
-    static
+        ///< copyright years (2009-2014)
+    /* static */
+    void_t         setCopyrightYears(std::cstring_t &copyrightYears);
+        ///< set copyright years
+
+    /* static */
     std::tstring_t usage();
         ///< usage
-    static
+    /* static */
+    void_t         setUsage(std::cstring_t &usage);
+        ///< set usage
+
+    /* static */
     std::tstring_t help();
         ///< help
+    /* static */
+    void_t         setHelp(std::cstring_t &help);
+        ///< set help
 
-    static
+
+    /* static */
     std::tstring_t versionMajor();
         ///< major version
-    static
+    /* static */
+    void_t         setVersionMajor(std::cstring_t &versionMajor);
+        ///< set major version
+
+    /* static */
     std::tstring_t versionMinor();
         ///< minor version
-    static
+    /* static */
+    void_t         setVersionMinor(std::cstring_t &versionMinor);
+        ///< set minor version
+
+    /* static */
     std::tstring_t versionPatch();
         ///< patch version
-    static
+    /* static */
+    void_t         setVersionPatch(std::cstring_t &versionPatch);
+        ///< set patch version
+
+    /* static */
     std::tstring_t versionType();
         ///< version type (RC, alpha, beta, snapshot)
-    static
+    /* static */
+    void_t         setVersionType(std::cstring_t &versionType);
+        ///< set version type
+
+    /* static */
     std::tstring_t versionRevision();
         ///< distributed revision control revision
-    static
+    /* static */
+    void_t         setVersionRevision(std::cstring_t &versionRevision);
+        ///< set distributed revision control revision
+
+    /* static */
     std::tstring_t versionFull();
         ///< full version information
-    static
 
+    /* static */
     std::tstring_t vendorName();
         ///< vendor name
-    static
+    /* static */
+    void_t         setVendorName(std::cstring_t &vendorName);
+        ///< set vendor name
+
+    /* static */
     std::tstring_t vendorDomain();
         ///< vendor domain
-    static
+    /* static */
+    void_t         setVendorDomain(std::cstring_t &vendorDomain);
+        ///< set vendor domain
+
+    /* static */
     std::tstring_t vendorAuthor();
         ///< vendor author
-    static
+    /* static */
+    void_t         setVendorAuthor(std::cstring_t &vendorAuthor);
+        ///< set vendor author
+
+    /* static */
     std::tstring_t vendorUrl();
         ///< vendor home page
-    static
+    /* static */
+    void_t         setVendorUrl(std::cstring_t &vendorUrl);
+        ///< set vendor home page
+
+    /* static */
     std::tstring_t vendorEmail();
         ///< vendor email
-    static
+    /* static */
+    void_t         setVendorEmail(std::cstring_t &vendorEmail);
+        ///< set vendor email
+
+    /* static */
     std::tstring_t vendorSkype();
         ///< vendor skype
-    static
+    /* static */
+    void_t         setVendorSkype(std::cstring_t &xxxxxxxxxxxxxxxx);
+        ///< set vendor skype
+
+    /* static */
     const BuildInfo &buildInfo();
         ///< build information
 
     // files
-    static
+    /* static */
     std::tstring_t filePath();
         ///< application file path
-    static
+    /* static */
     std::tstring_t configPath();
         ///< config file
-    static
+    /* static */
     std::tstring_t logPath();
         ///< log file
-    static
+    /* static */
     std::tstring_t dbPath();
         ///< database file
 
     // directories
-    static
+    /* static */
     std::tstring_t dirPath();
         ///< application directory
-    static
+    /* static */
     std::tstring_t configDirPath();
         ///< config directory
-    static
+    /* static */
     std::tstring_t logDirPath();
         ///< log directory
-    static
+    /* static */
     std::tstring_t dbDirPath();
         ///< database directory
-    static
+    /* static */
     std::tstring_t backupDirPath();
         ///< database backup directory
-    static
+    /* static */
     std::tstring_t tempDirPath();
         ///< temporary directory
 
@@ -137,6 +201,39 @@ public:
         ///< set terminate handle (by default, the terminate handler calls abort)
 
 private:
+    /* static */
+    std::tstring_t _name;
+    /* static */
+    std::tstring_t _decription;
+    /* static */
+    std::tstring_t _copyrightYears;
+    /* static */
+    std::tstring_t _usage;
+    /* static */
+    std::tstring_t _help;
+    /* static */
+    std::tstring_t _versionMajor;
+    /* static */
+    std::tstring_t _versionMinor;
+    /* static */
+    std::tstring_t _versionPatch;
+    /* static */
+    std::tstring_t _versionType;
+    /* static */
+    std::tstring_t _versionRevision;
+    /* static */
+    std::tstring_t _vendorName;
+    /* static */
+    std::tstring_t _vendorDomain;
+    /* static */
+    std::tstring_t _vendorAuthor;
+    /* static */
+    std::tstring_t _vendorUrl;
+    /* static */
+    std::tstring_t _vendorEmail;
+    /* static */
+    std::tstring_t _vendorSkype;
+
     xNO_COPY_ASSIGN(Application)
 };
 

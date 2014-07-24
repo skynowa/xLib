@@ -23,26 +23,13 @@ xNAMESPACE_BEGIN2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 namespace {
 
-std::ctstring_t localeCodec     = "UTF-8";
+#if 0
+    std::ctstring_t localeCodec     = "UTF-8";
+#endif
 
-std::ctstring_t name            = "[app_name]";
-std::ctstring_t decription      = "[decription]";
-std::ctstring_t usage           = "[usage]";
-std::ctstring_t help            = "[help]";
-std::ctstring_t copyrightYears  = "[2008-2014]";
+#if 0
 
-std::ctstring_t versionMajor    = "[1]";
-std::ctstring_t versionMinor    = "[0]";
-std::ctstring_t versionPatch    = "[0]";
-std::ctstring_t versionType     = "[alpha]";
-std::ctstring_t versionRevision = "[develop/970f53b]";
-
-std::ctstring_t vendorName      = "[Skynowa Studio]";
-std::ctstring_t vendorDomain    = "[com]";
-std::ctstring_t vendorAuthor    = "[skynowa]";
-std::ctstring_t vendorUrl       = "[http://bitbucket.org/skynowa/xlib]";
-std::ctstring_t vendorEmail     = "[skynowa@gmail.com]";
-std::ctstring_t vendorSkype     = "[skynowa777]";
+#endif
 
 std::ctstring_t backupDirName   = "Backup";
 std::ctstring_t configDirName   = "Config";
@@ -75,70 +62,160 @@ Application::~Application()
 inline std::tstring_t
 Application::name()
 {
-    return ::name;
+    return _name;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setName(
+    std::cstring_t &a_name
+)
+{
+    _name = a_name;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::decription()
 {
-    return ::decription;
+    return _decription;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setDecription(
+    std::cstring_t &a_decription
+)
+{
+    _decription = a_decription;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::copyrightYears()
 {
-    return ::copyrightYears;
+    return _copyrightYears;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setCopyrightYears(
+    std::cstring_t &a_copyrightYears
+)
+{
+    _copyrightYears = a_copyrightYears;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::usage()
 {
-    return ::usage;
+    return _usage;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setUsage(
+    std::cstring_t &a_usage
+)
+{
+    _usage = a_usage;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::help()
 {
-    return ::help;
+    return _help;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setHelp(
+    std::cstring_t &a_help
+)
+{
+    _help = a_help;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::versionMajor()
 {
-    return ::versionMajor;
+    return _versionMajor;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setVersionMajor(
+    std::cstring_t &a_versionMajor
+)
+{
+    _versionMajor = a_versionMajor;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::versionMinor()
 {
-    return ::versionMinor;
+    return _versionMinor;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setVersionMinor(
+    std::cstring_t &a_versionMinor
+)
+{
+    _versionMinor = a_versionMinor;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::versionPatch()
 {
-    return ::versionPatch;
+    return _versionPatch;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setVersionPatch(
+    std::cstring_t &a_versionPatch
+)
+{
+    _versionPatch = a_versionPatch;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::versionType()
 {
-    return ::versionType;
+    return _versionType;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setVersionType(
+    std::cstring_t &a_versionType
+)
+{
+    _versionType = a_versionType;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::versionRevision()
 {
-    return ::versionRevision;
+    return _versionRevision;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setVersionRevision(
+    std::cstring_t &a_versionRevision
+)
+{
+    _versionRevision = a_versionRevision;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -153,42 +230,96 @@ Application::versionFull()
 inline std::tstring_t
 Application::vendorName()
 {
-    return ::vendorName;
+    return _vendorName;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setVendorName(
+    std::cstring_t &a_vendorName
+)
+{
+    _vendorName = a_vendorName;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::vendorDomain()
 {
-    return ::vendorDomain;
+    return _vendorDomain;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setVendorDomain(
+    std::cstring_t &a_vendorDomain
+)
+{
+    _vendorDomain = a_vendorDomain;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::vendorAuthor()
 {
-    return ::vendorAuthor;
+    return _vendorAuthor;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setVendorAuthor(
+    std::cstring_t &a_vendorAuthor
+)
+{
+    _vendorAuthor = a_vendorAuthor;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::vendorUrl()
 {
-    return ::vendorUrl;
+    return _vendorUrl;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setVendorUrl(
+    std::cstring_t &a_vendorUrl
+)
+{
+    _vendorUrl = a_vendorUrl;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::vendorEmail()
 {
-    return ::vendorEmail;
+    return _vendorEmail;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setVendorEmail(
+    std::cstring_t &a_vendorEmail
+)
+{
+    _vendorEmail = a_vendorEmail;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 Application::vendorSkype()
 {
-    return ::vendorSkype;
+    return _vendorSkype;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline void_t
+Application::setVendorSkype(
+    std::cstring_t &a_vendorSkype
+)
+{
+    _vendorSkype = a_vendorSkype;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

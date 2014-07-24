@@ -128,6 +128,43 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         signalNums.push_back(SIGSYS);      // Bad system call
 
         Application application;
+        application.setName(xT("[app_name]"));
+        application.setDecription(xT("[decription]"));
+        application.setUsage(xT("[usage]"));
+        application.setHelp(xT("[help]"));
+        application.setCopyrightYears(xT("[2008-2014]"));
+        application.setVersionMajor(xT("[1]"));
+        application.setVersionMinor(xT("[0]"));
+        application.setVersionPatch(xT("[0]"));
+        application.setVersionType(xT("[alpha]"));
+        application.setVersionRevision(xT("[develop/970f53b]"));
+        application.setVendorName(xT("[Skynowa Studio]"));
+        application.setVendorDomain(xT("[com]"));
+        application.setVendorAuthor(xT("[skynowa]"));
+        application.setVendorUrl(xT("[http://bitbucket.org/skynowa/xlib]"));
+        application.setVendorEmail(xT("[skynowa@gmail.com]"));
+        application.setVendorSkype(xT("[skynowa777]"));
+
+    #if 0
+        Trace()
+            << xTRACE_VAR(application.name())            << xT("\n")
+            << xTRACE_VAR(application.decription())      << xT("\n")
+            << xTRACE_VAR(application.usage())           << xT("\n")
+            << xTRACE_VAR(application.help())            << xT("\n")
+            << xTRACE_VAR(application.copyrightYears())  << xT("\n")
+            << xTRACE_VAR(application.versionMajor())    << xT("\n")
+            << xTRACE_VAR(application.versionMinor())    << xT("\n")
+            << xTRACE_VAR(application.versionPatch())    << xT("\n")
+            << xTRACE_VAR(application.versionType())     << xT("\n")
+            << xTRACE_VAR(application.versionRevision()) << xT("\n")
+            << xTRACE_VAR(application.vendorName())      << xT("\n")
+            << xTRACE_VAR(application.vendorDomain())    << xT("\n")
+            << xTRACE_VAR(application.vendorAuthor())    << xT("\n")
+            << xTRACE_VAR(application.vendorUrl())       << xT("\n")
+            << xTRACE_VAR(application.vendorEmail())     << xT("\n")
+            << xTRACE_VAR(application.vendorSkype());
+    #endif
+
         application.setOnSignals(signalNums, TestCallback::onSignals);
         application.setOnTerminate(TestCallback::onTerminate);
         application.setOnExit(TestCallback::onExit);
@@ -150,7 +187,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     // options (default)
     bool_t      isUseTracing = true;
     ulonglong_t allLoops     = 1ULL;
-    ulonglong_t unitLoops    = 1ULL;
+    ulonglong_t unitL(    = 1ULL;
     ulonglong_t caseLoops    = 1ULL;
     {
         std::vec_tstring_t args;
