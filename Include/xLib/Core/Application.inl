@@ -9,6 +9,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Debug/BuildInfo.h>
 #include <xLib/IO/Path.h>
+#include <xLib/IO/Dir.h>
 #include <xLib/System/ProcessInfo.h>
 
 
@@ -457,6 +458,17 @@ Application::isRunnig(
     // TODO: Application::isRunnig()
 
     return false;
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::dirsCreate()
+{
+    Dir( configDirPath() ).pathCreate();
+    Dir( logDirPath() ).pathCreate();
+    Dir( dbDirPath() ).pathCreate();
+    Dir( backupDirPath() ).pathCreate();
+    Dir( tempDirPath() ).pathCreate();
+    Dir( langDirPath() ).pathCreate();
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
