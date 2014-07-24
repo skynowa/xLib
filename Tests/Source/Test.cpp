@@ -18,8 +18,7 @@ void_t foo3();
 //-------------------------------------------------------------------------------------------------
 void_t onSignal(int a_signal)
 {
-    Trace() << xFUNCTION;
-    Trace() << "Stack trace:\n " << StackTrace().toString();
+    Trace() << xFUNCTION << "\nStack trace:\n " << StackTrace().toString();
 
     switch (a_signal) {
     case SIGABRT:
@@ -43,19 +42,17 @@ void_t onSignal(int a_signal)
         break;
     }
 
-    ::_exit(1);
+    ::_exit(EXIT_FAILURE);
 }
 void_t onExit()
 {
-    Trace() << xFUNCTION;
-    Trace() << "Stack trace:\n" << StackTrace().toString();
+    Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
 
     // abort();  // forces abnormal termination
 }
 void_t onTerminate()
 {
-    Trace() << xFUNCTION;
-    Trace() << "Stack trace:\n" << StackTrace().toString();
+    Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
 
     // abort();  // forces abnormal termination
 }
