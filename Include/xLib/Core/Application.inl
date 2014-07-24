@@ -24,11 +24,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 namespace {
 
 #if 0
-    std::ctstring_t localeCodec     = "UTF-8";
-#endif
-
-#if 0
-
+std::ctstring_t localeCodec     = "UTF-8";
 #endif
 
 std::ctstring_t backupDirName   = "Backup";
