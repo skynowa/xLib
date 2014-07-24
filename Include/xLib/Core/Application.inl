@@ -211,7 +211,7 @@ Application::logPath() const
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
     std::ctstring_t ext      = Path::fileExt(Path::seLog);
 
-    return String::format(xT("%s/%s.%s"), dirPath().c_str(), basename().c_str(), ext.c_str());
+    return String::format(xT("%s/%s.%s"), dirPath().c_str(), basename.c_str(), ext.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -220,7 +220,7 @@ Application::dbPath() const
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
     std::ctstring_t ext      = Path::fileExt(Path::seDb);
 
-    return String::format(xT("%s/%s.%s"), dirPath().c_str(), basename().c_str(), ext.c_str());
+    return String::format(xT("%s/%s.%s"), dirPath().c_str(), basename.c_str(), ext.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 
