@@ -20,67 +20,95 @@ public:
         ///< destructor
 
     // info
-    std::tstring_t name() const;
+    static
+    std::tstring_t name();
         ///< name
-    std::tstring_t decription() const;
+    static
+    std::tstring_t decription();
         ///< decription
-    std::tstring_t copyrightYears() const;
+    static
+    std::tstring_t copyrightYears();
         ///< 2009-2014
-    std::tstring_t usage() const;
+    static
+    std::tstring_t usage();
         ///< usage
-    std::tstring_t help() const;
+    static
+    std::tstring_t help();
         ///< help
 
-    std::tstring_t versionMajor() const;
+    static
+    std::tstring_t versionMajor();
         ///< major version
-    std::tstring_t versionMinor() const;
+    static
+    std::tstring_t versionMinor();
         ///< minor version
-    std::tstring_t versionPatch() const;
+    static
+    std::tstring_t versionPatch();
         ///< patch version
-    std::tstring_t versionType() const;
+    static
+    std::tstring_t versionType();
         ///< version type (RC, alpha, beta, snapshot)
-    std::tstring_t versionRevision() const;
+    static
+    std::tstring_t versionRevision();
         ///< distributed revision control revision
-    std::tstring_t versionFull() const;
+    static
+    std::tstring_t versionFull();
         ///< full version information
+    static
 
-    std::tstring_t vendorName() const;
+    std::tstring_t vendorName();
         ///< vendor name
-    std::tstring_t vendorDomain() const;
+    static
+    std::tstring_t vendorDomain();
         ///< vendor domain
-    std::tstring_t vendorAuthor() const;
+    static
+    std::tstring_t vendorAuthor();
         ///< vendor author
-    std::tstring_t vendorUrl() const;
+    static
+    std::tstring_t vendorUrl();
         ///< vendor home page
-    std::tstring_t vendorEmail() const;
+    static
+    std::tstring_t vendorEmail();
         ///< vendor email
-    std::tstring_t vendorSkype() const;
+    static
+    std::tstring_t vendorSkype();
         ///< vendor skype
-    const BuildInfo &buildInfo() const;
+    static
+    const BuildInfo &buildInfo();
         ///< build information
 
     // files
-    std::tstring_t filePath() const;
+    static
+    std::tstring_t filePath();
         ///< application file path
-    std::tstring_t configPath() const;
+    static
+    std::tstring_t configPath();
         ///< config file
-    std::tstring_t logPath() const;
+    static
+    std::tstring_t logPath();
         ///< log file
-    std::tstring_t dbPath() const;
+    static
+    std::tstring_t dbPath();
         ///< database file
 
     // directories
-    std::tstring_t dirPath() const;
+    static
+    std::tstring_t dirPath();
         ///< application directory
-    std::tstring_t configDirPath() const;
+    static
+    std::tstring_t configDirPath();
         ///< config directory
-    std::tstring_t logDirPath() const;
+    static
+    std::tstring_t logDirPath();
         ///< log directory
-    std::tstring_t dbDirPath() const;
+    static
+    std::tstring_t dbDirPath();
         ///< database directory
-    std::tstring_t backupDirPath() const;
+    static
+    std::tstring_t backupDirPath();
         ///< database backup directory
-    std::tstring_t tempDirPath() const;
+    static
+    std::tstring_t tempDirPath();
         ///< temporary directory
 
     // actions
