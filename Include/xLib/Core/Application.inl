@@ -344,7 +344,7 @@ Application::abort() const
 
 //-------------------------------------------------------------------------------------------------
 inline void_t
-Application::setOnSignal(
+Application::setOnSignals(
     sighandler_t a_callback
 )
 {
