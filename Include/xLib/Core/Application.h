@@ -114,4 +114,4 @@ private:
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Core/Application.h>
+#include <xLib/Core/Application.inl>
