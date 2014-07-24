@@ -174,6 +174,9 @@ public:
     /* static */
     std::tstring_t tempDirPath();
         ///< temporary directory
+    /* static */
+    std::tstring_t langDirPath();
+        ///< language translation directory
 
     // actions
     void_t         args(std::vec_tstring_t *args) const;
