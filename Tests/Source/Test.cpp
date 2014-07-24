@@ -16,68 +16,81 @@ void_t foo1();
 void_t foo2();
 void_t foo3();
 //-------------------------------------------------------------------------------------------------
-void_t onSignals(int a_signal)
+class TestCallback
 {
-    Trace() << xFUNCTION << "\nStack trace:\n " << StackTrace().toString();
+public:
+    static void_t onSignals(int a_signal)
+    {
+        Trace() << xFUNCTION << "\nStack trace:\n " << StackTrace().toString();
 
-    switch (a_signal) {
-    case SIGABRT:
-        Trace() << "Caught SIGABRT: usually caused by an abort() or assert()";
-        break;
-    case SIGFPE:
-        Trace() << "Caught SIGFPE: arithmetic exception, such as divide by zero";
-        break;
-    case SIGILL:
-        Trace() << "Caught SIGILL: illegal instruction";
-        break;
-    case SIGINT:
-        Trace() << "Caught SIGINT: interactive attention signal, probably a ctrl+c";
-        break;
-    case SIGSEGV:
-        Trace() << "Caught SIGSEGV: segfault";
-        break;
-    case SIGTERM:
-    default:
-        Trace() << "Caught SIGTERM: a termination request was sent to the program";
-        break;
+        switch (a_signal) {
+        case SIGABRT:
+            Trace() << "Caught SIGABRT: usually caused by an abort() or assert()";
+            break;
+        case SIGFPE:
+            Trace() << "Caught SIGFPE: arithmetic exception, such as divide by zero";
+            break;
+        case SIGILL:
+            Trace() << "Caught SIGILL: illegal instruction";
+            break;
+        case SIGINT:
+            Trace() << "Caught SIGINT: interactive attention signal, probably a ctrl+c";
+            break;
+        case SIGSEGV:
+            Trace() << "Caught SIGSEGV: segfault";
+            break;
+        case SIGTERM:
+        default:
+            Trace() << "Caught SIGTERM: a termination request was sent to the program";
+            break;
+        }
+
+        ::_exit(EXIT_FAILURE);
     }
 
-    ::_exit(EXIT_FAILURE);
-}
-void_t onExit()
-{
-    Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
+    static void_t onExit()
+    {
+        Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
 
-    // std::abort();  // forces abnormal termination
-}
-void_t onTerminate()
-{
-    Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
+        // std::abort();  // forces abnormal termination
+    }
 
-    // std::abort();  // forces abnormal termination
-}
+    static void_t onTerminate()
+    {
+        Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
+
+        // std::abort();  // forces abnormal termination
+    }
+};
 //-------------------------------------------------------------------------------------------------
-void_t fail()
+class TestFail
 {
-#if 1
-    int *p = xPTR_NULL;
-    *p = 10;
-#else
-    throw 0;  // unhandled exception: calls terminate handler
-#endif
-}
-void_t foo1()
-{
-    fail();
-}
-void_t foo2()
-{
-    foo1();
-}
-void_t foo3()
-{
-    foo2();
-}
+public:
+    void_t fail()
+    {
+    #if 1
+        int *p = xPTR_NULL;
+        *p = 10;
+    #else
+        throw 0;  // unhandled exception: calls terminate handler
+    #endif
+    }
+
+    void_t foo1()
+    {
+        fail();
+    }
+
+    void_t foo2()
+    {
+        foo1();
+    }
+
+    void_t foo3()
+    {
+        foo2();
+    }
+};
 //-------------------------------------------------------------------------------------------------
 int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 {
@@ -86,13 +99,50 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 
     {
     #if 1
+        std::vector<int_t> signalNums;
+        signalNums.push_back(SIGHUP);      // Hangup (POSIX)
+        signalNums.push_back(SIGINT);      // Interrupt (ANSI)
+        signalNums.push_back(SIGQUIT);     // Quit (POSIX)
+        signalNums.push_back(SIGILL);      // Illegal instruction (ANSI)
+        signalNums.push_back(SIGTRAP);     // Trace trap (POSIX)
+        signalNums.push_back(SIGABRT);     // Abort (ANSI)
+        signalNums.push_back(SIGIOT);      // IOT trap (4.2 BSD)
+        signalNums.push_back(SIGBUS);      // BUS error (4.2 BSD)
+        signalNums.push_back(SIGFPE);      // Floating-point exception (ANSI)
+        signalNums.push_back(SIGKILL);     // Kill); unblockable (POSIX)
+        signalNums.push_back(SIGUSR1);     // User-defined signal 1 (POSIX)
+        signalNums.push_back(SIGSEGV);     // Segmentation violation (ANSI)
+        signalNums.push_back(SIGUSR2);     // User-defined signal 2 (POSIX)
+        signalNums.push_back(SIGPIPE);     // Broken pipe (POSIX)
+        signalNums.push_back(SIGALRM);     // Alarm clock (POSIX)
+        signalNums.push_back(SIGTERM);     // Termination (ANSI)
+        signalNums.push_back(SIGSTKFLT);   // Stack fault
+        signalNums.push_back(SIGCLD);      // Same as SIGCHLD (System V)
+        signalNums.push_back(SIGCHLD);     // Child status has changed (POSIX)
+        signalNums.push_back(SIGCONT);     // Continue (POSIX)
+        signalNums.push_back(SIGSTOP);     // Stop); unblockable (POSIX)
+        signalNums.push_back(SIGTSTP);     // Keyboard stop (POSIX)
+        signalNums.push_back(SIGTTIN);     // Background read from tty (POSIX)
+        signalNums.push_back(SIGTTOU);     // Background write to tty (POSIX)
+        signalNums.push_back(SIGURG);      // Urgent condition on socket (4.2 BSD)
+        signalNums.push_back(SIGXCPU);     // CPU limit exceeded (4.2 BSD)
+        signalNums.push_back(SIGXFSZ);     // File size limit exceeded (4.2 BSD)
+        signalNums.push_back(SIGVTALRM);   // Virtual alarm clock (4.2 BSD)
+        signalNums.push_back(SIGPROF);     // Profiling alarm clock (4.2 BSD)
+        signalNums.push_back(SIGWINCH);    // Window size change (4.3 BSD); Sun)
+        signalNums.push_back(SIGPOLL);     // Pollable event occurred (System V)
+        signalNums.push_back(SIGIO);       // I/O now possible (4.2 BSD)
+        signalNums.push_back(SIGPWR);      // Power failure restart (System V)
+        signalNums.push_back(SIGSYS);      // Bad system call
+
         Application application;
-        application.setOnSignals(onSignals);
-        application.setOnTerminate(onTerminate);
-        application.setOnExit(onExit);
+        application.setOnSignals(signalNums, TestCallback::onSignals);
+        application.setOnTerminate(TestCallback::onTerminate);
+        application.setOnExit(TestCallback::onExit);
 
         // test error
-        foo3();
+        TestFail testFail;
+        testFail.foo3();
     #endif
     }
 

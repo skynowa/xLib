@@ -344,9 +344,9 @@ Application::abort() const
 
 //-------------------------------------------------------------------------------------------------
 inline void_t
-Application::setOnSignal(
-    cint_t       &a_signalNum,
-    sighandler_t  a_callback
+Application::setOnSignals(
+    const std::vector<int_t> &a_signalNums,
+    sighandler_t              a_callback
 )
 {
    /**
@@ -355,54 +355,9 @@ Application::setOnSignal(
     * https://gist.github.com/jvranish/4441299
     */
 
-    sighandler_t shRv = std::signal(a_signalNum, a_callback);
-    xTEST(shRv != SIG_ERR);
-}
-//-------------------------------------------------------------------------------------------------
-inline void_t
-Application::setOnSignals(
-    sighandler_t a_callback
-)
-{
-    cint_t signalNums[] = {
-        SIGHUP,      // Hangup (POSIX)
-        SIGINT,      // Interrupt (ANSI)
-        SIGQUIT,     // Quit (POSIX)
-        SIGILL,      // Illegal instruction (ANSI)
-        SIGTRAP,     // Trace trap (POSIX)
-        SIGABRT,     // Abort (ANSI)
-        SIGIOT,      // IOT trap (4.2 BSD)
-        SIGBUS,      // BUS error (4.2 BSD)
-        SIGFPE,      // Floating-point exception (ANSI)
-        SIGKILL,     // Kill, unblockable (POSIX)
-        SIGUSR1,     // User-defined signal 1 (POSIX)
-        SIGSEGV,     // Segmentation violation (ANSI)
-        SIGUSR2,     // User-defined signal 2 (POSIX)
-        SIGPIPE,     // Broken pipe (POSIX)
-        SIGALRM,     // Alarm clock (POSIX)
-        SIGTERM,     // Termination (ANSI)
-        SIGSTKFLT,   // Stack fault
-        SIGCLD,      // Same as SIGCHLD (System V)
-        SIGCHLD,     // Child status has changed (POSIX)
-        SIGCONT,     // Continue (POSIX)
-        SIGSTOP,     // Stop, unblockable (POSIX)
-        SIGTSTP,     // Keyboard stop (POSIX)
-        SIGTTIN,     // Background read from tty (POSIX)
-        SIGTTOU,     // Background write to tty (POSIX)
-        SIGURG,      // Urgent condition on socket (4.2 BSD)
-        SIGXCPU,     // CPU limit exceeded (4.2 BSD)
-        SIGXFSZ,     // File size limit exceeded (4.2 BSD)
-        SIGVTALRM,   // Virtual alarm clock (4.2 BSD)
-        SIGPROF,     // Profiling alarm clock (4.2 BSD)
-        SIGWINCH,    // Window size change (4.3 BSD, Sun)
-        SIGPOLL,     // Pollable event occurred (System V)
-        SIGIO,       // I/O now possible (4.2 BSD)
-        SIGPWR,      // Power failure restart (System V)
-        SIGSYS       // Bad system call
-    };
-
-    for (int_t i = 0; i < xARRAY_SIZE(signalNums); ++ i) {
-        setOnSignal(signalNums[i], a_callback);
+    xFOREACH_CONST(std::vector<int_t>, it, a_signalNums) {
+        sighandler_t shRv = std::signal(*it, a_callback);
+        xTEST(shRv != SIG_ERR);
     }
 }
 //-------------------------------------------------------------------------------------------------
