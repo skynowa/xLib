@@ -24,14 +24,15 @@ xNAMESPACE_BEGIN2(xlib, core)
 namespace {
 
 #if 0
-std::ctstring_t localeCodec     = "UTF-8";
+std::ctstring_t localeCodec   = "UTF-8";
 #endif
 
-std::ctstring_t backupDirName   = "Backup";
-std::ctstring_t configDirName   = "Config";
-std::ctstring_t logDirName      = "Log";
-std::ctstring_t dbDirName       = "Db";
-std::ctstring_t tempDirName     = "Temp";
+std::ctstring_t backupDirName = "Backup";
+std::ctstring_t configDirName = "Config";
+std::ctstring_t logDirName    = "Log";
+std::ctstring_t dbDirName     = "Db";
+std::ctstring_t tempDirName   = "Temp";
+std::ctstring_t langDirPath   = "Lang";
 
 }
 //-------------------------------------------------------------------------------------------------
@@ -420,6 +421,13 @@ inline std::tstring_t
 Application::tempDirPath()
 {
     return String::format(xT("%s/%s"), dirPath().c_str(), ::tempDirName.c_str());
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline std::tstring_t
+Application::langDirPath()
+{
+    return String::format(xT("%s/%s"), dirPath().c_str(), ::langDirPath.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 
