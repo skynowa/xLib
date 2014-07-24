@@ -345,12 +345,15 @@ Application::abort() const
 //-------------------------------------------------------------------------------------------------
 inline void_t
 Application::setOnSignal(
-    int          a_signalNum,
-    sighandler_t a_callback
+    cint_t       &a_signalNum,
+    sighandler_t  a_callback
 )
 {
-    // FAQ: https://gist.github.com/jvranish/4441299
-    // set handlers
+   /**
+    * FAQ: set handlers
+    *
+    * https://gist.github.com/jvranish/4441299
+    */
 
     sighandler_t shRv = std::signal(a_signalNum, a_callback);
     xTEST(shRv != SIG_ERR);
@@ -361,9 +364,6 @@ Application::setOnSignals(
     sighandler_t a_callback
 )
 {
-    // FAQ: https://gist.github.com/jvranish/4441299
-    // set handlers
-
     cint_t signalNums[] = {
         SIGHUP,      // Hangup (POSIX)
         SIGINT,      // Interrupt (ANSI)
