@@ -8,14 +8,6 @@
 #include <Test/Test_xLib.h>
 
 //-------------------------------------------------------------------------------------------------
-void_t onSignals(int signal);
-void_t onExit();
-void_t onTerminate();
-void_t fail();
-void_t foo1();
-void_t foo2();
-void_t foo3();
-//-------------------------------------------------------------------------------------------------
 class TestCallback
 {
 public:
