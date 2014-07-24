@@ -55,7 +55,6 @@ public:
     void_t         setHelp(std::cstring_t &help);
         ///< set help
 
-
     /* static */
     std::tstring_t versionMajor();
         ///< major version
@@ -134,7 +133,7 @@ public:
     std::tstring_t vendorSkype();
         ///< vendor skype
     /* static */
-    void_t         setVendorSkype(std::cstring_t &xxxxxxxxxxxxxxxx);
+    void_t         setVendorSkype(std::cstring_t &vendorSkype);
         ///< set vendor skype
 
     /* static */
@@ -183,6 +182,8 @@ public:
         ///< command line arguments
     bool_t         isRunnig(std::ctstring_t &appGuid) const;
         ///< check if application already running
+    void_t         dirsCreate();
+        ///< create all application directories
     bool_t         selfCheck() const;
         ///< self check
     //++ virtual int_t  run() = 0;
