@@ -344,6 +344,19 @@ Application::abort() const
 
 //-------------------------------------------------------------------------------------------------
 inline void_t
+Application::setOnSignal(
+    int          a_signalNum,
+    sighandler_t a_callback
+)
+{
+    // FAQ: https://gist.github.com/jvranish/4441299
+    // set handlers
+
+    sighandler_t shRv = std::signal(a_signalNum, a_callback);
+    xTEST(shRv != SIG_ERR);
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
 Application::setOnSignals(
     sighandler_t a_callback
 )
@@ -389,8 +402,7 @@ Application::setOnSignals(
     };
 
     for (int_t i = 0; i < xARRAY_SIZE(signalNums); ++ i) {
-        sighandler_t shRv = std::signal(signalNums[i], a_callback);
-        xTEST(shRv != SIG_ERR);
+        setOnSignal(signalNums[i], a_callback);
     }
 }
 //-------------------------------------------------------------------------------------------------

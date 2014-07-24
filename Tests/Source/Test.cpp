@@ -8,7 +8,7 @@
 #include <Test/Test_xLib.h>
 
 //-------------------------------------------------------------------------------------------------
-void_t onSignal(int signal);
+void_t onSignals(int signal);
 void_t onExit();
 void_t onTerminate();
 void_t fail();
