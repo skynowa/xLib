@@ -48,13 +48,13 @@ void_t onExit()
 {
     Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
 
-    // abort();  // forces abnormal termination
+    // std::abort();  // forces abnormal termination
 }
 void_t onTerminate()
 {
     Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
 
-    // abort();  // forces abnormal termination
+    // std::abort();  // forces abnormal termination
 }
 //-------------------------------------------------------------------------------------------------
 void_t fail()
