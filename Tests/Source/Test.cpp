@@ -60,28 +60,24 @@ void_t onTerminate()
     // abort();  // forces abnormal termination
 }
 //-------------------------------------------------------------------------------------------------
-void_t
-fail()
+void_t fail()
 {
-#if 0
+#if 1
     int *p = xPTR_NULL;
-    *p=10;
+    *p = 10;
 #else
     throw 0;  // unhandled exception: calls terminate handler
 #endif
 }
-void_t
-foo1()
+void_t foo1()
 {
     fail();
 }
-void_t
-foo2()
+void_t foo2()
 {
     foo1();
 }
-void_t
-foo3()
+void_t foo3()
 {
     foo2();
 }
