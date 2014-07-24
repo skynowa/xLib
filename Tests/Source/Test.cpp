@@ -16,7 +16,7 @@ void_t foo1();
 void_t foo2();
 void_t foo3();
 //-------------------------------------------------------------------------------------------------
-void_t onSignal(int a_signal)
+void_t onSignals(int a_signal)
 {
     Trace() << xFUNCTION << "\nStack trace:\n " << StackTrace().toString();
 
@@ -87,7 +87,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     {
     #if 1
         Application application;
-        application.setOnSignal(onSignal);
+        application.setOnSignals(onSignals);
         application.setOnTerminate(onTerminate);
         application.setOnExit(onExit);
 
