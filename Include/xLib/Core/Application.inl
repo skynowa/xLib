@@ -71,111 +71,129 @@ Application::~Application()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::name() const
+Application::name()
 {
     return ::name;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::decription() const
+Application::decription()
 {
     return ::decription;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::copyrightYears() const
+Application::copyrightYears()
 {
     return ::copyrightYears;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::usage() const
+Application::usage()
 {
     return ::usage;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::help() const
+Application::help()
 {
     return ::help;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::versionMajor() const
+Application::versionMajor()
 {
     return ::versionMajor;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::versionMinor() const
+Application::versionMinor()
 {
     return ::versionMinor;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::versionPatch() const
+Application::versionPatch()
 {
     return ::versionPatch;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::versionType() const
+Application::versionType()
 {
     return ::versionType;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::versionRevision() const
+Application::versionRevision()
 {
     return ::versionRevision;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::versionFull() const
+Application::versionFull()
 {
     return String::format(xT("%s.%s.%s %s %s"), versionMajor().c_str(), versionMinor().c_str(),
         versionPatch().c_str(), versionType().c_str(), versionRevision().c_str());
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::vendorName() const
+Application::vendorName()
 {
     return ::vendorName;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::vendorDomain() const
+Application::vendorDomain()
 {
     return ::vendorDomain;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::vendorAuthor() const
+Application::vendorAuthor()
 {
     return ::vendorAuthor;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::vendorUrl() const
+Application::vendorUrl()
 {
     return ::vendorUrl;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::vendorEmail() const
+Application::vendorEmail()
 {
     return ::vendorEmail;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::vendorSkype() const
+Application::vendorSkype()
 {
     return ::vendorSkype;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline const BuildInfo &
-Application::buildInfo() const
+Application::buildInfo()
 {
     static BuildInfo info;
 
@@ -190,14 +208,16 @@ Application::buildInfo() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::filePath() const
+Application::filePath()
 {
     return Path::exe();
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::configPath() const
+Application::configPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
     std::ctstring_t ext      = Path::fileExt(Path::seConfig);
@@ -205,8 +225,9 @@ Application::configPath() const
     return String::format(xT("%s/%s.%s"), configDirPath().c_str(), basename.c_str(), ext.c_str());
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::logPath() const
+Application::logPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
     std::ctstring_t ext      = Path::fileExt(Path::seLog);
@@ -214,8 +235,9 @@ Application::logPath() const
     return String::format(xT("%s/%s.%s"), dirPath().c_str(), basename.c_str(), ext.c_str());
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::dbPath() const
+Application::dbPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
     std::ctstring_t ext      = Path::fileExt(Path::seDb);
@@ -231,38 +253,44 @@ Application::dbPath() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::dirPath() const
+Application::dirPath()
 {
     return Path::exeDir();
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::configDirPath() const
+Application::configDirPath()
 {
     return String::format(xT("%s/%s"), dirPath().c_str(), ::configDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::logDirPath() const
+Application::logDirPath()
 {
     return String::format(xT("%s/%s"), dirPath().c_str(), ::logDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::dbDirPath() const
+Application::dbDirPath()
 {
     return String::format(xT("%s/%s"), dirPath().c_str(), ::dbDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::backupDirPath() const
+Application::backupDirPath()
 {
     return String::format(xT("%s/%s"), dirPath().c_str(), ::backupDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
-Application::tempDirPath() const
+Application::tempDirPath()
 {
     return String::format(xT("%s/%s"), dirPath().c_str(), ::tempDirName.c_str());
 }
