@@ -173,7 +173,7 @@
 // xPTR_NULL
 #if xLANG_STANDART_CPP11
     #define xPTR_NULL \
-        nullptr
+        std::nullptr_t
 #else
     #define xPTR_NULL \
         NULL
