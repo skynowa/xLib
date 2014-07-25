@@ -128,6 +128,8 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         signalNums.push_back(SIGSYS);      // Bad system call
 
         Application application;
+        Application::setName(xT("[app_name]"));
+    #if 0
         application.setName(xT("[app_name]"));
         application.setDecription(xT("[decription]"));
         application.setUsage(xT("[usage]"));
@@ -144,6 +146,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         application.setVendorUrl(xT("[http://bitbucket.org/skynowa/xlib]"));
         application.setVendorEmail(xT("[skynowa@gmail.com]"));
         application.setVendorSkype(xT("[skynowa777]"));
+    #endif
 
     #if 0
         Trace()
@@ -187,7 +190,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     // options (default)
     bool_t      isUseTracing = true;
     ulonglong_t allLoops     = 1ULL;
-    ulonglong_t unitL(    = 1ULL;
+    ulonglong_t unitLoops    = 1ULL;
     ulonglong_t caseLoops    = 1ULL;
     {
         std::vec_tstring_t args;
