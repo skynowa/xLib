@@ -561,29 +561,4 @@ Application::setOnTerminate(
 }
 //-------------------------------------------------------------------------------------------------
 
-
-/**************************************************************************************************
-*   private
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-std::tstring_t Application::_name;
-std::tstring_t Application::_decription;
-std::tstring_t Application::_copyrightYears;
-std::tstring_t Application::_usage;
-std::tstring_t Application::_help;
-std::tstring_t Application::_versionMajor;
-std::tstring_t Application::_versionMinor;
-std::tstring_t Application::_versionPatch;
-std::tstring_t Application::_versionType;
-std::tstring_t Application::_versionRevision;
-std::tstring_t Application::_vendorName;
-std::tstring_t Application::_vendorDomain;
-std::tstring_t Application::_vendorAuthor;
-std::tstring_t Application::_vendorUrl;
-std::tstring_t Application::_vendorEmail;
-std::tstring_t Application::_vendorSkype;
-//-------------------------------------------------------------------------------------------------
-
 xNAMESPACE_END2(xlib, core)
