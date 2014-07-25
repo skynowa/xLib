@@ -186,8 +186,10 @@ public:
         ///< create all application directories
     bool_t         selfCheck() const;
         ///< self check
-    //++ virtual int_t  run() = 0;
+#if 0
+    virtual int_t  run() = 0;
         ///< run application
+#endif
     void_t         exit(cint_t &status) const;
         ///< terminates the process normally, performing the regular cleanup,
         ///< objects with automatic storage are not destroyed
@@ -240,6 +242,8 @@ private:
 
     xNO_COPY_ASSIGN(Application)
 };
+
+extern Application application;
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
