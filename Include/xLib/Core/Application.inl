@@ -12,9 +12,7 @@
 #include <xLib/IO/Dir.h>
 #include <xLib/System/ProcessInfo.h>
 
-
 xNAMESPACE_BEGIN2(xlib, core)
-
 
 /**************************************************************************************************
 *   public

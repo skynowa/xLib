@@ -247,4 +247,22 @@ extern Application application;
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
+#define xLIB_CORE_APPLICATION_DECLARE \
+    std::tstring_t xlib::core::Application::_name; \
+    std::tstring_t xlib::core::Application::_decription; \
+    std::tstring_t xlib::core::Application::_copyrightYears; \
+    std::tstring_t xlib::core::Application::_usage; \
+    std::tstring_t xlib::core::Application::_help; \
+    std::tstring_t xlib::core::Application::_versionMajor; \
+    std::tstring_t xlib::core::Application::_versionMinor; \
+    std::tstring_t xlib::core::Application::_versionPatch; \
+    std::tstring_t xlib::core::Application::_versionType; \
+    std::tstring_t xlib::core::Application::_versionRevision; \
+    std::tstring_t xlib::core::Application::_vendorName; \
+    std::tstring_t xlib::core::Application::_vendorDomain; \
+    std::tstring_t xlib::core::Application::_vendorAuthor; \
+    std::tstring_t xlib::core::Application::_vendorUrl; \
+    std::tstring_t xlib::core::Application::_vendorEmail; \
+    std::tstring_t xlib::core::Application::_vendorSkype;
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Application.inl>
