@@ -247,7 +247,7 @@ extern Application application;
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
-#define xLIB_CORE_APPLICATION_DECLARE \
+#define xLIB_CORE_APPLICATION_STATIC_DECLARE \
     std::tstring_t xlib::core::Application::_name; \
     std::tstring_t xlib::core::Application::_decription; \
     std::tstring_t xlib::core::Application::_copyrightYears; \
