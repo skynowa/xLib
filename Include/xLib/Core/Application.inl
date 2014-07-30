@@ -36,14 +36,145 @@ std::ctstring_t langDirPath   = "Lang";
 }
 //-------------------------------------------------------------------------------------------------
 inline
-Application::Application()
+Application::Application(
+    std::ctstring_t &a_appGuid
+) :
+    _appGuid(a_appGuid)
 {
+    xTEST_EQ(a_appGuid.empty(), false);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 inline
 Application::~Application()
 {
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   actions
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::args(
+    std::vec_tstring_t *a_args  ///< [out] command line arguments
+) const
+{
+    ProcessInfo info;
+    info.commandLine(a_args);
+}
+//-------------------------------------------------------------------------------------------------
+inline bool_t
+Application::isRunnig() const
+{
+    xUNUSED(_appGuid);
+
+    // TODO: Application::isRunnig()
+
+    return false;
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::dirsCreate()
+{
+    Dir( configDirPath() ).pathCreate();
+    Dir( logDirPath() ).pathCreate();
+    Dir( dbDirPath() ).pathCreate();
+    Dir( backupDirPath() ).pathCreate();
+    Dir( tempDirPath() ).pathCreate();
+    Dir( langDirPath() ).pathCreate();
+}
+//-------------------------------------------------------------------------------------------------
+inline bool_t
+Application::selfCheck() const
+{
+#if 0
+    bool_t bRv = false;
+
+    bRv = std::tstring_t(QT_VERSION_STR) == std::tstring_t( qVersion() );
+    if (!bRv) {
+        std::wcerr
+            << "QtLib/Application: "
+            << "Qt compile version \"" << QT_VERSION_STR << "\" and "
+            << "Qt runtime version \"" << qVersion()     << "\" mismatch" << std::endl;
+        return false;
+    }
+#endif
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::exit(
+    cint_t &a_status
+) const
+{
+    (void_t)std::exit(a_status);
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::terminate() const
+{
+    (void_t)std::terminate();
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::abort() const
+{
+    (void_t)std::abort();
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   handles
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::setOnSignals(
+    const std::vector<int_t> &a_signalNums,
+    sighandler_t              a_callback
+)
+{
+   /**
+    * FAQ: set handlers
+    *
+    * https://gist.github.com/jvranish/4441299
+    */
+
+    xFOREACH_CONST(std::vector<int_t>, it, a_signalNums) {
+        sighandler_t shRv = std::signal(*it, a_callback);
+        xTEST(shRv != SIG_ERR);
+    }
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::setOnExit(
+    void_t (*a_callback)()
+)
+{
+    xCHECK_DO(a_callback == xPTR_NULL, return);
+
+    int_t iRv = std::atexit(a_callback);
+    xTEST(iRv == 0);
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Application::setOnTerminate(
+    void_t (*a_callback)()
+)
+{
+    xTEST_PTR(a_callback);
+
+    void_t (*callback_old)() = xPTR_NULL;
+
+    callback_old = std::set_terminate(a_callback);
+    xUNUSED(callback_old);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -427,135 +558,6 @@ inline std::tstring_t
 Application::langDirPath()
 {
     return String::format(xT("%s/%s"), dirPath().c_str(), ::langDirPath.c_str());
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*   actions
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-inline void_t
-Application::args(
-    std::vec_tstring_t *a_args  ///< [out] command line arguments
-) const
-{
-    ProcessInfo info;
-    info.commandLine(a_args);
-}
-//-------------------------------------------------------------------------------------------------
-inline bool_t
-Application::isRunnig(
-    std::ctstring_t &a_appGuid
-) const
-{
-    xUNUSED(a_appGuid);
-
-    // TODO: Application::isRunnig()
-
-    return false;
-}
-//-------------------------------------------------------------------------------------------------
-inline void_t
-Application::dirsCreate()
-{
-    Dir( configDirPath() ).pathCreate();
-    Dir( logDirPath() ).pathCreate();
-    Dir( dbDirPath() ).pathCreate();
-    Dir( backupDirPath() ).pathCreate();
-    Dir( tempDirPath() ).pathCreate();
-    Dir( langDirPath() ).pathCreate();
-}
-//-------------------------------------------------------------------------------------------------
-inline bool_t
-Application::selfCheck() const
-{
-#if 0
-    bool_t bRv = false;
-
-    bRv = std::tstring_t(QT_VERSION_STR) == std::tstring_t( qVersion() );
-    if (!bRv) {
-        std::wcerr
-            << "QtLib/Application: "
-            << "Qt compile version \"" << QT_VERSION_STR << "\" and "
-            << "Qt runtime version \"" << qVersion()     << "\" mismatch" << std::endl;
-        return false;
-    }
-#endif
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-inline void_t
-Application::exit(
-    cint_t &a_status
-) const
-{
-    (void_t)std::exit(a_status);
-}
-//-------------------------------------------------------------------------------------------------
-inline void_t
-Application::terminate() const
-{
-    (void_t)std::terminate();
-}
-//-------------------------------------------------------------------------------------------------
-inline void_t
-Application::abort() const
-{
-    (void_t)std::abort();
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*   actions
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-inline void_t
-Application::setOnSignals(
-    const std::vector<int_t> &a_signalNums,
-    sighandler_t              a_callback
-)
-{
-   /**
-    * FAQ: set handlers
-    *
-    * https://gist.github.com/jvranish/4441299
-    */
-
-    xFOREACH_CONST(std::vector<int_t>, it, a_signalNums) {
-        sighandler_t shRv = std::signal(*it, a_callback);
-        xTEST(shRv != SIG_ERR);
-    }
-}
-//-------------------------------------------------------------------------------------------------
-inline void_t
-Application::setOnExit(
-    void_t (*a_callback)()
-)
-{
-    xCHECK_DO(a_callback == xPTR_NULL, return);
-
-    int_t iRv = std::atexit(a_callback);
-    xTEST(iRv == 0);
-}
-//-------------------------------------------------------------------------------------------------
-inline void_t
-Application::setOnTerminate(
-    void_t (*a_callback)()
-)
-{
-    xTEST_PTR(a_callback);
-
-    void_t (*callback_old)() = xPTR_NULL;
-
-    callback_old = std::set_terminate(a_callback);
-    xUNUSED(callback_old);
 }
 //-------------------------------------------------------------------------------------------------
 

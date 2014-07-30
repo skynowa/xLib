@@ -127,7 +127,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         signalNums.push_back(SIGPWR);      // Power failure restart (System V)
         signalNums.push_back(SIGSYS);      // Bad system call
 
-        Application application;
+        Application application(xT("[app_name]_guid"));
         Application::setName(xT("[app_name]"));
     #if 0
         application.setName(xT("[app_name]"));
