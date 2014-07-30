@@ -14,10 +14,39 @@ class Application
     /// application
 {
 public:
-                   Application();
+                   Application(std::ctstring_t &appGuid);
         ///< constructor
     virtual       ~Application();
         ///< destructor
+
+    // actions
+    void_t         args(std::vec_tstring_t *args) const;
+        ///< command line arguments
+    bool_t         isRunnig() const;
+        ///< check if application already running
+    void_t         dirsCreate();
+        ///< create all application directories
+    bool_t         selfCheck() const;
+        ///< self check
+#if 0
+    virtual int_t  run() = 0;
+        ///< run application
+#endif
+    void_t         exit(cint_t &status) const;
+        ///< terminates the process normally, performing the regular cleanup,
+        ///< objects with automatic storage are not destroyed
+    void_t         terminate() const;
+        ///< calls the current terminate handler
+    void_t         abort() const;
+        ///< aborts the current process, producing an abnormal program termination
+
+    // handles
+    void_t         setOnSignals(const std::vector<int_t> &signalNums, sighandler_t callback);
+        ///< set signal handle
+    void_t         setOnExit(void_t (*callback)());
+        ///< set exit handle
+    void_t         setOnTerminate(void_t (*callback)());
+        ///< set terminate handle (by default, the terminate handler calls abort)
 
     // info
     static
@@ -177,36 +206,10 @@ public:
     std::tstring_t langDirPath();
         ///< language translation directory
 
-    // actions
-    void_t         args(std::vec_tstring_t *args) const;
-        ///< command line arguments
-    bool_t         isRunnig(std::ctstring_t &appGuid) const;
-        ///< check if application already running
-    void_t         dirsCreate();
-        ///< create all application directories
-    bool_t         selfCheck() const;
-        ///< self check
-#if 0
-    virtual int_t  run() = 0;
-        ///< run application
-#endif
-    void_t         exit(cint_t &status) const;
-        ///< terminates the process normally, performing the regular cleanup,
-        ///< objects with automatic storage are not destroyed
-    void_t         terminate() const;
-        ///< calls the current terminate handler
-    void_t         abort() const;
-        ///< aborts the current process, producing an abnormal program termination
-
-    // handles
-    void_t         setOnSignals(const std::vector<int_t> &signalNums, sighandler_t callback);
-        ///< set signal handle
-    void_t         setOnExit(void_t (*callback)());
-        ///< set exit handle
-    void_t         setOnTerminate(void_t (*callback)());
-        ///< set terminate handle (by default, the terminate handler calls abort)
-
 private:
+    std::ctstring_t _appGuid;
+
+    // static
     static
     std::tstring_t _name;
     static
