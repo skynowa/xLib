@@ -22,7 +22,7 @@ Test_ThreadPool::unit(
     cbool_t cbIsGroupPaused       = true;
     cbool_t cbIsGroupAutoDelete   = true;
 
-    ThreadPool<CPoolThread> *tpPool = NULL;
+    ThreadPool<CPoolThread> *tpPool = xPTR_NULL;
 
     {
         tpPool = new ThreadPool<CPoolThread>(
@@ -33,11 +33,11 @@ Test_ThreadPool::unit(
 
     {
         cuint_t  cuiStackSize       = 0UL;
-        void_t         *pvParam            = NULL;
+        void_t         *pvParam            = xPTR_NULL;
         cuint_t  cuiNumTasks        = 5;
         cuint_t  cuiMaxRunningTasks = 10U;
 
-        tpPool->groupCreate(cuiStackSize, NULL, pvParam,
+        tpPool->groupCreate(cuiStackSize, xPTR_NULL, pvParam,
                              cuiNumTasks, cuiMaxRunningTasks);
     }
 

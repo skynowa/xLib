@@ -50,7 +50,7 @@ Test_IpcSemaphore::unit(
         semSemaphore.create(4, xT("sema_name"));
 
     #if   xENV_WIN
-        uintptr_t puiRv = ::_beginthreadex(NULL, 0U, &_Functor::worker, &semSemaphore, 0U, NULL);
+        uintptr_t puiRv = ::_beginthreadex(xPTR_NULL, 0U, &_Functor::worker, &semSemaphore, 0U, xPTR_NULL);
         #if xARCH_BITS_32
             xTEST_DIFF(uintptr_t(0), puiRv);
         #else
@@ -58,7 +58,7 @@ Test_IpcSemaphore::unit(
         #endif
     #elif xENV_UNIX
         pthread_t id = 0UL;
-        int_t iRv = ::pthread_create(&id, NULL, &_Functor::worker, &semSemaphore);
+        int_t iRv = ::pthread_create(&id, xPTR_NULL, &_Functor::worker, &semSemaphore);
         xTEST_EQ(iRv, 0);
     #endif
 

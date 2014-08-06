@@ -68,7 +68,7 @@ Test_Process::unit(
         proc.create(filePath, xT("%s"), cmdLine.c_str());
 
         Process::handle_t hHandle = proc.handle();
-        xTEST_DIFF(static_cast<Process::handle_t>( NULL ), hHandle);
+        xTEST_DIFF(static_cast<Process::handle_t>( xPTR_NULL ), hHandle);
 
         Process::id_t id = proc.id();
         xTEST_LESS(static_cast<Process::id_t>( 0 ), id);

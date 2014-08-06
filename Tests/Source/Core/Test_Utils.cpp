@@ -62,7 +62,7 @@ Test_Utils::unit(
 
         // false
         {
-            int_t *piData = NULL;
+            int_t *piData = xPTR_NULL;
 
             Utils::ptrAssignT(piData, ciVal);
             xTEST_PTR_FAIL(piData);
@@ -87,7 +87,7 @@ Test_Utils::unit(
 
         // must compile-error
         {
-            //// tchar_t *pszBuff = NULL;
+            //// tchar_t *pszBuff = xPTR_NULL;
             //// m_uiRv = Utils::arraySizeT(pszBuff);
         }
     }
@@ -172,7 +172,7 @@ Test_Utils::unit(
 
         // false
         {
-            char *pszBuff = NULL;
+            char *pszBuff = xPTR_NULL;
 
             Utils::bufferFreeT(pszBuff);
             xTEST_PTR_FAIL(pszBuff);
