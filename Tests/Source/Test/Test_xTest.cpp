@@ -43,8 +43,8 @@ Test_Test::unit(
         xTEST_PTR(123);
         xTEST_MSG_PTR(61466, msg);
 
-        xTEST_PTR_FAIL(NULL);
-        xTEST_MSG_PTR_FAIL(NULL, msg);
+        xTEST_PTR_FAIL(xPTR_NULL);
+        xTEST_MSG_PTR_FAIL(xPTR_NULL, msg);
 
     #if xTEST_IGNORE
         xTEST_FAIL;

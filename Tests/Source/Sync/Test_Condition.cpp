@@ -66,7 +66,7 @@ pvWatch(
     iRv = ::pthread_mutex_unlock(&g_mtMutex);
     xTEST_MSG_EQ(0, iRv, LastError::format(iRv));
 
-    return NULL;
+    return xPTR_NULL;
 }
 
 #endif // xENV_UNIX
@@ -114,7 +114,7 @@ pvJob(
         }
     }
 
-    return NULL;
+    return xPTR_NULL;
 }
 
 #endif // xENV_UNIX
@@ -136,10 +136,10 @@ Test_Condition::unit(
 
     // initialize
     {
-        iRv = ::pthread_mutex_init(&g_mtMutex, NULL);   // mutex not recursive
+        iRv = ::pthread_mutex_init(&g_mtMutex, xPTR_NULL);   // mutex not recursive
         xTEST_MSG_EQ(0, iRv, LastError::format(iRv));
 
-        iRv = ::pthread_cond_init(&g_cndCondition, NULL);
+        iRv = ::pthread_cond_init(&g_cndCondition, xPTR_NULL);
         xTEST_MSG_EQ(0, iRv, LastError::format(iRv));
 
         // for portability, explicitly create threads in a joinable state
@@ -166,7 +166,7 @@ Test_Condition::unit(
 
     // wait for all threads to complete
     for (size_t i = 0; i < g_cuiThreadsNum; ++ i) {
-        iRv = ::pthread_join(thThreads[i], NULL);
+        iRv = ::pthread_join(thThreads[i], xPTR_NULL);
         xTEST_MSG_EQ(0, iRv, LastError::format(iRv));
     }
 

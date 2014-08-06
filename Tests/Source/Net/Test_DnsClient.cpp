@@ -65,9 +65,9 @@ Test_DnsClient::unit(
         std::tstring_t sPort     = xT("http");
 
         ////addrinfo_t aiHints  = {0};
-        addrinfo_t *paiList = NULL;
+        addrinfo_t *paiList = xPTR_NULL;
 
-        DnsClient::hostAddrInfo(sHostName, sPort, NULL, &paiList);
+        DnsClient::hostAddrInfo(sHostName, sPort, xPTR_NULL, &paiList);
 
         //xSTD_COUT(xT("[hostAddrInfo]: ") << sLocalHostName);
 

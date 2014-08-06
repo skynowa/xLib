@@ -21,11 +21,11 @@ Test_WaitableTimer::unit(
 
     //-------------------------------------
     //создаем
-    WT.create(false, xT(""), NULL);
+    WT.create(false, xT(""), xPTR_NULL);
 
     //-------------------------------------
     //Устанавливаем
-    WT.set(/*-30000000LL*/0, 2000, NULL, NULL, 0);
+    WT.set(/*-30000000LL*/0, 2000, xPTR_NULL, xPTR_NULL, 0);
 
     while (true) {
         //-------------------------------------
