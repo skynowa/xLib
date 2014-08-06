@@ -8,6 +8,8 @@
 #include <Test/Test_xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+xLIB_CORE_APPLICATION_STATIC_DECLARE
+
 class TestCallback
 {
 public:
