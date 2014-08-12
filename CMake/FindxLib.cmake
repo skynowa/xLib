@@ -68,7 +68,7 @@ unset(XLIB_LIBRARIES   CACHE)
 
 #--------------------------------------------------------------------------------------------------
 # modules
-#set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
+# set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 include(Configure)
 
 #--------------------------------------------------------------------------------------------------
@@ -115,8 +115,8 @@ set(XLIB_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR}")
 
 #--------------------------------------------------------------------------------------------------
 # flags
-include(CMake/CxxFlags.cmake)
-include(CMake/CMakeVariables.cmake)
+include(CxxFlags)
+# include(CMakeVariables)
 
 #--------------------------------------------------------------------------------------------------
 # definitions
