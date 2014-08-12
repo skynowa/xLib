@@ -70,8 +70,8 @@ option(xOPTION_BUILD_MSG         "Build messages"                           0)
 
 #--------------------------------------------------------------------------------------------------
 # internal vars
-unset(XLIB_LIBRARIES   CACHE)
 unset(XLIB_DEFINITIONS CACHE)
+unset(XLIB_LIBRARIES   CACHE)
 
 #--------------------------------------------------------------------------------------------------
 # modules
@@ -148,25 +148,25 @@ include(CMake/CMakeVariables.cmake)
 if     (MSVC)
     set(XLIB_DEFINITIONS "")
 elseif (MINGW)
+    set(XLIB_DEFINITIONS "")
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ws2_32 netapi32 psapi uuid ole32 mpr dbghelp)
-    set(XLIB_DEFINITIONS "")
 elseif (CMAKE_COMPILER_IS_CLANGXX)
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} pthread rt m z)
     set(XLIB_DEFINITIONS "")
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} pthread rt m z)
 elseif (CMAKE_COMPILER_IS_GNUCXX)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} pthread rt m z)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
     set(XLIB_DEFINITIONS "")
 else()
     message("xLib: unknown compiler")
 endif()
 
 if (OS_ANDROID)
-    unset(XLIB_LIBRARIES   CACHE)
     unset(XLIB_DEFINITIONS CACHE)
+    unset(XLIB_LIBRARIES   CACHE)
 
-    set(XLIB_LIBRARIES gnustl_static m z log)
     set(XLIB_DEFINITIONS "")
+    set(XLIB_LIBRARIES gnustl_static m z log)
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
