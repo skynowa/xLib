@@ -145,6 +145,6 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # config
 configure_file(
-    ${CMAKE_SOURCE_DIR}/Include/xLib/Core/Config_gen.h.in
-    ${CMAKE_SOURCE_DIR}/Include/xLib/Core/Config_gen.h)
+    ${XLIB_LOCATION}/Include/xLib/Core/Config_gen.h.in
+    ${XLIB_LOCATION}/Include/xLib/Core/Config_gen.h)
 #--------------------------------------------------------------------------------------------------
