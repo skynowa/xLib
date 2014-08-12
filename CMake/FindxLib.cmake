@@ -2,6 +2,7 @@
 # \file  FindxLib.cmake
 # \brief Find xLib
 #
+# XLIB_LOCATION    - root diractory [in]
 # XLIB_FOUND       - found or not
 # XLIB_DEFINITIONS - definitions
 # XLIB_INCLUDES    - include pathes
@@ -66,14 +67,20 @@ unset(XLIB_DEFINITIONS CACHE)
 unset(XLIB_INCLUDES    CACHE)
 unset(XLIB_LIBRARIES   CACHE)
 
+unset(XLIB_LOCATION    CACHE)
+
+if (NOT XLIB_LOCATION)
+    set(XLIB_LOCATION ${CMAKE_SOURCE_DIR})
+endif()
+
 #--------------------------------------------------------------------------------------------------
 # modules
-# set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
+# set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMake)
 include(Configure)
 
 #--------------------------------------------------------------------------------------------------
 # includes, libs
-set(XLIB_INCLUDES ${XLIB_INCLUDES} ${CMAKE_SOURCE_DIR}/Include)
+set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
 
 if (OPENSSL_FOUND)
     set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${OPENSSL_INCLUDE_DIR})
@@ -161,14 +168,14 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # install
 install(
-    DIRECTORY ${CMAKE_SOURCE_DIR}/Include/xLib/
+    DIRECTORY ${XLIB_LOCATION}/Include/xLib/
     DESTINATION ${XLIB_INSTALL_PATH}
     FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
 
 #--------------------------------------------------------------------------------------------------
 # uninstall
 configure_file(
-    ${CMAKE_SOURCE_DIR}/CMake/cmake_uninstall.cmake.in
+    ${XLIB_LOCATION}/CMake/cmake_uninstall.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
     IMMEDIATE @ONLY)
 
@@ -185,7 +192,8 @@ if (NOT XLIB_FOUND AND XLIB_FIND_REQUIRED)
     message(FATAL_ERROR "XLIB_FOUND: ${XLIB_FOUND}")
 else()
     message(STATUS "XLIB_FOUND: ${XLIB_FOUND}")
-    # message("    XLIB_DEFINITIONS: ${XLIB_DEFINITIONS}")
-    # message("    XLIB_INCLUDES: ${XLIB_INCLUDES}")
-    # message("    XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
+    message("    XLIB_LOCATION: ${XLIB_LOCATION}")
+    message("    XLIB_DEFINITIONS: ${XLIB_DEFINITIONS}")
+    message("    XLIB_INCLUDES: ${XLIB_INCLUDES}")
+    message("    XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
 endif()
