@@ -9,8 +9,6 @@
 #--------------------------------------------------------------------------------------------------
 
 
-cmake_minimum_required(VERSION 2.6)
-
 #--------------------------------------------------------------------------------------------------
 # options
 unset(xOPTION_PROJECT_EXE       CACHE)
@@ -70,38 +68,38 @@ unset(XLIB_LIBRARIES   CACHE)
 
 #--------------------------------------------------------------------------------------------------
 # modules
-set(CMAKE_MODULE_PATH ".")
-include(Configure.cmake)
+#set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
+include(Configure)
 
 #--------------------------------------------------------------------------------------------------
 # includes, libs
-set(${XLIB_INCLUDES} ${XLIB_INCLUDES} "${CMAKE_SOURCE_DIR}/Include")
+set(${XLIB_INCLUDES} "${XLIB_INCLUDES} ${CMAKE_SOURCE_DIR}/Include")
 
 if (OPENSSL_FOUND)
-    set(${XLIB_INCLUDES}  ${XLIB_INCLUDES} "${OPENSSL_INCLUDE_DIR}")
-    set(${XLIB_LIBRARIES} ${XLIB_LIBRARIES} ${OPENSSL_LIBRARIES})
+    set(${XLIB_INCLUDES}  "${XLIB_INCLUDES} ${OPENSSL_INCLUDE_DIR}")
+    set(${XLIB_LIBRARIES} "${XLIB_LIBRARIES} ${OPENSSL_LIBRARIES}")
 endif()
 
 if (MYSQL_FOUND)
-    set(${XLIB_INCLUDES}  ${XLIB_INCLUDES} "${MYSQL_INCLUDES}")
-    set(${XLIB_LIBRARIES} ${XLIB_LIBRARIES} ${MYSQL_LIBRARIES})
+    set(${XLIB_INCLUDES}  "${XLIB_INCLUDES} ${MYSQL_INCLUDES}")
+    set(${XLIB_LIBRARIES} "${XLIB_LIBRARIES} ${MYSQL_LIBRARIES}")
 endif()
 
 if (ENV_UNIX)
     if (XCB_FOUND)
-        set(${XLIB_INCLUDES}  ${XLIB_INCLUDES} "${XCB_INCLUDE_DIR}")
-        set(${XLIB_LIBRARIES} ${XLIB_LIBRARIES} ${XCB_LIBRARIES})
+        set(${XLIB_INCLUDES}  "${XLIB_INCLUDES} ${XCB_INCLUDE_DIR}")
+        set(${XLIB_LIBRARIES} "${XLIB_LIBRARIES} ${XCB_LIBRARIES}")
     endif()
 
     if (EXECINFO_FOUND)
-        set(${XLIB_INCLUDES}  ${XLIB_INCLUDES} ${EXECINFO_INCLUDES})
-        set(${XLIB_LIBRARIES} ${XLIB_LIBRARIES} ${EXECINFO_LIBRARIES})
+        set(${XLIB_INCLUDES}  "${XLIB_INCLUDES} ${EXECINFO_INCLUDES}")
+        set(${XLIB_LIBRARIES} "${XLIB_LIBRARIES} ${EXECINFO_LIBRARIES}")
     endif()
 
     if (OS_ANDROID)
         # set(ANDROID_NDK "/opt/Libs/Android/NDK")
-        # set(${XLIB_INCLUDES} ${XLIB_INCLUDES} "${ANDROID_NDK}/platforms/android-9/arch-arm/usr/include")
-        # set(${XLIB_LIBRARIES} ${XLIB_LIBRARIES} "")
+        # set(${XLIB_INCLUDES} "${XLIB_INCLUDES} ${ANDROID_NDK}/platforms/android-9/arch-arm/usr/include")
+        # set(${XLIB_LIBRARIES} "${XLIB_LIBRARIES} ")
     endif()
 endif()
 
@@ -130,7 +128,7 @@ endif()
 
 #--------------------------------------------------------------------------------------------------
 # libraries
-set(XLIB_LIBRARIES "${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}")
+set(XLIB_LIBRARIES "${XLIB_LIBRARIES}${CMAKE_THREAD_LIBS}${CMAKE_DL_LIBS}")
 
 if     (MSVC)
 
