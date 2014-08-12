@@ -42,6 +42,6 @@ add_executable(${PROJECT_NAME} ${xLib_tests_SOURCES})
 
 #--------------------------------------------------------------------------------------------------
 # definitions, libs, flags
-set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 
 target_link_libraries(${PROJECT_NAME} ${XLIB_LIBRARIES})
