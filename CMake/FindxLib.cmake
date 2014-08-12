@@ -68,12 +68,12 @@ unset(XLIB_LIBRARIES   CACHE)
 
 #--------------------------------------------------------------------------------------------------
 # modules
-# set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
+# set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake")
 include(Configure)
 
 #--------------------------------------------------------------------------------------------------
 # includes, libs
-set(XLIB_INCLUDES ${XLIB_INCLUDES} ${CMAKE_SOURCE_DIR}/Include)
+set(XLIB_INCLUDES ${XLIB_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR}/Include)
 
 if (OPENSSL_FOUND)
     set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${OPENSSL_INCLUDE_DIR})
@@ -161,7 +161,7 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # install
 install(
-    DIRECTORY ${CMAKE_SOURCE_DIR}/Include/xLib/
+    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Include/xLib/
     DESTINATION ${XLIB_INSTALL_PATH}
     FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
 
