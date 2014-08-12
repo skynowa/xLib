@@ -22,11 +22,14 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 include(CMake/FindxLib.cmake)
 
 #--------------------------------------------------------------------------------------------------
-# includes, libs
+# definitions, libs, flags
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 
+#--------------------------------------------------------------------------------------------------
+# includes, libs
 include_directories(${XLIB_INCLUDES})
 include_directories(${CMAKE_SOURCE_DIR}/Tests/Include)
-# link_libraries(${XLIB_LIBRARIES})
+link_libraries(${XLIB_LIBRARIES})
 
 #--------------------------------------------------------------------------------------------------
 # sources
@@ -39,9 +42,3 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # target
 add_executable(${PROJECT_NAME} ${xLib_tests_SOURCES})
-
-#--------------------------------------------------------------------------------------------------
-# definitions, libs, flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
-
-target_link_libraries(${PROJECT_NAME} ${XLIB_LIBRARIES})
