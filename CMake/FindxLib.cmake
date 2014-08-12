@@ -73,33 +73,33 @@ include(Configure)
 
 #--------------------------------------------------------------------------------------------------
 # includes, libs
-set(${XLIB_INCLUDES} "${XLIB_INCLUDES} ${CMAKE_SOURCE_DIR}/Include")
+set(XLIB_INCLUDES ${XLIB_INCLUDES} ${CMAKE_SOURCE_DIR}/Include)
 
 if (OPENSSL_FOUND)
-    set(${XLIB_INCLUDES}  "${XLIB_INCLUDES} ${OPENSSL_INCLUDE_DIR}")
-    set(${XLIB_LIBRARIES} "${XLIB_LIBRARIES} ${OPENSSL_LIBRARIES}")
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${OPENSSL_INCLUDE_DIR})
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${OPENSSL_LIBRARIES})
 endif()
 
 if (MYSQL_FOUND)
-    set(${XLIB_INCLUDES}  "${XLIB_INCLUDES} ${MYSQL_INCLUDES}")
-    set(${XLIB_LIBRARIES} "${XLIB_LIBRARIES} ${MYSQL_LIBRARIES}")
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${MYSQL_INCLUDES})
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${MYSQL_LIBRARIES})
 endif()
 
 if (ENV_UNIX)
     if (XCB_FOUND)
-        set(${XLIB_INCLUDES}  "${XLIB_INCLUDES} ${XCB_INCLUDE_DIR}")
-        set(${XLIB_LIBRARIES} "${XLIB_LIBRARIES} ${XCB_LIBRARIES}")
+        set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${XCB_INCLUDE_DIR})
+        set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${XCB_LIBRARIES})
     endif()
 
     if (EXECINFO_FOUND)
-        set(${XLIB_INCLUDES}  "${XLIB_INCLUDES} ${EXECINFO_INCLUDES}")
-        set(${XLIB_LIBRARIES} "${XLIB_LIBRARIES} ${EXECINFO_LIBRARIES}")
+        set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${EXECINFO_INCLUDES})
+        set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${EXECINFO_LIBRARIES})
     endif()
 
     if (OS_ANDROID)
         # set(ANDROID_NDK "/opt/Libs/Android/NDK")
-        # set(${XLIB_INCLUDES} "${XLIB_INCLUDES} ${ANDROID_NDK}/platforms/android-9/arch-arm/usr/include")
-        # set(${XLIB_LIBRARIES} "${XLIB_LIBRARIES} ")
+        # set(XLIB_INCLUDES ${XLIB_INCLUDES} "${ANDROID_NDK}/platforms/android-9/arch-arm/usr/include")
+        # set(XLIB_LIBRARIES ${XLIB_LIBRARIES})
     endif()
 endif()
 
@@ -111,7 +111,7 @@ if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
 endif()
 
 set(XLIB_INSTALL_DIR  include/xLib)
-set(XLIB_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR}")
+set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
 
 #--------------------------------------------------------------------------------------------------
 # flags
@@ -123,12 +123,12 @@ include(CxxFlags)
 if (xOPTION_CPP11)
     set(CXX_STANDARD "c++11")
     # add_definitions(-std=c++11)
-    set(XLIB_DEFINITIONS "${XLIB_DEFINITIONS} -std=c++11")
+    set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} "-std=c++11")
 endif()
 
 #--------------------------------------------------------------------------------------------------
 # libraries
-set(XLIB_LIBRARIES "${XLIB_LIBRARIES}${CMAKE_THREAD_LIBS}${CMAKE_DL_LIBS}")
+set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
 
 if     (MSVC)
 
@@ -149,6 +149,15 @@ if (OS_ANDROID)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} gnustl_static m z log)
 endif()
 
+if (NOT (XLIB_INCLUDES AND XLIB_LIBRARIES))
+    set(XLIB_FOUND 0)
+    set(XLIB_DEFINITIONS "")
+    set(XLIB_INCLUDES "")
+    set(XLIB_LIBRARIES "")
+else()
+    set(XLIB_FOUND 1)
+endif()
+
 #--------------------------------------------------------------------------------------------------
 # install
 install(
@@ -159,8 +168,8 @@ install(
 #--------------------------------------------------------------------------------------------------
 # uninstall
 configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/CMake/cmake_uninstall.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+    ${CMAKE_CURRENT_SOURCE_DIR}/CMake/cmake_uninstall.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
     IMMEDIATE @ONLY)
 
 add_custom_target(uninstall
@@ -169,3 +178,14 @@ add_custom_target(uninstall
 #--------------------------------------------------------------------------------------------------
 # fix warning "Manually-specified variables were not used by the project"
 unset(CMAKE_TOOLCHAIN_FILE)
+
+#--------------------------------------------------------------------------------------------------
+# trace
+if (NOT XLIB_FOUND AND XLIB_FIND_REQUIRED)
+    message(FATAL_ERROR "XLIB_FOUND: ${XLIB_FOUND}")
+else()
+    message(STATUS "XLIB_FOUND: ${XLIB_FOUND}")
+    # message("    XLIB_DEFINITIONS: ${XLIB_DEFINITIONS}")
+    # message("    XLIB_INCLUDES: ${XLIB_INCLUDES}")
+    # message("    XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
+endif()
