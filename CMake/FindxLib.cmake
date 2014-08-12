@@ -167,10 +167,10 @@ endif()
 
 #--------------------------------------------------------------------------------------------------
 # install
-install(
-    DIRECTORY ${XLIB_LOCATION}/Include/xLib/
-    DESTINATION ${XLIB_INSTALL_PATH}
-    FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
+# install(
+#     DIRECTORY ${XLIB_LOCATION}/Include/xLib/
+#     DESTINATION ${XLIB_INSTALL_PATH}
+#     FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
 
 #--------------------------------------------------------------------------------------------------
 # uninstall
