@@ -1,6 +1,6 @@
 /**
  * \file  StdStream.inl
- * \brief overload operators << for std::basic_ostream
+ * \brief overload operators << for std::std::basic_ostream
  */
 
 
@@ -15,18 +15,18 @@
 
 
 /*******************************************************************************
-*    overload operator << for std::basic_ostream
+*    overload operator << for std::std::basic_ostream
 *
 *******************************************************************************/
 
-xNAMESPACE_BEGIN(std)
+xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 template<class Traits>
-inline basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
-    basic_ostream<tchar_t, Traits> &a_os,
-    std::custring_t                &a_value
+    std::basic_ostream<tchar_t, Traits> &a_os,
+    std::custring_t                     &a_value
 )
 {
     xTEST_NA(a_os);
@@ -45,10 +45,10 @@ operator << (
  * overload operators << for std::vector
  */
 template<class Traits, class T>
-inline basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
-    basic_ostream<tchar_t, Traits> &a_os,
-    const vector<T>                &a_value
+    std::basic_ostream<tchar_t, Traits> &a_os,
+    const std::vector<T>                &a_value
 )
 {
     a_os << "std::vector (" << a_value.size() << " elements)";
@@ -59,7 +59,7 @@ operator << (
 
     a_os << ":" << std::endl;
 
-    typename vector<T>::const_iterator it;
+    typename std::vector<T>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
         a_os << "    value[" << std::distance(a_value.begin(), it) << "]: " << *it;
 
@@ -72,10 +72,10 @@ operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<class Traits, class T>
-inline basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
-    basic_ostream<tchar_t, Traits> &a_os,
-    const list<T>                  &a_value
+    std::basic_ostream<tchar_t, Traits> &a_os,
+    const std::list<T>                  &a_value
 )
 {
     a_os << "std::list (" << a_value.size() << " elements)";
@@ -86,13 +86,14 @@ operator << (
 
     a_os << ":" << std::endl;
 
-    typename list<T>::const_iterator it;
+    typename std::list<T>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
         a_os << "    value[" << std::distance(a_value.begin(), it) << "]: " << *it;
 
         if (++ it != a_value.end()) {
              a_os << std::endl;
         }
+
         -- it;
     }
 
@@ -100,10 +101,10 @@ operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<class Traits, class T1, class T2>
-inline basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
-    basic_ostream<tchar_t, Traits> &a_os,
-    const map<T1, T2>              &a_value
+    std::basic_ostream<tchar_t, Traits> &a_os,
+    const std::map<T1, T2>              &a_value
 )
 {
     a_os << "std::map (" << a_value.size() << " elements)";
@@ -114,7 +115,7 @@ operator << (
 
     a_os << ":" << std::endl;
 
-    typename map<T1, T2>::const_iterator it;
+    typename std::map<T1, T2>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
         a_os << "    key: " << (*it).first  << "\t"
              << "value: "   << (*it).second;
@@ -122,6 +123,7 @@ operator << (
         if (++ it != a_value.end()) {
              a_os << std::endl;
         }
+
         -- it;
     }
 
@@ -129,10 +131,10 @@ operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<class Traits, class T1, class T2>
-inline basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
-    basic_ostream<tchar_t, Traits> &a_os,
-    const multimap<T1, T2>         &a_value
+    std::basic_ostream<tchar_t, Traits> &a_os,
+    const std::multimap<T1, T2>         &a_value
 )
 {
     xTEST_NA(a_os);
@@ -142,7 +144,7 @@ operator << (
     a_os << xT("std::multimap (") << a_value.size() << (" elements):") << std::endl;
     a_os << std::endl;
 
-    typename multimap<T1, T2>::const_iterator it;
+    typename std::multimap<T1, T2>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
         a_os << "    key: " << (*it).first  << "\t"
              << "value: "   << (*it).second;
@@ -150,6 +152,7 @@ operator << (
         if (++ it != a_value.end()) {
              a_os << std::endl;
         }
+
         -- it;
     }
 
@@ -157,4 +160,4 @@ operator << (
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(std)
+xNAMESPACE_END2(xlib, core)

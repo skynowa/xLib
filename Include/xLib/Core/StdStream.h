@@ -6,33 +6,35 @@
 
 #pragma once
 
-xNAMESPACE_BEGIN(std)
+#include <xLib/Core/Defines.h>
+//-------------------------------------------------------------------------------------------------
+xNAMESPACE_BEGIN2(xlib, core)
 
 template<class Traits>
-inline basic_ostream<tchar_t, Traits> &
-operator << (basic_ostream<tchar_t, Traits> &os, std::custring_t &value);
-    ///< overload operators << for std::ustring_t
+inline std::basic_ostream<tchar_t, Traits> &
+operator << (std::basic_ostream<tchar_t, Traits> &os, std::custring_t &value);
+    ///< for std::ustring_t
 
 template<class Traits, class T>
-inline basic_ostream<tchar_t, Traits> &
-operator << (basic_ostream<tchar_t, Traits> &os, const vector<T> &value);
-    ///< overload operators << for std::vector
+inline std::basic_ostream<tchar_t, Traits> &
+operator << (std::basic_ostream<tchar_t, Traits> &os, const std::vector<T> &value);
+    ///< for std::vector
 
 template<class Traits, class T>
-inline basic_ostream<tchar_t, Traits> &
-operator << (basic_ostream<tchar_t, Traits> &os, const list<T> &value);
-    ///< overload operators << for std::list
+inline std::basic_ostream<tchar_t, Traits> &
+operator << (std::basic_ostream<tchar_t, Traits> &os, const std::list<T> &value);
+    ///< for std::list
 
 template<class Traits, class T1, class T2>
-inline basic_ostream<tchar_t, Traits> &
-operator << (basic_ostream<tchar_t, Traits> &os, const map<T1, T2> &value);
-    ///< overload operators << for std::map
+inline std::basic_ostream<tchar_t, Traits> &
+operator << (std::basic_ostream<tchar_t, Traits> &os, const std::map<T1, T2> &value);
+    ///< for std::map
 
 template<class Traits, class T1, class T2>
-inline basic_ostream<tchar_t, Traits> &
-operator << (basic_ostream<tchar_t, Traits> &os, const multimap<T1, T2> &value);
-    ///< overload operators << for std::multimap
+inline std::basic_ostream<tchar_t, Traits> &
+operator << (std::basic_ostream<tchar_t, Traits> &os, const std::multimap<T1, T2> &value);
+    ///< for std::multimap
 
-xNAMESPACE_END(std)
-
+xNAMESPACE_END2(xlib, core)
+//-------------------------------------------------------------------------------------------------
 #include "StdStream.inl"
