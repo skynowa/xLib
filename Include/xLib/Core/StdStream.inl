@@ -117,8 +117,8 @@ operator << (
 
     typename std::map<T1, T2>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
-        a_os << "    key: " << (*it).first  << "\t"
-             << "value: "   << (*it).second;
+        a_os << "    key: " << it->first  << "\t"
+             << "value: "   << it->second;
 
         if (++ it != a_value.end()) {
              a_os << std::endl;
@@ -146,8 +146,8 @@ operator << (
 
     typename std::multimap<T1, T2>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
-        a_os << "    key: " << (*it).first  << "\t"
-             << "value: "   << (*it).second;
+        a_os << "    key: " << it->first  << "\t"
+             << "value: "   << it->second;
 
         if (++ it != a_value.end()) {
              a_os << std::endl;
