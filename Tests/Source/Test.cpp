@@ -10,7 +10,7 @@
 //-------------------------------------------------------------------------------------------------
 xLIB_CORE_APPLICATION_STATIC_DECLARE
 
-class TestCallback
+class SignalFunctor
 {
 public:
     static void_t onSignals(int a_signal)
@@ -170,9 +170,9 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
             << xTRACE_VAR(application.vendorSkype());
     #endif
 
-        application.setOnSignals(signalNums, TestCallback::onSignals);
-        application.setOnTerminate(TestCallback::onTerminate);
-        application.setOnExit(TestCallback::onExit);
+        application.setOnSignals(signalNums, SignalFunctor::onSignals);
+        application.setOnTerminate(SignalFunctor::onTerminate);
+        application.setOnExit(SignalFunctor::onExit);
 
         // test error
         TestFail testFail;
