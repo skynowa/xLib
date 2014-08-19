@@ -51,17 +51,17 @@ operator << (
     const std::vector<T>                &a_value
 )
 {
-    a_os << "std::vector (" << a_value.size() << " elements)";
+    a_os << xT("std::vector (") << a_value.size() << xT(" elements)");
 
     if (a_value.empty())  {
         return a_os;
     }
 
-    a_os << ":" << std::endl;
+    a_os << xT(":") << std::endl;
 
     typename std::vector<T>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
-        a_os << "    value[" << std::distance(a_value.begin(), it) << "]: " << *it;
+        a_os << xT("    value[") << std::distance(a_value.begin(), it) << xT("]: ") << *it;
 
         if (it + 1 != a_value.end()) {
              a_os << std::endl;
@@ -78,17 +78,17 @@ operator << (
     const std::list<T>                  &a_value
 )
 {
-    a_os << "std::list (" << a_value.size() << " elements)";
+    a_os << xT("std::list (") << a_value.size() << xT(" elements)");
 
     if (a_value.empty()) {
         return a_os;
     }
 
-    a_os << ":" << std::endl;
+    a_os << xT(":") << std::endl;
 
     typename std::list<T>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
-        a_os << "    value[" << std::distance(a_value.begin(), it) << "]: " << *it;
+        a_os << xT("    value[") << std::distance(a_value.begin(), it) << xT("]: ") << *it;
 
         if (++ it != a_value.end()) {
              a_os << std::endl;
@@ -107,18 +107,18 @@ operator << (
     const std::map<T1, T2>              &a_value
 )
 {
-    a_os << "std::map (" << a_value.size() << " elements)";
+    a_os << xT("std::map (") << a_value.size() << xT(" elements)");
 
     if (a_value.empty()) {
         return a_os;
     }
 
-    a_os << ":" << std::endl;
+    a_os << xT(":") << std::endl;
 
     typename std::map<T1, T2>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
-        a_os << "    key: " << it->first  << "\t"
-             << "value: "   << it->second;
+        a_os << xT("    key: ") << it->first  << xT("\t")
+             << xT("value: ")   << it->second;
 
         if (++ it != a_value.end()) {
              a_os << std::endl;
@@ -141,13 +141,13 @@ operator << (
     xTEST_NA(a_value);
 
     a_os << std::endl;
-    a_os << xT("std::multimap (") << a_value.size() << (" elements):") << std::endl;
+    a_os << xT("std::multimap (") << a_value.size() << xT(" elements):") << std::endl;
     a_os << std::endl;
 
     typename std::multimap<T1, T2>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
-        a_os << "    key: " << it->first  << "\t"
-             << "value: "   << it->second;
+        a_os << xT("    key: ") << it->first  << xT("\t")
+             << xT("value: ")   << it->second;
 
         if (++ it != a_value.end()) {
              a_os << std::endl;
