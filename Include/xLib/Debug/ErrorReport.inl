@@ -33,21 +33,21 @@ ErrorReport::ErrorReport(
     std::ctstring_t &a_stackTrace,
     std::ctstring_t &a_comment
 ) :
-    _type          (rtUnknown),
-    _report        (),
-    _program       (),
-    _processId     (0UL),
-    _threadId      (0UL),
-    _fileSize      (),
-    _sourceFile    (),
-    _sourceLine    (0UL),
-    _functionName  (),
-    _expression    (),
-    _lastError     (0UL),
-    _lastErrorStr  (),
-    _currentDate   (),
-    _stackTrace    (),
-    _comment       ()
+    _type        (rtUnknown),
+    _report      (),
+    _program     (),
+    _processId   (0UL),
+    _threadId    (0UL),
+    _fileSize    (),
+    _sourceFile  (),
+    _sourceLine  (0UL),
+    _functionName(),
+    _expression  (),
+    _lastError   (0UL),
+    _lastErrorStr(),
+    _currentDate (),
+    _stackTrace  (),
+    _comment     ()
 {
     _construct(rtStdout, "", "", "", "", "", a_lastError, a_file, a_line, a_func, a_stackTrace,
         a_comment);
@@ -69,38 +69,38 @@ ErrorReport::ErrorReport(
     std::ctstring_t &a_stackTrace,
     std::ctstring_t &a_comment
 ) :
-    _type          (rtUnknown),
-    _report        (),
-    _program       (),
-    _processId     (0UL),
-    _threadId      (0UL),
-    _fileSize      (),
-    _sourceFile    (),
-    _sourceLine    (0UL),
-    _functionName  (),
-    _expression    (),
-    _lastError     (0UL),
-    _lastErrorStr  (),
-    _currentDate   (),
-    _stackTrace    (),
-    _comment       ()
+    _type        (rtUnknown),
+    _report      (),
+    _program     (),
+    _processId   (0UL),
+    _threadId    (0UL),
+    _fileSize    (),
+    _sourceFile  (),
+    _sourceLine  (0UL),
+    _functionName(),
+    _expression  (),
+    _lastError   (0UL),
+    _lastErrorStr(),
+    _currentDate (),
+    _stackTrace  (),
+    _comment     ()
 {
     // var1Value
     std::tstring_t var1Value;
     {
-        std::tostringstream_t ossRes;
+        std::tostringstream_t ossRv;
 
-        ossRes << a_var1Value;
-        var1Value = ossRes.str();
+        ossRv << a_var1Value;
+        var1Value = ossRv.str();
     }
 
     // var2Value
     std::tstring_t var2Value;
     {
-        std::tostringstream_t ossRes;
+        std::tostringstream_t ossRv;
 
-        ossRes << a_var2Value;
-        var2Value = ossRes.str();
+        ossRv << a_var2Value;
+        var2Value = ossRv.str();
     }
 
     _construct(a_type, a_var1, a_var2, var1Value, var2Value, a_exprSign, a_lastError, a_file,
