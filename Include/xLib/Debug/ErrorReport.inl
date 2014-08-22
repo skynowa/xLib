@@ -196,7 +196,7 @@ ErrorReport::_initPlain()
     std::ctstring_t       margin = xT("  ");
 
     ossRv
-        << margin << xT("ErrorReport")                    << "\n"
+        << margin << xT("ErrorReport")                      << "\n"
                                                             << "\n"
                                                             << "\n"
         << margin << xT("Program:       ") << _program      << "\n"

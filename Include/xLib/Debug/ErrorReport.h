@@ -24,13 +24,15 @@ public:
     };
 
                    ErrorReport(culong_t &lastError, std::ctstring_t &file, culong_t &line,
-                       std::ctstring_t &func, std::ctstring_t &stackTrace, std::ctstring_t &comment);
+                       std::ctstring_t &func, std::ctstring_t &stackTrace,
+                       std::ctstring_t &comment);
         ///< constructor (for Exception)
                    template<class T>
                    ErrorReport(const ExType &type, std::ctstring_t &var1, std::ctstring_t &var2,
                        const T &var1ValueT, const T &var2ValueT, std::ctstring_t &exprSign,
                        culong_t &lastError, std::ctstring_t &file, culong_t &line,
-                       std::ctstring_t &func, std::ctstring_t &stackTrace, std::ctstring_t &comment);
+                       std::ctstring_t &func, std::ctstring_t &stackTrace,
+                       std::ctstring_t &comment);
         ///< constructor (for Debugger)
     virtual       ~ErrorReport() {}
         ///< destructor
