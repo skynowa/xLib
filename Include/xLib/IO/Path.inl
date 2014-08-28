@@ -124,7 +124,7 @@ Path::fileBaseName() const
     std::csize_t slashPos = filePath().rfind(Const::slash(), filePath().size());
     std::csize_t dotPos   = filePath().rfind(Const::dot(),   filePath().size());
 
-    return String::rcut(filePath(), slashPos + Const::slash().size(), dotPos);
+    return String::cut(filePath(), slashPos + Const::slash().size(), dotPos);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t

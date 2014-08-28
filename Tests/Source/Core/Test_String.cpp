@@ -629,6 +629,30 @@ Test_String::unit(
         xTEST_EQ(std::tstring_t(xT("111--222-333")), m_sRv);
     }
 
+    xTEST_CASE("String::cut", a_caseLoops)
+    {
+        {
+            std::tstring_t data = xT("111<<<aaa>>>222>>>");
+
+            m_sRv = String::cut(data, xT("<<<"), (">>>"));
+            xTEST_EQ(m_sRv, std::tstring_t(xT("aaa")));
+        }
+
+        {
+            std::tstring_t data = xT("111<<<>>>222>>>");
+
+            m_sRv = String::cut(data, xT("<<<"), xT(">>>"));
+            xTEST_EQ(m_sRv, std::tstring_t(xT("")));
+        }
+
+        {
+            std::tstring_t data = xT("<<<a>>>>>>");
+
+            m_sRv = String::cut(data, xT("<<<"), xT(">>>")));
+            xTEST_EQ(m_sRv, std::tstring_t(xT("a")));
+        }
+    }
+
     xTEST_CASE("String::rcut", a_caseLoops)
     {
         std::tstring_t sForCut;
