@@ -33,7 +33,7 @@ link_libraries(${XLIB_LIBRARIES})
 
 #--------------------------------------------------------------------------------------------------
 # sources
-if (xOPTION_TESTS)
+if (NOT xOPTION_TESTS)
     file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
 else()
     file(GLOB_RECURSE xLib_tests_SOURCES "Tests/Test.cpp")
