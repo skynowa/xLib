@@ -605,6 +605,30 @@ String::join(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
+inline std::string
+String::cut(
+    const std::string &a_str,      ///< source string
+    const std::string &a_sepLeft, ///< left separator
+    const std::string &a_sepRight ///< right separator
+)
+{
+    xTEST_NA(a_str);
+    xTEST_NA(a_sepLeft);
+    xTEST_NA(a_sepRight);
+
+    size_t delimPosStart = a_str.find(a_sepLeft);
+    xCHECK_RET(delimPosStart == std::string::npos, std::string());
+
+    delimPosStart += a_sepLeft.size();
+
+    size_t delimPosStop = a_str.find(a_sepRight, delimPosStart);
+    xCHECK_RET(delimPosStop == std::tstring_t::npos, std::tstring_t());
+    xCHECK_RET(delimPosStart >= delimPosStop,        std::string());
+
+    return a_str.substr(delimPosStart, delimPosStop - delimPosStart);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
 inline std::tstring_t
 String::rcut(
     std::ctstring_t &a_str,     ///< source string
