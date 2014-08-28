@@ -648,7 +648,7 @@ Test_String::unit(
         {
             std::tstring_t data = xT("<<<a>>>>>>");
 
-            m_sRv = String::cut(data, xT("<<<"), xT(">>>")));
+            m_sRv = String::cut(data, xT("<<<"), xT(">>>"));
             xTEST_EQ(m_sRv, std::tstring_t(xT("a")));
         }
     }
