@@ -142,7 +142,7 @@ public:
     std::tstring_t join(std::cvec_tstring_t &vec, std::ctstring_t &sep) xWARN_UNUSED_RV;
         ///< join with string separator
     static
-    std::tstring_t cut(std::ctstring_t &str, std::ctstring_t &sepLeft, std::ctstring_t &sepRight)
+    std::tstring_t rcut(std::ctstring_t &str, std::ctstring_t &sepLeft, std::ctstring_t &sepRight)
                        xWARN_UNUSED_RV;
         ///< cut using strings
     static
