@@ -629,72 +629,72 @@ Test_String::unit(
         xTEST_EQ(std::tstring_t(xT("111--222-333")), m_sRv);
     }
 
-    xTEST_CASE("String::cut", a_caseLoops)
+    xTEST_CASE("String::rcut", a_caseLoops)
     {
         std::tstring_t sForCut;
 
         sForCut = xT("To: =?windows-1251?B?x+Di4+7w7uTt//8=?= <_Alca@meta.ua_>");
-        m_sRv = String::cut(sForCut, xT("<"), xT(">"));
+        m_sRv = String::rcut(sForCut, xT("<"), xT(">"));
         xTEST_EQ(std::tstring_t(xT("_Alca@meta.ua_")), m_sRv);
 
         sForCut = xT("<_Alca@meta.ua_>To: =?windows-1251?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<"), xT(">"));
+        m_sRv = String::rcut(sForCut, xT("<"), xT(">"));
         xTEST_EQ(std::tstring_t(xT("_Alca@meta.ua_")), m_sRv);
 
         sForCut = xT("To: =?windows-125<_Alca@meta.ua_>1?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<"), xT(">"));
+        m_sRv = String::rcut(sForCut, xT("<"), xT(">"));
         xTEST_EQ(std::tstring_t(xT("_Alca@meta.ua_")), m_sRv);
 
         sForCut = xT("To: =?windows-125<_Alc<a>@meta>.ua_>1?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<"), xT(">"));
+        m_sRv = String::rcut(sForCut, xT("<"), xT(">"));
         xTEST_EQ(std::tstring_t(xT("_Alc<a>@meta>.ua_")), m_sRv);
 
         sForCut = xT("To: =?windows-125_Alca@meta.ua_>1?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<"), xT(">"));
+        m_sRv = String::rcut(sForCut, xT("<"), xT(">"));
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
 
         sForCut = xT("To: =?windows-125<_Alca@meta.ua_1?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<"), xT(">"));
+        m_sRv = String::rcut(sForCut, xT("<"), xT(">"));
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
 
         sForCut = xT("To: =?windows-125>_Alca@meta.ua_<1?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<"), xT(">"));
+        m_sRv = String::rcut(sForCut, xT("<"), xT(">"));
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
 
         sForCut = xT("To: =?windows-125_Alca<>@meta.ua_1?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<"), xT(">"));
+        m_sRv = String::rcut(sForCut, xT("<"), xT(">"));
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
 
         sForCut = xT("To: =?windows-1251?B?x+Di4+7w7uTt//8=?= <<_Alca@meta.ua_>>");
-        m_sRv = String::cut(sForCut, xT("<<"), xT(">>"));
+        m_sRv = String::rcut(sForCut, xT("<<"), xT(">>"));
         xTEST_EQ(std::tstring_t(xT("_Alca@meta.ua_")), m_sRv);
 
         sForCut = xT("<<_Alca@meta.ua_>>To: =?windows-1251?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<<"), xT(">>"));
+        m_sRv = String::rcut(sForCut, xT("<<"), xT(">>"));
         xTEST_EQ(std::tstring_t(xT("_Alca@meta.ua_")), m_sRv);
 
         sForCut = xT("To: =?windows-125<<_Alca@meta.ua_>>1?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<<"), xT(">>"));
+        m_sRv = String::rcut(sForCut, xT("<<"), xT(">>"));
         xTEST_EQ(std::tstring_t(xT("_Alca@meta.ua_")), m_sRv);
 
         sForCut = xT("To: =?windows-125<<_Alc<<a>>@meta>>.ua_>1?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<<"), xT(">>"));
+        m_sRv = String::rcut(sForCut, xT("<<"), xT(">>"));
         xTEST_EQ(std::tstring_t(xT("_Alc<<a>>@meta")), m_sRv);
 
         sForCut = xT("To: =?windows-125_Alca@meta.ua_>>1?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<<"), xT(">>"));
+        m_sRv = String::rcut(sForCut, xT("<<"), xT(">>"));
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
 
         sForCut = xT("To: =?windows-125<<_Alca@meta.ua_1?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<<"), xT(">>"));
+        m_sRv = String::rcut(sForCut, xT("<<"), xT(">>"));
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
 
         sForCut = xT("To: =?windows-125>>_Alca@meta.ua_<<1?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<<"), xT(">>"));
+        m_sRv = String::rcut(sForCut, xT("<<"), xT(">>"));
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
 
         sForCut = xT("To: =?windows-125_Alca<<>>@meta.ua_1?B?x+Di4+7w7uTt//8=?= ");
-        m_sRv = String::cut(sForCut, xT("<<"), xT(">>"));
+        m_sRv = String::rcut(sForCut, xT("<<"), xT(">>"));
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 

@@ -606,7 +606,7 @@ String::join(
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
-String::cut(
+String::rcut(
     std::ctstring_t &a_str,     ///< source string
     std::ctstring_t &a_sepLeft, ///< left separator
     std::ctstring_t &a_sepRight ///< right separator
