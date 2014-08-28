@@ -616,15 +616,16 @@ String::cut(
     xTEST_NA(a_sepLeft);
     xTEST_NA(a_sepRight);
 
-    size_t startDelimPos = a_str.find(a_sepLeft);
-    xCHECK_RET(startDelimPos == std::tstring_t::npos, std::tstring_t());
-    startDelimPos += a_sepLeft.size();
+    size_t delimPosStart = a_str.find(a_sepLeft);
+    xCHECK_RET(delimPosStart == std::tstring_t::npos, std::tstring_t());
 
-    size_t stopDelimPos  = a_str.rfind(a_sepRight);
-    xCHECK_RET(stopDelimPos == std::tstring_t::npos, std::tstring_t());
-    xCHECK_RET(startDelimPos >= stopDelimPos,        std::tstring_t());
+    delimPosStart += a_sepLeft.size();
 
-    return a_str.substr(startDelimPos, stopDelimPos - startDelimPos);
+    size_t delimPosStop  = a_str.rfind(a_sepRight);
+    xCHECK_RET(delimPosStop == std::tstring_t::npos, std::tstring_t());
+    xCHECK_RET(delimPosStart >= delimPosStop,        std::tstring_t());
+
+    return a_str.substr(delimPosStart, delimPosStop - delimPosStart);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
