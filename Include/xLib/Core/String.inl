@@ -106,20 +106,20 @@ String::cast(
 {
     xTEST_NA(a_str);
 
-    T ResT;
+    T rvT;
 
     try {
         std::tistringstream_t iss(a_str);
 
         iss.exceptions(std::tistringstream_t::failbit | std::tistringstream_t::badbit);
-        iss >> ResT;
+        iss >> rvT;
     } catch (std::ctistringstream_t::failure &) {
         return T();
     } catch (...) {
         return T();
     }
 
-    return ResT;
+    return rvT;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -133,20 +133,20 @@ String::cast(
     xTEST_NA(a_str);
     xTEST_NA(a_base);
 
-    T ResT;
+    T rvT;
 
     try {
         std::tistringstream_t iss(a_str);
 
         iss.exceptions(std::tistringstream_t::failbit | std::tistringstream_t::badbit);
-        iss >> std::setbase(a_base) >> ResT;
+        iss >> std::setbase(a_base) >> rvT;
     } catch (std::ctistringstream_t::failure &) {
         return T();
     } catch (...) {
         return T();
     }
 
-    return ResT;
+    return rvT;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -373,7 +373,7 @@ String::toLowerCase(
 
     size_t length = a_length;
 
-    xCHECK_RET(a_str.empty(), std::tstring_t());
+    xCHECK_RET(a_str.empty(),         std::tstring_t());
     xCHECK_DO (a_str.size() < length, length = a_str.size());
 
     return _toLowerCase_impl(a_str, length);
@@ -391,10 +391,8 @@ String::toUpperCase(
 
     size_t length = a_length;
 
-    xCHECK_RET(a_str.empty(), std::tstring_t());
+    xCHECK_RET(a_str.empty(),         std::tstring_t());
     xCHECK_DO (a_str.size() < length, length = a_str.size());
-
-    std::tstring_t sRv(a_str);
 
     return _toUpperCase_impl(a_str, length);
 }
@@ -556,10 +554,9 @@ String::split(
 
     std::vec_tstring_t vsRv;
     size_t             posPrev = 0U;    // start of string
-    size_t             pos     = 0U;
 
     for ( ; ; ) {
-        pos = a_str.find(a_sep, posPrev);
+        size_t pos = a_str.find(a_sep, posPrev);
         xCHECK_DO(pos == std::tstring_t::npos, break);
 
         vsRv.push_back(a_str.substr(posPrev, pos - posPrev));
@@ -619,17 +616,13 @@ String::cut(
     xTEST_NA(a_sepLeft);
     xTEST_NA(a_sepRight);
 
-    size_t startDelimPos = 0U;
-    size_t stopDelimPos  = 0U;
-
-    startDelimPos = a_str.find(a_sepLeft);
+    size_t startDelimPos = a_str.find(a_sepLeft);
     xCHECK_RET(startDelimPos == std::tstring_t::npos, std::tstring_t());
     startDelimPos += a_sepLeft.size();
 
-    stopDelimPos  = a_str.rfind(a_sepRight);
+    size_t stopDelimPos  = a_str.rfind(a_sepRight);
     xCHECK_RET(stopDelimPos == std::tstring_t::npos, std::tstring_t());
-
-    xCHECK_RET(startDelimPos >= stopDelimPos, std::tstring_t());
+    xCHECK_RET(startDelimPos >= stopDelimPos,        std::tstring_t());
 
     return a_str.substr(startDelimPos, stopDelimPos - startDelimPos);
 }
@@ -732,7 +725,6 @@ String::formatV(
     std::tstring_t buff(64, 0);
     int_t          writtenSize = - 1;
 
-    //--------------------------------------------------
     // calc size
     {
         va_list _args;
@@ -745,7 +737,6 @@ String::formatV(
         xCHECK_RET(0 == writtenSize, buff);
     }
 
-    //--------------------------------------------------
     // format
     if (buff.size() <= static_cast<size_t>( writtenSize )) {
         buff.resize(writtenSize + 1);
@@ -861,7 +852,7 @@ String::formatPercentage(
     xTEST_NA(a_maxValue);
     xTEST_NA(a_currentValue);
 
-    xCHECK_RET(0ULL == a_maxValue, xT("0%")); // devision by zero
+    xCHECK_RET(a_maxValue == 0ULL, xT("0%")); // devision by zero
 
     std::tstring_t sRv;
 
@@ -948,10 +939,8 @@ StringCI::find(
     xCHECK_RET(a_str.empty() && a_target.empty() && a_pos == 0U, 0U);
     xCHECK_RET(a_target.empty(),                                 0U);
 
-    std::tstring_t::const_iterator cit;
-
-    cit = std::search(a_str.begin() + a_pos, a_str.end(), a_target.begin(), a_target.end(),
-        CompareCI(a_locale));
+    std::tstring_t::const_iterator cit = std::search(a_str.begin() + a_pos, a_str.end(),
+        a_target.begin(), a_target.end(), CompareCI(a_locale));
     xCHECK_RET(cit != a_str.end(), cit - a_str.begin());
 
     return std::tstring_t::npos;
