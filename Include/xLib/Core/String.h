@@ -150,7 +150,7 @@ public:
                        xWARN_UNUSED_RV;
         ///< cut using strings
     static
-    std::tstring_t cut(std::ctstring_t &str, std::csize_t &posBegin = 0,
+    std::tstring_t cut(std::ctstring_t &str, std::csize_t &posBegin,
                        std::csize_t &posEnd = std::tstring_t::npos) xWARN_UNUSED_RV;
         ///< cut using string positions
     static

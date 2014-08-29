@@ -656,7 +656,7 @@ String::rcut(
 inline std::tstring_t
 String::cut(
     std::ctstring_t &a_str,                                 ///< source string
-    std::csize_t    &a_posBegin /* = 0 */,                  ///< begin position
+    std::csize_t    &a_posBegin,                            ///< begin position
     std::csize_t    &a_posEnd   /* = std::tstring_t:npos */ ///< end osition
 )
 {
@@ -670,7 +670,7 @@ String::cut(
     size_t size = std::string::npos;
 
     if (a_posEnd == std::string::npos) {
-        size = a_str.size();
+        size = a_posEnd;
     } else {
         size = a_posEnd - a_posBegin;
     }
