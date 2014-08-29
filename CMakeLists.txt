@@ -17,6 +17,24 @@ set(CMAKE_BUILD_TYPE "RelWithDebInfo")
     # MinSizeRel (CMAKE_C_FLAGS_MINSIZEREL or CMAKE_CXX_FLAGS_MINSIZEREL)
 
 #--------------------------------------------------------------------------------------------------
+# options
+unset(xOPTION_TESTS        CACHE)
+unset(xOPTION_TEST_PRIVATE CACHE)
+unset(xOPTION_TEST_TRACING CACHE)
+
+option(xOPTION_TESTS         "Use tests"            1)
+option(xOPTION_TEST_PRIVATE  "Test private data"    1)
+option(xOPTION_TEST_TRACING  "Use tracing in tests" 1)
+
+# trace options
+message("")
+message("******************** Options *********************")
+message("* xOPTION_TESTS:        ${xOPTION_TESTS}")
+message("* xOPTION_TEST_PRIVATE: ${xOPTION_TEST_PRIVATE}")
+message("* xOPTION_TEST_TRACING: ${xOPTION_TEST_TRACING}")
+message("**************************************************")
+message("")
+#--------------------------------------------------------------------------------------------------
 # modules
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 include(CMake/FindxLib.cmake)
@@ -33,7 +51,7 @@ link_libraries(${XLIB_LIBRARIES})
 
 #--------------------------------------------------------------------------------------------------
 # sources
-if (NOT xOPTION_TESTS)
+if (xOPTION_TESTS)
     file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
 else()
     file(GLOB_RECURSE xLib_tests_SOURCES "Tests/Test.cpp")
