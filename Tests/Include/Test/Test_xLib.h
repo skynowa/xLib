@@ -54,7 +54,7 @@
 #include <Test/Debug/Test_Debug.h>
 #include <Test/Debug/Test_BuildInfo.h>
 #include <Test/Debug/Test_StdError.h>
-#include <Test/Debug/Test_LastError.h>
+#include <Test/Debug/Test_NativeError.h>
 #include <Test/Debug/Test_Exception.h>
 #include <Test/Debug/Test_StackTrace.h>
 #include <Test/Debug/Test_ErrorReport.h>

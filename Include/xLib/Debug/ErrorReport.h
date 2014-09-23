@@ -23,14 +23,14 @@ public:
         rtLog       ///< to log with plain text
     };
 
-                   ErrorReport(culong_t &lastError, std::ctstring_t &file, culong_t &line,
+                   ErrorReport(culong_t &nativeError, std::ctstring_t &file, culong_t &line,
                        std::ctstring_t &func, std::ctstring_t &stackTrace,
                        std::ctstring_t &comment);
         ///< constructor (for Exception)
                    template<class T>
                    ErrorReport(const ExType &type, std::ctstring_t &var1, std::ctstring_t &var2,
                        const T &var1ValueT, const T &var2ValueT, std::ctstring_t &exprSign,
-                       culong_t &lastError, std::ctstring_t &file, culong_t &line,
+                       culong_t &nativeError, std::ctstring_t &file, culong_t &line,
                        std::ctstring_t &func, std::ctstring_t &stackTrace,
                        std::ctstring_t &comment);
         ///< constructor (for Debugger)
@@ -58,8 +58,8 @@ private:
     std::tstring_t _functionName;   ///< source function name
     std::tstring_t _expression;     ///< expression
 
-    ulong_t        _lastError;      ///< system last error
-    std::tstring_t _lastErrorStr;   ///< system last error as string
+    ulong_t        _nativeError;    ///< system last error
+    std::tstring_t _nativeErrorStr; ///< system last error as string
 
     // other
     std::tstring_t _currentDate;    ///< current date, time
@@ -75,7 +75,7 @@ private:
 
     void_t         _construct(const ExType &type, std::ctstring_t &var1, std::ctstring_t &var2,
                        std::ctstring_t &var1Value, std::ctstring_t &var2Value,
-                       std::ctstring_t &exprSign, culong_t &lastError,  std::ctstring_t &file,
+                       std::ctstring_t &exprSign, culong_t &nativeError,  std::ctstring_t &file,
                        culong_t &line, std::ctstring_t &func, std::ctstring_t &stackTrace,
                        std::ctstring_t &comment);
         ///< initiate class members

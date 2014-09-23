@@ -1,5 +1,5 @@
 /**
- * \file   Test_LastError.h
+ * \file   Test_NativeError.h
  * \brief
  */
 
@@ -10,11 +10,11 @@
 #include <xLib/Test/UnitTest.h>
 #include <xLib/Debug/NativeError.h>
 //-------------------------------------------------------------------------------------------------
-class Test_LastError :
+class Test_NativeError :
     public UnitTest
 {
 public:
-                   Test_LastError() {}
+                   Test_NativeError() {}
 
     virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };

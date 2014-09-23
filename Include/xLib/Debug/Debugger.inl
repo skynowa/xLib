@@ -112,7 +112,7 @@ Debugger::reportMake(
 )
 {
     // never corrupt last error value
-    culong_t lastError = NativeError::get();
+    culong_t nativeError = NativeError::get();
 
     switch (a_report.type()) {
     case ErrorReport::rtMsgbox:
@@ -130,7 +130,7 @@ Debugger::reportMake(
     }
 
     // never corrupt last error value
-    NativeError::set(lastError);
+    NativeError::set(nativeError);
 }
 //-------------------------------------------------------------------------------------------------
 

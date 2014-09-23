@@ -16,13 +16,13 @@ Test_ErrorReport::unit(
 {
     xTEST_CASE("ErrorReport::ErrorReport", a_caseLoops)
     {
-        ulong_t lastError = NativeError::get();
+        ulong_t nativeError = NativeError::get();
 
         ulong_t val1 = 10UL;
         ulong_t val2 = 20UL;
 
         ErrorReport rpReport(ErrorReport::rtMsgbox, xT("val1"), xT("val2"), val1, val2,
-            xT("=="), lastError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), xT(""));
+            xT("=="), nativeError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), xT(""));
     }
 }
 //-------------------------------------------------------------------------------------------------

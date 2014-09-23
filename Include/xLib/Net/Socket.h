@@ -266,7 +266,7 @@ public:
         ///< determines the status of one or more sockets, waiting if necessary,
         ///< to perform synchronous I/O
     static
-    int_t          lastError() xWARN_UNUSED_RV;
+    int_t          nativeError() xWARN_UNUSED_RV;
         ///< get error status for the last operation that failed
 
 protected:
@@ -286,7 +286,7 @@ xPLATFORM:
     void_t         _peerName_impl(std::tstring_t *peerAddr, ushort_t *peerPort);
     void_t         _socketName_impl(std::tstring_t *socketAddr, ushort_t *socketPort);
     static
-    int_t          _lastError_impl() xWARN_UNUSED_RV;
+    int_t          _nativeError_impl() xWARN_UNUSED_RV;
 
 };
 

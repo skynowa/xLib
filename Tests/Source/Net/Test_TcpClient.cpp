@@ -107,9 +107,7 @@ Test_TcpClient::unit(
     //bClose
     objSocket.close();
 
-    //-------------------------------------
-    //iGetLastError
-    m_iRv = TcpClient::lastError();
+    m_iRv = TcpClient::nativeError();
     //xTEST_EQ(m_bRv, true);
 }
 //-------------------------------------------------------------------------------------------------

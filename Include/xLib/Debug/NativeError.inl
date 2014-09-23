@@ -9,20 +9,20 @@
 #include <xLib/Core/Utils.h>
 
 #if   xENV_WIN
-    #include "Platform/Win/LastError_win.inl"
+    #include "Platform/Win/NativeError_win.inl"
 #elif xENV_UNIX
-    #include "Platform/Unix/LastError_unix.inl"
+    #include "Platform/Unix/NativeError_unix.inl"
 
     #if   xENV_LINUX
         #if   xOS_ANDROID
-            #include "Platform/Linux/LastError_android.inl"
+            #include "Platform/Linux/NativeError_android.inl"
         #elif xOS_LINUX
-            #include "Platform/Linux/LastError_linux.inl"
+            #include "Platform/Linux/NativeError_linux.inl"
         #endif
     #elif xENV_BSD
-        #include "Platform/Bsd/LastError_bsd.inl"
+        #include "Platform/Bsd/NativeError_bsd.inl"
     #elif xENV_APPLE
-        // #include "Platform/Unix/LastError_apple.inl"
+        // #include "Platform/Unix/NativeError_apple.inl"
     #endif
 #endif
 

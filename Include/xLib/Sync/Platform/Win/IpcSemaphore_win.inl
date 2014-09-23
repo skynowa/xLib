@@ -50,9 +50,9 @@ IpcSemaphore::_create_impl(
     }
 
     HANDLE  hRv       = ::CreateSemaphore(xPTR_NULL, a_initialValue, valueMax(), winName);
-    ulong_t lastError = NativeError::get();
+    ulong_t nativeError = NativeError::get();
     xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
-    xTEST_DIFF(lastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
+    xTEST_DIFF(nativeError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
 
     _handle.set(hRv);
     _name = a_name;

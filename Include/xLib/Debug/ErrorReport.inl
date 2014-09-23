@@ -26,30 +26,30 @@ xNAMESPACE_BEGIN2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 inline
 ErrorReport::ErrorReport(
-    culong_t        &a_lastError,
+    culong_t        &a_nativeError,
     std::ctstring_t &a_file,
     culong_t        &a_line,
     std::ctstring_t &a_func,
     std::ctstring_t &a_stackTrace,
     std::ctstring_t &a_comment
 ) :
-    _type        (rtUnknown),
-    _report      (),
-    _program     (),
-    _processId   (0UL),
-    _threadId    (0UL),
-    _fileSize    (),
-    _sourceFile  (),
-    _sourceLine  (0UL),
-    _functionName(),
-    _expression  (),
-    _lastError   (0UL),
-    _lastErrorStr(),
-    _currentDate (),
-    _stackTrace  (),
-    _comment     ()
+    _type          (rtUnknown),
+    _report        (),
+    _program       (),
+    _processId     (0UL),
+    _threadId      (0UL),
+    _fileSize      (),
+    _sourceFile    (),
+    _sourceLine    (0UL),
+    _functionName  (),
+    _expression    (),
+    _nativeError   (0UL),
+    _nativeErrorStr(),
+    _currentDate   (),
+    _stackTrace    (),
+    _comment       ()
 {
-    _construct(rtStdout, "", "", "", "", "", a_lastError, a_file, a_line, a_func, a_stackTrace,
+    _construct(rtStdout, "", "", "", "", "", a_nativeError, a_file, a_line, a_func, a_stackTrace,
         a_comment);
     _initPlain();
 }
@@ -62,28 +62,28 @@ ErrorReport::ErrorReport(
     const T         &a_var1Value,
     const T         &a_var2Value,
     std::ctstring_t &a_exprSign,
-    culong_t        &a_lastError,
+    culong_t        &a_nativeError,
     std::ctstring_t &a_file,
     culong_t        &a_line,
     std::ctstring_t &a_func,
     std::ctstring_t &a_stackTrace,
     std::ctstring_t &a_comment
 ) :
-    _type        (rtUnknown),
-    _report      (),
-    _program     (),
-    _processId   (0UL),
-    _threadId    (0UL),
-    _fileSize    (),
-    _sourceFile  (),
-    _sourceLine  (0UL),
-    _functionName(),
-    _expression  (),
-    _lastError   (0UL),
-    _lastErrorStr(),
-    _currentDate (),
-    _stackTrace  (),
-    _comment     ()
+    _type          (rtUnknown),
+    _report        (),
+    _program       (),
+    _processId     (0UL),
+    _threadId      (0UL),
+    _fileSize      (),
+    _sourceFile    (),
+    _sourceLine    (0UL),
+    _functionName  (),
+    _expression    (),
+    _nativeError   (0UL),
+    _nativeErrorStr(),
+    _currentDate   (),
+    _stackTrace    (),
+    _comment       ()
 {
     // var1Value
     std::tstring_t var1Value;
@@ -103,7 +103,7 @@ ErrorReport::ErrorReport(
         var2Value = ossRv.str();
     }
 
-    _construct(a_type, a_var1, a_var2, var1Value, var2Value, a_exprSign, a_lastError, a_file,
+    _construct(a_type, a_var1, a_var2, var1Value, var2Value, a_exprSign, a_nativeError, a_file,
         a_line, a_func, a_stackTrace, a_comment);
     switch (a_type) {
     case rtMsgbox:
@@ -149,7 +149,7 @@ ErrorReport::_construct(
     std::ctstring_t &a_var1Value,
     std::ctstring_t &a_var2Value,
     std::ctstring_t &a_exprSign,
-    culong_t        &a_lastError,
+    culong_t        &a_nativeError,
     std::ctstring_t &a_file,
     culong_t        &a_line,
     std::ctstring_t &a_func,
@@ -175,8 +175,8 @@ ErrorReport::_construct(
     _functionName = a_func;
     _expression   = String::format(xT("%s (%s) %s %s (%s)"), a_var1.c_str(), a_var1Value.c_str(),
         a_exprSign.c_str(), a_var2.c_str(), a_var2Value.c_str());
-    _lastError    = a_lastError;
-    _lastErrorStr = NativeError::format(a_lastError);
+    _nativeError  = a_nativeError;
+    _nativeErrorStr = NativeError::format(a_nativeError);
 
     _currentDate  = DateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
 
@@ -196,31 +196,31 @@ ErrorReport::_initPlain()
     std::ctstring_t       margin = xT("  ");
 
     ossRv
-        << margin << xT("ErrorReport")                      << "\n"
-                                                            << "\n"
-                                                            << "\n"
-        << margin << xT("Program:       ") << _program      << "\n"
-        << margin << xT("Process id:    ") << _processId    << "\n"
-        << margin << xT("Thread id:     ") << _threadId     << "\n"
-        << margin << xT("File size:     ") << _fileSize     << "\n"
-                                                            << "\n"
-        << margin << xT("Source file:   ") << _sourceFile   << "\n"
-        << margin << xT("Source line:   ") << _sourceLine   << "\n"
-        << margin << xT("Function name: ") << _functionName << "\n"
-        << margin << xT("Expression:    ") << _expression   << "\n"
-        << margin << xT("Last error:    ") << _lastErrorStr << "\n"
-                                                            << "\n"
-        << margin << xT("Current date:  ") << _currentDate  << "\n"
+        << margin << xT("ErrorReport")                        << "\n"
+                                                              << "\n"
+                                                              << "\n"
+        << margin << xT("Program:       ") << _program        << "\n"
+        << margin << xT("Process id:    ") << _processId      << "\n"
+        << margin << xT("Thread id:     ") << _threadId       << "\n"
+        << margin << xT("File size:     ") << _fileSize       << "\n"
+                                                              << "\n"
+        << margin << xT("Source file:   ") << _sourceFile     << "\n"
+        << margin << xT("Source line:   ") << _sourceLine     << "\n"
+        << margin << xT("Function name: ") << _functionName   << "\n"
+        << margin << xT("Expression:    ") << _expression     << "\n"
+        << margin << xT("Native error:  ") << _nativeErrorStr << "\n"
+                                                              << "\n"
+        << margin << xT("Current date:  ") << _currentDate    << "\n"
     #if xENV_UNIX
-                                                            << "\n"
-        << margin << xT("GLIBC:         ") << _glibc        << "\n"
-        << margin << xT("Pthread lib:   ") << _libPthread   << "\n"
+                                                              << "\n"
+        << margin << xT("GLIBC:         ") << _glibc          << "\n"
+        << margin << xT("Pthread lib:   ") << _libPthread     << "\n"
     #endif
-                                                            << "\n"
-        << margin << xT("Stack trace:   ")                  << "\n"
-                                           << _stackTrace   << "\n"
-                                                            << "\n"
-        << margin << xT("Comment:       ") << _comment      << std::endl;
+                                                              << "\n"
+        << margin << xT("Stack trace:   ")                    << "\n"
+                                           << _stackTrace     << "\n"
+                                                              << "\n"
+        << margin << xT("Comment:       ") << _comment        << std::endl;
 
     _report = ossRv.str();
 }

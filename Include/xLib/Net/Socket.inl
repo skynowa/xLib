@@ -273,13 +273,13 @@ Socket::sendBytes(
         xCHECK_RET(!iRv, xSOCKET_ERROR);
 
         // An error occurred
-        xCHECK_RET(iRv < 0, lastError());
+        xCHECK_RET(iRv < 0, nativeError());
 
         // send a few bytes
         sendStatus = ::send(_handle, a_buff, messageLength, 0);
 
         // An error occurred when sending data
-        xCHECK_RET(sendStatus < 0, lastError());
+        xCHECK_RET(sendStatus < 0, nativeError());
 
         // update the buffer and the counter
         messageLength -= sendStatus;
@@ -315,13 +315,13 @@ Socket::receiveBytes(
         xCHECK_RET(!iRv, xSOCKET_ERROR);
 
         // An error occurred
-        xCHECK_RET(iRv < 0, lastError());
+        xCHECK_RET(iRv < 0, nativeError());
 
         // receive a few bytes
         receiveStatus = ::recv(_handle, a_buff, stillToReceive, 0);
 
         // An error occurred when the function recv ()
-        xCHECK_RET(receiveStatus < 0, lastError());
+        xCHECK_RET(receiveStatus < 0, nativeError());
 
         // changed the value of the counter and the buffer
         stillToReceive -= receiveStatus;
@@ -394,11 +394,11 @@ Socket::select(
 }
 //-------------------------------------------------------------------------------------------------
 inline int_t
-Socket::lastError()
+Socket::nativeError()
 {
     // n/a
 
-    return _lastError_impl();
+    return _nativeError_impl();
 }
 //-------------------------------------------------------------------------------------------------
 

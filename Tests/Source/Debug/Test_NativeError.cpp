@@ -1,16 +1,16 @@
 /**
- * \file   Test_LastError.cpp
+ * \file   Test_NativeError.cpp
  * \brief
  */
 
 
-#include <Test/Debug/Test_LastError.h>
+#include <Test/Debug/Test_NativeError.h>
 
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_LastError::unit(
+Test_NativeError::unit(
     culonglong_t &a_caseLoops
 )
 {
