@@ -763,7 +763,7 @@ Test_String::unit(
         m_sRv = String::cut(xT(""), 1);
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
 
-        m_sRv = String::cut(sForCut);
+        m_sRv = String::cut(sForCut, std::tstring_t::npos);
         xTEST_EQ(std::tstring_t(xT("0123456789")), m_sRv);
     }
 
