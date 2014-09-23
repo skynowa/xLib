@@ -35,11 +35,11 @@ Volume::_fileSystem_impl() const
 
     tchar_t fileSystemName[MAX_PATH + 1] = {0};
 
-    LastError::reset();
+    NativeError::reset();
 
     BOOL blRv = ::GetVolumeInformation(Path( path() ).slashAppend().c_str(), xPTR_NULL, 0UL, xPTR_NULL,
         xPTR_NULL, xPTR_NULL, &fileSystemName[0], static_cast<DWORD>( xARRAY_SIZE(fileSystemName) ));
-    xTEST_DIFF(blRv != FALSE && LastError::isSuccess(), false);
+    xTEST_DIFF(blRv != FALSE && NativeError::isSuccess(), false);
 
     sRv.assign(volumeName);
 
@@ -53,11 +53,11 @@ Volume::_label_impl() const
 
     tchar_t volumeName[MAX_PATH + 1] = {0};
 
-    LastError::reset();
+    NativeError::reset();
 
     BOOL blRv = ::GetVolumeInformation(Path( path() ).slashAppend().c_str(), &volumeName[0],
         static_cast<DWORD>( xARRAY_SIZE(volumeName) ), xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, 0UL);
-    xTEST_DIFF(blRv != FALSE && LastError::isSuccess(), false);
+    xTEST_DIFF(blRv != FALSE && NativeError::isSuccess(), false);
 
     sRv.assign(volumeName);
 

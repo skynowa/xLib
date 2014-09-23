@@ -86,7 +86,7 @@ Event::wait(
 
     ExObjectState osRv = _wait_impl(a_timeoutMs);
 
-    xTEST_MSG_EQ((osRv == osSignaled) || (osRv == osTimeout), true, LastError::format(osRv));
+    xTEST_MSG_EQ((osRv == osSignaled) || (osRv == osTimeout), true, NativeError::format(osRv));
 
     return osRv;
 }

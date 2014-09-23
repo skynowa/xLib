@@ -79,7 +79,7 @@
             << "\t::: #" << xCOUNTER  << " " \
             << "in "     << xFILE     << ":" << xLINE << ", " \
             << "func: "  << xFUNCTION << ", " \
-            << "error: " << LastError::format() << " :::"; \
+            << "error: " << NativeError::format() << " :::"; \
     }
     ///< trace point (use Trace)
 #define xNOT_IMPLEMENTED \

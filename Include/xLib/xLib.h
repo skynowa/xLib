@@ -46,7 +46,7 @@
 #include <xLib/Debug/StdDebug.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/BuildInfo.h>
-#include <xLib/Debug/LastError.h>
+#include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StdError.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Debug/StackTrace.h>

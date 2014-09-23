@@ -1,5 +1,5 @@
 /**
- * \file  LastError.inl
+ * \file  NativeError.inl
  * \brief system last error
  */
 
@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
-LastError::_format_impl(
+NativeError::_format_impl(
     culong_t &a_code
 )
 {

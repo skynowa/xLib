@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Test/UnitTest.h>
-#include <xLib/Debug/LastError.h>
+#include <xLib/Debug/NativeError.h>
 //-------------------------------------------------------------------------------------------------
 class Test_LastError :
     public UnitTest

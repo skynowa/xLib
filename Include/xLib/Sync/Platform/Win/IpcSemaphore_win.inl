@@ -50,7 +50,7 @@ IpcSemaphore::_create_impl(
     }
 
     HANDLE  hRv       = ::CreateSemaphore(xPTR_NULL, a_initialValue, valueMax(), winName);
-    ulong_t lastError = LastError::get();
+    ulong_t lastError = NativeError::get();
     xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
     xTEST_DIFF(lastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
 

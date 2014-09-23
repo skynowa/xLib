@@ -20,32 +20,32 @@ Test_LastError::unit(
         culong_t cuiMaxErrors = 132;    /*0...132*/
     #endif
 
-    xTEST_CASE("LastError::isSuccess", a_caseLoops)
+    xTEST_CASE("NativeError::isSuccess", a_caseLoops)
     {
-        LastError::reset();
-        m_bRv = LastError::isSuccess();
+        NativeError::reset();
+        m_bRv = NativeError::isSuccess();
         xTEST_EQ(m_bRv, true);
 
-        LastError::set(10UL);
-        m_bRv = LastError::isSuccess();
+        NativeError::set(10UL);
+        m_bRv = NativeError::isSuccess();
         xTEST_EQ(m_bRv, false);
     }
 
-    xTEST_CASE("LastError::get", a_caseLoops)
+    xTEST_CASE("NativeError::get", a_caseLoops)
     {
-        m_ulRv = LastError::get();
+        m_ulRv = NativeError::get();
         xUNUSED(m_ulRv);
-        xTEST_EQ(0UL, LastError::get());
+        xTEST_EQ(0UL, NativeError::get());
     }
 
-    xTEST_CASE("LastError::format", a_caseLoops)
+    xTEST_CASE("NativeError::format", a_caseLoops)
     {
-        m_sRv = LastError::format();
-        xTEST_EQ(0UL,   LastError::get());
+        m_sRv = NativeError::format();
+        xTEST_EQ(0UL,   NativeError::get());
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("LastError::set", a_caseLoops)
+    xTEST_CASE("NativeError::set", a_caseLoops)
     {
         culong_t caulData[] = {
             0UL,
@@ -57,12 +57,12 @@ Test_LastError::unit(
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             culong_t culLasError = caulData[i];
 
-            LastError::set(culLasError);
-            xTEST_EQ(culLasError, LastError::get());
+            NativeError::set(culLasError);
+            xTEST_EQ(culLasError, NativeError::get());
         }
     }
 
-    xTEST_CASE("LastError::reset", a_caseLoops)
+    xTEST_CASE("NativeError::reset", a_caseLoops)
     {
         culong_t caulData[] = {
             0UL,
@@ -74,13 +74,13 @@ Test_LastError::unit(
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             culong_t culLasError = caulData[i];
 
-            LastError::set(culLasError);
-            LastError::reset();
-            xTEST_EQ(0UL, LastError::get());
+            NativeError::set(culLasError);
+            NativeError::reset();
+            xTEST_EQ(0UL, NativeError::get());
         }
     }
 
-    xTEST_CASE("LastError::format", a_caseLoops)
+    xTEST_CASE("NativeError::format", a_caseLoops)
     {
         culong_t caulData[] = {
             0UL,
@@ -92,7 +92,7 @@ Test_LastError::unit(
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             culong_t culLasError = caulData[i];
 
-            m_sRv = LastError::format(culLasError);
+            m_sRv = NativeError::format(culLasError);
             xTEST_EQ(false, m_sRv.empty());
         }
     }

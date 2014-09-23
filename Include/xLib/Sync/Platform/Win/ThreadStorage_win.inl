@@ -31,7 +31,7 @@ ThreadStorage::_destruct_impl()
     xTEST_EQ(0 < _index, true);
 
     int_t iRv = ::pthread_key_delete(_index);
-    xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+    xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 
     _index = static_cast<pthread_key_t>( -1 );
 }
@@ -51,7 +51,7 @@ ThreadStorage::_value_impl() const
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _index);
 
     void_t *pvRv = ::TlsGetValue(_index);
-    xTEST_EQ((pvRv != xPTR_NULL) && (LastError::get() == ERROR_SUCCESS), true);
+    xTEST_EQ((pvRv != xPTR_NULL) && (NativeError::get() == ERROR_SUCCESS), true);
 
     return pvRv;
 }

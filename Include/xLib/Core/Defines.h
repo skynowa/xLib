@@ -658,7 +658,7 @@
 ///@{
 #define xTHROW_REPORT(msg) \
     { \
-        culong_t        lastError  = LastError::get(); \
+        culong_t        lastError  = NativeError::get(); \
         std::cstring_t &stackTrace = StackTrace().toString(); \
         ErrorReport   report(lastError, xFILE, xLINE, xFUNCTION, stackTrace, msg); \
         \

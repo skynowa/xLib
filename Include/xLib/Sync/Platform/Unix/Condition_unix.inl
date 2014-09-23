@@ -18,10 +18,10 @@ Condition::_destruct_impl()
     int_t iRv = - 1;
 
     iRv = ::pthread_cond_destroy(&_handle);
-    xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+    xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 
     iRv = ::pthread_mutex_destroy(&_mutex);
-    xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+    xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 }
 //-------------------------------------------------------------------------------------------------
 inline const pthread_mutex_t &
@@ -42,10 +42,10 @@ Condition::_create_impl()
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_mutex, xPTR_NULL); // mutex not recursive
-    xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+    xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 
     iRv = ::pthread_cond_init(&_handle, xPTR_NULL);
-    xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+    xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -57,7 +57,7 @@ Condition::_wait_impl(
 
     // wait until condition thread returns control
     iRv = ::pthread_mutex_lock(&_mutex);
-    xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+    xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 
     {
         for ( ; ; ) {
@@ -89,7 +89,7 @@ Condition::_wait_impl(
     }
 
     iRv = ::pthread_mutex_unlock(&_mutex);
-    xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+    xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -98,15 +98,15 @@ Condition::_signal_impl()
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);
-    xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+    xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 
     {
         iRv = ::pthread_cond_signal(&_handle);
-        xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+        xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
     }
 
     iRv = ::pthread_mutex_unlock(&_mutex);
-    xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+    xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -115,15 +115,15 @@ Condition::_broadcast_impl()
      int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);
-    xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+    xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 
     {
         iRv = ::pthread_cond_broadcast(&_handle);
-        xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+        xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
     }
 
     iRv = ::pthread_mutex_unlock(&_mutex);
-    xTEST_MSG_EQ(iRv, 0, LastError::format(iRv));
+    xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 }
 //-------------------------------------------------------------------------------------------------
 

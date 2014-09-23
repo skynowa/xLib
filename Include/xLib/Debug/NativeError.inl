@@ -1,5 +1,5 @@
 /**
- * \file  LastError.inl
+ * \file  NativeError.inl
  * \brief system last error
  */
 
@@ -37,14 +37,14 @@ xNAMESPACE_BEGIN2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline bool_t
-LastError::isSuccess()
+NativeError::isSuccess()
 {
     return _isSuccess_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline ulong_t
-LastError::get()
+NativeError::get()
 {
     culong_t code = _get_impl();
 
@@ -55,7 +55,7 @@ LastError::get()
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline void_t
-LastError::set(
+NativeError::set(
     culong_t &a_code
 )
 {
@@ -64,21 +64,21 @@ LastError::set(
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline void_t
-LastError::reset()
+NativeError::reset()
 {
     set( _nativeCodeSuccess() );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
-LastError::format()
+NativeError::format()
 {
     return format( get() );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
-LastError::format(
+NativeError::format(
     culong_t &a_code
 )
 {
@@ -95,7 +95,7 @@ LastError::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline ulong_t
-LastError::_nativeCodeSuccess()
+NativeError::_nativeCodeSuccess()
 {
     return _nativeCodeSuccess_impl();
 }

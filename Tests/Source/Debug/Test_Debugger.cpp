@@ -88,7 +88,7 @@ Test_Debugger::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(type); ++ i) {
-            ulong_t lastError = LastError::get();
+            ulong_t lastError = NativeError::get();
 
             ulong_t val1 = 10UL;
             ulong_t val2 = 20UL;

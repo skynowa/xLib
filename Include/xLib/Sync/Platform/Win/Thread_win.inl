@@ -158,7 +158,7 @@ Thread::sendMessage(
 
     (void_t)::SendMessage(a_wnd, a_msg, static_cast<WPARAM>( a_param1 ),
         static_cast<LPARAM>( a_param2 ));
-    xTEST_EQ(0UL, LastError::get());
+    xTEST_EQ(0UL, NativeError::get());
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
