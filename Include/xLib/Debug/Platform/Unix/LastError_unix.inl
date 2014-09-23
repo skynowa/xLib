@@ -1,5 +1,5 @@
 /**
-- * \file  LastError.inl
+- * \file  NativeError.inl
  * \brief system last error
  */
 
@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline bool_t
-LastError::_isSuccess_impl()
+NativeError::_isSuccess_impl()
 {
     bool_t bRv = (static_cast<ulong_t>( errno ) == _nativeCodeSuccess());
 
@@ -23,7 +23,7 @@ LastError::_isSuccess_impl()
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline ulong_t
-LastError::_get_impl()
+NativeError::_get_impl()
 {
     culong_t code = static_cast<ulong_t>( errno );
 
@@ -32,7 +32,7 @@ LastError::_get_impl()
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline void_t
-LastError::_set_impl(
+NativeError::_set_impl(
     culong_t &a_code
 )
 {
@@ -49,7 +49,7 @@ LastError::_set_impl(
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline ulong_t
-LastError::_nativeCodeSuccess_impl()
+NativeError::_nativeCodeSuccess_impl()
 {
     return 0UL;
 }

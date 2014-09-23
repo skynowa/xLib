@@ -152,10 +152,10 @@ Path::_maxSize_impl()
     long_t   liRv       = - 1L;
     ulong_t  lastError  = 0UL;
 
-    LastError::set(savedError);
+    NativeError::set(savedError);
 
     liRv      = ::pathconf("/", _PC_PATH_MAX);
-    lastError = LastError::get();
+    lastError = NativeError::get();
     xTEST_EQ(liRv == - 1L && savedError != 0UL, true);
 
     if (liRv == - 1L && savedError == lastError) {
@@ -185,10 +185,10 @@ Path::_nameMaxSize_impl()
     long_t   liRv       = - 1L;
     ulong_t  lastError  = 0UL;
 
-    LastError::set(savedError);
+    NativeError::set(savedError);
 
     liRv      = ::pathconf("/", _PC_NAME_MAX);
-    lastError = LastError::get();
+    lastError = NativeError::get();
     xTEST_EQ(liRv == - 1L && savedError != 0UL, true);
 
     if (liRv == - 1L && savedError == lastError) {

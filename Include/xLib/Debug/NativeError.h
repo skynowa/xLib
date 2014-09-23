@@ -1,5 +1,5 @@
 /**
- * \file  LastError.h
+ * \file  NativeError.h
  * \brief system last error
  */
 
@@ -10,7 +10,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, debug)
 
-class LastError
+class NativeError
     /// system last error
 {
 public:
@@ -34,16 +34,16 @@ public:
         ///< get last error as string
 
 private:
-                   LastError();
+                   NativeError();
         ///< constructor
-                  ~LastError() {}
+                  ~NativeError() {}
         ///< destructor
 
     static
     ulong_t        _nativeCodeSuccess() xWARN_UNUSED_RV;
         ///< native success code
 
-    xNO_COPY_ASSIGN(LastError)
+    xNO_COPY_ASSIGN(NativeError)
 
 xPLATFORM:
     static
@@ -60,4 +60,4 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
-#include "LastError.inl"
+#include "NativeError.inl"

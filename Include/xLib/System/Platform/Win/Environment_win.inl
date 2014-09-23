@@ -25,7 +25,7 @@ Environment::_isExists_impl(
         static_cast<DWORD>( sRv.size() ));
     xTEST_NA(length);
 
-    xCHECK_RET(length == 0UL && LastError::get() == ERROR_ENVVAR_NOT_FOUND, false);
+    xCHECK_RET(length == 0UL && NativeError::get() == ERROR_ENVVAR_NOT_FOUND, false);
 
     return true;
 }

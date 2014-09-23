@@ -6,7 +6,7 @@
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Win/Com.h>
-#include <xLib/Debug/LastError.h>
+#include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StdError.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>

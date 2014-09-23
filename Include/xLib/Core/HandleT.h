@@ -10,7 +10,7 @@
 xNAMESPACE_BEGIN2(xlib, core)
 
 namespace debug {
-    class LastError;
+    class NativeError;
     class StackTrace;
     class ErrorReport;
     class Debugger;

@@ -176,7 +176,7 @@ ErrorReport::_construct(
     _expression   = String::format(xT("%s (%s) %s %s (%s)"), a_var1.c_str(), a_var1Value.c_str(),
         a_exprSign.c_str(), a_var2.c_str(), a_var2Value.c_str());
     _lastError    = a_lastError;
-    _lastErrorStr = LastError::format(a_lastError);
+    _lastErrorStr = NativeError::format(a_lastError);
 
     _currentDate  = DateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
 

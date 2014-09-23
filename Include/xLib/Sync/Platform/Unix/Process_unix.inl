@@ -57,7 +57,7 @@ Process::_wait_impl(
     do {
         liRv = ::waitpid(_pid, &status, 0);
     }
-    while (liRv < 0L && LastError::get() == EINTR);
+    while (liRv < 0L && NativeError::get() == EINTR);
     xTEST_EQ(liRv, _pid);
 
     _exitStatus = WEXITSTATUS(status);

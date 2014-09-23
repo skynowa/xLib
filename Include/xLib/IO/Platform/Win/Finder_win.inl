@@ -42,7 +42,7 @@ Finder::_moveNext_impl()
 {
     BOOL blRv = ::FindNextFile(_entry.handle, &_entry.data);
     if (blRv == FALSE) {
-        xCHECK_RET(LastError::get() == ERROR_NO_MORE_FILES, false);
+        xCHECK_RET(NativeError::get() == ERROR_NO_MORE_FILES, false);
 
         xTEST_FAIL;
     }
