@@ -56,7 +56,7 @@ Test_StdError::unit(
         };
 
         for (int_t i = 0; i < (int_t)xARRAY_SIZE(caiData); ++ i) {
-            cint_t  = caiData[i];
+            cint_t stdError = caiData[i];
 
             StdError::set(stdError);
             xTEST_EQ(stdError, StdError::get());
