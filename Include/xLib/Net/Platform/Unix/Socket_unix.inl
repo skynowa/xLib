@@ -136,7 +136,7 @@ Socket::_socketName_impl(
 
 //-------------------------------------------------------------------------------------------------
 inline int_t
-Socket::_lastError_impl()
+Socket::_nativeError_impl()
 {
     return errno;
 }

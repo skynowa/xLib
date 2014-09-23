@@ -132,18 +132,18 @@ IpcSemaphore::_wait_impl(
         continue;
     }
 #else
-    int_t lastError = 0;
+    int_t nativeError = 0;
 
     for ( ; ; ) {
         iRv       = ::sem_timedwait(_handle, &tmsTimeout);
-        lastError = errno;
+        nativeError = errno;
 
-        xCHECK_DO(! (iRv == - 1 && lastError == EINTR), break);
+        xCHECK_DO(! (iRv == - 1 && nativeError == EINTR), break);
     }
 #endif
 
     if (iRv == - 1) {
-        if (ETIMEDOUT == lastError) {
+        if (ETIMEDOUT == nativeError) {
             // timeout
             xTEST_FAIL;
         } else {

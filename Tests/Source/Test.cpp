@@ -285,7 +285,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_Debug);
         manager.add(new Test_BuildInfo);
         manager.add(new Test_StdError);
-        manager.add(new Test_LastError);
+        manager.add(new Test_NativeError);
         manager.add(new Test_Exception);
         manager.add(new Test_StackTrace);
         manager.add(new Test_Debugger);

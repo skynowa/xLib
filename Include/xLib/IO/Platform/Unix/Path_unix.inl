@@ -148,17 +148,17 @@ Path::_maxSize_impl()
 #if defined(PATH_MAX)
     uiRv = PATH_MAX;
 #else
-    culong_t savedError = 0UL;
-    long_t   liRv       = - 1L;
-    ulong_t  lastError  = 0UL;
+    culong_t savedError  = 0UL;
+    long_t   liRv        = - 1L;
+    ulong_t  nativeError = 0UL;
 
     NativeError::set(savedError);
 
-    liRv      = ::pathconf("/", _PC_PATH_MAX);
-    lastError = NativeError::get();
+    liRv        = ::pathconf("/", _PC_PATH_MAX);
+    nativeError = NativeError::get();
     xTEST_EQ(liRv == - 1L && savedError != 0UL, true);
 
-    if (liRv == - 1L && savedError == lastError) {
+    if (liRv == - 1L && savedError == nativeError) {
         // system does not have a limit for the requested resource
         std::csize_t defaultSize = 1024;
 
@@ -181,17 +181,17 @@ Path::_nameMaxSize_impl()
 #if defined(NAME_MAX)
     uiRv = NAME_MAX;
 #else
-    culong_t savedError = 0UL;
-    long_t   liRv       = - 1L;
-    ulong_t  lastError  = 0UL;
+    culong_t savedError  = 0UL;
+    long_t   liRv        = - 1L;
+    ulong_t  nativeError = 0UL;
 
     NativeError::set(savedError);
 
-    liRv      = ::pathconf("/", _PC_NAME_MAX);
-    lastError = NativeError::get();
+    liRv        = ::pathconf("/", _PC_NAME_MAX);
+    nativeError = NativeError::get();
     xTEST_EQ(liRv == - 1L && savedError != 0UL, true);
 
-    if (liRv == - 1L && savedError == lastError) {
+    if (liRv == - 1L && savedError == nativeError) {
         // system does not have a limit for the requested resource
         std::csize_t defaultSize = 1024;
 

@@ -44,7 +44,7 @@ Socket::_send_impl(
 )
 {
     ssize_t iRv = ::send(_handle, (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
-    xTEST_EQ(iRv != xSOCKET_ERROR && Socket::lastError() != WSAEWOULDBLOCK, true);
+    xTEST_EQ(iRv != xSOCKET_ERROR && Socket::nativeError() != WSAEWOULDBLOCK, true);
     xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
 
     return iRv / sizeof(tchar_t);
@@ -58,7 +58,7 @@ Socket::_receive_impl(
 )
 {
     int_t iRv = ::recv(_handle, (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
-    xTEST_EQ(iRv != xSOCKET_ERROR && Socket::lastError() != WSAEWOULDBLOCK, true);
+    xTEST_EQ(iRv != xSOCKET_ERROR && Socket::nativeError() != WSAEWOULDBLOCK, true);
     xTEST_DIFF(iRv, 0);  // gracefully closed
     xTEST_GR_EQ(int_t(a_buffSize * sizeof(tchar_t)), iRv);
 
@@ -134,7 +134,7 @@ Socket::_socketName_impl(
 
 //-------------------------------------------------------------------------------------------------
 inline int_t
-Socket::_lastError_impl()
+Socket::_nativeError_impl()
 {
     return ::WSAGetLastError();
 }

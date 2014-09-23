@@ -56,10 +56,10 @@ Test_StdError::unit(
         };
 
         for (int_t i = 0; i < (int_t)xARRAY_SIZE(caiData); ++ i) {
-            cint_t ciLastError = caiData[i];
+            cint_t  = caiData[i];
 
-            StdError::set(ciLastError);
-            xTEST_EQ(ciLastError, StdError::get());
+            StdError::set(stdError);
+            xTEST_EQ(stdError, StdError::get());
             xTEST_EQ(0, StdError::get());
         }
     }
@@ -74,9 +74,9 @@ Test_StdError::unit(
         };
 
         for (int_t i = 0; i < (int_t)xARRAY_SIZE(caiData); ++ i) {
-            cint_t ciLastError = caiData[i];
+            cint_t stdError = caiData[i];
 
-            StdError::set(ciLastError);
+            StdError::set(stdError);
             StdError::reset();
             xTEST_EQ(0, StdError::get());
         }
@@ -92,9 +92,9 @@ Test_StdError::unit(
         };
 
         for (int_t i = 0; i < (int_t)xARRAY_SIZE(caiData); ++ i) {
-            cint_t ciLastError = caiData[i];
+            cint_t stdError = caiData[i];
 
-            m_sRv = StdError::format(ciLastError);
+            m_sRv = StdError::format(stdError);
             xTEST_EQ(false, m_sRv.empty());
 
             //xTRACEV(xT("\StdError::format(%lu) = %s (size = %lu)"), i, m_sRv.c_str(), m_sRv.size() - 4);

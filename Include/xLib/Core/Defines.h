@@ -658,9 +658,9 @@
 ///@{
 #define xTHROW_REPORT(msg) \
     { \
-        culong_t        lastError  = NativeError::get(); \
-        std::cstring_t &stackTrace = StackTrace().toString(); \
-        ErrorReport   report(lastError, xFILE, xLINE, xFUNCTION, stackTrace, msg); \
+        culong_t        nativeError = NativeError::get(); \
+        std::cstring_t &stackTrace  = StackTrace().toString(); \
+        ErrorReport     report(nativeError, xFILE, xLINE, xFUNCTION, stackTrace, msg); \
         \
         throw Exception() << report.toString(); \
     }
@@ -669,7 +669,7 @@
     try
     ///< like try
 #define xCATCH_ALL \
-    catch (const Exception &a_ex) {        \
+    catch (const Exception &a_ex) {          \
         xTEST_MSG_FAIL(a_ex.what());         \
     }                                        \
     catch (const std::exception &a_ex) {     \
