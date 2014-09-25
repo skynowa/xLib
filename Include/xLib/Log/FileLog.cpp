@@ -69,16 +69,6 @@ FileLog::filePath() const
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
-inline FileLog &
-FileLog::operator << (
-    const T &valueT
-)
-{
-    _oss << valueT;
-    return *this;
-}
-//-------------------------------------------------------------------------------------------------
 /* virtual */
 inline void_t
 FileLog::write(
