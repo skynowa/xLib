@@ -4,39 +4,6 @@
  */
 
 
-#if !xOPTION_HEADER_ONLY
-    #include "String.h"
-#endif
-
-#include <xLib/Core/Units.h>
-#include <xLib/Core/Functors.h>
-#include <xLib/Core/Utils.h>
-#include <xLib/Core/Const.h>
-#include <xLib/Core/Char.h>
-#include <xLib/Core/Array.h>
-#include <xLib/Test/Test.h>
-#include <xLib/Debug/Debug.h>
-#include <xLib/Debug/NativeError.h>
-#include <xLib/Debug/StdError.h>
-#include <xLib/Debug/ErrorReport.h>
-#include <xLib/Debug/Debugger.h>
-#include <xLib/Debug/StackTrace.h>
-#include <xLib/Log/Trace.h>
-#include <xLib/Debug/StdDebug.h>
-
-#if   xENV_WIN
-    #include "Platform/Win/String_win.inl"
-#elif xENV_UNIX
-    #if   xENV_LINUX
-        #include "Platform/Unix/String_unix.inl"
-    #elif xENV_BSD
-        #include "Platform/Unix/String_unix.inl"
-    #elif xENV_APPLE
-        #include "Platform/Unix/String_unix.inl"
-    #endif
-#endif
-
-
 xNAMESPACE_BEGIN2(xlib, core)
 
 /*******************************************************************************
