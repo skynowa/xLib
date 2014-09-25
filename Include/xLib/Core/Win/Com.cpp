@@ -4,6 +4,8 @@
  */
 
 
+#if xENV_WIN
+
 #if !xOPTION_HEADER_ONLY
     #include "Com.inl"
 #endif
@@ -12,8 +14,6 @@
     // lib: -lole32
 #endif
 
-
-#if xENV_WIN
 
 xNAMESPACE_BEGIN2(xlib, core)
 

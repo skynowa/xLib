@@ -9,7 +9,6 @@
 #endif
 
 #include <xLib/Core/String.h>
-#include <xLib/Debug/BuildInfo.h>
 #include <xLib/IO/Path.h>
 #include <xLib/IO/Dir.h>
 #include <xLib/System/ProcessInfo.h>

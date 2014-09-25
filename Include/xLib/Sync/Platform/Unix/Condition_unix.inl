@@ -4,11 +4,6 @@
  */
 
 
-#if !xOPTION_HEADER_ONLY
-    #include "Condition.h"
-#endif
-
-
 xNAMESPACE_BEGIN2(xlib, sync)
 
 /**************************************************************************************************

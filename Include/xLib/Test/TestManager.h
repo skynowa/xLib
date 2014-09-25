@@ -12,6 +12,8 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, test)
 
+class UnitTest;
+
 class TestManager
     /// manage tests (Test)
 {

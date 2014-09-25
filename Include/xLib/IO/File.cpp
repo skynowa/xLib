@@ -12,6 +12,7 @@
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Core/Utils.h>
+#include <xLib/Debug/Exception.h>
 #include <xLib/IO/Path.h>
 #include <xLib/IO/Dir.h>
 #include <xLib/IO/FileType.h>

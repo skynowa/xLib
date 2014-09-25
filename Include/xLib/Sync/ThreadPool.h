@@ -16,6 +16,12 @@
 ////#include <boost\bind.hpp>
 ////#include <functional>
 //-------------------------------------------------------------------------------------------------
+xNAMESPACE_BEGIN2(xlib, log)
+
+class Trace;
+
+xNAMESPACE_END2(xlib, log)
+
 xNAMESPACE_BEGIN2(xlib, sync)
 
 class Mutex;

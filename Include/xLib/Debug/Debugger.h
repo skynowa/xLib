@@ -10,6 +10,8 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, debug)
 
+class ErrorReport;
+
 class Debugger
     /// debugger
 {

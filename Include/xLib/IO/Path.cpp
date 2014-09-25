@@ -10,6 +10,7 @@
 
 #include <xLib/Core/Char.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/Utils.h>
 #include <xLib/System/ProcessInfo.h>
 #include <xLib/IO/File.h>
 #include <xLib/IO/Dir.h>

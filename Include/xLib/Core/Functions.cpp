@@ -1,5 +1,5 @@
 /**
- * \file   Functions.inl
+ * \file   Functions.cpp
  * \brief  function macroses
  */
 

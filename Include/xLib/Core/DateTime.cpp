@@ -12,6 +12,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Array.h>
 #include <xLib/Core/Utils.h>
+#include <xLib/Core/Units.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StdError.h>
 #include <xLib/Debug/StackTrace.h>

@@ -9,6 +9,7 @@
 #endif
 
 #include <xLib/Core/Const.h>
+#include <xLib/IO/Path.h>
 
 #if   xENV_WIN
     #include "Platform/Win/IpcMutex_win.inl"

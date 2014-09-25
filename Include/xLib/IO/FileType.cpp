@@ -8,6 +8,7 @@
     #include "FileType.h"
 #endif
 
+#include <xLib/Core/Utils.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/NativeError.h>

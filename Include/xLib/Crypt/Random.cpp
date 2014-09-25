@@ -1,5 +1,5 @@
 /**
- * \file  Random.inl
+ * \file  Random.cpp
  * \brief random generator
  */
 
@@ -9,6 +9,7 @@
 #endif
 
 #include <xLib/Core/Functions.h>
+#include <xLib/Core/Utils.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/NativeError.h>
