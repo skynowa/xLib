@@ -84,4 +84,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
-#include "Finder.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Finder.inl"
+#endif

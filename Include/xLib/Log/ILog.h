@@ -57,4 +57,6 @@ private:
 
 xNAMESPACE_END2(xlib, log)
 //-------------------------------------------------------------------------------------------------
-#include "ILog.inl"
+#if xOPTION_HEADER_ONLY
+    #include "ILog.inl"
+#endif

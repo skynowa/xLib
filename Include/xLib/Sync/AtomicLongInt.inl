@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "AtomicLongInt.h"
+#endif
+
 #if   xENV_WIN
     #include "Platform/Win/AtomicLongInt_win.inl"
 #elif xENV_UNIX

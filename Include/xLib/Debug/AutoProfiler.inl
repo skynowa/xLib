@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "AutoProfiler.h"
+#endif
+
 #include <xLib/Core/String.h>
 
 

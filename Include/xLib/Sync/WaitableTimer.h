@@ -44,6 +44,10 @@ xNAMESPACE_END2(xlib, sync)
 #endif
 //-------------------------------------------------------------------------------------------------
 #if xENV_WIN
+
+#if xOPTION_HEADER_ONLY
     #include "WaitableTimer.inl"
+#endif
+
 #endif
 

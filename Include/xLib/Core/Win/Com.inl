@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Com.inl"
+#endif
+
 #if xCOMPILER_MINGW
     // lib: -lole32
 #endif

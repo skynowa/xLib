@@ -42,4 +42,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, crypt)
 //---------------------------------------------------------------------------
-#include <xLib/Crypt/Guid.inl>
+#if xOPTION_HEADER_ONLY
+    #include "Guid.inl"
+#endif

@@ -72,7 +72,9 @@ private:
 
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
-#include "DnsClient.inl"
+#if xOPTION_HEADER_ONLY
+    #include "DnsClient.inl"
+#endif
 
 
 #if xTODO

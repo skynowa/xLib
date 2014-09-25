@@ -162,4 +162,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
-#include "Path.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Path.inl"
+#endif

@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "TestManager.h"
+#endif
+
 #include <xLib/Core/Type.h>
 #include <xLib/IO/Path.h>
 #include <xLib/Log/Trace.h>

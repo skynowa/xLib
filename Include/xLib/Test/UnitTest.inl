@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "UnitTest.h"
+#endif
+
 #include <xLib/Debug/Exception.h>
 #include <xLib/IO/Path.h>
 #include <xLib/IO/Dir.h>

@@ -4,7 +4,9 @@
  */
 
 
-#include "Application.h"
+#if !xOPTION_HEADER_ONLY
+    #include "Application.h"
+#endif
 
 #include <xLib/Core/String.h>
 #include <xLib/Debug/BuildInfo.h>

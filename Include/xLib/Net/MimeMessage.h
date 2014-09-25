@@ -32,4 +32,6 @@ private:
 
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
-#include "MimeMessage.inl"
+#if xOPTION_HEADER_ONLY
+    #include "MimeMessage.inl"
+#endif

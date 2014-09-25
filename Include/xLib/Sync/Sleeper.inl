@@ -4,6 +4,11 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Sleeper.h"
+#endif
+
+
 xNAMESPACE_BEGIN2(xlib, sync)
 
 /**************************************************************************************************

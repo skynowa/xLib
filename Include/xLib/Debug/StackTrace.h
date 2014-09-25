@@ -53,4 +53,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
-#include "StackTrace.inl"
+#if xOPTION_HEADER_ONLY
+    #include "StackTrace.inl"
+#endif

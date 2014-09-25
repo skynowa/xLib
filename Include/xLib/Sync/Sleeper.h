@@ -35,4 +35,6 @@ private:
 
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
-#include "Sleeper.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Sleeper.inl"
+#endif

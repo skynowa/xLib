@@ -37,4 +37,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
-#include "FileTemp.inl"
+#if xOPTION_HEADER_ONLY
+    #include "FileTemp.inl"
+#endif

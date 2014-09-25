@@ -4,8 +4,11 @@
  */
 
 
-#include <xLib/Log/Trace.h>
+#if !xOPTION_HEADER_ONLY
+    #include "Event.h"
+#endif
 
+#include <xLib/Log/Trace.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Event_win.inl"

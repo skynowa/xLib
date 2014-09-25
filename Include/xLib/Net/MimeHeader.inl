@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "MimeHeader.h"
+#endif
+
 #include <xLib/Core/String.h>
 #include <xLib/Core/Locale.h>
 #include <xLib/Crypt/Guid.h>

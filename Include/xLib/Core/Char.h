@@ -58,4 +58,6 @@ private:
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
-#include "Char.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Char.inl"
+#endif

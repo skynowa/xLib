@@ -137,7 +137,9 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, system)
 //-------------------------------------------------------------------------------------------------
-#include "Console.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Console.inl"
+#endif
 
 
 #if xTODO

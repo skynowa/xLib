@@ -89,4 +89,6 @@ private:
 
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
-#include "ThreadPool.inl"
+#if xOPTION_HEADER_ONLY
+    #include "ThreadPool.inl"
+#endif

@@ -4,6 +4,11 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "SmtpClient.h"
+#endif
+
+
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/NativeError.h>

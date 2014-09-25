@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "ThreadPool.h"
+#endif
+
 #include <xLib/Sync/Mutex.h>
 #include <xLib/Sync/AutoMutex.h>
 #include <xLib/Sync/Thread.h>

@@ -29,4 +29,6 @@ xNAMESPACE_END2(xlib, core)
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#include "Com.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Com.inl"
+#endif

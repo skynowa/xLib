@@ -55,7 +55,9 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
-#include "TcpClient.inl"
+#if xOPTION_HEADER_ONLY
+    #include "TcpClient.inl"
+#endif
 
 
 /**

@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "IpcSemaphore.h"
+#endif
+
 #include <xLib/Core/Const.h>
 #include <xLib/IO/Path.h>
 

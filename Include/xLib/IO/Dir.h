@@ -83,4 +83,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
-#include "Dir.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Dir.inl"
+#endif

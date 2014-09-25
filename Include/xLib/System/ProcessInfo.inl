@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "ProcessInfo.h"
+#endif
+
 #include <xLib/Core/String.h>
 #include <xLib/IO/Path.h>
 #include <xLib/IO/File.h>

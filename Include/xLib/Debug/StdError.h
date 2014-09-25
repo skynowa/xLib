@@ -52,4 +52,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
-#include "StdError.inl"
+#if xOPTION_HEADER_ONLY
+    #include "StdError.inl"
+#endif

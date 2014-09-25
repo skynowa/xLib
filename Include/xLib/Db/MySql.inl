@@ -6,6 +6,10 @@
 
 #if xHAVE_MYSQL
 
+#if !xOPTION_HEADER_ONLY
+    #include "MySql.h"
+#endif
+
 #include <xLib/Core/String.h>
 
 #if xENV_WIN

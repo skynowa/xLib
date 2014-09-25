@@ -270,4 +270,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
-#include "Thread.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Thread.inl"
+#endif

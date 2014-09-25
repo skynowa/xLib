@@ -3,6 +3,11 @@
  * \brief debug report
  */
 
+
+#if !xOPTION_HEADER_ONLY
+    #include "ErrorReport.h"
+#endif
+
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/DateTime.h>

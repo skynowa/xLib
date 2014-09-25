@@ -57,7 +57,9 @@ private:
 
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
-#include "MimeHeader.inl"
+#if xOPTION_HEADER_ONLY
+    #include "MimeHeader.inl"
+#endif
 
 
 /*
