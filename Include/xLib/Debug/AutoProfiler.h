@@ -29,4 +29,6 @@ private:
 
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
-#include "AutoProfiler.inl"
+#if xOPTION_HEADER_ONLY
+    #include "AutoProfiler.inl"
+#endif

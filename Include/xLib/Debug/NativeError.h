@@ -60,4 +60,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
-#include "NativeError.inl"
+#if xOPTION_HEADER_ONLY
+    #include "NativeError.inl"
+#endif

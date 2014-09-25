@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "CookiePv0.h"
+#endif
+
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 

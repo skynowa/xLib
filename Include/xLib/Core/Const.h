@@ -320,4 +320,6 @@ private:
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
-#include "Const.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Const.inl"
+#endif

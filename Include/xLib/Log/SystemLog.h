@@ -45,4 +45,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, log)
 //-------------------------------------------------------------------------------------------------
-#include "SystemLog.inl"
+#if xOPTION_HEADER_ONLY
+    #include "SystemLog.inl"
+#endif

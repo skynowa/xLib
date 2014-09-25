@@ -93,4 +93,6 @@ private:
 
 xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
-#include "Config.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Config.inl"
+#endif

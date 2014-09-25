@@ -59,4 +59,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
-#include "Debugger.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Debugger.inl"
+#endif

@@ -23,4 +23,6 @@ private:
 
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
-#include "SharedMemory.inl"
+#if xOPTION_HEADER_ONLY
+    #include "SharedMemory.inl"
+#endif

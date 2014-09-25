@@ -25,4 +25,6 @@ private:
 
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
-#include "Semaphore.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Semaphore.inl"
+#endif

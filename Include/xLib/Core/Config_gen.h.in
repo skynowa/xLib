@@ -12,6 +12,7 @@
 #cmakedefine xOPTION_PROJECT_EXE 1
 #cmakedefine xOPTION_PROJECT_LIB 1
 #cmakedefine xOPTION_PROJECT_DLL 1
+#define xOPTION_HEADER_ONLY 0
 
 #if   xOPTION_PROJECT_EXE
     #define xEXE 1

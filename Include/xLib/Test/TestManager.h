@@ -37,4 +37,6 @@ private:
 
 xNAMESPACE_END2(xlib, test)
 //-------------------------------------------------------------------------------------------------
-#include "TestManager.inl"
+#if xOPTION_HEADER_ONLY
+    #include "TestManager.inl"
+#endif

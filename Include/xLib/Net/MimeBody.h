@@ -25,4 +25,6 @@ private:
 
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
-#include "MimeBody.inl"
+#if xOPTION_HEADER_ONLY
+    #include "MimeBody.inl"
+#endif

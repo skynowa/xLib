@@ -81,4 +81,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
-#include "Event.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Event.inl"
+#endif

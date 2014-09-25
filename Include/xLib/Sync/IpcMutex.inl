@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "IpcMutex.h"
+#endif
+
 #include <xLib/Core/Const.h>
 
 #if   xENV_WIN

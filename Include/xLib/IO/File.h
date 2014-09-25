@@ -320,4 +320,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
-#include "File.inl"
+#if xOPTION_HEADER_ONLY
+    #include "File.inl"
+#endif

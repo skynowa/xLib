@@ -4,6 +4,11 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "ILog.h"
+#endif
+
+
 xNAMESPACE_BEGIN2(xlib, log)
 
 /**************************************************************************************************

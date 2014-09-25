@@ -28,4 +28,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
-#include "SocketInit.inl"
+#if xOPTION_HEADER_ONLY
+    #include "SocketInit.inl"
+#endif

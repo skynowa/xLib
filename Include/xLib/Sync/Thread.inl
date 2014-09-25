@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Thread.h"
+#endif
+
 #include <xLib/Core/String.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/System/SystemInfo.h>

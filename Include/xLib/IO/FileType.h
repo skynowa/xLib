@@ -91,4 +91,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
-#include "FileType.inl"
+#if xOPTION_HEADER_ONLY
+    #include "FileType.inl"
+#endif

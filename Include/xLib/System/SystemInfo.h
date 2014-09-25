@@ -162,7 +162,9 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, system)
 //-------------------------------------------------------------------------------------------------
-#include "SystemInfo.inl"
+#if xOPTION_HEADER_ONLY
+    #include "SystemInfo.inl"
+#endif
 
 
 // https://github.com/joyent/node/blob/master/src/platform_linux.cc

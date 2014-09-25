@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Pop3Client.h"
+#endif
+
 #include <xLib/Core/String.h>
 #include <xLib/IO/File.h>
 #include <xLib/Net/MimeHeader.h>

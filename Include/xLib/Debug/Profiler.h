@@ -49,7 +49,9 @@ private:
 
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
-#include "Profiler.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Profiler.inl"
+#endif
 
 
 // http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html

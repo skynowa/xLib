@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Dir.h"
+#endif
+
 #include <xLib/Core/Char.h>
 #include <xLib/Core/String.h>
 #include <xLib/Debug/Exception.h>

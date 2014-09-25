@@ -87,4 +87,6 @@ private:
 
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
-#include "ErrorReport.inl"
+#if xOPTION_HEADER_ONLY
+    #include "ErrorReport.inl"
+#endif

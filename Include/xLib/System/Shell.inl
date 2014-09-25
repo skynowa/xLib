@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Shell.h"
+#endif
+
 #include <xLib/Core/String.h>
 #include <xLib/Core/Win/Com.h>
 #include <xLib/Debug/NativeError.h>

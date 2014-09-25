@@ -32,4 +32,6 @@ private:
 
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
-#include "Exception.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Exception.inl"
+#endif

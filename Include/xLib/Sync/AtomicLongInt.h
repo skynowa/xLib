@@ -66,4 +66,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
-#include "AtomicLongInt.inl"
+#if xOPTION_HEADER_ONLY
+    #include "AtomicLongInt.inl"
+#endif

@@ -60,4 +60,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
-#include "Dll.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Dll.inl"
+#endif

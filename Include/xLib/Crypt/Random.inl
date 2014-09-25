@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Random.h"
+#endif
+
 #include <xLib/Core/Functions.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>

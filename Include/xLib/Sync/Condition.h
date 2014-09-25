@@ -52,4 +52,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
-#include "Condition.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Condition.inl"
+#endif

@@ -4,8 +4,11 @@
  */
 
 
-#include <xLib/Core/String.h>
+#if !xOPTION_HEADER_ONLY
+    #include "BuildInfo.h"
+#endif
 
+#include <xLib/Core/String.h>
 #include <xLib/Core/Const.h>
 
 

@@ -80,4 +80,6 @@ private:
 
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
-#include "CookiePv0.inl"
+#if xOPTION_HEADER_ONLY
+    #include "CookiePv0.inl"
+#endif

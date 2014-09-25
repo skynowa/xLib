@@ -66,7 +66,9 @@ private:
 
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
-#include "Pop3Client.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Pop3Client.inl"
+#endif
 
 
 /*

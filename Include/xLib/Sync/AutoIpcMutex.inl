@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "AutoIpcMutex.h"
+#endif
+
 #include <xLib/Sync/IpcMutex.h>
 
 

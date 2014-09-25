@@ -70,4 +70,6 @@ private:
 
 xNAMESPACE_END2(xlib, test)
 //-------------------------------------------------------------------------------------------------
-#include "UnitTest.inl"
+#if xOPTION_HEADER_ONLY
+    #include "UnitTest.inl"
+#endif

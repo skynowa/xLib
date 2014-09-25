@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Debugger.h"
+#endif
+
 #include <xLib/Core/DateTime.h>
 #include <xLib/System/SystemInfo.h>
 #include <xLib/System/Console.h>

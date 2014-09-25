@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "String.h"
+#endif
+
 #include <xLib/Core/Units.h>
 #include <xLib/Core/Functors.h>
 #include <xLib/Core/Utils.h>

@@ -268,4 +268,6 @@ xNAMESPACE_END2(xlib, core)
     std::tstring_t xlib::core::Application::_vendorEmail; \
     std::tstring_t xlib::core::Application::_vendorSkype;
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Core/Application.inl>
+#if xOPTION_HEADER_ONLY
+    #include "Application.inl"
+#endif

@@ -34,4 +34,6 @@ private:
 
 xNAMESPACE_END2(xlib, crypt)
 //-------------------------------------------------------------------------------------------------
-#include "Base64.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Base64.inl"
+#endif

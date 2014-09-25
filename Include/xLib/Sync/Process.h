@@ -131,4 +131,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
-#include "Process.inl"
+#if xOPTION_HEADER_ONLY
+    #include "Process.inl"
+#endif

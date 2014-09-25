@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Config.h"
+#endif
+
 #include <xLib/Core/String.h>
 #include <xLib/IO/Path.h>
 #include <xLib/IO/Dir.h>

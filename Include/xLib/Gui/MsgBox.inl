@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "MsgBox.h"
+#endif
+
 #include "Platform/MsgBox_internal.inl"
 
 #if   xENV_WIN

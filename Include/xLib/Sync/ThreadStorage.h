@@ -48,4 +48,6 @@ xPLATFORM:
 
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
-#include "ThreadStorage.inl"
+#if xOPTION_HEADER_ONLY
+    #include "ThreadStorage.inl"
+#endif

@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Exception.h"
+#endif
+
 #include <xLib/Core/String.h>
 
 

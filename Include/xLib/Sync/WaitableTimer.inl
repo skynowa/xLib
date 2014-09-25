@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "WaitableTimer.h"
+#endif
+
 #if   xENV_WIN
     #include "Platform/Win/WaitableTimer_win.inl"
 #elif xENV_UNIX

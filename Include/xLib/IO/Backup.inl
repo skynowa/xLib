@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Backup.h"
+#endif
+
 #include <xLib/Core/String.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Crypt/Crc32.h>

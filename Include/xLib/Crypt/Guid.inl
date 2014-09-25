@@ -4,7 +4,9 @@
  */
 
 
-#include <xLib/Crypt/Guid.h>
+#if !xOPTION_HEADER_ONLY
+    #include "Guid.h"
+#endif
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>

@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Cgi.h"
+#endif
+
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
