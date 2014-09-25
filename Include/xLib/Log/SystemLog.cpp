@@ -68,14 +68,6 @@ SystemLog::~SystemLog()
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
-inline SystemLog &
-SystemLog::operator << (const T &valueT)
-{
-    _oss << valueT;
-    return *this;
-}
-//-------------------------------------------------------------------------------------------------
 /* virtual */
 inline void_t
 SystemLog::write(
