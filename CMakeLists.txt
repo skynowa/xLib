@@ -14,7 +14,12 @@ cmake_minimum_required(VERSION 2.6)
 
 project(xLib)
 set(PROJECT_TYPE "CXX")
-
+set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+    # None (CMAKE_C_FLAGS or CMAKE_CXX_FLAGS used)
+    # Debug (CMAKE_C_FLAGS_DEBUG or CMAKE_CXX_FLAGS_DEBUG)
+    # Release (CMAKE_C_FLAGS_RELEASE or CMAKE_CXX_FLAGS_RELEASE)
+    # RelWithDebInfo (CMAKE_C_FLAGS_RELWITHDEBINFO or CMAKE_CXX_FLAGS_RELWITHDEBINFO
+    # MinSizeRel (CMAKE_C_FLAGS_MINSIZEREL or CMAKE_CXX_FLAGS_MINSIZEREL)
 #--------------------------------------------------------------------------------------------------
 # options
 unset(xOPTION_PROJECT_HEADER_ONLY CACHE)
@@ -36,10 +41,10 @@ unset(xOPTION_TESTS               CACHE)
 unset(xOPTION_TEST_PRIVATE        CACHE)
 unset(xOPTION_TEST_TRACING        CACHE)
 
-option(xOPTION_PROJECT_HEADER_ONLY "Project: header only"                     1)
-option(xOPTION_PROJECT_STATIC      "Project: static library"                  1)
-option(xOPTION_PROJECT_SHARE       "Project: share library"                   1)
-option(xOPTION_PROJECT_MODULE      "Project: dynamic-link library"            1)
+option(xOPTION_PROJECT_HEADER_ONLY "Project: header only"                     0)
+option(xOPTION_PROJECT_STATIC      "Project: static library"                  0)
+option(xOPTION_PROJECT_SHARE       "Project: share library"                   0)
+option(xOPTION_PROJECT_MODULE      "Project: dynamic-link library"            0)
 option(xOPTION_PROJECT_TESTS       "Project: tests"                           1)
 
 option(xOPTION_CPP11               "Support C++11 language"                   0)
@@ -137,7 +142,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 #--------------------------------------------------------------------------------------------------
 # includes, libs
 include_directories(${XLIB_INCLUDES})
-link_libraries(${XLIB_LIBRARIES})
 
 #--------------------------------------------------------------------------------------------------
 # vars
@@ -215,9 +219,10 @@ endif()
 if (xOPTION_PROJECT_TESTS)
     # TODO:
     include_directories(${CMAKE_SOURCE_DIR}/Tests/Include)
-    file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
+    file(GLOB_RECURSE XLIB_TESTS_SOURCES "Tests/*.cpp")
+    link_libraries(${XLIB_LIBRARIES})
 
-    add_executable(${PROJECT_NAME}_tests ${xLib_tests_SOURCES})
+    add_executable(${PROJECT_NAME}_tests ${XLIB_SOURCES} ${XLIB_TESTS_SOURCES})
 endif()
 
 #--------------------------------------------------------------------------------------------------
