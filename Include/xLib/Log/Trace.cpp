@@ -1,5 +1,5 @@
 /**
- * \file   Trace.inl
+ * \file   Trace.cpp
  * \brief  tracer
  */
 
@@ -37,14 +37,6 @@ inline
 Trace::~Trace()
 {
     write(xT("%s"), _oss.str().c_str());
-}
-//-------------------------------------------------------------------------------------------------
-template<class T>
-inline Trace &
-Trace::operator << (const T &valueT)
-{
-    _oss << valueT;
-    return *this;
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
