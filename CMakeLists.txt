@@ -32,11 +32,15 @@ unset(xOPTION_DEBUG_MODE_LOG      CACHE)
 unset(xOPTION_DEBUG_MODE_NO       CACHE)
 unset(xOPTION_BUILD_MSG           CACHE)
 
+unset(xOPTION_TESTS               CACHE)
+unset(xOPTION_TEST_PRIVATE        CACHE)
+unset(xOPTION_TEST_TRACING        CACHE)
+
 option(xOPTION_PROJECT_HEADER_ONLY "Project: header only"                     1)
-option(xOPTION_PROJECT_STATIC      "Project: static library"                  0)
-option(xOPTION_PROJECT_SHARE       "Project: share library"                   0)
-option(xOPTION_PROJECT_MODULE      "Project: dynamic-link library"            0)
-option(xOPTION_PROJECT_TESTS       "Project: tests"                           0)
+option(xOPTION_PROJECT_STATIC      "Project: static library"                  1)
+option(xOPTION_PROJECT_SHARE       "Project: share library"                   1)
+option(xOPTION_PROJECT_MODULE      "Project: dynamic-link library"            1)
+option(xOPTION_PROJECT_TESTS       "Project: tests"                           1)
 
 option(xOPTION_CPP11               "Support C++11 language"                   0)
 option(xOPTION_NAMESPACE_XLIB      "Automatically include the xlib namespace" 1)
@@ -47,6 +51,9 @@ option(xOPTION_DEBUG_MODE_LOG      "Debug mode: logging with plain text"      0)
 option(xOPTION_DEBUG_MODE_NO       "Debug mode: no debugging"                 0)
 
 option(xOPTION_BUILD_MSG           "Build messages"                           0)
+option(xOPTION_TESTS               "Use tests"                                1)
+option(xOPTION_TEST_PRIVATE        "Test private data"                        1)
+option(xOPTION_TEST_TRACING        "Use tracing in tests"                     1)
 
 # trace options
 # message("")
@@ -65,6 +72,10 @@ option(xOPTION_BUILD_MSG           "Build messages"                           0)
 # message("* xOPTION_DEBUG_MODE_LOG:      ${xOPTION_DEBUG_MODE_LOG}")
 # message("* xOPTION_DEBUG_MODE_NO:       ${xOPTION_DEBUG_MODE_NO}")
 # message("* xOPTION_BUILD_MSG:           ${xOPTION_BUILD_MSG}")
+
+# message("* xOPTION_TESTS:        ${xOPTION_TESTS}")
+# message("* xOPTION_TEST_PRIVATE: ${xOPTION_TEST_PRIVATE}")
+# message("* xOPTION_TEST_TRACING: ${xOPTION_TEST_TRACING}")
 # message("**************************************************")
 # message("")
 
@@ -203,6 +214,10 @@ endif()
 
 if (xOPTION_PROJECT_TESTS)
     # TODO:
+    include_directories(${CMAKE_SOURCE_DIR}/Tests/Include)
+    file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
+
+    add_executable(${PROJECT_NAME}_tests ${xLib_tests_SOURCES})
 endif()
 
 #--------------------------------------------------------------------------------------------------
