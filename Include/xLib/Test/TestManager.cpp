@@ -9,8 +9,11 @@
 #endif
 
 #include <xLib/Core/Type.h>
+#include <xLib/Core/String.h>
+#include <xLib/Core/Functors.h>
 #include <xLib/IO/Path.h>
 #include <xLib/Log/Trace.h>
+#include <xLib/Test/UnitTest.h>
 
 
 xNAMESPACE_BEGIN2(xlib, test)

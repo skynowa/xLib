@@ -298,4 +298,4 @@
 #endif
     ///< filesystem statfs (struct and function)
 
-#include "Functions.inl"
+#include "Functions.cpp"

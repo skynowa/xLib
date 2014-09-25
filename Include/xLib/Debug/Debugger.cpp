@@ -8,10 +8,13 @@
     #include "Debugger.h"
 #endif
 
+#include <xLib/Core/Char.h>
+#include <xLib/Core/String.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/System/SystemInfo.h>
 #include <xLib/System/Console.h>
 #include <xLib/Debug/ErrorReport.h>
+#include <xLib/Log/Trace.h>
 #include <xLib/IO/Path.h>
 #include <xLib/Gui/MsgBox.h>
 #include <xLib/System/Environment.h>

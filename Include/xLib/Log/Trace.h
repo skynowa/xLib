@@ -9,11 +9,11 @@
 #include <xLib/Core/Core.h>
 #include "ILog.h"
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, log)
-
-namespace core {
+xNAMESPACE_BEGIN2(xlib, core)
     class String;
-}
+xNAMESPACE_END2(xlib, core)
+
+xNAMESPACE_BEGIN2(xlib, log)
 
 class Trace :
     public ILog

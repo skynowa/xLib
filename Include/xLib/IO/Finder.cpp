@@ -9,6 +9,10 @@
 #endif
 
 #include <xLib/Test/Test.h>
+#include <xLib/Core/Char.h>
+#include <xLib/Core/String.h>
+#include <xLib/Core/Const.h>
+#include <xLib/Core/Utils.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StdError.h>
@@ -16,9 +20,6 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Log/Trace.h>
-#include <xLib/Core/Char.h>
-#include <xLib/Core/String.h>
-#include <xLib/Core/Const.h>
 #include <xLib/IO/Path.h>
 #include <xLib/IO/File.h>
 

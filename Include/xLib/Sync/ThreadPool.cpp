@@ -8,6 +8,7 @@
     #include "ThreadPool.h"
 #endif
 
+#include <xLib/Log/Trace.h>
 #include <xLib/Sync/Mutex.h>
 #include <xLib/Sync/AutoMutex.h>
 #include <xLib/Sync/Thread.h>

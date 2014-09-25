@@ -4,6 +4,8 @@
  */
 
 
+#if xENV_WIN
+
 #if !xOPTION_HEADER_ONLY
     #include "WaitableTimer.h"
 #endif
@@ -118,3 +120,5 @@ WaitableTimer::wait(
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, sync)
+
+#endif

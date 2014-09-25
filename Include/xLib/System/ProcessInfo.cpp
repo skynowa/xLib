@@ -9,6 +9,7 @@
 #endif
 
 #include <xLib/Core/String.h>
+#include <xLib/Core/Utils.h>
 #include <xLib/IO/Path.h>
 #include <xLib/IO/File.h>
 #include <xLib/IO/Dir.h>
