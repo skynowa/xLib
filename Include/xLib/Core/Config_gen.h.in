@@ -9,12 +9,12 @@
 
 ///@name Project type: executable binary, static library, share (dynamic-link) library
 ///@{
-#cmakedefine xOPTION_PROJECT_EXE 1
+#cmakedefine xOPTION_PROJECT_HO 1
+#cmakedefine xOPTION_PROJECT_TESTS 1
 #cmakedefine xOPTION_PROJECT_LIB 1
 #cmakedefine xOPTION_PROJECT_DLL 1
-#define xOPTION_HEADER_ONLY 0
 
-#if   xOPTION_PROJECT_EXE
+#if   xOPTION_PROJECT_TESTS
     #define xEXE 1
         ///< executable binary
 #elif xOPTION_PROJECT_LIB
