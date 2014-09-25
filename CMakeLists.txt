@@ -32,10 +32,10 @@ unset(xOPTION_DEBUG_MODE_LOG      CACHE)
 unset(xOPTION_DEBUG_MODE_NO       CACHE)
 unset(xOPTION_BUILD_MSG           CACHE)
 
-option(xOPTION_PROJECT_HEADER_ONLY "Project: header only"                     0)
-option(xOPTION_PROJECT_STATIC      "Project: static library"                  1)
-option(xOPTION_PROJECT_SHARE       "Project: share library"                   1)
-option(xOPTION_PROJECT_MODULE      "Project: dynamic-link library"            1)
+option(xOPTION_PROJECT_HEADER_ONLY "Project: header only"                     1)
+option(xOPTION_PROJECT_STATIC      "Project: static library"                  0)
+option(xOPTION_PROJECT_SHARE       "Project: share library"                   0)
+option(xOPTION_PROJECT_MODULE      "Project: dynamic-link library"            0)
 option(xOPTION_PROJECT_TESTS       "Project: tests"                           0)
 
 option(xOPTION_CPP11               "Support C++11 language"                   0)
@@ -186,7 +186,7 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # targets
 if (xOPTION_PROJECT_HEADER_ONLY)
-
+    # n/a
 endif()
 
 if (xOPTION_PROJECT_STATIC)
