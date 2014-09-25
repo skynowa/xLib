@@ -9,20 +9,24 @@
 
 ///@name Project type: executable binary, static library, share (dynamic-link) library
 ///@{
-#cmakedefine xOPTION_PROJECT_HO 1
+#cmakedefine xOPTION_PROJECT_HEADER_ONLY 1
+#cmakedefine xOPTION_PROJECT_STATIC 1
+#cmakedefine xOPTION_PROJECT_SHARE 1
+#cmakedefine xOPTION_PROJECT_MODULE 1
 #cmakedefine xOPTION_PROJECT_TESTS 1
-#cmakedefine xOPTION_PROJECT_LIB 1
-#cmakedefine xOPTION_PROJECT_DLL 1
 
 #if   xOPTION_PROJECT_TESTS
     #define xEXE 1
         ///< executable binary
-#elif xOPTION_PROJECT_LIB
+#elif xOPTION_PROJECT_STATIC
     #define xLIB 1
         ///< static library
-#elif xOPTION_PROJECT_DLL
+#elif xOPTION_PROJECT_SHARE
     #define xDLL 1
-        ///< share (dynamic-link) library
+        ///< share library
+#elif xOPTION_PROJECT_MODULE
+    #define xDLL 1
+        ///< dynamic-link library
 #else
     #error xLib: unknown project type
 #endif
