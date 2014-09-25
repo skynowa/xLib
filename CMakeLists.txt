@@ -17,7 +17,8 @@ set(PROJECT_TYPE "CXX")
 
 #--------------------------------------------------------------------------------------------------
 # options
-unset(xOPTION_PROJECT_EXE       CACHE)
+unset(xOPTION_PROJECT_HO        CACHE)
+unset(xOPTION_PROJECT_TESTS     CACHE)
 unset(xOPTION_PROJECT_LIB       CACHE)
 unset(xOPTION_PROJECT_DLL       CACHE)
 unset(xOPTION_CPP11             CACHE)
@@ -29,7 +30,8 @@ unset(xOPTION_DEBUG_MODE_LOG    CACHE)
 unset(xOPTION_DEBUG_MODE_NO     CACHE)
 unset(xOPTION_BUILD_MSG         CACHE)
 
-option(xOPTION_PROJECT_EXE       "Project: executable binary"               1)
+option(xOPTION_PROJECT_HO        "Project: header only"                     0)
+option(xOPTION_PROJECT_TESTS     "Project: tests"                           1)
 option(xOPTION_PROJECT_LIB       "Project: static library"                  0)
 option(xOPTION_PROJECT_DLL       "Project: share (dynamic-link) library"    0)
 option(xOPTION_CPP11             "Support C++11 language"                   0)
@@ -45,7 +47,8 @@ option(xOPTION_BUILD_MSG         "Build messages"                           0)
 # trace options
 # message("")
 # message("******************** Options *********************")
-# message("* xOPTION_PROJECT_EXE:       ${xOPTION_PROJECT_EXE}")
+# message("* xOPTION_PROJECT_HO:        ${xOPTION_PROJECT_HO}")
+# message("* xOPTION_PROJECT_TESTS:     ${xOPTION_PROJECT_TESTS}")
 # message("* xOPTION_PROJECT_LIB:       ${xOPTION_PROJECT_LIB}")
 # message("* xOPTION_PROJECT_DLL:       ${xOPTION_PROJECT_DLL}")
 # message("* xOPTION_CPP11:             ${xOPTION_CPP11}")
@@ -176,11 +179,11 @@ endif()
 
 #--------------------------------------------------------------------------------------------------
 # targets
-add_library(${PROJECT_NAME}_static STATIC ${XLIB_SOURCES})
-add_library(${PROJECT_NAME}_shared SHARED ${XLIB_SOURCES})
-add_library(${PROJECT_NAME}_module MODULE ${XLIB_SOURCES})
-
-#set_target_properties(xLib_static PROPERTIES LINKER_LANGUAGE CXX)
+if (NOT xOPTION_PROJECT_HO)
+    add_library(${PROJECT_NAME}_static STATIC ${XLIB_SOURCES})
+    add_library(${PROJECT_NAME}_shared SHARED ${XLIB_SOURCES})
+    add_library(${PROJECT_NAME}_module MODULE ${XLIB_SOURCES})
+endif()
 
 #--------------------------------------------------------------------------------------------------
 # install
