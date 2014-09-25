@@ -15,9 +15,8 @@
 #cmakedefine xOPTION_PROJECT_MODULE 1
 #cmakedefine xOPTION_PROJECT_TESTS 1
 
-#if   xOPTION_PROJECT_TESTS
-    #define xEXE 1
-        ///< executable binary
+#if   xOPTION_PROJECT_HEADER_ONLY
+
 #elif xOPTION_PROJECT_STATIC
     #define xLIB 1
         ///< static library
@@ -27,6 +26,9 @@
 #elif xOPTION_PROJECT_MODULE
     #define xDLL 1
         ///< dynamic-link library
+#elif xOPTION_PROJECT_TESTS
+    #define xEXE 1
+        ///< executable binary
 #else
     #error xLib: unknown project type
 #endif
