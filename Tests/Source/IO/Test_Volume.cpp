@@ -7,6 +7,8 @@
 #include <Test/IO/Test_Volume.h>
 
 #include <xLib/Core/Const.h>
+#include <xLib/System/SystemInfo.h>
+
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */

@@ -8,7 +8,7 @@
 
 #include <xLib/IO/File.h>
 #include <xLib/IO/Dir.h>
-
+#include <xLib/Debug/Exception.h>
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */

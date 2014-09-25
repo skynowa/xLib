@@ -6,6 +6,8 @@
 
 #include <Test/Core/Test_StdStream.h>
 
+#include <xLib/Crypt/Random.h>
+
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */

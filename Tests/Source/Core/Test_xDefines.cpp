@@ -9,6 +9,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/IO/Path.h>
 #include <xLib/Log/Trace.h>
+#include <xLib/Debug/Exception.h>
 
 
 //-------------------------------------------------------------------------------------------------
