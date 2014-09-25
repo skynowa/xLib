@@ -65,5 +65,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, system)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Environment.inl"
+    #include "Environment.cpp"
 #endif

@@ -321,5 +321,5 @@ private:
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Const.inl"
+    #include "Const.cpp"
 #endif

@@ -117,5 +117,5 @@ typedef Random<long_t, NativeSeedPolicy> NativeRandom;
 xNAMESPACE_END2(xlib, crypt)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Random.inl"
+    #include "Random.cpp"
 #endif

@@ -50,7 +50,7 @@ private:
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "SmtpClient.inl"
+    #include "SmtpClient.cpp"
 #endif
 
 

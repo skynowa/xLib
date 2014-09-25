@@ -46,7 +46,7 @@ xNAMESPACE_END2(xlib, sync)
 #if xENV_WIN
 
 #if xOPTION_HEADER_ONLY
-    #include "WaitableTimer.inl"
+    #include "WaitableTimer.cpp"
 #endif
 
 #endif

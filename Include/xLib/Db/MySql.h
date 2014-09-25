@@ -119,7 +119,7 @@ xNAMESPACE_END2(xlib, db)
 #endif // CXMYSQL_IS_USE
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "MySql.inl"
+    #include "MySql.cpp"
 #endif
 
 

@@ -30,5 +30,5 @@ private:
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "AutoMutex.inl"
+    #include "AutoMutex.cpp"
 #endif

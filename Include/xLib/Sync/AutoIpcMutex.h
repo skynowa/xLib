@@ -28,5 +28,5 @@ private:
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "AutoIpcMutex.inl"
+    #include "AutoIpcMutex.cpp"
 #endif

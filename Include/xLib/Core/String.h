@@ -256,5 +256,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "String.inl"
+    #include "String.cpp"
 #endif

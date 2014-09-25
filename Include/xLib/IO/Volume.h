@@ -99,5 +99,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Volume.inl"
+    #include "Volume.cpp"
 #endif

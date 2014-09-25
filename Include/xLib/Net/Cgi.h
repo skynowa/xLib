@@ -265,5 +265,5 @@ private:
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Cgi.inl"
+    #include "Cgi.cpp"
 #endif

@@ -91,5 +91,5 @@ private:
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "HttpClient.inl"
+    #include "HttpClient.cpp"
 #endif
