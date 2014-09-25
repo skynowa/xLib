@@ -4,6 +4,7 @@
  */
 
 
+#include <xLib/Core/Const.h>
 #include <xLib/Core/Utils.h>
 
 #if xCOMPILER_GNUC || xCOMPILER_MINGW

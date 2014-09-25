@@ -16,7 +16,6 @@
 #include <xLib/Core/Version.h>
 #include <xLib/Core/Types.h>
 #include <xLib/Core/Functions.h>
-#include <xLib/Core/Functors.h>
 #include <xLib/Core/StdStream.h>
 #include <xLib/Core/Type.h>
 #include <xLib/Core/Win/Com.h>
@@ -29,6 +28,7 @@
 #include <xLib/Core/HandleT.h>
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/Functors.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Core/Application.h>
 
