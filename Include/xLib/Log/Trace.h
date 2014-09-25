@@ -26,7 +26,7 @@ public:
         ///< destructor
 
     template<class T>
-    Trace &      operator << (const T &valueT);
+    Trace &        operator << (const T &valueT);
         ///< operator <<
 
     virtual void_t write(ctchar_t *format, ...) const xOVERRIDE;
@@ -43,3 +43,5 @@ xNAMESPACE_END2(xlib, log)
 #if xOPTION_HEADER_ONLY
     #include "Trace.cpp"
 #endif
+
+#include "Trace.inl"
