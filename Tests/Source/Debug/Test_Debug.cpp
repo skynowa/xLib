@@ -7,6 +7,7 @@
 #include <Test/Debug/Test_Debug.h>
 
 #include <xLib/Debug/Debug.h>
+#include <xLib/Debug/StdDebug.h>
 #include <xLib/Log/Trace.h>
 
 
