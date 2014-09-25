@@ -62,7 +62,7 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "IpcSemaphore.inl"
+    #include "IpcSemaphore.cpp"
 #endif
 
 

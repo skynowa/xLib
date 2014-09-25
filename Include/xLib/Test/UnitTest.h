@@ -71,5 +71,5 @@ private:
 xNAMESPACE_END2(xlib, test)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "UnitTest.inl"
+    #include "UnitTest.cpp"
 #endif

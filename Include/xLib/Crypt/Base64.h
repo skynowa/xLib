@@ -35,5 +35,5 @@ private:
 xNAMESPACE_END2(xlib, crypt)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Base64.inl"
+    #include "Base64.cpp"
 #endif

@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Functions.h"
+#endif
+
 #if   xENV_WIN
     #include "Platform/Win/Functions_win.inl"
 #elif xENV_UNIX

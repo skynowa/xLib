@@ -163,7 +163,7 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, system)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "SystemInfo.inl"
+    #include "SystemInfo.cpp"
 #endif
 
 

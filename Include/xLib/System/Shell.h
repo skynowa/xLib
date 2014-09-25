@@ -158,5 +158,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, system)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Shell.inl"
+    #include "Shell.cpp"
 #endif

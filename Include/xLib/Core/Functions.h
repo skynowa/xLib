@@ -298,4 +298,6 @@
 #endif
     ///< filesystem statfs (struct and function)
 
-#include "Functions.cpp"
+#if xOPTION_HEADER_ONLY
+    #include "Functions.cpp"
+#endif

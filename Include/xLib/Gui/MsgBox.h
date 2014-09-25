@@ -64,5 +64,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, gui)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "MsgBox.inl"
+    #include "MsgBox.cpp"
 #endif

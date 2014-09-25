@@ -73,7 +73,7 @@ private:
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "DnsClient.inl"
+    #include "DnsClient.cpp"
 #endif
 
 

@@ -59,5 +59,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, system)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "ProcessInfo.inl"
+    #include "ProcessInfo.cpp"
 #endif

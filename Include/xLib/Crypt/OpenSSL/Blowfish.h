@@ -72,7 +72,7 @@ xNAMESPACE_END2(xlib, crypt)
 #endif // xHAVE_OPENSSL_CRYPTO
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Blowfish.inl"
+    #include "Blowfish.cpp"
 #endif
 
 

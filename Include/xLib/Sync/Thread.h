@@ -271,5 +271,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Thread.inl"
+    #include "Thread.cpp"
 #endif

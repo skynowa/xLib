@@ -36,5 +36,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Locale.inl"
+    #include "Locale.cpp"
 #endif

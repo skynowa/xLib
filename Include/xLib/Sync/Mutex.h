@@ -53,5 +53,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Mutex.inl"
+    #include "Mutex.cpp"
 #endif

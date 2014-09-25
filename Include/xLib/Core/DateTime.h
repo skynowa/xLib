@@ -187,5 +187,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "DateTime.inl"
+    #include "DateTime.cpp"
 #endif

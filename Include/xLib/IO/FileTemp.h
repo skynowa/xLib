@@ -38,5 +38,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "FileTemp.inl"
+    #include "FileTemp.cpp"
 #endif

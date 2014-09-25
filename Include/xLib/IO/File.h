@@ -321,5 +321,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "File.inl"
+    #include "File.cpp"
 #endif

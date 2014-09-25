@@ -55,5 +55,5 @@ private:
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "BuildInfo.inl"
+    #include "BuildInfo.cpp"
 #endif

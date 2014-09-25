@@ -43,5 +43,5 @@ private:
 xNAMESPACE_END2(xlib, io)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Backup.inl"
+    #include "Backup.cpp"
 #endif

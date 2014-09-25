@@ -36,5 +36,5 @@ private:
 xNAMESPACE_END2(xlib, crypt)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Crc32.inl"
+    #include "Crc32.cpp"
 #endif

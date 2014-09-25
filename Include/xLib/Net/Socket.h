@@ -293,7 +293,7 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Socket.inl"
+    #include "Socket.cpp"
 #endif
 
 

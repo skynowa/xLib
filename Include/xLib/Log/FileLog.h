@@ -60,5 +60,5 @@ private:
 xNAMESPACE_END2(xlib, log)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "FileLog.inl"
+    #include "FileLog.cpp"
 #endif

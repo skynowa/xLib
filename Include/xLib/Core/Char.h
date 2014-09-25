@@ -59,5 +59,5 @@ private:
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Char.inl"
+    #include "Char.cpp"
 #endif

@@ -41,5 +41,5 @@ xPLATFORM:
 xNAMESPACE_END2(xlib, log)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "Trace.inl"
+    #include "Trace.cpp"
 #endif
