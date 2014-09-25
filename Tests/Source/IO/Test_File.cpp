@@ -907,7 +907,7 @@ Test_File::unitPrivate(
         file.create(filePath, File::omRead, true);
 
         m_iRv = File::_nativeHandle( file.get() );
-        xTEST_DIFF((int_t)File::etError, m_iRv);
+        xTEST_DIFF(m_iRv, - 1);
     }
 
     xTEST_CASE("File::_stdHandle", a_caseLoops)
