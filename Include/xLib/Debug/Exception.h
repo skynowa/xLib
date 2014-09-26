@@ -22,7 +22,7 @@ public:
     std::ctstring_t & what() const xWARN_UNUSED_RV;
         ///< get message
     template<class T>
-    Exception &     operator << (const T &msgT);
+    Exception &       operator << (const T &msgT);
         ///< put message
 
 private:
@@ -32,6 +32,8 @@ private:
 
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
+#include "Exception.inl"
+
 #if xOPTION_HEADER_ONLY
     #include "Exception.cpp"
 #endif
