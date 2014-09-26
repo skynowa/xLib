@@ -27,7 +27,6 @@ unset(xOPTION_PROJECT_STATIC      CACHE)
 unset(xOPTION_PROJECT_SHARE       CACHE)
 unset(xOPTION_PROJECT_MODULE      CACHE)
 unset(xOPTION_PROJECT_TESTS       CACHE)
-
 unset(xOPTION_CPP11               CACHE)
 unset(xOPTION_NAMESPACE_XLIB      CACHE)
 unset(xOPTION_DEBUG_DIALOG        CACHE)
@@ -36,7 +35,6 @@ unset(xOPTION_DEBUG_MODE_STDOUT   CACHE)
 unset(xOPTION_DEBUG_MODE_LOG      CACHE)
 unset(xOPTION_DEBUG_MODE_NO       CACHE)
 unset(xOPTION_BUILD_MSG           CACHE)
-
 unset(xOPTION_TESTS               CACHE)
 unset(xOPTION_TEST_PRIVATE        CACHE)
 unset(xOPTION_TEST_TRACING        CACHE)
@@ -46,7 +44,6 @@ option(xOPTION_PROJECT_STATIC      "Project: static library"                  0)
 option(xOPTION_PROJECT_SHARE       "Project: share library"                   0)
 option(xOPTION_PROJECT_MODULE      "Project: dynamic-link library"            0)
 option(xOPTION_PROJECT_TESTS       "Project: tests"                           1)
-
 option(xOPTION_CPP11               "Support C++11 language"                   0)
 option(xOPTION_NAMESPACE_XLIB      "Automatically include the xlib namespace" 1)
 option(xOPTION_DEBUG_DIALOG        "Debug prompt dialog"                      1)
@@ -54,7 +51,6 @@ option(xOPTION_DEBUG_MODE_MSGBOX   "Debug mode: message box with plain text"  0)
 option(xOPTION_DEBUG_MODE_STDOUT   "Debug mode: std::out with plain text"     1)
 option(xOPTION_DEBUG_MODE_LOG      "Debug mode: logging with plain text"      0)
 option(xOPTION_DEBUG_MODE_NO       "Debug mode: no debugging"                 0)
-
 option(xOPTION_BUILD_MSG           "Build messages"                           0)
 option(xOPTION_TESTS               "Use tests"                                1)
 option(xOPTION_TEST_PRIVATE        "Test private data"                        1)
@@ -68,7 +64,6 @@ option(xOPTION_TEST_TRACING        "Use tracing in tests"                     1)
 # message("* xOPTION_PROJECT_SHARE:       ${xOPTION_PROJECT_SHARE}")
 # message("* xOPTION_PROJECT_MODULE:      ${xOPTION_PROJECT_MODULE}")
 # message("* xOPTION_PROJECT_TESTS:       ${xOPTION_PROJECT_TESTS}")
-
 # message("* xOPTION_CPP11:               ${xOPTION_CPP11}")
 # message("* xOPTION_NAMESPACE_XLIB:      ${xOPTION_NAMESPACE_XLIB}")
 # message("* xOPTION_DEBUG_DIALOG:        ${xOPTION_DEBUG_DIALOG}")
@@ -77,10 +72,9 @@ option(xOPTION_TEST_TRACING        "Use tracing in tests"                     1)
 # message("* xOPTION_DEBUG_MODE_LOG:      ${xOPTION_DEBUG_MODE_LOG}")
 # message("* xOPTION_DEBUG_MODE_NO:       ${xOPTION_DEBUG_MODE_NO}")
 # message("* xOPTION_BUILD_MSG:           ${xOPTION_BUILD_MSG}")
-
-# message("* xOPTION_TESTS:        ${xOPTION_TESTS}")
-# message("* xOPTION_TEST_PRIVATE: ${xOPTION_TEST_PRIVATE}")
-# message("* xOPTION_TEST_TRACING: ${xOPTION_TEST_TRACING}")
+# message("* xOPTION_TESTS:               ${xOPTION_TESTS}")
+# message("* xOPTION_TEST_PRIVATE:        ${xOPTION_TEST_PRIVATE}")
+# message("* xOPTION_TEST_TRACING:        ${xOPTION_TEST_TRACING}")
 # message("**************************************************")
 # message("")
 
@@ -140,7 +134,7 @@ endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 
 #--------------------------------------------------------------------------------------------------
-# includes, libs
+# includes
 include_directories(${XLIB_INCLUDES})
 
 #--------------------------------------------------------------------------------------------------
@@ -219,7 +213,7 @@ endif()
 if (xOPTION_PROJECT_TESTS)
     # TODO:
     include_directories(${CMAKE_SOURCE_DIR}/Tests/Include)
-    file(GLOB_RECURSE XLIB_TESTS_SOURCES "Tests/*.cpp")
+    file(GLOB_RECURSE XLIB_TESTS_SOURCES Tests/*.cpp)
     link_libraries(${XLIB_LIBRARIES})
 
     add_executable(${PROJECT_NAME}_tests ${XLIB_SOURCES} ${XLIB_TESTS_SOURCES})
@@ -227,10 +221,14 @@ endif()
 
 #--------------------------------------------------------------------------------------------------
 # install
-# install(
-#     DIRECTORY ${XLIB_LOCATION}/Include/xLib/
-#     DESTINATION ${XLIB_INSTALL_PATH}
-#     FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
+install(
+    DIRECTORY ${XLIB_LOCATION}/Include/xLib/
+    DESTINATION ${XLIB_INSTALL_PATH}
+    FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
+# install(TARGETS ${PROJECT_NAME}_static DESTINATION "bin")
+# install(TARGETS ${PROJECT_NAME}_shared DESTINATION "bin")
+# install(TARGETS ${PROJECT_NAME}_module DESTINATION "bin")
+install(TARGETS ${PROJECT_NAME}_tests  DESTINATION "bin")
 
 #--------------------------------------------------------------------------------------------------
 # uninstall
@@ -252,8 +250,8 @@ if (NOT XLIB_FOUND AND XLIB_FIND_REQUIRED)
     message(FATAL_ERROR "XLIB_FOUND: ${XLIB_FOUND}")
 else()
     message(STATUS "XLIB_FOUND: ${XLIB_FOUND}")
-    # message("    XLIB_LOCATION: ${XLIB_LOCATION}")
+    # message("    XLIB_LOCATION:    ${XLIB_LOCATION}")
     # message("    XLIB_DEFINITIONS: ${XLIB_DEFINITIONS}")
-    # message("    XLIB_INCLUDES: ${XLIB_INCLUDES}")
-    # message("    XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
+    # message("    XLIB_INCLUDES:    ${XLIB_INCLUDES}")
+    # message("    XLIB_LIBRARIES:   ${XLIB_LIBRARIES}")
 endif()
