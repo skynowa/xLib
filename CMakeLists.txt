@@ -193,30 +193,34 @@ else()
 endif()
 
 #--------------------------------------------------------------------------------------------------
-# targets
+# targets, install
 if (xOPTION_PROJECT_HEADER_ONLY)
     # n/a
 endif()
 
 if (xOPTION_PROJECT_STATIC)
     add_library(${PROJECT_NAME}_static STATIC ${XLIB_SOURCES})
+    install(TARGETS ${PROJECT_NAME}_static DESTINATION "bin")
 endif()
 
 if (xOPTION_PROJECT_SHARE)
     add_library(${PROJECT_NAME}_shared SHARED ${XLIB_SOURCES})
+    install(TARGETS ${PROJECT_NAME}_shared DESTINATION "bin")
 endif()
 
 if (xOPTION_PROJECT_MODULE)
     add_library(${PROJECT_NAME}_module MODULE ${XLIB_SOURCES})
+    install(TARGETS ${PROJECT_NAME}_module DESTINATION "bin")
 endif()
 
 if (xOPTION_PROJECT_TESTS)
     # TODO:
     include_directories(${CMAKE_SOURCE_DIR}/Tests/Include)
-    file(GLOB_RECURSE XLIB_TESTS_SOURCES Tests/*.cpp)
+    file(GLOB_RECURSE XLIB_TESTS_SOURCES ${CMAKE_SOURCE_DIR}/Tests/*.cpp)
     link_libraries(${XLIB_LIBRARIES})
 
     add_executable(${PROJECT_NAME}_tests ${XLIB_SOURCES} ${XLIB_TESTS_SOURCES})
+    install(TARGETS ${PROJECT_NAME}_tests  DESTINATION "bin")
 endif()
 
 #--------------------------------------------------------------------------------------------------
@@ -225,10 +229,6 @@ install(
     DIRECTORY ${XLIB_LOCATION}/Include/xLib/
     DESTINATION ${XLIB_INSTALL_PATH}
     FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
-# install(TARGETS ${PROJECT_NAME}_static DESTINATION "bin")
-# install(TARGETS ${PROJECT_NAME}_shared DESTINATION "bin")
-# install(TARGETS ${PROJECT_NAME}_module DESTINATION "bin")
-install(TARGETS ${PROJECT_NAME}_tests  DESTINATION "bin")
 
 #--------------------------------------------------------------------------------------------------
 # uninstall
