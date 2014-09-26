@@ -214,9 +214,8 @@ if (xOPTION_PROJECT_MODULE)
 endif()
 
 if (xOPTION_PROJECT_TESTS)
-    # TODO:
-    include_directories(${CMAKE_SOURCE_DIR}/Tests/Include)
-    file(GLOB_RECURSE XLIB_TESTS_SOURCES ${CMAKE_SOURCE_DIR}/Tests/*.cpp)
+    include_directories(${${XLIB_LOCATION}}/Tests/Include)
+    file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/*.cpp)
     link_libraries(${XLIB_LIBRARIES})
 
     add_executable(${PROJECT_NAME}_tests ${XLIB_SOURCES} ${XLIB_TESTS_SOURCES})
