@@ -4,13 +4,6 @@
  */
 
 
-#if !xOPTION_HEADER_ONLY
-    #include "Exception.h"
-#endif
-
-#include <xLib/Core/String.h>
-
-
 xNAMESPACE_BEGIN2(xlib, debug)
 
 /*******************************************************************************
@@ -19,10 +12,20 @@ xNAMESPACE_BEGIN2(xlib, debug)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
-Exception::what() const
+template<class T>
+Exception &
+Exception::operator << (
+    const T &a_msgT
+)
 {
-    return _msgT;
+    std::tostringstream_t ossRes;
+
+    ossRes.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
+    ossRes << a_msgT;
+
+    _msgT.append( ossRes.str() );
+
+    return *this;
 }
 //-------------------------------------------------------------------------------------------------
 
