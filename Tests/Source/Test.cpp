@@ -4,293 +4,372 @@
  */
 
 
-#ifndef xLib_UnitTestH
-#define xLib_UnitTestH
-//---------------------------------------------------------------------------
-#include <xLib/Common/xCommon.h>
-#include <xLib/Test/CxTestManager.h>
-#include <xLib/Common/CxConsole.h>
-#include <xLib/Common/CxCommandLine.h>
+#include <xLib/xLib.h>
+#include <Test/Test_xLib.h>
 
-//Common
-#include <Test/Common/CxTest_CxMacros.h>
-#include <Test/Common/CxTest_CxHandleT.h>
-#include <Test/Common/CxTest_CxException.h>
-#include <Test/Common/CxTest_CxType.h>
-#include <Test/Common/CxTest_CxFunctorT.h>
-#include <Test/Common/CxTest_CxArray.h>
-#include <Test/Common/CxTest_CxChar.h>
-#include <Test/Common/CxTest_CxLocale.h>
-#include <Test/Common/CxTest_CxString.h>
-#include <Test/Common/CxTest_CxDateTime.h>
-#include <Test/Common/CxTest_CxSystemInfo.h>
-#include <Test/Common/CxTest_CxProcessInfo.h>
-#include <Test/Common/CxTest_CxConsole.h>
-#include <Test/Common/CxTest_CxCommandLine.h>
-#include <Test/Common/CxTest_CxShell.h>
+//-------------------------------------------------------------------------------------------------
+xLIB_CORE_APPLICATION_STATIC_DECLARE
 
-#if xOS_ENV_WIN
-    #include <Test/Common/Win/CxTest_CxCom.h>
-#endif
-
-//Crypt
-#include <Test/Crypt/CxTest_CxBase64.h>
-#include <Test/Crypt/CxTest_CxCrc32.h>
-#include <Test/Crypt/CxTest_CxBlowfish.h>
-#include <Test/Crypt/CxTest_CxRandom.h>
-#include <Test/Crypt/Pkcs11/CxTest_CxPkcs11.h>
-
-//Db
-#include <Test/Db/CxTest_CxConnectionString.h>
-#include <Test/Db/CxTest_CxMySql.h>
-
-//Debug
-#include <Test/Debug/CxTest_CxStdError.h>
-#include <Test/Debug/CxTest_CxLastError.h>
-#include <Test/Debug/CxTest_CxStackTrace.h>
-#include <Test/Debug/CxTest_CxErrorReport.h>
-#include <Test/Debug/CxTest_CxDebugger.h>
-#include <Test/Debug/CxTest_CxProfiler.h>
-#include <Test/Debug/CxTest_CxAutoProfiler.h>
-
-//Filesystem
-#include <Test/Filesystem/CxTest_CxPath.h>
-#include <Test/Filesystem/CxTest_CxFileAttribute.h>
-#include <Test/Filesystem/CxTest_CxFile.h>
-#include <Test/Filesystem/CxTest_CxFileTemp.h>
-#include <Test/Filesystem/CxTest_CxDll.h>
-#include <Test/Filesystem/CxTest_CxDir.h>
-#include <Test/Filesystem/CxTest_CxVolume.h>
-#include <Test/Filesystem/CxTest_CxEnvironment.h>
-#include <Test/Filesystem/CxTest_CxLocalStorage.h>
-#include <Test/Filesystem/CxTest_CxBackuper.h>
-
-//Log
-#include <Test/Log/CxTest_CxTracer.h>
-#include <Test/Log/CxTest_CxFileLog.h>
-#include <Test/Log/CxTest_CxSystemLog.h>
-
-//Net
-#include <Test/Net/CxTest_CxCookiePv0.h>
-#include <Test/Net/CxTest_CxCookiePv1.h>
-#include <Test/Net/CxTest_CxCgi.h>
-#include <Test/Net/CxTest_CxSocketInit.h>
-#include <Test/Net/CxTest_CxSocket.h>
-#include <Test/Net/CxTest_CxDnsClient.h>
-#include <Test/Net/CxTest_CxTcpClient.h>
-#include <Test/Net/CxTest_CxTcpServer.h>
-#include <Test/Net/CxTest_CxHttpClient.h>
-
-//Patterns
-#include <Test/Patterns/CxTest_CxSingleton.h>
-
-//Sync
-#include <Test/Sync/CxTest_CxAtomicLongInt.h>
-#include <Test/Sync/CxTest_CxThreadStorage.h>
-#include <Test/Sync/CxTest_CxCriticalSection.h>
-#include <Test/Sync/CxTest_CxAutoCriticalSection.h>
-#include <Test/Sync/CxTest_CxEvent.h>
-#include <Test/Sync/CxTest_CxSleeper.h>
-#include <Test/Sync/CxTest_CxCurrentThread.h>
-#include <Test/Sync/CxTest_CxThread.h>
-#include <Test/Sync/CxTest_CxCurrentProcess.h>
-#include <Test/Sync/CxTest_CxProcess.h>
-
-#if xOS_ENV_WIN
-    #include <Test/Sync/CxTest_CxMutex.h>
-    #include <Test/Sync/CxTest_CxAutoMutex.h>
-#endif
-
-//Gui
-#include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
-
-#if xOS_ENV_WIN
-    #include <Test/Gui/Win/Gdi+/CxTest_CxGdiplus.h>
-    #include <Test/Gui/Win/Gdi+/CxTest_CxImage.h>
-#endif
-
-//Units
-//TODO: test Units
-#include <Test/Units/CxTest_Draft.h>
-//---------------------------------------------------------------------------
-int
-xTMAIN(
-    int      iArgCount,
-    tchar_t *paszArgs[]
-)
+class SignalFunctor
 {
-    //--------------------------------------------------
-    // set commandline args for xLib
+public:
+    static void_t onSignals(int a_signal)
     {
-        bool bRes = CxCommandLine::bSetArgs(iArgCount, paszArgs);
-        xTEST_EQ(true, bRes);
+        Trace() << xFUNCTION << "\nStack trace:\n " << StackTrace().toString();
+
+        switch (a_signal) {
+        case SIGABRT:
+            Trace() << "Caught SIGABRT: usually caused by an abort() or assert()";
+            break;
+        case SIGFPE:
+            Trace() << "Caught SIGFPE: arithmetic exception, such as divide by zero";
+            break;
+        case SIGILL:
+            Trace() << "Caught SIGILL: illegal instruction";
+            break;
+        case SIGINT:
+            Trace() << "Caught SIGINT: interactive attention signal, probably a ctrl+c";
+            break;
+        case SIGSEGV:
+            Trace() << "Caught SIGSEGV: segfault";
+            break;
+        case SIGTERM:
+        default:
+            Trace() << "Caught SIGTERM: a termination request was sent to the program";
+            break;
+        }
+
+        ::_exit(EXIT_FAILURE);
     }
 
-    #if xTEMP_DISABLED
-        std::tcout << "Content-type: text/html\n\n" << std::endl;
-        std::tcout << "<pre>\n\n"                   << std::endl;
+    static void_t onExit()
+    {
+        Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
+
+        // std::abort();  // forces abnormal termination
+    }
+
+    static void_t onTerminate()
+    {
+        Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
+
+        // std::abort();  // forces abnormal termination
+    }
+};
+//-------------------------------------------------------------------------------------------------
+class TestFail
+{
+public:
+    void_t fail()
+    {
+    #if 1
+        int *p = xPTR_NULL;
+        *p = 10;
+    #else
+        throw 0;  // unhandled exception: calls terminate handler
+    #endif
+    }
+
+    void_t foo1()
+    {
+        fail();
+    }
+
+    void_t foo2()
+    {
+        foo1();
+    }
+
+    void_t foo3()
+    {
+        foo2();
+    }
+};
+//-------------------------------------------------------------------------------------------------
+int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
+{
+    xUNUSED(a_argsNum);
+    xUNUSED(a_args);
+
+    {
+    #if 1
+        std::vector<int_t> signalNums;
+        signalNums.push_back(SIGHUP);      // Hangup (POSIX)
+        signalNums.push_back(SIGINT);      // Interrupt (ANSI)
+        signalNums.push_back(SIGQUIT);     // Quit (POSIX)
+        signalNums.push_back(SIGILL);      // Illegal instruction (ANSI)
+        signalNums.push_back(SIGTRAP);     // Trace trap (POSIX)
+        signalNums.push_back(SIGABRT);     // Abort (ANSI)
+        signalNums.push_back(SIGIOT);      // IOT trap (4.2 BSD)
+        signalNums.push_back(SIGBUS);      // BUS error (4.2 BSD)
+        signalNums.push_back(SIGFPE);      // Floating-point exception (ANSI)
+        signalNums.push_back(SIGKILL);     // Kill); unblockable (POSIX)
+        signalNums.push_back(SIGUSR1);     // User-defined signal 1 (POSIX)
+        signalNums.push_back(SIGSEGV);     // Segmentation violation (ANSI)
+        signalNums.push_back(SIGUSR2);     // User-defined signal 2 (POSIX)
+        signalNums.push_back(SIGPIPE);     // Broken pipe (POSIX)
+        signalNums.push_back(SIGALRM);     // Alarm clock (POSIX)
+        signalNums.push_back(SIGTERM);     // Termination (ANSI)
+        signalNums.push_back(SIGSTKFLT);   // Stack fault
+        signalNums.push_back(SIGCLD);      // Same as SIGCHLD (System V)
+        signalNums.push_back(SIGCHLD);     // Child status has changed (POSIX)
+        signalNums.push_back(SIGCONT);     // Continue (POSIX)
+        signalNums.push_back(SIGSTOP);     // Stop); unblockable (POSIX)
+        signalNums.push_back(SIGTSTP);     // Keyboard stop (POSIX)
+        signalNums.push_back(SIGTTIN);     // Background read from tty (POSIX)
+        signalNums.push_back(SIGTTOU);     // Background write to tty (POSIX)
+        signalNums.push_back(SIGURG);      // Urgent condition on socket (4.2 BSD)
+        signalNums.push_back(SIGXCPU);     // CPU limit exceeded (4.2 BSD)
+        signalNums.push_back(SIGXFSZ);     // File size limit exceeded (4.2 BSD)
+        signalNums.push_back(SIGVTALRM);   // Virtual alarm clock (4.2 BSD)
+        signalNums.push_back(SIGPROF);     // Profiling alarm clock (4.2 BSD)
+        signalNums.push_back(SIGWINCH);    // Window size change (4.3 BSD); Sun)
+        signalNums.push_back(SIGPOLL);     // Pollable event occurred (System V)
+        signalNums.push_back(SIGIO);       // I/O now possible (4.2 BSD)
+        signalNums.push_back(SIGPWR);      // Power failure restart (System V)
+        signalNums.push_back(SIGSYS);      // Bad system call
+
+        Application application(xT("[app_name]_guid"));
+        Application::setName(xT("[app_name]"));
+    #if 0
+        application.setName(xT("[app_name]"));
+        application.setDecription(xT("[decription]"));
+        application.setUsage(xT("[usage]"));
+        application.setHelp(xT("[help]"));
+        application.setCopyrightYears(xT("[2008-2014]"));
+        application.setVersionMajor(xT("[1]"));
+        application.setVersionMinor(xT("[0]"));
+        application.setVersionPatch(xT("[0]"));
+        application.setVersionType(xT("[alpha]"));
+        application.setVersionRevision(xT("[develop/970f53b]"));
+        application.setVendorName(xT("[Skynowa Studio]"));
+        application.setVendorDomain(xT("[com]"));
+        application.setVendorAuthor(xT("[skynowa]"));
+        application.setVendorUrl(xT("[http://bitbucket.org/skynowa/xlib]"));
+        application.setVendorEmail(xT("[skynowa@gmail.com]"));
+        application.setVendorSkype(xT("[skynowa777]"));
     #endif
 
-    //--------------------------------------------------
-    // options (default)
-    bool        bIsUseTracing = true;
-    ulonglong_t ullAllLoops   = 1UL;
-    ulonglong_t ullUnitLoops  = 1UL;
-    ulonglong_t ullBlockLoops = 1UL;
+    #if 0
+        Trace()
+            << xTRACE_VAR(application.name())            << xT("\n")
+            << xTRACE_VAR(application.decription())      << xT("\n")
+            << xTRACE_VAR(application.usage())           << xT("\n")
+            << xTRACE_VAR(application.help())            << xT("\n")
+            << xTRACE_VAR(application.copyrightYears())  << xT("\n")
+            << xTRACE_VAR(application.versionMajor())    << xT("\n")
+            << xTRACE_VAR(application.versionMinor())    << xT("\n")
+            << xTRACE_VAR(application.versionPatch())    << xT("\n")
+            << xTRACE_VAR(application.versionType())     << xT("\n")
+            << xTRACE_VAR(application.versionRevision()) << xT("\n")
+            << xTRACE_VAR(application.vendorName())      << xT("\n")
+            << xTRACE_VAR(application.vendorDomain())    << xT("\n")
+            << xTRACE_VAR(application.vendorAuthor())    << xT("\n")
+            << xTRACE_VAR(application.vendorUrl())       << xT("\n")
+            << xTRACE_VAR(application.vendorEmail())     << xT("\n")
+            << xTRACE_VAR(application.vendorSkype());
+    #endif
 
+        application.setOnSignals(signalNums, SignalFunctor::onSignals);
+        application.setOnTerminate(SignalFunctor::onTerminate);
+        application.setOnExit(SignalFunctor::onExit);
+
+        // test error
+        TestFail testFail;
+        testFail.foo3();
+    #endif
+    }
+
+#if xOPTION_TESTS
+    // checks
     {
-        std::vector<std::tstring_t> vsArgs;
+    #if xENV_UNIX
+        SystemInfo info;
+        xCHECK_MSG_RET(info.isUserAdmin(), xT("xLib_test: Can't run as root"), EXIT_FAILURE);
+    #endif
+    }
 
-        bool bRes = CxCommandLine::bGetArgs(&vsArgs);
-        xTEST_EQ(true, bRes);
+    // options (default)
+    bool_t      isUseTracing = true;
+    ulonglong_t allLoops     = 1ULL;
+    ulonglong_t unitLoops    = 1ULL;
+    ulonglong_t caseLoops    = 1ULL;
+    {
+        std::vec_tstring_t args;
 
-        // usage
-        if (2 == iArgCount) {
-            bRes = CxString::bCompareNoCase(xT("-h"), vsArgs.at(1));
-            if (true == bRes) {
-                std::tcout << xT("\nUsage: xlib_r is_tracing all_loops unit_loops\n")
-                              xT("  - xlib_r      (binary file path)\n")
-                              xT("  - is_tracing  (is tracing)\n")
-                              xT("  - all_loops   (loops for all tests)\n")
-                              xT("  - unit_loops  (loops for unit test)\n")
-                              xT("  - case_loops  (loops for unit test)\n") << std::endl;
+        ProcessInfo info;
+        info.setProcessId(Process::currentId());
+        info.commandLine(&args);
+
+        if (a_argsNum == 1) {
+            // OK, run tests with default params
+        }
+        else if (a_argsNum == 2) {
+            // usage
+            bool_t bRv = StringCI::compare(xT("-h"),     args.at(1)) ||
+                         StringCI::compare(xT("--help"), args.at(1));
+            if (!bRv) {
+                std::tcout << xT("\nxLib_test: unknown switches\n") << std::endl;
             } else {
-                std::tcout << xT("\nUnknown switches\n") << std::endl;
+                std::tcout << xT("\nUsage: ./xLib_test [is_tracing] [all_loops] [unit_loops]\n")
+                              xT("  - xLib_test  (binary file path)\n")
+                              xT("  - is_tracing (is tracing)\n")
+                              xT("  - all_loops  (loops for all tests)\n")
+                              xT("  - unit_loops (loops for unit test)\n")
+                              xT("  - case_loops (loops for case test)\n") << std::endl;
             }
 
-            return true;
+            return EXIT_SUCCESS;
         }
-
-        // loops number
-        if (5 == iArgCount) {
-            bIsUseTracing = CxString::lexical_cast<bool>       ( vsArgs.at(1) );
-            ullAllLoops   = CxString::lexical_cast<ulonglong_t>( vsArgs.at(2) );
-            ullUnitLoops  = CxString::lexical_cast<ulonglong_t>( vsArgs.at(3) );
-            ullBlockLoops = CxString::lexical_cast<ulonglong_t>( vsArgs.at(4) );
+        else if (a_argsNum == 5) {
+            // addition params
+            isUseTracing = String::cast<bool_t>     ( args.at(1) );
+            allLoops     = String::cast<ulonglong_t>( args.at(2) );
+            unitLoops    = String::cast<ulonglong_t>( args.at(3) );
+            caseLoops    = String::cast<ulonglong_t>( args.at(4) );
+        }
+        else {
+            // fail
+            std::tcout << xT("\nxLib_test: unknown switches\n") << std::endl;
+            return EXIT_FAILURE;
         }
     }
 
-    //--------------------------------------------------
     // add and run tests
     {
-        CxTestManager tmManager(bIsUseTracing);
+        TestManager manager(isUseTracing);
 
-        //Common
-        (void)tmManager.bAdd(new CxTest_CxMacros);
-        (void)tmManager.bAdd(new CxTest_CxHandleT);
-        (void)tmManager.bAdd(new CxTest_CxException);
-        (void)tmManager.bAdd(new CxTest_CxType);
-        (void)tmManager.bAdd(new CxTest_CxFunctorT);
-        (void)tmManager.bAdd(new CxTest_CxArray);
-        (void)tmManager.bAdd(new CxTest_CxChar);
-        (void)tmManager.bAdd(new CxTest_CxLocale);
-        (void)tmManager.bAdd(new CxTest_CxString);
-        (void)tmManager.bAdd(new CxTest_CxDateTime);
-        (void)tmManager.bAdd(new CxTest_CxSystemInfo);
-        (void)tmManager.bAdd(new CxTest_CxProcessInfo);
-        (void)tmManager.bAdd(new CxTest_CxConsole);
-        (void)tmManager.bAdd(new CxTest_CxCommandLine);
-        (void)tmManager.bAdd(new CxTest_CxShell);
+        // Test
+    #if 1
+        manager.add(new Test_Test);
+    #endif
 
-    #if xOS_ENV_WIN
-        (void)tmManager.bAdd(new CxTest_CxCom);
-    #elif xOS_ENV_UNIX
-
+        // Core
+    #if 1
+        manager.add(new Test_Units);
+        manager.add(new Test_Defines);
+        manager.add(new Test_Limits);
+        manager.add(new Test_Utils);
+        manager.add(new Test_StdStream);
+        manager.add(new Test_HandleT);
+        manager.add(new Test_Type);
+        manager.add(new Test_Flags);
+        manager.add(new Test_Array);
+        manager.add(new Test_AutoReset);
+        manager.add(new Test_Char);
+        manager.add(new Test_Locale);
+        manager.add(new Test_String);
+        manager.add(new Test_DateTime);
+        manager.add(new Test_Com);
+        manager.add(new Test_Application);
     #endif
 
         // Crypt
-        (void)tmManager.bAdd(new CxTest_CxCrc32);
-        (void)tmManager.bAdd(new CxTest_CxRandom);
-    #if !xCOMPILER_MINGW32
-        (void)tmManager.bAdd(new CxTest_CxBase64);
-        (void)tmManager.bAdd(new CxTest_CxBlowfish);
-    #endif
+    #if 1
+        manager.add(new Test_Base64);
+        #if xHAVE_OPENSSL_CRYPTO
+        manager.add(new Test_Blowfish);
+        #endif
+        manager.add(new Test_Crc32);
+        manager.add(new Test_Guid);
+        manager.add(new Test_Random);
 
         // Db
-        (void)tmManager.bAdd(new CxTest_CxConnectionString);
-        //(void)tmManager.bAdd(new CxTest_CxMySql);
+        #if xHAVE_MYSQL
+        manager.add(new Test_MySql);
+        #endif
+    #endif
 
         // Debug
-        (void)tmManager.bAdd(new CxTest_CxStdError);
-        (void)tmManager.bAdd(new CxTest_CxLastError);
-        (void)tmManager.bAdd(new CxTest_CxStackTrace);
-        (void)tmManager.bAdd(new CxTest_CxDebugger);
-        (void)tmManager.bAdd(new CxTest_CxErrorReport);
-        (void)tmManager.bAdd(new CxTest_CxProfiler);
-        (void)tmManager.bAdd(new CxTest_CxAutoProfiler);
+    #if 1
+        manager.add(new Test_Debug);
+        manager.add(new Test_BuildInfo);
+        manager.add(new Test_StdError);
+        manager.add(new Test_NativeError);
+        manager.add(new Test_Exception);
+        manager.add(new Test_StackTrace);
+        manager.add(new Test_Debugger);
+        manager.add(new Test_ErrorReport);
+        manager.add(new Test_Profiler);
+        manager.add(new Test_AutoProfiler);
+    #endif
 
-        // Filesystem
-        (void)tmManager.bAdd(new CxTest_CxPath);
-        (void)tmManager.bAdd(new CxTest_CxFileAttribute);
-        (void)tmManager.bAdd(new CxTest_CxFile);
-        (void)tmManager.bAdd(new CxTest_CxFileTemp);
-        (void)tmManager.bAdd(new CxTest_CxDll);
-        (void)tmManager.bAdd(new CxTest_CxDir);
-        (void)tmManager.bAdd(new CxTest_CxVolume);
-        (void)tmManager.bAdd(new CxTest_CxEnvironment);
-        (void)tmManager.bAdd(new CxTest_CxLocalStorage);
-        (void)tmManager.bAdd(new CxTest_CxBackuper);
+        // File system
+    #if 1
+        manager.add(new Test_Path);
+        manager.add(new Test_FileType);
+        manager.add(new Test_File);
+        manager.add(new Test_FileTemp);
+        manager.add(new Test_Dll);
+        manager.add(new Test_Finder);
+        manager.add(new Test_Dir);
+        manager.add(new Test_Volume);
+        manager.add(new Test_Config);
+        manager.add(new Test_Backup);
+    #endif
 
         // Log
-        (void)tmManager.bAdd(new CxTest_CxTracer);
-        (void)tmManager.bAdd(new CxTest_CxFileLog);
-        (void)tmManager.bAdd(new CxTest_CxSystemLog);
+    #if 1
+        manager.add(new Test_Trace);
+        manager.add(new Test_FileLog);
+        manager.add(new Test_SystemLog);
+    #endif
 
         // Net
-        (void)tmManager.bAdd(new CxTest_CxCookiePv0);
-        (void)tmManager.bAdd(new CxTest_CxCookiePv1);
-        (void)tmManager.bAdd(new CxTest_CxCgi);
-        (void)tmManager.bAdd(new CxTest_CxSocketInit);
-        (void)tmManager.bAdd(new CxTest_CxDnsClient);
-        //(void)tmManager.bAdd(new CxTest_CxTcpClient);
-        //(void)tmManager.bAdd(new CxTest_CxTcpServer);
-        //(void)tmManager.bAdd(new CxTest_CxHttpClient);
+    #if 1
+        manager.add(new Test_CookiePv0);
+        manager.add(new Test_CookiePv1);
+        manager.add(new Test_Cgi);
+        manager.add(new Test_SocketInit);
+        manager.add(new Test_DnsClient);
+        // manager.add(new Test_TcpClient);
+        // manager.add(new Test_TcpServer);
+        manager.add(new Test_HttpClient);
+    #endif
 
         // Patterns
-        (void)tmManager.bAdd(new CxTest_CxSingleton);
-
-        // Pkcs11
-    #if xOS_ENV_WIN
-        ////(void)tmManager.bAdd(new CxTest_CxPkcs11);
-    #elif xOS_ENV_UNIX
-
+    #if 1
+        manager.add(new Test_Observer);
+        manager.add(new Test_Raii);
+        manager.add(new Test_Singleton);
     #endif
 
         // Sync
-        (void)tmManager.bAdd(new CxTest_CxAtomicLongInt);
-        (void)tmManager.bAdd(new CxTest_CxThreadStorage);
-        (void)tmManager.bAdd(new CxTest_CxCriticalSection);
-        (void)tmManager.bAdd(new CxTest_CxAutoCriticalSection);
-        (void)tmManager.bAdd(new CxTest_CxEvent);
-        (void)tmManager.bAdd(new CxTest_CxSleeper);
-        (void)tmManager.bAdd(new CxTest_CxCurrentThread);
-        (void)tmManager.bAdd(new CxTest_CxThread);
-        (void)tmManager.bAdd(new CxTest_CxCurrentProcess);
-        (void)tmManager.bAdd(new CxTest_CxProcess);
-
-    #if xOS_ENV_WIN
-        (void)tmManager.bAdd(new CxTest_CxMutex);
-        (void)tmManager.bAdd(new CxTest_CxAutoMutex);
-    #elif xOS_ENV_UNIX
-
+    #if 1
+        manager.add(new Test_AtomicLongInt);
+        manager.add(new Test_ThreadStorage);
+        manager.add(new Test_Mutex);
+        manager.add(new Test_AutoMutex);
+        manager.add(new Test_IpcMutex);
+        manager.add(new Test_AutoIpcMutex);
+        // manager.add(new Test_Event);
+        manager.add(new Test_Condition);
+        manager.add(new Test_Semaphore);
+        manager.add(new Test_IpcSemaphore);
+        // manager.add(new Test_Sleeper);
+        // manager.add(new Test_Thread);
+        // manager.add(new Test_ThreadPool);
+        manager.add(new Test_Process);
     #endif
 
         // Gui
-        (void)tmManager.bAdd(new CxTest_CxMsgBoxT);
-
-    #if xOS_ENV_WIN
-        (void)tmManager.bAdd(new CxTest_CxGdiplus);
-        (void)tmManager.bAdd(new CxTest_CxImage);
+    #if 1
+        manager.add(new Test_MsgBox);
     #endif
 
-        // Units
-        (void)tmManager.bAdd(new CxTest_Draft);
+        // System
+    #if 1
+        manager.add(new Test_Environment);
+        manager.add(new Test_SystemInfo);
+        manager.add(new Test_ProcessInfo);
+        manager.add(new Test_Console);
+        manager.add(new Test_Shell);
+    #endif
 
-
-        (void)tmManager.bRun(ullAllLoops, ullUnitLoops, ullBlockLoops);
+        manager.run(allLoops, unitLoops, caseLoops);
     }
+#endif // xOPTION_TESTS
 
-    return true;
+    return EXIT_SUCCESS;
 }
-//---------------------------------------------------------------------------
-#endif //xLib_UnitTestH
+//-------------------------------------------------------------------------------------------------

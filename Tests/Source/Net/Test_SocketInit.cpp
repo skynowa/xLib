@@ -1,0 +1,26 @@
+/**
+ * \file   Test_SocketInit.cpp
+ * \brief
+ */
+
+
+#include <Test/Net/Test_SocketInit.h>
+
+
+//-------------------------------------------------------------------------------------------------
+/* virtual */
+void_t
+Test_SocketInit::unit(
+    culonglong_t &a_caseLoops
+)
+{
+    xTEST_CASE("SocketInit::SocketInit", a_caseLoops)
+    {
+        SocketInit siInit10(1, 0);
+        SocketInit siInit11(1, 1);
+        SocketInit siInit20(2, 0);
+        SocketInit siInit21(2, 1);
+        SocketInit siInit22(2, 2);
+    }
+}
+//-------------------------------------------------------------------------------------------------

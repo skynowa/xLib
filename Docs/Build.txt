@@ -1,0 +1,36 @@
+xLib
+
+
+Pre-requisites:
+    - bash-compatible Unix command shell (for Unix)
+    - Doxygen 1.8.2
+
+Dependencies:
+    - OpenSSL
+        Ubuntu: deb http://security.ubuntu.com/ubuntu lucid-security main
+        Ubuntu: sudo apt-get install libssl-dev libx11-xcb-dev
+
+    - MySQL
+        Ubuntu: sudo apt-get install libmysqlclient-dev
+
+    - Linkage flags
+        Windows:
+            - MinGW: -lws2_32 -lnetapi32 -lpsapi -luuid -lole32 -lmpr -ldbghelp -libeay32
+                     -lmysqlclient
+        Unix:
+            - Unix:    -lxcb -ldl -pthread -lrt -lm -lz -lmysqlclient
+            - FreeBSD: -lxcb -lc -lpthread -lexecinfo -lmysqlclient
+        Apple:
+            - MacOS:   -lexecinfo
+
+Installation:
+    cd ./Build
+    ./[platform_script]
+    cd [build_directory]
+    sudo make install (Unix, Apple)
+
+Usage:
+    -
+
+Known issues:
+    -

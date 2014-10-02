@@ -1,0 +1,18 @@
+#--------------------------------------------------------------------------------------------------
+# \file  cmake_uninstall.cmake
+# \brief Uninstall xLib
+#--------------------------------------------------------------------------------------------------
+
+
+message(STATUS "Uninstalling \"@XLIB_INSTALL_PATH@\"")
+
+if (EXISTS "@XLIB_INSTALL_PATH@")
+    exec_program("@CMAKE_COMMAND@"
+        ARGS "-E remove_directory \"@XLIB_INSTALL_PATH@\""
+        OUTPUT_VARIABLE rm_out RETURN_VALUE rm_retval)
+    if (NOT "${rm_retval}" STREQUAL 0)
+        message(FATAL_ERROR "Problem when removing \"@XLIB_INSTALL_PATH@\"")
+    endif()
+else()
+    message(STATUS "Directory \"@XLIB_INSTALL_PATH@\" does not exist.")
+endif()
