@@ -1,0 +1,39 @@
+/**
+ * \file  AutoMutex.h
+ * \brief auto critical section (using between threads)
+ */
+
+
+#if !xOPTION_HEADER_ONLY
+    #include "AutoMutex.h"
+#endif
+
+#include <xLib/Sync/Mutex.h>
+
+
+xNAMESPACE_BEGIN2(xlib, sync)
+
+/**************************************************************************************************
+*    public
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+inline
+AutoMutex::AutoMutex(
+    Mutex *a_mutex
+) :
+    _mutex(a_mutex)
+{
+    _mutex->create();
+    _mutex->lock();
+}
+//-------------------------------------------------------------------------------------------------
+inline
+AutoMutex::~AutoMutex()
+{
+    _mutex->unlock();
+}
+//-------------------------------------------------------------------------------------------------
+
+xNAMESPACE_END2(xlib, sync)

@@ -1,0 +1,23 @@
+/**
+ * \file   Test_SystemLog.h
+ * \brief  test SystemLogs
+ */
+
+
+#pragma once
+
+#include <xLib/Core/Core.h>
+#include <xLib/Test/UnitTest.h>
+#include <xLib/Log/SystemLog.h>
+//-------------------------------------------------------------------------------------------------
+class Test_SystemLog:
+    public UnitTest
+{
+public:
+                   Test_SystemLog() {}
+
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
+        ///< unit test
+};
+//-------------------------------------------------------------------------------------------------
+
