@@ -136,46 +136,12 @@ Application::abort() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
-Application::setOnSignals(
-    const std::vector<int_t> &a_signalNums,
-    sighandler_t              a_callback
-)
+inline const Signal &
+Application::signal() const
 {
-   /**
-    * FAQ: set handlers
-    *
-    * https://gist.github.com/jvranish/4441299
-    */
+    static Signal signal;
 
-    xFOREACH_CONST(std::vector<int_t>, it, a_signalNums) {
-        sighandler_t shRv = std::signal(*it, a_callback);
-        xTEST(shRv != SIG_ERR);
-    }
-}
-//-------------------------------------------------------------------------------------------------
-inline void_t
-Application::setOnExit(
-    void_t (*a_callback)()
-)
-{
-    xCHECK_DO(a_callback == xPTR_NULL, return);
-
-    int_t iRv = std::atexit(a_callback);
-    xTEST(iRv == 0);
-}
-//-------------------------------------------------------------------------------------------------
-inline void_t
-Application::setOnTerminate(
-    void_t (*a_callback)()
-)
-{
-    xTEST_PTR(a_callback);
-
-    void_t (*callback_old)() = xPTR_NULL;
-
-    callback_old = std::set_terminate(a_callback);
-    xUNUSED(callback_old);
+    return signal;
 }
 //-------------------------------------------------------------------------------------------------
 

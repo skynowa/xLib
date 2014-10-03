@@ -8,6 +8,7 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Debug/BuildInfo.h>
+#include <xLib/Sync/Signal.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
@@ -42,12 +43,8 @@ public:
         ///< aborts the current process, producing an abnormal program termination
 
     // handles
-    void_t         setOnSignals(const std::vector<int_t> &signalNums, sighandler_t callback);
-        ///< set signal handle
-    void_t         setOnExit(void_t (*callback)());
-        ///< set exit handle
-    void_t         setOnTerminate(void_t (*callback)());
-        ///< set terminate handle (by default, the terminate handler calls abort)
+    const Signal  &signal() const;
+        ///< build information
 
     // info
     static
