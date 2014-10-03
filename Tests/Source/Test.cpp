@@ -170,9 +170,9 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
             << xTRACE_VAR(application.vendorSkype());
     #endif
 
-        application.signal().setOnSignals(signalNums, SignalFunctor::onSignals);
-        application.signal().setOnTerminate(SignalFunctor::onTerminate);
-        application.signal().setOnExit(SignalFunctor::onExit);
+        application.signal().connect(signalNums, SignalFunctor::onSignals);
+        application.signal().connectTerminate(SignalFunctor::onTerminate);
+        application.signal().connectExit(SignalFunctor::onExit);
 
         // test error
         TestFail testFail;

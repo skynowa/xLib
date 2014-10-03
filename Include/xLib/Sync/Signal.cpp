@@ -32,7 +32,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 
 //-------------------------------------------------------------------------------------------------
 inline void_t
-Signal::setOnSignals(
+Signal::connect(
     const std::vector<int_t> &a_signalNums,
     sighandler_t              a_callback
 ) const
@@ -50,7 +50,7 @@ Signal::setOnSignals(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-Signal::setOnExit(
+Signal::connectExit(
     void_t (*a_callback)()
 ) const
 {
@@ -61,7 +61,7 @@ Signal::setOnExit(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-Signal::setOnTerminate(
+Signal::connectTerminate(
     void_t (*a_callback)()
 ) const
 {
@@ -74,10 +74,10 @@ Signal::setOnTerminate(
 }
 //-------------------------------------------------------------------------------------------------
 inline int_t
-Signal::raise(cint_t &a_signal) const
+Signal::emit(cint_t &a_signalNum) const
 {
 
-    int iRv = std::raise(a_signal);
+    int iRv = std::raise(a_signalNum);
     xTEST(iRv == 0);
 }
 //-------------------------------------------------------------------------------------------------
