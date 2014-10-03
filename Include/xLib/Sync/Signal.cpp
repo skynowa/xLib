@@ -76,7 +76,6 @@ Signal::connectTerminate(
 inline int_t
 Signal::emit(cint_t &a_signalNum) const
 {
-
     int iRv = std::raise(a_signalNum);
     xTEST(iRv == 0);
 }
