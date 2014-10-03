@@ -6,6 +6,7 @@
 # XLIB_FOUND       - found or not
 # XLIB_DEFINITIONS - definitions
 # XLIB_INCLUDES    - include pathes
+# XLIB_SOURCES     - source pathes
 # XLIB_LIBRARIES   - libraries list
 #--------------------------------------------------------------------------------------------------
 
@@ -83,6 +84,7 @@ option(xOPTION_TEST_TRACING        "Use tracing in tests"                     1)
 unset(XLIB_FOUND       CACHE)
 unset(XLIB_DEFINITIONS CACHE)
 unset(XLIB_INCLUDES    CACHE)
+unset(XLIB_SOURCES     CACHE)
 unset(XLIB_LIBRARIES   CACHE)
 
 unset(XLIB_LOCATION    CACHE)
@@ -187,6 +189,7 @@ if (NOT (XLIB_INCLUDES AND XLIB_LIBRARIES))
     set(XLIB_FOUND       0)
     set(XLIB_DEFINITIONS "")
     set(XLIB_INCLUDES    "")
+    set(XLIB_SOURCES     "")
     set(XLIB_LIBRARIES   "")
 else()
     set(XLIB_FOUND       1)
@@ -202,6 +205,7 @@ else()
     # message("    XLIB_DEFINITIONS: ${XLIB_DEFINITIONS}")
     # message("    XLIB_INCLUDES:    ${XLIB_INCLUDES}")
     # message("    XLIB_LIBRARIES:   ${XLIB_LIBRARIES}")
+    # message("    XLIB_SOURCES:   ${XLIB_SOURCES}")
 endif()
 
 #--------------------------------------------------------------------------------------------------
@@ -227,7 +231,7 @@ endif()
 
 if (xOPTION_PROJECT_TESTS)
     include_directories(${XLIB_LOCATION}/Tests/Include)
-    file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/*.cpp)
+    file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/Source/*.cpp)
     link_libraries(${XLIB_LIBRARIES})
 
     add_executable(${PROJECT_NAME}_tests ${XLIB_SOURCES} ${XLIB_TESTS_SOURCES})
