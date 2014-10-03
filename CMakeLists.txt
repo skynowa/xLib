@@ -184,12 +184,24 @@ if (OS_ANDROID)
 endif()
 
 if (NOT (XLIB_INCLUDES AND XLIB_LIBRARIES))
-    set(XLIB_FOUND 0)
+    set(XLIB_FOUND       0)
     set(XLIB_DEFINITIONS "")
-    set(XLIB_INCLUDES "")
-    set(XLIB_LIBRARIES "")
+    set(XLIB_INCLUDES    "")
+    set(XLIB_LIBRARIES   "")
 else()
-    set(XLIB_FOUND 1)
+    set(XLIB_FOUND       1)
+endif()
+
+#--------------------------------------------------------------------------------------------------
+# trace
+if (NOT XLIB_FOUND AND XLIB_FIND_REQUIRED)
+    message(FATAL_ERROR "XLIB_FOUND: ${XLIB_FOUND}")
+else()
+    message(STATUS "XLIB_FOUND: ${XLIB_FOUND}")
+    # message("    XLIB_LOCATION:    ${XLIB_LOCATION}")
+    # message("    XLIB_DEFINITIONS: ${XLIB_DEFINITIONS}")
+    # message("    XLIB_INCLUDES:    ${XLIB_INCLUDES}")
+    # message("    XLIB_LIBRARIES:   ${XLIB_LIBRARIES}")
 endif()
 
 #--------------------------------------------------------------------------------------------------
@@ -215,7 +227,7 @@ endif()
 
 if (xOPTION_PROJECT_TESTS)
     include_directories(${XLIB_LOCATION}/Tests/Include)
-    file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/Test.cpp)
+    file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/*.cpp)
     link_libraries(${XLIB_LIBRARIES})
 
     add_executable(${PROJECT_NAME}_tests ${XLIB_SOURCES} ${XLIB_TESTS_SOURCES})
@@ -242,15 +254,3 @@ add_custom_target(uninstall
 #--------------------------------------------------------------------------------------------------
 # fix warning "Manually-specified variables were not used by the project"
 unset(CMAKE_TOOLCHAIN_FILE)
-
-#--------------------------------------------------------------------------------------------------
-# trace
-if (NOT XLIB_FOUND AND XLIB_FIND_REQUIRED)
-    message(FATAL_ERROR "XLIB_FOUND: ${XLIB_FOUND}")
-else()
-    message(STATUS "XLIB_FOUND: ${XLIB_FOUND}")
-    # message("    XLIB_LOCATION:    ${XLIB_LOCATION}")
-    # message("    XLIB_DEFINITIONS: ${XLIB_DEFINITIONS}")
-    # message("    XLIB_INCLUDES:    ${XLIB_INCLUDES}")
-    # message("    XLIB_LIBRARIES:   ${XLIB_LIBRARIES}")
-endif()
