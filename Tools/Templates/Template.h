@@ -1,5 +1,5 @@
 /**
- * \file   [TEMPLATE].h
+ * \file   [CLASS_NAME].h
  * \brief
  */
 
@@ -10,19 +10,21 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, [NAMESPACE])
 
-class [TEMPLATE]
-    ///< ??????????
+class [CLASS_NAME]
+    ///<
 {
 public:
-             [TEMPLATE]() {}
+             [CLASS_NAME]() {}
         ///< constructor
-    virtual ~[TEMPLATE]() {}
+    virtual ~[CLASS_NAME]() {}
         ///< destructor
 
 private:
-    xNO_COPY_ASSIGN([TEMPLATE])
+    xNO_COPY_ASSIGN([CLASS_NAME])
 };
 
 xNAMESPACE_END2(xlib, [NAMESPACE])
 //-------------------------------------------------------------------------------------------------
-#include <xLib/xxx/[TEMPLATE].h>
+#if xOPTION_HEADER_ONLY
+    #include "[CLASS_NAME].cpp"
+#endif
