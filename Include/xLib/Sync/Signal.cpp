@@ -52,9 +52,8 @@ Signal::connect(
     #else
         struct sigaction act; xSTRUCT_ZERO(act);
         act.sa_handler = a_callback;
-        act.sa_flags   = SA_SIGINFO;
         ::sigemptyset(&act.sa_mask);
-        act.sa_flags = 0;
+        act.sa_flags   = SA_SIGINFO;
 
         ::sigaction(*it, &act, xPTR_NULL);
     #endif
