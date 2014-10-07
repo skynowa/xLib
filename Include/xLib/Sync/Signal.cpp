@@ -50,12 +50,13 @@ Signal::connect(
         sighandler_t shRv = std::signal(*it, a_callback);
         xTEST(shRv != SIG_ERR);
     #else
-        struct sigaction act; xSTRUCT_ZERO(act);
-        act.sa_handler = a_callback;
-        ::sigemptyset(&act.sa_mask);
-        act.sa_flags   = SA_SIGINFO;
+        struct sigaction action; xSTRUCT_ZERO(action);
+        action.sa_handler  = a_callback;
+        ::sigemptyset(&action.sa_mask);
+        action.sa_flags    = SA_SIGINFO;
+        action.sa_restorer = xPTR_NULL;
 
-        ::sigaction(*it, &act, xPTR_NULL);
+        ::sigaction(*it, &action, xPTR_NULL);
     #endif
     }
 }
