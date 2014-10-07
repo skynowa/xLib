@@ -22,6 +22,8 @@
     #endif
 #endif
 
+#include <xLib/Core/Utils.h>
+
 
 xNAMESPACE_BEGIN2(xlib, sync)
 
@@ -44,8 +46,18 @@ Signal::connect(
     */
 
     xFOREACH_CONST(std::vector<int_t>, it, a_signalNums) {
+    #if USE_SIMPLE_SIGNAL
         sighandler_t shRv = std::signal(*it, a_callback);
         xTEST(shRv != SIG_ERR);
+    #else
+        struct sigaction act; xSTRUCT_ZERO(act);
+        act.sa_handler = a_callback;
+        // act.sa_flags   = SA_RESTART;
+        ::sigemptyset(&act.sa_mask);
+        act.sa_flags = 0;
+
+        ::sigaction(*it, &act, xPTR_NULL);
+    #endif
     }
 }
 //-------------------------------------------------------------------------------------------------
