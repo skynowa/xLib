@@ -52,7 +52,7 @@ Signal::connect(
     #else
         struct sigaction act; xSTRUCT_ZERO(act);
         act.sa_handler = a_callback;
-        // act.sa_flags   = SA_RESTART;
+        act.sa_flags   = SA_SIGINFO;
         ::sigemptyset(&act.sa_mask);
         act.sa_flags = 0;
 
