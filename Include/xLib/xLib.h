@@ -116,6 +116,7 @@
 #include <xLib/Sync/WaitableTimer.h>
 #include <xLib/Sync/Process.h>
 #include <xLib/Sync/Signal.h>
+#include <xLib/Sync/Service.h>
 
 // System
 #include <xLib/System/Console.h>
