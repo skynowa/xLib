@@ -350,6 +350,8 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         // manager.add(new Test_Thread);
         // manager.add(new Test_ThreadPool);
         manager.add(new Test_Process);
+        manager.add(new Test_Signal);
+        manager.add(new Test_Service);
     #endif
 
         // Gui

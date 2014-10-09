@@ -116,6 +116,8 @@
 #include <Test/Sync/Test_Thread.h>
 #include <Test/Sync/Test_ThreadPool.h>
 #include <Test/Sync/Test_Process.h>
+#include <Test/Sync/Test_Signal.h>
+#include <Test/Sync/Test_Service.h>
 
 
 // Gui
