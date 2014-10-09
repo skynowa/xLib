@@ -115,6 +115,7 @@
 #include <xLib/Sync/ThreadStorage.h>
 #include <xLib/Sync/WaitableTimer.h>
 #include <xLib/Sync/Process.h>
+#include <xLib/Sync/Signal.h>
 
 // System
 #include <xLib/System/Console.h>
