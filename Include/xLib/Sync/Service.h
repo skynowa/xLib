@@ -1,6 +1,6 @@
 /**
  * \file   Service.h
- * \brief
+ * \brief  service
  */
 
 
@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xlib, sync)
 
 class Service
-    ///<
+    ///< service
 {
 public:
              Service() {}
@@ -32,6 +32,12 @@ public:
 
 private:
     xNO_COPY_ASSIGN(Service)
+
+xPLATFORM:
+    void_t   _create_impl();
+    void_t   _start_impl();
+    void_t   _stop_impl();
+    void_t   _close_impl();
 };
 
 xNAMESPACE_END2(xlib, sync)
