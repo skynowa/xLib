@@ -30,55 +30,54 @@ Service::_create_impl()
 inline void_t
 Service::_start_impl()
 {
+    // http://www.microhowto.info/howto/cause_a_process_to_become_a_daemon_in_c.html
+
     int_t iRv = 0;
 
-    // Our process ID and Session ID
-    pid_t pid;
-    pid_t sid;
-
-    // Fork off the parent process
-    pid = ::fork();
-    if (pid < 0) {
-        std::exit(EXIT_FAILURE);
+    // Fork, allowing the parent process to terminate.
+    pid_t pid = ::fork();
+    if (pid == -1) {
+        std::printf("failed to fork while daemonising (errno=%d)",errno);
+    } else if (pid != 0) {
+        ::_exit(0);
     }
 
-    // If we got a good PID, then we can exit the parent process.
-    if (pid > 0) {
-        std::exit(EXIT_SUCCESS);
+    // Start a new session for the daemon.
+    if (::setsid()==-1) {
+        std::printf("failed to become a session leader while daemonising(errno=%d)",errno);
     }
 
-    // Change the file mode mask
+    // Fork again, allowing the parent process to terminate.
+    std::signal(SIGHUP,SIG_IGN);
+    pid=::fork();
+    if (pid == -1) {
+        std::printf("failed to fork while daemonising (errno=%d)",errno);
+    } else if (pid != 0) {
+        ::_exit(0);
+    }
+
+    // Set the current working directory to the root directory.
+    if (chdir("/") == -1) {
+        std::printf("failed to change working directory while daemonising (errno=%d)",errno);
+    }
+
+    // Set the user file creation mask to zero.
     ::umask(0);
 
-    // Open any logs here
-
-    // Create a new SID for the child process
-    sid = ::setsid();
-    if (sid < 0) {
-        // Log the failure
-        std::exit(EXIT_FAILURE);
-    }
-
-    // Change the current working directory
-    iRv = ::chdir("/");
-    if (iRv < 0) {
-        // Log the failure
-        std::exit(EXIT_FAILURE);
-    }
-
-    // Close out the standard file descriptors
+    // Close then reopen standard file descriptors.
     ::close(STDIN_FILENO);
     ::close(STDOUT_FILENO);
     ::close(STDERR_FILENO);
-
-    // Daemon-specific initialization goes here
-
-    // The Big Loop
-    while (1) {
-       // Do some task here ...
-
-       ::sleep(30);
+    if (::open("/dev/null",O_RDONLY) == -1) {
+        std::printf("failed to reopen stdin while daemonising (errno=%d)",errno);
     }
+    if (::open("/dev/null",O_WRONLY) == -1) {
+        std::printf("failed to reopen stdout while daemonising (errno=%d)",errno);
+    }
+    if (::open("/dev/null",O_RDWR) == -1) {
+        std::printf("failed to reopen stderr while daemonising (errno=%d)",errno);
+    }
+
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
