@@ -71,6 +71,15 @@ Process::_kill_impl(
     xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
     xTEST_NA(a_timeoutMsec);
 
+#if 0
+    // TODO: Process::_kill_impl()
+    I would attempt to close a (Process with) Window(s) in the following order:
+        WM_CLOSE
+        WM_QUIT
+        WM_DESTROY
+        TerminateProcess().
+#endif
+
     _exitStatus = 0U;
 
     BOOL blRv = ::TerminateProcess(_handle, _exitStatus);
