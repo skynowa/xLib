@@ -28,9 +28,6 @@ operator << (
     std::custring_t                     &a_value
 )
 {
-    xTEST_NA(a_os);
-    xTEST_NA(a_value);
-
     std::tstring_t sRv;
 
     sRv.assign( a_value.begin(), a_value.end() );
@@ -136,9 +133,6 @@ operator << (
     const std::multimap<T1, T2>         &a_value
 )
 {
-    xTEST_NA(a_os);
-    xTEST_NA(a_value);
-
     a_os << std::endl;
     a_os << xT("std::multimap (") << a_value.size() << xT(" elements):") << std::endl;
     a_os << std::endl;
