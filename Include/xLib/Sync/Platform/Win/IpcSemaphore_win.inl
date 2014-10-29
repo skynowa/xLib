@@ -29,8 +29,7 @@ IpcSemaphore::_destruct_impl()
 inline long_t
 IpcSemaphore::_valueMax_impl() const
 {
-    // CUSTOM: LONG (tested on Win7 x64)
-    return LONG_MAX;
+    return xCUSTOM_SEMAPHORE_VALUE_MAX_WIN;
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
