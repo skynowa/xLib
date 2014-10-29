@@ -403,12 +403,10 @@ SystemInfo::_passwdFileEntry(
     {
         buffSize = ::sysconf(_SC_GETPW_R_SIZE_MAX);
         if (buffSize == - 1L) {
-            clong_t pwRSizeMax = 16384L;    // CUSTOM: 16384L - custom value
-
-            buffSize = pwRSizeMax;
+            buffSize = xCUSTOM_SYSCONF_SC_GETPW_R_SIZE_MAX_UNIX;
         }
 
-        xTEST_LESS(0L, buffSize);
+        xTEST_GR(buffSize, 0L);
     }
 
     std::string  buff;
