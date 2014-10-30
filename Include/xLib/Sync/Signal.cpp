@@ -32,7 +32,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 *
 **************************************************************************************************/
 
-volatile std::sig_atomic_t flag = 0;
+volatile std::sig_atomic_t signal_flag = 0;
     ///< Integral type of an object that can be accessed as an atomic entity, even in the presence
     ///< of asynchronous signals.
 
