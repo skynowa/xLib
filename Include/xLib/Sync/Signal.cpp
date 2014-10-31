@@ -32,10 +32,22 @@ xNAMESPACE_BEGIN2(xlib, sync)
 *
 **************************************************************************************************/
 
-volatile std::sig_atomic_t signal_state = 0;
-    ///< Integral type of an object that can be accessed as an atomic entity, even in the presence
-    ///< of asynchronous signals.
+//-------------------------------------------------------------------------------------------------
+inline std::sig_atomic_t
+Signal::state() const
+{
+    return _signal_state;
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Signal::setState(
+    const std::sig_atomic_t &a_state
+)
+{
+    xTEST_EQ(a_state >= SIG_ATOMIC_MIN && a_state <= SIG_ATOMIC_MAX, true);
 
+    _signal_state = a_state;
+}
 //-------------------------------------------------------------------------------------------------
 inline void_t
 Signal::connect(

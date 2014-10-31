@@ -19,6 +19,11 @@ public:
     virtual ~Signal() {}
         ///< destructor
 
+    std::sig_atomic_t state() const;
+        ///< get state flag
+    void_t   setState(const std::sig_atomic_t &state);
+        ///< set state flag
+
     void_t   connect(const std::vector<int_t> &signalNums, sighandler_t callback) const;
         ///< set signal handle
     void_t   connectExit(void_t (*callback)()) const;
@@ -31,6 +36,11 @@ public:
 
 private:
     xNO_COPY_ASSIGN(Signal)
+
+    volatile
+    std::sig_atomic_t _signal_state;
+        ///< Integral type of an object that can be accessed as an atomic entity, even in the presence
+        ///< of asynchronous signals.
 };
 
 xNAMESPACE_END2(xlib, sync)
