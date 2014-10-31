@@ -14,7 +14,6 @@ class Signal
     ///<
 {
 public:
-
              Signal() {}
         ///< constructor
     virtual ~Signal() {}
