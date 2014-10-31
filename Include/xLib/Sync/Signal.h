@@ -39,8 +39,8 @@ private:
 
     volatile
     std::sig_atomic_t _signal_state;
-        ///< Integral type of an object that can be accessed as an atomic entity, even in the presence
-        ///< of asynchronous signals.
+        ///< Integral type of an object that can be accessed as an atomic entity,
+        ///< even in the presence of asynchronous signals.
 };
 
 xNAMESPACE_END2(xlib, sync)
