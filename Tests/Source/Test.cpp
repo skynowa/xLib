@@ -10,10 +10,10 @@
 //-------------------------------------------------------------------------------------------------
 xLIB_CORE_APPLICATION_STATIC_DECLARE
 
-class SignalFunctor
+class SignalHandlers
 {
 public:
-    static void_t onSignals(int a_signal)
+    static void_t onSignals(int_t a_signal)
     {
         Trace() << xFUNCTION << "\nStack trace:\n " << StackTrace().toString();
 
@@ -50,6 +50,13 @@ public:
     }
 
     static void_t onTerminate()
+    {
+        Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
+
+        // std::abort();  // forces abnormal termination
+    }
+
+    static void_t onUnexpected()
     {
         Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
 
@@ -170,9 +177,10 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
             << xTRACE_VAR(application.vendorSkype());
     #endif
 
-        application.signal().connect(signalNums, SignalFunctor::onSignals);
-        application.signal().connectTerminate(SignalFunctor::onTerminate);
-        application.signal().connectExit(SignalFunctor::onExit);
+        application.signal().connect(signalNums, SignalHandlers::onSignals);
+        application.signal().connectExit(SignalHandlers::onExit);
+        application.signal().connectTerminate(SignalHandlers::onTerminate);
+        application.signal().connectUnexpected(SignalHandlers::onUnexpected);
 
         // test error
         TestFail testFail;
