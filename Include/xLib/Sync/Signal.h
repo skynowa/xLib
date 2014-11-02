@@ -1,6 +1,6 @@
 /**
  * \file   Signal.h
- * \brief
+ * \brief  signal
  */
 
 
@@ -11,9 +11,11 @@
 xNAMESPACE_BEGIN2(xlib, sync)
 
 class Signal
-    ///<
+    ///< signal
 {
 public:
+    typedef void_t (*handler_t)();
+        ///< handler type
 
              Signal() {}
         ///< constructor
@@ -25,13 +27,12 @@ public:
     void_t   setState(const std::sig_atomic_t &state);
         ///< set state flag
 
-    void_t   connect(const std::vector<int_t> &signalNums, sighandler_t callback) const;
+    void_t   connect(const std::vector<int_t> &signalNums, sighandler_t handler) const;
         ///< set signal handle
-    void_t   connectExit(void_t (*callback)()) const;
+    void_t   connectExit(const handler_t &handle) const;
         ///< set exit handle
-    void_t   connectTerminate(void_t (*callback)()) const;
+    void_t   connectTerminate(const handler_t &handler) const;
         ///< set terminate handle (by default, the terminate handler calls abort)
-
     int_t    emit(cint_t &signalNum) const;
         ///< sends signal to the current executing program
 
