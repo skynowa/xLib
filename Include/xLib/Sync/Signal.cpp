@@ -121,7 +121,7 @@ Signal::emit(
     cint_t &a_signalNum
 ) const
 {
-    int iRv = std::raise(a_signalNum);
+    int_t iRv = std::raise(a_signalNum);
     xTEST(iRv == 0);
 }
 //-------------------------------------------------------------------------------------------------
