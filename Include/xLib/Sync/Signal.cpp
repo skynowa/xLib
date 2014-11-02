@@ -112,7 +112,7 @@ Signal::connectUnexpected(
 {
     xTEST_PTR(a_handler);
 
-    std::unexpected_handler handler_old = std::unexpected_handler(a_handler);
+    std::unexpected_handler handler_old = std::set_unexpected(a_handler);
     xUNUSED(handler_old);
 }
 //-------------------------------------------------------------------------------------------------
