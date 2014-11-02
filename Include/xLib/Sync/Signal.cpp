@@ -96,12 +96,12 @@ Signal::connectExit(
 //-------------------------------------------------------------------------------------------------
 inline void_t
 Signal::connectTerminate(
-    const handler_t &a_handler
+    const std::terminate_handler &a_handler
 ) const
 {
     xTEST_PTR(a_handler);
 
-    handler_t handler_old = std::set_terminate(a_handler);
+    std::terminate_handler handler_old = std::set_terminate(a_handler);
     xUNUSED(handler_old);
 }
 //-------------------------------------------------------------------------------------------------
