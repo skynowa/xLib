@@ -101,8 +101,19 @@ Signal::connectTerminate(
 {
     xTEST_PTR(a_handler);
 
-    handler_t callback_old = std::set_terminate(a_handler);
-    xUNUSED(callback_old);
+    handler_t handler_old = std::set_terminate(a_handler);
+    xUNUSED(handler_old);
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
+Signal::connectUnexpected(
+    const std::unexpected_handler &a_handler
+) const
+{
+    xTEST_PTR(a_handler);
+
+    std::unexpected_handler handler_old = std::unexpected_handler(a_handler);
+    xUNUSED(handler_old);
 }
 //-------------------------------------------------------------------------------------------------
 inline int_t

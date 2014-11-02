@@ -33,6 +33,8 @@ public:
         ///< set exit handle
     void_t   connectTerminate(const handler_t &handler) const;
         ///< set terminate handle (by default, the terminate handler calls abort)
+    void_t   connectUnexpected(const std::unexpected_handler &handler) const;
+        ///< Sets unexpected handler
     int_t    emit(cint_t &signalNum) const;
         ///< sends signal to the current executing program
 
