@@ -85,7 +85,7 @@ Signal::connect(
 //-------------------------------------------------------------------------------------------------
 inline void_t
 Signal::connectExit(
-    const handler_t &a_handler
+    const exit_handler_t &a_handler
 ) const
 {
     xCHECK_DO(a_handler == xPTR_NULL, return);
