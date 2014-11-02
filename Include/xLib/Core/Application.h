@@ -16,7 +16,7 @@ class Application
     /// application
 {
 public:
-                   Application(std::ctstring_t &appGuid);
+    explicit       Application(std::ctstring_t &appGuid);
         ///< constructor
     virtual       ~Application();
         ///< destructor
