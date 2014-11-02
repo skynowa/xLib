@@ -14,7 +14,7 @@ class Signal
     ///< signal
 {
 public:
-    typedef void_t (*handler_t)();
+    typedef void_t (*exit_handler_t)();
         ///< handler type
 
              Signal() {}
@@ -29,7 +29,7 @@ public:
 
     void_t   connect(const std::vector<int_t> &signalNums, sighandler_t handler) const;
         ///< set signal handle
-    void_t   connectExit(const handler_t &handle) const;
+    void_t   connectExit(const exit_handler_t &handle) const;
         ///< set exit handle
     void_t   connectTerminate(const std::terminate_handler &handler) const;
         ///< set terminate handle (by default, the terminate handler calls abort)
