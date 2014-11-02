@@ -36,7 +36,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 inline std::sig_atomic_t
 Signal::state() const
 {
-    return _signal_state;
+    return _state;
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -46,7 +46,7 @@ Signal::setState(
 {
     xTEST_EQ(a_state >= SIG_ATOMIC_MIN && a_state <= SIG_ATOMIC_MAX, true);
 
-    _signal_state = a_state;
+    _state = a_state;
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
