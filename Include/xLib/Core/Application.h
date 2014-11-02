@@ -44,7 +44,7 @@ public:
 
     // handles
     const Signal  &signal() const;
-        ///< build information
+        ///< signal
 
     // info
     static
