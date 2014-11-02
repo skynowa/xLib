@@ -1,6 +1,6 @@
 /**
  * \file   Signal.cpp
- * \brief
+ * \brief  signal
  */
 
 
@@ -52,7 +52,7 @@ Signal::setState(
 inline void_t
 Signal::connect(
     const std::vector<int_t> &a_signalNums,
-    sighandler_t              a_callback
+    sighandler_t              a_handler
 ) const
 {
    /**
@@ -63,13 +63,13 @@ Signal::connect(
 
     xFOREACH_CONST(std::vector<int_t>, it, a_signalNums) {
     #if USE_SIMPLE_SIGNAL
-        sighandler_t shRv = std::signal(*it, a_callback);
+        sighandler_t shRv = std::signal(*it, a_handler);
         xTEST(shRv != SIG_ERR);
     #else
         int_t iRv = 0;
 
         struct sigaction action; xSTRUCT_ZERO(action);
-        action.sa_handler  = a_callback;
+        action.sa_handler  = a_handler;
 
         iRv = ::sigemptyset(&action.sa_mask);
         xTEST_DIFF(iRv, - 1);
@@ -85,30 +85,30 @@ Signal::connect(
 //-------------------------------------------------------------------------------------------------
 inline void_t
 Signal::connectExit(
-    void_t (*a_callback)()
+    const handler_t &a_handler
 ) const
 {
-    xCHECK_DO(a_callback == xPTR_NULL, return);
+    xCHECK_DO(a_handler == xPTR_NULL, return);
 
-    int_t iRv = std::atexit(a_callback);
+    int_t iRv = std::atexit(a_handler);
     xTEST(iRv == 0);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
 Signal::connectTerminate(
-    void_t (*a_callback)()
+    const handler_t &a_handler
 ) const
 {
-    xTEST_PTR(a_callback);
+    xTEST_PTR(a_handler);
 
-    void_t (*callback_old)() = xPTR_NULL;
-
-    callback_old = std::set_terminate(a_callback);
+    handler_t callback_old = std::set_terminate(a_handler);
     xUNUSED(callback_old);
 }
 //-------------------------------------------------------------------------------------------------
 inline int_t
-Signal::emit(cint_t &a_signalNum) const
+Signal::emit(
+    cint_t &a_signalNum
+) const
 {
     int iRv = std::raise(a_signalNum);
     xTEST(iRv == 0);
