@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 ProcessInfo::_cpuUsage_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -23,7 +23,7 @@ ProcessInfo::_cpuUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 ProcessInfo::_ramUsage_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -39,7 +39,7 @@ ProcessInfo::_ramUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 ProcessInfo::_ioBytes_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -77,7 +77,7 @@ ProcessInfo::_ioBytes_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 ProcessInfo::_parentId_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -89,7 +89,7 @@ ProcessInfo::_parentId_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline long_t
+xINLINE long_t
 ProcessInfo::_commandLineArgsMax_impl()
 {
     long_t liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);

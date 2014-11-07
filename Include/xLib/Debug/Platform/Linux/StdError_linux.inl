@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 StdError::_format_impl(
     cint_t &a_code
 )

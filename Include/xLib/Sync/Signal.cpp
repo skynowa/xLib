@@ -33,13 +33,13 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline std::sig_atomic_t
+xINLINE std::sig_atomic_t
 Signal::state() const
 {
     return _state;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Signal::setState(
     const std::sig_atomic_t &a_state
 )
@@ -49,7 +49,7 @@ Signal::setState(
     _state = a_state;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Signal::connect(
     const std::vector<int_t> &a_signalNums,
     sighandler_t              a_handler
@@ -83,7 +83,7 @@ Signal::connect(
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Signal::connectExit(
     const exit_handler_t &a_handler
 ) const
@@ -94,7 +94,7 @@ Signal::connectExit(
     xTEST(iRv == 0);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Signal::connectTerminate(
     const std::terminate_handler &a_handler
 ) const
@@ -105,7 +105,7 @@ Signal::connectTerminate(
     xUNUSED(handler_old);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Signal::connectUnexpected(
     const std::unexpected_handler &a_handler
 ) const
@@ -116,7 +116,7 @@ Signal::connectUnexpected(
     xUNUSED(handler_old);
 }
 //-------------------------------------------------------------------------------------------------
-inline int_t
+xINLINE int_t
 Signal::emit(
     cint_t &a_signalNum
 ) const

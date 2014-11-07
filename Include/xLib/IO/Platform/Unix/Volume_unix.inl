@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Volume::_label_impl() const
 {
     std::tstring_t sRv;
@@ -27,7 +27,7 @@ Volume::_label_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Volume::_isValid_impl() const
 {
     xCHECK_RET(path().empty(),                         false);
@@ -36,7 +36,7 @@ Volume::_isValid_impl() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Volume::_isReady_impl() const
 {
     bool_t         bRv           = false;
@@ -64,7 +64,7 @@ Volume::_isReady_impl() const
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 Volume::_space_impl(
     std::ctstring_t &a_dirPath,     ///< directory path
     ulonglong_t     *a_available,   ///< available space (for unprivileged users)

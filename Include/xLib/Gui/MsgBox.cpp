@@ -31,7 +31,7 @@ xNAMESPACE_BEGIN2(xlib, gui)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline MsgBox::ExModalResult
+xINLINE MsgBox::ExModalResult
 MsgBox::show(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,

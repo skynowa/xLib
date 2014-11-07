@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN2(xlib, test)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 TestManager::TestManager(
     cbool_t &a_isUseTracing
 ) :
@@ -41,7 +41,7 @@ TestManager::TestManager(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 TestManager::~TestManager()
 {
     std::for_each(_tests.begin(), _tests.end(), Delete());
@@ -49,7 +49,7 @@ TestManager::~TestManager()
     xCHECK_DO(_isUseTracing, Trace() << xT("TestManager: all tests destructed."));
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 TestManager::add(
     UnitTest *a_test
 )
@@ -61,7 +61,7 @@ TestManager::add(
     _tests.push_back(a_test);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 TestManager::run(
     culonglong_t &a_allLoops,
     culonglong_t &a_unitLoops,

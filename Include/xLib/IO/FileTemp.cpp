@@ -41,7 +41,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 FileTemp::FileTemp(
     cbool_t &a_isAutoDelete
 ) :
@@ -52,7 +52,7 @@ FileTemp::FileTemp(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 FileTemp::~FileTemp()
 {
     _file->close();
@@ -62,7 +62,7 @@ FileTemp::~FileTemp()
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 FileTemp::create(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_dirPath,

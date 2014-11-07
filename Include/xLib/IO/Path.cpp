@@ -40,7 +40,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Path::Path(
     std::ctstring_t &a_filePath
 ) :
@@ -49,7 +49,7 @@ Path::Path(
     xTEST_EQ(_filePath.empty(), false);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Path::filePath() const
 {
     xTEST_EQ(_filePath.empty(), false);
@@ -68,7 +68,7 @@ Path::filePath() const
 */
 
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::exe()
 {
     std::ctstring_t sRv( _exe_impl() );
@@ -78,20 +78,20 @@ Path::exe()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::dll()
 {
     return _dll_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::exeDir()
 {
     return Path(exe()).dir();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::dir() const
 {
     std::csize_t slashPos = filePath().rfind(Const::slash(), filePath().size());
@@ -100,7 +100,7 @@ Path::dir() const
     return filePath().substr(0, slashPos);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::dirName() const
 {
     std::csize_t slashPos2 = filePath().rfind(Const::slash());
@@ -114,7 +114,7 @@ Path::dirName() const
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::fileName() const
 {
     std::csize_t slashPos = filePath().rfind(Const::slash(), filePath().size());
@@ -123,7 +123,7 @@ Path::fileName() const
     return filePath().substr(slashPos + Const::slash().size());
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::fileBaseName() const
 {
     std::csize_t slashPos = filePath().rfind(Const::slash(), filePath().size());
@@ -132,7 +132,7 @@ Path::fileBaseName() const
     return String::cut(filePath(), slashPos + Const::slash().size(), dotPos);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::ext() const
 {
     std::csize_t dotPos   = filePath().rfind(Const::dot(),   filePath().size());
@@ -146,7 +146,7 @@ Path::ext() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::fileExt(
     const ExFileExt &a_fileExt
 )
@@ -183,7 +183,7 @@ Path::fileExt(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::setDir(
     std::ctstring_t &a_dirPath
 )
@@ -201,7 +201,7 @@ Path::setDir(
     return sRv.replace(pos, dirStr.size(), Path(a_dirPath).slashRemove());
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::setFileName(
     std::ctstring_t &a_fullName
 )
@@ -219,7 +219,7 @@ Path::setFileName(
     return sRv.replace(pos, fullName.size(), a_fullName);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::setFileBaseName(
     std::ctstring_t &a_name
 )
@@ -237,7 +237,7 @@ Path::setFileBaseName(
     return sRv.replace(pos, name.size(), a_name);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::setExt(
     std::ctstring_t &a_ext
 )
@@ -250,7 +250,7 @@ Path::setExt(
 
 
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::removeExt()
 {
     std::csize_t dotPos = filePath().rfind(Const::dot());
@@ -258,7 +258,7 @@ Path::removeExt()
     return filePath().substr(0, dotPos);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::removeExtIf(
     std::ctstring_t &a_ext
 )
@@ -273,7 +273,7 @@ Path::removeExtIf(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 Path::isValid(
     std::ctstring_t &a_filePath,                    ///< file, directory path
     std::tstring_t  *a_filePathValid /* = xPTR_NULL */   ///< [out] normalized path
@@ -301,7 +301,7 @@ Path::isValid(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 Path::isNameValid(
     std::ctstring_t &a_fileName,                    ///< file, directory name
     std::tstring_t  *a_fileNameValid /* = xPTR_NULL */   ///< [out] normalized name
@@ -330,7 +330,7 @@ Path::isNameValid(
     return _isNameValid_impl(sRv, a_fileNameValid);;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Path::isAbsolute() const
 {
     xCHECK_RET(filePath().empty(),                         false);
@@ -339,7 +339,7 @@ Path::isAbsolute() const
     return _isAbsolute_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::toWin(
     cbool_t &a_isSlashAtEnd
 ) const
@@ -359,7 +359,7 @@ Path::toWin(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::toUnix(
     cbool_t &a_isSlashAtEnd
 )  const
@@ -379,7 +379,7 @@ Path::toUnix(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::toNative(
     cbool_t &a_isSlashAtEnd
 ) const
@@ -399,7 +399,7 @@ Path::toNative(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::absolute() const
 {
     std::ctstring_t sRv( _absolute_impl() );
@@ -409,7 +409,7 @@ Path::absolute() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::shortName(
     std::ctstring_t &a_fileName,
     std::csize_t    &a_maxSize
@@ -441,7 +441,7 @@ Path::shortName(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::brief(
     std::csize_t &a_maxSize
 ) const
@@ -502,27 +502,27 @@ Path::brief(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::slashAppend() const
 {
     return String::trimRightChars(filePath(), Const::slash()).append(Const::slash());
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::slashRemove() const
 {
     return String::trimRightChars(filePath(), Const::slash());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline size_t
+xINLINE size_t
 Path::maxSize()
 {
     return _maxSize_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline size_t
+xINLINE size_t
 Path::nameMaxSize()
 {
     return _nameMaxSize_impl();

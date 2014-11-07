@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 BuildInfo::isRelease() const
 {
 #if xBUILD_DEBUG
@@ -30,7 +30,7 @@ BuildInfo::isRelease() const
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 BuildInfo::datetime() const
 {
     std::tstring_t sRv;
@@ -40,7 +40,7 @@ BuildInfo::datetime() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 BuildInfo::langStandart() const
 {
     std::tstring_t sRv;
@@ -83,7 +83,7 @@ BuildInfo::langStandart() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 BuildInfo::osEnvironment() const
 {
     std::tstring_t sRv;
@@ -101,7 +101,7 @@ BuildInfo::osEnvironment() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 BuildInfo::os() const
 {
     std::tstring_t sRv;
@@ -158,7 +158,7 @@ BuildInfo::os() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 BuildInfo::arch() const
 {
     std::tstring_t sRv;
@@ -210,7 +210,7 @@ BuildInfo::arch() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 BuildInfo::bitsArch() const
 {
     std::tstring_t sRv;
@@ -224,7 +224,7 @@ BuildInfo::bitsArch() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 BuildInfo::compiler() const
 {
     std::tstring_t sRv;
@@ -258,7 +258,7 @@ BuildInfo::compiler() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 BuildInfo::isUnicodeEncoding() const
 {
 #if xUNICODE
@@ -268,7 +268,7 @@ BuildInfo::isUnicodeEncoding() const
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 BuildInfo::stdLibC() const
 {
     std::tstring_t sRv;
@@ -306,7 +306,7 @@ BuildInfo::stdLibC() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 BuildInfo::stdLibCpp() const
 {
     std::tstring_t sRv;
@@ -338,7 +338,7 @@ BuildInfo::stdLibCpp() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 BuildInfo::qt() const
 {
     std::tstring_t sRv;
@@ -358,7 +358,7 @@ BuildInfo::qt() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 BuildInfo::xlibVersion() const
 {
     std::tstring_t sRv;
@@ -369,7 +369,7 @@ BuildInfo::xlibVersion() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 BuildInfo::binaryType() const
 {
     std::tstring_t sRv;

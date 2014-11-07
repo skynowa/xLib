@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline DateTime
+xINLINE DateTime
 DateTime::_current_impl()
 {
     SYSTEMTIME dateTime = {0};
@@ -27,7 +27,7 @@ DateTime::_current_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline longlong_t
+xINLINE longlong_t
 DateTime::filetimeToInt64(
     const FILETIME &a_fileTime
 )
@@ -36,7 +36,7 @@ DateTime::filetimeToInt64(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 DateTime::unixTimeToFileTime(
     const time_t &a_unixTime,
     FILETIME     *a_fileTime
@@ -53,7 +53,7 @@ DateTime::unixTimeToFileTime(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline time_t
+xINLINE time_t
 DateTime::fileTimeToUnixTime(
     const FILETIME &a_fileTime
 )

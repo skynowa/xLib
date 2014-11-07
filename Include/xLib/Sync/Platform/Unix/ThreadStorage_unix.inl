@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 ThreadStorage::_construct_impl()
 {
     xTEST_EQ(_index, static_cast<pthread_key_t>( - 1 ));
@@ -25,7 +25,7 @@ ThreadStorage::_construct_impl()
     _index = indRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 ThreadStorage::_destruct_impl()
 {
     xTEST_EQ(0 < _index, true);
@@ -36,7 +36,7 @@ ThreadStorage::_destruct_impl()
     _index = static_cast<pthread_key_t>( -1 );
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 ThreadStorage::_isSet_impl() const
 {
     void_t *pvRv = ::pthread_getspecific(_index);
@@ -45,7 +45,7 @@ ThreadStorage::_isSet_impl() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t *
+xINLINE void_t *
 ThreadStorage::_value_impl() const
 {
     xTEST_EQ(0 < _index, true);
@@ -56,7 +56,7 @@ ThreadStorage::_value_impl() const
     return pvRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 ThreadStorage::_setValue_impl(
     void_t *a_value
 ) const

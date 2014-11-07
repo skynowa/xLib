@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN2(xlib, test)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 UnitTest::UnitTest() :
     m_pvRv      (xPTR_NULL),
     m_chRv      (0),
@@ -52,13 +52,13 @@ UnitTest::UnitTest() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 UnitTest::~UnitTest() /* = 0 */
 {
     Dir( tempDirPath() ).pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 UnitTest::run(
     culonglong_t &a_unitLoops,
     culonglong_t &a_caseLoops
@@ -88,7 +88,7 @@ UnitTest::run(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline void_t
+xINLINE void_t
 UnitTest::unit(
     culonglong_t &a_caseLoops
 ) /* = 0 */
@@ -112,7 +112,7 @@ UnitTest::unit(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 UnitTest::createTempDir(
     std::ctstring_t &a_dirName
 )
@@ -128,7 +128,7 @@ UnitTest::createTempDir(
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 UnitTest::tempDirPath() const
 {
     xTEST_EQ(_tempDirPath.empty(), false);
@@ -136,13 +136,13 @@ UnitTest::tempDirPath() const
     return _tempDirPath;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 UnitTest::name() const
 {
     return _name;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 UnitTest::setName(
     std::ctstring_t &a_testName
 )

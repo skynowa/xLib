@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Profiler::Profiler() :
     _isStarted(false),
     _log      (FileLog::lsDefaultMb),
@@ -33,7 +33,7 @@ Profiler::Profiler() :
     _dataReset();
 }
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Profiler::~Profiler()
 {
     if ( !_log.filePath().empty() ) {
@@ -41,7 +41,7 @@ Profiler::~Profiler()
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Profiler::setLogPath(
     std::ctstring_t &a_logPath
 )
@@ -51,13 +51,13 @@ Profiler::setLogPath(
     _log.setFilePath(a_logPath);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Profiler::logPath() const
 {
     return _log.filePath();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Profiler::start()
 {
     xTEST_EQ(_isStarted, false);
@@ -75,7 +75,7 @@ Profiler::start()
     _isStarted = true;
 }
 //-------------------------------------------------------------------------------------------------
-inline size_t
+xINLINE size_t
 Profiler::stop(
     ctchar_t *a_comment, ...
 )
@@ -113,7 +113,7 @@ Profiler::stop(
     return durationMsec2;
 }
 //-------------------------------------------------------------------------------------------------
-inline size_t
+xINLINE size_t
 Profiler::restart(
     ctchar_t *a_comment, ...
 )
@@ -145,7 +145,7 @@ Profiler::restart(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Profiler::_dataReset()
 {
     // TODO: set normal thread priority

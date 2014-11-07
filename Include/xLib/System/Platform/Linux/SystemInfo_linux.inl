@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_numOfCpus_impl() const
 {
     long_t liRv = ::sysconf(_SC_NPROCESSORS_ONLN);
@@ -21,7 +21,7 @@ SystemInfo::_numOfCpus_impl() const
     return static_cast<ulong_t>( liRv );
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_cpuVendor_impl() const
 {
     // target proc line: "vendor_id : GenuineIntel"
@@ -31,7 +31,7 @@ SystemInfo::_cpuVendor_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_cpuModel_impl() const
 {
     // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
@@ -41,7 +41,7 @@ SystemInfo::_cpuModel_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_cpuSpeed_impl() const
 {
     // target proc line: "cpu MHz         : 2796.380"
@@ -55,7 +55,7 @@ SystemInfo::_cpuSpeed_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_cpuUsage_impl() const
 {
     double             dRv             = 0.0;
@@ -124,7 +124,7 @@ SystemInfo::_cpuUsage_impl() const
     return static_cast<ulong_t>( dRv );
 }
 //-------------------------------------------------------------------------------------------------
-inline ulonglong_t
+xINLINE ulonglong_t
 SystemInfo::_ramTotal_impl() const
 {
     struct sysinfo info;   xSTRUCT_ZERO(info);
@@ -137,7 +137,7 @@ SystemInfo::_ramTotal_impl() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulonglong_t
+xINLINE ulonglong_t
 SystemInfo::_ramAvailable_impl() const
 {
     struct sysinfo info;   xSTRUCT_ZERO(info);
@@ -150,7 +150,7 @@ SystemInfo::_ramAvailable_impl() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_ramUsage_impl() const
 {
     struct sysinfo info;   xSTRUCT_ZERO(info);

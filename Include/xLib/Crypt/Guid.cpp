@@ -40,7 +40,7 @@ xNAMESPACE_BEGIN2(xlib, crypt)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Guid::create(
     cExType &a_type
 ) const
@@ -68,7 +68,7 @@ Guid::create(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Guid::_randomBased() const
 {
     return _randomBased_impl();

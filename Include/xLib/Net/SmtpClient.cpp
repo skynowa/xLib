@@ -31,7 +31,7 @@ xNAMESPACE_BEGIN2(xlib, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 SmtpClient::SmtpClient() :
     _socket     (),
     _user       (),
@@ -43,7 +43,7 @@ SmtpClient::SmtpClient() :
 ////--    Socket::bInit();
 }
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 SmtpClient::~SmtpClient()
 {
     disconnect();
@@ -51,7 +51,7 @@ SmtpClient::~SmtpClient()
 ////--    Socket::bClean();
 }
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 void_t
 SmtpClient::create(
     std::ctstring_t &a_user,
@@ -71,7 +71,7 @@ SmtpClient::create(
     _port     = a_port;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SmtpClient::connect()
 {
     std::tstring_t sRv;
@@ -104,7 +104,7 @@ SmtpClient::connect()
     _isConnected = true;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SmtpClient::login()
 {
     //-------------------------------------
@@ -138,7 +138,7 @@ SmtpClient::login()
     _command(passwordCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SmtpClient::noop()
 {
     //-------------------------------------
@@ -157,7 +157,7 @@ SmtpClient::noop()
     _command(noopCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SmtpClient::rset()
 {
     //-------------------------------------
@@ -176,7 +176,7 @@ SmtpClient::rset()
     _command(rsetCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SmtpClient::sendRaw
 (
     std::ctstring_t &a_filePath,
@@ -223,7 +223,7 @@ SmtpClient::sendRaw
     _command(text + endCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SmtpClient::send(
     std::ctstring_t &a_text,
     std::ctstring_t &a_from,
@@ -268,7 +268,7 @@ SmtpClient::send(
     _command(endCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SmtpClient::disconnect()
 {
     xCHECK_DO(!_isConnected, disconnect());
@@ -301,7 +301,7 @@ SmtpClient::disconnect()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SmtpClient::_command(
     std::ctstring_t &a_command,
     std::ctstring_t &a_replyDelimiter,
@@ -319,7 +319,7 @@ SmtpClient::_command(
     a_reply.swap(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 SmtpClient::_isError(
     std::ctstring_t &a_text
 )

@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Mutex::_destruc_impl()
 {
     bool_t bRv = false;
@@ -28,7 +28,7 @@ Mutex::_destruc_impl()
     xTEST_EQ(bRv, true);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Mutex::_create_impl()
 {
     bool_t bRv = false;
@@ -44,7 +44,7 @@ Mutex::_create_impl()
     xTEST_EQ(bRv, true);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Mutex::_lock_impl()
 {
     bool_t bRv = false;
@@ -60,7 +60,7 @@ Mutex::_lock_impl()
     xTEST_EQ(bRv, true);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Mutex::_tryLock_impl()
 {
     BOOL blRv = ::TryEnterCriticalSection(&_handle);
@@ -69,7 +69,7 @@ Mutex::_tryLock_impl()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Mutex::_unlock_impl()
 {
     bool_t bRv = false;

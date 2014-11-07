@@ -40,14 +40,14 @@ xNAMESPACE_BEGIN2(xlib, net)
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 TcpClient::TcpClient() :
     _timeout()
 {
     setTimeout(0L, SOCKET_TIMEOUT);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 TcpClient::isReadable() const
 {
     timeval timeoutVal = {1, 0};
@@ -61,7 +61,7 @@ TcpClient::isReadable() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 TcpClient::isWritable() const
 {
     timeval timeoutVal = {1, 0};
@@ -75,7 +75,7 @@ TcpClient::isWritable() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 TcpClient::connect(
     std::ctstring_t &a_ip,
     cushort_t       &a_port
@@ -98,7 +98,7 @@ TcpClient::connect(
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 TcpClient::ioctl(
     clong_t &a_command,
     ulong_t *a_args
@@ -110,7 +110,7 @@ TcpClient::ioctl(
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 TcpClient::setNonBlockingMode(
     cbool_t &a_flag
 ) const
@@ -118,7 +118,7 @@ TcpClient::setNonBlockingMode(
     _setNonBlockingMode_impl(a_flag);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 TcpClient::timeout(
     long_t *a_seconds,
     long_t *a_microsec
@@ -131,7 +131,7 @@ TcpClient::timeout(
     Utils::ptrAssignT(a_microsec, static_cast<long_t>( _timeout.tv_usec ));
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 TcpClient::setTimeout(
     clong_t &a_seconds,
     clong_t &a_microsec
@@ -153,7 +153,7 @@ TcpClient::setTimeout(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 TcpClient::isServerAlive(
     std::ctstring_t &a_ip,
     cushort_t       &a_port

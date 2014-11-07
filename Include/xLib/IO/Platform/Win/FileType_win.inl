@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline FileType::types_t
+xINLINE FileType::types_t
 FileType::_get_impl() const
 {
     types_t ftRv = faInvalid;
@@ -23,7 +23,7 @@ FileType::_get_impl() const
     return ftRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 FileType::_set_impl(
     ctypes_t &a_values
 ) const
@@ -32,7 +32,7 @@ FileType::_set_impl(
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 FileType::_clear_impl() const
 {
     set(faNormal);

@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, log)
 
 //-------------------------------------------------------------------------------------------------
 template<class T>
-inline SystemLog &
+xINLINE SystemLog &
 SystemLog::operator << (const T &valueT)
 {
     _oss << valueT;

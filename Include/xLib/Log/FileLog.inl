@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, log)
 
 //-------------------------------------------------------------------------------------------------
 template<class T>
-inline FileLog &
+xINLINE FileLog &
 FileLog::operator << (
     const T &valueT
 )

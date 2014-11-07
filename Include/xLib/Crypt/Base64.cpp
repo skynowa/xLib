@@ -32,7 +32,7 @@ xNAMESPACE_BEGIN2(xlib, crypt)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline std::string
+xINLINE std::string
 Base64::encode(
     cuchar_t     *a_bytes,
     std::csize_t &a_size
@@ -83,7 +83,7 @@ Base64::encode(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::string
+xINLINE std::string
 Base64::encode(
     std::cstring_t &a_str
 )
@@ -93,7 +93,7 @@ Base64::encode(
     return encode(reinterpret_cast<cuchar_t  *>( a_str.data() ), a_str.size());
 }
 //-------------------------------------------------------------------------------------------------
-inline std::string
+xINLINE std::string
 Base64::decode(
     std::cstring_t &a_str
 )
@@ -155,7 +155,7 @@ Base64::decode(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Base64::_isValid(
     cuchar_t &a_ch
 )

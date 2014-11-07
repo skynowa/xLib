@@ -38,7 +38,7 @@ xNAMESPACE_BEGIN2(xlib, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 SocketInit::SocketInit(
     cushort_t &a_versionMajor,
     cushort_t &a_versionMinor
@@ -47,7 +47,7 @@ SocketInit::SocketInit(
     _construct_impl(a_versionMajor, a_versionMinor);
 }
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 SocketInit::~SocketInit()
 {
     _destruct_impl();

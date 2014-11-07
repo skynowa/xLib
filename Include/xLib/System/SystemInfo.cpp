@@ -38,26 +38,26 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 SystemInfo::SystemInfo() :
     _osType(otUnknown),
     _osArch(oaUnknown)
 {
 }
 //-------------------------------------------------------------------------------------------------
-inline SystemInfo::ExOsType
+xINLINE SystemInfo::ExOsType
 SystemInfo::os()
 {
     return _os_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::formatOs()
 {
     return _formatOs_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline SystemInfo::ExOsArch
+xINLINE SystemInfo::ExOsArch
 SystemInfo::osArch()
 {
     _osArch = _osArch_impl();
@@ -65,7 +65,7 @@ SystemInfo::osArch()
     return _osArch;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::formatOsArch()
 {
     std::tstring_t sRv;
@@ -89,61 +89,61 @@ SystemInfo::formatOsArch()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::desktopName() const
 {
     return _desktopName_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::hostName() const
 {
     return _hostName_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 SystemInfo::isUserAdmin() const
 {
     return _isUserAdmin_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::loginUserName() const
 {
     return _loginUserName_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::userName() const
 {
     return _userName_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::userHomeDir() const
 {
     return _userHomeDir_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::userShellPath() const
 {
     return _userShellPath_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::numOfCpus() const
 {
     return _numOfCpus_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::currentCpuNum() const
 {
     return _currentCpuNum_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline SystemInfo::ExCpuVendor
+xINLINE SystemInfo::ExCpuVendor
 SystemInfo::cpuVendor() const
 {
     ExCpuVendor     cvRv  = cvUnknown;
@@ -162,43 +162,43 @@ SystemInfo::cpuVendor() const
     return cvRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::cpuModel() const
 {
     return _cpuModel_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::cpuSpeed() const
 {
     return _cpuSpeed_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::cpuUsage() const
 {
     return _cpuUsage_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline ulonglong_t
+xINLINE ulonglong_t
 SystemInfo::ramTotal() const
 {
     return _ramTotal_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline ulonglong_t
+xINLINE ulonglong_t
 SystemInfo::ramAvailable() const
 {
     return _ramAvailable_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::ramUsage() const
 {
     return _ramUsage_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::pageSize() const
 {
     return _pageSize_impl();

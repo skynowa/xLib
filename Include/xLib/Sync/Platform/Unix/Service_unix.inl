@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Service::_create_impl()
 {
    /**
@@ -27,7 +27,7 @@ Service::_create_impl()
     */
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Service::_start_impl()
 {
     // http://www.microhowto.info/howto/cause_a_process_to_become_a_daemon_in_c.html
@@ -80,12 +80,12 @@ Service::_start_impl()
 
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Service::_stop_impl()
 {
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Service::_close_impl()
 {
 }

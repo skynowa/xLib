@@ -48,7 +48,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Volume::Volume(
     std::ctstring_t &a_volumePath
 ) :
@@ -57,7 +57,7 @@ Volume::Volume(
     xTEST_EQ(path().empty(), false);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Volume::path() const
 {
     xTEST_EQ(_path.empty(), false);
@@ -65,13 +65,13 @@ Volume::path() const
     return _path;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Volume::fileSystem() const
 {
     return _fileSystem_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Volume::label() const
 {
     bool_t bRv = isReady();
@@ -80,25 +80,25 @@ Volume::label() const
     return _label_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Volume::isValid() const
 {
     return _isValid_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Volume::isReady() const
 {
     return _isReady_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Volume::isEmpty() const
 {
     return Dir( path() ).isEmpty( Const::maskAll() );
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Volume::mount(
     std::ctstring_t &a_destPath    ///< destination path
 ) const
@@ -108,7 +108,7 @@ Volume::mount(
     _mount_impl(a_destPath);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Volume::unMount(
     cbool_t &a_isForce     ///< force unmount even if busy
 ) const
@@ -118,7 +118,7 @@ Volume::unMount(
     _unMount_impl(a_isForce);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Volume::isSpaceEnough(
     culonglong_t &a_needBytes ///< need space in bytes
 ) const
@@ -142,7 +142,7 @@ Volume::isSpaceEnough(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 Volume::space(
     std::ctstring_t &a_dirPath,     ///< directory path
     ulonglong_t     *a_available,   ///< available space (for unprivileged users)
@@ -171,7 +171,7 @@ Volume::space(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 Volume::paths(
     std::vec_tstring_t *a_volumePaths    ///< volume paths
 )

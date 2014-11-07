@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::_exe_impl()
 {
     // REVIEW: QueryFullProcessImageName on xOS_WIN_VER > xOS_WIN_S03
@@ -36,7 +36,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 xNAMESPACE_ANONYM_END
 
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::_dll_impl()
 {
     std::tstring_t sRv;
@@ -52,7 +52,7 @@ Path::_dll_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::drive() const
 {
     std::csize_t driveDelimPos = filePath().find(Const::colon());
@@ -63,7 +63,7 @@ Path::drive() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::_fileExt_impl(
     const ExFileExt &a_fileExt
 )
@@ -94,7 +94,7 @@ Path::_fileExt_impl(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::setDrive(
     std::ctstring_t &a_drivePath
 )
@@ -113,7 +113,7 @@ Path::setDrive(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 Path::_isNameValid_impl(
     std::ctstring_t &a_fileName,                    ///< file, directory name
     std::tstring_t  *a_fileNameValid /* = xPTR_NULL */   ///< [out] normalized name
@@ -259,7 +259,7 @@ Path::_isNameValid_impl(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Path::_isAbsolute_impl() const
 {
     xCHECK_RET(filePath().size() == 1, false);
@@ -268,7 +268,7 @@ Path::_isAbsolute_impl() const
     return false;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Path::_toNative_impl(
     std::tstring_t *a_filePath
 ) const
@@ -276,7 +276,7 @@ Path::_toNative_impl(
     *a_filePath = String::replaceAll(*a_filePath, Const::winSlash(), Const::slash());
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Path::_absolute_impl() const
 {
     std::tstring_t sRv;
@@ -301,7 +301,7 @@ Path::_absolute_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline size_t
+xINLINE size_t
 Path::_maxSize_impl()
 {
     size_t uiRv = 0;
@@ -318,7 +318,7 @@ Path::_maxSize_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline size_t
+xINLINE size_t
 Path::_nameMaxSize_impl()
 {
     size_t uiRv = 0;

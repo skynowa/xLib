@@ -29,7 +29,7 @@ xNAMESPACE_ANONYM_END
 xNAMESPACE_BEGIN2(xlib, debug)
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 ErrorReport::ErrorReport(
     culong_t        &a_nativeError,
     std::ctstring_t &a_file,
@@ -59,13 +59,13 @@ ErrorReport::ErrorReport(
     _initPlain();
 }
 //-------------------------------------------------------------------------------------------------
-inline ErrorReport::ExType
+xINLINE ErrorReport::ExType
 ErrorReport::type() const
 {
     return _type;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 ErrorReport::toString() const
 {
     return _report;
@@ -79,7 +79,7 @@ ErrorReport::toString() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 ErrorReport::_construct(
     const ExType    &a_type,
     std::ctstring_t &a_var1,
@@ -127,7 +127,7 @@ ErrorReport::_construct(
     _comment      = a_comment.empty() ? Const::hyphen() : a_comment;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 ErrorReport::_initPlain()
 {
     std::tostringstream_t ossRv;

@@ -11,7 +11,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 #define F_TEST  LOCK_EX // TODO: lockf() - F_TEST - n/a
 #define F_ULOCK LOCK_UN
 
-inline int
+xINLINE int
 lockf(
     int   a_fd,
     int   a_cmd,

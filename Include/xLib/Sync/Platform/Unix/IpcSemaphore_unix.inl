@@ -15,13 +15,13 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 IpcSemaphore::_construct_impl()
 {
     // sem_init
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 IpcSemaphore::_destruct_impl()
 {
     int_t iRv = ::sem_close(_handle);  _handle = xPTR_NULL;
@@ -31,7 +31,7 @@ IpcSemaphore::_destruct_impl()
     // sem_unlink
 }
 //-------------------------------------------------------------------------------------------------
-inline long_t
+xINLINE long_t
 IpcSemaphore::_valueMax_impl() const
 {
     long_t liRv = 0;
@@ -49,7 +49,7 @@ IpcSemaphore::_valueMax_impl() const
     return liRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 IpcSemaphore::_create_impl(
     clong_t         &a_initialValue,
     std::ctstring_t &a_name
@@ -65,7 +65,7 @@ IpcSemaphore::_create_impl(
     _name   = unixName;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 IpcSemaphore::_open_impl(
     std::ctstring_t &a_name
 )
@@ -80,14 +80,14 @@ IpcSemaphore::_open_impl(
     _name   = unixName;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 IpcSemaphore::_post_impl() const
 {
     int_t iRv = ::sem_post(_handle);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 IpcSemaphore::_wait_impl(
     culong_t &a_timeoutMsec
 ) const
@@ -152,7 +152,7 @@ IpcSemaphore::_wait_impl(
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline long_t
+xINLINE long_t
 IpcSemaphore::_value_impl() const
 {
     long_t liRv = - 1L;
@@ -174,7 +174,7 @@ IpcSemaphore::_value_impl() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 IpcSemaphore::_isValid_impl() const
 {
     return (_handle != xPTR_NULL);

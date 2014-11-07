@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Config::Config() :
     _separator(Const::equal()),
     _fileExt  ( Path::fileExt(Path::seConfig) ),
@@ -36,7 +36,7 @@ Config::Config() :
     setPath( Path( Path::exe() ).setExt(_fileExt) );
 }
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Config::Config(
     std::ctstring_t &a_filePath
 ) :
@@ -54,13 +54,13 @@ Config::Config(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 Config::~Config()
 {
     flush();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::createDefault(
     std::ctstring_t &a_content
 ) const
@@ -70,7 +70,7 @@ Config::createDefault(
     File::textWrite(path(), a_content, File::omWrite);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Config::path() const
 {
     xTEST_EQ(_filePath.empty(), false);
@@ -78,7 +78,7 @@ Config::path() const
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::setPath(
     std::ctstring_t &a_filePath
 )
@@ -90,25 +90,25 @@ Config::setPath(
     _filePath = a_filePath;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::map_tstring_t &
+xINLINE std::map_tstring_t &
 Config::get()
 {
     return _config;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::flush() const
 {
     File::textWrite(path(), _separator, _config, File::omWrite);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::clear()
 {
     File::clear(path());
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::remove()
 {
     // file
@@ -126,7 +126,7 @@ Config::remove()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Config::keyIsExists(
     std::ctstring_t &a_key
 ) const
@@ -140,7 +140,7 @@ Config::keyIsExists(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Config::keyReadString(
     std::ctstring_t &a_key,
     std::ctstring_t &a_defaultValue
@@ -156,7 +156,7 @@ Config::keyReadString(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::keyWriteString(
     std::ctstring_t &a_key,
     std::ctstring_t &a_value
@@ -168,7 +168,7 @@ Config::keyWriteString(
     _write(a_key, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline long_t
+xINLINE long_t
 Config::keyReadInt(
     std::ctstring_t &a_key,
     clong_t         &a_defaultValue
@@ -180,7 +180,7 @@ Config::keyReadInt(
     return String::cast<long_t>( keyReadString(a_key, String::cast(a_defaultValue)) );
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::keyWriteInt(
     std::ctstring_t &a_key,
     clong_t         &a_value
@@ -192,7 +192,7 @@ Config::keyWriteInt(
     keyWriteString(a_key, String::cast(a_value));
 }
 //-------------------------------------------------------------------------------------------------
-inline double
+xINLINE double
 Config::keyReadFloat(
     std::ctstring_t &a_key,
     cdouble_t       &a_defaultValue
@@ -204,7 +204,7 @@ Config::keyReadFloat(
     return String::cast<double>( keyReadString(a_key, String::cast(a_defaultValue)) );
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::keyWriteFloat(
     std::ctstring_t &a_key,
     cdouble_t       &a_value
@@ -216,7 +216,7 @@ Config::keyWriteFloat(
     keyWriteString(a_key, String::cast(a_value));
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Config::keyReadBool(
     std::ctstring_t &a_key,
     cbool_t         &a_defaultValue
@@ -234,7 +234,7 @@ Config::keyReadBool(
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::keyWriteBool(
     std::ctstring_t &a_key,
     cbool_t         &a_value
@@ -250,7 +250,7 @@ Config::keyWriteBool(
     keyWriteString(a_key, value);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ustring_t
+xINLINE std::ustring_t
 Config::keyReadBin(
     std::ctstring_t &a_key,
     std::custring_t &a_defaultValue
@@ -270,7 +270,7 @@ Config::keyReadBin(
     return std::ustring_t(sRv.begin(), sRv.end());
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::keyWriteBin(
     std::ctstring_t &a_key,
     std::custring_t &a_value
@@ -287,7 +287,7 @@ Config::keyWriteBin(
     keyWriteString(a_key, hexStr);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::keyClear(
     std::ctstring_t &a_key
 )
@@ -297,7 +297,7 @@ Config::keyClear(
     keyWriteString(a_key, std::tstring_t());
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::keyDelete(
    std::ctstring_t &a_key
 )
@@ -324,7 +324,7 @@ Config::keyDelete(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::_read(
     std::ctstring_t &a_key,
     std::ctstring_t &a_defaultValue,
@@ -349,7 +349,7 @@ Config::_read(
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Config::_write(
     std::ctstring_t &a_key,
     std::ctstring_t &a_value

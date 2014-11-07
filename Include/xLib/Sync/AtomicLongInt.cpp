@@ -31,13 +31,13 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 AtomicLongInt::AtomicLongInt() :
     _value(0L)
 {
 }
 //-------------------------------------------------------------------------------------------------
-inline AtomicLongInt &
+xINLINE AtomicLongInt &
 AtomicLongInt::operator += (
     const AtomicLongInt &a_value
 )
@@ -45,7 +45,7 @@ AtomicLongInt::operator += (
     return _addAssign_impl(a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline AtomicLongInt &
+xINLINE AtomicLongInt &
 AtomicLongInt::operator += (
     clong_t &a_value
 )
@@ -53,7 +53,7 @@ AtomicLongInt::operator += (
     return _addAssign_impl(a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline AtomicLongInt &
+xINLINE AtomicLongInt &
 AtomicLongInt::operator -= (
     const AtomicLongInt &a_value
 )
@@ -61,7 +61,7 @@ AtomicLongInt::operator -= (
     return _subtractAssign_impl(a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline AtomicLongInt &
+xINLINE AtomicLongInt &
 AtomicLongInt::operator -= (
     clong_t &a_value
 )
@@ -69,7 +69,7 @@ AtomicLongInt::operator -= (
     return _subtractAssign_impl(a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline AtomicLongInt &
+xINLINE AtomicLongInt &
 AtomicLongInt::operator = (
     const AtomicLongInt &a_value
 )
@@ -77,7 +77,7 @@ AtomicLongInt::operator = (
     return _assign_impl(a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline AtomicLongInt &
+xINLINE AtomicLongInt &
 AtomicLongInt::operator = (
     clong_t &a_value
 )
@@ -85,7 +85,7 @@ AtomicLongInt::operator = (
     return _assign_impl(a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 AtomicLongInt::operator == (
     const AtomicLongInt &a_value
 ) const
@@ -93,7 +93,7 @@ AtomicLongInt::operator == (
     return (_value == a_value._value);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 AtomicLongInt::operator == (
     clong_t &a_value
 ) const
@@ -101,7 +101,7 @@ AtomicLongInt::operator == (
     return (_value == a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 AtomicLongInt::operator != (
     const AtomicLongInt &a_value
 ) const
@@ -109,7 +109,7 @@ AtomicLongInt::operator != (
     return (_value != a_value._value);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 AtomicLongInt::operator != (
     clong_t &a_value
 ) const
@@ -117,7 +117,7 @@ AtomicLongInt::operator != (
     return (_value != a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 AtomicLongInt::operator < (
     clong_t &a_value
 ) const
@@ -125,7 +125,7 @@ AtomicLongInt::operator < (
     return (_value < a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 AtomicLongInt::operator < (
     const AtomicLongInt &a_value
 ) const
@@ -133,7 +133,7 @@ AtomicLongInt::operator < (
     return (_value < a_value.value());
 }
 //------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 AtomicLongInt::operator <= (
     clong_t &a_value
 ) const
@@ -141,7 +141,7 @@ AtomicLongInt::operator <= (
     return (_value <= a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 AtomicLongInt::operator <= (
     const AtomicLongInt &a_value
 ) const
@@ -149,7 +149,7 @@ AtomicLongInt::operator <= (
     return (_value <= a_value.value());
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 AtomicLongInt::operator > (
     clong_t &a_value
 ) const
@@ -157,7 +157,7 @@ AtomicLongInt::operator > (
     return (_value > a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 AtomicLongInt::operator > (
     const AtomicLongInt &a_value
 ) const
@@ -165,7 +165,7 @@ AtomicLongInt::operator > (
     return (_value > a_value.value());
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 AtomicLongInt::operator >= (
     clong_t &a_value
 ) const
@@ -173,7 +173,7 @@ AtomicLongInt::operator >= (
     return (_value >= a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 AtomicLongInt::operator >= (
     const AtomicLongInt &a_value
 ) const
@@ -181,7 +181,7 @@ AtomicLongInt::operator >= (
     return (_value >= a_value.value());
 }
 //-------------------------------------------------------------------------------------------------
-inline AtomicLongInt &
+xINLINE AtomicLongInt &
 AtomicLongInt::operator ++ (
     cint_t a_value
 )
@@ -189,7 +189,7 @@ AtomicLongInt::operator ++ (
     return _inc_impl(a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline AtomicLongInt &
+xINLINE AtomicLongInt &
 AtomicLongInt::operator -- (
     cint_t a_value
 )
@@ -197,7 +197,7 @@ AtomicLongInt::operator -- (
     return _decr_impl(a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline long_t
+xINLINE long_t
 AtomicLongInt::value() const
 {
     return _value_impl();

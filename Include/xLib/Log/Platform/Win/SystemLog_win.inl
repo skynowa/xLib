@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, log)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SystemLog::_construct_impl(
     std::ctstring_t &a_logName
 )
@@ -21,7 +21,7 @@ SystemLog::_construct_impl(
     xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SystemLog::_destruct_impl()
 {
     xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
@@ -33,7 +33,7 @@ SystemLog::_destruct_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline void_t
+xINLINE void_t
 SystemLog::_write_impl(
     cExLevel        &a_level,
     std::ctstring_t &a_msg

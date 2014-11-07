@@ -33,14 +33,14 @@ xNAMESPACE_BEGIN2(xlib, log)
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 Trace::~Trace()
 {
     write(xT("%s"), _oss.str().c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline void_t
+xINLINE void_t
 Trace::write(
     ctchar_t *a_format, ...
 ) const
@@ -59,7 +59,7 @@ Trace::write(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline void_t
+xINLINE void_t
 Trace::write(
     cExLevel &a_level,
     ctchar_t *a_format, ...

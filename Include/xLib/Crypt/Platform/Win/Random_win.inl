@@ -12,14 +12,14 @@ xNAMESPACE_BEGIN2(xlib, crypt)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 StdSeedPolicy::_construct_impl()
 {
     (void_t)std::srand(_seed);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline long_t
+xINLINE long_t
 StdSeedPolicy::_next_impl()
 {
    /**
@@ -39,7 +39,7 @@ StdSeedPolicy::_next_impl()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 NativeSeedPolicy::_construct_impl()
 {
     _hProv = xPTR_NULL;
@@ -49,14 +49,14 @@ NativeSeedPolicy::_construct_impl()
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 NativeSeedPolicy::_destruct_impl()
 {
     BOOL blRv = ::CryptReleaseContext(_hProv, 0UL);   _hProv = xPTR_NULL;
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-inline long_t
+xINLINE long_t
 NativeSeedPolicy::_next_impl()
 {
     long_t liRv = 0L;

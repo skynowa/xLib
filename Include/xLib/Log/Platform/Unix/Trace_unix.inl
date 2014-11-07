@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, log)
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline void_t
+xINLINE void_t
 Trace::_write_impl(
     std::ctstring_t &a_msg
 ) const

@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Condition::_destruct_impl()
 {
     int_t iRv = - 1;
@@ -24,19 +24,19 @@ Condition::_destruct_impl()
     xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 }
 //-------------------------------------------------------------------------------------------------
-inline const pthread_mutex_t &
+xINLINE const pthread_mutex_t &
 Condition::mutex() const
 {
     return _mutex;
 }
 //-------------------------------------------------------------------------------------------------
-inline const pthread_cond_t &
+xINLINE const pthread_cond_t &
 Condition::handle() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Condition::_create_impl()
 {
     int_t iRv = - 1;
@@ -48,7 +48,7 @@ Condition::_create_impl()
     xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Condition::_wait_impl(
     culong_t &a_timeoutMs
 )
@@ -92,7 +92,7 @@ Condition::_wait_impl(
     xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Condition::_signal_impl()
 {
     int_t iRv = - 1;
@@ -109,7 +109,7 @@ Condition::_signal_impl()
     xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Condition::_broadcast_impl()
 {
      int_t iRv = - 1;

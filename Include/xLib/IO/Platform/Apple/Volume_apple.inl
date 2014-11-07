@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Volume::_fileSystem_impl() const
 {
     std::tstring_t sRv;
@@ -23,7 +23,7 @@ Volume::_fileSystem_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Volume::_mount_impl(
     std::ctstring_t &a_destPath    ///< destination path
 ) const
@@ -32,7 +32,7 @@ Volume::_mount_impl(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Volume::_unMount_impl(
     cbool_t &a_isForce     ///< force unmount even if busy
 ) const
@@ -50,7 +50,7 @@ Volume::_unMount_impl(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 Volume::_paths_impl(
     std::vec_tstring_t *a_volumePaths    ///< volume paths
 )

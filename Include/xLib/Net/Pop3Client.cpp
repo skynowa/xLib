@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN2(xlib, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Pop3Client::Pop3Client() :
     _sRv        (),
     ////_socketInit(2, 2),
@@ -35,13 +35,13 @@ Pop3Client::Pop3Client() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Pop3Client::~Pop3Client()
 {
     disconnect();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::create(
     std::ctstring_t &a_user,
     std::ctstring_t &a_password,
@@ -60,7 +60,7 @@ Pop3Client::create(
      _port  = a_port;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::connect()
 {
      //-------------------------------------
@@ -85,7 +85,7 @@ Pop3Client::connect()
     _isConnected = true;
  }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::login()
 {
     //-------------------------------------
@@ -127,7 +127,7 @@ Pop3Client::login()
     _command(passCmd, xT("\r\n"), &_sRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::stat(
     std::size_t &a_sum,
     std::size_t &a_size
@@ -156,7 +156,7 @@ Pop3Client::stat(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::list(
     std::vector<std::size_t> &a_list
 )
@@ -186,7 +186,7 @@ Pop3Client::list(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::listAt(
     std::size_t &a_index
 )
@@ -216,7 +216,7 @@ Pop3Client::listAt(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::noop()
 {
     //-------------------------------------
@@ -233,7 +233,7 @@ Pop3Client::noop()
     _command(noopCmd, xT("\r\n"), &_sRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::rset()
 {
     //-------------------------------------
@@ -250,7 +250,7 @@ Pop3Client::rset()
     _command(rsetCmd, xT("\r\n"), &_sRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::top(
     std::csize_t   &a_num,
     std::csize_t   &a_lines,
@@ -281,7 +281,7 @@ Pop3Client::top(
     a_buff = _sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::retriveRaw(
     std::csize_t    &a_num,
     std::ctstring_t &a_dirPath,
@@ -337,7 +337,7 @@ Pop3Client::retriveRaw(
     xUNUSED(writeSize);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::retriveRawAndBackup(
     std::csize_t    &a_num,
     std::ctstring_t &a_dirPath,
@@ -404,7 +404,7 @@ Pop3Client::retriveRawAndBackup(
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::retrieveHeader(
     std::csize_t &a_num,
     MimeHeader &a_mimeHeader
@@ -434,7 +434,7 @@ Pop3Client::retrieveHeader(
     a_mimeHeader.parse(_sRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::del(
     std::csize_t &a_num
 )
@@ -462,7 +462,7 @@ Pop3Client::del(
     _command(deleCmd, xT("\r\n"), &sRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::disconnect()
 {
     xCHECK_DO(!_isConnected, return);
@@ -485,7 +485,7 @@ Pop3Client::disconnect()
     _isConnected = false;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::size_t
+xINLINE std::size_t
 Pop3Client::_mailsSum(
     std::ctstring_t &a_serverAnswer
 )
@@ -505,7 +505,7 @@ Pop3Client::_mailsSum(
     return sum;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::size_t
+xINLINE std::size_t
 Pop3Client::_mailsSize(
     std::ctstring_t &a_serverAnswer
 )
@@ -533,7 +533,7 @@ Pop3Client::_mailsSize(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Pop3Client::_command(
     std::ctstring_t &command,
     std::ctstring_t &replyDelimiter,
@@ -558,7 +558,7 @@ Pop3Client::_command(
     xTEST_EQ(_isError(_sRv), false);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Pop3Client::_isError(
     std::ctstring_t &text
 )

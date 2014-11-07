@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_numOfCpus_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -26,7 +26,7 @@ SystemInfo::_numOfCpus_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_cpuVendor_impl() const
 {
     std::tstring_t value;
@@ -82,7 +82,7 @@ SystemInfo::_cpuVendor_impl() const
     return value;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_cpuModel_impl() const
 {
     std::tstring_t sRv;
@@ -106,7 +106,7 @@ SystemInfo::_cpuModel_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_cpuSpeed_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -122,7 +122,7 @@ SystemInfo::_cpuSpeed_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_cpuUsage_impl() const
 {
     double         cpuUsage           = 0.0;
@@ -152,7 +152,7 @@ SystemInfo::_cpuUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulonglong_t
+xINLINE ulonglong_t
 SystemInfo::_ramTotal_impl() const
 {
     ulonglong_t ullRv = 0ULL;
@@ -170,7 +170,7 @@ SystemInfo::_ramTotal_impl() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulonglong_t
+xINLINE ulonglong_t
 SystemInfo::_ramAvailable_impl() const
 {
     ulonglong_t availPhysPages     = 0ULL;
@@ -185,7 +185,7 @@ SystemInfo::_ramAvailable_impl() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_ramUsage_impl() const
 {
     ulonglong_t ramTotal = 0ULL;

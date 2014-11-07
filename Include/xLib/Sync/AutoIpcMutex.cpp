@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 AutoIpcMutex::AutoIpcMutex(
     IpcMutex      &a_mutex,
     std::ctstring_t &a_name
@@ -30,7 +30,7 @@ AutoIpcMutex::AutoIpcMutex(
     _mutex.lock(xTIMEOUT_INFINITE);
 }
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 AutoIpcMutex::~AutoIpcMutex()
 {
     _mutex.unlock();
