@@ -36,7 +36,7 @@ SystemInfo::_cpuVendor_impl() const
     struct _Functor
     {
     #if (defined(__pic__) || defined(__APPLE__)) && defined(__i386__)
-        static inline void_t
+        static void_t
         __cpuid(
             int_t  a_cpuInfo[4],
             cint_t a_infoType)
@@ -50,7 +50,7 @@ SystemInfo::_cpuVendor_impl() const
             );
         }
     #elif defined(__i386__) || defined(__x86_64__)
-        static inline void_t
+        static void_t
         __cpuid(
             int_t  a_cpuInfo[4],
             cint_t a_infoType)
