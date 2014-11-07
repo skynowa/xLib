@@ -29,7 +29,7 @@ xNAMESPACE_BEGIN2(xlib, net)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 DnsClient::hostAddrByName(
     std::ctstring_t &a_hostName,
     std::tstring_t  *a_hostAddr
@@ -59,7 +59,7 @@ DnsClient::hostAddrByName(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 DnsClient::hostNameByAddr(
     std::ctstring_t                 &a_hostAddr,
     const Socket::ExAddressFamily &a_family,
@@ -106,7 +106,7 @@ DnsClient::hostNameByAddr(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 DnsClient::localHostName(
     std::tstring_t *a_hostName
 )
@@ -126,7 +126,7 @@ DnsClient::localHostName(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 DnsClient::nameInfo(
     Socket::ExAddressFamily &a_family,
     std::ctstring_t           &a_hostAddr,
@@ -158,7 +158,7 @@ DnsClient::nameInfo(
 //-------------------------------------------------------------------------------------------------
 //NOTE: http://www.geekpage.jp/en/programming/linux-network/getaddrinfo-0.php
 /* static */
-inline void_t
+xINLINE void_t
 DnsClient::hostAddrInfo(
     std::ctstring_t  &a_hostName,
     std::ctstring_t  &a_port,
@@ -176,7 +176,7 @@ DnsClient::hostAddrInfo(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 DnsClient::protocolByName(
     std::ctstring_t    &a_protocolName,
     std::tstring_t     *a_name,
@@ -223,7 +223,7 @@ DnsClient::protocolByName(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 DnsClient::protocolByNumber(
     cint_t             &a_number,
     std::tstring_t     *a_name,
@@ -267,7 +267,7 @@ DnsClient::protocolByNumber(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 DnsClient::serviceByName(
     std::ctstring_t    &a_serviceName,
     std::ctstring_t    &a_protocolName,
@@ -324,7 +324,7 @@ DnsClient::serviceByName(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 DnsClient::serviceByPort(
     cshort_t           &a_port,
     std::ctstring_t    &a_protocolName,
@@ -380,7 +380,7 @@ DnsClient::serviceByPort(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 DnsClient::isOnLan(
     cuint_t &a_ip
 )
@@ -392,7 +392,7 @@ DnsClient::isOnLan(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 DnsClient::isBroadcast(
     cuint_t &a_ip
 )

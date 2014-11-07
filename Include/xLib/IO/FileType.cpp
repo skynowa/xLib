@@ -39,7 +39,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 FileType::FileType(
     std::ctstring_t &a_filePath
 ) :
@@ -48,7 +48,7 @@ FileType::FileType(
     xTEST_EQ(a_filePath.empty(), false);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 FileType::filePath() const
 {
     xTEST_EQ(_filePath.empty(), false);
@@ -57,7 +57,7 @@ FileType::filePath() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 FileType::isExists(
     cExType &a_value
 ) const
@@ -70,7 +70,7 @@ FileType::isExists(
     return false;
 }
 //-------------------------------------------------------------------------------------------------
-inline FileType::types_t
+xINLINE FileType::types_t
 FileType::get() const
 {
     xTEST_EQ(filePath().empty(), false);
@@ -78,7 +78,7 @@ FileType::get() const
     return _get_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 FileType::set(
     ctypes_t &a_values
 ) const
@@ -89,7 +89,7 @@ FileType::set(
     _set_impl(a_values);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 FileType::add(
     cExType &a_value
 ) const
@@ -100,7 +100,7 @@ FileType::add(
     modify(static_cast<ExType>( 0 ), a_value);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 FileType::remove(
     cExType &a_value
 ) const
@@ -111,7 +111,7 @@ FileType::remove(
     modify(a_value, static_cast<ExType>( 0 ));
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 FileType::modify(
     cExType &a_valueRemove,
     cExType &a_valueAdd
@@ -134,7 +134,7 @@ FileType::modify(
     set(values);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 FileType::clear() const
 {
     xTEST_EQ(filePath().empty(), false);

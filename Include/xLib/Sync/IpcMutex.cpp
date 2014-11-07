@@ -33,7 +33,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 IpcMutex::IpcMutex() :
 #if   xENV_WIN
     _handle(),
@@ -44,13 +44,13 @@ IpcMutex::IpcMutex() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-inline const IpcMutex::handle_t &
+xINLINE const IpcMutex::handle_t &
 IpcMutex::handle() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 IpcMutex::create(
     std::ctstring_t &a_name
 )
@@ -65,7 +65,7 @@ IpcMutex::create(
     _create_impl(a_name);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 IpcMutex::open(
     std::ctstring_t &a_name
 )
@@ -73,7 +73,7 @@ IpcMutex::open(
     _open_impl(a_name);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 IpcMutex::lock(
     culong_t &a_timeoutMsec
 ) const
@@ -84,7 +84,7 @@ IpcMutex::lock(
     _lock_impl(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 IpcMutex::unlock() const
 {
     ////xTEST_EQ(_handle.isValid(), true);

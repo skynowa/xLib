@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 StackTrace::_get_impl(
     std::vector<std::vec_tstring_t> *a_stack
 ) const
@@ -121,7 +121,7 @@ StackTrace::_get_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 StackTrace::_addr2Line(
     cvoid_t        *a_symbolAddress,
     std::tstring_t *a_filePath,
@@ -135,7 +135,7 @@ StackTrace::_addr2Line(
     *   @<file>                Read options from <file>
     *   -b --target=<bfdname>  Set the binary file format
     *   -e --exe=<executable>  Set the input file name (default is a.out)
-    *   -i --inlines           Unwind inlined functions
+    *   -i --xINLINEs           Unwind xINLINEd functions
     *   -j --section=<name>    Read section-relative offsets instead of addresses
     *   -s --basenames         Strip directory names
     *   -f --functions         Show function names

@@ -35,7 +35,7 @@ xNAMESPACE_BEGIN2(xlib, system)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 Environment::isExists(
     std::ctstring_t &a_varName
 )
@@ -48,7 +48,7 @@ Environment::isExists(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 Environment::isVarValid(
     std::ctstring_t &a_varName
 )
@@ -62,7 +62,7 @@ Environment::isVarValid(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 Environment::isValueValid(
     std::ctstring_t &a_varValue
 )
@@ -75,7 +75,7 @@ Environment::isValueValid(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Environment::var(
     std::ctstring_t &a_varName
 )
@@ -88,7 +88,7 @@ Environment::var(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 Environment::setVar(
     std::ctstring_t &a_varName,
     std::ctstring_t &a_value
@@ -101,7 +101,7 @@ Environment::setVar(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 Environment::deleteVar(
     std::ctstring_t &a_varName
 )
@@ -114,7 +114,7 @@ Environment::deleteVar(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 Environment::values(
     std::vec_tstring_t *a_values
 )
@@ -125,7 +125,7 @@ Environment::values(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Environment::expandStrings(
     std::ctstring_t &a_var
 )

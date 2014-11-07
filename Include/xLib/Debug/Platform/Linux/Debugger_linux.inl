@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Debugger::_isActive_impl() const
 {
     // if ppid != sid, some process spawned our app, probably a debugger

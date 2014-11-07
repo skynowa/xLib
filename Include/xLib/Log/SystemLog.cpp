@@ -37,7 +37,7 @@ xNAMESPACE_BEGIN2(xlib, log)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 SystemLog::SystemLog()
 #if xENV_WIN
     :
@@ -47,7 +47,7 @@ SystemLog::SystemLog()
     _construct_impl( Path( Path::exe() ).fileBaseName() );
 }
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 SystemLog::SystemLog(
     std::ctstring_t &a_logName
 )
@@ -60,7 +60,7 @@ SystemLog::SystemLog(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 SystemLog::~SystemLog()
 {
     write(xT("%s"), _oss.str().c_str());
@@ -69,7 +69,7 @@ SystemLog::~SystemLog()
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline void_t
+xINLINE void_t
 SystemLog::write(
     ctchar_t *a_format, ...
 ) const
@@ -88,7 +88,7 @@ SystemLog::write(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline void_t
+xINLINE void_t
 SystemLog::write(
     cExLevel &a_level,
     ctchar_t *a_format, ...

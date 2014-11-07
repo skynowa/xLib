@@ -18,7 +18,7 @@
 xNAMESPACE_BEGIN2(xlib, net)
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 MimeHeader::MimeHeader() :
     _attrDelimiter(xT(":")),
     _endOfHeader  (xT("\r\n\r\n")),
@@ -26,7 +26,7 @@ MimeHeader::MimeHeader() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MimeHeader::parse(
     std::ctstring_t &a_rawHeader
 )
@@ -115,7 +115,7 @@ MimeHeader::parse(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 MimeHeader::field(
     std::ctstring_t &a_name
 )
@@ -136,7 +136,7 @@ MimeHeader::field(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline size_t
+xINLINE size_t
 MimeHeader::count()
 {
     return _header.size();
@@ -189,7 +189,7 @@ MimeHeader::loadFromFile(
 
 #endif
 
-inline void_t
+xINLINE void_t
 MimeHeader::loadFromFile(
     std::ctstring_t &a_rawMessageFilePath
 )
@@ -225,7 +225,7 @@ MimeHeader::loadFromFile(
     parse(sRawHeader);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MimeHeader::saveToFile(
     std::ctstring_t &a_filePath
 )
@@ -237,7 +237,7 @@ MimeHeader::saveToFile(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 MimeHeader::generateMessageID()
 {
     std::tstring_t sRv;

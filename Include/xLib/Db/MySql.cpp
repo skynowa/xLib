@@ -29,7 +29,7 @@ xNAMESPACE_BEGIN2(xlib, db)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 MySQLConnection::MySQLConnection() :
     _connection(xPTR_NULL)
 {
@@ -42,7 +42,7 @@ MySQLConnection::MySQLConnection() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 MySQLConnection::~MySQLConnection()
 {
     close();
@@ -56,7 +56,7 @@ MySQLConnection::get() const
     return _connection;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 MySQLConnection::isValid() const
 {
     // n/a
@@ -64,7 +64,7 @@ MySQLConnection::isValid() const
     return (_connection != xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MySQLConnection::options(
     const mysql_option &a_option,
     cvoid_t            *a_arg
@@ -83,7 +83,7 @@ MySQLConnection::options(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 MySQLConnection::isExists(
     std::ctstring_t &a_host,
     std::ctstring_t &a_user,
@@ -127,7 +127,7 @@ MySQLConnection::isExists(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MySQLConnection::connect(
     std::ctstring_t &a_host,
     std::ctstring_t &a_user,
@@ -157,7 +157,7 @@ MySQLConnection::connect(
     _connection = connection;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MySQLConnection::query(
     ctchar_t *a_sqlFormat, ...
 ) const
@@ -179,7 +179,7 @@ MySQLConnection::query(
     xTEST_MSG_EQ(0, iRv, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
-inline uint_t
+xINLINE uint_t
 MySQLConnection::fieldCount() const
 {
     xTEST_EQ(isValid(), true);
@@ -190,7 +190,7 @@ MySQLConnection::fieldCount() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MySQLConnection::close()
 {
     // _connection - n/a
@@ -210,7 +210,7 @@ MySQLConnection::close()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline uint_t
+xINLINE uint_t
 MySQLConnection::lastError() const
 {
     xTEST_EQ(isValid(), true);
@@ -221,7 +221,7 @@ MySQLConnection::lastError() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 MySQLConnection::lastErrorStr() const
 {
     xTEST_EQ(isValid(), true);
@@ -250,7 +250,7 @@ MySQLConnection::lastErrorStr() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 MySQLRecordset::MySQLRecordset(
     const MySQLConnection &a_connection, ///< connection
     cbool_t                 &a_isUseResult  ///< use result or store result
@@ -275,7 +275,7 @@ MySQLRecordset::MySQLRecordset(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 MySQLRecordset::~MySQLRecordset()
 {
     // _result - n/a
@@ -287,14 +287,14 @@ MySQLRecordset::~MySQLRecordset()
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline MYSQL_RES *
+xINLINE MYSQL_RES *
 MySQLRecordset::get() const {
     xTEST_EQ(isValid(), true);
 
     return _result;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 MySQLRecordset::isValid() const
 {
     // n/a
@@ -313,7 +313,7 @@ MySQLRecordset::fieldsNum() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline my_ulonglong
+xINLINE my_ulonglong
 MySQLRecordset::rowsNum() const
 {
     xTEST_EQ(isValid(), true);
@@ -324,7 +324,7 @@ MySQLRecordset::rowsNum() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MySQLRecordset::fetchField(
     MYSQL_FIELD *a_field
 ) const
@@ -336,7 +336,7 @@ MySQLRecordset::fetchField(
     xTEST_MSG_PTR(a_field, _connection->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MySQLRecordset::fetchFieldDirect(
     cuint_t     &a_fieldNumber,
     MYSQL_FIELD *a_field
@@ -350,7 +350,7 @@ MySQLRecordset::fetchFieldDirect(
     xTEST_MSG_PTR(a_field, _connection->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MySQLRecordset::fetchFields(
     MYSQL_FIELD *a_field
 ) const
@@ -362,7 +362,7 @@ MySQLRecordset::fetchFields(
     xTEST_MSG_PTR(a_field, _connection->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MySQLRecordset::fetchRow(
     std::vec_tstring_t *a_row
 ) const
@@ -418,7 +418,7 @@ MySQLRecordset::fetchRow(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MySQLRecordset::_fetchRow(
     MYSQL_ROW *a_row
 ) const
@@ -431,7 +431,7 @@ MySQLRecordset::_fetchRow(
     xTEST_PTR(*a_row);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MySQLRecordset::_fetchLengths(
     ulong_t **a_fieldLengths
 ) const

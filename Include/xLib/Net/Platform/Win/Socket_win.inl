@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Socket::_close_impl()
 {
     xCHECK_DO(!isValid(), return);
@@ -36,7 +36,7 @@ Socket::_close_impl()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline ssize_t
+xINLINE ssize_t
 Socket::_send_impl(
     ctchar_t     *a_buff,
     std::csize_t &a_buffSize,
@@ -50,7 +50,7 @@ Socket::_send_impl(
     return iRv / sizeof(tchar_t);
 }
 //-------------------------------------------------------------------------------------------------
-inline ssize_t
+xINLINE ssize_t
 Socket::_receive_impl(
     tchar_t      *a_buff,
     std::csize_t &a_buffSize,
@@ -73,7 +73,7 @@ Socket::_receive_impl(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Socket::_peerName_impl(
     std::tstring_t *a_peerAddr,
     ushort_t       *a_peerPort
@@ -99,7 +99,7 @@ Socket::_peerName_impl(
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Socket::_socketName_impl(
     std::tstring_t *a_socketAddr,
     ushort_t       *a_socketPort
@@ -133,7 +133,7 @@ Socket::_socketName_impl(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline int_t
+xINLINE int_t
 Socket::_nativeError_impl()
 {
     return ::WSAGetLastError();

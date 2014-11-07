@@ -39,7 +39,7 @@ xNAMESPACE_BEGIN2(xlib, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Socket::Socket() :
     _handle(xSOCKET_HANDLE_INVALID),
     _family(- 1),
@@ -48,7 +48,7 @@ Socket::Socket() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Socket::~Socket()
 {
     close();
@@ -62,7 +62,7 @@ Socket::~Socket()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Socket::create(
     const ExAddressFamily &a_family,
     const ExType          &a_type,
@@ -77,7 +77,7 @@ Socket::create(
     _family = a_family;
 }
 //-------------------------------------------------------------------------------------------------
-inline socket_t
+xINLINE socket_t
 Socket::handle() const
 {
     xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
@@ -85,7 +85,7 @@ Socket::handle() const
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Socket::isValid() const
 {
     // n/a
@@ -93,7 +93,7 @@ Socket::isValid() const
     return (_handle >= 0);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Socket::assign(
     csocket_t &a_handle
 )
@@ -104,7 +104,7 @@ Socket::assign(
     _handle = a_handle;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Socket::close()
 {
     xCHECK_DO(!isValid(), return);
@@ -122,7 +122,7 @@ Socket::close()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline ssize_t
+xINLINE ssize_t
 Socket::send(
     ctchar_t     *a_buff,
     std::csize_t &a_buffSize,
@@ -138,7 +138,7 @@ Socket::send(
     return _send_impl(a_buff, a_buffSize, a_flags);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Socket::sendAll(
     std::ctstring_t &a_buff,
     cint_t          &a_flags
@@ -178,7 +178,7 @@ Socket::sendAll(
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline ssize_t
+xINLINE ssize_t
 Socket::receive(
     tchar_t      *a_buff,
     std::csize_t &a_buffSize,
@@ -194,7 +194,7 @@ Socket::receive(
     return _receive_impl(a_buff, a_buffSize, a_flags);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Socket::recvAll(
     cint_t &a_flags
 )
@@ -223,7 +223,7 @@ Socket::recvAll(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Socket::recvAll(
     cint_t          &a_flags,
     std::ctstring_t &a_delimiter
@@ -249,7 +249,7 @@ Socket::recvAll(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline int_t
+xINLINE int_t
 Socket::sendBytes(
     char    *a_buff,
     ssize_t &a_messageLength
@@ -293,7 +293,7 @@ Socket::sendBytes(
     return 0;
 }
 //-------------------------------------------------------------------------------------------------
-inline int_t
+xINLINE int_t
 Socket::receiveBytes(
     char    *a_buff,
     ssize_t &a_stillToReceive
@@ -343,7 +343,7 @@ Socket::receiveBytes(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Socket::peerName(
     std::tstring_t *a_peerAddr,
     ushort_t       *a_peerPort
@@ -355,7 +355,7 @@ Socket::peerName(
     _peerName_impl(a_peerAddr, a_peerPort);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Socket::socketName(
     std::tstring_t *a_socketAddr,
     ushort_t       *a_socketPort
@@ -376,7 +376,7 @@ Socket::socketName(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline int_t
+xINLINE int_t
 Socket::select(
     int_t    a_nfds,
     fd_set  *a_readfds,
@@ -397,7 +397,7 @@ Socket::select(
      return iRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline int_t
+xINLINE int_t
 Socket::nativeError()
 {
     // n/a

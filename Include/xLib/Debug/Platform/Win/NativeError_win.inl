@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 NativeError::_isSuccess_impl()
 {
     bool_t bRv = (::GetLastError() == _nativeCodeSuccess());
@@ -22,7 +22,7 @@ NativeError::_isSuccess_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline ulong_t
+xINLINE ulong_t
 NativeError::_get_impl()
 {
     culong_t code = ::GetLastError();
@@ -31,7 +31,7 @@ NativeError::_get_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 NativeError::_set_impl(
     culong_t &a_code
 )
@@ -40,7 +40,7 @@ NativeError::_set_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 NativeError::_format_impl(
     culong_t &a_code
 )
@@ -79,7 +79,7 @@ NativeError::_format_impl(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline ulong_t
+xINLINE ulong_t
 NativeError::_nativeCodeSuccess_impl()
 {
     return ERROR_SUCCESS;

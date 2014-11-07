@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Dir::_isRoot_impl() const
 {
     xCHECK_RET(dirPath() != Const::slash(), false);
@@ -20,7 +20,7 @@ Dir::_isRoot_impl() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Dir::_create_impl() const
 {
     const mode_t modeDefault = S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH;
@@ -29,14 +29,14 @@ Dir::_create_impl() const
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Dir::_remove_impl() const
 {
     int_t iRv = ::rmdir(dirPath().c_str());
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Dir::_tryRemove_impl() const
 {
     int_t iRv = ::rmdir(dirPath().c_str());
@@ -53,7 +53,7 @@ Dir::_tryRemove_impl() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Dir::_current_impl()
 {
     std::tstring_t sRv;
@@ -68,7 +68,7 @@ Dir::_current_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Dir::_setCurrent_impl(
     std::ctstring_t &a_dirPath
 )
@@ -80,7 +80,7 @@ Dir::_setCurrent_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Dir::_temp_impl()
 {
     std::tstring_t sRv;

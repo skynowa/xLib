@@ -34,7 +34,7 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Console::Console()
 #if xENV_WIN
     :
@@ -48,13 +48,13 @@ Console::Console()
     _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Console::~Console()
 {
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Console::setAttributes(
     const ExForeground &a_foreground,
     const ExBackground &a_background,
@@ -71,7 +71,7 @@ Console::setAttributes(
     return _setAttributes_impl(a_foreground, a_background, a_attributes);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Console::setAttributesDef() const
 {
 #if xENV_WIN
@@ -84,7 +84,7 @@ Console::setAttributesDef() const
     return _setAttributesDef_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Console::read() const
 {
 #if xENV_WIN
@@ -96,7 +96,7 @@ Console::read() const
     return _read_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::write(
     std::ctstring_t &a_str
 ) const
@@ -112,7 +112,7 @@ Console::write(
     std::tcout.flush();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::writeLine(
     std::ctstring_t &a_str /* = xT("") */
 ) const
@@ -126,7 +126,7 @@ Console::writeLine(
     write(a_str + Const::nl());
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::writeErrLine(
     std::ctstring_t &a_str
 ) const
@@ -142,7 +142,7 @@ Console::writeErrLine(
     pause(xTIMEOUT_INFINITE);
 }
 //-------------------------------------------------------------------------------------------------
-inline Console::ExModalResult
+xINLINE Console::ExModalResult
 Console::msgBox(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
@@ -198,7 +198,7 @@ Console::msgBox(
     return mrRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::prompt(
     std::ctstring_t &a_prompt,
     cbool_t         &a_isVisible,
@@ -240,7 +240,7 @@ Console::prompt(
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::pause(
     culong_t &a_timeoutMsec
 ) const
@@ -269,7 +269,7 @@ Console::pause(
 	}
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::clear() const
 {
 #if xENV_WIN
@@ -281,7 +281,7 @@ Console::clear() const
     _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::setTitle(
     std::ctstring_t &a_title
 ) const

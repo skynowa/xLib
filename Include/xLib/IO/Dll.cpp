@@ -38,20 +38,20 @@ xNAMESPACE_BEGIN2(xlib, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Dll::Dll() :
     _handle(xPTR_NULL)
 {
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 Dll::~Dll()
 {
     _destruct();
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Dll::isLoaded() const
 {
     xTESTS_NA;
@@ -59,7 +59,7 @@ Dll::isLoaded() const
     return (_handle != xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Dll::load(
     std::ctstring_t &a_dllPath
 )
@@ -72,7 +72,7 @@ Dll::load(
     _load_impl(a_dllPath);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Dll::isProcExists(
     std::ctstring_t &a_procName
 ) const
@@ -80,7 +80,7 @@ Dll::isProcExists(
     return _isProcExists_impl(a_procName);
 }
 //-------------------------------------------------------------------------------------------------
-inline Dll::proc_address_t
+xINLINE Dll::proc_address_t
 Dll::procAddress(
     std::ctstring_t &a_procName
 ) const
@@ -96,7 +96,7 @@ Dll::procAddress(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Dll::_destruct()
 {
     xTESTS_NA;

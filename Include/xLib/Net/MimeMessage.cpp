@@ -23,13 +23,13 @@
 xNAMESPACE_BEGIN2(xlib, net)
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 MimeMessage::MimeMessage() :
     _rawMessage()
 {
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MimeMessage::parse(
     std::ctstring_t &a_rawMessage,
     MimeHeader    &a_header,
@@ -43,7 +43,7 @@ MimeMessage::parse(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MimeMessage::loadFromRawFile(
     std::ctstring_t &a_filePath ///< raw msg
 )
@@ -53,7 +53,7 @@ MimeMessage::loadFromRawFile(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 MimeMessage::saveToRawFile(
     std::ctstring_t &a_filePath ///< raw msg
 )

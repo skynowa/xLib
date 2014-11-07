@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, system)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 Environment::_isExists_impl(
     std::ctstring_t &a_varName
 )
@@ -31,7 +31,7 @@ Environment::_isExists_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Environment::_var_impl(
     std::ctstring_t &a_varName
 )
@@ -56,7 +56,7 @@ Environment::_var_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 Environment::_setVar_impl(
     std::ctstring_t &a_varName,
     std::ctstring_t &a_value
@@ -67,7 +67,7 @@ Environment::_setVar_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 Environment::_deleteVar_impl(
     std::ctstring_t &a_varName
 )
@@ -77,7 +77,7 @@ Environment::_deleteVar_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 Environment::_values_impl(
     std::vec_tstring_t *a_values
 )
@@ -105,7 +105,7 @@ Environment::_values_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 Environment::_expandStrings_impl(
     std::ctstring_t &a_var
 )

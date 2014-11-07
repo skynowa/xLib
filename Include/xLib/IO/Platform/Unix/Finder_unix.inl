@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Finder::_entryName_impl() const
 {
     std::ctstring_t sRv(_entry.data.d_name);
@@ -20,7 +20,7 @@ Finder::_entryName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline FileType::types_t
+xINLINE FileType::types_t
 Finder::_fileTypes_impl() const
 {
     FileType::types_t ftRv = FileType::faInvalid;
@@ -57,7 +57,7 @@ Finder::_fileTypes_impl() const
     return ftRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Finder::_isValid_impl() const
 {
     xCHECK_RET(_entry.handle == xPTR_NULL, false);
@@ -66,7 +66,7 @@ Finder::_isValid_impl() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Finder::_moveNext_impl()
 {
     int_t iRv = 0;
@@ -89,7 +89,7 @@ Finder::_moveNext_impl()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Finder::_close_impl()
 {
     // close handle
@@ -109,7 +109,7 @@ Finder::_close_impl()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Finder::_moveFirst_impl()
 {
     _entry.handle = ::opendir(rootDirPath().c_str());

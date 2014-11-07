@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline SystemInfo::ExOsType
+xINLINE SystemInfo::ExOsType
 SystemInfo::_os_impl()
 {
     ExOsType otRv = otUnknown;
@@ -58,7 +58,7 @@ SystemInfo::_os_impl()
     return otRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_formatOs_impl()
 {
     std::tstring_t sRv;
@@ -115,7 +115,7 @@ SystemInfo::_formatOs_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline SystemInfo::ExOsArch
+xINLINE SystemInfo::ExOsArch
 SystemInfo::_osArch_impl()
 {
     ExOsArch oaRv = oaUnknown;
@@ -145,7 +145,7 @@ SystemInfo::_osArch_impl()
     return oaRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_desktopName_impl() const
 {
     std::tstring_t  sRv;
@@ -170,7 +170,7 @@ SystemInfo::_desktopName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_hostName_impl() const
 {
     std::tstring_t sRv;
@@ -186,7 +186,7 @@ SystemInfo::_hostName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 SystemInfo::_isUserAdmin_impl() const
 {
     bool_t                   isAdmin     = false;
@@ -215,7 +215,7 @@ SystemInfo::_isUserAdmin_impl() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_loginUserName_impl() const
 {
     std::tstring_t sRv;
@@ -256,7 +256,7 @@ SystemInfo::_loginUserName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_userName_impl() const
 {
     std::tstring_t sRv;
@@ -272,7 +272,7 @@ SystemInfo::_userName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_userHomeDir_impl() const
 {
     std::tstring_t sRv;
@@ -287,7 +287,7 @@ SystemInfo::_userHomeDir_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_userShellPath_impl() const
 {
     std::tstring_t sRv;
@@ -309,7 +309,7 @@ SystemInfo::_userShellPath_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_numOfCpus_impl() const
 {
     SYSTEM_INFO sysInfo = {{0}};
@@ -321,7 +321,7 @@ SystemInfo::_numOfCpus_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_currentCpuNum_impl() const
 {
     typedef DWORD (WINAPI *func_t)(void_t);
@@ -342,7 +342,7 @@ SystemInfo::_currentCpuNum_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_cpuVendor_impl() const
 {
     std::tstring_t value;
@@ -367,7 +367,7 @@ SystemInfo::_cpuVendor_impl() const
     return value;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_cpuModel_impl() const
 {
     std::tstring_t sRv;
@@ -414,7 +414,7 @@ SystemInfo::_cpuModel_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_cpuSpeed_impl() const
 {
     DWORD cpuSpeedMHz = 0UL;
@@ -437,7 +437,7 @@ SystemInfo::_cpuSpeed_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_cpuUsage_impl() const
 {
     double                dRv            = 0.0;
@@ -480,7 +480,7 @@ SystemInfo::_cpuUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulonglong_t
+xINLINE ulonglong_t
 SystemInfo::_ramTotal_impl() const
 {
     MEMORYSTATUSEX status = {0};
@@ -494,7 +494,7 @@ SystemInfo::_ramTotal_impl() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulonglong_t
+xINLINE ulonglong_t
 SystemInfo::_ramAvailable_impl() const
 {
     MEMORYSTATUSEX status = {0};
@@ -508,7 +508,7 @@ SystemInfo::_ramAvailable_impl() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_ramUsage_impl() const
 {
     MEMORYSTATUSEX status = {0};
@@ -522,7 +522,7 @@ SystemInfo::_ramUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_pageSize_impl() const
 {
     SYSTEM_INFO sysInfo = {{0}};

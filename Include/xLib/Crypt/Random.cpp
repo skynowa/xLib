@@ -40,14 +40,14 @@ xNAMESPACE_BEGIN2(xlib, crypt)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 IxSeedPolicy::IxSeedPolicy() :
     _seed(0U)
 {
     _seed = _seedTimeBased();
 }
 //-------------------------------------------------------------------------------------------------
-inline uint_t
+xINLINE uint_t
 IxSeedPolicy::_seedTimeBased() const
 {
     timeval tv = {0, 0};
@@ -58,7 +58,7 @@ IxSeedPolicy::_seedTimeBased() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline long_t
+xINLINE long_t
 IxSeedPolicy::valueMax()
 {
    /**
@@ -80,7 +80,7 @@ IxSeedPolicy::valueMax()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 StdSeedPolicy::StdSeedPolicy() :
     IxSeedPolicy()
 {
@@ -88,13 +88,13 @@ StdSeedPolicy::StdSeedPolicy() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 StdSeedPolicy::~StdSeedPolicy()
 {
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline long_t
+xINLINE long_t
 StdSeedPolicy::next()
 {
     return _next_impl();
@@ -108,7 +108,7 @@ StdSeedPolicy::next()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 NativeSeedPolicy::NativeSeedPolicy() :
     IxSeedPolicy()
 {
@@ -116,14 +116,14 @@ NativeSeedPolicy::NativeSeedPolicy() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 NativeSeedPolicy::~NativeSeedPolicy()
 {
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline long_t
+xINLINE long_t
 NativeSeedPolicy::next()
 {
     return _next_impl();

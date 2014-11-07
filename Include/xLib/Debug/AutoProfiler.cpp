@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 AutoProfiler::AutoProfiler(
     std::ctstring_t &a_filePath,
     ctchar_t        *a_comment, ...
@@ -39,7 +39,7 @@ AutoProfiler::AutoProfiler(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 AutoProfiler::~AutoProfiler()
 {
     size_t uiRv = _profiler.stop(xT("%s"), _comment.c_str());

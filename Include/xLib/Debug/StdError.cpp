@@ -39,7 +39,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 StdError::isSuccess()
 {
     bool_t bRv = (errno == _stdCodeSuccess());
@@ -48,7 +48,7 @@ StdError::isSuccess()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline int_t
+xINLINE int_t
 StdError::get()
 {
     int_t code = errno;
@@ -59,7 +59,7 @@ StdError::get()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 StdError::set(
     cint_t &a_code
 )
@@ -68,21 +68,21 @@ StdError::set(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 StdError::reset()
 {
     set( _stdCodeSuccess() );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 StdError::format()
 {
     return format(get());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 StdError::format(
     cint_t &a_code
 )
@@ -99,7 +99,7 @@ StdError::format(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline int_t
+xINLINE int_t
 StdError::_stdCodeSuccess()
 {
     return 0;

@@ -21,7 +21,7 @@
 xNAMESPACE_BEGIN2(xlib, net)
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 TcpServer::bind(
     cushort_t &a_port
 ) const
@@ -47,7 +47,7 @@ TcpServer::bind(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 TcpServer::listen(
     cint_t &a_backlog /* = xSOCKET_CONNECTIONS_MAX */
 ) const
@@ -58,7 +58,7 @@ TcpServer::listen(
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 TcpServer::accept(
     TcpServer    *a_serverSocket,
     std::tstring_t *a_fromIp

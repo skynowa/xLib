@@ -38,7 +38,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Locale::current() const
 {
     // n/a
@@ -46,7 +46,7 @@ Locale::current() const
     return _current_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Locale::setCurrent(
     std::ctstring_t &a_locale
 ) const
@@ -59,7 +59,7 @@ Locale::setCurrent(
     xTEST_PTR(pcszRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Locale::setDefault() const
 {
     setCurrent( current() );

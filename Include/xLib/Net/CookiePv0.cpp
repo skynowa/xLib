@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN2(xlib, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 CookiePv0::CookiePv0() :
     _name    (),
     _value   (),
@@ -33,7 +33,7 @@ CookiePv0::CookiePv0() :
     init(std::tstring_t());
 }
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 CookiePv0::CookiePv0(
     std::ctstring_t &a_rawCookie
 ) :
@@ -48,13 +48,13 @@ CookiePv0::CookiePv0(
     init(a_rawCookie);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 CookiePv0::name() const
 {
     return _name;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 CookiePv0::setName(
     std::ctstring_t &a_name
 )
@@ -62,13 +62,13 @@ CookiePv0::setName(
     _name = a_name;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 CookiePv0::value() const
 {
     return _value;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 CookiePv0::setValue(
     std::ctstring_t &a_value
 )
@@ -76,13 +76,13 @@ CookiePv0::setValue(
     _value = a_value;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 CookiePv0::domain() const
 {
     return _domain;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 CookiePv0::setDomain(
     std::ctstring_t &a_domain
 )
@@ -90,13 +90,13 @@ CookiePv0::setDomain(
     _domain = a_domain;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 CookiePv0::path() const
 {
     return _path;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 CookiePv0::setPath(
     std::ctstring_t &a_path
 )
@@ -104,13 +104,13 @@ CookiePv0::setPath(
     _path = a_path;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 CookiePv0::expires() const
 {
     return _expires;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 CookiePv0::setExpires(
     std::ctstring_t &a_expires
 )
@@ -118,13 +118,13 @@ CookiePv0::setExpires(
     _expires = a_expires;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 CookiePv0::secure() const
 {
     return _isSecure;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 CookiePv0::setSecure(
     cbool_t &a_flag
 )
@@ -132,13 +132,13 @@ CookiePv0::setSecure(
     _isSecure = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 CookiePv0::httpOnly() const
 {
     return _isHttpOnly;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 CookiePv0::setHttpOnly(
     cbool_t &a_flag
 )
@@ -146,7 +146,7 @@ CookiePv0::setHttpOnly(
     _isHttpOnly = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 CookiePv0::toString() const
 {
     std::tstring_t sRv;
@@ -188,7 +188,7 @@ CookiePv0::toString() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 CookiePv0::dump() const
 {
     std::tstring_t sRv;
@@ -214,7 +214,7 @@ CookiePv0::dump() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 CookiePv0::clear()
 {
     _name.clear();
@@ -234,7 +234,7 @@ CookiePv0::clear()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 CookiePv0::init(
     std::ctstring_t &a_rawCookie
 )

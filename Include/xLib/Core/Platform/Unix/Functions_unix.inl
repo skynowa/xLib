@@ -28,7 +28,7 @@ typedef struct
 #define CPU_ZERO(cpusetp) \
     std::memset((cpusetp), 0, sizeof(cpu_set_t))
 
-inline int
+xINLINE int
 sched_setaffinity(
     pid_t      a_pid,
     size_t     a_cpusetsize,
@@ -42,7 +42,7 @@ sched_setaffinity(
 //-------------------------------------------------------------------------------------------------
 #if !defined(xHAVE_GETSID)
 
-inline pid_t
+xINLINE pid_t
 getsid(
     pid_t a_pid
 ) /* xWARN_UNUSED_RV */
@@ -54,7 +54,7 @@ getsid(
 //-------------------------------------------------------------------------------------------------
 #if !defined(xHAVE_SETMNTENT)
 
-inline FILE *
+xINLINE FILE *
 setmntent(
     const char *a_fileName,
     const char *a_type
@@ -67,7 +67,7 @@ setmntent(
 //-------------------------------------------------------------------------------------------------
 #if !defined(xHAVE_ENDMNTENT)
 
-inline int
+xINLINE int
 endmntent(FILE *a_file)
 {
     return std::fclose(a_file);

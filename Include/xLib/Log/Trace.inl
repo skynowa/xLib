@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, log)
 
 //-------------------------------------------------------------------------------------------------
 template<class T>
-inline Trace &
+xINLINE Trace &
 Trace::operator << (const T &valueT)
 {
     _oss << valueT;

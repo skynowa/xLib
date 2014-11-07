@@ -46,7 +46,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::string
+xINLINE std::string
 String::castA(
     std::cwstring_t &a_str  ///< source string
 )
@@ -61,7 +61,7 @@ String::castA(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::wstring
+xINLINE std::wstring
 String::castW(
     std::cstring_t &a_str   ///< source string
 )
@@ -84,7 +84,7 @@ String::castW(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::string
+xINLINE std::string
 String::castA(
     std::cwstring_t &a_str,     ///< source string
     cuint_t         &a_codePage ///< code page
@@ -97,7 +97,7 @@ String::castA(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::wstring
+xINLINE std::wstring
 String::castW(
     std::cstring_t &a_str,      ///< source string
     cuint_t        &a_codePage  ///< code page
@@ -110,7 +110,7 @@ String::castW(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::string
+xINLINE std::string
 String::castA(
     std::cwstring_t   &a_str,   ///< source string
     const std::locale &a_locale ///< locale
@@ -147,7 +147,7 @@ String::castA(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::wstring
+xINLINE std::wstring
 String::castW(
     std::cstring_t    &a_str,   ///< source string
     const std::locale &a_locale ///< locale
@@ -174,7 +174,7 @@ String::castW(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::string
+xINLINE std::string
 String::castCodePage(
     std::cstring_t &a_str,              ///< source string
     cuint_t        &a_codePageSource,   ///< source code page
@@ -189,7 +189,7 @@ String::castCodePage(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::string
+xINLINE std::string
 String::castToOem(
     std::ctstring_t &a_str   ///< source string
 )
@@ -200,7 +200,7 @@ String::castToOem(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::castFromOem(
     std::cstring_t &a_str   ///< source string
 )
@@ -211,7 +211,7 @@ String::castFromOem(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::castBool(
     cbool_t &a_value   ///< source string
 )
@@ -222,7 +222,7 @@ String::castBool(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 String::castBool(
     std::ctstring_t &a_str   ///< source string
 )
@@ -236,7 +236,7 @@ String::castBool(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::toLowerCase(
     std::ctstring_t &a_str   ///< source string
 )
@@ -247,7 +247,7 @@ String::toLowerCase(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::toUpperCase(
     std::ctstring_t &a_str   ///< source string
 )
@@ -258,7 +258,7 @@ String::toUpperCase(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::toLowerCase(
     std::ctstring_t &a_str,     ///< source string
     std::csize_t    &a_length   ///< string size
@@ -276,7 +276,7 @@ String::toLowerCase(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::toUpperCase(
     std::ctstring_t &a_str,     ///< source string
     std::csize_t    &a_length   ///< string size
@@ -302,7 +302,7 @@ String::toUpperCase(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::trimLeftChars(
     std::ctstring_t &a_str,     ///< source string
     std::ctstring_t &a_chars    ///< chars for trim
@@ -317,7 +317,7 @@ String::trimLeftChars(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::trimRightChars(
     std::ctstring_t &a_str,    ///< source string
     std::ctstring_t &a_chars   ///< chars for trim
@@ -332,7 +332,7 @@ String::trimRightChars(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::trimChars(
     std::ctstring_t &a_str,    ///< source string
     std::ctstring_t &a_chars   ///< chars for trim
@@ -350,7 +350,7 @@ String::trimChars(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::trimSpace(
     std::ctstring_t &a_str    ///< source string
 )
@@ -361,7 +361,7 @@ String::trimSpace(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::removeEol(
     std::ctstring_t &a_str    ///< source string
 )
@@ -372,7 +372,7 @@ String::removeEol(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::replaceAll(
     std::ctstring_t &a_str,     ///< source string
     std::ctstring_t &a_strOld,  ///< old string
@@ -403,7 +403,7 @@ String::replaceAll(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::replaceAll(
     std::ctstring_t &a_str,     ///< source string
     ctchar_t        &a_charOld, ///< old char
@@ -418,7 +418,7 @@ String::replaceAll(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::removeAll(
     std::ctstring_t &a_str,         ///< source string
     std::ctstring_t &a_removeStr    ///< string for remove
@@ -431,7 +431,7 @@ String::removeAll(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 String::split(
     std::ctstring_t    &a_str,  ///< source string
     std::ctstring_t    &a_sep,  ///< separator
@@ -467,7 +467,7 @@ String::split(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::join(
     std::cvec_tstring_t &a_vec, ///< source string vector
     std::ctstring_t     &a_sep  ///< separator
@@ -488,7 +488,7 @@ String::join(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::join(
     std::cvec_tstring_t &a_vec, ///< source string vector
     ctchar_t            &a_sep  ///< separator
@@ -501,7 +501,7 @@ String::join(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::string
+xINLINE std::string
 String::cut(
     const std::string &a_str,      ///< source string
     const std::string &a_sepLeft, ///< left separator
@@ -525,7 +525,7 @@ String::cut(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::rcut(
     std::ctstring_t &a_str,     ///< source string
     std::ctstring_t &a_sepLeft, ///< left separator
@@ -549,7 +549,7 @@ String::rcut(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::cut(
     std::ctstring_t &a_str,                                 ///< source string
     std::csize_t    &a_posBegin,                            ///< begin position
@@ -575,7 +575,7 @@ String::cut(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::format(
     ctchar_t *a_format, ...    ///< string format
 )
@@ -597,7 +597,7 @@ String::format(
 /* static */
 #if 1
 
-inline std::tstring_t
+xINLINE std::tstring_t
 String::formatV(
     ctchar_t *a_format,    ///< string format
     va_list   a_args       ///< arguments
@@ -632,7 +632,7 @@ String::formatV(
 
 #else
 
-inline std::tstring_t
+xINLINE std::tstring_t
 String::formatV(
     LPCTSTR a_format,
     va_list a_args
@@ -681,7 +681,7 @@ String::formatV(
 #endif
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::minimize(
     std::ctstring_t &a_str,         ///< source string
     std::csize_t    &a_maxLength    ///< string maximum size
@@ -717,7 +717,7 @@ String::minimize(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::formatBytes(
     culonglong_t &a_bytes    ///< bytes
 )
@@ -764,7 +764,7 @@ String::formatBytes(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::formatPercentage(
     culonglong_t &a_maxValue,       ///< maximum value
     culonglong_t &a_currentValue    ///< current value
@@ -792,7 +792,7 @@ String::formatPercentage(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t *
+xINLINE void_t *
 String::memoryZeroSecure(
     void_t       *a_buff,       ///< buffer
     std::csize_t &a_buffSize    ///< buffer size (bytes)
@@ -822,7 +822,7 @@ String::memoryZeroSecure(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 String::isRepeated(
     std::ctstring_t &a_str    ///< source string
 )
@@ -845,7 +845,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::size_t
+xINLINE std::size_t
 StringCI::find(
     std::ctstring_t   &a_str,                           ///< source string
     std::ctstring_t   &a_target,                        ///< target string
@@ -868,7 +868,7 @@ StringCI::find(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 StringCI::compare(
     std::ctstring_t   &a_str1,                          ///< source string
     std::ctstring_t   &a_str2,                          ///< target string

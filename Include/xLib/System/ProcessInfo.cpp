@@ -38,13 +38,13 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 ProcessInfo::ProcessInfo() :
     _id(0)
 {
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 ProcessInfo::setProcessId(
     const Process::id_t &a_id
 )
@@ -52,38 +52,38 @@ ProcessInfo::setProcessId(
     _id = a_id;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 ProcessInfo::cpuUsage() const
 {
     return _cpuUsage_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 ProcessInfo::ramUsage() const
 {
     return _ramUsage_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 ProcessInfo::ioBytes() const
 {
     return _ioBytes_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 ProcessInfo::exeName() const
 {
     return _exeName_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 ProcessInfo::parentId() const
 {
     return _parentId_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 ProcessInfo::commandLine(
     std::vec_tstring_t *a_args
 ) const
@@ -94,7 +94,7 @@ ProcessInfo::commandLine(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline long_t
+xINLINE long_t
 ProcessInfo::commandLineArgsMax()
 {
     return _commandLineArgsMax_impl();

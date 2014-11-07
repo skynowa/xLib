@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, log)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SystemLog::_construct_impl(
     std::ctstring_t &a_logName
 )
@@ -20,14 +20,14 @@ SystemLog::_construct_impl(
     (void_t)::openlog(a_logName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SystemLog::_destruct_impl()
 {
     (void_t)::closelog();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline void_t
+xINLINE void_t
 SystemLog::_write_impl(
     cExLevel        &a_level,
     std::ctstring_t &a_msg

@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline SystemInfo::ExOsType
+xINLINE SystemInfo::ExOsType
 SystemInfo::_os_impl()
 {
     ExOsType otRv = otUnknown;
@@ -40,7 +40,7 @@ SystemInfo::_os_impl()
     return otRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_formatOs_impl()
 {
     std::tstring_t sRv;
@@ -56,7 +56,7 @@ SystemInfo::_formatOs_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline SystemInfo::ExOsArch
+xINLINE SystemInfo::ExOsArch
 SystemInfo::_osArch_impl()
 {
     ExOsArch oaRv = oaUnknown;
@@ -106,7 +106,7 @@ SystemInfo::_osArch_impl()
     return oaRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_desktopName_impl() const
 {
     std::tstring_t sRv;
@@ -117,7 +117,7 @@ SystemInfo::_desktopName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_hostName_impl() const
 {
     std::tstring_t sRv;
@@ -132,7 +132,7 @@ SystemInfo::_hostName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 SystemInfo::_isUserAdmin_impl() const
 {
     const uid_t rootId = 0;
@@ -149,7 +149,7 @@ SystemInfo::_isUserAdmin_impl() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_loginUserName_impl() const
 {
     std::tstring_t sRv;
@@ -198,7 +198,7 @@ SystemInfo::_loginUserName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_userName_impl() const
 {
     std::tstring_t sRv;
@@ -213,7 +213,7 @@ SystemInfo::_userName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_userHomeDir_impl() const
 {
     std::tstring_t sRv;
@@ -246,7 +246,7 @@ SystemInfo::_userHomeDir_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::_userShellPath_impl() const
 {
     std::tstring_t sRv;
@@ -261,7 +261,7 @@ SystemInfo::_userShellPath_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_currentCpuNum_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -299,7 +299,7 @@ SystemInfo::_currentCpuNum_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 SystemInfo::_pageSize_impl() const
 {
     long_t liRv = ::sysconf(xPAGE_SIZE);
@@ -320,7 +320,7 @@ SystemInfo::_pageSize_impl() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::glibcVersion() const
 {
     std::tstring_t version;
@@ -357,7 +357,7 @@ SystemInfo::glibcVersion() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 SystemInfo::libPthreadVersion() const
 {
     std::tstring_t buff;
@@ -391,7 +391,7 @@ SystemInfo::libPthreadVersion() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SystemInfo::_passwdFileEntry(
     passwd *a_passwdEntry
 ) const

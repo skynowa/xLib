@@ -17,14 +17,14 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Sleeper::Sleeper() :
     _event(false, false)
 {
     _event.create();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Sleeper::sleep(
     culong_t &a_timeoutMsec  ///< in milliseconds
 )
@@ -35,7 +35,7 @@ Sleeper::sleep(
     xTEST_EQ(osRv == Event::osSignaled || osRv == Event::osTimeout, true);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Sleeper::wakeUp()
 {
     // n/a
@@ -43,7 +43,7 @@ Sleeper::wakeUp()
     _event.set();
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Sleeper::isSleeping() const
 {
     // n/a

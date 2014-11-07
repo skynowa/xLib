@@ -41,37 +41,37 @@ xNAMESPACE_BEGIN2(xlib, sync)
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 Mutex::~Mutex()
 {
     _destruc_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Mutex::create()
 {
     _create_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline const Mutex::handle_t &
+xINLINE const Mutex::handle_t &
 Mutex::handle() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Mutex::lock()
 {
     _lock_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Mutex::tryLock()
 {
     return _tryLock_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Mutex::unlock()
 {
     _unlock_impl();

@@ -45,7 +45,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 StackTrace::StackTrace(
     cint_t          &a_skipFramesNum,      /* = 2 */    ///< Skip number of frames
     std::ctstring_t &a_linePrefix,         /* = xT("\t") */
@@ -63,7 +63,7 @@ StackTrace::StackTrace(
 {
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 StackTrace::toString()
 {
     std::tstring_t                  sRv;
@@ -84,7 +84,7 @@ StackTrace::toString()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 StackTrace::_get(
     std::vector<std::vec_tstring_t> *a_stack
 ) const
@@ -100,7 +100,7 @@ StackTrace::_get(
     a_stack->swap(stack);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 StackTrace::_format(
     const std::vector<std::vec_tstring_t> &a_stack,     ///< stack as std::vector
     std::tstring_t                        *a_stackStr   ///< [out] stack as formatted string

@@ -40,7 +40,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Condition::Condition()
 #if !xENV_WIN
     :
@@ -51,19 +51,19 @@ Condition::Condition()
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 Condition::~Condition()
 {
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Condition::create()
 {
     _create_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Condition::wait(
     culong_t &a_timeoutMs
 )
@@ -71,13 +71,13 @@ Condition::wait(
     _wait_impl(a_timeoutMs);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Condition::signal()
 {
     _signal_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Condition::broadcast()
 {
     _broadcast_impl();

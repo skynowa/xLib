@@ -12,19 +12,19 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Event::_dectruct_impl()
 {
     xNA;
 }
 //-------------------------------------------------------------------------------------------------
-inline const Event::handle_t &
+xINLINE const Event::handle_t &
 Event::_handle_impl() const
 {
     return _event;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Event::_create_impl()
 {
     xTEST_EQ(_event.isValid(), false);
@@ -36,7 +36,7 @@ Event::_create_impl()
     // n/a
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Event::_set_impl()
 {
     xTEST_EQ(_event.isValid(), true);
@@ -45,7 +45,7 @@ Event::_set_impl()
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Event::_reset_impl()
 {
     xTEST_EQ(_event.isValid(), true);
@@ -54,7 +54,7 @@ Event::_reset_impl()
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-inline Event::ExObjectState
+xINLINE Event::ExObjectState
 Event::_wait_impl(
     culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
@@ -68,7 +68,7 @@ Event::_wait_impl(
     return osRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Event::_isSignaled_impl() const
 {
     bool_t bRv = false;

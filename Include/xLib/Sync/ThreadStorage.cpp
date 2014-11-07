@@ -40,7 +40,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 ThreadStorage::ThreadStorage() :
 #if   xENV_WIN
     _index(TLS_OUT_OF_INDEXES)
@@ -52,25 +52,25 @@ ThreadStorage::ThreadStorage() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-inline
+xINLINE
 ThreadStorage::~ThreadStorage()
 {
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 ThreadStorage::isSet() const
 {
     return _isSet_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t *
+xINLINE void_t *
 ThreadStorage::value() const
 {
     return _value_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 ThreadStorage::setValue(
     void_t *a_value
 ) const

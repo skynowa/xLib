@@ -42,7 +42,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
+xINLINE
 Debugger::Debugger() :
     _isEnabled(true),
     _logPath  ()
@@ -57,13 +57,13 @@ Debugger::Debugger() :
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Debugger::isEnabled() const
 {
     return _isEnabled;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Debugger::setEnabled(
     cbool_t &a_flag
 )
@@ -71,13 +71,13 @@ Debugger::setEnabled(
     _isEnabled = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Debugger::isActive() const
 {
     return _isActive_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Debugger::coreDumpsEnable(
     cbool_t &a_flag
 )
@@ -91,7 +91,7 @@ Debugger::coreDumpsEnable(
     xCHECK_DO(!isEnable, Trace() << xT("xLib: Debugger::coreDumpsEnable() - n/a"));
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Debugger::breakPoint() const
 {
     xCHECK_DO(!isEnabled(), return);
@@ -99,7 +99,7 @@ Debugger::breakPoint() const
     _breakPoint_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Debugger::setLogPath(
     std::ctstring_t &a_filePath
 )
@@ -107,13 +107,13 @@ Debugger::setLogPath(
     _logPath = a_filePath;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Debugger::logPath() const
 {
     return _logPath;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Debugger::reportMake(
     const ErrorReport &a_report
 )
@@ -148,7 +148,7 @@ Debugger::reportMake(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Debugger::_msgboxPlain(
     const ErrorReport &a_report
 ) const
@@ -183,7 +183,7 @@ Debugger::_msgboxPlain(
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Debugger::_stdoutPlain(
     const ErrorReport &a_report
 ) const
@@ -239,7 +239,7 @@ Debugger::_stdoutPlain(
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Debugger::_loggingPlain(
     const ErrorReport &a_report
 ) const

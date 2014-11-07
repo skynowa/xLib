@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::_construct_impl()
 {
     _stdIn = ::GetStdHandle(STD_INPUT_HANDLE);
@@ -44,14 +44,14 @@ Console::_construct_impl()
     // _menu - n/a
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::_destruct_impl()
 {
     (native_handle_t)_stdIn.detach();
     (native_handle_t)_stdOut.detach();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Console::_setAttributes_impl(
     const ExForeground &a_foreground,
     const ExBackground &a_background,
@@ -205,7 +205,7 @@ Console::_setAttributes_impl(
     return std::tstring_t();    // not need for Windows
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Console::_setAttributesDef_impl() const
 {
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), _attributesDef);
@@ -214,7 +214,7 @@ Console::_setAttributesDef_impl() const
     return std::tstring_t();
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Console::_read_impl() const
 {
     std::tstring_t sRv;
@@ -231,7 +231,7 @@ Console::_read_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::_write_impl(
     std::ctstring_t &a_str
 ) const
@@ -244,7 +244,7 @@ Console::_write_impl(
     xTEST_EQ(static_cast<size_t>( written ), a_str.size());
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::_clear_impl() const
 {
     COORD                      coordScreen  = {0};   // here's where we'll home the cursor
@@ -277,7 +277,7 @@ Console::_clear_impl() const
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
@@ -286,7 +286,7 @@ Console::_setTitle_impl(
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Console::title() const
 {
     xTEST_NA(_wnd);
@@ -307,7 +307,7 @@ Console::title() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::centerWindow() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
@@ -334,7 +334,7 @@ Console::centerWindow() const
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::setFullScreen() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
@@ -362,7 +362,7 @@ Console::setFullScreen() const
     centerWindow();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::enableClose(
     cbool_t &a_flag
 )
@@ -398,7 +398,7 @@ Console::enableClose(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline HWND
+xINLINE HWND
 Console::_wndHandle()
 {
     HWND           hRv = xPTR_NULL;
@@ -428,7 +428,7 @@ Console::_wndHandle()
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline HMENU
+xINLINE HMENU
 Console::_menuHandle(
     cbool_t &a_isRevert
 )

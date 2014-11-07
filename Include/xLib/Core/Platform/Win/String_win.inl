@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::string
+xINLINE std::string
 String::_castA_impl(
     std::cwstring_t &a_str,     ///< source string
     cuint_t         &a_codePage ///< code page
@@ -33,7 +33,7 @@ String::_castA_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::wstring
+xINLINE std::wstring
 String::_castW_impl(
     std::cstring_t &a_str,      ///< source string
     cuint_t        &a_codePage  ///< code page
@@ -56,7 +56,7 @@ String::_castW_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::string
+xINLINE std::string
 String::_castToOem_impl(
     std::ctstring_t &a_str   ///< source string
 )
@@ -72,7 +72,7 @@ String::_castToOem_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::_castFromOem_impl(
     std::cstring_t &a_str   ///< source string
 )
@@ -88,7 +88,7 @@ String::_castFromOem_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::_toLowerCase_impl(
     std::ctstring_t &a_str,     ///< source string
     std::csize_t    &a_length   ///< string size
@@ -103,7 +103,7 @@ String::_toLowerCase_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 String::_toUpperCase_impl(
     std::ctstring_t &a_str,     ///< source string
     std::csize_t    &a_length   ///< string size
@@ -130,7 +130,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 StringCI::_compare_impl(
     std::ctstring_t   &a_str1,                          ///< source string
     std::ctstring_t   &a_str2,                          ///< target string

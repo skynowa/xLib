@@ -17,19 +17,19 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::_construct_impl()
 {
     xNA;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::_destruct_impl()
 {
     xNA;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Console::_setAttributes_impl(
     const ExForeground &a_foreground,
     const ExBackground &a_background,
@@ -161,13 +161,13 @@ Console::_setAttributes_impl(
     return attrs;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Console::_setAttributesDef_impl() const
 {
     return xT("\033[0;0m");
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 Console::_read_impl() const
 {
     std::tstring_t sRv;
@@ -178,7 +178,7 @@ Console::_read_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::_write_impl(
     std::ctstring_t &a_str
 ) const
@@ -186,13 +186,13 @@ Console::_write_impl(
     std::tcout << a_str;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::_clear_impl() const
 {
     writeLine( Const::ff() );
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const

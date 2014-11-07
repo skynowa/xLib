@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Process::_destruct_impl()
 {
     BOOL blRv = FALSE;
@@ -29,7 +29,7 @@ Process::_destruct_impl()
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Process::_create_impl(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_params
@@ -48,7 +48,7 @@ Process::_create_impl(
     _pid    = processInfo.dwProcessId;
 }
 //-------------------------------------------------------------------------------------------------
-inline Process::ExWaitResult
+xINLINE Process::ExWaitResult
 Process::_wait_impl(
     culong_t &a_timeoutMsec
 )
@@ -63,7 +63,7 @@ Process::_wait_impl(
     return waitStatus;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Process::_kill_impl(
     culong_t &a_timeoutMsec
 )
@@ -92,7 +92,7 @@ Process::_kill_impl(
     }
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 Process::_exitStatus_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -111,7 +111,7 @@ Process::_exitStatus_impl() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline Process::id_t
+xINLINE Process::id_t
 Process::_idByHandle_impl(
     const handle_t &a_handle    ///< handle
 )
@@ -122,7 +122,7 @@ Process::_idByHandle_impl(
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline Process::handle_t
+xINLINE Process::handle_t
 Process::_handleById_impl(
     const id_t &a_id   ///< ID
 )
@@ -134,7 +134,7 @@ Process::_handleById_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline
+xINLINE
 Process::id_t
 Process::_idByName_impl(
     std::ctstring_t &a_processName
@@ -167,7 +167,7 @@ Process::_idByName_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 Process::_ids_impl(
     std::vector<Process::id_t> *a_ids
 )
@@ -197,7 +197,7 @@ Process::_ids_impl(
     a_ids->swap(vidRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Process::_isCurrent_impl(
     const Process::id_t &a_id
 )
@@ -207,7 +207,7 @@ Process::_isCurrent_impl(
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline Process::id_t
+xINLINE Process::id_t
 Process::_currentId_impl()
 {
     id_t ulRv = ::GetCurrentProcessId();
@@ -216,7 +216,7 @@ Process::_currentId_impl()
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline Process::id_t
+xINLINE Process::id_t
 Process::_currentParentId_impl()
 {
     id_t ulRv;
@@ -273,7 +273,7 @@ Process::_currentParentId_impl()
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline Process::handle_t
+xINLINE Process::handle_t
 Process::_currentHandle_impl()
 {
     // n/a
@@ -284,7 +284,7 @@ Process::_currentHandle_impl()
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Process::_currentExit_impl(
     cuint_t &a_exitCode
 )

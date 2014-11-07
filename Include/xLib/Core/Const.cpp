@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 // strEmpty
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::strEmptyA()
 {
     static std::cstring_t sRv;
@@ -26,7 +26,7 @@ Const::strEmptyA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::strEmptyW()
 {
     static std::cwstring_t sRv;
@@ -34,7 +34,7 @@ Const::strEmptyW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::strEmpty()
 {
     static std::ctstring_t sRv;
@@ -43,7 +43,7 @@ Const::strEmpty()
 }
 //-------------------------------------------------------------------------------------------------
 // cr
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::crA()
 {
     static std::cstring_t sRv("\r");
@@ -51,7 +51,7 @@ Const::crA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::crW()
 {
     static std::cwstring_t sRv(L"\r");
@@ -59,7 +59,7 @@ Const::crW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::cr()
 {
     static std::ctstring_t sRv(xT("\r"));
@@ -68,7 +68,7 @@ Const::cr()
 }
 //-------------------------------------------------------------------------------------------------
 // nl
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::nlA()
 {
     static std::cstring_t sRv("\n");
@@ -76,7 +76,7 @@ Const::nlA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::nlW()
 {
     static std::cwstring_t sRv(L"\n");
@@ -84,7 +84,7 @@ Const::nlW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::nl()
 {
     static std::ctstring_t sRv(xT("\n"));
@@ -93,7 +93,7 @@ Const::nl()
 }
 //-------------------------------------------------------------------------------------------------
 // crNl
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::crNlA()
 {
     static std::cstring_t sRv(crA() + nlA());
@@ -101,7 +101,7 @@ Const::crNlA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::crNlW()
 {
     static std::cwstring_t sRv(crW() + nlW());
@@ -109,7 +109,7 @@ Const::crNlW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::crNl()
 {
     static std::ctstring_t sRv(cr() + nl());
@@ -118,7 +118,7 @@ Const::crNl()
 }
 //-------------------------------------------------------------------------------------------------
 // colon
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::colonA()
 {
     static std::cstring_t sRv(":");
@@ -126,7 +126,7 @@ Const::colonA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::colonW()
 {
     static std::cwstring_t sRv(L":");
@@ -134,7 +134,7 @@ Const::colonW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::colon()
 {
     static std::ctstring_t sRv(xT(":"));
@@ -143,7 +143,7 @@ Const::colon()
 }
 //-------------------------------------------------------------------------------------------------
 // winSlash
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::winSlashA()
 {
     static std::cstring_t sRv("\\");
@@ -151,7 +151,7 @@ Const::winSlashA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::winSlashW()
 {
     static std::cwstring_t sRv(L"\\");
@@ -159,7 +159,7 @@ Const::winSlashW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::winSlash()
 {
     static std::ctstring_t sRv(xT("\\"));
@@ -168,7 +168,7 @@ Const::winSlash()
 }
 //-------------------------------------------------------------------------------------------------
 // unixSlash
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::unixSlashA()
 {
     static std::cstring_t sRv("/");
@@ -176,7 +176,7 @@ Const::unixSlashA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::unixSlashW()
 {
     static std::cwstring_t sRv(L"/");
@@ -184,7 +184,7 @@ Const::unixSlashW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::unixSlash()
 {
     static std::ctstring_t sRv(xT("/"));
@@ -195,7 +195,7 @@ Const::unixSlash()
 // slash
 #if xENV_WIN
 
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::slashA()
 {
     static std::cstring_t sRv(winSlashA());
@@ -203,7 +203,7 @@ Const::slashA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::slashW()
 {
     static std::cwstring_t sRv(winSlashW());
@@ -211,7 +211,7 @@ Const::slashW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::slash()
 {
     static std::ctstring_t sRv(winSlash());
@@ -222,7 +222,7 @@ Const::slash()
 
 #else
 
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::slashA()
 {
     static std::cstring_t sRv(unixSlashA());
@@ -230,7 +230,7 @@ Const::slashA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::slashW()
 {
     static std::cwstring_t sRv(unixSlashW());
@@ -238,7 +238,7 @@ Const::slashW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::slash()
 {
     static std::ctstring_t sRv(unixSlash());
@@ -252,7 +252,7 @@ Const::slash()
 // eol
 #if xENV_WIN
 
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::eolA()
 {
     static std::cstring_t sRv(crNlA());
@@ -260,7 +260,7 @@ Const::eolA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::eolW()
 {
     static std::cwstring_t sRv(crNlW());
@@ -268,7 +268,7 @@ Const::eolW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::eol()
 {
     static std::ctstring_t sRv(crNl());
@@ -279,7 +279,7 @@ Const::eol()
 
 #else
 
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::eolA()
 {
     static std::cstring_t sRv(nlA());
@@ -287,7 +287,7 @@ Const::eolA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::eolW()
 {
     static std::cwstring_t sRv(nlW());
@@ -295,7 +295,7 @@ Const::eolW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::eol()
 {
     static std::ctstring_t sRv(nl());
@@ -306,7 +306,7 @@ Const::eol()
 #endif
 //-------------------------------------------------------------------------------------------------
 // semicolon
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::semicolonA()
 {
     static std::cstring_t sRv(";");
@@ -314,7 +314,7 @@ Const::semicolonA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::semicolonW()
 {
     static std::cwstring_t sRv(L";");
@@ -322,7 +322,7 @@ Const::semicolonW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::semicolon()
 {
     static std::ctstring_t sRv(xT(";"));
@@ -331,7 +331,7 @@ Const::semicolon()
 }
 //-------------------------------------------------------------------------------------------------
 // dot
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::dotA()
 {
     static std::cstring_t sRv(".");
@@ -339,7 +339,7 @@ Const::dotA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::dotW()
 {
     static std::cwstring_t sRv(L".");
@@ -347,7 +347,7 @@ Const::dotW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::dot()
 {
     static std::ctstring_t sRv(xT("."));
@@ -356,7 +356,7 @@ Const::dot()
 }
 //-------------------------------------------------------------------------------------------------
 // dot2
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::dot2A()
 {
     static std::cstring_t sRv("..");
@@ -364,7 +364,7 @@ Const::dot2A()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::dot2W()
 {
     static std::cwstring_t sRv(L"..");
@@ -372,7 +372,7 @@ Const::dot2W()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::dot2()
 {
     static std::ctstring_t sRv(xT(".."));
@@ -381,7 +381,7 @@ Const::dot2()
 }
 //-------------------------------------------------------------------------------------------------
 // dot3
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::dot3A()
 {
     static std::cstring_t sRv("...");
@@ -389,7 +389,7 @@ Const::dot3A()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::dot3W()
 {
     static std::cwstring_t sRv(L"...");
@@ -397,7 +397,7 @@ Const::dot3W()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::dot3()
 {
     static std::ctstring_t sRv(xT("..."));
@@ -406,7 +406,7 @@ Const::dot3()
 }
 //-------------------------------------------------------------------------------------------------
 // maskAll
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::maskAllA()
 {
     static std::cstring_t sRv("*");
@@ -414,7 +414,7 @@ Const::maskAllA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::maskAllW()
 {
     static std::cwstring_t sRv(L"*");
@@ -422,7 +422,7 @@ Const::maskAllW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::maskAll()
 {
     static std::ctstring_t sRv(xT("*"));
@@ -431,7 +431,7 @@ Const::maskAll()
 }
 //-------------------------------------------------------------------------------------------------
 // ht
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::htA()
 {
     static std::cstring_t sRv("\t");
@@ -439,7 +439,7 @@ Const::htA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::htW()
 {
     static std::cwstring_t sRv(L"\t");
@@ -447,7 +447,7 @@ Const::htW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::ht()
 {
     static std::ctstring_t sRv(xT("\t"));
@@ -456,7 +456,7 @@ Const::ht()
 }
 //-------------------------------------------------------------------------------------------------
 // vt
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::vtA()
 {
     static std::cstring_t sRv("\v");
@@ -464,7 +464,7 @@ Const::vtA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::vtW()
 {
     static std::cwstring_t sRv(L"\v");
@@ -472,7 +472,7 @@ Const::vtW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::vt()
 {
     static std::ctstring_t sRv(xT("\v"));
@@ -481,7 +481,7 @@ Const::vt()
 }
 //-------------------------------------------------------------------------------------------------
 // space
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::spaceA()
 {
     static std::cstring_t sRv(" ");
@@ -489,7 +489,7 @@ Const::spaceA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::spaceW()
 {
     static std::cwstring_t sRv(L" ");
@@ -497,7 +497,7 @@ Const::spaceW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::space()
 {
     static std::ctstring_t sRv(xT(" "));
@@ -506,7 +506,7 @@ Const::space()
 }
 //-------------------------------------------------------------------------------------------------
 // xBEL
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::bellA()
 {
     static std::cstring_t sRv("\a");
@@ -514,7 +514,7 @@ Const::bellA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::bellW()
 {
     static std::cwstring_t sRv(L"\a");
@@ -522,7 +522,7 @@ Const::bellW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::bell()
 {
     static std::ctstring_t sRv(xT("\a"));
@@ -531,7 +531,7 @@ Const::bell()
 }
 //-------------------------------------------------------------------------------------------------
 // bs
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::bsA()
 {
     static std::cstring_t sRv("\b");
@@ -539,7 +539,7 @@ Const::bsA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::bsW()
 {
     static std::cwstring_t sRv(L"\b");
@@ -547,7 +547,7 @@ Const::bsW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::bs()
 {
     static std::ctstring_t sRv(xT("\b"));
@@ -556,7 +556,7 @@ Const::bs()
 }
 //-------------------------------------------------------------------------------------------------
 // ff
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::ffA()
 {
     static std::cstring_t sRv("\f");
@@ -564,7 +564,7 @@ Const::ffA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::ffW()
 {
     static std::cwstring_t sRv(L"\f");
@@ -572,7 +572,7 @@ Const::ffW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::ff()
 {
     static std::ctstring_t sRv(xT("\f"));
@@ -581,7 +581,7 @@ Const::ff()
 }
 //-------------------------------------------------------------------------------------------------
 // qm
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::qmA()
 {
     static std::cstring_t sRv("\?");
@@ -589,7 +589,7 @@ Const::qmA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::qmW()
 {
     static std::cwstring_t sRv(L"\?");
@@ -597,7 +597,7 @@ Const::qmW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::qm()
 {
     static std::ctstring_t sRv(xT("\?"));
@@ -606,7 +606,7 @@ Const::qm()
 }
 //-------------------------------------------------------------------------------------------------
 // sqm
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::sqmA()
 {
     static std::cstring_t sRv("\'");
@@ -614,7 +614,7 @@ Const::sqmA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::sqmW()
 {
     static std::cwstring_t sRv(L"\'");
@@ -622,7 +622,7 @@ Const::sqmW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::sqm()
 {
     static std::ctstring_t sRv(xT("\'"));
@@ -631,7 +631,7 @@ Const::sqm()
 }
 //-------------------------------------------------------------------------------------------------
 // dqm
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::dqmA()
 {
     static std::cstring_t sRv("\"");
@@ -639,7 +639,7 @@ Const::dqmA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::dqmW()
 {
     static std::cwstring_t sRv(L"\"");
@@ -647,7 +647,7 @@ Const::dqmW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::dqm()
 {
     static std::ctstring_t sRv(xT("\""));
@@ -656,7 +656,7 @@ Const::dqm()
 }
 //-------------------------------------------------------------------------------------------------
 // xSPACES
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::whiteSpacesA()
 {
     static std::cstring_t sRv(Const::crA() + Const::spaceA() + Const::htA() +
@@ -665,7 +665,7 @@ Const::whiteSpacesA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::whiteSpacesW()
 {
     static std::cwstring_t sRv(Const::crW() + Const::spaceW() + Const::htW() +
@@ -674,7 +674,7 @@ Const::whiteSpacesW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::whiteSpaces()
 {
     static std::ctstring_t sRv(Const::cr() + Const::space() + Const::ht() +
@@ -684,7 +684,7 @@ Const::whiteSpaces()
 }
 //-------------------------------------------------------------------------------------------------
 // equal
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::equalA()
 {
     static std::cstring_t sRv("=");
@@ -692,7 +692,7 @@ Const::equalA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::equalW()
 {
     static std::cwstring_t sRv(L"=");
@@ -700,7 +700,7 @@ Const::equalW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::equal()
 {
     static std::ctstring_t sRv(xT("="));
@@ -709,7 +709,7 @@ Const::equal()
 }
 //-------------------------------------------------------------------------------------------------
 // hyphen
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::hyphenA()
 {
     static std::cstring_t sRv("-");
@@ -717,7 +717,7 @@ Const::hyphenA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::hyphenW()
 {
     static std::cwstring_t sRv(L"-");
@@ -725,7 +725,7 @@ Const::hyphenW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::hyphen()
 {
     static std::ctstring_t sRv(xT("-"));
@@ -734,7 +734,7 @@ Const::hyphen()
 }
 //-------------------------------------------------------------------------------------------------
 // strUnknown
-inline std::cstring_t &
+xINLINE std::cstring_t &
 Const::strUnknownA()
 {
     static std::cstring_t sRv("[unknown]");
@@ -742,7 +742,7 @@ Const::strUnknownA()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::cwstring_t &
+xINLINE std::cwstring_t &
 Const::strUnknownW()
 {
     static std::cwstring_t sRv(L"[unknown]");
@@ -750,7 +750,7 @@ Const::strUnknownW()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::ctstring_t &
+xINLINE std::ctstring_t &
 Const::strUnknown()
 {
     static std::ctstring_t sRv(xT("[unknown]"));

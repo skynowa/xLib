@@ -26,7 +26,7 @@ xNAMESPACE_BEGIN2(xlib, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SocketInit::_construct_impl(
     cushort_t &a_versionMajor,
     cushort_t &a_versionMinor
@@ -40,7 +40,7 @@ SocketInit::_construct_impl(
     xTEST_EQ(a_versionMinor, (ushort_t)HIBYTE(wdData.wVersion));
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 SocketInit::_destruct_impl() const
 {
     int_t iRv = ::WSACleanup();

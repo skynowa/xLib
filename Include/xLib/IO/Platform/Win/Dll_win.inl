@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Dll::_load_impl(
     std::ctstring_t &a_dllPath
 )
@@ -21,7 +21,7 @@ Dll::_load_impl(
     xTEST_PTR(_handle);
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
+xINLINE bool_t
 Dll::_isProcExists_impl(
     std::ctstring_t &a_procName
 ) const
@@ -34,7 +34,7 @@ Dll::_isProcExists_impl(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline Dll::proc_address_t
+xINLINE Dll::proc_address_t
 Dll::_procAddress_impl(
     std::ctstring_t &a_procName
 ) const
@@ -55,7 +55,7 @@ Dll::_procAddress_impl(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 Dll::_destruct_impl()
 {
     BOOL blRv = ::FreeLibrary(_handle);    _handle = xPTR_NULL;

@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 ProcessInfo::_cpuUsage_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -23,7 +23,7 @@ ProcessInfo::_cpuUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 ProcessInfo::_ramUsage_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -34,7 +34,7 @@ ProcessInfo::_ramUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 ProcessInfo::_ioBytes_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -45,7 +45,7 @@ ProcessInfo::_ioBytes_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+xINLINE std::tstring_t
 ProcessInfo::_exeName_impl() const
 {
     std::tstring_t sRv;
@@ -61,7 +61,7 @@ ProcessInfo::_exeName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+xINLINE ulong_t
 ProcessInfo::_parentId_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -73,7 +73,7 @@ ProcessInfo::_parentId_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 ProcessInfo::_commandLine_impl(
     std::vec_tstring_t *a_args
 ) const
@@ -209,7 +209,7 @@ ProcessInfo::_commandLine_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline long_t
+xINLINE long_t
 ProcessInfo::_commandLineArgsMax_impl()
 {
     return 32L * 1024L;

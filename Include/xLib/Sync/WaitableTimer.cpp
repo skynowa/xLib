@@ -32,7 +32,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline HANDLE
+xINLINE HANDLE
 WaitableTimer::handle() const
 {
     xTEST_EQ(_handle.isValid(), true);
@@ -40,7 +40,7 @@ WaitableTimer::handle() const
     return _handle.get();
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 WaitableTimer::create(
     cbool_t                     &a_bManualReset,
     std::ctstring_t             &a_name,
@@ -55,7 +55,7 @@ WaitableTimer::create(
     _handle.set(hRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 WaitableTimer::open(
     std::ctstring_t &a_name,
     culong_t        &a_access,
@@ -79,7 +79,7 @@ WaitableTimer::open(
     _handle.set(hRv);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 WaitableTimer::cancel() const
 {
     xTEST_EQ(_handle.isValid(), true);
@@ -88,7 +88,7 @@ WaitableTimer::cancel() const
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 WaitableTimer::set(
     clonglong_t      &a_dueTimeMsec,
     clong_t          &a_period,
@@ -107,7 +107,7 @@ WaitableTimer::set(
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
+xINLINE void_t
 WaitableTimer::wait(
     culong_t &a_timeoutMsec
 ) const

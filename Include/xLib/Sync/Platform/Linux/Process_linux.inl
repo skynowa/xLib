@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline
+xINLINE
 Process::id_t
 Process::_idByName_impl(
     std::ctstring_t &a_processName
@@ -67,7 +67,7 @@ Process::_idByName_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 Process::_ids_impl(
     std::vector<Process::id_t> *a_ids
 )

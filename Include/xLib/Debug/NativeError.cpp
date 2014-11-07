@@ -40,14 +40,14 @@ xNAMESPACE_BEGIN2(xlib, debug)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
+xINLINE bool_t
 NativeError::isSuccess()
 {
     return _isSuccess_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline ulong_t
+xINLINE ulong_t
 NativeError::get()
 {
     culong_t code = _get_impl();
@@ -58,7 +58,7 @@ NativeError::get()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 NativeError::set(
     culong_t &a_code
 )
@@ -67,21 +67,21 @@ NativeError::set(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline void_t
+xINLINE void_t
 NativeError::reset()
 {
     set( _nativeCodeSuccess() );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 NativeError::format()
 {
     return format( get() );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::tstring_t
+xINLINE std::tstring_t
 NativeError::format(
     culong_t &a_code
 )
@@ -98,7 +98,7 @@ NativeError::format(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline ulong_t
+xINLINE ulong_t
 NativeError::_nativeCodeSuccess()
 {
     return _nativeCodeSuccess_impl();
