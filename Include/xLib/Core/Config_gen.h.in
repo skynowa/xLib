@@ -29,6 +29,8 @@
 #elif xOPTION_PROJECT_TESTS
     #define xEXE 1
         ///< executable binary
+    #define inline
+        ///< undefine inline
 #else
     #error xLib: unknown project type
 #endif
