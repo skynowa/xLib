@@ -54,7 +54,7 @@ option(xOPTION_DEBUG_MODE_LOG      "Debug mode: logging with plain text"      0)
 option(xOPTION_DEBUG_MODE_NO       "Debug mode: no debugging"                 0)
 option(xOPTION_BUILD_MSG           "Build messages"                           0)
 option(xOPTION_TESTS               "Use tests"                                1)
-option(xOPTION_TEST_PRIVATE        "Test private data"                        1)
+option(xOPTION_TEST_PRIVATE        "Test private data"                        0)
 option(xOPTION_TEST_TRACING        "Use tracing in tests"                     1)
 
 #--------------------------------------------------------------------------------------------------
