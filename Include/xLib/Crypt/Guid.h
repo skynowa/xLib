@@ -30,14 +30,11 @@ public:
     std::tstring_t create(cExType &type) const xWARN_UNUSED_RV;
         ///< generate GUID
 
-private:
-    std::tstring_t _randomBased() const xWARN_UNUSED_RV;
-        ///< random based GUID
-
     xNO_COPY_ASSIGN(Guid)
 
 xPLATFORM:
     std::tstring_t _randomBased_impl() const;
+        ///< random based GUID
 };
 
 xNAMESPACE_END2(xlib, crypt)

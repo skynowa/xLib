@@ -29,7 +29,7 @@ Guid::_randomBased_impl() const
     */
 
     std::tstring_t sRv;
-    NativeRandom random;
+    NativeRandom   random;
     clong_t        valueMin = 0L;
     clong_t        valueMax = IxSeedPolicy::valueMax();
 
