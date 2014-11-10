@@ -551,9 +551,9 @@ String::rcut(
 /* static */
 xINLINE std::tstring_t
 String::cut(
-    std::ctstring_t &a_str,                                 ///< source string
-    std::csize_t    &a_posBegin,                            ///< begin position
-    std::csize_t    &a_posEnd   /* = std::tstring_t:npos */ ///< end position
+    std::ctstring_t &a_str,                                  ///< source string
+    std::csize_t    &a_posBegin,                             ///< begin position
+    std::csize_t    &a_posEnd   /* = std::tstring_t::npos */ ///< end position
 )
 {
     xTEST_NA(a_str);
