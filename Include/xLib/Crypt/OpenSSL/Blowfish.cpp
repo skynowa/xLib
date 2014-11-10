@@ -4,8 +4,13 @@
  */
 
 
+#if !xOPTION_HEADER_ONLY
+    #include "Blowfish.h"
+#endif
+
 #if xHAVE_OPENSSL_CRYPTO
 
+#include <xLib/Core/Utils.h>
 #include <xLib/IO/File.h>
 #include <xLib/IO/Path.h>
 #include <xLib/Crypt/Crc32.h>

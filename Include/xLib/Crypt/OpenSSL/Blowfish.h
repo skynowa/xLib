@@ -6,9 +6,11 @@
 
 #pragma once
 
-#if xHAVE_OPENSSL_CRYPTO
 
 #include <xLib/Core/Core.h>
+
+#if xHAVE_OPENSSL_CRYPTO
+
 #include <openssl/blowfish.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, crypt)
