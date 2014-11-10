@@ -73,12 +73,9 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         TestManager manager(isUseTracing);
 
         // Test
-    #if 1
         manager.add(new Test_Test);
-    #endif
 
         // Core
-    #if 1
         manager.add(new Test_Units);
         manager.add(new Test_Defines);
         manager.add(new Test_Limits);
@@ -94,27 +91,23 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_String);
         manager.add(new Test_DateTime);
         manager.add(new Test_Com);
-        manager.add(new Test_Application);
-    #endif
+        // manager.add(new Test_Application);
 
         // Crypt
-    #if 1
         manager.add(new Test_Base64);
-        #if xHAVE_OPENSSL_CRYPTO
+    #if xHAVE_OPENSSL_CRYPTO
         manager.add(new Test_Blowfish);
-        #endif
+    #endif
         manager.add(new Test_Crc32);
         manager.add(new Test_Guid);
         manager.add(new Test_Random);
 
         // Db
-        #if xHAVE_MYSQL
+    #if xHAVE_MYSQL
         manager.add(new Test_MySql);
-        #endif
     #endif
 
         // Debug
-    #if 1
         manager.add(new Test_Debug);
         manager.add(new Test_BuildInfo);
         manager.add(new Test_StdError);
@@ -125,10 +118,8 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_ErrorReport);
         manager.add(new Test_Profiler);
         manager.add(new Test_AutoProfiler);
-    #endif
 
         // File system
-    #if 1
         manager.add(new Test_Path);
         manager.add(new Test_FileType);
         manager.add(new Test_File);
@@ -139,17 +130,13 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_Volume);
         manager.add(new Test_Config);
         manager.add(new Test_Backup);
-    #endif
 
         // Log
-    #if 1
         manager.add(new Test_Trace);
         manager.add(new Test_FileLog);
         manager.add(new Test_SystemLog);
-    #endif
 
         // Net
-    #if 1
         manager.add(new Test_CookiePv0);
         manager.add(new Test_CookiePv1);
         manager.add(new Test_Cgi);
@@ -158,17 +145,13 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         // manager.add(new Test_TcpClient);
         // manager.add(new Test_TcpServer);
         manager.add(new Test_HttpClient);
-    #endif
 
         // Patterns
-    #if 1
         manager.add(new Test_Observer);
         manager.add(new Test_Raii);
         manager.add(new Test_Singleton);
-    #endif
 
         // Sync
-    #if 1
         manager.add(new Test_AtomicLongInt);
         manager.add(new Test_ThreadStorage);
         manager.add(new Test_Mutex);
@@ -185,21 +168,16 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_Process);
         manager.add(new Test_Signal);
         manager.add(new Test_Service);
-    #endif
 
         // Gui
-    #if 1
         manager.add(new Test_MsgBox);
-    #endif
 
         // System
-    #if 1
         manager.add(new Test_Environment);
         manager.add(new Test_SystemInfo);
         manager.add(new Test_ProcessInfo);
         manager.add(new Test_Console);
         manager.add(new Test_Shell);
-    #endif
 
         manager.run(allLoops, unitLoops, caseLoops);
     }
