@@ -211,9 +211,8 @@ if (xOPTION_PROJECT_TESTS)
     include_directories(${XLIB_LOCATION}/Tests/Include)
     file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/Source/*.cpp)
 
-    link_libraries(${XLIB_LIBRARIES})
     add_executable(${PROJECT_NAME}_tests ${XLIB_SOURCES} ${XLIB_TESTS_SOURCES})
-
+    target_link_libraries(${PROJECT_NAME}_tests ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_NAME}_tests  DESTINATION "bin")
 endif()
 
