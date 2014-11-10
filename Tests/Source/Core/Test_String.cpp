@@ -724,8 +724,7 @@ Test_String::unit(
 
     xTEST_CASE("String::cut", a_caseLoops)
     {
-        std::tstring_t sForCut = xT("0123456789");
-
+        std::ctstring_t sForCut = xT("0123456789");
 
         m_sRv = String::cut(sForCut, 0, 1);
         xTEST_EQ(std::tstring_t(xT("0")), m_sRv);
@@ -763,8 +762,8 @@ Test_String::unit(
         m_sRv = String::cut(xT(""), 1);
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
 
-        m_sRv = String::cut(sForCut, std::tstring_t::npos);
-        xTEST_EQ(std::tstring_t(xT("0123456789")), m_sRv);
+        m_sRv = String::cut(sForCut, 0, std::tstring_t::npos);
+        xTEST_EQ(m_sRv, sForCut);
     }
 
     xTEST_CASE("String::format", a_caseLoops)
