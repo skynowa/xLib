@@ -36,7 +36,7 @@ Guid::_randomBased_impl() const
     sRv = String::format("%x%x-%x-%x-%x-%x%x%x",
         random.nextInt(valueMin, valueMax), random.nextInt(valueMin, valueMax),
         random.nextInt(valueMin, valueMax),
-        ((random.nextInt(valueMin, valueMax) & 0x0FFF) | 0x4000),
+        (random.nextInt(valueMin, valueMax) & 0x0FFF) | 0x4000,
         random.nextInt(valueMin, valueMax) % 0x3FFF + 0x8000,
         random.nextInt(valueMin, valueMax), random.nextInt(valueMin, valueMax),
         random.nextInt(valueMin, valueMax)
