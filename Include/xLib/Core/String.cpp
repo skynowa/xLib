@@ -560,8 +560,8 @@ String::cut(
     xTEST_NA(a_posBegin);
     xTEST_NA(a_posEnd);
 
-    xCHECK_RET(a_str.empty(),          std::tstring_t());
-    xCHECK_RET(a_posBegin >  a_posEnd, std::tstring_t());
+    xCHECK_RET(a_str.empty(),         std::tstring_t());
+    xCHECK_RET(a_posBegin > a_posEnd, std::tstring_t());
 
     size_t size = std::string::npos;
 
