@@ -44,9 +44,15 @@ xINLINE void_t
 NativeSeedPolicy::_construct_impl()
 {
 #if xHAVE_SRANDOM_R
+    int_t iRv = 0;
+
     xSTRUCT_ZERO(_data);
 
-    int_t iRv = ::srandom_r(_seed, &_data);
+    char state[32] = {0};
+    iRv = ::initstate_r(_seed, state, sizeof(state), &_data);
+    xTEST_DIFF(iRv, - 1);
+
+    iRv = ::srandom_r(_seed, &_data);
     xTEST_DIFF(iRv, - 1);
 #else
     (void_t)::srandom(_seed);
