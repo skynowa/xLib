@@ -45,7 +45,7 @@ Test_Blowfish::unit(
             blowfish.encryptCfb64(plain[i], &encrypted, Blowfish::cmEncrypt);
             blowfish.encryptCfb64(encrypted, &decrypted, Blowfish::cmDecrypt);
 
-            xTEST_EQ(true, plain[i] == decrypted);
+            xTEST_EQ(plain[i], decrypted);
         }
     }
 
