@@ -42,7 +42,6 @@ ErrorReport::ErrorReport(
     std::tstring_t var1Value;
     {
         std::tostringstream_t ossRv;
-
         ossRv << a_var1Value;
         var1Value = ossRv.str();
     }
@@ -51,7 +50,6 @@ ErrorReport::ErrorReport(
     std::tstring_t var2Value;
     {
         std::tostringstream_t ossRv;
-
         ossRv << a_var2Value;
         var2Value = ossRv.str();
     }
