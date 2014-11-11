@@ -7,6 +7,7 @@
 #include <Test/Crypt/Test_Blowfish.h>
 
 #include <xLib/Core/Const.h>
+#include <xLib/Crypt/Crc32.h>
 #include <xLib/IO/File.h>
 
 
@@ -21,7 +22,7 @@ Test_Blowfish::unit(
 {
     xTEST_CASE("Blowfish::encryptCfb64", a_caseLoops)
     {
-        std::custring_t plain[] = {
+        std::ustring_t plain[] = {
             std::ustring_t(1,  'a'),
             std::ustring_t(2,  'b'),
             std::ustring_t(3,  'c'),
@@ -46,6 +47,8 @@ Test_Blowfish::unit(
             blowfish.encryptCfb64(encrypted, &decrypted, Blowfish::cmDecrypt);
 
             xTEST_EQ(plain[i], decrypted);
+            xTEST_EQ(Crc32().calc(&(plain[i]).at(0), plain[i].size()),
+                Crc32().calc(&decrypted.at(0), decrypted.size()));
         }
     }
 
@@ -66,6 +69,17 @@ Test_Blowfish::unit(
         blowfish.setKey(key);
         blowfish.encryptFileCfb64(filePlain, fileEncrypted, Blowfish::cmEncrypt);
         blowfish.encryptFileCfb64(fileEncrypted, fileDecrypted, Blowfish::cmDecrypt);
+
+        {
+            File fileIn;
+            fileIn.create(filePlain, File::omBinRead, true);
+
+            File fileOut;
+            fileOut.create(fileDecrypted, File::omBinRead, true);
+
+            xTEST_EQ(fileIn.size(), fileOut.size());
+            xTEST_EQ(Crc32().calcFile(filePlain), Crc32().calcFile(fileDecrypted));
+        }
     }
 }
 //-------------------------------------------------------------------------------------------------
