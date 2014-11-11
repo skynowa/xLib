@@ -95,11 +95,10 @@ Blowfish::setFileKey(
     File file;
     file.create(a_filePath, File::omBinRead, true);
 
-    clonglong_t fileSize = file.size();
-    xTEST_GR(fileSize, longlong_t(0));
-    xTEST_GR_EQ(static_cast<longlong_t>( keySizeMax() ) >= fileSize, false);
+    xTEST_GR(file.size(), longlong_t(0));
+    xTEST_GR_EQ(static_cast<longlong_t>( keySizeMax() ) >= file.size(), false);
 
-    fileKey.resize( static_cast<size_t>( fileSize ) );
+    fileKey.resize( static_cast<size_t>( file.size() ) );
 
     size_t uiRv = file.read(&fileKey.at(0), fileKey.size());
     xTEST_EQ(uiRv, fileKey.size());
