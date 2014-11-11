@@ -6,7 +6,6 @@
 
 #pragma once
 
-
 #include <xLib/Core/Core.h>
 
 #if xHAVE_OPENSSL_CRYPTO
