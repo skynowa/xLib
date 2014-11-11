@@ -94,11 +94,11 @@ Blowfish::setFileKey(
 
     size_t         uiRv = 0;
     std::ustring_t fileKey;
-    File         file;
+    File           file;
 
     file.create(a_filePath, File::omBinRead, true);
 
-    longlong_t fileSize = file.size();
+    clonglong_t fileSize = file.size();
     xTEST_GR(fileSize, longlong_t(0));
     xTEST_GR_EQ(static_cast<longlong_t>( maxKeySize() ) >= fileSize, false);
 
@@ -158,7 +158,7 @@ Blowfish::encryptCfb64(
     xTEST_EQ(a_in.empty(), false);
     xTEST_PTR(a_out);
 
-    int_t num = 0;    //This integer must be initialized to zero when ivec is initialized
+    int_t num = 0;  // this integer must be initialized to zero when ivec is initialized
 
     a_out->resize( a_in.size() );
 
@@ -182,7 +182,6 @@ Blowfish::encryptFileCfb64(
 
     {
         File fileIn;
-
         fileIn.create(a_filePathIn, File::omBinRead, true);
         fileIn.read(&in);
     }
@@ -191,7 +190,6 @@ Blowfish::encryptFileCfb64(
 
     {
         File fileOut;
-
         fileOut.create(a_filePathOut, File::omBinCreateReadWrite, true);
         fileOut.write(out);
     }
