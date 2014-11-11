@@ -117,7 +117,8 @@ Blowfish::setFileKey(
 xINLINE size_t
 Blowfish::maxKeySize()
 {
-    return MAX_KEY_SIZE;
+    // max key size 448 bit (56 byte)
+    return 56 * 8;
 }
 //-------------------------------------------------------------------------------------------------
 
