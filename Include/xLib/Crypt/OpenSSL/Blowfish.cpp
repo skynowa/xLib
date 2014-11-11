@@ -94,12 +94,10 @@ Blowfish::setFileKey(
 
     File file;
     file.create(a_filePath, File::omBinRead, true);
-
-    xTEST_GR(file.size(), longlong_t(0));
-    xTEST_GR_EQ(static_cast<longlong_t>( keySizeMax() ) >= file.size(), false);
+    xTEST_EQ(file.isEmpty(), false);
+    xTEST_LESS_EQ(file.size(), static_cast<longlong_t>( keySizeMax() ));
 
     file.read(&fileKey);
-
     setKey(fileKey);
 
     // for security
