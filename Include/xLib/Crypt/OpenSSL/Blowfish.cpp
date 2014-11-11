@@ -110,7 +110,7 @@ Blowfish::setFileKey(
     setKey(fileKey);
 
     // for security
-    fileKey.clear();
+    std::fill(fileKey.begin(), fileKey.end(), 0);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -158,9 +158,9 @@ Blowfish::encryptCfb64(
     xTEST_EQ(a_in.empty(), false);
     xTEST_PTR(a_out);
 
-    int_t num = 0;  // this integer must be initialized to zero when ivec is initialized
-
     a_out->resize( a_in.size() );
+
+    int_t num = 0;  // this integer must be initialized to zero when ivec is initialized
 
     encryptCfb64(const_cast<uchar_t *>( &a_in.at(0) ), &a_out->at(0),
         static_cast<long_t>( a_in.size() ), &num, a_mode);
