@@ -20,9 +20,9 @@ public:
         ///< destructor
 
     ulong_t        calc(uchar_t *buff, culong_t &buffSize) xWARN_UNUSED_RV;
-        ///< fast calculate
+        ///< calculate
     ulong_t        calcFile(std::ctstring_t &filePath) xWARN_UNUSED_RV;
-        ///< fast calculate
+        ///< calculate
 
     std::tstring_t formatHex() const xWARN_UNUSED_RV;
         ///< format Crc32 like "0AADDEA0"
