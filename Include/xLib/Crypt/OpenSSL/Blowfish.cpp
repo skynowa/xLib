@@ -178,14 +178,13 @@ Blowfish::encryptFileCfb64(
     xTEST_EQ(a_filePathOut.empty(), false);
 
     std::ustring_t in;
-    std::ustring_t out;
-
     {
         File fileIn;
         fileIn.create(a_filePathIn, File::omBinRead, true);
         fileIn.read(&in);
     }
 
+    std::ustring_t out;
     encryptCfb64(in, &out, a_mode);
 
     {
