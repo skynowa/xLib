@@ -39,6 +39,9 @@ public:
         ///< set key
     void_t   setFileKey(std::ctstring_t &filePath);
         ///< set key as file
+    void_t   clearKey();
+        ///< clear key
+
     static
     size_t   keySizeMax() xWARN_UNUSED_RV;
         ///< get maximum key size

@@ -37,17 +37,15 @@ xNAMESPACE_BEGIN2(xlib, crypt)
 xINLINE
 Blowfish::Blowfish()
 {
-    xSTRUCT_ZERO(_key);
-    xARRAY_ZERO(_ivec);
+    clearKey();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 /* virtual */
+xINLINE
 Blowfish::~Blowfish()
 {
     // for security
-    xSTRUCT_ZERO(_key);
-    xARRAY_ZERO(_ivec);
+    clearKey();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -111,6 +109,13 @@ Blowfish::setFileKey(
 
     // for security
     std::fill(fileKey.begin(), fileKey.end(), 0);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE void_t
+Blowfish::clearKey()
+{
+    xSTRUCT_ZERO(_key);
+    xARRAY_ZERO(_ivec);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
