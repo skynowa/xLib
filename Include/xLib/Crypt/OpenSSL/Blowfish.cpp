@@ -90,10 +90,9 @@ Blowfish::setFileKey(
 {
     xTEST_EQ(a_filePath.empty(), false);
 
-    size_t         uiRv = 0;
     std::ustring_t fileKey;
-    File           file;
 
+    File file;
     file.create(a_filePath, File::omBinRead, true);
 
     clonglong_t fileSize = file.size();
@@ -102,8 +101,8 @@ Blowfish::setFileKey(
 
     fileKey.resize( static_cast<size_t>( fileSize ) );
 
-    uiRv = file.read(&fileKey.at(0), fileKey.size());
-    xTEST_EQ(fileKey.size(), uiRv);
+    size_t uiRv = file.read(&fileKey.at(0), fileKey.size());
+    xTEST_EQ(uiRv, fileKey.size());
 
     setKey(fileKey);
 
