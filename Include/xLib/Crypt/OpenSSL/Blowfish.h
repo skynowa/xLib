@@ -27,44 +27,36 @@ public:
         cmDecrypt = BF_DECRYPT
     };
 
-                  Blowfish();
+             Blowfish();
         ///< constructor
-    virtual      ~Blowfish();
+    virtual ~Blowfish();
         ///< destructor
 
-    void_t        setKey(uchar_t *key, cint_t &keySize);
+    void_t   setKey(uchar_t *key, cint_t &keySize);
         ///< set key
-    void_t        setKey(std::custring_t &key);
+    void_t   setKey(std::custring_t &key);
         ///< set key
-    void_t        setKey(std::ctstring_t &key);
+    void_t   setKey(std::ctstring_t &key);
         ///< set key
-    void_t        setFileKey(std::ctstring_t &filePath);
+    void_t   setFileKey(std::ctstring_t &filePath);
         ///< set key as file
     static
-    size_t        maxKeySize() xWARN_UNUSED_RV;
+    size_t   maxKeySize() xWARN_UNUSED_RV;
         ///< get maximum key size
 
     // cfb64
-    void_t        encryptCfb64(uchar_t *in, uchar_t *out, clong_t &inSize, int_t *num,
-                      const ExCryptMode &mode);
+    void_t   encryptCfb64(uchar_t *in, uchar_t *out, clong_t &inSize, int_t *num,
+                 const ExCryptMode &mode);
         ///< encrypt buffer
-    void_t        encryptCfb64(std::custring_t &in, std::ustring_t *out,
-                      const ExCryptMode &mode);
+    void_t   encryptCfb64(std::custring_t &in, std::ustring_t *out, const ExCryptMode &mode);
         ///< encrypt std::ustring_t
-    void_t        encryptFileCfb64(std::ctstring_t &filePathIn, std::ctstring_t &filePathOut,
-                      const ExCryptMode &mode);
+    void_t   encryptFileCfb64(std::ctstring_t &filePathIn, std::ctstring_t &filePathOut,
+                const ExCryptMode &mode);
         ///< encrypt file
 
 private:
-    enum
-        /// constants
-    {
-        MAX_KEY_SIZE = 56,  ///< max key size 448 bit (56 byte)
-        IVEC_SIZE    = 8    ///< ivec size
-    };
-
-    BF_KEY        _key;             ///< crypt key
-    uchar_t       _ivec[IVEC_SIZE]; ///< ivec
+    BF_KEY  _key;            ///< crypt key
+    uchar_t _ivec[BF_BLOCK]; ///< ivec
 
     xNO_COPY_ASSIGN(Blowfish)
 };
