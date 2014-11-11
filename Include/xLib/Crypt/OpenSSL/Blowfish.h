@@ -40,7 +40,7 @@ public:
     void_t   setFileKey(std::ctstring_t &filePath);
         ///< set key as file
     static
-    size_t   maxKeySize() xWARN_UNUSED_RV;
+    size_t   keySizeMax() xWARN_UNUSED_RV;
         ///< get maximum key size
 
     // cfb64
