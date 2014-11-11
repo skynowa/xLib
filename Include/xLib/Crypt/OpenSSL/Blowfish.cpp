@@ -122,9 +122,9 @@ Blowfish::clearKey()
 xINLINE size_t
 Blowfish::keySizeMax()
 {
-    // max key size 448 bit = 56 byte
     xTEST_STATIC(CHAR_BIT == 8);
 
+    // max key size 448 bit = 56 byte
     return 448 / CHAR_BIT;
 }
 //-------------------------------------------------------------------------------------------------
