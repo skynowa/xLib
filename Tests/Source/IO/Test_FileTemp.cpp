@@ -25,7 +25,7 @@ Test_FileTemp::unit(
 
         fileTemp.create(Path::exe(), tempDirPath() + Const::slash() + xT("Temp"), &fileJobber);
     #if 1
-        Trace() << xT("\tsTemp: ") << fileJobber.path();
+        Trace() << xTRACE_VAR(fileJobber.path());
     #endif
 
         m_llRv = fileJobber.size();
