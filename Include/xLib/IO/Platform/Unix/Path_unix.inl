@@ -4,6 +4,9 @@
  */
 
 
+#include <xLib/Core/Const.h>
+
+
 xNAMESPACE_BEGIN2(xlib, io)
 
 /**************************************************************************************************
@@ -28,9 +31,13 @@ Path::_dll_impl()
     void_t (*procAddress)() = ::function;
 
     int_t iRv = ::dladdr(&procAddress, &diInfo);
+#if (xLIB || xDLL)
     xTEST_DIFF(iRv, 0);
 
     sRv = Path(diInfo.dli_fname).absolute();
+#else
+    sRv = Const::strEmpty();
+#endif
 
     return sRv;
 }
