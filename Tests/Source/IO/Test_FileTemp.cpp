@@ -20,24 +20,24 @@ Test_FileTemp::unit(
 {
     xTEST_CASE("FileTemp::all", a_caseLoops)
     {
-        FileTemp ftFileTemp(true);
-        File     fJobber;
+        FileTemp fileTemp(true);
+        File     fileJobber;
 
-        ftFileTemp.create(Path::exe(), tempDirPath() + Const::slash() + xT("Temp"), &fJobber);
-        #if 0
-            xTRACEV(xT("\tsTemp: %s"), fJobber.path().c_str());
-        #endif
+        fileTemp.create(Path::exe(), tempDirPath() + Const::slash() + xT("Temp"), &fileJobber);
+    #if 1
+        Trace() << xT("\tsTemp: ") << fileJobber.path();
+    #endif
 
-        m_llRv = fJobber.size();
-        xTEST_EQ(0LL, m_llRv);
+        m_llRv = fileJobber.size();
+        xTEST_EQ(m_llRv, 0LL);
 
-        fJobber.writeLine(xT("qwertyuiop"));
+        fileJobber.writeLine(xT("qwertyuiop"));
 
-        m_bRv = fJobber.isEmpty();
+        m_bRv = fileJobber.isEmpty();
         xTEST_EQ(m_bRv, false);
 
-        fJobber.clear();
-        fJobber.close();
+        fileJobber.clear();
+        fileJobber.close();
     }
 }
 //-------------------------------------------------------------------------------------------------
