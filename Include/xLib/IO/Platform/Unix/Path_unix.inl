@@ -28,7 +28,7 @@ Path::_dll_impl()
     void_t (*procAddress)() = ::function;
 
     int_t iRv = ::dladdr(&procAddress, &diInfo);
-    xTEST_LESS(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     sRv = Path(diInfo.dli_fname).absolute();
 

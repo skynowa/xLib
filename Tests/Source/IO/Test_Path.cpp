@@ -34,7 +34,7 @@ Test_Path::unit(
     xTEST_CASE("Path::dll", a_caseLoops)
     {
         m_sRv = Path::dll();
-        xTEST_EQ(true, File::isExists(m_sRv));
+        xTEST_EQ(File::isExists(m_sRv), true);
     }
 
     xTEST_CASE("Path::drive", a_caseLoops)
