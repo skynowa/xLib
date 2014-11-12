@@ -273,7 +273,7 @@ Path::_toNative_impl(
     std::tstring_t *a_filePath
 ) const
 {
-    *a_filePath = String::replaceAll(*a_filePath, Const::winSlash(), Const::slash());
+    *a_filePath = String::replaceAll(*a_filePath, Const::unixSlash(), Const::slash());
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
