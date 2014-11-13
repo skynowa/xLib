@@ -304,6 +304,9 @@ private:
     static
     std::tstring_t _openMode(const ExOpenMode &mode) xWARN_UNUSED_RV;
         ///< get open mode as string, by default use "r"
+    static
+    std::tstring_t _path(std::FILE *stdFile) xWARN_UNUSED_RV;
+        ///< get file path from handle
 
     xNO_COPY_ASSIGN(File)
 
