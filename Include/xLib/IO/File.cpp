@@ -1331,5 +1331,18 @@ File::_openMode(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE std::tstring_t
+File::_path(
+    std::FILE *a_stdFile
+)
+{
+    std::tstring_t sRv;
+
+    // TODO: File::_path()
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, io)
