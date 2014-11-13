@@ -26,7 +26,7 @@ public:
 
 private:
     cbool_t         _isAutoDelete;  ///< auto delete flag
-    File           *_file;          ///< temporary file handle
+    File           *_file;          ///< temporary file
     std::tstring_t  _filePath;      ///< temporary file path
 
     xNO_COPY_ASSIGN(FileTemp)
