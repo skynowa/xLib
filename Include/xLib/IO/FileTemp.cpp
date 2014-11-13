@@ -55,9 +55,11 @@ FileTemp::FileTemp(
 xINLINE
 FileTemp::~FileTemp()
 {
-    _file->close();
+    if (_file != xPTR_NULL) {
+        _file->close();
+    }
 
-    if (_isAutoDelete) {
+    if (_isAutoDelete && !_filePath.empty()) {
         File::remove(_filePath);
     }
 }
@@ -66,12 +68,12 @@ xINLINE void_t
 FileTemp::create(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_dirPath,
-    File          *a_file
+    File            *a_file
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
-    xTEST_EQ(a_dirPath.empty(), false);
-    xTEST_EQ(a_file->isValid(), false);
+    xTEST_EQ(a_dirPath.empty(),  false);
+    xTEST_EQ(a_file->isValid(),  false);
 
     std::ctstring_t fileNameTemplate = xT("XXXXXX");
 
