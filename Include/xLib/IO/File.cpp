@@ -22,12 +22,14 @@
 #if   xENV_WIN
     #include "Platform/Win/File_win.inl"
 #elif xENV_UNIX
+    #include "Platform/Unix/File_unix.inl"
+
     #if   xENV_LINUX
-        #include "Platform/Unix/File_unix.inl"
+
     #elif xENV_BSD
-        #include "Platform/Unix/File_unix.inl"
+
     #elif xENV_APPLE
-        #include "Platform/Unix/File_unix.inl"
+
     #endif
 #endif
 
@@ -124,7 +126,7 @@ File::reopen(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::FILE *
+xINLINE std::FILE*
 File::get() const
 {
     xTEST_EQ(isValid(), true);
@@ -132,10 +134,10 @@ File::get() const
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+xINLINE std::tstring_t
 File::path() const
 {
-    xTEST_EQ(_filePath.empty(), false);
+    xTEST_EQ(_filePath.empty(),   false);
     xTEST_EQ(isExists(_filePath), true);
 
     return _filePath;
@@ -151,15 +153,16 @@ File::attach(
     close();
 
     _handle   = a_file;
-    _filePath = Const::strEmpty();
+    _filePath = Const::strEmpty(); // BUG: File::attach() - add real file path
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::FILE *
+xINLINE std::FILE*
 File::detach()
 {
     std::FILE *file = get();
 
     _handle = xPTR_NULL;
+    // BUG: File::detach() - remove real file path
 
     return file;
 }
@@ -243,8 +246,8 @@ File::read(
     clonglong_t fileSize = size();
     xTEST_DIFF(static_cast<longlong_t>( ppError ), fileSize);
 
-    (*a_buff).clear();
-    (*a_buff).resize( static_cast<size_t>( fileSize) );
+    a_buff->clear();
+    a_buff->resize( static_cast<size_t>( fileSize) );
     xCHECK_DO(fileSize == 0LL, return);
 
     size_t uiRv = std::fread(&a_buff->at(0), 1, a_buff->size() *
@@ -422,33 +425,13 @@ File::setVBuff(
 xINLINE longlong_t
 File::size() const
 {
-   /**
-    * TODO: File::size() - Do not use fseek() and ftell() to compute the size of a regular file
-    * https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
-    */
-
-#if xTODO
-    vFlush();
-
-    xTSTAT_STRUCT stat = {0};
-
-    // TODO: File::size() - fstat()
-    int_t iRv = ::xTSTAT(_filePath.c_str(), &stat);
-    xTEST_DIFF(iRv, - 1);
-
-    return stat.st_size;
-#else
-    long_t streamSize    = - 1L;
-    long_t currStreamPos = - 1L;
-
-    currStreamPos = position();
+    long_t currStreamPos = position();
     setPosition(0, ppEnd);
 
-    streamSize = position();
+    long_t streamSize = position();
     setPosition(currStreamPos, ppBegin);
 
     return static_cast<longlong_t>( streamSize );
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -655,7 +638,6 @@ File::clear(
     xTEST_EQ(a_filePath.empty(), false);
 
     File file;
-
     file.create(a_filePath, omWrite, true);
     file.clear();
 }
@@ -716,21 +698,18 @@ File::wipe(
     xCHECK_DO(!isExists(a_filePath), return);
 
     {
-        File file;
-
         // set normal file attributes
         FileType(a_filePath).clear();
 
         // open
+        File file;
         file.create(a_filePath, omBinWrite, true);
 
         clonglong_t size = file.size();
-        if (0LL < size) {
+        if (size > 0LL) {
             // fill by 0x55, 0xAA, random char
             for (size_t p = 0; p < a_passes; ++ p) {
-                NativeRandom random;
-
-                cuchar_t rand  = random.nextChar<uchar_t>();
+                cuchar_t rand  = NativeRandom().nextChar<uchar_t>();
                 cuchar_t char1 = 0x55;
                 cuchar_t char2 = 0xAA;
 
@@ -763,7 +742,7 @@ File::wipe(
                         xTEST_EQ(uiRv, sizeof(char2));
                     }
                 }
-            }
+            } // if (size > 0LL)
 
             // truncate
             file.flush();
@@ -854,7 +833,6 @@ File::copy(
     std::ctstring_t errorDestFileExists = xT("File - Destination file is exists");
     std::ctstring_t errorCopyFail       = xT("File - Copy fail");
     std::ctstring_t errorFilesDiffrent  = xT("File - Files are diffrent");
-
 
     xCHECK_DO(a_isFailIfExists && isExists(a_filePathTo), xTHROW_REPORT(errorDestFileExists));
 
@@ -1327,19 +1305,6 @@ File::_openMode(
         sRv = xT("r");
         break;
     }
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-xINLINE std::tstring_t
-File::_path(
-    std::FILE *a_stdFile
-)
-{
-    std::tstring_t sRv;
-
-    // TODO: File::_path()
 
     return sRv;
 }

@@ -73,42 +73,42 @@ public:
     enum ExLockingMode
         /// locking mode
     {
-        #if   xENV_WIN
-            lmLock    = LK_NBLCK,
-            lmTryLock = LK_LOCK,
-            lmUnlock  = LK_UNLCK
-        #elif xENV_UNIX
-            lmLock    = F_LOCK,
-            lmTryLock = F_TEST,
-            lmUnlock  = F_ULOCK
-        #endif
+    #if   xENV_WIN
+        lmLock    = LK_NBLCK,
+        lmTryLock = LK_LOCK,
+        lmUnlock  = LK_UNLCK
+    #elif xENV_UNIX
+        lmLock    = F_LOCK,
+        lmTryLock = F_TEST,
+        lmUnlock  = F_ULOCK
+    #endif
     };
 
     enum ExPermissionMode
         /// permission mode
     {
-        #if xENV_WIN
-            pmRead             = _S_IREAD,
-            pmWrite            = _S_IWRITE,
-            pmReadWrite        = (_S_IREAD | _S_IWRITE)
-        #else
-            pmSetUserId        = S_ISUID,
-            pmSetGroupId       = S_ISGID,
-            pmStickyBit        = S_ISVTX,
+    #if xENV_WIN
+        pmRead             = _S_IREAD,
+        pmWrite            = _S_IWRITE,
+        pmReadWrite        = (_S_IREAD | _S_IWRITE)
+    #else
+        pmSetUserId        = S_ISUID,
+        pmSetGroupId       = S_ISGID,
+        pmStickyBit        = S_ISVTX,
 
-            pmRead             = S_IRUSR,
-            pmWrite            = S_IWUSR,
-            pmReadWrite        = (S_IRUSR | S_IWUSR),
-            pmExecSearch       = S_IXUSR,
+        pmRead             = S_IRUSR,
+        pmWrite            = S_IWUSR,
+        pmReadWrite        = (S_IRUSR | S_IWUSR),
+        pmExecSearch       = S_IXUSR,
 
-            pmGroupRead        = S_IRGRP,
-            pmGroupWrite       = S_IWGRP,
-            pmGroupExecSearch  = S_IXGRP,
+        pmGroupRead        = S_IRGRP,
+        pmGroupWrite       = S_IWGRP,
+        pmGroupExecSearch  = S_IXGRP,
 
-            pmOthersRead       = S_IROTH,
-            pmOthersWrite      = S_IWOTH,
-            pmOthersExecSearch = S_IXOTH
-        #endif
+        pmOthersRead       = S_IROTH,
+        pmOthersWrite      = S_IWOTH,
+        pmOthersExecSearch = S_IXOTH
+    #endif
     };
 
     // constructors, destructor
@@ -122,13 +122,13 @@ public:
         ///< open
     void_t         reopen(std::ctstring_t &filePath, const ExOpenMode &mode, cbool_t &isUseBuffering);
         ///< reopen with different file or mode
-    std::FILE     *get() const xWARN_UNUSED_RV;
+    std::FILE*     get() const xWARN_UNUSED_RV;
         ///< get handle
-    std::ctstring_t & path() const xWARN_UNUSED_RV;
+    std::tstring_t path() const xWARN_UNUSED_RV;
         ///< get file path
     void_t         attach(std::FILE *file);
         ///< attach to stream
-    std::FILE *    detach() xWARN_UNUSED_RV;
+    std::FILE*     detach() xWARN_UNUSED_RV;
         ///< detach from stream
 
     // read, write
@@ -292,21 +292,18 @@ public:
 private:
     friend class   FileTemp;  ///< temporary file
 
-    std::FILE     *_handle;     ///< file handle
+    std::FILE*     _handle;     ///< file handle
     std::tstring_t _filePath;   ///< file path
 
     static
     int_t          _nativeHandle(std::FILE *file) xWARN_UNUSED_RV;
         ///< gets the file descriptor associated with a stream
     static
-    std::FILE     *_stdHandle(int_t fileHandle, const ExOpenMode &mode) xWARN_UNUSED_RV;
+    std::FILE*     _stdHandle(int_t fileHandle, const ExOpenMode &mode) xWARN_UNUSED_RV;
         ///< get stream by handle
     static
     std::tstring_t _openMode(const ExOpenMode &mode) xWARN_UNUSED_RV;
         ///< get open mode as string, by default use "r"
-    static
-    std::tstring_t _path(std::FILE *stdFile) xWARN_UNUSED_RV;
-        ///< get file path from handle
 
     xNO_COPY_ASSIGN(File)
 
