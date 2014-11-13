@@ -24,17 +24,10 @@ Test_FileTemp::unit(
         File     fileJobber;
 
         fileTemp.create(Path::exe(), tempDirPath() + Const::slash() + xT("Temp"), &fileJobber);
-    #if 1
-        Trace() << xTRACE_VAR(fileJobber.path());
-    #endif
-
-        m_llRv = fileJobber.size();
-        xTEST_EQ(m_llRv, 0LL);
+        xTEST_EQ(fileJobber.isEmpty(), true);
 
         fileJobber.writeLine(xT("qwertyuiop"));
-
-        m_bRv = fileJobber.isEmpty();
-        xTEST_EQ(m_bRv, false);
+        xTEST_EQ(fileJobber.isEmpty(), false);
 
         fileJobber.clear();
         fileJobber.close();
