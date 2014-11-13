@@ -77,13 +77,10 @@ FileTemp::create(
 
     std::ctstring_t fileNameTemplate = xT("XXXXXX");
 
-
-    FILE *stdFile = xPTR_NULL;
-
     Dir(a_dirPath).pathCreate();
-
     _filePath = Path(a_dirPath).slashAppend() + Path(a_filePath).fileName() + fileNameTemplate;
 
+    FILE *stdFile = xPTR_NULL;
     _create_impl(stdFile);
 
     // out
