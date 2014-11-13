@@ -85,6 +85,7 @@ FileTemp::create(
 
     // out
     a_file->attach(stdFile);
+    // _filePath = Path(a_dirPath).slashAppend() + Path(a_filePath).fileName() + fileNameTemplate;
 
     _file = a_file;
 }
