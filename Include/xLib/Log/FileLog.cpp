@@ -119,8 +119,8 @@ FileLog::write(
 
     // write
     {
-        File file;
-        file.create(filePath(), File::omAppend, false);
+        File file(false);
+        file.create(filePath(), File::omAppend);
         int_t iRv = file.write(xT("[%s] %s\n"), time.c_str(), msg.c_str());
         xTEST_DIFF(iRv, - 1);
     }

@@ -112,15 +112,15 @@ public:
     };
 
     // constructors, destructor
-                   File();
+    explicit       File(cbool_t &isUseBuffering = true);
         ///< constructor
     virtual       ~File();
         ///< destructor
 
     // open, get
-    void_t         create(std::ctstring_t &filePath, const ExOpenMode &mode, cbool_t &isUseBuffering);
+    void_t         create(std::ctstring_t &filePath, const ExOpenMode &mode);
         ///< open
-    void_t         reopen(std::ctstring_t &filePath, const ExOpenMode &mode, cbool_t &isUseBuffering);
+    void_t         reopen(std::ctstring_t &filePath, const ExOpenMode &mode);
         ///< reopen with different file or mode
     std::FILE*     get() const xWARN_UNUSED_RV;
         ///< get handle
