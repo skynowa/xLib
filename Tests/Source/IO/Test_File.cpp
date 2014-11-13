@@ -40,7 +40,7 @@ Test_File::unit(
         File file;
 
         for (size_t i = 0; i < 1; ++ i) {
-            file.create(filePath, File::omCreateReadWrite, true);
+            file.create(filePath, File::omCreateReadWrite);
         }
     }
 
@@ -48,10 +48,10 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
 
         for (size_t i = 0; i < 7; ++ i) {
-            file.reopen(filePath, File::omOpenReadWrite, true);
+            file.reopen(filePath, File::omOpenReadWrite);
         }
     }
 
@@ -73,7 +73,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
 
         FILE *stdFile = file.get();
         xTEST_PTR(stdFile);
@@ -83,7 +83,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
 
         m_sRv = file.path();
         xTEST_EQ(filePath, m_sRv);
@@ -104,7 +104,7 @@ Test_File::unit(
         {
             File file;
 
-            file.create(filePath, File::omBinCreateReadWrite, true);
+            file.create(filePath, File::omBinCreateReadWrite);
             m_stRv = file.write((cvoid_t *)&buffWrite.at(0), buffWrite.size() * sizeof(std::tstring_t::value_type));
             xUNUSED(m_stRv);
         }
@@ -113,7 +113,7 @@ Test_File::unit(
         {
             File file;
 
-            file.create(filePath, File::omBinRead, true);
+            file.create(filePath, File::omBinRead);
             m_stRv = file.read(&buffRead.at(0), buffRead.size() * sizeof(std::tstring_t::value_type));
             xUNUSED(m_stRv);
         }
@@ -132,7 +132,7 @@ Test_File::unit(
         {
             File file;
 
-            file.create(filePath, File::omBinWrite, true);
+            file.create(filePath, File::omBinWrite);
             file.write(content);
         }
 
@@ -140,7 +140,7 @@ Test_File::unit(
         {
             File file;
 
-            file.create(filePath, File::omBinRead, true);
+            file.create(filePath, File::omBinRead);
             file.read(&text1);
         }
 
@@ -148,7 +148,7 @@ Test_File::unit(
         {
             File file;
 
-            file.create(tempDirPath() + Const::slash() + xT("DataNew.dat"), File::omBinWrite, true);
+            file.create(tempDirPath() + Const::slash() + xT("DataNew.dat"), File::omBinWrite);
             file.write(text1);
         }
 
@@ -156,7 +156,7 @@ Test_File::unit(
         {
             File file;
 
-            file.create(filePath, File::omBinRead, true);
+            file.create(filePath, File::omBinRead);
             file.read(&text2);
 
             xTEST_EQ(text1.size(), text2.size());
@@ -173,7 +173,7 @@ Test_File::unit(
         {
             File file;
 
-            file.create(filePath, File::omWrite, true);
+            file.create(filePath, File::omWrite);
             file.writeLine(buffWrite);
         }
 
@@ -181,7 +181,7 @@ Test_File::unit(
         {
             File file;
 
-            file.create(filePath, File::omRead, true);
+            file.create(filePath, File::omRead);
             file.readLine(&buffRead, 1024);
         }
 
@@ -195,7 +195,7 @@ Test_File::unit(
 
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
         file.writeChar(ch);
         file.setPosition(0, File::ppBegin);
 
@@ -213,7 +213,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
         file.clear();
     }
 
@@ -225,9 +225,8 @@ Test_File::unit(
     xTEST_CASE("File::time File::setTime", a_caseLoops)
     {
         {
-            File file;
-
-            file.create(filePath, File::omCreateReadWrite, false);
+            File file(false);
+            file.create(filePath, File::omCreateReadWrite);
         }
 
         const time_t create   = 1319714265;
@@ -266,7 +265,7 @@ Test_File::unit(
         {
             File file;
 
-            file.create(filePath, File::omCreateReadWrite, true);
+            file.create(filePath, File::omCreateReadWrite);
 
             int_t iRv = file.write(testContent.c_str());
             xTEST_EQ(testContent.size(), size_t(iRv));
@@ -277,7 +276,7 @@ Test_File::unit(
         {
             File file;
 
-            file.create(filePath, File::omRead, true);
+            file.create(filePath, File::omRead);
             file.read(&content);
         }
 
@@ -290,7 +289,7 @@ Test_File::unit(
 
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
 
         int_t iRv = file.write(xT("%s"), content.c_str());
         xTEST_EQ(content.size(), size_t(iRv));
@@ -315,7 +314,7 @@ Test_File::unit(
 
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
         Writer::doV(file, xT("%s"), xT("zzz"));
     }
 
@@ -328,7 +327,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
         file.resize(1024);
         file.locking(File::lmLock, 10);
         file.locking(File::lmUnlock, 10);
@@ -338,7 +337,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
         file.setPosition(0, File::ppBegin);
 
         long_t liRv = file.position();
@@ -351,7 +350,7 @@ Test_File::unit(
 
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
         file.resize(newSize);
 
         longlong_t llSize = file.size();
@@ -362,7 +361,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
         file.resize(0);
     }
 
@@ -372,7 +371,7 @@ Test_File::unit(
 
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
         file.setVBuff(&buffRead.at(0), File::bmFull, buffRead.size() * 2);
     }
 
@@ -380,7 +379,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
 
         #if   xENV_WIN
             file.setMode(File::tmBinary);
@@ -394,7 +393,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
 
         #if   xENV_WIN
             file.setMode(File::tmText);
@@ -416,7 +415,7 @@ Test_File::unit(
         m_bRv = file.isValid();
         xTEST_EQ(m_bRv, false);
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
 
         m_bRv = file.isValid();
         xTEST_EQ(m_bRv, true);
@@ -431,7 +430,7 @@ Test_File::unit(
         m_bRv = file.isOpen();
         xTEST_EQ(m_bRv, false);
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
 
         m_bRv = file.isOpen();
         xTEST_EQ(m_bRv, true);
@@ -446,7 +445,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
 
         m_bRv = file.isEmpty();
         xTEST_EQ(m_bRv, true);
@@ -467,7 +466,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
 
         m_bRv = file.isEof();
         xTEST_EQ(m_bRv, false);
@@ -477,7 +476,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
 
         m_bRv = file.isError();
         xTEST_EQ(m_bRv, false);
@@ -487,7 +486,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
         file.errorClear();
     }
 
@@ -500,7 +499,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
         file.flush();
 
         m_bRv = file.isValid();
@@ -511,7 +510,7 @@ Test_File::unit(
     {
         File file;
 
-        file.create(filePath, File::omCreateReadWrite, true);
+        file.create(filePath, File::omCreateReadWrite);
         file.close();
 
         m_bRv = file.isValid();
@@ -599,7 +598,7 @@ Test_File::unit1(
         {
             File file;
 
-            file.create(filePath, File::omCreateReadWrite, true);
+            file.create(filePath, File::omCreateReadWrite);
 
             for (size_t i = 0; i < cullLinesNum; ++ i) {
                 file.writeLine( String::cast(i) );
@@ -616,9 +615,8 @@ Test_File::unit1(
         std::ctstring_t sFilePathTo   = sFilePathFrom + xT("_addition_to_name");
 
         {
-            File file;
-
-            file.create(sFilePathFrom, File::omBinCreateReadWrite, false);
+            File file(false);
+            file.create(sFilePathFrom, File::omBinCreateReadWrite);
             file.resize(1024 * 5);
         }
 
@@ -671,7 +669,7 @@ Test_File::unit1(
             if (i < 10) {
                 File file;
 
-                file.create(tryfilePath, File::omCreateReadWrite, true);
+                file.create(tryfilePath, File::omCreateReadWrite);
                 file.resize(1024);
                 file.locking(File::lmLock, 10);
 
@@ -688,7 +686,7 @@ Test_File::unit1(
         {
             File file;
 
-            file.create(filePath, File::omBinCreateReadWrite, true);
+            file.create(filePath, File::omBinCreateReadWrite);
             m_iRv = file.write(xT("0123456789"));
             xTEST_DIFF(- 1, m_iRv);
         }
@@ -711,7 +709,7 @@ Test_File::unit1(
         {
             File file;
 
-            file.create(filePath, File::omCreateReadWrite, true);
+            file.create(filePath, File::omCreateReadWrite);
 
             for (size_t i = 0; i < 7; ++ i) {
                 file.writeLine(xT("asducfgnoawifgumoaeriuatgmoi"));
@@ -736,7 +734,7 @@ Test_File::unit1(
         {
             File file;
 
-            file.create(filePath, File::omCreateReadWrite, true);
+            file.create(filePath, File::omCreateReadWrite);
         }
 
         File::textRead(filePath, &content);
@@ -757,7 +755,7 @@ Test_File::unit1(
         {
             File file;
 
-            file.create(filePath, File::omCreateReadWrite, true);
+            file.create(filePath, File::omCreateReadWrite);
 
             for (size_t i = 0; i < 10; ++ i) {
                 file.writeLine(xT("asducfgnoawifgumoaeriuatgmoi"));
@@ -782,7 +780,7 @@ Test_File::unit1(
         {
             File file;
 
-            file.create(filePath, File::omCreateReadWrite, true);
+            file.create(filePath, File::omCreateReadWrite);
         }
 
         File::textRead(filePath, &content);
@@ -804,7 +802,7 @@ Test_File::unit1(
         {
             File file;
 
-            file.create(filePath, File::omCreateReadWrite, true);
+            file.create(filePath, File::omCreateReadWrite);
 
             for (size_t i = 0; i < 10; ++ i) {
                 file.writeLine(xT("asducfgnoawifg") + separator + xT("umoaeriuatgmoi"));
@@ -830,7 +828,7 @@ Test_File::unit1(
         {
             File file;
 
-            file.create(filePath, File::omCreateReadWrite, true);
+            file.create(filePath, File::omCreateReadWrite);
         }
 
         File::textRead(filePath, separator, &content);
@@ -851,7 +849,7 @@ Test_File::unit1(
         {
             File file;
 
-            file.create(filePath, File::omBinCreateReadWrite, true);
+            file.create(filePath, File::omBinCreateReadWrite);
 
             m_iRv = file.write(xT("0123456789"));
             xTEST_LESS(0, m_iRv);
@@ -878,7 +876,7 @@ Test_File::unit1(
         {
             File file;
 
-            file.create(filePath, File::omBinCreateReadWrite, true);
+            file.create(filePath, File::omBinCreateReadWrite);
         }
 
         File::binWrite(filePath, content);
@@ -904,7 +902,7 @@ Test_File::unitPrivate(
     {
         File file;
 
-        file.create(filePath, File::omRead, true);
+        file.create(filePath, File::omRead);
 
         m_iRv = File::_nativeHandle( file.get() );
         xTEST_DIFF(m_iRv, - 1);

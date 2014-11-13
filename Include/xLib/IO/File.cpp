@@ -43,10 +43,20 @@ xNAMESPACE_BEGIN2(xlib, io)
 
 //-------------------------------------------------------------------------------------------------
 xINLINE
-File::File() :
+File::File(
+    cbool_t &a_isUseBuffering
+) :
     _handle  (xPTR_NULL),
     _filePath()
 {
+    xTEST_NA(a_isUseBuffering);
+
+    // buffering
+    if (a_isUseBuffering) {
+        setVBuff(xPTR_NULL, bmFull, BUFSIZ);
+    } else {
+        setVBuff(xPTR_NULL, bmNo,   0);
+    }
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -67,13 +77,11 @@ File::~File()
 xINLINE void_t
 File::create(
     std::ctstring_t  &a_filePath,
-    const ExOpenMode &a_mode,
-    cbool_t          &a_isUseBuffering
+    const ExOpenMode &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_NA(a_mode);
-    xTEST_NA(a_isUseBuffering);
 
     // create dir
     Dir( Path(a_filePath).dir() ).pathCreate();
@@ -86,25 +94,16 @@ File::create(
         _handle   = file;
         _filePath = a_filePath;
     }
-
-    // buffering
-    if (!a_isUseBuffering) {
-        setVBuff(xPTR_NULL, bmNo,   0);
-    } else {
-        setVBuff(xPTR_NULL, bmFull, BUFSIZ);
-    }
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 File::reopen(
     std::ctstring_t  &a_filePath,
-    const ExOpenMode &a_mode,
-    cbool_t          &a_isUseBuffering
+    const ExOpenMode &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_NA(a_mode);
-    xTEST_NA(a_isUseBuffering);
 
     // create dir
     Dir( Path(a_filePath).dir() ).pathCreate();
@@ -116,13 +115,6 @@ File::reopen(
 
         _handle   = file;
         _filePath = a_filePath;
-    }
-
-    // buffering
-    if (!a_isUseBuffering) {
-        setVBuff(xPTR_NULL, bmNo,   0);
-    } else {
-        setVBuff(xPTR_NULL, bmFull, BUFSIZ);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -638,7 +630,7 @@ File::clear(
     xTEST_EQ(a_filePath.empty(), false);
 
     File file;
-    file.create(a_filePath, omWrite, true);
+    file.create(a_filePath, omWrite);
     file.clear();
 }
 //-------------------------------------------------------------------------------------------------
@@ -703,7 +695,7 @@ File::wipe(
 
         // open
         File file;
-        file.create(a_filePath, omBinWrite, true);
+        file.create(a_filePath, omBinWrite);
 
         clonglong_t size = file.size();
         if (size > 0LL) {
@@ -840,10 +832,10 @@ File::copy(
     {
         // open files
         File fileFrom;
-        fileFrom.create(a_filePathFrom, omBinRead, true);
+        fileFrom.create(a_filePathFrom, omBinRead);
 
         File fileTo;
-        fileTo.create(a_filePathTo, omBinWrite, true);
+        fileTo.create(a_filePathTo, omBinWrite);
 
         if ( !fileFrom.isEmpty() ) {
             // copy files
@@ -874,12 +866,11 @@ File::size(
     std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST_EQ(a_filePath.empty(),   false);
     xTEST_EQ(isExists(a_filePath), true);
 
     File file;
-
-    file.create(a_filePath, omRead, true);
+    file.create(a_filePath, omRead);
     longlong_t liRv = file.size();
     xTEST_GR_EQ(liRv, 0LL);
 
@@ -892,7 +883,7 @@ File::lines(
     std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST_EQ(a_filePath.empty(),   false);
     xTEST_EQ(isExists(a_filePath), true);
 
     std::locale::global(std::locale());
@@ -965,7 +956,7 @@ File::textRead(
     File           file;
     std::tstring_t sRv;
 
-    file.create(a_filePath, omBinRead, true);
+    file.create(a_filePath, omBinRead);
 
     clonglong_t fileSize = file.size();
     xTEST_DIFF(fileSize, static_cast<longlong_t>( ppError ));
@@ -994,7 +985,7 @@ File::textWrite(
     xTEST_DIFF(a_mode, omUnknown);
 
     File file;
-    file.create(a_filePath, a_mode, true);
+    file.create(a_filePath, a_mode);
 
     xCHECK_DO(a_content.empty(), return);
 
@@ -1009,7 +1000,7 @@ File::textRead(
     std::vec_tstring_t *a_content
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST_EQ(a_filePath.empty(),   false);
     xTEST_EQ(isExists(a_filePath), true);
     xTEST_PTR(a_content);
 
@@ -1129,7 +1120,7 @@ File::textWrite(
     xTEST_DIFF(a_mode, omUnknown);
 
     File file;
-    file.create(a_filePath, a_mode, true);
+    file.create(a_filePath, a_mode);
 
     xCHECK_DO(a_content.empty(), return);
 
@@ -1176,7 +1167,7 @@ File::binRead(
     File         file;
     std::ustring_t usRv;
 
-    file.create(a_filePath, omBinRead, true);
+    file.create(a_filePath, omBinRead);
 
     longlong_t fileSize = file.size();
     xTEST_DIFF(fileSize, static_cast<longlong_t>( ppError ));
@@ -1203,7 +1194,7 @@ File::binWrite(
     xTEST_NA(a_content);
 
     File file;
-    file.create(a_filePath, omBinWrite, true);
+    file.create(a_filePath, omBinWrite);
 
     xCHECK_DO(a_content.empty(), return);
 

@@ -27,7 +27,7 @@ Test_Backup::unit(
         {
             File F;
 
-            F.create(filePath, File::omBinCreateReadWrite, true);
+            F.create(filePath, File::omBinCreateReadWrite);
             F.resize(100L);
 
         #if 0

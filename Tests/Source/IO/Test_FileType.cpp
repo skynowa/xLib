@@ -32,8 +32,7 @@ Test_FileType::unit(
         File::remove(csFilePath);
 
         File F;
-
-        F.create(csFilePath, File::omCreateReadWrite, true);
+        F.create(csFilePath, File::omCreateReadWrite);
         F.close();
 
         m_bRv = File::isExists(csFilePath);
