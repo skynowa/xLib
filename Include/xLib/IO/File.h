@@ -290,8 +290,6 @@ public:
         ///< write binary data
 
 private:
-    friend class   FileTemp;  ///< temporary file
-
     std::FILE*     _handle;     ///< file handle
     std::tstring_t _filePath;   ///< file path
 
@@ -306,6 +304,8 @@ private:
         ///< get open mode as string, by default use "r"
 
     xNO_COPY_ASSIGN(File)
+
+    friend class   FileTemp;  ///< temporary file
 
 xPLATFORM:
     static
