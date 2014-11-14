@@ -59,7 +59,7 @@ Test_File::unit(
     {
         File file;
 
-        file.attach(stdout);
+        file.attach(stdout, std::tstring_t());
 
         m_bRv = file.isValid();
         xTEST_EQ(m_bRv, true);

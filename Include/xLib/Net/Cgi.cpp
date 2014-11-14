@@ -886,7 +886,7 @@ CgiFormData::_construct()
         File         file;
         std::tstring_t buff;
 
-        file.attach(stdin);
+        file.attach(stdin, xT(""));
 
         buff.resize(postSize);
 
