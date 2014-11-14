@@ -32,7 +32,7 @@ private:
     xNO_COPY_ASSIGN(FileTemp)
 
 xPLATFORM:
-    void_t          _create_impl(FILE *stdFile);
+    void_t          _create_impl(FILE* &stdFile);
 };
 
 xNAMESPACE_END2(xlib, io)

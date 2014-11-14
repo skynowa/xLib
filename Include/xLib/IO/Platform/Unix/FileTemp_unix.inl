@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN2(xlib, io)
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 FileTemp::_create_impl(
-    FILE *a_stdFile
+    FILE* &a_stdFile
 )
 {
     int_t file = xTMKSTEMP(&_filePath.at(0));
