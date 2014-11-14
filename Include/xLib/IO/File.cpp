@@ -46,17 +46,11 @@ xINLINE
 File::File(
     cbool_t &a_isUseBuffering
 ) :
-    _handle  (xPTR_NULL),
-    _filePath()
+    _handle        (xPTR_NULL),
+    _filePath      (),
+    _isUseBuffering(a_isUseBuffering)
 {
     xTEST_NA(a_isUseBuffering);
-
-    // buffering
-    if (a_isUseBuffering) {
-        setVBuff(xPTR_NULL, bmFull, BUFSIZ);
-    } else {
-        setVBuff(xPTR_NULL, bmNo,   0);
-    }
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -94,6 +88,13 @@ File::create(
         _handle   = file;
         _filePath = a_filePath;
     }
+
+    // buffering
+    if (_isUseBuffering) {
+        setVBuff(xPTR_NULL, bmFull, BUFSIZ);
+    } else {
+        setVBuff(xPTR_NULL, bmNo,   0);
+    }
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -115,6 +116,13 @@ File::reopen(
 
         _handle   = file;
         _filePath = a_filePath;
+    }
+
+    // buffering
+    if (_isUseBuffering) {
+        setVBuff(xPTR_NULL, bmFull, BUFSIZ);
+    } else {
+        setVBuff(xPTR_NULL, bmNo,   0);
     }
 }
 //-------------------------------------------------------------------------------------------------
