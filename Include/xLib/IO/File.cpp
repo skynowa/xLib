@@ -145,15 +145,17 @@ File::path() const
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 File::attach(
-    std::FILE *a_file
+    std::FILE       *a_file,
+    std::ctstring_t &a_filePath
 )
 {
     xTEST_NA(a_file);
+    xTEST_NA(a_filePath);
 
     close();
 
     _handle   = a_file;
-    _filePath = Const::strEmpty(); // BUG: File::attach() - add real file path
+    _filePath = a_filePath;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::FILE*
@@ -162,7 +164,7 @@ File::detach()
     std::FILE *file = get();
 
     _handle = xPTR_NULL;
-    // BUG: File::detach() - remove real file path
+    _filePath.clear();
 
     return file;
 }

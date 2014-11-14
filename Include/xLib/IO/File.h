@@ -126,7 +126,7 @@ public:
         ///< get handle
     std::tstring_t path() const xWARN_UNUSED_RV;
         ///< get file path
-    void_t         attach(std::FILE *file);
+    void_t         attach(std::FILE *file, std::ctstring_t &filePath);
         ///< attach to stream
     std::FILE*     detach() xWARN_UNUSED_RV;
         ///< detach from stream
