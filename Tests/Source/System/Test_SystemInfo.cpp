@@ -91,10 +91,8 @@ Test_SystemInfo::unit(
     xTEST_CASE("SystemInfo::userName", a_caseLoops)
     {
         m_sRv = SystemInfo().userName();
-        xTEST_EQ(false, m_sRv.empty());
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::userName(): %s"), m_sRv.c_str());
-        #endif
+        // Trace() << xTRACE_VAR(m_sRv);
+        xTEST_EQ(m_sRv.empty(), false);
     }
 
     xTEST_CASE("SystemInfo::loginUserName", a_caseLoops)
