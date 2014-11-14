@@ -65,9 +65,9 @@ public:
     enum ExBufferingMode
         /// buffering mode
     {
-        bmFull = _IOFBF,
+        bmNo   = _IONBF,
         bmLine = _IOLBF,
-        bmNo   = _IONBF
+        bmFull = _IOFBF
     };
 
     enum ExLockingMode
