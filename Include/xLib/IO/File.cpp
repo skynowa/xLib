@@ -149,7 +149,7 @@ File::attach(
     std::ctstring_t &a_filePath
 )
 {
-    xTEST_NA(a_file);
+    xTEST_PTR(a_file);
     xTEST_NA(a_filePath);
 
     close();

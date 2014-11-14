@@ -73,6 +73,7 @@ FileTemp::create(
 {
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_EQ(a_dirPath.empty(),  false);
+    xTEST_PTR(a_file);
     xTEST_EQ(a_file->isValid(),  false);
 
     std::ctstring_t fileNameTemplate = xT("XXXXXX");
@@ -82,6 +83,7 @@ FileTemp::create(
 
     FILE *stdFile = xPTR_NULL;
     _create_impl(stdFile);
+    xTEST_PTR(stdFile);
 
     // out
     a_file->attach(stdFile, _filePath);
