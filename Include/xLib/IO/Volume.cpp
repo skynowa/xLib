@@ -144,7 +144,7 @@ Volume::isSpaceEnough(
 /* static */
 xINLINE void_t
 Volume::space(
-    std::ctstring_t &a_dirPath,     ///< directory path
+    std::ctstring_t &a_dirPath,     ///< directory path (if empty - use current volume)
     ulonglong_t     *a_available,   ///< available space (for unprivileged users)
     ulonglong_t     *a_total,       ///< total space
     ulonglong_t     *a_free         ///< free space
@@ -155,10 +155,10 @@ Volume::space(
     xTEST_NA(a_total);
     xTEST_NA(a_free);
 
-    // if a_dirPath parameter is empty, uses the root of the current volume
     std::tstring_t dirPath;
 
     if (a_dirPath.empty()) {
+        // use root directory of the current volume
         dirPath = Path::exeDir();
     } else {
         dirPath = a_dirPath;
@@ -167,7 +167,7 @@ Volume::space(
     bool_t bRv = Dir(dirPath).isExists();
     xTEST_EQ(bRv, true);
 
-    _space_impl(a_dirPath, a_available, a_total, a_free);
+    _space_impl(dirPath, a_available, a_total, a_free);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
