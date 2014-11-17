@@ -31,7 +31,7 @@ private:
 
     xNO_COPY_ASSIGN(FileTemp)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t          _create_impl(FILE* &stdFile);
 };
 

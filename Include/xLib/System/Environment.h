@@ -47,7 +47,7 @@ private:
 
     xNO_COPY_ASSIGN(Environment)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     static
     bool_t         _isExists_impl(std::ctstring_t &varName) xWARN_UNUSED_RV;
     static

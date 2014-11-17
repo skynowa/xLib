@@ -41,7 +41,7 @@ private:
 
     xNO_COPY_ASSIGN(Mutex)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t           _destruc_impl();
     void_t           _create_impl();
     void_t           _lock_impl();

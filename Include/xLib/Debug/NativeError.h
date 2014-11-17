@@ -45,7 +45,7 @@ private:
 
     xNO_COPY_ASSIGN(NativeError)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     static
     bool_t         _isSuccess_impl() xWARN_UNUSED_RV;
     static

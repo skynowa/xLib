@@ -49,7 +49,7 @@ public:
     virtual long_t next();
         ///< get integer in the range between 0 and RAND_MAX
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t         _construct_impl();
     long_t         _next_impl();
 };
@@ -76,7 +76,7 @@ private:
     #endif
 #endif
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t         _construct_impl();
     void_t         _destruct_impl();
     long_t         _next_impl();

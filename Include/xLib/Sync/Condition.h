@@ -42,7 +42,7 @@ private:
 
     xNO_COPY_ASSIGN(Condition)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t                  _destruct_impl();
     void_t                  _create_impl();
     void_t                  _wait_impl(culong_t &timeoutMs);

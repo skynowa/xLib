@@ -47,7 +47,7 @@ private:
 
     xNO_COPY_ASSIGN(Dll)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t          _load_impl(std::ctstring_t &dllPath);
         ///< load
     bool_t          _isProcExists_impl(std::ctstring_t &procName) const xWARN_UNUSED_RV;

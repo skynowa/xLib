@@ -73,7 +73,7 @@ private:
 
     xNO_COPY_ASSIGN(Finder)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     std::tstring_t    _entryName_impl() const xWARN_UNUSED_RV;
     FileType::types_t _fileTypes_impl() const xWARN_UNUSED_RV;
     bool_t            _isValid_impl() const xWARN_UNUSED_RV;

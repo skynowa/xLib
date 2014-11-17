@@ -33,7 +33,7 @@ public:
 private:
     xNO_COPY_ASSIGN(Service)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t   _create_impl();
     void_t   _start_impl();
     void_t   _stop_impl();

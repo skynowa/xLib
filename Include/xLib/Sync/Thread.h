@@ -231,7 +231,7 @@ private:
 
     xNO_COPY_ASSIGN(Thread)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t          _create_impl(cuint_t &stackSizeBytes);
     void_t          _kill_impl(culong_t &timeoutMsec);
     void_t          _wait_impl(culong_t &timeoutMsec) const;

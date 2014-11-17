@@ -277,7 +277,7 @@ protected:
 
     xNO_COPY_ASSIGN(Socket)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t         _close_impl();
     ssize_t        _send_impl(ctchar_t *buff, std::csize_t &buffSize, cint_t &flags)
                        xWARN_UNUSED_RV;

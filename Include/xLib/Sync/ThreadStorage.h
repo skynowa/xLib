@@ -38,7 +38,7 @@ private:
 
     xNO_COPY_ASSIGN(ThreadStorage)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t   _construct_impl();
     void_t   _destruct_impl();
     bool_t   _isSet_impl() const xWARN_UNUSED_RV;

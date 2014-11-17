@@ -66,7 +66,7 @@ private:
 
     xNO_COPY_ASSIGN(Dir)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     bool_t            _isRoot_impl() const xWARN_UNUSED_RV;
     void_t            _create_impl() const;
     void_t            _remove_impl() const;

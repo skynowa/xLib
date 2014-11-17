@@ -140,7 +140,7 @@ private:
 
     xNO_COPY_ASSIGN(Path)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t         _toNative_impl(std::tstring_t *filePath) const;
     bool_t         _isAbsolute_impl() const xWARN_UNUSED_RV;
     std::tstring_t _absolute_impl() const xWARN_UNUSED_RV;

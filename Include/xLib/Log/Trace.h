@@ -36,7 +36,7 @@ public:
     virtual void_t write(cExLevel &level, ctchar_t *format, ...) const xOVERRIDE;
         ///< tracing to debugger, std::cout
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t         _write_impl(std::ctstring_t &msg) const;
 };
 

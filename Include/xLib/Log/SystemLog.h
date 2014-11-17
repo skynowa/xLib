@@ -37,7 +37,7 @@ private:
     HANDLE         _handle;     ///< event log handle
 #endif
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t         _construct_impl(std::ctstring_t &logName);
     void_t         _destruct_impl();
     void_t         _write_impl(cExLevel &level, std::ctstring_t &msg) const;

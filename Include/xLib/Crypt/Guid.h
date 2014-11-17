@@ -32,7 +32,7 @@ public:
 
     xNO_COPY_ASSIGN(Guid)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     std::tstring_t _randomBased_impl() const;
         ///< random based GUID
 };

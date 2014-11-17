@@ -46,7 +46,7 @@ protected:
 
     xNO_COPY_ASSIGN(TcpClient)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t   _setNonBlockingMode_impl(cbool_t &flag) const;
 };
 
