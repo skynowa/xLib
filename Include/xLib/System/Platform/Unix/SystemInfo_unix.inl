@@ -430,8 +430,6 @@ SystemInfo::_passwdFileEntry(
     Utils::ptrAssignT(a_pw_gecos,  std::tstring_t(pwRv->pw_gecos));
     Utils::ptrAssignT(a_pw_dir,    std::tstring_t(pwRv->pw_dir));
     Utils::ptrAssignT(a_pw_shell,  std::tstring_t(pwRv->pw_shell));
-
-    Trace() << xTRACE_VAR5(a_pw_name, a_pw_uid, a_pw_gid, a_pw_dir, a_pw_shell);
 }
 //-------------------------------------------------------------------------------------------------
 
