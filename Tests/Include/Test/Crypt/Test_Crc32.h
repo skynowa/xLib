@@ -7,12 +7,12 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/Crypt/Crc32.h>
 #include <xLib/IO/File.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Crc32 :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_Crc32() {}

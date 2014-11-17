@@ -7,11 +7,11 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/Sync/Service.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Service :
-    public UnitTest
+    public Unit
     ///< tests for Service
 {
 public:

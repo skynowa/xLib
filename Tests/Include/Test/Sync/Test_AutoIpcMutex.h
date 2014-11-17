@@ -7,11 +7,11 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/Sync/AutoIpcMutex.h>
 //-------------------------------------------------------------------------------------------------
 class Test_AutoIpcMutex :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_AutoIpcMutex() {}

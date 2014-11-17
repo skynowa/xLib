@@ -1,5 +1,5 @@
 /**
- * \file  Test.cpp
+ * \file  main.cpp
  * \brief tests for xLib
  */
 
@@ -70,7 +70,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 
     // add and run tests
     {
-        TestManager manager(isUseTracing);
+        Manager manager(isUseTracing);
 
         // Test
         manager.add(new Test_Test);

@@ -45,7 +45,7 @@ Test_Base64::unit(
 
     xTEST_CASE("encode, decode", a_caseLoops)
     {
-        const TestData2<std::string, std::string> data[] = {
+        const Data2<std::string, std::string> data[] = {
             {"YOYO!", "WU9ZTyE="},
             {"111111111111111", "MTExMTExMTExMTExMTEx"},
             {"!@#$%^&*()_+", "IUAjJCVeJiooKV8r"},

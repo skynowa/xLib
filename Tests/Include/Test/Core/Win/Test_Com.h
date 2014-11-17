@@ -7,11 +7,11 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/Core/Win/Com.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Com :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_Com() {}

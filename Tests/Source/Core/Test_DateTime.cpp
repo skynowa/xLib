@@ -517,7 +517,7 @@ Test_DateTime::unit(
         -----------------------------------------------------
         */
 
-        const TestData3<int_t, int_t, std::tstring_t> data[] = {
+        const Data3<int_t, int_t, std::tstring_t> data[] = {
             { 7, 31, xT("Лев")   },
             { 5, 18, xT("Телец") }
         };

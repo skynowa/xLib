@@ -1,11 +1,11 @@
 /**
- * \file  UnitTest.inl
+ * \file  Unit.inl
  * \brief testing
  */
 
 
 #if !xOPTION_HEADER_ONLY
-    #include "UnitTest.h"
+    #include "Unit.h"
 #endif
 
 #include <xLib/Debug/Exception.h>
@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN2(xlib, test)
 
 //-------------------------------------------------------------------------------------------------
 xINLINE
-UnitTest::UnitTest() :
+Unit::Unit() :
     m_pvRv      (xPTR_NULL),
     m_chRv      (0),
     m_ucRv      (0),
@@ -53,13 +53,13 @@ UnitTest::UnitTest() :
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 xINLINE
-UnitTest::~UnitTest() /* = 0 */
+Unit::~Unit() /* = 0 */
 {
     Dir( tempDirPath() ).pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-UnitTest::run(
+Unit::run(
     culonglong_t &a_unitLoops,
     culonglong_t &a_caseLoops
 )
@@ -89,7 +89,7 @@ UnitTest::run(
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 xINLINE void_t
-UnitTest::unit(
+Unit::unit(
     culonglong_t &a_caseLoops
 ) /* = 0 */
 {
@@ -113,7 +113,7 @@ UnitTest::unit(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-UnitTest::createTempDir(
+Unit::createTempDir(
     std::ctstring_t &a_dirName
 )
 {
@@ -129,7 +129,7 @@ UnitTest::createTempDir(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::ctstring_t &
-UnitTest::tempDirPath() const
+Unit::tempDirPath() const
 {
     xTEST_EQ(_tempDirPath.empty(), false);
 
@@ -137,13 +137,13 @@ UnitTest::tempDirPath() const
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::ctstring_t &
-UnitTest::name() const
+Unit::name() const
 {
     return _name;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-UnitTest::setName(
+Unit::setName(
     std::ctstring_t &a_testName
 )
 {

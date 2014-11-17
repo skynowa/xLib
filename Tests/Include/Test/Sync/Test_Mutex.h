@@ -7,11 +7,11 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/Sync/Mutex.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Mutex :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_Mutex() {}

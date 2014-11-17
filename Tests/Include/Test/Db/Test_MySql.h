@@ -9,11 +9,11 @@
 #if xHAVE_MYSQL
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/Db/MySql.h>
 //-------------------------------------------------------------------------------------------------
 class Test_MySql :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_MySql() {}

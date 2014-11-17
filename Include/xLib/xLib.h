@@ -126,7 +126,7 @@
 #include <xLib/System/SystemInfo.h>
 
 // Test
-#include <xLib/Test/TestData.h>
-#include <xLib/Test/UnitTest.h>
-#include <xLib/Test/TestManager.h>
+#include <xLib/Test/Data.h>
+#include <xLib/Test/Unit.h>
+#include <xLib/Test/Manager.h>
 #include <xLib/Test/Test.h>

@@ -7,13 +7,13 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/Crypt/OpenSSL/Blowfish.h>
 //-------------------------------------------------------------------------------------------------
 #if xHAVE_OPENSSL_CRYPTO
 
 class Test_Blowfish :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_Blowfish() {}

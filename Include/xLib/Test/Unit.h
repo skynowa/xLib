@@ -1,5 +1,5 @@
 /**
- * \file  UnitTest.h
+ * \file  Unit.h
  * \brief testing
  */
 
@@ -10,11 +10,11 @@
 #include <xLib/Core/Utils.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Test/Test.h>
-#include <xLib/Test/TestData.h>
+#include <xLib/Test/Data.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, test)
 
-class UnitTest
+class Unit
     /// testing
 {
 public:
@@ -45,9 +45,9 @@ public:
     HWND                m_hwndRv;    ///< for global use
 #endif
 
-                        UnitTest();
+                        Unit();
         ///< constructor
-    virtual            ~UnitTest() = 0;
+    virtual            ~Unit() = 0;
         ///< destructor
 
     void_t              run(culonglong_t &unitLoops, culonglong_t &caseLoops);
@@ -67,11 +67,11 @@ private:
     std::tstring_t      _tempDirPath; ///< work dir path
     std::tstring_t      _name;        ///< test name
 
-    xNO_COPY_ASSIGN(UnitTest)
+    xNO_COPY_ASSIGN(Unit)
 };
 
 xNAMESPACE_END2(xlib, test)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_HEADER_ONLY
-    #include "UnitTest.cpp"
+    #include "Unit.cpp"
 #endif
