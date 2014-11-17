@@ -259,9 +259,9 @@
 #if xOPTION_TEST_TRACING
     #define xTEST_CASE(caseName, loops) \
         if (loops == 0) { \
-            Trace() << xT("\tTest case: ") << xT(caseName) << xT(" - skipped"); \
+            Trace() << xT("\tCase: ") << xT(caseName) << xT(" - skipped"); \
         } else { \
-            Trace() << xT("\tTest case: ") << xT(caseName); \
+            Trace() << xT("\tCase: ") << xT(caseName); \
         } \
         for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
 #else
