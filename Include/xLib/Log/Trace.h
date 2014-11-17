@@ -10,7 +10,9 @@
 #include "ILog.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
-    class String;
+
+class String;
+
 xNAMESPACE_END2(xlib, core)
 
 xNAMESPACE_BEGIN2(xlib, log)
