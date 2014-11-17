@@ -143,9 +143,9 @@ Volume::_unMount_impl(
 xINLINE void_t
 Volume::_space_impl(
     std::ctstring_t &a_dirPath,     ///< directory path
-    ulonglong_t     *a_available,   ///< available space (for unprivileged users)
-    ulonglong_t     *a_total,       ///< total space
-    ulonglong_t     *a_free         ///< free space
+    ulonglong_t*    &a_available,   ///< available space (for unprivileged users)
+    ulonglong_t*    &a_total,       ///< total space
+    ulonglong_t*    &a_free         ///< free space
 )
 {
     ULARGE_INTEGER available = {{0}};

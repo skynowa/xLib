@@ -89,8 +89,8 @@ xPLATFORM:
 
     // static
     static
-    void_t          _space_impl(std::ctstring_t &dirPath, ulonglong_t *available,
-                        ulonglong_t *total, ulonglong_t *free);
+    void_t          _space_impl(std::ctstring_t &dirPath, ulonglong_t* &available,
+                        ulonglong_t* &total, ulonglong_t* &free);
     static
     void_t          _paths_impl(std::vec_tstring_t *volumePaths);
 
