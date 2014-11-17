@@ -14,6 +14,7 @@
 #include <xLib/IO/Path.h>
 #include <xLib/IO/Dll.h>
 #include <xLib/System/Environment.h>
+#include <xLib/Log/Trace.h>
 
 #if   xENV_WIN
     #include "Platform/Win/SystemInfo_win.inl"
