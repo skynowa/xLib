@@ -74,7 +74,7 @@ Volume::_space_impl(
 {
     struct xSTATVFS info;   xSTRUCT_ZERO(info);
 
-    int_t iRv = ::xSTATVFS(a_dirPath.c_str(), &info);
+    int_t iRv = xSTATVFS(a_dirPath.c_str(), &info);
     xTEST_DIFF(iRv, - 1);
 
     Utils::ptrAssignT(a_available, static_cast<ulonglong_t>( info.f_bavail * info.f_bsize ));

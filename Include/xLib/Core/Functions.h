@@ -286,14 +286,14 @@
 
     #if   xENV_LINUX
         #if   xOS_ANDROID
-            #define xSTATVFS    statfs
+            #define xSTATVFS    ::statfs
         #elif xOS_LINUX
-            #define xSTATVFS    statfs64
+            #define xSTATVFS    ::statfs64
         #endif
     #elif xENV_BSD
-        #define xSTATVFS        statvfs
+        #define xSTATVFS        ::statvfs
     #elif xENV_APPLE
-        #define xSTATVFS        statfs64
+        #define xSTATVFS        ::statfs64
     #endif
 #endif
     ///< filesystem statfs (struct and function)
