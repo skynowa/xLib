@@ -18,7 +18,7 @@ ProcessInfo::_cpuUsage_impl() const
     ulong_t ulRv = 0UL;
 
     // TODO: ProcessInfo::cpuUsage()
-    xNOT_IMPLEMENTED
+    // xNOT_IMPLEMENTED
 
     return ulRv;
 }
@@ -30,10 +30,10 @@ ProcessInfo::_ramUsage_impl() const
 
     if (Process::isCurrent( Process::currentId() )) {
         // TODO: ProcessInfo::ramUsage()
-        xNOT_IMPLEMENTED
+        // xNOT_IMPLEMENTED
     } else {
         // TODO: ProcessInfo::ramUsage()
-        xNOT_IMPLEMENTED
+        // xNOT_IMPLEMENTED
     }
 
     return ulRv;
@@ -83,7 +83,7 @@ ProcessInfo::_parentId_impl() const
     ulong_t ulRv = 0UL;
 
     // TODO: ProcessInfo::parentId()
-    xNOT_IMPLEMENTED
+    // xNOT_IMPLEMENTED
 
     return ulRv;
 }
