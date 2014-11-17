@@ -8,10 +8,10 @@
 
 #include <xLib/Net/Socket.h>
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Socket :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_Socket() {}

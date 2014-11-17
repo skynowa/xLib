@@ -8,10 +8,10 @@
 
 #include <xLib/Net/TcpServer.h>
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 //-------------------------------------------------------------------------------------------------
 class Test_TcpServer :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_TcpServer() {}

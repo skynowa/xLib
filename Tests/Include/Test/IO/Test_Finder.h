@@ -7,11 +7,11 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/IO/Finder.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Finder :
-    public UnitTest
+    public Unit
     ///< tests for Finder
 {
 public:

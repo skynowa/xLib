@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/Net/MimeMessage.h>
 #include <xLib/Net/Pop3Client.h>
 #include <xLib/Net/SmtpClient.h>
@@ -16,7 +16,7 @@
 #if xHAVE_OPENSSL_CRYPTO
 
 class Test_MimeMessage :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_MimeMessage() {}

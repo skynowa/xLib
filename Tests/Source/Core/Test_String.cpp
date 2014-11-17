@@ -847,7 +847,7 @@ Test_String::unit(
 
     xTEST_CASE("formatBytes", a_caseLoops)
     {
-        const TestData2<ulonglong_t, std::tstring_t> data[] = {
+        const Data2<ulonglong_t, std::tstring_t> data[] = {
             {0ULL, xT("0.00 Bit(s)")},
             {10ULL, xT("10.00 Byte(s)")},
             {100ULL, xT("100.00 Byte(s)")},

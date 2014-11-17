@@ -7,12 +7,12 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/IO/Dir.h>
 #include <xLib/IO/File.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Dir :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_Dir() {}

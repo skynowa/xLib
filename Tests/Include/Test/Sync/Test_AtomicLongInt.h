@@ -7,11 +7,11 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/Sync/AtomicLongInt.h>
 //-------------------------------------------------------------------------------------------------
 class Test_AtomicLongInt :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_AtomicLongInt() {}

@@ -7,11 +7,11 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/System/Environment.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Environment :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_Environment() {}

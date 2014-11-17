@@ -197,7 +197,7 @@ Test_Volume::unit(
         volumes.push_back( SystemInfo().userHomeDir() );
 
         xFOREACH(std::vec_tstring_t, it, volumes) {
-            const TestData2<ulonglong_t, bool_t> data[] = {
+            const Data2<ulonglong_t, bool_t> data[] = {
                 {0ULL, true},
                 {1ULL, true},
                 {(std::numeric_limits<std::size_t>::max)(), false}

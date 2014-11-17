@@ -7,11 +7,11 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/Core/StdStream.h>
 //-------------------------------------------------------------------------------------------------
 class Test_StdStream :
-    public UnitTest
+    public Unit
     ///< tests for StdStream
 {
 public:

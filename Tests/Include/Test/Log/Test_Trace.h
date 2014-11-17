@@ -7,11 +7,11 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 #include <xLib/Log/Trace.h>
 //-------------------------------------------------------------------------------------------------
 class Test_Trace :
-    public UnitTest
+    public Unit
 {
 public:
                    Test_Trace() {}

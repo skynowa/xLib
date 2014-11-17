@@ -1,11 +1,11 @@
 /**
- * \file  TestManager.inl
+ * \file  Manager.inl
  * \brief manage tests (Test)
  */
 
 
 #if !xOPTION_HEADER_ONLY
-    #include "TestManager.h"
+    #include "Manager.h"
 #endif
 
 #include <xLib/Core/Type.h>
@@ -13,7 +13,7 @@
 #include <xLib/Core/Functors.h>
 #include <xLib/IO/Path.h>
 #include <xLib/Log/Trace.h>
-#include <xLib/Test/UnitTest.h>
+#include <xLib/Test/Unit.h>
 
 
 xNAMESPACE_BEGIN2(xlib, test)
@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN2(xlib, test)
 
 //-------------------------------------------------------------------------------------------------
 xINLINE
-TestManager::TestManager(
+Manager::Manager(
     cbool_t &a_isUseTracing
 ) :
     _isUseTracing(a_isUseTracing),
@@ -42,16 +42,16 @@ TestManager::TestManager(
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 xINLINE
-TestManager::~TestManager()
+Manager::~Manager()
 {
     std::for_each(_tests.begin(), _tests.end(), Delete());
 
-    xCHECK_DO(_isUseTracing, Trace() << xT("TestManager: all tests destructed."));
+    xCHECK_DO(_isUseTracing, Trace() << xT("Manager: all tests destructed."));
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-TestManager::add(
-    UnitTest *a_test
+Manager::add(
+    Unit *a_test
 )
 {
     xTEST_PTR(a_test)
@@ -62,7 +62,7 @@ TestManager::add(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-TestManager::run(
+Manager::run(
     culonglong_t &a_allLoops,
     culonglong_t &a_unitLoops,
     culonglong_t &a_caseLoops
@@ -73,8 +73,8 @@ TestManager::run(
     xTEST_NA(a_caseLoops);
 
     xCHECK_DO(_isUseTracing, Trace() << xT("\nTestManager: start all tests..."));
-    xCHECK_DO(_isUseTracing, Trace() << xT("TestManager: module path: ") << Path::exe());
-    xCHECK_DO(_isUseTracing, Trace() << xT("TestManager: ")
+    xCHECK_DO(_isUseTracing, Trace() << xT("Manager: module path: ") << Path::exe());
+    xCHECK_DO(_isUseTracing, Trace() << xT("Manager: ")
                                        << xT("all loops: ")     << a_allLoops
                                        << xT(", unit loops: ")  << a_unitLoops
                                        << xT(", case loops: ")  << a_caseLoops
@@ -82,13 +82,13 @@ TestManager::run(
 
     for (ulonglong_t i = 0ULL; i < a_allLoops; ++ i) {
         xFOREACH_CONST(container_t, it, _tests) {
-            xCHECK_DO(_isUseTracing, Trace() << xT("TestManager: run test ") << (*it)->name());
+            xCHECK_DO(_isUseTracing, Trace() << xT("Manager: run test ") << (*it)->name());
 
             (*it)->run(a_unitLoops, a_caseLoops);
         }
     }
 
-    xCHECK_DO(_isUseTracing, Trace() << xT("TestManager: all tests successful done."));
+    xCHECK_DO(_isUseTracing, Trace() << xT("Manager: all tests successful done."));
 }
 //-------------------------------------------------------------------------------------------------
 
