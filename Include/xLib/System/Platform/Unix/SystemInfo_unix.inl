@@ -203,12 +203,7 @@ SystemInfo::_userName_impl() const
 {
     std::tstring_t sRv;
 
-    passwd passwd;   xSTRUCT_ZERO(passwd);
-
-    _passwdFileEntry(&passwd);
-    xTEST_PTR(passwd.pw_name);
-
-    sRv.assign(passwd.pw_name);
+    _passwdFileEntry(&sRv, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL);
 
     return sRv;
 }
@@ -231,17 +226,12 @@ SystemInfo::_userHomeDir_impl() const
     */
 
     // try to get from API
-    {
-        passwd passwd;   xSTRUCT_ZERO(passwd);
-
-        _passwdFileEntry(&passwd);
-        xTEST_PTR(passwd.pw_dir);
-
-        sRv.assign(passwd.pw_dir);
-    }
+    _passwdFileEntry(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv, xPTR_NULL);
+    xCHECK_RET(!sRv.empty(), sRv);
 
     // try to get from system environment
     sRv = Environment::var(xT("HOME"));
+    xTEST_EQ(sRv.empty(), false);
 
     return sRv;
 }
@@ -251,12 +241,7 @@ SystemInfo::_userShellPath_impl() const
 {
     std::tstring_t sRv;
 
-    passwd passwd;   xSTRUCT_ZERO(passwd);
-
-    _passwdFileEntry(&passwd);
-    xTEST_PTR(passwd.pw_shell);
-
-    sRv.assign(passwd.pw_shell);
+    _passwdFileEntry(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv);
 
     return sRv;
 }
@@ -393,10 +378,27 @@ SystemInfo::libPthreadVersion() const
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 SystemInfo::_passwdFileEntry(
-    passwd *a_passwdEntry
+    std::string *a_pw_name,   ///< Username (maybe as xPTR_NULL)
+    std::string *a_pw_passwd, ///< Password (maybe as xPTR_NULL)
+    uid_t       *a_pw_uid,    ///< User ID (maybe as xPTR_NULL)
+    gid_t       *a_pw_gid,    ///< Group ID (maybe as xPTR_NULL)
+    std::string *a_pw_gecos,  ///< Real name (maybe as xPTR_NULL)
+    std::string *a_pw_dir,    ///< Home directory (maybe as xPTR_NULL)
+    std::string *a_pw_shell   ///< Shell program (maybe as xPTR_NULL)
 ) const
 {
-    xTEST_PTR(a_passwdEntry);
+    xTEST_NA(a_pw_name);
+    xTEST_NA(a_pw_passwd);
+    xTEST_NA(a_pw_uid);
+    xTEST_NA(a_pw_gid);
+    xTEST_NA(a_pw_gecos);
+    xTEST_NA(a_pw_dir);
+    xTEST_NA(a_pw_shell);
+
+    struct passwd *pwRv = xPTR_NULL;
+
+    const uid_t userId = ::getuid();
+    xTEST_NA(userId);
 
 #if xHAVE_GETPWUID_R
     long_t buffSize = - 1L;
@@ -409,29 +411,27 @@ SystemInfo::_passwdFileEntry(
         xTEST_GR(buffSize, 0L);
     }
 
-    std::string  buff;
-    passwd      *pwd = xPTR_NULL;
-
+    struct passwd pwBuff; xSTRUCT_ZERO(pwBuff);
+    std::string   buff;
     buff.resize(buffSize);
 
-    int_t iRv = ::getpwuid_r(::getuid(), a_passwdEntry, &buff.at(0), buff.size(), &pwd);
+    int_t iRv = ::getpwuid_r(userId, &pwBuff, &buff.at(0), buff.size(), &pwRv);
     xTEST_EQ(iRv, 0);
-    xTEST_PTR(pwd);
 #else
-    struct passwd *pwd = ::getpwuid( ::getuid() );
-    xTEST_PTR(pwd);
-
-    a_passwdEntry = pwd;
+    pwRv = ::getpwuid(userId);
 #endif
 
-#if 0
-    Tracer()
-        << xTRACE_VAR(a_passwdEntry->pw_name)
-        << xTRACE_VAR(a_passwdEntry->pw_uid)
-        << xTRACE_VAR(a_passwdEntry->pw_gid)
-        << xTRACE_VAR(a_passwdEntry->pw_dir)
-        << xTRACE_VAR(a_passwdEntry->pw_shell);
-#endif
+    xTEST_PTR(pwRv);
+
+    Utils::ptrAssignT(a_pw_name,   std::tstring_t(pwRv->pw_name));
+    Utils::ptrAssignT(a_pw_passwd, std::tstring_t(pwRv->pw_passwd));
+    Utils::ptrAssignT(a_pw_uid,    pwRv->pw_uid);
+    Utils::ptrAssignT(a_pw_gid,    pwRv->pw_gid);
+    Utils::ptrAssignT(a_pw_gecos,  std::tstring_t(pwRv->pw_gecos));
+    Utils::ptrAssignT(a_pw_dir,    std::tstring_t(pwRv->pw_dir));
+    Utils::ptrAssignT(a_pw_shell,  std::tstring_t(pwRv->pw_shell));
+
+    Trace() << xTRACE_VAR5(a_pw_name, a_pw_uid, a_pw_gid, a_pw_dir, a_pw_shell);
 }
 //-------------------------------------------------------------------------------------------------
 
