@@ -10,63 +10,65 @@
 #define xTEST_MSG_EQ_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) == (val2)) ) { \
         culong_t    nativeError = NativeError::get(); \
-        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("=="), \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xLEX_TO_STR(==), \
             nativeError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }
 #define xTEST_MSG_DIFF_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) != (val2)) ) { \
         culong_t    nativeError = NativeError::get(); \
-        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("!="), \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xLEX_TO_STR(!=), \
             nativeError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }
 #define xTEST_MSG_LESS_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) < (val2)) ) { \
         culong_t    nativeError = NativeError::get(); \
-        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("<"), \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xLEX_TO_STR(<), \
             nativeError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }
 #define xTEST_MSG_GR_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) > (val2)) ) { \
         culong_t    nativeError = NativeError::get(); \
-        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT(">"), \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xLEX_TO_STR(>), \
             nativeError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }
 #define xTEST_MSG_LESS_EQ_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) <= (val2)) ) { \
         culong_t    nativeError = NativeError::get(); \
-        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("<="), \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xLEX_TO_STR(<=), \
             nativeError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }
 #define xTEST_MSG_GR_EQ_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) >= (val2)) ) { \
         culong_t    nativeError = NativeError::get(); \
-        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT(">="), \
+        ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xLEX_TO_STR(>=), \
             nativeError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }
 #define xTEST_MSG_PTR_IMPL(reportType, ptr, msg) \
     if ( intptr_t(ptr) == intptr_t(xPTR_NULL) ) { \
         culong_t    nativeError = NativeError::get(); \
-        ErrorReport report(reportType, xT("xPTR_NULL"), xT(#ptr), intptr_t(ptr), intptr_t(xPTR_NULL), \
-            xT("!="), nativeError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        ErrorReport report(reportType, xLEX_TO_STR(xPTR_NULL), xT(#ptr), intptr_t(ptr), \
+            intptr_t(xPTR_NULL), xLEX_TO_STR(!=), nativeError, xFILE, xLINE, xFUNCTION, \
+            StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }
 #define xTEST_MSG_PTR_FAIL_IMPL(reportType, ptr, msg) \
     if ( intptr_t(ptr) != intptr_t(xPTR_NULL) ) { \
         culong_t    nativeError = NativeError::get(); \
-        ErrorReport report(reportType, xT("xPTR_NULL"), xT(#ptr), intptr_t(ptr), intptr_t(xPTR_NULL), \
-            xT("=="), nativeError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
+        ErrorReport report(reportType, xLEX_TO_STR(xPTR_NULL), xT(#ptr), intptr_t(ptr), \
+            intptr_t(xPTR_NULL), xLEX_TO_STR(==), nativeError, xFILE, xLINE, xFUNCTION, \
+            StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }
 #define xTEST_MSG_FAIL_IMPL(reportType, msg) \
     if ( true ) { \
         culong_t    nativeError = NativeError::get(); \
-        ErrorReport report(reportType, xT("false"), xT(""), xT(""), xT(""), xT(""), \
+        ErrorReport report(reportType, xLEX_TO_STR(false), xT(""), xT(""), xT(""), xT(""), \
             nativeError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }
