@@ -46,7 +46,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("nose")), m_sRv);
     }
 
-    xTEST_CASE("Uri::getters", a_caseLoops)
+    xTEST_CASE("getters", a_caseLoops)
     {
         Uri objUri(xT("foo://userinfo@example.com:8042/over/there?name=ferret"));
 
@@ -78,7 +78,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("Uri::getters", a_caseLoops)
+    xTEST_CASE("getters", a_caseLoops)
     {
         Uri objUri(xT("foo://userinfo@example.com:8042/over/there"));
 
@@ -110,7 +110,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("Uri::getters", a_caseLoops)
+    xTEST_CASE("getters", a_caseLoops)
     {
         Uri objUri(xT("foo://userinfo@example.com:8042"));
 
@@ -142,7 +142,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("Uri::getters", a_caseLoops)
+    xTEST_CASE("getters", a_caseLoops)
     {
         Uri objUri(xT("foo://userinfo@example.com"));
 
@@ -174,7 +174,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("Uri::getters", a_caseLoops)
+    xTEST_CASE("getters", a_caseLoops)
     {
         Uri objUri(xT("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c"));
 
@@ -206,7 +206,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("Uri::getters", a_caseLoops)
+    xTEST_CASE("getters", a_caseLoops)
     {
         Uri objUri(xT("http://dn1.berloga.net/83841/zombie_baseball_2.swf"));
 
@@ -238,7 +238,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("Uri::sEncodeComponent Uri::sDecodeComponent", a_caseLoops)
+    xTEST_CASE("sEncodeComponent Uri::sDecodeComponent", a_caseLoops)
     {
         std::ctstring_t uri[] = {
             xT("http://dn1.berloga.net/83841/xxxxx.swf"),

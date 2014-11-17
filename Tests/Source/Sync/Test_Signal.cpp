@@ -14,7 +14,7 @@ Test_Signal::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Signal::[TEST_CASE_1]", a_caseLoops)
+    xTEST_CASE("[TEST_CASE_1]", a_caseLoops)
     {
 
     }

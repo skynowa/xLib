@@ -14,7 +14,7 @@ Test_HttpClient::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("HttpClient::HttpClient", a_caseLoops)
+    xTEST_CASE("HttpClient", a_caseLoops)
     {
         HttpClient hcHttpClient;
     }

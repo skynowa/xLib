@@ -67,7 +67,7 @@ Test_Finder::unit(
         }
     }
 
-    xTEST_CASE("Finder::Finder", a_caseLoops)
+    xTEST_CASE("Finder", a_caseLoops)
     {
         const data2_size_t data[] = {
             {Const::maskAll(), 12 - 2},
@@ -107,7 +107,7 @@ Test_Finder::unit(
         }
     }
 
-    xTEST_CASE("Finder::dirs", a_caseLoops)
+    xTEST_CASE("dirs", a_caseLoops)
     {
         // non recursive
         {
@@ -128,7 +128,7 @@ Test_Finder::unit(
         }
     }
 
-    xTEST_CASE("Finder::files", a_caseLoops)
+    xTEST_CASE("files", a_caseLoops)
     {
         // non recursive
         {

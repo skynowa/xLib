@@ -21,7 +21,7 @@ Test_Backup::unit(
     std::ctstring_t backupDir = tempDirPath() + Const::slash() + xT("Backup_dir");
 
 
-    xTEST_CASE("Backup::fileExec", a_caseLoops)
+    xTEST_CASE("fileExec", a_caseLoops)
     {
         // prepare
         {

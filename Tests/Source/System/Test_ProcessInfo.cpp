@@ -17,7 +17,7 @@ Test_ProcessInfo::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("ProcessInfo::cpuUsage", a_caseLoops)
+    xTEST_CASE("cpuUsage", a_caseLoops)
     {
         std::vector<Process::id_t> vidIds;
 
@@ -34,7 +34,7 @@ Test_ProcessInfo::unit(
         }
     }
 
-    xTEST_CASE("ProcessInfo::ramUsage", a_caseLoops)
+    xTEST_CASE("ramUsage", a_caseLoops)
     {
         std::vector<Process::id_t> vidIds;
 
@@ -51,7 +51,7 @@ Test_ProcessInfo::unit(
         }
     }
 
-    xTEST_CASE("ProcessInfo::ioBytes", a_caseLoops)
+    xTEST_CASE("ioBytes", a_caseLoops)
     {
     #if 0
         std::vector<Process::id_t> vidIds;
@@ -70,7 +70,7 @@ Test_ProcessInfo::unit(
     #endif
     }
 
-    xTEST_CASE("ProcessInfo::exeName", a_caseLoops)
+    xTEST_CASE("exeName", a_caseLoops)
     {
         std::vector<Process::id_t> vidIds;
 
@@ -86,7 +86,7 @@ Test_ProcessInfo::unit(
         }
     }
 
-    xTEST_CASE("ProcessInfo::parentId", a_caseLoops)
+    xTEST_CASE("parentId", a_caseLoops)
     {
         std::vector<Process::id_t> vidIds;
 
@@ -101,7 +101,7 @@ Test_ProcessInfo::unit(
         }
     }
 
-    xTEST_CASE("ProcessInfo::commandLine", a_caseLoops)
+    xTEST_CASE("commandLine", a_caseLoops)
     {
         std::vector<Process::id_t> vidIds;
 
@@ -126,7 +126,7 @@ Test_ProcessInfo::unit(
         }
     }
 
-    xTEST_CASE("ProcessInfo::commandLineArgsMax", a_caseLoops)
+    xTEST_CASE("commandLineArgsMax", a_caseLoops)
     {
         m_liRv = ProcessInfo::commandLineArgsMax();
         xTEST_LESS(0L, m_liRv);

@@ -15,7 +15,7 @@ Test_Com::unit(
 )
 {
 #if xENV_WIN
-    xTEST_CASE("Com::Com", a_caseLoops)
+    xTEST_CASE("Com", a_caseLoops)
     {
         const COINIT model[] = {
             COINIT_APARTMENTTHREADED,

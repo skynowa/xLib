@@ -14,7 +14,7 @@ Test_Units::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Units/Bytes", a_caseLoops)
+    xTEST_CASE("Bytes", a_caseLoops)
     {
         culonglong_t BYTE = 1ULL;
         culonglong_t KB   = 1024ULL;
@@ -35,9 +35,9 @@ Test_Units::unit(
         }
     }
 
-    xTEST_CASE("Units/Datetime", a_caseLoops)
+    xTEST_CASE("Datetime", a_caseLoops)
     {
-        // TEST: Units/Datetime
+        // TEST: Datetime
     }
 }
 //-------------------------------------------------------------------------------------------------

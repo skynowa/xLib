@@ -14,7 +14,7 @@ Test_Service::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Service::[TEST_CASE_1]", a_caseLoops)
+    xTEST_CASE("[TEST_CASE_1]", a_caseLoops)
     {
 
     }

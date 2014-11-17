@@ -18,7 +18,7 @@ Test_Profiler::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Profiler::setLogPath", a_caseLoops)
+    xTEST_CASE("setLogPath", a_caseLoops)
     {
         std::ctstring_t filePath = tempDirPath() + Const::slash() + xT("ProfilerLog.log");
 
@@ -40,7 +40,7 @@ Test_Profiler::unit(
         m_stRv = profiler.stop(xT(""));
     }
 
-    xTEST_CASE("Profiler::Profiler", a_caseLoops)
+    xTEST_CASE("Profiler", a_caseLoops)
     {
         Profiler profiler;
         profiler.start();

@@ -16,7 +16,7 @@ Test_Exception::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Exception::Exception", a_caseLoops)
+    xTEST_CASE("Exception", a_caseLoops)
     {
         try {
             throw Exception();
@@ -30,7 +30,7 @@ Test_Exception::unit(
         }
     }
 
-    xTEST_CASE("Exception::Exception(std::tstring_t)", a_caseLoops)
+    xTEST_CASE("Exception(std::tstring_t)", a_caseLoops)
     {
         std::ctstring_t sTestData[][2] = {
             {xT("TEST_STRING_1"),        xT("TEST_STRING_1")},
@@ -53,7 +53,7 @@ Test_Exception::unit(
         }
     }
 
-    xTEST_CASE("Exception::[catch Exception]", a_caseLoops)
+    xTEST_CASE("[catch Exception]", a_caseLoops)
     {
         try {
             throw Exception() << xT("Exception_test_exception");
@@ -66,7 +66,7 @@ Test_Exception::unit(
         }
     }
 
-    xTEST_CASE("Exception::[catch std::exception]", a_caseLoops)
+    xTEST_CASE("[catch std::exception]", a_caseLoops)
     {
         try {
             std::tstring_t sStr;
@@ -81,7 +81,7 @@ Test_Exception::unit(
         }
     }
 
-    xTEST_CASE("Exception::xTRY_ xCATCH_ALL_ xTHROW_", a_caseLoops)
+    xTEST_CASE("xTRY_ xCATCH_ALL_ xTHROW_", a_caseLoops)
     {
         #if 0
             xTRY {

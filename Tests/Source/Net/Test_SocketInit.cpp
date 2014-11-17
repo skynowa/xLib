@@ -14,7 +14,7 @@ Test_SocketInit::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("SocketInit::SocketInit", a_caseLoops)
+    xTEST_CASE("SocketInit", a_caseLoops)
     {
         SocketInit siInit10(1, 0);
         SocketInit siInit11(1, 1);

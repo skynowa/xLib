@@ -14,7 +14,7 @@ Test_ThreadStorage::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("ThreadStorage::setValue value", a_caseLoops)
+    xTEST_CASE("setValue, value", a_caseLoops)
     {
         culong_t caulData[] = {0, 1, 2, 777};
 

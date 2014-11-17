@@ -51,7 +51,7 @@ Test_Observer::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Observer::Observer", a_caseLoops)
+    xTEST_CASE("Observer", a_caseLoops)
     {
         ::type_all = 0;
         ::message_all.clear();

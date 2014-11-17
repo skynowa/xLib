@@ -18,7 +18,7 @@ Test_FileTemp::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("FileTemp::all", a_caseLoops)
+    xTEST_CASE("all", a_caseLoops)
     {
         FileTemp fileTemp(true);
         File     fileJobber;

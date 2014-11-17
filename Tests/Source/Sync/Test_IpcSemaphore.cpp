@@ -17,7 +17,7 @@ Test_IpcSemaphore::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("IpcSemaphore::IpcSemaphore", a_caseLoops)
+    xTEST_CASE("IpcSemaphore", a_caseLoops)
     {
         struct _Functor
         {

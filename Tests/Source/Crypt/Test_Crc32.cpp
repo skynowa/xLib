@@ -26,7 +26,7 @@ Test_Crc32::unit(
         file.resize(1337LL);
     }
 
-    xTEST_CASE("Crc32::calcFile calc formatHex", a_caseLoops)
+    xTEST_CASE("calcFile, calc, formatHex", a_caseLoops)
     {
         Crc32 crc32;
 

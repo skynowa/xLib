@@ -14,7 +14,7 @@ Test_Flags::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Flags::Flags", a_caseLoops)
+    xTEST_CASE("Flags", a_caseLoops)
     {
         // TEST: Flags
     }

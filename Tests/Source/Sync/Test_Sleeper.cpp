@@ -14,7 +14,7 @@ Test_Sleeper::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Sleeper::isSleeping", a_caseLoops)
+    xTEST_CASE("isSleeping", a_caseLoops)
     {
         Sleeper objSleeper;
 
@@ -22,7 +22,7 @@ Test_Sleeper::unit(
         xTEST_EQ(m_bRv, false);
     }
 
-    xTEST_CASE("Sleeper::sleep", a_caseLoops)
+    xTEST_CASE("sleep", a_caseLoops)
     {
         Sleeper objSleeper;
 
@@ -40,7 +40,7 @@ Test_Sleeper::unit(
         }
     }
 
-    xTEST_CASE("Sleeper::wakeUp", a_caseLoops)
+    xTEST_CASE("wakeUp", a_caseLoops)
     {
         // TEST: Sleeper::wakeUp()
         #if xTODO

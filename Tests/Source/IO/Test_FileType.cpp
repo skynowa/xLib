@@ -39,7 +39,7 @@ Test_FileType::unit(
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("FileType::set get", a_caseLoops)
+    xTEST_CASE("set get", a_caseLoops)
     {
         FileType ftType(csFilePath);
 
@@ -51,7 +51,7 @@ Test_FileType::unit(
         xTEST_EQ((ulong_t)cfaValue, (ulong_t)faRes);
     }
 
-    xTEST_CASE("FileType::add", a_caseLoops)
+    xTEST_CASE("add", a_caseLoops)
     {
         FileType ftType(csFilePath);
 
@@ -62,7 +62,7 @@ Test_FileType::unit(
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("FileType::remove", a_caseLoops)
+    xTEST_CASE("remove", a_caseLoops)
     {
         #if   xENV_WIN
             FileType ftType(csFilePath);
@@ -119,7 +119,7 @@ Test_FileType::unit(
         #endif
     }
 
-    xTEST_CASE("FileType::modify", a_caseLoops)
+    xTEST_CASE("modify", a_caseLoops)
     {
         FileType ftType(csFilePath);
 
@@ -134,7 +134,7 @@ Test_FileType::unit(
         ftType.modify(cfaRemoveValue, cfaAddValue);
     }
 
-    xTEST_CASE("FileType::isExists", a_caseLoops)
+    xTEST_CASE("isExists", a_caseLoops)
     {
         FileType ftType(csFilePath);
 
@@ -150,7 +150,7 @@ Test_FileType::unit(
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("FileType::clear", a_caseLoops)
+    xTEST_CASE("clear", a_caseLoops)
     {
         FileType ftType(csFilePath);
 

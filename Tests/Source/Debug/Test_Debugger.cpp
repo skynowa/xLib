@@ -14,7 +14,7 @@ Test_Debugger::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Debugger::isEnabled setEnabled", a_caseLoops)
+    xTEST_CASE("isEnabled, setEnabled", a_caseLoops)
     {
         cbool_t cbTrue  = true;
         cbool_t cbFalse = false;
@@ -35,14 +35,14 @@ Test_Debugger::unit(
         xTEST_EQ(cbTrue, m_bRv);
     }
 
-    xTEST_CASE("Debugger::isActive", a_caseLoops)
+    xTEST_CASE("isActive", a_caseLoops)
     {
         Debugger debugger;
 
         m_bRv = debugger.isActive();
     }
 
-    xTEST_CASE("Debugger::coreDumpsEnable", a_caseLoops)
+    xTEST_CASE("coreDumpsEnable", a_caseLoops)
     {
         Debugger debugger;
 
@@ -50,7 +50,7 @@ Test_Debugger::unit(
         debugger.coreDumpsEnable(true);
     }
 
-    xTEST_CASE("Debugger::breakPoint", a_caseLoops)
+    xTEST_CASE("breakPoint", a_caseLoops)
     {
         Debugger debugger;
 
@@ -59,7 +59,7 @@ Test_Debugger::unit(
         #endif
     }
 
-    xTEST_CASE("Debugger::setLogPath logPath", a_caseLoops)
+    xTEST_CASE("setLogPath, logPath", a_caseLoops)
     {
         std::ctstring_t filePath;
 
@@ -79,7 +79,7 @@ Test_Debugger::unit(
         xTEST_EQ(true, m_sRv.empty());
     }
 
-    xTEST_CASE("Debugger::reportMake", a_caseLoops)
+    xTEST_CASE("reportMake", a_caseLoops)
     {
         const ErrorReport::ExType type[] = {
             ErrorReport::rtMsgbox,
@@ -101,41 +101,42 @@ Test_Debugger::unit(
             debugger.reportMake(report);
         }
     }
+
 #if 0
     //--------------------------------------------------
     // like xTEST_EQ macroses
 
     // with int_t
     {
-        xTEST_CASE("Debugger::xTEST_EQ_", a_caseLoops)
+        xTEST_CASE("xTEST_EQ_", a_caseLoops)
         {
             int_t iVar1 = 1;
             int_t iVar2 = 1;
             xTEST_EQ(iVar1, iVar2);
         }
 
-        xTEST_CASE("Debugger::xTEST_DIFF_", a_caseLoops)
+        xTEST_CASE("xTEST_DIFF_", a_caseLoops)
         {
             int_t iVar1 = 0;
             int_t iVar2 = 1;
             xTEST_DIFF(iVar1, iVar2);
         }
 
-        xTEST_CASE("Debugger::xTEST_LESS_", a_caseLoops)
+        xTEST_CASE("xTEST_LESS_", a_caseLoops)
         {
             int_t iVar1 = 1;
             int_t iVar2 = 122;
             xTEST_LESS(iVar1, iVar2);
         }
 
-        xTEST_CASE("Debugger::xTEST_GR_", a_caseLoops)
+        xTEST_CASE("xTEST_GR_", a_caseLoops)
         {
             int_t iVar1 = 110;
             int_t iVar2 = 10;
             xTEST_GR(iVar1, iVar2);
         }
 
-        xTEST_CASE("Debugger::xTEST_LESS_EQ_", a_caseLoops)
+        xTEST_CASE("xTEST_LESS_EQ_", a_caseLoops)
         {
             int_t iVar1 = 50;
             int_t iVar2 = 122;
@@ -146,7 +147,7 @@ Test_Debugger::unit(
             xTEST_LESS_EQ(iVar3, iVar4);
         }
 
-        xTEST_CASE("Debugger::xTEST_GR_EQ_", a_caseLoops)
+        xTEST_CASE("xTEST_GR_EQ_", a_caseLoops)
         {
             int_t iVar1 = 500;
             int_t iVar2 = 147;
@@ -163,35 +164,35 @@ Test_Debugger::unit(
 
     // with std::tstring_t
     {
-        xTEST_CASE("Debugger::xTEST_EQ_", a_caseLoops)
+        xTEST_CASE("xTEST_EQ_", a_caseLoops)
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("aaa");
             xTEST_EQ(sVar1, sVar2);
         }
 
-        xTEST_CASE("Debugger::xTEST_DIFF_", a_caseLoops)
+        xTEST_CASE("xTEST_DIFF_", a_caseLoops)
         {
             std::tstring_t sVar1 = xT("bbb");
             std::tstring_t sVar2 = xT("BBB");
             xTEST_DIFF(sVar1, sVar2);
         }
 
-        xTEST_CASE("Debugger::xTEST_LESS_", a_caseLoops)
+        xTEST_CASE("xTEST_LESS_", a_caseLoops)
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("ccc");
             xTEST_LESS(sVar1, sVar2);
         }
 
-        xTEST_CASE("Debugger::xTEST_GR_", a_caseLoops)
+        xTEST_CASE("xTEST_GR_", a_caseLoops)
         {
             std::tstring_t sVar1 = xT("bbb");
             std::tstring_t sVar2 = xT("aaa");
             xTEST_GR(sVar1, sVar2);
         }
 
-        xTEST_CASE("Debugger::xTEST_LESS_EQ_", a_caseLoops)
+        xTEST_CASE("xTEST_LESS_EQ_", a_caseLoops)
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("aaa");
@@ -202,7 +203,7 @@ Test_Debugger::unit(
             xTEST_LESS_EQ(sVar3, sVar4);
         }
 
-        xTEST_CASE("Debugger::xTEST_GR_EQ_", a_caseLoops)
+        xTEST_CASE("xTEST_GR_EQ_", a_caseLoops)
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("aaa");

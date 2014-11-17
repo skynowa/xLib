@@ -14,19 +14,19 @@ Test_SystemLog::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("SystemLog::SystemLog", a_caseLoops)
+    xTEST_CASE("SystemLog", a_caseLoops)
     {
         SystemLog log;
     }
 
-    xTEST_CASE("SystemLog::SystemLog", a_caseLoops)
+    xTEST_CASE("SystemLog", a_caseLoops)
     {
         std::tstring_t logName = xT("Simple_programm_name");
 
         SystemLog log(logName);
     }
 
-    xTEST_CASE("SystemLog::setEnabled", a_caseLoops)
+    xTEST_CASE("setEnabled", a_caseLoops)
     {
         SystemLog log;
 
@@ -36,7 +36,7 @@ Test_SystemLog::unit(
         log.setEnabled(false);
     }
 
-    xTEST_CASE("SystemLog::write", a_caseLoops)
+    xTEST_CASE("write", a_caseLoops)
     {
         ILog::cExLevel logLevel[] = {
             ILog::lvEmerg, ILog::lvAlert,   ILog::lvCritical,
@@ -51,7 +51,7 @@ Test_SystemLog::unit(
         }
     }
 
-    xTEST_CASE("SystemLog::write(cExLevel &level, ...)", a_caseLoops)
+    xTEST_CASE("write(cExLevel &level, ...)", a_caseLoops)
     {
         SystemLog().write(ILog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::lvUnknown),  12345);
         SystemLog().write(ILog::lvEmerg,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvEmerg),    12345);
