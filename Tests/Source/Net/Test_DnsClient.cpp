@@ -18,7 +18,7 @@ Test_DnsClient::unit(
 {
     SocketInit siInit(2, 2);
 
-    xTEST_CASE("DnsClient::hostAddrByName", a_caseLoops)
+    xTEST_CASE("hostAddrByName", a_caseLoops)
     {
         std::tstring_t sHostName = xT("msdn.microsoft.com");
         std::tstring_t sHostAddr = xT("");
@@ -28,7 +28,7 @@ Test_DnsClient::unit(
         //std::tcout << xT("[hostAddrByName]: ") << sHostAddr << std::endl;
     }
 
-    xTEST_CASE("DnsClient::hostNameByAddr", a_caseLoops)
+    xTEST_CASE("hostNameByAddr", a_caseLoops)
     {
         std::tstring_t sHostName = xT("");
         std::tstring_t sHostAddr = xT("127.0.0.1");
@@ -38,7 +38,7 @@ Test_DnsClient::unit(
         //std::tcout << xT("[hostNameByAddr]: ") << sHostName << std::endl;
     }
 
-    xTEST_CASE("DnsClient::localHostName", a_caseLoops)
+    xTEST_CASE("localHostName", a_caseLoops)
     {
         std::tstring_t sLocalHostName = xT("");
 
@@ -47,7 +47,7 @@ Test_DnsClient::unit(
         //std::tcout << xT("[localHostName]: ") << sLocalHostName << std::endl;
     }
 
-    xTEST_CASE("DnsClient::nameInfo", a_caseLoops)
+    xTEST_CASE("nameInfo", a_caseLoops)
     {
         ////DnsClient::ExAddressFamily afFamily  = DnsClient::afInet;
         ////std::tstring_t                     sHostAddr = /*xT("207.46.172.252");*/    xT("forum.vingrad.ru");
@@ -59,7 +59,7 @@ Test_DnsClient::unit(
         //xSTD_COUT(xT("[nameInfo]: ") << sLocalHostName);
     }
 
-    xTEST_CASE("DnsClient::hostAddrInfo", a_caseLoops)
+    xTEST_CASE("hostAddrInfo", a_caseLoops)
     {
         std::tstring_t sHostName = xT("www.google.ru");
         std::tstring_t sPort     = xT("http");
@@ -94,7 +94,7 @@ Test_DnsClient::unit(
         // n/a
     }
 
-    xTEST_CASE("DnsClient::protocolByName", a_caseLoops)
+    xTEST_CASE("protocolByName", a_caseLoops)
     {
         ctchar_t cszProtocolNames[][10] =
         {
@@ -120,7 +120,7 @@ Test_DnsClient::unit(
         //std::tcout << std::endl;
     }
 
-    xTEST_CASE("DnsClient::protocolByNumber", a_caseLoops)
+    xTEST_CASE("protocolByNumber", a_caseLoops)
     {
         cint_t ciProtocolNumbers[] = {
             0, 1, 3, 6, 8, 12, 17, 20, 22, 27
@@ -144,7 +144,7 @@ Test_DnsClient::unit(
         //std::tcout << std::endl;
     }
 
-    xTEST_CASE("DnsClient::serviceByName", a_caseLoops)
+    xTEST_CASE("serviceByName", a_caseLoops)
     {
         std::tstring_t     csServiceName  = xT("http");
         ctchar_t           cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
@@ -166,7 +166,7 @@ Test_DnsClient::unit(
         //std::tcout << std::endl;
     }
 
-    xTEST_CASE("DnsClient::serviceByPort", a_caseLoops)
+    xTEST_CASE("serviceByPort", a_caseLoops)
     {
         short_t            csiPort  = 20480;
         ctchar_t           cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
@@ -188,12 +188,12 @@ Test_DnsClient::unit(
         //std::tcout << std::endl;
     }
 
-    xTEST_CASE("DnsClient::isOnLan", a_caseLoops)
+    xTEST_CASE("isOnLan", a_caseLoops)
     {
         // TEST: DnsClient::isOnLan()
     }
 
-    xTEST_CASE("DnsClient::isBroadcast", a_caseLoops)
+    xTEST_CASE("isBroadcast", a_caseLoops)
     {
         // TEST: DnsClient::isBroadcast()
     }

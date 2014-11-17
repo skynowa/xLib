@@ -16,7 +16,7 @@ Test_Dll::unit(
 {
     // TEST: Test_Dll()
 
-    xTEST_CASE("Dll::Dll", a_caseLoops)
+    xTEST_CASE("Dll", a_caseLoops)
     {
         #if   xENV_WIN
             const data2_tstring_t data[] = {

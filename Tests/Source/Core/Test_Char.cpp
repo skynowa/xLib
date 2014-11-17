@@ -14,7 +14,7 @@ Test_Char::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Char::isAlphaNum", a_caseLoops)
+    xTEST_CASE("isAlphaNum", a_caseLoops)
     {
         // true
         {
@@ -37,7 +37,7 @@ Test_Char::unit(
         }
     }
 
-    xTEST_CASE("Char::isAlpha", a_caseLoops)
+    xTEST_CASE("isAlpha", a_caseLoops)
     {
         // true
         {
@@ -60,7 +60,7 @@ Test_Char::unit(
         }
     }
 
-    xTEST_CASE("Char::isControl", a_caseLoops)
+    xTEST_CASE("isControl", a_caseLoops)
     {
         // true
         {
@@ -83,7 +83,7 @@ Test_Char::unit(
         }
     }
 
-    xTEST_CASE("Char::isDigitDec", a_caseLoops)
+    xTEST_CASE("isDigitDec", a_caseLoops)
     {
         // true
         {
@@ -106,7 +106,7 @@ Test_Char::unit(
         }
     }
 
-    xTEST_CASE("Char::isDigitHex", a_caseLoops)
+    xTEST_CASE("isDigitHex", a_caseLoops)
     {
         // true
         {
@@ -129,7 +129,7 @@ Test_Char::unit(
         }
     }
 
-    xTEST_CASE("Char::isGraph", a_caseLoops)
+    xTEST_CASE("isGraph", a_caseLoops)
     {
         // true
         {
@@ -152,7 +152,7 @@ Test_Char::unit(
         }
     }
 
-    xTEST_CASE("Char::isPrint", a_caseLoops)
+    xTEST_CASE("isPrint", a_caseLoops)
     {
         // true
         {
@@ -176,7 +176,7 @@ Test_Char::unit(
         }
     }
 
-    xTEST_CASE("Char::isPunct", a_caseLoops)
+    xTEST_CASE("isPunct", a_caseLoops)
     {
         // true
         {
@@ -199,7 +199,7 @@ Test_Char::unit(
         }
     }
 
-    xTEST_CASE("Char::isSpace", a_caseLoops)
+    xTEST_CASE("isSpace", a_caseLoops)
     {
         // true
         {
@@ -222,7 +222,7 @@ Test_Char::unit(
         }
     }
 
-    xTEST_CASE("Char::isLower", a_caseLoops)
+    xTEST_CASE("isLower", a_caseLoops)
     {
         // true
         {
@@ -245,7 +245,7 @@ Test_Char::unit(
         }
     }
 
-    xTEST_CASE("Char::isUpper", a_caseLoops)
+    xTEST_CASE("isUpper", a_caseLoops)
     {
         // true
         {
@@ -268,7 +268,7 @@ Test_Char::unit(
         }
     }
 
-    xTEST_CASE("Char::toLower", a_caseLoops)
+    xTEST_CASE("toLower", a_caseLoops)
     {
         std::ctstring_t dataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         std::ctstring_t dataLow   = xT("abcdefghijklmnopqrstuvwxyz");
@@ -279,7 +279,7 @@ Test_Char::unit(
         }
     }
 
-    xTEST_CASE("Char::toUpper", a_caseLoops)
+    xTEST_CASE("toUpper", a_caseLoops)
     {
         std::ctstring_t dataLow   = xT("abcdefghijklmnopqrstuvwxyz");
         std::ctstring_t dataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");

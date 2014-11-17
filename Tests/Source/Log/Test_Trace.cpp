@@ -16,7 +16,7 @@ Test_Trace::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Trace::operator <<", a_caseLoops)
+    xTEST_CASE("operator <<", a_caseLoops)
     {
     #if xTEST_IGNORE
         Trace trace;
@@ -25,21 +25,21 @@ Test_Trace::unit(
     #endif
     }
 
-    xTEST_CASE("Trace::operator <<", a_caseLoops)
+    xTEST_CASE("operator <<", a_caseLoops)
     {
     #if xTEST_IGNORE
         Trace() << xT("\tMsg: ") << 12345 << xT(' ') << Const::dot3();
     #endif
     }
 
-    xTEST_CASE("Trace::write", a_caseLoops)
+    xTEST_CASE("write", a_caseLoops)
     {
     #if xTEST_IGNORE
         Trace::write(xT("\t%s: %d"), "test_str", 12345);
     #endif
     }
 
-    xTEST_CASE("Trace::write(cExLevel &level, ...)", a_caseLoops)
+    xTEST_CASE("write(cExLevel &level, ...)", a_caseLoops)
     {
     #if xTEST_IGNORE
         Trace().write(ILog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::lvUnknown),  12345);
@@ -55,7 +55,7 @@ Test_Trace::unit(
     #endif
     }
 
-    xTEST_CASE("Trace::xTRACE_VAR_", a_caseLoops)
+    xTEST_CASE("xTRACE_VAR_", a_caseLoops)
     {
     #if xTEST_IGNORE
         std::tstring_t sData  = xT("data1");

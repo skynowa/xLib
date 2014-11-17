@@ -16,7 +16,7 @@ Test_AutoMutex::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("AutoMutex::AutoMutex", a_caseLoops)
+    xTEST_CASE("AutoMutex", a_caseLoops)
     {
         size_t  uiCounter = 0;
         Mutex mtMutex;

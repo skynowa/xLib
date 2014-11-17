@@ -16,7 +16,7 @@ Test_StdStream::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("String::operator << for std::ustring_t", a_caseLoops)
+    xTEST_CASE("operator << for std::ustring_t", a_caseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
             std::ustring_t usStr;
@@ -34,7 +34,7 @@ Test_StdStream::unit(
         }
     }
 
-    xTEST_CASE("String::operator << for std::vector", a_caseLoops)
+    xTEST_CASE("operator << for std::vector", a_caseLoops)
     {
         m_vsRv.clear();
 
@@ -50,7 +50,7 @@ Test_StdStream::unit(
         m_vsRv.clear();
     }
 
-    xTEST_CASE("String::operator << for std::map", a_caseLoops)
+    xTEST_CASE("operator << for std::map", a_caseLoops)
     {
         m_msRv.clear();
 
@@ -66,7 +66,7 @@ Test_StdStream::unit(
         m_msRv.clear();
     }
 
-    xTEST_CASE("String::operator << for std::multimap", a_caseLoops)
+    xTEST_CASE("operator << for std::multimap", a_caseLoops)
     {
         m_mmsRv.clear();
 

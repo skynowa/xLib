@@ -14,7 +14,7 @@ Test_Test::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Debug::xTEST_...", a_caseLoops)
+    xTEST_CASE("xTEST_...", a_caseLoops)
     {
         std::ctstring_t msg = xT("Simple message");
 
@@ -58,7 +58,7 @@ Test_Test::unit(
         xTEST_MSG(true, msg)
     }
 
-    xTEST_CASE("Debug::xTEST_THROW_...", a_caseLoops)
+    xTEST_CASE("xTEST_THROW_...", a_caseLoops)
     {
         std::ctstring_t msg = xT("Simple message");
 
@@ -72,13 +72,13 @@ Test_Test::unit(
         xTEST_MSG_THROW_NO(msg.at(0), msg);
     }
 
-    xTEST_CASE("Debug::xTEST_NA", a_caseLoops)
+    xTEST_CASE("xTEST_NA", a_caseLoops)
     {
         xTEST_NA(1978);
         xTESTS_NA;
     }
 
-    xTEST_CASE("Debug::xTEST_STATIC", a_caseLoops)
+    xTEST_CASE("xTEST_STATIC", a_caseLoops)
     {
         xTEST_STATIC(true);
 

@@ -19,27 +19,27 @@ Test_Array::unit(
 
     Array<size_t, arraySize> array = {{0, 1, 2, 3, 4}};
 
-    xTEST_CASE("Array::operator[]", a_caseLoops)
+    xTEST_CASE("operator[]", a_caseLoops)
     {
         for (size_t i = 0; i < array.size(); ++ i) {
             xTEST_EQ(i, array[i]);
         }
     }
 
-    xTEST_CASE("Array::at", a_caseLoops)
+    xTEST_CASE("at", a_caseLoops)
     {
         for (size_t i = 0; i < array.size(); ++ i) {
             xTEST_EQ(i, array.at(i));
         }
     }
 
-    xTEST_CASE("Array::size", a_caseLoops)
+    xTEST_CASE("size", a_caseLoops)
     {
         m_stRv = array.size();
         xTEST_EQ(arraySize, m_stRv);
     }
 
-    xTEST_CASE("Array::clear", a_caseLoops)
+    xTEST_CASE("clear", a_caseLoops)
     {
         array.clear();
     }

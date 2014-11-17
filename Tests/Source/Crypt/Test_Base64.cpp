@@ -14,7 +14,7 @@ Test_Base64::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Base64::encode decode", a_caseLoops)
+    xTEST_CASE("encode, decode", a_caseLoops)
     {
         std::string data[][1] = {
             {"ADP GmbH\nAnalyse Design & Programmierung\nGesellschaft mit beschrankter Haftung"},
@@ -43,7 +43,7 @@ Test_Base64::unit(
         }
     }
 
-    xTEST_CASE("Base64::encode decode", a_caseLoops)
+    xTEST_CASE("encode, decode", a_caseLoops)
     {
         const TestData2<std::string, std::string> data[] = {
             {"YOYO!", "WU9ZTyE="},

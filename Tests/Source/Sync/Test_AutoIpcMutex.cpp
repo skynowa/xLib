@@ -18,7 +18,7 @@ Test_AutoIpcMutex::unit(
 {
     std::ctstring_t csName = xT("mutex_name_a");
 
-    xTEST_CASE("AutoIpcMutex::AutoIpcMutex", a_caseLoops)
+    xTEST_CASE("AutoIpcMutex", a_caseLoops)
     {
         IpcMutex mtMutex;
 

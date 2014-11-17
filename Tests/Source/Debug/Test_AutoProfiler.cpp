@@ -18,7 +18,7 @@ Test_AutoProfiler::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("AutoProfiler::AutoProfiler", a_caseLoops)
+    xTEST_CASE("AutoProfiler", a_caseLoops)
     {
         std::ctstring_t csFilePath = tempDirPath() + Const::slash() + xT("AutoProfilerLog.log");
 

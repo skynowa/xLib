@@ -39,7 +39,7 @@ Test_Raii::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Raii::Raii", a_caseLoops)
+    xTEST_CASE("Raii", a_caseLoops)
     {
         std::ctstring_t datetimes[][2] = {
             { xT("0123"), xT("0")   },

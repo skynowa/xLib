@@ -20,7 +20,7 @@ Test_Blowfish::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Blowfish::encryptCfb64", a_caseLoops)
+    xTEST_CASE("encryptCfb64", a_caseLoops)
     {
         std::ustring_t plain[] = {
             std::ustring_t(1,  'a'),
@@ -52,7 +52,7 @@ Test_Blowfish::unit(
         }
     }
 
-    xTEST_CASE("Blowfish::encryptFileCfb64", a_caseLoops)
+    xTEST_CASE("encryptFileCfb64", a_caseLoops)
     {
         Blowfish blowfish;
         std::tstring_t key           = xT("888888888A");

@@ -14,7 +14,7 @@ Test_AutoReset::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("AutoReset::AutoReset", a_caseLoops)
+    xTEST_CASE("AutoReset", a_caseLoops)
     {
         bool_t data[] = {true, false, true};
 

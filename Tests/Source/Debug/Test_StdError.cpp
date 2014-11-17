@@ -16,7 +16,7 @@ Test_StdError::unit(
 {
     cint_t ciMaxErrors = 132;  /*0...132*/;
 
-    xTEST_CASE("StdError::isSuccess", a_caseLoops)
+    xTEST_CASE("isSuccess", a_caseLoops)
     {
         StdError::reset();
         m_bRv = StdError::isSuccess();
@@ -33,20 +33,20 @@ Test_StdError::unit(
         xTEST_EQ(m_bRv, false);
     }
 
-    xTEST_CASE("StdError::get", a_caseLoops)
+    xTEST_CASE("get", a_caseLoops)
     {
         m_iRv = StdError::get();
         xUNUSED(m_iRv);
         xTEST_EQ(0, StdError::get());
     }
 
-    xTEST_CASE("StdError::format", a_caseLoops)
+    xTEST_CASE("format", a_caseLoops)
     {
         std::tstring_t sError = StdError::format();
         xTEST_EQ(false, sError.empty());
     }
 
-    xTEST_CASE("StdError::set", a_caseLoops)
+    xTEST_CASE("set", a_caseLoops)
     {
         cint_t caiData[] = {
             0,
@@ -64,7 +64,7 @@ Test_StdError::unit(
         }
     }
 
-    xTEST_CASE("StdError::reset", a_caseLoops)
+    xTEST_CASE("reset", a_caseLoops)
     {
         cint_t caiData[] = {
             0,
@@ -82,7 +82,7 @@ Test_StdError::unit(
         }
     }
 
-    xTEST_CASE("StdError::format", a_caseLoops)
+    xTEST_CASE("format", a_caseLoops)
     {
         cint_t caiData[] = {
             0,

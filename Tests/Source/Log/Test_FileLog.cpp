@@ -21,7 +21,7 @@ Test_FileLog::unit(
 
     FileLog log(FileLog::lsDefaultMb);
 
-    xTEST_CASE("FileLog::setFilePath filePath", a_caseLoops)
+    xTEST_CASE("setFilePath, filePath", a_caseLoops)
     {
         log.setFilePath(filePath);
 
@@ -29,7 +29,7 @@ Test_FileLog::unit(
         xTEST_EQ(filePath, m_sRv);
     }
 
-    xTEST_CASE("FileLog::write", a_caseLoops)
+    xTEST_CASE("write", a_caseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
             log.write(xT("simple log string: %s"), xT("qwerty01234567890"));
@@ -37,7 +37,7 @@ Test_FileLog::unit(
         }
     }
 
-    xTEST_CASE("FileLog::write(cExLevel &level, ...)", a_caseLoops)
+    xTEST_CASE("write(cExLevel &level, ...)", a_caseLoops)
     {
         log.write(ILog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::lvUnknown),  12345);
         log.write(ILog::lvEmerg,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvEmerg),    12345);
@@ -51,13 +51,13 @@ Test_FileLog::unit(
         log.write(ILog::lvPlain,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvPlain),    12345);
     }
 
-    xTEST_CASE("FileLog::clear", a_caseLoops)
+    xTEST_CASE("clear", a_caseLoops)
     {
         log.clear();
         xTEST_EQ(File::size( log.filePath()), longlong_t(0));
     }
 
-    xTEST_CASE("FileLog::remove", a_caseLoops)
+    xTEST_CASE("remove", a_caseLoops)
     {
         log.remove();
         xTEST_EQ(false, File::isExists( log.filePath()) );

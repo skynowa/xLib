@@ -14,7 +14,7 @@ Test_Type::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Type::name", a_caseLoops)
+    xTEST_CASE("name", a_caseLoops)
     {
         std::tstring_t sObject;
 
@@ -22,7 +22,7 @@ Test_Type::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("Type::rawName", a_caseLoops)
+    xTEST_CASE("rawName", a_caseLoops)
     {
         std::tstring_t sObject;
 
@@ -30,7 +30,7 @@ Test_Type::unit(
         xTEST_EQ(false, m_sRv.empty())
     }
 
-    xTEST_CASE("Type::isEquals", a_caseLoops)
+    xTEST_CASE("isEquals", a_caseLoops)
     {
         std::string  sObject1;
         std::wstring wsObject2;

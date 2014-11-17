@@ -14,7 +14,7 @@ Test_ErrorReport::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("ErrorReport::ErrorReport", a_caseLoops)
+    xTEST_CASE("ErrorReport", a_caseLoops)
     {
         ulong_t nativeError = NativeError::get();
 

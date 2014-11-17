@@ -14,7 +14,7 @@ Test_Random::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Random::nextBool", a_caseLoops)
+    xTEST_CASE("nextBool", a_caseLoops)
     {
         StdRandom random;
 
@@ -22,7 +22,7 @@ Test_Random::unit(
         xTEST_NA(m_bRv);
     }
 
-    xTEST_CASE("Random::nextChar", a_caseLoops)
+    xTEST_CASE("nextChar", a_caseLoops)
     {
         StdRandom random;
 
@@ -36,7 +36,7 @@ Test_Random::unit(
         xTEST_NA(m_ucRv);
     }
 
-    xTEST_CASE("Random::nextInt", a_caseLoops)
+    xTEST_CASE("nextInt", a_caseLoops)
     {
         cint_t data[][2] = {
             {0, 100},
@@ -58,7 +58,7 @@ Test_Random::unit(
         }
     }
 
-    xTEST_CASE("Random::nextFloat", a_caseLoops)
+    xTEST_CASE("nextFloat", a_caseLoops)
     {
         // float
         {
@@ -106,7 +106,7 @@ Test_Random::unit(
     }
 
 #if xTODO
-    xTEST_CASE("Random::nextString", a_caseLoops)
+    xTEST_CASE("nextString", a_caseLoops)
     {
         std::csize_t cuiStrSize = 10;
 

@@ -26,7 +26,7 @@ Test_Utils::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Utils::ptrDeleteT", a_caseLoops)
+    xTEST_CASE("ptrDeleteT", a_caseLoops)
     {
         int_t *pPtr = new int_t();
         xTEST_PTR(pPtr);
@@ -35,7 +35,7 @@ Test_Utils::unit(
         xTEST_PTR_FAIL(pPtr);
     }
 
-    xTEST_CASE("Utils::arrayDeleteT", a_caseLoops)
+    xTEST_CASE("arrayDeleteT", a_caseLoops)
     {
         int_t *pPtr = new int_t[5];
         xTEST_PTR(pPtr);
@@ -44,7 +44,7 @@ Test_Utils::unit(
         xTEST_PTR_FAIL(pPtr);
     }
 
-    xTEST_CASE("Utils::ptrAssignT", a_caseLoops)
+    xTEST_CASE("ptrAssignT", a_caseLoops)
     {
         cint_t ciVal = 10;
 
@@ -69,7 +69,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("Utils::arraySizeT", a_caseLoops)
+    xTEST_CASE("arraySizeT", a_caseLoops)
     {
         {
             tchar_t szBuff[256] = {0};
@@ -92,7 +92,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("Utils::memoryZero", a_caseLoops)
+    xTEST_CASE("memoryZero", a_caseLoops)
     {
         struct SData {
             int_t     i;
@@ -108,7 +108,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("Utils::arrayZeroT", a_caseLoops)
+    xTEST_CASE("arrayZeroT", a_caseLoops)
     {
         {
             tchar_t szBuff[255 + 1];
@@ -141,7 +141,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("Utils::structZeroT", a_caseLoops)
+    xTEST_CASE("structZeroT", a_caseLoops)
     {
         struct tm data = {
             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "aaa"
@@ -159,7 +159,7 @@ Test_Utils::unit(
         xTEST_EQ(data.tm_isdst, 0);
     }
 
-    xTEST_CASE("Utils::bufferFreeT", a_caseLoops)
+    xTEST_CASE("bufferFreeT", a_caseLoops)
     {
         // true
         {
@@ -179,7 +179,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("Utils::fileClose", a_caseLoops)
+    xTEST_CASE("fileClose", a_caseLoops)
     {
         std::ctstring_t csFilaPath = tempDirPath() + Const::slash() + xT("test_fileclose.txt");
 
@@ -190,7 +190,7 @@ Test_Utils::unit(
         xTEST_PTR_FAIL(pFile);
     }
 
-    xTEST_CASE("Utils::intToBoolT", a_caseLoops)
+    xTEST_CASE("intToBoolT", a_caseLoops)
     {
         // false
         {
@@ -213,19 +213,19 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("Utils::maxT", a_caseLoops)
+    xTEST_CASE("maxT", a_caseLoops)
     {
         m_uiRv = Utils::maxT(0, 1);
         xTEST_EQ(1U, m_uiRv);
     }
 
-    xTEST_CASE("Utils::minT", a_caseLoops)
+    xTEST_CASE("minT", a_caseLoops)
     {
         m_uiRv = Utils::minT(5, 8);
         xTEST_EQ(5U, m_uiRv);
     }
 
-    xTEST_CASE("Utils::swapT", a_caseLoops)
+    xTEST_CASE("swapT", a_caseLoops)
     {
         int_t iVal1 = 1;
         int_t iVal2 = 2;
@@ -236,12 +236,12 @@ Test_Utils::unit(
         xTEST_EQ(1, iVal2);
     }
 
-    xTEST_CASE("Utils::reinterpretCastT", a_caseLoops)
+    xTEST_CASE("reinterpretCastT", a_caseLoops)
     {
         // TODO: test for Utils::reinterpretCastT
     }
 
-    xTEST_CASE("Utils::doubleIsEqual", a_caseLoops)
+    xTEST_CASE("doubleIsEqual", a_caseLoops)
     {
         cdouble_t cdData[][3] = {
             {10.5,   11.0, 0.0},
@@ -261,7 +261,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("Utils::roundDouble", a_caseLoops)
+    xTEST_CASE("roundDouble", a_caseLoops)
     {
         cdouble_t cdData[][2] = {
             {10.5,   11.0},
@@ -280,7 +280,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("Utils::roundIntT", a_caseLoops)
+    xTEST_CASE("roundIntT", a_caseLoops)
     {
         cdouble_t cdData[][2] = {
             {10.5,   11.0},
@@ -299,7 +299,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("Utils::safeDivT", a_caseLoops)
+    xTEST_CASE("safeDivT", a_caseLoops)
     {
         m_dRv = Utils::safeDivT(0, 0);
         xTEST_EQ(true, Utils::doubleIsEqual(m_dRv, 0.0));
@@ -314,7 +314,7 @@ Test_Utils::unit(
         xTEST_EQ(true, Utils::doubleIsEqual(m_dRv, 1.0));
     }
 
-    xTEST_CASE("Utils::enumIncT enumDecT", a_caseLoops)
+    xTEST_CASE("enumIncT enumDecT", a_caseLoops)
     {
         EData data = datOne;
 

@@ -37,7 +37,7 @@ Test_Singleton::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Singleton::get", a_caseLoops)
+    xTEST_CASE("get", a_caseLoops)
     {
         typedef Singleton<CLogger> logger_singleton_t;
 
@@ -45,7 +45,7 @@ Test_Singleton::unit(
         logger_singleton_t::get().write();
     }
 
-    xTEST_CASE("Singleton::get", a_caseLoops)
+    xTEST_CASE("get", a_caseLoops)
     {
         Singleton<CLogger>::get().open();
         Singleton<CLogger>::get().write();

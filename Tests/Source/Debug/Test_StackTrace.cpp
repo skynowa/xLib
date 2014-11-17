@@ -14,7 +14,7 @@ Test_StackTrace::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("StackTrace::toString", a_caseLoops)
+    xTEST_CASE("toString", a_caseLoops)
     {
         StackTrace stStack;
 
@@ -22,7 +22,7 @@ Test_StackTrace::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("StackTrace::toString", a_caseLoops)
+    xTEST_CASE("toString", a_caseLoops)
     {
         #if xTEST_IGNORE
             xTEST_FAIL;

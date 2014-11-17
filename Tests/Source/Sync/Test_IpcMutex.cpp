@@ -17,7 +17,7 @@ Test_IpcMutex::unit(
     std::ctstring_t csName = xT("mutex_name_a");
 
 
-    xTEST_CASE("IpcMutex::handle", a_caseLoops)
+    xTEST_CASE("handle", a_caseLoops)
     {
         IpcMutex mtMutex;
 
@@ -28,14 +28,14 @@ Test_IpcMutex::unit(
         ////xTEST_EQ(false, hRv.bIsValid());
     }
 
-    xTEST_CASE("IpcMutex::create", 1)
+    xTEST_CASE("create", 1)
     {
         IpcMutex mtMutex;
 
         mtMutex.create(csName);
     }
 
-    xTEST_CASE("IpcMutex::open", 1)
+    xTEST_CASE("open", 1)
     {
         IpcMutex mtMutex;
 
@@ -43,7 +43,7 @@ Test_IpcMutex::unit(
         mtMutex.open(csName);
     }
 
-    xTEST_CASE("IpcMutex::lock unlock", a_caseLoops)
+    xTEST_CASE("lock unlock", a_caseLoops)
     {
         culong_t culTimeout = 1000UL;
 

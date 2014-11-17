@@ -14,7 +14,7 @@ Test_Guid::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Guid::create", a_caseLoops)
+    xTEST_CASE("create", a_caseLoops)
     {
         Guid::cExType data[] = {
             Guid::tpRandomBased
