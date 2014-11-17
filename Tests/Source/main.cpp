@@ -1,5 +1,5 @@
 /**
- * \file  main.cpp
+ * \file  main. cpp
  * \brief tests for xLib
  */
 

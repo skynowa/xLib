@@ -68,7 +68,7 @@ Unit::run(
     xTEST_NA(a_caseLoops);
 
     try {
-        createTempDir(xT("TestsTemp"));
+        createTempDir(xT("Temp"));
 
         for (ulonglong_t i = 0ULL; i < a_unitLoops; ++ i) {
             unit(a_caseLoops);
@@ -83,7 +83,7 @@ Unit::run(
         xTEST_FAIL(name() + xT(": ") + xS2TS(asMsg));
     }
     catch (...) {
-        xTEST_FAIL(name() + xT(": Unknown test error"));
+        xTEST_FAIL(name() + xT(": Unknown error"));
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -144,12 +144,12 @@ Unit::name() const
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Unit::setName(
-    std::ctstring_t &a_testName
+    std::ctstring_t &a_name
 )
 {
-    xTEST_NA(a_testName);
+    xTEST_NA(a_name);
 
-    _name = a_testName;
+    _name = a_name;
 }
 //-------------------------------------------------------------------------------------------------
 
