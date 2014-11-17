@@ -21,7 +21,7 @@ public:
 
     xNO_COPY_ASSIGN(SocketInit)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t   _construct_impl(cushort_t &versionMajor, cushort_t &versionMinor) const;
     void_t   _destruct_impl() const;
 };

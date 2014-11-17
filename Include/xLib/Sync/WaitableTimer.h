@@ -35,7 +35,7 @@ private:
 
     xNO_COPY_ASSIGN(WaitableTimer)
 
-xPLATFORM:
+xPLATFORM_IMPL:
 
 };
 

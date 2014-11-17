@@ -202,7 +202,7 @@ private:
 
     xNO_COPY_ASSIGN(String)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     static
     std::string    _castA_impl(std::cwstring_t &str, cuint_t &codePage) xWARN_UNUSED_RV;
     static
@@ -247,7 +247,7 @@ private:
 
     xNO_COPY_ASSIGN(StringCI)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     static
     bool_t         _compare_impl(std::ctstring_t &str1, std::ctstring_t &str2,
                        const std::locale &a_locale = std::locale()) xWARN_UNUSED_RV;

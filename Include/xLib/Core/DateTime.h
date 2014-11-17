@@ -178,7 +178,7 @@ private:
     ulonglong_t    _toMsec() const xWARN_UNUSED_RV;
         ///< convert to milliseconds
 
-xPLATFORM:
+xPLATFORM_IMPL:
     // static
     static
     DateTime     _current_impl() xWARN_UNUSED_RV;

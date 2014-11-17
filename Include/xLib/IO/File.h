@@ -308,7 +308,7 @@ private:
 
     friend class   FileTemp;  ///< temporary file
 
-xPLATFORM:
+xPLATFORM_IMPL:
     static
     bool_t         _isFile_impl(const FileType &type) xWARN_UNUSED_RV;
     static

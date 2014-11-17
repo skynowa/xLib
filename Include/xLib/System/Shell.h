@@ -151,7 +151,7 @@ public:
 
     xNO_COPY_ASSIGN(Shell)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     bool_t     _isAvailable_impl() const xWARN_UNUSED_RV;
 };
 

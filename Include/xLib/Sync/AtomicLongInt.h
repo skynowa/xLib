@@ -52,7 +52,7 @@ public:
 private:
     volatile long_t _value;
 
-xPLATFORM:
+xPLATFORM_IMPL:
     AtomicLongInt & _addAssign_impl(const AtomicLongInt &value);
     AtomicLongInt & _addAssign_impl(clong_t &right);
     AtomicLongInt & _subtractAssign_impl(const AtomicLongInt &value);

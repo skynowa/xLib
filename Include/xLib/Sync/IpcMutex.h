@@ -41,7 +41,7 @@ private:
 
     xNO_COPY_ASSIGN(IpcMutex)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t           _create_impl(std::ctstring_t &name);
     void_t           _open_impl(std::ctstring_t &name);
     void_t           _lock_impl(culong_t &timeoutMsec) const;

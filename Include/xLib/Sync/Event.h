@@ -69,7 +69,7 @@ private:
 
     xNO_COPY_ASSIGN(Event)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t           _dectruct_impl();
     const handle_t & _handle_impl() const xWARN_UNUSED_RV;
     void_t           _create_impl();

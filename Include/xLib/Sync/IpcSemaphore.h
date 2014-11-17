@@ -47,7 +47,7 @@ private:
 
     xNO_COPY_ASSIGN(IpcSemaphore)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t           _construct_impl();
     void_t           _destruct_impl();
     long_t           _valueMax_impl() const;

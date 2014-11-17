@@ -45,7 +45,7 @@ private:
 
     xNO_COPY_ASSIGN(StdError)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     static
     std::tstring_t _format_impl(cint_t &code) xWARN_UNUSED_RV;
 };

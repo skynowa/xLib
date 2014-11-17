@@ -44,7 +44,7 @@ private:
 
     xNO_COPY_ASSIGN(ProcessInfo)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     ulong_t         _cpuUsage_impl() const xWARN_UNUSED_RV;
     ulong_t         _ramUsage_impl() const xWARN_UNUSED_RV;
     ulong_t         _ioBytes_impl() const xWARN_UNUSED_RV;

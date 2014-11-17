@@ -139,7 +139,7 @@ private:
 
     xNO_COPY_ASSIGN(SystemInfo)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     ExOsType       _os_impl() xWARN_UNUSED_RV;
     std::tstring_t _formatOs_impl() xWARN_UNUSED_RV;
     ExOsArch       _osArch_impl() xWARN_UNUSED_RV;

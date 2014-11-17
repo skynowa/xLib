@@ -123,7 +123,7 @@ private:
 
     xNO_COPY_ASSIGN(Console)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t          _construct_impl();
     void_t          _destruct_impl();
     std::tstring_t  _setAttributes_impl(const ExForeground &foreground,

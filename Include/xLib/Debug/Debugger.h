@@ -53,7 +53,7 @@ private:
 
     xNO_COPY_ASSIGN(Debugger)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     bool_t         _isActive_impl() const xWARN_UNUSED_RV;
     void_t         _coreDumpsEnable_impl(cbool_t &flag, bool_t *isEnable);
     void_t         _breakPoint_impl() const;

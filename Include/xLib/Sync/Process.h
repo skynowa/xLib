@@ -101,7 +101,7 @@ private:
 
     xNO_COPY_ASSIGN(Process)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t       _destruct_impl();
     void_t       _create_impl(std::ctstring_t &filePath, std::ctstring_t &params);
     ExWaitResult _wait_impl(culong_t &timeoutMsec) xWARN_UNUSED_RV;

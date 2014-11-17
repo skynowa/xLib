@@ -41,7 +41,7 @@ private:
 
     xNO_COPY_ASSIGN(StackTrace)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     void_t          _get_impl(std::vector<std::vec_tstring_t> *stack) const;
 
 #if xENV_UNIX

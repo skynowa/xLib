@@ -29,7 +29,7 @@ public:
 private:
     xNO_COPY_ASSIGN(Locale)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     std::tstring_t _current_impl() const xWARN_UNUSED_RV;
 };
 

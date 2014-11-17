@@ -79,7 +79,7 @@ private:
 
     xNO_COPY_ASSIGN(Volume)
 
-xPLATFORM:
+xPLATFORM_IMPL:
     std::tstring_t  _fileSystem_impl() const xWARN_UNUSED_RV;
     std::tstring_t  _label_impl() const xWARN_UNUSED_RV;
     bool_t          _isValid_impl() const xWARN_UNUSED_RV;
