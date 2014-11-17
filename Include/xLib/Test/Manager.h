@@ -15,24 +15,24 @@ xNAMESPACE_BEGIN2(xlib, test)
 class Unit;
 
 class Manager
-    /// manage tests (Test)
+    /// manager
 {
 public:
-    explicit    Manager(cbool_t &isUseTracing);
+    explicit Manager(cbool_t &isUseTracing);
         ///< constructor
-    virtual    ~Manager();
+    virtual ~Manager();
         ///< destructor
 
-    void_t      add(Unit *test);
-        ///< add Test
-    void_t      run(culonglong_t &allLoops, culonglong_t &unitLoops, culonglong_t &caseLoops);
-        ///< run all tests
+    void_t   add(Unit *unit);
+        ///< add unit
+    void_t   run(culonglong_t &allLoops, culonglong_t &unitLoops, culonglong_t &caseLoops);
+        ///< run all units
 
 private:
-    typedef std::vector<Unit *> container_t;
+    typedef std::vector<Unit *> units_t;
 
-    cbool_t     _isUseTracing;  ///< is use tracing
-    container_t _tests;         ///< Test's container
+    cbool_t  _isUseTracing;  ///< is use tracing
+    units_t  _units;         ///< units
 
     xNO_COPY_ASSIGN(Manager)
 };

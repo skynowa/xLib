@@ -51,21 +51,21 @@ public:
         ///< destructor
 
     void_t              run(culonglong_t &unitLoops, culonglong_t &caseLoops);
-        ///< run test units
+        ///< run cases
     virtual void_t      unit(culonglong_t &caseLoops) = 0;
-        ///< test unit
+        ///< unit
     void_t              createTempDir(std::ctstring_t &dirName);
         ///< create work dir
     std::ctstring_t &   tempDirPath() const xWARN_UNUSED_RV;
         ///< get work dir path
     std::ctstring_t &   name() const xWARN_UNUSED_RV;
         ///< get name
-    void_t              setName(std::ctstring_t &testName);
+    void_t              setName(std::ctstring_t &name);
         ///< set name
 
 private:
     std::tstring_t      _tempDirPath; ///< work dir path
-    std::tstring_t      _name;        ///< test name
+    std::tstring_t      _name;        ///< name
 
     xNO_COPY_ASSIGN(Unit)
 };
