@@ -320,6 +320,6 @@ private:
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
-#if xOPTION_HEADER_ONLY
+#if xOPTION_PROJECT_HEADER_ONLY
     #include "Const.cpp"
 #endif

@@ -28,6 +28,6 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
-#if xOPTION_HEADER_ONLY
+#if xOPTION_PROJECT_HEADER_ONLY
     #include "SocketInit.cpp"
 #endif
