@@ -30,5 +30,5 @@ xNAMESPACE_END2(xlib, core)
 #endif
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_PROJECT_HEADER_ONLY
-    #include "Com.inl"
+    #include "Com.cpp"
 #endif
