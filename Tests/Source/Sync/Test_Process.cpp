@@ -17,7 +17,7 @@ Test_Process::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("create wait", a_caseLoops)
+    xTEST_CASE("create, wait", a_caseLoops)
     {
         #if 1
             #if   xENV_WIN
@@ -53,7 +53,7 @@ Test_Process::unit(
         proc.kill(10UL);
     }
 
-    xTEST_CASE("handle id", a_caseLoops)
+    xTEST_CASE("handle, id", a_caseLoops)
     {
         #if   xENV_WIN
             std::ctstring_t filePath = xT("C:\\Windows\\System32\\attrib.exe");

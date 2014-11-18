@@ -16,7 +16,7 @@ Test_Mutex::unit(
 {
     size_t uiVal = 0;
 
-    xTEST_CASE("lock unlock", a_caseLoops)
+    xTEST_CASE("lock, unlock", a_caseLoops)
     {
         Mutex csCS;
 
@@ -28,7 +28,7 @@ Test_Mutex::unit(
         csCS.unlock();
     }
 
-    xTEST_CASE("tryLock unlock", a_caseLoops)
+    xTEST_CASE("tryLock, unlock", a_caseLoops)
     {
         Mutex csCS;
 
@@ -42,7 +42,7 @@ Test_Mutex::unit(
         csCS.unlock();
     }
 
-    xTEST_CASE("lock unlock", a_caseLoops)
+    xTEST_CASE("lock, unlock", a_caseLoops)
     {
         Mutex csCS;
 
@@ -61,7 +61,7 @@ Test_Mutex::unit(
         }
     }
 
-    xTEST_CASE("tryLock unlock", a_caseLoops)
+    xTEST_CASE("tryLock, unlock", a_caseLoops)
     {
         Mutex csCS;
 

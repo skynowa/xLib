@@ -37,7 +37,7 @@ Test_FileLog::unit(
         }
     }
 
-    xTEST_CASE("write(cExLevel &level, ...)", a_caseLoops)
+    xTEST_CASE("write(...)", a_caseLoops)
     {
         log.write(ILog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::lvUnknown),  12345);
         log.write(ILog::lvEmerg,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvEmerg),    12345);

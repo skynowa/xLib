@@ -18,7 +18,7 @@ Test_Debug::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("_xVERIFY_", a_caseLoops)
+    xTEST_CASE("xVERIFY", a_caseLoops)
     {
         _xVERIFY(true);
         // _xVERIFY(false);
@@ -29,7 +29,7 @@ Test_Debug::unit(
         // xCHECK_RET(expr, return_expr)
     }
 
-    xTEST_CASE("xCHECK_DO_", a_caseLoops)
+    xTEST_CASE("xCHECK_DO", a_caseLoops)
     {
         class STest {
             public:
@@ -68,29 +68,29 @@ Test_Debug::unit(
         xTEST_EQ(t.culVal3, m_ulRv);
     }
 
-    xTEST_CASE("xCHECK_MSG_", a_caseLoops)
+    xTEST_CASE("xCHECK_MSG", a_caseLoops)
     {
         // xCHECK_MSG(expr, comment)
     }
 
-    xTEST_CASE("xCHECK_MSG_RET_", a_caseLoops)
+    xTEST_CASE("xCHECK_MSG_RET", a_caseLoops)
     {
         // xCHECK_MSG_RET(expr, comment, return_expr)
     }
 
-    xTEST_CASE("xCHECK_MSG_DO_", a_caseLoops)
+    xTEST_CASE("xCHECK_MSG_DO", a_caseLoops)
     {
         xCHECK_MSG_DO(false, xT("xxx"), int_t i = 0; ++ i;);
     }
 
-    xTEST_CASE("xNOT_IMPLEMENTED_", a_caseLoops)
+    xTEST_CASE("xNOT_IMPLEMENTED", a_caseLoops)
     {
         #if xTEST_IGNORE
             xNOT_IMPLEMENTED
         #endif
     }
 
-    xTEST_CASE("xTRACE_POINT_", a_caseLoops)
+    xTEST_CASE("xTRACE_POINT", a_caseLoops)
     {
         #if xTEST_IGNORE
             xTRACE_POINT;
