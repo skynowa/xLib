@@ -53,7 +53,7 @@ Test_Exception::unit(
         }
     }
 
-    xTEST_CASE("[catch Exception]", a_caseLoops)
+    xTEST_CASE("catch Exception", a_caseLoops)
     {
         try {
             throw Exception() << xT("Exception_test_exception");
@@ -66,7 +66,7 @@ Test_Exception::unit(
         }
     }
 
-    xTEST_CASE("[catch std::exception]", a_caseLoops)
+    xTEST_CASE("catch std::exception", a_caseLoops)
     {
         try {
             std::tstring_t sStr;
@@ -81,7 +81,7 @@ Test_Exception::unit(
         }
     }
 
-    xTEST_CASE("xTRY_ xCATCH_ALL_ xTHROW_", a_caseLoops)
+    xTEST_CASE("xTRY, xTHROW, xCATCH_ALL", a_caseLoops)
     {
         #if 0
             xTRY {

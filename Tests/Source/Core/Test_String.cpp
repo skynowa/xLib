@@ -172,7 +172,7 @@ Test_String::unit(
         // TODO: tests for String::castA, String::castW
     }
 
-    xTEST_CASE("castW, String::castA", a_caseLoops)
+    xTEST_CASE("castA, castW", a_caseLoops)
     {
         std::cstring_t csAnsiStr[] = {
             "gnhjfgyhj ghj...",
@@ -960,7 +960,7 @@ Test_String::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("StringCI::find", a_caseLoops)
+    xTEST_CASE("find", a_caseLoops)
     {
         const data3_size_t data[] = {
             // not using position
@@ -991,7 +991,7 @@ Test_String::unit(
         }
     }
 
-    xTEST_CASE("StringCI::compare", a_caseLoops)
+    xTEST_CASE("compare", a_caseLoops)
     {
         const data3_bool_t data[] = {
             { xT(""), xT(""), true },

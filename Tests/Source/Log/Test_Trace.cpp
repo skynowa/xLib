@@ -39,7 +39,7 @@ Test_Trace::unit(
     #endif
     }
 
-    xTEST_CASE("write(cExLevel &level, ...)", a_caseLoops)
+    xTEST_CASE("write(...)", a_caseLoops)
     {
     #if xTEST_IGNORE
         Trace().write(ILog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::lvUnknown),  12345);
@@ -55,7 +55,7 @@ Test_Trace::unit(
     #endif
     }
 
-    xTEST_CASE("xTRACE_VAR_", a_caseLoops)
+    xTEST_CASE("xTRACE_VAR", a_caseLoops)
     {
     #if xTEST_IGNORE
         std::tstring_t sData  = xT("data1");

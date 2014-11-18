@@ -62,7 +62,7 @@ Test_Config::unit(
         xTEST_EQ(filePath, m_sRv);
     }
 
-    xTEST_CASE("get flush", a_caseLoops)
+    xTEST_CASE("get, flush", a_caseLoops)
     {
         std::map_tstring_t &_storage = config.get();
         xTEST_EQ(true, _storage.empty());
@@ -140,7 +140,7 @@ Test_Config::unit(
         config.flush();
     }
 
-    xTEST_CASE("keyWriteString keyReadString", a_caseLoops)
+    xTEST_CASE("keyWriteString, keyReadString", a_caseLoops)
     {
         // true
         {
@@ -163,7 +163,7 @@ Test_Config::unit(
         }
     }
 
-    xTEST_CASE("keyReadInt keyWriteInt", a_caseLoops)
+    xTEST_CASE("keyReadInt, keyWriteInt", a_caseLoops)
     {
         clong_t value = 10L;
 
@@ -173,7 +173,7 @@ Test_Config::unit(
         xTEST_EQ(value, m_liRv);
     }
 
-    xTEST_CASE("keyReadFloat keyWriteFloat", a_caseLoops)
+    xTEST_CASE("keyReadFloat, keyWriteFloat", a_caseLoops)
     {
         cdouble_t value = 777.0f;
 
@@ -183,7 +183,7 @@ Test_Config::unit(
         xTEST_EQ(value, m_dRv);
     }
 
-    xTEST_CASE("keyReadBool keyWriteBool", a_caseLoops)
+    xTEST_CASE("keyReadBool, keyWriteBool", a_caseLoops)
     {
         cbool_t value = false;
 
@@ -193,7 +193,7 @@ Test_Config::unit(
         xTEST_EQ(value, m_bRv);
     }
 
-    xTEST_CASE("keyWriteBin keyReadBin", a_caseLoops)
+    xTEST_CASE("keyWriteBin, keyReadBin", a_caseLoops)
     {
         std::custring_t value(10, 'z');
         std::custring_t defaultValue(10, 'd');

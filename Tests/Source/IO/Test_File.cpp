@@ -333,7 +333,7 @@ Test_File::unit(
         file.locking(File::lmUnlock, 10);
     }
 
-    xTEST_CASE("setPosition getPosition", a_caseLoops)
+    xTEST_CASE("setPosition, position", a_caseLoops)
     {
         File file;
 
@@ -344,7 +344,7 @@ Test_File::unit(
         xTEST_EQ(0L, liRv);
     }
 
-    xTEST_CASE("getSize", a_caseLoops)
+    xTEST_CASE("size", a_caseLoops)
     {
         clonglong_t newSize = 1024LL;
 
@@ -381,12 +381,12 @@ Test_File::unit(
 
         file.create(filePath, File::omCreateReadWrite);
 
-        #if   xENV_WIN
-            file.setMode(File::tmBinary);
-            xTEST_EQ(m_bRv, true);
-        #elif xENV_UNIX
-            // TEST: File::setMode()
-        #endif
+    #if   xENV_WIN
+        file.setMode(File::tmBinary);
+        xTEST_EQ(m_bRv, true);
+    #elif xENV_UNIX
+        // TEST: File::setMode()
+    #endif
     }
 
     xTEST_CASE("setMode", a_caseLoops)
@@ -395,11 +395,11 @@ Test_File::unit(
 
         file.create(filePath, File::omCreateReadWrite);
 
-        #if   xENV_WIN
-            file.setMode(File::tmText);
-        #elif xENV_UNIX
-            // TEST: File::setMode()
-        #endif
+    #if   xENV_WIN
+        file.setMode(File::tmText);
+    #elif xENV_UNIX
+        // TEST: File::setMode()
+    #endif
     }
 
 

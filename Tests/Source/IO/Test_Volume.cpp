@@ -76,19 +76,19 @@ Test_Volume::unit(
         // false
         {
             std::ctstring_t data[] = {
-                #if   xENV_WIN
-                    xT("1"),
-                    xT("0"),
-                    xT("xxxxxx"),
-                    xT("-C:"),
-                    xT("*T")
-                #elif xENV_UNIX
-                    xT("1"),
-                    xT("0"),
-                    xT("xxxxxx"),
-                    xT("-/etc"),
-                    xT("*/home")
-                #endif
+            #if   xENV_WIN
+                xT("1"),
+                xT("0"),
+                xT("xxxxxx"),
+                xT("-C:"),
+                xT("*T")
+            #elif xENV_UNIX
+                xT("1"),
+                xT("0"),
+                xT("xxxxxx"),
+                xT("-/etc"),
+                xT("*/home")
+            #endif
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
@@ -102,13 +102,13 @@ Test_Volume::unit(
     {
         // true
         {
-            #if   xENV_WIN
-                std::ctstring_t volumePathWithSlash    = xT("C:\\");
-                std::ctstring_t volumePathWithoutSlash = xT("C:");
-            #elif xENV_UNIX
-                std::ctstring_t volumePathWithSlash    = xT("/");
-                std::ctstring_t volumePathWithoutSlash = xT("/");
-            #endif
+        #if   xENV_WIN
+            std::ctstring_t volumePathWithSlash    = xT("C:\\");
+            std::ctstring_t volumePathWithoutSlash = xT("C:");
+        #elif xENV_UNIX
+            std::ctstring_t volumePathWithSlash    = xT("/");
+            std::ctstring_t volumePathWithoutSlash = xT("/");
+        #endif
 
             m_bRv = Volume(volumePathWithSlash).isReady();
             xTEST_EQ(m_bRv, true);
@@ -119,13 +119,13 @@ Test_Volume::unit(
 
         // false
         {
-            #if   xENV_WIN
-                std::ctstring_t volumePathWithSlash    = xT("B:\\");
-                std::ctstring_t volumePathWithoutSlash = xT("B:");
-            #elif xENV_UNIX
-                std::ctstring_t volumePathWithSlash    = xT("/mnqwioe54oq389cp3qm49/");
-                std::ctstring_t volumePathWithoutSlash = xT("/mnqwioe54oq389cp3qm49");
-            #endif
+        #if   xENV_WIN
+            std::ctstring_t volumePathWithSlash    = xT("B:\\");
+            std::ctstring_t volumePathWithoutSlash = xT("B:");
+        #elif xENV_UNIX
+            std::ctstring_t volumePathWithSlash    = xT("/mnqwioe54oq389cp3qm49/");
+            std::ctstring_t volumePathWithoutSlash = xT("/mnqwioe54oq389cp3qm49");
+        #endif
 
             m_bRv = Volume(volumePathWithSlash).isReady();
             xTEST_EQ(m_bRv, false);
@@ -140,13 +140,13 @@ Test_Volume::unit(
         // true
         {
             // TEST: Volume::isEmpty()
-            #if   xENV_WIN
-                std::ctstring_t volumePathWithSlash    = xT("B:\\");
-                std::ctstring_t volumePathWithoutSlash = xT("B:");
-            #elif xENV_UNIX
-                std::ctstring_t volumePathWithSlash    = xT("/home/mnqwioe54oq389cp3qm49/");
-                std::ctstring_t volumePathWithoutSlash = xT("/home/mnqwioe54oq389cp3qm49");
-            #endif
+        #if   xENV_WIN
+            std::ctstring_t volumePathWithSlash    = xT("B:\\");
+            std::ctstring_t volumePathWithoutSlash = xT("B:");
+        #elif xENV_UNIX
+            std::ctstring_t volumePathWithSlash    = xT("/home/mnqwioe54oq389cp3qm49/");
+            std::ctstring_t volumePathWithoutSlash = xT("/home/mnqwioe54oq389cp3qm49");
+        #endif
 
             m_bRv = Volume(volumePathWithSlash).isEmpty();
             xTEST_EQ(m_bRv, true);
@@ -157,34 +157,34 @@ Test_Volume::unit(
 
         // false
         {
-            #if   xENV_WIN
-                std::ctstring_t volumePathWithSlash    = xT("C:\\");
-                std::ctstring_t volumePathWithoutSlash = xT("C:");
-            #elif xENV_UNIX
-                std::ctstring_t volumePathWithSlash    = xT("/");
-                std::ctstring_t volumePathWithoutSlash = xT("/FLASH_4GB/");
-            #endif
+        #if   xENV_WIN
+            std::ctstring_t volumePathWithSlash    = xT("C:\\");
+            std::ctstring_t volumePathWithoutSlash = xT("C:");
+        #elif xENV_UNIX
+            std::ctstring_t volumePathWithSlash    = xT("/");
+            std::ctstring_t volumePathWithoutSlash = xT("/FLASH_4GB/");
+        #endif
 
-            #if xTEMP_DISABLED
-                m_bRv = Volume(volumePathWithSlash).isEmpty();
-                xTEST_EQ(m_bRv, false);
+        #if xTEMP_DISABLED
+            m_bRv = Volume(volumePathWithSlash).isEmpty();
+            xTEST_EQ(m_bRv, false);
 
-                m_bRv = Volume(volumePathWithoutSlash).isEmpty();
-                xTEST_EQ(m_bRv, false);
-            #endif
+            m_bRv = Volume(volumePathWithoutSlash).isEmpty();
+            xTEST_EQ(m_bRv, false);
+        #endif
         }
     }
 
-    xTEST_CASE("mount unMount", a_caseLoops)
+    xTEST_CASE("mount, unMount", a_caseLoops)
     {
     #if xTEST_IGNORE
-        #if   xENV_WIN
-            std::ctstring_t sourcePath = xT("\\\\KSF\\Files\\INSTALL");
-            std::ctstring_t destPath   = xT("T:");
-        #elif xENV_UNIX
-            std::ctstring_t sourcePath = xT("~");
-            std::ctstring_t destPath   = xT("~\test_volume");
-        #endif
+    #if   xENV_WIN
+        std::ctstring_t sourcePath = xT("\\\\KSF\\Files\\INSTALL");
+        std::ctstring_t destPath   = xT("T:");
+    #elif xENV_UNIX
+        std::ctstring_t sourcePath = xT("~");
+        std::ctstring_t destPath   = xT("~\test_volume");
+    #endif
 
         Volume(sourcePath).mount(destPath);
         Volume(destPath).unMount(true);
