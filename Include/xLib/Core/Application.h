@@ -30,10 +30,6 @@ public:
         ///< create all application directories
     bool_t         selfCheck() const;
         ///< self check
-#if 0
-    virtual int_t  run() = 0;
-        ///< run application
-#endif
     void_t         exit(cint_t &status) const;
         ///< terminates the process normally, performing the regular cleanup,
         ///< objects with automatic storage are not destroyed
