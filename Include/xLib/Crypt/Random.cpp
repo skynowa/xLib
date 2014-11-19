@@ -22,12 +22,14 @@
 #if   xENV_WIN
     #include "Platform/Win/Random_win.inl"
 #elif xENV_UNIX
+    #include "Platform/Unix/Random_unix.inl"
+
     #if   xENV_LINUX
-        #include "Platform/Unix/Random_unix.inl"
+
     #elif xENV_BSD
-        #include "Platform/Unix/Random_unix.inl"
+
     #elif xENV_APPLE
-        #include "Platform/Unix/Random_unix.inl"
+
     #endif
 #endif
 

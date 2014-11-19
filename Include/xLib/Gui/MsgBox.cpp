@@ -13,12 +13,14 @@
 #if   xENV_WIN
     #include "Platform/Win/MsgBox_win.inl"
 #elif xENV_UNIX
+    #include "Platform/Unix/MsgBox_unix.inl"
+
     #if   xENV_LINUX
-        #include "Platform/Unix/MsgBox_unix.inl"
+
     #elif xENV_BSD
-        #include "Platform/Unix/MsgBox_unix.inl"
+
     #elif xENV_APPLE
-        #include "Platform/Apple/MsgBox_unix.inl"
+
     #endif
 #endif
 

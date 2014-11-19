@@ -15,16 +15,18 @@
 #if   xENV_WIN
     #include "Platform/Win/SystemLog_win.inl"
 #elif xENV_UNIX
+    #include "Platform/Unix/SystemLog_unix.inl"
+
     #if   xENV_LINUX
         #if   xOS_LINUX
-            #include "Platform/Unix/SystemLog_unix.inl"
+
         #elif xOS_ANDROID
             #include "Platform/Linux/SystemLog_android.inl"
         #endif
     #elif xENV_BSD
-        #include "Platform/Unix/SystemLog_unix.inl"
+
     #elif xENV_APPLE
-        #include "Platform/Unix/SystemLog_unix.inl"
+
     #endif
 #endif
 

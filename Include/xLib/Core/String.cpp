@@ -27,12 +27,14 @@
 #if   xENV_WIN
     #include "Platform/Win/String_win.inl"
 #elif xENV_UNIX
+    #include "Platform/Unix/String_unix.inl"
+
     #if   xENV_LINUX
-        #include "Platform/Unix/String_unix.inl"
+
     #elif xENV_BSD
-        #include "Platform/Unix/String_unix.inl"
+
     #elif xENV_APPLE
-        #include "Platform/Unix/String_unix.inl"
+
     #endif
 #endif
 
