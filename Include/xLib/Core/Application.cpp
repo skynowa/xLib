@@ -8,6 +8,7 @@
     #include "Application.h"
 #endif
 
+#include <xLib/Core/Locale.h>
 #include <xLib/Core/String.h>
 #include <xLib/IO/Path.h>
 #include <xLib/IO/Dir.h>
@@ -23,10 +24,6 @@ xNAMESPACE_BEGIN2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 namespace {
 
-#if 0
-std::ctstring_t localeCodec   = "UTF-8";
-#endif
-
 std::ctstring_t backupDirName = "Backup";
 std::ctstring_t configDirName = "Config";
 std::ctstring_t logDirName    = "Log";
@@ -38,11 +35,16 @@ std::ctstring_t langDirPath   = "Lang";
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Application::Application(
-    std::ctstring_t &a_appGuid
+    std::ctstring_t &a_appGuid, ///< application GUID
+    std::ctstring_t &a_locale   ///< locale, empty value for current locale
 ) :
     _appGuid(a_appGuid)
 {
     xTEST_EQ(a_appGuid.empty(), false);
+    xTEST_NA(a_locale);
+
+    Locale locale;
+    locale.setCurrent(a_locale);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
