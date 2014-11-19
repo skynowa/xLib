@@ -136,7 +136,7 @@ Test_Application::unit(
         signalNums.push_back(SIGPWR);      // Power failure restart (System V)
         signalNums.push_back(SIGSYS);      // Bad system call
 
-        Application application(xT("[app_name]_guid"));
+        Application application(xT("[app_name]_guid"), xT(""));
         Application::setName(xT("[app_name]"));
         application.setName(xT("[app_name]"));
         application.setDecription(xT("[decription]"));

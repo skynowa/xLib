@@ -16,7 +16,7 @@ class Application
     /// application
 {
 public:
-    explicit       Application(std::ctstring_t &appGuid);
+                   Application(std::ctstring_t &appGuid, std::ctstring_t &locale);
         ///< constructor
     virtual       ~Application();
         ///< destructor
