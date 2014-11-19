@@ -21,12 +21,14 @@
 #if   xENV_WIN
     #include "Platform/Win/TcpClient_win.inl"
 #elif xENV_UNIX
+    #include "Platform/Unix/TcpClient_unix.inl"
+
     #if   xENV_LINUX
-        #include "Platform/Unix/TcpClient_unix.inl"
+
     #elif xENV_BSD
-        #include "Platform/Unix/TcpClient_unix.inl"
+
     #elif xENV_APPLE
-        #include "Platform/Unix/TcpClient_unix.inl"
+
     #endif
 #endif
 
