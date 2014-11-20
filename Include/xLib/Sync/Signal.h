@@ -27,13 +27,13 @@ public:
     void_t   setState(const std::sig_atomic_t &state);
         ///< set state flag
 
-    void_t   connect(const std::vector<int_t> &signalNums, sighandler_t handler) const;
+    void_t   connect(const std::vector<int_t> &signalNums, sighandler_t onSignals) const;
         ///< set signal handle
-    void_t   connectExit(const exit_handler_t &handle) const;
+    void_t   connectExit(const exit_handler_t &onExit) const;
         ///< set exit handle
-    void_t   connectTerminate(const std::terminate_handler &handler) const;
+    void_t   connectTerminate(const std::terminate_handler &onTerminate) const;
         ///< set terminate handle (by default, the terminate handler calls abort)
-    void_t   connectUnexpected(const std::unexpected_handler &handler) const;
+    void_t   connectUnexpected(const std::unexpected_handler &onUnexpected) const;
         ///< Sets unexpected handler
     int_t    emit(cint_t &signalNum) const;
         ///< sends signal to the current executing program

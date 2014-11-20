@@ -52,7 +52,7 @@ Signal::setState(
 xINLINE void_t
 Signal::connect(
     const std::vector<int_t> &a_signalNums,
-    sighandler_t              a_handler
+    sighandler_t              a_onSignals
 ) const
 {
    /**
@@ -63,13 +63,13 @@ Signal::connect(
 
     xFOREACH_CONST(std::vector<int_t>, it, a_signalNums) {
     #if USE_SIMPLE_SIGNAL
-        sighandler_t shRv = std::signal(*it, a_handler);
+        sighandler_t shRv = std::signal(*it, a_onSignals);
         xTEST(shRv != SIG_ERR);
     #else
         int_t iRv = 0;
 
         struct sigaction action; xSTRUCT_ZERO(action);
-        action.sa_handler  = a_handler;
+        action.sa_handler  = a_onSignals;
 
         iRv = ::sigemptyset(&action.sa_mask);
         xTEST_DIFF(iRv, - 1);
@@ -85,34 +85,34 @@ Signal::connect(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectExit(
-    const exit_handler_t &a_handler
+    const exit_handler_t &a_onExit
 ) const
 {
-    xCHECK_DO(a_handler == xPTR_NULL, return);
+    xCHECK_DO(a_onExit == xPTR_NULL, return);
 
-    int_t iRv = std::atexit(a_handler);
+    int_t iRv = std::atexit(a_onExit);
     xTEST(iRv == 0);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectTerminate(
-    const std::terminate_handler &a_handler
+    const std::terminate_handler &a_onTerminate
 ) const
 {
-    xTEST_PTR(a_handler);
+    xTEST_PTR(a_onTerminate);
 
-    std::terminate_handler handler_old = std::set_terminate(a_handler);
+    std::terminate_handler handler_old = std::set_terminate(a_onTerminate);
     xUNUSED(handler_old);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectUnexpected(
-    const std::unexpected_handler &a_handler
+    const std::unexpected_handler &a_onUnexpected
 ) const
 {
-    xTEST_PTR(a_handler);
+    xTEST_PTR(a_onUnexpected);
 
-    std::unexpected_handler handler_old = std::set_unexpected(a_handler);
+    std::unexpected_handler handler_old = std::set_unexpected(a_onUnexpected);
     xUNUSED(handler_old);
 }
 //-------------------------------------------------------------------------------------------------
