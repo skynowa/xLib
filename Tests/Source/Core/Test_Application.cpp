@@ -15,29 +15,31 @@ class SignalHandlers
 public:
     static void_t onSignals(int_t a_signal)
     {
-        Trace() << xFUNCTION << "\nStack trace:\n " << StackTrace().toString();
-        Trace() << xTRACE_VAR(a_signal) << " - " << ::sys_siglist[a_signal];
+        Trace() << xFUNCTION;
+
+        // psignal, strsignal
+        Trace() << xTRACE_VAR(a_signal) << " - " << ::strsignal[a_signal];
 
         ::_exit(EXIT_FAILURE);
     }
 
     static void_t onExit()
     {
-        Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
+        // Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
 
         // std::abort();  // forces abnormal termination
     }
 
     static void_t onTerminate()
     {
-        Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
+        Trace() << xFUNCTION;
 
         // std::abort();  // forces abnormal termination
     }
 
     static void_t onUnexpected()
     {
-        Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
+        Trace() << xFUNCTION;
 
         // std::abort();  // forces abnormal termination
     }
