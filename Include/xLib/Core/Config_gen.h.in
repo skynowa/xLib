@@ -7,7 +7,7 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-///@name Project type: executable binary, static library, share (dynamic-link) library
+///@name project type: executable binary, static library, share (dynamic-link) library
 ///@{
 #cmakedefine xOPTION_PROJECT_HEADER_ONLY 1
 #cmakedefine xOPTION_PROJECT_STATIC 1
@@ -87,6 +87,32 @@
 #cmakedefine xADDR2LINE_FILE_PATH xT("@ADDR2LINE_FILE_PATH@")
 ///@}
 
+//-------------------------------------------------------------------------------------------------
+ ///@name project type
+///@{
+#if   xOPTION_PROJECT_HEADER_ONLY
+    #define xHEADER_ONLY 1
+        ///< header only
+#elif xOPTION_PROJECT_STATIC
+    #define xLIB 1
+        ///< static library
+#elif xOPTION_PROJECT_SHARE
+    #define xDLL 1
+        ///< share library
+#elif xOPTION_PROJECT_MODULE
+    #define xDLL 1
+        ///< dynamic-link library
+#elif xOPTION_PROJECT_TESTS
+    #define xEXE 1
+        ///< executable binary
+#else
+    #error xLib: unknown project type
+#endif
+///@}
+
+//-------------------------------------------------------------------------------------------------
+///@name OS specific defines
+///@{
 #if   xENV_WIN
     #if xCOMPILER_MS
         #include <SDKDDKVer.h>
@@ -135,30 +161,6 @@
         #define _GNU_SOURCE 1
     #endif
 #endif
-//-------------------------------------------------------------------------------------------------
-#if   xOPTION_PROJECT_HEADER_ONLY
+///@}
 
-#elif xOPTION_PROJECT_STATIC
-    #define xLIB 1
-        ///< static library
-#elif xOPTION_PROJECT_SHARE
-    #define xDLL 1
-        ///< share library
-#elif xOPTION_PROJECT_MODULE
-    #define xDLL 1
-        ///< dynamic-link library
-#elif xOPTION_PROJECT_TESTS
-    #define xEXE 1
-        ///< executable binary
-#else
-    #error xLib: unknown project type
-#endif
-
-#if xOPTION_PROJECT_HEADER_ONLY
-    #define xINLINE inline
-        ///< enable inlines
-#else
-    #define xINLINE
-        ///< disable inlines
-#endif
 //-------------------------------------------------------------------------------------------------
