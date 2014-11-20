@@ -125,13 +125,12 @@ public:
         ///< get POSIX implementation supplied by C library ("NPTL 2.3.4" or "linuxthreads-0.10")
 #endif
 
-
 private:
     ExOsType       _osType;
     ExOsArch       _osArch;
 
 #if xENV_UNIX
-    void_t         _passwdFileEntry(std::string *pw_name, std::string *pw_passwd, uid_t *pw_uid,
+    void_t         _passwd(std::string *pw_name, std::string *pw_passwd, uid_t *pw_uid,
                        gid_t *pw_gid, std::string *pw_gecos, std::string *pw_dir,
                        std::string *pw_shell) const;
         ///< get password file entry
