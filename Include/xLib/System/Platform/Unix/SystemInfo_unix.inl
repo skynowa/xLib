@@ -203,7 +203,7 @@ SystemInfo::_userName_impl() const
 {
     std::tstring_t sRv;
 
-    _passwdFileEntry(&sRv, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL);
+    _passwd(&sRv, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL);
 
     return sRv;
 }
@@ -226,7 +226,7 @@ SystemInfo::_userHomeDir_impl() const
     */
 
     // try to get from API
-    _passwdFileEntry(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv, xPTR_NULL);
+    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv, xPTR_NULL);
     xCHECK_RET(!sRv.empty(), sRv);
 
     // try to get from system environment
@@ -241,7 +241,7 @@ SystemInfo::_userShellPath_impl() const
 {
     std::tstring_t sRv;
 
-    _passwdFileEntry(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv);
+    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv);
 
     return sRv;
 }
@@ -377,7 +377,7 @@ SystemInfo::libPthreadVersion() const
 
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-SystemInfo::_passwdFileEntry(
+SystemInfo::_passwd(
     std::string *a_pw_name,   ///< Username (maybe as xPTR_NULL)
     std::string *a_pw_passwd, ///< Password (maybe as xPTR_NULL)
     uid_t       *a_pw_uid,    ///< User ID (maybe as xPTR_NULL)
