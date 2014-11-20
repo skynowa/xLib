@@ -17,8 +17,8 @@ public:
     {
         Trace() << xFUNCTION;
 
-        // psignal, strsignal
-        Trace() << xTRACE_VAR(a_signal) << " - " << ::strsignal[a_signal];
+        // psignal, strsignal, sys_siglist
+        Trace() << xTRACE_VAR(a_signal) << " - " << ::strsignal(a_signal);
 
         ::_exit(EXIT_FAILURE);
     }
