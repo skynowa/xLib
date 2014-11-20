@@ -65,74 +65,74 @@ public:
         mrRetry  = 4
     };
 
-                    Console();
+                   Console();
         ///< constructor
-    virtual        ~Console();
+    virtual       ~Console();
         ///< destructor
 
-    std::tstring_t  setAttributes(const ExForeground &foreground, const ExBackground &background,
-                        cint_t &attributes) const xWARN_UNUSED_RV;
+    std::tstring_t setAttributes(const ExForeground &foreground, const ExBackground &background,
+                       cint_t &attributes) const xWARN_UNUSED_RV;
         ///< set text color
-    std::tstring_t  setAttributesDef() const xWARN_UNUSED_RV;
+    std::tstring_t setAttributesDef() const xWARN_UNUSED_RV;
         ///< set text color
-    std::tstring_t  read() const xWARN_UNUSED_RV;
+    std::tstring_t read() const xWARN_UNUSED_RV;
         ///< read
-    void_t          write(std::ctstring_t &str) const;
+    void_t         write(std::ctstring_t &str) const;
         ///< write
-    void_t          writeLine(std::ctstring_t &str = xT("")) const;
+    void_t         writeLine(std::ctstring_t &str = xT("")) const;
         ///< write line
-    void_t          writeErrLine(std::ctstring_t &str) const;
+    void_t         writeErrLine(std::ctstring_t &str) const;
         ///< write error message
-    ExModalResult   msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type) const
-                        xWARN_UNUSED_RV;
+    ExModalResult  msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type) const
+                       xWARN_UNUSED_RV;
         ///< show console message dialog
-    void_t          prompt(std::ctstring_t &prompt, cbool_t &isVisible, std::tstring_t *answer)
-                        const;
+    void_t         prompt(std::ctstring_t &prompt, cbool_t &isVisible, std::tstring_t *answer)
+                       const;
         ///< show console prompt dialog
-    void_t          pause(culong_t &timeoutMsec) const;
+    void_t         pause(culong_t &timeoutMsec) const;
         ///< pause with timeout (msec)
-    void_t          clear() const;
+    void_t         clear() const;
         ///< clear
 
-    void_t          setTitle(std::ctstring_t &title) const;
+    void_t         setTitle(std::ctstring_t &title) const;
         ///< set title string
 #if xENV_WIN
-    std::tstring_t  title() const xWARN_UNUSED_RV;
+    std::tstring_t title() const xWARN_UNUSED_RV;
         ///< get title string
-    void_t          centerWindow() const;
+    void_t         centerWindow() const;
         ///< align to center
-    void_t          setFullScreen() const;
+    void_t         setFullScreen() const;
         ///< set full screen
-    void_t          enableClose(cbool_t &flag);
+    void_t         enableClose(cbool_t &flag);
         ///< enable close button
 #endif
 
 private:
 #if xENV_WIN
-    HWND            _wnd;             ///< console window handle
-    HMENU           _menu;            ///< console menu handle
-    HandleInvalid _stdIn;           ///< standard input handle
-    HandleInvalid _stdOut;          ///< standard output handle
-    WORD            _attributesDef;   ///< default console attributes
+    HWND           _wnd;             ///< console window handle
+    HMENU          _menu;            ///< console menu handle
+    HandleInvalid  _stdIn;           ///< standard input handle
+    HandleInvalid  _stdOut;          ///< standard output handle
+    WORD           _attributesDef;   ///< default console attributes
 
-    HWND            _wndHandle() xWARN_UNUSED_RV;
+    HWND           _wndHandle() xWARN_UNUSED_RV;
         ///< get console window handle
-    HMENU           _menuHandle(cbool_t &isRevert) xWARN_UNUSED_RV;
+    HMENU          _menuHandle(cbool_t &isRevert) xWARN_UNUSED_RV;
         ///< get console menu handle
 #endif
 
     xNO_COPY_ASSIGN(Console)
 
 xPLATFORM_IMPL:
-    void_t          _construct_impl();
-    void_t          _destruct_impl();
-    std::tstring_t  _setAttributes_impl(const ExForeground &foreground,
-                        const ExBackground &background, cint_t &attributes) const xWARN_UNUSED_RV;
-    std::tstring_t  _setAttributesDef_impl() const xWARN_UNUSED_RV;
-    std::tstring_t  _read_impl() const xWARN_UNUSED_RV;
-    void_t          _write_impl(std::ctstring_t &str) const;
-    void_t          _clear_impl() const;
-    void_t          _setTitle_impl(std::ctstring_t &title) const;
+    void_t         _construct_impl();
+    void_t         _destruct_impl();
+    std::tstring_t _setAttributes_impl(const ExForeground &foreground,
+                       const ExBackground &background, cint_t &attributes) const xWARN_UNUSED_RV;
+    std::tstring_t _setAttributesDef_impl() const xWARN_UNUSED_RV;
+    std::tstring_t _read_impl() const xWARN_UNUSED_RV;
+    void_t         _write_impl(std::ctstring_t &str) const;
+    void_t         _clear_impl() const;
+    void_t         _setTitle_impl(std::ctstring_t &title) const;
 };
 
 xNAMESPACE_END2(xlib, system)
