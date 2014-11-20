@@ -35,8 +35,8 @@ Test_Volume::unit(
         Volume::paths(&volumePaths);
         xTEST_EQ(false, volumePaths.empty());
 
-        xFOREACH_CONST(std::vec_tstring_t, it_path, volumePaths) {
-            m_sRv = Volume(*it_path).fileSystem();
+        xFOREACH_CONST(std::vec_tstring_t, it, volumePaths) {
+            m_sRv = Volume(*it).fileSystem();
             xUNUSED(m_sRv);
 
             // Trace() << xTRACE_VAR(m_sRv);
