@@ -378,13 +378,13 @@ SystemInfo::libPthreadVersion() const
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 SystemInfo::_passwd(
-    std::string *a_pw_name,   ///< Username (maybe as xPTR_NULL)
-    std::string *a_pw_passwd, ///< Password (maybe as xPTR_NULL)
-    uid_t       *a_pw_uid,    ///< User ID (maybe as xPTR_NULL)
-    gid_t       *a_pw_gid,    ///< Group ID (maybe as xPTR_NULL)
-    std::string *a_pw_gecos,  ///< Real name (maybe as xPTR_NULL)
-    std::string *a_pw_dir,    ///< Home directory (maybe as xPTR_NULL)
-    std::string *a_pw_shell   ///< Shell program (maybe as xPTR_NULL)
+    std::string *a_pw_name,   ///< [out] Username (maybe as xPTR_NULL)
+    std::string *a_pw_passwd, ///< [out] Password (maybe as xPTR_NULL)
+    uid_t       *a_pw_uid,    ///< [out] User ID (maybe as xPTR_NULL)
+    gid_t       *a_pw_gid,    ///< [out] Group ID (maybe as xPTR_NULL)
+    std::string *a_pw_gecos,  ///< [out] Real name (maybe as xPTR_NULL)
+    std::string *a_pw_dir,    ///< [out] Home directory (maybe as xPTR_NULL)
+    std::string *a_pw_shell   ///< [out] Shell program (maybe as xPTR_NULL)
 ) const
 {
     xTEST_NA(a_pw_name);
