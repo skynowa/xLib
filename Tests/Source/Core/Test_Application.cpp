@@ -82,40 +82,40 @@ Test_Application::unit(
 {
     {
         std::vector<int_t> signalNums;
-        signalNums.push_back(SIGHUP);      // Hangup (POSIX)
-        signalNums.push_back(SIGINT);      // Interrupt (ANSI)
-        signalNums.push_back(SIGQUIT);     // Quit (POSIX)
-        signalNums.push_back(SIGILL);      // Illegal instruction (ANSI)
-        signalNums.push_back(SIGTRAP);     // Trace trap (POSIX)
-        signalNums.push_back(SIGABRT);     // Abort (ANSI)
-        signalNums.push_back(SIGIOT);      // IOT trap (4.2 BSD)
-        signalNums.push_back(SIGBUS);      // BUS error (4.2 BSD)
-        signalNums.push_back(SIGFPE);      // Floating-point exception (ANSI)
-        signalNums.push_back(SIGKILL);     // Kill); unblockable (POSIX)
-        signalNums.push_back(SIGUSR1);     // User-defined signal 1 (POSIX)
-        signalNums.push_back(SIGSEGV);     // Segmentation violation (ANSI)
-        signalNums.push_back(SIGUSR2);     // User-defined signal 2 (POSIX)
-        signalNums.push_back(SIGPIPE);     // Broken pipe (POSIX)
-        signalNums.push_back(SIGALRM);     // Alarm clock (POSIX)
-        signalNums.push_back(SIGTERM);     // Termination (ANSI)
-        signalNums.push_back(SIGSTKFLT);   // Stack fault
-        signalNums.push_back(SIGCLD);      // Same as SIGCHLD (System V)
-        signalNums.push_back(SIGCHLD);     // Child status has changed (POSIX)
-        signalNums.push_back(SIGCONT);     // Continue (POSIX)
-        signalNums.push_back(SIGSTOP);     // Stop); unblockable (POSIX)
-        signalNums.push_back(SIGTSTP);     // Keyboard stop (POSIX)
-        signalNums.push_back(SIGTTIN);     // Background read from tty (POSIX)
-        signalNums.push_back(SIGTTOU);     // Background write to tty (POSIX)
-        signalNums.push_back(SIGURG);      // Urgent condition on socket (4.2 BSD)
-        signalNums.push_back(SIGXCPU);     // CPU limit exceeded (4.2 BSD)
-        signalNums.push_back(SIGXFSZ);     // File size limit exceeded (4.2 BSD)
-        signalNums.push_back(SIGVTALRM);   // Virtual alarm clock (4.2 BSD)
-        signalNums.push_back(SIGPROF);     // Profiling alarm clock (4.2 BSD)
-        signalNums.push_back(SIGWINCH);    // Window size change (4.3 BSD); Sun)
-        signalNums.push_back(SIGPOLL);     // Pollable event occurred (System V)
-        signalNums.push_back(SIGIO);       // I/O now possible (4.2 BSD)
-        signalNums.push_back(SIGPWR);      // Power failure restart (System V)
-        signalNums.push_back(SIGSYS);      // Bad system call
+        signalNums.push_back(SIGHUP);
+        signalNums.push_back(SIGINT);
+        signalNums.push_back(SIGQUIT);
+        signalNums.push_back(SIGILL);
+        signalNums.push_back(SIGTRAP);
+        signalNums.push_back(SIGABRT);
+        signalNums.push_back(SIGIOT);
+        signalNums.push_back(SIGBUS);
+        signalNums.push_back(SIGFPE);
+        signalNums.push_back(SIGKILL);
+        signalNums.push_back(SIGUSR1);
+        signalNums.push_back(SIGSEGV);
+        signalNums.push_back(SIGUSR2);
+        signalNums.push_back(SIGPIPE);
+        signalNums.push_back(SIGALRM);
+        signalNums.push_back(SIGTERM);
+        signalNums.push_back(SIGSTKFLT);
+        signalNums.push_back(SIGCLD);
+        signalNums.push_back(SIGCHLD);
+        signalNums.push_back(SIGCONT);
+        signalNums.push_back(SIGSTOP);
+        signalNums.push_back(SIGTSTP);
+        signalNums.push_back(SIGTTIN);
+        signalNums.push_back(SIGTTOU);
+        signalNums.push_back(SIGURG);
+        signalNums.push_back(SIGXCPU);
+        signalNums.push_back(SIGXFSZ);
+        signalNums.push_back(SIGVTALRM);
+        signalNums.push_back(SIGPROF);
+        signalNums.push_back(SIGWINCH);
+        signalNums.push_back(SIGPOLL);
+        signalNums.push_back(SIGIO);
+        signalNums.push_back(SIGPWR);
+        signalNums.push_back(SIGSYS);
 
         Application application(xT("[app_name]_guid"), xT(""));
         Application::setName(xT("[app_name]"));
