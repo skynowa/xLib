@@ -18,11 +18,11 @@
     #include "Platform/Unix/Console_unix.inl"
 
     #if   xENV_LINUX
-        // #include "Platform/Linux/Console_linux.inl"
+
     #elif xENV_BSD
-        // #include "Platform/Bsd/Console_bsd.inl"
+
     #elif xENV_APPLE
-        // #include "Platform/Unix/Console_apple.inl"
+
     #endif
 #endif
 
@@ -221,6 +221,7 @@ Console::prompt(
             ctchar_t letter = static_cast<tchar_t>( std::tcin.get() );
 
             // asterisks
+            // BUG: Console::prompt() - asterisks
             xCHECK_DO(a_isVisible, write(xT("*")));
 
             // ENTER
