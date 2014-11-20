@@ -52,7 +52,7 @@ Signal::setState(
 xINLINE void_t
 Signal::connect(
     const std::vector<int_t> &a_signalNums,
-    sighandler_t              a_onSignals
+    const sighandler_t       &a_onSignals
 ) const
 {
    /**
