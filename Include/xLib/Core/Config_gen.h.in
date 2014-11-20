@@ -6,7 +6,7 @@
 
 #pragma once
 
-
+//-------------------------------------------------------------------------------------------------
 ///@name Project type: executable binary, static library, share (dynamic-link) library
 ///@{
 #cmakedefine xOPTION_PROJECT_HEADER_ONLY 1
@@ -14,39 +14,6 @@
 #cmakedefine xOPTION_PROJECT_SHARE 1
 #cmakedefine xOPTION_PROJECT_MODULE 1
 #cmakedefine xOPTION_PROJECT_TESTS 1
-
-#if   xOPTION_PROJECT_HEADER_ONLY
-
-#elif xOPTION_PROJECT_STATIC
-    #define xLIB 1
-        ///< static library
-#elif xOPTION_PROJECT_SHARE
-    #define xDLL 1
-        ///< share library
-#elif xOPTION_PROJECT_MODULE
-    #define xDLL 1
-        ///< dynamic-link library
-#elif xOPTION_PROJECT_TESTS
-    #define xEXE 1
-        ///< executable binary
-#else
-    #error xLib: unknown project type
-#endif
-
-#if xOPTION_PROJECT_HEADER_ONLY
-    #define xINLINE inline
-        ///< enable inlines
-#else
-    #define xINLINE
-        ///< disable inlines
-#endif
-///@}
-
-///@name Git information
-///@{
-#cmakedefine xHAVE_GIT_REVISION 1
-#cmakedefine xGIT_REVISION_BRANCH xT("@GIT_REVISION_BRANCH@")
-#cmakedefine xGIT_REVISION_HASH xT("@GIT_REVISION_HASH@")
 ///@}
 
 #cmakedefine xOPTION_CPP11 1
@@ -55,34 +22,6 @@
     ///< automatically include the xlib namespace
 #cmakedefine xOPTION_BUILD_MSG 1
     ///< build message
-
-///@name detecting features
-///@{
-#cmakedefine xHAVE_OPENSSL_CRYPTO 1
-#cmakedefine xHAVE_MYSQL 1
-#cmakedefine xHAVE_PR_SET_DUMPABLE 1
-#cmakedefine xHAVE_RLIMIT_CORE 1
-#cmakedefine xHAVE_PT_DENY_ATTACH 1
-#cmakedefine xHAVE_SCHED_GETCPU 1
-#cmakedefine xHAVE_GETCPU 1
-#cmakedefine xHAVE_GETLOGIN_R 1
-#cmakedefine xHAVE_GNU_GET_LIBC 1
-#cmakedefine xHAVE_CS_GNU_LIBPTHREAD_VERSION 1
-#cmakedefine xHAVE_SCHED_SETAFFINITY 1
-#cmakedefine xHAVE_GETSID 1
-#cmakedefine xHAVE_GETPWUID_R 1
-#cmakedefine xHAVE_SETMNTENT 1
-#cmakedefine xHAVE_GETMNTENT_R 1
-#cmakedefine xHAVE_ENDMNTENT 1
-#cmakedefine xHAVE_RAND_R 1
-#cmakedefine xHAVE_SRANDOM_R 1
-#cmakedefine xHAVE_RANDOM_R 1
-
-#cmakedefine xHAVE_EXECINFO 1
-#cmakedefine xHAVE_XCB 1
-#cmakedefine xHAVE_ADDR2LINE 1
-#cmakedefine xADDR2LINE_FILE_PATH xT("@ADDR2LINE_FILE_PATH@")
-///@}
 
 ///@name debug mode (only one mode can be activated)
 ///@{
@@ -110,6 +49,42 @@
     ///< for tests private data
 #cmakedefine xOPTION_TEST_TRACING 1
     ///< use tracing in tests
+///@}
+
+//-------------------------------------------------------------------------------------------------
+///@name Git information
+///@{
+#cmakedefine xHAVE_GIT_REVISION 1
+#cmakedefine xGIT_REVISION_BRANCH xT("@GIT_REVISION_BRANCH@")
+#cmakedefine xGIT_REVISION_HASH xT("@GIT_REVISION_HASH@")
+///@}
+
+///@name detecting features
+///@{
+#cmakedefine xHAVE_OPENSSL_CRYPTO 1
+#cmakedefine xHAVE_MYSQL 1
+#cmakedefine xHAVE_PR_SET_DUMPABLE 1
+#cmakedefine xHAVE_RLIMIT_CORE 1
+#cmakedefine xHAVE_PT_DENY_ATTACH 1
+#cmakedefine xHAVE_SCHED_GETCPU 1
+#cmakedefine xHAVE_GETCPU 1
+#cmakedefine xHAVE_GETLOGIN_R 1
+#cmakedefine xHAVE_GNU_GET_LIBC 1
+#cmakedefine xHAVE_CS_GNU_LIBPTHREAD_VERSION 1
+#cmakedefine xHAVE_SCHED_SETAFFINITY 1
+#cmakedefine xHAVE_GETSID 1
+#cmakedefine xHAVE_GETPWUID_R 1
+#cmakedefine xHAVE_SETMNTENT 1
+#cmakedefine xHAVE_GETMNTENT_R 1
+#cmakedefine xHAVE_ENDMNTENT 1
+#cmakedefine xHAVE_RAND_R 1
+#cmakedefine xHAVE_SRANDOM_R 1
+#cmakedefine xHAVE_RANDOM_R 1
+
+#cmakedefine xHAVE_EXECINFO 1
+#cmakedefine xHAVE_XCB 1
+#cmakedefine xHAVE_ADDR2LINE 1
+#cmakedefine xADDR2LINE_FILE_PATH xT("@ADDR2LINE_FILE_PATH@")
 ///@}
 
 #if   xENV_WIN
@@ -160,3 +135,30 @@
         #define _GNU_SOURCE 1
     #endif
 #endif
+//-------------------------------------------------------------------------------------------------
+#if   xOPTION_PROJECT_HEADER_ONLY
+
+#elif xOPTION_PROJECT_STATIC
+    #define xLIB 1
+        ///< static library
+#elif xOPTION_PROJECT_SHARE
+    #define xDLL 1
+        ///< share library
+#elif xOPTION_PROJECT_MODULE
+    #define xDLL 1
+        ///< dynamic-link library
+#elif xOPTION_PROJECT_TESTS
+    #define xEXE 1
+        ///< executable binary
+#else
+    #error xLib: unknown project type
+#endif
+
+#if xOPTION_PROJECT_HEADER_ONLY
+    #define xINLINE inline
+        ///< enable inlines
+#else
+    #define xINLINE
+        ///< disable inlines
+#endif
+//-------------------------------------------------------------------------------------------------
