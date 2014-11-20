@@ -16,28 +16,7 @@ public:
     static void_t onSignals(int_t a_signal)
     {
         Trace() << xFUNCTION << "\nStack trace:\n " << StackTrace().toString();
-
-        switch (a_signal) {
-        case SIGABRT:
-            Trace() << "Caught SIGABRT: usually caused by an abort() or assert()";
-            break;
-        case SIGFPE:
-            Trace() << "Caught SIGFPE: arithmetic exception, such as divide by zero";
-            break;
-        case SIGILL:
-            Trace() << "Caught SIGILL: illegal instruction";
-            break;
-        case SIGINT:
-            Trace() << "Caught SIGINT: interactive attention signal, probably a ctrl+c";
-            break;
-        case SIGSEGV:
-            Trace() << "Caught SIGSEGV: segfault";
-            break;
-        case SIGTERM:
-        default:
-            Trace() << "Caught SIGTERM: a termination request was sent to the program";
-            break;
-        }
+        Trace() << xTRACE_VAR(a_signal) << " - " << ::sys_siglist[a_signal];
 
         ::_exit(EXIT_FAILURE);
     }
