@@ -7,38 +7,6 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-///@name Lexeme utils
-///@{
-#define xLEX_TO_STR(a) \
-    xT(#a)
-    ///< make as string
-
-#define xLEX_CAT(a, b) \
-    a##b
-    ///< concatenate 2 strings
-#define xLEX_CAT3(x1, x2, x3) \
-    xLEX_CAT(xLEX_CAT(x1, x2), x3)
-    ///< concatenate 3 strings
-#define xLEX_CAT4(x1, x2, x3, x4) \
-    xLEX_CAT(xLEX_CAT3(x1, x2, x3), x4)
-    ///< concatenate 4 strings
-#define xLEX_CAT5(x1, x2, x3, x4, x5) \
-    xLEX_CAT(xLEX_CAT4(x1, x2, x3, x4), x5)
-    ///< concatenate 5 strings
-#define xLEX_CAT6(x1, x2, x3, x4, x5, x6) \
-    xLEX_CAT(xLEX_CAT5(x1, x2, x3, x4, x5), x6)
-    ///< concatenate 6 strings
-#define xLEX_CAT7(x1, x2, x3, x4, x5, x6, x7) \
-    xLEX_CAT(xLEX_CAT6(x1, x2, x3, x4, x5, x6), x7)
-    ///< concatenate 7 strings
-#define xLEX_CAT8(x1, x2, x3, x4, x5, x6, x7, x8) \
-    xLEX_CAT(xLEX_CAT7(x1, x2, x3, x4, x5, x6, x7), x8)
-    ///< concatenate 8 strings
-#define xLEX_CAT9(x1, x2, x3, x4, x5, x6, x7, x8, x9) \
-    xLEX_CAT(xLEX_CAT8(x1, x2, x3, x4, x5, x6, x7, x8), x9)
-    ///< concatenate 9 strings
-///@}
-//-------------------------------------------------------------------------------------------------
 ///@name xTEXT, xT (Ansi, Unicode string)
 ///@{
 #if xUNICODE
