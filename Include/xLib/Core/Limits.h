@@ -145,3 +145,13 @@
         ( 65535 )
     ///< socket maximum port number
 //-------------------------------------------------------------------------------------------------
+///@name Custom defines
+///@{
+#define xCUSTOM_SEMAPHORE_VALUE_MAX_WIN \
+    (LONG_MAX)
+    ///< semaphore maximum value (tested on Win7 x64)
+#define xCUSTOM_SYSCONF_SC_GETPW_R_SIZE_MAX_UNIX \
+    (16384L)
+    ///< ::sysconf(_SC_GETPW_R_SIZE_MAX)
+///@}
+//-------------------------------------------------------------------------------------------------
