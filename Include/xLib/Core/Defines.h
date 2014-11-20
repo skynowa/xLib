@@ -7,6 +7,28 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
+ ///@name project type
+///@{
+#if   xOPTION_PROJECT_HEADER_ONLY
+    #define xPROJECT_HEADER_ONLY 1
+        ///< header only
+#elif xOPTION_PROJECT_LIB_STATIC
+    #define xPROJECT_LIB_STATIC 1
+        ///< static library
+#elif xOPTION_PROJECT_LIB_SHARE
+    #define xPROJECT_LIB_SHARE 1
+        ///< share library
+#elif xOPTION_PROJECT_LIB_MODULE
+    #define xPROJECT_LIB_SHARE 1
+        ///< dynamic-link library
+#elif xOPTION_PROJECT_EXE
+    #define xPROJECT_EXE 1
+        ///< executable binary
+#else
+    #error xLib: unknown project type
+#endif
+///@}
+//-------------------------------------------------------------------------------------------------
 ///@name xTEXT, xT (Ansi, Unicode string)
 ///@{
 #if xUNICODE
@@ -33,7 +55,7 @@
 //-------------------------------------------------------------------------------------------------
 ///@name xDECL, xDECL_TEMPL
 ///@{
-#if xENV_WIN && xDLL
+#if xENV_WIN && xPROJECT_LIB_SHARE
     #if xAPI_EXPORTS
         #define xDECL \
             __declspec(dllexport)
