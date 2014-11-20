@@ -27,7 +27,7 @@ public:
     void_t   setState(const std::sig_atomic_t &state);
         ///< set state flag
 
-    void_t   connect(const std::vector<int_t> &signalNums, sighandler_t onSignals) const;
+    void_t   connect(const std::vector<int_t> &signalNums, const sighandler_t &onSignals) const;
         ///< set signal handle
     void_t   connectExit(const exit_handler_t &onExit) const;
         ///< set exit handle
