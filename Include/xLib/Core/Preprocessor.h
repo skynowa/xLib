@@ -7,7 +7,8 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// lexeme utils
+///@name Lexeme utils
+///@{
 #define xLEX_TO_STR(a) \
     xT(#a)
     ///< lexeme to string
@@ -39,6 +40,7 @@
 #define xLEX_CAT9(x1, x2, x3, x4, x5, x6, x7, x8, x9) \
     xLEX_CAT(xLEX_CAT8(x1, x2, x3, x4, x5, x6, x7, x8), x9)
     ///< concatenate 9 strings
+///@}
 //-------------------------------------------------------------------------------------------------
 #if   xENV_WIN
     #define xPRAGMA(x) __pragma(x)
