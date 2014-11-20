@@ -88,29 +88,6 @@
 ///@}
 
 //-------------------------------------------------------------------------------------------------
- ///@name project type
-///@{
-#if   xOPTION_PROJECT_HEADER_ONLY
-    #define xHEADER_ONLY 1
-        ///< header only
-#elif xOPTION_PROJECT_LIB_STATIC
-    #define xLIB 1
-        ///< static library
-#elif xOPTION_PROJECT_LIB_SHARE
-    #define xDLL 1
-        ///< share library
-#elif xOPTION_PROJECT_LIB_MODULE
-    #define xDLL 1
-        ///< dynamic-link library
-#elif xOPTION_PROJECT_EXE
-    #define xEXE 1
-        ///< executable binary
-#else
-    #error xLib: unknown project type
-#endif
-///@}
-
-//-------------------------------------------------------------------------------------------------
 ///@name OS specific defines
 ///@{
 #if   xENV_WIN

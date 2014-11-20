@@ -374,11 +374,11 @@ BuildInfo::binaryType() const
 {
     std::tstring_t sRv;
 
-#if   xEXE
+#if   xPROJECT_EXE
     sRv = xT("Executable binary");
-#elif xLIB
+#elif xPROJECT_LIB_STATIC
     sRv = xT("Static library");
-#elif xDLL
+#elif xPROJECT_LIB_SHARE
     sRv = xT("Share (dynamic link) library");
 #endif
 

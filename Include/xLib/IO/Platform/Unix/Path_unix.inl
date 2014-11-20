@@ -31,7 +31,7 @@ Path::_dll_impl()
     void_t (*procAddress)() = ::function;
 
     int_t iRv = ::dladdr(&procAddress, &diInfo);
-#if (xLIB || xDLL)
+#if (xPROJECT_LIB_STATIC || xPROJECT_LIB_SHARE)
     xTEST_DIFF(iRv, 0);
 
     sRv = Path(diInfo.dli_fname).absolute();

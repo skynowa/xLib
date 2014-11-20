@@ -34,7 +34,7 @@ Test_Path::unit(
     xTEST_CASE("dll", a_caseLoops)
     {
         m_sRv = Path::dll();
-    #if (xLIB || xDLL)
+    #if (xPROJECT_LIB_STATIC || xPROJECT_LIB_SHARE)
         xTEST_EQ(File::isExists(m_sRv), true);
     #else
         xTEST_NA(m_sRv);
