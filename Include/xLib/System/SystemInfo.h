@@ -139,9 +139,12 @@ private:
     xNO_COPY_ASSIGN(SystemInfo)
 
 xPLATFORM_IMPL:
+    // OS
     ExOsType       _os_impl() xWARN_UNUSED_RV;
     std::tstring_t _formatOs_impl() xWARN_UNUSED_RV;
     ExOsArch       _osArch_impl() xWARN_UNUSED_RV;
+
+    // users
     std::tstring_t _desktopName_impl() const xWARN_UNUSED_RV;
     std::tstring_t _hostName_impl() const xWARN_UNUSED_RV;
     bool_t         _isUserAdmin_impl() const xWARN_UNUSED_RV;
@@ -149,15 +152,21 @@ xPLATFORM_IMPL:
     std::tstring_t _userName_impl() const xWARN_UNUSED_RV;
     std::tstring_t _userHomeDir_impl() const xWARN_UNUSED_RV;
     std::tstring_t _userShellPath_impl() const xWARN_UNUSED_RV;
+
+    // CPU
     ulong_t        _numOfCpus_impl() const xWARN_UNUSED_RV;
     ulong_t        _currentCpuNum_impl() const xWARN_UNUSED_RV;
     std::tstring_t _cpuVendor_impl() const xWARN_UNUSED_RV;
     std::tstring_t _cpuModel_impl() const xWARN_UNUSED_RV;
     ulong_t        _cpuSpeed_impl() const xWARN_UNUSED_RV;
     ulong_t        _cpuUsage_impl() const xWARN_UNUSED_RV;
+
+    // RAM
     ulonglong_t    _ramTotal_impl() const xWARN_UNUSED_RV;
     ulonglong_t    _ramAvailable_impl() const xWARN_UNUSED_RV;
     ulong_t        _ramUsage_impl() const xWARN_UNUSED_RV;
+
+    // HDD
     ulong_t        _pageSize_impl() const xWARN_UNUSED_RV;
 };
 
