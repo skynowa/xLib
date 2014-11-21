@@ -22,7 +22,9 @@
     #endif
 #endif
 
+#include <xLib/Core/String.h>
 #include <xLib/Core/Utils.h>
+#include <xLib/Log/Trace.h>
 
 
 xNAMESPACE_BEGIN2(xlib, sync)
@@ -62,9 +64,22 @@ Signal::connect(
     */
 
     xFOREACH_CONST(std::vector<int_t>, it, a_signalNums) {
+        switch (*it) {
+        case SIGKILL:
+            Trace() << xT("xLib: ") << xTRACE_VAR(SIGKILL) << xT(" cannot be caught or ignored");
+            continue;
+            break;
+        case SIGSTOP:
+            Trace() << xT("xLib: ") << xTRACE_VAR(SIGSTOP) << xT(" cannot be caught or ignored");
+            continue;
+            break;
+        default:
+            break;
+        }
+
     #if USE_SIMPLE_SIGNAL
         sighandler_t shRv = std::signal(*it, a_onSignals);
-        xTEST(shRv != SIG_ERR);
+        xTEST_MSG(shRv != SIG_ERR, xT("Signal: ") + String::cast(*it));
     #else
         int_t iRv = 0;
 
@@ -78,7 +93,7 @@ Signal::connect(
         action.sa_restorer = xPTR_NULL;
 
         iRv = ::sigaction(*it, &action, xPTR_NULL);
-        xTEST_DIFF(iRv, - 1);
+        xTEST_MSG_DIFF(iRv, - 1, xT("Signal: ") + String::cast(*it));
     #endif
     }
 }
