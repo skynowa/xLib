@@ -11,7 +11,7 @@
 #if   xENV_WIN
     #include "Platform/Win/Signal_win.inl"
 #elif xENV_UNIX
-    // #include "Platform/Unix/Signal_unix.inl"
+    #include "Platform/Unix/Signal_unix.inl"
 
     #if   xENV_LINUX
         // #include "Platform/Unix/Signal_linux.inl"
@@ -138,6 +138,23 @@ Signal::emit(
 {
     int_t iRv = std::raise(a_signalNum);
     xTEST(iRv == 0);
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   public, static
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE std::tstring_t
+Signal::decription(
+    cint_t &a_signalNum ///< signal number
+)
+{
+    return _decription_impl(a_signalNum);
 }
 //-------------------------------------------------------------------------------------------------
 

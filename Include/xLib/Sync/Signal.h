@@ -38,6 +38,10 @@ public:
     int_t    emit(cint_t &signalNum) const;
         ///< sends signal to the current executing program
 
+    static
+    std::tstring_t decription(cint_t &signalNum);
+        ///< string describing signal
+
 private:
     xNO_COPY_ASSIGN(Signal)
 
@@ -45,6 +49,11 @@ private:
     std::sig_atomic_t _state;
         ///< Integral type of an object that can be accessed as an atomic entity,
         ///< even in the presence of asynchronous signals.
+
+xPLATFORM_IMPL:
+    static
+    std::tstring_t _decription_impl(cint_t &signalNum);
+        ///< string describing signal
 };
 
 xNAMESPACE_END2(xlib, sync)
