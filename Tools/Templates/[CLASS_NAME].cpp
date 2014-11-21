@@ -1,6 +1,6 @@
 /**
  * \file   [CLASS_NAME].cpp
- * \brief
+ * \brief  [CLASS_COMMENTS]
  */
 
 

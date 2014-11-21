@@ -1,6 +1,6 @@
 /**
  * \file   [CLASS_NAME].h
- * \brief
+ * \brief  [CLASS_COMMENTS]
  */
 
 
