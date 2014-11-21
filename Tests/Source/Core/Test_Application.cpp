@@ -80,45 +80,76 @@ Test_Application::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("all", a_caseLoops)
+    xTEST_CASE("actions", a_caseLoops)
     {
-        Application::setName(xT("[app_name]"));
-        Application::setDecription(xT("[decription]"));
-        Application::setUsage(xT("[usage]"));
-        Application::setHelp(xT("[help]"));
-        Application::setCopyrightYears(xT("[2008-2014]"));
-        Application::setVersionMajor(xT("[1]"));
-        Application::setVersionMinor(xT("[0]"));
-        Application::setVersionPatch(xT("[0]"));
-        Application::setVersionType(xT("[alpha]"));
-        Application::setVersionRevision(xT("[develop/970f53b]"));
-        Application::setVendorName(xT("[Skynowa Studio]"));
-        Application::setVendorDomain(xT("[com]"));
-        Application::setVendorAuthor(xT("[skynowa]"));
-        Application::setVendorUrl(xT("[http://bitbucket.org/skynowa/xlib]"));
-        Application::setVendorEmail(xT("[skynowa@gmail.com]"));
-        Application::setVendorSkype(xT("[skynowa777]"));
+        std::ctstring_t name            = xT("[app_name]");
+        std::ctstring_t decription      = xT("[decription]");
+        std::ctstring_t usage           = xT("[usage]");
+        std::ctstring_t help            = xT("[help]");
+        std::ctstring_t copyrightYears  = xT("[2008-2014]");
+        std::ctstring_t versionMajor    = xT("[1]");
+        std::ctstring_t versionMinor    = xT("[0]");
+        std::ctstring_t versionPatch    = xT("[3]");
+        std::ctstring_t versionType     = xT("[alpha]");
+        std::ctstring_t versionRevision = xT("[develop/970f53b]");
+        std::ctstring_t vendorName      = xT("[Skynowa Studio]");
+        std::ctstring_t vendorDomain    = xT("[com]");
+        std::ctstring_t vendorAuthor    = xT("[skynowa]");
+        std::ctstring_t vendorUrl       = xT("[http://bitbucket.org/skynowa/xlib]");
+        std::ctstring_t vendorEmail     = xT("[skynowa@gmail.com]");
+        std::ctstring_t vendorSkype     = xT("[skynowa777]");
 
-    #if 1
-        Trace()
-            << xTRACE_VAR(Application::name())            << xT("\n")
-            << xTRACE_VAR(Application::decription())      << xT("\n")
-            << xTRACE_VAR(Application::usage())           << xT("\n")
-            << xTRACE_VAR(Application::help())            << xT("\n")
-            << xTRACE_VAR(Application::copyrightYears())  << xT("\n")
-            << xTRACE_VAR(Application::versionMajor())    << xT("\n")
-            << xTRACE_VAR(Application::versionMinor())    << xT("\n")
-            << xTRACE_VAR(Application::versionPatch())    << xT("\n")
-            << xTRACE_VAR(Application::versionType())     << xT("\n")
-            << xTRACE_VAR(Application::versionRevision()) << xT("\n")
-            << xTRACE_VAR(Application::vendorName())      << xT("\n")
-            << xTRACE_VAR(Application::vendorDomain())    << xT("\n")
-            << xTRACE_VAR(Application::vendorAuthor())    << xT("\n")
-            << xTRACE_VAR(Application::vendorUrl())       << xT("\n")
-            << xTRACE_VAR(Application::vendorEmail())     << xT("\n")
-            << xTRACE_VAR(Application::vendorSkype());
-    #endif
+        Application::setName(name);
+        xTEST_EQ(Application::name(), name);
 
+        Application::setDecription(decription);
+        xTEST_EQ(Application::decription(), decription);
+
+        Application::setUsage(usage);
+        xTEST_EQ(Application::usage(), usage);
+
+        Application::setHelp(help);
+        xTEST_EQ(Application::help(), help);
+
+        Application::setCopyrightYears(copyrightYears);
+        xTEST_EQ(Application::copyrightYears(), copyrightYears);
+
+        Application::setVersionMajor(versionMajor);
+        xTEST_EQ(Application::versionMajor(), versionMajor);
+
+        Application::setVersionMinor(versionMinor);
+        xTEST_EQ(Application::versionMinor(), versionMinor);
+
+        Application::setVersionPatch(versionPatch);
+        xTEST_EQ(Application::versionPatch(), versionPatch);
+
+        Application::setVersionType(versionType);
+        xTEST_EQ(Application::versionType(), versionType);
+
+        Application::setVersionRevision(versionRevision);
+        xTEST_EQ(Application::versionRevision(), versionRevision);
+
+        Application::setVendorName(vendorName);
+        xTEST_EQ(Application::vendorName(), vendorName);
+
+        Application::setVendorDomain(vendorDomain);
+        xTEST_EQ(Application::vendorDomain(), vendorDomain);
+
+        Application::setVendorAuthor(vendorAuthor);
+        xTEST_EQ(Application::vendorAuthor(), vendorAuthor);
+
+        Application::setVendorUrl(vendorUrl);
+        xTEST_EQ(Application::vendorUrl(), vendorUrl);
+
+        Application::setVendorEmail(vendorEmail);
+        xTEST_EQ(Application::vendorEmail(), vendorEmail);
+
+        Application::setVendorSkype(vendorSkype);
+        xTEST_EQ(Application::vendorSkype(), vendorSkype);;
+    }
+
+    xTEST_CASE("handles (signal)", a_caseLoops)
+    {
         Application application(xT("[app_name]_guid"), xT(""));
 
         std::vector<int_t> signalNums;
@@ -165,6 +196,21 @@ Test_Application::unit(
         // test error
         TestFail testFail;
         testFail.foo3();
+    }
+
+    xTEST_CASE("info", a_caseLoops)
+    {
+
+    }
+
+    xTEST_CASE("files", a_caseLoops)
+    {
+
+    }
+
+    xTEST_CASE("directories", a_caseLoops)
+    {
+
     }
 }
 //-------------------------------------------------------------------------------------------------
