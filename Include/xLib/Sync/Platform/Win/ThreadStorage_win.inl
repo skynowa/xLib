@@ -31,7 +31,7 @@ ThreadStorage::_destruct_impl()
     xTEST_EQ(0 < _index, true);
 
     int_t iRv = ::pthread_key_delete(_index);
-    xTEST_MSG_EQ(iRv, 0, NativeError::format(iRv));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
 
     _index = static_cast<pthread_key_t>( -1 );
 }

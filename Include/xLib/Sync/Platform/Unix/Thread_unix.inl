@@ -22,24 +22,24 @@ Thread::_create_impl(
     pthread_attr_t attrs; xSTRUCT_ZERO(attrs);
 
     iRv = ::pthread_attr_init(&attrs);
-    xTEST_MSG_EQ(0, iRv, NativeError::format(iRv));
+    xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
     // TODO: Thread::_create_impl() - PTHREAD_CREATE_DETACHED
     iRv = ::pthread_attr_setdetachstate(&attrs, PTHREAD_CREATE_JOINABLE);
-    xTEST_MSG_EQ(0, iRv, NativeError::format(iRv));
+    xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
     if (a_stackSizeBytes != 0U) {
         // TODO: Thread::_create_impl() - size_t size = PTHREAD_STACK_MIN + 0x4000;
         iRv = ::pthread_attr_setstacksize(&attrs, a_stackSizeBytes);
-        xTEST_MSG_EQ(0, iRv, NativeError::format(iRv));
+        xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
     }
 
     iRv = ::pthread_create(&hid, &attrs, &_s_jobEntry, this);
-    xTEST_MSG_EQ(0, iRv, NativeError::format(iRv));
-    xTEST_MSG_EQ(true, hid > 0, NativeError::format(iRv));
+    xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
+    xTEST_EQ_MSG(true, hid > 0, NativeError::format(iRv));
 
     iRv = ::pthread_attr_destroy(&attrs);
-    xTEST_MSG_EQ(0, iRv, NativeError::format(iRv));
+    xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
     _handle = hid;  // TODO: Thread::_create_impl() - is it right?
     _id     = hid;
@@ -51,7 +51,7 @@ Thread::_kill_impl(
 )
 {
     int_t iRv = ::pthread_kill(_id, SIGALRM);
-    xTEST_MSG_EQ(0, iRv, NativeError::format(iRv));
+    xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
     currentSleep(a_timeoutMsec);
 }
@@ -67,7 +67,7 @@ Thread::_wait_impl(
     // FIX:  Thread::_wait_impl(( - a_timeoutMsec
 
     int_t iRv = ::pthread_join(_id, xPTR_NULL);
-    xTEST_MSG_EQ(0, iRv, NativeError::format(iRv));
+    xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -149,7 +149,7 @@ Thread::_setPriority_impl(
     param.sched_priority = a_priority;
 
     int_t iRv = ::pthread_setschedparam(id(), SCHED_FIFO, &param);
-    xTEST_MSG_EQ(0, iRv, NativeError::format(iRv));
+    xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE Thread::ExPriority
@@ -159,7 +159,7 @@ Thread::_priority_impl() const
     int_t       policy = SCHED_FIFO;
 
     int_t iRv = ::pthread_getschedparam(id(), &policy, &param);
-    xTEST_MSG_EQ(0, iRv, NativeError::format(iRv));
+    xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
     Thread::ExPriority tpRv = static_cast<ExPriority>( param.sched_priority );
 
@@ -205,7 +205,7 @@ Thread::_setCpuAffinity_impl(
     CPU_SET(a_procNum, &cpuSet);
 
     int_t iRv = ::sched_setaffinity(static_cast<pid_t>( id() ), sizeof(cpuSet), &cpuSet);
-    xTEST_MSG_DIFF(- 1, iRv, NativeError::format(iRv));
+    xTEST_DIFF_MSG(- 1, iRv, NativeError::format(iRv));
 
     // pthread_setaffinity_np
 }
@@ -330,7 +330,7 @@ xINLINE void_t
 Thread::_currentYield_impl()
 {
     int_t iRv = ::sched_yield();
-    xTEST_MSG_DIFF(- 1, iRv, NativeError::format(iRv));
+    xTEST_DIFF_MSG(- 1, iRv, NativeError::format(iRv));
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -358,7 +358,7 @@ xINLINE int_t
 Thread::_priorityMin_impl()
 {
     int_t iRv = ::sched_get_priority_min(SCHED_FIFO);
-    xTEST_MSG_DIFF(- 1, iRv, NativeError::format(iRv));
+    xTEST_DIFF_MSG(- 1, iRv, NativeError::format(iRv));
 
     return iRv;
 }
@@ -368,7 +368,7 @@ xINLINE int_t
 Thread::_priorityMax_impl()
 {
     int_t iRv = ::sched_get_priority_max(SCHED_FIFO);
-    xTEST_MSG_DIFF(- 1, iRv, NativeError::format(iRv));
+    xTEST_DIFF_MSG(- 1, iRv, NativeError::format(iRv));
 
     return iRv;
 }

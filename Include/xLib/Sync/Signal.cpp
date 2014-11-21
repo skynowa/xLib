@@ -93,7 +93,7 @@ Signal::connect(
         action.sa_restorer = xPTR_NULL;
 
         iRv = ::sigaction(*it, &action, xPTR_NULL);
-        xTEST_MSG_DIFF(iRv, - 1, xT("Signal: ") + String::cast(*it));
+        xTEST_DIFF_MSG(iRv, - 1, xT("Signal: ") + String::cast(*it));
     #endif
     }
 }

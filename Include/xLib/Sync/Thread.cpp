@@ -169,7 +169,7 @@ xINLINE void_t
 Thread::pause()
 {
 #if   xENV_WIN
-    xTEST_MSG_EQ(true, _handle.isValid(), String::cast(_handle.get()));
+    xTEST_EQ_MSG(true, _handle.isValid(), String::cast(_handle.get()));
 #elif xENV_UNIX
 
 #endif

@@ -19,32 +19,32 @@ Test_Test::unit(
         std::ctstring_t msg = xT("Simple message");
 
         xTEST_EQ(1UL, 1UL);
-        xTEST_MSG_EQ(1UL, 1UL, msg);
+        xTEST_EQ_MSG(1UL, 1UL, msg);
 
         xTEST_DIFF(1UL, 0UL);
-        xTEST_MSG_DIFF(1UL, 0UL, msg);
+        xTEST_DIFF_MSG(1UL, 0UL, msg);
 
         xTEST_LESS(0UL, 1UL);
-        xTEST_MSG_LESS(0UL, 1UL, msg);
+        xTEST_LESS_MSG(0UL, 1UL, msg);
 
         xTEST_GR(1UL, 0UL);
-        xTEST_MSG_GR(1UL, 0UL, msg);
+        xTEST_GR_MSG(1UL, 0UL, msg);
 
         xTEST_LESS_EQ(1UL, 2UL);
         xTEST_LESS_EQ(2UL, 2UL);
-        xTEST_MSG_LESS_EQ(1UL, 2UL, msg);
-        xTEST_MSG_LESS_EQ(2UL, 2UL, msg);
+        xTEST_LESS_EQ_MSG(1UL, 2UL, msg);
+        xTEST_LESS_EQ_MSG(2UL, 2UL, msg);
 
         xTEST_GR_EQ(2UL, 1UL);
         xTEST_GR_EQ(2UL, 2UL);
-        xTEST_MSG_GR_EQ(2UL, 1UL, msg);
-        xTEST_MSG_GR_EQ(2UL, 2UL, msg);
+        xTEST_GR_EQ_MSG(2UL, 1UL, msg);
+        xTEST_GR_EQ_MSG(2UL, 2UL, msg);
 
         xTEST_PTR(123);
-        xTEST_MSG_PTR(61466, msg);
+        xTEST_PTR_MSG(61466, msg);
 
         xTEST_PTR_FAIL(xPTR_NULL);
-        xTEST_MSG_PTR_FAIL(xPTR_NULL, msg);
+        xTEST_PTR_FAIL_MSG(xPTR_NULL, msg);
 
     #if xTEST_IGNORE
         xTEST_FAIL;
@@ -63,13 +63,13 @@ Test_Test::unit(
         std::ctstring_t msg = xT("Simple message");
 
         xTEST_THROW(msg.at(msg.size() + 10), std::exception);
-        xTEST_MSG_THROW(msg.at(msg.size() + 10), std::exception, msg);
+        xTEST_THROW_MSG(msg.at(msg.size() + 10), std::exception, msg);
 
         xTEST_THROW_ALL(msg.at(msg.size() + 10));
-        xTEST_MSG_THROW_ALL(msg.at(msg.size() + 10), msg);
+        xTEST_THROW_ALL_MSG(msg.at(msg.size() + 10), msg);
 
         xTEST_THROW_NO(msg.at(0));
-        xTEST_MSG_THROW_NO(msg.at(0), msg);
+        xTEST_THROW_NO_MSG(msg.at(0), msg);
     }
 
     xTEST_CASE("xTEST_NA", a_caseLoops)
