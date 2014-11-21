@@ -20,28 +20,28 @@ public:
         // psignal, strsignal, sys_siglist
         Trace() << xTRACE_VAR(a_signal) << " - " << ::strsignal(a_signal);
 
-        ::_exit(EXIT_FAILURE);
+        Application::exit(EXIT_FAILURE);
     }
 
     static void_t onExit()
     {
         // Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
 
-        // std::abort();  // forces abnormal termination
+        // Application::abort();  // forces abnormal termination
     }
 
     static void_t onTerminate()
     {
         Trace() << xFUNCTION;
 
-        // std::abort();  // forces abnormal termination
+        // Application::abort();  // forces abnormal termination
     }
 
     static void_t onUnexpected()
     {
         Trace() << xFUNCTION;
 
-        // std::abort();  // forces abnormal termination
+        // Application::abort();  // forces abnormal termination
     }
 };
 //-------------------------------------------------------------------------------------------------
@@ -80,7 +80,47 @@ Test_Application::unit(
     culonglong_t &a_caseLoops
 )
 {
+    xTEST_CASE("all", a_caseLoops)
     {
+        Application::setName(xT("[app_name]"));
+        Application::setDecription(xT("[decription]"));
+        Application::setUsage(xT("[usage]"));
+        Application::setHelp(xT("[help]"));
+        Application::setCopyrightYears(xT("[2008-2014]"));
+        Application::setVersionMajor(xT("[1]"));
+        Application::setVersionMinor(xT("[0]"));
+        Application::setVersionPatch(xT("[0]"));
+        Application::setVersionType(xT("[alpha]"));
+        Application::setVersionRevision(xT("[develop/970f53b]"));
+        Application::setVendorName(xT("[Skynowa Studio]"));
+        Application::setVendorDomain(xT("[com]"));
+        Application::setVendorAuthor(xT("[skynowa]"));
+        Application::setVendorUrl(xT("[http://bitbucket.org/skynowa/xlib]"));
+        Application::setVendorEmail(xT("[skynowa@gmail.com]"));
+        Application::setVendorSkype(xT("[skynowa777]"));
+
+    #if 1
+        Trace()
+            << xTRACE_VAR(Application::name())            << xT("\n")
+            << xTRACE_VAR(Application::decription())      << xT("\n")
+            << xTRACE_VAR(Application::usage())           << xT("\n")
+            << xTRACE_VAR(Application::help())            << xT("\n")
+            << xTRACE_VAR(Application::copyrightYears())  << xT("\n")
+            << xTRACE_VAR(Application::versionMajor())    << xT("\n")
+            << xTRACE_VAR(Application::versionMinor())    << xT("\n")
+            << xTRACE_VAR(Application::versionPatch())    << xT("\n")
+            << xTRACE_VAR(Application::versionType())     << xT("\n")
+            << xTRACE_VAR(Application::versionRevision()) << xT("\n")
+            << xTRACE_VAR(Application::vendorName())      << xT("\n")
+            << xTRACE_VAR(Application::vendorDomain())    << xT("\n")
+            << xTRACE_VAR(Application::vendorAuthor())    << xT("\n")
+            << xTRACE_VAR(Application::vendorUrl())       << xT("\n")
+            << xTRACE_VAR(Application::vendorEmail())     << xT("\n")
+            << xTRACE_VAR(Application::vendorSkype());
+    #endif
+
+        Application application(xT("[app_name]_guid"), xT(""));
+
         std::vector<int_t> signalNums;
         signalNums.push_back(SIGHUP);
         signalNums.push_back(SIGINT);
@@ -117,45 +157,6 @@ Test_Application::unit(
         signalNums.push_back(SIGPWR);
         signalNums.push_back(SIGSYS);
 
-        Application application(xT("[app_name]_guid"), xT(""));
-        Application::setName(xT("[app_name]"));
-        application.setName(xT("[app_name]"));
-        application.setDecription(xT("[decription]"));
-        application.setUsage(xT("[usage]"));
-        application.setHelp(xT("[help]"));
-        application.setCopyrightYears(xT("[2008-2014]"));
-        application.setVersionMajor(xT("[1]"));
-        application.setVersionMinor(xT("[0]"));
-        application.setVersionPatch(xT("[0]"));
-        application.setVersionType(xT("[alpha]"));
-        application.setVersionRevision(xT("[develop/970f53b]"));
-        application.setVendorName(xT("[Skynowa Studio]"));
-        application.setVendorDomain(xT("[com]"));
-        application.setVendorAuthor(xT("[skynowa]"));
-        application.setVendorUrl(xT("[http://bitbucket.org/skynowa/xlib]"));
-        application.setVendorEmail(xT("[skynowa@gmail.com]"));
-        application.setVendorSkype(xT("[skynowa777]"));
-
-    #if 0
-        Trace()
-            << xTRACE_VAR(application.name())            << xT("\n")
-            << xTRACE_VAR(application.decription())      << xT("\n")
-            << xTRACE_VAR(application.usage())           << xT("\n")
-            << xTRACE_VAR(application.help())            << xT("\n")
-            << xTRACE_VAR(application.copyrightYears())  << xT("\n")
-            << xTRACE_VAR(application.versionMajor())    << xT("\n")
-            << xTRACE_VAR(application.versionMinor())    << xT("\n")
-            << xTRACE_VAR(application.versionPatch())    << xT("\n")
-            << xTRACE_VAR(application.versionType())     << xT("\n")
-            << xTRACE_VAR(application.versionRevision()) << xT("\n")
-            << xTRACE_VAR(application.vendorName())      << xT("\n")
-            << xTRACE_VAR(application.vendorDomain())    << xT("\n")
-            << xTRACE_VAR(application.vendorAuthor())    << xT("\n")
-            << xTRACE_VAR(application.vendorUrl())       << xT("\n")
-            << xTRACE_VAR(application.vendorEmail())     << xT("\n")
-            << xTRACE_VAR(application.vendorSkype());
-    #endif
-
         application.signal().connect(signalNums, SignalHandlers::onSignals);
         application.signal().connectExit(SignalHandlers::onExit);
         application.signal().connectTerminate(SignalHandlers::onTerminate);
@@ -164,11 +165,6 @@ Test_Application::unit(
         // test error
         TestFail testFail;
         testFail.foo3();
-    }
-
-    xTEST_CASE("Application::[TEST_CASE_1]", a_caseLoops)
-    {
-
     }
 }
 //-------------------------------------------------------------------------------------------------
