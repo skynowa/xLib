@@ -30,12 +30,15 @@ public:
         ///< create all application directories
     bool_t         selfCheck() const;
         ///< self check
-    void_t         exit(cint_t &status) const;
+    static
+    void_t         exit(cint_t &status);
         ///< terminates the process normally, performing the regular cleanup,
         ///< objects with automatic storage are not destroyed
-    void_t         terminate() const;
+    static
+    void_t         terminate();
         ///< calls the current terminate handler
-    void_t         abort() const;
+    static
+    void_t         abort();
         ///< aborts the current process, producing an abnormal program termination
 
     // handles
