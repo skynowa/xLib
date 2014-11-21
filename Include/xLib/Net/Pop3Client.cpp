@@ -80,7 +80,7 @@ Pop3Client::connect()
      //-------------------------------------
      //[welcome message]
      _sRv = _socket.recvAll(0, xT("\r\n"));
-     xTEST_MSG_EQ(_isError(_sRv), false, _sRv); // "+OK"
+     xTEST_EQ_MSG(_isError(_sRv), false, _sRv); // "+OK"
 
     _isConnected = true;
  }
@@ -544,7 +544,7 @@ Pop3Client::_command(
     _socket.sendAll(command, 0);
 
     _sRv = _socket.recvAll(0, replyDelimiter);
-    ////xTEST_MSG_EQ(false, _bIsError(_sRv), _sRv);
+    ////xTEST_EQ_MSG(false, _bIsError(_sRv), _sRv);
 
     (*reply) = _sRv;
 

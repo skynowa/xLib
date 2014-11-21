@@ -36,7 +36,7 @@ MySQLConnection::MySQLConnection() :
     xTEST_EQ(isValid(), false);
 
     MYSQL *_connection = ::mysql_init(xPTR_NULL);
-    xTEST_MSG_PTR(_connection, lastErrorStr());
+    xTEST_PTR_MSG(_connection, lastErrorStr());
 
     _connection = _connection;
 }
@@ -79,7 +79,7 @@ MySQLConnection::options(
 #else
     int_t iRv = ::mysql_options(_connection, a_option, a_arg);
 #endif
-    xTEST_MSG_EQ(0, iRv, lastErrorStr());
+    xTEST_EQ_MSG(0, iRv, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -151,8 +151,8 @@ MySQLConnection::connect(
         xTS2S(a_user).c_str(), xTS2S(a_password).c_str(), xTS2S(a_db).c_str(), a_port,
         xTS2S(a_unixSocket).c_str(), a_clientFlag);
 
-    xTEST_MSG_PTR(connection, lastErrorStr());
-    xTEST_MSG_EQ(_connection, connection, lastErrorStr());
+    xTEST_PTR_MSG(connection, lastErrorStr());
+    xTEST_EQ_MSG(_connection, connection, lastErrorStr());
 
     _connection = connection;
 }
@@ -176,7 +176,7 @@ MySQLConnection::query(
 
     int_t iRv = ::mysql_real_query(_connection, asSqlQuery.data(),
         static_cast<ulong_t>( asSqlQuery.size() ));
-    xTEST_MSG_EQ(0, iRv, lastErrorStr());
+    xTEST_EQ_MSG(0, iRv, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE uint_t
@@ -265,10 +265,10 @@ MySQLRecordset::MySQLRecordset(
 
     if (a_isUseResult) {
         result = ::mysql_use_result  (_connection->get());
-        xTEST_MSG_PTR(result, _connection->lastErrorStr());
+        xTEST_PTR_MSG(result, _connection->lastErrorStr());
     } else {
         result = ::mysql_store_result(_connection->get());
-        xTEST_MSG_PTR(result, _connection->lastErrorStr());
+        xTEST_PTR_MSG(result, _connection->lastErrorStr());
     }
 
     _result = result;
@@ -333,7 +333,7 @@ MySQLRecordset::fetchField(
     xTEST_PTR(a_field);
 
     a_field = ::mysql_fetch_field(_result);
-    xTEST_MSG_PTR(a_field, _connection->lastErrorStr());
+    xTEST_PTR_MSG(a_field, _connection->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -347,7 +347,7 @@ MySQLRecordset::fetchFieldDirect(
     xTEST_PTR(a_field);
 
     a_field = ::mysql_fetch_field_direct(_result, a_fieldNumber);
-    xTEST_MSG_PTR(a_field, _connection->lastErrorStr());
+    xTEST_PTR_MSG(a_field, _connection->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -359,7 +359,7 @@ MySQLRecordset::fetchFields(
     xTEST_PTR(a_field);
 
     a_field = ::mysql_fetch_fields(_result);
-    xTEST_MSG_PTR(a_field, _connection->lastErrorStr());
+    xTEST_PTR_MSG(a_field, _connection->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -440,7 +440,7 @@ MySQLRecordset::_fetchLengths(
     xTEST_PTR(*a_fieldLengths);
 
     *a_fieldLengths = ::mysql_fetch_lengths(_result);
-    xTEST_MSG_PTR(*a_fieldLengths, _connection->lastErrorStr());
+    xTEST_PTR_MSG(*a_fieldLengths, _connection->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 

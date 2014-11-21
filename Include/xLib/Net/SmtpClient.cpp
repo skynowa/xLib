@@ -93,7 +93,7 @@ SmtpClient::connect()
     //-------------------------------------
     //[welcome message]
     sRv = _socket.recvAll(0, xT("\r\n"));
-    xTEST_MSG_EQ(false, _isError(sRv), sRv);
+    xTEST_EQ_MSG(false, _isError(sRv), sRv);
 
     //-------------------------------------
     //[HELO\r\n]
