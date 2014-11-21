@@ -669,14 +669,14 @@
     ///< like try
 #define xCATCH_ALL \
     catch (const Exception &a_ex) {          \
-        xTEST_MSG_FAIL(a_ex.what());         \
+        xTEST_FAIL_MSG(a_ex.what());         \
     }                                        \
     catch (const std::exception &a_ex) {     \
         std::string msg = a_ex.what();       \
-        xTEST_MSG_FAIL(xS2TS(msg));          \
+        xTEST_FAIL_MSG(xS2TS(msg));          \
     }                                        \
     catch (...) {                            \
-        xTEST_MSG_FAIL(xT("unknown error")); \
+        xTEST_FAIL_MSG(xT("unknown error")); \
     }
     ///< catch Exception, std::exception and all other exceptions
 ///@}

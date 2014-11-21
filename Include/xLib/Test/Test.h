@@ -130,7 +130,7 @@
 
     #define xTEST_FAIL \
         xTEST_FAIL_MSG_IMPL    (_xREPORT_TYPE, xT(""))
-    #define xTEST_MSG_FAIL(msg) \
+    #define xTEST_FAIL_MSG(msg) \
         xTEST_FAIL_MSG_IMPL    (_xREPORT_TYPE, msg)
 
     #define xTEST(expr) \
@@ -237,7 +237,7 @@
     #define xTEST_PTR_FAIL_MSG(ptr, msg)
 
     #define xTEST_FAIL
-    #define xTEST_MSG_FAIL(msg)
+    #define xTEST_FAIL_MSG(msg)
 
     #define xTEST(expr)
     #define xTEST_MSG(expr, msg)

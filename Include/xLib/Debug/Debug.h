@@ -83,6 +83,6 @@
     }
     ///< trace point (use Trace)
 #define xNOT_IMPLEMENTED \
-    { xTEST_MSG_FAIL(xT("Not implemented")); }
+    { xTEST_FAIL_MSG(xT("Not implemented")); }
     ///< show not implemented message
 //-------------------------------------------------------------------------------------------------
