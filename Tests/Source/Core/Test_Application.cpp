@@ -15,33 +15,31 @@ class SignalHandlers
 public:
     static void_t onSignals(int_t a_signal)
     {
+    #if xTEST_IGNORE
         Trace() << xFUNCTION;
-
-        // psignal, strsignal, sys_siglist
         Trace() << xTRACE_VAR(a_signal) << " - " << ::strsignal(a_signal);
-
-        Application::exit(EXIT_FAILURE);
+    #endif
     }
 
     static void_t onExit()
     {
-        // Trace() << xFUNCTION << "\nStack trace:\n" << StackTrace().toString();
-
-        // Application::abort();  // forces abnormal termination
+    #if xTEST_IGNORE
+        Trace() << xFUNCTION;
+    #endif
     }
 
     static void_t onTerminate()
     {
+    #if xTEST_IGNORE
         Trace() << xFUNCTION;
-
-        // Application::abort();  // forces abnormal termination
+    #endif
     }
 
     static void_t onUnexpected()
     {
+    #if xTEST_IGNORE
         Trace() << xFUNCTION;
-
-        // Application::abort();  // forces abnormal termination
+    #endif
     }
 };
 //-------------------------------------------------------------------------------------------------
@@ -130,8 +128,10 @@ Test_Application::unit(
         application.signal().connectUnexpected(SignalHandlers::onUnexpected);
 
         // test error
+    #if xTEMP_DISABLED
         TestFail testFail;
         testFail.foo3();
+    #endif
     }
 
     xTEST_CASE("info", a_caseLoops)
