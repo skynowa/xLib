@@ -110,22 +110,25 @@ Application::selfCheck() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE void_t
 Application::exit(
     cint_t &a_status
-) const
+)
 {
     (void_t)std::exit(a_status);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE void_t
-Application::terminate() const
+Application::terminate()
 {
     (void_t)std::terminate();
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE void_t
-Application::abort() const
+Application::abort()
 {
     (void_t)std::abort();
 }
