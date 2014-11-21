@@ -48,7 +48,7 @@ Test_Test::unit(
 
     #if xTEST_IGNORE
         xTEST_FAIL;
-        xTEST_MSG_FAIL(msg);
+        xTEST_FAIL_MSG(msg);
 
         xTEST(false);
         xTEST_MSG(false, msg);

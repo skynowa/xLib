@@ -602,7 +602,7 @@ Thread::onRun(
 {
     xUNUSED(a_param);
 
-    xTEST_MSG_FAIL(xT("It's virtual method"));
+    xTEST_FAIL_MSG(xT("It's virtual method"));
 
     uint_t uiRv = 0U;
 
@@ -695,7 +695,7 @@ Thread::_s_jobEntry(
         }
         catch (std::exception &e) {
             std::string what = e.what();
-            xTEST_MSG_FAIL(xS2TS(what));
+            xTEST_FAIL_MSG(xS2TS(what));
         }
         catch (...) {
             xTEST_FAIL;
