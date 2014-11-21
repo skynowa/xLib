@@ -23,6 +23,10 @@ Signal::_decription_impl(
 {
     std::tstring_t sRv;
 
+   /**
+    * FAQ: ::psignal, ::sys_siglist
+    */
+
     const char *pszRv = ::strsignal(a_signalNum);
     xTEST_NA(pszRv);
     if (pszRv == xPTR_NULL) {
