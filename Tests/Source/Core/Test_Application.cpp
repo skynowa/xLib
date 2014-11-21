@@ -17,7 +17,7 @@ public:
     {
     #if xTEST_IGNORE
         Trace() << xFUNCTION;
-        Trace() << xTRACE_VAR(a_signal) << " - " << ::strsignal(a_signal);
+        Trace() << xTRACE_VAR(a_signal) << " - " << Signal::decription(a_signal);
     #endif
     }
 
