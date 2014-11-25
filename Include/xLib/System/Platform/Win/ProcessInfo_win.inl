@@ -75,7 +75,7 @@ ProcessInfo::_parentId_impl() const
 /* static */
 xINLINE void_t
 ProcessInfo::_commandLine_impl(
-    std::vec_tstring_t* &a_args
+    std::vec_tstring_t *a_args
 ) const
 {
     std::string        sRv;
