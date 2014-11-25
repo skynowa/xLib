@@ -78,11 +78,38 @@ Test_Application::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("actions", a_caseLoops)
+    xTEST_CASE("args", a_caseLoops)
     {
+        Application application(xT("[app_name]_guid"), xT(""));
+
+        std::vec_tstring_t args1;
+        application.args(false, &args1);
+        xTEST_EQ(args1.empty(), false);
+
+        std::vec_tstring_t args2;
+        application.args(true, &args2);
+        xTEST_EQ(args1.size() - 1, args2.size());
     }
 
-    xTEST_CASE("handles (signal)", a_caseLoops)
+    xTEST_CASE("isRunnig", a_caseLoops)
+    {
+        // TEST: Application::isRunnig()
+    }
+
+    xTEST_CASE("dirsCreate", a_caseLoops)
+    {
+        Application application(xT("[app_name]_guid"), xT(""));
+        application.dirsCreate();
+    }
+
+    xTEST_CASE("selfCheck", a_caseLoops)
+    {
+        Application application(xT("[app_name]_guid"), xT(""));
+        m_bRv = application.selfCheck();
+        xTEST(m_bRv);
+    }
+
+    xTEST_CASE("handles", a_caseLoops)
     {
         Application application(xT("[app_name]_guid"), xT(""));
 
