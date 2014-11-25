@@ -50,7 +50,7 @@ xPLATFORM_IMPL:
     ulong_t         _ioBytes_impl() const xWARN_UNUSED_RV;
     std::tstring_t  _exeName_impl() const xWARN_UNUSED_RV;
     ulong_t         _parentId_impl() const xWARN_UNUSED_RV;
-    void_t          _commandLine_impl(std::vec_tstring_t *args) const;
+    void_t          _commandLine_impl(std::vec_tstring_t* &args) const;
 
     static
     long_t          _commandLineArgsMax_impl() xWARN_UNUSED_RV;
