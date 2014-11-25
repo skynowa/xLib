@@ -63,12 +63,17 @@ Application::~Application()
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Application::args(
-    std::vec_tstring_t *a_args  ///< [out] command line arguments
+    cbool_t            &a_withoutFirstArg,  ///< erase first argument
+    std::vec_tstring_t *a_args              ///< [out] command line arguments
 ) const
 {
     ProcessInfo info;
     info.setProcessId( Process::currentId() );
     info.commandLine(a_args);
+
+    if (a_withoutFirstArg) {
+        a_args->erase(a_args->begin(), a_args->begin() + 1);
+    }
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
