@@ -67,7 +67,8 @@ Application::args(
 ) const
 {
     ProcessInfo info;
-    info.commandLine(a_args);
+    info.setProcessId( Process::currentId() );
+    info.commandLine(&a_args);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
