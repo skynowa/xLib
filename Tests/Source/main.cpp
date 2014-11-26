@@ -109,6 +109,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 
         // Debug
         manager.add(new Test_Debug);
+        manager.add(new Test_SourceInfo);
         manager.add(new Test_BuildInfo);
         manager.add(new Test_StdError);
         manager.add(new Test_NativeError);
