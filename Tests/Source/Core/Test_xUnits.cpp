@@ -83,10 +83,12 @@ Test_Units::unit(
         std::size_t    v1 = 777;
         std::tstring_t v2 = "sss";
 
-        m_sRv = ::xformat("=[{}]=[{}]=", v1, v2);
+        m_sRv = ::xformat("***[{}]=[{}]***", v1, v2);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("***[777]=[sss]***")));
+
         Trace() << xTRACE_VAR(m_sRv);
 
-        std::exit(1);
+        std::exit(0);
     }
 }
 //-------------------------------------------------------------------------------------------------
