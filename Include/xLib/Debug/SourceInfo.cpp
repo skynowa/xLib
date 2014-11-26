@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 xINLINE
 SourceInfo::SourceInfo(
     std::ctstring_t &a_file,
-    std::ctstring_t &a_line,
+    culong_t        &a_line,
     std::ctstring_t &a_func
 ) :
     _file(a_file),
@@ -35,7 +35,7 @@ SourceInfo::file() const
     return _file;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+xINLINE culong_t &
 SourceInfo::line() const
 {
     return _line;

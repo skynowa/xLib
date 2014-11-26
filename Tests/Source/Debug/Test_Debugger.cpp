@@ -93,8 +93,8 @@ Test_Debugger::unit(
             ulong_t val1 = 10UL;
             ulong_t val2 = 20UL;
 
-            ErrorReport report(type[i], xT("val1"), xT("val2"), val1, val2, xT("=="),
-                nativeError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), xT(""));
+            ErrorReport report(type[i], xT("val1"), xT("val2"), val1, val2, xT("=="), nativeError,
+                xSOURCE_INFO, StackTrace().toString(), xT(""));
 
             Debugger debugger;
             debugger.setEnabled(false);
