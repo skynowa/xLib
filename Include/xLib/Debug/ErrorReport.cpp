@@ -122,8 +122,9 @@ xINLINE void_t
 ErrorReport::_initPlain()
 {
     std::ctstring_t  margin = xT("  ");
-    std::ctstring_t &sourceFile = Path( Path(_sourceInfo.filePath()).brief(::reportWidthMax) ).toUnix(false);
-    std::ctstring_t &sourceLine = _sourceInfo.lineNum();
+    std::ctstring_t &sourceFile = Path( Path(_sourceInfo.filePath()).brief(::reportWidthMax) )
+        .toUnix(false);
+    culong_t        &sourceLine = _sourceInfo.lineNum();
     std::ctstring_t &sourceFunc = _sourceInfo.funcName();
 
     std::tostringstream_t ossRv;
