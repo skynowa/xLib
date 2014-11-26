@@ -30,6 +30,24 @@
 #define xVARARGS_8  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6, const T7& a_t7, const T8& a_t8
 #define xVARARGS_9  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6, const T7& a_t7, const T8& a_t8, const T9& a_t9
 #define xVARARGS_10 const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6, const T7& a_t7, const T8& a_t8, const T9& a_t9, const T10& a_t10
+
+#define xSWITCH_3(v) \
+            switch (v) { \
+            case 0: \
+                ss << a_t1; \
+                break; \
+            case 1: \
+                ss << a_t2; \
+                break; \
+            case 2: \
+                ss << a_t3; \
+                break; \
+            case 3: \
+            default: \
+                ; \
+                break; \
+            }
+
 //-------------------------------------------------------------------------------------------------
 template<xARGTYPES_3>
 std::tstring_t
@@ -46,21 +64,8 @@ xformat(
         sRv += vec_format[i];
 
         std::tstringstream_t ss;
-        switch (i) {
-        case 0:
-            ss << a_t1;
-            break;
-        case 1:
-            ss << a_t2;
-            break;
-        case 2:
-            ss << a_t3;
-            break;
-        case 3:
-        default:
-            ;
-            break;
-        }
+
+        xSWITCH_3(i)
 
         sRv += ss.str();
     }
