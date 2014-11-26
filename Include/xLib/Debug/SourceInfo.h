@@ -14,22 +14,23 @@ class SourceInfo
     ///<
 {
 public:
-                     SourceInfo(std::ctstring_t &file, culong_t &line, std::ctstring_t &func);
+                     SourceInfo(std::ctstring_t &filePath, culong_t &lineNum,
+                         std::ctstring_t &funcName);
         ///< constructor
     virtual         ~SourceInfo() {};
         ///< destructor
 
-    std::ctstring_t &file() const;
+    std::ctstring_t &filePath() const;
         ///< file path
-    culong_t        &line() const;
+    culong_t        &lineNum() const;
         ///< line number
-    std::ctstring_t &func() const;
+    std::ctstring_t &funcName() const;
         ///< function name
 
 private:
-    std::ctstring_t &_file; ///< file path
-    culong_t        &_line; ///< line number
-    std::ctstring_t &_func; ///< function name
+    std::ctstring_t &_filePath; ///< file path
+    culong_t        &_lineNum; ///< line number
+    std::ctstring_t &_funcName; ///< function name
 
     xNO_COPY_ASSIGN(SourceInfo)
 };

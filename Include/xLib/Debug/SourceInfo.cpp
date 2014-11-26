@@ -19,32 +19,32 @@ xNAMESPACE_BEGIN2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 SourceInfo::SourceInfo(
-    std::ctstring_t &a_file,
-    culong_t        &a_line,
-    std::ctstring_t &a_func
+    std::ctstring_t &a_filePath,
+    culong_t        &a_lineNum,
+    std::ctstring_t &a_funcName
 ) :
-    _file(a_file),
-    _line(a_line),
-    _func(a_func)
+    _filePath(a_filePath),
+    _lineNum (a_lineNum),
+    _funcName(a_funcName)
 {
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::ctstring_t &
-SourceInfo::file() const
+SourceInfo::filePath() const
 {
-    return _file;
+    return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE culong_t &
-SourceInfo::line() const
+SourceInfo::lineNum() const
 {
-    return _line;
+    return _lineNum;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::ctstring_t &
-SourceInfo::func() const
+SourceInfo::funcName() const
 {
-    return _func;
+    return _funcName;
 }
 //-------------------------------------------------------------------------------------------------
 
