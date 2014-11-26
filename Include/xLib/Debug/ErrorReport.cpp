@@ -121,9 +121,12 @@ ErrorReport::_construct(
 xINLINE void_t
 ErrorReport::_initPlain()
 {
-    std::tostringstream_t ossRv;
-    std::ctstring_t       margin = xT("  ");
+    std::ctstring_t  margin = xT("  ");
+    std::ctstring_t &sourceFile = Path( Path(_sourceInfo.filePath()).brief(::reportWidthMax) ).toUnix(false);
+    std::ctstring_t &sourceLine = _sourceInfo.lineNum();
+    std::ctstring_t &sourceFunc = _sourceInfo.funcName();
 
+    std::tostringstream_t ossRv;
     ossRv
         << margin << xT("ErrorReport")                        << "\n"
                                                               << "\n"
@@ -133,9 +136,9 @@ ErrorReport::_initPlain()
         << margin << xT("Thread id:     ") << _threadId       << "\n"
         << margin << xT("File size:     ") << _fileSize       << "\n"
                                                               << "\n"
-        << margin << xT("Source file:   ") << Path( Path(_sourceInfo.filePath()).brief(::reportWidthMax) ).toUnix(false)  << "\n"
-        << margin << xT("Source line:   ") << _sourceInfo.lineNum()  << "\n"
-        << margin << xT("Function name: ") << _sourceInfo.funcName() << "\n"
+        << margin << xT("Source file:   ") << sourceFile      << "\n"
+        << margin << xT("Source line:   ") << sourceLine      << "\n"
+        << margin << xT("Function name: ") << sourceFunc      << "\n"
         << margin << xT("Expression:    ") << _expression     << "\n"
         << margin << xT("Native error:  ") << _nativeErrorStr << "\n"
                                                               << "\n"
