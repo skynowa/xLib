@@ -399,6 +399,10 @@
 #endif
     ///< source function name
 
+#define xSOURCE_INFO \
+    xlib::debug::SourceInfo(xFILE, xLINE, xFUNCTION)
+    ///< source information
+
 // xDATE
 #if defined(__DATE__)
     #define xDATE \
@@ -659,7 +663,7 @@
     { \
         culong_t        nativeError = NativeError::get(); \
         std::cstring_t &stackTrace  = StackTrace().toString(); \
-        ErrorReport     report(nativeError, xFILE, xLINE, xFUNCTION, stackTrace, msg); \
+        ErrorReport     report(nativeError, xSOURCE_INFO, stackTrace, msg); \
         \
         throw Exception() << report.toString(); \
     }

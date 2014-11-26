@@ -9,18 +9,16 @@ xNAMESPACE_BEGIN2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 template<class T>
 ErrorReport::ErrorReport(
-    const ExType    &a_type,
-    std::ctstring_t &a_var1,
-    std::ctstring_t &a_var2,
-    const T         &a_var1Value,
-    const T         &a_var2Value,
-    std::ctstring_t &a_exprSign,
-    culong_t        &a_nativeError,
-    std::ctstring_t &a_file,
-    culong_t        &a_line,
-    std::ctstring_t &a_func,
-    std::ctstring_t &a_stackTrace,
-    std::ctstring_t &a_comment
+    const ExType     &a_type,
+    std::ctstring_t  &a_var1,
+    std::ctstring_t  &a_var2,
+    const T          &a_var1Value,
+    const T          &a_var2Value,
+    std::ctstring_t  &a_exprSign,
+    culong_t         &a_nativeError,
+    const SourceInfo &a_sourceInfo,
+    std::ctstring_t  &a_stackTrace,
+    std::ctstring_t  &a_comment
 ) :
     _type          (rtUnknown),
     _report        (),
@@ -28,9 +26,7 @@ ErrorReport::ErrorReport(
     _processId     (0UL),
     _threadId      (0UL),
     _fileSize      (),
-    _sourceFile    (),
-    _sourceLine    (0UL),
-    _functionName  (),
+    _sourceInfo    (a_sourceInfo),
     _expression    (),
     _nativeError   (0UL),
     _nativeErrorStr(),
@@ -54,8 +50,8 @@ ErrorReport::ErrorReport(
         var2Value = ossRv.str();
     }
 
-    _construct(a_type, a_var1, a_var2, var1Value, var2Value, a_exprSign, a_nativeError, a_file,
-        a_line, a_func, a_stackTrace, a_comment);
+    _construct(a_type, a_var1, a_var2, var1Value, var2Value, a_exprSign, a_nativeError,
+        a_stackTrace, a_comment);
     switch (a_type) {
     case rtMsgbox:
         _initPlain();

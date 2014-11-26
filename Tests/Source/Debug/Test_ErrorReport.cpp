@@ -22,7 +22,7 @@ Test_ErrorReport::unit(
         ulong_t val2 = 20UL;
 
         ErrorReport rpReport(ErrorReport::rtMsgbox, xT("val1"), xT("val2"), val1, val2,
-            xT("=="), nativeError, xFILE, xLINE, xFUNCTION, StackTrace().toString(), xT(""));
+            xT("=="), nativeError, xSOURCE_INFO, StackTrace().toString(), xT(""));
     }
 }
 //-------------------------------------------------------------------------------------------------
