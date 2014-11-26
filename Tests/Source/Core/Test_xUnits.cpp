@@ -6,7 +6,45 @@
 
 #include <Test/Core/Test_Units.h>
 
+#include <xLib/Core/String.h>
 
+
+//-------------------------------------------------------------------------------------------------
+template<class T1, class T2>
+std::tstring_t
+xformat(
+    std::ctstring_t &a_format,
+    const T1        &a_t1,
+    const T2        &a_t2
+)
+{
+    std::tstring_t sRv;
+
+    std::vec_tstring_t vec_format;
+    String::split(a_format, "{}", &vec_format);
+
+    for (std::size_t i = 0; i < vec_format.size(); ++ i) {
+        sRv += vec_format[i];
+
+        std::tstringstream_t ss;
+        switch (i) {
+        case 0:
+            ss << a_t1;
+            break;
+        case 1:
+            ss << a_t2;
+            break;
+        case 2:
+        default:
+            ;
+            break;
+        }
+
+        sRv += ss.str();
+    }
+
+    return sRv;
+}
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
@@ -38,6 +76,17 @@ Test_Units::unit(
     xTEST_CASE("Datetime", a_caseLoops)
     {
         // TEST: Datetime
+    }
+
+    xTEST_CASE("xformat", a_caseLoops)
+    {
+        std::size_t    v1 = 777;
+        std::tstring_t v2 = "sss";
+
+        m_sRv = ::xformat("=[{}]=[{}]=", v1, v2);
+        Trace() << xTRACE_VAR(m_sRv);
+
+        std::exit(1);
     }
 }
 //-------------------------------------------------------------------------------------------------
