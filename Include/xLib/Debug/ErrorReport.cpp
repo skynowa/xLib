@@ -100,7 +100,7 @@ ErrorReport::_construct(
     _processId      = ::getpid();
 #endif
     _threadId       = (ulong_t)Thread::currentId();
-    _fileSize       = String::formatBytes( static_cast<ulonglong_t>( File::size(Path::exe())) );
+    _fileSize       = String::formatBytes( File::size(Path::exe()) );
 
     _expression     = String::format(xT("%s (%s) %s %s (%s)"), a_var1.c_str(), a_var1Value.c_str(),
         a_exprSign.c_str(), a_var2.c_str(), a_var2Value.c_str());
