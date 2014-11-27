@@ -42,7 +42,7 @@ Test_Units::unit(
         // TEST: Datetime
     }
 
-    xTEST_CASE("xformat", a_caseLoops)
+    xTEST_CASE("Format", a_caseLoops)
     {
         std::size_t    v1 = 777;
         std::tstring_t v2 = "sss";
