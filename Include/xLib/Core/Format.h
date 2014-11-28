@@ -147,18 +147,21 @@ xNAMESPACE_BEGIN2(xlib, core)
     ) \
     { \
         std::tstring_t sRv; \
+        std::tstringstream_t ss; \
         \
         std::vec_tstring_t vec_format; \
         String::split(a_format, "{}", &vec_format); \
         \
-        for (std::size_t i = 0; i < vec_format.size(); ++ i) { \
-            sRv += vec_format[i]; \
+        const std::size_t vec_format_size = vec_format.size(); \
+        \
+        for (std::size_t i = 0; i < vec_format_size; ++ i) { \
+            sRv.push_back( vec_format[i] ); \
             \
-            std::tstringstream_t ss; \
+            ss.clear(); \
             \
             xSWITCH_##n(i) \
             \
-            sRv += ss.str(); \
+            sRv.push_back( ss.str() ); \
         } \
         \
         return sRv; \
