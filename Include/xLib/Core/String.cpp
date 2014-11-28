@@ -451,10 +451,10 @@ String::split(
     xTEST_PTR(a_rv);
 
     std::vec_tstring_t vsRv;
-    size_t             posPrev = 0U;    // start of string
+    std::size_t        posPrev = 0U;    // start of string
 
     for ( ; ; ) {
-        size_t pos = a_str.find(a_sep, posPrev);
+        std::csize_t pos = a_str.find(a_sep, posPrev);
         xCHECK_DO(pos == std::tstring_t::npos, break);
 
         vsRv.push_back(a_str.substr(posPrev, pos - posPrev));
