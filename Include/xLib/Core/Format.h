@@ -149,8 +149,9 @@ xNAMESPACE_BEGIN2(xlib, core)
         std::tstring_t sRv; \
         std::tstringstream_t ss; \
         \
+        std::ctstring_t    delimiter = "{}"; \
         std::vec_tstring_t vec_format; \
-        String::split(a_format, "{}", &vec_format); \
+        String::split(a_format, delimiter, &vec_format); \
         \
         const std::size_t vec_format_size = vec_format.size(); \
         \
