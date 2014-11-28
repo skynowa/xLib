@@ -11,28 +11,27 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-#define xARGTYPES_1  class T1
-#define xARGTYPES_2  class T1, class T2
-#define xARGTYPES_3  class T1, class T2, class T3
-#define xARGTYPES_4  class T1, class T2, class T3, class T4
-#define xARGTYPES_5  class T1, class T2, class T3, class T4, class T5
-#define xARGTYPES_6  class T1, class T2, class T3, class T4, class T5, class T6
-#define xARGTYPES_7  class T1, class T2, class T3, class T4, class T5, class T6, class T7
-#define xARGTYPES_8  class T1, class T2, class T3, class T4, class T5, class T6, class T7, class T8
-#define xARGTYPES_9  class T1, class T2, class T3, class T4, class T5, class T6, class T7, class T8, class T9
-#define xARGTYPES_10 class T1, class T2, class T3, class T4, class T5, class T6, class T7, class T8, class T9, class T10
+#define xARG_TYPES_1  class T1
+#define xARG_TYPES_2  class T1, class T2
+#define xARG_TYPES_3  class T1, class T2, class T3
+#define xARG_TYPES_4  class T1, class T2, class T3, class T4
+#define xARG_TYPES_5  class T1, class T2, class T3, class T4, class T5
+#define xARG_TYPES_6  class T1, class T2, class T3, class T4, class T5, class T6
+#define xARG_TYPES_7  class T1, class T2, class T3, class T4, class T5, class T6, class T7
+#define xARG_TYPES_8  class T1, class T2, class T3, class T4, class T5, class T6, class T7, class T8
+#define xARG_TYPES_9  class T1, class T2, class T3, class T4, class T5, class T6, class T7, class T8, class T9
+#define xARG_TYPES_10 class T1, class T2, class T3, class T4, class T5, class T6, class T7, class T8, class T9, class T10
 
-#define xVARARGS_1  const T1& a_t1
-#define xVARARGS_2  const T1& a_t1, const T2& a_t2
-#define xVARARGS_3  const T1& a_t1, const T2& a_t2, const T3& a_t3
-#define xVARARGS_4  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4
-#define xVARARGS_5  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5
-#define xVARARGS_6  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6
-#define xVARARGS_7  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6, const T7& a_t7
-#define xVARARGS_8  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6, const T7& a_t7, const T8& a_t8
-#define xVARARGS_9  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6, const T7& a_t7, const T8& a_t8, const T9& a_t9
-#define xVARARGS_10 const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6, const T7& a_t7, const T8& a_t8, const T9& a_t9, const T10& a_t10
-
+#define xARG_VARS_1  const T1& a_t1
+#define xARG_VARS_2  const T1& a_t1, const T2& a_t2
+#define xARG_VARS_3  const T1& a_t1, const T2& a_t2, const T3& a_t3
+#define xARG_VARS_4  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4
+#define xARG_VARS_5  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5
+#define xARG_VARS_6  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6
+#define xARG_VARS_7  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6, const T7& a_t7
+#define xARG_VARS_8  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6, const T7& a_t7, const T8& a_t8
+#define xARG_VARS_9  const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6, const T7& a_t7, const T8& a_t8, const T9& a_t9
+#define xARG_VARS_10 const T1& a_t1, const T2& a_t2, const T3& a_t3, const T4& a_t4, const T5& a_t5, const T6& a_t6, const T7& a_t7, const T8& a_t8, const T9& a_t9, const T10& a_t10
 
 #define xSWITCH_1(v) \
             switch (v) { \
@@ -140,10 +139,10 @@ xNAMESPACE_BEGIN2(xlib, core)
             }
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT(n) \
-    template<xARGTYPES_##n> \
+    template<xARG_TYPES_##n> \
     std::tstring_t \
     Format( \
-        std::ctstring_t &a_format, xVARARGS_##n \
+        std::ctstring_t &a_format, xARG_VARS_##n \
     ) \
     { \
         std::tstring_t       sRv; \
