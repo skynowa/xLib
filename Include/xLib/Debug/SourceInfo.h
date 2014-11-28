@@ -22,7 +22,7 @@ public:
 
     std::ctstring_t &filePath() const;
         ///< file path
-    culong_t        &lineNum() const;
+    ulong_t         lineNum() const;
         ///< line number
     std::ctstring_t &funcName() const;
         ///< function name
