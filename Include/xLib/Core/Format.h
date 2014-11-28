@@ -178,5 +178,5 @@ xFORMAT(10)
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_PROJECT_HEADER_ONLY
-    #include "[CLASS_NAME].cpp"
+    // #include "Format.cpp"
 #endif
