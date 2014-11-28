@@ -29,7 +29,7 @@ public:
 
 private:
     std::ctstring_t &_filePath; ///< file path
-    culong_t        &_lineNum; ///< line number
+    culong_t        &_lineNum;  ///< line number
     std::ctstring_t &_funcName; ///< function name
 
     xNO_COPY_ASSIGN(SourceInfo)
