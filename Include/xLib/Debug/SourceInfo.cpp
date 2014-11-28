@@ -35,7 +35,7 @@ SourceInfo::filePath() const
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE culong_t &
+xINLINE ulong_t
 SourceInfo::lineNum() const
 {
     return _lineNum;
