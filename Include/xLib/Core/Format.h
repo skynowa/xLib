@@ -155,13 +155,12 @@ xNAMESPACE_BEGIN2(xlib, core)
         const std::size_t vec_format_size = vec_format.size(); \
         \
         for (std::size_t i = 0; i < vec_format_size; ++ i) { \
-            sRv.push_back( vec_format[i] ); \
-            \
+            sRv += vec_format[i]; \
             ss.clear(); \
             \
             xSWITCH_##n(i) \
             \
-            sRv.push_back( ss.str() ); \
+            sRv += ss.str(); \
         } \
         \
         return sRv; \
