@@ -157,6 +157,7 @@ xNAMESPACE_BEGIN2(xlib, core)
         for (std::size_t i = 0; i < vec_format_size; ++ i) { \
             sRv += vec_format[i]; \
             ss.str( std::tstring_t() ); \
+            ss.clear(); \
             \
             xSWITCH_##n(i) \
             \
