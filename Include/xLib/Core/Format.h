@@ -167,15 +167,16 @@ xNAMESPACE_BEGIN2(xlib, core)
         return sRv; \
     }
 //-------------------------------------------------------------------------------------------------
-template<xARG_TYPES_3>
+template<xARG_TYPES_7>
 std::tstring_t
 Format(
-    std::ctstring_t &a_format, xARG_VARS_3
+    std::ctstring_t &a_format, xARG_VARS_7
 )
 {
     std::tstring_t       sRv;
-    std::ctstring_t      delimiter = "{}";
-    std::size_t          posPrev   = 0U; // start of string
+    std::ctstring_t      delimiter      = "{}";
+    std::size_t          delimiter_size = delimiter.size();
+    std::size_t          posPrev        = 0U; // start of string
     std::tstringstream_t ss;
 
     for (std::size_t i = 0; ; ++ i) {
@@ -187,16 +188,11 @@ Format(
         ss.str( std::tstring_t() );
         ss.clear();
 
-        switch (i) {
-        case 0: ss << a_t1; break;
-        case 1: ss << a_t2; break;
-        case 2: ss << a_t3; break;
-        default:            break;
-        }
+        xSWITCH_7(i)
 
         sRv += ss.str();
 
-        posPrev = pos + delimiter.size();
+        posPrev = pos + delimiter_size;
     }
 
     sRv += a_format.substr(posPrev, a_format.size() - posPrev);
@@ -206,11 +202,11 @@ Format(
 //-------------------------------------------------------------------------------------------------
 xFORMAT(1)
 xFORMAT(2)
-// xFORMAT(3)
+xFORMAT(3)
 xFORMAT(4)
 xFORMAT(5)
 xFORMAT(6)
-xFORMAT(7)
+// xFORMAT(7)
 xFORMAT(8)
 xFORMAT(9)
 xFORMAT(10)
