@@ -174,7 +174,7 @@ Format(
 )
 {
     std::tstring_t       sRv;
-    std::ctstring_t      delimiter      = "{}";
+    std::ctstring_t      delimiter      = xT("{}");
     std::size_t          delimiter_size = delimiter.size();
     std::size_t          posPrev        = 0U; // start of string
     std::tstringstream_t ss;
