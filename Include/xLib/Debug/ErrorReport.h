@@ -74,9 +74,9 @@ private:
     // comment
     std::tstring_t _comment;        ///< comment
 
-    void_t         _construct(const ExType &type, const SourceInfo &sourceInfo, std::ctstring_t &var1, std::ctstring_t &var2,
-                       std::ctstring_t &var1Value, std::ctstring_t &var2Value,
-                       std::ctstring_t &exprSign, culong_t &nativeError,
+    void_t         _construct(const ExType &type, const SourceInfo &sourceInfo,
+                       std::ctstring_t &var1, std::ctstring_t &var2, std::ctstring_t &var1Value,
+                       std::ctstring_t &var2Value, std::ctstring_t &exprSign, culong_t &nativeError,
                        std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< initiate class members
     void_t         _initPlain();
