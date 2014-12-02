@@ -513,7 +513,7 @@ DateTime::dayOfWeek() const
 {
 //    xTEST_EQ(Validator::datetime(*this), true);
 
-    int_t iRv     = 0;
+    int_t iRv = 0;
     tm    timeInfo;  xSTRUCT_ZERO(timeInfo);
 
     timeInfo.tm_year = _year  - 1900;
@@ -542,16 +542,13 @@ DateTime::set(
 {
     xTESTS_NA;
 
-    //--------------------------------------------------
     // datetime msec member
     _thisMSec = a_msec;
 
-    //--------------------------------------------------
     // datetime members
     ulonglong_t msec = a_msec;
 
     // converts milliseconds to datetime members
-#if xDEPRECIATE
     _year    = static_cast<int_t>( msec / ((1000ULL * 60 * 60 * 24 * 30) * 12) );
 
     msec    %= ((1000ULL * 60 * 60 * 24 * 30) * 12);
@@ -571,27 +568,6 @@ DateTime::set(
 
     msec    %= 1000ULL;
     _msec    = static_cast<int_t>( msec );
-#else
-    _year    = static_cast<int_t>( msec / ((1000ULL * 60 * 60 * 24 * 30) * 12) );
-
-    msec    %= ((1000ULL * 60 * 60 * 24 * 30) * 12);
-    _month   = static_cast<int_t>( msec / ((1000ULL * 60 * 60 * 24) * 30) );
-
-    msec    %= ((1000ULL * 60 * 60 * 24) * 30);
-    _day     = static_cast<int_t>( msec / ((1000ULL * 60 * 60) * 24) );
-
-    msec    %= ((1000ULL * 60 * 60) * 24);
-    _hour    = static_cast<int_t>( msec / ((1000ULL * 60) * 60) );
-
-    msec    %= ((1000ULL * 60) * 60);
-    _minute  = static_cast<int_t>( msec / ((1000ULL * 60)) );
-
-    msec    %= ((1000ULL * 60));
-    _second  = static_cast<int_t>( msec / 1000ULL );
-
-    msec    %= 1000ULL;
-    _msec    = static_cast<int_t>( msec );
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
