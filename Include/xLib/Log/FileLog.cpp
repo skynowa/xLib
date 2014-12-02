@@ -51,7 +51,7 @@ FileLog::~FileLog()
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 FileLog::setFilePath(
-    std::ctstring_t &a_filePath
+    std::ctstring_t &a_filePath ///< full path or name
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -63,7 +63,7 @@ FileLog::setFilePath(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+xINLINE std::tstring_t
 FileLog::filePath() const
 {
     return _filePath;
