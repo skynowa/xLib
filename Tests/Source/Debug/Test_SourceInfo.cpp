@@ -14,9 +14,12 @@ Test_SourceInfo::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("SourceInfo::[TEST_CASE_1]", a_caseLoops)
+    xTEST_CASE("all", a_caseLoops)
     {
-
+        SourceInfo info(xFILE, xLINE, xFUNCTION);
+        xTEST_EQ(info.filePath().empty(), false);
+        xTEST_EQ(info.lineNum(), 19UL);
+        xTEST_EQ(info.funcName().empty(), false);
     }
 }
 //-------------------------------------------------------------------------------------------------
