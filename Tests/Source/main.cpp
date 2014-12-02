@@ -88,6 +88,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_AutoReset);
         manager.add(new Test_Char);
         manager.add(new Test_Locale);
+        manager.add(new Test_Format);
         manager.add(new Test_String);
         manager.add(new Test_DateTime);
         manager.add(new Test_Com);
