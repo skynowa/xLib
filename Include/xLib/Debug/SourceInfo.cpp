@@ -29,19 +29,19 @@ SourceInfo::SourceInfo(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+xINLINE std::ctstring_t &
 SourceInfo::filePath() const
 {
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+xINLINE culong_t &
 SourceInfo::lineNum() const
 {
     return _lineNum;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+xINLINE std::ctstring_t &
 SourceInfo::funcName() const
 {
     return _funcName;
