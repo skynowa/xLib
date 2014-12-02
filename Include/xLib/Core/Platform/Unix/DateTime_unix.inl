@@ -30,7 +30,7 @@ DateTime::_current_impl()
 
     // set datetime
     cint_t year   = dateTime.tm_year + 1900;
-    cint_t month  = dateTime.tm_mon  + 1;
+    cint_t month  = dateTime.tm_mon;
     cint_t day    = dateTime.tm_mday;
     cint_t hour   = dateTime.tm_hour;
     cint_t minute = dateTime.tm_min;
