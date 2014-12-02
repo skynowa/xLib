@@ -446,23 +446,23 @@ Path::brief(
     std::csize_t &a_maxSize
 ) const
 {
-    xTEST_LESS(size_t(0), a_maxSize);
+    xTEST_DIFF(a_maxSize, std::size_t(0));
 
     // util function
     struct _Functor
     {
         static void_t
         slashesMake(
-            std::tstring_t &a_str,
+            std::tstring_t *a_str,
             size_t         *a_num
         )
         {
             size_t index = 0;
 
             for ( ; ; ) {
-                std::csize_t pos = a_str.find_first_of(Const::winSlash() + Const::unixSlash());
+                std::csize_t pos = a_str->find_first_of(Const::winSlash() + Const::unixSlash());
 
-                a_str.erase(0, pos + Const::slash().size());
+                a_str->erase(0, pos + Const::slash().size());
 
                 xCHECK_DO(pos != std::tstring_t::npos,    ++ index);
                 xCHECK_DO(*a_num == index && *a_num != 0, break);
@@ -478,19 +478,19 @@ Path::brief(
     std::tstring_t path = filePath();
     size_t         num  = 0;
 
-    _Functor::slashesMake(path, &num);
+    _Functor::slashesMake(&path, &num);
 
     while (sRv.size() > a_maxSize && num > 2) {
         path = sRv;
 
         std::size_t numNew = num / 2;
 
-        _Functor::slashesMake(path, &numNew);
+        _Functor::slashesMake(&path, &numNew);
 
         sRv.erase(sRv.find(path), path.size());
 
         numNew = 2;
-        _Functor::slashesMake(path, &numNew);
+        _Functor::slashesMake(&path, &numNew);
 
         sRv.append(Const::dot3() + Const::slash() + path);
 
