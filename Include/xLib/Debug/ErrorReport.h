@@ -54,8 +54,10 @@ private:
     std::tstring_t _fileSize;       ///< file size
 
     // source
-    const SourceInfo & _sourceInfo; ///< source info
-    std::tstring_t _expression;     ///< expression
+    std::tstring_t _sourceFilePath; ///< source file path
+    ulong_t        _sourceLineNum;  ///< source file number
+    std::tstring_t _sourceFuncName; ///< source function name
+    std::tstring_t _sourceExpr;     ///< source expression
 
     ulong_t        _nativeError;    ///< system last error
     std::tstring_t _nativeErrorStr; ///< system last error as string
@@ -72,7 +74,7 @@ private:
     // comment
     std::tstring_t _comment;        ///< comment
 
-    void_t         _construct(const ExType &type, std::ctstring_t &var1, std::ctstring_t &var2,
+    void_t         _construct(const ExType &type, const SourceInfo &sourceInfo, std::ctstring_t &var1, std::ctstring_t &var2,
                        std::ctstring_t &var1Value, std::ctstring_t &var2Value,
                        std::ctstring_t &exprSign, culong_t &nativeError,
                        std::ctstring_t &stackTrace, std::ctstring_t &comment);

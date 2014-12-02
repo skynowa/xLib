@@ -42,15 +42,17 @@ ErrorReport::ErrorReport(
     _processId     (0UL),
     _threadId      (0UL),
     _fileSize      (),
-    _sourceInfo    (a_sourceInfo),
-    _expression    (),
+    _sourceFilePath    (),
+    _sourceLineNum    (),
+    _sourceFuncName    (),
+    _sourceExpr    (),
     _nativeError   (0UL),
     _nativeErrorStr(),
     _currentDate   (),
     _stackTrace    (),
     _comment       ()
 {
-    _construct(rtStdout, "", "", "", "", "", a_nativeError, a_stackTrace, a_comment);
+    _construct(rtStdout, a_sourceInfo, "", "", "", "", "", a_nativeError, a_stackTrace, a_comment);
     _initPlain();
 }
 //-------------------------------------------------------------------------------------------------
@@ -77,6 +79,7 @@ ErrorReport::toString() const
 xINLINE void_t
 ErrorReport::_construct(
     const ExType     &a_type,
+    const SourceInfo &a_sourceInfo,
     std::ctstring_t  &a_var1,
     std::ctstring_t  &a_var2,
     std::ctstring_t  &a_var1Value,
@@ -102,7 +105,10 @@ ErrorReport::_construct(
     _threadId       = (ulong_t)Thread::currentId();
     _fileSize       = String::formatBytes( File::size(Path::exe()) );
 
-    _expression     = String::format(xT("%s (%s) %s %s (%s)"), a_var1.c_str(), a_var1Value.c_str(),
+    _sourceFilePath = Path( Path(a_sourceInfo.filePath()).brief(::reportWidthMax) ).toUnix(false);
+    _sourceLineNum  = a_sourceInfo.lineNum();
+    _sourceFuncName = a_sourceInfo.funcName();
+    _sourceExpr     = String::format(xT("%s (%s) %s %s (%s)"), a_var1.c_str(), a_var1Value.c_str(),
         a_exprSign.c_str(), a_var2.c_str(), a_var2Value.c_str());
     _nativeError    = a_nativeError;
     _nativeErrorStr = NativeError::format(a_nativeError);
@@ -122,10 +128,6 @@ xINLINE void_t
 ErrorReport::_initPlain()
 {
     std::ctstring_t  margin = xT("  ");
-    std::ctstring_t &sourceFile = Path( Path(_sourceInfo.filePath()).brief(::reportWidthMax) )
-        .toUnix(false);
-    culong_t        &sourceLine = _sourceInfo.lineNum();
-    std::ctstring_t &sourceFunc = _sourceInfo.funcName();
 
     std::tostringstream_t ossRv;
     ossRv
@@ -137,10 +139,10 @@ ErrorReport::_initPlain()
         << margin << xT("Thread id:     ") << _threadId       << "\n"
         << margin << xT("File size:     ") << _fileSize       << "\n"
                                                               << "\n"
-        << margin << xT("Source file:   ") << sourceFile      << "\n"
-        << margin << xT("Source line:   ") << sourceLine      << "\n"
-        << margin << xT("Function name: ") << sourceFunc      << "\n"
-        << margin << xT("Expression:    ") << _expression     << "\n"
+        << margin << xT("Source file:   ") << _sourceFilePath << "\n"
+        << margin << xT("Source line:   ") << _sourceLineNum  << "\n"
+        << margin << xT("Function name: ") << _sourceFuncName << "\n"
+        << margin << xT("Expression:    ") << _sourceExpr     << "\n"
         << margin << xT("Native error:  ") << _nativeErrorStr << "\n"
                                                               << "\n"
         << margin << xT("Current date:  ") << _currentDate    << "\n"
