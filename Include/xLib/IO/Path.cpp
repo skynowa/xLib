@@ -461,12 +461,13 @@ Path::brief(
 
             for ( ; ; ) {
                 std::csize_t pos = a_str->find_first_of(Const::winSlash() + Const::unixSlash());
+                xCHECK_DO(pos == std::tstring_t::npos,    break);
 
                 a_str->erase(0, pos + Const::slash().size());
 
-                xCHECK_DO(pos != std::tstring_t::npos,    ++ index);
+                ++ index;
+
                 xCHECK_DO(*a_num == index && *a_num != 0, break);
-                xCHECK_DO(pos == std::tstring_t::npos,    break);
             }
 
             *a_num = index;
