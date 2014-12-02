@@ -26,6 +26,7 @@
 #include <Test/Core/Test_AutoReset.h>
 #include <Test/Core/Test_Char.h>
 #include <Test/Core/Test_Locale.h>
+#include <Test/Core/Test_Format.h>
 #include <Test/Core/Test_String.h>
 #include <Test/Core/Test_DateTime.h>
 #include <Test/Core/Win/Test_Com.h>

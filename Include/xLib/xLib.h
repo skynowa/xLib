@@ -27,6 +27,7 @@
 #include <xLib/Core/Array.h>
 #include <xLib/Core/HandleT.h>
 #include <xLib/Core/Locale.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Functors.h>
 #include <xLib/Core/DateTime.h>
