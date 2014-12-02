@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN2(xlib, debug)
 
 class AutoProfiler
-    /// auto code profiling
+    /// auto profiling code
 {
 public:
                    AutoProfiler(std::ctstring_t &filePath, ctchar_t *comment, ...);
@@ -21,7 +21,7 @@ public:
         ///< destructor
 
 private:
-    Profiler     _profiler;   ///< profiler
+    Profiler       _profiler;   ///< profiler
     std::tstring_t _comment;    ///< comment
 
     xNO_COPY_ASSIGN(AutoProfiler)

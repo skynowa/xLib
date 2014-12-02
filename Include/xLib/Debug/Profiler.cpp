@@ -30,7 +30,7 @@ Profiler::Profiler() :
     _stop     (0),
     _duration (0)
 {
-    _dataReset();
+    _reset();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
@@ -51,7 +51,7 @@ Profiler::setLogPath(
     _log.setFilePath(a_logPath);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+xINLINE std::tstring_t
 Profiler::logPath() const
 {
     return _log.filePath();
@@ -62,7 +62,7 @@ Profiler::start()
 {
     xTEST_EQ(_isStarted, false);
 
-    _dataReset();
+    _reset();
 
     // TODO: set highest thread priority
     {
@@ -146,7 +146,7 @@ Profiler::restart(
 
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Profiler::_dataReset()
+Profiler::_reset()
 {
     // TODO: set normal thread priority
     {
