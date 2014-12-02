@@ -138,35 +138,73 @@ xNAMESPACE_BEGIN2(xlib, core)
             default:            break; \
             }
 //-------------------------------------------------------------------------------------------------
-#define xFORMAT(n) \
-    template<xARG_TYPES_##n> \
-    std::tstring_t \
-    Format( \
-        std::ctstring_t &a_format, xARG_VARS_##n \
-    ) \
-    { \
-        std::tstring_t       sRv; \
-        std::tstringstream_t ss; \
-        std::ctstring_t      delimiter = "{}"; \
-        std::vec_tstring_t   vec_format; \
-        \
-        String::split(a_format, delimiter, &vec_format); \
-        \
-        const std::size_t vec_format_size = vec_format.size(); \
-        \
-        for (std::size_t i = 0; i < vec_format_size; ++ i) { \
-            sRv += vec_format[i]; \
-            ss.str( std::tstring_t() ); \
-            ss.clear(); \
+#if 0
+    #define xFORMAT(n) \
+        template<xARG_TYPES_##n> \
+        std::tstring_t \
+        Format( \
+            std::ctstring_t &a_format, xARG_VARS_##n \
+        ) \
+        { \
+            std::tstring_t       sRv; \
+            std::tstringstream_t ss; \
+            std::ctstring_t      delimiter = "{}"; \
+            std::vec_tstring_t   vec_format; \
             \
-            xSWITCH_##n(i) \
+            String::split(a_format, delimiter, &vec_format); \
             \
-            sRv += ss.str(); \
-        } \
-        \
-        return sRv; \
-    }
+            const std::size_t vec_format_size = vec_format.size(); \
+            \
+            for (std::size_t i = 0; i < vec_format_size; ++ i) { \
+                sRv += vec_format[i]; \
+                ss.str( std::tstring_t() ); \
+                ss.clear(); \
+                \
+                xSWITCH_##n(i) \
+                \
+                sRv += ss.str(); \
+            } \
+            \
+            return sRv; \
+        }
+#else
+    #define xFORMAT(n) \
+        template<xARG_TYPES_##n> \
+        std::tstring_t \
+        Format( \
+            std::ctstring_t &a_format, xARG_VARS_##n \
+        ) \
+        { \
+            std::tstring_t       sRv; \
+            std::ctstring_t      delimiter      = xT("{}"); \
+            std::size_t          delimiter_size = delimiter.size(); \
+            std::size_t          posPrev        = 0U; \
+            std::tstringstream_t ss; \
+            \
+            for (std::size_t i = 0; ; ++ i) { \
+                std::csize_t pos = a_format.find(delimiter, posPrev); \
+                xCHECK_DO(pos == std::tstring_t::npos, break); \
+                \
+                sRv += a_format.substr(posPrev, pos - posPrev); \
+                \
+                ss.str( std::tstring_t() ); \
+                ss.clear(); \
+                \
+                xSWITCH_##n(i) \
+                \
+                sRv += ss.str(); \
+                 \
+                posPrev = pos + delimiter_size; \
+            } \
+            \
+            sRv += a_format.substr(posPrev, a_format.size() - posPrev); \
+            \
+            return sRv; \
+        }
+#endif
 //-------------------------------------------------------------------------------------------------
+#if 0
+
 template<xARG_TYPES_6>
 std::tstring_t
 Format(
@@ -199,17 +237,19 @@ Format(
 
     return sRv;
 }
+
+#endif
 //-------------------------------------------------------------------------------------------------
-//xFORMAT(1)
-//xFORMAT(2)
-//xFORMAT(3)
-//xFORMAT(4)
-//xFORMAT(5)
-//xFORMAT(6)
-//xFORMAT(7)
-//xFORMAT(8)
-//xFORMAT(9)
-//xFORMAT(10)
+xFORMAT(1)
+xFORMAT(2)
+xFORMAT(3)
+xFORMAT(4)
+xFORMAT(5)
+xFORMAT(6)
+xFORMAT(7)
+xFORMAT(8)
+xFORMAT(9)
+xFORMAT(10)
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
