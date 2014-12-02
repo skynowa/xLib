@@ -29,7 +29,7 @@ SourceInfo::SourceInfo(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+xINLINE std::tstring_t
 SourceInfo::filePath() const
 {
     return _filePath;
@@ -41,7 +41,7 @@ SourceInfo::lineNum() const
     return _lineNum;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+xINLINE std::tstring_t
 SourceInfo::funcName() const
 {
     return _funcName;

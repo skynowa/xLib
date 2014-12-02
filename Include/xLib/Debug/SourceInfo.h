@@ -20,11 +20,11 @@ public:
     virtual         ~SourceInfo() {};
         ///< destructor
 
-    std::ctstring_t &filePath() const;
+    std::tstring_t   filePath() const;
         ///< file path
-    ulong_t         lineNum() const;
+    ulong_t          lineNum() const;
         ///< line number
-    std::ctstring_t &funcName() const;
+    std::tstring_t   funcName() const;
         ///< function name
 
 private:
