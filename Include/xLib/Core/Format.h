@@ -167,10 +167,10 @@ xNAMESPACE_BEGIN2(xlib, core)
         return sRv; \
     }
 //-------------------------------------------------------------------------------------------------
-template<xARG_TYPES_7>
+template<xARG_TYPES_6>
 std::tstring_t
 Format(
-    std::ctstring_t &a_format, xARG_VARS_7
+    std::ctstring_t &a_format, xARG_VARS_6
 )
 {
     std::tstring_t       sRv;
@@ -188,7 +188,7 @@ Format(
         ss.str( std::tstring_t() );
         ss.clear();
 
-        xSWITCH_7(i)
+        xSWITCH_6(i)
 
         sRv += ss.str();
 
@@ -200,16 +200,16 @@ Format(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xFORMAT(1)
-xFORMAT(2)
-xFORMAT(3)
-xFORMAT(4)
-xFORMAT(5)
-xFORMAT(6)
-// xFORMAT(7)
-xFORMAT(8)
-xFORMAT(9)
-xFORMAT(10)
+//xFORMAT(1)
+//xFORMAT(2)
+//xFORMAT(3)
+//xFORMAT(4)
+//xFORMAT(5)
+//xFORMAT(6)
+//xFORMAT(7)
+//xFORMAT(8)
+//xFORMAT(9)
+//xFORMAT(10)
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
