@@ -478,7 +478,7 @@ Test_Defines::unit(
 
     xTEST_CASE("xTHROW_REPORT", a_caseLoops)
     {
-        xTEST_THROW(xTHROW_REPORT("test xTHROW_REPORT message"), Exception);
+        xTEST_THROW(xTHROW_REPORT(xT("test xTHROW_REPORT message")), Exception);
     }
 }
 //-------------------------------------------------------------------------------------------------
