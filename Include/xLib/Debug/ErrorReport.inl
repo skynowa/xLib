@@ -26,8 +26,10 @@ ErrorReport::ErrorReport(
     _processId     (0UL),
     _threadId      (0UL),
     _fileSize      (),
-    _sourceInfo    (a_sourceInfo),
-    _expression    (),
+    _sourceFilePath(),
+    _sourceLineNum (),
+    _sourceFuncName(),
+    _sourceExpr    (),
     _nativeError   (0UL),
     _nativeErrorStr(),
     _currentDate   (),
@@ -50,8 +52,8 @@ ErrorReport::ErrorReport(
         var2Value = ossRv.str();
     }
 
-    _construct(a_type, a_var1, a_var2, var1Value, var2Value, a_exprSign, a_nativeError,
-        a_stackTrace, a_comment);
+    _construct(a_type, a_sourceInfo, a_var1, a_var2, var1Value, var2Value, a_exprSign,
+        a_nativeError, a_stackTrace, a_comment);
     switch (a_type) {
     case rtMsgbox:
         _initPlain();
