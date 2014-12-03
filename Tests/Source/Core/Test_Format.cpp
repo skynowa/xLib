@@ -16,16 +16,19 @@ Test_Format::unit(
 {
     xTEST_CASE("Format", a_caseLoops)
     {
-        std::size_t    v1 = 777;
-        std::tstring_t v2 = "sss";
-        cint_t         v3 = 3;
+        std::csize_t    v1 = 777;
+        std::ctstring_t v2 = xT("aaa");
+        cint_t          v3 = 333;
+        ctchar_t        v4 = xT('a');
+        ctchar_t *      v5 = xT("bbb");
+        clong_t         v6 = 444L;
 
-        m_sRv = Format(xT("***[{}]=[{}]=[{}]***"), v1, v2, v3);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("***[777]=[sss]=[3]***")));
+        m_sRv = Format(xT("***{}={}={}={}={}={}***"), v1, v2, v3, v4, v5, v6);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("***777=aaa=333=a=bbb=444***")));
 
         Trace() << xTRACE_VAR(m_sRv);
 
-        // std::exit(0);
+        std::exit(0);
     }
 }
 //-------------------------------------------------------------------------------------------------
