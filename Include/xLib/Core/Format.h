@@ -282,7 +282,8 @@ Format(
     }
 
     // sRv += a_format.substr(posPrev, a_format.size() - posPrev);
-    std::strncat(szRv, a_format + posPrev, 2048 - posPrev);
+    // std::strncat(szRv, a_format + posPrev, 2048 - posPrev);
+    std::strcat(szRv, a_format + posPrev);
 
     return szRv;
 }
