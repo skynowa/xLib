@@ -1,5 +1,5 @@
 /**
- * \file   Functions_bsd.inl
+ * \file   Functions_android.inl
  * \brief  function macroses
  */
 
