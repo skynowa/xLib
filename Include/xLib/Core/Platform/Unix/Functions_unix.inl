@@ -1,5 +1,5 @@
 /**
- * \file   Functions_bsd.inl
+ * \file   Functions_unix.inl
  * \brief  function macroses
  */
 
