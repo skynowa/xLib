@@ -5,6 +5,7 @@ STLSoft - http://www.stlsoft.org
 CxxTools - https://github.com/maekitalo/cxxtools
 Refu - https://github.com/LefterisJP/Refu
 JUCE - https://github.com/julianstorer/JUCE
+D - http://dlang.org/phobos
 
 # Test
 Catch - https://github.com/philsquared/Catch
