@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN2(xlib, core)
     typedef bool                   bool_t;
     typedef const bool_t           cbool_t;
 
-// tchar_t
+    // tchar_t
 #if xUNICODE
     typedef wchar_t                tchar_t;
 #else
@@ -86,10 +86,10 @@ xNAMESPACE_BEGIN2(xlib, core)
     // TODO: typedef double                 double_t;
     typedef const double           cdouble_t;
 
-    typedef long double            ldouble_t;
-    typedef const ldouble_t        cldouble_t;
+    typedef long double            longdouble_t;
+    typedef const longdouble_t     clongdouble_t;
 
-// addrinfo_t
+    // addrinfo_t
 #if   xENV_WIN
     #if   xCOMPILER_MINGW
         typedef addrinfo           addrinfo_t;
@@ -104,7 +104,7 @@ xNAMESPACE_BEGIN2(xlib, core)
     typedef const addrinfo_t       caddrinfo_t;
         ///< hold host address information
 
-// native_handle_t
+    // native_handle_t
 #if   xENV_WIN
     typedef HANDLE                 native_handle_t;
 #elif xENV_UNIX
@@ -113,7 +113,7 @@ xNAMESPACE_BEGIN2(xlib, core)
     typedef const native_handle_t  cnative_handle_t;
         ///< native handle
 
-// socket_t
+    // socket_t
 #if   xENV_WIN
     typedef SOCKET                 socket_t;
 #elif xENV_UNIX
@@ -122,7 +122,7 @@ xNAMESPACE_BEGIN2(xlib, core)
     typedef const socket_t         csocket_t;
         ///< socket native handle
 
-// socklen_t
+    // socklen_t
 #if   xENV_WIN
     typedef int_t                  socket_length_t;
 #elif xENV_UNIX
@@ -131,7 +131,7 @@ xNAMESPACE_BEGIN2(xlib, core)
     typedef const socket_length_t  csocket_length_t;
         ///< socket address length
 
-// twint_t
+    // twint_t
 #if xUNICODE
     typedef wint_t                 twint_t;
 #else
