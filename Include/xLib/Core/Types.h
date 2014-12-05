@@ -8,11 +8,6 @@
 
 #include <xLib/Core/SysDefines.h>
 
-#if xOS_WIN
-    typedef SSIZE_T                ssize_t;
-    typedef const ssize_t          cssize_t;
-#endif
-
 xNAMESPACE_BEGIN2(xlib, core)
     typedef void                   void_t;
     typedef const void_t           cvoid_t;
@@ -144,7 +139,8 @@ xNAMESPACE_END2(xlib, core)
 
 xNAMESPACE_BEGIN(std)
 #if xOS_WIN
-    using ::ssize_t;
+    typedef SSIZE_T                ::ssize_t;
+    typedef const ssize_t          cssize_t;
 #endif
 
     typedef const size_t           csize_t;
