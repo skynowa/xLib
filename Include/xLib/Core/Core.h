@@ -92,6 +92,8 @@ namespace xlib
     namespace test {}
 }
 
+namespace xl = xlib;
+
 #if xOPTION_NAMESPACE_XLIB
     using namespace xlib::core;
     using namespace xlib::crypt;
