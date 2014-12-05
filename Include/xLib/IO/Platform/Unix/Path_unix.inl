@@ -28,7 +28,7 @@ Path::_dll_impl()
     std::tstring_t sRv;
 
     Dl_info  diInfo;          xSTRUCT_ZERO(diInfo);
-    void_t (*procAddress)() = ::function;
+    void_t (*procAddress)() = function;
 
     int_t iRv = ::dladdr(&procAddress, &diInfo);
 #if (xPROJECT_LIB_STATIC || xPROJECT_LIB_SHARE)

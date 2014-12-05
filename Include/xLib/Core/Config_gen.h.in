@@ -18,8 +18,6 @@
 
 #cmakedefine xOPTION_CPP11 1
     ///< support C++11 language
-#cmakedefine xOPTION_NAMESPACE_XLIB 1
-    ///< automatically include the xlib namespace
 #cmakedefine xOPTION_BUILD_MSG 1
     ///< build message
 
