@@ -148,55 +148,55 @@ xNAMESPACE_BEGIN(std)
     typedef const string           cstring_t;
     typedef const wstring          cwstring_t;
 
-    typedef basic_string<tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
+    typedef basic_string<xlib::tchar_t, char_traits<xlib::tchar_t>, allocator<xlib::tchar_t> >
                                    tstring_t;
     typedef const tstring_t        ctstring_t;
 
-    typedef basic_string<uchar_t, char_traits<uchar_t>, allocator<uchar_t> >
+    typedef basic_string<xlib::uchar_t, char_traits<xlib::uchar_t>, allocator<xlib::uchar_t> >
                                    ustring_t;
     typedef const ustring_t        custring_t;
 
-    typedef basic_istream<tchar_t, char_traits<tchar_t> >
+    typedef basic_istream<xlib::tchar_t, char_traits<xlib::tchar_t> >
                                    tistream_t;
     typedef const tistream_t       ctistream_t;
 
-    typedef basic_ostream<tchar_t, char_traits<tchar_t> >
+    typedef basic_ostream<xlib::tchar_t, char_traits<xlib::tchar_t> >
                                    tostream_t;
     typedef const tostream_t       ctostream_t;
 
-    typedef basic_iostream<tchar_t, char_traits<tchar_t> >
+    typedef basic_iostream<xlib::tchar_t, char_traits<xlib::tchar_t> >
                                    tiostream_t;
     typedef const tiostream_t      ctiostream_t;
 
-    typedef basic_istringstream<tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
+    typedef basic_istringstream<xlib::tchar_t, char_traits<xlib::tchar_t>, allocator<xlib::tchar_t> >
                                    tistringstream_t;
     typedef const tistringstream_t ctistringstream_t;
 
-    typedef basic_ostringstream<tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
+    typedef basic_ostringstream<xlib::tchar_t, char_traits<xlib::tchar_t>, allocator<xlib::tchar_t> >
                                    tostringstream_t;
     typedef const tostringstream_t ctostringstream_t;
 
-    typedef basic_stringstream<tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
+    typedef basic_stringstream<xlib::tchar_t, char_traits<xlib::tchar_t>, allocator<xlib::tchar_t> >
                                    tstringstream_t;
     typedef const tstringstream_t  ctstringstream_t;
 
-    typedef basic_ifstream< tchar_t, char_traits<tchar_t> >
+    typedef basic_ifstream< xlib::tchar_t, char_traits<xlib::tchar_t> >
                                    tifstream_t;
     typedef const tifstream_t      ctifstream_t;
 
-    typedef basic_ofstream<tchar_t, char_traits<tchar_t> >
+    typedef basic_ofstream<xlib::tchar_t, char_traits<xlib::tchar_t> >
                                    tofstream_t;
     typedef const tofstream_t      ctofstream_t;
 
-    typedef basic_fstream<tchar_t, char_traits<tchar_t> >
+    typedef basic_fstream<xlib::tchar_t, char_traits<xlib::tchar_t> >
                                    tfstream_t;
     typedef const tfstream_t       ctfstream_t;
 
     // it's useful
-    typedef vector<tchar_t>        vec_tchar_t;
+    typedef vector<xlib::tchar_t>  vec_tchar_t;
     typedef const vec_tchar_t      cvec_tchar_t;
 
-    typedef vector<uchar_t>        vec_uchar_t;
+    typedef vector<xlib::uchar_t>  vec_uchar_t;
     typedef const vec_uchar_t      cvec_uchar_t;
 
     typedef vector<tstring_t>      vec_tstring_t;
