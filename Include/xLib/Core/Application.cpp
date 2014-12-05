@@ -29,7 +29,7 @@ std::ctstring_t configDirName = "Config";
 std::ctstring_t logDirName    = "Log";
 std::ctstring_t dbDirName     = "Db";
 std::ctstring_t tempDirName   = "Temp";
-std::ctstring_t langDirPath   = "Lang";
+std::ctstring_t langDirName   = "Lang";
 
 }
 //-------------------------------------------------------------------------------------------------
@@ -500,42 +500,42 @@ Application::dirPath()
 xINLINE std::tstring_t
 Application::configDirPath()
 {
-    return String::format(xT("%s/%s"), dirPath().c_str(), ::configDirName.c_str());
+    return String::format(xT("%s/%s"), dirPath().c_str(), configDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::logDirPath()
 {
-    return String::format(xT("%s/%s"), dirPath().c_str(), ::logDirName.c_str());
+    return String::format(xT("%s/%s"), dirPath().c_str(), logDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::dbDirPath()
 {
-    return String::format(xT("%s/%s"), dirPath().c_str(), ::dbDirName.c_str());
+    return String::format(xT("%s/%s"), dirPath().c_str(), dbDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::backupDirPath()
 {
-    return String::format(xT("%s/%s"), dirPath().c_str(), ::backupDirName.c_str());
+    return String::format(xT("%s/%s"), dirPath().c_str(), backupDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::tempDirPath()
 {
-    return String::format(xT("%s/%s"), dirPath().c_str(), ::tempDirName.c_str());
+    return String::format(xT("%s/%s"), dirPath().c_str(), tempDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::langDirPath()
 {
-    return String::format(xT("%s/%s"), dirPath().c_str(), ::langDirPath.c_str());
+    return String::format(xT("%s/%s"), dirPath().c_str(), langDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 

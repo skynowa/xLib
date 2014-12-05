@@ -90,11 +90,7 @@ namespace xlib
     namespace sync {}
     namespace system {}
     namespace test {}
-}
 
-namespace xl = xlib;
-
-#if xOPTION_NAMESPACE_XLIB
     using namespace xlib::core;
     using namespace xlib::crypt;
     using namespace xlib::db;
@@ -107,7 +103,9 @@ namespace xl = xlib;
     using namespace xlib::sync;
     using namespace xlib::system;
     using namespace xlib::test;
-#endif
+}
+
+namespace xl = xlib;
 
 #include <xLib/Core/Preprocessor.h>
 #include <xLib/Core/Defines.h>
