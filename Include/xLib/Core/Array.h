@@ -15,7 +15,7 @@ class Array
     /// array
 {
 public:
-    T data[N];
+    T buff[N];
 
 public:
     // type definitions
@@ -31,36 +31,36 @@ public:
     iterator
     begin()
     {
-        return data;
+        return buff;
     }
 
     const_iterator
     begin() const
     {
-        return data;
+        return buff;
     }
 
     const_iterator
     cbegin() const
     {
-        return data;
+        return buff;
     }
 
     iterator
     end()
     {
-        return data + N;
+        return buff + N;
     }
 
     const_iterator
     end() const
     {
-        return data + N;
+        return buff + N;
     }
     const_iterator
     cend() const
     {
-        return data + N;
+        return buff + N;
     }
 
     typedef std::reverse_iterator<iterator>       reverse_iterator;
@@ -106,13 +106,13 @@ public:
     reference operator[](size_type i)
     {
         // ASSERT(i < N && "out of range");
-        return data[i];
+        return buff[i];
     }
 
     const_reference operator[](size_type i) const
     {
         // ASSERT(i < N && "out of range");
-        return data[i];
+        return buff[i];
     }
 
     // at() with range check
@@ -120,39 +120,39 @@ public:
     at(size_type i)
     {
         rangecheck(i);
-        return data[i];
+        return buff[i];
     }
 
     const_reference
     at(size_type i) const
     {
         rangecheck(i);
-        return data[i];
+        return buff[i];
     }
 
     // front() and back()
     reference
     front()
     {
-        return data[0];
+        return buff[0];
     }
 
     const_reference
     front() const
     {
-        return data[0];
+        return buff[0];
     }
 
     reference
     back()
     {
-        return data[N - 1];
+        return buff[N - 1];
     }
 
     const_reference
     back() const
     {
-        return data[N - 1];
+        return buff[N - 1];
     }
 
     // size is constant
@@ -183,28 +183,28 @@ public:
     swap(Array<T, N> &y)
     {
         for (size_type i = 0; i < N; ++ i) {
-            std::swap(data[i], y.data[i]);
+            std::swap(buff[i], y.buff[i]);
         }
     }
 
-    // direct access to data (read-only)
+    // direct access to buff (read-only)
     const T*
     data() const
     {
-        return data;
+        return buff;
     }
 
     T*
     data()
     {
-        return data;
+        return buff;
     }
 
     // use array as C array (direct read/write access to data)
     T*
     c_array()
     {
-        return data;
+        return buff;
     }
 
     // assignment with type conversion
