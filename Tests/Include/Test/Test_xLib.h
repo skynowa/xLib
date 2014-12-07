@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef Test_xLibH
-#define Test_xLibH
-//-------------------------------------------------------------------------------------------------
 // Test
 #include <Test/Test/Test_Test.h>
 
@@ -132,5 +129,3 @@
 #include <Test/System/Test_ProcessInfo.h>
 #include <Test/System/Test_Console.h>
 #include <Test/System/Test_Shell.h>
-//-------------------------------------------------------------------------------------------------
-#endif // Test_xLibH
