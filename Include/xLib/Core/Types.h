@@ -37,18 +37,10 @@ xNAMESPACE_BEGIN(xlib)
     typedef const long_t           clong_t;
 
     // longlong_t
-#if   xCOMPILER_MINGW
-    typedef signed long long int   longlong_t;
-#elif xCOMPILER_MS
-    typedef signed long long int   longlong_t;
-#elif xCOMPILER_CODEGEAR
-    typedef signed long long int   longlong_t;
-#elif xCOMPILER_CLANG
-    typedef signed long long int   longlong_t;
-#elif xCOMPILER_GNUC
+#if xCOMPILER_GNUC
     __extension__
-    typedef signed long long int   longlong_t;
 #endif
+    typedef signed long long int   longlong_t;
     typedef const longlong_t       clonglong_t;
 
     typedef unsigned int           uint_t;
@@ -61,18 +53,10 @@ xNAMESPACE_BEGIN(xlib)
     typedef const ulong_t          culong_t;
 
     // ulonglong_t
-#if   xCOMPILER_MINGW
-    typedef unsigned long long int ulonglong_t;
-#elif xCOMPILER_MS
-    typedef unsigned long long int ulonglong_t;
-#elif xCOMPILER_CODEGEAR
-    typedef unsigned long long int ulonglong_t;
-#elif xCOMPILER_CLANG
-    typedef unsigned long long int ulonglong_t;
-#elif xCOMPILER_GNUC
+#if xCOMPILER_GNUC
     __extension__
-    typedef unsigned long long int ulonglong_t;
 #endif
+    typedef unsigned long long int ulonglong_t;
     typedef const ulonglong_t      culonglong_t;
 
     typedef float                  float_t;
