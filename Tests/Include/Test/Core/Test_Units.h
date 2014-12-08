@@ -6,10 +6,10 @@
 
 #pragma once
 
-#include <xLib/Core/Core.h>
-#include <xLib/Test/Unit.h>
-#include <xLib/Core/Units.h>
-//---------------------------------------------------------------------------
+#include <xLib/xLib.h>
+//-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
 class Test_Units :
     public Unit
     ///< tests for Units

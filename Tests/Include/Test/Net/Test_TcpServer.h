@@ -6,10 +6,10 @@
 
 #pragma once
 
-#include <xLib/Net/TcpServer.h>
-#include <xLib/Core/Core.h>
-#include <xLib/Test/Unit.h>
+#include <xLib/xLib.h>
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
 class Test_TcpServer :
     public Unit
 {
