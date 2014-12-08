@@ -6,8 +6,6 @@
 
 #include <Test/main.h>
 
-#include <Test/Test_xLib.h>
-
 //-------------------------------------------------------------------------------------------------
 int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 {
