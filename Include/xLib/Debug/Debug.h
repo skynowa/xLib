@@ -79,10 +79,11 @@
 //-------------------------------------------------------------------------------------------------
 #define xTRACE_POINT \
     { \
+        xlib::debug::SourceInfo info(xFILE, xLINE, xFUNCTION, xCOUNTER); \
         Trace() \
-            << xT("\t::: #") << xCOUNTER  << xT(" ") \
-            << xT("in ")     << xFILE     << xT(":") << xLINE << xT(", ") \
-            << xT("func: ")  << xFUNCTION << xT(", ") \
+            << xT("\t::: #") << info.counter()  << xT(" ") \
+            << xT("in ")     << info.filePath() << xT(":") << info.lineNum() << xT(", ") \
+            << xT("func: ")  << info.funcName() << xT(", ") \
             << xT("error: ") << NativeError::format() << xT(" :::"); \
     }
     ///< trace point (use Trace)

@@ -400,7 +400,7 @@
     ///< source function name
 
 #define xSOURCE_INFO \
-    xlib::debug::SourceInfo(xFILE, xLINE, xFUNCTION)
+    xlib::debug::SourceInfo(xFILE, xLINE, xFUNCTION, xCOUNTER)
     ///< source information
 
 // xDATE
