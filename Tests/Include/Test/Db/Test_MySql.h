@@ -8,10 +8,10 @@
 
 #if xHAVE_MYSQL
 
-#include <xLib/Core/Core.h>
-#include <xLib/Test/Unit.h>
-#include <xLib/Db/MySql.h>
+#include <xLib/xLib.h>
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
 class Test_MySql :
     public Unit
 {

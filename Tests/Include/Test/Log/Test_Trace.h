@@ -6,10 +6,10 @@
 
 #pragma once
 
-#include <xLib/Core/Core.h>
-#include <xLib/Test/Unit.h>
-#include <xLib/Log/Trace.h>
+#include <xLib/xLib.h>
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
 class Test_Trace :
     public Unit
 {

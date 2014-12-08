@@ -6,10 +6,10 @@
 
 #pragma once
 
-#include <xLib/Core/Core.h>
-#include <xLib/Test/Unit.h>
-#include <xLib/Sync/Condition.h>
+#include <xLib/xLib.h>
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
 class Test_Condition :
     public Unit
 {

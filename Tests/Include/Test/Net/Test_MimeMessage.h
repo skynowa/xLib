@@ -6,13 +6,10 @@
 
 #pragma once
 
-#include <xLib/Core/Core.h>
-#include <xLib/Test/Unit.h>
-#include <xLib/Net/MimeMessage.h>
-#include <xLib/Net/Pop3Client.h>
-#include <xLib/Net/SmtpClient.h>
-#include <xLib/Net/MimeHeader.h>
+#include <xLib/xLib.h>
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
 #if xHAVE_OPENSSL_CRYPTO
 
 class Test_MimeMessage :
