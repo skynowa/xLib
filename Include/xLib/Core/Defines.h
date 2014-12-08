@@ -455,7 +455,7 @@
     ///< incoming and out coming param
 ///@}
 //-------------------------------------------------------------------------------------------------
-///@name Var args
+///@name Variable arguments
 ///@{
 #if defined(va_start)
     #define xVA_START(val, fmt) \
@@ -481,6 +481,78 @@
 #endif
     ///< Each invocation of xVA_START() must be matched by a corresponding invocation of xVA_END()
     ///< in the same function
+///@}
+//-------------------------------------------------------------------------------------------------
+///@name Variable arguments utils
+///@{
+#define xVA_TYPES_1 \
+    class T1
+#define xVA_TYPES_2 \
+    class T1, class T2
+#define xVA_TYPES_3 \
+    class T1, class T2, class T3
+#define xVA_TYPES_4 \
+    class T1, class T2, class T3, class T4
+#define xVA_TYPES_5 \
+    class T1, class T2, class T3, class T4, class T5
+#define xVA_TYPES_6 \
+    class T1, class T2, class T3, class T4, class T5, class T6
+#define xVA_TYPES_7 \
+    class T1, class T2, class T3, class T4, class T5, class T6, class T7
+#define xVA_TYPES_8 \
+    class T1, class T2, class T3, class T4, class T5, class T6, class T7, class T8
+#define xVA_TYPES_9 \
+    class T1, class T2, class T3, class T4, class T5, class T6, class T7, class T8, class T9
+#define xVA_TYPES_10 \
+    class T1, class T2, class T3, class T4, class T5, class T6, class T7, class T8, class T9, \
+    class T10
+
+#define xVA_VARS_1 \
+    const T1 &a_v1
+#define xVA_VARS_2 \
+    const T1 &a_v1, const T2 &a_v2
+#define xVA_VARS_3 \
+    const T1 &a_v1, const T2 &a_v2, const T3 &a_v3
+#define xVA_VARS_4 \
+    const T1 &a_v1, const T2 &a_v2, const T3 &a_v3, const T4 &a_v4
+#define xVA_VARS_5 \
+    const T1 &a_v1, const T2 &a_v2, const T3 &a_v3, const T4 &a_v4, const T5 &a_v5
+#define xVA_VARS_6 \
+    const T1 &a_v1, const T2 &a_v2, const T3 &a_v3, const T4 &a_v4, const T5 &a_v5, \
+    const T6 &a_v6
+#define xVA_VARS_7 \
+    const T1 &a_v1, const T2 &a_v2, const T3 &a_v3, const T4 &a_v4, const T5 &a_v5, \
+    const T6 &a_v6, const T7 &a_v7
+#define xVA_VARS_8 \
+    const T1 &a_v1, const T2 &a_v2, const T3 &a_v3, const T4 &a_v4, const T5 &a_v5, \
+    const T6 &a_v6, const T7 &a_v7, const T8 &a_v8
+#define xVA_VARS_9 \
+    const T1 &a_v1, const T2 &a_v2, const T3 &a_v3, const T4 &a_v4, const T5 &a_v5, \
+    const T6 &a_v6, const T7 &a_v7, const T8 &a_v8, const T9 &a_v9
+#define xVA_VARS_10 \
+    const T1 &a_v1, const T2 &a_v2, const T3 &a_v3, const T4 &a_v4, const T5 &a_v5, \
+    const T6 &a_v6, const T7 &a_v7, const T8 &a_v8, const T9 &a_v9, const T10 &a_v10
+
+#define xVA_VALUES_1 \
+    v1
+#define xVA_VALUES_2 \
+    v1, v2
+#define xVA_VALUES_3 \
+    v1, v2, v3
+#define xVA_VALUES_4 \
+    v1, v2, v3, v4
+#define xVA_VALUES_5 \
+    v1, v2, v3, v4, v5
+#define xVA_VALUES_6 \
+    v1, v2, v3, v4, v5, v6
+#define xVA_VALUES_7 \
+    v1, v2, v3, v4, v5, v6, v7
+#define xVA_VALUES_8 \
+    v1, v2, v3, v4, v5, v6, v7, v8
+#define xVA_VALUES_9 \
+    v1, v2, v3, v4, v5, v6, v7, v8, v9
+#define xVA_VALUES_10 \
+    v1, v2, v3, v4, v5, v6, v7, v8, v9, v10
 ///@}
 //-------------------------------------------------------------------------------------------------
 ///@name Formattong qualifiers
