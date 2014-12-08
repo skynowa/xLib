@@ -15,7 +15,7 @@ class SourceInfo
 {
 public:
                      SourceInfo(std::ctstring_t &filePath, culong_t &lineNum,
-                         std::ctstring_t &funcName);
+                         std::ctstring_t &funcName, culong_t &counter);
         ///< constructor
     virtual         ~SourceInfo() {};
         ///< destructor
@@ -26,11 +26,14 @@ public:
         ///< line number
     std::ctstring_t &funcName() const;
         ///< function name
+    culong_t        &counter() const;
+        ///< counter
 
 private:
     std::ctstring_t  _filePath; ///< file path
     culong_t         _lineNum;  ///< line number
     std::ctstring_t  _funcName; ///< function name
+    culong_t         _counter;  ///< counter
 
     xNO_COPY_ASSIGN(SourceInfo)
 };
