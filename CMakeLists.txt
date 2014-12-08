@@ -76,10 +76,6 @@ if (ENV_UNIX)
 endif()
 
 #--------------------------------------------------------------------------------------------------
-# definitions, libs, flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
-
-#--------------------------------------------------------------------------------------------------
 # includes
 include_directories(${XLIB_INCLUDES})
 
@@ -106,6 +102,7 @@ if (xOPTION_CPP11)
     set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} "-std=c++11")
 endif()
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 #--------------------------------------------------------------------------------------------------
 # libraries
 set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
