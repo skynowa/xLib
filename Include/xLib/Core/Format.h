@@ -181,7 +181,7 @@ xNAMESPACE_BEGIN2(xlib, core)
         }
 #endif
 //-------------------------------------------------------------------------------------------------
-#if 0
+#if 1
 
 template<xVA_TYPES_6>
 std::tstring_t
@@ -193,6 +193,7 @@ Format(
     std::ctstring_t      delimiter      = xT("{}");
     std::size_t          delimiter_size = delimiter.size();
     std::size_t          posPrev        = 0U; // start of string
+    static
     std::tstringstream_t ss;
 
     for (std::size_t i = 0; ; ++ i) {
@@ -228,6 +229,7 @@ Format(
     ctchar_t            *delimiter      = xT("{}");
     std::size_t          delimiter_size = 2;
     std::size_t          posPrev        = 0U; // start of string
+    static
     std::tstringstream_t ss;
 
     for (std::size_t i = 0; ; ++ i) {
