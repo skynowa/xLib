@@ -125,7 +125,7 @@ toString(clongdouble_t &a_value)
 void *
 #endif
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+inline std::ctstring_t &
 toString(std::ctstring_t &a_value)
 {
     return a_value;
