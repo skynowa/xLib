@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-std::tstring_t
+inline std::tstring_t
 toString(int a_value)
 {
     std::csize_t buffSize       = 4 * sizeof(int);
@@ -22,7 +22,7 @@ toString(int a_value)
     return std::tstring_t(buff, buff + writtenSize);
 }
 
-std::tstring_t
+inline std::tstring_t
 toString(unsigned a_value)
 {
     std::csize_t buffSize       = 4 * sizeof(unsigned);
@@ -33,7 +33,7 @@ toString(unsigned a_value)
     return std::tstring_t(buff, buff + writtenSize);
 }
 
-std::tstring_t
+inline std::tstring_t
 toString(long a_value)
 {
     std::csize_t buffSize       = 4 * sizeof(long);
@@ -44,7 +44,7 @@ toString(long a_value)
     return std::tstring_t(buff, buff + writtenSize);
 }
 
-std::tstring_t
+inline std::tstring_t
 toString(unsigned long a_value)
 {
     std::csize_t buffSize       = 4 * sizeof(unsigned long);
@@ -55,7 +55,7 @@ toString(unsigned long a_value)
     return std::tstring_t(buff, buff + writtenSize);
 }
 
-std::tstring_t
+inline std::tstring_t
 toString(long long a_value)
 {
     std::csize_t buffSize       = 4 * sizeof(long long);
@@ -66,7 +66,7 @@ toString(long long a_value)
     return std::tstring_t(buff, buff + writtenSize);
 }
 
-std::tstring_t
+inline std::tstring_t
 toString(unsigned long long a_value)
 {
     std::csize_t buffSize       = 4 * sizeof(unsigned long long);
@@ -77,7 +77,7 @@ toString(unsigned long long a_value)
     return std::tstring_t(buff, buff + writtenSize);
 }
 
-std::tstring_t
+inline std::tstring_t
 toString(float a_value)
 {
     std::csize_t buffSize       = std::numeric_limits<float>::max_exponent10 + 20;
@@ -88,7 +88,7 @@ toString(float a_value)
     return std::tstring_t(buff, buff + writtenSize);
 }
 
-std::tstring_t
+inline std::tstring_t
 toString(double a_value)
 {
     std::csize_t buffSize       = std::numeric_limits<double>::max_exponent10 + 20;
@@ -99,7 +99,7 @@ toString(double a_value)
     return std::tstring_t(buff, buff + writtenSize);
 }
 
-std::tstring_t
+inline std::tstring_t
 toString(long double a_value)
 {
     std::csize_t buffSize       = std::numeric_limits<long double>::max_exponent10 + 20;
@@ -110,7 +110,7 @@ toString(long double a_value)
     return std::tstring_t(buff, buff + writtenSize);
 }
 
-std::tstring_t
+inline std::tstring_t
 toString(std::ctstring_t &a_value)
 {
     return a_value;
