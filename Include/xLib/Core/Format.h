@@ -110,6 +110,19 @@ toString(long double a_value)
     return std::tstring_t(buff, buff + writtenSize);
 }
 
+#if 0
+
+std::tstring_t
+toString(const char *a_value)
+{
+}
+
+std::tstring_t
+toString(const void *a_value)
+{
+}
+
+#endif
 //-------------------------------------------------------------------------------------------------
 #define xSWITCH_1(v) \
             switch (v) { \
