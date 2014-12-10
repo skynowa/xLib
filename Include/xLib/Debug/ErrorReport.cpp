@@ -52,7 +52,8 @@ ErrorReport::ErrorReport(
     _stackTrace    (),
     _comment       ()
 {
-    _construct(rtStdout, a_sourceInfo, "", "", "", "", "", a_nativeError, a_stackTrace, a_comment);
+    _construct(rtStdout, a_sourceInfo, xT(""), xT(""), xT(""), xT(""), xT(""), a_nativeError,
+        a_stackTrace, a_comment);
     _initPlain();
 }
 //-------------------------------------------------------------------------------------------------
@@ -131,30 +132,30 @@ ErrorReport::_initPlain()
 
     std::tostringstream_t ossRv;
     ossRv
-        << margin << xT("ErrorReport")                        << "\n"
-                                                              << "\n"
-                                                              << "\n"
-        << margin << xT("Program:       ") << _program        << "\n"
-        << margin << xT("Process id:    ") << _processId      << "\n"
-        << margin << xT("Thread id:     ") << _threadId       << "\n"
-        << margin << xT("File size:     ") << _fileSize       << "\n"
-                                                              << "\n"
-        << margin << xT("Source file:   ") << _sourceFilePath << "\n"
-        << margin << xT("Source line:   ") << _sourceLineNum  << "\n"
-        << margin << xT("Function name: ") << _sourceFuncName << "\n"
-        << margin << xT("Expression:    ") << _sourceExpr     << "\n"
-        << margin << xT("Native error:  ") << _nativeErrorStr << "\n"
-                                                              << "\n"
-        << margin << xT("Current date:  ") << _currentDate    << "\n"
+        << margin << xT("ErrorReport")                        << xT("\n")
+                                                              << xT("\n")
+                                                              << xT("\n")
+        << margin << xT("Program:       ") << _program        << xT("\n")
+        << margin << xT("Process id:    ") << _processId      << xT("\n")
+        << margin << xT("Thread id:     ") << _threadId       << xT("\n")
+        << margin << xT("File size:     ") << _fileSize       << xT("\n")
+                                                              << xT("\n")
+        << margin << xT("Source file:   ") << _sourceFilePath << xT("\n")
+        << margin << xT("Source line:   ") << _sourceLineNum  << xT("\n")
+        << margin << xT("Function name: ") << _sourceFuncName << xT("\n")
+        << margin << xT("Expression:    ") << _sourceExpr     << xT("\n")
+        << margin << xT("Native error:  ") << _nativeErrorStr << xT("\n")
+                                                              << xT("\n")
+        << margin << xT("Current date:  ") << _currentDate    << xT("\n")
     #if xENV_UNIX
-                                                              << "\n"
-        << margin << xT("GLIBC:         ") << _glibc          << "\n"
-        << margin << xT("Pthread lib:   ") << _libPthread     << "\n"
+                                                              << xT("\n")
+        << margin << xT("GLIBC:         ") << _glibc          << xT("\n")
+        << margin << xT("Pthread lib:   ") << _libPthread     << xT("\n")
     #endif
-                                                              << "\n"
-        << margin << xT("Stack trace:   ")                    << "\n"
-                                           << _stackTrace     << "\n"
-                                                              << "\n"
+                                                              << xT("\n")
+        << margin << xT("Stack trace:   ")                    << xT("\n")
+                                           << _stackTrace     << xT("\n")
+                                                              << xT("\n")
         << margin << xT("Comment:       ") << _comment        << std::endl;
 
     _report = ossRv.str();
