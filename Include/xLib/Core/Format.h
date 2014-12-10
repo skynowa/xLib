@@ -184,12 +184,12 @@ toString(const void *a_value)
         #else
     #define xSWITCH_6(v) \
             switch (v) { \
-            case 0: sRv = toString(a_v1); break; \
-            case 1: sRv = toString(a_v2); break; \
-            case 2: sRv = toString(a_v3); break; \
-            case 3: sRv = toString(a_v4); break; \
-            case 4: sRv = toString(a_v5); break; \
-            case 5: sRv = toString(a_v6); break; \
+            case 0: sRv += toString(a_v1); break; \
+            case 1: sRv += toString(a_v2); break; \
+            case 2: sRv += toString(a_v3); break; \
+            case 3: sRv += toString(a_v4); break; \
+            case 4: sRv += toString(a_v5); break; \
+            case 5: sRv += toString(a_v6); break; \
             default:                      break; \
             }
         #endif
