@@ -110,6 +110,12 @@ toString(long double a_value)
     return std::tstring_t(buff, buff + writtenSize);
 }
 
+std::tstring_t
+toString(std::ctstring_t &a_value)
+{
+    return a_value;
+}
+
 #if 0
 
 std::tstring_t
