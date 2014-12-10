@@ -13,12 +13,24 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 #if 0
-
 bool
-char
+#endif
+
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+toString(ctchar_t &a_value)
+{
+    std::csize_t buffSize       = 4 * sizeof(tchar_t);
+    tchar_t      buff[buffSize] = {};
+
+    cint_t writtenSize = std::snprintf(buff, buffSize, xT("%c"), a_value);
+
+    return std::tstring_t(buff, buff + writtenSize);
+}
+//-------------------------------------------------------------------------------------------------
+#if 0
 short
 unsigned short
-
 #endif
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -27,7 +39,7 @@ toString(cint_t &a_value)
     std::csize_t buffSize       = 4 * sizeof(int_t);
     tchar_t      buff[buffSize] = {};
 
-    cint_t writtenSize = std::snprintf(buff, buffSize, "%d", a_value);
+    cint_t writtenSize = std::snprintf(buff, buffSize, xT("%d"), a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
@@ -38,7 +50,7 @@ toString(cuint_t &a_value)
     std::csize_t buffSize       = 4 * sizeof(uint_t);
     tchar_t      buff[buffSize] = {};
 
-    cint_t writtenSize = std::snprintf(buff, buffSize, "%u", a_value);
+    cint_t writtenSize = std::snprintf(buff, buffSize, xT("%u"), a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
@@ -49,7 +61,7 @@ toString(clong_t &a_value)
     std::csize_t buffSize       = 4 * sizeof(long_t);
     tchar_t      buff[buffSize] = {};
 
-    cint_t writtenSize = std::snprintf(buff, buffSize, "%ld", a_value);
+    cint_t writtenSize = std::snprintf(buff, buffSize, xT("%ld"), a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
@@ -60,7 +72,7 @@ toString(culong_t &a_value)
     std::csize_t buffSize       = 4 * sizeof(ulong_t);
     tchar_t      buff[buffSize] = {};
 
-    cint_t writtenSize = std::snprintf(buff, buffSize, "%lu", a_value);
+    cint_t writtenSize = std::snprintf(buff, buffSize, xT("%lu"), a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
@@ -71,7 +83,7 @@ toString(clonglong_t &a_value)
     std::csize_t buffSize       = 4 * sizeof(longlong_t);
     tchar_t      buff[buffSize] = {};
 
-    cint_t writtenSize = std::snprintf(buff, buffSize, "%lld", a_value);
+    cint_t writtenSize = std::snprintf(buff, buffSize, xT("%lld"), a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
@@ -82,7 +94,7 @@ toString(culonglong_t &a_value)
     std::csize_t buffSize       = 4 * sizeof(ulonglong_t);
     tchar_t      buff[buffSize] = {};
 
-    cint_t writtenSize = std::snprintf(buff, buffSize, "%llu", a_value);
+    cint_t writtenSize = std::snprintf(buff, buffSize, xT("%llu"), a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
@@ -93,7 +105,7 @@ toString(cfloat_t &a_value)
     std::csize_t buffSize       = std::numeric_limits<float_t>::max_exponent10 + 20;
     tchar_t      buff[buffSize] = {};
 
-    cint_t writtenSize = std::snprintf(buff, buffSize, "%f", a_value);
+    cint_t writtenSize = std::snprintf(buff, buffSize, xT("%f"), a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
@@ -104,7 +116,7 @@ toString(cdouble_t &a_value)
     std::csize_t buffSize       = std::numeric_limits<double>::max_exponent10 + 20;
     tchar_t      buff[buffSize] = {};
 
-    cint_t writtenSize = std::snprintf(buff, buffSize, "%f", a_value);
+    cint_t writtenSize = std::snprintf(buff, buffSize, xT("%f"), a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
@@ -115,15 +127,13 @@ toString(clongdouble_t &a_value)
     std::csize_t buffSize       = std::numeric_limits<longdouble_t>::max_exponent10 + 20;
     tchar_t      buff[buffSize] = {};
 
-    cint_t writtenSize = std::snprintf(buff, buffSize, "%Lf", a_value);
+    cint_t writtenSize = std::snprintf(buff, buffSize, xT("%Lf"), a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
 //-------------------------------------------------------------------------------------------------
 #if 0
-
 void *
-
 #endif
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -133,9 +143,7 @@ toString(std::ctstring_t &a_value)
 }
 //-------------------------------------------------------------------------------------------------
 #if 0
-
 char *
-
 #endif
 //-------------------------------------------------------------------------------------------------
 #define xSWITCH_1(v) \
