@@ -11,6 +11,106 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
+std::tstring_t
+toString(int a_value)
+{
+    std::csize_t buffSize       = 4 * sizeof(int);
+    tchar_t      buff[buffSize] = {};
+
+    cint_t writtenSize = std::snprintf(buff, buffSize, "%d", a_value);
+
+    return std::tstring_t(buff, buff + writtenSize);
+}
+
+std::tstring_t
+toString(unsigned a_value)
+{
+    std::csize_t buffSize       = 4 * sizeof(unsigned);
+    tchar_t      buff[buffSize] = {};
+
+    cint_t writtenSize = std::snprintf(buff, buffSize, "%u", a_value);
+
+    return std::tstring_t(buff, buff + writtenSize);
+}
+
+std::tstring_t
+toString(long a_value)
+{
+    std::csize_t buffSize       = 4 * sizeof(long);
+    tchar_t      buff[buffSize] = {};
+
+    cint_t writtenSize = std::snprintf(buff, buffSize, "%ld", a_value);
+
+    return std::tstring_t(buff, buff + writtenSize);
+}
+
+std::tstring_t
+toString(unsigned long a_value)
+{
+    std::csize_t buffSize       = 4 * sizeof(unsigned long);
+    tchar_t      buff[buffSize] = {};
+
+    cint_t writtenSize = std::snprintf(buff, buffSize, "%lu", a_value);
+
+    return std::tstring_t(buff, buff + writtenSize);
+}
+
+std::tstring_t
+toString(long long a_value)
+{
+    std::csize_t buffSize       = 4 * sizeof(long long);
+    tchar_t      buff[buffSize] = {};
+
+    cint_t writtenSize = std::snprintf(buff, buffSize, "%lld", a_value);
+
+    return std::tstring_t(buff, buff + writtenSize);
+}
+
+std::tstring_t
+toString(unsigned long long a_value)
+{
+    std::csize_t buffSize       = 4 * sizeof(unsigned long long);
+    tchar_t      buff[buffSize] = {};
+
+    cint_t writtenSize = std::snprintf(buff, buffSize, "%llu", a_value);
+
+    return std::tstring_t(buff, buff + writtenSize);
+}
+
+std::tstring_t
+toString(float a_value)
+{
+    std::csize_t buffSize       = std::numeric_limits<float>::max_exponent10 + 20;
+    tchar_t      buff[buffSize] = {};
+
+    cint_t writtenSize = std::snprintf(buff, buffSize, "%f", a_value);
+
+    return std::tstring_t(buff, buff + writtenSize);
+}
+
+std::tstring_t
+toString(double a_value)
+{
+    std::csize_t buffSize       = std::numeric_limits<double>::max_exponent10 + 20;
+    tchar_t      buff[buffSize] = {};
+
+    cint_t writtenSize = std::snprintf(buff, buffSize, "%f", a_value);
+
+    return std::tstring_t(buff, buff + writtenSize);
+}
+
+std::tstring_t
+toString(long double a_value)
+{
+    std::csize_t buffSize       = std::numeric_limits<long double>::max_exponent10 + 20;
+    tchar_t      buff[buffSize] = {};
+
+    cint_t writtenSize = std::snprintf(buff, buffSize, "%Lf", a_value);
+
+    return std::tstring_t(buff, buff + writtenSize);
+}
+
+//-------------------------------------------------------------------------------------------------
 #define xSWITCH_1(v) \
             switch (v) { \
             case 0: ss << a_v1; break; \
