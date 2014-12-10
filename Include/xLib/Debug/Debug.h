@@ -57,24 +57,24 @@
 ///@{
 #define xTRACE_VAR(xVA_VALUES_1) \
     #xVA_VALUES_1 xT(": ") << (xVA_VALUES_1)
-#define xTRACE_VAR2(xVA_VALUES_2) \
+#define xTRACE_VAR_2(xVA_VALUES_2) \
     xTRACE_VAR(xVA_VALUES_1)  << xT(", ") << xTRACE_VAR(v2)
-#define xTRACE_VAR3(xVA_VALUES_3) \
-    xTRACE_VAR2(xVA_VALUES_2) << xT(", ") << xTRACE_VAR(v3)
-#define xTRACE_VAR4(xVA_VALUES_4) \
-    xTRACE_VAR3(xVA_VALUES_3) << xT(", ") << xTRACE_VAR(v4)
-#define xTRACE_VAR5(xVA_VALUES_5) \
-    xTRACE_VAR4(xVA_VALUES_4) << xT(", ") << xTRACE_VAR(v5)
-#define xTRACE_VAR6(xVA_VALUES_6) \
-    xTRACE_VAR5(xVA_VALUES_5) << xT(", ") << xTRACE_VAR(v6)
-#define xTRACE_VAR7(xVA_VALUES_7) \
-    xTRACE_VAR6(xVA_VALUES_6) << xT(", ") << xTRACE_VAR(v7)
-#define xTRACE_VAR8(xVA_VALUES_8) \
-    xTRACE_VAR7(xVA_VALUES_7) << xT(", ") << xTRACE_VAR(v8)
-#define xTRACE_VAR9(xVA_VALUES_9) \
-    xTRACE_VAR8(xVA_VALUES_8) << xT(", ") << xTRACE_VAR(v9)
-#define xTRACE_VAR10(xVA_VALUES_10) \
-    xTRACE_VAR8(xVA_VALUES_9) << xT(", ") << xTRACE_VAR(v10)
+#define xTRACE_VAR_3(xVA_VALUES_3) \
+    xTRACE_VAR_2(xVA_VALUES_2) << xT(", ") << xTRACE_VAR(v3)
+#define xTRACE_VAR_4(xVA_VALUES_4) \
+    xTRACE_VAR_3(xVA_VALUES_3) << xT(", ") << xTRACE_VAR(v4)
+#define xTRACE_VAR_5(xVA_VALUES_5) \
+    xTRACE_VAR_4(xVA_VALUES_4) << xT(", ") << xTRACE_VAR(v5)
+#define xTRACE_VAR_6(xVA_VALUES_6) \
+    xTRACE_VAR_5(xVA_VALUES_5) << xT(", ") << xTRACE_VAR(v6)
+#define xTRACE_VAR_7(xVA_VALUES_7) \
+    xTRACE_VAR_6(xVA_VALUES_6) << xT(", ") << xTRACE_VAR(v7)
+#define xTRACE_VAR_8(xVA_VALUES_8) \
+    xTRACE_VAR_7(xVA_VALUES_7) << xT(", ") << xTRACE_VAR(v8)
+#define xTRACE_VAR_9(xVA_VALUES_9) \
+    xTRACE_VAR_8(xVA_VALUES_8) << xT(", ") << xTRACE_VAR(v9)
+#define xTRACE_VAR_10(xVA_VALUES_10) \
+    xTRACE_VAR_8(xVA_VALUES_9) << xT(", ") << xTRACE_VAR(v10)
 ///@}
 //-------------------------------------------------------------------------------------------------
 #define xTRACE_POINT \
