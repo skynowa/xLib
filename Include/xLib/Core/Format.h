@@ -11,85 +11,95 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
+//-------------------------------------------------------------------------------------------------
+#if 0
+
+bool
+char
+short
+unsigned short
+
+#endif
+//-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-toString(int a_value)
+toString(cint_t &a_value)
 {
-    std::csize_t buffSize       = 4 * sizeof(int);
+    std::csize_t buffSize       = 4 * sizeof(int_t);
     tchar_t      buff[buffSize] = {};
 
     cint_t writtenSize = std::snprintf(buff, buffSize, "%d", a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
-
+//-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-toString(unsigned a_value)
+toString(cuint_t &a_value)
 {
-    std::csize_t buffSize       = 4 * sizeof(unsigned);
+    std::csize_t buffSize       = 4 * sizeof(uint_t);
     tchar_t      buff[buffSize] = {};
 
     cint_t writtenSize = std::snprintf(buff, buffSize, "%u", a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
-
+//-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-toString(long a_value)
+toString(clong_t &a_value)
 {
-    std::csize_t buffSize       = 4 * sizeof(long);
+    std::csize_t buffSize       = 4 * sizeof(long_t);
     tchar_t      buff[buffSize] = {};
 
     cint_t writtenSize = std::snprintf(buff, buffSize, "%ld", a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
-
+//-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-toString(unsigned long a_value)
+toString(culong_t &a_value)
 {
-    std::csize_t buffSize       = 4 * sizeof(unsigned long);
+    std::csize_t buffSize       = 4 * sizeof(ulong_t);
     tchar_t      buff[buffSize] = {};
 
     cint_t writtenSize = std::snprintf(buff, buffSize, "%lu", a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
-
+//-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-toString(long long a_value)
+toString(clonglong_t &a_value)
 {
-    std::csize_t buffSize       = 4 * sizeof(long long);
+    std::csize_t buffSize       = 4 * sizeof(longlong_t);
     tchar_t      buff[buffSize] = {};
 
     cint_t writtenSize = std::snprintf(buff, buffSize, "%lld", a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
-
+//-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-toString(unsigned long long a_value)
+toString(culonglong_t &a_value)
 {
-    std::csize_t buffSize       = 4 * sizeof(unsigned long long);
+    std::csize_t buffSize       = 4 * sizeof(ulonglong_t);
     tchar_t      buff[buffSize] = {};
 
     cint_t writtenSize = std::snprintf(buff, buffSize, "%llu", a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
-
+//-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-toString(float a_value)
+toString(cfloat_t &a_value)
 {
-    std::csize_t buffSize       = std::numeric_limits<float>::max_exponent10 + 20;
+    std::csize_t buffSize       = std::numeric_limits<float_t>::max_exponent10 + 20;
     tchar_t      buff[buffSize] = {};
 
     cint_t writtenSize = std::snprintf(buff, buffSize, "%f", a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
-
+//-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-toString(double a_value)
+toString(cdouble_t &a_value)
 {
     std::csize_t buffSize       = std::numeric_limits<double>::max_exponent10 + 20;
     tchar_t      buff[buffSize] = {};
@@ -98,35 +108,33 @@ toString(double a_value)
 
     return std::tstring_t(buff, buff + writtenSize);
 }
-
+//-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-toString(long double a_value)
+toString(clongdouble_t &a_value)
 {
-    std::csize_t buffSize       = std::numeric_limits<long double>::max_exponent10 + 20;
+    std::csize_t buffSize       = std::numeric_limits<longdouble_t>::max_exponent10 + 20;
     tchar_t      buff[buffSize] = {};
 
     cint_t writtenSize = std::snprintf(buff, buffSize, "%Lf", a_value);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
+//-------------------------------------------------------------------------------------------------
+#if 0
 
+void *
+
+#endif
+//-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 toString(std::ctstring_t &a_value)
 {
     return a_value;
 }
-
+//-------------------------------------------------------------------------------------------------
 #if 0
 
-std::tstring_t
-toString(const char *a_value)
-{
-}
-
-std::tstring_t
-toString(const void *a_value)
-{
-}
+char *
 
 #endif
 //-------------------------------------------------------------------------------------------------
