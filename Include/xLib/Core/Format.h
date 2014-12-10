@@ -31,9 +31,11 @@ _toString(
     return StringT(buff, buff + writtenSize);
 }
 //-------------------------------------------------------------------------------------------------
-#if 0
-bool
-#endif
+inline std::tstring_t
+toString(cbool_t &a_value)
+{
+    return a_value ? xT("true") : xT("false");
+}
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 toString(ctchar_t &a_value)
