@@ -151,7 +151,8 @@ toString(long double a_value)
             default:            break; \
             }
 
-#define xSWITCH_6(v) \
+        #if 0
+    #define xSWITCH_6(v) \
             switch (v) { \
             case 0: ss << a_v1; break; \
             case 1: ss << a_v2; break; \
@@ -161,6 +162,18 @@ toString(long double a_value)
             case 5: ss << a_v6; break; \
             default:            break; \
             }
+        #else
+    #define xSWITCH_6(v) \
+            switch (v) { \
+            case 0: sRv = toString(a_v1); break; \
+            case 1: sRv = toString(a_v2); break; \
+            case 2: sRv = toString(a_v3); break; \
+            case 3: sRv = toString(a_v4); break; \
+            case 4: sRv = toString(a_v5); break; \
+            case 5: sRv = toString(a_v6); break; \
+            default:                      break; \
+            }
+        #endif
 
 #define xSWITCH_7(v) \
             switch (v) { \
@@ -300,6 +313,7 @@ Format(
 
         sRv += a_format.substr(posPrev, pos - posPrev);
 
+    #if 0
         static std::tstringstream_t ss;
         ss.str( std::tstring_t() );
         ss.clear();
@@ -307,6 +321,9 @@ Format(
         xSWITCH_6(i)
 
         sRv += ss.str();
+    #else
+        xSWITCH_6(i)
+    #endif
 
         posPrev = pos + delimiter_size;
     }
