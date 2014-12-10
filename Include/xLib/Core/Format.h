@@ -153,11 +153,10 @@ xNAMESPACE_BEGIN2(xlib, core)
             std::ctstring_t &a_format, xVA_VARS_##n \
         ) \
         { \
-            std::tstring_t       sRv; \
-            std::ctstring_t      delimiter      = xT("{}"); \
-            std::size_t          delimiter_size = delimiter.size(); \
-            std::size_t          posPrev        = 0U; \
-            std::tstringstream_t ss; \
+            std::tstring_t  sRv; \
+            std::ctstring_t delimiter      = xT("{}"); \
+            std::size_t     delimiter_size = delimiter.size(); \
+            std::size_t     posPrev        = 0U; \
             \
             for (std::size_t i = 0; ; ++ i) { \
                 std::csize_t pos = a_format.find(delimiter, posPrev); \
@@ -165,6 +164,7 @@ xNAMESPACE_BEGIN2(xlib, core)
                 \
                 sRv += a_format.substr(posPrev, pos - posPrev); \
                 \
+                static std::tstringstream_t ss; \
                 ss.str( std::tstring_t() ); \
                 ss.clear(); \
                 \
@@ -181,7 +181,7 @@ xNAMESPACE_BEGIN2(xlib, core)
         }
 #endif
 //-------------------------------------------------------------------------------------------------
-#if 0
+#if 1
 
 template<xVA_TYPES_6>
 std::tstring_t
@@ -216,7 +216,7 @@ Format(
     return sRv;
 }
 
-#else
+#elif 0
 
 template<xVA_TYPES_6>
 std::tstring_t
