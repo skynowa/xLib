@@ -181,7 +181,7 @@ xNAMESPACE_BEGIN2(xlib, core)
         }
 #endif
 //-------------------------------------------------------------------------------------------------
-#if 1
+#if 0
 
 template<xVA_TYPES_6>
 std::tstring_t
@@ -189,12 +189,10 @@ Format(
     std::ctstring_t &a_format, xVA_VARS_6
 )
 {
-    std::tstring_t       sRv;
-    std::ctstring_t      delimiter      = xT("{}");
-    std::size_t          delimiter_size = delimiter.size();
-    std::size_t          posPrev        = 0U; // start of string
-    static
-    std::tstringstream_t ss;
+    std::tstring_t  sRv;
+    std::ctstring_t delimiter      = xT("{}");
+    std::size_t     delimiter_size = delimiter.size();
+    std::size_t     posPrev        = 0U; // start of string
 
     for (std::size_t i = 0; ; ++ i) {
         std::csize_t pos = a_format.find(delimiter, posPrev);
@@ -202,6 +200,7 @@ Format(
 
         sRv += a_format.substr(posPrev, pos - posPrev);
 
+        static std::tstringstream_t ss;
         ss.str( std::tstring_t() );
         ss.clear();
 
@@ -225,12 +224,10 @@ Format(
     ctchar_t *a_format, xVA_VARS_6
 )
 {
-    tchar_t              szRv[2048 + 1] = {};
-    ctchar_t            *delimiter      = xT("{}");
-    std::size_t          delimiter_size = 2;
-    std::size_t          posPrev        = 0U; // start of string
-    static
-    std::tstringstream_t ss;
+    tchar_t      szRv[2048 + 1] = {};
+    ctchar_t    *delimiter      = xT("{}");
+    std::size_t  delimiter_size = 2;
+    std::size_t  posPrev        = 0U; // start of string
 
     for (std::size_t i = 0; ; ++ i) {
         // std::csize_t pos = a_format.find(delimiter, posPrev);
@@ -241,6 +238,7 @@ Format(
         // sRv += a_format.substr(posPrev, pos - posPrev);
         std::strncat(szRv, a_format + posPrev, std::size_t(pos - a_format - posPrev));
 
+        static std::tstringstream_t ss;
         ss.str( std::tstring_t() );
         ss.clear();
 
@@ -267,7 +265,6 @@ Format(
 
     return szRv;
 }
-
 
 #endif
 //-------------------------------------------------------------------------------------------------
