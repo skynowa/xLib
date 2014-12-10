@@ -16,29 +16,32 @@
     xLEX_TO_STR(lex)
     ///<
 //-------------------------------------------------------------------------------------------------
-#define xLEX_CAT(a, b) \
-    a##b
+#define xLEX_CAT_2(v1, v2) \
+    v1##v2
     ///< concatenate 2 strings
-#define xLEX_CAT3(x1, x2, x3) \
-    xLEX_CAT(xLEX_CAT(x1, x2), x3)
+#define xLEX_CAT_3(xVA_VALUES_3) \
+    xLEX_CAT_2(xLEX_CAT_2(xVA_VALUES_2), v3)
     ///< concatenate 3 strings
-#define xLEX_CAT4(x1, x2, x3, x4) \
-    xLEX_CAT(xLEX_CAT3(x1, x2, x3), x4)
+#define xLEX_CAT_4(xVA_VALUES_4) \
+    xLEX_CAT_2(xLEX_CAT3(xVA_VALUES_3), v4)
     ///< concatenate 4 strings
-#define xLEX_CAT5(x1, x2, x3, x4, x5) \
-    xLEX_CAT(xLEX_CAT4(x1, x2, x3, x4), x5)
+#define xLEX_CAT_5(xVA_VALUES_5) \
+    xLEX_CAT_2(xLEX_CAT_4(xVA_VALUES_4), v5)
     ///< concatenate 5 strings
-#define xLEX_CAT6(x1, x2, x3, x4, x5, x6) \
-    xLEX_CAT(xLEX_CAT5(x1, x2, x3, x4, x5), x6)
+#define xLEX_CAT_6(xVA_VALUES_6) \
+    xLEX_CAT_2(xLEX_CAT_5(xVA_VALUES_5), v6)
     ///< concatenate 6 strings
-#define xLEX_CAT7(x1, x2, x3, x4, x5, x6, x7) \
-    xLEX_CAT(xLEX_CAT6(x1, x2, x3, x4, x5, x6), x7)
+#define xLEX_CAT_7(xVA_VALUES_7) \
+    xLEX_CAT_2(xLEX_CAT_6(xVA_VALUES_6), v7)
     ///< concatenate 7 strings
-#define xLEX_CAT8(x1, x2, x3, x4, x5, x6, x7, x8) \
-    xLEX_CAT(xLEX_CAT7(x1, x2, x3, x4, x5, x6, x7), x8)
+#define xLEX_CAT_8(xVA_VALUES_8) \
+    xLEX_CAT_2(xLEX_CAT_7(xVA_VALUES_7), v8)
     ///< concatenate 8 strings
-#define xLEX_CAT9(x1, x2, x3, x4, x5, x6, x7, x8, x9) \
-    xLEX_CAT(xLEX_CAT8(x1, x2, x3, x4, x5, x6, x7, x8), x9)
+#define xLEX_CAT_9(xVA_VALUES_9) \
+    xLEX_CAT_2(xLEX_CAT_8(xVA_VALUES_8), v9)
+    ///< concatenate 9 strings
+#define xLEX_CAT_10(xVA_VALUES_10) \
+    xLEX_CAT_2(xLEX_CAT_8(xVA_VALUES_9), v10)
     ///< concatenate 9 strings
 ///@}
 //-------------------------------------------------------------------------------------------------

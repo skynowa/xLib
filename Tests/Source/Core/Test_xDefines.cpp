@@ -118,7 +118,7 @@ Test_Defines::unit(
     {
         std::tstring_t value;
 
-        xLEX_CAT(va, lue) = xT("XLIB_VAL");
+        xLEX_CAT_2(va, lue) = xT("XLIB_VAL");
         xTEST_EQ(std::tstring_t(xT("XLIB_VAL")), value);
 
         value.clear();
