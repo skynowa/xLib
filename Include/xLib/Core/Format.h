@@ -45,10 +45,21 @@ toString(ctchar_t &a_value)
     return _toString<std::tstring_t>(buffSize, xT("%c"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
-#if 0
-short
-unsigned short
-#endif
+inline std::tstring_t
+toString(cshort_t &a_value)
+{
+    std::csize_t buffSize = 4 * sizeof(short_t);
+
+    return _toString<std::tstring_t>(buffSize, xT("%h"), a_value);
+}
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+toString(cushort_t &a_value)
+{
+    std::csize_t buffSize = 4 * sizeof(ushort_t);
+
+    return _toString<std::tstring_t>(buffSize, xT("%hu"), a_value);
+}
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 toString(cint_t &a_value)
