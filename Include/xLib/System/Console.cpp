@@ -254,20 +254,20 @@ Console::pause(
 
     std::tstring_t msg;
 
-	if (a_timeoutMsec == xTIMEOUT_INFINITE) {
+    if (a_timeoutMsec == xTIMEOUT_INFINITE) {
         msg = xT("Pause, press [ENTER] to continue...");
 
         writeLine(msg);
 
         std::cin.clear();
         std::cin.ignore();
-	} else {
+    } else {
         msg = String::format(xT("Pause, wait for %lu msec to continue..."), a_timeoutMsec);
 
         writeLine(msg);
 
-		Thread::currentSleep(a_timeoutMsec);
-	}
+        Thread::currentSleep(a_timeoutMsec);
+    }
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t

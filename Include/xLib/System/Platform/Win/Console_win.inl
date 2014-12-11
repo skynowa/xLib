@@ -80,18 +80,18 @@ Console::_setAttributes_impl(
         */
 
         const WORD foregroundColorBlack   = 0;
-        const WORD foregroundColorRed	  = FOREGROUND_RED;
-        const WORD foregroundColorBlue	  = FOREGROUND_BLUE;
+        const WORD foregroundColorRed     = FOREGROUND_RED;
+        const WORD foregroundColorBlue    = FOREGROUND_BLUE;
         const WORD foregroundColorGreen   = FOREGROUND_GREEN;
-        const WORD foregroundColorCyan	  = FOREGROUND_GREEN | FOREGROUND_BLUE;
+        const WORD foregroundColorCyan    = FOREGROUND_GREEN | FOREGROUND_BLUE;
         const WORD foregroundColorMagenta = FOREGROUND_RED | FOREGROUND_BLUE;
         const WORD foregroundColorYellow  = FOREGROUND_RED | FOREGROUND_GREEN;
         const WORD foregroundColorWhite   = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
-        const WORD foregroundColorGray	  = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
+        const WORD foregroundColorGray    = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
 
         int_t iRv = - 1;
 
-	    switch (a_foreground) {
+        switch (a_foreground) {
         case fgBlack:
             iRv = foregroundColorBlack;
             break;
@@ -131,18 +131,18 @@ Console::_setAttributes_impl(
     ExBackground backgroundColor;
     {
         const WORD backgroundColorBlack   = 0;
-        const WORD backgroundColorRed	  = BACKGROUND_RED;
-        const WORD backgroundColorBlue	  = BACKGROUND_BLUE;
+        const WORD backgroundColorRed     = BACKGROUND_RED;
+        const WORD backgroundColorBlue    = BACKGROUND_BLUE;
         const WORD backgroundColorGreen   = BACKGROUND_GREEN;
-        const WORD backgroundColorCyan	  = BACKGROUND_GREEN | BACKGROUND_BLUE;
+        const WORD backgroundColorCyan    = BACKGROUND_GREEN | BACKGROUND_BLUE;
         const WORD backgroundColorMagenta = BACKGROUND_RED | BACKGROUND_BLUE;
         const WORD backgroundColorYellow  = BACKGROUND_RED | BACKGROUND_GREEN;
         const WORD backgroundColorWhite   = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
-        const WORD backgroundColorGray	  = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
+        const WORD backgroundColorGray    = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
 
         int_t iRv = - 1;
 
-	    switch (a_background) {
+        switch (a_background) {
         case fgBlack:
             iRv = backgroundColorBlack;
             break;

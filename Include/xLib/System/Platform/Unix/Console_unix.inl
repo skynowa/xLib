@@ -50,7 +50,7 @@ Console::_setAttributes_impl(
 
         int_t iRv = - 1;
 
-	    switch (a_foreground) {
+        switch (a_foreground) {
         case fgBlack:
             iRv = foregroundColorBlack;
             break;
@@ -90,18 +90,18 @@ Console::_setAttributes_impl(
     ExBackground backgroundColor;
     {
         cint_t backgroundColorBlack   = 40;
-        cint_t backgroundColorRed	  = 41;
-        cint_t backgroundColorBlue	  = 44;
+        cint_t backgroundColorRed     = 41;
+        cint_t backgroundColorBlue    = 44;
         cint_t backgroundColorGreen   = 42;
-        cint_t backgroundColorCyan	  = 46;
+        cint_t backgroundColorCyan    = 46;
         cint_t backgroundColorMagenta = 45;
         cint_t backgroundColorYellow  = 43;
         cint_t backgroundColorWhite   = 47;
-        cint_t backgroundColorGray	  = 47; // TODO: Console::setAttributes() - Unix - backgroundColorGray
+        cint_t backgroundColorGray    = 47; // TODO: Console::setAttributes() - Unix - backgroundColorGray
 
         int_t iRv = - 1;
 
-	    switch (a_background) {
+        switch (a_background) {
         case fgBlack:
             iRv = backgroundColorBlack;
             break;
