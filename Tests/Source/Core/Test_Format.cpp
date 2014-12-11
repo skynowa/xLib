@@ -27,10 +27,10 @@ Test_Format::unit(
         culong_t        v9  = 222UL;
         clonglong_t     v10 = -333LL;
         culonglong_t    v11 = 333ULL;
-        cfloat_t        v12 = 777.0f;
-        cdouble_t       v13 = 888.0f;
-        clongdouble_t   v14 = 999.0L;
-        cvoid_t *       v15 = (cvoid_t *)2000;
+        cfloat_t        v12 = 444.0f;
+        cdouble_t       v13 = 555.0f;
+        clongdouble_t   v14 = 666.0L;
+        cvoid_t *       v15 = (cvoid_t *)777;
 
         std::ctstring_t v16 = std::ctstring_t(xT("aaa"));
         ctchar_t *      v17 = xT("bbb");
