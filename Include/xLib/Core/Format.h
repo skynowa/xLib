@@ -12,14 +12,13 @@
 xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
-template<typename StringT, typename CharT /* = typename StringT::value_type */>
-inline StringT
+inline std::tstring_t
 _toString(
-    std::csize_t &a_buffSize,
-    const CharT  *a_format, ...
+    std::csize_t  &a_buffSize,
+    const tchar_t *a_format, ...
 )
 {
-    tchar_t buff[a_buffSize * sizeof(CharT)];
+    tchar_t buff[a_buffSize * sizeof(std::tstring_t::value_type)];
 
     va_list args;
     xVA_START(args, a_format);
@@ -28,7 +27,7 @@ _toString(
 
     xVA_END(args);
 
-    return StringT(buff, buff + writtenSize);
+    return std::tstring_t(buff, buff + writtenSize);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -42,7 +41,7 @@ toString(ctchar_t &a_value)
 {
     std::csize_t buffSize = 4 * sizeof(tchar_t);
 
-    return _toString<std::tstring_t>(buffSize, xT("%c"), a_value);
+    return _toString(buffSize, xT("%c"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -50,7 +49,7 @@ toString(cuchar_t &a_value)
 {
     std::csize_t buffSize = 4 * sizeof(uchar_t);
 
-    return _toString<std::tstring_t>(buffSize, xT("%u"), a_value);
+    return _toString(buffSize, xT("%u"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -58,7 +57,7 @@ toString(cshort_t &a_value)
 {
     std::csize_t buffSize = 4 * sizeof(short_t);
 
-    return _toString<std::tstring_t>(buffSize, xT("%h"), a_value);
+    return _toString(buffSize, xT("%h"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -66,7 +65,7 @@ toString(cushort_t &a_value)
 {
     std::csize_t buffSize = 4 * sizeof(ushort_t);
 
-    return _toString<std::tstring_t>(buffSize, xT("%hu"), a_value);
+    return _toString(buffSize, xT("%hu"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -74,7 +73,7 @@ toString(cint_t &a_value)
 {
     std::csize_t buffSize = 4 * sizeof(int_t);
 
-    return _toString<std::tstring_t>(buffSize, xT("%d"), a_value);
+    return _toString(buffSize, xT("%d"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -82,7 +81,7 @@ toString(cuint_t &a_value)
 {
     std::csize_t buffSize = 4 * sizeof(uint_t);
 
-    return _toString<std::tstring_t>(buffSize, xT("%u"), a_value);
+    return _toString(buffSize, xT("%u"), a_value);
 
 }
 //-------------------------------------------------------------------------------------------------
@@ -91,7 +90,7 @@ toString(clong_t &a_value)
 {
     std::csize_t buffSize = 4 * sizeof(long_t);
 
-    return _toString<std::tstring_t>(buffSize, xT("%ld"), a_value);
+    return _toString(buffSize, xT("%ld"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -99,7 +98,7 @@ toString(culong_t &a_value)
 {
     std::csize_t buffSize = 4 * sizeof(ulong_t);
 
-    return _toString<std::tstring_t>(buffSize, xT("%lu"), a_value);
+    return _toString(buffSize, xT("%lu"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -107,7 +106,7 @@ toString(clonglong_t &a_value)
 {
     std::csize_t buffSize = 4 * sizeof(longlong_t);
 
-    return _toString<std::tstring_t>(buffSize, xT("%lld"), a_value);
+    return _toString(buffSize, xT("%lld"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -115,7 +114,7 @@ toString(culonglong_t &a_value)
 {
     std::csize_t buffSize = 4 * sizeof(ulonglong_t);
 
-    return _toString<std::tstring_t>(buffSize, xT("%llu"), a_value);
+    return _toString(buffSize, xT("%llu"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -123,7 +122,7 @@ toString(cfloat_t &a_value)
 {
     std::csize_t buffSize = std::numeric_limits<float_t>::max_exponent10 + 20;
 
-    return _toString<std::tstring_t>(buffSize, xT("%f"), a_value);
+    return _toString(buffSize, xT("%f"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -131,7 +130,7 @@ toString(cdouble_t &a_value)
 {
     std::csize_t buffSize = std::numeric_limits<double>::max_exponent10 + 20;
 
-    return _toString<std::tstring_t>(buffSize, xT("%f"), a_value);
+    return _toString(buffSize, xT("%f"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -139,7 +138,7 @@ toString(clongdouble_t &a_value)
 {
     std::csize_t buffSize = std::numeric_limits<longdouble_t>::max_exponent10 + 20;
 
-    return _toString<std::tstring_t>(buffSize, xT("%Lf"), a_value);
+    return _toString(buffSize, xT("%Lf"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -147,7 +146,7 @@ toString(cvoid_t *a_value)
 {
     std::csize_t buffSize = 4 * sizeof(cvoid_t *);
 
-    return _toString<std::tstring_t>(buffSize, xT("%p"), a_value);
+    return _toString(buffSize, xT("%p"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
