@@ -36,7 +36,7 @@ Test_Format::unit(
         ctchar_t *      v17 = xT("bbb");
 
         m_sRv += Format(
-            xT("***{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}"),
+            xT("***{}_{}_{}_{}_{}_{}_{}_{}_{}_{}"),
             v1, v2, v3, v4, v5, v6, v7, v8, v9, v10);
 
         m_sRv += Format(
