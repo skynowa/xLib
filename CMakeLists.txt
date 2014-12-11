@@ -21,6 +21,8 @@ set(CMAKE_BUILD_TYPE "RelWithDebInfo")
     # Release        (CMAKE_C_FLAGS_RELEASE or CMAKE_CXX_FLAGS_RELEASE)
     # RelWithDebInfo (CMAKE_C_FLAGS_RELWITHDEBINFO or CMAKE_CXX_FLAGS_RELWITHDEBINFO
     # MinSizeRel     (CMAKE_C_FLAGS_MINSIZEREL or CMAKE_CXX_FLAGS_MINSIZEREL)
+SET(CMAKE_COLOR_MAKEFILE ON)
+SET(CMAKE_VERBOSE_MAKEFILE ON)
 
 #--------------------------------------------------------------------------------------------------
 # vars
