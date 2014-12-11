@@ -183,23 +183,23 @@ public:
     xFORMAT(9)
     xFORMAT(10)
 
-    std::tstring_t toString(cbool_t &value);
-    std::tstring_t toString(ctchar_t &value);
-    std::tstring_t toString(cuchar_t &value);
-    std::tstring_t toString(cshort_t &value);
-    std::tstring_t toString(cushort_t &value);
-    std::tstring_t toString(cint_t &value);
-    std::tstring_t toString(cuint_t &value);
-    std::tstring_t toString(clong_t &value);
-    std::tstring_t toString(culong_t &value);
-    std::tstring_t toString(clonglong_t &value);
-    std::tstring_t toString(culonglong_t &value);
-    std::tstring_t toString(cfloat_t &value);
-    std::tstring_t toString(cdouble_t &value);
-    std::tstring_t toString(clongdouble_t &value);
-    std::tstring_t toString(cvoid_t *value);
-    std::tstring_t toString(std::ctstring_t &value);
-    std::tstring_t toString(ctchar_t *value);
+    std::tstring_t  toString(cbool_t &value);
+    std::tstring_t  toString(ctchar_t &value);
+    std::tstring_t  toString(cuchar_t &value);
+    std::tstring_t  toString(cshort_t &value);
+    std::tstring_t  toString(cushort_t &value);
+    std::tstring_t  toString(cint_t &value);
+    std::tstring_t  toString(cuint_t &value);
+    std::tstring_t  toString(clong_t &value);
+    std::tstring_t  toString(culong_t &value);
+    std::tstring_t  toString(clonglong_t &value);
+    std::tstring_t  toString(culonglong_t &value);
+    std::tstring_t  toString(cfloat_t &value);
+    std::tstring_t  toString(cdouble_t &value);
+    std::tstring_t  toString(clongdouble_t &value);
+    std::tstring_t  toString(cvoid_t *value);
+    std::tstring_t& toString(std::ctstring_t &value);
+    std::tstring_t  toString(ctchar_t *value);
 
 private:
     xNO_COPY_ASSIGN(Format)
