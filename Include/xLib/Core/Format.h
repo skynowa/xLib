@@ -46,6 +46,14 @@ toString(ctchar_t &a_value)
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
+toString(cuchar_t &a_value)
+{
+    std::csize_t buffSize = 4 * sizeof(uchar_t);
+
+    return _toString<std::tstring_t>(buffSize, xT("%u"), a_value);
+}
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
 toString(cshort_t &a_value)
 {
     std::csize_t buffSize = 4 * sizeof(short_t);
