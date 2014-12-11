@@ -49,7 +49,7 @@ toString(cuchar_t &a_value)
 {
     std::csize_t buffSize = 4 * sizeof(uchar_t);
 
-    return _toString(buffSize, xT("%u"), a_value);
+    return _toString(buffSize, xT("%hhu"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
