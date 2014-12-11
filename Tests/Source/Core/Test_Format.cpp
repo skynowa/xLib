@@ -19,14 +19,14 @@ Test_Format::unit(
         cbool_t         v1  = false;
         ctchar_t        v2  = xT('a');
         cuchar_t        v3  = 'b';
-        cshort_t        v4  = 0;
-        cushort_t       v5  = 0;
-        cint_t          v6  = 111;
-        cuint_t         v7  = 222U;
-        clong_t         v8  = 333L;
-        culong_t        v9  = 444UL;
-        clonglong_t     v10 = 555LL;
-        culonglong_t    v11 = 666ULL;
+        cshort_t        v4  = -10;
+        cushort_t       v5  = 10;
+        cint_t          v6  = -111;
+        cuint_t         v7  = 111U;
+        clong_t         v8  = -222L;
+        culong_t        v9  = 222UL;
+        clonglong_t     v10 = -333LL;
+        culonglong_t    v11 = 333ULL;
         cfloat_t        v12 = 777.0f;
         cdouble_t       v13 = 888.0f;
         clongdouble_t   v14 = 999.0L;
@@ -34,15 +34,14 @@ Test_Format::unit(
 
         std::ctstring_t v16 = std::ctstring_t(xT("aaa"));
         ctchar_t *      v17 = xT("bbb");
-        std::csize_t    v18 = 888;
 
         m_sRv += Format(
-            xT("***{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}***"),
+            xT("***{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}"),
             v1, v2, v3, v4, v5, v6, v7, v8, v9, v10);
 
         m_sRv += Format(
-            xT("***{}_{}_{}_{}_{}_{}_{}_{}***"),
-            v11, v12, v13, v14, v15, v16, v17, v18);
+            xT("_{}_{}_{}_{}_{}_{}_{}***"),
+            v11, v12, v13, v14, v15, v16, v17);
 
         // xTEST_EQ(m_sRv, std::tstring_t(xT(xxxxxxx)));
         Trace() << xTRACE_VAR(m_sRv);
