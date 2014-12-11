@@ -134,9 +134,13 @@ toString(clongdouble_t &a_value)
     return _toString<std::tstring_t>(buffSize, xT("%Lf"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
-#if 0
-void *
-#endif
+inline std::tstring_t
+toString(cvoid_t *a_value)
+{
+    std::csize_t buffSize = 4 * sizeof(cvoid_t *);
+
+    return _toString<std::tstring_t>(buffSize, xT("%p"), a_value);
+}
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
 toString(std::ctstring_t &a_value)
