@@ -16,17 +16,35 @@ Test_Format::unit(
 {
     xTEST_CASE("Format", a_caseLoops)
     {
-        std::csize_t    v1 = 777;
-        std::ctstring_t v2 = std::ctstring_t(xT("aaa"));
-        cint_t          v3 = 333;
-        ctchar_t        v4 = xT('a');
-        ctchar_t *      v5 = xT("bbb");
-        clong_t         v6 = 444L;
-        cvoid_t *       v7 = (cvoid_t *)2000;
+        cbool_t         v1  = false;
+        ctchar_t        v2  = xT('a');
+        cuchar_t        v3  = 'b';
+        cshort_t        v4  = 0;
+        cushort_t       v5  = 0;
+        cint_t          v6  = 111;
+        cuint_t         v7  = 222U;
+        clong_t         v8  = 333L;
+        culong_t        v9  = 444UL;
+        clonglong_t     v10 = 555LL;
+        culonglong_t    v11 = 666ULL;
+        cfloat_t        v12 = 777.0f;
+        cdouble_t       v13 = 888.0f;
+        clongdouble_t   v14 = 999.0L;
+        cvoid_t *       v15 = (cvoid_t *)2000;
 
-        m_sRv = Format(xT("***{}={}={}={}={}={}={}***"), v1, v2, v3, v4, v5, v6, v7);
-        // xTEST_EQ(m_sRv, std::tstring_t(xT("***777=aaa=333=a=bbb=444=0x7d0***")));
+        std::ctstring_t v16 = std::ctstring_t(xT("aaa"));
+        ctchar_t *      v17 = xT("bbb");
+        std::csize_t    v18 = 888;
 
+        m_sRv += Format(
+            xT("***{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}***"),
+            v1, v2, v3, v4, v5, v6, v7, v8, v9, v10);
+
+        m_sRv += Format(
+            xT("***{}_{}_{}_{}_{}_{}_{}_{}***"),
+            v11, v12, v13, v14, v15, v16, v17, v18);
+
+        // xTEST_EQ(m_sRv, std::tstring_t(xT(xxxxxxx)));
         Trace() << xTRACE_VAR(m_sRv);
 
         std::exit(0);
