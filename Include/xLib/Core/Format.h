@@ -148,6 +148,14 @@ toString(std::ctstring_t &a_value)
 char *
 #endif
 //-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+toString(ctchar_t *a_value)
+{
+    std::csize_t buffSize = 4 * sizeof(ctchar_t *);
+
+    return _toString<std::tstring_t>(buffSize, xT("%s"), a_value);
+}
+//-------------------------------------------------------------------------------------------------
 #define xSWITCH_1(v) \
             switch (v) { \
             case 0: ss << a_v1; break; \
