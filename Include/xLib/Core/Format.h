@@ -151,9 +151,7 @@ char *
 inline std::tstring_t
 toString(ctchar_t *a_value)
 {
-    std::csize_t buffSize = 4 * sizeof(ctchar_t *);
-
-    return _toString<std::tstring_t>(buffSize, xT("%s"), a_value);
+    return std::tstring_t(a_value);
 }
 //-------------------------------------------------------------------------------------------------
 #define xSWITCH_1(v) \
