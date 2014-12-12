@@ -174,7 +174,13 @@ endif()
 
 if (xOPTION_PROJECT_EXE)
     include_directories(${XLIB_LOCATION}/Tests/Include)
-    file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/Source/*.cpp)
+    # file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/Source/*.cpp)
+
+    set(XLIB_TESTS_SOURCES
+        ${XLIB_TESTS_SOURCES}
+        ${XLIB_LOCATION}/Tests/Source/Core/Test_Format.cpp
+        ${XLIB_LOCATION}/Tests/Source/main.cpp
+    )
 
     add_executable(${PROJECT_NAME}_tests ${XLIB_SOURCES} ${XLIB_TESTS_SOURCES})
     target_link_libraries(${PROJECT_NAME}_tests ${XLIB_LIBRARIES})
