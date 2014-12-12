@@ -38,14 +38,14 @@ Test_Format::unit(
         Format f;
 
         m_sRv += f.format(
-            xT("***{}_{}_{}_{}_{}_{}_{}_{}_{}_{}"),
+            xT("{}_{}_{}_{}_{}_{}_{}_{}_{}_{}"),
             v1, v2, v3, v4, v5, v6, v7, v8, v9, v10);
 
         m_sRv += f.format(
-            xT("_{}_{}_{}_{}_{}_{}_{}***"),
+            xT("_{}_{}_{}_{}_{}_{}_{}"),
             v11, v12, v13, v14, v15, v16, v17);
 
-        // xTEST_EQ(m_sRv, std::tstring_t(xT(xxxxxxx)));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("false_a_98_-10_10_-111_111_-222_222_-333_333_444.000000_555.000000_666.000000_0x309_aaa_bbb")));
         Trace() << xTRACE_VAR(m_sRv);
 
         std::exit(0);
