@@ -142,6 +142,15 @@ xNAMESPACE_BEGIN2(xlib, core)
             default:                  break; \
             }
 
+class Format
+    ///<
+{
+public:
+                   Format() {}
+        ///< constructor
+                  ~Format() {}
+        ///< destructor
+
 #define xFORMAT(n) \
     template<xVA_TYPES_##n> \
     std::tstring_t \
@@ -173,15 +182,6 @@ xNAMESPACE_BEGIN2(xlib, core)
         \
         return sRv; \
     }
-
-class Format
-    ///<
-{
-public:
-                   Format() {}
-        ///< constructor
-                  ~Format() {}
-        ///< destructor
 
     xFORMAT(1)
     xFORMAT(2)
