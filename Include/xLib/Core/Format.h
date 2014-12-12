@@ -171,7 +171,7 @@ public:
             \
             xFORMAT_SWITCH_PRE_IMPL; \
             \
-            xFORMAT_SWITCH_IMPL##n(i) \
+            xFORMAT_SWITCH_IMPL_##n(i) \
             \
             xFORMAT_SWITCH_POST_IMPL; \
             \
