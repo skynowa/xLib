@@ -11,122 +11,135 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
+#define xFORMAT_MODE 0
+
+#if xFORMAT_MODE
+    #define xSWITCH_PRE_IMPL \
+            static std::tstringstream_t ss; \
+            ss.str( std::tstring_t() ); \
+            ss.clear()
+
+    #define xCASE_IMPL(v) \
+                ss << v
+
+    #define xSWITCH_POST_IMPL \
+                sRv += ss.str()
+
+#else
+    #define xSWITCH_PRE_IMPL \
+                xNA
+
+    #define xCASE_IMPL(v) \
+                sRv += toString(v)
+
+    #define xSWITCH_POST_IMPL \
+                xNA
+#endif
+
+
 #define xSWITCH_1(v) \
             switch (v) { \
-            case 0: ss << a_v1; break; \
-            default:            break; \
+            case 0: xCASE_IMPL(a_v1); break; \
+            default:                  break; \
             }
 
 #define xSWITCH_2(v) \
             switch (v) { \
-            case 0: ss << a_v1; break; \
-            case 1: ss << a_v2; break; \
-            default:            break; \
+            case 0: xCASE_IMPL(a_v1); break; \
+            case 1: xCASE_IMPL(a_v2); break; \
+            default:                  break; \
             }
 
 #define xSWITCH_3(v) \
             switch (v) { \
-            case 0: ss << a_v1; break; \
-            case 1: ss << a_v2; break; \
-            case 2: ss << a_v3; break; \
-            default:            break; \
+            case 0: xCASE_IMPL(a_v1); break; \
+            case 1: xCASE_IMPL(a_v2); break; \
+            case 2: xCASE_IMPL(a_v3); break; \
+            default:                  break; \
             }
 
 #define xSWITCH_4(v) \
             switch (v) { \
-            case 0: ss << a_v1; break; \
-            case 1: ss << a_v2; break; \
-            case 2: ss << a_v3; break; \
-            case 3: ss << a_v4; break; \
-            default:            break; \
+            case 0: xCASE_IMPL(a_v1); break; \
+            case 1: xCASE_IMPL(a_v2); break; \
+            case 2: xCASE_IMPL(a_v3); break; \
+            case 3: xCASE_IMPL(a_v4); break; \
+            default:                  break; \
             }
 
 #define xSWITCH_5(v) \
             switch (v) { \
-            case 0: ss << a_v1; break; \
-            case 1: ss << a_v2; break; \
-            case 2: ss << a_v3; break; \
-            case 3: ss << a_v4; break; \
-            case 4: ss << a_v5; break; \
-            default:            break; \
+            case 0: xCASE_IMPL(a_v1); break; \
+            case 1: xCASE_IMPL(a_v2); break; \
+            case 2: xCASE_IMPL(a_v3); break; \
+            case 3: xCASE_IMPL(a_v4); break; \
+            case 4: xCASE_IMPL(a_v5); break; \
+            default:                  break; \
             }
 
-        #if 0
-    #define xSWITCH_6(v) \
+#define xSWITCH_6(v) \
             switch (v) { \
-            case 0: ss << a_v1; break; \
-            case 1: ss << a_v2; break; \
-            case 2: ss << a_v3; break; \
-            case 3: ss << a_v4; break; \
-            case 4: ss << a_v5; break; \
-            case 5: ss << a_v6; break; \
-            default:            break; \
+            case 0: xCASE_IMPL(a_v1); break; \
+            case 1: xCASE_IMPL(a_v2); break; \
+            case 2: xCASE_IMPL(a_v3); break; \
+            case 3: xCASE_IMPL(a_v4); break; \
+            case 4: xCASE_IMPL(a_v5); break; \
+            case 5: xCASE_IMPL(a_v6); break; \
+            default:                  break; \
             }
-        #else
-    #define xSWITCH_6(v) \
-            switch (v) { \
-            case 0: sRv += toString(a_v1); break; \
-            case 1: sRv += toString(a_v2); break; \
-            case 2: sRv += toString(a_v3); break; \
-            case 3: sRv += toString(a_v4); break; \
-            case 4: sRv += toString(a_v5); break; \
-            case 5: sRv += toString(a_v6); break; \
-            default:                      break; \
-            }
-        #endif
 
 #define xSWITCH_7(v) \
             switch (v) { \
-            case 0: ss << a_v1; break; \
-            case 1: ss << a_v2; break; \
-            case 2: ss << a_v3; break; \
-            case 3: ss << a_v4; break; \
-            case 4: ss << a_v5; break; \
-            case 5: ss << a_v6; break; \
-            case 6: ss << a_v7; break; \
-            default:            break; \
+            case 0: xCASE_IMPL(a_v1); break; \
+            case 1: xCASE_IMPL(a_v2); break; \
+            case 2: xCASE_IMPL(a_v3); break; \
+            case 3: xCASE_IMPL(a_v4); break; \
+            case 4: xCASE_IMPL(a_v5); break; \
+            case 5: xCASE_IMPL(a_v6); break; \
+            case 6: xCASE_IMPL(a_v7); break; \
+            default:                  break; \
             }
 
 #define xSWITCH_8(v) \
             switch (v) { \
-            case 0: ss << a_v1; break; \
-            case 1: ss << a_v2; break; \
-            case 2: ss << a_v3; break; \
-            case 3: ss << a_v4; break; \
-            case 4: ss << a_v5; break; \
-            case 5: ss << a_v6; break; \
-            case 6: ss << a_v7; break; \
-            case 7: ss << a_v8; break; \
-            default:            break; \
+            case 0: xCASE_IMPL(a_v1); break; \
+            case 1: xCASE_IMPL(a_v2); break; \
+            case 2: xCASE_IMPL(a_v3); break; \
+            case 3: xCASE_IMPL(a_v4); break; \
+            case 4: xCASE_IMPL(a_v5); break; \
+            case 5: xCASE_IMPL(a_v6); break; \
+            case 6: xCASE_IMPL(a_v7); break; \
+            case 7: xCASE_IMPL(a_v8); break; \
+            default:                  break; \
             }
 
 #define xSWITCH_9(v) \
             switch (v) { \
-            case 0: ss << a_v1; break; \
-            case 1: ss << a_v2; break; \
-            case 2: ss << a_v3; break; \
-            case 3: ss << a_v4; break; \
-            case 4: ss << a_v5; break; \
-            case 5: ss << a_v6; break; \
-            case 6: ss << a_v7; break; \
-            case 7: ss << a_v8; break; \
-            case 8: ss << a_v9; break; \
-            default:            break; \
+            case 0: xCASE_IMPL(a_v1); break; \
+            case 1: xCASE_IMPL(a_v2); break; \
+            case 2: xCASE_IMPL(a_v3); break; \
+            case 3: xCASE_IMPL(a_v4); break; \
+            case 4: xCASE_IMPL(a_v5); break; \
+            case 5: xCASE_IMPL(a_v6); break; \
+            case 6: xCASE_IMPL(a_v7); break; \
+            case 7: xCASE_IMPL(a_v8); break; \
+            case 8: xCASE_IMPL(a_v9); break; \
+            default:                  break; \
             }
 
 #define xSWITCH_10(v) \
             switch (v) { \
-            case 0: ss << a_v1; break; \
-            case 1: ss << a_v2; break; \
-            case 2: ss << a_v3; break; \
-            case 3: ss << a_v4; break; \
-            case 4: ss << a_v5; break; \
-            case 5: ss << a_v6; break; \
-            case 6: ss << a_v7; break; \
-            case 7: ss << a_v8; break; \
-            case 8: ss << a_v9; break; \
-            case 9: ss << a_v10; break; \
-            default:            break; \
+            case 0: xCASE_IMPL(a_v1); break; \
+            case 1: xCASE_IMPL(a_v2); break; \
+            case 2: xCASE_IMPL(a_v3); break; \
+            case 3: xCASE_IMPL(a_v4); break; \
+            case 4: xCASE_IMPL(a_v5); break; \
+            case 5: xCASE_IMPL(a_v6); break; \
+            case 6: xCASE_IMPL(a_v7); break; \
+            case 7: xCASE_IMPL(a_v8); break; \
+            case 8: xCASE_IMPL(a_v9); break; \
+            case 9: xCASE_IMPL(a_v10); break; \
+            default:                  break; \
             }
 
 #define xFORMAT(n) \
@@ -147,14 +160,12 @@ xNAMESPACE_BEGIN2(xlib, core)
             \
             sRv += a_format.substr(posPrev, pos - posPrev); \
             \
-            static std::tstringstream_t ss; \
-            ss.str( std::tstring_t() ); \
-            ss.clear(); \
+            xSWITCH_PRE_IMPL; \
             \
             xSWITCH_##n(i) \
             \
-            sRv += ss.str(); \
-             \
+            xSWITCH_POST_IMPL; \
+            \
             posPrev = pos + delimiter_size; \
         } \
         \
@@ -183,23 +194,23 @@ public:
     xFORMAT(9)
     xFORMAT(10)
 
-    std::tstring_t  toString(cbool_t &value);
-    std::tstring_t  toString(ctchar_t &value);
-    std::tstring_t  toString(cuchar_t &value);
-    std::tstring_t  toString(cshort_t &value);
-    std::tstring_t  toString(cushort_t &value);
-    std::tstring_t  toString(cint_t &value);
-    std::tstring_t  toString(cuint_t &value);
-    std::tstring_t  toString(clong_t &value);
-    std::tstring_t  toString(culong_t &value);
-    std::tstring_t  toString(clonglong_t &value);
-    std::tstring_t  toString(culonglong_t &value);
-    std::tstring_t  toString(cfloat_t &value);
-    std::tstring_t  toString(cdouble_t &value);
-    std::tstring_t  toString(clongdouble_t &value);
-    std::tstring_t  toString(cvoid_t *value);
-    std::ctstring_t& toString(std::ctstring_t &value);
-    std::tstring_t  toString(ctchar_t *value);
+    std::tstring_t    toString(cbool_t &value);
+    std::tstring_t    toString(ctchar_t &value);
+    std::tstring_t    toString(cuchar_t &value);
+    std::tstring_t    toString(cshort_t &value);
+    std::tstring_t    toString(cushort_t &value);
+    std::tstring_t    toString(cint_t &value);
+    std::tstring_t    toString(cuint_t &value);
+    std::tstring_t    toString(clong_t &value);
+    std::tstring_t    toString(culong_t &value);
+    std::tstring_t    toString(clonglong_t &value);
+    std::tstring_t    toString(culonglong_t &value);
+    std::tstring_t    toString(cfloat_t &value);
+    std::tstring_t    toString(cdouble_t &value);
+    std::tstring_t    toString(clongdouble_t &value);
+    std::tstring_t    toString(cvoid_t *value);
+    std::ctstring_t & toString(std::ctstring_t &value);
+    std::tstring_t    toString(ctchar_t *value);
 
 private:
     xNO_COPY_ASSIGN(Format)
