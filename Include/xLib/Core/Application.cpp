@@ -6,6 +6,8 @@
 
 #if !xOPTION_PROJECT_HEADER_ONLY
     #include "Application.h"
+
+    xLIB_CORE_APPLICATION_STATIC_DECLARE
 #endif
 
 #include <xLib/Core/Locale.h>
