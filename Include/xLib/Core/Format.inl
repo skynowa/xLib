@@ -187,44 +187,6 @@ xFORMAT(10)
 
 xINLINE std::tstring_t
 Format::format(
-    std::ctstring_t &a_format, xVA_VARS_6
-)
-{
-    std::tstring_t  sRv;
-    std::ctstring_t delimiter      = xT("{}");
-    std::size_t     delimiter_size = delimiter.size();
-    std::size_t     posPrev        = 0U; // start of string
-
-    for (std::size_t i = 0; ; ++ i) {
-        std::csize_t pos = a_format.find(delimiter, posPrev);
-        xCHECK_DO(pos == std::tstring_t::npos, break);
-
-        sRv += a_format.substr(posPrev, pos - posPrev);
-
-    #if 0
-        static std::tstringstream_t ss;
-        ss.str( std::tstring_t() );
-        ss.clear();
-
-        xSWITCH_6(i)
-
-        sRv += ss.str();
-    #else
-        xSWITCH_6(i)
-    #endif
-
-        posPrev = pos + delimiter_size;
-    }
-
-    sRv += a_format.substr(posPrev, a_format.size() - posPrev);
-
-    return sRv;
-}
-
-#elif 0
-
-xINLINE std::tstring_t
-Format::format(
     ctchar_t *a_format, xVA_VARS_6
 )
 {
