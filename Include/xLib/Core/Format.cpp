@@ -9,7 +9,7 @@
 #endif
 
 #include <xLib/Core/Type.h>
-#include <xLib/Log/Trace.h>
+// #include <xLib/Log/Trace.h>
 
 
 xNAMESPACE_BEGIN2(xlib, core)
@@ -29,14 +29,14 @@ xNAMESPACE_BEGIN2(xlib, core)
 xINLINE std::tstring_t
 Format::toString(cbool_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
     return a_value ? xT("true") : xT("false");
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 Format::toString(ctchar_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
     std::csize_t buffSize = 4 * sizeof(tchar_t);
 
     return _toString(buffSize, xT("%c"), a_value);
@@ -45,7 +45,7 @@ Format::toString(ctchar_t &a_value)
 xINLINE std::tstring_t
 Format::toString(cuchar_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
     std::csize_t buffSize = 4 * sizeof(uchar_t);
 
     return _toString(buffSize, xT("%hhu"), a_value);
@@ -54,7 +54,7 @@ Format::toString(cuchar_t &a_value)
 xINLINE std::tstring_t
 Format::toString(cshort_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
     std::csize_t buffSize = 4 * sizeof(short_t);
 
     return _toString(buffSize, xT("%hd"), a_value);
@@ -63,7 +63,7 @@ Format::toString(cshort_t &a_value)
 xINLINE std::tstring_t
 Format::toString(cushort_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
     std::csize_t buffSize = 4 * sizeof(ushort_t);
 
     return _toString(buffSize, xT("%hu"), a_value);
@@ -72,7 +72,7 @@ Format::toString(cushort_t &a_value)
 xINLINE std::tstring_t
 Format::toString(cint_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
 
     std::csize_t buffSize = 4 * sizeof(int_t);
 
@@ -82,7 +82,7 @@ Format::toString(cint_t &a_value)
 xINLINE std::tstring_t
 Format::toString(cuint_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
 
     std::csize_t buffSize = 4 * sizeof(uint_t);
 
@@ -93,7 +93,7 @@ Format::toString(cuint_t &a_value)
 xINLINE std::tstring_t
 Format::toString(clong_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
 
     std::csize_t buffSize = 4 * sizeof(long_t);
 
@@ -103,7 +103,7 @@ Format::toString(clong_t &a_value)
 xINLINE std::tstring_t
 Format::toString(culong_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
 
     std::csize_t buffSize = 4 * sizeof(ulong_t);
 
@@ -113,7 +113,7 @@ Format::toString(culong_t &a_value)
 xINLINE std::tstring_t
 Format::toString(clonglong_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
 
     std::csize_t buffSize = 4 * sizeof(longlong_t);
 
@@ -123,7 +123,7 @@ Format::toString(clonglong_t &a_value)
 xINLINE std::tstring_t
 Format::toString(culonglong_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
 
     std::csize_t buffSize = 4 * sizeof(ulonglong_t);
 
@@ -133,7 +133,7 @@ Format::toString(culonglong_t &a_value)
 xINLINE std::tstring_t
 Format::toString(cfloat_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
 
     std::csize_t buffSize = std::numeric_limits<float_t>::max_exponent10 + 20;
 
@@ -143,7 +143,7 @@ Format::toString(cfloat_t &a_value)
 xINLINE std::tstring_t
 Format::toString(cdouble_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
     std::csize_t buffSize = std::numeric_limits<double>::max_exponent10 + 20;
 
     return _toString(buffSize, xT("%f"), a_value);
@@ -152,7 +152,7 @@ Format::toString(cdouble_t &a_value)
 xINLINE std::tstring_t
 Format::toString(clongdouble_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
 
     std::csize_t buffSize = std::numeric_limits<longdouble_t>::max_exponent10 + 20;
 
@@ -162,7 +162,7 @@ Format::toString(clongdouble_t &a_value)
 xINLINE std::tstring_t
 Format::toString(cvoid_t *a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
 
     std::csize_t buffSize = 4 * sizeof(cvoid_t *);
 
@@ -172,7 +172,7 @@ Format::toString(cvoid_t *a_value)
 xINLINE std::ctstring_t &
 Format::toString(std::ctstring_t &a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
 
     return a_value;
 }
@@ -180,7 +180,7 @@ Format::toString(std::ctstring_t &a_value)
 xINLINE std::tstring_t
 Format::toString(ctchar_t *a_value)
 {
-    Trace() << Type::name(a_value);
+    // Trace() << Type::name(a_value);
 
     return std::tstring_t(a_value);
 }
