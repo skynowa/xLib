@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 #define xFORMAT_MODE 0
 
 #if xFORMAT_MODE
-    #define xSWITCH_PRE_IMPL \
+    #define xFORMAT_SWITCH_PRE_IMPL \
             static std::tstringstream_t ss; \
             ss.str( std::tstring_t() ); \
             ss.clear()
@@ -22,35 +22,35 @@ xNAMESPACE_BEGIN2(xlib, core)
     #define xCASE_IMPL(v) \
                 ss << v
 
-    #define xSWITCH_POST_IMPL \
+    #define xFORMAT_SWITCH_POST_IMPL \
                 sRv += ss.str()
 
 #else
-    #define xSWITCH_PRE_IMPL \
+    #define xFORMAT_SWITCH_PRE_IMPL \
                 xNA
 
     #define xCASE_IMPL(v) \
                 sRv += toString(v)
 
-    #define xSWITCH_POST_IMPL \
+    #define xFORMAT_SWITCH_POST_IMPL \
                 xNA
 #endif
 
 
-#define xSWITCH_1(v) \
+#define xFORMAT_SWITCH_IMPL_1(v) \
             switch (v) { \
             case 0: xCASE_IMPL(a_v1); break; \
             default:                  break; \
             }
 
-#define xSWITCH_2(v) \
+#define xFORMAT_SWITCH_IMPL_2(v) \
             switch (v) { \
             case 0: xCASE_IMPL(a_v1); break; \
             case 1: xCASE_IMPL(a_v2); break; \
             default:                  break; \
             }
 
-#define xSWITCH_3(v) \
+#define xFORMAT_SWITCH_IMPL_3(v) \
             switch (v) { \
             case 0: xCASE_IMPL(a_v1); break; \
             case 1: xCASE_IMPL(a_v2); break; \
@@ -58,7 +58,7 @@ xNAMESPACE_BEGIN2(xlib, core)
             default:                  break; \
             }
 
-#define xSWITCH_4(v) \
+#define xFORMAT_SWITCH_IMPL_4(v) \
             switch (v) { \
             case 0: xCASE_IMPL(a_v1); break; \
             case 1: xCASE_IMPL(a_v2); break; \
@@ -67,7 +67,7 @@ xNAMESPACE_BEGIN2(xlib, core)
             default:                  break; \
             }
 
-#define xSWITCH_5(v) \
+#define xFORMAT_SWITCH_IMPL_5(v) \
             switch (v) { \
             case 0: xCASE_IMPL(a_v1); break; \
             case 1: xCASE_IMPL(a_v2); break; \
@@ -77,7 +77,7 @@ xNAMESPACE_BEGIN2(xlib, core)
             default:                  break; \
             }
 
-#define xSWITCH_6(v) \
+#define xFORMAT_SWITCH_IMPL_6(v) \
             switch (v) { \
             case 0: xCASE_IMPL(a_v1); break; \
             case 1: xCASE_IMPL(a_v2); break; \
@@ -88,7 +88,7 @@ xNAMESPACE_BEGIN2(xlib, core)
             default:                  break; \
             }
 
-#define xSWITCH_7(v) \
+#define xFORMAT_SWITCH_IMPL_7(v) \
             switch (v) { \
             case 0: xCASE_IMPL(a_v1); break; \
             case 1: xCASE_IMPL(a_v2); break; \
@@ -100,7 +100,7 @@ xNAMESPACE_BEGIN2(xlib, core)
             default:                  break; \
             }
 
-#define xSWITCH_8(v) \
+#define xFORMAT_SWITCH_IMPL_8(v) \
             switch (v) { \
             case 0: xCASE_IMPL(a_v1); break; \
             case 1: xCASE_IMPL(a_v2); break; \
@@ -113,7 +113,7 @@ xNAMESPACE_BEGIN2(xlib, core)
             default:                  break; \
             }
 
-#define xSWITCH_9(v) \
+#define xFORMAT_SWITCH_IMPL_9(v) \
             switch (v) { \
             case 0: xCASE_IMPL(a_v1); break; \
             case 1: xCASE_IMPL(a_v2); break; \
@@ -127,7 +127,7 @@ xNAMESPACE_BEGIN2(xlib, core)
             default:                  break; \
             }
 
-#define xSWITCH_10(v) \
+#define xFORMAT_SWITCH_IMPL_10(v) \
             switch (v) { \
             case 0: xCASE_IMPL(a_v1); break; \
             case 1: xCASE_IMPL(a_v2); break; \
@@ -169,11 +169,11 @@ public:
             \
             sRv += a_format.substr(posPrev, pos - posPrev); \
             \
-            xSWITCH_PRE_IMPL; \
+            xFORMAT_SWITCH_PRE_IMPL; \
             \
-            xSWITCH_##n(i) \
+            xFORMAT_SWITCH_IMPL##n(i) \
             \
-            xSWITCH_POST_IMPL; \
+            xFORMAT_SWITCH_POST_IMPL; \
             \
             posPrev = pos + delimiter_size; \
         } \
