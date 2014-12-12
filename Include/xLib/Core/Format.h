@@ -198,7 +198,7 @@ public:
     std::tstring_t  toString(cdouble_t &value);
     std::tstring_t  toString(clongdouble_t &value);
     std::tstring_t  toString(cvoid_t *value);
-    std::tstring_t& toString(std::ctstring_t &value);
+    std::ctstring_t& toString(std::ctstring_t &value);
     std::tstring_t  toString(ctchar_t *value);
 
 private:
