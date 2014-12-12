@@ -142,7 +142,6 @@ xNAMESPACE_BEGIN2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT(n) \
     template<xVA_TYPES_##n> \
-    /* static */ \
     std::tstring_t \
     Format::format( \
         std::ctstring_t &a_format, xVA_VARS_##n \
