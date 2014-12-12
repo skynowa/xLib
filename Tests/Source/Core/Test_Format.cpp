@@ -46,7 +46,7 @@ Test_Format::unit(
             v11, v12, v13, v14, v15, v16, v17);
 
         xTEST_EQ(m_sRv, std::tstring_t(xT("false_a_98_-10_10_-111_111_-222_222_-333_333_444.000000_555.000000_666.000000_0x309_aaa_bbb")));
-        Trace() << xTRACE_VAR(m_sRv);
+        // Trace() << xTRACE_VAR(m_sRv);
 
         std::exit(0);
     }
