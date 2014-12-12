@@ -75,15 +75,15 @@ Unit::run(
         }
     }
     catch (const Exception &a_e) {
-        xTEST_FAIL(name() + xT(": ") + a_e.what());
+        xTEST_FAIL_MSG(name() + xT(": ") + a_e.what());
     }
     catch (const std::exception &a_e) {
         std::string asMsg = a_e.what();
 
-        xTEST_FAIL(name() + xT(": ") + xS2TS(asMsg));
+        xTEST_FAIL_MSG(name() + xT(": ") + xS2TS(asMsg));
     }
     catch (...) {
-        xTEST_FAIL(name() + xT(": Unknown error"));
+        xTEST_FAIL_MSG(name() + xT(": Unknown error"));
     }
 }
 //-------------------------------------------------------------------------------------------------
