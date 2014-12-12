@@ -159,9 +159,7 @@ xNAMESPACE_BEGIN2(xlib, core)
             sRv += a_format.substr(posPrev, pos - posPrev); \
             \
             xFORMAT_SWITCH_PRE_IMPL; \
-            \
             xFORMAT_SWITCH_IMPL_##n(i) \
-            \
             xFORMAT_SWITCH_POST_IMPL; \
             \
             posPrev = pos + delimiter_size; \
