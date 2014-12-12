@@ -9,6 +9,7 @@
 #endif
 
 #include <xLib/Core/Type.h>
+#include <xLib/Log/Trace.h>
 
 
 xNAMESPACE_BEGIN2(xlib, core)
