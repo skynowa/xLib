@@ -20,6 +20,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(cbool_t &a_value)
 {
@@ -27,6 +28,7 @@ Format::toString(cbool_t &a_value)
     return a_value ? xT("true") : xT("false");
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(ctchar_t &a_value)
 {
@@ -36,6 +38,7 @@ Format::toString(ctchar_t &a_value)
     return _toString(buffSize, xT("%c"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(cuchar_t &a_value)
 {
@@ -45,6 +48,7 @@ Format::toString(cuchar_t &a_value)
     return _toString(buffSize, xT("%hhu"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(cshort_t &a_value)
 {
@@ -54,6 +58,7 @@ Format::toString(cshort_t &a_value)
     return _toString(buffSize, xT("%hd"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(cushort_t &a_value)
 {
@@ -63,6 +68,7 @@ Format::toString(cushort_t &a_value)
     return _toString(buffSize, xT("%hu"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(cint_t &a_value)
 {
@@ -73,6 +79,7 @@ Format::toString(cint_t &a_value)
     return _toString(buffSize, xT("%d"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(cuint_t &a_value)
 {
@@ -84,6 +91,7 @@ Format::toString(cuint_t &a_value)
 
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(clong_t &a_value)
 {
@@ -94,6 +102,7 @@ Format::toString(clong_t &a_value)
     return _toString(buffSize, xT("%ld"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(culong_t &a_value)
 {
@@ -104,6 +113,7 @@ Format::toString(culong_t &a_value)
     return _toString(buffSize, xT("%lu"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(clonglong_t &a_value)
 {
@@ -114,6 +124,7 @@ Format::toString(clonglong_t &a_value)
     return _toString(buffSize, xT("%lld"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(culonglong_t &a_value)
 {
@@ -124,6 +135,7 @@ Format::toString(culonglong_t &a_value)
     return _toString(buffSize, xT("%llu"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(cfloat_t &a_value)
 {
@@ -134,6 +146,7 @@ Format::toString(cfloat_t &a_value)
     return _toString(buffSize, xT("%f"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(cdouble_t &a_value)
 {
@@ -143,6 +156,7 @@ Format::toString(cdouble_t &a_value)
     return _toString(buffSize, xT("%f"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(clongdouble_t &a_value)
 {
@@ -153,6 +167,7 @@ Format::toString(clongdouble_t &a_value)
     return _toString(buffSize, xT("%Lf"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(cvoid_t *a_value)
 {
@@ -163,6 +178,7 @@ Format::toString(cvoid_t *a_value)
     return _toString(buffSize, xT("%p"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::ctstring_t &
 Format::toString(std::ctstring_t &a_value)
 {
@@ -171,6 +187,7 @@ Format::toString(std::ctstring_t &a_value)
     return a_value;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::toString(ctchar_t *a_value)
 {
@@ -187,6 +204,7 @@ Format::toString(ctchar_t *a_value)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Format::_toString(
     std::csize_t  &a_buffSize,

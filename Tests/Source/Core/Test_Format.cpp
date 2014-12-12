@@ -35,13 +35,11 @@ Test_Format::unit(
         std::ctstring_t v16 = std::ctstring_t(xT("aaa"));
         ctchar_t *      v17 = xT("bbb");
 
-        Format f;
-
-        m_sRv += f.format(
+        m_sRv += Format::format(
             xT("{}_{}_{}_{}_{}_{}_{}_{}_{}_{}"),
             v1, v2, v3, v4, v5, v6, v7, v8, v9, v10);
 
-        m_sRv += f.format(
+        m_sRv += Format::format(
             xT("_{}_{}_{}_{}_{}_{}_{}"),
             v11, v12, v13, v14, v15, v16, v17);
 
