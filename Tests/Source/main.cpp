@@ -71,6 +71,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     {
         Manager manager(isUseTracing);
 
+    #if 0
         // Test
         manager.add(new Test_Test);
 
@@ -87,7 +88,9 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_AutoReset);
         manager.add(new Test_Char);
         manager.add(new Test_Locale);
+    #endif
         manager.add(new Test_Format);
+    #if 0
         manager.add(new Test_String);
         manager.add(new Test_DateTime);
         manager.add(new Test_Com);
@@ -179,6 +182,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_ProcessInfo);
         manager.add(new Test_Console);
         manager.add(new Test_Shell);
+    #endif
 
         manager.run(allLoops, unitLoops, caseLoops);
     }
