@@ -32,6 +32,16 @@ public:
     xFORMAT_DECLARE(8)
     xFORMAT_DECLARE(9)
     xFORMAT_DECLARE(10)
+    xFORMAT_DECLARE(11)
+    xFORMAT_DECLARE(12)
+    xFORMAT_DECLARE(13)
+    xFORMAT_DECLARE(14)
+    xFORMAT_DECLARE(15)
+    xFORMAT_DECLARE(16)
+    xFORMAT_DECLARE(17)
+    xFORMAT_DECLARE(18)
+    xFORMAT_DECLARE(19)
+    xFORMAT_DECLARE(20)
 
     static
     std::tstring_t    toString(cbool_t &value);
