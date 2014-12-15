@@ -22,14 +22,14 @@ xNAMESPACE_BEGIN2(xlib, core)
                 ss << v
 
     #define xFORMAT_SWITCH_POST_IMPL \
-                sRv += ss.str()
+                sRv.append( ss.str() )
 
 #else
     #define xFORMAT_SWITCH_PRE_IMPL \
                 xNA
 
     #define xFORMAT_CASE_IMPL(v) \
-                sRv += toString(v)
+                sRv.append( toString(v) )
 
     #define xFORMAT_SWITCH_POST_IMPL \
                 xNA
