@@ -37,310 +37,310 @@ xNAMESPACE_BEGIN2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_1(v) \
             switch (v) { \
-            case 0: xFORMAT_CASE_IMPL(a_v1); break; \
+            case 1: xFORMAT_CASE_IMPL(a_v1); break; \
             default:                         break; \
             }
 
 #define xFORMAT_SWITCH_2(v) \
             switch (v) { \
-            case 0: xFORMAT_CASE_IMPL(a_v1); break; \
-            case 1: xFORMAT_CASE_IMPL(a_v2); break; \
+            case 1: xFORMAT_CASE_IMPL(a_v1); break; \
+            case 2: xFORMAT_CASE_IMPL(a_v2); break; \
             default:                         break; \
             }
 
 #define xFORMAT_SWITCH_3(v) \
             switch (v) { \
-            case 0: xFORMAT_CASE_IMPL(a_v1); break; \
-            case 1: xFORMAT_CASE_IMPL(a_v2); break; \
-            case 2: xFORMAT_CASE_IMPL(a_v3); break; \
+            case 1: xFORMAT_CASE_IMPL(a_v1); break; \
+            case 2: xFORMAT_CASE_IMPL(a_v2); break; \
+            case 3: xFORMAT_CASE_IMPL(a_v3); break; \
             default:                         break; \
             }
 
 #define xFORMAT_SWITCH_4(v) \
             switch (v) { \
-            case 0: xFORMAT_CASE_IMPL(a_v1); break; \
-            case 1: xFORMAT_CASE_IMPL(a_v2); break; \
-            case 2: xFORMAT_CASE_IMPL(a_v3); break; \
-            case 3: xFORMAT_CASE_IMPL(a_v4); break; \
+            case 1: xFORMAT_CASE_IMPL(a_v1); break; \
+            case 2: xFORMAT_CASE_IMPL(a_v2); break; \
+            case 3: xFORMAT_CASE_IMPL(a_v3); break; \
+            case 4: xFORMAT_CASE_IMPL(a_v4); break; \
             default:                         break; \
             }
 
 #define xFORMAT_SWITCH_5(v) \
             switch (v) { \
-            case 0: xFORMAT_CASE_IMPL(a_v1); break; \
-            case 1: xFORMAT_CASE_IMPL(a_v2); break; \
-            case 2: xFORMAT_CASE_IMPL(a_v3); break; \
-            case 3: xFORMAT_CASE_IMPL(a_v4); break; \
-            case 4: xFORMAT_CASE_IMPL(a_v5); break; \
+            case 1: xFORMAT_CASE_IMPL(a_v1); break; \
+            case 2: xFORMAT_CASE_IMPL(a_v2); break; \
+            case 3: xFORMAT_CASE_IMPL(a_v3); break; \
+            case 4: xFORMAT_CASE_IMPL(a_v4); break; \
+            case 5: xFORMAT_CASE_IMPL(a_v5); break; \
             default:                         break; \
             }
 
 #define xFORMAT_SWITCH_6(v) \
             switch (v) { \
-            case 0: xFORMAT_CASE_IMPL(a_v1); break; \
-            case 1: xFORMAT_CASE_IMPL(a_v2); break; \
-            case 2: xFORMAT_CASE_IMPL(a_v3); break; \
-            case 3: xFORMAT_CASE_IMPL(a_v4); break; \
-            case 4: xFORMAT_CASE_IMPL(a_v5); break; \
-            case 5: xFORMAT_CASE_IMPL(a_v6); break; \
+            case 1: xFORMAT_CASE_IMPL(a_v1); break; \
+            case 2: xFORMAT_CASE_IMPL(a_v2); break; \
+            case 3: xFORMAT_CASE_IMPL(a_v3); break; \
+            case 4: xFORMAT_CASE_IMPL(a_v4); break; \
+            case 5: xFORMAT_CASE_IMPL(a_v5); break; \
+            case 6: xFORMAT_CASE_IMPL(a_v6); break; \
             default:                         break; \
             }
 
 #define xFORMAT_SWITCH_7(v) \
             switch (v) { \
-            case 0: xFORMAT_CASE_IMPL(a_v1); break; \
-            case 1: xFORMAT_CASE_IMPL(a_v2); break; \
-            case 2: xFORMAT_CASE_IMPL(a_v3); break; \
-            case 3: xFORMAT_CASE_IMPL(a_v4); break; \
-            case 4: xFORMAT_CASE_IMPL(a_v5); break; \
-            case 5: xFORMAT_CASE_IMPL(a_v6); break; \
-            case 6: xFORMAT_CASE_IMPL(a_v7); break; \
+            case 1: xFORMAT_CASE_IMPL(a_v1); break; \
+            case 2: xFORMAT_CASE_IMPL(a_v2); break; \
+            case 3: xFORMAT_CASE_IMPL(a_v3); break; \
+            case 4: xFORMAT_CASE_IMPL(a_v4); break; \
+            case 5: xFORMAT_CASE_IMPL(a_v5); break; \
+            case 6: xFORMAT_CASE_IMPL(a_v6); break; \
+            case 7: xFORMAT_CASE_IMPL(a_v7); break; \
             default:                         break; \
             }
 
 #define xFORMAT_SWITCH_8(v) \
             switch (v) { \
-            case 0: xFORMAT_CASE_IMPL(a_v1); break; \
-            case 1: xFORMAT_CASE_IMPL(a_v2); break; \
-            case 2: xFORMAT_CASE_IMPL(a_v3); break; \
-            case 3: xFORMAT_CASE_IMPL(a_v4); break; \
-            case 4: xFORMAT_CASE_IMPL(a_v5); break; \
-            case 5: xFORMAT_CASE_IMPL(a_v6); break; \
-            case 6: xFORMAT_CASE_IMPL(a_v7); break; \
-            case 7: xFORMAT_CASE_IMPL(a_v8); break; \
+            case 1: xFORMAT_CASE_IMPL(a_v1); break; \
+            case 2: xFORMAT_CASE_IMPL(a_v2); break; \
+            case 3: xFORMAT_CASE_IMPL(a_v3); break; \
+            case 4: xFORMAT_CASE_IMPL(a_v4); break; \
+            case 5: xFORMAT_CASE_IMPL(a_v5); break; \
+            case 6: xFORMAT_CASE_IMPL(a_v6); break; \
+            case 7: xFORMAT_CASE_IMPL(a_v7); break; \
+            case 8: xFORMAT_CASE_IMPL(a_v8); break; \
             default:                         break; \
             }
 
 #define xFORMAT_SWITCH_9(v) \
             switch (v) { \
-            case 0: xFORMAT_CASE_IMPL(a_v1); break; \
-            case 1: xFORMAT_CASE_IMPL(a_v2); break; \
-            case 2: xFORMAT_CASE_IMPL(a_v3); break; \
-            case 3: xFORMAT_CASE_IMPL(a_v4); break; \
-            case 4: xFORMAT_CASE_IMPL(a_v5); break; \
-            case 5: xFORMAT_CASE_IMPL(a_v6); break; \
-            case 6: xFORMAT_CASE_IMPL(a_v7); break; \
-            case 7: xFORMAT_CASE_IMPL(a_v8); break; \
-            case 8: xFORMAT_CASE_IMPL(a_v9); break; \
+            case 1: xFORMAT_CASE_IMPL(a_v1); break; \
+            case 2: xFORMAT_CASE_IMPL(a_v2); break; \
+            case 3: xFORMAT_CASE_IMPL(a_v3); break; \
+            case 4: xFORMAT_CASE_IMPL(a_v4); break; \
+            case 5: xFORMAT_CASE_IMPL(a_v5); break; \
+            case 6: xFORMAT_CASE_IMPL(a_v6); break; \
+            case 7: xFORMAT_CASE_IMPL(a_v7); break; \
+            case 8: xFORMAT_CASE_IMPL(a_v8); break; \
+            case 9: xFORMAT_CASE_IMPL(a_v9); break; \
             default:                         break; \
             }
 
 #define xFORMAT_SWITCH_10(v) \
             switch (v) { \
-            case 0:  xFORMAT_CASE_IMPL(a_v1);  break; \
-            case 1:  xFORMAT_CASE_IMPL(a_v2);  break; \
-            case 2:  xFORMAT_CASE_IMPL(a_v3);  break; \
-            case 3:  xFORMAT_CASE_IMPL(a_v4);  break; \
-            case 4:  xFORMAT_CASE_IMPL(a_v5);  break; \
-            case 5:  xFORMAT_CASE_IMPL(a_v6);  break; \
-            case 6:  xFORMAT_CASE_IMPL(a_v7);  break; \
-            case 7:  xFORMAT_CASE_IMPL(a_v8);  break; \
-            case 8:  xFORMAT_CASE_IMPL(a_v9);  break; \
-            case 9:  xFORMAT_CASE_IMPL(a_v10); break; \
+            case 1:  xFORMAT_CASE_IMPL(a_v1);  break; \
+            case 2:  xFORMAT_CASE_IMPL(a_v2);  break; \
+            case 3:  xFORMAT_CASE_IMPL(a_v3);  break; \
+            case 4:  xFORMAT_CASE_IMPL(a_v4);  break; \
+            case 5:  xFORMAT_CASE_IMPL(a_v5);  break; \
+            case 6:  xFORMAT_CASE_IMPL(a_v6);  break; \
+            case 7:  xFORMAT_CASE_IMPL(a_v7);  break; \
+            case 8:  xFORMAT_CASE_IMPL(a_v8);  break; \
+            case 9:  xFORMAT_CASE_IMPL(a_v9);  break; \
+            case 10: xFORMAT_CASE_IMPL(a_v10); break; \
             default:                           break; \
             }
 
 #define xFORMAT_SWITCH_11(v) \
             switch (v) { \
-            case 0:  xFORMAT_CASE_IMPL(a_v1);  break; \
-            case 1:  xFORMAT_CASE_IMPL(a_v2);  break; \
-            case 2:  xFORMAT_CASE_IMPL(a_v3);  break; \
-            case 3:  xFORMAT_CASE_IMPL(a_v4);  break; \
-            case 4:  xFORMAT_CASE_IMPL(a_v5);  break; \
-            case 5:  xFORMAT_CASE_IMPL(a_v6);  break; \
-            case 6:  xFORMAT_CASE_IMPL(a_v7);  break; \
-            case 7:  xFORMAT_CASE_IMPL(a_v8);  break; \
-            case 8:  xFORMAT_CASE_IMPL(a_v9);  break; \
-            case 9:  xFORMAT_CASE_IMPL(a_v10); break; \
-            case 10: xFORMAT_CASE_IMPL(a_v11); break; \
+            case 1:  xFORMAT_CASE_IMPL(a_v1);  break; \
+            case 2:  xFORMAT_CASE_IMPL(a_v2);  break; \
+            case 3:  xFORMAT_CASE_IMPL(a_v3);  break; \
+            case 4:  xFORMAT_CASE_IMPL(a_v4);  break; \
+            case 5:  xFORMAT_CASE_IMPL(a_v5);  break; \
+            case 6:  xFORMAT_CASE_IMPL(a_v6);  break; \
+            case 7:  xFORMAT_CASE_IMPL(a_v7);  break; \
+            case 8:  xFORMAT_CASE_IMPL(a_v8);  break; \
+            case 9:  xFORMAT_CASE_IMPL(a_v9);  break; \
+            case 10: xFORMAT_CASE_IMPL(a_v10); break; \
+            case 11: xFORMAT_CASE_IMPL(a_v11); break; \
             default:                           break; \
             }
 
 #define xFORMAT_SWITCH_12(v) \
             switch (v) { \
-            case 0:  xFORMAT_CASE_IMPL(a_v1);  break; \
-            case 1:  xFORMAT_CASE_IMPL(a_v2);  break; \
-            case 2:  xFORMAT_CASE_IMPL(a_v3);  break; \
-            case 3:  xFORMAT_CASE_IMPL(a_v4);  break; \
-            case 4:  xFORMAT_CASE_IMPL(a_v5);  break; \
-            case 5:  xFORMAT_CASE_IMPL(a_v6);  break; \
-            case 6:  xFORMAT_CASE_IMPL(a_v7);  break; \
-            case 7:  xFORMAT_CASE_IMPL(a_v8);  break; \
-            case 8:  xFORMAT_CASE_IMPL(a_v9);  break; \
-            case 9:  xFORMAT_CASE_IMPL(a_v10); break; \
-            case 10: xFORMAT_CASE_IMPL(a_v11); break; \
-            case 11: xFORMAT_CASE_IMPL(a_v12); break; \
+            case 1:  xFORMAT_CASE_IMPL(a_v1);  break; \
+            case 2:  xFORMAT_CASE_IMPL(a_v2);  break; \
+            case 3:  xFORMAT_CASE_IMPL(a_v3);  break; \
+            case 4:  xFORMAT_CASE_IMPL(a_v4);  break; \
+            case 5:  xFORMAT_CASE_IMPL(a_v5);  break; \
+            case 6:  xFORMAT_CASE_IMPL(a_v6);  break; \
+            case 7:  xFORMAT_CASE_IMPL(a_v7);  break; \
+            case 8:  xFORMAT_CASE_IMPL(a_v8);  break; \
+            case 9:  xFORMAT_CASE_IMPL(a_v9);  break; \
+            case 10: xFORMAT_CASE_IMPL(a_v10); break; \
+            case 11: xFORMAT_CASE_IMPL(a_v11); break; \
+            case 12: xFORMAT_CASE_IMPL(a_v12); break; \
             default:                           break; \
             }
 
 #define xFORMAT_SWITCH_13(v) \
             switch (v) { \
-            case 0:  xFORMAT_CASE_IMPL(a_v1);  break; \
-            case 1:  xFORMAT_CASE_IMPL(a_v2);  break; \
-            case 2:  xFORMAT_CASE_IMPL(a_v3);  break; \
-            case 3:  xFORMAT_CASE_IMPL(a_v4);  break; \
-            case 4:  xFORMAT_CASE_IMPL(a_v5);  break; \
-            case 5:  xFORMAT_CASE_IMPL(a_v6);  break; \
-            case 6:  xFORMAT_CASE_IMPL(a_v7);  break; \
-            case 7:  xFORMAT_CASE_IMPL(a_v8);  break; \
-            case 8:  xFORMAT_CASE_IMPL(a_v9);  break; \
-            case 9:  xFORMAT_CASE_IMPL(a_v10); break; \
-            case 10: xFORMAT_CASE_IMPL(a_v11); break; \
-            case 11: xFORMAT_CASE_IMPL(a_v12); break; \
-            case 12: xFORMAT_CASE_IMPL(a_v13); break; \
+            case 1:  xFORMAT_CASE_IMPL(a_v1);  break; \
+            case 2:  xFORMAT_CASE_IMPL(a_v2);  break; \
+            case 3:  xFORMAT_CASE_IMPL(a_v3);  break; \
+            case 4:  xFORMAT_CASE_IMPL(a_v4);  break; \
+            case 5:  xFORMAT_CASE_IMPL(a_v5);  break; \
+            case 6:  xFORMAT_CASE_IMPL(a_v6);  break; \
+            case 7:  xFORMAT_CASE_IMPL(a_v7);  break; \
+            case 8:  xFORMAT_CASE_IMPL(a_v8);  break; \
+            case 9:  xFORMAT_CASE_IMPL(a_v9);  break; \
+            case 10: xFORMAT_CASE_IMPL(a_v10); break; \
+            case 11: xFORMAT_CASE_IMPL(a_v11); break; \
+            case 12: xFORMAT_CASE_IMPL(a_v12); break; \
+            case 13: xFORMAT_CASE_IMPL(a_v13); break; \
             default:                           break; \
             }
 
 #define xFORMAT_SWITCH_14(v) \
             switch (v) { \
-            case 0:  xFORMAT_CASE_IMPL(a_v1);  break; \
-            case 1:  xFORMAT_CASE_IMPL(a_v2);  break; \
-            case 2:  xFORMAT_CASE_IMPL(a_v3);  break; \
-            case 3:  xFORMAT_CASE_IMPL(a_v4);  break; \
-            case 4:  xFORMAT_CASE_IMPL(a_v5);  break; \
-            case 5:  xFORMAT_CASE_IMPL(a_v6);  break; \
-            case 6:  xFORMAT_CASE_IMPL(a_v7);  break; \
-            case 7:  xFORMAT_CASE_IMPL(a_v8);  break; \
-            case 8:  xFORMAT_CASE_IMPL(a_v9);  break; \
-            case 9:  xFORMAT_CASE_IMPL(a_v10); break; \
-            case 10: xFORMAT_CASE_IMPL(a_v11); break; \
-            case 11: xFORMAT_CASE_IMPL(a_v12); break; \
-            case 12: xFORMAT_CASE_IMPL(a_v13); break; \
-            case 13: xFORMAT_CASE_IMPL(a_v14); break; \
+            case 1:  xFORMAT_CASE_IMPL(a_v1);  break; \
+            case 2:  xFORMAT_CASE_IMPL(a_v2);  break; \
+            case 3:  xFORMAT_CASE_IMPL(a_v3);  break; \
+            case 4:  xFORMAT_CASE_IMPL(a_v4);  break; \
+            case 5:  xFORMAT_CASE_IMPL(a_v5);  break; \
+            case 6:  xFORMAT_CASE_IMPL(a_v6);  break; \
+            case 7:  xFORMAT_CASE_IMPL(a_v7);  break; \
+            case 8:  xFORMAT_CASE_IMPL(a_v8);  break; \
+            case 9:  xFORMAT_CASE_IMPL(a_v9);  break; \
+            case 10: xFORMAT_CASE_IMPL(a_v10); break; \
+            case 11: xFORMAT_CASE_IMPL(a_v11); break; \
+            case 12: xFORMAT_CASE_IMPL(a_v12); break; \
+            case 13: xFORMAT_CASE_IMPL(a_v13); break; \
+            case 14: xFORMAT_CASE_IMPL(a_v14); break; \
             default:                           break; \
             }
 
 #define xFORMAT_SWITCH_15(v) \
             switch (v) { \
-            case 0:  xFORMAT_CASE_IMPL(a_v1);  break; \
-            case 1:  xFORMAT_CASE_IMPL(a_v2);  break; \
-            case 2:  xFORMAT_CASE_IMPL(a_v3);  break; \
-            case 3:  xFORMAT_CASE_IMPL(a_v4);  break; \
-            case 4:  xFORMAT_CASE_IMPL(a_v5);  break; \
-            case 5:  xFORMAT_CASE_IMPL(a_v6);  break; \
-            case 6:  xFORMAT_CASE_IMPL(a_v7);  break; \
-            case 7:  xFORMAT_CASE_IMPL(a_v8);  break; \
-            case 8:  xFORMAT_CASE_IMPL(a_v9);  break; \
-            case 9:  xFORMAT_CASE_IMPL(a_v10); break; \
-            case 10: xFORMAT_CASE_IMPL(a_v11); break; \
-            case 11: xFORMAT_CASE_IMPL(a_v12); break; \
-            case 12: xFORMAT_CASE_IMPL(a_v13); break; \
-            case 13: xFORMAT_CASE_IMPL(a_v14); break; \
-            case 14: xFORMAT_CASE_IMPL(a_v15); break; \
+            case 1:  xFORMAT_CASE_IMPL(a_v1);  break; \
+            case 2:  xFORMAT_CASE_IMPL(a_v2);  break; \
+            case 3:  xFORMAT_CASE_IMPL(a_v3);  break; \
+            case 4:  xFORMAT_CASE_IMPL(a_v4);  break; \
+            case 5:  xFORMAT_CASE_IMPL(a_v5);  break; \
+            case 6:  xFORMAT_CASE_IMPL(a_v6);  break; \
+            case 7:  xFORMAT_CASE_IMPL(a_v7);  break; \
+            case 8:  xFORMAT_CASE_IMPL(a_v8);  break; \
+            case 9:  xFORMAT_CASE_IMPL(a_v9);  break; \
+            case 10: xFORMAT_CASE_IMPL(a_v10); break; \
+            case 11: xFORMAT_CASE_IMPL(a_v11); break; \
+            case 12: xFORMAT_CASE_IMPL(a_v12); break; \
+            case 13: xFORMAT_CASE_IMPL(a_v13); break; \
+            case 14: xFORMAT_CASE_IMPL(a_v14); break; \
+            case 15: xFORMAT_CASE_IMPL(a_v15); break; \
             default:                           break; \
             }
 
 #define xFORMAT_SWITCH_16(v) \
             switch (v) { \
-            case 0:  xFORMAT_CASE_IMPL(a_v1);  break; \
-            case 1:  xFORMAT_CASE_IMPL(a_v2);  break; \
-            case 2:  xFORMAT_CASE_IMPL(a_v3);  break; \
-            case 3:  xFORMAT_CASE_IMPL(a_v4);  break; \
-            case 4:  xFORMAT_CASE_IMPL(a_v5);  break; \
-            case 5:  xFORMAT_CASE_IMPL(a_v6);  break; \
-            case 6:  xFORMAT_CASE_IMPL(a_v7);  break; \
-            case 7:  xFORMAT_CASE_IMPL(a_v8);  break; \
-            case 8:  xFORMAT_CASE_IMPL(a_v9);  break; \
-            case 9:  xFORMAT_CASE_IMPL(a_v10); break; \
-            case 10: xFORMAT_CASE_IMPL(a_v11); break; \
-            case 11: xFORMAT_CASE_IMPL(a_v12); break; \
-            case 12: xFORMAT_CASE_IMPL(a_v13); break; \
-            case 13: xFORMAT_CASE_IMPL(a_v14); break; \
-            case 14: xFORMAT_CASE_IMPL(a_v15); break; \
-            case 15: xFORMAT_CASE_IMPL(a_v16); break; \
+            case 1:  xFORMAT_CASE_IMPL(a_v1);  break; \
+            case 2:  xFORMAT_CASE_IMPL(a_v2);  break; \
+            case 3:  xFORMAT_CASE_IMPL(a_v3);  break; \
+            case 4:  xFORMAT_CASE_IMPL(a_v4);  break; \
+            case 5:  xFORMAT_CASE_IMPL(a_v5);  break; \
+            case 6:  xFORMAT_CASE_IMPL(a_v6);  break; \
+            case 7:  xFORMAT_CASE_IMPL(a_v7);  break; \
+            case 8:  xFORMAT_CASE_IMPL(a_v8);  break; \
+            case 9:  xFORMAT_CASE_IMPL(a_v9);  break; \
+            case 10: xFORMAT_CASE_IMPL(a_v10); break; \
+            case 11: xFORMAT_CASE_IMPL(a_v11); break; \
+            case 12: xFORMAT_CASE_IMPL(a_v12); break; \
+            case 13: xFORMAT_CASE_IMPL(a_v13); break; \
+            case 14: xFORMAT_CASE_IMPL(a_v14); break; \
+            case 15: xFORMAT_CASE_IMPL(a_v15); break; \
+            case 16: xFORMAT_CASE_IMPL(a_v16); break; \
             default:                           break; \
             }
 #define xFORMAT_SWITCH_17(v) \
             switch (v) { \
-            case 0:  xFORMAT_CASE_IMPL(a_v1);  break; \
-            case 1:  xFORMAT_CASE_IMPL(a_v2);  break; \
-            case 2:  xFORMAT_CASE_IMPL(a_v3);  break; \
-            case 3:  xFORMAT_CASE_IMPL(a_v4);  break; \
-            case 4:  xFORMAT_CASE_IMPL(a_v5);  break; \
-            case 5:  xFORMAT_CASE_IMPL(a_v6);  break; \
-            case 6:  xFORMAT_CASE_IMPL(a_v7);  break; \
-            case 7:  xFORMAT_CASE_IMPL(a_v8);  break; \
-            case 8:  xFORMAT_CASE_IMPL(a_v9);  break; \
-            case 9:  xFORMAT_CASE_IMPL(a_v10); break; \
-            case 10: xFORMAT_CASE_IMPL(a_v11); break; \
-            case 11: xFORMAT_CASE_IMPL(a_v12); break; \
-            case 12: xFORMAT_CASE_IMPL(a_v13); break; \
-            case 13: xFORMAT_CASE_IMPL(a_v14); break; \
-            case 14: xFORMAT_CASE_IMPL(a_v15); break; \
-            case 15: xFORMAT_CASE_IMPL(a_v16); break; \
-            case 16: xFORMAT_CASE_IMPL(a_v17); break; \
+            case 1:  xFORMAT_CASE_IMPL(a_v1);  break; \
+            case 2:  xFORMAT_CASE_IMPL(a_v2);  break; \
+            case 3:  xFORMAT_CASE_IMPL(a_v3);  break; \
+            case 4:  xFORMAT_CASE_IMPL(a_v4);  break; \
+            case 5:  xFORMAT_CASE_IMPL(a_v5);  break; \
+            case 6:  xFORMAT_CASE_IMPL(a_v6);  break; \
+            case 7:  xFORMAT_CASE_IMPL(a_v7);  break; \
+            case 8:  xFORMAT_CASE_IMPL(a_v8);  break; \
+            case 9:  xFORMAT_CASE_IMPL(a_v9);  break; \
+            case 10: xFORMAT_CASE_IMPL(a_v10); break; \
+            case 11: xFORMAT_CASE_IMPL(a_v11); break; \
+            case 12: xFORMAT_CASE_IMPL(a_v12); break; \
+            case 13: xFORMAT_CASE_IMPL(a_v13); break; \
+            case 14: xFORMAT_CASE_IMPL(a_v14); break; \
+            case 15: xFORMAT_CASE_IMPL(a_v15); break; \
+            case 16: xFORMAT_CASE_IMPL(a_v16); break; \
+            case 17: xFORMAT_CASE_IMPL(a_v17); break; \
             default:                           break; \
             }
 
 #define xFORMAT_SWITCH_18(v) \
             switch (v) { \
-            case 0:  xFORMAT_CASE_IMPL(a_v1);  break; \
-            case 1:  xFORMAT_CASE_IMPL(a_v2);  break; \
-            case 2:  xFORMAT_CASE_IMPL(a_v3);  break; \
-            case 3:  xFORMAT_CASE_IMPL(a_v4);  break; \
-            case 4:  xFORMAT_CASE_IMPL(a_v5);  break; \
-            case 5:  xFORMAT_CASE_IMPL(a_v6);  break; \
-            case 6:  xFORMAT_CASE_IMPL(a_v7);  break; \
-            case 7:  xFORMAT_CASE_IMPL(a_v8);  break; \
-            case 8:  xFORMAT_CASE_IMPL(a_v9);  break; \
-            case 9:  xFORMAT_CASE_IMPL(a_v10); break; \
-            case 10: xFORMAT_CASE_IMPL(a_v11); break; \
-            case 11: xFORMAT_CASE_IMPL(a_v12); break; \
-            case 12: xFORMAT_CASE_IMPL(a_v13); break; \
-            case 13: xFORMAT_CASE_IMPL(a_v14); break; \
-            case 14: xFORMAT_CASE_IMPL(a_v15); break; \
-            case 15: xFORMAT_CASE_IMPL(a_v16); break; \
-            case 16: xFORMAT_CASE_IMPL(a_v17); break; \
-            case 17: xFORMAT_CASE_IMPL(a_v18); break; \
+            case 1:  xFORMAT_CASE_IMPL(a_v1);  break; \
+            case 2:  xFORMAT_CASE_IMPL(a_v2);  break; \
+            case 3:  xFORMAT_CASE_IMPL(a_v3);  break; \
+            case 4:  xFORMAT_CASE_IMPL(a_v4);  break; \
+            case 5:  xFORMAT_CASE_IMPL(a_v5);  break; \
+            case 6:  xFORMAT_CASE_IMPL(a_v6);  break; \
+            case 7:  xFORMAT_CASE_IMPL(a_v7);  break; \
+            case 8:  xFORMAT_CASE_IMPL(a_v8);  break; \
+            case 9:  xFORMAT_CASE_IMPL(a_v9);  break; \
+            case 10: xFORMAT_CASE_IMPL(a_v10); break; \
+            case 11: xFORMAT_CASE_IMPL(a_v11); break; \
+            case 12: xFORMAT_CASE_IMPL(a_v12); break; \
+            case 13: xFORMAT_CASE_IMPL(a_v13); break; \
+            case 14: xFORMAT_CASE_IMPL(a_v14); break; \
+            case 15: xFORMAT_CASE_IMPL(a_v15); break; \
+            case 16: xFORMAT_CASE_IMPL(a_v16); break; \
+            case 17: xFORMAT_CASE_IMPL(a_v17); break; \
+            case 18: xFORMAT_CASE_IMPL(a_v18); break; \
             default:                           break; \
             }
 
 #define xFORMAT_SWITCH_19(v) \
             switch (v) { \
-            case 0:  xFORMAT_CASE_IMPL(a_v1);  break; \
-            case 1:  xFORMAT_CASE_IMPL(a_v2);  break; \
-            case 2:  xFORMAT_CASE_IMPL(a_v3);  break; \
-            case 3:  xFORMAT_CASE_IMPL(a_v4);  break; \
-            case 4:  xFORMAT_CASE_IMPL(a_v5);  break; \
-            case 5:  xFORMAT_CASE_IMPL(a_v6);  break; \
-            case 6:  xFORMAT_CASE_IMPL(a_v7);  break; \
-            case 7:  xFORMAT_CASE_IMPL(a_v8);  break; \
-            case 8:  xFORMAT_CASE_IMPL(a_v9);  break; \
-            case 9:  xFORMAT_CASE_IMPL(a_v10); break; \
-            case 10: xFORMAT_CASE_IMPL(a_v11); break; \
-            case 11: xFORMAT_CASE_IMPL(a_v12); break; \
-            case 12: xFORMAT_CASE_IMPL(a_v13); break; \
-            case 13: xFORMAT_CASE_IMPL(a_v14); break; \
-            case 14: xFORMAT_CASE_IMPL(a_v15); break; \
-            case 15: xFORMAT_CASE_IMPL(a_v16); break; \
-            case 16: xFORMAT_CASE_IMPL(a_v17); break; \
-            case 17: xFORMAT_CASE_IMPL(a_v18); break; \
-            case 18: xFORMAT_CASE_IMPL(a_v19); break; \
+            case 1:  xFORMAT_CASE_IMPL(a_v1);  break; \
+            case 2:  xFORMAT_CASE_IMPL(a_v2);  break; \
+            case 3:  xFORMAT_CASE_IMPL(a_v3);  break; \
+            case 4:  xFORMAT_CASE_IMPL(a_v4);  break; \
+            case 5:  xFORMAT_CASE_IMPL(a_v5);  break; \
+            case 6:  xFORMAT_CASE_IMPL(a_v6);  break; \
+            case 7:  xFORMAT_CASE_IMPL(a_v7);  break; \
+            case 8:  xFORMAT_CASE_IMPL(a_v8);  break; \
+            case 9:  xFORMAT_CASE_IMPL(a_v9);  break; \
+            case 10: xFORMAT_CASE_IMPL(a_v10); break; \
+            case 11: xFORMAT_CASE_IMPL(a_v11); break; \
+            case 12: xFORMAT_CASE_IMPL(a_v12); break; \
+            case 13: xFORMAT_CASE_IMPL(a_v13); break; \
+            case 14: xFORMAT_CASE_IMPL(a_v14); break; \
+            case 15: xFORMAT_CASE_IMPL(a_v15); break; \
+            case 16: xFORMAT_CASE_IMPL(a_v16); break; \
+            case 17: xFORMAT_CASE_IMPL(a_v17); break; \
+            case 18: xFORMAT_CASE_IMPL(a_v18); break; \
+            case 19: xFORMAT_CASE_IMPL(a_v19); break; \
             default:                           break; \
             }
 
 #define xFORMAT_SWITCH_20(v) \
             switch (v) { \
-            case 0:  xFORMAT_CASE_IMPL(a_v1);  break; \
-            case 1:  xFORMAT_CASE_IMPL(a_v2);  break; \
-            case 2:  xFORMAT_CASE_IMPL(a_v3);  break; \
-            case 3:  xFORMAT_CASE_IMPL(a_v4);  break; \
-            case 4:  xFORMAT_CASE_IMPL(a_v5);  break; \
-            case 5:  xFORMAT_CASE_IMPL(a_v6);  break; \
-            case 6:  xFORMAT_CASE_IMPL(a_v7);  break; \
-            case 7:  xFORMAT_CASE_IMPL(a_v8);  break; \
-            case 8:  xFORMAT_CASE_IMPL(a_v9);  break; \
-            case 9:  xFORMAT_CASE_IMPL(a_v10); break; \
-            case 10: xFORMAT_CASE_IMPL(a_v11); break; \
-            case 11: xFORMAT_CASE_IMPL(a_v12); break; \
-            case 12: xFORMAT_CASE_IMPL(a_v13); break; \
-            case 13: xFORMAT_CASE_IMPL(a_v14); break; \
-            case 14: xFORMAT_CASE_IMPL(a_v15); break; \
-            case 15: xFORMAT_CASE_IMPL(a_v16); break; \
-            case 16: xFORMAT_CASE_IMPL(a_v17); break; \
-            case 17: xFORMAT_CASE_IMPL(a_v18); break; \
-            case 18: xFORMAT_CASE_IMPL(a_v19); break; \
-            case 19: xFORMAT_CASE_IMPL(a_v20); break; \
+            case 1:  xFORMAT_CASE_IMPL(a_v1);  break; \
+            case 2:  xFORMAT_CASE_IMPL(a_v2);  break; \
+            case 3:  xFORMAT_CASE_IMPL(a_v3);  break; \
+            case 4:  xFORMAT_CASE_IMPL(a_v4);  break; \
+            case 5:  xFORMAT_CASE_IMPL(a_v5);  break; \
+            case 6:  xFORMAT_CASE_IMPL(a_v6);  break; \
+            case 7:  xFORMAT_CASE_IMPL(a_v7);  break; \
+            case 8:  xFORMAT_CASE_IMPL(a_v8);  break; \
+            case 9:  xFORMAT_CASE_IMPL(a_v9);  break; \
+            case 10: xFORMAT_CASE_IMPL(a_v10); break; \
+            case 11: xFORMAT_CASE_IMPL(a_v11); break; \
+            case 12: xFORMAT_CASE_IMPL(a_v12); break; \
+            case 13: xFORMAT_CASE_IMPL(a_v13); break; \
+            case 14: xFORMAT_CASE_IMPL(a_v14); break; \
+            case 15: xFORMAT_CASE_IMPL(a_v15); break; \
+            case 16: xFORMAT_CASE_IMPL(a_v16); break; \
+            case 17: xFORMAT_CASE_IMPL(a_v17); break; \
+            case 18: xFORMAT_CASE_IMPL(a_v18); break; \
+            case 19: xFORMAT_CASE_IMPL(a_v19); break; \
+            case 20: xFORMAT_CASE_IMPL(a_v20); break; \
             default:                           break; \
             }
 //-------------------------------------------------------------------------------------------------
@@ -356,7 +356,7 @@ xNAMESPACE_BEGIN2(xlib, core)
         std::csize_t    delimiter_size = delimiter.size(); \
         std::size_t     posPrev        = 0U; \
         \
-        for (std::size_t i = 0; ; ++ i) { \
+        for (std::size_t i = 1; ; ++ i) { \
             std::csize_t pos = a_format.find(delimiter, posPrev); \
             xCHECK_DO(pos == std::tstring_t::npos, break); \
             \
