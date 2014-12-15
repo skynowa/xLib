@@ -14,9 +14,9 @@ xNAMESPACE_BEGIN2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #if xFORMAT_MODE
     #define xFORMAT_SWITCH_PRE_IMPL \
-            static std::tstringstream_t ss; \
-            ss.str( std::tstring_t() ); \
-            ss.clear()
+                static std::tstringstream_t ss; \
+                ss.str( std::tstring_t() ); \
+                ss.clear()
 
     #define xFORMAT_CASE_IMPL(v) \
                 ss << v
