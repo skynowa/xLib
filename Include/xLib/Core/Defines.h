@@ -485,38 +485,68 @@
 //-------------------------------------------------------------------------------------------------
 ///@name Variable arguments utils
 ///@{
-#define xVA_TYPES_1                class T1
-#define xVA_TYPES_2   xVA_TYPES_1, class T2
-#define xVA_TYPES_3   xVA_TYPES_2, class T3
-#define xVA_TYPES_4   xVA_TYPES_3, class T4
-#define xVA_TYPES_5   xVA_TYPES_4, class T5
-#define xVA_TYPES_6   xVA_TYPES_5, class T6
-#define xVA_TYPES_7   xVA_TYPES_6, class T7
-#define xVA_TYPES_8   xVA_TYPES_7, class T8
-#define xVA_TYPES_9   xVA_TYPES_8, class T9
-#define xVA_TYPES_10  xVA_TYPES_9, class T10
+#define xVA_TYPES_1                 class T1
+#define xVA_TYPES_2   xVA_TYPES_1,  class T2
+#define xVA_TYPES_3   xVA_TYPES_2,  class T3
+#define xVA_TYPES_4   xVA_TYPES_3,  class T4
+#define xVA_TYPES_5   xVA_TYPES_4,  class T5
+#define xVA_TYPES_6   xVA_TYPES_5,  class T6
+#define xVA_TYPES_7   xVA_TYPES_6,  class T7
+#define xVA_TYPES_8   xVA_TYPES_7,  class T8
+#define xVA_TYPES_9   xVA_TYPES_8,  class T9
+#define xVA_TYPES_10  xVA_TYPES_9,  class T10
+#define xVA_TYPES_11  xVA_TYPES_10, class T11
+#define xVA_TYPES_12  xVA_TYPES_11, class T12
+#define xVA_TYPES_13  xVA_TYPES_12, class T13
+#define xVA_TYPES_14  xVA_TYPES_13, class T14
+#define xVA_TYPES_15  xVA_TYPES_14, class T15
+#define xVA_TYPES_16  xVA_TYPES_15, class T16
+#define xVA_TYPES_17  xVA_TYPES_16, class T17
+#define xVA_TYPES_18  xVA_TYPES_17, class T18
+#define xVA_TYPES_19  xVA_TYPES_18, class T19
+#define xVA_TYPES_20  xVA_TYPES_19, class T20
 
-#define xVA_VARS_1                const T1  &a_v1
-#define xVA_VARS_2    xVA_VARS_1, const T2  &a_v2
-#define xVA_VARS_3    xVA_VARS_2, const T3  &a_v3
-#define xVA_VARS_4    xVA_VARS_3, const T4  &a_v4
-#define xVA_VARS_5    xVA_VARS_4, const T5  &a_v5
-#define xVA_VARS_6    xVA_VARS_5, const T6  &a_v6
-#define xVA_VARS_7    xVA_VARS_6, const T7  &a_v7
-#define xVA_VARS_8    xVA_VARS_7, const T8  &a_v8
-#define xVA_VARS_9    xVA_VARS_8, const T9  &a_v9
-#define xVA_VARS_10   xVA_VARS_9, const T10 &a_v10
+#define xVA_VARS_1                 const T1  &a_v1
+#define xVA_VARS_2    xVA_VARS_1,  const T2  &a_v2
+#define xVA_VARS_3    xVA_VARS_2,  const T3  &a_v3
+#define xVA_VARS_4    xVA_VARS_3,  const T4  &a_v4
+#define xVA_VARS_5    xVA_VARS_4,  const T5  &a_v5
+#define xVA_VARS_6    xVA_VARS_5,  const T6  &a_v6
+#define xVA_VARS_7    xVA_VARS_6,  const T7  &a_v7
+#define xVA_VARS_8    xVA_VARS_7,  const T8  &a_v8
+#define xVA_VARS_9    xVA_VARS_8,  const T9  &a_v9
+#define xVA_VARS_10   xVA_VARS_9,  const T10 &a_v10
+#define xVA_VARS_11   xVA_VARS_10, const T11 &a_v11
+#define xVA_VARS_12   xVA_VARS_11, const T12 &a_v12
+#define xVA_VARS_13   xVA_VARS_12, const T13 &a_v13
+#define xVA_VARS_14   xVA_VARS_13, const T14 &a_v14
+#define xVA_VARS_15   xVA_VARS_14, const T15 &a_v15
+#define xVA_VARS_16   xVA_VARS_15, const T16 &a_v16
+#define xVA_VARS_17   xVA_VARS_16, const T17 &a_v17
+#define xVA_VARS_18   xVA_VARS_17, const T18 &a_v18
+#define xVA_VARS_19   xVA_VARS_18, const T19 &a_v19
+#define xVA_VARS_20   xVA_VARS_19, const T10 &a_v20
 
-#define xVA_VALUES_1                v1
-#define xVA_VALUES_2  xVA_VALUES_1, v2
-#define xVA_VALUES_3  xVA_VALUES_2, v3
-#define xVA_VALUES_4  xVA_VALUES_3, v4
-#define xVA_VALUES_5  xVA_VALUES_4, v5
-#define xVA_VALUES_6  xVA_VALUES_5, v6
-#define xVA_VALUES_7  xVA_VALUES_6, v7
-#define xVA_VALUES_8  xVA_VALUES_7, v8
-#define xVA_VALUES_9  xVA_VALUES_8, v9
-#define xVA_VALUES_10 xVA_VALUES_9, v10
+#define xVA_VALUES_1                 v1
+#define xVA_VALUES_2  xVA_VALUES_1,  v2
+#define xVA_VALUES_3  xVA_VALUES_2,  v3
+#define xVA_VALUES_4  xVA_VALUES_3,  v4
+#define xVA_VALUES_5  xVA_VALUES_4,  v5
+#define xVA_VALUES_6  xVA_VALUES_5,  v6
+#define xVA_VALUES_7  xVA_VALUES_6,  v7
+#define xVA_VALUES_8  xVA_VALUES_7,  v8
+#define xVA_VALUES_9  xVA_VALUES_8,  v9
+#define xVA_VALUES_10 xVA_VALUES_9,  v10
+#define xVA_VALUES_11 xVA_VALUES_10, v11
+#define xVA_VALUES_12 xVA_VALUES_11, v12
+#define xVA_VALUES_13 xVA_VALUES_12, v13
+#define xVA_VALUES_14 xVA_VALUES_13, v14
+#define xVA_VALUES_15 xVA_VALUES_14, v15
+#define xVA_VALUES_16 xVA_VALUES_15, v16
+#define xVA_VALUES_17 xVA_VALUES_16, v17
+#define xVA_VALUES_18 xVA_VALUES_17, v18
+#define xVA_VALUES_19 xVA_VALUES_18, v19
+#define xVA_VALUES_20 xVA_VALUES_19, v20
 ///@}
 //-------------------------------------------------------------------------------------------------
 ///@name Formattong qualifiers
