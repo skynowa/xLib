@@ -215,11 +215,10 @@ Format::_toString(
 
     va_list args;
     xVA_START(args, a_format);
-
     cint_t writtenSize = xTVSNPRINTF(buff, a_buffSize, a_format, args);
-    xTEST_GR(writtenSize, 0);
-
     xVA_END(args);
+
+    xTEST_GR(writtenSize, 0);
 
     return std::tstring_t(buff, buff + writtenSize);
 }
