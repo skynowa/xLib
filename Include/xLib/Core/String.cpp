@@ -597,8 +597,6 @@ String::format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-#if 1
-
 xINLINE std::tstring_t
 String::formatV(
     ctchar_t *a_format,    ///< string format
@@ -629,56 +627,6 @@ String::formatV(
 
     return buff;
 }
-
-#else
-
-xINLINE std::tstring_t
-String::formatV(
-    ctchar_t a_format,
-    va_list  a_args
-)
-{
-    xTEST_NA(a_format);
-    xTEST_NA(a_args);
-
-    xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
-
-    std::tstring_t buff(64, 0);
-    int_t          writtenSize = - 1;
-
-    // calc size
-    {
-        va_list _args;
-        xVA_COPY(_args, args);
-        writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
-        xVA_END(_args);
-
-        _xVERIFY(writtenSize > - 1);
-        xCHECK_RET(0 >  writtenSize, std::tstring_t());
-        xCHECK_RET(0 == writtenSize, buff);
-    }
-
-    // format
-    if (buff.size() <= static_cast<size_t>( writtenSize )) {
-        buff.resize(writtenSize + 1);
-
-        va_list _args;
-        xVA_COPY(_args, args);
-        writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
-        xVA_END(_args);
-
-        assert(- 1 <  writtenSize);
-        assert(buff.size() == static_cast<size_t>( writtenSize ) + 1);
-        xCHECK_RET(0 >  writtenSize,                                      std::tstring_t());
-        xCHECK_RET(buff.size() != static_cast<size_t>( writtenSize ) + 1, std::tstring_t());
-    }
-
-    buff.resize(writtenSize);
-
-    return buff;
-}
-
-#endif
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
