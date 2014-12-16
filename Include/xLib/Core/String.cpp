@@ -612,10 +612,10 @@ String::formatV(
     int_t          writtenSize = - 1;
 
     for ( ; ; ) {
-        va_list _args;
-        xVA_COPY(_args, a_args);
-        writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
-        xVA_END(_args);
+        va_list args;
+        xVA_COPY(args, a_args);
+        writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, args);
+        xVA_END(args);
 
         _xVERIFY(writtenSize > - 1);
         xCHECK_DO(static_cast<size_t>( writtenSize ) < buff.size(), break);
