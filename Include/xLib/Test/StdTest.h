@@ -1,6 +1,6 @@
 /**
- * \file   StdDebug.h
- * \brief  debug by using C library and STL
+ * \file   StdTest.h
+ * \brief  test, using C library and STL
  */
 
 
