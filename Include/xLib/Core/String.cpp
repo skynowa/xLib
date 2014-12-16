@@ -616,15 +616,13 @@ String::formatV(
     for ( ; ; ) {
         va_list _args;
         xVA_COPY(_args, a_args);
-
-        {
-            writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
-            xCHECK_DO(writtenSize > - 1 && static_cast<size_t>( writtenSize ) < buff.size(), break);
-
-            buff.resize(buff.size() * 2);
-        }
-
+        writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
         xVA_END(_args);
+
+        _xVERIFY(writtenSize > - 1);
+        xCHECK_DO(static_cast<size_t>( writtenSize ) < buff.size(), break);
+
+        buff.resize(buff.size() * 2);
     }
 
     buff.resize(writtenSize);
@@ -636,8 +634,8 @@ String::formatV(
 
 xINLINE std::tstring_t
 String::formatV(
-    LPCTSTR a_format,
-    va_list a_args
+    ctchar_t a_format,
+    va_list  a_args
 )
 {
     xTEST_NA(a_format);
@@ -655,7 +653,7 @@ String::formatV(
         writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
         xVA_END(_args);
 
-        assert(- 1 < writtenSize);
+        _xVERIFY(writtenSize > - 1);
         xCHECK_RET(0 >  writtenSize, std::tstring_t());
         xCHECK_RET(0 == writtenSize, buff);
     }
