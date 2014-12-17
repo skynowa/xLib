@@ -22,6 +22,9 @@ Test_SourceInfo::unit(
         xTEST_EQ(info.lineNum(), 19UL);
         xTEST_EQ(info.funcName().empty(), false);
         xTEST_EQ(info.counter(), 0UL);
+        xTEST_EQ(info.format().empty(), false);
+
+        // Trace() << xSOURCE_INFO.format();
     }
 }
 //-------------------------------------------------------------------------------------------------

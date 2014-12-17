@@ -28,6 +28,8 @@ public:
         ///< function name
     culong_t        &counter() const;
         ///< counter
+    std::tstring_t   format() const;
+        ///< format data
 
 private:
     std::ctstring_t  _filePath; ///< file path
