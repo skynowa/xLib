@@ -60,8 +60,8 @@ SourceInfo::format() const
 {
     std::tstringstream_t ss;
     ss
-        << xT("#") << counter() << xT(" ")
-        << filePath() << xT(":") << lineNum() << xT(", ")
+        << xT("#")      << counter()  << xT(" ")
+        << xT("in ")    << filePath() << xT(":") << lineNum() << xT(", ")
         << xT("func: ") << funcName();
 
     return ss.str();
