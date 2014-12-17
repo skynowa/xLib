@@ -55,5 +55,17 @@ SourceInfo::counter() const
     return _counter;
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE std::tstring_t
+SourceInfo::format() const
+{
+    std::tstringstream_t ss;
+    ss
+        << xT("#") << counter() << xT(" ")
+        << filePath() << xT(":") << lineNum() << xT(", ")
+        << xT("func: ") << funcName();
+
+    return ss.str();
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, debug)
