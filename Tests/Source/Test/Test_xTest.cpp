@@ -86,5 +86,11 @@ Test_Test::unit(
         xTEST_STATIC(false);
     #endif
     }
+
+    xTEST_CASE("xVERIFY", a_caseLoops)
+    {
+        _xVERIFY(true);
+        // _xVERIFY(false);
+    }
 }
 //-------------------------------------------------------------------------------------------------

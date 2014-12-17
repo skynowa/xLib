@@ -44,7 +44,6 @@
 #include <xLib/Db/MySql.h>
 
 // Debug
-#include <xLib/Debug/StdDebug.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/SourceInfo.h>
 #include <xLib/Debug/BuildInfo.h>
@@ -132,3 +131,4 @@
 #include <xLib/Test/Unit.h>
 #include <xLib/Test/Manager.h>
 #include <xLib/Test/Test.h>
+#include <xLib/Test/StdTest.h>

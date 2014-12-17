@@ -7,7 +7,6 @@
 #include <Test/Debug/Test_Debug.h>
 
 #include <xLib/Debug/Debug.h>
-#include <xLib/Debug/StdDebug.h>
 #include <xLib/Log/Trace.h>
 
 
@@ -18,12 +17,6 @@ Test_Debug::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("xVERIFY", a_caseLoops)
-    {
-        _xVERIFY(true);
-        // _xVERIFY(false);
-    }
-
     xTEST_CASE("xCHECK_RET", a_caseLoops)
     {
         // xCHECK_RET(expr, return_expr)

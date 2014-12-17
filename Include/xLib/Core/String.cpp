@@ -22,7 +22,7 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Log/Trace.h>
-#include <xLib/Debug/StdDebug.h>
+#include <xLib/Test/StdTest.h>
 
 #if   xENV_WIN
     #include "Platform/Win/String_win.inl"
