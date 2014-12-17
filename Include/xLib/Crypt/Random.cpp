@@ -37,20 +37,20 @@
 xNAMESPACE_BEGIN2(xlib, crypt)
 
 /**************************************************************************************************
-*    IxSeedPolicy
+*    ISeedPolicy
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 xINLINE
-IxSeedPolicy::IxSeedPolicy() :
+ISeedPolicy::ISeedPolicy() :
     _seed(0U)
 {
     _seed = _seedTimeBased();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE uint_t
-IxSeedPolicy::_seedTimeBased() const
+ISeedPolicy::_seedTimeBased() const
 {
     timeval tv = {0, 0};
     int_t iRv = ::gettimeofday(&tv, xPTR_NULL);
@@ -61,7 +61,7 @@ IxSeedPolicy::_seedTimeBased() const
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE long_t
-IxSeedPolicy::valueMax()
+ISeedPolicy::valueMax()
 {
    /**
     * FAQ: RAND_MAX
@@ -84,7 +84,7 @@ IxSeedPolicy::valueMax()
 //-------------------------------------------------------------------------------------------------
 xINLINE
 StdSeedPolicy::StdSeedPolicy() :
-    IxSeedPolicy()
+    ISeedPolicy()
 {
     _construct_impl();
 }
@@ -112,7 +112,7 @@ StdSeedPolicy::next()
 //-------------------------------------------------------------------------------------------------
 xINLINE
 NativeSeedPolicy::NativeSeedPolicy() :
-    IxSeedPolicy()
+    ISeedPolicy()
 {
     _construct_impl();
 }

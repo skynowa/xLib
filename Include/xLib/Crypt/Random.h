@@ -10,13 +10,13 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, crypt)
 
-class xNO_VTABLE IxSeedPolicy
+class xNO_VTABLE ISeedPolicy
     /// seed policy interface
 {
 public:
-                   IxSeedPolicy();
+                   ISeedPolicy();
         ///< constructor
-    virtual       ~IxSeedPolicy() {};
+    virtual       ~ISeedPolicy() {};
         ///< destructor
 
     virtual long_t next() = 0;
@@ -33,11 +33,11 @@ private:
     uint_t         _seedTimeBased() const;
         ///< get time based seed
 
-    xNO_COPY_ASSIGN(IxSeedPolicy)
+    xNO_COPY_ASSIGN(ISeedPolicy)
 };
 //-------------------------------------------------------------------------------------------------
 class StdSeedPolicy :
-    IxSeedPolicy
+    ISeedPolicy
     /// std seed policy
 {
 public:
@@ -55,7 +55,7 @@ xPLATFORM_IMPL:
 };
 //-------------------------------------------------------------------------------------------------
 class NativeSeedPolicy :
-    IxSeedPolicy
+    ISeedPolicy
     /// native seed policy
 {
 public:
