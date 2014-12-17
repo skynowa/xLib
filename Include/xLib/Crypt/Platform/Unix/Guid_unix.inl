@@ -31,7 +31,7 @@ Guid::_randomBased_impl() const
     std::tstring_t sRv;
     NativeRandom   random;
     clong_t        valueMin = 0L;
-    clong_t        valueMax = IxSeedPolicy::valueMax();
+    clong_t        valueMax = ISeedPolicy::valueMax();
 
     sRv = String::format("%x%x-%x-%x-%x-%x%x%x",
         random.nextInt(valueMin, valueMax), random.nextInt(valueMin, valueMax),
