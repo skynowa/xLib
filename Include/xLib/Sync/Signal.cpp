@@ -132,7 +132,7 @@ Signal::connectUnexpected(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int_t
-Signal::emit(
+Signal::raise(
     cint_t &a_signalNum
 ) const
 {
