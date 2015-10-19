@@ -178,7 +178,7 @@ if (xOPTION_PROJECT_EXE)
 
     set(XLIB_TESTS_SOURCES
         ${XLIB_TESTS_SOURCES}
-        ${XLIB_LOCATION}/Tests/Source/Core/Test_Format.cpp
+        ${XLIB_LOCATION}/Tests/Source/Core/Test_CoreApplication.cpp
         ${XLIB_LOCATION}/Tests/Source/main.cpp
     )
 

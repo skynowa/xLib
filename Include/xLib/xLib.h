@@ -32,6 +32,7 @@
 #include <xLib/Core/Functors.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Core/Application.h>
+#include <xLib/Core/CoreApplication.h>
 
 // Crypt
 #include <xLib/Crypt/OpenSSL/Blowfish.h>

@@ -28,6 +28,7 @@
 #include <Test/Core/Test_DateTime.h>
 #include <Test/Core/Win/Test_Com.h>
 #include <Test/Core/Test_Application.h>
+#include <Test/Core/Test_CoreApplication.h>
 
 
 // Crypt
