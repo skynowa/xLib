@@ -131,7 +131,7 @@ Signal::connectUnexpected(
     xUNUSED(handler_old);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+xINLINE void_t
 Signal::raise(
     cint_t &a_signalNum
 ) const
