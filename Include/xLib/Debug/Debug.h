@@ -37,13 +37,13 @@
     { if (expr) { do_expr; } }
     ///< check expression and do instructions
 #define xCHECK_MSG(expr, comment) \
-    { if (expr) { Trace() << (comment); } }
+    { if (expr) { xlib::log::Trace() << (comment); } }
     ///< check expression and show message with comment
 #define xCHECK_MSG_RET(expr, comment, return_expr) \
-    { if (expr) { Trace() << (comment); return (return_expr); } }
+    { if (expr) { xlib::log::Trace() << (comment); return (return_expr); } }
     ///< check expression, show message with comment and return value
 #define xCHECK_MSG_DO(expr, comment, do_expr) \
-    { if (expr) { Trace() << (comment); do_expr; } }
+    { if (expr) { xlib::log::Trace() << (comment); do_expr; } }
     ///< check expression, show message with comment and do instructions
 #define xCHECK_NA(var) \
     ;
@@ -79,7 +79,7 @@
 //-------------------------------------------------------------------------------------------------
 #define xTRACE_POINT \
     { \
-        Trace() \
+        xlib::log::Trace() \
             << xT("\t::: ")  << xSOURCE_INFO.format() << xT(", ") \
             << xT("error: ") << NativeError::format() << xT(" :::"); \
     }
