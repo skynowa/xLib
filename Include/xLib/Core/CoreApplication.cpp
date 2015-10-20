@@ -126,7 +126,7 @@ CoreApplication::onTerminate()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE void_t
 CoreApplication::onUnexpected()
 {
     Trace() << xFUNCTION;
