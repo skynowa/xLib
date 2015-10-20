@@ -84,8 +84,10 @@ CoreApplication::run()
 {
     Trace() << xFUNCTION;
 
+    bool_t bRv = false;
+
     try {
-        onRun();
+        bRv = onRun();
     }
     catch (const xlib::Exception &a_ex) {
         xTEST_FAIL_MSG(a_ex.what());
@@ -97,6 +99,8 @@ CoreApplication::run()
     catch (...) {
         xTEST_FAIL_MSG(xT("unknown error"));
     }
+
+    return bRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

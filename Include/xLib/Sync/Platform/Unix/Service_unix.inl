@@ -32,8 +32,6 @@ Service::_start_impl()
 {
     // http://www.microhowto.info/howto/cause_a_process_to_become_a_daemon_in_c.html
 
-    int_t iRv = 0;
-
     // Fork, allowing the parent process to terminate.
     pid_t pid = ::fork();
     if (pid == -1) {
@@ -77,7 +75,6 @@ Service::_start_impl()
     if (::open("/dev/null",O_RDWR) == -1) {
         std::printf("failed to reopen stderr while daemonising (errno=%d)",errno);
     }
-
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
