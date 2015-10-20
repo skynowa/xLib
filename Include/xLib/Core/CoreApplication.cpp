@@ -79,7 +79,7 @@ CoreApplication::~CoreApplication()
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-bool_t
+xINLINE bool_t
 CoreApplication::run()
 {
     Trace() << xFUNCTION;
@@ -100,7 +100,7 @@ CoreApplication::run()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE void_t
 CoreApplication::onSignals(
     int_t a_signal
 )
@@ -112,14 +112,14 @@ CoreApplication::onSignals(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE void_t
 CoreApplication::onExit()
 {
     Trace() << xFUNCTION;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE void_t
 CoreApplication::onTerminate()
 {
     Trace() << xFUNCTION;
