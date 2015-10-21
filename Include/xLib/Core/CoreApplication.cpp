@@ -46,7 +46,10 @@ CoreApplication::CoreApplication(
     signalNums.push_back(SIGALRM);
     signalNums.push_back(SIGTERM);
     signalNums.push_back(SIGSTKFLT);
+    // TODO: [Android] SIGCLD
+#if xTODO_ANDROID
     signalNums.push_back(SIGCLD);
+#endif
     signalNums.push_back(SIGCHLD);
     signalNums.push_back(SIGCONT);
     signalNums.push_back(SIGSTOP);

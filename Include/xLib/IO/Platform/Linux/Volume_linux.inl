@@ -40,23 +40,26 @@ Volume::_fileSystem_impl() const
     int_t iRv = ::endmntent(file);  file = xPTR_NULL;
     xTEST_EQ(iRv, 1);
 #else
-    FILE *file = ::setmntent("/etc/mnttab", "r");
-    xTEST_PTR(file);
+    // TODO: [Android] ::setmntent, ::endmntent
+    #if xTODO_ANDROID
+        FILE *file = ::setmntent("/etc/mnttab", "r");
+        xTEST_PTR(file);
 
-    for ( ; ; ) {
-        const mntent *mountPoint = ::getmntent(file);
-        xCHECK_DO(mountPoint == xPTR_NULL, break);
+        for ( ; ; ) {
+            const mntent *mountPoint = ::getmntent(file);
+            xCHECK_DO(mountPoint == xPTR_NULL, break);
 
-        bool_t bRv = StringCI::compare(path(), mountPoint->mnt_dir);
-        xCHECK_DO(!bRv, continue);
+            bool_t bRv = StringCI::compare(path(), mountPoint->mnt_dir);
+            xCHECK_DO(!bRv, continue);
 
-        sRv = (mountPoint->mnt_type == xPTR_NULL) ? Const::strEmpty() : mountPoint->mnt_type;
+            sRv = (mountPoint->mnt_type == xPTR_NULL) ? Const::strEmpty() : mountPoint->mnt_type;
 
-        break;
-    }
+            break;
+        }
 
-    int_t iRv = ::endmntent(file);  file = xPTR_NULL;
-    xTEST_EQ(iRv, 1);
+        int_t iRv = ::endmntent(file);  file = xPTR_NULL;
+        xTEST_EQ(iRv, 1);
+    #endif
 #endif
 
     return sRv;
