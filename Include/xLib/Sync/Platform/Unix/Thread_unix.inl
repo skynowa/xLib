@@ -204,8 +204,11 @@ Thread::_setCpuAffinity_impl(
     CPU_ZERO(&cpuSet);
     CPU_SET(a_procNum, &cpuSet);
 
+    // TODO: [Android] ::sched_setaffinity
+#if xTODO_ANDROID
     int_t iRv = ::sched_setaffinity(static_cast<pid_t>( id() ), sizeof(cpuSet), &cpuSet);
     xTEST_DIFF_MSG(- 1, iRv, NativeError::format(iRv));
+#endif
 
     // pthread_setaffinity_np
 }

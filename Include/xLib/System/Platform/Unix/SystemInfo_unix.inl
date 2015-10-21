@@ -427,7 +427,10 @@ SystemInfo::_passwd(
     Utils::ptrAssignT(a_pw_passwd, std::tstring_t(pwRv->pw_passwd));
     Utils::ptrAssignT(a_pw_uid,    pwRv->pw_uid);
     Utils::ptrAssignT(a_pw_gid,    pwRv->pw_gid);
+    // TODO: [Android] pwRv->pw_gecos
+#if xTODO_ANDROID
     Utils::ptrAssignT(a_pw_gecos,  std::tstring_t(pwRv->pw_gecos));
+#endif
     Utils::ptrAssignT(a_pw_dir,    std::tstring_t(pwRv->pw_dir));
     Utils::ptrAssignT(a_pw_shell,  std::tstring_t(pwRv->pw_shell));
 }

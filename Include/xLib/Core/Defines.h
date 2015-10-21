@@ -315,16 +315,16 @@
 // xUNUSED
 #if   (xCOMPILER_MINGW || xCOMPILER_MS)
     #define xUNUSED(arg) \
-    ( static_cast<void_t>( arg ) )
+    ( static_cast<xlib::void_t>( arg ) )
 #elif xCOMPILER_CODEGEAR
     #define xUNUSED(arg) \
-    ( static_cast<void_t>( arg ) )
+    ( static_cast<xlib::void_t>( arg ) )
 #elif xCOMPILER_GNUC
     #define xUNUSED(arg) \
-    { static_cast<void_t>( true ? (arg) : (arg) ); }
+    { static_cast<xlib::void_t>( true ? (arg) : (arg) ); }
 #else
     #define xUNUSED(arg) \
-    ( static_cast<void_t>( arg ) )
+    ( static_cast<xlib::void_t>( arg ) )
 #endif
     ///< hide "unused variable" warnings
 //-------------------------------------------------------------------------------------------------

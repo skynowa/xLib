@@ -46,7 +46,7 @@ Profiler::setLogPath(
     std::ctstring_t &a_logPath
 )
 {
-    xTEST_EQ(Path::isValid(a_logPath), true);
+    xTEST_EQ(Path::isValid(a_logPath, xPTR_NULL), true);
 
     _log.setFilePath(a_logPath);
 }

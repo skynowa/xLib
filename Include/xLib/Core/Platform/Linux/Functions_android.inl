@@ -4,8 +4,6 @@
  */
 
 
-xNAMESPACE_BEGIN2(xlib, core)
-
 //-------------------------------------------------------------------------------------------------
 #define F_LOCK  LOCK_EX
 #define F_TEST  LOCK_EX // TODO: lockf() - F_TEST - n/a
@@ -23,5 +21,3 @@ lockf(
     return ::flock(a_fd, a_cmd);
 }
 //-------------------------------------------------------------------------------------------------
-
-xNAMESPACE_END2(xlib, core)
