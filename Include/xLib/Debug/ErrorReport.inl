@@ -56,16 +56,12 @@ ErrorReport::ErrorReport(
         a_nativeError, a_stackTrace, a_comment);
     switch (a_type) {
     case rtMsgbox:
-        _initPlain();
-        break;
     case rtStdout:
-        _initPlain();
-        break;
     case rtLog:
         _initPlain();
         break;
     default:
-        _initPlain();
+        _report = xUNKNOWN_CSTRING;
         break;
     }
 }
