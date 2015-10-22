@@ -243,8 +243,6 @@ private:
     xNO_COPY_ASSIGN(Application)
 };
 
-extern Application application;
-
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #define xLIB_CORE_APPLICATION_STATIC_DECLARE \
@@ -267,4 +265,6 @@ xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_PROJECT_HEADER_ONLY
     #include "Application.cpp"
+#else
+    extern xlib::core::Application application;
 #endif
