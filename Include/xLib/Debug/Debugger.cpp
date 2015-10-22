@@ -160,8 +160,11 @@ Debugger::_msgboxPlain(
 #if xOPTION_DEBUG_DIALOG
     mrRv = MsgBox().show(a_report.toString(), xT(""), MsgBox::tpAbortRetryIgnore);
 #else
+    xUNUSED(a_report);
+
     mrRv = MsgBox::mrIgnore;
 #endif
+
     switch (mrRv) {
     case MsgBox::mrAbort:
         (void_t)::exit(EXIT_FAILURE);
