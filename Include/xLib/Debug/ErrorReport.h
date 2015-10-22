@@ -21,9 +21,10 @@ public:
         /// type
     {
         rtUnknown,  ///< unknown
-        rtMsgbox,   ///< as message box with plain text (GUI)
-        rtStdout,   ///< to std::cout with plain text
-        rtLog       ///< to log with plain text
+        rtMsgbox,   ///< as message box
+        rtStdout,   ///< to std::cout
+        rtLog,      ///< to log
+        rtStdoutLog ///< to std::cout and log
     };
 
                    ErrorReport(culong_t &nativeError, const SourceInfo &sourceInfo,

@@ -131,6 +131,10 @@ Debugger::reportMake(
     case ErrorReport::rtLog:
         _loggingPlain(a_report);
         break;
+    case ErrorReport::rtStdoutLog:
+        _stdoutPlain(a_report);
+        _loggingPlain(a_report);
+        break;
     default:
         _stdoutPlain(a_report);
         break;

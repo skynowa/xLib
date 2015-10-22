@@ -80,6 +80,8 @@
     #define _xREPORT_TYPE ErrorReport::rtMsgbox
 #elif xOPTION_DEBUG_MODE_LOG
     #define _xREPORT_TYPE ErrorReport::rtLog
+#elif xOPTION_DEBUG_MODE_STDOUT_LOG
+    #define _xREPORT_TYPE ErrorReport::rtStdoutLog
 #endif
 
 #ifdef _xREPORT_TYPE
