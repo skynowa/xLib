@@ -21,11 +21,11 @@ public:
     virtual       ~CoreApplication();
         ///< destructor
 
-    bool_t         run();
+    int_t          run();
         ///< run
 
     // handles
-    virtual bool_t onRun() = 0;
+    virtual int_t  onRun() = 0;
         ///< run handle
     static  void_t onSignals(int_t a_signal);
         ///< signals handle

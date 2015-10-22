@@ -27,7 +27,9 @@ CoreApplication::CoreApplication(
 ) :
     Application(a_appGuid, a_locale)
 {
-#if 1
+    Trace() << xFUNCTION;
+
+#if 0
     std::vector<int_t> signalNums;
     signalNums.push_back(SIGHUP);
     signalNums.push_back(SIGINT);
@@ -79,31 +81,38 @@ xINLINE
 CoreApplication::~CoreApplication()
 {
     Trace() << xFUNCTION;
+
+    Trace() << StackTrace().toString();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE bool_t
+xINLINE int_t
 CoreApplication::run()
 {
     Trace() << xFUNCTION;
 
-    bool_t bRv = false;
+    int_t iRv = EXIT_FAILURE;
 
-    try {
-        bRv = onRun();
-    }
-    catch (const xlib::Exception &a_ex) {
-        xTEST_FAIL_MSG(a_ex.what());
-    }
-    catch (const std::exception &a_ex) {
-        std::string msg = a_ex.what();
-        xTEST_FAIL_MSG(xS2TS(msg));
-    }
-    catch (...) {
-        xTEST_FAIL_MSG(xT("unknown error"));
+    const bool_t isUseException = false;
+    if (isUseException) {
+        try {
+            iRv = onRun();
+        }
+        catch (const xlib::Exception &a_ex) {
+            xTEST_FAIL_MSG(a_ex.what());
+        }
+        catch (const std::exception &a_ex) {
+            std::string msg = a_ex.what();
+            xTEST_FAIL_MSG(xS2TS(msg));
+        }
+        catch (...) {
+            xTEST_FAIL_MSG(xT("unknown error"));
+        }
+    } else {
+        iRv = onRun();
     }
 
-    return bRv;
+    return iRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -113,6 +122,8 @@ CoreApplication::onSignals(
 )
 {
     Trace() << xFUNCTION;
+
+    Trace() << StackTrace().toString();
     Trace() << xTRACE_VAR(a_signal) << " - " << Signal::decription(a_signal);
 
     Application::exit(a_signal);
@@ -123,6 +134,8 @@ xINLINE void_t
 CoreApplication::onExit()
 {
     Trace() << xFUNCTION;
+
+    xTEST(false);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -130,6 +143,8 @@ xINLINE void_t
 CoreApplication::onTerminate()
 {
     Trace() << xFUNCTION;
+
+    xTEST(false);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -137,6 +152,8 @@ xINLINE void_t
 CoreApplication::onUnexpected()
 {
     Trace() << xFUNCTION;
+
+    xTEST(false);
 }
 //-------------------------------------------------------------------------------------------------
 
