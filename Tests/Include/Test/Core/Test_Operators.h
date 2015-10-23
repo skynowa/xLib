@@ -1,0 +1,23 @@
+/**
+ * \file   Test_Operators.h
+ * \brief  test Operators
+ */
+
+
+#pragma once
+
+#include <xLib/Core/Core.h>
+#include <xLib/Test/Unit.h>
+#include <xLib/Core/Operators.h>
+//-------------------------------------------------------------------------------------------------
+class Test_Operators :
+    public Unit
+    ///< tests for Operators
+{
+public:
+                   Test_Operators() {}
+
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
+        ///< unit test
+};
+//-------------------------------------------------------------------------------------------------
