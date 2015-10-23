@@ -79,6 +79,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_Units);
         manager.add(new Test_Defines);
         manager.add(new Test_Limits);
+        manager.add(new Test_Operators);
         manager.add(new Test_Utils);
         manager.add(new Test_StdStream);
         manager.add(new Test_HandleT);

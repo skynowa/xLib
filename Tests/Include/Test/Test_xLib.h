@@ -14,6 +14,7 @@
 #include <Test/Core/Test_Units.h>
 #include <Test/Core/Test_Defines.h>
 #include <Test/Core/Test_Limits.h>
+#include <Test/Core/Test_Operators.h>
 #include <Test/Core/Test_Utils.h>
 #include <Test/Core/Test_StdStream.h>
 #include <Test/Core/Test_HandleT.h>
