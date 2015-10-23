@@ -24,7 +24,8 @@ xNAMESPACE_BEGIN2(xlib, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-namespace {
+namespace
+{
 
 std::ctstring_t backupDirName = "Backup";
 std::ctstring_t configDirName = "Config";
@@ -495,7 +496,11 @@ Application::dbPath()
 xINLINE std::tstring_t
 Application::dirPath()
 {
+#if xOS_ANDROID
+    return Dir::current();
+#else
     return Path::exeDir();
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
