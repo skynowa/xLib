@@ -100,11 +100,13 @@ public:
     inline double    safeDivT(const T1 &value1, const T2 &value2) xWARN_UNUSED_RV;
         ///< safe division
 
+    // TODO: enumIncT - depreciated
     template <class T>
     static
     inline T         enumIncT(const T &value) xWARN_UNUSED_RV;
         ///< increment enumerator
 
+    // TODO: enumIncT - depreciated
     template <class T>
     static
     inline T         enumDecT(const T &value) xWARN_UNUSED_RV;
