@@ -172,7 +172,7 @@ if (xOPTION_PROJECT_LIB_MODULE)
     install(TARGETS ${PROJECT_NAME}_module DESTINATION "bin")
 endif()
 
-if (xOPTION_PROJECT_EXE)
+if (xOPTION_PROJECT_TESTS)
     include_directories(${XLIB_LOCATION}/Tests/Include)
     # file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/Source/*.cpp)
 
