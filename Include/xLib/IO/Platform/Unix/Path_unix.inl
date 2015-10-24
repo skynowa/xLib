@@ -33,7 +33,7 @@ Path::_dll_impl()
     int_t iRv = ::dladdr(&procAddress, &diInfo);
     xTEST_DIFF(iRv, 0);
 
-#if (xPROJECT_LIB_STATIC || xPROJECT_LIB_SHARE)
+#if (xPROJECT_LIB_STATIC || xPROJECT_LIB_SHARE || xOPTION_PROJECT_LIB_MODULE)
     sRv = Path(diInfo.dli_fname).absolute();
 #else
     sRv = Const::strEmpty();

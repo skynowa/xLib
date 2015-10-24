@@ -374,12 +374,18 @@ BuildInfo::binaryType() const
 {
     std::tstring_t sRv;
 
-#if   xPROJECT_EXE
-    sRv = xT("Executable binary");
+#if   xPROJECT_HEADER_ONLY
+    sRv = xT("Header only");
 #elif xPROJECT_LIB_STATIC
     sRv = xT("Static library");
 #elif xPROJECT_LIB_SHARE
-    sRv = xT("Share (dynamic link) library");
+    sRv = xT("Share library");
+#elif xOPTION_PROJECT_LIB_MODULE
+    sRv = xT("Dynamic link library");
+#elif xOPTION_PROJECT_TESTS
+    sRv = xT("Executable binary");
+#else
+    sRv = xUNKNOWN_CSTRING;
 #endif
 
     return sRv;
