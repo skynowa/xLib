@@ -24,6 +24,8 @@ public:
     // actions
     void_t         args(cbool_t &withoutFirstArg, std::vec_tstring_t *args) const;
         ///< command line arguments
+    bool_t         isRunAsAdmin() const;
+        ///< check for running as admin
     bool_t         isRunnig() const;
         ///< check if application already running
     void_t         dirsCreate();
