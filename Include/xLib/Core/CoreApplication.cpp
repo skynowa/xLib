@@ -29,7 +29,7 @@ CoreApplication::CoreApplication(
 {
     // Trace() << xFUNCTION;
 
-#if 0
+#if 1
     std::vector<int_t> signalNums;
     signalNums.push_back(SIGHUP);
     signalNums.push_back(SIGINT);
@@ -124,7 +124,7 @@ CoreApplication::onSignals(
     // Trace() << xFUNCTION;
 
     // Trace() << StackTrace().toString();
-    Trace() << xTRACE_VAR(a_signal) << " - " << Signal::decription(a_signal);
+    Trace() << Signal::decription(a_signal);
 
     Application::exit(a_signal);
 }

@@ -156,7 +156,7 @@ Signal::decription(
     cint_t &a_signalNum ///< signal number
 )
 {
-    return _decription_impl(a_signalNum);
+    return String::format(xT("%d - %s"), a_signalNum, _decription_impl(a_signalNum).c_str());
 }
 //-------------------------------------------------------------------------------------------------
 
