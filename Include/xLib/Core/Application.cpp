@@ -15,6 +15,7 @@
 #include <xLib/IO/Path.h>
 #include <xLib/IO/Dir.h>
 #include <xLib/System/ProcessInfo.h>
+#include <xLib/System/SystemInfo.h>
 
 xNAMESPACE_BEGIN2(xlib, core)
 
@@ -77,6 +78,14 @@ Application::args(
     if (a_withoutFirstArg) {
         a_args->erase(a_args->begin(), a_args->begin() + 1);
     }
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+Application::isRunAsAdmin() const
+{
+    system::SystemInfo info;
+
+    return info.isUserAdmin();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
