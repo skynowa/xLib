@@ -27,7 +27,7 @@ CoreApplication::CoreApplication(
 ) :
     Application(a_appGuid, a_locale)
 {
-    Trace() << xFUNCTION;
+    // Trace() << xFUNCTION;
 
 #if 0
     std::vector<int_t> signalNums;
@@ -80,16 +80,16 @@ CoreApplication::CoreApplication(
 xINLINE
 CoreApplication::~CoreApplication()
 {
-    Trace() << xFUNCTION;
+    // Trace() << xFUNCTION;
 
-    Trace() << StackTrace().toString();
+    // Trace() << StackTrace().toString();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 xINLINE int_t
 CoreApplication::run()
 {
-    Trace() << xFUNCTION;
+    // Trace() << xFUNCTION;
 
     int_t iRv = EXIT_FAILURE;
 
@@ -121,9 +121,9 @@ CoreApplication::onSignals(
     int_t a_signal
 )
 {
-    Trace() << xFUNCTION;
+    // Trace() << xFUNCTION;
 
-    Trace() << StackTrace().toString();
+    // Trace() << StackTrace().toString();
     Trace() << xTRACE_VAR(a_signal) << " - " << Signal::decription(a_signal);
 
     Application::exit(a_signal);
@@ -133,7 +133,7 @@ CoreApplication::onSignals(
 xINLINE void_t
 CoreApplication::onExit()
 {
-    Trace() << xFUNCTION;
+    // Trace() << xFUNCTION;
 
     xTEST(false);
 }
@@ -142,7 +142,7 @@ CoreApplication::onExit()
 xINLINE void_t
 CoreApplication::onTerminate()
 {
-    Trace() << xFUNCTION;
+    // Trace() << xFUNCTION;
 
     xTEST(false);
 }
@@ -151,7 +151,7 @@ CoreApplication::onTerminate()
 xINLINE void_t
 CoreApplication::onUnexpected()
 {
-    Trace() << xFUNCTION;
+    // Trace() << xFUNCTION;
 
     xTEST(false);
 }
