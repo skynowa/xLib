@@ -40,7 +40,7 @@ CoreApplication::CoreApplication(
     signalNums.push_back(SIGIOT);
     signalNums.push_back(SIGBUS);
     signalNums.push_back(SIGFPE);
-    signalNums.push_back(SIGKILL);
+    // signalNums.push_back(SIGKILL);  // SIGKILL: 9 cannot be caught or ignored
     signalNums.push_back(SIGUSR1);
     signalNums.push_back(SIGSEGV);
     signalNums.push_back(SIGUSR2);
@@ -54,7 +54,7 @@ CoreApplication::CoreApplication(
 #endif
     signalNums.push_back(SIGCHLD);
     signalNums.push_back(SIGCONT);
-    signalNums.push_back(SIGSTOP);
+    // signalNums.push_back(SIGSTOP);  // SIGSTOP: 19 cannot be caught or ignored
     signalNums.push_back(SIGTSTP);
     signalNums.push_back(SIGTTIN);
     signalNums.push_back(SIGTTOU);
