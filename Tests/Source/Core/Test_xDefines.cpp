@@ -289,6 +289,12 @@ Test_Defines::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
+    xTEST_CASE("xSOURCE_AT", a_caseLoops)
+    {
+        m_sRv = xSOURCE_AT;
+        xTEST_EQ(m_sRv.empty(), false);
+    }
+
     xTEST_CASE("xDATE", a_caseLoops)
     {
         m_sRv = xDATE;

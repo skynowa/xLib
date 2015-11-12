@@ -403,6 +403,10 @@
     xlib::debug::SourceInfo(xFILE, xLINE, xFUNCTION, xCOUNTER)
     ///< source information
 
+#define xSOURCE_AT \
+    xFILE xT(":") xLINE
+    ///< source information
+
 // xDATE
 #if defined(__DATE__)
     #define xDATE \
