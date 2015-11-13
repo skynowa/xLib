@@ -164,6 +164,21 @@ public:
     void_t         setVendorSkype(std::cstring_t &vendorSkype);
         ///< set vendor skype
 
+
+    static
+    std::tstring_t vendorJabber();
+        ///< vendor jabber
+    static
+    void_t         setVendorJabber(std::cstring_t &vendorJabber);
+        ///< set vendor jabber
+
+    static
+    std::tstring_t vendorIcq();
+        ///< vendor ICQ
+    static
+    void_t         setVendorIcq(std::cstring_t &vendorIcq);
+        ///< set vendor ICQ
+
     static
     const BuildInfo &buildInfo();
         ///< build information
@@ -241,6 +256,10 @@ private:
     std::tstring_t _vendorEmail;
     static
     std::tstring_t _vendorSkype;
+    static
+    std::tstring_t _vendorJabber;
+    static
+    std::tstring_t _vendorIcq;
 
     xNO_COPY_ASSIGN(Application)
 };
@@ -263,7 +282,9 @@ xNAMESPACE_END2(xlib, core)
     std::tstring_t xlib::core::Application::_vendorAuthor; \
     std::tstring_t xlib::core::Application::_vendorUrl; \
     std::tstring_t xlib::core::Application::_vendorEmail; \
-    std::tstring_t xlib::core::Application::_vendorSkype;
+    std::tstring_t xlib::core::Application::_vendorSkype; \
+    std::tstring_t xlib::core::Application::_vendorJabber; \
+    std::tstring_t xlib::core::Application::_vendorIcq;
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_PROJECT_HEADER_ONLY
     #include "Application.cpp"
