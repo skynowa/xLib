@@ -440,6 +440,38 @@ Application::setVendorSkype(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
+xINLINE std::tstring_t
+Application::vendorJabber()
+{
+    return _vendorJabber;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE void_t
+Application::setVendorJabber(
+    std::cstring_t &a_vendorJabber
+)
+{
+    _vendorJabber = a_vendorJabber;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE std::tstring_t
+Application::vendorIcq()
+{
+    return _vendorIcq;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE void_t
+Application::setVendorIcq(
+    std::cstring_t &a_vendorIcq
+)
+{
+    _vendorIcq = a_vendorIcq;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE const BuildInfo &
 Application::buildInfo()
 {
