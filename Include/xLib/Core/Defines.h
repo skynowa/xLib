@@ -785,3 +785,37 @@
     ///< disallow array on heap
 ///@}
 //-------------------------------------------------------------------------------------------------
+///@name Class properties
+///@{
+// TEST: Defines - xPROPERTY, add tests
+#define xPROPERTY(type, name) \
+    public:\
+        type name() const                   { return _##name; } \
+        void set##name(const type& a_value) { _##name = a_value; } \
+    private: \
+        type _##name
+    ///< property with read, write
+
+#define xPROPERTY_CONST(type, name) \
+    public: \
+        type name() const { return _##name; } \
+    private: \
+        type _##name
+    ///< property with read
+
+#define xPROPERTY_REF(type, name) \
+    public: \
+        type & name()            { return _##name; } \
+        const type& name() const { return _##name; } \
+    private: \
+        type _##name
+    ///< property with read by reference
+
+#define xPROPERTY_REF_CONST(type, name) \
+    public: \
+        const type & name() const { return _##name; } \
+    private: \
+        type _##name
+    ///< property with read by const reference
+///@}
+//-------------------------------------------------------------------------------------------------
