@@ -323,5 +323,15 @@ Test_Utils::unit(
 
         xTEST_EQ(static_cast<long_t>( datOne ), static_cast<long_t>( data ));
     }
+
+    xTEST_CASE("ConstCast", a_caseLoops)
+    {
+        std::size_t var = 10;
+
+        ConstCast<std::size_t> constVar(var);
+        xTEST_EQ(var, constVar.get());
+
+        // constVar = 11ULL; - not compile
+    }
 }
 //-------------------------------------------------------------------------------------------------
