@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xlib, core)
 
 class Utils
-    /// help macros
+    /// help utils
 {
 public:
     template <class T>
@@ -119,6 +119,26 @@ private:
         ///< destructor
 
     xNO_COPY_ASSIGN(Utils)
+};
+
+template <class T>
+class ConstCast
+    ///< make constant variable
+{
+public:
+    explicit ConstCast(const T &a_value) :
+        _value(a_value)
+    {
+    }
+
+    const T &
+    get() const
+    {
+        return _value;
+    }
+
+private:
+    const T &_value;
 };
 
 xNAMESPACE_END2(xlib, core)
