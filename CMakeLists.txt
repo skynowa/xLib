@@ -206,7 +206,9 @@ add_custom_target(uninstall
 
 #--------------------------------------------------------------------------------------------------
 # run tests after build
-add_custom_command(TARGET ${PROJECT_NAME}_tests POST_BUILD COMMAND ${PROJECT_NAME}_tests)
+if (xOPTION_PROJECT_TESTS)
+    add_custom_command(TARGET ${PROJECT_NAME}_tests POST_BUILD COMMAND ${PROJECT_NAME}_tests)
+endif()
 
 #--------------------------------------------------------------------------------------------------
 # fix warning "Manually-specified variables were not used by the project"
