@@ -23,7 +23,6 @@ set(CMAKE_BUILD_TYPE "RelWithDebInfo")
     # MinSizeRel     (CMAKE_C_FLAGS_MINSIZEREL or CMAKE_CXX_FLAGS_MINSIZEREL)
 SET(CMAKE_COLOR_MAKEFILE ON)
 SET(CMAKE_VERBOSE_MAKEFILE OFF)
-
 #--------------------------------------------------------------------------------------------------
 # vars
 unset(XLIB_FOUND       CACHE)
@@ -37,13 +36,11 @@ unset(XLIB_LOCATION    CACHE)
 if (NOT XLIB_LOCATION)
     set(XLIB_LOCATION ${CMAKE_SOURCE_DIR})
 endif()
-
 #--------------------------------------------------------------------------------------------------
 # modules
 set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMake)
 include(${XLIB_LOCATION}/Config.cmake)
 include(Configure)
-
 #--------------------------------------------------------------------------------------------------
 # includes, libs
 set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
@@ -76,11 +73,9 @@ if (ENV_UNIX)
         # set(XLIB_LIBRARIES ${XLIB_LIBRARIES})
     endif()
 endif()
-
 #--------------------------------------------------------------------------------------------------
 # includes
 include_directories(${XLIB_INCLUDES})
-
 #--------------------------------------------------------------------------------------------------
 # vars
 if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
@@ -90,7 +85,6 @@ endif()
 
 set(XLIB_INSTALL_DIR  include/xLib)
 set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
-
 #--------------------------------------------------------------------------------------------------
 # flags
 include(CxxFlags)
@@ -137,7 +131,6 @@ if (NOT (XLIB_INCLUDES AND XLIB_LIBRARIES))
 else()
     set(XLIB_FOUND       1)
 endif()
-
 #--------------------------------------------------------------------------------------------------
 # trace
 if (NOT XLIB_FOUND AND XLIB_FIND_REQUIRED)
@@ -150,7 +143,6 @@ else()
     # message("    XLIB_LIBRARIES:   ${XLIB_LIBRARIES}")
     # message("    XLIB_SOURCES:     ${XLIB_SOURCES}")
 endif()
-
 #--------------------------------------------------------------------------------------------------
 # targets, install
 if (xOPTION_PROJECT_HEADER_ONLY)
@@ -187,13 +179,18 @@ if (xOPTION_PROJECT_TESTS)
     install(TARGETS ${PROJECT_NAME}_tests  DESTINATION "bin")
 endif()
 
+set(XLIB_FOUND       ${XLIB_FOUND}       PARENT_SCOPE)
+set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} PARENT_SCOPE)
+set(XLIB_INCLUDES    ${XLIB_INCLUDES}    PARENT_SCOPE)
+set(XLIB_SOURCES     ${XLIB_SOURCES}     PARENT_SCOPE)
+set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   PARENT_SCOPE)
+set(XLIB_LOCATION    ${XLIB_LOCATION}    PARENT_SCOPE)
 #--------------------------------------------------------------------------------------------------
 # install
 install(
     DIRECTORY ${XLIB_LOCATION}/Include/xLib/
     DESTINATION ${XLIB_INSTALL_PATH}
     FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
-
 #--------------------------------------------------------------------------------------------------
 # uninstall
 configure_file(
@@ -203,13 +200,11 @@ configure_file(
 
 add_custom_target(uninstall
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
-
 #--------------------------------------------------------------------------------------------------
 # run tests after build
 if (xOPTION_PROJECT_TESTS)
     add_custom_command(TARGET ${PROJECT_NAME}_tests POST_BUILD COMMAND ${PROJECT_NAME}_tests)
 endif()
-
 #--------------------------------------------------------------------------------------------------
 # fix warning "Manually-specified variables were not used by the project"
 unset(CMAKE_TOOLCHAIN_FILE)
