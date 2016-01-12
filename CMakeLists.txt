@@ -187,10 +187,10 @@ set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   PARENT_SCOPE)
 set(XLIB_LOCATION    ${XLIB_LOCATION}    PARENT_SCOPE)
 #--------------------------------------------------------------------------------------------------
 # install
-install(
-    DIRECTORY ${XLIB_LOCATION}/Include/xLib/
-    DESTINATION ${XLIB_INSTALL_PATH}
-    FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
+#install(
+#    DIRECTORY ${XLIB_LOCATION}/Include/xLib/
+#    DESTINATION ${XLIB_INSTALL_PATH}
+#    FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
 #--------------------------------------------------------------------------------------------------
 # uninstall
 configure_file(
