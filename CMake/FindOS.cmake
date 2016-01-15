@@ -83,18 +83,6 @@ elseif (ENV_UNIX)
     endif()
 endif()
 #--------------------------------------------------------------------------------------------------
-# Add parent scope
-set(ENV_WIN    ${ENV_WIN}    PARENT_SCOPE)
-set(ENV_UNIX   ${ENV_UNIX}   PARENT_SCOPE)
-set(ENV_LINUX  ${ENV_LINUX}  PARENT_SCOPE)
-set(ENV_BSD    ${ENV_BSD}    PARENT_SCOPE)
-set(ENV_APPLE  ${ENV_APPLE}  PARENT_SCOPE)
-set(OS_WIN     ${OS_WIN}     PARENT_SCOPE)
-set(OS_LINUX   ${OS_LINUX}   PARENT_SCOPE)
-set(OS_ANDROID ${OS_ANDROID} PARENT_SCOPE)
-set(OS_FREEBSD ${OS_FREEBSD} PARENT_SCOPE)
-set(OS_MACOSX  ${OS_MACOSX}  PARENT_SCOPE)
-#--------------------------------------------------------------------------------------------------
 # trace
 # message("")
 # message("************ FindOS.cmake Variables **************")
