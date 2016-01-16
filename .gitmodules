@@ -1,0 +1,3 @@
+[submodule "CMakeLib"]
+	path = CMakeLib
+	url = git@bitbucket.org:skynowa/cmakelib.git
