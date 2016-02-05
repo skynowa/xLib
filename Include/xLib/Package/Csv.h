@@ -12,7 +12,9 @@ xNAMESPACE_BEGIN2(xlib, package)
 
 struct CsvData
 {
-    std::tstring_t setSeparator(ctchar_t separator);
+    ctchar_t       separator;
+    std::tstring_t filePath;
+    std::tstring_t contennt;
 };
 
 xTYPEDEF_CONST(CsvData);
@@ -21,13 +23,17 @@ class Csv
     ///< Comma-Separated Values parser
 {
 public:
-    explicit Csv(cCsvData &data);
+    explicit         Csv(cCsvData &data);
         ///< constructor
-    virtual ~Csv() {}
+    virtual         ~Csv() {}
         ///< destructor
 
+    std::size_t      rows();
+    std::size_t      columns();
+    std::tstring_t & item(std::csize_t i, std::csize_t j);
+
 private:
-    cCsvData  &_data;
+    cCsvData &       _data;
 
     xNO_COPY_ASSIGN(Csv)
 };
