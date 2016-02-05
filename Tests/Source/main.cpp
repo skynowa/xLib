@@ -184,6 +184,9 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_ProcessInfo);
         manager.add(new Test_Console);
         manager.add(new Test_Shell);
+
+        // Package
+        manager.add(new Test_Csv);
     #endif
 
         manager.run(allLoops, unitLoops, caseLoops);
