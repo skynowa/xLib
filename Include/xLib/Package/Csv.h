@@ -12,8 +12,7 @@ xNAMESPACE_BEGIN2(xlib, package)
 
 struct CsvData
 {
-    std::tstring_t appName;
-    std::tstring_t appVersionFull;
+    std::tstring_t setSeparator(ctchar_t separator);
 };
 
 xTYPEDEF_CONST(CsvData);
