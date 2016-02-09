@@ -17,7 +17,7 @@
  *          ICQ:     627713628 \n
  *          web:     https://bitbucket.org/skynowa/xlib
  *
- * \date    2008 - 2014
+ * \date    2008 - 2016
  *
  * \section sec_code_convention Code conventions
  */
@@ -90,6 +90,7 @@ namespace xlib
     namespace sync {}
     namespace system {}
     namespace test {}
+    namespace package {}
 
     using namespace xlib::core;
     using namespace xlib::crypt;
@@ -103,6 +104,7 @@ namespace xlib
     using namespace xlib::sync;
     using namespace xlib::system;
     using namespace xlib::test;
+    using namespace xlib::package;
 }
 
 namespace xl = xlib;

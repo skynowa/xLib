@@ -14,10 +14,18 @@ Test_Csv::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("Csv::[TEST_CASE_1]", a_caseLoops)
+    xTEST_CASE("CsvReader::CsvReader", a_caseLoops)
     {
+        xlib::package::ICsv::CsvData csvData;
+        csvData.fileExtension    = xT("csv");
+        csvData.hasHeader        = true;
+        csvData.eol              = xT("\n");
+        csvData.delimiter        = xT(';');
+        csvData.isTrimCells      = true;
+        csvData.isSkipEmptyLines = true;
 
+        xlib::package::CsvReader csvReader(csvData);
+        csvReader.loadFile(xT(""));
     }
 }
 //-------------------------------------------------------------------------------------------------
-s
