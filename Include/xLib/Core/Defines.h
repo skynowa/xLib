@@ -411,7 +411,7 @@
     ///< source information
 
 #define xSOURCE_AT \
-    xFILE xT(":") xLINE
+    xFILE xT(":") xTEXT("xLINE")
     ///< source information
 
 // xDATE

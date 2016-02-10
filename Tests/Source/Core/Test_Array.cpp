@@ -44,9 +44,10 @@ Test_Array::unit(
         array.clear();
     }
 
-    xTEST_CASE("make_array", a_caseLoops) {
-        make_array<std::tstring_t>( xT("0"),  xT("1") );
-        make_array<std::tstring_t>( xT("0"),  xT("1"),  xT("2") );
+    xTEST_CASE("make_array", a_caseLoops)
+    {
+        make_array<std::tstring_t>( xT("0"), xT("1") );
+        make_array<std::tstring_t>( xT("0"), xT("1"), xT("2") );
     }
 }
 //-------------------------------------------------------------------------------------------------

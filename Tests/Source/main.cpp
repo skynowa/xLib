@@ -71,7 +71,6 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     {
         Manager manager(isUseTracing);
 
-    #if 0
         // Test
         manager.add(new Test_Test);
 
@@ -94,9 +93,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new Test_DateTime);
         manager.add(new Test_Com);
         // manager.add(new Test_Application);
-    #endif
         manager.add(new Test_CoreApplication);
-    #if 0
 
         // Crypt
         manager.add(new Test_Base64);
@@ -187,7 +184,6 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 
         // Package
         manager.add(new Test_Csv);
-    #endif
 
         manager.run(allLoops, unitLoops, caseLoops);
     }

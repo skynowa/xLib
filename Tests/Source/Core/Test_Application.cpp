@@ -8,7 +8,7 @@
 
 
 //-------------------------------------------------------------------------------------------------
-xLIB_CORE_APPLICATION_STATIC_DECLARE
+// xLIB_CORE_APPLICATION_STATIC_DECLARE
 
 class SignalHandlers
 {
