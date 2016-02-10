@@ -52,7 +52,7 @@ private:
     cCsvData &       _data;
 
     bool_t           _isValid();
-    bool_t           _clear();
+    void_t           _clear();
 
     xNO_COPY_ASSIGN(CsvReader)
 };
@@ -76,7 +76,7 @@ private:
     cCsvData &       _data;
 
     bool_t           _isValid();
-    bool_t           _clear();
+    void_t           _clear();
 
     xNO_COPY_ASSIGN(CsvWriter)
 };

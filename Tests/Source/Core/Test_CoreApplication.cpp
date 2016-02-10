@@ -55,7 +55,7 @@ public:
                        Trace() << xFUNCTION;
                    }
 
-    virtual bool_t onRun() xOVERRIDE
+    virtual int_t onRun() xOVERRIDE
     {
         Trace() << xFUNCTION;
 
