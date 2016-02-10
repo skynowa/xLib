@@ -38,7 +38,7 @@ option(xOPTION_PROJECT_HEADER_ONLY   "Project: header only"              1)
 option(xOPTION_PROJECT_LIB_STATIC    "Project: static library"           0)
 option(xOPTION_PROJECT_LIB_SHARE     "Project: share library"            0)
 option(xOPTION_PROJECT_LIB_MODULE    "Project: dynamic-link library"     0)
-option(xOPTION_PROJECT_TESTS         "Project: tests"                    1)
+option(xOPTION_PROJECT_TESTS         "Project: tests"                    0)
 
 option(xOPTION_CPP11                 "Support C++11 language"            0)
 option(xOPTION_DEBUG_DIALOG          "Debug prompt dialog"               0)

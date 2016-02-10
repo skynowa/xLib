@@ -84,7 +84,7 @@ CsvReader::rows()
     return 0;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t &
+xINLINE std::tstring_t
 CsvReader::cell(
     std::csize_t row,
     std::csize_t column
