@@ -45,13 +45,17 @@ CsvWriter::CsvWriter(
 
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
-CsvReader::loadFile(std::ctstring_t& filePath)
+CsvReader::loadFile(
+    std::ctstring_t &a_filePath
+)
 {
     return true;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
-CsvReader::loadString(std::ctstring_t& rawString)
+CsvReader::loadString(
+    std::ctstring_t &a_rawString
+)
 {
     return true;
 }
@@ -65,7 +69,9 @@ CsvReader::headers()
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
-CsvReader::header(std::csize_t column)
+CsvReader::header(
+    std::csize_t a_column
+)
 {
     std::tstring_t sRv;
 
@@ -84,10 +90,10 @@ CsvReader::rows()
     return 0;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t &
+xINLINE std::tstring_t
 CsvReader::cell(
-    std::csize_t row,
-    std::csize_t column
+    std::csize_t a_row,
+    std::csize_t a_column
 )
 {
     std::tstring_t sRv;
@@ -108,15 +114,15 @@ CsvReader::_clear()
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 CsvWriter::setHeaders(
-    crow_t &values
+    crow_t &a_values
 )
 {
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 CsvWriter::saveFile(
-    const std::vector<row_t> &csv,
-    std::ctstring_t          &filePath
+    const std::vector<row_t> &a_csv,
+    std::ctstring_t          &a_filePath
 )
 {
     return true;
@@ -124,8 +130,8 @@ CsvWriter::saveFile(
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 CsvWriter::saveString(
-    const std::vector<row_t> &csv,
-    std::tstring_t           *rawString
+    const std::vector<row_t> &a_csv,
+    std::tstring_t           *a_rawString
 )
 {
     return true;
