@@ -13,7 +13,7 @@
 
 #--------------------------------------------------------------------------------------------------
 # options
-option(xOPTION_PROJECT_CACHE_USE "CMake: cache used" 0)
+option(xOPTION_PROJECT_CACHE_USE "CMake: cache used" 1)
 
 if (xOPTION_PROJECT_CACHE_USE)
     unset(xOPTION_PROJECT_HEADER_ONLY   CACHE)

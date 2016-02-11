@@ -34,25 +34,25 @@ class CsvReader :
     ///< Comma-separated values reader
 {
 public:
-    explicit         CsvReader(cCsvData &data);
+    explicit       CsvReader(cCsvData &data);
         ///< constructor
-    virtual         ~CsvReader() {}
+    virtual       ~CsvReader() {}
         ///< destructor
 
-    bool_t           loadFile(std::ctstring_t &filePath);
-    bool_t           loadString(std::ctstring_t &rawString);
+    bool_t         loadFile(std::ctstring_t &filePath);
+    bool_t         loadString(std::ctstring_t &rawString);
 
-    row_t            headers();
-    std::tstring_t   header(std::csize_t column);
-    std::size_t      columns();
-    std::size_t      rows();
-    std::tstring_t & cell(std::csize_t row, std::csize_t column);
+    row_t          headers();
+    std::tstring_t header(std::csize_t column);
+    std::size_t    columns();
+    std::size_t    rows();
+    std::tstring_t cell(std::csize_t row, std::csize_t column);
 
 private:
-    cCsvData &       _data;
+    cCsvData &     _data;
 
-    bool_t           _isValid();
-    void_t           _clear();
+    bool_t         _isValid();
+    void_t         _clear();
 
     xNO_COPY_ASSIGN(CsvReader)
 };
@@ -62,21 +62,21 @@ class CsvWriter :
     ///< Comma-separated values writer
 {
 public:
-    explicit         CsvWriter(cCsvData &data);
+    explicit       CsvWriter(cCsvData &data);
         ///< constructor
-    virtual         ~CsvWriter() {}
+    virtual       ~CsvWriter() {}
         ///< destructor
 
-    void_t           setHeaders(crow_t &values);
+    void_t         setHeaders(crow_t &values);
 
-    bool_t           saveFile(const std::vector<row_t> &csv, std::ctstring_t &filePath);
-    bool_t           saveString(const std::vector<row_t> &csv, std::tstring_t *rawString);
+    bool_t         saveFile(const std::vector<row_t> &csv, std::ctstring_t &filePath);
+    bool_t         saveString(const std::vector<row_t> &csv, std::tstring_t *rawString);
 
 private:
-    cCsvData &       _data;
+    cCsvData &     _data;
 
-    bool_t           _isValid();
-    void_t           _clear();
+    bool_t         _isValid();
+    void_t         _clear();
 
     xNO_COPY_ASSIGN(CsvWriter)
 };
