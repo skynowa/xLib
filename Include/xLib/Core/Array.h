@@ -301,7 +301,7 @@ template<class T>
 Array<T, 2>
 make_array(const T &t1, const T &t2)
 {
-    return Array<T, 2>(t1, t2);
+    return {{t1, t2}};
 }
 
 // make_array (3 elements)
@@ -309,7 +309,7 @@ template<class T>
 Array<T, 3>
 make_array(const T &t1, const T &t2, const T &t3)
 {
-    Array<T, 3>(t1, t2, t3);
+    return {{t1, t2, t3}};
 }
 
 xNAMESPACE_END2(xlib, core)
