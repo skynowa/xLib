@@ -317,6 +317,9 @@
 #define xINT_TO_BOOL(i) \
     ( Utils::intToBoolT(i) )
     ///< convert int_t to bool_t
+#define xSWITCH_CASE_RETURN_STRINGISED(x) \
+    case x: return #x
+    ///< convert int_t to bool_t
 ///@}
 //-------------------------------------------------------------------------------------------------
 // xUNUSED
