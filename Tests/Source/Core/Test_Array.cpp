@@ -36,18 +36,23 @@ Test_Array::unit(
     xTEST_CASE("size", a_caseLoops)
     {
         m_stRv = array.size();
-        xTEST_EQ(arraySize, m_stRv);
+        xTEST_EQ(m_stRv, arraySize);
     }
 
     xTEST_CASE("clear", a_caseLoops)
     {
         array.clear();
+        xTEST_EQ(array.size(), arraySize);
+
+        for (size_t i = 0; i < array.size(); ++ i) {
+            xTEST_EQ(array[i], std::size_t(0));
+        }
     }
 
     xTEST_CASE("make_array", a_caseLoops)
     {
-        make_array<std::tstring_t>( xT("0"), xT("1") );
-        make_array<std::tstring_t>( xT("0"), xT("1"), xT("2") );
+        make_array<std::tstring_t>(xT("0"), xT("1"));
+        make_array<std::tstring_t>(xT("0"), xT("1"), xT("2"));
     }
 }
 //-------------------------------------------------------------------------------------------------
