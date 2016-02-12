@@ -252,7 +252,7 @@ Test_Defines::unit(
             LIBSSH2_ERROR_KEX_FAILURE
         };
 
-        struct Data
+        struct Local
         {
             static
             std::tstring_t foo(SwitchType a_type)
@@ -267,11 +267,21 @@ Test_Defines::unit(
                     break;
                 }
             }
+        };
 
+        xTEST_EQ(Local::foo(LIBSSH2_ERROR_SOCKET_NONE), std::tstring_t("LIBSSH2_ERROR_SOCKET_NONE"));
+        xTEST_EQ(Local::foo(LIBSSH2_ERROR_BANNER_RECV), std::tstring_t("LIBSSH2_ERROR_BANNER_RECV"));
+        xTEST_EQ(Local::foo(LIBSSH2_ERROR_BANNER_SEND), std::tstring_t("LIBSSH2_ERROR_BANNER_SEND"));
+        xTEST_EQ(Local::foo(LIBSSH2_ERROR_INVALID_MAC), std::tstring_t("LIBSSH2_ERROR_INVALID_MAC"));
+        xTEST_EQ(Local::foo(LIBSSH2_ERROR_KEX_FAILURE), std::tstring_t("LIBSSH2_ERROR_KEX_FAILURE"));
+    }
 
-        }
+    xTEST_CASE("xDECLARE_LAMBDA", a_caseLoops)
+    {
+        xLAMBDA(int, lambda, (int x, int y) { return x + y; } );
 
-
+        m_iRv = lambda(1, 2);
+        xTEST_EQ(m_iRv, 3);
     }
 
     xTEST_CASE("xUNUSED", a_caseLoops)
