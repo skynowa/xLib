@@ -241,6 +241,35 @@ Test_Defines::unit(
 
     }
 
+    xTEST_CASE("xSWITCH_CASE_RETURN_STRINGISED", a_caseLoops)
+    {
+        enum SwitchType
+        {
+            LIBSSH2_ERROR_SOCKET_NONE,
+            LIBSSH2_ERROR_BANNER_RECV,
+            LIBSSH2_ERROR_BANNER_SEND,
+            LIBSSH2_ERROR_INVALID_MAC,
+            LIBSSH2_ERROR_KEX_FAILURE
+        };
+
+        struct Data
+        {
+            static
+            std::tstring_t foo(SwitchType a_type)
+            {
+                switch (a_type) {
+                xSWITCH_CASE_RETURN_STRINGISED(LIBSSH2_ERROR_SOCKET_NONE);
+                xSWITCH_CASE_RETURN_STRINGISED(LIBSSH2_ERROR_BANNER_RECV);
+                xSWITCH_CASE_RETURN_STRINGISED(LIBSSH2_ERROR_BANNER_SEND);
+                xSWITCH_CASE_RETURN_STRINGISED(LIBSSH2_ERROR_INVALID_MAC);
+                xSWITCH_CASE_RETURN_STRINGISED(LIBSSH2_ERROR_KEX_FAILURE);
+                default:
+                    break;
+                }
+            }
+        }
+    }
+
     xTEST_CASE("xUNUSED", a_caseLoops)
     {
         size_t value = 0U;
