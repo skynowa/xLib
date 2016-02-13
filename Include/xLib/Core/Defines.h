@@ -319,12 +319,13 @@
     ///< convert int_t to bool_t
 #define xSWITCH_CASE_RETURN_STRINGISED(x) \
     case x: return #x
-    ///<
+    ///< help for switch
 #define xLAMBDA(return_type, name, function) \
     struct \
     { \
         return_type operator () function \
     } name;
+    ///< lambda (local function)
 ///@}
 //-------------------------------------------------------------------------------------------------
 // xUNUSED
