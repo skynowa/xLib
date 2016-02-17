@@ -73,8 +73,7 @@ Ssh2Client::connect()
     hostent *he = ::gethostbyname(_hostName.c_str());
     xTEST_PTR(he);
 
-    sockaddr_in s;
-
+    sockaddr_in s = {0};
     s.sin_addr   = *(struct in_addr *)(he->h_addr_list[0]);
     s.sin_family = he->h_addrtype;
     s.sin_port   = htons(_port);
@@ -83,7 +82,7 @@ Ssh2Client::connect()
     xTEST_GR(_socket, - 1);
 
     iRv = ::connect(_socket, (sockaddr *)&s, sizeof(sockaddr_in));
-    if (- 1 == iRv) {
+    if (iRv == - 1) {
         return false;
     }
     xTEST_GR(iRv, - 1);
@@ -129,13 +128,13 @@ Ssh2Client::authPassword()
     xTEST_PTR(_session);
     xTEST(!_isUseKey);
 
-    int         iRv = - 1;
+    int            iRv = - 1;
     std::tstring_t internal_user;
 
-    if (_userName.compare("") == 0) {
-        internal_user = std::tstring_t(_user.userName());
+    if ( _userName.empty() ) {
+        internal_user = _user.userName();
     } else {
-        internal_user = std::tstring_t(_userName);
+        internal_user = _userName;
     }
 
 #if 0
