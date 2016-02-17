@@ -14,11 +14,11 @@ class Ssh2User
 {
 public:
                    Ssh2User();
-    explicit       Ssh2User(const std::tstring_t &login);
+    explicit       Ssh2User(std::ctstring_t &login);
     virtual       ~Ssh2User();
 
-    unsigned int   userUid() const;
-    unsigned int   userGid() const;
+    uint_t         userUid() const;
+    uint_t         userGid() const;
     std::tstring_t userName() const;
     std::tstring_t homeDir() const;
     std::tstring_t userShell() const;
@@ -26,8 +26,8 @@ public:
 private:
     passwd *       _userInfo;
 
-    unsigned int   _userUid;
-    unsigned int   _userGid;
+    uint_t         _userUid;
+    uint_t         _userGid;
     std::tstring_t _userName;
     std::tstring_t _homeDir;
     std::tstring_t _userShell;

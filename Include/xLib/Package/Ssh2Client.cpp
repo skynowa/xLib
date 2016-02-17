@@ -47,12 +47,12 @@ Ssh2Client::~Ssh2Client()
 //-------------------------------------------------------------------------------------------------
 xINLINE void
 Ssh2Client::init(
-    const std::tstring_t     &a_hostName,
-    const unsigned short int &a_port,
-    const std::tstring_t     &a_userName,
-    const std::tstring_t     &a_password,
-    const bool               &a_isUseKey,
-    const std::tstring_t     &a_keyDirPath
+    std::ctstring_t &a_hostName,
+    cushort_t       &a_port,
+    std::ctstring_t &a_userName,
+    std::ctstring_t &a_password,
+    cbool_t         &a_isUseKey,
+    std::ctstring_t &a_keyDirPath
 )
 {
     userPassword = a_password;
@@ -194,9 +194,9 @@ Ssh2Client::authPublicKey()
 //-------------------------------------------------------------------------------------------------
 xINLINE bool
 Ssh2Client::executeCmd(
-    const std::tstring_t &a_cmd,
-    std::tstring_t       *a_stdOut,
-    std::tstring_t       *a_stdErr
+    std::ctstring_t &a_cmd,
+    std::tstring_t  *a_stdOut,
+    std::tstring_t  *a_stdErr
 )
 {
     xTEST_PTR(_session);
@@ -212,7 +212,7 @@ Ssh2Client::executeCmd(
     xTEST_GR(iRv, - 1);
 
     // stdout
-    if (xPTR_NULL != a_stdOut) {
+    if (a_stdOut != xPTR_NULL) {
         std::tstring_t stdOut;
         char           block[blockSize + 1] = {0};
 
@@ -234,7 +234,7 @@ Ssh2Client::executeCmd(
     }
 
     // stderr
-    if (xPTR_NULL != a_stdErr) {
+    if (a_stdErr != xPTR_NULL) {
         std::tstring_t stdErr;
         char           block[blockSize + 1] = {0};
 

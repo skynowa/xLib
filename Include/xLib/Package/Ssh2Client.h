@@ -15,34 +15,34 @@ xNAMESPACE_BEGIN2(xlib, package)
 class Ssh2Client
 {
 public:
-                       Ssh2Client();
-    virtual           ~Ssh2Client();
+                      Ssh2Client();
+    virtual          ~Ssh2Client();
 
-    void               init(const std::tstring_t &hostName, const unsigned short int &port,
-                        const std::tstring_t &userName, const std::tstring_t &password,
-                        const bool &isUseKey, const std::tstring_t &keyDirPath);
+    void              init(std::ctstring_t &hostName, cushort_t &port, std::ctstring_t &userName,
+                           std::ctstring_t &password, cbool_t &isUseKey,
+                           std::ctstring_t &keyDirPath);
 
-    bool			   connect();
-    void               authPassword();
-    void               authPublicKey();
-    bool               executeCmd(const std::tstring_t &cmd, std::tstring_t *stdOut, std::tstring_t *stdErr);
-    void               disconnect();
+    bool			  connect();
+    void              authPassword();
+    void              authPublicKey();
+    bool              executeCmd(std::ctstring_t &cmd, std::tstring_t *stdOut, std::tstring_t *stdErr);
+    void              disconnect();
 
-    int                lastError();
-    std::tstring_t     lastErrorFormat();
+    int               lastError();
+    std::tstring_t    lastErrorFormat();
 
 private:
-    LIBSSH2_SESSION *  _session;
-    int  			   _socket;
+    LIBSSH2_SESSION * _session;
+    int  			  _socket;
 
-    Ssh2User		   _user;
+    Ssh2User		  _user;
 
-    std::tstring_t     _hostName;
-    unsigned short int _port;
-    std::tstring_t	   _userName;
-    std::tstring_t	   _password;
-    bool               _isUseKey;
-    std::tstring_t	   _keyDirPath;
+    std::tstring_t    _hostName;
+    ushort_t          _port;
+    std::tstring_t	  _userName;
+    std::tstring_t	  _password;
+    bool              _isUseKey;
+    std::tstring_t	  _keyDirPath;
 
 };
 
