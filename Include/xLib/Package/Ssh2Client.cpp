@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN2(xlib, package)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
-std::csize_t   blockSize = 1024;
+cint_t         blockSize = 1024;
 std::tstring_t userPassword;
 
 xNAMESPACE_ANONYM_END
@@ -66,7 +66,7 @@ Ssh2Client::connect()
     hostent *he = ::gethostbyname( _hostName.c_str() );
     xTEST_PTR(he);
 
-    sockaddr_in s = {0};
+    sockaddr_in s; xSTRUCT_ZERO(s);
     s.sin_addr   = *(struct in_addr *)(he->h_addr_list[0]);
     s.sin_family = he->h_addrtype;
     s.sin_port   = htons(_port);
@@ -135,7 +135,7 @@ Ssh2Client::authPassword(
         break;
     case uaUnknown:
     default:
-        iRv != - 1;
+        iRv = - 1;
         break;
     }
 

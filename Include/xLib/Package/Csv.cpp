@@ -49,6 +49,8 @@ CsvReader::loadFile(
     std::ctstring_t &a_filePath
 )
 {
+    xUNUSED(a_filePath);
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
@@ -57,6 +59,8 @@ CsvReader::loadString(
     std::ctstring_t &a_rawString
 )
 {
+    xUNUSED(a_rawString);
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
@@ -73,6 +77,8 @@ CsvReader::header(
     std::csize_t a_column
 )
 {
+    xUNUSED(a_column);
+
     std::tstring_t sRv;
 
     return sRv;
@@ -96,6 +102,9 @@ CsvReader::cell(
     std::csize_t a_column
 )
 {
+    xUNUSED(a_row);
+    xUNUSED(a_column);
+
     std::tstring_t sRv;
 
     return sRv;
@@ -117,6 +126,8 @@ CsvWriter::setHeaders(
     crow_t &a_values
 )
 {
+    xUNUSED(a_values);
+
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -125,6 +136,9 @@ CsvWriter::saveFile(
     std::ctstring_t          &a_filePath
 )
 {
+    xUNUSED(a_csv);
+    xUNUSED(a_filePath);
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
@@ -134,6 +148,9 @@ CsvWriter::saveString(
     std::tstring_t           *a_rawString
 )
 {
+    xUNUSED(a_csv);
+    xUNUSED(a_rawString);
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
