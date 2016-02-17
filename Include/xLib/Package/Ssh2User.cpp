@@ -25,15 +25,12 @@ Ssh2User::Ssh2User() :
     _homeDir  (),
     _userShell()
 {
-	_userInfo = ::getpwuid( ::getuid() );
-	xTEST_PTR(_userInfo);
-
 	_construct();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Ssh2User::Ssh2User(
-    const std::tstring_t &a_login
+    std::ctstring_t &a_login
 ) :
     _userInfo (xPTR_NULL),
     _userName (),
@@ -53,13 +50,13 @@ Ssh2User::~Ssh2User()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE unsigned int
+xINLINE uint_t
 Ssh2User::userUid() const
 {
     return _userUid;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE unsigned int
+xINLINE uint_t
 Ssh2User::userGid() const
 {
     return _userGid;
@@ -94,8 +91,11 @@ Ssh2User::userShell() const
 xINLINE void
 Ssh2User::_construct()
 {
-    _userUid   = static_cast<unsigned int>( _userInfo->pw_uid );
-    _userGid   = static_cast<unsigned int>( _userInfo->pw_gid );
+    _userInfo = ::getpwuid( ::getuid() );
+    xTEST_PTR(_userInfo);
+
+    _userUid   = static_cast<uint_t>( _userInfo->pw_uid );
+    _userGid   = static_cast<uint_t>( _userInfo->pw_gid );
     _userName  = std::tstring_t(_userInfo->pw_name);
     _homeDir   = std::tstring_t(_userInfo->pw_dir);
     _userShell = std::tstring_t(_userInfo->pw_shell);
