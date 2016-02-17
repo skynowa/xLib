@@ -46,7 +46,7 @@ Ssh2Client::~Ssh2Client()
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
-Ssh2Client::init(
+Ssh2Client::construct(
     std::ctstring_t &a_hostName,
     cushort_t       &a_port,
     std::ctstring_t &a_userName,
