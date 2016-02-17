@@ -70,7 +70,7 @@ Ssh2Client::connect()
 {
     int iRv = - 1;
 
-    hostent *he = ::gethostbyname(_hostName.c_str());
+    hostent *he = ::gethostbyname( _hostName.c_str() );
     xTEST_PTR(he);
 
     sockaddr_in s = {0};
@@ -121,30 +121,41 @@ keyBoardCallback(
     xUNUSED(a_prompts);
     xUNUSED(a_abstract);
 }
-
+//-------------------------------------------------------------------------------------------------
 xINLINE void
-Ssh2Client::authPassword()
+Ssh2Client::authPassword(
+    cUserAuth a_userAuth
+)
 {
     xTEST_PTR(_session);
     xTEST(!_isUseKey);
+    xTEST(a_userAuth != uaUnknown);
 
     int            iRv = - 1;
-    std::tstring_t internal_user;
+    std::tstring_t internalUser;
 
     if ( _userName.empty() ) {
-        internal_user = _user.userName();
+        internalUser = _user.userName();
     } else {
-        internal_user = _userName;
+        internalUser = _userName;
     }
 
-#if 0
-    iRv = ::libssh2_userauth_password(_session, internal_user.c_str(), _password.c_str());
-#else
-    iRv = ::libssh2_userauth_keyboard_interactive(_session, internal_user.c_str(),
-        &keyBoardCallback);
-#endif
+    switch (a_userAuth) {
+    case uaPassword:
+        iRv = ::libssh2_userauth_password(_session, internalUser.c_str(), _password.c_str());
+        break;
+    case uaKeyboardInteractive:
+        iRv = ::libssh2_userauth_keyboard_interactive(_session, internalUser.c_str(),
+                &keyBoardCallback);
+        break;
+    case uaUnknown:
+    default:
+        iRv != - 1;
+        break;
+    }
+
     if (iRv != 0) {
-        std::cerr << lastErrorFormat() << std::endl;
+        // Trace() << lastErrorFormat();
     }
 
     xTEST(0 == iRv);
@@ -160,12 +171,12 @@ Ssh2Client::authPublicKey()
 
     std::tstring_t privateKey;
     std::tstring_t publicKey;
-    std::tstring_t internal_user;
+    std::tstring_t internalUser;
 
-    if (_userName.compare("") == 0) {
-        internal_user = std::tstring_t(_user.userName());
+    if ( _userName.empty() ) {
+        internalUser = _user.userName();
     } else {
-        internal_user = std::tstring_t(_userName);
+        internalUser = _userName;
     }
 
     if (_keyDirPath.compare("NOTSET") != 0) {
@@ -184,10 +195,8 @@ Ssh2Client::authPublicKey()
         publicKey.append("/.ssh/id_rsa.pub");
     }
 
-    iRv = ::libssh2_userauth_publickey_fromfile(
-                _session, internal_user.c_str(), publicKey.c_str(),
-                privateKey.c_str(), _password.c_str()
-    );
+    iRv = ::libssh2_userauth_publickey_fromfile(_session, internalUser.c_str(), publicKey.c_str(),
+            privateKey.c_str(), _password.c_str());
     xTEST(0 == iRv);
 }
 //-------------------------------------------------------------------------------------------------
