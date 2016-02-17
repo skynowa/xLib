@@ -15,13 +15,13 @@ xNAMESPACE_BEGIN2(xlib, package)
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
 std::csize_t   blockSize = 1024;
 std::tstring_t userPassword;
 
 xNAMESPACE_ANONYM_END
-
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Ssh2Client::Ssh2Client() :
@@ -268,7 +268,7 @@ Ssh2Client::lastErrorFormat()
 
     (int)::libssh2_session_last_error(_session, &error, &errorSize, 0);
     if (error == xPTR_NULL) {
-        sRv = "[Unknown]";
+        sRv = xT("[Unknown]");
     } else {
         sRv.assign(error, errorSize);
     }
