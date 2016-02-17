@@ -26,9 +26,8 @@ public:
                    Ssh2Client();
     virtual       ~Ssh2Client();
 
-    void           init(std::ctstring_t &hostName, cushort_t &port, std::ctstring_t &userName,
-                        std::ctstring_t &password, cbool_t &isUseKey,
-                        std::ctstring_t &keyDirPath);
+    void           construct(std::ctstring_t &hostName, cushort_t &port, std::ctstring_t &userName,
+                        std::ctstring_t &password, cbool_t &isUseKey, std::ctstring_t &keyDirPath);
 
     bool           connect();
     void           authPassword(cUserAuth userAuth);
