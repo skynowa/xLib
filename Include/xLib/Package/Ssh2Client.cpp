@@ -25,15 +25,12 @@ xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Ssh2Client::Ssh2Client() :
-    _session   (xPTR_NULL),
-    _socket    (- 1),
-    _user      (),
-    _hostName  (),
-    _port      (0),
-    _userName  (),
-    _password  (),
-    _isUseKey  (false),
-    _keyDirPath()
+    _session (xPTR_NULL),
+    _socket  (- 1),
+    _hostName(),
+    _port    (0),
+    _userName(),
+    _password()
 {
     int iRv = ::libssh2_init(0);
     xTEST_GR(iRv, - 1);
@@ -50,19 +47,15 @@ Ssh2Client::construct(
     std::ctstring_t &a_hostName,
     cushort_t       &a_port,
     std::ctstring_t &a_userName,
-    std::ctstring_t &a_password,
-    cbool_t         &a_isUseKey,
-    std::ctstring_t &a_keyDirPath
+    std::ctstring_t &a_password
 )
 {
     userPassword = a_password;
 
-    _hostName    = a_hostName;
-    _port        = a_port;
-    _userName    = a_userName;
-    _password    = a_password;
-    _isUseKey    = a_isUseKey;
-    _keyDirPath  = a_keyDirPath;
+    _hostName = a_hostName;
+    _port     = a_port;
+    _userName = a_userName;
+    _password = a_password;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool
@@ -128,24 +121,16 @@ Ssh2Client::authPassword(
 )
 {
     xTEST_PTR(_session);
-    xTEST(!_isUseKey);
     xTEST(a_userAuth != uaUnknown);
 
-    int            iRv = - 1;
-    std::tstring_t internalUser;
-
-    if ( _userName.empty() ) {
-        internalUser = _user.userName();
-    } else {
-        internalUser = _userName;
-    }
+    int iRv = - 1;
 
     switch (a_userAuth) {
     case uaPassword:
-        iRv = ::libssh2_userauth_password(_session, internalUser.c_str(), _password.c_str());
+        iRv = ::libssh2_userauth_password(_session, _userName.c_str(), _password.c_str());
         break;
     case uaKeyboardInteractive:
-        iRv = ::libssh2_userauth_keyboard_interactive(_session, internalUser.c_str(),
+        iRv = ::libssh2_userauth_keyboard_interactive(_session, _userName.c_str(),
                 &keyBoardCallback);
         break;
     case uaUnknown:
@@ -162,40 +147,18 @@ Ssh2Client::authPassword(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
-Ssh2Client::authPublicKey()
+Ssh2Client::authPublicKey(
+    std::ctstring_t &a_keyDirPath
+)
 {
     xTEST_PTR(_session);
-    xTEST(_isUseKey);
 
     int iRv = - 1;
 
-    std::tstring_t privateKey;
-    std::tstring_t publicKey;
-    std::tstring_t internalUser;
+    std::ctstring_t privateKey = a_keyDirPath + xT("/id_rsa");
+    std::ctstring_t publicKey  = a_keyDirPath + xT("/id_rsa.pub");
 
-    if ( _userName.empty() ) {
-        internalUser = _user.userName();
-    } else {
-        internalUser = _userName;
-    }
-
-    if ( _keyDirPath.empty() ) {
-        // Try to guess where the user has his keypair
-        privateKey = _user.homeDir();
-        privateKey.append("/.ssh/id_rsa");
-
-        publicKey = _user.homeDir();
-        publicKey.append("/.ssh/id_rsa.pub");
-    } else {
-        // Use the provided path to find the keypair
-        privateKey = _keyDirPath;
-        privateKey.append("/id_rsa");
-
-        publicKey  = _keyDirPath;
-        publicKey.append("/id_rsa.pub");
-    }
-
-    iRv = ::libssh2_userauth_publickey_fromfile(_session, internalUser.c_str(), publicKey.c_str(),
+    iRv = ::libssh2_userauth_publickey_fromfile(_session, _userName.c_str(), publicKey.c_str(),
             privateKey.c_str(), _password.c_str());
     xTEST(0 == iRv);
 }
