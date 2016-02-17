@@ -33,7 +33,7 @@ Ssh2Client::Ssh2Client() :
     _userName  (),
     _password  (),
     _isUseKey  (false),
-    _keyDirPath("NOTSET")
+    _keyDirPath()
 {
     int iRv = ::libssh2_init(0);
     xTEST_GR(iRv, - 1);
@@ -179,20 +179,20 @@ Ssh2Client::authPublicKey()
         internalUser = _userName;
     }
 
-    if (_keyDirPath.compare("NOTSET") != 0) {
-        // Use the provided path to find the keypair
-        privateKey = _keyDirPath;
-        privateKey.append("/id_rsa");
-
-        publicKey  = _keyDirPath;
-        publicKey.append("/id_rsa.pub");
-    } else {
+    if ( _keyDirPath.empty() ) {
         // Try to guess where the user has his keypair
         privateKey = _user.homeDir();
         privateKey.append("/.ssh/id_rsa");
 
         publicKey = _user.homeDir();
         publicKey.append("/.ssh/id_rsa.pub");
+    } else {
+        // Use the provided path to find the keypair
+        privateKey = _keyDirPath;
+        privateKey.append("/id_rsa");
+
+        publicKey  = _keyDirPath;
+        publicKey.append("/id_rsa.pub");
     }
 
     iRv = ::libssh2_userauth_publickey_fromfile(_session, internalUser.c_str(), publicKey.c_str(),
