@@ -203,7 +203,7 @@ Ssh2Client::executeCmd(
             stdOut.append(block);
         }
 
-        // _convertStdToHtml(&stdOut);
+        _convertStdToHtml(&stdOut);
 
         // out
         std::swap(stdOut, *a_stdOut);
@@ -227,7 +227,7 @@ Ssh2Client::executeCmd(
             stdErr.append(block);
         }
 
-        // _convertStdToHtml(&stdErr);
+        _convertStdToHtml(&stdErr);
 
         // out
         std::swap(stdErr, *a_stdErr);
@@ -296,7 +296,7 @@ Ssh2Client::_convertStdToHtml(
     std::tstring_t *a_std
 )
 {
-    String::replaceAll(*a_std, "\n", "<br />");
+    *a_std = String::replaceAll(*a_std, "\n", "<br />");
 
     #define RESET       "\033[0m"
     #define BLACK       "\033[30m"
@@ -340,59 +340,57 @@ Ssh2Client::_convertStdToHtml(
     std::map<std::tstring_t, std::tstring_t> colorsCodes;
     colorsCodes[RESET]        = "";
 
-    colorsCodes[BLACK]        = xSTRINGIZE(BLACK);
-    colorsCodes[RED]          = xSTRINGIZE(RED);
-    colorsCodes[GREEN]        = xSTRINGIZE(GREEN);
-    colorsCodes[YELLOW]       = xSTRINGIZE(YELLOW);
-    colorsCodes[BLUE]         = xSTRINGIZE(BLUE);
-    colorsCodes[MAGENTA]      = xSTRINGIZE(MAGENTA);
-    colorsCodes[CYAN]         = xSTRINGIZE(CYAN);
-    colorsCodes[WHITE]        = xSTRINGIZE(WHITE);
-    colorsCodes[BOLDBLACK]    = xSTRINGIZE(BOLDBLACK);
-    colorsCodes[BOLDRED]      = xSTRINGIZE(BOLDRED);
-    colorsCodes[BOLDGREEN]    = xSTRINGIZE(BOLDGREEN);
-    colorsCodes[BOLDYELLOW]   = xSTRINGIZE(BOLDYELLOW);
-    colorsCodes[BOLDBLUE]     = xSTRINGIZE(BOLDBLUE);
-    colorsCodes[BOLDMAGENTA]  = xSTRINGIZE(BOLDMAGENTA);
-    colorsCodes[BOLDCYAN]     = xSTRINGIZE(BOLDCYAN);
-    colorsCodes[BOLDWHITE]    = xSTRINGIZE(BOLDWHITE);
+    colorsCodes[BLACK]        = xLEX_TO_STR(BLACK);
+    colorsCodes[RED]          = xLEX_TO_STR(RED);
+    colorsCodes[GREEN]        = xLEX_TO_STR(GREEN);
+    colorsCodes[YELLOW]       = xLEX_TO_STR(YELLOW);
+    colorsCodes[BLUE]         = xLEX_TO_STR(BLUE);
+    colorsCodes[MAGENTA]      = xLEX_TO_STR(MAGENTA);
+    colorsCodes[CYAN]         = xLEX_TO_STR(CYAN);
+    colorsCodes[WHITE]        = xLEX_TO_STR(WHITE);
+    colorsCodes[BOLDBLACK]    = xLEX_TO_STR(BOLDBLACK);
+    colorsCodes[BOLDRED]      = xLEX_TO_STR(BOLDRED);
+    colorsCodes[BOLDGREEN]    = xLEX_TO_STR(BOLDGREEN);
+    colorsCodes[BOLDYELLOW]   = xLEX_TO_STR(BOLDYELLOW);
+    colorsCodes[BOLDBLUE]     = xLEX_TO_STR(BOLDBLUE);
+    colorsCodes[BOLDMAGENTA]  = xLEX_TO_STR(BOLDMAGENTA);
+    colorsCodes[BOLDCYAN]     = xLEX_TO_STR(BOLDCYAN);
+    colorsCodes[BOLDWHITE]    = xLEX_TO_STR(BOLDWHITE);
 
-    colorsCodes[BLACK_]       = xSTRINGIZE(BLACK);
-    colorsCodes[RED_]         = xSTRINGIZE(RED);
-    colorsCodes[GREEN_]       = xSTRINGIZE(GREEN);
-    colorsCodes[YELLOW_]      = xSTRINGIZE(YELLOW);
-    colorsCodes[BLUE_]        = xSTRINGIZE(BLUE);
-    colorsCodes[MAGENTA_]     = xSTRINGIZE(MAGENTA);
-    colorsCodes[CYAN_]        = xSTRINGIZE(CYAN);
-    colorsCodes[WHITE_]       = xSTRINGIZE(WHITE);
-    colorsCodes[BOLDBLACK_]   = xSTRINGIZE(BOLDBLACK);
-    colorsCodes[BOLDRED_]     = xSTRINGIZE(BOLDRED);
-    colorsCodes[BOLDGREEN_]   = xSTRINGIZE(BOLDGREEN);
-    colorsCodes[BOLDYELLOW_]  = xSTRINGIZE(BOLDYELLOW);
-    colorsCodes[BOLDBLUE_]    = xSTRINGIZE(BOLDBLUE);
-    colorsCodes[BOLDMAGENTA_] = xSTRINGIZE(BOLDMAGENTA);
-    colorsCodes[BOLDCYAN_]    = xSTRINGIZE(BOLDCYAN);
-    colorsCodes[BOLDWHITE_]   = xSTRINGIZE(BOLDWHITE);
+    colorsCodes[BLACK_]       = xLEX_TO_STR(BLACK);
+    colorsCodes[RED_]         = xLEX_TO_STR(RED);
+    colorsCodes[GREEN_]       = xLEX_TO_STR(GREEN);
+    colorsCodes[YELLOW_]      = xLEX_TO_STR(YELLOW);
+    colorsCodes[BLUE_]        = xLEX_TO_STR(BLUE);
+    colorsCodes[MAGENTA_]     = xLEX_TO_STR(MAGENTA);
+    colorsCodes[CYAN_]        = xLEX_TO_STR(CYAN);
+    colorsCodes[WHITE_]       = xLEX_TO_STR(WHITE);
+    colorsCodes[BOLDBLACK_]   = xLEX_TO_STR(BOLDBLACK);
+    colorsCodes[BOLDRED_]     = xLEX_TO_STR(BOLDRED);
+    colorsCodes[BOLDGREEN_]   = xLEX_TO_STR(BOLDGREEN);
+    colorsCodes[BOLDYELLOW_]  = xLEX_TO_STR(BOLDYELLOW);
+    colorsCodes[BOLDBLUE_]    = xLEX_TO_STR(BOLDBLUE);
+    colorsCodes[BOLDMAGENTA_] = xLEX_TO_STR(BOLDMAGENTA);
+    colorsCodes[BOLDCYAN_]    = xLEX_TO_STR(BOLDCYAN);
+    colorsCodes[BOLDWHITE_]   = xLEX_TO_STR(BOLDWHITE);
 
-    colorsCodes[COLOR_1]      = xSTRINGIZE(BLACK);
-    colorsCodes[COLOR_2]      = xSTRINGIZE(BLACK);
+    colorsCodes[COLOR_1]      = xLEX_TO_STR(BLACK);
+    colorsCodes[COLOR_2]      = xLEX_TO_STR(BLACK);
 
     for (std::map<std::tstring_t, std::tstring_t>::iterator it = colorsCodes.begin();
          it != colorsCodes.end();
          ++ it)
     {
-        std::tstring_t tagEnd;
+        std::tstring_t htmlTag;
         {
             if (it->first == RESET) {
-                tagEnd = xT("</font>");
+                htmlTag = xT("</font>");
             } else {
-                tagEnd = xT("<font color=\"") + it->second + xT("\">");
+                htmlTag = xT("<font color=\"") + it->second + xT("\">");
             }
         }
 
-        std::cout << it->first << std::endl;
-
-        *a_std = String::replaceAll(*a_std, it->first, tagEnd);
+        *a_std = String::replaceAll(*a_std, it->first, htmlTag);
     }
 }
 //-------------------------------------------------------------------------------------------------
