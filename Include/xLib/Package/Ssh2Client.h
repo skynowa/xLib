@@ -45,6 +45,8 @@ private:
     ushort_t       _port;
     std::tstring_t _userName;
     std::tstring_t _password;
+
+    void           _convertStdToHtml(std::tstring_t *std);
 };
 
 xNAMESPACE_END2(xlib, package)
