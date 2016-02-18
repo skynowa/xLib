@@ -8,6 +8,9 @@
     #include "Ssh2Client.h"
 #endif
 
+#include <xLib/Core/Utils.h>
+#include <xLib/Core/String.h>
+
 xNAMESPACE_BEGIN2(xlib, package)
 
 /**************************************************************************************************
@@ -200,6 +203,8 @@ Ssh2Client::executeCmd(
             stdOut.append(block);
         }
 
+        // _convertStdToHtml(&stdOut);
+
         // out
         std::swap(stdOut, *a_stdOut);
     }
@@ -221,6 +226,8 @@ Ssh2Client::executeCmd(
 
             stdErr.append(block);
         }
+
+        // _convertStdToHtml(&stdErr);
 
         // out
         std::swap(stdErr, *a_stdErr);
@@ -274,6 +281,119 @@ Ssh2Client::lastErrorFormat()
     }
 
     return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*    private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+void
+Ssh2Client::_convertStdToHtml(
+    std::tstring_t *a_std
+)
+{
+    String::replaceAll(*a_std, "\n", "<br />");
+
+    #define RESET       "\033[0m"
+    #define BLACK       "\033[30m"
+    #define RED         "\033[31m"
+    #define GREEN       "\033[32m"
+    #define YELLOW      "\033[33m"
+    #define BLUE        "\033[34m"
+    #define MAGENTA     "\033[35m"
+    #define CYAN        "\033[36m"
+    #define WHITE       "\033[37m"
+    #define BOLDBLACK   "\033[1m\033[30m"
+    #define BOLDRED     "\033[1m\033[31m"
+    #define BOLDGREEN   "\033[1m\033[32m"
+    #define BOLDYELLOW  "\033[1m\033[33m"
+    #define BOLDBLUE    "\033[1m\033[34m"
+    #define BOLDMAGENTA "\033[1m\033[35m"
+    #define BOLDCYAN    "\033[1m\033[36m"
+    #define BOLDWHITE   "\033[1m\033[37m"
+
+    #define RESET_       "\033[0;1;0m"
+    #define BLACK_       "\033[0;1;30m"
+    #define RED_         "\033[0;1;31m"
+    #define GREEN_       "\033[0;1;32m"
+    #define YELLOW_      "\033[0;1;33m"
+    #define BLUE_        "\033[0;1;34m"
+    #define MAGENTA_     "\033[0;1;35m"
+    #define CYAN_        "\033[0;1;36m"
+    #define WHITE_       "\033[0;1;37m"
+    #define BOLDBLACK_   "\033[0;1;1m\033[30m"
+    #define BOLDRED_     "\033[0;1;1m\033[31m"
+    #define BOLDGREEN_   "\033[0;1;1m\033[32m"
+    #define BOLDYELLOW_  "\033[0;1;1m\033[33m"
+    #define BOLDBLUE_    "\033[0;1;1m\033[34m"
+    #define BOLDMAGENTA_ "\033[0;1;1m\033[35m"
+    #define BOLDCYAN_    "\033[0;1;1m\033[36m"
+    #define BOLDWHITE_   "\033[0;1;1m\033[37m"
+
+    #define COLOR_1      "\033[1m"
+    #define COLOR_2      "\033[0;32m"
+
+    std::map<std::tstring_t, std::tstring_t> colorsCodes;
+    colorsCodes[RESET]        = "";
+
+    colorsCodes[BLACK]        = xSTRINGIZE(BLACK);
+    colorsCodes[RED]          = xSTRINGIZE(RED);
+    colorsCodes[GREEN]        = xSTRINGIZE(GREEN);
+    colorsCodes[YELLOW]       = xSTRINGIZE(YELLOW);
+    colorsCodes[BLUE]         = xSTRINGIZE(BLUE);
+    colorsCodes[MAGENTA]      = xSTRINGIZE(MAGENTA);
+    colorsCodes[CYAN]         = xSTRINGIZE(CYAN);
+    colorsCodes[WHITE]        = xSTRINGIZE(WHITE);
+    colorsCodes[BOLDBLACK]    = xSTRINGIZE(BOLDBLACK);
+    colorsCodes[BOLDRED]      = xSTRINGIZE(BOLDRED);
+    colorsCodes[BOLDGREEN]    = xSTRINGIZE(BOLDGREEN);
+    colorsCodes[BOLDYELLOW]   = xSTRINGIZE(BOLDYELLOW);
+    colorsCodes[BOLDBLUE]     = xSTRINGIZE(BOLDBLUE);
+    colorsCodes[BOLDMAGENTA]  = xSTRINGIZE(BOLDMAGENTA);
+    colorsCodes[BOLDCYAN]     = xSTRINGIZE(BOLDCYAN);
+    colorsCodes[BOLDWHITE]    = xSTRINGIZE(BOLDWHITE);
+
+    colorsCodes[BLACK_]       = xSTRINGIZE(BLACK);
+    colorsCodes[RED_]         = xSTRINGIZE(RED);
+    colorsCodes[GREEN_]       = xSTRINGIZE(GREEN);
+    colorsCodes[YELLOW_]      = xSTRINGIZE(YELLOW);
+    colorsCodes[BLUE_]        = xSTRINGIZE(BLUE);
+    colorsCodes[MAGENTA_]     = xSTRINGIZE(MAGENTA);
+    colorsCodes[CYAN_]        = xSTRINGIZE(CYAN);
+    colorsCodes[WHITE_]       = xSTRINGIZE(WHITE);
+    colorsCodes[BOLDBLACK_]   = xSTRINGIZE(BOLDBLACK);
+    colorsCodes[BOLDRED_]     = xSTRINGIZE(BOLDRED);
+    colorsCodes[BOLDGREEN_]   = xSTRINGIZE(BOLDGREEN);
+    colorsCodes[BOLDYELLOW_]  = xSTRINGIZE(BOLDYELLOW);
+    colorsCodes[BOLDBLUE_]    = xSTRINGIZE(BOLDBLUE);
+    colorsCodes[BOLDMAGENTA_] = xSTRINGIZE(BOLDMAGENTA);
+    colorsCodes[BOLDCYAN_]    = xSTRINGIZE(BOLDCYAN);
+    colorsCodes[BOLDWHITE_]   = xSTRINGIZE(BOLDWHITE);
+
+    colorsCodes[COLOR_1]      = xSTRINGIZE(BLACK);
+    colorsCodes[COLOR_2]      = xSTRINGIZE(BLACK);
+
+    for (std::map<std::tstring_t, std::tstring_t>::iterator it = colorsCodes.begin();
+         it != colorsCodes.end();
+         ++ it)
+    {
+        std::tstring_t tagEnd;
+        {
+            if (it->first == RESET) {
+                tagEnd = xT("</font>");
+            } else {
+                tagEnd = xT("<font color=\"") + it->second + xT("\">");
+            }
+        }
+
+        std::cout << it->first << std::endl;
+
+        *a_std = String::replaceAll(*a_std, it->first, tagEnd);
+    }
 }
 //-------------------------------------------------------------------------------------------------
 
