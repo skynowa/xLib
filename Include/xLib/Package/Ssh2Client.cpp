@@ -321,8 +321,8 @@ Ssh2Client::_convertStdToHtml(
 
     // Regular
     colorsCodes["\e[0;30m"] = "Black";
-    colorsCodes["\e[0;31m"] = "Red";
-    colorsCodes["\e[0;32m"] = "Green";
+    colorsCodes["\e[0;31m"] = "Red";    // \e[0;1;31m
+    colorsCodes["\e[0;32m"] = "Green";  // \e[0;1;32m
     colorsCodes["\e[0;33m"] = "Yellow";
     colorsCodes["\e[0;34m"] = "Blue";
     colorsCodes["\e[0;35m"] = "Purple";
