@@ -22,11 +22,20 @@ public:
     };
     xTYPEDEF_CONST(UserAuth);
 
+    enum StdFormat
+    {
+        sfUnknown = 0,
+        sfRaw     = 1,
+        sfText    = 2,
+        sfHtml    = 3
+    };
+    xTYPEDEF_CONST(StdFormat);
+
                    Ssh2Client();
     virtual       ~Ssh2Client();
 
     void           construct(std::ctstring_t &hostName, cushort_t &port, std::ctstring_t &userName,
-                       std::ctstring_t &password);
+                       std::ctstring_t &password, cStdFormat stdFormat);
 
     bool           connect();
     void           authPassword(cUserAuth userAuth);
@@ -45,6 +54,7 @@ private:
     ushort_t       _port;
     std::tstring_t _userName;
     std::tstring_t _password;
+    StdFormat      _stdFormat;
 
     void           _convertStdToHtml(std::tstring_t *std);
 };

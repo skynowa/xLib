@@ -28,12 +28,13 @@ xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Ssh2Client::Ssh2Client() :
-    _session (xPTR_NULL),
-    _socket  (- 1),
-    _hostName(),
-    _port    (0),
-    _userName(),
-    _password()
+    _session  (xPTR_NULL),
+    _socket   (- 1),
+    _hostName (),
+    _port     (0),
+    _userName (),
+    _password (),
+    _stdFormat(sfUnknown)
 {
     int iRv = ::libssh2_init(0);
     xTEST_GR(iRv, - 1);
@@ -50,15 +51,17 @@ Ssh2Client::construct(
     std::ctstring_t &a_hostName,
     cushort_t       &a_port,
     std::ctstring_t &a_userName,
-    std::ctstring_t &a_password
+    std::ctstring_t &a_password,
+    cStdFormat       a_stdFormat
 )
 {
     userPassword = a_password;
 
-    _hostName = a_hostName;
-    _port     = a_port;
-    _userName = a_userName;
-    _password = a_password;
+    _hostName    = a_hostName;
+    _port        = a_port;
+    _userName    = a_userName;
+    _password    = a_password;
+    _stdFormat   = a_stdFormat;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool
@@ -203,7 +206,22 @@ Ssh2Client::executeCmd(
             stdOut.append(block);
         }
 
-        _convertStdToHtml(&stdOut);
+        // data format
+        switch (_stdFormat) {
+        case sfRaw:
+            // skip
+            break;
+        case sfText:
+            // TODO: sfText
+            break;
+        case sfHtml:
+            _convertStdToHtml(&stdOut);
+            break;
+        case sfUnknown:
+        default:
+            xTEST(false);
+            break;
+        }
 
         // out
         std::swap(stdOut, *a_stdOut);
@@ -227,7 +245,22 @@ Ssh2Client::executeCmd(
             stdErr.append(block);
         }
 
-        _convertStdToHtml(&stdErr);
+        // data format
+        switch (_stdFormat) {
+        case sfRaw:
+            // skip
+            break;
+        case sfText:
+            // TODO: sfText
+            break;
+        case sfHtml:
+            _convertStdToHtml(&stdErr);
+            break;
+        case sfUnknown:
+        default:
+            xTEST(false);
+            break;
+        }
 
         // out
         std::swap(stdErr, *a_stdErr);
