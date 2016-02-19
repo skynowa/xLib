@@ -298,84 +298,69 @@ Ssh2Client::_convertStdToHtml(
 {
     *a_std = String::replaceAll(*a_std, "\n", "<br />");
 
-    #define RESET       "\033[0m"
-    #define BLACK       "\033[30m"
-    #define RED         "\033[31m"
-    #define GREEN       "\033[32m"
-    #define YELLOW      "\033[33m"
-    #define BLUE        "\033[34m"
-    #define MAGENTA     "\033[35m"
-    #define CYAN        "\033[36m"
-    #define WHITE       "\033[37m"
-    #define BOLDBLACK   "\033[1m\033[30m"
-    #define BOLDRED     "\033[1m\033[31m"
-    #define BOLDGREEN   "\033[1m\033[32m"
-    #define BOLDYELLOW  "\033[1m\033[33m"
-    #define BOLDBLUE    "\033[1m\033[34m"
-    #define BOLDMAGENTA "\033[1m\033[35m"
-    #define BOLDCYAN    "\033[1m\033[36m"
-    #define BOLDWHITE   "\033[1m\033[37m"
-
-    #define RESET_       "\033[0;1;0m"
-    #define BLACK_       "\033[0;1;30m"
-    #define RED_         "\033[0;1;31m"
-    #define GREEN_       "\033[0;1;32m"
-    #define YELLOW_      "\033[0;1;33m"
-    #define BLUE_        "\033[0;1;34m"
-    #define MAGENTA_     "\033[0;1;35m"
-    #define CYAN_        "\033[0;1;36m"
-    #define WHITE_       "\033[0;1;37m"
-    #define BOLDBLACK_   "\033[0;1;1m\033[30m"
-    #define BOLDRED_     "\033[0;1;1m\033[31m"
-    #define BOLDGREEN_   "\033[0;1;1m\033[32m"
-    #define BOLDYELLOW_  "\033[0;1;1m\033[33m"
-    #define BOLDBLUE_    "\033[0;1;1m\033[34m"
-    #define BOLDMAGENTA_ "\033[0;1;1m\033[35m"
-    #define BOLDCYAN_    "\033[0;1;1m\033[36m"
-    #define BOLDWHITE_   "\033[0;1;1m\033[37m"
-
-    #define COLOR_1      "\033[1m"
-    #define COLOR_2      "\033[0;32m"
-
+    // http://misc.flogisoft.com/bash/tip_colors_and_formatting
+    // http://ascii-table.com/ansi-escape-sequences.php
     std::map<std::tstring_t, std::tstring_t> colorsCodes;
-    colorsCodes[RESET]        = "";
 
-    colorsCodes[BLACK]        = xLEX_TO_STR(BLACK);
-    colorsCodes[RED]          = xLEX_TO_STR(RED);
-    colorsCodes[GREEN]        = xLEX_TO_STR(GREEN);
-    colorsCodes[YELLOW]       = xLEX_TO_STR(YELLOW);
-    colorsCodes[BLUE]         = xLEX_TO_STR(BLUE);
-    colorsCodes[MAGENTA]      = xLEX_TO_STR(MAGENTA);
-    colorsCodes[CYAN]         = xLEX_TO_STR(CYAN);
-    colorsCodes[WHITE]        = xLEX_TO_STR(WHITE);
-    colorsCodes[BOLDBLACK]    = xLEX_TO_STR(BOLDBLACK);
-    colorsCodes[BOLDRED]      = xLEX_TO_STR(BOLDRED);
-    colorsCodes[BOLDGREEN]    = xLEX_TO_STR(BOLDGREEN);
-    colorsCodes[BOLDYELLOW]   = xLEX_TO_STR(BOLDYELLOW);
-    colorsCodes[BOLDBLUE]     = xLEX_TO_STR(BOLDBLUE);
-    colorsCodes[BOLDMAGENTA]  = xLEX_TO_STR(BOLDMAGENTA);
-    colorsCodes[BOLDCYAN]     = xLEX_TO_STR(BOLDCYAN);
-    colorsCodes[BOLDWHITE]    = xLEX_TO_STR(BOLDWHITE);
+    // Attributes set
+    colorsCodes["\e[1m"]    = ""; // Bold/Bright
+    colorsCodes["\e[2m"]    = ""; // Dim
+    colorsCodes["\e[4m"]    = ""; // Underlined
+    colorsCodes["\e[5m"]    = ""; // Blink
+    colorsCodes["\e[7m"]    = ""; // Reverse (invert the foreground and background colors)
+    colorsCodes["\e[8m"]    = ""; // Hidden (usefull for passwords)
 
-    colorsCodes[BLACK_]       = xLEX_TO_STR(BLACK);
-    colorsCodes[RED_]         = xLEX_TO_STR(RED);
-    colorsCodes[GREEN_]       = xLEX_TO_STR(GREEN);
-    colorsCodes[YELLOW_]      = xLEX_TO_STR(YELLOW);
-    colorsCodes[BLUE_]        = xLEX_TO_STR(BLUE);
-    colorsCodes[MAGENTA_]     = xLEX_TO_STR(MAGENTA);
-    colorsCodes[CYAN_]        = xLEX_TO_STR(CYAN);
-    colorsCodes[WHITE_]       = xLEX_TO_STR(WHITE);
-    colorsCodes[BOLDBLACK_]   = xLEX_TO_STR(BOLDBLACK);
-    colorsCodes[BOLDRED_]     = xLEX_TO_STR(BOLDRED);
-    colorsCodes[BOLDGREEN_]   = xLEX_TO_STR(BOLDGREEN);
-    colorsCodes[BOLDYELLOW_]  = xLEX_TO_STR(BOLDYELLOW);
-    colorsCodes[BOLDBLUE_]    = xLEX_TO_STR(BOLDBLUE);
-    colorsCodes[BOLDMAGENTA_] = xLEX_TO_STR(BOLDMAGENTA);
-    colorsCodes[BOLDCYAN_]    = xLEX_TO_STR(BOLDCYAN);
-    colorsCodes[BOLDWHITE_]   = xLEX_TO_STR(BOLDWHITE);
+    // Attributes Reset
+    colorsCodes["\e[0m"]    = ""; // Reset all attributes
+    colorsCodes["\e[21m"]   = ""; // Reset bold/bright
+    colorsCodes["\e[22m"]   = ""; // Reset dim
+    colorsCodes["\e[24m"]   = ""; // Reset underlined
+    colorsCodes["\e[25m"]   = ""; // Reset blink
+    colorsCodes["\e[27m"]   = ""; // Reset reverse
+    colorsCodes["\e[28m"]   = ""; // Reset hidden
 
-    colorsCodes[COLOR_1]      = xLEX_TO_STR(BLACK);
-    colorsCodes[COLOR_2]      = xLEX_TO_STR(BLACK);
+    // Regular
+    colorsCodes["\e[0;30m"] = "Black";
+    colorsCodes["\e[0;31m"] = "Red";
+    colorsCodes["\e[0;32m"] = "Green";
+    colorsCodes["\e[0;33m"] = "Yellow";
+    colorsCodes["\e[0;34m"] = "Blue";
+    colorsCodes["\e[0;35m"] = "Purple";
+    colorsCodes["\e[0;36m"] = "Cyan";
+    colorsCodes["\e[0;37m"] = "White";
+
+    // Bold
+    colorsCodes["\e[1;30m"] = "Black";
+    colorsCodes["\e[1;31m"] = "Red";
+    colorsCodes["\e[1;32m"] = "Green";
+    colorsCodes["\e[1;33m"] = "Yellow";
+    colorsCodes["\e[1;34m"] = "Blue";
+    colorsCodes["\e[1;35m"] = "Purple";
+    colorsCodes["\e[1;36m"] = "Cyan";
+    colorsCodes["\e[1;37m"] = "White";
+
+    // Underline
+    colorsCodes["\e[4;30m"] = "Black";
+    colorsCodes["\e[4;31m"] = "Red";
+    colorsCodes["\e[4;32m"] = "Green";
+    colorsCodes["\e[4;33m"] = "Yellow";
+    colorsCodes["\e[4;34m"] = "Blue";
+    colorsCodes["\e[4;35m"] = "Purple";
+    colorsCodes["\e[4;36m"] = "Cyan";
+    colorsCodes["\e[4;37m"] = "White";
+
+    // Background
+    colorsCodes["\e[40m"]   = "Black";
+    colorsCodes["\e[41m"]   = "Red";
+    colorsCodes["\e[42m"]   = "Green";
+    colorsCodes["\e[43m"]   = "Yellow";
+    colorsCodes["\e[44m"]   = "Blue";
+    colorsCodes["\e[45m"]   = "Purple";
+    colorsCodes["\e[46m"]   = "Cyan";
+    colorsCodes["\e[47m"]   = "White";
+
+    // Etc
+    colorsCodes["\e[0;1;32m"] = "Green";
 
     for (std::map<std::tstring_t, std::tstring_t>::iterator it = colorsCodes.begin();
          it != colorsCodes.end();
@@ -383,7 +368,7 @@ Ssh2Client::_convertStdToHtml(
     {
         std::tstring_t htmlTag;
         {
-            if (it->first == RESET) {
+            if (it->first == "\e[0m") {
                 htmlTag = xT("</font>");
             } else {
                 htmlTag = xT("<font color=\"") + it->second + xT("\">");
