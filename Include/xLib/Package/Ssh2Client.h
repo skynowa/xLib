@@ -11,6 +11,25 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, package)
 
+enum StdFormat
+{
+    sfUnknown = 0,
+    sfRaw     = 1,
+    sfText    = 2,
+    sfHtml    = 3
+};
+xTYPEDEF_CONST(StdFormat);
+
+struct Ssh2ClientData
+{
+    std::tstring_t hostName;
+    ushort_t       port;
+    std::tstring_t userName;
+    std::tstring_t password;
+    StdFormat      stdFormat;
+};
+xTYPEDEF_CONST(Ssh2ClientData);
+//-------------------------------------------------------------------------------------------------
 class Ssh2Client
 {
 public:
@@ -22,20 +41,8 @@ public:
     };
     xTYPEDEF_CONST(UserAuth);
 
-    enum StdFormat
-    {
-        sfUnknown = 0,
-        sfRaw     = 1,
-        sfText    = 2,
-        sfHtml    = 3
-    };
-    xTYPEDEF_CONST(StdFormat);
-
-                   Ssh2Client();
+    explicit       Ssh2Client(cSsh2ClientData &data);
     virtual       ~Ssh2Client();
-
-    void           construct(std::ctstring_t &hostName, cushort_t &port, std::ctstring_t &userName,
-                       std::ctstring_t &password, cStdFormat stdFormat);
 
     bool           connect();
     void           authPassword(cUserAuth userAuth);
@@ -47,14 +54,9 @@ public:
     std::tstring_t lastErrorFormat();
 
 private:
+    cSsh2ClientData &_data;
     LIBSSH2_SESSION * _session;
     int            _socket;
-
-    std::tstring_t _hostName;
-    ushort_t       _port;
-    std::tstring_t _userName;
-    std::tstring_t _password;
-    StdFormat      _stdFormat;
 
     void           _convertStdToHtml(std::tstring_t *std);
 };
