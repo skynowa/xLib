@@ -27,15 +27,15 @@ std::tstring_t userPassword;
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 xINLINE
-Ssh2Client::Ssh2Client() :
-    _session  (xPTR_NULL),
-    _socket   (- 1),
-    _hostName (),
-    _port     (0),
-    _userName (),
-    _password (),
-    _stdFormat(sfUnknown)
+Ssh2Client::Ssh2Client(
+    cSsh2ClientData &a_data
+) :
+    _data   (a_data),
+    _session(xPTR_NULL),
+    _socket (- 1)
 {
+    userPassword = a_data.password;
+
     int iRv = ::libssh2_init(0);
     xTEST_GR(iRv, - 1);
 }
@@ -46,36 +46,18 @@ Ssh2Client::~Ssh2Client()
     (void)::libssh2_exit();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void
-Ssh2Client::construct(
-    std::ctstring_t &a_hostName,
-    cushort_t       &a_port,
-    std::ctstring_t &a_userName,
-    std::ctstring_t &a_password,
-    cStdFormat       a_stdFormat
-)
-{
-    userPassword = a_password;
-
-    _hostName    = a_hostName;
-    _port        = a_port;
-    _userName    = a_userName;
-    _password    = a_password;
-    _stdFormat   = a_stdFormat;
-}
-//-------------------------------------------------------------------------------------------------
 xINLINE bool
 Ssh2Client::connect()
 {
     int iRv = - 1;
 
-    hostent *he = ::gethostbyname( _hostName.c_str() );
+    hostent *he = ::gethostbyname( _data.hostName.c_str() );
     xTEST_PTR(he);
 
     sockaddr_in s; xSTRUCT_ZERO(s);
     s.sin_addr   = *(struct in_addr *)(he->h_addr_list[0]);
     s.sin_family = he->h_addrtype;
-    s.sin_port   = htons(_port);
+    s.sin_port   = htons(_data.port);
 
     _socket = ::socket(AF_INET, SOCK_STREAM, 0);
     xTEST_GR(_socket, - 1);
@@ -113,6 +95,8 @@ keyBoardCallback(
     xUNUSED(a_instructionLen);
 
     if (a_numPrompts == 1) {
+        xTEST(!userPassword.empty());
+
         a_responses[0].text   = ::strdup( userPassword.c_str() );
         a_responses[0].length = userPassword.size();
     }
@@ -133,10 +117,10 @@ Ssh2Client::authPassword(
 
     switch (a_userAuth) {
     case uaPassword:
-        iRv = ::libssh2_userauth_password(_session, _userName.c_str(), _password.c_str());
+        iRv = ::libssh2_userauth_password(_session, _data.userName.c_str(), _data.password.c_str());
         break;
     case uaKeyboardInteractive:
-        iRv = ::libssh2_userauth_keyboard_interactive(_session, _userName.c_str(),
+        iRv = ::libssh2_userauth_keyboard_interactive(_session, _data.userName.c_str(),
                 &keyBoardCallback);
         break;
     case uaUnknown:
@@ -145,11 +129,7 @@ Ssh2Client::authPassword(
         break;
     }
 
-    if (iRv != 0) {
-        // Trace() << lastErrorFormat();
-    }
-
-    xTEST(0 == iRv);
+    xTEST_MSG(0 == iRv, lastErrorFormat());
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
@@ -164,8 +144,8 @@ Ssh2Client::authPublicKey(
     std::ctstring_t privateKey = a_keyDirPath + xT("/id_rsa");
     std::ctstring_t publicKey  = a_keyDirPath + xT("/id_rsa.pub");
 
-    iRv = ::libssh2_userauth_publickey_fromfile(_session, _userName.c_str(), publicKey.c_str(),
-            privateKey.c_str(), _password.c_str());
+    iRv = ::libssh2_userauth_publickey_fromfile(_session, _data.userName.c_str(), publicKey.c_str(),
+            privateKey.c_str(), _data.password.c_str());
     xTEST(0 == iRv);
 }
 //-------------------------------------------------------------------------------------------------
@@ -207,7 +187,7 @@ Ssh2Client::executeCmd(
         }
 
         // data format
-        switch (_stdFormat) {
+        switch (_data.stdFormat) {
         case sfRaw:
             // skip
             break;
@@ -246,7 +226,7 @@ Ssh2Client::executeCmd(
         }
 
         // data format
-        switch (_stdFormat) {
+        switch (_data.stdFormat) {
         case sfRaw:
             // skip
             break;
