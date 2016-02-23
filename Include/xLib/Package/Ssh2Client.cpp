@@ -188,16 +188,16 @@ Ssh2Client::executeCmd(
 
         // data format
         switch (_data.stdFormat) {
-        case sfRaw:
+        case Ssh2ClientData::sfRaw:
             // skip
             break;
-        case sfText:
+        case Ssh2ClientData::sfText:
             // TODO: sfText
             break;
-        case sfHtml:
+        case Ssh2ClientData::sfHtml:
             _convertStdToHtml(&stdOut);
             break;
-        case sfUnknown:
+        case Ssh2ClientData::sfUnknown:
         default:
             xTEST(false);
             break;
@@ -227,16 +227,16 @@ Ssh2Client::executeCmd(
 
         // data format
         switch (_data.stdFormat) {
-        case sfRaw:
+        case Ssh2ClientData::sfRaw:
             // skip
             break;
-        case sfText:
+        case Ssh2ClientData::sfText:
             // TODO: sfText
             break;
-        case sfHtml:
+        case Ssh2ClientData::sfHtml:
             _convertStdToHtml(&stdErr);
             break;
-        case sfUnknown:
+        case Ssh2ClientData::sfUnknown:
         default:
             xTEST(false);
             break;

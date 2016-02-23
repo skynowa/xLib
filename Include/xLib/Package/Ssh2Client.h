@@ -11,17 +11,17 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, package)
 
-enum StdFormat
-{
-    sfUnknown = 0,
-    sfRaw     = 1,
-    sfText    = 2,
-    sfHtml    = 3
-};
-xTYPEDEF_CONST(StdFormat);
-
 struct Ssh2ClientData
 {
+    enum StdFormat
+    {
+        sfUnknown = 0,
+        sfRaw     = 1,
+        sfText    = 2,
+        sfHtml    = 3
+    };
+    xTYPEDEF_CONST(StdFormat);
+
     std::tstring_t hostName;
     ushort_t       port;
     std::tstring_t userName;
@@ -29,7 +29,7 @@ struct Ssh2ClientData
     StdFormat      stdFormat;
 };
 xTYPEDEF_CONST(Ssh2ClientData);
-//-------------------------------------------------------------------------------------------------
+
 class Ssh2Client
 {
 public:
