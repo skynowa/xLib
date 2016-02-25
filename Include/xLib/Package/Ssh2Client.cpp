@@ -313,7 +313,7 @@ Ssh2Client::_convertStdToHtml(
 
     // http://misc.flogisoft.com/bash/tip_colors_and_formatting
     // http://ascii-table.com/ansi-escape-sequences.php
-    std::map<std::tstring_t, std::tstring_t> colorsCodes;
+    std::map_tstring_t colorsCodes;
 
     // Attributes set
     colorsCodes["\e[1m"]    = ""; // Bold/Bright
@@ -375,10 +375,7 @@ Ssh2Client::_convertStdToHtml(
     // Etc
     colorsCodes["\e[0;1;32m"] = "Green";
 
-    for (std::map<std::tstring_t, std::tstring_t>::iterator it = colorsCodes.begin();
-         it != colorsCodes.end();
-         ++ it)
-    {
+    xFOREACH_CONST(std::map_tstring_t, it, colorsCodes) {
         std::tstring_t htmlTag;
         {
             if (it->first == "\e[0m") {
