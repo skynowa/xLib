@@ -157,8 +157,9 @@ Ssh2Client::executeCmd(
 )
 {
     xTEST_PTR(_session);
-    xTEST_NA(a_stdOut);
-    xTEST_NA(a_stdErr);
+    xTEST(!a_cmd.empty());
+    xTEST_PTR(a_stdOut);
+    xTEST_PTR(a_stdErr);
 
     int iRv = - 1;
 
@@ -168,10 +169,9 @@ Ssh2Client::executeCmd(
     iRv = ::libssh2_channel_exec(channel, a_cmd.c_str());
     xTEST_GR(iRv, - 1);
 
-    // stdout
-    if (a_stdOut != xPTR_NULL) {
-        std::tstring_t stdOut;
-        char           block[blockSize + 1] = {0};
+    std::tstring_t stdOut;
+    {
+        char block[blockSize + 1] = {0};
 
         for ( ; ; ) {
             int read = ::libssh2_channel_read(channel, block, blockSize);
@@ -183,32 +183,11 @@ Ssh2Client::executeCmd(
 
             stdOut.append(block);
         }
-
-        // data format
-        switch (_data.stdFormat) {
-        case Ssh2ClientData::sfRaw:
-            // skip
-            break;
-        case Ssh2ClientData::sfText:
-            // TODO: sfText
-            break;
-        case Ssh2ClientData::sfHtml:
-            _convertStdToHtml(&stdOut);
-            break;
-        case Ssh2ClientData::sfUnknown:
-        default:
-            xTEST(false);
-            break;
-        }
-
-        // out
-        std::swap(stdOut, *a_stdOut);
     }
 
-    // stderr
-    if (a_stdErr != xPTR_NULL) {
-        std::tstring_t stdErr;
-        char           block[blockSize + 1] = {0};
+    std::tstring_t stdErr;
+    {
+        char block[blockSize + 1] = {0};
 
         for ( ; ; ) {
             int read = ::libssh2_channel_read_stderr(channel, block, blockSize);
@@ -220,27 +199,29 @@ Ssh2Client::executeCmd(
 
             stdErr.append(block);
         }
-
-        // data format
-        switch (_data.stdFormat) {
-        case Ssh2ClientData::sfRaw:
-            // skip
-            break;
-        case Ssh2ClientData::sfText:
-            // TODO: sfText
-            break;
-        case Ssh2ClientData::sfHtml:
-            _convertStdToHtml(&stdErr);
-            break;
-        case Ssh2ClientData::sfUnknown:
-        default:
-            xTEST(false);
-            break;
-        }
-
-        // out
-        std::swap(stdErr, *a_stdErr);
     }
+
+    // data format
+    switch (_data.stdFormat) {
+    case Ssh2ClientData::sfRaw:
+        // skip
+        break;
+    case Ssh2ClientData::sfText:
+        // TODO: sfText
+        break;
+    case Ssh2ClientData::sfHtml:
+        _convertStdToHtml(&stdOut);
+        _convertStdToHtml(&stdErr);
+        break;
+    case Ssh2ClientData::sfUnknown:
+    default:
+        xTEST(false);
+        break;
+    }
+
+    // out
+    std::swap(stdOut, *a_stdOut);
+    std::swap(stdErr, *a_stdErr);
 
     iRv = ::libssh2_channel_close(channel);
     xTEST_GR(iRv, - 1);
