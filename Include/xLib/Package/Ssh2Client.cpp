@@ -78,7 +78,7 @@ Ssh2Client::connect()
 }
 //-------------------------------------------------------------------------------------------------
 static void
-keyBoardCallback(
+onkeyboardInteractive(
     const char                           *a_name,
     int                                   a_nameLen,
     const char                           *a_instruction,
@@ -121,7 +121,7 @@ Ssh2Client::authPassword(
         break;
     case uaKeyboardInteractive:
         iRv = ::libssh2_userauth_keyboard_interactive(_session, _data.userName.c_str(),
-                &keyBoardCallback);
+                &onkeyboardInteractive);
         break;
     case uaUnknown:
     default:
