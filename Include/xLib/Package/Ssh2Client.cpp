@@ -31,8 +31,8 @@ Ssh2Client::Ssh2Client(
     cSsh2ClientData &a_data
 ) :
     _data   (a_data),
-    _session(xPTR_NULL),
-    _socket (- 1)
+    _socket (- 1),
+    _session(xPTR_NULL)
 {
     userPassword = a_data.password;
 
