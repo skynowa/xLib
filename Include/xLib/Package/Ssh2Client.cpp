@@ -173,8 +173,8 @@ Ssh2Client::executeCmd(
         std::tstring_t stdOut;
         char           block[blockSize + 1] = {0};
 
-        for (int read = 0; ; ) {
-            read = ::libssh2_channel_read(channel, block, blockSize);
+        for ( ; ; ) {
+            int read = ::libssh2_channel_read(channel, block, blockSize);
             xCHECK_DO(read <= 0, break);
 
             if (read < blockSize) {
@@ -210,8 +210,8 @@ Ssh2Client::executeCmd(
         std::tstring_t stdErr;
         char           block[blockSize + 1] = {0};
 
-        for (int read = 0; ; ) {
-            read = ::libssh2_channel_read_stderr(channel, block, blockSize);
+        for ( ; ; ) {
+            int read = ::libssh2_channel_read_stderr(channel, block, blockSize);
             xCHECK_DO(read <= 0, break);
 
             if (read < blockSize) {
