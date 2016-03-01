@@ -175,9 +175,7 @@ Ssh2Client::executeCmd(
 
         for (int read = 0; ; ) {
             read = ::libssh2_channel_read(channel, block, blockSize);
-            if (0 >= read) {
-                break;
-            }
+            xCHECK_DO(read <= 0, break);
 
             if (read < blockSize) {
                 block[read] = '\0';
@@ -214,9 +212,7 @@ Ssh2Client::executeCmd(
 
         for (int read = 0; ; ) {
             read = ::libssh2_channel_read_stderr(channel, block, blockSize);
-            if (0 >= read) {
-                break;
-            }
+            xCHECK_DO(read <= 0, break);
 
             if (read < blockSize) {
                 block[read] = '\0';
