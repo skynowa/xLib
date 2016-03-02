@@ -34,7 +34,7 @@ Test_TcpClient::unit(
 
     tcpClient.create(addressFamily, type, ptProtocol);
 
-    m_bRv = tcpClient.isServerAlive(ip, port);
+    m_bRv = TcpClient::isServerAlive(ip, port);
     xTEST_EQ(m_bRv, true);
 
     DnsClient::hostAddrByName(hostName, &ip);
