@@ -165,7 +165,6 @@ TcpClient::isServerAlive(
     xTEST_EQ((65535 > a_port) && (0 < a_port), true);
 
     TcpClient client;
-
     client.create(Socket::afInet, Socket::tpStream, Socket::ptIp);
 
     // convert from UNICODE
@@ -181,6 +180,8 @@ TcpClient::isServerAlive(
     xTEST_NA(iRv);
 
     xCHECK_RET(iRv != 0, false);
+
+    client.close();
 
     return true;
 }
