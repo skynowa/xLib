@@ -59,6 +59,7 @@ private:
     cSsh2ClientData &_data;
     TcpClient        _tcpClient;
     LIBSSH2_SESSION *_session;
+    LIBSSH2_CHANNEL *_channel;
 
     void           _convertStdToHtml(std::tstring_t *std);
 };

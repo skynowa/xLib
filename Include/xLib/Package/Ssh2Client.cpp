@@ -34,7 +34,8 @@ Ssh2Client::Ssh2Client(
 ) :
     _data     (a_data),
     _tcpClient(),
-    _session  (xPTR_NULL)
+    _session  (xPTR_NULL),
+    _channel  (xPTR_NULL)
 {
     userPassword = a_data.password;
 
@@ -167,24 +168,27 @@ Ssh2Client::executeCmd(
 )
 {
     xTEST_PTR(_session);
+    xTEST_PTR_FAIL(_channel);
     xTEST(!a_cmd.empty());
     xTEST_PTR(a_stdOut);
     xTEST_PTR(a_stdErr);
 
     int iRv = - 1;
 
-    LIBSSH2_CHANNEL *channel = ::libssh2_channel_open_session(_session);
-    xTEST_PTR(channel);
+    _channel = ::libssh2_channel_open_session(_session);
+    xTEST_PTR(_channel);
 
-    iRv = ::libssh2_channel_exec(channel, a_cmd.c_str());
+    iRv = ::libssh2_channel_exec(_channel, a_cmd.c_str());
     xTEST_GR(iRv, - 1);
 
     std::tstring_t stdOut;
     {
+        xTEST_PTR(_channel);
+
         char block[blockSize + 1] = {0};
 
         for ( ; ; ) {
-            int read = ::libssh2_channel_read(channel, block, blockSize);
+            int read = ::libssh2_channel_read(_channel, block, blockSize);
             xCHECK_DO(read <= 0, break);
 
             if (read < blockSize) {
@@ -197,10 +201,12 @@ Ssh2Client::executeCmd(
 
     std::tstring_t stdErr;
     {
+        xTEST_PTR(_channel);
+
         char block[blockSize + 1] = {0};
 
         for ( ; ; ) {
-            int read = ::libssh2_channel_read_stderr(channel, block, blockSize);
+            int read = ::libssh2_channel_read_stderr(_channel, block, blockSize);
             xCHECK_DO(read <= 0, break);
 
             if (read < blockSize) {
@@ -233,10 +239,12 @@ Ssh2Client::executeCmd(
     std::swap(stdOut, *a_stdOut);
     std::swap(stdErr, *a_stdErr);
 
-    iRv = ::libssh2_channel_close(channel);
+    xTEST_PTR(_channel);
+
+    iRv = ::libssh2_channel_close(_channel);
     xTEST_GR(iRv, - 1);
 
-    iRv = ::libssh2_channel_free(channel);  channel = xPTR_NULL;
+    iRv = ::libssh2_channel_free(_channel);  _channel = xPTR_NULL;
     xTEST_GR(iRv, - 1);
 
     return true;
