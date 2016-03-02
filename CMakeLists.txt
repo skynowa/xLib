@@ -110,6 +110,7 @@ message("CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 #--------------------------------------------------------------------------------------------------
 # libraries
 set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
+set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ssh2)
 
 if     (MSVC)
 
