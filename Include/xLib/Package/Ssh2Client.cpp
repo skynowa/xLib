@@ -47,6 +47,39 @@ Ssh2Client::~Ssh2Client()
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool
+Ssh2Client::isAlive()
+{
+    int iRv = - 1;
+
+    hostent *he = ::gethostbyname( _data.hostName.c_str() );
+    if (he == xPTR_NULL) {
+        return false;
+    }
+
+    sockaddr_in s; xSTRUCT_ZERO(s);
+    s.sin_addr   = *(struct in_addr *)(he->h_addr_list[0]);
+    s.sin_family = he->h_addrtype;
+    s.sin_port   = htons(_data.port);
+
+    _socket = ::socket(AF_INET, SOCK_STREAM, 0);
+    if (_socket < 0) {
+        return false;
+    }
+
+    iRv = ::connect(_socket, (sockaddr *)&s, sizeof(sockaddr_in));
+    if (iRv == - 1) {
+        return false;
+    }
+
+    iRv = ::close(_socket); _socket = - 1;
+    if (iRv == - 1) {
+        return false;
+    }
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool
 Ssh2Client::connect()
 {
     int iRv = - 1;
@@ -63,9 +96,6 @@ Ssh2Client::connect()
     xTEST_GR(_socket, - 1);
 
     iRv = ::connect(_socket, (sockaddr *)&s, sizeof(sockaddr_in));
-    if (iRv == - 1) {
-        return false;
-    }
     xTEST_GR(iRv, - 1);
 
     _session = ::libssh2_session_init();
