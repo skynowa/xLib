@@ -44,6 +44,7 @@ public:
     explicit       Ssh2Client(cSsh2ClientData &data);
     virtual       ~Ssh2Client();
 
+    bool           isAlive();
     bool           connect();
     void           authPassword(cUserAuth userAuth);
     void           authPublicKey(std::ctstring_t &keyDirPath);
