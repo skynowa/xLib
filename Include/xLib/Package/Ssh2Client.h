@@ -57,8 +57,8 @@ public:
 
 private:
     cSsh2ClientData &_data;
-    int            _socket;
-    LIBSSH2_SESSION * _session;
+    TcpClient        _tcpClient;
+    LIBSSH2_SESSION *_session;
 
     void           _convertStdToHtml(std::tstring_t *std);
 };

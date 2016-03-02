@@ -32,9 +32,9 @@ xINLINE
 Ssh2Client::Ssh2Client(
     cSsh2ClientData &a_data
 ) :
-    _data   (a_data),
-    _socket (- 1),
-    _session(xPTR_NULL)
+    _data     (a_data),
+    _tcpClient(),
+    _session  (xPTR_NULL)
 {
     userPassword = a_data.password;
 
@@ -51,77 +51,32 @@ Ssh2Client::~Ssh2Client()
 xINLINE bool
 Ssh2Client::isAlive()
 {
-    int iRv = - 1;
+    bool_t bRv = false;
 
-#if 1
-    hostent *he = ::gethostbyname( _data.hostName.c_str() );
-    if (iRv == - 1) {
-        Trace() << "gethostbyname - fail";
-        return false;
-    }
+    std::tstring_t hostAddr;
+    DnsClient::hostAddrByName(_data.hostName, &hostAddr);
 
-    sockaddr_in s; xSTRUCT_ZERO(s);
-    s.sin_addr   = *(struct in_addr *)(he->h_addr_list[0]);
-    s.sin_family = he->h_addrtype;
-    s.sin_port   = htons(_data.port);
-#else
-    sockaddr_in s; xSTRUCT_ZERO(s);
-    s.sin_addr.s_addr = inet_addr( _data.hostName.c_str() );
-    s.sin_family      = AF_INET;
-    s.sin_port        = htons(_data.port);
-#endif
+    bRv = TcpClient::isServerAlive(hostAddr, _data.port);
 
-    _socket = ::socket(AF_INET, SOCK_STREAM, 0);
-    if (_socket < 0) {
-        Trace() << "socket - fail";
-        return false;
-    }
-
-    iRv = ::connect(_socket, (sockaddr *)&s, sizeof(sockaddr_in));
-    if (iRv == - 1) {
-        Trace() << "connect - fail " << iRv;
-        return false;
-    }
-
-    iRv = ::close(_socket); _socket = - 1;
-    if (iRv == - 1) {
-        Trace() << "close - fail";
-        return false;
-    }
-
-    return true;
+    return bRv;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool
 Ssh2Client::connect()
 {
-    int iRv = - 1;
+    bool_t bRv = false;
+    int_t  iRv = 0;
 
-#if 1
-    hostent *he = ::gethostbyname( _data.hostName.c_str() );
-    xTEST_PTR(he);
+    std::tstring_t hostAddr;
+    DnsClient::hostAddrByName(_data.hostName, &hostAddr);
 
-    sockaddr_in s; xSTRUCT_ZERO(s);
-    s.sin_addr   = *(struct in_addr *)(he->h_addr_list[0]);
-    s.sin_family = he->h_addrtype;
-    s.sin_port   = htons(_data.port);
-#else
-    sockaddr_in s; xSTRUCT_ZERO(s);
-    s.sin_addr.s_addr = inet_addr( _data.hostName.c_str() );
-    s.sin_family      = AF_INET;
-    s.sin_port        = htons(_data.port);
-#endif
-
-    _socket = ::socket(AF_INET, SOCK_STREAM, 0);
-    xTEST_GR(_socket, - 1);
-
-    iRv = ::connect(_socket, (sockaddr *)&s, sizeof(sockaddr_in));
-    xTEST_GR(iRv, - 1);
+    _tcpClient.create(Socket::afInet, Socket::tpStream, Socket::ptIp);
+    _tcpClient.connect(hostAddr, _data.port);
 
     _session = ::libssh2_session_init();
     xTEST_PTR(_session);
 
-    iRv = ::libssh2_session_startup(_session, _socket);
+    iRv = ::libssh2_session_startup(_session, _tcpClient.handle());
     xTEST(iRv == 0);
 
     return true;
@@ -292,8 +247,7 @@ Ssh2Client::disconnect()
     iRv = ::libssh2_session_disconnect(_session, "Ssh2Client disconnected.");
     xTEST_GR(iRv, - 1);
 
-    iRv = ::close(_socket); _socket = - 1;
-    xTEST_GR(iRv, - 1);
+    _tcpClient.close();
 
     iRv = ::libssh2_session_free(_session); _session = xPTR_NULL;
     xTEST_GR(iRv, - 1);
