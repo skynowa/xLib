@@ -23,7 +23,8 @@ xNAMESPACE_BEGIN2(xlib, package)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
-cint_t         blockSize = 1;
+cint_t         blockSize    = 1024;
+cint_t         blockSizeMin = 1;
 std::tstring_t userPassword;
 
 xNAMESPACE_ANONYM_END
@@ -181,7 +182,7 @@ Ssh2Client::channelExec(
 }
 //-------------------------------------------------------------------------------------------------
 bool
-Ssh2Client::channelRead(
+Ssh2Client::channelReadLine(
     std::tstring_t *a_stdOut,
     std::tstring_t *a_stdErr
 )
@@ -193,30 +194,42 @@ Ssh2Client::channelRead(
 
     std::tstring_t stdOut;
     {
-        char block[blockSize + 1] = {0};
+        char block[blockSizeMin + 1] = {0};
 
-        int read = ::libssh2_channel_read(_channel, block, blockSize);
-        // xCHECK_RET(read <= 0, false);
+        for ( ; ; ) {
+            int read = ::libssh2_channel_read(_channel, block, blockSizeMin);
+            xCHECK_DO(read <= 0, break);
 
-        if (read < blockSize) {
-            block[read] = '\0';
-        }
+            if (read < blockSizeMin) {
+                block[read] = '\0';
+            }
 
-        stdOut.append(block);
+            if (block[0] == '\n') {
+                break;
+            }
+
+            stdOut.append(block);
+        } // for ( ; ; )
     }
 
     std::tstring_t stdErr;
     {
-        char block[blockSize + 1] = {0};
+        char block[blockSizeMin + 1] = {0};
 
-        int read = ::libssh2_channel_read_stderr(_channel, block, blockSize);
-        // xCHECK_RET(read <= 0, false);
+        for ( ; ; ) {
+            int read = ::libssh2_channel_read_stderr(_channel, block, blockSizeMin);
+            xCHECK_DO(read <= 0, break);
 
-        if (read < blockSize) {
-            block[read] = '\0';
-        }
+            if (read < blockSizeMin) {
+                block[read] = '\0';
+            }
 
-        stdErr.append(block);
+            if (block[0] == '\n') {
+                break;
+            }
+
+            stdErr.append(block);
+        } // for ( ; ; )
     }
 
     if (stdOut.empty() && stdErr.empty()) {
@@ -224,7 +237,6 @@ Ssh2Client::channelRead(
     }
 
     // data format
-#if 0
     switch (_data.stdFormat) {
     case Ssh2ClientData::sfRaw:
         // skip
@@ -241,7 +253,6 @@ Ssh2Client::channelRead(
         xTEST(false);
         break;
     }
-#endif
 
     // out
     std::swap(stdOut, *a_stdOut);
@@ -265,7 +276,7 @@ Ssh2Client::channelClose()
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool
-Ssh2Client::executeCmd(
+Ssh2Client::channelExecReadAll(
     std::ctstring_t &a_cmd,
     std::tstring_t  *a_stdOut,
     std::tstring_t  *a_stdErr
