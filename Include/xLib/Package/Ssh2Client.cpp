@@ -233,6 +233,9 @@ Ssh2Client::channelReadLine(
     }
 
     if (stdOut.empty() && stdErr.empty()) {
+        a_stdOut->clear();
+        a_stdErr->clear();
+
         return false;
     }
 
