@@ -19,7 +19,7 @@ Test_Socket::unit(
 {
     xTEST_CASE("SocketInit", a_caseLoops)
     {
-        SocketInit siInit22(2, 2);
+        SocketInit socketInit(2, 2);
     }
 }
 //-------------------------------------------------------------------------------------------------
