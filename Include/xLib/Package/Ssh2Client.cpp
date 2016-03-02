@@ -51,8 +51,10 @@ Ssh2Client::isAlive()
 {
     int iRv = - 1;
 
+#if 1
     hostent *he = ::gethostbyname( _data.hostName.c_str() );
-    if (he == xPTR_NULL) {
+    if (iRv == - 1) {
+        Trace() << "gethostbyname - fail";
         return false;
     }
 
@@ -60,19 +62,28 @@ Ssh2Client::isAlive()
     s.sin_addr   = *(struct in_addr *)(he->h_addr_list[0]);
     s.sin_family = he->h_addrtype;
     s.sin_port   = htons(_data.port);
+#else
+    sockaddr_in s; xSTRUCT_ZERO(s);
+    s.sin_addr.s_addr = inet_addr( _data.hostName.c_str() );
+    s.sin_family      = AF_INET;
+    s.sin_port        = htons(_data.port);
+#endif
 
     _socket = ::socket(AF_INET, SOCK_STREAM, 0);
     if (_socket < 0) {
+        Trace() << "socket - fail";
         return false;
     }
 
     iRv = ::connect(_socket, (sockaddr *)&s, sizeof(sockaddr_in));
     if (iRv == - 1) {
+        Trace() << "connect - fail " << iRv;
         return false;
     }
 
     iRv = ::close(_socket); _socket = - 1;
     if (iRv == - 1) {
+        Trace() << "close - fail";
         return false;
     }
 
@@ -84,6 +95,7 @@ Ssh2Client::connect()
 {
     int iRv = - 1;
 
+#if 1
     hostent *he = ::gethostbyname( _data.hostName.c_str() );
     xTEST_PTR(he);
 
@@ -91,6 +103,12 @@ Ssh2Client::connect()
     s.sin_addr   = *(struct in_addr *)(he->h_addr_list[0]);
     s.sin_family = he->h_addrtype;
     s.sin_port   = htons(_data.port);
+#else
+    sockaddr_in s; xSTRUCT_ZERO(s);
+    s.sin_addr.s_addr = inet_addr( _data.hostName.c_str() );
+    s.sin_family      = AF_INET;
+    s.sin_port        = htons(_data.port);
+#endif
 
     _socket = ::socket(AF_INET, SOCK_STREAM, 0);
     xTEST_GR(_socket, - 1);
