@@ -666,14 +666,14 @@
 ///@{
 #if xENV_WIN
     #define xSOCKET_ERROR \
-        ( SOCKET_ERROR )
+        ( static_cast<ssize_t>(SOCKET_ERROR) )
         ///< socket native handle value "error"
     #define xSOCKET_HANDLE_INVALID \
         ( static_cast<socket_t>( INVALID_SOCKET ) )
         ///< socket native handle value "null"
 #elif xENV_UNIX
     #define xSOCKET_ERROR \
-        ( - 1 )
+        ( static_cast<ssize_t>(- 1) )
         ///< socket native handle value "error"
     #define xSOCKET_HANDLE_INVALID \
         ( static_cast<socket_t>( - 1 ) )
