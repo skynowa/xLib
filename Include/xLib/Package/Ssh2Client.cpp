@@ -204,7 +204,7 @@ Ssh2Client::channelReadLine(
                 block[read] = '\0';
             }
 
-            if (block[0] == '\n') {
+            if (block[0] == Const::nl()[0]) {
                 break;
             }
 
@@ -224,7 +224,7 @@ Ssh2Client::channelReadLine(
                 block[read] = '\0';
             }
 
-            if (block[0] == '\n') {
+            if (block[0] == Const::nl()[0]) {
                 break;
             }
 
@@ -288,18 +288,13 @@ Ssh2Client::channelExecReadAll(
     xTEST_PTR(a_stdOut);
     xTEST_PTR(a_stdErr);
 
-    int iRv = - 1;
+    bool bRv = false;
 
-    _channel = ::libssh2_channel_open_session(_session);
-    xTEST_PTR(_channel);
-
-    iRv = ::libssh2_channel_exec(_channel, a_cmd.c_str());
-    xTEST_GR(iRv, - 1);
+    bRv = channelExec(a_cmd);
+    xTEST(bRv);
 
     std::tstring_t stdOut;
     {
-        xTEST_PTR(_channel);
-
         char block[blockSize + 1] = {0};
 
         for ( ; ; ) {
@@ -316,8 +311,6 @@ Ssh2Client::channelExecReadAll(
 
     std::tstring_t stdErr;
     {
-        xTEST_PTR(_channel);
-
         char block[blockSize + 1] = {0};
 
         for ( ; ; ) {
@@ -354,13 +347,7 @@ Ssh2Client::channelExecReadAll(
     std::swap(stdOut, *a_stdOut);
     std::swap(stdErr, *a_stdErr);
 
-    xTEST_PTR(_channel);
-
-    iRv = ::libssh2_channel_close(_channel);
-    xTEST_GR(iRv, - 1);
-
-    iRv = ::libssh2_channel_free(_channel);  _channel = xPTR_NULL;
-    xTEST_GR(iRv, - 1);
+    channelClose();
 
     return true;
 }
