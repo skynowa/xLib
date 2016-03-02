@@ -23,6 +23,9 @@ set(CMAKE_BUILD_TYPE "RelWithDebInfo")
     # MinSizeRel     (CMAKE_C_FLAGS_MINSIZEREL or CMAKE_CXX_FLAGS_MINSIZEREL)
 SET(CMAKE_COLOR_MAKEFILE ON)
 SET(CMAKE_VERBOSE_MAKEFILE OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
 # vars
 unset(XLIB_FOUND       CACHE)
@@ -93,12 +96,17 @@ include(CxxFlags)
 #--------------------------------------------------------------------------------------------------
 # definitions
 if (xOPTION_CPP11)
-    set(CXX_STANDARD "c++11")
+    set(CMAKE_CXX_STANDARD 11)
+
     # add_definitions(-std=c++11)
     set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} "-std=c++11")
+else()
+    set(CMAKE_CXX_STANDARD 98)  # 98, 11 and 14
 endif()
+message("CMAKE_CXX_STANDARD: ${CMAKE_CXX_STANDARD}")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
+message("CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 #--------------------------------------------------------------------------------------------------
 # libraries
 set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
