@@ -51,10 +51,11 @@ public:
     void           authPublicKey(std::ctstring_t &keyDirPath);
 
     bool           channelExec(std::ctstring_t &cmd);
-    bool           channelRead(std::tstring_t *stdOut, std::tstring_t *stdErr);
+    bool           channelReadLine(std::tstring_t *stdOut, std::tstring_t *stdErr);
     void           channelClose();
 
-    bool           executeCmd(std::ctstring_t &cmd, std::tstring_t *stdOut, std::tstring_t *stdErr);
+    bool           channelExecReadAll(std::ctstring_t &cmd, std::tstring_t *stdOut, std::tstring_t *stdErr);
+
     void           disconnect();
 
     int            lastError();
