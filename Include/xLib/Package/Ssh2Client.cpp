@@ -10,6 +10,8 @@
 
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/String.h>
+#include <xLib/Net/DnsClient.h>
+#include <xLib/Log/Trace.h>
 
 xNAMESPACE_BEGIN2(xlib, package)
 
