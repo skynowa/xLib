@@ -259,6 +259,12 @@ public:
     *
     *******************************************************************************/
 
+    static
+    bool_t         isAddressIpv4(std::ctstring_t &str);
+
+    static
+    bool_t         isAddressIpv6(std::ctstring_t &str);
+
     ////getsockopt
     static
     int_t          select(int_t nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,

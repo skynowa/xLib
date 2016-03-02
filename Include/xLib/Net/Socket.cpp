@@ -378,6 +378,28 @@ Socket::socketName(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
+bool_t
+Socket::isAddressIpv4(
+    std::ctstring_t &a_str
+)
+{
+    sockaddr_in sa; xSTRUCT_ZERO(sa);
+
+    return (::inet_pton(AF_INET, a_str.c_str(), &sa.sin_addr) != 0);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+Socket::isAddressIpv6(
+    std::ctstring_t &a_str
+)
+{
+    sockaddr_in6 sa; xSTRUCT_ZERO(sa);
+
+    return (::inet_pton(AF_INET6, a_str.c_str(), &sa.sin6_addr) != 0);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE int_t
 Socket::select(
     int_t    a_nfds,

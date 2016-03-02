@@ -51,24 +51,29 @@ Ssh2Client::~Ssh2Client()
 xINLINE bool
 Ssh2Client::isAlive()
 {
-    bool_t bRv = false;
-
     std::tstring_t hostAddr;
-    DnsClient::hostAddrByName(_data.hostName, &hostAddr);
 
-    bRv = TcpClient::isServerAlive(hostAddr, _data.port);
+    if (Socket::isAddressIpv4(_data.hostName) || Socket::isAddressIpv6(_data.hostName)) {
+        hostAddr = _data.hostName;
+    } else {
+        DnsClient::hostAddrByName(_data.hostName, &hostAddr);
+    }
 
-    return bRv;
+    return TcpClient::isServerAlive(hostAddr, _data.port);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool
 Ssh2Client::connect()
 {
-    bool_t bRv = false;
-    int_t  iRv = 0;
+    int_t iRv = 0;
 
     std::tstring_t hostAddr;
-    DnsClient::hostAddrByName(_data.hostName, &hostAddr);
+
+    if (Socket::isAddressIpv4(_data.hostName) || Socket::isAddressIpv6(_data.hostName)) {
+        hostAddr = _data.hostName;
+    } else {
+        DnsClient::hostAddrByName(_data.hostName, &hostAddr);
+    }
 
     _tcpClient.create(Socket::afInet, Socket::tpStream, Socket::ptIp);
     _tcpClient.connect(hostAddr, _data.port);
