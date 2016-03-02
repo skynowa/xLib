@@ -49,6 +49,11 @@ public:
     bool           connect();
     void           authPassword(cUserAuth userAuth);
     void           authPublicKey(std::ctstring_t &keyDirPath);
+
+    bool           channelExec(std::ctstring_t &cmd);
+    bool           channelRead(std::tstring_t *stdOut, std::tstring_t *stdErr);
+    void           channelClose();
+
     bool           executeCmd(std::ctstring_t &cmd, std::tstring_t *stdOut, std::tstring_t *stdErr);
     void           disconnect();
 
