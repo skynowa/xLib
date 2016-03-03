@@ -8,6 +8,7 @@
     #include "Ssh2Client.h"
 #endif
 
+#include <xLib/Core/Const.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/String.h>
 #include <xLib/Net/DnsClient.h>
