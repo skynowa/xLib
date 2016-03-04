@@ -162,7 +162,7 @@ Ssh2Client::authPublicKey(
     xTEST(0 == iRv);
 }
 //-------------------------------------------------------------------------------------------------
-bool
+xINLINE bool
 Ssh2Client::channelExec(
     std::ctstring_t &a_cmd
 )
@@ -182,7 +182,7 @@ Ssh2Client::channelExec(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-bool
+xINLINE bool
 Ssh2Client::channelReadLine(
     std::tstring_t *a_stdOut,
     std::tstring_t *a_stdErr
@@ -265,7 +265,7 @@ Ssh2Client::channelReadLine(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-void
+xINLINE void
 Ssh2Client::channelClose()
 {
     xTEST_PTR(_channel);

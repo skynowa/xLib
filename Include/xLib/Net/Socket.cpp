@@ -378,7 +378,7 @@ Socket::socketName(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-bool_t
+xINLINE bool_t
 Socket::isAddressIpv4(
     std::ctstring_t &a_str
 )
@@ -389,7 +389,7 @@ Socket::isAddressIpv4(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-bool_t
+xINLINE bool_t
 Socket::isAddressIpv6(
     std::ctstring_t &a_str
 )
