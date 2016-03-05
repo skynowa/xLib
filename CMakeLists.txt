@@ -201,12 +201,12 @@ set(XLIB_LOCATION    ${XLIB_LOCATION}    PARENT_SCOPE)
 #--------------------------------------------------------------------------------------------------
 # uninstall
 configure_file(
-    ${XLIB_LOCATION}/CMakeLib/cmake_uninstall.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
+    ${XLIB_LOCATION}/CMakeLib/Uninstall.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/Uninstall.cmake
     IMMEDIATE @ONLY)
 
 add_custom_target(uninstall
-    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/Uninstall.cmake)
 #--------------------------------------------------------------------------------------------------
 # run tests after build
 if (xOPTION_PROJECT_TESTS)
