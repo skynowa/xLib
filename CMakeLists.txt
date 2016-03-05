@@ -108,10 +108,8 @@ if (xOPTION_CPP11)
 else()
     set(CMAKE_CXX_STANDARD 98)  # 98, 11 and 14
 endif()
-message("CMAKE_CXX_STANDARD: ${CMAKE_CXX_STANDARD}")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
-message("CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 #--------------------------------------------------------------------------------------------------
 # libraries
 set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
@@ -125,7 +123,7 @@ elseif (CMAKE_COMPILER_IS_CLANGXX)
 elseif (CMAKE_COMPILER_IS_GNUCXX)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} pthread rt m z)
 else()
-    message("xLib: unknown compiler")
+    message(FATAL_ERROR "xLib: unknown compiler")
 endif()
 
 if (OS_ANDROID)
@@ -149,7 +147,7 @@ endif()
 if (NOT XLIB_FOUND AND XLIB_FIND_REQUIRED)
     message(FATAL_ERROR "XLIB_FOUND: ${XLIB_FOUND}")
 else()
-    message(STATUS "XLIB_FOUND: ${XLIB_FOUND}")
+    # message(STATUS "XLIB_FOUND: ${XLIB_FOUND}")
     # message("    XLIB_LOCATION:    ${XLIB_LOCATION}")
     # message("    XLIB_DEFINITIONS: ${XLIB_DEFINITIONS}")
     # message("    XLIB_INCLUDES:    ${XLIB_INCLUDES}")
