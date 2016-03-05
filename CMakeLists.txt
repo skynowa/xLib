@@ -41,7 +41,8 @@ if (NOT XLIB_LOCATION)
 endif()
 #--------------------------------------------------------------------------------------------------
 # modules
-set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMakeLib)
+set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMakeLib ${XLIB_LOCATION}/CMake)
+
 include(${XLIB_LOCATION}/Config.cmake)
 include(Configure)
 #--------------------------------------------------------------------------------------------------
@@ -199,7 +200,7 @@ set(XLIB_LOCATION    ${XLIB_LOCATION}    PARENT_SCOPE)
 #--------------------------------------------------------------------------------------------------
 # uninstall
 configure_file(
-    ${XLIB_LOCATION}/CMakeLib/Uninstall.cmake.in
+    ${XLIB_LOCATION}/CMake/Uninstall.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/Uninstall.cmake
     IMMEDIATE @ONLY)
 
