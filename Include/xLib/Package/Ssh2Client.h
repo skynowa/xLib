@@ -50,7 +50,7 @@ public:
     void           authPassword(cUserAuth userAuth);
     void           authPublicKey(std::ctstring_t &keyDirPath);
 
-    bool           channelExec(std::ctstring_t &cmd);
+    bool           channelExec(std::ctstring_t &cmd, cbool_t isBlockingMode);
     bool           channelReadLine(std::tstring_t *stdOut, std::tstring_t *stdErr);
     void           channelClose();
 
