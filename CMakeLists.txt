@@ -42,7 +42,7 @@ if (NOT XLIB_LOCATION)
 endif()
 #--------------------------------------------------------------------------------------------------
 # modules
-set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMakeLib ${XLIB_LOCATION}/CMake)
+set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/../CMakeLib ${XLIB_LOCATION}/CMake)
 
 include(${XLIB_LOCATION}/Config.cmake)
 include(Configure)
