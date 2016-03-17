@@ -199,13 +199,15 @@ if (xOPTION_PROJECT_TESTS)
 
     include_directories(${XLIB_LOCATION}/Tests/Include)
     file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/Source/*.cpp)
+    
+    message(STATUS "XLIB_LIBRARIES   : ${XLIB_LIBRARIES}")
 
     foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         get_filename_component(SOURCE_NAME ${IT_SOURCE} NAME_WE)
         message(STATUS "File: ${SOURCE_NAME}")
 
         add_executable(${SOURCE_NAME} ${IT_SOURCE})
-        target_link_libraries(${SOURCE_NAME} ${XLIB_LIBRARIES})
+        target_link_libraries(${SOURCE_NAME} ${XLIB_LIBRARIES} -l${PROJECT_NAME}_static)
         install(TARGETS ${SOURCE_NAME} DESTINATION "bin")
 
         add_test(NAME ${SOURCE_NAME} COMMAND ${SOURCE_NAME})
