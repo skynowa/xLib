@@ -201,7 +201,7 @@ if (xOPTION_PROJECT_TESTS)
     file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/Source/*.cpp)
 
     foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
-        get_filename_component(CPP_NAME ${IT_SOURCE} NAME_WE)
+        get_filename_component(SOURCE_NAME ${IT_SOURCE} NAME_WE)
         message(STATUS "File: ${SOURCE_NAME}")
 
         add_executable(${SOURCE_NAME} ${IT_SOURCE})
@@ -209,7 +209,7 @@ if (xOPTION_PROJECT_TESTS)
         install(TARGETS ${SOURCE_NAME} DESTINATION "bin")
 
         add_test(NAME ${SOURCE_NAME} COMMAND ${SOURCE_NAME})
-    foreach()
+    endforeach()
 endif()
 #--------------------------------------------------------------------------------------------------
 # install
