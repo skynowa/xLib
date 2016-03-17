@@ -188,15 +188,28 @@ set(XLIB_LOCATION    ${XLIB_LOCATION}    PARENT_SCOPE)
 set(xOPTION_PROJECT_TESTS ON)
 
 if (xOPTION_PROJECT_TESTS)
+    # include_directories(${XLIB_LOCATION}/Tests/Include)
+    # file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/Source/*.cpp)
+
+    # add_executable(${PROJECT_NAME}_tests ${XLIB_SOURCES} ${XLIB_TESTS_SOURCES})
+    # target_link_libraries(${PROJECT_NAME}_tests ${XLIB_LIBRARIES})
+    # install(TARGETS ${PROJECT_NAME}_tests  DESTINATION "bin")
+
+    enable_testing()
+
     include_directories(${XLIB_LOCATION}/Tests/Include)
     file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/Source/*.cpp)
 
-    add_executable(${PROJECT_NAME}_tests ${XLIB_SOURCES} ${XLIB_TESTS_SOURCES})
-    target_link_libraries(${PROJECT_NAME}_tests ${XLIB_LIBRARIES})
-    install(TARGETS ${PROJECT_NAME}_tests  DESTINATION "bin")
+    FOREACH(CPP_PATH ${XLIB_TESTS_SOURCES})
+        get_filename_component(CPP_NAME ${CPP_PATH} NAME_WE)
+        MESSAGE(STATUS "File: ${CPP_NAME}")
 
-    enable_testing()
-    add_test(NAME Test1 COMMAND ${PROJECT_NAME}_tests)
+        add_executable(${CPP_NAME} ${CPP_PATH})
+        target_link_libraries(${CPP_NAME} ${XLIB_LIBRARIES})
+        install(TARGETS ${CPP_NAME} DESTINATION "bin")
+
+        add_test(NAME ${CPP_NAME} COMMAND ${CPP_NAME})
+    ENDFOREACH()
 endif()
 #--------------------------------------------------------------------------------------------------
 # install
