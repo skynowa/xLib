@@ -240,3 +240,15 @@ Test_Application::unit(
     }
 }
 //-------------------------------------------------------------------------------------------------
+int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
+{
+    xUNUSED(a_argsNum);
+    xUNUSED(a_args);
+
+    Test_Application test;
+    test.setName("Test_Application");
+    test.run(1, 1);
+
+    return EXIT_SUCCESS;
+}
+//-------------------------------------------------------------------------------------------------
