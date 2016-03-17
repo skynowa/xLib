@@ -43,8 +43,6 @@
 
 ///@name tests
 ///@{
-#cmakedefine xOPTION_TESTS 1
-    ///< use xLib tests
 #cmakedefine xOPTION_TEST_PRIVATE 1
     ///< for tests private data
 #cmakedefine xOPTION_TEST_TRACING 1
