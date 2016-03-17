@@ -21,10 +21,6 @@
 #elif xOPTION_PROJECT_LIB_MODULE
     #define xPROJECT_LIB_SHARE 1
         ///< dynamic-link library
-#elif xOPTION_PROJECT_TESTS
-    #define xPROJECT_TESTS 1
-        ///< executable binary
-#else
     #error xLib: unknown project type
 #endif
 ///@}
