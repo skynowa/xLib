@@ -13,7 +13,6 @@
 #cmakedefine xOPTION_PROJECT_LIB_STATIC 1
 #cmakedefine xOPTION_PROJECT_LIB_SHARE 1
 #cmakedefine xOPTION_PROJECT_LIB_MODULE 1
-#cmakedefine xOPTION_PROJECT_TESTS 1
 ///@}
 
 #cmakedefine xOPTION_CPP11 1
