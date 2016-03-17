@@ -193,6 +193,11 @@ set(XLIB_SOURCES     ${XLIB_SOURCES}     PARENT_SCOPE)
 set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   PARENT_SCOPE)
 set(XLIB_LOCATION    ${XLIB_LOCATION}    PARENT_SCOPE)
 #--------------------------------------------------------------------------------------------------
+# tests
+enable_testing()
+
+add_test(NAME Test1 COMMAND ${PROJECT_NAME}_tests)
+#--------------------------------------------------------------------------------------------------
 # install
 #install(
 #    DIRECTORY ${XLIB_LOCATION}/Include/xLib/
