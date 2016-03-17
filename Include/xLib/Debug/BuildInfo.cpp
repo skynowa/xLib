@@ -382,8 +382,6 @@ BuildInfo::binaryType() const
     sRv = xT("Share library");
 #elif xOPTION_PROJECT_LIB_MODULE
     sRv = xT("Dynamic link library");
-#elif xOPTION_PROJECT_TESTS
-    sRv = xT("Executable binary");
 #else
     sRv = xUNKNOWN_CSTRING;
 #endif
