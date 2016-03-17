@@ -200,16 +200,16 @@ if (xOPTION_PROJECT_TESTS)
     include_directories(${XLIB_LOCATION}/Tests/Include)
     file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/Source/*.cpp)
 
-    FOREACH(CPP_PATH ${XLIB_TESTS_SOURCES})
-        get_filename_component(CPP_NAME ${CPP_PATH} NAME_WE)
-        MESSAGE(STATUS "File: ${CPP_NAME}")
+    foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
+        get_filename_component(CPP_NAME ${IT_SOURCE} NAME_WE)
+        message(STATUS "File: ${SOURCE_NAME}")
 
-        add_executable(${CPP_NAME} ${CPP_PATH})
-        target_link_libraries(${CPP_NAME} ${XLIB_LIBRARIES})
-        install(TARGETS ${CPP_NAME} DESTINATION "bin")
+        add_executable(${SOURCE_NAME} ${IT_SOURCE})
+        target_link_libraries(${SOURCE_NAME} ${XLIB_LIBRARIES})
+        install(TARGETS ${SOURCE_NAME} DESTINATION "bin")
 
-        add_test(NAME ${CPP_NAME} COMMAND ${CPP_NAME})
-    ENDFOREACH()
+        add_test(NAME ${SOURCE_NAME} COMMAND ${SOURCE_NAME})
+    foreach()
 endif()
 #--------------------------------------------------------------------------------------------------
 # install
