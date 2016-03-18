@@ -10,8 +10,6 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xlib;
 
-#if xHAVE_OPENSSL_CRYPTO
-
 class Test_Blowfish :
     public Unit
 {
@@ -20,6 +18,4 @@ public:
 
     virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
-
-#endif // xHAVE_OPENSSL_CRYPTO
 //-------------------------------------------------------------------------------------------------

@@ -10,9 +10,6 @@
 #include <xLib/Crypt/Crc32.h>
 #include <xLib/IO/File.h>
 
-
-#if xHAVE_OPENSSL_CRYPTO
-
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Blowfish)
 //-------------------------------------------------------------------------------------------------
@@ -22,6 +19,8 @@ Test_Blowfish::unit(
     culonglong_t &a_caseLoops
 )
 {
+#if xHAVE_OPENSSL_CRYPTO
+
     xTEST_CASE("encryptCfb64", a_caseLoops)
     {
         std::ustring_t plain[] = {
@@ -83,7 +82,8 @@ Test_Blowfish::unit(
             xTEST_EQ(Crc32().calcFile(filePlain), Crc32().calcFile(fileDecrypted));
         }
     }
+
+#endif // xHAVE_OPENSSL_CRYPTO
 }
 //-------------------------------------------------------------------------------------------------
 
-#endif // xHAVE_OPENSSL_CRYPTO
