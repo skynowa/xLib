@@ -506,7 +506,7 @@ Thread::setDebugName(
 ) const
 {
     xTEST_GR(_id, static_cast<id_t>( 0 ));
-    xTEST_LESS_EQ(a_name.size(), (std::size_t)xTHREAD_NAME_LENGTH_MAX);
+    xTEST_LESS_EQ(a_name.size(), xTHREAD_NAME_LENGTH_MAX);
 
     std::tstring_t name = a_name;
 
