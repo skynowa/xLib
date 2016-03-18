@@ -273,4 +273,14 @@
         for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
 #endif
     ///< test case
+
+#define xTEST_UNIT(unitClassName) \
+    int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[]) \
+    { \
+        unitClassName unit; \
+        unit.setName( xLEX_TO_STR(unitClassName) ); \
+        unit.run(1, 1); \
+        \
+        return EXIT_SUCCESS; \
+    }
 //-------------------------------------------------------------------------------------------------
