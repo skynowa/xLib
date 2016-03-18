@@ -25,6 +25,11 @@ Test_Pop3Client::unit(
 {
     xUNUSED(a_caseLoops);
 
+    {
+        // FIX: temp disable
+        return;
+    }
+
     //-------------------------------------
     //
     //std::ctstring_t csUser     = xT("Sergey");        //"test_1";

@@ -1,0 +1,21 @@
+/**
+ * \file   Test_Manager.h
+ * \brief
+ */
+
+
+#pragma once
+
+#include <xLib/xLib.h>
+//-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+class Test_Manager :
+    public Unit
+{
+public:
+                   Test_Manager() {}
+
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
+};
+//-------------------------------------------------------------------------------------------------
