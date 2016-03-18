@@ -11,7 +11,7 @@
 int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 {
     // add and run tests
-    Manager manager(a_argsNum, a_args[], isUseTracing);
+    Manager manager(a_argsNum, a_args, isUseTracing);
 
     // Test
     manager.add(new Test_xTest);
