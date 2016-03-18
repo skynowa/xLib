@@ -322,6 +322,12 @@ Test_Defines::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
+    xTEST_CASE("xBASE_FILE", a_caseLoops)
+    {
+        m_sRv = xBASE_FILE;
+        xTEST_EQ(false, m_sRv.empty());
+    }
+
     xTEST_CASE("xLINE", a_caseLoops)
     {
         m_ulRv = xLINE;
