@@ -10,12 +10,12 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xlib;
 
-class Test_Test :
+class Test_xTest :
     public Unit
     ///< tests for Test
 {
 public:
-                   Test_Test() {}
+                   Test_xTest() {}
 
     virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
         ///< unit test

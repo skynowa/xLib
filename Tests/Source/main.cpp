@@ -71,7 +71,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         Manager manager(isUseTracing);
 
         // Test
-        manager.add(new Test_Test);
+        manager.add(new Test_xTest);
 
         // Core
         manager.add(new Test_Units);
