@@ -35,9 +35,6 @@ Manager::Manager(
     _isUseTracing(a_isUseTracing),
     _units       ()
 {
-    xUNUSED(a_argsNum);
-    xUNUSED(a_args);
-
     // checks
     {
     #if xENV_UNIX
