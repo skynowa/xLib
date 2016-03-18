@@ -271,11 +271,11 @@ Test_Defines::unit(
             }
         };
 
-        xTEST_EQ(Local::foo(xLIBSSH2_ERROR_SOCKET_NONE), std::tstring_t("LIBSSH2_ERROR_SOCKET_NONE"));
-        xTEST_EQ(Local::foo(xLIBSSH2_ERROR_BANNER_RECV), std::tstring_t("LIBSSH2_ERROR_BANNER_RECV"));
-        xTEST_EQ(Local::foo(xLIBSSH2_ERROR_BANNER_SEND), std::tstring_t("LIBSSH2_ERROR_BANNER_SEND"));
-        xTEST_EQ(Local::foo(xLIBSSH2_ERROR_INVALID_MAC), std::tstring_t("LIBSSH2_ERROR_INVALID_MAC"));
-        xTEST_EQ(Local::foo(xLIBSSH2_ERROR_KEX_FAILURE), std::tstring_t("LIBSSH2_ERROR_KEX_FAILURE"));
+        xTEST_EQ(Local::foo(xLIBSSH2_ERROR_SOCKET_NONE), std::tstring_t("xLIBSSH2_ERROR_SOCKET_NONE"));
+        xTEST_EQ(Local::foo(xLIBSSH2_ERROR_BANNER_RECV), std::tstring_t("xLIBSSH2_ERROR_BANNER_RECV"));
+        xTEST_EQ(Local::foo(xLIBSSH2_ERROR_BANNER_SEND), std::tstring_t("xLIBSSH2_ERROR_BANNER_SEND"));
+        xTEST_EQ(Local::foo(xLIBSSH2_ERROR_INVALID_MAC), std::tstring_t("xLIBSSH2_ERROR_INVALID_MAC"));
+        xTEST_EQ(Local::foo(xLIBSSH2_ERROR_KEX_FAILURE), std::tstring_t("xLIBSSH2_ERROR_KEX_FAILURE"));
     }
 
     xTEST_CASE("xDECLARE_LAMBDA", a_caseLoops)
