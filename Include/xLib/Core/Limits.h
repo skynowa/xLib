@@ -153,5 +153,15 @@
 #define xCUSTOM_SYSCONF_SC_GETPW_R_SIZE_MAX_UNIX \
     (16384L)
     ///< ::sysconf(_SC_GETPW_R_SIZE_MAX)
+
+// xTHREAD_NAME_LENGTH_MAX
+#if   xENV_WIN
+    #define xTHREAD_NAME_LENGTH_MAX \
+        ( static_cast<std::size_t>(32) )
+#elif xENV_UNIX
+    #define xTHREAD_NAME_LENGTH_MAX \
+        ( static_cast<std::size_t>(16) )
+#endif
+    ///< thread name max length
 ///@}
 //-------------------------------------------------------------------------------------------------

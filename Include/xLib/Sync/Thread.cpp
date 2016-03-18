@@ -506,11 +506,17 @@ Thread::setDebugName(
 ) const
 {
     xTEST_GR(_id, static_cast<id_t>( 0 ));
-    xTEST_GR_EQ(a_name.size(), std::size_t(32)); // TODO: Thread::setDebugName() - MAX_NAME_SIZE = 32
+    xTEST_LESS_EQ(a_name.size(), (std::size_t)xTHREAD_NAME_LENGTH_MAX);
+
+    std::tstring_t name = a_name;
+
+    if (name.size() > xTHREAD_NAME_LENGTH_MAX) {
+        name.resize(xTHREAD_NAME_LENGTH_MAX);
+    }
 
     // TODO: Thread::setDebugName() - xCHECK_RET(!Debugger().isActive(), true);
 
-    _setDebugName_impl(a_name);
+    _setDebugName_impl(name);
 }
 //-------------------------------------------------------------------------------------------------
 
