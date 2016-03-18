@@ -16,7 +16,7 @@ class AutoReset
 {
 public:
     AutoReset(
-        T       *value,
+        T       &value,
         const T &reset_value
     ) :
         _value      (value),
@@ -25,12 +25,12 @@ public:
     }
    ~AutoReset()
     {
-        *_value = _reset_value;
+        _value = _reset_value;
     }
 
 private:
-    T *       _value;
-    const T & _reset_value;
+    T       &_value;
+    const T &_reset_value;
 
     xNO_COPY_ASSIGN(AutoReset)
 };
