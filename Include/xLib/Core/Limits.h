@@ -155,6 +155,7 @@
     ///< ::sysconf(_SC_GETPW_R_SIZE_MAX)
 
 // xTHREAD_NAME_LENGTH_MAX
+// TODO: xTHREAD_NAME_LENGTH_MAX - fix unicode version
 #if   xENV_WIN
     #define xTHREAD_NAME_LENGTH_MAX \
         ( static_cast<std::size_t>(32) )
