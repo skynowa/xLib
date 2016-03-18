@@ -6,8 +6,6 @@
 
 #pragma once
 
-#if xHAVE_MYSQL
-
 #include <xLib/xLib.h>
 //-------------------------------------------------------------------------------------------------
 using namespace xlib;
@@ -21,5 +19,3 @@ public:
     virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
-
-#endif // xHAVE_MYSQL
