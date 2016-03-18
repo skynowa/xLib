@@ -18,28 +18,28 @@ Test_AutoReset::unit(
 {
     xTEST_CASE("AutoReset", a_caseLoops)
     {
-        bool_t data[] = {true, false, true};
+        cbool_t data[] = {true, false, true};
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
             bool_t origin = data[i];
 
             {
-                AutoReset<bool_t> reseter(&data[i], false);
-                xTEST_EQ(data[i], origin);
+                AutoReset<bool_t> reseter(origin, false);
+                xTEST_EQ(origin, data[i]);
             }
 
-            xTEST_EQ(data[i], false);
+            xTEST_EQ(origin, false);
         }
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
             bool_t origin = data[i];
 
             {
-                AutoReset<bool_t> reseter(&data[i], true);
-                xTEST_EQ(data[i], origin);
+                AutoReset<bool_t> reseter(origin, true);
+                xTEST_EQ(origin, data[i]);
             }
 
-            xTEST_EQ(data[i], true);
+            xTEST_EQ(origin, false);
         }
     }
 }
