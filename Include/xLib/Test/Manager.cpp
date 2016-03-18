@@ -13,6 +13,8 @@
 #include <xLib/Core/Functors.h>
 #include <xLib/IO/Path.h>
 #include <xLib/Log/Trace.h>
+#include <xLib/System/ProcessInfo.h>
+#include <xLib/System/SystemInfo.h>
 #include <xLib/Test/Unit.h>
 
 
@@ -26,11 +28,70 @@ xNAMESPACE_BEGIN2(xlib, test)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Manager::Manager(
+    int_t    a_argsNum,
+    tchar_t *a_args[],
     cbool_t &a_isUseTracing
 ) :
     _isUseTracing(a_isUseTracing),
     _units       ()
 {
+    xUNUSED(a_argsNum);
+    xUNUSED(a_args);
+
+    // checks
+    {
+    #if xENV_UNIX
+        SystemInfo info;
+        xCHECK_MSG_DO(info.isUserAdmin(), xT("xLib_test: Can't run as root"), return);
+    #endif
+    }
+
+    // options (default)
+    bool_t      isUseTracing = true;
+    ulonglong_t allLoops     = 1ULL;
+    ulonglong_t unitLoops    = 1ULL;
+    ulonglong_t caseLoops    = 1ULL;
+    {
+        std::vec_tstring_t args;
+
+        ProcessInfo info;
+        info.setProcessId(Process::currentId());
+        info.commandLine(&args);
+
+        if (a_argsNum == 1) {
+            // OK, run tests with default params
+        }
+        else if (a_argsNum == 2) {
+            // usage
+            bool_t bRv = StringCI::compare(xT("-h"),     args.at(1)) ||
+                         StringCI::compare(xT("--help"), args.at(1));
+            if (!bRv) {
+                std::tcout << xT("\nxLib_test: unknown switches\n") << std::endl;
+            } else {
+                std::tcout << xT("\nUsage: ./xLib_test [is_tracing] [all_loops] [unit_loops]\n")
+                              xT("  - xLib_test  (binary file path)\n")
+                              xT("  - is_tracing (is tracing)\n")
+                              xT("  - all_loops  (loops for all tests)\n")
+                              xT("  - unit_loops (loops for unit test)\n")
+                              xT("  - case_loops (loops for case test)\n") << std::endl;
+            }
+
+            return;
+        }
+        else if (a_argsNum == 5) {
+            // addition params
+            isUseTracing = String::cast<bool_t>     ( args.at(1) );
+            allLoops     = String::cast<ulonglong_t>( args.at(2) );
+            unitLoops    = String::cast<ulonglong_t>( args.at(3) );
+            caseLoops    = String::cast<ulonglong_t>( args.at(4) );
+        }
+        else {
+            // fail
+            std::tcout << xT("\nxLib_test: unknown switches\n") << std::endl;
+            return;
+        }
+    }
+
     xCHECK_DO(_isUseTracing,
         Trace()
             << xT("\n\nManager: *** ") << xLIB_NAME
