@@ -6,7 +6,6 @@
 
 #include <Test/Db/Test_MySql.h>
 
-#if xHAVE_MYSQL
 
 #include <xLib/Core/String.h>
 
@@ -19,6 +18,7 @@ Test_MySql::unit(
     culonglong_t &a_caseLoops
 )
 {
+#if xHAVE_MYSQL
     std::ctstring_t csHost        = xT("127.0.0.1");
     std::ctstring_t csUser        = xT("root");
     std::ctstring_t csPassword    = xT("root");
@@ -265,7 +265,6 @@ Test_MySql::unit(
     //--------------------------------------------------
     //bClose
     conConn.close();
+#endif // xHAVE_MYSQL
 }
 //-------------------------------------------------------------------------------------------------
-
-#endif // xHAVE_MYSQL
