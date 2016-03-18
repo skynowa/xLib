@@ -385,6 +385,16 @@
 #endif
     ///< source file path
 
+// xBASE_FILE
+#if defined(__BASE_FILE__)
+    #define xBASE_FILE \
+        xT(__BASE_FILE__)
+#else
+    #define xBASE_FILE \
+        (std::strrchr(xFILE, '/') ? std::strrchr(xFILE, '/') + 1 : xFILE)
+#endif
+    ///< file basename
+
 // xLINE
 #if defined(__LINE__)
     #define xLINE \
