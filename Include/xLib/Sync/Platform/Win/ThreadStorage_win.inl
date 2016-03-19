@@ -28,7 +28,7 @@ ThreadStorage::_construct_impl()
 xINLINE void_t
 ThreadStorage::_destruct_impl()
 {
-    xTEST_EQ(0 < _index, true);
+    xTEST_GR(_index, (index_t)0);
 
     BOOL blRv = ::TlsFree(_index);
     xTEST_DIFF(blRv, FALSE);
