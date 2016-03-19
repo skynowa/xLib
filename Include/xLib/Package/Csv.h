@@ -25,6 +25,11 @@ public:
         tchar_t        delimiter;
         bool_t         isTrimCells;
         bool_t         isSkipEmptyLines;
+
+        CsvData() :
+            hasHeader(true)
+        {
+        }
     };
     xTYPEDEF_CONST(CsvData);
 };
