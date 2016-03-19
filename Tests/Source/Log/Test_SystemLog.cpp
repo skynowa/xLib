@@ -48,12 +48,15 @@ Test_SystemLog::unit(
         SystemLog log;
 
         for (size_t i = 0; i < xARRAY_SIZE(logLevel); ++ i) {
+        #if xTEST_IGNORE
             log.write(logLevel[i], xT("%s%")xPR_SIZET, xT("This is test system log message #"), i);
+        #endif
         }
     }
 
     xTEST_CASE("write(...)", a_caseLoops)
     {
+    #if xTEST_IGNORE
         SystemLog().write(ILog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::lvUnknown),  12345);
         SystemLog().write(ILog::lvEmerg,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvEmerg),    12345);
         SystemLog().write(ILog::lvAlert,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvAlert),    12345);
@@ -64,6 +67,7 @@ Test_SystemLog::unit(
         SystemLog().write(ILog::lvInfo,     xT("\t%s, %d"), xLEX_TO_STR(ILog::lvInfo),     12345);
         SystemLog().write(ILog::lvDebug,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvDebug),    12345);
         SystemLog().write(ILog::lvPlain,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvPlain),    12345);
+    #endif
     }
 }
 //-------------------------------------------------------------------------------------------------
