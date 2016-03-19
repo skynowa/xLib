@@ -138,7 +138,7 @@ Test_BuildInfo::unit(
         BuildInfo info;
 
         m_sRv = info.binaryType();
-        xTEST_EQ(m_sRv, std::tstring_t( xT("Executable binary") ));
+        xTEST_DIFF(m_sRv, std::tstring_t( xT("xUNKNOWN_CSTRING") ));
     }
 }
 //---------------------------------------------------------------------------
