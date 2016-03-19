@@ -28,7 +28,7 @@ public:
 
 private:
 #if xENV_WIN
-    typedef ulong_t       index_t;
+    typedef DWORD         index_t;
 #elif xENV_UNIX
     typedef pthread_key_t index_t;
 #endif
