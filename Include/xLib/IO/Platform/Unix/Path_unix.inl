@@ -27,13 +27,13 @@ Path::_dll_impl()
 {
     std::tstring_t sRv;
 
+#if (xPROJECT_LIB_SHARE || xOPTION_PROJECT_LIB_MODULE)
     Dl_info  diInfo;          xSTRUCT_ZERO(diInfo);
     void_t (*procAddress)() = function;
 
     int_t iRv = ::dladdr(&procAddress, &diInfo);
     xTEST_DIFF(iRv, 0);
 
-#if (xPROJECT_LIB_STATIC || xPROJECT_LIB_SHARE || xOPTION_PROJECT_LIB_MODULE)
     sRv = Path(diInfo.dli_fname).absolute();
 #else
     sRv = Const::strEmpty();
