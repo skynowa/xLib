@@ -18,7 +18,6 @@ Test_Array::unit(
 {
     std::csize_t arraySize = 5;
 
-
     Array<size_t, arraySize> array = {{0, 1, 2, 3, 4}};
 
     xTEST_CASE("operator[]", a_caseLoops)

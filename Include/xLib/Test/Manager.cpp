@@ -28,9 +28,9 @@ xNAMESPACE_BEGIN2(xlib, test)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Manager::Manager(
-    int_t    a_argsNum,
-    tchar_t *a_args[],
-    cbool_t &a_isUseTracing
+    cint_t   &a_argsNum,
+    ctchar_t *a_args[],
+    cbool_t  &a_isUseTracing
 ) :
     _isUseTracing(a_isUseTracing),
     _units       ()

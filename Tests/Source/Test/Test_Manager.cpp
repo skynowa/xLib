@@ -29,18 +29,19 @@ Test_Manager::unit(
     culonglong_t &a_caseLoops
 )
 {
-    tchar_t *args[]  = {"./xLib_test", "1", "1", "1", "1"};
-    int_t    argsNum = 5;
+    xTEST_CASE("all", a_caseLoops)
+    {
+        ctchar_t    *args[]       = {"./xLib_test", "1", "1", "1", "1"};
+        int_t        argsNum      = 5;
+        cbool_t      isUseTracing = true;
+        culonglong_t allLoops     = 1ULL;
+        culonglong_t unitLoops    = 1ULL;
+        culonglong_t caseLoops    = 1ULL;
 
-    cbool_t      isUseTracing = true;
-    culonglong_t allLoops     = 1ULL;
-    culonglong_t unitLoops    = 1ULL;
-    culonglong_t caseLoops    = 1ULL;
+        Manager manager(argsNum, args, isUseTracing);
+        manager.add(new Test_Simple1);
 
-    // add and run tests
-    Manager manager(argsNum, args, isUseTracing);
-    manager.add(new Test_Simple1);
-
-    manager.run(allLoops, unitLoops, caseLoops);
+        manager.run(allLoops, unitLoops, caseLoops);
+    }
 }
 //-------------------------------------------------------------------------------------------------
