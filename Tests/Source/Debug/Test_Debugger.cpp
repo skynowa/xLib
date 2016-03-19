@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Debugger)
 /* virtual */
 void_t
 Test_Debugger::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("isEnabled, setEnabled", a_caseLoops)

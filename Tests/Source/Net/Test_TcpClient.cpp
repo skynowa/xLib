@@ -15,7 +15,7 @@ xTEST_UNIT(Test_TcpClient)
 /* virtual */
 void_t
 Test_TcpClient::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xUNUSED(a_caseLoops);

@@ -15,7 +15,7 @@ xTEST_UNIT(Test_IpcSemaphore)
 /* virtual */
 void_t
 Test_IpcSemaphore::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("IpcSemaphore", a_caseLoops)

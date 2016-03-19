@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Com)
 /* virtual */
 void_t
 Test_Com::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
 #if xENV_WIN

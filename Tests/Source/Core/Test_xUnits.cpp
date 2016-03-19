@@ -15,7 +15,7 @@ xTEST_UNIT(Test_Units)
 /* virtual */
 void_t
 Test_Units::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("Bytes", a_caseLoops)

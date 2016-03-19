@@ -14,7 +14,7 @@ xTEST_UNIT(Test_Limits)
 /* virtual */
 void_t
 Test_Limits::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("xHOST_NAME_MAX_", a_caseLoops)

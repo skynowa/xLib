@@ -16,7 +16,7 @@ xTEST_UNIT(Test_AutoProfiler)
 /* virtual */
 void_t
 Test_AutoProfiler::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("AutoProfiler", a_caseLoops)

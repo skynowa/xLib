@@ -16,7 +16,7 @@ xTEST_UNIT(Test_Profiler)
 /* virtual */
 void_t
 Test_Profiler::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("setLogPath", a_caseLoops)

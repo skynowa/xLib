@@ -15,7 +15,7 @@ xTEST_UNIT(Test_HandleT)
 /* virtual */
 void_t
 Test_HandleT::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("HandleT", a_caseLoops)

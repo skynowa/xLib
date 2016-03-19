@@ -15,7 +15,7 @@ xTEST_UNIT(Test_MimeMessage)
 /* virtual */
 void_t
 Test_MimeMessage::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xUNUSED(a_caseLoops);

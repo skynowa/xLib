@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Signal)
 /* virtual */
 void_t
 Test_Signal::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("decription", a_caseLoops)

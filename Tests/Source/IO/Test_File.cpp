@@ -15,7 +15,7 @@ xTEST_UNIT(Test_File)
 /* virtual */
 void_t
 Test_File::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     std::ctstring_t filePath = tempDirPath() + Const::slash() + xT("Test.txt");
@@ -536,7 +536,7 @@ Test_File::unit(
 //-------------------------------------------------------------------------------------------------
 void_t
 Test_File::unit1(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     std::ctstring_t filePath = tempDirPath() + Const::slash() + xT("Test.txt");
@@ -892,7 +892,7 @@ Test_File::unit1(
 //-------------------------------------------------------------------------------------------------
 void_t
 Test_File::unitPrivate(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xUNUSED(a_caseLoops);

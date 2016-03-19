@@ -14,7 +14,7 @@ xTEST_UNIT(Test_Environment)
 /* virtual */
 void_t
 Test_Environment::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("setVar", a_caseLoops)

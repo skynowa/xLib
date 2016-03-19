@@ -16,7 +16,7 @@ xTEST_UNIT(Test_Blowfish)
 /* virtual */
 void_t
 Test_Blowfish::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
 #if xHAVE_OPENSSL_CRYPTO

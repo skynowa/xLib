@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Shell)
 /* virtual */
 void_t
 Test_Shell::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("isAvailable", a_caseLoops)

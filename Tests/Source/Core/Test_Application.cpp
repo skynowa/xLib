@@ -77,7 +77,7 @@ public:
 /* virtual */
 void_t
 Test_Application::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("args", a_caseLoops)

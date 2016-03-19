@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Mutex)
 /* virtual */
 void_t
 Test_Mutex::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     size_t uiVal = 0;

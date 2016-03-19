@@ -14,7 +14,7 @@ xTEST_UNIT(Test_CookiePv1)
 /* virtual */
 void_t
 Test_CookiePv1::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     std::ctstring_t csName      = xT("Name1");

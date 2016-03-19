@@ -17,7 +17,7 @@ xTEST_UNIT(Test_SystemInfo)
 /* virtual */
 void_t
 Test_SystemInfo::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("os", a_caseLoops)

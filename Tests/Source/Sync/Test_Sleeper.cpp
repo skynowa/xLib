@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Sleeper)
 /* virtual */
 void_t
 Test_Sleeper::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("isSleeping", a_caseLoops)

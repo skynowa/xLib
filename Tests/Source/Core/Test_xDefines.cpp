@@ -18,7 +18,7 @@ xTEST_UNIT(Test_Defines)
 /*virtual*/
 void_t
 Test_Defines::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("Combinations of defines", a_caseLoops)

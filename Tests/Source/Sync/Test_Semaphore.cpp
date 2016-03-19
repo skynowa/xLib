@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Semaphore)
 /* virtual */
 void_t
 Test_Semaphore::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xUNUSED(a_caseLoops);

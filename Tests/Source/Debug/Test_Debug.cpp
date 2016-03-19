@@ -15,7 +15,7 @@ xTEST_UNIT(Test_Debug)
 /*virtual*/
 void_t
 Test_Debug::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("xCHECK_RET", a_caseLoops)

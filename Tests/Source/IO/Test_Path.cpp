@@ -17,7 +17,7 @@ xTEST_UNIT(Test_Path)
 /* virtual */
 void_t
 Test_Path::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("exe", a_caseLoops)

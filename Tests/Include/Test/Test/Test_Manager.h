@@ -12,10 +12,12 @@ using namespace xlib;
 
 class Test_Manager :
     public Unit
+    ///< tests for Manager
 {
 public:
                    Test_Manager() {}
 
-    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
+    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
+        ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

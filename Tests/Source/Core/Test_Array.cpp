@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Array)
 /* virtual */
 void_t
 Test_Array::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     std::csize_t arraySize = 5;

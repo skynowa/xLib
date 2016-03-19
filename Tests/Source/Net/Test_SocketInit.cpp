@@ -12,7 +12,7 @@ xTEST_UNIT(Test_SocketInit)
 /* virtual */
 void_t
 Test_SocketInit::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("SocketInit", a_caseLoops)

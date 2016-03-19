@@ -16,7 +16,7 @@ xTEST_UNIT(Test_Backup)
 /* virtual */
 void_t
 Test_Backup::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     std::ctstring_t filePath  = tempDirPath() + Const::slash() + xT("test.txt");

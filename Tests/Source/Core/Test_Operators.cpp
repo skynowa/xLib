@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Operators)
 /* virtual */
 void_t
 Test_Operators::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("Operators::operator ++", a_caseLoops)

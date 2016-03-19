@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Locale)
 /* virtual */
 void_t
 Test_Locale::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("current", a_caseLoops)

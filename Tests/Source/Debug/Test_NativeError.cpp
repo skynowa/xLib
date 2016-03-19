@@ -12,7 +12,7 @@ xTEST_UNIT(Test_NativeError)
 /* virtual */
 void_t
 Test_NativeError::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     #if   xENV_WIN

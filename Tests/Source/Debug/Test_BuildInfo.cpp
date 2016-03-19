@@ -12,7 +12,7 @@ xTEST_UNIT(Test_BuildInfo)
 /* virtual */
 void_t
 Test_BuildInfo::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("isRelease", a_caseLoops)

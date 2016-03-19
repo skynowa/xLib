@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Type)
 /* virtual */
 void_t
 Test_Type::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("name", a_caseLoops)

@@ -14,7 +14,7 @@ xTEST_UNIT(Test_Trace)
 /* virtual */
 void_t
 Test_Trace::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("operator <<", a_caseLoops)

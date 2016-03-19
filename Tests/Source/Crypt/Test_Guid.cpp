@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Guid)
 /* virtual */
 void_t
 Test_Guid::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("create", a_caseLoops)

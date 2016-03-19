@@ -16,7 +16,7 @@ xTEST_UNIT(Test_Cgi)
 /* virtual */
 void_t
 Test_Cgi::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("pageShow", a_caseLoops)

@@ -17,7 +17,7 @@ xTEST_UNIT(Test_Config)
 /* virtual */
 void_t
 Test_Config::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     std::ctstring_t filePath = Path( Path::exe() ).setExt(xT("cfg") );
