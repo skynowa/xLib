@@ -50,9 +50,9 @@ public:
     virtual            ~Unit() = 0;
         ///< destructor
 
-    void_t              run(culonglong_t &unitLoops, culonglong_t &caseLoops);
+    void_t              run(std::csize_t &unitLoops, std::csize_t &caseLoops);
         ///< run cases
-    virtual void_t      unit(culonglong_t &caseLoops) = 0;
+    virtual void_t      unit(std::csize_t &caseLoops) = 0;
         ///< unit
     void_t              createTempDir(std::ctstring_t &dirName);
         ///< create work dir

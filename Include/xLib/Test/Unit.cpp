@@ -60,8 +60,8 @@ Unit::~Unit() /* = 0 */
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Unit::run(
-    culonglong_t &a_unitLoops,
-    culonglong_t &a_caseLoops
+    std::csize_t &a_unitLoops,
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_NA(a_unitLoops);
@@ -70,7 +70,7 @@ Unit::run(
     try {
         createTempDir(xT("Temp"));
 
-        for (ulonglong_t i = 0ULL; i < a_unitLoops; ++ i) {
+        for (std::size_t i = 0; i < a_unitLoops; ++ i) {
             unit(a_caseLoops);
         }
     }
@@ -90,7 +90,7 @@ Unit::run(
 /* virtual */
 xINLINE void_t
 Unit::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 ) /* = 0 */
 {
     xUNUSED(a_caseLoops);
