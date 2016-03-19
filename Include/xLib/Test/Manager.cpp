@@ -52,6 +52,7 @@ Manager::Manager(
 
         Trace() << xTRACE_VAR(a_argsNum);
         Trace() << xTRACE_VAR(args.size());
+        Trace() << xTRACE_VAR(args);
 
         if (a_argsNum == 1) {
             // OK, run tests with default params
