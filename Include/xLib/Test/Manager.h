@@ -18,7 +18,7 @@ class Manager
     /// manager
 {
 public:
-    explicit Manager(int_t argsNum, tchar_t *args[], cbool_t &isUseTracing);
+    explicit Manager(cint_t &argsNum, ctchar_t *args[], cbool_t &isUseTracing);
         ///< constructor
     virtual ~Manager();
         ///< destructor
