@@ -29,11 +29,10 @@ xNAMESPACE_BEGIN2(xlib, test)
 xINLINE
 Manager::Manager(
     cint_t   &a_argsNum,
-    ctchar_t *a_args[],
-    cbool_t  &a_isUseTracing
+    ctchar_t *a_args[]
 ) :
-    _isUseTracing(a_isUseTracing),
-    _units       ()
+    _data (),
+    _units()
 {
     // checks
     {
@@ -43,17 +42,16 @@ Manager::Manager(
     #endif
     }
 
-    // options (default)
-    bool_t      isUseTracing = true;
-    ulonglong_t allLoops     = 1ULL;
-    ulonglong_t unitLoops    = 1ULL;
-    ulonglong_t caseLoops    = 1ULL;
+    // parse params
     {
         std::vec_tstring_t args;
 
         ProcessInfo info;
         info.setProcessId(Process::currentId());
         info.commandLine(&args);
+
+        Trace() << xTRACE_VAR(a_argsNum);
+        Trace() << xTRACE_VAR(args.size());
 
         if (a_argsNum == 1) {
             // OK, run tests with default params
@@ -76,11 +74,11 @@ Manager::Manager(
             return;
         }
         else if (a_argsNum == 5) {
-            // addition params
-            isUseTracing = String::cast<bool_t>     ( args.at(1) );
-            allLoops     = String::cast<ulonglong_t>( args.at(2) );
-            unitLoops    = String::cast<ulonglong_t>( args.at(3) );
-            caseLoops    = String::cast<ulonglong_t>( args.at(4) );
+            // params
+            _data.isUseTracing = String::cast<bool_t>     ( args.at(1) );
+            _data.allLoops     = String::cast<std::size_t>( args.at(2) );
+            _data.unitLoops    = String::cast<std::size_t>( args.at(3) );
+            _data.caseLoops    = String::cast<std::size_t>( args.at(4) );
         }
         else {
             // fail
@@ -89,7 +87,7 @@ Manager::Manager(
         }
     }
 
-    xCHECK_DO(_isUseTracing,
+    xCHECK_DO(_data.isUseTracing,
         Trace()
             << xT("\n\nManager: *** ") << xLIB_NAME
             << xT(" v.")               << xLIB_VERSION << xT(" ") << xLIB_VERSION_SUFFIX
@@ -98,13 +96,21 @@ Manager::Manager(
             << xT(" ***"));
 }
 //-------------------------------------------------------------------------------------------------
+Manager::Manager(
+    cManagerData &a_data
+) :
+    _data (a_data),
+    _units()
+{
+}
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 xINLINE
 Manager::~Manager()
 {
     std::for_each(_units.begin(), _units.end(), Delete());
 
-    xCHECK_DO(_isUseTracing, Trace() << xT("Manager: all destructed."));
+    xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: all destructed."));
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -120,33 +126,26 @@ Manager::add(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Manager::run(
-    culonglong_t &a_allLoops,
-    culonglong_t &a_unitLoops,
-    culonglong_t &a_caseLoops
-)
+Manager::run()
 {
-    xTEST_NA(a_allLoops);
-    xTEST_NA(a_unitLoops);
-    xTEST_NA(a_caseLoops);
+    xCHECK_DO(_data.isUseTracing,
+        Trace() << xT("\nTestManager: start all...");
+        Trace() << xT("Manager: module path: ") << Path::exe();
+        Trace() << xT("Manager: ")
+                << xT("all loops: ")     << _data.allLoops
+                << xT(", unit loops: ")  << _data.unitLoops
+                << xT(", case loops: ")  << _data.caseLoops
+                << xT(", unit number: ") << _units.size());
 
-    xCHECK_DO(_isUseTracing, Trace() << xT("\nTestManager: start all..."));
-    xCHECK_DO(_isUseTracing, Trace() << xT("Manager: module path: ") << Path::exe());
-    xCHECK_DO(_isUseTracing, Trace() << xT("Manager: ")
-                                     << xT("all loops: ")     << a_allLoops
-                                     << xT(", unit loops: ")  << a_unitLoops
-                                     << xT(", case loops: ")  << a_caseLoops
-                                     << xT(", unit number: ") << _units.size());
-
-    for (ulonglong_t i = 0ULL; i < a_allLoops; ++ i) {
+    for (std::size_t i = 0; i < _data.allLoops; ++ i) {
         xFOREACH_CONST(units_t, it, _units) {
-            xCHECK_DO(_isUseTracing, Trace() << xT("Manager: run unit ") << (*it)->name());
+            xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: run unit ") << (*it)->name());
 
-            (*it)->run(a_unitLoops, a_caseLoops);
+            (*it)->run(_data.unitLoops, _data.caseLoops);
         }
     }
 
-    xCHECK_DO(_isUseTracing, Trace() << xT("Manager: all successful done."));
+    xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: all successful done."));
 }
 //-------------------------------------------------------------------------------------------------
 
