@@ -26,6 +26,8 @@ SET(CMAKE_VERBOSE_MAKEFILE      OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_REQUIRED_QUIET        ON)
 
+enable_testing()
+
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
 # vars
