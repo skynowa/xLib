@@ -50,14 +50,5 @@ Test_Array::unit(
             xTEST_EQ(array[i], std::size_t(0));
         }
     }
-
-    xTEST_CASE("make_array", a_caseLoops)
-    {
-    #if 0
-        // TODO: make_array fix warnings
-        make_array<std::tstring_t>(xT("0"), xT("1"));
-        make_array<std::tstring_t>(xT("0"), xT("1"), xT("2"));
-    #endif
-    }
 }
 //-------------------------------------------------------------------------------------------------
