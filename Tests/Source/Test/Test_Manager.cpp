@@ -29,8 +29,8 @@ Test_Manager::unit(
     culonglong_t &a_caseLoops
 )
 {
-    tchar_t *args[]  = {"./xLib_test", "1", "1", "1"};
-    int_t    argsNum = 4;
+    tchar_t *args[]  = {"./xLib_test", "1", "1", "1", "1"};
+    int_t    argsNum = 5;
 
     cbool_t      isUseTracing = true;
     culonglong_t allLoops     = 1ULL;
