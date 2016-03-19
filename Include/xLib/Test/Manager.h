@@ -12,26 +12,44 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, test)
 
+struct ManagerData
+{
+    bool_t      isUseTracing;
+    std::size_t allLoops;
+    std::size_t unitLoops;
+    std::size_t caseLoops;
+
+    ManagerData() :
+        isUseTracing(false),
+        allLoops    (1),
+        unitLoops   (1),
+        caseLoops   (1)
+    {}
+};
+xTYPEDEF_CONST(ManagerData);
+
 class Unit;
 
 class Manager
     /// manager
 {
 public:
-    explicit Manager(cint_t &argsNum, ctchar_t *args[], cbool_t &isUseTracing);
+             Manager(cint_t &argsNum, ctchar_t *args[]);
+        ///< constructor
+             Manager(cManagerData &data);
         ///< constructor
     virtual ~Manager();
         ///< destructor
 
     void_t   add(Unit *unit);
         ///< add unit
-    void_t   run(culonglong_t &allLoops, culonglong_t &unitLoops, culonglong_t &caseLoops);
+    void_t   run();
         ///< run all units
 
 private:
     typedef std::vector<Unit *> units_t;
 
-    cbool_t  _isUseTracing;  ///< is use tracing
+    ManagerData _data;
     units_t  _units;         ///< units
 
     xNO_COPY_ASSIGN(Manager)
