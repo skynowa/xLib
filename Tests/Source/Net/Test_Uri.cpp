@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Uri)
 /* virtual */
 void_t
 Test_Uri::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE(xT("Uri::getters"), a_caseLoops)

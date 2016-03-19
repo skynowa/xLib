@@ -12,7 +12,7 @@ xTEST_UNIT(Test_IpcMutex)
 /* virtual */
 void_t
 Test_IpcMutex::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     std::ctstring_t csName = xT("mutex_name_a");

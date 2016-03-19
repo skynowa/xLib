@@ -12,7 +12,7 @@ xTEST_UNIT(Test_HttpClient)
 /* virtual */
 void_t
 Test_HttpClient::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("HttpClient", a_caseLoops)

@@ -15,7 +15,7 @@ xTEST_UNIT(Test_String)
 /* virtual */
 void_t
 Test_String::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     /*******************************************************************************

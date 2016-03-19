@@ -12,7 +12,7 @@ xTEST_UNIT(Test_ThreadStorage)
 /* virtual */
 void_t
 Test_ThreadStorage::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("setValue, value", a_caseLoops)

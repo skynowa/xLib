@@ -37,7 +37,7 @@ xNAMESPACE_ANONYM_END
 /* virtual */
 void_t
 Test_Raii::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("Raii", a_caseLoops)

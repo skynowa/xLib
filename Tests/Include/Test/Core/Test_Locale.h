@@ -16,6 +16,6 @@ class Test_Locale :
 public:
                    Test_Locale() {}
 
-    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
+    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

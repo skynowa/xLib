@@ -14,7 +14,7 @@ xTEST_UNIT(Test_Exception)
 /* virtual */
 void_t
 Test_Exception::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("Exception", a_caseLoops)

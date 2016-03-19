@@ -15,7 +15,7 @@ xTEST_UNIT(Test_FileLog)
 /* virtual */
 void_t
 Test_FileLog::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     std::ctstring_t filePath = tempDirPath() + Const::slash() + xT("FileLog.log");

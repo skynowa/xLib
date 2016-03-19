@@ -16,6 +16,6 @@ class Test_MySql :
 public:
                    Test_MySql() {}
 
-    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
+    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

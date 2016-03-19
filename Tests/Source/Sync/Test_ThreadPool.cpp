@@ -14,7 +14,7 @@ xTEST_UNIT(Test_ThreadPool)
 /*virtual*/
 void_t
 Test_ThreadPool::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xUNUSED(a_caseLoops);

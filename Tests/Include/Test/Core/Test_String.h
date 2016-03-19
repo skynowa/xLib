@@ -16,7 +16,7 @@ class Test_String :
 public:
                    Test_String() {}
 
-    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
+    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

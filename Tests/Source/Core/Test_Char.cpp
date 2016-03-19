@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Char)
 /* virtual */
 void_t
 Test_Char::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("isAlphaNum", a_caseLoops)

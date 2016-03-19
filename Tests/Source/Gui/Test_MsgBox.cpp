@@ -12,7 +12,7 @@ xTEST_UNIT(Test_MsgBox)
 /* virtual */
 void_t
 Test_MsgBox::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xUNUSED(a_caseLoops);

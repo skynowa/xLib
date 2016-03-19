@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Base64)
 /* virtual */
 void_t
 Test_Base64::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("encode, decode", a_caseLoops)

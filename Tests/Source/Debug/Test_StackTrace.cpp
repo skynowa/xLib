@@ -12,7 +12,7 @@ xTEST_UNIT(Test_StackTrace)
 /* virtual */
 void_t
 Test_StackTrace::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("toString", a_caseLoops)

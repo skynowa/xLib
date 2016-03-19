@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Flags)
 /* virtual */
 void_t
 Test_Flags::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("Flags", a_caseLoops)

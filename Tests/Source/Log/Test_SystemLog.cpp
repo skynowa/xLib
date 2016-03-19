@@ -12,7 +12,7 @@ xTEST_UNIT(Test_SystemLog)
 /* virtual */
 void_t
 Test_SystemLog::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("SystemLog", a_caseLoops)

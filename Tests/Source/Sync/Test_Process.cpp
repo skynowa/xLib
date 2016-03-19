@@ -15,7 +15,7 @@ xTEST_UNIT(Test_Process)
 /* virtual */
 void_t
 Test_Process::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("create, wait", a_caseLoops)

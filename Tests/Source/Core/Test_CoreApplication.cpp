@@ -82,7 +82,7 @@ private:
 /* virtual */
 void_t
 Test_CoreApplication::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("CoreApplication", a_caseLoops)

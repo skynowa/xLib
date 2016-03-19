@@ -16,7 +16,7 @@ xTEST_UNIT(Test_ProcessInfo)
 /* virtual */
 void_t
 Test_ProcessInfo::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("cpuUsage", a_caseLoops)

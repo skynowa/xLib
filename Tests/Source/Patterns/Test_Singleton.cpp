@@ -35,7 +35,7 @@ public:
 /* virtual */
 void_t
 Test_Singleton::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("get", a_caseLoops)

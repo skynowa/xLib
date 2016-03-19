@@ -18,30 +18,36 @@ class Test_Simple1 :
 public:
                    Test_Simple1() {}
 
-    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE
+    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE
     {
+        xTEST(true);
     }
 };
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 Test_Manager::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
-    xTEST_CASE("all", a_caseLoops)
+    xTEST_CASE("Manager", a_caseLoops)
     {
-        ctchar_t    *args[]       = {"./xLib_test", "1", "1", "1", "1"};
-        int_t        argsNum      = 5;
-        cbool_t      isUseTracing = true;
-        culonglong_t allLoops     = 1ULL;
-        culonglong_t unitLoops    = 1ULL;
-        culonglong_t caseLoops    = 1ULL;
+        ctchar_t *args[]  = {"./xLib_test", "1", "1", "1", "1"};
+        int_t     argsNum = 5;
 
-        Manager manager(argsNum, args, isUseTracing);
+        Manager manager(argsNum, args);
+        manager.add(new Test_Simple1);
+        manager.run();
+    }
+
+    xTEST_CASE("ManagerData", a_caseLoops)
+    {
+        ManagerData data;
+
+        Manager manager(data);
         manager.add(new Test_Simple1);
 
-        manager.run(allLoops, unitLoops, caseLoops);
+        manager.run();
     }
 }
 //-------------------------------------------------------------------------------------------------

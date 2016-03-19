@@ -13,7 +13,7 @@ xTEST_UNIT(Test_AutoReset)
 /* virtual */
 void_t
 Test_AutoReset::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("AutoReset", a_caseLoops)

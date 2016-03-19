@@ -12,7 +12,7 @@ xTEST_UNIT(Test_AtomicLongInt)
 /* virtual */
 void_t
 Test_AtomicLongInt::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("operator += (const AtomicLongInt &cRight)", a_caseLoops)

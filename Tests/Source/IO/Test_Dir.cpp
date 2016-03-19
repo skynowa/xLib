@@ -14,7 +14,7 @@ xTEST_UNIT(Test_Dir)
 /* virtual */
 void_t
 Test_Dir::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     std::ctstring_t csTempScanDirPath = tempDirPath() + Const::slash() + xT("Scan");

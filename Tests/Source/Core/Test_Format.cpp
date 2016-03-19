@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Format)
 /* virtual */
 void_t
 Test_Format::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("Format", a_caseLoops)

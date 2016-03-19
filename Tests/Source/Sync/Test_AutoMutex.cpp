@@ -14,7 +14,7 @@ xTEST_UNIT(Test_AutoMutex)
 /* virtual */
 void_t
 Test_AutoMutex::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("AutoMutex", a_caseLoops)

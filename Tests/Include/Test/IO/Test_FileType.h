@@ -16,7 +16,7 @@ class Test_FileType :
 public:
                    Test_FileType() {}
 
-    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
+    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

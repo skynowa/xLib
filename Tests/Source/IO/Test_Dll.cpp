@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Dll)
 /* virtual */
 void_t
 Test_Dll::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     // TEST: Test_Dll()

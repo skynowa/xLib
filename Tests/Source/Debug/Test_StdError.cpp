@@ -12,7 +12,7 @@ xTEST_UNIT(Test_StdError)
 /* virtual */
 void_t
 Test_StdError::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     cint_t ciMaxErrors = 132;  /*0...132*/;

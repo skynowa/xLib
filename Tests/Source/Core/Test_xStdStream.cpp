@@ -15,7 +15,7 @@ xTEST_UNIT(Test_StdStream)
 /* virtual */
 void_t
 Test_StdStream::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("operator << for std::ustring_t", a_caseLoops)

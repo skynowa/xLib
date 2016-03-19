@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Service)
 /* virtual */
 void_t
 Test_Service::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("[TEST_CASE_1]", a_caseLoops)

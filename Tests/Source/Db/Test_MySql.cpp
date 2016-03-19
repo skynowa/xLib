@@ -15,7 +15,7 @@ xTEST_UNIT(Test_MySql)
 /* virtual */
 void_t
 Test_MySql::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
 #if xHAVE_MYSQL

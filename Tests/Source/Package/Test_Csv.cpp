@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Csv)
 /* virtual */
 void_t
 Test_Csv::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("CsvReader::CsvReader", a_caseLoops)

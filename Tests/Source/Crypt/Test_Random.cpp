@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Random)
 /* virtual */
 void_t
 Test_Random::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("nextBool", a_caseLoops)

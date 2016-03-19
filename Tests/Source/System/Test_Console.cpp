@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Console)
 /* virtual */
 void_t
 Test_Console::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("setAttributes", a_caseLoops)

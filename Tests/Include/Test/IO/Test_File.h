@@ -16,10 +16,10 @@ class Test_File :
 public:
                     Test_File() {}
 
-    virtual  void_t unit(culonglong_t &caseLoops);
+    virtual  void_t unit(std::csize_t &caseLoops);
 
 private:
-    void_t          unit1(culonglong_t &caseLoops);
-    void_t          unitPrivate(culonglong_t &caseLoops);
+    void_t          unit1(std::csize_t &caseLoops);
+    void_t          unitPrivate(std::csize_t &caseLoops);
 };
 //-------------------------------------------------------------------------------------------------

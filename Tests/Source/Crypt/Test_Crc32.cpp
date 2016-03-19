@@ -14,7 +14,7 @@ xTEST_UNIT(Test_Crc32)
 /* virtual */
 void_t
 Test_Crc32::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     std::ctstring_t filePath = tempDirPath()  + Const::slash() + xT("Crc32.txt");

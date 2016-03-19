@@ -17,7 +17,7 @@ xTEST_UNIT(Test_Finder)
 /* virtual */
 void_t
 Test_Finder::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     // prepare

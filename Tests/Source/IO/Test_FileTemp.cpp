@@ -16,7 +16,7 @@ xTEST_UNIT(Test_FileTemp)
 /* virtual */
 void_t
 Test_FileTemp::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("all", a_caseLoops)

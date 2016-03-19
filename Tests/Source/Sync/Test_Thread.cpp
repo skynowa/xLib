@@ -102,7 +102,7 @@ CWorkThread::onRun(
 /* virtual */
 void_t
 Test_Thread::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     cbool_t cbIsPaused   = true;
@@ -362,7 +362,7 @@ Test_Thread::unit(
 //-------------------------------------------------------------------------------------------------
 void_t
 Test_Thread::unit1(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("isCurrent", a_caseLoops)
