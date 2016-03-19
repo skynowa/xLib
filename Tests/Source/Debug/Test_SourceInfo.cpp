@@ -20,9 +20,9 @@ Test_SourceInfo::unit(
         SourceInfo info(xFILE, xLINE, xFUNCTION, xCOUNTER);
 
         xTEST_EQ(info.filePath().empty(), false);
-        xTEST_EQ(info.lineNum(), 19UL);
+        xTEST_EQ(info.lineNum(), 20UL);
         xTEST_EQ(info.funcName().empty(), false);
-        xTEST_EQ(info.counter(), 0UL);
+        xTEST_GR(info.counter(), 0UL);
         xTEST_EQ(info.format().empty(), false);
 
         // Trace() << xSOURCE_INFO.format();
