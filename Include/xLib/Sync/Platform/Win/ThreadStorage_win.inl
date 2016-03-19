@@ -48,7 +48,7 @@ ThreadStorage::_isSet_impl() const
 xINLINE void_t *
 ThreadStorage::_value_impl() const
 {
-    xTEST_DIFF(TLS_OUT_OF_INDEXES, _index);
+    xTEST_DIFF(_index, TLS_OUT_OF_INDEXES);
 
     void_t *pvRv = ::TlsGetValue(_index);
     xTEST_EQ((pvRv != xPTR_NULL) && (NativeError::get() == ERROR_SUCCESS), true);
@@ -58,7 +58,7 @@ ThreadStorage::_value_impl() const
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 ThreadStorage::_setValue_impl(
-    void_t *a_value
+    void_t* &a_value
 ) const
 {
     xTEST_DIFF(_index, TLS_OUT_OF_INDEXES);
