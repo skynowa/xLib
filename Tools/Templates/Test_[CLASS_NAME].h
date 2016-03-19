@@ -17,7 +17,7 @@ class Test_[CLASS_NAME] :
 public:
                    Test_[CLASS_NAME]() {}
 
-    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
+    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------
