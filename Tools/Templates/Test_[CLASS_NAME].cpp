@@ -8,10 +8,12 @@
 
 
 //-------------------------------------------------------------------------------------------------
+xTEST_UNIT(Test_[CLASS_NAME])
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 Test_[CLASS_NAME]::unit(
-    culonglong_t &a_caseLoops
+    std::csize_t &a_caseLoops
 )
 {
     xTEST_CASE("[CLASS_NAME]::[TEST_CASE_1]", a_caseLoops)
