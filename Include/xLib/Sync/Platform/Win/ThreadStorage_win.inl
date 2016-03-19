@@ -1,5 +1,5 @@
 /**
- * \file  ThreadStorage.inl
+ * \file  ThreadStorage_win.inl
  * \brief thread local storage
  */
 
@@ -12,28 +12,25 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+xINLINE ThreadStorage::index_t
+ThreadStorage::_indexInvalid_impl() const;
+{
+    return TLS_OUT_OF_INDEXES;
+}
+//-------------------------------------------------------------------------------------------------
 xINLINE void_t
 ThreadStorage::_construct_impl()
 {
-    index_t indRv = (index_t)- 1;
-
-    xTEST_EQ(_index, TLS_OUT_OF_INDEXES);
-
-    indRv = ::TlsAlloc();
-    xTEST_DIFF(indRv, TLS_OUT_OF_INDEXES);
-
-    _index = indRv;
+    _index = ::TlsAlloc();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 ThreadStorage::_destruct_impl()
 {
-    xTEST_GR(_index, (index_t)0);
-
     BOOL blRv = ::TlsFree(_index);
     xTEST_DIFF(blRv, FALSE);
 
-    _index = static_cast<index_t>( -1 );
+    _index = _indexInvalid_impl();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -48,8 +45,6 @@ ThreadStorage::_isSet_impl() const
 xINLINE void_t *
 ThreadStorage::_value_impl() const
 {
-    xTEST_DIFF(_index, TLS_OUT_OF_INDEXES);
-
     void_t *pvRv = ::TlsGetValue(_index);
     xTEST_EQ((pvRv != xPTR_NULL) && (NativeError::get() == ERROR_SUCCESS), true);
 
@@ -61,8 +56,6 @@ ThreadStorage::_setValue_impl(
     void_t* &a_value
 ) const
 {
-    xTEST_DIFF(_index, TLS_OUT_OF_INDEXES);
-
     BOOL blRv = ::TlsSetValue(_index, a_value);
     xTEST_DIFF(blRv, FALSE);
 }

@@ -45,17 +45,31 @@ ThreadStorage::ThreadStorage() :
 #if   xENV_WIN
     _index(TLS_OUT_OF_INDEXES)
 #elif xENV_UNIX
-    _index(static_cast<pthread_key_t>( - 1 ))
+    _index(static_cast<index_t>( - 1 ))
 #endif
 {
+    xTEST_EQ(isValid(), false);
+
     _construct_impl();
+
+    xTEST_EQ(isValid(), true);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 xINLINE
 ThreadStorage::~ThreadStorage()
 {
+    xTEST_EQ(isValid(), true);
+
     _destruct_impl();
+
+    xTEST_EQ(isValid(), false);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+ThreadStorage::isValid() const
+{
+    return (_index != _indexInvalid_impl());
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -67,15 +81,19 @@ ThreadStorage::isSet() const
 xINLINE void_t *
 ThreadStorage::value() const
 {
+    xTEST_EQ(isValid(), true);
+
     return _value_impl();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 ThreadStorage::setValue(
-    void_t *a_value
+    void_t **a_value
 ) const
 {
     xTEST_PTR(a_value);
+    xTEST_PTR(*a_value);
+    xTEST_EQ(isValid(), true);
 
     _setValue_impl(a_value);
 }
