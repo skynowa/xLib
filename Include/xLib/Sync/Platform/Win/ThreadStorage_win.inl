@@ -30,10 +30,10 @@ ThreadStorage::_destruct_impl()
 {
     xTEST_EQ(0 < _index, true);
 
-    int_t iRv = ::pthread_key_delete(_index);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+    BOOL blRv = ::TlsFree(_index);
+    xTEST_DIFF(blRv, FALSE);
 
-    _index = static_cast<pthread_key_t>( -1 );
+    _index = static_cast<index_t>( -1 );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
