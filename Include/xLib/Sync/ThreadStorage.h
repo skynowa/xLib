@@ -19,11 +19,13 @@ public:
     virtual ~ThreadStorage();
         ///< destructor
 
+    bool_t   isValid() const xWARN_UNUSED_RV;
+        ///< is valid
     bool_t   isSet() const xWARN_UNUSED_RV;
-
+        ///< is set value
     void_t  *value() const xWARN_UNUSED_RV;
         ///< get the value
-    void_t   setValue(void_t *value) const;
+    void_t   setValue(void_t **value) const;
         ///< set value
 
 private:
@@ -39,11 +41,13 @@ private:
     xNO_COPY_ASSIGN(ThreadStorage)
 
 xPLATFORM_IMPL:
+    index_t  _indexInvalid_impl() const;
     void_t   _construct_impl();
     void_t   _destruct_impl();
+    bool_t   _isValid_impl() const xWARN_UNUSED_RV;
     bool_t   _isSet_impl() const xWARN_UNUSED_RV;
     void_t  *_value_impl() const xWARN_UNUSED_RV;
-    void_t   _setValue_impl(void_t *value) const;
+    void_t   _setValue_impl(void_t **value) const;
 };
 
 xNAMESPACE_END2(xlib, sync)
