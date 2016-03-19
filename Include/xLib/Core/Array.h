@@ -301,11 +301,7 @@ template<class T>
 Array<T, 2>
 make_array(const T &t1, const T &t2)
 {
-#if 1
-    return Array<T, 2>(t1, t2);
-#else
-    return {t1, t2};
-#endif
+    return Array<T, 2>{t1, t2};
 }
 
 // make_array (3 elements)
@@ -313,11 +309,7 @@ template<class T>
 Array<T, 3>
 make_array(const T &t1, const T &t2, const T &t3)
 {
-#if 1
-    return Array<T, 3>(t1, t2, t3);
-#else
-    return {t1, t2, t3};
-#endif
+    return Array<T, 3>{t1, t2, t3};
 }
 
 xNAMESPACE_END2(xlib, core)
