@@ -134,5 +134,19 @@ Test_ProcessInfo::unit(
         xTEST_LESS(0L, m_liRv);
         //xTRACEV(xT("\ProcessInfo::commandLineArgsMax() = %li"), m_liRv);
     }
+
+    xTEST_CASE("commandLine", a_caseLoops)
+    {
+        cint_t    argsNum       = 5;
+        ctchar_t *args[argsNum] = {xT("./xLib_test"), xT("1"), xT("2"), xT("3"), xT("4")};
+
+        ProcessInfo::commandLine(argsNum, args, &m_vsRv);
+        xTEST_EQ(m_vsRv.size(), (std::size_t)argsNum);
+        xTEST_EQ(m_vsRv.at(0), std::tstring_t(xT("./xLib_test")));
+        xTEST_EQ(m_vsRv.at(1), std::tstring_t(xT("1")));
+        xTEST_EQ(m_vsRv.at(2), std::tstring_t(xT("2")));
+        xTEST_EQ(m_vsRv.at(3), std::tstring_t(xT("3")));
+        xTEST_EQ(m_vsRv.at(4), std::tstring_t(xT("4")));
+    }
 }
 //-------------------------------------------------------------------------------------------------
