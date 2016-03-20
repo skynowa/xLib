@@ -170,18 +170,24 @@ if (xOPTION_PROJECT_LIB_STATIC)
     add_library(${PROJECT_NAME}_static STATIC ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_NAME}_static  ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_NAME}_static DESTINATION "bin")
+
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_NAME}_static)
 endif()
 
 if (xOPTION_PROJECT_LIB_SHARE)
     add_library(${PROJECT_NAME}_shared SHARED ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_NAME}_shared  ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_NAME}_shared DESTINATION "bin")
+
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_NAME}_shared)
 endif()
 
 if (xOPTION_PROJECT_LIB_MODULE)
     add_library(${PROJECT_NAME}_module MODULE ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_NAME}_module  ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_NAME}_module DESTINATION "bin")
+
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_NAME}_module)
 endif()
 
 get_directory_property(IS_PARENT_SCOPE PARENT_DIRECTORY)
