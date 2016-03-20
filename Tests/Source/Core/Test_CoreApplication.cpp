@@ -51,16 +51,13 @@ class UserApplication :
     /// user application
 {
 public:
-                   UserApplication(std::ctstring_t &a_appGuid, std::ctstring_t &a_locale) :
-                       CoreApplication(a_appGuid, a_locale)
-                   {
-                       Trace() << xFUNCTION;
-                   }
+                  UserApplication(std::ctstring_t &a_appGuid, std::ctstring_t &a_locale) :
+                      CoreApplication(a_appGuid, a_locale)
+                  {
+                  }
 
     virtual int_t onRun() xOVERRIDE
     {
-        Trace() << xFUNCTION;
-
         std::vec_tstring_t args;
         CoreApplication::args(true, &args);
         CoreApplication::isRunnig();
@@ -68,7 +65,7 @@ public:
         bool bRv = CoreApplication::selfCheck();
 
         {
-        #if 1
+        #if 0
             Failer failer;
             failer.foo3();
         #endif
@@ -87,8 +84,8 @@ Test_CoreApplication::unit(
 {
     xTEST_CASE("CoreApplication", a_caseLoops)
     {
-        UserApplication user_application(xT("[app_name]_guid"), xT(""));
-        user_application.run();
+        UserApplication userApp(xT("[app_name]_guid"), xT(""));
+        userApp.run();
     }
 }
 //-------------------------------------------------------------------------------------------------
