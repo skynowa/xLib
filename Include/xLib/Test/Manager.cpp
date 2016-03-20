@@ -117,7 +117,7 @@ Manager::_construct(
     {
     #if xENV_UNIX
         SystemInfo info;
-        xCHECK_MSG_DO(info.isUserAdmin(), xT("xLib_test: Can't run as root"), return);
+        xCHECK_MSG_DO(info.isUserAdmin(), xT("Manager: Can't run as root"), return);
     #endif
     }
 
@@ -140,14 +140,15 @@ Manager::_construct(
             bRv = StringCI::compare(xT("-h"),     args.at(1)) ||
                   StringCI::compare(xT("--help"), args.at(1));
             if (!bRv) {
-                std::tcout << xT("\nxLib_test: unknown switches\n") << std::endl;
+                Trace() << xT("\nxLib_test: unknown switches\n");
             } else {
-                std::tcout << xT("\nUsage: ./xLib_test [is_tracing] [all_loops] [unit_loops]\n")
-                              xT("  - xLib_test  (binary file path)\n")
-                              xT("  - is_tracing (is tracing)\n")
-                              xT("  - all_loops  (loops for all tests)\n")
-                              xT("  - unit_loops (loops for unit test)\n")
-                              xT("  - case_loops (loops for case test)\n") << std::endl;
+                Trace()
+                    << xT("\nUsage: [binary_path] [is_tracing] [all_loops] [unit_loops]\n")
+                       xT("  - binary_path (binary file path)\n")
+                       xT("  - is_tracing  (is tracing)\n")
+                       xT("  - all_loops   (loops for all tests)\n")
+                       xT("  - unit_loops  (loops for unit test)\n")
+                       xT("  - case_loops  (loops for case test)\n");
             }
 
             _isConstructed = false;
@@ -165,7 +166,7 @@ Manager::_construct(
             break;
         default:
             // fail
-            std::tcout << xT("\nxLib_test: unknown switches\n") << std::endl;
+            Trace() << xT("\nxLib_test: unknown switches\n");
 
             _isConstructed = false;
 
