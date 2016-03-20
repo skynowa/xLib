@@ -111,6 +111,8 @@ ProcessInfo::commandLine(
     xTEST_PTR(a_argv);
     xTEST_PTR(a_args);
 
+    a_args->clear();
+
     for (int_t i = 0; i < a_argsNum; ++ i) {
          a_args->push_back( a_argv[i] );
     }
