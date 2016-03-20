@@ -121,6 +121,8 @@ Environment::values(
 {
     xTEST_PTR(a_values);
 
+    xCHECK_DO(a_values != xPTR_NULL, a_values->clear());
+
     _values_impl(a_values);
 }
 //-------------------------------------------------------------------------------------------------
