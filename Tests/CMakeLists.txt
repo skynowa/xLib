@@ -9,14 +9,13 @@ include_directories(Include)
 file(GLOB_RECURSE XLIB_TESTS_SOURCES Source/*.cpp)
 
 foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
-    get_filename_component(SOURCE_NAME ${IT_SOURCE} NAME_WE)
+    get_filename_component(TEST_NAME ${IT_SOURCE} NAME_WE)
 
-    add_executable(${SOURCE_NAME} ${IT_SOURCE})
-    target_link_libraries(${SOURCE_NAME} ${PROJECT_NAME}_static)
-    install(TARGETS ${SOURCE_NAME} DESTINATION "bin")
+    add_executable(${TEST_NAME} ${IT_SOURCE})
+    target_link_libraries(${TEST_NAME} ${PROJECT_NAME}_static)
+    install(TARGETS ${TEST_NAME} DESTINATION "bin")
 
-    add_custom_command(TARGET ${SOURCE_NAME} POST_BUILD COMMAND ${SOURCE_NAME})
-
-    add_test(NAME ${SOURCE_NAME} COMMAND ${SOURCE_NAME})
+    add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+    add_custom_command(TARGET ${TEST_NAME} POST_BUILD COMMAND ${TEST_NAME})
 endforeach()
 #--------------------------------------------------------------------------------------------------
