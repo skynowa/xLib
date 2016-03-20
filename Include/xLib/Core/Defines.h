@@ -391,7 +391,7 @@
         xT(__BASE_FILE__)
 #else
     #define xBASE_FILE \
-        (std::strrchr(xFILE, '/') ? std::strrchr(xFILE, '/') + 1 : xFILE)
+        ((std::strrchr(xFILE, '/') == xPTR_NULL) ? xFILE : std::strrchr(xFILE, '/') + 1)
 #endif
     ///< file basename
 
