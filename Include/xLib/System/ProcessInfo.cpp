@@ -107,8 +107,8 @@ ProcessInfo::commandLine(
     std::vec_tstring_t *a_args
 )
 {
-    xTEST_GR(a_argsNum, 1);
-    xTEST_PTR(a_args);
+    xTEST_GR_EQ(a_argsNum, 0);
+    xTEST_PTR(a_argv);
     xTEST_PTR(a_args);
 
     for (int_t count = 0; count < a_argsNum; ++ count) {
