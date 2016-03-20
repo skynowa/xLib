@@ -71,5 +71,20 @@ Test_Limits::unit(
     {
         m_ullRv = xTIMEOUT_INFINITE;
     }
+
+    xTEST_CASE("xCUSTOM_SEMAPHORE_VALUE_MAX_WIN", a_caseLoops)
+    {
+        m_ullRv = xCUSTOM_SEMAPHORE_VALUE_MAX_WIN;
+    }
+
+    xTEST_CASE("xCUSTOM_SYSCONF_SC_GETPW_R_SIZE_MAX_UNIX", a_caseLoops)
+    {
+        m_ullRv = xCUSTOM_SYSCONF_SC_GETPW_R_SIZE_MAX_UNIX;
+    }
+
+    xTEST_CASE("xTHREAD_NAME_LENGTH_MAX", a_caseLoops)
+    {
+        m_ullRv = xTHREAD_NAME_LENGTH_MAX;
+    }
 }
 //-------------------------------------------------------------------------------------------------
