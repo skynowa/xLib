@@ -46,7 +46,6 @@ Test_Manager::unit(
 
         Manager manager(data);
         manager.add(new Test_Simple1);
-
         manager.run();
     }
 }
