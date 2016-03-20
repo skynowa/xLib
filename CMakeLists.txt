@@ -191,20 +191,6 @@ set(XLIB_SOURCES     ${XLIB_SOURCES}     PARENT_SCOPE)
 set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   PARENT_SCOPE)
 set(XLIB_LOCATION    ${XLIB_LOCATION}    PARENT_SCOPE)
 #--------------------------------------------------------------------------------------------------
-# tests
-set(xOPTION_PROJECT_TESTS ON)
-
-if (xOPTION_PROJECT_TESTS)
-    # include_directories(${XLIB_LOCATION}/Tests/Include)
-    # file(GLOB_RECURSE XLIB_TESTS_SOURCES ${XLIB_LOCATION}/Tests/Source/*.cpp)
-
-    # add_executable(${PROJECT_NAME}_tests ${XLIB_SOURCES} ${XLIB_TESTS_SOURCES})
-    # target_link_libraries(${PROJECT_NAME}_tests ${XLIB_LIBRARIES})
-    # install(TARGETS ${PROJECT_NAME}_tests  DESTINATION "bin")
-
-    enable_testing()
-endif()
-#--------------------------------------------------------------------------------------------------
 # install
 #install(
 #    DIRECTORY ${XLIB_LOCATION}/Include/xLib/
@@ -219,11 +205,6 @@ configure_file(
 
 add_custom_target(uninstall
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/Uninstall.cmake)
-#--------------------------------------------------------------------------------------------------
-# run tests after build
-if (xOPTION_PROJECT_TESTS)
-    add_custom_command(TARGET ${PROJECT_NAME}_tests POST_BUILD COMMAND ${PROJECT_NAME}_tests)
-endif()
 #--------------------------------------------------------------------------------------------------
 # fix warning "Manually-specified variables were not used by the project"
 unset(CMAKE_TOOLCHAIN_FILE)
