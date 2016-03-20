@@ -386,13 +386,8 @@
     ///< source file path
 
 // xBASE_FILE
-#if defined(__BASE_FILE__)
-    #define xBASE_FILE \
-        xT(__BASE_FILE__)
-#else
-    #define xBASE_FILE \
-        ((std::strrchr(xFILE, '/') == xPTR_NULL) ? xFILE : std::strrchr(xFILE, '/') + 1)
-#endif
+#define xBASE_FILE \
+    ((std::strrchr(xFILE, '/') == xPTR_NULL) ? xFILE : std::strrchr(xFILE, '/') + 1)
     ///< file basename
 
 // xLINE
