@@ -29,7 +29,7 @@ CoreApplication::CoreApplication(
 {
     // Trace() << xFUNCTION;
 
-#if 1
+#if 0
     std::vector<int_t> signalNums;
     signalNums.push_back(SIGHUP);
     signalNums.push_back(SIGINT);
