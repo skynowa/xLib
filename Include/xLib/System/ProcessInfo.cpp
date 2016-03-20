@@ -82,7 +82,6 @@ ProcessInfo::parentId() const
     return _parentId_impl();
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 xINLINE void_t
 ProcessInfo::commandLine(
     std::vec_tstring_t *a_args
@@ -98,6 +97,23 @@ xINLINE long_t
 ProcessInfo::commandLineArgsMax()
 {
     return _commandLineArgsMax_impl();
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE void_t
+ProcessInfo::commandLine(
+    cint_t             &a_argsNum,
+    ctchar_t           *a_argv[],
+    std::vec_tstring_t *a_args
+)
+{
+    xTEST_GR(a_argsNum, 1);
+    xTEST_PTR(a_args);
+    xTEST_PTR(a_args);
+
+    for (int_t count = 0; count < a_argsNum; ++ count) {
+         a_args->push_back( a_argv[count] );
+    }
 }
 //-------------------------------------------------------------------------------------------------
 
