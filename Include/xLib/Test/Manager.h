@@ -49,8 +49,11 @@ public:
 private:
     typedef std::vector<Unit *> units_t;
 
-    ManagerData _data;  ///< data
-    units_t     _units; ///< units
+    ManagerData _data;          ///< data
+    units_t     _units;         ///< units
+    bool_t      _isConstructed; ///< is object constructed
+
+    void_t   _construct(cint_t &a_argsNum, ctchar_t *a_args[]);
 
     xNO_COPY_ASSIGN(Manager)
 };
