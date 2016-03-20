@@ -49,8 +49,8 @@ public:
 private:
     typedef std::vector<Unit *> units_t;
 
-    ManagerData _data;
-    units_t  _units;         ///< units
+    ManagerData _data;  ///< data
+    units_t     _units; ///< units
 
     xNO_COPY_ASSIGN(Manager)
 };
