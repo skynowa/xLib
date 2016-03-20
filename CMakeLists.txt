@@ -167,27 +167,33 @@ if (xOPTION_PROJECT_HEADER_ONLY)
 endif()
 
 if (xOPTION_PROJECT_LIB_STATIC)
-    add_library(${PROJECT_NAME}_static STATIC ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_NAME}_static  ${XLIB_LIBRARIES})
-    install(TARGETS ${PROJECT_NAME}_static DESTINATION "bin")
+    set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
 
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_NAME}_static)
+    add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
+    target_link_libraries(${PROJECT_LIB_STATIC}  ${XLIB_LIBRARIES})
+    install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "bin")
+
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_STATIC})
 endif()
 
 if (xOPTION_PROJECT_LIB_SHARE)
-    add_library(${PROJECT_NAME}_shared SHARED ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_NAME}_shared  ${XLIB_LIBRARIES})
-    install(TARGETS ${PROJECT_NAME}_shared DESTINATION "bin")
+    set(PROJECT_LIB_SHARE ${PROJECT_NAME}_shared)
 
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_NAME}_shared)
+    add_library(${PROJECT_LIB_SHARE} SHARED ${XLIB_SOURCES})
+    target_link_libraries(${PROJECT_LIB_SHARE}  ${XLIB_LIBRARIES})
+    install(TARGETS ${PROJECT_LIB_SHARE} DESTINATION "bin")
+
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_SHARE})
 endif()
 
 if (xOPTION_PROJECT_LIB_MODULE)
-    add_library(${PROJECT_NAME}_module MODULE ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_NAME}_module  ${XLIB_LIBRARIES})
-    install(TARGETS ${PROJECT_NAME}_module DESTINATION "bin")
+    set(PROJECT_LIB_MODULE ${PROJECT_NAME}_module)
 
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_NAME}_module)
+    add_library(${PROJECT_LIB_MODULE} MODULE ${XLIB_SOURCES})
+    target_link_libraries(${PROJECT_LIB_MODULE}  ${XLIB_LIBRARIES})
+    install(TARGETS ${PROJECT_LIB_MODULE} DESTINATION "bin")
+
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_MODULE})
 endif()
 
 get_directory_property(IS_PARENT_SCOPE PARENT_DIRECTORY)
