@@ -33,7 +33,7 @@ Test_Manager::unit(
     xTEST_CASE("Manager", a_caseLoops)
     {
         cint_t    argsNum       = 5;
-        ctchar_t *args[argsNum] = {"./xLib_test", "1", "1", "1", "1"};
+        ctchar_t *args[argsNum] = {xT("./xLib_test"), xT("1"), xT("1"), xT("1"), xT("1")};
 
         Manager manager(argsNum, args);
         manager.add(new Test_Simple1);
