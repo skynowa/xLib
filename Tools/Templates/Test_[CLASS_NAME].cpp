@@ -12,11 +12,9 @@ xTEST_UNIT(Test_[CLASS_NAME])
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_[CLASS_NAME]::unit(
-    std::csize_t &a_caseLoops
-)
+Test_[CLASS_NAME]::unit()
 {
-    xTEST_CASE("[CLASS_NAME]::[TEST_CASE_1]", a_caseLoops)
+    xTEST_CASE("[CLASS_NAME]::[TEST_CASE_1]")
     {
 
     }
