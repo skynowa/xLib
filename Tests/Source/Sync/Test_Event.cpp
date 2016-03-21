@@ -11,11 +11,9 @@ xTEST_UNIT(Test_Event)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Event::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Event::unit()
 {
-    xTEST_CASE("handle", a_caseLoops)
+    xTEST_CASE("handle")
     {
         Event objEvent(true, true);
 
@@ -28,7 +26,7 @@ Test_Event::unit(
         #endif
     }
 
-    xTEST_CASE("isSignaled", a_caseLoops)
+    xTEST_CASE("isSignaled")
     {
         {
             Event objEvent(true, true);
@@ -49,7 +47,7 @@ Test_Event::unit(
         }
     }
 
-    xTEST_CASE("set", a_caseLoops)
+    xTEST_CASE("set")
     {
         std::csize_t cuiSpinCount = 3;
 
@@ -73,7 +71,7 @@ Test_Event::unit(
         }
     }
 
-    xTEST_CASE("reset", a_caseLoops)
+    xTEST_CASE("reset")
     {
         std::csize_t cuiSpinCount = 3;
 
@@ -97,7 +95,7 @@ Test_Event::unit(
         }
     }
 
-    xTEST_CASE("wait", a_caseLoops)
+    xTEST_CASE("wait")
     {
         {
             cbool_t cbIsAutoReset  = false;

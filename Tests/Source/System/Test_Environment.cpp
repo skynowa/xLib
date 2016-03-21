@@ -13,11 +13,9 @@ xTEST_UNIT(Test_Environment)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Environment::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Environment::unit()
 {
-    xTEST_CASE("setVar", a_caseLoops)
+    xTEST_CASE("setVar")
     {
         std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
@@ -31,7 +29,7 @@ Test_Environment::unit(
         }
     }
 
-    xTEST_CASE("isExists", a_caseLoops)
+    xTEST_CASE("isExists")
     {
     #if   xENV_WIN
         std::ctstring_t sData[][2] = {
@@ -59,7 +57,7 @@ Test_Environment::unit(
         }
     }
 
-    xTEST_CASE("isVarValid", a_caseLoops)
+    xTEST_CASE("isVarValid")
     {
     #if   xENV_WIN
         std::ctstring_t sData[][2] = {
@@ -90,7 +88,7 @@ Test_Environment::unit(
         }
     }
 
-    xTEST_CASE("isValueValid", a_caseLoops)
+    xTEST_CASE("isValueValid")
     {
     #if   xENV_WIN
         std::ctstring_t sData[][2] = {
@@ -119,7 +117,7 @@ Test_Environment::unit(
         }
     }
 
-    xTEST_CASE("var", a_caseLoops)
+    xTEST_CASE("var")
     {
     #if   xENV_WIN
         std::ctstring_t sData[][2] = {
@@ -144,13 +142,13 @@ Test_Environment::unit(
         }
     }
 
-    xTEST_CASE("values", a_caseLoops)
+    xTEST_CASE("values")
     {
         Environment::values(&m_vsRv);
         xTEST_EQ(false, m_vsRv.empty());
     }
 
-    xTEST_CASE("expandStrings", a_caseLoops)
+    xTEST_CASE("expandStrings")
     {
     #if   xENV_WIN
         std::ctstring_t sData[][2] = {
@@ -173,7 +171,7 @@ Test_Environment::unit(
         }
     }
 
-    xTEST_CASE("deleteVar", a_caseLoops)
+    xTEST_CASE("deleteVar")
     {
         std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},

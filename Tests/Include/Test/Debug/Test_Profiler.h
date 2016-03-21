@@ -16,7 +16,7 @@ class Test_Profiler :
 public:
                    Test_Profiler() {}
 
-    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
+    virtual void_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

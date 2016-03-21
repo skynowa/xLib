@@ -11,11 +11,9 @@ xTEST_UNIT(Test_Csv)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Csv::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Csv::unit()
 {
-    xTEST_CASE("CsvReader::CsvReader", a_caseLoops)
+    xTEST_CASE("CsvReader::CsvReader")
     {
         xlib::package::ICsv::CsvData csvData;
         csvData.fileExtension    = xT("csv");

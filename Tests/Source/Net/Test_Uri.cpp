@@ -11,11 +11,9 @@ xTEST_UNIT(Test_Uri)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Uri::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Uri::unit()
 {
-    xTEST_CASE(xT("Uri::getters"), a_caseLoops)
+    xTEST_CASE("Uri::getters")
     {
         Uri objUri(xT("foo://userinfo@example.com:8042/over/there?name=ferret#nose"));
 
@@ -47,7 +45,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("nose")), m_sRv);
     }
 
-    xTEST_CASE("getters", a_caseLoops)
+    xTEST_CASE("getters")
     {
         Uri objUri(xT("foo://userinfo@example.com:8042/over/there?name=ferret"));
 
@@ -79,7 +77,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("getters", a_caseLoops)
+    xTEST_CASE("getters")
     {
         Uri objUri(xT("foo://userinfo@example.com:8042/over/there"));
 
@@ -111,7 +109,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("getters", a_caseLoops)
+    xTEST_CASE("getters")
     {
         Uri objUri(xT("foo://userinfo@example.com:8042"));
 
@@ -143,7 +141,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("getters", a_caseLoops)
+    xTEST_CASE("getters")
     {
         Uri objUri(xT("foo://userinfo@example.com"));
 
@@ -175,7 +173,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("getters", a_caseLoops)
+    xTEST_CASE("getters")
     {
         Uri objUri(xT("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c"));
 
@@ -207,7 +205,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("getters", a_caseLoops)
+    xTEST_CASE("getters")
     {
         Uri objUri(xT("http://dn1.berloga.net/83841/zombie_baseball_2.swf"));
 
@@ -239,7 +237,7 @@ Test_Uri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("sEncodeComponent Uri::sDecodeComponent", a_caseLoops)
+    xTEST_CASE("encodeComponent decodeComponent")
     {
         std::ctstring_t uri[] = {
             xT("http://dn1.berloga.net/83841/xxxxx.swf"),

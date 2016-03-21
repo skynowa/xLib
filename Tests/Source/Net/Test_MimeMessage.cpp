@@ -14,12 +14,8 @@ xTEST_UNIT(Test_MimeMessage)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_MimeMessage::unit(
-    std::csize_t &a_caseLoops
-)
+Test_MimeMessage::unit()
 {
-    xUNUSED(a_caseLoops);
-
     {
         // FIX: temp disable
         return;

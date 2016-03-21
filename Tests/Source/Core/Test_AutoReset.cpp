@@ -12,11 +12,9 @@ xTEST_UNIT(Test_AutoReset)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_AutoReset::unit(
-    std::csize_t &a_caseLoops
-)
+Test_AutoReset::unit()
 {
-    xTEST_CASE("AutoReset", a_caseLoops)
+    xTEST_CASE("AutoReset")
     {
         cbool_t data[] = {true, false, true};
 

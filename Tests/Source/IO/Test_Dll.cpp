@@ -11,13 +11,11 @@ xTEST_UNIT(Test_Dll)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Dll::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Dll::unit()
 {
     // TEST: Test_Dll()
 
-    xTEST_CASE("Dll", a_caseLoops)
+    xTEST_CASE("Dll")
     {
         #if   xENV_WIN
             const data2_tstring_t data[] = {

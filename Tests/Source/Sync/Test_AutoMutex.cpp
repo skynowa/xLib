@@ -13,11 +13,9 @@ xTEST_UNIT(Test_AutoMutex)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_AutoMutex::unit(
-    std::csize_t &a_caseLoops
-)
+Test_AutoMutex::unit()
 {
-    xTEST_CASE("AutoMutex", a_caseLoops)
+    xTEST_CASE("AutoMutex")
     {
         size_t  uiCounter = 0;
         Mutex mtMutex;

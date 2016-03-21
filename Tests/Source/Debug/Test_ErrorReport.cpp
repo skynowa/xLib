@@ -11,11 +11,9 @@ xTEST_UNIT(Test_ErrorReport)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_ErrorReport::unit(
-    std::csize_t &a_caseLoops
-)
+Test_ErrorReport::unit()
 {
-    xTEST_CASE("ErrorReport", a_caseLoops)
+    xTEST_CASE("ErrorReport")
     {
         ulong_t nativeError = NativeError::get();
 

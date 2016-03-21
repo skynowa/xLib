@@ -11,11 +11,9 @@ xTEST_UNIT(Test_ThreadStorage)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_ThreadStorage::unit(
-    std::csize_t &a_caseLoops
-)
+Test_ThreadStorage::unit()
 {
-    xTEST_CASE("setValue, value", a_caseLoops)
+    xTEST_CASE("setValue, value")
     {
         culong_t data[] = {0, 1, 2, 777};
 

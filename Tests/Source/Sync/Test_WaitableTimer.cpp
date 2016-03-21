@@ -11,12 +11,8 @@ xTEST_UNIT(Test_WaitableTimer)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_WaitableTimer::unit(
-    std::csize_t &a_caseLoops
-)
+Test_WaitableTimer::unit()
 {
-    xUNUSED(a_caseLoops);
-
 #if   xENV_WIN
     WaitableTimer WT;
 

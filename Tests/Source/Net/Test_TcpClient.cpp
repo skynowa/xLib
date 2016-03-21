@@ -14,12 +14,8 @@ xTEST_UNIT(Test_TcpClient)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_TcpClient::unit(
-    std::csize_t &a_caseLoops
-)
+Test_TcpClient::unit()
 {
-    xUNUSED(a_caseLoops);
-
     {
         // FIX: temp disable
         return;

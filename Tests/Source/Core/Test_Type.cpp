@@ -12,11 +12,9 @@ xTEST_UNIT(Test_Type)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Type::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Type::unit()
 {
-    xTEST_CASE("name", a_caseLoops)
+    xTEST_CASE("name")
     {
         std::tstring_t sObject;
 
@@ -24,7 +22,7 @@ Test_Type::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("rawName", a_caseLoops)
+    xTEST_CASE("rawName")
     {
         std::tstring_t sObject;
 
@@ -32,7 +30,7 @@ Test_Type::unit(
         xTEST_EQ(false, m_sRv.empty())
     }
 
-    xTEST_CASE("isEquals", a_caseLoops)
+    xTEST_CASE("isEquals")
     {
         std::string  sObject1;
         std::wstring wsObject2;

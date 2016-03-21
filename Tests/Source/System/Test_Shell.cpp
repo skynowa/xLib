@@ -11,17 +11,15 @@ xTEST_UNIT(Test_Shell)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Shell::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Shell::unit()
 {
-    xTEST_CASE("isAvailable", a_caseLoops)
+    xTEST_CASE("isAvailable")
     {
         m_bRv = Shell().isAvailable();
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("execute", a_caseLoops)
+    xTEST_CASE("execute")
     {
         std::ctstring_t casData[][2] = {
             { xT("cd"), xT("./") },
@@ -44,7 +42,7 @@ Test_Shell::unit(
     }
 
 #if   xENV_WIN
-    xTEST_CASE("findExecutable", a_caseLoops)
+    xTEST_CASE("findExecutable")
     {
         #if xTEST_IGNORE
             m_sRv = Shell().findExecutable(xT("win.ini"), xT("C:"));
@@ -52,7 +50,7 @@ Test_Shell::unit(
         #endif
     }
 
-    xTEST_CASE("executeEx", a_caseLoops)
+    xTEST_CASE("executeEx")
     {
         #if xTEST_IGNORE
             SHELLEXECUTEINFO execInfo = {0};
@@ -60,35 +58,35 @@ Test_Shell::unit(
         #endif
     }
 
-    xTEST_CASE("execute", a_caseLoops)
+    xTEST_CASE("execute")
     {
         #if xTEST_IGNORE
             Shell().execute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, int_t iShowCmd);
         #endif
     }
 
-    xTEST_CASE("executeHttp", a_caseLoops)
+    xTEST_CASE("executeHttp")
     {
         #if xTEST_IGNORE
             Shell().executeHttp(xT(" http://www.google.ru/ "));
         #endif
     }
 
-    xTEST_CASE("executeFtp", a_caseLoops)
+    xTEST_CASE("executeFtp")
     {
         #if xTEST_IGNORE
             Shell().executeFtp(xT(" ftp://ftp.drweb.com/ "));
         #endif
     }
 
-    xTEST_CASE("executeEmail", a_caseLoops)
+    xTEST_CASE("executeEmail")
     {
         #if xTEST_IGNORE
             Shell().executeEmail(xT("  Sky_Nova@mail.ru "), xT("  Subject"), xT("  Body  "));
         #endif
     }
 
-    xTEST_CASE("specialDirPath", a_caseLoops)
+    xTEST_CASE("specialDirPath")
     {
         m_sRv = Shell().specialDirPath(Shell::sfFonts, xPTR_NULL);
         xTEST_EQ(std::tstring_t(xT("C:\\WINDOWS\\Fonts")), m_sRv);

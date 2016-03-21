@@ -16,6 +16,6 @@ class Test_Config :
 public:
                     Test_Config() {}
 
-    virtual  void_t unit(std::csize_t &caseLoops) xOVERRIDE;
+    virtual  void_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

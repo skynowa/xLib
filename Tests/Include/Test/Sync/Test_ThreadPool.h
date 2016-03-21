@@ -16,7 +16,7 @@ class Test_ThreadPool :
 public:
                    Test_ThreadPool() {}
 
-    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
+    virtual void_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

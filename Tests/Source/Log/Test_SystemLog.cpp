@@ -11,23 +11,21 @@ xTEST_UNIT(Test_SystemLog)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_SystemLog::unit(
-    std::csize_t &a_caseLoops
-)
+Test_SystemLog::unit()
 {
-    xTEST_CASE("SystemLog", a_caseLoops)
+    xTEST_CASE("SystemLog")
     {
         SystemLog log;
     }
 
-    xTEST_CASE("SystemLog", a_caseLoops)
+    xTEST_CASE("SystemLog")
     {
         std::tstring_t logName = xT("Simple_programm_name");
 
         SystemLog log(logName);
     }
 
-    xTEST_CASE("setEnabled", a_caseLoops)
+    xTEST_CASE("setEnabled")
     {
         SystemLog log;
 
@@ -37,7 +35,7 @@ Test_SystemLog::unit(
         log.setEnabled(false);
     }
 
-    xTEST_CASE("write", a_caseLoops)
+    xTEST_CASE("write")
     {
         ILog::cExLevel logLevel[] = {
             ILog::lvEmerg, ILog::lvAlert,   ILog::lvCritical,
@@ -54,7 +52,7 @@ Test_SystemLog::unit(
         }
     }
 
-    xTEST_CASE("write(...)", a_caseLoops)
+    xTEST_CASE("write(...)")
     {
     #if xTEST_IGNORE
         SystemLog().write(ILog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::lvUnknown),  12345);

@@ -18,7 +18,7 @@ class Test_Pop3Client :
 public:
                    Test_Pop3Client() {}
 
-    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
+    virtual void_t unit() xOVERRIDE;
 };
 
 #endif // xHAVE_OPENSSL_CRYPTO

@@ -48,11 +48,9 @@ xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Observer::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Observer::unit()
 {
-    xTEST_CASE("Observer", a_caseLoops)
+    xTEST_CASE("Observer")
     {
         ::type_all = 0;
         ::message_all.clear();

@@ -19,12 +19,8 @@ xTEST_UNIT(Test_Pop3Client)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Pop3Client::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Pop3Client::unit()
 {
-    xUNUSED(a_caseLoops);
-
     {
         // FIX: temp disable
         return;

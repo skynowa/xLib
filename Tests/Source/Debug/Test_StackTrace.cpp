@@ -11,11 +11,9 @@ xTEST_UNIT(Test_StackTrace)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_StackTrace::unit(
-    std::csize_t &a_caseLoops
-)
+Test_StackTrace::unit()
 {
-    xTEST_CASE("toString", a_caseLoops)
+    xTEST_CASE("toString")
     {
         StackTrace stStack;
 
@@ -23,7 +21,7 @@ Test_StackTrace::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("toString", a_caseLoops)
+    xTEST_CASE("toString")
     {
         #if xTEST_IGNORE
             xTEST_FAIL;

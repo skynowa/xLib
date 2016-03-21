@@ -15,11 +15,9 @@ xTEST_UNIT(Test_FileTemp)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_FileTemp::unit(
-    std::csize_t &a_caseLoops
-)
+Test_FileTemp::unit()
 {
-    xTEST_CASE("all", a_caseLoops)
+    xTEST_CASE("all")
     {
         FileTemp fileTemp(true);
         File     fileJobber;

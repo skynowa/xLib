@@ -16,6 +16,6 @@ class Test_AutoMutex :
 public:
                    Test_AutoMutex() {}
 
-    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
+    virtual void_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

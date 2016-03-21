@@ -14,12 +14,10 @@ xTEST_UNIT(Test_Volume)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Volume::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Volume::unit()
 {
 #if xENV_WIN
-    xTEST_CASE("type", a_caseLoops)
+    xTEST_CASE("type")
     {
 
         std::ctstring_t volumePath = xT("C:");
@@ -29,7 +27,7 @@ Test_Volume::unit(
     }
 #endif
 
-    xTEST_CASE("fileSystem", a_caseLoops)
+    xTEST_CASE("fileSystem")
     {
         std::vec_tstring_t volumePaths;
 
@@ -44,7 +42,7 @@ Test_Volume::unit(
         }
     }
 
-    xTEST_CASE("label", a_caseLoops)
+    xTEST_CASE("label")
     {
         std::vec_tstring_t volumePaths;
 
@@ -60,7 +58,7 @@ Test_Volume::unit(
         }
     }
 
-    xTEST_CASE("isValid", a_caseLoops)
+    xTEST_CASE("isValid")
     {
         // true
         {
@@ -99,7 +97,7 @@ Test_Volume::unit(
         }
     }
 
-    xTEST_CASE("isReady", a_caseLoops)
+    xTEST_CASE("isReady")
     {
         // true
         {
@@ -136,7 +134,7 @@ Test_Volume::unit(
         }
     }
 
-    xTEST_CASE("isEmpty", a_caseLoops)
+    xTEST_CASE("isEmpty")
     {
         // true
         {
@@ -176,7 +174,7 @@ Test_Volume::unit(
         }
     }
 
-    xTEST_CASE("mount, unMount", a_caseLoops)
+    xTEST_CASE("mount, unMount")
     {
     #if xTEST_IGNORE
     #if   xENV_WIN
@@ -192,7 +190,7 @@ Test_Volume::unit(
     #endif
     }
 
-    xTEST_CASE("isSpaceEnough", a_caseLoops)
+    xTEST_CASE("isSpaceEnough")
     {
         std::vec_tstring_t volumes;
         volumes.push_back( SystemInfo().userHomeDir() );
@@ -217,7 +215,7 @@ Test_Volume::unit(
         }
     }
 
-    xTEST_CASE("space", a_caseLoops)
+    xTEST_CASE("space")
     {
         std::vec_tstring_t volumePaths;
         volumePaths.push_back( SystemInfo().userHomeDir() );
@@ -281,7 +279,7 @@ Test_Volume::unit(
         }
     }
 
-    xTEST_CASE("paths", a_caseLoops)
+    xTEST_CASE("paths")
     {
         std::vec_tstring_t volumePaths;
 

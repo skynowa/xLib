@@ -11,13 +11,11 @@ xTEST_UNIT(Test_StdError)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_StdError::unit(
-    std::csize_t &a_caseLoops
-)
+Test_StdError::unit()
 {
     cint_t ciMaxErrors = 132;  /*0...132*/;
 
-    xTEST_CASE("isSuccess", a_caseLoops)
+    xTEST_CASE("isSuccess")
     {
         StdError::reset();
         m_bRv = StdError::isSuccess();
@@ -34,20 +32,20 @@ Test_StdError::unit(
         xTEST_EQ(m_bRv, false);
     }
 
-    xTEST_CASE("get", a_caseLoops)
+    xTEST_CASE("get")
     {
         m_iRv = StdError::get();
         xUNUSED(m_iRv);
         xTEST_EQ(0, StdError::get());
     }
 
-    xTEST_CASE("format", a_caseLoops)
+    xTEST_CASE("format")
     {
         std::tstring_t sError = StdError::format();
         xTEST_EQ(false, sError.empty());
     }
 
-    xTEST_CASE("set", a_caseLoops)
+    xTEST_CASE("set")
     {
         cint_t caiData[] = {
             0,
@@ -65,7 +63,7 @@ Test_StdError::unit(
         }
     }
 
-    xTEST_CASE("reset", a_caseLoops)
+    xTEST_CASE("reset")
     {
         cint_t caiData[] = {
             0,
@@ -83,7 +81,7 @@ Test_StdError::unit(
         }
     }
 
-    xTEST_CASE("format", a_caseLoops)
+    xTEST_CASE("format")
     {
         cint_t caiData[] = {
             0,

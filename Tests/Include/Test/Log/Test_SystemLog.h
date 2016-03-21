@@ -16,7 +16,7 @@ class Test_SystemLog:
 public:
                    Test_SystemLog() {}
 
-    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
+    virtual void_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

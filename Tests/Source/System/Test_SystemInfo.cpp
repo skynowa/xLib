@@ -16,11 +16,9 @@ xTEST_UNIT(Test_SystemInfo)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_SystemInfo::unit(
-    std::csize_t &a_caseLoops
-)
+Test_SystemInfo::unit()
 {
-    xTEST_CASE("os", a_caseLoops)
+    xTEST_CASE("os")
     {
         const SystemInfo::ExOsType otType = SystemInfo().os();
         xTEST_DIFF(SystemInfo::otUnknown, otType);
@@ -52,13 +50,13 @@ Test_SystemInfo::unit(
         #endif
     }
 
-    xTEST_CASE("formatOs", a_caseLoops)
+    xTEST_CASE("formatOs")
     {
         m_sRv = SystemInfo().formatOs();
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("osArch", a_caseLoops)
+    xTEST_CASE("osArch")
     {
         SystemInfo::ExOsArch oaRes = SystemInfo::oaUnknown;
 
@@ -66,13 +64,13 @@ Test_SystemInfo::unit(
         xTEST_DIFF(SystemInfo::oaUnknown, oaRes);
     }
 
-    xTEST_CASE("formatOsArch", a_caseLoops)
+    xTEST_CASE("formatOsArch")
     {
         m_sRv = SystemInfo().formatOsArch();
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("hostName", a_caseLoops)
+    xTEST_CASE("hostName")
     {
         m_sRv = SystemInfo().hostName();
         xTEST_EQ(false, m_sRv.empty());
@@ -81,7 +79,7 @@ Test_SystemInfo::unit(
         #endif
     }
 
-    xTEST_CASE("isUserAdmin", a_caseLoops)
+    xTEST_CASE("isUserAdmin")
     {
         m_bRv = SystemInfo().isUserAdmin();
         #if xTEST_IGNORE
@@ -89,7 +87,7 @@ Test_SystemInfo::unit(
         #endif
     }
 
-    xTEST_CASE("userName", a_caseLoops)
+    xTEST_CASE("userName")
     {
         m_sRv = SystemInfo().userName();
         #if xTEST_IGNORE
@@ -98,7 +96,7 @@ Test_SystemInfo::unit(
         xTEST_EQ(m_sRv.empty(), false);
     }
 
-    xTEST_CASE("loginUserName", a_caseLoops)
+    xTEST_CASE("loginUserName")
     {
         m_sRv = SystemInfo().loginUserName();
         xTEST_EQ(false, m_sRv.empty());
@@ -107,7 +105,7 @@ Test_SystemInfo::unit(
         #endif
     }
 
-    xTEST_CASE("userHomeDir", a_caseLoops)
+    xTEST_CASE("userHomeDir")
     {
         m_sRv = SystemInfo().userHomeDir();
         xTEST_EQ(false, m_sRv.empty());
@@ -117,7 +115,7 @@ Test_SystemInfo::unit(
         #endif
     }
 
-    xTEST_CASE("userShellPath", a_caseLoops)
+    xTEST_CASE("userShellPath")
     {
         m_sRv = SystemInfo().userShellPath();
         xTEST_EQ(false, m_sRv.empty());
@@ -127,7 +125,7 @@ Test_SystemInfo::unit(
         #endif
     }
 
-    xTEST_CASE("numOfCpus", a_caseLoops)
+    xTEST_CASE("numOfCpus")
     {
         m_ulRv = SystemInfo().numOfCpus();
         #if xTEST_IGNORE
@@ -136,7 +134,7 @@ Test_SystemInfo::unit(
         xTEST_LESS(0UL, m_ulRv);
     }
 
-    xTEST_CASE("currentCpuNum", a_caseLoops)
+    xTEST_CASE("currentCpuNum")
     {
         m_ulRv = SystemInfo().currentCpuNum();
         #if xTEST_IGNORE
@@ -145,13 +143,13 @@ Test_SystemInfo::unit(
         xTEST_EQ(true, SystemInfo().numOfCpus() > m_ulRv);
     }
 
-    xTEST_CASE("cpuVendor", a_caseLoops)
+    xTEST_CASE("cpuVendor")
     {
         SystemInfo::ExCpuVendor cvType = SystemInfo().cpuVendor();
         xTEST_EQ(true, SystemInfo::cvIntel == cvType || SystemInfo::cvAmd == cvType);
     }
 
-    xTEST_CASE("cpuModel", a_caseLoops)
+    xTEST_CASE("cpuModel")
     {
         m_sRv = SystemInfo().cpuModel();
         xTEST_EQ(false, m_sRv.empty());
@@ -161,7 +159,7 @@ Test_SystemInfo::unit(
         #endif
     }
 
-    xTEST_CASE("cpuSpeed", a_caseLoops)
+    xTEST_CASE("cpuSpeed")
     {
         m_ulRv = SystemInfo().cpuSpeed();
         xTEST_LESS(0UL, m_ulRv);
@@ -171,19 +169,19 @@ Test_SystemInfo::unit(
         #endif
     }
 
-    xTEST_CASE("ramTotal", a_caseLoops)
+    xTEST_CASE("ramTotal")
     {
         m_ullRv = SystemInfo().ramTotal();
         xTEST_LESS(0ULL, m_ullRv);
     }
 
-    xTEST_CASE("ramAvailable", a_caseLoops)
+    xTEST_CASE("ramAvailable")
     {
         m_ullRv = SystemInfo().ramAvailable();
         xTEST_LESS(0ULL, m_ullRv);
     }
 
-    xTEST_CASE("cpuUsage", a_caseLoops)
+    xTEST_CASE("cpuUsage")
     {
         for (size_t i = 0; i < 10; ++ i) {
             m_ulRv = SystemInfo().cpuUsage();
@@ -197,7 +195,7 @@ Test_SystemInfo::unit(
         }
     }
 
-    xTEST_CASE("ramUsage", a_caseLoops)
+    xTEST_CASE("ramUsage")
     {
         for (size_t i = 0; i < 10; ++ i) {
             m_ulRv = SystemInfo().ramUsage();
@@ -211,14 +209,14 @@ Test_SystemInfo::unit(
         }
     }
 
-    xTEST_CASE("pageSize", a_caseLoops)
+    xTEST_CASE("pageSize")
     {
         m_ulRv = SystemInfo().pageSize();
         xTEST_LESS(0UL, m_ulRv);
     }
 
 #if xENV_UNIX
-    xTEST_CASE("glibcVersion", a_caseLoops)
+    xTEST_CASE("glibcVersion")
     {
         m_sRv = SystemInfo().glibcVersion();
         xTEST_EQ(m_sRv.empty(), false);
@@ -228,7 +226,7 @@ Test_SystemInfo::unit(
 #endif
 
 #if xENV_UNIX
-    xTEST_CASE("libPthreadVersion", a_caseLoops)
+    xTEST_CASE("libPthreadVersion")
     {
         m_sRv = SystemInfo().libPthreadVersion();
         xTEST_EQ(m_sRv.empty(), false);

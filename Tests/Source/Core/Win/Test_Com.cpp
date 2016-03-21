@@ -11,12 +11,10 @@ xTEST_UNIT(Test_Com)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Com::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Com::unit()
 {
 #if xENV_WIN
-    xTEST_CASE("Com", a_caseLoops)
+    xTEST_CASE("Com")
     {
         const COINIT model[] = {
             COINIT_APARTMENTTHREADED,
@@ -31,8 +29,6 @@ Test_Com::unit(
             Com com3(model[i]);
         }
     }
-#else
-    xUNUSED(a_caseLoops);
 #endif
 }
 //-------------------------------------------------------------------------------------------------

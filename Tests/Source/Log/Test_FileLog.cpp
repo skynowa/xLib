@@ -14,15 +14,13 @@ xTEST_UNIT(Test_FileLog)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_FileLog::unit(
-    std::csize_t &a_caseLoops
-)
+Test_FileLog::unit()
 {
     std::ctstring_t filePath = tempDirPath() + Const::slash() + xT("FileLog.log");
 
     FileLog log(FileLog::lsDefaultMb);
 
-    xTEST_CASE("setFilePath, filePath", a_caseLoops)
+    xTEST_CASE("setFilePath, filePath")
     {
         log.setFilePath(filePath);
 
@@ -30,7 +28,7 @@ Test_FileLog::unit(
         xTEST_EQ(filePath, m_sRv);
     }
 
-    xTEST_CASE("write", a_caseLoops)
+    xTEST_CASE("write")
     {
         for (size_t i = 0; i < 10; ++ i) {
             log.write(xT("simple log string: %s"), xT("qwerty01234567890"));
@@ -38,7 +36,7 @@ Test_FileLog::unit(
         }
     }
 
-    xTEST_CASE("write(...)", a_caseLoops)
+    xTEST_CASE("write(...)")
     {
         log.write(ILog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::lvUnknown),  12345);
         log.write(ILog::lvEmerg,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvEmerg),    12345);
@@ -52,13 +50,13 @@ Test_FileLog::unit(
         log.write(ILog::lvPlain,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvPlain),    12345);
     }
 
-    xTEST_CASE("clear", a_caseLoops)
+    xTEST_CASE("clear")
     {
         log.clear();
         xTEST_EQ(File::size( log.filePath()), longlong_t(0));
     }
 
-    xTEST_CASE("remove", a_caseLoops)
+    xTEST_CASE("remove")
     {
         log.remove();
         xTEST_EQ(false, File::isExists( log.filePath()) );

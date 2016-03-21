@@ -11,11 +11,9 @@ xTEST_UNIT(Test_Service)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Service::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Service::unit()
 {
-    xTEST_CASE("[TEST_CASE_1]", a_caseLoops)
+    xTEST_CASE("[TEST_CASE_1]")
     {
 
     }

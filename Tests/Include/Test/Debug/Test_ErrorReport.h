@@ -16,6 +16,6 @@ class Test_ErrorReport :
 public:
                    Test_ErrorReport() {}
 
-    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
+    virtual void_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

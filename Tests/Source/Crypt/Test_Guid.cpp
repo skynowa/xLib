@@ -11,11 +11,9 @@ xTEST_UNIT(Test_Guid)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Guid::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Guid::unit()
 {
-    xTEST_CASE("create", a_caseLoops)
+    xTEST_CASE("create")
     {
         Guid::cExType data[] = {
             Guid::tpRandomBased

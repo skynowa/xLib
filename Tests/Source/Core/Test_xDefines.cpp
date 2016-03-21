@@ -17,11 +17,9 @@ xTEST_UNIT(Test_Defines)
 //-------------------------------------------------------------------------------------------------
 /*virtual*/
 void_t
-Test_Defines::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Defines::unit()
 {
-    xTEST_CASE("Combinations of defines", a_caseLoops)
+    xTEST_CASE("Combinations of defines")
     {
         /*
             if (DEFINE_VAL == NOT_ZERO_DIGIT) {
@@ -106,7 +104,7 @@ Test_Defines::unit(
         }
     }
 
-    xTEST_CASE("xLEX_TO_STR", a_caseLoops)
+    xTEST_CASE("xLEX_TO_STR")
     {
         long_t value = - 1;
 
@@ -116,7 +114,7 @@ Test_Defines::unit(
         xUNUSED(value);
     }
 
-    xTEST_CASE("xLEX_CAT", a_caseLoops)
+    xTEST_CASE("xLEX_CAT")
     {
         std::tstring_t value;
 
@@ -126,7 +124,7 @@ Test_Defines::unit(
         value.clear();
     }
 
-    xTEST_CASE("xTEXT, xT", a_caseLoops)
+    xTEST_CASE("xTEXT, xT")
     {
         std::ctstring_t value(xT("xxx"));
 
@@ -137,7 +135,7 @@ Test_Defines::unit(
         xTEST_EQ(value, m_sRv);
     }
 
-    xTEST_CASE("xNO_VTABLE", a_caseLoops)
+    xTEST_CASE("xNO_VTABLE")
     {
     #if   xENV_WIN
         culong_t valueBase    = 1;
@@ -189,13 +187,13 @@ Test_Defines::unit(
     #endif
     }
 
-    xTEST_CASE("xPTR_NULL", a_caseLoops)
+    xTEST_CASE("xPTR_NULL")
     {
        void_t *ptr = xPTR_NULL;
        xUNUSED(ptr);
     }
 
-    xTEST_CASE("xENUM_...", a_caseLoops)
+    xTEST_CASE("xENUM_...")
     {
         class A
         {
@@ -218,32 +216,32 @@ Test_Defines::unit(
         xTEST_EQ((int)mode, (int)A::FileMode::Text);
     }
 
-    xTEST_CASE("xS2US", a_caseLoops)
+    xTEST_CASE("xS2US")
     {
 
     }
 
-    xTEST_CASE("xUS2S", a_caseLoops)
+    xTEST_CASE("xUS2S")
     {
 
     }
 
-    xTEST_CASE("xS2TS", a_caseLoops)
+    xTEST_CASE("xS2TS")
     {
 
     }
 
-    xTEST_CASE("xTS2S", a_caseLoops)
+    xTEST_CASE("xTS2S")
     {
 
     }
 
-    xTEST_CASE("utils", a_caseLoops)
+    xTEST_CASE("utils")
     {
 
     }
 
-    xTEST_CASE("xSWITCH_CASE_RETURN_STRINGISED", a_caseLoops)
+    xTEST_CASE("xSWITCH_CASE_RETURN_STRINGISED")
     {
         enum SwitchType
         {
@@ -278,7 +276,7 @@ Test_Defines::unit(
         xTEST_EQ(Local::foo(xLIBSSH2_ERROR_KEX_FAILURE), std::tstring_t("xLIBSSH2_ERROR_KEX_FAILURE"));
     }
 
-    xTEST_CASE("xDECLARE_LAMBDA", a_caseLoops)
+    xTEST_CASE("xDECLARE_LAMBDA")
     {
         xLAMBDA(int, lambda, (int x, int y) { return x + y; } );
 
@@ -286,14 +284,14 @@ Test_Defines::unit(
         xTEST_EQ(m_iRv, 3);
     }
 
-    xTEST_CASE("xUNUSED", a_caseLoops)
+    xTEST_CASE("xUNUSED")
     {
         size_t value = 0U;
 
         xUNUSED(value);
     }
 
-    xTEST_CASE("Enable/disable code", a_caseLoops)
+    xTEST_CASE("Enable/disable code")
     {
         xTEST_EQ(1, xTEMP_ENABLED);
         xTEST_EQ(0, xTEMP_DISABLED);
@@ -311,66 +309,66 @@ Test_Defines::unit(
         xNA;
     }
 
-    xTEST_CASE("Buildin macroses", a_caseLoops)
+    xTEST_CASE("Buildin macroses")
     {
 
     }
 
-    xTEST_CASE("xFILE", a_caseLoops)
+    xTEST_CASE("xFILE")
     {
         m_sRv = xFILE;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xBASE_FILE", a_caseLoops)
+    xTEST_CASE("xBASE_FILE")
     {
         m_sRv = xBASE_FILE;
         xTEST_EQ(m_sRv, std::tstring_t(xT("Test_xDefines.cpp")));
     }
 
-    xTEST_CASE("xLINE", a_caseLoops)
+    xTEST_CASE("xLINE")
     {
         m_ulRv = xLINE;
         xTEST_GR(m_ulRv, 0UL);
     }
 
-    xTEST_CASE("xFUNCTION", a_caseLoops)
+    xTEST_CASE("xFUNCTION")
     {
         m_sRv = xFUNCTION;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xSOURCE_AT", a_caseLoops)
+    xTEST_CASE("xSOURCE_AT")
     {
         m_sRv = xSOURCE_AT;
         xTEST_EQ(m_sRv.empty(), false);
     }
 
-    xTEST_CASE("xDATE", a_caseLoops)
+    xTEST_CASE("xDATE")
     {
         m_sRv = xDATE;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xTIME", a_caseLoops)
+    xTEST_CASE("xTIME")
     {
         m_sRv = xTIME;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xDATETIME", a_caseLoops)
+    xTEST_CASE("xDATETIME")
     {
         m_sRv = xDATETIME;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xCOUNTER", a_caseLoops)
+    xTEST_CASE("xCOUNTER")
     {
         m_sRv = String::cast(xCOUNTER);
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xIN, xOUT, xIN_OUT", a_caseLoops)
+    xTEST_CASE("xIN, xOUT, xIN_OUT")
     {
         struct Test
         {
@@ -396,7 +394,7 @@ Test_Defines::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xVA_...", a_caseLoops)
+    xTEST_CASE("xVA_...")
     {
         std::ctstring_t csVal = xT("aaa");
         cint_t          ciVal = 100;
@@ -406,7 +404,7 @@ Test_Defines::unit(
         xTEST_EQ(m_sRv, std::tstring_t(xT("aaa, 100")));
     }
 
-    xTEST_CASE("xPR_...", a_caseLoops)
+    xTEST_CASE("xPR_...")
     {
         // xPR_SIZET
         {
@@ -441,13 +439,13 @@ Test_Defines::unit(
         }
     }
 
-    xTEST_CASE("xDIR_TEMP", a_caseLoops)
+    xTEST_CASE("xDIR_TEMP")
     {
         m_sRv = xDIR_TEMP;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xNATIVE_HANDLE_...", a_caseLoops)
+    xTEST_CASE("xNATIVE_HANDLE_...")
     {
        native_handle_t nhNull    = xNATIVE_HANDLE_NULL;
        xUNUSED(nhNull);
@@ -456,7 +454,7 @@ Test_Defines::unit(
        xUNUSED(nhInvalid);
     }
 
-    xTEST_CASE("xFOREACH...", a_caseLoops)
+    xTEST_CASE("xFOREACH...")
     {
         // xFOREACH
         {
@@ -533,7 +531,7 @@ Test_Defines::unit(
         }
     }
 
-    xTEST_CASE("xTHROW_REPORT", a_caseLoops)
+    xTEST_CASE("xTHROW_REPORT")
     {
         xTEST_THROW(xTHROW_REPORT(xT("test xTHROW_REPORT message")), Exception);
     }

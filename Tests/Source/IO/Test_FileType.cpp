@@ -15,9 +15,7 @@ xTEST_UNIT(Test_FileType)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_FileType::unit(
-    std::csize_t &a_caseLoops
-)
+Test_FileType::unit()
 {
     std::ctstring_t  filePath = tempDirPath() + Const::slash() + xT("Test.txt");
     FileType::ExType value;
@@ -40,7 +38,7 @@ Test_FileType::unit(
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("set, get", a_caseLoops)
+    xTEST_CASE("set, get")
     {
         FileType ftType(filePath);
 
@@ -52,7 +50,7 @@ Test_FileType::unit(
         xTEST_EQ((ulong_t)value, (ulong_t)faRes);
     }
 
-    xTEST_CASE("add", a_caseLoops)
+    xTEST_CASE("add")
     {
         FileType ftType(filePath);
 
@@ -63,7 +61,7 @@ Test_FileType::unit(
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("remove", a_caseLoops)
+    xTEST_CASE("remove")
     {
     #if   xENV_WIN
         FileType ftType(filePath);
@@ -120,7 +118,7 @@ Test_FileType::unit(
     #endif
     }
 
-    xTEST_CASE("modify", a_caseLoops)
+    xTEST_CASE("modify")
     {
         FileType ftType(filePath);
 
@@ -135,7 +133,7 @@ Test_FileType::unit(
         ftType.modify(cfaRemoveValue, cfaAddValue);
     }
 
-    xTEST_CASE("isExists", a_caseLoops)
+    xTEST_CASE("isExists")
     {
         FileType ftType(filePath);
 
@@ -151,7 +149,7 @@ Test_FileType::unit(
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("clear", a_caseLoops)
+    xTEST_CASE("clear")
     {
         FileType ftType(filePath);
 
