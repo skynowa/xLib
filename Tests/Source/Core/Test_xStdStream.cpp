@@ -14,11 +14,9 @@ xTEST_UNIT(Test_StdStream)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_StdStream::unit(
-    std::csize_t &a_caseLoops
-)
+Test_StdStream::unit()
 {
-    xTEST_CASE("operator << for std::ustring_t", a_caseLoops)
+    xTEST_CASE("operator << for std::ustring_t")
     {
         for (size_t i = 0; i < 10; ++ i) {
             std::ustring_t usStr;
@@ -36,7 +34,7 @@ Test_StdStream::unit(
         }
     }
 
-    xTEST_CASE("operator << for std::vector", a_caseLoops)
+    xTEST_CASE("operator << for std::vector")
     {
         m_vsRv.clear();
 
@@ -52,7 +50,7 @@ Test_StdStream::unit(
         m_vsRv.clear();
     }
 
-    xTEST_CASE("operator << for std::map", a_caseLoops)
+    xTEST_CASE("operator << for std::map")
     {
         m_msRv.clear();
 
@@ -68,7 +66,7 @@ Test_StdStream::unit(
         m_msRv.clear();
     }
 
-    xTEST_CASE("operator << for std::multimap", a_caseLoops)
+    xTEST_CASE("operator << for std::multimap")
     {
         m_mmsRv.clear();
 

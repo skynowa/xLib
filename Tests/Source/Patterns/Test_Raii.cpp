@@ -36,11 +36,9 @@ xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Raii::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Raii::unit()
 {
-    xTEST_CASE("Raii", a_caseLoops)
+    xTEST_CASE("Raii")
     {
         std::ctstring_t datetimes[][2] = {
             { xT("0123"), xT("0")   },

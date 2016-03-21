@@ -14,11 +14,9 @@ xTEST_UNIT(Test_Socket)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Socket::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Socket::unit()
 {
-    xTEST_CASE("SocketInit", a_caseLoops)
+    xTEST_CASE("SocketInit")
     {
         SocketInit socketInit(2, 2);
     }

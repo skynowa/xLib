@@ -122,12 +122,8 @@ pvJob(
 //-------------------------------------------------------------------------------------------------
 /*virtual*/
 void_t
-Test_Condition::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Condition::unit()
 {
-    xUNUSED(a_caseLoops);
-
 #if xENV_UNIX && xTODO
     int_t          iRv          = - 1;
     pthread_t    thThreads[3] = {0};

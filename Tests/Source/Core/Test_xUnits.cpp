@@ -14,11 +14,9 @@ xTEST_UNIT(Test_Units)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Units::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Units::unit()
 {
-    xTEST_CASE("Bytes", a_caseLoops)
+    xTEST_CASE("Bytes")
     {
         culonglong_t BYTE = 1ULL;
         culonglong_t KB   = 1024ULL;
@@ -39,7 +37,7 @@ Test_Units::unit(
         }
     }
 
-    xTEST_CASE("Datetime", a_caseLoops)
+    xTEST_CASE("Datetime")
     {
         // TEST: Datetime
     }

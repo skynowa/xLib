@@ -13,9 +13,7 @@ xTEST_UNIT(Test_Crc32)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Crc32::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Crc32::unit()
 {
     std::ctstring_t filePath = tempDirPath()  + Const::slash() + xT("Crc32.txt");
 
@@ -27,7 +25,7 @@ Test_Crc32::unit(
         file.resize(1337LL);
     }
 
-    xTEST_CASE("calcFile, calc, formatHex", a_caseLoops)
+    xTEST_CASE("calcFile, calc, formatHex")
     {
         Crc32 crc32;
 

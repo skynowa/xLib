@@ -11,11 +11,9 @@ xTEST_UNIT(Test_xTest)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_xTest::unit(
-    std::csize_t &a_caseLoops
-)
+Test_xTest::unit()
 {
-    xTEST_CASE("xTEST_...", a_caseLoops)
+    xTEST_CASE("xTEST_...")
     {
         std::ctstring_t msg = xT("Simple message");
 
@@ -59,7 +57,7 @@ Test_xTest::unit(
         xTEST_MSG(true, msg)
     }
 
-    xTEST_CASE("xTEST_THROW_...", a_caseLoops)
+    xTEST_CASE("xTEST_THROW_...")
     {
         std::ctstring_t msg = xT("Simple message");
 
@@ -73,13 +71,13 @@ Test_xTest::unit(
         xTEST_THROW_NO_MSG(msg.at(0), msg);
     }
 
-    xTEST_CASE("xTEST_NA", a_caseLoops)
+    xTEST_CASE("xTEST_NA")
     {
         xTEST_NA(1978);
         xTESTS_NA;
     }
 
-    xTEST_CASE("xTEST_STATIC", a_caseLoops)
+    xTEST_CASE("xTEST_STATIC")
     {
         xTEST_STATIC(true);
 
@@ -88,7 +86,7 @@ Test_xTest::unit(
     #endif
     }
 
-    xTEST_CASE("xVERIFY", a_caseLoops)
+    xTEST_CASE("xVERIFY")
     {
         _xVERIFY(true);
         // _xVERIFY(false);

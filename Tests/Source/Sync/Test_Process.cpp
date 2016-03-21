@@ -14,11 +14,9 @@ xTEST_UNIT(Test_Process)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Process::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Process::unit()
 {
-    xTEST_CASE("create, wait", a_caseLoops)
+    xTEST_CASE("create, wait")
     {
         #if 1
             #if   xENV_WIN
@@ -38,7 +36,7 @@ Test_Process::unit(
         #endif
     }
 
-    xTEST_CASE("kill", a_caseLoops)
+    xTEST_CASE("kill")
     {
         #if   xENV_WIN
             std::ctstring_t filePath = xT("C:\\Windows\\System32\\attrib.exe");
@@ -54,7 +52,7 @@ Test_Process::unit(
         proc.kill(10UL);
     }
 
-    xTEST_CASE("handle, id", a_caseLoops)
+    xTEST_CASE("handle, id")
     {
         #if   xENV_WIN
             std::ctstring_t filePath = xT("C:\\Windows\\System32\\attrib.exe");
@@ -77,13 +75,13 @@ Test_Process::unit(
         proc.kill(10UL);
     }
 
-    xTEST_CASE("idByHandle", a_caseLoops)
+    xTEST_CASE("idByHandle")
     {
         Process::id_t id = Process::idByHandle( Process::currentHandle() );
         xTEST_DIFF(0UL, static_cast<ulong_t>( id ));
     }
 
-    xTEST_CASE("handleById", a_caseLoops)
+    xTEST_CASE("handleById")
     {
     #if xTODO
         Process::handle_t hHandle = Process::handleById( Process::currentId() );
@@ -91,7 +89,7 @@ Test_Process::unit(
     #endif
     }
 
-    xTEST_CASE("idByName", a_caseLoops)
+    xTEST_CASE("idByName")
     {
         std::ctstring_t procName = Path( Path::exe() ).fileName();
 
@@ -101,7 +99,7 @@ Test_Process::unit(
         // Tracer() << xTRACE_VAR(id);
     }
 
-    xTEST_CASE("ids", a_caseLoops)
+    xTEST_CASE("ids")
     {
         std::vector<Process::id_t> ids;
 
@@ -111,19 +109,19 @@ Test_Process::unit(
         #endif
     }
 
-    xTEST_CASE("isRunning", a_caseLoops)
+    xTEST_CASE("isRunning")
     {
         m_bRv = Process::isRunning( Process::currentId() );
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("currentId", a_caseLoops)
+    xTEST_CASE("currentId")
     {
         Process::id_t ulRv = Process::currentId();
         xTEST_LESS(0UL, static_cast<ulong_t>( ulRv ));
     }
 
-    xTEST_CASE("currentParentId", a_caseLoops)
+    xTEST_CASE("currentParentId")
     {
         Process::id_t ulRv = Process::currentParentId();
         xTEST_LESS(0UL, static_cast<ulong_t>( ulRv ));

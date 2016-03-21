@@ -12,11 +12,9 @@ xTEST_UNIT(Test_Format)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Format::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Format::unit()
 {
-    xTEST_CASE("Format", a_caseLoops)
+    xTEST_CASE("Format")
     {
         cbool_t         v1  = false;
         ctchar_t        v2  = xT('a');

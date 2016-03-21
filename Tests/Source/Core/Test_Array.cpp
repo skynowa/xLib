@@ -12,35 +12,33 @@ xTEST_UNIT(Test_Array)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Array::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Array::unit()
 {
     std::csize_t arraySize = 5;
 
     Array<size_t, arraySize> array = {{0, 1, 2, 3, 4}};
 
-    xTEST_CASE("operator[]", a_caseLoops)
+    xTEST_CASE("operator[]")
     {
         for (size_t i = 0; i < array.size(); ++ i) {
             xTEST_EQ(i, array[i]);
         }
     }
 
-    xTEST_CASE("at", a_caseLoops)
+    xTEST_CASE("at")
     {
         for (size_t i = 0; i < array.size(); ++ i) {
             xTEST_EQ(i, array.at(i));
         }
     }
 
-    xTEST_CASE("size", a_caseLoops)
+    xTEST_CASE("size")
     {
         m_stRv = array.size();
         xTEST_EQ(m_stRv, arraySize);
     }
 
-    xTEST_CASE("clear", a_caseLoops)
+    xTEST_CASE("clear")
     {
         array.clear();
         xTEST_EQ(array.size(), arraySize);

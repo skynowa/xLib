@@ -11,13 +11,11 @@ xTEST_UNIT(Test_Mutex)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Mutex::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Mutex::unit()
 {
     size_t uiVal = 0;
 
-    xTEST_CASE("lock, unlock", a_caseLoops)
+    xTEST_CASE("lock, unlock")
     {
         Mutex csCS;
 
@@ -29,7 +27,7 @@ Test_Mutex::unit(
         csCS.unlock();
     }
 
-    xTEST_CASE("tryLock, unlock", a_caseLoops)
+    xTEST_CASE("tryLock, unlock")
     {
         Mutex csCS;
 
@@ -43,7 +41,7 @@ Test_Mutex::unit(
         csCS.unlock();
     }
 
-    xTEST_CASE("lock, unlock", a_caseLoops)
+    xTEST_CASE("lock, unlock")
     {
         Mutex csCS;
 
@@ -62,7 +60,7 @@ Test_Mutex::unit(
         }
     }
 
-    xTEST_CASE("tryLock, unlock", a_caseLoops)
+    xTEST_CASE("tryLock, unlock")
     {
         Mutex csCS;
 

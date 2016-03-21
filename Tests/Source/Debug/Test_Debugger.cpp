@@ -11,11 +11,9 @@ xTEST_UNIT(Test_Debugger)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Debugger::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Debugger::unit()
 {
-    xTEST_CASE("isEnabled, setEnabled", a_caseLoops)
+    xTEST_CASE("isEnabled, setEnabled")
     {
         cbool_t cbTrue  = true;
         cbool_t cbFalse = false;
@@ -36,14 +34,14 @@ Test_Debugger::unit(
         xTEST_EQ(cbTrue, m_bRv);
     }
 
-    xTEST_CASE("isActive", a_caseLoops)
+    xTEST_CASE("isActive")
     {
         Debugger debugger;
 
         m_bRv = debugger.isActive();
     }
 
-    xTEST_CASE("coreDumpsEnable", a_caseLoops)
+    xTEST_CASE("coreDumpsEnable")
     {
         Debugger debugger;
 
@@ -51,7 +49,7 @@ Test_Debugger::unit(
         debugger.coreDumpsEnable(true);
     }
 
-    xTEST_CASE("breakPoint", a_caseLoops)
+    xTEST_CASE("breakPoint")
     {
         Debugger debugger;
 
@@ -60,7 +58,7 @@ Test_Debugger::unit(
         #endif
     }
 
-    xTEST_CASE("setLogPath, logPath", a_caseLoops)
+    xTEST_CASE("setLogPath, logPath")
     {
         std::ctstring_t filePath;
 
@@ -80,7 +78,7 @@ Test_Debugger::unit(
         xTEST_EQ(true, m_sRv.empty());
     }
 
-    xTEST_CASE("reportMake", a_caseLoops)
+    xTEST_CASE("reportMake")
     {
         const ErrorReport::ExType type[] = {
             ErrorReport::rtMsgbox,
@@ -109,35 +107,35 @@ Test_Debugger::unit(
 
     // with int_t
     {
-        xTEST_CASE("xTEST_EQ_", a_caseLoops)
+        xTEST_CASE("xTEST_EQ_")
         {
             int_t iVar1 = 1;
             int_t iVar2 = 1;
             xTEST_EQ(iVar1, iVar2);
         }
 
-        xTEST_CASE("xTEST_DIFF_", a_caseLoops)
+        xTEST_CASE("xTEST_DIFF_")
         {
             int_t iVar1 = 0;
             int_t iVar2 = 1;
             xTEST_DIFF(iVar1, iVar2);
         }
 
-        xTEST_CASE("xTEST_LESS_", a_caseLoops)
+        xTEST_CASE("xTEST_LESS_")
         {
             int_t iVar1 = 1;
             int_t iVar2 = 122;
             xTEST_LESS(iVar1, iVar2);
         }
 
-        xTEST_CASE("xTEST_GR_", a_caseLoops)
+        xTEST_CASE("xTEST_GR_")
         {
             int_t iVar1 = 110;
             int_t iVar2 = 10;
             xTEST_GR(iVar1, iVar2);
         }
 
-        xTEST_CASE("xTEST_LESS_EQ_", a_caseLoops)
+        xTEST_CASE("xTEST_LESS_EQ_")
         {
             int_t iVar1 = 50;
             int_t iVar2 = 122;
@@ -148,7 +146,7 @@ Test_Debugger::unit(
             xTEST_LESS_EQ(iVar3, iVar4);
         }
 
-        xTEST_CASE("xTEST_GR_EQ_", a_caseLoops)
+        xTEST_CASE("xTEST_GR_EQ_")
         {
             int_t iVar1 = 500;
             int_t iVar2 = 147;
@@ -165,35 +163,35 @@ Test_Debugger::unit(
 
     // with std::tstring_t
     {
-        xTEST_CASE("xTEST_EQ_", a_caseLoops)
+        xTEST_CASE("xTEST_EQ_")
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("aaa");
             xTEST_EQ(sVar1, sVar2);
         }
 
-        xTEST_CASE("xTEST_DIFF_", a_caseLoops)
+        xTEST_CASE("xTEST_DIFF_")
         {
             std::tstring_t sVar1 = xT("bbb");
             std::tstring_t sVar2 = xT("BBB");
             xTEST_DIFF(sVar1, sVar2);
         }
 
-        xTEST_CASE("xTEST_LESS_", a_caseLoops)
+        xTEST_CASE("xTEST_LESS_")
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("ccc");
             xTEST_LESS(sVar1, sVar2);
         }
 
-        xTEST_CASE("xTEST_GR_", a_caseLoops)
+        xTEST_CASE("xTEST_GR_")
         {
             std::tstring_t sVar1 = xT("bbb");
             std::tstring_t sVar2 = xT("aaa");
             xTEST_GR(sVar1, sVar2);
         }
 
-        xTEST_CASE("xTEST_LESS_EQ_", a_caseLoops)
+        xTEST_CASE("xTEST_LESS_EQ_")
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("aaa");
@@ -204,7 +202,7 @@ Test_Debugger::unit(
             xTEST_LESS_EQ(sVar3, sVar4);
         }
 
-        xTEST_CASE("xTEST_GR_EQ_", a_caseLoops)
+        xTEST_CASE("xTEST_GR_EQ_")
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("aaa");

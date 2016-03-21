@@ -18,7 +18,7 @@ class Test_Simple1 :
 public:
                    Test_Simple1() {}
 
-    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE
+    virtual void_t unit() xOVERRIDE
     {
         xTEST(true);
     }
@@ -27,10 +27,10 @@ public:
 /* virtual */
 void_t
 Test_Manager::unit(
-    std::csize_t &a_caseLoops
+    
 )
 {
-    xTEST_CASE("Manager", a_caseLoops)
+    xTEST_CASE("Manager")
     {
         cint_t    argsNum       = 5;
         ctchar_t *args[argsNum] = {xT("./xLib_test"), xT("1"), xT("1"), xT("1"), xT("1")};
@@ -40,7 +40,7 @@ Test_Manager::unit(
         manager.run();
     }
 
-    xTEST_CASE("ManagerData", a_caseLoops)
+    xTEST_CASE("ManagerData")
     {
         ManagerData data;
 

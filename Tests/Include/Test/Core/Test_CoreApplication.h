@@ -17,7 +17,7 @@ class Test_CoreApplication :
 public:
                    Test_CoreApplication() {}
 
-    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
+    virtual void_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

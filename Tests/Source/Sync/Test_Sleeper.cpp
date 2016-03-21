@@ -11,11 +11,9 @@ xTEST_UNIT(Test_Sleeper)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Sleeper::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Sleeper::unit()
 {
-    xTEST_CASE("isSleeping", a_caseLoops)
+    xTEST_CASE("isSleeping")
     {
         Sleeper objSleeper;
 
@@ -23,7 +21,7 @@ Test_Sleeper::unit(
         xTEST_EQ(m_bRv, false);
     }
 
-    xTEST_CASE("sleep", a_caseLoops)
+    xTEST_CASE("sleep")
     {
         Sleeper objSleeper;
 
@@ -41,7 +39,7 @@ Test_Sleeper::unit(
         }
     }
 
-    xTEST_CASE("wakeUp", a_caseLoops)
+    xTEST_CASE("wakeUp")
     {
         // TEST: Sleeper::wakeUp()
         #if xTODO

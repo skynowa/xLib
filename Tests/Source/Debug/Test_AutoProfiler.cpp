@@ -15,11 +15,9 @@ xTEST_UNIT(Test_AutoProfiler)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_AutoProfiler::unit(
-    std::csize_t &a_caseLoops
-)
+Test_AutoProfiler::unit()
 {
-    xTEST_CASE("AutoProfiler", a_caseLoops)
+    xTEST_CASE("AutoProfiler")
     {
         std::ctstring_t csFilePath = tempDirPath() + Const::slash() + xT("AutoProfilerLog.log");
 

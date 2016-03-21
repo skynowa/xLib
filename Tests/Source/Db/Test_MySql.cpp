@@ -14,9 +14,7 @@ xTEST_UNIT(Test_MySql)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_MySql::unit(
-    std::csize_t &a_caseLoops
-)
+Test_MySql::unit()
 {
 #if xHAVE_MYSQL
     std::ctstring_t csHost        = xT("127.0.0.1");
@@ -60,7 +58,7 @@ Test_MySql::unit(
         conConn.options(moOption, cpvArg);
     }
 
-    xTEST_CASE("bIsExists", a_caseLoops)
+    xTEST_CASE("bIsExists")
     {
         std::ctstring_t casData[][2] = {
             { xT("000000"),     xT("false") },

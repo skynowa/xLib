@@ -11,11 +11,9 @@ xTEST_UNIT(Test_Base64)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Base64::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Base64::unit()
 {
-    xTEST_CASE("encode, decode", a_caseLoops)
+    xTEST_CASE("encode, decode")
     {
         std::string data[][1] = {
             {"ADP GmbH\nAnalyse Design & Programmierung\nGesellschaft mit beschrankter Haftung"},
@@ -44,7 +42,7 @@ Test_Base64::unit(
         }
     }
 
-    xTEST_CASE("encode, decode", a_caseLoops)
+    xTEST_CASE("encode, decode")
     {
         const Data2<std::string, std::string> data[] = {
             {"YOYO!", "WU9ZTyE="},

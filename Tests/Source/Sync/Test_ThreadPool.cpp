@@ -13,12 +13,8 @@ xTEST_UNIT(Test_ThreadPool)
 //-------------------------------------------------------------------------------------------------
 /*virtual*/
 void_t
-Test_ThreadPool::unit(
-    std::csize_t &a_caseLoops
-)
+Test_ThreadPool::unit()
 {
-    xUNUSED(a_caseLoops);
-
     {
         // FIX: temp disable
         return;

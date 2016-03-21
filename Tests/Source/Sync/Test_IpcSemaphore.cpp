@@ -14,11 +14,9 @@ xTEST_UNIT(Test_IpcSemaphore)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_IpcSemaphore::unit(
-    std::csize_t &a_caseLoops
-)
+Test_IpcSemaphore::unit()
 {
-    xTEST_CASE("IpcSemaphore", a_caseLoops)
+    xTEST_CASE("IpcSemaphore")
     {
         struct _Functor
         {

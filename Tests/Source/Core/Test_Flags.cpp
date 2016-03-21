@@ -12,11 +12,9 @@ xTEST_UNIT(Test_Flags)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Flags::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Flags::unit()
 {
-    xTEST_CASE("Flags", a_caseLoops)
+    xTEST_CASE("Flags")
     {
         // TEST: Flags
     }

@@ -13,11 +13,9 @@ xTEST_UNIT(Test_Exception)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Exception::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Exception::unit()
 {
-    xTEST_CASE("Exception", a_caseLoops)
+    xTEST_CASE("Exception")
     {
         try {
             throw Exception();
@@ -31,7 +29,7 @@ Test_Exception::unit(
         }
     }
 
-    xTEST_CASE("Exception(std::tstring_t)", a_caseLoops)
+    xTEST_CASE("Exception(std::tstring_t)")
     {
         std::ctstring_t sTestData[][2] = {
             {xT("TEST_STRING_1"),        xT("TEST_STRING_1")},
@@ -54,7 +52,7 @@ Test_Exception::unit(
         }
     }
 
-    xTEST_CASE("catch Exception", a_caseLoops)
+    xTEST_CASE("catch Exception")
     {
         try {
             throw Exception() << xT("Exception_test_exception");
@@ -67,7 +65,7 @@ Test_Exception::unit(
         }
     }
 
-    xTEST_CASE("catch std::exception", a_caseLoops)
+    xTEST_CASE("catch std::exception")
     {
         try {
             std::tstring_t sStr;
@@ -82,7 +80,7 @@ Test_Exception::unit(
         }
     }
 
-    xTEST_CASE("xTRY, xTHROW, xCATCH_ALL", a_caseLoops)
+    xTEST_CASE("xTRY, xTHROW, xCATCH_ALL")
     {
         #if 0
             xTRY {

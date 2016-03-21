@@ -78,11 +78,9 @@ private:
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_CoreApplication::unit(
-    std::csize_t &a_caseLoops
-)
+Test_CoreApplication::unit()
 {
-    xTEST_CASE("CoreApplication", a_caseLoops)
+    xTEST_CASE("CoreApplication")
     {
         UserApplication userApp(xT("[app_name]_guid"), xT(""));
         userApp.run();

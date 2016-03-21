@@ -76,11 +76,9 @@ public:
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Application::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Application::unit()
 {
-    xTEST_CASE("args", a_caseLoops)
+    xTEST_CASE("args")
     {
         Application application(xT("[app_name]_guid"), xT(""));
 
@@ -93,25 +91,25 @@ Test_Application::unit(
         xTEST_EQ(args1.size() - 1, args2.size());
     }
 
-    xTEST_CASE("isRunnig", a_caseLoops)
+    xTEST_CASE("isRunnig")
     {
         // TEST: Application::isRunnig()
     }
 
-    xTEST_CASE("dirsCreate", a_caseLoops)
+    xTEST_CASE("dirsCreate")
     {
         Application application(xT("[app_name]_guid"), xT(""));
         application.dirsCreate();
     }
 
-    xTEST_CASE("selfCheck", a_caseLoops)
+    xTEST_CASE("selfCheck")
     {
         Application application(xT("[app_name]_guid"), xT(""));
         m_bRv = application.selfCheck();
         xTEST(m_bRv);
     }
 
-    xTEST_CASE("handles", a_caseLoops)
+    xTEST_CASE("handles")
     {
         Application application(xT("[app_name]_guid"), xT(""));
 
@@ -163,7 +161,7 @@ Test_Application::unit(
     #endif
     }
 
-    xTEST_CASE("info", a_caseLoops)
+    xTEST_CASE("info")
     {
         std::ctstring_t name            = xT("[app_name]");
         std::ctstring_t decription      = xT("[decription]");
@@ -231,12 +229,12 @@ Test_Application::unit(
         xTEST_EQ(Application::vendorSkype(), vendorSkype);
     }
 
-    xTEST_CASE("files", a_caseLoops)
+    xTEST_CASE("files")
     {
 
     }
 
-    xTEST_CASE("directories", a_caseLoops)
+    xTEST_CASE("directories")
     {
 
     }

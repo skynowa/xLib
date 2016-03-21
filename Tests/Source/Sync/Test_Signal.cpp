@@ -11,11 +11,9 @@ xTEST_UNIT(Test_Signal)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Signal::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Signal::unit()
 {
-    xTEST_CASE("decription", a_caseLoops)
+    xTEST_CASE("decription")
     {
         std::vector<int_t> signalNums;
         signalNums.push_back(SIGHUP);

@@ -12,16 +12,14 @@ xTEST_UNIT(Test_DateTime)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_DateTime::unit(
-    std::csize_t &a_caseLoops
-)
+Test_DateTime::unit()
 {
     /*******************************************************************************
     *   public: constructors, destructor
     *
     *******************************************************************************/
 
-    xTEST_CASE("DateTime", a_caseLoops)
+    xTEST_CASE("DateTime")
     {
         DateTime datetime;
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
@@ -29,7 +27,7 @@ Test_DateTime::unit(
         xTEST_EQ(std::tstring_t(xT("00-00-0 00:00:00.000")), m_sRv);
     }
 
-    xTEST_CASE("DateTime(const DateTime &)", a_caseLoops)
+    xTEST_CASE("DateTime(const DateTime &)")
     {
         DateTime datetime1(2010, 7, 8, 3, 15, 6, 111);
         DateTime datetime2(datetime1);
@@ -41,28 +39,28 @@ Test_DateTime::unit(
         xTEST_EQ(std::tstring_t(xT("14-01-2010 17:00:55.666")), m_sRv);
     }
 
-    xTEST_CASE("DateTime(culonglong_t &)", a_caseLoops)
+    xTEST_CASE("DateTime(culonglong_t &)")
     {
         DateTime datetime(1000 * 60 * 60);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
         xTEST_EQ(std::tstring_t(xT("00-00-0 01:00:00.000")), m_sRv);
     }
 
-    xTEST_CASE("DateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &)", a_caseLoops)
+    xTEST_CASE("DateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &)")
     {
         DateTime datetime(12, 20, 37, 555);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
         xTEST_EQ(std::tstring_t(xT("00-00-0 12:20:37.555")), m_sRv);
     }
 
-    xTEST_CASE("DateTime(cushort_t &, cushort_t &, cushort_t &)", a_caseLoops)
+    xTEST_CASE("DateTime(cushort_t &, cushort_t &, cushort_t &)")
     {
         DateTime datetime(2010, 7, 8);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
         xTEST_EQ(std::tstring_t(xT("08-07-2010 00:00:00.000")), m_sRv);
     }
 
-    xTEST_CASE("DateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &)", a_caseLoops)
+    xTEST_CASE("DateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &)")
     {
         DateTime datetime(2010, 8, 18, 14, 0, 5, 777);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
@@ -81,7 +79,7 @@ Test_DateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("operator ==", a_caseLoops)
+    xTEST_CASE("operator ==")
     {
         DateTime datetime1;
         DateTime datetime2;
@@ -90,7 +88,7 @@ Test_DateTime::unit(
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("operator !=", a_caseLoops)
+    xTEST_CASE("operator !=")
     {
         DateTime datetime1;
         DateTime datetime2;
@@ -99,7 +97,7 @@ Test_DateTime::unit(
         xTEST_EQ(m_bRv, false);
     }
 
-    xTEST_CASE("operator <", a_caseLoops)
+    xTEST_CASE("operator <")
     {
         DateTime datetime1;
         DateTime datetime2;
@@ -108,7 +106,7 @@ Test_DateTime::unit(
         xTEST_EQ(m_bRv, false);
     }
 
-    xTEST_CASE("operator <=", a_caseLoops)
+    xTEST_CASE("operator <=")
     {
         DateTime datetime1;
         DateTime datetime2;
@@ -117,7 +115,7 @@ Test_DateTime::unit(
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("operator >", a_caseLoops)
+    xTEST_CASE("operator >")
     {
         DateTime datetime1;
         DateTime datetime2;
@@ -126,7 +124,7 @@ Test_DateTime::unit(
         xTEST_EQ(m_bRv, false);
     }
 
-    xTEST_CASE("operator >=", a_caseLoops)
+    xTEST_CASE("operator >=")
     {
         DateTime datetime1;
         DateTime datetime2;
@@ -141,7 +139,7 @@ Test_DateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("operator +=", a_caseLoops)
+    xTEST_CASE("operator +=")
     {
         DateTime  datetime(0, 30, 0, 0);
         ulonglong_t msec = (1000 * 60) * 60; // 1 hour
@@ -151,7 +149,7 @@ Test_DateTime::unit(
         xTEST_EQ(std::tstring_t(xT("00-00-0 01:00:00.000")), m_sRv);
     }
 
-    xTEST_CASE("operator (=, +, -)", a_caseLoops)
+    xTEST_CASE("operator (=, +, -)")
     {
         DateTime datetime;
 
@@ -164,7 +162,7 @@ Test_DateTime::unit(
         xTEST_EQ(std::tstring_t(xT("00-00-0 00:30:00.000")), m_sRv);
     }
 
-    xTEST_CASE("operator +=", a_caseLoops)
+    xTEST_CASE("operator +=")
     {
         DateTime datetime1(1, 0, 0, 0);
         DateTime datetime2(1, 30, 0, 0);
@@ -174,7 +172,7 @@ Test_DateTime::unit(
         xTEST_EQ(std::tstring_t(xT("00-00-0 02:30:00.000")), m_sRv);
     }
 
-    xTEST_CASE("operator -=", a_caseLoops)
+    xTEST_CASE("operator -=")
     {
         DateTime datetime1(1, 50, 0, 0);
         DateTime datetime2(1, 30, 0, 0);
@@ -190,7 +188,7 @@ Test_DateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("set get", a_caseLoops)
+    xTEST_CASE("set get")
     {
         DateTime datetime;
 
@@ -214,7 +212,7 @@ Test_DateTime::unit(
         xTEST_EQ(666,  msec);
     }
 
-    xTEST_CASE("toMsec", a_caseLoops)
+    xTEST_CASE("toMsec")
     {
         // 1
         {
@@ -236,7 +234,7 @@ Test_DateTime::unit(
         }
     }
 
-    xTEST_CASE("set", a_caseLoops)
+    xTEST_CASE("set")
     {
         DateTime  datetime;
         ulonglong_t datetimeValue = 1000 * 60 * 60; // 1 hour
@@ -260,7 +258,7 @@ Test_DateTime::unit(
         xTEST_EQ(0, msec);
     }
 
-    xTEST_CASE("dayOfWeek", a_caseLoops)
+    xTEST_CASE("dayOfWeek")
     {
         m_iRv = DateTime(2011, 7, 25, 13, 0, 0, 0).dayOfWeek();
         xTEST_EQ(1, m_iRv);
@@ -277,7 +275,7 @@ Test_DateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("Validator", a_caseLoops)
+    xTEST_CASE("Validator")
     {
         // TEST: DateTime::Validator::year()
         // TEST: DateTime::Validator::month()
@@ -384,7 +382,7 @@ Test_DateTime::unit(
         }
     }
 
-    xTEST_CASE("current", a_caseLoops)
+    xTEST_CASE("current")
     {
         // 1
         {
@@ -415,7 +413,7 @@ Test_DateTime::unit(
         }
     }
 
-    xTEST_CASE("daysInMonth", a_caseLoops)
+    xTEST_CASE("daysInMonth")
     {
         for (int_t y = 0; y < 3000; ++ y) {
             for (int_t m = 0; m < 12; ++ m) {
@@ -432,7 +430,7 @@ Test_DateTime::unit(
         } // y
     }
 
-    xTEST_CASE("isLeapYear", a_caseLoops)
+    xTEST_CASE("isLeapYear")
     {
         // valid
         {
@@ -459,7 +457,7 @@ Test_DateTime::unit(
         }
     }
 
-    xTEST_CASE("filetimeToInt64", a_caseLoops)
+    xTEST_CASE("filetimeToInt64")
     {
     #if xENV_WIN
         const FILETIME time = {100, 200};
@@ -469,7 +467,7 @@ Test_DateTime::unit(
     #endif
     }
 
-    xTEST_CASE("unixTimeToFileTime", a_caseLoops)
+    xTEST_CASE("unixTimeToFileTime")
     {
     #if xENV_WIN
         const time_t unixTime = 1000;
@@ -479,7 +477,7 @@ Test_DateTime::unit(
     #endif
     }
 
-    xTEST_CASE("fileTimeToUnixTime", a_caseLoops)
+    xTEST_CASE("fileTimeToUnixTime")
     {
     #if xENV_WIN
         time_t   unixTime = 0;
@@ -496,7 +494,7 @@ Test_DateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("zodiacSign", a_caseLoops)
+    xTEST_CASE("zodiacSign")
     {
         // TEST: DateTime::zodiacSign
 
@@ -530,7 +528,7 @@ Test_DateTime::unit(
         }
     }
 
-    xTEST_CASE("monthStr", a_caseLoops)
+    xTEST_CASE("monthStr")
     {
         // isShortName = false
         m_sRv = DateTime::monthStr(0, false);
@@ -585,7 +583,7 @@ Test_DateTime::unit(
         xTEST_EQ(std::tstring_t(xT("Dec")), m_sRv);
     }
 
-    xTEST_CASE("monthNum", a_caseLoops)
+    xTEST_CASE("monthNum")
     {
         std::ctstring_t months[12][2] = {
             { xT("January"),    xT("Jan") },
@@ -625,7 +623,7 @@ Test_DateTime::unit(
         }
     }
 
-    xTEST_CASE("weekDayStr", a_caseLoops)
+    xTEST_CASE("weekDayStr")
     {
         // isShortName = false
         m_sRv = DateTime::weekDayStr(0, false);
@@ -660,7 +658,7 @@ Test_DateTime::unit(
         xTEST_EQ(std::tstring_t(xT("Sat")), m_sRv);
     }
 
-    xTEST_CASE("weekDayNum", a_caseLoops)
+    xTEST_CASE("weekDayNum")
     {
         std::ctstring_t days[7][2] = {
             { xT("Monday"),     xT("Mon") },

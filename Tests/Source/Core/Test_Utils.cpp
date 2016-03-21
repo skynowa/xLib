@@ -24,11 +24,9 @@ xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Utils::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Utils::unit()
 {
-    xTEST_CASE("ptrDeleteT", a_caseLoops)
+    xTEST_CASE("ptrDeleteT")
     {
         int_t *pPtr = new int_t();
         xTEST_PTR(pPtr);
@@ -37,7 +35,7 @@ Test_Utils::unit(
         xTEST_PTR_FAIL(pPtr);
     }
 
-    xTEST_CASE("arrayDeleteT", a_caseLoops)
+    xTEST_CASE("arrayDeleteT")
     {
         int_t *pPtr = new int_t[5];
         xTEST_PTR(pPtr);
@@ -46,7 +44,7 @@ Test_Utils::unit(
         xTEST_PTR_FAIL(pPtr);
     }
 
-    xTEST_CASE("ptrAssignT", a_caseLoops)
+    xTEST_CASE("ptrAssignT")
     {
         cint_t ciVal = 10;
 
@@ -71,7 +69,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("arraySizeT", a_caseLoops)
+    xTEST_CASE("arraySizeT")
     {
         {
             tchar_t szBuff[256] = {0};
@@ -94,7 +92,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("memoryZero", a_caseLoops)
+    xTEST_CASE("memoryZero")
     {
         struct SData {
             int_t     i;
@@ -110,7 +108,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("arrayZeroT", a_caseLoops)
+    xTEST_CASE("arrayZeroT")
     {
         {
             tchar_t szBuff[255 + 1];
@@ -143,7 +141,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("structZeroT", a_caseLoops)
+    xTEST_CASE("structZeroT")
     {
         struct tm data = {
             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "aaa"
@@ -161,7 +159,7 @@ Test_Utils::unit(
         xTEST_EQ(data.tm_isdst, 0);
     }
 
-    xTEST_CASE("bufferFreeT", a_caseLoops)
+    xTEST_CASE("bufferFreeT")
     {
         // true
         {
@@ -181,7 +179,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("fileClose", a_caseLoops)
+    xTEST_CASE("fileClose")
     {
         std::ctstring_t csFilaPath = tempDirPath() + Const::slash() + xT("test_fileclose.txt");
 
@@ -192,7 +190,7 @@ Test_Utils::unit(
         xTEST_PTR_FAIL(pFile);
     }
 
-    xTEST_CASE("intToBoolT", a_caseLoops)
+    xTEST_CASE("intToBoolT")
     {
         // false
         {
@@ -215,19 +213,19 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("maxT", a_caseLoops)
+    xTEST_CASE("maxT")
     {
         m_uiRv = Utils::maxT(0, 1);
         xTEST_EQ(1U, m_uiRv);
     }
 
-    xTEST_CASE("minT", a_caseLoops)
+    xTEST_CASE("minT")
     {
         m_uiRv = Utils::minT(5, 8);
         xTEST_EQ(5U, m_uiRv);
     }
 
-    xTEST_CASE("swapT", a_caseLoops)
+    xTEST_CASE("swapT")
     {
         int_t iVal1 = 1;
         int_t iVal2 = 2;
@@ -238,12 +236,12 @@ Test_Utils::unit(
         xTEST_EQ(1, iVal2);
     }
 
-    xTEST_CASE("reinterpretCastT", a_caseLoops)
+    xTEST_CASE("reinterpretCastT")
     {
         // TODO: test for Utils::reinterpretCastT
     }
 
-    xTEST_CASE("doubleIsEqual", a_caseLoops)
+    xTEST_CASE("doubleIsEqual")
     {
         cdouble_t cdData[][3] = {
             {10.5,   11.0, 0.0},
@@ -263,7 +261,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("roundDouble", a_caseLoops)
+    xTEST_CASE("roundDouble")
     {
         cdouble_t cdData[][2] = {
             {10.5,   11.0},
@@ -282,7 +280,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("roundIntT", a_caseLoops)
+    xTEST_CASE("roundIntT")
     {
         cdouble_t cdData[][2] = {
             {10.5,   11.0},
@@ -301,7 +299,7 @@ Test_Utils::unit(
         }
     }
 
-    xTEST_CASE("safeDivT", a_caseLoops)
+    xTEST_CASE("safeDivT")
     {
         m_dRv = Utils::safeDivT(0, 0);
         xTEST_EQ(true, Utils::doubleIsEqual(m_dRv, 0.0));
@@ -316,7 +314,7 @@ Test_Utils::unit(
         xTEST_EQ(true, Utils::doubleIsEqual(m_dRv, 1.0));
     }
 
-    xTEST_CASE("enumIncT enumDecT", a_caseLoops)
+    xTEST_CASE("enumIncT enumDecT")
     {
         EData data = datOne;
 
@@ -326,7 +324,7 @@ Test_Utils::unit(
         xTEST_EQ(static_cast<long_t>( datOne ), static_cast<long_t>( data ));
     }
 
-    xTEST_CASE("ConstCast", a_caseLoops)
+    xTEST_CASE("ConstCast")
     {
         std::size_t var = 10;
 

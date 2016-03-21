@@ -13,9 +13,7 @@ xTEST_UNIT(Test_CookiePv1)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_CookiePv1::unit(
-    std::csize_t &a_caseLoops
-)
+Test_CookiePv1::unit()
 {
     std::ctstring_t csName      = xT("Name1");
     std::ctstring_t csValue     = xT("Value1");
@@ -30,7 +28,7 @@ Test_CookiePv1::unit(
                                         csName.c_str(), csValue.c_str(), csComment.c_str(), csDomain.c_str(),
                                         csPath.c_str(), ciMaxAge /*cbSecure = true, cbHttpOnly = true*/);
 
-    xTEST_CASE("CookiePv1", a_caseLoops)
+    xTEST_CASE("CookiePv1")
     {
         CookiePv1 ckCookiePv1;
 
@@ -86,7 +84,7 @@ Test_CookiePv1::unit(
         ckCookiePv1.clear();
     }
 
-    xTEST_CASE("CookiePv1(std::ctstring_t &)", a_caseLoops)
+    xTEST_CASE("CookiePv1(std::ctstring_t &)")
     {
         CookiePv1 ckCookiePv1(csRawCookie);
 

@@ -16,9 +16,9 @@ class Test_Thread :
 public:
                    Test_Thread() {}
 
-    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
+    virtual void_t unit() xOVERRIDE;
 
 private:
-    void_t         unit1(std::csize_t &caseLoops);
+    void_t         unit1();
 };
 //-------------------------------------------------------------------------------------------------

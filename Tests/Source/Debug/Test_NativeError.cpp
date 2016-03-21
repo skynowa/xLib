@@ -11,9 +11,7 @@ xTEST_UNIT(Test_NativeError)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_NativeError::unit(
-    std::csize_t &a_caseLoops
-)
+Test_NativeError::unit()
 {
     #if   xENV_WIN
         culong_t cuiMaxErrors = 15999;  /*0...15999*/;
@@ -21,7 +19,7 @@ Test_NativeError::unit(
         culong_t cuiMaxErrors = 132;    /*0...132*/
     #endif
 
-    xTEST_CASE("isSuccess", a_caseLoops)
+    xTEST_CASE("isSuccess")
     {
         NativeError::reset();
         m_bRv = NativeError::isSuccess();
@@ -32,21 +30,21 @@ Test_NativeError::unit(
         xTEST_EQ(m_bRv, false);
     }
 
-    xTEST_CASE("get", a_caseLoops)
+    xTEST_CASE("get")
     {
         m_ulRv = NativeError::get();
         xUNUSED(m_ulRv);
         xTEST_EQ(0UL, NativeError::get());
     }
 
-    xTEST_CASE("format", a_caseLoops)
+    xTEST_CASE("format")
     {
         m_sRv = NativeError::format();
         xTEST_EQ(0UL,   NativeError::get());
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("set", a_caseLoops)
+    xTEST_CASE("set")
     {
         culong_t caulData[] = {
             0UL,
@@ -63,7 +61,7 @@ Test_NativeError::unit(
         }
     }
 
-    xTEST_CASE("reset", a_caseLoops)
+    xTEST_CASE("reset")
     {
         culong_t caulData[] = {
             0UL,
@@ -81,7 +79,7 @@ Test_NativeError::unit(
         }
     }
 
-    xTEST_CASE("format", a_caseLoops)
+    xTEST_CASE("format")
     {
         culong_t caulData[] = {
             0UL,

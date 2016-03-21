@@ -15,15 +15,13 @@ xTEST_UNIT(Test_Backup)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Backup::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Backup::unit()
 {
     std::ctstring_t filePath  = tempDirPath() + Const::slash() + xT("test.txt");
     std::ctstring_t backupDir = tempDirPath() + Const::slash() + xT("Backup_dir");
 
 
-    xTEST_CASE("fileExec", a_caseLoops)
+    xTEST_CASE("fileExec")
     {
         // prepare
         {

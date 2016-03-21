@@ -12,16 +12,14 @@ xTEST_UNIT(Test_Operators)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Operators::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Operators::unit()
 {
-    xTEST_CASE("Operators::operator ++", a_caseLoops)
+    xTEST_CASE("Operators::operator ++")
     {
         // TODO: Test_Operators - operator ++
     }
 
-    xTEST_CASE("Operators::operator --", a_caseLoops)
+    xTEST_CASE("Operators::operator --")
     {
         // TODO: Test_Operators - operator --
     }

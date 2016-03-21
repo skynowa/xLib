@@ -16,9 +16,7 @@ xTEST_UNIT(Test_Config)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Config::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Config::unit()
 {
     std::ctstring_t filePath = Path( Path::exe() ).setExt(xT("cfg") );
 
@@ -35,7 +33,7 @@ Test_Config::unit(
                                key2 + Const::equal() + value2 + Const::nl() +
                                key3 + Const::equal() + value3 + Const::nl();
 
-    xTEST_CASE("Config", a_caseLoops)
+    xTEST_CASE("Config")
     {
         Config config;
     }
@@ -44,18 +42,18 @@ Test_Config::unit(
 
     Config config(filePath);
 
-    xTEST_CASE("createDefault", a_caseLoops)
+    xTEST_CASE("createDefault")
     {
         config.createDefault(content);
     }
 
-    xTEST_CASE("path", a_caseLoops)
+    xTEST_CASE("path")
     {
         m_sRv = config.path();
         xTEST_EQ(filePath, m_sRv);
     }
 
-    xTEST_CASE("setPath", a_caseLoops)
+    xTEST_CASE("setPath")
     {
         config.setPath(filePath);
 
@@ -63,7 +61,7 @@ Test_Config::unit(
         xTEST_EQ(filePath, m_sRv);
     }
 
-    xTEST_CASE("get, flush", a_caseLoops)
+    xTEST_CASE("get, flush")
     {
         std::map_tstring_t &_storage = config.get();
         xTEST_EQ(true, _storage.empty());
@@ -87,7 +85,7 @@ Test_Config::unit(
         config.flush();
     }
 
-    xTEST_CASE("keyIsExists", a_caseLoops)
+    xTEST_CASE("keyIsExists")
     {
         std::map_tstring_t &_storage = config.get();
         xTEST_EQ(true, _storage.empty());
@@ -141,7 +139,7 @@ Test_Config::unit(
         config.flush();
     }
 
-    xTEST_CASE("keyWriteString, keyReadString", a_caseLoops)
+    xTEST_CASE("keyWriteString, keyReadString")
     {
         // true
         {
@@ -164,7 +162,7 @@ Test_Config::unit(
         }
     }
 
-    xTEST_CASE("keyReadInt, keyWriteInt", a_caseLoops)
+    xTEST_CASE("keyReadInt, keyWriteInt")
     {
         clong_t value = 10L;
 
@@ -174,7 +172,7 @@ Test_Config::unit(
         xTEST_EQ(value, m_liRv);
     }
 
-    xTEST_CASE("keyReadFloat, keyWriteFloat", a_caseLoops)
+    xTEST_CASE("keyReadFloat, keyWriteFloat")
     {
         cdouble_t value = 777.0f;
 
@@ -184,7 +182,7 @@ Test_Config::unit(
         xTEST_EQ(value, m_dRv);
     }
 
-    xTEST_CASE("keyReadBool, keyWriteBool", a_caseLoops)
+    xTEST_CASE("keyReadBool, keyWriteBool")
     {
         cbool_t value = false;
 
@@ -194,7 +192,7 @@ Test_Config::unit(
         xTEST_EQ(value, m_bRv);
     }
 
-    xTEST_CASE("keyWriteBin, keyReadBin", a_caseLoops)
+    xTEST_CASE("keyWriteBin, keyReadBin")
     {
         std::custring_t value(10, 'z');
         std::custring_t defaultValue(10, 'd');
@@ -205,7 +203,7 @@ Test_Config::unit(
         xTEST_EQ(value, m_usRv);
     }
 
-    xTEST_CASE("keyClear", a_caseLoops)
+    xTEST_CASE("keyClear")
     {
         config.keyClear(key3);
         xTEST_EQ(true, config.keyIsExists(key3));
@@ -214,7 +212,7 @@ Test_Config::unit(
         xTEST_EQ(Const::strEmpty(), m_sRv);
     }
 
-    xTEST_CASE("keyDelete", a_caseLoops)
+    xTEST_CASE("keyDelete")
     {
         std::ctstring_t key   = xT("Key");
         std::ctstring_t value = xT("");
@@ -226,13 +224,13 @@ Test_Config::unit(
         xTEST_EQ(false, config.keyIsExists(key));
     }
 
-    xTEST_CASE("clear", a_caseLoops)
+    xTEST_CASE("clear")
     {
         config.clear();
         xTEST_EQ(0LL, File::size( config.path() ));
     }
 
-    xTEST_CASE("remove", a_caseLoops)
+    xTEST_CASE("remove")
     {
         config.remove();
         xTEST_EQ(false, File::isExists( config.path() ));

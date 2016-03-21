@@ -15,13 +15,11 @@ xTEST_UNIT(Test_Blowfish)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Blowfish::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Blowfish::unit()
 {
 #if xHAVE_OPENSSL_CRYPTO
 
-    xTEST_CASE("encryptCfb64", a_caseLoops)
+    xTEST_CASE("encryptCfb64")
     {
         std::ustring_t plain[] = {
             std::ustring_t(1,  'a'),
@@ -53,7 +51,7 @@ Test_Blowfish::unit(
         }
     }
 
-    xTEST_CASE("encryptFileCfb64", a_caseLoops)
+    xTEST_CASE("encryptFileCfb64")
     {
         Blowfish blowfish;
         std::tstring_t key           = xT("888888888A");

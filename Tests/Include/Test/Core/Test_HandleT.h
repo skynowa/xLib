@@ -16,7 +16,7 @@ class Test_HandleT :
 public:
                    Test_HandleT() {}
 
-    virtual void_t unit(std::csize_t &caseLoops) xOVERRIDE;
+    virtual void_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

@@ -34,11 +34,9 @@ public:
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Singleton::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Singleton::unit()
 {
-    xTEST_CASE("get", a_caseLoops)
+    xTEST_CASE("get")
     {
         typedef Singleton<CLogger> logger_singleton_t;
 
@@ -46,20 +44,20 @@ Test_Singleton::unit(
         logger_singleton_t::get().write();
     }
 
-    xTEST_CASE("get", a_caseLoops)
+    xTEST_CASE("get")
     {
         Singleton<CLogger>::get().open();
         Singleton<CLogger>::get().write();
     }
 
-    xTEST_CASE("construct Singleton on stack", a_caseLoops)
+    xTEST_CASE("construct Singleton on stack")
     {
         #if xTEST_IGNORE
             logger_singleton_t log;
         #endif
     }
 
-    xTEST_CASE("construct Singleton on heap", a_caseLoops)
+    xTEST_CASE("construct Singleton on heap")
     {
         #if xTEST_IGNORE
             logger_singleton_t *log = new logger_singleton_t;

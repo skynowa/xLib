@@ -14,16 +14,14 @@ xTEST_UNIT(Test_Debug)
 //-------------------------------------------------------------------------------------------------
 /*virtual*/
 void_t
-Test_Debug::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Debug::unit()
 {
-    xTEST_CASE("xCHECK_RET", a_caseLoops)
+    xTEST_CASE("xCHECK_RET")
     {
         // xCHECK_RET(expr, return_expr)
     }
 
-    xTEST_CASE("xCHECK_DO", a_caseLoops)
+    xTEST_CASE("xCHECK_DO")
     {
         class STest {
             public:
@@ -62,29 +60,29 @@ Test_Debug::unit(
         xTEST_EQ(t.culVal3, m_ulRv);
     }
 
-    xTEST_CASE("xCHECK_MSG", a_caseLoops)
+    xTEST_CASE("xCHECK_MSG")
     {
         // xCHECK_MSG(expr, comment)
     }
 
-    xTEST_CASE("xCHECK_MSG_RET", a_caseLoops)
+    xTEST_CASE("xCHECK_MSG_RET")
     {
         // xCHECK_MSG_RET(expr, comment, return_expr)
     }
 
-    xTEST_CASE("xCHECK_MSG_DO", a_caseLoops)
+    xTEST_CASE("xCHECK_MSG_DO")
     {
         xCHECK_MSG_DO(false, xT("xxx"), int_t i = 0; ++ i;);
     }
 
-    xTEST_CASE("xNOT_IMPLEMENTED", a_caseLoops)
+    xTEST_CASE("xNOT_IMPLEMENTED")
     {
         #if xTEST_IGNORE
             xNOT_IMPLEMENTED
         #endif
     }
 
-    xTEST_CASE("xTRACE_POINT", a_caseLoops)
+    xTEST_CASE("xTRACE_POINT")
     {
         #if xTEST_IGNORE
             xTRACE_POINT;

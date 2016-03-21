@@ -16,9 +16,7 @@ xTEST_UNIT(Test_Finder)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Finder::unit(
-    std::csize_t &a_caseLoops
-)
+Test_Finder::unit()
 {
     // prepare
     std::ctstring_t    rootDirPath = tempDirPath() + Const::slash() + xT("Finder_Dir");
@@ -68,7 +66,7 @@ Test_Finder::unit(
         }
     }
 
-    xTEST_CASE("Finder", a_caseLoops)
+    xTEST_CASE("Finder")
     {
         const data2_size_t data[] = {
             {Const::maskAll(), 12 - 2},
@@ -108,7 +106,7 @@ Test_Finder::unit(
         }
     }
 
-    xTEST_CASE("dirs", a_caseLoops)
+    xTEST_CASE("dirs")
     {
         // non recursive
         {
@@ -129,7 +127,7 @@ Test_Finder::unit(
         }
     }
 
-    xTEST_CASE("files", a_caseLoops)
+    xTEST_CASE("files")
     {
         // non recursive
         {
