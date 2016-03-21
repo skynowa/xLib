@@ -46,8 +46,7 @@ Unit::Unit() :
 #if xENV_WIN
     m_hwndRv    (xPTR_NULL),
 #endif
-    _tempDirPath(),
-    _name       ()
+    _data       ()
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -58,20 +57,25 @@ Unit::~Unit() /* = 0 */
     Dir( tempDirPath() ).pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
-Unit::run(
-    std::csize_t &a_unitLoops,
-    std::csize_t &a_caseLoops
+void_t
+Unit::setData(
+    const UnitData &a_data
 )
 {
-    xTEST_NA(a_unitLoops);
-    xTEST_NA(a_caseLoops);
-
+    _data.unitLoops   = a_data.unitLoops;
+    _data.caseLoops   = a_data.caseLoops;
+    _data.tempDirPath = a_data.tempDirPath;
+    _data.name        = a_data.name;
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE void_t
+Unit::run()
+{
     try {
-        createTempDir(xT("Temp"));
+        _createTempDir(xT("Temp"));
 
-        for (std::size_t i = 0; i < a_unitLoops; ++ i) {
-            unit(a_caseLoops);
+        for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
+            unit();
         }
     }
     catch (const Exception &a_e) {
@@ -89,14 +93,10 @@ Unit::run(
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 xINLINE void_t
-Unit::unit(
-    std::csize_t &a_caseLoops
-) /* = 0 */
+Unit::unit() /* = 0 */
 {
-    xUNUSED(a_caseLoops);
-
-#if xTODO
-    xTEST_CASE("CaseName", a_caseLoops)
+#if 1
+    xTEST_CASE("CaseName")
     {
         std::ctstring_t data[][2] = {
             {xT("TEST_STRING_1"), xT("MUST_BE_1")},
@@ -113,43 +113,33 @@ Unit::unit(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Unit::createTempDir(
+Unit::_createTempDir(
     std::ctstring_t &a_dirName
 )
 {
     xTEST_NA(a_dirName);
 
     if (a_dirName.empty()) {
-        _tempDirPath = Dir::temp();
+        _data.tempDirPath = Dir::temp();
     } else {
-        _tempDirPath = Path::exeDir() + Const::slash() + a_dirName;
+        _data.tempDirPath = Path::exeDir() + Const::slash() + a_dirName;
 
-        Dir(_tempDirPath).pathCreate();
+        Dir(_data.tempDirPath).pathCreate();
     }
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::ctstring_t &
 Unit::tempDirPath() const
 {
-    xTEST_EQ(_tempDirPath.empty(), false);
+    xTEST_EQ(_data.tempDirPath.empty(), false);
 
-    return _tempDirPath;
+    return _data.tempDirPath;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::ctstring_t &
 Unit::name() const
 {
-    return _name;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE void_t
-Unit::setName(
-    std::ctstring_t &a_name
-)
-{
-    xTEST_NA(a_name);
-
-    _name = a_name;
+    return _data.name;
 }
 //-------------------------------------------------------------------------------------------------
 

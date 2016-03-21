@@ -261,25 +261,31 @@
     ///< static assert
 
 #if xOPTION_TEST_TRACING
-    #define xTEST_CASE(caseName, loops) \
-        if (loops == 0) { \
+    #define xTEST_CASE(caseName) \
+        if (_data.caseLoops == 0) { \
             Trace() << xT("\tCase: ") << xT(caseName) << xT(" - skipped"); \
         } else { \
             Trace() << xT("\tCase: ") << xT(caseName); \
         } \
-        for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
+        for (size_t _caseLoops = 0; _caseLoops < (_data.caseLoops); ++ _caseLoops)
 #else
-    #define xTEST_CASE(caseName, loops) \
-        for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
+    #define xTEST_CASE(caseName) \
+        for (size_t _caseLoops = 0; _caseLoops < (_data.caseLoops); ++ _caseLoops)
 #endif
     ///< test case
 
 #define xTEST_UNIT(unitClassName) \
     int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[]) \
     { \
+        UnitData data; \
+        data.unitLoops   = 1; \
+        data.caseLoops   = 1; \
+        data.tempDirPath = xT(""); \
+        data.name        = xLEX_TO_STR(unitClassName); \
+        \
         unitClassName unit; \
-        unit.setName( xLEX_TO_STR(unitClassName) ); \
-        unit.run(1, 1); \
+        unit.setData(data); \
+        unit.run(); \
         \
         return EXIT_SUCCESS; \
     }
