@@ -13,6 +13,7 @@
 xNAMESPACE_BEGIN2(xlib, test)
 
 struct ManagerData
+    /// manager data
 {
     bool_t      isUseTracing;
     std::size_t allLoops;

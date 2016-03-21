@@ -64,7 +64,9 @@ Manager::add(
 {
     xTEST_PTR(a_unit)
 
-    a_unit->setName( Type::name(*a_unit) );
+    if ( a_unit->name().empty() ) {
+        a_unit->_data.name = Type::name(*a_unit);
+    }
 
     _units.push_back(a_unit);
 }
@@ -90,7 +92,7 @@ Manager::run()
         xFOREACH_CONST(units_t, it, _units) {
             xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: run unit ") << (*it)->name());
 
-            (*it)->run(_data.unitLoops, _data.caseLoops);
+            (*it)->run();
         }
     }
 

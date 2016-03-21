@@ -14,6 +14,22 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, test)
 
+struct UnitData
+    /// testing data
+{
+    std::size_t    unitLoops;   ///< unit loops
+    std::size_t    caseLoops;   ///< case loops
+    std::tstring_t tempDirPath; ///< temp dir path
+    std::tstring_t name;        ///< name
+
+    UnitData() :
+        unitLoops  (1),
+        caseLoops  (1),
+        tempDirPath(),
+        name       ()
+    {}
+};
+
 class Unit
     /// testing
 {
@@ -45,27 +61,28 @@ public:
     HWND                m_hwndRv;    ///< for global use
 #endif
 
+    UnitData            _data;
+
                         Unit();
         ///< constructor
     virtual            ~Unit() = 0;
         ///< destructor
 
-    void_t              run(std::csize_t &unitLoops, std::csize_t &caseLoops);
+    void_t              setData(const UnitData &data);
+        ///< set data
+    void_t              run();
         ///< run cases
-    virtual void_t      unit(std::csize_t &caseLoops) = 0;
+    virtual void_t      unit() = 0;
         ///< unit
-    void_t              createTempDir(std::ctstring_t &dirName);
-        ///< create work dir
+
     std::ctstring_t &   tempDirPath() const xWARN_UNUSED_RV;
         ///< get work dir path
     std::ctstring_t &   name() const xWARN_UNUSED_RV;
         ///< get name
-    void_t              setName(std::ctstring_t &name);
-        ///< set name
 
 private:
-    std::tstring_t      _tempDirPath; ///< work dir path
-    std::tstring_t      _name;        ///< name
+    void_t              _createTempDir(std::ctstring_t &dirName);
+        ///< create temp dir
 
     xNO_COPY_ASSIGN(Unit)
 };
