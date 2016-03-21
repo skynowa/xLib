@@ -16,5 +16,5 @@ DIR_BUILD="../../xLib_eclipse_clang"
 # build
 mkdir -p $DIR_BUILD
 cd $DIR_BUILD
-cmake -G"Eclipse CDT4 - Unix Makefiles" $DIR_XLIB
+cmake -G"Eclipse CDT4 - Unix Makefiles" -D_ECLIPSE_VERSION=4.3 $DIR_XLIB
 # make -j4 VERBOSE=1
