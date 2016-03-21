@@ -16,5 +16,5 @@ DIR_BUILD="../../xLib_android_eclipse_gcc"
 # build
 mkdir -p $DIR_BUILD
 cd $DIR_BUILD
-cmake -G"Eclipse CDT4 - Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=$DIR_XLIB/CMake/android.toolchain.cmake $DIR_XLIB
+cmake -G"Eclipse CDT4 - Unix Makefiles" -D_ECLIPSE_VERSION=4.3 -DCMAKE_TOOLCHAIN_FILE=$DIR_XLIB/CMake/android.toolchain.cmake $DIR_XLIB
 # make -j4 VERBOSE=1
