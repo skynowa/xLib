@@ -73,21 +73,21 @@ Unit::run()
 {
     _createTempDir(xT("Temp"));
 
-    try {
-        for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
+    for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
+        try {
             unit();
         }
-    }
-    catch (const Exception &a_e) {
-        xTEST_FAIL_MSG(name() + xT(": ") + a_e.what());
-    }
-    catch (const std::exception &a_e) {
-        std::string asMsg = a_e.what();
+        catch (const Exception &a_e) {
+            xTEST_FAIL_MSG(name() + xT(": ") + a_e.what());
+        }
+        catch (const std::exception &a_e) {
+            std::string asMsg = a_e.what();
 
-        xTEST_FAIL_MSG(name() + xT(": ") + xS2TS(asMsg));
-    }
-    catch (...) {
-        xTEST_FAIL_MSG(name() + xT(": Unknown error"));
+            xTEST_FAIL_MSG(name() + xT(": ") + xS2TS(asMsg));
+        }
+        catch (...) {
+            xTEST_FAIL_MSG(name() + xT(": Unknown error"));
+        }
     }
 }
 //-------------------------------------------------------------------------------------------------
