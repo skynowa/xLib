@@ -35,8 +35,8 @@ Test_Manager::unit()
 
         Manager manager(argsNum, args);
 
-        Test_Simple1 simple1;
-        manager.add(&simple1);
+        Test_Simple1 unit1;
+        manager.add(&unit1);
 
         manager.run();
     }
@@ -47,8 +47,8 @@ Test_Manager::unit()
 
         Manager manager(data);
 
-        Test_Simple1 simple1;
-        manager.add(&simple1);
+        Test_Simple1 unit1;
+        manager.add(&unit1);
 
         manager.run();
     }
