@@ -34,7 +34,10 @@ Test_Manager::unit()
         ctchar_t *args[argsNum] = {xT("./xLib_test"), xT("1"), xT("1"), xT("1"), xT("1")};
 
         Manager manager(argsNum, args);
-        manager.add(new Test_Simple1);
+
+        Test_Simple1 simple1;
+        manager.add(&simple1);
+
         manager.run();
     }
 
