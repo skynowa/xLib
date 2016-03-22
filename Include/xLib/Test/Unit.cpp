@@ -71,9 +71,9 @@ Unit::setData(
 xINLINE void_t
 Unit::run()
 {
-    try {
-        _createTempDir(xT("Temp"));
+    _createTempDir(xT("Temp"));
 
+    try {
         for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
             unit();
         }
