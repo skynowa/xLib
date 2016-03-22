@@ -26,9 +26,7 @@ public:
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Test_Manager::unit(
-    
-)
+Test_Manager::unit()
 {
     xTEST_CASE("Manager")
     {
@@ -45,7 +43,10 @@ Test_Manager::unit(
         ManagerData data;
 
         Manager manager(data);
-        manager.add(new Test_Simple1);
+
+        Test_Simple1 simple1;
+        manager.add(&simple1);
+
         manager.run();
     }
 }

@@ -52,7 +52,7 @@ Manager::Manager(
 xINLINE
 Manager::~Manager()
 {
-    std::for_each(_units.begin(), _units.end(), Delete());
+    // std::for_each(_units.begin(), _units.end(), Delete());
 
     xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: all destructed."));
 }
