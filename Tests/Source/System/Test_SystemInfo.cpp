@@ -15,7 +15,7 @@
 xTEST_UNIT(Test_SystemInfo)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_SystemInfo::unit()
 {
     xTEST_CASE("os")
@@ -234,5 +234,7 @@ Test_SystemInfo::unit()
         // Trace() << xTRACE_VAR(m_sRv);
     }
 #endif
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

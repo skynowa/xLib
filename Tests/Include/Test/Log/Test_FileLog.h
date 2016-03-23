@@ -16,7 +16,7 @@ class Test_FileLog :
 public:
                    Test_FileLog() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

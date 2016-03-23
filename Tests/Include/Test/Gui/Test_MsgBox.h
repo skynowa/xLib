@@ -16,7 +16,7 @@ class Test_MsgBox :
 public:
                    Test_MsgBox() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< test unit
 };
 //-------------------------------------------------------------------------------------------------

@@ -16,6 +16,6 @@ class Test_Dll :
 public:
                    Test_Dll() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

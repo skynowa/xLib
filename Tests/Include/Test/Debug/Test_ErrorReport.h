@@ -16,6 +16,6 @@ class Test_ErrorReport :
 public:
                    Test_ErrorReport() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

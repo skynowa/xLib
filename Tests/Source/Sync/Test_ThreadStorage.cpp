@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_ThreadStorage)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_ThreadStorage::unit()
 {
     xTEST_CASE("setValue, value")
@@ -48,5 +48,7 @@ Test_ThreadStorage::unit()
             delete pulRes;
         }
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

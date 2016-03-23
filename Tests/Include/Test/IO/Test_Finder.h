@@ -17,7 +17,7 @@ class Test_Finder :
 public:
                    Test_Finder() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

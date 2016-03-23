@@ -16,6 +16,6 @@ class Test_Singleton :
 public:
                    Test_Singleton() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

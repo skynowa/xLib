@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_Event)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Event::unit()
 {
     xTEST_CASE("handle")
@@ -170,7 +170,8 @@ Test_Event::unit()
             m_bRv = objEvent.isSignaled();
             xTEST_EQ(m_bRv, true);
         }
-
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

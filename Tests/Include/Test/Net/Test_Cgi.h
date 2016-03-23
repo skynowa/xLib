@@ -16,6 +16,6 @@ class Test_Cgi :
 public:
                    Test_Cgi() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

@@ -14,7 +14,7 @@
 xTEST_UNIT(Test_FileType)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_FileType::unit()
 {
     std::ctstring_t  filePath = tempDirPath() + Const::slash() + xT("Test.txt");

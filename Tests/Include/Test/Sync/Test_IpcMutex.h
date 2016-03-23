@@ -16,6 +16,6 @@ class Test_IpcMutex :
 public:
                    Test_IpcMutex() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_Console)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Console::unit()
 {
     xTEST_CASE("setAttributes")
@@ -178,5 +178,7 @@ Test_Console::unit()
         console.enableClose(true);
     }
 #endif
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

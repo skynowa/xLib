@@ -13,7 +13,7 @@
 xTEST_UNIT(Test_MimeMessage)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_MimeMessage::unit()
 {
     {

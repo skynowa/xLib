@@ -16,7 +16,7 @@ class Test_FileTemp :
 public:
                    Test_FileTemp() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

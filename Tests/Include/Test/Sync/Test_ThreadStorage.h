@@ -16,6 +16,6 @@ class Test_ThreadStorage :
 public:
                    Test_ThreadStorage() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

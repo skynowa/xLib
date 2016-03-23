@@ -16,7 +16,7 @@ class Test_SystemLog:
 public:
                    Test_SystemLog() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

@@ -99,7 +99,7 @@ CWorkThread::onRun(
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Thread::unit()
 {
     cbool_t cbIsPaused   = true;
@@ -442,5 +442,7 @@ Test_Thread::unit1()
             //    dtTime2.format(DateTime::ftTime).c_str());
         }
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

@@ -13,7 +13,7 @@
 xTEST_UNIT(Test_File)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_File::unit()
 {
     std::ctstring_t filePath = tempDirPath() + Const::slash() + xT("Test.txt");
@@ -529,7 +529,7 @@ Test_File::unit()
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-void_t
+bool_t
 Test_File::unit1()
 {
     std::ctstring_t filePath = tempDirPath() + Const::slash() + xT("Test.txt");
@@ -881,9 +881,11 @@ Test_File::unit1()
 
         xTEST_EQ(true, content == str);
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
-void_t
+bool_t
 Test_File::unitPrivate()
 {
 #if xOPTION_TEST_PRIVATE
@@ -945,5 +947,7 @@ Test_File::unitPrivate()
         }
     }
 #endif
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

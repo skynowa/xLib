@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_AtomicLongInt)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_AtomicLongInt::unit()
 {
     xTEST_CASE("operator += (const AtomicLongInt &cRight)")
@@ -272,5 +272,7 @@ Test_AtomicLongInt::unit()
         m_liRv = alLong1.value();
         xTEST_EQ(10L, m_liRv);
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

@@ -17,7 +17,7 @@ class Test_Operators :
 public:
                    Test_Operators() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

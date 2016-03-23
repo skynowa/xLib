@@ -16,6 +16,6 @@ class Test_AutoMutex :
 public:
                    Test_AutoMutex() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

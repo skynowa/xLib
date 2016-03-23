@@ -14,7 +14,7 @@
 xTEST_UNIT(Test_ProcessInfo)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_ProcessInfo::unit()
 {
     xTEST_CASE("cpuUsage")
@@ -146,5 +146,7 @@ Test_ProcessInfo::unit()
         xTEST_EQ(m_vsRv.at(3), std::tstring_t(xT("3")));
         xTEST_EQ(m_vsRv.at(4), std::tstring_t(xT("4")));
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

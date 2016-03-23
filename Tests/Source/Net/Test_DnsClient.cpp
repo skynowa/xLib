@@ -12,7 +12,7 @@
 xTEST_UNIT(Test_DnsClient)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_DnsClient::unit()
 {
     SocketInit siInit(2, 2);

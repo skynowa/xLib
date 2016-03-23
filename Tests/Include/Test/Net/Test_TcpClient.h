@@ -16,7 +16,7 @@ class Test_TcpClient :
 public:
                    Test_TcpClient() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

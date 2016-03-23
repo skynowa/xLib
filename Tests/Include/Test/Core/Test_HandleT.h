@@ -16,7 +16,7 @@ class Test_HandleT :
 public:
                    Test_HandleT() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

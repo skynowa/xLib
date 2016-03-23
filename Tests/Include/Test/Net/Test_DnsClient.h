@@ -16,6 +16,6 @@ class Test_DnsClient :
 public:
                    Test_DnsClient() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

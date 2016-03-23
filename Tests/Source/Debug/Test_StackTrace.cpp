@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_StackTrace)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_StackTrace::unit()
 {
     xTEST_CASE("toString")
@@ -27,5 +27,7 @@ Test_StackTrace::unit()
             xTEST_FAIL;
         #endif
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

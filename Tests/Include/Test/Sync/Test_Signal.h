@@ -17,7 +17,7 @@ class Test_Signal :
 public:
                    Test_Signal() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

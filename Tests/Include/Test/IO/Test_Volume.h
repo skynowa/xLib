@@ -16,6 +16,6 @@ class Test_Volume :
 public:
                    Test_Volume() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

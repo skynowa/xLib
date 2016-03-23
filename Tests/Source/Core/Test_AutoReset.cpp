@@ -11,7 +11,7 @@
 xTEST_UNIT(Test_AutoReset)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_AutoReset::unit()
 {
     xTEST_CASE("AutoReset")
@@ -40,5 +40,7 @@ Test_AutoReset::unit()
             xTEST_EQ(origin, false);
         }
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

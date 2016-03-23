@@ -16,7 +16,7 @@ class Test_FileType :
 public:
                    Test_FileType() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

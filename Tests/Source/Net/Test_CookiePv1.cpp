@@ -12,7 +12,7 @@
 xTEST_UNIT(Test_CookiePv1)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_CookiePv1::unit()
 {
     std::ctstring_t csName      = xT("Name1");

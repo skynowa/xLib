@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_Uri)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Uri::unit()
 {
     xTEST_CASE("Uri::getters")

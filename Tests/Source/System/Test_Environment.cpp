@@ -12,7 +12,7 @@
 xTEST_UNIT(Test_Environment)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Environment::unit()
 {
     xTEST_CASE("setVar")
@@ -184,5 +184,7 @@ Test_Environment::unit()
             Environment::deleteVar(sData[i][0]);
         }
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

@@ -13,7 +13,7 @@
 xTEST_UNIT(Test_FileLog)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_FileLog::unit()
 {
     std::ctstring_t filePath = tempDirPath() + Const::slash() + xT("FileLog.log");
@@ -61,5 +61,7 @@ Test_FileLog::unit()
         log.remove();
         xTEST_EQ(false, File::isExists( log.filePath()) );
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

@@ -16,6 +16,6 @@ class Test_Char :
 public:
                    Test_Char() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

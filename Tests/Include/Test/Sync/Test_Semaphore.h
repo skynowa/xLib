@@ -16,7 +16,7 @@ class Test_Semaphore :
 public:
                    Test_Semaphore() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

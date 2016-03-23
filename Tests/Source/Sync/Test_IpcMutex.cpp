@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_IpcMutex)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_IpcMutex::unit()
 {
     std::ctstring_t csName = xT("mutex_name_a");
@@ -52,5 +52,7 @@ Test_IpcMutex::unit()
         mtMutex.lock(culTimeout);
         mtMutex.unlock();
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

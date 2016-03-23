@@ -16,6 +16,6 @@ class Test_Com :
 public:
                    Test_Com() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

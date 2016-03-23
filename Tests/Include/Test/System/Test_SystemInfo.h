@@ -16,6 +16,6 @@ class Test_SystemInfo :
 public:
                    Test_SystemInfo() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

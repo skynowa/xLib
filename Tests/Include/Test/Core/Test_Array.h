@@ -16,6 +16,6 @@ class Test_Array :
 public:
                    Test_Array() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

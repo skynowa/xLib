@@ -16,6 +16,6 @@ class Test_Environment :
 public:
                    Test_Environment() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

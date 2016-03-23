@@ -15,7 +15,7 @@
 xTEST_UNIT(Test_Config)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Config::unit()
 {
     std::ctstring_t filePath = Path( Path::exe() ).setExt(xT("cfg") );

@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_SourceInfo)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_SourceInfo::unit()
 {
     xTEST_CASE("all")
@@ -25,5 +25,7 @@ Test_SourceInfo::unit()
 
         // Trace() << xSOURCE_INFO.format();
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

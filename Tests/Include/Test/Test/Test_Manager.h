@@ -17,7 +17,7 @@ class Test_Manager :
 public:
                    Test_Manager() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

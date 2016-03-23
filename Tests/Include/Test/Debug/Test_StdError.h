@@ -16,7 +16,7 @@ class Test_StdError :
 public:
                    Test_StdError() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

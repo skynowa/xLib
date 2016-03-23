@@ -12,7 +12,7 @@
 xTEST_UNIT(Test_Dir)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Dir::unit()
 {
     std::ctstring_t csTempScanDirPath = tempDirPath() + Const::slash() + xT("Scan");

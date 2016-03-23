@@ -17,7 +17,7 @@ class Test_Flags :
 public:
                    Test_Flags() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

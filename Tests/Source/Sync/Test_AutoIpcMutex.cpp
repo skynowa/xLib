@@ -12,7 +12,7 @@
 xTEST_UNIT(Test_AutoIpcMutex)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_AutoIpcMutex::unit()
 {
     std::ctstring_t csName = xT("mutex_name_a");
@@ -23,5 +23,7 @@ Test_AutoIpcMutex::unit()
 
         AutoIpcMutex objAutoMutex(mtMutex, csName);
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

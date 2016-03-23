@@ -18,7 +18,7 @@ class Test_MimeMessage :
 public:
                    Test_MimeMessage() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 
 #endif // xHAVE_OPENSSL_CRYPTO

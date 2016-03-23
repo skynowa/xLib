@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_Sleeper)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Sleeper::unit()
 {
     xTEST_CASE("isSleeping")
@@ -48,5 +48,7 @@ Test_Sleeper::unit()
             objSleeper.wakeUp();
         #endif
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

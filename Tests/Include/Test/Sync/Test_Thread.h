@@ -16,7 +16,7 @@ class Test_Thread :
 public:
                    Test_Thread() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 
 private:
     void_t         unit1();

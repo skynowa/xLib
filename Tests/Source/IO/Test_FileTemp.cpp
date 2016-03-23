@@ -14,7 +14,7 @@
 xTEST_UNIT(Test_FileTemp)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_FileTemp::unit()
 {
     xTEST_CASE("all")

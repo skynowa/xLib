@@ -14,7 +14,7 @@
 xTEST_UNIT(Test_Profiler)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Profiler::unit()
 {
     xTEST_CASE("setLogPath")
@@ -51,5 +51,7 @@ Test_Profiler::unit()
 
         m_stRv = profiler.stop(xT(""));
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

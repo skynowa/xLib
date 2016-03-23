@@ -16,7 +16,7 @@ class Test_Socket :
 public:
                    Test_Socket() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

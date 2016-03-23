@@ -13,7 +13,7 @@
 xTEST_UNIT(Test_SmtpClient)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_SmtpClient::unit()
 {
     {
