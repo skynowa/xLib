@@ -18,9 +18,11 @@ class Test_Simple1 :
 public:
                    Test_Simple1() {}
 
-    virtual void_t unit() xOVERRIDE
+    virtual bool_t unit() xOVERRIDE
     {
         xTEST(true);
+
+        return true;
     }
 };
 //-------------------------------------------------------------------------------------------------

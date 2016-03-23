@@ -18,7 +18,7 @@ Test_MimeMessage::unit()
 {
     {
         // FIX: temp disable
-        return;
+        return true;
     }
 
     Pop3Client objPop3;
@@ -202,6 +202,8 @@ Test_MimeMessage::unit()
     //-------------------------------------
     //bDisconnect
     objPop3.disconnect();
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
 

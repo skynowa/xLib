@@ -235,5 +235,7 @@ Test_Config::unit()
         config.remove();
         xTEST_EQ(false, File::isExists( config.path() ));
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

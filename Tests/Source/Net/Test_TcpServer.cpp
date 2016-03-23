@@ -18,7 +18,7 @@ Test_TcpServer::unit()
 {
     {
         // FIX: temp disable
-        return;
+        return true;
     }
 
     Socket::ExAddressFamily afAf       = Socket::afInet;
@@ -58,5 +58,7 @@ Test_TcpServer::unit()
 
     m_iRv = TcpServer::nativeError();
     //// xTEST_EQ(m_bRv, true);
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

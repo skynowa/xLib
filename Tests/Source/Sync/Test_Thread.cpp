@@ -352,10 +352,15 @@ Test_Thread::unit()
         xPTR_DELETE(pthT);
     }
 
-    unit1();
+    m_bRv = unit1();
+    if (!m_bRv) {
+        return false;
+    }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
-void_t
+bool_t
 Test_Thread::unit1()
 {
     xTEST_CASE("isCurrent")
