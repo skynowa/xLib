@@ -14,6 +14,7 @@
 cmake_minimum_required(VERSION 2.6)
 
 project(xLib)
+
 set(PROJECT_TYPE "CXX")
 set(CMAKE_BUILD_TYPE "RelWithDebInfo")
     # None           (CMAKE_C_FLAGS or CMAKE_CXX_FLAGS used)
@@ -25,6 +26,7 @@ SET(CMAKE_COLOR_MAKEFILE        ON)
 SET(CMAKE_VERBOSE_MAKEFILE      OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_REQUIRED_QUIET        ON)
+enable_testing()
 
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------

@@ -517,8 +517,13 @@ Test_File::unit()
         xTEST_EQ(m_bRv, false);
     }
 
-    unit1();
-    unitPrivate();
+    m_bRv = unit1();
+    xCHECK_RET(!m_bRv, false);
+
+    m_bRv = unitPrivate();
+    xCHECK_RET(!m_bRv, false);
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
 

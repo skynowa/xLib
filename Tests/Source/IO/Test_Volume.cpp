@@ -286,5 +286,7 @@ Test_Volume::unit()
         Volume::paths(&volumePaths);
         xTEST_EQ(false, volumePaths.empty());
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

@@ -231,5 +231,7 @@ Test_Dir::unit()
         Dir(csDirPath).pathCreate();
         Dir(csDirPath).pathDelete();
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
