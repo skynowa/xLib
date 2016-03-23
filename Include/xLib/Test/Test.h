@@ -287,7 +287,7 @@
         unit.setData(data); \
         \
         if ( !unit.run() ) \
-            return EXIT_FAILURE \
+            return EXIT_FAILURE; \
         \
         return EXIT_SUCCESS; \
     }
