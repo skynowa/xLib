@@ -285,7 +285,9 @@
         \
         unitClassName unit; \
         unit.setData(data); \
-        unit.run(); \
+        \
+        if ( !unit.run() ) \
+            return EXIT_FAILURE \
         \
         return EXIT_SUCCESS; \
     }

@@ -70,9 +70,9 @@ public:
 
     void_t              setData(const UnitData &data);
         ///< set data
-    void_t              run();
+    bool_t              run();
         ///< run cases
-    virtual void_t      unit() = 0;
+    virtual bool_t      unit() = 0;
         ///< unit
 
     std::ctstring_t &   tempDirPath() const xWARN_UNUSED_RV;

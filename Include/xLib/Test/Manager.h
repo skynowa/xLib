@@ -44,7 +44,7 @@ public:
 
     void_t   add(Unit *unit);
         ///< add unit
-    void_t   run();
+    bool_t   run();
         ///< run all units
 
 private:
