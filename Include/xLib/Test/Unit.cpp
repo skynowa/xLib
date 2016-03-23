@@ -72,11 +72,12 @@ xINLINE bool_t
 Unit::run()
 {
     bool_t isPassed = true;
-    bool_t bRv      = false;
 
     _createTempDir(xT("Temp"));
 
     for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
+        bool_t bRv = false;
+
         try {
             bRv = unit();
         }
