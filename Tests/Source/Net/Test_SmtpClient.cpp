@@ -18,7 +18,7 @@ Test_SmtpClient::unit()
 {
     {
         // FIX: temp disable
-        return;
+        return true;
     }
 
     //-------------------------------------
@@ -104,6 +104,8 @@ Test_SmtpClient::unit()
     //-------------------------------------
     //bDisconnect
     objSmtp.disconnect();
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
 

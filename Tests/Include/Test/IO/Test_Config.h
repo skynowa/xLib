@@ -14,8 +14,8 @@ class Test_Config :
     public Unit
 {
 public:
-                    Test_Config() {}
+                   Test_Config() {}
 
-    virtual  void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

@@ -14,12 +14,12 @@ class Test_File :
     public Unit
 {
 public:
-                    Test_File() {}
+                   Test_File() {}
 
-    virtual  void_t unit();
+    virtual bool_t unit();
 
 private:
-    void_t          unit1();
-    void_t          unitPrivate();
+    bool_t         unit1();
+    bool_t         unitPrivate();
 };
 //-------------------------------------------------------------------------------------------------

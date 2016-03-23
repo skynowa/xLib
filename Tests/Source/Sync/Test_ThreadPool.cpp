@@ -17,7 +17,7 @@ Test_ThreadPool::unit()
 {
     {
         // FIX: temp disable
-        return;
+        return true;
     }
 
     cbool_t cbIsPaused            = true;
