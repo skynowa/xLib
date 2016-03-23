@@ -17,7 +17,7 @@ class Test_[CLASS_NAME] :
 public:
                    Test_[CLASS_NAME]() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------
