@@ -101,8 +101,7 @@ Manager::run()
     }
 
     xCHECK_DO(_data.isUseTracing,
-        Trace() << xT("Manager: all successful done.");
-        return false);
+        Trace() << xT("Manager: all successful done."));
 
     return isUnitsPassed;
 }
