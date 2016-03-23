@@ -16,6 +16,6 @@ class Test_Locale :
 public:
                    Test_Locale() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

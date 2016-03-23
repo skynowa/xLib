@@ -16,6 +16,6 @@ class Test_Uri :
 public:
                    Test_Uri() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

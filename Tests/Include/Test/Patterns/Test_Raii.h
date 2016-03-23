@@ -17,7 +17,7 @@ class Test_Raii :
 public:
                    Test_Raii() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

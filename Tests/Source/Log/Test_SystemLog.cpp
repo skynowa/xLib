@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_SystemLog)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_SystemLog::unit()
 {
     xTEST_CASE("SystemLog")
@@ -67,5 +67,7 @@ Test_SystemLog::unit()
         SystemLog().write(ILog::lvPlain,    xT("\t%s, %d"), xLEX_TO_STR(ILog::lvPlain),    12345);
     #endif
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

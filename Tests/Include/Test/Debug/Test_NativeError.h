@@ -16,7 +16,7 @@ class Test_NativeError :
 public:
                    Test_NativeError() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

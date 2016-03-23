@@ -17,7 +17,7 @@ class Test_Service :
 public:
                    Test_Service() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

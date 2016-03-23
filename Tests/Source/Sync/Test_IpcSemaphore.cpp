@@ -13,7 +13,7 @@
 xTEST_UNIT(Test_IpcSemaphore)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_IpcSemaphore::unit()
 {
     xTEST_CASE("IpcSemaphore")
@@ -71,5 +71,7 @@ Test_IpcSemaphore::unit()
 
         // m_bRv = Thread::currentSleep(3000);
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

@@ -16,6 +16,6 @@ class Test_Console :
 public:
                    Test_Console() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

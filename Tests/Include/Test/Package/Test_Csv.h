@@ -17,7 +17,7 @@ class Test_Csv :
 public:
                    Test_Csv() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

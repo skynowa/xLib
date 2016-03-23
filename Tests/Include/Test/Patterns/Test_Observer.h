@@ -17,7 +17,7 @@ class Test_Observer :
 public:
                    Test_Observer() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

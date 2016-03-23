@@ -12,7 +12,7 @@
 xTEST_UNIT(Test_ThreadPool)
 //-------------------------------------------------------------------------------------------------
 /*virtual*/
-void_t
+bool_t
 Test_ThreadPool::unit()
 {
     {
@@ -59,6 +59,8 @@ Test_ThreadPool::unit()
     xUNUSED(m_stRv);
 
     tpPool->setNumTasks(10);
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
 

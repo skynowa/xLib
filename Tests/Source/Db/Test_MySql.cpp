@@ -13,7 +13,7 @@
 xTEST_UNIT(Test_MySql)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_MySql::unit()
 {
 #if xHAVE_MYSQL
@@ -264,5 +264,7 @@ Test_MySql::unit()
     //bClose
     conConn.close();
 #endif // xHAVE_MYSQL
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

@@ -16,6 +16,6 @@ class Test_Event :
 public:
                    Test_Event() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

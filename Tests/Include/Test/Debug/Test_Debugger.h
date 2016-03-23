@@ -16,7 +16,7 @@ class Test_Debugger :
 public:
                    Test_Debugger() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

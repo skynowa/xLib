@@ -11,7 +11,7 @@
 xTEST_UNIT(Test_Locale)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Locale::unit()
 {
     xTEST_CASE("current")
@@ -34,5 +34,7 @@ Test_Locale::unit()
     {
         Locale().setCurrent( Locale().current() );
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

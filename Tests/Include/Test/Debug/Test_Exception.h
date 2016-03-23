@@ -16,7 +16,7 @@ class Test_Exception :
 public:
                    Test_Exception() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

@@ -23,7 +23,7 @@ enum EData {
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Utils::unit()
 {
     xTEST_CASE("ptrDeleteT")
@@ -333,5 +333,7 @@ Test_Utils::unit()
 
         // constVar = 11ULL; - not compile
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

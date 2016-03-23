@@ -16,7 +16,7 @@ class Test_Defines :
 public:
                    Test_Defines() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

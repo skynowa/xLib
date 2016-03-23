@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_BuildInfo)
 //---------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_BuildInfo::unit()
 {
     xTEST_CASE("isRelease")
@@ -138,5 +138,7 @@ Test_BuildInfo::unit()
         m_sRv = info.binaryType();
         xTEST_DIFF(m_sRv, std::tstring_t( xT("xUNKNOWN_CSTRING") ));
     }
+
+    return true;
 }
 //---------------------------------------------------------------------------

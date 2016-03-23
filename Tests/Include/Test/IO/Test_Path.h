@@ -16,6 +16,6 @@ class Test_Path :
 public:
                    Test_Path() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

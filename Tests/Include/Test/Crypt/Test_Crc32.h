@@ -16,6 +16,6 @@ class Test_Crc32 :
 public:
                    Test_Crc32() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

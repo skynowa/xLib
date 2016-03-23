@@ -47,7 +47,7 @@ public:
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Observer::unit()
 {
     xTEST_CASE("Observer")
@@ -66,5 +66,7 @@ Test_Observer::unit()
         xTEST_EQ(::type_all, 1 * 2);
         xTEST_EQ(::message_all, std::tstring_t("abcdef") + std::tstring_t("abcdef"));
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

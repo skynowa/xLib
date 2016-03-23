@@ -16,7 +16,7 @@ class Test_ProcessInfo :
 public:
                    Test_ProcessInfo() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

@@ -25,7 +25,7 @@ public:
 };
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Manager::unit()
 {
     xTEST_CASE("Manager")
@@ -38,7 +38,8 @@ Test_Manager::unit()
         Test_Simple1 unit1;
         manager.add(&unit1);
 
-        manager.run();
+        m_bRv = manager.run();
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("ManagerData")
@@ -50,7 +51,10 @@ Test_Manager::unit()
         Test_Simple1 unit1;
         manager.add(&unit1);
 
-        manager.run();
+        m_bRv = manager.run();
+        xTEST(m_bRv);
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

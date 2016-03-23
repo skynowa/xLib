@@ -12,7 +12,7 @@
 xTEST_UNIT(Test_Crc32)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Crc32::unit()
 {
     std::ctstring_t filePath = tempDirPath()  + Const::slash() + xT("Crc32.txt");
@@ -35,5 +35,7 @@ Test_Crc32::unit()
         m_sRv = crc32.formatHex();
         xTEST_EQ(m_sRv, std::tstring_t(xT("19CCBBCB")));
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

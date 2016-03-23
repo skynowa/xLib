@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_WaitableTimer)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_WaitableTimer::unit()
 {
 #if   xENV_WIN
@@ -32,5 +32,7 @@ Test_WaitableTimer::unit()
 #elif xENV_UNIX
 
 #endif
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

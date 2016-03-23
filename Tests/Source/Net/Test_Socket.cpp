@@ -13,7 +13,7 @@
 xTEST_UNIT(Test_Socket)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Socket::unit()
 {
     xTEST_CASE("SocketInit")

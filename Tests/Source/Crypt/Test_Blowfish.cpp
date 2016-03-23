@@ -14,7 +14,7 @@
 xTEST_UNIT(Test_Blowfish)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Blowfish::unit()
 {
 #if xHAVE_OPENSSL_CRYPTO
@@ -82,6 +82,8 @@ Test_Blowfish::unit()
     }
 
 #endif // xHAVE_OPENSSL_CRYPTO
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -14,7 +14,7 @@
 xTEST_UNIT(Test_Cgi)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Cgi::unit()
 {
     xTEST_CASE("pageShow")

@@ -16,6 +16,6 @@ class Test_Dir :
 public:
                    Test_Dir() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

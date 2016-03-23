@@ -16,7 +16,7 @@ class Test_Mutex :
 public:
                    Test_Mutex() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

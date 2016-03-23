@@ -17,7 +17,7 @@ class Test_Limits :
 public:
                    Test_Limits() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

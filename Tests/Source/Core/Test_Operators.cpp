@@ -11,7 +11,7 @@
 xTEST_UNIT(Test_Operators)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Operators::unit()
 {
     xTEST_CASE("Operators::operator ++")
@@ -23,5 +23,7 @@ Test_Operators::unit()
     {
         // TODO: Test_Operators - operator --
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

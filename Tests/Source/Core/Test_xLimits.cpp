@@ -12,7 +12,7 @@
 xTEST_UNIT(Test_Limits)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Limits::unit()
 {
     xTEST_CASE("xHOST_NAME_MAX_")
@@ -84,5 +84,7 @@ Test_Limits::unit()
     {
         m_ullRv = xTHREAD_NAME_LENGTH_MAX;
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

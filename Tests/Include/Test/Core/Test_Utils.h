@@ -16,6 +16,6 @@ class Test_Utils :
 public:
                    Test_Utils() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

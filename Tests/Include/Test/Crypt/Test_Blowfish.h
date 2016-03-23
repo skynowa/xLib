@@ -16,6 +16,6 @@ class Test_Blowfish :
 public:
                    Test_Blowfish() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

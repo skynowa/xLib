@@ -13,7 +13,7 @@
 xTEST_UNIT(Test_Volume)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Volume::unit()
 {
 #if xENV_WIN

@@ -77,7 +77,7 @@ private:
 };
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_CoreApplication::unit()
 {
     xTEST_CASE("CoreApplication")
@@ -85,5 +85,7 @@ Test_CoreApplication::unit()
         UserApplication userApp(xT("[app_name]_guid"), xT(""));
         userApp.run();
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

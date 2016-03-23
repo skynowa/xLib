@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_ErrorReport)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_ErrorReport::unit()
 {
     xTEST_CASE("ErrorReport")
@@ -23,5 +23,7 @@ Test_ErrorReport::unit()
         ErrorReport rpReport(ErrorReport::rtMsgbox, xT("val1"), xT("val2"), val1, val2,
             xT("=="), nativeError, xSOURCE_INFO, StackTrace().toString(), xT(""));
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

@@ -14,7 +14,7 @@
 xTEST_UNIT(Test_AutoProfiler)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_AutoProfiler::unit()
 {
     xTEST_CASE("AutoProfiler")
@@ -29,5 +29,7 @@ Test_AutoProfiler::unit()
             Thread::currentSleep(5UL);
         }
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

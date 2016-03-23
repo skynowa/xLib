@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_StdError)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_StdError::unit()
 {
     cint_t ciMaxErrors = 132;  /*0...132*/;
@@ -99,5 +99,7 @@ Test_StdError::unit()
             //xTRACEV(xT("\StdError::format(%lu) = %s (size = %lu)"), i, m_sRv.c_str(), m_sRv.size() - 4);
         }
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

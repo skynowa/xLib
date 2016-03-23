@@ -11,7 +11,7 @@
 xTEST_UNIT(Test_Type)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Type::unit()
 {
     xTEST_CASE("name")
@@ -38,5 +38,7 @@ Test_Type::unit()
         m_bRv = Type::isEquals(sObject1, wsObject2);
         xTEST_EQ(m_bRv, false);
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

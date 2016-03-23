@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_NativeError)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_NativeError::unit()
 {
     #if   xENV_WIN
@@ -95,5 +95,7 @@ Test_NativeError::unit()
             xTEST_EQ(false, m_sRv.empty());
         }
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

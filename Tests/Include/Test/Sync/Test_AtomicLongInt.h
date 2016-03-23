@@ -16,6 +16,6 @@ class Test_AtomicLongInt :
 public:
                    Test_AtomicLongInt() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

@@ -17,7 +17,7 @@ class Test_AutoReset :
 public:
                    Test_AutoReset() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

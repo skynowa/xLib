@@ -16,7 +16,7 @@ class Test_String :
 public:
                    Test_String() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

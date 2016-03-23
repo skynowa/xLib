@@ -16,7 +16,7 @@
 xTEST_UNIT(Test_Defines)
 //-------------------------------------------------------------------------------------------------
 /*virtual*/
-void_t
+bool_t
 Test_Defines::unit()
 {
     xTEST_CASE("Combinations of defines")
@@ -535,5 +535,7 @@ Test_Defines::unit()
     {
         xTEST_THROW(xTHROW_REPORT(xT("test xTHROW_REPORT message")), Exception);
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

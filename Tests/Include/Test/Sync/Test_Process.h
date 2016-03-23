@@ -16,7 +16,7 @@ class Test_Process :
 public:
                    Test_Process() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

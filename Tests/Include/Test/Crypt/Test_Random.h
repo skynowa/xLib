@@ -16,6 +16,6 @@ class Test_Random :
 public:
                    Test_Random() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

@@ -13,7 +13,7 @@
 xTEST_UNIT(Test_Process)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Process::unit()
 {
     xTEST_CASE("create, wait")
@@ -126,5 +126,7 @@ Test_Process::unit()
         Process::id_t ulRv = Process::currentParentId();
         xTEST_LESS(0UL, static_cast<ulong_t>( ulRv ));
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

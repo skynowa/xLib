@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_Csv)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Csv::unit()
 {
     xTEST_CASE("CsvReader::CsvReader")
@@ -26,5 +26,7 @@ Test_Csv::unit()
         xlib::package::CsvReader csvReader(csvData);
         csvReader.loadFile(xT(""));
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

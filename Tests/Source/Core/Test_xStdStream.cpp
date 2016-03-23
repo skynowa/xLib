@@ -13,7 +13,7 @@
 xTEST_UNIT(Test_StdStream)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_StdStream::unit()
 {
     xTEST_CASE("operator << for std::ustring_t")
@@ -81,5 +81,7 @@ Test_StdStream::unit()
 
         m_mmsRv.clear();
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

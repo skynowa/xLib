@@ -16,6 +16,6 @@ class Test_MySql :
 public:
                    Test_MySql() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

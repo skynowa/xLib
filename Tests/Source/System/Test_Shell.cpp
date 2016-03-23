@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_Shell)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Shell::unit()
 {
     xTEST_CASE("isAvailable")
@@ -92,5 +92,7 @@ Test_Shell::unit()
         xTEST_EQ(std::tstring_t(xT("C:\\WINDOWS\\Fonts")), m_sRv);
     }
 #endif
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

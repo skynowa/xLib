@@ -16,6 +16,6 @@ class Test_TcpServer :
 public:
                    Test_TcpServer() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

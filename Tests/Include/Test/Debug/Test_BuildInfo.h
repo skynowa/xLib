@@ -17,7 +17,7 @@ class Test_BuildInfo :
 public:
                    Test_BuildInfo() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //---------------------------------------------------------------------------

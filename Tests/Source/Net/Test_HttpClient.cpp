@@ -10,7 +10,7 @@
 xTEST_UNIT(Test_HttpClient)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_HttpClient::unit()
 {
     xTEST_CASE("HttpClient")

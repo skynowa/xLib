@@ -16,7 +16,7 @@ class Test_HttpClient :
 public:
                    Test_HttpClient() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------
 

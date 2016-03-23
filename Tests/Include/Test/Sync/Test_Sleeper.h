@@ -16,6 +16,6 @@ class Test_Sleeper :
 public:
                    Test_Sleeper() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

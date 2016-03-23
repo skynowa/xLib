@@ -16,7 +16,7 @@ class Test_Backup :
 public:
                    Test_Backup() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------

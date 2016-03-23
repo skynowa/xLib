@@ -12,7 +12,7 @@
 xTEST_UNIT(Test_Exception)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_Exception::unit()
 {
     xTEST_CASE("Exception")
@@ -102,5 +102,7 @@ Test_Exception::unit()
             xCATCH_ALL;
         #endif
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

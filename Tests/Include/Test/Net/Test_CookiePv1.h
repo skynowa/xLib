@@ -16,6 +16,6 @@ class Test_CookiePv1 :
 public:
                    Test_CookiePv1() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
 };
 //-------------------------------------------------------------------------------------------------

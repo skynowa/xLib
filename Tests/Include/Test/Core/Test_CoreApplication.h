@@ -17,7 +17,7 @@ class Test_CoreApplication :
 public:
                    Test_CoreApplication() {}
 
-    virtual void_t unit() xOVERRIDE;
+    virtual bool_t unit() xOVERRIDE;
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------
