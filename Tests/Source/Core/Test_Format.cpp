@@ -45,8 +45,6 @@ Test_Format::unit()
 
         xTEST_EQ(m_sRv, std::tstring_t(xT("0_a_b_-10_10_-111_111_-222_222_-333_333_444_555_666_0x309_aaa_bbb")));
         // Trace() << xTRACE_VAR(m_sRv);
-
-        std::exit(EXIT_FAILURE);
     }
 
     return true;

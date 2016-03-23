@@ -164,5 +164,7 @@ Test_FileType::unit()
         xTEST_EQ((ulong_t)FileType::faRegularFile, (ulong_t)faRv);
     #endif
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
