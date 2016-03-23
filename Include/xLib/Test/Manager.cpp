@@ -68,12 +68,14 @@ Manager::add(
     _units.push_back(a_unit);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+xINLINE bool_t
 Manager::run()
 {
+    bool_t isUnitsPassed = true;
+
     xCHECK_DO(!_isConstructed,
         Trace() << xT("\nManager: not constructed. Stopped.");
-        return);
+        return false);
 
     xCHECK_DO(_data.isUseTracing,
         Trace() << xT("\n");
@@ -89,11 +91,20 @@ Manager::run()
         xFOREACH_CONST(units_t, it, _units) {
             xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: run unit ") << (*it)->name());
 
-            (*it)->run();
-        }
+            bool_t bRv = (*it)->run();
+            if (!bRv) {
+                isUnitsPassed = false;
+            } else {
+
+            }
+        } // for (_units)
     }
 
-    xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: all successful done."));
+    xCHECK_DO(_data.isUseTracing,
+        Trace() << xT("Manager: all successful done.");
+        return false);
+
+    return isUnitsPassed;
 }
 //-------------------------------------------------------------------------------------------------
 

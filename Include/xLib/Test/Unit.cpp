@@ -68,37 +68,53 @@ Unit::setData(
     _data.name        = a_data.name;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+xINLINE bool_t
 Unit::run()
 {
+    bool_t isPassed = true;
+    bool_t bRv      = false;
+
     _createTempDir(xT("Temp"));
 
     for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
         try {
-            unit();
+            bRv = unit();
         }
         catch (const Exception &a_e) {
             xTEST_FAIL_MSG(name() + xT(": ") + a_e.what());
+
+            bRv = false;
         }
         catch (const std::exception &a_e) {
             std::string asMsg = a_e.what();
-
             xTEST_FAIL_MSG(name() + xT(": ") + xS2TS(asMsg));
+
+            bRv = false;
         }
         catch (...) {
             xTEST_FAIL_MSG(name() + xT(": Unknown error"));
+            bRv = false;
         }
-    }
+
+        if (!bRv) {
+            isPassed = false;
+        } else {
+
+        }
+    } // for (_data.unitLoops)
+
+    return isPassed;
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE void_t
+xINLINE bool_t
 Unit::unit() /* = 0 */
 {
 #if 1
     xTEST_CASE("CaseName")
     {
-        std::ctstring_t data[][2] = {
+        std::ctstring_t data[][2] =
+        {
             {xT("TEST_STRING_1"), xT("MUST_BE_1")},
             {xT("TEST_STRING_2"), xT("MUST_BE_2")},
             {xT("TEST_STRING_3"), xT("MUST_BE_3")},
@@ -110,6 +126,8 @@ Unit::unit() /* = 0 */
         }
     }
 #endif
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
