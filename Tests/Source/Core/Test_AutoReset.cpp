@@ -22,7 +22,7 @@ Test_AutoReset::unit()
             bool_t origin = data[i];
 
             {
-                AutoReset<bool_t> reseter(origin, false);
+                AutoReset<bool_t> reseter(&origin, false);
                 xTEST_EQ(origin, data[i]);
             }
 
@@ -33,11 +33,11 @@ Test_AutoReset::unit()
             bool_t origin = data[i];
 
             {
-                AutoReset<bool_t> reseter(origin, true);
+                AutoReset<bool_t> reseter(&origin, true);
                 xTEST_EQ(origin, data[i]);
             }
 
-            xTEST_EQ(origin, false);
+            xTEST_EQ(origin, true);
         }
     }
 
