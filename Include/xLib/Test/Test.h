@@ -84,7 +84,7 @@
     #define _xREPORT_TYPE ErrorReport::rtStdoutLog
 #endif
 
-#ifdef _xREPORT_TYPE
+#if defined(_xREPORT_TYPE)
     #define xTEST_EQ(val1, val2) \
         xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, val1, val2, xT(""))
     #define xTEST_EQ_MSG(val1, val2, msg) \
