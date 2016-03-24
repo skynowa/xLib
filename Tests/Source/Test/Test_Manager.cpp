@@ -33,7 +33,7 @@ Test_Manager::unit()
     xTEST_CASE("Manager")
     {
         cint_t    argsNum       = 5;
-        ctchar_t *args[argsNum] = {xT("./xLib_test"), xT("1"), xT("1"), xT("1"), xT("1")};
+        ctchar_t *args[argsNum] = {xT("./xLib_test"), xT("0"), xT("1"), xT("1"), xT("1")};
 
         Manager manager(argsNum, args);
 
@@ -46,15 +46,25 @@ Test_Manager::unit()
 
     xTEST_CASE("ManagerData")
     {
-        ManagerData data;
+        try {
+            ManagerData data;
+            Manager manager(data);
 
-        Manager manager(data);
+            Test_Simple1 unit1;
+            manager.add(&unit1);
 
-        Test_Simple1 unit1;
-        manager.add(&unit1);
-
-        m_bRv = manager.run();
-        xTEST(m_bRv);
+            m_bRv = manager.run();
+            xTEST(!m_bRv);
+        }
+        catch (const Exception &a_e) {
+            Trace() << xTRACE_VAR(a_e.what());
+        }
+        catch (const std::exception &a_e) {
+            Trace() << xTRACE_VAR(a_e.what());
+        }
+        catch (...) {
+            Trace() << xT("Unknown error");
+        }
     }
 
     return true;

@@ -14,6 +14,7 @@
 #include <xLib/System/SystemInfo.h>
 #include <xLib/System/Console.h>
 #include <xLib/Debug/ErrorReport.h>
+#include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/IO/Path.h>
 #include <xLib/Gui/MsgBox.h>
@@ -134,6 +135,9 @@ Debugger::reportMake(
     case ErrorReport::rtStdoutLog:
         _stdoutPlain(a_report);
         _loggingPlain(a_report);
+        break;
+    case ErrorReport::rtException:
+        throw Exception() << a_report.toString();
         break;
     default:
         _stdoutPlain(a_report);
