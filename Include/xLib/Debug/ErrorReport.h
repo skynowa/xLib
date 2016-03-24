@@ -24,7 +24,8 @@ public:
         rtMsgbox,   ///< as message box
         rtStdout,   ///< to std::cout
         rtLog,      ///< to log
-        rtStdoutLog ///< to std::cout and log
+        rtStdoutLog,///< to std::cout and log
+        rtException ///< to exception
     };
 
                    ErrorReport(culong_t &nativeError, const SourceInfo &sourceInfo,

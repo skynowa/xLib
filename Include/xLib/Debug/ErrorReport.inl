@@ -59,6 +59,7 @@ ErrorReport::ErrorReport(
     case rtStdout:
     case rtLog:
     case rtStdoutLog:
+    case rtException:
         _initPlain();
         break;
     default:

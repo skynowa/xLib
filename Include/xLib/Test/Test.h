@@ -82,6 +82,8 @@
     #define _xREPORT_TYPE ErrorReport::rtLog
 #elif xOPTION_DEBUG_MODE_STDOUT_LOG
     #define _xREPORT_TYPE ErrorReport::rtStdoutLog
+#elif xOPTION_DEBUG_MODE_EXCEPTION
+    #define _xREPORT_TYPE ErrorReport::rtException
 #endif
 
 #if defined(_xREPORT_TYPE)
