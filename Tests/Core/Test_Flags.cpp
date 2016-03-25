@@ -1,22 +1,24 @@
 /**
- * \file   Test_[CLASS_NAME].cpp
- * \brief  test [CLASS_NAME]
+ * \file   Test_Flags.cpp
+ * \brief  test Flags
  */
 
 
-#include <xxxxxxxxx/Test_[CLASS_NAME].h>
+#include "Test_Flags.h"
 
 
 //-------------------------------------------------------------------------------------------------
-xTEST_UNIT(Test_[CLASS_NAME])
+xTEST_UNIT(Test_Flags)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
-Test_[CLASS_NAME]::unit()
+bool_t
+Test_Flags::unit()
 {
-    xTEST_CASE("[CLASS_NAME]::[TEST_CASE_1]")
+    xTEST_CASE("Flags")
     {
-
+        // TEST: Flags
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

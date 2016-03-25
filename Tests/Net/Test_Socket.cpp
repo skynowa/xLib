@@ -1,22 +1,26 @@
 /**
- * \file   Test_[CLASS_NAME].cpp
- * \brief  test [CLASS_NAME]
+ * \file   Test_Socket.cpp
+ * \brief
  */
 
 
-#include <xxxxxxxxx/Test_[CLASS_NAME].h>
+#include "Test_Socket.h"
 
+#include <xLib/Patterns/Singleton.h>
+#include <xLib/Net/SocketInit.h>
 
 //-------------------------------------------------------------------------------------------------
-xTEST_UNIT(Test_[CLASS_NAME])
+xTEST_UNIT(Test_Socket)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
-Test_[CLASS_NAME]::unit()
+bool_t
+Test_Socket::unit()
 {
-    xTEST_CASE("[CLASS_NAME]::[TEST_CASE_1]")
+    xTEST_CASE("SocketInit")
     {
-
+        SocketInit socketInit(2, 2);
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

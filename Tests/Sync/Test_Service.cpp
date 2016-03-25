@@ -1,22 +1,22 @@
 /**
- * \file   Test_[CLASS_NAME].cpp
- * \brief  test [CLASS_NAME]
+ * \file   Test_Service.cpp
+ * \brief  test Service
  */
 
 
-#include <xxxxxxxxx/Test_[CLASS_NAME].h>
-
+#include "Test_Service.h"
 
 //-------------------------------------------------------------------------------------------------
-xTEST_UNIT(Test_[CLASS_NAME])
+xTEST_UNIT(Test_Service)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
-Test_[CLASS_NAME]::unit()
+bool_t
+Test_Service::unit()
 {
-    xTEST_CASE("[CLASS_NAME]::[TEST_CASE_1]")
+    xTEST_CASE("[TEST_CASE_1]")
     {
-
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
