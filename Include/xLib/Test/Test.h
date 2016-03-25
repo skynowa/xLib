@@ -275,6 +275,8 @@
 #define xTEST_UNIT(unitClassName) \
     int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[]) \
     { \
+        bool_t bRv = false; \
+        \
         UnitData data; \
         data.unitLoops   = 1; \
         data.caseLoops   = 1; \
@@ -284,9 +286,19 @@
         unitClassName unit; \
         unit.setData(data); \
         \
-        if ( !unit.run() ) \
-            return EXIT_FAILURE; \
+        try {  \
+            bRv = unit.run(); \
+        } \
+        catch (const xlib::debug::Exception &a_xlibException) { \
+            bRv = false; \
+        } \
+        catch (const std::exception &a_stdException) { \
+            bRv = false; \
+        } \
+        catch (...) { \
+            bRv = false; \
+        } \
         \
-        return EXIT_SUCCESS; \
+        return bRv ? EXIT_SUCCESS : EXIT_FAILURE; \
     }
 //-------------------------------------------------------------------------------------------------
