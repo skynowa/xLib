@@ -53,7 +53,7 @@ Test_Manager::unit()
         manager.add(&unit1);
 
         m_bRv = manager.run();
-        xTEST(!m_bRv);
+        xTEST(m_bRv);
     }
 
     return true;

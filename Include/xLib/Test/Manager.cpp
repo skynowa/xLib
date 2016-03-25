@@ -62,7 +62,7 @@ Manager::add(
     xTEST_PTR(a_unit)
 
     if ( a_unit->name().empty() ) {
-        a_unit->_data.name = Type::name(*a_unit);
+        a_unit->data.name = Type::name(*a_unit);
     }
 
     _units.push_back(a_unit);

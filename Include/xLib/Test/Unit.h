@@ -61,7 +61,7 @@ public:
     HWND                m_hwndRv;    ///< for global use
 #endif
 
-    UnitData            _data;
+    UnitData            data;
 
                         Unit();
         ///< constructor

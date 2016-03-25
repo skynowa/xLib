@@ -265,10 +265,10 @@
 #if xOPTION_TEST_TRACING
     #define xTEST_CASE(caseName) \
         Trace() << xT("\tCase: ") << xT(caseName); \
-        for (size_t caseLoops = 0; caseLoops < _data.caseLoops; ++ caseLoops)
+        for (size_t caseLoops = 0; caseLoops < data.caseLoops; ++ caseLoops)
 #else
     #define xTEST_CASE(caseName) \
-        for (size_t caseLoops = 0; caseLoops < _data.caseLoops; ++ caseLoops)
+        for (size_t caseLoops = 0; caseLoops < data.caseLoops; ++ caseLoops)
 #endif
     ///< test case
 
