@@ -46,25 +46,14 @@ Test_Manager::unit()
 
     xTEST_CASE("ManagerData")
     {
-        try {
-            ManagerData data;
-            Manager manager(data);
+        ManagerData data;
+        Manager manager(data);
 
-            Test_Simple1 unit1;
-            manager.add(&unit1);
+        Test_Simple1 unit1;
+        manager.add(&unit1);
 
-            m_bRv = manager.run();
-            xTEST(!m_bRv);
-        }
-        catch (const Exception &a_e) {
-            Trace() << xTRACE_VAR(a_e.what());
-        }
-        catch (const std::exception &a_e) {
-            Trace() << xTRACE_VAR(a_e.what());
-        }
-        catch (...) {
-            Trace() << xT("Unknown error");
-        }
+        m_bRv = manager.run();
+        xTEST(!m_bRv);
     }
 
     return true;
