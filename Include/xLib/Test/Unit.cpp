@@ -81,13 +81,13 @@ Unit::run()
         try {
             bRv = unit();
         }
-        catch (const Exception &a_e) {
-            xTEST_FAIL_MSG(name() + xT(": ") + a_e.what());
+        catch (const Exception &a_xlibException) {
+            xTEST_FAIL_MSG(name() + xT(": ") + a_xlibException.what());
 
             bRv = false;
         }
-        catch (const std::exception &a_e) {
-            std::string asMsg = a_e.what();
+        catch (const std::exception &a_stdException) {
+            std::string asMsg = a_stdException.what();
             xTEST_FAIL_MSG(name() + xT(": ") + xS2TS(asMsg));
 
             bRv = false;
