@@ -22,6 +22,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     install(TARGETS ${TEST_NAME} DESTINATION "bin")
 
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
-    add_custom_command(TARGET ${TEST_NAME} POST_BUILD COMMAND ${TEST_NAME})
+    # add_custom_command(TARGET ${TEST_NAME} POST_BUILD COMMAND ${TEST_NAME})
 endforeach()
 #--------------------------------------------------------------------------------------------------
