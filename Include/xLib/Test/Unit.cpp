@@ -46,7 +46,7 @@ Unit::Unit() :
 #if xENV_WIN
     m_hwndRv    (xPTR_NULL),
 #endif
-    _data       ()
+    data        ()
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -62,10 +62,10 @@ Unit::setData(
     const UnitData &a_data
 )
 {
-    _data.unitLoops   = a_data.unitLoops;
-    _data.caseLoops   = a_data.caseLoops;
-    _data.tempDirPath = a_data.tempDirPath;
-    _data.name        = a_data.name;
+    data.unitLoops   = a_data.unitLoops;
+    data.caseLoops   = a_data.caseLoops;
+    data.tempDirPath = a_data.tempDirPath;
+    data.name        = a_data.name;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -75,7 +75,7 @@ Unit::run()
 
     _createTempDir(xT("Temp"));
 
-    for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
+    for (std::size_t i = 0; i < data.unitLoops; ++ i) {
         bool_t bRv = false;
 
         try {
@@ -102,7 +102,7 @@ Unit::run()
         } else {
 
         }
-    } // for (_data.unitLoops)
+    } // for (data.unitLoops)
 
     return isPassed;
 }
@@ -139,26 +139,26 @@ Unit::_createTempDir(
     xTEST_NA(a_dirName);
 
     if (a_dirName.empty()) {
-        _data.tempDirPath = Dir::temp();
+        data.tempDirPath = Dir::temp();
     } else {
-        _data.tempDirPath = Path::exeDir() + Const::slash() + a_dirName;
+        data.tempDirPath = Path::exeDir() + Const::slash() + a_dirName;
 
-        Dir(_data.tempDirPath).pathCreate();
+        Dir(data.tempDirPath).pathCreate();
     }
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::ctstring_t &
 Unit::tempDirPath() const
 {
-    xTEST_EQ(_data.tempDirPath.empty(), false);
+    xTEST_EQ(data.tempDirPath.empty(), false);
 
-    return _data.tempDirPath;
+    return data.tempDirPath;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::ctstring_t &
 Unit::name() const
 {
-    return _data.name;
+    return data.name;
 }
 //-------------------------------------------------------------------------------------------------
 
