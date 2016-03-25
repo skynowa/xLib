@@ -197,6 +197,16 @@ Test_DnsClient::unit()
         // TEST: DnsClient::isBroadcast()
     }
 
+    xTEST_CASE("isAddressIpv4")
+    {
+        // TEST: DnsClient::isAddressIpv4()
+    }
+
+    xTEST_CASE("isAddressIpv6")
+    {
+        // TEST: DnsClient::isAddressIpv6()
+    }
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
