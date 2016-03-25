@@ -199,12 +199,46 @@ Test_DnsClient::unit()
 
     xTEST_CASE("isAddressIpv4")
     {
-        // TEST: DnsClient::isAddressIpv4()
+        // http://www.zedwood.com/article/cpp-is-valid-ip-address-ipv4-ipv6
+
+        const Data2<std::tstring_t, bool_t> data[] =
+        {
+            {"1.1.1.1", true},
+            {"1.1.1.1:443", false},
+            {"65536", false},
+            {"1.1.1.01", false},
+            {"256.1.1.1", false},
+            {"1.1.1.1.2", false},
+            {"1.1.1", false},
+            {"a.b.c.d", false},
+            {"1::8:", false}
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            m_bRv = DnsClient::isAddressIpv4(data[i].test);
+            xTEST_EQ(m_bRv, data[i].expect);
+        }
     }
 
     xTEST_CASE("isAddressIpv6")
     {
-        // TEST: DnsClient::isAddressIpv6()
+        const Data2<std::tstring_t, bool_t> data[] =
+        {
+            {"1::8", true},
+            {"2400:cb00:2048:1::6ca2:e8c3", true},
+            {"2001:db8::ff00:42:8329", true},
+            {"2001:0db8:0000:0000:0000:ff00:0042:8329", true},
+            {"[2001:db8::ff00:42:8329]", false},
+            {"127.0.0.1", false},
+            {":1::8", false},
+            {"1::8:", false},
+            {"1..8", false}
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            m_bRv = DnsClient::isAddressIpv6(data[i].test);
+            xTEST_EQ(m_bRv, data[i].expect);
+        }
     }
 
     return true;
