@@ -1,22 +1,18 @@
 /**
- * \file   Test_[CLASS_NAME].cpp
- * \brief  test [CLASS_NAME]
+ * \file   Test_Semaphore.cpp
+ * \brief  test Semaphore
  */
 
 
-#include <xxxxxxxxx/Test_[CLASS_NAME].h>
-
+#include "Test_Semaphore.h"
 
 //-------------------------------------------------------------------------------------------------
-xTEST_UNIT(Test_[CLASS_NAME])
+xTEST_UNIT(Test_Semaphore)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
-Test_[CLASS_NAME]::unit()
+bool_t
+Test_Semaphore::unit()
 {
-    xTEST_CASE("[CLASS_NAME]::[TEST_CASE_1]")
-    {
-
-    }
+    return true;
 }
 //-------------------------------------------------------------------------------------------------

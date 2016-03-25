@@ -12,8 +12,7 @@ find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
 set(CTEST_MEMORYCHECK_COMMAND_OPTIONS, "--trace-children=yes --leak-check=full")
 set(MEMORYCHECK_SUPPRESSIONS_FILE "${XLIB_LOCATION}/valgrind_suppress.txt")
 #--------------------------------------------------------------------------------------------------
-include_directories(Include)
-file(GLOB_RECURSE XLIB_TESTS_SOURCES Source/*.cpp)
+file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
 foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     get_filename_component(TEST_NAME ${IT_SOURCE} NAME_WE)
