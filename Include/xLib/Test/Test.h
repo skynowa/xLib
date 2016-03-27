@@ -290,12 +290,15 @@
             bRv = unit.run(); \
         } \
         catch (const xlib::debug::Exception &a_xlibException) { \
+            Trace() << a_xlibException.what(); \
             bRv = false; \
         } \
         catch (const std::exception &a_stdException) { \
+            Trace() << a_stdException.what(); \
             bRv = false; \
         } \
         catch (...) { \
+            Trace() << xT("Unknown error"); \
             bRv = false; \
         } \
         \
