@@ -323,7 +323,7 @@ Test_Defines::unit()
     xTEST_CASE("xBASE_FILE")
     {
         m_sRv = xBASE_FILE;
-        xTEST_EQ(m_sRv, std::tstring_t(xT("Test_xDefines.cpp")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("Test_Defines.cpp")));
     }
 
     xTEST_CASE("xLINE")
