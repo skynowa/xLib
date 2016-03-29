@@ -23,49 +23,31 @@ Test_User::unit()
     xTEST_CASE("isAdmin")
     {
         m_bRv = user.isAdmin();
-
-        // Trace() << xT("\t\t") << xTRACE_VAR(m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
-
 
     xTEST_CASE("loginName")
     {
         m_sRv = user.loginName();
         xTEST_EQ(m_sRv.empty(), false);
-
-        // Trace() << xT("\t\t") << xTRACE_VAR(m_sRv);
     }
 
     xTEST_CASE("name")
     {
         m_sRv = user.name();
         xTEST_EQ(m_sRv.empty(), false);
-
-        // Trace() << xT("\t\t") << xTRACE_VAR(m_sRv);
-    }
-
-    xTEST_CASE("name")
-    {
-        m_sRv = user.name();
-        xTEST_EQ(m_sRv.empty(), false);
-
-        // Trace() << xT("\t\t") << xTRACE_VAR(m_sRv);
     }
 
     xTEST_CASE("userId")
     {
         m_uiRv = user.userId();
         xTEST_DIFF(m_uiRv, 0U);
-
-        // Trace() << xT("\t\t") << xTRACE_VAR(m_uiRv);
     }
 
     xTEST_CASE("groupId")
     {
         m_uiRv = user.groupId();
         xTEST_DIFF(m_uiRv, 0U);
-
-        // Trace() << xT("\t\t") << xTRACE_VAR(m_uiRv);
     }
 
     xTEST_CASE("homeDir")
@@ -73,8 +55,6 @@ Test_User::unit()
         m_sRv = user.homeDir();
         xTEST_EQ(m_sRv.empty(), false);
         xTEST_EQ(Dir(m_sRv).isExists(), true);
-
-        // Trace() << xT("\t\t") << xTRACE_VAR(m_sRv);
     }
 
     xTEST_CASE("shellPath")
@@ -82,8 +62,6 @@ Test_User::unit()
         m_sRv = user.shellPath();
         xTEST_EQ(m_sRv.empty(), false);
         xTEST_EQ(File::isExists(m_sRv), true);
-
-        // Trace() << xT("\t\t") << xT("shellPath(): ") << m_sRv;
     }
 }
 //-------------------------------------------------------------------------------------------------
