@@ -11,7 +11,7 @@
 xTEST_UNIT(Test_[CLASS_NAME])
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
+bool_t
 Test_[CLASS_NAME]::unit()
 {
     xTEST_CASE("[CLASS_NAME]::[TEST_CASE_1]")
