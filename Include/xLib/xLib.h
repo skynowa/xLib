@@ -127,6 +127,7 @@
 #include <xLib/System/Environment.h>
 #include <xLib/System/ProcessInfo.h>
 #include <xLib/System/SystemInfo.h>
+#include <xLib/System/User.h>
 
 // Test
 #include <xLib/Test/Data.h>
