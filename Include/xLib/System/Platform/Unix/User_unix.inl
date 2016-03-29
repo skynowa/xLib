@@ -41,6 +41,7 @@ User::_construct_impl()
         return;
     }
 
+#if 0
     Trace()
         << xTRACE_VAR(result->pw_name)   << "\n"
         << xTRACE_VAR(result->pw_passwd) << "\n"
@@ -48,6 +49,7 @@ User::_construct_impl()
         << xTRACE_VAR(result->pw_gid)    << "\n"
         << xTRACE_VAR(result->pw_dir)    << "\n"
         << xTRACE_VAR(result->pw_shell);
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -134,13 +136,21 @@ User::_name_impl() const
 xINLINE uint_t
 User::_userId_impl() const
 {
-    return 0;
+    uid_t uiRv;
+
+    _passwd(xPTR_NULL, xPTR_NULL, &uiRv, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL);
+
+    return static_cast<uint_t>(uiRv);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE uint_t
 User::_groupId_impl() const
 {
-    return 0;
+    gid_t uiRv;
+
+    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, &uiRv, xPTR_NULL, xPTR_NULL, xPTR_NULL);
+
+    return static_cast<uint_t>(uiRv);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
