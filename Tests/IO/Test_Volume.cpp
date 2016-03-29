@@ -7,7 +7,7 @@
 #include "Test_Volume.h"
 
 #include <xLib/Core/Const.h>
-#include <xLib/System/SystemInfo.h>
+#include <xLib/System/User.h>
 
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Volume)
@@ -193,7 +193,7 @@ Test_Volume::unit()
     xTEST_CASE("isSpaceEnough")
     {
         std::vec_tstring_t volumes;
-        volumes.push_back( SystemInfo().userHomeDir() );
+        volumes.push_back( User().homeDir() );
 
         xFOREACH(std::vec_tstring_t, it, volumes) {
             const Data2<ulonglong_t, bool_t> data[] = {
@@ -218,7 +218,7 @@ Test_Volume::unit()
     xTEST_CASE("space")
     {
         std::vec_tstring_t volumePaths;
-        volumePaths.push_back( SystemInfo().userHomeDir() );
+        volumePaths.push_back( User().homeDir() );
 
         xFOREACH(std::vec_tstring_t, it, volumePaths) {
             ulonglong_t available = 0ULL;

@@ -140,7 +140,7 @@ Thread::_setPriority_impl(
     const ExPriority &a_priority
 ) const
 {
-    if (!SystemInfo().isUserAdmin()) {
+    if (!User().isAdmin()) {
         Trace() << xT("::: xLib: warning (Thread::setPriority fail, need root) :::");
         return;
     }

@@ -11,6 +11,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/System/SystemInfo.h>
+#include <xLib/System/User.h>
 #include <xLib/Log/Trace.h>
 
 #if   xENV_WIN

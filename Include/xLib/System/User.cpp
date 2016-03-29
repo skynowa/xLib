@@ -9,6 +9,7 @@
 #endif
 
 #include <xLib/Log/Trace.h>
+#include <xLib/System/Environment.h>
 
 #if   xENV_WIN
     #include "Platform/Win/User_win.inl"
@@ -45,8 +46,20 @@ User::~User()
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+User::isAdmin() const
+{
+    return _isAdmin_impl();
+}
+//-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 User::loginName() const
+{
+    return _loginName_impl();
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE std::tstring_t
+User::name() const
 {
     return _loginName_impl();
 }
@@ -70,9 +83,9 @@ User::homeDir() const
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
-User::shell() const
+User::shellPath() const
 {
-    return _shell_impl();
+    return _shellPath_impl();
 }
 //-------------------------------------------------------------------------------------------------
 

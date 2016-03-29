@@ -79,52 +79,6 @@ Test_SystemInfo::unit()
         #endif
     }
 
-    xTEST_CASE("isUserAdmin")
-    {
-        m_bRv = SystemInfo().isUserAdmin();
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::isUserAdmin(): %s"), String::castBool(m_bRv).c_str());
-        #endif
-    }
-
-    xTEST_CASE("userName")
-    {
-        m_sRv = SystemInfo().userName();
-        #if xTEST_IGNORE
-            Trace() << xTRACE_VAR(m_sRv);
-        #endif
-        xTEST_EQ(m_sRv.empty(), false);
-    }
-
-    xTEST_CASE("loginUserName")
-    {
-        m_sRv = SystemInfo().loginUserName();
-        xTEST_EQ(false, m_sRv.empty());
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::loginUserName(): %s"), m_sRv.c_str());
-        #endif
-    }
-
-    xTEST_CASE("userHomeDir")
-    {
-        m_sRv = SystemInfo().userHomeDir();
-        xTEST_EQ(false, m_sRv.empty());
-        xTEST_EQ(true,  Dir(m_sRv).isExists());
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::userHomeDir(): %s"), m_sRv.c_str());
-        #endif
-    }
-
-    xTEST_CASE("userShellPath")
-    {
-        m_sRv = SystemInfo().userShellPath();
-        xTEST_EQ(false, m_sRv.empty());
-        xTEST_EQ(true,  File::isExists(m_sRv));
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::userShellPath(): %s"), m_sRv.c_str());
-        #endif
-    }
-
     xTEST_CASE("numOfCpus")
     {
         m_ulRv = SystemInfo().numOfCpus();

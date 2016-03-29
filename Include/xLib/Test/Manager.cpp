@@ -14,7 +14,7 @@
 #include <xLib/IO/Path.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/System/ProcessInfo.h>
-#include <xLib/System/SystemInfo.h>
+#include <xLib/System/User.h>
 #include <xLib/Test/Unit.h>
 
 
@@ -125,8 +125,8 @@ Manager::_construct(
     // checks
     {
     #if xENV_UNIX
-        SystemInfo info;
-        xCHECK_MSG_DO(info.isUserAdmin(), xT("Manager: can't run as root"), return);
+        User user;
+        xCHECK_MSG_DO(user.isAdmin(), xT("Manager: can't run as root"), return);
     #endif
     }
 
