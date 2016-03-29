@@ -23,7 +23,7 @@ Test_User::unit()
     {
         m_bRv = User().isAdmin();
         #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::isUserAdmin(): %s"), String::castBool(m_bRv).c_str());
+            xTRACEV(xT("\tUser::isUserAdmin(): %s"), String::castBool(m_bRv).c_str());
         #endif
     }
 
@@ -41,7 +41,7 @@ Test_User::unit()
         m_sRv = User().loginName();
         xTEST_EQ(false, m_sRv.empty());
         #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::loginUserName(): %s"), m_sRv.c_str());
+            xTRACEV(xT("\tUser::loginUserName(): %s"), m_sRv.c_str());
         #endif
     }
 
@@ -69,7 +69,7 @@ Test_User::unit()
         xTEST_EQ(false, m_sRv.empty());
         xTEST_EQ(true,  Dir(m_sRv).isExists());
         #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::homeDir(): %s"), m_sRv.c_str());
+            xTRACEV(xT("\tUser::homeDir(): %s"), m_sRv.c_str());
         #endif
     }
 
@@ -79,7 +79,7 @@ Test_User::unit()
         xTEST_EQ(false, m_sRv.empty());
         xTEST_EQ(true,  File::isExists(m_sRv));
         #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::userShellPath(): %s"), m_sRv.c_str());
+            xTRACEV(xT("\tUser::userShellPath(): %s"), m_sRv.c_str());
         #endif
     }
 }
