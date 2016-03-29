@@ -8,10 +8,12 @@
     #include "User.h"
 #endif
 
+#include <xLib/Log/Trace.h>
+
 #if   xENV_WIN
     #include "Platform/Win/User_win.inl"
 #elif xENV_UNIX
-    // #include "Platform/Unix/User_unix.inl"
+    #include "Platform/Unix/User_unix.inl"
 
     #if   xENV_LINUX
         // #include "Platform/Unix/User_linux.inl"
@@ -31,45 +33,43 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+xINLINE
 User::User()
 {
     _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE
 User::~User()
 {
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+xINLINE std::tstring_t
 User::loginName() const
 {
     return _loginName_impl();
 }
 //-------------------------------------------------------------------------------------------------
-
-uint_t
+xINLINE uint_t
 User::userId() const
 {
     return _userId_impl();
 }
 //-------------------------------------------------------------------------------------------------
-
-uint_t
+xINLINE uint_t
 User::groupId() const
 {
     return _groupId_impl();
 }
 //-------------------------------------------------------------------------------------------------
-
-std::tstring_t
+xINLINE std::tstring_t
 User::homeDir() const
 {
     return _homeDir_impl();
 }
 //-------------------------------------------------------------------------------------------------
-
-std::tstring_t
+xINLINE std::tstring_t
 User::shell() const
 {
     return _shell_impl();
