@@ -102,6 +102,19 @@
 #endif
     ///< maximum frames for stack trace
 //-------------------------------------------------------------------------------------------------
+// xGETPW_R_SIZE_MAX
+#if   xENV_WIN
+    xNA
+#elif xENV_UNIX
+    #if   defined(_SC_GETPW_R_SIZE_MAX)
+        #define xGETPW_R_SIZE_MAX \
+            ( _SC_GETPW_R_SIZE_MAX )
+    #else
+        #error xLib: xGETPW_R_SIZE_MAX not defined
+    #endif
+#endif
+    ///< getpwnam_r buffer size
+//-------------------------------------------------------------------------------------------------
 // xPAGE_SIZE
 #if   xENV_WIN
     xNA
