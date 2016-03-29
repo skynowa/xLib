@@ -132,6 +132,7 @@
 #include "Test_ProcessInfo.h"
 #include "Test_Console.h"
 #include "Test_Shell.h"
+#include "Test_User.h"
 
 
 // Package
