@@ -27,17 +27,18 @@ Test_User::unit()
         // Trace() << xT("\t\t") << xTRACE_VAR(m_bRv);
     }
 
-    xTEST_CASE("name")
+
+    xTEST_CASE("loginName")
     {
-        m_sRv = user.name();
+        m_sRv = user.loginName();
         xTEST_EQ(m_sRv.empty(), false);
 
         // Trace() << xT("\t\t") << xTRACE_VAR(m_sRv);
     }
 
-    xTEST_CASE("loginName")
+    xTEST_CASE("name")
     {
-        m_sRv = user.loginName();
+        m_sRv = user.name();
         xTEST_EQ(m_sRv.empty(), false);
 
         // Trace() << xT("\t\t") << xTRACE_VAR(m_sRv);
