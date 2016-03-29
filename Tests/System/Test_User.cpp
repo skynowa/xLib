@@ -45,6 +45,24 @@ Test_User::unit()
         #endif
     }
 
+    xTEST_CASE("userId")
+    {
+        m_uiRv = User().userId();
+        #if xTEST_IGNORE
+            Trace() << xTRACE_VAR(m_uiRv);
+        #endif
+        xTEST_DIFF(m_uiRv, 0U);
+    }
+
+    xTEST_CASE("groupId")
+    {
+        m_uiRv = User().groupId();
+        #if xTEST_IGNORE
+            Trace() << xTRACE_VAR(m_uiRv);
+        #endif
+        xTEST_DIFF(m_uiRv, 0U);
+    }
+
     xTEST_CASE("homeDir")
     {
         m_sRv = User().homeDir();
