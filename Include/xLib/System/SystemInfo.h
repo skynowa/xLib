@@ -79,16 +79,6 @@ public:
     // users
     std::tstring_t hostName() const xWARN_UNUSED_RV;
         ///< get the NetBIOS name of the local computer
-    bool_t         isUserAdmin() const xWARN_UNUSED_RV;
-        ///< is current user an admin
-    std::tstring_t loginUserName() const xWARN_UNUSED_RV;
-        ///<
-    std::tstring_t userName() const xWARN_UNUSED_RV;
-        ///< get the name of the user associated with the current thread
-    std::tstring_t userHomeDir() const xWARN_UNUSED_RV;
-        ///< get home directory of current user
-    std::tstring_t userShellPath() const xWARN_UNUSED_RV;
-        ///< get shell path of current user
 
     // CPU
     ulong_t        numOfCpus() const xWARN_UNUSED_RV;
@@ -129,13 +119,6 @@ private:
     ExOsType       _osType;
     ExOsArch       _osArch;
 
-#if xENV_UNIX
-    void_t         _passwd(std::string *pw_name, std::string *pw_passwd, uid_t *pw_uid,
-                       gid_t *pw_gid, std::string *pw_gecos, std::string *pw_dir,
-                       std::string *pw_shell) const;
-        ///< get password file entry
-#endif
-
     xNO_COPY_ASSIGN(SystemInfo)
 
 xPLATFORM_IMPL:
@@ -143,15 +126,10 @@ xPLATFORM_IMPL:
     ExOsType       _os_impl() xWARN_UNUSED_RV;
     std::tstring_t _formatOs_impl() xWARN_UNUSED_RV;
     ExOsArch       _osArch_impl() xWARN_UNUSED_RV;
+    std::tstring_t _hostName_impl() const xWARN_UNUSED_RV;
 
     // users
     std::tstring_t _desktopName_impl() const xWARN_UNUSED_RV;
-    std::tstring_t _hostName_impl() const xWARN_UNUSED_RV;
-    bool_t         _isUserAdmin_impl() const xWARN_UNUSED_RV;
-    std::tstring_t _loginUserName_impl() const xWARN_UNUSED_RV;
-    std::tstring_t _userName_impl() const xWARN_UNUSED_RV;
-    std::tstring_t _userHomeDir_impl() const xWARN_UNUSED_RV;
-    std::tstring_t _userShellPath_impl() const xWARN_UNUSED_RV;
 
     // CPU
     ulong_t        _numOfCpus_impl() const xWARN_UNUSED_RV;

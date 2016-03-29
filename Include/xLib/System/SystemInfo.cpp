@@ -101,36 +101,6 @@ SystemInfo::hostName() const
     return _hostName_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-SystemInfo::isUserAdmin() const
-{
-    return _isUserAdmin_impl();
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
-SystemInfo::loginUserName() const
-{
-    return _loginUserName_impl();
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
-SystemInfo::userName() const
-{
-    return _userName_impl();
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
-SystemInfo::userHomeDir() const
-{
-    return _userHomeDir_impl();
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
-SystemInfo::userShellPath() const
-{
-    return _userShellPath_impl();
-}
-//-------------------------------------------------------------------------------------------------
 xINLINE ulong_t
 SystemInfo::numOfCpus() const
 {
