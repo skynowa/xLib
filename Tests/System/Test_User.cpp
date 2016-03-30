@@ -63,5 +63,7 @@ Test_User::unit()
         xTEST_EQ(m_sRv.empty(), false);
         xTEST_EQ(File::isExists(m_sRv), true);
     }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
