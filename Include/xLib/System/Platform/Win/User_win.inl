@@ -58,7 +58,7 @@ User::_loginName_impl() const
 
     // try API
     {
-        char buff[xUSER_NAME_MAX + 1] = {0}; // TODO: SystemInfo::loginUserName() - LOGIN_NAME_MAX
+        char buff[xUSER_NAME_MAX + 1] = {0}; // TODO: User::loginName() - LOGIN_NAME_MAX
 
         int_t iRv = ::getlogin_r(buff, xARRAY_SIZE(buff));
         if (iRv == 0) {
