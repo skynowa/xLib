@@ -128,7 +128,7 @@ User::_name_impl() const
 {
     std::tstring_t sRv;
 
-    _passwd(&sRv, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL);
+    _passwd(&sRv, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL);
 
     return sRv;
 }
@@ -138,7 +138,7 @@ User::_userId_impl() const
 {
     uid_t uiRv;
 
-    _passwd(xPTR_NULL, xPTR_NULL, &uiRv, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL);
+    _passwd(xPTR_NULL, xPTR_NULL, &uiRv, xPTR_NULL, xPTR_NULL, xPTR_NULL);
 
     return static_cast<uint_t>(uiRv);
 }
@@ -148,7 +148,7 @@ User::_groupId_impl() const
 {
     gid_t uiRv;
 
-    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, &uiRv, xPTR_NULL, xPTR_NULL, xPTR_NULL);
+    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, &uiRv, xPTR_NULL, xPTR_NULL);
 
     return static_cast<uint_t>(uiRv);
 }
@@ -171,7 +171,7 @@ User::_homeDir_impl() const
     */
 
     // try to get from API
-    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv, xPTR_NULL);
+    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv, xPTR_NULL);
     xCHECK_RET(!sRv.empty(), sRv);
 
     // try to get from system environment
@@ -186,7 +186,7 @@ User::_shellPath_impl() const
 {
     std::tstring_t sRv;
 
-    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv);
+    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv);
 
     return sRv;
 }
@@ -204,7 +204,6 @@ User::_passwd(
     std::string *a_pw_passwd, ///< [out] Password (maybe as xPTR_NULL)
     uid_t       *a_pw_uid,    ///< [out] User ID (maybe as xPTR_NULL)
     gid_t       *a_pw_gid,    ///< [out] Group ID (maybe as xPTR_NULL)
-    std::string *a_pw_gecos,  ///< [out] Real name (maybe as xPTR_NULL)
     std::string *a_pw_dir,    ///< [out] Home directory (maybe as xPTR_NULL)
     std::string *a_pw_shell   ///< [out] Shell program (maybe as xPTR_NULL)
 ) const
@@ -213,7 +212,6 @@ User::_passwd(
     xTEST_NA(a_pw_passwd);
     xTEST_NA(a_pw_uid);
     xTEST_NA(a_pw_gid);
-    xTEST_NA(a_pw_gecos);
     xTEST_NA(a_pw_dir);
     xTEST_NA(a_pw_shell);
 
@@ -249,10 +247,6 @@ User::_passwd(
     Utils::ptrAssignT(a_pw_passwd, std::tstring_t(pwRv->pw_passwd));
     Utils::ptrAssignT(a_pw_uid,    pwRv->pw_uid);
     Utils::ptrAssignT(a_pw_gid,    pwRv->pw_gid);
-    // TODO: [Android] pwRv->pw_gecos
-#if xTODO_ANDROID
-    Utils::ptrAssignT(a_pw_gecos,  std::tstring_t(pwRv->pw_gecos));
-#endif
     Utils::ptrAssignT(a_pw_dir,    std::tstring_t(pwRv->pw_dir));
     Utils::ptrAssignT(a_pw_shell,  std::tstring_t(pwRv->pw_shell));
 }

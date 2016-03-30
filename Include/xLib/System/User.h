@@ -36,8 +36,7 @@ public:
 private:
 #if xENV_UNIX
     void_t         _passwd(std::string *pw_name, std::string *pw_passwd, uid_t *pw_uid,
-                       gid_t *pw_gid, std::string *pw_gecos, std::string *pw_dir,
-                       std::string *pw_shell) const;
+                       gid_t *pw_gid, std::string *pw_dir, std::string *pw_shell) const;
         ///< get password file entry
 #endif
 
