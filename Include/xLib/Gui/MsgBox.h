@@ -26,7 +26,7 @@ public:
         tpAbortRetryIgnore,
         tpCancelTryContinue
     };
-    typedef const ExType cExType;
+    xTYPEDEF_CONST(ExType);
 
     enum ExModalResult
         /// modal result
@@ -42,7 +42,7 @@ public:
         mrRetry,
         mrTryAgain
     };
-    typedef const ExModalResult cExModalResult;
+    xTYPEDEF_CONST(ExModalResult);
 
                   MsgBox() {}
         ///< constructor

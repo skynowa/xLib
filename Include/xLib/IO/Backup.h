@@ -23,7 +23,7 @@ public:
         bpWeekly,
         bpMonthly
     };
-    typedef const ExPeriod cExPeriod;
+    xTYPEDEF_CONST(ExPeriod);
 
     explicit  Backup(cExPeriod &period);
         ///< constructor

@@ -20,7 +20,7 @@ public:
         tpRandomBased = 1
 
     };
-    typedef const ExType cExType;
+    xTYPEDEF_CONST(ExType);
 
                    Guid() {}
         ///< constructor
