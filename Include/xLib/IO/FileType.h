@@ -44,7 +44,7 @@ public:
         faSocket            = S_IFSOCK
     #endif
     };
-    typedef const ExType cExType;
+    xTYPEDEF_CONST(ExType);
 
 #if   xENV_WIN
     typedef DWORD  types_t;
@@ -52,7 +52,7 @@ public:
     typedef mode_t types_t;
 #endif
 
-    typedef const types_t ctypes_t;
+    xTYPEDEF_CONST(types_t);
         ///< all types
 
     explicit          FileType(std::ctstring_t &filePath);

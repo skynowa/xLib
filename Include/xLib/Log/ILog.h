@@ -28,7 +28,7 @@ public:
         lvDebug,
         lvPlain
     };
-    typedef const ExLevel cExLevel;
+    xTYPEDEF_CONST(ExLevel);
 
                     ILog();
         ///< constructor
