@@ -111,12 +111,20 @@ User::_name_impl() const
 xINLINE uint_t
 User::_userId_impl() const
 {
+    // TODO: User::userId
+
+    xNOT_IMPLEMENTED;
+
     return 0;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE uint_t
 User::_groupId_impl() const
 {
+    // TODO: User::groupId
+
+    xNOT_IMPLEMENTED;
+
     return 0;
 }
 //-------------------------------------------------------------------------------------------------
