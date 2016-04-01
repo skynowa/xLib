@@ -34,6 +34,16 @@ Test_StdStream::unit()
         }
     }
 
+    xTEST_CASE("operator << for std::pair")
+    {
+        std::pair<std::tstring_t, std::tstring_t> data(xT("aaa"), xT("bbb"));
+
+        std::tostringstream_t oss;
+        oss << data;
+
+        xTEST_EQ(oss.str().empty(), false);
+    }
+
     xTEST_CASE("operator << for std::vector")
     {
         m_vsRv.clear();

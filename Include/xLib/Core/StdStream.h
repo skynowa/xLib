@@ -13,6 +13,11 @@ xNAMESPACE_BEGIN2(xlib, core)
 ///@name Sequence containers
 ///@{
 
+template<class Traits, class T1, class T2>
+inline std::basic_ostream<tchar_t, Traits> &
+operator << (std::basic_ostream<tchar_t, Traits> &os, const std::pair<T1, T2> &value);
+    ///< for std::pair
+
 // TODO: for std::array (C++11)
 
 template<class Traits, class T>

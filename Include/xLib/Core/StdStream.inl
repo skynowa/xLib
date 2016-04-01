@@ -21,6 +21,18 @@ xNAMESPACE_BEGIN2(xlib, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+template<class Traits, class T1, class T2>
+xINLINE std::basic_ostream<tchar_t, Traits> &
+operator << (
+    std::basic_ostream<tchar_t, Traits> &a_os,
+    const std::pair<T1, T2>             &a_value
+)
+{
+    a_os << xT("std::pair: (") << a_value.first << xT(",") << a_value.second << ")";
+
+    return a_os;
+}
+//-------------------------------------------------------------------------------------------------
 template<class Traits, class T>
 xINLINE std::basic_ostream<tchar_t, Traits> &
 operator << (
