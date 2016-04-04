@@ -26,7 +26,6 @@ SET(CMAKE_COLOR_MAKEFILE        ON)
 SET(CMAKE_VERBOSE_MAKEFILE      OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_REQUIRED_QUIET        ON)
-enable_testing()
 
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
@@ -89,7 +88,10 @@ endif()
 # includes
 include_directories(${XLIB_INCLUDES})
 
-add_subdirectory(${XLIB_LOCATION}/Tests)
+if (xOPTION_BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(${XLIB_LOCATION}/Tests)
+endif()
 #--------------------------------------------------------------------------------------------------
 # vars
 if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")

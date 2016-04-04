@@ -35,6 +35,8 @@ option(xOPTION_PROJECT_LIB_STATIC    "Project: static library"           1)
 option(xOPTION_PROJECT_LIB_SHARE     "Project: share library"            0)
 option(xOPTION_PROJECT_LIB_MODULE    "Project: dynamic-link library"     0)
 
+option(xOPTION_BUILD_TESTS           "Build tests"                       0)
+
 option(xOPTION_CPP11                 "Support C++11 language"            0)
 option(xOPTION_DEBUG_DIALOG          "Debug prompt dialog"               0)
 option(xOPTION_DEBUG_MODE_MSGBOX     "Debug mode: message box"           0)
@@ -46,6 +48,7 @@ option(xOPTION_DEBUG_MODE_NO         "Debug mode: no debugging"          0)
 option(xOPTION_BUILD_MSG             "Build messages"                    0)
 option(xOPTION_TEST_PRIVATE          "Test private data"                 0)
 option(xOPTION_TEST_TRACING          "Use tracing in tests"              1)
+
 
 message("")
 message(STATUS "xOPTION_PROJECT_HEADER_ONLY   : ${xOPTION_PROJECT_HEADER_ONLY}")
