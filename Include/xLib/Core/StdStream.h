@@ -46,8 +46,15 @@ operator << (std::basic_ostream<tchar_t, Traits> &os, const std::list<T> &value)
 ///@name Associative containers
 ///@{
 
-// TODO: for std::set
-// TODO: for std::multiset
+template<class Traits, class T>
+inline std::basic_ostream<tchar_t, Traits> &
+operator << (std::basic_ostream<tchar_t, Traits> &os, const std::set<T> &value);
+    ///< for std::set
+
+template<class Traits, class T>
+inline std::basic_ostream<tchar_t, Traits> &
+operator << (std::basic_ostream<tchar_t, Traits> &os, const std::set<T> &value);
+    ///< for std::multiset
 
 template<class Traits, class T1, class T2>
 inline std::basic_ostream<tchar_t, Traits> &

@@ -103,6 +103,58 @@ operator << (
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+template<class Traits, class T>
+xINLINE std::basic_ostream<tchar_t, Traits> &
+operator << (
+    std::basic_ostream<tchar_t, Traits> &a_os,
+    const std::set<T>                   &a_value
+)
+{
+    a_os << xT("std::set (") << a_value.size() << xT(" elements)");
+
+    if ( a_value.empty() )  {
+        return a_os;
+    }
+
+    a_os << xT(":") << std::endl;
+
+    typename std::set<T>::const_iterator it;
+    for (it = a_value.begin(); it != a_value.end(); ++ it) {
+        a_os << xT("    value[") << std::distance(a_value.begin(), it) << xT("]: ") << *it;
+        a_os << std::endl;
+    }
+
+    a_os.seekp(- 1, a_os.cur); a_os << " ";
+
+    return a_os;
+}
+//-------------------------------------------------------------------------------------------------
+template<class Traits, class T>
+xINLINE std::basic_ostream<tchar_t, Traits> &
+operator << (
+    std::basic_ostream<tchar_t, Traits> &a_os,
+    const std::multiset<T>              &a_value
+)
+{
+    a_os << xT("std::multiset (") << a_value.size() << xT(" elements)");
+
+    if ( a_value.empty() )  {
+        return a_os;
+    }
+
+    a_os << xT(":") << std::endl;
+
+    typename std::multiset<T>::const_iterator it;
+    for (it = a_value.begin(); it != a_value.end(); ++ it) {
+        a_os << xT("    value[") << std::distance(a_value.begin(), it) << xT("]: ") << *it;
+        a_os << std::endl;
+    }
+
+    a_os.seekp(- 1, a_os.cur); a_os << " ";
+
+    return a_os;
+}
+//-------------------------------------------------------------------------------------------------
 template<class Traits, class T1, class T2>
 xINLINE std::basic_ostream<tchar_t, Traits> &
 operator << (

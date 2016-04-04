@@ -43,6 +43,32 @@ Test_StdStream::unit()
         xTEST_EQ(oss.str().empty(), false);
     }
 
+    xTEST_CASE("operator << for std::set")
+    {
+        std::set<int> stRv;
+
+        for (int i = 0; i < 5; ++ i) {
+            stRv.insert(i);
+        }
+
+        std::tostringstream_t oss;
+        oss << stRv;
+        xTEST_EQ(oss.str().empty(), false);
+    }
+
+    xTEST_CASE("operator << for std::multiset")
+    {
+        std::multiset<int> mstRv;
+
+        for (int i = 0; i < 5; ++ i) {
+            mstRv.insert(i);
+        }
+
+        std::tostringstream_t oss;
+        oss << mstRv;
+        xTEST_EQ(oss.str().empty(), false);
+    }
+
     xTEST_CASE("operator << for std::vector")
     {
         m_vsRv.clear();
