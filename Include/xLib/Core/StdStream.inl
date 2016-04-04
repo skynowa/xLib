@@ -42,7 +42,7 @@ operator << (
 {
     a_os << xT("std::vector (") << a_value.size() << xT(" elements)");
 
-    if (a_value.empty())  {
+    if ( a_value.empty() )  {
         return a_os;
     }
 
@@ -69,7 +69,7 @@ operator << (
 {
     a_os << xT("std::list (") << a_value.size() << xT(" elements)");
 
-    if (a_value.empty()) {
+    if ( a_value.empty() ) {
         return a_os;
     }
 
@@ -164,7 +164,7 @@ operator << (
 {
     a_os << xT("std::map (") << a_value.size() << xT(" elements)");
 
-    if (a_value.empty()) {
+    if ( a_value.empty() ) {
         return a_os;
     }
 
