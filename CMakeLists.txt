@@ -87,11 +87,6 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # includes
 include_directories(${XLIB_INCLUDES})
-
-if (xOPTION_BUILD_TESTS)
-    enable_testing()
-    add_subdirectory(${XLIB_LOCATION}/Tests)
-endif()
 #--------------------------------------------------------------------------------------------------
 # vars
 if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
@@ -105,7 +100,6 @@ set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
 # flags
 include(CxxFlags)
 # include(CMakeVariables)
-
 #--------------------------------------------------------------------------------------------------
 # definitions
 if (xOPTION_CPP11)
@@ -232,3 +226,10 @@ add_custom_target(uninstall
 #--------------------------------------------------------------------------------------------------
 # fix warning "Manually-specified variables were not used by the project"
 unset(CMAKE_TOOLCHAIN_FILE)
+#--------------------------------------------------------------------------------------------------
+# tests
+if (xOPTION_BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(${XLIB_LOCATION}/Tests)
+endif()
+#--------------------------------------------------------------------------------------------------
