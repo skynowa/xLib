@@ -35,16 +35,12 @@ Test_Format::unit()
         std::ctstring_t v16 = std::ctstring_t(xT("aaa"));
         ctchar_t *      v17 = xT("bbb");
 
-        m_sRv += Format::format(
-            xT("{}_{}_{}_{}_{}_{}_{}_{}_{}_{}"),
-            v1, v2, v3, v4, v5, v6, v7, v8, v9, v10);
-
-        m_sRv += Format::format(
-            xT("_{}_{}_{}_{}_{}_{}_{}"),
-            v11, v12, v13, v14, v15, v16, v17);
-
+        m_sRv = Format::format(
+            xT("{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}"),
+            v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17);
         xTEST_EQ(m_sRv, std::tstring_t(xT("0_a_b_-10_10_-111_111_-222_222_-333_333_444_555_666_0x309_aaa_bbb")));
-        // Trace() << xTRACE_VAR(m_sRv);
+
+        Trace() << xTRACE_VAR(m_sRv);
     }
 
     return true;
