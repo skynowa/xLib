@@ -43,6 +43,8 @@ public:
     xFORMAT_DECLARE(19)
     xFORMAT_DECLARE(20)
 
+    // FAQ: https://github.com/philsquared/Catch/blob/master/include/internal/catch_tostring.h
+
     static
     std::tstring_t    toString(cbool_t &value);
     static
