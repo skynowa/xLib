@@ -12,11 +12,12 @@
 
 
 project(xLib)
-
 cmake_minimum_required(VERSION 2.6)
 
+#--------------------------------------------------------------------------------------------------
+# options
 set(PROJECT_TYPE "CXX")
-set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "" FORCE)
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release;RelWithDebInfo" CACHE STRING "" FORCE)
 set(CMAKE_BUILD_TYPE "RelWithDebInfo")
     # None           (CMAKE_C_FLAGS or CMAKE_CXX_FLAGS used)
     # Debug          (CMAKE_C_FLAGS_DEBUG or CMAKE_CXX_FLAGS_DEBUG)
