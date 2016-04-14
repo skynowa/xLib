@@ -94,6 +94,8 @@ private:
     static
     std::string _floatToString(const T &a_value, cint_t &a_precision, cbool_t &a_is_fixed)
     {
+        // Trace() << Type::name(a_value);
+
         std::csize_t    buffSize = std::numeric_limits<T>::max_exponent10 + 20;
         std::ctstring_t postfix  = (Type::name(a_value) == xT("long double")) ? xT("Lf") : xT("f");
         std::ctstring_t format   = xT("%0.") + toString(a_precision) + postfix;
