@@ -88,7 +88,7 @@ private:
 
 #if !xFORMAT_MODE_STD_STREAM
     static
-    std::tstring_t    _toString(std::csize_t &buffSize, const tchar_t *format, ...);
+    std::tstring_t    _toString(std::csize_t &buffSize, ctchar_t *format, ...);
 
     template<typename T>
     static
