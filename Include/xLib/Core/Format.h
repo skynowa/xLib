@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-#define xFORMAT_MODE 1
+#define xFORMAT_MODE_STD_STREAM 1
 
 class Format
     ///< format string
@@ -45,6 +45,7 @@ public:
 
     // FAQ: https://github.com/philsquared/Catch/blob/master/include/internal/catch_tostring.h
 
+#if !xFORMAT_MODE_STD_STREAM
     static
     std::tstring_t    toString(cbool_t &value);
     static
@@ -79,13 +80,16 @@ public:
     std::ctstring_t & toString(std::ctstring_t &value);
     static
     std::tstring_t    toString(ctchar_t *value);
+#endif
 
 private:
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)
 
+#if !xFORMAT_MODE_STD_STREAM
     static
     std::tstring_t    _toString(std::csize_t &buffSize, const tchar_t *format, ...);
+#endif
 };
 
 xNAMESPACE_END2(xlib, core)
