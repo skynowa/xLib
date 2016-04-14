@@ -69,11 +69,11 @@ public:
     static
     std::tstring_t    toString(culonglong_t &value);
     static
-    std::tstring_t    toString(cfloat_t &value);
+    std::tstring_t    toString(cfloat_t &value, cint_t &precision = 5, cbool_t &is_fixed = true);
     static
-    std::tstring_t    toString(cdouble_t &value);
+    std::tstring_t    toString(cdouble_t &value, cint_t &precision = 10, cbool_t &is_fixed = true);
     static
-    std::tstring_t    toString(clongdouble_t &value);
+    std::tstring_t    toString(clongdouble_t &value, cint_t &a_precision = 20, cbool_t &is_fixed = true);
     static
     std::tstring_t    toString(cvoid_t *value);
     static
@@ -89,6 +89,31 @@ private:
 #if !xFORMAT_MODE_STD_STREAM
     static
     std::tstring_t    _toString(std::csize_t &buffSize, const tchar_t *format, ...);
+
+    template<typename T>
+    static
+    std::string _floatToString(const T &a_value, cint_t &a_precision, cbool_t &a_is_fixed)
+    {
+        std::csize_t    buffSize = std::numeric_limits<T>::max_exponent10 + 20;
+        std::ctstring_t postfix  = (Type::name(a_value) == xT("long double")) ? xT("Lf") : xT("f");
+        std::ctstring_t format   = xT("%0.") + toString(a_precision) + postfix;
+
+        std::tstring_t  value = _toString(buffSize, format.c_str(), a_value);
+
+        if ( !a_is_fixed ) {
+            std::size_t i = value.find_last_not_of(xT('0'));
+
+            if (i != std::string::npos && i != value.size() - 1) {
+                if (value[i] == xT('.')) {
+                    ++ i;
+                }
+
+                value = value.substr(0, i + 1);
+            }
+        }
+
+        return value;
+    }
 #endif
 };
 

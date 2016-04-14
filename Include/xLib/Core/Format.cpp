@@ -9,7 +9,6 @@
 #endif
 
 #include <xLib/Core/Type.h>
-// #include <xLib/Log/Trace.h>
 
 
 xNAMESPACE_BEGIN2(xlib, core)
@@ -139,34 +138,29 @@ Format::toString(culonglong_t &a_value)
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(cfloat_t &a_value)
+Format::toString(cfloat_t &a_value, cint_t &a_precision, cbool_t &a_is_fixed)
 {
     // Trace() << Type::name(a_value);
 
-    std::csize_t buffSize = std::numeric_limits<float_t>::max_exponent10 + 20;
-
-    return _toString(buffSize, xT("%0.5f"), a_value);
+    return _floatToString(a_value, a_precision, a_is_fixed);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(cdouble_t &a_value)
+Format::toString(cdouble_t &a_value, cint_t &a_precision, cbool_t &a_is_fixed)
 {
     // Trace() << Type::name(a_value);
-    std::csize_t buffSize = std::numeric_limits<cdouble_t>::max_exponent10 + 20;
 
-    return _toString(buffSize, xT("%0.10f"), a_value);
+    return _floatToString(a_value, a_precision, a_is_fixed);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(clongdouble_t &a_value)
+Format::toString(clongdouble_t &a_value, cint_t &a_precision, cbool_t &a_is_fixed)
 {
     // Trace() << Type::name(a_value);
 
-    std::csize_t buffSize = std::numeric_limits<longdouble_t>::max_exponent10 + 20;
-
-    return _toString(buffSize, xT("%0.20Lf"), a_value);
+    return _floatToString(a_value, a_precision, a_is_fixed);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
