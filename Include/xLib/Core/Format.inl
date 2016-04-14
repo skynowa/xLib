@@ -19,6 +19,17 @@ xNAMESPACE_BEGIN2(xlib, core)
                 ss.clear()
 
     #define xFORMAT_SWITCH_CASE(v) \
+                if      (Type::name(v) == xT("float")) { \
+                    ss << std::setprecision(5); \
+                }  \
+                else if (Type::name(v) == xT("double")) { \
+                    ss << std::setprecision(10); \
+                } \
+                else if (Type::name(v) == xT("long double")) { \
+                    ss << std::setprecision(20); \
+                } \
+                \
+                ss << std::fixed; \
                 ss << v
 
     #define xFORMAT_SWITCH_POST \
