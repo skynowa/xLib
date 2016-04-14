@@ -181,56 +181,5 @@ xFORMAT(18)
 xFORMAT(19)
 xFORMAT(20)
 //-------------------------------------------------------------------------------------------------
-#if 0
-
-xINLINE std::tstring_t
-Format::format(
-    ctchar_t *a_format, xVA_VARS_6
-)
-{
-    tchar_t      szRv[2048 + 1] = {};
-    ctchar_t    *delimiter      = xT("{}");
-    std::size_t  delimiter_size = 2;
-    std::size_t  posPrev        = 0U; // start of string
-
-    for (std::size_t i = 0; ; ++ i) {
-        // std::csize_t pos = a_format.find(delimiter, posPrev);
-        // xCHECK_DO(pos == std::tstring_t::npos, break);
-        ctchar_t *pos = std::strstr(a_format + posPrev, delimiter);
-        xCHECK_DO(pos == xPTR_NULL, break);
-
-        // sRv += a_format.substr(posPrev, pos - posPrev);
-        std::strncat(szRv, a_format + posPrev, std::size_t(pos - a_format - posPrev));
-
-        static std::tstringstream_t ss;
-        ss.str( std::tstring_t() );
-        ss.clear();
-
-        switch (i) {
-        case 0: ss << a_v1; break;
-        case 1: ss << a_v2; break;
-        case 2: ss << a_v3; break;
-        case 3: ss << a_v4; break;
-        case 4: ss << a_v5; break;
-        case 5: ss << a_v6; break;
-        default:            break;
-        }
-
-        // szRv += ss.str();
-        std::strcat(szRv, ss.str().c_str());
-
-        // posPrev = pos + delimiter_size;
-        posPrev = pos - a_format + delimiter_size;
-    }
-
-    // sRv += a_format.substr(posPrev, a_format.size() - posPrev);
-    // std::strncat(szRv, a_format + posPrev, 2048 - posPrev);
-    std::strcat(szRv, a_format + posPrev);
-
-    return szRv;
-}
-
-#endif
-//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, core)
