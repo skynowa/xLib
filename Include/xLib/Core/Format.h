@@ -92,7 +92,7 @@ private:
 
     template<typename T>
     static
-    std::string _floatToString(const T &a_value, cint_t &a_precision, cbool_t &a_is_fixed)
+    std::tstring_t _floatToString(const T &a_value, cint_t &a_precision, cbool_t &a_is_fixed)
     {
         // Trace() << Type::name(a_value);
 
@@ -105,7 +105,7 @@ private:
         if ( !a_is_fixed ) {
             std::size_t i = value.find_last_not_of(xT('0'));
 
-            if (i != std::string::npos && i != value.size() - 1) {
+            if (i != std::tstring_t::npos && i != value.size() - 1) {
                 if (value[i] == xT('.')) {
                     ++ i;
                 }
