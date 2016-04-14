@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-#if xFORMAT_MODE
+#if xFORMAT_MODE_STD_STREAM
     #define xFORMAT_SWITCH_PRE \
                 static std::tstringstream_t ss; \
                 ss.str( std::tstring_t() ); \
