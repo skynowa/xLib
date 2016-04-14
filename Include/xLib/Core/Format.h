@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-#define xFORMAT_MODE_STD_STREAM 1
+#define xFORMAT_MODE_STD_STREAM 0
 
 class Format
     ///< format string

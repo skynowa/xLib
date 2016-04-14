@@ -16,31 +16,138 @@ Test_Format::unit()
 {
     xTEST_CASE("Format")
     {
-        cbool_t         v1  = false;
-        ctchar_t        v2  = xT('a');
-        cuchar_t        v3  = 'b';
-        cshort_t        v4  = -10;
-        cushort_t       v5  = 10;
-        cint_t          v6  = -111;
-        cuint_t         v7  = 111U;
-        clong_t         v8  = -222L;
-        culong_t        v9  = 222UL;
-        clonglong_t     v10 = -333LL;
-        culonglong_t    v11 = 333ULL;
-        cfloat_t        v12 = 444.0f;
-        cdouble_t       v13 = 555.0f;
-        clongdouble_t   v14 = 666.0L;
-        cvoid_t *       v15 = (cvoid_t *)777;
+        cbool_t value = false;
 
-        std::ctstring_t v16 = std::ctstring_t(xT("aaa"));
-        ctchar_t *      v17 = xT("bbb");
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("0")));
+    }
 
-        m_sRv = Format::format(
-            xT("{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}"),
-            v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("0_a_b_-10_10_-111_111_-222_222_-333_333_444_555_666_0x309_aaa_bbb")));
+    xTEST_CASE("Format")
+    {
+        ctchar_t value = xT('a');
 
-        Trace() << xTRACE_VAR(m_sRv);
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("a")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        cuchar_t value = 'b';
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("b")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        cshort_t value = -10;
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("-10")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        cushort_t value = 10;
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("10")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        cint_t value = -111;
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("-111")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        cuint_t value = 111U;
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("111")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        clong_t value = -222L;
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("-222")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        culong_t value = 222UL;
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("222")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        clonglong_t value = -333LL;
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("-333")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        culonglong_t value = 333ULL;
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("333")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        cfloat_t value = 444.0f;
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("444.00000")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        cdouble_t value = 555.0f;
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("555.0000000000")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        clongdouble_t value = 666.0L;
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("666.00000000000000000000")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        cvoid_t * value = (cvoid_t *)777;
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("0x309")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        std::ctstring_t value = std::ctstring_t(xT("aaa"));
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("aaa")));
+    }
+
+    xTEST_CASE("Format")
+    {
+        ctchar_t * value = xT("bbb");
+
+        m_sRv = Format::format(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("bbb")));
     }
 
     return true;

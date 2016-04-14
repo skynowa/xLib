@@ -27,7 +27,7 @@ xINLINE std::tstring_t
 Format::toString(cbool_t &a_value)
 {
     // Trace() << Type::name(a_value);
-    return a_value ? xT("true") : xT("false");
+    return a_value ? xT("1") : xT("0");
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -47,7 +47,7 @@ Format::toString(cuchar_t &a_value)
     // Trace() << Type::name(a_value);
     std::csize_t buffSize = 4 * sizeof(uchar_t);
 
-    return _toString(buffSize, xT("%hhu"), a_value);
+    return _toString(buffSize, xT("%c"), a_value);    // %hhu
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -145,7 +145,7 @@ Format::toString(cfloat_t &a_value)
 
     std::csize_t buffSize = std::numeric_limits<float_t>::max_exponent10 + 20;
 
-    return _toString(buffSize, xT("%f"), a_value);
+    return _toString(buffSize, xT("%0.5f"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -153,9 +153,9 @@ xINLINE std::tstring_t
 Format::toString(cdouble_t &a_value)
 {
     // Trace() << Type::name(a_value);
-    std::csize_t buffSize = std::numeric_limits<double>::max_exponent10 + 20;
+    std::csize_t buffSize = std::numeric_limits<cdouble_t>::max_exponent10 + 20;
 
-    return _toString(buffSize, xT("%f"), a_value);
+    return _toString(buffSize, xT("%0.10f"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -166,7 +166,7 @@ Format::toString(clongdouble_t &a_value)
 
     std::csize_t buffSize = std::numeric_limits<longdouble_t>::max_exponent10 + 20;
 
-    return _toString(buffSize, xT("%Lf"), a_value);
+    return _toString(buffSize, xT("%0.20Lf"), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
