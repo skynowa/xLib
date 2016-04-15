@@ -206,7 +206,7 @@ Test_Format::unit()
 
     xTEST_CASE("std::vec_tstring_t")
     {
-    #if 0
+    #if 1
         std::vec_tstring_t value;
         value.push_back(xT("aa"));
         value.push_back(xT("bbb"));
