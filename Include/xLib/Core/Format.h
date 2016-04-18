@@ -9,11 +9,8 @@
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_MODE_STD_STREAM 1
 
-#if xFORMAT_MODE_STD_STREAM
-    #define Format FormatCpp
-#else
-    #define Format FormatC
-#endif
+#include <xLib/Core/Core.h>
+#include <xLib/Core/String.h>
 
 #define xFORMAT_DECLARE(n) \
     template<xVA_TYPES_##n> \
@@ -168,4 +165,10 @@
         \
         return sRv; \
     }
+//-------------------------------------------------------------------------------------------------
+#if xFORMAT_MODE_STD_STREAM
+    #include <xLib/Core/Format_Cpp.h>
+#else
+    #include <xLib/Core/Format_C.h>
+#endif
 //-------------------------------------------------------------------------------------------------

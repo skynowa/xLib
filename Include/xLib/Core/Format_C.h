@@ -6,14 +6,10 @@
 
 #pragma once
 
-#include <xLib/Core/Core.h>
-#include <xLib/Core/String.h>
-
-#include <xLib/Core/Format.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-class Format_C
+class Format
     ///< format string
 {
 public:
@@ -74,8 +70,8 @@ public:
     std::tstring_t    toString(ctchar_t *value);
 
 private:
-    xNO_INSTANCE(Format_C)
-    xNO_COPY_ASSIGN(Format_C)
+    xNO_INSTANCE(Format)
+    xNO_COPY_ASSIGN(Format)
 
     static
     std::tstring_t    _toString(std::csize_t &buffSize, ctchar_t *format, ...);
