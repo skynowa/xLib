@@ -8,172 +8,166 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/String.h>
-#include <xLib/Core/Format_Common.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, core)
-
 #define xFORMAT_MODE_STD_STREAM 1
 
-class Format
-    ///< format string
-{
-public:
-    xFORMAT_DECLARE(1)
-    xFORMAT_DECLARE(2)
-    xFORMAT_DECLARE(3)
-    xFORMAT_DECLARE(4)
-    xFORMAT_DECLARE(5)
-    xFORMAT_DECLARE(6)
-    xFORMAT_DECLARE(7)
-    xFORMAT_DECLARE(8)
-    xFORMAT_DECLARE(9)
-    xFORMAT_DECLARE(10)
-    xFORMAT_DECLARE(11)
-    xFORMAT_DECLARE(12)
-    xFORMAT_DECLARE(13)
-    xFORMAT_DECLARE(14)
-    xFORMAT_DECLARE(15)
-    xFORMAT_DECLARE(16)
-    xFORMAT_DECLARE(17)
-    xFORMAT_DECLARE(18)
-    xFORMAT_DECLARE(19)
-    xFORMAT_DECLARE(20)
-
-    // FAQ: https://github.com/philsquared/Catch/blob/master/include/internal/catch_tostring.h
-
-#if !xFORMAT_MODE_STD_STREAM
-    static
-    std::tstring_t    toString(cbool_t &value);
-    static
-    std::tstring_t    toString(ctchar_t &value);
-    static
-    std::tstring_t    toString(cuchar_t &value);
-    static
-    std::tstring_t    toString(cshort_t &value);
-    static
-    std::tstring_t    toString(cushort_t &value);
-    static
-    std::tstring_t    toString(cint_t &value);
-    static
-    std::tstring_t    toString(cuint_t &value);
-    static
-    std::tstring_t    toString(clong_t &value);
-    static
-    std::tstring_t    toString(culong_t &value);
-    static
-    std::tstring_t    toString(clonglong_t &value);
-    static
-    std::tstring_t    toString(culonglong_t &value);
-    static
-    std::tstring_t    toString(cfloat_t &value, cint_t &precision = 5, cbool_t &is_fixed = true);
-    static
-    std::tstring_t    toString(cdouble_t &value, cint_t &precision = 10, cbool_t &is_fixed = true);
-    static
-    std::tstring_t    toString(clongdouble_t &value, cint_t &a_precision = 20, cbool_t &is_fixed = true);
-    static
-    std::tstring_t    toString(cvoid_t *value);
-    static
-    std::ctstring_t & toString(std::ctstring_t &value);
-    static
-    std::tstring_t    toString(ctchar_t *value);
-#endif
-
-private:
-    xNO_INSTANCE(Format)
-    xNO_COPY_ASSIGN(Format)
-
 #if xFORMAT_MODE_STD_STREAM
-//    static
-//    void _setOptions(std::tstringstream_t &ss, cbool_t &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, const char &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, const wchar_t &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, cuchar_t &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, cshort_t &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, cushort_t &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, cint_t &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, cuint_t &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, clong_t &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, culong_t &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, clonglong_t &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, culonglong_t &a_value) {}
-
-//    static
-//    void _setOptions(std::tstringstream_t &ss, cfloat_t &a_value)
-//    {
-//        ss << std::setprecision(5);
-//        ss << std::fixed;
-//    }
-//    static
-//    void _setOptions(std::tstringstream_t &ss, cdouble_t &a_value)
-//    {
-//        ss << std::setprecision(10);
-//        ss << std::fixed;
-//    }
-//    static
-//    void _setOptions(std::tstringstream_t &ss, clongdouble_t &a_value)
-//    {
-//        ss << std::setprecision(20);
-//        ss << std::fixed;
-//    }
-
-//    static
-//    void _setOptions(std::tstringstream_t &ss, cvoid_t * &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, const std::string &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, const std::wstring &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, const char * &a_value) {}
-//    static
-//    void _setOptions(std::tstringstream_t &ss, const wchar_t * &a_value) {}
+    #define Format FormatCpp
 #else
-    static
-    std::tstring_t    _toString(std::csize_t &buffSize, ctchar_t *format, ...);
-
-    template<typename T>
-    static
-    std::tstring_t _floatToString(const T &a_value, cint_t &a_precision, cbool_t &a_is_fixed)
-    {
-        // Trace() << Type::name(a_value);
-
-        std::csize_t    buffSize = std::numeric_limits<T>::max_exponent10 + 20;
-        std::ctstring_t postfix  = (Type::name(a_value) == xT("long double")) ? xT("Lf") : xT("f");
-        std::ctstring_t format   = xT("%0.") + toString(a_precision) + postfix;
-
-        std::tstring_t  value = _toString(buffSize, format.c_str(), a_value);
-
-        if ( !a_is_fixed ) {
-            std::size_t i = value.find_last_not_of(xT('0'));
-
-            if (i != std::tstring_t::npos && i != value.size() - 1) {
-                if (value[i] == xT('.')) {
-                    ++ i;
-                }
-
-                value = value.substr(0, i + 1);
-            }
-        }
-
-        return value;
-    }
+    #define Format FormatC
 #endif
-};
 
-xNAMESPACE_END2(xlib, core)
+#define xFORMAT_DECLARE(n) \
+    template<xVA_TYPES_##n> \
+    static \
+    std::tstring_t format(std::ctstring_t &format, xVA_VARS_##n);
 //-------------------------------------------------------------------------------------------------
-#include "Format.inl"
+#if xFORMAT_MODE_STD_STREAM
+    #define xFORMAT_SWITCH_PRE \
+                static std::tstringstream_t ss; \
+                ss.str( std::tstring_t() ); \
+                ss.clear()
 
-#if xOPTION_PROJECT_HEADER_ONLY
-    #include "Format.cpp"
+    #define xFORMAT_SWITCH_CASE(v) \
+                if      (Type::name(v) == xT("float")) { \
+                    ss << std::setprecision(5); \
+                    ss << std::fixed; \
+                } \
+                else if (Type::name(v) == xT("double")) { \
+                    ss << std::setprecision(10); \
+                    ss << std::fixed; \
+                } \
+                else if (Type::name(v) == xT("long double")) { \
+                    ss << std::setprecision(20); \
+                    ss << std::fixed; \
+                } \
+                \
+                ss << v
+
+    #define xFORMAT_SWITCH_POST \
+                sRv.append( ss.str() )
+#else
+    #define xFORMAT_SWITCH_PRE \
+                xNA
+
+    #define xFORMAT_SWITCH_CASE(v) \
+                sRv.append( toString(v) )
+
+    #define xFORMAT_SWITCH_POST \
+                xNA
 #endif
+//-------------------------------------------------------------------------------------------------
+#define xFORMAT_SWITCH_CASE_1 \
+            case 1: xFORMAT_SWITCH_CASE(a_v1); break;
+
+#define xFORMAT_SWITCH_CASE_2 \
+            xFORMAT_SWITCH_CASE_1 \
+            case 2: xFORMAT_SWITCH_CASE(a_v2); break;
+
+#define xFORMAT_SWITCH_CASE_3 \
+            xFORMAT_SWITCH_CASE_2 \
+            case 3: xFORMAT_SWITCH_CASE(a_v3); break;
+
+#define xFORMAT_SWITCH_CASE_4 \
+            xFORMAT_SWITCH_CASE_3 \
+            case 4: xFORMAT_SWITCH_CASE(a_v4); break;
+
+#define xFORMAT_SWITCH_CASE_5 \
+            xFORMAT_SWITCH_CASE_4 \
+            case 5: xFORMAT_SWITCH_CASE(a_v5); break;
+
+#define xFORMAT_SWITCH_CASE_6 \
+            xFORMAT_SWITCH_CASE_5 \
+            case 6: xFORMAT_SWITCH_CASE(a_v6); break;
+
+#define xFORMAT_SWITCH_CASE_7 \
+            xFORMAT_SWITCH_CASE_6 \
+            case 7: xFORMAT_SWITCH_CASE(a_v7); break;
+
+#define xFORMAT_SWITCH_CASE_8 \
+            xFORMAT_SWITCH_CASE_7 \
+            case 8: xFORMAT_SWITCH_CASE(a_v8); break;
+
+#define xFORMAT_SWITCH_CASE_9 \
+            xFORMAT_SWITCH_CASE_8 \
+            case 9: xFORMAT_SWITCH_CASE(a_v9); break;
+
+#define xFORMAT_SWITCH_CASE_10 \
+            xFORMAT_SWITCH_CASE_9 \
+            case 10: xFORMAT_SWITCH_CASE(a_v10); break;
+
+#define xFORMAT_SWITCH_CASE_11 \
+            xFORMAT_SWITCH_CASE_10 \
+            case 11: xFORMAT_SWITCH_CASE(a_v11); break;
+
+#define xFORMAT_SWITCH_CASE_12 \
+            xFORMAT_SWITCH_CASE_11 \
+            case 12: xFORMAT_SWITCH_CASE(a_v12); break;
+
+#define xFORMAT_SWITCH_CASE_13 \
+            xFORMAT_SWITCH_CASE_12 \
+            case 13: xFORMAT_SWITCH_CASE(a_v13); break;
+
+#define xFORMAT_SWITCH_CASE_14 \
+            xFORMAT_SWITCH_CASE_13 \
+            case 14: xFORMAT_SWITCH_CASE(a_v14); break;
+
+#define xFORMAT_SWITCH_CASE_15 \
+            xFORMAT_SWITCH_CASE_14 \
+            case 15: xFORMAT_SWITCH_CASE(a_v15); break;
+
+#define xFORMAT_SWITCH_CASE_16 \
+            xFORMAT_SWITCH_CASE_15 \
+            case 16: xFORMAT_SWITCH_CASE(a_v16); break;
+
+#define xFORMAT_SWITCH_CASE_17 \
+            xFORMAT_SWITCH_CASE_16 \
+            case 17: xFORMAT_SWITCH_CASE(a_v17); break;
+
+#define xFORMAT_SWITCH_CASE_18 \
+            xFORMAT_SWITCH_CASE_17 \
+            case 18: xFORMAT_SWITCH_CASE(a_v18); break;
+
+#define xFORMAT_SWITCH_CASE_19 \
+            xFORMAT_SWITCH_CASE_18 \
+            case 19: xFORMAT_SWITCH_CASE(a_v19); break;
+
+#define xFORMAT_SWITCH_CASE_20 \
+            xFORMAT_SWITCH_CASE_19 \
+            case 20: xFORMAT_SWITCH_CASE(a_v20); break;
+//-------------------------------------------------------------------------------------------------
+#define xFORMAT(n) \
+    template<xVA_TYPES_##n> \
+    std::tstring_t \
+    Format::format( \
+        std::ctstring_t &a_format, xVA_VARS_##n \
+    ) \
+    { \
+        std::tstring_t  sRv; \
+        std::ctstring_t delimiter      = xT("{}"); \
+        std::csize_t    delimiter_size = delimiter.size(); \
+        std::size_t     posPrev        = 0U; \
+        \
+        for (std::size_t i = 1; ; ++ i) { \
+            std::csize_t pos = a_format.find(delimiter, posPrev); \
+            xCHECK_DO(pos == std::tstring_t::npos, break); \
+            \
+            sRv += a_format.substr(posPrev, pos - posPrev); \
+            \
+            xFORMAT_SWITCH_PRE; \
+            \
+            switch (i) { \
+            xFORMAT_SWITCH_CASE_##n \
+            default: break; \
+            } \
+            \
+            xFORMAT_SWITCH_POST; \
+            \
+            posPrev = pos + delimiter_size; \
+        } \
+        \
+        sRv += a_format.substr(posPrev, a_format.size() - posPrev); \
+        \
+        return sRv; \
+    }
+//-------------------------------------------------------------------------------------------------
