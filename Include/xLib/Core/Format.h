@@ -40,8 +40,12 @@
             \
             ss << v
         */
+       /**
         #define xFORMAT_SWITCH_CASE(v) \
                     _setOptions(ss, v); \
+                    ss << v
+        */
+        #define xFORMAT_SWITCH_CASE(v) \
                     ss << v
 
     #define xFORMAT_SWITCH_POST \
