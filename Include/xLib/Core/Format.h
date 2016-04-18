@@ -8,6 +8,7 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format_Common.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
@@ -17,11 +18,6 @@ class Format
     ///< format string
 {
 public:
-#define xFORMAT_DECLARE(n) \
-    template<xVA_TYPES_##n> \
-    static \
-    std::tstring_t format(std::ctstring_t &format, xVA_VARS_##n);
-
     xFORMAT_DECLARE(1)
     xFORMAT_DECLARE(2)
     xFORMAT_DECLARE(3)
