@@ -38,7 +38,7 @@ private:
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)
 
-#if 1
+#if 0
     #define xFORMAT_SET_OPTIONS_DEFAULT(t) \
         static \
         void _setOptions(std::tstringstream_t &ss, t &a_value) {}
