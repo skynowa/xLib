@@ -1,11 +1,11 @@
 /**
- * \file   Format.cpp
+ * \file   FormatC.cpp
  * \brief  format string
  */
 
 
 #if !xOPTION_PROJECT_HEADER_ONLY
-    #include "Format.h"
+    #include "FormatC.h"
 #endif
 
 #include <xLib/Core/Type.h>
@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     cbool_t &a_value
 )
 {
@@ -32,7 +32,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     ctchar_t &a_value
 )
 {
@@ -43,7 +43,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     cuchar_t &a_value
 )
 {
@@ -54,7 +54,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     cshort_t &a_value
 )
 {
@@ -65,7 +65,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     cushort_t &a_value
 )
 {
@@ -76,7 +76,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     cint_t &a_value
 )
 {
@@ -87,7 +87,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     cuint_t &a_value
 )
 {
@@ -99,7 +99,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     clong_t &a_value
 )
 {
@@ -110,7 +110,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     culong_t &a_value
 )
 {
@@ -121,7 +121,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     clonglong_t &a_value
 )
 {
@@ -132,7 +132,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     culonglong_t &a_value
 )
 {
@@ -143,7 +143,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     cfloat_t &a_value,
     cint_t   &a_precision,
     cbool_t  &a_is_fixed
@@ -154,7 +154,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     cdouble_t &a_value,
     cint_t    &a_precision,
     cbool_t   &a_is_fixed
@@ -165,7 +165,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     clongdouble_t &a_value,
     cint_t        &a_precision,
     cbool_t       &a_is_fixed)
@@ -175,7 +175,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     cvoid_t *a_value
 )
 {
@@ -186,7 +186,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::ctstring_t &
-Format::toString(
+FormatC::toString(
     std::ctstring_t &a_value
 )
 {
@@ -195,7 +195,7 @@ Format::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::toString(
+FormatC::toString(
     ctchar_t *a_value
 )
 {
@@ -216,7 +216,7 @@ Format::toString(
 
 /* static */
 xINLINE std::tstring_t
-Format::_toString(
+FormatC::_toString(
     std::csize_t  &a_buffSize,
     ctchar_t      *a_format, ...
 )
