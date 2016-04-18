@@ -6,10 +6,8 @@
 
 #pragma once
 
-#include <xLib/Core/Core.h>
-#include <xLib/Core/String.h>
 //-------------------------------------------------------------------------------------------------
-#define xFORMAT_MODE_STD_STREAM 1
+#define xFORMAT_MODE_STD_STREAM 0
 
 #if xFORMAT_MODE_STD_STREAM
     #define Format FormatCpp
