@@ -1,5 +1,5 @@
 /**
- * \file   FormatCpp.h
+ * \file   Format_Cpp.h
  * \brief  format string
  */
 
@@ -13,7 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-class FormatCpp
+class Format_Cpp
     ///< format string
 {
 public:
@@ -39,8 +39,8 @@ public:
     xFORMAT_DECLARE(20)
 
 private:
-    xNO_INSTANCE(FormatCpp)
-    xNO_COPY_ASSIGN(FormatCpp)
+    xNO_INSTANCE(Format_Cpp)
+    xNO_COPY_ASSIGN(Format_Cpp)
 
 //    static
 //    void _setOptions(std::tstringstream_t &ss, cbool_t &a_value) {}
@@ -100,8 +100,8 @@ private:
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
-#include "FormatCpp.inl"
+#include "Format_Cpp.inl"
 
 #if xOPTION_PROJECT_HEADER_ONLY
-    #include "FormatCpp.cpp"
+    #include "Format_Cpp.cpp"
 #endif

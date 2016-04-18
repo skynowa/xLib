@@ -1,5 +1,5 @@
 /**
- * \file   FormatC.h
+ * \file   Format_C.h
  * \brief  format string
  */
 
@@ -13,7 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-class FormatC
+class Format_C
     ///< format string
 {
 public:
@@ -74,8 +74,8 @@ public:
     std::tstring_t    toString(ctchar_t *value);
 
 private:
-    xNO_INSTANCE(FormatC)
-    xNO_COPY_ASSIGN(FormatC)
+    xNO_INSTANCE(Format_C)
+    xNO_COPY_ASSIGN(Format_C)
 
     static
     std::tstring_t    _toString(std::csize_t &buffSize, ctchar_t *format, ...);
@@ -110,8 +110,8 @@ private:
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
-#include "FormatC.inl"
+#include "Format_C.inl"
 
 #if xOPTION_PROJECT_HEADER_ONLY
-    #include "FormatC.cpp"
+    #include "Format_C.cpp"
 #endif
