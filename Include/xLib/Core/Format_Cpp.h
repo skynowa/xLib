@@ -6,14 +6,10 @@
 
 #pragma once
 
-#include <xLib/Core/Core.h>
-#include <xLib/Core/String.h>
-
-#include <xLib/Core/Format.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-class Format_Cpp
+class Format
     ///< format string
 {
 public:
@@ -39,8 +35,8 @@ public:
     xFORMAT_DECLARE(20)
 
 private:
-    xNO_INSTANCE(Format_Cpp)
-    xNO_COPY_ASSIGN(Format_Cpp)
+    xNO_INSTANCE(Format)
+    xNO_COPY_ASSIGN(Format)
 
 #if 0
     static
