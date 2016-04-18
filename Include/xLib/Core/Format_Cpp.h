@@ -38,31 +38,29 @@ private:
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)
 
-#if 0
-    static
-    void _setOptions(std::tstringstream_t &ss, cbool_t &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, const char &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, const wchar_t &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, cuchar_t &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, cshort_t &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, cushort_t &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, cint_t &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, cuint_t &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, clong_t &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, culong_t &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, clonglong_t &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, culonglong_t &a_value) {}
+#if 1
+    #define xFORMAT_SET_OPTIONS_DEFAULT(t) \
+        static \
+        void _setOptions(std::tstringstream_t &ss, t &a_value) {}
+
+    xFORMAT_SET_OPTIONS_DEFAULT(cbool_t)
+    xFORMAT_SET_OPTIONS_DEFAULT(const char)
+    xFORMAT_SET_OPTIONS_DEFAULT(const wchar_t)
+    xFORMAT_SET_OPTIONS_DEFAULT(cuchar_t)
+    xFORMAT_SET_OPTIONS_DEFAULT(cshort_t)
+    xFORMAT_SET_OPTIONS_DEFAULT(cushort_t)
+    xFORMAT_SET_OPTIONS_DEFAULT(cint_t)
+    xFORMAT_SET_OPTIONS_DEFAULT(cuint_t)
+    xFORMAT_SET_OPTIONS_DEFAULT(clong_t)
+    xFORMAT_SET_OPTIONS_DEFAULT(culong_t)
+    xFORMAT_SET_OPTIONS_DEFAULT(clonglong_t)
+    xFORMAT_SET_OPTIONS_DEFAULT(culonglong_t)
+    xFORMAT_SET_OPTIONS_DEFAULT(cvoid_t *)
+    xFORMAT_SET_OPTIONS_DEFAULT(const std::string)
+    xFORMAT_SET_OPTIONS_DEFAULT(const std::wstring)
+    xFORMAT_SET_OPTIONS_DEFAULT(const char *)
+    xFORMAT_SET_OPTIONS_DEFAULT(const wchar_t *)
+    xFORMAT_SET_OPTIONS_DEFAULT(std::cvec_tstring_t)
 
     static
     void _setOptions(std::tstringstream_t &ss, cfloat_t &a_value)
@@ -82,17 +80,6 @@ private:
         ss << std::setprecision(20);
         ss << std::fixed;
     }
-
-    static
-    void _setOptions(std::tstringstream_t &ss, cvoid_t * &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, const std::string &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, const std::wstring &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, const char * &a_value) {}
-    static
-    void _setOptions(std::tstringstream_t &ss, const wchar_t * &a_value) {}
 #endif
 };
 
