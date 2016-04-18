@@ -6,6 +6,9 @@
 
 #pragma once
 
+#include <xLib/Core/Core.h>
+#include <xLib/Core/String.h>
+
 #include <xLib/Core/Format.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
