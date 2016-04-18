@@ -146,7 +146,7 @@
         std::csize_t    delimiter_size = delimiter.size(); \
         std::size_t     posPrev        = 0U; \
         \
-        for (std::size_t i = 1; ; ++ i) { \
+        for (std::size_t param = 1; ; ++ param) { \
             std::csize_t pos = a_format.find(delimiter, posPrev); \
             xCHECK_DO(pos == std::tstring_t::npos, break); \
             \
@@ -154,7 +154,7 @@
             \
             xFORMAT_SWITCH_PRE; \
             \
-            switch (i) { \
+            switch (param) { \
             xFORMAT_SWITCH_CASE_##n \
             default: break; \
             } \
