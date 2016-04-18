@@ -36,7 +36,6 @@ xNAMESPACE_BEGIN2(xlib, core)
 
     #define xFORMAT_SWITCH_POST \
                 sRv.append( ss.str() )
-
 #else
     #define xFORMAT_SWITCH_PRE \
                 xNA
