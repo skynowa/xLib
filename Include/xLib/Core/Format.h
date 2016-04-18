@@ -112,24 +112,24 @@ private:
 //    static
 //    void _setOptions(std::tstringstream_t &ss, culonglong_t &a_value) {}
 
-    static
-    void _setOptions(std::tstringstream_t &ss, cfloat_t &a_value)
-    {
-        ss << std::setprecision(5);
-        ss << std::fixed;
-    }
-    static
-    void _setOptions(std::tstringstream_t &ss, cdouble_t &a_value)
-    {
-        ss << std::setprecision(10);
-        ss << std::fixed;
-    }
-    static
-    void _setOptions(std::tstringstream_t &ss, clongdouble_t &a_value)
-    {
-        ss << std::setprecision(20);
-        ss << std::fixed;
-    }
+//    static
+//    void _setOptions(std::tstringstream_t &ss, cfloat_t &a_value)
+//    {
+//        ss << std::setprecision(5);
+//        ss << std::fixed;
+//    }
+//    static
+//    void _setOptions(std::tstringstream_t &ss, cdouble_t &a_value)
+//    {
+//        ss << std::setprecision(10);
+//        ss << std::fixed;
+//    }
+//    static
+//    void _setOptions(std::tstringstream_t &ss, clongdouble_t &a_value)
+//    {
+//        ss << std::setprecision(20);
+//        ss << std::fixed;
+//    }
 
 //    static
 //    void _setOptions(std::tstringstream_t &ss, cvoid_t * &a_value) {}
