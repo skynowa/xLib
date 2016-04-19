@@ -82,6 +82,10 @@ private:
     xFORMAT_SET_MANIPULATORS_DEFAULT(char *)
     //xFORMAT_SET_MANIPULATORS_DEFAULT(wchar_t *)
     xFORMAT_SET_MANIPULATORS_DEFAULT(std::vec_tstring_t)
+
+    template<class T>
+    static
+    int _floatPrecisionMax();
 };
 
 xNAMESPACE_END2(xlib, core)

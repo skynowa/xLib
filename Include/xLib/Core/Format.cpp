@@ -13,6 +13,11 @@
 
 xNAMESPACE_BEGIN2(xlib, core)
 
+/**************************************************************************************************
+*   private
+*
+**************************************************************************************************/
+
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
@@ -31,13 +36,7 @@ Format::setManipulators(
     float                 a_value
 )
 {
-#if xOPTION_CPP11
-    cint_t precision_max = std::numeric_limits<float>::max_digits10;
-#else
-    cint_t precision_max = std::numeric_limits<float>::digits10 + 1;
-#endif
-
-    a_ss << std::setprecision(precision_max);
+    a_ss << std::setprecision( _floatPrecisionMax<float>() );
     a_ss << std::fixed;
 }
 //-------------------------------------------------------------------------------------------------
@@ -48,13 +47,7 @@ Format::setManipulators(
     double                a_value
 )
 {
-#if xOPTION_CPP11
-    cint_t precision_max = std::numeric_limits<double>::max_digits10;
-#else
-    cint_t precision_max = std::numeric_limits<double>::digits10 + 1;
-#endif
-
-    a_ss << std::setprecision(precision_max);
+    a_ss << std::setprecision( _floatPrecisionMax<double>() );
     a_ss << std::fixed;
 }
 //-------------------------------------------------------------------------------------------------
@@ -65,14 +58,20 @@ Format::setManipulators(
     long double           a_value
 )
 {
-#if xOPTION_CPP11
-    cint_t precision_max = std::numeric_limits<long double>::max_digits10;
-#else
-    cint_t precision_max = std::numeric_limits<long double>::digits10 + 1;
-#endif
-
-    a_ss << std::setprecision(precision_max);
+    a_ss << std::setprecision( _floatPrecisionMax<long double>() );
     a_ss << std::fixed;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+template<class T>
+xINLINE int
+Format::_floatPrecisionMax()
+{
+#if xOPTION_CPP11
+    return std::numeric_limits<T>::max_digits10;
+#else
+    return std::numeric_limits<T>::digits10 + 1;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
