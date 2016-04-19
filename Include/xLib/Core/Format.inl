@@ -97,7 +97,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT(n) \
     template<xVA_TYPES_##n> \
-    std::tstring_t \
+    xINLINE std::tstring_t \
     Format::str( \
         std::ctstring_t &a_format, xVA_VARS_##n \
     ) \
