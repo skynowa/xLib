@@ -168,13 +168,10 @@ private:
 
     #define xFORMAT_SET_OPTIONS_DEFAULT(t) \
         static \
-        void _setOptions(std::tstringstream_t &ss, t a_value) {}
+        void _setOptions(std::tstringstream_t &ss, t value) {}
 
     static
-    void _setOptions(std::tstringstream_t &a_ss, bool a_value)
-    {
-        a_ss << std::boolalpha;
-    }
+    void _setOptions(std::tstringstream_t &ss, bool value);
 
     xFORMAT_SET_OPTIONS_DEFAULT(char)
     xFORMAT_SET_OPTIONS_DEFAULT(unsigned char)
@@ -191,23 +188,11 @@ private:
     xFORMAT_SET_OPTIONS_DEFAULT(unsigned long long);
 
     static
-    void _setOptions(std::tstringstream_t &a_ss, float a_value)
-    {
-        a_ss << std::setprecision(5);
-        a_ss << std::fixed;
-    }
+    void _setOptions(std::tstringstream_t &ss, float value);
     static
-    void _setOptions(std::tstringstream_t &a_ss, double a_value)
-    {
-        a_ss << std::setprecision(10);
-        a_ss << std::fixed;
-    }
+    void _setOptions(std::tstringstream_t &ss, double value);
     static
-    void _setOptions(std::tstringstream_t &a_ss, long double a_value)
-    {
-        a_ss << std::setprecision(20);
-        a_ss << std::fixed;
-    }
+    void _setOptions(std::tstringstream_t &ss, long double value);
 
     xFORMAT_SET_OPTIONS_DEFAULT(void *)
     xFORMAT_SET_OPTIONS_DEFAULT(std::string)
