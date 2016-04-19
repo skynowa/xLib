@@ -96,7 +96,7 @@
 #define xFORMAT(n) \
     template<xVA_TYPES_##n> \
     std::tstring_t \
-    Format::format( \
+    Format::str( \
         std::ctstring_t &a_format, xVA_VARS_##n \
     ) \
     { \
@@ -139,7 +139,7 @@ public:
     #define xFORMAT_DECLARE(n) \
         template<xVA_TYPES_##n> \
         static \
-        std::tstring_t format(std::ctstring_t &format, xVA_VARS_##n);
+        std::tstring_t str(std::ctstring_t &format, xVA_VARS_##n);
 
     xFORMAT_DECLARE(1)
     xFORMAT_DECLARE(2)
