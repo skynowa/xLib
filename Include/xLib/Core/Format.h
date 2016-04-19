@@ -15,30 +15,9 @@
             ss.str( std::tstring_t() ); \
             ss.clear()
 
-   /**
-    #define xFORMAT_SWITCH_CASE(v) \
-        if      (Type::name(v) == xT("float")) { \
-            ss << std::setprecision(5); \
-            ss << std::fixed; \
-        } \
-        else if (Type::name(v) == xT("double")) { \
-            ss << std::setprecision(10); \
-            ss << std::fixed; \
-        } \
-        else if (Type::name(v) == xT("long double")) { \
-            ss << std::setprecision(20); \
-            ss << std::fixed; \
-        } \
-        \
-        ss << v
-    */
-    #define xFORMAT_SWITCH_CASE(v) \
-                _setOptions(ss, v); \
-                ss << v
-   /**
-    #define xFORMAT_SWITCH_CASE(v) \
-                ss << v
-    */
+#define xFORMAT_SWITCH_CASE(v) \
+            _setOptions(ss, v); \
+            ss << v
 
 #define xFORMAT_SWITCH_POST \
             sRv.append( ss.str() )
