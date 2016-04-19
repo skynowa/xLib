@@ -50,10 +50,10 @@ private:
 
 #define xFORMAT_SET_MANIPULATORS_DEFAULT(t) \
     static \
-    void setManipulators(std::tstringstream_t &ss, t value) {}
+    void _setManipulators(std::tstringstream_t &ss, t value) {}
 
     static
-    void setManipulators(std::tstringstream_t &ss, bool value);
+    void _setManipulators(std::tstringstream_t &ss, bool value);
 
     xFORMAT_SET_MANIPULATORS_DEFAULT(char)
     xFORMAT_SET_MANIPULATORS_DEFAULT(unsigned char)
@@ -70,11 +70,11 @@ private:
     xFORMAT_SET_MANIPULATORS_DEFAULT(unsigned long long);
 
     static
-    void setManipulators(std::tstringstream_t &ss, float value);
+    void _setManipulators(std::tstringstream_t &ss, float value);
     static
-    void setManipulators(std::tstringstream_t &ss, double value);
+    void _setManipulators(std::tstringstream_t &ss, double value);
     static
-    void setManipulators(std::tstringstream_t &ss, long double value);
+    void _setManipulators(std::tstringstream_t &ss, long double value);
 
     xFORMAT_SET_MANIPULATORS_DEFAULT(void *)
     xFORMAT_SET_MANIPULATORS_DEFAULT(std::string)
