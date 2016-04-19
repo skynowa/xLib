@@ -126,7 +126,7 @@ Test_Format::unit()
         cfloat_t value = 444.0f;
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("444.00000")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("444.0000000")));
     }
 
     xTEST_CASE("cdouble_t")
@@ -134,7 +134,7 @@ Test_Format::unit()
         cdouble_t value = 555.0f;
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("555.0000000000")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("555.0000000000000000")));
     }
 
     xTEST_CASE("clongdouble_t")
@@ -142,7 +142,7 @@ Test_Format::unit()
         clongdouble_t value = 666.0L;
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("666.00000000000000000000")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("666.0000000000000000000")));
     }
 
     xTEST_CASE("cvoid_t *")
