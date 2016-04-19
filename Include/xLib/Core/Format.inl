@@ -109,7 +109,9 @@ xNAMESPACE_BEGIN2(xlib, core)
         \
         for (std::size_t param = 1; ; ++ param) { \
             std::csize_t pos = a_format.find(delimiter, posPrev); \
-            xCHECK_DO(pos == std::tstring_t::npos, break); \
+            if (pos == std::tstring_t::npos) { \
+                break; \
+            } \
             \
             sRv += a_format.substr(posPrev, pos - posPrev); \
             \
