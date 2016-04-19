@@ -172,9 +172,9 @@ private:
         void _setOptions(std::tstringstream_t &ss, t &a_value) {}
 
     static
-    void _setOptions(std::tstringstream_t &ss, cbool_t &a_value)
+    void _setOptions(std::tstringstream_t &a_ss, cbool_t &a_value)
     {
-        ss << std::boolalpha;
+        a_ss << std::boolalpha;
     }
 
     xFORMAT_SET_OPTIONS_DEFAULT(const char)
@@ -196,22 +196,22 @@ private:
     xFORMAT_SET_OPTIONS_DEFAULT(std::cvec_tstring_t)
 
     static
-    void _setOptions(std::tstringstream_t &ss, cfloat_t &a_value)
+    void _setOptions(std::tstringstream_t &a_ss, cfloat_t &a_value)
     {
-        ss << std::setprecision(5);
-        ss << std::fixed;
+        a_ss << std::setprecision(5);
+        a_ss << std::fixed;
     }
     static
-    void _setOptions(std::tstringstream_t &ss, cdouble_t &a_value)
+    void _setOptions(std::tstringstream_t &a_ss, cdouble_t &a_value)
     {
-        ss << std::setprecision(10);
-        ss << std::fixed;
+        a_ss << std::setprecision(10);
+        a_ss << std::fixed;
     }
     static
-    void _setOptions(std::tstringstream_t &ss, clongdouble_t &a_value)
+    void _setOptions(std::tstringstream_t &a_ss, clongdouble_t &a_value)
     {
-        ss << std::setprecision(20);
-        ss << std::fixed;
+        a_ss << std::setprecision(20);
+        a_ss << std::fixed;
     }
 #endif
 };
