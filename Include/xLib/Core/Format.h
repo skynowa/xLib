@@ -7,59 +7,41 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-#define xFORMAT_MODE_STD_STREAM 1
-
 #include <xLib/Core/Core.h>
 #include <xLib/Core/String.h>
-
-#define xFORMAT_DECLARE(n) \
-    template<xVA_TYPES_##n> \
-    static \
-    std::tstring_t format(std::ctstring_t &format, xVA_VARS_##n);
 //-------------------------------------------------------------------------------------------------
-#if xFORMAT_MODE_STD_STREAM
-    #define xFORMAT_SWITCH_PRE \
-                static std::tstringstream_t ss; \
-                ss.str( std::tstring_t() ); \
-                ss.clear()
+#define xFORMAT_SWITCH_PRE \
+            static std::tstringstream_t ss; \
+            ss.str( std::tstring_t() ); \
+            ss.clear()
 
-       /**
-        #define xFORMAT_SWITCH_CASE(v) \
-            if      (Type::name(v) == xT("float")) { \
-                ss << std::setprecision(5); \
-                ss << std::fixed; \
-            } \
-            else if (Type::name(v) == xT("double")) { \
-                ss << std::setprecision(10); \
-                ss << std::fixed; \
-            } \
-            else if (Type::name(v) == xT("long double")) { \
-                ss << std::setprecision(20); \
-                ss << std::fixed; \
-            } \
-            \
-            ss << v
-        */
-        #define xFORMAT_SWITCH_CASE(v) \
-                    _setOptions(ss, v); \
-                    ss << v
-       /**
-        #define xFORMAT_SWITCH_CASE(v) \
-                    ss << v
-        */
-
-    #define xFORMAT_SWITCH_POST \
-                sRv.append( ss.str() )
-#else
-    #define xFORMAT_SWITCH_PRE \
-                xNA
-
+   /**
     #define xFORMAT_SWITCH_CASE(v) \
-                sRv.append( toString(v) )
+        if      (Type::name(v) == xT("float")) { \
+            ss << std::setprecision(5); \
+            ss << std::fixed; \
+        } \
+        else if (Type::name(v) == xT("double")) { \
+            ss << std::setprecision(10); \
+            ss << std::fixed; \
+        } \
+        else if (Type::name(v) == xT("long double")) { \
+            ss << std::setprecision(20); \
+            ss << std::fixed; \
+        } \
+        \
+        ss << v
+    */
+    #define xFORMAT_SWITCH_CASE(v) \
+                _setOptions(ss, v); \
+                ss << v
+   /**
+    #define xFORMAT_SWITCH_CASE(v) \
+                ss << v
+    */
 
-    #define xFORMAT_SWITCH_POST \
-                xNA
-#endif
+#define xFORMAT_SWITCH_POST \
+            sRv.append( ss.str() )
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_CASE_1 \
             case 1: xFORMAT_SWITCH_CASE(a_v1); break;
@@ -181,6 +163,11 @@ class Format
     ///< format string
 {
 public:
+    #define xFORMAT_DECLARE(n) \
+        template<xVA_TYPES_##n> \
+        static \
+        std::tstring_t format(std::ctstring_t &format, xVA_VARS_##n);
+
     xFORMAT_DECLARE(1)
     xFORMAT_DECLARE(2)
     xFORMAT_DECLARE(3)
