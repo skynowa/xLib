@@ -16,10 +16,10 @@ class Format
     ///< format string
 {
 public:
-    #define xFORMAT_DECLARE(n) \
-        template<xVA_TYPES_##n> \
-        static \
-        std::tstring_t str(std::ctstring_t &format, xVA_VARS_##n);
+#define xFORMAT_DECLARE(n) \
+    template<xVA_TYPES_##n> \
+    static \
+    std::tstring_t str(std::ctstring_t &format, xVA_VARS_##n);
 
     xFORMAT_DECLARE(1)
     xFORMAT_DECLARE(2)
@@ -46,9 +46,9 @@ private:
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)
 
-    #define xFORMAT_SET_MANIPULATORS_DEFAULT(t) \
-        static \
-        void setManipulators(std::tstringstream_t &ss, t value) {}
+#define xFORMAT_SET_MANIPULATORS_DEFAULT(t) \
+    static \
+    void setManipulators(std::tstringstream_t &ss, t value) {}
 
     static
     void setManipulators(std::tstringstream_t &ss, bool value);
