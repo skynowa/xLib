@@ -15,8 +15,8 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-void
-Format::_setOptions(
+xINLINE void
+Format::setManipulators(
     std::tstringstream_t &a_ss,
     bool                  a_value
 )
@@ -25,8 +25,8 @@ Format::_setOptions(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-void
-Format::_setOptions(
+xINLINE void
+Format::setManipulators(
     std::tstringstream_t &a_ss,
     float                 a_value
 )
@@ -36,8 +36,8 @@ Format::_setOptions(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-void
-Format::_setOptions(
+xINLINE void
+Format::setManipulators(
     std::tstringstream_t &a_ss,
     double                a_value
 )
@@ -47,8 +47,8 @@ Format::_setOptions(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-void
-Format::_setOptions(
+xINLINE void
+Format::setManipulators(
     std::tstringstream_t &a_ss,
     long double           a_value
 )

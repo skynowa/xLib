@@ -11,7 +11,7 @@
 #include <xLib/Core/String.h>
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_CASE(v) \
-            _setOptions(ss, v); \
+            setManipulators(ss, v); \
             ss << v
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_CASE_1 \
@@ -168,10 +168,10 @@ private:
 
     #define xFORMAT_SET_OPTIONS_DEFAULT(t) \
         static \
-        void _setOptions(std::tstringstream_t &ss, t value) {}
+        void setManipulators(std::tstringstream_t &ss, t value) {}
 
     static
-    void _setOptions(std::tstringstream_t &ss, bool value);
+    void setManipulators(std::tstringstream_t &ss, bool value);
 
     xFORMAT_SET_OPTIONS_DEFAULT(char)
     xFORMAT_SET_OPTIONS_DEFAULT(unsigned char)
@@ -188,11 +188,11 @@ private:
     xFORMAT_SET_OPTIONS_DEFAULT(unsigned long long);
 
     static
-    void _setOptions(std::tstringstream_t &ss, float value);
+    void setManipulators(std::tstringstream_t &ss, float value);
     static
-    void _setOptions(std::tstringstream_t &ss, double value);
+    void setManipulators(std::tstringstream_t &ss, double value);
     static
-    void _setOptions(std::tstringstream_t &ss, long double value);
+    void setManipulators(std::tstringstream_t &ss, long double value);
 
     xFORMAT_SET_OPTIONS_DEFAULT(void *)
     xFORMAT_SET_OPTIONS_DEFAULT(std::string)
