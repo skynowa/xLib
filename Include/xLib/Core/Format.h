@@ -40,13 +40,13 @@
             \
             ss << v
         */
-       /**
         #define xFORMAT_SWITCH_CASE(v) \
                     _setOptions(ss, v); \
                     ss << v
-        */
+       /**
         #define xFORMAT_SWITCH_CASE(v) \
                     ss << v
+        */
 
     #define xFORMAT_SWITCH_POST \
                 sRv.append( ss.str() )
@@ -206,12 +206,17 @@ private:
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)
 
-#if 0
+#if 1
     #define xFORMAT_SET_OPTIONS_DEFAULT(t) \
         static \
         void _setOptions(std::tstringstream_t &ss, t &a_value) {}
 
-    xFORMAT_SET_OPTIONS_DEFAULT(cbool_t)
+    static
+    void _setOptions(std::tstringstream_t &ss, cbool_t &a_value)
+    {
+        ss << std::boolalpha;
+    }
+
     xFORMAT_SET_OPTIONS_DEFAULT(const char)
     xFORMAT_SET_OPTIONS_DEFAULT(const wchar_t)
     xFORMAT_SET_OPTIONS_DEFAULT(cuchar_t)

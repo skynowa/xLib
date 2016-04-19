@@ -16,10 +16,11 @@ Test_Format::unit()
 {
     xTEST_CASE("cbool_t")
     {
-        cbool_t value = false;
+        cbool_t value1 = false;
+        cbool_t value2 = true;
 
-        m_sRv = Format::format(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("0")));
+        m_sRv = Format::format(xT("{},{}"), value1, value2);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("false,true")));
     }
 
     xTEST_CASE("char")
