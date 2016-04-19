@@ -166,7 +166,6 @@ private:
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)
 
-#if 1
     #define xFORMAT_SET_OPTIONS_DEFAULT(t) \
         static \
         void _setOptions(std::tstringstream_t &ss, t &a_value) {}
@@ -213,7 +212,6 @@ private:
         a_ss << std::setprecision(20);
         a_ss << std::fixed;
     }
-#endif
 };
 
 xNAMESPACE_END2(xlib, core)
