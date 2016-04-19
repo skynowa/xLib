@@ -50,14 +50,12 @@ private:
 
 #define xFORMAT_SET_MANIPULATORS_DEFAULT(t) \
     static \
-    void _setManipulators(std::tstringstream_t &ss, const t &value) {}
+    void _setManipulators(std::tstringstream_t &ss, const t &value)
 
-    static
-    void _setManipulators(std::tstringstream_t &ss, const bool &value);
-
-    xFORMAT_SET_MANIPULATORS_DEFAULT(char)
-    xFORMAT_SET_MANIPULATORS_DEFAULT(unsigned char)
-    xFORMAT_SET_MANIPULATORS_DEFAULT(wchar_t)
+    xFORMAT_SET_MANIPULATORS_DEFAULT(bool);
+    xFORMAT_SET_MANIPULATORS_DEFAULT(char);
+    xFORMAT_SET_MANIPULATORS_DEFAULT(unsigned char);
+    //// xFORMAT_SET_MANIPULATORS_DEFAULT(wchar_t);
     xFORMAT_SET_MANIPULATORS_DEFAULT(short);
     xFORMAT_SET_MANIPULATORS_DEFAULT(unsigned short);
     xFORMAT_SET_MANIPULATORS_DEFAULT(int);
@@ -66,20 +64,15 @@ private:
     xFORMAT_SET_MANIPULATORS_DEFAULT(unsigned long);
     xFORMAT_SET_MANIPULATORS_DEFAULT(long long);
     xFORMAT_SET_MANIPULATORS_DEFAULT(unsigned long long);
-
-    static
-    void _setManipulators(std::tstringstream_t &ss, const float &value);
-    static
-    void _setManipulators(std::tstringstream_t &ss, const double &value);
-    static
-    void _setManipulators(std::tstringstream_t &ss, const long double &value);
-
-    xFORMAT_SET_MANIPULATORS_DEFAULT(void *)
-    xFORMAT_SET_MANIPULATORS_DEFAULT(std::string)
-    xFORMAT_SET_MANIPULATORS_DEFAULT(std::wstring)
-    xFORMAT_SET_MANIPULATORS_DEFAULT(char *)
-    xFORMAT_SET_MANIPULATORS_DEFAULT(wchar_t *)
-    xFORMAT_SET_MANIPULATORS_DEFAULT(std::vec_tstring_t)
+    xFORMAT_SET_MANIPULATORS_DEFAULT(float);
+    xFORMAT_SET_MANIPULATORS_DEFAULT(double);
+    xFORMAT_SET_MANIPULATORS_DEFAULT(long double);
+    xFORMAT_SET_MANIPULATORS_DEFAULT(void *);
+    xFORMAT_SET_MANIPULATORS_DEFAULT(std::string);
+    //// xFORMAT_SET_MANIPULATORS_DEFAULT(std::wstring);
+    xFORMAT_SET_MANIPULATORS_DEFAULT(char *);
+    //// xFORMAT_SET_MANIPULATORS_DEFAULT(wchar_t *);
+    xFORMAT_SET_MANIPULATORS_DEFAULT(std::vec_tstring_t);
 
     template<class T>
     static
