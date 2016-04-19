@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_CASE(v) \
-            setManipulators(ss, v); \
+            _setManipulators(ss, v); \
             ss << v
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_CASE_1 \
