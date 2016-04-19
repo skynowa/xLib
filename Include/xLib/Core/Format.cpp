@@ -31,7 +31,13 @@ Format::setManipulators(
     float                 a_value
 )
 {
-    a_ss << std::setprecision(5);
+#if xOPTION_CPP11
+    cint_t precision_max = std::numeric_limits<float>::max_digits10;
+#else
+    cint_t precision_max = std::numeric_limits<float>::digits10 + 1;
+#endif
+
+    a_ss << std::setprecision(precision_max);
     a_ss << std::fixed;
 }
 //-------------------------------------------------------------------------------------------------
@@ -42,7 +48,13 @@ Format::setManipulators(
     double                a_value
 )
 {
-    a_ss << std::setprecision(10);
+#if xOPTION_CPP11
+    cint_t precision_max = std::numeric_limits<double>::max_digits10;
+#else
+    cint_t precision_max = std::numeric_limits<double>::digits10 + 1;
+#endif
+
+    a_ss << std::setprecision(precision_max);
     a_ss << std::fixed;
 }
 //-------------------------------------------------------------------------------------------------
@@ -53,7 +65,13 @@ Format::setManipulators(
     long double           a_value
 )
 {
-    a_ss << std::setprecision(20);
+#if xOPTION_CPP11
+    cint_t precision_max = std::numeric_limits<long double>::max_digits10;
+#else
+    cint_t precision_max = std::numeric_limits<long double>::digits10 + 1;
+#endif
+
+    a_ss << std::setprecision(precision_max);
     a_ss << std::fixed;
 }
 //-------------------------------------------------------------------------------------------------
