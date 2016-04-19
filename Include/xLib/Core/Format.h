@@ -10,17 +10,9 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/String.h>
 //-------------------------------------------------------------------------------------------------
-#define xFORMAT_SWITCH_PRE \
-            static std::tstringstream_t ss; \
-            ss.str( std::tstring_t() ); \
-            ss.clear()
-
 #define xFORMAT_SWITCH_CASE(v) \
             _setOptions(ss, v); \
             ss << v
-
-#define xFORMAT_SWITCH_POST \
-            sRv.append( ss.str() )
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_CASE_1 \
             case 1: xFORMAT_SWITCH_CASE(a_v1); break;
@@ -119,14 +111,16 @@
             \
             sRv += a_format.substr(posPrev, pos - posPrev); \
             \
-            xFORMAT_SWITCH_PRE; \
+            static std::tstringstream_t ss; \
+            ss.str( std::tstring_t() ); \
+            ss.clear(); \
             \
             switch (param) { \
             xFORMAT_SWITCH_CASE_##n \
             default: break; \
             } \
             \
-            xFORMAT_SWITCH_POST; \
+            sRv.append( ss.str() ); \
             \
             posPrev = pos + delimiter_size; \
         } \
