@@ -95,7 +95,7 @@ xNAMESPACE_BEGIN2(xlib, core)
             xFORMAT_SWITCH_CASE_19 \
             case 20: xFORMAT_SWITCH_CASE(a_v20); break;
 //-------------------------------------------------------------------------------------------------
-#define xFORMAT(n) \
+#define xFORMAT_STR(n) \
     template<xVA_TYPES_##n> \
     xINLINE std::tstring_t \
     Format::str( \
@@ -134,26 +134,26 @@ xNAMESPACE_BEGIN2(xlib, core)
         return sRv; \
     }
 //-------------------------------------------------------------------------------------------------
-xFORMAT(1)
-xFORMAT(2)
-xFORMAT(3)
-xFORMAT(4)
-xFORMAT(5)
-xFORMAT(6)
-xFORMAT(7)
-xFORMAT(8)
-xFORMAT(9)
-xFORMAT(10)
-xFORMAT(11)
-xFORMAT(12)
-xFORMAT(13)
-xFORMAT(14)
-xFORMAT(15)
-xFORMAT(16)
-xFORMAT(17)
-xFORMAT(18)
-xFORMAT(19)
-xFORMAT(20)
+xFORMAT_STR(1)
+xFORMAT_STR(2)
+xFORMAT_STR(3)
+xFORMAT_STR(4)
+xFORMAT_STR(5)
+xFORMAT_STR(6)
+xFORMAT_STR(7)
+xFORMAT_STR(8)
+xFORMAT_STR(9)
+xFORMAT_STR(10)
+xFORMAT_STR(11)
+xFORMAT_STR(12)
+xFORMAT_STR(13)
+xFORMAT_STR(14)
+xFORMAT_STR(15)
+xFORMAT_STR(16)
+xFORMAT_STR(17)
+xFORMAT_STR(18)
+xFORMAT_STR(19)
+xFORMAT_STR(20)
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, core)
