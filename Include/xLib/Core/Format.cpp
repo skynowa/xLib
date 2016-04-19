@@ -1,11 +1,11 @@
 /**
- * \file   Format_Cpp.cpp
+ * \file   Format.cpp
  * \brief  format string
  */
 
 
 #if !xOPTION_PROJECT_HEADER_ONLY
-    #include "Format_Cpp.h"
+    #include "Format.h"
 #endif
 
 #include <xLib/Core/Type.h>
