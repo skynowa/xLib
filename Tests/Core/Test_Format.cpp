@@ -19,7 +19,7 @@ Test_Format::unit()
         cbool_t value1 = false;
         cbool_t value2 = true;
 
-        m_sRv = Format::format(xT("{},{}"), value1, value2);
+        m_sRv = Format::str(xT("{},{}"), value1, value2);
         xTEST_EQ(m_sRv, std::tstring_t(xT("false,true")));
     }
 
@@ -27,7 +27,7 @@ Test_Format::unit()
     {
         const char value = 'a';
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("a")));
     }
 
@@ -36,7 +36,7 @@ Test_Format::unit()
     #if 0
         const wchar_t value = L'a';
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("a")));
     #endif
     }
@@ -45,7 +45,7 @@ Test_Format::unit()
     {
         ctchar_t value = xT('a');
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("a")));
     }
 
@@ -53,7 +53,7 @@ Test_Format::unit()
     {
         cuchar_t value = 'b';
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("b")));
     }
 
@@ -61,7 +61,7 @@ Test_Format::unit()
     {
         cshort_t value = -10;
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("-10")));
     }
 
@@ -69,7 +69,7 @@ Test_Format::unit()
     {
         cushort_t value = 10;
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("10")));
     }
 
@@ -77,7 +77,7 @@ Test_Format::unit()
     {
         cint_t value = -111;
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("-111")));
     }
 
@@ -85,7 +85,7 @@ Test_Format::unit()
     {
         cuint_t value = 111U;
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("111")));
     }
 
@@ -93,7 +93,7 @@ Test_Format::unit()
     {
         clong_t value = -222L;
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("-222")));
     }
 
@@ -101,7 +101,7 @@ Test_Format::unit()
     {
         culong_t value = 222UL;
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("222")));
     }
 
@@ -109,7 +109,7 @@ Test_Format::unit()
     {
         clonglong_t value = -333LL;
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("-333")));
     }
 
@@ -117,7 +117,7 @@ Test_Format::unit()
     {
         culonglong_t value = 333ULL;
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("333")));
     }
 
@@ -125,7 +125,7 @@ Test_Format::unit()
     {
         cfloat_t value = 444.0f;
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("444.00000")));
     }
 
@@ -133,7 +133,7 @@ Test_Format::unit()
     {
         cdouble_t value = 555.0f;
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("555.0000000000")));
     }
 
@@ -141,7 +141,7 @@ Test_Format::unit()
     {
         clongdouble_t value = 666.0L;
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("666.00000000000000000000")));
     }
 
@@ -149,7 +149,7 @@ Test_Format::unit()
     {
         cvoid_t * value = (cvoid_t *)777;
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("0x309")));
     }
 
@@ -157,7 +157,7 @@ Test_Format::unit()
     {
         std::string value("aaa");
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("aaa")));
     }
 
@@ -166,7 +166,7 @@ Test_Format::unit()
     #if 0
         std::wstring value(L"aaa");
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("aaa")));
     #endif
     }
@@ -175,7 +175,7 @@ Test_Format::unit()
     {
         std::ctstring_t value(xT("aaa"));
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("aaa")));
     }
 
@@ -183,7 +183,7 @@ Test_Format::unit()
     {
         const char * value = "bbb";
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("bbb")));
     }
 
@@ -192,7 +192,7 @@ Test_Format::unit()
     #if 0
         const wchar_t * value = L"bbb";
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("bbb")));
     #endif
     }
@@ -201,7 +201,7 @@ Test_Format::unit()
     {
         ctchar_t * value = xT("bbb");
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("bbb")));
     }
 
@@ -212,7 +212,7 @@ Test_Format::unit()
         value.push_back(xT("aa"));
         value.push_back(xT("bbb"));
 
-        m_sRv = Format::format(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(
                             "std::vector (2 elements):\n"
                             "    value[0]: aa\n"
