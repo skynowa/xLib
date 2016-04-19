@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 xINLINE void
 Format::_setManipulators(
     std::tstringstream_t &a_ss,
-    bool                  a_value
+    const bool           &a_value
 )
 {
     a_ss << std::boolalpha;
@@ -33,7 +33,7 @@ Format::_setManipulators(
 xINLINE void
 Format::_setManipulators(
     std::tstringstream_t &a_ss,
-    float                 a_value
+    const float          &a_value
 )
 {
     a_ss << std::setprecision( _floatPrecisionMax<float>() );
@@ -44,7 +44,7 @@ Format::_setManipulators(
 xINLINE void
 Format::_setManipulators(
     std::tstringstream_t &a_ss,
-    double                a_value
+    const double         &a_value
 )
 {
     a_ss << std::setprecision( _floatPrecisionMax<double>() );
@@ -55,7 +55,7 @@ Format::_setManipulators(
 xINLINE void
 Format::_setManipulators(
     std::tstringstream_t &a_ss,
-    long double           a_value
+    const long double    &a_value
 )
 {
     a_ss << std::setprecision( _floatPrecisionMax<long double>() );
