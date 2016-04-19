@@ -168,50 +168,53 @@ private:
 
     #define xFORMAT_SET_OPTIONS_DEFAULT(t) \
         static \
-        void _setOptions(std::tstringstream_t &ss, t &a_value) {}
+        void _setOptions(std::tstringstream_t &ss, t a_value) {}
 
     static
-    void _setOptions(std::tstringstream_t &a_ss, cbool_t &a_value)
+    void _setOptions(std::tstringstream_t &a_ss, bool a_value)
     {
         a_ss << std::boolalpha;
     }
 
-    xFORMAT_SET_OPTIONS_DEFAULT(const char)
-    xFORMAT_SET_OPTIONS_DEFAULT(const wchar_t)
-    xFORMAT_SET_OPTIONS_DEFAULT(cuchar_t)
-    xFORMAT_SET_OPTIONS_DEFAULT(cshort_t)
-    xFORMAT_SET_OPTIONS_DEFAULT(cushort_t)
-    xFORMAT_SET_OPTIONS_DEFAULT(cint_t)
-    xFORMAT_SET_OPTIONS_DEFAULT(cuint_t)
-    xFORMAT_SET_OPTIONS_DEFAULT(clong_t)
-    xFORMAT_SET_OPTIONS_DEFAULT(culong_t)
-    xFORMAT_SET_OPTIONS_DEFAULT(clonglong_t)
-    xFORMAT_SET_OPTIONS_DEFAULT(culonglong_t)
-    xFORMAT_SET_OPTIONS_DEFAULT(cvoid_t *)
-    xFORMAT_SET_OPTIONS_DEFAULT(const std::string)
-    xFORMAT_SET_OPTIONS_DEFAULT(const std::wstring)
-    xFORMAT_SET_OPTIONS_DEFAULT(const char *)
-    xFORMAT_SET_OPTIONS_DEFAULT(const wchar_t *)
-    xFORMAT_SET_OPTIONS_DEFAULT(std::cvec_tstring_t)
+    xFORMAT_SET_OPTIONS_DEFAULT(char)
+    xFORMAT_SET_OPTIONS_DEFAULT(unsigned char)
+    //xFORMAT_SET_OPTIONS_DEFAULT(wchar_t)
+    //xFORMAT_SET_OPTIONS_DEFAULT(unsigned wchar_t)
+
+    xFORMAT_SET_OPTIONS_DEFAULT(short);
+    xFORMAT_SET_OPTIONS_DEFAULT(unsigned short);
+    xFORMAT_SET_OPTIONS_DEFAULT(int);
+    xFORMAT_SET_OPTIONS_DEFAULT(unsigned int);
+    xFORMAT_SET_OPTIONS_DEFAULT(long);
+    xFORMAT_SET_OPTIONS_DEFAULT(unsigned long);
+    xFORMAT_SET_OPTIONS_DEFAULT(long long);
+    xFORMAT_SET_OPTIONS_DEFAULT(unsigned long long);
 
     static
-    void _setOptions(std::tstringstream_t &a_ss, cfloat_t &a_value)
+    void _setOptions(std::tstringstream_t &a_ss, float a_value)
     {
         a_ss << std::setprecision(5);
         a_ss << std::fixed;
     }
     static
-    void _setOptions(std::tstringstream_t &a_ss, cdouble_t &a_value)
+    void _setOptions(std::tstringstream_t &a_ss, double a_value)
     {
         a_ss << std::setprecision(10);
         a_ss << std::fixed;
     }
     static
-    void _setOptions(std::tstringstream_t &a_ss, clongdouble_t &a_value)
+    void _setOptions(std::tstringstream_t &a_ss, long double a_value)
     {
         a_ss << std::setprecision(20);
         a_ss << std::fixed;
     }
+
+    xFORMAT_SET_OPTIONS_DEFAULT(void *)
+    xFORMAT_SET_OPTIONS_DEFAULT(std::string)
+    //xFORMAT_SET_OPTIONS_DEFAULT(std::wstring)
+    xFORMAT_SET_OPTIONS_DEFAULT(char *)
+    //xFORMAT_SET_OPTIONS_DEFAULT(wchar_t *)
+    xFORMAT_SET_OPTIONS_DEFAULT(std::vec_tstring_t)
 };
 
 xNAMESPACE_END2(xlib, core)
