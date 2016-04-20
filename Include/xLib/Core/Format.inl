@@ -115,7 +115,8 @@ xNAMESPACE_BEGIN2(xlib, core)
             sRv += a_format.substr(posPrev, pos - posPrev); \
             \
             static std::tstringstream_t ss; \
-            ss.str( std::tstring_t() ); \
+            static std::ctstring_t      emptyString; \
+            ss.str( emptyString ); \
             ss.clear(); \
             \
             switch (param) { \
