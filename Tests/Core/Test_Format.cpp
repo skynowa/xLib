@@ -147,10 +147,10 @@ Test_Format::unit()
 
     xTEST_CASE("cvoid_t *")
     {
-        cvoid_t * value = (cvoid_t *)777;
+        void * value = (void *)0x7fff0fd3e100;
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("0x309")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("0x7fff0fd3e100")));
     }
 
     xTEST_CASE("std::string")
