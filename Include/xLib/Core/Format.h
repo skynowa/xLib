@@ -48,31 +48,27 @@ private:
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)
 
-#define xFORMAT_SET_MANIPULATORS_DEFAULT(t) \
-    static \
-    void _setManipulators(std::tstringstream_t &ss, const t &value)
-
-    xFORMAT_SET_MANIPULATORS_DEFAULT(bool);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(char);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(unsigned char);
-    //// xFORMAT_SET_MANIPULATORS_DEFAULT(wchar_t);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(short);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(unsigned short);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(int);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(unsigned int);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(long);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(unsigned long);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(long long);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(unsigned long long);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(float);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(double);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(long double);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(void *);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(std::string);
-    //// xFORMAT_SET_MANIPULATORS_DEFAULT(std::wstring);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(char *);
-    //// xFORMAT_SET_MANIPULATORS_DEFAULT(wchar_t *);
-    xFORMAT_SET_MANIPULATORS_DEFAULT(std::vec_tstring_t);
+    static void _setManipulators(std::tstringstream_t &ss, const bool &value);
+    static void _setManipulators(std::tstringstream_t &ss, const char &value);
+    static void _setManipulators(std::tstringstream_t &ss, const unsigned char &value);
+    //// static void _setManipulators(std::tstringstream_t &ss, const wchar_t &value);
+    static void _setManipulators(std::tstringstream_t &ss, const short &value);
+    static void _setManipulators(std::tstringstream_t &ss, const unsigned short &value);
+    static void _setManipulators(std::tstringstream_t &ss, const int &value);
+    static void _setManipulators(std::tstringstream_t &ss, const unsigned int &value);
+    static void _setManipulators(std::tstringstream_t &ss, const long &value);
+    static void _setManipulators(std::tstringstream_t &ss, const unsigned long &value);
+    static void _setManipulators(std::tstringstream_t &ss, const long long &value);
+    static void _setManipulators(std::tstringstream_t &ss, const unsigned long long &value);
+    static void _setManipulators(std::tstringstream_t &ss, const float &value);
+    static void _setManipulators(std::tstringstream_t &ss, const double &value);
+    static void _setManipulators(std::tstringstream_t &ss, const long double &value);
+    static void _setManipulators(std::tstringstream_t &ss, const void * &value);
+    static void _setManipulators(std::tstringstream_t &ss, const std::string &value);
+    //// static void _setManipulators(std::tstringstream_t &ss, const std::wstring &value);
+    static void _setManipulators(std::tstringstream_t &ss, const char * &value);
+    //// static void _setManipulators(std::tstringstream_t &ss, const wchar_t * &value);
+    static void _setManipulators(std::tstringstream_t &ss, const std::vec_tstring_t &value);
 
     template<class T>
     static
