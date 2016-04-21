@@ -44,7 +44,7 @@ public:
         ///< attach object
     void_t detach(IxObserver<T> *a_observer)
     {
-        xFOREACH(typename std::vector<IxObserver<T> *>, it, _observers) {
+        xFOR_EACH(typename std::vector<IxObserver<T> *>, it, _observers) {
             if (*it == a_observer) {
                 _observers.erase(it);
             }
@@ -53,7 +53,7 @@ public:
         ///< dettach object
     void_t updateAll(cint_t &a_type, const T &a_message)
     {
-        xFOREACH(typename std::vector<IxObserver<T> *>, it, _observers) {
+        xFOR_EACH(typename std::vector<IxObserver<T> *>, it, _observers) {
             (*it)->update(a_type, a_message);
         }
     }

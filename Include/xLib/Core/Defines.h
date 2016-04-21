@@ -725,21 +725,21 @@
         ///< hot key
 #endif
 //-------------------------------------------------------------------------------------------------
-///@name xFOREACH
+///@name xFOR_EACH
 ///@{
-#define xFOREACH(it_t, it, cont) \
+#define xFOR_EACH(it_t, it, cont) \
     for (it_t::iterator               it((cont).begin());  it != (cont).end();  ++ it)
     ///< iterate STL container (using it_t::iterator)
 
-#define xFOREACH_CONST(it_t, it, cont) \
+#define xFOR_EACH_CONST(it_t, it, cont) \
     for (it_t::const_iterator         it((cont).begin());  it != (cont).end();  ++ it)
     ///< iterate STL container (using it_t::const_iterator)
 
-#define xFOREACH_R(it_t, it, cont) \
+#define xFOR_EACH_R(it_t, it, cont) \
     for (it_t::reverse_iterator       it((cont).rbegin()); it != (cont).rend(); ++ it)
     ///< iterate STL container (using it_t::reverse_iterator)
 
-#define xFOREACH_R_CONST(it_t, it, cont) \
+#define xFOR_EACH_R_CONST(it_t, it, cont) \
     for (it_t::const_reverse_iterator it((cont).rbegin()); it != (cont).rend(); ++ it)
     ///< iterate STL container (using it_t::const_reverse_iterator)
 ///@}

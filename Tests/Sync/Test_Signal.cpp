@@ -51,7 +51,7 @@ Test_Signal::unit()
         signalNums.push_back(SIGPWR);
         signalNums.push_back(SIGSYS);
 
-        xFOREACH_CONST(std::vector<int_t>, it, signalNums) {
+        xFOR_EACH_CONST(std::vector<int_t>, it, signalNums) {
             m_sRv = Signal::decription(*it);
             // std::cout << xTRACE_VAR2(*it, m_sRv) << std::endl;
             xTEST_EQ(m_sRv.empty(), false);

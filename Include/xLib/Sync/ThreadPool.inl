@@ -107,7 +107,7 @@ ThreadPool<T>::groupResume()
     {
         AutoMutex mutex(&_s_mutex);
 
-        xFOREACH_CONST(typename std::list<T *>, it, _tasks) {
+        xFOR_EACH_CONST(typename std::list<T *>, it, _tasks) {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("Not running")); continue);
 
             (*it)->resume();
@@ -134,7 +134,7 @@ ThreadPool<T>::groupPause()
     {
         AutoMutex mutex(&_s_mutex);
 
-        xFOREACH_CONST(typename std::list<T *>, it, _tasks) {
+        xFOR_EACH_CONST(typename std::list<T *>, it, _tasks) {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("Not running")); continue);
 
             (*it)->pause();
@@ -163,7 +163,7 @@ ThreadPool<T>::groupExit(
     {
         AutoMutex mutex(&_s_mutex);
 
-        xFOREACH_CONST(typename std::list<T *>, it, _tasks)    {
+        xFOR_EACH_CONST(typename std::list<T *>, it, _tasks)    {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("ThreadPool: not running"));
                 continue);
 
@@ -187,7 +187,7 @@ ThreadPool<T>::groupKill(
     {
         AutoMutex mutex(&_s_mutex);
 
-        xFOREACH_CONST(typename std::list<T *>, it, _tasks)    {
+        xFOR_EACH_CONST(typename std::list<T *>, it, _tasks)    {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("Not running")); continue);
 
             (*it)->kill(a_timeoutMsec);
@@ -212,7 +212,7 @@ ThreadPool<T>::groupWait(
     {
         AutoMutex mutex(&_s_mutex);
 
-        xFOREACH_CONST(typename std::list<T *>, it, _tasks)    {
+        xFOR_EACH_CONST(typename std::list<T *>, it, _tasks)    {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("Not running")); continue);
 
             (*it)->wait(a_timeoutMsec);
@@ -272,7 +272,7 @@ ThreadPool<T>::setMaxTasks(
         size_t count       = 0U;
         size_t tasksForDec = _maxRunningTasks - a_num;
 
-        xFOREACH_R_CONST(typename std::list<T *>, it, _tasks) {
+        xFOR_EACH_R_CONST(typename std::list<T *>, it, _tasks) {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("Not running")); continue);
 
             #if   xENV_WIN

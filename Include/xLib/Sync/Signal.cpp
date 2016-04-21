@@ -65,7 +65,7 @@ Signal::connect(
     * https://gist.github.com/jvranish/4441299
     */
 
-    xFOREACH_CONST(std::vector<int_t>, it, a_signalNums) {
+    xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
         switch (*it) {
         case SIGKILL:
             Trace() << xT("xLib: ") << xTRACE_VAR(SIGKILL) << xT(" cannot be caught or ignored");

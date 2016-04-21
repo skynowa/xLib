@@ -323,7 +323,7 @@ Uri::encodeComponent(
 
     std::tstring_t sRv;
 
-    xFOREACH_CONST(std::tstring_t, it, a_uri) {
+    xFOR_EACH_CONST(std::tstring_t, it, a_uri) {
         tchar_t c = *it;
 
         if (

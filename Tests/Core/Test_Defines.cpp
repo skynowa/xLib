@@ -454,9 +454,9 @@ Test_Defines::unit()
        xUNUSED(nhInvalid);
     }
 
-    xTEST_CASE("xFOREACH...")
+    xTEST_CASE("xFOR_EACH...")
     {
-        // xFOREACH
+        // xFOR_EACH
         {
             std::ctstring_t valueNew = xT("xxxxxx");
 
@@ -465,16 +465,16 @@ Test_Defines::unit()
             data.push_back(xT("bbbbbb"));
             data.push_back(xT("cccccc"));
 
-            xFOREACH(std::vec_tstring_t, it, data) {
+            xFOR_EACH(std::vec_tstring_t, it, data) {
                 *it = valueNew;
             }
 
-            xFOREACH(std::vec_tstring_t, it, data) {
+            xFOR_EACH(std::vec_tstring_t, it, data) {
                 xTEST_EQ(*it, valueNew);
             }
         }
 
-        // xFOREACH_CONST
+        // xFOR_EACH_CONST
         {
             std::ctstring_t    valueNew = xT("xxxxxx");
             std::vec_tstring_t dataNew;
@@ -484,16 +484,16 @@ Test_Defines::unit()
             data.push_back(valueNew);
             data.push_back(valueNew);
 
-            xFOREACH_CONST(std::vec_tstring_t, it, data) {
+            xFOR_EACH_CONST(std::vec_tstring_t, it, data) {
                 dataNew.push_back(*it);
             }
 
-            xFOREACH(std::vec_tstring_t, it, dataNew) {
+            xFOR_EACH(std::vec_tstring_t, it, dataNew) {
                 xTEST_EQ(*it, valueNew);
             }
         }
 
-        // xFOREACH_R
+        // xFOR_EACH_R
         {
             std::ctstring_t valueNew = xT("xxxxxx");
 
@@ -502,16 +502,16 @@ Test_Defines::unit()
             data.push_back(xT("bbbbbb"));
             data.push_back(xT("cccccc"));
 
-            xFOREACH_R(std::vec_tstring_t, it, data) {
+            xFOR_EACH_R(std::vec_tstring_t, it, data) {
                 *it = valueNew;
             }
 
-            xFOREACH_R(std::vec_tstring_t, it, data) {
+            xFOR_EACH_R(std::vec_tstring_t, it, data) {
                 xTEST_EQ(*it, valueNew);
             }
         }
 
-        // xFOREACH_R_CONST
+        // xFOR_EACH_R_CONST
         {
             std::ctstring_t    valueNew = xT("xxxxxx");
             std::vec_tstring_t dataNew;
@@ -521,11 +521,11 @@ Test_Defines::unit()
             data.push_back(valueNew);
             data.push_back(valueNew);
 
-            xFOREACH_R_CONST(std::vec_tstring_t, it, data) {
+            xFOR_EACH_R_CONST(std::vec_tstring_t, it, data) {
                 dataNew.push_back(*it);
             }
 
-            xFOREACH_R_CONST(std::vec_tstring_t, it, dataNew) {
+            xFOR_EACH_R_CONST(std::vec_tstring_t, it, dataNew) {
                 xTEST_EQ(*it, valueNew);
             }
         }

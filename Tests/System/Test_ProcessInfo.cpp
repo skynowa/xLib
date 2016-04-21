@@ -23,7 +23,7 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        xFOREACH_CONST(std::vector<Process::id_t>, it, vidIds) {
+        xFOR_EACH_CONST(std::vector<Process::id_t>, it, vidIds) {
             ProcessInfo info;
             info.setProcessId(/* *it */ Process::currentId());
 
@@ -40,7 +40,7 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        xFOREACH_CONST(std::vector<Process::id_t>, it, vidIds) {
+        xFOR_EACH_CONST(std::vector<Process::id_t>, it, vidIds) {
             ProcessInfo info;
             info.setProcessId(/* *it */ Process::currentId());
 
@@ -58,7 +58,7 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        xFOREACH_CONST(std::vector<Process::id_t>, it, vidIds) {
+        xFOR_EACH_CONST(std::vector<Process::id_t>, it, vidIds) {
             ProcessInfo info;
             info.setProcessId(/* *it */ Process::currentId());
 
@@ -76,7 +76,7 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        xFOREACH_CONST(std::vector<Process::id_t>, it, vidIds) {
+        xFOR_EACH_CONST(std::vector<Process::id_t>, it, vidIds) {
             ProcessInfo info;
             info.setProcessId(/* *it */ Process::currentId());
 
@@ -92,7 +92,7 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        xFOREACH_CONST(std::vector<Process::id_t>, it, vidIds) {
+        xFOR_EACH_CONST(std::vector<Process::id_t>, it, vidIds) {
             ProcessInfo info;
             info.setProcessId(/* *it */ Process::currentId());
 
@@ -107,7 +107,7 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        xFOREACH_CONST(std::vector<Process::id_t>, it, vidIds) {
+        xFOR_EACH_CONST(std::vector<Process::id_t>, it, vidIds) {
         #if   xENV_WIN
             xCHECK_DO(0 == *it, continue);
             xCHECK_DO(344 == *it, continue);
