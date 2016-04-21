@@ -11,6 +11,7 @@
 #endif
 
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 
 #if xENV_WIN
     #if !xCOMPILER_MINGW
@@ -234,9 +235,9 @@ MySQLConnection::lastErrorStr() const
     xTEST_PTR(cpszRv);
 
     if (lastError == 0U) {
-        sRv = String::format(xT("%u - \"%s\""), lastError, xT("Success"));
+        sRv = Format::str(xT("%u - \"%s\""), lastError, xT("Success"));
     } else {
-        sRv = String::format(xT("%u - \"%s\""), lastError, cpszRv);
+        sRv = Format::str(xT("%u - \"%s\""), lastError, cpszRv);
     }
 
     return sRv;

@@ -132,7 +132,7 @@ xNAMESPACE_BEGIN2(xlib, core)
         \
         sRv += a_format.substr(posPrev, a_format.size() - posPrev); \
         \
-        xTEST_EQ_MSG(param - 1, static_cast<std::size_t>(n), xT("Invalid params")); \
+        /* xTEST_EQ_MSG(param - 1, static_cast<std::size_t>(n), xT("Invalid params"));*/ \
         \
         return sRv; \
     }

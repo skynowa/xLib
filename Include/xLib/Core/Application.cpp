@@ -12,6 +12,7 @@ xLIB_CORE_APPLICATION_STATIC_DECLARE
 
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/IO/Path.h>
 #include <xLib/IO/Dir.h>
 #include <xLib/System/ProcessInfo.h>
@@ -339,7 +340,7 @@ Application::setVersionRevision(
 xINLINE std::tstring_t
 Application::versionFull()
 {
-    return String::format(xT("%s.%s.%s %s %s"), versionMajor().c_str(), versionMinor().c_str(),
+    return Format::str(xT("%s.%s.%s %s %s"), versionMajor().c_str(), versionMinor().c_str(),
         versionPatch().c_str(), versionType().c_str(), versionRevision().c_str());
 }
 //-------------------------------------------------------------------------------------------------
@@ -502,7 +503,7 @@ Application::configPath()
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
     std::ctstring_t ext      = Path::fileExt(Path::seConfig);
 
-    return String::format(xT("%s/%s.%s"), configDirPath().c_str(), basename.c_str(), ext.c_str());
+    return Format::str(xT("%s/%s.%s"), configDirPath().c_str(), basename.c_str(), ext.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -512,7 +513,7 @@ Application::logPath()
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
     std::ctstring_t ext      = Path::fileExt(Path::seLog);
 
-    return String::format(xT("%s/%s.%s"), logDirPath().c_str(), basename.c_str(), ext.c_str());
+    return Format::str(xT("%s/%s.%s"), logDirPath().c_str(), basename.c_str(), ext.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -522,7 +523,7 @@ Application::dbPath()
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
     std::ctstring_t ext      = Path::fileExt(Path::seDb);
 
-    return String::format(xT("%s/%s.%s"), dbDirPath().c_str(), basename.c_str(), ext.c_str());
+    return Format::str(xT("%s/%s.%s"), dbDirPath().c_str(), basename.c_str(), ext.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -548,42 +549,42 @@ Application::dirPath()
 xINLINE std::tstring_t
 Application::configDirPath()
 {
-    return String::format(xT("%s/%s"), dirPath().c_str(), configDirName.c_str());
+    return Format::str(xT("%s/%s"), dirPath().c_str(), configDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::logDirPath()
 {
-    return String::format(xT("%s/%s"), dirPath().c_str(), logDirName.c_str());
+    return Format::str(xT("%s/%s"), dirPath().c_str(), logDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::dbDirPath()
 {
-    return String::format(xT("%s/%s"), dirPath().c_str(), dbDirName.c_str());
+    return Format::str(xT("%s/%s"), dirPath().c_str(), dbDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::backupDirPath()
 {
-    return String::format(xT("%s/%s"), dirPath().c_str(), backupDirName.c_str());
+    return Format::str(xT("%s/%s"), dirPath().c_str(), backupDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::tempDirPath()
 {
-    return String::format(xT("%s/%s"), dirPath().c_str(), tempDirName.c_str());
+    return Format::str(xT("%s/%s"), dirPath().c_str(), tempDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::langDirPath()
 {
-    return String::format(xT("%s/%s"), dirPath().c_str(), langDirName.c_str());
+    return Format::str(xT("%s/%s"), dirPath().c_str(), langDirName.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 

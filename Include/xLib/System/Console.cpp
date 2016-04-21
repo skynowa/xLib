@@ -10,6 +10,7 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Sync/Thread.h>
 
 #if   xENV_WIN
@@ -262,7 +263,7 @@ Console::pause(
         std::cin.clear();
         std::cin.ignore();
     } else {
-        msg = String::format(xT("Pause, wait for %lu msec to continue..."), a_timeoutMsec);
+        msg = Format::str(xT("Pause, wait for %lu msec to continue..."), a_timeoutMsec);
 
         writeLine(msg);
 

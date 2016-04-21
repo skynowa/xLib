@@ -9,6 +9,7 @@
 #endif
 
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Core/Utils.h>
@@ -589,7 +590,7 @@ File::isExistsEx(
     xCHECK_DO(!fileExt.empty(), fileExt.insert(0, Const::dot()));
 
     for (ulong_t existsIndex = 1; ; ++ existsIndex) {
-        sRv = String::format(xT("%s%s%s (%lu)%s"), fileDir.c_str(), Const::slash().c_str(),
+        sRv = Format::str(xT("%s%s%s (%lu)%s"), fileDir.c_str(), Const::slash().c_str(),
             fileName.c_str(), existsIndex, fileExt.c_str());
         xCHECK_DO(!isExists(sRv), break);
     }

@@ -10,6 +10,7 @@
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Const.h>
+#include <xLib/Core/Format.h>
 
 
 xNAMESPACE_BEGIN2(xlib, debug)
@@ -35,7 +36,7 @@ BuildInfo::datetime() const
 {
     std::tstring_t sRv;
 
-    sRv = String::format(xT("%s %s"), xDATE, xTIME);
+    sRv = Format::str(xT("%s %s"), xDATE, xTIME);
 
     return sRv;
 }
@@ -77,7 +78,7 @@ BuildInfo::langStandart() const
     #endif
     }
 
-    sRv = String::format(xT("%s, %s"), langStandartC.c_str(), langStandartCpp.c_str());
+    sRv = Format::str(xT("%s, %s"), langStandartC.c_str(), langStandartCpp.c_str());
     sRv = String::trimRightChars(sRv, ", ");
 
     return sRv;
@@ -142,7 +143,7 @@ BuildInfo::os() const
         cint_t versionMinor = (xOS_LINUX_VER & 0x0000FF00) >> 8;
         cint_t versionPatch = (xOS_LINUX_VER & 0x000000FF) >> 0;
 
-        osVersion = String::format(xT("%d.%d.%d"), versionMajor, versionMinor, versionPatch);
+        osVersion = Format::str(xT("%d.%d.%d"), versionMajor, versionMinor, versionPatch);
         xTEST_EQ(LINUX_VERSION_CODE, xLINUX_KERNEL_VER(versionMajor, versionMinor, versionPatch));
     #elif xOS_FREEBSD
         osVersion = String::cast(xOS_FREEBSD_VER);
@@ -152,7 +153,7 @@ BuildInfo::os() const
     #endif
     }
 
-    sRv = String::format(xT("%s %s"), osName.c_str(), osVersion.c_str());
+    sRv = Format::str(xT("%s %s"), osName.c_str(), osVersion.c_str());
     sRv = String::trimRightChars(sRv, Const::space());
 
     return sRv;
@@ -253,7 +254,7 @@ BuildInfo::compiler() const
     compilerVersion = xCOMPILER_GNUC_VER_STR;
 #endif
 
-    sRv = String::format(xT("%s %s"), compilerName.c_str(), compilerVersion.c_str());
+    sRv = Format::str(xT("%s %s"), compilerName.c_str(), compilerVersion.c_str());
 
     return sRv;
 }
@@ -301,7 +302,7 @@ BuildInfo::stdLibC() const
     stdLibCVersion = xSTD_LIBC_K_VER_STR;
 #endif
 
-    sRv = String::format(xT("%s %s"), stdLibCName.c_str(), stdLibCVersion.c_str());
+    sRv = Format::str(xT("%s %s"), stdLibCName.c_str(), stdLibCVersion.c_str());
 
     return sRv;
 }
@@ -333,7 +334,7 @@ BuildInfo::stdLibCpp() const
     stdLibCppVersion = xSTD_LIBCPP_LIBCPP_VER_STR;
 #endif
 
-    sRv = String::format(xT("%s %s"), stdLibCppName.c_str(), stdLibCppVersion.c_str());
+    sRv = Format::str(xT("%s %s"), stdLibCppName.c_str(), stdLibCppVersion.c_str());
 
     return sRv;
 }
@@ -353,7 +354,7 @@ BuildInfo::qt() const
     qtVersion = Const::strUnknown();
 #endif
 
-    sRv = String::format(xT("%s %s"), qtName.c_str(), qtVersion.c_str());
+    sRv = Format::str(xT("%s %s"), qtName.c_str(), qtVersion.c_str());
 
     return sRv;
 }
@@ -363,7 +364,7 @@ BuildInfo::xlibVersion() const
 {
     std::tstring_t sRv;
 
-    sRv = String::format(xT("%s %s %s/%s"), xLIB_VERSION, xLIB_VERSION_SUFFIX,
+    sRv = Format::str(xT("%s %s %s/%s"), xLIB_VERSION, xLIB_VERSION_SUFFIX,
         xLIB_GIT_REVISION_BRANCH, xLIB_GIT_REVISION_HASH);
 
     return sRv;
