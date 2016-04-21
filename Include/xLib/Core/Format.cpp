@@ -200,7 +200,7 @@ Format::_setManipulators(
 xINLINE void
 Format::_setManipulators(
     std::tstringstream_t &a_ss,
-    const void *         &a_value
+    const void *          a_value
 )
 {
     Trace() << Type::name(a_value);
@@ -226,7 +226,7 @@ Format::_setManipulators(
 xINLINE void
 Format::_setManipulators(
     std::tstringstream_t &a_ss,
-    const char *         &a_value
+    const char *          a_value
 )
 {
     Trace() << Type::name(a_value);
