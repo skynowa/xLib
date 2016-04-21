@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const bool           &a_value
 )
@@ -32,7 +32,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const tchar_t        &a_value
 )
@@ -42,7 +42,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const unsigned char  &a_value
 )
@@ -52,7 +52,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const short          &a_value
 )
@@ -62,7 +62,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const unsigned short &a_value
 )
@@ -72,7 +72,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const int            &a_value
 )
@@ -82,7 +82,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const unsigned int   &a_value
 )
@@ -92,7 +92,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const long           &a_value
 )
@@ -102,7 +102,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const unsigned long  &a_value
 )
@@ -112,7 +112,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const long long      &a_value
 )
@@ -122,7 +122,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t     &a_ss,
     const unsigned long long &a_value
 )
@@ -132,7 +132,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const float          &a_value
 )
@@ -144,7 +144,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const double         &a_value
 )
@@ -156,7 +156,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const long double    &a_value
 )
@@ -168,7 +168,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const void *          a_value
 )
@@ -182,7 +182,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const std::tstring_t &a_value
 )
@@ -192,7 +192,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t &a_ss,
     const tchar_t *       a_value
 )
@@ -202,7 +202,7 @@ Format::_setManipulators(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
-Format::_setManipulators(
+Format::_format(
     std::tstringstream_t     &a_ss,
     const std::vec_tstring_t &a_value
 )

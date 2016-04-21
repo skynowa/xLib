@@ -45,24 +45,24 @@ public:
     xFORMAT_STR_DECLARE(20)
 
 private:
-    static void _setManipulators(std::tstringstream_t &ss, const bool &value);
-    static void _setManipulators(std::tstringstream_t &ss, const tchar_t &value);
-    static void _setManipulators(std::tstringstream_t &ss, const unsigned char &value);
-    static void _setManipulators(std::tstringstream_t &ss, const short &value);
-    static void _setManipulators(std::tstringstream_t &ss, const unsigned short &value);
-    static void _setManipulators(std::tstringstream_t &ss, const int &value);
-    static void _setManipulators(std::tstringstream_t &ss, const unsigned int &value);
-    static void _setManipulators(std::tstringstream_t &ss, const long &value);
-    static void _setManipulators(std::tstringstream_t &ss, const unsigned long &value);
-    static void _setManipulators(std::tstringstream_t &ss, const long long &value);
-    static void _setManipulators(std::tstringstream_t &ss, const unsigned long long &value);
-    static void _setManipulators(std::tstringstream_t &ss, const float &value);
-    static void _setManipulators(std::tstringstream_t &ss, const double &value);
-    static void _setManipulators(std::tstringstream_t &ss, const long double &value);
-    static void _setManipulators(std::tstringstream_t &ss, const void * value);
-    static void _setManipulators(std::tstringstream_t &ss, const std::tstring_t &value);
-    static void _setManipulators(std::tstringstream_t &ss, const tchar_t * value);
-    static void _setManipulators(std::tstringstream_t &ss, const std::vec_tstring_t &value);
+    static void _format(std::tstringstream_t &ss, const bool &value);
+    static void _format(std::tstringstream_t &ss, const tchar_t &value);
+    static void _format(std::tstringstream_t &ss, const unsigned char &value);
+    static void _format(std::tstringstream_t &ss, const short &value);
+    static void _format(std::tstringstream_t &ss, const unsigned short &value);
+    static void _format(std::tstringstream_t &ss, const int &value);
+    static void _format(std::tstringstream_t &ss, const unsigned int &value);
+    static void _format(std::tstringstream_t &ss, const long &value);
+    static void _format(std::tstringstream_t &ss, const unsigned long &value);
+    static void _format(std::tstringstream_t &ss, const long long &value);
+    static void _format(std::tstringstream_t &ss, const unsigned long long &value);
+    static void _format(std::tstringstream_t &ss, const float &value);
+    static void _format(std::tstringstream_t &ss, const double &value);
+    static void _format(std::tstringstream_t &ss, const long double &value);
+    static void _format(std::tstringstream_t &ss, const void * value);
+    static void _format(std::tstringstream_t &ss, const std::tstring_t &value);
+    static void _format(std::tstringstream_t &ss, const tchar_t * value);
+    static void _format(std::tstringstream_t &ss, const std::vec_tstring_t &value);
 
 private:
     xNO_INSTANCE(Format)
