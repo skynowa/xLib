@@ -26,8 +26,6 @@ Format::_setManipulators(
     const bool           &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << std::boolalpha;
     a_ss << a_value;
 }
@@ -39,8 +37,6 @@ Format::_setManipulators(
     const tchar_t        &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -51,8 +47,6 @@ Format::_setManipulators(
     const unsigned char  &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -63,8 +57,6 @@ Format::_setManipulators(
     const short          &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -75,8 +67,6 @@ Format::_setManipulators(
     const unsigned short &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -87,8 +77,6 @@ Format::_setManipulators(
     const int            &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -99,8 +87,6 @@ Format::_setManipulators(
     const unsigned int   &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -111,8 +97,6 @@ Format::_setManipulators(
     const long           &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -123,8 +107,6 @@ Format::_setManipulators(
     const unsigned long  &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -135,8 +117,6 @@ Format::_setManipulators(
     const long long      &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -147,8 +127,6 @@ Format::_setManipulators(
     const unsigned long long &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -159,8 +137,6 @@ Format::_setManipulators(
     const float          &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << std::setprecision( _floatPrecisionMax<float>() );
     a_ss << std::fixed;
     a_ss << a_value;
@@ -173,8 +149,6 @@ Format::_setManipulators(
     const double         &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << std::setprecision( _floatPrecisionMax<double>() );
     a_ss << std::fixed;
     a_ss << a_value;
@@ -187,8 +161,6 @@ Format::_setManipulators(
     const long double    &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << std::setprecision( _floatPrecisionMax<long double>() );
     a_ss << std::fixed;
     a_ss << a_value;
@@ -201,8 +173,6 @@ Format::_setManipulators(
     const void *          a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -213,8 +183,6 @@ Format::_setManipulators(
     const std::tstring_t &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -225,8 +193,6 @@ Format::_setManipulators(
     const tchar_t *       a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
@@ -237,8 +203,6 @@ Format::_setManipulators(
     const std::vec_tstring_t &a_value
 )
 {
-    Trace() << Type::name(a_value);
-
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
