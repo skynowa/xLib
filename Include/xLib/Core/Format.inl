@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_CASE(a_v) \
-            _format(ss, a_v);
+            _format(ss, a_v)
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_CASE_1 \
             case 1: xFORMAT_SWITCH_CASE(a_v1); break;
@@ -105,6 +105,9 @@ xNAMESPACE_BEGIN2(xlib, core)
         std::ctstring_t delimiter = xT("{}"); \
         std::size_t     posPrev   = 0U; \
         \
+        static std::tstringstream_t ss; \
+        static std::ctstring_t      emptyString; \
+        \
         std::size_t param = 1; \
         for ( ; ; ++ param) { \
             std::csize_t pos = a_format.find(delimiter, posPrev); \
@@ -114,8 +117,6 @@ xNAMESPACE_BEGIN2(xlib, core)
             \
             sRv += a_format.substr(posPrev, pos - posPrev); \
             \
-            static std::tstringstream_t ss; \
-            static std::ctstring_t      emptyString; \
             ss.str( emptyString ); \
             ss.clear(); \
             \
