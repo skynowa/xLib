@@ -135,7 +135,7 @@ Test_Format::unit()
             {(cvoid_t *)xPTR_NULL,      std::tstring_t(xT("null"))}
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+        xFOR_ARRAY(i, data) {
             m_sRv = Format::str(xT("{}"), data[i].test);
             xTEST_EQ(m_sRv, data[i].expect);
         }
