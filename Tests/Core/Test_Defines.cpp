@@ -531,6 +531,18 @@ Test_Defines::unit()
         }
     }
 
+    xTEST_CASE("xFOR_ARRAY")
+    {
+        int_t  sum      = 0;
+        cint_t values[] = {0, 1, 2, 3, 4, 5};
+
+        xFOR_ARRAY(i, values) {
+            sum += i;
+        }
+
+        xTEST_EQ(sum, 15);
+    }
+
     xTEST_CASE("xTHROW_REPORT")
     {
         xTEST_THROW(xTHROW_REPORT(xT("test xTHROW_REPORT message")), Exception);
