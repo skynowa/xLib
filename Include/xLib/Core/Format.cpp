@@ -36,7 +36,7 @@ Format::_setManipulators(
 xINLINE void
 Format::_setManipulators(
     std::tstringstream_t &a_ss,
-    const char           &a_value
+    const tchar_t        &a_value
 )
 {
     Trace() << Type::name(a_value);
@@ -55,8 +55,6 @@ Format::_setManipulators(
 
     a_ss << a_value;
 }
-//-------------------------------------------------------------------------------------------------
-//// wchar_t
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
@@ -212,29 +210,25 @@ Format::_setManipulators(
 xINLINE void
 Format::_setManipulators(
     std::tstringstream_t &a_ss,
-    const std::string    &a_value
+    const std::tstring_t &a_value
 )
 {
     Trace() << Type::name(a_value);
 
     a_ss << a_value;
 }
-//-------------------------------------------------------------------------------------------------
-//// std::wstring
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
 Format::_setManipulators(
     std::tstringstream_t &a_ss,
-    const char *          a_value
+    const tchar_t *       a_value
 )
 {
     Trace() << Type::name(a_value);
 
     a_ss << a_value;
 }
-//-------------------------------------------------------------------------------------------------
-//// wchar_t *
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
