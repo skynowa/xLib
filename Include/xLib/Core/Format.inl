@@ -105,7 +105,8 @@ xNAMESPACE_BEGIN2(xlib, core)
         std::ctstring_t delimiter      = xT("{}"); \
         std::size_t     posPrev        = 0U; \
         \
-        for (std::size_t param = 1; ; ++ param) { \
+        std::size_t param = 1; \
+        for ( ; ; ++ param) { \
             std::csize_t pos = a_format.find(delimiter, posPrev); \
             if (pos == std::tstring_t::npos) { \
                 break; \
@@ -129,6 +130,8 @@ xNAMESPACE_BEGIN2(xlib, core)
         } \
         \
         sRv += a_format.substr(posPrev, a_format.size() - posPrev); \
+        \
+        xTEST_EQ_MSG(param - 1, static_cast<std::size_t>(n), xT("Invalid params")); \
         \
         return sRv; \
     }
