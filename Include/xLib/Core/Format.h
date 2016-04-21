@@ -63,11 +63,11 @@ private:
     static void _setManipulators(std::tstringstream_t &ss, const float &value);
     static void _setManipulators(std::tstringstream_t &ss, const double &value);
     static void _setManipulators(std::tstringstream_t &ss, const long double &value);
-    static void _setManipulators(std::tstringstream_t &ss, const void * &value);
+    static void _setManipulators(std::tstringstream_t &ss, const void * value);
     static void _setManipulators(std::tstringstream_t &ss, const std::string &value);
     //// static void _setManipulators(std::tstringstream_t &ss, const std::wstring &value);
-    static void _setManipulators(std::tstringstream_t &ss, const char * &value);
-    //// static void _setManipulators(std::tstringstream_t &ss, const wchar_t * &value);
+    static void _setManipulators(std::tstringstream_t &ss, const char * value);
+    //// static void _setManipulators(std::tstringstream_t &ss, const wchar_t * value);
     static void _setManipulators(std::tstringstream_t &ss, const std::vec_tstring_t &value);
 
     template<class T>
