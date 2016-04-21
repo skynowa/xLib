@@ -17,6 +17,7 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
 
 
@@ -46,7 +47,7 @@ DnsClient::hostAddrByName(
     hostent *host = ::gethostbyname(hostName.c_str());
     xTEST_PTR(host);
 
-    sRv = String::format(
+    sRv = Format::str(
         xT("%u.%u.%u.%u"),
         static_cast<uchar_t>(host->h_addr_list[0][0]),
         static_cast<uchar_t>(host->h_addr_list[0][1]),

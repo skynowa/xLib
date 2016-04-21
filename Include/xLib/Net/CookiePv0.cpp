@@ -10,6 +10,7 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 
 
 xNAMESPACE_BEGIN2(xlib, net)
@@ -193,7 +194,7 @@ CookiePv0::dump() const
 {
     std::tstring_t sRv;
 
-    sRv = String::format(
+    sRv = Format::str(
             xT("[CookiePv0 dump]\n\n")
             xT("Name: %s\n")
             xT("Value: %s\n")

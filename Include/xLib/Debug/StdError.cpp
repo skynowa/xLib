@@ -9,6 +9,7 @@
 #endif
 
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
 
 #if   xENV_WIN
@@ -87,7 +88,7 @@ StdError::format(
     cint_t &a_code
 )
 {
-    return String::format(xT("%d - %s"), a_code, _format_impl(a_code).c_str());
+    return Format::str(xT("%d - %s"), a_code, _format_impl(a_code).c_str());
 }
 //-------------------------------------------------------------------------------------------------
 

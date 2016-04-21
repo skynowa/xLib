@@ -10,6 +10,7 @@
 
 #include <xLib/Core/Char.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/System/SystemInfo.h>
 #include <xLib/System/Console.h>
@@ -271,7 +272,7 @@ Debugger::_loggingPlain(
         std::ofstream ofs(filePath.c_str(), std::ofstream::out);
         xCHECK_DO(ofs.fail(), return);
 
-        std::ctstring_t msg = String::format(
+        std::ctstring_t msg = Format::str(
             xT("\n")
             xT("####################################################################################################\n")
             xT("%s\n")

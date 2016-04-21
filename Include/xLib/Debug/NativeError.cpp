@@ -10,6 +10,7 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
 
 #if   xENV_WIN
@@ -86,7 +87,7 @@ NativeError::format(
     culong_t &a_code
 )
 {
-    return String::format(xT("%lu - %s"), a_code, _format_impl(a_code).c_str());
+    return Format::str(xT("%lu - %s"), a_code, _format_impl(a_code).c_str());
 }
 //-------------------------------------------------------------------------------------------------
 

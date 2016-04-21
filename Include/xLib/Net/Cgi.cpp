@@ -11,6 +11,7 @@
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/System/Environment.h>
 #include <xLib/IO/File.h>
 #include <xLib/Net/CookiePv0.h>
@@ -41,7 +42,7 @@ Cgi::dump() const
 {
     std::tstring_t sRv;
 
-    sRv = String::format(
+    sRv = Format::str(
             xT("[CGI dump]\n\n")
             xT("%s\n")
             xT("%s\n")
@@ -64,7 +65,7 @@ Cgi::redirect(
 
     std::tstring_t httpResponse;
 
-    httpResponse.append( String::format(xT("Location: %s\n"), a_url.c_str()) );
+    httpResponse.append( Format::str(xT("Location: %s\n"), a_url.c_str()) );
     httpResponse.append( Const::nl() );
 
     std::tcout << httpResponse << std::endl;
@@ -749,7 +750,7 @@ CgiCookies::dump() const
     sRv.append(xT("[CgiCookies dump]\n\n"));
 
     xFOR_EACH_CONST(TCookies, it, items) {
-        std::tstring_t itemN = String::format(
+        std::tstring_t itemN = Format::str(
                 xT("Name: %s\n")
                 xT("Value: %s\n")
                 xT("Domain: %s\n")
@@ -835,7 +836,7 @@ CgiFormData::dump() const
 {
     std::tstring_t sRv;
 
-    sRv = String::format(
+    sRv = Format::str(
             xT("[CgiFormData dump]\n\n")
             xT("Data: %s\n\n"),
             rawData().c_str());

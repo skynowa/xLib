@@ -23,6 +23,7 @@
 #endif
 
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Log/Trace.h>
 
@@ -156,7 +157,7 @@ Signal::decription(
     cint_t &a_signalNum ///< signal number
 )
 {
-    return String::format(xT("%d - %s"), a_signalNum, _decription_impl(a_signalNum).c_str());
+    return Format::str(xT("%d - %s"), a_signalNum, _decription_impl(a_signalNum).c_str());
 }
 //-------------------------------------------------------------------------------------------------
 

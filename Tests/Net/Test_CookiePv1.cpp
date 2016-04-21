@@ -7,6 +7,8 @@
 #include "Test_CookiePv1.h"
 
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
+
 
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_CookiePv1)
@@ -23,7 +25,7 @@ Test_CookiePv1::unit()
     clonglong_t     ciMaxAge    = 10 * 60 * 60;
     cbool_t           cbSecure    = true;
     cbool_t           cbHttpOnly  = true;
-    std::ctstring_t csRawCookie = String::format(
+    std::ctstring_t csRawCookie = Format::str(
                                         xT("%s=\"%s\"; Comment=\"%s\"; Domain=\"%s\"; Path=\"%s\"; Max-Age=\"%lli\"; Secure; HttpOnly; Version=\"1\""),
                                         csName.c_str(), csValue.c_str(), csComment.c_str(), csDomain.c_str(),
                                         csPath.c_str(), ciMaxAge /*cbSecure = true, cbHttpOnly = true*/);

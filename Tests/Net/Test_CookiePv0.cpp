@@ -7,6 +7,8 @@
 #include "Test_CookiePv0.h"
 
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
+
 
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_CookiePv0)
@@ -22,7 +24,7 @@ Test_CookiePv0::unit()
     std::ctstring_t csExpires   = xT("Wed, 13-Jan-2021 22:23:01 GMT");  //Thu, 22 Mar 2012 18:16:13 GMT
     cbool_t         cbSecure    = true;
     cbool_t         cbHttpOnly  = true;
-    std::ctstring_t csRawCookie = String::format(
+    std::ctstring_t csRawCookie = Format::str(
                                             xT("%s=%s; Domain=%s; Path=%s; Expires=%s; Secure; HttpOnly"),
                                             csName.c_str(), csValue.c_str(), csDomain.c_str(),
                                             csPath.c_str(), csExpires.c_str() /*cbSecure = true, cbHttpOnly = true*/);

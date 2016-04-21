@@ -9,6 +9,7 @@
 #endif
 
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Core/Locale.h>
 #include <xLib/Crypt/Guid.h>
 #include <xLib/IO/File.h>
@@ -242,7 +243,7 @@ MimeHeader::generateMessageID()
 {
     std::tstring_t sRv;
 
-    sRv = String::format(xT("%s@%s"), Guid().create(Guid::tpRandomBased).c_str(),
+    sRv = Format::str(xT("%s@%s"), Guid().create(Guid::tpRandomBased).c_str(),
         SystemInfo().hostName().c_str());
     xTEST_EQ(sRv.empty(), false);
 
