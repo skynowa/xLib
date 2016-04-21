@@ -23,24 +23,6 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("false,true")));
     }
 
-    xTEST_CASE("char")
-    {
-        const char value = 'a';
-
-        m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("a")));
-    }
-
-    xTEST_CASE("wchar_t")
-    {
-    #if 0
-        const wchar_t value = L'a';
-
-        m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("a")));
-    #endif
-    }
-
     xTEST_CASE("ctchar_t")
     {
         ctchar_t value = xT('a');
@@ -147,28 +129,16 @@ Test_Format::unit()
 
     xTEST_CASE("cvoid_t *")
     {
-        const void * value = (const void *)0x7fff0fd3e100;
+        Data2<cvoid_t *, std::tstring_t> data[] =
+        {
+            {(cvoid_t *)0x7fff0fd3e100, std::tstring_t(xT("0x7fff0fd3e100"))},
+            {(cvoid_t *)xPTR_NULL,      std::tstring_t(xT("null"))}
+        };
 
-        m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("0x7fff0fd3e100")));
-    }
-
-    xTEST_CASE("std::string")
-    {
-        std::string value("aaa");
-
-        m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("aaa")));
-    }
-
-    xTEST_CASE("std::wstring")
-    {
-    #if 0
-        std::wstring value(L"aaa");
-
-        m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("aaa")));
-    #endif
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            m_sRv = Format::str(xT("{}"), data[i].test);
+            xTEST_EQ(m_sRv, data[i].expect);
+        }
     }
 
     xTEST_CASE("std::ctstring_t")
@@ -177,24 +147,6 @@ Test_Format::unit()
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("aaa")));
-    }
-
-    xTEST_CASE("const char *")
-    {
-        const char * value = "bbb";
-
-        m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("bbb")));
-    }
-
-    xTEST_CASE("const wchar_t *")
-    {
-    #if 0
-        const wchar_t * value = L"bbb";
-
-        m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("bbb")));
-    #endif
     }
 
     xTEST_CASE("ctchar_t *")
@@ -207,7 +159,6 @@ Test_Format::unit()
 
     xTEST_CASE("std::vec_tstring_t")
     {
-    #if 1
         std::vec_tstring_t value;
         value.push_back(xT("aa"));
         value.push_back(xT("bbb"));
@@ -217,7 +168,6 @@ Test_Format::unit()
                             "std::vector (2 elements):\n"
                             "    value[0]: aa\n"
                             "    value[1]: bbb"));
-    #endif
     }
 
     return true;
