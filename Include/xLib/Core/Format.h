@@ -45,9 +45,6 @@ public:
     xFORMAT_STR_DECLARE(20)
 
 private:
-    xNO_INSTANCE(Format)
-    xNO_COPY_ASSIGN(Format)
-
     static void _setManipulators(std::tstringstream_t &ss, const bool &value);
     static void _setManipulators(std::tstringstream_t &ss, const tchar_t &value);
     static void _setManipulators(std::tstringstream_t &ss, const unsigned char &value);
@@ -66,6 +63,10 @@ private:
     static void _setManipulators(std::tstringstream_t &ss, const std::tstring_t &value);
     static void _setManipulators(std::tstringstream_t &ss, const tchar_t * value);
     static void _setManipulators(std::tstringstream_t &ss, const std::vec_tstring_t &value);
+
+private:
+    xNO_INSTANCE(Format)
+    xNO_COPY_ASSIGN(Format)
 
     template<class T>
     static
