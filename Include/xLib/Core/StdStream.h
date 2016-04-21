@@ -14,14 +14,14 @@ xNAMESPACE_BEGIN2(xlib, core)
 ///@{
 
 template<class Traits, class T1, class T2>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (std::basic_ostream<tchar_t, Traits> &os, const std::pair<T1, T2> &value);
     ///< for std::pair
 
 // TODO: for std::array (C++11)
 
 template<class Traits, class T>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (std::basic_ostream<tchar_t, Traits> &os, const std::vector<T> &value);
     ///< for std::vector
 
@@ -29,7 +29,7 @@ operator << (std::basic_ostream<tchar_t, Traits> &os, const std::vector<T> &valu
 // TODO: for std::forward_list (C++11)
 
 template<class Traits, class T>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (std::basic_ostream<tchar_t, Traits> &os, const std::list<T> &value);
     ///< for std::list
 ///@}
@@ -47,22 +47,22 @@ operator << (std::basic_ostream<tchar_t, Traits> &os, const std::list<T> &value)
 ///@{
 
 template<class Traits, class T>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (std::basic_ostream<tchar_t, Traits> &os, const std::set<T> &value);
     ///< for std::set
 
 template<class Traits, class T>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (std::basic_ostream<tchar_t, Traits> &os, const std::set<T> &value);
     ///< for std::multiset
 
 template<class Traits, class T1, class T2>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (std::basic_ostream<tchar_t, Traits> &os, const std::map<T1, T2> &value);
     ///< for std::map
 
 template<class Traits, class T1, class T2>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (std::basic_ostream<tchar_t, Traits> &os, const std::multimap<T1, T2> &value);
     ///< for std::multimap
 ///@}
@@ -80,7 +80,7 @@ operator << (std::basic_ostream<tchar_t, Traits> &os, const std::multimap<T1, T2
 ///@name Etc
 ///@{
 template<class Traits>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (std::basic_ostream<tchar_t, Traits> &os, std::custring_t &value);
     ///< for std::ustring_t
 ///@}
