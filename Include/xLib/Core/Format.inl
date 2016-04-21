@@ -103,7 +103,6 @@ xNAMESPACE_BEGIN2(xlib, core)
     { \
         std::tstring_t  sRv; \
         std::ctstring_t delimiter      = xT("{}"); \
-        std::csize_t    delimiter_size = delimiter.size(); \
         std::size_t     posPrev        = 0U; \
         \
         for (std::size_t param = 1; ; ++ param) { \
@@ -126,7 +125,7 @@ xNAMESPACE_BEGIN2(xlib, core)
             \
             sRv.append( ss.str() ); \
             \
-            posPrev = pos + delimiter_size; \
+            posPrev = pos + delimiter.size(); \
         } \
         \
         sRv += a_format.substr(posPrev, a_format.size() - posPrev); \
