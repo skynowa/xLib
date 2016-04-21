@@ -102,8 +102,8 @@ xNAMESPACE_BEGIN2(xlib, core)
     ) \
     { \
         std::tstring_t  sRv; \
-        std::ctstring_t delimiter      = xT("{}"); \
-        std::size_t     posPrev        = 0U; \
+        std::ctstring_t delimiter = xT("{}"); \
+        std::size_t     posPrev   = 0U; \
         \
         std::size_t param = 1; \
         for ( ; ; ++ param) { \

@@ -12,8 +12,6 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-// http://www.cplusplus.com/reference/limits/numeric_limits/
-
 class Format
     ///< format string
 {
