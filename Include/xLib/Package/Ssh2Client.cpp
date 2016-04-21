@@ -504,7 +504,7 @@ Ssh2Client::_convertStdToHtml(
     // Etc
     colorsCodes["\e[0;1;32m"] = "Green";
 
-    xFOREACH_CONST(std::map_tstring_t, it, colorsCodes) {
+    xFOR_EACH_CONST(std::map_tstring_t, it, colorsCodes) {
         std::tstring_t htmlTag;
         {
             if (it->first == "\e[0m") {

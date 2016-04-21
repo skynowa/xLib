@@ -114,7 +114,7 @@ StackTrace::_format(
 
     // get elements max sizes
     for (size_t i = 0; i < ::elementsNum; ++ i) {
-        xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, a_stack) {
+        xFOR_EACH_CONST(std::vector<std::vec_tstring_t>, it, a_stack) {
             cint_t current = static_cast<int_t>( it->at(i).size() );
             xCHECK_DO(current > maxs[i], maxs[i] = current);
         }
@@ -123,7 +123,7 @@ StackTrace::_format(
     // formatting
     std::size_t lineNumber = 0;
 
-    xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, a_stack) {
+    xFOR_EACH_CONST(std::vector<std::vec_tstring_t>, it, a_stack) {
         std::tstringstream_t stackLine;
 
         stackLine

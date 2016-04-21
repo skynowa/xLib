@@ -1136,14 +1136,14 @@ File::textWrite(
 
     typedef std::map_tstring_t content_t;
 
-    xFOREACH_CONST(content_t, it, a_content) {
+    xFOR_EACH_CONST(content_t, it, a_content) {
         file.writeLine(it->first + a_separator + it->second);
     }
 
 #if xTODO
     std::tstring_t sRv;
 
-    xFOREACH_CONST(TContent, it, content) {
+    xFOR_EACH_CONST(TContent, it, content) {
         sRv.append(it->first);
         sRv.append(separator);
         sRv.append(it->second);

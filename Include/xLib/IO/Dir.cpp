@@ -132,7 +132,7 @@ Dir::pathCreate() const
      String::split( Path(dirPath()).toNative(false), Const::slash(), &pathParts );
 
     // create dirs by steps
-    xFOREACH_CONST(std::vec_tstring_t, it, pathParts) {
+    xFOR_EACH_CONST(std::vec_tstring_t, it, pathParts) {
         buildPath.append(*it).append(Const::slash());
 
         Dir(buildPath).create();
@@ -166,7 +166,7 @@ Dir::copy(
     Finder::files(dirPath(), Const::maskAll(), true, &filePaths);
 
     // copy
-    xFOREACH_R_CONST(std::vec_tstring_t, it, filePaths) {
+    xFOR_EACH_R_CONST(std::vec_tstring_t, it, filePaths) {
         std::tstring_t filePathTo = *it;
 
         size_t posBegin = filePathTo.find(dirPath());
@@ -252,7 +252,7 @@ Dir::pathClear() const
         filePaths.clear();
         Finder::files(dirPath(), Const::maskAll(), true, &filePaths);
 
-        xFOREACH_R(std::vec_tstring_t, it, filePaths) {
+        xFOR_EACH_R(std::vec_tstring_t, it, filePaths) {
             File::remove(*it);
         }
     }
@@ -264,7 +264,7 @@ Dir::pathClear() const
         dirPaths.clear();
         Finder::dirs(dirPath(), Const::maskAll(), true, &dirPaths);
 
-        xFOREACH_R(std::vec_tstring_t, it, dirPaths) {
+        xFOR_EACH_R(std::vec_tstring_t, it, dirPaths) {
             Dir(*it).remove();
         }
     }

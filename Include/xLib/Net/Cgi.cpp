@@ -105,7 +105,7 @@ Cgi::uriEncode(
 {
     // TODO: Cgi::uriEncode()
 
-    xFOREACH_CONST(std::tstring_t, it, a_uri) {
+    xFOR_EACH_CONST(std::tstring_t, it, a_uri) {
         tchar_t ch = *it;
 
         if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9') ||
@@ -722,7 +722,7 @@ CgiCookies::CgiCookies(
 xINLINE
 CgiCookies::~CgiCookies()
 {
-    xFOREACH(TCookies, it, items) {
+    xFOR_EACH(TCookies, it, items) {
         xPTR_DELETE(*it);
     }
 }
@@ -732,7 +732,7 @@ CgiCookies::operator [] (
     std::ctstring_t &a_cookieName
 )
 {
-    xFOREACH_CONST(TCookies, it, items) {
+    xFOR_EACH_CONST(TCookies, it, items) {
         xCHECK_DO(!StringCI::compare(a_cookieName, (*it)->value()), continue);
 
         return (*it)->value();
@@ -748,7 +748,7 @@ CgiCookies::dump() const
 
     sRv.append(xT("[CgiCookies dump]\n\n"));
 
-    xFOREACH_CONST(TCookies, it, items) {
+    xFOR_EACH_CONST(TCookies, it, items) {
         std::tstring_t itemN = String::format(
                 xT("Name: %s\n")
                 xT("Value: %s\n")
@@ -790,7 +790,7 @@ CgiCookies::_construct()
 
     String::split(rawCookies, Const::semicolon(), &vsRawCookies);
 
-    xFOREACH_CONST(std::vec_tstring_t, it, vsRawCookies) {
+    xFOR_EACH_CONST(std::vec_tstring_t, it, vsRawCookies) {
         CookiePv0 *pckItem = new(std::nothrow) CookiePv0(*it);
         xTEST_PTR(pckItem);
 

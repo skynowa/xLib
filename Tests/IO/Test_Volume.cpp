@@ -34,7 +34,7 @@ Test_Volume::unit()
         Volume::paths(&volumePaths);
         xTEST_EQ(false, volumePaths.empty());
 
-        xFOREACH_CONST(std::vec_tstring_t, it, volumePaths) {
+        xFOR_EACH_CONST(std::vec_tstring_t, it, volumePaths) {
             m_sRv = Volume(*it).fileSystem();
             xUNUSED(m_sRv);
 
@@ -48,7 +48,7 @@ Test_Volume::unit()
 
         Volume::paths(&volumePaths);
 
-        xFOREACH(std::vec_tstring_t, it, volumePaths) {
+        xFOR_EACH(std::vec_tstring_t, it, volumePaths) {
             m_sRv = Volume(*it).label();
             xTEST_NA(m_sRv);
 
@@ -66,7 +66,7 @@ Test_Volume::unit()
 
             Volume::paths(&volumePaths);
 
-            xFOREACH(std::vec_tstring_t, it, volumePaths) {
+            xFOR_EACH(std::vec_tstring_t, it, volumePaths) {
                 m_bRv = Volume(*it).isValid();
                 xTEST_EQ(m_bRv, true);
             }
@@ -195,7 +195,7 @@ Test_Volume::unit()
         std::vec_tstring_t volumes;
         volumes.push_back( User().homeDir() );
 
-        xFOREACH(std::vec_tstring_t, it, volumes) {
+        xFOR_EACH(std::vec_tstring_t, it, volumes) {
             const Data2<ulonglong_t, bool_t> data[] = {
                 {0ULL, true},
                 {1ULL, true},
@@ -220,7 +220,7 @@ Test_Volume::unit()
         std::vec_tstring_t volumePaths;
         volumePaths.push_back( User().homeDir() );
 
-        xFOREACH(std::vec_tstring_t, it, volumePaths) {
+        xFOR_EACH(std::vec_tstring_t, it, volumePaths) {
             ulonglong_t available = 0ULL;
             ulonglong_t total     = 0ULL;
             ulonglong_t free      = 0ULL;
@@ -233,7 +233,7 @@ Test_Volume::unit()
             xTEST_DIFF(0ULL, free);
         }
 
-        xFOREACH(std::vec_tstring_t, it, volumePaths) {
+        xFOR_EACH(std::vec_tstring_t, it, volumePaths) {
             ulonglong_t available = 0ULL;
             ulonglong_t total     = 0ULL;
             ulonglong_t free      = 0ULL;
@@ -246,7 +246,7 @@ Test_Volume::unit()
             xTEST_EQ(0ULL, free);
         }
 
-        xFOREACH(std::vec_tstring_t, it, volumePaths) {
+        xFOR_EACH(std::vec_tstring_t, it, volumePaths) {
             ulonglong_t available = 0ULL;
             ulonglong_t total     = 0ULL;
             ulonglong_t free      = 0ULL;

@@ -88,7 +88,7 @@ Manager::run()
                 << xT(", unit number: ") << _units.size());
 
     for (std::size_t i = 0; i < _data.allLoops; ++ i) {
-        xFOREACH_CONST(units_t, it, _units) {
+        xFOR_EACH_CONST(units_t, it, _units) {
             xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: run unit ") << (*it)->name());
 
             bool_t bRv = (*it)->run();

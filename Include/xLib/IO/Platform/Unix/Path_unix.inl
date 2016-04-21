@@ -265,7 +265,7 @@ Path::procValue(
 
     proc(a_procPath, &procFile);
 
-    xFOREACH_CONST(std::vec_tstring_t, it, procFile) {
+    xFOR_EACH_CONST(std::vec_tstring_t, it, procFile) {
         std::csize_t pos = StringCI::find(*it, a_key);
         xCHECK_DO(pos == std::tstring_t::npos, continue);
 
