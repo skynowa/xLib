@@ -168,27 +168,26 @@ xFORMAT_STR(20)
 //-------------------------------------------------------------------------------------------------
 template<class IteratorT>
 /* static */
-inline std::tstring_t
-Format::range(
-    IteratorT a_first,
-    IteratorT a_last
+inline void
+Format::_format(
+    std::tstringstream_t &a_ss,       ///< [out]
+    IteratorT             a_first,
+    IteratorT             a_last
 )
 {
-    std::tstring_t sRv;
-
-    sRv = xT("{");
-
-    if (a_first != a_last) {
-        sRv += str("{}", *a_first);
-
-        for (++ a_first; a_first != a_last; ++ a_first) {
-            sRv += str(", {}", *a_first);
-        }
+    if (a_first == a_last) {
+        a_ss << xT("{}");
+        return;
     }
 
-    sRv += xT("}");
+    a_ss << xT("{");
+    a_ss << str(xT("{}"), *a_first);
 
-    return sRv;
+    for (++ a_first; a_first != a_last; ++ a_first) {
+        a_ss << str(xT(", {}"), *a_first);
+    }
+
+    a_ss << xT("}");
 }
 //-------------------------------------------------------------------------------------------------
 

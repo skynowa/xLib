@@ -253,17 +253,6 @@ Test_Format::unit()
         Trace() << xTRACE_VAR(m_sRv);
     }
 
-    xTEST_CASE("range")
-    {
-        std::vec_tstring_t value;
-        value.push_back(xT("a"));
-        value.push_back(xT("bb"));
-        value.push_back(xT("ccc"));
-
-        m_sRv = Format::range(value.begin(), value.end());
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{a, bb, ccc}")));
-    }
-
     return true;
 }
 //-------------------------------------------------------------------------------------------------
