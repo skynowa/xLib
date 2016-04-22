@@ -4,6 +4,14 @@
  */
 
 
+#include <xLib/Test/Test.h>
+#include <xLib/Debug/Debug.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/StdError.h>
+#include <xLib/Debug/ErrorReport.h>
+#include <xLib/Debug/Debugger.h>
+#include <xLib/Debug/StackTrace.h>
+
 xNAMESPACE_BEGIN2(xlib, core)
 
 /**************************************************************************************************
@@ -132,7 +140,7 @@ xNAMESPACE_BEGIN2(xlib, core)
         \
         sRv += a_format.substr(posPrev, a_format.size() - posPrev); \
         \
-        /* xTEST_EQ_MSG(param - 1, static_cast<std::size_t>(n), xT("Invalid params"));*/ \
+        xTEST_EQ_MSG(param - 1, static_cast<std::size_t>(n), xT("Invalid params")); \
         \
         return sRv; \
     }
