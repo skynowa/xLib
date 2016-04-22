@@ -15,10 +15,13 @@ class Format
     ///< format string
 {
 public:
+    static std::tstring_t c_str(ctchar_t *format, ...) xWARN_UNUSED_RV;
+    static std::tstring_t c_strV(ctchar_t *format, va_list args) xWARN_UNUSED_RV;
+
 #define xFORMAT_STR_DECLARE(n) \
     template<xVA_TYPES_##n> \
     static \
-    std::tstring_t str(std::ctstring_t &format, xVA_VARS_##n);
+    std::tstring_t str(std::ctstring_t &format, xVA_VARS_##n) xWARN_UNUSED_RV;
 
     xFORMAT_STR_DECLARE(1)
     xFORMAT_STR_DECLARE(2)

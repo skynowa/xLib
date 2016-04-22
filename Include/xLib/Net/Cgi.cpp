@@ -127,7 +127,7 @@ Cgi::uriEncode(
                 std::sprintf(buffer, "%0*X", width, value);
                 str.append(buffer);
              */
-            (*a_encodedStr) += String::format(xT("%0*X"), 2, (uint_t)(uchar_t)ch);
+            (*a_encodedStr) += Format::c_str(xT("%0*X"), 2, (uint_t)(uchar_t)ch);
         }
         else {
             (*a_encodedStr) += ch;

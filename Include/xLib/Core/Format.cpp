@@ -13,6 +13,67 @@
 
 xNAMESPACE_BEGIN2(xlib, core)
 
+
+/**************************************************************************************************
+*   public
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE std::tstring_t
+Format::c_str(
+    ctchar_t *a_format, ...    ///< string format
+)
+{
+    xTEST_NA(a_format);
+
+    xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
+
+    std::tstring_t sRv;
+
+    va_list args;
+    xVA_START(args, a_format);
+    sRv = c_strV(a_format, args);
+    xVA_END(args);
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE std::tstring_t
+Format::c_strV(
+    ctchar_t *a_format,    ///< string format
+    va_list   a_args       ///< arguments
+)
+{
+    xTEST_NA(a_format);
+    xTEST_NA(a_args);
+
+    xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
+
+    std::tstring_t buff(64, 0);
+    int_t          writtenSize = - 1;
+
+    for ( ; ; ) {
+        va_list args;
+        xVA_COPY(args, a_args);
+        writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, args);
+        xVA_END(args);
+
+        _xVERIFY(writtenSize > - 1);
+        xCHECK_DO(static_cast<size_t>( writtenSize ) < buff.size(), break);
+
+        buff.resize(buff.size() * 2);
+    }
+
+    buff.resize(writtenSize);
+
+    return buff;
+}
+//-------------------------------------------------------------------------------------------------
+
+
 /**************************************************************************************************
 *   private
 *

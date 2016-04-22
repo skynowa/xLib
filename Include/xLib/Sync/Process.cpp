@@ -71,7 +71,7 @@ Process::create(
 
     va_list args;
     xVA_START(args, a_params);
-    cmdLine = String::formatV(a_params, args);
+    cmdLine = Format::c_strV(a_params, args);
     xVA_END(args);
 
     // xTRACEV(xT("cmdLine: %s"), cmdLine.c_str());

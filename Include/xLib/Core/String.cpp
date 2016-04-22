@@ -578,58 +578,6 @@ String::cut(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-String::format(
-    ctchar_t *a_format, ...    ///< string format
-)
-{
-    xTEST_NA(a_format);
-
-    xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
-
-    std::tstring_t sRv;
-
-    va_list args;
-    xVA_START(args, a_format);
-    sRv = formatV(a_format, args);
-    xVA_END(args);
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-xINLINE std::tstring_t
-String::formatV(
-    ctchar_t *a_format,    ///< string format
-    va_list   a_args       ///< arguments
-)
-{
-    xTEST_NA(a_format);
-    xTEST_NA(a_args);
-
-    xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
-
-    std::tstring_t buff(64, 0);
-    int_t          writtenSize = - 1;
-
-    for ( ; ; ) {
-        va_list args;
-        xVA_COPY(args, a_args);
-        writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, args);
-        xVA_END(args);
-
-        _xVERIFY(writtenSize > - 1);
-        xCHECK_DO(static_cast<size_t>( writtenSize ) < buff.size(), break);
-
-        buff.resize(buff.size() * 2);
-    }
-
-    buff.resize(writtenSize);
-
-    return buff;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-xINLINE std::tstring_t
 String::minimize(
     std::ctstring_t &a_str,         ///< source string
     std::csize_t    &a_maxLength    ///< string maximum size
@@ -684,28 +632,28 @@ String::formatBytes(
 
 
     if (     a_bytes / eb > 0ULL) {
-        sRv = format(xT("%.2f EB"), static_cast<double>(a_bytes) / static_cast<double>(eb));
+        sRv = Format::c_str(xT("%.2f EB"), static_cast<double>(a_bytes) / static_cast<double>(eb));
     }
     else if (a_bytes / pb > 0ULL) {
-        sRv = format(xT("%.2f PB"), static_cast<double>(a_bytes) / static_cast<double>(pb));
+        sRv = Format::c_str(xT("%.2f PB"), static_cast<double>(a_bytes) / static_cast<double>(pb));
     }
     else if (a_bytes / tb > 0ULL) {
-        sRv = format(xT("%.2f TB"), static_cast<double>(a_bytes) / static_cast<double>(tb));
+        sRv = Format::c_str(xT("%.2f TB"), static_cast<double>(a_bytes) / static_cast<double>(tb));
     }
     else if (a_bytes / gb > 0ULL) {
-        sRv = format(xT("%.2f GB"), static_cast<double>(a_bytes) / static_cast<double>(gb));
+        sRv = Format::c_str(xT("%.2f GB"), static_cast<double>(a_bytes) / static_cast<double>(gb));
     }
     else if (a_bytes / mb > 0ULL) {
-        sRv = format(xT("%.2f MB"), static_cast<double>(a_bytes) / static_cast<double>(mb));
+        sRv = Format::c_str(xT("%.2f MB"), static_cast<double>(a_bytes) / static_cast<double>(mb));
     }
     else if (a_bytes / kb > 0ULL) {
-        sRv = format(xT("%.2f KB"), static_cast<double>(a_bytes) / static_cast<double>(kb));
+        sRv = Format::c_str(xT("%.2f KB"), static_cast<double>(a_bytes) / static_cast<double>(kb));
     }
     else if (a_bytes / byte > 0ULL) {
-        sRv = format(xT("%.2f Byte(s)"), static_cast<double>(a_bytes) / static_cast<double>(byte));
+        sRv = Format::c_str(xT("%.2f Byte(s)"), static_cast<double>(a_bytes) / static_cast<double>(byte));
     }
     else {
-        sRv = format(xT("%.2f Bit(s)"), static_cast<double>(a_bytes));
+        sRv = Format::c_str(xT("%.2f Bit(s)"), static_cast<double>(a_bytes));
     }
 
     return sRv;

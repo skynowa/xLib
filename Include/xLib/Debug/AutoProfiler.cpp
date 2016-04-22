@@ -30,7 +30,7 @@ AutoProfiler::AutoProfiler(
     // format comment
     va_list args;
     xVA_START(args, a_comment);
-    _comment = String::formatV(a_comment, args);
+    _comment = Format::c_strV(a_comment, args);
     xVA_END(args);
 
     // start
