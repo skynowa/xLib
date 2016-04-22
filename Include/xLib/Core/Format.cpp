@@ -305,7 +305,7 @@ Format::_format(
 #if 1
     a_ss << a_value;
 #else
-    a_ss << range(a_value.begin(), a_value.end());
+    _format(a_ss, a_value.begin(), a_value.end());
 #endif
 }
 //-------------------------------------------------------------------------------------------------

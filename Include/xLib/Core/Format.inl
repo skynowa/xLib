@@ -190,5 +190,16 @@ Format::_format(
     a_ss << xT("}");
 }
 //-------------------------------------------------------------------------------------------------
+template<class T>
+/* static */
+inline void
+Format::_format(
+    std::tstringstream_t &a_ss,       ///< [out]
+    const T              &a_value
+)
+{
+    _format(a_ss, a_value.begin(), a_value.end());
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, core)
