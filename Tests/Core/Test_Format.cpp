@@ -213,6 +213,14 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("aaa")));
     }
 
+    xTEST_CASE("std::custring_t")
+    {
+        std::custring_t value(10, 'z');
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("zzzzzzzzzz")));
+    }
+
     xTEST_CASE("ctchar_t *")
     {
         ctchar_t * value = xT("bbb");
