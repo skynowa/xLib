@@ -68,6 +68,8 @@ private:
 
     template<class IteratorT>
     static void _format(std::tstringstream_t &ss, IteratorT first, IteratorT last);
+    template<class T>
+    static void _format(std::tstringstream_t &ss, const T &value);
 
 private:
     xNO_INSTANCE(Format)
