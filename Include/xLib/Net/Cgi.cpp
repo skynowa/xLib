@@ -766,9 +766,8 @@ CgiCookies::dump() const
                 (*it)->domain(),
                 (*it)->path(),
                 (*it)->expires(),
-                String::castBool((*it)->secure()),
-                String::castBool((*it)->httpOnly())
-        );
+                (*it)->secure(),
+                (*it)->httpOnly());
 
         sRv.append( xT("[Item]:\n") );
         sRv.append(itemN);
