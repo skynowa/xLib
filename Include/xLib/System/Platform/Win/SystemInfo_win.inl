@@ -280,9 +280,9 @@ SystemInfo::_cpuModel_impl() const
 
         std::tstring_t cpuName = String::trimSpace( xS2TS(buff) );
 
-        sRv = Format::str(xT("%s (%s)"), cpuName.c_str(), man);
+        sRv = Format::str(xT("{} ({})"), cpuName, man);
     } else {
-        sRv = Format::str(xT("%s"), man);
+        sRv = Format::str(xT("{}"), man);
     }
 #elif xCOMPILER_CODEGEAR
     sRv = std::tstring_t();

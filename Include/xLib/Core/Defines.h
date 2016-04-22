@@ -546,7 +546,7 @@
 #define xVA_VARS_17   xVA_VARS_16, const T17 &a_v17
 #define xVA_VARS_18   xVA_VARS_17, const T18 &a_v18
 #define xVA_VARS_19   xVA_VARS_18, const T19 &a_v19
-#define xVA_VARS_20   xVA_VARS_19, const T10 &a_v20
+#define xVA_VARS_20   xVA_VARS_19, const T20 &a_v20
 
 #define xVA_VALUES_1                 v1
 #define xVA_VALUES_2  xVA_VALUES_1,  v2

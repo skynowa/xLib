@@ -25,9 +25,9 @@ Test_CookiePv0::unit()
     cbool_t         cbSecure    = true;
     cbool_t         cbHttpOnly  = true;
     std::ctstring_t csRawCookie = Format::str(
-                                            xT("%s=%s; Domain=%s; Path=%s; Expires=%s; Secure; HttpOnly"),
-                                            csName.c_str(), csValue.c_str(), csDomain.c_str(),
-                                            csPath.c_str(), csExpires.c_str() /*cbSecure = true, cbHttpOnly = true*/);
+                                            xT("{}={}; Domain={}; Path={}; Expires={}; Secure; HttpOnly"),
+                                            csName, csValue, csDomain,
+                                            csPath, csExpires /*cbSecure = true, cbHttpOnly = true*/);
 
     xTEST_CASE("CookiePv0")
     {

@@ -87,7 +87,7 @@ NativeError::format(
     culong_t &a_code
 )
 {
-    return Format::str(xT("%lu - %s"), a_code, _format_impl(a_code).c_str());
+    return Format::str(xT("{} - {}"), a_code, _format_impl(a_code));
 }
 //-------------------------------------------------------------------------------------------------
 

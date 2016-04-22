@@ -18,7 +18,7 @@ Path::_exe_impl()
 {
     std::tstring_t sRv;
 
-    std::ctstring_t procFile = Format::str(xT("/proc/%ld/exe"), ::getpid());
+    std::ctstring_t procFile = Format::str(xT("/proc/{}/exe"), ::getpid());
 
     bool_t bRv = File::isExists(procFile);
     xCHECK_RET(!bRv, std::tstring_t());

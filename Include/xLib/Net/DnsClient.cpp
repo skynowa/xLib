@@ -47,8 +47,7 @@ DnsClient::hostAddrByName(
     hostent *host = ::gethostbyname(hostName.c_str());
     xTEST_PTR(host);
 
-    sRv = Format::str(
-        xT("%u.%u.%u.%u"),
+    sRv = Format::str(xT("{}.{}.{}.{}"),
         static_cast<uchar_t>(host->h_addr_list[0][0]),
         static_cast<uchar_t>(host->h_addr_list[0][1]),
         static_cast<uchar_t>(host->h_addr_list[0][2]),

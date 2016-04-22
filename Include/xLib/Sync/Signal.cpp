@@ -157,7 +157,7 @@ Signal::decription(
     cint_t &a_signalNum ///< signal number
 )
 {
-    return Format::str(xT("%d - %s"), a_signalNum, _decription_impl(a_signalNum).c_str());
+    return Format::str(xT("{} - {}"), a_signalNum, _decription_impl(a_signalNum));
 }
 //-------------------------------------------------------------------------------------------------
 

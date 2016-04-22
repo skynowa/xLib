@@ -263,7 +263,7 @@ Console::pause(
         std::cin.clear();
         std::cin.ignore();
     } else {
-        msg = Format::str(xT("Pause, wait for %lu msec to continue..."), a_timeoutMsec);
+        msg = Format::str(xT("Pause, wait for {} msec to continue..."), a_timeoutMsec);
 
         writeLine(msg);
 

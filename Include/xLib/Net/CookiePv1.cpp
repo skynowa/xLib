@@ -218,22 +218,22 @@ CookiePv1::dump() const
 
     sRv = Format::str(
             xT("[CookiePv1 dump]\n\n")
-            xT("Name: %s\n")
-            xT("Value: %s\n")
-            xT("Comment: %s\n")
-            xT("Domain: %s\n")
-            xT("Path: %s\n")
-            xT("Max age: %s\n")
-            xT("Secure: %lld\n")
-            xT("HttpOnly: %s\n\n"),
-            name().c_str(),
-            value().c_str(),
-            comment().c_str(),
-            domain().c_str(),
-            path().c_str(),
+            xT("Name: {}\n")
+            xT("Value: {}\n")
+            xT("Comment: {}\n")
+            xT("Domain: {}\n")
+            xT("Path: {}\n")
+            xT("Max age: {}\n")
+            xT("Secure: {}\n")
+            xT("HttpOnly: {}\n\n"),
+            name(),
+            value(),
+            comment(),
+            domain(),
+            path(),
             maxAge(),
-            String::castBool( secure() ).c_str(),
-            String::castBool( httpOnly() ).c_str()
+            String::castBool( secure() ),
+            String::castBool( httpOnly() )
     );
 
     return sRv;

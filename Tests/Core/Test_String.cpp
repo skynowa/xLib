@@ -770,45 +770,45 @@ Test_String::unit()
     {
         std::tstring_t sData;
 
-        m_sRv = Format::str(xT("qqqq-wwww [%i]"), 1000);
+        m_sRv = String::format(xT("qqqq-wwww [%i]"), 1000);
         xTEST_EQ(m_sRv, std::tstring_t(xT("qqqq-wwww [1000]")));
 
-        m_sRv = Format::str(xT("qqqq-wwww [%f]"), 1000.0);
+        m_sRv = String::format(xT("qqqq-wwww [%f]"), 1000.0);
         xTEST_EQ(false, m_sRv.empty());
 
-        m_sRv = Format::str(xT("qqqq-wwww [%s]"), xT("1000"));
+        m_sRv = String::format(xT("qqqq-wwww [%s]"), xT("1000"));
         xTEST_EQ(m_sRv, std::tstring_t(xT("qqqq-wwww [1000]")));
 
-        m_sRv = Format::str(xT("qqqq-wwww [%i]"), -1000);
+        m_sRv = String::format(xT("qqqq-wwww [%i]"), -1000);
         xTEST_EQ(m_sRv, std::tstring_t(xT("qqqq-wwww [-1000]")));
 
-        m_sRv = Format::str(xT("Characters: %c %c"), xT('a'), 65);
+        m_sRv = String::format(xT("Characters: %c %c"), xT('a'), 65);
         xTEST_EQ(m_sRv, std::tstring_t(xT("Characters: a A")));
 
-        m_sRv = Format::str(xT("Decimals: %d %ld"), 1977, 650000L);
+        m_sRv = String::format(xT("Decimals: %d %ld"), 1977, 650000L);
         xTEST_EQ(m_sRv, std::tstring_t(xT("Decimals: 1977 650000")));
 
-        m_sRv = Format::str(xT("Preceding with blanks: %10d"), 1977);
+        m_sRv = String::format(xT("Preceding with blanks: %10d"), 1977);
         xTEST_EQ(m_sRv, std::tstring_t(xT("Preceding with blanks:       1977")));
 
-        m_sRv = Format::str(xT("Preceding with zeros: %010d"), 1977);
+        m_sRv = String::format(xT("Preceding with zeros: %010d"), 1977);
         xTEST_EQ(m_sRv, std::tstring_t(xT("Preceding with zeros: 0000001977")));
 
-        m_sRv = Format::str(xT("Some different radixes: %d %x %o %#x %#o"), 100, 100, 100, 100, 100);
+        m_sRv = String::format(xT("Some different radixes: %d %x %o %#x %#o"), 100, 100, 100, 100, 100);
         xTEST_EQ(m_sRv, std::tstring_t(xT("Some different radixes: 100 64 144 0x64 0144")));
 
-        m_sRv = Format::str(xT("floats: %4.2f %+.0e %E"), 3.1416, 3.1416, 3.1416);
+        m_sRv = String::format(xT("floats: %4.2f %+.0e %E"), 3.1416, 3.1416, 3.1416);
         xTEST_EQ(false, m_sRv.empty());
 
-        m_sRv = Format::str(xT("Width trick: %*d"), 5, 10);
+        m_sRv = String::format(xT("Width trick: %*d"), 5, 10);
         xTEST_EQ(m_sRv, std::tstring_t(xT("Width trick:    10")));
 
         sData = xT("0A string2344565600");
-        m_sRv = Format::str(xT("%s"), sData.c_str());
+        m_sRv = String::format(xT("%s"), sData.c_str());
         xTEST_EQ(m_sRv, sData);
 
         sData = xT("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
-        m_sRv = Format::str(xT("%s"), sData.c_str());
+        m_sRv = String::format(xT("%s"), sData.c_str());
         xTEST_EQ(sData, m_sRv);
 
         //various string size
@@ -816,7 +816,7 @@ Test_String::unit()
             for (size_t i = 1; i < 1024 * 2; ++ i) {
                 std::tstring_t _sData(i, xT('s'));
 
-                std::tstring_t sRv = Format::str(xT("%s"), _sData.c_str());
+                std::tstring_t sRv = String::format(xT("%s"), _sData.c_str());
                 //xSTD_COUT("_sData (" << _sData.size() << ") = " << _sData << "\nsRes (" << sRv.size() << ") = " << sRv);
 
                 xTEST_EQ(sRv.size(), _sData.size());
@@ -827,7 +827,7 @@ Test_String::unit()
 
     xTEST_CASE("formatV")
     {
-        // TEST: Format::strV()
+        // TEST: String::formatV()
     }
 
     xTEST_CASE("minimize")

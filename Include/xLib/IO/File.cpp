@@ -590,8 +590,8 @@ File::isExistsEx(
     xCHECK_DO(!fileExt.empty(), fileExt.insert(0, Const::dot()));
 
     for (ulong_t existsIndex = 1; ; ++ existsIndex) {
-        sRv = Format::str(xT("%s%s%s (%lu)%s"), fileDir.c_str(), Const::slash().c_str(),
-            fileName.c_str(), existsIndex, fileExt.c_str());
+        sRv = Format::str(xT("{}{}{} ({}){}"), fileDir, Const::slash(), fileName, existsIndex,
+            fileExt);
         xCHECK_DO(!isExists(sRv), break);
     }
 

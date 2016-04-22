@@ -147,15 +147,15 @@ Console::_setAttributes_impl(
         cint_t  attributeReverse    = 7;
         cint_t  attributeConcealed  = 8;
 
-        attrs += Format::str(xT("\033[%im"), foregroundColor);
-        attrs += Format::str(xT("\033[%im"), backgroundColor);
+        attrs += Format::str(xT("\033[{}m"), foregroundColor);
+        attrs += Format::str(xT("\033[{}m"), backgroundColor);
 
-        xCHECK_DO(a_attributes & Console::atAllOff,     attrs += Format::str(xT("\033[%im"), attributeAllOff));
-        xCHECK_DO(a_attributes & Console::atBold,       attrs += Format::str(xT("\033[%im"), attributeBold));
-        xCHECK_DO(a_attributes & Console::atUnderscore, attrs += Format::str(xT("\033[%im"), attributeUnderscore));
-        xCHECK_DO(a_attributes & Console::atBlink,      attrs += Format::str(xT("\033[%im"), attributeBlink));
-        xCHECK_DO(a_attributes & Console::atReverse,    attrs += Format::str(xT("\033[%im"), attributeReverse));
-        xCHECK_DO(a_attributes & Console::atConcealed,  attrs += Format::str(xT("\033[%im"), attributeConcealed));
+        xCHECK_DO(a_attributes & Console::atAllOff,     attrs += Format::str(xT("\033[{}m"), attributeAllOff));
+        xCHECK_DO(a_attributes & Console::atBold,       attrs += Format::str(xT("\033[{}m"), attributeBold));
+        xCHECK_DO(a_attributes & Console::atUnderscore, attrs += Format::str(xT("\033[{}m"), attributeUnderscore));
+        xCHECK_DO(a_attributes & Console::atBlink,      attrs += Format::str(xT("\033[{}m"), attributeBlink));
+        xCHECK_DO(a_attributes & Console::atReverse,    attrs += Format::str(xT("\033[{}m"), attributeReverse));
+        xCHECK_DO(a_attributes & Console::atConcealed,  attrs += Format::str(xT("\033[{}m"), attributeConcealed));
     }
 
     return attrs;
@@ -197,7 +197,7 @@ Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
 {
-    writeLine( Format::str(xT("%c]0;%s%c"), xT('\033'), a_title.c_str(), xT('\007')) );
+    writeLine( Format::str(xT("%c]0;{}%c"), xT('\033'), a_title, xT('\007')) );
 }
 //-------------------------------------------------------------------------------------------------
 
