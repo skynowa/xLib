@@ -71,7 +71,7 @@ Test_Format::unit()
         }
     }
 
-    xTEST_CASE("formatV")
+    xTEST_CASE("c_strV")
     {
         // TEST: Format::c_strV()
     }
