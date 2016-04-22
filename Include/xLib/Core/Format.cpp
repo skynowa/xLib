@@ -278,6 +278,16 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
+    std::tstringstream_t      &a_ss,
+    const std::list_tstring_t &a_value
+)
+{
+    a_ss << range(a_value.begin(), a_value.end());
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE void
+Format::_format(
     std::tstringstream_t     &a_ss,
     const std::map_tstring_t &a_value
 )
