@@ -43,9 +43,6 @@ public:
     xFORMAT_STR_DECLARE(19)
     xFORMAT_STR_DECLARE(20)
 
-    template<class IteratorT>
-    static std::tstring_t range(IteratorT first, IteratorT last);
-
 private:
     static void _format(std::tstringstream_t &ss, const bool &value);
     static void _format(std::tstringstream_t &ss, const tchar_t &value);
@@ -68,13 +65,15 @@ private:
     static void _format(std::tstringstream_t &ss, const std::list_tstring_t &value);
     static void _format(std::tstringstream_t &ss, const std::map_tstring_t &value);
 
+    template<class IteratorT>
+    static void _format(std::tstringstream_t &ss, IteratorT first, IteratorT last);
+
 private:
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)
 
     template<class T>
-    static
-    int _floatPrecisionMax();
+    static int _floatPrecisionMax();
 };
 
 xNAMESPACE_END2(xlib, core)

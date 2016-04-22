@@ -271,7 +271,7 @@ Format::_format(
 #if 0
     a_ss << a_value;
 #else
-    a_ss << range(a_value.begin(), a_value.end());
+    _format(a_ss, a_value.begin(), a_value.end());
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -282,7 +282,7 @@ Format::_format(
     const std::list_tstring_t &a_value
 )
 {
-    a_ss << range(a_value.begin(), a_value.end());
+    _format(a_ss, a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
