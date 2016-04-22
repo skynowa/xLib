@@ -83,7 +83,7 @@ Format::c_strV(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const bool           &a_value
 )
 {
@@ -94,7 +94,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const tchar_t        &a_value
 )
 {
@@ -104,7 +104,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const unsigned char  &a_value
 )
 {
@@ -114,7 +114,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const short          &a_value
 )
 {
@@ -124,7 +124,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const unsigned short &a_value
 )
 {
@@ -134,7 +134,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const int            &a_value
 )
 {
@@ -144,7 +144,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const unsigned int   &a_value
 )
 {
@@ -154,7 +154,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const long           &a_value
 )
 {
@@ -164,7 +164,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const unsigned long  &a_value
 )
 {
@@ -174,7 +174,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const long long      &a_value
 )
 {
@@ -184,7 +184,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t     &a_ss,
+    std::tstringstream_t     &a_ss,     ///< [out]
     const unsigned long long &a_value
 )
 {
@@ -194,7 +194,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const float          &a_value
 )
 {
@@ -206,7 +206,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const double         &a_value
 )
 {
@@ -218,7 +218,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const long double    &a_value
 )
 {
@@ -230,7 +230,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const void *          a_value
 )
 {
@@ -244,7 +244,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const std::tstring_t &a_value
 )
 {
@@ -254,7 +254,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t &a_ss,
+    std::tstringstream_t &a_ss,     ///< [out]
     const tchar_t *       a_value
 )
 {
@@ -264,7 +264,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t     &a_ss,
+    std::tstringstream_t     &a_ss,     ///< [out]
     const std::vec_tstring_t &a_value
 )
 {
@@ -278,7 +278,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t      &a_ss,
+    std::tstringstream_t      &a_ss,     ///< [out]
     const std::list_tstring_t &a_value
 )
 {
@@ -288,7 +288,7 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t     &a_ss,
+    std::tstringstream_t     &a_ss,     ///< [out]
     const std::map_tstring_t &a_value
 )
 {
