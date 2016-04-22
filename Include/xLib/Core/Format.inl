@@ -104,7 +104,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_STR(n) \
     template<xVA_TYPES_##n> \
-    xINLINE std::tstring_t \
+    inline std::tstring_t \
     Format::str( \
         std::ctstring_t &a_format, xVA_VARS_##n \
     ) \
@@ -165,6 +165,31 @@ xFORMAT_STR(17)
 xFORMAT_STR(18)
 xFORMAT_STR(19)
 xFORMAT_STR(20)
+//-------------------------------------------------------------------------------------------------
+template<class IteratorT>
+/* static */
+inline std::tstring_t
+Format::range(
+    IteratorT a_first,
+    IteratorT a_last
+)
+{
+    std::tstring_t sRv;
+
+    sRv = xT("{");
+
+    if (a_first != a_last) {
+        sRv += str("{}", *a_first);
+
+        for (++ a_first; a_first != a_last; ++ a_first) {
+            sRv += str(", {}", *a_first);
+        }
+    }
+
+    sRv += xT("}");
+
+    return sRv;
+}
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, core)
