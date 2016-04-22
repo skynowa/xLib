@@ -268,7 +268,25 @@ Format::_format(
     const std::vec_tstring_t &a_value
 )
 {
+#if 0
     a_ss << a_value;
+#else
+    a_ss << range(a_value.begin(), a_value.end());
+#endif
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE void
+Format::_format(
+    std::tstringstream_t     &a_ss,
+    const std::map_tstring_t &a_value
+)
+{
+#if 1
+    a_ss << a_value;
+#else
+    a_ss << range(a_value.begin(), a_value.end());
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 

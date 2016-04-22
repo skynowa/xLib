@@ -228,10 +228,30 @@ Test_Format::unit()
         value.push_back(xT("bbb"));
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(
-                            "std::vector (2 elements):\n"
-                            "    value[0]: aa\n"
-                            "    value[1]: bbb"));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{aa, bbb}")));
+    }
+
+    xTEST_CASE("std::map_tstring_t")
+    {
+        std::map_tstring_t value;
+        value[xT("0"), xT("aaa")];
+        value[xT("1"), xT("bbb")];
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{aa, bbb}")));
+
+        Trace() << xTRACE_VAR(m_sRv);
+    }
+
+    xTEST_CASE("range")
+    {
+        std::vec_tstring_t value;
+        value.push_back(xT("a"));
+        value.push_back(xT("bb"));
+        value.push_back(xT("ccc"));
+
+        m_sRv = Format::range(value.begin(), value.end());
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{a, bb, ccc}")));
     }
 
     return true;

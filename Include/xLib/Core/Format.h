@@ -20,8 +20,7 @@ public:
 
 #define xFORMAT_STR_DECLARE(n) \
     template<xVA_TYPES_##n> \
-    static \
-    std::tstring_t str(std::ctstring_t &format, xVA_VARS_##n) xWARN_UNUSED_RV;
+    static std::tstring_t str(std::ctstring_t &format, xVA_VARS_##n) xWARN_UNUSED_RV;
 
     xFORMAT_STR_DECLARE(1)
     xFORMAT_STR_DECLARE(2)
@@ -44,6 +43,9 @@ public:
     xFORMAT_STR_DECLARE(19)
     xFORMAT_STR_DECLARE(20)
 
+    template<class IteratorT>
+    static std::tstring_t range(IteratorT first, IteratorT last);
+
 private:
     static void _format(std::tstringstream_t &ss, const bool &value);
     static void _format(std::tstringstream_t &ss, const tchar_t &value);
@@ -63,6 +65,7 @@ private:
     static void _format(std::tstringstream_t &ss, const std::tstring_t &value);
     static void _format(std::tstringstream_t &ss, const tchar_t * value);
     static void _format(std::tstringstream_t &ss, const std::vec_tstring_t &value);
+    static void _format(std::tstringstream_t &ss, const std::map_tstring_t &value);
 
 private:
     xNO_INSTANCE(Format)
