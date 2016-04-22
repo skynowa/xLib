@@ -255,6 +255,16 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
+    const std::ustring_t &a_value
+)
+{
+    a_ss << a_value;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE void
+Format::_format(
+    std::tstringstream_t &a_ss,     ///< [out]
     const tchar_t *       a_value
 )
 {
