@@ -232,8 +232,8 @@ CookiePv1::dump() const
             domain(),
             path(),
             maxAge(),
-            String::castBool( secure() ),
-            String::castBool( httpOnly() )
+            secure(),
+            httpOnly()
     );
 
     return sRv;

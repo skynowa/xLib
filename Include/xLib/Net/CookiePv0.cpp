@@ -208,9 +208,8 @@ CookiePv0::dump() const
             domain(),
             path(),
             expires(),
-            String::castBool(secure()),
-            String::castBool(httpOnly())
-    );
+            secure(),
+            httpOnly());
 
     return sRv;
 }
