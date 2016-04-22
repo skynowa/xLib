@@ -182,6 +182,9 @@ xNAMESPACE_BEGIN(std)
     typedef vector<tstring_t> vec_tstring_t;
     xTYPEDEF_CONST(vec_tstring_t);
 
+    typedef list<tstring_t> list_tstring_t;
+    xTYPEDEF_CONST(list_tstring_t);
+
     typedef vector<ustring_t> vec_ustring_t;
     xTYPEDEF_CONST(vec_ustring_t);
 

@@ -231,6 +231,16 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("{aa, bbb}")));
     }
 
+    xTEST_CASE("std::list_tstring_t")
+    {
+        std::list_tstring_t value;
+        value.push_back(xT("aa"));
+        value.push_back(xT("bbb"));
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{aa, bbb}")));
+    }
+
     xTEST_CASE("std::map_tstring_t")
     {
         std::map_tstring_t value;
