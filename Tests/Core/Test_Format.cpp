@@ -62,13 +62,11 @@ Test_Format::unit()
         //various string size
         {
             for (size_t i = 1; i < 1024 * 2; ++ i) {
-                std::tstring_t _sData(i, xT('s'));
+                std::tstring_t data(i, xT('s'));
 
-                std::tstring_t sRv = Format::c_str(xT("%s"), _sData.c_str());
-                //xSTD_COUT("_sData (" << _sData.size() << ") = " << _sData << "\nsRes (" << sRv.size() << ") = " << sRv);
-
-                xTEST_EQ(sRv.size(), _sData.size());
-                xTEST_EQ(sRv,        _sData);
+                m_sRv = Format::c_str(xT("%s"), data.c_str());
+                xTEST_EQ(m_sRv.size(), data.size());
+                xTEST_EQ(m_sRv,        data);
             }
         }
     }
