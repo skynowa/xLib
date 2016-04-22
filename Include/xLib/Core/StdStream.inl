@@ -28,7 +28,7 @@ operator << (
     const std::pair<T1, T2>             &a_value
 )
 {
-    a_os << xT("std::pair: (") << a_value.first << xT(",") << a_value.second << ")";
+    a_os << xT("std::pair: (") << a_value.first << xT(", ") << a_value.second << ")";
 
     return a_os;
 }
@@ -172,8 +172,7 @@ operator << (
 
     typename std::map<T1, T2>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
-        a_os << xT("    key: ") << it->first  << xT("\t")
-             << xT("value: ")   << it->second;
+        a_os << *it;
 
         if (++ it != a_value.end()) {
              a_os << std::endl;
@@ -198,8 +197,7 @@ operator << (
 
     typename std::multimap<T1, T2>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
-        a_os << xT("    key: ") << it->first  << xT("\t")
-             << xT("value: ")   << it->second;
+        a_os << *it;
 
         if (++ it != a_value.end()) {
              a_os << std::endl;
