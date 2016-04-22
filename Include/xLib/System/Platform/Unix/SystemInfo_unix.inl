@@ -50,7 +50,7 @@ SystemInfo::_formatOs_impl()
     int_t iRv = ::uname(&info);
     xTEST_DIFF(iRv, - 1);
 
-    sRv = Format::str(xT("%s %s (%s) %s"), info.sysname, info.release, info.version,
+    sRv = Format::str(xT("{} {} ({}) {}"), info.sysname, info.release, info.version,
         info.machine);
 
     return sRv;

@@ -88,7 +88,7 @@ StdError::format(
     cint_t &a_code
 )
 {
-    return Format::str(xT("%d - %s"), a_code, _format_impl(a_code).c_str());
+    return Format::str(xT("{} - {}"), a_code, _format_impl(a_code));
 }
 //-------------------------------------------------------------------------------------------------
 

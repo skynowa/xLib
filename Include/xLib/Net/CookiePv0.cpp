@@ -196,20 +196,20 @@ CookiePv0::dump() const
 
     sRv = Format::str(
             xT("[CookiePv0 dump]\n\n")
-            xT("Name: %s\n")
-            xT("Value: %s\n")
-            xT("Domain: %s\n")
-            xT("Path: %s\n")
-            xT("Expires: %s\n")
-            xT("Secure: %s\n")
-            xT("HttpOnly: %s\n\n"),
-            name().c_str(),
-            value().c_str(),
-            domain().c_str(),
-            path().c_str(),
-            expires().c_str(),
-            String::castBool(secure()).c_str(),
-            String::castBool(httpOnly()).c_str()
+            xT("Name: {}\n")
+            xT("Value: {}\n")
+            xT("Domain: {}\n")
+            xT("Path: {}\n")
+            xT("Expires: {}\n")
+            xT("Secure: {}\n")
+            xT("HttpOnly: {}\n\n"),
+            name(),
+            value(),
+            domain(),
+            path(),
+            expires(),
+            String::castBool(secure()),
+            String::castBool(httpOnly())
     );
 
     return sRv;

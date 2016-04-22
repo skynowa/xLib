@@ -17,7 +17,7 @@ ProcessInfo::_exeName_impl() const
 {
     std::tstring_t sRv;
 
-    std::ctstring_t procFile = Format::str(xT("/proc/%ld/exe"), _id);
+    std::ctstring_t procFile = Format::str(xT("/proc/{}/exe"), _id);
 
     bool_t bRv = File::isExists(procFile);
     xCHECK_RET(!bRv, std::tstring_t());
@@ -51,7 +51,7 @@ ProcessInfo::_commandLine_impl(
     std::vec_tstring_t args;
 
     // TODO: ProcessInfo::commandLine() - review
-    std::ctstring_t procPath = Format::str(xT("/proc/%ld/cmdline"), _id);
+    std::ctstring_t procPath = Format::str(xT("/proc/{}/cmdline"), _id);
 
     FILE *procFile = std::fopen(procPath.c_str(), "r");
     xTEST_PTR(procFile);

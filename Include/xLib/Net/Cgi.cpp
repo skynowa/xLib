@@ -44,12 +44,12 @@ Cgi::dump() const
 
     sRv = Format::str(
             xT("[CGI dump]\n\n")
-            xT("%s\n")
-            xT("%s\n")
-            xT("%s\n"),
-            Environment.dump().c_str(),
-            Cookies.dump().c_str(),
-            Formdata.dump().c_str()
+            xT("{}\n")
+            xT("{}\n")
+            xT("{}\n"),
+            Environment.dump(),
+            Cookies.dump(),
+            Formdata.dump()
     );
 
     return sRv;
@@ -65,7 +65,7 @@ Cgi::redirect(
 
     std::tstring_t httpResponse;
 
-    httpResponse.append( Format::str(xT("Location: %s\n"), a_url.c_str()) );
+    httpResponse.append( Format::str(xT("Location: {}\n"), a_url) );
     httpResponse.append( Const::nl() );
 
     std::tcout << httpResponse << std::endl;
@@ -567,69 +567,72 @@ CgiEnvironment::dump() const
 {
     std::tstring_t sRv;
 
-    sRv = String::format(
+    sRv = Format::str(
             xT("[CgiEnvironment dump]\n\n")
-            xT("AUTH_TYPE: %s\n")
-            xT("CONTENT_LENGTH: %s\n")
-            xT("CONTENT_TYPE: %s\n")
-            xT("DOCUMENT_ROOT: %s\n")
-            xT("GATEWAY_INTERFACE: %s\n")
-            xT("HTTP_ACCEPT: %s\n")
-            xT("HTTP_COOKIE: %s\n")
-            xT("HTTP_PRAGMA: %s\n")
-            xT("HTTP_USER_AGENT: %s\n")
-            xT("PATH_INFO: %s\n")
-            xT("PATH_TRANSLATED: %s\n")
-            xT("QUERY_STRING: %s\n")
-            xT("REMOTE_ADDR: %s\n")
-            xT("REMOTE_HOST: %s\n")
-            xT("REMOTE_IDENT: %s\n")
-            xT("REMOTE_PORT: %s\n")
-            xT("REMOTE_USER: %s\n")
-            xT("REQUEST_METHOD: %s\n")
-            xT("REQUEST_URI: %s\n")
-            xT("SCRIPT_FILENAME: %s\n")
-            xT("SCRIPT_NAME: %s\n")
-            xT("SERVER_ADMIN: %s\n")
-            xT("SERVER_NAME: %s\n")
-            xT("SERVER_PORT: %s\n")
-            xT("SERVER_PROTOCOL: %s\n")
-            xT("SERVER_SOFTWARE: %s\n")
-            xT("HTTP_REFERER: %s\n")
-            xT("HTTP_HOST: %s\n")
-            xT("HTTP_ACCEPT_LANGUAGE: %s\n")
-            xT("GEOIP_COUNTRY_CODE: %s\n\n"),
-            authType().c_str(),
-            contentLength().c_str(),
-            contentType().c_str(),
-            documentRoot().c_str(),
-            gatewayInterface().c_str(),
-            httpAccept().c_str(),
-            httpCookie().c_str(),
-            httpPragma().c_str(),
-            httpUserAgent().c_str(),
-            pathInfo().c_str(),
-            pathTranslated().c_str(),
-            queryString().c_str(),
-            remoteAddr().c_str(),
-            remoteHost().c_str(),
-            remoteIdent().c_str(),
-            remotePort().c_str(),
-            remoteUser().c_str(),
-            requestMethod().c_str(),
-            requestUri().c_str(),
-            scriptFilename().c_str(),
-            scriptName().c_str(),
-            serverAdmin().c_str(),
-            serverName().c_str(),
-            serverPort().c_str(),
-            serverProtocol().c_str(),
-            serverSoftware().c_str(),
-            httpReferer().c_str(),
-            httpHost().c_str(),
-            httpAcceptLanguage().c_str(),
-            countryCode().c_str()
-    );
+            xT("AUTH_TYPE: {}\n")
+            xT("CONTENT_LENGTH: {}\n")
+            xT("CONTENT_TYPE: {}\n")
+            xT("DOCUMENT_ROOT: {}\n")
+            xT("GATEWAY_INTERFACE: {}\n")
+            xT("HTTP_ACCEPT: {}\n")
+            xT("HTTP_COOKIE: {}\n")
+            xT("HTTP_PRAGMA: {}\n")
+            xT("HTTP_USER_AGENT: {}\n")
+            xT("PATH_INFO: {}\n")
+            xT("PATH_TRANSLATED: {}\n")
+            xT("QUERY_STRING: {}\n")
+            xT("REMOTE_ADDR: {}\n")
+            xT("REMOTE_HOST: {}\n")
+            xT("REMOTE_IDENT: {}\n")
+            xT("REMOTE_PORT: {}\n")
+            xT("REMOTE_USER: {}\n")
+            xT("REQUEST_METHOD: {}\n")
+            xT("REQUEST_URI: {}\n")
+            xT("SCRIPT_FILENAME: {}\n"),
+            authType(),
+            contentLength(),
+            contentType(),
+            documentRoot(),
+            gatewayInterface(),
+            httpAccept(),
+            httpCookie(),
+            httpPragma(),
+            httpUserAgent(),
+            pathInfo(),
+            pathTranslated(),
+            queryString(),
+            remoteAddr(),
+            remoteHost(),
+            remoteIdent(),
+            remotePort(),
+            remoteUser(),
+            requestMethod(),
+            requestUri(),
+            scriptFilename());
+
+    sRv += Format::str(
+            xT("SCRIPT_FILENAME: {}\n")
+            xT("SCRIPT_NAME: {}\n")
+            xT("SERVER_ADMIN: {}\n")
+            xT("SERVER_NAME: {}\n")
+            xT("SERVER_PORT: {}\n")
+            xT("SERVER_PROTOCOL: {}\n")
+            xT("SERVER_SOFTWARE: {}\n")
+            xT("HTTP_REFERER: {}\n")
+            xT("HTTP_HOST: {}\n")
+            xT("HTTP_ACCEPT_LANGUAGE: {}\n")
+            xT("GEOIP_COUNTRY_CODE: {}\n\n"),
+            scriptFilename(),
+            scriptName(),
+            serverAdmin(),
+            serverName(),
+            serverPort(),
+            serverProtocol(),
+            serverSoftware(),
+            httpReferer(),
+            httpHost(),
+            httpAcceptLanguage(),
+            countryCode());
 
     return sRv;
 }
@@ -751,20 +754,20 @@ CgiCookies::dump() const
 
     xFOR_EACH_CONST(TCookies, it, items) {
         std::tstring_t itemN = Format::str(
-                xT("Name: %s\n")
-                xT("Value: %s\n")
-                xT("Domain: %s\n")
-                xT("Path: %s\n")
-                xT("Expires: %s\n")
-                xT("Secure: %s\n")
-                xT("HttpOnly: %s\n\n"),
-                (*it)->name().c_str(),
-                (*it)->value().c_str(),
-                (*it)->domain().c_str(),
-                (*it)->path().c_str(),
-                (*it)->expires().c_str(),
-                String::castBool((*it)->secure()).c_str(),
-                String::castBool((*it)->httpOnly()).c_str()
+                xT("Name: {}\n")
+                xT("Value: {}\n")
+                xT("Domain: {}\n")
+                xT("Path: {}\n")
+                xT("Expires: {}\n")
+                xT("Secure: {}\n")
+                xT("HttpOnly: {}\n\n"),
+                (*it)->name(),
+                (*it)->value(),
+                (*it)->domain(),
+                (*it)->path(),
+                (*it)->expires(),
+                String::castBool((*it)->secure()),
+                String::castBool((*it)->httpOnly())
         );
 
         sRv.append( xT("[Item]:\n") );
@@ -838,8 +841,8 @@ CgiFormData::dump() const
 
     sRv = Format::str(
             xT("[CgiFormData dump]\n\n")
-            xT("Data: %s\n\n"),
-            rawData().c_str());
+            xT("Data: {}\n\n"),
+            rawData());
 
     return sRv;
 }

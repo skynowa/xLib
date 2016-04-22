@@ -235,9 +235,9 @@ MySQLConnection::lastErrorStr() const
     xTEST_PTR(cpszRv);
 
     if (lastError == 0U) {
-        sRv = Format::str(xT("%u - \"%s\""), lastError, xT("Success"));
+        sRv = Format::str(xT("{} - \"{}\""), lastError, xT("Success"));
     } else {
-        sRv = Format::str(xT("%u - \"%s\""), lastError, cpszRv);
+        sRv = Format::str(xT("{} - \"{}\""), lastError, cpszRv);
     }
 
     return sRv;

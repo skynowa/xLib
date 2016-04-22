@@ -410,7 +410,7 @@ Console::_wndHandle()
     xTEST_EQ(oldWndTitle.empty(), false);
 
     // format a "unique" szNewWndTitle.
-    newWndTitle = Format::str(xT("%lu/%lu"), ::GetTickCount(), ::GetCurrentProcessId());
+    newWndTitle = Format::str(xT("{}/{}"), ::GetTickCount(), ::GetCurrentProcessId());
 
     // change current window title.
     setTitle(newWndTitle);

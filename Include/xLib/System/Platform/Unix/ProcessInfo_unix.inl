@@ -56,7 +56,7 @@ ProcessInfo::_ioBytes_impl() const
     1372    cancelled_write_bytes: 0
 #endif
 
-    std::tstring_t procPath  = Format::str(xT("/proc/%lu/io"), _id);
+    std::tstring_t procPath  = Format::str(xT("/proc/{}/io"), _id);
 
     ulong_t readBytes = 0UL;
     {

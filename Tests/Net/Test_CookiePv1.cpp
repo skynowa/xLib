@@ -26,9 +26,9 @@ Test_CookiePv1::unit()
     cbool_t           cbSecure    = true;
     cbool_t           cbHttpOnly  = true;
     std::ctstring_t csRawCookie = Format::str(
-                                        xT("%s=\"%s\"; Comment=\"%s\"; Domain=\"%s\"; Path=\"%s\"; Max-Age=\"%lli\"; Secure; HttpOnly; Version=\"1\""),
-                                        csName.c_str(), csValue.c_str(), csComment.c_str(), csDomain.c_str(),
-                                        csPath.c_str(), ciMaxAge /*cbSecure = true, cbHttpOnly = true*/);
+                                        xT("{}=\"{}\"; Comment=\"{}\"; Domain=\"{}\"; Path=\"{}\"; Max-Age=\"{}\"; Secure; HttpOnly; Version=\"1\""),
+                                        csName, csValue, csComment, csDomain,
+                                        csPath, ciMaxAge /*cbSecure = true, cbHttpOnly = true*/);
 
     xTEST_CASE("CookiePv1")
     {

@@ -110,8 +110,8 @@ ErrorReport::_construct(
     _sourceFilePath = Path( Path(a_sourceInfo.filePath()).brief(::reportWidthMax) ).toUnix(false);
     _sourceLineNum  = a_sourceInfo.lineNum();
     _sourceFuncName = a_sourceInfo.funcName();
-    _sourceExpr     = Format::str(xT("%s (%s) %s %s (%s)"), a_var1.c_str(), a_var1Value.c_str(),
-        a_exprSign.c_str(), a_var2.c_str(), a_var2Value.c_str());
+    _sourceExpr     = Format::str(xT("{} ({}) {} {} ({})"), a_var1, a_var1Value, a_exprSign,
+                            a_var2, a_var2Value);
     _nativeError    = a_nativeError;
     _nativeErrorStr = NativeError::format(a_nativeError);
 
