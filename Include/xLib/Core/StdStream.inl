@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 template<class Traits, class T1, class T2>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
     std::basic_ostream<tchar_t, Traits> &a_os,
     const std::pair<T1, T2>             &a_value
@@ -34,7 +34,7 @@ operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<class Traits, class T>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
     std::basic_ostream<tchar_t, Traits> &a_os,
     const std::vector<T>                &a_value
@@ -61,7 +61,7 @@ operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<class Traits, class T>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
     std::basic_ostream<tchar_t, Traits> &a_os,
     const std::list<T>                  &a_value
@@ -104,7 +104,7 @@ operator << (
 
 //-------------------------------------------------------------------------------------------------
 template<class Traits, class T>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
     std::basic_ostream<tchar_t, Traits> &a_os,
     const std::set<T>                   &a_value
@@ -130,7 +130,7 @@ operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<class Traits, class T>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
     std::basic_ostream<tchar_t, Traits> &a_os,
     const std::multiset<T>              &a_value
@@ -156,7 +156,7 @@ operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<class Traits, class T1, class T2>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
     std::basic_ostream<tchar_t, Traits> &a_os,
     const std::map<T1, T2>              &a_value
@@ -185,7 +185,7 @@ operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<class Traits, class T1, class T2>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
     std::basic_ostream<tchar_t, Traits> &a_os,
     const std::multimap<T1, T2>         &a_value
@@ -224,7 +224,7 @@ operator << (
 
 //-------------------------------------------------------------------------------------------------
 template<class Traits>
-xINLINE std::basic_ostream<tchar_t, Traits> &
+inline std::basic_ostream<tchar_t, Traits> &
 operator << (
     std::basic_ostream<tchar_t, Traits> &a_os,
     std::custring_t                     &a_value
