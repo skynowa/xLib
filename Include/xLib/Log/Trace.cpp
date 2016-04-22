@@ -54,7 +54,7 @@ Trace::write(
 
     va_list args;
     xVA_START(args, a_format);
-    msg = String::formatV(a_format, args);
+    msg = Format::c_strV(a_format, args);
     xVA_END(args);
 
     write(lvPlain, xT("%s"), msg.c_str());
@@ -73,7 +73,7 @@ Trace::write(
     {
         va_list args;
         xVA_START(args, a_format);
-        msg = String::formatV(a_format, args);
+        msg = Format::c_strV(a_format, args);
         xVA_END(args);
 
         if (a_level != lvPlain) {

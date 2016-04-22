@@ -154,12 +154,6 @@ public:
                        std::csize_t &posEnd = std::tstring_t::npos) xWARN_UNUSED_RV;
         ///< cut using string positions
     static
-    std::tstring_t format(ctchar_t *format, ...) xWARN_UNUSED_RV;
-        ///< format
-    static
-    std::tstring_t formatV(ctchar_t *format, va_list args) xWARN_UNUSED_RV;
-        ///< format
-    static
     std::tstring_t minimize(std::ctstring_t &str, std::csize_t &maxLength) xWARN_UNUSED_RV;
         ///< minimize
 

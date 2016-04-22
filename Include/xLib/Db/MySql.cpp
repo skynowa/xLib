@@ -170,7 +170,7 @@ MySQLConnection::query(
     va_list        args;
 
     xVA_START(args, a_sqlFormat);
-    sqlQuery = String::formatV(a_sqlFormat, args);
+    sqlQuery = Format::c_strV(a_sqlFormat, args);
     xVA_END(args);
 
     std::string asSqlQuery = xTS2S(sqlQuery);

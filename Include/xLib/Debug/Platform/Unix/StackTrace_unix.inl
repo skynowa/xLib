@@ -52,7 +52,7 @@ StackTrace::_get_impl(
             modulePath   = (dlinfo.dli_fname == xPTR_NULL) ? dataNotFound : dlinfo.dli_fname;
             filePath     = dataNotFound;
             fileLine     = dataNotFound;
-            byteOffset   = String::format(xT("%p"), ptrdiff_t(xPTR_NULL));
+            byteOffset   = Format::c_str(xT("%p"), ptrdiff_t(xPTR_NULL));
             functionName = (symbols[i] == xPTR_NULL) ? dataNotFound : symbols[i];
         } else {
             ctchar_t *symbolName = xPTR_NULL;
@@ -76,7 +76,7 @@ StackTrace::_get_impl(
             modulePath   = (dlinfo.dli_fname == xPTR_NULL) ? dataNotFound : dlinfo.dli_fname;
             filePath     = _filePath.empty()          ? dataNotFound : _filePath;
             fileLine     = String::cast(_sourceLine);
-            byteOffset   = String::format(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
+            byteOffset   = Format::c_str(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
             functionName = (symbolName == xPTR_NULL) ? dataNotFound : symbolName;
 
             xBUFF_FREE(demangleName);
