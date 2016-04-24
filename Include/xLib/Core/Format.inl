@@ -169,7 +169,7 @@ xFORMAT_STR(20)
 template<class IteratorT>
 /* static */
 inline void
-Format::_format(
+Format::_formatRange(
     std::tstringstream_t &a_ss,       ///< [out]
     IteratorT             a_first,
     IteratorT             a_last
@@ -193,12 +193,12 @@ Format::_format(
 template<class T>
 /* static */
 inline void
-Format::_format(
+Format::_formatCont(
     std::tstringstream_t &a_ss,       ///< [out]
     const T              &a_value
 )
 {
-    _format(a_ss, a_value.begin(), a_value.end());
+    _formatRange(a_ss, a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
 

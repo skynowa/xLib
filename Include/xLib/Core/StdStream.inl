@@ -21,10 +21,10 @@ xNAMESPACE_BEGIN2(xlib, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class Traits, class T1, class T2>
-inline std::basic_ostream<tchar_t, Traits> &
+template<class T1, class T2>
+inline std::tostream_t &
 operator << (
-    std::basic_ostream<tchar_t, Traits> &a_os,
+    std::tostream_t &a_os,
     const std::pair<T1, T2>             &a_value
 )
 {
@@ -33,10 +33,10 @@ operator << (
     return a_os;
 }
 //-------------------------------------------------------------------------------------------------
-template<class Traits, class T>
-inline std::basic_ostream<tchar_t, Traits> &
+template<class T>
+inline std::tostream_t &
 operator << (
-    std::basic_ostream<tchar_t, Traits> &a_os,
+    std::tostream_t &a_os,
     const std::vector<T>                &a_value
 )
 {
@@ -60,10 +60,10 @@ operator << (
     return a_os;
 }
 //-------------------------------------------------------------------------------------------------
-template<class Traits, class T>
-inline std::basic_ostream<tchar_t, Traits> &
+template<class T>
+inline std::tostream_t &
 operator << (
-    std::basic_ostream<tchar_t, Traits> &a_os,
+    std::tostream_t &a_os,
     const std::list<T>                  &a_value
 )
 {
@@ -103,10 +103,10 @@ operator << (
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class Traits, class T>
-inline std::basic_ostream<tchar_t, Traits> &
+template<class T>
+inline std::tostream_t &
 operator << (
-    std::basic_ostream<tchar_t, Traits> &a_os,
+    std::tostream_t &a_os,
     const std::set<T>                   &a_value
 )
 {
@@ -129,10 +129,10 @@ operator << (
     return a_os;
 }
 //-------------------------------------------------------------------------------------------------
-template<class Traits, class T>
-inline std::basic_ostream<tchar_t, Traits> &
+template<class T>
+inline std::tostream_t &
 operator << (
-    std::basic_ostream<tchar_t, Traits> &a_os,
+    std::tostream_t &a_os,
     const std::multiset<T>              &a_value
 )
 {
@@ -155,10 +155,10 @@ operator << (
     return a_os;
 }
 //-------------------------------------------------------------------------------------------------
-template<class Traits, class T1, class T2>
-inline std::basic_ostream<tchar_t, Traits> &
+template<class T1, class T2>
+inline std::tostream_t &
 operator << (
-    std::basic_ostream<tchar_t, Traits> &a_os,
+    std::tostream_t &a_os,
     const std::map<T1, T2>              &a_value
 )
 {
@@ -184,10 +184,10 @@ operator << (
     return a_os;
 }
 //-------------------------------------------------------------------------------------------------
-template<class Traits, class T1, class T2>
-inline std::basic_ostream<tchar_t, Traits> &
+template<class T1, class T2>
+inline std::tostream_t &
 operator << (
-    std::basic_ostream<tchar_t, Traits> &a_os,
+    std::tostream_t &a_os,
     const std::multimap<T1, T2>         &a_value
 )
 {

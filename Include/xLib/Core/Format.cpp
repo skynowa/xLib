@@ -278,11 +278,7 @@ Format::_format(
     const std::vec_tstring_t &a_value
 )
 {
-#if 0
-    a_ss << a_value;
-#else
-    _format(a_ss, a_value.begin(), a_value.end());
-#endif
+    _formatRange(a_ss, a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -292,7 +288,7 @@ Format::_format(
     const std::list_tstring_t &a_value
 )
 {
-    _format(a_ss, a_value.begin(), a_value.end());
+    _formatRange(a_ss, a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -302,10 +298,10 @@ Format::_format(
     const std::map_tstring_t &a_value
 )
 {
-#if 1
-    a_ss << a_value;
+#if 0
+    _formatRange(a_ss, a_value.begin(), a_value.end());
 #else
-    _format(a_ss, a_value.begin(), a_value.end());
+    // a_ss << a_value;
 #endif
 }
 //-------------------------------------------------------------------------------------------------
