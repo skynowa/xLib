@@ -183,7 +183,7 @@ Format::_formatRange(
     a_ss << str(specifier(), *a_first);
 
     for (++ a_first; a_first != a_last; ++ a_first) {
-        a_ss << str(xT(", ") + specifier(), *a_first);
+        a_ss << str(delimiter() + specifier(), *a_first);
     }
 
     a_ss << xT("}");

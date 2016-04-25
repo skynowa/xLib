@@ -47,6 +47,9 @@ private:
     static
     std::cstring_t &  specifier();
         ///< specifier
+    static
+    std::cstring_t &  delimiter();
+        ///< delimiter
 
     static void _format(std::tstringstream_t &ss, const bool &value);
     static void _format(std::tstringstream_t &ss, const tchar_t &value);
