@@ -172,6 +172,10 @@ xNAMESPACE_BEGIN(std)
     typedef basic_fstream<xlib::tchar_t, char_traits<xlib::tchar_t> > tfstream_t;
     xTYPEDEF_CONST(tfstream_t);
 
+    // std::pair
+    typedef pair<tstring_t, tstring_t> pair_tstring_t;
+    xTYPEDEF_CONST(pair_tstring_t);
+
     // std::vector
     typedef vector<xlib::tchar_t> vec_tchar_t;
     xTYPEDEF_CONST(vec_tchar_t);
