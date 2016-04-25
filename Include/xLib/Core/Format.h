@@ -47,7 +47,7 @@ private:
     // strEmpty
     static
     std::cstring_t &  specifier();
-        ///< empty string (ansi)
+        ///< specifier
 
     static void _format(std::tstringstream_t &ss, const bool &value);
     static void _format(std::tstringstream_t &ss, const tchar_t &value);
