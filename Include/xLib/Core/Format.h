@@ -44,7 +44,6 @@ public:
     xFORMAT_STR_DECLARE(20)
 
 private:
-    // strEmpty
     static
     std::cstring_t &  specifier();
         ///< specifier
