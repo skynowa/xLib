@@ -44,6 +44,11 @@ public:
     xFORMAT_STR_DECLARE(20)
 
 private:
+    // strEmpty
+    static
+    std::cstring_t &  specifier();
+        ///< empty string (ansi)
+
     static void _format(std::tstringstream_t &ss, const bool &value);
     static void _format(std::tstringstream_t &ss, const tchar_t &value);
     static void _format(std::tstringstream_t &ss, const unsigned char &value);
