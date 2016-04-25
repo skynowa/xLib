@@ -117,7 +117,7 @@ xNAMESPACE_BEGIN2(xlib, core)
         \
         std::size_t param = 1; \
         for ( ; ; ++ param) { \
-            std::csize_t pos = a_format.find(specifier(), posPrev); \
+            std::csize_t pos = a_format.find(_specifier(), posPrev); \
             if (pos == std::tstring_t::npos) { \
                 break; \
             } \
@@ -134,7 +134,7 @@ xNAMESPACE_BEGIN2(xlib, core)
             \
             sRv.append( ss.str() ); \
             \
-            posPrev = pos + specifier().size(); \
+            posPrev = pos + _specifier().size(); \
         } \
         \
         sRv += a_format.substr(posPrev, a_format.size() - posPrev); \
@@ -180,10 +180,10 @@ Format::_formatRange(
     }
 
     a_ss << xT("{");
-    a_ss << str(specifier(), *a_first);
+    a_ss << str(_specifier(), *a_first);
 
     for (++ a_first; a_first != a_last; ++ a_first) {
-        a_ss << str(delimiter() + specifier(), *a_first);
+        a_ss << str(_delimiter() + _specifier(), *a_first);
     }
 
     a_ss << xT("}");

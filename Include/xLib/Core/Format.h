@@ -45,10 +45,10 @@ public:
 
 private:
     static
-    std::cstring_t &  specifier();
+    std::cstring_t &  _specifier();
         ///< specifier
     static
-    std::cstring_t &  delimiter();
+    std::cstring_t &  _delimiter();
         ///< delimiter
 
     static void _format(std::tstringstream_t &ss, const bool &value);
