@@ -24,8 +24,8 @@ xNAMESPACE_BEGIN2(xlib, core)
 template<class T1, class T2>
 inline std::tostream_t &
 operator << (
-    std::tostream_t &a_os,
-    const std::pair<T1, T2>             &a_value
+    std::tostream_t         &a_os,
+    const std::pair<T1, T2> &a_value
 )
 {
     a_os << xT("std::pair: {") << a_value.first << xT(", ") << a_value.second << "}";
@@ -36,8 +36,8 @@ operator << (
 template<class T>
 inline std::tostream_t &
 operator << (
-    std::tostream_t &a_os,
-    const std::vector<T>                &a_value
+    std::tostream_t      &a_os,
+    const std::vector<T> &a_value
 )
 {
     a_os << xT("std::vector (") << a_value.size() << xT(" elements)");
@@ -63,8 +63,8 @@ operator << (
 template<class T>
 inline std::tostream_t &
 operator << (
-    std::tostream_t &a_os,
-    const std::list<T>                  &a_value
+    std::tostream_t    &a_os,
+    const std::list<T> &a_value
 )
 {
     a_os << xT("std::list (") << a_value.size() << xT(" elements)");
@@ -106,8 +106,8 @@ operator << (
 template<class T>
 inline std::tostream_t &
 operator << (
-    std::tostream_t &a_os,
-    const std::set<T>                   &a_value
+    std::tostream_t   &a_os,
+    const std::set<T> &a_value
 )
 {
     a_os << xT("std::set (") << a_value.size() << xT(" elements)");
@@ -132,8 +132,8 @@ operator << (
 template<class T>
 inline std::tostream_t &
 operator << (
-    std::tostream_t &a_os,
-    const std::multiset<T>              &a_value
+    std::tostream_t        &a_os,
+    const std::multiset<T> &a_value
 )
 {
     a_os << xT("std::multiset (") << a_value.size() << xT(" elements)");
@@ -158,8 +158,8 @@ operator << (
 template<class T1, class T2>
 inline std::tostream_t &
 operator << (
-    std::tostream_t &a_os,
-    const std::map<T1, T2>              &a_value
+    std::tostream_t        &a_os,
+    const std::map<T1, T2> &a_value
 )
 {
     a_os << xT("std::map (") << a_value.size() << xT(" elements)");
@@ -187,8 +187,8 @@ operator << (
 template<class T1, class T2>
 inline std::tostream_t &
 operator << (
-    std::tostream_t &a_os,
-    const std::multimap<T1, T2>         &a_value
+    std::tostream_t             &a_os,
+    const std::multimap<T1, T2> &a_value
 )
 {
     a_os << std::endl;
