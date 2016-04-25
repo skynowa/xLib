@@ -84,7 +84,7 @@ Format::c_strV(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const bool           &a_value
+    const bool           &a_value   ///< value
 )
 {
     a_ss << std::boolalpha;
@@ -95,7 +95,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const tchar_t        &a_value
+    const tchar_t        &a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -105,7 +105,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const unsigned char  &a_value
+    const unsigned char  &a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -115,7 +115,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const short          &a_value
+    const short          &a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -125,7 +125,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const unsigned short &a_value
+    const unsigned short &a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -135,7 +135,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const int            &a_value
+    const int            &a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -145,7 +145,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const unsigned int   &a_value
+    const unsigned int   &a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -155,7 +155,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const long           &a_value
+    const long           &a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -165,7 +165,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const unsigned long  &a_value
+    const unsigned long  &a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -175,7 +175,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const long long      &a_value
+    const long long      &a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -185,7 +185,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t     &a_ss,     ///< [out]
-    const unsigned long long &a_value
+    const unsigned long long &a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -195,7 +195,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const float          &a_value
+    const float          &a_value   ///< value
 )
 {
     a_ss << std::setprecision( _floatPrecisionMax<float>() );
@@ -207,7 +207,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const double         &a_value
+    const double         &a_value   ///< value
 )
 {
     a_ss << std::setprecision( _floatPrecisionMax<double>() );
@@ -219,7 +219,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const long double    &a_value
+    const long double    &a_value   ///< value
 )
 {
     a_ss << std::setprecision( _floatPrecisionMax<long double>() );
@@ -231,7 +231,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const void *          a_value
+    const void *          a_value   ///< value
 )
 {
     if (a_value == xPTR_NULL) {
@@ -245,7 +245,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const std::tstring_t &a_value
+    const std::tstring_t &a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -255,7 +255,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const std::ustring_t &a_value
+    const std::ustring_t &a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -265,7 +265,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const tchar_t *       a_value
+    const tchar_t *       a_value   ///< value
 )
 {
     a_ss << a_value;
@@ -275,7 +275,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t      &a_ss,     ///< [out]
-    const std::pair_tstring_t &a_value
+    const std::pair_tstring_t &a_value   ///< value
 )
 {
     _format(a_ss, xT("{") + a_value.first + xT(", ") + a_value.second + xT("}"));
@@ -285,7 +285,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t     &a_ss,     ///< [out]
-    const std::vec_tstring_t &a_value
+    const std::vec_tstring_t &a_value   ///< value
 )
 {
     _formatRange(a_ss, a_value.begin(), a_value.end());
@@ -295,7 +295,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t      &a_ss,     ///< [out]
-    const std::list_tstring_t &a_value
+    const std::list_tstring_t &a_value   ///< value
 )
 {
     _formatRange(a_ss, a_value.begin(), a_value.end());
@@ -305,7 +305,7 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t     &a_ss,     ///< [out]
-    const std::map_tstring_t &a_value
+    const std::map_tstring_t &a_value   ///< value
 )
 {
     _formatRange(a_ss, a_value.begin(), a_value.end());
