@@ -170,9 +170,9 @@ template<class IteratorT>
 /* static */
 inline void
 Format::_formatRange(
-    std::tstringstream_t &a_ss,       ///< [out]
-    IteratorT             a_first,
-    IteratorT             a_last
+    std::tstringstream_t &a_ss,     ///< [out]
+    IteratorT             a_first,  ///< first iterator
+    IteratorT             a_last    ///< last iterator
 )
 {
     if (a_first == a_last) {
@@ -194,8 +194,8 @@ template<class T>
 /* static */
 inline void
 Format::_formatCont(
-    std::tstringstream_t &a_ss,       ///< [out]
-    const T              &a_value
+    std::tstringstream_t &a_ss,     ///< [out]
+    const T              &a_value   ///< value
 )
 {
     _formatRange(a_ss, a_value.begin(), a_value.end());
