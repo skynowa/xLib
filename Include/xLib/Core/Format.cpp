@@ -80,11 +80,18 @@ Format::c_strV(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-// strEmpty
 xINLINE std::cstring_t &
 Format::specifier()
 {
     static std::cstring_t sRv(xT("{}"));
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE std::cstring_t &
+Format::delimiter()
+{
+    static std::cstring_t sRv(xT(", "));
 
     return sRv;
 }
@@ -287,7 +294,7 @@ Format::_format(
     const std::pair_tstring_t &a_value   ///< value
 )
 {
-    _format(a_ss, xT("{") + a_value.first + xT(", ") + a_value.second + xT("}"));
+    _format(a_ss, xT("{") + a_value.first + delimiter() + a_value.second + xT("}"));
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
