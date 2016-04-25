@@ -109,16 +109,15 @@ xNAMESPACE_BEGIN2(xlib, core)
         std::ctstring_t &a_format, xVA_VARS_##n \
     ) \
     { \
-        std::tstring_t  sRv; \
-        std::ctstring_t delimiter = xT("{}"); \
-        std::size_t     posPrev   = 0U; \
+        std::tstring_t sRv; \
+        std::size_t    posPrev = 0U; \
         \
         static std::tstringstream_t ss; \
         static std::ctstring_t      emptyString; \
         \
         std::size_t param = 1; \
         for ( ; ; ++ param) { \
-            std::csize_t pos = a_format.find(delimiter, posPrev); \
+            std::csize_t pos = a_format.find(specifier(), posPrev); \
             if (pos == std::tstring_t::npos) { \
                 break; \
             } \
@@ -135,7 +134,7 @@ xNAMESPACE_BEGIN2(xlib, core)
             \
             sRv.append( ss.str() ); \
             \
-            posPrev = pos + delimiter.size(); \
+            posPrev = pos + specifier().size(); \
         } \
         \
         sRv += a_format.substr(posPrev, a_format.size() - posPrev); \
@@ -181,10 +180,10 @@ Format::_formatRange(
     }
 
     a_ss << xT("{");
-    a_ss << str(xT("{}"), *a_first);
+    a_ss << str(specifier(), *a_first);
 
     for (++ a_first; a_first != a_last; ++ a_first) {
-        a_ss << str(xT(", {}"), *a_first);
+        a_ss << str(xT(", ") + specifier(), *a_first);
     }
 
     a_ss << xT("}");
