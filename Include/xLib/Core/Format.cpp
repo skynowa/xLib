@@ -274,6 +274,16 @@ Format::_format(
 /* static */
 xINLINE void
 Format::_format(
+    std::tstringstream_t      &a_ss,     ///< [out]
+    const std::pair_tstring_t &a_value
+)
+{
+    _format(a_ss, xT("{") + a_value.first + xT(", ") + a_value.second + xT("}"));
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE void
+Format::_format(
     std::tstringstream_t     &a_ss,     ///< [out]
     const std::vec_tstring_t &a_value
 )
@@ -298,11 +308,7 @@ Format::_format(
     const std::map_tstring_t &a_value
 )
 {
-#if 0
     _formatRange(a_ss, a_value.begin(), a_value.end());
-#else
-    // a_ss << a_value;
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 

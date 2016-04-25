@@ -62,6 +62,7 @@ private:
     static void _format(std::tstringstream_t &ss, const std::tstring_t &value);
     static void _format(std::tstringstream_t &ss, const std::ustring_t &value);
     static void _format(std::tstringstream_t &ss, const tchar_t * value);
+    static void _format(std::tstringstream_t &ss, const std::pair_tstring_t &value);
     static void _format(std::tstringstream_t &ss, const std::vec_tstring_t &value);
     static void _format(std::tstringstream_t &ss, const std::list_tstring_t &value);
     static void _format(std::tstringstream_t &ss, const std::map_tstring_t &value);
