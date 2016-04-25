@@ -53,7 +53,7 @@ operator << (std::tostream_t &os, const std::set<T> &value);
 
 template<class T>
 inline std::tostream_t &
-operator << (std::tostream_t &os, const std::set<T> &value);
+operator << (std::tostream_t &os, const std::multiset<T> &value);
     ///< for std::multiset
 
 template<class T1, class T2>
