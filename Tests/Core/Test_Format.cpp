@@ -72,7 +72,7 @@ Test_Format::unit()
         // TEST: Format::c_strV()
     }
 
-    xTEST_CASE("cbool_t")
+    xTEST_CASE("bool")
     {
         cbool_t value1 = false;
         cbool_t value2 = true;
@@ -81,7 +81,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("false,true")));
     }
 
-    xTEST_CASE("ctchar_t")
+    xTEST_CASE("tchar_t")
     {
         ctchar_t value = xT('a');
 
@@ -89,7 +89,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("a")));
     }
 
-    xTEST_CASE("cuchar_t")
+    xTEST_CASE("unsigned char")
     {
         cuchar_t value = 'b';
 
@@ -97,7 +97,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("b")));
     }
 
-    xTEST_CASE("cshort_t")
+    xTEST_CASE("short")
     {
         cshort_t value = -10;
 
@@ -105,7 +105,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("-10")));
     }
 
-    xTEST_CASE("cushort_t")
+    xTEST_CASE("unsigned short")
     {
         cushort_t value = 10;
 
@@ -113,7 +113,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("10")));
     }
 
-    xTEST_CASE("cint_t")
+    xTEST_CASE("int")
     {
         cint_t value = -111;
 
@@ -121,7 +121,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("-111")));
     }
 
-    xTEST_CASE("cuint_t")
+    xTEST_CASE("unsigned int")
     {
         cuint_t value = 111U;
 
@@ -129,7 +129,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("111")));
     }
 
-    xTEST_CASE("clong_t")
+    xTEST_CASE("long")
     {
         clong_t value = -222L;
 
@@ -137,7 +137,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("-222")));
     }
 
-    xTEST_CASE("culong_t")
+    xTEST_CASE("unsigned long")
     {
         culong_t value = 222UL;
 
@@ -145,7 +145,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("222")));
     }
 
-    xTEST_CASE("clonglong_t")
+    xTEST_CASE("long long")
     {
         clonglong_t value = -333LL;
 
@@ -153,7 +153,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("-333")));
     }
 
-    xTEST_CASE("culonglong_t")
+    xTEST_CASE("unsigned long long")
     {
         culonglong_t value = 333ULL;
 
@@ -161,7 +161,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("333")));
     }
 
-    xTEST_CASE("cfloat_t")
+    xTEST_CASE("float")
     {
         cfloat_t value = 444.0f;
 
@@ -169,7 +169,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("444.0000000")));
     }
 
-    xTEST_CASE("cdouble_t")
+    xTEST_CASE("double")
     {
         cdouble_t value = 555.0f;
 
@@ -177,7 +177,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("555.0000000000000000")));
     }
 
-    xTEST_CASE("clongdouble_t")
+    xTEST_CASE("long double")
     {
         clongdouble_t value = 666.0L;
 
@@ -185,7 +185,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("666.0000000000000000000")));
     }
 
-    xTEST_CASE("cvoid_t *")
+    xTEST_CASE("void *")
     {
         Data2<cvoid_t *, std::tstring_t> data[] =
         {
@@ -209,7 +209,7 @@ Test_Format::unit()
     }
 #endif
 
-    xTEST_CASE("const char *")
+    xTEST_CASE("char *")
     {
         Data2<ctchar_t *, std::tstring_t> data[] =
         {
@@ -223,7 +223,7 @@ Test_Format::unit()
         }
     }
 
-    xTEST_CASE("const wchar_t *")
+    xTEST_CASE("wchar_t *")
     {
         Data2<const wchar_t *, std::tstring_t> data[] =
         {
@@ -237,7 +237,7 @@ Test_Format::unit()
         }
     }
 
-    xTEST_CASE("const std::wstring")
+    xTEST_CASE("std::wstring")
     {
         const std::wstring value = L"dddфывff";
 
@@ -245,7 +245,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("ddd???ff")));
     }
 
-    xTEST_CASE("const std::string_t")
+    xTEST_CASE("std::string_t")
     {
         const std::string value("aaa");
 
