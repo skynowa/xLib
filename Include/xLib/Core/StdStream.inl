@@ -223,18 +223,15 @@ operator << (
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class Traits>
-inline std::basic_ostream<tchar_t, Traits> &
+inline std::tostream_t &
 operator << (
-    std::basic_ostream<tchar_t, Traits> &a_os,
-    std::custring_t                     &a_value
+    std::tostream_t &a_os,
+    std::custring_t &a_value
 )
 {
-    std::tstring_t sRv;
+    std::tstring_t sRv(a_value.begin(), a_value.end());
 
-    sRv.assign( a_value.begin(), a_value.end() );
-
-    a_os << sRv << std::flush;
+    a_os << sRv;
 
     return a_os;
 }
