@@ -275,6 +275,20 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
+    const tchar_t *       a_value   ///< value
+)
+{
+    if (a_value == xPTR_NULL) {
+        a_ss << xT("null");
+    } else {
+        a_ss << a_value;
+    }
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE void
+Format::_format(
+    std::tstringstream_t &a_ss,     ///< [out]
     const std::tstring_t &a_value   ///< value
 )
 {
@@ -289,20 +303,6 @@ Format::_format(
 )
 {
     a_ss << a_value;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-xINLINE void
-Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const tchar_t *       a_value   ///< value
-)
-{
-    if (a_value == xPTR_NULL) {
-        a_ss << xT("null");
-    } else {
-        a_ss << a_value;
-    }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
