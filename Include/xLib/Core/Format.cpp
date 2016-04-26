@@ -298,7 +298,11 @@ Format::_format(
     const tchar_t *       a_value   ///< value
 )
 {
-    a_ss << a_value;
+    if (a_value == xPTR_NULL) {
+        a_ss << xT("{null}");
+    } else {
+        a_ss << a_value;
+    }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
