@@ -69,7 +69,8 @@ private:
 #if xOPTION_CPP11
     static void _format(std::tstringstream_t &ss, const std::nullptr_t value);
 #endif
-    static void _format(std::tstringstream_t &ss, const tchar_t * value);
+    static void _format(std::tstringstream_t &ss, const char * value);
+    static void _format(std::tstringstream_t &ss, const wchar_t * value);
     static void _format(std::tstringstream_t &ss, const std::wstring &value);
     static void _format(std::tstringstream_t &ss, const std::string &value);
     static void _format(std::tstringstream_t &ss, const std::ustring_t &value);

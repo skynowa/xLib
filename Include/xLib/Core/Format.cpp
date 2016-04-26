@@ -275,13 +275,27 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const tchar_t *       a_value   ///< value
+    const char *          a_value   ///< value
 )
 {
     if (a_value == xPTR_NULL) {
         a_ss << xT("null");
     } else {
-        a_ss << a_value;
+        _format(a_ss, std::string(a_value));
+    }
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE void
+Format::_format(
+    std::tstringstream_t &a_ss,     ///< [out]
+    const wchar_t *       a_value   ///< value
+)
+{
+    if (a_value == xPTR_NULL) {
+        a_ss << xT("null");
+    } else {
+        _format(a_ss, std::wstring(a_value));
     }
 }
 //-------------------------------------------------------------------------------------------------
