@@ -81,9 +81,17 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("false,true")));
     }
 
-    xTEST_CASE("tchar_t")
+    xTEST_CASE("char")
     {
-        ctchar_t value = xT('a');
+        const char value = 'a';
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("a")));
+    }
+
+    xTEST_CASE("wchar_t")
+    {
+        const wchar_t value = L'a';
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("a")));
