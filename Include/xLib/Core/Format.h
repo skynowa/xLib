@@ -66,6 +66,9 @@ private:
     static void _format(std::tstringstream_t &ss, const double &value);
     static void _format(std::tstringstream_t &ss, const long double &value);
     static void _format(std::tstringstream_t &ss, const void * value);
+#if xOPTION_CPP11
+    static void _format(std::tstringstream_t &ss, std::nullptr_t value);
+#endif
     static void _format(std::tstringstream_t &ss, const std::tstring_t &value);
     static void _format(std::tstringstream_t &ss, const std::ustring_t &value);
     static void _format(std::tstringstream_t &ss, const tchar_t * value);

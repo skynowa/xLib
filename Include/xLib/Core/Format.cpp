@@ -257,6 +257,24 @@ Format::_format(
     }
 }
 //-------------------------------------------------------------------------------------------------
+#if xOPTION_CPP11
+
+/* static */
+xINLINE void
+Format::_format(
+    std::tstringstream_t &a_ss,     ///< [out]
+    const std::nullptr_t  a_value   ///< value
+)
+{
+    if (a_value == xPTR_NULL) {
+        a_ss << xT("null");
+    } else {
+        a_ss << a_value;
+    }
+}
+
+#endif
+//-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
 Format::_format(
