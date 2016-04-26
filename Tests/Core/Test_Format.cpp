@@ -209,12 +209,12 @@ Test_Format::unit()
     }
 #endif
 
-    xTEST_CASE("ctchar_t *")
+    xTEST_CASE("const char *")
     {
         Data2<ctchar_t *, std::tstring_t> data[] =
         {
-            {xT("bbb"),             std::tstring_t(xT("bbb"))},
-            {(ctchar_t *)xPTR_NULL, std::tstring_t(xT("null"))}
+            {"bbb",                   std::tstring_t(xT("bbb"))},
+            {(const char *)xPTR_NULL, std::tstring_t(xT("null"))}
         };
 
         xFOR_ARRAY(i, data) {
@@ -223,17 +223,31 @@ Test_Format::unit()
         }
     }
 
-    xTEST_CASE("std::wstring")
+    xTEST_CASE("const wchar_t *")
     {
-        std::wstring value = L"dddфывff";
+        Data2<const wchar_t *, std::tstring_t> data[] =
+        {
+            {L"bbb",                     std::tstring_t(xT("bbb"))},
+            {(const wchar_t *)xPTR_NULL, std::tstring_t(xT("null"))}
+        };
+
+        xFOR_ARRAY(i, data) {
+            m_sRv = Format::str(xT("{}"), data[i].test);
+            xTEST_EQ(m_sRv, data[i].expect);
+        }
+    }
+
+    xTEST_CASE("const std::wstring")
+    {
+        const std::wstring value = L"dddфывff";
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("ddd???ff")));
     }
 
-    xTEST_CASE("std::string_t")
+    xTEST_CASE("const std::string_t")
     {
-        std::string value("aaa");
+        const std::string value("aaa");
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("aaa")));
