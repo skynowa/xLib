@@ -256,9 +256,7 @@ Test_Format::unit()
         value[xT("1")] = xT("bbb");
 
         m_sRv = Format::str(xT("{}"), value);
-        // xTEST_EQ(m_sRv, std::tstring_t(xT("{aa, bbb}")));
-
-        Trace() << xTRACE_VAR(m_sRv);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}}")));
     }
 
     return true;
