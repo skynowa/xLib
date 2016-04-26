@@ -289,10 +289,35 @@ Format::_format(
 xINLINE void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
-    const std::tstring_t &a_value   ///< value
+    const std::wstring   &a_value   ///< value
 )
 {
+#if xANSI
+    std::string asRv;
+    asRv.reserve( a_value.size() );
+
+    for (size_t i = 0; i < a_value.size(); ++ i) {
+        asRv += (a_value[i] <= 0xFF) ? static_cast<char>( a_value[i] ) : '?';
+    }
+
+    a_ss << asRv;
+#else
     a_ss << a_value;
+#endif
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE void
+Format::_format(
+    std::tstringstream_t &a_ss,     ///< [out]
+    const std::string    &a_value   ///< value
+)
+{
+#if xANSI
+    a_ss << a_value;
+#else
+    a_ss << std::wstring(a_value.begin(), a_value.end());
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

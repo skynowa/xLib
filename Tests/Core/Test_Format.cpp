@@ -223,9 +223,17 @@ Test_Format::unit()
         }
     }
 
-    xTEST_CASE("std::ctstring_t")
+    xTEST_CASE("std::wstring")
     {
-        std::ctstring_t value(xT("aaa"));
+        std::wstring value = L"dddфывff";
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("ddd???ff")));
+    }
+
+    xTEST_CASE("std::string_t")
+    {
+        std::string value("aaa");
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("aaa")));
