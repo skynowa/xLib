@@ -52,7 +52,8 @@ private:
         ///< delimiter
 
     static void _format(std::tstringstream_t &ss, const bool &value);
-    static void _format(std::tstringstream_t &ss, const tchar_t &value);
+    static void _format(std::tstringstream_t &ss, const char &value);
+    static void _format(std::tstringstream_t &ss, const wchar_t &value);
     static void _format(std::tstringstream_t &ss, const unsigned char &value);
     static void _format(std::tstringstream_t &ss, const short &value);
     static void _format(std::tstringstream_t &ss, const unsigned short &value);
