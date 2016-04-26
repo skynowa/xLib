@@ -79,9 +79,8 @@ operator << (std::tostream_t &os, const std::multimap<T1, T2> &value);
 //-------------------------------------------------------------------------------------------------
 ///@name Etc
 ///@{
-template<class Traits>
-inline std::basic_ostream<tchar_t, Traits> &
-operator << (std::basic_ostream<tchar_t, Traits> &os, std::custring_t &value);
+inline std::tostream_t &
+operator << (std::tostream_t &os, std::custring_t &value);
     ///< for std::ustring_t
 ///@}
 //-------------------------------------------------------------------------------------------------
