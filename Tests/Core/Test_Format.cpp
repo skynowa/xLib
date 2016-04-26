@@ -217,10 +217,16 @@ Test_Format::unit()
 
     xTEST_CASE("ctchar_t *")
     {
-        ctchar_t * value = xT("bbb");
+        Data2<ctchar_t *, std::tstring_t> data[] =
+        {
+            {xT("bbb"),             std::tstring_t(xT("bbb"))},
+            {(ctchar_t *)xPTR_NULL, std::tstring_t(xT("null"))}
+        };
 
-        m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("bbb")));
+        xFOR_ARRAY(i, data) {
+            m_sRv = Format::str(xT("{}"), data[i].test);
+            xTEST_EQ(m_sRv, data[i].expect);
+        }
     }
 
     xTEST_CASE("std::vec_tstring_t")
