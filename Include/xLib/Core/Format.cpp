@@ -266,11 +266,7 @@ Format::_format(
     const std::nullptr_t  a_value   ///< value
 )
 {
-    if (a_value == xPTR_NULL) {
-        a_ss << xT("null");
-    } else {
-        a_ss << a_value;
-    }
+    a_ss << xT("nullptr");
 }
 
 #endif
