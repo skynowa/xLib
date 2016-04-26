@@ -199,6 +199,30 @@ Test_Format::unit()
         }
     }
 
+#if xOPTION_CPP11
+    xTEST_CASE("std::nullptr_t")
+    {
+        std::nullptr_t value = nullptr;
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("nullptr")));
+    }
+#endif
+
+    xTEST_CASE("ctchar_t *")
+    {
+        Data2<ctchar_t *, std::tstring_t> data[] =
+        {
+            {xT("bbb"),             std::tstring_t(xT("bbb"))},
+            {(ctchar_t *)xPTR_NULL, std::tstring_t(xT("null"))}
+        };
+
+        xFOR_ARRAY(i, data) {
+            m_sRv = Format::str(xT("{}"), data[i].test);
+            xTEST_EQ(m_sRv, data[i].expect);
+        }
+    }
+
     xTEST_CASE("std::ctstring_t")
     {
         std::ctstring_t value(xT("aaa"));
@@ -213,20 +237,6 @@ Test_Format::unit()
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("zzzzzzzzzz")));
-    }
-
-    xTEST_CASE("ctchar_t *")
-    {
-        Data2<ctchar_t *, std::tstring_t> data[] =
-        {
-            {xT("bbb"),             std::tstring_t(xT("bbb"))},
-            {(ctchar_t *)xPTR_NULL, std::tstring_t(xT("null"))}
-        };
-
-        xFOR_ARRAY(i, data) {
-            m_sRv = Format::str(xT("{}"), data[i].test);
-            xTEST_EQ(m_sRv, data[i].expect);
-        }
     }
 
     xTEST_CASE("std::vec_tstring_t")
