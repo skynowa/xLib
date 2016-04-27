@@ -17,6 +17,8 @@
 
 #cmakedefine xOPTION_CPP11 1
     ///< support C++11 language
+#cmakedefine xOPTION_UNICODE
+    ///< support unicode
 #cmakedefine xOPTION_BUILD_MSG 1
     ///< build message
 
