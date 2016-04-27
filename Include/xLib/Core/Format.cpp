@@ -96,6 +96,14 @@ Format::_delimiter()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE char
+Format::_unprintableChar()
+{
+    static char chRv('?');
+
+    return chRv;
+}
+//-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void
 Format::_format(
@@ -129,7 +137,7 @@ Format::_format(
 )
 {
 #if xANSI
-    const char chRv = (a_value <= 0xFF) ? static_cast<char>(a_value) : '?';
+    const char chRv = (a_value <= 0xFF) ? static_cast<char>(a_value) : _unprintableChar();
 
     a_ss << chRv;
 #else
@@ -331,7 +339,7 @@ Format::_format(
     asRv.reserve( a_value.size() );
 
     for (size_t i = 0; i < a_value.size(); ++ i) {
-        asRv += (a_value[i] <= 0xFF) ? static_cast<char>( a_value[i] ) : '?';
+        asRv += (a_value[i] <= 0xFF) ? static_cast<char>( a_value[i] ) : _unprintableChar();
     }
 
     a_ss << asRv;

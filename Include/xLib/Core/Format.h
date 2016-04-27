@@ -50,6 +50,9 @@ private:
     static
     std::cstring_t &  _delimiter() xWARN_UNUSED_RV;
         ///< delimiter
+    static
+    char              _unprintableChar() xWARN_UNUSED_RV;
+        ///< unprintable char
 
     static void _format(std::tstringstream_t &ss, const bool &value);
     static void _format(std::tstringstream_t &ss, const char &value);
