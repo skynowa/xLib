@@ -14,7 +14,7 @@ class Char
     /// character
 {
 public:
-                Char(ctchar_t &ch, const std::locale &locale = std::locale());
+                Char(ctchar_t &ch, const xLOCALE &locale = xLOCALE());
         ///< constructor
     virtual    ~Char() {}
         ///< destructor
@@ -50,8 +50,8 @@ public:
         ///< Convert lowercase letter to uppercase
 
 private:
-    tchar_t     _ch;
-    std::locale _locale;
+    tchar_t _ch;
+    xLOCALE _locale;
 
     xNO_COPY_ASSIGN(Char)
 };
