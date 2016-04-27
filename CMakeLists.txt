@@ -113,7 +113,12 @@ else()
     set(CMAKE_CXX_STANDARD 98)  # 98, 11 and 14
 endif()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS} -DUNICODE=1")
+if (xOPTION_UNICODE)
+    add_definitions(-DUNICODE=1)
+    add_definitions(-D_UNICODE=1)
+endif()
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 #--------------------------------------------------------------------------------------------------
 # libraries
 set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
