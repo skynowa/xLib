@@ -114,7 +114,11 @@ Format::_format(
     const char           &a_value   ///< value
 )
 {
+#if xANSI
     a_ss << a_value;
+#else
+    a_ss << static_cast<wchar_t>(a_value);
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -124,7 +128,13 @@ Format::_format(
     const wchar_t        &a_value   ///< value
 )
 {
+#if xANSI
+    const char chRv = (a_value <= 0xFF) ? static_cast<char>(a_value) : '?';
+
+    a_ss << chRv;
+#else
     a_ss << a_value;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
