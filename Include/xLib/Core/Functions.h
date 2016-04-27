@@ -16,6 +16,7 @@
         #define xTMAIN          wmain
         #define xTFPRINTF       std::fwprintf
         #define xTASCTIME       std::_wasctime
+        #define xLOCALE         ::locale_t
         #define xTSETLOCALE     std::_wsetlocale
         #define xTFOPEN         std::_wfopen
         #define xTFREOPEN       std::_wfreopen
@@ -98,19 +99,19 @@
     #endif
 
         // chars
-        #define xTISALNUM       std::iswalnum
-        #define xTISALPHA       std::iswalpha
-        #define xTISCNTRL       std::iswcntrl
-        #define xTISDIGIT       std::iswdigit
-        #define xTISXDIGIT      std::iswxdigit
-        #define xTISGRAPH       std::iswgraph
-        #define xTISPRINT       std::iswprint
-        #define xTISPUNCT       std::iswpunct
-        #define xTISSPACE       std::iswspace
-        #define xTISLOWER       std::iswlower
-        #define xTISUPPER       std::iswupper
-        #define xTTOLOWER       std::towlower
-        #define xTTOUPPER       std::towupper
+        #define xTISALNUM       ::iswalnum_l
+        #define xTISALPHA       ::iswalpha_l
+        #define xTISCNTRL       ::iswcntrl_l
+        #define xTISDIGIT       ::iswdigit_l
+        #define xTISXDIGIT      ::iswxdigit_l
+        #define xTISGRAPH       ::iswgraph_l
+        #define xTISPRINT       ::iswprint_l
+        #define xTISPUNCT       ::iswpunct_l
+        #define xTISSPACE       ::iswspace_l
+        #define xTISLOWER       ::iswlower_l
+        #define xTISUPPER       ::iswupper_l
+        #define xTTOLOWER       ::towlower_l
+        #define xTTOUPPER       ::towupper_l
 #else
         #define tcin            cin
         #define tcout           cout
@@ -121,6 +122,7 @@
         #define xTMAIN          main
         #define xTFPRINTF       std::fprintf
         #define xTASCTIME       std::asctime
+        #define xLOCALE         std::locale
         #define xTSETLOCALE     std::setlocale
         #define xTFOPEN         std::fopen
         #define xTFREOPEN       std::freopen

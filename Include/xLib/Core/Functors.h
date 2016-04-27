@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 struct ToLower
     /// char to lower case
 {
-    ToLower(const std::locale &a_locale) :
+    ToLower(const xLOCALE &a_locale) :
         _locale(a_locale)
     {
     }
@@ -27,13 +27,13 @@ struct ToLower
     }
 
 private:
-    const std::locale &_locale;
+    const xLOCALE &_locale;
 };
 //-------------------------------------------------------------------------------------------------
 struct ToUpper
     /// char, std:tstring_t to upper case
 {
-    ToUpper(const std::locale &a_locale) :
+    ToUpper(const xLOCALE &a_locale) :
         _locale(a_locale)
     {
     }
@@ -45,13 +45,13 @@ struct ToUpper
     }
 
 private:
-    const std::locale &_locale;
+    const xLOCALE &_locale;
 };
 //-------------------------------------------------------------------------------------------------
 struct CompareCI
     /// case insensitive comparison
 {
-    CompareCI(const std::locale &a_locale) :
+    CompareCI(const xLOCALE &a_locale) :
         _locale(a_locale)
     {
     }
@@ -73,7 +73,7 @@ struct CompareCI
     }
 
 private:
-    const std::locale &_locale;
+    const xLOCALE &_locale;
 };
 //-------------------------------------------------------------------------------------------------
 struct Delete
