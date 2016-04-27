@@ -20,7 +20,7 @@ Environment::_isExists_impl(
     std::ctstring_t &a_varName
 )
 {
-    const char *pcszRv = ::getenv(a_varName.c_str());
+    const char *pcszRv = ::getenv(xTS2S(a_varName).c_str());
     xTEST_NA(pcszRv);
     xCHECK_RET(pcszRv == xPTR_NULL, false);
 
@@ -35,10 +35,10 @@ Environment::_var_impl(
 {
     std::tstring_t sRv;
 
-    const char *pcszRv = ::getenv(a_varName.c_str());
+    const char *pcszRv = ::getenv(xTS2S(a_varName).c_str());
     xTEST_PTR(pcszRv);
 
-    sRv.assign(pcszRv);
+    sRv.assign(xS2TS(pcszRv));
 
     return sRv;
 }
@@ -50,7 +50,7 @@ Environment::_setVar_impl(
     std::ctstring_t &a_value
 )
 {
-    int_t iRv = ::setenv(a_varName.c_str(), a_value.c_str(), true);
+    int_t iRv = ::setenv(xTS2S(a_varName).c_str(), xTS2S(a_value).c_str(), true);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -61,10 +61,10 @@ Environment::_deleteVar_impl(
 )
 {
 #if   xENV_LINUX
-    int_t iRv = ::unsetenv(a_varName.c_str());
+    int_t iRv = ::unsetenv(xTS2S(a_varName).c_str());
     xTEST_DIFF(iRv, - 1);
 #elif xENV_BSD
-    (void_t)::unsetenv(a_varName.c_str());
+    (void_t)::unsetenv(xTS2S(a_varName).c_str());
 #endif
 }
 //-------------------------------------------------------------------------------------------------
