@@ -15,7 +15,7 @@
     (major * 10000 + minor * 100 + patch)
     ///< version builder
 #define xVER_FULL_STR(major, minor, patch) \
-    xSTRINGIZE(major) xT(".") xSTRINGIZE(minor) xT(".") xSTRINGIZE(patch)
+    (xSTRINGIZE(major) xT(".") xSTRINGIZE(minor) xT(".") xSTRINGIZE(patch))
     ///< version builder
 
 #if !defined(KERNEL_VERSION)
