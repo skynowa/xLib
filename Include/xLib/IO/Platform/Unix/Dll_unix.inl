@@ -53,7 +53,7 @@ Dll::_procAddress_impl(
     error = ::dlerror();
     xTEST_PTR_FAIL(error);
 
-    proc_address_t paRv = ::dlsym(_handle, a_procName.c_str());
+    proc_address_t paRv = ::dlsym(_handle, xTS2S(a_procName).c_str());
     xTEST_NA(paRv)
 
     error = ::dlerror();
