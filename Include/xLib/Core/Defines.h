@@ -409,7 +409,7 @@
         xT(__FUNC__)
 #elif xCOMPILER_GNUC || xCOMPILER_MINGW
     #define xFUNCTION \
-        xT(__PRETTY_FUNCTION__)
+        xS2TS(__PRETTY_FUNCTION__)
 #else
     #define xFUNCTION \
         xUNKNOWN_CSTRING
