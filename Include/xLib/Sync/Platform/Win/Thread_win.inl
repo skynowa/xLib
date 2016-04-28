@@ -398,7 +398,7 @@ Thread::_setDebugName_impl(
     info.dwType = 0x1000;
 #if xUNICODE
     // TODO: Thread::setDebugName() - convert from Unicode to Ansi
-    //// info.pszName    = xTS2S(csName).c_str();
+    //// info.pszName    = xT2A(csName).c_str();
     info.pszName    = "[Unknown]";
 #else
     info.pszName    = a_name.c_str();

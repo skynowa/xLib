@@ -31,7 +31,7 @@ Type::rawName(
     std::string    className;
 
     className.assign( typeid(a_objT).name() );
-    sRv = xS2TS(className);
+    sRv = xA2T(className);
 
     return sRv;
 }
@@ -59,7 +59,7 @@ Type::name(
     // or use UnDecorateSymbolName
 #endif
 
-    sRv = xS2TS(className);
+    sRv = xA2T(className);
 
     return sRv;
 }

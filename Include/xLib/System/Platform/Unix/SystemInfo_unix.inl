@@ -22,13 +22,13 @@ SystemInfo::_os_impl()
     int_t iRv = ::uname(&info);
     xTEST_DIFF(iRv, - 1);
 
-    if      (StringCI::compare(xS2TS(info.sysname), xT("Linux"))) {
+    if      (StringCI::compare(xA2T(info.sysname), xT("Linux"))) {
         otRv = otLinux;
     }
-    else if (StringCI::compare(xS2TS(info.sysname), xT("FreeBSD"))) {
+    else if (StringCI::compare(xA2T(info.sysname), xT("FreeBSD"))) {
         otRv = otFreeBSD;
     }
-    else if (StringCI::compare(xS2TS(info.sysname), xT("Darwin"))) {
+    else if (StringCI::compare(xA2T(info.sysname), xT("Darwin"))) {
         otRv = otMac;
     }
     else {
@@ -68,7 +68,7 @@ SystemInfo::_osArch_impl()
         int_t iRv = ::uname(&info);
         xTEST_DIFF(iRv, - 1);
 
-        infoMachine = xS2TS(info.machine);
+        infoMachine = xA2T(info.machine);
     }
 
     // 32-bit checks
@@ -127,7 +127,7 @@ SystemInfo::_hostName_impl() const
     int_t iRv = ::uname(&info);
     xTEST_DIFF(iRv, - 1);
 
-    sRv = xS2TS(info.nodename);
+    sRv = xA2T(info.nodename);
 
     return sRv;
 }
@@ -201,7 +201,7 @@ SystemInfo::glibcVersion() const
         if (libc_version == xPTR_NULL) {
             version = Const::strUnknown();
         } else {
-            version = xS2TS(libc_version);
+            version = xA2T(libc_version);
         }
     #else
         xBUILD_IMPL("SystemInfo::glibcVersion()");
@@ -216,7 +216,7 @@ SystemInfo::glibcVersion() const
         if (libc_release == xPTR_NULL) {
             release = Const::strUnknown();
         } else {
-            release = xS2TS(libc_release);
+            release = xA2T(libc_release);
         }
     #else
         release = Const::strUnknown();
@@ -250,7 +250,7 @@ SystemInfo::libPthreadVersion() const
     // remove terminating null byte
     buff.resize(buffBytes - 1);
 
-    sRv = xS2TS(buff);
+    sRv = xA2T(buff);
 #else
     xBUILD_IMPL("SystemInfo::libPthreadVersion()");
     sRv = Const::strUnknown();

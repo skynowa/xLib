@@ -54,13 +54,13 @@ User::_loginName_impl() const
 
         int_t iRv = ::getlogin_r(buff, xARRAY_SIZE(buff));
         if (iRv == 0) {
-            sRv = xS2TS(buff);
+            sRv = xA2T(buff);
             return sRv;
         }
     #else
         const char *buff = ::getlogin();
         if (buff != xPTR_NULL) {
-            sRv = xS2TS(buff);
+            sRv = xA2T(buff);
             return sRv;
         }
     #endif
@@ -98,7 +98,7 @@ User::_name_impl() const
 
     _passwd(&sRv, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL);
 
-    return xS2TS(sRv);
+    return xA2T(sRv);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE uint_t
@@ -142,7 +142,7 @@ User::_homeDir_impl() const
     std::string asRv;
 
     _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &asRv, xPTR_NULL);
-    xCHECK_RET(!asRv.empty(), xS2TS(asRv));
+    xCHECK_RET(!asRv.empty(), xA2T(asRv));
 
     // try to get from system environment
     sRv = Environment::var(xT("HOME"));
@@ -158,7 +158,7 @@ User::_shellPath_impl() const
 
     _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv);
 
-    return xS2TS(sRv);
+    return xA2T(sRv);
 }
 //-------------------------------------------------------------------------------------------------
 

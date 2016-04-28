@@ -88,7 +88,7 @@ Unit::run()
         }
         catch (const std::exception &a_stdException) {
             std::string asMsg = a_stdException.what();
-            xTEST_FAIL_MSG(name() + xT(": ") + xS2TS(asMsg));
+            xTEST_FAIL_MSG(name() + xT(": ") + xA2T(asMsg));
 
             bRv = false;
         }

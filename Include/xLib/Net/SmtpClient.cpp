@@ -127,13 +127,13 @@ SmtpClient::login()
 
     //-------------------------------------
     //[mylogin\r\n]
-    std::ctstring_t loginCmd = xS2TS( Base64().encode( xTS2S(_user) ) ) + xT("\r\n");
+    std::ctstring_t loginCmd = xA2T( Base64().encode( xT2A(_user) ) ) + xT("\r\n");
 
     _command(loginCmd, xT("\r\n"), /*ref*/sRv);
 
     //-------------------------------------
     //[mypassword\r\n]
-    std::ctstring_t passwordCmd = xS2TS( Base64().encode( xTS2S(_password) ) ) + xT("\r\n");
+    std::ctstring_t passwordCmd = xA2T( Base64().encode( xT2A(_password) ) ) + xT("\r\n");
 
     _command(passwordCmd, xT("\r\n"), /*ref*/sRv);
 }

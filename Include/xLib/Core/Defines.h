@@ -252,17 +252,17 @@
 ///@name Converters
 ///@{
 #if xUNICODE
-    #define xS2TS(s) \
+    #define xA2T(s) \
         ( String::castW(s) )
         ///< convert std::string to std::wstring
-    #define xTS2S(ts) \
+    #define xT2A(ts) \
         ( String::castA(ts) )
         ///< convert std::wstring to std::string
 #else
-    #define xS2TS(s) \
+    #define xA2T(s) \
         ( s )
         ///< convert std::string to std::wstring
-    #define xTS2S(ts) \
+    #define xT2A(ts) \
         ( ts )
         ///< convert std::wstring to std::string
 #endif
@@ -409,7 +409,7 @@
         xT(__FUNC__)
 #elif xCOMPILER_GNUC || xCOMPILER_MINGW
     #define xFUNCTION \
-        xS2TS(__PRETTY_FUNCTION__)
+        xA2T(__PRETTY_FUNCTION__)
 #else
     #define xFUNCTION \
         xUNKNOWN_CSTRING
@@ -770,7 +770,7 @@
     }                                        \
     catch (const std::exception &a_ex) {     \
         std::string msg = a_ex.what();       \
-        xTEST_FAIL_MSG(xS2TS(msg));          \
+        xTEST_FAIL_MSG(xA2T(msg));          \
     }                                        \
     catch (...) {                            \
         xTEST_FAIL_MSG(xT("unknown error")); \

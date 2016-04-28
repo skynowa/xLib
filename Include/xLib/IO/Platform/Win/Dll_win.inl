@@ -28,7 +28,7 @@ Dll::_isProcExists_impl(
 {
     xTEST_PTR(_handle);
 
-    proc_address_t paRv = ::GetProcAddress(_handle, xTS2S(a_procName).c_str());
+    proc_address_t paRv = ::GetProcAddress(_handle, xT2A(a_procName).c_str());
     xCHECK_RET(paRv == xPTR_NULL, false);
 
     return true;
@@ -41,7 +41,7 @@ Dll::_procAddress_impl(
 {
     xTEST_PTR(_handle);
 
-    proc_address_t paRv = ::GetProcAddress(_handle, xTS2S(a_procName).c_str());
+    proc_address_t paRv = ::GetProcAddress(_handle, xT2A(a_procName).c_str());
     xTEST_PTR(paRv);
 
     return paRv;

@@ -227,12 +227,12 @@ Test_Defines::unit()
 
     }
 
-    xTEST_CASE("xS2TS")
+    xTEST_CASE("xA2T")
     {
 
     }
 
-    xTEST_CASE("xTS2S")
+    xTEST_CASE("xT2A")
     {
 
     }
