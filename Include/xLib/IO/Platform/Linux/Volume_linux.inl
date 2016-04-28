@@ -40,7 +40,7 @@ Volume::_fileSystem_impl() const
     int_t iRv = ::endmntent(file);  file = xPTR_NULL;
     xTEST_EQ(iRv, 1);
 #else
-    // TODO: [Android] ::setmntent, ::endmntent
+    // ANDROID: ::setmntent, ::endmntent
     #if xTODO_ANDROID
         FILE *file = ::setmntent("/etc/mnttab", "r");
         xTEST_PTR(file);

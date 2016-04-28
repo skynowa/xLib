@@ -47,7 +47,7 @@ Signal::setState(
     const std::sig_atomic_t &a_state
 )
 {
-    // TODO: [Android] SIG_ATOMIC_MIN, SIG_ATOMIC_MAX
+    // ANDROID: SIG_ATOMIC_MIN, SIG_ATOMIC_MAX
 #if xTODO_ANDROID
     xTEST_EQ(a_state >= SIG_ATOMIC_MIN && a_state <= SIG_ATOMIC_MAX, true);
 #endif
