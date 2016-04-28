@@ -269,7 +269,7 @@ Debugger::_loggingPlain(
 
     // write to file
     try {
-        std::ofstream ofs(filePath.c_str(), std::ofstream::out);
+        std::tofstream_t ofs( xTS2S(filePath).c_str() );
         xCHECK_DO(ofs.fail(), return);
 
         std::ctstring_t msg = Format::str(
@@ -281,7 +281,6 @@ Debugger::_loggingPlain(
         );
 
         ofs << msg;
-        ofs.close();
     }
     catch (...) {
     }
