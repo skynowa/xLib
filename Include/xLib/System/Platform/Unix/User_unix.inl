@@ -94,11 +94,11 @@ User::_loginName_impl() const
 xINLINE std::tstring_t
 User::_name_impl() const
 {
-    std::tstring_t sRv;
+    std::string sRv;
 
     _passwd(&sRv, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL);
 
-    return sRv;
+    return xS2TS(sRv);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE uint_t
@@ -139,8 +139,10 @@ User::_homeDir_impl() const
     */
 
     // try to get from API
-    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv, xPTR_NULL);
-    xCHECK_RET(!sRv.empty(), sRv);
+    std::string asRv;
+
+    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &asRv, xPTR_NULL);
+    xCHECK_RET(!asRv.empty(), xS2TS(asRv));
 
     // try to get from system environment
     sRv = Environment::var(xT("HOME"));
@@ -152,11 +154,11 @@ User::_homeDir_impl() const
 xINLINE std::tstring_t
 User::_shellPath_impl() const
 {
-    std::tstring_t sRv;
+    std::string sRv;
 
     _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv);
 
-    return sRv;
+    return xS2TS(sRv);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -211,12 +213,12 @@ User::_passwd(
 
     xTEST_PTR(pwRv);
 
-    Utils::ptrAssignT(a_pw_name,   std::tstring_t(pwRv->pw_name));
-    Utils::ptrAssignT(a_pw_passwd, std::tstring_t(pwRv->pw_passwd));
+    Utils::ptrAssignT(a_pw_name,   std::string(pwRv->pw_name));
+    Utils::ptrAssignT(a_pw_passwd, std::string(pwRv->pw_passwd));
     Utils::ptrAssignT(a_pw_uid,    pwRv->pw_uid);
     Utils::ptrAssignT(a_pw_gid,    pwRv->pw_gid);
-    Utils::ptrAssignT(a_pw_dir,    std::tstring_t(pwRv->pw_dir));
-    Utils::ptrAssignT(a_pw_shell,  std::tstring_t(pwRv->pw_shell));
+    Utils::ptrAssignT(a_pw_dir,    std::string(pwRv->pw_dir));
+    Utils::ptrAssignT(a_pw_shell,  std::string(pwRv->pw_shell));
 }
 //-------------------------------------------------------------------------------------------------
 
