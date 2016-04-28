@@ -120,10 +120,10 @@ SystemInfo::cpuVendor() const
     ExCpuVendor     cvRv  = cvUnknown;
     std::ctstring_t value = _cpuVendor_impl();
 
-    if      (value == std::tstring_t("GenuineIntel")) {
+    if      (value == std::tstring_t(xT("GenuineIntel"))) {
         cvRv = cvIntel;
     }
-    else if (value == std::tstring_t("AuthenticAMD")) {
+    else if (value == std::tstring_t(xT("AuthenticAMD"))) {
         cvRv = cvAmd;
     }
     else {
