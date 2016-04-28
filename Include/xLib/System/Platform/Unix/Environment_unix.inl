@@ -76,10 +76,10 @@ Environment::_values_impl(
 {
     std::vec_tstring_t args;
 
-    xTEST_PTR(environ);
+    xTEST_PTR(::environ);
 
-    for (size_t i = 0; 0 != environ[i]; ++ i) {
-        args.push_back(environ[i]);
+    for (size_t i = 0; 0 != ::environ[i]; ++ i) {
+        args.push_back( xS2TS(::environ[i]));
     }
 
     // out
