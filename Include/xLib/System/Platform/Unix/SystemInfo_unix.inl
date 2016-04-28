@@ -68,7 +68,7 @@ SystemInfo::_osArch_impl()
         int_t iRv = ::uname(&info);
         xTEST_DIFF(iRv, - 1);
 
-        infoMachine.assign( xS2TS(info.machine) );
+        infoMachine = xS2TS(info.machine);
     }
 
     // 32-bit checks
@@ -127,7 +127,7 @@ SystemInfo::_hostName_impl() const
     int_t iRv = ::uname(&info);
     xTEST_DIFF(iRv, - 1);
 
-    sRv.assign( xS2TS(info.nodename) );
+    sRv = xS2TS(info.nodename);
 
     return sRv;
 }
