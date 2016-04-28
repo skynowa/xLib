@@ -54,13 +54,13 @@ User::_loginName_impl() const
 
         int_t iRv = ::getlogin_r(buff, xARRAY_SIZE(buff));
         if (iRv == 0) {
-            sRv.assign(buff);
+            sRv = xS2TS(buff);
             return sRv;
         }
     #else
         const char *buff = ::getlogin();
         if (buff != xPTR_NULL) {
-            sRv.assign(buff);
+            sRv = xS2TS(buff);
             return sRv;
         }
     #endif
