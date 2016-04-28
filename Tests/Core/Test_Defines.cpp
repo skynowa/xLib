@@ -217,12 +217,12 @@ Test_Defines::unit()
         xTEST_EQ((int)mode, (int)A::FileMode::Text);
     }
 
-    xTEST_CASE("xS2US")
+    xTEST_CASE("xT2U")
     {
 
     }
 
-    xTEST_CASE("xUS2S")
+    xTEST_CASE("xU2T")
     {
 
     }
