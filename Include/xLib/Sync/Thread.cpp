@@ -702,7 +702,7 @@ Thread::_s_jobEntry(
         }
         catch (std::exception &e) {
             std::string what = e.what();
-            xTEST_FAIL_MSG(xS2TS(what));
+            xTEST_FAIL_MSG(xA2T(what));
         }
         catch (...) {
             xTEST_FAIL;

@@ -278,7 +278,7 @@ SystemInfo::_cpuModel_impl() const
         (void_t)::__cpuid(reinterpret_cast<int_t *>( &buff[16] ), 0x80000003);
         (void_t)::__cpuid(reinterpret_cast<int_t *>( &buff[32] ), 0x80000004);
 
-        std::tstring_t cpuName = String::trimSpace( xS2TS(buff) );
+        std::tstring_t cpuName = String::trimSpace( xA2T(buff) );
 
         sRv = Format::str(xT("{} ({})"), cpuName, man);
     } else {

@@ -17,7 +17,7 @@ Dll::_load_impl(
     std::ctstring_t &a_dllPath
 )
 {
-    _handle = ::dlopen(xTS2S(a_dllPath).c_str(), RTLD_LAZY | RTLD_GLOBAL);
+    _handle = ::dlopen(xT2A(a_dllPath).c_str(), RTLD_LAZY | RTLD_GLOBAL);
     xTEST_PTR(_handle);
 }
 //-------------------------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ Dll::_isProcExists_impl(
     error = ::dlerror();
     xTEST_PTR_FAIL(error);
 
-    (void_t)::dlsym(_handle, xTS2S(a_procName).c_str());
+    (void_t)::dlsym(_handle, xT2A(a_procName).c_str());
 
     error = ::dlerror();
     xCHECK_RET(error != xPTR_NULL, false);
@@ -53,7 +53,7 @@ Dll::_procAddress_impl(
     error = ::dlerror();
     xTEST_PTR_FAIL(error);
 
-    proc_address_t paRv = ::dlsym(_handle, xTS2S(a_procName).c_str());
+    proc_address_t paRv = ::dlsym(_handle, xT2A(a_procName).c_str());
     xTEST_NA(paRv)
 
     error = ::dlerror();

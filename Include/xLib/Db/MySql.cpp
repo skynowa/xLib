@@ -148,9 +148,9 @@ MySQLConnection::connect(
     // unixSocket - n/a
     // ulClientFlag - n/a
 
-    MYSQL *connection = ::mysql_real_connect(_connection, xTS2S(a_host).c_str(),
-        xTS2S(a_user).c_str(), xTS2S(a_password).c_str(), xTS2S(a_db).c_str(), a_port,
-        xTS2S(a_unixSocket).c_str(), a_clientFlag);
+    MYSQL *connection = ::mysql_real_connect(_connection, xT2A(a_host).c_str(),
+        xT2A(a_user).c_str(), xT2A(a_password).c_str(), xT2A(a_db).c_str(), a_port,
+        xT2A(a_unixSocket).c_str(), a_clientFlag);
 
     xTEST_PTR_MSG(connection, lastErrorStr());
     xTEST_EQ_MSG(_connection, connection, lastErrorStr());
@@ -173,7 +173,7 @@ MySQLConnection::query(
     sqlQuery = Format::c_strV(a_sqlFormat, args);
     xVA_END(args);
 
-    std::string asSqlQuery = xTS2S(sqlQuery);
+    std::string asSqlQuery = xT2A(sqlQuery);
 
     int_t iRv = ::mysql_real_query(_connection, asSqlQuery.data(),
         static_cast<ulong_t>( asSqlQuery.size() ));
@@ -404,7 +404,7 @@ MySQLRecordset::fetchRow(
         } else {
             std::string asField = std::string(row[i], fieldLengths[i]);
 
-            sField = xS2TS(asField);
+            sField = xA2T(asField);
         }
 
         (*a_row).push_back(sField);

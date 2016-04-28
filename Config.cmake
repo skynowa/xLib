@@ -42,7 +42,7 @@ else()
     set(xOPTION_BUILD_TESTS           ON  CACHE BOOL "Build tests" FORCE)
 
     set(xOPTION_CPP11                 OFF CACHE BOOL "Support C++11 language" FORCE)
-    set(xOPTION_UNICODE               ON  CACHE BOOL "Support unicode" FORCE)
+    set(xOPTION_UNICODE               OFF  CACHE BOOL "Support unicode" FORCE)
     set(xOPTION_DEBUG_DIALOG          OFF CACHE BOOL "Debug prompt dialog" FORCE)
     set(xOPTION_DEBUG_MODE_MSGBOX     OFF CACHE BOOL "Debug mode: message box" FORCE)
     set(xOPTION_DEBUG_MODE_STDOUT     ON  CACHE BOOL "Debug mode: std::cout" FORCE)

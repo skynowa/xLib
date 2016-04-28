@@ -103,7 +103,7 @@ CoreApplication::run()
         }
         catch (const std::exception &a_ex) {
             std::string msg = a_ex.what();
-            xTEST_FAIL_MSG(xS2TS(msg));
+            xTEST_FAIL_MSG(xA2T(msg));
         }
         catch (...) {
             xTEST_FAIL_MSG(xT("unknown error"));
