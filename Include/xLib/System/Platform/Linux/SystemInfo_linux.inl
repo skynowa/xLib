@@ -79,9 +79,12 @@ SystemInfo::_cpuUsage_impl() const
         FILE *file = std::fopen("/proc/stat", "r");
         xTEST_PTR(file);
 
+        // UNICODE: SystemInfo - fix
+    #if xANSI
         iRv = std::fscanf(file, "cpu %" xPR_I64u " %" xPR_I64u " %" xPR_I64u " %" xPR_I64u,
             &userTotalOld, &userTotalLowOld, &sysTotalOld, &totalIdleOld);
         xTEST_DIFF(iRv, - 1);
+    #endif
 
         iRv = std::fclose(file);
         xTEST_DIFF(iRv, - 1);
@@ -94,9 +97,12 @@ SystemInfo::_cpuUsage_impl() const
         FILE *file = std::fopen("/proc/stat", "r");
         xTEST_PTR(file);
 
+        // UNICODE: SystemInfo - fix
+    #if xANSI
         iRv = std::fscanf(file, "cpu %" xPR_I64u " %" xPR_I64u " %" xPR_I64u " %" xPR_I64u,
             &userTotal, &userTotalLow, &sysTotal, &totalIdle);
         xTEST_DIFF(iRv, - 1);
+    #endif
 
         iRv = std::fclose(file);
         xTEST_DIFF(iRv, - 1);
