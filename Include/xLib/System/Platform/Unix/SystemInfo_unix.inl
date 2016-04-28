@@ -22,13 +22,13 @@ SystemInfo::_os_impl()
     int_t iRv = ::uname(&info);
     xTEST_DIFF(iRv, - 1);
 
-    if      (StringCI::compare(info.sysname, xT("Linux"))) {
+    if      (StringCI::compare(xS2TS(info.sysname), xT("Linux"))) {
         otRv = otLinux;
     }
-    else if (StringCI::compare(info.sysname, xT("FreeBSD"))) {
+    else if (StringCI::compare(xS2TS(info.sysname), xT("FreeBSD"))) {
         otRv = otFreeBSD;
     }
-    else if (StringCI::compare(info.sysname, xT("Darwin"))) {
+    else if (StringCI::compare(xS2TS(info.sysname), xT("Darwin"))) {
         otRv = otMac;
     }
     else {
@@ -68,7 +68,7 @@ SystemInfo::_osArch_impl()
         int_t iRv = ::uname(&info);
         xTEST_DIFF(iRv, - 1);
 
-        infoMachine.assign(info.machine);
+        infoMachine.assign( xS2TS(info.machine) );
     }
 
     // 32-bit checks
@@ -127,7 +127,7 @@ SystemInfo::_hostName_impl() const
     int_t iRv = ::uname(&info);
     xTEST_DIFF(iRv, - 1);
 
-    sRv.assign(info.nodename);
+    sRv.assign( xS2TS(info.nodename) );
 
     return sRv;
 }
@@ -197,11 +197,11 @@ SystemInfo::glibcVersion() const
     std::tstring_t version;
     {
     #if xHAVE_GNU_GET_LIBC
-        ctchar_t *libc_version = ::gnu_get_libc_version();
+        cchar *libc_version = ::gnu_get_libc_version();
         if (libc_version == xPTR_NULL) {
             version = Const::strUnknown();
         } else {
-            version = libc_version;
+            version = xS2TS(libc_version);
         }
     #else
         xBUILD_IMPL("SystemInfo::glibcVersion()");
@@ -212,11 +212,11 @@ SystemInfo::glibcVersion() const
     std::tstring_t release;
     {
     #if xHAVE_GNU_GET_LIBC
-        ctchar_t *libc_release = ::gnu_get_libc_release();
+        cchar *libc_release = ::gnu_get_libc_release();
         if (libc_release == xPTR_NULL) {
             release = Const::strUnknown();
         } else {
-            release = libc_release;
+            release = xS2TS(libc_release);
         }
     #else
         release = Const::strUnknown();
@@ -231,9 +231,11 @@ SystemInfo::glibcVersion() const
 xINLINE std::tstring_t
 SystemInfo::libPthreadVersion() const
 {
-    std::tstring_t buff;
+    std::tstring_t sRv;
 
 #if xHAVE_CS_GNU_LIBPTHREAD_VERSION
+    std::string buff;
+
     std::size_t buffBytes;
     {
         buffBytes = ::confstr(_CS_GNU_LIBPTHREAD_VERSION, xPTR_NULL, 0);
@@ -247,12 +249,14 @@ SystemInfo::libPthreadVersion() const
 
     // remove terminating null byte
     buff.resize(buffBytes - 1);
+
+    sRv = xS2TS(buff);
 #else
     xBUILD_IMPL("SystemInfo::libPthreadVersion()");
-    buff = Const::strUnknown();
+    sRv = Const::strUnknown();
 #endif
 
-    return buff;
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -16,6 +16,9 @@ xNAMESPACE_BEGIN(xlib)
     typedef bool bool_t;
     xTYPEDEF_CONST(bool_t);
 
+    xTYPEDEF_CONST(char);
+    xTYPEDEF_CONST(wchar_t);
+
     // tchar_t
 #if xUNICODE
     typedef wchar_t tchar_t;
