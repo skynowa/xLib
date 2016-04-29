@@ -82,7 +82,9 @@ private:
     template<class T1, class T2>
     static void _format(std::tstringstream_t &ss, const std::pair<T1, T2> &value);
 
-    static void _format(std::tstringstream_t &ss, const std::vec_tstring_t &value);
+    template<class T>
+    static void _format(std::tstringstream_t &ss, const std::vector<T> &value);
+
     static void _format(std::tstringstream_t &ss, const std::list_tstring_t &value);
     static void _format(std::tstringstream_t &ss, const std::map_tstring_t &value);
 
