@@ -91,6 +91,10 @@ private:
     template<class T1, class T2>
     static void _format(std::tstringstream_t &ss, const std::map<T1, T2> &value);
 
+    // TEST
+    template<class T1, class T2>
+    static void _format(std::tstringstream_t &ss, const std::multimap<T1, T2> &value);
+
 private:
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)
