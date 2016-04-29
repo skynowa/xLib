@@ -271,10 +271,10 @@ Test_Format::unit()
 
     xTEST_CASE("std::pair")
     {
-        std::pair<int, std::tstring_t> value(999, xT("ddd???ff"));
+        std::pair<int, std::tstring_t> value(999, xT("ddd???FF"));
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{999, ddd???ff}")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{999, ddd???FF}")));
     }
 
     xTEST_CASE("std::vector")
