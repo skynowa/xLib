@@ -87,10 +87,13 @@ private:
 
     template<class T>
     static void _format(std::tstringstream_t &ss, const std::list<T> &value);
-    static void _format(std::tstringstream_t &ss, const std::map_tstring_t &value);
+
+    template<class T1, class T2>
+    static void _format(std::tstringstream_t &ss, const std::map<T1, T2> &value);
 
     template<class IteratorT>
     static void _formatRange(std::tstringstream_t &ss, IteratorT first, IteratorT last);
+
     template<class T>
     static void _formatCont(std::tstringstream_t &ss, const T &value);
 
