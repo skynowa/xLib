@@ -85,7 +85,7 @@ private:
     template<class T>
     static void _format(std::tstringstream_t &ss, const std::vector<T> &value);
 
-    static void _format(std::tstringstream_t &ss, const std::list_tstring_t &value);
+    static void _format(std::tstringstream_t &ss, const std::list<T> &value);
     static void _format(std::tstringstream_t &ss, const std::map_tstring_t &value);
 
     template<class IteratorT>

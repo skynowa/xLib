@@ -394,11 +394,12 @@ Format::_format(
     _formatCont(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
+template<class T>
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t      &a_ss,     ///< [out]
-    const std::list_tstring_t &a_value   ///< value
+    std::tstringstream_t &a_ss,     ///< [out]
+    const std::list<T>   &a_value   ///< value
 )
 {
     _formatCont(a_ss, a_value);
