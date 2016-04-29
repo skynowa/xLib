@@ -372,11 +372,12 @@ Format::_format(
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
+template<class T1, class T2>
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t      &a_ss,     ///< [out]
-    const std::pair_tstring_t &a_value   ///< value
+    std::tstringstream_t    &a_ss,     ///< [out]
+    const std::pair<T1, T2> &a_value   ///< value
 )
 {
     _format(a_ss, xT("{") + a_value.first + _delimiter() + a_value.second + xT("}"));
