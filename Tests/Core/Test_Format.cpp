@@ -293,7 +293,6 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("{aa, bbb}")));
     }
 
-
     xTEST_CASE("set")
     {
     }
