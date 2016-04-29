@@ -380,7 +380,11 @@ Format::_format(
     const std::pair<T1, T2> &a_value   ///< value
 )
 {
-    _format(a_ss, xT("{") + a_value.first + _delimiter() + a_value.second + xT("}"));
+    _format(a_ss, xT("{"));
+    _format(a_ss, a_value.first);
+    _format(a_ss, _delimiter());
+    _format(a_ss, a_value.second);
+    _format(a_ss, xT("}"));
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
