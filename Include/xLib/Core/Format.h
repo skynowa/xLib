@@ -91,15 +91,15 @@ private:
     template<class T1, class T2>
     static void _format(std::tstringstream_t &ss, const std::map<T1, T2> &value);
 
+private:
+    xNO_INSTANCE(Format)
+    xNO_COPY_ASSIGN(Format)
+
     template<class IteratorT>
     static void _formatRange(std::tstringstream_t &ss, IteratorT first, IteratorT last);
 
     template<class T>
     static void _formatCont(std::tstringstream_t &ss, const T &value);
-
-private:
-    xNO_INSTANCE(Format)
-    xNO_COPY_ASSIGN(Format)
 
     template<class T>
     static int _floatPrecisionMax() xWARN_UNUSED_RV;
