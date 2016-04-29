@@ -88,10 +88,15 @@ private:
     template<class T>
     static void _format(std::tstringstream_t &ss, const std::list<T> &value);
 
+    template<class T>
+    static void _format(std::tstringstream_t &ss, const std::set<T> &value);
+
+    template<class T>
+    static void _format(std::tstringstream_t &ss, const std::multiset<T> &value);
+
     template<class T1, class T2>
     static void _format(std::tstringstream_t &ss, const std::map<T1, T2> &value);
 
-    // TEST
     template<class T1, class T2>
     static void _format(std::tstringstream_t &ss, const std::multimap<T1, T2> &value);
 
