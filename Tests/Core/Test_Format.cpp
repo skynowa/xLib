@@ -261,7 +261,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("aaa")));
     }
 
-    xTEST_CASE("std::custring_t")
+    xTEST_CASE("std::ustring_t")
     {
         std::custring_t value(10, 'z');
 
@@ -269,7 +269,11 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("zzzzzzzzzz")));
     }
 
-    xTEST_CASE("std::vec_tstring_t")
+    xTEST_CASE("std::pair")
+    {
+    }
+
+    xTEST_CASE("std::vector")
     {
         std::vec_tstring_t value;
         value.push_back(xT("aa"));
@@ -279,7 +283,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("{aa, bbb}")));
     }
 
-    xTEST_CASE("std::list_tstring_t")
+    xTEST_CASE("std::list")
     {
         std::list_tstring_t value;
         value.push_back(xT("aa"));
@@ -289,7 +293,20 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("{aa, bbb}")));
     }
 
-    xTEST_CASE("std::map_tstring_t")
+
+    xTEST_CASE("set")
+    {
+    }
+
+    xTEST_CASE("multiset")
+    {
+    }
+
+    xTEST_CASE("name")
+    {
+    }
+
+    xTEST_CASE("std::map")
     {
         std::map_tstring_t value;
         value[xT("0")] = xT("aa");
@@ -297,6 +314,10 @@ Test_Format::unit()
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}}")));
+    }
+
+    xTEST_CASE("std::multimap")
+    {
     }
 
     return true;

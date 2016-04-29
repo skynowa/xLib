@@ -405,6 +405,28 @@ Format::_format(
     _formatCont(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
+template<class T>
+/* static */
+xINLINE void
+Format::_format(
+    std::tstringstream_t &a_ss,     ///< [out]
+    const std::set<T>    &a_value   ///< value
+)
+{
+    _formatCont(a_ss, a_value);
+}
+//-------------------------------------------------------------------------------------------------
+template<class T>
+/* static */
+xINLINE void
+Format::_format(
+    std::tstringstream_t   &a_ss,     ///< [out]
+    const std::multiset<T> &a_value   ///< value
+)
+{
+    _formatCont(a_ss, a_value);
+}
+//-------------------------------------------------------------------------------------------------
 template<class T1, class T2>
 /* static */
 xINLINE void
