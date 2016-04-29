@@ -111,7 +111,7 @@ private:
     static void _formatCont(std::tstringstream_t &ss, const T &value);
 
     template<class T>
-    static int _floatPrecisionMax() xWARN_UNUSED_RV;
+    static int  _floatPrecisionMax() xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, core)
