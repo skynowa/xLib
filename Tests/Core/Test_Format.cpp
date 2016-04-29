@@ -299,20 +299,33 @@ Test_Format::unit()
 
     xTEST_CASE("set")
     {
+        std::set<long_t> value;
+        value.insert(0);
+        value.insert(1);
+        value.insert(1);
+        value.insert(2);
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 2}")));
     }
 
     xTEST_CASE("multiset")
     {
-    }
+        std::multiset<long_t> value;
+        value.insert(0);
+        value.insert(1);
+        value.insert(1);
+        value.insert(2);
 
-    xTEST_CASE("name")
-    {
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 1, 2}")));
     }
 
     xTEST_CASE("std::map")
     {
         std::map_tstring_t value;
         value[xT("0")] = xT("aa");
+        value[xT("1")] = xT("bbb");
         value[xT("1")] = xT("bbb");
 
         m_sRv = Format::str(xT("{}"), value);
@@ -321,6 +334,17 @@ Test_Format::unit()
 
     xTEST_CASE("std::multimap")
     {
+        std::pair_tstring_t p1( xT("0"), xT("aa") );
+        std::pair_tstring_t p2( xT("1"), xT("bbb") );
+        std::pair_tstring_t p3( xT("1"), xT("bbb") );
+
+        std::mmap_tstring_t value;
+        value.insert(p1);
+        value.insert(p2);
+        value.insert(p3);
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}, {1, bbb}}")));
     }
 
     return true;
