@@ -383,11 +383,12 @@ Format::_format(
     _format(a_ss, xT("{") + a_value.first + _delimiter() + a_value.second + xT("}"));
 }
 //-------------------------------------------------------------------------------------------------
+template<class T>
 /* static */
 xINLINE void
 Format::_format(
-    std::tstringstream_t     &a_ss,     ///< [out]
-    const std::vec_tstring_t &a_value   ///< value
+    std::tstringstream_t &a_ss,     ///< [out]
+    const std::vector<T> &a_value   ///< value
 )
 {
     _formatCont(a_ss, a_value);
