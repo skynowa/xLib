@@ -259,11 +259,11 @@
         ( String::castA(ts) )
         ///< convert std::wstring to std::string
 #else
-    #define xA2T(s) \
-        ( s )
+    #define xA2T(a) \
+        ( a )
         ///< convert std::string to std::wstring
-    #define xT2A(ts) \
-        ( ts )
+    #define xT2A(t) \
+        ( t )
         ///< convert std::wstring to std::string
 #endif
 
