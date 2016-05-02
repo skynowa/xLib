@@ -252,11 +252,11 @@
 ///@name Converters
 ///@{
 #if xUNICODE
-    #define xA2T(s) \
-        ( String::castW(s) )
+    #define xA2T(a) \
+        ( String::castW(a) )
         ///< convert std::string to std::wstring
-    #define xT2A(ts) \
-        ( String::castA(ts) )
+    #define xT2A(t) \
+        ( String::castA(t) )
         ///< convert std::wstring to std::string
 #else
     #define xA2T(a) \
