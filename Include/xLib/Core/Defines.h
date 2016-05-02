@@ -267,11 +267,11 @@
         ///< convert std::wstring to std::string
 #endif
 
-#define xT2U(s) \
-    std::ustring_t( (s).begin(),  (s).begin()  + (s).size()  )
+#define xT2U(t) \
+    std::ustring_t( (t).begin(),  (t).begin()  + (t).size()  )
     ///< convert std::tstring_t to std::ustring_t
-#define xU2T(us) \
-    std::tstring_t( (us).begin(), (us).begin() + (us).size() )
+#define xU2T(u) \
+    std::tstring_t( (u).begin(), (u).begin() + (u).size() )
     ///< convert std::ustring_t to std::tstring_t
 ///@}
 //-------------------------------------------------------------------------------------------------
