@@ -126,16 +126,6 @@ Utils::fileClose(
 //-------------------------------------------------------------------------------------------------
 template <class T>
 /* static */ xINLINE
-bool_t
-Utils::intToBoolT(
-    const T &a_value
-)
-{
-    return (0 == a_value) ? false : true;
-}
-//-------------------------------------------------------------------------------------------------
-template <class T>
-/* static */ xINLINE
 const T &
 Utils::maxT(
     const T &a_value1,

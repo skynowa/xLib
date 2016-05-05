@@ -14,7 +14,7 @@ class Char
     /// character
 {
 public:
-                Char(ctchar_t &ch, const xLOCALE &locale = xLOCALE());
+    explicit    Char(ctchar_t &ch, const xLOCALE &locale = xLOCALE());
         ///< constructor
     virtual    ~Char() {}
         ///< destructor

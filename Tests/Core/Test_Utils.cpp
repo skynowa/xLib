@@ -190,29 +190,6 @@ Test_Utils::unit()
         xTEST_PTR_FAIL(pFile);
     }
 
-    xTEST_CASE("intToBoolT")
-    {
-        // false
-        {
-            cint_t iVal = 0;
-
-            m_bRv = Utils::intToBoolT(iVal);
-            xTEST_EQ(m_bRv, false);
-        }
-
-        // true
-        {
-            cint_t caiData[] = { -1000, -100, -1, 1, 100, 1000};
-
-            for (size_t i = 0; i < Utils::arraySizeT(caiData); ++ i) {
-                cint_t iVal = caiData[i];
-
-                m_bRv = Utils::intToBoolT(iVal);
-                xTEST_EQ(m_bRv, true);
-            }
-        }
-    }
-
     xTEST_CASE("maxT")
     {
         m_uiRv = Utils::maxT(0, 1);

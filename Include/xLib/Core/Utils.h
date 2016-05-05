@@ -59,11 +59,6 @@ public:
 
     template <class T>
     static
-    inline bool_t    intToBoolT(const T &value) xWARN_UNUSED_RV;
-        ///< convert int_t to bool_t
-
-    template <class T>
-    static
     inline const T & maxT(const T &value1 , const T &value2) xWARN_UNUSED_RV;
         ///< get max value
 
