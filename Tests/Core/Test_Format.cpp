@@ -93,16 +93,14 @@ Test_Format::unit()
     {
         Data2<wchar_t, std::tstring_t> data[] =
         {
-            {L'\n', std::tstring_t(xT("?"))},
-            {L'a',  std::tstring_t(xT("a"))},
-            {L'聞', std::tstring_t(xT("?"))}
+            {L'\n', xT("?")},
+            {L'a',  xT("a")},
+            {L'聞', xT("?")}
         };
 
         xFOR_ARRAY(i, data) {
             m_sRv = Format::str(xT("{}"), data[i].test);
             xTEST_EQ(m_sRv, data[i].expect);
-
-            Trace() << xTRACE_VAR(m_sRv);
         }
     }
 
@@ -206,8 +204,8 @@ Test_Format::unit()
     {
         Data2<cvoid_t *, std::tstring_t> data[] =
         {
-            {(cvoid_t *)0x7fff0fd3e100, std::tstring_t(xT("0x7fff0fd3e100"))},
-            {(cvoid_t *)xPTR_NULL,      std::tstring_t(xT("null"))}
+            {(cvoid_t *)0x7fff0fd3e100, xT("0x7fff0fd3e100")},
+            {(cvoid_t *)xPTR_NULL,      xT("null")}
         };
 
         xFOR_ARRAY(i, data) {
@@ -230,8 +228,8 @@ Test_Format::unit()
     {
         Data2<ctchar_t *, std::tstring_t> data[] =
         {
-            {"bbb",                   std::tstring_t(xT("bbb"))},
-            {(const char *)xPTR_NULL, std::tstring_t(xT("null"))}
+            {"bbb",                   xT("bbb")},
+            {(const char *)xPTR_NULL, xT("null")}
         };
 
         xFOR_ARRAY(i, data) {
@@ -244,8 +242,8 @@ Test_Format::unit()
     {
         Data2<const wchar_t *, std::tstring_t> data[] =
         {
-            {L"bbb",                     std::tstring_t(xT("bbb"))},
-            {(const wchar_t *)xPTR_NULL, std::tstring_t(xT("null"))}
+            {L"bbb",                     xT("bbb")},
+            {(const wchar_t *)xPTR_NULL, xT("null")}
         };
 
         xFOR_ARRAY(i, data) {
@@ -267,8 +265,6 @@ Test_Format::unit()
         xFOR_ARRAY(i, data) {
             m_sRv = Format::str(xT("{}"), data[i].test);
             xTEST_EQ(m_sRv, data[i].expect);
-
-            Trace() << xTRACE_VAR(m_sRv);
         }
     }
 
