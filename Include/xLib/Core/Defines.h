@@ -310,9 +310,6 @@
 #define xMIN(a, b) \
     ( Utils::minT( (a), (b) ) )
     ///< get min value
-#define xINT_TO_BOOL(i) \
-    ( Utils::intToBoolT(i) )
-    ///< convert int_t to bool_t
 #define xSWITCH_CASE_RETURN_STRINGISED(x) \
     case x: return #x
     ///< help for switch

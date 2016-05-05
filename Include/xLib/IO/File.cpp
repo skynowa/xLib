@@ -486,7 +486,7 @@ File::isEmpty() const
 xINLINE bool_t
 File::isEof() const
 {
-    bool_t bRv = xINT_TO_BOOL( std::feof(get()) );
+    bool_t bRv = static_cast<bool_t>( std::feof(get()) );
     xTEST_NA(bRv);
 
     return bRv;
@@ -495,7 +495,7 @@ File::isEof() const
 xINLINE bool_t
 File::isError() const
 {
-    bool_t bRv = xINT_TO_BOOL( std::ferror(get()) );
+    bool_t bRv = static_cast<bool_t>( std::ferror(get()) );
     xTEST_NA(bRv);
 
     return bRv;

@@ -32,67 +32,67 @@ Char::Char(
 xINLINE bool_t
 Char::isAlphaNum() const
 {
-    return xINT_TO_BOOL( xTISALNUM(_ch, _locale) );
+    return static_cast<bool_t>( xTISALNUM(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 Char::isAlpha() const
 {
-    return xINT_TO_BOOL( xTISALPHA(_ch, _locale) );
+    return static_cast<bool_t>( xTISALPHA(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 Char::isControl() const
 {
-    return xINT_TO_BOOL( xTISCNTRL(_ch, _locale) );
+    return static_cast<bool_t>( xTISCNTRL(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 Char::isDigitDec() const
 {
-    return xINT_TO_BOOL( xTISDIGIT(_ch, _locale) );
+    return static_cast<bool_t>( xTISDIGIT(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 Char::isDigitHex() const
 {
-    return xINT_TO_BOOL( xTISXDIGIT(_ch, _locale) );
+    return static_cast<bool_t>( xTISXDIGIT(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 Char::isGraph() const
 {
-    return xINT_TO_BOOL( xTISGRAPH(_ch, _locale) );
+    return static_cast<bool_t>( xTISGRAPH(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 Char::isPrint() const
 {
-    return xINT_TO_BOOL( xTISPRINT(_ch, _locale) );
+    return static_cast<bool_t>( xTISPRINT(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 Char::isPunct() const
 {
-    return xINT_TO_BOOL( xTISPUNCT(_ch, _locale) );
+    return static_cast<bool_t>( xTISPUNCT(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 Char::isSpace() const
 {
-    return xINT_TO_BOOL( xTISSPACE(_ch, _locale) );
+    return static_cast<bool_t>( xTISSPACE(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 Char::isLower() const
 {
-    return xINT_TO_BOOL( xTISLOWER(_ch, _locale) );
+    return static_cast<bool_t>( xTISLOWER(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 Char::isUpper() const
 {
-    return xINT_TO_BOOL( xTISUPPER(_ch, _locale) );
+    return static_cast<bool_t>( xTISUPPER(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE tchar_t
