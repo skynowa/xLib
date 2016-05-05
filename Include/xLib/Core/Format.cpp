@@ -8,8 +8,6 @@
     #include "Format.h"
 #endif
 
-#include <xLib/Core/Char.h>
-
 
 xNAMESPACE_BEGIN2(xlib, core)
 
@@ -141,9 +139,8 @@ Format::_format(
 {
 #if xANSI
     char chRv;
-    Char ch(a_value);
 
-    if ( ch.isPrint() ) {
+    if (a_value >= 0x20 && a_value <= 0xFF) {
         chRv = static_cast<char>(a_value);
     } else {
         chRv = _unprintableChar();
@@ -349,7 +346,15 @@ Format::_format(
     asRv.reserve( a_value.size() );
 
     for (size_t i = 0; i < a_value.size(); ++ i) {
-        asRv += (a_value[i] <= 0xFF) ? static_cast<char>( a_value[i] ) : _unprintableChar();
+        char chRv;
+
+        if ( a_value[i]  >= 0x20 &&  a_value[i]  <= 0xFF) {
+            chRv = static_cast<char>( a_value[i] );
+        } else {
+            chRv = _unprintableChar();
+        }
+
+        asRv += chRv;
     }
 
     a_ss << asRv;

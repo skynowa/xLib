@@ -91,10 +91,19 @@ Test_Format::unit()
 
     xTEST_CASE("wchar_t")
     {
-        const wchar_t value = L'a';
+        Data2<wchar_t, std::tstring_t> data[] =
+        {
+            {L'\n', std::tstring_t(xT("?"))},
+            {L'a',  std::tstring_t(xT("a"))},
+            {L'聞', std::tstring_t(xT("?"))}
+        };
 
-        m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("a")));
+        xFOR_ARRAY(i, data) {
+            m_sRv = Format::str(xT("{}"), data[i].test);
+            xTEST_EQ(m_sRv, data[i].expect);
+
+            Trace() << xTRACE_VAR(m_sRv);
+        }
     }
 
     xTEST_CASE("unsigned char")
@@ -247,10 +256,20 @@ Test_Format::unit()
 
     xTEST_CASE("std::wstring")
     {
-        const std::wstring value = L"dddфывff";
+        Data2<std::wstring, std::tstring_t> data[] =
+        {
+            {L"dddфывff", xT("ddd???ff")},
+            {L"\n",       xT("?")},
+            {L"a",        xT("a")},
+            {L"聞",       xT("?")}
+        };
 
-        m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("ddd???ff")));
+        xFOR_ARRAY(i, data) {
+            m_sRv = Format::str(xT("{}"), data[i].test);
+            xTEST_EQ(m_sRv, data[i].expect);
+
+            Trace() << xTRACE_VAR(m_sRv);
+        }
     }
 
     xTEST_CASE("std::string_t")
