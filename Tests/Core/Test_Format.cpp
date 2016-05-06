@@ -362,6 +362,61 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}, {1, bbb}}")));
     }
 
+    xTEST_CASE("all")
+    {
+        bool               bValue = true;
+        char               chValue = 'q';
+        wchar_t            wcValue = 'w';
+        unsigned char      ucValue = 'e';
+        short              shValue = 2;
+        unsigned short     usiValue = 3;
+        int                iValue = 4;
+        unsigned int       uiValue = 5;
+        long               liValue = 6;
+        unsigned long      ulValue = 7;
+        long long          llValue = 8;
+        unsigned long long ullValue = 9;
+        float              fValue = 0.0f;
+        double             dValue = 0.1f;
+        long double        ldValue = 0.2f;
+        void *             pvValue = (void *)0x7fff0fd3e100;
+    #if xOPTION_CPP11
+        std::nullptr_t     pValue = nullptr;
+    #endif
+        char *             pszValue = "aaa";
+        wchar_t *          pwszValue = L"bbb";
+        std::string        asValue = "ccc";
+        std::wstring       wsValue = L"ddd";
+        std::ustring_t     usValue = std::ustring_t(3, 'z');
+
+        m_sRv = Format::str(xT("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}"),
+            bValue,
+            chValue,
+            wcValue,
+            ucValue,
+            shValue,
+            usiValue,
+            iValue,
+            uiValue,
+            liValue,
+            ulValue,
+            llValue,
+            ullValue,
+            fValue,
+            dValue,
+            ldValue,
+            pvValue,
+        #if xOPTION_CPP11
+            pValue,
+        #endif
+            pszValue,
+            pwszValue,
+            asValue,
+            wsValue,
+            usValue);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{true, q, w, e, 2, 3, 4, 5, 6, 7, 8, 9, 0.0, 0.1, 0.2, 0x7fff0fd3e100, aaa, bbb, ccc, ddd, zzz}")));
+    }
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
