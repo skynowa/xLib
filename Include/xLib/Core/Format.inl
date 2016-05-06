@@ -101,6 +101,10 @@ xNAMESPACE_BEGIN2(xlib, core)
 #define xFORMAT_SWITCH_CASE_20 \
             xFORMAT_SWITCH_CASE_19 \
             case 20: xFORMAT_SWITCH_CASE(a_v20); break;
+
+#define xFORMAT_SWITCH_CASE_21 \
+            xFORMAT_SWITCH_CASE_20 \
+            case 21: xFORMAT_SWITCH_CASE(a_v21); break;
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_STR(n) \
     template<xVA_TYPES_##n> \
@@ -164,6 +168,7 @@ xFORMAT_STR(17)
 xFORMAT_STR(18)
 xFORMAT_STR(19)
 xFORMAT_STR(20)
+xFORMAT_STR(21)
 //-------------------------------------------------------------------------------------------------
 template<class IteratorT>
 /* static */
