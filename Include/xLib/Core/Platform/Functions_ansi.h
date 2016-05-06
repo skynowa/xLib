@@ -111,3 +111,18 @@
     #define xTISUPPER       std::isupper
     #define xTTOLOWER       std::tolower
     #define xTTOUPPER       std::toupper
+
+    // chars (locale)
+    #define xTISALNUM_L     xTISALNUM
+    #define xTISALPHA_L     xTISALPHA
+    #define xTISCNTRL_L     xTISCNTRL
+    #define xTISDIGIT_L     xTISDIGIT
+    #define xTISXDIGIT_L    xTISXDIGIT
+    #define xTISGRAPH_L     xTISGRAPH
+    #define xTISPRINT_L     xTISPRINT
+    #define xTISPUNCT_L     xTISPUNCT
+    #define xTISSPACE_L     xTISSPACE
+    #define xTISLOWER_L     xTISLOWER
+    #define xTISUPPER_L     xTISUPPER
+    #define xTTOLOWER_L     xTTOLOWER
+    #define xTTOUPPER_L     xTTOUPPER
