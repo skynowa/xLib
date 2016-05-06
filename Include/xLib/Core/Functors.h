@@ -23,7 +23,7 @@ struct ToLower
     tchar_t
     operator () (std::ctstring_t::value_type &a_ch) const
     {
-        return xTTOLOWER(a_ch, _locale);
+        return xTTOLOWER_L(a_ch, _locale);
     }
 
 private:
@@ -41,7 +41,7 @@ struct ToUpper
     tchar_t
     operator () (std::ctstring_t::value_type &a_ch) const
     {
-        return xTTOUPPER(a_ch, _locale);
+        return xTTOUPPER_L(a_ch, _locale);
     }
 
 private:
