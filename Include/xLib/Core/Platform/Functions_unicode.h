@@ -98,16 +98,31 @@
 #endif
 
     // chars
-    #define xTISALNUM       ::iswalnum_l
-    #define xTISALPHA       ::iswalpha_l
-    #define xTISCNTRL       ::iswcntrl_l
-    #define xTISDIGIT       ::iswdigit_l
-    #define xTISXDIGIT      ::iswxdigit_l
-    #define xTISGRAPH       ::iswgraph_l
-    #define xTISPRINT       ::iswprint_l
-    #define xTISPUNCT       ::iswpunct_l
-    #define xTISSPACE       ::iswspace_l
-    #define xTISLOWER       ::iswlower_l
-    #define xTISUPPER       ::iswupper_l
-    #define xTTOLOWER       ::towlower_l
-    #define xTTOUPPER       ::towupper_l
+    #define xTISALNUM       ::iswalnum
+    #define xTISALPHA       ::iswalpha
+    #define xTISCNTRL       ::iswcntrl
+    #define xTISDIGIT       ::iswdigit
+    #define xTISXDIGIT      ::iswxdigit
+    #define xTISGRAPH       ::iswgraph
+    #define xTISPRINT       ::iswprint
+    #define xTISPUNCT       ::iswpunct
+    #define xTISSPACE       ::iswspace
+    #define xTISLOWER       ::iswlower
+    #define xTISUPPER       ::iswupper
+    #define xTTOLOWER       ::towlower
+    #define xTTOUPPER       ::towupper
+
+    // chars (locale)
+    #define xTISALNUM_L     ::iswalnum_l
+    #define xTISALPHA_L     ::iswalpha_l
+    #define xTISCNTRL_L     ::iswcntrl_l
+    #define xTISDIGIT_L     ::iswdigit_l
+    #define xTISXDIGIT_L    ::iswxdigit_l
+    #define xTISGRAPH_L     ::iswgraph_l
+    #define xTISPRINT_L     ::iswprint_l
+    #define xTISPUNCT_L     ::iswpunct_l
+    #define xTISSPACE_L     ::iswspace_l
+    #define xTISLOWER_L     ::iswlower_l
+    #define xTISUPPER_L     ::iswupper_l
+    #define xTTOLOWER_L     ::towlower_l
+    #define xTTOUPPER_L     ::towupper_l
