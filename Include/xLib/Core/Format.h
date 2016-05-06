@@ -43,6 +43,8 @@ public:
     xFORMAT_STR_DECLARE(19)
     xFORMAT_STR_DECLARE(20)
 
+    xFORMAT_STR_DECLARE(21)
+
 private:
     static
     std::cstring_t &  _specifier() xWARN_UNUSED_RV;
@@ -51,7 +53,7 @@ private:
     std::cstring_t &  _delimiter() xWARN_UNUSED_RV;
         ///< delimiter
     static
-    char              _unprintableChar() xWARN_UNUSED_RV;
+    tchar_t           _unprintableChar() xWARN_UNUSED_RV;
         ///< unprintable char
 
     static void _format(std::tstringstream_t &ss, const bool &value);

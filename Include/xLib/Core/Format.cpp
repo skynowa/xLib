@@ -100,7 +100,7 @@ Format::_delimiter()
 xINLINE char
 Format::_unprintableChar()
 {
-    static char chRv('?');
+    static tchar_t chRv(xT('?'));
 
     return chRv;
 }
@@ -137,19 +137,15 @@ Format::_format(
     const wchar_t        &a_value   ///< value
 )
 {
-#if xANSI
-    char chRv;
+    tchar_t chRv;
 
-    if (a_value >= 0x20 && a_value <= 0xFF) {
-        chRv = static_cast<char>(a_value);
+    if ( ::iswprint(a_value) ) {
+        chRv = static_cast<tchar_t>(a_value);;
     } else {
         chRv = _unprintableChar();
     }
 
     a_ss << chRv;
-#else
-    a_ss << a_value;
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -341,26 +337,22 @@ Format::_format(
     const std::wstring   &a_value   ///< value
 )
 {
-#if xANSI
-    std::string asRv;
-    asRv.reserve( a_value.size() );
+    std::tstring_t sRv;
+    sRv.reserve( a_value.size() );
 
     for (size_t i = 0; i < a_value.size(); ++ i) {
-        char chRv;
+        tchar_t chRv;
 
-        if ( a_value[i]  >= 0x20 &&  a_value[i]  <= 0xFF) {
-            chRv = static_cast<char>( a_value[i] );
+        if ( ::iswprint(a_value[i]) ) {
+            chRv = static_cast<tchar_t>( a_value[i] );
         } else {
             chRv = _unprintableChar();
         }
 
-        asRv += chRv;
+        sRv += chRv;
     }
 
-    a_ss << asRv;
-#else
-    a_ss << a_value;
-#endif
+    a_ss << sRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
