@@ -16,7 +16,13 @@
     #define xTFPRINTF       std::fwprintf
     #define xTASCTIME       std::_wasctime
     #define xLOCALE         ::locale_t
-    #define xTSETLOCALE     std::_wsetlocale
+
+    #if   xENV_WIN
+        #define xTSETLOCALE ::_wsetlocale
+    #elif xENV_UNIX
+        #define xTSETLOCALE xlib::core::wsetlocale
+    #endif
+
     #define xTFOPEN         std::_wfopen
     #define xTFREOPEN       std::_wfreopen
     #define xTFDOPEN        ::_wfdopen
@@ -79,7 +85,7 @@
 #elif xCOMPILER_CODEGEAR
     #define xTSTAT          ::_tstat
 #elif xCOMPILER_GNUC
-    #define xTSTAT          ::_wlstat
+    #define xTSTAT          ::_wstat
 #else
     #define xTSTAT          ::_wstat
 #endif
