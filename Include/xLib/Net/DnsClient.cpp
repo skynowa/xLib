@@ -407,7 +407,7 @@ DnsClient::isAddressIpv4(
 {
     sockaddr_in sa; xSTRUCT_ZERO(sa);
 
-    return (::inet_pton(AF_INET, a_ip.c_str(), &sa.sin_addr) != 0);
+    return (::inet_pton(AF_INET, xT2A(a_ip).c_str(), &sa.sin_addr) != 0);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -418,7 +418,7 @@ DnsClient::isAddressIpv6(
 {
     sockaddr_in6 sa; xSTRUCT_ZERO(sa);
 
-    return (::inet_pton(AF_INET6, a_ip.c_str(), &sa.sin6_addr) != 0);
+    return (::inet_pton(AF_INET6, xT2A(a_ip).c_str(), &sa.sin6_addr) != 0);
 }
 //-------------------------------------------------------------------------------------------------
 

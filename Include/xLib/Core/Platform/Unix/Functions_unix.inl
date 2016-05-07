@@ -172,7 +172,30 @@ mkstempW(
     // TODO: mkstempW - not impl
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE int
+getnameinfoW(
+    const struct sockaddr *a_sa,
+    socklen_t              a_salen,
+    wchar_t               *a_host,
+    size_t                 a_hostlen,
+    wchar_t               *a_serv,
+    size_t                 a_servlen,
+    int                    a_flags
+)
+{
+    // TODO: getnameinfoW - not impl
+}
 //-------------------------------------------------------------------------------------------------
+xINLINE int
+getaddrinfoW(
+    const wchar_t          *a_node,
+    const wchar_t          *a_service,
+    const struct addrinfo  *a_hints,
+    struct addrinfo       **a_res
+)
+{
+    // TODO: getaddrinfoW - not impl
+}
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------

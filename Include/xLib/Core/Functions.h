@@ -54,7 +54,11 @@
 #elif xCOMPILER_CODEGEAR
     #define xGETADDRINFO        ::GetAddrInfo
 #elif xCOMPILER_GNUC
-    #define xGETADDRINFO        ::getaddrinfo
+    #if xUNICODE
+        #define xGETADDRINFO    xlib::core::getaddrinfoW
+    #else
+        #define xGETADDRINFO    ::getaddrinfo
+    #endif
 #else
     #define xGETADDRINFO        ::getaddrinfo
 #endif
@@ -67,7 +71,11 @@
 #elif xCOMPILER_CODEGEAR
     #define xGETNAMEINFO        ::GetNameInfo
 #elif xCOMPILER_GNUC
-    #define xGETNAMEINFO        ::getnameinfo
+    #if xUNICODE
+        #define xGETNAMEINFO    xlib::core::getnameinfoW
+    #else
+        #define xGETNAMEINFO    ::getnameinfo
+    #endif
 #else
     #define xGETNAMEINFO        ::getnameinfo
 #endif
