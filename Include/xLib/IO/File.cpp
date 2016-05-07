@@ -518,7 +518,7 @@ File::errorClear() const
 xINLINE void_t
 File::flush() const
 {
-    int_t iRv = std::fflush(get());
+    int_t iRv = std::fflush( get() );
     xTEST_DIFF(iRv, xTEOF);
 }
 //-------------------------------------------------------------------------------------------------
