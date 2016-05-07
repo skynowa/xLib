@@ -47,10 +47,10 @@ public:
 
 private:
     static
-    std::cstring_t &  _specifier() xWARN_UNUSED_RV;
+    std::ctstring_t & _specifier() xWARN_UNUSED_RV;
         ///< specifier
     static
-    std::cstring_t &  _delimiter() xWARN_UNUSED_RV;
+    std::ctstring_t & _delimiter() xWARN_UNUSED_RV;
         ///< delimiter
     static
     tchar_t           _unprintableChar() xWARN_UNUSED_RV;
