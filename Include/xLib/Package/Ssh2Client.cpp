@@ -110,8 +110,8 @@ onkeyboardInteractive(
     if (a_numPrompts == 1) {
         xTEST(!userPassword.empty());
 
-        a_responses[0].text   = ::strdup( userPassword.c_str() );
-        a_responses[0].length = userPassword.size();
+        a_responses[0].text   = ::strdup( xT2A(userPassword).c_str() );
+        a_responses[0].length = userPassword.size() * sizeof(std::tstring_t::value_type);
     }
 
     xUNUSED(a_prompts);
@@ -130,10 +130,10 @@ Ssh2Client::authPassword(
 
     switch (a_userAuth) {
     case uaPassword:
-        iRv = ::libssh2_userauth_password(_session, _data.userName.c_str(), _data.password.c_str());
+        iRv = ::libssh2_userauth_password(_session, xT2A(_data.userName).c_str(), xT2A(_data.password).c_str());
         break;
     case uaKeyboardInteractive:
-        iRv = ::libssh2_userauth_keyboard_interactive(_session, _data.userName.c_str(),
+        iRv = ::libssh2_userauth_keyboard_interactive(_session, xT2A(_data.userName).c_str(),
                 &onkeyboardInteractive);
         break;
     case uaUnknown:
@@ -157,8 +157,8 @@ Ssh2Client::authPublicKey(
     std::ctstring_t privateKey = a_keyDirPath + xT("/id_rsa");
     std::ctstring_t publicKey  = a_keyDirPath + xT("/id_rsa.pub");
 
-    iRv = ::libssh2_userauth_publickey_fromfile(_session, _data.userName.c_str(), publicKey.c_str(),
-            privateKey.c_str(), _data.password.c_str());
+    iRv = ::libssh2_userauth_publickey_fromfile(_session, xT2A(_data.userName).c_str(),
+        xT2A(publicKey).c_str(), xT2A(privateKey).c_str(), xT2A(_data.password).c_str());
     xTEST(0 == iRv);
 }
 //-------------------------------------------------------------------------------------------------
@@ -180,7 +180,7 @@ Ssh2Client::channelExec(
 
     ::libssh2_channel_set_blocking(_channel, static_cast<int>(a_isBlockingMode));
 
-    iRv = ::libssh2_channel_exec(_channel, a_cmd.c_str());
+    iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str());
     xTEST_GR(iRv, - 1);
 
     return true;
@@ -225,7 +225,7 @@ Ssh2Client::channelReadLine(
                 break;
             }
 
-            stdOut.append(block);
+            stdOut.append( xA2T(block) );
         } // for ( ; ; )
     }
 
@@ -258,7 +258,7 @@ Ssh2Client::channelReadLine(
                 break;
             }
 
-            stdErr.append(block);
+            stdErr.append( xA2T(block) );
         } // for ( ; ; )
     }
 
@@ -338,7 +338,7 @@ Ssh2Client::channelExecReadAll(
                 block[read] = '\0';
             }
 
-            stdOut.append(block);
+            stdOut.append( xA2T(block) );
         }
     }
 
@@ -354,7 +354,7 @@ Ssh2Client::channelExecReadAll(
                 block[read] = '\0';
             }
 
-            stdErr.append(block);
+            stdErr.append( xA2T(block) );
         }
     }
 
@@ -410,19 +410,19 @@ Ssh2Client::lastError()
 xINLINE std::tstring_t
 Ssh2Client::lastErrorFormat()
 {
-    std::tstring_t sRv;
+    std::string asRv;
 
     char *error     = xPTR_NULL;
     int   errorSize = 0;
 
     (int)::libssh2_session_last_error(_session, &error, &errorSize, 0);
     if (error == xPTR_NULL) {
-        sRv = xT("[Unknown]");
+        asRv = "[Unknown]";
     } else {
-        sRv.assign(error, errorSize);
+        asRv.assign(error, errorSize);
     }
 
-    return sRv;
+    return xA2T(asRv);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -438,76 +438,76 @@ Ssh2Client::_convertStdToHtml(
     std::tstring_t *a_std
 )
 {
-    *a_std = String::replaceAll(*a_std, "\n", "<br />");
+    *a_std = String::replaceAll(*a_std, xT("\n"), xT("<br />"));
 
     // http://misc.flogisoft.com/bash/tip_colors_and_formatting
     // http://ascii-table.com/ansi-escape-sequences.php
     std::map_tstring_t colorsCodes;
 
     // Attributes set
-    colorsCodes["\e[1m"]    = ""; // Bold/Bright
-    colorsCodes["\e[2m"]    = ""; // Dim
-    colorsCodes["\e[4m"]    = ""; // Underlined
-    colorsCodes["\e[5m"]    = ""; // Blink
-    colorsCodes["\e[7m"]    = ""; // Reverse (invert the foreground and background colors)
-    colorsCodes["\e[8m"]    = ""; // Hidden (usefull for passwords)
+    colorsCodes[xT("\e[1m")]    = xT(""); // Bold/Bright
+    colorsCodes[xT("\e[2m")]    = xT(""); // Dim
+    colorsCodes[xT("\e[4m")]    = xT(""); // Underlined
+    colorsCodes[xT("\e[5m")]    = xT(""); // Blink
+    colorsCodes[xT("\e[7m")]    = xT(""); // Reverse (invert the foreground and background colors)
+    colorsCodes[xT("\e[8m")]    = xT(""); // Hidden (usefull for passwords)
 
     // Attributes Reset
-    colorsCodes["\e[0m"]    = ""; // Reset all attributes
-    colorsCodes["\e[21m"]   = ""; // Reset bold/bright
-    colorsCodes["\e[22m"]   = ""; // Reset dim
-    colorsCodes["\e[24m"]   = ""; // Reset underlined
-    colorsCodes["\e[25m"]   = ""; // Reset blink
-    colorsCodes["\e[27m"]   = ""; // Reset reverse
-    colorsCodes["\e[28m"]   = ""; // Reset hidden
+    colorsCodes[xT("\e[0m")]    = xT(""); // Reset all attributes
+    colorsCodes[xT("\e[21m")]   = xT(""); // Reset bold/bright
+    colorsCodes[xT("\e[22m")]   = xT(""); // Reset dim
+    colorsCodes[xT("\e[24m")]   = xT(""); // Reset underlined
+    colorsCodes[xT("\e[25m")]   = xT(""); // Reset blink
+    colorsCodes[xT("\e[27m")]   = xT(""); // Reset reverse
+    colorsCodes[xT("\e[28m")]   = xT(""); // Reset hidden
 
     // Regular
-    colorsCodes["\e[0;30m"] = "Black";
-    colorsCodes["\e[0;31m"] = "Red";    // \e[0;1;31m
-    colorsCodes["\e[0;32m"] = "Green";  // \e[0;1;32m
-    colorsCodes["\e[0;33m"] = "Yellow";
-    colorsCodes["\e[0;34m"] = "Blue";
-    colorsCodes["\e[0;35m"] = "Purple";
-    colorsCodes["\e[0;36m"] = "Cyan";
-    colorsCodes["\e[0;37m"] = "White";
+    colorsCodes[xT("\e[0;30m")] = xT("Black");
+    colorsCodes[xT("\e[0;31m")] = xT("Red");    // \e[0;1;31m
+    colorsCodes[xT("\e[0;32m")] = xT("Green");  // \e[0;1;32m
+    colorsCodes[xT("\e[0;33m")] = xT("Yellow");
+    colorsCodes[xT("\e[0;34m")] = xT("Blue");
+    colorsCodes[xT("\e[0;35m")] = xT("Purple");
+    colorsCodes[xT("\e[0;36m")] = xT("Cyan");
+    colorsCodes[xT("\e[0;37m")] = xT("White");
 
     // Bold
-    colorsCodes["\e[1;30m"] = "Black";
-    colorsCodes["\e[1;31m"] = "Red";
-    colorsCodes["\e[1;32m"] = "Green";
-    colorsCodes["\e[1;33m"] = "Yellow";
-    colorsCodes["\e[1;34m"] = "Blue";
-    colorsCodes["\e[1;35m"] = "Purple";
-    colorsCodes["\e[1;36m"] = "Cyan";
-    colorsCodes["\e[1;37m"] = "White";
+    colorsCodes[xT("\e[1;30m")] = xT("Black");
+    colorsCodes[xT("\e[1;31m")] = xT("Red");
+    colorsCodes[xT("\e[1;32m")] = xT("Green");
+    colorsCodes[xT("\e[1;33m")] = xT("Yellow");
+    colorsCodes[xT("\e[1;34m")] = xT("Blue");
+    colorsCodes[xT("\e[1;35m")] = xT("Purple");
+    colorsCodes[xT("\e[1;36m")] = xT("Cyan");
+    colorsCodes[xT("\e[1;37m")] = xT("White");
 
     // Underline
-    colorsCodes["\e[4;30m"] = "Black";
-    colorsCodes["\e[4;31m"] = "Red";
-    colorsCodes["\e[4;32m"] = "Green";
-    colorsCodes["\e[4;33m"] = "Yellow";
-    colorsCodes["\e[4;34m"] = "Blue";
-    colorsCodes["\e[4;35m"] = "Purple";
-    colorsCodes["\e[4;36m"] = "Cyan";
-    colorsCodes["\e[4;37m"] = "White";
+    colorsCodes[xT("\e[4;30m")] = xT("Black");
+    colorsCodes[xT("\e[4;31m")] = xT("Red");
+    colorsCodes[xT("\e[4;32m")] = xT("Green");
+    colorsCodes[xT("\e[4;33m")] = xT("Yellow");
+    colorsCodes[xT("\e[4;34m")] = xT("Blue");
+    colorsCodes[xT("\e[4;35m")] = xT("Purple");
+    colorsCodes[xT("\e[4;36m")] = xT("Cyan");
+    colorsCodes[xT("\e[4;37m")] = xT("White");
 
     // Background
-    colorsCodes["\e[40m"]   = "Black";
-    colorsCodes["\e[41m"]   = "Red";
-    colorsCodes["\e[42m"]   = "Green";
-    colorsCodes["\e[43m"]   = "Yellow";
-    colorsCodes["\e[44m"]   = "Blue";
-    colorsCodes["\e[45m"]   = "Purple";
-    colorsCodes["\e[46m"]   = "Cyan";
-    colorsCodes["\e[47m"]   = "White";
+    colorsCodes[xT("\e[40m")]   = xT("Black");
+    colorsCodes[xT("\e[41m")]   = xT("Red");
+    colorsCodes[xT("\e[42m")]   = xT("Green");
+    colorsCodes[xT("\e[43m")]   = xT("Yellow");
+    colorsCodes[xT("\e[44m")]   = xT("Blue");
+    colorsCodes[xT("\e[45m")]   = xT("Purple");
+    colorsCodes[xT("\e[46m")]   = xT("Cyan");
+    colorsCodes[xT("\e[47m")]   = xT("White");
 
     // Etc
-    colorsCodes["\e[0;1;32m"] = "Green";
+    colorsCodes[xT("\e[0;1;32m")] = xT("Green");
 
     xFOR_EACH_CONST(std::map_tstring_t, it, colorsCodes) {
         std::tstring_t htmlTag;
         {
-            if (it->first == "\e[0m") {
+            if (it->first == xT("\e[0m")) {
                 htmlTag = xT("</font>");
             } else {
                 htmlTag = xT("<font color=\"") + it->second + xT("\">");
