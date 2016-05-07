@@ -40,8 +40,8 @@ Process::_idByName_impl(
         // read contents of virtual /proc/{pid}/cmdline file
         std::string   cmdPath = std::string("/proc/") + dirEntry->d_name + "/cmdline";
         std::ifstream cmdFile(cmdPath.c_str());
-        std::string   cmdLine;
 
+        std::string cmdLine;
         std::getline(cmdFile, cmdLine);
         xCHECK_DO(cmdLine.empty(), continue);
 
@@ -51,8 +51,7 @@ Process::_idByName_impl(
             cmdLine = cmdLine.substr(0, pos);
         }
 
-        cmdLine = Path(cmdLine).fileName();
-        if (cmdLine == a_processName) {
+        if (a_processName == Path( xA2T(cmdLine) ).fileName()) {
             pid = id;
             break;
         }
@@ -84,7 +83,7 @@ Process::_ids_impl(
         {
             std::tstring_t dirName = Path(*it).fileName();
 
-            pid = std::atoi(dirName.c_str());
+            pid = String::cast<int_t>( dirName.c_str() );
             xCHECK_DO(0 >= pid, continue);
         }
 
