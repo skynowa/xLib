@@ -12,12 +12,12 @@
     #define tclog           wclog
     #define xTEOF           WEOF
 
-    #define xTMAIN          wmain
     #define xTFPRINTF       std::fwprintf
     #define xTASCTIME       std::_wasctime
     #define xLOCALE         ::locale_t
 
 #if   xENV_WIN
+    #define xTMAIN          wmain
     #define xTSETLOCALE     ::_wsetlocale
     #define xTFOPEN         std::_wfopen
     #define xTFDOPEN        ::_wfdopen
@@ -25,6 +25,7 @@
     #define xTACCESS        ::_waccess
     #define xTSYSTEM        std::_wsystem
 #elif xENV_UNIX
+    #define xTMAIN          main
     #define xTFOPEN         xlib::core::fopenW
     #define xTFDOPEN        xlib::core::fdopenW
     #define xTFREOPEN       xlib::core::freopenW
@@ -59,7 +60,6 @@
 #else
     #define xTMKSTEMP       std::mkstemp
 #endif
-
 
 #if   xENV_WIN
     #define xTREMOVE        std::_wremove
