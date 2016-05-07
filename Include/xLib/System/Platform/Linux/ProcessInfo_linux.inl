@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xlib, system)
 xINLINE std::tstring_t
 ProcessInfo::_exeName_impl() const
 {
-    std::tstring_t sRv;
+    std::string asRv;
 
     std::ctstring_t procFile = Format::str(xT("/proc/{}/exe"), _id);
 
@@ -23,22 +23,21 @@ ProcessInfo::_exeName_impl() const
     xCHECK_RET(!bRv, std::tstring_t());
 
     ssize_t readed = - 1;
-    sRv.resize(xPATH_MAX);
+    asRv.resize(xPATH_MAX);
 
     for ( ; ; ) {
-        readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() *
-            sizeof(std::tstring_t::value_type));
+        readed = ::readlink(xT2A(procFile).c_str(), &asRv.at(0), asRv.size() *
+            sizeof(std::string::value_type));
         xTEST_DIFF(readed, ssize_t(- 1));
 
-        xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) >
-            static_cast<size_t>( readed ), break);
+        xCHECK_DO(asRv.size() * sizeof(std::string::value_type) > static_cast<size_t>( readed ), break);
 
-        sRv.resize(sRv.size() * 2);
+        asRv.resize(asRv.size() * 2);
     }
 
-    sRv.resize(readed);
+    asRv.resize(readed);
 
-    return sRv;
+    return xA2T(asRv);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -53,16 +52,15 @@ ProcessInfo::_commandLine_impl(
     // TODO: ProcessInfo::commandLine() - review
     std::ctstring_t procPath = Format::str(xT("/proc/{}/cmdline"), _id);
 
-    FILE *procFile = std::fopen(procPath.c_str(), "r");
+    FILE *procFile = std::fopen(xT2A(procPath).c_str(), "r");
     xTEST_PTR(procFile);
 
     std::csize_t bufferSize       = 2048;
     char         buff[bufferSize] = {0};
 
     while ( std::fgets(buff, static_cast<int_t>(bufferSize), procFile) ) {
-        size_t pos = 0;
-        while (pos < bufferSize && buff[pos] != '\0' ) {
-            args.push_back(buff + pos);
+        for (size_t pos = 0; pos < bufferSize && buff[pos] != '\0'; ) {
+            args.push_back( xA2T(buff + pos) );
 
             pos += std::strlen(buff + pos) + 1;
         }
