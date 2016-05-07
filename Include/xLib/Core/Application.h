@@ -52,70 +52,70 @@ public:
     std::tstring_t name();
         ///< name
     static
-    void_t         setName(std::cstring_t &name);
+    void_t         setName(std::ctstring_t &name);
         ///< set name
 
     static
     std::tstring_t decription();
         ///< decription
     static
-    void_t         setDecription(std::cstring_t &decription);
+    void_t         setDecription(std::ctstring_t &decription);
         ///< set decription
 
     static
     std::tstring_t copyrightYears();
         ///< copyright years (2009-2014)
     static
-    void_t         setCopyrightYears(std::cstring_t &copyrightYears);
+    void_t         setCopyrightYears(std::ctstring_t &copyrightYears);
         ///< set copyright years
 
     static
     std::tstring_t usage();
         ///< usage
     static
-    void_t         setUsage(std::cstring_t &usage);
+    void_t         setUsage(std::ctstring_t &usage);
         ///< set usage
 
     static
     std::tstring_t help();
         ///< help
     static
-    void_t         setHelp(std::cstring_t &help);
+    void_t         setHelp(std::ctstring_t &help);
         ///< set help
 
     static
     std::tstring_t versionMajor();
         ///< major version
     static
-    void_t         setVersionMajor(std::cstring_t &versionMajor);
+    void_t         setVersionMajor(std::ctstring_t &versionMajor);
         ///< set major version
 
     static
     std::tstring_t versionMinor();
         ///< minor version
     static
-    void_t         setVersionMinor(std::cstring_t &versionMinor);
+    void_t         setVersionMinor(std::ctstring_t &versionMinor);
         ///< set minor version
 
     static
     std::tstring_t versionPatch();
         ///< patch version
     static
-    void_t         setVersionPatch(std::cstring_t &versionPatch);
+    void_t         setVersionPatch(std::ctstring_t &versionPatch);
         ///< set patch version
 
     static
     std::tstring_t versionType();
         ///< version type (RC, alpha, beta, snapshot)
     static
-    void_t         setVersionType(std::cstring_t &versionType);
+    void_t         setVersionType(std::ctstring_t &versionType);
         ///< set version type
 
     static
     std::tstring_t versionRevision();
         ///< distributed revision control revision
     static
-    void_t         setVersionRevision(std::cstring_t &versionRevision);
+    void_t         setVersionRevision(std::ctstring_t &versionRevision);
         ///< set distributed revision control revision
 
     static
@@ -126,42 +126,42 @@ public:
     std::tstring_t vendorName();
         ///< vendor name
     static
-    void_t         setVendorName(std::cstring_t &vendorName);
+    void_t         setVendorName(std::ctstring_t &vendorName);
         ///< set vendor name
 
     static
     std::tstring_t vendorDomain();
         ///< vendor domain
     static
-    void_t         setVendorDomain(std::cstring_t &vendorDomain);
+    void_t         setVendorDomain(std::ctstring_t &vendorDomain);
         ///< set vendor domain
 
     static
     std::tstring_t vendorAuthor();
         ///< vendor author
     static
-    void_t         setVendorAuthor(std::cstring_t &vendorAuthor);
+    void_t         setVendorAuthor(std::ctstring_t &vendorAuthor);
         ///< set vendor author
 
     static
     std::tstring_t vendorUrl();
         ///< vendor home page
     static
-    void_t         setVendorUrl(std::cstring_t &vendorUrl);
+    void_t         setVendorUrl(std::ctstring_t &vendorUrl);
         ///< set vendor home page
 
     static
     std::tstring_t vendorEmail();
         ///< vendor email
     static
-    void_t         setVendorEmail(std::cstring_t &vendorEmail);
+    void_t         setVendorEmail(std::ctstring_t &vendorEmail);
         ///< set vendor email
 
     static
     std::tstring_t vendorSkype();
         ///< vendor skype
     static
-    void_t         setVendorSkype(std::cstring_t &vendorSkype);
+    void_t         setVendorSkype(std::ctstring_t &vendorSkype);
         ///< set vendor skype
 
 
@@ -169,14 +169,14 @@ public:
     std::tstring_t vendorJabber();
         ///< vendor jabber
     static
-    void_t         setVendorJabber(std::cstring_t &vendorJabber);
+    void_t         setVendorJabber(std::ctstring_t &vendorJabber);
         ///< set vendor jabber
 
     static
     std::tstring_t vendorIcq();
         ///< vendor ICQ
     static
-    void_t         setVendorIcq(std::cstring_t &vendorIcq);
+    void_t         setVendorIcq(std::ctstring_t &vendorIcq);
         ///< set vendor ICQ
 
     static
