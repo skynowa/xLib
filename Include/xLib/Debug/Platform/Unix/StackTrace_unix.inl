@@ -35,7 +35,7 @@ StackTrace::_get_impl(
     int_t framesNum = ::backtrace(stackBuff, xSTACK_TRACE_FRAMES_MAX);
     xCHECK_DO(framesNum <= 0, return);
 
-    tchar_t **symbols = ::backtrace_symbols(stackBuff, framesNum);
+    char **symbols = ::backtrace_symbols(stackBuff, framesNum);
     xCHECK_DO(symbols == xPTR_NULL, return);
 
     for (int_t i = _skipFramesNum; i < framesNum; ++ i) {
@@ -49,22 +49,21 @@ StackTrace::_get_impl(
 
         int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
         if (iRv == 0) {
-            modulePath   = (dlinfo.dli_fname == xPTR_NULL) ? dataNotFound : dlinfo.dli_fname;
+            modulePath   = (dlinfo.dli_fname == xPTR_NULL) ? dataNotFound : xA2T(dlinfo.dli_fname);
             filePath     = dataNotFound;
             fileLine     = dataNotFound;
             byteOffset   = Format::c_str(xT("%p"), ptrdiff_t(xPTR_NULL));
-            functionName = (symbols[i] == xPTR_NULL) ? dataNotFound : symbols[i];
+            functionName = (symbols[i] == xPTR_NULL) ? dataNotFound : xA2T(symbols[i]);
         } else {
-            ctchar_t *symbolName = xPTR_NULL;
-            int_t     status     = - 1;
+            const char *symbolName = xPTR_NULL;
+            int_t       status     = - 1;
 
-            tchar_t *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, xPTR_NULL, xPTR_NULL, &status);
+            char *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, xPTR_NULL, xPTR_NULL, &status);
             if (demangleName != xPTR_NULL && status == 0) {
                 symbolName = demangleName;
             } else {
                 symbolName = dlinfo.dli_sname;
             }
-
 
             std::tstring_t _filePath;
             std::tstring_t _functionName;
@@ -73,11 +72,11 @@ StackTrace::_get_impl(
             _addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
             xUNUSED(_functionName);
 
-            modulePath   = (dlinfo.dli_fname == xPTR_NULL) ? dataNotFound : dlinfo.dli_fname;
-            filePath     = _filePath.empty()          ? dataNotFound : _filePath;
+            modulePath   = (dlinfo.dli_fname == xPTR_NULL) ? dataNotFound : xA2T(dlinfo.dli_fname);
+            filePath     = _filePath.empty()               ? dataNotFound : _filePath;
             fileLine     = String::cast(_sourceLine);
             byteOffset   = Format::c_str(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
-            functionName = (symbolName == xPTR_NULL) ? dataNotFound : symbolName;
+            functionName = (symbolName == xPTR_NULL) ? dataNotFound : xA2T(symbolName);
 
             xBUFF_FREE(demangleName);
         }
@@ -131,34 +130,34 @@ StackTrace::_addr2Line(
 {
 #if xHAVE_ADDR2LINE
    /**
-    * MAN: addr2line
-    *   @<file>                Read options from <file>
-    *   -b --target=<bfdname>  Set the binary file format
-    *   -e --exe=<executable>  Set the input file name (default is a.out)
-    *   -i --xINLINEs           Unwind xINLINEd functions
-    *   -j --section=<name>    Read section-relative offsets instead of addresses
-    *   -s --basenames         Strip directory names
-    *   -f --functions         Show function names
-    *   -C --demangle[=style]  Demangle function names
-    *   -h --help              Display this information
-    *   -v --version           Display the program's version
+    * FAQ: addr2line
+    *
+    * @<file>                Read options from <file>
+    * -a --addresses         Show addresses
+    * -b --target=<bfdname>  Set the binary file format
+    * -e --exe=<executable>  Set the input file name (default is a.out)
+    * -i --inlines           Unwind inlined functions
+    * -j --section=<name>    Read section-relative offsets instead of addresses
+    * -p --pretty-print      Make the output easier to read for humans
+    * -s --basenames         Strip directory names
+    * -f --functions         Show function names
+    * -C --demangle[=style]  Demangle function names
+    * -h --help              Display this information
+    * -v --version           Display the program's version
     */
-    tchar_t cmdLine[1024 + 1] = {0};
 
-    std::snprintf(cmdLine, xARRAY_SIZE(cmdLine) - 1,
-        xADDR2LINE_FILE_PATH
-        // xT(" -C -e %s -f -i %lx")
-        xT(" -C -e %s -f %lx"),
-        Path::exe().c_str(), reinterpret_cast<ptrdiff_t>(a_symbolAddress));
+    std::ctstring_t cmdLine = Format::c_str(
+        xT("%s -e -i %s -f -C %lx"),
+        xADDR2LINE_FILE_PATH, Path::exe().c_str(), reinterpret_cast<ptrdiff_t>(a_symbolAddress));
 
-    FILE *file = ::popen(cmdLine, xT("r"));
+    FILE *file = ::popen(xT2A(cmdLine).c_str(), "r");
     _xVERIFY(file != xPTR_NULL);
 
     // get function name
     {
         tchar_t buff[1024 + 1] = {0};
 
-        ctchar_t *functionName = std::fgets(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
+        ctchar_t *functionName = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
         _xVERIFY(functionName != xPTR_NULL);
 
         a_functionName->assign(functionName);
@@ -168,7 +167,7 @@ StackTrace::_addr2Line(
     {
         tchar_t buff[1024 + 1] = {0};
 
-        ctchar_t *fileAndLine = std::fgets(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
+        ctchar_t *fileAndLine = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
         _xVERIFY(fileAndLine != xPTR_NULL);
 
        /**
