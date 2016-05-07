@@ -132,9 +132,9 @@ xNAMESPACE_BEGIN2(xlib, core)
 /* static */
 xINLINE bool_t
 StringCI::_compare_impl(
-    std::ctstring_t   &a_str1,                          ///< source string
-    std::ctstring_t   &a_str2,                          ///< target string
-    const std::locale &a_locale /* = std::locale() */   ///< locale
+    std::ctstring_t &a_str1,                    ///< source string
+    std::ctstring_t &a_str2,                    ///< target string
+    const xLOCALE   &a_locale /* = xLOCALE() */ ///< locale
 )
 {
     int_t iRv = ::lstrcmpi(a_str1.c_str(), a_str2.c_str());

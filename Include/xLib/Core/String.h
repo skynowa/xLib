@@ -226,11 +226,11 @@ public:
 
     static
     std::size_t    find(std::ctstring_t &str, std::ctstring_t &target, std::csize_t &pos = 0,
-                       const std::locale &a_locale = std::locale()) xWARN_UNUSED_RV;
+                       const xLOCALE &a_locale = xLOCALE()) xWARN_UNUSED_RV;
         ///< no case search
     static
     bool_t         compare(std::ctstring_t &str1, std::ctstring_t &str2,
-                       const std::locale &a_locale = std::locale()) xWARN_UNUSED_RV;
+                       const xLOCALE &a_locale = xLOCALE()) xWARN_UNUSED_RV;
         ///< no case compare
 
 private:
@@ -244,7 +244,7 @@ private:
 xPLATFORM_IMPL:
     static
     bool_t         _compare_impl(std::ctstring_t &str1, std::ctstring_t &str2,
-                       const std::locale &a_locale = std::locale()) xWARN_UNUSED_RV;
+                       const xLOCALE &a_locale = xLOCALE()) xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, core)

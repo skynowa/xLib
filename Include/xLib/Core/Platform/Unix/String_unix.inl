@@ -89,7 +89,7 @@ String::_toLowerCase_impl(
 {
     std::tstring_t sRv(a_str);
 
-    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), ToLower( std::locale() ));
+    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), ToLower( xLOCALE() ));
 
     return sRv;
 }
@@ -103,7 +103,7 @@ String::_toUpperCase_impl(
 {
     std::tstring_t sRv(a_str);
 
-    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), ToUpper( std::locale() ));
+    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), ToUpper( xLOCALE() ));
 
     return sRv;
 }
@@ -123,9 +123,9 @@ xNAMESPACE_BEGIN2(xlib, core)
 /* static */
 xINLINE bool_t
 StringCI::_compare_impl(
-    std::ctstring_t   &a_str1,                          ///< source string
-    std::ctstring_t   &a_str2,                          ///< target string
-    const std::locale &a_locale /* = std::locale() */   ///< locale
+    std::ctstring_t &a_str1,                    ///< source string
+    std::ctstring_t &a_str2,                    ///< target string
+    const xLOCALE   &a_locale /* = xLOCALE() */ ///< locale
 )
 {
     bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(), CompareCI(a_locale));
