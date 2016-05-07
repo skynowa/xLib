@@ -17,7 +17,7 @@ SystemLog::_construct_impl(
     std::ctstring_t &a_logName
 )
 {
-    (void_t)::openlog(a_logName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
+    (void_t)::openlog(xT2A(a_logName).c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -35,7 +35,7 @@ SystemLog::_write_impl(
 {
     cint_t level_impl = internal::enums::levels.toCross(a_level);
 
-    (void_t)::syslog(level_impl, xT("%s"), a_msg.c_str());
+    (void_t)::syslog(level_impl, "%s", xT2A(a_msg).c_str());
 }
 //-------------------------------------------------------------------------------------------------
 
