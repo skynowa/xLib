@@ -20,7 +20,7 @@
     #if   xENV_WIN
         #define xTSETLOCALE ::_wsetlocale
     #elif xENV_UNIX
-        #define xTSETLOCALE xlib::core::wsetlocale
+        #define xTSETLOCALE xlib::core::setlocaleW
     #endif
 
     #define xTFOPEN         std::_wfopen
@@ -61,7 +61,21 @@
     #define xTFPUTC         std::fputwc
     #define xTFGETS         std::fgetws
     #define xTSTRLEN        std::wcslen
+
+#if   xCOMPILER_MINGW
     #define xTCHMOD         ::_wchmod
+#elif xCOMPILER_MS
+    #define xTCHMOD         ::_wchmod
+#elif xCOMPILER_CODEGEAR
+    #define xTCHMOD         ::_wchmod
+#elif xCOMPILER_CLANG
+    #define xTCHMOD         xlib::core::chmodW
+#elif xCOMPILER_GNUC
+    #define xTCHMOD         xlib::core::chmodW
+#else
+    #define xTCHMOD         ::_wchmod
+#endif
+
     #define xTSYSTEM        std::_wsystem
 
 // xTSTAT_STRUCT
@@ -85,7 +99,7 @@
 #elif xCOMPILER_CODEGEAR
     #define xTSTAT          ::_tstat
 #elif xCOMPILER_GNUC
-    #define xTSTAT          ::_wstat
+    #define xTSTAT          xlib::core::statW
 #else
     #define xTSTAT          ::_wstat
 #endif
