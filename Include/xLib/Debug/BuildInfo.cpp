@@ -79,7 +79,7 @@ BuildInfo::langStandart() const
     }
 
     sRv = Format::str(xT("{}, {}"), langStandartC, langStandartCpp);
-    sRv = String::trimRightChars(sRv, ", ");
+    sRv = String::trimRightChars(sRv, xT(", "));
 
     return sRv;
 }
