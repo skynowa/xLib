@@ -503,11 +503,11 @@ String::join(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::string
+xINLINE std::tstring_t
 String::cut(
-    const std::string &a_str,      ///< source string
-    const std::string &a_sepLeft, ///< left separator
-    const std::string &a_sepRight ///< right separator
+    std::ctstring_t &a_str,      ///< source string
+    std::ctstring_t &a_sepLeft, ///< left separator
+    std::ctstring_t &a_sepRight ///< right separator
 )
 {
     xTEST_NA(a_str);
@@ -515,13 +515,13 @@ String::cut(
     xTEST_NA(a_sepRight);
 
     size_t delimPosStart = a_str.find(a_sepLeft);
-    xCHECK_RET(delimPosStart == std::string::npos, std::string());
+    xCHECK_RET(delimPosStart == std::tstring_t::npos, std::tstring_t());
 
     delimPosStart += a_sepLeft.size();
 
     size_t delimPosStop = a_str.find(a_sepRight, delimPosStart);
     xCHECK_RET(delimPosStop == std::tstring_t::npos, std::tstring_t());
-    xCHECK_RET(delimPosStart >= delimPosStop,        std::string());
+    xCHECK_RET(delimPosStart >= delimPosStop,        std::tstring_t());
 
     return a_str.substr(delimPosStart, delimPosStop - delimPosStart);
 }
@@ -565,9 +565,9 @@ String::cut(
     xCHECK_RET(a_str.empty(),         std::tstring_t());
     xCHECK_RET(a_posBegin > a_posEnd, std::tstring_t());
 
-    size_t size = std::string::npos;
+    size_t size = std::tstring_t::npos;
 
-    if (a_posEnd == std::string::npos) {
+    if (a_posEnd == std::tstring_t::npos) {
         size = a_posEnd;
     } else {
         size = a_posEnd - a_posBegin;
@@ -743,10 +743,10 @@ xNAMESPACE_BEGIN2(xlib, core)
 /* static */
 xINLINE std::size_t
 StringCI::find(
-    std::ctstring_t   &a_str,                           ///< source string
-    std::ctstring_t   &a_target,                        ///< target string
-    std::csize_t      &a_pos    /* = 0 */,              ///< start position
-    const std::locale &a_locale /* = std::locale() */   ///< locale
+    std::ctstring_t &a_str,                     ///< source string
+    std::ctstring_t &a_target,                  ///< target string
+    std::csize_t    &a_pos    /* = 0 */,        ///< start position
+    const xLOCALE   &a_locale /* = xLOCALE() */ ///< locale
 )
 {
     xTEST_NA(a_str);
@@ -766,9 +766,9 @@ StringCI::find(
 /* static */
 xINLINE bool_t
 StringCI::compare(
-    std::ctstring_t   &a_str1,                          ///< source string
-    std::ctstring_t   &a_str2,                          ///< target string
-    const std::locale &a_locale /* = std::locale() */   ///< locale
+    std::ctstring_t &a_str1,                    ///< source string
+    std::ctstring_t &a_str2,                    ///< target string
+    const xLOCALE   &a_locale /* = xLOCALE() */ ///< locale
 )
 {
     xTEST_NA(a_str1);
