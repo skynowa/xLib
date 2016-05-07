@@ -79,25 +79,25 @@ Format::c_strV(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::cstring_t &
+xINLINE std::ctstring_t &
 Format::_specifier()
 {
-    static std::cstring_t sRv(xT("{}"));
+    static std::ctstring_t sRv(xT("{}"));
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::cstring_t &
+xINLINE std::ctstring_t &
 Format::_delimiter()
 {
-    static std::cstring_t sRv(xT(", "));
+    static std::ctstring_t sRv(xT(", "));
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE char
+xINLINE tchar_t
 Format::_unprintableChar()
 {
     static tchar_t chRv(xT('?'));
