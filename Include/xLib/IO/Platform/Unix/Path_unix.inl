@@ -133,17 +133,17 @@ Path::_toNative_impl(
 xINLINE std::tstring_t
 Path::_absolute_impl() const
 {
-    std::tstring_t sRv;
+    std::string asRv;
 
-    std::tstring_t buff;
+    std::string buff;
     buff.resize(xPATH_MAX);
 
-    tchar_t *pszRv = ::realpath(&filePath().at(0), &buff.at(0));
+    const char *pszRv = ::realpath(xT2A(filePath()).c_str(), &buff.at(0));
     xTEST_PTR(pszRv);
 
-    sRv.assign(pszRv);
+    asRv.assign(pszRv);
 
-    return sRv;
+    return xA2T(asRv);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -233,7 +233,7 @@ Path::proc(
 
     std::vec_tstring_t vsRv;
 
-    std::tifstream_t ifs(a_procPath.c_str());
+    std::tifstream_t ifs( xT2A(a_procPath).c_str() );
     xTEST_EQ(!! ifs, true);
     xTEST_EQ(ifs.fail(), false);
     xTEST_EQ(ifs.good(), true);
