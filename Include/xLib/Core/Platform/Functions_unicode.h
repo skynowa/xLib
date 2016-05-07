@@ -22,11 +22,13 @@
     #define xTFOPEN         std::_wfopen
     #define xTFDOPEN        ::_wfdopen
     #define xTFREOPEN       std::_wfreopen
+    #define xTACCESS        ::_waccess
 #elif xENV_UNIX
     #define xTFOPEN         xlib::core::fopenW
     #define xTFDOPEN        xlib::core::fdopenW
     #define xTFREOPEN       xlib::core::freopenW
     #define xTSETLOCALE     xlib::core::setlocaleW
+    #define xTACCESS        xlib::core::accessW
 #endif
 
     #define xTVSNPRINTF     ::_vsnwprintf
@@ -37,12 +39,6 @@
     #define xTFGETC         std::getwc
     #define xTPUTS          std::_putws
     #define xTPUTCHAR       std::putwchar
-
-#if   xENV_WIN
-    #define xTACCESS        ::_waccess
-#elif xENV_UNIX
-    #define xTACCESS        xlib::core::accessW
-#endif
 
     #define xTGETS          std::_getws
     #define xTGETCHAR       std::getwchar
