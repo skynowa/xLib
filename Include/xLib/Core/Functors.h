@@ -15,13 +15,12 @@ xNAMESPACE_BEGIN2(xlib, core)
 struct ToLower
     /// char to lower case
 {
-    ToLower(const xLOCALE &a_locale) :
+    explicit ToLower(const xLOCALE &a_locale) :
         _locale(a_locale)
     {
     }
 
-    tchar_t
-    operator () (std::ctstring_t::value_type &a_ch) const
+    tchar_t operator () (std::ctstring_t::value_type &a_ch) const
     {
         return xTTOLOWER_L(a_ch, _locale);
     }
@@ -33,13 +32,12 @@ private:
 struct ToUpper
     /// char, std:tstring_t to upper case
 {
-    ToUpper(const xLOCALE &a_locale) :
+    explicit ToUpper(const xLOCALE &a_locale) :
         _locale(a_locale)
     {
     }
 
-    tchar_t
-    operator () (std::ctstring_t::value_type &a_ch) const
+    tchar_t operator () (std::ctstring_t::value_type &a_ch) const
     {
         return xTTOUPPER_L(a_ch, _locale);
     }
@@ -51,21 +49,18 @@ private:
 struct CompareCI
     /// case insensitive comparison
 {
-    CompareCI(const xLOCALE &a_locale) :
+    explicit CompareCI(const xLOCALE &a_locale) :
         _locale(a_locale)
     {
     }
 
-    bool_t
-    operator () (
-        const std::tstring_t::value_type &a_ch1,
-        const std::tstring_t::value_type &a_ch2) const
+    bool_t operator () (
+        const std::tstring_t::value_type &a_ch1, const std::tstring_t::value_type &a_ch2) const
     {
         return Char(a_ch1, _locale).toLower() == Char(a_ch2, _locale).toLower();
     }
 
-    bool_t
-    operator () (
+    bool_t operator () (
         std::ctstring_t &a_value1,
         std::ctstring_t &a_value2) const
     {
@@ -80,8 +75,7 @@ struct Delete
     /// container items deleter
 {
     template<class T>
-    void_t
-    operator () (T* &a_ptr) const
+    void_t operator () (T* &a_ptr) const
     {
         xPTR_DELETE(a_ptr);
     }
@@ -90,15 +84,14 @@ struct Delete
 struct Narrow
     ///
 {
-    Narrow(const std::locale &a_locale) :
+    explicit Narrow(const std::locale &a_locale) :
         _locale(a_locale)
     {
     }
 
-    std::string::value_type
-    operator () (const std::wstring::value_type &a_ch) const
+    std::string::value_type operator () (const std::wstring::value_type &a_ch) const
     {
-        return std::use_facet< std::ctype<std::wstring::value_type> >( _locale ).narrow(a_ch, '@');
+        return std::use_facet< std::ctype<std::wstring::value_type> >(_locale).narrow(a_ch, '@');
     }
 
 private:
@@ -108,15 +101,14 @@ private:
 struct Widen
     ///
 {
-    Widen(const std::locale &a_locale) :
+    explicit Widen(const std::locale &a_locale) :
         _locale(a_locale)
     {
     }
 
-    std::wstring::value_type
-    operator () (const std::string::value_type &a_ch) const
+    std::wstring::value_type operator () (const std::string::value_type &a_ch) const
     {
-        return std::use_facet< std::ctype<std::string::value_type> >( _locale ).widen(a_ch);
+        return std::use_facet< std::ctype<std::string::value_type> >(_locale).widen(a_ch);
     }
 
 private:
