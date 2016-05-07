@@ -129,20 +129,17 @@ DnsClient::localHostName(
 xINLINE void_t
 DnsClient::nameInfo(
     Socket::ExAddressFamily &a_family,
-    std::ctstring_t           &a_hostAddr,
-    cushort_t                 &a_usPort
+    std::ctstring_t         &a_hostAddr,
+    cushort_t               &a_usPort
 )
 {
     //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
     //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
     //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
 
-    // convert to UNICODE
-    std::string hostAddr(a_hostAddr.begin(), a_hostAddr.end());
-
     sockaddr_in socketAddr; xSTRUCT_ZERO(socketAddr);
     socketAddr.sin_family      = a_family;
-    socketAddr.sin_addr.s_addr = ::inet_addr(hostAddr.c_str());
+    socketAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
     socketAddr.sin_port        = htons(a_usPort);
 
     tchar_t hostName[NI_MAXHOST + 1] = {0};
