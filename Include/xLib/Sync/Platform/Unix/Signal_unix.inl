@@ -32,7 +32,7 @@ Signal::_decription_impl(
     if (pszRv == xPTR_NULL) {
         sRv = Const::strUnknown();
     } else {
-        sRv = pszRv;
+        sRv = xA2T(pszRv);
     }
 
     return sRv;
