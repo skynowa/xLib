@@ -19,23 +19,16 @@
 
 #if   xENV_WIN
     #define xTSETLOCALE     ::_wsetlocale
+    #define xTFOPEN         std::_wfopen
+    #define xTFDOPEN        ::_wfdopen
+    #define xTFREOPEN       std::_wfreopen
 #elif xENV_UNIX
+    #define xTFOPEN         xlib::core::fopenW
+    #define xTFDOPEN        xlib::core::fdopenW
+    #define xTFREOPEN       xlib::core::freopenW
     #define xTSETLOCALE     xlib::core::setlocaleW
 #endif
 
-#if   xENV_WIN
-    #define xTFOPEN         std::_wfopen
-#elif xENV_UNIX
-    #define xTFOPEN         xlib::core::fopenW
-#endif
-
-#if   xENV_WIN
-    #define xTFREOPEN       std::_wfreopen
-#elif xENV_UNIX
-    #define xTFREOPEN       xlib::core::freopenW
-#endif
-
-    #define xTFDOPEN        ::_wfdopen
     #define xTVSNPRINTF     ::_vsnwprintf
     #define xTPERROR        std::_wperror
     #define xTVSPRINTF      std::_vswprintf

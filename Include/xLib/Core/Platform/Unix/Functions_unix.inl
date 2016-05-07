@@ -112,6 +112,15 @@ fopenW(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE FILE *
+fdopenW(
+    int            a_fd,
+    const wchar_t *a_mode
+)
+{
+    // TODO: fdopenW - not impl
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE FILE *
 freopenW(
     const wchar_t *a_path,
     const wchar_t *a_mode,
