@@ -17,14 +17,24 @@
     #define xTASCTIME       std::_wasctime
     #define xLOCALE         ::locale_t
 
-    #if   xENV_WIN
-        #define xTSETLOCALE ::_wsetlocale
-    #elif xENV_UNIX
-        #define xTSETLOCALE xlib::core::setlocaleW
-    #endif
+#if   xENV_WIN
+    #define xTSETLOCALE     ::_wsetlocale
+#elif xENV_UNIX
+    #define xTSETLOCALE     xlib::core::setlocaleW
+#endif
 
+#if   xENV_WIN
     #define xTFOPEN         std::_wfopen
+#elif xENV_UNIX
+    #define xTFOPEN         xlib::core::fopenW
+#endif
+
+#if   xENV_WIN
     #define xTFREOPEN       std::_wfreopen
+#elif xENV_UNIX
+    #define xTFREOPEN       xlib::core::freopenW
+#endif
+
     #define xTFDOPEN        ::_wfdopen
     #define xTVSNPRINTF     ::_vsnwprintf
     #define xTPERROR        std::_wperror
