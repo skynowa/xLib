@@ -18,16 +18,16 @@ NativeError::_format_impl(
     culong_t &a_code
 )
 {
-    std::tstring_t sRv;
+    std::string asRv;
 
     char buff[64 + 1] = {0};
 
-    ctchar_t *error = ::strerror_r(static_cast<int_t>( a_code ), &buff[0], xARRAY_SIZE(buff));
-    xCHECK_RET(error == xPTR_NULL, sRv.append(xT("[Cann't format error message]")));
+    const char *error = ::strerror_r(static_cast<int_t>( a_code ), &buff[0], xARRAY_SIZE(buff));
+    xCHECK_RET(error == xPTR_NULL, xT("[Cann't format error message]"));
 
-    sRv.append(error);
+    asRv.append(error);
 
-    return sRv;
+    return xA2T(asRv);
 }
 //-------------------------------------------------------------------------------------------------
 
