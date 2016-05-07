@@ -44,7 +44,13 @@
     #define xTFGETC         std::getwc
     #define xTPUTS          std::_putws
     #define xTPUTCHAR       std::putwchar
+
+#if   xENV_WIN
     #define xTACCESS        ::_waccess
+#elif xENV_UNIX
+    #define xTACCESS        xlib::core::accessW
+#endif
+
     #define xTGETS          std::_getws
     #define xTGETCHAR       std::getwchar
     #define xTTMPNAM        std::_wtmpnam
@@ -63,9 +69,17 @@
     #define xTMKSTEMP       std::mkstemp
 #endif
 
+
+#if   xENV_WIN
+    #define xTREMOVE        std::_wremove
     #define xTRENAME        std::_wrename
     #define xTUNLINK        ::_wunlink
-    #define xTREMOVE        std::_wremove
+#elif xENV_UNIX
+    #define xTUNLINK        xlib::core::unlinkW
+    #define xTRENAME        xlib::core::renameW
+    #define xTREMOVE        xlib::core::removeW
+#endif
+
     #define xTFPUTS         std::fputws
     #define xTUNGETC        std::ungetwc
     #define xTFPUTC         std::fputwc

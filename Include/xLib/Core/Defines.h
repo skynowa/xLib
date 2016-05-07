@@ -754,9 +754,9 @@
 ///@{
 #define xTHROW_REPORT(msg) \
     { \
-        culong_t        nativeError = NativeError::get(); \
-        std::cstring_t &stackTrace  = StackTrace().toString(); \
-        ErrorReport     report(nativeError, xSOURCE_INFO, stackTrace, msg); \
+        culong_t         nativeError = NativeError::get(); \
+        std::ctstring_t &stackTrace  = StackTrace().toString(); \
+        ErrorReport      report(nativeError, xSOURCE_INFO, stackTrace, msg); \
         \
         throw Exception() << report.toString(); \
     }
