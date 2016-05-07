@@ -29,10 +29,10 @@ Volume::_fileSystem_impl() const
         const mntent *mountPoint = ::getmntent_r(file, &mnt, buff, buffLen);
         xCHECK_DO(mountPoint == xPTR_NULL, break);
 
-        bool_t bRv = StringCI::compare(path(), mountPoint->mnt_dir);
+        bool_t bRv = StringCI::compare(path(), xA2T(mountPoint->mnt_dir));
         xCHECK_DO(!bRv, continue);
 
-        sRv = (mountPoint->mnt_type == xPTR_NULL) ? Const::strEmpty() : mountPoint->mnt_type;
+        sRv = (mountPoint->mnt_type == xPTR_NULL) ? Const::strEmpty() : xA2T(mountPoint->mnt_type);
 
         break;
     }
@@ -70,7 +70,7 @@ Volume::_mount_impl(
     std::ctstring_t &a_destPath    ///< destination path
 ) const
 {
-    int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), xPTR_NULL, MS_REMOUNT, xPTR_NULL);
+    int_t iRv = ::mount(xT2A(path()).c_str(), xT2A(a_destPath).c_str(), xPTR_NULL, MS_REMOUNT, xPTR_NULL);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ Volume::_unMount_impl(
 
     cint_t flag = a_isForce ? MNT_FORCE : mntDetach;
 
-    int_t iRv = ::umount2(path().c_str(), flag);
+    int_t iRv = ::umount2(xT2A(path()).c_str(), flag);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -117,7 +117,7 @@ Volume::_paths_impl(
         int_t          pass;
     };
 
-    std::tifstream_t procMounts(xT("/proc/mounts"));
+    std::tifstream_t procMounts("/proc/mounts");
     xTEST_EQ(procMounts.good(), true);
 
     for ( ; !procMounts.eof(); ) {
