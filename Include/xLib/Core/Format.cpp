@@ -56,7 +56,7 @@ Format::c_strV(
     for ( ; ; ) {
         va_list args;
         xVA_COPY(args, a_args);
-        writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, args);
+        // writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, args);
         xVA_END(args);
 
         _xVERIFY(writtenSize > - 1);
