@@ -30,8 +30,8 @@ Process::_create_impl(
     if (pid == 0L) {
         // TODO: Process::_create_impl() - a_filePath is executable
 
-        int_t iRv = ::execlp(a_filePath.c_str(), a_filePath.c_str(), a_params.c_str(),
-            static_cast<ctchar_t *>( xPTR_NULL ));
+        int_t iRv = ::execlp(xT2A(a_filePath).c_str(), xT2A(a_filePath).c_str(),
+            xT2A(a_params).c_str(), static_cast<const char *>( xPTR_NULL ));
         xTEST_DIFF(iRv, - 1);
 
         (void_t)::_exit(EXIT_SUCCESS);  /* not std::exit() */
