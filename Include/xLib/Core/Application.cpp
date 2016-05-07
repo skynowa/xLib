@@ -186,7 +186,7 @@ Application::name()
 /* static */
 xINLINE void_t
 Application::setName(
-    std::cstring_t &a_name
+    std::ctstring_t &a_name
 )
 {
     _name = a_name;
@@ -202,7 +202,7 @@ Application::decription()
 /* static */
 xINLINE void_t
 Application::setDecription(
-    std::cstring_t &a_decription
+    std::ctstring_t &a_decription
 )
 {
     _decription = a_decription;
@@ -218,7 +218,7 @@ Application::copyrightYears()
 /* static */
 xINLINE void_t
 Application::setCopyrightYears(
-    std::cstring_t &a_copyrightYears
+    std::ctstring_t &a_copyrightYears
 )
 {
     _copyrightYears = a_copyrightYears;
@@ -234,7 +234,7 @@ Application::usage()
 /* static */
 xINLINE void_t
 Application::setUsage(
-    std::cstring_t &a_usage
+    std::ctstring_t &a_usage
 )
 {
     _usage = a_usage;
@@ -250,7 +250,7 @@ Application::help()
 /* static */
 xINLINE void_t
 Application::setHelp(
-    std::cstring_t &a_help
+    std::ctstring_t &a_help
 )
 {
     _help = a_help;
@@ -266,7 +266,7 @@ Application::versionMajor()
 /* static */
 xINLINE void_t
 Application::setVersionMajor(
-    std::cstring_t &a_versionMajor
+    std::ctstring_t &a_versionMajor
 )
 {
     _versionMajor = a_versionMajor;
@@ -282,7 +282,7 @@ Application::versionMinor()
 /* static */
 xINLINE void_t
 Application::setVersionMinor(
-    std::cstring_t &a_versionMinor
+    std::ctstring_t &a_versionMinor
 )
 {
     _versionMinor = a_versionMinor;
@@ -298,7 +298,7 @@ Application::versionPatch()
 /* static */
 xINLINE void_t
 Application::setVersionPatch(
-    std::cstring_t &a_versionPatch
+    std::ctstring_t &a_versionPatch
 )
 {
     _versionPatch = a_versionPatch;
@@ -314,7 +314,7 @@ Application::versionType()
 /* static */
 xINLINE void_t
 Application::setVersionType(
-    std::cstring_t &a_versionType
+    std::ctstring_t &a_versionType
 )
 {
     _versionType = a_versionType;
@@ -330,7 +330,7 @@ Application::versionRevision()
 /* static */
 xINLINE void_t
 Application::setVersionRevision(
-    std::cstring_t &a_versionRevision
+    std::ctstring_t &a_versionRevision
 )
 {
     _versionRevision = a_versionRevision;
@@ -354,7 +354,7 @@ Application::vendorName()
 /* static */
 xINLINE void_t
 Application::setVendorName(
-    std::cstring_t &a_vendorName
+    std::ctstring_t &a_vendorName
 )
 {
     _vendorName = a_vendorName;
@@ -370,7 +370,7 @@ Application::vendorDomain()
 /* static */
 xINLINE void_t
 Application::setVendorDomain(
-    std::cstring_t &a_vendorDomain
+    std::ctstring_t &a_vendorDomain
 )
 {
     _vendorDomain = a_vendorDomain;
@@ -386,7 +386,7 @@ Application::vendorAuthor()
 /* static */
 xINLINE void_t
 Application::setVendorAuthor(
-    std::cstring_t &a_vendorAuthor
+    std::ctstring_t &a_vendorAuthor
 )
 {
     _vendorAuthor = a_vendorAuthor;
@@ -402,7 +402,7 @@ Application::vendorUrl()
 /* static */
 xINLINE void_t
 Application::setVendorUrl(
-    std::cstring_t &a_vendorUrl
+    std::ctstring_t &a_vendorUrl
 )
 {
     _vendorUrl = a_vendorUrl;
@@ -418,7 +418,7 @@ Application::vendorEmail()
 /* static */
 xINLINE void_t
 Application::setVendorEmail(
-    std::cstring_t &a_vendorEmail
+    std::ctstring_t &a_vendorEmail
 )
 {
     _vendorEmail = a_vendorEmail;
@@ -434,7 +434,7 @@ Application::vendorSkype()
 /* static */
 xINLINE void_t
 Application::setVendorSkype(
-    std::cstring_t &a_vendorSkype
+    std::ctstring_t &a_vendorSkype
 )
 {
     _vendorSkype = a_vendorSkype;
@@ -450,7 +450,7 @@ Application::vendorJabber()
 /* static */
 xINLINE void_t
 Application::setVendorJabber(
-    std::cstring_t &a_vendorJabber
+    std::ctstring_t &a_vendorJabber
 )
 {
     _vendorJabber = a_vendorJabber;
@@ -466,7 +466,7 @@ Application::vendorIcq()
 /* static */
 xINLINE void_t
 Application::setVendorIcq(
-    std::cstring_t &a_vendorIcq
+    std::ctstring_t &a_vendorIcq
 )
 {
     _vendorIcq = a_vendorIcq;
