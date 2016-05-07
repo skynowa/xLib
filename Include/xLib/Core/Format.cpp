@@ -54,15 +54,17 @@ Format::c_strV(
     int_t          writtenSize = - 1;
 
     for ( ; ; ) {
+        std::csize_t buffSize = buff.size() * sizeof(std::tstring_t::value_type);
+
         va_list args;
         xVA_COPY(args, a_args);
-        writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, args);
+        writtenSize = xTVSNPRINTF(&buff.at(0), buffSize, a_format, args);
         xVA_END(args);
 
         _xVERIFY(writtenSize > - 1);
-        xCHECK_DO(static_cast<size_t>( writtenSize ) < buff.size(), break);
+        xCHECK_DO(static_cast<size_t>( writtenSize ) < buffSize, break);
 
-        buff.resize(buff.size() * 2);
+        buff.resize(buffSize * 2);
     }
 
     buff.resize(writtenSize);
