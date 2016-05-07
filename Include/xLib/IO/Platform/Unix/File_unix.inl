@@ -62,7 +62,7 @@ File::_setTime_impl(
     times.actime  = a_access;
     times.modtime = a_modified;
 
-    int_t iRv = ::utime(a_filePath.c_str(), &times);
+    int_t iRv = ::utime(xT2A(a_filePath).c_str(), &times);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------

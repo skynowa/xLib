@@ -15,9 +15,9 @@ xNAMESPACE_BEGIN2(xlib, io)
 xINLINE std::tstring_t
 Finder::_entryName_impl() const
 {
-    std::ctstring_t sRv(_entry.data.d_name);
+    std::string sRv(_entry.data.d_name);
 
-    return sRv;
+    return xA2T(sRv);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE FileType::types_t
@@ -79,7 +79,7 @@ Finder::_moveNext_impl()
         xCHECK_RET(entryRv == xPTR_NULL, false);
 
         // filter by pattern
-        iRv = ::fnmatch(shellFilter().c_str(), entryName().c_str(), 0);
+        iRv = ::fnmatch(xT2A(shellFilter()).c_str(), xT2A(entryName()).c_str(), 0);
         xTEST_EQ((iRv == 0) || (iRv == FNM_NOMATCH), true);
 
         xCHECK_DO(iRv == FNM_NOMATCH, continue);
@@ -112,7 +112,7 @@ Finder::_close_impl()
 xINLINE bool_t
 Finder::_moveFirst_impl()
 {
-    _entry.handle = ::opendir(rootDirPath().c_str());
+    _entry.handle = ::opendir(xT2A(rootDirPath()).c_str());
     xCHECK_RET(_entry.handle == xPTR_NULL, false);
 
     bool_t bRv = moveNext();

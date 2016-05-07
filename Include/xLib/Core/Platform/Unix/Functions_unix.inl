@@ -76,11 +76,30 @@ endmntent(FILE *a_file)
 #endif
 //-------------------------------------------------------------------------------------------------
 xINLINE wchar_t *
-wsetlocale(
+setlocaleW(
    int            a_category,
    const wchar_t *a_locale
 )
 {
+    // TODO: setlocaleW - not impl
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE int
+statW(
+    const wchar_t *a_path,
+    struct stat   *a_buf
+)
+{
+    // TODO: statW - not impl
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE int
+chmodW(
+    const wchar_t *a_path,
+    mode_t         a_mode
+)
+{
+    // TODO: chmodW - not impl
 }
 //-------------------------------------------------------------------------------------------------
 
