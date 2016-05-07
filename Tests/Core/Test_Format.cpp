@@ -226,7 +226,7 @@ Test_Format::unit()
 
     xTEST_CASE("char *")
     {
-        Data2<ctchar_t *, std::tstring_t> data[] =
+        Data2<const char *, std::tstring_t> data[] =
         {
             {"bbb",                   xT("bbb")},
             {(const char *)xPTR_NULL, xT("null")}
@@ -338,7 +338,7 @@ Test_Format::unit()
 
     xTEST_CASE("std::map")
     {
-        std::map<std::string, int> value;
+        std::map<std::tstring_t, int> value;
         value[xT("0")] = 3;
         value[xT("1")] = 4;
         value[xT("1")] = 5;

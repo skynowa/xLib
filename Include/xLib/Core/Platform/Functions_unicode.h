@@ -23,12 +23,14 @@
     #define xTFDOPEN        ::_wfdopen
     #define xTFREOPEN       std::_wfreopen
     #define xTACCESS        ::_waccess
+    #define xTSYSTEM        std::_wsystem
 #elif xENV_UNIX
     #define xTFOPEN         xlib::core::fopenW
     #define xTFDOPEN        xlib::core::fdopenW
     #define xTFREOPEN       xlib::core::freopenW
     #define xTSETLOCALE     xlib::core::setlocaleW
     #define xTACCESS        xlib::core::accessW
+    #define xTSYSTEM        xlib::core::systemW
 #endif
 
     #define xTVSNPRINTF     ::_vsnwprintf
@@ -88,8 +90,6 @@
 #else
     #define xTCHMOD         ::_wchmod
 #endif
-
-    #define xTSYSTEM        std::_wsystem
 
 // xTSTAT_STRUCT
 #if   xCOMPILER_MINGW
