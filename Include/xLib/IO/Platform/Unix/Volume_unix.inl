@@ -46,7 +46,7 @@ Volume::_isReady_impl() const
     dirPathOld = Dir::current();
     xTEST_NA(dirPathOld);
 
-    int_t iRv = ::chdir(volumeDirPath.c_str());
+    int_t iRv = ::chdir(xT2A(volumeDirPath).c_str());
     xTEST_NA(iRv);
     bRv = (iRv != - 1);
 
@@ -74,7 +74,7 @@ Volume::_space_impl(
 {
     struct xSTATVFS info;   xSTRUCT_ZERO(info);
 
-    int_t iRv = xSTATVFS(a_dirPath.c_str(), &info);
+    int_t iRv = xSTATVFS(xT2A(a_dirPath).c_str(), &info);
     xTEST_DIFF(iRv, - 1);
 
     Utils::ptrAssignT(a_available, static_cast<ulonglong_t>( info.f_bavail * info.f_bsize ));
