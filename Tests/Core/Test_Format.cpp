@@ -10,6 +10,42 @@
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Format)
 //-------------------------------------------------------------------------------------------------
+enum EnumTest
+{
+    etUnknown,
+    etOne,
+    etTwo,
+    etThree
+};
+
+inline std::ostream &
+operator << (
+    std::ostream   &a_out,
+    const EnumTest &a_value
+)
+{
+    switch (a_value) {
+    case etUnknown:
+        a_out << xLEX_TO_STR(EnumTest::etUnknown);
+        break;
+    case etOne:
+        a_out << xLEX_TO_STR(EnumTest::etOne);
+        break;
+    case etTwo:
+        a_out << xLEX_TO_STR(EnumTest::etTwo);
+        break;
+    case etThree:
+        a_out << xLEX_TO_STR(EnumTest::etThree);
+        break;
+    default:
+        a_out << xT("???");
+        xTEST(false);
+        break;
+    }
+
+    return a_out;
+}
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
 Test_Format::unit()
@@ -360,6 +396,17 @@ Test_Format::unit()
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}, {1, bbb}}")));
+    }
+
+    xTEST_CASE("enum")
+    {
+        EnumTest value0 = etUnknown;
+        EnumTest value1 = etOne;
+        EnumTest value2 = etTwo;
+        EnumTest value3 = etThree;
+
+        m_sRv = Format::str(xT("{}, {}, {}, {}"), etUnknown, etOne, etTwo, etThree);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("EnumTest::etUnknown, EnumTest::etOne, EnumTest::etTwo, EnumTest::etThree")));
     }
 
     xTEST_CASE("all")
