@@ -14,8 +14,7 @@ enum EnumTest
 {
     etUnknown,
     etOne,
-    etTwo,
-    etThree
+    etTwo
 };
 
 inline std::ostream &
@@ -34,14 +33,31 @@ operator << (
     case etTwo:
         a_out << xLEX_TO_STR(EnumTest::etTwo);
         break;
-    case etThree:
-        a_out << xLEX_TO_STR(EnumTest::etThree);
-        break;
     default:
         a_out << xT("???");
         xTEST(false);
         break;
     }
+
+    return a_out;
+}
+//-------------------------------------------------------------------------------------------------
+struct StructTest
+{
+    std::size_t a;
+    std::string b;
+    const char *c;
+};
+
+inline std::ostream &
+operator << (
+    std::ostream     &a_out,
+    const StructTest &a_value
+)
+{
+    a_out << xT("{");
+    a_out << a_value.a << xT(", ") << a_value.b << xT(", ") << a_value.c;
+    a_out << xT("}");
 
     return a_out;
 }
@@ -403,10 +419,16 @@ Test_Format::unit()
         EnumTest value0 = etUnknown;
         EnumTest value1 = etOne;
         EnumTest value2 = etTwo;
-        EnumTest value3 = etThree;
 
-        m_sRv = Format::str(xT("{}, {}, {}, {}"), etUnknown, etOne, etTwo, etThree);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("EnumTest::etUnknown, EnumTest::etOne, EnumTest::etTwo, EnumTest::etThree")));
+        m_sRv = Format::str(xT("{}, {}, {}"), etUnknown, etOne, etTwo);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("EnumTest::etUnknown, EnumTest::etOne, EnumTest::etTwo")));
+    }
+
+    xTEST_CASE("struct")
+    {
+        StructTest value = {7, xT("std::string"), xT("c_str")};
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("7, std::string, c_str")));
     }
 
     xTEST_CASE("all")
