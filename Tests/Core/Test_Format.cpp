@@ -276,6 +276,20 @@ Test_Format::unit()
     }
 #endif
 
+    xTEST_CASE("std::ptrdiff_t")
+    {
+        Data2<std::ptrdiff_t, std::tstring_t> data[] =
+        {
+            {123, xT("123")},
+            {0,   xT("0")}
+        };
+
+        xFOR_ARRAY(i, data) {
+            m_sRv = Format::str(xT("{}"), data[i].test);
+            xTEST_EQ(m_sRv, data[i].expect);
+        }
+    }
+
     xTEST_CASE("char *")
     {
         Data2<const char *, std::tstring_t> data[] =
@@ -428,7 +442,7 @@ Test_Format::unit()
     {
         StructTest value = {7, xT("std::string"), xT("c_str")};
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("7, std::string, c_str")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{7, std::string, c_str}")));
     }
 
     xTEST_CASE("all")
