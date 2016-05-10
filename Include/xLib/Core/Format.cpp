@@ -247,9 +247,13 @@ Format::_format(
     const float          &a_value   ///< value
 )
 {
+#if 0
     a_ss << std::setprecision( _floatPrecisionMax<float>() );
     a_ss << std::fixed;
     a_ss << a_value;
+#else
+    _formatFloat(a_ss, a_value, _floatPrecisionMax<float>());
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -259,9 +263,13 @@ Format::_format(
     const double         &a_value   ///< value
 )
 {
+#if 0
     a_ss << std::setprecision( _floatPrecisionMax<double>() );
     a_ss << std::fixed;
     a_ss << a_value;
+#else
+    _formatFloat(a_ss, a_value, _floatPrecisionMax<double>());
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -271,9 +279,13 @@ Format::_format(
     const long double    &a_value   ///< value
 )
 {
+#if 0
     a_ss << std::setprecision( _floatPrecisionMax<long double>() );
     a_ss << std::fixed;
     a_ss << a_value;
+#else
+    _formatFloat(a_ss, a_value, _floatPrecisionMax<long double>());
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -480,6 +492,32 @@ Format::_format(
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+template<class T>
+/* static */
+xINLINE void
+Format::_formatFloat(
+    std::tstringstream_t &a_ss,
+    const T              &a_value,
+    int                   a_precision
+)
+{
+    a_ss
+        << std::setprecision(a_precision)
+        << std::fixed
+        << a_value;
+
+    std::tstring_t &value = const_cast<std::tstring_t &>( a_ss.str() );
+    std::size_t    i     = value.find_last_not_of(xT('0'));
+
+    if (i != std::tstring_t::npos && i != value.size() - 1) {
+        if (value[i] == xT('.')) {
+            ++ i;
+        }
+
+        value = value.substr(0, i + 1);
+    }
+}
 //-------------------------------------------------------------------------------------------------
 template<class T>
 /* static */

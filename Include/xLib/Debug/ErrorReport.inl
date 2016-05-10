@@ -25,7 +25,6 @@ ErrorReport::ErrorReport(
     _program       (),
     _processId     (0UL),
     _threadId      (0UL),
-    _fileSize      (),
     _sourceFilePath(),
     _sourceLineNum (),
     _sourceFuncName(),
