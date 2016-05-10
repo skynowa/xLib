@@ -12,7 +12,6 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/DateTime.h>
-#include <xLib/System/SystemInfo.h>
 #include <xLib/System/Console.h>
 #include <xLib/Debug/BuildInfo.h>
 #include <xLib/Debug/Exception.h>
@@ -42,7 +41,6 @@ ErrorReport::ErrorReport(
     _program       (),
     _processId     (0UL),
     _threadId      (0UL),
-    _fileSize      (),
     _sourceFilePath(),
     _sourceLineNum (),
     _sourceFuncName(),
@@ -107,18 +105,13 @@ ErrorReport::_construct(
     _sourceFuncName = a_sourceInfo.funcName();
     _sourceExpr     = Format::str(xT("{} ({}) {} {} ({})"), a_var1, a_var1Value, a_exprSign,
                             a_var2, a_var2Value);
+
     _nativeError    = a_nativeError;
     _nativeErrorStr = NativeError::format(a_nativeError);
 
     _currentDate    = DateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
-
-#if xENV_UNIX
-    SystemInfo sysInfo;
-    _glibc          = sysInfo.glibcVersion();
-    _libPthread     = sysInfo.libPthreadVersion();
-#endif
-
     _stackTrace     = a_stackTrace;
+
     _comment        = a_comment.empty() ? Const::hyphen() : a_comment;
 }
 //-------------------------------------------------------------------------------------------------
@@ -135,7 +128,6 @@ ErrorReport::_initPlain()
         << margin << xT("Program:       ") << _program        << xT("\n")
         << margin << xT("Process id:    ") << _processId      << xT("\n")
         << margin << xT("Thread id:     ") << _threadId       << xT("\n")
-        << margin << xT("File size:     ") << _fileSize       << xT("\n")
                                                               << xT("\n")
         << margin << xT("Source file:   ") << _sourceFilePath << xT("\n")
         << margin << xT("Source line:   ") << _sourceLineNum  << xT("\n")
@@ -144,11 +136,6 @@ ErrorReport::_initPlain()
         << margin << xT("Native error:  ") << _nativeErrorStr << xT("\n")
                                                               << xT("\n")
         << margin << xT("Current date:  ") << _currentDate    << xT("\n")
-    #if xENV_UNIX
-                                                              << xT("\n")
-        << margin << xT("GLIBC:         ") << _glibc          << xT("\n")
-        << margin << xT("Pthread lib:   ") << _libPthread     << xT("\n")
-    #endif
                                                               << xT("\n")
         << margin << xT("Stack trace:   ")                    << xT("\n")
                                            << _stackTrace     << xT("\n")

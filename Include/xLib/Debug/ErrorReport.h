@@ -54,24 +54,17 @@ private:
     std::tstring_t _program;        ///< program name
     ulong_t        _processId;      ///< current process id
     ulong_t        _threadId;       ///< current thread id
-    std::tstring_t _fileSize;       ///< file size
 
     // source
     std::tstring_t _sourceFilePath; ///< source file path
     ulong_t        _sourceLineNum;  ///< source file number
     std::tstring_t _sourceFuncName; ///< source function name
     std::tstring_t _sourceExpr;     ///< source expression
-
     ulong_t        _nativeError;    ///< system last error
     std::tstring_t _nativeErrorStr; ///< system last error as string
 
     // other
     std::tstring_t _currentDate;    ///< current date, time
-
-#if xENV_UNIX
-    std::tstring_t _glibc;          ///< GLIBC available on the system
-    std::tstring_t _libPthread;     ///< POSIX implementation supplied by C library
-#endif
     std::tstring_t _stackTrace;     ///< stack trace
 
     // comment
