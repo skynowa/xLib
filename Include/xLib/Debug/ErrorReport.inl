@@ -9,7 +9,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 template<class T>
 ErrorReport::ErrorReport(
-    const ExType     &a_type,
+    cExType          &a_type,
     std::ctstring_t  &a_var1,
     std::ctstring_t  &a_var2,
     const T          &a_var1Value,
