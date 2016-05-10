@@ -52,7 +52,7 @@ StackTrace::_get_impl(
             modulePath   = (dlinfo.dli_fname == xPTR_NULL) ? dataNotFound : xA2T(dlinfo.dli_fname);
             filePath     = dataNotFound;
             fileLine     = dataNotFound;
-            byteOffset   = Format::c_str(xT("%p"), ptrdiff_t(xPTR_NULL));
+            byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(xPTR_NULL));
             functionName = (symbols[i] == xPTR_NULL) ? dataNotFound : xA2T(symbols[i]);
         } else {
             const char *symbolName = xPTR_NULL;
@@ -75,7 +75,7 @@ StackTrace::_get_impl(
             modulePath   = (dlinfo.dli_fname == xPTR_NULL) ? dataNotFound : xA2T(dlinfo.dli_fname);
             filePath     = _filePath.empty()               ? dataNotFound : _filePath;
             fileLine     = String::cast(_sourceLine);
-            byteOffset   = Format::c_str(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
+            byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
             functionName = (symbolName == xPTR_NULL) ? dataNotFound : xA2T(symbolName);
 
             xBUFF_FREE(demangleName);
@@ -146,9 +146,8 @@ StackTrace::_addr2Line(
     * -v --version           Display the program's version
     */
 
-    std::ctstring_t cmdLine = Format::c_str(
-        xT("%s -e %s -f -C %lx"),
-        xADDR2LINE_FILE_PATH, Path::exe().c_str(), reinterpret_cast<ptrdiff_t>(a_symbolAddress));
+    std::ctstring_t cmdLine = Format::str(
+        xT("{} -e {} -f -C {}"), xADDR2LINE_FILE_PATH, Path::exe(), a_symbolAddress);
 
     FILE *file = ::popen(xT2A(cmdLine).c_str(), "r");
     _xVERIFY(file != xPTR_NULL);
