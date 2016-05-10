@@ -80,7 +80,7 @@ ErrorReport::toString() const
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 ErrorReport::_construct(
-    const ExType     &a_type,
+    cExType          &a_type,
     const SourceInfo &a_sourceInfo,
     std::ctstring_t  &a_var1,
     std::ctstring_t  &a_var2,
@@ -92,10 +92,6 @@ ErrorReport::_construct(
     std::ctstring_t  &a_comment
 )
 {
-#if xENV_UNIX
-    SystemInfo sysInfo;
-#endif
-
     _type           = a_type;
 
     _program        = Path( Path(Path::exe()).brief(::reportWidthMax) ).toUnix(false);
@@ -105,7 +101,6 @@ ErrorReport::_construct(
     _processId      = ::getpid();
 #endif
     _threadId       = (ulong_t)Thread::currentId();
-    _fileSize       = String::formatBytes( File::size(Path::exe()) );
 
     _sourceFilePath = Path( Path(a_sourceInfo.filePath()).brief(::reportWidthMax) ).toUnix(false);
     _sourceLineNum  = a_sourceInfo.lineNum();
@@ -118,6 +113,7 @@ ErrorReport::_construct(
     _currentDate    = DateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
 
 #if xENV_UNIX
+    SystemInfo sysInfo;
     _glibc          = sysInfo.glibcVersion();
     _libPthread     = sysInfo.libPthreadVersion();
 #endif
