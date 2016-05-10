@@ -174,7 +174,8 @@ Console::msgBox(
     writeLine(xT("#"));
     writeLine(xT("################################################################################"));
     writeLine();
-    write(Format::c_str(xT("\nAbort (%c), Ignore (%c), Retry (%c): "), cmAbort, cmIgnore, cmRetry));
+    write(Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "),
+        tchar_t(cmAbort), tchar_t(cmIgnore), tchar_t(cmRetry)));
 
     EConsoleCmd cmRv = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
     switch (cmRv) {

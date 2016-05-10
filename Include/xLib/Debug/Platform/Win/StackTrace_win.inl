@@ -97,10 +97,10 @@ StackTrace::_get_impl(
             blRv = ::SymFromAddr(process, reinterpret_cast<DWORD64>( stackBuff[i] ), xPTR_NULL,
                 symbol);
             if (blRv == FALSE) {
-                byteOffset   = Format::c_str(xT("%p"), ptrdiff_t(xPTR_NULL));
+                byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(xPTR_NULL));
                 functionName = dataNotFound;
             } else {
-                byteOffset   = Format::c_str(xT("%p"), static_cast<ptrdiff_t>(symbol->Address));
+                byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(symbol->Address));
                 functionName = std::tstring_t(symbol->Name);
             }
         }

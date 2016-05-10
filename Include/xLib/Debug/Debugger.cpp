@@ -212,7 +212,8 @@ Debugger::_stdoutPlain(
     std::tcout << a_report.toString();
     std::tcout << xT("\n####################################################################################################\n");
     std::tcout << xT("\n");
-    std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
+    std::tcout << Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "),
+        tchar_t(cmAbort), tchar_t(cmIgnore), tchar_t(cmRetry));
     std::tcout.flush();
 
 #if xOPTION_DEBUG_DIALOG
