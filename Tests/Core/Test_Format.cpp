@@ -230,18 +230,18 @@ Test_Format::unit()
 
     xTEST_CASE("float")
     {
-        cfloat_t value = 444.0f;
+        cfloat_t value = 444.01f;
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("444.0000000")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("444.01")));
     }
 
     xTEST_CASE("double")
     {
-        cdouble_t value = 555.0f;
+        cdouble_t value = 555.0202f;
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("555.0000000000000000")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("555.0202f")));
     }
 
     xTEST_CASE("long double")
@@ -249,7 +249,7 @@ Test_Format::unit()
         clongdouble_t value = 666.0L;
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("666.0000000000000000000")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("666.0")));
     }
 
     xTEST_CASE("void *")
@@ -461,7 +461,7 @@ Test_Format::unit()
         unsigned long long ullValue = 9;
         float              fValue = 0.0f;
         double             dValue = 0.1f;
-        long double        ldValue = 0.2f;
+        long double        ldValue = 0.02f;
         void *             pvValue = (void *)0x7fff0fd3e100;
     #if xOPTION_CPP11
         std::nullptr_t     pValue = nullptr;
@@ -497,7 +497,7 @@ Test_Format::unit()
             asValue,
             wsValue,
             usValue);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{true, q, w, e, 2, 3, 4, 5, 6, 7, 8, 9, 0.0, 0.1, 0.2, 0x7fff0fd3e100, aaa, bbb, ccc, ddd, zzz}")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{true, q, w, e, 2, 3, 4, 5, 6, 7, 8, 9, 0.0, 0.1, 0.02, 0x7fff0fd3e100, aaa, bbb, ccc, ddd, zzz}")));
     }
 
     return true;
