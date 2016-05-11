@@ -61,7 +61,7 @@ Format::c_strV(
         writtenSize = xTVSNPRINTF(&buff.at(0), buffSize, a_format, args);
         xVA_END(args);
 
-        _xVERIFY(writtenSize > - 1);
+        // _xVERIFY(writtenSize > - 1);
         xCHECK_DO(static_cast<size_t>( writtenSize ) < buffSize, break);
 
         buff.resize(buffSize * 2);
@@ -377,7 +377,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<class T1, class T2>
 /* static */
-xINLINE void
+inline void
 Format::_format(
     std::tstringstream_t    &a_ss,     ///< [out]
     const std::pair<T1, T2> &a_value   ///< value
@@ -392,7 +392,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<class T>
 /* static */
-xINLINE void
+inline void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const std::vector<T> &a_value   ///< value
@@ -403,7 +403,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<class T>
 /* static */
-xINLINE void
+inline void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const std::list<T>   &a_value   ///< value
@@ -414,7 +414,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<class T>
 /* static */
-xINLINE void
+inline void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const std::set<T>    &a_value   ///< value
@@ -425,7 +425,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<class T>
 /* static */
-xINLINE void
+inline void
 Format::_format(
     std::tstringstream_t   &a_ss,     ///< [out]
     const std::multiset<T> &a_value   ///< value
@@ -436,7 +436,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<class T1, class T2>
 /* static */
-xINLINE void
+inline void
 Format::_format(
     std::tstringstream_t   &a_ss,     ///< [out]
     const std::map<T1, T2> &a_value   ///< value
@@ -447,7 +447,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<class T1, class T2>
 /* static */
-xINLINE void
+inline void
 Format::_format(
     std::tstringstream_t        &a_ss,     ///< [out]
     const std::multimap<T1, T2> &a_value   ///< value
@@ -458,7 +458,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<class T>
 /* static */
-xINLINE void
+inline void
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const T              &a_value   ///< value
@@ -477,7 +477,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<class T>
 /* static */
-xINLINE void
+inline void
 Format::_formatFloat(
     std::tstringstream_t &a_ss,
     const T              &a_value
@@ -504,7 +504,7 @@ Format::_formatFloat(
 //-------------------------------------------------------------------------------------------------
 template<class T>
 /* static */
-xINLINE int
+inline int
 Format::_floatPrecisionMax()
 {
 #if xOPTION_CPP11

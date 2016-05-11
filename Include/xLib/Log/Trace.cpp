@@ -9,7 +9,7 @@
 #endif
 
 #include <xLib/Core/Const.h>
-#include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Trace_win.inl"
