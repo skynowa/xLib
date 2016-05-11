@@ -35,21 +35,8 @@ ErrorReport::ErrorReport(
     _stackTrace    (),
     _comment       ()
 {
-    // var1Value
-    std::tstring_t var1Value;
-    {
-        std::tostringstream_t ossRv;
-        ossRv << a_var1Value;
-        var1Value = ossRv.str();
-    }
-
-    // var2Value
-    std::tstring_t var2Value;
-    {
-        std::tostringstream_t ossRv;
-        ossRv << a_var2Value;
-        var2Value = ossRv.str();
-    }
+    std::ctstring_t var1Value = Format::str(xT("{}"), a_var1Value);
+    std::ctstring_t var2Value = Format::str(xT("{}"), a_var2Value);
 
     _construct(a_type, a_sourceInfo, a_var1, a_var2, var1Value, var2Value, a_exprSign,
         a_nativeError, a_stackTrace, a_comment);
