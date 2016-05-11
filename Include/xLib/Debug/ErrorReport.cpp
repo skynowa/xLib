@@ -122,9 +122,6 @@ ErrorReport::_initPlain()
 
     std::tostringstream_t ossRv;
     ossRv
-        << margin << xT("ErrorReport")                        << xT("\n")
-                                                              << xT("\n")
-                                                              << xT("\n")
         << margin << xT("Program:       ") << _program        << xT("\n")
         << margin << xT("Process id:    ") << _processId      << xT("\n")
         << margin << xT("Thread id:     ") << _threadId       << xT("\n")
