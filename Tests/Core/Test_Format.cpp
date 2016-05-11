@@ -273,6 +273,8 @@ Test_Format::unit()
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("nullptr")));
+    #else
+        Trace() << xT("[skip]");
     #endif
     }
 
@@ -436,6 +438,8 @@ Test_Format::unit()
 
         m_sRv = Format::str(xT("{}-{}"), value0, value1);
         xTEST_EQ(m_sRv, std::tstring_t(xT("abcdezxcv")));
+    #else
+        Trace() << xT("[skip]");
     #endif
     }
 
