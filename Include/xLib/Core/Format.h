@@ -116,7 +116,7 @@ private:
     static void _formatCont(std::tstringstream_t &ss, const T &value);
 
     template<class T>
-    static void _formatFloat(std::tstringstream_t &ss, const T &value, int precision);
+    static void _formatFloat(std::tstringstream_t &ss, const T &value);
 
     template<class T>
     static int  _floatPrecisionMax() xWARN_UNUSED_RV;
