@@ -252,7 +252,7 @@ Format::_format(
     a_ss << std::fixed;
     a_ss << a_value;
 #else
-    _formatFloat(a_ss, a_value, _floatPrecisionMax<float>());
+    _formatFloat(a_ss, a_value);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -268,7 +268,7 @@ Format::_format(
     a_ss << std::fixed;
     a_ss << a_value;
 #else
-    _formatFloat(a_ss, a_value, _floatPrecisionMax<double>());
+    _formatFloat(a_ss, a_value);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -284,7 +284,7 @@ Format::_format(
     a_ss << std::fixed;
     a_ss << a_value;
 #else
-    _formatFloat(a_ss, a_value, _floatPrecisionMax<long double>());
+    _formatFloat(a_ss, a_value);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -498,12 +498,11 @@ template<class T>
 xINLINE void
 Format::_formatFloat(
     std::tstringstream_t &a_ss,
-    const T              &a_value,
-    int                   a_precision
+    const T              &a_value
 )
 {
     a_ss
-        << std::setprecision(a_precision)
+        << std::setprecision( _floatPrecisionMax<T>() )
         // << std::fixed
         << a_value;
 
