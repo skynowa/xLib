@@ -241,7 +241,7 @@ Test_Format::unit()
         cdouble_t value = 555.0202f;
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("555.0202f")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("555.0202")));
     }
 
     xTEST_CASE("long double")

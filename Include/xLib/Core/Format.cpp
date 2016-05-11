@@ -507,7 +507,7 @@ Format::_formatFloat(
         << std::fixed
         << a_value;
 
-    std::tstring_t &value = const_cast<std::tstring_t &>( a_ss.str() );
+    std::tstring_t value = a_ss.str();
     std::size_t    i     = value.find_last_not_of(xT('0'));
 
     if (i != std::tstring_t::npos && i != value.size() - 1) {
@@ -517,6 +517,8 @@ Format::_formatFloat(
 
         value = value.substr(0, i + 1);
     }
+
+    a_ss.str(value);
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
