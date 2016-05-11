@@ -4,6 +4,8 @@
  */
 
 
+#include <xLib/Core/Format.h>
+
 xNAMESPACE_BEGIN2(xlib, debug)
 
 /*******************************************************************************
@@ -18,12 +20,7 @@ Exception::operator << (
     const T &a_msgT
 )
 {
-    std::tostringstream_t ossRes;
-
-    ossRes.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
-    ossRes << a_msgT;
-
-    _msgT.append( ossRes.str() );
+    _msgT.append( Format::str(xT("{}"), a_msgT) );
 
     return *this;
 }
