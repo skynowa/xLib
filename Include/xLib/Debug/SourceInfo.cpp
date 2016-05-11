@@ -8,6 +8,8 @@
     #include "SourceInfo.h"
 #endif
 
+#include <xLib/Core/Format.h>
+
 
 xNAMESPACE_BEGIN2(xlib, debug)
 
@@ -58,13 +60,7 @@ SourceInfo::counter() const
 xINLINE std::tstring_t
 SourceInfo::format() const
 {
-    std::tstringstream_t ss;
-    ss
-        << xT("#")      << counter()  << xT(" ")
-        << xT("in ")    << filePath() << xT(":") << lineNum() << xT(", ")
-        << xT("func: ") << funcName();
-
-    return ss.str();
+    Format::str(xT("#{} in {}:{}, func: {}"), counter(), filePath(), lineNum(), funcName());
 }
 //-------------------------------------------------------------------------------------------------
 
