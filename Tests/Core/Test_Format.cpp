@@ -504,6 +504,13 @@ Test_Format::unit()
     {
         m_sRv = Format::str(xT("{}{}{}"), 1, 35L);
         xTEST_EQ(m_sRv, std::tstring_t(xT("135")));
+
+        Trace() << xTRACE_VAR(m_sRv);
+
+        m_sRv = Format::str(xT("{}{}"), 1, 35L, 4);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("135")));
+
+        Trace() << xTRACE_VAR(m_sRv);
     }
     return true;
 }
