@@ -125,19 +125,20 @@ StackTrace::_format(
     std::size_t lineNumber = 0;
 
     xFOR_EACH_CONST(std::vector<std::vec_tstring_t>, it, a_stack) {
-        std::tstringstream_t stackLine;
+        ++ lineNumber;
 
+        std::tstringstream_t stackLine;
         stackLine
             << _linePrefix
-            << std::setw(2)       << std::right << (++ lineNumber) << "." << _elementSeparator
-            << std::setw(maxs[0]) << std::left  << it->at(0)              << _elementSeparator
-            << std::setw(maxs[1]) << std::left  << it->at(1)              << _elementSeparator
-            << std::setw(maxs[2]) << std::right << it->at(2)              << _elementSeparator
-            << std::setw(maxs[3]) << std::left  << it->at(3)              << _elementSeparator
+            << std::setw(2)       << std::right << lineNumber << xT(".") << _elementSeparator
+            << std::setw(maxs[0]) << std::left  << it->at(0)             << _elementSeparator
+            << std::setw(maxs[1]) << std::left  << it->at(1)             << _elementSeparator
+            << std::setw(maxs[2]) << std::right << it->at(2)             << _elementSeparator
+            << std::setw(maxs[3]) << std::left  << it->at(3)             << _elementSeparator
             << std::setw(maxs[4]) << std::left  << it->at(4)
             << _lineSeparator;
 
-        sRv.append(stackLine.str());
+        sRv.append( stackLine.str() );
     }
 
     // out
