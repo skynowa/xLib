@@ -183,7 +183,7 @@ Console::_write_impl(
     std::ctstring_t &a_str
 ) const
 {
-    std::tcout << a_str;
+    std::tcout << a_str << std::flush;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -197,7 +197,7 @@ Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
 {
-    writeLine( Format::str(xT("%c]0;{}%c"), xT('\033'), a_title, xT('\007')) );
+    writeLine( Format::str(xT("{}]0;{}{}"), xT('\033'), a_title, xT('\007')) );
 }
 //-------------------------------------------------------------------------------------------------
 
