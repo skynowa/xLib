@@ -504,7 +504,7 @@ Format::_formatFloat(
 {
     a_ss
         << std::setprecision(a_precision)
-        << std::fixed
+        // << std::fixed
         << a_value;
 
     std::tstring_t value = a_ss.str();
