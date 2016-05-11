@@ -105,6 +105,10 @@ private:
     template<class T>
     static void _format(std::tstringstream_t &ss, const T &value);
 
+#if defined(QT_VERSION_STR)
+    static void _format(std::tstringstream_t &ss, const QString &value);
+#endif
+
 private:
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)

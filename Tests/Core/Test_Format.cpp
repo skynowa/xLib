@@ -266,15 +266,15 @@ Test_Format::unit()
         }
     }
 
-#if xOPTION_CPP11
     xTEST_CASE("std::nullptr_t")
     {
+    #if xOPTION_CPP11
         std::nullptr_t value = nullptr;
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("nullptr")));
+    #endif
     }
-#endif
 
     xTEST_CASE("std::ptrdiff_t")
     {
@@ -426,6 +426,17 @@ Test_Format::unit()
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}, {1, bbb}}")));
+    }
+
+    xTEST_CASE("QString")
+    {
+    #if defined(QT_VERSION_STR)
+        QString value0 = "abcde";
+        QString value1 = "zxcv";
+
+        m_sRv = Format::str(xT("{}-{}"), value0, value1);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("abcdezxcv")));
+    #endif
     }
 
     xTEST_CASE("enum")
