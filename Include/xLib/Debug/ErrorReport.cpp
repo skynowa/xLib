@@ -118,28 +118,34 @@ ErrorReport::_construct(
 xINLINE void_t
 ErrorReport::_initPlain()
 {
-    std::ctstring_t  margin = xT("  ");
-
-    std::tostringstream_t ossRv;
-    ossRv
-        << margin << xT("Program:       ") << _program        << xT("\n")
-        << margin << xT("Process id:    ") << _processId      << xT("\n")
-        << margin << xT("Thread id:     ") << _threadId       << xT("\n")
-                                                              << xT("\n")
-        << margin << xT("Source file:   ") << _sourceFilePath << xT("\n")
-        << margin << xT("Source line:   ") << _sourceLineNum  << xT("\n")
-        << margin << xT("Function name: ") << _sourceFuncName << xT("\n")
-        << margin << xT("Expression:    ") << _sourceExpr     << xT("\n")
-        << margin << xT("Native error:  ") << _nativeErrorStr << xT("\n")
-                                                              << xT("\n")
-        << margin << xT("Current date:  ") << _currentDate    << xT("\n")
-                                                              << xT("\n")
-        << margin << xT("Stack trace:   ")                    << xT("\n")
-                                           << _stackTrace     << xT("\n")
-                                                              << xT("\n")
-        << margin << xT("Comment:       ") << _comment        << std::endl;
-
-    _report = ossRv.str();
+    _report = Format::str(
+        xT("  Program:       {}\n")
+        xT("  Process id:    {}\n")
+        xT("  Thread id:     {}\n")
+        xT("\n")
+        xT("  Source file:   {}\n")
+        xT("  Source line:   {}\n")
+        xT("  Function name: {}\n")
+        xT("  Expression:    {}\n")
+        xT("  Native error:  {}\n")
+        xT("\n")
+        xT("  Current date:  {}\n")
+        xT("\n")
+        xT("  Stack trace:\n")
+        xT("{}\n")
+        xT("\n")
+        xT("  Comment:       {}\n"),
+        _program,
+        _processId,
+        _threadId,
+        _sourceFilePath,
+        _sourceLineNum,
+        _sourceFuncName,
+        _sourceExpr,
+        _nativeErrorStr,
+        _currentDate,
+        _stackTrace,
+        _comment);
 }
 //-------------------------------------------------------------------------------------------------
 
