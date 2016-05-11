@@ -8,7 +8,7 @@
     #include "SystemLog.h"
 #endif
 
-#include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/IO/Path.h>
 #include "Platform/SystemLog_internal.inl"
 

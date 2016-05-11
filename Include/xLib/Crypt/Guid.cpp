@@ -9,7 +9,7 @@
 #endif
 
 #include <xLib/Test/Test.h>
-#include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StdError.h>

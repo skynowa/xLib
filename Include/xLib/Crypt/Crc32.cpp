@@ -8,7 +8,7 @@
     #include "Crc32.h"
 #endif
 
-#include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/IO/File.h>
 
 
