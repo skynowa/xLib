@@ -467,6 +467,24 @@ Format::_format(
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
+#if defined(QT_VERSION_STR)
+
+/* static */
+xINLINE void
+Format::_format(
+    std::tstringstream_t &a_ss,     ///< [out]
+    const QString        &a_value   ///< value
+)
+{
+#if xANSI
+    a_ss << a_value.toStdString();
+#else
+    a_ss << a_value.toStdWString();
+#endif
+}
+
+#endif
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
