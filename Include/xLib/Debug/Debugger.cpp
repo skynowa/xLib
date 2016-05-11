@@ -202,7 +202,8 @@ Debugger::_stdoutPlain(
 {
     xCHECK_DO(!isEnabled(), return);
 
-    enum EConsoleCmd {
+    enum EConsoleCmd
+    {
         cmAbort  = xT('a'),
         cmIgnore = xT('i'),
         cmRetry  = xT('r')
@@ -225,7 +226,6 @@ Debugger::_stdoutPlain(
     switch (cmRv) {
     case cmAbort:
         std::tcout << xT("Abort...\n\n");  std::tcout.flush();
-
         (void_t)::exit(EXIT_FAILURE);
         break;
     default:
@@ -235,7 +235,7 @@ Debugger::_stdoutPlain(
     case cmRetry:
         std::tcout << xT("Retry...\n\n");
 
-        if (isActive()) {
+        if ( isActive() ) {
             breakPoint();
         } else {
             std::tcout
@@ -250,6 +250,7 @@ Debugger::_stdoutPlain(
 
             (void_t)::exit(EXIT_FAILURE);
         }
+
         break;
     }
 }
