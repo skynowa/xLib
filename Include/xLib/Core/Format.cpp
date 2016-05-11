@@ -247,13 +247,7 @@ Format::_format(
     const float          &a_value   ///< value
 )
 {
-#if 0
-    a_ss << std::setprecision( _floatPrecisionMax<float>() );
-    a_ss << std::fixed;
-    a_ss << a_value;
-#else
     _formatFloat(a_ss, a_value);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -263,13 +257,7 @@ Format::_format(
     const double         &a_value   ///< value
 )
 {
-#if 0
-    a_ss << std::setprecision( _floatPrecisionMax<double>() );
-    a_ss << std::fixed;
-    a_ss << a_value;
-#else
     _formatFloat(a_ss, a_value);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -279,13 +267,7 @@ Format::_format(
     const long double    &a_value   ///< value
 )
 {
-#if 0
-    a_ss << std::setprecision( _floatPrecisionMax<long double>() );
-    a_ss << std::fixed;
-    a_ss << a_value;
-#else
     _formatFloat(a_ss, a_value);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
