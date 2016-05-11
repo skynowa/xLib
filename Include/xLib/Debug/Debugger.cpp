@@ -209,13 +209,16 @@ Debugger::_stdoutPlain(
         cmRetry  = xT('r')
     };
 
-    std::tcout << xT("\n####################################################################################################\n");
-    std::tcout << a_report.toString();
-    std::tcout << xT("\n####################################################################################################\n");
-    std::tcout << xT("\n");
-    std::tcout << Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "),
-        tchar_t(cmAbort), tchar_t(cmIgnore), tchar_t(cmRetry));
-    std::tcout.flush();
+    std::tcout
+        << xT("\n")
+        << xT("############################################### xLib ###############################################\n")
+        << a_report.toString()
+        << xT("\n")
+        << xT("####################################################################################################\n")
+        << xT("\n")
+        << Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "),
+                        tchar_t(cmAbort), tchar_t(cmIgnore), tchar_t(cmRetry))
+        << std::flush;
 
 #if xOPTION_DEBUG_DIALOG
     ctchar_t    cmd = static_cast<ctchar_t>( std::tcin.get() );   std::tcin.ignore();
@@ -225,15 +228,15 @@ Debugger::_stdoutPlain(
 #endif
     switch (cmRv) {
     case cmAbort:
-        std::tcout << xT("Abort...\n\n");  std::tcout.flush();
+        std::tcout << xT("Abort...\n\n") << std::flush;
         (void_t)::exit(EXIT_FAILURE);
         break;
     default:
     case cmIgnore:
-        std::tcout << xT("Ignore...\n\n");  std::tcout.flush();
+        std::tcout << xT("Ignore...\n\n") << std::flush;
         break;
     case cmRetry:
-        std::tcout << xT("Retry...\n\n");
+        std::tcout << xT("Retry...\n\n") << std::flush;
 
         if ( isActive() ) {
             breakPoint();
