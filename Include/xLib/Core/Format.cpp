@@ -510,11 +510,11 @@ Format::_bufferSize(
     xVA_END(args);
 
     if (iRv <= - 1) {
-        _xVERIFY(iRv > - 1);
+        _xVERIFY(false);
         return std::tstring_t::npos;
     }
 
-    return iRv * sizeof(std::tstring_t::value_type) + sizeof(xT('\0'));
+    return iRv + sizeof(xT('\0'));
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
