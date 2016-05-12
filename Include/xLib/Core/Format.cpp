@@ -509,9 +509,10 @@ Format::_bufferSize(
     cint_t iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
     xVA_END(args);
 
+    _xVERIFY(iRv > - 1);
+
     if (iRv <= - 1) {
-        _xVERIFY(false);
-        return std::tstring_t::npos;
+        return 0;
     }
 
     return iRv + sizeof(xT('\0'));
