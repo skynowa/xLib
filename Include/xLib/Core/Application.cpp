@@ -113,7 +113,7 @@ Application::dirsCreate()
 xINLINE bool_t
 Application::selfCheck() const
 {
-#if 0
+#if xLIB_QT
     bool_t bRv = false;
 
     bRv = std::tstring_t(QT_VERSION_STR) == std::tstring_t( qVersion() );

@@ -106,7 +106,7 @@ private:
     static void _format(std::tstringstream_t &ss, const T &value);
         ///< format other types with overload std::tostream_t::operator <<
 
-#if defined(QT_VERSION_STR)
+#if xLIB_QT
     static void _format(std::tstringstream_t &ss, const QString &value);
 #endif
 

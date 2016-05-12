@@ -467,7 +467,7 @@ Format::_format(
     a_ss << a_value;
 }
 //-------------------------------------------------------------------------------------------------
-#if defined(QT_VERSION_STR)
+#if xLIB_QT
 
 /* static */
 xINLINE void
