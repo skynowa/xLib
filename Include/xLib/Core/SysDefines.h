@@ -548,6 +548,11 @@
 //-------------------------------------------------------------------------------------------------
 ///@name Detect third-party libraries
 ///@{
+#if defined(BOOST_VERSION)
+    #define xLIB_BOOST 1
+        ///< Boost library
+#endif
+
 #if defined(QT_VERSION_STR)
     #define xLIB_QT 1
         ///< Qt library
