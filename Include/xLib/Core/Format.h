@@ -114,6 +114,9 @@ private:
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)
 
+    static std::size_t _bufferSize(ctchar_t *format, ...) xWARN_UNUSED_RV;
+        ///< c_str buffer size
+
     template<class IteratorT>
     static void _formatRange(std::tstringstream_t &ss, IteratorT first, IteratorT last);
 

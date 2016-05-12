@@ -50,7 +50,12 @@ Format::c_strV(
 
     xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
 
-    std::tstring_t buff(64, 0);
+    va_list args;
+    xVA_COPY(args, a_args);
+    std::csize_t buffSize = _bufferSize(a_format, args);
+    xVA_END(args);
+
+    std::tstring_t buff(buffSize, 0);
     int_t          writtenSize = - 1;
 
     for ( ; ; ) {
@@ -61,7 +66,7 @@ Format::c_strV(
         writtenSize = xTVSNPRINTF(&buff.at(0), buffSize, a_format, args);
         xVA_END(args);
 
-        // _xVERIFY(writtenSize > - 1);
+        _xVERIFY(writtenSize > - 1);
         xCHECK_DO(static_cast<size_t>( writtenSize ) < buffSize, break);
 
         buff.resize(buffSize * 2);
@@ -492,6 +497,25 @@ Format::_format(
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE std::size_t
+Format::_bufferSize(
+    ctchar_t *a_format, ...
+)
+{
+    va_list args;
+    xVA_START(args, a_format);
+    cint_t iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
+    xVA_END(args);
+
+    if (iRv <= - 1) {
+        _xVERIFY(iRv > - 1);
+        return std::tstring_t::npos;
+    }
+
+    return iRv * sizeof(std::tstring_t::value_type) + sizeof(xT('\0'));
+}
 //-------------------------------------------------------------------------------------------------
 template<class T>
 /* static */
