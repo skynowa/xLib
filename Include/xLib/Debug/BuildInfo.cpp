@@ -346,7 +346,7 @@ BuildInfo::qt() const
     std::tstring_t qtName;
     std::tstring_t qtVersion;
 
-#if defined(QT_VERSION_STR)
+#if xLIB_QT
     qtName    = xT("Qt");
     qtVersion = QT_VERSION_STR;
 #else

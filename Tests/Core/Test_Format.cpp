@@ -432,7 +432,7 @@ Test_Format::unit()
 
     xTEST_CASE("QString")
     {
-    #if defined(QT_VERSION_STR)
+    #if xLIB_QT
         QString value0 = "abcde";
         QString value1 = "zxcv";
 
