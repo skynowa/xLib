@@ -28,6 +28,19 @@ Format::c_str(
 
     xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
 
+    {
+        va_list args;
+        va_start(args, a_format);
+        int_t buffSize = vsnprintf(xPTR_NULL, 0, a_format, args);
+        va_end(args);
+
+        buffSize += sizeof(xT('\0'));
+
+        if (buffSize > 3000) {
+            std::cout << "*********** " << xTRACE_VAR_2(a_format,a_format, buffSize) << std::endl;
+        }
+    }
+
     std::tstring_t sRv;
 
     va_list args;
@@ -54,6 +67,11 @@ Format::c_strV(
     xVA_COPY(args, a_args);
     std::csize_t buffSize = _bufferSize(a_format, args);
     xVA_END(args);
+
+    if (buffSize > 3000) {
+        std::cout << "*********** " << xTRACE_VAR(buffSize) << std::endl;
+        std::cout << "*********** " << xTRACE_VAR(a_format) << std::endl;
+    }
 
     std::tstring_t buff(buffSize, 0);
     int_t          writtenSize = - 1;
