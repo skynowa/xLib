@@ -34,7 +34,7 @@ Format::c_str(
         int_t buffSize = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
         va_end(args);
 
-        buffSize += sizeof(xT('\0'));
+        ++ buffSize;  // + 1 for '\0'
 
     #if 1
         if (buffSize > 30000) {
@@ -81,7 +81,7 @@ Format::c_strV(
     int_t          writtenSize = - 1;
 
     for ( ; ; ) {
-        std::csize_t buffSize = buff.size() * sizeof(std::tstring_t::value_type);
+        std::csize_t buffSize = buff.size();
 
         va_list args;
         xVA_COPY(args, a_args);
@@ -545,7 +545,7 @@ Format::_bufferSize(
     }
 #endif
 
-    return iRv + sizeof(xT('\0'));
+    return iRv + 1;  // + 1 for '\0'
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
