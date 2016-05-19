@@ -72,9 +72,11 @@ Format::c_strV(
     std::csize_t buffSize = _bufferSize(a_format, args);
     xVA_END(args);
 
-    if (buffSize > 3000) {
+    if (buffSize > 30000) {
         std::cout << "*********** " << xTRACE_VAR(buffSize) << std::endl;
         std::cout << "*********** " << xTRACE_VAR(a_format) << std::endl;
+
+        buffSize = 30000;
     }
 
     std::tstring_t buff(buffSize, 0);
