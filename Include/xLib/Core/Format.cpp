@@ -69,7 +69,7 @@ Format::c_strV(
 
     va_list args;
     xVA_COPY(args, a_args);
-    std::csize_t buffSize = _bufferSize(a_format, args);
+    std::size_t buffSize = _bufferSize(a_format, args);
     xVA_END(args);
 
     if (buffSize > 30000) {
