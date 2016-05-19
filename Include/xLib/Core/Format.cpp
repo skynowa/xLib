@@ -101,6 +101,34 @@ Format::c_strV(
     return buff;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE std::size_t
+Format::_bufferSize(
+    ctchar_t *a_format, ...
+)
+{
+    va_list args;
+    xVA_START(args, a_format);
+    int_t iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
+    xVA_END(args);
+
+    _xVERIFY(iRv > - 1);
+
+    if (iRv <= - 1) {
+        return 0;
+    }
+
+#if 1
+    if (iRv > 30000) {
+        std::cout << "*********** " << xTRACE_VAR_2(a_format, iRv) << std::endl;
+
+        iRv = 30000;
+    }
+#endif
+
+    return iRv + 1;  // + 1 for '\0'
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
@@ -521,34 +549,6 @@ Format::_format(
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-/* static */
-xINLINE std::size_t
-Format::_bufferSize(
-    ctchar_t *a_format, ...
-)
-{
-    va_list args;
-    xVA_START(args, a_format);
-    int_t iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
-    xVA_END(args);
-
-    _xVERIFY(iRv > - 1);
-
-    if (iRv <= - 1) {
-        return 0;
-    }
-
-#if 1
-    if (iRv > 30000) {
-        std::cout << "*********** " << xTRACE_VAR_2(a_format, iRv) << std::endl;
-
-        iRv = 30000;
-    }
-#endif
-
-    return iRv + 1;  // + 1 for '\0'
-}
 //-------------------------------------------------------------------------------------------------
 template<class T>
 /* static */
