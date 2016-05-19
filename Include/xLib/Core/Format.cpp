@@ -31,14 +31,18 @@ Format::c_str(
     {
         va_list args;
         va_start(args, a_format);
-        int_t buffSize = vsnprintf(xPTR_NULL, 0, a_format, args);
+        int_t buffSize = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
         va_end(args);
 
         buffSize += sizeof(xT('\0'));
 
-        if (buffSize > 3000) {
-            std::cout << "*********** " << xTRACE_VAR_2(a_format,a_format, buffSize) << std::endl;
+    #if 1
+        if (buffSize > 30000) {
+            std::cout << "*********** " << xTRACE_VAR_2(a_format, buffSize) << std::endl;
+
+            buffSize = 30000;
         }
+    #endif
     }
 
     std::tstring_t sRv;
@@ -524,7 +528,7 @@ Format::_bufferSize(
 {
     va_list args;
     xVA_START(args, a_format);
-    cint_t iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
+    int_t iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
     xVA_END(args);
 
     _xVERIFY(iRv > - 1);
@@ -532,6 +536,14 @@ Format::_bufferSize(
     if (iRv <= - 1) {
         return 0;
     }
+
+#if 1
+    if (iRv > 30000) {
+        std::cout << "*********** " << xTRACE_VAR_2(a_format, iRv) << std::endl;
+
+        iRv = 30000;
+    }
+#endif
 
     return iRv + sizeof(xT('\0'));
 }
