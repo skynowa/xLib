@@ -66,11 +66,6 @@ operator << (
 bool_t
 Test_Format::unit()
 {
-    m_sRv = Format::c_str(xT("Width trick: %*d"), 5, 10);
-    xTEST_EQ(m_sRv, std::tstring_t(xT("Width trick:    10")));
-
-    return true;
-
     xTEST_CASE("c_str")
     {
         m_sRv = Format::c_str(xT("qqqq-wwww [%i]"), 1000);
