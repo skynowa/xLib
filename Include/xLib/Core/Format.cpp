@@ -61,7 +61,7 @@ Format::c_strV(
         buffSize = 30000;
     }
 
-    std::tstring_t buff(buffSize, 0);
+    std::tstring_t buff(buffSize, xT('\0'));
     int_t          writtenSize = - 1;
 
     for ( ; ; ) {
@@ -69,7 +69,7 @@ Format::c_strV(
 
         va_list args;
         xVA_COPY(args, a_args);
-        writtenSize = xTVSNPRINTF(&buff.at(0), buffSize, a_format, args);
+        writtenSize = xTVSNPRINTF(&buff.at(0), buffSize - 1, a_format, args);
         xVA_END(args);
 
         _xVERIFY(writtenSize > - 1);
@@ -96,19 +96,10 @@ Format::_bufferSize(
     iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
     xVA_END(args);
 
+    std::cout << xTRACE_VAR(iRv) << std::endl;
+
+    _xVERIFY(iRv != - 1);
     _xVERIFY(iRv > - 1);
-
-    if (iRv <= - 1) {
-        return 0;
-    }
-
-#if 1
-    if (iRv >= 30000) {
-        std::cout << "*********** " << xLINE << " - "  << xTRACE_VAR_2(a_format, iRv) << std::endl;
-
-        iRv = 30000;
-    }
-#endif
 
     return iRv + 1;  // + 1 for '\0'
 }
