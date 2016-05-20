@@ -50,10 +50,10 @@ Format::c_strV(
 
     xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
 
+    int_t iRv = 0;
+
     std::size_t buffSize = 0;
     {
-        int_t iRv = 0;
-
         va_list args;
         xVA_COPY(args, a_args);
         iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
@@ -69,30 +69,24 @@ Format::c_strV(
         }
 
         std::cout << xTRACE_VAR(buffSize) << std::endl;
+
+        xCHECK_RET(buffSize == 0, std::tstring_t());
     }
 
-    xCHECK_RET(buffSize == 0, std::tstring_t());
-
+    // write to buffer
     std::tstring_t buff(buffSize, xT('\0'));
-    int_t          writtenSize = - 1;
-
-    for ( ; ; ) {
-        std::csize_t buffSize = buff.size();
-
+    {
         va_list args;
         xVA_COPY(args, a_args);
-        writtenSize = xTVSNPRINTF(&buff.at(0), buffSize, a_format, args);
+        iRv = xTVSNPRINTF(&buff.at(0), buffSize, a_format, args);
         xVA_END(args);
 
-        _xVERIFY(writtenSize != - 1);
-        _xVERIFY(writtenSize > - 1);
+        _xVERIFY(iRv != - 1);
+        _xVERIFY(iRv > - 1);
+        _xVERIFY(iRv == buffSize - 1);
 
-        xCHECK_DO(static_cast<size_t>( writtenSize ) < buffSize, break);
-
-        buff.resize(buffSize * 2);
+        buff.resize(iRv);
     }
-
-    buff.resize(writtenSize);
 
     return buff;
 }
