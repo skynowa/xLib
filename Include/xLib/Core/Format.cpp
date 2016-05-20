@@ -50,20 +50,28 @@ Format::c_strV(
 
     xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
 
-    int buffSize = 0;
+    std::size_t buffSize = 0;
     {
+        int_t iRv = 0;
+
         va_list args;
         xVA_COPY(args, a_args);
-        buffSize = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
+        iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
         xVA_END(args);
 
-        _xVERIFY(buffSize != - 1);
-        _xVERIFY(buffSize > - 1);
+        _xVERIFY(iRv != - 1);
+        _xVERIFY(iRv > - 1);
 
-        ++ buffSize;  // + 1 for '\0'
+        if (iRv <= - 1) {
+            buffSize = 0;
+        } else {
+            buffSize = static_cast<std::size_t>(iRv) + 1;  // + 1 for '\0'
+        }
 
         std::cout << xTRACE_VAR(buffSize) << std::endl;
     }
+
+    xCHECK_RET(buffSize == 0, std::tstring_t());
 
     std::tstring_t buff(buffSize, xT('\0'));
     int_t          writtenSize = - 1;
