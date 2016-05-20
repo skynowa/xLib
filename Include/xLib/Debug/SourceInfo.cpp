@@ -60,7 +60,7 @@ SourceInfo::counter() const
 xINLINE std::tstring_t
 SourceInfo::format() const
 {
-    Format::str(xT("#{} in {}:{}, func: {}"), counter(), filePath(), lineNum(), funcName());
+    return Format::str(xT("#{} in {}:{}, func: {}"), counter(), filePath(), lineNum(), funcName());
 }
 //-------------------------------------------------------------------------------------------------
 
