@@ -69,7 +69,7 @@ Format::c_strV(
 
         va_list args;
         xVA_COPY(args, a_args);
-        writtenSize = xTVSNPRINTF(&buff.at(0), buffSize - 1, a_format, args);
+        writtenSize = xTVSNPRINTF(&buff.at(0), buffSize, a_format, args);
         xVA_END(args);
 
         _xVERIFY(writtenSize != - 1);
