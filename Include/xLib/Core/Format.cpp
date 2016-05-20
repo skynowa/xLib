@@ -72,7 +72,9 @@ Format::c_strV(
         writtenSize = xTVSNPRINTF(&buff.at(0), buffSize - 1, a_format, args);
         xVA_END(args);
 
+        _xVERIFY(writtenSize != - 1);
         _xVERIFY(writtenSize > - 1);
+
         xCHECK_DO(static_cast<size_t>( writtenSize ) < buffSize, break);
 
         buff.resize(buffSize * 2);
