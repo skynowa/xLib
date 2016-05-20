@@ -50,12 +50,6 @@ Format::c_strV(
 
     xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
 
-#if 0
-    va_list args;
-    xVA_COPY(args, a_args);
-    std::size_t buffSize = _bufferSize(a_format, args);
-    xVA_END(args);
-#else
     int buffSize = 0;
     {
         va_list args;
@@ -70,7 +64,6 @@ Format::c_strV(
 
         std::cout << xTRACE_VAR(buffSize) << std::endl;
     }
-#endif
 
     std::tstring_t buff(buffSize, xT('\0'));
     int_t          writtenSize = - 1;
@@ -94,27 +87,6 @@ Format::c_strV(
     buff.resize(writtenSize);
 
     return buff;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-xINLINE std::size_t
-Format::_bufferSize(
-    ctchar_t *a_format, ...
-)
-{
-    int iRv = 0;
-
-    va_list args;
-    xVA_START(args, a_format);
-    iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
-    xVA_END(args);
-
-    std::cout << xTRACE_VAR(iRv) << std::endl;
-
-    _xVERIFY(iRv != - 1);
-    _xVERIFY(iRv > - 1);
-
-    return iRv + 1;  // + 1 for '\0'
 }
 //-------------------------------------------------------------------------------------------------
 
