@@ -56,7 +56,7 @@ Format::c_strV(
     xVA_END(args);
 
     if (buffSize > 30000) {
-        std::cout << "*********** " << xLINE << " - "  << xTRACE_VAR_2(a_format, buffSize) << std::endl;
+        std::cout << xTRACE_VAR_2(a_format, buffSize) << std::endl;
 
         buffSize = 30000;
     }
