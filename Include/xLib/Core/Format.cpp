@@ -50,16 +50,27 @@ Format::c_strV(
 
     xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
 
+#if 0
     va_list args;
     xVA_COPY(args, a_args);
     std::size_t buffSize = _bufferSize(a_format, args);
     xVA_END(args);
+#else
+    int buffSize = 0;
+    {
+        va_list args;
+        xVA_COPY(args, a_args);
+        buffSize = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
+        xVA_END(args);
 
-    if (buffSize > 30000) {
-        std::cout << xTRACE_VAR_2(a_format, buffSize) << std::endl;
+        _xVERIFY(buffSize != - 1);
+        _xVERIFY(buffSize > - 1);
 
-        buffSize = 30000;
+        ++ buffSize;  // + 1 for '\0'
+
+        std::cout << xTRACE_VAR(buffSize) << std::endl;
     }
+#endif
 
     std::tstring_t buff(buffSize, xT('\0'));
     int_t          writtenSize = - 1;
