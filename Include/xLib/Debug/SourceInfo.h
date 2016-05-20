@@ -32,10 +32,10 @@ public:
         ///< format data
 
 private:
-    std::ctstring_t  _filePath; ///< file path
-    culong_t         _lineNum;  ///< line number
-    std::ctstring_t  _funcName; ///< function name
-    culong_t         _counter;  ///< counter
+    std::ctstring_t &_filePath; ///< file path
+    culong_t        &_lineNum;  ///< line number
+    std::ctstring_t &_funcName; ///< function name
+    culong_t        &_counter;  ///< counter
 
     xNO_COPY_ASSIGN(SourceInfo)
 };
