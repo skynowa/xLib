@@ -89,9 +89,11 @@ Format::_bufferSize(
     ctchar_t *a_format, ...
 )
 {
+    int iRv = 0;
+
     va_list args;
     xVA_START(args, a_format);
-    int_t iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
+    iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
     xVA_END(args);
 
     _xVERIFY(iRv > - 1);
