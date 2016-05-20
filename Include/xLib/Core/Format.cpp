@@ -68,7 +68,7 @@ Format::c_strV(
             buffSize = static_cast<std::size_t>(iRv) + 1;  // + 1 for '\0'
         }
 
-        std::cout << xTRACE_VAR(buffSize) << std::endl;
+        // std::tcout << xTRACE_VAR(buffSize) << std::endl;
 
         xCHECK_RET(buffSize == 0, std::tstring_t());
     }
