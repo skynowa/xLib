@@ -128,6 +128,9 @@ private:
 
     template<class T>
     static int  _floatPrecisionMax() xWARN_UNUSED_RV;
+
+    template<class T>
+    static std::tstring_t _formatUnprintableChar(const T &value) xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, core)
