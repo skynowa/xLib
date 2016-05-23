@@ -48,6 +48,8 @@ public:
         ///< Convert uppercase letter to lowercase
     tchar_t     toUpper() const xWARN_UNUSED_RV;
         ///< Convert lowercase letter to uppercase
+    std::tstring_t symbol();
+        ///< char as symbol
 
 private:
     tchar_t _ch;

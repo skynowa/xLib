@@ -145,7 +145,7 @@ Test_Format::unit()
     {
         Data2<wchar_t, std::tstring_t> data[] =
         {
-            {L'\n', xT("?")},
+            {L'\n', xT("<LF>")},
             {L'a',  xT("a")},
             {L'聞', xT("?")}
         };
@@ -327,7 +327,7 @@ Test_Format::unit()
         Data2<std::wstring, std::tstring_t> data[] =
         {
             {L"dddфывff", xT("ddd???ff")},
-            {L"\n",       xT("?")},
+            {L"\n",       xT("<LF>")},
             {L"a",        xT("a")},
             {L"聞",       xT("?")}
         };

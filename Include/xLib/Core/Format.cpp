@@ -8,6 +8,8 @@
     #include "Format.h"
 #endif
 
+#include <xLib/Core/Char.h>
+
 
 xNAMESPACE_BEGIN2(xlib, core)
 
@@ -576,9 +578,14 @@ Format::_formatUnprintableChar(
     * +-------------------------------------+-------------------+
     */
 
-    std::tstring_t sRv(1, '?');
+    Char ch(a_value);
 
-    return sRv;
+    std::ctstring_t symbol = ch.symbol();
+    if (symbol.size() == 1) {
+        return symbol;
+    } else {
+        return xT('<') + symbol + xT('>');
+    }
 }
 //-------------------------------------------------------------------------------------------------
 
