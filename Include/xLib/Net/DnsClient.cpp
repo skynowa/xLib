@@ -41,18 +41,14 @@ DnsClient::hostAddrByName(
 
     std::tstring_t sRv;
 
-    // convert to UNICODE
-    std::string hostName(a_hostName.begin(), a_hostName.end());
-
-    hostent *host = ::gethostbyname(hostName.c_str());
+    hostent *host = ::gethostbyname( xT2A(a_hostName).c_str());
     xTEST_PTR(host);
 
     sRv = Format::str(xT("{}.{}.{}.{}"),
         static_cast<uchar_t>(host->h_addr_list[0][0]),
         static_cast<uchar_t>(host->h_addr_list[0][1]),
         static_cast<uchar_t>(host->h_addr_list[0][2]),
-        static_cast<uchar_t>(host->h_addr_list[0][3])
-    );
+        static_cast<uchar_t>(host->h_addr_list[0][3]));
     xTEST_EQ(sRv.empty(), false);
 
     *a_hostAddr = sRv;
@@ -61,16 +57,13 @@ DnsClient::hostAddrByName(
 /* static */
 xINLINE void_t
 DnsClient::hostNameByAddr(
-    std::ctstring_t                 &a_hostAddr,
+    std::ctstring_t               &a_hostAddr,
     const Socket::ExAddressFamily &a_family,
-    std::tstring_t                  *a_hostName
+    std::tstring_t                *a_hostName
 )
 {
     xTEST_EQ(a_hostAddr.empty(), false);
     xTEST_PTR(a_hostName);
-
-    // convert to UNICODE
-    std::string hostAddr(a_hostAddr.begin(), a_hostAddr.end());
 
     hostent *host = xPTR_NULL;
 
@@ -91,18 +84,16 @@ DnsClient::hostNameByAddr(
     default:
         in_addr iaAddr = {0};
 
-        iaAddr.s_addr = ::inet_addr( hostAddr.c_str() );
+        iaAddr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
         xTEST_EQ(iaAddr.s_addr != INADDR_NONE, true);
 
-        host = ::gethostbyaddr((char *) &iaAddr, sizeof(iaAddr), Socket::afInet);
+        host = ::gethostbyaddr((char *)&iaAddr, sizeof(iaAddr), Socket::afInet);
         xTEST_PTR(host);
+
         break;
     }
 
-    // convert to UNICODE
-    std::string sRv(host->h_name);
-
-    a_hostName->assign(sRv.begin(), sRv.end());
+    *a_hostName = xA2T(host->h_name);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -121,8 +112,7 @@ DnsClient::localHostName(
 
     asRv.assign(asRv.c_str());    // trim '0' from end
 
-    // convert to UNICODE
-    a_hostName->assign(asRv.begin(), asRv.end());
+    *a_hostName = xA2T(asRv);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -186,17 +176,12 @@ DnsClient::protocolByName(
     xTEST_NA(a_aliases);
     xTEST_NA(a_number);
 
-    // convert to UNICODE
-    std::string protocolName(a_protocolName.begin(), a_protocolName.end());
-
-    protoent/*PROTOENT*/ *info = ::getprotobyname(protocolName.c_str());
+    protoent/*PROTOENT*/ *info = ::getprotobyname( xT2A(a_protocolName).c_str() );
     xTEST_PTR(info);
 
     // a_name
     if (a_name != xPTR_NULL) {
-        // convert to UNICODE
-        std::string name = info->p_name;
-        a_name->assign(name.begin(), name.end());
+        *a_name = xA2T(info->p_name);
     }
 
     // a_aliases
@@ -204,14 +189,7 @@ DnsClient::protocolByName(
         a_aliases->clear();
 
         for (char **s = info->p_aliases; s && *s; ++ s) {
-            std::string asRv;
-            asRv.assign(*s);
-
-            // convert to UNICODE
-            std::tstring_t sRv;
-            sRv.assign(asRv.begin(), asRv.end());
-
-            a_aliases->push_back(sRv);
+            a_aliases->push_back( xA2T(*s) );
         }
     }
 
@@ -237,10 +215,8 @@ DnsClient::protocolByNumber(
     xTEST_PTR(info);
 
     // a_name
-    // convert to UNICODE
     if (a_name != xPTR_NULL) {
-        std::string name = info->p_name;
-        a_name->assign(name.begin(), name.end());
+        *a_name = xA2T(info->p_name);
     }
 
     // a_aliases
@@ -248,14 +224,7 @@ DnsClient::protocolByNumber(
         a_aliases->clear();
 
         for (char **s = info->p_aliases; s && *s; ++ s) {
-            std::string asRv;
-            asRv.assign(*s);
-
-            // convert to UNICODE
-            std::tstring_t sRv;
-            sRv.assign(asRv.begin(), asRv.end());
-
-            a_aliases->push_back(sRv);
+            a_aliases->push_back( xA2T(*s) );
         }
     }
 
@@ -281,17 +250,12 @@ DnsClient::serviceByName(
     xTEST_NA(a_port);
     xTEST_NA(a_protocolName_rv);
 
-    // convert to UNICODE
-    std::string serviceName(a_serviceName.begin(), a_serviceName.end());
-    std::string protocolName(a_protocolName.begin(), a_protocolName.end());
-
-    servent *info = ::getservbyname(serviceName.c_str(), protocolName.c_str());
+    servent *info = ::getservbyname(xT2A(a_serviceName).c_str(), xT2A(a_protocolName).c_str());
     xTEST_PTR(info);
 
     // name
     if (a_name != xPTR_NULL) {
-        std::string name = info->s_name;
-        a_name->assign(name.begin(), name.end());
+       *a_name = xA2T(info->s_name);
     }
 
     // aliases
@@ -299,14 +263,7 @@ DnsClient::serviceByName(
         a_aliases->clear();
 
         for (char **s = info->s_aliases; s && *s; ++ s) {
-            std::string asRv;
-            asRv.assign(*s);
-
-            // convert to UNICODE
-            std::tstring_t sRv;
-            sRv.assign(asRv.begin(), asRv.end());
-
-            a_aliases->push_back(sRv);
+            a_aliases->push_back( xA2T(*s) );
         }
     }
 
@@ -315,8 +272,7 @@ DnsClient::serviceByName(
 
     // protocolName_rv
     if (a_protocolName_rv != xPTR_NULL) {
-        std::string _protocolName = info->s_proto;
-        a_protocolName_rv->assign(_protocolName.begin(), _protocolName.end());
+        *a_protocolName_rv = xA2T(info->s_proto);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -338,16 +294,12 @@ DnsClient::serviceByPort(
     xTEST_NA(a_port_rv);
     xTEST_NA(a_protocolName_rv);
 
-    // convert to UNICODE
-    std::string protocolName(a_protocolName.begin(), a_protocolName.end());
-
-    servent *info = ::getservbyport(a_port, protocolName.c_str());
+    servent *info = ::getservbyport(a_port, xT2A(a_protocolName).c_str());
     xTEST_PTR(info);
 
     // name
     if (a_name != xPTR_NULL) {
-        std::string name = info->s_name;
-        a_name->assign(name.begin(), name.end());
+        *a_name = xA2T(info->s_name);
     }
 
     // aliases
@@ -355,14 +307,7 @@ DnsClient::serviceByPort(
         a_aliases->clear();
 
         for (char **s = info->s_aliases; s && *s; ++ s) {
-            std::string asRv;
-            asRv.assign(*s);
-
-            // convert to UNICODE
-            std::tstring_t sRv;
-            sRv.assign(asRv.begin(), asRv.end());
-
-            a_aliases->push_back(sRv);
+            a_aliases->push_back( xA2T(*s) );
         }
     }
 
@@ -371,8 +316,7 @@ DnsClient::serviceByPort(
 
     // protocolName_rv
     if (a_protocolName_rv != xPTR_NULL) {
-        std::string _protocolName = info->s_proto;
-        a_protocolName_rv->assign(_protocolName.begin(), _protocolName.end());
+        *a_protocolName_rv = xA2T(info->s_proto);
     }
 }
 //-------------------------------------------------------------------------------------------------
