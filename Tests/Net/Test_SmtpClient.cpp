@@ -7,7 +7,6 @@
 #include "Test_SmtpClient.h"
 
 
-#if xHAVE_OPENSSL_CRYPTO
 
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_SmtpClient)
@@ -16,6 +15,7 @@ xTEST_UNIT(Test_SmtpClient)
 bool_t
 Test_SmtpClient::unit()
 {
+#if xHAVE_OPENSSL_CRYPTO
     {
         // FIX: temp disable
         return true;
@@ -104,9 +104,11 @@ Test_SmtpClient::unit()
     //-------------------------------------
     //bDisconnect
     objSmtp.disconnect();
+#else
+    Trace() << xT("[skip]");
+#endif // xHAVE_OPENSSL_CRYPTO
 
     return true;
 }
 //-------------------------------------------------------------------------------------------------
 
-#endif // xHAVE_OPENSSL_CRYPTO

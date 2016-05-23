@@ -10,8 +10,6 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xlib;
 
-#if xHAVE_OPENSSL_CRYPTO
-
 class Test_MimeMessage :
     public Unit
 {
@@ -20,6 +18,4 @@ public:
 
     virtual bool_t unit() xOVERRIDE;
 };
-
-#endif // xHAVE_OPENSSL_CRYPTO
 //-------------------------------------------------------------------------------------------------
