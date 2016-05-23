@@ -328,7 +328,7 @@ Path::isNameValid(
         sRv.resize(xNAME_MAX);
     }
 
-    return _isNameValid_impl(sRv, a_fileNameValid);;
+    return _isNameValid_impl(sRv, a_fileNameValid);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t

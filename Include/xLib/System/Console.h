@@ -207,7 +207,7 @@ xNAMESPACE_END2(xlib, system)
 
         int_t key = 0;
         int_t idx = 0;
-        for (;;) {
+        for ( ;; ) {
           key = getch();
           if (key == CTS_KEYCODE_ENTER)  {
               endwin();
