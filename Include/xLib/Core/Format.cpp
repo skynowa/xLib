@@ -156,15 +156,11 @@ Format::_format(
     const wchar_t        &a_value   ///< value
 )
 {
-    tchar_t chRv;
-
     if ( ::iswprint(a_value) ) {
-        chRv = static_cast<tchar_t>(a_value);
+        a_ss << static_cast<tchar_t>(a_value);
     } else {
-        chRv = _unprintableChar();
+        a_ss << _formatUnprintableChar(a_value);
     }
-
-    a_ss << chRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -174,15 +170,11 @@ Format::_format(
     const unsigned char  &a_value   ///< value
 )
 {
-    uchar_t chRv;
-
     if ( ::isprint(a_value) ) {
-        chRv = a_value;
+        a_ss << a_value;
     } else {
-        chRv = static_cast<uchar_t>( _unprintableChar() );
+        a_ss << _formatUnprintableChar(a_value);
     }
-
-    a_ss << chRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -362,15 +354,11 @@ Format::_format(
     sRv.reserve( a_value.size() );
 
     for (size_t i = 0; i < a_value.size(); ++ i) {
-        tchar_t chRv;
-
         if ( ::iswprint(a_value[i]) ) {
-            chRv = static_cast<tchar_t>( a_value[i] );
+            sRv += static_cast<tchar_t>( a_value[i] );
         } else {
-            chRv = _unprintableChar();
+            sRv += _formatUnprintableChar( a_value[i] );
         }
-
-        sRv += chRv;
     }
 
     a_ss << sRv;
@@ -555,6 +543,42 @@ Format::_floatPrecisionMax()
 #else
     return std::numeric_limits<T>::digits10 + 1;
 #endif
+}
+//-------------------------------------------------------------------------------------------------
+template<class T>
+/* static */
+inline std::tstring_t
+Format::_formatUnprintableChar(
+    const T &a_value
+)
+{
+   /**
+    * FAQ: C documentation for isprint
+    *
+    * +---------+---------------------------+-------------------+
+    * | ASCII   | Characters                | isprint, iswprint |
+    * +---------+---------------------------+-------------------+
+    * | 0 - 8   | control codes (NUL, etc.) | -                 |
+    * | 9       | tab (\t)                  | -                 |
+    * | 10 - 13 | whitespaces (\n,\v,\f,\r) | -                 |
+    * | 14 - 31 | control codes             | -                 |
+    * | 32      | space                     | +                 |
+    * | 33 - 47 | !"#$%&'()*+,-./           | +                 |
+    * | 48 - 57 | 123456789                 | +                 |
+    * | 58 - 64 | :;<=>?@                   | +                 |
+    * | 65 - 70 | ABCDEF                    | +                 |
+    * | 71 - 90 | GHIJKLMNOPQRSTUVWXYZ      | +                 |
+    * | 91 - 96 | [\]^_`                    | +                 |
+    * | 97 -102 | abcdef                    | +                 |
+    * | 103-122 | ghijklmnopqrstuvwxyz      | +                 |
+    * | 123-126 | {|}~                      | +                 |
+    * | 127     | backspace character (DEL) | -                 |
+    * +-------------------------------------+-------------------+
+    */
+
+    std::tstring_t sRv(1, '?');
+
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 
