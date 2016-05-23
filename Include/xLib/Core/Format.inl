@@ -197,7 +197,7 @@ Format::_formatRange(
 template<class T>
 /* static */
 inline void
-Format::_formatCont(
+Format::_formatContainer(
     std::tstringstream_t &a_ss,     ///< [out]
     const T              &a_value   ///< value
 )
