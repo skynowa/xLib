@@ -174,7 +174,15 @@ Format::_format(
     const unsigned char  &a_value   ///< value
 )
 {
-    a_ss << a_value;
+    uchar_t chRv;
+
+    if ( ::isprint(a_value) ) {
+        chRv = a_value;
+    } else {
+        chRv = static_cast<uchar_t>( _unprintableChar() );
+    }
+
+    a_ss << chRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
