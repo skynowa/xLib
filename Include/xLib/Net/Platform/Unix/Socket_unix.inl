@@ -89,10 +89,9 @@ Socket::_peerName_impl(
 
     // out
     if (a_peerAddr != xPTR_NULL) {
-        // convert to UNICODE
         std::string peerAddr = ::inet_ntoa(sockAddr.sin_addr);
 
-        a_peerAddr->assign(peerAddr.begin(), peerAddr.end());
+        *a_peerAddr = xA2T(peerAddr);
     }
 
     if (a_peerPort != xPTR_NULL) {
@@ -116,10 +115,9 @@ Socket::_socketName_impl(
 
     // out
     if (a_socketAddr != xPTR_NULL) {
-        // convert to UNICODE
         std::string socketAddr = ::inet_ntoa(sockAddr.sin_addr);
 
-        a_socketAddr->assign(socketAddr.begin(), socketAddr.end());
+        *a_socketAddr = xA2T(socketAddr);
     }
 
     if (a_socketPort != xPTR_NULL) {
