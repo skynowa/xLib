@@ -17,7 +17,6 @@
 #include "Test_Limits.h"
 #include "Test_Operators.h"
 #include "Test_Utils.h"
-#include "Test_StdStream.h"
 #include "Test_HandleT.h"
 #include "Test_Type.h"
 #include "Test_Flags.h"
