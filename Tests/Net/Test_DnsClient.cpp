@@ -133,7 +133,7 @@ Test_DnsClient::unit()
             DnsClient::protocolByNumber(ciProtocolNumbers[i], &sName, &vsAliases, &siNumber);
 
             //std::tcout << xT("[protocolByNumber]: ")           << std::endl;
-            //std::tcout << xT("    sName:    ") << sName             << std::endl;;
+            //std::tcout << xT("    sName:    ") << sName             << std::endl;
             for (size_t j = 0; j < vsAliases.size(); ++ j) {
             //std::tcout << xT("    sAlias:   ") << vsAliases.at(j) << std::endl;
             }
