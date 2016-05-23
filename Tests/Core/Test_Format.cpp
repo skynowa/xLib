@@ -348,13 +348,28 @@ Test_Format::unit()
 
     xTEST_CASE("std::ustring_t")
     {
-        std::custring_t value(10, 'z');
+        {
+            std::custring_t value(10, 'z');
 
-        m_sRv = Format::str(xT("{}"), value);
+            m_sRv = Format::str(xT("{}"), value);
+            xTEST_EQ(m_sRv, std::tstring_t(xT("zzzzzzzzzz")));
+        }
 
-        Trace() << xTRACE_VAR(m_sRv);
+        {
+            std::ustring_t value;
+            value.push_back('z');
+            value.push_back('\xa0');
+            value.push_back('\t');
+            value.push_back('\n');
+            value.push_back('\v');
+            value.push_back('\f');
+            value.push_back('\r');
+            value.push_back(0x7F);
+            value.push_back('x');
 
-        xTEST_EQ(m_sRv, std::tstring_t(xT("zzzzzzzzzz")));
+            m_sRv = Format::str(xT("{}"), value);
+            xTEST_EQ(m_sRv, std::tstring_t(xT("z???????x")));
+        }
     }
 
     xTEST_CASE("std::pair")
