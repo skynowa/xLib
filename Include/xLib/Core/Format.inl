@@ -173,6 +173,20 @@ xFORMAT_STR(21)
 template<class IteratorT>
 /* static */
 inline void
+Format::_formatString(
+    std::tstringstream_t &a_ss,     ///< [out]
+    IteratorT             a_first,  ///< first iterator
+    IteratorT             a_last    ///< last iterator
+)
+{
+    for (; a_first != a_last; ++ a_first) {
+        a_ss << str(_specifier(), *a_first);
+    }
+}
+//-------------------------------------------------------------------------------------------------
+template<class IteratorT>
+/* static */
+inline void
 Format::_formatRange(
     std::tstringstream_t &a_ss,     ///< [out]
     IteratorT             a_first,  ///< first iterator

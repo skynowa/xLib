@@ -389,7 +389,7 @@ Format::_format(
     const std::ustring_t &a_value   ///< value
 )
 {
-    a_ss << a_value;
+    _formatString(a_ss, a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
 template<class T1, class T2>

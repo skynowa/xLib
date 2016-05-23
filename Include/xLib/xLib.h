@@ -16,7 +16,6 @@
 #include <xLib/Core/Version.h>
 #include <xLib/Core/Types.h>
 #include <xLib/Core/Functions.h>
-#include <xLib/Core/StdStream.h>
 #include <xLib/Core/Type.h>
 #include <xLib/Core/Win/Com.h>
 #include <xLib/Core/AutoReset.h>

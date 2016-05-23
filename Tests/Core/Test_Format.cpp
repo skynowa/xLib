@@ -351,6 +351,9 @@ Test_Format::unit()
         std::custring_t value(10, 'z');
 
         m_sRv = Format::str(xT("{}"), value);
+
+        Trace() << xTRACE_VAR(m_sRv);
+
         xTEST_EQ(m_sRv, std::tstring_t(xT("zzzzzzzzzz")));
     }
 

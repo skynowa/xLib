@@ -115,6 +115,9 @@ private:
     xNO_COPY_ASSIGN(Format)
 
     template<class IteratorT>
+    static void _formatString(std::tstringstream_t &ss, IteratorT first, IteratorT last);
+
+    template<class IteratorT>
     static void _formatRange(std::tstringstream_t &ss, IteratorT first, IteratorT last);
 
     template<class T>
