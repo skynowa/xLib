@@ -159,7 +159,7 @@ Format::_format(
     tchar_t chRv;
 
     if ( ::iswprint(a_value) ) {
-        chRv = static_cast<tchar_t>(a_value);;
+        chRv = static_cast<tchar_t>(a_value);
     } else {
         chRv = _unprintableChar();
     }
