@@ -8,8 +8,6 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xlib;
 
-#if xHAVE_OPENSSL_CRYPTO
-
 class Test_SmtpClient :
     public Unit
 {
@@ -18,6 +16,4 @@ public:
 
     virtual bool_t unit() xOVERRIDE;
 };
-
-#endif // xHAVE_OPENSSL_CRYPTO
 //-------------------------------------------------------------------------------------------------

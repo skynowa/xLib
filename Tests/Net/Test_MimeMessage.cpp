@@ -7,8 +7,6 @@
 #include "Test_MimeMessage.h"
 
 
-#if xHAVE_OPENSSL_CRYPTO
-
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_MimeMessage)
 //-------------------------------------------------------------------------------------------------
@@ -16,6 +14,7 @@ xTEST_UNIT(Test_MimeMessage)
 bool_t
 Test_MimeMessage::unit()
 {
+#if xHAVE_OPENSSL_CRYPTO
     {
         // FIX: temp disable
         return true;
@@ -202,9 +201,11 @@ Test_MimeMessage::unit()
     //-------------------------------------
     //bDisconnect
     objPop3.disconnect();
+#else
+    Trace() << xT("[skip]");
+#endif // xHAVE_OPENSSL_CRYPTO
 
     return true;
 }
 //-------------------------------------------------------------------------------------------------
 
-#endif // xHAVE_OPENSSL_CRYPTO

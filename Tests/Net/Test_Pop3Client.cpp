@@ -12,8 +12,6 @@
 #include <xLib/Net/MimeBody.h>
 
 
-#if xHAVE_OPENSSL_CRYPTO
-
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Pop3Client)
 //-------------------------------------------------------------------------------------------------
@@ -21,6 +19,7 @@ xTEST_UNIT(Test_Pop3Client)
 bool_t
 Test_Pop3Client::unit()
 {
+#if xHAVE_OPENSSL_CRYPTO
     {
         // FIX: temp disable
         return true;
@@ -159,9 +158,11 @@ Test_Pop3Client::unit()
     //-------------------------------------
     //bDisconnect
     objPop3.disconnect();
+#else
+    Trace() << xT("[skip]");
+#endif // xHAVE_OPENSSL_CRYPTO
 
     return true;
 }
 //-------------------------------------------------------------------------------------------------
 
-#endif // xHAVE_OPENSSL_CRYPTO

@@ -263,6 +263,8 @@ Test_MySql::unit()
     //--------------------------------------------------
     //bClose
     conConn.close();
+#else
+    Trace() << xT("[skip]");
 #endif // xHAVE_MYSQL
 
     return true;
