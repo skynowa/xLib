@@ -118,7 +118,7 @@ private:
     static void _formatRange(std::tstringstream_t &ss, IteratorT first, IteratorT last);
 
     template<class T>
-    static void _formatCont(std::tstringstream_t &ss, const T &value);
+    static void _formatContainer(std::tstringstream_t &ss, const T &value);
 
     template<class T>
     static void _formatFloat(std::tstringstream_t &ss, const T &value);

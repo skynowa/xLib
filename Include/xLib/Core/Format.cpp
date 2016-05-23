@@ -415,7 +415,7 @@ Format::_format(
     const std::vector<T> &a_value   ///< value
 )
 {
-    _formatCont(a_ss, a_value);
+    _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
@@ -426,7 +426,7 @@ Format::_format(
     const std::list<T>   &a_value   ///< value
 )
 {
-    _formatCont(a_ss, a_value);
+    _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
@@ -437,7 +437,7 @@ Format::_format(
     const std::set<T>    &a_value   ///< value
 )
 {
-    _formatCont(a_ss, a_value);
+    _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
@@ -448,7 +448,7 @@ Format::_format(
     const std::multiset<T> &a_value   ///< value
 )
 {
-    _formatCont(a_ss, a_value);
+    _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<class T1, class T2>
@@ -459,7 +459,7 @@ Format::_format(
     const std::map<T1, T2> &a_value   ///< value
 )
 {
-    _formatCont(a_ss, a_value);
+    _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<class T1, class T2>
@@ -470,7 +470,7 @@ Format::_format(
     const std::multimap<T1, T2> &a_value   ///< value
 )
 {
-    _formatCont(a_ss, a_value);
+    _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
