@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Char::Char(
-    ctchar_t      &a_ch,
+    cint_t        &a_ch,
     const xLOCALE &a_locale /*  = std::locale() */
 ) :
     _ch    (a_ch),
@@ -29,7 +29,7 @@ Char::Char(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ctchar_t &
+xINLINE cint_t &
 Char::character() const
 {
     return _ch;
@@ -123,9 +123,7 @@ Char::toUpper() const
 std::tstring_t
 Char::symbol()
 {
-    if (static_cast<int_t>(_ch) > 0 &&
-        static_cast<int_t>(_ch) < 32)
-    {
+    if (_ch > 0 && _ch < 32) {
         struct CharData
         {
             int_t          decCode;
