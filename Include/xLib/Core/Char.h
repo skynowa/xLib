@@ -14,12 +14,12 @@ class Char
     /// character
 {
 public:
-    explicit    Char(ctchar_t &ch, const xLOCALE &locale = xLOCALE());
+    explicit    Char(cint_t &ch, const xLOCALE &locale = xLOCALE());
         ///< constructor
     virtual    ~Char() {}
         ///< destructor
 
-    ctchar_t&   character() const xWARN_UNUSED_RV;
+    cint_t&     character() const xWARN_UNUSED_RV;
         ///< get character
     const xLOCALE& locale() const xWARN_UNUSED_RV;
         ///< get locale
@@ -57,7 +57,7 @@ public:
         ///< char as symbol
 
 private:
-    tchar_t _ch;
+    cint_t  _ch;
     xLOCALE _locale;
 
     xNO_COPY_ASSIGN(Char)
