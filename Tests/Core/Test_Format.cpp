@@ -363,12 +363,12 @@ Test_Format::unit()
             value.push_back('\n');
             value.push_back('\v');
             value.push_back('\f');
-            value.push_back('\r');
-            value.push_back(0x7F);
+            value.push_back('\r');  // int: -96
+            value.push_back(0x7F);  // int: 127
             value.push_back('x');
 
             m_sRv = Format::str(xT("{}"), value);
-            xTEST_EQ(m_sRv, std::tstring_t(xT("z???????x")));
+            xTEST_EQ(m_sRv, std::tstring_t(xT("z?<HT><LF><VT><FF><CR>?x")));
         }
     }
 
