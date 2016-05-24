@@ -578,13 +578,21 @@ Format::_formatUnprintableChar(
     * +-------------------------------------+-------------------+
     */
 
-    Char ch(a_value);
+    #define xVALUE_RANGE(value, min, max) \
+        ((value) >= (min) && (value) <= (max))
 
-    std::ctstring_t symbol = ch.symbol();
-    if (symbol.size() == 1) {
-        return symbol;
-    } else {
-        return xT('<') + symbol + xT('>');
+    Char ch(a_value);
+    if      ( xVALUE_RANGE(ch.character(), 0, 31) ) {
+        return xT('<') + ch.symbol() + xT('>');
+    }
+    else if ( xVALUE_RANGE(ch.character(), 127, 256) ) {
+        return xT("?");
+    }
+    else if ( xVALUE_RANGE(ch.character(), 256, std::numeric_limits<int_t>::max()) ) {
+        return xT("?");
+    }
+    else {
+        return ch.symbol();
     }
 }
 //-------------------------------------------------------------------------------------------------
