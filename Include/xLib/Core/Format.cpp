@@ -585,10 +585,10 @@ Format::_formatUnprintableChar(
     if      ( xVALUE_RANGE(ch.character(), 0, 31) ) {
         return xT("<") + ch.symbol() + xT(">");
     }
-    else if ( xVALUE_RANGE(ch.character(), 32, 127) ) {
+    else if ( xVALUE_RANGE(ch.character(), 32, 126) ) {
         return ch.symbol();
     }
-    else if ( xVALUE_RANGE(ch.character(), 128, 255) ) {
+    else if ( xVALUE_RANGE(ch.character(), 127, 255) ) {
         return xT("?");
     }
     else {
