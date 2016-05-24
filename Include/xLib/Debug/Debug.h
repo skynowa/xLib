@@ -104,8 +104,10 @@
 //-------------------------------------------------------------------------------------------------
 #define xTRACE_POINT \
     { \
+        xlib::debug::SourceInfo sourceInfo(xFILE, xLINE, xFUNCTION, xCOUNTER); \
+        \
         xlib::log::Trace() \
-            << xT("\t::: ")  << xSOURCE_INFO.format() << xT(", ") \
+            << xT("\t::: ")  << sourceInfo.filePath() << xT(":") << sourceInfo.lineNum() << xT(", ") \
             << xT("error: ") << NativeError::format() << xT(" :::"); \
     }
     ///< trace point (use Trace)
