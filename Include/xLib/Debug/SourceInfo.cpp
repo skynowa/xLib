@@ -33,25 +33,25 @@ SourceInfo::SourceInfo(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+xINLINE std::tstring_t
 SourceInfo::filePath() const
 {
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE culong_t &
+xINLINE ulong_t
 SourceInfo::lineNum() const
 {
     return _lineNum;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+xINLINE std::tstring_t
 SourceInfo::funcName() const
 {
     return _funcName;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE culong_t &
+xINLINE ulong_t
 SourceInfo::counter() const
 {
     return _counter;
@@ -61,6 +61,12 @@ xINLINE std::tstring_t
 SourceInfo::format() const
 {
     return Format::str(xT("#{} in {}:{}, func: {}"), counter(), filePath(), lineNum(), funcName());
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE std::tstring_t
+SourceInfo::at() const
+{
+    return Format::str(xT("{}:{}"), filePath(), lineNum());
 }
 //-------------------------------------------------------------------------------------------------
 
