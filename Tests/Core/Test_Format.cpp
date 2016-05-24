@@ -372,6 +372,15 @@ Test_Format::unit()
         }
     }
 
+    xTEST_CASE("std::array")
+    {
+    #if xOPTION_CPP11
+        TODO: add test
+    #else
+        Trace() << xT("[skip]");
+    #endif
+    }
+
     xTEST_CASE("std::pair")
     {
         std::pair<int, std::tstring_t> value(999, xT("ddd???FF"));

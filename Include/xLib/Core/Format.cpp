@@ -391,6 +391,21 @@ Format::_format(
     _formatString(a_ss, a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
+#if xOPTION_CPP11
+
+template<class T, std::size_t N>
+/* static */
+inline void
+Format::_format(
+    std::tstringstream_t   &a_ss,     ///< [out]
+    const std::array<T, N> &a_value   ///< value
+)
+{
+    _formatContainer(a_ss, a_value);
+}
+
+#endif
+//-------------------------------------------------------------------------------------------------
 template<class T1, class T2>
 /* static */
 inline void
