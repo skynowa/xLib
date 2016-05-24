@@ -585,14 +585,14 @@ Format::_formatUnprintableChar(
     if      ( xVALUE_RANGE(ch.character(), 0, 31) ) {
         return xT("<") + ch.symbol() + xT(">");
     }
-    else if ( xVALUE_RANGE(ch.character(), 127, 256) ) {
-        return xT("?");
+    else if ( xVALUE_RANGE(ch.character(), 32, 127) ) {
+        return ch.symbol();
     }
-    else if ( xVALUE_RANGE(ch.character(), 256, std::numeric_limits<int_t>::max()) ) {
+    else if ( xVALUE_RANGE(ch.character(), 128, 255) ) {
         return xT("?");
     }
     else {
-        return ch.symbol();
+        return xT("?");
     }
 }
 //-------------------------------------------------------------------------------------------------
