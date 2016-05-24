@@ -14,28 +14,30 @@ class SourceInfo
     ///<
 {
 public:
-                     SourceInfo(std::ctstring_t &filePath, culong_t &lineNum,
-                         std::ctstring_t &funcName, culong_t &counter);
+                    SourceInfo(std::ctstring_t &filePath, culong_t &lineNum,
+                        std::ctstring_t &funcName, culong_t &counter);
         ///< constructor
-    virtual         ~SourceInfo() {};
+    virtual        ~SourceInfo() {};
         ///< destructor
 
-    std::ctstring_t &filePath() const;
+    std::tstring_t  filePath() const;
         ///< file path
-    culong_t        &lineNum() const;
+    ulong_t         lineNum() const;
         ///< line number
-    std::ctstring_t &funcName() const;
+    std::tstring_t  funcName() const;
         ///< function name
-    culong_t        &counter() const;
+    ulong_t         counter() const;
         ///< counter
-    std::tstring_t   format() const;
+    std::tstring_t  format() const;
         ///< format data
+    std::tstring_t  at() const;
+        ///< trace point
 
 private:
-    std::ctstring_t &_filePath; ///< file path
-    culong_t        &_lineNum;  ///< line number
-    std::ctstring_t &_funcName; ///< function name
-    culong_t        &_counter;  ///< counter
+    std::ctstring_t _filePath; ///< file path
+    culong_t        _lineNum;  ///< line number
+    std::ctstring_t _funcName; ///< function name
+    culong_t        _counter;  ///< counter
 
     xNO_COPY_ASSIGN(SourceInfo)
 };
