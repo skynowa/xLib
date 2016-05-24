@@ -60,7 +60,7 @@ private:
     ulong_t        _sourceLineNum;    ///< source file number
     std::tstring_t _sourceFuncName;   ///< source function name
     std::tstring_t _sourceExpr;       ///< source expression
-    std::tstring_t _sourceExprValues; ///< source expression
+    std::tstring_t _sourceExprValues; ///< source expression values
     ulong_t        _nativeError;      ///< system last error
     std::tstring_t _nativeErrorStr;   ///< system last error as string
 
