@@ -30,6 +30,7 @@
 #include "Test_Com.h"
 #include "Test_Application.h"
 #include "Test_CoreApplication.h"
+#include "Test_Algos.h"
 
 
 // Crypt
