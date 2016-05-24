@@ -31,7 +31,7 @@ public:
     std::tstring_t  format() const;
         ///< format data
     std::tstring_t  at() const;
-        ///< trace point
+        ///< format as file and line
 
 private:
     std::ctstring_t _filePath; ///< file path
