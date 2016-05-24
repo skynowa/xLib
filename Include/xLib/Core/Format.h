@@ -81,6 +81,11 @@ private:
     static void _format(std::tstringstream_t &ss, const std::string &value);
     static void _format(std::tstringstream_t &ss, const std::ustring_t &value);
 
+#if xOPTION_CPP11
+    template<class T, std::size_t N>
+    static void _format(std::tstringstream_t &ss, const std::array<T, N> &value);
+#endif
+
     template<class T1, class T2>
     static void _format(std::tstringstream_t &ss, const std::pair<T1, T2> &value);
 
