@@ -168,9 +168,9 @@ Char::symbol()
         };
 
         return data[_ch].symbol;
-    } else {
-        return std::tstring_t(1, _ch);
     }
+
+    return std::tstring_t(1, _ch);
 }
 //-------------------------------------------------------------------------------------------------
 
