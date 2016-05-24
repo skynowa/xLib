@@ -9,6 +9,7 @@
 #endif
 
 #include <xLib/Core/Char.h>
+#include <xLib/Core/Algos.h>
 
 
 xNAMESPACE_BEGIN2(xlib, core)
@@ -578,17 +579,14 @@ Format::_formatUnprintableChar(
     * +-------------------------------------+-------------------+
     */
 
-    #define xVALUE_RANGE(value, min, max) \
-        ((value) >= (min) && (value) <= (max))
-
     Char ch(a_value);
-    if      ( xVALUE_RANGE(ch.character(), 0, 31) ) {
+    if      ( Algos::isInBounds(ch.character(), 0, 31) ) {
         return xT("<") + ch.symbol() + xT(">");
     }
-    else if ( xVALUE_RANGE(ch.character(), 32, 126) ) {
+    else if ( Algos::isInBounds(ch.character(), 32, 126) ) {
         return ch.symbol();
     }
-    else if ( xVALUE_RANGE(ch.character(), 127, 255) ) {
+    else if ( Algos::isInBounds(ch.character(), 127, 255) ) {
         return xT("?");
     }
     else {

@@ -1,6 +1,6 @@
 /**
  * \file   Algos.h
- * \brief  [CLASS_COMMENTS]
+ * \brief  Algorithms
  */
 
 
@@ -14,9 +14,17 @@ class Algos
     ///< Algorithms
 {
 public:
+    template <typename T>
+    static
+    bool isInBounds(const T &value, const T &low, const T &high);
+        //< check value bounds
 
+    template <typename T, typename R, typename Comparator>
+    static
+    bool isInBounds(const T &value, const R &low, const R &high, Comparator comp);
+        //< check value bounds (with custom comparator)
 private:
-             Algos() {}
+    Algos() {}
         ///< constructor
 
     xNO_COPY_ASSIGN(Algos)
