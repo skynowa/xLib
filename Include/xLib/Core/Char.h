@@ -19,6 +19,11 @@ public:
     virtual    ~Char() {}
         ///< destructor
 
+    ctchar_t&   character() const xWARN_UNUSED_RV;
+        ///< get character
+    const xLOCALE& locale() const xWARN_UNUSED_RV;
+        ///< get locale
+
     bool_t      isAlphaNum() const xWARN_UNUSED_RV;
         ///< Check if ch is alphanumeric
     bool_t      isAlpha() const xWARN_UNUSED_RV;
