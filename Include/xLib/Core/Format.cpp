@@ -583,7 +583,7 @@ Format::_formatUnprintableChar(
 
     Char ch(a_value);
     if      ( xVALUE_RANGE(ch.character(), 0, 31) ) {
-        return xT('<') + ch.symbol() + xT('>');
+        return xT("<") + ch.symbol() + xT(">");
     }
     else if ( xVALUE_RANGE(ch.character(), 127, 256) ) {
         return xT("?");
