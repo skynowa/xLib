@@ -228,7 +228,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("333")));
     }
 
-#if 0
+#if 1
     xTEST_CASE("float")
     {
         cfloat_t value = 444.01f;
