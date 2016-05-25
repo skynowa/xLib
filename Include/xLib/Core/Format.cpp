@@ -534,7 +534,7 @@ Format::_formatFloat(
 {
     a_ss
         << std::setprecision( _floatPrecisionMax<T>() )
-        // << std::fixed
+        << std::showpoint
         << a_value;
 
     std::tstring_t value = a_ss.str();
