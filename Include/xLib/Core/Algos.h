@@ -35,6 +35,14 @@ public:
     static
     bool_t contains(std::ctstring_t &value, std::ctstring_t &infix);
         ///< contains
+    template<typename T>
+    static
+    bool_t isUnique(T first, T last);
+        ///< determining if sorted container has all unique elements
+    template<typename T>
+    static
+    bool_t isUniqueAll(const T &a_container);
+        ///< determining if sorted container has all unique elements
 
 private:
     Algos() {}
