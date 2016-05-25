@@ -27,7 +27,7 @@ MsgBox::_show_impl(
 {
     ExModalResult mrRv = mrUnknown;
 
-#if xHAVE_XCB && 0
+#if xHAVE_XCB
     xUNUSED(a_text);
     xUNUSED(a_title);
     xUNUSED(a_type);
