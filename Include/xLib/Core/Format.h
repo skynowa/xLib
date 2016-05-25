@@ -43,8 +43,6 @@ public:
     xFORMAT_STR_DECLARE(19)
     xFORMAT_STR_DECLARE(20)
 
-    xFORMAT_STR_DECLARE(21)
-
 private:
     static
     std::ctstring_t & _specifier() xWARN_UNUSED_RV;
