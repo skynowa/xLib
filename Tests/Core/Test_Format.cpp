@@ -543,8 +543,8 @@ Test_Format::unit()
             pszValue,
             pwszValue,
             asValue,
-            wsValue,
-            usValue);
+            wsValue);
+        m_sRv += Format::str(xT("{}"), usValue);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{true, q, w, e, 2, 3, 4, 5, 6, 7, 8, 9, 0.0, 0.1, 0.02, 0x7fff0fd3e100, aaa, bbb, ccc, ddd, zzz}")));
     #endif
     }

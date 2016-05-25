@@ -523,7 +523,6 @@
 #define xVA_TYPES_18  xVA_TYPES_17, class T18
 #define xVA_TYPES_19  xVA_TYPES_18, class T19
 #define xVA_TYPES_20  xVA_TYPES_19, class T20
-#define xVA_TYPES_21  xVA_TYPES_20, class T21
 
 #define xVA_VARS_1                 const T1  &a_v1
 #define xVA_VARS_2    xVA_VARS_1,  const T2  &a_v2
@@ -545,7 +544,6 @@
 #define xVA_VARS_18   xVA_VARS_17, const T18 &a_v18
 #define xVA_VARS_19   xVA_VARS_18, const T19 &a_v19
 #define xVA_VARS_20   xVA_VARS_19, const T20 &a_v20
-#define xVA_VARS_21   xVA_VARS_20, const T21 &a_v21
 
 #define xVA_VALUES_1                 v1
 #define xVA_VALUES_2  xVA_VALUES_1,  v2
@@ -567,7 +565,6 @@
 #define xVA_VALUES_18 xVA_VALUES_17, v18
 #define xVA_VALUES_19 xVA_VALUES_18, v19
 #define xVA_VALUES_20 xVA_VALUES_19, v20
-#define xVA_VALUES_21 xVA_VALUES_20, v21
 ///@}
 //-------------------------------------------------------------------------------------------------
 ///@name Formattong qualifiers
