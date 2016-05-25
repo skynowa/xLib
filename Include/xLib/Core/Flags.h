@@ -10,7 +10,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-template <class T>
+template<class T>
 class Flags
     /// bit mask flags
 {

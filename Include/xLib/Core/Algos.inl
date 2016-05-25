@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template <typename T>
+template<typename T>
 /* static */
 inline bool_t
 Algos::isInBounds(
@@ -31,7 +31,7 @@ Algos::isInBounds(
     return !(a_value < a_low) && !(a_high < a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template <typename T, typename R, typename ComparatorT>
+template<typename T, typename R, typename ComparatorT>
 /* static */
 inline bool_t
 Algos::isInBounds(
