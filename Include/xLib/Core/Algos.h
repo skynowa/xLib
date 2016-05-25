@@ -14,15 +14,15 @@ class Algos
     ///< Algorithms
 {
 public:
-    template <typename T>
+    template<typename T>
     static
     bool_t isInBounds(const T &value, const T &low, const T &high);
         ///< check value bounds
-    template <typename T, typename R, typename ComparatorT>
+    template<typename T, typename R, typename ComparatorT>
     static
     bool_t isInBounds(const T &value, const R &low, const R &high, ComparatorT comp);
         ///< check value bounds (with custom comparator)
-    template <typename T>
+    template<typename T>
     static
     void_t deleteAll(T &container);
         ///< delete all values
