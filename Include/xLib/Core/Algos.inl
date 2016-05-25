@@ -20,7 +20,6 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */
 inline bool_t
 Algos::isInBounds(
     const T &a_value,
@@ -32,7 +31,6 @@ Algos::isInBounds(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, typename R, typename ComparatorT>
-/* static */
 inline bool_t
 Algos::isInBounds(
     const T     &a_value,
@@ -45,7 +43,6 @@ Algos::isInBounds(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */
 inline void_t
 Algos::deleteAll(
     T &a_container
@@ -57,6 +54,25 @@ Algos::deleteAll(
     for ( ; it != itEnd; ++ it) {
         Utils::ptrDeleteT(*it);
     }
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline bool_t
+Algos::isUnique(
+    T a_it_first,
+    T a_it_last
+)
+{
+    return (std::adjacent_find(a_it_first, a_it_last) == a_it_last);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline bool_t
+Algos::isUniqueAll(
+    const T &a_container
+)
+{
+    return isUnique(a_container.begin(), a_container.end());
 }
 //-------------------------------------------------------------------------------------------------
 
