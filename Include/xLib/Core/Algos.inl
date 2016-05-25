@@ -35,10 +35,10 @@ template<typename T, typename R, typename ComparatorT>
 /* static */
 inline bool_t
 Algos::isInBounds(
-    const T    &a_value,
-    const R    &a_low,
-    const R    &a_high,
-    ComparatorT a_comp
+    const T     &a_value,
+    const R     &a_low,
+    const R     &a_high,
+    ComparatorT  a_comp
 )
 {
     return !a_comp(a_value, a_low) && a_comp(a_value, a_high);
