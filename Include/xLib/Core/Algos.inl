@@ -4,7 +4,12 @@
  */
 
 
-#include <xLib/Debug/StackTrace.h>
+#if !xOPTION_PROJECT_HEADER_ONLY
+    #include "Algos.h"
+#endif
+
+#include <xLib/Core/Utils.h>
+
 
 xNAMESPACE_BEGIN2(xlib, core)
 
@@ -14,35 +19,44 @@ xNAMESPACE_BEGIN2(xlib, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+template <typename T>
 /* static */
-bool_t
-Algos::startsWith(
-    std::ctstring_t &a_value,
-    std::ctstring_t &a_prefix
+inline bool_t
+Algos::isInBounds(
+    const T &a_value,
+    const T &a_low,
+    const T &a_high
 )
 {
-    return a_value.size() >= a_prefix.size() && a_value.substr(0, a_prefix.size()) == a_prefix;
+    return !(a_value < a_low) && !(a_high < a_value);
 }
 //-------------------------------------------------------------------------------------------------
+template <typename T, typename R, typename ComparatorT>
 /* static */
-bool_t
-Algos::endsWith(
-    std::ctstring_t &a_value,
-    std::ctstring_t &a_suffix
+inline bool_t
+Algos::isInBounds(
+    const T    &a_value,
+    const R    &a_low,
+    const R    &a_high,
+    ComparatorT a_comp
 )
 {
-    return a_value.size() >= a_suffix.size() &&
-        a_value.substr(a_value.size() - a_suffix.size(), a_suffix.size()) == a_suffix;
+    return !a_comp(a_value, a_low) && a_comp(a_value, a_high);
 }
 //-------------------------------------------------------------------------------------------------
+template<typename T>
 /* static */
-bool_t
-Algos::contains(
-    std::ctstring_t &a_value,
-    std::ctstring_t &a_infix
+inline void_t
+Algos::deleteAll(
+    T &a_container
 )
 {
-    return a_value.find(a_infix) != std::tstring_t::npos;
+    typename T::const_iterator it    = a_container.begin();
+    typename T::const_iterator itEnd = a_container.end();
+
+    for ( ; it != itEnd; ++ it) {
+        Utils::ptrDeleteT(*it);
+    }
 }
 //-------------------------------------------------------------------------------------------------
 
