@@ -6,7 +6,7 @@
 
 #include <xLib/Core/String.h>
 
-#if xHAVE_XCB && 0
+#if xHAVE_XCB
     #include <xcb/xcb.h>
 #endif
 
