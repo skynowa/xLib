@@ -30,9 +30,11 @@ String::cast(
         oss << a_value;
 
         sRv = oss.str();
-    } catch (std::ctostringstream_t::failure &) {
+    }
+    catch (std::ctostringstream_t::failure &) {
         sRv.clear();
-    } catch (...) {
+    }
+    catch (...) {
         sRv.clear();
     }
 
@@ -59,9 +61,11 @@ String::cast(
         oss << std::setbase(a_base) << std::uppercase << a_value;  // std::showbase
 
         sRv = oss.str();
-    } catch (std::ctostringstream_t::failure &) {
+    }
+    catch (std::ctostringstream_t::failure &) {
         sRv.clear();
-    } catch (...) {
+    }
+    catch (...) {
         sRv.clear();
     }
 
@@ -84,9 +88,11 @@ String::cast(
 
         iss.exceptions(std::tistringstream_t::failbit | std::tistringstream_t::badbit);
         iss >> rvT;
-    } catch (std::ctistringstream_t::failure &) {
+    }
+    catch (std::ctistringstream_t::failure &) {
         return T();
-    } catch (...) {
+    }
+    catch (...) {
         return T();
     }
 
@@ -111,9 +117,11 @@ String::cast(
 
         iss.exceptions(std::tistringstream_t::failbit | std::tistringstream_t::badbit);
         iss >> std::setbase(a_base) >> rvT;
-    } catch (std::ctistringstream_t::failure &) {
+    }
+    catch (std::ctistringstream_t::failure &) {
         return T();
-    } catch (...) {
+    }
+    catch (...) {
         return T();
     }
 
