@@ -171,7 +171,7 @@ xFORMAT_STR(20)
 
 template<typename T, std::size_t N>
 /* static */
-inline void
+inline void_t
 Format::_format(
     std::tstringstream_t   &a_ss,     ///< [out]
     const std::array<T, N> &a_value   ///< value
@@ -184,7 +184,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<typename T1, class T2>
 /* static */
-inline void
+inline void_t
 Format::_format(
     std::tstringstream_t    &a_ss,     ///< [out]
     const std::pair<T1, T2> &a_value   ///< value
@@ -199,7 +199,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
-inline void
+inline void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const std::vector<T> &a_value   ///< value
@@ -210,7 +210,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
-inline void
+inline void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const std::list<T>   &a_value   ///< value
@@ -221,7 +221,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
-inline void
+inline void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const std::set<T>    &a_value   ///< value
@@ -232,7 +232,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
-inline void
+inline void_t
 Format::_format(
     std::tstringstream_t   &a_ss,     ///< [out]
     const std::multiset<T> &a_value   ///< value
@@ -243,7 +243,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<typename T1, class T2>
 /* static */
-inline void
+inline void_t
 Format::_format(
     std::tstringstream_t   &a_ss,     ///< [out]
     const std::map<T1, T2> &a_value   ///< value
@@ -254,7 +254,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<typename T1, class T2>
 /* static */
-inline void
+inline void_t
 Format::_format(
     std::tstringstream_t        &a_ss,     ///< [out]
     const std::multimap<T1, T2> &a_value   ///< value
@@ -265,7 +265,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
-inline void
+inline void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const T              &a_value   ///< value
@@ -277,7 +277,7 @@ Format::_format(
 #if xLIB_QT
 
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const QString        &a_value   ///< value
@@ -302,7 +302,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 template<typename IteratorT>
 /* static */
-inline void
+inline void_t
 Format::_formatString(
     std::tstringstream_t &a_ss,     ///< [out]
     IteratorT             a_first,  ///< first iterator
@@ -316,7 +316,7 @@ Format::_formatString(
 //-------------------------------------------------------------------------------------------------
 template<typename IteratorT>
 /* static */
-inline void
+inline void_t
 Format::_formatRange(
     std::tstringstream_t &a_ss,     ///< [out]
     IteratorT             a_first,  ///< first iterator
@@ -340,7 +340,7 @@ Format::_formatRange(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
-inline void
+inline void_t
 Format::_formatContainer(
     std::tstringstream_t &a_ss,     ///< [out]
     const T              &a_value   ///< value
@@ -351,7 +351,7 @@ Format::_formatContainer(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
-inline void
+inline void_t
 Format::_formatFloat(
     std::tstringstream_t &a_ss,
     const T              &a_value
@@ -378,7 +378,7 @@ Format::_formatFloat(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
-inline int
+inline int_t
 Format::_floatPrecisionMax()
 {
 #if xOPTION_CPP11

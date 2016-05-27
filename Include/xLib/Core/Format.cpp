@@ -127,7 +127,7 @@ Format::_unprintableChar()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const bool           &a_value   ///< value
@@ -138,7 +138,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const char           &a_value   ///< value
@@ -152,7 +152,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const wchar_t        &a_value   ///< value
@@ -166,7 +166,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const unsigned char  &a_value   ///< value
@@ -180,7 +180,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const short          &a_value   ///< value
@@ -190,7 +190,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const unsigned short &a_value   ///< value
@@ -200,7 +200,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const int            &a_value   ///< value
@@ -210,7 +210,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const unsigned int   &a_value   ///< value
@@ -220,7 +220,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const long           &a_value   ///< value
@@ -230,7 +230,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const unsigned long  &a_value   ///< value
@@ -240,7 +240,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const long long      &a_value   ///< value
@@ -250,7 +250,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t     &a_ss,     ///< [out]
     const unsigned long long &a_value   ///< value
@@ -260,7 +260,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const float          &a_value   ///< value
@@ -270,7 +270,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const double         &a_value   ///< value
@@ -280,7 +280,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const long double    &a_value   ///< value
@@ -290,7 +290,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const void *          a_value   ///< value
@@ -306,7 +306,7 @@ Format::_format(
 #if xOPTION_CPP11
 
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const std::nullptr_t  a_value   ///< value
@@ -318,7 +318,7 @@ Format::_format(
 #endif
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const char *          a_value   ///< value
@@ -332,7 +332,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const wchar_t *       a_value   ///< value
@@ -346,7 +346,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const std::wstring   &a_value   ///< value
@@ -367,7 +367,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const std::string    &a_value   ///< value
@@ -381,7 +381,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+xINLINE void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const std::ustring_t &a_value   ///< value
