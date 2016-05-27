@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN2(xlib, internal)
 ///@{
 xNAMESPACE_BEGIN(enums)
 
-template<class crossT, class implT>
+template<typename crossT, class implT>
 struct Type
     ///< enum values
 {
@@ -30,7 +30,7 @@ struct Type
     implT  impl;   ///< implementation (native) value
 };
 
-template<class crossT, class implT, std::csize_t sizeT>
+template<typename crossT, class implT, std::csize_t sizeT>
 struct Types
     ///< convert implementation (native) <-> crossplatform values
 {

@@ -10,7 +10,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, patterns)
 
-template <class T, void (T::*MemberT)(void)>
+template<typename T, void (T::*MemberT)(void)>
 class Raii
     ///< RAII
 {

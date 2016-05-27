@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class T1, class T2>
+template<typename T1, class T2>
 inline std::tostream_t &
 operator << (
     std::tostream_t         &a_os,
@@ -33,7 +33,7 @@ operator << (
     return a_os;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 inline std::tostream_t &
 operator << (
     std::tostream_t      &a_os,
@@ -60,7 +60,7 @@ operator << (
     return a_os;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 inline std::tostream_t &
 operator << (
     std::tostream_t    &a_os,
@@ -103,7 +103,7 @@ operator << (
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 inline std::tostream_t &
 operator << (
     std::tostream_t   &a_os,
@@ -129,7 +129,7 @@ operator << (
     return a_os;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 inline std::tostream_t &
 operator << (
     std::tostream_t        &a_os,
@@ -155,7 +155,7 @@ operator << (
     return a_os;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T1, class T2>
+template<typename T1, class T2>
 inline std::tostream_t &
 operator << (
     std::tostream_t        &a_os,
@@ -184,7 +184,7 @@ operator << (
     return a_os;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T1, class T2>
+template<typename T1, class T2>
 inline std::tostream_t &
 operator << (
     std::tostream_t             &a_os,

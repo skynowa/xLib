@@ -7,7 +7,7 @@
 xNAMESPACE_BEGIN2(xlib, debug)
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 ErrorReport::ErrorReport(
     cExType          &a_type,
     std::ctstring_t  &a_var1,

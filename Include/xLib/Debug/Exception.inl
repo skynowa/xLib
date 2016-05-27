@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 Exception &
 Exception::operator << (
     const T &a_msgT

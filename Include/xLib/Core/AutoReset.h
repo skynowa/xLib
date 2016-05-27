@@ -10,7 +10,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-template <class T>
+template<typename T>
 class AutoReset
     ///< auto reset value
 {

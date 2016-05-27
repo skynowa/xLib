@@ -23,7 +23,7 @@ public:
     virtual       ~SystemLog();
         ///< destructor
 
-    template<class T>
+    template<typename T>
     SystemLog &    operator << (const T &valueT);
         ///< operator <<
 

@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-template<class T>
+template<typename T>
 xINLINE std::tstring_t
 String::cast(
     const T &a_value    ///< source value
@@ -42,7 +42,7 @@ String::cast(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-template<class T>
+template<typename T>
 xINLINE std::tstring_t
 String::cast(
     const T &a_value,   ///< source value
@@ -73,7 +73,7 @@ String::cast(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-template<class T>
+template<typename T>
 xINLINE T
 String::cast(
     std::ctstring_t &a_str  ///< source string
@@ -100,7 +100,7 @@ String::cast(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-template<class T>
+template<typename T>
 xINLINE T
 String::cast(
     std::ctstring_t &a_str, ///< source string

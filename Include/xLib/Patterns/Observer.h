@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, patterns)
 
-template <class T>
+template<typename T>
 class xNO_VTABLE IxObserver
     /// observer interface
 {
@@ -22,7 +22,7 @@ public:
     virtual void_t  update(cint_t &type, const T &message) = 0;
 };
 //-------------------------------------------------------------------------------------------------
-template <class T>
+template<typename T>
 class Observer
     /// observer
 {

@@ -10,7 +10,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, patterns)
 
-template <class T>
+template<typename T>
 class Singleton
     /// singleton
 {

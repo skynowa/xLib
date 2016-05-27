@@ -18,14 +18,14 @@ xNAMESPACE_BEGIN2(xlib, core)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template <class T>
+template<typename T>
 xINLINE T &
 operator ++ (T &a_value)
 {
     return a_value = static_cast<T>(a_value + 1);
 }
 //-------------------------------------------------------------------------------------------------
-template <class T>
+template<typename T>
 xINLINE T &
 operator -- (T &a_value)
 {

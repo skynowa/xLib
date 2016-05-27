@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 std::tstring_t
 Type::rawName(
@@ -36,7 +36,7 @@ Type::rawName(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 std::tstring_t
 Type::name(
@@ -64,7 +64,7 @@ Type::name(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T1, class T2>
+template<typename T1, class T2>
 /* static */
 bool_t
 Type::isEquals(

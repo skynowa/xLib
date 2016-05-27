@@ -82,7 +82,7 @@ xPLATFORM_IMPL:
     long_t         _next_impl();
 };
 //-------------------------------------------------------------------------------------------------
-template <class RandomValue, class SeedPolicy>
+template<typename RandomValue, class SeedPolicy>
 class Random
     /// random
 {
@@ -94,13 +94,13 @@ public:
 
     bool_t     nextBool();
         ///< get bool_t value
-    template <class T>
+    template<typename T>
     T          nextChar();
         ///< get character value between min and max
-    template <class T>
+    template<typename T>
     T          nextInt(const T &min, const T &max);
         ///< get integer value between min and max
-    template <class T>
+    template<typename T>
     T          nextFloat(const T &min, const T &max);
        ///< get float value between min and max
 

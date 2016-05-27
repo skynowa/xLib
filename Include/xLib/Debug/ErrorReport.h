@@ -32,7 +32,7 @@ public:
                    ErrorReport(culong_t &nativeError, const SourceInfo &sourceInfo,
                        std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< constructor (for Exception)
-                   template<class T>
+                   template<typename T>
                    ErrorReport(cExType &type, std::ctstring_t &var1, std::ctstring_t &var2,
                        const T &var1ValueT, const T &var2ValueT, std::ctstring_t &exprSign,
                        culong_t &nativeError, const SourceInfo &sourceInfo,

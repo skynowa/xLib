@@ -18,13 +18,13 @@ xNAMESPACE_BEGIN2(xlib, sync)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 Mutex ThreadPool<T>::_s_mutex;
 
-template<class T>
+template<typename T>
 Trace  ThreadPool<T>::_s_log;
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 ThreadPool<T>::ThreadPool(
     cbool_t &a_isPaused,
     cbool_t &a_isAutoDelete,
@@ -51,7 +51,7 @@ ThreadPool<T>::ThreadPool(
     /*LOG*/_s_log.write(xT("ThreadPool: construct"));
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 ThreadPool<T>::~ThreadPool()
 {
     /*LOG*/_s_log.write(xT("ThreadPool: destroy"));
@@ -65,7 +65,7 @@ ThreadPool<T>::~ThreadPool()
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 ThreadPool<T>::groupCreate(
     cuint_t          &a_stackSize,
@@ -96,7 +96,7 @@ ThreadPool<T>::groupCreate(
     create(false, 0U, xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 ThreadPool<T>::groupResume()
 {
@@ -119,7 +119,7 @@ ThreadPool<T>::groupResume()
     resume();
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 ThreadPool<T>::groupPause()
 {
@@ -142,7 +142,7 @@ ThreadPool<T>::groupPause()
     }
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 ThreadPool<T>::groupExit(
     culong_t &a_timeoutMsec
@@ -172,7 +172,7 @@ ThreadPool<T>::groupExit(
     }
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 ThreadPool<T>::groupKill(
     culong_t &a_timeoutMsec
@@ -199,7 +199,7 @@ ThreadPool<T>::groupKill(
     kill(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 ThreadPool<T>::groupWait(
     culong_t &a_timeoutMsec
@@ -232,7 +232,7 @@ ThreadPool<T>::groupWait(
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 size_t
 ThreadPool<T>::maxTasks() const
 {
@@ -241,7 +241,7 @@ ThreadPool<T>::maxTasks() const
     return _maxRunningTasks;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 ThreadPool<T>::setMaxTasks(
     std::csize_t &a_num
@@ -303,7 +303,7 @@ ThreadPool<T>::setMaxTasks(
     xTEST_FAIL;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 size_t
 ThreadPool<T>::numTasks() const
 {
@@ -312,7 +312,7 @@ ThreadPool<T>::numTasks() const
     return _numTasks;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 ThreadPool<T>::setNumTasks(
     std::csize_t &a_num
@@ -323,7 +323,7 @@ ThreadPool<T>::setNumTasks(
     _numTasks = a_num;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 bool_t
 ThreadPool<T>::isEmpty() const
 {
@@ -337,7 +337,7 @@ ThreadPool<T>::isEmpty() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 bool_t
 ThreadPool<T>::isFull() const
 {
@@ -353,7 +353,7 @@ ThreadPool<T>::isFull() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 size_t
 ThreadPool<T>::size() const
 {
@@ -375,7 +375,7 @@ ThreadPool<T>::size() const
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 uint_t
 ThreadPool<T>::onRun(
     void_t *a_param
@@ -447,7 +447,7 @@ ThreadPool<T>::onRun(
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 ThreadPool<T>::_taskAdd(
     Thread *a_item
@@ -473,7 +473,7 @@ ThreadPool<T>::_taskAdd(
     }
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 ThreadPool<T>::_taskRemove(
     Thread *a_item
@@ -500,7 +500,7 @@ ThreadPool<T>::_taskRemove(
     xTEST_PTR(task);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 ThreadPool<T>::_onEnterTask(
     Thread *a_sender
@@ -514,7 +514,7 @@ ThreadPool<T>::_onEnterTask(
     /*LOG*///_s_log.write(xT("_vOnEnterTask: #%i"), a_pthTask->index);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 ThreadPool<T>::_onExitTask(
     Thread *a_sender

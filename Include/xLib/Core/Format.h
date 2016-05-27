@@ -80,32 +80,32 @@ private:
     static void _format(std::tstringstream_t &ss, const std::ustring_t &value);
 
 #if xOPTION_CPP11
-    template<class T, std::size_t N>
+    template<typename T, std::size_t N>
     static void _format(std::tstringstream_t &ss, const std::array<T, N> &value);
 #endif
 
-    template<class T1, class T2>
+    template<typename T1, class T2>
     static void _format(std::tstringstream_t &ss, const std::pair<T1, T2> &value);
 
-    template<class T>
+    template<typename T>
     static void _format(std::tstringstream_t &ss, const std::vector<T> &value);
 
-    template<class T>
+    template<typename T>
     static void _format(std::tstringstream_t &ss, const std::list<T> &value);
 
-    template<class T>
+    template<typename T>
     static void _format(std::tstringstream_t &ss, const std::set<T> &value);
 
-    template<class T>
+    template<typename T>
     static void _format(std::tstringstream_t &ss, const std::multiset<T> &value);
 
-    template<class T1, class T2>
+    template<typename T1, class T2>
     static void _format(std::tstringstream_t &ss, const std::map<T1, T2> &value);
 
-    template<class T1, class T2>
+    template<typename T1, class T2>
     static void _format(std::tstringstream_t &ss, const std::multimap<T1, T2> &value);
 
-    template<class T>
+    template<typename T>
     static void _format(std::tstringstream_t &ss, const T &value);
         ///< format other types with overload std::tostream_t::operator <<
 
@@ -117,22 +117,22 @@ private:
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)
 
-    template<class IteratorT>
+    template<typename IteratorT>
     static void _formatString(std::tstringstream_t &ss, IteratorT first, IteratorT last);
 
-    template<class IteratorT>
+    template<typename IteratorT>
     static void _formatRange(std::tstringstream_t &ss, IteratorT first, IteratorT last);
 
-    template<class T>
+    template<typename T>
     static void _formatContainer(std::tstringstream_t &ss, const T &value);
 
-    template<class T>
+    template<typename T>
     static void _formatFloat(std::tstringstream_t &ss, const T &value);
 
-    template<class T>
+    template<typename T>
     static int  _floatPrecisionMax() xWARN_UNUSED_RV;
 
-    template<class T>
+    template<typename T>
     static std::tstring_t _formatUnprintableChar(const T &value) xWARN_UNUSED_RV;
 };
 
