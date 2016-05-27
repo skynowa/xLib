@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Char::Char(
-    cint_t        &a_ch,
+    cint_t         &a_ch,
     const xTLOCALE &a_locale /*  = std::locale() */
 ) :
     _ch    (a_ch),
