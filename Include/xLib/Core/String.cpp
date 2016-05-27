@@ -747,7 +747,7 @@ StringCI::find(
     std::ctstring_t &a_str,                     ///< source string
     std::ctstring_t &a_target,                  ///< target string
     std::csize_t    &a_pos    /* = 0 */,        ///< start position
-    const xLOCALE   &a_locale /* = xLOCALE() */ ///< locale
+    const xTLOCALE   &a_locale /* = xTLOCALE() */ ///< locale
 )
 {
     xTEST_NA(a_str);
@@ -769,7 +769,7 @@ xINLINE bool_t
 StringCI::compare(
     std::ctstring_t &a_str1,                    ///< source string
     std::ctstring_t &a_str2,                    ///< target string
-    const xLOCALE   &a_locale /* = xLOCALE() */ ///< locale
+    const xTLOCALE   &a_locale /* = xTLOCALE() */ ///< locale
 )
 {
     xTEST_NA(a_str1);

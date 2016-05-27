@@ -14,14 +14,14 @@ class Char
     /// character
 {
 public:
-    explicit    Char(cint_t &ch, const xLOCALE &locale = xLOCALE());
+    explicit    Char(cint_t &ch, const xTLOCALE &locale = xTLOCALE());
         ///< constructor
     virtual    ~Char() {}
         ///< destructor
 
     cint_t&     character() const xWARN_UNUSED_RV;
         ///< get character
-    const xLOCALE& locale() const xWARN_UNUSED_RV;
+    const xTLOCALE& locale() const xWARN_UNUSED_RV;
         ///< get locale
 
     bool_t      isAlphaNum() const xWARN_UNUSED_RV;
@@ -58,7 +58,7 @@ public:
 
 private:
     cint_t  _ch;
-    xLOCALE _locale;
+    xTLOCALE _locale;
 
     xNO_COPY_ASSIGN(Char)
 };

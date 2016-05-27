@@ -89,7 +89,7 @@ String::_toLowerCase_impl(
 {
     std::tstring_t sRv(a_str);
 
-    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), ToLower( xLOCALE() ));
+    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), ToLower( xTLOCALE() ));
 
     return sRv;
 }
@@ -103,7 +103,7 @@ String::_toUpperCase_impl(
 {
     std::tstring_t sRv(a_str);
 
-    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), ToUpper( xLOCALE() ));
+    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), ToUpper( xTLOCALE() ));
 
     return sRv;
 }
@@ -125,7 +125,7 @@ xINLINE bool_t
 StringCI::_compare_impl(
     std::ctstring_t &a_str1,                    ///< source string
     std::ctstring_t &a_str2,                    ///< target string
-    const xLOCALE   &a_locale /* = xLOCALE() */ ///< locale
+    const xTLOCALE   &a_locale /* = xTLOCALE() */ ///< locale
 )
 {
     bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(), CompareCI(a_locale));

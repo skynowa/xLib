@@ -14,7 +14,7 @@
 
     #define xTFPRINTF     std::fwprintf
     #define xTASCTIME     std::_wasctime
-    #define xLOCALE       ::locale_t
+    #define xTLOCALE      ::locale_t
 
 #if   xENV_WIN
     #define xTMAIN        wmain
