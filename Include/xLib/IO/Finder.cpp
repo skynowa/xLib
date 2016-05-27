@@ -9,7 +9,6 @@
 #endif
 
 #include <xLib/Test/Test.h>
-#include <xLib/Core/Char.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Utils.h>

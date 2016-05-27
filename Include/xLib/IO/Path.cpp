@@ -8,7 +8,6 @@
     #include "Path.h"
 #endif
 
-#include <xLib/Core/Char.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>

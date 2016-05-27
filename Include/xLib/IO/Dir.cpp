@@ -8,7 +8,6 @@
     #include "Dir.h"
 #endif
 
-#include <xLib/Core/Char.h>
 #include <xLib/Core/String.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/IO/Path.h>

@@ -17,7 +17,7 @@ Dir::_isRoot_impl() const
 {
     xCHECK_RET(3 != dirPath().size(), false);
 
-    bool_t bRv1 = Char::isAlpha(dirPath().at(0));
+    bool_t bRv1 = CharT::isAlpha(dirPath().at(0));
     bool_t bRv2 = (dirPath().at(1) == Const::colon().at(0));
     bool_t bRv3 = (dirPath().at(2) == Const::winSlash().at(0) ||
                    dirPath().at(2) == Const::unixSlash().at(0));
