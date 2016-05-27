@@ -78,14 +78,15 @@ Manager::run()
         return false);
 
     xCHECK_DO(_data.isUseTracing,
-        Trace() << xT("\n");
-        Trace() << xT("Manager: start all...");
-        Trace() << xT("Manager: module path: ") << Path::exe();
-        Trace() << xT("Manager: ")
-                << xT("all loops: ")     << _data.allLoops
-                << xT(", unit loops: ")  << _data.unitLoops
-                << xT(", case loops: ")  << _data.caseLoops
-                << xT(", unit number: ") << _units.size());
+        Trace()
+            << xT("\n")
+            << xT("Manager: start all...\n")
+            << xT("Manager: module path: ") << Path::exe() << xT("\n")
+            << xT("Manager: ")
+            << xT("all loops: ")     << _data.allLoops
+            << xT(", unit loops: ")  << _data.unitLoops
+            << xT(", case loops: ")  << _data.caseLoops
+            << xT(", unit number: ") << _units.size());
 
     for (std::size_t i = 0; i < _data.allLoops; ++ i) {
         xFOR_EACH_CONST(units_t, it, _units) {
