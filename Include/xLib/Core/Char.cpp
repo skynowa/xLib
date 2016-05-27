@@ -29,7 +29,7 @@ Char::Char(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE cint_t &
+xINLINE int_t
 Char::character() const
 {
     return _ch;
