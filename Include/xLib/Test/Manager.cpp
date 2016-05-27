@@ -11,6 +11,7 @@
 #include <xLib/Core/Type.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Functors.h>
+#include <xLib/Core/Format.h>
 #include <xLib/IO/Path.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/System/ProcessInfo.h>
@@ -79,14 +80,12 @@ Manager::run()
 
     xCHECK_DO(_data.isUseTracing,
         Trace()
-            << xT("\n")
-            << xT("Manager: start all...\n")
-            << xT("Manager: module path: ") << Path::exe() << xT("\n")
-            << xT("Manager: ")
-            << xT("all loops: ")     << _data.allLoops
-            << xT(", unit loops: ")  << _data.unitLoops
-            << xT(", case loops: ")  << _data.caseLoops
-            << xT(", unit number: ") << _units.size());
+            << Format::str(
+                xT("\n")
+                xT("Manager: start all...\n")
+                xT("Manager: module path: {}\n")
+                xT("Manager: all loops: {}, unit loops: {}, case loops: {}, unit number: {}"),
+                Path::exe(), _data.allLoops, _data.unitLoops, _data.caseLoops, _units.size()));
 
     for (std::size_t i = 0; i < _data.allLoops; ++ i) {
         xFOR_EACH_CONST(units_t, it, _units) {
@@ -185,11 +184,8 @@ Manager::_construct(
 
     xCHECK_DO(_data.isUseTracing,
         Trace()
-            << xT("\n\nManager: *** ") << xLIB_NAME
-            << xT(" v.")               << xLIB_VERSION << xT(" ") << xLIB_VERSION_SUFFIX
-            << xT(" author: ")         << xLIB_AUTHOR
-            << xT(" date: ")           << xLIB_DATE
-            << xT(" ***"));
+            << Format::str(xT("\n\nManager: *** {} v.{} {} author: {} date: {} ***"),
+                xLIB_NAME, xLIB_VERSION, xLIB_VERSION_SUFFIX, xLIB_AUTHOR, xLIB_DATE));
 }
 //-------------------------------------------------------------------------------------------------
 
