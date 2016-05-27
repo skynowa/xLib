@@ -57,8 +57,8 @@ public:
         ///< char as symbol
 
 private:
-    cint_t  _ch;
-    xTLOCALE _locale;
+    const cint_t   &_ch;
+    const xTLOCALE &_locale;
 
     xNO_COPY_ASSIGN(Char)
 };
