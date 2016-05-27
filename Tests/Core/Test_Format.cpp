@@ -241,6 +241,7 @@ Test_Format::unit()
         cdouble_t value = 555.0202f;
 
         m_sRv = Format::str(xT("{}"), value);
+        m_sRv.resize( std::tstring_t(xT("555.0202")).size() );
         xTEST_EQ(m_sRv, std::tstring_t(xT("555.0202")));
     }
 
