@@ -134,7 +134,7 @@ xINLINE bool_t
 StringCI::_compare_impl(
     std::ctstring_t &a_str1,                    ///< source string
     std::ctstring_t &a_str2,                    ///< target string
-    const xLOCALE   &a_locale /* = xLOCALE() */ ///< locale
+    const xTLOCALE   &a_locale /* = xTLOCALE() */ ///< locale
 )
 {
     int_t iRv = ::lstrcmpi(a_str1.c_str(), a_str2.c_str());

@@ -15,7 +15,7 @@
     #define xTMAIN        main
     #define xTFPRINTF     std::fprintf
     #define xTASCTIME     std::asctime
-    #define xLOCALE       std::locale
+    #define xTLOCALE       std::locale
     #define xTSETLOCALE   std::setlocale
     #define xTFOPEN       std::fopen
     #define xTFREOPEN     std::freopen
