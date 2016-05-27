@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */ xINLINE
+/* static */ inline
 void_t
 Utils::ptrDeleteT(
     T * &a_ptr
@@ -30,7 +30,7 @@ Utils::ptrDeleteT(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */ xINLINE
+/* static */ inline
 void_t
 Utils::arrayDeleteT(
     T * &a_ptr
@@ -43,7 +43,7 @@ Utils::arrayDeleteT(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */ xINLINE
+/* static */ inline
 void_t
 Utils::ptrAssignT(
     T *     &a_ptr,
@@ -56,7 +56,7 @@ Utils::ptrAssignT(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, std::csize_t arraySize>
-/* static */ xINLINE
+/* static */ inline
 size_t
 Utils::arraySizeT(
     const T (&)[arraySize]
@@ -65,7 +65,7 @@ Utils::arraySizeT(
     return arraySize;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */ xINLINE
+/* static */ inline
 void_t
 Utils::memoryZero(
     void_t       *a_ptr,
@@ -79,7 +79,7 @@ Utils::memoryZero(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, std::csize_t arraySize>
-/* static */ xINLINE
+/* static */ inline
 void_t
 Utils::arrayZeroT(
     T (&a_arrayT)[arraySize]
@@ -89,7 +89,7 @@ Utils::arrayZeroT(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */ xINLINE
+/* static */ inline
 void_t
 Utils::structZeroT(
     T &a_object
@@ -100,7 +100,7 @@ Utils::structZeroT(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */ xINLINE
+/* static */ inline
 void_t
 Utils::bufferFreeT(
     T * &a_ptr
@@ -112,7 +112,7 @@ Utils::bufferFreeT(
     a_ptr = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */ xINLINE
+/* static */ inline
 void_t
 Utils::fileClose(
     FILE * &a_fileHandle
@@ -125,7 +125,7 @@ Utils::fileClose(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */ xINLINE
+/* static */ inline
 const T &
 Utils::maxT(
     const T &a_value1,
@@ -136,7 +136,7 @@ Utils::maxT(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */ xINLINE
+/* static */ inline
 const T &
 Utils::minT(
     const T &a_value1,
@@ -147,7 +147,7 @@ Utils::minT(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */ xINLINE
+/* static */ inline
 void_t
 Utils::swapT(
     T &a_value1,
@@ -161,7 +161,7 @@ Utils::swapT(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename ToT, class FromT>
-/* static */ xINLINE
+/* static */ inline
 ToT
 Utils::reinterpretCastT(
     const FromT &a_ptr
@@ -173,7 +173,7 @@ Utils::reinterpretCastT(
     return ResT;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */ xINLINE
+/* static */ inline
 bool_t
 Utils::doubleIsEqual(
     const double &x,
@@ -185,7 +185,7 @@ Utils::doubleIsEqual(
     return std::abs(x - y) <= (epsilon * std::abs(x));
 }
 //-------------------------------------------------------------------------------------------------
-/* static */ xINLINE
+/* static */ inline
 double
 Utils::roundDouble(
     cdouble_t &a_value
@@ -205,7 +205,7 @@ Utils::roundDouble(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */ xINLINE
+/* static */ inline
 T
 Utils::roundIntT(
     cdouble_t &a_value
@@ -226,7 +226,7 @@ Utils::roundIntT(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, class T2>
-/* static */ xINLINE
+/* static */ inline
 double
 Utils::safeDivT(
     const T1 &a_value1,
@@ -245,7 +245,7 @@ Utils::safeDivT(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */ xINLINE T
+/* static */ inline T
 Utils::enumIncT(
     const T &a_value
 )
@@ -254,7 +254,7 @@ Utils::enumIncT(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */  xINLINE T
+/* static */  inline T
 Utils::enumDecT(
     const T &a_value
 )

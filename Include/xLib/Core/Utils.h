@@ -16,95 +16,95 @@ class Utils
 public:
     template<typename T>
     static
-    inline void_t    ptrDeleteT(T * &ptr);
+    void_t    ptrDeleteT(T * &ptr);
         ///< delete object by pointer
 
     template<typename T>
     static
-    inline void_t    arrayDeleteT(T * &ptr);
+    void_t    arrayDeleteT(T * &ptr);
         ///< delete array by pointer
 
     template<typename T>
     static
-    inline void_t    ptrAssignT(T * &ptr, const T &value);
+    void_t    ptrAssignT(T * &ptr, const T &value);
         ///< assign pointer
 
     template<typename T, std::csize_t arraySize>
     static
-    inline size_t    arraySizeT(const T (&)[arraySize]) xWARN_UNUSED_RV;
+    size_t    arraySizeT(const T (&)[arraySize]) xWARN_UNUSED_RV;
         ///< get array size
 
     static
-    inline void_t    memoryZero(void_t *ptr, std::csize_t &sizeBytes);
+    void_t    memoryZero(void_t *ptr, std::csize_t &sizeBytes);
         ///< zero memory
 
     template<typename T, std::csize_t arraySize>
     static
-    inline void_t    arrayZeroT(T (&arrayT)[arraySize]);
+    void_t    arrayZeroT(T (&arrayT)[arraySize]);
         ///< array zero
 
     template<typename T>
     static
-    inline void_t    structZeroT(T &object);
+    void_t    structZeroT(T &object);
         ///< zero buffer memory
 
     template<typename T>
     static
-    inline void_t    bufferFreeT(T * &ptr);
+    void_t    bufferFreeT(T * &ptr);
         ///< free buffer memory
 
     static
-    inline void_t    fileClose(FILE * &fileHandle);
+    void_t    fileClose(FILE * &fileHandle);
         ///< close file stream (FILE *)
 
     template<typename T>
     static
-    inline const T & maxT(const T &value1 , const T &value2) xWARN_UNUSED_RV;
+    const T & maxT(const T &value1 , const T &value2) xWARN_UNUSED_RV;
         ///< get max value
 
     template<typename T>
     static
-    inline const T & minT(const T &value1 , const T &value2) xWARN_UNUSED_RV;
+    const T & minT(const T &value1 , const T &value2) xWARN_UNUSED_RV;
         ///< get min value
 
     template<typename T>
     static
-    inline void_t    swapT(T &value1, T &value2);
+    void_t    swapT(T &value1, T &value2);
         ///< swap variables
 
     template<typename ToT, class FromT>
     static
-    inline ToT       reinterpretCastT(const FromT &ptr) xWARN_UNUSED_RV;
+    ToT       reinterpretCastT(const FromT &ptr) xWARN_UNUSED_RV;
         ///< allows any pointer to be converted into any other pointer type
 
     static
-    inline bool_t    doubleIsEqual(const double &x, const double &y);
+    bool_t    doubleIsEqual(const double &x, const double &y);
         ///< compare double values
 
     static
-    inline double    roundDouble(cdouble_t &value) xWARN_UNUSED_RV;
+    double    roundDouble(cdouble_t &value) xWARN_UNUSED_RV;
         ///< round double value to the integer part
 
     template<typename T>
     static
-    inline T         roundIntT(cdouble_t &value) xWARN_UNUSED_RV;
+    T         roundIntT(cdouble_t &value) xWARN_UNUSED_RV;
         ///< round double value to long_t
 
     template<typename T1, class T2>
     static
-    inline double    safeDivT(const T1 &value1, const T2 &value2) xWARN_UNUSED_RV;
+    double    safeDivT(const T1 &value1, const T2 &value2) xWARN_UNUSED_RV;
         ///< safe division
 
     // TODO: enumIncT - depreciated
     template<typename T>
     static
-    inline T         enumIncT(const T &value) xWARN_UNUSED_RV;
+    T         enumIncT(const T &value) xWARN_UNUSED_RV;
         ///< increment enumerator
 
     // TODO: enumIncT - depreciated
     template<typename T>
     static
-    inline T         enumDecT(const T &value) xWARN_UNUSED_RV;
+    T         enumDecT(const T &value) xWARN_UNUSED_RV;
         ///< decrement enumerator
 
 private:
