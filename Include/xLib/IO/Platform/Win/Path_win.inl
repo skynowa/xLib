@@ -198,17 +198,17 @@ Path::_isNameValid_impl(
     {
         std::tstring_t::const_iterator cit;
 
-        cit = std::find_if(sRv.begin(), sRv.end(), Char::isControl);
+        cit = std::find_if(sRv.begin(), sRv.end(), CharT::isControl);
         if (cit != sRv.end()) {
             xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
 
             for ( ; ; ) {
                 std::tstring_t::iterator itNewEnd;
 
-                itNewEnd = std::remove_if(sRv.begin(), sRv.end(), Char::isControl);
+                itNewEnd = std::remove_if(sRv.begin(), sRv.end(), CharT::isControl);
                 sRv.erase(itNewEnd, sRv.end());
 
-                cit = std::find_if(sRv.begin(), sRv.end(), Char::isControl);
+                cit = std::find_if(sRv.begin(), sRv.end(), CharT::isControl);
                 xCHECK_DO(cit == sRv.end(), break);
             }
 
@@ -263,7 +263,7 @@ xINLINE bool_t
 Path::_isAbsolute_impl() const
 {
     xCHECK_RET(filePath().size() == 1, false);
-    xCHECK_RET(Char::isAlpha(filePath().at(0)) && Const::colon().at(0) == filePath().at(1), true);
+    xCHECK_RET(CharT::isAlpha(filePath().at(0)) && Const::colon().at(0) == filePath().at(1), true);
 
     return false;
 }

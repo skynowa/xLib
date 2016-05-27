@@ -223,7 +223,7 @@ Debugger::_stdoutPlain(
 
 #if xOPTION_DEBUG_DIALOG
     ctchar_t    cmd = static_cast<ctchar_t>( std::tcin.get() );   std::tcin.ignore();
-    EConsoleCmd cmRv = static_cast<EConsoleCmd>( Char(cmd).toLower() );
+    EConsoleCmd cmRv = static_cast<EConsoleCmd>( CharT(cmd).toLower() );
 #else
     EConsoleCmd cmRv = cmIgnore;
 #endif

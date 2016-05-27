@@ -12,7 +12,6 @@
 #include <xLib/Core/Functors.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>
-#include <xLib/Core/Char.h>
 #include <xLib/Core/Array.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Test/Test.h>
