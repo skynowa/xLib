@@ -57,7 +57,8 @@ struct CompareCI
     bool_t operator () (
         const std::tstring_t::value_type &a_ch1, const std::tstring_t::value_type &a_ch2) const
     {
-        return Char(a_ch1, _locale).toLower() == Char(a_ch2, _locale).toLower();
+        return Char<std::tstring_t::value_type>(a_ch1, _locale).toLower() ==
+            Char<std::tstring_t::value_type>(a_ch2, _locale).toLower();
     }
 
     bool_t operator () (
