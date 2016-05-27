@@ -19,7 +19,7 @@ public:
     virtual    ~Char() {}
         ///< destructor
 
-    cint_t&     character() const xWARN_UNUSED_RV;
+    int_t       character() const xWARN_UNUSED_RV;
         ///< get character
     const xTLOCALE& locale() const xWARN_UNUSED_RV;
         ///< get locale
@@ -57,7 +57,7 @@ public:
         ///< char as symbol
 
 private:
-    const cint_t   &_ch;
+    ctchar_t        _ch;
     const xTLOCALE &_locale;
 
     xNO_COPY_ASSIGN(Char)
