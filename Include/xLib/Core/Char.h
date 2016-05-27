@@ -64,6 +64,11 @@ private:
     xNO_COPY_ASSIGN(Char)
 };
 
+typedef Char<char>    CharA;
+typedef Char<wchar_t> CharW;
+typedef Char<uchar_t> CharU;
+typedef Char<tchar_t> CharT;
+
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #include "Char.inl"
