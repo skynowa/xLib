@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */ xINLINE
 void_t
 Utils::ptrDeleteT(
@@ -29,7 +29,7 @@ Utils::ptrDeleteT(
     delete tmp; tmp = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */ xINLINE
 void_t
 Utils::arrayDeleteT(
@@ -42,7 +42,7 @@ Utils::arrayDeleteT(
     delete [] tmp; tmp = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */ xINLINE
 void_t
 Utils::ptrAssignT(
@@ -55,7 +55,7 @@ Utils::ptrAssignT(
     *a_ptr = a_value;
 }
 //-------------------------------------------------------------------------------------------------
-template <class T, std::csize_t arraySize>
+template<typename T, std::csize_t arraySize>
 /* static */ xINLINE
 size_t
 Utils::arraySizeT(
@@ -78,7 +78,7 @@ Utils::memoryZero(
     xUNUSED(pvRv);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T, std::csize_t arraySize>
+template<typename T, std::csize_t arraySize>
 /* static */ xINLINE
 void_t
 Utils::arrayZeroT(
@@ -88,7 +88,7 @@ Utils::arrayZeroT(
     (void_t)std::fill_n(&a_arrayT[0], arraySize, T());
 }
 //-------------------------------------------------------------------------------------------------
-template <class T>
+template<typename T>
 /* static */ xINLINE
 void_t
 Utils::structZeroT(
@@ -99,7 +99,7 @@ Utils::structZeroT(
     xUNUSED(pvRv);
 }
 //-------------------------------------------------------------------------------------------------
-template <class T>
+template<typename T>
 /* static */ xINLINE
 void_t
 Utils::bufferFreeT(
@@ -124,7 +124,7 @@ Utils::fileClose(
     a_fileHandle = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
-template <class T>
+template<typename T>
 /* static */ xINLINE
 const T &
 Utils::maxT(
@@ -135,7 +135,7 @@ Utils::maxT(
     return (a_value1 > a_value2) ? a_value1 : a_value2;
 }
 //-------------------------------------------------------------------------------------------------
-template <class T>
+template<typename T>
 /* static */ xINLINE
 const T &
 Utils::minT(
@@ -146,7 +146,7 @@ Utils::minT(
     return (a_value1 < a_value2) ? a_value1 : a_value2;
 }
 //-------------------------------------------------------------------------------------------------
-template <class T>
+template<typename T>
 /* static */ xINLINE
 void_t
 Utils::swapT(
@@ -160,7 +160,7 @@ Utils::swapT(
     a_value2 = temp;
 }
 //-------------------------------------------------------------------------------------------------
-template <class ToT, class FromT>
+template<typename ToT, class FromT>
 /* static */ xINLINE
 ToT
 Utils::reinterpretCastT(
@@ -204,7 +204,7 @@ Utils::roundDouble(
     return dRv;
 }
 //-------------------------------------------------------------------------------------------------
-template <class T>
+template<typename T>
 /* static */ xINLINE
 T
 Utils::roundIntT(
@@ -225,7 +225,7 @@ Utils::roundIntT(
     return iRv;
 }
 //-------------------------------------------------------------------------------------------------
-template <class T1, class T2>
+template<typename T1, class T2>
 /* static */ xINLINE
 double
 Utils::safeDivT(
@@ -244,7 +244,7 @@ Utils::safeDivT(
     return dRv;
 }
 //-------------------------------------------------------------------------------------------------
-template <class T>
+template<typename T>
 /* static */ xINLINE T
 Utils::enumIncT(
     const T &a_value
@@ -253,7 +253,7 @@ Utils::enumIncT(
     return static_cast<T>( static_cast<longlong_t>( a_value ) + 1 );
 }
 //-------------------------------------------------------------------------------------------------
-template <class T>
+template<typename T>
 /* static */  xINLINE T
 Utils::enumDecT(
     const T &a_value

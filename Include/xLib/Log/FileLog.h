@@ -36,7 +36,7 @@ public:
     std::tstring_t filePath() const xWARN_UNUSED_RV;
         ///< get log path
 
-    template<class T>
+    template<typename T>
     FileLog &      operator << (const T &valueT);
         ///< operator <<
 

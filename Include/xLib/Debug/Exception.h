@@ -21,7 +21,7 @@ public:
 
     std::ctstring_t & what() const xWARN_UNUSED_RV;
         ///< get message
-    template<class T>
+    template<typename T>
     Exception &       operator << (const T &msgT);
         ///< put message
 

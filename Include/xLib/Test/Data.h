@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xlib, test)
 //-------------------------------------------------------------------------------------------------
 ///@name  data (use 1 value)
 ///@{
-template <class T1>
+template<typename T1>
 struct Data1
     /// test data
 {
@@ -40,7 +40,7 @@ typedef Data1<std::ustring_t>  data1_ustring_t;
 //-------------------------------------------------------------------------------------------------
 ///@name  data (use 2 values)
 ///@{
-template <class T1, class T2>
+template<typename T1, class T2>
 struct Data2
     /// test data
 {
@@ -69,7 +69,7 @@ typedef Data2<std::tstring_t, std::ustring_t>  data2_ustring_t;
 //-------------------------------------------------------------------------------------------------
 ///@name  data (use 3 values)
 ///@{
-template <class T1, class T2, class T3>
+template<typename T1, class T2, class T3>
 struct Data3
     /// test data
 {

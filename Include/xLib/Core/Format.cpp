@@ -393,7 +393,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_CPP11
 
-template<class T, std::size_t N>
+template<typename T, std::size_t N>
 /* static */
 inline void
 Format::_format(
@@ -406,7 +406,7 @@ Format::_format(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-template<class T1, class T2>
+template<typename T1, class T2>
 /* static */
 inline void
 Format::_format(
@@ -421,7 +421,7 @@ Format::_format(
     _format(a_ss, xT("}"));
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 inline void
 Format::_format(
@@ -432,7 +432,7 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 inline void
 Format::_format(
@@ -443,7 +443,7 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 inline void
 Format::_format(
@@ -454,7 +454,7 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 inline void
 Format::_format(
@@ -465,7 +465,7 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T1, class T2>
+template<typename T1, class T2>
 /* static */
 inline void
 Format::_format(
@@ -476,7 +476,7 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T1, class T2>
+template<typename T1, class T2>
 /* static */
 inline void
 Format::_format(
@@ -487,7 +487,7 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 inline void
 Format::_format(
@@ -524,7 +524,7 @@ Format::_format(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 inline void
 Format::_formatFloat(
@@ -551,7 +551,7 @@ Format::_formatFloat(
     a_ss.str(value);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 inline int
 Format::_floatPrecisionMax()
@@ -563,7 +563,7 @@ Format::_floatPrecisionMax()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 inline std::tstring_t
 Format::_formatUnprintableChar(

@@ -12,13 +12,13 @@ xNAMESPACE_BEGIN2(xlib, core)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 Flags<T>::Flags() :
     _flags(0)
 {
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 Flags<T>::Flags(
     const Flags &a_values
 ) :
@@ -26,7 +26,7 @@ Flags<T>::Flags(
 {
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 Flags<T>::Flags(
     const T &a_values
 ) :
@@ -34,7 +34,7 @@ Flags<T>::Flags(
 {
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 Flags<T> &
 Flags<T>::operator = (
     const Flags &a_values
@@ -47,14 +47,14 @@ Flags<T>::operator = (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 size_t &
 Flags<T>::get() const
 {
     return _flags;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 Flags<T>::set(
     const T &a_values
@@ -63,14 +63,14 @@ Flags<T>::set(
     _flags = a_values;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 Flags<T>::clear()
 {
     _flags = 0;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 bool_t
 Flags<T>::isSetFlag(
     const T &a_value
@@ -79,7 +79,7 @@ Flags<T>::isSetFlag(
     return (_flags & a_value) == a_value;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 bool_t
 Flags<T>::isSetAnyFlag(
     const T &a_value
@@ -88,7 +88,7 @@ Flags<T>::isSetAnyFlag(
     return (_flags & a_value) != 0;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 Flags<T>::setFlag(
     const T &a_value
@@ -97,7 +97,7 @@ Flags<T>::setFlag(
     _flags |= a_value;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 Flags<T>::unsetFlag(
     const T &a_value
@@ -107,7 +107,7 @@ Flags<T>::unsetFlag(
 }
 
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void_t
 Flags<T>::toggleFlag(
     const T &a_value

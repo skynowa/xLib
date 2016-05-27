@@ -75,7 +75,7 @@ private:
 struct Delete
     /// container items deleter
 {
-    template<class T>
+    template<typename T>
     void_t operator () (T* &a_ptr) const
     {
         xPTR_DELETE(a_ptr);

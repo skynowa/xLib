@@ -28,7 +28,7 @@ class Mutex;
 class AutoMutex;
 class Thread;
 
-template<class T>
+template<typename T>
 class ThreadPool :
     public Thread
     /// thread pool

@@ -165,7 +165,7 @@ xFORMAT_STR(18)
 xFORMAT_STR(19)
 xFORMAT_STR(20)
 //-------------------------------------------------------------------------------------------------
-template<class IteratorT>
+template<typename IteratorT>
 /* static */
 inline void
 Format::_formatString(
@@ -179,7 +179,7 @@ Format::_formatString(
     }
 }
 //-------------------------------------------------------------------------------------------------
-template<class IteratorT>
+template<typename IteratorT>
 /* static */
 inline void
 Format::_formatRange(
@@ -203,7 +203,7 @@ Format::_formatRange(
     a_ss << xT("}");
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 inline void
 Format::_formatContainer(

@@ -27,7 +27,7 @@ public:
     virtual       ~Trace();
         ///< destructor
 
-    template<class T>
+    template<typename T>
     Trace &        operator << (const T &valueT);
         ///< operator <<
 

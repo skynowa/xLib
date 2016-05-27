@@ -10,7 +10,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-template<class T, const std::size_t N>
+template<typename T, const std::size_t N>
 class Array
     /// array
 {
@@ -208,7 +208,7 @@ public:
     }
 
     // assignment with type conversion
-    template <class T2>
+    template<typename T2>
     Array<T, N>&
     operator= (const Array<T2, N> &rhs)
     {
@@ -246,42 +246,42 @@ public:
 };
 //-------------------------------------------------------------------------------------------------
 // comparisons
-template<class T, std::size_t N>
+template<typename T, std::size_t N>
 bool_t
 operator == (const Array<T, N> &x, const Array<T, N> &y)
 {
     return std::equal(x.begin(), x.end(), y.begin());
 }
 
-template<class T, std::size_t N>
+template<typename T, std::size_t N>
 bool_t
 operator< (const Array<T, N> &x, const Array<T, N> &y)
 {
     return std::lexicographical_compare(x.begin(),x.end(),y.begin(),y.end());
 }
 
-template<class T, std::size_t N>
+template<typename T, std::size_t N>
 bool_t
 operator != (const Array<T, N> &x, const Array<T, N> &y)
 {
     return !(x == y);
 }
 
-template<class T, std::size_t N>
+template<typename T, std::size_t N>
 bool_t
 operator > (const Array<T, N> &x, const Array<T, N> &y)
 {
     return (y < x);
 }
 
-template<class T, std::size_t N>
+template<typename T, std::size_t N>
 bool_t
 operator <= (const Array<T, N> &x, const Array<T, N> &y)
 {
     return !(y < x);
 }
 
-template<class T, std::size_t N>
+template<typename T, std::size_t N>
 bool_t
 operator >= (const Array<T, N> &x, const Array<T, N> &y)
 {
@@ -289,7 +289,7 @@ operator >= (const Array<T, N> &x, const Array<T, N> &y)
 }
 
 // swap()
-template<class T, std::size_t N>
+template<typename T, std::size_t N>
 inline void_t
 swap(Array<T, N> &x, Array<T, N> &y)
 {

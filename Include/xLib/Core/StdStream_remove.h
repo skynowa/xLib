@@ -13,14 +13,14 @@ xNAMESPACE_BEGIN2(xlib, core)
 ///@name Sequence containers
 ///@{
 
-template<class T1, class T2>
+template<typename T1, class T2>
 inline std::tostream_t &
 operator << (std::tostream_t &os, const std::pair<T1, T2> &value);
     ///< for std::pair
 
 // TODO: for std::array (C++11)
 
-template<class T>
+template<typename T>
 inline std::tostream_t &
 operator << (std::tostream_t &os, const std::vector<T> &value);
     ///< for std::vector
@@ -28,7 +28,7 @@ operator << (std::tostream_t &os, const std::vector<T> &value);
 // TODO: for std::deque
 // TODO: for std::forward_list (C++11)
 
-template<class T>
+template<typename T>
 inline std::tostream_t &
 operator << (std::tostream_t &os, const std::list<T> &value);
     ///< for std::list
@@ -46,22 +46,22 @@ operator << (std::tostream_t &os, const std::list<T> &value);
 ///@name Associative containers
 ///@{
 
-template<class T>
+template<typename T>
 inline std::tostream_t &
 operator << (std::tostream_t &os, const std::set<T> &value);
     ///< for std::set
 
-template<class T>
+template<typename T>
 inline std::tostream_t &
 operator << (std::tostream_t &os, const std::multiset<T> &value);
     ///< for std::multiset
 
-template<class T1, class T2>
+template<typename T1, class T2>
 inline std::tostream_t &
 operator << (std::tostream_t &os, const std::map<T1, T2> &value);
     ///< for std::map
 
-template<class T1, class T2>
+template<typename T1, class T2>
 inline std::tostream_t &
 operator << (std::tostream_t &os, const std::multimap<T1, T2> &value);
     ///< for std::multimap

@@ -14,7 +14,7 @@ xNAMESPACE_ANONYM_BEGIN
 int_t          type_all = 0;
 std::tstring_t message_all;
 
-template <class T>
+template<typename T>
 class Observer1 :
     public IxObserver<T>
 {
@@ -29,7 +29,7 @@ public:
     }
 };
 
-template <class T>
+template<typename T>
 class Observer2 :
     public IxObserver<T>
 {

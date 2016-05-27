@@ -12,21 +12,21 @@ xNAMESPACE_BEGIN2(xlib, crypt)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template <class RandomValue, class SeedPolicy>
+template<typename RandomValue, class SeedPolicy>
 Random<RandomValue, SeedPolicy>::Random() :
     _randMax( (std::numeric_limits<RandomValue>::max)() )
 {
 }
 //-------------------------------------------------------------------------------------------------
-template <class RandomValue, class SeedPolicy>
+template<typename RandomValue, class SeedPolicy>
 bool_t
 Random<RandomValue, SeedPolicy>::nextBool()
 {
     return (0 == (_policy.next() % 2));
 }
 //-------------------------------------------------------------------------------------------------
-template <class RandomValue, class SeedPolicy>
-template <class T>
+template<typename RandomValue, class SeedPolicy>
+template<typename T>
 T
 Random<RandomValue, SeedPolicy>::nextChar()
 {
@@ -36,8 +36,8 @@ Random<RandomValue, SeedPolicy>::nextChar()
     return static_cast<T>( nextInt(min, max) );
 }
 //-------------------------------------------------------------------------------------------------
-template <class RandomValue, class SeedPolicy>
-template <class T>
+template<typename RandomValue, class SeedPolicy>
+template<typename T>
 T
 Random<RandomValue, SeedPolicy>::nextInt(
     const T &min,
@@ -49,8 +49,8 @@ Random<RandomValue, SeedPolicy>::nextInt(
     return static_cast<T>(_policy.next() % width) + min;
 }
 //-------------------------------------------------------------------------------------------------
-template <class RandomValue, class SeedPolicy>
-template <class T>
+template<typename RandomValue, class SeedPolicy>
+template<typename T>
 T
 Random<RandomValue, SeedPolicy>::nextFloat(
     const T &min,

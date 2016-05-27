@@ -21,19 +21,19 @@ public:
     *
     *******************************************************************************/
 
-    template<class T>
+    template<typename T>
     static
     std::tstring_t cast(const T &value) xWARN_UNUSED_RV;
         ///< convert type to std::tstring_t
-    template<class T>
+    template<typename T>
     static
     std::tstring_t cast(const T &value, cint_t &base) xWARN_UNUSED_RV;
         ///< convert type to std::tstring_t by base (8, 10, 16)
-    template<class T>
+    template<typename T>
     static
     T              cast(std::ctstring_t &str) xWARN_UNUSED_RV;
         ///< convert std::tstring_t to type
-    template<class T>
+    template<typename T>
     static
     T              cast(std::ctstring_t &str, cint_t &base) xWARN_UNUSED_RV;
         ///< convert std::tstring_t by base (8, 10, 16) to type
