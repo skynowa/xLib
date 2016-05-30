@@ -106,7 +106,7 @@ MsgBox::_show_impl(
     // while ( (event = ::xcb_wait_for_event(connection)) ) {
     for ( ; ; ) {
         xcb_generic_event_t *event = ::xcb_wait_for_event(connection);
-        xTEST_PTR(event);
+        xCHECK_DO(event == xPTR_NULL, break);
 
         switch (event->response_type & ~0x80) {
         case XCB_EXPOSE:
