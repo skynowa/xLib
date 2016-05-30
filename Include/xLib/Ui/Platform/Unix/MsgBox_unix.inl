@@ -103,7 +103,6 @@ MsgBox::_show_impl(
     iRv = ::xcb_flush(connection);
     xTEST_GR(iRv, 0);
 
-    // while ( (event = ::xcb_wait_for_event(connection)) ) {
     for ( ; ; ) {
         xcb_generic_event_t *event = ::xcb_wait_for_event(connection);
         xCHECK_DO(event == xPTR_NULL, break);
