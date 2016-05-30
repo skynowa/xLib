@@ -284,8 +284,7 @@ MsgBox::_show_impl(
             break;
         default:
             /* Unknown event type, ignore it */
-            printf("Unknown event: %ull\n",
-                    event->response_type);
+            Format::cout("Unknown event: %ull\n", event->response_type);
             break;
         }
 
