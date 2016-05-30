@@ -44,14 +44,17 @@ MsgBox::_show_impl(
     uint32_t          mask       = 0U;
     uint32_t          values[2]  = {0U, 0U};
 
-    xcb_rectangle_t rectangles[] = {
+    xcb_rectangle_t rectangles[] =
+    {
         {40, 40, 20, 20},
     };
 
     connection = ::xcb_connect(xPTR_NULL, xPTR_NULL);
+    xTEST_PTR(connection);
 
     // get the first screen
     screen = ::xcb_setup_roots_iterator( ::xcb_get_setup(connection) ).data;
+    xTEST_PTR(screen);
 
     // root window
     windowId = screen->root;
@@ -62,7 +65,8 @@ MsgBox::_show_impl(
     values[0]  = screen->black_pixel;
     values[1]  = 0;
 
-    ::xcb_create_gc(connection, foreground, windowId, mask, values);
+    xcb_void_cookie_t cookie = ::xcb_create_gc(connection, foreground, windowId, mask, values);
+    xTEST_GR(cookie.sequence, 0U);
 
     // create white(background) graphic context
     background = xcb_generate_id(connection);
@@ -70,7 +74,8 @@ MsgBox::_show_impl(
     values[0]  = screen->white_pixel;
     values[1]  = 0;
 
-    ::xcb_create_gc(connection, background, windowId, mask, values);
+    cookie = ::xcb_create_gc(connection, background, windowId, mask, values);
+    xTEST_GR(cookie.sequence, 0U);
 
     // create the window
     windowId   = ::xcb_generate_id(connection);
@@ -78,7 +83,7 @@ MsgBox::_show_impl(
     values[0]  = screen->white_pixel;
     values[1]  = XCB_EVENT_MASK_EXPOSURE | XCB_EVENT_MASK_KEY_PRESS;
 
-    ::xcb_create_window(
+    cookie = ::xcb_create_window(
         connection,                    // connection
         XCB_COPY_FROM_PARENT,          // depth
         windowId,                      // window ID
@@ -89,9 +94,12 @@ MsgBox::_show_impl(
         XCB_WINDOW_CLASS_INPUT_OUTPUT, // class
         screen->root_visual,           // visual
         mask, values);                 // masks
+    xTEST_GR(cookie.sequence, 0U);
 
     // map the window on the screen
-    ::xcb_map_window(connection, windowId);
+    cookie = ::xcb_map_window(connection, windowId);
+    xTEST_GR(cookie.sequence, 0U);
+
     iRv = ::xcb_flush(connection);
     xTEST_GR(iRv, 0);
 
@@ -102,11 +110,16 @@ MsgBox::_show_impl(
 
         switch (event->response_type & ~0x80) {
         case XCB_EXPOSE:
-            ::xcb_poly_rectangle(connection, windowId, foreground, 1, rectangles);
-            ::xcb_image_text_8(connection, static_cast<uint8_t>( a_text.size() ), windowId,
+            cookie = ::xcb_poly_rectangle(connection, windowId, foreground, 1, rectangles);
+            xTEST_GR(cookie.sequence, 0U);
+
+            cookie = ::xcb_image_text_8(connection, static_cast<uint8_t>( a_text.size() ), windowId,
                 background, 20, 20, a_text.c_str());
+            xTEST_GR(cookie.sequence, 0U);
+
             iRv = ::xcb_flush(connection);
             xTEST_GR(iRv, 0);
+
             break;
         case XCB_KEY_PRESS:
             break;
