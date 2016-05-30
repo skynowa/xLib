@@ -18,7 +18,7 @@
 #include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/IO/Path.h>
-#include <xLib/Gui/MsgBox.h>
+#include <xLib/Ui/MsgBox.h>
 #include <xLib/System/Environment.h>
 
 #if   xENV_WIN

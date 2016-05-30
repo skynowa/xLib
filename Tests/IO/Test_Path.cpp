@@ -898,7 +898,7 @@ Test_Path::unit()
 
         {
             #if   xENV_WIN
-                std::tstring_t filePath = xT("D:\\xVCL\\Include\\xVCL\\Units\\Gui\\vSpeedButton_LoadDrives.cpp");
+                std::tstring_t filePath = xT("D:\\xVCL\\Include\\xVCL\\Units\\Ui\\vSpeedButton_LoadDrives.cpp");
             #elif xENV_UNIX
                 std::tstring_t filePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
             #endif
@@ -912,7 +912,7 @@ Test_Path::unit()
         }
 
         {
-            std::tstring_t filePath = xT("D:/xVCL\\Include/xVCL\\Units/Gui/Tools/LoadDrives.cpp");
+            std::tstring_t filePath = xT("D:/xVCL\\Include/xVCL\\Units/Ui/Tools/LoadDrives.cpp");
 
             m_sRv = Path(filePath).brief(15);
             #if   xENV_WIN

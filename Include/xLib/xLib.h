@@ -70,8 +70,8 @@
 #include <xLib/IO/Backup.h>
 #include <xLib/IO/Config.h>
 
-// Gui
-#include <xLib/Gui/MsgBox.h>
+// Ui
+#include <xLib/Ui/MsgBox.h>
 
 // Log
 #include <xLib/Log/ILog.h>

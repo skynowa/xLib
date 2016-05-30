@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, gui)
+xNAMESPACE_BEGIN2(xlib, ui)
 
 class MsgBox
     /// message box
@@ -61,7 +61,7 @@ xPLATFORM_IMPL:
         cExType &type = tpOk) const xWARN_UNUSED_RV;
 };
 
-xNAMESPACE_END2(xlib, gui)
+xNAMESPACE_END2(xlib, ui)
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_PROJECT_HEADER_ONLY
     #include "MsgBox.cpp"
