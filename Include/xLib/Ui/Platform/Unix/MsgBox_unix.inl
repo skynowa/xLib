@@ -246,12 +246,12 @@ MsgBox::_show_impl(
             }
             break;
         case XCB_MOTION_NOTIFY: {
-            xcb_motion_notify_event_t *motion = (xcb_motion_notify_event_t *)event;
+                xcb_motion_notify_event_t *motion = (xcb_motion_notify_event_t *)event;
 
-            printf("Mouse moved in window %ull, at coordinates (%ull,%ull)\n",
-                    motion->event, motion->event_x, motion->event_y );
+                printf("Mouse moved in window %ull, at coordinates (%ull,%ull)\n",
+                        motion->event, motion->event_x, motion->event_y );
+            }
             break;
-        }
         case XCB_ENTER_NOTIFY: {
                 xcb_enter_notify_event_t *enter = (xcb_enter_notify_event_t *)event;
 
