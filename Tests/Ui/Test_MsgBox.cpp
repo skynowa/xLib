@@ -16,9 +16,9 @@ Test_MsgBox::unit()
 #if xTEST_IGNORE || 1
     xTEST_CASE("show")
     {
-        std::ctstring_t  text  = xT("\n::: Message box :::\n\n\n\nSimple test 1\n\nSimple test 2\n");
-        std::ctstring_t  title = xT("Simple title");
-        MsgBox::ExType type  = MsgBox::tpOk;
+        std::ctstring_t text  = xT("\nAaaaaaa\n\n\n\nbbbb\n\ncccccccc\n");
+        std::ctstring_t title = xT("Title-Test");
+        MsgBox::ExType  type  = MsgBox::tpOk;
 
         MsgBox::ExModalResult mrRes = MsgBox().show(text, title, type);
         xUNUSED(mrRes);
