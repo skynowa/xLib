@@ -84,7 +84,7 @@ namespace xlib
     namespace db {}
     namespace debug {}
     namespace io {}
-    namespace gui {}
+    namespace ui {}
     namespace log {}
     namespace net {}
     namespace patterns {}
@@ -98,7 +98,7 @@ namespace xlib
     using namespace xlib::db;
     using namespace xlib::debug;
     using namespace xlib::io;
-    using namespace xlib::gui;
+    using namespace xlib::ui;
     using namespace xlib::log;
     using namespace xlib::net;
     using namespace xlib::patterns;

@@ -122,7 +122,7 @@
 #include "Test_Service.h"
 
 
-// Gui
+// Ui
 #include "Test_MsgBox.h"
 
 

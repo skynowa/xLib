@@ -505,11 +505,11 @@ Test_String::unit()
         m_sRv = String::replaceAll(xT("TEST_STRING_1"), xT("T"), xT("a"));
         xTEST_EQ(std::tstring_t(xT("aESa_SaRING_1")), m_sRv);
 
-        m_sRv = String::replaceAll(xT("D:/XVCL/Include\\XVCL/Units/Gui/vSpeedButton_LoadDrives.cpp"), xT("/"), xT("_"));
+        m_sRv = String::replaceAll(xT("D:/XVCL/Include\\XVCL/Units/Ui/vSpeedButton_LoadDrives.cpp"), xT("/"), xT("_"));
         xTEST_EQ(std::tstring_t(xT("D:_XVCL_Include\\XVCL_Units_Gui_vSpeedButton_LoadDrives.cpp")), m_sRv);
 
-        m_sRv = String::replaceAll(xT("D:/XVCL/Include\\XVCL/Units/Gui/vSpeedButton_LoadDrives.cpp"), xT("\\"), xT("_"));
-        xTEST_EQ(std::tstring_t(xT("D:/XVCL/Include_XVCL/Units/Gui/vSpeedButton_LoadDrives.cpp")), m_sRv);
+        m_sRv = String::replaceAll(xT("D:/XVCL/Include\\XVCL/Units/Ui/vSpeedButton_LoadDrives.cpp"), xT("\\"), xT("_"));
+        xTEST_EQ(std::tstring_t(xT("D:/XVCL/Include_XVCL/Units/Ui/vSpeedButton_LoadDrives.cpp")), m_sRv);
 
         m_sRv = String::replaceAll(xT("_one_two_three_"), xT("two"), xT(""));
         xTEST_EQ(std::tstring_t(xT("_one__three_")), m_sRv);

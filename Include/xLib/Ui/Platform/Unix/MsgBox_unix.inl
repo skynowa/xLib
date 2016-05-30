@@ -10,7 +10,7 @@
     #include <xcb/xcb.h>
 #endif
 
-xNAMESPACE_BEGIN2(xlib, gui)
+xNAMESPACE_BEGIN2(xlib, ui)
 
 /**************************************************************************************************
 *    private
@@ -138,4 +138,4 @@ MsgBox::_show_impl(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, gui)
+xNAMESPACE_END2(xlib, ui)
