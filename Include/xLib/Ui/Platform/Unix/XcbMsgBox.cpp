@@ -124,6 +124,7 @@ XcbMsgBox::show(
                     "Region to be redrawn at location ({},{}), with dimension ({},{})",
                     expose->window, expose->x, expose->y, expose->width, expose->height );
 
+            #if 0
                 const xcb_rectangle_t rectangles[] =
                 {
                     {40, 40, 20, 20}
@@ -138,6 +139,12 @@ XcbMsgBox::show(
 
                 iRv = ::xcb_flush(_connection);
                 xTEST_GR(iRv, 0);
+            #else
+                #define WIDTH 300
+                #define HEIGHT 150
+
+                _textDraw(screen, mainWindowId, 10, HEIGHT - 10, xT2A(a_text).c_str());
+            #endif
             }
             break;
         case XCB_BUTTON_PRESS: {
@@ -222,6 +229,94 @@ XcbMsgBox::show(
 *
 **************************************************************************************************/
 
+xINLINE xcb_gc_t
+XcbMsgBox::_gc_font_get (
+    const xcb_screen_t     *screen,
+    xcb_window_t      window,
+    const char       *font_name
+)
+{
+  uint32_t             value_list[3];
+  xcb_void_cookie_t    cookie_font;
+  xcb_void_cookie_t    cookie_gc;
+  xcb_generic_error_t *error;
+  xcb_font_t           font;
+  xcb_gcontext_t       gc;
+  uint32_t             mask;
+
+  font = xcb_generate_id (_connection);
+  cookie_font = xcb_open_font_checked (_connection, font,
+                                       strlen (font_name),
+                                       font_name);
+
+  error = xcb_request_check (_connection, cookie_font);
+  if (error) {
+    fprintf (stderr, "ERROR: can't open font : %d\n", error->error_code);
+    xcb_disconnect (_connection);
+    return (xcb_gc_t)- 1;
+  }
+
+  gc = xcb_generate_id (_connection);
+  mask = XCB_GC_FOREGROUND | XCB_GC_BACKGROUND | XCB_GC_FONT;
+  value_list[0] = screen->black_pixel;
+  value_list[1] = screen->white_pixel;
+  value_list[2] = font;
+  cookie_gc = xcb_create_gc_checked (_connection, gc, window, mask, value_list);
+  error = xcb_request_check (_connection, cookie_gc);
+  if (error) {
+    fprintf (stderr, "ERROR: can't create gc : %d\n", error->error_code);
+    xcb_disconnect (_connection);
+    exit (-1);
+  }
+
+  cookie_font = xcb_close_font_checked (_connection, font);
+  error = xcb_request_check (_connection, cookie_font);
+  if (error) {
+    fprintf (stderr, "ERROR: can't close font : %d\n", error->error_code);
+    xcb_disconnect (_connection);
+    exit (-1);
+  }
+
+  return static_cast<xcb_gc_t>(gc);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE void
+XcbMsgBox::_textDraw(
+    const xcb_screen_t     *screen,
+    xcb_window_t      window,
+    int16_t           x1,
+    int16_t           y1,
+    const char       *label
+)
+{
+  xcb_void_cookie_t    cookie_gc;
+  xcb_void_cookie_t    cookie_text;
+  xcb_generic_error_t *error;
+  xcb_gcontext_t       gc;
+  uint8_t              length;
+
+  length = strlen (label);
+
+  gc = _gc_font_get(screen, window, "7x13");
+
+  cookie_text = ::xcb_image_text_8_checked (_connection, length, window, gc,
+                                          x1,
+                                          y1, label);
+  error = ::xcb_request_check (_connection, cookie_text);
+  if (error) {
+    fprintf (stderr, "ERROR: can't paste text : %d\n", error->error_code);
+    ::xcb_disconnect (_connection);
+    exit (-1);
+  }
+
+  cookie_gc = ::xcb_free_gc (_connection, gc);
+  error = ::xcb_request_check (_connection, cookie_gc);
+  if (error) {
+    fprintf (stderr, "ERROR: can't free gc : %d\n", error->error_code);
+    ::xcb_disconnect (_connection);
+    exit (-1);
+  }
+}
 //-------------------------------------------------------------------------------------------------
 xINLINE void
 XcbMsgBox::_traceModifiers(

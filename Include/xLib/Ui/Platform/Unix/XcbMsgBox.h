@@ -45,6 +45,14 @@ public:
 private:
     xcb_connection_t *_connection;
 
+    xcb_gc_t
+    _gc_font_get (
+                 const xcb_screen_t     *screen,
+                 xcb_window_t      window,
+                 const char       *font_name);
+    void              _textDraw(const xcb_screen_t *screen, xcb_window_t window, int16_t x1, int16_t y1,
+                            const char *label);
+        ///<
     void              _traceModifiers(const uint32_t valueMask) const;
         ///< trace names of modifiers present in mask
 };
