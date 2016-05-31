@@ -49,15 +49,15 @@ public:
     virtual      ~MsgBox() {}
         ///< destructor
 
-    ExModalResult show(std::ctstring_t &text, const std::ctstring_t &title, cExType &type = tpOk)
-        const xWARN_UNUSED_RV;
+    ExModalResult show(std::ctstring_t &text, std::ctstring_t &title, cExType &type = tpOk) const
+        xWARN_UNUSED_RV;
         ///< message box with custom text, custom title, custom type
 
 private:
     xNO_COPY_ASSIGN(MsgBox)
 
 xPLATFORM_IMPL:
-    ExModalResult _show_impl(std::ctstring_t &text, const std::ctstring_t &title,
+    ExModalResult _show_impl(std::ctstring_t &text, std::ctstring_t &title,
         cExType &type = tpOk) const xWARN_UNUSED_RV;
 };
 
