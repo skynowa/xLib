@@ -57,6 +57,10 @@ MsgBox::_show_impl(
     xUNUSED(internal::enums::modalResults);
 
     int_t             iRv        = 0;
+    xcb_connection_t *connection = xPTR_NULL;
+    xcb_screen_t     *screen     = xPTR_NULL;
+    xcb_drawable_t    windowId   = 0U;
+    xcb_void_cookie_t cookie     = {};
     xcb_gcontext_t    foreground = 0U;
     xcb_gcontext_t    background = 0U;
 
@@ -66,9 +70,6 @@ MsgBox::_show_impl(
     };
 
 #if 0
-    xcb_connection_t *connection = xPTR_NULL;
-    xcb_screen_t     *screen     = xPTR_NULL;
-    xcb_drawable_t    windowId   = 0U;
     uint32_t          mask       = 0U;
     uint32_t          values[2]  = {0U, 0U};
 
@@ -161,23 +162,24 @@ MsgBox::_show_impl(
     // FAQ: https://xcb.freedesktop.org/tutorial/events/
 
     // Open the connection to the X server
-    xcb_connection_t *connection = ::xcb_connect(xPTR_NULL, xPTR_NULL);
+    connection = ::xcb_connect(xPTR_NULL, xPTR_NULL);
     xTEST_PTR(connection);
 
     // Get the first screen
-    xcb_screen_t *screen = ::xcb_setup_roots_iterator( ::xcb_get_setup (connection) ).data;
+    screen = ::xcb_setup_roots_iterator( ::xcb_get_setup(connection) ).data;
     xTEST_PTR(screen);
 
     // Create the window
-    xcb_window_t windowId  = ::xcb_generate_id(connection);
-    uint32_t     mask      = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
-    uint32_t     values[2] = {screen->white_pixel,
-                              XCB_EVENT_MASK_EXPOSURE       | XCB_EVENT_MASK_BUTTON_PRESS   |
-                              XCB_EVENT_MASK_BUTTON_RELEASE | XCB_EVENT_MASK_POINTER_MOTION |
-                              XCB_EVENT_MASK_ENTER_WINDOW   | XCB_EVENT_MASK_LEAVE_WINDOW   |
-                              XCB_EVENT_MASK_KEY_PRESS      | XCB_EVENT_MASK_KEY_RELEASE };
+    windowId = ::xcb_generate_id(connection);
 
-    xcb_void_cookie_t cookie = ::xcb_create_window(
+    uint32_t mask      = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
+    uint32_t values[2] = {screen->white_pixel,
+                          XCB_EVENT_MASK_EXPOSURE       | XCB_EVENT_MASK_BUTTON_PRESS   |
+                          XCB_EVENT_MASK_BUTTON_RELEASE | XCB_EVENT_MASK_POINTER_MOTION |
+                          XCB_EVENT_MASK_ENTER_WINDOW   | XCB_EVENT_MASK_LEAVE_WINDOW   |
+                          XCB_EVENT_MASK_KEY_PRESS      | XCB_EVENT_MASK_KEY_RELEASE };
+
+    cookie = ::xcb_create_window(
         connection,                    // connection
         0,                             // depth
         windowId,                      // window ID
@@ -187,7 +189,7 @@ MsgBox::_show_impl(
         10,                            // border_width
         XCB_WINDOW_CLASS_INPUT_OUTPUT, // class
         screen->root_visual,           // visual
-        mask, values );                // masks
+        mask, values);                 // masks
     xTEST_GR(cookie.sequence, 0U);
 
     // Map the window on the screen
