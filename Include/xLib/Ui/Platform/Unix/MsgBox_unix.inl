@@ -101,7 +101,7 @@ MsgBox::_show_impl(
 	}
 
     // create the window
-    uint32_t mainWindowId = 0;
+    xcb_window_t mainWindowId = 0;
 	{
 	    mainWindowId           = ::xcb_generate_id(connection);
 		uint32_t value_mask    = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
@@ -117,7 +117,7 @@ MsgBox::_show_impl(
 			10,                            // border_width
 			XCB_WINDOW_CLASS_INPUT_OUTPUT, // class
 			screen->root_visual,           // visual
-			value_mask, value_list);                 // masks
+			value_mask, value_list);       // masks
 		xTEST_GR(cookie.sequence, 0U);
 
 		// map the window on the screen
