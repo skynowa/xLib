@@ -17,6 +17,7 @@ xNAMESPACE_BEGIN2(xlib, ui)
 class XcbMsgBox
     ///< XCB message box
     ///< FAQ: https://xcb.freedesktop.org/tutorial/events/
+    ///<      https://www.x.org/releases/X11R7.6/doc/libxcb/tutorial/index.html
 {
 public:
     enum ExType
