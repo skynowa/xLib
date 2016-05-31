@@ -80,10 +80,10 @@ MsgBox::_show_impl(
 
     // create black(foreground) graphic context
 	{
-		uint32_t       rootWindowId = screen->root;
 		xcb_gcontext_t foreground   = ::xcb_generate_id(connection);
+		xcb_drawable_t rootWindowId = screen->root;
 		uint32_t       mask         = XCB_GC_FOREGROUND | XCB_GC_GRAPHICS_EXPOSURES;
-		uint32_t       values[2]    = {screen->black_pixel, 0};
+		uint32_t       values[2]    = {screen->black_pixel, XCB_EVENT_MASK_NO_EVENT};
 
 		cookie = ::xcb_create_gc(connection, foreground, rootWindowId, mask, values);
 		xTEST_GR(cookie.sequence, 0U);
@@ -91,10 +91,10 @@ MsgBox::_show_impl(
 
     // create white(background) graphic context
 	{
-		uint32_t       rootWindowId = screen->root;
 		xcb_gcontext_t background   = ::xcb_generate_id(connection);
+		xcb_drawable_t rootWindowId = screen->root;
 		uint32_t       mask         = XCB_GC_BACKGROUND | XCB_GC_GRAPHICS_EXPOSURES;
-		uint32_t       values[2]    = {screen->white_pixel, 0};
+		uint32_t       values[2]    = {screen->white_pixel, XCB_EVENT_MASK_NO_EVENT};
 
 		cookie = ::xcb_create_gc(connection, background, rootWindowId, mask, values);
 		xTEST_GR(cookie.sequence, 0U);
