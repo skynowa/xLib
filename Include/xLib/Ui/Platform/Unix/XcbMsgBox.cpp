@@ -46,6 +46,7 @@ XcbMsgBox::show(
 )
 {
     xUNUSED(a_type);
+    xUNUSED(a_title);
 
     int_t iRv = 0;
 
@@ -132,7 +133,7 @@ XcbMsgBox::show(
                 xTEST_GR(cookie.sequence, 0U);
 
                 cookie = ::xcb_image_text_8(_connection, static_cast<uint8_t>( a_text.size() ),
-                    mainWindowId, background, 20, 20, a_text.c_str());
+                    mainWindowId, background, 20, 20, xT2A(a_text).c_str());
                 xTEST_GR(cookie.sequence, 0U);
 
                 iRv = ::xcb_flush(_connection);
