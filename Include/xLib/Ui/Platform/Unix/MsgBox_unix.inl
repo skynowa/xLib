@@ -66,7 +66,7 @@ MsgBox::_show_impl(
         {40, 40, 20, 20}
     };
 
-#if 1
+#if 0
     connection = ::xcb_connect(xPTR_NULL, xPTR_NULL);
     xTEST_PTR(connection);
 
