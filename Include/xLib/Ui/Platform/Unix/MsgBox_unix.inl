@@ -181,7 +181,7 @@ MsgBox::_show_impl(
 
     cookie = ::xcb_create_window(
         connection,                    // connection
-        0,                             // depth
+        XCB_COPY_FROM_PARENT,          // depth
         windowId,                      // window ID
         screen->root,                  // parent window
         0, 0,                          // x, y
@@ -199,8 +199,10 @@ MsgBox::_show_impl(
     iRv = ::xcb_flush(connection);
     xTEST_GR(iRv, 0);
 
-    xcb_generic_event_t *event = xPTR_NULL;
-    while ( (event = ::xcb_wait_for_event(connection)) ) {
+    for ( ; ; ) {
+        xcb_generic_event_t *event = ::xcb_wait_for_event(connection);
+        xCHECK_DO(event == xPTR_NULL, break);
+
         switch (event->response_type & ~0x80) {
         case XCB_EXPOSE: {
                 xcb_expose_event_t *expose = (xcb_expose_event_t *)event;
