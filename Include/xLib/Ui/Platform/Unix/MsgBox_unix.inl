@@ -80,32 +80,32 @@ MsgBox::_show_impl(
 
     // create black(foreground) graphic context
 	{
-		xcb_gcontext_t foreground   = ::xcb_generate_id(connection);
-		xcb_drawable_t rootWindowId = screen->root;
-		uint32_t       mask         = XCB_GC_FOREGROUND | XCB_GC_GRAPHICS_EXPOSURES;
-		uint32_t       values[2]    = {screen->black_pixel, XCB_EVENT_MASK_NO_EVENT};
+		xcb_gcontext_t foreground    = ::xcb_generate_id(connection);
+		xcb_drawable_t drawable      = screen->root;
+		uint32_t       value_mask    = XCB_GC_FOREGROUND | XCB_GC_GRAPHICS_EXPOSURES;
+		uint32_t       value_list[2] = {screen->black_pixel, XCB_EVENT_MASK_NO_EVENT};
 
-		cookie = ::xcb_create_gc(connection, foreground, rootWindowId, mask, values);
+		cookie = ::xcb_create_gc(connection, foreground, drawable, value_mask, value_list);
 		xTEST_GR(cookie.sequence, 0U);
 	}
 
     // create white(background) graphic context
 	{
-		xcb_gcontext_t background   = ::xcb_generate_id(connection);
-		xcb_drawable_t rootWindowId = screen->root;
-		uint32_t       mask         = XCB_GC_BACKGROUND | XCB_GC_GRAPHICS_EXPOSURES;
-		uint32_t       values[2]    = {screen->white_pixel, XCB_EVENT_MASK_NO_EVENT};
+		xcb_gcontext_t background    = ::xcb_generate_id(connection);
+		xcb_drawable_t drawable      = screen->root;
+		uint32_t       value_mask    = XCB_GC_BACKGROUND | XCB_GC_GRAPHICS_EXPOSURES;
+		uint32_t       value_list[2] = {screen->white_pixel, XCB_EVENT_MASK_NO_EVENT};
 
-		cookie = ::xcb_create_gc(connection, background, rootWindowId, mask, values);
+		cookie = ::xcb_create_gc(connection, background, drawable, value_mask, value_list);
 		xTEST_GR(cookie.sequence, 0U);
 	}
 
     // create the window
     uint32_t mainWindowId = 0;
 	{
-	    mainWindowId        = ::xcb_generate_id(connection);
-		uint32_t mask       = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
-		uint32_t values[2]  = {screen->white_pixel, XCB_EVENT_MASK_EXPOSURE | XCB_EVENT_MASK_KEY_PRESS};
+	    mainWindowId           = ::xcb_generate_id(connection);
+		uint32_t value_mask    = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
+		uint32_t value_list[2] = {screen->white_pixel, XCB_EVENT_MASK_EXPOSURE | XCB_EVENT_MASK_KEY_PRESS};
 
 		cookie = ::xcb_create_window(
 			connection,                    // connection
@@ -117,7 +117,7 @@ MsgBox::_show_impl(
 			10,                            // border_width
 			XCB_WINDOW_CLASS_INPUT_OUTPUT, // class
 			screen->root_visual,           // visual
-			mask, values);                 // masks
+			value_mask, value_list);                 // masks
 		xTEST_GR(cookie.sequence, 0U);
 
 		// map the window on the screen
