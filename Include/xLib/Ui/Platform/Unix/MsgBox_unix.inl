@@ -28,15 +28,15 @@ modifiersPrint(uint32_t mask)
         "Button1", "Button2", "Button3", "Button4", "Button5"
     };
 
-    printf("Modifier mask: ");
+    Trace() << "Modifier mask: ";
 
     for (const char **modifier = MODIFIERS; mask; mask >>= 1, ++ modifier) {
         if (mask & 1) {
-            printf(*modifier);
+            Trace() << *modifier;
         }
     }
 
-    printf("\n");
+    Trace() << "\n";
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE MsgBox::ExModalResult
@@ -203,7 +203,7 @@ MsgBox::_show_impl(
         case XCB_EXPOSE: {
                 xcb_expose_event_t *expose = (xcb_expose_event_t *)event;
 
-                printf("Window %ull exposed. Region to be redrawn at location (%ull,%ull), with dimension (%ull,%ull)\n",
+                Trace() << Format::str("Window {} exposed. Region to be redrawn at location ({},{}), with dimension ({},{})\n",
                         expose->window, expose->x, expose->y, expose->width, expose->height );
 
                 cookie = ::xcb_poly_rectangle(connection, windowId, foreground, 1, rectangles);
@@ -223,15 +223,15 @@ MsgBox::_show_impl(
 
                 switch (bp->detail) {
                 case 4:
-                    printf("Wheel Button up in window %ull, at coordinates (%ull,%ull)\n",
+                    Trace() << Format::str("Wheel Button up in window {}, at coordinates ({},{})\n",
                             bp->event, bp->event_x, bp->event_y );
                     break;
                 case 5:
-                    printf("Wheel Button down in window %ull, at coordinates (%ull,%ull)\n",
+                    Trace() << Format::str("Wheel Button down in window {}, at coordinates ({},{})\n",
                             bp->event, bp->event_x, bp->event_y );
                     break;
                 default:
-                    printf("Button %ull pressed in window %ull, at coordinates (%ull,%ull)\n",
+                    Trace() << Format::str("Button {} pressed in window {}, at coordinates ({},{})\n",
                             bp->detail, bp->event, bp->event_x, bp->event_y );
                     break;
                 }
@@ -241,28 +241,28 @@ MsgBox::_show_impl(
                 xcb_button_release_event_t *br = (xcb_button_release_event_t *)event;
                 modifiersPrint(br->state);
 
-                printf("Button %ull released in window %ull, at coordinates (%ull,%ull)\n",
+                Trace() << Format::str("Button {} released in window {}, at coordinates ({},{})\n",
                         br->detail, br->event, br->event_x, br->event_y );
             }
             break;
         case XCB_MOTION_NOTIFY: {
                 xcb_motion_notify_event_t *motion = (xcb_motion_notify_event_t *)event;
 
-                printf("Mouse moved in window %ull, at coordinates (%ull,%ull)\n",
+                Trace() << Format::str("Mouse moved in window {}, at coordinates ({},{})\n",
                         motion->event, motion->event_x, motion->event_y );
             }
             break;
         case XCB_ENTER_NOTIFY: {
                 xcb_enter_notify_event_t *enter = (xcb_enter_notify_event_t *)event;
 
-                printf("Mouse entered window %ull, at coordinates (%ull,%ull)\n",
+                Trace() << Format::str("Mouse entered window {}, at coordinates ({},{})\n",
                         enter->event, enter->event_x, enter->event_y );
             }
             break;
         case XCB_LEAVE_NOTIFY: {
                 xcb_leave_notify_event_t *leave = (xcb_leave_notify_event_t *)event;
 
-                printf("Mouse left window %ull, at coordinates (%ull,%ull)\n",
+                Trace() << Format::str("Mouse left window {}, at coordinates ({},{})\n",
                         leave->event, leave->event_x, leave->event_y );
             }
             break;
@@ -270,7 +270,7 @@ MsgBox::_show_impl(
                 xcb_key_press_event_t *kp = (xcb_key_press_event_t *)event;
                 modifiersPrint(kp->state);
 
-                printf("Key pressed in window %ull\n",
+                Trace() << Format::str("Key pressed in window {}\n",
                         kp->event);
             }
             break;
@@ -278,13 +278,13 @@ MsgBox::_show_impl(
                 xcb_key_release_event_t *kr = (xcb_key_release_event_t *)event;
                 modifiersPrint(kr->state);
 
-                printf("Key released in window %ull\n",
+                Trace() << Format::str("Key released in window {}\n",
                         kr->event);
             }
             break;
         default:
             /* Unknown event type, ignore it */
-            Format::cout("Unknown event: {}\n", event->response_type);
+            Trace() << Format::str("Unknown event: {}\n", (uint_t)event->response_type);
             break;
         }
 
