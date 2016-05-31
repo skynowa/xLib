@@ -70,8 +70,8 @@ MsgBox::_show_impl(
     };
 
 #if 0
-    uint32_t          mask       = 0U;
-    uint32_t          values[2]  = {0U, 0U};
+    uint32_t mask       = 0U;
+    uint32_t values[2]  = {0U, 0U};
 
     connection = ::xcb_connect(xPTR_NULL, xPTR_NULL);
     xTEST_PTR(connection);
@@ -177,7 +177,7 @@ MsgBox::_show_impl(
                           XCB_EVENT_MASK_EXPOSURE       | XCB_EVENT_MASK_BUTTON_PRESS   |
                           XCB_EVENT_MASK_BUTTON_RELEASE | XCB_EVENT_MASK_POINTER_MOTION |
                           XCB_EVENT_MASK_ENTER_WINDOW   | XCB_EVENT_MASK_LEAVE_WINDOW   |
-                          XCB_EVENT_MASK_KEY_PRESS      | XCB_EVENT_MASK_KEY_RELEASE };
+                          XCB_EVENT_MASK_KEY_PRESS      | XCB_EVENT_MASK_KEY_RELEASE};
 
     cookie = ::xcb_create_window(
         connection,                    // connection
