@@ -231,14 +231,14 @@ XcbMsgBox::_traceModifiers(
 {
     uint32_t valueMask = a_valueMask;
 
-    const char *modifiers[] =
+    ctchar_t *modifiers[] =
     {
-        "Shift", "Lock", "Ctrl", "Alt",
-        "Mod2", "Mod3", "Mod4", "Mod5",
-        "Button1", "Button2", "Button3", "Button4", "Button5"
+        xT("Shift"),   xT("Lock"),    xT("Ctrl"),    xT("Alt"),
+        xT("Mod2"),    xT("Mod3"),    xT("Mod4"),    xT("Mod5"),
+        xT("Button1"), xT("Button2"), xT("Button3"), xT("Button4"), xT("Button5")
     };
 
-    Trace() << "Modifier mask: ";
+    Trace() << xT("Modifier mask: ");
 
     for (const char **modifier = modifiers; valueMask; valueMask >>= 1, ++ modifier) {
         if (valueMask & 1) {
@@ -246,7 +246,7 @@ XcbMsgBox::_traceModifiers(
         }
     }
 
-    Trace() << "\n";
+    Trace() << xT("\n");
 }
 //-------------------------------------------------------------------------------------------------
 
