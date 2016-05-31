@@ -60,8 +60,6 @@ MsgBox::_show_impl(
     xcb_connection_t *connection = xPTR_NULL;
     xcb_screen_t     *screen     = xPTR_NULL;
     xcb_void_cookie_t cookie     = {};
-    xcb_gcontext_t    foreground = 0U;
-    xcb_gcontext_t    background = 0U;
 
     xcb_rectangle_t rectangles[] =
     {
@@ -79,8 +77,9 @@ MsgBox::_show_impl(
     // root window
 
     // create black(foreground) graphic context
+    xcb_gcontext_t foreground = 0;
 	{
-		xcb_gcontext_t foreground    = ::xcb_generate_id(connection);
+		foreground                   = ::xcb_generate_id(connection);
 		xcb_drawable_t drawable      = screen->root;
 		uint32_t       value_mask    = XCB_GC_FOREGROUND | XCB_GC_GRAPHICS_EXPOSURES;
 		uint32_t       value_list[2] = {screen->black_pixel, XCB_EVENT_MASK_NO_EVENT};
@@ -90,8 +89,9 @@ MsgBox::_show_impl(
 	}
 
     // create white(background) graphic context
+    xcb_gcontext_t background = 0;
 	{
-		xcb_gcontext_t background    = ::xcb_generate_id(connection);
+		background                   = ::xcb_generate_id(connection);
 		xcb_drawable_t drawable      = screen->root;
 		uint32_t       value_mask    = XCB_GC_BACKGROUND | XCB_GC_GRAPHICS_EXPOSURES;
 		uint32_t       value_list[2] = {screen->white_pixel, XCB_EVENT_MASK_NO_EVENT};
