@@ -314,8 +314,10 @@ XcbMsgBox::_autoResize(
 	std::cvec_tstring_t::const_iterator itWidthMax = std::max_element(a_text.begin(), a_text.end(),
 		MaxElementComp());
 
-	const uint16_t width  = itWidthMax->size();
-	const uint16_t height = 150;
+    const int16_t top    = 32;
+    const int16_t left   = 32;
+	const int16_t width  = itWidthMax->size() * 6 + top * 2;
+	const int16_t height = 150;
 
 	Trace() << xTRACE_VAR_2(width, height);
 
@@ -324,8 +326,8 @@ XcbMsgBox::_autoResize(
 //-------------------------------------------------------------------------------------------------
 xINLINE void
 XcbMsgBox::_resize(
-    const uint16_t &a_width,
-    const uint16_t &a_height
+    const int16_t &a_width,
+    const int16_t &a_height
 )
 {
     const uint32_t values[] = {a_width, a_height};  // width, height

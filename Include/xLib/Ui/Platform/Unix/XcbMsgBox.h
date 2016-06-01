@@ -60,7 +60,7 @@ private:
 private:
     xcb_gcontext_t _fontGContext(std::ctstring_t &fontName) xWARN_UNUSED_RV;
 		///<
-    void           _resize(const uint16_t &width, const uint16_t &height);
+    void           _resize(const int16_t &width, const int16_t &height);
         ///< resize
     void           _setTextLine(const int16_t &x, const int16_t &y, std::ctstring_t &text);
         ///< set text
