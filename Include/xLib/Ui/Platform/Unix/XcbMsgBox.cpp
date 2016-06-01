@@ -203,14 +203,14 @@ XcbMsgBox::show(
 //-------------------------------------------------------------------------------------------------
 xINLINE xcb_gcontext_t
 XcbMsgBox::_fontGContext(
-    const std::string &a_fontName
+    std::ctstring_t &a_fontName
 )
 {
 	xcb_font_t        fontId      = 0;
 	xcb_void_cookie_t cookie_font = {};
 	{
 		fontId      = ::xcb_generate_id(_conn);
-		cookie_font = ::xcb_open_font_checked(_conn, fontId, a_fontName.size(), a_fontName.c_str());
+		cookie_font = ::xcb_open_font_checked(_conn, fontId, a_fontName.size(), xT2A(a_fontName).c_str());
 
 		_error = ::xcb_request_check(_conn, cookie_font);
 		xTEST(_error == xPTR_NULL);
@@ -261,7 +261,7 @@ XcbMsgBox::_setTextLine(
 	xcb_void_cookie_t cookie_gc   = {};
 	xcb_void_cookie_t cookie_text = {};
 
-	xcb_gcontext_t gcontext = _fontGContext("fixed");
+	xcb_gcontext_t gcontext = _fontGContext(xT("fixed"));
 
 	cookie_text = ::xcb_image_text_8_checked(_conn, a_text.size(), _windowId, gcontext, a_x, a_y,
 		xT2A(a_text).c_str());
