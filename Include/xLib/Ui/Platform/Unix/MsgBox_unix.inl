@@ -40,7 +40,7 @@ MsgBox::_show_impl(
     xUNUSED(internal::enums::modalResults);
 
     // TODO: MsgBox::_show_impl() - Unix
-    // #pragma message("xLib: MsgBox::_show_impl() - n/a")
+    #pragma message("xLib: MsgBox::_show_impl() - n/a")
 #endif
 
     return mrRv;

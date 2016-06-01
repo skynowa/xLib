@@ -97,15 +97,15 @@ XcbMsgBox::show(
                                   XCB_EVENT_MASK_KEY_PRESS      | XCB_EVENT_MASK_KEY_RELEASE};
 
         cookie = ::xcb_create_window(
-            _conn,                   // connection
+            _conn,                         // connection
             XCB_COPY_FROM_PARENT,          // depth
             mainWindowId,                  // window ID
-            _screen->root,                  // parent window
+            _screen->root,                 // parent window
             0, 0,                          // x, y
             150 * 2, 150,                  // width, height
             10,                            // border_width
             XCB_WINDOW_CLASS_INPUT_OUTPUT, // class
-            _screen->root_visual,           // visual
+            _screen->root_visual,          // visual
             valueMask, valueList);         // masks
         xTEST_GR(cookie.sequence, 0U);
 
