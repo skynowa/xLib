@@ -23,9 +23,10 @@ xNAMESPACE_BEGIN2(xlib, ui)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 XcbMsgBox::XcbMsgBox() :
-    _conn  (xPTR_NULL),
-    _screen(xPTR_NULL),
-    _error (xPTR_NULL)
+    _conn    (xPTR_NULL),
+    _screen  (xPTR_NULL),
+    _windowId(0),
+    _error   (xPTR_NULL)
 {
     // Open the connection to the X server
     _conn = ::xcb_connect(xPTR_NULL, xPTR_NULL);
@@ -40,8 +41,9 @@ XcbMsgBox::XcbMsgBox() :
 xINLINE
 XcbMsgBox::~XcbMsgBox()
 {
-	_error  = xPTR_NULL;
-	_screen = xPTR_NULL;
+	_error    = xPTR_NULL;
+	_windowId = 0;
+	_screen   = xPTR_NULL;
 
     if (_conn != xPTR_NULL) {
         (void_t)::xcb_disconnect(_conn);
@@ -64,9 +66,9 @@ XcbMsgBox::show(
     String::split(a_text, Const::nl(), &text);
 
     // Create the window
-    xcb_window_t mainWindowId = 0;
     {
-        mainWindowId          = ::xcb_generate_id(_conn);
+        _windowId = ::xcb_generate_id(_conn);
+
         uint32_t valueMask    = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
         uint32_t valueList[2] = {_screen->white_pixel,
                                   XCB_EVENT_MASK_EXPOSURE       | XCB_EVENT_MASK_BUTTON_PRESS   |
@@ -77,7 +79,7 @@ XcbMsgBox::show(
         xcb_void_cookie_t cookie = ::xcb_create_window(
             _conn,                         // connection
             XCB_COPY_FROM_PARENT,          // depth
-            mainWindowId,                  // window ID
+            _windowId,                     // window ID
             _screen->root,                 // parent window
             0, 0,                          // x, y
             150 * 2, 150,                  // width, height
@@ -87,10 +89,10 @@ XcbMsgBox::show(
             valueMask, valueList);         // masks
         xTEST_GR(cookie.sequence, 0U);
 
-		_setTitle(mainWindowId, a_title);
+		_setTitle(a_title);
 
         // Map the window on the screen
-        cookie = ::xcb_map_window(_conn, mainWindowId);
+        cookie = ::xcb_map_window(_conn, _windowId);
         xTEST_GR(cookie.sequence, 0U);
 
 		iRv = ::xcb_flush(_conn);
@@ -109,7 +111,7 @@ XcbMsgBox::show(
                     "Region to be redrawn at location ({},{}), with dimension ({},{})",
                     expose->window, expose->x, expose->y, expose->width, expose->height );
 
-                _setText(mainWindowId, 32, 32, text);
+                _setText(32, 32, text);
             }
             break;
         case XCB_BUTTON_PRESS: {
@@ -197,8 +199,7 @@ XcbMsgBox::show(
 //-------------------------------------------------------------------------------------------------
 xINLINE xcb_gcontext_t
 XcbMsgBox::_gcFontGet(
-    const xcb_window_t &a_window,
-    const std::string  &a_fontName
+    const std::string &a_fontName
 )
 {
 	xcb_gcontext_t gcontext = 0;
@@ -216,7 +217,7 @@ XcbMsgBox::_gcFontGet(
 	uint32_t valueMask    = XCB_GC_FOREGROUND | XCB_GC_BACKGROUND | XCB_GC_FONT;
 	uint32_t valueList[3] = {_screen->black_pixel, _screen->white_pixel, font};
 
-	xcb_void_cookie_t cookie_gc = ::xcb_create_gc_checked(_conn, gcontext, a_window, valueMask,
+	xcb_void_cookie_t cookie_gc = ::xcb_create_gc_checked(_conn, gcontext, _windowId, valueMask,
 		valueList);
 
 	_error = ::xcb_request_check(_conn, cookie_gc);
@@ -232,11 +233,10 @@ XcbMsgBox::_gcFontGet(
 //-------------------------------------------------------------------------------------------------
 xINLINE void
 XcbMsgBox::_setTitle(
-	const xcb_window_t &a_window,
 	std::ctstring_t    &a_text
 )
 {
-	xcb_void_cookie_t cookie = ::xcb_change_property(_conn, XCB_PROP_MODE_REPLACE, a_window,
+	xcb_void_cookie_t cookie = ::xcb_change_property(_conn, XCB_PROP_MODE_REPLACE, _windowId,
 		XCB_ATOM_WM_NAME, XCB_ATOM_STRING, 8, a_text.size(), a_text.c_str());
 	xTEST_GR(cookie.sequence, 0U);
 
@@ -246,18 +246,17 @@ XcbMsgBox::_setTitle(
 //-------------------------------------------------------------------------------------------------
 xINLINE void
 XcbMsgBox::_setTextLine(
-    const xcb_window_t &a_window,
-    const int16_t      &a_x,
-    const int16_t      &a_y,
-    std::ctstring_t    &a_text
+    const int16_t   &a_x,
+    const int16_t   &a_y,
+    std::ctstring_t &a_text
 )
 {
 	xcb_void_cookie_t cookie_gc   = {};
 	xcb_void_cookie_t cookie_text = {};
 
-	xcb_gcontext_t gcontext = _gcFontGet(a_window, "7x13");
+	xcb_gcontext_t gcontext = _gcFontGet("7x13");
 
-	cookie_text = ::xcb_image_text_8_checked(_conn, a_text.size(), a_window, gcontext, a_x, a_y,
+	cookie_text = ::xcb_image_text_8_checked(_conn, a_text.size(), _windowId, gcontext, a_x, a_y,
 		xT2A(a_text).c_str());
 
 	_error = ::xcb_request_check(_conn, cookie_text);
@@ -274,7 +273,6 @@ XcbMsgBox::_setTextLine(
 //-------------------------------------------------------------------------------------------------
 xINLINE void
 XcbMsgBox::_setText(
-    const xcb_window_t  &a_window,
     const int16_t       &a_x,
     const int16_t       &a_y,
     std::cvec_tstring_t &a_text
@@ -287,7 +285,7 @@ XcbMsgBox::_setText(
     const int16_t lineIndent = 24;
 
 	xFOR_EACH_CONST(std::cvec_tstring_t, it, a_text) {
-		_setTextLine(a_window, x, y, *it);
+		_setTextLine(x, y, *it);
 
 		y += lineIndent;
 	}
@@ -295,7 +293,7 @@ XcbMsgBox::_setText(
 //-------------------------------------------------------------------------------------------------
 xINLINE void
 XcbMsgBox::_traceModifiers(
-    const uint32_t a_valueMask
+    const uint32_t &a_valueMask
 ) const
 {
     uint32_t valueMask = a_valueMask;
