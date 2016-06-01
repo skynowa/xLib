@@ -46,19 +46,18 @@ public:
 private:
     xcb_connection_t    *_conn;		///< connection
     xcb_screen_t        *_screen;	///< screen
+    xcb_window_t         _windowId;	///< window ID
     xcb_generic_error_t *_error;	///< error
 
-    xcb_gcontext_t _gcFontGet(const xcb_window_t &window, const std::string &fontName) xWARN_UNUSED_RV;
+    xcb_gcontext_t _gcFontGet(const std::string &fontName) xWARN_UNUSED_RV;
 		///<
-    void           _setTitle(const xcb_window_t &window, std::ctstring_t &text);
+    void           _setTitle(std::ctstring_t &text);
         ///< set title
-    void           _setTextLine(const xcb_window_t &window, const int16_t &x, const int16_t &y,
-    					std::ctstring_t &text);
+    void           _setTextLine(const int16_t &x, const int16_t &y, std::ctstring_t &text);
         ///< set text
-    void           _setText(const xcb_window_t &window, const int16_t &x, const int16_t &y,
-    					std::cvec_tstring_t &text);
+    void           _setText(const int16_t &x, const int16_t &y, std::cvec_tstring_t &text);
         ///< set text
-    void           _traceModifiers(const uint32_t valueMask) const;
+    void           _traceModifiers(const uint32_t &valueMask) const;
         ///< trace names of modifiers present in mask
 };
 
