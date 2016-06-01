@@ -41,17 +41,16 @@ public:
 
     ExModalResult     show(std::ctstring_t &text, std::ctstring_t &title, cExType &type)
                             xWARN_UNUSED_RV;
+		///<
 
 private:
-    xcb_connection_t *_connection;
+    xcb_connection_t *_connection;	///<
 
-    xcb_gc_t
-    _gc_font_get (
-                 const xcb_screen_t     *screen,
-                 xcb_window_t      window,
-                 const char       *font_name);
-    void              _textDraw(const xcb_screen_t *screen, xcb_window_t window, int16_t x1, int16_t y1,
-                            const char *label);
+    xcb_gc_t          _gcFontGet(const xcb_screen_t *screen, xcb_window_t window,
+    						const std::string &font_name);
+		///<
+    void              _textDraw(const xcb_screen_t *screen, xcb_window_t window, int16_t x1,
+    						int16_t y1, std::ctstring_t &text);
         ///<
     void              _traceModifiers(const uint32_t valueMask) const;
         ///< trace names of modifiers present in mask
