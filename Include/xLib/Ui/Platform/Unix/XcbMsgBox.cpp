@@ -173,7 +173,12 @@ XcbMsgBox::show(
                 xcb_key_press_event_t *key_press = (xcb_key_press_event_t *)event;
                 _traceModifiers(key_press->state);
 
-                Trace() << Format::str("Key pressed in window {}", key_press->event);
+                Trace() << Format::str("Key {} pressed in window {}", (uint_t)key_press->detail, key_press->event);
+
+				if (key_press->detail == 9 /* ESC */) {
+					xBUFF_FREE(event);
+					goto l_endFor;
+				}
             }
             break;
         case XCB_KEY_RELEASE: {
@@ -187,10 +192,13 @@ XcbMsgBox::show(
                 Trace() << Format::str("Unknown event: {}", (uint_t)event->response_type);
             }
             break;
-        }
+        } // switch
 
         xBUFF_FREE(event);
     } // switch
+
+l_endFor:
+	return XcbMsgBox::mrOk;
 }
 //-------------------------------------------------------------------------------------------------
 
