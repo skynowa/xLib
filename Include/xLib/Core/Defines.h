@@ -314,10 +314,10 @@
     case x: return #x
     ///< help for switch
 #define xLAMBDA(return_type, name, function) \
-    struct \
+    struct name \
     { \
         return_type operator () function \
-    } name;
+    }
     ///< lambda (local function)
 ///@}
 //-------------------------------------------------------------------------------------------------

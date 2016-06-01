@@ -69,6 +69,9 @@ XcbMsgBox::show(
     {
         _windowId = ::xcb_generate_id(_conn);
 
+        uint16_t width  = 150 * 2;
+        uint16_t height = 150;
+
         uint32_t valueMask    = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
         uint32_t valueList[2] = {_screen->white_pixel,
                                   XCB_EVENT_MASK_EXPOSURE       | XCB_EVENT_MASK_BUTTON_PRESS   |
@@ -82,7 +85,7 @@ XcbMsgBox::show(
             _windowId,                     // window ID
             _screen->root,                 // parent window
             0, 0,                          // x, y
-            150 * 2, 150,                  // width, height
+            width, height,                 // width, height
             10,                            // border_width
             XCB_WINDOW_CLASS_INPUT_OUTPUT, // class
             _screen->root_visual,          // visual
@@ -90,6 +93,7 @@ XcbMsgBox::show(
         xTEST_GR(cookie.sequence, 0U);
 
 		_setTitle(a_title);
+		_autoResize(text);
 
         // Map the window on the screen
         cookie = ::xcb_map_window(_conn, _windowId);
@@ -289,6 +293,39 @@ XcbMsgBox::_setText(
 
 		y += lineIndent;
 	}
+}
+//-------------------------------------------------------------------------------------------------
+xLAMBDA(bool, Comp, (std::ctstring_t &a_it1, std::ctstring_t &a_it2) const
+	{
+		return a_it1.size() < a_it2.size();
+	}
+);
+
+xINLINE void
+XcbMsgBox::_autoResize(
+	std::cvec_tstring_t &a_text
+)
+{
+	std::cvec_tstring_t::const_iterator itWidthMax = std::max_element(a_text.begin(), a_text.end(), Comp());
+
+	const uint16_t width  = itWidthMax->size();
+	const uint16_t height = 150;
+
+	Trace() << xTRACE_VAR_2(width, height);
+
+    _resize(width, height);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE void
+XcbMsgBox::_resize(
+    const uint16_t &a_width,
+    const uint16_t &a_height
+)
+{
+    const uint32_t values[] = {a_width, a_height};  // width, height
+
+    xcb_void_cookie_t cookie = ::xcb_configure_window(_conn, _windowId,
+    	XCB_CONFIG_WINDOW_WIDTH | XCB_CONFIG_WINDOW_HEIGHT, values);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
