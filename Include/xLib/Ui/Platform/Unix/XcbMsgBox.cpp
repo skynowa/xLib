@@ -148,6 +148,7 @@ XcbMsgBox::show(
                 #define WIDTH 300
                 #define HEIGHT 150
 
+                _textDraw(mainWindowId, 10, HEIGHT - 30, a_title);
                 _textDraw(mainWindowId, 10, HEIGHT - 10, a_text);
             #endif
             }
