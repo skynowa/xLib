@@ -298,18 +298,21 @@ XcbMsgBox::_setText(
 	}
 }
 //-------------------------------------------------------------------------------------------------
-xLAMBDA(bool, Comp, (std::ctstring_t &a_it1, std::ctstring_t &a_it2) const
+struct MaxElementComp
+{
+	bool operator () (std::ctstring_t &a_it1, std::ctstring_t &a_it2) const
 	{
 		return a_it1.size() < a_it2.size();
 	}
-);
+};
 
 xINLINE void
 XcbMsgBox::_autoResize(
 	std::cvec_tstring_t &a_text
 )
 {
-	std::cvec_tstring_t::const_iterator itWidthMax = std::max_element(a_text.begin(), a_text.end(), Comp());
+	std::cvec_tstring_t::const_iterator itWidthMax = std::max_element(a_text.begin(), a_text.end(),
+		MaxElementComp());
 
 	const uint16_t width  = itWidthMax->size();
 	const uint16_t height = 150;
