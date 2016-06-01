@@ -206,33 +206,36 @@ XcbMsgBox::_fontGContext(
     const std::string &a_fontName
 )
 {
-	xcb_gcontext_t gcontext = 0;
+	xcb_font_t        fontId      = 0;
+	xcb_void_cookie_t cookie_font = {};
+	{
+		fontId      = ::xcb_generate_id(_conn);
+		cookie_font = ::xcb_open_font_checked(_conn, fontId, a_fontName.size(), a_fontName.c_str());
 
-	xcb_font_t font = ::xcb_generate_id(_conn);
+		_error = ::xcb_request_check(_conn, cookie_font);
+		xTEST(_error == xPTR_NULL);
+	}
 
-	xcb_void_cookie_t cookie_font = ::xcb_open_font_checked(_conn, font, a_fontName.size(),
-		a_fontName.c_str());
+	xcb_gcontext_t gcontextId = 0;
+	{
+		gcontextId = ::xcb_generate_id(_conn);
+
+		uint32_t valueMask    = XCB_GC_FOREGROUND | XCB_GC_BACKGROUND | XCB_GC_FONT;
+		uint32_t valueList[3] = {_screen->black_pixel, _screen->white_pixel, fontId};
+
+		xcb_void_cookie_t cookie_gc = ::xcb_create_gc_checked(_conn, gcontextId, _windowId, valueMask,
+			valueList);
+
+		_error = ::xcb_request_check(_conn, cookie_gc);
+		xTEST(_error == xPTR_NULL);
+	}
+
+	cookie_font = ::xcb_close_font_checked(_conn, fontId);
 
 	_error = ::xcb_request_check(_conn, cookie_font);
 	xTEST(_error == xPTR_NULL);
 
-	gcontext = (xcb_gcontext_t)::xcb_generate_id(_conn);
-
-	uint32_t valueMask    = XCB_GC_FOREGROUND | XCB_GC_BACKGROUND | XCB_GC_FONT;
-	uint32_t valueList[3] = {_screen->black_pixel, _screen->white_pixel, font};
-
-	xcb_void_cookie_t cookie_gc = ::xcb_create_gc_checked(_conn, gcontext, _windowId, valueMask,
-		valueList);
-
-	_error = ::xcb_request_check(_conn, cookie_gc);
-	xTEST(_error == xPTR_NULL);
-
-	cookie_font = ::xcb_close_font_checked(_conn, font);
-
-	_error = ::xcb_request_check(_conn, cookie_font);
-	xTEST(_error == xPTR_NULL);
-
-	return gcontext;
+	return gcontextId;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
