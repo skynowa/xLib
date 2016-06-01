@@ -52,8 +52,11 @@ private:
 		///<
     void           _setTitle(const xcb_window_t &window, std::ctstring_t &text);
         ///< set title
-    void           _setText(const xcb_window_t &window, const int16_t &x, const int16_t &y,
+    void           _setTextLine(const xcb_window_t &window, const int16_t &x, const int16_t &y,
     					std::ctstring_t &text);
+        ///< set text
+    void           _setText(const xcb_window_t &window, const int16_t &x, const int16_t &y,
+    					std::cvec_tstring_t &text);
         ///< set text
     void           _traceModifiers(const uint32_t valueMask) const;
         ///< trace names of modifiers present in mask
