@@ -238,7 +238,7 @@ XcbMsgBox::_fontGContext(
 	return gcontextId;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void
+xINLINE void_t
 XcbMsgBox::_setTitle(
 	std::ctstring_t    &a_text
 )
@@ -247,11 +247,11 @@ XcbMsgBox::_setTitle(
 		XCB_ATOM_WM_NAME, XCB_ATOM_STRING, 8, a_text.size(), a_text.c_str());
 	xTEST_GR(cookie.sequence, 0U);
 
-	int iRv = ::xcb_flush(_conn);
+	int_t iRv = ::xcb_flush(_conn);
 	xTEST_GR(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void
+xINLINE void_t
 XcbMsgBox::_setTextLine(
     const int16_t   &a_x,
     const int16_t   &a_y,
@@ -274,11 +274,11 @@ XcbMsgBox::_setTextLine(
 	_error = ::xcb_request_check(_conn, cookie_gc);
 	xTEST(_error == xPTR_NULL);
 
-	int iRv = ::xcb_flush(_conn);
+	int_t iRv = ::xcb_flush(_conn);
 	xTEST_GR(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void
+xINLINE void_t
 XcbMsgBox::_setText(
     const int16_t       &a_x,
     const int16_t       &a_y,
@@ -300,13 +300,13 @@ XcbMsgBox::_setText(
 //-------------------------------------------------------------------------------------------------
 struct MaxElementComp
 {
-	bool operator () (std::ctstring_t &a_it1, std::ctstring_t &a_it2) const
+	bool_t operator () (std::ctstring_t &a_it1, std::ctstring_t &a_it2) const
 	{
 		return a_it1.size() < a_it2.size();
 	}
 };
 
-xINLINE void
+xINLINE void_t
 XcbMsgBox::_autoResize(
 	std::cvec_tstring_t &a_text
 )
@@ -324,7 +324,7 @@ XcbMsgBox::_autoResize(
     _resize(width, height);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void
+xINLINE void_t
 XcbMsgBox::_resize(
     const int16_t &a_width,
     const int16_t &a_height
@@ -336,7 +336,7 @@ XcbMsgBox::_resize(
     	XCB_CONFIG_WINDOW_WIDTH | XCB_CONFIG_WINDOW_HEIGHT, values);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void
+xINLINE void_t
 XcbMsgBox::_traceModifiers(
     const uint32_t &a_valueMask
 ) const
@@ -353,7 +353,7 @@ XcbMsgBox::_traceModifiers(
     Trace trace;
     trace << xT("Modifier mask: ");
 
-    for (const char **modifier = modifiers; valueMask; valueMask >>= 1, ++ modifier) {
+    for (ctchar_t **modifier = modifiers; valueMask; valueMask >>= 1, ++ modifier) {
         if (valueMask & 1) {
             trace << *modifier;
         }
