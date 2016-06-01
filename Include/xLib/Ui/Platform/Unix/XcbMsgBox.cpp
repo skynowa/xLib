@@ -202,7 +202,7 @@ XcbMsgBox::show(
 
 //-------------------------------------------------------------------------------------------------
 xINLINE xcb_gcontext_t
-XcbMsgBox::_gcFontGet(
+XcbMsgBox::_fontGContext(
     const std::string &a_fontName
 )
 {
@@ -258,7 +258,7 @@ XcbMsgBox::_setTextLine(
 	xcb_void_cookie_t cookie_gc   = {};
 	xcb_void_cookie_t cookie_text = {};
 
-	xcb_gcontext_t gcontext = _gcFontGet("7x13");
+	xcb_gcontext_t gcontext = _fontGContext("fixed");
 
 	cookie_text = ::xcb_image_text_8_checked(_conn, a_text.size(), _windowId, gcontext, a_x, a_y,
 		xT2A(a_text).c_str());

@@ -58,7 +58,7 @@ private:
         ///< trace names of modifiers present in mask
 
 private:
-    xcb_gcontext_t _gcFontGet(const std::string &fontName) xWARN_UNUSED_RV;
+    xcb_gcontext_t _fontGContext(const std::string &fontName) xWARN_UNUSED_RV;
 		///<
     void           _resize(const uint16_t &width, const uint16_t &height);
         ///< resize
