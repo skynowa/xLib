@@ -4,6 +4,8 @@
  */
 
 
+#include <xLib/Core/Const.h>
+#include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 
 #if xHAVE_XCB
@@ -58,6 +60,9 @@ XcbMsgBox::show(
 
     int_t iRv = 0;
 
+	std::vec_tstring_t text;
+    String::split(a_text, Const::nl(), &text);
+
     // Create the window
     xcb_window_t mainWindowId = 0;
     {
@@ -104,7 +109,7 @@ XcbMsgBox::show(
                     "Region to be redrawn at location ({},{}), with dimension ({},{})",
                     expose->window, expose->x, expose->y, expose->width, expose->height );
 
-                _setText(mainWindowId, 32, 32, a_text);
+                _setText(mainWindowId, 32, 32, text);
             }
             break;
         case XCB_BUTTON_PRESS: {
@@ -240,7 +245,7 @@ XcbMsgBox::_setTitle(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
-XcbMsgBox::_setText(
+XcbMsgBox::_setTextLine(
     const xcb_window_t &a_window,
     const int16_t      &a_x,
     const int16_t      &a_y,
@@ -265,6 +270,27 @@ XcbMsgBox::_setText(
 
 	int iRv = ::xcb_flush(_conn);
 	xTEST_GR(iRv, 0);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE void
+XcbMsgBox::_setText(
+    const xcb_window_t  &a_window,
+    const int16_t       &a_x,
+    const int16_t       &a_y,
+    std::cvec_tstring_t &a_text
+)
+{
+    const int16_t top        = 32;
+    const int16_t left       = 32;
+    const int16_t x          = top;
+    int16_t       y          = left;
+    const int16_t lineIndent = 24;
+
+	xFOR_EACH_CONST(std::cvec_tstring_t, it, a_text) {
+		_setTextLine(a_window, x, y, *it);
+
+		y += lineIndent;
+	}
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
