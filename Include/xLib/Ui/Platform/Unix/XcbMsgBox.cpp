@@ -55,35 +55,8 @@ XcbMsgBox::show(
 )
 {
     xUNUSED(a_type);
-    xUNUSED(a_title);
 
     int_t iRv = 0;
-
-    xcb_void_cookie_t cookie = {};
-
-    // create black (foreground) graphic context
-    xcb_gcontext_t foreground = 0;
-    {
-        foreground                   = ::xcb_generate_id(_conn);
-        xcb_drawable_t drawable      = _screen->root;
-        uint32_t       value_mask    = XCB_GC_FOREGROUND | XCB_GC_GRAPHICS_EXPOSURES;
-        uint32_t       value_list[2] = {_screen->black_pixel, XCB_EVENT_MASK_NO_EVENT};
-
-        cookie = ::xcb_create_gc(_conn, foreground, drawable, value_mask, value_list);
-        xTEST_GR(cookie.sequence, 0U);
-    }
-
-    // create white (background) graphic context
-    xcb_gcontext_t background = 0;
-    {
-        background                   = ::xcb_generate_id(_conn);
-        xcb_drawable_t drawable      = _screen->root;
-        uint32_t       value_mask    = XCB_GC_BACKGROUND | XCB_GC_GRAPHICS_EXPOSURES;
-        uint32_t       value_list[2] = {_screen->white_pixel, XCB_EVENT_MASK_NO_EVENT};
-
-        cookie = ::xcb_create_gc(_conn, background, drawable, value_mask, value_list);
-        xTEST_GR(cookie.sequence, 0U);
-    }
 
     // Create the window
     xcb_window_t mainWindowId = 0;
@@ -96,7 +69,7 @@ XcbMsgBox::show(
                                   XCB_EVENT_MASK_ENTER_WINDOW   | XCB_EVENT_MASK_LEAVE_WINDOW   |
                                   XCB_EVENT_MASK_KEY_PRESS      | XCB_EVENT_MASK_KEY_RELEASE};
 
-        cookie = ::xcb_create_window(
+        xcb_void_cookie_t cookie = ::xcb_create_window(
             _conn,                         // connection
             XCB_COPY_FROM_PARENT,          // depth
             mainWindowId,                  // window ID
@@ -109,6 +82,8 @@ XcbMsgBox::show(
             valueMask, valueList);         // masks
         xTEST_GR(cookie.sequence, 0U);
 
+		_setTitle(mainWindowId, a_title);
+
         // Map the window on the screen
         cookie = ::xcb_map_window(_conn, mainWindowId);
         xTEST_GR(cookie.sequence, 0U);
@@ -116,8 +91,6 @@ XcbMsgBox::show(
 		iRv = ::xcb_flush(_conn);
 		xTEST_GR(iRv, 0);
     }
-
-	_setTitle(mainWindowId, a_title);
 
     for ( ; ; ) {
         xcb_generic_event_t *event = ::xcb_wait_for_event(_conn);
@@ -131,24 +104,7 @@ XcbMsgBox::show(
                     "Region to be redrawn at location ({},{}), with dimension ({},{})",
                     expose->window, expose->x, expose->y, expose->width, expose->height );
 
-            #if 0
-                const xcb_rectangle_t rectangles[] =
-                {
-                    {40, 40, 20, 20}
-                };
-
-                cookie = ::xcb_poly_rectangle(_conn, mainWindowId, foreground, 1, rectangles);
-                xTEST_GR(cookie.sequence, 0U);
-
-                cookie = ::xcb_image_text_8(_conn, static_cast<uint8_t>( a_text.size() ),
-                    mainWindowId, background, 20, 20, xT2A(a_text).c_str());
-                xTEST_GR(cookie.sequence, 0U);
-
-                iRv = ::xcb_flush(_conn);
-                xTEST_GR(iRv, 0);
-            #else
                 _setText(mainWindowId, 32, 32, a_text);
-            #endif
             }
             break;
         case XCB_BUTTON_PRESS: {
