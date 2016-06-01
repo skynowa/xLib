@@ -50,9 +50,11 @@ private:
 
     xcb_gcontext_t _gcFontGet(const xcb_window_t &window, const std::string &fontName) xWARN_UNUSED_RV;
 		///<
-    void           _textDraw(const xcb_window_t &window, const int16_t &x, const int16_t &y,
+    void           _setTitle(const xcb_window_t &window, std::ctstring_t &text);
+        ///< set title
+    void           _setText(const xcb_window_t &window, const int16_t &x, const int16_t &y,
     					std::ctstring_t &text);
-        ///<
+        ///< set text
     void           _traceModifiers(const uint32_t valueMask) const;
         ///< trace names of modifiers present in mask
 };

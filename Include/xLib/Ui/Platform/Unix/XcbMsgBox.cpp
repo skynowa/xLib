@@ -112,10 +112,12 @@ XcbMsgBox::show(
         // Map the window on the screen
         cookie = ::xcb_map_window(_conn, mainWindowId);
         xTEST_GR(cookie.sequence, 0U);
+
+		iRv = ::xcb_flush(_conn);
+		xTEST_GR(iRv, 0);
     }
 
-    iRv = ::xcb_flush(_conn);
-    xTEST_GR(iRv, 0);
+	_setTitle(mainWindowId, a_title);
 
     for ( ; ; ) {
         xcb_generic_event_t *event = ::xcb_wait_for_event(_conn);
@@ -145,11 +147,7 @@ XcbMsgBox::show(
                 iRv = ::xcb_flush(_conn);
                 xTEST_GR(iRv, 0);
             #else
-                #define WIDTH 300
-                #define HEIGHT 150
-
-                _textDraw(mainWindowId, 10, HEIGHT - 30, a_title);
-                _textDraw(mainWindowId, 10, HEIGHT - 10, a_text);
+                _setText(mainWindowId, 32, 32, a_text);
             #endif
             }
             break;
@@ -272,7 +270,21 @@ XcbMsgBox::_gcFontGet(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
-XcbMsgBox::_textDraw(
+XcbMsgBox::_setTitle(
+	const xcb_window_t &a_window,
+	std::ctstring_t    &a_text
+)
+{
+	xcb_void_cookie_t cookie = ::xcb_change_property(_conn, XCB_PROP_MODE_REPLACE, a_window,
+		XCB_ATOM_WM_NAME, XCB_ATOM_STRING, 8, a_text.size(), a_text.c_str());
+	xTEST_GR(cookie.sequence, 0U);
+
+	int iRv = ::xcb_flush(_conn);
+	xTEST_GR(iRv, 0);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE void
+XcbMsgBox::_setText(
     const xcb_window_t &a_window,
     const int16_t      &a_x,
     const int16_t      &a_y,
@@ -294,6 +306,9 @@ XcbMsgBox::_textDraw(
 
 	_error = ::xcb_request_check(_conn, cookie_gc);
 	xTEST(_error == xPTR_NULL);
+
+	int iRv = ::xcb_flush(_conn);
+	xTEST_GR(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
