@@ -21,20 +21,29 @@ xNAMESPACE_BEGIN2(xlib, ui)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 XcbMsgBox::XcbMsgBox() :
-    _connection(xPTR_NULL)
+    _conn  (xPTR_NULL),
+    _screen(xPTR_NULL),
+    _error (xPTR_NULL)
 {
     // Open the connection to the X server
-    _connection = ::xcb_connect(xPTR_NULL, xPTR_NULL);
-    xTEST_PTR(_connection);
+    _conn = ::xcb_connect(xPTR_NULL, xPTR_NULL);
+    xTEST_PTR(_conn);
+
+    // Get the first screen
+    _screen = ::xcb_setup_roots_iterator( ::xcb_get_setup(_conn) ).data;
+    xTEST_PTR(_screen);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 xINLINE
 XcbMsgBox::~XcbMsgBox()
 {
-    if (_connection != xPTR_NULL) {
-        (void_t)::xcb_disconnect(_connection);
-        _connection = xPTR_NULL;
+	_error  = xPTR_NULL;
+	_screen = xPTR_NULL;
+
+    if (_conn != xPTR_NULL) {
+        (void_t)::xcb_disconnect(_conn);
+        _conn = xPTR_NULL;
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -52,68 +61,64 @@ XcbMsgBox::show(
 
     xcb_void_cookie_t cookie = {};
 
-    // Get the first screen
-    const xcb_screen_t *screen = ::xcb_setup_roots_iterator( ::xcb_get_setup(_connection) ).data;
-    xTEST_PTR(screen);
-
     // create black (foreground) graphic context
     xcb_gcontext_t foreground = 0;
     {
-        foreground                   = ::xcb_generate_id(_connection);
-        xcb_drawable_t drawable      = screen->root;
+        foreground                   = ::xcb_generate_id(_conn);
+        xcb_drawable_t drawable      = _screen->root;
         uint32_t       value_mask    = XCB_GC_FOREGROUND | XCB_GC_GRAPHICS_EXPOSURES;
-        uint32_t       value_list[2] = {screen->black_pixel, XCB_EVENT_MASK_NO_EVENT};
+        uint32_t       value_list[2] = {_screen->black_pixel, XCB_EVENT_MASK_NO_EVENT};
 
-        cookie = ::xcb_create_gc(_connection, foreground, drawable, value_mask, value_list);
+        cookie = ::xcb_create_gc(_conn, foreground, drawable, value_mask, value_list);
         xTEST_GR(cookie.sequence, 0U);
     }
 
     // create white (background) graphic context
     xcb_gcontext_t background = 0;
     {
-        background                   = ::xcb_generate_id(_connection);
-        xcb_drawable_t drawable      = screen->root;
+        background                   = ::xcb_generate_id(_conn);
+        xcb_drawable_t drawable      = _screen->root;
         uint32_t       value_mask    = XCB_GC_BACKGROUND | XCB_GC_GRAPHICS_EXPOSURES;
-        uint32_t       value_list[2] = {screen->white_pixel, XCB_EVENT_MASK_NO_EVENT};
+        uint32_t       value_list[2] = {_screen->white_pixel, XCB_EVENT_MASK_NO_EVENT};
 
-        cookie = ::xcb_create_gc(_connection, background, drawable, value_mask, value_list);
+        cookie = ::xcb_create_gc(_conn, background, drawable, value_mask, value_list);
         xTEST_GR(cookie.sequence, 0U);
     }
 
     // Create the window
     xcb_window_t mainWindowId = 0;
     {
-        mainWindowId          = ::xcb_generate_id(_connection);
+        mainWindowId          = ::xcb_generate_id(_conn);
         uint32_t valueMask    = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
-        uint32_t valueList[2] = {screen->white_pixel,
+        uint32_t valueList[2] = {_screen->white_pixel,
                                   XCB_EVENT_MASK_EXPOSURE       | XCB_EVENT_MASK_BUTTON_PRESS   |
                                   XCB_EVENT_MASK_BUTTON_RELEASE | XCB_EVENT_MASK_POINTER_MOTION |
                                   XCB_EVENT_MASK_ENTER_WINDOW   | XCB_EVENT_MASK_LEAVE_WINDOW   |
                                   XCB_EVENT_MASK_KEY_PRESS      | XCB_EVENT_MASK_KEY_RELEASE};
 
         cookie = ::xcb_create_window(
-            _connection,                   // connection
+            _conn,                   // connection
             XCB_COPY_FROM_PARENT,          // depth
             mainWindowId,                  // window ID
-            screen->root,                  // parent window
+            _screen->root,                  // parent window
             0, 0,                          // x, y
             150 * 2, 150,                  // width, height
             10,                            // border_width
             XCB_WINDOW_CLASS_INPUT_OUTPUT, // class
-            screen->root_visual,           // visual
+            _screen->root_visual,           // visual
             valueMask, valueList);         // masks
         xTEST_GR(cookie.sequence, 0U);
 
         // Map the window on the screen
-        cookie = ::xcb_map_window(_connection, mainWindowId);
+        cookie = ::xcb_map_window(_conn, mainWindowId);
         xTEST_GR(cookie.sequence, 0U);
     }
 
-    iRv = ::xcb_flush(_connection);
+    iRv = ::xcb_flush(_conn);
     xTEST_GR(iRv, 0);
 
     for ( ; ; ) {
-        xcb_generic_event_t *event = ::xcb_wait_for_event(_connection);
+        xcb_generic_event_t *event = ::xcb_wait_for_event(_conn);
         xCHECK_DO(event == xPTR_NULL, break);
 
         switch (event->response_type & ~0x80) {
@@ -130,20 +135,20 @@ XcbMsgBox::show(
                     {40, 40, 20, 20}
                 };
 
-                cookie = ::xcb_poly_rectangle(_connection, mainWindowId, foreground, 1, rectangles);
+                cookie = ::xcb_poly_rectangle(_conn, mainWindowId, foreground, 1, rectangles);
                 xTEST_GR(cookie.sequence, 0U);
 
-                cookie = ::xcb_image_text_8(_connection, static_cast<uint8_t>( a_text.size() ),
+                cookie = ::xcb_image_text_8(_conn, static_cast<uint8_t>( a_text.size() ),
                     mainWindowId, background, 20, 20, xT2A(a_text).c_str());
                 xTEST_GR(cookie.sequence, 0U);
 
-                iRv = ::xcb_flush(_connection);
+                iRv = ::xcb_flush(_conn);
                 xTEST_GR(iRv, 0);
             #else
                 #define WIDTH 300
                 #define HEIGHT 150
 
-                _textDraw(screen, mainWindowId, 10, HEIGHT - 10, a_text);
+                _textDraw(mainWindowId, 10, HEIGHT - 10, a_text);
             #endif
             }
             break;
@@ -229,92 +234,65 @@ XcbMsgBox::show(
 *
 **************************************************************************************************/
 
-xINLINE xcb_gc_t
-XcbMsgBox::_gcFontGet (
-    const xcb_screen_t *screen,
-    xcb_window_t       window,
-    const std::string &font_name
+//-------------------------------------------------------------------------------------------------
+xINLINE xcb_gcontext_t
+XcbMsgBox::_gcFontGet(
+    const xcb_window_t &a_window,
+    const std::string  &a_fontName
 )
 {
-  uint32_t             value_list[3];
-  xcb_void_cookie_t    cookie_font;
-  xcb_void_cookie_t    cookie_gc;
-  xcb_generic_error_t *error;
-  xcb_font_t           font;
-  xcb_gcontext_t       gc;
-  uint32_t             mask;
+	xcb_gcontext_t gcontext = 0;
 
-  font = xcb_generate_id (_connection);
-  cookie_font = xcb_open_font_checked (_connection, font,
-                                       font_name.size(),
-                                       font_name.c_str());
+	xcb_font_t font = ::xcb_generate_id(_conn);
 
-  error = xcb_request_check (_connection, cookie_font);
-  if (error) {
-    fprintf (stderr, "ERROR: can't open font : %d\n", error->error_code);
-    xcb_disconnect (_connection);
-    return (xcb_gc_t)- 1;
-  }
+	xcb_void_cookie_t cookie_font = ::xcb_open_font_checked(_conn, font, a_fontName.size(),
+		a_fontName.c_str());
 
-  gc = xcb_generate_id (_connection);
-  mask = XCB_GC_FOREGROUND | XCB_GC_BACKGROUND | XCB_GC_FONT;
-  value_list[0] = screen->black_pixel;
-  value_list[1] = screen->white_pixel;
-  value_list[2] = font;
-  cookie_gc = xcb_create_gc_checked (_connection, gc, window, mask, value_list);
-  error = xcb_request_check (_connection, cookie_gc);
-  if (error) {
-    fprintf (stderr, "ERROR: can't create gc : %d\n", error->error_code);
-    xcb_disconnect (_connection);
-    exit (-1);
-  }
+	_error = ::xcb_request_check(_conn, cookie_font);
+	xTEST(_error == xPTR_NULL);
 
-  cookie_font = xcb_close_font_checked (_connection, font);
-  error = xcb_request_check (_connection, cookie_font);
-  if (error) {
-    fprintf (stderr, "ERROR: can't close font : %d\n", error->error_code);
-    xcb_disconnect (_connection);
-    exit (-1);
-  }
+	gcontext = (xcb_gcontext_t)::xcb_generate_id(_conn);
 
-  return static_cast<xcb_gc_t>(gc);
+	uint32_t valueMask    = XCB_GC_FOREGROUND | XCB_GC_BACKGROUND | XCB_GC_FONT;
+	uint32_t valueList[3] = {_screen->black_pixel, _screen->white_pixel, font};
+
+	xcb_void_cookie_t cookie_gc = ::xcb_create_gc_checked(_conn, gcontext, a_window, valueMask,
+		valueList);
+
+	_error = ::xcb_request_check(_conn, cookie_gc);
+	xTEST(_error == xPTR_NULL);
+
+	cookie_font = ::xcb_close_font_checked(_conn, font);
+
+	_error = ::xcb_request_check(_conn, cookie_font);
+	xTEST(_error == xPTR_NULL);
+
+	return gcontext;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
 XcbMsgBox::_textDraw(
-    const xcb_screen_t     *screen,
-    xcb_window_t      window,
-    int16_t           x1,
-    int16_t           y1,
-    std::ctstring_t  &a_text
+    const xcb_window_t &a_window,
+    const int16_t      &a_x,
+    const int16_t      &a_y,
+    std::ctstring_t    &a_text
 )
 {
-  xcb_void_cookie_t    cookie_gc;
-  xcb_void_cookie_t    cookie_text;
-  xcb_generic_error_t *error;
-  xcb_gcontext_t       gc;
-  uint8_t              length;
+	xcb_void_cookie_t cookie_gc   = {};
+	xcb_void_cookie_t cookie_text = {};
 
+	xcb_gcontext_t gcontext = _gcFontGet(a_window, "7x13");
 
-  gc = _gcFontGet(screen, window, "7x13");
+	cookie_text = ::xcb_image_text_8_checked(_conn, a_text.size(), a_window, gcontext, a_x, a_y,
+		xT2A(a_text).c_str());
 
-  cookie_text = ::xcb_image_text_8_checked (_connection, a_text.size(), window, gc,
-                                          x1,
-                                          y1, xT2A(a_text).c_str());
-  error = ::xcb_request_check (_connection, cookie_text);
-  if (error) {
-    fprintf (stderr, "ERROR: can't paste text : %d\n", error->error_code);
-    ::xcb_disconnect (_connection);
-    exit (-1);
-  }
+	_error = ::xcb_request_check(_conn, cookie_text);
+	xTEST(_error == xPTR_NULL);
 
-  cookie_gc = ::xcb_free_gc (_connection, gc);
-  error = ::xcb_request_check (_connection, cookie_gc);
-  if (error) {
-    fprintf (stderr, "ERROR: can't free gc : %d\n", error->error_code);
-    ::xcb_disconnect (_connection);
-    exit (-1);
-  }
+	cookie_gc = ::xcb_free_gc(_conn, gcontext);
+
+	_error = ::xcb_request_check(_conn, cookie_gc);
+	xTEST(_error == xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
