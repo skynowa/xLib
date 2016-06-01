@@ -143,7 +143,7 @@ XcbMsgBox::show(
                 #define WIDTH 300
                 #define HEIGHT 150
 
-                _textDraw(screen, mainWindowId, 10, HEIGHT - 10, xT2A(a_text).c_str());
+                _textDraw(screen, mainWindowId, 10, HEIGHT - 10, a_text);
             #endif
             }
             break;
@@ -230,10 +230,10 @@ XcbMsgBox::show(
 **************************************************************************************************/
 
 xINLINE xcb_gc_t
-XcbMsgBox::_gc_font_get (
-    const xcb_screen_t     *screen,
-    xcb_window_t      window,
-    const char       *font_name
+XcbMsgBox::_gcFontGet (
+    const xcb_screen_t *screen,
+    xcb_window_t       window,
+    const std::string &font_name
 )
 {
   uint32_t             value_list[3];
@@ -246,8 +246,8 @@ XcbMsgBox::_gc_font_get (
 
   font = xcb_generate_id (_connection);
   cookie_font = xcb_open_font_checked (_connection, font,
-                                       strlen (font_name),
-                                       font_name);
+                                       font_name.size(),
+                                       font_name.c_str());
 
   error = xcb_request_check (_connection, cookie_font);
   if (error) {
@@ -286,7 +286,7 @@ XcbMsgBox::_textDraw(
     xcb_window_t      window,
     int16_t           x1,
     int16_t           y1,
-    const char       *label
+    std::ctstring_t  &a_text
 )
 {
   xcb_void_cookie_t    cookie_gc;
@@ -295,13 +295,12 @@ XcbMsgBox::_textDraw(
   xcb_gcontext_t       gc;
   uint8_t              length;
 
-  length = strlen (label);
 
-  gc = _gc_font_get(screen, window, "7x13");
+  gc = _gcFontGet(screen, window, "7x13");
 
-  cookie_text = ::xcb_image_text_8_checked (_connection, length, window, gc,
+  cookie_text = ::xcb_image_text_8_checked (_connection, a_text.size(), window, gc,
                                           x1,
-                                          y1, label);
+                                          y1, xT2A(a_text).c_str());
   error = ::xcb_request_check (_connection, cookie_text);
   if (error) {
     fprintf (stderr, "ERROR: can't paste text : %d\n", error->error_code);
