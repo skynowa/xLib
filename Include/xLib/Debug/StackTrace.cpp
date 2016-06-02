@@ -48,13 +48,9 @@ xNAMESPACE_BEGIN2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 StackTrace::StackTrace(
-    cint_t          &a_skipFramesNum,      /* = 2 */    ///< Skip number of frames
-    cbool_t         &a_isWrapFilePaths,    /* = true */
-    cbool_t         &a_isFuncParamsDisable /* = true */
+    cStackTraceData &a_data
 ) :
-    _skipFramesNum      (a_skipFramesNum),
-    _isWrapFilePaths    (a_isWrapFilePaths),
-    _isFuncParamsDisable(a_isFuncParamsDisable)
+    _data(a_data)
 {
 }
 //-------------------------------------------------------------------------------------------------
