@@ -16,6 +16,8 @@ xTEST_UNIT(Test_Debug)
 bool_t
 Test_Debug::unit()
 {
+	xTEST(false);
+
     xTEST_CASE("xCHECK_RET")
     {
         // xCHECK_RET(expr, return_expr)
