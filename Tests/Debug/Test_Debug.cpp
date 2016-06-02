@@ -25,41 +25,43 @@ Test_Debug::unit()
 
     xTEST_CASE("xCHECK_DO")
     {
-        class STest {
-            public:
-                culong_t culVal0;
-                culong_t culVal1;
-                culong_t culVal2;
-                culong_t culVal3;
+        class Data
+        {
+		public:
+			culong_t val0;
+			culong_t val1;
+			culong_t val2;
+			culong_t val3;
 
-                STest() :
-                    culVal0(0UL),
-                    culVal1(1UL),
-                    culVal2(2UL),
-                    culVal3(3UL)
-                {
-                }
+			Data() :
+				val0(0UL),
+				val1(1UL),
+				val2(2UL),
+				val3(3UL)
+			{
+			}
 
-                long_t exec(cbool_t &cbFlag) {
-                    if (cbFlag) {
-                        xCHECK_DO(!cbFlag, return culVal0; );
-                        xCHECK_DO( cbFlag, return culVal1; );
-                    } else {
-                        xCHECK_DO( cbFlag, return culVal2; );
-                        xCHECK_DO(!cbFlag, return culVal3; );
-                    }
+			long_t exec(cbool_t &a_flag)
+			{
+				if (a_flag) {
+					xCHECK_DO(!a_flag, return val0; );
+					xCHECK_DO( a_flag, return val1; );
+				} else {
+					xCHECK_DO( a_flag, return val2; );
+					xCHECK_DO(!a_flag, return val3; );
+				}
 
-                    return culVal0;
-                }
+				return val0;
+			}
         };
 
-        STest t;
+        Data t;
 
         m_ulRv = t.exec(true);
-        xTEST_EQ(t.culVal1, m_ulRv);
+        xTEST_EQ(t.val1, m_ulRv);
 
         m_ulRv = t.exec(false);
-        xTEST_EQ(t.culVal3, m_ulRv);
+        xTEST_EQ(t.val3, m_ulRv);
     }
 
     xTEST_CASE("xCHECK_MSG")
@@ -79,16 +81,16 @@ Test_Debug::unit()
 
     xTEST_CASE("xNOT_IMPLEMENTED")
     {
-        #if xTEST_IGNORE
-            xNOT_IMPLEMENTED
-        #endif
+	#if xTEST_IGNORE
+		xNOT_IMPLEMENTED
+	#endif
     }
 
     xTEST_CASE("xTRACE_POINT")
     {
-        #if xTEST_IGNORE
-            xTRACE_POINT;
-        #endif
+	#if xTEST_IGNORE
+		xTRACE_POINT;
+	#endif
     }
 
     return true;
