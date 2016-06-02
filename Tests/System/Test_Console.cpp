@@ -17,11 +17,10 @@ Test_Console::unit()
     {
         Console console;
 
-        std::tstring_t          text;
+        std::tstring_t        text;
         Console::ExForeground foreground = Console::fgBlue;
         Console::ExBackground background = Console::bgYellow;
-        int_t                   attributes = Console::atBold | Console::atUnderscore |
-                                             Console::atReverse;
+        cint_t                attributes = Console::atBold | Console::atUnderscore | Console::atReverse;
 
         m_sRv = console.setAttributes(foreground, background, attributes);
         xTEST_NA(m_sRv);
@@ -32,150 +31,184 @@ Test_Console::unit()
 
     xTEST_CASE("read")
     {
-        #if xTEST_IGNORE
-            Console console;
+	#if xTEST_IGNORE
+		Console console;
 
-            m_sRv = console.read();
-            xTEST_NA(m_sRv);
-        #endif
+		m_sRv = console.read();
+		xTEST_NA(m_sRv);
+    #else
+        Trace() << xT("[skip]");
+	#endif
     }
 
     xTEST_CASE("write")
     {
-        #if xTEST_IGNORE
-            std::ctstring_t str = xT("\tConsole_test_string");
+	#if xTEST_IGNORE
+		std::ctstring_t str = xT("\tConsole_test_string");
 
-            Console console;
+		Console console;
 
-            console.write(str);
-        #endif
+		console.write(str);
+    #else
+        Trace() << xT("[skip]");
+	#endif
     }
 
     xTEST_CASE("writeLine")
     {
-        #if xTEST_IGNORE
-            std::ctstring_t str = xT("\tConsole_test_line");
+	#if xTEST_IGNORE
+		std::ctstring_t str = xT("\tConsole_test_line");
 
-            Console console;
+		Console console;
 
-            console.writeLine(str);
-        #endif
+		console.writeLine(str);
+    #else
+        Trace() << xT("[skip]");
+	#endif
     }
 
     xTEST_CASE("writeLine")
     {
-        #if xTEST_IGNORE
-            std::ctstring_t str = xT("\tConsole_test_error");
+	#if xTEST_IGNORE
+		std::ctstring_t str = xT("\tConsole_test_error");
 
-            Console console;
+		Console console;
 
-            console.writeLine(str);
-        #endif
+		console.writeLine(str);
+    #else
+        Trace() << xT("[skip]");
+	#endif
     }
 
     xTEST_CASE("msgBox")
     {
-        #if xTEST_IGNORE
-            std::ctstring_t text  = xT("iMsgBox_text");
-            std::ctstring_t title = xT("iMsgBox_title");
-            cuint_t         type  = 0U;
+	#if xTEST_IGNORE
+		std::ctstring_t text  = xT("iMsgBox_text");
+		std::ctstring_t title = xT("iMsgBox_title");
+		cuint_t         type  = 0U;
 
 
-            Console console;
+		Console console;
 
-            Console::ExModalResult mrRes = console.msgBox(text, title, type);
-            xUNUSED(mrRes);
-        #endif
+		Console::ExModalResult mrRes = console.msgBox(text, title, type);
+		xUNUSED(mrRes);
+    #else
+        Trace() << xT("[skip]");
+	#endif
     }
 
     xTEST_CASE("prompt")
     {
-        #if xTEST_IGNORE
-            std::ctstring_t prompt    = xT("vPrompt_simple_prompt");
-            cbool_t         isVisible = true;
-            std::tstring_t  answer    = xT("sAnswer_bla-bla-bla");
+	#if xTEST_IGNORE
+		std::ctstring_t prompt    = xT("vPrompt_simple_prompt");
+		cbool_t         isVisible = true;
+		std::tstring_t  answer    = xT("sAnswer_bla-bla-bla");
 
-            Console console;
+		Console console;
 
-            console.prompt(prompt, isVisible, &answer);
-        #endif
+		console.prompt(prompt, isVisible, &answer);
+    #else
+        Trace() << xT("[skip]");
+	#endif
     }
 
     xTEST_CASE("pause")
     {
-        #if xTEST_IGNORE
-            Console console;
+	#if xTEST_IGNORE
+		Console console;
 
-            console.pause(3 * 1000UL);
-            console.pause(xTIMEOUT_INFINITE);
-        #endif
+		console.pause(3 * 1000UL);
+		console.pause(xTIMEOUT_INFINITE);
+    #else
+        Trace() << xT("[skip]");
+	#endif
     }
 
     xTEST_CASE("clear")
     {
-        #if xTEST_IGNORE
-            Console console;
+	#if xTEST_IGNORE
+		Console console;
 
-            console.clear();
-        #endif
+		console.clear();
+    #else
+        Trace() << xT("[skip]");
+	#endif
     }
 
     xTEST_CASE("setTitle")
     {
-        #if xTEST_IGNORE
-            std::ctstring_t title = xT("Title1");
+	#if xTEST_IGNORE
+		std::ctstring_t title = xT("Title1");
 
 
-            Console console;
+		Console console;
 
-            console.setTitle(title);
+		console.setTitle(title);
 
-            #if 1 && xENV_WIN
-                m_sRv = console.title();
-                xTEST_EQ(m_sRv, title);
-            #endif
-        #endif
+		#if 1 && xENV_WIN
+			m_sRv = console.title();
+			xTEST_EQ(m_sRv, title);
+		#endif
+    #else
+        Trace() << xT("[skip]");
+	#endif
     }
 
-#if xENV_WIN && xTEST_IGNORE
+#if xENV_WIN
     xTEST_CASE("title")
     {
-        std::tstring_t title = xT("Title1");
+	#if xTEST_IGNORE
+		std::tstring_t title = xT("Title1");
 
-        Console console;
+		Console console;
 
-        console.setTitle(title);
+		console.setTitle(title);
 
-        m_sRv = console.title();
-        xTEST_EQ(m_sRv, title);
+		m_sRv = console.title();
+		xTEST_EQ(m_sRv, title);
+	#else
+		Trace() << xT("[skip]");
+	#endif
     }
 #endif
 
-#if xENV_WIN && xTEST_IGNORE
+#if xENV_WIN
     xTEST_CASE("centerWindow")
     {
-        Console console;
+	#if xTEST_IGNORE
+		Console console;
 
-        console.centerWindow();
+		console.centerWindow();
+	#else
+		Trace() << xT("[skip]");
+	#endif
     }
 #endif
 
-#if xENV_WIN && xTEST_IGNORE
+#if xENV_WIN
     xTEST_CASE("setFullScreen")
     {
-        Console console;
+	#if xTEST_IGNORE
+		Console console;
 
-        console.setFullScreen();
+		console.setFullScreen();
+	#else
+		Trace() << xT("[skip]");
+	#endif
     }
 #endif
 
-#if xENV_WIN && xTEST_IGNORE
+#if xENV_WIN
     xTEST_CASE("enableClose")
     {
-        Console console;
+	#if xTEST_IGNORE
+		Console console;
 
-        console.enableClose(false);
-        console.enableClose(true);
+		console.enableClose(false);
+		console.enableClose(true);
+	#else
+		Trace() << xT("[skip]");
+	#endif
     }
 #endif
 
