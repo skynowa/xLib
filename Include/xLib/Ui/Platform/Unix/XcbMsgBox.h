@@ -50,7 +50,7 @@ private:
 
     void_t         _setTitle(std::ctstring_t &text);
         ///< set title
-    void_t         _setText(const int16_t &x, const int16_t &y, std::cvec_tstring_t &text);
+    void_t         _setText(const int16_t &left, const int16_t &top, std::cvec_tstring_t &text);
         ///< set text
     void_t         _autoResize(std::cvec_tstring_t &text);
         ///< auto resize
@@ -62,7 +62,7 @@ private:
 		///< get font gcontext
     void_t         _resize(const int16_t &width, const int16_t &height);
         ///< resize
-    void_t         _setTextLine(const int16_t &x, const int16_t &y, std::ctstring_t &text);
+    void_t         _setTextLine(const int16_t &left, const int16_t &top, std::ctstring_t &text);
         ///< set text
     void_t         _traceModifiers(const uint32_t &valueMask) const;
         ///< trace names of modifiers present in mask

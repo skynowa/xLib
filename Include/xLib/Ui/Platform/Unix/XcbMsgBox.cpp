@@ -126,15 +126,13 @@ XcbMsgBox::_setTitle(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 XcbMsgBox::_setText(
-    const int16_t       &a_x,
-    const int16_t       &a_y,
+    const int16_t       &a_left,
+    const int16_t       &a_top,
     std::cvec_tstring_t &a_text
 )
 {
-    const int16_t top        = 32;
-    const int16_t left       = 32;
-    const int16_t x          = top;
-    int16_t       y          = left;
+    const int16_t x          = a_top;
+    int16_t       y          = a_left;
     const int16_t lineIndent = 24;
 
 	xFOR_EACH_CONST(std::cvec_tstring_t, it, a_text) {
