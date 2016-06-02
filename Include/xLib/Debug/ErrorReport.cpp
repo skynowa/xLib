@@ -136,7 +136,7 @@ ErrorReport::_initPlain()
         xT("Stack trace:\n")
         xT("{}\n")
         xT("\n")
-        xT("Comment:       {}\n"),
+        xT("Comment:       {}"),
         _program,
         _processId,
         _threadId,
