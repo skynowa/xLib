@@ -17,12 +17,13 @@ Test_MsgBox::unit()
     {
 	#if xTEST_IGNORE || 1
         std::ctstring_t title = xT("Title-Test AAAAAAAA BBBBBBBB");
-	#if 0
+	#if   1
 		std::ctstring_t text  = xT("Line_aaaaa");
-	#elif 1
+	#elif 0
 		std::ctstring_t text;
-	#else
+	#elif 0
 		std::ctstring_t text  = xT("Line_aaaaa\nLine_bbbbbbb\nLine_cccccc\ndddddd fffffffffffff hhhhhhhhhhhhhhhhh jjjjjjjjjjjjjjjjjjjjj kkkkkkkkkkkkkk");
+	#else
 	#endif
         MsgBox::ExType  type  = MsgBox::tpOk;
 
