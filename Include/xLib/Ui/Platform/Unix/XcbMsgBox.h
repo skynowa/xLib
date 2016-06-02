@@ -7,10 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-
-#if xHAVE_XCB
-    #include <xcb/xcb.h>
-#endif
+#include <xcb/xcb.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, ui)
 
