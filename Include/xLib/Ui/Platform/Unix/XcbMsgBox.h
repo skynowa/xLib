@@ -50,7 +50,7 @@ private:
 
     void_t         _setTitle(std::ctstring_t &text);
         ///< set title
-    void_t         _setText(const int16_t &left, const int16_t &top, std::cvec_tstring_t &text);
+    void_t         _setText(std::cvec_tstring_t &text);
         ///< set text
     void_t         _autoResize(std::cvec_tstring_t &text);
         ///< auto resize
