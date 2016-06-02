@@ -52,7 +52,7 @@ private:
         ///< set title
     void_t         _setText(std::cvec_tstring_t &text);
         ///< set text
-    void_t         _autoResize(std::cvec_tstring_t &text);
+    void_t         _autoResize(std::ctstring_t &title, std::cvec_tstring_t &text);
         ///< auto resize
 	ExModalResult  _execute(std::cvec_tstring_t &text);
 		///< execute
