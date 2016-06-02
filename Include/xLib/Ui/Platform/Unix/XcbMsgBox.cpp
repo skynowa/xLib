@@ -279,7 +279,9 @@ XcbMsgBox::_execute(
 
                 Trace() << Format::str("Key {} pressed in window {}", (uint_t)key_press->detail, key_press->event);
 
-				if (key_press->detail == 9 /* ESC */) {
+				const xcb_keycode_t keyCode_Esc = 9;
+
+				if (key_press->detail == keyCode_Esc) {
 					xBUFF_FREE(event);
 					goto l_endFor;
 				}
