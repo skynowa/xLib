@@ -17,7 +17,11 @@ Test_MsgBox::unit()
     xTEST_CASE("show")
     {
         std::ctstring_t title = xT("Title-Test");
-        std::ctstring_t text  = xT("Line_aaaaa\nLine_bbbbbbb\nLine_cccccc\ndddddd fffffffffffff hhhhhhhhhhhhhhhhh jjjjjjjjjjjjjjjjjjjjj kkkkkkkkkkkkkk");
+	#if 1
+		std::ctstring_t text  = xT("Line_aaaaa");
+	#else
+		std::ctstring_t text  = xT("Line_aaaaa\nLine_bbbbbbb\nLine_cccccc\ndddddd fffffffffffff hhhhhhhhhhhhhhhhh jjjjjjjjjjjjjjjjjjjjj kkkkkkkkkkkkkk");
+	#endif
         MsgBox::ExType  type  = MsgBox::tpOk;
 
 		MsgBox msgBox;
