@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xlib, debug)
 
 struct StackTraceData
-    /// manager data
+    /// StackTrace data
 {
     cint_t  skipFramesNum;
     cbool_t isWrapFilePaths;
