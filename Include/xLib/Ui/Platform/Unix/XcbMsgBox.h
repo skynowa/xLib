@@ -14,6 +14,8 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, ui)
 
+#define xLIB_XCB_MSGBOX_DEBUG 0
+
 class XcbMsgBox
     ///< XCB message box
     ///< FAQ: https://xcb.freedesktop.org/tutorial/events/

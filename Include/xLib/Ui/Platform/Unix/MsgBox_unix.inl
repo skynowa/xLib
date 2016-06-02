@@ -24,23 +24,18 @@ MsgBox::_show_impl(
     cExType         &a_type    /* = tpOk */
 ) const
 {
+    xUNUSED(a_type);
+
     ExModalResult mrRv = mrUnknown;
 
 #if xHAVE_XCB
-    xUNUSED(a_type);
-
     XcbMsgBox msgBox;
     mrRv = static_cast<MsgBox::ExModalResult>( msgBox.show(a_text, a_title, XcbMsgBox::tpOk) );
 #else
-    xUNUSED(a_text);
-    xUNUSED(a_title);
-    xUNUSED(a_type);
+    Console console;
+    console.msgBox(a_text, a_title, 0);
 
-    xUNUSED(internal::enums::types);
-    xUNUSED(internal::enums::modalResults);
-
-    // TODO: MsgBox::_show_impl() - Unix
-    #pragma message("xLib: MsgBox::_show_impl() - n/a")
+    mrRv = mrOk;
 #endif
 
     return mrRv;

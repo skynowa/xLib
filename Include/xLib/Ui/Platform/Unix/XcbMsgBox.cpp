@@ -197,8 +197,6 @@ XcbMsgBox::_autoResize(
 		height = a_text.size() * lineIndent + top_default * 2;
 	}
 
-	Trace() << xTRACE_VAR_2(width, height);
-
     _resize(width, height);
 }
 //-------------------------------------------------------------------------------------------------
@@ -213,72 +211,92 @@ XcbMsgBox::_execute(
 
         switch (event->response_type & ~0x80) {
         case XCB_EXPOSE: {
-                xcb_expose_event_t *expose = (xcb_expose_event_t *)event;
+				xcb_expose_event_t *expose = (xcb_expose_event_t *)event;
+				xUNUSED(expose);
 
-                Trace() << Format::str("Window {} exposed. "
-                    "Region to be redrawn at location ({},{}), with dimension ({},{})",
-                    expose->window, expose->x, expose->y, expose->width, expose->height );
+			#if xLIB_XCB_MSGBOX_DEBUG
+				Trace() << Format::str("Window {} exposed. "
+					"Region to be redrawn at location ({},{}), with dimension ({},{})",
+					expose->window, expose->x, expose->y, expose->width, expose->height );
+			#endif
 
                 _setText(a_text);
             }
             break;
         case XCB_BUTTON_PRESS: {
-                xcb_button_press_event_t *button_press = (xcb_button_press_event_t *)event;
+				xcb_button_press_event_t *button_press = (xcb_button_press_event_t *)event;
+				xUNUSED(button_press);
 
-                Trace() << Format::str("Modifier mask: {}", _modifiersStr(button_press->state));
+			#if xLIB_XCB_MSGBOX_DEBUG
+				Trace() << Format::str("Modifier mask: {}", _modifiersStr(button_press->state));
 
-                switch (button_press->detail) {
-                case 4:
-                    Trace() << Format::str("Wheel Button up in window {}, at coordinates ({},{})",
-                            button_press->event, button_press->event_x, button_press->event_y );
-                    break;
-                case 5:
-                    Trace() << Format::str("Wheel Button down in window {}, at coordinates ({},{})",
-                            button_press->event, button_press->event_x, button_press->event_y );
-                    break;
-                default:
-                    Trace() << Format::str("Button {} pressed in window {}, at coordinates ({},{})",
-                        button_press->detail, button_press->event, button_press->event_x,
-                        button_press->event_y );
-                    break;
-                }
+				switch (button_press->detail) {
+				case 4:
+					Trace() << Format::str("Wheel Button up in window {}, at coordinates ({},{})",
+							button_press->event, button_press->event_x, button_press->event_y );
+					break;
+				case 5:
+					Trace() << Format::str("Wheel Button down in window {}, at coordinates ({},{})",
+							button_press->event, button_press->event_x, button_press->event_y );
+					break;
+				default:
+					Trace() << Format::str("Button {} pressed in window {}, at coordinates ({},{})",
+						button_press->detail, button_press->event, button_press->event_x,
+						button_press->event_y );
+					break;
+				}
+			#endif
             }
             break;
         case XCB_BUTTON_RELEASE: {
-                xcb_button_release_event_t *button_release = (xcb_button_release_event_t *)event;
+				xcb_button_release_event_t *button_release = (xcb_button_release_event_t *)event;
+				xUNUSED(button_release);
 
-                Trace() << Format::str("Modifier mask: {}", _modifiersStr(button_release->state));
-                Trace() << Format::str("Button {} released in window {}, at coordinates ({},{})",
-                    button_release->detail, button_release->event, button_release->event_x,
-                    button_release->event_y );
+			#if xLIB_XCB_MSGBOX_DEBUG
+				Trace() << Format::str("Modifier mask: {}", _modifiersStr(button_release->state));
+				Trace() << Format::str("Button {} released in window {}, at coordinates ({},{})",
+					button_release->detail, button_release->event, button_release->event_x,
+					button_release->event_y );
+			#endif
             }
             break;
         case XCB_MOTION_NOTIFY: {
-                xcb_motion_notify_event_t *motion = (xcb_motion_notify_event_t *)event;
+				xcb_motion_notify_event_t *motion = (xcb_motion_notify_event_t *)event;
+				xUNUSED(motion);
 
-                Trace() << Format::str("Mouse moved in window {}, at coordinates ({},{})",
-                        motion->event, motion->event_x, motion->event_y );
+			#if xLIB_XCB_MSGBOX_DEBUG
+				Trace() << Format::str("Mouse moved in window {}, at coordinates ({},{})",
+						motion->event, motion->event_x, motion->event_y );
+			#endif
             }
             break;
         case XCB_ENTER_NOTIFY: {
-                xcb_enter_notify_event_t *enter = (xcb_enter_notify_event_t *)event;
+				xcb_enter_notify_event_t *enter = (xcb_enter_notify_event_t *)event;
+				xUNUSED(enter);
 
-                Trace() << Format::str("Mouse entered window {}, at coordinates ({},{})",
-                    enter->event, enter->event_x, enter->event_y );
+			#if xLIB_XCB_MSGBOX_DEBUG
+				Trace() << Format::str("Mouse entered window {}, at coordinates ({},{})",
+					enter->event, enter->event_x, enter->event_y );
+			#endif
             }
             break;
         case XCB_LEAVE_NOTIFY: {
-                xcb_leave_notify_event_t *leave_notify = (xcb_leave_notify_event_t *)event;
+				xcb_leave_notify_event_t *leave_notify = (xcb_leave_notify_event_t *)event;
+				xUNUSED(leave_notify);
 
-                Trace() << Format::str("Mouse left window {}, at coordinates ({},{})",
-                    leave_notify->event, leave_notify->event_x, leave_notify->event_y );
+			#if xLIB_XCB_MSGBOX_DEBUG
+				Trace() << Format::str("Mouse left window {}, at coordinates ({},{})",
+					leave_notify->event, leave_notify->event_x, leave_notify->event_y );
+			#endif
             }
             break;
         case XCB_KEY_PRESS: {
-                xcb_key_press_event_t *key_press = (xcb_key_press_event_t *)event;
+				xcb_key_press_event_t *key_press = (xcb_key_press_event_t *)event;
 
-                Trace() << Format::str("Modifier mask: {}", _modifiersStr(key_press->state));
-                Trace() << Format::str("Key {} pressed in window {}", (uint_t)key_press->detail, key_press->event);
+			#if xLIB_XCB_MSGBOX_DEBUG
+				Trace() << Format::str("Modifier mask: {}", _modifiersStr(key_press->state));
+				Trace() << Format::str("Key {} pressed in window {}", (uint_t)key_press->detail, key_press->event);
+			#endif
 
 				const xcb_keycode_t keyCode_Esc = 9;
 
@@ -289,14 +307,19 @@ XcbMsgBox::_execute(
             }
             break;
         case XCB_KEY_RELEASE: {
-                xcb_key_release_event_t *key_release = (xcb_key_release_event_t *)event;
+				xcb_key_release_event_t *key_release = (xcb_key_release_event_t *)event;
+				xUNUSED(key_release);
 
+			#if xLIB_XCB_MSGBOX_DEBUG
 				Trace() << Format::str("Modifier mask: {}", _modifiersStr(key_release->state));
-                Trace() << Format::str("Key released in window {}", key_release->event);
+				Trace() << Format::str("Key released in window {}", key_release->event);
+			#endif
             }
             break;
         default: {
-                Trace() << Format::str("Unknown event: {}", (uint_t)event->response_type);
+			#if xLIB_XCB_MSGBOX_DEBUG
+				Trace() << Format::str("Unknown event: {}", (uint_t)event->response_type);
+			#endif
             }
             break;
         } // switch
