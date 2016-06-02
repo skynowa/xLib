@@ -126,19 +126,17 @@ XcbMsgBox::_setTitle(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 XcbMsgBox::_setText(
-    const int16_t       &a_left,
-    const int16_t       &a_top,
     std::cvec_tstring_t &a_text
 )
 {
-    const int16_t x          = a_top;
-    int16_t       y          = a_left;
+    const int16_t left       = 32;
+    int16_t       top        = 32;
     const int16_t lineIndent = 24;
 
 	xFOR_EACH_CONST(std::cvec_tstring_t, it, a_text) {
-		_setTextLine(x, y, *it);
+		_setTextLine(left, top, *it);
 
-		y += lineIndent;
+		top += lineIndent;
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -194,7 +192,7 @@ XcbMsgBox::_execute(
                     "Region to be redrawn at location ({},{}), with dimension ({},{})",
                     expose->window, expose->x, expose->y, expose->width, expose->height );
 
-                _setText(32, 32, a_text);
+                _setText(a_text);
             }
             break;
         case XCB_BUTTON_PRESS: {
