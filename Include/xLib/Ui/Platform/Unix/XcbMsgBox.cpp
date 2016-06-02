@@ -190,11 +190,21 @@ XcbMsgBox::_autoResize(
 
 			width = width * fontWidth + left_default * 2;
 		}
+
+		// fix max screen width
+		if (width > _screen->width_in_pixels) {
+			width = _screen->width_in_pixels;
+		}
 	}
 
 	int16_t height = 0;
 	{
 		height = a_text.size() * lineIndent + top_default * 2;
+
+		// fix max screen height
+		if (height > _screen->height_in_pixels) {
+			height = _screen->height_in_pixels;
+		}
 	}
 
     _resize(width, height);
