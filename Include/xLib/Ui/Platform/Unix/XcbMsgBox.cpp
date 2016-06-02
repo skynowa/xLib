@@ -17,6 +17,17 @@ xNAMESPACE_BEGIN2(xlib, ui)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+xNAMESPACE_ANONYM_BEGIN
+
+const int16_t left_default   = 32;
+const int16_t top_default    = 32;
+const int16_t width_default  = 300;
+const int16_t height_default = 150;
+const int16_t border_width   = 10;
+const int16_t lineIndent     = 24;
+
+xNAMESPACE_ANONYM_END
+//-------------------------------------------------------------------------------------------------
 xINLINE
 XcbMsgBox::XcbMsgBox() :
     _conn    (xPTR_NULL),
@@ -65,9 +76,6 @@ XcbMsgBox::show(
     {
         _windowId = ::xcb_generate_id(_conn);
 
-        uint16_t width  = 150 * 2;
-        uint16_t height = 150;
-
         uint32_t valueMask    = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
         uint32_t valueList[2] = {_screen->white_pixel,
                                   XCB_EVENT_MASK_EXPOSURE       | XCB_EVENT_MASK_BUTTON_PRESS   |
@@ -81,15 +89,15 @@ XcbMsgBox::show(
             _windowId,                     // window ID
             _screen->root,                 // parent window
             0, 0,                          // x, y
-            width, height,                 // width, height
-            10,                            // border_width
+            width_default, height_default, // width, height
+            border_width,                  // border_width
             XCB_WINDOW_CLASS_INPUT_OUTPUT, // class
             _screen->root_visual,          // visual
             valueMask, valueList);         // masks
         xTEST_GR(cookie.sequence, 0U);
 
 		_setTitle(a_title);
-		_autoResize(text);
+		_autoResize(a_title, text);
 
         // Map the window on the screen
         cookie = ::xcb_map_window(_conn, _windowId);
@@ -108,7 +116,6 @@ XcbMsgBox::show(
 *    private
 *
 **************************************************************************************************/
-
 
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -129,9 +136,8 @@ XcbMsgBox::_setText(
     std::cvec_tstring_t &a_text
 )
 {
-    const int16_t left       = 32;
-    int16_t       top        = 32;
-    const int16_t lineIndent = 24;
+    const int16_t left = left_default;
+    int16_t       top  = top_default;
 
 	xFOR_EACH_CONST(std::cvec_tstring_t, it, a_text) {
 		_setTextLine(left, top, *it);
@@ -150,23 +156,29 @@ struct MaxElementComp
 
 xINLINE void_t
 XcbMsgBox::_autoResize(
+	std::ctstring_t     &a_title,
 	std::cvec_tstring_t &a_text
 )
 {
-    const int16_t top  = 32;
-    const int16_t left = 32;
+	if (a_title.empty() && a_text.empty()) {
+		_resize(width_default, height_default);
+
+		return;
+	}
 
 	int16_t width = 0;
 	{
+		const int16_t fontWidth = 6;
+
 		std::cvec_tstring_t::const_iterator itWidthMax = std::max_element(a_text.begin(),
 			a_text.end(), MaxElementComp());
 
-		width = itWidthMax->size() * 6 + left * 2;
+		width = itWidthMax->size() * fontWidth + left_default * 2;
 	}
 
 	int16_t height = 0;
 	{
-		height = a_text.size() * 20 + top * 2;
+		height = a_text.size() * lineIndent + top_default * 2;
 	}
 
 	Trace() << xTRACE_VAR_2(width, height);
@@ -328,7 +340,7 @@ XcbMsgBox::_resize(
     const int16_t &a_height
 )
 {
-    const uint32_t values[] = {a_width, a_height};  // width, height
+    const uint32_t values[] = {a_width, a_height};
 
     xcb_void_cookie_t cookie = ::xcb_configure_window(_conn, _windowId,
     	XCB_CONFIG_WINDOW_WIDTH | XCB_CONFIG_WINDOW_HEIGHT, values);
