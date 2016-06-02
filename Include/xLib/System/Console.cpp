@@ -170,18 +170,18 @@ Console::msgBox(
 		String::split(a_text, Const::nl(), &text);
 
 		xFOR_EACH_CONST(std::vec_tstring_t, it, text) {
-			multiText += xT("#  ") + *it + Const::nl();
+			multiText += xT("|  ") + *it + Const::nl();
 		}
     }
 
     writeLine();
-    writeLine(xT("################################################################################"));
-    writeLine(xT("#"));
-    writeLine(xT("#  ") + a_title);
-    writeLine(xT("#"));
+    writeLine(xT("+-------------------------------------------------------------------------------"));
+    writeLine(xT("|"));
+    writeLine(xT("|  ") + a_title);
+    writeLine(xT("|"));
     write(multiText);
-    writeLine(xT("#"));
-    writeLine(xT("################################################################################"));
+    writeLine(xT("|"));
+    writeLine(xT("+-------------------------------------------------------------------------------"));
     writeLine();
     write(Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "), cmdAbort, cmdIgnore, cmdRetry));
 
