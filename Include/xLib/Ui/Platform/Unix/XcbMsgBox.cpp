@@ -113,7 +113,7 @@ XcbMsgBox::show(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 XcbMsgBox::_setTitle(
-	std::ctstring_t    &a_text
+	std::ctstring_t &a_text
 )
 {
 	xcb_void_cookie_t cookie = ::xcb_change_property(_conn, XCB_PROP_MODE_REPLACE, _windowId,
@@ -341,8 +341,8 @@ XcbMsgBox::_resize(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 XcbMsgBox::_setTextLine(
-    const int16_t   &a_x,
-    const int16_t   &a_y,
+    const int16_t   &a_left,
+    const int16_t   &a_top,
     std::ctstring_t &a_text
 )
 {
@@ -351,8 +351,8 @@ XcbMsgBox::_setTextLine(
 
 	xcb_gcontext_t gcontext = _fontGContext(xT("fixed"));
 
-	cookie_text = ::xcb_image_text_8_checked(_conn, a_text.size(), _windowId, gcontext, a_x, a_y,
-		xT2A(a_text).c_str());
+	cookie_text = ::xcb_image_text_8_checked(_conn, a_text.size(), _windowId, gcontext,
+		a_left, a_top, xT2A(a_text).c_str());
 
 	_error = ::xcb_request_check(_conn, cookie_text);
 	xTEST(_error == xPTR_NULL);
