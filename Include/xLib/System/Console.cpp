@@ -184,7 +184,7 @@ Console::msgBox(
     writeLine();
     write(Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "), cmdAbort, cmdIgnore, cmdRetry));
 
-    ctchar_t consoleCmd = std::tcin.get();   std::tcin.ignore();
+    ctchar_t consoleCmd = CharT( std::tcin.get() ).toLower();   std::tcin.ignore();
     switch (consoleCmd) {
     case cmdAbort:
         mrRv = mrAbort;
