@@ -15,20 +15,27 @@ Test_MsgBox::unit()
 {
     xTEST_CASE("show")
     {
-	#if xTEST_IGNORE || 1
-        std::ctstring_t title = xT("Title-Test AAAAAAAA BBBBBBBB");
-	#if   1
+    #if xTEST_IGNORE || 1
+	#if   0
+        std::ctstring_t title;
+        std::ctstring_t text;
+	#elif 0
+		std::ctstring_t title;
 		std::ctstring_t text  = xT("Line_aaaaa");
 	#elif 0
+		std::ctstring_t title = xT("Title-Test AAAAAAAA BBBBBBBB");
 		std::ctstring_t text;
-	#elif 0
+	#elif 1
+		std::ctstring_t title = xT("Title-Test AAAAAAAA BBBBBBBB");
 		std::ctstring_t text  = xT("Line_aaaaa\nLine_bbbbbbb\nLine_cccccc\ndddddd fffffffffffff hhhhhhhhhhhhhhhhh jjjjjjjjjjjjjjjjjjjjj kkkkkkkkkkkkkk");
+	#elif 0
+		std::ctstring_t title = xT("Line_aaaaa\nLine_bbbbbbb\nLine_cccccc\ndddddd fffffffffffff hhhhhhhhhhhhhhhhh jjjjjjjjjjjjjjjjjjjjj kkkkkkkkkkkkkk");
+		std::ctstring_t text  = xT("Title-Test AAAAAAAA BBBBBBBB");
 	#else
 	#endif
-        MsgBox::ExType  type  = MsgBox::tpOk;
 
 		MsgBox msgBox;
-        MsgBox::ExModalResult mrRes = msgBox.show(text, title, type);
+        MsgBox::ExModalResult mrRes = msgBox.show(text, title, MsgBox::tpOk);
         xUNUSED(mrRes);
     #else
         Trace() << xT("[skip]");
