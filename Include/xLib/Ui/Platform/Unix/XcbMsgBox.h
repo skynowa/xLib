@@ -9,9 +9,9 @@
 #include <xLib/Core/Core.h>
 #include <xcb/xcb.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, ui)
-
 #define xLIB_XCB_MSGBOX_DEBUG 0
+
+xNAMESPACE_BEGIN2(xlib, ui)
 
 class XcbMsgBox
     ///< XCB message box
