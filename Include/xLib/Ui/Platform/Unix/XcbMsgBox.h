@@ -56,16 +56,16 @@ private:
         ///< auto resize
 	ExModalResult  _execute(std::cvec_tstring_t &text);
 		///< execute
-    void_t         _traceModifiers(const uint32_t &valueMask) const;
-        ///< trace names of modifiers present in mask
 
 private:
     xcb_gcontext_t _fontGContext(std::ctstring_t &fontName) xWARN_UNUSED_RV;
-		///<
+		///< get font gcontext
     void_t         _resize(const int16_t &width, const int16_t &height);
         ///< resize
     void_t         _setTextLine(const int16_t &x, const int16_t &y, std::ctstring_t &text);
         ///< set text
+    void_t         _traceModifiers(const uint32_t &valueMask) const;
+        ///< trace names of modifiers present in mask
 };
 
 xNAMESPACE_END2(xlib, ui)

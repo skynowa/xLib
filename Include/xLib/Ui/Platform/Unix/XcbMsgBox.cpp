@@ -8,10 +8,6 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 
-#if xHAVE_XCB
-    #include <xcb/xcb.h>
-#endif
-
 
 xNAMESPACE_BEGIN2(xlib, ui)
 
@@ -113,43 +109,7 @@ XcbMsgBox::show(
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-xINLINE xcb_gcontext_t
-XcbMsgBox::_fontGContext(
-    std::ctstring_t &a_fontName
-)
-{
-	xcb_font_t        fontId      = 0;
-	xcb_void_cookie_t cookie_font = {};
-	{
-		fontId      = ::xcb_generate_id(_conn);
-		cookie_font = ::xcb_open_font_checked(_conn, fontId, a_fontName.size(), xT2A(a_fontName).c_str());
 
-		_error = ::xcb_request_check(_conn, cookie_font);
-		xTEST(_error == xPTR_NULL);
-	}
-
-	xcb_gcontext_t gcontextId = 0;
-	{
-		gcontextId = ::xcb_generate_id(_conn);
-
-		uint32_t valueMask    = XCB_GC_FOREGROUND | XCB_GC_BACKGROUND | XCB_GC_FONT;
-		uint32_t valueList[3] = {_screen->black_pixel, _screen->white_pixel, fontId};
-
-		xcb_void_cookie_t cookie_gc = ::xcb_create_gc_checked(_conn, gcontextId, _windowId, valueMask,
-			valueList);
-
-		_error = ::xcb_request_check(_conn, cookie_gc);
-		xTEST(_error == xPTR_NULL);
-	}
-
-	cookie_font = ::xcb_close_font_checked(_conn, fontId);
-
-	_error = ::xcb_request_check(_conn, cookie_font);
-	xTEST(_error == xPTR_NULL);
-
-	return gcontextId;
-}
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 XcbMsgBox::_setTitle(
@@ -159,33 +119,6 @@ XcbMsgBox::_setTitle(
 	xcb_void_cookie_t cookie = ::xcb_change_property(_conn, XCB_PROP_MODE_REPLACE, _windowId,
 		XCB_ATOM_WM_NAME, XCB_ATOM_STRING, 8, a_text.size(), a_text.c_str());
 	xTEST_GR(cookie.sequence, 0U);
-
-	int_t iRv = ::xcb_flush(_conn);
-	xTEST_GR(iRv, 0);
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE void_t
-XcbMsgBox::_setTextLine(
-    const int16_t   &a_x,
-    const int16_t   &a_y,
-    std::ctstring_t &a_text
-)
-{
-	xcb_void_cookie_t cookie_gc   = {};
-	xcb_void_cookie_t cookie_text = {};
-
-	xcb_gcontext_t gcontext = _fontGContext(xT("fixed"));
-
-	cookie_text = ::xcb_image_text_8_checked(_conn, a_text.size(), _windowId, gcontext, a_x, a_y,
-		xT2A(a_text).c_str());
-
-	_error = ::xcb_request_check(_conn, cookie_text);
-	xTEST(_error == xPTR_NULL);
-
-	cookie_gc = ::xcb_free_gc(_conn, gcontext);
-
-	_error = ::xcb_request_check(_conn, cookie_gc);
-	xTEST(_error == xPTR_NULL);
 
 	int_t iRv = ::xcb_flush(_conn);
 	xTEST_GR(iRv, 0);
@@ -340,6 +273,51 @@ l_endFor:
 	return XcbMsgBox::mrOk;
 }
 //-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+xINLINE xcb_gcontext_t
+XcbMsgBox::_fontGContext(
+    std::ctstring_t &a_fontName
+)
+{
+	xcb_font_t        fontId      = 0;
+	xcb_void_cookie_t cookie_font = {};
+	{
+		fontId      = ::xcb_generate_id(_conn);
+		cookie_font = ::xcb_open_font_checked(_conn, fontId, a_fontName.size(), xT2A(a_fontName).c_str());
+
+		_error = ::xcb_request_check(_conn, cookie_font);
+		xTEST(_error == xPTR_NULL);
+	}
+
+	xcb_gcontext_t gcontextId = 0;
+	{
+		gcontextId = ::xcb_generate_id(_conn);
+
+		uint32_t valueMask    = XCB_GC_FOREGROUND | XCB_GC_BACKGROUND | XCB_GC_FONT;
+		uint32_t valueList[3] = {_screen->black_pixel, _screen->white_pixel, fontId};
+
+		xcb_void_cookie_t cookie_gc = ::xcb_create_gc_checked(_conn, gcontextId, _windowId, valueMask,
+			valueList);
+
+		_error = ::xcb_request_check(_conn, cookie_gc);
+		xTEST(_error == xPTR_NULL);
+	}
+
+	cookie_font = ::xcb_close_font_checked(_conn, fontId);
+
+	_error = ::xcb_request_check(_conn, cookie_font);
+	xTEST(_error == xPTR_NULL);
+
+	return gcontextId;
+}
+//-------------------------------------------------------------------------------------------------
 xINLINE void_t
 XcbMsgBox::_resize(
     const int16_t &a_width,
@@ -350,6 +328,33 @@ XcbMsgBox::_resize(
 
     xcb_void_cookie_t cookie = ::xcb_configure_window(_conn, _windowId,
     	XCB_CONFIG_WINDOW_WIDTH | XCB_CONFIG_WINDOW_HEIGHT, values);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE void_t
+XcbMsgBox::_setTextLine(
+    const int16_t   &a_x,
+    const int16_t   &a_y,
+    std::ctstring_t &a_text
+)
+{
+	xcb_void_cookie_t cookie_gc   = {};
+	xcb_void_cookie_t cookie_text = {};
+
+	xcb_gcontext_t gcontext = _fontGContext(xT("fixed"));
+
+	cookie_text = ::xcb_image_text_8_checked(_conn, a_text.size(), _windowId, gcontext, a_x, a_y,
+		xT2A(a_text).c_str());
+
+	_error = ::xcb_request_check(_conn, cookie_text);
+	xTEST(_error == xPTR_NULL);
+
+	cookie_gc = ::xcb_free_gc(_conn, gcontext);
+
+	_error = ::xcb_request_check(_conn, cookie_gc);
+	xTEST(_error == xPTR_NULL);
+
+	int_t iRv = ::xcb_flush(_conn);
+	xTEST_GR(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
