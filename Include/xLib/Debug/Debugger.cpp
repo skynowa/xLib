@@ -164,16 +164,8 @@ Debugger::_msgboxPlain(
 {
     xCHECK_DO(!isEnabled(), return);
 
-    MsgBox::ExModalResult mrRv;
-
-#if xOPTION_DEBUG_DIALOG
-    mrRv = MsgBox().show(a_report.toString(), xT(""), MsgBox::tpAbortRetryIgnore);
-#else
-    xUNUSED(a_report);
-
-    mrRv = MsgBox::mrIgnore;
-#endif
-
+    MsgBox msgBox;
+    MsgBox::ExModalResult mrRv = msgBox.show(a_report.toString(), xT(""), MsgBox::tpAbortRetryIgnore);
     switch (mrRv) {
     case MsgBox::mrAbort:
         (void_t)::exit(EXIT_FAILURE);
@@ -202,15 +194,8 @@ Debugger::_stdoutPlain(
 {
     xCHECK_DO(!isEnabled(), return);
 
-#if xOPTION_DEBUG_DIALOG
     Console console;
     Console::ExModalResult mrRv = console.msgBox(a_report.toString(), xT("xLib"), 0);
-#else
-    xUNUSED(a_report);
-
-    Console::ExModalResult mrRv = Console::mrIgnore;
-#endif
-
     switch (mrRv) {
     case Console::mrAbort:
         (void_t)::exit(EXIT_FAILURE);
