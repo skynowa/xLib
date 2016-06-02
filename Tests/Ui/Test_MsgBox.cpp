@@ -13,12 +13,14 @@ xTEST_UNIT(Test_MsgBox)
 bool_t
 Test_MsgBox::unit()
 {
-#if xTEST_IGNORE || 1
     xTEST_CASE("show")
     {
+	#if xTEST_IGNORE || 1
         std::ctstring_t title = xT("Title-Test AAAAAAAA BBBBBBBB");
-	#if 1
+	#if 0
 		std::ctstring_t text  = xT("Line_aaaaa");
+	#elif 1
+		std::ctstring_t text;
 	#else
 		std::ctstring_t text  = xT("Line_aaaaa\nLine_bbbbbbb\nLine_cccccc\ndddddd fffffffffffff hhhhhhhhhhhhhhhhh jjjjjjjjjjjjjjjjjjjjj kkkkkkkkkkkkkk");
 	#endif
@@ -27,8 +29,10 @@ Test_MsgBox::unit()
 		MsgBox msgBox;
         MsgBox::ExModalResult mrRes = msgBox.show(text, title, type);
         xUNUSED(mrRes);
+    #else
+        Trace() << xT("[skip]");
+	#endif
     }
-#endif
 
     return true;
 }
