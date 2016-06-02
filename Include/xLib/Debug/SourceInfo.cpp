@@ -1,6 +1,6 @@
 /**
  * \file   SourceInfo.cpp
- * \brief  [CLASS_COMMENTS]
+ * \brief  Source info
  */
 
 
