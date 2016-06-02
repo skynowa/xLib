@@ -224,7 +224,8 @@ XcbMsgBox::_execute(
             break;
         case XCB_BUTTON_PRESS: {
                 xcb_button_press_event_t *button_press = (xcb_button_press_event_t *)event;
-                _traceModifiers(button_press->state);
+
+                Trace() << Format::str("Modifier mask: {}", _modifiersStr(button_press->state));
 
                 switch (button_press->detail) {
                 case 4:
@@ -245,8 +246,8 @@ XcbMsgBox::_execute(
             break;
         case XCB_BUTTON_RELEASE: {
                 xcb_button_release_event_t *button_release = (xcb_button_release_event_t *)event;
-                _traceModifiers(button_release->state);
 
+                Trace() << Format::str("Modifier mask: {}", _modifiersStr(button_release->state));
                 Trace() << Format::str("Button {} released in window {}, at coordinates ({},{})",
                     button_release->detail, button_release->event, button_release->event_x,
                     button_release->event_y );
@@ -275,8 +276,8 @@ XcbMsgBox::_execute(
             break;
         case XCB_KEY_PRESS: {
                 xcb_key_press_event_t *key_press = (xcb_key_press_event_t *)event;
-                _traceModifiers(key_press->state);
 
+                Trace() << Format::str("Modifier mask: {}", _modifiersStr(key_press->state));
                 Trace() << Format::str("Key {} pressed in window {}", (uint_t)key_press->detail, key_press->event);
 
 				const xcb_keycode_t keyCode_Esc = 9;
@@ -289,8 +290,8 @@ XcbMsgBox::_execute(
             break;
         case XCB_KEY_RELEASE: {
                 xcb_key_release_event_t *key_release = (xcb_key_release_event_t *)event;
-                _traceModifiers(key_release->state);
 
+				Trace() << Format::str("Modifier mask: {}", _modifiersStr(key_release->state));
                 Trace() << Format::str("Key released in window {}", key_release->event);
             }
             break;
@@ -391,11 +392,13 @@ XcbMsgBox::_setTextLine(
 	xTEST_GR(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
-XcbMsgBox::_traceModifiers(
+xINLINE std::tstring_t
+XcbMsgBox::_modifiersStr(
     const uint32_t &a_valueMask
 ) const
 {
+	std::tstring_t sRv;
+
     uint32_t valueMask = a_valueMask;
 
     ctchar_t *modifiers[] =
@@ -405,14 +408,13 @@ XcbMsgBox::_traceModifiers(
         xT("Button1"), xT("Button2"), xT("Button3"), xT("Button4"), xT("Button5")
     };
 
-    Trace trace;
-    trace << xT("Modifier mask: ");
-
     for (ctchar_t **modifier = modifiers; valueMask; valueMask >>= 1, ++ modifier) {
         if (valueMask & 1) {
-            trace << *modifier;
+            sRv += *modifier;
         }
     }
+
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 

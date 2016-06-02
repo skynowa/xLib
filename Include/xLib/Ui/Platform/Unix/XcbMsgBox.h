@@ -64,7 +64,7 @@ private:
         ///< resize
     void_t         _setTextLine(const int16_t &left, const int16_t &top, std::ctstring_t &text);
         ///< set text
-    void_t         _traceModifiers(const uint32_t &valueMask) const;
+    std::tstring_t _modifiersStr(const uint32_t &valueMask) const;
         ///< trace names of modifiers present in mask
 };
 
