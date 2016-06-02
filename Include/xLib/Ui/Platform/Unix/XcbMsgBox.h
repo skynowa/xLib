@@ -54,6 +54,8 @@ private:
         ///< set text
     void_t         _autoResize(std::cvec_tstring_t &text);
         ///< auto resize
+	ExModalResult  _execute(std::cvec_tstring_t &text);
+		///< execute
     void_t         _traceModifiers(const uint32_t &valueMask) const;
         ///< trace names of modifiers present in mask
 
