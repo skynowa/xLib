@@ -160,11 +160,9 @@ Console::msgBox(
 
     ExModalResult mrRv;
 
-    enum EConsoleCmd {
-        cmAbort  = xT('a'),
-        cmIgnore = xT('i'),
-        cmRetry  = xT('r')
-    };
+    ctchar_t consoleCmd_Abort  = xT('a');
+    ctchar_t consoleCmd_Ignore = xT('i');
+    ctchar_t consoleCmd_Retry  = xT('r');
 
     writeLine();
     writeLine(xT("################################################################################"));
@@ -175,19 +173,19 @@ Console::msgBox(
     writeLine(xT("################################################################################"));
     writeLine();
     write(Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "),
-        tchar_t(cmAbort), tchar_t(cmIgnore), tchar_t(cmRetry)));
+        consoleCmd_Abort, consoleCmd_Ignore, consoleCmd_Retry));
 
-    EConsoleCmd cmRv = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
-    switch (cmRv) {
-    case cmAbort:
+    ctchar_t consoleCmd = std::tcin.get();   std::tcin.ignore();
+    switch (consoleCmd) {
+    case consoleCmd_Abort:
         mrRv = mrAbort;
         writeLine(xT("Abort..."));
         break;
-    case cmIgnore:
+    case consoleCmd_Ignore:
         mrRv = mrIgnore;
         writeLine(xT("Ignore..."));
         break;
-    case cmRetry:
+    case consoleCmd_Retry:
         mrRv = mrRetry;
         writeLine(xT("Retry..."));
         break;
