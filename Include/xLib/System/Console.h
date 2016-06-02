@@ -29,6 +29,7 @@ public:
         fgWhite,
         fgGray
     };
+    xTYPEDEF_CONST(ExForeground);
 
     enum ExBackground
         /// background color
@@ -44,6 +45,7 @@ public:
         bgWhite,
         bgGray
     };
+    xTYPEDEF_CONST(ExBackground);
 
     enum ExTextAttribute
         /// text attribute
@@ -56,6 +58,7 @@ public:
         atReverse,
         atConcealed
     };
+    xTYPEDEF_CONST(ExTextAttribute);
 
     enum ExModalResult
         /// modal result
@@ -64,13 +67,14 @@ public:
         mrIgnore = 5,
         mrRetry  = 4
     };
+    xTYPEDEF_CONST(ExModalResult);
 
                    Console();
         ///< constructor
     virtual       ~Console();
         ///< destructor
 
-    std::tstring_t setAttributes(const ExForeground &foreground, const ExBackground &background,
+    std::tstring_t setAttributes(cExForeground &foreground, cExBackground &background,
                        cint_t &attributes) const xWARN_UNUSED_RV;
         ///< set text color
     std::tstring_t setAttributesDef() const xWARN_UNUSED_RV;
@@ -126,8 +130,8 @@ private:
 xPLATFORM_IMPL:
     void_t         _construct_impl();
     void_t         _destruct_impl();
-    std::tstring_t _setAttributes_impl(const ExForeground &foreground,
-                       const ExBackground &background, cint_t &attributes) const xWARN_UNUSED_RV;
+    std::tstring_t _setAttributes_impl(cExForeground &foreground,
+                       cExBackground &background, cint_t &attributes) const xWARN_UNUSED_RV;
     std::tstring_t _setAttributesDef_impl() const xWARN_UNUSED_RV;
     std::tstring_t _read_impl() const xWARN_UNUSED_RV;
     void_t         _write_impl(std::ctstring_t &str) const;

@@ -31,9 +31,9 @@ Console::_destruct_impl()
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 Console::_setAttributes_impl(
-    const ExForeground &a_foreground,
-    const ExBackground &a_background,
-    cint_t             &a_attributes
+    cExForeground &a_foreground,
+    cExBackground &a_background,
+    cint_t        &a_attributes
 ) const
 {
     ExForeground foregroundColor;
@@ -140,12 +140,12 @@ Console::_setAttributes_impl(
 
     std::tstring_t attrs;
     {
-        cint_t  attributeAllOff     = 0;
-        cint_t  attributeBold       = 1;
-        cint_t  attributeUnderscore = 4;
-        cint_t  attributeBlink      = 5;
-        cint_t  attributeReverse    = 7;
-        cint_t  attributeConcealed  = 8;
+        cint_t attributeAllOff     = 0;
+        cint_t attributeBold       = 1;
+        cint_t attributeUnderscore = 4;
+        cint_t attributeBlink      = 5;
+        cint_t attributeReverse    = 7;
+        cint_t attributeConcealed  = 8;
 
         attrs += Format::str(xT("\033[{}m"), foregroundColor);
         attrs += Format::str(xT("\033[{}m"), backgroundColor);

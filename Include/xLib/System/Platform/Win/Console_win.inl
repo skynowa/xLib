@@ -53,9 +53,9 @@ Console::_destruct_impl()
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 Console::_setAttributes_impl(
-    const ExForeground &a_foreground,
-    const ExBackground &a_background,
-    cint_t             &a_attributes
+    cExForeground &a_foreground,
+    cExBackground &a_background,
+    cint_t        &a_attributes
 ) const
 {
     ExForeground foregroundColor;
