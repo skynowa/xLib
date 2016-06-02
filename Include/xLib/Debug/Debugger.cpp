@@ -202,59 +202,32 @@ Debugger::_stdoutPlain(
 {
     xCHECK_DO(!isEnabled(), return);
 
-    enum EConsoleCmd
-    {
-        cmAbort  = xT('a'),
-        cmIgnore = xT('i'),
-        cmRetry  = xT('r')
-    };
-
-    std::tcout
-        << xT("\n")
-        << xT("############################################### xLib ###############################################\n")
-        << xT("\n")
-        << a_report.toString()
-        << xT("\n")
-        << xT("####################################################################################################\n")
-        << xT("\n")
-        << Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "),
-                        tchar_t(cmAbort), tchar_t(cmIgnore), tchar_t(cmRetry))
-        << std::flush;
-
 #if xOPTION_DEBUG_DIALOG
-    ctchar_t    cmd = static_cast<ctchar_t>( std::tcin.get() );   std::tcin.ignore();
-    EConsoleCmd cmRv = static_cast<EConsoleCmd>( CharT(cmd).toLower() );
+    Console console;
+    Console::ExModalResult mrRv = console.msgBox(a_report.toString(), xT("xLib"), 0);
 #else
-    EConsoleCmd cmRv = cmIgnore;
+    xUNUSED(a_report);
+
+    Console::ExModalResult mrRv = Console::mrIgnore;
 #endif
-    switch (cmRv) {
-    case cmAbort:
-        std::tcout << xT("Abort...\n\n") << std::flush;
+
+    switch (mrRv) {
+    case Console::mrAbort:
         (void_t)::exit(EXIT_FAILURE);
         break;
-    default:
-    case cmIgnore:
-        std::tcout << xT("Ignore...\n\n") << std::flush;
+    case Console::mrIgnore:
         break;
-    case cmRetry:
-        std::tcout << xT("Retry...\n\n") << std::flush;
-
+    case Console::mrRetry:
         if ( isActive() ) {
             breakPoint();
         } else {
-            std::tcout
-                << xT("\n")
-                << xT("############################################### xLib ###############################################\n\n")
-                << xT("Debugger\n")
-                << xT("\n")
-                << xT("OS debugger is not present.\nThe application will be terminated.\n")
-                << xT("####################################################################################################\n")
-                << xT("\n\n")
-                << std::flush;
+            console.msgBox(xT("OS debugger is not present.\nThe application will be terminated."), xT("xLib"), 0);
 
             (void_t)::exit(EXIT_FAILURE);
         }
 
+        break;
+    default:
         break;
     }
 }
