@@ -173,7 +173,12 @@ XcbMsgBox::_autoResize(
 		const int16_t fontWidth = 6;
 
 		if ( a_text.empty() ) {
-			width = width_default;
+			if ( a_title.empty() ) {
+				width = width_default;
+			} else {
+				width = a_title.size() + title_padding * 2;
+				width = width * fontWidth + left_default * 2;
+			}
 		} else {
 			std::csize_t widthMax = std::max_element(a_text.begin(), a_text.end(), MaxElementComp())->size();
 
@@ -182,9 +187,9 @@ XcbMsgBox::_autoResize(
 			} else {
 				width = widthMax;
 			}
-		}
 
-		width = width * fontWidth + left_default * 2;
+			width = width * fontWidth + left_default * 2;
+		}
 	}
 
 	int16_t height = 0;
