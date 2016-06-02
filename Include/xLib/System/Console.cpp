@@ -164,11 +164,21 @@ Console::msgBox(
     ctchar_t consoleCmd_Ignore = xT('i');
     ctchar_t consoleCmd_Retry  = xT('r');
 
+    std::tstring_t multiText;
+    {
+    	std::vec_tstring_t text;
+		String::split(a_text, Const::nl(), &text);
+
+		xFOR_EACH_CONST(std::vec_tstring_t, it, text) {
+			multiText += xT("#  ") + *it + Const::nl();
+		}
+    }
+
     writeLine();
     writeLine(xT("################################################################################"));
     writeLine(xT("#  ") + a_title);
     writeLine(xT("#"));
-    writeLine(xT("#  ") + a_text);
+    write(multiText);
     writeLine(xT("#"));
     writeLine(xT("################################################################################"));
     writeLine();
