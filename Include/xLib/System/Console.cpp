@@ -160,9 +160,9 @@ Console::msgBox(
 
     ExModalResult mrRv;
 
-    ctchar_t consoleCmd_Abort  = xT('a');
-    ctchar_t consoleCmd_Ignore = xT('i');
-    ctchar_t consoleCmd_Retry  = xT('r');
+    ctchar_t cmdAbort  = xT('a');
+    ctchar_t cmdIgnore = xT('i');
+    ctchar_t cmdRetry  = xT('r');
 
     std::tstring_t multiText;
     {
@@ -182,20 +182,19 @@ Console::msgBox(
     writeLine(xT("#"));
     writeLine(xT("################################################################################"));
     writeLine();
-    write(Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "),
-        consoleCmd_Abort, consoleCmd_Ignore, consoleCmd_Retry));
+    write(Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "), cmdAbort, cmdIgnore, cmdRetry));
 
     ctchar_t consoleCmd = std::tcin.get();   std::tcin.ignore();
     switch (consoleCmd) {
-    case consoleCmd_Abort:
+    case cmdAbort:
         mrRv = mrAbort;
         writeLine(xT("Abort..."));
         break;
-    case consoleCmd_Ignore:
+    case cmdIgnore:
         mrRv = mrIgnore;
         writeLine(xT("Ignore..."));
         break;
-    case consoleCmd_Retry:
+    case cmdRetry:
         mrRv = mrRetry;
         writeLine(xT("Retry..."));
         break;
