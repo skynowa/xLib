@@ -128,11 +128,11 @@ StackTrace::_format(
         std::tstringstream_t stackLine;
         stackLine
             << _linePrefix
-            << std::setw(0)       << std::right << lineNumber << xT(".") << xT("  ")
-            << std::setw(maxs[0]) << std::left  << it->at(0)             << xT("  ")
-            << std::setw(maxs[1]) << std::left  << it->at(1)             << xT("  ")
-            << std::setw(maxs[2]) << std::right << it->at(2)             << xT("  ")
-            << std::setw(maxs[3]) << std::left  << it->at(3)             << xT("  ")
+            << std::setw(0)       << std::right << lineNumber << xT(". ")
+            << std::setw(maxs[0]) << std::left  << it->at(0)  << xT("  ")
+            << std::setw(maxs[1]) << std::left  << it->at(1)  << xT("  ")
+            << std::setw(maxs[2]) << std::right << it->at(2)  << xT("  ")
+            << std::setw(maxs[3]) << std::left  << it->at(3)  << xT("  ")
             << std::setw(maxs[4]) << std::left  << it->at(4);
 
         if (it + 1 != a_stack.end()) {
