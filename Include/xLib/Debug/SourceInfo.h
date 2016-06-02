@@ -1,6 +1,6 @@
 /**
  * \file   SourceInfo.h
- * \brief  [CLASS_COMMENTS]
+ * \brief  Source info
  */
 
 
@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xlib, debug)
 
 class SourceInfo
-    ///<
+    ///< Source info
 {
 public:
                     SourceInfo(std::ctstring_t &filePath, culong_t &lineNum,
