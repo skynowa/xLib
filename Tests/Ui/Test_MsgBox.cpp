@@ -16,7 +16,7 @@ Test_MsgBox::unit()
 #if xTEST_IGNORE || 1
     xTEST_CASE("show")
     {
-        std::ctstring_t title = xT("Title-Test");
+        std::ctstring_t title = xT("Title-Test AAAAAAAA BBBBBBBB");
 	#if 1
 		std::ctstring_t text  = xT("Line_aaaaa");
 	#else

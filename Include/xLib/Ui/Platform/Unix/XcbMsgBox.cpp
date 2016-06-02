@@ -19,6 +19,7 @@ xNAMESPACE_BEGIN2(xlib, ui)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
+const int16_t title_padding  = 8;
 const int16_t left_default   = 32;
 const int16_t top_default    = 32;
 const int16_t width_default  = 300;
@@ -168,12 +169,22 @@ XcbMsgBox::_autoResize(
 
 	int16_t width = 0;
 	{
+		// TODO: XcbMsgBox - fontWidth, calc
 		const int16_t fontWidth = 6;
 
-		std::cvec_tstring_t::const_iterator itWidthMax = std::max_element(a_text.begin(),
-			a_text.end(), MaxElementComp());
+		if ( a_text.empty() ) {
+			width = width_default;
+		} else {
+			std::csize_t widthMax = std::max_element(a_text.begin(), a_text.end(), MaxElementComp())->size();
 
-		width = itWidthMax->size() * fontWidth + left_default * 2;
+			if (a_title.size() > widthMax) {
+				width = a_title.size() + title_padding * 2;
+			} else {
+				width = widthMax;
+			}
+		}
+
+		width = width * fontWidth + left_default * 2;
 	}
 
 	int16_t height = 0;
