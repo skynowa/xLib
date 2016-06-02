@@ -49,14 +49,10 @@ xNAMESPACE_BEGIN2(xlib, debug)
 xINLINE
 StackTrace::StackTrace(
     cint_t          &a_skipFramesNum,      /* = 2 */    ///< Skip number of frames
-    std::ctstring_t &a_linePrefix,         /* = xT("\t") */
-    std::ctstring_t &a_lineSeparator,      /* = xT("\n") */
     cbool_t         &a_isWrapFilePaths,    /* = true */
     cbool_t         &a_isFuncParamsDisable /* = true */
 ) :
     _skipFramesNum      (a_skipFramesNum),
-    _linePrefix         (a_linePrefix),
-    _lineSeparator      (a_lineSeparator),
     _isWrapFilePaths    (a_isWrapFilePaths),
     _isFuncParamsDisable(a_isFuncParamsDisable)
 {
@@ -127,7 +123,6 @@ StackTrace::_format(
 
         std::tstringstream_t stackLine;
         stackLine
-            << _linePrefix
             << std::setw(0)       << std::right << lineNumber << xT(". ")
             << std::setw(maxs[0]) << std::left  << it->at(0)  << xT("  ")
             << std::setw(maxs[1]) << std::left  << it->at(1)  << xT("  ")
@@ -136,7 +131,7 @@ StackTrace::_format(
             << std::setw(maxs[4]) << std::left  << it->at(4);
 
         if (it + 1 != a_stack.end()) {
-             stackLine << _lineSeparator;
+             stackLine << Const::nl();
         }
 
         sRv.append( stackLine.str() );
