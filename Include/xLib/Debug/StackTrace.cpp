@@ -135,8 +135,11 @@ StackTrace::_format(
             << std::setw(maxs[1]) << std::left  << it->at(1)             << _elementSeparator
             << std::setw(maxs[2]) << std::right << it->at(2)             << _elementSeparator
             << std::setw(maxs[3]) << std::left  << it->at(3)             << _elementSeparator
-            << std::setw(maxs[4]) << std::left  << it->at(4)
-            << _lineSeparator;
+            << std::setw(maxs[4]) << std::left  << it->at(4);
+
+        if (it + 1 != a_stack.end()) {
+             stackLine << _lineSeparator;
+        }
 
         sRv.append( stackLine.str() );
     }
