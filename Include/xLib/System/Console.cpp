@@ -57,9 +57,9 @@ Console::~Console()
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 Console::setAttributes(
-    const ExForeground &a_foreground,
-    const ExBackground &a_background,
-    cint_t             &a_attributes
+    cExForeground &a_foreground,
+    cExBackground &a_background,
+    cint_t        &a_attributes
 ) const
 {
 #if xENV_WIN
