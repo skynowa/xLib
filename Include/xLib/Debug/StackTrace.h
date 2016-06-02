@@ -14,8 +14,8 @@ class StackTrace
     /// stack trace
 {
 public:
-    explicit        StackTrace(cint_t &skipFramesNum = 2, std::ctstring_t &linePrefix = xT("\t\t"),
-                        std::ctstring_t &elementSeparator = xT("  "),
+    explicit        StackTrace(cint_t &skipFramesNum = 2, std::ctstring_t &linePrefix = xT(""),
+                        std::ctstring_t &elementSeparator = xT(" "),
                         std::ctstring_t &lineSeparator = xT("\n"),
                         cbool_t &isWrapFilePaths = true, cbool_t &isFuncParamsDisable = true);
         ///< constructor
