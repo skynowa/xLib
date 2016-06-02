@@ -39,11 +39,6 @@
     ///< debug mode "no debugging"
 ///@}
 
-#cmakedefine xOPTION_DEBUG_DIALOG 1
-    ///< debug prompt dialog:
-    ///<    0 - don't stop executing, pass throw dialog prompt
-    ///<    1 - stop executing on dialog prompt, wait for user choice
-
 ///@name tests
 ///@{
 #cmakedefine xOPTION_TEST_PRIVATE 1
