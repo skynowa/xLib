@@ -120,23 +120,23 @@ xINLINE void_t
 ErrorReport::_initPlain()
 {
     _report = Format::str(
-        xT("  Program:       {}\n")
-        xT("  Process id:    {}\n")
-        xT("  Thread id:     {}\n")
+        xT("Program:       {}\n")
+        xT("Process id:    {}\n")
+        xT("Thread id:     {}\n")
         xT("\n")
-        xT("  Source file:   {}\n")
-        xT("  Source line:   {}\n")
-        xT("  Function name: {}\n")
-        xT("  Expression:    {}\n")
-        xT("  Expr Values:   {}\n")
-        xT("  Native error:  {}\n")
+        xT("Source file:   {}\n")
+        xT("Source line:   {}\n")
+        xT("Function name: {}\n")
+        xT("Expression:    {}\n")
+        xT("Expr Values:   {}\n")
+        xT("Native error:  {}\n")
         xT("\n")
-        xT("  Current date:  {}\n")
+        xT("Current date:  {}\n")
         xT("\n")
-        xT("  Stack trace:\n")
+        xT("Stack trace:\n")
         xT("{}\n")
         xT("\n")
-        xT("  Comment:       {}\n"),
+        xT("Comment:       {}\n"),
         _program,
         _processId,
         _threadId,

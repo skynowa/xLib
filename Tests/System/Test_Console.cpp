@@ -82,7 +82,7 @@ Test_Console::unit()
 
     xTEST_CASE("msgBox")
     {
-	#if xTEST_IGNORE
+	#if xTEST_IGNORE || 1
 		std::ctstring_t title = xT("iMsgBox_title");
 		std::ctstring_t text  = xT("iMsgBox_text\nddddddddd\nRRRRRRRRRRRRR");
 		cuint_t         type  = 0U;
