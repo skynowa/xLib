@@ -176,6 +176,7 @@ Console::msgBox(
 
     writeLine();
     writeLine(xT("################################################################################"));
+    writeLine(xT("#"));
     writeLine(xT("#  ") + a_title);
     writeLine(xT("#"));
     write(multiText);
