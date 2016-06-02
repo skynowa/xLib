@@ -38,7 +38,7 @@ StackTrace::_get_impl(
     char **symbols = ::backtrace_symbols(stackBuff, framesNum);
     xCHECK_DO(symbols == xPTR_NULL, return);
 
-    for (int_t i = _skipFramesNum; i < framesNum; ++ i) {
+    for (int_t i = _data.skipFramesNum; i < framesNum; ++ i) {
         std::tstring_t modulePath;
         std::tstring_t filePath;
         std::tstring_t fileLine;
@@ -82,13 +82,13 @@ StackTrace::_get_impl(
         }
 
         // swap file paths
-        if (_isWrapFilePaths) {
+        if (_data.isWrapFilePaths) {
             modulePath = Path(modulePath).fileName();
             filePath   = Path(filePath).fileName();
         }
 
         // disable function params
-        if (_isFuncParamsDisable) {
+        if (_data.isFuncParamsDisable) {
             std::csize_t pos1 = functionName.find(xT("("));
             std::csize_t pos2 = functionName.find(xT(")"));
 
