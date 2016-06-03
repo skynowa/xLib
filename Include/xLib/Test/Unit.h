@@ -29,6 +29,7 @@ struct UnitData
         name       ()
     {}
 };
+xTYPEDEF_CONST(UnitData);
 
 class Unit
     /// testing
@@ -68,7 +69,7 @@ public:
     virtual            ~Unit() = 0;
         ///< destructor
 
-    void_t              setData(const UnitData &data);
+    void_t              setData(cUnitData &data);
         ///< set data
     bool_t              run();
         ///< run cases
