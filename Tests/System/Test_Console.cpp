@@ -100,9 +100,9 @@ Test_Console::unit()
     xTEST_CASE("prompt")
     {
 	#if xTEST_IGNORE
-		std::ctstring_t prompt    = xT("vPrompt_simple_prompt");
-		cbool_t         isVisible = true;
-		std::tstring_t  answer    = xT("sAnswer_bla-bla-bla");
+		std::ctstring_t prompt    = xT("Prompt_simple_prompt");
+		cbool_t         isVisible = false;
+		std::tstring_t  answer    = xT("Answer_bla-bla-bla");
 
 		Console console;
 

@@ -169,29 +169,25 @@ Console::msgBox(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Console::prompt(
-    std::ctstring_t &a_prompt,
-    cbool_t         &a_isVisible,
-    std::tstring_t  *a_answer
+    std::ctstring_t &a_prompt,		///< input text
+    cbool_t         &a_isVisible,	///< is input text visible
+    std::tstring_t  *a_answer		///< [out] answer
 ) const
 {
     xTEST_EQ(a_prompt.empty(), false);
     xTEST_PTR(a_answer);
+
+	if ( !a_isVisible ) {
+		_setStdinEcho(false);
+	}
 
     for ( ; ; ) {
         write(a_prompt + xT(": "));
 
         for ( ; ; ) {
             ctchar_t ch = std::tcin.get();
-
-            // asterisks
-            // BUG: Console::prompt() - asterisks
-            xCHECK_DO(a_isVisible, write(xT("*")));
-
-            // ENTER
-            xCHECK_DO(ch == 10, break);
-
-            // BACKSPACE
-            xCHECK_DO(ch == 0x8, a_answer->clear(); continue);
+            xCHECK_DO(ch == 10, break);	// ENTER
+            xCHECK_DO(ch == 0x8, a_answer->clear(); continue);	// BACKSPACE
 
             a_answer->push_back(ch);
         }
@@ -202,6 +198,10 @@ Console::prompt(
 
         break;
     }
+
+	if ( !a_isVisible ) {
+		_setStdinEcho(true);
+	}
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -276,6 +276,14 @@ Console::_msgBoxLine(
 	line += padingRight;
 
 	return line;
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE void_t
+Console::_setStdinEcho(
+	cbool_t &a_isEnable
+) const
+{
+    _setStdinEcho_impl(a_isEnable);
 }
 //-------------------------------------------------------------------------------------------------
 

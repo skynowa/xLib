@@ -200,5 +200,25 @@ Console::_setTitle_impl(
     writeLine( Format::str(xT("{}]0;{}{}"), xT('\033'), a_title, xT('\007')) );
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE void_t
+Console::_setStdinEcho_impl(
+    cbool_t &a_isEnable
+) const
+{
+    struct termios tty; xSTRUCT_ZERO(tty);
+
+    int_t iRv = ::tcgetattr(STDIN_FILENO, &tty);
+    xTEST_DIFF(iRv, -1);
+
+    if (a_isEnable) {
+        tty.c_lflag |= ECHO;
+    } else {
+        tty.c_lflag &= ~ECHO;
+    }
+
+    iRv = ::tcsetattr(STDIN_FILENO, TCSANOW, &tty);
+    xTEST_DIFF(iRv, -1);
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, system)

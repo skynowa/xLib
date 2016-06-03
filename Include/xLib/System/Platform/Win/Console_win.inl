@@ -470,5 +470,24 @@ Console::_menuHandle(
     return _menu;
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE void_t
+Console::_setStdinEcho_impl(
+    cbool_t &a_isEnable
+) const
+{
+    DWORD mode;
+    BOOL blRv = ::GetConsoleMode(_stdIn, &mode);
+    xTEST_DIFF(blRv, FALSE);
+
+    if (a_isEnable) {
+        mode |= ENABLE_ECHO_INPUT;
+    } else {
+        mode &= ~ENABLE_ECHO_INPUT;
+    }
+
+    blRv = ::SetConsoleMode(_stdIn, mode);
+    xTEST_DIFF(blRv, FALSE);
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, system)
