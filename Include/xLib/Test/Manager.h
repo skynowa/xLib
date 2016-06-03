@@ -37,7 +37,7 @@ class Manager
 public:
              Manager(cint_t &argsNum, ctchar_t *args[]);
         ///< constructor
-             Manager(cManagerData &data = cManagerData());
+    explicit Manager(cManagerData &data = cManagerData());
         ///< constructor
     virtual ~Manager();
         ///< destructor
