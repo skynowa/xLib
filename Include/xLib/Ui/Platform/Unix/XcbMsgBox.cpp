@@ -327,11 +327,20 @@ XcbMsgBox::_execute(
 				Trace() << Format::str("Key {} pressed in window {}", (uint_t)key_press->detail, key_press->event);
 			#endif
 
-				const xcb_keycode_t keyCode_Esc = 9;
+				const xcb_keycode_t keyCode_Esc         = 9;
+				const xcb_keycode_t keyCode_Enter       = 36;
+				const xcb_keycode_t keyCode_KeyPadEnter = 104;
 
-				if (key_press->detail == keyCode_Esc) {
+				switch (key_press->detail) {
+				case keyCode_Esc:
+				case keyCode_Enter:
+				case keyCode_KeyPadEnter:
 					xBUFF_FREE(event);
 					goto l_endFor;
+
+					break;
+				default:
+					break;
 				}
             }
             break;
