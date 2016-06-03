@@ -227,7 +227,7 @@ Debugger::_loggingPlain(
     // get log file path
     std::tstring_t filePath;
 
-    if (logPath().empty()) {
+    if ( logPath().empty() ) {
         filePath = Path( Path::exe() ).setExt(xT("debug"));
     } else {
         filePath = logPath();
@@ -240,8 +240,8 @@ Debugger::_loggingPlain(
 
         std::ctstring_t msg = Format::str(
             xT("\n")
-            xT("############################################### xLib ###############################################\n")
-            xT("\n")
+            xT("####################################################################################################\n")
+            xT(" xLib\n")
             xT("{}\n")
             xT("####################################################################################################\n"),
             a_report.toString()
