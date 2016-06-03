@@ -54,7 +54,7 @@ Unit::Unit() :
 xINLINE
 Unit::~Unit() /* = 0 */
 {
-    Dir( tempDirPath() ).pathDelete();
+    Dir( data.tempDirPath ).pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -82,18 +82,18 @@ Unit::run()
             bRv = unit();
         }
         catch (const Exception &a_xlibException) {
-            xTEST_FAIL_MSG(name() + xT(": ") + a_xlibException.what());
+            xTEST_FAIL_MSG(data.name + xT(": ") + a_xlibException.what());
 
             bRv = false;
         }
         catch (const std::exception &a_stdException) {
             std::string asMsg = a_stdException.what();
-            xTEST_FAIL_MSG(name() + xT(": ") + xA2T(asMsg));
+            xTEST_FAIL_MSG(data.name + xT(": ") + xA2T(asMsg));
 
             bRv = false;
         }
         catch (...) {
-            xTEST_FAIL_MSG(name() + xT(": Unknown error"));
+            xTEST_FAIL_MSG(data.name + xT(": Unknown error"));
             bRv = false;
         }
 
@@ -145,20 +145,6 @@ Unit::_createTempDir(
 
         Dir(data.tempDirPath).pathCreate();
     }
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
-Unit::tempDirPath() const
-{
-    xTEST_EQ(data.tempDirPath.empty(), false);
-
-    return data.tempDirPath;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
-Unit::name() const
-{
-    return data.name;
 }
 //-------------------------------------------------------------------------------------------------
 

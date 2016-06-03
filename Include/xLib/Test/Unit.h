@@ -76,11 +76,6 @@ public:
     virtual bool_t      unit() = 0;
         ///< unit
 
-    std::ctstring_t &   tempDirPath() const xWARN_UNUSED_RV;
-        ///< get work dir path
-    std::ctstring_t &   name() const xWARN_UNUSED_RV;
-        ///< get name
-
 private:
     void_t              _createTempDir(std::ctstring_t &dirName);
         ///< create temp dir
