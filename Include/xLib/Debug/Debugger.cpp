@@ -165,7 +165,7 @@ Debugger::_msgboxPlain(
     xCHECK_DO(!isEnabled(), return);
 
     MsgBox msgBox;
-    MsgBox::ExModalResult mrRv = msgBox.show(a_report.toString(), xT(""), MsgBox::tpAbortRetryIgnore);
+    MsgBox::ExModalResult mrRv = msgBox.show(a_report.toString(), xT("xLib"), MsgBox::tpAbortRetryIgnore);
     switch (mrRv) {
     case MsgBox::mrAbort:
         (void_t)::exit(EXIT_FAILURE);
