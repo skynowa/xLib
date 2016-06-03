@@ -84,7 +84,7 @@ XcbMsgBox::show(
                                   XCB_EVENT_MASK_ENTER_WINDOW   | XCB_EVENT_MASK_LEAVE_WINDOW   |
                                   XCB_EVENT_MASK_KEY_PRESS      | XCB_EVENT_MASK_KEY_RELEASE};
 
-        xcb_void_cookie_t cookie = ::xcb_create_window(
+        _cookie = ::xcb_create_window(
             _conn,                         // connection
             XCB_COPY_FROM_PARENT,          // depth
             _windowId,                     // window ID
@@ -95,15 +95,15 @@ XcbMsgBox::show(
             XCB_WINDOW_CLASS_INPUT_OUTPUT, // class
             _screen->root_visual,          // visual
             valueMask, valueList);         // masks
-        xTEST_GR(cookie.sequence, 0U);
+        xTEST_GR(_cookie.sequence, 0U);
 
         _setTitle(a_title);
         _autoResize(a_title, text);
         _setOnTop();
 
         // Map the window on the screen
-        cookie = ::xcb_map_window(_conn, _windowId);
-        xTEST_GR(cookie.sequence, 0U);
+        _cookie = ::xcb_map_window(_conn, _windowId);
+        xTEST_GR(_cookie.sequence, 0U);
 
 		iRv = ::xcb_flush(_conn);
 		xTEST_GR(iRv, 0);
@@ -125,9 +125,9 @@ XcbMsgBox::_setTitle(
 	std::ctstring_t &a_text
 )
 {
-	xcb_void_cookie_t cookie = ::xcb_change_property(_conn, XCB_PROP_MODE_REPLACE, _windowId,
-		XCB_ATOM_WM_NAME, XCB_ATOM_STRING, 8, a_text.size(), a_text.c_str());
-	xTEST_GR(cookie.sequence, 0U);
+	_cookie = ::xcb_change_property(_conn, XCB_PROP_MODE_REPLACE, _windowId, XCB_ATOM_WM_NAME,
+		XCB_ATOM_STRING, 8, a_text.size(), a_text.c_str());
+	xTEST_GR(_cookie.sequence, 0U);
 
 	int_t iRv = ::xcb_flush(_conn);
 	xTEST_GR(iRv, 0);
@@ -216,9 +216,8 @@ XcbMsgBox::_setOnTop()
 {
 	const uint32_t values[] = {XCB_STACK_MODE_ABOVE};
 
-	xcb_void_cookie_t cookie = ::xcb_configure_window(_conn, _windowId,
-		XCB_CONFIG_WINDOW_STACK_MODE, values);
-	xTEST_GR(cookie.sequence, 0U);
+	_cookie = ::xcb_configure_window(_conn, _windowId, XCB_CONFIG_WINDOW_STACK_MODE, values);
+	xTEST_GR(_cookie.sequence, 0U);
 }
 //-------------------------------------------------------------------------------------------------
 XcbMsgBox::ExModalResult
@@ -405,7 +404,7 @@ XcbMsgBox::_resize(
 {
     const uint32_t values[] = {a_width, a_height};
 
-    xcb_void_cookie_t cookie = ::xcb_configure_window(_conn, _windowId,
+    _cookie = ::xcb_configure_window(_conn, _windowId,
     	XCB_CONFIG_WINDOW_WIDTH | XCB_CONFIG_WINDOW_HEIGHT, values);
 }
 //-------------------------------------------------------------------------------------------------
