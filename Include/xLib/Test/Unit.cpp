@@ -23,30 +23,30 @@ xNAMESPACE_BEGIN2(xlib, test)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Unit::Unit() :
-    m_pvRv      (xPTR_NULL),
-    m_chRv      (0),
-    m_ucRv      (0),
-    m_bRv       (false),
-    m_iRv       (- 1),
-    m_siRv      (0),
-    m_usiRv     (0),
-    m_uiRv      (0U),
-    m_stRv      (0),
-    m_liRv      (0L),
-    m_ulRv      (0),
-    m_llRv      (0LL),
-    m_ullRv     (0UL),
-    m_fRv       (0.0f),
-    m_dRv       (0.0f),
-    m_sRv       (),
-    m_usRv      (),
-    m_vsRv      (),
-    m_msRv      (),
-    m_hRv       (xNATIVE_HANDLE_NULL),
+    m_pvRv  (xPTR_NULL),
+    m_chRv  (0),
+    m_ucRv  (0),
+    m_bRv   (false),
+    m_iRv   (- 1),
+    m_siRv  (0),
+    m_usiRv (0),
+    m_uiRv  (0U),
+    m_stRv  (0),
+    m_liRv  (0L),
+    m_ulRv  (0),
+    m_llRv  (0LL),
+    m_ullRv (0UL),
+    m_fRv   (0.0f),
+    m_dRv   (0.0f),
+    m_sRv   (),
+    m_usRv  (),
+    m_vsRv  (),
+    m_msRv  (),
+    m_hRv   (xNATIVE_HANDLE_NULL),
 #if xENV_WIN
-    m_hwndRv    (xPTR_NULL),
+    m_hwndRv(xPTR_NULL),
 #endif
-    data        ()
+    data    ()
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ Unit::~Unit() /* = 0 */
 //-------------------------------------------------------------------------------------------------
 void_t
 Unit::setData(
-    const UnitData &a_data
+    cUnitData &a_data
 )
 {
     data.unitLoops   = a_data.unitLoops;
