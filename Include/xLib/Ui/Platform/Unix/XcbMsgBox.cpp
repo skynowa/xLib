@@ -36,13 +36,22 @@ XcbMsgBox::XcbMsgBox() :
     _windowId(0),
     _error   (xPTR_NULL)
 {
-    // Open the connection to the X server
-    _conn = ::xcb_connect(xPTR_NULL, xPTR_NULL);
-    xTEST_PTR(_conn);
+	// Open the connection to the X server
+	int_t screenPreferredNum = 0;
+	_conn = ::xcb_connect(xPTR_NULL, &screenPreferredNum);
+	xTEST_PTR(_conn);
 
-    // Get the first screen
-    _screen = ::xcb_setup_roots_iterator( ::xcb_get_setup(_conn) ).data;
-    xTEST_PTR(_screen);
+	xcb_screen_iterator_t it = ::xcb_setup_roots_iterator( ::xcb_get_setup(_conn) );
+	for ( ; it.rem; -- screenPreferredNum, ::xcb_screen_next(&it)) {
+		if (screenPreferredNum != 0) {
+			continue;
+		}
+
+		_screen = it.data;
+		xTEST_PTR(_screen);
+
+		break;
+	}
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
