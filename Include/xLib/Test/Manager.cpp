@@ -62,7 +62,7 @@ Manager::add(
 {
     xTEST_PTR(a_unit)
 
-    if ( a_unit->name().empty() ) {
+    if ( a_unit->data.name.empty() ) {
         a_unit->data.name = Type::name(*a_unit);
     }
 
@@ -89,7 +89,7 @@ Manager::run()
 
     for (std::size_t i = 0; i < _data.allLoops; ++ i) {
         xFOR_EACH_CONST(units_t, it, _units) {
-            xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: run unit ") << (*it)->name());
+            xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: run unit ") << (*it)->data.name);
 
             bool_t bRv = (*it)->run();
             if (!bRv) {
