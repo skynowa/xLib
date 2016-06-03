@@ -373,13 +373,13 @@ XcbMsgBox::_fontGContext(
     std::ctstring_t &a_fontName
 )
 {
-	xcb_font_t        fontId      = 0;
-	xcb_void_cookie_t cookie_font = {};
+	xcb_font_t        fontId     = 0;
+	xcb_void_cookie_t cookieFont = {};
 	{
-		fontId      = ::xcb_generate_id(_conn);
-		cookie_font = ::xcb_open_font_checked(_conn, fontId, a_fontName.size(), xT2A(a_fontName).c_str());
+		fontId     = ::xcb_generate_id(_conn);
+		cookieFont = ::xcb_open_font_checked(_conn, fontId, a_fontName.size(), xT2A(a_fontName).c_str());
 
-		_error = ::xcb_request_check(_conn, cookie_font);
+		_error = ::xcb_request_check(_conn, cookieFont);
 		xTEST(_error == xPTR_NULL);
 	}
 
@@ -397,9 +397,9 @@ XcbMsgBox::_fontGContext(
 		xTEST(_error == xPTR_NULL);
 	}
 
-	cookie_font = ::xcb_close_font_checked(_conn, fontId);
+	cookieFont = ::xcb_close_font_checked(_conn, fontId);
 
-	_error = ::xcb_request_check(_conn, cookie_font);
+	_error = ::xcb_request_check(_conn, cookieFont);
 	xTEST(_error == xPTR_NULL);
 
 	return gcontextId;
