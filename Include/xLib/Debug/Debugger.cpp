@@ -175,7 +175,7 @@ Debugger::_msgboxPlain(
         xNA;
         break;
     case MsgBox::mrRetry:
-        if (isActive()) {
+        if ( isActive() ) {
             breakPoint();
         } else {
             MsgBox::ExModalResult nrRv = MsgBox().show(xT("Debugger is not present.\n"
