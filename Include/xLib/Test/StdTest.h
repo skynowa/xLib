@@ -65,10 +65,9 @@
 #define _xTRACE_POINT \
     { \
         std::cout \
-            << "\t::::: #" << __COUNTER__ \
+            << "\t::::: " \
             << " in "      << __FILE__ \
             << ":"         << __LINE__ \
-            << ", func: "  << __FUNCTION__ \
             << ", error: " << std::strerror(errno) \
             << " :::::"    << std::endl; \
     }
