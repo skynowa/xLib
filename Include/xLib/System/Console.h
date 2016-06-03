@@ -69,6 +69,16 @@ public:
     };
     xTYPEDEF_CONST(ExModalResult);
 
+    enum ExLineLimit
+        /// line limit size
+    {
+        llUnknown = 0,
+        ll80      = 80,
+        ll100     = 100,
+        ll120     = 120
+    };
+    xTYPEDEF_CONST(ExLineLimit);
+
                    Console();
         ///< constructor
     virtual       ~Console();
@@ -124,6 +134,9 @@ private:
     HMENU          _menuHandle(cbool_t &isRevert) xWARN_UNUSED_RV;
         ///< get console menu handle
 #endif
+
+	std::tstring_t _msgBoxLine(std::ctstring_t &text) const;
+		///< buil MsgBox text line
 
     xNO_COPY_ASSIGN(Console)
 
