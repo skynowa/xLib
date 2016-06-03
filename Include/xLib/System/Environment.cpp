@@ -55,7 +55,7 @@ Environment::isVarValid(
 {
     xTEST_NA(a_varName);
 
-    xCHECK_RET(a_varName.empty(),                                     false);
+    xCHECK_RET(a_varName.empty(),                                   false);
     xCHECK_RET(a_varName.find(Const::equal()) != std::string::npos, false);
 
     return true;
