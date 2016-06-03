@@ -21,52 +21,29 @@ xNAMESPACE_BEGIN2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 SourceInfo::SourceInfo(
-    std::ctstring_t &a_filePath,
-    culong_t        &a_lineNum,
-    std::ctstring_t &a_funcName,
-    culong_t        &a_counter
+    cSourceInfoData &a_data
 ) :
-    _filePath(a_filePath),
-    _lineNum (a_lineNum),
-    _funcName(a_funcName),
-    _counter (a_counter)
+    _data(a_data)
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
-SourceInfo::filePath() const
+xINLINE cSourceInfoData &
+SourceInfo::data() const
 {
-    return _filePath;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
-SourceInfo::lineNum() const
-{
-    return _lineNum;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
-SourceInfo::funcName() const
-{
-    return _funcName;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
-SourceInfo::counter() const
-{
-    return _counter;
+    return _data;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 SourceInfo::format() const
 {
-    return Format::str(xT("#{} in {}:{}, func: {}"), counter(), filePath(), lineNum(), funcName());
+    return Format::str(xT("#{} in {}:{}, func: {}"), _data.counter, _data.filePath, _data.lineNum,
+    	_data.funcName);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 SourceInfo::at() const
 {
-    return Format::str(xT("{}:{}"), filePath(), lineNum());
+    return Format::str(xT("{}:{}"), _data.filePath, _data.lineNum);
 }
 //-------------------------------------------------------------------------------------------------
 

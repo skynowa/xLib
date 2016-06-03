@@ -101,11 +101,11 @@ ErrorReport::_construct(
 #endif
     _threadId         = (ulong_t)Thread::currentId();
 
-    _sourceFilePath   = Path( Path(a_sourceInfo.filePath()).brief(::reportWidthMax) ).toUnix(false);
-    _sourceLineNum    = a_sourceInfo.lineNum();
-    _sourceFuncName   = a_sourceInfo.funcName();
+    _sourceFilePath   = Path( Path(a_sourceInfo.data().filePath).brief(::reportWidthMax) ).toUnix(false);
+    _sourceLineNum    = a_sourceInfo.data().lineNum;
+    _sourceFuncName   = a_sourceInfo.data().funcName;
     _sourceExpr       = Format::str(xT("{} {} {}"), a_var1, a_exprSign, a_var2);
-    _sourceExprValues = Format::str(xT("{} {} {}"), a_var1Value, a_exprSign, a_var2Value);;
+    _sourceExprValues = Format::str(xT("{} {} {}"), a_var1Value, a_exprSign, a_var2Value);
 
     _nativeError      = a_nativeError;
     _nativeErrorStr   = NativeError::format(a_nativeError);
