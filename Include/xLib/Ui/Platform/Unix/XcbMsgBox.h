@@ -53,6 +53,8 @@ private:
         ///< set text
     void_t         _autoResize(std::ctstring_t &title, std::cvec_tstring_t &text);
         ///< auto resize
+    void_t         _setOnTop();
+        ///< move the window on the top of the stack
 	ExModalResult  _execute(std::cvec_tstring_t &text);
 		///< execute
 

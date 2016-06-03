@@ -97,8 +97,9 @@ XcbMsgBox::show(
             valueMask, valueList);         // masks
         xTEST_GR(cookie.sequence, 0U);
 
-		_setTitle(a_title);
-		_autoResize(a_title, text);
+        _setTitle(a_title);
+        _autoResize(a_title, text);
+        _setOnTop();
 
         // Map the window on the screen
         cookie = ::xcb_map_window(_conn, _windowId);
@@ -208,6 +209,16 @@ XcbMsgBox::_autoResize(
 	}
 
     _resize(width, height);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE void_t
+XcbMsgBox::_setOnTop()
+{
+	const uint32_t values[] = {XCB_STACK_MODE_ABOVE};
+
+	xcb_void_cookie_t cookie = ::xcb_configure_window(_conn, _windowId,
+		XCB_CONFIG_WINDOW_STACK_MODE, values);
+	xTEST_GR(cookie.sequence, 0U);
 }
 //-------------------------------------------------------------------------------------------------
 XcbMsgBox::ExModalResult
