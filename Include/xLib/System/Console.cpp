@@ -62,38 +62,18 @@ Console::setAttributes(
     cint_t        &a_attributes
 ) const
 {
-#if xENV_WIN
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
-#endif
-    // n/a
-
     return _setAttributes_impl(a_foreground, a_background, a_attributes);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 Console::setAttributesDef() const
 {
-#if xENV_WIN
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
-#endif
-    // n/a
-
     return _setAttributesDef_impl();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 Console::read() const
 {
-#if xENV_WIN
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
-#endif
-
     return _read_impl();
 }
 //-------------------------------------------------------------------------------------------------
@@ -102,15 +82,7 @@ Console::write(
     std::ctstring_t &a_str
 ) const
 {
-#if xENV_WIN
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
-#endif
-
     _write_impl(a_str);
-
-    std::tcout.flush();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -118,12 +90,6 @@ Console::writeLine(
     std::ctstring_t &a_str /* = xT("") */
 ) const
 {
-#if xENV_WIN
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
-#endif
-
     write(a_str + Const::nl());
 }
 //-------------------------------------------------------------------------------------------------
@@ -132,12 +98,6 @@ Console::writeErrLine(
     std::ctstring_t &a_str
 ) const
 {
-#if xENV_WIN
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
-#endif
-
     writeLine(xT("Error: ") + a_str);
 
     pause(xTIMEOUT_INFINITE);
@@ -151,12 +111,6 @@ Console::msgBox(
 ) const
 {
     xUNUSED(a_type);
-
-#if xENV_WIN
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
-#endif
 
     ExModalResult mrRv;
 
@@ -220,12 +174,6 @@ Console::prompt(
     std::tstring_t  *a_answer
 ) const
 {
-#if xENV_WIN
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
-#endif
-
     xTEST_EQ(a_prompt.empty(), false);
     xTEST_PTR(a_answer);
 
@@ -261,12 +209,6 @@ Console::pause(
     culong_t &a_timeoutMsec
 ) const
 {
-#if xENV_WIN
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
-#endif
-
     std::tstring_t msg;
 
     if (a_timeoutMsec == xTIMEOUT_INFINITE) {
@@ -288,12 +230,6 @@ Console::pause(
 xINLINE void_t
 Console::clear() const
 {
-#if xENV_WIN
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
-#endif
-
     _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
@@ -302,12 +238,6 @@ Console::setTitle(
     std::ctstring_t &a_title
 ) const
 {
-#if xENV_WIN
-    xTEST_NA(_wnd);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
-#endif
-
     _setTitle_impl(a_title);
 }
 //-------------------------------------------------------------------------------------------------

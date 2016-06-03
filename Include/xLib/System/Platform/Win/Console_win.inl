@@ -58,6 +58,10 @@ Console::_setAttributes_impl(
     cint_t        &a_attributes
 ) const
 {
+    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
+    xTEST_EQ(_stdIn.isValid(), true);
+    xTEST_EQ(_stdOut.isValid(), true);
+
     ExForeground foregroundColor;
     {
         /*
@@ -208,6 +212,10 @@ Console::_setAttributes_impl(
 xINLINE std::tstring_t
 Console::_setAttributesDef_impl() const
 {
+    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
+    xTEST_EQ(_stdIn.isValid(), true);
+    xTEST_EQ(_stdOut.isValid(), true);
+
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), _attributesDef);
     xTEST_DIFF(blRv, FALSE);
 
@@ -217,6 +225,10 @@ Console::_setAttributesDef_impl() const
 xINLINE std::tstring_t
 Console::_read_impl() const
 {
+    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
+    xTEST_EQ(_stdIn.isValid(), true);
+    xTEST_EQ(_stdOut.isValid(), true);
+
     std::tstring_t sRv;
 
     DWORD    read               = 0UL;
@@ -236,17 +248,27 @@ Console::_write_impl(
     std::ctstring_t &a_str
 ) const
 {
+    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
+    xTEST_EQ(_stdIn.isValid(), true);
+    xTEST_EQ(_stdOut.isValid(), true);
+
     DWORD written = 0UL;
 
     BOOL blRv = ::WriteConsole(_stdOut.get(), &a_str.at(0), static_cast<DWORD>( a_str.size() ),
         &written, xPTR_NULL);
     xTEST_DIFF(blRv, FALSE);
     xTEST_EQ(static_cast<size_t>( written ), a_str.size());
+
+    // TODO: Console::_write_impl() - flush
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Console::_clear_impl() const
 {
+    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
+    xTEST_EQ(_stdIn.isValid(), true);
+    xTEST_EQ(_stdOut.isValid(), true);
+
     COORD                      coordScreen  = {0};   // here's where we'll home the cursor
     DWORD                      charsWritten = 0UL;
     CONSOLE_SCREEN_BUFFER_INFO csbi         = {{0}}; // to get buffer info
@@ -282,6 +304,10 @@ Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
 {
+    xTEST_NA(_wnd);
+    xTEST_EQ(_stdIn.isValid(), true);
+    xTEST_EQ(_stdOut.isValid(), true);
+
     BOOL blRv = ::SetConsoleTitle( a_title.c_str() );
     xTEST_DIFF(blRv, FALSE);
 }
