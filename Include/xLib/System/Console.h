@@ -143,8 +143,8 @@ private:
 xPLATFORM_IMPL:
     void_t         _construct_impl();
     void_t         _destruct_impl();
-    std::tstring_t _setAttributes_impl(cExForeground &foreground,
-                       cExBackground &background, cint_t &attributes) const xWARN_UNUSED_RV;
+    std::tstring_t _setAttributes_impl(cExForeground &foreground, cExBackground &background,
+    					cint_t &attributes) const xWARN_UNUSED_RV;
     std::tstring_t _setAttributesDef_impl() const xWARN_UNUSED_RV;
     std::tstring_t _read_impl() const xWARN_UNUSED_RV;
     void_t         _write_impl(std::ctstring_t &str) const;
