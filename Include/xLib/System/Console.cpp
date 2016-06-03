@@ -181,19 +181,19 @@ Console::prompt(
         write(a_prompt + xT(": "));
 
         for ( ; ; ) {
-            ctchar_t letter = static_cast<tchar_t>( std::tcin.get() );
+            ctchar_t ch = std::tcin.get();
 
             // asterisks
             // BUG: Console::prompt() - asterisks
             xCHECK_DO(a_isVisible, write(xT("*")));
 
             // ENTER
-            xCHECK_DO(letter == 10, break);
+            xCHECK_DO(ch == 10, break);
 
             // BACKSPACE
-            xCHECK_DO(letter == 0x8, a_answer->clear(); continue);
+            xCHECK_DO(ch == 0x8, a_answer->clear(); continue);
 
-            a_answer->push_back(letter);
+            a_answer->push_back(ch);
         }
 
         writeLine(Const::strEmpty());
