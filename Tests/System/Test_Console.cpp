@@ -84,7 +84,8 @@ Test_Console::unit()
     {
 	#if xTEST_IGNORE
 		std::ctstring_t title = xT("iMsgBox_title");
-		std::ctstring_t text  = xT("iMsgBox_text\nddddddddd\nRRRRRRRRRRRRR");
+		std::ctstring_t text  = xT("iMsgBox_text\nddddddddd\nRRRRRRRRRRRRR")
+			xT(" AAAA BBBB CCCC DDDD EEEE FFFF GGGG HHHH JJJJ KKKK LLLL ZZZZ XXXX CCCC VVVV BBBB");
 		cuint_t         type  = 0U;
 
 		Console console;
