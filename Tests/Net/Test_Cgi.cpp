@@ -20,7 +20,7 @@ Test_Cgi::unit()
     xTEST_CASE("pageShow")
     {
         #if xTEST_IGNORE
-            std::ctstring_t csFilePath = tempDirPath() + Const::slash() + xT("Test.txt");
+            std::ctstring_t csFilePath = data.tempDirPath + Const::slash() + xT("Test.txt");
 
             std::ctstring_t sFileContent =
                     xT("\t<html>")

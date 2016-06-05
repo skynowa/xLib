@@ -17,7 +17,7 @@ xTEST_UNIT(Test_FileType)
 bool_t
 Test_FileType::unit()
 {
-    std::ctstring_t  filePath = tempDirPath() + Const::slash() + xT("Test.txt");
+    std::ctstring_t  filePath = data.tempDirPath + Const::slash() + xT("Test.txt");
     FileType::ExType value;
 
     // prepare
@@ -105,7 +105,7 @@ Test_FileType::unit()
 
         // dir
         {
-            std::ctstring_t csDirPath = tempDirPath();
+            std::ctstring_t csDirPath = data.tempDirPath;
 
             FileType ftType(csDirPath);
 

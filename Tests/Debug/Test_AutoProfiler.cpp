@@ -19,7 +19,7 @@ Test_AutoProfiler::unit()
 {
     xTEST_CASE("AutoProfiler")
     {
-        std::ctstring_t csFilePath = tempDirPath() + Const::slash() + xT("AutoProfilerLog.log");
+        std::ctstring_t csFilePath = data.tempDirPath + Const::slash() + xT("AutoProfilerLog.log");
 
         File::clear(csFilePath);
 

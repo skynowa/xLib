@@ -16,7 +16,7 @@ xTEST_UNIT(Test_File)
 bool_t
 Test_File::unit()
 {
-    std::ctstring_t filePath = tempDirPath() + Const::slash() + xT("Test.txt");
+    std::ctstring_t filePath = data.tempDirPath + Const::slash() + xT("Test.txt");
 
 
     /*******************************************************************************
@@ -148,7 +148,7 @@ Test_File::unit()
         {
             File file;
 
-            file.create(tempDirPath() + Const::slash() + xT("DataNew.dat"), File::omBinWrite);
+            file.create(data.tempDirPath + Const::slash() + xT("DataNew.dat"), File::omBinWrite);
             file.write(text1);
         }
 
@@ -537,7 +537,7 @@ Test_File::unit()
 bool_t
 Test_File::unit1()
 {
-    std::ctstring_t filePath = tempDirPath() + Const::slash() + xT("Test.txt");
+    std::ctstring_t filePath = data.tempDirPath + Const::slash() + xT("Test.txt");
 
     /*******************************************************************************
     *   static
@@ -549,7 +549,7 @@ Test_File::unit1()
         m_bRv = File::isFile(filePath);
         xTEST_EQ(m_bRv, true);
 
-        m_bRv = File::isFile(tempDirPath());
+        m_bRv = File::isFile(data.tempDirPath);
         xTEST_EQ(m_bRv, false);
     }
 
@@ -561,7 +561,7 @@ Test_File::unit1()
         m_bRv = File::isExists(filePath + xT("wrong_path"));
         xTEST_EQ(m_bRv, false);
 
-        m_bRv = File::isExists(tempDirPath());
+        m_bRv = File::isExists(data.tempDirPath);
         xTEST_EQ(m_bRv, false);
     }
 
@@ -584,7 +584,7 @@ Test_File::unit1()
 
     xTEST_CASE("rename")
     {
-        std::ctstring_t newFilePath = tempDirPath() + Const::slash() + xT("New.Test.txt");
+        std::ctstring_t newFilePath = data.tempDirPath + Const::slash() + xT("New.Test.txt");
 
         File::textWrite(filePath, xT("Simple text"), File::omWrite);
         File::remove(newFilePath);
@@ -611,7 +611,7 @@ Test_File::unit1()
 
     xTEST_CASE("copy")
     {
-        std::ctstring_t sFilePathFrom = tempDirPath() + Const::slash() + xT("test_copy.txt");
+        std::ctstring_t sFilePathFrom = data.tempDirPath + Const::slash() + xT("test_copy.txt");
         std::ctstring_t sFilePathTo   = sFilePathFrom + xT("_addition_to_name");
 
         {
@@ -631,11 +631,11 @@ Test_File::unit1()
 
     xTEST_CASE("move")
     {
-        std::ctstring_t newFilePath = tempDirPath() + Const::slash() + xT("New.Test.txt");
+        std::ctstring_t newFilePath = data.tempDirPath + Const::slash() + xT("New.Test.txt");
 
         File::textWrite(newFilePath, xT("Simple text"), File::omWrite);
-        File::remove(tempDirPath() + Const::slash() + newFilePath);
-        File::move(newFilePath, tempDirPath());
+        File::remove(data.tempDirPath + Const::slash() + newFilePath);
+        File::move(newFilePath, data.tempDirPath);
     }
 
     xTEST_CASE("unlink")
@@ -648,14 +648,14 @@ Test_File::unit1()
 
     xTEST_CASE("clear")
     {
-        std::ctstring_t newFilePath = tempDirPath() + Const::slash() + xT("New.Test.txt");
+        std::ctstring_t newFilePath = data.tempDirPath + Const::slash() + xT("New.Test.txt");
 
         File::clear(newFilePath);
     }
 
     xTEST_CASE("remove")
     {
-        std::ctstring_t newFilePath = tempDirPath() + Const::slash() + xT("New.Test.txt");
+        std::ctstring_t newFilePath = data.tempDirPath + Const::slash() + xT("New.Test.txt");
 
         File::remove(newFilePath);
         File::remove(newFilePath);
@@ -663,7 +663,7 @@ Test_File::unit1()
 
     xTEST_CASE("tryRemove")
     {
-        std::ctstring_t tryfilePath = tempDirPath() + Const::slash() + xT("New.Test.txt");
+        std::ctstring_t tryfilePath = data.tempDirPath + Const::slash() + xT("New.Test.txt");
 
         for (size_t i = 0; i < 20; ++ i) {
             if (i < 10) {
@@ -894,7 +894,7 @@ bool_t
 Test_File::unitPrivate()
 {
 #if xOPTION_TEST_PRIVATE
-    std::ctstring_t filePath = tempDirPath() + Const::slash() + xT("Test.txt");
+    std::ctstring_t filePath = data.tempDirPath + Const::slash() + xT("Test.txt");
 
     xTEST_CASE("_nativeHandle")
     {

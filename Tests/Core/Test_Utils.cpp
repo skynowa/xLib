@@ -181,7 +181,7 @@ Test_Utils::unit()
 
     xTEST_CASE("fileClose")
     {
-        std::ctstring_t csFilaPath = tempDirPath() + Const::slash() + xT("test_fileclose.txt");
+        std::ctstring_t csFilaPath = data.tempDirPath + Const::slash() + xT("test_fileclose.txt");
 
         FILE *pFile = xTFOPEN(csFilaPath.c_str(), xT("w"));
         xTEST_PTR(pFile);
