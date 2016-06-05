@@ -506,7 +506,7 @@ Test_String::unit()
         xTEST_EQ(std::tstring_t(xT("aESa_SaRING_1")), m_sRv);
 
         m_sRv = String::replaceAll(xT("D:/XVCL/Include\\XVCL/Units/Ui/vSpeedButton_LoadDrives.cpp"), xT("/"), xT("_"));
-        xTEST_EQ(std::tstring_t(xT("D:_XVCL_Include\\XVCL_Units_Gui_vSpeedButton_LoadDrives.cpp")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("D:_XVCL_Include\\XVCL_Units_Ui_vSpeedButton_LoadDrives.cpp")), m_sRv);
 
         m_sRv = String::replaceAll(xT("D:/XVCL/Include\\XVCL/Units/Ui/vSpeedButton_LoadDrives.cpp"), xT("\\"), xT("_"));
         xTEST_EQ(std::tstring_t(xT("D:/XVCL/Include_XVCL/Units/Ui/vSpeedButton_LoadDrives.cpp")), m_sRv);

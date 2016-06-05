@@ -55,9 +55,9 @@ Test_Blowfish::unit()
     {
         Blowfish blowfish;
         std::tstring_t key           = xT("888888888A");
-        std::tstring_t filePlain     = tempDirPath() + Const::slash() + xT("Blowfish.txt");
-        std::tstring_t fileEncrypted = tempDirPath() + Const::slash() + xT("Blowfish_Encrypted.txt");
-        std::tstring_t fileDecrypted = tempDirPath() + Const::slash() + xT("Blowfish_Decrypted.txt");
+        std::tstring_t filePlain     = data.tempDirPath + Const::slash() + xT("Blowfish.txt");
+        std::tstring_t fileEncrypted = data.tempDirPath + Const::slash() + xT("Blowfish_Encrypted.txt");
+        std::tstring_t fileDecrypted = data.tempDirPath + Const::slash() + xT("Blowfish_Decrypted.txt");
 
         // prepare
         {

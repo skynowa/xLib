@@ -22,7 +22,7 @@ Test_FileTemp::unit()
         FileTemp fileTemp(true);
         File     fileJobber;
 
-        fileTemp.create(Path::exe(), tempDirPath() + Const::slash() + xT("Temp"), &fileJobber);
+        fileTemp.create(Path::exe(), data.tempDirPath + Const::slash() + xT("Temp"), &fileJobber);
         xTEST_EQ(fileJobber.isEmpty(), true);
 
         fileJobber.writeLine(xT("qwertyuiop"));
