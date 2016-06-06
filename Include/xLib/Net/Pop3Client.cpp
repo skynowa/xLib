@@ -12,6 +12,8 @@
 #include <xLib/IO/File.h>
 #include <xLib/Net/MimeHeader.h>
 #include <xLib/Net/MimeBody.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/ErrorReport.h>
 
 
 xNAMESPACE_BEGIN2(xlib, net)

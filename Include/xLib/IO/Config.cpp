@@ -12,6 +12,8 @@
 #include <xLib/IO/Path.h>
 #include <xLib/IO/Dir.h>
 #include <xLib/IO/File.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/ErrorReport.h>
 
 
 xNAMESPACE_BEGIN2(xlib, io)

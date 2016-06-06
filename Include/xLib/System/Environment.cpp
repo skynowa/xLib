@@ -10,6 +10,8 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/ErrorReport.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Environment_win.inl"
