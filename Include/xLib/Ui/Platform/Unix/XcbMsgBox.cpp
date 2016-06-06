@@ -4,6 +4,10 @@
  */
 
 
+#if !xOPTION_PROJECT_HEADER_ONLY
+    #include "XcbMsgBox.h"
+#endif
+
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>

@@ -14,6 +14,8 @@
 #include <xLib/IO/File.h>
 #include <xLib/IO/Path.h>
 #include <xLib/Crypt/Crc32.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/ErrorReport.h>
 
 #if xENV_WIN
     #if xCOMPILER_MS

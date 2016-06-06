@@ -13,6 +13,9 @@
 #include <xLib/Core/String.h>
 #include <xLib/Net/DnsClient.h>
 #include <xLib/Log/Trace.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/ErrorReport.h>
+
 
 xNAMESPACE_BEGIN2(xlib, package)
 

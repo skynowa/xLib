@@ -9,6 +9,7 @@
 #endif
 
 #include <xLib/Core/Char.h>
+#include <xLib/Test/StdTest.h>
 
 
 xNAMESPACE_BEGIN2(xlib, core)
