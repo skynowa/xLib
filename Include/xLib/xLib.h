@@ -18,7 +18,6 @@
 #include <xLib/Core/Functions.h>
 #include <xLib/Core/Type.h>
 #include <xLib/Core/Win/Com.h>
-#include <xLib/Core/AutoReset.h>
 #include <xLib/Core/Operators.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>

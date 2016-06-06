@@ -21,7 +21,6 @@
 #include "Test_Type.h"
 #include "Test_Flags.h"
 #include "Test_Array.h"
-#include "Test_AutoReset.h"
 #include "Test_Char.h"
 #include "Test_Locale.h"
 #include "Test_Format.h"
