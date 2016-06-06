@@ -27,11 +27,11 @@ Test_Dll::unit()
                 return;
 
                 const data2_tstring_t data[] = {
-                    {xT("libm.so"), xT("cos")}
+                    {xT("libm.so.6"), xT("cos")}
                 };
             #else
                 const data2_tstring_t data[] = {
-                    {xT("libm.so"), xT("cos")}
+                    {xT("libm.so.6"), xT("cos")}
                 };
             #endif
         #endif

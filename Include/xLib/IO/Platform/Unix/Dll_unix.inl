@@ -18,7 +18,7 @@ Dll::_load_impl(
 )
 {
     _handle = ::dlopen(xT2A(a_dllPath).c_str(), RTLD_LAZY | RTLD_GLOBAL);
-    xTEST_PTR(_handle);
+    xTEST_PTR_MSG(_handle, StdError::format());
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
