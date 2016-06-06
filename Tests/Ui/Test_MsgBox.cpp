@@ -15,7 +15,7 @@ Test_MsgBox::unit()
 {
     xTEST_CASE("show")
     {
-    #if xTEST_IGNORE || 1
+    #if xTEST_IGNORE
 	#if   0
         std::ctstring_t title;
         std::ctstring_t text;
