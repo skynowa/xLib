@@ -229,15 +229,15 @@ MySQLConnection::lastErrorStr() const
 
     std::tstring_t sRv;
 
-    cuint_t     lastError = lastError();
-    const char *error     = ::mysql_error(_connection);
+    cuint_t     _lastError = lastError();
+    const char *error      = ::mysql_error(_connection);
     // n/a
     xTEST_PTR(error);
 
-    if (lastError == 0U) {
-        sRv = Format::str(xT("{} - \"{}\""), lastError, xT("Success"));
+    if (_lastError == 0U) {
+        sRv = Format::str(xT("{} - \"{}\""), _lastError, xT("Success"));
     } else {
-        sRv = Format::str(xT("{} - \"{}\""), lastError, error);
+        sRv = Format::str(xT("{} - \"{}\""), _lastError, error);
     }
 
     return sRv;
