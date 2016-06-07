@@ -48,41 +48,41 @@ Test_MySql::unit()
 
     xTEST_CASE("MySQLConnection::options")
     {
-        mysql_option  moOption = MYSQL_OPT_COMPRESS;
-        cvoid_t      *cpvArg   = xPTR_NULL;
+        mysql_option  option = MYSQL_OPT_COMPRESS;
+        cvoid_t      *arg    = xPTR_NULL;
 
-        mysqlConn.options(moOption, cpvArg);
+        mysqlConn.options(option, arg);
     }
 
     xTEST_CASE("MySQLConnection::isExists")
     {
-        std::ctstring_t casData[][2] = {
+        std::ctstring_t data[][2] = {
             { xT("000000"),     xT("false") },
             { xT("1111111"),    xT("false") },
             { xT("222222222"),  xT("false") },
             { xT("xxxxxxxxxx"), xT("false") }
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
-            bool_t bRes1 = MySQLConnection::isExists(host, user, password, casData[i][0], port, unixSocket, clientFlag);
-            bool_t bRes2 = String::castBool(casData[i][1]);
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            bool_t bRes1 = MySQLConnection::isExists(host, user, password, data[i][0], port, unixSocket, clientFlag);
+            bool_t bRes2 = String::castBool(data[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
     }
 
     xTEST_CASE("MySQLConnection::connect")
     {
-        bool_t bIsDbExists = false;
+        bool_t isDbExists = false;
 
-        bIsDbExists = MySQLConnection::isExists(host, user, password, dbName, port, unixSocket, clientFlag);
-        if (!bIsDbExists) {
-            //create Db
-            std::tstring_t csDbDefaultName = xT("");
+        isDbExists = MySQLConnection::isExists(host, user, password, dbName, port, unixSocket, clientFlag);
+        if (!isDbExists) {
+            // create Db
+            std::tstring_t dbNameDefault = xT("");
 
-            mysqlConn.connect(host, user, password, csDbDefaultName, port, unixSocket, clientFlag);
+            mysqlConn.connect(host, user, password, dbNameDefault, port, unixSocket, clientFlag);
             mysqlConn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), dbName.c_str());
         } else {
-            //connect to Db
+            // connect to Db
             mysqlConn.connect(host, user, password, dbName, port, unixSocket, clientFlag);
         }
 
@@ -150,55 +150,55 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-    MySQLRecordset recRec(mysqlConn, false);
+    MySQLRecordset mysqlRecord(mysqlConn, false);
 
     xTEST_CASE("MySQLRecordset::get")
     {
-        MYSQL_RES *pmrRes = recRec.get();
-        xTEST_PTR(pmrRes);
+        MYSQL_RES *handle = mysqlRecord.get();
+        xTEST_PTR(handle);
     }
 
     xTEST_CASE("MySQLRecordset::isValid")
     {
-        m_bRv = recRec.isValid();
+        m_bRv = mysqlRecord.isValid();
         xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("MySQLRecordset::fieldsNum")
     {
-        m_uiRv = recRec.fieldsNum();
+        m_uiRv = mysqlRecord.fieldsNum();
         //xTRACE("uiFieldsNum: %i", m_uiRv);
         //TODO: xTEST_EQ(3U, m_uiRv);
     }
 
     xTEST_CASE("MySQLRecordset::rowsNum")
     {
-        my_ulonglong ullRv = recRec.rowsNum(); xUNUSED(ullRv);
+        my_ulonglong ullRv = mysqlRecord.rowsNum(); xUNUSED(ullRv);
         //xTRACE("ullRowsNum: %lli", ullRv);
         //TODO: xTEST_LESS(0ULL, ullRv);
     }
 
     xTEST_CASE("MySQLRecordset::fetchField")
     {
-        MYSQL_FIELD mfField;
+        MYSQL_FIELD field;
 
-        recRec.fetchField(&mfField);
+        mysqlRecord.fetchField(&field);
     }
 
     xTEST_CASE("MySQLRecordset::fetchFieldDirect")
     {
-        uint_t      uiFieldNumber = 0;
-        MYSQL_FIELD mfField;
+        uint_t      fieldNumber = 0;
+        MYSQL_FIELD field;
 
-        recRec.fetchFieldDirect(uiFieldNumber, &mfField);
+        mysqlRecord.fetchFieldDirect(fieldNumber, &field);
     }
 
     //bFetchFields
     xTEST_CASE("MySQLRecordset::fetchFields")
     {
-        MYSQL_FIELD mfField;
+        MYSQL_FIELD field;
 
-        recRec.fetchFields(&mfField);
+        mysqlRecord.fetchFields(&field);
     }
 
     xTEST_CASE("MySQLRecordset::fetchRow")
@@ -207,7 +207,7 @@ Test_MySql::unit()
 
         //MYSQL_ROW mrRow;
 
-        //recRec.vFetchRow(&mrRow);
+        //mysqlRecord.vFetchRow(&mrRow);
     }
 
     xTEST_CASE("MySQLRecordset::fetchLengths")
@@ -216,24 +216,24 @@ Test_MySql::unit()
 
         //ulong_t *pulFieldLengths = xPTR_NULL;
 
-        //recRec.vFetchLengths(&pulFieldLengths);
+        //mysqlRecord.vFetchLengths(&pulFieldLengths);
         //xTEST_PTR(pulFieldLengths);
     }
 
     xTEST_CASE("MySQLRecordset::fetchRow")
     {
-        std::vec_tstring_t vsRow;
+        std::vec_tstring_t row;
 
-        for (my_ulonglong i = 0; i < recRec.rowsNum(); ++ i) {
-            recRec.fetchRow(&vsRow);
+        for (my_ulonglong i = 0; i < mysqlRecord.rowsNum(); ++ i) {
+            mysqlRecord.fetchRow(&row);
 
-            //std::tcout << xT("Row ") << i << xT(": ") << vsRow << std::endl;
+            //std::tcout << xT("Row ") << i << xT(": ") << row << std::endl;
         }
     }
 
     // drop DB, cleaning
     {
-        mysqlConn.query(xT("DROP TABLE IF EXISTS `%s`"), tableName.c_str());
+        mysqlConn.query(xT("DROP TABLE IF EXISTS `%s`"),    tableName.c_str());
         mysqlConn.query(xT("DROP DATABASE IF EXISTS `%s`"), dbName.c_str());
 
         m_bRv = MySQLConnection::isExists(host, user, password, dbName, port, unixSocket, clientFlag);
