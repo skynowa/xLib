@@ -58,7 +58,7 @@ public:
         ///< error message for the most recently invoked API function that failed
 
 private:
-    MYSQL         *_connection;
+    MYSQL         *_conn;
         ///< pointer to connection
 
     xNO_COPY_ASSIGN(MySQLConnection)
@@ -96,7 +96,7 @@ public:
         ///< fetching row
 
 private:
-    const MySQLConnection *_connection;
+    const MySQLConnection *_conn;
         ///< pointer to connection object
     MYSQL_RES   *_result;
         ///< for private use
