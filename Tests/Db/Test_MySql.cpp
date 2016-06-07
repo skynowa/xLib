@@ -17,14 +17,16 @@ bool_t
 Test_MySql::unit()
 {
 #if xHAVE_MYSQL
-    std::ctstring_t host       = xT("127.0.0.1");
-    std::ctstring_t user       = xT("root");
-    std::ctstring_t password   = xT("root");
-    std::ctstring_t dbName     = xT("db_test");
-    cuint_t         port       = 0U;
+    MySQLConnectionData mysqlData;
+    mysqlData.host       = xT("127.0.0.1");
+    mysqlData.user       = xT("root");
+    mysqlData.password   = xT("root");
+    mysqlData.db         = xT("db_test");
+    mysqlData.port       = 0U;
+    mysqlData.unixSocket = xT("");
+    mysqlData.clientFlag = 0UL;
+
     std::ctstring_t tableName  = xT("t_main");
-    std::ctstring_t unixSocket;
-    culong_t        clientFlag = 0UL;
 
 
     /*******************************************************************************
@@ -64,7 +66,7 @@ Test_MySql::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            bool_t bRes1 = MySQLConnection::isExists(host, user, password, data[i][0], port, unixSocket, clientFlag);
+            bool_t bRes1 = MySQLConnection::isExists(mysqlData);
             bool_t bRes2 = String::castBool(data[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
@@ -74,55 +76,62 @@ Test_MySql::unit()
     {
         bool_t isDbExists = false;
 
-        isDbExists = MySQLConnection::isExists(host, user, password, dbName, port, unixSocket, clientFlag);
-        if (!isDbExists) {
-            // create Db
-            std::tstring_t dbNameDefault = xT("");
+        isDbExists = MySQLConnection::isExists(mysqlData);
+        if ( !isDbExists ) {
+            MySQLConnectionData mysqlDataDefault;
+            mysqlDataDefault.host       = mysqlData.host;
+            mysqlDataDefault.user       = mysqlData.user;
+            mysqlDataDefault.password   = mysqlData.password;
+            mysqlDataDefault.db         = xT("");  // create Db
+            mysqlDataDefault.port       = mysqlData.port;
+            mysqlDataDefault.unixSocket = mysqlData.unixSocket;
+            mysqlDataDefault.clientFlag = mysqlData.clientFlag;
 
-            mysqlConn.connect(host, user, password, dbNameDefault, port, unixSocket, clientFlag);
-            mysqlConn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), dbName.c_str());
+            mysqlConn.connect(mysqlDataDefault);
+            mysqlConn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"),
+                mysqlData.db.c_str());
         } else {
             // connect to Db
-            mysqlConn.connect(host, user, password, dbName, port, unixSocket, clientFlag);
+            mysqlConn.connect(mysqlData);
         }
 
-        m_bRv = MySQLConnection::isExists(host, user, password, dbName, port, unixSocket, clientFlag);
+        m_bRv = MySQLConnection::isExists(mysqlData);
         xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("MySQLConnection::query")
     {
-        mysqlConn.connect(host, user, password, dbName, port, unixSocket, clientFlag);
+        mysqlConn.connect(mysqlData);
 
         // create table
         mysqlConn.query(
-                        xT("CREATE TABLE IF NOT EXISTS ")
-                        xT("   `%s` (")
-                        xT("       `f_id`    int_t(11)   NOT NULL AUTO_INCREMENT,")
-                        xT("       `f_name`  char(30)    NOT NULL,")
-                        xT("       `f_age`   SMALLINT(6) NOT NULL")
-                        xT("   )"),
-                        tableName.c_str());
+            xT("CREATE TABLE IF NOT EXISTS ")
+            xT("   `%s` (")
+            xT("       `f_id`    int_t(11)   NOT NULL AUTO_INCREMENT,")
+            xT("       `f_name`  char(30)    NOT NULL,")
+            xT("       `f_age`   SMALLINT(6) NOT NULL")
+            xT("   )"),
+            tableName.c_str());
         xTEST_EQ(m_bRv, true);
 
         // insert records
         mysqlConn.query(
-                        xT("INSERT INTO")
-                        xT("    `%s` (`f_name`, `f_age`)")
-                        xT("VALUES")
-                        xT("    ('Katya', 12),")
-                        xT("    ('Lena',  18),")
-                        xT("    ('Misha', 16),")
-                        xT("    ('Vasya', 24),")
-                        xT("    ('Sasha', 20)"),
-                        tableName.c_str());
+            xT("INSERT INTO")
+            xT("    `%s` (`f_name`, `f_age`)")
+            xT("VALUES")
+            xT("    ('Katya', 12),")
+            xT("    ('Lena',  18),")
+            xT("    ('Misha', 16),")
+            xT("    ('Vasya', 24),")
+            xT("    ('Sasha', 20)"),
+            tableName.c_str());
 
         // select all records
-        #if 0
-            mysqlConn.query(xT("SELECT * FROM `t_main`"));
-        #else
-            mysqlConn.query(xT("CHECK TABLE `t_main`"));
-        #endif
+    #if 0
+        mysqlConn.query(xT("SELECT * FROM `t_main`"));
+    #else
+        mysqlConn.query(xT("CHECK TABLE `t_main`"));
+    #endif
     }
 
     xTEST_CASE("MySQLConnection::fieldCount")
@@ -234,9 +243,9 @@ Test_MySql::unit()
     // drop DB, cleaning
     {
         mysqlConn.query(xT("DROP TABLE IF EXISTS `%s`"),    tableName.c_str());
-        mysqlConn.query(xT("DROP DATABASE IF EXISTS `%s`"), dbName.c_str());
+        mysqlConn.query(xT("DROP DATABASE IF EXISTS `%s`"), mysqlData.db.c_str());
 
-        m_bRv = MySQLConnection::isExists(host, user, password, dbName, port, unixSocket, clientFlag);
+        m_bRv = MySQLConnection::isExists(mysqlData);
         xTEST_EQ(m_bRv, false);
     }
 

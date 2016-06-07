@@ -20,6 +20,29 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, db)
 
+struct MySQLConnectionData
+    /// MySQLConnection data
+{
+    std::tstring_t host;
+    std::tstring_t user;
+    std::tstring_t password;
+    std::tstring_t db;
+    uint_t         port;
+    std::tstring_t unixSocket;
+    ulong_t        clientFlag;
+
+    MySQLConnectionData() :
+        host      (),
+        user      (),
+        password  (),
+        db        (),
+        port      (0),
+        unixSocket(),
+        clientFlag(0)
+    {}
+};
+xTYPEDEF_CONST(MySQLConnectionData);
+
 class MySQLConnection
     /// MySQL connection
 {
@@ -36,13 +59,9 @@ public:
     void_t         options(const mysql_option &option, cvoid_t *arg) const;
         ///< set extra connect options and affect behavior
     static
-    bool_t         isExists(std::ctstring_t &host, std::ctstring_t &user, std::ctstring_t &password,
-                        std::ctstring_t &db, cuint_t &port, std::ctstring_t &unixSocket,
-                        culong_t &clientFlag) xWARN_UNUSED_RV;
-        ///<
-    void_t         connect(std::ctstring_t &host, std::ctstring_t &user, std::ctstring_t &password,
-                        std::ctstring_t &db, cuint_t &port, std::ctstring_t &unixSocket,
-                        culong_t &clientFlag);
+    bool_t         isExists(cMySQLConnectionData &data) xWARN_UNUSED_RV;
+        ///< check connection
+    void_t         connect(cMySQLConnectionData &data);
         ///< attempts to establish a connection to a MySQL database engine running on host
     void_t         query(ctchar_t *sqlFormat, ...) const;
         ///< executes the SQL statement
