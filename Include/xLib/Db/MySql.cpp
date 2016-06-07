@@ -82,13 +82,7 @@ MySQLConnection::options(
 /* static */
 xINLINE bool_t
 MySQLConnection::isExists(
-    std::ctstring_t &a_host,
-    std::ctstring_t &a_user,
-    std::ctstring_t &a_password,
-    std::ctstring_t &a_db,
-    cuint_t         &a_port,
-    std::ctstring_t &a_unixSocket,
-    culong_t        &a_clientFlag
+    cMySQLConnectionData &a_data
 )
 {
     bool_t bRv = false;
@@ -99,9 +93,9 @@ MySQLConnection::isExists(
         bRv = conn.isValid();
         xCHECK_RET(!bRv, false);
 
-        conn.connect(a_host, a_user, a_password, xT(""), a_port, a_unixSocket, a_clientFlag);
+        conn.connect(a_data);
         conn.query(xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
-            "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"), a_db.c_str());
+            "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"), a_data.db.c_str());
     }
 
     MySQLRecordset rec(conn, false);
@@ -126,27 +120,15 @@ MySQLConnection::isExists(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 MySQLConnection::connect(
-    std::ctstring_t &a_host,
-    std::ctstring_t &a_user,
-    std::ctstring_t &a_password,
-    std::ctstring_t &a_db,
-    cuint_t         &a_port,
-    std::ctstring_t &a_unixSocket,
-    culong_t        &a_clientFlag
+    cMySQLConnectionData &a_data
 )
 {
     xTEST_EQ(isValid(), true);
-    xTEST_NA(a_host);
-    xTEST_NA(a_user);
-    xTEST_NA(a_password);
-    xTEST_NA(a_db);
-    xTEST_NA(a_port);
-    xTEST_NA(a_unixSocket);
-    xTEST_NA(a_clientFlag);
+    xTEST_NA(a_data);
 
-    MYSQL *conn = ::mysql_real_connect(_conn, xT2A(a_host).c_str(), xT2A(a_user).c_str(),
-        xT2A(a_password).c_str(), xT2A(a_db).c_str(), a_port, xT2A(a_unixSocket).c_str(),
-        a_clientFlag);
+    MYSQL *conn = ::mysql_real_connect(_conn, xT2A(a_data.host).c_str(), xT2A(a_data.user).c_str(),
+        xT2A(a_data.password).c_str(), xT2A(a_data.db).c_str(), a_data.port,
+        xT2A(a_data.unixSocket).c_str(), a_data.clientFlag);
 
     xTEST_PTR_MSG(conn, lastErrorStr());
     xTEST_EQ_MSG(_conn, conn, lastErrorStr());
