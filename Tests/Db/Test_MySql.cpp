@@ -34,23 +34,19 @@ Test_MySql::unit()
 
     MySQLConnection conConn;
 
-
-    //--------------------------------------------------
-    //pmsGet
+    xTEST_CASE("MySQLConnection::get")
     {
         MYSQL *pmsRes = conConn.get();
         xTEST_PTR(pmsRes);
     }
 
-    //--------------------------------------------------
-    //bIsValid
+    xTEST_CASE("MySQLConnection::isValid")
     {
         m_bRv = conConn.isValid();
         xTEST_EQ(m_bRv, true);
     }
 
-    //--------------------------------------------------
-    //bOptions
+    xTEST_CASE("MySQLConnection::options")
     {
         mysql_option  moOption = MYSQL_OPT_COMPRESS;
         cvoid_t      *cpvArg   = xPTR_NULL;
@@ -58,7 +54,7 @@ Test_MySql::unit()
         conConn.options(moOption, cpvArg);
     }
 
-    xTEST_CASE("bIsExists")
+    xTEST_CASE("MySQLConnection::isExists")
     {
         std::ctstring_t casData[][2] = {
             { xT("000000"),     xT("false") },
@@ -74,8 +70,7 @@ Test_MySql::unit()
         }
     }
 
-    //--------------------------------------------------
-    //bConnect
+    xTEST_CASE("MySQLConnection::connect")
     {
         bool_t bIsDbExists = false;
 
@@ -95,23 +90,22 @@ Test_MySql::unit()
         xTEST_EQ(m_bRv, true);
     }
 
-    //--------------------------------------------------
-    //bQuery
+    xTEST_CASE("MySQLConnection::query")
     {
         conConn.connect(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
 
-        //create table
+        // create table
         conConn.query(
                         xT("CREATE TABLE IF NOT EXISTS ")
                         xT("   `%s` (")
-                        xT("       `f_id`    int_t(11)     NOT NULL AUTO_INCREMENT,")
+                        xT("       `f_id`    int_t(11)   NOT NULL AUTO_INCREMENT,")
                         xT("       `f_name`  char(30)    NOT NULL,")
                         xT("       `f_age`   SMALLINT(6) NOT NULL")
                         xT("   )"),
                         sTableName.c_str());
         xTEST_EQ(m_bRv, true);
 
-        //insert records
+        // insert records
         conConn.query(
                         xT("INSERT INTO")
                         xT("    `%s` (`f_name`, `f_age`)")
@@ -123,7 +117,7 @@ Test_MySql::unit()
                         xT("    ('Sasha', 20)"),
                         sTableName.c_str());
 
-        //select all records
+        // select all records
         #if 0
             conConn.query(xT("SELECT * FROM `t_main`"));
         #else
@@ -131,23 +125,20 @@ Test_MySql::unit()
         #endif
     }
 
-    //--------------------------------------------------
-    //uiFieldCount
+    xTEST_CASE("MySQLConnection::fieldCount")
     {
         m_uiRv = conConn.fieldCount();
         //xTRACE("uiFieldsNum: %i", m_uiRv);
         //TODO: xTEST_EQ(3U, m_uiRv);
     }
 
-    //--------------------------------------------------
-    // uiLastError
+    xTEST_CASE("MySQLConnection::lastError")
     {
         m_uiRv = conConn.lastError();
         xTEST_EQ(0U, m_uiRv);
     }
 
-    //--------------------------------------------------
-    // sLastErrorStr
+    xTEST_CASE("MySQLConnection::lastErrorStr")
     {
         m_sRv = conConn.lastErrorStr();
         xTEST_EQ(false, m_sRv.empty());
@@ -161,46 +152,40 @@ Test_MySql::unit()
 
     MySQLRecordset recRec(conConn, false);
 
-    //--------------------------------------------------
-    //pmrGet
+    xTEST_CASE("MySQLRecordset::get")
     {
         MYSQL_RES *pmrRes = recRec.get();
         xTEST_PTR(pmrRes);
     }
 
-    //--------------------------------------------------
-    //bIsValid
+    xTEST_CASE("MySQLRecordset::isValid")
     {
         m_bRv = recRec.isValid();
         xTEST_EQ(m_bRv, true);
     }
 
-    //--------------------------------------------------
-    //uiFieldsNum
+    xTEST_CASE("MySQLRecordset::fieldsNum")
     {
         m_uiRv = recRec.fieldsNum();
         //xTRACE("uiFieldsNum: %i", m_uiRv);
         //TODO: xTEST_EQ(3U, m_uiRv);
     }
 
-    //--------------------------------------------------
-    //ullRowsNum
+    xTEST_CASE("MySQLRecordset::rowsNum")
     {
         my_ulonglong ullRv = recRec.rowsNum(); xUNUSED(ullRv);
         //xTRACE("ullRowsNum: %lli", ullRv);
         //TODO: xTEST_LESS(0ULL, ullRv);
     }
 
-    //--------------------------------------------------
-    //bFetchField
+    xTEST_CASE("MySQLRecordset::fetchField")
     {
         MYSQL_FIELD mfField;
 
         recRec.fetchField(&mfField);
     }
 
-    //--------------------------------------------------
-    //bFetchFieldDirect
+    xTEST_CASE("MySQLRecordset::fetchFieldDirect")
     {
         uint_t      uiFieldNumber = 0;
         MYSQL_FIELD mfField;
@@ -208,16 +193,15 @@ Test_MySql::unit()
         recRec.fetchFieldDirect(uiFieldNumber, &mfField);
     }
 
-    //--------------------------------------------------
     //bFetchFields
+    xTEST_CASE("MySQLRecordset::fetchFields")
     {
         MYSQL_FIELD mfField;
 
         recRec.fetchFields(&mfField);
     }
 
-    //--------------------------------------------------
-    // vFetchRow
+    xTEST_CASE("MySQLRecordset::fetchRow")
     {
         // TEST: Mysql::fetchRow()
 
@@ -226,8 +210,7 @@ Test_MySql::unit()
         //recRec.vFetchRow(&mrRow);
     }
 
-    //--------------------------------------------------
-    // vFetchLengths
+    xTEST_CASE("MySQLRecordset::fetchLengths")
     {
         // TEST: Mysql::fetchLengths()
 
@@ -237,9 +220,7 @@ Test_MySql::unit()
         //xTEST_PTR(pulFieldLengths);
     }
 
-
-    //--------------------------------------------------
-    //bFetchRow
+    xTEST_CASE("MySQLRecordset::fetchRow")
     {
         std::vec_tstring_t vsRow;
 
@@ -250,8 +231,7 @@ Test_MySql::unit()
         }
     }
 
-    //--------------------------------------------------
-    //drop Db (cleaning)
+    // drop DB, cleaning
     {
         conConn.query(xT("DROP TABLE IF EXISTS `%s`"), sTableName.c_str());
         conConn.query(xT("DROP DATABASE IF EXISTS `%s`"), csDbName.c_str());
@@ -260,9 +240,10 @@ Test_MySql::unit()
         xTEST_EQ(m_bRv, false);
     }
 
-    //--------------------------------------------------
-    //bClose
-    conConn.close();
+    xTEST_CASE("MySQLRecordset::close")
+    {
+        conConn.close();
+    }
 #else
     Trace() << xT("[skip]");
 #endif // xHAVE_MYSQL
