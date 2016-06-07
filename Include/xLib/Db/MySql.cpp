@@ -4,8 +4,6 @@
  */
 
 
-#if xHAVE_MYSQL
-
 #if !xOPTION_PROJECT_HEADER_ONLY
     #include "MySql.h"
 #endif
@@ -36,10 +34,8 @@ MySQLConnection::MySQLConnection() :
 {
     xTEST_EQ(isValid(), false);
 
-    MYSQL *connection = ::mysql_init(xPTR_NULL);
-    xTEST_PTR_MSG(connection, lastErrorStr());
-
-    _connection = connection;
+    _connection = ::mysql_init(xPTR_NULL);
+    xTEST_PTR_MSG(_connection, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -72,8 +68,8 @@ MySQLConnection::options(
 ) const
 {
     xTEST_EQ(isValid(), true);
-    // moOption - n/a
-    // arg   - n/a
+    xTEST_NA(a_option);
+    xTEST_NA(a_arg);
 
 #if MYSQL_VERSION_ID < 50154
     int_t iRv = ::mysql_options(_connection, a_option, static_cast<ctchar_t *>( a_arg ));
@@ -115,14 +111,14 @@ MySQLConnection::isExists(
         xTEST_EQ(bRv, true);
         xTEST_EQ(1ULL, rec.rowsNum());
 
-        std::vec_tstring_t vsRow;
+        std::vec_tstring_t row;
 
-        rec.fetchRow(&vsRow);
-        xTEST_EQ(vsRow.size(), static_cast<size_t>(1));
+        rec.fetchRow(&row);
+        xTEST_EQ(row.size(), static_cast<size_t>(1));
 
-        xCHECK_RET(StringCI::compare(xT("false"), vsRow.at(0)), false);
+        xCHECK_RET(StringCI::compare(xT("false"), row.at(0)), false);
 
-        xTEST_EQ(StringCI::compare(xT("true"), vsRow.at(0)), true);
+        xTEST_EQ(StringCI::compare(xT("true"), row.at(0)), true);
     }
 
     return true;
@@ -140,13 +136,13 @@ MySQLConnection::connect(
 )
 {
     xTEST_EQ(isValid(), true);
-    // host       - n/a
-    // user       - n/a
-    // password   - n/a
-    // db         - n/a
-    // port      - n/a
-    // unixSocket - n/a
-    // ulClientFlag - n/a
+    xTEST_NA(a_host);
+    xTEST_NA(a_user);
+    xTEST_NA(a_password);
+    xTEST_NA(a_db);
+    xTEST_NA(a_port);
+    xTEST_NA(a_unixSocket);
+    xTEST_NA(a_clientFlag);
 
     MYSQL *connection = ::mysql_real_connect(_connection, xT2A(a_host).c_str(),
         xT2A(a_user).c_str(), xT2A(a_password).c_str(), xT2A(a_db).c_str(), a_port,
@@ -198,7 +194,6 @@ MySQLConnection::close()
 
     if ( isValid() ) {
         (void_t)::mysql_close(_connection);
-
         _connection = xPTR_NULL;
     }
 }
@@ -265,10 +260,10 @@ MySQLRecordset::MySQLRecordset(
     MYSQL_RES *result = xPTR_NULL;
 
     if (a_isUseResult) {
-        result = ::mysql_use_result  (_connection->get());
+        result = ::mysql_use_result  ( _connection->get() );
         xTEST_PTR_MSG(result, _connection->lastErrorStr());
     } else {
-        result = ::mysql_store_result(_connection->get());
+        result = ::mysql_store_result( _connection->get() );
         xTEST_PTR_MSG(result, _connection->lastErrorStr());
     }
 
@@ -279,9 +274,9 @@ MySQLRecordset::MySQLRecordset(
 xINLINE
 MySQLRecordset::~MySQLRecordset()
 {
-    // _result - n/a
+    xTEST_NA(_result);
 
-    if (isValid()) {
+    if ( isValid() ) {
         (void_t)::mysql_free_result(_result);
 
         _result = xPTR_NULL;
@@ -289,7 +284,8 @@ MySQLRecordset::~MySQLRecordset()
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE MYSQL_RES *
-MySQLRecordset::get() const {
+MySQLRecordset::get() const
+{
     xTEST_EQ(isValid(), true);
 
     return _result;
@@ -309,7 +305,7 @@ MySQLRecordset::fieldsNum() const
     xTEST_EQ(isValid(), true);
 
     uint_t uiRv = ::mysql_num_fields(_result);
-    // n/a
+    xTEST_NA(uiRv);
 
     return uiRv;
 }
@@ -320,7 +316,7 @@ MySQLRecordset::rowsNum() const
     xTEST_EQ(isValid(), true);
 
     my_ulonglong ullRv = ::mysql_num_rows(_result);
-    // n/a
+    xTEST_NA(ullRv);
 
     return ullRv;
 }
@@ -344,7 +340,7 @@ MySQLRecordset::fetchFieldDirect(
 ) const
 {
     xTEST_EQ(isValid(), true);
-    // uiFieldNumber - n/a
+    xTEST_NA(a_fieldNumber)
     xTEST_PTR(a_field);
 
     a_field = ::mysql_fetch_field_direct(_result, a_fieldNumber);
@@ -378,12 +374,12 @@ MySQLRecordset::fetchRow(
     (*a_row).clear();
 
     // TODO: MySQLRecordset::fetchRow()
-    #if xTODO
-        //--uint_t   fieldsNum   = mysql_num_fields   (_result);
-        uint_t     fieldsNum  = _connection->ufieldCount();
-        MYSQL_ROW  prow       = mysql_fetch_row    (_result); // array of strings
-        ulong_t   *rowLengths = mysql_fetch_lengths(_result); // TODO: MySQLRecordset::fetchRow() - may be 64-bit bug
-    #endif
+#if xTODO
+    //--uint_t   fieldsNum   = mysql_num_fields   (_result);
+    uint_t     fieldsNum  = _connection->ufieldCount();
+    MYSQL_ROW  prow       = mysql_fetch_row    (_result); // array of strings
+    ulong_t   *rowLengths = mysql_fetch_lengths(_result); // TODO: MySQLRecordset::fetchRow() - may be 64-bit bug
+#endif
 
     // fields count
     fieldsNum = _connection->fieldCount();
@@ -396,18 +392,18 @@ MySQLRecordset::fetchRow(
     xTEST_PTR(fieldLengths);
 
     // push to std::vector
-    std::tstring_t sField;
+    std::tstring_t field;
 
     for (uint_t i = 0; i < fieldsNum; ++ i) {
         if (row[i] == xPTR_NULL) {
-            sField = std::tstring_t();
+            field = std::tstring_t();
         } else {
             std::string asField = std::string(row[i], fieldLengths[i]);
 
-            sField = xA2T(asField);
+            field = xA2T(asField);
         }
 
-        (*a_row).push_back(sField);
+        a_row->push_back(field);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -428,7 +424,7 @@ MySQLRecordset::_fetchRow(
     xTEST_PTR(a_row);
 
     *a_row = ::mysql_fetch_row(_result);
-    // n/a
+    xTEST_NA(a_row);
     xTEST_PTR(*a_row);
 }
 //-------------------------------------------------------------------------------------------------
@@ -446,5 +442,3 @@ MySQLRecordset::_fetchLengths(
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, db)
-
-#endif // CXMYSQL_IS_USE
