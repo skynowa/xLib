@@ -6,8 +6,6 @@
 
 #pragma once
 
-#if xHAVE_MYSQL
-
 #include <xLib/Core/Core.h>
 
 #if xENV_WIN
@@ -113,7 +111,6 @@ private:
 
 xNAMESPACE_END2(xlib, db)
 
-#endif // CXMYSQL_IS_USE
 //-------------------------------------------------------------------------------------------------
 #if xOPTION_PROJECT_HEADER_ONLY
     #include "MySql.cpp"
