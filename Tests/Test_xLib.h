@@ -34,20 +34,14 @@
 
 // Crypt
 #include "Test_Base64.h"
-
-#if xHAVE_OPENSSL_CRYPTO
-    #include "Test_Blowfish.h"
-#endif
-
+#include "Test_Blowfish.h"
 #include "Test_Crc32.h"
 #include "Test_Guid.h"
 #include "Test_Random.h"
 
 
 // Db
-#if xHAVE_MYSQL
-    #include "Test_MySql.h"
-#endif
+#include "Test_MySql.h"
 
 
 // Debug
