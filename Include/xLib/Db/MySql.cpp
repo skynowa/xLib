@@ -49,7 +49,7 @@ MySQLConnection::~MySQLConnection()
     close();
 }
 //-------------------------------------------------------------------------------------------------
-MYSQL *
+xINLINE MYSQL *
 MySQLConnection::get() const
 {
     xTEST_EQ(isValid(), true);
