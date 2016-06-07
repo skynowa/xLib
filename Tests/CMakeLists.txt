@@ -22,7 +22,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     if (xOPTION_PROJECT_HEADER_ONLY)
         target_link_libraries(${TEST_NAME} ${XLIB_LIBRARIES})
     else()
-        target_link_libraries(${TEST_NAME} ${XLIB_LIBRARIES} ${PROJECT_NAME}_static)
+        target_link_libraries(${TEST_NAME} ${PROJECT_NAME}_static)
     endif()
 
     install(TARGETS ${TEST_NAME} DESTINATION "bin")
