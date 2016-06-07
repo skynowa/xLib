@@ -17,14 +17,14 @@ bool_t
 Test_MySql::unit()
 {
 #if xHAVE_MYSQL
-    std::ctstring_t csHost        = xT("127.0.0.1");
-    std::ctstring_t csUser        = xT("root");
-    std::ctstring_t csPassword    = xT("root");
-    std::ctstring_t csDbName      = xT("db_test");
-    cuint_t         cuiPort       = 0U;
-    std::ctstring_t sTableName    = xT("t_main");
-    std::ctstring_t csUnixSocket;
-    culong_t        culClientFlag = 0UL;
+    std::ctstring_t host       = xT("127.0.0.1");
+    std::ctstring_t user       = xT("root");
+    std::ctstring_t password   = xT("root");
+    std::ctstring_t dbName     = xT("db_test");
+    cuint_t         port       = 0U;
+    std::ctstring_t tableName  = xT("t_main");
+    std::ctstring_t unixSocket;
+    culong_t        clientFlag = 0UL;
 
 
     /*******************************************************************************
@@ -64,7 +64,7 @@ Test_MySql::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
-            bool_t bRes1 = MySQLConnection::isExists(csHost, csUser, csPassword, casData[i][0], cuiPort, csUnixSocket, culClientFlag);
+            bool_t bRes1 = MySQLConnection::isExists(host, user, password, casData[i][0], port, unixSocket, clientFlag);
             bool_t bRes2 = String::castBool(casData[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
@@ -74,25 +74,25 @@ Test_MySql::unit()
     {
         bool_t bIsDbExists = false;
 
-        bIsDbExists = MySQLConnection::isExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
+        bIsDbExists = MySQLConnection::isExists(host, user, password, dbName, port, unixSocket, clientFlag);
         if (!bIsDbExists) {
             //create Db
             std::tstring_t csDbDefaultName = xT("");
 
-            conConn.connect(csHost, csUser, csPassword, csDbDefaultName, cuiPort, csUnixSocket, culClientFlag);
-            conConn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), csDbName.c_str());
+            conConn.connect(host, user, password, csDbDefaultName, port, unixSocket, clientFlag);
+            conConn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), dbName.c_str());
         } else {
             //connect to Db
-            conConn.connect(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
+            conConn.connect(host, user, password, dbName, port, unixSocket, clientFlag);
         }
 
-        m_bRv = MySQLConnection::isExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
+        m_bRv = MySQLConnection::isExists(host, user, password, dbName, port, unixSocket, clientFlag);
         xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("MySQLConnection::query")
     {
-        conConn.connect(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
+        conConn.connect(host, user, password, dbName, port, unixSocket, clientFlag);
 
         // create table
         conConn.query(
@@ -102,7 +102,7 @@ Test_MySql::unit()
                         xT("       `f_name`  char(30)    NOT NULL,")
                         xT("       `f_age`   SMALLINT(6) NOT NULL")
                         xT("   )"),
-                        sTableName.c_str());
+                        tableName.c_str());
         xTEST_EQ(m_bRv, true);
 
         // insert records
@@ -115,7 +115,7 @@ Test_MySql::unit()
                         xT("    ('Misha', 16),")
                         xT("    ('Vasya', 24),")
                         xT("    ('Sasha', 20)"),
-                        sTableName.c_str());
+                        tableName.c_str());
 
         // select all records
         #if 0
@@ -233,10 +233,10 @@ Test_MySql::unit()
 
     // drop DB, cleaning
     {
-        conConn.query(xT("DROP TABLE IF EXISTS `%s`"), sTableName.c_str());
-        conConn.query(xT("DROP DATABASE IF EXISTS `%s`"), csDbName.c_str());
+        conConn.query(xT("DROP TABLE IF EXISTS `%s`"), tableName.c_str());
+        conConn.query(xT("DROP DATABASE IF EXISTS `%s`"), dbName.c_str());
 
-        m_bRv = MySQLConnection::isExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
+        m_bRv = MySQLConnection::isExists(host, user, password, dbName, port, unixSocket, clientFlag);
         xTEST_EQ(m_bRv, false);
     }
 
