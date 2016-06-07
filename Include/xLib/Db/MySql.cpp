@@ -36,10 +36,10 @@ MySQLConnection::MySQLConnection() :
 {
     xTEST_EQ(isValid(), false);
 
-    MYSQL *_connection = ::mysql_init(xPTR_NULL);
-    xTEST_PTR_MSG(_connection, lastErrorStr());
+    MYSQL *connection = ::mysql_init(xPTR_NULL);
+    xTEST_PTR_MSG(connection, lastErrorStr());
 
-    _connection = _connection;
+    _connection = connection;
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -118,7 +118,7 @@ MySQLConnection::isExists(
         std::vec_tstring_t vsRow;
 
         rec.fetchRow(&vsRow);
-        xTEST_EQ(static_cast<size_t>( 1U ), vsRow.size());
+        xTEST_EQ(vsRow.size(), static_cast<size_t>(1));
 
         xCHECK_RET(StringCI::compare(xT("false"), vsRow.at(0)), false);
 
@@ -196,7 +196,7 @@ MySQLConnection::close()
 {
     // _connection - n/a
 
-    if (isValid()) {
+    if ( isValid() ) {
         (void_t)::mysql_close(_connection);
 
         _connection = xPTR_NULL;
@@ -230,14 +230,14 @@ MySQLConnection::lastErrorStr() const
     std::tstring_t sRv;
 
     cuint_t     lastError = lastError();
-    const char *cpszRv    = ::mysql_error(_connection);
+    const char *error     = ::mysql_error(_connection);
     // n/a
-    xTEST_PTR(cpszRv);
+    xTEST_PTR(error);
 
     if (lastError == 0U) {
         sRv = Format::str(xT("{} - \"{}\""), lastError, xT("Success"));
     } else {
-        sRv = Format::str(xT("{} - \"{}\""), lastError, cpszRv);
+        sRv = Format::str(xT("{} - \"{}\""), lastError, error);
     }
 
     return sRv;
