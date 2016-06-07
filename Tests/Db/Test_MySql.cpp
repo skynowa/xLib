@@ -32,17 +32,17 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-    MySQLConnection conConn;
+    MySQLConnection mysqlConn;
 
     xTEST_CASE("MySQLConnection::get")
     {
-        MYSQL *pmsRes = conConn.get();
+        MYSQL *res = mysqlConn.get();
         xTEST_PTR(pmsRes);
     }
 
     xTEST_CASE("MySQLConnection::isValid")
     {
-        m_bRv = conConn.isValid();
+        m_bRv = mysqlConn.isValid();
         xTEST_EQ(m_bRv, true);
     }
 
@@ -51,7 +51,7 @@ Test_MySql::unit()
         mysql_option  moOption = MYSQL_OPT_COMPRESS;
         cvoid_t      *cpvArg   = xPTR_NULL;
 
-        conConn.options(moOption, cpvArg);
+        mysqlConn.options(moOption, cpvArg);
     }
 
     xTEST_CASE("MySQLConnection::isExists")
@@ -79,11 +79,11 @@ Test_MySql::unit()
             //create Db
             std::tstring_t csDbDefaultName = xT("");
 
-            conConn.connect(host, user, password, csDbDefaultName, port, unixSocket, clientFlag);
-            conConn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), dbName.c_str());
+            mysqlConn.connect(host, user, password, csDbDefaultName, port, unixSocket, clientFlag);
+            mysqlConn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), dbName.c_str());
         } else {
             //connect to Db
-            conConn.connect(host, user, password, dbName, port, unixSocket, clientFlag);
+            mysqlConn.connect(host, user, password, dbName, port, unixSocket, clientFlag);
         }
 
         m_bRv = MySQLConnection::isExists(host, user, password, dbName, port, unixSocket, clientFlag);
@@ -92,10 +92,10 @@ Test_MySql::unit()
 
     xTEST_CASE("MySQLConnection::query")
     {
-        conConn.connect(host, user, password, dbName, port, unixSocket, clientFlag);
+        mysqlConn.connect(host, user, password, dbName, port, unixSocket, clientFlag);
 
         // create table
-        conConn.query(
+        mysqlConn.query(
                         xT("CREATE TABLE IF NOT EXISTS ")
                         xT("   `%s` (")
                         xT("       `f_id`    int_t(11)   NOT NULL AUTO_INCREMENT,")
@@ -106,7 +106,7 @@ Test_MySql::unit()
         xTEST_EQ(m_bRv, true);
 
         // insert records
-        conConn.query(
+        mysqlConn.query(
                         xT("INSERT INTO")
                         xT("    `%s` (`f_name`, `f_age`)")
                         xT("VALUES")
@@ -119,28 +119,28 @@ Test_MySql::unit()
 
         // select all records
         #if 0
-            conConn.query(xT("SELECT * FROM `t_main`"));
+            mysqlConn.query(xT("SELECT * FROM `t_main`"));
         #else
-            conConn.query(xT("CHECK TABLE `t_main`"));
+            mysqlConn.query(xT("CHECK TABLE `t_main`"));
         #endif
     }
 
     xTEST_CASE("MySQLConnection::fieldCount")
     {
-        m_uiRv = conConn.fieldCount();
+        m_uiRv = mysqlConn.fieldCount();
         //xTRACE("uiFieldsNum: %i", m_uiRv);
         //TODO: xTEST_EQ(3U, m_uiRv);
     }
 
     xTEST_CASE("MySQLConnection::lastError")
     {
-        m_uiRv = conConn.lastError();
+        m_uiRv = mysqlConn.lastError();
         xTEST_EQ(0U, m_uiRv);
     }
 
     xTEST_CASE("MySQLConnection::lastErrorStr")
     {
-        m_sRv = conConn.lastErrorStr();
+        m_sRv = mysqlConn.lastErrorStr();
         xTEST_EQ(false, m_sRv.empty());
     }
 
@@ -150,7 +150,7 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-    MySQLRecordset recRec(conConn, false);
+    MySQLRecordset recRec(mysqlConn, false);
 
     xTEST_CASE("MySQLRecordset::get")
     {
@@ -233,8 +233,8 @@ Test_MySql::unit()
 
     // drop DB, cleaning
     {
-        conConn.query(xT("DROP TABLE IF EXISTS `%s`"), tableName.c_str());
-        conConn.query(xT("DROP DATABASE IF EXISTS `%s`"), dbName.c_str());
+        mysqlConn.query(xT("DROP TABLE IF EXISTS `%s`"), tableName.c_str());
+        mysqlConn.query(xT("DROP DATABASE IF EXISTS `%s`"), dbName.c_str());
 
         m_bRv = MySQLConnection::isExists(host, user, password, dbName, port, unixSocket, clientFlag);
         xTEST_EQ(m_bRv, false);
@@ -242,7 +242,7 @@ Test_MySql::unit()
 
     xTEST_CASE("MySQLRecordset::close")
     {
-        conConn.close();
+        mysqlConn.close();
     }
 #else
     Trace() << xT("[skip]");
