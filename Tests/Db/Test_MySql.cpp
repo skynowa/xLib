@@ -36,8 +36,8 @@ Test_MySql::unit()
 
     xTEST_CASE("MySQLConnection::get")
     {
-        MYSQL *res = mysqlConn.get();
-        xTEST_PTR(pmsRes);
+        MYSQL *handle = mysqlConn.get();
+        xTEST_PTR(handle);
     }
 
     xTEST_CASE("MySQLConnection::isValid")
