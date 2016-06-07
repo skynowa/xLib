@@ -104,9 +104,9 @@ Test_MySql::unit()
         conConn.query(
                         xT("CREATE TABLE IF NOT EXISTS ")
                         xT("   `%s` (")
-                        xT("       `f_id`    int_t(11)     NOT xPTR_NULL AUTO_INCREMENT,")
-                        xT("       `f_name`  char(30)    NOT xPTR_NULL,")
-                        xT("       `f_age`   SMALLINT(6) NOT xPTR_NULL")
+                        xT("       `f_id`    int_t(11)     NOT NULL AUTO_INCREMENT,")
+                        xT("       `f_name`  char(30)    NOT NULL,")
+                        xT("       `f_age`   SMALLINT(6) NOT NULL")
                         xT("   )"),
                         sTableName.c_str());
         xTEST_EQ(m_bRv, true);
