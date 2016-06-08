@@ -254,7 +254,7 @@ Console::_msgBoxLine(
 	std::ctstring_t &a_text
 ) const
 {
-	std::csize_t    lineSizeMax = ll80;
+	std::csize_t    lineSizeMax = ll100;
 	std::ctstring_t border      = xT("|");
 	ctchar_t        space       = xT(' ');
 	std::ctstring_t paddingLeft = border + space;
