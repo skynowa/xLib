@@ -22,7 +22,7 @@
 
 xNAMESPACE_ANONYM_BEGIN
 
-std::csize_t reportWidthMax = 46U;   // MAGIC: reportWidthMax
+std::csize_t reportWidthMax = 100 - 17;   // MAGIC: reportWidthMax
 
 xNAMESPACE_ANONYM_END
 
