@@ -69,16 +69,6 @@ public:
     };
     xTYPEDEF_CONST(ExModalResult);
 
-    enum ExLineLimit
-        /// line limit size
-    {
-        llUnknown = 0,
-        ll80      = 80,
-        ll100     = 100,
-        ll120     = 120
-    };
-    xTYPEDEF_CONST(ExLineLimit);
-
                    Console();
         ///< constructor
     virtual       ~Console();
@@ -135,7 +125,7 @@ private:
         ///< get console menu handle
 #endif
 
-	std::tstring_t _msgBoxLine(std::ctstring_t &text) const;
+	std::tstring_t _msgBoxLine(std::ctstring_t &text, std::csize_t &width) const;
 		///< buil MsgBox text line
 	void_t         _setStdinEcho(cbool_t &isEnable) const;
 		///< set stdin echo on/off

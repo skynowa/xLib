@@ -114,13 +114,14 @@ Console::msgBox(
 
     ExModalResult mrRv;
 
-    ctchar_t cmdAbort  = xT('a');
-    ctchar_t cmdIgnore = xT('i');
-    ctchar_t cmdRetry  = xT('r');
+    std::csize_t width     = 100;
+    ctchar_t     cmdAbort  = xT('a');
+    ctchar_t     cmdIgnore = xT('i');
+    ctchar_t     cmdRetry  = xT('r');
 
     std::tstring_t title;
     {
-        title = _msgBoxLine(a_title) + Const::nl();
+        title = _msgBoxLine(a_title, width) + Const::nl();
     }
 
     std::tstring_t multiText;
@@ -129,18 +130,18 @@ Console::msgBox(
 		String::split(a_text, Const::nl(), &text);
 
 		xFOR_EACH_CONST(std::vec_tstring_t, it, text) {
-			multiText += _msgBoxLine(*it) + Const::nl();
+			multiText += _msgBoxLine(*it, width) + Const::nl();
 		}
     }
 
     writeLine();
-    writeLine(xT("+------------------------------------------------------------------------------+"));
-    writeLine(xT("|                                                                              |"));
+    writeLine(Format::str(xT("+{}+"), std::tstring_t(width - 2, xT('-'))));
+    writeLine(Format::str(xT("|{}|"), std::tstring_t(width - 2, xT(' '))));
     write(title);
-    writeLine(xT("|                                                                              |"));
+    writeLine(Format::str(xT("|{}|"), std::tstring_t(width - 2, xT(' '))));
     write(multiText);
-    writeLine(xT("|                                                                              |"));
-    writeLine(xT("+------------------------------------------------------------------------------+"));
+    writeLine(Format::str(xT("|{}|"), std::tstring_t(width - 2, xT(' '))));
+    writeLine(Format::str(xT("+{}+"), std::tstring_t(width - 2, xT('-'))));
     writeLine();
     write(Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "), cmdAbort, cmdIgnore, cmdRetry));
 
@@ -251,10 +252,10 @@ Console::setTitle(
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 Console::_msgBoxLine(
-	std::ctstring_t &a_text
+	std::ctstring_t &a_text,	///< text
+	std::csize_t    &a_width	///< msgbox width
 ) const
 {
-	std::csize_t    lineSizeMax = ll100;
 	std::ctstring_t border      = xT("|");
 	ctchar_t        space       = xT(' ');
 	std::ctstring_t paddingLeft = border + space;
@@ -263,9 +264,9 @@ Console::_msgBoxLine(
 
 	std::tstring_t line = paddingLeft + a_text;
 
-	::ssize_t delta = lineSizeMax - line.size();
+	::ssize_t delta = a_width - line.size();
 	if (delta < 0) {
-		line.resize(lineSizeMax - padingRight.size() - dot3.size());	// set padding
+		line.resize(a_width - padingRight.size() - dot3.size());	// set padding
 		line += dot3;
 	} else {
 		std::ctstring_t add(delta - padingRight.size(), space);
