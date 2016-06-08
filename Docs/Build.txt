@@ -44,5 +44,9 @@ Test:
     - FreeBSD
     - Mac OSX
 
+    MySQL:
+        sudo apt-get install mysql-server
+        sudo service mysql restart
+
 Known issues:
     -
