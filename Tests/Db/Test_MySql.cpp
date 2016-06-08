@@ -82,9 +82,7 @@ Test_MySql::unit()
 
     xTEST_CASE("MySqlConnection::connect")
     {
-        bool_t isDbExists = false;
-
-        isDbExists = MySqlConnection::isExists(mysqlData);
+        cbool_t isDbExists = MySqlConnection::isExists(mysqlData);
         if ( !isDbExists ) {
             MySqlConnectionData mysqlDataDefault;
             mysqlDataDefault.host       = mysqlData.host;
