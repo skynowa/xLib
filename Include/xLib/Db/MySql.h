@@ -58,6 +58,8 @@ public:
         ///< validating handle
     void_t         options(const mysql_option &option, cvoid_t *arg) const;
         ///< set extra connect options and affect behavior
+    bool_t         ping(int_t *errorCode = xPTR_NULL) const xWARN_UNUSED_RV;
+        ///< checks whether the connection to the server is working
     static
     bool_t         isExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
         ///< check connection

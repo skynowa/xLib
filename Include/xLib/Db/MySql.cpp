@@ -79,6 +79,22 @@ MySqlConnection::options(
     xTEST_EQ_MSG(0, iRv, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+MySqlConnection::ping(
+    int_t *out_errorCode    /* = xPTR_NULL */
+) const
+{
+    int_t iRv = ::mysql_ping( get() );
+
+    Utils::ptrAssignT(out_errorCode, iRv);
+
+    if (iRv != 0) {
+        return false;
+    }
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE bool_t
 MySqlConnection::isExists(
@@ -91,6 +107,9 @@ MySqlConnection::isExists(
 
     {
         bRv = conn.isValid();
+        xCHECK_RET(!bRv, false);
+
+        bRv = conn.ping();
         xCHECK_RET(!bRv, false);
 
         conn.connect(a_data);
@@ -106,7 +125,6 @@ MySqlConnection::isExists(
         xTEST_EQ(rec.rowsNum(), 1ULL);
 
         std::vec_tstring_t row;
-
         rec.fetchRow(&row);
         xTEST_EQ(row.size(), static_cast<size_t>(1));
 
