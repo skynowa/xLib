@@ -56,6 +56,14 @@ Test_MySql::unit()
         mysqlConn.options(option, arg);
     }
 
+    xTEST_CASE("MySqlConnection::ping")
+    {
+        int_t errorCode;
+        m_bRv = mysqlConn.ping(&errorCode);
+        xTEST_EQ(m_bRv, false);
+        xTEST_DIFF(errorCode, 0);
+    }
+
     xTEST_CASE("MySqlConnection::isExists")
     {
         std::ctstring_t data[][2] = {
