@@ -32,5 +32,17 @@ Installation:
 Usage:
     -
 
+Test:
+    Compilers:
+    - MS Visual Studio
+    - CodeGear
+    - MinGW
+    - Clang
+
+    OSs:
+    - Windows
+    - FreeBSD
+    - Mac OSX
+
 Known issues:
     -
