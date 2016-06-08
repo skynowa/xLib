@@ -130,7 +130,7 @@ StackTrace::_format(
              stackLine << Const::nl();
         }
 
-        sRv.append( stackLine.str() );
+        sRv += stackLine.str();
     }
 
     // out
