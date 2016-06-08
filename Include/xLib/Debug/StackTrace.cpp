@@ -132,7 +132,7 @@ StackTrace::_format(
             ++ lineNumber;
         }
 
-        std::tstring_t lineNumberStr = (lineNumber == 0) ? xT("# ") : (String::cast(lineNumber) + xT("."));
+        std::ctstring_t lineNumberStr = (lineNumber == 0) ? xT("# ") : Format::str(xT("{}."), lineNumber);
 
         std::tstringstream_t stackLine;
         stackLine
