@@ -103,7 +103,7 @@ MySQLConnection::isExists(
     {
         bRv = rec.isValid();
         xTEST_EQ(bRv, true);
-        xTEST_EQ(1ULL, rec.rowsNum());
+        xTEST_EQ(rec.rowsNum(), 1ULL);
 
         std::vec_tstring_t row;
 
