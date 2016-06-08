@@ -42,7 +42,7 @@ private:
 
     void_t         _get(std::vector<std::vec_tstring_t> *stack) const;
         ///< get stack trace
-    void_t         _format(const std::vector<std::vec_tstring_t> &stack, std::tstring_t *stackStr)
+    void_t         _format(std::vector<std::vec_tstring_t> &stack, std::tstring_t *stackStr)
                        const;
         ///< format stack trace
 
