@@ -17,7 +17,7 @@ bool_t
 Test_MySql::unit()
 {
 #if xHAVE_MYSQL
-    MySQLConnectionData mysqlData;
+    MySqlConnectionData mysqlData;
     mysqlData.host       = xT("127.0.0.1");
     mysqlData.user       = xT("root");
     mysqlData.password   = xT("root");
@@ -30,25 +30,25 @@ Test_MySql::unit()
 
 
     /*******************************************************************************
-    *    MySQLConnection
+    *    MySqlConnection
     *
     *******************************************************************************/
 
-    MySQLConnection mysqlConn;
+    MySqlConnection mysqlConn;
 
-    xTEST_CASE("MySQLConnection::get")
+    xTEST_CASE("MySqlConnection::get")
     {
         MYSQL *handle = mysqlConn.get();
         xTEST_PTR(handle);
     }
 
-    xTEST_CASE("MySQLConnection::isValid")
+    xTEST_CASE("MySqlConnection::isValid")
     {
         m_bRv = mysqlConn.isValid();
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("MySQLConnection::options")
+    xTEST_CASE("MySqlConnection::options")
     {
         mysql_option  option = MYSQL_OPT_COMPRESS;
         cvoid_t      *arg    = xPTR_NULL;
@@ -56,7 +56,7 @@ Test_MySql::unit()
         mysqlConn.options(option, arg);
     }
 
-    xTEST_CASE("MySQLConnection::isExists")
+    xTEST_CASE("MySqlConnection::isExists")
     {
         std::ctstring_t data[][2] = {
             { xT("000000"),     xT("false") },
@@ -66,19 +66,19 @@ Test_MySql::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            bool_t bRes1 = MySQLConnection::isExists(mysqlData);
+            bool_t bRes1 = MySqlConnection::isExists(mysqlData);
             bool_t bRes2 = String::castBool(data[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
     }
 
-    xTEST_CASE("MySQLConnection::connect")
+    xTEST_CASE("MySqlConnection::connect")
     {
         bool_t isDbExists = false;
 
-        isDbExists = MySQLConnection::isExists(mysqlData);
+        isDbExists = MySqlConnection::isExists(mysqlData);
         if ( !isDbExists ) {
-            MySQLConnectionData mysqlDataDefault;
+            MySqlConnectionData mysqlDataDefault;
             mysqlDataDefault.host       = mysqlData.host;
             mysqlDataDefault.user       = mysqlData.user;
             mysqlDataDefault.password   = mysqlData.password;
@@ -95,11 +95,11 @@ Test_MySql::unit()
             mysqlConn.connect(mysqlData);
         }
 
-        m_bRv = MySQLConnection::isExists(mysqlData);
+        m_bRv = MySqlConnection::isExists(mysqlData);
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("MySQLConnection::query")
+    xTEST_CASE("MySqlConnection::query")
     {
         mysqlConn.connect(mysqlData);
 
@@ -134,20 +134,20 @@ Test_MySql::unit()
     #endif
     }
 
-    xTEST_CASE("MySQLConnection::fieldCount")
+    xTEST_CASE("MySqlConnection::fieldCount")
     {
         m_uiRv = mysqlConn.fieldCount();
         //xTRACE("uiFieldsNum: %i", m_uiRv);
         //TODO: xTEST_EQ(3U, m_uiRv);
     }
 
-    xTEST_CASE("MySQLConnection::lastError")
+    xTEST_CASE("MySqlConnection::lastError")
     {
         m_uiRv = mysqlConn.lastError();
         xTEST_EQ(0U, m_uiRv);
     }
 
-    xTEST_CASE("MySQLConnection::lastErrorStr")
+    xTEST_CASE("MySqlConnection::lastErrorStr")
     {
         m_sRv = mysqlConn.lastErrorStr();
         xTEST_EQ(false, m_sRv.empty());
@@ -155,46 +155,46 @@ Test_MySql::unit()
 
 
     /*******************************************************************************
-    *    MySQLRecordset
+    *    MySqlRecordset
     *
     *******************************************************************************/
 
-    MySQLRecordset mysqlRecord(mysqlConn, false);
+    MySqlRecordset mysqlRecord(mysqlConn, false);
 
-    xTEST_CASE("MySQLRecordset::get")
+    xTEST_CASE("MySqlRecordset::get")
     {
         MYSQL_RES *handle = mysqlRecord.get();
         xTEST_PTR(handle);
     }
 
-    xTEST_CASE("MySQLRecordset::isValid")
+    xTEST_CASE("MySqlRecordset::isValid")
     {
         m_bRv = mysqlRecord.isValid();
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("MySQLRecordset::fieldsNum")
+    xTEST_CASE("MySqlRecordset::fieldsNum")
     {
         m_uiRv = mysqlRecord.fieldsNum();
         //xTRACE("uiFieldsNum: %i", m_uiRv);
         //TODO: xTEST_EQ(3U, m_uiRv);
     }
 
-    xTEST_CASE("MySQLRecordset::rowsNum")
+    xTEST_CASE("MySqlRecordset::rowsNum")
     {
         my_ulonglong ullRv = mysqlRecord.rowsNum(); xUNUSED(ullRv);
         //xTRACE("ullRowsNum: %lli", ullRv);
         //TODO: xTEST_LESS(0ULL, ullRv);
     }
 
-    xTEST_CASE("MySQLRecordset::fetchField")
+    xTEST_CASE("MySqlRecordset::fetchField")
     {
         MYSQL_FIELD field;
 
         mysqlRecord.fetchField(&field);
     }
 
-    xTEST_CASE("MySQLRecordset::fetchFieldDirect")
+    xTEST_CASE("MySqlRecordset::fetchFieldDirect")
     {
         uint_t      fieldNumber = 0;
         MYSQL_FIELD field;
@@ -203,14 +203,14 @@ Test_MySql::unit()
     }
 
     //bFetchFields
-    xTEST_CASE("MySQLRecordset::fetchFields")
+    xTEST_CASE("MySqlRecordset::fetchFields")
     {
         MYSQL_FIELD field;
 
         mysqlRecord.fetchFields(&field);
     }
 
-    xTEST_CASE("MySQLRecordset::fetchRow")
+    xTEST_CASE("MySqlRecordset::fetchRow")
     {
         // TEST: Mysql::fetchRow()
 
@@ -219,7 +219,7 @@ Test_MySql::unit()
         //mysqlRecord.vFetchRow(&mrRow);
     }
 
-    xTEST_CASE("MySQLRecordset::fetchLengths")
+    xTEST_CASE("MySqlRecordset::fetchLengths")
     {
         // TEST: Mysql::fetchLengths()
 
@@ -229,7 +229,7 @@ Test_MySql::unit()
         //xTEST_PTR(pulFieldLengths);
     }
 
-    xTEST_CASE("MySQLRecordset::fetchRow")
+    xTEST_CASE("MySqlRecordset::fetchRow")
     {
         std::vec_tstring_t row;
 
@@ -245,11 +245,11 @@ Test_MySql::unit()
         mysqlConn.query(xT("DROP TABLE IF EXISTS `%s`"),    tableName.c_str());
         mysqlConn.query(xT("DROP DATABASE IF EXISTS `%s`"), mysqlData.db.c_str());
 
-        m_bRv = MySQLConnection::isExists(mysqlData);
+        m_bRv = MySqlConnection::isExists(mysqlData);
         xTEST_EQ(m_bRv, false);
     }
 
-    xTEST_CASE("MySQLRecordset::close")
+    xTEST_CASE("MySqlRecordset::close")
     {
         mysqlConn.close();
     }

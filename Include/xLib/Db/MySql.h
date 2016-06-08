@@ -1,6 +1,6 @@
 /**
  * \file  MySql.h
- * \brief MySQL client
+ * \brief MySql client
  */
 
 
@@ -20,8 +20,8 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, db)
 
-struct MySQLConnectionData
-    /// MySQLConnection data
+struct MySqlConnectionData
+    /// MySqlConnection data
 {
     std::tstring_t host;
     std::tstring_t user;
@@ -31,7 +31,7 @@ struct MySQLConnectionData
     std::tstring_t unixSocket;
     ulong_t        clientFlag;
 
-    MySQLConnectionData() :
+    MySqlConnectionData() :
         host      (),
         user      (),
         password  (),
@@ -41,15 +41,15 @@ struct MySQLConnectionData
         clientFlag(0)
     {}
 };
-xTYPEDEF_CONST(MySQLConnectionData);
+xTYPEDEF_CONST(MySqlConnectionData);
 
-class MySQLConnection
-    /// MySQL connection
+class MySqlConnection
+    /// MySql connection
 {
 public:
-                   MySQLConnection();
+                   MySqlConnection();
         ///< constructor
-    virtual       ~MySQLConnection();
+    virtual       ~MySqlConnection();
         ///< destructor
 
     MYSQL         *get() const xWARN_UNUSED_RV;
@@ -59,10 +59,10 @@ public:
     void_t         options(const mysql_option &option, cvoid_t *arg) const;
         ///< set extra connect options and affect behavior
     static
-    bool_t         isExists(cMySQLConnectionData &data) xWARN_UNUSED_RV;
+    bool_t         isExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
         ///< check connection
-    void_t         connect(cMySQLConnectionData &data);
-        ///< attempts to establish a connection to a MySQL database engine running on host
+    void_t         connect(cMySqlConnectionData &data);
+        ///< attempts to establish a connection to a MySql database engine running on host
     void_t         query(ctchar_t *sqlFormat, ...) const;
         ///< executes the SQL statement
     uint_t         fieldCount() const xWARN_UNUSED_RV;
@@ -80,20 +80,20 @@ private:
     MYSQL         *_conn;
         ///< pointer to connection
 
-    xNO_COPY_ASSIGN(MySQLConnection)
+    xNO_COPY_ASSIGN(MySqlConnection)
 };
 
 xNAMESPACE_END2(xlib, db)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, db)
 
-class MySQLRecordset
-    /// MySQL recordset
+class MySqlRecordset
+    /// MySql recordset
 {
 public:
-                 MySQLRecordset(const MySQLConnection &connection, cbool_t &isUseResult);
+                 MySqlRecordset(const MySqlConnection &connection, cbool_t &isUseResult);
         ///< constructor
-    virtual     ~MySQLRecordset();
+    virtual     ~MySqlRecordset();
         ///< destructor
 
     MYSQL_RES   *get() const xWARN_UNUSED_RV;
@@ -115,7 +115,7 @@ public:
         ///< fetching row
 
 private:
-    const MySQLConnection *_conn;
+    const MySqlConnection *_conn;
         ///< pointer to connection object
     MYSQL_RES   *_result;
         ///< for private use
@@ -125,7 +125,7 @@ private:
     void_t       _fetchRow(MYSQL_ROW *row) const;
         ///< A MYSQL_ROW structure for the next row
 
-    xNO_COPY_ASSIGN(MySQLRecordset)
+    xNO_COPY_ASSIGN(MySqlRecordset)
 };
 
 xNAMESPACE_END2(xlib, db)
