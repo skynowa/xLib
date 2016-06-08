@@ -119,7 +119,7 @@ StackTrace::_format(
     // get elements max sizes
     for (size_t i = 0; i < ::elementsNum; ++ i) {
         xFOR_EACH_CONST(std::vector<std::vec_tstring_t>, it, a_stack) {
-            cint_t current = static_cast<int_t>( it->at(i).size() );
+            std::csize_t current = it->at(i).size();
             xCHECK_DO(current > maxs[i], maxs[i] = current);
         }
     }
