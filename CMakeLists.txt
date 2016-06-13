@@ -104,7 +104,7 @@ include(CxxFlags)
 # include(CMakeVariables)
 #--------------------------------------------------------------------------------------------------
 # definitions
-if (xOPTION_CPP11)
+if (cmOPTION_CPP11)
     set(CMAKE_CXX_STANDARD 11)
 
     # add_definitions(-std=c++11)
@@ -113,7 +113,7 @@ else()
     set(CMAKE_CXX_STANDARD 98)  # 98, 11 and 14
 endif()
 
-if (xOPTION_UNICODE)
+if (cmOPTION_UNICODE)
     add_definitions(-DUNICODE=1)
     add_definitions(-D_UNICODE=1)
 endif()
@@ -165,11 +165,11 @@ else()
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
-if (xOPTION_PROJECT_HEADER_ONLY)
+if (cmOPTION_PROJECT_HEADER_ONLY)
     # n/a
 endif()
 
-if (xOPTION_PROJECT_LIB_STATIC)
+if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
 
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
@@ -179,7 +179,7 @@ if (xOPTION_PROJECT_LIB_STATIC)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_STATIC})
 endif()
 
-if (xOPTION_PROJECT_LIB_SHARE)
+if (cmOPTION_PROJECT_LIB_SHARE)
     set(PROJECT_LIB_SHARE ${PROJECT_NAME}_shared)
 
     add_library(${PROJECT_LIB_SHARE} SHARED ${XLIB_SOURCES})
@@ -189,7 +189,7 @@ if (xOPTION_PROJECT_LIB_SHARE)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_SHARE})
 endif()
 
-if (xOPTION_PROJECT_LIB_MODULE)
+if (cmOPTION_PROJECT_LIB_MODULE)
     set(PROJECT_LIB_MODULE ${PROJECT_NAME}_module)
 
     add_library(${PROJECT_LIB_MODULE} MODULE ${XLIB_SOURCES})
@@ -235,7 +235,7 @@ add_custom_target(uninstall
 unset(CMAKE_TOOLCHAIN_FILE)
 #--------------------------------------------------------------------------------------------------
 # tests
-if (xOPTION_BUILD_TESTS)
+if (cmOPTION_BUILD_TESTS)
     enable_testing()
     add_subdirectory(${XLIB_LOCATION}/Tests)
 endif()

@@ -133,7 +133,7 @@ private:
 xNAMESPACE_END2(xlib, db)
 
 //-------------------------------------------------------------------------------------------------
-#if xOPTION_PROJECT_HEADER_ONLY
+#if cmOPTION_PROJECT_HEADER_ONLY
     #include "MySql.cpp"
 #endif
 

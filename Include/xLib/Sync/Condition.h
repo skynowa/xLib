@@ -52,6 +52,6 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
-#if xOPTION_PROJECT_HEADER_ONLY
+#if cmOPTION_PROJECT_HEADER_ONLY
     #include "Condition.cpp"
 #endif

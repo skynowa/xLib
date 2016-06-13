@@ -70,7 +70,7 @@ private:
     static void_t _format(std::tstringstream_t &ss, const double &value);
     static void_t _format(std::tstringstream_t &ss, const long double &value);
     static void_t _format(std::tstringstream_t &ss, const void * value);
-#if xOPTION_CPP11
+#if cmOPTION_CPP11
     static void_t _format(std::tstringstream_t &ss, const std::nullptr_t value);
 #endif
     static void_t _format(std::tstringstream_t &ss, const char * value);
@@ -79,7 +79,7 @@ private:
     static void_t _format(std::tstringstream_t &ss, const std::string &value);
     static void_t _format(std::tstringstream_t &ss, const std::ustring_t &value);
 
-#if xOPTION_CPP11
+#if cmOPTION_CPP11
     template<typename T, std::size_t N>
     static void_t _format(std::tstringstream_t &ss, const std::array<T, N> &value);
 #endif
@@ -140,6 +140,6 @@ xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #include "Format.inl"
 
-#if xOPTION_PROJECT_HEADER_ONLY
+#if cmOPTION_PROJECT_HEADER_ONLY
     #include "Format.cpp"
 #endif

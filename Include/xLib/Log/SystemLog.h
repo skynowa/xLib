@@ -47,6 +47,6 @@ xNAMESPACE_END2(xlib, log)
 //-------------------------------------------------------------------------------------------------
 #include "SystemLog.inl"
 
-#if xOPTION_PROJECT_HEADER_ONLY
+#if cmOPTION_PROJECT_HEADER_ONLY
     #include "SystemLog.cpp"
 #endif

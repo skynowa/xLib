@@ -9,78 +9,78 @@
 //-------------------------------------------------------------------------------------------------
 ///@name project type: executable binary, static library, share (dynamic-link) library
 ///@{
-#cmakedefine xOPTION_PROJECT_HEADER_ONLY 1
-#cmakedefine xOPTION_PROJECT_LIB_STATIC 1
-#cmakedefine xOPTION_PROJECT_LIB_SHARE 1
-#cmakedefine xOPTION_PROJECT_LIB_MODULE 1
+#cmakedefine cmOPTION_PROJECT_HEADER_ONLY 1
+#cmakedefine cmOPTION_PROJECT_LIB_STATIC 1
+#cmakedefine cmOPTION_PROJECT_LIB_SHARE 1
+#cmakedefine cmOPTION_PROJECT_LIB_MODULE 1
 ///@}
 
-#cmakedefine xOPTION_CPP11 1
+#cmakedefine cmOPTION_CPP11 1
     ///< support C++11 language
-#cmakedefine xOPTION_UNICODE
+#cmakedefine cmOPTION_UNICODE
     ///< support unicode
-#cmakedefine xOPTION_BUILD_MSG 1
+#cmakedefine cmOPTION_BUILD_MSG 1
     ///< build message
 
 ///@name debug mode (only one mode can be activated)
 ///@{
 // log mode (only one mode can be activated)
-#cmakedefine xOPTION_DEBUG_MODE_MSGBOX 1
+#cmakedefine cmOPTION_DEBUG_MODE_MSGBOX 1
     ///< debug mode "message box"
-#cmakedefine xOPTION_DEBUG_MODE_STDOUT 1
+#cmakedefine cmOPTION_DEBUG_MODE_STDOUT 1
     ///< debug mode "std::cout"
-#cmakedefine xOPTION_DEBUG_MODE_LOG 1
+#cmakedefine cmOPTION_DEBUG_MODE_LOG 1
     ///< debug mode "logging"
-#cmakedefine xOPTION_DEBUG_MODE_STDOUT_LOG 1
+#cmakedefine cmOPTION_DEBUG_MODE_STDOUT_LOG 1
     ///< debug mode "std::cout and log"
-#cmakedefine xOPTION_DEBUG_MODE_EXCEPTION 1
+#cmakedefine cmOPTION_DEBUG_MODE_EXCEPTION 1
     ///< debug mode "no debugging"
-#cmakedefine xOPTION_DEBUG_MODE_NO 1
+#cmakedefine cmOPTION_DEBUG_MODE_NO 1
     ///< debug mode "no debugging"
 ///@}
 
 ///@name tests
 ///@{
-#cmakedefine xOPTION_TEST_PRIVATE 1
+#cmakedefine cmOPTION_TEST_PRIVATE 1
     ///< for tests private data
-#cmakedefine xOPTION_TEST_TRACING 1
+#cmakedefine cmOPTION_TEST_TRACING 1
     ///< use tracing in tests
 ///@}
 
 //-------------------------------------------------------------------------------------------------
 ///@name Git information
 ///@{
-#cmakedefine xHAVE_GIT_REVISION 1
-#cmakedefine xGIT_REVISION_BRANCH xT("@GIT_REVISION_BRANCH@")
-#cmakedefine xGIT_REVISION_HASH xT("@GIT_REVISION_HASH@")
+#cmakedefine cmHAVE_GIT_REVISION 1
+#cmakedefine cmGIT_REVISION_BRANCH xT("@GIT_REVISION_BRANCH@")
+#cmakedefine cmGIT_REVISION_HASH xT("@GIT_REVISION_HASH@")
 ///@}
 
 ///@name detecting features
 ///@{
-#cmakedefine xHAVE_OPENSSL_CRYPTO 1
-#cmakedefine xHAVE_MYSQL 1
-#cmakedefine xHAVE_PR_SET_DUMPABLE 1
-#cmakedefine xHAVE_RLIMIT_CORE 1
-#cmakedefine xHAVE_PT_DENY_ATTACH 1
-#cmakedefine xHAVE_SCHED_GETCPU 1
-#cmakedefine xHAVE_GETCPU 1
-#cmakedefine xHAVE_GETLOGIN_R 1
-#cmakedefine xHAVE_GNU_GET_LIBC 1
-#cmakedefine xHAVE_CS_GNU_LIBPTHREAD_VERSION 1
-#cmakedefine xHAVE_SCHED_SETAFFINITY 1
-#cmakedefine xHAVE_GETSID 1
-#cmakedefine xHAVE_GETPWUID_R 1
-#cmakedefine xHAVE_SETMNTENT 1
-#cmakedefine xHAVE_GETMNTENT_R 1
-#cmakedefine xHAVE_ENDMNTENT 1
-#cmakedefine xHAVE_RAND_R 1
-#cmakedefine xHAVE_SRANDOM_R 1
-#cmakedefine xHAVE_RANDOM_R 1
+#cmakedefine cmHAVE_OPENSSL_CRYPTO 1
+#cmakedefine cmHAVE_MYSQL 1
+#cmakedefine cmHAVE_PR_SET_DUMPABLE 1
+#cmakedefine cmHAVE_RLIMIT_CORE 1
+#cmakedefine cmHAVE_PT_DENY_ATTACH 1
+#cmakedefine cmHAVE_SCHED_GETCPU 1
+#cmakedefine cmHAVE_GETCPU 1
+#cmakedefine cmHAVE_GETLOGIN_R 1
+#cmakedefine cmHAVE_GNU_GET_LIBC 1
+#cmakedefine cmHAVE_CS_GNU_LIBPTHREAD_VERSION 1
+#cmakedefine cmHAVE_SCHED_SETAFFINITY 1
+#cmakedefine cmHAVE_GETSID 1
+#cmakedefine cmHAVE_GETPWUID_R 1
+#cmakedefine cmHAVE_SETMNTENT 1
+#cmakedefine cmHAVE_GETMNTENT_R 1
+#cmakedefine cmHAVE_ENDMNTENT 1
+#cmakedefine cmHAVE_RAND_R 1
+#cmakedefine cmHAVE_SRANDOM_R 1
+#cmakedefine cmHAVE_RANDOM_R 1
 
-#cmakedefine xHAVE_EXECINFO 1
-#cmakedefine xHAVE_XCB 1
-#cmakedefine xHAVE_ADDR2LINE 1
-#cmakedefine xADDR2LINE_FILE_PATH xT("@ADDR2LINE_FILE_PATH@")
+#cmakedefine cmHAVE_EXECINFO 1
+#cmakedefine cmHAVE_XCB 1
+#cmakedefine cmHAVE_ADDR2LINE 1
+#cmakedefine cmADDR2LINE_FILE_PATH xT("@ADDR2LINE_FILE_PATH@")
 ///@}
 
 //-------------------------------------------------------------------------------------------------

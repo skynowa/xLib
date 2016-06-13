@@ -7,7 +7,7 @@
 xNAMESPACE_BEGIN2(xlib, core)
 
 //-------------------------------------------------------------------------------------------------
-#if !defined(xHAVE_SCHED_SETAFFINITY)
+#if !defined(cmHAVE_SCHED_SETAFFINITY)
 
 // Copied from glibc's <sched.h> and <bits/sched.h> and munged
 
@@ -40,7 +40,7 @@ sched_setaffinity(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if !defined(xHAVE_GETSID)
+#if !defined(cmHAVE_GETSID)
 
 xINLINE pid_t
 getsid(
@@ -52,7 +52,7 @@ getsid(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if !defined(xHAVE_SETMNTENT)
+#if !defined(cmHAVE_SETMNTENT)
 
 xINLINE FILE *
 setmntent(
@@ -65,7 +65,7 @@ setmntent(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if !defined(xHAVE_ENDMNTENT)
+#if !defined(cmHAVE_ENDMNTENT)
 
 xINLINE int
 endmntent(FILE *a_file)

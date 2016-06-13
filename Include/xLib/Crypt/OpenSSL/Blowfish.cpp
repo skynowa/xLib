@@ -4,11 +4,11 @@
  */
 
 
-#if !xOPTION_PROJECT_HEADER_ONLY
+#if !cmOPTION_PROJECT_HEADER_ONLY
     #include "Blowfish.h"
 #endif
 
-#if xHAVE_OPENSSL_CRYPTO
+#if cmHAVE_OPENSSL_CRYPTO
 
 #include <xLib/Core/Utils.h>
 #include <xLib/IO/File.h>
@@ -199,4 +199,4 @@ Blowfish::encryptFileCfb64(
 
 xNAMESPACE_END2(xlib, crypt)
 
-#endif // xHAVE_OPENSSL_CRYPTO
+#endif // cmHAVE_OPENSSL_CRYPTO

@@ -100,6 +100,6 @@
 #endif
     ///< filesystem statfs (struct and function)
 
-#if xOPTION_PROJECT_HEADER_ONLY
+#if cmOPTION_PROJECT_HEADER_ONLY
     #include "Functions.cpp"
 #endif

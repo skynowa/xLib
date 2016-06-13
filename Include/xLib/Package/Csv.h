@@ -88,6 +88,6 @@ private:
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xlib, package)
 //-------------------------------------------------------------------------------------------------
-#if xOPTION_PROJECT_HEADER_ONLY
+#if cmOPTION_PROJECT_HEADER_ONLY
     #include "Csv.cpp"
 #endif

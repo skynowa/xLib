@@ -63,6 +63,6 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xlib, ui)
 //-------------------------------------------------------------------------------------------------
-#if xOPTION_PROJECT_HEADER_ONLY
+#if cmOPTION_PROJECT_HEADER_ONLY
     #include "MsgBox.cpp"
 #endif

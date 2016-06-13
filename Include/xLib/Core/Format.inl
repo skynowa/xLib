@@ -168,7 +168,7 @@ xFORMAT_STR(18)
 xFORMAT_STR(19)
 xFORMAT_STR(20)
 //-------------------------------------------------------------------------------------------------
-#if xOPTION_CPP11
+#if cmOPTION_CPP11
 
 template<typename T, std::size_t N>
 /* static */
@@ -382,7 +382,7 @@ template<typename T>
 inline int_t
 Format::_floatPrecisionMax()
 {
-#if xOPTION_CPP11
+#if cmOPTION_CPP11
     return std::numeric_limits<T>::max_digits10;
 #else
     return std::numeric_limits<T>::digits10 + 1;

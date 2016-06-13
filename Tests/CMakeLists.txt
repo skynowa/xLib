@@ -19,7 +19,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     add_executable(${TEST_NAME} ${IT_SOURCE})
 
-    if (xOPTION_PROJECT_HEADER_ONLY)
+    if (cmOPTION_PROJECT_HEADER_ONLY)
         target_link_libraries(${TEST_NAME} ${XLIB_LIBRARIES})
     else()
         target_link_libraries(${TEST_NAME} ${PROJECT_NAME}_static)

@@ -893,7 +893,7 @@ Test_File::unit1()
 bool_t
 Test_File::unitPrivate()
 {
-#if xOPTION_TEST_PRIVATE
+#if cmOPTION_TEST_PRIVATE
     std::ctstring_t filePath = data.tempDirPath + Const::slash() + xT("Test.txt");
 
     xTEST_CASE("_nativeHandle")

@@ -27,7 +27,7 @@ Path::_dll_impl()
 {
     std::tstring_t sRv;
 
-#if (xPROJECT_LIB_SHARE || xOPTION_PROJECT_LIB_MODULE)
+#if (xPROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
     Dl_info  diInfo;          xSTRUCT_ZERO(diInfo);
     void_t (*procAddress)() = function;
 
