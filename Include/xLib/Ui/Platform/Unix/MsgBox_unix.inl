@@ -4,7 +4,7 @@
  */
 
 
-#if xHAVE_XCB
+#if cmHAVE_XCB
     #include "XcbMsgBox.h"
 #endif
 
@@ -28,7 +28,7 @@ MsgBox::_show_impl(
 
     ExModalResult mrRv = mrUnknown;
 
-#if xHAVE_XCB
+#if cmHAVE_XCB
     XcbMsgBox msgBox;
     mrRv = static_cast<MsgBox::ExModalResult>( msgBox.show(a_text, a_title, XcbMsgBox::tpOk) );
 #else

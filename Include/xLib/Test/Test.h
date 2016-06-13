@@ -74,15 +74,15 @@
     }
 
 // _xREPORT_TYPE
-#if   xOPTION_DEBUG_MODE_STDOUT
+#if   cmOPTION_DEBUG_MODE_STDOUT
     #define _xREPORT_TYPE ErrorReport::rtStdout
-#elif xOPTION_DEBUG_MODE_MSGBOX
+#elif cmOPTION_DEBUG_MODE_MSGBOX
     #define _xREPORT_TYPE ErrorReport::rtMsgbox
-#elif xOPTION_DEBUG_MODE_LOG
+#elif cmOPTION_DEBUG_MODE_LOG
     #define _xREPORT_TYPE ErrorReport::rtLog
-#elif xOPTION_DEBUG_MODE_STDOUT_LOG
+#elif cmOPTION_DEBUG_MODE_STDOUT_LOG
     #define _xREPORT_TYPE ErrorReport::rtStdoutLog
-#elif xOPTION_DEBUG_MODE_EXCEPTION
+#elif cmOPTION_DEBUG_MODE_EXCEPTION
     #define _xREPORT_TYPE ErrorReport::rtException
 #endif
 
@@ -262,7 +262,7 @@
     { switch (0) {case 0: case (expr):;} }
     ///< static assert
 
-#if xOPTION_TEST_TRACING
+#if cmOPTION_TEST_TRACING
     #define xTEST_CASE(caseName) \
         Trace() << xT("\tCase: ") << xT(caseName); \
         for (size_t caseLoops = 0; caseLoops < data.caseLoops; ++ caseLoops)

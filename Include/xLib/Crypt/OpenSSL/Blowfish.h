@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 
-#if xHAVE_OPENSSL_CRYPTO
+#if cmHAVE_OPENSSL_CRYPTO
 
 #include <openssl/blowfish.h>
 //-------------------------------------------------------------------------------------------------
@@ -65,9 +65,9 @@ private:
 
 xNAMESPACE_END2(xlib, crypt)
 
-#endif // xHAVE_OPENSSL_CRYPTO
+#endif // cmHAVE_OPENSSL_CRYPTO
 //-------------------------------------------------------------------------------------------------
-#if xOPTION_PROJECT_HEADER_ONLY
+#if cmOPTION_PROJECT_HEADER_ONLY
     #include "Blowfish.cpp"
 #endif
 

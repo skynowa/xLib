@@ -4,7 +4,7 @@
  */
 
 
-#if !xOPTION_PROJECT_HEADER_ONLY
+#if !cmOPTION_PROJECT_HEADER_ONLY
     #include "Format.h"
 #endif
 
@@ -304,7 +304,7 @@ Format::_format(
     }
 }
 //-------------------------------------------------------------------------------------------------
-#if xOPTION_CPP11
+#if cmOPTION_CPP11
 
 /* static */
 xINLINE void_t

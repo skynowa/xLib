@@ -44,6 +44,6 @@ xNAMESPACE_END2(xlib, log)
 //-------------------------------------------------------------------------------------------------
 #include "Trace.inl"
 
-#if xOPTION_PROJECT_HEADER_ONLY
+#if cmOPTION_PROJECT_HEADER_ONLY
     #include "Trace.cpp"
 #endif

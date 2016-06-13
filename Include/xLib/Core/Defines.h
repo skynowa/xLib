@@ -9,16 +9,16 @@
 //-------------------------------------------------------------------------------------------------
  ///@name project type
 ///@{
-#if   xOPTION_PROJECT_HEADER_ONLY
+#if   cmOPTION_PROJECT_HEADER_ONLY
     #define xPROJECT_HEADER_ONLY 1
         ///< header only
-#elif xOPTION_PROJECT_LIB_STATIC
+#elif cmOPTION_PROJECT_LIB_STATIC
     #define xPROJECT_LIB_STATIC 1
         ///< static library
-#elif xOPTION_PROJECT_LIB_SHARE
+#elif cmOPTION_PROJECT_LIB_SHARE
     #define xPROJECT_LIB_SHARE 1
         ///< share library
-#elif xOPTION_PROJECT_LIB_MODULE
+#elif cmOPTION_PROJECT_LIB_MODULE
     #define xPROJECT_LIB_SHARE 1
         ///< dynamic-link library
     #error xLib: unknown project type
@@ -40,8 +40,8 @@
 #endif
 ///@}
 //-------------------------------------------------------------------------------------------------
-// xOPTION_TEST_PRIVATE
-#if xOPTION_TEST_PRIVATE
+// cmOPTION_TEST_PRIVATE
+#if cmOPTION_TEST_PRIVATE
     #define private \
         public
     #define protected \
@@ -123,7 +123,7 @@
     ///< keyword "no inline"
 //-------------------------------------------------------------------------------------------------
 // xINLINE (for header only library)
-#if xOPTION_PROJECT_HEADER_ONLY
+#if cmOPTION_PROJECT_HEADER_ONLY
     #define xINLINE inline
         ///< enable inlines
 #else
@@ -142,7 +142,7 @@
     ///< calling convention
 //-------------------------------------------------------------------------------------------------
 // xOVERRIDE
-#if xOPTION_CPP11
+#if cmOPTION_CPP11
     #define xOVERRIDE \
         override
 #else

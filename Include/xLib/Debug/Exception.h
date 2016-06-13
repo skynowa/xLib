@@ -34,6 +34,6 @@ xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 #include "Exception.inl"
 
-#if xOPTION_PROJECT_HEADER_ONLY
+#if cmOPTION_PROJECT_HEADER_ONLY
     #include "Exception.cpp"
 #endif

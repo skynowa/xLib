@@ -286,7 +286,7 @@ xNAMESPACE_END2(xlib, core)
     std::tstring_t xlib::core::Application::_vendorJabber; \
     std::tstring_t xlib::core::Application::_vendorIcq;
 //-------------------------------------------------------------------------------------------------
-#if xOPTION_PROJECT_HEADER_ONLY
+#if cmOPTION_PROJECT_HEADER_ONLY
     #include "Application.cpp"
 #else
     extern xlib::core::Application application;

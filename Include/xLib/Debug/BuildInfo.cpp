@@ -4,7 +4,7 @@
  */
 
 
-#if !xOPTION_PROJECT_HEADER_ONLY
+#if !cmOPTION_PROJECT_HEADER_ONLY
     #include "BuildInfo.h"
 #endif
 
@@ -381,7 +381,7 @@ BuildInfo::binaryType() const
     sRv = xT("Static library");
 #elif xPROJECT_LIB_SHARE
     sRv = xT("Share library");
-#elif xOPTION_PROJECT_LIB_MODULE
+#elif cmOPTION_PROJECT_LIB_MODULE
     sRv = xT("Dynamic link library");
 #else
     sRv = xUNKNOWN_CSTRING;
