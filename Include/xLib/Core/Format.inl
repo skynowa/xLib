@@ -253,20 +253,6 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, typename ContainerT = std::deque<T> >
-class iterable_queue :
-    public std::queue<T, ContainerT>
-{
-public:
-    typedef typename ContainerT::iterator       iterator;
-    typedef typename ContainerT::const_iterator const_iterator;
-
-    iterator       begin()       { return this->c.begin(); }
-    iterator       end()         { return this->c.end(); }
-    const_iterator begin() const { return this->c.begin(); }
-    const_iterator end() const   { return this->c.end(); }
-};
-
 template<typename T>
 /* static */
 inline void_t
