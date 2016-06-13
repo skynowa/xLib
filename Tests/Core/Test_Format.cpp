@@ -423,6 +423,51 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 2}")));
     }
 
+    xTEST_CASE("std::deque")
+    {
+        std::deque<long_t> value;
+        value.push_back(0);
+        value.push_back(1);
+        value.push_back(2);
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 2}")));
+    }
+
+    xTEST_CASE("std::queue")
+    {
+        std::queue<long_t> value;
+        value.push(0);
+        value.push(1);
+        value.push(2);
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 2}")));
+    }
+
+    xTEST_CASE("std::priority_queue")
+    {
+        std::priority_queue<long_t> value;
+        value.push(0);
+        value.push(1);
+        value.push(2);
+
+        m_sRv = Format::str(xT("{}"), value);
+        // TODO: std::priority_queue - fix
+        // xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 2}")));
+    }
+
+    xTEST_CASE("std::stack")
+    {
+        std::stack<long_t> value;
+        value.push(0);
+        value.push(1);
+        value.push(2);
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 2}")));
+    }
+
     xTEST_CASE("std::multiset")
     {
         std::multiset<long_t> value;

@@ -67,6 +67,9 @@
 #include <vector>
 #include <list>
 #include <set>
+#include <deque>
+#include <queue>
+#include <stack>
 #include <map>
 #include <algorithm>
 #include <iterator>
