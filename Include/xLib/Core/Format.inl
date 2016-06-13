@@ -242,6 +242,79 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
+template<typename T>
+/* static */
+inline void_t
+Format::_format(
+    std::tstringstream_t &a_ss,     ///< [out]
+    const std::deque<T>  &a_value   ///< value
+)
+{
+    _formatContainer(a_ss, a_value);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T, typename ContainerT = std::deque<T> >
+class iterable_queue :
+    public std::queue<T, ContainerT>
+{
+public:
+    typedef typename ContainerT::iterator       iterator;
+    typedef typename ContainerT::const_iterator const_iterator;
+
+    iterator       begin()       { return this->c.begin(); }
+    iterator       end()         { return this->c.end(); }
+    const_iterator begin() const { return this->c.begin(); }
+    const_iterator end() const   { return this->c.end(); }
+};
+
+template<typename T>
+/* static */
+inline void_t
+Format::_format(
+    std::tstringstream_t &a_ss,     ///< [out]
+    const std::queue<T>  &a_value   ///< value
+)
+{
+    typedef const T* const_iterator;
+
+    const_iterator begin = &a_value.front();
+    const_iterator end   = &a_value.back() + 1;
+
+    _formatRange(a_ss, begin, end);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+/* static */
+inline void_t
+Format::_format(
+    std::tstringstream_t         &a_ss,     ///< [out]
+    const std::priority_queue<T> &a_value   ///< value
+)
+{
+    typedef const T* const_iterator;
+
+    const_iterator begin = &a_value.top();
+    const_iterator end   = &a_value.top() + a_value.size();
+
+    _formatRange(a_ss, begin, end);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+/* static */
+inline void_t
+Format::_format(
+    std::tstringstream_t &a_ss,     ///< [out]
+    const std::stack<T>  &a_value   ///< value
+)
+{
+    typedef const T* const_iterator;
+
+    const_iterator begin = &a_value.top() - a_value.size() + 1;
+    const_iterator end   = &a_value.top() + 1;
+
+    _formatRange(a_ss, begin, end);
+}
+//-------------------------------------------------------------------------------------------------
 template<typename T1, class T2>
 /* static */
 inline void_t
