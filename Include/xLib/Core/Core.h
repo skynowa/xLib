@@ -64,6 +64,13 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+
+#if cmOPTION_CPP11
+    #include <array>
+#else
+    // #include <xLib/Core/Array.h>
+#endif
+
 #include <vector>
 #include <list>
 #include <set>
