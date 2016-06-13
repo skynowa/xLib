@@ -97,6 +97,9 @@ private:
     static void_t _format(std::tstringstream_t &ss, const std::set<T> &value);
 
     template<typename T>
+    static void_t _format(std::tstringstream_t &ss, const std::multiset<T> &value);
+
+    template<typename T>
     static void_t _format(std::tstringstream_t &ss, const std::deque<T> &value);
 
     template<typename T>
@@ -107,9 +110,6 @@ private:
 
     template<typename T>
     static void_t _format(std::tstringstream_t &ss, const std::stack<T> &value);
-
-    template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const std::multiset<T> &value);
 
     template<typename T1, class T2>
     static void_t _format(std::tstringstream_t &ss, const std::map<T1, T2> &value);
