@@ -423,6 +423,18 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 2}")));
     }
 
+    xTEST_CASE("std::multiset")
+    {
+        std::multiset<long_t> value;
+        value.insert(0);
+        value.insert(1);
+        value.insert(1);
+        value.insert(2);
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 1, 2}")));
+    }
+
     xTEST_CASE("std::deque")
     {
         std::deque<long_t> value;
@@ -466,18 +478,6 @@ Test_Format::unit()
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 2}")));
-    }
-
-    xTEST_CASE("std::multiset")
-    {
-        std::multiset<long_t> value;
-        value.insert(0);
-        value.insert(1);
-        value.insert(1);
-        value.insert(2);
-
-        m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 1, 2}")));
     }
 
     xTEST_CASE("std::map")
