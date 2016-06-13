@@ -82,6 +82,9 @@ private:
 #if cmOPTION_CPP11
     template<typename T, std::size_t N>
     static void_t _format(std::tstringstream_t &ss, const std::array<T, N> &value);
+#else
+    template<typename T, std::size_t N>
+    static void_t _format(std::tstringstream_t &ss, const Array<T, N> &value);
 #endif
 
     template<typename T1, class T2>

@@ -168,20 +168,21 @@ xFORMAT_STR(18)
 xFORMAT_STR(19)
 xFORMAT_STR(20)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_CPP11
 
 template<typename T, std::size_t N>
 /* static */
 inline void_t
 Format::_format(
     std::tstringstream_t   &a_ss,     ///< [out]
+#if cmOPTION_CPP11
     const std::array<T, N> &a_value   ///< value
+#else
+    const Array<T, N>      &a_value   ///< value
+#endif
 )
 {
     _formatContainer(a_ss, a_value);
 }
-
-#endif
 //-------------------------------------------------------------------------------------------------
 template<typename T1, class T2>
 /* static */
