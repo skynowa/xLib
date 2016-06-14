@@ -70,22 +70,14 @@ private:
     static void_t _format(std::tstringstream_t &ss, const double &value);
     static void_t _format(std::tstringstream_t &ss, const long double &value);
     static void_t _format(std::tstringstream_t &ss, const void * value);
-#if xLANG_STANDART_CPP11
-    static void_t _format(std::tstringstream_t &ss, const std::nullptr_t value);
-#endif
     static void_t _format(std::tstringstream_t &ss, const char * value);
     static void_t _format(std::tstringstream_t &ss, const wchar_t * value);
     static void_t _format(std::tstringstream_t &ss, const std::wstring &value);
     static void_t _format(std::tstringstream_t &ss, const std::string &value);
     static void_t _format(std::tstringstream_t &ss, const std::ustring_t &value);
 
-#if xLANG_STANDART_CPP11
-    template<typename T, std::size_t N>
-    static void_t _format(std::tstringstream_t &ss, const std::array<T, N> &value);
-#else
     template<typename T, std::size_t N>
     static void_t _format(std::tstringstream_t &ss, const Array<T, N> &value);
-#endif
 
     template<typename T1, class T2>
     static void_t _format(std::tstringstream_t &ss, const std::pair<T1, T2> &value);
@@ -120,7 +112,16 @@ private:
     template<typename T1, class T2>
     static void_t _format(std::tstringstream_t &ss, const std::multimap<T1, T2> &value);
 
+    template<typename T>
+    static void_t _format(std::tstringstream_t &ss, const T &value);
+        ///< format other types with overload std::tostream_t::operator <<
+
 #if xLANG_STANDART_CPP11
+    static void_t _format(std::tstringstream_t &ss, const std::nullptr_t value);
+
+    template<typename T, std::size_t N>
+    static void_t _format(std::tstringstream_t &ss, const std::array<T, N> &value);
+
     template<typename T>
     static void_t _format(std::tstringstream_t &ss, const std::forward_list<T> &value);
 
@@ -136,10 +137,6 @@ private:
     template<typename T>
     static void_t _format(std::tstringstream_t &ss, const std::unordered_multiset<T> &value);
 #endif
-
-    template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const T &value);
-        ///< format other types with overload std::tostream_t::operator <<
 
 #if xLIB_QT
     static void_t _format(std::tstringstream_t &ss, const QString &value);

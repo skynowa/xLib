@@ -304,20 +304,6 @@ Format::_format(
     }
 }
 //-------------------------------------------------------------------------------------------------
-#if xLANG_STANDART_CPP11
-
-/* static */
-xINLINE void_t
-Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const std::nullptr_t  a_value   ///< value
-)
-{
-    a_ss << xT("nullptr");
-}
-
-#endif
-//-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
@@ -390,6 +376,20 @@ Format::_format(
 {
     _formatString(a_ss, a_value.begin(), a_value.end());
 }
+//-------------------------------------------------------------------------------------------------
+#if xLANG_STANDART_CPP11
+
+/* static */
+xINLINE void_t
+Format::_format(
+    std::tstringstream_t &a_ss,     ///< [out]
+    const std::nullptr_t  a_value   ///< value
+)
+{
+    a_ss << xT("nullptr");
+}
+
+#endif
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, core)
