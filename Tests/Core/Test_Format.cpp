@@ -233,6 +233,7 @@ Test_Format::unit()
         cfloat_t value = 444.01f;
 
         m_sRv = Format::str(xT("{}"), value);
+        m_sRv.resize( std::tstring_t(xT("444.01")).size() );
         xTEST_EQ(m_sRv, std::tstring_t(xT("444.01")));
     }
 
@@ -247,9 +248,16 @@ Test_Format::unit()
 
     xTEST_CASE("long double")
     {
-        clongdouble_t value = 666.0L;
+        clongdouble_t value1 = 666.0010L;
 
-        m_sRv = Format::str(xT("{}"), value);
+        m_sRv = Format::str(xT("{}"), value1);
+        m_sRv.resize( std::tstring_t(xT("666.001")).size() );
+        xTEST_EQ(m_sRv, std::tstring_t(xT("666.001")));
+
+        clongdouble_t value2 = 666.0;
+
+        m_sRv = Format::str(xT("{}"), value2);
+        m_sRv.resize( std::tstring_t(xT("666.0")).size() );
         xTEST_EQ(m_sRv, std::tstring_t(xT("666.0")));
     }
 
@@ -445,6 +453,12 @@ Test_Format::unit()
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 2}")));
+
+        value.pop_back();
+        value.pop_front();
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{1}")));
     }
 
     xTEST_CASE("std::queue")
@@ -456,18 +470,28 @@ Test_Format::unit()
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 2}")));
+
+        value.pop();
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{1, 2}")));
     }
 
     xTEST_CASE("std::priority_queue")
     {
         std::priority_queue<long_t> value;
-        value.push(0);
-        value.push(1);
-        value.push(2);
+        value.push(123);
+        value.push(10);
+        value.push(456);
+        value.push(789);
 
         m_sRv = Format::str(xT("{}"), value);
-        // TODO: std::priority_queue - fix
-        // xTEST_EQ(m_sRv, std::tstring_t(xT("{0, 1, 2}")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{789, 456, 123, 10}")));
+
+        value.pop();
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{456, 10, 123}")));
     }
 
     xTEST_CASE("std::stack")
@@ -505,6 +529,66 @@ Test_Format::unit()
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}, {1, bbb}}")));
+    }
+
+    xTEST_CASE("std::forward_list")
+    {
+        std::forward_list<std::tstring_t> value;
+        value.push_front(xT("aa"));
+        value.push_front(xT("bbb"));
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{bbb, aa}")));
+    }
+
+    xTEST_CASE("std::unordered_map")
+    {
+        std::unordered_map<std::tstring_t, int> value;
+        value[xT("0")] = 3;
+        value[xT("1")] = 4;
+        value[xT("1")] = 5;
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{{1, 5}, {0, 3}}")));
+    }
+
+    xTEST_CASE("std::unordered_multimap")
+    {
+        std::pair<int, std::tstring_t> p1(0, xT("aa"));
+        std::pair<int, std::tstring_t> p2(1, xT("bbb"));
+        std::pair<int, std::tstring_t> p3(1, xT("bbb"));
+
+        std::unordered_multimap<int, std::tstring_t> value;
+        value.insert(p1);
+        value.insert(p2);
+        value.insert(p3);
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{{1, bbb}, {1, bbb}, {0, aa}}")));
+    }
+
+    xTEST_CASE("std::unordered_set")
+    {
+        std::unordered_set<long_t> value;
+        value.insert(0);
+        value.insert(1);
+        value.insert(1);
+        value.insert(2);
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 1, 0}")));
+    }
+
+    xTEST_CASE("std::unordered_multiset")
+    {
+        std::unordered_multiset<long_t> value;
+        value.insert(0);
+        value.insert(1);
+        value.insert(1);
+        value.insert(2);
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 1, 1, 0}")));
     }
 
     xTEST_CASE("QString")

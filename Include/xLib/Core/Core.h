@@ -67,6 +67,9 @@
 
 #if cmOPTION_CPP11
     #include <array>
+    #include <forward_list>
+    #include <unordered_map>
+    #include <unordered_set>
 #else
     // #include <xLib/Core/Array.h>
 #endif
