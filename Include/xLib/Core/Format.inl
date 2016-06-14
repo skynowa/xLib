@@ -328,6 +328,61 @@ template<typename T>
 /* static */
 inline void_t
 Format::_format(
+    std::tstringstream_t       &a_ss,     ///< [out]
+    const std::forward_list<T> &a_value   ///< value
+)
+{
+    _formatContainer(a_ss, a_value);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T1, class T2>
+/* static */
+inline void_t
+Format::_format(
+    std::tstringstream_t             &a_ss,     ///< [out]
+    const std::unordered_map<T1, T2> &a_value   ///< value
+)
+{
+    _formatContainer(a_ss, a_value);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T1, class T2>
+/* static */
+inline void_t
+Format::_format(
+    std::tstringstream_t                  &a_ss,     ///< [out]
+    const std::unordered_multimap<T1, T2> &a_value   ///< value
+)
+{
+    _formatContainer(a_ss, a_value);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+/* static */
+inline void_t
+Format::_format(
+    std::tstringstream_t        &a_ss,     ///< [out]
+    const std::unordered_set<T> &a_value   ///< value
+)
+{
+    _formatContainer(a_ss, a_value);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+/* static */
+inline void_t
+Format::_format(
+    std::tstringstream_t             &a_ss,     ///< [out]
+    const std::unordered_multiset<T> &a_value   ///< value
+)
+{
+    _formatContainer(a_ss, a_value);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+/* static */
+inline void_t
+Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const T              &a_value   ///< value
 )

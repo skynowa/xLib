@@ -120,6 +120,23 @@ private:
     template<typename T1, class T2>
     static void_t _format(std::tstringstream_t &ss, const std::multimap<T1, T2> &value);
 
+#if cmOPTION_CPP11
+    template<typename T>
+    static void_t _format(std::tstringstream_t &ss, const std::forward_list<T> &value);
+
+    template<typename T1, class T2>
+    static void_t _format(std::tstringstream_t &ss, const std::unordered_map<T1, T2> &value);
+
+    template<typename T1, class T2>
+    static void_t _format(std::tstringstream_t &ss, const std::unordered_multimap<T1, T2> &value);
+
+    template<typename T>
+    static void_t _format(std::tstringstream_t &ss, const std::unordered_set<T> &value);
+
+    template<typename T>
+    static void_t _format(std::tstringstream_t &ss, const std::unordered_multiset<T> &value);
+#endif
+
     template<typename T>
     static void_t _format(std::tstringstream_t &ss, const T &value);
         ///< format other types with overload std::tostream_t::operator <<
