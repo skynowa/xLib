@@ -65,7 +65,7 @@
 #include <iostream>
 #include <fstream>
 
-#if cmOPTION_CPP11
+#if xLANG_STANDART_CPP11
     #include <array>
     #include <forward_list>
     #include <unordered_map>

@@ -279,7 +279,7 @@ Test_Format::unit()
 
     xTEST_CASE("std::nullptr_t")
     {
-    #if cmOPTION_CPP11
+    #if xLANG_STANDART_CPP11
         std::nullptr_t value = nullptr;
 
         m_sRv = Format::str(xT("{}"), value);
@@ -383,7 +383,7 @@ Test_Format::unit()
 
     xTEST_CASE("std::array")
     {
-    #if cmOPTION_CPP11
+    #if xLANG_STANDART_CPP11
         std::array
     #else
         Array
@@ -642,7 +642,7 @@ Test_Format::unit()
         double             dValue = 0.1f;
         long double        ldValue = 0.02f;
         void *             pvValue = (void *)0x7fff0fd3e100;
-        #if cmOPTION_CPP11
+        #if xLANG_STANDART_CPP11
         std::nullptr_t     pValue = nullptr;
         #endif
         char *             pszValue = "aaa";
@@ -668,7 +668,7 @@ Test_Format::unit()
             dValue,
             ldValue,
             pvValue,
-        #if cmOPTION_CPP11
+        #if xLANG_STANDART_CPP11
             pValue,
         #endif
             pszValue,

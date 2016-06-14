@@ -15,10 +15,6 @@
 #cmakedefine cmOPTION_PROJECT_LIB_MODULE 1
 ///@}
 
-#cmakedefine cmOPTION_CPP11 1
-    ///< support C++11 language
-#cmakedefine cmOPTION_UNICODE
-    ///< support unicode
 #cmakedefine cmOPTION_BUILD_MSG 1
     ///< build message
 

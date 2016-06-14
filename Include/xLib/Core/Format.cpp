@@ -304,7 +304,7 @@ Format::_format(
     }
 }
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_CPP11
+#if xLANG_STANDART_CPP11
 
 /* static */
 xINLINE void_t
