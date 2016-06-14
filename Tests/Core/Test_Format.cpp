@@ -277,18 +277,6 @@ Test_Format::unit()
         }
     }
 
-    xTEST_CASE("std::nullptr_t")
-    {
-    #if xLANG_STANDART_CPP11
-        std::nullptr_t value = nullptr;
-
-        m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("nullptr")));
-    #else
-        Trace() << xT("[skip]");
-    #endif
-    }
-
     xTEST_CASE("std::ptrdiff_t")
     {
         Data2<std::ptrdiff_t, std::tstring_t> data[] =
@@ -381,14 +369,9 @@ Test_Format::unit()
         }
     }
 
-    xTEST_CASE("std::array")
+    xTEST_CASE("Array")
     {
-    #if xLANG_STANDART_CPP11
-        std::array
-    #else
-        Array
-    #endif
-        <int_t, 5> value {2, 16, 77, 34, 50};
+        Array<int_t, 5> value {2, 16, 77, 34, 50};
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 16, 77, 34, 50}")));
@@ -533,6 +516,24 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}, {1, bbb}}")));
     }
 
+#if xLANG_STANDART_CPP11
+    xTEST_CASE("std::nullptr_t")
+    {
+        std::nullptr_t value = nullptr;
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("nullptr")));
+    }
+
+    xTEST_CASE("std::array")
+    {
+        std::array
+        <int_t, 5> value {2, 16, 77, 34, 50};
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 16, 77, 34, 50}")));
+    }
+
     xTEST_CASE("std::forward_list")
     {
         std::forward_list<std::tstring_t> value;
@@ -592,6 +593,7 @@ Test_Format::unit()
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 1, 1, 0}")));
     }
+#endif // xLANG_STANDART_CPP11
 
     xTEST_CASE("QString")
     {

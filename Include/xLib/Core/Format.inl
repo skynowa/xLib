@@ -168,17 +168,12 @@ xFORMAT_STR(18)
 xFORMAT_STR(19)
 xFORMAT_STR(20)
 //-------------------------------------------------------------------------------------------------
-
 template<typename T, std::size_t N>
 /* static */
 inline void_t
 Format::_format(
     std::tstringstream_t   &a_ss,     ///< [out]
-#if xLANG_STANDART_CPP11
-    const std::array<T, N> &a_value   ///< value
-#else
     const Array<T, N>      &a_value   ///< value
-#endif
 )
 {
     _formatContainer(a_ss, a_value);
@@ -328,6 +323,38 @@ template<typename T>
 /* static */
 inline void_t
 Format::_format(
+    std::tstringstream_t &a_ss,     ///< [out]
+    const T              &a_value   ///< value
+)
+{
+    a_ss << a_value;
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   public - xLANG_STANDART_CPP11
+*
+**************************************************************************************************/
+
+#if xLANG_STANDART_CPP11
+
+//-------------------------------------------------------------------------------------------------
+template<typename T, std::size_t N>
+/* static */
+inline void_t
+Format::_format(
+    std::tstringstream_t   &a_ss,     ///< [out]
+    const std::array<T, N> &a_value   ///< value
+)
+{
+    _formatContainer(a_ss, a_value);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+/* static */
+inline void_t
+Format::_format(
     std::tstringstream_t       &a_ss,     ///< [out]
     const std::forward_list<T> &a_value   ///< value
 )
@@ -379,16 +406,15 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
-/* static */
-inline void_t
-Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const T              &a_value   ///< value
-)
-{
-    a_ss << a_value;
-}
+
+#endif // xLANG_STANDART_CPP11
+
+
+/**************************************************************************************************
+*   public - 3-d party libs
+*
+**************************************************************************************************/
+
 //-------------------------------------------------------------------------------------------------
 #if xLIB_QT
 
