@@ -33,7 +33,7 @@ Test_Path::unit()
     xTEST_CASE("dll")
     {
         m_sRv = Path::dll();
-    #if (xPROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
+    #if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
         xTEST_EQ(File::isExists(m_sRv), true);
     #else
         xTEST_NA(m_sRv);
