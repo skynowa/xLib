@@ -375,15 +375,17 @@ BuildInfo::binaryType() const
 {
     std::tstring_t sRv;
 
-#if   xPROJECT_HEADER_ONLY
+#if   cmOPTION_PROJECT_HEADER_ONLY
     sRv = xT("Header only");
-#elif xPROJECT_LIB_STATIC
+#elif cmOPTION_PROJECT_LIB_STATIC
     sRv = xT("Static library");
-#elif xPROJECT_LIB_SHARE
+#elif cmOPTION_PROJECT_LIB_SHARE
     sRv = xT("Share library");
 #elif cmOPTION_PROJECT_LIB_MODULE
     sRv = xT("Dynamic link library");
 #else
+	#error xLib: unknown project type
+
     sRv = xUNKNOWN_CSTRING;
 #endif
 
