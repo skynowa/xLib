@@ -66,6 +66,8 @@ operator << (
 bool_t
 Test_Format::unit()
 {
+	std::ios_base::sync_with_stdio(false);
+
     xTEST_CASE("c_str")
     {
         m_sRv = Format::c_str(xT("qqqq-wwww [%i]"), 1000);
