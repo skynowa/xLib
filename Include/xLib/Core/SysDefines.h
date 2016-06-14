@@ -60,11 +60,9 @@
 #endif
 
 #if (__cplusplus >= 201103L)
-        // ANDROID: xLANG_STANDART_CPP11
-    #if xTODO_ANDROID
-        #define xLANG_STANDART_CPP11 1
-            ///< ISO/IEC 14882:2011
-    #endif
+	// TODO: xLANG_STANDART_CPP11 (Android)
+	#define xLANG_STANDART_CPP11 1
+		///< ISO/IEC 14882:2011
 #endif
 
 #if (__cplusplus_cli >= 200406L)

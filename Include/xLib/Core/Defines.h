@@ -168,7 +168,7 @@
 // xPTR_NULL
 #if xLANG_STANDART_CPP11
     #define xPTR_NULL \
-        std::nullptr_t
+        nullptr
 #else
     #define xPTR_NULL \
         NULL
