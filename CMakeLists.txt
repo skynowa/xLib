@@ -104,7 +104,7 @@ include(CxxFlags)
 # include(CMakeVariables)
 #--------------------------------------------------------------------------------------------------
 # definitions
-if (cmOPTION_CPP11)
+if (OPTION_CPP11)
     set(CMAKE_CXX_STANDARD 11)
 
     # add_definitions(-std=c++11)

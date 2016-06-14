@@ -174,7 +174,7 @@ template<typename T, std::size_t N>
 inline void_t
 Format::_format(
     std::tstringstream_t   &a_ss,     ///< [out]
-#if cmOPTION_CPP11
+#if xLANG_STANDART_CPP11
     const std::array<T, N> &a_value   ///< value
 #else
     const Array<T, N>      &a_value   ///< value
@@ -497,7 +497,7 @@ template<typename T>
 inline int_t
 Format::_floatPrecisionMax()
 {
-#if cmOPTION_CPP11
+#if xLANG_STANDART_CPP11
     return std::numeric_limits<T>::max_digits10;
 #else
     return std::numeric_limits<T>::digits10 + 1;

@@ -70,7 +70,7 @@ private:
     static void_t _format(std::tstringstream_t &ss, const double &value);
     static void_t _format(std::tstringstream_t &ss, const long double &value);
     static void_t _format(std::tstringstream_t &ss, const void * value);
-#if cmOPTION_CPP11
+#if xLANG_STANDART_CPP11
     static void_t _format(std::tstringstream_t &ss, const std::nullptr_t value);
 #endif
     static void_t _format(std::tstringstream_t &ss, const char * value);
@@ -79,7 +79,7 @@ private:
     static void_t _format(std::tstringstream_t &ss, const std::string &value);
     static void_t _format(std::tstringstream_t &ss, const std::ustring_t &value);
 
-#if cmOPTION_CPP11
+#if xLANG_STANDART_CPP11
     template<typename T, std::size_t N>
     static void_t _format(std::tstringstream_t &ss, const std::array<T, N> &value);
 #else
@@ -120,7 +120,7 @@ private:
     template<typename T1, class T2>
     static void_t _format(std::tstringstream_t &ss, const std::multimap<T1, T2> &value);
 
-#if cmOPTION_CPP11
+#if xLANG_STANDART_CPP11
     template<typename T>
     static void_t _format(std::tstringstream_t &ss, const std::forward_list<T> &value);
 

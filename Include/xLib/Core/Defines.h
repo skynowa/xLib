@@ -142,7 +142,7 @@
     ///< calling convention
 //-------------------------------------------------------------------------------------------------
 // xOVERRIDE
-#if cmOPTION_CPP11
+#if xLANG_STANDART_CPP11
     #define xOVERRIDE \
         override
 #else
