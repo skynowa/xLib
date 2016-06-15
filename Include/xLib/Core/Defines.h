@@ -124,7 +124,7 @@
     ///< calling convention
 //-------------------------------------------------------------------------------------------------
 // xOVERRIDE
-#if xLANG_STANDART_CPP11
+#if xLANG_CPP11
     #define xOVERRIDE \
         override
 #else
@@ -148,7 +148,7 @@
     ///< keyword "override"
 //-------------------------------------------------------------------------------------------------
 // xPTR_NULL
-#if xLANG_STANDART_CPP11
+#if xLANG_CPP11
     #define xPTR_NULL \
         nullptr
 #else
