@@ -30,48 +30,48 @@
 ///@name Language standards
 ///@{
 #if defined(__STDC__)
-    #define xLANG_STANDART_C89 1
+    #define xLANG_C89 1
         ///< ANSI X3.159-1989
 #endif
 
 #if defined(__STDC_VERSION__)
-    #define xLANG_STANDART_C90 1
+    #define xLANG_C90 1
         ///< ISO/IEC 9899:1990
 #endif
 
 #if (__STDC_VERSION__ >= 199409L)
-    #define xLANG_STANDART_C94 1
+    #define xLANG_C94 1
         ///< ISO/IEC 9899-1:1994
 #endif
 
 #if (__STDC_VERSION__ >= 199901L)
-    #define xLANG_STANDART_C99 1
+    #define xLANG_C99 1
         ///< ISO/IEC 9899:1999
 #endif
 
 #if (__STDC_VERSION__ >= 201112L)
-    #define xLANG_STANDART_C11 1
+    #define xLANG_C11 1
         ///< ISO/IEC 9899:2011
 #endif
 
 #if (__cplusplus >= 199711L)
-    #define xLANG_STANDART_CPP98 1
+    #define xLANG_CPP98 1
         ///< ISO/IEC 14882:1998
 #endif
 
 #if (__cplusplus >= 201103L)
-	// TODO: xLANG_STANDART_CPP11 (Android)
-	#define xLANG_STANDART_CPP11 1
+	// TODO: xLANG_CPP11 (Android)
+	#define xLANG_CPP11 1
 		///< ISO/IEC 14882:2011
 #endif
 
 #if (__cplusplus_cli >= 200406L)
-    #define xLANG_STANDART_CPP_CLI 1
+    #define xLANG_CPP_CLI 1
         ///< ECMA-372
 #endif
 
 #if defined(__embedded_cplusplus)
-    #define xLANG_STANDART_ECPP 1
+    #define xLANG_ECPP 1
         ///< Embedded C++
 #endif
 ///@}

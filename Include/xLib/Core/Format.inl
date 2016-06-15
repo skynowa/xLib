@@ -333,11 +333,11 @@ Format::_format(
 
 
 /**************************************************************************************************
-*   public - xLANG_STANDART_CPP11
+*   public - xLANG_CPP11
 *
 **************************************************************************************************/
 
-#if xLANG_STANDART_CPP11
+#if xLANG_CPP11
 
 //-------------------------------------------------------------------------------------------------
 template<typename T, std::size_t N>
@@ -407,7 +407,7 @@ Format::_format(
 }
 //-------------------------------------------------------------------------------------------------
 
-#endif // xLANG_STANDART_CPP11
+#endif // xLANG_CPP11
 
 
 /**************************************************************************************************
@@ -523,7 +523,7 @@ template<typename T>
 inline int_t
 Format::_floatPrecisionMax()
 {
-#if xLANG_STANDART_CPP11
+#if xLANG_CPP11
     return std::numeric_limits<T>::max_digits10;
 #else
     return std::numeric_limits<T>::digits10 + 1;

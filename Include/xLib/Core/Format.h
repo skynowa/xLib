@@ -116,7 +116,7 @@ private:
     static void_t _format(std::tstringstream_t &ss, const T &value);
         ///< format other types with overload std::tostream_t::operator <<
 
-#if xLANG_STANDART_CPP11
+#if xLANG_CPP11
     static void_t _format(std::tstringstream_t &ss, const std::nullptr_t value);
 
     template<typename T, std::size_t N>

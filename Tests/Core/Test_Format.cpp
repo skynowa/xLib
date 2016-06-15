@@ -516,7 +516,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}, {1, bbb}}")));
     }
 
-#if xLANG_STANDART_CPP11
+#if xLANG_CPP11
     xTEST_CASE("std::nullptr_t")
     {
         std::nullptr_t value = nullptr;
@@ -593,7 +593,7 @@ Test_Format::unit()
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 1, 1, 0}")));
     }
-#endif // xLANG_STANDART_CPP11
+#endif // xLANG_CPP11
 
     xTEST_CASE("QString")
     {
@@ -644,7 +644,7 @@ Test_Format::unit()
         double             dValue = 0.1f;
         long double        ldValue = 0.02f;
         void *             pvValue = (void *)0x7fff0fd3e100;
-        #if xLANG_STANDART_CPP11
+        #if xLANG_CPP11
         std::nullptr_t     pValue = nullptr;
         #endif
         char *             pszValue = "aaa";
@@ -670,7 +670,7 @@ Test_Format::unit()
             dValue,
             ldValue,
             pvValue,
-        #if xLANG_STANDART_CPP11
+        #if xLANG_CPP11
             pValue,
         #endif
             pszValue,

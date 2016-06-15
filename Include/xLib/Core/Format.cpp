@@ -377,7 +377,7 @@ Format::_format(
     _formatString(a_ss, a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
-#if xLANG_STANDART_CPP11
+#if xLANG_CPP11
 
 /* static */
 xINLINE void_t
