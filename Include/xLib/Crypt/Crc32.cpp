@@ -152,7 +152,7 @@ Crc32::formatHex() const
     std::csize_t   crc32Size = 8;
 
     // Sample: 0AADDEA0
-    sRv = Format::c_str(xT("%X"), _crc32);
+    sRv = FormatC::str(xT("%X"), _crc32);
 
     std::csize_t additionalZeros = crc32Size - sRv.size();
     if (additionalZeros != 0U) {

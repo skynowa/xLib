@@ -103,7 +103,7 @@ Profiler::stop(
 
         va_list args;
         xVA_START(args, a_comment);
-        sRv = Format::c_strV(a_comment, args);
+        sRv = FormatC::strV(a_comment, args);
         xVA_END(args);
 
         _log.write(xT("%s: %s"), durationTime.c_str(), sRv.c_str());
@@ -127,7 +127,7 @@ Profiler::restart(
     if ( !_log.filePath().empty() ) {
         va_list args;
         xVA_START(args, a_comment);
-        sRv = Format::c_strV(a_comment, args);
+        sRv = FormatC::strV(a_comment, args);
         xVA_END(args);
     }
 

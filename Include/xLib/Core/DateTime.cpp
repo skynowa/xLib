@@ -658,7 +658,7 @@ DateTime::format(
     sRv.assign(&buff[0], uiRv);
 
     if ( !a_formatMsec.empty() ) {
-        sRv += Format::c_str(a_formatMsec.c_str(), _msec);
+        sRv += FormatC::str(a_formatMsec.c_str(), _msec);
     }
 
     return sRv;

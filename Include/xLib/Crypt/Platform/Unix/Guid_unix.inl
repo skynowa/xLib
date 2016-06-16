@@ -33,7 +33,7 @@ Guid::_randomBased_impl() const
     clong_t        valueMin = 0L;
     clong_t        valueMax = ISeedPolicy::valueMax();
 
-    sRv = Format::c_str(xT("%x%x-%x-%x-%x-%x%x%x"),
+    sRv = FormatC::str(xT("%x%x-%x-%x-%x-%x%x%x"),
         random.nextInt(valueMin, valueMax), random.nextInt(valueMin, valueMax),
         random.nextInt(valueMin, valueMax),
         (random.nextInt(valueMin, valueMax) & 0x0FFF) | 0x4000,

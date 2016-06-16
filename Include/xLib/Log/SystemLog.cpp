@@ -83,7 +83,7 @@ SystemLog::write(
 
     va_list args;
     xVA_START(args, a_format);
-    msg = Format::c_strV(a_format, args);
+    msg = FormatC::strV(a_format, args);
     xVA_END(args);
 
     write(lvPlain, xT("%s"), msg.c_str());
@@ -108,7 +108,7 @@ SystemLog::write(
     {
         va_list args;
         xVA_START(args, a_format);
-        msg = Format::c_strV(a_format, args);
+        msg = FormatC::strV(a_format, args);
         xVA_END(args);
     }
 
