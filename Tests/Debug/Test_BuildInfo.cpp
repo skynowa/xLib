@@ -87,19 +87,20 @@ Test_BuildInfo::unit()
         xTEST_EQ(m_sRv.empty(), false);
     }
 
-    xTEST_CASE("libs")
-    {
-        BuildInfo info;
-
-        m_sRv = info.libs();
-        xTEST_EQ(m_sRv.empty(), false);
-    }
 
     xTEST_CASE("compilerFlags")
     {
         BuildInfo info;
 
         m_sRv = info.compilerFlags();
+        xTEST_EQ(m_sRv.empty(), false);
+    }
+
+    xTEST_CASE("libs")
+    {
+        BuildInfo info;
+
+        m_sRv = info.libs();
         xTEST_EQ(m_sRv.empty(), false);
     }
 
