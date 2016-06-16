@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 ///@name Sequence containers
 ///@{
 
-template<typename T1, class T2>
+template<typename T1, typename T2>
 inline std::tostream_t &
 operator << (std::tostream_t &os, const std::pair<T1, T2> &value);
     ///< for std::pair
@@ -56,12 +56,12 @@ inline std::tostream_t &
 operator << (std::tostream_t &os, const std::multiset<T> &value);
     ///< for std::multiset
 
-template<typename T1, class T2>
+template<typename T1, typename T2>
 inline std::tostream_t &
 operator << (std::tostream_t &os, const std::map<T1, T2> &value);
     ///< for std::map
 
-template<typename T1, class T2>
+template<typename T1, typename T2>
 inline std::tostream_t &
 operator << (std::tostream_t &os, const std::multimap<T1, T2> &value);
     ///< for std::multimap

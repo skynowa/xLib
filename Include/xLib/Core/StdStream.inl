@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T1, class T2>
+template<typename T1, typename T2>
 inline std::tostream_t &
 operator << (
     std::tostream_t         &a_os,
@@ -155,7 +155,7 @@ operator << (
     return a_os;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T1, class T2>
+template<typename T1, typename T2>
 inline std::tostream_t &
 operator << (
     std::tostream_t        &a_os,
@@ -184,7 +184,7 @@ operator << (
     return a_os;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T1, class T2>
+template<typename T1, typename T2>
 inline std::tostream_t &
 operator << (
     std::tostream_t             &a_os,
