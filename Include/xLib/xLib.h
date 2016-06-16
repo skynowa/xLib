@@ -33,6 +33,7 @@
 #include <xLib/Core/Application.h>
 #include <xLib/Core/CoreApplication.h>
 #include <xLib/Core/Algos.h>
+#include <xLib/Core/StdStream.h>
 
 // Crypt
 #include <xLib/Crypt/OpenSSL/Blowfish.h>
