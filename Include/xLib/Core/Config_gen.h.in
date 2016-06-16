@@ -54,7 +54,7 @@
 ///@name detecting features
 ///@{
 #cmakedefine cmHAVE_OPENSSL_CRYPTO 1
-#cmakedefine cmHAVE_MYSQL 1
+#cmakedefine cmMYSQL_HAVE 1
 #cmakedefine cmHAVE_PR_SET_DUMPABLE 1
 #cmakedefine cmHAVE_RLIMIT_CORE 1
 #cmakedefine cmHAVE_PT_DENY_ATTACH 1

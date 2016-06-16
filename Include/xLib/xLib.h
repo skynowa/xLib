@@ -42,7 +42,7 @@
 #include <xLib/Crypt/Random.h>
 
 // Db
-#if cmHAVE_MYSQL
+#if cmMYSQL_HAVE
     #include <xLib/Db/MySql.h>
 #endif
 
