@@ -85,7 +85,7 @@ private:
     template<typename T, std::size_t N>
     static void_t _format(std::tstringstream_t &ss, const Array<T, N> &value);
 
-    template<typename T1, class T2>
+    template<typename T1, typename T2>
     static void_t _format(std::tstringstream_t &ss, const std::pair<T1, T2> &value);
 
     template<typename T>
@@ -112,10 +112,10 @@ private:
     template<typename T>
     static void_t _format(std::tstringstream_t &ss, const std::stack<T> &value);
 
-    template<typename T1, class T2>
+    template<typename T1, typename T2>
     static void_t _format(std::tstringstream_t &ss, const std::map<T1, T2> &value);
 
-    template<typename T1, class T2>
+    template<typename T1, typename T2>
     static void_t _format(std::tstringstream_t &ss, const std::multimap<T1, T2> &value);
 
     template<typename T>
@@ -131,10 +131,10 @@ private:
     template<typename T>
     static void_t _format(std::tstringstream_t &ss, const std::forward_list<T> &value);
 
-    template<typename T1, class T2>
+    template<typename T1, typename T2>
     static void_t _format(std::tstringstream_t &ss, const std::unordered_map<T1, T2> &value);
 
-    template<typename T1, class T2>
+    template<typename T1, typename T2>
     static void_t _format(std::tstringstream_t &ss, const std::unordered_multimap<T1, T2> &value);
 
     template<typename T>
