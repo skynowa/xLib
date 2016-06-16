@@ -179,7 +179,7 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T1, class T2>
+template<typename T1, typename T2>
 /* static */
 inline void_t
 Format::_format(
@@ -297,7 +297,7 @@ Format::_format(
     _formatRange(a_ss, begin, end);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T1, class T2>
+template<typename T1, typename T2>
 /* static */
 inline void_t
 Format::_format(
@@ -308,7 +308,7 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T1, class T2>
+template<typename T1, typename T2>
 /* static */
 inline void_t
 Format::_format(
@@ -362,7 +362,7 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T1, class T2>
+template<typename T1, typename T2>
 /* static */
 inline void_t
 Format::_format(
@@ -373,7 +373,7 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T1, class T2>
+template<typename T1, typename T2>
 /* static */
 inline void_t
 Format::_format(
