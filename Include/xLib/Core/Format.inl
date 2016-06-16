@@ -172,8 +172,8 @@ template<typename T, std::size_t N>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t   &a_ss,     ///< [out]
-    const Array<T, N>      &a_value   ///< value
+    std::tstringstream_t &a_ss,     ///< [out]
+    const Array<T, N>    &a_value   ///< value
 )
 {
     _formatContainer(a_ss, a_value);
