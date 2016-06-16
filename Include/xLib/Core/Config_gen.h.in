@@ -51,10 +51,10 @@
 #cmakedefine cmGIT_REVISION_HASH xT("@cmGIT_REVISION_HASH@")
 ///@}
 
-///@name Compiler flags
-///@{
-#cmakedefine cmXLIB_COMPILER_FLAGS xT("@CMAKE_CXX_FLAGS@")
-///@}
+#cmakedefine cmXLIB_COMPILER_FLAGS xT("@cmXLIB_COMPILER_FLAGS@")
+    ///< Compiler flags
+#cmakedefine cmXLIB_LIBRARIES      xT("@cmXLIB_LIBRARIES@")
+    ///< xLib linked libraries
 
 ///@name detecting features
 ///@{

@@ -146,6 +146,8 @@ if (OS_ANDROID)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} gnustl_static m z log)
 endif()
 
+set(cmXLIB_LIBRARIES ${XLIB_LIBRARIES})
+
 if (NOT (XLIB_INCLUDES AND XLIB_LIBRARIES))
     set(cmXLIB_FOUND          0)
     set(XLIB_DEFINITIONS      "")

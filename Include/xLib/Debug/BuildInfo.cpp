@@ -269,6 +269,21 @@ BuildInfo::compilerFlags() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE std::tstring_t
+BuildInfo::libs() const
+{
+	std::tstring_t sRv;
+
+	std::vec_tstring_t libPathes;
+	String::split(cmXLIB_LIBRARIES, xT(";"), &libPathes);
+
+	xFOR_EACH_CONST(std::vec_tstring_t, it, libPathes) {
+		sRv += Path(*it).fileName() + xT("; ");
+	}
+
+	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 BuildInfo::isUnicodeEncoding() const
 {
