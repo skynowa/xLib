@@ -8,82 +8,67 @@
 
 #include <xLib/Core/Defines.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, core)
+#define xSTD_OSTREAM_OP(cont_t) \
+	template<typename T> \
+	inline std::tostream_t & \
+	operator << (std::tostream_t &a_os, const cont_t &a_value) \
+	{ \
+		a_os << xlib::core::Format::str(xT("{}"), a_value); \
+		return a_os; \
+	}
+
+#define xSTD_OSTREAM_OP_ARRAY(cont_t) \
+	template<typename T, const std::size_t N> \
+	inline std::tostream_t & \
+	operator << (std::tostream_t &a_os, const cont_t<T, N> &a_value) \
+	{ \
+		a_os << xlib::core::Format::str(xT("{}"), a_value); \
+		return a_os; \
+	}
+
+#define xSTD_OSTREAM_OP_1(cont_t) \
+	template<typename T> \
+	inline std::tostream_t & \
+	operator << (std::tostream_t &a_os, const cont_t<T> &a_value) \
+	{ \
+		a_os << xlib::core::Format::str(xT("{}"), a_value); \
+		return a_os; \
+	}
+
+#define xSTD_OSTREAM_OP_2(cont_t) \
+	template<typename T1, typename T2> \
+	inline std::tostream_t & \
+	operator << (std::tostream_t &a_os, const cont_t<T1, T2> &a_value) \
+	{ \
+		a_os << xlib::core::Format::str(xT("{}"), a_value); \
+		return a_os; \
+	}
+
+xSTD_OSTREAM_OP(std::ustring_t);
+xSTD_OSTREAM_OP_ARRAY(xlib::core::Array);
+xSTD_OSTREAM_OP_2(std::pair);
+xSTD_OSTREAM_OP_1(std::vector);
+xSTD_OSTREAM_OP_1(std::list);
+xSTD_OSTREAM_OP_1(std::set);
+xSTD_OSTREAM_OP_1(std::multiset);
+xSTD_OSTREAM_OP_1(std::deque);
+xSTD_OSTREAM_OP_1(std::queue);
+xSTD_OSTREAM_OP_1(std::priority_queue);
+xSTD_OSTREAM_OP_1(std::stack);
+xSTD_OSTREAM_OP_2(std::map);
+xSTD_OSTREAM_OP_2(std::multimap);
+
+#if xLANG_CPP11
+	xSTD_OSTREAM_OP(std::nullptr_t);
+	xSTD_OSTREAM_OP_ARRAY(std::array);
+	xSTD_OSTREAM_OP_1(std::forward_list);
+	xSTD_OSTREAM_OP_2(std::unordered_map);
+	xSTD_OSTREAM_OP_2(std::unordered_multimap);
+	xSTD_OSTREAM_OP_1(std::unordered_set);
+	xSTD_OSTREAM_OP_1(std::unordered_multiset);
+#endif
+
+#if xLIB_QT
+	xSTD_OSTREAM_OP(QString);
+#endif
 //-------------------------------------------------------------------------------------------------
-///@name Sequence containers
-///@{
-
-template<typename T1, typename T2>
-inline std::tostream_t &
-operator << (std::tostream_t &os, const std::pair<T1, T2> &value);
-    ///< for std::pair
-
-// TODO: for std::array (C++11)
-
-template<typename T>
-inline std::tostream_t &
-operator << (std::tostream_t &os, const std::vector<T> &value);
-    ///< for std::vector
-
-// TODO: for std::deque
-// TODO: for std::forward_list (C++11)
-
-template<typename T>
-inline std::tostream_t &
-operator << (std::tostream_t &os, const std::list<T> &value);
-    ///< for std::list
-///@}
-//-------------------------------------------------------------------------------------------------
-///@name Container adaptors
-///@{
-
-// TODO: for std::stack
-// TODO: for std::queue
-// TODO: for std::priority_queue
-
-///@}
-//-------------------------------------------------------------------------------------------------
-///@name Associative containers
-///@{
-
-template<typename T>
-inline std::tostream_t &
-operator << (std::tostream_t &os, const std::set<T> &value);
-    ///< for std::set
-
-template<typename T>
-inline std::tostream_t &
-operator << (std::tostream_t &os, const std::multiset<T> &value);
-    ///< for std::multiset
-
-template<typename T1, typename T2>
-inline std::tostream_t &
-operator << (std::tostream_t &os, const std::map<T1, T2> &value);
-    ///< for std::map
-
-template<typename T1, typename T2>
-inline std::tostream_t &
-operator << (std::tostream_t &os, const std::multimap<T1, T2> &value);
-    ///< for std::multimap
-///@}
-//-------------------------------------------------------------------------------------------------
-///@name Unordered associative containers
-///@{
-
-// TODO: for std::unordered_set (C++11)
-// TODO: for std::unordered_multiset (C++11)
-// TODO: for std::unordered_map (C++11)
-// TODO: for std::unordered_multimap (C++11)
-
-///@}
-//-------------------------------------------------------------------------------------------------
-///@name Etc
-///@{
-inline std::tostream_t &
-operator << (std::tostream_t &os, std::custring_t &value);
-    ///< for std::ustring_t
-///@}
-//-------------------------------------------------------------------------------------------------
-xNAMESPACE_END2(xlib, core)
-//-------------------------------------------------------------------------------------------------
-#include "StdStream.inl"
