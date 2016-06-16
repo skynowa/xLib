@@ -68,7 +68,7 @@ Test_Format::unit()
 {
 	std::ios_base::sync_with_stdio(false);
 
-    xTEST_CASE("c_str")
+    xTEST_CASE("FormatC::str")
     {
         m_sRv = FormatC::str(xT("qqqq-wwww [%i]"), 1000);
         xTEST_EQ(m_sRv, std::tstring_t(xT("qqqq-wwww [1000]")));
@@ -121,7 +121,7 @@ Test_Format::unit()
         }
     }
 
-    xTEST_CASE("c_strV")
+    xTEST_CASE("FormatC::strV")
     {
         // TEST: FormatC::strV()
     }
