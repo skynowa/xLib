@@ -16,7 +16,7 @@ class Format
     ///< format string
 {
 public:
-    static std::tstring_t c_str(ctchar_t *format, ...) xWARN_UNUSED_RV;
+    static std::tstring_t c_str(ctchar_t *format, ...) xWARN_UNUSED_RV __attribute__ (( c_str(printf, 1, 2) ));
     static std::tstring_t c_strV(ctchar_t *format, va_list args) xWARN_UNUSED_RV;
 
 #define xFORMAT_STR_DECLARE(n) \
