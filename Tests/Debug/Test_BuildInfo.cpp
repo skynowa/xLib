@@ -156,6 +156,14 @@ Test_BuildInfo::unit()
         xTEST_DIFF(m_sRv, std::tstring_t( xT("xUNKNOWN_CSTRING") ));
     }
 
+    xTEST_CASE("cmake")
+    {
+        BuildInfo info;
+
+        m_sRv = info.cmake();
+        xTEST_EQ(m_sRv.empty(), false);
+    }
+
     return true;
 }
 //---------------------------------------------------------------------------

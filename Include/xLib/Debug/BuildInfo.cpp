@@ -417,5 +417,25 @@ BuildInfo::binaryType() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE std::tstring_t
+BuildInfo::cmake() const
+{
+    std::tstring_t sRv;
+    std::tstring_t name;
+    std::tstring_t version;
+
+#if defined(cmCMAKE_VERSION)
+    name    = xT("CMake");
+    version = cmCMAKE_VERSION;
+#else
+    name    = Const::strUnknown();
+    version = Const::strUnknown();
+#endif
+
+    sRv = Format::str(xT("{} {}"), name, version);
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, debug)

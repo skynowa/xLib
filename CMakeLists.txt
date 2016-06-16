@@ -9,6 +9,10 @@
 # XLIB_INCLUDES         - include pathes
 # XLIB_SOURCES          - source pathes
 # XLIB_LIBRARIES        - libraries list
+#
+# cmCMAKE_VERSION
+# cmXLIB_COMPILER_FLAGS
+# cmXLIB_LIBRARIES
 #--------------------------------------------------------------------------------------------------
 
 
@@ -121,7 +125,6 @@ if (OPTION_UNICODE)
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
-set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS})
 #--------------------------------------------------------------------------------------------------
 # libraries
 set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
@@ -146,8 +149,6 @@ if (OS_ANDROID)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} gnustl_static m z log)
 endif()
 
-set(cmXLIB_LIBRARIES ${XLIB_LIBRARIES})
-
 if (NOT (XLIB_INCLUDES AND XLIB_LIBRARIES))
     set(cmXLIB_FOUND          0)
     set(XLIB_DEFINITIONS      "")
@@ -158,6 +159,11 @@ if (NOT (XLIB_INCLUDES AND XLIB_LIBRARIES))
 else()
     set(cmXLIB_FOUND     1)
 endif()
+#--------------------------------------------------------------------------------------------------
+# vars
+set(cmCMAKE_VERSION       ${CMAKE_VERSION})
+set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS})
+set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES})
 #--------------------------------------------------------------------------------------------------
 # trace
 if (NOT cmXLIB_FOUND AND XLIB_FIND_REQUIRED)
@@ -225,7 +231,7 @@ else()
     set(XLIB_LIBRARIES        ${XLIB_LIBRARIES})
     set(XLIB_LOCATION         ${XLIB_LOCATION})
 endif()
-#--------------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------------
 # config
 configure_file(
     ${XLIB_LOCATION}/Include/xLib/Core/Config_gen.h.in

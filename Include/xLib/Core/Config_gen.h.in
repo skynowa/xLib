@@ -55,6 +55,8 @@
     ///< Compiler flags
 #cmakedefine cmXLIB_LIBRARIES      xT("@cmXLIB_LIBRARIES@")
     ///< xLib linked libraries
+#cmakedefine cmCMAKE_VERSION       xT("@cmCMAKE_VERSION@")
+    ///< CMake version
 
 ///@name detecting features
 ///@{

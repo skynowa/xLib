@@ -51,6 +51,8 @@ public:
         ///< xLib library
     std::tstring_t binaryType() const xWARN_UNUSED_RV;
         ///< binary type
+    std::tstring_t cmake() const xWARN_UNUSED_RV;
+        ///< cmake
 
 private:
     xNO_COPY_ASSIGN(BuildInfo)
