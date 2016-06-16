@@ -87,6 +87,14 @@ Test_BuildInfo::unit()
         xTEST_EQ(m_sRv.empty(), false);
     }
 
+    xTEST_CASE("compilerFlags")
+    {
+        BuildInfo info;
+
+        m_sRv = info.compilerFlags();
+        xTEST_EQ(m_sRv.empty(), false);
+    }
+
     xTEST_CASE("isUnicodeEncoding")
     {
         BuildInfo info;

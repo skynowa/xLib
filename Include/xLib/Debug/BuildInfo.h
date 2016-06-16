@@ -35,6 +35,8 @@ public:
         ///< bits architecture
     std::tstring_t compiler() const xWARN_UNUSED_RV;
         ///< compilier
+    std::tstring_t compilerFlags() const xWARN_UNUSED_RV;
+        ///< compilier flags
     bool_t         isUnicodeEncoding() const xWARN_UNUSED_RV;
         ///< is Unicode character-encoding
     std::tstring_t stdLibC() const xWARN_UNUSED_RV;

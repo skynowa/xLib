@@ -2,12 +2,13 @@
 # \file  FindxLib.cmake
 # \brief Find xLib
 #
-# XLIB_LOCATION    - root diractory [in]
-# cmXLIB_FOUND     - found or not
-# XLIB_DEFINITIONS - definitions
-# XLIB_INCLUDES    - include pathes
-# XLIB_SOURCES     - source pathes
-# XLIB_LIBRARIES   - libraries list
+# XLIB_LOCATION         - root diractory [in]
+# cmXLIB_FOUND          - found or not
+# XLIB_DEFINITIONS      - definitions
+# cmXLIB_COMPILER_FLAGS - compiler flags
+# XLIB_INCLUDES         - include pathes
+# XLIB_SOURCES          - source pathes
+# XLIB_LIBRARIES        - libraries list
 #--------------------------------------------------------------------------------------------------
 
 
@@ -32,13 +33,14 @@ set(CMAKE_REQUIRED_QUIET        ON)
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
 # vars
-unset(cmXLIB_FOUND     CACHE)
-unset(XLIB_DEFINITIONS CACHE)
-unset(XLIB_INCLUDES    CACHE)
-unset(XLIB_SOURCES     CACHE)
-unset(XLIB_LIBRARIES   CACHE)
+unset(cmXLIB_FOUND          CACHE)
+unset(XLIB_DEFINITIONS      CACHE)
+unset(cmXLIB_COMPILER_FLAGS CACHE)
+unset(XLIB_INCLUDES         CACHE)
+unset(XLIB_SOURCES          CACHE)
+unset(XLIB_LIBRARIES        CACHE)
 
-unset(XLIB_LOCATION    CACHE)
+unset(XLIB_LOCATION         CACHE)
 
 if (NOT XLIB_LOCATION)
     set(XLIB_LOCATION ${CMAKE_SOURCE_DIR})
@@ -136,18 +138,20 @@ else()
 endif()
 
 if (OS_ANDROID)
-    unset(XLIB_DEFINITIONS CACHE)
-    unset(XLIB_LIBRARIES   CACHE)
+    unset(XLIB_DEFINITIONS      CACHE)
+    unset(cmXLIB_COMPILER_FLAGS CACHE)
+    unset(XLIB_LIBRARIES        CACHE)
 
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} gnustl_static m z log)
 endif()
 
 if (NOT (XLIB_INCLUDES AND XLIB_LIBRARIES))
-    set(cmXLIB_FOUND     0)
-    set(XLIB_DEFINITIONS "")
-    set(XLIB_INCLUDES    "")
-    set(XLIB_SOURCES     "")
-    set(XLIB_LIBRARIES   "")
+    set(cmXLIB_FOUND          0)
+    set(XLIB_DEFINITIONS      "")
+    set(cmXLIB_COMPILER_FLAGS "")
+    set(XLIB_INCLUDES         "")
+    set(XLIB_SOURCES          "")
+    set(XLIB_LIBRARIES        "")
 else()
     set(cmXLIB_FOUND     1)
 endif()
@@ -157,11 +161,12 @@ if (NOT cmXLIB_FOUND AND XLIB_FIND_REQUIRED)
     message(FATAL_ERROR "cmXLIB_FOUND: ${cmXLIB_FOUND}")
 else()
     # message(STATUS "cmXLIB_FOUND: ${cmXLIB_FOUND}")
-    # message("    XLIB_LOCATION:    ${XLIB_LOCATION}")
-    # message("    XLIB_DEFINITIONS: ${XLIB_DEFINITIONS}")
-    # message("    XLIB_INCLUDES:    ${XLIB_INCLUDES}")
-    # message("    XLIB_LIBRARIES:   ${XLIB_LIBRARIES}")
-    # message("    XLIB_SOURCES:     ${XLIB_SOURCES}")
+    # message("    XLIB_LOCATION:         ${XLIB_LOCATION}")
+    # message("    XLIB_DEFINITIONS:      ${XLIB_DEFINITIONS}")
+    # message("    cmXLIB_COMPILER_FLAGS: ${cmXLIB_COMPILER_FLAGS}")
+    # message("    XLIB_INCLUDES:         ${XLIB_INCLUDES}")
+    # message("    XLIB_LIBRARIES:        ${XLIB_LIBRARIES}")
+    # message("    XLIB_SOURCES:          ${XLIB_SOURCES}")
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
@@ -201,20 +206,27 @@ endif()
 
 get_directory_property(IS_PARENT_SCOPE PARENT_DIRECTORY)
 if (IS_PARENT_SCOPE)
-    set(cmXLIB_FOUND     ${cmXLIB_FOUND}       PARENT_SCOPE)
-    set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} PARENT_SCOPE)
-    set(XLIB_INCLUDES    ${XLIB_INCLUDES}    PARENT_SCOPE)
-    set(XLIB_SOURCES     ${XLIB_SOURCES}     PARENT_SCOPE)
-    set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   PARENT_SCOPE)
-    set(XLIB_LOCATION    ${XLIB_LOCATION}    PARENT_SCOPE)
+    set(cmXLIB_FOUND          ${cmXLIB_FOUND}     PARENT_SCOPE)
+    set(XLIB_DEFINITIONS      ${XLIB_DEFINITIONS} PARENT_SCOPE)
+    set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS}  PARENT_SCOPE)
+    set(XLIB_INCLUDES         ${XLIB_INCLUDES}    PARENT_SCOPE)
+    set(XLIB_SOURCES          ${XLIB_SOURCES}     PARENT_SCOPE)
+    set(XLIB_LIBRARIES        ${XLIB_LIBRARIES}   PARENT_SCOPE)
+    set(XLIB_LOCATION         ${XLIB_LOCATION}    PARENT_SCOPE)
 else()
-    set(cmXLIB_FOUND     ${cmXLIB_FOUND})
-    set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS})
-    set(XLIB_INCLUDES    ${XLIB_INCLUDES})
-    set(XLIB_SOURCES     ${XLIB_SOURCES})
-    set(XLIB_LIBRARIES   ${XLIB_LIBRARIES})
-    set(XLIB_LOCATION    ${XLIB_LOCATION})
+    set(cmXLIB_FOUND          ${cmXLIB_FOUND})
+    set(XLIB_DEFINITIONS      ${XLIB_DEFINITIONS})
+    set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS})
+    set(XLIB_INCLUDES         ${XLIB_INCLUDES})
+    set(XLIB_SOURCES          ${XLIB_SOURCES})
+    set(XLIB_LIBRARIES        ${XLIB_LIBRARIES})
+    set(XLIB_LOCATION         ${XLIB_LOCATION})
 endif()
+#--------------------------------------------------------------------------------------------------#
+# config
+configure_file(
+    ${XLIB_LOCATION}/Include/xLib/Core/Config_gen.h.in
+    ${XLIB_LOCATION}/Include/xLib/Core/Config_gen.h)
 #--------------------------------------------------------------------------------------------------
 # install
 #install(

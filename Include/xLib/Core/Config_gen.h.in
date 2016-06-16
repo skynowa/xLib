@@ -51,6 +51,11 @@
 #cmakedefine cmGIT_REVISION_HASH xT("@cmGIT_REVISION_HASH@")
 ///@}
 
+///@name Compiler flags
+///@{
+#cmakedefine cmXLIB_COMPILER_FLAGS xT("@CMAKE_CXX_FLAGS@")
+///@}
+
 ///@name detecting features
 ///@{
 #cmakedefine cmOPENSSL_CRYPTO_FOUND 1

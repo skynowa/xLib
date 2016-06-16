@@ -259,6 +259,16 @@ BuildInfo::compiler() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE std::tstring_t
+BuildInfo::compilerFlags() const
+{
+    std::tstring_t sRv;
+
+    sRv = String::trimSpace(xCOMPILER_FLAGS);
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 BuildInfo::isUnicodeEncoding() const
 {
