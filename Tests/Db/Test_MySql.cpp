@@ -16,7 +16,7 @@ xTEST_UNIT(Test_MySql)
 bool_t
 Test_MySql::unit()
 {
-#if cmHAVE_MYSQL
+#if cmMYSQL_HAVE
     MySqlConnectionData mysqlData;
     mysqlData.host       = xT("127.0.0.1");
     mysqlData.user       = xT("root");
@@ -261,7 +261,7 @@ Test_MySql::unit()
     }
 #else
     Trace() << xT("[skip]");
-#endif // cmHAVE_MYSQL
+#endif // cmMYSQL_HAVE
 
     return true;
 }
