@@ -401,7 +401,7 @@ Test_Defines::unit()
         cint_t          ciVal = 100;
 
         // Format::str use var args
-        m_sRv = Format::c_str(xT("%s, %d"), csVal.c_str(), ciVal);
+        m_sRv = FormatC::str(xT("%s, %d"), csVal.c_str(), ciVal);
         xTEST_EQ(m_sRv, std::tstring_t(xT("aaa, 100")));
     }
 
@@ -411,7 +411,7 @@ Test_Defines::unit()
         {
             std::csize_t value = 2356567U;
 
-            m_sRv = Format::c_str(xT("%")xPR_SIZET, value);
+            m_sRv = FormatC::str(xT("%")xPR_SIZET, value);
             xTEST_EQ(String::cast(value), m_sRv);
         }
 
@@ -419,7 +419,7 @@ Test_Defines::unit()
         {
             clonglong_t value = 36745723LL;
 
-            m_sRv = Format::c_str(xT("%")xPR_I64d, value);
+            m_sRv = FormatC::str(xT("%")xPR_I64d, value);
             xTEST_EQ(String::cast(value), m_sRv);
         }
 
@@ -427,7 +427,7 @@ Test_Defines::unit()
         {
             culonglong_t value = 4767834ULL;
 
-            m_sRv = Format::c_str(xT("%")xPR_I64u, value);
+            m_sRv = FormatC::str(xT("%")xPR_I64u, value);
             xTEST_EQ(String::cast(value), m_sRv);
         }
 
@@ -435,7 +435,7 @@ Test_Defines::unit()
         {
             clonglong_t value = 57830LL;
 
-            m_sRv = Format::c_str(xT("%")xPR_I64x, value);
+            m_sRv = FormatC::str(xT("%")xPR_I64x, value);
             xTEST_EQ(String::toLowerCase( String::cast(value, 16) ), m_sRv);
         }
     }

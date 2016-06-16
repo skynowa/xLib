@@ -348,7 +348,7 @@ Uri::encodeComponent(
             /*|| reserved.find(c) != std::tstring_t::npos*/)
         {
             //� -> %FF
-            sRv += Format::c_str(xT("%%%02X"), (uint_t)(uchar_t)c);
+            sRv += FormatC::str(xT("%%%02X"), (uint_t)(uchar_t)c);
         }
         else {
             sRv += c;

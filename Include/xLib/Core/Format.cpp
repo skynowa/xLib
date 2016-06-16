@@ -16,14 +16,14 @@ xNAMESPACE_BEGIN2(xlib, core)
 
 
 /**************************************************************************************************
-*   public
+*   FormatC - public
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::c_str(
+FormatC::str(
     ctchar_t *a_format, ...    ///< string format
 )
 {
@@ -35,7 +35,7 @@ Format::c_str(
 
     va_list args;
     xVA_START(args, a_format);
-    sRv = c_strV(a_format, args);
+    sRv = strV(a_format, args);
     xVA_END(args);
 
     return sRv;
@@ -43,7 +43,7 @@ Format::c_str(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
-Format::c_strV(
+FormatC::strV(
     ctchar_t *a_format,    ///< string format
     va_list   a_args       ///< arguments
 )
@@ -95,7 +95,7 @@ Format::c_strV(
 
 
 /**************************************************************************************************
-*   private
+*   Format - private
 *
 **************************************************************************************************/
 
