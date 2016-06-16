@@ -17,7 +17,7 @@ Volume::_fileSystem_impl() const
 {
     std::tstring_t sRv;
 
-#if cmHAVE_GETMNTENT_R
+#if cmGETMNTENT_R_FOUND
     FILE *file = ::setmntent("/etc/mtab", "r");
     xTEST_PTR(file);
 

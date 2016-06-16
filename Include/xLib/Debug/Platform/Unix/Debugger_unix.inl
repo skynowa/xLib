@@ -4,13 +4,13 @@
  */
 
 
-#if   cmHAVE_PR_SET_DUMPABLE
+#if   cmPR_SET_DUMPABLE_FOUND
     #include <sys/prctl.h>
-#elif cmHAVE_RLIMIT_CORE
+#elif cmRLIMIT_CORE_FOUND
     #include <sys/resource.h>
 #endif
 
-#if cmHAVE_PT_DENY_ATTACH
+#if cmPT_DENY_ATTACH_FOUND
     #include <sys/ptrace.h>
 #endif
 
@@ -29,12 +29,12 @@ Debugger::_coreDumpsEnable_impl(
     bool_t  *a_isEnable
 )
 {
-#if   cmHAVE_PR_SET_DUMPABLE
+#if   cmPR_SET_DUMPABLE_FOUND
     culong_t isDumpable = a_flag ? 1UL : 0UL;
 
     int_t iRv = ::prctl(PR_SET_DUMPABLE, isDumpable);
     *a_isEnable = (iRv == 0);
-#elif cmHAVE_RLIMIT_CORE
+#elif cmRLIMIT_CORE_FOUND
     rlimit limit;   xSTRUCT_ZERO(limit);
     if (a_flag) {
         limit.rlim_cur = RLIM_INFINITY;
@@ -54,7 +54,7 @@ Debugger::_coreDumpsEnable_impl(
     xBUILD_IMPL("Debugger::coreDumpsEnable()");
 #endif
 
-#if cmHAVE_PT_DENY_ATTACH
+#if cmPT_DENY_ATTACH_FOUND
     // make sure ::setrlimit() and ::ptrace() succeeded
     cint_t isAttachable = a_flag ? PT_ATTACH : PT_DENY_ATTACH;
 

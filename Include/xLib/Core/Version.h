@@ -13,7 +13,7 @@
 #define xLIB_VERSION        xT("1.0.000")
     ///< xLib version
 
-#if cmHAVE_GIT_REVISION
+#if cmGIT_REVISION_FOUND
     #define xLIB_GIT_REVISION_BRANCH  cmGIT_REVISION_BRANCH
         ///< xLib Git revision branch
     #define xLIB_GIT_REVISION_HASH    cmGIT_REVISION_HASH

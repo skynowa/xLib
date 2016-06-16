@@ -3,7 +3,7 @@
 # \brief Find xLib
 #
 # XLIB_LOCATION    - root diractory [in]
-# XLIB_FOUND       - found or not
+# cmXLIB_FOUND     - found or not
 # XLIB_DEFINITIONS - definitions
 # XLIB_INCLUDES    - include pathes
 # XLIB_SOURCES     - source pathes
@@ -32,7 +32,7 @@ set(CMAKE_REQUIRED_QUIET        ON)
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
 # vars
-unset(XLIB_FOUND       CACHE)
+unset(cmXLIB_FOUND     CACHE)
 unset(XLIB_DEFINITIONS CACHE)
 unset(XLIB_INCLUDES    CACHE)
 unset(XLIB_SOURCES     CACHE)
@@ -59,23 +59,23 @@ if (OPENSSL_FOUND)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${OPENSSL_LIBRARIES})
 endif()
 
-if (MYSQL_FOUND)
+if (cmMYSQL_FOUND)
     set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${MYSQL_INCLUDES})
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${MYSQL_LIBRARIES})
 endif()
 
-if (SSH2_FOUND)
+if (cmSSH2_FOUND)
     set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${SSH2_INCLUDES})
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${SSH2_LIBRARIES})
 endif()
 
 if (ENV_UNIX)
-    if (XCB_FOUND)
+    if (cmXCB_FOUND)
         set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${XCB_INCLUDE_DIR})
         set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${XCB_LIBRARIES})
     endif()
 
-    if (EXECINFO_FOUND)
+    if (cmEXECINFO_FOUND)
         set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${EXECINFO_INCLUDES})
         set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${EXECINFO_LIBRARIES})
     endif()
@@ -113,7 +113,7 @@ else()
     set(CMAKE_CXX_STANDARD 98)  # 98, 11 and 14
 endif()
 
-if (cmOPTION_UNICODE)
+if (OPTION_UNICODE)
     add_definitions(-DUNICODE=1)
     add_definitions(-D_UNICODE=1)
 endif()
@@ -143,20 +143,20 @@ if (OS_ANDROID)
 endif()
 
 if (NOT (XLIB_INCLUDES AND XLIB_LIBRARIES))
-    set(XLIB_FOUND       0)
+    set(cmXLIB_FOUND     0)
     set(XLIB_DEFINITIONS "")
     set(XLIB_INCLUDES    "")
     set(XLIB_SOURCES     "")
     set(XLIB_LIBRARIES   "")
 else()
-    set(XLIB_FOUND       1)
+    set(cmXLIB_FOUND     1)
 endif()
 #--------------------------------------------------------------------------------------------------
 # trace
-if (NOT XLIB_FOUND AND XLIB_FIND_REQUIRED)
-    message(FATAL_ERROR "XLIB_FOUND: ${XLIB_FOUND}")
+if (NOT cmXLIB_FOUND AND XLIB_FIND_REQUIRED)
+    message(FATAL_ERROR "cmXLIB_FOUND: ${cmXLIB_FOUND}")
 else()
-    # message(STATUS "XLIB_FOUND: ${XLIB_FOUND}")
+    # message(STATUS "cmXLIB_FOUND: ${cmXLIB_FOUND}")
     # message("    XLIB_LOCATION:    ${XLIB_LOCATION}")
     # message("    XLIB_DEFINITIONS: ${XLIB_DEFINITIONS}")
     # message("    XLIB_INCLUDES:    ${XLIB_INCLUDES}")
@@ -201,14 +201,14 @@ endif()
 
 get_directory_property(IS_PARENT_SCOPE PARENT_DIRECTORY)
 if (IS_PARENT_SCOPE)
-    set(XLIB_FOUND       ${XLIB_FOUND}       PARENT_SCOPE)
+    set(cmXLIB_FOUND     ${cmXLIB_FOUND}       PARENT_SCOPE)
     set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} PARENT_SCOPE)
     set(XLIB_INCLUDES    ${XLIB_INCLUDES}    PARENT_SCOPE)
     set(XLIB_SOURCES     ${XLIB_SOURCES}     PARENT_SCOPE)
     set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   PARENT_SCOPE)
     set(XLIB_LOCATION    ${XLIB_LOCATION}    PARENT_SCOPE)
 else()
-    set(XLIB_FOUND       ${XLIB_FOUND})
+    set(cmXLIB_FOUND     ${cmXLIB_FOUND})
     set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS})
     set(XLIB_INCLUDES    ${XLIB_INCLUDES})
     set(XLIB_SOURCES     ${XLIB_SOURCES})

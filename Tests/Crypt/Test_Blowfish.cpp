@@ -17,7 +17,7 @@ xTEST_UNIT(Test_Blowfish)
 bool_t
 Test_Blowfish::unit()
 {
-#if cmHAVE_OPENSSL_CRYPTO
+#if cmOPENSSL_CRYPTO_FOUND
 
     xTEST_CASE("encryptCfb64")
     {
@@ -81,7 +81,7 @@ Test_Blowfish::unit()
         }
     }
 
-#endif // cmHAVE_OPENSSL_CRYPTO
+#endif // cmOPENSSL_CRYPTO_FOUND
 
     return true;
 }

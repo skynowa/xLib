@@ -46,37 +46,37 @@
 //-------------------------------------------------------------------------------------------------
 ///@name Git information
 ///@{
-#cmakedefine cmHAVE_GIT_REVISION 1
-#cmakedefine cmGIT_REVISION_BRANCH xT("@GIT_REVISION_BRANCH@")
-#cmakedefine cmGIT_REVISION_HASH xT("@GIT_REVISION_HASH@")
+#cmakedefine cmGIT_REVISION_FOUND 1
+#cmakedefine cmGIT_REVISION_BRANCH xT("@cmGIT_REVISION_BRANCH@")
+#cmakedefine cmGIT_REVISION_HASH xT("@cmGIT_REVISION_HASH@")
 ///@}
 
 ///@name detecting features
 ///@{
-#cmakedefine cmHAVE_OPENSSL_CRYPTO 1
-#cmakedefine cmMYSQL_HAVE 1
-#cmakedefine cmHAVE_PR_SET_DUMPABLE 1
-#cmakedefine cmHAVE_RLIMIT_CORE 1
-#cmakedefine cmHAVE_PT_DENY_ATTACH 1
-#cmakedefine cmHAVE_SCHED_GETCPU 1
-#cmakedefine cmHAVE_GETCPU 1
-#cmakedefine cmHAVE_GETLOGIN_R 1
-#cmakedefine cmHAVE_GNU_GET_LIBC 1
-#cmakedefine cmHAVE_CS_GNU_LIBPTHREAD_VERSION 1
-#cmakedefine cmHAVE_SCHED_SETAFFINITY 1
-#cmakedefine cmHAVE_GETSID 1
-#cmakedefine cmHAVE_GETPWUID_R 1
-#cmakedefine cmHAVE_SETMNTENT 1
-#cmakedefine cmHAVE_GETMNTENT_R 1
-#cmakedefine cmHAVE_ENDMNTENT 1
-#cmakedefine cmHAVE_RAND_R 1
-#cmakedefine cmHAVE_SRANDOM_R 1
-#cmakedefine cmHAVE_RANDOM_R 1
+#cmakedefine cmOPENSSL_CRYPTO_FOUND 1
+#cmakedefine cmPR_SET_DUMPABLE_FOUND 1
+#cmakedefine cmRLIMIT_CORE_FOUND 1
+#cmakedefine cmPT_DENY_ATTACH_FOUND 1
+#cmakedefine cmSCHED_GETCPU_FOUND 1
+#cmakedefine cmGETCPU_FOUND 1
+#cmakedefine cmGETLOGIN_R_FOUND 1
+#cmakedefine cmGNU_GET_LIBC_FOUND 1
+#cmakedefine cmCS_GNU_LIBPTHREAD_VERSION_FOUND 1
+#cmakedefine cmSCHED_SETAFFINITY_FOUND 1
+#cmakedefine cmGETSID_FOUND 1
+#cmakedefine cmGETPWUID_R_FOUND 1
+#cmakedefine cmSETMNTENT_FOUND 1
+#cmakedefine cmGETMNTENT_R_FOUND 1
+#cmakedefine cmENDMNTENT_FOUND 1
+#cmakedefine cmRAND_R_FOUND 1
+#cmakedefine cmSRANDOM_R_FOUND 1
+#cmakedefine cmRANDOM_R_FOUND 1
 
-#cmakedefine cmHAVE_EXECINFO 1
-#cmakedefine cmHAVE_XCB 1
-#cmakedefine cmHAVE_ADDR2LINE 1
-#cmakedefine cmADDR2LINE_FILE_PATH xT("@ADDR2LINE_FILE_PATH@")
+#cmakedefine cmMYSQL_FOUND 1
+#cmakedefine cmEXECINFO_FOUND 1
+#cmakedefine cmXCB_FOUND 1
+#cmakedefine cmADDR2LINE_FOUND 1
+#cmakedefine cmADDR2LINE_FILE_PATH xT("@cmADDR2LINE_FILE_PATH@")
 ///@}
 
 //-------------------------------------------------------------------------------------------------
