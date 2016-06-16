@@ -19,7 +19,7 @@ xTEST_UNIT(Test_Pop3Client)
 bool_t
 Test_Pop3Client::unit()
 {
-#if cmHAVE_OPENSSL_CRYPTO
+#if cmOPENSSL_CRYPTO_FOUND
     {
         // FIX: temp disable
         return true;
@@ -160,7 +160,7 @@ Test_Pop3Client::unit()
     objPop3.disconnect();
 #else
     Trace() << xT("[skip]");
-#endif // cmHAVE_OPENSSL_CRYPTO
+#endif // cmOPENSSL_CRYPTO_FOUND
 
     return true;
 }

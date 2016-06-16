@@ -1,13 +1,6 @@
 #--------------------------------------------------------------------------------------------------
-# \file  FindxLib.cmake
-# \brief Find xLib
-#
-# XLIB_LOCATION    - root diractory [in]
-# XLIB_FOUND       - found or not
-# XLIB_DEFINITIONS - definitions
-# XLIB_INCLUDES    - include pathes
-# XLIB_SOURCES     - source pathes
-# XLIB_LIBRARIES   - libraries list
+# \file  Config.cmake
+# \brief Config for xLib
 #--------------------------------------------------------------------------------------------------
 
 
@@ -16,8 +9,8 @@
 get_directory_property(IS_PARENT_SCOPE PARENT_DIRECTORY)
 
 if (IS_PARENT_SCOPE)
-    set(cmOPTION_PROJECT_HEADER_ONLY   ON  CACHE BOOL "Project: header only" FORCE PARENT_SCOPE)
-    set(cmOPTION_PROJECT_LIB_STATIC    OFF CACHE BOOL "Project: static library" FORCE PARENT_SCOPE)
+    set(cmOPTION_PROJECT_HEADER_ONLY   OFF  CACHE BOOL "Project: header only" FORCE PARENT_SCOPE)
+    set(cmOPTION_PROJECT_LIB_STATIC    ON CACHE BOOL "Project: static library" FORCE PARENT_SCOPE)
     set(cmOPTION_PROJECT_LIB_SHARE     OFF CACHE BOOL "Project: share library" FORCE PARENT_SCOPE)
     set(cmOPTION_PROJECT_LIB_MODULE    OFF CACHE BOOL "Project: dynamic-link library" FORCE PARENT_SCOPE)
     set(cmOPTION_BUILD_TESTS           ON  CACHE BOOL "Build tests" FORCE PARENT_SCOPE)
@@ -34,8 +27,8 @@ if (IS_PARENT_SCOPE)
     set(cmOPTION_TEST_PRIVATE          OFF CACHE BOOL "Test private data" FORCE PARENT_SCOPE)
     set(cmOPTION_TEST_TRACING          ON  CACHE BOOL "Use tracing in tests" FORCE PARENT_SCOPE)
 else()
-    set(cmOPTION_PROJECT_HEADER_ONLY   ON  CACHE BOOL "Project: header only" FORCE)
-    set(cmOPTION_PROJECT_LIB_STATIC    OFF CACHE BOOL "Project: static library" FORCE)
+    set(cmOPTION_PROJECT_HEADER_ONLY   OFF  CACHE BOOL "Project: header only" FORCE)
+    set(cmOPTION_PROJECT_LIB_STATIC    ON CACHE BOOL "Project: static library" FORCE)
     set(cmOPTION_PROJECT_LIB_SHARE     OFF CACHE BOOL "Project: share library" FORCE)
     set(cmOPTION_PROJECT_LIB_MODULE    OFF CACHE BOOL "Project: dynamic-link library" FORCE)
     set(cmOPTION_BUILD_TESTS           ON  CACHE BOOL "Build tests" FORCE)

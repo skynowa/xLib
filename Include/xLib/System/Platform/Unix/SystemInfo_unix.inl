@@ -144,12 +144,12 @@ SystemInfo::_currentCpuNum_impl() const
     xTEST_DIFF(liRv, - 1L);
 
     ulRv = cpu;
-#elif cmHAVE_SCHED_GETCPU
+#elif cmSCHED_GETCPU_FOUND
     int_t iRv = ::sched_getcpu();
     xTEST_DIFF(iRv, - 1);
 
     ulRv = static_cast<ulong_t>( iRv );
-#elif cmHAVE_GETCPU
+#elif cmGETCPU_FOUND
     // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
     uint_t cpu = 0U;
 
@@ -196,7 +196,7 @@ SystemInfo::glibcVersion() const
 {
     std::tstring_t version;
     {
-    #if cmHAVE_GNU_GET_LIBC
+    #if cmGNU_GET_LIBC_FOUND
         cchar *libc_version = ::gnu_get_libc_version();
         if (libc_version == xPTR_NULL) {
             version = Const::strUnknown();
@@ -211,7 +211,7 @@ SystemInfo::glibcVersion() const
 
     std::tstring_t release;
     {
-    #if cmHAVE_GNU_GET_LIBC
+    #if cmGNU_GET_LIBC_FOUND
         cchar *libc_release = ::gnu_get_libc_release();
         if (libc_release == xPTR_NULL) {
             release = Const::strUnknown();
@@ -233,7 +233,7 @@ SystemInfo::libPthreadVersion() const
 {
     std::tstring_t sRv;
 
-#if cmHAVE_CS_GNU_LIBPTHREAD_VERSION
+#if cmCS_GNU_LIBPTHREAD_VERSION_FOUND
     std::string buff;
 
     std::size_t buffBytes;

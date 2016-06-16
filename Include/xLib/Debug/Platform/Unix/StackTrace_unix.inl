@@ -4,7 +4,7 @@
  */
 
 
-#if cmHAVE_EXECINFO
+#if cmEXECINFO_FOUND
     #include <execinfo.h> // lib: -lexecinfo (FreeBSD)
 #endif
 
@@ -29,7 +29,7 @@ StackTrace::_get_impl(
     std::vector<std::vec_tstring_t> stack;
     std::ctstring_t                 dataNotFound = xT("[???]");
 
-#if cmHAVE_EXECINFO
+#if cmEXECINFO_FOUND
     void_t *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
 
     int_t framesNum = ::backtrace(stackBuff, xSTACK_TRACE_FRAMES_MAX);
@@ -113,7 +113,7 @@ StackTrace::_get_impl(
     } // for
 #else
     xBUILD_IMPL("StackTrace::_get()");
-#endif // cmHAVE_EXECINFO
+#endif // cmEXECINFO_FOUND
 
     // out
     a_stack->swap(stack);
@@ -128,7 +128,7 @@ StackTrace::_addr2Line(
     ulong_t        *a_sourceLine
 )
 {
-#if cmHAVE_ADDR2LINE
+#if cmADDR2LINE_FOUND
    /**
     * FAQ: addr2line
     *
