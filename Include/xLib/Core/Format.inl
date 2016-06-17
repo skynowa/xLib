@@ -406,6 +406,18 @@ Format::_format(
     _formatContainer(a_ss, a_value);
 }
 //-------------------------------------------------------------------------------------------------
+template<typename... Args>
+inline void_t
+Format::_format(
+	std::tstringstream_t      &a_ss,     ///< [out]
+	const std::tuple<Args...> &a_value   ///< value
+)
+{
+	a_ss << xT("{");
+	TupleFormat<decltype(a_value), sizeof...(Args)>::format(a_ss, a_value);
+	a_ss << xT("}");
+}
+//-------------------------------------------------------------------------------------------------
 
 #endif // xLANG_CPP11
 
