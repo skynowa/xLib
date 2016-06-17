@@ -13,10 +13,6 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Log/Trace.h>
 
-#if xCOMPILER_MS
-    #pragma comment(lib, "ws2_32.Lib")
-#endif
-
 
 xNAMESPACE_BEGIN2(xlib, net)
 

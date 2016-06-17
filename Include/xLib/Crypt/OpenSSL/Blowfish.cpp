@@ -17,16 +17,6 @@
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
 
-#if xENV_WIN
-    #if xCOMPILER_MS
-        #pragma comment(lib, "libeay32.lib")
-    #else
-        // -lssl
-    #endif
-#else
-    // -lssl
-#endif
-
 
 xNAMESPACE_BEGIN2(xlib, crypt)
 

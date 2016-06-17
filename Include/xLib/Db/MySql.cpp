@@ -11,14 +11,6 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 
-#if xENV_WIN
-    #if !xCOMPILER_MINGW
-        #pragma comment(lib, "mysqlclient.lib")
-    #endif
-#else
-    // lib: -lmysqlclient
-#endif
-
 
 xNAMESPACE_BEGIN2(xlib, db)
 

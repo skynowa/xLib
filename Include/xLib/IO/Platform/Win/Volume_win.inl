@@ -4,11 +4,6 @@
  */
 
 
-#if !xCOMPILER_MINGW
-    #pragma comment(lib, "mpr.lib")
-#endif
-
-
 xNAMESPACE_BEGIN2(xlib, io)
 
 /**************************************************************************************************
