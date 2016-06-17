@@ -4,11 +4,6 @@
  */
 
 
-#if !xCOMPILER_MINGW
-    #pragma comment(lib, "psapi.lib")
-#endif
-
-
 xNAMESPACE_BEGIN2(xlib, sync)
 
 /**************************************************************************************************

@@ -12,7 +12,6 @@
     #endif
 
     #include <DbgHelp.h>
-    #pragma comment(lib, "DbgHelp.Lib")
 #endif
 
 

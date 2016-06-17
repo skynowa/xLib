@@ -15,8 +15,7 @@
 #include <objbase.h>
 #include <process.h>
 #include <lmcons.h>
-#include <lm.h>         // lib: netapi32.lib
-#pragma comment(lib, "netapi32.lib")
+#include <lm.h>
 #include <sys/locking.h>
 #include <io.h>
 #include <psapi.h>
