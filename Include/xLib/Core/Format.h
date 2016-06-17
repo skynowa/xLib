@@ -12,8 +12,6 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
-#define xLANG_CPP11 1
-
 class FormatC
     ///< format string in C style
 {
