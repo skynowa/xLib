@@ -1,12 +1,8 @@
 /**
- * \file   BuildInfo.inl
+ * \file   BuildInfo.inl  (header only)
  * \brief  build information
  */
 
-
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "BuildInfo.h"
-#endif
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Const.h>

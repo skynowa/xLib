@@ -1,5 +1,5 @@
 /**
- * \file   BuildInfo.h
+ * \file   BuildInfo.h (header only)
  * \brief  build information
  */
 
@@ -60,6 +60,4 @@ private:
 
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "BuildInfo.cpp"
-#endif
+#include "BuildInfo.inl"
