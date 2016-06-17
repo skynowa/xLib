@@ -7,6 +7,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Format.h>
+#include <xLib/IO/Path.h>
 
 
 xNAMESPACE_BEGIN2(xlib, debug)
@@ -17,7 +18,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+inline bool_t
 BuildInfo::isRelease() const
 {
 #if xBUILD_DEBUG
@@ -27,7 +28,7 @@ BuildInfo::isRelease() const
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::datetime() const
 {
     std::tstring_t sRv;
@@ -37,7 +38,7 @@ BuildInfo::datetime() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::langStandart() const
 {
     std::tstring_t sRv;
@@ -80,7 +81,7 @@ BuildInfo::langStandart() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::osEnvironment() const
 {
     std::tstring_t sRv;
@@ -98,7 +99,7 @@ BuildInfo::osEnvironment() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::os() const
 {
     std::tstring_t sRv;
@@ -155,7 +156,7 @@ BuildInfo::os() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::arch() const
 {
     std::tstring_t sRv;
@@ -207,7 +208,7 @@ BuildInfo::arch() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::bitsArch() const
 {
     std::tstring_t sRv;
@@ -221,7 +222,7 @@ BuildInfo::bitsArch() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::compiler() const
 {
     std::tstring_t sRv;
@@ -255,7 +256,7 @@ BuildInfo::compiler() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::compilerFlags() const
 {
     std::tstring_t sRv;
@@ -265,22 +266,22 @@ BuildInfo::compilerFlags() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::libs() const
 {
-	std::tstring_t sRv;
+    std::tstring_t sRv;
 
-	std::vec_tstring_t libPathes;
-	String::split(xXLIB_LIBRARIES, xT(";"), &libPathes);
+    std::vec_tstring_t libPathes;
+    String::split(xXLIB_LIBRARIES, xT(";"), &libPathes);
 
-	xFOR_EACH_CONST(std::vec_tstring_t, it, libPathes) {
-		sRv += Path(*it).fileName() + xT("; ");
-	}
+    xFOR_EACH_CONST(std::vec_tstring_t, it, libPathes) {
+        sRv += Path(*it).fileName() + xT("; ");
+    }
 
-	return sRv;
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+inline bool_t
 BuildInfo::isUnicodeEncoding() const
 {
 #if xUNICODE
@@ -290,7 +291,7 @@ BuildInfo::isUnicodeEncoding() const
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::stdLibC() const
 {
     std::tstring_t sRv;
@@ -328,7 +329,7 @@ BuildInfo::stdLibC() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::stdLibCpp() const
 {
     std::tstring_t sRv;
@@ -360,7 +361,7 @@ BuildInfo::stdLibCpp() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::qt() const
 {
     std::tstring_t sRv;
@@ -380,7 +381,7 @@ BuildInfo::qt() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::xlibVersion() const
 {
     std::tstring_t sRv;
@@ -391,7 +392,7 @@ BuildInfo::xlibVersion() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::binaryType() const
 {
     std::tstring_t sRv;
@@ -405,7 +406,7 @@ BuildInfo::binaryType() const
 #elif cmOPTION_PROJECT_LIB_MODULE
     sRv = xT("Dynamic link library");
 #else
-	#error xLib: unknown project type
+    #error xLib: unknown project type
 
     sRv = xUNKNOWN_CSTRING;
 #endif
@@ -413,7 +414,7 @@ BuildInfo::binaryType() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+inline std::tstring_t
 BuildInfo::cmake() const
 {
     std::tstring_t sRv;
