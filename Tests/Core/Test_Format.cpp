@@ -527,8 +527,7 @@ Test_Format::unit()
 
     xTEST_CASE("std::array")
     {
-        std::array
-        <int_t, 5> value {2, 16, 77, 34, 50};
+        std::array<int_t, 5> value {2, 16, 77, 34, 50};
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 16, 77, 34, 50}")));
@@ -594,6 +593,14 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 1, 1, 0}")));
     }
 #endif // xLANG_CPP11
+
+    xTEST_CASE("std::tuple")
+    {
+		auto value = std::make_tuple(xT("test"), 3ULL, 14, xT('y'));
+
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{test, 3, 14, y}")));
+    }
 
     xTEST_CASE("QString")
     {

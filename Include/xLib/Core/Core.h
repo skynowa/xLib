@@ -70,6 +70,7 @@
     #include <forward_list>
     #include <unordered_map>
     #include <unordered_set>
+    #include <tuple>
 #else
     // #include <xLib/Core/Array.h>
 #endif

@@ -12,6 +12,8 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
+#define xLANG_CPP11 1
+
 class FormatC
     ///< format string in C style
 {
@@ -24,6 +26,8 @@ class Format
     ///< format string
 {
 public:
+	// TODO: more overload methods
+
 #define xFORMAT_STR_DECLARE(n) \
     template<xVA_TYPES_##n> \
     static std::tstring_t str(std::ctstring_t &format, xVA_VARS_##n) xWARN_UNUSED_RV;
@@ -142,6 +146,30 @@ private:
 
     template<typename T>
     static void_t _format(std::tstringstream_t &ss, const std::unordered_multiset<T> &value);
+
+	template<typename T, std::size_t N>
+	struct TupleFormat
+	{
+		static void_t
+		format(std::tstringstream_t &a_ss, const T &a_value)
+		{
+			TupleFormat<T, N - 1>::format(a_ss, a_value);
+			a_ss << Format::_delimiter() << std::get<N - 1>(a_value);
+		}
+	};
+
+	template<typename T>
+	struct TupleFormat<T, 1>
+	{
+		static void_t
+		format(std::tstringstream_t &a_ss, const T &a_value)
+		{
+			a_ss << std::get<0>(a_value);
+		}
+	};
+
+    template<typename... Args>
+    static void_t _format(std::tstringstream_t &ss, const std::tuple<Args...> &value);
 #endif
 
 #if xLIB_QT
