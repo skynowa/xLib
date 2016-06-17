@@ -592,7 +592,6 @@ Test_Format::unit()
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 1, 1, 0}")));
     }
-#endif // xLANG_CPP11
 
     xTEST_CASE("std::tuple")
     {
@@ -601,6 +600,7 @@ Test_Format::unit()
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{test, 3, 14, y}")));
     }
+#endif // xLANG_CPP11
 
     xTEST_CASE("QString")
     {
