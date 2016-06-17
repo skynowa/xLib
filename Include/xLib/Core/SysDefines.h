@@ -347,11 +347,12 @@
 #endif
 ///@}
 //-------------------------------------------------------------------------------------------------
-///@name Compiler flags
-///@{
 #define xCOMPILER_FLAGS \
 	cmXLIB_COMPILER_FLAGS
-///@}
+	///< Compiler flags
+#define xXLIB_LIBRARIES \
+	cmXLIB_LIBRARIES
+	///< xLib linked linraries
 //-------------------------------------------------------------------------------------------------
 ///@name Standard C libraries
 ///@{

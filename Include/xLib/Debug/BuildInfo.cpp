@@ -275,7 +275,7 @@ BuildInfo::libs() const
 	std::tstring_t sRv;
 
 	std::vec_tstring_t libPathes;
-	String::split(cmXLIB_LIBRARIES, xT(";"), &libPathes);
+	String::split(xXLIB_LIBRARIES, xT(";"), &libPathes);
 
 	xFOR_EACH_CONST(std::vec_tstring_t, it, libPathes) {
 		sRv += Path(*it).fileName() + xT("; ");
