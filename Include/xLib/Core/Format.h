@@ -16,7 +16,7 @@ class FormatC
     ///< format string in C style
 {
 public:
-    static std::tstring_t str(ctchar_t *format, ...) xWARN_UNUSED_RV __attribute__((c_str(printf, 1, 2)));
+    static std::tstring_t str(ctchar_t *format, ...) xWARN_UNUSED_RV;
     static std::tstring_t strV(ctchar_t *format, va_list args) xWARN_UNUSED_RV;
 };
 //-------------------------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ class Format
     ///< format string
 {
 public:
-	// TODO: more overload methods
+    // TODO: more overload methods
 
 #define xFORMAT_STR_DECLARE(n) \
     template<xVA_TYPES_##n> \
@@ -145,26 +145,26 @@ private:
     template<typename T>
     static void_t _format(std::tstringstream_t &ss, const std::unordered_multiset<T> &value);
 
-	template<typename T, std::size_t N>
-	struct TupleFormat
-	{
-		static void_t
-		format(std::tstringstream_t &a_ss, const T &a_value)
-		{
-			TupleFormat<T, N - 1>::format(a_ss, a_value);
-			a_ss << Format::_delimiter() << std::get<N - 1>(a_value);
-		}
-	};
+    template<typename T, std::size_t N>
+    struct TupleFormat
+    {
+        static void_t
+        format(std::tstringstream_t &a_ss, const T &a_value)
+        {
+            TupleFormat<T, N - 1>::format(a_ss, a_value);
+            a_ss << Format::_delimiter() << std::get<N - 1>(a_value);
+        }
+    };
 
-	template<typename T>
-	struct TupleFormat<T, 1>
-	{
-		static void_t
-		format(std::tstringstream_t &a_ss, const T &a_value)
-		{
-			a_ss << std::get<0>(a_value);
-		}
-	};
+    template<typename T>
+    struct TupleFormat<T, 1>
+    {
+        static void_t
+        format(std::tstringstream_t &a_ss, const T &a_value)
+        {
+            a_ss << std::get<0>(a_value);
+        }
+    };
 
     template<typename... Args>
     static void_t _format(std::tstringstream_t &ss, const std::tuple<Args...> &value);

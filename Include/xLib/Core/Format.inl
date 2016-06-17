@@ -409,13 +409,13 @@ Format::_format(
 template<typename... Args>
 inline void_t
 Format::_format(
-	std::tstringstream_t      &a_ss,     ///< [out]
-	const std::tuple<Args...> &a_value   ///< value
+    std::tstringstream_t      &a_ss,     ///< [out]
+    const std::tuple<Args...> &a_value   ///< value
 )
 {
-	a_ss << xT("{");
-	TupleFormat<decltype(a_value), sizeof...(Args)>::format(a_ss, a_value);
-	a_ss << xT("}");
+    a_ss << xT("{");
+    TupleFormat<decltype(a_value), sizeof...(Args)>::format(a_ss, a_value);
+    a_ss << xT("}");
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -431,7 +431,7 @@ Format::_format(
 #if xLIB_QT
 
 /* static */
-xINLINE void_t
+inline void_t
 Format::_format(
     std::tstringstream_t &a_ss,     ///< [out]
     const QString        &a_value   ///< value
