@@ -233,7 +233,7 @@ XcbMsgBox::_setOnTop()
     xTEST_GR(_cookie.sequence, 0U);
 }
 //-------------------------------------------------------------------------------------------------
-XcbMsgBox::ExModalResult
+xINLINE XcbMsgBox::ExModalResult
 XcbMsgBox::_execute(
     std::cvec_tstring_t &a_text
 )
