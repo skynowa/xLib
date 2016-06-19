@@ -8,7 +8,7 @@
     #include "Application.h"
 #endif
 
-xLIB_CORE_APPLICATION_STATIC_DECLARE
+// TODO: xLIB_CORE_APPLICATION_STATIC_DECLARE
 
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/String.h>

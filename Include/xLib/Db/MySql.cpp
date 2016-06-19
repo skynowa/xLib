@@ -270,7 +270,7 @@ MySqlRecordset::isValid() const
     return (_result != xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
-uint_t
+xINLINE uint_t
 MySqlRecordset::fieldsNum() const
 {
     xTEST_EQ(isValid(), true);
