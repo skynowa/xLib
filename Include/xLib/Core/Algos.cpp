@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-bool_t
+xINLINE bool_t
 Algos::startsWith(
     std::ctstring_t &a_value,
     std::ctstring_t &a_prefix
@@ -28,7 +28,7 @@ Algos::startsWith(
     return a_value.size() >= a_prefix.size() && a_value.substr(0, a_prefix.size()) == a_prefix;
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
+xINLINE bool_t
 Algos::endsWith(
     std::ctstring_t &a_value,
     std::ctstring_t &a_suffix
@@ -38,7 +38,7 @@ Algos::endsWith(
         a_value.substr(a_value.size() - a_suffix.size(), a_suffix.size()) == a_suffix;
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
+xINLINE bool_t
 Algos::contains(
     std::ctstring_t &a_value,
     std::ctstring_t &a_infix

@@ -39,6 +39,7 @@ Manager::Manager(
     _construct(a_argsNum, a_args);
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE
 Manager::Manager(
     cManagerData &a_data
 ) :

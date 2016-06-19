@@ -57,7 +57,7 @@ Unit::~Unit() /* = 0 */
     Dir( data.tempDirPath ).pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
-void_t
+xINLINE void_t
 Unit::setData(
     cUnitData &a_data
 )
