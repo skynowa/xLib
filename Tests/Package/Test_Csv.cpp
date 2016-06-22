@@ -15,7 +15,7 @@ Test_Csv::unit()
 {
     xTEST_CASE("CsvReader::CsvReader")
     {
-        xlib::package::ICsv::CsvData csvData;
+        xlib::package::CsvData csvData;
         csvData.fileExtension    = xT("csv");
         csvData.hasHeader        = true;
         csvData.eol              = xT("\n");
