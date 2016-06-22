@@ -8,10 +8,11 @@
     #include "Csv.h"
 #endif
 
+
 xNAMESPACE_BEGIN2(xlib, package)
 
 /**************************************************************************************************
-*   public
+*   CsvReader - public
 *
 **************************************************************************************************/
 
@@ -20,29 +21,10 @@ xINLINE
 CsvReader::CsvReader(
     cCsvData &a_data
 ) :
-    _data(a_data)
+    _data(a_data),
+	_rows()
 {
 }
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*   public
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-xINLINE
-CsvWriter::CsvWriter(
-    cCsvData &a_data
-) :
-    _data(a_data)
-{
-}
-//-------------------------------------------------------------------------------------------------
-
-
-
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 CsvReader::loadFile(
@@ -67,9 +49,7 @@ CsvReader::loadString(
 xINLINE ICsv::row_t
 CsvReader::headers()
 {
-    row_t row;
-
-    return row;
+    return _rows.at(0);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
@@ -77,37 +57,28 @@ CsvReader::header(
     std::csize_t a_column
 )
 {
-    xUNUSED(a_column);
-
-    std::tstring_t sRv;
-
-    return sRv;
+    return _rows.at(0).at(a_column);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::size_t
 CsvReader::columns()
 {
-    return 0;
+    return _rows.at(0).size();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::size_t
 CsvReader::rows()
 {
-    return 0;
+    return _rows.size();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 CsvReader::cell(
-    std::csize_t a_row,
-    std::csize_t a_column
+    std::csize_t a_row,		///< row
+    std::csize_t a_column	///< column
 )
 {
-    xUNUSED(a_row);
-    xUNUSED(a_column);
-
-    std::tstring_t sRv;
-
-    return sRv;
+    return _rows.at(a_row).at(a_column);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -119,24 +90,34 @@ CsvReader::_isValid()
 xINLINE void_t
 CsvReader::_clear()
 {
+	_rows.clear();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
-CsvWriter::setHeaders(
-    crow_t &a_values
-)
-{
-    xUNUSED(a_values);
 
+
+/**************************************************************************************************
+*   CsvReader - public
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+xINLINE
+CsvWriter::CsvWriter(
+    cCsvData &a_data
+) :
+    _data(a_data)
+{
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 CsvWriter::saveFile(
-    const std::vector<row_t> &a_csv,
-    std::ctstring_t          &a_filePath
+	crow_t          &a_header,
+	crows_t         &a_rows,
+    std::ctstring_t &a_filePath
 )
 {
-    xUNUSED(a_csv);
+    xUNUSED(a_header);
+    xUNUSED(a_rows);
     xUNUSED(a_filePath);
 
     return true;
@@ -144,11 +125,13 @@ CsvWriter::saveFile(
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 CsvWriter::saveString(
-    const std::vector<row_t> &a_csv,
-    std::tstring_t           *a_rawString
+	crow_t         &a_header,
+	crows_t        &a_rows,
+    std::tstring_t *a_rawString
 )
 {
-    xUNUSED(a_csv);
+    xUNUSED(a_header);
+    xUNUSED(a_rows);
     xUNUSED(a_rawString);
 
     return true;
