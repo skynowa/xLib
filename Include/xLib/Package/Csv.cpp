@@ -8,6 +8,10 @@
     #include "Csv.h"
 #endif
 
+#include <xLib/Core/Const.h>
+#include <xLib/Core/String.h>
+#include <xLib/IO/File.h>
+
 
 xNAMESPACE_BEGIN2(xlib, package)
 
@@ -116,9 +120,20 @@ CsvWriter::saveFile(
     std::ctstring_t &a_filePath
 )
 {
-    xUNUSED(a_header);
-    xUNUSED(a_rows);
-    xUNUSED(a_filePath);
+	// a_header
+	{
+		std::ctstring_t &content = String::join(a_header, Const::nl());
+
+		File::textWrite(a_filePath, content, File::omAppend);
+	}
+
+	// a_rows
+	xFOR_EACH_CONST(crows_t, it_row, a_rows)
+	{
+		std::ctstring_t &content = String::join(*it_row, Const::nl());
+
+		File::textWrite(a_filePath, content, File::omAppend);
+	}
 
     return true;
 }
@@ -130,9 +145,22 @@ CsvWriter::saveString(
     std::tstring_t *a_rawString
 )
 {
-    xUNUSED(a_header);
-    xUNUSED(a_rows);
-    xUNUSED(a_rawString);
+	a_rawString->clear();
+
+	// a_header
+	{
+		std::ctstring_t &content = String::join(a_header, Const::nl());
+
+		*a_rawString += content;
+	}
+
+	// a_rows
+	xFOR_EACH_CONST(crows_t, it_row, a_rows)
+	{
+		std::ctstring_t &content = String::join(*it_row, Const::nl());
+
+		*a_rawString += content;
+	}
 
     return true;
 }
