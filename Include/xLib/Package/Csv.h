@@ -14,7 +14,7 @@ class ICsv
     ///< Comma-separated values reader
 {
 public:
-    typedef std::vector<std::tstring_t> row_t;
+    typedef std::vec_tstring_t row_t;
     xTYPEDEF_CONST(row_t);
 
     struct CsvData
