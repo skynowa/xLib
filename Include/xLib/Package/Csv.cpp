@@ -149,17 +149,17 @@ CsvWriter::saveString(
 
 	// a_header
 	{
-		std::ctstring_t &content = String::join(a_header, Const::nl());
+		std::ctstring_t &content = String::join(a_header, _data.delimiter);
 
-		*out_rawString += content;
+		*out_rawString += content + Const::nl();
 	}
 
 	// a_rows
 	xFOR_EACH_CONST(crows_t, it_row, a_rows)
 	{
-		std::ctstring_t &content = String::join(*it_row, Const::nl());
+		std::ctstring_t &content = String::join(*it_row, _data.delimiter);
 
-		*out_rawString += content;
+		*out_rawString += content + Const::nl();
 	}
 }
 //-------------------------------------------------------------------------------------------------
