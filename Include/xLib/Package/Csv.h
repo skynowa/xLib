@@ -10,6 +10,22 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, package)
 //-------------------------------------------------------------------------------------------------
+struct CsvData
+{
+	std::tstring_t fileExtension;
+	bool_t         hasHeader;
+	std::tstring_t eol;
+	tchar_t        delimiter;
+	bool_t         isTrimCells;
+	bool_t         isSkipEmptyLines;
+
+	CsvData() :
+		hasHeader(true)
+	{
+	}
+};
+xTYPEDEF_CONST(CsvData);
+
 class ICsv
     ///< CSV reader
 {
@@ -19,22 +35,6 @@ public:
 
     typedef std::vector<row_t> rows_t;
     xTYPEDEF_CONST(rows_t);
-
-    struct CsvData
-    {
-        std::tstring_t fileExtension;
-        bool_t         hasHeader;
-        std::tstring_t eol;
-        tchar_t        delimiter;
-        bool_t         isTrimCells;
-        bool_t         isSkipEmptyLines;
-
-        CsvData() :
-            hasHeader(true)
-        {
-        }
-    };
-    xTYPEDEF_CONST(CsvData);
 };
 //-------------------------------------------------------------------------------------------------
 class CsvReader :
