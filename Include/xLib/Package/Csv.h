@@ -12,12 +12,12 @@ xNAMESPACE_BEGIN2(xlib, package)
 //-------------------------------------------------------------------------------------------------
 struct CsvData
 {
-	std::tstring_t fileExtension;
-	bool_t         hasHeader;
-	std::tstring_t eol;
+	std::tstring_t fileExtension;		// TODO: now ignore
+	bool_t         hasHeader;			// TODO: now ignore
+	std::tstring_t eol;					// TODO: now ignore
 	tchar_t        delimiter;
-	bool_t         isTrimCells;
-	bool_t         isSkipEmptyLines;
+	bool_t         isTrimCells;			// TODO: now ignore
+	bool_t         isSkipEmptyLines;	// TODO: now ignore
 
 	CsvData() :
 		hasHeader(true)
