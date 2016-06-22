@@ -82,9 +82,6 @@ public:
 private:
     cCsvData & _data;
 
-    bool_t     _isValid();
-    void_t     _clear();
-
     xNO_COPY_ASSIGN(CsvWriter)
 };
 //-------------------------------------------------------------------------------------------------
