@@ -76,8 +76,8 @@ public:
     virtual   ~CsvWriter() {}
         ///< destructor
 
-    bool_t     saveFile(crow_t &header, crows_t &rows, std::ctstring_t &filePath);
-    bool_t     saveString(crow_t &header, crows_t &rows, std::tstring_t *rawString);
+    void_t     saveFile(crow_t &header, crows_t &rows, std::ctstring_t &filePath);
+    void_t     saveString(crow_t &header, crows_t &rows, std::tstring_t *rawString);
 
 private:
     cCsvData & _data;
