@@ -68,7 +68,7 @@ private:
 //-------------------------------------------------------------------------------------------------
 class CsvWriter :
     public ICsv
-    ///< Comma-separated values writer
+    ///< CSV writer
 {
 public:
     explicit   CsvWriter(cCsvData &data);
