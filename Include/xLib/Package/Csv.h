@@ -21,7 +21,13 @@ struct CsvData
 	bool_t         isSkipEmptyLines;	// TODO: now ignore
 
 	CsvData() :
-		hasHeader(true)
+		fileExtension   ( xT("csv") ),
+		hasHeader       ( true ),
+		eol             ( Const::nl() ),
+		delimiter       ( xT(",") ),
+		textDelimeter   ( Const::dqm() ),
+		isTrimCells     ( false ),
+		isSkipEmptyLines( true )
 	{
 	}
 };
