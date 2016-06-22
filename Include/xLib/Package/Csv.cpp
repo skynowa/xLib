@@ -113,7 +113,7 @@ CsvWriter::CsvWriter(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+xINLINE void_t
 CsvWriter::saveFile(
 	crow_t          &a_header,
 	crows_t         &a_rows,
@@ -140,7 +140,7 @@ CsvWriter::saveFile(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+xINLINE void_t
 CsvWriter::saveString(
 	crow_t         &a_header,
 	crows_t        &a_rows,
