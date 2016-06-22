@@ -25,8 +25,8 @@ struct CsvData
 		fileExtension   ( xT("csv") ),
 		hasHeader       ( true ),
 		eol             ( Const::nl() ),
-		delimiter       ( xT(",") ),
-		textDelimeter   ( Const::dqm() ),
+		delimiter       ( xT(',') ),
+		textDelimeter   ( xT('"') ),
 		isTrimCells     ( false ),
 		isSkipEmptyLines( true )
 	{
