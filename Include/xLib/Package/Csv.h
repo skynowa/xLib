@@ -16,6 +16,7 @@ struct CsvData
 	bool_t         hasHeader;			// TODO: now ignore
 	std::tstring_t eol;					// TODO: now ignore
 	tchar_t        delimiter;
+	tchar_t        textDelimeter;		// TODO: now ignore
 	bool_t         isTrimCells;			// TODO: now ignore
 	bool_t         isSkipEmptyLines;	// TODO: now ignore
 
