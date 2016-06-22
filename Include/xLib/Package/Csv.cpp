@@ -120,19 +120,21 @@ CsvWriter::saveFile(
     std::ctstring_t &a_filePath
 )
 {
+	File::clear(a_filePath);
+
 	// a_header
 	{
-		std::ctstring_t &content = String::join(a_header, Const::nl());
+		std::ctstring_t &header = String::join(a_header, Const::nl());
 
-		File::textWrite(a_filePath, content, File::omAppend);
+		File::textWrite(a_filePath, header, File::omAppend);
 	}
 
 	// a_rows
 	xFOR_EACH_CONST(crows_t, it_row, a_rows)
 	{
-		std::ctstring_t &content = String::join(*it_row, Const::nl());
+		std::ctstring_t &row = String::join(*it_row, Const::nl());
 
-		File::textWrite(a_filePath, content, File::omAppend);
+		File::textWrite(a_filePath, row, File::omAppend);
 	}
 
     return true;
