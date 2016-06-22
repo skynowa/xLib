@@ -27,7 +27,7 @@ struct CsvData
 xTYPEDEF_CONST(CsvData);
 
 class ICsv
-    ///< CSV reader
+    ///< CSV interface
 {
 public:
     typedef std::vec_tstring_t row_t;
