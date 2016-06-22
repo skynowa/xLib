@@ -142,16 +142,16 @@ xINLINE void_t
 CsvWriter::saveString(
 	crow_t         &a_header,
 	crows_t        &a_rows,
-    std::tstring_t *a_rawString
+    std::tstring_t *out_rawString
 )
 {
-	a_rawString->clear();
+	out_rawString->clear();
 
 	// a_header
 	{
 		std::ctstring_t &content = String::join(a_header, Const::nl());
 
-		*a_rawString += content;
+		*out_rawString += content;
 	}
 
 	// a_rows
@@ -159,7 +159,7 @@ CsvWriter::saveString(
 	{
 		std::ctstring_t &content = String::join(*it_row, Const::nl());
 
-		*a_rawString += content;
+		*out_rawString += content;
 	}
 }
 //-------------------------------------------------------------------------------------------------
