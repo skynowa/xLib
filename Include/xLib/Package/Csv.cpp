@@ -124,17 +124,17 @@ CsvWriter::saveFile(
 
 	// a_header
 	{
-		std::ctstring_t &header = String::join(a_header, Const::nl());
+		std::ctstring_t &header = String::join(a_header, _data.delimiter);
 
-		File::textWrite(a_filePath, header, File::omAppend);
+		File::textWrite(a_filePath, header + Const::nl(), File::omAppend);
 	}
 
 	// a_rows
 	xFOR_EACH_CONST(crows_t, it_row, a_rows)
 	{
-		std::ctstring_t &row = String::join(*it_row, Const::nl());
+		std::ctstring_t &row = String::join(*it_row, _data.delimiter);
 
-		File::textWrite(a_filePath, row, File::omAppend);
+		File::textWrite(a_filePath, row + Const::nl(), File::omAppend);
 	}
 }
 //-------------------------------------------------------------------------------------------------
