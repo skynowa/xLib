@@ -57,13 +57,13 @@ CsvReader::header(
     std::csize_t a_column
 )
 {
-    return _rows.at(0).at(a_column);
+    return headers().at(a_column);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::size_t
 CsvReader::columns()
 {
-    return _rows.at(0).size();
+    return headers().size();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::size_t
