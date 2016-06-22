@@ -11,11 +11,14 @@
 xNAMESPACE_BEGIN2(xlib, package)
 //-------------------------------------------------------------------------------------------------
 class ICsv
-    ///< Comma-separated values reader
+    ///< CSV reader
 {
 public:
     typedef std::vec_tstring_t row_t;
     xTYPEDEF_CONST(row_t);
+
+    typedef std::vector<row_t> rows_t;
+    xTYPEDEF_CONST(rows_t);
 
     struct CsvData
     {
@@ -36,7 +39,7 @@ public:
 //-------------------------------------------------------------------------------------------------
 class CsvReader :
     public ICsv
-    ///< Comma-separated values reader
+    ///< CSV reader
 {
 public:
     explicit       CsvReader(cCsvData &data);
@@ -55,6 +58,7 @@ public:
 
 private:
     cCsvData &     _data;
+    rows_t         _rows;
 
     bool_t         _isValid();
     void_t         _clear();
@@ -67,21 +71,19 @@ class CsvWriter :
     ///< Comma-separated values writer
 {
 public:
-    explicit       CsvWriter(cCsvData &data);
+    explicit   CsvWriter(cCsvData &data);
         ///< constructor
-    virtual       ~CsvWriter() {}
+    virtual   ~CsvWriter() {}
         ///< destructor
 
-    void_t         setHeaders(crow_t &values);
-
-    bool_t         saveFile(const std::vector<row_t> &csv, std::ctstring_t &filePath);
-    bool_t         saveString(const std::vector<row_t> &csv, std::tstring_t *rawString);
+    bool_t     saveFile(crow_t &header, crows_t &rows, std::ctstring_t &filePath);
+    bool_t     saveString(crow_t &header, crows_t &rows, std::tstring_t *rawString);
 
 private:
-    cCsvData &     _data;
+    cCsvData & _data;
 
-    bool_t         _isValid();
-    void_t         _clear();
+    bool_t     _isValid();
+    void_t     _clear();
 
     xNO_COPY_ASSIGN(CsvWriter)
 };
