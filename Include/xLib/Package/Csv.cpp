@@ -136,8 +136,6 @@ CsvWriter::saveFile(
 
 		File::textWrite(a_filePath, row, File::omAppend);
 	}
-
-    return true;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -163,8 +161,6 @@ CsvWriter::saveString(
 
 		*a_rawString += content;
 	}
-
-    return true;
 }
 //-------------------------------------------------------------------------------------------------
 
