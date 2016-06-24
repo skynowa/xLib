@@ -46,9 +46,6 @@ xPLATFORM_IMPL:
     void_t   _setNonBlockingMode_impl(cbool_t &flag) const;
 };
 
-// TODO: TcpClient::isWritable() - repeats from Socket
-// TODO: TcpClient::isReadable() - repeats from Socket
-
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
