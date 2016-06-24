@@ -183,7 +183,12 @@ Ssh2Client::channelExec(
 
     ::libssh2_channel_set_blocking(_channel, static_cast<int>(a_isBlockingMode));
 
-    iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str());
+    if (a_isBlockingMode) {
+        iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str());
+    } else {
+        while ((iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str())) == LIBSSH2_ERROR_EAGAIN);
+    }
+
     xTEST_GR(iRv, - 1);
 
     return true;
@@ -207,6 +212,7 @@ Ssh2Client::channelReadLine(
 
         for ( ; ; ) {
             int read = ::libssh2_channel_read(_channel, block, blockSizeMin);
+            Trace() << "stdout: " << xTRACE_VAR(read);
             if (read == LIBSSH2_ERROR_EAGAIN) {
                 continue;
             }
@@ -239,7 +245,7 @@ Ssh2Client::channelReadLine(
 
         for ( ; ; ) {
             int read = ::libssh2_channel_read_stderr(_channel, block, blockSizeMin);
-            Trace() << xTRACE_VAR(read);
+            Trace() << "stderr: " << xTRACE_VAR(read);
             if (read == LIBSSH2_ERROR_EAGAIN) {
                 continue;
             }
@@ -265,7 +271,7 @@ Ssh2Client::channelReadLine(
         } // for ( ; ; )
     }
 
-    if (isStdOutChannelEof && stdOut.empty() /*&& isStdErrChannelEof && stdErr.empty()*/) {
+    if (isStdOutChannelEof && stdOut.empty() /* && isStdErrChannelEof && stdErr.empty() */) {
         a_stdOut->clear();
         a_stdErr->clear();
 
