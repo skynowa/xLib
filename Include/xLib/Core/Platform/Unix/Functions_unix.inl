@@ -81,7 +81,12 @@ setlocaleW(
    const wchar_t *a_locale
 )
 {
+    xUNUSED(a_category);
+    xUNUSED(a_locale);
+
     // TODO: setlocaleW - not impl
+
+    return xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int
@@ -90,7 +95,12 @@ statW(
     struct stat   *a_buf
 )
 {
+    xUNUSED(a_path);
+    xUNUSED(a_buf);
+
     // TODO: statW - not impl
+
+    return -1;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int
@@ -99,7 +109,12 @@ chmodW(
     mode_t         a_mode
 )
 {
+    xUNUSED(a_path);
+    xUNUSED(a_mode);
+
     // TODO: chmodW - not impl
+
+    return -1;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE FILE *
@@ -108,7 +123,12 @@ fopenW(
     const wchar_t *a_mode
 )
 {
+    xUNUSED(a_path);
+    xUNUSED(a_mode);
+
     // TODO: fopenW - not impl
+
+    return xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE FILE *
@@ -117,7 +137,12 @@ fdopenW(
     const wchar_t *a_mode
 )
 {
+    xUNUSED(a_fd);
+    xUNUSED(a_mode);
+
     // TODO: fdopenW - not impl
+
+    return xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE FILE *
@@ -127,7 +152,13 @@ freopenW(
     FILE          *a_stream
 )
 {
+    xUNUSED(a_path);
+    xUNUSED(a_mode);
+    xUNUSED(a_stream);
+
     // TODO: freopenW - not impl
+
+    return xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int
@@ -136,7 +167,12 @@ accessW(
     int            a_mode
 )
 {
+    xUNUSED(a_pathname);
+    xUNUSED(a_mode);
+
     // TODO: accessW - not impl
+
+    return - 1;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int
@@ -144,7 +180,11 @@ removeW(
     const wchar_t *a_pathname
 )
 {
+    xUNUSED(a_pathname);
+
     // TODO: removeW - not impl
+
+    return - 1;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int
@@ -152,7 +192,11 @@ unlinkW(
     const wchar_t *a_pathname
 )
 {
+    xUNUSED(a_pathname);
+
     // TODO: unlinkW - not impl
+
+    return - 1;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int
@@ -161,7 +205,12 @@ renameW(
    const wchar_t *a_newname
 )
 {
+    xUNUSED(a_oldname);
+    xUNUSED(a_newname);
+
     // TODO: renameW - not impl
+
+    return - 1;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int
@@ -169,7 +218,11 @@ mkstempW(
     wchar_t *a_template
 )
 {
+    xUNUSED(a_template);
+
     // TODO: mkstempW - not impl
+
+    return - 1;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int
@@ -183,7 +236,17 @@ getnameinfoW(
     int                    a_flags
 )
 {
+    xUNUSED(a_sa);
+    xUNUSED(a_salen);
+    xUNUSED(a_host);
+    xUNUSED(a_hostlen);
+    xUNUSED(a_serv);
+    xUNUSED(a_servlen);
+    xUNUSED(a_flags);
+
     // TODO: getnameinfoW - not impl
+
+    return - 1;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int
@@ -194,7 +257,14 @@ getaddrinfoW(
     struct addrinfo       **a_res
 )
 {
+    xUNUSED(a_node);
+    xUNUSED(a_service);
+    xUNUSED(a_hints);
+    xUNUSED(a_res);
+
     // TODO: getaddrinfoW - not impl
+
+    return - 1;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int
@@ -202,11 +272,12 @@ systemW(
     const wchar_t *a_command
 )
 {
+    xUNUSED(a_command);
+
     // TODO: systemW - not impl
+
+    return - 1;
 }
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, core)

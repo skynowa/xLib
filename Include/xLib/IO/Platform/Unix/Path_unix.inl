@@ -17,7 +17,12 @@ xNAMESPACE_BEGIN2(xlib, io)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
-static void_t function() { ; }
+#if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
+    static void_t
+    function()
+    {
+    }
+#endif
 
 xNAMESPACE_ANONYM_END
 

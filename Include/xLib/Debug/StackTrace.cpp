@@ -104,23 +104,23 @@ StackTrace::_format(
     std::tstring_t     sRv;
     std::vector<int_t> maxs(::elementsNum, 0);
 
-	// add header
-	{
-		std::vec_tstring_t stackHeader;
-		stackHeader.push_back(xT("Module"));
-		stackHeader.push_back(xT("File"));
-		stackHeader.push_back(xT("Line"));
-		stackHeader.push_back(xT("Offset"));
-		stackHeader.push_back(xT("Function"));
+    // add header
+    {
+        std::vec_tstring_t stackHeader;
+        stackHeader.push_back(xT("Module"));
+        stackHeader.push_back(xT("File"));
+        stackHeader.push_back(xT("Line"));
+        stackHeader.push_back(xT("Offset"));
+        stackHeader.push_back(xT("Function"));
 
-		a_stack.insert(a_stack.begin(), stackHeader);
-	}
+        a_stack.insert(a_stack.begin(), stackHeader);
+    }
 
     // get elements max sizes
     for (size_t i = 0; i < ::elementsNum; ++ i) {
         xFOR_EACH_CONST(std::vector<std::vec_tstring_t>, it, a_stack) {
             std::csize_t current = it->at(i).size();
-            xCHECK_DO(current > maxs[i], maxs[i] = current);
+            xCHECK_DO(static_cast<int_t>(current) > maxs[i], maxs[i] = current);
         }
     }
 
