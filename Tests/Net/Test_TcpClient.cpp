@@ -50,11 +50,9 @@ Test_TcpClient::unit()
 		m_bRv = TcpClient::isServerAlive(ip, port);
 		xTEST_EQ(m_bRv, true);
 
-		DnsClient::hostAddrByName(hostName, &ip);
-
-		Trace() << xTRACE_VAR(hostName);
-		Trace() << xTRACE_VAR(ip);
-		Trace() << xTRACE_VAR(port);
+		std::tstring_t ipFromDns;
+		DnsClient::hostAddrByName(hostName, &ipFromDns);
+		xTEST_EQ(ip, ipFromDns);
 	}
 
 	xTEST_CASE("connect")
@@ -71,7 +69,7 @@ Test_TcpClient::unit()
 	xTEST_CASE("isWritable")
 	{
 		m_bRv = tcpClient.isWritable();
-		xTEST_EQ(m_bRv, true);
+		xTEST_EQ(m_bRv, false);
 	}
 
 	xTEST_CASE("peerName")
@@ -93,7 +91,7 @@ Test_TcpClient::unit()
 	xTEST_CASE("isReadable")
 	{
 		m_bRv = tcpClient.isReadable();
-		xTEST_EQ(m_bRv, true);
+		xTEST_EQ(m_bRv, false);
 	}
 
 	xTEST_CASE("send")
