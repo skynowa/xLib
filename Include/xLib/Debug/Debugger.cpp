@@ -206,7 +206,8 @@ Debugger::_stdoutPlain(
         if ( isActive() ) {
             breakPoint();
         } else {
-            console.msgBox(xT("OS debugger is not present.\nThe application will be terminated."), xT("xLib"), 0);
+            Console::cExModalResult mrRv = console.msgBox(xT("OS debugger is not present.\nThe application will be terminated."), xT("xLib"), 0);
+            xUNUSED(mrRv);
 
             (void_t)::exit(EXIT_FAILURE);
         }
