@@ -43,6 +43,10 @@ Test_TcpClient::unit()
 
     DnsClient::hostAddrByName(hostName, &ip);
 
+    Trace() << xTRACE_VAR(hostName);
+    Trace() << xTRACE_VAR(ip);
+    Trace() << xTRACE_VAR(port);
+
     tcpClient.connect(ip, port);
 
     m_bRv = tcpClient.isReadable();
