@@ -104,7 +104,7 @@
 //-------------------------------------------------------------------------------------------------
 #define xTRACE_POINT \
     { \
-        xlib::debug::SourceInfo sourceInfo(xFILE, xLINE, xFUNCTION, xCOUNTER); \
+        xlib::debug::SourceInfo sourceInfo( {xFILE, xLINE, xFUNCTION, xCOUNTER} ); \
         \
         xlib::log::Trace() \
             << xT("\t::: ")  << sourceInfo.at() << xT(", ") \
