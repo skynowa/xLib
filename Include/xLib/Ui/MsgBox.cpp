@@ -40,6 +40,10 @@ MsgBox::show(
     cExType         &a_type    /* = tpOk */
 ) const
 {
+    // TODO: MsgBox - fix unused warnings
+    xUNUSED(internal::enums::modalResults);
+    xUNUSED(internal::enums::types);
+
     return _show_impl(a_text, a_title, a_type);
 }
 //-------------------------------------------------------------------------------------------------

@@ -8,7 +8,18 @@
     #include "Application.h"
 #endif
 
-// TODO: xLIB_CORE_APPLICATION_STATIC_DECLARE
+#if   cmOPTION_PROJECT_HEADER_ONLY
+
+#elif cmOPTION_PROJECT_LIB_STATIC
+    xLIB_CORE_APPLICATION_STATIC_DECLARE
+#elif cmOPTION_PROJECT_LIB_SHARE
+    xLIB_CORE_APPLICATION_STATIC_DECLARE
+#elif cmOPTION_PROJECT_LIB_MODULE
+    xLIB_CORE_APPLICATION_STATIC_DECLARE
+#elif
+    #error Invalid option
+#endif
+
 
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/String.h>

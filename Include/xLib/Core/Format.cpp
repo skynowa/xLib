@@ -84,7 +84,7 @@ FormatC::strV(
 
         _xVERIFY(iRv != - 1);
         _xVERIFY(iRv > - 1);
-        _xVERIFY(iRv == buffSize - 1);
+        _xVERIFY(iRv == static_cast<int_t>(buffSize) - 1);
 
         buff.resize(iRv);
     }
@@ -386,6 +386,8 @@ Format::_format(
     const std::nullptr_t  a_value   ///< value
 )
 {
+    xUNUSED(a_value);
+
     a_ss << xT("nullptr");
 }
 
