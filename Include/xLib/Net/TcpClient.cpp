@@ -22,14 +22,6 @@
     #include "Platform/Win/TcpClient_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/TcpClient_unix.inl"
-
-    #if   xENV_LINUX
-
-    #elif xENV_BSD
-
-    #elif xENV_APPLE
-
-    #endif
 #endif
 
 
@@ -87,12 +79,9 @@ TcpClient::connect(
     xTEST_EQ(a_ip.empty(), false);
     xTEST_EQ((65535 > a_port) && (0 < a_port), true);
 
-    // convert from UNICODE
-    std::string ip(a_ip.begin(), a_ip.end());
-
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
     sockAddr.sin_family      = _family;
-    sockAddr.sin_addr.s_addr = ::inet_addr(ip.c_str());
+    sockAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_ip).c_str());
     sockAddr.sin_port        = htons(a_port); // TODO: TcpClient::connect() - htons
 
     int_t iRv = ::connect(_handle, Utils::reinterpretCastT<sockaddr *>( &sockAddr ),
@@ -167,12 +156,9 @@ TcpClient::isServerAlive(
     TcpClient client;
     client.create(Socket::afInet, Socket::tpStream, Socket::ptIp);
 
-    // convert from UNICODE
-    std::string ip(a_ip.begin(), a_ip.end());
-
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
     sockAddr.sin_family      = Socket::afInet;
-    sockAddr.sin_addr.s_addr = ::inet_addr(ip.c_str());
+    sockAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_ip).c_str());
     sockAddr.sin_port        = htons(a_port); // TODO: TcpClient::isServerAlive() - htons
 
     int_t iRv = ::connect(client.handle(), Utils::reinterpretCastT<sockaddr *>( &sockAddr ),

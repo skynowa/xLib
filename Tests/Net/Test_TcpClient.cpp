@@ -16,11 +16,6 @@ xTEST_UNIT(Test_TcpClient)
 bool_t
 Test_TcpClient::unit()
 {
-    {
-        // FIX: temp disable
-        return true;
-    }
-
     Socket::ExAddressFamily addressFamily           = Socket::afInet;
     Socket::ExType          type         = Socket::tpStream;
     Socket::ExProtocol      ptProtocol     = Socket::ptIp;
