@@ -57,7 +57,7 @@ Test_TcpClient::unit()
 		Trace() << xTRACE_VAR(port);
 	}
 
-	xTEST_CASE("test_name")
+	xTEST_CASE("connect")
 	{
 		tcpClient.connect(ip, port);
 	}
