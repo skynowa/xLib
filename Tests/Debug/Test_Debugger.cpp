@@ -87,13 +87,14 @@ Test_Debugger::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(type); ++ i) {
-            ulong_t nativeError = NativeError::get();
+            ulong_t    nativeError = NativeError::get();
+            SourceInfo sourceInfo( {xFILE, xLINE, xFUNCTION, xCOUNTER} );
 
             ulong_t val1 = 10UL;
             ulong_t val2 = 20UL;
 
             ErrorReport report(type[i], xT("val1"), xT("val2"), val1, val2, xT("=="), nativeError,
-                xSOURCE_INFO, StackTrace().toString(), xT(""));
+                sourceInfo, StackTrace().toString(), xT(""));
 
             Debugger debugger;
             debugger.setEnabled(false);
