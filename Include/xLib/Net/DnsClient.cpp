@@ -41,7 +41,7 @@ DnsClient::hostAddrByName(
 
     std::tstring_t sRv;
 
-    hostent *host = ::gethostbyname( xT2A(a_hostName).c_str());
+    hostent *host = ::gethostbyname( xT2A(a_hostName).c_str() );
     xTEST_PTR(host);
 
     sRv = Format::str(xT("{}.{}.{}.{}"),
