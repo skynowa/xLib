@@ -211,6 +211,10 @@ public:
         ///< creates a socket that is bound to a specific transport service provider
     socket_t       handle() const xWARN_UNUSED_RV;
         ///< get handle
+    bool_t         isReadable() const xWARN_UNUSED_RV;
+        ///< checking for readability
+    bool_t         isWritable() const xWARN_UNUSED_RV;
+        ///< checking for writability
     bool_t         isValid() const xWARN_UNUSED_RV;
         ///< checking for validness
     void_t         assign(csocket_t &handle);
