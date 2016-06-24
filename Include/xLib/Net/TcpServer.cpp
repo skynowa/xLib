@@ -60,7 +60,7 @@ TcpServer::listen(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 TcpServer::accept(
-    TcpServer    *a_serverSocket,
+    TcpServer      *a_serverSocket,
     std::tstring_t *a_fromIp
 ) const
 {
@@ -80,10 +80,9 @@ TcpServer::accept(
 #endif
     a_serverSocket->assign(client);
 
-    // convert from UNICODE
     std::string fromIp = ::inet_ntoa(cliaddr.sin_addr);
 
-    a_fromIp->assign(fromIp.begin(), fromIp.end());
+    *a_fromIp = xA2T(fromIp);
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -21,10 +21,6 @@ public:
     virtual ~TcpClient() {}
         ///< constructor
 
-    bool_t   isReadable() const xWARN_UNUSED_RV;
-        ///< checking for readability
-    bool_t   isWritable() const xWARN_UNUSED_RV;
-        ///< checking for writability
     void_t   connect(std::ctstring_t &ip, cushort_t &port) const;
         ///< connecting
 

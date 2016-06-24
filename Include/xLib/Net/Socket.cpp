@@ -88,6 +88,34 @@ Socket::handle() const
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
+Socket::isReadable() const
+{
+    timeval timeoutVal = {1, 0};
+    fd_set  fds;         FD_ZERO(&fds);
+
+    FD_SET(_handle, &fds);
+
+    int_t iRv = ::select(0, &fds, xPTR_NULL, xPTR_NULL, &timeoutVal);
+    xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle, &fds), false);
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+Socket::isWritable() const
+{
+    timeval timeoutVal = {1, 0};
+    fd_set  fds;         FD_ZERO(&fds);
+
+    FD_SET(_handle, &fds);
+
+    int_t iRv = ::select(0, xPTR_NULL, &fds, xPTR_NULL, &timeoutVal);
+    xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle, &fds), false);
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
 Socket::isValid() const
 {
     // n/a
