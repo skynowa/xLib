@@ -33,28 +33,48 @@ Test_TcpClient::unit()
     std::tstring_t          sendBuff      = xT("TEST_STRING");
     char                    recvBuff[32]  = {0};
 
-    SocketInit init(2, 2);
-    TcpClient  tcpClient;
+	xTEST_CASE("SocketInit")
+	{
+		SocketInit init(2, 2);
+	}
 
-    tcpClient.create(addressFamily, type, ptProtocol);
+    TcpClient tcpClient;
 
-    m_bRv = TcpClient::isServerAlive(ip, port);
-    xTEST_EQ(m_bRv, true);
+	xTEST_CASE("create")
+	{
+		tcpClient.create(addressFamily, type, ptProtocol);
+	}
 
-    DnsClient::hostAddrByName(hostName, &ip);
+	xTEST_CASE("isServerAlive")
+	{
+		m_bRv = TcpClient::isServerAlive(ip, port);
+		xTEST_EQ(m_bRv, true);
 
-    Trace() << xTRACE_VAR(hostName);
-    Trace() << xTRACE_VAR(ip);
-    Trace() << xTRACE_VAR(port);
+		DnsClient::hostAddrByName(hostName, &ip);
 
-    tcpClient.connect(ip, port);
+		Trace() << xTRACE_VAR(hostName);
+		Trace() << xTRACE_VAR(ip);
+		Trace() << xTRACE_VAR(port);
+	}
 
-    m_bRv = tcpClient.isReadable();
-    xTEST_EQ(m_bRv, false);
+	xTEST_CASE("test_name")
+	{
+		tcpClient.connect(ip, port);
+	}
 
-    m_bRv = tcpClient.isWritable();
-    xTEST_EQ(m_bRv, true);
+	xTEST_CASE("isReadable")
+	{
+		m_bRv = tcpClient.isReadable();
+		xTEST_EQ(m_bRv, false);
+	}
 
+	xTEST_CASE("isWritable")
+	{
+		m_bRv = tcpClient.isWritable();
+		xTEST_EQ(m_bRv, true);
+	}
+
+	xTEST_CASE("peerName")
     {
         std::tstring_t _ip;
         ushort_t       _port = 0;
@@ -62,6 +82,7 @@ Test_TcpClient::unit()
         tcpClient.peerName(&_ip, &_port);
     }
 
+	xTEST_CASE("socketName")
     {
         std::tstring_t _ip;
         ushort_t       _port = 0;
@@ -69,28 +90,43 @@ Test_TcpClient::unit()
         tcpClient.socketName(&_ip, &_port);
     }
 
-    m_bRv = tcpClient.isReadable();
-    xTEST_EQ(m_bRv, true);
+	xTEST_CASE("isReadable")
+	{
+		m_bRv = tcpClient.isReadable();
+		xTEST_EQ(m_bRv, true);
+	}
 
-    for ( ; ; ) {
-        std::tstring_t text;
+	xTEST_CASE("send")
+	{
+		for ( ; ; ) {
+			std::tstring_t text;
 
-        text.resize(256);
+			text.resize(256);
 
-        std::tcout << xT("> Input text: ");
-        std::tcin.getline(&text[0], text.size());
+			std::tcout << xT("> Input text: ");
+			std::tcin.getline(&text[0], text.size());
 
-        ssize_t iRv = tcpClient.send(text.c_str(), text.size(), 0);
-        xTEST_DIFF((ssize_t)xSOCKET_ERROR, iRv);
-    }
+			ssize_t iRv = tcpClient.send(text.c_str(), text.size(), 0);
+			xTEST_DIFF((ssize_t)xSOCKET_ERROR, iRv);
+		}
+	}
 
-    m_iRv = tcpClient.receive(&recvBuff[0], xARRAY_SIZE(recvBuff), 0);
-    xTEST_DIFF(m_iRv, xSOCKET_ERROR)
+	xTEST_CASE("receive")
+	{
+		m_iRv = tcpClient.receive(&recvBuff[0], xARRAY_SIZE(recvBuff), 0);
+		xTEST_DIFF(m_iRv, xSOCKET_ERROR)
+	}
 
-    tcpClient.close();
+	xTEST_CASE("close")
+	{
+		tcpClient.close();
+	}
 
-    m_iRv = TcpClient::nativeError();
-    //// xTEST_EQ(m_bRv, true);
+	xTEST_CASE("nativeError")
+	{
+		m_iRv = TcpClient::nativeError();
+		xTEST_EQ(m_iRv, 0);
+	}
 
     return true;
 }
