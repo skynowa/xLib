@@ -137,9 +137,9 @@ TcpClient::isServerAlive(
         sizeof(sockAddr));
     xTEST_NA(iRv);
 
-    xCHECK_RET(iRv != 0, false);
+    Trace() << xTRACE_VAR(iRv);
 
-    client.close();
+    xCHECK_RET(iRv != 0, false);
 
     return true;
 }
