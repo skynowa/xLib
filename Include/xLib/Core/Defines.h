@@ -395,10 +395,6 @@
 #endif
     ///< source function name
 
-#define xSOURCE_INFO \
-    xlib::debug::SourceInfo( {xFILE, xLINE, xFUNCTION, xCOUNTER} )
-    ///< source information
-
 #define xSOURCE_AT \
     xFILE xT(":") xSTRINGIZE(xLINE)
     ///< source information
@@ -734,8 +730,10 @@
 #define xTHROW_REPORT(msg) \
     { \
         culong_t         nativeError = NativeError::get(); \
+        SourceInfo       sourceInfo( {xFILE, xLINE, xFUNCTION, xCOUNTER} ); \
         std::ctstring_t &stackTrace  = StackTrace().toString(); \
-        ErrorReport      report(nativeError, xSOURCE_INFO, stackTrace, msg); \
+        \
+        ErrorReport report(nativeError, sourceInfo, stackTrace, msg); \
         \
         throw Exception() << report.toString(); \
     }
