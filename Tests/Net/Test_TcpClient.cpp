@@ -16,15 +16,22 @@ xTEST_UNIT(Test_TcpClient)
 bool_t
 Test_TcpClient::unit()
 {
-    Socket::ExAddressFamily addressFamily           = Socket::afInet;
-    Socket::ExType          type         = Socket::tpStream;
-    Socket::ExProtocol      ptProtocol     = Socket::ptIp;
+    Socket::ExAddressFamily addressFamily = Socket::afInet;
+    Socket::ExType          type          = Socket::tpStream;
+    Socket::ExProtocol      ptProtocol    = Socket::ptIp;
 
-    std::ctstring_t         hostName       = xT("skynowa-pc");
-    std::tstring_t          ip             = xT("127.0.0.1");
-    ushort_t                port         = 80;
+#if 0
+	std::ctstring_t         hostName      = xT("skynowa-pc");
+	std::tstring_t          ip            = xT("127.0.0.1");
+    ushort_t                port          = 80;
+#else
+	std::ctstring_t         hostName      = xT("jail.skynowa");
+	std::tstring_t          ip            = xT("192.168.12.206");
+    ushort_t                port          = 22;
+#endif
+
     std::tstring_t          sendBuff      = xT("TEST_STRING");
-    char                    recvBuff[32] = {0};
+    char                    recvBuff[32]  = {0};
 
     SocketInit init(2, 2);
     TcpClient  tcpClient;
@@ -45,31 +52,31 @@ Test_TcpClient::unit()
     xTEST_EQ(m_bRv, true);
 
     {
-        std::tstring_t _sIp;
-        ushort_t       _usPort = 0;
+        std::tstring_t _ip;
+        ushort_t       _port = 0;
 
-        tcpClient.peerName(&_sIp, &_usPort);
+        tcpClient.peerName(&_ip, &_port);
     }
 
     {
-        std::tstring_t _sIp;
-        ushort_t       _usPort = 0;
+        std::tstring_t _ip;
+        ushort_t       _port = 0;
 
-        tcpClient.socketName(&_sIp, &_usPort);
+        tcpClient.socketName(&_ip, &_port);
     }
 
     m_bRv = tcpClient.isReadable();
     xTEST_EQ(m_bRv, true);
 
     for ( ; ; ) {
-        std::tstring_t sText;
+        std::tstring_t text;
 
-        sText.resize(256);
+        text.resize(256);
 
         std::tcout << xT("> Input text: ");
-        std::tcin.getline(&sText[0], sText.size());
+        std::tcin.getline(&text[0], text.size());
 
-        ssize_t iRv = tcpClient.send(sText.c_str(), sText.size(), 0);
+        ssize_t iRv = tcpClient.send(text.c_str(), text.size(), 0);
         xTEST_DIFF((ssize_t)xSOCKET_ERROR, iRv);
     }
 
