@@ -37,7 +37,7 @@ public:
         ///< format as file and line
 
 private:
-    cSourceInfoData & _data; ///< data
+    cSourceInfoData   _data; ///< data
 
     xNO_COPY_ASSIGN(SourceInfo)
 };
