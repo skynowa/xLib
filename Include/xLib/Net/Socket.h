@@ -71,6 +71,7 @@ public:
         // TODO: Socket - add AP-*
     #endif
     };
+    xTYPEDEF_CONST(ExAddressFamily);
 
     enum ExType
        /// type
@@ -81,6 +82,7 @@ public:
         tpRdm         = SOCK_RDM,
         tpSeqPacket   = SOCK_SEQPACKET
     };
+    xTYPEDEF_CONST(ExType);
 
     enum ExProtocol
         /// protocol
@@ -187,6 +189,7 @@ public:
         // TODO: Socket - add IPPROTO-*
     #endif
     };
+    xTYPEDEF_CONST(ExProtocol);
 
     enum ExOptions
         /// options
@@ -194,6 +197,7 @@ public:
         SOCKET_TIMEOUT   = 0,       ///< (1000000 / 10)
         SOCKET_BUFF_SIZE = 32768    ///< 32 KB
     };
+    xTYPEDEF_CONST(ExOptions);
 
                    Socket();
         ///< constructor
@@ -206,8 +210,7 @@ public:
     *
     *******************************************************************************/
 
-    void_t         create(const ExAddressFamily &family, const ExType &type,
-                       const ExProtocol &protocol);
+    void_t         create(cExAddressFamily &family, cExType &type, cExProtocol &protocol);
         ///< creates a socket that is bound to a specific transport service provider
     socket_t       handle() const xWARN_UNUSED_RV;
         ///< get handle

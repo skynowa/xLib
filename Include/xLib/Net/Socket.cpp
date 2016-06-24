@@ -58,9 +58,9 @@ Socket::~Socket()
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Socket::create(
-    const ExAddressFamily &a_family,
-    const ExType          &a_type,
-    const ExProtocol      &a_protocol
+    cExAddressFamily &a_family,
+    cExType          &a_type,
+    cExProtocol      &a_protocol
 )
 {
     xTEST_EQ(_handle, xSOCKET_HANDLE_INVALID);
