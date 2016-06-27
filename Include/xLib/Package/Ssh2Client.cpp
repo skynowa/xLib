@@ -187,7 +187,8 @@ Ssh2Client::channelExec(
         iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str());
     } else {
         while ((iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str())) == LIBSSH2_ERROR_EAGAIN) {
-            _socketWait( _tcpClient.handle() );
+            iRv = _socketWait( _tcpClient.handle() );
+            xTEST_DIFF(iRv, - 1);
         }
     }
 
