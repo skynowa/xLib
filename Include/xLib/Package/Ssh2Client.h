@@ -68,6 +68,7 @@ private:
     LIBSSH2_CHANNEL *_channel;
 
     int_t          _socketWait(cint_t socket_fd);
+    void_t         _channelStdStreamReadLine(cbool_t stdOutOrErr, std::tstring_t *stdStream, bool_t *isChannelEof);
     void           _convertStdToHtml(std::tstring_t *std);
 };
 
