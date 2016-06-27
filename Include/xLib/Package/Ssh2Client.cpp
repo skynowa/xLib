@@ -114,7 +114,7 @@ onkeyboardInteractive(
         xTEST(!userPassword.empty());
 
         a_responses[0].text   = ::strdup( xT2A(userPassword).c_str() );
-        a_responses[0].length = userPassword.size() * sizeof(std::tstring_t::value_type);
+        a_responses[0].length = static_cast<uint_t>( userPassword.size() * sizeof(std::tstring_t::value_type) );
     }
 
     xUNUSED(a_prompts);
@@ -261,7 +261,7 @@ Ssh2Client::_channelStdStreamReadLine(
     char block[blockSizeMin + 1] = {0};
 
     for ( ; ; ) {
-        int read = 0;
+        ssize_t read = 0;
         if (a_stdOutOrErr) {
             read = ::libssh2_channel_read(_channel, block, blockSizeMin);
             Trace() << "stdout: " << xTRACE_VAR(read);
@@ -334,7 +334,7 @@ Ssh2Client::channelExecReadAll(
         char block[blockSize + 1] = {0};
 
         for ( ; ; ) {
-            int read = ::libssh2_channel_read(_channel, block, blockSize);
+            ssize_t read = ::libssh2_channel_read(_channel, block, blockSize);
             xCHECK_DO(read <= 0, break);
 
             if (read < blockSize) {
@@ -350,7 +350,7 @@ Ssh2Client::channelExecReadAll(
         char block[blockSize + 1] = {0};
 
         for ( ; ; ) {
-            int read = ::libssh2_channel_read_stderr(_channel, block, blockSize);
+            ssize_t read = ::libssh2_channel_read_stderr(_channel, block, blockSize);
             xCHECK_DO(read <= 0, break);
 
             if (read < blockSize) {
@@ -418,11 +418,13 @@ Ssh2Client::lastErrorFormat()
     char *error     = xPTR_NULL;
     int   errorSize = 0;
 
-    (int)::libssh2_session_last_error(_session, &error, &errorSize, 0);
+    int_t iRv = ::libssh2_session_last_error(_session, &error, &errorSize, 0);
+    xUNUSED(iRv);
+
     if (error == xPTR_NULL) {
         asRv = "[Unknown]";
     } else {
-        asRv.assign(error, errorSize);
+        asRv.assign(error, static_cast<std::size_t>( errorSize ));
     }
 
     return xA2T(asRv);
