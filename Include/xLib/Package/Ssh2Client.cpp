@@ -209,11 +209,11 @@ Ssh2Client::channelReadLine(
     xTEST_PTR(a_stdErr);
 
     std::tstring_t stdOut;
-    bool           isStdOutChannelEof = true;
+    bool           isStdOutChannelEof = false;
     _channelStdStreamReadLine(true, &stdOut, &isStdOutChannelEof);
 
     std::tstring_t stdErr;
-    bool           isStdErrChannelEof = true;
+    bool           isStdErrChannelEof = false;
     _channelStdStreamReadLine(false, &stdErr, &isStdErrChannelEof);
 
     if (isStdOutChannelEof && stdOut.empty() /* && isStdErrChannelEof && stdErr.empty() */) {
@@ -255,7 +255,8 @@ Ssh2Client::_channelStdStreamReadLine(
     bool_t         *a_isChannelEof  ///< is channel EOF
 )
 {
-    int iRv = 0;
+    Utils::ptrAssignT(a_stdStream, std::tstring_t());
+    Utils::ptrAssignT(a_isChannelEof, false);
 
     char block[blockSizeMin + 1] = {0};
 
@@ -270,10 +271,9 @@ Ssh2Client::_channelStdStreamReadLine(
         }
 
         if (read == LIBSSH2_ERROR_EAGAIN) {
-            iRv = _socketWait( _tcpClient.handle() );
-            xTEST_DIFF(iRv, - 1);
+            *a_isChannelEof = false;
 
-            continue;
+            break;
         }
 
         *a_isChannelEof = ::libssh2_channel_eof(_channel);
