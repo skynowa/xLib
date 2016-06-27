@@ -67,6 +67,7 @@ private:
     LIBSSH2_SESSION *_session;
     LIBSSH2_CHANNEL *_channel;
 
+    int_t          _socketWait(cint_t socket_fd);
     void           _convertStdToHtml(std::tstring_t *std);
 };
 

@@ -31,30 +31,6 @@ cint_t         blockSize    = 1024;
 cint_t         blockSizeMin = 1;
 std::tstring_t userPassword;
 
-static int waitsocket(int socket_fd, LIBSSH2_SESSION *session) {
-  struct timeval timeout;
-  int rc;
-  fd_set fd;
-  fd_set *writefd = NULL;
-  fd_set *readfd = NULL;
-  int dir;
-
-  timeout.tv_sec = 10;
-  timeout.tv_usec = 0;
-
-  FD_ZERO(&fd);
-  FD_SET(socket_fd, &fd);
-
-  /* now make sure we wait in the correct direction */
-  dir = libssh2_session_block_directions(session);
-
-  if(dir & LIBSSH2_SESSION_BLOCK_INBOUND) readfd = &fd;
-  if(dir & LIBSSH2_SESSION_BLOCK_OUTBOUND) writefd = &fd;
-
-  rc = select(socket_fd + 1, readfd, writefd, NULL, &timeout);
-  return rc;
-}
-
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 xINLINE
@@ -210,7 +186,9 @@ Ssh2Client::channelExec(
     if (a_isBlockingMode) {
         iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str());
     } else {
-        while ((iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str())) == LIBSSH2_ERROR_EAGAIN);
+        while ((iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str())) == LIBSSH2_ERROR_EAGAIN) {
+            _socketWait( _tcpClient.handle() );
+        }
     }
 
     xTEST_GR(iRv, - 1);
@@ -465,6 +443,39 @@ Ssh2Client::lastErrorFormat()
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+xINLINE int_t
+Ssh2Client::_socketWait(
+    cint_t socket_fd
+)
+{
+    int iRv = 0;
+
+    timeval timeout;
+    timeout.tv_sec  = 10;
+    timeout.tv_usec = 0;
+
+    fd_set fd;
+    FD_ZERO(&fd);
+    FD_SET(socket_fd, &fd);
+
+    // now make sure we wait in the correct direction
+    cint_t dir = ::libssh2_session_block_directions(_session);
+
+    fd_set *readfd = xPTR_NULL;
+    if (dir & LIBSSH2_SESSION_BLOCK_INBOUND) {
+        readfd = &fd;
+    }
+
+    fd_set *writefd = xPTR_NULL;
+    if (dir & LIBSSH2_SESSION_BLOCK_OUTBOUND) {
+        writefd = &fd;
+    }
+
+    iRv = ::select(socket_fd + 1, readfd, writefd, NULL, &timeout);
+
+    return iRv;
+}
 //-------------------------------------------------------------------------------------------------
 xINLINE void
 Ssh2Client::_convertStdToHtml(
