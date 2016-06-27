@@ -93,34 +93,6 @@ Ssh2Client::connect()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-static void
-onkeyboardInteractive(
-    const char                           *a_name,
-    int                                   a_nameLen,
-    const char                           *a_instruction,
-    int                                   a_instructionLen,
-    int                                   a_numPrompts,
-    const LIBSSH2_USERAUTH_KBDINT_PROMPT *a_prompts,
-    LIBSSH2_USERAUTH_KBDINT_RESPONSE     *a_responses,
-    void                                **a_abstract
-)
-{
-    xUNUSED(a_name);
-    xUNUSED(a_nameLen);
-    xUNUSED(a_instruction);
-    xUNUSED(a_instructionLen);
-
-    if (a_numPrompts == 1) {
-        xTEST(!userPassword.empty());
-
-        a_responses[0].text   = ::strdup( xT2A(userPassword).c_str() );
-        a_responses[0].length = static_cast<uint_t>( userPassword.size() * sizeof(std::tstring_t::value_type) );
-    }
-
-    xUNUSED(a_prompts);
-    xUNUSED(a_abstract);
-}
-//-------------------------------------------------------------------------------------------------
 xINLINE void
 Ssh2Client::authPassword(
     cUserAuth a_userAuth
@@ -137,7 +109,7 @@ Ssh2Client::authPassword(
         break;
     case uaKeyboardInteractive:
         iRv = ::libssh2_userauth_keyboard_interactive(_session, xT2A(_data.userName).c_str(),
-                &onkeyboardInteractive);
+                &_authPassword_OnKeyboardInteractive);
         break;
     case uaUnknown:
     default:
@@ -437,6 +409,35 @@ Ssh2Client::lastErrorFormat()
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+/* static */
+void
+Ssh2Client::_authPassword_OnKeyboardInteractive(
+    const char                           *a_name,
+    int                                   a_nameLen,
+    const char                           *a_instruction,
+    int                                   a_instructionLen,
+    int                                   a_numPrompts,
+    const LIBSSH2_USERAUTH_KBDINT_PROMPT *a_prompts,
+    LIBSSH2_USERAUTH_KBDINT_RESPONSE     *a_responses,
+    void                                **a_abstract
+)
+{
+    xUNUSED(a_name);
+    xUNUSED(a_nameLen);
+    xUNUSED(a_instruction);
+    xUNUSED(a_instructionLen);
+
+    if (a_numPrompts == 1) {
+        xTEST(!userPassword.empty());
+
+        a_responses[0].text   = ::strdup( xT2A(userPassword).c_str() );
+        a_responses[0].length = static_cast<uint_t>( userPassword.size() * sizeof(std::tstring_t::value_type) );
+    }
+
+    xUNUSED(a_prompts);
+    xUNUSED(a_abstract);
+}
 //-------------------------------------------------------------------------------------------------
 xINLINE int_t
 Ssh2Client::_socketWait(
