@@ -208,79 +208,13 @@ Ssh2Client::channelReadLine(
     xTEST_PTR(a_stdOut);
     xTEST_PTR(a_stdErr);
 
-    int_t iRv = 0;
-
     std::tstring_t stdOut;
     bool           isStdOutChannelEof = true;
-    {
-        char block[blockSizeMin + 1] = {0};
-
-        for ( ; ; ) {
-            int read = ::libssh2_channel_read(_channel, block, blockSizeMin);
-            Trace() << "stdout: " << xTRACE_VAR(read);
-            if (read == LIBSSH2_ERROR_EAGAIN) {
-                iRv = _socketWait( _tcpClient.handle() );
-                xTEST_DIFF(iRv, - 1);
-
-                continue;
-            }
-
-            isStdOutChannelEof = ::libssh2_channel_eof(_channel);
-            if (isStdOutChannelEof && read == 0) {
-                Trace() << "libssh2_channel_eof: breaking";
-                break;
-            }
-
-            xCHECK_DO(read < 0, break);
-
-            if (read < blockSizeMin) {
-                block[read] = '\0';
-            }
-
-            if (block[0] == Const::nl()[0]) {
-                Trace() << xTRACE_VAR(xLINE);
-                break;
-            }
-
-            stdOut.append( xA2T(block) );
-        } // for ( ; ; )
-    }
+    _channelStdStreamReadLine(true, &stdOut, &isStdOutChannelEof);
 
     std::tstring_t stdErr;
     bool           isStdErrChannelEof = true;
-    {
-        char block[blockSizeMin + 1] = {0};
-
-        for ( ; ; ) {
-            int read = ::libssh2_channel_read_stderr(_channel, block, blockSizeMin);
-            Trace() << "stderr: " << xTRACE_VAR(read);
-            if (read == LIBSSH2_ERROR_EAGAIN) {
-                iRv = _socketWait( _tcpClient.handle() );
-                xTEST_DIFF(iRv, - 1);
-
-                continue;
-            }
-
-            isStdErrChannelEof = ::libssh2_channel_eof(_channel);
-            if (isStdErrChannelEof && read == 0) {
-                Trace() << "libssh2_channel_eof: breaking";
-                break;
-            }
-
-            xCHECK_DO(read < 0, break);
-
-            if (read < blockSizeMin) {
-                block[read] = '\0';
-            }
-
-            if (block[0] == Const::nl()[0]) {
-                Trace() << xTRACE_VAR(xLINE);
-                break;
-            }
-
-            stdErr.append( xA2T(block) );
-        } // for ( ; ; )
-    }
+    _channelStdStreamReadLine(false, &stdErr, &isStdErrChannelEof);
 
     if (isStdOutChannelEof && stdOut.empty() /* && isStdErrChannelEof && stdErr.empty() */) {
         a_stdOut->clear();
@@ -312,6 +246,55 @@ Ssh2Client::channelReadLine(
     std::swap(stdErr, *a_stdErr);
 
     return true;
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE void
+Ssh2Client::_channelStdStreamReadLine(
+    cbool_t         a_stdOutOrErr,  ///< std::out (true) ot std::cerr (false) stream
+    std::tstring_t *a_stdStream,    ///< std stream
+    bool_t         *a_isChannelEof  ///< is channel EOF
+)
+{
+    int iRv = 0;
+
+    char block[blockSizeMin + 1] = {0};
+
+    for ( ; ; ) {
+        int read = 0;
+        if (a_stdOutOrErr) {
+            read = ::libssh2_channel_read(_channel, block, blockSizeMin);
+            Trace() << "stdout: " << xTRACE_VAR(read);
+        } else {
+            read = ::libssh2_channel_read_stderr(_channel, block, blockSizeMin);
+            Trace() << "stderr: " << xTRACE_VAR(read);
+        }
+
+        if (read == LIBSSH2_ERROR_EAGAIN) {
+            iRv = _socketWait( _tcpClient.handle() );
+            xTEST_DIFF(iRv, - 1);
+
+            continue;
+        }
+
+        *a_isChannelEof = ::libssh2_channel_eof(_channel);
+        if (*a_isChannelEof && read == 0) {
+            Trace() << "libssh2_channel_eof: breaking";
+            break;
+        }
+
+        xCHECK_DO(read <= 0, break);
+
+        if (read < blockSizeMin) {
+            block[read] = '\0';
+        }
+
+        if (block[0] == Const::nl()[0]) {
+            Trace() << xT("Stream - EOL");
+            break;
+        }
+
+        *a_stdStream += xA2T(block);
+    } // for ( ; ; )
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
