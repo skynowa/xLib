@@ -208,6 +208,8 @@ Ssh2Client::channelReadLine(
     xTEST_PTR(a_stdOut);
     xTEST_PTR(a_stdErr);
 
+    int_t iRv = 0;
+
     std::tstring_t stdOut;
     bool           isStdOutChannelEof = true;
     {
@@ -217,6 +219,9 @@ Ssh2Client::channelReadLine(
             int read = ::libssh2_channel_read(_channel, block, blockSizeMin);
             Trace() << "stdout: " << xTRACE_VAR(read);
             if (read == LIBSSH2_ERROR_EAGAIN) {
+                iRv = _socketWait( _tcpClient.handle() );
+                xTEST_DIFF(iRv, - 1);
+
                 continue;
             }
 
@@ -250,6 +255,9 @@ Ssh2Client::channelReadLine(
             int read = ::libssh2_channel_read_stderr(_channel, block, blockSizeMin);
             Trace() << "stderr: " << xTRACE_VAR(read);
             if (read == LIBSSH2_ERROR_EAGAIN) {
+                iRv = _socketWait( _tcpClient.handle() );
+                xTEST_DIFF(iRv, - 1);
+
                 continue;
             }
 
