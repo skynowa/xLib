@@ -128,17 +128,17 @@ xINLINE void_t
 DnsClient::nameInfo(
     Socket::ExAddressFamily &a_family,
     std::ctstring_t         &a_hostAddr,
-    cushort_t               &a_usPort
+    cushort_t               &a_port
 )
 {
     xTEST_NA(a_family);
     xTEST_EQ(a_hostAddr.empty(), false);
-    xTEST_GR(a_usPort, static_cast<ushort_t>(0));
+    xTEST_GR(a_port, static_cast<ushort_t>(0));
 
     sockaddr_in socketAddr; xSTRUCT_ZERO(socketAddr);
     socketAddr.sin_family      = a_family;
     socketAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
-    socketAddr.sin_port        = htons(a_usPort);
+    socketAddr.sin_port        = htons(a_port);
 
     tchar_t hostName[NI_MAXHOST + 1] = {0};
     tchar_t servInfo[NI_MAXSERV + 1] = {0};
@@ -161,10 +161,11 @@ DnsClient::hostAddrInfo(
     addrinfo_t      **a_addrInfo
 )
 {
-    //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    xTEST_EQ(a_hostName.empty(), false);
+    xTEST_EQ(a_port.empty(), false);
+    xTEST_PTR(a_hints);
+    xTEST_PTR(a_addrInfo);
+    xTEST_PTR(*a_addrInfo);
 
     int_t iRv = xGETADDRINFO(a_hostName.c_str(), a_port.c_str(), a_hints, a_addrInfo);
     xTEST_EQ(iRv, 0);
