@@ -43,10 +43,10 @@ DnsClient::hostAddrByName(
     hostent *host = ::gethostbyname( xT2A(a_hostName).c_str() );
     xTEST_PTR(host);
 
-    struct in_addr **addr_list = (struct in_addr **)host->h_addr_list;
+    struct in_addr **addrList = (struct in_addr **)host->h_addr_list;
 
-    for (std::size_t i = 0; addr_list[i] != xPTR_NULL; ++ i) {
-        sRv = inet_ntoa(*addr_list[i]);
+    for (std::size_t i = 0; addrList[i] != xPTR_NULL; ++ i) {
+        sRv = inet_ntoa(*addrList[i]);
 
         break;
     }
@@ -131,9 +131,9 @@ DnsClient::nameInfo(
     cushort_t               &a_usPort
 )
 {
-    //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    xTEST_NA(a_family);
+    xTEST_EQ(a_hostAddr.empty(), false);
+    xTEST_GR(a_usPort, static_cast<ushort_t>(0));
 
     sockaddr_in socketAddr; xSTRUCT_ZERO(socketAddr);
     socketAddr.sin_family      = a_family;
