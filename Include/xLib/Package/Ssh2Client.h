@@ -45,18 +45,18 @@ public:
     explicit       Ssh2Client(cSsh2ClientData &data);
     virtual       ~Ssh2Client();
 
-    bool           isAlive();
-    bool           connect();
-    void           authPassword(cUserAuth userAuth);
-    void           authPublicKey(std::ctstring_t &keyDirPath);
+    bool_t         isAlive();
+    bool_t         connect();
+    void_t         authPassword(cUserAuth userAuth);
+    void_t         authPublicKey(std::ctstring_t &keyDirPath);
 
-    bool           channelExec(std::ctstring_t &cmd, cbool_t isBlockingMode);
-    bool           channelReadLine(std::tstring_t *stdOut, std::tstring_t *stdErr);
-    void           channelClose();
+    bool_t         channelExec(std::ctstring_t &cmd, cbool_t isBlockingMode);
+    bool_t         channelReadLine(std::tstring_t *stdOut, std::tstring_t *stdErr);
+    void_t         channelClose();
 
-    bool           channelExecReadAll(std::ctstring_t &cmd, std::tstring_t *stdOut, std::tstring_t *stdErr);
+    bool_t         channelExecReadAll(std::ctstring_t &cmd, std::tstring_t *stdOut, std::tstring_t *stdErr);
 
-    void           disconnect();
+    void_t         disconnect();
 
     int            lastError();
     std::tstring_t lastErrorFormat();
@@ -68,14 +68,14 @@ private:
     LIBSSH2_CHANNEL *_channel;
 
     static
-    void           _authPassword_OnKeyboardInteractive(const char *name, int nameLen,
+    void_t         _authPassword_OnKeyboardInteractive(const char *name, int nameLen,
                         const char *instruction, int instructionLen, int numPrompts,
                         const LIBSSH2_USERAUTH_KBDINT_PROMPT *prompts,
-                        LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses, void **abstract);
-    void_t          _socketWait();
+                        LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses, void_t **abstract);
+    void_t         _socketWait();
     void_t         _channelStdStreamReadLine(cbool_t stdOutOrErr, std::tstring_t *stdStream,
                         bool_t *isChannelEof);
-    void           _convertStdToHtml(std::tstring_t *std);
+    void_t         _convertStdToHtml(std::tstring_t *std);
 };
 
 xNAMESPACE_END2(xlib, package)

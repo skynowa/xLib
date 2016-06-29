@@ -51,10 +51,10 @@ Ssh2Client::Ssh2Client(
 xINLINE
 Ssh2Client::~Ssh2Client()
 {
-    (void)::libssh2_exit();
+    (void_t)::libssh2_exit();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool
+xINLINE bool_t
 Ssh2Client::isAlive()
 {
     std::tstring_t hostAddr;
@@ -68,7 +68,7 @@ Ssh2Client::isAlive()
     return TcpClient::isServerAlive(hostAddr, _data.port);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool
+xINLINE bool_t
 Ssh2Client::connect()
 {
     int_t iRv = 0;
@@ -93,7 +93,7 @@ Ssh2Client::connect()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void
+xINLINE void_t
 Ssh2Client::authPassword(
     cUserAuth a_userAuth
 )
@@ -105,11 +105,12 @@ Ssh2Client::authPassword(
 
     switch (a_userAuth) {
     case uaPassword:
-        iRv = ::libssh2_userauth_password(_session, xT2A(_data.userName).c_str(), xT2A(_data.password).c_str());
+        iRv = ::libssh2_userauth_password(_session, xT2A(_data.userName).c_str(),
+            xT2A(_data.password).c_str());
         break;
     case uaKeyboardInteractive:
         iRv = ::libssh2_userauth_keyboard_interactive(_session, xT2A(_data.userName).c_str(),
-                &_authPassword_OnKeyboardInteractive);
+            &_authPassword_OnKeyboardInteractive);
         break;
     case uaUnknown:
     default:
@@ -120,7 +121,7 @@ Ssh2Client::authPassword(
     xTEST_MSG(0 == iRv, lastErrorFormat());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void
+xINLINE void_t
 Ssh2Client::authPublicKey(
     std::ctstring_t &a_keyDirPath
 )
@@ -137,7 +138,7 @@ Ssh2Client::authPublicKey(
     xTEST(0 == iRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool
+xINLINE bool_t
 Ssh2Client::channelExec(
     std::ctstring_t &a_cmd,
     cbool_t          a_isBlockingMode
@@ -168,7 +169,7 @@ Ssh2Client::channelExec(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool
+xINLINE bool_t
 Ssh2Client::channelReadLine(
     std::tstring_t *a_stdOut,
     std::tstring_t *a_stdErr
@@ -180,11 +181,11 @@ Ssh2Client::channelReadLine(
     xTEST_PTR(a_stdErr);
 
     std::tstring_t stdOut;
-    bool           isStdOutChannelEof = false;
+    bool_t           isStdOutChannelEof = false;
     _channelStdStreamReadLine(true, &stdOut, &isStdOutChannelEof);
 
     std::tstring_t stdErr;
-    bool           isStdErrChannelEof = false;
+    bool_t           isStdErrChannelEof = false;
     _channelStdStreamReadLine(false, &stdErr, &isStdErrChannelEof);
 
     if (isStdOutChannelEof && stdOut.empty() /* && isStdErrChannelEof && stdErr.empty() */) {
@@ -219,7 +220,7 @@ Ssh2Client::channelReadLine(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void
+xINLINE void_t
 Ssh2Client::_channelStdStreamReadLine(
     cbool_t         a_stdOutOrErr,  ///< std::out (true) ot std::cerr (false) stream
     std::tstring_t *a_stdStream,    ///< std stream
@@ -243,7 +244,6 @@ Ssh2Client::_channelStdStreamReadLine(
 
         if (read == LIBSSH2_ERROR_EAGAIN) {
             _socketWait();
-
             *a_isChannelEof = false;
 
             break;
@@ -269,7 +269,7 @@ Ssh2Client::_channelStdStreamReadLine(
     } // for ( ; ; )
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void
+xINLINE void_t
 Ssh2Client::channelClose()
 {
     xTEST_PTR(_channel);
@@ -283,7 +283,7 @@ Ssh2Client::channelClose()
     xTEST_GR(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool
+xINLINE bool_t
 Ssh2Client::channelExecReadAll(
     std::ctstring_t &a_cmd,
     std::tstring_t  *a_stdOut,
@@ -296,7 +296,7 @@ Ssh2Client::channelExecReadAll(
     xTEST_PTR(a_stdOut);
     xTEST_PTR(a_stdErr);
 
-    bool bRv = false;
+    bool_t bRv = false;
 
     bRv = channelExec(a_cmd, true);
     xTEST(bRv);
@@ -360,7 +360,7 @@ Ssh2Client::channelExecReadAll(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void
+xINLINE void_t
 Ssh2Client::disconnect()
 {
     xTEST_PTR(_session);
@@ -411,7 +411,7 @@ Ssh2Client::lastErrorFormat()
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-void
+void_t
 Ssh2Client::_authPassword_OnKeyboardInteractive(
     const char                           *a_name,
     int                                   a_nameLen,
@@ -420,7 +420,7 @@ Ssh2Client::_authPassword_OnKeyboardInteractive(
     int                                   a_numPrompts,
     const LIBSSH2_USERAUTH_KBDINT_PROMPT *a_prompts,
     LIBSSH2_USERAUTH_KBDINT_RESPONSE     *a_responses,
-    void                                **a_abstract
+    void_t                              **a_abstract
 )
 {
     xUNUSED(a_name);
@@ -469,7 +469,7 @@ Ssh2Client::_socketWait()
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void
+xINLINE void_t
 Ssh2Client::_convertStdToHtml(
     std::tstring_t *a_std
 )
