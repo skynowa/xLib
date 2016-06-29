@@ -67,12 +67,12 @@ private:
     LIBSSH2_SESSION *_session;
     LIBSSH2_CHANNEL *_channel;
 
+    void_t         _socketWait();
     static
     void_t         _authPassword_OnKeyboardInteractive(const char *name, int nameLen,
                         const char *instruction, int instructionLen, int numPrompts,
                         const LIBSSH2_USERAUTH_KBDINT_PROMPT *prompts,
                         LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses, void_t **abstract);
-    void_t         _socketWait();
     void_t         _channelStdStreamReadLine(cbool_t stdOutOrErr, std::tstring_t *stdStream,
                         bool_t *isChannelEof);
     void_t         _convertStdToHtml(std::tstring_t *std);
