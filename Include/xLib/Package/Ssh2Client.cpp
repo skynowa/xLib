@@ -159,7 +159,7 @@ Ssh2Client::channelExec(
         iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str());
     } else {
         while ((iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str())) == LIBSSH2_ERROR_EAGAIN) {
-            iRv = _socketWait( _tcpClient.handle() );
+            iRv = _socketWait();
             xTEST_DIFF(iRv, - 1);
         }
     }
@@ -243,6 +243,8 @@ Ssh2Client::_channelStdStreamReadLine(
         }
 
         if (read == LIBSSH2_ERROR_EAGAIN) {
+            // _socketWait();
+
             *a_isChannelEof = false;
 
             break;
@@ -440,9 +442,7 @@ Ssh2Client::_authPassword_OnKeyboardInteractive(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int_t
-Ssh2Client::_socketWait(
-    cint_t socket_fd
-)
+Ssh2Client::_socketWait()
 {
     int iRv = 0;
 
@@ -452,7 +452,7 @@ Ssh2Client::_socketWait(
 
     fd_set fd;
     FD_ZERO(&fd);
-    FD_SET(socket_fd, &fd);
+    FD_SET(_tcpClient.handle(), &fd);
 
     // now make sure we wait in the correct direction
     cint_t dir = ::libssh2_session_block_directions(_session);
@@ -467,7 +467,7 @@ Ssh2Client::_socketWait(
         writefd = &fd;
     }
 
-    iRv = ::select(socket_fd + 1, readfd, writefd, NULL, &timeout);
+    iRv = ::select(_tcpClient.handle() + 1, readfd, writefd, NULL, &timeout);
 
     return iRv;
 }
