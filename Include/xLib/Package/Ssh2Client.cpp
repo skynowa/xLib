@@ -453,15 +453,15 @@ Ssh2Client::_socketWait()
     FD_SET(_tcpClient.handle(), &fd);
 
     // now make sure we wait in the correct direction
-    cint_t dir = ::libssh2_session_block_directions(_session);
+    cint_t directions = ::libssh2_session_block_directions(_session);
 
     fd_set *readfd = xPTR_NULL;
-    if (dir & LIBSSH2_SESSION_BLOCK_INBOUND) {
+    if (directions & LIBSSH2_SESSION_BLOCK_INBOUND) {
         readfd = &fd;
     }
 
     fd_set *writefd = xPTR_NULL;
-    if (dir & LIBSSH2_SESSION_BLOCK_OUTBOUND) {
+    if (directions & LIBSSH2_SESSION_BLOCK_OUTBOUND) {
         writefd = &fd;
     }
 
