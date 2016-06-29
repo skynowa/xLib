@@ -72,7 +72,7 @@ private:
                         const char *instruction, int instructionLen, int numPrompts,
                         const LIBSSH2_USERAUTH_KBDINT_PROMPT *prompts,
                         LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses, void **abstract);
-    int_t          _socketWait();
+    void_t          _socketWait();
     void_t         _channelStdStreamReadLine(cbool_t stdOutOrErr, std::tstring_t *stdStream,
                         bool_t *isChannelEof);
     void           _convertStdToHtml(std::tstring_t *std);
