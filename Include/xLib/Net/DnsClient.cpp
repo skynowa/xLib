@@ -43,15 +43,18 @@ DnsClient::hostAddrByName(
     hostent *host = ::gethostbyname( xT2A(a_hostName).c_str() );
     xTEST_PTR(host);
 
-	struct in_addr **addr_list = (struct in_addr **)host->h_addr_list;
+    struct in_addr **addr_list = (struct in_addr **)host->h_addr_list;
 
-	for (std::size_t i = 0; addr_list[i] != xPTR_NULL; ++ i) {
-		sRv = inet_ntoa(*addr_list[i]);
+    for (std::size_t i = 0; addr_list[i] != xPTR_NULL; ++ i) {
+        sRv = inet_ntoa(*addr_list[i]);
 
-		break;
-	}
+        break;
+    }
 
-	xTEST_EQ(sRv.empty(), false);
+    xTEST_EQ(sRv.empty(), false);
+
+    std::string hostName;
+    xTEST_EQ(a_hostName, xA2T(hostName));
 
     *a_hostAddr = sRv;
 }
