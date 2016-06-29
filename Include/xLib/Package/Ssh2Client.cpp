@@ -410,35 +410,6 @@ Ssh2Client::lastErrorFormat()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-Ssh2Client::_authPassword_OnKeyboardInteractive(
-    const char                           *a_name,
-    int                                   a_nameLen,
-    const char                           *a_instruction,
-    int                                   a_instructionLen,
-    int                                   a_numPrompts,
-    const LIBSSH2_USERAUTH_KBDINT_PROMPT *a_prompts,
-    LIBSSH2_USERAUTH_KBDINT_RESPONSE     *a_responses,
-    void_t                              **a_abstract
-)
-{
-    xUNUSED(a_name);
-    xUNUSED(a_nameLen);
-    xUNUSED(a_instruction);
-    xUNUSED(a_instructionLen);
-
-    if (a_numPrompts == 1) {
-        xTEST(!userPassword.empty());
-
-        a_responses[0].text   = ::strdup( xT2A(userPassword).c_str() );
-        a_responses[0].length = static_cast<uint_t>( userPassword.size() * sizeof(std::tstring_t::value_type) );
-    }
-
-    xUNUSED(a_prompts);
-    xUNUSED(a_abstract);
-}
-//-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Ssh2Client::_socketWait()
 {
@@ -467,6 +438,35 @@ Ssh2Client::_socketWait()
 
     iRv = ::select(_tcpClient.handle() + 1, readfd, writefd, xPTR_NULL, &timeout);
     xTEST_DIFF(iRv, - 1);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE void_t
+Ssh2Client::_authPassword_OnKeyboardInteractive(
+    const char                           *a_name,
+    int                                   a_nameLen,
+    const char                           *a_instruction,
+    int                                   a_instructionLen,
+    int                                   a_numPrompts,
+    const LIBSSH2_USERAUTH_KBDINT_PROMPT *a_prompts,
+    LIBSSH2_USERAUTH_KBDINT_RESPONSE     *a_responses,
+    void_t                              **a_abstract
+)
+{
+    xUNUSED(a_name);
+    xUNUSED(a_nameLen);
+    xUNUSED(a_instruction);
+    xUNUSED(a_instructionLen);
+
+    if (a_numPrompts == 1) {
+        xTEST(!userPassword.empty());
+
+        a_responses[0].text   = ::strdup( xT2A(userPassword).c_str() );
+        a_responses[0].length = static_cast<uint_t>( userPassword.size() * sizeof(std::tstring_t::value_type) );
+    }
+
+    xUNUSED(a_prompts);
+    xUNUSED(a_abstract);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
