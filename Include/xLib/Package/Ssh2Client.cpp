@@ -159,8 +159,7 @@ Ssh2Client::channelExec(
         iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str());
     } else {
         while ((iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str())) == LIBSSH2_ERROR_EAGAIN) {
-            iRv = _socketWait();
-            xTEST_DIFF(iRv, - 1);
+            _socketWait();
         }
     }
 
@@ -440,7 +439,7 @@ Ssh2Client::_authPassword_OnKeyboardInteractive(
     xUNUSED(a_abstract);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+xINLINE void_t
 Ssh2Client::_socketWait()
 {
     int iRv = 0;
@@ -467,8 +466,7 @@ Ssh2Client::_socketWait()
     }
 
     iRv = ::select(_tcpClient.handle() + 1, readfd, writefd, NULL, &timeout);
-
-    return iRv;
+    xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void
