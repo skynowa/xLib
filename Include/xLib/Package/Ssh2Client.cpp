@@ -465,7 +465,7 @@ Ssh2Client::_socketWait()
         writefd = &fd;
     }
 
-    iRv = ::select(_tcpClient.handle() + 1, readfd, writefd, NULL, &timeout);
+    iRv = ::select(_tcpClient.handle() + 1, readfd, writefd, xPTR_NULL, &timeout);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
