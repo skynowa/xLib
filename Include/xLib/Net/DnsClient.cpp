@@ -53,8 +53,11 @@ DnsClient::hostAddrByName(
 
     xTEST_EQ(sRv.empty(), false);
 
-    std::string hostName;
-    xTEST_EQ(a_hostName, xA2T(hostName));
+    if (host->h_name != xPTR_NULL) {
+        const std::string hostName = host->h_name;
+        xTEST_EQ(hostName.empty(), false);
+        xTEST_EQ(a_hostName, xA2T(hostName));
+    }
 
     *a_hostAddr = sRv;
 }
