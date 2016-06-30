@@ -27,9 +27,10 @@ xNAMESPACE_BEGIN2(xlib, package)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
-cint_t         blockSize    = 1024;
-cint_t         blockSizeMin = 1;
+cint_t         blockSize      = 1024;
+cint_t         blockSizeMin   = 1;
 std::tstring_t userPassword;
+clong_t        waitTimeoutSec = 10;
 
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
@@ -160,7 +161,7 @@ Ssh2Client::channelExec(
         iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str());
     } else {
         while ((iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str())) == LIBSSH2_ERROR_EAGAIN) {
-            _socketWait();
+            _wait(waitTimeoutSec);
         }
     }
 
@@ -243,7 +244,7 @@ Ssh2Client::_channelStdStreamReadLine(
         }
 
         if (read == LIBSSH2_ERROR_EAGAIN) {
-            _socketWait();
+            _wait(waitTimeoutSec);
             *a_isChannelEof = false;
 
             break;
@@ -411,12 +412,14 @@ Ssh2Client::lastErrorFormat()
 
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Ssh2Client::_socketWait()
+Ssh2Client::_wait(
+    clong_t a_timeoutSec ///< timeout (seconds)
+)
 {
     int iRv = 0;
 
     timeval timeout;
-    timeout.tv_sec  = 10;
+    timeout.tv_sec  = a_timeoutSec;
     timeout.tv_usec = 0;
 
     fd_set fd;

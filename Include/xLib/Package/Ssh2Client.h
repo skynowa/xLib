@@ -67,7 +67,7 @@ private:
     LIBSSH2_SESSION *_session;
     LIBSSH2_CHANNEL *_channel;
 
-    void_t         _socketWait();
+    void_t         _wait(clong_t timeoutSec);
     static
     void_t         _authPassword_OnKeyboardInteractive(const char *name, int nameLen,
                         const char *instruction, int instructionLen, int numPrompts,
