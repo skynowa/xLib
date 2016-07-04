@@ -46,7 +46,7 @@ Ssh2Client::Ssh2Client(
     userPassword = a_data.password;
 
     int iRv = ::libssh2_init(0);
-    xTEST_GR(iRv, - 1);
+    xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
@@ -91,7 +91,7 @@ Ssh2Client::connect()
     while ((iRv = ::libssh2_session_startup(_session, _tcpClient.handle())) == LIBSSH2_ERROR_EAGAIN) {
         _wait(waitTimeoutSec);
     }
-    xTEST(iRv == 0);
+    xTEST_EQ(iRv, 0);
 
     return true;
 }
@@ -102,7 +102,7 @@ Ssh2Client::authPassword(
 )
 {
     xTEST_PTR(_session);
-    xTEST(a_userAuth != uaUnknown);
+    xTEST_DIFF(a_userAuth, uaUnknown);
 
     int iRv = - 1;
 
@@ -129,7 +129,7 @@ Ssh2Client::authPassword(
         break;
     }
 
-    xTEST_MSG(0 == iRv, lastErrorFormat());
+    xTEST_EQ_MSG(iRv, 0, lastErrorFormat());
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -151,7 +151,7 @@ Ssh2Client::authPublicKey(
         _wait(waitTimeoutSec);
     }
 
-    xTEST(0 == iRv);
+    xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -175,7 +175,7 @@ Ssh2Client::channelExec(
     while ((iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str())) == LIBSSH2_ERROR_EAGAIN) {
         _wait(waitTimeoutSec);
     }
-    xTEST_GR(iRv, - 1);
+    xTEST_EQ(iRv, 0);
 
     return true;
 }
@@ -292,13 +292,13 @@ Ssh2Client::channelClose()
     while ((iRv = ::libssh2_channel_close(_channel)) == LIBSSH2_ERROR_EAGAIN) {
         _wait(waitTimeoutSec);
     }
-    xTEST_GR(iRv, - 1);
+    xTEST_EQ(iRv, 0);
 
     while ((iRv = ::libssh2_channel_free(_channel)) == LIBSSH2_ERROR_EAGAIN) {
         _wait(waitTimeoutSec);
     }
     _channel = xPTR_NULL;
-    xTEST_GR(iRv, - 1);
+    xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -388,7 +388,7 @@ Ssh2Client::disconnect()
     while ((iRv = ::libssh2_session_disconnect(_session, "Ssh2Client disconnected.")) == LIBSSH2_ERROR_EAGAIN) {
         _wait(waitTimeoutSec);
     }
-    xTEST_GR(iRv, - 1);
+    xTEST_EQ(iRv, 0);
 
     _tcpClient.close();
 
@@ -396,7 +396,7 @@ Ssh2Client::disconnect()
         _wait(waitTimeoutSec);
     }
     _session = xPTR_NULL;
-    xTEST_GR(iRv, - 1);
+    xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int
