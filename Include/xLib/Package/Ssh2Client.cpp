@@ -61,7 +61,9 @@ Ssh2Client::isAlive()
 {
     std::tstring_t hostAddr;
 
-    if (DnsClient::isAddressIpv4(_data.hostName) || DnsClient::isAddressIpv6(_data.hostName)) {
+    if (DnsClient::isAddressIpv4(_data.hostName) ||
+        DnsClient::isAddressIpv6(_data.hostName))
+    {
         hostAddr = _data.hostName;
     } else {
         DnsClient::hostAddrByName(_data.hostName, &hostAddr);
