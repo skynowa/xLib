@@ -516,6 +516,7 @@ Ssh2Client::_convertStdToHtml(
 
     xFOR_EACH_CONST(std::map_tstring_t, it, colorsCodes) {
         std::tstring_t htmlTag;
+    #if 0
         {
             if (it->first == xT("\e[0m")) {
                 htmlTag = xT("</font>");
@@ -523,6 +524,7 @@ Ssh2Client::_convertStdToHtml(
                 htmlTag = xT("<font color=\"") + it->second + xT("\">");
             }
         }
+    #endif
 
         *a_std = String::replaceAll(*a_std, it->first, htmlTag);
     }
