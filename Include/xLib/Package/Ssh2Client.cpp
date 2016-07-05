@@ -13,6 +13,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Net/DnsClient.h>
 #include <xLib/Log/Trace.h>
+#include <xLib/Log/FileLog.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
 
@@ -215,8 +216,24 @@ Ssh2Client::channelReadLine(
         // TODO: sfText
         break;
     case Ssh2ClientData::sfHtml:
+        if ( !stdErr.empty() ) {
+            Trace() << "\n" << stdErr;
+
+            FileLog log;
+            log.setFilePath("./log.log");
+            log << "\n" << stdErr << "\n";
+        }
+
         _convertStdToHtml(&stdOut);
         _convertStdToHtml(&stdErr);
+
+        if ( !stdErr.empty() ) {
+            Trace() << "\n" << stdErr;
+
+            FileLog log;
+            log.setFilePath("./log.log");
+            log << "\n" << stdErr << "\n\n\n";
+        }
         break;
     case Ssh2ClientData::sfUnknown:
     default:
@@ -524,13 +541,22 @@ Ssh2Client::_convertStdToHtml(
 
     // Regular
     colorsCodes[xT("\e[0;30m")] = xT("Black");
-    colorsCodes[xT("\e[0;31m")] = xT("Red");    // \e[0;1;31m
-    colorsCodes[xT("\e[0;32m")] = xT("Green");  // \e[0;1;32m
+    colorsCodes[xT("\e[0;31m")] = xT("Red");
+    colorsCodes[xT("\e[0;32m")] = xT("Green");
     colorsCodes[xT("\e[0;33m")] = xT("Yellow");
     colorsCodes[xT("\e[0;34m")] = xT("Blue");
     colorsCodes[xT("\e[0;35m")] = xT("Purple");
     colorsCodes[xT("\e[0;36m")] = xT("Cyan");
     colorsCodes[xT("\e[0;37m")] = xT("White");
+
+    colorsCodes[xT("\e[0;1;30m")] = xT("Black");
+    colorsCodes[xT("\e[0;1;31m")] = xT("Red");
+    colorsCodes[xT("\e[0;1;32m")] = xT("Green");
+    colorsCodes[xT("\e[0;1;33m")] = xT("Yellow");
+    colorsCodes[xT("\e[0;1;34m")] = xT("Blue");
+    colorsCodes[xT("\e[0;1;35m")] = xT("Purple");
+    colorsCodes[xT("\e[0;1;36m")] = xT("Cyan");
+    colorsCodes[xT("\e[0;1;37m")] = xT("White");
 
     // Bold
     colorsCodes[xT("\e[1;30m")] = xT("Black");
