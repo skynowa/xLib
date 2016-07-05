@@ -511,9 +511,6 @@ Ssh2Client::_convertStdToHtml(
     colorsCodes[xT("\e[46m")]   = xT("Cyan");
     colorsCodes[xT("\e[47m")]   = xT("White");
 
-    // Etc
-    colorsCodes[xT("\e[0;1;32m")] = xT("Green");
-
     xFOR_EACH_CONST(std::map_tstring_t, it, colorsCodes) {
         std::tstring_t htmlTag;
     #if 0
