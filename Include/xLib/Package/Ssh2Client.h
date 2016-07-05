@@ -54,8 +54,6 @@ public:
     bool_t         channelReadLine(std::tstring_t *stdOut, std::tstring_t *stdErr);
     void_t         channelClose();
 
-    bool_t         channelExecReadAll(std::ctstring_t &cmd, std::tstring_t *stdOut, std::tstring_t *stdErr);
-
     void_t         disconnect();
 
     int            lastError();
