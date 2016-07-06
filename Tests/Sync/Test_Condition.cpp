@@ -11,60 +11,56 @@ xTEST_UNIT(Test_Condition)
 //-------------------------------------------------------------------------------------------------
 #if xENV_UNIX
 
-std::csize_t    g_cuiThreadsNum = 3;
-std::csize_t    g_cuiCounterMax = 12;
-size_t          g_uiCounter     = 0;
+std::csize_t    threadsNum   = 3;
+std::csize_t    counterMax   = 12;
+size_t          counter      = 0;
+size_t          jobLoops     = 10;
 
-pthread_mutex_t g_mtMutex      = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t  g_cndCondition = PTHREAD_COND_INITIALIZER;
+pthread_mutex_t mtMutex      = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t  cndCondition = PTHREAD_COND_INITIALIZER;
 
 #endif // xENV_UNIX
 //-------------------------------------------------------------------------------------------------
-#if xENV_UNIX && xTODO
+#if xENV_UNIX
 
 static
 void_t *
-pvWatch(
-    void_t *a_pvParam
+watch(
+    void_t *a_param
 )
 {
-    int_t    iRv  = - 1;
-    long_t liId = *(static_cast<long *>( a_pvParam ));
-    xUNUSED(liId);
+    int_t iRv  = - 1;
 
-    #if 0
-        Tracer() << "Starting pvWatch(): thread " << liId;
-    #endif
+    clong_t id = *(static_cast<long_t *>( a_param ));
+    xUNUSED(id);
 
-    /*
-    Lock mutex and wait for signal.  Note that the pthread_cond_wait
-    routine will automatically and atomically unlock mutex while it waits.
-    Also, note that if COUNT_LIMIT is reached before this routine is run by
-    the waiting thread, the loop will be skipped to prevent pthread_cond_wait
-    from never returning.
+    Trace() << Format::str(xT("watch(): starting thread {}"), id);
+
+   /**
+    * Lock mutex and wait for signal.  Note that the pthread_cond_wait
+    * routine will automatically and atomically unlock mutex while it waits.
+    * Also, note that if COUNT_LIMIT is reached before this routine is run by
+    * the waiting thread, the loop will be skipped to prevent pthread_cond_wait
+    * from never returning.
     */
 
-    iRv = ::pthread_mutex_lock(&g_mtMutex);
+    iRv = ::pthread_mutex_lock(&::mtMutex);
     xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
     {
-        while (g_uiCounter < g_cuiCounterMax) {
-            iRv = ::pthread_cond_wait(&g_cndCondition, &g_mtMutex);
+        while (::counter < ::counterMax) {
+            iRv = ::pthread_cond_wait(&::cndCondition, &::mtMutex);
             xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
-            #if 0
-                Tracer() << xT("pvCountWatch(): thread: ") << liId << xT(" Condition signal received");
-            #endif
+            Trace() << Format::str(xT("watch(): thread: {} Condition signal received"), id);
 
-            g_uiCounter += 125;
+            ::counter += 125;
 
-            #if 0
-                Tracer() << xT("pvCountWatch(): thread: ") << liId << xT(" g_uiCounter: ") << g_uiCounter;
-            #endif
+            Trace() << Format::str(xT("watch(): thread: {} counter: {}"), id, ::counter);
         }
     }
 
-    iRv = ::pthread_mutex_unlock(&g_mtMutex);
+    iRv = ::pthread_mutex_unlock(&::mtMutex);
     xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
     return xPTR_NULL;
@@ -72,46 +68,43 @@ pvWatch(
 
 #endif // xENV_UNIX
 //-------------------------------------------------------------------------------------------------
-#if xENV_UNIX && xTODO
+#if xENV_UNIX
 
 static
 void_t *
-pvJob(
-    void_t *a_pvParam
+job(
+    void_t *a_param
 )
 {
-    int_t    iRv  = - 1;
-    long_t liId = *(static_cast<long *>( a_pvParam ));
-    xUNUSED(liId);
+    int_t iRv  = - 1;
 
-    for (size_t i = 0; i < 10 /* g_cuiJobLoops */; ++ i) {
-        iRv = ::pthread_mutex_lock(&g_mtMutex);
+    clong_t id = *(static_cast<long_t *>( a_param ));
+    xUNUSED(id);
+
+    for (size_t i = 0; i < ::jobLoops; ++ i) {
+        iRv = ::pthread_mutex_lock(&::mtMutex);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
         {
-            ++ g_uiCounter;
+            ++ ::counter;
 
             // Check the value of count and signal waiting thread when condition is reached
-            if (g_uiCounter == g_cuiCounterMax) {
-                iRv = ::pthread_cond_signal(&g_cndCondition);
+            if (::counter == ::counterMax) {
+                iRv = ::pthread_cond_signal(&::cndCondition);
                 xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
-                #if 0
-                    Tracer() << xT("pvJob(): thread: ") << liId << xT(" g_uiCounter: ")  << g_uiCounter << xT(" threshold reached");
-                #endif
+                Trace() << Format::str(xT("job(): thread: {} counter: {} threshold reached"), id, ::counter);
             }
-            #if 0
-                Tracer() << xT("pvJob(): thread: ") << liId << xT(" g_uiCounter: ") << g_uiCounter << xT(" unlocking mutex");
-            #endif
+
+            Trace() << Format::str(xT("job(): thread: {} counter: {} unlocking mutex"), id, ::counter);
         }
 
-        iRv = ::pthread_mutex_unlock(&g_mtMutex);
+        iRv = ::pthread_mutex_unlock(&::mtMutex);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
         // do some "work" so threads can alternate on mutex lock
         {
-            uint_t uiRv = ::sleep(1);
-            xUNUSED(uiRv);
+           ::sleep(1);
         }
     }
 
@@ -120,27 +113,28 @@ pvJob(
 
 #endif // xENV_UNIX
 //-------------------------------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool_t
 Test_Condition::unit()
 {
-#if xENV_UNIX && xTODO
-    int_t          iRv          = - 1;
-    pthread_t    thThreads[3] = {0};
-    clong_t liId1        = 1L;
-    clong_t liId2        = 2L;
-    clong_t liId3        = 3L;
+#if xENV_UNIX
+    int_t iRv = - 1;
+
+    pthread_t threads[3] = {0};
+    clong_t   id1        = 1L;
+    clong_t   id2        = 2L;
+    clong_t   id3        = 3L;
 
     // initialize
     {
-        iRv = ::pthread_mutex_init(&g_mtMutex, xPTR_NULL);   // mutex not recursive
+        iRv = ::pthread_mutex_init(&::mtMutex, xPTR_NULL);   // mutex not recursive
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
-        iRv = ::pthread_cond_init(&g_cndCondition, xPTR_NULL);
+        iRv = ::pthread_cond_init(&::cndCondition, xPTR_NULL);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
         // for portability, explicitly create threads in a joinable state
-        pthread_attr_t atAttr /* = {{0}} */;
+        pthread_attr_t atAttr;
 
         iRv = ::pthread_attr_init(&atAttr);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
@@ -148,13 +142,13 @@ Test_Condition::unit()
         iRv = ::pthread_attr_setdetachstate(&atAttr, PTHREAD_CREATE_JOINABLE);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
-        iRv = ::pthread_create(&thThreads[0], &atAttr, pvWatch, (void_t *)&liId1);
+        iRv = ::pthread_create(&threads[0], &atAttr, watch, (void_t *)&id1);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
-        iRv = ::pthread_create(&thThreads[1], &atAttr, pvJob,   (void_t *)&liId2);
+        iRv = ::pthread_create(&threads[1], &atAttr, job,   (void_t *)&id2);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
-        iRv = ::pthread_create(&thThreads[2], &atAttr, pvJob,   (void_t *)&liId3);
+        iRv = ::pthread_create(&threads[2], &atAttr, job,   (void_t *)&id3);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
         iRv = ::pthread_attr_destroy(&atAttr);
@@ -162,21 +156,19 @@ Test_Condition::unit()
     }
 
     // wait for all threads to complete
-    for (size_t i = 0; i < g_cuiThreadsNum; ++ i) {
-        iRv = ::pthread_join(thThreads[i], xPTR_NULL);
+    for (size_t i = 0; i < ::threadsNum; ++ i) {
+        iRv = ::pthread_join(threads[i], xPTR_NULL);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
     }
 
-    #if 0
-        Tracer() << xT("Main(): waited on ") << g_cuiThreadsNum << xT(" threads. Done");
-    #endif
+    Trace() << Format::str(xT("Main(): waited on {} threads. Done"), ::threadsNum);
 
     // clean up
     {
-        iRv = ::pthread_cond_destroy(&g_cndCondition);
+        iRv = ::pthread_cond_destroy(&::cndCondition);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
-        iRv = ::pthread_mutex_destroy(&g_mtMutex);
+        iRv = ::pthread_mutex_destroy(&::mtMutex);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
     }
 
