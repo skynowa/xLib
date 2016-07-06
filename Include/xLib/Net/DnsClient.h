@@ -50,7 +50,7 @@ public:
                  std::tstring_t *protocolName_rv);
         ///< get service by name
     static
-    void_t   serviceByPort(cshort_t &port, std::ctstring_t &protocolName, std::tstring_t *name,
+    void_t   serviceByPort(cushort_t &port, std::ctstring_t &protocolName, std::tstring_t *name,
                  std::vec_tstring_t *aliases, short_t *port_rv, std::tstring_t *protocolName_rv);
         ///< get service by port
 
@@ -80,34 +80,4 @@ xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "DnsClient.cpp"
-#endif
-
-
-#if xTODO
-    - GetAddressByName
-
-    + getaddrinfo
-    + GetAddrInfoW
-    + freeaddrinfo
-    + FreeAddrInfoW
-
-    - GetAddrInfoEx
-    - SetAddrInfoEx
-    - FreeAddrInfoEx
-
-    + gethostbyname
-    + gethostbyaddr
-    + gethostname
-
-    GetNameByType
-    GetTypeByName
-
-    getnameinfo
-    GetNameInfoW
-
-
-    + getprotobyname
-    + getprotobynumber
-    + getservbyname
-    + getservbyport
 #endif
