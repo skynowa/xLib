@@ -59,33 +59,31 @@ Condition::_wait_impl(
     iRv = ::pthread_mutex_lock(&_mutex);
     xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
 
-    {
-        for ( ; ; ) {
-            if (a_timeoutMs == xTIMEOUT_INFINITE) {
-                iRv = ::pthread_cond_wait(&_handle, &_mutex);
-            } else {
-                timespec timeoutMs = {0, 0};
-                timeval  timeNow   = {0, 0};
+    for ( ; ; ) {
+        if (a_timeoutMs == xTIMEOUT_INFINITE) {
+            iRv = ::pthread_cond_wait(&_handle, &_mutex);
+        } else {
+            timespec timeoutMs = {0, 0};
+            timeval  timeNow   = {0, 0};
 
-                iRv = ::gettimeofday(&timeNow, xPTR_NULL);
-                xTEST_DIFF(iRv, - 1);
+            iRv = ::gettimeofday(&timeNow, xPTR_NULL);
+            xTEST_DIFF(iRv, - 1);
 
-                timeoutMs.tv_sec  = timeNow.tv_sec + a_timeoutMs / 1000;
-                timeoutMs.tv_nsec = timeNow.tv_usec * 1000 + (a_timeoutMs % 1000) * 1000000;
+            timeoutMs.tv_sec  = timeNow.tv_sec + a_timeoutMs / 1000;
+            timeoutMs.tv_nsec = timeNow.tv_usec * 1000 + (a_timeoutMs % 1000) * 1000000;
 
-                // handle overflow
-                if (timeoutMs.tv_nsec >= 1000000000) {
-                    Trace() << xT("xLib: Condition::vWait - handle overflow");
+            // handle overflow
+            if (timeoutMs.tv_nsec >= 1000000000) {
+                Trace() << xT("xLib: Condition::vWait - handle overflow");
 
-                    ++ timeoutMs.tv_sec;
-                    timeoutMs.tv_nsec -= 1000000000;
-                }
-
-                iRv = ::pthread_cond_timedwait(&_handle, &_mutex, &timeoutMs);
+                ++ timeoutMs.tv_sec;
+                timeoutMs.tv_nsec -= 1000000000;
             }
 
-            xCHECK_DO(iRv, break);
+            iRv = ::pthread_cond_timedwait(&_handle, &_mutex, &timeoutMs);
         }
+
+        xCHECK_DO(iRv, break);
     }
 
     iRv = ::pthread_mutex_unlock(&_mutex);
