@@ -43,7 +43,7 @@ DnsClient::hostAddrByName(
     hostent *host = ::gethostbyname( xT2A(a_hostName).c_str() );
     xTEST_PTR(host);
 
-    struct in_addr **addrList = (struct in_addr **)host->h_addr_list;
+    struct in_addr **addrList = reinterpret_cast<struct in_addr **>(host->h_addr_list);
 
     for (std::size_t i = 0; addrList[i] != xPTR_NULL; ++ i) {
         sRv = inet_ntoa(*addrList[i]);
@@ -93,7 +93,7 @@ DnsClient::hostNameByAddr(
         in_addr iaAddr = {0};
 
         iaAddr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
-        xTEST_EQ(iaAddr.s_addr != INADDR_NONE, true);
+        xTEST_DIFF(iaAddr.s_addr, INADDR_NONE);
 
         host = ::gethostbyaddr(reinterpret_cast<char *>(&iaAddr), sizeof(iaAddr), Socket::afInet);
         xTEST_PTR(host);
@@ -144,14 +144,14 @@ DnsClient::nameInfo(
     tchar_t servInfo[NI_MAXSERV + 1] = {0};
 
     // TODO: DnsClient::nameInfo()
-    int_t iRv = xGETNAMEINFO((sockaddr *)&socketAddr, sizeof(socketAddr), &hostName[0],
-        NI_MAXHOST, &servInfo[0], NI_MAXSERV, NI_NUMERICSERV);
+    int_t iRv = xGETNAMEINFO(reinterpret_cast<sockaddr *>(&socketAddr), sizeof(socketAddr),
+        &hostName[0], NI_MAXHOST, &servInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     xTEST_EQ(iRv, 0);
 
     //hostname
 }
 //-------------------------------------------------------------------------------------------------
-//NOTE: http://www.geekpage.jp/en/programming/linux-network/getaddrinfo-0.php
+// NOTE: http://www.geekpage.jp/en/programming/linux-network/getaddrinfo-0.php
 /* static */
 xINLINE void_t
 DnsClient::hostAddrInfo(
@@ -288,7 +288,7 @@ DnsClient::serviceByName(
 /* static */
 xINLINE void_t
 DnsClient::serviceByPort(
-    cshort_t           &a_port,
+    cushort_t          &a_port,
     std::ctstring_t    &a_protocolName,
     std::tstring_t     *a_name,
     std::vec_tstring_t *a_aliases,
@@ -296,7 +296,7 @@ DnsClient::serviceByPort(
     std::tstring_t     *a_protocolName_rv
 )
 {
-    // TODO: DnsClient::serviceByPort() - a_port
+    xTEST_GR(a_port, static_cast<ushort_t>(0));
     xTEST_EQ(a_protocolName.empty(), false);
     xTEST_NA(a_name);
     xTEST_NA(a_aliases);
@@ -338,7 +338,7 @@ DnsClient::isOnLan(
     cuint_t localIp = INADDR_ANY;  // IP of local interface (network order)
     cuint_t netMask = INADDR_NONE; // net mask for IP (network order)
 
-    return (0UL == ((ntohl(a_ip) ^ ntohl(localIp)) & ntohl(netMask)));
+    return (((ntohl(a_ip) ^ ntohl(localIp)) & ntohl(netMask)) == 0UL);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -349,7 +349,7 @@ DnsClient::isBroadcast(
 {
     cuint_t netMask = INADDR_NONE; // net mask for IP (network order)
 
-    return (0UL == (~ntohl(a_ip) & ~ntohl(netMask)));
+    return ((~ntohl(a_ip) & ~ntohl(netMask)) == 0UL);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
