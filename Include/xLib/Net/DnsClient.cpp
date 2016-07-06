@@ -85,7 +85,7 @@ DnsClient::hostNameByAddr(
             xTEST_DIFF(iRv, 0);
 
             host = ::gethostbyaddr(static_cast<char *>( &iaAddr6 ), 16, afInet6);
-            xTEST_PTR(host, false);
+            xTEST_PTR(host);
         #endif
     #endif
         break;
