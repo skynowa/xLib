@@ -84,7 +84,7 @@ DnsClient::hostNameByAddr(
             iRv = ::inet_pton(afInet6, a_casHostAddr.c_str(), &iaAddr6);
             xTEST_DIFF(iRv, 0);
 
-            host = ::gethostbyaddr(static_cast<char *>( &iaAddr6 ), 16, afInet6);
+            host = ::gethostbyaddr(reinterpret_cast<char *>( &iaAddr6 ), 16, afInet6);
             xTEST_PTR(host);
         #endif
     #endif
@@ -95,7 +95,7 @@ DnsClient::hostNameByAddr(
         iaAddr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
         xTEST_EQ(iaAddr.s_addr != INADDR_NONE, true);
 
-        host = ::gethostbyaddr((char *)&iaAddr, sizeof(iaAddr), Socket::afInet);
+        host = ::gethostbyaddr(reinterpret_cast<char *>(&iaAddr), sizeof(iaAddr), Socket::afInet);
         xTEST_PTR(host);
 
         break;
