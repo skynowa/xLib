@@ -134,34 +134,38 @@ Test_Condition::unit()
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
         // for portability, explicitly create threads in a joinable state
-        pthread_attr_t atAttr;
+        pthread_attr_t attr;
 
-        iRv = ::pthread_attr_init(&atAttr);
+        iRv = ::pthread_attr_init(&attr);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
-        iRv = ::pthread_attr_setdetachstate(&atAttr, PTHREAD_CREATE_JOINABLE);
+        iRv = ::pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
-        iRv = ::pthread_create(&threads[0], &atAttr, watch, (void_t *)&id1);
+        iRv = ::pthread_create(&threads[0], &attr, watch, (void_t *)&id1);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
-        iRv = ::pthread_create(&threads[1], &atAttr, job,   (void_t *)&id2);
+        iRv = ::pthread_create(&threads[1], &attr, job,   (void_t *)&id2);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
-        iRv = ::pthread_create(&threads[2], &atAttr, job,   (void_t *)&id3);
+        iRv = ::pthread_create(&threads[2], &attr, job,   (void_t *)&id3);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
 
-        iRv = ::pthread_attr_destroy(&atAttr);
+        iRv = ::pthread_attr_destroy(&attr);
         xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
     }
 
     // wait for all threads to complete
-    for (size_t i = 0; i < ::threadsNum; ++ i) {
-        iRv = ::pthread_join(threads[i], xPTR_NULL);
-        xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
-    }
+	{
+		Trace() << Format::str(xT("Main(): waited on {} threads..."), ::threadsNum);
 
-    Trace() << Format::str(xT("Main(): waited on {} threads. Done"), ::threadsNum);
+		for (size_t i = 0; i < ::threadsNum; ++ i) {
+			iRv = ::pthread_join(threads[i], xPTR_NULL);
+			xTEST_EQ_MSG(0, iRv, NativeError::format(iRv));
+		}
+
+		Trace() << Format::str(xT("Main(): waited on {} threads. Done"), ::threadsNum);
+	}
 
     // clean up
     {
