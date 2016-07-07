@@ -82,19 +82,16 @@ Test_ThreadPool::unit()
     cbool_t isGroupPaused     = true;
     cbool_t isGroupAutoDelete = true;
 
-    ThreadPool<PoolThread> *pool = xPTR_NULL;
-
-    {
-        pool = new ThreadPool<PoolThread>(isPaused, isAutoDelete, isGroupPaused, isGroupAutoDelete);
-    }
+    ThreadPool<PoolThread> *pool = new ThreadPool<PoolThread>(isPaused, isAutoDelete,
+    	isGroupPaused, isGroupAutoDelete);
 
     {
         cuint_t  stackSize       = 0UL;
-        void_t  *param            = xPTR_NULL;
-        cuint_t  cuiNumTasks        = 5;
-        cuint_t  cuiMaxRunningTasks = 10U;
+        void_t  *param           = xPTR_NULL;
+        cuint_t  tasksNum        = 5;
+        cuint_t  runningTasksMax = 10U;
 
-        pool->groupCreate(stackSize, xPTR_NULL, param, cuiNumTasks, cuiMaxRunningTasks);
+        pool->groupCreate(stackSize, xPTR_NULL, param, tasksNum, runningTasksMax);
     }
 
     pool->groupResume();
