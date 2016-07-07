@@ -20,16 +20,3 @@ public:
         ///< unit test
 };
 //-------------------------------------------------------------------------------------------------
-class CPoolThread :
-    public Thread
-{
-public:
-    size_t         index;
-
-                   CPoolThread(cbool_t &cbAutoDelete);
-    virtual       ~CPoolThread();
-
-protected:
-    virtual uint_t uiOnRun(void_t *pData);
-};
-//-------------------------------------------------------------------------------------------------

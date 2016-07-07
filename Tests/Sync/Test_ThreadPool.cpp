@@ -11,118 +11,108 @@
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_ThreadPool)
 //-------------------------------------------------------------------------------------------------
-/*virtual*/
-bool_t
-Test_ThreadPool::unit()
+class PoolThread :
+    public Thread
 {
-    {
-        // FIX: temp disable
-        return true;
-    }
+public:
+    std::size_t    index;
 
-    cbool_t cbIsPaused            = true;
-    cbool_t cbIsAutoDelete        = true;
-    cbool_t cbIsGroupPaused       = true;
-    cbool_t cbIsGroupAutoDelete   = true;
+    explicit       PoolThread(cbool_t &isAutoDelete);
+    virtual       ~PoolThread();
 
-    ThreadPool<CPoolThread> *tpPool = xPTR_NULL;
-
-    {
-        tpPool = new ThreadPool<CPoolThread>(
-                        cbIsPaused, cbIsAutoDelete,
-                        cbIsGroupPaused, cbIsGroupAutoDelete);
-        xTEST_PTR(tpPool);
-    }
-
-    {
-        cuint_t  cuiStackSize       = 0UL;
-        void_t         *pvParam            = xPTR_NULL;
-        cuint_t  cuiNumTasks        = 5;
-        cuint_t  cuiMaxRunningTasks = 10U;
-
-        tpPool->groupCreate(cuiStackSize, xPTR_NULL, pvParam,
-                             cuiNumTasks, cuiMaxRunningTasks);
-    }
-
-    tpPool->groupResume();
-    tpPool->groupPause();
-    tpPool->groupExit(500UL);
-    tpPool->groupKill(500UL);
-    tpPool->groupWait(500UL);
-
-    m_stRv = tpPool->maxTasks();
-    xUNUSED(m_stRv);
-
-    tpPool->setMaxTasks(10);
-
-    m_stRv = tpPool->numTasks();
-    xUNUSED(m_stRv);
-
-    tpPool->setNumTasks(10);
-
-    return true;
-}
+protected:
+    virtual uint_t onRun(void_t *param) xOVERRIDE;
+};
 //-------------------------------------------------------------------------------------------------
-
-
-/*******************************************************************************
-*    CPoolThread
-*
-*******************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-CPoolThread::CPoolThread(
-    cbool_t &cbAutoDelete
+PoolThread::PoolThread(
+    cbool_t &a_isAutoDelete
 ) :
-    Thread (cbAutoDelete),
-    index    (0U)
+    Thread(a_isAutoDelete),
+    index (0U)
 {
 }
 //-------------------------------------------------------------------------------------------------
-CPoolThread::~CPoolThread() {
+PoolThread::~PoolThread() {
 
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
-CPoolThread::uiOnRun(
-    void_t *pvData
+PoolThread::onRun(
+    void_t *a_param
 )
 {
-    xUNUSED(pvData);
+    xUNUSED(a_param);
 
-    #if xTEST_IGNORE
-        xTRACEV(xT("\n\tCWorkThread: start #%lu"), m_ulTag);
-    #endif
+    Trace() << xT("\n\tPoolThread: start #") << tag();
 
     uint_t uiRes = 0;
 
     // bIsCurrent
     bool_t bRv = Thread::isCurrent();
-    xTEST_EQ(true, bRv);
+    xTEST_EQ(bRv, true);
 
-    for (size_t i = 0; i < 10; ++ i) {
+    for (std::size_t i = 0; i < 10; ++ i) {
         // interrupt point
         bRv = isTimeToExit();
-        #if xTEST_IGNORE
-            xCHECK_DO(bRv, xTRACE(xT("\tCWorkThread: break")));
-        #endif
+        xCHECK_DO(bRv, xT("\tPoolThread: break"));
         xCHECK_DO(bRv, break);
 
         // jobs
         {
-            #if xTEST_IGNORE
-                xTRACE(xT("\t*"));
-            #endif
+            Trace() << xT("\t*");
 
             Thread::currentSleep(50UL);
             Thread::currentYield();
         }
     }
 
-    #if xTEST_IGNORE
-        xTRACEV(xT("\tCWorkThread: end #%lu\n"), m_ulTag);
-    #endif
+    Trace() << xT("\tPoolThread: end #") << tag();
 
     return uiRes;
 }
 //--------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------
+/*virtual*/
+bool_t
+Test_ThreadPool::unit()
+{
+    cbool_t isPaused          = true;
+    cbool_t isAutoDelete      = true;
+    cbool_t isGroupPaused     = true;
+    cbool_t isGroupAutoDelete = true;
+
+    ThreadPool<PoolThread> *pool = xPTR_NULL;
+
+    {
+        pool = new ThreadPool<PoolThread>(isPaused, isAutoDelete, isGroupPaused, isGroupAutoDelete);
+    }
+
+    {
+        cuint_t  stackSize       = 0UL;
+        void_t  *param            = xPTR_NULL;
+        cuint_t  cuiNumTasks        = 5;
+        cuint_t  cuiMaxRunningTasks = 10U;
+
+        pool->groupCreate(stackSize, xPTR_NULL, param, cuiNumTasks, cuiMaxRunningTasks);
+    }
+
+    pool->groupResume();
+    pool->groupPause();
+    pool->groupExit(500UL);
+    pool->groupKill(500UL);
+    pool->groupWait(500UL);
+
+    m_stRv = pool->maxTasks();
+    xUNUSED(m_stRv);
+
+    pool->setMaxTasks(10);
+
+    m_stRv = pool->numTasks();
+    xUNUSED(m_stRv);
+
+    pool->setNumTasks(10);
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------

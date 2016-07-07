@@ -31,7 +31,7 @@ ThreadPool<T>::ThreadPool(
     cbool_t &a_isGroupPaused,
     cbool_t &a_isGroupAutoDelete
 ) :
-    Thread          (a_isAutoDelete),
+    Thread            (a_isAutoDelete),
     _stackSize        (0U),
     _funcPtr          (xPTR_NULL),
     _param            (xPTR_NULL),
@@ -47,14 +47,14 @@ ThreadPool<T>::ThreadPool(
 
     // TODO: ThreadPool - a_isPaused()
 
-    /*LOG*/_s_log.write(xT("--------------------------------"));
-    /*LOG*/_s_log.write(xT("ThreadPool: construct"));
+    _s_log.write(xT("--------------------------------"));
+    _s_log.write(xT("ThreadPool: construct"));
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 ThreadPool<T>::~ThreadPool()
 {
-    /*LOG*/_s_log.write(xT("ThreadPool: destroy"));
+    _s_log.write(xT("ThreadPool: destroy"));
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -81,7 +81,7 @@ ThreadPool<T>::groupCreate(
     xTEST_NA(a_numTasks);
     xTEST_NA(a_maxRunningTasks);
 
-    xCHECK_DO(isRunning(), /*LOG*/_s_log.write(xT("ThreadPool: is running")); return);
+    xCHECK_DO(isRunning(), _s_log.write(xT("ThreadPool: is running")); return);
 
     //-------------------------------------
     //
@@ -100,7 +100,7 @@ template<typename T>
 void_t
 ThreadPool<T>::groupResume()
 {
-    xCHECK_DO(!isRunning(), /*LOG*/_s_log.write(xT("ThreadPool: not running")); return);
+    xCHECK_DO(!isRunning(), _s_log.write(xT("ThreadPool: not running")); return);
 
     //-------------------------------------
     //
@@ -108,7 +108,7 @@ ThreadPool<T>::groupResume()
         AutoMutex mutex(&_s_mutex);
 
         xFOR_EACH_CONST(typename std::list<T *>, it, _tasks) {
-            xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("Not running")); continue);
+            xCHECK_DO(!(*it)->isRunning(), _s_log.write(xT("Not running")); continue);
 
             (*it)->resume();
         }
@@ -123,19 +123,19 @@ template<typename T>
 void_t
 ThreadPool<T>::groupPause()
 {
-    xCHECK_DO(!isRunning(), /*LOG*/_s_log.write(xT("ThreadPool: not running")); return);
+    xCHECK_DO(!isRunning(), _s_log.write(xT("ThreadPool: not running")); return);
 
     //-------------------------------------
-    //���
+    //
     pause();
 
     //-------------------------------------
-    //������� ������
+    //
     {
         AutoMutex mutex(&_s_mutex);
 
         xFOR_EACH_CONST(typename std::list<T *>, it, _tasks) {
-            xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("Not running")); continue);
+            xCHECK_DO(!(*it)->isRunning(), _s_log.write(xT("Not running")); continue);
 
             (*it)->pause();
         }
@@ -152,19 +152,19 @@ ThreadPool<T>::groupExit(
 
     // TODO: ThreadPool<T>::groupExit() - a_timeoutMsec
 
-    xCHECK_DO(!isRunning(), /*LOG*/_s_log.write(xT("ThreadPool: not running")); return);
+    xCHECK_DO(!isRunning(), _s_log.write(xT("ThreadPool: not running")); return);
 
     //-------------------------------------
-    //���
+    //
     exit(/* a_timeoutMsec */);
 
     //-------------------------------------
-    //������� ������
+    //
     {
         AutoMutex mutex(&_s_mutex);
 
         xFOR_EACH_CONST(typename std::list<T *>, it, _tasks)    {
-            xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("ThreadPool: not running"));
+            xCHECK_DO(!(*it)->isRunning(), _s_log.write(xT("ThreadPool: not running"));
                 continue);
 
             (*it)->exit(/* a_timeoutMsec */);
@@ -180,15 +180,15 @@ ThreadPool<T>::groupKill(
 {
     xTEST_PTR(this);
 
-    xCHECK_DO(!isRunning(), /*LOG*/_s_log.write(xT("ThreadPool: not running")); return);
+    xCHECK_DO(!isRunning(), _s_log.write(xT("ThreadPool: not running")); return);
 
     //-------------------------------------
-    //������� ������
+    //
     {
         AutoMutex mutex(&_s_mutex);
 
         xFOR_EACH_CONST(typename std::list<T *>, it, _tasks)    {
-            xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("Not running")); continue);
+            xCHECK_DO(!(*it)->isRunning(), _s_log.write(xT("Not running")); continue);
 
             (*it)->kill(a_timeoutMsec);
         }
@@ -205,22 +205,22 @@ ThreadPool<T>::groupWait(
     culong_t &a_timeoutMsec
 )
 {
-    xCHECK_DO(!isRunning(), /*LOG*/_s_log.write(xT("ThreadPool: not running")); return);
+    xCHECK_DO(!isRunning(), _s_log.write(xT("ThreadPool: not running")); return);
 
     //-------------------------------------
-    //������� ������
+    //
     {
         AutoMutex mutex(&_s_mutex);
 
         xFOR_EACH_CONST(typename std::list<T *>, it, _tasks)    {
-            xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("Not running")); continue);
+            xCHECK_DO(!(*it)->isRunning(), _s_log.write(xT("Not running")); continue);
 
             (*it)->wait(a_timeoutMsec);
         }
     }
 
     //-------------------------------------
-    //��� - !�������� ������ ����!
+    // - !  !
     //-- wait(culTimeout);
 }
 //-------------------------------------------------------------------------------------------------
@@ -250,9 +250,9 @@ ThreadPool<T>::setMaxTasks(
     // n/a
 
     //-------------------------------------
-    //���������� (���� ������� uiNum �������)
+    // (  uiNum )
     if (_maxRunningTasks < a_num) {
-        //������� ���� �������� � _maxRunningTasks, ���� ���� uiNum
+        //    _maxRunningTasks,   uiNum
         size_t tasksForInc = a_num - _maxRunningTasks;
 
         for (size_t i = 0U; i < tasksForInc; ++ i) {
@@ -265,7 +265,7 @@ ThreadPool<T>::setMaxTasks(
     }
 
     //-------------------------------------
-    //���������� (��������� ���-�� ������� + ��������� std::list)
+    // ( -  +  std::list)
     if (_maxRunningTasks > a_num) {
         AutoMutex mutex(&_s_mutex);
 
@@ -273,7 +273,7 @@ ThreadPool<T>::setMaxTasks(
         size_t tasksForDec = _maxRunningTasks - a_num;
 
         xFOR_EACH_R_CONST(typename std::list<T *>, it, _tasks) {
-            xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("Not running")); continue);
+            xCHECK_DO(!(*it)->isRunning(), _s_log.write(xT("Not running")); continue);
 
             #if   xENV_WIN
                 ::InterlockedExchange(&((*it)->tag), 1UL);
@@ -293,7 +293,7 @@ ThreadPool<T>::setMaxTasks(
     }
 
     //-------------------------------------
-    //������ �� ������, �.�. ���-�� ������� �� ����������
+    //  , .. -
     if (a_num == _maxRunningTasks) {
         _maxRunningTasks = a_num;
 
@@ -327,8 +327,6 @@ template<typename T>
 bool_t
 ThreadPool<T>::isEmpty() const
 {
-
-
     AutoMutex mutex(&_s_mutex);
 
     bool_t bRv = _tasks.empty();
@@ -341,7 +339,7 @@ template<typename T>
 bool_t
 ThreadPool<T>::isFull() const
 {
-    //xTEST_EQ(CONDITION);
+    // xTEST_EQ(CONDITION);
 
     AutoMutex mutex(&_s_mutex);
 
@@ -357,7 +355,7 @@ template<typename T>
 size_t
 ThreadPool<T>::size() const
 {
-    //xTEST_EQ(CONDITION);
+    // xTEST_EQ(CONDITION);
 
     AutoMutex mutex(&_s_mutex);
 
@@ -388,41 +386,41 @@ ThreadPool<T>::onRun(
     uint_t uiRes = 0U;
 
     //-------------------------------------
-    //������ �������
+    //
     _semaphore.create(static_cast<long_t>( _maxRunningTasks ), xT(""));
 
     //-------------------------------------
-    //������ ����
+    //
     xTEST_EQ(_tasks.empty(), true);
     _tasks.clear();
 
     for ( ; ; ) {
         //-------------------------------------
-        //�������� ���������� ������
+        //
         _semaphore.wait(xTIMEOUT_INFINITE);
 
         //-------------------------------------
-        //��� �������� (���� ��������� ��� ������� - �����)
+        //  (    - )
         xCHECK_DO(_currTask >= _numTasks, break);
         ////xCHECK_DO(bIsEmpty(), break);
 
         //-------------------------------------
-        //�� ���� �� ����� ��� ���������������
+        //
         bool_t bRv = isTimeToExit();
         xCHECK_DO(bRv, break);
 
         //-------------------------------------
-        //������ ����. ������
+        // .
         _taskAdd(xPTR_NULL);                       //_semaphore.bWait(INFINITE);
         xTEST_EQ(bRv, true);                //continue ???
 
         ++ _currTask;
 
-        /*LOG*/////_s_log.write(xT("_currTask == %i, _numTasks: %i\n"), _currTask, _numTasks);
+        ////_s_log.write(xT("_currTask == %i, _numTasks: %i\n"), _currTask, _numTasks);
     }
 
     //-------------------------------------
-    //���� ���� ����������� �������� ������ (���� �� ������)
+    //     (  )
     ////bRv = bWaitGroup(INFINITE/*5000*/);
     ////xTEST_EQ(bRv, true, 0);
 
@@ -433,8 +431,8 @@ ThreadPool<T>::onRun(
     }
     xTEST_EQ(_tasks.empty(), true);
 
-    /*LOG*/_s_log.write(xT("ThreadPool: Exit thread function"));
-    /*LOG*/_s_log.write(xT("ThreadPool: List size: %u"), _tasks.size());
+    _s_log.write(xT("ThreadPool: Exit thread function"));
+    _s_log.write(xT("ThreadPool: List size: %u"), _tasks.size());
 
     return uiRes;
 }
@@ -458,7 +456,6 @@ ThreadPool<T>::_taskAdd(
     // TODO: ThreadPool - a_item
 
     T *task = new T(_isGroupAutoDelete);
-    xTEST_PTR(task);
 
     task->index = _currTask;
     // TODO: task->vAttachHandler_OnEnter( xCLOSURE(this, &ThreadPool::_vOnEnterTask) );
@@ -484,13 +481,13 @@ ThreadPool<T>::_taskRemove(
     xTEST_EQ(task->isRunning(), true);
 
     //-------------------------------------
-    //����������� _semaphore
+    // _semaphore
     if (task->m_ulTag == 0UL) {
         _semaphore.post();
     }
 
     //-------------------------------------
-    //������� �� ������ ��������� �� �����
+    //
     {
         AutoMutex mutex(&_s_mutex);
 
@@ -511,7 +508,7 @@ ThreadPool<T>::_onEnterTask(
 
     //...
 
-    /*LOG*///_s_log.write(xT("_vOnEnterTask: #%i"), a_pthTask->index);
+    //_s_log.write(xT("_vOnEnterTask: #%i"), a_pthTask->index);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -525,7 +522,7 @@ ThreadPool<T>::_onExitTask(
 
     _taskRemove(a_sender);
 
-    /*LOG*///_s_log.write(xT("_vOnExitTask stop: #%i"), a_pthTask->index);
+    //_s_log.write(xT("_vOnExitTask stop: #%i"), a_pthTask->index);
 }
 //-------------------------------------------------------------------------------------------------
 
