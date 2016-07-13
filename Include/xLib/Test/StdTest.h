@@ -65,13 +65,18 @@
 #define _xTRACE_POINT \
     { \
         std::cout \
-            << "\t::::: " \
+            << "\t::: " \
             << " in "      << __FILE__ \
             << ":"         << __LINE__ \
             << ", error: " << std::strerror(errno) \
-            << " :::::"    << std::endl; \
+            << " :::"      << std::endl; \
     }
     ///< trace point
+#define _xTRACE_FUNC \
+    { \
+        std::cout << "\t::: " << __FUNCTION__ << " :::" << std::endl; \
+    }
+    ///< trace function
 #define _xNOT_IMPLEMENTED \
     { _xTEST_MSG_FAIL(xT("Not implemented")); }
     ///< show not implemented message and return value

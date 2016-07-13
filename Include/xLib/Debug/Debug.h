@@ -111,6 +111,14 @@
             << xT("error: ") << NativeError::format() << xT(" :::"); \
     }
     ///< trace point (use Trace)
+#define xTRACE_FUNC \
+    { \
+        xlib::debug::SourceInfo sourceInfo( {xFILE, xLINE, xFUNCTION, xCOUNTER} ); \
+        \
+        xlib::log::Trace() \
+            << xT("\t::: ")  << sourceInfo.data().funcName << xT(" :::"); \
+    }
+    ///< trace function (use Trace)
 #define xNOT_IMPLEMENTED \
     { xTEST_FAIL_MSG(xT("Not implemented")); }
     ///< show not implemented message
