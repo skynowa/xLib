@@ -170,17 +170,34 @@ Ssh2Client::channelExec(
     xTEST(!a_cmd.empty());
     xTEST_NA(a_isBlockingMode);
 
-    int iRv = - 1;
+    ssize_t iRv = - 1;
 
     _channel = ::libssh2_channel_open_session(_session);
     xTEST_PTR(_channel);
 
     (void_t)::libssh2_channel_set_blocking(_channel, static_cast<int>(a_isBlockingMode));
 
+#if 1
     while ((iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str())) == LIBSSH2_ERROR_EAGAIN) {
         _wait(waitTimeoutSec);
     }
-    xTEST_EQ(iRv, 0);
+    xTEST_EQ(iRv, (ssize_t)0);
+#else
+    while ((iRv = ::libssh2_channel_request_pty(_channel, "vanilla")) == LIBSSH2_ERROR_EAGAIN) {
+        _wait(waitTimeoutSec);
+    }
+    xTEST_EQ(iRv, (ssize_t)0);
+
+    while ((iRv = ::libssh2_channel_shell(_channel)) == LIBSSH2_ERROR_EAGAIN) {
+        _wait(waitTimeoutSec);
+    }
+    xTEST_EQ(iRv, (ssize_t)0);
+
+    while ((iRv = ::libssh2_channel_write(_channel, xT2A(a_cmd).c_str(), a_cmd.size())) == LIBSSH2_ERROR_EAGAIN) {
+        _wait(waitTimeoutSec);
+    }
+    xTEST_EQ(iRv, (ssize_t)a_cmd.size());
+#endif
 
     return true;
 }
