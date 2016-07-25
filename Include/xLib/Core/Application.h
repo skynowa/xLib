@@ -48,7 +48,7 @@ public:
     const Signal  &signal() const;
         ///< signal
 
-    xPROPERTY(ApplicationInfo, info);
+    xPROPERTY_STATIC(ApplicationInfo, info);
         ///< information
     static
     const BuildInfo &buildInfo();
