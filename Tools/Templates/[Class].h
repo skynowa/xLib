@@ -1,6 +1,6 @@
 /**
- * \file   [CLASS_NAME].h
- * \brief  [CLASS_COMMENTS]
+ * \file   [Class].h
+ * \brief  [Comments]
  */
 
 
@@ -10,17 +10,17 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, [XLIB_NS])
 
-class [CLASS_NAME]
-    ///<
+class [Class]
+    ///< [Comments]
 {
 public:
-             [CLASS_NAME]() {}
+             [Class]();
         ///< constructor
-    virtual ~[CLASS_NAME]() {}
+    virtual ~[Class]();
         ///< destructor
 
 private:
-    xNO_COPY_ASSIGN([CLASS_NAME])
+    xNO_COPY_ASSIGN([Class])
 
 xPLATFORM_IMPL:
     void_t   _construct_impl();
@@ -30,5 +30,5 @@ xPLATFORM_IMPL:
 xNAMESPACE_END2(xlib, [XLIB_NS])
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
-    #include "[CLASS_NAME].cpp"
+    #include "[Class].cpp"
 #endif

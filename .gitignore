@@ -15,3 +15,5 @@ Docs/html/
 # files
 Include/xLib/Core/Config_gen.h
 CMakeLists.txt.user
+.project
+

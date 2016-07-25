@@ -1,29 +1,29 @@
 /**
- * \file   [CLASS_NAME].cpp
- * \brief  [CLASS_COMMENTS]
+ * \file   [Class].cpp
+ * \brief  [Comments]
  */
 
 
 #if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "[CLASS_NAME].h"
+    #include "[Class].h"
 #endif
 
 #if   xENV_WIN
-    #include "Platform/Win/[CLASS_NAME]_win.inl"
+    #include "Platform/Win/[Class]_win.inl"
 #elif xENV_UNIX
-    // #include "Platform/Unix/[CLASS_NAME]_unix.inl"
+    // #include "Platform/Unix/[Class]_unix.inl"
 
     #if   xENV_LINUX
-        // #include "Platform/Unix/[CLASS_NAME]_linux.inl"
+        // #include "Platform/Unix/[Class]_linux.inl"
     #elif xENV_BSD
-        // #include "Platform/Unix/[CLASS_NAME]_bsd.inl"
+        // #include "Platform/Unix/[Class]_bsd.inl"
     #elif xENV_APPLE
-        // #include "Platform/Unix/[CLASS_NAME]_apple.inl"
+        // #include "Platform/Unix/[Class]_apple.inl"
     #endif
 #endif
 
 
-xNAMESPACE_BEGIN2(xlib, [NAMESPACE])
+xNAMESPACE_BEGIN2(xlib, [XLIB_NS])
 
 /**************************************************************************************************
 *   public
@@ -31,15 +31,17 @@ xNAMESPACE_BEGIN2(xlib, [NAMESPACE])
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-[CLASS_NAME]::[CLASS_NAME]()
+xINLINE
+[Class]::[Class]()
 {
     _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-[CLASS_NAME]::~[CLASS_NAME]()
+xINLINE
+[Class]::~[Class]()
 {
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, [NAMESPACE])
+xNAMESPACE_END2(xlib, [XLIB_NS])
