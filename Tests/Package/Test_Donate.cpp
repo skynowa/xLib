@@ -14,20 +14,20 @@ xTEST_UNIT(Test_Donate)
 bool_t
 Test_Donate::unit()
 {
-	xTEST_CASE("get")
+	xTEST_CASE("data")
 	{
 		DonateData data;
-		data.payPal      = "[PAY_PAL]";
-		data.webMoney    = "[WEB_MONEY]";
-		data.yandexMoney = "[YANDEX_MONEY]";
-		data.private24   = "[PRIVATE_24]";
+		data.payPal      = xT("[PAY_PAL]");
+		data.webMoney    = xT("[WEB_MONEY]");
+		data.yandexMoney = xT("[YANDEX_MONEY]");
+		data.private24   = xT("[PRIVATE_24]");
 
 		Donate donate(data);
 
-		xTEST_EQ(donate.get().payPal.empty(), false);
-		xTEST_EQ(donate.get().webMoney.empty(), false);
-		xTEST_EQ(donate.get().yandexMoney.empty(), false);
-		xTEST_EQ(donate.get().private24.empty(), false);
+		xTEST_EQ(donate.data().payPal.empty(), false);
+		xTEST_EQ(donate.data().webMoney.empty(), false);
+		xTEST_EQ(donate.data().yandexMoney.empty(), false);
+		xTEST_EQ(donate.data().private24.empty(), false);
 	}
 
 	return true;
