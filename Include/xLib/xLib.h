@@ -141,3 +141,4 @@
 // Package
 #include <xLib/Package/Csv.h>
 #include <xLib/Package/Ssh2Client.h>
+#include <xLib/Package/Donate.h>

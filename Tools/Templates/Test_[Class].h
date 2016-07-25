@@ -1,6 +1,6 @@
 /**
- * \file   Test_[CLASS_NAME].h
- * \brief  test [CLASS_NAME]
+ * \file   Test_[Class].h
+ * \brief  test [Class]
  */
 
 
@@ -10,12 +10,12 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xlib;
 
-class Test_[CLASS_NAME] :
+class Test_[Class] :
     public Unit
-    ///< tests for [CLASS_NAME]
+    ///< tests for [Class]
 {
 public:
-                   Test_[CLASS_NAME]() {}
+                   Test_[Class]() {}
 
     virtual bool_t unit() xOVERRIDE;
         ///< unit test
