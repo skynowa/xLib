@@ -802,5 +802,12 @@
     private: \
         const type _##name
     ///< property with read
+#define xPROPERTY_STATIC(type, name) \
+    public:\
+        static type &       name()                       { return _##name; } \
+        static void         set##name(const type& a_value) { _##name = a_value; } \
+    private: \
+        static type _##name
+    ///< property with read, write
 ///@}
 //-------------------------------------------------------------------------------------------------
