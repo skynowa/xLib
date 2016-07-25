@@ -29,12 +29,9 @@ public:
     virtual     ~Donate();
         ///< destructor
 
-	void         set(cDonateData &data);
-	cDonateData& get() const;
+	xPROPERTY(DonateData, data);
 
 private:
-    DonateData   _data; ///< data
-
     xNO_COPY_ASSIGN(Donate)
 };
 
