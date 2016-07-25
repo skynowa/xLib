@@ -790,8 +790,8 @@
 // TEST: Defines - xPROPERTY, add tests
 #define xPROPERTY(type, name) \
     public:\
-        type &       get()                    { return _##name; } \
-        void         set(const type& a_value) { _##name = a_value; } \
+        type &       name()                       { return _##name; } \
+        void         set##name(const type& a_value) { _##name = a_value; } \
     private: \
         type _##name
     ///< property with read, write
