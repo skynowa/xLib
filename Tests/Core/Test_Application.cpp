@@ -163,72 +163,48 @@ Test_Application::unit()
 
     xTEST_CASE("info")
     {
-        std::ctstring_t name            = xT("[app_name]");
-        std::ctstring_t decription      = xT("[decription]");
-        std::ctstring_t usage           = xT("[usage]");
-        std::ctstring_t help            = xT("[help]");
-        std::ctstring_t copyrightYears  = xT("[2008-2014]");
-        std::ctstring_t versionMajor    = xT("[1]");
-        std::ctstring_t versionMinor    = xT("[0]");
-        std::ctstring_t versionPatch    = xT("[3]");
-        std::ctstring_t versionType     = xT("[alpha]");
-        std::ctstring_t versionRevision = xT("[develop/970f53b]");
-        std::ctstring_t vendorName      = xT("[Skynowa Studio]");
-        std::ctstring_t vendorDomain    = xT("[com]");
-        std::ctstring_t vendorAuthor    = xT("[skynowa]");
-        std::ctstring_t vendorUrl       = xT("[http://bitbucket.org/skynowa/xlib]");
-        std::ctstring_t vendorEmail     = xT("[skynowa@gmail.com]");
-        std::ctstring_t vendorSkype     = xT("[skynowa777]");
+		ApplicationInfoData data;
+		data.name            = xT("[name]");
+		data.decription      = xT("[decription]");
+		data.copyrightYears  = xT("[copyrightYears]");
+		data.usage           = xT("[usage]");
+		data.help            = xT("[help]");
+		data.versionMajor    = xT("[versionMajor]");
+		data.versionMinor    = xT("[versionMinor]");
+		data.versionPatch    = xT("[versionPatch]");
+		data.versionType     = xT("[versionType]");
+		data.versionRevision = xT("[versionRevision]");
+		data.vendorName      = xT("[vendorName]");
+		data.vendorDomain    = xT("[vendorDomain]");
+		data.vendorAuthor    = xT("[vendorAuthor]");
+		data.vendorUrl       = xT("[vendorUrl]");
+		data.vendorEmail     = xT("[vendorEmail]");
+		data.vendorSkype     = xT("[vendorSkype]");
+		data.vendorJabber    = xT("[vendorJabber]");
+		data.vendorIcq       = xT("[vendorIcq]");
 
-	#if 0
-		Application::setName(name);
-		xTEST_EQ(Application::name(), name);
+		ApplicationInfo applicationInfo;
+		applicationInfo.set(data);
 
-		Application::setDecription(decription);
-		xTEST_EQ(Application::decription(), decription);
-
-		Application::setUsage(usage);
-		xTEST_EQ(Application::usage(), usage);
-
-		Application::setHelp(help);
-		xTEST_EQ(Application::help(), help);
-
-		Application::setCopyrightYears(copyrightYears);
-		xTEST_EQ(Application::copyrightYears(), copyrightYears);
-
-		Application::setVersionMajor(versionMajor);
-		xTEST_EQ(Application::versionMajor(), versionMajor);
-
-		Application::setVersionMinor(versionMinor);
-		xTEST_EQ(Application::versionMinor(), versionMinor);
-
-		Application::setVersionPatch(versionPatch);
-		xTEST_EQ(Application::versionPatch(), versionPatch);
-
-		Application::setVersionType(versionType);
-		xTEST_EQ(Application::versionType(), versionType);
-
-		Application::setVersionRevision(versionRevision);
-		xTEST_EQ(Application::versionRevision(), versionRevision);
-
-		Application::setVendorName(vendorName);
-		xTEST_EQ(Application::vendorName(), vendorName);
-
-		Application::setVendorDomain(vendorDomain);
-		xTEST_EQ(Application::vendorDomain(), vendorDomain);
-
-		Application::setVendorAuthor(vendorAuthor);
-		xTEST_EQ(Application::vendorAuthor(), vendorAuthor);
-
-		Application::setVendorUrl(vendorUrl);
-		xTEST_EQ(Application::vendorUrl(), vendorUrl);
-
-		Application::setVendorEmail(vendorEmail);
-		xTEST_EQ(Application::vendorEmail(), vendorEmail);
-
-		Application::setVendorSkype(vendorSkype);
-		xTEST_EQ(Application::vendorSkype(), vendorSkype);
-	#endif
+		Application::set(applicationInfo);
+		xTEST_EQ(applicationInfo.get().name,            data.name);
+		xTEST_EQ(applicationInfo.get().decription,      data.decription);
+		xTEST_EQ(applicationInfo.get().copyrightYears,  data.copyrightYears);
+		xTEST_EQ(applicationInfo.get().usage,           data.usage);
+		xTEST_EQ(applicationInfo.get().help,            data.help);
+		xTEST_EQ(applicationInfo.get().versionMajor,    data.versionMajor);
+		xTEST_EQ(applicationInfo.get().versionMinor,    data.versionMinor);
+		xTEST_EQ(applicationInfo.get().versionPatch,    data.versionPatch);
+		xTEST_EQ(applicationInfo.get().versionType,     data.versionType);
+		xTEST_EQ(applicationInfo.get().versionRevision, data.versionRevision);
+		xTEST_EQ(applicationInfo.get().vendorName,      data.vendorName);
+		xTEST_EQ(applicationInfo.get().vendorDomain,    data.vendorDomain);
+		xTEST_EQ(applicationInfo.get().vendorAuthor,    data.vendorAuthor);
+		xTEST_EQ(applicationInfo.get().vendorUrl,       data.vendorUrl);
+		xTEST_EQ(applicationInfo.get().vendorEmail,     data.vendorEmail);
+		xTEST_EQ(applicationInfo.get().vendorSkype,     data.vendorSkype);
+		xTEST_EQ(applicationInfo.get().vendorJabber,    data.vendorJabber);
+		xTEST_EQ(applicationInfo.get().vendorIcq,       data.vendorIcq);
     }
 
     xTEST_CASE("files")

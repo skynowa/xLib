@@ -38,7 +38,7 @@ class ApplicationInfo
     ///< Application information
 {
 public:
-    explicit     ApplicationInfo();
+                 ApplicationInfo();
     explicit     ApplicationInfo(cApplicationInfoData &data);
         ///< constructor
     virtual     ~ApplicationInfo();
