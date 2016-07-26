@@ -1,20 +1,20 @@
 /**
- * \file   Test_[Class].cpp
- * \brief  test [Class]
+ * \file   Test_${cmXLIB_TEMPLATE}.cpp
+ * \brief  test ${cmXLIB_TEMPLATE}
  */
 
 
-#include "Test_[Class].h"
+#include "Test_${cmXLIB_TEMPLATE}.h"
 
 
 //-------------------------------------------------------------------------------------------------
-xTEST_UNIT(Test_[Class])
+xTEST_UNIT(Test_${cmXLIB_TEMPLATE})
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_[Class]::unit()
+Test_${cmXLIB_TEMPLATE}::unit()
 {
-    xTEST_CASE("[Class]::[TEST_CASE_1]")
+    xTEST_CASE("${cmXLIB_TEMPLATE}::[TEST_CASE_1]")
     {
 
     }
