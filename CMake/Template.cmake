@@ -6,7 +6,7 @@
 
 #--------------------------------------------------------------------------------------------------
 # Config
-set(cmXLIB_TEMPLATE          "Dropbox")
+set(cmXLIB_TEMPLATE          "")    # <<< set class name here
 set(cmXLIB_TEMPLATE_COMMENTS "Dropbox tools")
 set(cmXLIB_TEMPLATE_SUBDIR   "Package")
 set(cmXLIB_TEMPLATE_NS       "package")
