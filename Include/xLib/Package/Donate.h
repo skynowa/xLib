@@ -24,6 +24,7 @@ class Donate
     ///< Donate money
 {
 public:
+              Donate();
     explicit  Donate(cDonateData &data);
         ///< constructor
     virtual  ~Donate();
