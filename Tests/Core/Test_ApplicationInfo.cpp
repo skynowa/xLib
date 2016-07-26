@@ -38,24 +38,24 @@ Test_ApplicationInfo::unit()
 
 		ApplicationInfo applicationInfo(data);
 
-		xTEST_EQ(applicationInfo.data().name.empty(), false);
-		xTEST_EQ(applicationInfo.data().decription.empty(), false);
-		xTEST_EQ(applicationInfo.data().copyrightYears.empty(), false);
-		xTEST_EQ(applicationInfo.data().usage.empty(), false);
-		xTEST_EQ(applicationInfo.data().help.empty(), false);
-		xTEST_EQ(applicationInfo.data().versionMajor.empty(), false);
-		xTEST_EQ(applicationInfo.data().versionMinor.empty(), false);
-		xTEST_EQ(applicationInfo.data().versionPatch.empty(), false);
-		xTEST_EQ(applicationInfo.data().versionType.empty(), false);
-		xTEST_EQ(applicationInfo.data().versionRevision.empty(), false);
-		xTEST_EQ(applicationInfo.data().vendorName.empty(), false);
-		xTEST_EQ(applicationInfo.data().vendorDomain.empty(), false);
-		xTEST_EQ(applicationInfo.data().vendorAuthor.empty(), false);
-		xTEST_EQ(applicationInfo.data().vendorUrl.empty(), false);
-		xTEST_EQ(applicationInfo.data().vendorEmail.empty(), false);
-		xTEST_EQ(applicationInfo.data().vendorSkype.empty(), false);
-		xTEST_EQ(applicationInfo.data().vendorJabber.empty(), false);
-		xTEST_EQ(applicationInfo.data().vendorIcq.empty(), false);
+		xTEST_EQ(applicationInfo.get().name.empty(), false);
+		xTEST_EQ(applicationInfo.get().decription.empty(), false);
+		xTEST_EQ(applicationInfo.get().copyrightYears.empty(), false);
+		xTEST_EQ(applicationInfo.get().usage.empty(), false);
+		xTEST_EQ(applicationInfo.get().help.empty(), false);
+		xTEST_EQ(applicationInfo.get().versionMajor.empty(), false);
+		xTEST_EQ(applicationInfo.get().versionMinor.empty(), false);
+		xTEST_EQ(applicationInfo.get().versionPatch.empty(), false);
+		xTEST_EQ(applicationInfo.get().versionType.empty(), false);
+		xTEST_EQ(applicationInfo.get().versionRevision.empty(), false);
+		xTEST_EQ(applicationInfo.get().vendorName.empty(), false);
+		xTEST_EQ(applicationInfo.get().vendorDomain.empty(), false);
+		xTEST_EQ(applicationInfo.get().vendorAuthor.empty(), false);
+		xTEST_EQ(applicationInfo.get().vendorUrl.empty(), false);
+		xTEST_EQ(applicationInfo.get().vendorEmail.empty(), false);
+		xTEST_EQ(applicationInfo.get().vendorSkype.empty(), false);
+		xTEST_EQ(applicationInfo.get().vendorJabber.empty(), false);
+		xTEST_EQ(applicationInfo.get().vendorIcq.empty(), false);
     }
 
     return true;
