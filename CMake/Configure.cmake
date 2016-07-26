@@ -136,3 +136,5 @@ configure_file(
     ${XLIB_LOCATION}/Include/xLib/Core/Config_gen.h.in
     ${XLIB_LOCATION}/Include/xLib/Core/Config_gen.h)
 #--------------------------------------------------------------------------------------------------
+# Class template
+include(Template)

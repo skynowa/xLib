@@ -1,10 +1,10 @@
 /**
- * \file  [Class]_unix.inl
- * \brief [Comments]
+ * \file  ${cmXLIB_TEMPLATE}_bsd.inl
+ * \brief ${cmXLIB_TEMPLATE_COMMENTS}
  */
 
 
-xNAMESPACE_BEGIN2(xlib, [XLIB_NS])
+xNAMESPACE_BEGIN2(xlib, ${cmXLIB_TEMPLATE_NS})
 
 /**************************************************************************************************
 *    public
@@ -12,13 +12,15 @@ xNAMESPACE_BEGIN2(xlib, [XLIB_NS])
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-[Class]::_construct_impl()
+xINLINE
+${cmXLIB_TEMPLATE}::_construct_impl()
 {
 }
 //-------------------------------------------------------------------------------------------------
-[Class]::_destruct_impl()
+xINLINE
+${cmXLIB_TEMPLATE}::_destruct_impl()
 {
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, [XLIB_NS])
+xNAMESPACE_END2(xlib, ${cmXLIB_TEMPLATE_NS})
