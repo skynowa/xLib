@@ -1,29 +1,29 @@
 /**
- * \file   [Class].cpp
- * \brief  [Comments]
+ * \file   ${cmXLIB_TEMPLATE}.cpp
+ * \brief  ${cmXLIB_TEMPLATE_COMMENTS}
  */
 
 
 #if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "[Class].h"
+    #include "${cmXLIB_TEMPLATE}.h"
 #endif
 
 #if   xENV_WIN
-    #include "Platform/Win/[Class]_win.inl"
+    #include "Platform/Win/${cmXLIB_TEMPLATE}_win.inl"
 #elif xENV_UNIX
-    // #include "Platform/Unix/[Class]_unix.inl"
+    // #include "Platform/Unix/${cmXLIB_TEMPLATE}_unix.inl"
 
     #if   xENV_LINUX
-        // #include "Platform/Unix/[Class]_linux.inl"
+        // #include "Platform/Unix/${cmXLIB_TEMPLATE}_linux.inl"
     #elif xENV_BSD
-        // #include "Platform/Unix/[Class]_bsd.inl"
+        // #include "Platform/Unix/${cmXLIB_TEMPLATE}_bsd.inl"
     #elif xENV_APPLE
-        // #include "Platform/Unix/[Class]_apple.inl"
+        // #include "Platform/Unix/${cmXLIB_TEMPLATE}_apple.inl"
     #endif
 #endif
 
 
-xNAMESPACE_BEGIN2(xlib, [XLIB_NS])
+xNAMESPACE_BEGIN2(xlib, ${cmXLIB_TEMPLATE_NS})
 
 /**************************************************************************************************
 *   public
@@ -32,16 +32,16 @@ xNAMESPACE_BEGIN2(xlib, [XLIB_NS])
 
 //-------------------------------------------------------------------------------------------------
 xINLINE
-[Class]::[Class]()
+${cmXLIB_TEMPLATE}::${cmXLIB_TEMPLATE}()
 {
     _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
-[Class]::~[Class]()
+${cmXLIB_TEMPLATE}::~${cmXLIB_TEMPLATE}()
 {
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, [XLIB_NS])
+xNAMESPACE_END2(xlib, ${cmXLIB_TEMPLATE_NS})

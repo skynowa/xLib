@@ -1,6 +1,6 @@
 /**
- * \file   [Class].h
- * \brief  [Comments]
+ * \file   ${cmXLIB_TEMPLATE}.h
+ * \brief  ${cmXLIB_TEMPLATE_COMMENTS}
  */
 
 
@@ -8,27 +8,27 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, [XLIB_NS])
+xNAMESPACE_BEGIN2(xlib, ${cmXLIB_TEMPLATE_NS})
 
-class [Class]
-    ///< [Comments]
+class ${cmXLIB_TEMPLATE}
+    ///< ${cmXLIB_TEMPLATE_COMMENTS}
 {
 public:
-             [Class]();
+             ${cmXLIB_TEMPLATE}();
         ///< constructor
-    virtual ~[Class]();
+    virtual ~${cmXLIB_TEMPLATE}();
         ///< destructor
 
 private:
-    xNO_COPY_ASSIGN([Class])
+    xNO_COPY_ASSIGN(${cmXLIB_TEMPLATE})
 
 xPLATFORM_IMPL:
     void_t   _construct_impl();
     void_t   _destruct_impl();
 };
 
-xNAMESPACE_END2(xlib, [XLIB_NS])
+xNAMESPACE_END2(xlib, ${cmXLIB_TEMPLATE_NS})
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
-    #include "[Class].cpp"
+    #include "${cmXLIB_TEMPLATE}.cpp"
 #endif
