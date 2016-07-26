@@ -798,7 +798,7 @@
 
 #define xPROPERTY_CONST(type, name) \
     public:\
-        const type & get() const              { return _##name; } \
+        const type & get() const { return _##name; } \
     private: \
         const type _##name
     ///< property with read
