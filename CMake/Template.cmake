@@ -6,7 +6,7 @@
 
 #--------------------------------------------------------------------------------------------------
 # Config
-set(cmXLIB_TEMPLATES_DIR     "${XLIB_LOCATION}/Tools/Templates")
+set(XLIB_TEMPLATES_DIR     "${XLIB_LOCATION}/Tools/Templates")
 
 set(cmXLIB_TEMPLATE          "Dropbox")
 set(cmXLIB_TEMPLATE_COMMENTS "Dropbox tools")
@@ -19,38 +19,38 @@ if (NOT cmXLIB_TEMPLATE)
 endif()
 
 configure_file(
-    ${cmXLIB_TEMPLATES_DIR}/[Class].h.in
+    ${XLIB_TEMPLATES_DIR}/[Class].h.in
     ${XLIB_LOCATION}/Include/xLib/${cmXLIB_TEMPLATE_SUBDIR}/${cmXLIB_TEMPLATE}.h)
 
 configure_file(
-    ${cmXLIB_TEMPLATES_DIR}/[Class].cpp.in
+    ${XLIB_TEMPLATES_DIR}/[Class].cpp.in
     ${XLIB_LOCATION}/Include/xLib/${cmXLIB_TEMPLATE_SUBDIR}/${cmXLIB_TEMPLATE}.cpp)
 
 configure_file(
-    ${cmXLIB_TEMPLATES_DIR}/Test_[Class].h.in
+    ${XLIB_TEMPLATES_DIR}/Test_[Class].h.in
     ${XLIB_LOCATION}/Tests/${cmXLIB_TEMPLATE_SUBDIR}/Test_${cmXLIB_TEMPLATE}.h)
 
 configure_file(
-    ${cmXLIB_TEMPLATES_DIR}/Test_[Class].cpp.in
+    ${XLIB_TEMPLATES_DIR}/Test_[Class].cpp.in
     ${XLIB_LOCATION}/Tests/${cmXLIB_TEMPLATE_SUBDIR}/Test_${cmXLIB_TEMPLATE}.cpp)
 
 configure_file(
-    ${cmXLIB_TEMPLATES_DIR}/Platform/Win/[Class]_win.inl.in
+    ${XLIB_TEMPLATES_DIR}/Platform/Win/[Class]_win.inl.in
     ${XLIB_LOCATION}/Include/xLib/${cmXLIB_TEMPLATE_SUBDIR}/Platform/Win/${cmXLIB_TEMPLATE}_win.inl)
 
 configure_file(
-    ${cmXLIB_TEMPLATES_DIR}/Platform/Unix/[Class]_unix.inl.in
+    ${XLIB_TEMPLATES_DIR}/Platform/Unix/[Class]_unix.inl.in
     ${XLIB_LOCATION}/Include/xLib/${cmXLIB_TEMPLATE_SUBDIR}/Platform/Unix/${cmXLIB_TEMPLATE}_unix.inl)
 
 configure_file(
-    ${cmXLIB_TEMPLATES_DIR}/Platform/Linux/[Class]_linux.inl.in
+    ${XLIB_TEMPLATES_DIR}/Platform/Linux/[Class]_linux.inl.in
     ${XLIB_LOCATION}/Include/xLib/${cmXLIB_TEMPLATE_SUBDIR}/Platform/Linux/${cmXLIB_TEMPLATE}_linux.inl)
 
 configure_file(
-    ${cmXLIB_TEMPLATES_DIR}/Platform/Bsd/[Class]_bsd.inl.in
+    ${XLIB_TEMPLATES_DIR}/Platform/Bsd/[Class]_bsd.inl.in
     ${XLIB_LOCATION}/Include/xLib/${cmXLIB_TEMPLATE_SUBDIR}/Platform/Bsd/${cmXLIB_TEMPLATE}_bsd.inl)
 
 configure_file(
-    ${cmXLIB_TEMPLATES_DIR}/Platform/Apple/[Class]_apple.inl.in
+    ${XLIB_TEMPLATES_DIR}/Platform/Apple/[Class]_apple.inl.in
     ${XLIB_LOCATION}/Include/xLib/${cmXLIB_TEMPLATE_SUBDIR}/Platform/Apple/${cmXLIB_TEMPLATE}_apple.inl)
 #--------------------------------------------------------------------------------------------------

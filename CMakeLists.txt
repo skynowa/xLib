@@ -45,10 +45,13 @@ unset(XLIB_SOURCES          CACHE)
 unset(XLIB_LIBRARIES        CACHE)
 
 unset(XLIB_LOCATION         CACHE)
+unset(XLIB_TEMPLATES        CACHE)
 
 if (NOT XLIB_LOCATION)
     set(XLIB_LOCATION ${CMAKE_SOURCE_DIR})
 endif()
+
+set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 #--------------------------------------------------------------------------------------------------
 # modules
 set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/../CMakeLib ${XLIB_LOCATION}/CMake)
@@ -222,6 +225,7 @@ if (IS_PARENT_SCOPE)
     set(XLIB_SOURCES          ${XLIB_SOURCES}          PARENT_SCOPE)
     set(XLIB_LIBRARIES        ${XLIB_LIBRARIES}        PARENT_SCOPE)
     set(XLIB_LOCATION         ${XLIB_LOCATION}         PARENT_SCOPE)
+    set(XLIB_TEMPLATES        ${XLIB_TEMPLATES}        PARENT_SCOPE)
 else()
     set(cmXLIB_FOUND          ${cmXLIB_FOUND})
     set(XLIB_DEFINITIONS      ${XLIB_DEFINITIONS})
@@ -230,6 +234,7 @@ else()
     set(XLIB_SOURCES          ${XLIB_SOURCES})
     set(XLIB_LIBRARIES        ${XLIB_LIBRARIES})
     set(XLIB_LOCATION         ${XLIB_LOCATION})
+    set(XLIB_TEMPLATES        ${XLIB_TEMPLATES})
 endif()
 #--------------------------------------------------------------------------------------------------
 # config
