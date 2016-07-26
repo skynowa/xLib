@@ -8,12 +8,16 @@
 # Config
 set(XLIB_TEMPLATES_DIR     "${XLIB_LOCATION}/Tools/Templates")
 
-set(XLIB_TEMPLATE          "Dropbox")
+set(XLIB_TEMPLATE          "")
 set(XLIB_TEMPLATE_COMMENTS "Dropbox tools")
 set(XLIB_TEMPLATE_SUBDIR   "Package")
 set(XLIB_TEMPLATE_NS       "package")
 #--------------------------------------------------------------------------------------------------.
 # Configure
+if (NOT XLIB_TEMPLATE)
+    return()
+endif()
+
 configure_file(
     ${XLIB_TEMPLATES_DIR}/[Class].h.in
     ${XLIB_LOCATION}/Include/xLib/${${XLIB_TEMPLATE_SUBDIR}}/${XLIB_TEMPLATE}.h)
