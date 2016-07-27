@@ -48,8 +48,6 @@ public:
     const Signal  &signal() const;
         ///< signal
 
-    xPROPERTY_STATIC(ApplicationInfo, info);
-        ///< information
     static
     const BuildInfo &buildInfo();
         ///< build information
@@ -91,6 +89,8 @@ public:
     std::tstring_t langDirPath();
         ///< language translation directory
 
+    xPROPERTY_STATIC(ApplicationInfo, info);
+        ///< information
 private:
     std::ctstring_t _appGuid;
 
@@ -119,6 +119,9 @@ xNAMESPACE_END2(xlib, core)
 		std::tstring_t xlib::core::Application::_vendorSkype; \
 		std::tstring_t xlib::core::Application::_vendorJabber; \
 		std::tstring_t xlib::core::Application::_vendorIcq;
+#else
+	#define xLIB_CORE_APPLICATION_STATIC_DECLARE \
+		std::tstring_t xlib::core::Application::_info;
 #endif
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
