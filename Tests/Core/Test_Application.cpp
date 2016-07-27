@@ -10,7 +10,7 @@
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Application)
 //-------------------------------------------------------------------------------------------------
-//-- xLIB_CORE_APPLICATION_STATIC_DECLARE
+xLIB_CORE_APPLICATION_STATIC_DECLARE
 
 class SignalHandlers
 {

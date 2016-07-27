@@ -99,30 +99,8 @@ private:
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
-#if 0
-	#define xLIB_CORE_APPLICATION_STATIC_DECLARE \
-		std::tstring_t xlib::core::Application::_name; \
-		std::tstring_t xlib::core::Application::_decription; \
-		std::tstring_t xlib::core::Application::_copyrightYears; \
-		std::tstring_t xlib::core::Application::_usage; \
-		std::tstring_t xlib::core::Application::_help; \
-		std::tstring_t xlib::core::Application::_versionMajor; \
-		std::tstring_t xlib::core::Application::_versionMinor; \
-		std::tstring_t xlib::core::Application::_versionPatch; \
-		std::tstring_t xlib::core::Application::_versionType; \
-		std::tstring_t xlib::core::Application::_versionRevision; \
-		std::tstring_t xlib::core::Application::_vendorName; \
-		std::tstring_t xlib::core::Application::_vendorDomain; \
-		std::tstring_t xlib::core::Application::_vendorAuthor; \
-		std::tstring_t xlib::core::Application::_vendorUrl; \
-		std::tstring_t xlib::core::Application::_vendorEmail; \
-		std::tstring_t xlib::core::Application::_vendorSkype; \
-		std::tstring_t xlib::core::Application::_vendorJabber; \
-		std::tstring_t xlib::core::Application::_vendorIcq;
-#else
-	#define xLIB_CORE_APPLICATION_STATIC_DECLARE \
-		std::tstring_t xlib::core::Application::_info;
-#endif
+#define xLIB_CORE_APPLICATION_STATIC_DECLARE \
+    xlib::core::ApplicationInfo xlib::core::Application::_info;
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Application.cpp"
