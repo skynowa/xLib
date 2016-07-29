@@ -184,25 +184,25 @@ Test_Application::unit()
 		ApplicationInfo applicationInfo;
 		applicationInfo.set(data);
 
-		Application::set(applicationInfo);
-		xTEST_EQ(applicationInfo.get().name,            data.name);
-		xTEST_EQ(applicationInfo.get().decription,      data.decription);
-		xTEST_EQ(applicationInfo.get().copyrightYears,  data.copyrightYears);
-		xTEST_EQ(applicationInfo.get().usage,           data.usage);
-		xTEST_EQ(applicationInfo.get().help,            data.help);
-		xTEST_EQ(applicationInfo.get().versionMajor,    data.versionMajor);
-		xTEST_EQ(applicationInfo.get().versionMinor,    data.versionMinor);
-		xTEST_EQ(applicationInfo.get().versionPatch,    data.versionPatch);
-		xTEST_EQ(applicationInfo.get().versionType,     data.versionType);
-		xTEST_EQ(applicationInfo.get().versionRevision, data.versionRevision);
-		xTEST_EQ(applicationInfo.get().vendorName,      data.vendorName);
-		xTEST_EQ(applicationInfo.get().vendorDomain,    data.vendorDomain);
-		xTEST_EQ(applicationInfo.get().vendorAuthor,    data.vendorAuthor);
-		xTEST_EQ(applicationInfo.get().vendorUrl,       data.vendorUrl);
-		xTEST_EQ(applicationInfo.get().vendorEmail,     data.vendorEmail);
-		xTEST_EQ(applicationInfo.get().vendorSkype,     data.vendorSkype);
-		xTEST_EQ(applicationInfo.get().vendorJabber,    data.vendorJabber);
-		xTEST_EQ(applicationInfo.get().vendorIcq,       data.vendorIcq);
+		Application::setInfo(applicationInfo);
+		xTEST_EQ(Application::info().get().name,            data.name);
+		xTEST_EQ(Application::info().get().decription,      data.decription);
+		xTEST_EQ(Application::info().get().copyrightYears,  data.copyrightYears);
+		xTEST_EQ(Application::info().get().usage,           data.usage);
+		xTEST_EQ(Application::info().get().help,            data.help);
+		xTEST_EQ(Application::info().get().versionMajor,    data.versionMajor);
+		xTEST_EQ(Application::info().get().versionMinor,    data.versionMinor);
+		xTEST_EQ(Application::info().get().versionPatch,    data.versionPatch);
+		xTEST_EQ(Application::info().get().versionType,     data.versionType);
+		xTEST_EQ(Application::info().get().versionRevision, data.versionRevision);
+		xTEST_EQ(Application::info().get().vendorName,      data.vendorName);
+		xTEST_EQ(Application::info().get().vendorDomain,    data.vendorDomain);
+		xTEST_EQ(Application::info().get().vendorAuthor,    data.vendorAuthor);
+		xTEST_EQ(Application::info().get().vendorUrl,       data.vendorUrl);
+		xTEST_EQ(Application::info().get().vendorEmail,     data.vendorEmail);
+		xTEST_EQ(Application::info().get().vendorSkype,     data.vendorSkype);
+		xTEST_EQ(Application::info().get().vendorJabber,    data.vendorJabber);
+		xTEST_EQ(Application::info().get().vendorIcq,       data.vendorIcq);
     }
 
     xTEST_CASE("files")

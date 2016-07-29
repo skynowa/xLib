@@ -180,6 +180,22 @@ Application::signal() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
+xINLINE ApplicationInfo &
+Application::info()
+{
+    return _info;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE void
+Application::setInfo(
+	const ApplicationInfo &a_info
+)
+{
+    _info = a_info;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE const BuildInfo &
 Application::buildInfo()
 {
