@@ -48,6 +48,13 @@ public:
     const Signal  &signal() const;
         ///< signal
 
+	static
+	ApplicationInfo & info();
+		///< application information
+	static
+	void             setInfo(const ApplicationInfo &info);
+		///< set application information
+
     static
     const BuildInfo &buildInfo();
         ///< build information
@@ -89,10 +96,9 @@ public:
     std::tstring_t langDirPath();
         ///< language translation directory
 
-    xPROPERTY_STATIC(ApplicationInfo, info);
-        ///< information
 private:
-    std::ctstring_t _appGuid;
+    std::ctstring_t        _appGuid;
+    static ApplicationInfo _info;
 
     xNO_COPY_ASSIGN(Application)
 };
