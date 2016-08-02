@@ -257,6 +257,12 @@ configure_file(
 add_custom_target(uninstall
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/Uninstall.cmake)
 #--------------------------------------------------------------------------------------------------
+# template
+add_custom_target(template
+    COMMAND ${CMAKE_COMMAND}
+    -DXLIB_LOCATION="${XLIB_LOCATION}" -DXLIB_TEMPLATES="${XLIB_TEMPLATES}"
+    -P ${XLIB_LOCATION}/CMake/Template.cmake)
+#--------------------------------------------------------------------------------------------------
 # fix warning "Manually-specified variables were not used by the project"
 unset(CMAKE_TOOLCHAIN_FILE)
 #--------------------------------------------------------------------------------------------------

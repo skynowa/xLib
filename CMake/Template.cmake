@@ -5,17 +5,26 @@
 
 
 #--------------------------------------------------------------------------------------------------
-# Config
-set(cmXLIB_TEMPLATE          "")    # <<< set class name here
+# Config (set manually)
+unset(cmXLIB_TEMPLATE          CACHE)
+unset(cmXLIB_TEMPLATE_COMMENTS CACHE)
+unset(cmXLIB_TEMPLATE_SUBDIR   CACHE)
+unset(cmXLIB_TEMPLATE_NS       CACHE)
+
+set(cmXLIB_TEMPLATE          "Dropbox")
 set(cmXLIB_TEMPLATE_COMMENTS "Dropbox tools")
 set(cmXLIB_TEMPLATE_SUBDIR   "Package")
 set(cmXLIB_TEMPLATE_NS       "package")
+
+if (NOT cmXLIB_TEMPLATE OR
+    NOT cmXLIB_TEMPLATE_COMMENTS OR
+    NOT cmXLIB_TEMPLATE_SUBDIR OR
+    NOT cmXLIB_TEMPLATE_NS)
+
+    message(FATAL_ERROR "xLib: Template - bad variable(s)")
+endif()
 #--------------------------------------------------------------------------------------------------.
 # Configure
-if (NOT cmXLIB_TEMPLATE)
-    return()
-endif()
-
 configure_file(
     ${XLIB_TEMPLATES}/[Class].h.in
     ${XLIB_LOCATION}/Include/xLib/${cmXLIB_TEMPLATE_SUBDIR}/${cmXLIB_TEMPLATE}.h)
