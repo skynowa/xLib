@@ -243,19 +243,16 @@ configure_file(
     ${XLIB_LOCATION}/Include/xLib/Core/Config_gen.h)
 #--------------------------------------------------------------------------------------------------
 # install
-#install(
-#    DIRECTORY ${XLIB_LOCATION}/Include/xLib/
-#    DESTINATION ${XLIB_INSTALL_PATH}
-#    FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
+install(
+    DIRECTORY ${XLIB_LOCATION}/Include/xLib/
+    DESTINATION ${XLIB_INSTALL_PATH}
+    FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
 #--------------------------------------------------------------------------------------------------
 # uninstall
-configure_file(
-    ${XLIB_LOCATION}/CMake/Uninstall.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/Uninstall.cmake
-    IMMEDIATE @ONLY)
-
 add_custom_target(uninstall
-    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/Uninstall.cmake)
+    COMMAND ${CMAKE_COMMAND}
+    -DXLIB_INSTALL_PATH="${XLIB_INSTALL_PATH}"
+    -P ${XLIB_LOCATION}/CMake/Uninstall.cmake)
 #--------------------------------------------------------------------------------------------------
 # template
 add_custom_target(template
