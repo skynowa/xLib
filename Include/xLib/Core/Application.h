@@ -52,7 +52,7 @@ public:
 	ApplicationInfo & info();
 		///< application information
 	static
-	void             setInfo(const ApplicationInfo &info);
+	void           setInfo(const ApplicationInfo &info);
 		///< set application information
 
     static
