@@ -9,15 +9,15 @@
 #endif
 
 #if   cmOPTION_PROJECT_HEADER_ONLY
-	xLIB_CORE_APPLICATION_STATIC_DECLARE    // add to main.cpp
+    // xLIB_CORE_APPLICATION_STATIC_DECLARE    // add to main.cpp
 #elif cmOPTION_PROJECT_LIB_STATIC
-	xLIB_CORE_APPLICATION_STATIC_DECLARE
+    xLIB_CORE_APPLICATION_STATIC_DECLARE
 #elif cmOPTION_PROJECT_LIB_SHARE
-	xLIB_CORE_APPLICATION_STATIC_DECLARE
+    xLIB_CORE_APPLICATION_STATIC_DECLARE
 #elif cmOPTION_PROJECT_LIB_MODULE
-	xLIB_CORE_APPLICATION_STATIC_DECLARE
+    xLIB_CORE_APPLICATION_STATIC_DECLARE
 #elif
-	#error Invalid option
+    #error Invalid option
 #endif
 
 
@@ -189,7 +189,7 @@ Application::info()
 /* static */
 xINLINE void
 Application::setInfo(
-	const ApplicationInfo &a_info
+    const ApplicationInfo &a_info
 )
 {
     _info = a_info;
