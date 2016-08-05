@@ -148,12 +148,20 @@ Test_BuildInfo::unit()
         xTEST_EQ(m_sRv.empty(), false);
     }
 
-    xTEST_CASE("binaryType")
+    xTEST_CASE("xlibBinaryType")
     {
         BuildInfo info;
 
         m_sRv = info.xlibBinaryType();
         xTEST_DIFF(m_sRv, std::tstring_t(xUNKNOWN_CSTRING));
+    }
+
+    xTEST_CASE("xlibBuildType")
+    {
+        BuildInfo info;
+
+        m_sRv = info.xlibBuildType();
+        xTEST_EQ(m_sRv.empty(), false);
     }
 
     xTEST_CASE("cmake")
