@@ -44,6 +44,8 @@
 ///@}
 
 //-------------------------------------------------------------------------------------------------
+#cmakedefine cmCMAKE_BUILD_TYPE xT("@CMAKE_BUILD_TYPE@")
+
 ///@name Git information
 ///@{
 #cmakedefine cmGIT_REVISION_FOUND 1
