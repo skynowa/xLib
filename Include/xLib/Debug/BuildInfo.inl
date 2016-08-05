@@ -27,13 +27,6 @@ BuildInfo::isRelease() const
     return true;
 #endif
 }
-}
-//-------------------------------------------------------------------------------------------------
-inline std::tstring_t
-BuildInfo::type() const
-{
-    return cmCMAKE_BUILD_TYPE;
-}
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 BuildInfo::datetime() const
@@ -419,6 +412,12 @@ BuildInfo::xlibBinaryType() const
 #endif
 
     return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+BuildInfo::xlibBuildType() const
+{
+    return CMAKE_BUILD_TYPE;
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t

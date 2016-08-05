@@ -15,6 +15,14 @@ if (IS_PARENT_SCOPE)
     set(cmOPTION_PROJECT_LIB_MODULE    OFF CACHE BOOL "Project: dynamic-link library" FORCE PARENT_SCOPE)
     set(cmOPTION_BUILD_TESTS           ON  CACHE BOOL "Build tests" FORCE PARENT_SCOPE)
 
+    set(CMAKE_CONFIGURATION_TYPES "Debug;Release;RelWithDebInfo" CACHE STRING "" FORCE PARENT_SCOPE)
+    set(CMAKE_BUILD_TYPE "RelWithDebInfo" PARENT_SCOPE)
+        # None           (CMAKE_C_FLAGS or CMAKE_CXX_FLAGS used)
+        # Debug          (CMAKE_C_FLAGS_DEBUG or CMAKE_CXX_FLAGS_DEBUG)
+        # Release        (CMAKE_C_FLAGS_RELEASE or CMAKE_CXX_FLAGS_RELEASE)
+        # RelWithDebInfo (CMAKE_C_FLAGS_RELWITHDEBINFO or CMAKE_CXX_FLAGS_RELWITHDEBINFO
+        # MinSizeRel     (CMAKE_C_FLAGS_MINSIZEREL or CMAKE_CXX_FLAGS_MINSIZEREL)
+
     set(OPTION_CPP11                   OFF  CACHE BOOL "Support C++11 language" FORCE PARENT_SCOPE)
     set(OPTION_UNICODE                 OFF CACHE BOOL "Support unicode" FORCE PARENT_SCOPE)
     set(cmOPTION_DEBUG_MODE_MSGBOX     OFF CACHE BOOL "Debug mode: message box" FORCE PARENT_SCOPE)
@@ -32,6 +40,14 @@ else()
     set(cmOPTION_PROJECT_LIB_SHARE     OFF CACHE BOOL "Project: share library" FORCE)
     set(cmOPTION_PROJECT_LIB_MODULE    OFF CACHE BOOL "Project: dynamic-link library" FORCE)
     set(cmOPTION_BUILD_TESTS           ON CACHE BOOL "Build tests" FORCE)
+
+    set(CMAKE_CONFIGURATION_TYPES "Debug;Release;RelWithDebInfo" CACHE STRING "" FORCE)
+    set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+        # None           (CMAKE_C_FLAGS or CMAKE_CXX_FLAGS used)
+        # Debug          (CMAKE_C_FLAGS_DEBUG or CMAKE_CXX_FLAGS_DEBUG)
+        # Release        (CMAKE_C_FLAGS_RELEASE or CMAKE_CXX_FLAGS_RELEASE)
+        # RelWithDebInfo (CMAKE_C_FLAGS_RELWITHDEBINFO or CMAKE_CXX_FLAGS_RELWITHDEBINFO
+        # MinSizeRel     (CMAKE_C_FLAGS_MINSIZEREL or CMAKE_CXX_FLAGS_MINSIZEREL)
 
     set(OPTION_CPP11                   OFF  CACHE BOOL "Support C++11 language" FORCE)
     set(OPTION_UNICODE                 OFF CACHE BOOL "Support unicode" FORCE)

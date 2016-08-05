@@ -21,8 +21,6 @@ public:
 
     bool_t         isRelease() const xWARN_UNUSED_RV;
         ///< is debug build (is NDEBUG macros is don't set)
-    std::tstring_t type() const xWARN_UNUSED_RV;
-        ///< build type
     std::tstring_t datetime() const xWARN_UNUSED_RV;
         ///< date time
     std::tstring_t langStandart() const xWARN_UNUSED_RV;
@@ -53,6 +51,8 @@ public:
         ///< xLib library
     std::tstring_t xlibBinaryType() const xWARN_UNUSED_RV;
         ///< binary type
+    std::tstring_t xlibBuildType() const xWARN_UNUSED_RV;
+        ///< build type
     std::tstring_t cmake() const xWARN_UNUSED_RV;
         ///< cmake
 
