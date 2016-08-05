@@ -27,6 +27,13 @@ BuildInfo::isRelease() const
     return true;
 #endif
 }
+}
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+BuildInfo::type() const
+{
+    return cmCMAKE_BUILD_TYPE;
+}
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 BuildInfo::datetime() const

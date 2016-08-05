@@ -21,6 +21,8 @@ public:
 
     bool_t         isRelease() const xWARN_UNUSED_RV;
         ///< is debug build (is NDEBUG macros is don't set)
+    std::tstring_t type() const xWARN_UNUSED_RV;
+        ///< build type
     std::tstring_t datetime() const xWARN_UNUSED_RV;
         ///< date time
     std::tstring_t langStandart() const xWARN_UNUSED_RV;
