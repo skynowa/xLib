@@ -152,8 +152,8 @@ Test_BuildInfo::unit()
     {
         BuildInfo info;
 
-        m_sRv = info.binaryType();
-        xTEST_DIFF(m_sRv, std::tstring_t( xT("xUNKNOWN_CSTRING") ));
+        m_sRv = info.xlibBinaryType();
+        xTEST_DIFF(m_sRv, std::tstring_t(xUNKNOWN_CSTRING));
     }
 
     xTEST_CASE("cmake")

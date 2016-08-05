@@ -49,7 +49,7 @@ public:
         ///< Qt library
     std::tstring_t xlibVersion() const xWARN_UNUSED_RV;
         ///< xLib library
-    std::tstring_t binaryType() const xWARN_UNUSED_RV;
+    std::tstring_t xlibBinaryType() const xWARN_UNUSED_RV;
         ///< binary type
     std::tstring_t cmake() const xWARN_UNUSED_RV;
         ///< cmake

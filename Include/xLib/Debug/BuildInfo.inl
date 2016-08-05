@@ -393,7 +393,7 @@ BuildInfo::xlibVersion() const
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-BuildInfo::binaryType() const
+BuildInfo::xlibBinaryType() const
 {
     std::tstring_t sRv;
 
