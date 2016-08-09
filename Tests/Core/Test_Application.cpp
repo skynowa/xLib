@@ -10,55 +10,29 @@
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Application)
 //-------------------------------------------------------------------------------------------------
-class SignalHandlers
+class Failer
 {
 public:
-    static void_t onSignals(int_t a_signal)
+    void_t bug()
     {
-    #if xTEST_IGNORE
-        Trace() << xFUNCTION;
-        Trace() << xTRACE_VAR(a_signal) << " - " << Signal::decription(a_signal);
-    #endif
-    }
-
-    static void_t onExit()
-    {
-    #if xTEST_IGNORE
-        Trace() << xFUNCTION;
-    #endif
-    }
-
-    static void_t onTerminate()
-    {
-    #if xTEST_IGNORE
-        Trace() << xFUNCTION;
-    #endif
-    }
-
-    static void_t onUnexpected()
-    {
-    #if xTEST_IGNORE
-        Trace() << xFUNCTION;
-    #endif
-    }
-};
-//-------------------------------------------------------------------------------------------------
-class TestFail
-{
-public:
-    void_t fail()
-    {
-    #if 1
+    #if 0
         int *p = xPTR_NULL;
         *p = 10;
-    #else
+    #endif
+
+    #if 0
         throw 0;  // unhandled exception: calls terminate handler
+    #endif
+
+    #if 1
+        std::vector<size_t> v;
+        v.at(1);
     #endif
     }
 
     void_t foo1()
     {
-        fail();
+        bug();
     }
 
     void_t foo2()
@@ -72,10 +46,79 @@ public:
     }
 };
 //-------------------------------------------------------------------------------------------------
+class SignalHandlers
+{
+public:
+    static void_t onSignals(int_t a_signal)
+    {
+    #if 1
+        Trace() << xFUNCTION;
+        Trace() << xTRACE_VAR(a_signal) << " - " << Signal::decription(a_signal);
+    #endif
+    }
+
+    static void_t onExit()
+    {
+    #if 1
+        Trace() << xFUNCTION;
+    #endif
+    }
+
+    static void_t onTerminate()
+    {
+    #if 1
+        Trace() << xFUNCTION;
+    #endif
+    }
+
+    static void_t onUnexpected()
+    {
+    #if 1
+        Trace() << xFUNCTION;
+    #endif
+    }
+};
+//-------------------------------------------------------------------------------------------------
+class UserApplication :
+    public Application
+    /// user application
+{
+public:
+	UserApplication(std::ctstring_t &a_appGuid, std::ctstring_t &a_locale) :
+		Application(a_appGuid, a_locale)
+	{
+	}
+
+    virtual int_t onRun() xOVERRIDE
+    {
+        std::vec_tstring_t args;
+        Application::args(true, &args);
+        Application::isRunnig();
+        Application::dirsCreate();
+        bool bRv = Application::selfCheck();
+
+        {
+        #if 0
+            Failer failer;
+            failer.foo3();
+        #endif
+        }
+    }
+
+private:
+    xNO_COPY_ASSIGN(UserApplication)
+};
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
 Test_Application::unit()
 {
+    xTEST_CASE("Application")
+    {
+        UserApplication userApp(xT("[app_name]_guid"), xT(""));
+        userApp.run();
+    }
+
     xTEST_CASE("args")
     {
         Application application(xT("[app_name]_guid"), xT(""));
@@ -154,8 +197,8 @@ Test_Application::unit()
 
         // test error
     #if xTEMP_DISABLED
-        TestFail testFail;
-        testFail.foo3();
+        Failer fail;
+        fail.foo3();
     #endif
     }
 
