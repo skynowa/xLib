@@ -103,14 +103,6 @@ public:
     // handles
     virtual int_t  onRun() /* = 0 */;
         ///< run handle
-    static  void_t onSignals(int_t a_signal);
-        ///< signals handle
-    static  void_t onExit();
-        ///< exit handle
-    static  void_t onTerminate();
-        ///< terminate handle
-    static  void_t onUnexpected();
-        ///< unexpected handle
 
 private:
     std::ctstring_t        _appGuid;
