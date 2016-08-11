@@ -27,7 +27,7 @@
 
 // config
 #include <xLib/Core/SysDefines.h>
-#include <xLib/Core/Config.h>
+#include <xLib/Config.h>
 
 // POSIX
 #if xENV_UNIX
