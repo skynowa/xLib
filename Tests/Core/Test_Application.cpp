@@ -120,7 +120,7 @@ Test_Application::unit()
     #endif
     }
 
-    return;
+    return true;
 
     xTEST_CASE("args")
     {
