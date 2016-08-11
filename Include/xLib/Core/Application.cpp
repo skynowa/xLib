@@ -64,7 +64,7 @@ Application::Application(
     Locale locale;
     locale.setCurrent(a_locale);
 
-    // Trace() << xFUNCTION;
+    // xTRACE_FUNC;
 
 #if 1
     signal().connectAll(onSignals);
@@ -332,7 +332,7 @@ Application::langDirPath()
 xINLINE int_t
 Application::run()
 {
-    // Trace() << xFUNCTION;
+    // xTRACE_FUNC;
 
     int_t iRv = EXIT_FAILURE;
 
@@ -362,7 +362,7 @@ Application::run()
 xINLINE int_t
 Application::onRun()
 {
-    Trace() << xFUNCTION;
+    xTRACE_FUNC;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -371,7 +371,7 @@ Application::onSignals(
     int_t a_signal
 )
 {
-    // Trace() << xFUNCTION;
+    xTRACE_FUNC;
 
     // Trace() << StackTrace().toString();
     Trace() << Signal::decription(a_signal);
@@ -383,7 +383,7 @@ Application::onSignals(
 xINLINE void_t
 Application::onExit()
 {
-    // Trace() << xFUNCTION;
+    xTRACE_FUNC;
 
     xTEST(false);
 }
@@ -392,7 +392,7 @@ Application::onExit()
 xINLINE void_t
 Application::onTerminate()
 {
-    // Trace() << xFUNCTION;
+    xTRACE_FUNC;
 
     xTEST(false);
 }
@@ -401,7 +401,7 @@ Application::onTerminate()
 xINLINE void_t
 Application::onUnexpected()
 {
-    // Trace() << xFUNCTION;
+    xTRACE_FUNC;
 
     xTEST(false);
 }

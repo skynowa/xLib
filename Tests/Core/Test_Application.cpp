@@ -106,10 +106,12 @@ Test_Application::unit()
     {
         UserApplication userApp(xT("[app_name]_guid"), xT(""));
 
+	#if 0
 		userApp.signal().connectAll(SignalHandlers::onSignals);
 		userApp.signal().connectExit(SignalHandlers::onExit);
 		userApp.signal().connectTerminate(SignalHandlers::onTerminate);
 		userApp.signal().connectUnexpected(SignalHandlers::onUnexpected);
+	#endif
 
         userApp.run();
 
