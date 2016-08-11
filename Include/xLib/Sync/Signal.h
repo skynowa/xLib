@@ -29,6 +29,8 @@ public:
 
     void_t   connect(const std::vector<int_t> &signalNums, const sighandler_t onSignals) const;
         ///< set signal handle
+    void_t   connectAll(const sighandler_t onSignals) const;
+        ///< set all signal handle
     void_t   connectExit(const exit_handler_t onExit) const;
         ///< set exit handle
     void_t   connectTerminate(const std::terminate_handler onTerminate) const;
