@@ -13,26 +13,15 @@ xTEST_UNIT(Test_Application)
 class Failer
 {
 public:
-    void_t bug1()
+    void_t main()
     {
-        int *p = xPTR_NULL;
-        *p = 10;
+        foo2();
     }
 
-    void_t bug2()
-    {
-        throw 0;  // unhandled exception: calls terminate handler
-    }
-
-    void_t bug3()
-    {
-        std::vector<size_t> v;
-        v.at(1);
-    }
-
+protected:
     void_t foo1()
     {
-        bug1();	// <<< set BUG here
+        bug_DevisionByZero();	// <<< set BUG here
     }
 
     void_t foo2()
@@ -40,15 +29,52 @@ public:
         foo1();
     }
 
-    void_t foo3()
+private:
+    void_t bug_Segmentationfault()
     {
-        foo2();
+        int *p = xPTR_NULL;
+        *p = 10;
+
+        Trace() << xTRACE_VAR(p);
+    }
+
+    void_t bug_UnhandledException()
+    {
+        std::vector<size_t> vecRv;
+        vecRv.at(1);	  // unhandled exception: calls terminate handler
+
+        Trace() << xTRACE_VAR(vecRv);
+    }
+
+    void_t bug_DevisionByZero()
+    {
+		double dRv = 40 / 0;
+
+		Trace() << xTRACE_VAR(dRv);
     }
 };
 //-------------------------------------------------------------------------------------------------
-class SignalHandlers
+class UserApplication :
+    public Application
+    /// user application
 {
 public:
+	UserApplication(std::ctstring_t &a_appGuid, std::ctstring_t &a_locale) :
+		Application(a_appGuid, a_locale)
+	{
+	}
+
+    virtual int_t onRun() xOVERRIDE
+    {
+        std::vec_tstring_t args;
+        Application::args(true, &args);
+        Application::isRunnig();
+        Application::dirsCreate();
+        bool bRv = Application::selfCheck();
+
+        Failer().main();
+    }
+
     static void_t onSignals(int_t a_signal)
     {
         xTRACE_FUNC;
@@ -71,28 +97,6 @@ public:
     {
         xTRACE_FUNC;
     }
-};
-//-------------------------------------------------------------------------------------------------
-class UserApplication :
-    public Application
-    /// user application
-{
-public:
-	UserApplication(std::ctstring_t &a_appGuid, std::ctstring_t &a_locale) :
-		Application(a_appGuid, a_locale)
-	{
-	}
-
-    virtual int_t onRun() xOVERRIDE
-    {
-        std::vec_tstring_t args;
-        Application::args(true, &args);
-        Application::isRunnig();
-        Application::dirsCreate();
-        bool bRv = Application::selfCheck();
-
-        Failer().foo3();
-    }
 
 private:
     xNO_COPY_ASSIGN(UserApplication)
@@ -105,24 +109,14 @@ Test_Application::unit()
     xTEST_CASE("Application")
     {
         UserApplication userApp(xT("[app_name]_guid"), xT(""));
-
-	#if 0
-		userApp.signal().connectAll(SignalHandlers::onSignals);
-		userApp.signal().connectExit(SignalHandlers::onExit);
-		userApp.signal().connectTerminate(SignalHandlers::onTerminate);
-		userApp.signal().connectUnexpected(SignalHandlers::onUnexpected);
+	#if 1
+		userApp.signal().connectAll(UserApplication::onSignals);
+		userApp.signal().connectExit(UserApplication::onExit);
+		userApp.signal().connectTerminate(UserApplication::onTerminate);
+		userApp.signal().connectUnexpected(UserApplication::onUnexpected);
 	#endif
-
         userApp.run();
-
-        // test error
-    #if xTEMP_DISABLED
-        Failer fail;
-        fail.foo3();
-    #endif
     }
-
-    return true;
 
     xTEST_CASE("args")
     {
