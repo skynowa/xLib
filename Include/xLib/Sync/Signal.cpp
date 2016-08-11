@@ -57,7 +57,7 @@ Signal::setState(
 xINLINE void_t
 Signal::connect(
     const std::vector<int_t> &a_signalNums,
-    const sighandler_t       &a_onSignals
+    const sighandler_t        a_onSignals
 ) const
 {
    /**
@@ -103,7 +103,7 @@ Signal::connect(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectExit(
-    const exit_handler_t &a_onExit
+    const exit_handler_t a_onExit
 ) const
 {
     xCHECK_DO(a_onExit == xPTR_NULL, return);
@@ -114,7 +114,7 @@ Signal::connectExit(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectTerminate(
-    const std::terminate_handler &a_onTerminate
+    const std::terminate_handler a_onTerminate
 ) const
 {
     xTEST_PTR(a_onTerminate);
@@ -125,7 +125,7 @@ Signal::connectTerminate(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectUnexpected(
-    const std::unexpected_handler &a_onUnexpected
+    const std::unexpected_handler a_onUnexpected
 ) const
 {
     xTEST_PTR(a_onUnexpected);
