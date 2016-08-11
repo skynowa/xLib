@@ -120,6 +120,8 @@ Test_Application::unit()
     #endif
     }
 
+    return;
+
     xTEST_CASE("args")
     {
         Application application(xT("[app_name]_guid"), xT(""));
