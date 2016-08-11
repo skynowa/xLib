@@ -37,7 +37,7 @@ public:
         ///< set terminate handle (by default, the terminate handler calls abort)
     void_t   connectUnexpected(const std::unexpected_handler onUnexpected) const;
         ///< Sets unexpected handler
-    void_t    raise(cint_t &signalNum) const;
+    void_t   raise(cint_t &signalNum) const;
         ///< sends signal to the current executing program
 
     static
