@@ -9,7 +9,7 @@
 // Core
 #include <xLib/Core/Core.h>
 #include <xLib/Core/SysDefines.h>
-#include <xLib/Core/Config.h>
+#include <xLib/Config.h>
 #include <xLib/Core/Units.h>
 #include <xLib/Core/Defines.h>
 #include <xLib/Core/Limits.h>

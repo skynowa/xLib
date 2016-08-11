@@ -233,8 +233,8 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # config
 configure_file(
-    ${XLIB_LOCATION}/Include/xLib/Core/Config_gen.h.in
-    ${XLIB_LOCATION}/Include/xLib/Core/Config_gen.h)
+    ${XLIB_LOCATION}/Include/xLib/Config.h.in
+    ${XLIB_LOCATION}/Include/xLib/Config.h)
 #--------------------------------------------------------------------------------------------------
 # install
 install(
