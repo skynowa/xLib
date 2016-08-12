@@ -13,88 +13,102 @@ xTEST_UNIT(Test_Application)
 class Failer
 {
 public:
-    void_t main()
-    {
-        foo2();
-    }
+    void_t foo();
 
 protected:
-    void_t foo1()
-    {
-        bug_DevisionByZero();	// <<< set BUG here
-    }
-
-    void_t foo2()
-    {
-        foo1();
-    }
+    void_t foo1();
+    void_t foo2();
 
 private:
-    void_t bug_Segmentationfault()
-    {
-        int *p = xPTR_NULL;
-        *p = 10;
-
-        Trace() << xTRACE_VAR(p);
-    }
-
-    void_t bug_UnhandledException()
-    {
-        std::vector<size_t> vecRv;
-        vecRv.at(1);	// unhandled exception: calls terminate handler
-
-        Trace() << xTRACE_VAR(vecRv);
-    }
-
-    void_t bug_DevisionByZero()
-    {
-		double dRv = 40 / 0;
-
-		Trace() << xTRACE_VAR(dRv);
-    }
+    void_t bug_Segmentationfault();
+        ///< segmentation fault
+    void_t bug_UnhandledException();
+        ///< unhandled exception: calls terminate handler
+    void_t bug_DevisionByZero();
+        ///< devision by zero
 };
+
+xNO_INLINE void_t
+Failer::foo()
+{
+	foo2();
+}
+xNO_INLINE void_t
+Failer::foo1()
+{
+	bug_UnhandledException();	// <<< set BUG here
+}
+xNO_INLINE void_t
+Failer::foo2()
+{
+	foo1();
+}
+xNO_INLINE void_t
+Failer::bug_Segmentationfault()
+{
+	int *p = xPTR_NULL;
+	*p = 10;
+
+	Trace() << xTRACE_VAR(p);
+}
+xNO_INLINE void_t
+Failer::bug_UnhandledException()
+{
+	std::vector<std::size_t> vecRv;
+	vecRv.at(10);
+
+	Trace() << xTRACE_VAR(vecRv);
+}
+xNO_INLINE void_t
+Failer::bug_DevisionByZero()
+{
+	double dRv = 40 / 0;
+
+	Trace() << xTRACE_VAR(dRv);
+}
 //-------------------------------------------------------------------------------------------------
 class UserApplication :
     public Application
     /// user application
 {
 public:
+	xNO_INLINE
 	UserApplication(std::ctstring_t &a_appGuid, std::ctstring_t &a_locale) :
 		Application(a_appGuid, a_locale)
 	{
 	}
 
-    virtual int_t onRun() xOVERRIDE
+    xNO_INLINE virtual int_t
+    onRun() xOVERRIDE
     {
-        std::vec_tstring_t args;
-        Application::args(true, &args);
-        Application::isRunnig();
-        Application::dirsCreate();
-        bool bRv = Application::selfCheck();
-
-        Failer().main();
+        Failer().foo();
     }
 
-    static void_t onSignals(int_t a_signal)
+    xNO_INLINE static void_t
+    onSignals(int_t a_signal)
     {
         xTRACE_FUNC;
+
         Trace() << Signal::decription(a_signal) << "\n";
         Trace() << StackTrace().toString()      << "\n";
 
-        Application::exit(a_signal);
+        exit(a_signal);
     }
 
-    static void_t onExit()
+    xNO_INLINE static void_t
+    onExit()
     {
         xTRACE_FUNC;
     }
 
-    static void_t onTerminate()
+    xNO_INLINE static void_t
+    onTerminate()
     {
         xTRACE_FUNC;
     }
 
-    static void_t onUnexpected()
+    xNO_INLINE static void_t
+    onUnexpected()
     {
         xTRACE_FUNC;
     }
