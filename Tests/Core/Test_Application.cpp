@@ -106,18 +106,6 @@ private:
 bool_t
 Test_Application::unit()
 {
-    xTEST_CASE("Application")
-    {
-        UserApplication userApp(xT("[app_name]_guid"), xT(""));
-	#if 1
-		userApp.signal().connectAll(UserApplication::onSignals);
-		userApp.signal().connectExit(UserApplication::onExit);
-		userApp.signal().connectTerminate(UserApplication::onTerminate);
-		userApp.signal().connectUnexpected(UserApplication::onUnexpected);
-	#endif
-        userApp.run();
-    }
-
     xTEST_CASE("args")
     {
         Application application(xT("[app_name]_guid"), xT(""));
@@ -203,6 +191,18 @@ Test_Application::unit()
     xTEST_CASE("directories")
     {
 
+    }
+
+    xTEST_CASE("connect")
+    {
+        UserApplication userApp(xT("[app_name]_guid"), xT(""));
+	#if 1
+		userApp.signal().connectAll(UserApplication::onSignals);
+		userApp.signal().connectExit(UserApplication::onExit);
+		userApp.signal().connectTerminate(UserApplication::onTerminate);
+		userApp.signal().connectUnexpected(UserApplication::onUnexpected);
+	#endif
+        userApp.run();
     }
 
     return true;

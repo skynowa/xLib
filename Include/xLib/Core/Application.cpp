@@ -325,7 +325,8 @@ Application::run()
 {
     int_t iRv = EXIT_FAILURE;
 
-    const bool_t isUseException = false;
+    cbool_t isUseException = false;
+
     if (isUseException) {
         try {
             iRv = onRun();
