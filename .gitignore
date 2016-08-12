@@ -13,7 +13,7 @@ Docs/html/
 
 ################################################################################
 # files
-Include/xLib/Core/Config_gen.h
+Include/xLib/Config.h
 CMakeLists.txt.user
 .project
 
