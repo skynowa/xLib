@@ -25,6 +25,8 @@ public:
     // actions
     void_t         args(cbool_t &withoutFirstArg, std::vec_tstring_t *args) const;
         ///< command line arguments
+    const Signal  &signal() const;
+        ///< signal
     bool_t         isRunAsAdmin() const;
         ///< check for running as admin
     bool_t         isRunnig() const;
@@ -33,6 +35,11 @@ public:
         ///< create all application directories
     bool_t         selfCheck() const;
         ///< self check
+    int_t          run();
+        ///< run
+    virtual int_t  onRun() = 0;
+        ///< run handle
+
     static
     void_t         exit(cint_t &status);
         ///< terminates the process normally, performing the regular cleanup,
@@ -44,9 +51,6 @@ public:
     void_t         abort();
         ///< aborts the current process, producing an abnormal program termination
 
-    // handles
-    const Signal  &signal() const;
-        ///< signal
 
 	static
 	ApplicationInfo & info();
@@ -96,14 +100,6 @@ public:
     std::tstring_t langDirPath();
         ///< language translation directory
 
-
-    int_t          run();
-        ///< run
-
-    // handles
-    virtual int_t  onRun() /* = 0 */;
-        ///< run handle
-
 private:
     std::ctstring_t        _appGuid;
     static ApplicationInfo _info;
@@ -119,5 +115,5 @@ xNAMESPACE_END2(xlib, core)
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Application.cpp"
 #else
-    extern xlib::core::Application application;
+    //// extern xlib::core::Application application;
 #endif
