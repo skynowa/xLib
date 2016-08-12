@@ -18,7 +18,7 @@ struct StackTraceData
     cbool_t isFuncParamsDisable;
 
     StackTraceData() :
-        skipFramesNum      (2),
+        skipFramesNum      (0),
         isWrapFilePaths    (true),
         isFuncParamsDisable(true)
     {}
