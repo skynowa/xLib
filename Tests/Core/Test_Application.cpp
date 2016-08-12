@@ -41,7 +41,7 @@ private:
     void_t bug_UnhandledException()
     {
         std::vector<size_t> vecRv;
-        vecRv.at(1);	  // unhandled exception: calls terminate handler
+        vecRv.at(1);	// unhandled exception: calls terminate handler
 
         Trace() << xTRACE_VAR(vecRv);
     }
@@ -78,7 +78,8 @@ public:
     static void_t onSignals(int_t a_signal)
     {
         xTRACE_FUNC;
-        Trace() << Signal::decription(a_signal);
+        Trace() << Signal::decription(a_signal) << "\n";
+        Trace() << StackTrace().toString()      << "\n";
 
         Application::exit(a_signal);
     }
@@ -108,7 +109,7 @@ Test_Application::unit()
 {
     xTEST_CASE("args")
     {
-        Application application(xT("[app_name]_guid"), xT(""));
+        UserApplication application(xT("[app_name]_guid"), xT(""));
 
         std::vec_tstring_t args1;
         application.args(false, &args1);
@@ -126,13 +127,13 @@ Test_Application::unit()
 
     xTEST_CASE("dirsCreate")
     {
-        Application application(xT("[app_name]_guid"), xT(""));
+        UserApplication application(xT("[app_name]_guid"), xT(""));
         application.dirsCreate();
     }
 
     xTEST_CASE("selfCheck")
     {
-        Application application(xT("[app_name]_guid"), xT(""));
+        UserApplication application(xT("[app_name]_guid"), xT(""));
         m_bRv = application.selfCheck();
         xTEST(m_bRv);
     }
@@ -162,25 +163,25 @@ Test_Application::unit()
 		ApplicationInfo applicationInfo;
 		applicationInfo.set(data);
 
-		Application::setInfo(applicationInfo);
-		xTEST_EQ(Application::info().get().name,            data.name);
-		xTEST_EQ(Application::info().get().decription,      data.decription);
-		xTEST_EQ(Application::info().get().copyrightYears,  data.copyrightYears);
-		xTEST_EQ(Application::info().get().usage,           data.usage);
-		xTEST_EQ(Application::info().get().help,            data.help);
-		xTEST_EQ(Application::info().get().versionMajor,    data.versionMajor);
-		xTEST_EQ(Application::info().get().versionMinor,    data.versionMinor);
-		xTEST_EQ(Application::info().get().versionPatch,    data.versionPatch);
-		xTEST_EQ(Application::info().get().versionType,     data.versionType);
-		xTEST_EQ(Application::info().get().versionRevision, data.versionRevision);
-		xTEST_EQ(Application::info().get().vendorName,      data.vendorName);
-		xTEST_EQ(Application::info().get().vendorDomain,    data.vendorDomain);
-		xTEST_EQ(Application::info().get().vendorAuthor,    data.vendorAuthor);
-		xTEST_EQ(Application::info().get().vendorUrl,       data.vendorUrl);
-		xTEST_EQ(Application::info().get().vendorEmail,     data.vendorEmail);
-		xTEST_EQ(Application::info().get().vendorSkype,     data.vendorSkype);
-		xTEST_EQ(Application::info().get().vendorJabber,    data.vendorJabber);
-		xTEST_EQ(Application::info().get().vendorIcq,       data.vendorIcq);
+		UserApplication::setInfo(applicationInfo);
+		xTEST_EQ(UserApplication::info().get().name,            data.name);
+		xTEST_EQ(UserApplication::info().get().decription,      data.decription);
+		xTEST_EQ(UserApplication::info().get().copyrightYears,  data.copyrightYears);
+		xTEST_EQ(UserApplication::info().get().usage,           data.usage);
+		xTEST_EQ(UserApplication::info().get().help,            data.help);
+		xTEST_EQ(UserApplication::info().get().versionMajor,    data.versionMajor);
+		xTEST_EQ(UserApplication::info().get().versionMinor,    data.versionMinor);
+		xTEST_EQ(UserApplication::info().get().versionPatch,    data.versionPatch);
+		xTEST_EQ(UserApplication::info().get().versionType,     data.versionType);
+		xTEST_EQ(UserApplication::info().get().versionRevision, data.versionRevision);
+		xTEST_EQ(UserApplication::info().get().vendorName,      data.vendorName);
+		xTEST_EQ(UserApplication::info().get().vendorDomain,    data.vendorDomain);
+		xTEST_EQ(UserApplication::info().get().vendorAuthor,    data.vendorAuthor);
+		xTEST_EQ(UserApplication::info().get().vendorUrl,       data.vendorUrl);
+		xTEST_EQ(UserApplication::info().get().vendorEmail,     data.vendorEmail);
+		xTEST_EQ(UserApplication::info().get().vendorSkype,     data.vendorSkype);
+		xTEST_EQ(UserApplication::info().get().vendorJabber,    data.vendorJabber);
+		xTEST_EQ(UserApplication::info().get().vendorIcq,       data.vendorIcq);
     }
 
     xTEST_CASE("files")
@@ -196,8 +197,8 @@ Test_Application::unit()
     xTEST_CASE("connect")
     {
         UserApplication userApp(xT("[app_name]_guid"), xT(""));
-	#if 1
 		userApp.signal().connectAll(UserApplication::onSignals);
+	#if 0
 		userApp.signal().connectExit(UserApplication::onExit);
 		userApp.signal().connectTerminate(UserApplication::onTerminate);
 		userApp.signal().connectUnexpected(UserApplication::onUnexpected);

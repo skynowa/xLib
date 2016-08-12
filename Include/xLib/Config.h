@@ -50,7 +50,7 @@
 ///@{
 #define cmGIT_REVISION_FOUND 1
 #define cmGIT_REVISION_BRANCH xT("master")
-#define cmGIT_REVISION_HASH xT("c6715e6")
+#define cmGIT_REVISION_HASH xT("5ee34c6")
 ///@}
 
 #define cmXLIB_COMPILER_FLAGS xT(" -w -fmax-errors=1 ")
