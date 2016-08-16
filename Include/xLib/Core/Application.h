@@ -10,6 +10,7 @@
 #include <xLib/Core/ApplicationInfo.h>
 #include <xLib/Debug/BuildInfo.h>
 #include <xLib/Sync/Signal.h>
+#include <xLib/Package/Donate.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
@@ -51,17 +52,22 @@ public:
     void_t         abort();
         ///< aborts the current process, producing an abnormal program termination
 
-
-	static
-	ApplicationInfo & info();
-		///< application information
-	static
-	void           setInfo(const ApplicationInfo &info);
-		///< set application information
-
+    // info
+    static
+    ApplicationInfo & info();
+        ///< application information
+    static
+    void           setInfo(const ApplicationInfo &info);
+        ///< set application information
     static
     const BuildInfo &buildInfo();
         ///< build information
+    static
+    Donate &       donate();
+        ///< application donate
+    static
+    void           setDonate(const Donate &info);
+        ///< set application donate
 
     // files
     static
@@ -103,6 +109,7 @@ public:
 private:
     std::ctstring_t        _appGuid;
     static ApplicationInfo _info;
+    static Donate          _donate;
 
     xNO_COPY_ASSIGN(Application)
 };
@@ -110,7 +117,8 @@ private:
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #define xLIB_CORE_APPLICATION_STATIC_DECLARE \
-    xlib::core::ApplicationInfo xlib::core::Application::_info;
+    xlib::core::ApplicationInfo xlib::core::Application::_info; \
+    xlib::package::Donate       xlib::core::Application::_donate;
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Application.cpp"
