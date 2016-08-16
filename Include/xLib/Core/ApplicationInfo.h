@@ -49,7 +49,7 @@ public:
     xPROPERTY(ApplicationInfoData, data);
 
 private:
-    //xNO_COPY_ASSIGN(ApplicationInfo)
+    // xNO_COPY_ASSIGN(ApplicationInfo)
 };
 
 xNAMESPACE_END2(xlib, core)

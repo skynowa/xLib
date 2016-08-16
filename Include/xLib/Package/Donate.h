@@ -30,10 +30,10 @@ public:
     virtual  ~Donate();
         ///< destructor
 
-	xPROPERTY(DonateData, data);
+    xPROPERTY(DonateData, data);
 
 private:
-    xNO_COPY_ASSIGN(Donate)
+    // xNO_COPY_ASSIGN(Donate)
 };
 
 xNAMESPACE_END2(xlib, package)
