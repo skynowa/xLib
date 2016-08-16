@@ -31,6 +31,8 @@ struct ApplicationInfoData
     std::tstring_t vendorSkype;
     std::tstring_t vendorJabber;
     std::tstring_t vendorIcq;
+
+    std::tstring_t versionFull() const;
 };
 xTYPEDEF_CONST(ApplicationInfoData);
 
@@ -44,7 +46,7 @@ public:
     virtual     ~ApplicationInfo();
         ///< destructor
 
-	xPROPERTY(ApplicationInfoData, data);
+    xPROPERTY(ApplicationInfoData, data);
 
 private:
     //xNO_COPY_ASSIGN(ApplicationInfo)
