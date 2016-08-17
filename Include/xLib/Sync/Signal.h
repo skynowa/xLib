@@ -15,11 +15,13 @@ class Signal
 {
 public:
     typedef void_t (*exit_handler_t)();
-        ///< handler type
+        ///< exit handler type
+    typedef void_t (*restart_handler_t)();
+        ///< restart handler type
 
-             Signal() {}
+             Signal();
         ///< constructor
-    virtual ~Signal() {}
+    virtual ~Signal();
         ///< destructor
 
     std::sig_atomic_t state() const;
@@ -36,7 +38,9 @@ public:
     void_t   connectTerminate(const std::terminate_handler onTerminate) const;
         ///< set terminate handle (by default, the terminate handler calls abort)
     void_t   connectUnexpected(const std::unexpected_handler onUnexpected) const;
-        ///< Sets unexpected handler
+        ///< set unexpected handler
+    void_t   connectRestart(const restart_handler_t onRestart) const;
+        ///< set restart handler
     void_t   raise(cint_t &signalNum) const;
         ///< sends signal to the current executing program
 
@@ -51,6 +55,9 @@ private:
     std::sig_atomic_t _state;
         ///< Integral type of an object that can be accessed as an atomic entity,
         ///< even in the presence of asynchronous signals.
+
+	mutable restart_handler_t _onRestart;
+		///< onrestart handle
 
 xPLATFORM_IMPL:
     static
