@@ -36,7 +36,7 @@ Failer::foo()
 xNO_INLINE void_t
 Failer::foo1()
 {
-	bug_UnhandledException();	// <<< set BUG here
+	bug_DevisionByZero();	// <<< set BUG here
 }
 xNO_INLINE void_t
 Failer::foo2()
@@ -211,8 +211,8 @@ Test_Application::unit()
     xTEST_CASE("connect")
     {
         UserApplication userApp(xT("[app_name]_guid"), xT(""));
-		userApp.signal().connectAll(UserApplication::onSignals);
 	#if 0
+		userApp.signal().connectAll(UserApplication::onSignals);
 		userApp.signal().connectExit(UserApplication::onExit);
 		userApp.signal().connectTerminate(UserApplication::onTerminate);
 		userApp.signal().connectUnexpected(UserApplication::onUnexpected);
