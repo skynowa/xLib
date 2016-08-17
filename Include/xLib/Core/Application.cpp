@@ -335,15 +335,68 @@ Application::langDirPath()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+class SignalsHandler
+{
+public:
+	xNO_INLINE
+	SignalsHandler()
+	{
+	}
+
+    xNO_INLINE static void_t
+    onSignals(int_t a_signal)
+    {
+        xTRACE_FUNC;
+
+        Trace() << Signal::decription(a_signal) << "\n";
+        // Trace() << StackTrace().toString()      << "\n";
+
+		// Application::exit(a_signal);
+		Application::terminate();
+
+		Trace() << "Exit...\n";
+
+		// xTHROW_REPORT("TEST MESSAGE");
+    }
+
+    xNO_INLINE static void_t
+    onExit()
+    {
+        xTRACE_FUNC;
+    }
+
+    xNO_INLINE static void_t
+    onTerminate()
+    {
+        xTRACE_FUNC;
+
+        Application::exit(1);
+    }
+
+    xNO_INLINE static void_t
+    onUnexpected()
+    {
+        xTRACE_FUNC;
+    }
+
+private:
+    xNO_COPY_ASSIGN(SignalsHandler)
+};
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 xINLINE int_t
 Application::run()
 {
+    cbool_t opt_useException = true;
+
     int_t iRv = EXIT_FAILURE;
 
-    cbool_t isUseException = false;
+	signal().connectAll(SignalsHandler::onSignals);
+	signal().connectExit(SignalsHandler::onExit);
+	signal().connectTerminate(SignalsHandler::onTerminate);
+	signal().connectUnexpected(SignalsHandler::onUnexpected);
 
-    if (isUseException) {
+    if (opt_useException) {
         try {
             iRv = onRun();
         }
