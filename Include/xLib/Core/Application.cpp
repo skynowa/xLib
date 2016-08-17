@@ -351,12 +351,11 @@ public:
         Trace() << Signal::decription(a_signal) << "\n";
         // Trace() << StackTrace().toString()      << "\n";
 
-		// Application::exit(a_signal);
-		Application::terminate();
-
-		Trace() << "Exit...\n";
-
-		// xTHROW_REPORT("TEST MESSAGE");
+	#if 1
+		Application::exit(EXIT_FAILURE);
+	#else
+		xTHROW_REPORT("TEST MESSAGE");
+	#endif
     }
 
     xNO_INLINE static void_t
@@ -369,8 +368,6 @@ public:
     onTerminate()
     {
         xTRACE_FUNC;
-
-        Application::exit(1);
     }
 
     xNO_INLINE static void_t
