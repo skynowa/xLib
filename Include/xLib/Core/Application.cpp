@@ -376,6 +376,12 @@ public:
         xTRACE_FUNC;
     }
 
+    xNO_INLINE static void_t
+    onRestart()
+    {
+        xTRACE_FUNC;
+    }
+
 private:
     xNO_COPY_ASSIGN(SignalsHandler)
 };
@@ -384,7 +390,7 @@ private:
 xINLINE int_t
 Application::run()
 {
-    cbool_t opt_useException = true;
+    cbool_t opt_useException = false;
 
     int_t iRv = EXIT_FAILURE;
 
@@ -392,6 +398,7 @@ Application::run()
 	signal().connectExit(SignalsHandler::onExit);
 	signal().connectTerminate(SignalsHandler::onTerminate);
 	signal().connectUnexpected(SignalsHandler::onUnexpected);
+	signal().connectRestart(SignalsHandler::onRestart);
 
     if (opt_useException) {
         try {
