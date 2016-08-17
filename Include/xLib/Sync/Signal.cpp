@@ -91,7 +91,7 @@ Signal::connect(
 			int_t iRv = ::sigemptyset(&action.sa_mask);
 			xTEST_DIFF(iRv, - 1);
 
-			action.sa_flags = opt_sigActionRestart ? SA_RESTART : SA_SIGINFO;
+			action.sa_flags |= opt_sigActionRestart ? SA_RESTART : SA_SIGINFO;
 		}
 	}
 
