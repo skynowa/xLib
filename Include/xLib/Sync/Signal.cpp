@@ -22,7 +22,6 @@
     #endif
 #endif
 
-#include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Log/Trace.h>
@@ -98,11 +97,8 @@ Signal::connect(
     xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
         switch (*it) {
         case SIGKILL:
-            Trace() << xT("xLib: ") << xTRACE_VAR(SIGKILL) << xT(" cannot be caught or ignored");
-            continue;
-            break;
         case SIGSTOP:
-            Trace() << xT("xLib: ") << xTRACE_VAR(SIGSTOP) << xT(" cannot be caught or ignored");
+            Trace() << Format::str(xT("xLib: {} cannot be caught or ignored"), decription(*it));
             continue;
             break;
         default:
@@ -111,10 +107,10 @@ Signal::connect(
 
 		if (opt_simpleSignal) {
 			sighandler_t shRv = std::signal(*it, a_onSignals);
-			xTEST_MSG(shRv != SIG_ERR, xT("Signal: ") + String::cast(*it));
+			xTEST_MSG(shRv != SIG_ERR, Format::str(xT("Signal: {}"), decription(*it)));
 		} else {
 			int_t iRv = ::sigaction(*it, &action, xPTR_NULL);
-			xTEST_DIFF_MSG(iRv, - 1, xT("Signal: ") + String::cast(*it));
+			xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(*it)));
 		}
     }
 }
