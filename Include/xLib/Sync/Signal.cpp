@@ -97,8 +97,12 @@ Signal::connect(
     xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
         switch (*it) {
         case SIGKILL:
-        case SIGSTOP:
-            Trace() << Format::str(xT("xLib: {} cannot be caught or ignored"), decription(*it));
+			Trace() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
+							xLEX_TO_STR(SIGKILL), SIGKILL);
+			continue;
+		case SIGSTOP:
+			Trace() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
+							xLEX_TO_STR(SIGSTOP), SIGSTOP);
             continue;
             break;
         default:
