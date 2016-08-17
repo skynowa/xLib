@@ -84,35 +84,6 @@ public:
         Failer().foo();
     }
 
-    xNO_INLINE static void_t
-    onSignals(int_t a_signal)
-    {
-        xTRACE_FUNC;
-
-        Trace() << Signal::decription(a_signal) << "\n";
-        Trace() << StackTrace().toString()      << "\n";
-
-        exit(a_signal);
-    }
-
-    xNO_INLINE static void_t
-    onExit()
-    {
-        xTRACE_FUNC;
-    }
-
-    xNO_INLINE static void_t
-    onTerminate()
-    {
-        xTRACE_FUNC;
-    }
-
-    xNO_INLINE static void_t
-    onUnexpected()
-    {
-        xTRACE_FUNC;
-    }
-
 private:
     xNO_COPY_ASSIGN(UserApplication)
 };
@@ -211,12 +182,6 @@ Test_Application::unit()
     xTEST_CASE("connect")
     {
         UserApplication userApp(xT("[app_name]_guid"), xT(""));
-	#if 0
-		userApp.signal().connectAll(UserApplication::onSignals);
-		userApp.signal().connectExit(UserApplication::onExit);
-		userApp.signal().connectTerminate(UserApplication::onTerminate);
-		userApp.signal().connectUnexpected(UserApplication::onUnexpected);
-	#endif
         userApp.run();
     }
 
