@@ -66,8 +66,8 @@ Signal::connect(
     * https://gist.github.com/jvranish/4441299
     */
 
-	cbool_t opt_SimpleSignal     = false;
-	cbool_t opt_SigActionRestart = true;
+	cbool_t opt_simpleSignal     = false;
+	cbool_t opt_sigActionRestart = true;
 
     xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
         switch (*it) {
@@ -83,7 +83,7 @@ Signal::connect(
             break;
         }
 
-		if (opt_SimpleSignal) {
+		if (opt_simpleSignal) {
 			sighandler_t shRv = std::signal(*it, a_onSignals);
 			xTEST_MSG(shRv != SIG_ERR, xT("Signal: ") + String::cast(*it));
 		} else {
@@ -95,7 +95,7 @@ Signal::connect(
 			iRv = ::sigemptyset(&action.sa_mask);
 			xTEST_DIFF(iRv, - 1);
 
-			action.sa_flags    = opt_SigActionRestart ? SA_RESTART : SA_SIGINFO;
+			action.sa_flags    = opt_sigActionRestart ? SA_RESTART : SA_SIGINFO;
 			action.sa_restorer = xPTR_NULL;
 
 			iRv = ::sigaction(*it, &action, xPTR_NULL);
