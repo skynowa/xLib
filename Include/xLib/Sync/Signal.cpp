@@ -69,6 +69,22 @@ Signal::connect(
 	cbool_t opt_simpleSignal     = false;
 	cbool_t opt_sigActionRestart = true;
 
+	struct sigaction action;
+	{
+		if (opt_simpleSignal) {
+			xUNUSED(action);
+		} else {
+			xSTRUCT_ZERO(action);
+			action.sa_handler  = a_onSignals;
+
+			int_t iRv = ::sigemptyset(&action.sa_mask);
+			xTEST_DIFF(iRv, - 1);
+
+			action.sa_flags    = opt_sigActionRestart ? SA_RESTART : SA_SIGINFO;
+			action.sa_restorer = xPTR_NULL;
+		}
+	}
+
     xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
         switch (*it) {
         case SIGKILL:
@@ -87,18 +103,7 @@ Signal::connect(
 			sighandler_t shRv = std::signal(*it, a_onSignals);
 			xTEST_MSG(shRv != SIG_ERR, xT("Signal: ") + String::cast(*it));
 		} else {
-			int_t iRv = 0;
-
-			struct sigaction action; xSTRUCT_ZERO(action);
-			action.sa_handler  = a_onSignals;
-
-			iRv = ::sigemptyset(&action.sa_mask);
-			xTEST_DIFF(iRv, - 1);
-
-			action.sa_flags    = opt_sigActionRestart ? SA_RESTART : SA_SIGINFO;
-			action.sa_restorer = xPTR_NULL;
-
-			iRv = ::sigaction(*it, &action, xPTR_NULL);
+			int_t iRv = ::sigaction(*it, &action, xPTR_NULL);
 			xTEST_DIFF_MSG(iRv, - 1, xT("Signal: ") + String::cast(*it));
 		}
     }
