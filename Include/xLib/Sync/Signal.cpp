@@ -66,6 +66,9 @@ Signal::connect(
     * https://gist.github.com/jvranish/4441299
     */
 
+	cbool_t opt_SimpleSignal     = false;
+	cbool_t opt_SigActionRestart = true;
+
     xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
         switch (*it) {
         case SIGKILL:
@@ -80,24 +83,24 @@ Signal::connect(
             break;
         }
 
-    #if USE_SIMPLE_SIGNAL
-        sighandler_t shRv = std::signal(*it, a_onSignals);
-        xTEST_MSG(shRv != SIG_ERR, xT("Signal: ") + String::cast(*it));
-    #else
-        int_t iRv = 0;
+		if (opt_SimpleSignal) {
+			sighandler_t shRv = std::signal(*it, a_onSignals);
+			xTEST_MSG(shRv != SIG_ERR, xT("Signal: ") + String::cast(*it));
+		} else {
+			int_t iRv = 0;
 
-        struct sigaction action; xSTRUCT_ZERO(action);
-        action.sa_handler  = a_onSignals;
+			struct sigaction action; xSTRUCT_ZERO(action);
+			action.sa_handler  = a_onSignals;
 
-        iRv = ::sigemptyset(&action.sa_mask);
-        xTEST_DIFF(iRv, - 1);
+			iRv = ::sigemptyset(&action.sa_mask);
+			xTEST_DIFF(iRv, - 1);
 
-        action.sa_flags    = SA_SIGINFO;
-        action.sa_restorer = xPTR_NULL;
+			action.sa_flags    = opt_SigActionRestart ? SA_RESTART : SA_SIGINFO;
+			action.sa_restorer = xPTR_NULL;
 
-        iRv = ::sigaction(*it, &action, xPTR_NULL);
-        xTEST_DIFF_MSG(iRv, - 1, xT("Signal: ") + String::cast(*it));
-    #endif
+			iRv = ::sigaction(*it, &action, xPTR_NULL);
+			xTEST_DIFF_MSG(iRv, - 1, xT("Signal: ") + String::cast(*it));
+		}
     }
 }
 //-------------------------------------------------------------------------------------------------
