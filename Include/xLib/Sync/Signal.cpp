@@ -38,8 +38,7 @@ xNAMESPACE_BEGIN2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Signal::Signal() :
-	_state    (0),
-	_onRestart(xPTR_NULL)
+	_state(0)
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -92,8 +91,7 @@ Signal::connect(
 			int_t iRv = ::sigemptyset(&action.sa_mask);
 			xTEST_DIFF(iRv, - 1);
 
-			action.sa_flags    = opt_sigActionRestart ? SA_RESTART : SA_SIGINFO;
-			action.sa_restorer = _onRestart;
+			action.sa_flags = opt_sigActionRestart ? SA_RESTART : SA_SIGINFO;
 		}
 	}
 
@@ -199,16 +197,6 @@ Signal::connectUnexpected(
 
     std::unexpected_handler handler_old = std::set_unexpected(a_onUnexpected);
     xUNUSED(handler_old);
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE void_t
-Signal::connectRestart(
-    const restart_handler_t a_onRestart
-) const
-{
-    xTEST_NA(a_onRestart);
-
-    _onRestart = a_onRestart;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t

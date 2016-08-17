@@ -376,12 +376,6 @@ public:
         xTRACE_FUNC;
     }
 
-    xNO_INLINE static void_t
-    onRestart()
-    {
-        xTRACE_FUNC;
-    }
-
 private:
     xNO_COPY_ASSIGN(SignalsHandler)
 };
@@ -398,7 +392,6 @@ Application::run()
 	signal().connectExit(SignalsHandler::onExit);
 	signal().connectTerminate(SignalsHandler::onTerminate);
 	signal().connectUnexpected(SignalsHandler::onUnexpected);
-	signal().connectRestart(SignalsHandler::onRestart);
 
     if (opt_useException) {
         try {
