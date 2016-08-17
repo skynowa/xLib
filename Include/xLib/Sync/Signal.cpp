@@ -86,7 +86,7 @@ Signal::connect(
 			xUNUSED(action);
 		} else {
 			xSTRUCT_ZERO(action);
-			action.sa_handler  = a_onSignals;
+			action.sa_handler = a_onSignals;
 
 			int_t iRv = ::sigemptyset(&action.sa_mask);
 			xTEST_DIFF(iRv, - 1);
