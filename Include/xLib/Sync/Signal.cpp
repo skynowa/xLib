@@ -76,6 +76,8 @@ Signal::connect(
     * https://gist.github.com/jvranish/4441299
     */
 
+    int_t iRv = 0;
+
 	cbool_t opt_simpleSignal     = false;
 	cbool_t opt_sigActionRestart = true;
 
@@ -84,13 +86,33 @@ Signal::connect(
 		if (opt_simpleSignal) {
 			xUNUSED(action);
 		} else {
+			// setup alternate stack
+			{
+				static uint8_t altStack[SIGSTKSZ];
+
+				stack_t ss = {};
+				// malloc is usually used here, I'm not 100% sure my static allocation is valid
+				// but it seems to work just fine
+				ss.ss_sp     = (void *)altStack;
+				ss.ss_size  = SIGSTKSZ;
+				ss.ss_flags = 0;
+
+				iRv = ::sigaltstack(&ss, xPTR_NULL);
+				xTEST_DIFF(iRv, - 1);
+			}
+
 			xSTRUCT_ZERO(action);
 			action.sa_handler = a_onSignals;
 
-			int_t iRv = ::sigemptyset(&action.sa_mask);
+			iRv = ::sigemptyset(&action.sa_mask);
 			xTEST_DIFF(iRv, - 1);
 
-			action.sa_flags |= opt_sigActionRestart ? SA_RESTART : SA_SIGINFO;
+		#ifdef __APPLE__
+			// for some reason we backtrace() doesn't work on osx when we use an alternate stack
+			action.sa_flags = opt_sigActionRestart ? SA_RESTART : SA_SIGINFO;
+		#else
+			action.sa_flags = opt_sigActionRestart ? SA_RESTART : (SA_SIGINFO | SA_ONSTACK);
+		#endif
 		}
 	}
 
