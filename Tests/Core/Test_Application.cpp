@@ -13,44 +13,75 @@ xTEST_UNIT(Test_Application)
 class Failer
 {
 public:
-    void_t foo();
-
-protected:
-    void_t foo1();
-    void_t foo2();
+    void_t bug();
 
 private:
-    void_t bug_Segmentationfault();
-        ///< segmentation fault
+	int_t  divide_by_zero();
+	void_t cause_segfault();
+	void_t stack_overflow();
+	void_t infinite_loop();
+	void_t illegal_instruction();
+	void_t cause_calamity();
     void_t bug_UnhandledException();
         ///< unhandled exception: calls terminate handler
-    void_t bug_DevisionByZero();
-        ///< devision by zero
 };
 
-xNO_INLINE void_t
-Failer::foo()
+xNO_INLINE int_t
+Failer::divide_by_zero()
 {
-	foo2();
-}
-xNO_INLINE void_t
-Failer::foo1()
-{
-	bug_DevisionByZero();	// <<< set BUG here
-}
-xNO_INLINE void_t
-Failer::foo2()
-{
-	foo1();
-}
-xNO_INLINE void_t
-Failer::bug_Segmentationfault()
-{
-	int *p = xPTR_NULL;
-	*p = 10;
+	int a = 1;
+	int b = 0;
 
-	Trace() << xTRACE_VAR(p);
+	return a / b;
 }
+
+xNO_INLINE void_t
+Failer::cause_segfault()
+{
+  int * p = (int*)0x12345678;
+  *p = 0;
+}
+
+xNO_INLINE void_t
+stack_overflow();
+
+xNO_INLINE void_t
+Failer::stack_overflow()
+{
+	int foo[1000];
+
+	(void)foo;
+	stack_overflow();
+}
+
+// break out with ctrl+c to test SIGINT handling
+xNO_INLINE void_t
+Failer::infinite_loop()
+{
+	while (true)
+	{};
+}
+
+xNO_INLINE void_t
+Failer::illegal_instruction()
+{
+	// I couldn't find an easy way to cause this one, so I'm cheating
+	raise(SIGILL);
+}
+
+xNO_INLINE void_t
+Failer::bug()
+{
+	// uncomment one of the following error conditions to cause a calamity of your choosing!
+
+	// (void)divide_by_zero();
+	cause_segfault();	// <<< set BUG here
+	// assert(false);
+	// infinite_loop();
+	// illegal_instruction();
+	// stack_overflow();
+}
+
 xNO_INLINE void_t
 Failer::bug_UnhandledException()
 {
@@ -58,13 +89,6 @@ Failer::bug_UnhandledException()
 	vecRv.at(10);
 
 	Trace() << xTRACE_VAR(vecRv);
-}
-xNO_INLINE void_t
-Failer::bug_DevisionByZero()
-{
-	double dRv = 40 / 0;
-
-	Trace() << xTRACE_VAR(dRv);
 }
 //-------------------------------------------------------------------------------------------------
 class UserApplication :
@@ -81,7 +105,7 @@ public:
     xNO_INLINE virtual int_t
     onRun() xOVERRIDE
     {
-        Failer().foo();
+        Failer().bug();
     }
 
 private:
