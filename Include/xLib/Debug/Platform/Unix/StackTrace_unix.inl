@@ -149,6 +149,9 @@ StackTrace::_addr2Line(
     std::ctstring_t cmdLine = Format::str(
         xT("{} -e {} -f -C {}"), cmADDR2LINE_FILE_PATH, Path::exe(), a_symbolAddress);
 
+    // TODO: [apple]
+    //// sprintf(addr2line_cmd,"atos -o %.256s %p", program_name, addr);
+
     FILE *file = ::popen(xT2A(cmdLine).c_str(), "r");
     _xVERIFY(file != xPTR_NULL);
 
