@@ -93,8 +93,8 @@ Signal::connect(
 				stack_t ss = {};
 				// malloc is usually used here, I'm not 100% sure my static allocation is valid
 				// but it seems to work just fine
-				ss.ss_sp     = (void *)altStack;
-				ss.ss_size  = SIGSTKSZ;
+				ss.ss_sp    = (void *)altStack;
+				ss.ss_size  = xARRAY_SIZE(altStack);
 				ss.ss_flags = 0;
 
 				iRv = ::sigaltstack(&ss, xPTR_NULL);
