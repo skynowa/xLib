@@ -91,8 +91,8 @@ Signal::connect(
 				static uint8_t altStack[SIGSTKSZ];
 
 				stack_t ss = {};
-				// malloc is usually used here, I'm not 100% sure my static allocation is valid
-				// but it seems to work just fine
+				// malloc is usually used here.
+				// I'm not 100% sure my static allocation is valid but it seems to work just fine
 				ss.ss_sp    = (void *)altStack;
 				ss.ss_size  = xARRAY_SIZE(altStack);
 				ss.ss_flags = 0;
