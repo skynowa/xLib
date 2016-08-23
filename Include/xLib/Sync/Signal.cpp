@@ -427,23 +427,25 @@ Signal::infoDescription(
 		break;
 	}
 
+	if ( !sRv.empty() ) {
+		return sRv;
+	}
+
 	// _KERNEL
-	if ( sRv.empty() ) {
-		xFOR_ARRAY(i, signals) {
-			const _Signal &signal = signals[i];
+	xFOR_ARRAY(i, signals) {
+		const _Signal &signal = signals[i];
 
-			xCHECK_DO(signal.num != _KERNEL,         continue);
-			xCHECK_DO(signal.code != a_info.si_code, continue);
+		xCHECK_DO(signal.num != _KERNEL,         continue);
+		xCHECK_DO(signal.code != a_info.si_code, continue);
 
-			sRv = Format::str(xT("{}: {} ({}) - {} {}"),
-					decription(signal.num),
-					signal.codeStr,
-					signal.code,
-					signal.description,
-					NativeError::format(a_info.si_errno));
+		sRv = Format::str(xT("{}: {} ({}) - {} {}"),
+				decription(signal.num),
+				signal.codeStr,
+				signal.code,
+				signal.description,
+				NativeError::format(a_info.si_errno));
 
-			break;
-		}
+		break;
 	}
 
 	return sRv;
