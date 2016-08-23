@@ -190,7 +190,7 @@ Signal::connectAll(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectExit(
-    const exit_handler_t a_onExit
+    const on_exit_t a_onExit
 ) const
 {
     xCHECK_DO(a_onExit == xPTR_NULL, return);
