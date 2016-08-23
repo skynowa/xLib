@@ -20,6 +20,7 @@ private:
 	int_t  bug_CauseSegfault();
 	bool_t bug_StackOverflow();
 	int_t  bug_InfiniteLoop();
+		///< break out with CTRL+C to test SIGINT handling
 	bool_t bug_IllegalInstruction();
 	bool_t bug_CauseCalamity();
 	bool_t bug_UnhandledException();
@@ -58,7 +59,6 @@ Failer::bug_StackOverflow()
 	return true;
 }
 //-------------------------------------------------------------------------------------------------
-// break out with ctrl+c to test SIGINT handling
 xNO_INLINE int_t
 Failer::bug_InfiniteLoop()
 {
@@ -66,7 +66,7 @@ Failer::bug_InfiniteLoop()
 
 	while (true) {
 		++ i;
-	};
+	}
 
 	return i;
 }
