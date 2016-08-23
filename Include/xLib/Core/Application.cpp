@@ -406,7 +406,7 @@ Application::run()
 
     int_t iRv = EXIT_FAILURE;
 
-	signal().connectAll(SignalsHandler::onSignals);
+	signal().connectInfoAll(SignalsHandler::onInfo);
 	signal().connectExit(SignalsHandler::onExit);
 	signal().connectTerminate(SignalsHandler::onTerminate);
 	signal().connectUnexpected(SignalsHandler::onUnexpected);
