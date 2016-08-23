@@ -80,24 +80,13 @@ Signal::connect(
 
 	struct sigaction action;
 	{
-		// setup alternate stack
-		{
-			stack_t stack;	xSTRUCT_ZERO(stack);
-			stack.ss_sp    = malloc(SIGSTKSZ);
-			stack.ss_size  = SIGSTKSZ;
-			stack.ss_flags = 0;
-
-			iRv = ::sigaltstack(&stack, xPTR_NULL);
-			xTEST_DIFF(iRv, - 1);
-		}
-
 		xSTRUCT_ZERO(action);
 		action.sa_handler = a_onSignals;
 
 		iRv = ::sigemptyset(&action.sa_mask);
 		xTEST_DIFF(iRv, - 1);
 
-		action.sa_flags = SA_RESTART | SA_SIGINFO | SA_ONSTACK;
+		action.sa_flags = SA_RESTART | SA_SIGINFO;
 	}
 
     xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
@@ -183,24 +172,13 @@ Signal::connectInfo(
 
 	struct sigaction action;
 	{
-		// setup alternate stack
-		{
-			stack_t stack;	xSTRUCT_ZERO(stack);
-			stack.ss_sp    = malloc(SIGSTKSZ);
-			stack.ss_size  = SIGSTKSZ;
-			stack.ss_flags = 0;
-
-			iRv = ::sigaltstack(&stack, xPTR_NULL);
-			xTEST_DIFF(iRv, - 1);
-		}
-
 		xSTRUCT_ZERO(action);
 		action.sa_sigaction = a_onSignals;
 
 		iRv = ::sigemptyset(&action.sa_mask);
 		xTEST_DIFF(iRv, - 1);
 
-		action.sa_flags = SA_RESTART | SA_SIGINFO | SA_ONSTACK;
+		action.sa_flags = SA_RESTART | SA_SIGINFO;
 	}
 
     xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
