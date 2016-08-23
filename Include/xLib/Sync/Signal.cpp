@@ -82,16 +82,12 @@ Signal::connect(
 	{
 		// setup alternate stack
 		{
-			static uint8_t altStack[SIGSTKSZ];
+			stack_t stack;	xSTRUCT_ZERO(stack);
+			stack.ss_sp    = malloc(SIGSTKSZ);
+			stack.ss_size  = SIGSTKSZ;
+			stack.ss_flags = 0;
 
-			stack_t ss = {};
-			// malloc is usually used here.
-			// I'm not 100% sure my static allocation is valid but it seems to work just fine
-			ss.ss_sp    = (void *)altStack;
-			ss.ss_size  = xARRAY_SIZE(altStack);
-			ss.ss_flags = 0;
-
-			iRv = ::sigaltstack(&ss, xPTR_NULL);
+			iRv = ::sigaltstack(&stack, xPTR_NULL);
 			xTEST_DIFF(iRv, - 1);
 		}
 
@@ -119,13 +115,8 @@ Signal::connect(
             break;
         }
 
-	#if 0
-		sighandler_t shRv = std::signal(*it, a_onSignals);
-		xTEST_MSG(shRv != SIG_ERR, Format::str(xT("Signal: {}"), decription(*it)));
-	#else
 		int_t iRv = ::sigaction(*it, &action, xPTR_NULL);
 		xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(*it)));
-	#endif
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -174,6 +165,109 @@ Signal::connectAll(
     signalNums.push_back(SIGSYS);
 
 	connect(signalNums, a_onSignals);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE void_t
+Signal::connectInfo(
+    const std::vector<int_t> &a_signalNums,
+    const on_info_t           a_onSignals
+) const
+{
+   /**
+    * FAQ: set handlers
+    *
+    * https://gist.github.com/jvranish/4441299
+    */
+
+    int_t iRv = 0;
+
+	struct sigaction action;
+	{
+		// setup alternate stack
+		{
+			stack_t stack;	xSTRUCT_ZERO(stack);
+			stack.ss_sp    = malloc(SIGSTKSZ);
+			stack.ss_size  = SIGSTKSZ;
+			stack.ss_flags = 0;
+
+			iRv = ::sigaltstack(&stack, xPTR_NULL);
+			xTEST_DIFF(iRv, - 1);
+		}
+
+		xSTRUCT_ZERO(action);
+		action.sa_sigaction = a_onSignals;
+
+		iRv = ::sigemptyset(&action.sa_mask);
+		xTEST_DIFF(iRv, - 1);
+
+		action.sa_flags = SA_RESTART | SA_SIGINFO | SA_ONSTACK;
+	}
+
+    xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
+        switch (*it) {
+        case SIGKILL:
+			Trace() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
+							xLEX_TO_STR(SIGKILL), SIGKILL);
+			continue;
+		case SIGSTOP:
+			Trace() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
+							xLEX_TO_STR(SIGSTOP), SIGSTOP);
+            continue;
+            break;
+        default:
+            break;
+        }
+
+		int_t iRv = ::sigaction(*it, &action, xPTR_NULL);
+		xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(*it)));
+    }
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE void_t
+Signal::connectInfoAll(
+    const on_info_t a_onSignals
+) const
+{
+    std::vector<int_t> signalNums;
+    signalNums.push_back(SIGHUP);
+    signalNums.push_back(SIGINT);
+    signalNums.push_back(SIGQUIT);
+    signalNums.push_back(SIGILL);
+    signalNums.push_back(SIGTRAP);
+    signalNums.push_back(SIGABRT);
+    signalNums.push_back(SIGIOT);
+    signalNums.push_back(SIGBUS);
+    signalNums.push_back(SIGFPE);
+    // signalNums.push_back(SIGKILL);  // SIGKILL: 9 cannot be caught or ignored
+    signalNums.push_back(SIGUSR1);
+    signalNums.push_back(SIGSEGV);
+    signalNums.push_back(SIGUSR2);
+    signalNums.push_back(SIGPIPE);
+    signalNums.push_back(SIGALRM);
+    signalNums.push_back(SIGTERM);
+    signalNums.push_back(SIGSTKFLT);
+    // ANDROID: SIGCLD
+#if xTODO_ANDROID
+    signalNums.push_back(SIGCLD);
+#endif
+    signalNums.push_back(SIGCHLD);
+    signalNums.push_back(SIGCONT);
+    // signalNums.push_back(SIGSTOP);  // SIGSTOP: 19 cannot be caught or ignored
+    signalNums.push_back(SIGTSTP);
+    signalNums.push_back(SIGTTIN);
+    signalNums.push_back(SIGTTOU);
+    signalNums.push_back(SIGURG);
+    signalNums.push_back(SIGXCPU);
+    signalNums.push_back(SIGXFSZ);
+    signalNums.push_back(SIGVTALRM);
+    signalNums.push_back(SIGPROF);
+    signalNums.push_back(SIGWINCH);
+    signalNums.push_back(SIGPOLL);
+    signalNums.push_back(SIGIO);
+    signalNums.push_back(SIGPWR);
+    signalNums.push_back(SIGSYS);
+
+	connectInfo(signalNums, a_onSignals);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -326,8 +420,8 @@ Signal::codeDecription(
 
 		sRv = Format::str(xT("{}: {} ({}) - {}"),
 				decription(sig.num),
-				sig.code,
 				sig.codeStr,
+				sig.code,
 				sig.description);
 
 		break;
