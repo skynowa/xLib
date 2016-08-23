@@ -54,7 +54,7 @@ Signal::state() const
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::setState(
-    const std::sig_atomic_t &a_state
+    const std::sig_atomic_t &a_state	///<
 )
 {
     // ANDROID: SIG_ATOMIC_MIN, SIG_ATOMIC_MAX
@@ -66,8 +66,8 @@ Signal::setState(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connect(
-    const std::vector<int_t> &a_signalNums,
-    const sighandler_t        a_onSignals
+    const std::vector<int_t> &a_signalNums,	///<
+    const sighandler_t        a_onSignals	///<
 ) const
 {
    /**
@@ -111,7 +111,7 @@ Signal::connect(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectAll(
-    const sighandler_t a_onSignals
+    const sighandler_t a_onSignals	///<
 ) const
 {
     std::vector<int_t> signalNums;
@@ -143,8 +143,8 @@ Signal::connectAll(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectInfo(
-    const std::vector<int_t> &a_signalNums,
-    const on_info_t           a_onSignals
+    const std::vector<int_t> &a_signalNums,	///<
+    const on_info_t           a_onSignals	///<
 ) const
 {
    /**
@@ -188,7 +188,7 @@ Signal::connectInfo(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectInfoAll(
-    const on_info_t a_onSignals
+    const on_info_t a_onSignals	///<
 ) const
 {
     std::vector<int_t> signalNums;
@@ -220,7 +220,7 @@ Signal::connectInfoAll(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectExit(
-    const on_exit_t a_onExit
+    const on_exit_t a_onExit	///<
 ) const
 {
     xCHECK_DO(a_onExit == xPTR_NULL, return);
@@ -231,7 +231,7 @@ Signal::connectExit(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectTerminate(
-    const std::terminate_handler a_onTerminate
+    const std::terminate_handler a_onTerminate	///<
 ) const
 {
     xTEST_PTR(a_onTerminate);
@@ -242,7 +242,7 @@ Signal::connectTerminate(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectUnexpected(
-    const std::unexpected_handler a_onUnexpected
+    const std::unexpected_handler a_onUnexpected	///<
 ) const
 {
     xTEST_PTR(a_onUnexpected);
@@ -253,7 +253,7 @@ Signal::connectUnexpected(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::raise(
-    cint_t &a_signalNum
+    cint_t &a_signalNum	///<
 ) const
 {
     int_t iRv = std::raise(a_signalNum);
@@ -281,10 +281,10 @@ xNAMESPACE_ANONYM_BEGIN
 
 struct _SignalInfo
 {
-	int_t     num;
-	int_t     code;
-	ctchar_t *codeStr;
-	ctchar_t *description;
+	int_t     num;			///<
+	int_t     code;			///<
+	ctchar_t *codeStr;		///<
+	ctchar_t *description;	///<
 };
 
 xNAMESPACE_ANONYM_END
