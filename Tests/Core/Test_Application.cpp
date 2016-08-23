@@ -16,79 +16,89 @@ public:
     void_t bug();
 
 private:
-	int_t  divide_by_zero();
-	void_t cause_segfault();
-	void_t stack_overflow();
-	void_t infinite_loop();
-	void_t illegal_instruction();
-	void_t cause_calamity();
-    void_t bug_UnhandledException();
+	int_t  bug_DivideByZero();
+	int_t  bug_CauseSegfault();
+	bool_t bug_StackOverflow();
+	int_t  bug_InfiniteLoop();
+	bool_t bug_IllegalInstruction();
+	bool_t bug_CauseCalamity();
+	bool_t bug_UnhandledException();
         ///< unhandled exception: calls terminate handler
 };
-
+//-------------------------------------------------------------------------------------------------
 xNO_INLINE int_t
-Failer::divide_by_zero()
+Failer::bug_DivideByZero()
 {
 	int a = 1;
 	int b = 0;
 
 	return a / b;
 }
-
-xNO_INLINE void_t
-Failer::cause_segfault()
+//-------------------------------------------------------------------------------------------------
+xNO_INLINE int_t
+Failer::bug_CauseSegfault()
 {
-  int * p = (int*)0x12345678;
-  *p = 0;
+	int * p = (int*)0x12345678;
+	*p = 0;
+
+	return *p;
 }
+//-------------------------------------------------------------------------------------------------
+xNO_INLINE bool_t
+bug_StackOverflow();
 
-xNO_INLINE void_t
-stack_overflow();
-
-xNO_INLINE void_t
-Failer::stack_overflow()
+xNO_INLINE bool_t
+Failer::bug_StackOverflow()
 {
 	int foo[1000];
 
 	(void)foo;
-	stack_overflow();
-}
+	bug_StackOverflow();
 
+	return true;
+}
+//-------------------------------------------------------------------------------------------------
 // break out with ctrl+c to test SIGINT handling
-xNO_INLINE void_t
-Failer::infinite_loop()
+xNO_INLINE int_t
+Failer::bug_InfiniteLoop()
 {
-	while (true)
-	{};
-}
+	int_t i = 0;
 
-xNO_INLINE void_t
-Failer::illegal_instruction()
+	while (true) {
+		++ i;
+	};
+
+	return i;
+}
+//-------------------------------------------------------------------------------------------------
+xNO_INLINE bool_t
+Failer::bug_IllegalInstruction()
 {
 	// I couldn't find an easy way to cause this one, so I'm cheating
-	raise(SIGILL);
+	return raise(SIGILL);
 }
-
-xNO_INLINE void_t
-Failer::bug()
-{
-	// uncomment one of the following error conditions to cause a calamity of your choosing!
-
-	// (void)divide_by_zero();
-	cause_segfault();	// <<< set BUG here
-	// assert(false);
-	// infinite_loop();
-	// illegal_instruction();
-	// stack_overflow();
-}
-
-xNO_INLINE void_t
+//-------------------------------------------------------------------------------------------------
+xNO_INLINE bool_t
 Failer::bug_UnhandledException()
 {
 	std::vector<std::size_t> vecRv;
 	vecRv.at(10);
 
-	Trace() << xTRACE_VAR(vecRv);
+	return !vecRv.empty();
+}
+//-------------------------------------------------------------------------------------------------
+xNO_INLINE void_t
+Failer::bug()
+{
+	//// ::: set BUG here :::
+
+	std::tcout << bug_DivideByZero()       << std::endl;
+//	std::tcout << bug_CauseSegfault()      << std::endl;
+//	std::tcout << bug_StackOverflow()      << std::endl;
+//	std::tcout << bug_InfiniteLoop()       << std::endl;
+//	std::tcout << bug_IllegalInstruction() << std::endl;
+//	std::tcout << bug_StackOverflow()      << std::endl;
+//	std::tcout << bug_UnhandledException() << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 class UserApplication :
