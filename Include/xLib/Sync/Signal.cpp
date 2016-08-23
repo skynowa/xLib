@@ -238,6 +238,15 @@ Signal::raise(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
+xINLINE bool_t
+Signal::isValid(
+    cint_t &a_signalNum ///< signal number
+)
+{
+	return (::sigaction(a_signalNum, xPTR_NULL, xPTR_NULL) == 0);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
 xINLINE std::tstring_t
 Signal::decription(
     cint_t &a_signalNum ///< signal number

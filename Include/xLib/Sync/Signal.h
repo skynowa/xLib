@@ -43,6 +43,9 @@ public:
         ///< sends signal to the current executing program
 
     static
+    bool_t   isValid(cint_t &signalNum);
+        ///< check whether a given signal is valid for the current machine
+    static
     std::tstring_t decription(cint_t &signalNum);
         ///< string describing signal
 
