@@ -48,6 +48,9 @@ public:
     static
     std::tstring_t decription(cint_t &signalNum);
         ///< string describing signal
+    static
+    std::tstring_t codeDecription(cint_t &signalNum, const siginfo_t &info);
+        ///< string describing signal code
 
 private:
     xNO_COPY_ASSIGN(Signal)

@@ -366,7 +366,8 @@ public:
 		Trace()
 			<< Signal::decription(a_signal)          << "\n"
 			<< NativeError::format(a_info->si_errno) << "\n"
-			<< xTRACE_VAR(a_info->si_code)           << "\n";
+			<< xTRACE_VAR(a_info->si_code)           << "\n"
+			<< Signal::codeDecription(a_signal, *a_info) << "\n";
 
 		psiginfo(a_info,  "Received signal");
 		psignal(a_signal, "Received signal");
