@@ -331,7 +331,7 @@ Signal::isValid(
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
-struct _Signal
+struct _SignalInfo
 {
 	int_t          num;
 	int_t          code;
@@ -350,7 +350,7 @@ Signal::infoDescription(
 	std::tstring_t sRv;
 	cint_t         _KERNEL = - 1;
 
-	const _Signal signals[] =
+	const _SignalInfo signalInfos[] =
 	{
 		// _KERNEL
 		{_KERNEL, SI_ASYNCNL,    xLEX_TO_STR(SI_ASYNCNL),    xT("Sent by asynch name lookup completion")},
@@ -415,17 +415,17 @@ Signal::infoDescription(
 		{SIGPOLL, POLL_HUP,      xLEX_TO_STR(POLL_HUP),      xT("Device disconnected")}
 	};
 
-	xFOR_ARRAY(i, signals) {
-		const _Signal &signal = signals[i];
+	xFOR_ARRAY(i, signalInfos) {
+		const _SignalInfo &signalInfo = signalInfos[i];
 
-		xCHECK_DO(signal.num != a_info.si_signo, continue);
-		xCHECK_DO(signal.code != a_info.si_code, continue);
+		xCHECK_DO(signalInfo.num != a_info.si_signo, continue);
+		xCHECK_DO(signalInfo.code != a_info.si_code, continue);
 
 		sRv = Format::str(xT("{}: {} ({}) - {}, {}"),
-				decription(signal.num),
-				signal.codeStr,
-				signal.code,
-				signal.description,
+				decription(signalInfo.num),
+				signalInfo.codeStr,
+				signalInfo.code,
+				signalInfo.description,
 				NativeError::format(a_info.si_errno));
 
 		break;
@@ -436,17 +436,17 @@ Signal::infoDescription(
 	}
 
 	// _KERNEL
-	xFOR_ARRAY(i, signals) {
-		const _Signal &signal = signals[i];
+	xFOR_ARRAY(i, signalInfos) {
+		const _SignalInfo &signalInfo = signalInfos[i];
 
-		xCHECK_DO(signal.num != _KERNEL,         continue);
-		xCHECK_DO(signal.code != a_info.si_code, continue);
+		xCHECK_DO(signalInfo.num != _KERNEL,         continue);
+		xCHECK_DO(signalInfo.code != a_info.si_code, continue);
 
 		sRv = Format::str(xT("{}: {} ({}) - {} {}"),
-				decription(signal.num),
-				signal.codeStr,
-				signal.code,
-				signal.description,
+				decription(signalInfo.num),
+				signalInfo.codeStr,
+				signalInfo.code,
+				signalInfo.description,
 				NativeError::format(a_info.si_errno));
 
 		break;
