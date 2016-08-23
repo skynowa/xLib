@@ -119,7 +119,7 @@ Signal::connectAll(
     cint_t signalMin = SIGHUP;
     cint_t signalMax = SIGSYS;
 
-	for (int_t i = signalMin; i < signalMax; ++ i) {
+	for (int_t i = signalMin; i <= signalMax; ++ i) {
 		// filter signals
 		{
 			switch (i) {
@@ -196,7 +196,7 @@ Signal::connectInfoAll(
     cint_t signalMin = SIGHUP;
     cint_t signalMax = SIGSYS;
 
-	for (int_t i = signalMin; i < signalMax; ++ i) {
+	for (int_t i = signalMin; i <= signalMax; ++ i) {
 		// filter signals
 		{
 			switch (i) {
