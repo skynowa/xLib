@@ -78,41 +78,30 @@ Signal::connect(
 
     int_t iRv = 0;
 
-	cbool_t opt_simpleSignal = false;
-
 	struct sigaction action;
 	{
-		if (opt_simpleSignal) {
-			xUNUSED(action);
-		} else {
-			// setup alternate stack
-			{
-				static uint8_t altStack[SIGSTKSZ];
+		// setup alternate stack
+		{
+			static uint8_t altStack[SIGSTKSZ];
 
-				stack_t ss = {};
-				// malloc is usually used here.
-				// I'm not 100% sure my static allocation is valid but it seems to work just fine
-				ss.ss_sp    = (void *)altStack;
-				ss.ss_size  = xARRAY_SIZE(altStack);
-				ss.ss_flags = 0;
+			stack_t ss = {};
+			// malloc is usually used here.
+			// I'm not 100% sure my static allocation is valid but it seems to work just fine
+			ss.ss_sp    = (void *)altStack;
+			ss.ss_size  = xARRAY_SIZE(altStack);
+			ss.ss_flags = 0;
 
-				iRv = ::sigaltstack(&ss, xPTR_NULL);
-				xTEST_DIFF(iRv, - 1);
-			}
-
-			xSTRUCT_ZERO(action);
-			action.sa_handler = a_onSignals;
-
-			iRv = ::sigemptyset(&action.sa_mask);
+			iRv = ::sigaltstack(&ss, xPTR_NULL);
 			xTEST_DIFF(iRv, - 1);
-
-		#ifdef __APPLE__
-			// for some reason we backtrace() doesn't work on osx when we use an alternate stack
-			action.sa_flags = SA_RESTART | SA_SIGINFO;
-		#else
-			action.sa_flags = SA_RESTART | SA_SIGINFO | SA_ONSTACK;
-		#endif
 		}
+
+		xSTRUCT_ZERO(action);
+		action.sa_handler = a_onSignals;
+
+		iRv = ::sigemptyset(&action.sa_mask);
+		xTEST_DIFF(iRv, - 1);
+
+		action.sa_flags = SA_RESTART | SA_SIGINFO | SA_ONSTACK;
 	}
 
     xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
@@ -130,13 +119,13 @@ Signal::connect(
             break;
         }
 
-		if (opt_simpleSignal) {
-			sighandler_t shRv = std::signal(*it, a_onSignals);
-			xTEST_MSG(shRv != SIG_ERR, Format::str(xT("Signal: {}"), decription(*it)));
-		} else {
-			int_t iRv = ::sigaction(*it, &action, xPTR_NULL);
-			xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(*it)));
-		}
+	#if 0
+		sighandler_t shRv = std::signal(*it, a_onSignals);
+		xTEST_MSG(shRv != SIG_ERR, Format::str(xT("Signal: {}"), decription(*it)));
+	#else
+		int_t iRv = ::sigaction(*it, &action, xPTR_NULL);
+		xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(*it)));
+	#endif
     }
 }
 //-------------------------------------------------------------------------------------------------
