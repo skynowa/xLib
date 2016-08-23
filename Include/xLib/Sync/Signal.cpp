@@ -78,8 +78,7 @@ Signal::connect(
 
     int_t iRv = 0;
 
-	cbool_t opt_simpleSignal     = false;
-	cbool_t opt_sigActionRestart = true;
+	cbool_t opt_simpleSignal = false;
 
 	struct sigaction action;
 	{
@@ -109,9 +108,9 @@ Signal::connect(
 
 		#ifdef __APPLE__
 			// for some reason we backtrace() doesn't work on osx when we use an alternate stack
-			action.sa_flags = opt_sigActionRestart ? SA_RESTART : SA_SIGINFO;
+			action.sa_flags = SA_RESTART | SA_SIGINFO;
 		#else
-			action.sa_flags = opt_sigActionRestart ? SA_RESTART : (SA_SIGINFO | SA_ONSTACK);
+			action.sa_flags = SA_RESTART | SA_SIGINFO | SA_ONSTACK;
 		#endif
 		}
 	}
