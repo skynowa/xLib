@@ -362,7 +362,7 @@ public:
 
 		xTRACE_FUNC;
 
-		Trace() << Signal::codeDecription(*a_info) << "\n";
+		Trace() << Signal::infoDescription(*a_info) << "\n";
 		// Trace() << StackTrace().toString()      << "\n";
 
 		Application::exit(EXIT_FAILURE);
