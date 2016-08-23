@@ -357,20 +357,12 @@ public:
 	xNO_INLINE static void_t
 	onInfo(int_t a_signal, siginfo_t *a_info, void_t *a_context)
 	{
+		xTEST_EQ(a_signal, a_info->si_signo);
 		xUNUSED((ucontext_t *)a_context);
 
 		xTRACE_FUNC;
 
-		xTEST_EQ(a_signal, a_info->si_signo);
-
-		Trace()
-			<< Signal::decription(a_signal)          << "\n"
-			<< NativeError::format(a_info->si_errno) << "\n"
-			<< xTRACE_VAR(a_info->si_code)           << "\n"
-			<< Signal::codeDecription(a_signal, *a_info) << "\n";
-
-		psiginfo(a_info,  "Received signal");
-		psignal(a_signal, "Received signal");
+		Trace() << Signal::codeDecription(*a_info) << "\n";
 		// Trace() << StackTrace().toString()      << "\n";
 
 		Application::exit(EXIT_FAILURE);

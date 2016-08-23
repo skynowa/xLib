@@ -340,7 +340,6 @@ struct _Signal
 /* static */
 xINLINE std::tstring_t
 Signal::codeDecription(
-    cint_t          &a_signalNum, ///< signal number
     const siginfo_t &a_info       ///<  signal info struct
 )
 {
@@ -413,16 +412,17 @@ Signal::codeDecription(
 	};
 
 	xFOR_ARRAY(i, signals) {
-		const _Signal &sig = signals[i];
+		const _Signal &signal = signals[i];
 
-		xCHECK_DO(sig.num != a_signalNum,     continue);
-		xCHECK_DO(sig.code != a_info.si_code, continue);
+		xCHECK_DO(signal.num != a_info.si_signo, continue);
+		xCHECK_DO(signal.code != a_info.si_code, continue);
 
 		sRv = Format::str(xT("{}: {} ({}) - {}"),
-				decription(sig.num),
-				sig.codeStr,
-				sig.code,
-				sig.description);
+				decription(signal.num),
+				signal.codeStr,
+				signal.code,
+				signal.description,
+				NativeError::format(a_info.si_errno));
 
 		break;
 	}
