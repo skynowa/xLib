@@ -115,43 +115,28 @@ Signal::connectAll(
 ) const
 {
     std::vector<int_t> signalNums;
-    signalNums.push_back(SIGHUP);
-    signalNums.push_back(SIGINT);
-    signalNums.push_back(SIGQUIT);
-    signalNums.push_back(SIGILL);
-    signalNums.push_back(SIGTRAP);
-    signalNums.push_back(SIGABRT);
-    signalNums.push_back(SIGIOT);
-    signalNums.push_back(SIGBUS);
-    signalNums.push_back(SIGFPE);
-    // signalNums.push_back(SIGKILL);  // SIGKILL: 9 cannot be caught or ignored
-    signalNums.push_back(SIGUSR1);
-    signalNums.push_back(SIGSEGV);
-    signalNums.push_back(SIGUSR2);
-    signalNums.push_back(SIGPIPE);
-    signalNums.push_back(SIGALRM);
-    signalNums.push_back(SIGTERM);
-    signalNums.push_back(SIGSTKFLT);
-    // ANDROID: SIGCLD
-#if xTODO_ANDROID
-    signalNums.push_back(SIGCLD);
-#endif
-    signalNums.push_back(SIGCHLD);
-    signalNums.push_back(SIGCONT);
-    // signalNums.push_back(SIGSTOP);  // SIGSTOP: 19 cannot be caught or ignored
-    signalNums.push_back(SIGTSTP);
-    signalNums.push_back(SIGTTIN);
-    signalNums.push_back(SIGTTOU);
-    signalNums.push_back(SIGURG);
-    signalNums.push_back(SIGXCPU);
-    signalNums.push_back(SIGXFSZ);
-    signalNums.push_back(SIGVTALRM);
-    signalNums.push_back(SIGPROF);
-    signalNums.push_back(SIGWINCH);
-    signalNums.push_back(SIGPOLL);
-    signalNums.push_back(SIGIO);
-    signalNums.push_back(SIGPWR);
-    signalNums.push_back(SIGSYS);
+
+    cint_t signalMin = SIGHUP;
+    cint_t signalMax = SIGSYS;
+
+	for (int_t i = signalMin; i < signalMax; ++ i) {
+		// filter signals
+		{
+			switch (i) {
+			case SIGKILL:
+			case SIGSTOP:
+				// signals cannot be caught or ignored;
+				continue;
+				break;
+			default:
+				break;
+			}
+
+			// TODO: [ANDROID] SIGCLD
+		}
+
+		signalNums.push_back(i);
+	}  // for (signalMax)
 
 	connect(signalNums, a_onSignals);
 }
@@ -207,43 +192,28 @@ Signal::connectInfoAll(
 ) const
 {
     std::vector<int_t> signalNums;
-    signalNums.push_back(SIGHUP);
-    signalNums.push_back(SIGINT);
-    signalNums.push_back(SIGQUIT);
-    signalNums.push_back(SIGILL);
-    signalNums.push_back(SIGTRAP);
-    signalNums.push_back(SIGABRT);
-    signalNums.push_back(SIGIOT);
-    signalNums.push_back(SIGBUS);
-    signalNums.push_back(SIGFPE);
-    // signalNums.push_back(SIGKILL);  // SIGKILL: 9 cannot be caught or ignored
-    signalNums.push_back(SIGUSR1);
-    signalNums.push_back(SIGSEGV);
-    signalNums.push_back(SIGUSR2);
-    signalNums.push_back(SIGPIPE);
-    signalNums.push_back(SIGALRM);
-    signalNums.push_back(SIGTERM);
-    signalNums.push_back(SIGSTKFLT);
-    // ANDROID: SIGCLD
-#if xTODO_ANDROID
-    signalNums.push_back(SIGCLD);
-#endif
-    signalNums.push_back(SIGCHLD);
-    signalNums.push_back(SIGCONT);
-    // signalNums.push_back(SIGSTOP);  // SIGSTOP: 19 cannot be caught or ignored
-    signalNums.push_back(SIGTSTP);
-    signalNums.push_back(SIGTTIN);
-    signalNums.push_back(SIGTTOU);
-    signalNums.push_back(SIGURG);
-    signalNums.push_back(SIGXCPU);
-    signalNums.push_back(SIGXFSZ);
-    signalNums.push_back(SIGVTALRM);
-    signalNums.push_back(SIGPROF);
-    signalNums.push_back(SIGWINCH);
-    signalNums.push_back(SIGPOLL);
-    signalNums.push_back(SIGIO);
-    signalNums.push_back(SIGPWR);
-    signalNums.push_back(SIGSYS);
+
+    cint_t signalMin = SIGHUP;
+    cint_t signalMax = SIGSYS;
+
+	for (int_t i = signalMin; i < signalMax; ++ i) {
+		// filter signals
+		{
+			switch (i) {
+			case SIGKILL:
+			case SIGSTOP:
+				// signals cannot be caught or ignored;
+				continue;
+				break;
+			default:
+				break;
+			}
+
+			// TODO: [ANDROID] SIGCLD
+		}
+
+		signalNums.push_back(i);
+	}  // for (signalMax)
 
 	connectInfo(signalNums, a_onSignals);
 }
