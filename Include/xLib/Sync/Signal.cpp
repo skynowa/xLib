@@ -329,6 +329,8 @@ Signal::isValid(
 	return (::sigaction(a_signalNum, xPTR_NULL, xPTR_NULL) == 0);
 }
 //-------------------------------------------------------------------------------------------------
+xNAMESPACE_ANONYM_BEGIN
+
 struct _Signal
 {
 	int_t          num;
@@ -336,6 +338,8 @@ struct _Signal
 	std::tstring_t codeStr;
 	std::tstring_t description;
 };
+
+xNAMESPACE_ANONYM_END
 
 /* static */
 xINLINE std::tstring_t
