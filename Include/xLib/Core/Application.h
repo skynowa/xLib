@@ -118,6 +118,4 @@ xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Application.cpp"
-#else
-    //// extern xlib::core::Application application;
 #endif
