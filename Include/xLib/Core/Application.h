@@ -116,10 +116,6 @@ private:
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
-#define xLIB_CORE_APPLICATION_STATIC_DECLARE \
-    xlib::core::ApplicationInfo xlib::core::Application::_info; \
-    xlib::package::Donate       xlib::core::Application::_donate;
-//-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Application.cpp"
 #else
