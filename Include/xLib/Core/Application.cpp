@@ -8,19 +8,6 @@
     #include "Application.h"
 #endif
 
-#if   cmOPTION_PROJECT_HEADER_ONLY
-    xLIB_CORE_APPLICATION_STATIC_DECLARE    // add to main.cpp
-#elif cmOPTION_PROJECT_LIB_STATIC
-    xLIB_CORE_APPLICATION_STATIC_DECLARE
-#elif cmOPTION_PROJECT_LIB_SHARE
-    xLIB_CORE_APPLICATION_STATIC_DECLARE
-#elif cmOPTION_PROJECT_LIB_MODULE
-    xLIB_CORE_APPLICATION_STATIC_DECLARE
-#elif
-    #error Invalid option
-#endif
-
-
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
@@ -50,6 +37,9 @@ std::ctstring_t tempDirName   = xT("Temp");
 std::ctstring_t langDirName   = xT("Lang");
 
 }
+
+ApplicationInfo Application::_info;
+Donate          Application::_donate;
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Application::Application(
@@ -97,7 +87,7 @@ Application::args(
 xINLINE bool_t
 Application::isRunAsAdmin() const
 {
-    system::User user;
+    User user;
 
     return user.isAdmin();
 }
