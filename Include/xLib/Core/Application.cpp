@@ -13,6 +13,7 @@
 #include <xLib/Core/Format.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>
+#include <xLib/Log/FileLog.h>
 #include <xLib/IO/Path.h>
 #include <xLib/IO/Dir.h>
 #include <xLib/System/ProcessInfo.h>
@@ -353,7 +354,10 @@ public:
 		xTRACE_FUNC;
 
 		Trace() << Signal::infoDescription(*a_info) << "\n";
-		// Trace() << StackTrace().toString()      << "\n";
+
+		FileLog log(FileLog::lsDefaultMb);
+		log.setFilePath(xT("crash.log"));
+		log.write(xT("StackTrace: \n%s\n"), StackTrace().toString().c_str());
 
 		Application::exit(EXIT_FAILURE);
 	}
