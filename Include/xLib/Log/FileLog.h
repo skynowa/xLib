@@ -24,9 +24,10 @@ public:
         lsDefaultMb    = xMB(20),
         lsDefaultMaxMb = xMB(50)
     };
+
                    FileLog();
         ///< constructor
-    explicit       FileLog(std::csize_t &maxFileSizeBytes);
+    explicit       FileLog(std::csize_t &fileSizeMaxBytes);
         ///< constructor
     virtual       ~FileLog();
         ///< destructor
@@ -51,7 +52,7 @@ public:
 
 private:
     std::tstring_t _filePath;            ///< file path
-    std::size_t    _maxFileSizeBytes;    ///< maximum file size in bytes
+    std::size_t    _fileSizeMaxBytes;    ///< maximum file size in bytes
 
     void_t         _removeIfFull() const;
         ///< delete log, if full
