@@ -27,17 +27,17 @@ xNAMESPACE_BEGIN2(xlib, log)
 xINLINE
 FileLog::FileLog() :
     _filePath        (),
-    _maxFileSizeBytes(lsDefaultMb)
+    _fileSizeMaxBytes(lsDefaultMb)
 {
     xTEST_EQ(_filePath.empty(), true);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
 FileLog::FileLog(
-    std::csize_t &a_maxFileSizeBytes
+    std::csize_t &a_fileSizeMaxBytes
 ) :
     _filePath        (),
-    _maxFileSizeBytes(a_maxFileSizeBytes)
+    _fileSizeMaxBytes(a_fileSizeMaxBytes)
 {
     xTEST_EQ(_filePath.empty(), true);
 }
@@ -56,8 +56,8 @@ FileLog::setFilePath(
 {
     xTEST_EQ(a_filePath.empty(), false);
 
-    if (a_filePath.find(Const::slash()) == std::tstring_t::npos) {
-        _filePath = Path(Path::exe()).dir() + Const::slash() + a_filePath;
+    if (a_filePath.find( Const::slash() ) == std::tstring_t::npos) {
+        _filePath = Path( Path::exe() ).dir() + Const::slash() + a_filePath;
     } else {
         _filePath = a_filePath;
     }
@@ -129,13 +129,13 @@ FileLog::write(
 xINLINE void_t
 FileLog::clear() const
 {
-    File::clear(filePath());
+    File::clear( filePath() );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 FileLog::remove() const
 {
-    File::remove(filePath());
+    File::remove( filePath() );
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -149,13 +149,13 @@ FileLog::remove() const
 xINLINE void_t
 FileLog::_removeIfFull() const
 {
-    bool_t bRv = File::isExists(filePath());
+    bool_t bRv = File::isExists( filePath() );
     xCHECK_DO(!bRv, return);
 
     // remove log, if full
-    xCHECK_DO(File::size( filePath() ) < static_cast<longlong_t>(_maxFileSizeBytes), return);
+    xCHECK_DO(File::size( filePath() ) < static_cast<longlong_t>(_fileSizeMaxBytes), return);
 
-    File::remove(filePath());
+    File::remove( filePath() );
 }
 //-------------------------------------------------------------------------------------------------
 
