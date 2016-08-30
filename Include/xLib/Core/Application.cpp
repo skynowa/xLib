@@ -357,7 +357,15 @@ public:
 
 		FileLog log(FileLog::lsDefaultMb);
 		log.setFilePath(xT("crash.log"));
-		log.write(xT("StackTrace: \n%s\n"), StackTrace().toString().c_str());
+
+		std::ctstring_t msg = Format::str(
+		    xT("Crash info:\n\n")
+		    xT("Signal:\n{}\n\n")
+		    xT("StackTrace:\n{}"),
+            Signal::infoDescription(*a_info),
+            StackTrace().toString());
+
+		log.write(xT("%s\n"), msg.c_str());
 
 		Application::exit(EXIT_FAILURE);
 	}
