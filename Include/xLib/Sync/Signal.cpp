@@ -200,7 +200,7 @@ Signal::connectInfo(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Signal::connectInfoAll(
-    const on_info_t a_onSignals	///<
+    const on_info_t a_onInfo	///<
 ) const
 {
     std::vector<int_t> signalNums;
@@ -227,7 +227,7 @@ Signal::connectInfoAll(
 		signalNums.push_back(i);
 	}  // for (signalMax)
 
-	connectInfo(signalNums, a_onSignals);
+	connectInfo(signalNums, a_onInfo);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
