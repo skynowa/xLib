@@ -214,6 +214,9 @@
 #define xTYPEDEF_CONST(t) \
     typedef const t c##t
     ///< typedef const types
+#define xTYPEDEF_PTR_CONST(t) \
+    typedef const t * const ptr_##c##t
+    ///< typedef const types
 ///@}
 //-----------------------------------------------------------------------------------------------
 ///@name Declare enum

@@ -123,6 +123,12 @@ xNAMESPACE_BEGIN(xlib)
     xTYPEDEF_CONST(twint_t);
         ///< twint_t
 
+	// Pointers
+	xTYPEDEF_PTR_CONST(char);
+	xTYPEDEF_PTR_CONST(wchar_t);
+	xTYPEDEF_PTR_CONST(tchar_t);
+	xTYPEDEF_PTR_CONST(uchar_t);
+
 xNAMESPACE_END(xlib)
 
 xNAMESPACE_BEGIN(std)
