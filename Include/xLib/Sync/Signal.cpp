@@ -381,7 +381,7 @@ Signal::infoDescription(
 		xCHECK_DO(signalInfo.num != a_info.si_signo, continue);
 		xCHECK_DO(signalInfo.code != a_info.si_code, continue);
 
-		sRv = Format::str(xT("{}: {} ({}) - {}, {}"),
+		sRv = Format::str(xT("{}\n{} ({}) - {}\n{}"),
 				decription(signalInfo.num),
 				signalInfo.codeStr,
 				signalInfo.code,
@@ -402,7 +402,7 @@ Signal::infoDescription(
 		xCHECK_DO(signalInfo.num != _KERNEL,         continue);
 		xCHECK_DO(signalInfo.code != a_info.si_code, continue);
 
-		sRv = Format::str(xT("{}: {} ({}) - {} {}"),
+		sRv = Format::str(xT("{}\n{} ({}) - {}\n{}"),
 				decription(signalInfo.num),
 				signalInfo.codeStr,
 				signalInfo.code,
