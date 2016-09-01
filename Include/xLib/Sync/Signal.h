@@ -35,7 +35,7 @@ public:
         ///< set all signal handle
     void_t   connectInfo(const std::vector<int_t> &signalNums, const on_info_t onInfo) const;
         ///< set signal handle
-    void_t   connectInfoAll(const on_info_t onSignals) const;
+    void_t   connectInfoAll(const on_info_t onInfo) const;
         ///< set all signal handle
     void_t   connectExit(const on_exit_t onExit) const;
         ///< set exit handle
