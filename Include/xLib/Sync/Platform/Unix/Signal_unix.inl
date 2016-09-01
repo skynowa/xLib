@@ -22,21 +22,16 @@ Signal::_decription_impl(
     cint_t &a_signalNum
 )
 {
-    std::tstring_t sRv;
-
    /**
     * FAQ: ::psignal, ::sys_siglist
     */
 
-    const char *pszRv = ::strsignal(a_signalNum);
-    xTEST_NA(pszRv);
-    if (pszRv == xPTR_NULL) {
-        sRv = Const::strUnknown();
-    } else {
-        sRv = xA2T(pszRv);
+    const char *pcszRv = ::strsignal(a_signalNum);
+    if (pcszRv == xPTR_NULL) {
+        return Const::strUnknown();
     }
 
-    return sRv;
+    return xA2T(pcszRv);
 }
 //-------------------------------------------------------------------------------------------------
 
