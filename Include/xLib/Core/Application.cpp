@@ -354,6 +354,7 @@ public:
 		xTRACE_FUNC;
 
 		Trace() << Signal::infoDescription(*a_info) << "\n";
+		Trace() << Signal::decription(0) << "\n";
 
 		FileLog log(FileLog::lsDefaultMb);
 		log.setFilePath(xT("crash.log"));
