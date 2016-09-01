@@ -378,8 +378,8 @@ Signal::infoDescription(
 	xFOR_ARRAY(i, signalInfos) {
 		const _SignalInfo &signalInfo = signalInfos[i];
 
-		xCHECK_DO(signalInfo.num != a_info.si_signo, continue);
-		xCHECK_DO(signalInfo.code != a_info.si_code, continue);
+		xCHECK_DO(signalInfo.num  != a_info.si_signo, continue);
+		xCHECK_DO(signalInfo.code != a_info.si_code,  continue);
 
 		sRv = Format::str(xT("{}\n{} ({}) - {}\n{}"),
 				decription(signalInfo.num),
@@ -399,7 +399,7 @@ Signal::infoDescription(
 	xFOR_ARRAY(i, signalInfos) {
 		const _SignalInfo &signalInfo = signalInfos[i];
 
-		xCHECK_DO(signalInfo.num != _KERNEL,         continue);
+		xCHECK_DO(signalInfo.num  != _KERNEL,        continue);
 		xCHECK_DO(signalInfo.code != a_info.si_code, continue);
 
 		sRv = Format::str(xT("{}\n{} ({}) - {}\n{}"),
