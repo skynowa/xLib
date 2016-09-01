@@ -144,7 +144,7 @@ Signal::connectAll(
 xINLINE void_t
 Signal::connectInfo(
     const std::vector<int_t> &a_signalNums,	///<
-    const on_info_t           a_onSignals	///<
+    const on_info_t           a_onInfo		///<
 ) const
 {
    /**
@@ -157,13 +157,25 @@ Signal::connectInfo(
 
 	struct sigaction action;
 	{
-		xSTRUCT_ZERO(action);
-		action.sa_sigaction = a_onSignals;
+		// Block other terminal-generated signals while handler runs
+		sigset_t blockMask;
+		{
+			iRv = ::sigemptyset(&blockMask);
+			xTEST_DIFF(iRv, - 1);
 
-		iRv = ::sigemptyset(&action.sa_mask);
-		xTEST_DIFF(iRv, - 1);
+			xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
+				if (*it == SIGKILL || *it == SIGSTOP) {
+					continue;
+				}
 
-		action.sa_flags = SA_RESTART | SA_SIGINFO;
+				iRv = ::sigaddset(&blockMask, *it);
+				xTEST_DIFF(iRv, - 1);
+			}
+		}
+
+		action.sa_sigaction = a_onInfo;
+		action.sa_mask      = blockMask;
+		action.sa_flags     = SA_RESTART | SA_SIGINFO;
 	}
 
     xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {

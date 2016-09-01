@@ -33,7 +33,7 @@ public:
         ///< set signal handle
     void_t   connectAll(const sighandler_t onSignals) const;
         ///< set all signal handle
-    void_t   connectInfo(const std::vector<int_t> &signalNums, const on_info_t onSignals) const;
+    void_t   connectInfo(const std::vector<int_t> &signalNums, const on_info_t onInfo) const;
         ///< set signal handle
     void_t   connectInfoAll(const on_info_t onSignals) const;
         ///< set all signal handle
