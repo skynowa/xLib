@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 xINLINE
 AutoProfiler::AutoProfiler(
     std::ctstring_t &a_filePath,
-    ctchar_t        *a_comment, ...
+    cptr_ctchar_t    a_comment, ...
 ) :
     _profiler(),
     _comment ()

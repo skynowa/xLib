@@ -174,7 +174,7 @@ Volume::_paths_impl(
     dwRv = ::GetLogicalDriveStrings(static_cast<DWORD>( sRv.size() ), &sRv.at(0));
     xTEST_DIFF(dwRv, 0UL);
 
-    for (ctchar_t *s = sRv.c_str(); 0 != *s; s += ::lstrlen(s) + 1) {
+    for (cptr_ctchar_t s = sRv.c_str(); 0 != *s; s += ::lstrlen(s) + 1) {
         vsRv.push_back(s);
     }
 

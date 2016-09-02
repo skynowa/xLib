@@ -61,7 +61,7 @@ Process::~Process()
 xINLINE void_t
 Process::create(
     std::ctstring_t &a_filePath,
-    ctchar_t        *a_params, ...
+    cptr_ctchar_t    a_params, ...
 )
 {
     xTEST_EQ(a_filePath.empty(), false);

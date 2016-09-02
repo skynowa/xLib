@@ -73,7 +73,7 @@ SystemLog::~SystemLog()
 /* virtual */
 xINLINE void_t
 SystemLog::write(
-    ctchar_t *a_format, ...
+    cptr_ctchar_t a_format, ...
 ) const
 {
     xCHECK_DO(!isEnabled(),          return);
@@ -92,8 +92,8 @@ SystemLog::write(
 /* virtual */
 xINLINE void_t
 SystemLog::write(
-    cExLevel &a_level,
-    ctchar_t *a_format, ...
+    cExLevel      &a_level,
+    cptr_ctchar_t  a_format, ...
 ) const
 {
     xCHECK_DO(!isEnabled(), return);

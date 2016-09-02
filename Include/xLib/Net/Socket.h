@@ -233,7 +233,7 @@ public:
 
     // void_t *, std::tstring_t, std::ustring_t
 
-    ssize_t        send(ctchar_t *buff, std::csize_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
+    ssize_t        send(cptr_ctchar_t buff, std::csize_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
         ///< send data
     void_t         sendAll(std::ctstring_t &buff, cint_t &flags);
         ///< send data by blocks
@@ -286,9 +286,9 @@ protected:
 
 xPLATFORM_IMPL:
     void_t         _close_impl();
-    ssize_t        _send_impl(ctchar_t *buff, std::csize_t &buffSize, cint_t &flags)
+    ssize_t        _send_impl(cptr_ctchar_t buff, std::csize_t &buffSize, cint_t &flags)
                        xWARN_UNUSED_RV;
-    ssize_t        _receive_impl(tchar_t *buff,  std::csize_t &buffSize, cint_t &flags)
+    ssize_t        _receive_impl(cptr_ctchar_t buff,  std::csize_t &buffSize, cint_t &flags)
                        xWARN_UNUSED_RV;
     void_t         _peerName_impl(std::tstring_t *peerAddr, ushort_t *peerPort);
     void_t         _socketName_impl(std::tstring_t *socketAddr, ushort_t *socketPort);

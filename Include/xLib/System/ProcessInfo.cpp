@@ -106,7 +106,7 @@ ProcessInfo::commandLineArgsMax()
 xINLINE void_t
 ProcessInfo::commandLine(
     cint_t             &a_argsNum,
-    ctchar_t           *a_argv[],
+    cptr_ctchar_t       a_argv[],
     std::vec_tstring_t *a_args
 )
 {

@@ -15,7 +15,7 @@ class AutoProfiler
     /// auto profiling code
 {
 public:
-                   AutoProfiler(std::ctstring_t &filePath, ctchar_t *comment, ...);
+                   AutoProfiler(std::ctstring_t &filePath, cptr_ctchar_t comment, ...);
         ///< constructor
     virtual       ~AutoProfiler();
         ///< destructor

@@ -260,7 +260,7 @@ File::read(
 //-------------------------------------------------------------------------------------------------
 xINLINE int_t
 File::write(
-    ctchar_t *a_format, ...
+    cptr_ctchar_t a_format, ...
 ) const
 {
     xTEST_PTR(a_format);
@@ -278,8 +278,8 @@ File::write(
 //-------------------------------------------------------------------------------------------------
 xINLINE int_t
 File::writeV(
-    ctchar_t *a_format,
-    va_list   a_args
+    cptr_ctchar_t a_format,
+    va_list       a_args
 ) const
 {
     xTEST_PTR(a_format);

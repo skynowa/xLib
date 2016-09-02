@@ -55,9 +55,9 @@ Locale::setCurrent(
 {
     xTEST_NA(a_locale);
 
-    ctchar_t *locale = a_locale.empty() ? xPTR_NULL : a_locale.c_str();
+    cptr_ctchar_t locale = a_locale.empty() ? xPTR_NULL : a_locale.c_str();
 
-    ctchar_t *pcszRv = xTSETLOCALE(LC_ALL, locale);
+    cptr_ctchar_t pcszRv = xTSETLOCALE(LC_ALL, locale);
     xTEST_PTR(pcszRv);
 }
 //-------------------------------------------------------------------------------------------------

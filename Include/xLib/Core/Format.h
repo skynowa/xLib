@@ -16,8 +16,8 @@ class FormatC
     ///< format string in C style
 {
 public:
-    static std::tstring_t str(ctchar_t *format, ...) xWARN_UNUSED_RV;
-    static std::tstring_t strV(ctchar_t *format, va_list args) xWARN_UNUSED_RV;
+    static std::tstring_t str(cptr_ctchar_t format, ...) xWARN_UNUSED_RV;
+    static std::tstring_t strV(cptr_ctchar_t format, va_list args) xWARN_UNUSED_RV;
 };
 //-------------------------------------------------------------------------------------------------
 class Format

@@ -29,8 +29,8 @@ xNAMESPACE_BEGIN2(xlib, test)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Manager::Manager(
-    cint_t   &a_argsNum,
-    ctchar_t *a_args[]
+    cint_t        &a_argsNum,
+    cptr_ctchar_t  a_args[]
 ) :
     _data         (),
     _units        (),
@@ -116,8 +116,8 @@ Manager::run()
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Manager::_construct(
-    cint_t   &a_argsNum,
-    ctchar_t *a_args[]
+    cint_t        &a_argsNum,
+    cptr_ctchar_t  a_args[]
 )
 {
     bool_t bRv = false;

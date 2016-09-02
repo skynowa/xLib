@@ -20,7 +20,7 @@ FileTemp::_create_impl(
 #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
     _filePath.resize(_filePath.size() + 1);
 
-    tchar_t *file = xTMKSTEMP(&_filePath.at(0));
+    cptr_ctchar_t file = xTMKSTEMP(&_filePath.at(0));
     xTEST_PTR(file);
 
     a_stdFile = xTFOPEN(file, File::_openMode(File::omBinCreateReadWrite).c_str());
