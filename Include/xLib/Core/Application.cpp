@@ -338,9 +338,7 @@ public:
     onSignals(int_t a_signal)
     {
         xTRACE_FUNC;
-
         Trace() << Signal::decription(a_signal) << "\n";
-        // Trace() << StackTrace().toString()      << "\n";
 
 		Application::exit(EXIT_FAILURE);
     }
