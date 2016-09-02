@@ -78,7 +78,7 @@ Profiler::start()
 //-------------------------------------------------------------------------------------------------
 xINLINE size_t
 Profiler::stop(
-    ctchar_t *a_comment, ...
+    cptr_ctchar_t a_comment, ...
 )
 {
     xTEST_EQ(_isStarted, true);
@@ -116,7 +116,7 @@ Profiler::stop(
 //-------------------------------------------------------------------------------------------------
 xINLINE size_t
 Profiler::restart(
-    ctchar_t *a_comment, ...
+    cptr_ctchar_t a_comment, ...
 )
 {
     size_t uiRV = 0;

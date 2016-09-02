@@ -40,9 +40,9 @@ public:
     bool_t          isEnabled() const;
         ///< set enabled
 
-    virtual void_t  write(ctchar_t *format, ...) const = 0;
+    virtual void_t  write(cptr_ctchar_t format, ...) const = 0;
         ///< write to log
-    virtual void_t  write(cExLevel &level, ctchar_t *format, ...) const = 0;
+    virtual void_t  write(cExLevel &level, cptr_ctchar_t format, ...) const = 0;
         ///< write to log
 
 protected:

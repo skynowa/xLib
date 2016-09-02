@@ -65,7 +65,7 @@ public:
         ///< check connection
     void_t         connect(cMySqlConnectionData &data);
         ///< attempts to establish a connection to a MySql database engine running on host
-    void_t         query(ctchar_t *sqlFormat, ...) const;
+    void_t         query(cptr_ctchar_t sqlFormat, ...) const;
         ///< executes the SQL statement
     uint_t         fieldCount() const xWARN_UNUSED_RV;
         ///< number of columns in a result set

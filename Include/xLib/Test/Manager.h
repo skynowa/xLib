@@ -35,7 +35,7 @@ class Manager
     /// manager
 {
 public:
-             Manager(cint_t &argsNum, ctchar_t *args[]);
+             Manager(cint_t &argsNum, cptr_ctchar_t args[]);
         ///< constructor
     explicit Manager(cManagerData &data = cManagerData());
         ///< constructor
@@ -54,7 +54,7 @@ private:
     units_t     _units;         ///< units
     bool_t      _isConstructed; ///< is object constructed
 
-    void_t   _construct(cint_t &a_argsNum, ctchar_t *a_args[]);
+    void_t   _construct(cint_t &a_argsNum, cptr_ctchar_t a_args[]);
 
     xNO_COPY_ASSIGN(Manager)
 };

@@ -60,7 +60,7 @@ Test_Trace::unit()
         std::tstring_t sData  = xT("data1");
         ulong_t        ulData = 777UL;
         double         aData  = 4.4;
-        ctchar_t *     szData = xT("data2");
+        cptr_ctchar_t  szData = xT("data2");
 
         Trace() << xT("\t")
                    << xTRACE_VAR(sData)

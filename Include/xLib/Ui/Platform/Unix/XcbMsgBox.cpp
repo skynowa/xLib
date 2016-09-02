@@ -466,14 +466,14 @@ XcbMsgBox::_modifiersStr(
 
     uint32_t valueMask = a_valueMask;
 
-    ctchar_t *modifiers[] =
+    cptr_ctchar_t modifiers[] =
     {
         xT("Shift"),   xT("Lock"),    xT("Ctrl"),    xT("Alt"),
         xT("Mod2"),    xT("Mod3"),    xT("Mod4"),    xT("Mod5"),
         xT("Button1"), xT("Button2"), xT("Button3"), xT("Button4"), xT("Button5")
     };
 
-    for (ctchar_t **modifier = modifiers; valueMask; valueMask >>= 1, ++ modifier) {
+    for (cptr_ctchar_t *modifier = modifiers; valueMask; valueMask >>= 1, ++ modifier) {
         if (valueMask & 1) {
             sRv += *modifier;
         }

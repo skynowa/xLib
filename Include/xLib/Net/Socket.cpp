@@ -146,9 +146,9 @@ Socket::close()
 //-------------------------------------------------------------------------------------------------
 xINLINE ssize_t
 Socket::send(
-    ctchar_t     *a_buff,
-    std::csize_t &a_buffSize,
-    cint_t       &a_flags
+    cptr_ctchar_t  a_buff,
+    std::csize_t  &a_buffSize,
+    cint_t        &a_flags
 )
 {
     // TODO: Socket::send() - LINUX: ssize_t send(int_t sockfd, cvoid_t *buf, size_t len, int_t flags);

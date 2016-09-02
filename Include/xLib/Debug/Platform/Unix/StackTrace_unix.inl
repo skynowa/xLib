@@ -159,7 +159,7 @@ StackTrace::_addr2Line(
     {
         tchar_t buff[1024 + 1] = {0};
 
-        ctchar_t *functionName = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
+        cptr_ctchar_t functionName = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
         _xVERIFY(functionName != xPTR_NULL);
 
         a_functionName->assign(functionName);
@@ -169,7 +169,7 @@ StackTrace::_addr2Line(
     {
         tchar_t buff[1024 + 1] = {0};
 
-        ctchar_t *fileAndLine = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
+        cptr_ctchar_t fileAndLine = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
         _xVERIFY(fileAndLine != xPTR_NULL);
 
        /**

@@ -135,8 +135,8 @@ Test_ProcessInfo::unit()
 
     xTEST_CASE("commandLine")
     {
-        cint_t    argsNum       = 5;
-        ctchar_t *args[argsNum] = {xT("./xLib_test"), xT("1"), xT("2"), xT("3"), xT("4")};
+        cint_t        argsNum       = 5;
+        cptr_ctchar_t args[argsNum] = {xT("./xLib_test"), xT("1"), xT("2"), xT("3"), xT("4")};
 
         ProcessInfo::commandLine(argsNum, args, &m_vsRv);
         xTEST_EQ(m_vsRv.size(), (std::size_t)argsNum);

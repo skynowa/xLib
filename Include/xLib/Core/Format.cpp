@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 /* static */
 xINLINE std::tstring_t
 FormatC::str(
-    ctchar_t *a_format, ...    ///< string format
+    cptr_ctchar_t a_format, ...    ///< string format
 )
 {
     xTEST_NA(a_format);
@@ -44,8 +44,8 @@ FormatC::str(
 /* static */
 xINLINE std::tstring_t
 FormatC::strV(
-    ctchar_t *a_format,    ///< string format
-    va_list   a_args       ///< arguments
+    cptr_ctchar_t a_format,    ///< string format
+    va_list       a_args       ///< arguments
 )
 {
     xTEST_NA(a_format);

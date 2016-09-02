@@ -30,8 +30,8 @@ Test_Manager::unit()
 {
     xTEST_CASE("Manager")
     {
-        cint_t    argsNum       = 5;
-        ctchar_t *args[argsNum] = {xT("./xLib_test"), xT("0"), xT("1"), xT("1"), xT("1")};
+        cint_t        argsNum       = 5;
+        cptr_ctchar_t args[argsNum] = {xT("./xLib_test"), xT("0"), xT("1"), xT("1"), xT("1")};
 
         Manager manager(argsNum, args);
 

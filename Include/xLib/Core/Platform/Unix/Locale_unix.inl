@@ -29,7 +29,7 @@ Locale::_current_impl() const
 
     std::tstring_t sRv;
 
-    ctchar_t *locale = xTSETLOCALE(LC_ALL, xPTR_NULL);
+    cptr_ctchar_t locale = xTSETLOCALE(LC_ALL, xPTR_NULL);
     xTEST_PTR(locale);
 
     sRv.assign(locale);

@@ -42,7 +42,7 @@ public:
                  Process();
     virtual     ~Process();
 
-    void_t       create(std::ctstring_t &filePath, ctchar_t *params, ...);
+    void_t       create(std::ctstring_t &filePath, cptr_ctchar_t params, ...);
         ///< execute a file
     ExWaitResult wait(culong_t &timeoutMsec) xWARN_UNUSED_RV;
         ///< wait for termination

@@ -293,10 +293,10 @@ xNAMESPACE_ANONYM_BEGIN
 
 struct _SignalInfo
 {
-	int_t     num;			///<
-	int_t     code;			///<
-	ctchar_t *codeStr;		///<
-	ctchar_t *description;	///<
+	int_t         num;			///<
+	int_t         code;			///<
+	cptr_ctchar_t codeStr;		///<
+	cptr_ctchar_t description;	///<
 };
 
 xNAMESPACE_ANONYM_END

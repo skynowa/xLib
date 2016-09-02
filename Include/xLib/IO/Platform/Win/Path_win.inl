@@ -135,7 +135,7 @@ Path::_isNameValid_impl(
     */
     {
         ctchar_t begin = *sRv.begin();
-        ctchar_t end   = *(sRv.end() - 1);
+        ctchar_t end   = *sRv.back();
 
         if (a_fileNameValid == xPTR_NULL) {
             // space

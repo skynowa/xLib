@@ -39,7 +39,7 @@ public:
     long_t         commandLineArgsMax() xWARN_UNUSED_RV;
         ///< get maximum length of command line arguments (in chars)
     static
-    void_t         commandLine(cint_t &argsNum, ctchar_t *argv[], std::vec_tstring_t *args);
+    void_t         commandLine(cint_t &argsNum, cptr_ctchar_t argv[], std::vec_tstring_t *args);
         ///< get arguments
 
 private:

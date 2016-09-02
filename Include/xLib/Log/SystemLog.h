@@ -27,9 +27,9 @@ public:
     SystemLog &    operator << (const T &valueT);
         ///< operator <<
 
-    virtual void_t write(ctchar_t *format, ...) const xOVERRIDE;
+    virtual void_t write(cptr_ctchar_t format, ...) const xOVERRIDE;
         ///< write to log
-    virtual void_t write(cExLevel &level, ctchar_t *format, ...) const xOVERRIDE;
+    virtual void_t write(cExLevel &level, cptr_ctchar_t format, ...) const xOVERRIDE;
         ///< write to log
 
 private:

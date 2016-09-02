@@ -28,9 +28,9 @@ public:
 
     void_t         start();
         ///< start measurement
-    size_t         stop(ctchar_t *comment, ...) xWARN_UNUSED_RV;
+    size_t         stop(cptr_ctchar_t comment, ...) xWARN_UNUSED_RV;
         ///< stop measurement
-    size_t         restart(ctchar_t *comment, ...) xWARN_UNUSED_RV;
+    size_t         restart(cptr_ctchar_t comment, ...) xWARN_UNUSED_RV;
         ///< stop, start measurement
 
 private:

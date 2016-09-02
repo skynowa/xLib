@@ -35,9 +35,9 @@ Shell::findExecutable(
     xTEST_EQ(a_fileName.empty(), false);
     xTEST_NA(a_findDirPath);
 
-    int_t     iRv            = SE_ERR_FNF;
-    tchar_t   buff[MAX_PATH] = {0};
-    ctchar_t *findDirPath    = a_findDirPath.empty() ? xPTR_NULL : a_findDirPath.c_str();
+    int_t         iRv            = SE_ERR_FNF;
+    tchar_t       buff[MAX_PATH] = {0};
+    cptr_ctchar_t findDirPath    = a_findDirPath.empty() ? xPTR_NULL : a_findDirPath.c_str();
 
     iRv = reinterpret_cast<int_t>( ::FindExecutable(a_fileName.c_str(), findDirPath, buff) );
     xTEST_LESS(32, iRv);

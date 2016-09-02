@@ -141,7 +141,7 @@ MySqlConnection::connect(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 MySqlConnection::query(
-    ctchar_t *a_sqlFormat, ...
+    cptr_ctchar_t a_sqlFormat, ...
 ) const
 {
     xTEST_EQ(isValid(), true);

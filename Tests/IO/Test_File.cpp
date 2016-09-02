@@ -300,7 +300,7 @@ Test_File::unit()
         struct Writer
         {
             static void_t
-            doV(const File &file, ctchar_t *format, ...)
+            doV(const File &file, cptr_ctchar_t format, ...)
             {
                 va_list args;
                 xVA_START(args, format);

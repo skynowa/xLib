@@ -44,7 +44,7 @@ Trace::~Trace()
 /* virtual */
 xINLINE void_t
 Trace::write(
-    ctchar_t *a_format, ...
+    cptr_ctchar_t a_format, ...
 ) const
 {
     xCHECK_DO(!isEnabled(),          return);
@@ -63,8 +63,8 @@ Trace::write(
 /* virtual */
 xINLINE void_t
 Trace::write(
-    cExLevel &a_level,
-    ctchar_t *a_format, ...
+    cExLevel      &a_level,
+    cptr_ctchar_t  a_format, ...
 ) const
 {
     xCHECK_DO(!isEnabled(), return);

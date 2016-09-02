@@ -33,9 +33,9 @@ Socket::_close_impl()
 //-------------------------------------------------------------------------------------------------
 xINLINE ssize_t
 Socket::_send_impl(
-    ctchar_t     *a_buff,
-    std::csize_t &a_buffSize,
-    cint_t       &a_flags
+    cptr_ctchar_t  a_buff,
+    std::csize_t  &a_buffSize,
+    cint_t        &a_flags
 )
 {
     xUNUSED(a_flags);
@@ -53,9 +53,9 @@ Socket::_send_impl(
 //-------------------------------------------------------------------------------------------------
 xINLINE ssize_t
 Socket::_receive_impl(
-    tchar_t      *a_buff,
-    std::csize_t &a_buffSize,
-    cint_t       &a_flags
+    cptr_ctchar_t  a_buff,
+    std::csize_t  &a_buffSize,
+    cint_t        &a_flags
 )
 {
     ssize_t iRv = ::recv(_handle, (char *)a_buff, a_buffSize * sizeof(tchar_t), a_flags);

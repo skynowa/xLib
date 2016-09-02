@@ -21,7 +21,7 @@ StdError::_format_impl(
     std::tstring_t sRv;
 
 #if   xCOMPILER_MINGW
-    tchar_t *error = xSTRERROR(a_code);
+    cptr_ctchar_t error = xSTRERROR(a_code);
     xCHECK_RET(error == xPTR_NULL, sRv.append(xT("[Cann't format error message]")));
 
     sRv.append(error);
