@@ -22,11 +22,11 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, internal)
 
-class SignalsHandler
+class CrashCallback
 {
 public:
 	xNO_INLINE
-	SignalsHandler()
+	CrashCallback()
 	{
 	}
 
@@ -84,7 +84,7 @@ public:
     }
 
 private:
-    xNO_COPY_ASSIGN(SignalsHandler)
+    xNO_COPY_ASSIGN(CrashCallback)
 };
 
 xNAMESPACE_END2(xlib, internal)
@@ -405,10 +405,10 @@ Application::run()
 
     int_t iRv = EXIT_FAILURE;
 
-	signal().connectInfoAll(internal::SignalsHandler::onInfo);
-	signal().connectExit(internal::SignalsHandler::onExit);
-	signal().connectTerminate(internal::SignalsHandler::onTerminate);
-	signal().connectUnexpected(internal::SignalsHandler::onUnexpected);
+	signal().connectInfoAll(internal::CrashCallback::onInfo);
+	signal().connectExit(internal::CrashCallback::onExit);
+	signal().connectTerminate(internal::CrashCallback::onTerminate);
+	signal().connectUnexpected(internal::CrashCallback::onUnexpected);
 
     if (opt_useException) {
         try {
