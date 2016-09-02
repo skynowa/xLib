@@ -19,6 +19,76 @@
 #include <xLib/System/ProcessInfo.h>
 #include <xLib/System/User.h>
 
+//-------------------------------------------------------------------------------------------------
+xNAMESPACE_BEGIN2(xlib, internal)
+
+class SignalsHandler
+{
+public:
+	xNO_INLINE
+	SignalsHandler()
+	{
+	}
+
+    xNO_INLINE static void_t
+    onSignals(int_t a_signal)
+    {
+        xTRACE_FUNC;
+        Trace() << Signal::decription(a_signal) << "\n";
+
+		Application::exit(EXIT_FAILURE);
+    }
+
+	xNO_INLINE static void_t
+	onInfo(int_t a_signal, siginfo_t *a_info, void_t *a_context)
+	{
+		xTEST_EQ(a_signal, a_info->si_signo);
+		xUNUSED((ucontext_t *)a_context);
+
+		xTRACE_FUNC;
+
+		Trace() << Signal::infoDescription(*a_info) << "\n";
+		Trace() << Signal::decription(0) << "\n";
+
+		FileLog log(FileLog::lsDefaultMb);
+		log.setFilePath(xT("crash.log"));
+
+		std::ctstring_t msg = Format::str(
+		    xT("Crash info:\n\n")
+		    xT("Signal:\n{}\n\n")
+		    xT("StackTrace:\n{}"),
+            Signal::infoDescription(*a_info),
+            StackTrace().toString());
+
+		log.write(xT("%s\n"), msg.c_str());
+
+		Application::exit(EXIT_FAILURE);
+	}
+
+    xNO_INLINE static void_t
+    onExit()
+    {
+        xTRACE_FUNC;
+    }
+
+    xNO_INLINE static void_t
+    onTerminate()
+    {
+        xTRACE_FUNC;
+    }
+
+    xNO_INLINE static void_t
+    onUnexpected()
+    {
+        xTRACE_FUNC;
+    }
+
+private:
+    xNO_COPY_ASSIGN(SignalsHandler)
+};
+
+xNAMESPACE_END2(xlib, internal)
+//-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
 /**************************************************************************************************
@@ -320,76 +390,12 @@ Application::langDirPath()
 }
 //-------------------------------------------------------------------------------------------------
 
+
 /**************************************************************************************************
 *   public
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-class SignalsHandler
-{
-public:
-	xNO_INLINE
-	SignalsHandler()
-	{
-	}
-
-    xNO_INLINE static void_t
-    onSignals(int_t a_signal)
-    {
-        xTRACE_FUNC;
-        Trace() << Signal::decription(a_signal) << "\n";
-
-		Application::exit(EXIT_FAILURE);
-    }
-
-	xNO_INLINE static void_t
-	onInfo(int_t a_signal, siginfo_t *a_info, void_t *a_context)
-	{
-		xTEST_EQ(a_signal, a_info->si_signo);
-		xUNUSED((ucontext_t *)a_context);
-
-		xTRACE_FUNC;
-
-		Trace() << Signal::infoDescription(*a_info) << "\n";
-		Trace() << Signal::decription(0) << "\n";
-
-		FileLog log(FileLog::lsDefaultMb);
-		log.setFilePath(xT("crash.log"));
-
-		std::ctstring_t msg = Format::str(
-		    xT("Crash info:\n\n")
-		    xT("Signal:\n{}\n\n")
-		    xT("StackTrace:\n{}"),
-            Signal::infoDescription(*a_info),
-            StackTrace().toString());
-
-		log.write(xT("%s\n"), msg.c_str());
-
-		Application::exit(EXIT_FAILURE);
-	}
-
-    xNO_INLINE static void_t
-    onExit()
-    {
-        xTRACE_FUNC;
-    }
-
-    xNO_INLINE static void_t
-    onTerminate()
-    {
-        xTRACE_FUNC;
-    }
-
-    xNO_INLINE static void_t
-    onUnexpected()
-    {
-        xTRACE_FUNC;
-    }
-
-private:
-    xNO_COPY_ASSIGN(SignalsHandler)
-};
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 xINLINE int_t
@@ -399,10 +405,10 @@ Application::run()
 
     int_t iRv = EXIT_FAILURE;
 
-	signal().connectInfoAll(SignalsHandler::onInfo);
-	signal().connectExit(SignalsHandler::onExit);
-	signal().connectTerminate(SignalsHandler::onTerminate);
-	signal().connectUnexpected(SignalsHandler::onUnexpected);
+	signal().connectInfoAll(internal::SignalsHandler::onInfo);
+	signal().connectExit(internal::SignalsHandler::onExit);
+	signal().connectTerminate(internal::SignalsHandler::onTerminate);
+	signal().connectUnexpected(internal::SignalsHandler::onUnexpected);
 
     if (opt_useException) {
         try {
