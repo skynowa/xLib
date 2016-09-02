@@ -307,10 +307,10 @@ Test_Format::unit()
 
     xTEST_CASE("wchar_t *")
     {
-        Data2<const wchar_t *, std::tstring_t> data[] =
+        Data2<cptr_cwchar_t, std::tstring_t> data[] =
         {
-            {L"bbb",                     xT("bbb")},
-            {(const wchar_t *)xPTR_NULL, xT("null")}
+            {L"bbb",                   xT("bbb")},
+            {(cptr_cwchar_t)xPTR_NULL, xT("null")}
         };
 
         xFOR_ARRAY(i, data) {

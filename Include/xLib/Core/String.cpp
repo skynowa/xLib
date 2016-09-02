@@ -135,8 +135,8 @@ String::castA(
     const codecvt_t &codec     = std::use_facet<codecvt_t>( a_locale );
     state_type_t     state; xSTRUCT_ZERO(state);
 
-    const wchar_t   *itBegin   = &a_str.at(0);
-    const wchar_t   *itEnd     = &a_str.at(0) + a_str.size();
+    cptr_cwchar_t    itBegin   = &a_str.at(0);
+    cptr_cwchar_t    itEnd     = &a_str.at(0) + a_str.size();
     const wchar_t   *itNext    = xPTR_NULL;
 
     char            *itToBegin = &asRv.at(0);
