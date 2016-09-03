@@ -124,6 +124,7 @@ xNAMESPACE_BEGIN(xlib)
         ///< twint_t
 
 	// Pointers
+	xTYPEDEF_PTR_CONST(void_t);
 	xTYPEDEF_PTR_CONST(char);
 	xTYPEDEF_PTR_CONST(wchar_t);
 	xTYPEDEF_PTR_CONST(tchar_t);
