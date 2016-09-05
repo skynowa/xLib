@@ -406,9 +406,15 @@ Application::run()
     int_t iRv = EXIT_FAILURE;
 
 	signal().connectInfoAll(internal::CrashCallback::onInfo);
+#if 0
 	signal().connectExit(internal::CrashCallback::onExit);
 	signal().connectTerminate(internal::CrashCallback::onTerminate);
 	signal().connectUnexpected(internal::CrashCallback::onUnexpected);
+#else
+	signal().connectExit(xPTR_NULL);
+	signal().connectTerminate(xPTR_NULL);
+	signal().connectUnexpected(xPTR_NULL);
+#endif
 
     if (opt_useException) {
         try {

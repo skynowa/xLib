@@ -246,8 +246,6 @@ Signal::connectTerminate(
     const std::terminate_handler a_onTerminate	///<
 ) const
 {
-    xTEST_PTR(a_onTerminate);
-
     std::terminate_handler handler_old = std::set_terminate(a_onTerminate);
     xUNUSED(handler_old);
 }
@@ -257,8 +255,6 @@ Signal::connectUnexpected(
     const std::unexpected_handler a_onUnexpected	///<
 ) const
 {
-    xTEST_PTR(a_onUnexpected);
-
     std::unexpected_handler handler_old = std::set_unexpected(a_onUnexpected);
     xUNUSED(handler_old);
 }

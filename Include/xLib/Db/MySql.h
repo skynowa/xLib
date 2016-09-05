@@ -56,7 +56,7 @@ public:
         ///< get handle
     bool_t         isValid() const xWARN_UNUSED_RV;
         ///< validating handle
-    void_t         options(const mysql_option &option, cvoid_t *arg) const;
+    void_t         options(const mysql_option &option, cptr_cvoid_t arg) const;
         ///< set extra connect options and affect behavior
     bool_t         ping(int_t *errorCode = xPTR_NULL) const xWARN_UNUSED_RV;
         ///< checks whether the connection to the server is working

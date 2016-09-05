@@ -151,7 +151,7 @@ Socket::send(
     cint_t        &a_flags
 )
 {
-    // TODO: Socket::send() - LINUX: ssize_t send(int_t sockfd, cvoid_t *buf, size_t len, int_t flags);
+    // TODO: Socket::send() - LINUX: ssize_t send(int_t sockfd, cptr_cvoid_t buf, size_t len, int_t flags);
 
     xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
     xTEST_PTR(a_buff);

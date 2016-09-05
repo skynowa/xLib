@@ -333,7 +333,7 @@ Pop3Client::retriveRaw(
     File file;
     file.create(a_dirPath + xT("\\") + a_fileName, File::omBinWrite);
 
-    size_t writeSize = file.write((cvoid_t *)&_sRv[0], _sRv.size());
+    size_t writeSize = file.write((cptr_cvoid_t)&_sRv[0], _sRv.size());
     //???
     xUNUSED(writeSize);
 }
@@ -389,7 +389,7 @@ Pop3Client::retriveRawAndBackup(
         File original;
         original.create(a_dirPath + xT("\\") + a_fileName, File::omBinWrite);
 
-        size_t originalWriteSize = original.write((cvoid_t *)&_sRv[0], _sRv.size());
+        size_t originalWriteSize = original.write((cptr_cvoid_t)&_sRv[0], _sRv.size());
         xTEST_DIFF(size_t(0), originalWriteSize);
     }
 
@@ -398,7 +398,7 @@ Pop3Client::retriveRawAndBackup(
         File backup;
         backup.create(a_backupDirPath + xT("\\") + a_fileName, File::omBinWrite);
 
-        size_t backupWriteSize = backup.write((cvoid_t *)&_sRv[0], _sRv.size());
+        size_t backupWriteSize = backup.write((cptr_cvoid_t)&_sRv[0], _sRv.size());
         xTEST_DIFF(backupWriteSize, size_t(0));
     }
 }

@@ -122,7 +122,7 @@ StackTrace::_get_impl(
 /* static */
 xINLINE void_t
 StackTrace::_addr2Line(
-    cvoid_t        *a_symbolAddress,
+    cptr_cvoid_t    a_symbolAddress,
     std::tstring_t *a_filePath,
     std::tstring_t *a_functionName,
     ulong_t        *a_sourceLine

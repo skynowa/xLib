@@ -134,7 +134,7 @@ public:
     // read, write
     size_t         read(void_t *buff, std::csize_t &count) const xWARN_UNUSED_RV;
         ///< read block of data
-    size_t         write(cvoid_t *buff, std::csize_t &count) const xWARN_UNUSED_RV;
+    size_t         write(cptr_cvoid_t, std::csize_t &count) const xWARN_UNUSED_RV;
         ///< write block of data
     void_t         read(std::ustring_t *buff) const;
         ///< read to std::ustring_t

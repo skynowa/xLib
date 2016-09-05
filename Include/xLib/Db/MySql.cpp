@@ -54,7 +54,7 @@ MySqlConnection::isValid() const
 xINLINE void_t
 MySqlConnection::options(
     const mysql_option &a_option,
-    cvoid_t            *a_arg
+    cptr_cvoid_t        a_arg
 ) const
 {
     xTEST_EQ(isValid(), true);
