@@ -265,10 +265,10 @@ Test_Format::unit()
 
     xTEST_CASE("void *")
     {
-        Data2<cvoid_t *, std::tstring_t> data[] =
+        Data2<cptr_cvoid_t, std::tstring_t> data[] =
         {
-            {(cvoid_t *)0x7fff0fd3e100, xT("0x7fff0fd3e100")},
-            {(cvoid_t *)xPTR_NULL,      xT("null")}
+            {(cptr_cvoid_t)0x7fff0fd3e100, xT("0x7fff0fd3e100")},
+            {(cptr_cvoid_t)xPTR_NULL,      xT("null")}
         };
 
         xFOR_ARRAY(i, data) {

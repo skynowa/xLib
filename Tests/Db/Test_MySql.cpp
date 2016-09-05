@@ -50,8 +50,8 @@ Test_MySql::unit()
 
     xTEST_CASE("MySqlConnection::options")
     {
-        mysql_option  option = MYSQL_OPT_COMPRESS;
-        cvoid_t      *arg    = xPTR_NULL;
+        mysql_option option = MYSQL_OPT_COMPRESS;
+        cptr_cvoid_t arg    = xPTR_NULL;
 
         mysqlConn.options(option, arg);
     }

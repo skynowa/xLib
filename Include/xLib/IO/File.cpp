@@ -195,7 +195,7 @@ File::read(
 //-------------------------------------------------------------------------------------------------
 xINLINE size_t
 File::write(
-    cvoid_t      *a_buff,
+    cptr_cvoid_t  a_buff,
     std::csize_t &a_count
 ) const
 {

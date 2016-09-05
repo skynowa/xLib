@@ -53,7 +53,7 @@ xPLATFORM_IMPL:
 
 #if xENV_UNIX
     static
-    void_t         _addr2Line(cvoid_t *symbolAddress, std::tstring_t *filePath,
+    void_t         _addr2Line(cptr_cvoid_t symbolAddress, std::tstring_t *filePath,
                         std::tstring_t *functionName, ulong_t *sourceLine);
 #endif
 };

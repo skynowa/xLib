@@ -105,7 +105,7 @@ Test_File::unit()
             File file;
 
             file.create(filePath, File::omBinCreateReadWrite);
-            m_stRv = file.write((cvoid_t *)&buffWrite.at(0), buffWrite.size() * sizeof(std::tstring_t::value_type));
+            m_stRv = file.write((cptr_cvoid_t)&buffWrite.at(0), buffWrite.size() * sizeof(std::tstring_t::value_type));
             xUNUSED(m_stRv);
         }
 
