@@ -92,7 +92,7 @@ Failer::bug()
 {
 	//// ::: set BUG here :::
 
-//	std::tcout << bug_DivideByZero()       << std::endl;
+	std::tcout << bug_DivideByZero()       << std::endl;
 //	std::tcout << bug_CauseSegfault()      << std::endl;
 //	std::tcout << bug_StackOverflow()      << std::endl;
 //	std::tcout << bug_InfiniteLoop()       << std::endl;

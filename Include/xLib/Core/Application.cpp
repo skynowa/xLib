@@ -62,6 +62,8 @@ public:
 
 		log.write(xT("%s\n"), msg.c_str());
 
+		std::tcout << StackTrace().toString() << std::endl;
+
 		Application::exit(EXIT_FAILURE);
 	}
 
