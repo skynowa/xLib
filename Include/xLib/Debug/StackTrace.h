@@ -40,8 +40,6 @@ public:
 private:
     StackTraceData _data; ///< data
 
-    void_t         _get(std::vector<std::vec_tstring_t> *stack) const;
-        ///< get stack trace
     void_t         _format(std::vector<std::vec_tstring_t> &stack, std::tstring_t *stackStr)
                        const;
         ///< format stack trace

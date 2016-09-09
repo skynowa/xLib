@@ -63,6 +63,7 @@ StackTrace::toString()
     _get_impl(&stack);
     std::reverse(stack.begin(), stack.end());
     _format(stack, &sRv);
+
     xCHECK_RET(sRv.empty(), Const::strUnknown());
 
     return sRv;
@@ -75,22 +76,6 @@ StackTrace::toString()
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-xINLINE void_t
-StackTrace::_get(
-    std::vector<std::vec_tstring_t> *a_stack
-) const
-{
-    xCHECK_DO(a_stack == xPTR_NULL, return);
-
-    std::vector<std::vec_tstring_t> stack;
-
-    _get_impl(&stack);
-    std::reverse(stack.begin(), stack.end());
-
-    // out
-    a_stack->swap(stack);
-}
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 StackTrace::_format(
