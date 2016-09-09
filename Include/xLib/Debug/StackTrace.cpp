@@ -98,7 +98,7 @@ StackTrace::_format(
         stackHeader.push_back(xT("Offset"));
         stackHeader.push_back(xT("Function"));
 
-        a_stack.insert(a_stack.end(), stackHeader);
+        a_stack.insert(a_stack.begin(), stackHeader);
     }
 
     // get elements max sizes
