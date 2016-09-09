@@ -113,7 +113,7 @@ StackTrace::_format(
         stackHeader.push_back(xT("Offset"));
         stackHeader.push_back(xT("Function"));
 
-        a_stack.insert(a_stack.begin(), stackHeader);
+        a_stack.insert(a_stack.end(), stackHeader);
     }
 
     // get elements max sizes
@@ -132,7 +132,18 @@ StackTrace::_format(
             ++ lineNumber;
         }
 
-        std::ctstring_t lineNumberStr = (lineNumber == 0) ? xT("# ") : Format::str(xT("{}."), lineNumber);
+		std::tstring_t lineNumberStr;
+		{
+			if (lineNumber == 0) {
+				lineNumberStr = xT("#  ");
+			} else {
+				lineNumberStr = Format::str(xT("[{}]"), lineNumber);
+			}
+
+			if (a_stack.size() >= 10 && lineNumber < 10) {
+				lineNumberStr.insert(1, xT(" "));
+			}
+		}
 
         std::tstringstream_t stackLine;
         stackLine
