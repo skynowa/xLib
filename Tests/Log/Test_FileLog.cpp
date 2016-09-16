@@ -4,12 +4,12 @@
  */
 
 
-#include "Test_FileLog.h"
-
-#include <xLib/Core/Const.h>
-#include <xLib/IO/File.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_FileLog)
 xTEST_UNIT(Test_FileLog)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

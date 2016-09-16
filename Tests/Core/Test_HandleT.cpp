@@ -4,12 +4,12 @@
  */
 
 
-#include "Test_HandleT.h"
-
-#include <xLib/Sync/Process.h>
-
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_HandleT)
 xTEST_UNIT(Test_HandleT)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

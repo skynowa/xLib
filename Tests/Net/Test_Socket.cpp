@@ -4,12 +4,12 @@
  */
 
 
-#include "Test_Socket.h"
-
-#include <xLib/Patterns/Singleton.h>
-#include <xLib/Net/SocketInit.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Socket)
 xTEST_UNIT(Test_Socket)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

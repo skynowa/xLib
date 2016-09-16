@@ -4,14 +4,12 @@
  */
 
 
-#include "Test_SystemInfo.h"
-
-#include <xLib/Core/String.h>
-#include <xLib/IO/File.h>
-#include <xLib/IO/Dir.h>
-#include <xLib/Sync/Thread.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_SystemInfo)
 xTEST_UNIT(Test_SystemInfo)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

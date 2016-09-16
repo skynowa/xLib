@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_StdError.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_StdError)
 xTEST_UNIT(Test_StdError)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

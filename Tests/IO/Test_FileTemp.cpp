@@ -5,12 +5,12 @@
 
 
 #include "Test_FileTemp.h"
-
-#include <xLib/Core/Const.h>
-#include <xLib/IO/File.h>
-#include <xLib/IO/Path.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_FileTemp)
 xTEST_UNIT(Test_FileTemp)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

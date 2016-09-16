@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_IpcMutex.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_IpcMutex)
 xTEST_UNIT(Test_IpcMutex)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

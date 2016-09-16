@@ -4,11 +4,12 @@
  */
 
 
-#include "Test_Dir.h"
-
-#include <xLib/Core/String.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Dir)
 xTEST_UNIT(Test_Dir)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

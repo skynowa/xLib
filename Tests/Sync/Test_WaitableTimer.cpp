@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_WaitableTimer.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_WaitableTimer)
 xTEST_UNIT(Test_WaitableTimer)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

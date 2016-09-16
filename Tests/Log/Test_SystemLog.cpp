@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_SystemLog.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_SystemLog)
 xTEST_UNIT(Test_SystemLog)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

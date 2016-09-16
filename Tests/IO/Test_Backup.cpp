@@ -4,13 +4,12 @@
  */
 
 
-#include "Test_Backup.h"
-
-#include <xLib/IO/File.h>
-#include <xLib/IO/Dir.h>
-#include <xLib/Debug/Exception.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Backup)
 xTEST_UNIT(Test_Backup)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

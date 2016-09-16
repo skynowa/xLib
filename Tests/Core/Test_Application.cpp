@@ -4,10 +4,12 @@
  */
 
 
-#include "Test_Application.h"
-
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Application)
 xTEST_UNIT(Test_Application)
 //-------------------------------------------------------------------------------------------------
 class Failer

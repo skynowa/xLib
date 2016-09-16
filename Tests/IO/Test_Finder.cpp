@@ -4,14 +4,12 @@
  */
 
 
-#include "Test_Finder.h"
-
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
-#include <xLib/IO/FileType.h>
-#include <xLib/IO/Dir.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Finder)
 xTEST_UNIT(Test_Finder)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

@@ -4,10 +4,12 @@
  */
 
 
-#include "Test_Operators.h"
-
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Operators)
 xTEST_UNIT(Test_Operators)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

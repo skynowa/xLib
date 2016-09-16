@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_SourceInfo.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_SourceInfo)
 xTEST_UNIT(Test_SourceInfo)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

@@ -4,10 +4,12 @@
  */
 
 
-#include "Test_MimeMessage.h"
-
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_MimeMessage)
 xTEST_UNIT(Test_MimeMessage)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

@@ -4,11 +4,12 @@
  */
 
 
-#include "Test_AutoMutex.h"
-
-#include <xLib/Sync/Mutex.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_AutoMutex)
 xTEST_UNIT(Test_AutoMutex)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

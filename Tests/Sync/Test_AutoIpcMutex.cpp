@@ -4,11 +4,12 @@
  */
 
 
-#include "Test_AutoIpcMutex.h"
-
-#include <xLib/Sync/IpcMutex.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_AutoIpcMutex)
 xTEST_UNIT(Test_AutoIpcMutex)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

@@ -4,15 +4,12 @@
  */
 
 
-#include "Test_Pop3Client.h"
-
-#include <xLib/Core/String.h>
-#include <xLib/IO/Dir.h>
-#include <xLib/Net/MimeHeader.h>
-#include <xLib/Net/MimeBody.h>
-
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Pop3Client)
 xTEST_UNIT(Test_Pop3Client)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

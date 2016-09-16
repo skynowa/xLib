@@ -4,11 +4,12 @@
  */
 
 
-#include "Test_Limits.h"
-
-#include <xLib/IO/Path.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Limits)
 xTEST_UNIT(Test_Limits)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

@@ -4,12 +4,12 @@
  */
 
 
-#include "Test_Units.h"
-
-#include <xLib/Core/Format.h>
-
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Units)
 xTEST_UNIT(Test_Units)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

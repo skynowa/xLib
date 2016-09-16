@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_Observer.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Observer)
 xTEST_UNIT(Test_Observer)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN

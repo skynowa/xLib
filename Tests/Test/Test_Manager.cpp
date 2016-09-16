@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_Manager.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Manager)
 xTEST_UNIT(Test_Manager)
 //-------------------------------------------------------------------------------------------------
 class Test_Simple1 :

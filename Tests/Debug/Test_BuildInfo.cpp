@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_BuildInfo.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_BuildInfo)
 xTEST_UNIT(Test_BuildInfo)
 //---------------------------------------------------------------------------
 /* virtual */

@@ -4,11 +4,23 @@
  */
 
 
-#include "Test_File.h"
+#include <xLib/xLib.h>
 
-#include <xLib/Core/Const.h>
-#include <xLib/Core/String.h>
+//-------------------------------------------------------------------------------------------------
+using namespace xlib;
 
+class Test_File :
+    public Unit
+{
+public:
+                   Test_File() {}
+
+    virtual bool_t unit();
+
+private:
+    bool_t         unit1();
+    bool_t         unitPrivate();
+};
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_File)
 //-------------------------------------------------------------------------------------------------

@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_Raii.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Raii)
 xTEST_UNIT(Test_Raii)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN

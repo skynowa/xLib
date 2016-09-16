@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_NativeError.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_NativeError)
 xTEST_UNIT(Test_NativeError)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

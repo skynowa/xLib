@@ -4,12 +4,12 @@
  */
 
 
-#include "Test_Process.h"
-
-#include <xLib/Core/String.h>
-#include <xLib/IO/Path.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Process)
 xTEST_UNIT(Test_Process)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

@@ -4,13 +4,12 @@
  */
 
 
-#include "Test_Profiler.h"
-
-#include <xLib/Core/Const.h>
-#include <xLib/Sync/Thread.h>
-#include <xLib/IO/File.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Profiler)
 xTEST_UNIT(Test_Profiler)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

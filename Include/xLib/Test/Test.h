@@ -290,6 +290,15 @@
 #endif
     ///< test case
 
+#define xTEST_CLASS(className) \
+	class className : \
+		public Unit \
+	{ \
+	public: \
+					   className() {} \
+		virtual bool_t unit() xOVERRIDE; \
+	};
+
 #define xTEST_UNIT(unitClassName) \
     int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[]) \
     { \
