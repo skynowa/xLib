@@ -4,13 +4,12 @@
  */
 
 
-#include "Test_FileType.h"
-
-#include <xLib/Core/Const.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_FileType)
 xTEST_UNIT(Test_FileType)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

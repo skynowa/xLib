@@ -4,10 +4,12 @@
  */
 
 
-#include "Test_ApplicationInfo.h"
-
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_ApplicationInfo)
 xTEST_UNIT(Test_ApplicationInfo)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

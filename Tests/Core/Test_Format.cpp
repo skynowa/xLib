@@ -4,10 +4,12 @@
  */
 
 
-#include "Test_Format.h"
-
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Format)
 xTEST_UNIT(Test_Format)
 //-------------------------------------------------------------------------------------------------
 enum EnumTest

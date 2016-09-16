@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_AtomicLongInt.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_AtomicLongInt)
 xTEST_UNIT(Test_AtomicLongInt)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

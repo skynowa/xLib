@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_Singleton.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Singleton)
 xTEST_UNIT(Test_Singleton)
 //-------------------------------------------------------------------------------------------------
 class CLogger

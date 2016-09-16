@@ -4,11 +4,12 @@
  */
 
 
-#include "Test_Trace.h"
-
-#include <xLib/Core/String.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Trace)
 xTEST_UNIT(Test_Trace)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

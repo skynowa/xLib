@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_Semaphore.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Semaphore)
 xTEST_UNIT(Test_Semaphore)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

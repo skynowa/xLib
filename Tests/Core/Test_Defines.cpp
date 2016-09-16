@@ -4,16 +4,12 @@
  */
 
 
-#include "Test_Defines.h"
-
-#include <xLib/Core/String.h>
-#include <xLib/Core/Format.h>
-#include <xLib/IO/Path.h>
-#include <xLib/Log/Trace.h>
-#include <xLib/Debug/Exception.h>
-
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Defines)
 xTEST_UNIT(Test_Defines)
 //-------------------------------------------------------------------------------------------------
 /*virtual*/

@@ -4,12 +4,12 @@
  */
 
 
-#include "Test_Debug.h"
-
-#include <xLib/Debug/Debug.h>
-#include <xLib/Log/Trace.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Debug)
 xTEST_UNIT(Test_Debug)
 //-------------------------------------------------------------------------------------------------
 /*virtual*/

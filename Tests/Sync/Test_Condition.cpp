@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_Condition.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Condition)
 xTEST_UNIT(Test_Condition)
 //-------------------------------------------------------------------------------------------------
 #if xENV_UNIX

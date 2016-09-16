@@ -4,12 +4,12 @@
  */
 
 
-#include "Test_IpcSemaphore.h"
-
-#include <xLib/Core/String.h>
-#include <xLib/Sync/Thread.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_IpcSemaphore)
 xTEST_UNIT(Test_IpcSemaphore)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

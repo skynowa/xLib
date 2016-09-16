@@ -4,13 +4,12 @@
  */
 
 
-#include "Test_ProcessInfo.h"
-
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
-#include <xLib/Sync/Process.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_ProcessInfo)
 xTEST_UNIT(Test_ProcessInfo)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

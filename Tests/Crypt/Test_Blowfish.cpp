@@ -4,13 +4,12 @@
  */
 
 
-#include "Test_Blowfish.h"
-
-#include <xLib/Core/Const.h>
-#include <xLib/Crypt/Crc32.h>
-#include <xLib/IO/File.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Blowfish)
 xTEST_UNIT(Test_Blowfish)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

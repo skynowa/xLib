@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_ThreadStorage.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_ThreadStorage)
 xTEST_UNIT(Test_ThreadStorage)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

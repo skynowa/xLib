@@ -4,11 +4,12 @@
  */
 
 
-#include "Test_Exception.h"
-
-#include <xLib/Core/Const.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Exception)
 xTEST_UNIT(Test_Exception)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

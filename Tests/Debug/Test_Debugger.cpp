@@ -4,9 +4,12 @@
  */
 
 
-#include "Test_Debugger.h"
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Debugger)
 xTEST_UNIT(Test_Debugger)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

@@ -4,11 +4,12 @@
  */
 
 
-#include "Test_Environment.h"
-
-#include <xLib/Core/String.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Environment)
 xTEST_UNIT(Test_Environment)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

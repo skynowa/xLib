@@ -4,11 +4,12 @@
  */
 
 
-#include "Test_SmtpClient.h"
-
-
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_SmtpClient)
 xTEST_UNIT(Test_SmtpClient)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

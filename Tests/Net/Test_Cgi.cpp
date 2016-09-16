@@ -4,13 +4,12 @@
  */
 
 
-#include "Test_Cgi.h"
-
-#include <xLib/IO/File.h>
-#include <xLib/Net/CookiePv0.h>
-#include <xLib/Net/CookiePv1.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Cgi)
 xTEST_UNIT(Test_Cgi)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

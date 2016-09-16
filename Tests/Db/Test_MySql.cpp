@@ -4,12 +4,12 @@
  */
 
 
-#include "Test_MySql.h"
-
-
-#include <xLib/Core/String.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_MySql)
 xTEST_UNIT(Test_MySql)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

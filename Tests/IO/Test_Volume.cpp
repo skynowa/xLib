@@ -4,12 +4,12 @@
  */
 
 
-#include "Test_Volume.h"
-
-#include <xLib/Core/Const.h>
-#include <xLib/System/User.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Volume)
 xTEST_UNIT(Test_Volume)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

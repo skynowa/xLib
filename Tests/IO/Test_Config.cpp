@@ -4,14 +4,12 @@
  */
 
 
-#include "Test_Config.h"
-
-#include <xLib/Core/Const.h>
-#include <xLib/Core/String.h>
-#include <xLib/IO/File.h>
-#include <xLib/IO/Path.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Config)
 xTEST_UNIT(Test_Config)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

@@ -4,12 +4,12 @@
  */
 
 
-#include "Test_Thread.h"
-
-#include <xLib/Core/DateTime.h>
-#include <xLib/System/SystemInfo.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_Thread)
 xTEST_UNIT(Test_Thread)
 //-------------------------------------------------------------------------------------------------
 

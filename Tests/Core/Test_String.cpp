@@ -4,12 +4,12 @@
  */
 
 
-#include "Test_String.h"
-
-#include <xLib/Crypt/Random.h>
-
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_String)
 xTEST_UNIT(Test_String)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

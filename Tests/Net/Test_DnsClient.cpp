@@ -4,11 +4,12 @@
  */
 
 
-#include "Test_DnsClient.h"
-
-#include <xLib/Net/SocketInit.h>
+#include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_DnsClient)
 xTEST_UNIT(Test_DnsClient)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
