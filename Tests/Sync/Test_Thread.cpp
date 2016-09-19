@@ -9,7 +9,18 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xlib;
 
-xTEST_CLASS(Test_Thread)
+class Test_Thread :
+    public Unit
+{
+public:
+                   Test_Thread() {}
+
+    virtual bool_t unit() xOVERRIDE;
+
+private:
+    bool_t         unit1();
+};
+
 xTEST_UNIT(Test_Thread)
 //-------------------------------------------------------------------------------------------------
 
