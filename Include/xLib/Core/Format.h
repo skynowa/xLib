@@ -62,21 +62,21 @@ private:
     tchar_t           _unprintableChar() xWARN_UNUSED_RV;
         ///< unprintable char
 
-    static void_t _format(std::tstringstream_t &ss, const bool &value);
-    static void_t _format(std::tstringstream_t &ss, const char &value);
-    static void_t _format(std::tstringstream_t &ss, const wchar_t &value);
-    static void_t _format(std::tstringstream_t &ss, const unsigned char &value);
-    static void_t _format(std::tstringstream_t &ss, const short &value);
-    static void_t _format(std::tstringstream_t &ss, const unsigned short &value);
-    static void_t _format(std::tstringstream_t &ss, const int &value);
-    static void_t _format(std::tstringstream_t &ss, const unsigned int &value);
-    static void_t _format(std::tstringstream_t &ss, const long &value);
-    static void_t _format(std::tstringstream_t &ss, const unsigned long &value);
-    static void_t _format(std::tstringstream_t &ss, const long long &value);
-    static void_t _format(std::tstringstream_t &ss, const unsigned long long &value);
-    static void_t _format(std::tstringstream_t &ss, const float &value);
-    static void_t _format(std::tstringstream_t &ss, const double &value);
-    static void_t _format(std::tstringstream_t &ss, const long double &value);
+    static void_t _format(std::tstringstream_t &ss, const bool value);
+    static void_t _format(std::tstringstream_t &ss, const char value);
+    static void_t _format(std::tstringstream_t &ss, const wchar_t value);
+    static void_t _format(std::tstringstream_t &ss, const unsigned char value);
+    static void_t _format(std::tstringstream_t &ss, const short value);
+    static void_t _format(std::tstringstream_t &ss, const unsigned short value);
+    static void_t _format(std::tstringstream_t &ss, const int value);
+    static void_t _format(std::tstringstream_t &ss, const unsigned int value);
+    static void_t _format(std::tstringstream_t &ss, const long value);
+    static void_t _format(std::tstringstream_t &ss, const unsigned long value);
+    static void_t _format(std::tstringstream_t &ss, const long long value);
+    static void_t _format(std::tstringstream_t &ss, const unsigned long long value);
+    static void_t _format(std::tstringstream_t &ss, const float value);
+    static void_t _format(std::tstringstream_t &ss, const double value);
+    static void_t _format(std::tstringstream_t &ss, const long double value);
     static void_t _format(std::tstringstream_t &ss, const void * value);
     static void_t _format(std::tstringstream_t &ss, const char * value);
     static void_t _format(std::tstringstream_t &ss, const wchar_t * value);
@@ -188,13 +188,13 @@ private:
     static void_t _formatContainer(std::tstringstream_t &ss, const T &value);
 
     template<typename T>
-    static void_t _formatFloat(std::tstringstream_t &ss, const T &value);
+    static void_t _formatFloat(std::tstringstream_t &ss, const T value);
 
     template<typename T>
     static int_t _floatPrecisionMax() xWARN_UNUSED_RV;
 
     template<typename T>
-    static std::tstring_t _formatUnprintableChar(const T &value) xWARN_UNUSED_RV;
+    static std::tstring_t _formatUnprintableChar(const T value) xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, core)

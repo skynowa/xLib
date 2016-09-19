@@ -508,7 +508,7 @@ template<typename T>
 inline void_t
 Format::_formatFloat(
     std::tstringstream_t &a_ss,
-    const T              &a_value
+    const T               a_value
 )
 {
     a_ss
@@ -546,7 +546,7 @@ template<typename T>
 /* static */
 inline std::tstring_t
 Format::_formatUnprintableChar(
-    const T &a_value
+    const T a_value
 )
 {
    /**
