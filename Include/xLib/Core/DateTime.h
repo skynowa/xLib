@@ -17,7 +17,7 @@ public:
     // constructors, destructor
                     DateTime();
         ///< constructor
-    /* explicit */  DateTime(const DateTime &datetime);
+                    DateTime(const DateTime &datetime);
         ///< constructor
     explicit        DateTime(culonglong_t &msec);
         ///< constructor
