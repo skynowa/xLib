@@ -305,11 +305,7 @@ DateTime::operator == (
     const DateTime &a_datetime
 ) const
 {
-	std::tcout << xTRACE_VAR(*this) << std::endl;
-	std::tcout << xTRACE_VAR(a_datetime) << std::endl;
-
-	xTEST_EQ(DateTimeValidator::datetime(*this), true);
-    // xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
+	xTESTS_NA;
 
     return (_thisMSec == a_datetime._thisMSec);
 }
@@ -319,10 +315,9 @@ DateTime::operator != (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
-//    xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
+	xTESTS_NA;
 
-    return ( _thisMSec != a_datetime._thisMSec );
+    return (_thisMSec != a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -330,10 +325,9 @@ DateTime::operator < (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
-//    xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
+	xTESTS_NA;
 
-    return ( _thisMSec < a_datetime._thisMSec );
+    return (_thisMSec < a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -341,10 +335,9 @@ DateTime::operator <= (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
-//    xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
+	xTESTS_NA;
 
-    return ( _thisMSec <= a_datetime._thisMSec );
+    return (_thisMSec <= a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -352,10 +345,9 @@ DateTime::operator > (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
-//    xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
+	xTESTS_NA;
 
-    return ( _thisMSec > a_datetime._thisMSec );
+    return (_thisMSec > a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -363,10 +355,9 @@ DateTime::operator >= (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
-//    xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
+	xTESTS_NA;
 
-    return ( _thisMSec >= a_datetime._thisMSec );
+    return (_thisMSec >= a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -404,8 +395,6 @@ DateTime::operator + (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
-
     return DateTime(_thisMSec + a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
@@ -414,8 +403,6 @@ DateTime::operator - (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
-
     return DateTime(_thisMSec - a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
@@ -424,8 +411,6 @@ DateTime::operator += (
     const DateTime &a_datetime
 )
 {
-//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
-
     _thisMSec += a_datetime._thisMSec;
 
     set(_thisMSec);
@@ -438,8 +423,6 @@ DateTime::operator -= (
     const DateTime &a_datetime
 )
 {
-//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
-
     _thisMSec -= a_datetime._thisMSec;
 
     set(_thisMSec);
@@ -466,7 +449,6 @@ DateTime::get(
     int_t *a_msec
 ) const
 {
-    // xTEST_EQ(DateTimeValidator::datetime(*this), true);
     xTESTS_NA;
 
     Utils::ptrAssignT(a_year,   _year);
@@ -481,7 +463,7 @@ DateTime::get(
 xINLINE int_t
 DateTime::dayOfWeek() const
 {
-//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
+    xTEST_EQ(DateTimeValidator::datetime(*this), true);
 
     int_t   iRv = 0;
     std::tm timeInfo;  xSTRUCT_ZERO(timeInfo);
@@ -606,7 +588,7 @@ DateTime::format(
     std::ctstring_t &a_formatMsec /* = xT(".%03d") */  ///< milliseconds format
 ) const
 {
-    //xTEST_EQ(DateTimeValidator::datetime(*this), true);
+    xTESTS_NA;
     xTEST_EQ(a_format.empty(), false);
     xTEST_NA(a_formatMsec);
 
@@ -978,7 +960,7 @@ operator << (
 	const DateTime &a_dateTime
 )
 {
-	a_os << "DateTime: " << a_dateTime.format(xT("%d-%m-%Y %H:%M:%S")) << std::endl;
+	a_os << a_dateTime.format(xT("%d-%m-%Y %H:%M:%S"));
 
 	return a_os;
 };
