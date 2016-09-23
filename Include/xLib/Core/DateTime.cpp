@@ -305,8 +305,11 @@ DateTime::operator == (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
-//    xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
+	std::tcout << xTRACE_VAR(*this) << std::endl;
+	std::tcout << xTRACE_VAR(a_datetime) << std::endl;
+
+	xTEST_EQ(DateTimeValidator::datetime(*this), true);
+    // xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
 
     return (_thisMSec == a_datetime._thisMSec);
 }
@@ -960,6 +963,34 @@ DateTime::weekDayNum(
 
     return - 1;
 }
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   operator <<
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+std::ostream &
+operator << (
+	std::ostream   &a_os,
+	const DateTime &a_dateTime
+)
+{
+	a_os
+		<< "DateTime: "                              << "\n"
+		<< "    _year:     " << a_dateTime._year     << "\n"
+		<< "    _month:    " << a_dateTime._month    << "\n"
+		<< "    _day:      " << a_dateTime._day      << "\n"
+		<< "    _hour:     " << a_dateTime._hour     << "\n"
+		<< "    _minute:   " << a_dateTime._minute   << "\n"
+		<< "    _second:   " << a_dateTime._second   << "\n"
+		<< "    _msec:     " << a_dateTime._msec     << "\n"
+		<< "    _thisMSec: " << a_dateTime._thisMSec << std::endl;
+
+	return a_os;
+};
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, core)

@@ -182,6 +182,8 @@ private:
 
     friend class DateTimeValidator;
 
+    friend std::ostream& operator << (std::ostream &os, const DateTime &dateTime);
+
 xPLATFORM_IMPL:
     // static
     static
