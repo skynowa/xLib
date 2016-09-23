@@ -463,7 +463,7 @@ DateTime::get(
     int_t *a_msec
 ) const
 {
-//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
+    // xTEST_EQ(DateTimeValidator::datetime(*this), true);
     xTESTS_NA;
 
     Utils::ptrAssignT(a_year,   _year);
@@ -480,8 +480,8 @@ DateTime::dayOfWeek() const
 {
 //    xTEST_EQ(DateTimeValidator::datetime(*this), true);
 
-    int_t iRv = 0;
-    tm    timeInfo;  xSTRUCT_ZERO(timeInfo);
+    int_t   iRv = 0;
+    std::tm timeInfo;  xSTRUCT_ZERO(timeInfo);
 
     timeInfo.tm_year = _year  - 1900;
     timeInfo.tm_mon  = _month - 1;
@@ -654,7 +654,8 @@ DateTime::daysInMonth(
 {
     xCHECK_RET(a_month == 2 && isLeapYear(a_year), 29);
 
-    const Array<int_t, 12> monthsDays = {{
+    const Array<int_t, 12> monthsDays =
+    {{
         31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
     }};
 
@@ -779,7 +780,8 @@ DateTime::monthStr(
 
     if (!a_isShortName) {
         // months numbering: 0-11
-        const Array<std::tstring_t, 12> longMonths = {{
+        const Array<std::tstring_t, 12> longMonths =
+        {{
             xT("January"),
             xT("February"),
             xT("March"),
@@ -795,10 +797,10 @@ DateTime::monthStr(
         }};
 
         sRv = longMonths[a_month];
-    }
-    else {
+    } else {
         // months numbering: 0-11
-        const Array<std::tstring_t, 12> shortMonths = {{
+        const Array<std::tstring_t, 12> shortMonths =
+        {{
             xT("Jan"),
             xT("Feb"),
             xT("Mar"),
@@ -830,7 +832,8 @@ DateTime::monthNum(
     xTEST_NA(a_isShortName);
 
     // months numbering: 0-11
-    const Array<std::tstring_t, 12> longMonths = {{
+    const Array<std::tstring_t, 12> longMonths =
+    {{
         xT("January"),
         xT("February"),
         xT("March"),
@@ -846,7 +849,8 @@ DateTime::monthNum(
     }};
 
     // months numbering: 0-11
-    const Array<std::tstring_t, 12> shortMonths = {{
+    const Array<std::tstring_t, 12> shortMonths =
+    {{
         xT("Jan"),
         xT("Feb"),
         xT("Mar"),
@@ -887,7 +891,8 @@ DateTime::weekDayStr(
     std::tstring_t sRv;
 
     if (!a_isShortName) {
-        const Array<std::tstring_t, 7> longDays = {{
+        const Array<std::tstring_t, 7> longDays =
+        {{
             xT("Sunday"),
             xT("Monday"),
             xT("Tuesday"),
@@ -899,7 +904,8 @@ DateTime::weekDayStr(
 
         sRv = longDays[a_week_day];
     } else {
-        const Array<std::tstring_t, 8> shortDays = {{
+        const Array<std::tstring_t, 8> shortDays =
+        {{
             xT("Sun"),
             xT("Mon"),
             xT("Tue"),
@@ -925,7 +931,8 @@ DateTime::weekDayNum(
     xTEST_NA(a_week_day);
     xTEST_NA(a_isShortName);
 
-    const Array<std::tstring_t, 7> longDays = {{
+    const Array<std::tstring_t, 7> longDays =
+    {{
         xT("Monday"),
         xT("Tuesday"),
         xT("Wednesday"),
@@ -935,7 +942,8 @@ DateTime::weekDayNum(
         xT("Sunday")
     }};
 
-    const Array<std::tstring_t, 7> shortDays = {{
+    const Array<std::tstring_t, 7> shortDays =
+    {{
         xT("Mon"),
         xT("Tue"),
         xT("Wed"),
