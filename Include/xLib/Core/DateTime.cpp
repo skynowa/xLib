@@ -39,6 +39,138 @@
 xNAMESPACE_BEGIN2(xlib, core)
 
 /**************************************************************************************************
+*   public: validate
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::year(
+    cint_t &a_year
+)
+{
+    return (a_year >= 0 && a_year <= 9999);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::month(
+    cint_t &a_month
+)
+{
+    return (a_month >= 0 && a_month <= 11);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::day(
+    cint_t &a_day
+)
+{
+    return (a_day >= 1 && a_day <= 31);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::hour(
+    cint_t &a_hour
+)
+{
+    return (a_hour >= 0 && a_hour <= 23);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::minute(
+    cint_t &a_minute
+)
+{
+    return (a_minute >= 0 && a_minute <= 59);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::second(
+    cint_t &a_second
+)
+{
+    return (a_second >= 0 && a_second <= 60);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::msec(
+    cint_t &a_msec
+)
+{
+    return (a_msec >= 0 && a_msec <= 999);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::weekDay(
+    cint_t &a_weekDay
+)
+{
+    return (a_weekDay >= 0 && a_weekDay <= 6);
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::date(
+    cint_t &a_year,
+    cint_t &a_month,
+    cint_t &a_day
+)
+{
+    return (year(a_year) && month(a_month) && day(a_day));
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::time(
+    cint_t &a_hour,
+    cint_t &a_minute,
+    cint_t &a_second,
+    cint_t &a_msec
+)
+{
+    return (hour(a_hour) && minute(a_minute) && second(a_second) && msec(a_msec));
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::datetime(
+    cint_t &a_year,
+    cint_t &a_month,
+    cint_t &a_day,
+    cint_t &a_hour,
+    cint_t &a_minute,
+    cint_t &a_second,
+    cint_t &a_msec
+)
+{
+    xUNUSED(a_day);
+
+    return (date(a_year, a_month, a_day) && time(a_hour, a_minute, a_second, a_msec));
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::datetime(
+    const DateTime &a_datetime
+)
+{
+    return (date(a_datetime._year, a_datetime._month, a_datetime._day) &&
+            time(a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec));
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE bool_t
+DateTimeValidator::dateOrTime(
+    cint_t &a_year,
+    cint_t &a_month,
+    cint_t &a_day,
+    cint_t &a_hour,
+    cint_t &a_minute,
+    cint_t &a_second,
+    cint_t &a_msec
+)
+{
+    return (date(a_year, a_month, a_day) || time(a_hour, a_minute, a_second, a_msec));
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
 *    public: constructors, destructor
 *
 **************************************************************************************************/
@@ -70,8 +202,8 @@ DateTime::DateTime(
     _msec    (0),
     _thisMSec(0ULL)
 {
-    xTEST_EQ(Validator::date(a_datetime._year, a_datetime._month, a_datetime._day) &&
-        Validator::time(a_datetime._hour, a_datetime._minute, a_datetime._second,
+    xTEST_EQ(DateTimeValidator::date(a_datetime._year, a_datetime._month, a_datetime._day) &&
+        DateTimeValidator::time(a_datetime._hour, a_datetime._minute, a_datetime._second,
         a_datetime._msec), true);
 
     set(a_datetime._year, a_datetime._month,  a_datetime._day,
@@ -110,7 +242,7 @@ DateTime::DateTime(
     _msec    (0),
     _thisMSec(0ULL)
 {
-    xTEST_EQ(Validator::time(a_hour, a_minute, a_second, a_msec), true);
+    xTEST_EQ(DateTimeValidator::time(a_hour, a_minute, a_second, a_msec), true);
 
     set(0, 0, 0, a_hour, a_minute, a_second, a_msec);
 }
@@ -130,7 +262,7 @@ DateTime::DateTime(
     _msec    (0),
     _thisMSec(0ULL)
 {
-    xTEST_EQ(Validator::date(a_year, a_month, a_day), true);
+    xTEST_EQ(DateTimeValidator::date(a_year, a_month, a_day), true);
 
     set(a_year, a_month, a_day, 0, 0, 0, 0);
 }
@@ -154,176 +286,10 @@ DateTime::DateTime(
     _msec    (0),
     _thisMSec(0ULL)
 {
-    xTEST_EQ(Validator::date(a_year, a_month, a_day) &&
-        Validator::time(a_hour, a_minute, a_second, a_msec), true);
+    xTEST_EQ(DateTimeValidator::date(a_year, a_month, a_day) &&
+        DateTimeValidator::time(a_hour, a_minute, a_second, a_msec), true);
 
     set(a_year, a_month, a_day, a_hour, a_minute, a_second, a_msec);
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*   public: validate
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::year(
-    cint_t &a_year
-)
-{
-    cbool_t bRv = (a_year >= 0 && a_year <= 9999);
-    xTEST_EQ(bRv, true);
-
-    return bRv;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::month(
-    cint_t &a_month
-)
-{
-    cbool_t bRv = (a_month >= 0 && a_month <= 11);
-    xTEST_EQ(bRv, true);
-
-    return bRv;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::day(
-    cint_t &a_day
-)
-{
-    cbool_t bRv = (a_day >= 1 && a_day <= 31);
-    xTEST_EQ(bRv, true);
-
-    return bRv;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::hour(
-    cint_t &a_hour
-)
-{
-    cbool_t bRv = (a_hour >= 0 && a_hour <= 23);
-    xTEST_EQ(bRv, true);
-
-    return bRv;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::minute(
-    cint_t &a_minute
-)
-{
-    cbool_t bRv = (a_minute >= 0 && a_minute <= 59);
-    xTEST_EQ(bRv, true);
-
-    return bRv;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::second(
-    cint_t &a_second
-)
-{
-    cbool_t bRv = (a_second >= 0 && a_second <= 60);
-    xTEST_EQ(bRv, true);
-
-    return  bRv;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::msec(
-    cint_t &a_msec
-)
-{
-    cbool_t bRv = (a_msec >= 0 && a_msec <= 999);
-    xTEST_EQ(bRv, true);
-
-    return  bRv;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::weekDay(
-    cint_t &a_weekDay
-)
-{
-    cbool_t bRv = (a_weekDay >= 0 && a_weekDay <= 6);
-    xTEST_EQ(bRv, true);
-
-    return bRv;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::date(
-    cint_t &a_year,
-    cint_t &a_month,
-    cint_t &a_day
-)
-{
-    xCHECK_RET(!year(a_year) || !month(a_month) || !day(a_day), false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::time(
-    cint_t &a_hour,
-    cint_t &a_minute,
-    cint_t &a_second,
-    cint_t &a_msec
-)
-{
-    xCHECK_RET(!hour(a_hour) || !minute(a_minute) || !second(a_second) || !msec(a_msec), false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::datetime(
-    cint_t &a_year,
-    cint_t &a_month,
-    cint_t &a_day,
-    cint_t &a_hour,
-    cint_t &a_minute,
-    cint_t &a_second,
-    cint_t &a_msec
-)
-{
-    xUNUSED(a_day);
-
-    xCHECK_RET((!date(a_year, a_month, a_day) || !time(a_hour, a_minute, a_second, a_msec)), false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::datetime(
-    const DateTime &a_datetime
-)
-{
-    xCHECK_RET((!date(a_datetime._year, a_datetime._month, a_datetime._day) ||
-        !time(a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec)), false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-DateTime::Validator::dateOrTime(
-    cint_t &a_year,
-    cint_t &a_month,
-    cint_t &a_day,
-    cint_t &a_hour,
-    cint_t &a_minute,
-    cint_t &a_second,
-    cint_t &a_msec
-)
-{
-    xCHECK_RET((!date(a_year, a_month, a_day) && !time(a_hour, a_minute, a_second, a_msec)), false);
-
-    return true;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -339,8 +305,8 @@ DateTime::operator == (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(Validator::datetime(*this), true);
-//    xTEST_EQ(Validator::datetime(a_datetime), true);
+//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
+//    xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
 
     return (_thisMSec == a_datetime._thisMSec);
 }
@@ -350,8 +316,8 @@ DateTime::operator != (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(Validator::datetime(*this), true);
-//    xTEST_EQ(Validator::datetime(a_datetime), true);
+//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
+//    xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
 
     return ( _thisMSec != a_datetime._thisMSec );
 }
@@ -361,8 +327,8 @@ DateTime::operator < (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(Validator::datetime(*this), true);
-//    xTEST_EQ(Validator::datetime(a_datetime), true);
+//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
+//    xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
 
     return ( _thisMSec < a_datetime._thisMSec );
 }
@@ -372,8 +338,8 @@ DateTime::operator <= (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(Validator::datetime(*this), true);
-//    xTEST_EQ(Validator::datetime(a_datetime), true);
+//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
+//    xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
 
     return ( _thisMSec <= a_datetime._thisMSec );
 }
@@ -383,8 +349,8 @@ DateTime::operator > (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(Validator::datetime(*this), true);
-//    xTEST_EQ(Validator::datetime(a_datetime), true);
+//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
+//    xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
 
     return ( _thisMSec > a_datetime._thisMSec );
 }
@@ -394,8 +360,8 @@ DateTime::operator >= (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(Validator::datetime(*this), true);
-//    xTEST_EQ(Validator::datetime(a_datetime), true);
+//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
+//    xTEST_EQ(DateTimeValidator::datetime(a_datetime), true);
 
     return ( _thisMSec >= a_datetime._thisMSec );
 }
@@ -435,7 +401,7 @@ DateTime::operator + (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(Validator::datetime(*this), true);
+//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
 
     return DateTime(_thisMSec + a_datetime._thisMSec);
 }
@@ -445,7 +411,7 @@ DateTime::operator - (
     const DateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(Validator::datetime(*this), true);
+//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
 
     return DateTime(_thisMSec - a_datetime._thisMSec);
 }
@@ -455,7 +421,7 @@ DateTime::operator += (
     const DateTime &a_datetime
 )
 {
-//    xTEST_EQ(Validator::datetime(*this), true);
+//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
 
     _thisMSec += a_datetime._thisMSec;
 
@@ -469,7 +435,7 @@ DateTime::operator -= (
     const DateTime &a_datetime
 )
 {
-//    xTEST_EQ(Validator::datetime(*this), true);
+//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
 
     _thisMSec -= a_datetime._thisMSec;
 
@@ -497,7 +463,7 @@ DateTime::get(
     int_t *a_msec
 ) const
 {
-//    xTEST_EQ(Validator::datetime(*this), true);
+//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
     xTESTS_NA;
 
     Utils::ptrAssignT(a_year,   _year);
@@ -512,7 +478,7 @@ DateTime::get(
 xINLINE int_t
 DateTime::dayOfWeek() const
 {
-//    xTEST_EQ(Validator::datetime(*this), true);
+//    xTEST_EQ(DateTimeValidator::datetime(*this), true);
 
     int_t iRv = 0;
     tm    timeInfo;  xSTRUCT_ZERO(timeInfo);
@@ -637,7 +603,7 @@ DateTime::format(
     std::ctstring_t &a_formatMsec /* = xT(".%03d") */  ///< milliseconds format
 ) const
 {
-    //xTEST_EQ(Validator::datetime(*this), true);
+    //xTEST_EQ(DateTimeValidator::datetime(*this), true);
     xTEST_EQ(a_format.empty(), false);
     xTEST_NA(a_formatMsec);
 
@@ -806,7 +772,7 @@ DateTime::monthStr(
     cbool_t &a_isShortName
 )
 {
-    xTEST_EQ(Validator::month(a_month), true);
+    xTEST_EQ(DateTimeValidator::month(a_month), true);
     xTEST_NA(a_isShortName);
 
     std::tstring_t sRv;
@@ -913,7 +879,7 @@ DateTime::weekDayStr(
     cbool_t &a_isShortName
 )
 {
-    xTEST_EQ(Validator::weekDay(a_week_day), true);
+    xTEST_EQ(DateTimeValidator::weekDay(a_week_day), true);
     xTEST_NA(a_isShortName);
 
     // days since Sunday (0-6)
