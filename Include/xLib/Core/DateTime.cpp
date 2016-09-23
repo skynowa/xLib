@@ -972,22 +972,13 @@ DateTime::weekDayNum(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-std::ostream &
+inline std::ostream &
 operator << (
 	std::ostream   &a_os,
 	const DateTime &a_dateTime
 )
 {
-	a_os
-		<< "DateTime: "                              << "\n"
-		<< "    _year:     " << a_dateTime._year     << "\n"
-		<< "    _month:    " << a_dateTime._month    << "\n"
-		<< "    _day:      " << a_dateTime._day      << "\n"
-		<< "    _hour:     " << a_dateTime._hour     << "\n"
-		<< "    _minute:   " << a_dateTime._minute   << "\n"
-		<< "    _second:   " << a_dateTime._second   << "\n"
-		<< "    _msec:     " << a_dateTime._msec     << "\n"
-		<< "    _thisMSec: " << a_dateTime._thisMSec << std::endl;
+	a_os << "DateTime: " << a_dateTime.format(xT("%d-%m-%Y %H:%M:%S")) << std::endl;
 
 	return a_os;
 };
