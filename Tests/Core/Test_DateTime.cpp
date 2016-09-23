@@ -277,20 +277,20 @@ Test_DateTime::unit()
     *
     *******************************************************************************/
 
-    xTEST_CASE("Validator")
+    xTEST_CASE("DateTimeValidator")
     {
-        // TEST: DateTime::Validator::year()
-        // TEST: DateTime::Validator::month()
-        // TEST: DateTime::Validator::day()
-        // TEST: DateTime::Validator::hour()
-        // TEST: DateTime::Validator::minute()
-        // TEST: DateTime::Validator::second()
-        // TEST: DateTime::Validator::msec()
-        // TEST: DateTime::Validator::weekDay()
-        // TEST: DateTime::Validator::time()
-        // TEST: DateTime::Validator::date()
-        // TEST: DateTime::Validator::datetime()
-        // TEST: DateTime::Validator::dateOrTime()
+        // TEST: DateTimeValidator::year()
+        // TEST: DateTimeValidator::month()
+        // TEST: DateTimeValidator::day()
+        // TEST: DateTimeValidator::hour()
+        // TEST: DateTimeValidator::minute()
+        // TEST: DateTimeValidator::second()
+        // TEST: DateTimeValidator::msec()
+        // TEST: DateTimeValidator::weekDay()
+        // TEST: DateTimeValidator::time()
+        // TEST: DateTimeValidator::date()
+        // TEST: DateTimeValidator::datetime()
+        // TEST: DateTimeValidator::dateOrTime()
 
         // valid data
         {
@@ -317,7 +317,7 @@ Test_DateTime::unit()
                 int_t second = valid[i][5];
                 int_t msec   = valid[i][6];
 
-                m_bRv = DateTime::Validator::datetime(year, month, day, hour, minute, second, msec);
+                m_bRv = DateTimeValidator::datetime(year, month, day, hour, minute, second, msec);
                 xTEST_EQ(m_bRv, true);
             }
         }
@@ -377,7 +377,7 @@ Test_DateTime::unit()
                 int_t second = nonValid[i][5];
                 int_t msec   = nonValid[i][6];
 
-                m_bRv = DateTime::Validator::datetime(year, month, day, hour, minute, second, msec);
+                m_bRv = DateTimeValidator::datetime(year, month, day, hour, minute, second, msec);
                 xTEST_EQ(m_bRv, false);
             }
         #endif

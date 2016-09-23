@@ -10,6 +10,44 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
+class DateTime;
+
+class DateTimeValidator
+	///< DateTime validator
+{
+public:
+	static
+	bool_t year(cint_t &year) xWARN_UNUSED_RV;
+	static
+	bool_t month(cint_t &month) xWARN_UNUSED_RV;
+	static
+	bool_t day(cint_t &day) xWARN_UNUSED_RV;
+	static
+	bool_t hour(cint_t &hour) xWARN_UNUSED_RV;
+	static
+	bool_t minute(cint_t &minute) xWARN_UNUSED_RV;
+	static
+	bool_t second(cint_t &second) xWARN_UNUSED_RV;
+	static
+	bool_t msec(cint_t &msec) xWARN_UNUSED_RV;
+
+	static
+	bool_t weekDay(cint_t &weekDay) xWARN_UNUSED_RV;
+
+	static
+	bool_t time(cint_t &hour, cint_t &minute, cint_t &second, cint_t &msec) xWARN_UNUSED_RV;
+	static
+	bool_t date(cint_t &year, cint_t &month, cint_t &day) xWARN_UNUSED_RV;
+	static
+	bool_t datetime(cint_t &year, cint_t &month, cint_t &day, cint_t &hour,
+			   cint_t &minute, cint_t &second, cint_t &msec) xWARN_UNUSED_RV;
+	static
+	bool_t datetime(const DateTime &datetime) xWARN_UNUSED_RV;
+	static
+	bool_t dateOrTime(cint_t &year, cint_t &month, cint_t &day, cint_t &hour, cint_t &minute,
+			   cint_t &second, cint_t &msec) xWARN_UNUSED_RV;
+};
+
 class DateTime
     /// date, time
 {
@@ -30,42 +68,6 @@ public:
         ///< constructor
     virtual        ~DateTime() {}
         ///< destructor
-
-    // validate
-    struct Validator
-        ///< DateTime validator
-    {
-        static
-        bool_t year(cint_t &year) xWARN_UNUSED_RV;
-        static
-        bool_t month(cint_t &month) xWARN_UNUSED_RV;
-        static
-        bool_t day(cint_t &day) xWARN_UNUSED_RV;
-        static
-        bool_t hour(cint_t &hour) xWARN_UNUSED_RV;
-        static
-        bool_t minute(cint_t &minute) xWARN_UNUSED_RV;
-        static
-        bool_t second(cint_t &second) xWARN_UNUSED_RV;
-        static
-        bool_t msec(cint_t &msec) xWARN_UNUSED_RV;
-
-        static
-        bool_t weekDay(cint_t &weekDay) xWARN_UNUSED_RV;
-
-        static
-        bool_t time(cint_t &hour, cint_t &minute, cint_t &second, cint_t &msec) xWARN_UNUSED_RV;
-        static
-        bool_t date(cint_t &year, cint_t &month, cint_t &day) xWARN_UNUSED_RV;
-        static
-        bool_t datetime(cint_t &year, cint_t &month, cint_t &day, cint_t &hour,
-                   cint_t &minute, cint_t &second, cint_t &msec) xWARN_UNUSED_RV;
-        static
-        bool_t datetime(const DateTime &datetime) xWARN_UNUSED_RV;
-        static
-        bool_t dateOrTime(cint_t &year, cint_t &month, cint_t &day, cint_t &hour, cint_t &minute,
-                   cint_t &second, cint_t &msec) xWARN_UNUSED_RV;
-    };
 
     // comparison operators
     bool_t          operator == (const DateTime &datetime) const;
@@ -95,8 +97,8 @@ public:
         ///< operator +=
     const DateTime &operator -= (const DateTime &datetime);
         ///< operator -=
-    //++
-    //--
+    // ++
+    // --
 
     // get/set
     void_t          get(int_t *year, int_t *month, int_t *day,
@@ -115,10 +117,10 @@ public:
         ///< convert DateTime to milliseconds
 
     // TODO: ToUniversalTime, ToLocalTime
-    #if xTODO
-        ToUniversalTime();
-        ToLocalTime();
-    #endif
+#if xTODO
+	ToUniversalTime();
+	ToLocalTime();
+#endif
 
     // formatting
     std::tstring_t  format(std::ctstring_t &format, std::ctstring_t &formatMsec = xT(".%03d")) const
@@ -177,6 +179,8 @@ private:
 
     ulonglong_t     _toMsec() const xWARN_UNUSED_RV;
         ///< convert to milliseconds
+
+    friend class DateTimeValidator;
 
 xPLATFORM_IMPL:
     // static
