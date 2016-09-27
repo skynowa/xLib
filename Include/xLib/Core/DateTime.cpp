@@ -670,7 +670,7 @@ DateTime::daysInMonth(
 {
     xCHECK_RET(a_month == 2 && isLeapYear(a_year), 29);
 
-    const Array<int_t, 12> monthsDays =
+    const Array<int_t, monthMax + 1> monthsDays =
     {{
         31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
     }};
@@ -684,7 +684,7 @@ DateTime::isLeapYear(
     cint_t &a_year
 )
 {
-    return ( 0 == (a_year % 4) && ( 0 != (a_year % 100) || 0 == (a_year % 400)) );
+    return ((a_year % 4) == 0 && ((a_year % 100) != 0 || (a_year % 400) == 0));
 }
 //-------------------------------------------------------------------------------------------------
 
