@@ -209,13 +209,13 @@ DateTimeValidator::dateOrTime(
 //-------------------------------------------------------------------------------------------------
 xINLINE
 DateTime::DateTime() :
-    _year    (0),
-    _month   (0),
+    _year    (yearMin),
+    _month   (monthMin),
     _day     (0),
-    _hour    (0),
-    _minute  (0),
-    _second  (0),
-    _msec    (0),
+    _hour    (hourMin),
+    _minute  (minuteMin),
+    _second  (secondMin),
+    _msec    (msecMin),
     _thisMSec(0ULL)
 {
 }
@@ -224,13 +224,13 @@ xINLINE
 DateTime::DateTime(
     const DateTime &a_datetime
 ) :
-    _year    (0),
-    _month   (0),
+    _year    (yearMin),
+    _month   (monthMin),
     _day     (0),
-    _hour    (0),
-    _minute  (0),
-    _second  (0),
-    _msec    (0),
+    _hour    (hourMin),
+    _minute  (minuteMin),
+    _second  (secondMin),
+    _msec    (msecMin),
     _thisMSec(0ULL)
 {
     xTEST_EQ(DateTimeValidator::date(a_datetime._year, a_datetime._month, a_datetime._day) &&
@@ -245,13 +245,13 @@ xINLINE
 DateTime::DateTime(
     culonglong_t &a_msec
 ) :
-    _year    (0),
-    _month   (0),
+    _year    (yearMin),
+    _month   (monthMin),
     _day     (0),
-    _hour    (0),
-    _minute  (0),
-    _second  (0),
-    _msec    (0),
+    _hour    (hourMin),
+    _minute  (minuteMin),
+    _second  (secondMin),
+    _msec    (msecMin),
     _thisMSec(0ULL)
 {
     set(a_msec);
@@ -264,13 +264,13 @@ DateTime::DateTime(
     cint_t &a_second,
     cint_t &a_msec
 ) :
-    _year    (0),
-    _month   (0),
+    _year    (yearMin),
+    _month   (monthMin),
     _day     (0),
-    _hour    (0),
-    _minute  (0),
-    _second  (0),
-    _msec    (0),
+    _hour    (hourMin),
+    _minute  (minuteMin),
+    _second  (secondMin),
+    _msec    (msecMin),
     _thisMSec(0ULL)
 {
     xTEST_EQ(DateTimeValidator::time(a_hour, a_minute, a_second, a_msec), true);
@@ -284,13 +284,13 @@ DateTime::DateTime(
     cint_t &a_month,
     cint_t &a_day
 ) :
-    _year    (0),
-    _month   (0),
+    _year    (yearMin),
+    _month   (monthMin),
     _day     (0),
-    _hour    (0),
-    _minute  (0),
-    _second  (0),
-    _msec    (0),
+    _hour    (hourMin),
+    _minute  (minuteMin),
+    _second  (secondMin),
+    _msec    (msecMin),
     _thisMSec(0ULL)
 {
     xTEST_EQ(DateTimeValidator::date(a_year, a_month, a_day), true);
@@ -308,13 +308,13 @@ DateTime::DateTime(
     cint_t &a_second,
     cint_t &a_msec
 ) :
-    _year    (0),
-    _month   (0),
+    _year    (yearMin),
+    _month   (monthMin),
     _day     (0),
-    _hour    (0),
-    _minute  (0),
-    _second  (0),
-    _msec    (0),
+    _hour    (hourMin),
+    _minute  (minuteMin),
+    _second  (secondMin),
+    _msec    (msecMin),
     _thisMSec(0ULL)
 {
     xTEST_EQ(DateTimeValidator::date(a_year, a_month, a_day) &&
