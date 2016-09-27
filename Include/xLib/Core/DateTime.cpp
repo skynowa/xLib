@@ -43,13 +43,44 @@ xNAMESPACE_BEGIN2(xlib, core)
 *
 **************************************************************************************************/
 
+xNAMESPACE_ANONYM_BEGIN
+
+cint_t yearMin     = 0;
+cint_t yearMax     = 9999;
+
+cint_t monthMin    = 0;
+cint_t monthMax    = 11;
+
+cint_t dayMin      = 1;
+cint_t dayMax      = 31;
+
+cint_t hourMin     = 0;
+cint_t hourMax     = 23;
+
+cint_t minuteMin   = 0;
+cint_t minuteMax   = 59;
+
+cint_t secondMin   = 0;
+cint_t secondMax   = 59;
+
+cint_t msecMin     = 0;
+cint_t msecMax     = 999;
+
+cint_t microsecMin = 0;
+cint_t microsecMax = 999;
+
+cint_t weekDayMin  = 0;
+cint_t weekDayMax  = 6;
+
+xNAMESPACE_ANONYM_END
+
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 DateTimeValidator::year(
     cint_t &a_year
 )
 {
-    return (a_year >= 0 && a_year <= 9999);
+    return (a_year >= yearMin && a_year <= yearMax);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -57,7 +88,7 @@ DateTimeValidator::month(
     cint_t &a_month
 )
 {
-    return (a_month >= 0 && a_month <= 11);
+    return (a_month >= monthMin && a_month <= monthMax);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -65,7 +96,7 @@ DateTimeValidator::day(
     cint_t &a_day
 )
 {
-    return (a_day >= 1 && a_day <= 31);
+    return (a_day >= dayMin && a_day <= dayMax);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -73,7 +104,7 @@ DateTimeValidator::hour(
     cint_t &a_hour
 )
 {
-    return (a_hour >= 0 && a_hour <= 23);
+    return (a_hour >= hourMin && a_hour <= hourMax);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -81,7 +112,7 @@ DateTimeValidator::minute(
     cint_t &a_minute
 )
 {
-    return (a_minute >= 0 && a_minute <= 59);
+    return (a_minute >= minuteMin && a_minute <= minuteMax);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -89,7 +120,7 @@ DateTimeValidator::second(
     cint_t &a_second
 )
 {
-    return (a_second >= 0 && a_second <= 60);
+    return (a_second >= secondMin && a_second <= secondMax);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -97,7 +128,7 @@ DateTimeValidator::msec(
     cint_t &a_msec
 )
 {
-    return (a_msec >= 0 && a_msec <= 999);
+    return (a_msec >= msecMin && a_msec <= msecMax);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -105,7 +136,7 @@ DateTimeValidator::weekDay(
     cint_t &a_weekDay
 )
 {
-    return (a_weekDay >= 0 && a_weekDay <= 6);
+    return (a_weekDay >= weekDayMin && a_weekDay <= weekDayMax);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
