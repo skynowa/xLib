@@ -796,7 +796,7 @@ DateTime::monthStr(
 
     if (!a_isShortName) {
         // months numbering: 0-11
-        const Array<std::tstring_t, 12> longMonths =
+        const Array<std::tstring_t, monthMax + 1> longMonths =
         {{
             xT("January"),
             xT("February"),
@@ -815,7 +815,7 @@ DateTime::monthStr(
         sRv = longMonths[a_month];
     } else {
         // months numbering: 0-11
-        const Array<std::tstring_t, 12> shortMonths =
+        const Array<std::tstring_t, monthMax + 1> shortMonths =
         {{
             xT("Jan"),
             xT("Feb"),
@@ -848,7 +848,7 @@ DateTime::monthNum(
     xTEST_NA(a_isShortName);
 
     // months numbering: 0-11
-    const Array<std::tstring_t, 12> longMonths =
+    const Array<std::tstring_t, monthMax + 1> longMonths =
     {{
         xT("January"),
         xT("February"),
@@ -865,7 +865,7 @@ DateTime::monthNum(
     }};
 
     // months numbering: 0-11
-    const Array<std::tstring_t, 12> shortMonths =
+    const Array<std::tstring_t, monthMax + 1> shortMonths =
     {{
         xT("Jan"),
         xT("Feb"),
@@ -907,7 +907,7 @@ DateTime::weekDayStr(
     std::tstring_t sRv;
 
     if (!a_isShortName) {
-        const Array<std::tstring_t, 7> longDays =
+        const Array<std::tstring_t, weekDayMax + 1> longDays =
         {{
             xT("Sunday"),
             xT("Monday"),
@@ -920,7 +920,7 @@ DateTime::weekDayStr(
 
         sRv = longDays[a_week_day];
     } else {
-        const Array<std::tstring_t, 8> shortDays =
+        const Array<std::tstring_t, weekDayMax + 1> shortDays =
         {{
             xT("Sun"),
             xT("Mon"),
@@ -947,7 +947,7 @@ DateTime::weekDayNum(
     xTEST_NA(a_week_day);
     xTEST_NA(a_isShortName);
 
-    const Array<std::tstring_t, 7> longDays =
+    const Array<std::tstring_t, weekDayMax + 1> longDays =
     {{
         xT("Monday"),
         xT("Tuesday"),
@@ -958,7 +958,7 @@ DateTime::weekDayNum(
         xT("Sunday")
     }};
 
-    const Array<std::tstring_t, 7> shortDays =
+    const Array<std::tstring_t, weekDayMax + 1> shortDays =
     {{
         xT("Mon"),
         xT("Tue"),
