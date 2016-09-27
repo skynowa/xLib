@@ -33,28 +33,29 @@ Test_DateTime::unit()
 
         // valid data
         {
-            cushort_t valid[][7] = {
+            cushort_t valid[][7] =
+            {
                 // year, month, day, hour, minute, second, msec
-                { 2011,  0,     1,   0,    0,      0,      0 },
-                { 1978,  7,     21,  4,    55,     45,     13  },
-                { 1956,  1,     10,  13,   59,     59,     998 },
-                { 2011,  2,     1,   12,   45,     5,      1   },
-                { 2011,  3,     2,   11,   30,     1,      125 },
-                { 2011,  4,     3,   10,   25,     30,     256 },
-                { 2011,  5,     4,   9,    8,      45,     589 },
-                { 2011,  6,     5,   8,    4,      54,     258 },
-                { 2011,  7,     6,   7,    1,      58,     951 },
-                { 2011,  11,    31,  23,   59,     60,     999 }
+                {2011, 0,  1,  0,  0,  0,  0},
+                {1978, 7,  21, 4,  55, 45, 13},
+                {1956, 1,  10, 13, 59, 59, 998},
+                {2011, 2,  1,  12, 45, 5,  1},
+                {2011, 3,  2,  11, 30, 1,  125},
+                {2011, 4,  3,  10, 25, 30, 256},
+                {2011, 5,  4,  9,  8,  45, 589},
+                {2011, 6,  5,  8,  4,  54, 258},
+                {2011, 7,  6,  7,  1,  58, 951},
+                {2011, 11, 31, 23, 59, 59, 999}
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(valid); ++ i) {
-                int_t year   = valid[i][0];
-                int_t month  = valid[i][1];
-                int_t day    = valid[i][2];
-                int_t hour   = valid[i][3];
-                int_t minute = valid[i][4];
-                int_t second = valid[i][5];
-                int_t msec   = valid[i][6];
+                cint_t year   = valid[i][0];
+                cint_t month  = valid[i][1];
+                cint_t day    = valid[i][2];
+                cint_t hour   = valid[i][3];
+                cint_t minute = valid[i][4];
+                cint_t second = valid[i][5];
+                cint_t msec   = valid[i][6];
 
                 m_bRv = DateTimeValidator::datetime(year, month, day, hour, minute, second, msec);
                 xTEST_EQ(m_bRv, true);
@@ -63,63 +64,47 @@ Test_DateTime::unit()
 
         // non valid data
         {
-        #if xTEST_IGNORE
-            cushort_t nonValid[][7] = {
+            cushort_t nonValid[][7] =
+            {
                 // year, month, day, hour, minute, second, msec
-                { 2011,  0,     1,   0,    0,      0,      0 },
-                { 2011,  0,     1,   0,    0,      0,      0 },
-                { 2011,  0,     1,   0,    0,      0,      0 },
 
-                { 1978,  7,     21,  4,    55,     45,     13  },
-                { 1978,  7,     21,  4,    55,     45,     13  },
-                { 1978,  7,     21,  4,    55,     45,     13  },
-
-                { 1956,  1,     10,  13,   59,     59,     998 },
-                { 1956,  1,     10,  13,   59,     59,     998 },
-                { 1956,  1,     10,  13,   59,     59,     998 },
-
-                { 2011,  2,     1,   12,   45,     5,      1   },
-                { 2011,  2,     1,   12,   45,     5,      1   },
-                { 2011,  2,     1,   12,   45,     5,      1   },
-
-                { 2011,  3,     2,   11,   30,     1,      125 },
-                { 2011,  3,     2,   11,   30,     1,      125 },
-                { 2011,  3,     2,   11,   30,     1,      125 },
-
-                { 2011,  4,     3,   10,   25,     30,     256 },
-                { 2011,  4,     3,   10,   25,     30,     256 },
-                { 2011,  4,     3,   10,   25,     30,     256 },
-
-                { 2011,  5,     4,   9,    8,      45,     589 },
-                { 2011,  5,     4,   9,    8,      45,     589 },
-                { 2011,  5,     4,   9,    8,      45,     589 },
-
-                { 2011,  6,     5,   8,    4,      54,     258 },
-                { 2011,  6,     5,   8,    4,      54,     258 },
-                { 2011,  6,     5,   8,    4,      54,     258 },
-
-                { 2011,  7,     6,   7,    1,      58,     951 },
-                { 2011,  7,     6,   7,    1,      58,     951 },
-                { 2011,  7,     6,   7,    1,      58,     951 },
-
-                { 2011,  11,    31,  23,   59,     60,     999 },
-                { 2011,  11,    31,  23,   59,     60,     999 },
-                { 2011,  11,    31,  23,   59,     60,     999 }
+                // year
+                {-1,    0,  1,  0,  0,  0,  0},
+                {10000, 0,  1,  0,  0,  0,  0},
+				// month
+                {1978,  -1, 21, 4,  55, 45, 13},
+                {1978,  12, 21, 4,  55, 45, 13},
+				// day
+                {1956,  1,  0,  13, 59, 59, 998},
+                {1956,  1,  32, 13, 59, 59, 998},
+				// hour
+                {2011,  2,  1,  -1, 45, 5,  1},
+                {2011,  2,  1,  24, 45, 5,  1},
+				// minute
+                {2011,  3,  2,  11, -1, 1,  125},
+                {2011,  3,  2,  11, 60, 1,  125},
+				// second
+                {2011,  4,  3,  10, 25, -1, 256},
+                {2011,  4,  3,  10, 25, 60, 256},
+				// msec
+                {2011,  5,  4,  9,  8,  45, -1},
+                {2011,  5,  4,  9,  8,  45, 10000}
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(nonValid); ++ i) {
-                int_t year   = nonValid[i][0];
-                int_t month  = nonValid[i][1];
-                int_t day    = nonValid[i][2];
-                int_t hour   = nonValid[i][3];
-                int_t minute = nonValid[i][4];
-                int_t second = nonValid[i][5];
-                int_t msec   = nonValid[i][6];
+                cint_t year   = nonValid[i][0];
+                cint_t month  = nonValid[i][1];
+                cint_t day    = nonValid[i][2];
+                cint_t hour   = nonValid[i][3];
+                cint_t minute = nonValid[i][4];
+                cint_t second = nonValid[i][5];
+                cint_t msec   = nonValid[i][6];
+
+                Trace() << xTRACE_VAR_8(i, year, month, day, hour, minute, second, msec);
 
                 m_bRv = DateTimeValidator::datetime(year, month, day, hour, minute, second, msec);
                 xTEST_EQ(m_bRv, false);
             }
-        #endif
         }
     }
 
