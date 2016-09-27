@@ -61,7 +61,7 @@ cint_t minuteMin   = 0;
 cint_t minuteMax   = 59;
 
 cint_t secondMin   = 0;
-cint_t secondMax   = 59;
+cint_t secondMax   = 60;	// (1 leap second)
 
 cint_t msecMin     = 0;
 cint_t msecMax     = 999;
