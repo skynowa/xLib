@@ -985,10 +985,10 @@ DateTime::weekDayNum(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline std::ostream &
+inline std::tostream_t &
 operator << (
-	std::ostream   &a_os,
-	const DateTime &a_dateTime
+	std::tostream_t &a_os,
+	const DateTime  &a_dateTime
 )
 {
 	a_os << a_dateTime.format(xT("%d-%m-%Y %H:%M:%S"));
