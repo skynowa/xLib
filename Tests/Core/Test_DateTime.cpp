@@ -100,7 +100,7 @@ Test_DateTime::unit()
                 cint_t second = nonValid[i][5];
                 cint_t msec   = nonValid[i][6];
 
-                Trace() << xTRACE_VAR_8(i, year, month, day, hour, minute, second, msec);
+                // Trace() << xTRACE_VAR_8(i, year, month, day, hour, minute, second, msec);
 
                 m_bRv = DateTimeValidator::datetime(year, month, day, hour, minute, second, msec);
                 xTEST_EQ(m_bRv, false);
