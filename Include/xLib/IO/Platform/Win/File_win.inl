@@ -70,9 +70,9 @@ File::_time_impl(
     BOOL blRv = ::GetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
     xTEST_DIFF(blRv, FALSE);
 
-    Utils::ptrAssignT(a_create,   DateTime::fileTimeToUnixTime(timeCreate));
-    Utils::ptrAssignT(a_access,   DateTime::fileTimeToUnixTime(timeAccess));
-    Utils::ptrAssignT(a_modified, DateTime::fileTimeToUnixTime(timeModified));
+    Utils::ptrAssignT(a_create,   DateTime::fileToUnix(timeCreate));
+    Utils::ptrAssignT(a_access,   DateTime::fileToUnix(timeAccess));
+    Utils::ptrAssignT(a_modified, DateTime::fileToUnix(timeModified));
 }
 //-------------------------------------------------------------------------------------------------
 /*static */
@@ -85,13 +85,13 @@ File::_setTime_impl(
 )
 {
     FILETIME timeCreate = {0};
-    DateTime::unixTimeToFileTime(a_create, &timeCreate);
+    DateTime::unixToFile(a_create, &timeCreate);
 
     FILETIME timeAccess = {0};
-    DateTime::unixTimeToFileTime(a_access, &timeAccess);
+    DateTime::unixToFile(a_access, &timeAccess);
 
     FILETIME timeModified = {0};
-    DateTime::unixTimeToFileTime(a_modified, &timeModified);
+    DateTime::unixToFile(a_modified, &timeModified);
 
     HandleInvalid file;
 

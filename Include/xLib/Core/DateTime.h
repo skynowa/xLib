@@ -139,13 +139,13 @@ public:
         ///< is leap year
 #if xENV_WIN
     static
-    longlong_t      filetimeToInt64(const FILETIME &fileTime) xWARN_UNUSED_RV;
+    longlong_t      fileToInt64(const FILETIME &fileTime) xWARN_UNUSED_RV;
         ///< convert FILETIME to longlong_t
     static
-    void_t          unixTimeToFileTime(const time_t &unixTime, FILETIME *fileTime);
+    void_t          unixToFile(const time_t &unixTime, FILETIME *fileTime);
         ///< convert UNIX time_t to Win32 FILETIME
     static
-    time_t          fileTimeToUnixTime(const FILETIME &fileTime) xWARN_UNUSED_RV;
+    time_t          fileToUnix(const FILETIME &fileTime) xWARN_UNUSED_RV;
         ///< convert Win32 FILETIME to UNIX time_t
 #endif
 
