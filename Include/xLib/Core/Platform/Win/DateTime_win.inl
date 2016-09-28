@@ -28,7 +28,7 @@ DateTime::_current_impl()
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE longlong_t
-DateTime::filetimeToInt64(
+DateTime::fileToInt64(
     const FILETIME &a_fileTime
 )
 {
@@ -37,7 +37,7 @@ DateTime::filetimeToInt64(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
-DateTime::unixTimeToFileTime(
+DateTime::unixToFile(
     const time_t &a_unixTime,
     FILETIME     *a_fileTime
 )
@@ -54,11 +54,11 @@ DateTime::unixTimeToFileTime(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE time_t
-DateTime::fileTimeToUnixTime(
+DateTime::fileToUnix(
     const FILETIME &a_fileTime
 )
 {
-    // TEST: DateTime::fileTimeToUnixTime()
+    // TEST: DateTime::fileToUnix()
 
     const __int64 nanosecsBetweenEpochs = 116444736000000000LL;
 

@@ -444,33 +444,33 @@ Test_DateTime::unit()
         }
     }
 
-    xTEST_CASE("filetimeToInt64")
+    xTEST_CASE("fileToInt64")
     {
     #if xENV_WIN
         const FILETIME time = {100, 200};
 
-        m_ullRv = DateTime::filetimeToInt64(time);
+        m_ullRv = DateTime::fileToInt64(time);
         xTEST_EQ( , m_ullRv);
     #endif
     }
 
-    xTEST_CASE("unixTimeToFileTime")
+    xTEST_CASE("unixToFile")
     {
     #if xENV_WIN
         const time_t unixTime = 1000;
         FILETIME     fileTime = {0};
 
-        DateTime::unixTimeToFileTime(unixTime, &fileTime);
+        DateTime::unixToFile(unixTime, &fileTime);
     #endif
     }
 
-    xTEST_CASE("fileTimeToUnixTime")
+    xTEST_CASE("fileToUnix")
     {
     #if xENV_WIN
         time_t   unixTime = 0;
         FILETIME fileTime = {0};
 
-        unixTime = DateTime::fileTimeToUnixTime(fileTime);
+        unixTime = DateTime::fileToUnix(fileTime);
         xTEST_EQ(static_cast<time_t>( -11644473600 ), unixTime);
     #endif
     }
