@@ -111,8 +111,12 @@ std::ctstring_t langDirName   = xT("Lang");
 
 }
 
+#if 0
+
 ApplicationInfo Application::_info;
 Donate          Application::_donate;
+
+#endif
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Application::Application(
