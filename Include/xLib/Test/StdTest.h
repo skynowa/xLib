@@ -60,13 +60,13 @@
     _xTRACE_VAR7(v1, v2, v3, v4, v5, v6, v7) << ", " << _xTRACE_VAR(v8)
 #define _xTRACE_VAR9(v1, v2, v3, v4, v5, v6, v7, v8, v9) \
     _xTRACE_VAR8(v1, v2, v3, v4, v5, v6, v7, v8) << ", " << _xTRACE_VAR(v9)
-///@}
 
 #define _xUNKNOWN_VAR(v) \
     "Unknown " << _xTRACE_VAR(v)
 
 #define _xTRACE_PTR(p) \
     #p ": " << "{" << p << ", " << (p ? *p : 0) << "}"
+///@}
 //-------------------------------------------------------------------------------------------------
 #define _xTRACE_POINT \
     { \
@@ -84,7 +84,7 @@
     }
     ///< trace function
 #define _xNOT_IMPLEMENTED \
-    { _xTEST_MSG_FAIL(xT("Not implemented")); }
+    { _xTEST_MSG_FAIL("Not implemented"); }
     ///< show not implemented message and return value
 //-------------------------------------------------------------------------------------------------
 #define _xVERIFY(expr) \
