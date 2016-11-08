@@ -98,7 +98,7 @@
     #define xTRACE_VAR_10(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10) \
         xTRACE_VAR_9(v1, v2, v3, v4, v5, v6, v7, v8, v9) <<  xT(", ") << xTRACE_VAR(v10)
 
-	#define xUNKNOWN_VAR(v) \
+    #define xUNKNOWN_VAR(v) \
         xT("Unknown ") << _xTRACE_VAR(v)
     #define xTRACE_PTR(p) \
         #p xT(": ") << xT("{") << p << xT(", ") << (p ? *p : 0) << xT("}")
