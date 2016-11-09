@@ -93,30 +93,26 @@ xNAMESPACE_END2(xlib, internal)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
+
 /**************************************************************************************************
 *   public
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-namespace
-{
-
-std::ctstring_t backupDirName = xT("Backup");
-std::ctstring_t configDirName = xT("Config");
-std::ctstring_t logDirName    = xT("Log");
-std::ctstring_t dbDirName     = xT("Db");
-std::ctstring_t tempDirName   = xT("Temp");
-std::ctstring_t langDirName   = xT("Lang");
-
-}
-
-#if 0
+#if 1
 
 ApplicationInfo Application::_info;
 Donate          Application::_donate;
 
 #endif
+
+std::ctstring_t Application::_backupDirName = xT("Backup");
+std::ctstring_t Application::_configDirName = xT("Config");
+std::ctstring_t Application::_logDirName    = xT("Log");
+std::ctstring_t Application::_dbDirName     = xT("Db");
+std::ctstring_t Application::_tempDirName   = xT("Temp");
+std::ctstring_t Application::_langDirName   = xT("Lang");
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Application::Application(
@@ -357,42 +353,42 @@ Application::dirPath()
 xINLINE std::tstring_t
 Application::configDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), configDirName);
+    return Format::str(xT("{}/{}"), dirPath(), _configDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::logDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), logDirName);
+    return Format::str(xT("{}/{}"), dirPath(), _logDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::dbDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), dbDirName);
+    return Format::str(xT("{}/{}"), dirPath(), _dbDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::backupDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), backupDirName);
+    return Format::str(xT("{}/{}"), dirPath(), _backupDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::tempDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), tempDirName);
+    return Format::str(xT("{}/{}"), dirPath(), _tempDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE std::tstring_t
 Application::langDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), langDirName);
+    return Format::str(xT("{}/{}"), dirPath(), _langDirName);
 }
 //-------------------------------------------------------------------------------------------------
 
