@@ -25,10 +25,10 @@ xNAMESPACE_BEGIN2(xlib, internal)
 class CrashCallback
 {
 public:
-	xNO_INLINE
-	CrashCallback()
-	{
-	}
+    xNO_INLINE
+    CrashCallback()
+    {
+    }
 
     xNO_INLINE static void_t
     onSignals(int_t a_signal)
@@ -36,36 +36,36 @@ public:
         xTRACE_FUNC;
         Trace() << Signal::decription(a_signal) << "\n";
 
-		Application::exit(EXIT_FAILURE);
+        Application::exit(EXIT_FAILURE);
     }
 
-	xNO_INLINE static void_t
-	onInfo(int_t a_signal, siginfo_t *a_info, void_t *a_context)
-	{
-		xTEST_EQ(a_signal, a_info->si_signo);
-		xUNUSED((ucontext_t *)a_context);
+    xNO_INLINE static void_t
+    onInfo(int_t a_signal, siginfo_t *a_info, void_t *a_context)
+    {
+        xTEST_EQ(a_signal, a_info->si_signo);
+        xUNUSED((ucontext_t *)a_context);
 
-		xTRACE_FUNC;
+        xTRACE_FUNC;
 
-		Trace() << Signal::infoDescription(*a_info) << "\n";
-		Trace() << Signal::decription(0) << "\n";
+        Trace() << Signal::infoDescription(*a_info) << "\n";
+        Trace() << Signal::decription(0) << "\n";
 
-		FileLog log(FileLog::lsDefaultMb);
-		log.setFilePath(xT("crash.log"));
+        FileLog log(FileLog::lsDefaultMb);
+        log.setFilePath(xT("crash.log"));
 
-		std::ctstring_t msg = Format::str(
-		    xT("Crash info:\n\n")
-		    xT("Signal:\n{}\n\n")
-		    xT("StackTrace:\n{}"),
+        std::ctstring_t msg = Format::str(
+            xT("Crash info:\n\n")
+            xT("Signal:\n{}\n\n")
+            xT("StackTrace:\n{}"),
             Signal::infoDescription(*a_info),
             StackTrace().toString());
 
-		log.write(xT("%s\n"), msg.c_str());
+        log.write(xT("%s\n"), msg.c_str());
 
-		std::tcout << StackTrace().toString() << std::endl;
+        std::tcout << StackTrace().toString() << std::endl;
 
-		Application::exit(EXIT_FAILURE);
-	}
+        Application::exit(EXIT_FAILURE);
+    }
 
     xNO_INLINE static void_t
     onExit()
@@ -100,19 +100,24 @@ xNAMESPACE_BEGIN2(xlib, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-#if 1
+xNAMESPACE_ANONYM_BEGIN
+
+std::ctstring_t _backupDirName = xT("Backup");
+std::ctstring_t _configDirName = xT("Config");
+std::ctstring_t _logDirName    = xT("Log");
+std::ctstring_t _dbDirName     = xT("Db");
+std::ctstring_t _tempDirName   = xT("Temp");
+std::ctstring_t _langDirName   = xT("Lang");
+
+xNAMESPACE_ANONYM_END
+
+
+#if !cmOPTION_PROJECT_HEADER_ONLY
 
 ApplicationInfo Application::_info;
 Donate          Application::_donate;
 
 #endif
-
-std::ctstring_t Application::_backupDirName = xT("Backup");
-std::ctstring_t Application::_configDirName = xT("Config");
-std::ctstring_t Application::_logDirName    = xT("Log");
-std::ctstring_t Application::_dbDirName     = xT("Db");
-std::ctstring_t Application::_tempDirName   = xT("Temp");
-std::ctstring_t Application::_langDirName   = xT("Lang");
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Application::Application(
@@ -407,15 +412,15 @@ Application::run()
 
     int_t iRv = EXIT_FAILURE;
 
-	signal().connectInfoAll(internal::CrashCallback::onInfo);
+    signal().connectInfoAll(internal::CrashCallback::onInfo);
 #if 0
-	signal().connectExit(internal::CrashCallback::onExit);
-	signal().connectTerminate(internal::CrashCallback::onTerminate);
-	signal().connectUnexpected(internal::CrashCallback::onUnexpected);
+    signal().connectExit(internal::CrashCallback::onExit);
+    signal().connectTerminate(internal::CrashCallback::onTerminate);
+    signal().connectUnexpected(internal::CrashCallback::onUnexpected);
 #else
-	signal().connectExit(xPTR_NULL);
-	signal().connectTerminate(xPTR_NULL);
-	signal().connectUnexpected(xPTR_NULL);
+    signal().connectExit(xPTR_NULL);
+    signal().connectTerminate(xPTR_NULL);
+    signal().connectUnexpected(xPTR_NULL);
 #endif
 
     if (opt_useException) {

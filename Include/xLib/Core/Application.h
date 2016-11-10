@@ -107,13 +107,6 @@ public:
         ///< language translation directory
 
 private:
-    static std::ctstring_t _backupDirName;
-    static std::ctstring_t _configDirName;
-    static std::ctstring_t _logDirName;
-    static std::ctstring_t _dbDirName;
-    static std::ctstring_t _tempDirName;
-    static std::ctstring_t _langDirName;
-
     std::ctstring_t        _appGuid;
     static ApplicationInfo _info;
     static Donate          _donate;
