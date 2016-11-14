@@ -9,6 +9,7 @@
 // C library
 #include <cerrno>
 #include <ctime>
+#include <cstring>
 #include <cassert>
 
 // STL
