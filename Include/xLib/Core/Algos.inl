@@ -59,11 +59,11 @@ Algos::deleteAll(
 template<typename T>
 inline bool_t
 Algos::isUnique(
-    T a_it_first,
-    T a_it_last
+    T a_first,
+    T a_last
 )
 {
-    return (std::adjacent_find(a_it_first, a_it_last) == a_it_last);
+    return (std::adjacent_find(a_first, a_last) == a_last);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -73,6 +73,16 @@ Algos::isUniqueAll(
 )
 {
     return isUnique(a_container.begin(), a_container.end());
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline void_t
+Algos::remove(
+    std::vector<T> &a_vec,
+    const T        &a_value
+)
+{
+    a_vec.erase(std::remove(a_vec.begin(), a_vec.end(), a_value), a_vec.end());
 }
 //-------------------------------------------------------------------------------------------------
 
