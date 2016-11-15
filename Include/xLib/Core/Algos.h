@@ -41,8 +41,12 @@ public:
         ///< determining if sorted container has all unique elements
     template<typename T>
     static
-    bool_t isUniqueAll(const T &a_container);
+    bool_t isUniqueAll(const T &container);
         ///< determining if sorted container has all unique elements
+    template<typename T>
+    static
+    void_t remove(std::vector<T> &vec, const T &item);
+        ///< remove item from std::vector
 
 private:
     Algos() {}
