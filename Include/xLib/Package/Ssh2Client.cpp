@@ -177,13 +177,16 @@ Ssh2Client::channelExec(
 
     (void_t)::libssh2_channel_set_blocking(_channel, static_cast<int>(a_isBlockingMode));
 
-#if 1
+#if 0
     while ((iRv = ::libssh2_channel_exec(_channel, xT2A(a_cmd).c_str())) == LIBSSH2_ERROR_EAGAIN) {
         _wait(waitTimeoutSec);
     }
     xTEST_EQ(iRv, (ssize_t)0);
 #else
-    while ((iRv = ::libssh2_channel_request_pty(_channel, "vanilla")) == LIBSSH2_ERROR_EAGAIN) {
+	// % echo $0
+	std::cstring_t shellName = "zsh";
+
+    while ((iRv = ::libssh2_channel_request_pty(_channel, shellName.c_str())) == LIBSSH2_ERROR_EAGAIN) {
         _wait(waitTimeoutSec);
     }
     xTEST_EQ(iRv, (ssize_t)0);
