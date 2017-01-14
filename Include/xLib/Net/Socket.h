@@ -1,6 +1,37 @@
 /**
  * \file  Socket.h
  * \brief blocking socket
+ *
+ * +-----------------------------------------------------+ +----------------------------------------------------+
+ * | TCP Server               | TCP Client               | | UDP Server               | UDP Client              |
+ * |--------------------------|--------------------------| |--------------------------|-------------------------|
+ * | // Initialize Winsock    | // Initialize Winsock    | | // Initialize Winsock    | // Initialize Winsock   |
+ * | WSAStartup()             | WSAStartup()             | | WSAStartup()             | WSAStartup()            |
+ * |                          |                          | |                          |                         |
+ * | // Create a socket       | // Create a socket       | |                          |                         |
+ * | socket()                 | socket()                 | |                          |                         |
+ * |                          |                          | |                          |                         |
+ * | // Bind the socket       |                          | | // Bind the socket       |                         |
+ * | bind()                   |                          | | bind()                   |                         |
+ * |                          |                          | |                          |                         |
+ * | // Listen on the socket  |                          | |                          |                         |
+ * | listen()                 |                          | |                          |                         |
+ * |                          |                          | |                          |                         |
+ * | // Accept a connection   | // Connect to the server | |                          |                         |
+ * | accept()                 | connect()                | |                          |                         |
+ * |                          |                          | |                          |                         |
+ * | // Receive and send data | // Send and receive data | | // Receive data          | // Send  data           |
+ * | send() / recv()          | send() / recv()          | | recvfrom()               | sendto()                |
+ * |                          |                          | |                          |                         |
+ * | // Disconnect            | // Disconnect            | |                          |                         |
+ * | shutdown()               | shutdown()               | |                          |                         |
+ * |                          |                          | |                          |                         |
+ * | // Close socket          | // Close socket          | | // Close socket          | // Close socket         |
+ * | close()                  | close()                  | | close()                  | close()                 |
+ * |                          |                          | |                          |                         |
+ * | // Deinitialize Winsock  | // Deinitialize Winsock  | | // Deinitialize Winsock  | // Deinitialize Winsock |
+ * | WSACleanup()             | WSACleanup()             | | WSACleanup()             | WSACleanup()            |
+ * +-----------------------------------------------------+ +----------------------------------------------------+
  */
 
 
@@ -314,25 +345,6 @@ xNAMESPACE_END2(xlib, net)
         sizeof(std::tstring_t::value_type), 0);
 
     sizeof(std::tstring_t::value_type)
-#endif
-
-#if xTODO
-    ---Server-----
-
-    Initialize Winsock.
-    Create a socket.
-    Bind the socket.
-    Listen on the socket for a client.
-    Accept a connection from a client.
-    Receive and send data.
-    Disconnect.
-    ---Client----
-
-    Initialize Winsock.
-    Create a socket.
-    Connect to the server.
-    Send and receive data.
-    Disconnect.
 #endif
 
 #if xTODO
