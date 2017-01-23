@@ -93,7 +93,7 @@ StackTrace::_get_impl(
             std::csize_t pos2 = functionName.find(xT(")"));
 
             if (pos1 != std::tstring_t::npos && pos2 != std::tstring_t::npos) {
-                _xVERIFY(pos1 < pos2);
+                STD_VERIFY(pos1 < pos2);
 
                 functionName = functionName.substr(0, pos1 + 1) + functionName.substr(pos2);
             }
@@ -153,14 +153,14 @@ StackTrace::_addr2Line(
     //// sprintf(addr2line_cmd,"atos -o %.256s %p", program_name, addr);
 
     FILE *file = ::popen(xT2A(cmdLine).c_str(), "r");
-    _xVERIFY(file != xPTR_NULL);
+    STD_VERIFY(file != xPTR_NULL);
 
     // get function name
     {
         tchar_t buff[1024 + 1] = {0};
 
         cptr_ctchar_t functionName = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
-        _xVERIFY(functionName != xPTR_NULL);
+        STD_VERIFY(functionName != xPTR_NULL);
 
         a_functionName->assign(functionName);
     }
@@ -170,7 +170,7 @@ StackTrace::_addr2Line(
         tchar_t buff[1024 + 1] = {0};
 
         cptr_ctchar_t fileAndLine = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
-        _xVERIFY(fileAndLine != xPTR_NULL);
+        STD_VERIFY(fileAndLine != xPTR_NULL);
 
        /**
         * Parse that variants of fileAndLine string:
@@ -180,17 +180,17 @@ StackTrace::_addr2Line(
         std::vec_tstring_t line;
 
         String::split(fileAndLine, xT(":"), &line);
-        _xVERIFY(line.size() == 2U);
+        STD_VERIFY(line.size() == 2U);
 
         // out
-        _xVERIFY(std::feof(file) == 0);
+        STD_VERIFY(std::feof(file) == 0);
 
         *a_filePath   = line.at(0);
         *a_sourceLine = String::cast<ulong_t>( line.at(1) );
     }
 
     int_t iRv = ::pclose(file);   file = xPTR_NULL;
-    _xVERIFY(iRv != - 1);
+    STD_VERIFY(iRv != - 1);
 #else
     xUNUSED(a_symbolAddress);
 

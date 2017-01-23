@@ -49,7 +49,7 @@ StackTrace::_get_impl(
     xCHECK_DO(framesNum == 0U, return);
 
     symbol = new (std::nothrow) SYMBOL_INFO[sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t)];
-    _xVERIFY(symbol != xPTR_NULL);
+    STD_VERIFY(symbol != xPTR_NULL);
     symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
     symbol->MaxNameLen   = 255UL;
 
@@ -116,7 +116,7 @@ StackTrace::_get_impl(
             std::csize_t pos2 = functionName.find(xT(")"));
 
             if (pos1 != std::tstring_t::npos && pos2 != std::tstring_t::npos) {
-                _xVERIFY(pos1 < pos2);
+                STD_VERIFY(pos1 < pos2);
 
                 functionName = functionName.substr(0, pos1 + 1) + functionName.substr(pos2);
             }

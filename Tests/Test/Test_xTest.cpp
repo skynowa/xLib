@@ -91,8 +91,8 @@ Test_xTest::unit()
 
     xTEST_CASE("xVERIFY")
     {
-        _xVERIFY(true);
-        // _xVERIFY(false);
+        STD_VERIFY(true);
+        // STD_VERIFY(false);
     }
 
     return true;
