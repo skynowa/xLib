@@ -6,6 +6,11 @@
 
 #pragma once
 
+// FreeBSD
+#if defined(__FreeBSD__)
+	#include <sys/sysctl.h>
+#endif
+
 // C library
 #include <cerrno>
 #include <ctime>
@@ -94,12 +99,13 @@
             std::cout \
                 << "\n" \
                 << "------------------- STD_VERIFY -------------------" << "\n" \
+                << " Module:     " << stdtest::modulePath()             << "\n" \
                 << " Expression: " << #expr                             << "\n" \
                 << " File:       " << __FILE__                          << "\n" \
                 << " Function:   " << __FUNCTION__                      << "\n" \
                 << " Line:       " << __LINE__                          << "\n" \
                 << " Last error: " << std::strerror(errno)              << "\n" \
-                << " Date time:  " << ::currentDateTime()               << "\n" \
+                << " Date time:  " << stdtest::currentDateTime()        << "\n" \
                 << "--------------------------------------------------" << "\n" \
                 << std::flush; \
             \
@@ -113,6 +119,7 @@
             std::cout \
                 << "\n" \
                 << "-------------------- STD_TEST --------------------" << "\n" \
+                << " Module:     " << stdtest::modulePath()             << "\n" \
                 << " Expression: " << #expr                             << "\n" \
                 << " File:       " << __FILE__                          << "\n" \
                 << " Function:   " << __FUNCTION__                      << "\n" \
@@ -167,6 +174,33 @@ currentDateTime()
     sRv.assign(&buff[0], uiRv);
 
     return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/**
+ * Get module path
+ */
+inline std::string
+modulePath()
+{
+	std::string srv;
+
+#if defined(KERN_PROC_PATHNAME)
+	const u_int mibSize            = 4;
+	int         mib[mibSize]       = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
+	char        buff[PATH_MAX + 1] = {0};
+	std::size_t buffSize           = sizeof(buff) - 1;
+
+	int irv = ::sysctl(mib, mibSize, buff, &buffSize, NULL, 0U);
+	if (irv == - 1) {
+		return std::string("<unknown>");
+	}
+
+	srv.assign(buff);
+#else
+	srv = "<unknown>";
+#endif
+
+	return srv;
 }
 //-------------------------------------------------------------------------------------------------
 
