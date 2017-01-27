@@ -123,6 +123,7 @@
 #include <xLib/Sync/Service.h>
 
 // System
+#include <xLib/System/CmdOptions.h>
 #include <xLib/System/Console.h>
 #include <xLib/System/Shell.h>
 #include <xLib/System/Environment.h>

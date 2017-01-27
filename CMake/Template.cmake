@@ -11,10 +11,10 @@ unset(cmXLIB_TEMPLATE_COMMENTS CACHE)
 unset(cmXLIB_TEMPLATE_SUBDIR   CACHE)
 unset(cmXLIB_TEMPLATE_NS       CACHE)
 
-set(cmXLIB_TEMPLATE          "Dropbox")
-set(cmXLIB_TEMPLATE_COMMENTS "Dropbox tools")
-set(cmXLIB_TEMPLATE_SUBDIR   "Package")
-set(cmXLIB_TEMPLATE_NS       "package")
+set(cmXLIB_TEMPLATE          "CmdOptions")
+set(cmXLIB_TEMPLATE_COMMENTS "Command-line options parser")
+set(cmXLIB_TEMPLATE_SUBDIR   "System")
+set(cmXLIB_TEMPLATE_NS       "system")
 
 if (NOT cmXLIB_TEMPLATE OR
     NOT cmXLIB_TEMPLATE_COMMENTS OR
@@ -32,10 +32,6 @@ configure_file(
 configure_file(
     ${XLIB_TEMPLATES}/[Class].cpp.in
     ${XLIB_LOCATION}/Include/xLib/${cmXLIB_TEMPLATE_SUBDIR}/${cmXLIB_TEMPLATE}.cpp)
-
-configure_file(
-    ${XLIB_TEMPLATES}/Test_[Class].h.in
-    ${XLIB_LOCATION}/Tests/${cmXLIB_TEMPLATE_SUBDIR}/Test_${cmXLIB_TEMPLATE}.h)
 
 configure_file(
     ${XLIB_TEMPLATES}/Test_[Class].cpp.in
