@@ -107,7 +107,7 @@ Backup::fileExec(
     // check for enough space
     {
         Volume volume(a_destDirPath);
-        bRv = volume.isSpaceEnough( File::size(a_filePath) );
+        bRv = volume.isSpaceEnough( static_cast<culonglong_t>( File::size(a_filePath) ));
         xCHECK_DO(!bRv, xTHROW_REPORT(errorNotEnoughFreeSpace));
     }
 
