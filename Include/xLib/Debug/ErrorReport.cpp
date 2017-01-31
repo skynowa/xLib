@@ -97,7 +97,7 @@ ErrorReport::_construct(
 #if   xENV_WIN
     _processId        = ::GetCurrentProcessId();
 #elif xENV_UNIX
-    _processId        = ::getpid();
+    _processId        = static_cast<ulong_t>( ::getpid() );
 #endif
     _threadId         = (ulong_t)Thread::currentId();
 
