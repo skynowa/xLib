@@ -37,7 +37,7 @@ Path::_exe_impl()
         asRv.resize(asRv.size() * 2);
     }
 
-    asRv.resize(readed);
+    asRv.resize( static_cast<std::size_t>(readed) );
 
     return xA2T(asRv);
 }
