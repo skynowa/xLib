@@ -102,17 +102,17 @@ Test_TcpClient::unit()
 			text.resize(256);
 
 			std::tcout << xT("> Input text: ");
-			std::tcin.getline(&text[0], text.size());
+			std::tcin.getline(&text[0], static_cast<std::streamsize>( text.size() ));
 
-			ssize_t iRv = tcpClient.send(text.c_str(), text.size(), 0);
-			xTEST_DIFF((ssize_t)xSOCKET_ERROR, iRv);
+			m_sstRv = tcpClient.send(text.c_str(), text.size(), 0);
+			xTEST_DIFF(m_sstRv, (ssize_t)xSOCKET_ERROR);
 		}
 	}
 
 	xTEST_CASE("receive")
 	{
-		m_iRv = tcpClient.receive(&recvBuff[0], xARRAY_SIZE(recvBuff), 0);
-		xTEST_DIFF(m_iRv, xSOCKET_ERROR)
+		m_sstRv = tcpClient.receive(&recvBuff[0], xARRAY_SIZE(recvBuff), 0);
+		xTEST_DIFF(m_sstRv, (ssize_t)xSOCKET_ERROR)
 	}
 
 	xTEST_CASE("close")

@@ -32,6 +32,7 @@ Unit::Unit() :
     m_usiRv (0),
     m_uiRv  (0U),
     m_stRv  (0),
+    m_sstRv (0),
     m_liRv  (0L),
     m_ulRv  (0),
     m_llRv  (0LL),
