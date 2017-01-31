@@ -187,8 +187,8 @@ Socket::sendAll(
         xCHECK_DO(iRv == xSOCKET_ERROR, break);
         xCHECK_DO(iRv == 0,             break);
 
-        currPos  += iRv;
-        leftSize -= iRv;
+        currPos  += static_cast<std::size_t>(iRv);
+        leftSize -= static_cast<std::size_t>(iRv);
 
         xCHECK_DO(leftSize < buffOutSize, buffOutSize = leftSize);
 
@@ -239,7 +239,7 @@ Socket::recvAll(
         ssize_t uiRv = ::recv(_handle, (char *)&buff[0], arg, 0);
         xCHECK_DO(uiRv <= 0, break);
 
-        sRv.append(buff, uiRv);
+        sRv.append(buff, static_cast<std::size_t>(uiRv));
     }
 
     return sRv;
@@ -302,7 +302,7 @@ Socket::sendBytes(
         xCHECK_RET(iRv < 0, nativeError());
 
         // send a few bytes
-        sendStatus = ::send(_handle, a_buff, messageLength, 0);
+        sendStatus = ::send(_handle, a_buff, static_cast<std::size_t>(messageLength), 0);
 
         // An error occurred when sending data
         xCHECK_RET(sendStatus < 0, nativeError());
@@ -344,7 +344,7 @@ Socket::receiveBytes(
         xCHECK_RET(iRv < 0, nativeError());
 
         // receive a few bytes
-        receiveStatus = ::recv(_handle, a_buff, stillToReceive, 0);
+        receiveStatus = ::recv(_handle, a_buff, static_cast<std::size_t>(stillToReceive), 0);
 
         // An error occurred when the function recv ()
         xCHECK_RET(receiveStatus < 0, nativeError());

@@ -48,7 +48,7 @@ Socket::_send_impl(
     xTEST_DIFF(iRv, ssize_t(xSOCKET_ERROR));
     xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
 
-    return iRv / sizeof(tchar_t);
+    return iRv / static_cast< ::ssize_t >( sizeof(tchar_t) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE ssize_t
@@ -63,7 +63,7 @@ Socket::_receive_impl(
     xTEST_DIFF(iRv, (ssize_t)0);  // gracefully closed
     xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
 
-    return iRv / sizeof(tchar_t);
+    return iRv / static_cast< ::ssize_t >( sizeof(tchar_t) );
 }
 //-------------------------------------------------------------------------------------------------
 
