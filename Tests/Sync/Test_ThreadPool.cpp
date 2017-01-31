@@ -55,7 +55,7 @@ PoolThread::onRun(
     for (std::size_t i = 0; i < 10; ++ i) {
         // interrupt point
         bRv = isTimeToExit();
-        xCHECK_DO(bRv, xT("\tPoolThread: break"));
+        xCHECK_DO(bRv, Trace() << xT("\tPoolThread: break") << tag());
         xCHECK_DO(bRv, break);
 
         // jobs
