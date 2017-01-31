@@ -106,8 +106,8 @@ Event::_wait_impl(
                 iRv = ::gettimeofday(&timeNow, xPTR_NULL);
                 xTEST_DIFF(iRv, - 1);
 
-                timeoutMsec.tv_sec  = timeNow.tv_sec + a_timeoutMs / 1000;
-                timeoutMsec.tv_nsec = timeNow.tv_usec * 1000 + (a_timeoutMs % 1000) * 1000000;
+                timeoutMsec.tv_sec  = timeNow.tv_sec + static_cast<time_t>(a_timeoutMs) / 1000;
+                timeoutMsec.tv_nsec = timeNow.tv_usec * 1000 + (static_cast<time_t>(a_timeoutMs) % 1000) * 1000000;
 
                 // handle overflow
                 if (timeoutMsec.tv_nsec >= 1000000000) {
