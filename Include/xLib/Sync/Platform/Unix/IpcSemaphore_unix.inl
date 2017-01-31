@@ -123,7 +123,7 @@ IpcSemaphore::_wait_impl(
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
         xTEST_DIFF(iRv, - 1);
 
-        (void_t)_Functor::timespecAddMsec(&tmsTimeout, a_timeoutMsec);
+        (void_t)_Functor::timespecAddMsec(&tmsTimeout, static_cast<long>(a_timeoutMsec));
     }
 
 #if 0
@@ -132,18 +132,18 @@ IpcSemaphore::_wait_impl(
         continue;
     }
 #else
-    int_t nativeError = 0;
+    int_t _nativeError = 0;
 
     for ( ; ; ) {
         iRv       = ::sem_timedwait(_handle, &tmsTimeout);
-        nativeError = errno;
+        _nativeError = errno;
 
-        xCHECK_DO(! (iRv == - 1 && nativeError == EINTR), break);
+        xCHECK_DO(! (iRv == - 1 && _nativeError == EINTR), break);
     }
 #endif
 
     if (iRv == - 1) {
-        if (ETIMEDOUT == nativeError) {
+        if (ETIMEDOUT == _nativeError) {
             // timeout
             xTEST_FAIL;
         } else {
