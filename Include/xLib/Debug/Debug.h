@@ -116,7 +116,8 @@
     ///< trace point (use Trace)
 #define xTRACE_FUNC \
     { \
-        xlib::debug::SourceInfo sourceInfo( {xFILE, xLINE, xFUNCTION, xCOUNTER} ); \
+        xlib::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        xlib::debug::SourceInfo      sourceInfo(data); \
         \
         xlib::log::Trace() \
             << xT("\t::: ")  << sourceInfo.data().funcName << xT(" :::"); \
