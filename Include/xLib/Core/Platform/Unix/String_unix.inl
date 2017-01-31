@@ -89,7 +89,7 @@ String::_toLowerCase_impl(
 {
     std::tstring_t sRv(a_str);
 
-    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), ToLower( xTLOCALE() ));
+    std::transform(sRv.begin(), sRv.begin() +  static_cast< ::ssize_t >(a_length), sRv.begin(), ToLower( xTLOCALE() ));
 
     return sRv;
 }
@@ -103,7 +103,7 @@ String::_toUpperCase_impl(
 {
     std::tstring_t sRv(a_str);
 
-    std::transform(sRv.begin(), sRv.begin() + a_length, sRv.begin(), ToUpper( xTLOCALE() ));
+    std::transform(sRv.begin(), sRv.begin() + static_cast< ::ssize_t >(a_length), sRv.begin(), ToUpper( xTLOCALE() ));
 
     return sRv;
 }

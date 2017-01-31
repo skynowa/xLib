@@ -756,9 +756,10 @@ StringCI::find(
     xCHECK_RET(a_str.empty() && a_target.empty() && a_pos == 0U, 0U);
     xCHECK_RET(a_target.empty(),                                 0U);
 
-    std::tstring_t::const_iterator cit = std::search(a_str.begin() + a_pos, a_str.end(),
+    std::tstring_t::const_iterator cit = std::search(
+        a_str.begin() + static_cast< ::ssize_t >(a_pos), a_str.end(),
         a_target.begin(), a_target.end(), CompareCI(a_locale));
-    xCHECK_RET(cit != a_str.end(), cit - a_str.begin());
+    xCHECK_RET(cit != a_str.end(), static_cast<std::size_t >(cit - a_str.begin()));
 
     return std::tstring_t::npos;
 }
