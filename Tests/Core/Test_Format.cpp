@@ -115,11 +115,11 @@ Test_Format::unit()
 
         // various string size
         for (size_t i = 1; i < 1024 * 2; ++ i) {
-            std::ctstring_t data(i, xT('s'));
+            std::ctstring_t _data(i, xT('s'));
 
-            m_sRv = FormatC::str(xT("%s"), data.c_str());
-            xTEST_EQ(m_sRv.size(), data.size());
-            xTEST_EQ(m_sRv,        data);
+            m_sRv = FormatC::str(xT("%s"), _data.c_str());
+            xTEST_EQ(m_sRv.size(), _data.size());
+            xTEST_EQ(m_sRv,        _data);
         }
     }
 
@@ -357,7 +357,7 @@ Test_Format::unit()
         {
             std::ustring_t value;
             value.push_back('z');
-            value.push_back('\xa0');
+            value.push_back( static_cast<uchar_t>('\xa0'));
             value.push_back('\t');
             value.push_back('\n');
             value.push_back('\v');
@@ -373,7 +373,7 @@ Test_Format::unit()
 
     xTEST_CASE("Array")
     {
-        Array<int_t, 5> value {2, 16, 77, 34, 50};
+        Array<int_t, 5> value = {{2, 16, 77, 34, 50}};
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 16, 77, 34, 50}")));
