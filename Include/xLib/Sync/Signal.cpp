@@ -104,7 +104,7 @@ Signal::connect(
             break;
         }
 
-		int_t iRv = ::sigaction(*it, &action, xPTR_NULL);
+		iRv = ::sigaction(*it, &action, xPTR_NULL);
 		xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(*it)));
     }
 }
@@ -193,7 +193,7 @@ Signal::connectInfo(
             break;
         }
 
-		int_t iRv = ::sigaction(*it, &action, xPTR_NULL);
+		iRv = ::sigaction(*it, &action, xPTR_NULL);
 		xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(*it)));
     }
 }
@@ -382,7 +382,7 @@ Signal::infoDescription(
 				signalInfo.codeStr,
 				signalInfo.code,
 				signalInfo.description,
-				NativeError::format(a_info.si_errno));
+				NativeError::format( static_cast<ulong>(a_info.si_errno)) );
 
 		break;
 	}
@@ -403,7 +403,7 @@ Signal::infoDescription(
 				signalInfo.codeStr,
 				signalInfo.code,
 				signalInfo.description,
-				NativeError::format(a_info.si_errno));
+				NativeError::format( static_cast<ulong>(a_info.si_errno)) );
 
 		break;
 	}

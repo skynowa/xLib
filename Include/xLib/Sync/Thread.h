@@ -186,7 +186,7 @@ private:
         ///< exit timeout (msec)
 
     // thread data
-    volatile long_t _tag;           ///< data tag
+    volatile ulong_t _tag;           ///< data tag
 
 #if   xENV_WIN
     Handle        _handle;        ///< native handle
