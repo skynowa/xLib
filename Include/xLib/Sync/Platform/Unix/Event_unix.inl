@@ -18,10 +18,10 @@ Event::_dectruct_impl()
     int_t iRv = - 1;
 
     iRv = ::pthread_cond_destroy(&_cond);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
 
     iRv = ::pthread_mutex_destroy(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE const Event::handle_t &
@@ -37,10 +37,10 @@ Event::_create_impl()
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_mutex, xPTR_NULL);   // mutex not recursive
-    xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
 
     iRv = ::pthread_cond_init(&_cond, xPTR_NULL);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -49,22 +49,22 @@ Event::_set_impl()
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
 
     {
         if (_isAutoReset) {
             iRv = ::pthread_cond_signal(&_cond);
-            xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+            xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
         } else {
             iRv = ::pthread_cond_broadcast(&_cond);
-            xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+            xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
         }
 
         _isSignaled = true;
     }
 
     iRv = ::pthread_mutex_unlock(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
 
 }
 //-------------------------------------------------------------------------------------------------
@@ -74,14 +74,14 @@ Event::_reset_impl()
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
 
     {
         _isSignaled = false;
     }
 
     iRv = ::pthread_mutex_unlock(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE Event::ExObjectState
@@ -94,7 +94,7 @@ Event::_wait_impl(
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
 
     {
         // if (!_isSignaled) {
@@ -156,7 +156,7 @@ Event::_wait_impl(
     }
 
     iRv = ::pthread_mutex_unlock(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format(iRv));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
 
     return osRv;
 }
