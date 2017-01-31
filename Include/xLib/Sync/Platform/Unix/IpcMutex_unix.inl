@@ -81,7 +81,7 @@ IpcMutex::_lock_impl(
         iRv = ::clock_gettime(CLOCK_REALTIME, &timeoutMsec);
         xTEST_DIFF(iRv, - 1);
 
-        (void_t)_Functor::timespecAddMsec(&timeoutMsec, a_timeoutMsec);
+        (void_t)_Functor::timespecAddMsec(&timeoutMsec, static_cast<long>(a_timeoutMsec));
     }
 
     while ((iRv = ::sem_timedwait(_handle, &timeoutMsec)) == - 1 && (errno == EINTR)) {
