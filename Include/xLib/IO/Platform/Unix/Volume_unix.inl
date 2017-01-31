@@ -77,9 +77,9 @@ Volume::_space_impl(
     int_t iRv = xSTATVFS(xT2A(a_dirPath).c_str(), &info);
     xTEST_DIFF(iRv, - 1);
 
-    Utils::ptrAssignT(a_available, static_cast<ulonglong_t>( info.f_bavail * info.f_bsize ));
-    Utils::ptrAssignT(a_total,     static_cast<ulonglong_t>( info.f_blocks * info.f_bsize ));
-    Utils::ptrAssignT(a_free,      static_cast<ulonglong_t>( info.f_bfree  * info.f_bsize ));
+    Utils::ptrAssignT(a_available, static_cast<ulonglong_t>( info.f_bavail * static_cast<ulonglong_t>(info.f_bsize) ));
+    Utils::ptrAssignT(a_total,     static_cast<ulonglong_t>( info.f_blocks * static_cast<ulonglong_t>(info.f_bsize) ));
+    Utils::ptrAssignT(a_free,      static_cast<ulonglong_t>( info.f_bfree  * static_cast<ulonglong_t>(info.f_bsize) ));
 }
 //-------------------------------------------------------------------------------------------------
 
