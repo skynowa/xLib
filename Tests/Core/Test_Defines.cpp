@@ -209,7 +209,7 @@ Test_Defines::unit()
         };
 
         A a;
-        A::FileMode_t mode = a.textMode();
+        A::cFileMode_t mode = a.textMode();
         xTEST_EQ((int)mode, (int)A::FileMode::Text);
     }
 
