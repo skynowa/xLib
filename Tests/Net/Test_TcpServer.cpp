@@ -46,7 +46,7 @@ Test_TcpServer::unit()
         ssize_t iRv = objClientSocket.receive(&szRecvBuff[0], xARRAY_SIZE(szRecvBuff), 0);
         xTEST_DIFF(iRv, (ssize_t)xSOCKET_ERROR);
 
-        std::tcout << std::tstring_t(szRecvBuff, iRv) << std::endl;
+        std::tcout << std::tstring_t(szRecvBuff, static_cast<std::size_t>(iRv)) << std::endl;
     }
 
     objClientSocket.close();

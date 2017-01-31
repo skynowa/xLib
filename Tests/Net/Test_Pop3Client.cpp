@@ -58,7 +58,7 @@ Test_Pop3Client::unit()
     std::size_t          ulMsgID    = 1;
     std::vector<ulong_t> veculList;
     ////std::size_t              ulIndex    = 1;
-    int_t                iNum       = 1;
+    std::size_t          uiNum      = 1;
     std::ctstring_t      csDirPath  = xT("C:/Temp2");
     std::ctstring_t      csFileName = xT("MailFileName");
 
@@ -115,7 +115,7 @@ Test_Pop3Client::unit()
         //////MimeHeader
         ////MimeHeader objHeader;
 
-        ////m_bRv = objPop3.top(iNum, 0, /*ref*/sRawHeader);
+        ////m_bRv = objPop3.top(uiNum, 0, /*ref*/sRawHeader);
         ////xTEST_EQ(m_bRv, true);
         /////*LOG*/printf("bTop %i\n", i);
 
@@ -148,7 +148,7 @@ Test_Pop3Client::unit()
     for (std::size_t i = 1; i <= ulSum; i ++) {
         MimeHeader mhMimeHeader;
 
-        objPop3.retrieveHeader(iNum, mhMimeHeader);
+        objPop3.retrieveHeader(uiNum, mhMimeHeader);
         /*LOG*/printf("retrieveHeader %lu\n", i);
     }
 
