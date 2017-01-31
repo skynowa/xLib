@@ -192,13 +192,13 @@ Test_Utils::unit()
 
     xTEST_CASE("maxT")
     {
-        m_uiRv = Utils::maxT(0, 1);
+        m_uiRv = Utils::maxT(0U, 1U);
         xTEST_EQ(1U, m_uiRv);
     }
 
     xTEST_CASE("minT")
     {
-        m_uiRv = Utils::minT(5, 8);
+        m_uiRv = Utils::minT(5U, 8U);
         xTEST_EQ(5U, m_uiRv);
     }
 
@@ -232,7 +232,7 @@ Test_Utils::unit()
         };
 
         for (size_t i = 0; i < Utils::arraySizeT(cdData); ++ i) {
-            cbool_t bRv  = !!( cdData[i][2] );
+            cbool_t bRv  = static_cast<bool_t>( cdData[i][2] );
             m_bRv = Utils::doubleIsEqual(cdData[i][0], cdData[i][1]);
             xTEST_EQ(m_bRv, bRv);
         }
