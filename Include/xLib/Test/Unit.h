@@ -44,6 +44,7 @@ public:
     ushort_t            m_usiRv;     ///< for global use
     uint_t              m_uiRv;      ///< for global use
     size_t              m_stRv;      ///< for global use
+    ssize_t             m_sstRv;     ///< for global use
     long_t              m_liRv;      ///< for global use
     ulong_t             m_ulRv;      ///< for global use
     longlong_t          m_llRv;      ///< for global use

@@ -20,15 +20,19 @@ Test_CmdOptions::unit()
     xTEST_CASE("CmdOptions::CmdOptions")
     {
 		std::vector<CmdOptionsUsage> usage;
-		usage.push_back(
-			{
-				CmdOptionsUsage::Enabled,
-				CmdOptionsUsage::Mandatory,
-				"c",
-				"create",
-				"",
-				"--create  Tells the program to create something."
-			});
+        {
+            cCmdOptionsUsage cmdOption =
+            {
+                CmdOptionsUsage::Enabled,
+                CmdOptionsUsage::Mandatory,
+                "c",
+                "create",
+                "",
+                "--create  Tells the program to create something."
+            };
+
+            usage.push_back(cmdOption);
+        }
 
 		cint_t        argc       = 3;
 		cptr_ctchar_t argv[argc] = {"a=1 b=2 c=3"};
