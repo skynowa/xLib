@@ -23,13 +23,13 @@ xNAMESPACE_BEGIN2(xlib, ui)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
-const int16_t title_padding  = 8;
-const int16_t left_default   = 32;
-const int16_t top_default    = 32;
-const int16_t width_default  = 300;
-const int16_t height_default = 150;
-const int16_t border_width   = 10;
-const int16_t lineIndent     = 24;
+const int16_t  title_padding  = 8;
+const int16_t  left_default   = 32;
+const int16_t  top_default    = 32;
+const uint32_t width_default  = 300;
+const uint32_t height_default = 150;
+const int16_t  border_width   = 10;
+const int16_t  lineIndent     = 24;
 
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
@@ -181,25 +181,25 @@ XcbMsgBox::_autoResize(
         return;
     }
 
-    int16_t width = 0;
+    uint32_t width = 0;
     {
         // TODO: XcbMsgBox - fontWidth, calc
-        const int16_t fontWidth = 6;
+        const uint32_t fontWidth = 6;
 
         if ( a_text.empty() ) {
             if ( a_title.empty() ) {
                 width = width_default;
             } else {
-                width = a_title.size() + title_padding * 2;
+                width = static_cast<uint32_t>( a_title.size() ) + title_padding * 2;
                 width = width * fontWidth + left_default * 2;
             }
         } else {
             std::csize_t widthMax = std::max_element(a_text.begin(), a_text.end(), MaxElementComp())->size();
 
             if (a_title.size() > widthMax) {
-                width = a_title.size() + title_padding * 2;
+                width = static_cast<uint32_t>( a_title.size() ) + title_padding * 2;
             } else {
-                width = widthMax;
+                width = static_cast<uint32_t>( widthMax );
             }
 
             width = width * fontWidth + left_default * 2;
@@ -211,9 +211,9 @@ XcbMsgBox::_autoResize(
         }
     }
 
-    int16_t height = 0;
+    uint32_t height = 0;
     {
-        height = a_text.size() * lineIndent + top_default * 2;
+        height = static_cast<uint32_t>( a_text.size() ) * lineIndent + top_default * 2;
 
         // fix max screen height
         if (height > _screen->height_in_pixels) {
@@ -390,7 +390,8 @@ XcbMsgBox::_fontGContext(
     xcb_void_cookie_t cookieFont = {};
     {
         fontId     = ::xcb_generate_id(_conn);
-        cookieFont = ::xcb_open_font_checked(_conn, fontId, a_fontName.size(), xT2A(a_fontName).c_str());
+        cookieFont = ::xcb_open_font_checked(_conn, fontId,
+            static_cast<uint16_t>( a_fontName.size() ), xT2A(a_fontName).c_str());
 
         _error = ::xcb_request_check(_conn, cookieFont);
         xTEST(_error == xPTR_NULL);
@@ -420,11 +421,11 @@ XcbMsgBox::_fontGContext(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 XcbMsgBox::_resize(
-    const int16_t &a_width,
-    const int16_t &a_height
+    const uint32_t &a_width,
+    const uint32_t &a_height
 )
 {
-    const uint32_t values[] = {static_cast<uint32_t>(a_width), static_cast<uint32_t>(a_height)};
+    const uint32_t values[] = {a_width, a_height};
 
     _cookie = ::xcb_configure_window(_conn, _windowId,
         XCB_CONFIG_WINDOW_WIDTH | XCB_CONFIG_WINDOW_HEIGHT, values);
@@ -442,8 +443,8 @@ XcbMsgBox::_setTextLine(
 
     xcb_gcontext_t gcontext = _fontGContext(xT("fixed"));
 
-    cookie_text = ::xcb_image_text_8_checked(_conn, a_text.size(), _windowId, gcontext,
-        a_left, a_top, xT2A(a_text).c_str());
+    cookie_text = ::xcb_image_text_8_checked(_conn, static_cast<uint8_t>( a_text.size() ),
+        _windowId, gcontext, a_left, a_top, xT2A(a_text).c_str());
 
     _error = ::xcb_request_check(_conn, cookie_text);
     xTEST(_error == xPTR_NULL);
