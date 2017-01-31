@@ -92,7 +92,7 @@ ProcessInfo::_parentId_impl() const
 xINLINE long_t
 ProcessInfo::_commandLineArgsMax_impl()
 {
-    long_t liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
+    long_t liRv = ::sysconf(_SC_ARG_MAX) / static_cast< ::ssize_t >( sizeof(std::tstring_t::value_type) );
     xTEST_DIFF(liRv, - 1L);
 
     return liRv;
