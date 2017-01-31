@@ -86,7 +86,7 @@ FormatC::strV(
         STD_VERIFY(iRv > - 1);
         STD_VERIFY(iRv == static_cast<int_t>(buffSize) - 1);
 
-        buff.resize(iRv);
+        buff.resize( static_cast<std::size_t>(iRv) );
     }
 
     return buff;
@@ -159,7 +159,7 @@ Format::_format(
     const wchar_t         a_value   ///< value
 )
 {
-    if ( ::iswprint(a_value) ) {
+    if ( ::iswprint(  static_cast<wint_t>(a_value) ) ) {
         a_ss << static_cast<tchar_t>(a_value);
     } else {
         a_ss << _formatUnprintableChar(a_value);
@@ -343,7 +343,7 @@ Format::_format(
     sRv.reserve( a_value.size() );
 
     for (size_t i = 0; i < a_value.size(); ++ i) {
-        if ( ::iswprint(a_value[i]) ) {
+        if ( ::iswprint( static_cast<wint_t>(a_value[i])) ) {
             sRv += static_cast<tchar_t>( a_value[i] );
         } else {
             sRv += _formatUnprintableChar( a_value[i] );

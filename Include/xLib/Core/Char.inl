@@ -183,7 +183,7 @@ Char<T>::symbol()
         return data[_ch].symbol;
     }
 
-    return std::tstring_t(1, _ch);
+    return std::tstring_t(1,  static_cast<tchar_t>(_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 
