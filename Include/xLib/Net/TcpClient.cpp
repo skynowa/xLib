@@ -52,7 +52,7 @@ TcpClient::connect(
     xTEST_EQ((65535 > a_port) && (0 < a_port), true);
 
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
-    sockAddr.sin_family      = _family;
+    sockAddr.sin_family      = static_cast<ushort_t>(_family);
     sockAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_ip).c_str());
     sockAddr.sin_port        = htons(a_port); // TODO: TcpClient::connect() - htons
 
@@ -69,7 +69,7 @@ TcpClient::ioctl(
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _handle);
 
-    int_t iRv = xIOCTLSOCKET(_handle, a_command, a_args);
+    int_t iRv = xIOCTLSOCKET(_handle, static_cast<ulong_t>(a_command), a_args);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 }
 //-------------------------------------------------------------------------------------------------
