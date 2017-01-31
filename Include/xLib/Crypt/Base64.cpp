@@ -102,16 +102,16 @@ Base64::decode(
     int         inSize        = static_cast<int>( a_str.size() );
     int         i             = 0;
     int         j             = 0;
-    int         in            = 0;
+    std::size_t in            = 0;
     uchar_t     charArray4[4] = {0};
     uchar_t     charArray3[3] = {0};
 
-    while (inSize -- && (a_str[in] != '=') && _isValid( a_str[in] )) {
-        charArray4[i ++] = a_str[in];
+    while (inSize -- && (a_str[in] != '=') && _isValid( static_cast<cuchar_t>( a_str[in] ) )) {
+        charArray4[i ++] = static_cast<cuchar_t>( a_str[in] );
         in ++;
         if (i == 4) {
             for (i = 0; i < 4; ++ i) {
-                charArray4[i] = static_cast<uchar_t>( ::base64Chars.find(charArray4[i]) );
+                charArray4[i] = static_cast<uchar_t>( ::base64Chars.find( static_cast<ctchar_t>(charArray4[i]) ) );
             }
 
             charArray3[0] = static_cast<uchar_t>( (charArray4[0] << 2)         + ((charArray4[1] & 0x30) >> 4) );
@@ -119,7 +119,7 @@ Base64::decode(
             charArray3[2] = static_cast<uchar_t>( ((charArray4[2] & 0x3) << 6) + charArray4[3] );
 
             for (i = 0; (i < 3); ++ i) {
-                sRv += charArray3[i];
+                sRv += static_cast<ctchar_t>( charArray3[i] );
             }
 
             i = 0;
@@ -132,7 +132,7 @@ Base64::decode(
         }
 
         for (j = 0; j < 4; ++ j) {
-            charArray4[j] = static_cast<uchar_t>( ::base64Chars.find(charArray4[j]) );
+            charArray4[j] = static_cast<uchar_t>( ::base64Chars.find( static_cast<ctchar_t>( charArray4[j] )) );
         }
 
         charArray3[0] = static_cast<uchar_t>( (charArray4[0] << 2)         + ((charArray4[1] & 0x30) >> 4) );
@@ -140,7 +140,7 @@ Base64::decode(
         charArray3[2] = static_cast<uchar_t>( ((charArray4[2] & 0x3) << 6) + charArray4[3] );
 
         for (j = 0; (j < i - 1); ++ j) {
-            sRv += charArray3[j];
+            sRv += static_cast<ctchar_t>( charArray3[j] );
         }
     }
 
