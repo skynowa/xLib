@@ -120,7 +120,7 @@ Process::_isCurrent_impl(
     const Process::id_t &a_id
 )
 {
-    bool_t bRv = ::pthread_equal(currentId(), a_id);
+    bool_t bRv = ::pthread_equal(static_cast<pthread_t>( currentId() ), a_id);
 
     return bRv;
 }
