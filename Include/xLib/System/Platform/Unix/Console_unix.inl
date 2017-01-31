@@ -211,9 +211,9 @@ Console::_setStdinEcho_impl(
     xTEST_DIFF(iRv, -1);
 
     if (a_isEnable) {
-        tty.c_lflag |= ECHO;
+        tty.c_lflag |= static_cast<uint_t>(ECHO);
     } else {
-        tty.c_lflag &= ~ECHO;
+        tty.c_lflag &= static_cast<uint_t>(~ECHO);
     }
 
     iRv = ::tcsetattr(STDIN_FILENO, TCSANOW, &tty);
