@@ -39,7 +39,7 @@ Test_Debug::unit()
 			{
 			}
 
-			long_t exec(cbool_t &a_flag)
+			ulong_t exec(cbool_t &a_flag)
 			{
 				if (a_flag) {
 					xCHECK_DO(!a_flag, return val0; );
