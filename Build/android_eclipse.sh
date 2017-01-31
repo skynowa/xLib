@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # \file  android_makefile.sh
-# \brief build tests
+# \brief build project
 #
 
 

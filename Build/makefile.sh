@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# \file  makefile_gcc.sh
-# \brief build tests
+# \file  makefile.sh
+# \brief build project
 #
 
 

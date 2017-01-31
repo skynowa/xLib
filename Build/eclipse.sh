@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# \file  eclipse_gcc.sh
-# \brief build tests
+# \file  eclipse.sh
+# \brief build project
 #
 
 
