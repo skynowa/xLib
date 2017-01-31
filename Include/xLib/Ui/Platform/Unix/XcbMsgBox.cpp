@@ -139,7 +139,7 @@ XcbMsgBox::_setTitle(
 )
 {
     _cookie = ::xcb_change_property(_conn, XCB_PROP_MODE_REPLACE, _windowId, XCB_ATOM_WM_NAME,
-        XCB_ATOM_STRING, 8, a_text.size(), a_text.c_str());
+        XCB_ATOM_STRING, 8, static_cast<uint32_t>( a_text.size() ), a_text.c_str());
     xTEST_GR(_cookie.sequence, 0U);
 
     int_t iRv = ::xcb_flush(_conn);
