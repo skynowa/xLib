@@ -168,14 +168,14 @@ Test_DnsClient::unit()
 
     xTEST_CASE("serviceByPort")
     {
-        short_t            csiPort  = 20480;
+        ushort_t           port  = 20480;
         ctchar_t           cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
         std::tstring_t     sName;
         std::vec_tstring_t vsAliases;
         short_t            siPort = - 1;
         std::tstring_t     sProtocolName;
 
-        DnsClient::serviceByPort(csiPort, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
+        DnsClient::serviceByPort(port, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 
         //std::tcout << xT("[serviceByPort]: ") << std::endl;
         //std::tcout << xT("    sName:         ") << sName << std::endl;
