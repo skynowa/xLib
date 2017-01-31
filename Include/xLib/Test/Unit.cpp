@@ -114,7 +114,7 @@ Unit::unit() /* = 0 */
 #if 1
     xTEST_CASE("CaseName")
     {
-        std::ctstring_t data[][2] =
+        std::ctstring_t testData[][2] =
         {
             {xT("TEST_STRING_1"), xT("MUST_BE_1")},
             {xT("TEST_STRING_2"), xT("MUST_BE_2")},
@@ -122,7 +122,7 @@ Unit::unit() /* = 0 */
             {xT("TEST_STRING_4"), xT("MUST_BE_4")}
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+        for (size_t i = 0; i < xARRAY_SIZE(testData); ++ i) {
 
         }
     }

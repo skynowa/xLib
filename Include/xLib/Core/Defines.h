@@ -732,10 +732,10 @@
 ///@{
 #define xTHROW_REPORT(msg) \
     { \
-        culong_t         nativeError = NativeError::get(); \
-        SourceInfoData   data        = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
-        SourceInfo       sourceInfo(data); \
-        std::ctstring_t &stackTrace  = StackTrace().toString(); \
+        culong_t         nativeError    = NativeError::get(); \
+        SourceInfoData   sourceInfoData = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        SourceInfo       sourceInfo(sourceInfoData); \
+        std::ctstring_t &stackTrace     = StackTrace().toString(); \
         \
         ErrorReport report(nativeError, sourceInfo, stackTrace, msg); \
         \
