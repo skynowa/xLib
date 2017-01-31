@@ -6,11 +6,13 @@
 
 
 # vars
-# export CC="gcc"
-# export CXX="g++"
+export CC="gcc"
+export CXX="g++"
+# export CC="clang"
+# export CXX="clang++"
 
 DIR_XLIB="../xLib"
-DIR_BUILD="../../xLib_eclipse_gcc"
+DIR_BUILD="../../xLib_eclipse"
 
 
 # build
@@ -29,8 +31,8 @@ DIR_BUILD="../../xLib_eclipse_gcc"
 
 mkdir -p $DIR_BUILD
 cd $DIR_BUILD
-cmake -G "Eclipse CDT4 - Unix Makefiles" \
+cmake \
+	-G"Eclipse CDT4 - Unix Makefiles" \
 	-D_ECLIPSE_VERSION=4.3 \
 	-DCMAKE_ECLIPSE_GENERATE_SOURCE_PROJECT=TRUE \
-	-DCMAKE_ECLIPSE_MAKE_ARGUMENTS=-j4 \
 	$DIR_XLIB
