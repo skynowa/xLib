@@ -675,7 +675,7 @@ DateTime::daysInMonth(
         31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
     }};
 
-    return monthsDays[a_month];
+    return monthsDays[ static_cast<std::size_t>(a_month) ];
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -812,7 +812,7 @@ DateTime::monthStr(
             xT("December")
         }};
 
-        sRv = longMonths[a_month];
+        sRv = longMonths[ static_cast<std::size_t>(a_month) ];
     } else {
         // months numbering: 0-11
         const Array<std::tstring_t, monthMax + 1> shortMonths =
@@ -831,7 +831,7 @@ DateTime::monthStr(
             xT("Dec")
         }};
 
-        sRv = shortMonths[a_month];
+        sRv = shortMonths[ static_cast<std::size_t>(a_month) ];
     }
 
     return sRv;
@@ -883,9 +883,9 @@ DateTime::monthNum(
 
     for (int_t i = 0; i < static_cast<int_t>( longMonths.size() ); ++ i) {
         if (a_isShortName) {
-            xCHECK_RET(StringCI::compare(a_month, shortMonths[i]), i);
+            xCHECK_RET(StringCI::compare(a_month, shortMonths[ static_cast<std::size_t>(i) ]), i);
         } else {
-            xCHECK_RET(StringCI::compare(a_month, longMonths[i]),  i);
+            xCHECK_RET(StringCI::compare(a_month, longMonths[ static_cast<std::size_t>(i) ]),  i);
         }
     }
 
@@ -918,7 +918,7 @@ DateTime::weekDayStr(
             xT("Saturday")
         }};
 
-        sRv = longDays[a_week_day];
+        sRv = longDays[ static_cast<std::size_t>(a_week_day) ];
     } else {
         const Array<std::tstring_t, weekDayMax + 1> shortDays =
         {{
@@ -931,7 +931,7 @@ DateTime::weekDayStr(
             xT("Sat")
         }};
 
-        sRv = shortDays[a_week_day];
+        sRv = shortDays[ static_cast<std::size_t>(a_week_day) ];
     }
 
     return sRv;
@@ -970,8 +970,8 @@ DateTime::weekDayNum(
     }};
 
     for (int_t i = 0; i < static_cast<int_t>( longDays.size() ); ++ i) {
-        xCHECK_RET(!a_isShortName && StringCI::compare(a_week_day, longDays[i]),  i);
-        xCHECK_RET( a_isShortName && StringCI::compare(a_week_day, shortDays[i]), i);
+        xCHECK_RET(!a_isShortName && StringCI::compare(a_week_day, longDays[ static_cast<std::size_t>(i) ]),  i);
+        xCHECK_RET( a_isShortName && StringCI::compare(a_week_day, shortDays[ static_cast<std::size_t>(i) ]), i);
     }
 
     return - 1;
