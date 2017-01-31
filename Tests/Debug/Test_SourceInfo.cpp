@@ -18,15 +18,16 @@ Test_SourceInfo::unit()
 {
     xTEST_CASE("all")
     {
-        SourceInfo sourceInfo( {xFILE, xLINE, xFUNCTION, xCOUNTER} );
+        cSourceInfoData _sourceInfoData = {xFILE, xLINE, xFUNCTION, xCOUNTER};
+        SourceInfo      _sourceInfo(_sourceInfoData);
 
-        xTEST_EQ(sourceInfo.data().filePath.empty(), false);
-        xTEST_GR(sourceInfo.data().lineNum, 0UL);
-        xTEST_EQ(sourceInfo.data().funcName.empty(), false);
-        xTEST_GR(sourceInfo.data().counter, 0UL);
-        xTEST_EQ(sourceInfo.format().empty(), false);
+        xTEST_EQ(_sourceInfo.data().filePath.empty(), false);
+        xTEST_GR(_sourceInfo.data().lineNum, 0UL);
+        xTEST_EQ(_sourceInfo.data().funcName.empty(), false);
+        xTEST_GR(_sourceInfo.data().counter, 0UL);
+        xTEST_EQ(_sourceInfo.format().empty(), false);
 
-        // Trace() << sourceInfo.format();
+        // Trace() << _sourceInfoData.format();
     }
 
     return true;
