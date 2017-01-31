@@ -203,7 +203,7 @@ User::_passwd(
 
     struct passwd pwBuff; xSTRUCT_ZERO(pwBuff);
     std::string   buff;
-    buff.resize(buffSize);
+    buff.resize( static_cast<std::size_t>(buffSize) );
 
     int_t iRv = ::getpwuid_r(userId, &pwBuff, &buff.at(0), buff.size(), &pwRv);
     xTEST_EQ(iRv, 0);
