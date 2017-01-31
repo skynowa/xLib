@@ -53,10 +53,12 @@ bug_StackOverflow();
 xNO_INLINE bool_t
 Failer::bug_StackOverflow()
 {
-	int foo[1000];
+	int foo[1000000];
 
-	(void)foo;
-	bug_StackOverflow();
+#if xTEMP_DISABLED
+    (void)foo;
+    bug_StackOverflow();
+#endif
 
 	return true;
 }
@@ -118,6 +120,8 @@ public:
     onRun() xOVERRIDE
     {
         Failer().bug();
+
+        return 0;
     }
 
 private:
