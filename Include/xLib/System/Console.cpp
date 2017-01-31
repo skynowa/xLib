@@ -145,7 +145,9 @@ Console::msgBox(
     writeLine();
     write(Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "), cmdAbort, cmdIgnore, cmdRetry));
 
-    ctchar_t consoleCmd = CharT( std::tcin.get() ).toLower();   std::tcin.ignore();
+    ctchar_t consoleCmd = static_cast<ctchar_t>( CharT( std::tcin.get() ).toLower() );
+    std::tcin.ignore();
+
     switch (consoleCmd) {
     case cmdAbort:
         mrRv = mrAbort;
@@ -186,7 +188,7 @@ Console::prompt(
         write(a_prompt + xT(": "));
 
         for ( ; ; ) {
-            ctchar_t ch = std::tcin.get();
+            ctchar_t ch = static_cast<ctchar_t>( std::tcin.get() );
             xCHECK_DO(ch == 10, break);	// ENTER
             xCHECK_DO(ch == 0x8, a_answer->clear(); continue);	// BACKSPACE
 
@@ -264,7 +266,7 @@ Console::_msgBoxLine(
 
 	std::tstring_t line = paddingLeft + a_text;
 
-	::ssize_t delta = a_width - line.size();
+	::ssize_t delta = static_cast< ::size_t >(a_width - line.size());
 	if (delta < 0) {
 		line.resize(a_width - padingRight.size() - dot3.size());	// set padding
 		line += dot3;
