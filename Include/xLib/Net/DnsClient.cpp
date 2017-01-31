@@ -114,8 +114,7 @@ DnsClient::localHostName(
 
     std::string asRv(xHOST_NAME_MAX, '0');
 
-    int_t iRv = ::gethostname(&asRv.at(0), static_cast<int_t>( asRv.size() *
-        sizeof(std::string::value_type) ));
+    int_t iRv = ::gethostname(&asRv.at(0), (asRv.size() * sizeof(std::string::value_type) ));
     xTEST_EQ(iRv, 0);
 
     asRv.assign(asRv.c_str());    // trim '0' from end
