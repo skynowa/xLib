@@ -35,7 +35,7 @@ ProcessInfo::_exeName_impl() const
         asRv.resize(asRv.size() * 2);
     }
 
-    asRv.resize(readed);
+    asRv.resize( static_cast<std::size_t>(readed) );
 
     return xA2T(asRv);
 }
