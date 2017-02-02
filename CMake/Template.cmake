@@ -11,10 +11,10 @@ unset(cmXLIB_TEMPLATE_COMMENTS CACHE)
 unset(cmXLIB_TEMPLATE_SUBDIR   CACHE)
 unset(cmXLIB_TEMPLATE_NS       CACHE)
 
-set(cmXLIB_TEMPLATE          "CmdOptions")
-set(cmXLIB_TEMPLATE_COMMENTS "Command-line options parser")
-set(cmXLIB_TEMPLATE_SUBDIR   "System")
-set(cmXLIB_TEMPLATE_NS       "system")
+set(cmXLIB_TEMPLATE          "IData")
+set(cmXLIB_TEMPLATE_COMMENTS "Data struct")
+set(cmXLIB_TEMPLATE_SUBDIR   "Package")
+set(cmXLIB_TEMPLATE_NS       "package")
 
 if (NOT cmXLIB_TEMPLATE OR
     NOT cmXLIB_TEMPLATE_COMMENTS OR
