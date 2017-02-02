@@ -8,8 +8,6 @@
     #include "Algos.h"
 #endif
 
-#include <xLib/Debug/StackTrace.h>
-
 
 xNAMESPACE_BEGIN2(xlib, core)
 
