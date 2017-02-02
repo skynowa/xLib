@@ -19,7 +19,6 @@ Test_CmdOptions::unit()
 {
     xTEST_CASE("CmdOptions::CmdOptions")
     {
-    #if 0
         std::vector<CmdOptionsUsage> usage;
         {
             cCmdOptionsUsage cmdOption =
@@ -40,7 +39,6 @@ Test_CmdOptions::unit()
 
         CmdOptions cmdOptions;
         cmdOptions.parse(argc, argv, usage);
-    #endif
     }
 
     return true;

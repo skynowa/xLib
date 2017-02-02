@@ -8,10 +8,8 @@
     #include "CmdOptions.h"
 #endif
 
-#if 0
-    #include <xLib/System/ProcessInfo.h>
-    #include <xLib/Log/Trace.h>
-#endif
+#include <xLib/System/ProcessInfo.h>
+#include <xLib/Log/Trace.h>
 
 
 xNAMESPACE_BEGIN2(xlib, system)
@@ -40,12 +38,10 @@ CmdOptions::parse(
 	const std::vector<CmdOptionsUsage> &a_usage
 )
 {
-#if 0
     std::vec_tstring_t args;
     ProcessInfo::commandLine(a_argsNum, a_argv, &args);
 
     /// Trace() << xTRACE_VAR(args) << "\n";
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 
