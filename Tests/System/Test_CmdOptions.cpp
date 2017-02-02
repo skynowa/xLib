@@ -39,7 +39,6 @@ Test_CmdOptions::unit()
 
 		CmdOptions cmdOptions;
 		cmdOptions.parse(argc, argv, usage);
-
     }
 
     return true;
