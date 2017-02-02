@@ -4,10 +4,13 @@
  */
 
 
-#include "Test_${cmXLIB_TEMPLATE}.h"
+#include <xLib/xLib.h>
 
 
 //-------------------------------------------------------------------------------------------------
+using namespace xlib;
+
+xTEST_CLASS(Test_${cmXLIB_TEMPLATE})
 xTEST_UNIT(Test_${cmXLIB_TEMPLATE})
 //-------------------------------------------------------------------------------------------------
 /* virtual */
