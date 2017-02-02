@@ -19,7 +19,8 @@ Test_CmdOptions::unit()
 {
     xTEST_CASE("CmdOptions::CmdOptions")
     {
-		std::vector<CmdOptionsUsage> usage;
+    #if 0
+        std::vector<CmdOptionsUsage> usage;
         {
             cCmdOptionsUsage cmdOption =
             {
@@ -34,11 +35,12 @@ Test_CmdOptions::unit()
             usage.push_back(cmdOption);
         }
 
-		cint_t        argc       = 3;
-		cptr_ctchar_t argv[argc] = {"a=1 b=2 c=3"};
+        cint_t        argc       = 3;
+        cptr_ctchar_t argv[argc] = {"a=1 b=2 c=3"};
 
-		CmdOptions cmdOptions;
-		cmdOptions.parse(argc, argv, usage);
+        CmdOptions cmdOptions;
+        cmdOptions.parse(argc, argv, usage);
+    #endif
     }
 
     return true;
