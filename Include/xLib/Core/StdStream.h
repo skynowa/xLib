@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Defines.h>
+#include <xLib/Core/Format.h>
 //-------------------------------------------------------------------------------------------------
 #define xSTD_OSTREAM_OP(cont_t) \
 	template<typename T> \
