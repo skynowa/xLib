@@ -14,9 +14,9 @@ class xNO_VTABLE IData
     ///< Data struct
 {
 public:
-                   IData();
+                   IData() {};
         ///< constructor
-    virtual       ~IData() = 0;
+    virtual       ~IData() {};
         ///< destructor
 
     virtual void_t clear() = 0;
