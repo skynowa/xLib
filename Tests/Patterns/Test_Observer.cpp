@@ -19,7 +19,7 @@ std::tstring_t message_all;
 
 template<typename T>
 class Observer1 :
-    public IxObserver<T>
+    public IObserver<T>
 {
 public:
                     Observer1() {}
@@ -34,7 +34,7 @@ public:
 
 template<typename T>
 class Observer2 :
-    public IxObserver<T>
+    public IObserver<T>
 {
 public:
                     Observer2() {}
