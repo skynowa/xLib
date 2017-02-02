@@ -43,7 +43,7 @@ public:
     virtual ~CmdOptions();
         ///< destructor
 
-    void_t   parse(cint_t argc, cptr_ctchar_t argv[], const std::vector<CmdOptionsUsage> &usage);
+    void_t   parse(cint_t argsNum, cptr_ctchar_t argv[], const std::vector<CmdOptionsUsage> &usage);
 
 private:
     xNO_COPY_ASSIGN(CmdOptions)
