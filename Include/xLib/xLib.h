@@ -139,6 +139,7 @@
 #include <xLib/Test/StdTest.h>
 
 // Package
+#include <xLib/Package/IData.h>
 #include <xLib/Package/Csv.h>
 #include <xLib/Package/Ssh2Client.h>
 #include <xLib/Package/Donate.h>
