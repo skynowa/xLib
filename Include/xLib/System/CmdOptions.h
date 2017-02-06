@@ -44,6 +44,9 @@ public:
         ///< destructor
 
     void_t   parse(cint_t argsNum, cptr_ctchar_t argv[], const std::vector<CmdOptionsUsage> &usage);
+        ///< parse cmd options
+    void_t   parse(std::cvec_tstring_t &args, const std::vector<CmdOptionsUsage> &usage);
+        ///< parse cmd options
 
 private:
     xNO_COPY_ASSIGN(CmdOptions)
