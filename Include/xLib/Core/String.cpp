@@ -39,7 +39,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 /**************************************************************************************************
 *   casting
@@ -729,10 +729,10 @@ String::isRepeated(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)
 
 
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 /**************************************************************************************************
 *   search, compare
@@ -781,4 +781,4 @@ StringCI::compare(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)

@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, system)
+xNAMESPACE_BEGIN2(xl, system)
 
 class User
     ///< user info
@@ -55,7 +55,7 @@ xPLATFORM_IMPL:
     std::tstring_t _shellPath_impl() const xWARN_UNUSED_RV;
 };
 
-xNAMESPACE_END2(xlib, system)
+xNAMESPACE_END2(xl, system)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "User.cpp"

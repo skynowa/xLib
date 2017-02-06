@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 struct timezone
@@ -61,4 +61,4 @@ gettimeofday(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)

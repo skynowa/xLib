@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, debug)
+xNAMESPACE_BEGIN2(xl, debug)
 
 class ErrorReport;
 
@@ -59,7 +59,7 @@ xPLATFORM_IMPL:
     void_t         _breakPoint_impl() const;
 };
 
-xNAMESPACE_END2(xlib, debug)
+xNAMESPACE_END2(xl, debug)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Debugger.cpp"

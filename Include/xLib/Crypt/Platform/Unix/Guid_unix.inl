@@ -7,7 +7,7 @@
 #include <xLib/Crypt/Random.h>
 
 
-xNAMESPACE_BEGIN2(xlib, crypt)
+xNAMESPACE_BEGIN2(xl, crypt)
 
 /**************************************************************************************************
 *   private
@@ -46,4 +46,4 @@ Guid::_randomBased_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, crypt)
+xNAMESPACE_END2(xl, crypt)

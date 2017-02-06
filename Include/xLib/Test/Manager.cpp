@@ -19,7 +19,7 @@
 #include <xLib/Test/Unit.h>
 
 
-xNAMESPACE_BEGIN2(xlib, test)
+xNAMESPACE_BEGIN2(xl, test)
 
 /**************************************************************************************************
 *   public
@@ -190,4 +190,4 @@ Manager::_construct(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, test)
+xNAMESPACE_END2(xl, test)

@@ -10,7 +10,7 @@
 #include <xLib/Sync/Thread.h>
 
 
-xNAMESPACE_BEGIN2(xlib, sync)
+xNAMESPACE_BEGIN2(xl, sync)
 
 /*******************************************************************************
 *    public
@@ -526,4 +526,4 @@ ThreadPool<T>::_onExitTask(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, sync)
+xNAMESPACE_END2(xl, sync)

@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, package)
+xNAMESPACE_BEGIN2(xl, package)
 
 class xNO_VTABLE IData
     ///< Data struct
@@ -28,5 +28,5 @@ private:
     xNO_COPY_ASSIGN(IData)
 };
 
-xNAMESPACE_END2(xlib, package)
+xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------

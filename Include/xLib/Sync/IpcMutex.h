@@ -9,7 +9,7 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/HandleT.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, sync)
+xNAMESPACE_BEGIN2(xl, sync)
 
 class IpcMutex
     /// mutex
@@ -48,7 +48,7 @@ xPLATFORM_IMPL:
     void_t           _unlock_impl() const;
 };
 
-xNAMESPACE_END2(xlib, sync)
+xNAMESPACE_END2(xl, sync)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "IpcMutex.cpp"

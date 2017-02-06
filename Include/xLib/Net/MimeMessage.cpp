@@ -20,7 +20,7 @@
 #include <xLib/Net/MimeBody.h>
 
 
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
 xINLINE
@@ -64,4 +64,4 @@ MimeMessage::saveToRawFile(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)

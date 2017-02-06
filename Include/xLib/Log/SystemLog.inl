@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN2(xlib, log)
+xNAMESPACE_BEGIN2(xl, log)
 
 /**************************************************************************************************
 *    public
@@ -21,4 +21,4 @@ SystemLog::operator << (const T &valueT)
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, log)
+xNAMESPACE_END2(xl, log)

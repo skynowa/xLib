@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #define xLIB_XCB_MSGBOX_DEBUG 0
 
-xNAMESPACE_BEGIN2(xlib, ui)
+xNAMESPACE_BEGIN2(xl, ui)
 
 class XcbMsgBox
     ///< XCB message box
@@ -70,7 +70,7 @@ private:
         ///< trace names of modifiers present in mask
 };
 
-xNAMESPACE_END2(xlib, ui)
+xNAMESPACE_END2(xl, ui)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "XcbMsgBox.cpp"

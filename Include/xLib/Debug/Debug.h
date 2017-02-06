@@ -37,13 +37,13 @@
     { if (expr) { do_expr; } }
     ///< check expression and do instructions
 #define xCHECK_MSG(expr, comment) \
-    { if (expr) { xlib::log::Trace() << (comment); } }
+    { if (expr) { xl::log::Trace() << (comment); } }
     ///< check expression and show message with comment
 #define xCHECK_MSG_RET(expr, comment, return_expr) \
-    { if (expr) { xlib::log::Trace() << (comment); return (return_expr); } }
+    { if (expr) { xl::log::Trace() << (comment); return (return_expr); } }
     ///< check expression, show message with comment and return value
 #define xCHECK_MSG_DO(expr, comment, do_expr) \
-    { if (expr) { xlib::log::Trace() << (comment); do_expr; } }
+    { if (expr) { xl::log::Trace() << (comment); do_expr; } }
     ///< check expression, show message with comment and do instructions
 #define xCHECK_NA(var) \
     ;
@@ -107,20 +107,20 @@
 //-------------------------------------------------------------------------------------------------
 #define xTRACE_POINT \
     { \
-        xlib::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
-        xlib::debug::SourceInfo      sourceInfo(data); \
+        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        xl::debug::SourceInfo      sourceInfo(data); \
         \
-        xlib::log::Trace() \
+        xl::log::Trace() \
             << xT("\t::: ")  << sourceInfo.at() << xT(", ") \
             << xT("error: ") << NativeError::format() << xT(" :::"); \
     }
     ///< trace point (use Trace)
 #define xTRACE_FUNC \
     { \
-        xlib::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
-        xlib::debug::SourceInfo      sourceInfo(data); \
+        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        xl::debug::SourceInfo      sourceInfo(data); \
         \
-        xlib::log::Trace() \
+        xl::log::Trace() \
             << xT("\t::: ")  << sourceInfo.data().funcName << xT(" :::"); \
     }
     ///< trace function (use Trace)

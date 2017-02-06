@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN2(xlib, sync)
+xNAMESPACE_BEGIN2(xl, sync)
 
 /**************************************************************************************************
 *    public
@@ -82,4 +82,4 @@ Event::_isSignaled_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, sync)
+xNAMESPACE_END2(xl, sync)

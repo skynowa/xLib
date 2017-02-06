@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, package)
+xNAMESPACE_BEGIN2(xl, package)
 
 struct DonateData
     /// SourceInfo data
@@ -36,7 +36,7 @@ private:
     // xNO_COPY_ASSIGN(Donate)
 };
 
-xNAMESPACE_END2(xlib, package)
+xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Donate.cpp"

@@ -10,7 +10,7 @@
 #include <xLib/Core/HandleT.h>
 #include <xLib/Sync/Event.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, sync)
+xNAMESPACE_BEGIN2(xl, sync)
 
 class Thread
     /// thread
@@ -268,7 +268,7 @@ xPLATFORM_IMPL:
     int_t           _priorityMax_impl();
 };
 
-xNAMESPACE_END2(xlib, sync)
+xNAMESPACE_END2(xl, sync)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Thread.cpp"

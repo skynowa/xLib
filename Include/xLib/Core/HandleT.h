@@ -7,7 +7,7 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 namespace debug {
     class NativeError;
@@ -16,12 +16,12 @@ namespace debug {
     class Debugger;
 }
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 #include <xLib/Core/HandleErrorT.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 template<ExHandleValue tagT>
 class HandleT
@@ -79,6 +79,6 @@ xPLATFORM_IMPL:
 typedef HandleT<hvNull>    Handle;
 typedef HandleT<hvInvalid> HandleInvalid;
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "HandleT.inl"

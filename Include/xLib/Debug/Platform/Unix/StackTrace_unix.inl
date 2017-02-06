@@ -11,7 +11,7 @@
 #include <cxxabi.h>
 
 
-xNAMESPACE_BEGIN2(xlib, debug)
+xNAMESPACE_BEGIN2(xl, debug)
 
 /**************************************************************************************************
 *   private
@@ -201,4 +201,4 @@ StackTrace::_addr2Line(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, debug)
+xNAMESPACE_END2(xl, debug)

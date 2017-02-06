@@ -8,7 +8,7 @@
 // libs: -llog
 
 
-xNAMESPACE_BEGIN2(xlib, log)
+xNAMESPACE_BEGIN2(xl, log)
 
 /**************************************************************************************************
 *    public
@@ -46,4 +46,4 @@ SystemLog::_write_impl(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, log)
+xNAMESPACE_END2(xl, log)

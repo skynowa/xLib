@@ -35,7 +35,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN2(xlib, io)
+xNAMESPACE_BEGIN2(xl, io)
 
 /**************************************************************************************************
 *    public: constructors, destructor
@@ -1312,4 +1312,4 @@ File::_openMode(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, io)
+xNAMESPACE_END2(xl, io)

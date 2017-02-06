@@ -7,7 +7,7 @@
 #include <xLib/Core/Utils.h>
 
 
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 /**************************************************************************************************
 *    public
@@ -187,4 +187,4 @@ Char<T>::symbol()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)

@@ -12,7 +12,7 @@
 *
 **************************************************************************************************/
 
-xNAMESPACE_BEGIN3(xlib, internal, enums)
+xNAMESPACE_BEGIN3(xl, internal, enums)
 
 //-------------------------------------------------------------------------------------------------
 static Types<MsgBox::ExModalResult, ssize_t, 10> modalResults =
@@ -86,4 +86,4 @@ static Types<MsgBox::ExType, ssize_t, 8> types =
 }};
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END3(xlib, internal, enums)
+xNAMESPACE_END3(xl, internal, enums)

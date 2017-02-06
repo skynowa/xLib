@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 class SocketInit
     /// initiates use of the Winsock DLL by a process
@@ -26,7 +26,7 @@ xPLATFORM_IMPL:
     void_t   _destruct_impl() const;
 };
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "SocketInit.cpp"

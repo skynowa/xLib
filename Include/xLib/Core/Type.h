@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 class Type
     /// type info
@@ -38,6 +38,6 @@ private:
     xNO_COPY_ASSIGN(Type)
 };
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "Type.inl"

@@ -8,7 +8,7 @@
 
 
 //-------------------------------------------------------------------------------------------------
-using namespace xlib;
+using namespace xl;
 
 xTEST_CLASS(Test_IData)
 xTEST_UNIT(Test_IData)

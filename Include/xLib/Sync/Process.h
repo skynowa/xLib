@@ -9,7 +9,7 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/HandleT.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, sync)
+xNAMESPACE_BEGIN2(xl, sync)
 
 class Process
     /// process
@@ -129,7 +129,7 @@ xPLATFORM_IMPL:
     void_t       _currentExit_impl(cuint_t &exitCode);
 };
 
-xNAMESPACE_END2(xlib, sync)
+xNAMESPACE_END2(xl, sync)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Process.cpp"

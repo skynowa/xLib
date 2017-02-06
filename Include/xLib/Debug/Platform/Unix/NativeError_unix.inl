@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN2(xlib, debug)
+xNAMESPACE_BEGIN2(xl, debug)
 
 /**************************************************************************************************
 *    public
@@ -55,4 +55,4 @@ NativeError::_nativeCodeSuccess_impl()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, debug)
+xNAMESPACE_END2(xl, debug)

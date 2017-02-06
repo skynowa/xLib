@@ -20,7 +20,7 @@
 #include <xLib/System/User.h>
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, internal)
+xNAMESPACE_BEGIN2(xl, internal)
 
 class CrashCallback
 {
@@ -89,9 +89,9 @@ private:
     xNO_COPY_ASSIGN(CrashCallback)
 };
 
-xNAMESPACE_END2(xlib, internal)
+xNAMESPACE_END2(xl, internal)
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 
 /**************************************************************************************************
@@ -454,4 +454,4 @@ Application::onRun()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)

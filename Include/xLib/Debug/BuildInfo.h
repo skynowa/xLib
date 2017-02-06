@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, debug)
+xNAMESPACE_BEGIN2(xl, debug)
 
 class BuildInfo
     ///< build information
@@ -60,6 +60,6 @@ private:
     xNO_COPY_ASSIGN(BuildInfo)
 };
 
-xNAMESPACE_END2(xlib, debug)
+xNAMESPACE_END2(xl, debug)
 //-------------------------------------------------------------------------------------------------
 #include "BuildInfo.inl"

@@ -32,7 +32,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 /**************************************************************************************************
 *    public
@@ -68,4 +68,4 @@ Locale::setDefault() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)

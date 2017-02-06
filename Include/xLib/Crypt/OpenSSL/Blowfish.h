@@ -12,7 +12,7 @@
 
 #include <openssl/blowfish.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, crypt)
+xNAMESPACE_BEGIN2(xl, crypt)
 
 class Blowfish
     /// blowfish
@@ -63,7 +63,7 @@ private:
     xNO_COPY_ASSIGN(Blowfish)
 };
 
-xNAMESPACE_END2(xlib, crypt)
+xNAMESPACE_END2(xl, crypt)
 
 #endif // cmOPENSSL_CRYPTO_FOUND
 //-------------------------------------------------------------------------------------------------

@@ -24,7 +24,7 @@
     #endif
 #endif
 
-xNAMESPACE_BEGIN2(xlib, sync)
+xNAMESPACE_BEGIN2(xl, sync)
 
 /**************************************************************************************************
 *    public
@@ -119,6 +119,6 @@ WaitableTimer::wait(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, sync)
+xNAMESPACE_END2(xl, sync)
 
 #endif

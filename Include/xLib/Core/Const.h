@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 class Const
     /// constants
@@ -318,7 +318,7 @@ private:
     xNO_COPY_ASSIGN(Const)
 };
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Const.cpp"

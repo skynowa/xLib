@@ -15,7 +15,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN2(xlib, debug)
+xNAMESPACE_BEGIN2(xl, debug)
 
 /**************************************************************************************************
 *   private
@@ -145,4 +145,4 @@ StackTrace::_get_impl(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, debug)
+xNAMESPACE_END2(xl, debug)

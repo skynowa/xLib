@@ -8,7 +8,7 @@
 #include <xLib/Test/Test.h>
 
 
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 /*******************************************************************************
 *   public
@@ -263,4 +263,4 @@ Utils::enumDecT(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)

@@ -11,7 +11,7 @@
 #include <xLib/Core/Units.h>
 #include "ILog.h"
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, log)
+xNAMESPACE_BEGIN2(xl, log)
 
 class FileLog :
     public ILog
@@ -58,7 +58,7 @@ private:
         ///< delete log, if full
 };
 
-xNAMESPACE_END2(xlib, log)
+xNAMESPACE_END2(xl, log)
 //-------------------------------------------------------------------------------------------------
 #include "FileLog.inl"
 

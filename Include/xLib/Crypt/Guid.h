@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //---------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, crypt)
+xNAMESPACE_BEGIN2(xl, crypt)
 
 class Guid
     /// GUID (globally unique identifier)
@@ -37,7 +37,7 @@ xPLATFORM_IMPL:
         ///< random based GUID
 };
 
-xNAMESPACE_END2(xlib, crypt)
+xNAMESPACE_END2(xl, crypt)
 //---------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Guid.cpp"

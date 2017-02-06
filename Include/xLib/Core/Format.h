@@ -10,7 +10,7 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Array.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 class FormatC
     ///< format string in C style
@@ -197,7 +197,7 @@ private:
     static std::tstring_t _formatUnprintableChar(const T value) xWARN_UNUSED_RV;
 };
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "Format.inl"
 

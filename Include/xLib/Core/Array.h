@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 template<typename T, const std::size_t N>
 class Array
@@ -240,7 +240,7 @@ public:
     rangecheck(size_type i)
     {
         if (i >= size()) {
-            std::out_of_range e("xlib::core::Array<>: index out of range");
+            std::out_of_range e("xl::core::Array<>: index out of range");
         }
     }
 };
@@ -296,5 +296,5 @@ swap(Array<T, N> &x, Array<T, N> &y)
     x.swap(y);
 }
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

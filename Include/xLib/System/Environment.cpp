@@ -28,7 +28,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN2(xlib, system)
+xNAMESPACE_BEGIN2(xl, system)
 
 /**************************************************************************************************
 *    public
@@ -140,4 +140,4 @@ Environment::expandStrings(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, system)
+xNAMESPACE_END2(xl, system)

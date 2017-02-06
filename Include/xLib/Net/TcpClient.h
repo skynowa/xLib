@@ -9,7 +9,7 @@
 #include <xLib/Net/Socket.h>
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 class TcpClient :
     public Socket
@@ -46,7 +46,7 @@ xPLATFORM_IMPL:
     void_t   _setNonBlockingMode_impl(cbool_t &flag) const;
 };
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "TcpClient.cpp"

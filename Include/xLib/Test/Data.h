@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, test)
+xNAMESPACE_BEGIN2(xl, test)
 //-------------------------------------------------------------------------------------------------
 ///@name  data (use 1 value)
 ///@{
@@ -97,4 +97,4 @@ typedef Data3<std::tstring_t, std::tstring_t, std::tstring_t>  data3_tstring_t;
 typedef Data3<std::tstring_t, std::tstring_t, std::ustring_t>  data3_ustring_t;
 ///@}
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_END2(xlib, test)
+xNAMESPACE_END2(xl, test)

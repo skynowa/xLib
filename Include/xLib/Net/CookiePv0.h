@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 class CookiePv0
     /// cookie version 0
@@ -78,7 +78,7 @@ private:
     xNO_COPY_ASSIGN(CookiePv0)
 };
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "CookiePv0.cpp"

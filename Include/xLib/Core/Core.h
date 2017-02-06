@@ -91,7 +91,7 @@
 #include <locale>
 
 // xLib
-namespace xlib
+namespace xl
 {
 
 namespace core {}
@@ -108,23 +108,21 @@ namespace system {}
 namespace test {}
 namespace package {}
 
-using namespace xlib::core;
-using namespace xlib::crypt;
-using namespace xlib::db;
-using namespace xlib::debug;
-using namespace xlib::io;
-using namespace xlib::ui;
-using namespace xlib::log;
-using namespace xlib::net;
-using namespace xlib::patterns;
-using namespace xlib::sync;
-using namespace xlib::system;
-using namespace xlib::test;
-using namespace xlib::package;
+using namespace xl::core;
+using namespace xl::crypt;
+using namespace xl::db;
+using namespace xl::debug;
+using namespace xl::io;
+using namespace xl::ui;
+using namespace xl::log;
+using namespace xl::net;
+using namespace xl::patterns;
+using namespace xl::sync;
+using namespace xl::system;
+using namespace xl::test;
+using namespace xl::package;
 
-} // namespace xlib
-
-namespace xl = xlib;
+} // namespace xl
 
 #include <xLib/Core/Preprocessor.h>
 #include <xLib/Core/Defines.h>

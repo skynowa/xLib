@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 class Cgi;
 class CookiePv0;
@@ -262,7 +262,7 @@ private:
     xNO_COPY_ASSIGN(Cgi)
 };
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Cgi.cpp"

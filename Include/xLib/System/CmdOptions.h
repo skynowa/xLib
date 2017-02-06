@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, system)
+xNAMESPACE_BEGIN2(xl, system)
 
 struct CmdOptionsUsage
     /// CmdOptions usage
@@ -52,7 +52,7 @@ private:
     xNO_COPY_ASSIGN(CmdOptions)
 };
 
-xNAMESPACE_END2(xlib, system)
+xNAMESPACE_END2(xl, system)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "CmdOptions.cpp"

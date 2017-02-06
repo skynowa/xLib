@@ -9,7 +9,7 @@
 #include <xLib/Core/Core.h>
 
 
-xNAMESPACE_BEGIN2(xlib, internal)
+xNAMESPACE_BEGIN2(xl, internal)
 
 //-------------------------------------------------------------------------------------------------
 ///@name Macroses
@@ -54,4 +54,4 @@ xNAMESPACE_END(enums)
 ///@}
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, internal)
+xNAMESPACE_END2(xl, internal)

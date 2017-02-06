@@ -18,7 +18,7 @@
 #include <xLib/Net/CookiePv1.h>
 
 
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 
 /**************************************************************************************************
@@ -911,4 +911,4 @@ CgiFormData::_construct()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)

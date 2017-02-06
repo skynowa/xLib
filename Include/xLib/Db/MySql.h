@@ -18,7 +18,7 @@
     #include <mysql/mysqld_error.h>
 #endif
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, db)
+xNAMESPACE_BEGIN2(xl, db)
 
 struct MySqlConnectionData
     /// MySqlConnection data
@@ -85,9 +85,9 @@ private:
     xNO_COPY_ASSIGN(MySqlConnection)
 };
 
-xNAMESPACE_END2(xlib, db)
+xNAMESPACE_END2(xl, db)
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, db)
+xNAMESPACE_BEGIN2(xl, db)
 
 class MySqlRecordset
     /// MySql recordset
@@ -130,7 +130,7 @@ private:
     xNO_COPY_ASSIGN(MySqlRecordset)
 };
 
-xNAMESPACE_END2(xlib, db)
+xNAMESPACE_END2(xl, db)
 
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY

@@ -19,7 +19,7 @@
 #include <xLib/Core/Const.h>
 
 
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
 xINLINE
@@ -159,4 +159,4 @@ HttpClient::unlink(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)

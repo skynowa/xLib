@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 class MimeBody
     /// MIME body (RFC 822)
@@ -23,7 +23,7 @@ private:
     xNO_COPY_ASSIGN(MimeBody)
 };
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "MimeBody.cpp"

@@ -12,7 +12,7 @@
 #include <xLib/Sync/Signal.h>
 #include <xLib/Package/Donate.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 class Application
     /// application
@@ -114,7 +114,7 @@ private:
     xNO_COPY_ASSIGN(Application)
 };
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Application.cpp"

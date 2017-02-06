@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, ${cmXLIB_TEMPLATE_NS})
+xNAMESPACE_BEGIN2(xl, ${cmXLIB_TEMPLATE_NS})
 
 class ${cmXLIB_TEMPLATE}
     ///< ${cmXLIB_TEMPLATE_COMMENTS}
@@ -27,7 +27,7 @@ xPLATFORM_IMPL:
     void_t   _destruct_impl();
 };
 
-xNAMESPACE_END2(xlib, ${cmXLIB_TEMPLATE_NS})
+xNAMESPACE_END2(xl, ${cmXLIB_TEMPLATE_NS})
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "${cmXLIB_TEMPLATE}.cpp"

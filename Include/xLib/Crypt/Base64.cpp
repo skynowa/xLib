@@ -24,7 +24,7 @@ std::cstring_t base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx
 
 xNAMESPACE_ANONYM_END
 
-xNAMESPACE_BEGIN2(xlib, crypt)
+xNAMESPACE_BEGIN2(xl, crypt)
 
 /**************************************************************************************************
 *    public
@@ -164,4 +164,4 @@ Base64::_isValid(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, crypt)
+xNAMESPACE_END2(xl, crypt)

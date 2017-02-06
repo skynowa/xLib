@@ -12,7 +12,7 @@
 #include <xLib/Test/StdTest.h>
 
 
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 
 /**************************************************************************************************
@@ -394,4 +394,4 @@ Format::_format(
 #endif
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)

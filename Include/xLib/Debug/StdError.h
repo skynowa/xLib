@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, debug)
+xNAMESPACE_BEGIN2(xl, debug)
 
 class StdError
     /// standard C library last error
@@ -50,7 +50,7 @@ xPLATFORM_IMPL:
     std::tstring_t _format_impl(cint_t &code) xWARN_UNUSED_RV;
 };
 
-xNAMESPACE_END2(xlib, debug)
+xNAMESPACE_END2(xl, debug)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "StdError.cpp"

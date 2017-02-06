@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 template<typename T>
 class Char
@@ -69,6 +69,6 @@ typedef Char<wchar_t> CharW;
 typedef Char<uchar_t> CharU;
 typedef Char<tchar_t> CharT;
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "Char.inl"

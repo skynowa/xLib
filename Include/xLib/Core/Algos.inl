@@ -11,7 +11,7 @@
 #include <xLib/Core/Utils.h>
 
 
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 /**************************************************************************************************
 *   public
@@ -86,4 +86,4 @@ Algos::remove(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)

@@ -9,7 +9,7 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Const.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, package)
+xNAMESPACE_BEGIN2(xl, package)
 //-------------------------------------------------------------------------------------------------
 struct CsvData
 {
@@ -93,7 +93,7 @@ private:
     xNO_COPY_ASSIGN(CsvWriter)
 };
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_END2(xlib, package)
+xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Csv.cpp"

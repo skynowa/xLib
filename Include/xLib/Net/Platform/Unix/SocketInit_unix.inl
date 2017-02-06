@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 /**************************************************************************************************
 *    public
@@ -29,4 +29,4 @@ SocketInit::_destruct_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)
