@@ -9,7 +9,12 @@
 #endif
 
 #include <xLib/System/ProcessInfo.h>
-#include <xLib/Log/Trace.h>
+
+#if 1
+    #include <xLib/Core/Format.h>
+    #include <xLib/Core/StdStream.h>
+    #include <xLib/Log/Trace.h>
+#endif
 
 
 xNAMESPACE_BEGIN2(xlib, system)
