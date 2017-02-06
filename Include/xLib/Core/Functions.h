@@ -55,7 +55,7 @@
     #define xGETADDRINFO        ::GetAddrInfo
 #elif xCOMPILER_GNUC
     #if xUNICODE
-        #define xGETADDRINFO    xlib::core::getaddrinfoW
+        #define xGETADDRINFO    xl::core::getaddrinfoW
     #else
         #define xGETADDRINFO    ::getaddrinfo
     #endif
@@ -72,7 +72,7 @@
     #define xGETNAMEINFO        ::GetNameInfo
 #elif xCOMPILER_GNUC
     #if xUNICODE
-        #define xGETNAMEINFO    xlib::core::getnameinfoW
+        #define xGETNAMEINFO    xl::core::getnameinfoW
     #else
         #define xGETNAMEINFO    ::getnameinfo
     #endif

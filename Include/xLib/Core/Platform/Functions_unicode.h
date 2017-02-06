@@ -28,12 +28,12 @@
 #elif xENV_UNIX
     #define xTMAIN        main
     #define xTVSNPRINTF   ::vswprintf
-    #define xTFOPEN       xlib::core::fopenW
-    #define xTFDOPEN      xlib::core::fdopenW
-    #define xTFREOPEN     xlib::core::freopenW
-    #define xTSETLOCALE   xlib::core::setlocaleW
-    #define xTACCESS      xlib::core::accessW
-    #define xTSYSTEM      xlib::core::systemW
+    #define xTFOPEN       xl::core::fopenW
+    #define xTFDOPEN      xl::core::fdopenW
+    #define xTFREOPEN     xl::core::freopenW
+    #define xTSETLOCALE   xl::core::setlocaleW
+    #define xTACCESS      xl::core::accessW
+    #define xTSYSTEM      xl::core::systemW
 #endif
 
     #define xTPERROR      std::_wperror
@@ -57,7 +57,7 @@
 #elif xCOMPILER_CODEGEAR
     #define xTMKSTEMP     ::_wmktemp
 #elif xCOMPILER_GNUC
-    #define xTMKSTEMP     xlib::core::mkstempW
+    #define xTMKSTEMP     xl::core::mkstempW
 #else
     #define xTMKSTEMP     std::mkstemp
 #endif
@@ -67,9 +67,9 @@
     #define xTRENAME      std::_wrename
     #define xTUNLINK      ::_wunlink
 #elif xENV_UNIX
-    #define xTUNLINK      xlib::core::unlinkW
-    #define xTRENAME      xlib::core::renameW
-    #define xTREMOVE      xlib::core::removeW
+    #define xTUNLINK      xl::core::unlinkW
+    #define xTRENAME      xl::core::renameW
+    #define xTREMOVE      xl::core::removeW
 #endif
 
     #define xTFPUTS       std::fputws
@@ -85,9 +85,9 @@
 #elif xCOMPILER_CODEGEAR
     #define xTCHMOD       ::_wchmod
 #elif xCOMPILER_CLANG
-    #define xTCHMOD       xlib::core::chmodW
+    #define xTCHMOD       xl::core::chmodW
 #elif xCOMPILER_GNUC
-    #define xTCHMOD       xlib::core::chmodW
+    #define xTCHMOD       xl::core::chmodW
 #else
     #define xTCHMOD       ::_wchmod
 #endif
@@ -113,7 +113,7 @@
 #elif xCOMPILER_CODEGEAR
     #define xTSTAT        ::_tstat
 #elif xCOMPILER_GNUC
-    #define xTSTAT        xlib::core::statW
+    #define xTSTAT        xl::core::statW
 #else
     #define xTSTAT        ::_wstat
 #endif

@@ -8,7 +8,7 @@
 
 
 //-------------------------------------------------------------------------------------------------
-using namespace xlib;
+using namespace xl;
 
 xTEST_CLASS(Test_${cmXLIB_TEMPLATE})
 xTEST_UNIT(Test_${cmXLIB_TEMPLATE})

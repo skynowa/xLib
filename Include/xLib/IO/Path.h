@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, io)
+xNAMESPACE_BEGIN2(xl, io)
 
 class Path
     /// file system path
@@ -160,7 +160,7 @@ xPLATFORM_IMPL:
     size_t         _nameMaxSize_impl() xWARN_UNUSED_RV;
 };
 
-xNAMESPACE_END2(xlib, io)
+xNAMESPACE_END2(xl, io)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Path.cpp"

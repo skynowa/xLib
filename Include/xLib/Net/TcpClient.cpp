@@ -25,7 +25,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 /**************************************************************************************************
 *    public
@@ -143,4 +143,4 @@ TcpClient::isServerAlive(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)

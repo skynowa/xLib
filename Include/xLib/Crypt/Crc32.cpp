@@ -12,7 +12,7 @@
 #include <xLib/IO/File.h>
 
 
-xNAMESPACE_BEGIN2(xlib, crypt)
+xNAMESPACE_BEGIN2(xl, crypt)
 
 /**************************************************************************************************
 *    public
@@ -164,4 +164,4 @@ Crc32::formatHex() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, crypt)
+xNAMESPACE_END2(xl, crypt)

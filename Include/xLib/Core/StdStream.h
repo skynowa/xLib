@@ -13,7 +13,7 @@
 	inline std::tostream_t & \
 	operator << (std::tostream_t &a_os, const cont_t &a_value) \
 	{ \
-		a_os << xlib::core::Format::str(xT("{}"), a_value); \
+		a_os << xl::core::Format::str(xT("{}"), a_value); \
 		return a_os; \
 	}
 
@@ -22,7 +22,7 @@
 	inline std::tostream_t & \
 	operator << (std::tostream_t &a_os, const cont_t<T, N> &a_value) \
 	{ \
-		a_os << xlib::core::Format::str(xT("{}"), a_value); \
+		a_os << xl::core::Format::str(xT("{}"), a_value); \
 		return a_os; \
 	}
 
@@ -31,7 +31,7 @@
 	inline std::tostream_t & \
 	operator << (std::tostream_t &a_os, const cont_t<T> &a_value) \
 	{ \
-		a_os << xlib::core::Format::str(xT("{}"), a_value); \
+		a_os << xl::core::Format::str(xT("{}"), a_value); \
 		return a_os; \
 	}
 
@@ -40,12 +40,12 @@
 	inline std::tostream_t & \
 	operator << (std::tostream_t &a_os, const cont_t<T1, T2> &a_value) \
 	{ \
-		a_os << xlib::core::Format::str(xT("{}"), a_value); \
+		a_os << xl::core::Format::str(xT("{}"), a_value); \
 		return a_os; \
 	}
 
 xSTD_OSTREAM_OP(std::ustring_t);
-xSTD_OSTREAM_OP_ARRAY(xlib::core::Array);
+xSTD_OSTREAM_OP_ARRAY(xl::core::Array);
 xSTD_OSTREAM_OP_2(std::pair);
 xSTD_OSTREAM_OP_1(std::vector);
 xSTD_OSTREAM_OP_1(std::list);

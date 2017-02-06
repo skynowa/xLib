@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, io)
+xNAMESPACE_BEGIN2(xl, io)
 
 class Config
     /// config file
@@ -91,7 +91,7 @@ private:
     xNO_COPY_ASSIGN(Config)
 };
 
-xNAMESPACE_END2(xlib, io)
+xNAMESPACE_END2(xl, io)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Config.cpp"

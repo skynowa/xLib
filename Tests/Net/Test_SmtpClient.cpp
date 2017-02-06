@@ -7,7 +7,7 @@
 #include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
-using namespace xlib;
+using namespace xl;
 
 xTEST_CLASS(Test_SmtpClient)
 xTEST_UNIT(Test_SmtpClient)

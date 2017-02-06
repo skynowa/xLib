@@ -9,7 +9,7 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/HandleT.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, system)
+xNAMESPACE_BEGIN2(xl, system)
 
 class Console
     /// console
@@ -145,7 +145,7 @@ xPLATFORM_IMPL:
     void_t         _setStdinEcho_impl(cbool_t &isEnable) const;
 };
 
-xNAMESPACE_END2(xlib, system)
+xNAMESPACE_END2(xl, system)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Console.cpp"

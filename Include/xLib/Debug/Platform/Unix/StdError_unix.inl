@@ -4,6 +4,6 @@
  */
 
 
-xNAMESPACE_BEGIN2(xlib, debug)
+xNAMESPACE_BEGIN2(xl, debug)
 
-xNAMESPACE_END2(xlib, debug)
+xNAMESPACE_END2(xl, debug)

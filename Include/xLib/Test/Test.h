@@ -325,7 +325,7 @@
         try {  \
             bRv = unit.run(); \
         } \
-        catch (const xlib::debug::Exception &a_xlibException) { \
+        catch (const xl::debug::Exception &a_xlibException) { \
             Trace() << a_xlibException.what(); \
             bRv = false; \
         } \

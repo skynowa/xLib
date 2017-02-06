@@ -8,7 +8,7 @@
 
 #include <xLib/Core/SysDefines.h>
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE_BEGIN(xl)
 
     typedef void void_t;
     xTYPEDEF_CONST(void_t);
@@ -130,7 +130,7 @@ xNAMESPACE_BEGIN(xlib)
 	xTYPEDEF_PTR_CONST(tchar_t);
 	xTYPEDEF_PTR_CONST(uchar_t);
 
-xNAMESPACE_END(xlib)
+xNAMESPACE_END(xl)
 
 xNAMESPACE_BEGIN(std)
     // std::size_t
@@ -146,49 +146,49 @@ xNAMESPACE_BEGIN(std)
     typedef const string cstring_t;
     typedef const wstring cwstring_t;
 
-    typedef basic_string<xlib::tchar_t> tstring_t;
+    typedef basic_string<xl::tchar_t> tstring_t;
     xTYPEDEF_CONST(tstring_t);
 
-    typedef basic_string<xlib::uchar_t> ustring_t;
+    typedef basic_string<xl::uchar_t> ustring_t;
     xTYPEDEF_CONST(ustring_t);
 
-    typedef basic_ios<xlib::tchar_t> tios_t;
+    typedef basic_ios<xl::tchar_t> tios_t;
     xTYPEDEF_CONST(tios_t);
 
-    typedef basic_streambuf<xlib::tchar_t> tstreambuf_t;
+    typedef basic_streambuf<xl::tchar_t> tstreambuf_t;
     xTYPEDEF_CONST(tstreambuf_t);
 
-    typedef basic_istream<xlib::tchar_t> tistream_t;
+    typedef basic_istream<xl::tchar_t> tistream_t;
     xTYPEDEF_CONST(tistream_t);
 
-    typedef basic_ostream<xlib::tchar_t> tostream_t;
+    typedef basic_ostream<xl::tchar_t> tostream_t;
     xTYPEDEF_CONST(tostream_t);
 
-    typedef basic_iostream<xlib::tchar_t> tiostream_t;
+    typedef basic_iostream<xl::tchar_t> tiostream_t;
     xTYPEDEF_CONST(tiostream_t);
 
-    typedef basic_stringbuf<xlib::tchar_t> tstringbuf_t;
+    typedef basic_stringbuf<xl::tchar_t> tstringbuf_t;
     xTYPEDEF_CONST(tstringbuf_t);
 
-    typedef basic_istringstream<xlib::tchar_t> tistringstream_t;
+    typedef basic_istringstream<xl::tchar_t> tistringstream_t;
     xTYPEDEF_CONST(tistringstream_t);
 
-    typedef basic_ostringstream<xlib::tchar_t> tostringstream_t;
+    typedef basic_ostringstream<xl::tchar_t> tostringstream_t;
     xTYPEDEF_CONST(tostringstream_t);
 
-    typedef basic_stringstream<xlib::tchar_t> tstringstream_t;
+    typedef basic_stringstream<xl::tchar_t> tstringstream_t;
     xTYPEDEF_CONST(tstringstream_t);
 
-    typedef basic_filebuf<xlib::tchar_t> tfilebuf_t;
+    typedef basic_filebuf<xl::tchar_t> tfilebuf_t;
     xTYPEDEF_CONST(tfilebuf_t);
 
-    typedef basic_ifstream<xlib::tchar_t> tifstream_t;
+    typedef basic_ifstream<xl::tchar_t> tifstream_t;
     xTYPEDEF_CONST(tifstream_t);
 
-    typedef basic_ofstream<xlib::tchar_t> tofstream_t;
+    typedef basic_ofstream<xl::tchar_t> tofstream_t;
     xTYPEDEF_CONST(tofstream_t);
 
-    typedef basic_fstream<xlib::tchar_t> tfstream_t;
+    typedef basic_fstream<xl::tchar_t> tfstream_t;
     xTYPEDEF_CONST(tfstream_t);
 
     // std::pair
@@ -196,10 +196,10 @@ xNAMESPACE_BEGIN(std)
     xTYPEDEF_CONST(pair_tstring_t);
 
     // std::vector
-    typedef vector<xlib::tchar_t> vec_tchar_t;
+    typedef vector<xl::tchar_t> vec_tchar_t;
     xTYPEDEF_CONST(vec_tchar_t);
 
-    typedef vector<xlib::uchar_t> vec_uchar_t;
+    typedef vector<xl::uchar_t> vec_uchar_t;
     xTYPEDEF_CONST(vec_uchar_t);
 
     typedef vector<tstring_t> vec_tstring_t;

@@ -20,7 +20,7 @@
 #include <xLib/Core/Utils.h>
 
 
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 /**************************************************************************************************
 *    Public
@@ -374,4 +374,4 @@ DnsClient::isAddressIpv6(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)

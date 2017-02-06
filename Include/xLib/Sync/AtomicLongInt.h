@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, sync)
+xNAMESPACE_BEGIN2(xl, sync)
 
 class AtomicLongInt
     /// atomic operations with long_t
@@ -64,7 +64,7 @@ xPLATFORM_IMPL:
     long_t          _value_impl() const xWARN_UNUSED_RV;
 };
 
-xNAMESPACE_END2(xlib, sync)
+xNAMESPACE_END2(xl, sync)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "AtomicLongInt.cpp"

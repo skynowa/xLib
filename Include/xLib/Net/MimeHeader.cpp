@@ -16,7 +16,7 @@
 #include <xLib/System/SystemInfo.h>
 
 
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
 xINLINE
@@ -250,4 +250,4 @@ MimeHeader::generateMessageID()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)

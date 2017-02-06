@@ -18,7 +18,7 @@
 #include <xLib/Log/Trace.h>
 #include <xLib/Core/Utils.h>
 
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -86,4 +86,4 @@ TcpServer::accept(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)

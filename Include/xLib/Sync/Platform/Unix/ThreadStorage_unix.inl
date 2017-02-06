@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN2(xlib, sync)
+xNAMESPACE_BEGIN2(xl, sync)
 
 /**************************************************************************************************
 *    public
@@ -66,4 +66,4 @@ ThreadStorage::_setValue_impl(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, sync)
+xNAMESPACE_END2(xl, sync)

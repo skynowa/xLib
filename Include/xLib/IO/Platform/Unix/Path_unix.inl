@@ -7,7 +7,7 @@
 #include <xLib/Core/Const.h>
 
 
-xNAMESPACE_BEGIN2(xlib, io)
+xNAMESPACE_BEGIN2(xl, io)
 
 /**************************************************************************************************
 *    public
@@ -288,4 +288,4 @@ Path::procValue(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, io)
+xNAMESPACE_END2(xl, io)

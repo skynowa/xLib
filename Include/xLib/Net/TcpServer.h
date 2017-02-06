@@ -9,7 +9,7 @@
 #include <xLib/Net/Socket.h>
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 class TcpServer :
     public Socket
@@ -34,7 +34,7 @@ protected:
     xNO_COPY_ASSIGN(TcpServer)
 };
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "TcpServer.cpp"

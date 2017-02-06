@@ -16,7 +16,7 @@
 #include <xLib/Sync/AutoIpcMutex.h>
 
 
-xNAMESPACE_BEGIN2(xlib, log)
+xNAMESPACE_BEGIN2(xl, log)
 
 /**************************************************************************************************
 *    public
@@ -159,4 +159,4 @@ FileLog::_removeIfFull() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, log)
+xNAMESPACE_END2(xl, log)

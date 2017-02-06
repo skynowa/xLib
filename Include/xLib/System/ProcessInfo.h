@@ -9,7 +9,7 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Sync/Process.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, system)
+xNAMESPACE_BEGIN2(xl, system)
 
 class ProcessInfo
     /// process information
@@ -59,7 +59,7 @@ xPLATFORM_IMPL:
     long_t         _commandLineArgsMax_impl() xWARN_UNUSED_RV;
 };
 
-xNAMESPACE_END2(xlib, system)
+xNAMESPACE_END2(xl, system)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "ProcessInfo.cpp"

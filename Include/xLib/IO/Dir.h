@@ -9,7 +9,7 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Const.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, io)
+xNAMESPACE_BEGIN2(xl, io)
 
 class Dir
     /// directory
@@ -81,7 +81,7 @@ xPLATFORM_IMPL:
     std::tstring_t    _temp_impl() xWARN_UNUSED_RV;
 };
 
-xNAMESPACE_END2(xlib, io)
+xNAMESPACE_END2(xl, io)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Dir.cpp"

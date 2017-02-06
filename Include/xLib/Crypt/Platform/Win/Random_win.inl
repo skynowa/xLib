@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN2(xlib, crypt)
+xNAMESPACE_BEGIN2(xl, crypt)
 
 /**************************************************************************************************
 *    StdSeedPolicy
@@ -76,4 +76,4 @@ NativeSeedPolicy::_next_impl()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, crypt)
+xNAMESPACE_END2(xl, crypt)

@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #if xENV_WIN
 
-xNAMESPACE_BEGIN2(xlib, sync)
+xNAMESPACE_BEGIN2(xl, sync)
 
 class WaitableTimer
     /// waitable timer
@@ -39,7 +39,7 @@ xPLATFORM_IMPL:
 
 };
 
-xNAMESPACE_END2(xlib, sync)
+xNAMESPACE_END2(xl, sync)
 
 #endif
 //-------------------------------------------------------------------------------------------------

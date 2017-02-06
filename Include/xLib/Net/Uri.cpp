@@ -13,7 +13,7 @@
 #include <xLib/Core/Format.h>
 
 
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 /**************************************************************************************************
 * public
@@ -635,4 +635,4 @@ Uri::_isDefaultPort() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)

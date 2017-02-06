@@ -18,7 +18,7 @@
 #include <xLib/IO/Volume.h>
 
 
-xNAMESPACE_BEGIN2(xlib, io)
+xNAMESPACE_BEGIN2(xl, io)
 
 /**************************************************************************************************
 *   public
@@ -133,4 +133,4 @@ Backup::fileExec(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, io)
+xNAMESPACE_END2(xl, io)

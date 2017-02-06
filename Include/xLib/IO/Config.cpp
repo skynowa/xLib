@@ -16,7 +16,7 @@
 #include <xLib/Debug/ErrorReport.h>
 
 
-xNAMESPACE_BEGIN2(xlib, io)
+xNAMESPACE_BEGIN2(xl, io)
 
 /**************************************************************************************************
 *    public: creation
@@ -373,4 +373,4 @@ Config::_write(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, io)
+xNAMESPACE_END2(xl, io)

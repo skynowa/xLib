@@ -7,7 +7,7 @@
 // lib: -lrt
 
 
-xNAMESPACE_BEGIN2(xlib, sync)
+xNAMESPACE_BEGIN2(xl, sync)
 
 /**************************************************************************************************
 *    public
@@ -181,4 +181,4 @@ IpcSemaphore::_isValid_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, sync)
+xNAMESPACE_END2(xl, sync)

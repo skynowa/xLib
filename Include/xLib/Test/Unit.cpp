@@ -13,7 +13,7 @@
 #include <xLib/IO/Dir.h>
 
 
-xNAMESPACE_BEGIN2(xlib, test)
+xNAMESPACE_BEGIN2(xl, test)
 
 /**************************************************************************************************
 *    public
@@ -149,4 +149,4 @@ Unit::_createTempDir(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, test)
+xNAMESPACE_END2(xl, test)

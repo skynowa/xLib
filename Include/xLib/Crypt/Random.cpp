@@ -34,7 +34,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN2(xlib, crypt)
+xNAMESPACE_BEGIN2(xl, crypt)
 
 /**************************************************************************************************
 *    ISeedPolicy
@@ -132,4 +132,4 @@ NativeSeedPolicy::next()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, crypt)
+xNAMESPACE_END2(xl, crypt)

@@ -13,7 +13,7 @@
 #include <xLib/Core/Format.h>
 
 
-xNAMESPACE_BEGIN2(xlib, ui)
+xNAMESPACE_BEGIN2(xl, ui)
 
 /**************************************************************************************************
 *   public
@@ -484,4 +484,4 @@ XcbMsgBox::_modifiersStr(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, ui)
+xNAMESPACE_END2(xl, ui)

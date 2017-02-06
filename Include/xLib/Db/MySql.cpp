@@ -12,7 +12,7 @@
 #include <xLib/Core/Format.h>
 
 
-xNAMESPACE_BEGIN2(xlib, db)
+xNAMESPACE_BEGIN2(xl, db)
 
 /**************************************************************************************************
 *    MySqlConnection
@@ -401,4 +401,4 @@ MySqlRecordset::_fetchLengths(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, db)
+xNAMESPACE_END2(xl, db)

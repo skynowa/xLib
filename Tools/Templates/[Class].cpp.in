@@ -23,7 +23,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN2(xlib, ${cmXLIB_TEMPLATE_NS})
+xNAMESPACE_BEGIN2(xl, ${cmXLIB_TEMPLATE_NS})
 
 /**************************************************************************************************
 *   public
@@ -44,4 +44,4 @@ ${cmXLIB_TEMPLATE}::~${cmXLIB_TEMPLATE}()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, ${cmXLIB_TEMPLATE_NS})
+xNAMESPACE_END2(xl, ${cmXLIB_TEMPLATE_NS})

@@ -7,7 +7,7 @@
 #include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
-using namespace xlib;
+using namespace xl;
 
 xTEST_CLASS(Test_Csv)
 xTEST_UNIT(Test_Csv)
@@ -18,7 +18,7 @@ Test_Csv::unit()
 {
     xTEST_CASE("CsvReader::CsvReader")
     {
-        xlib::package::CsvData csvData;
+        xl::package::CsvData csvData;
         csvData.fileExtension    = xT("csv");
         csvData.hasHeader        = true;
         csvData.eol              = xT("\n");
@@ -26,7 +26,7 @@ Test_Csv::unit()
         csvData.isTrimCells      = true;
         csvData.isSkipEmptyLines = true;
 
-        xlib::package::CsvReader csvReader(csvData);
+        xl::package::CsvReader csvReader(csvData);
         csvReader.loadFile(xT(""));
     }
 

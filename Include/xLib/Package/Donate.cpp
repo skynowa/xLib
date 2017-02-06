@@ -9,7 +9,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN2(xlib, package)
+xNAMESPACE_BEGIN2(xl, package)
 
 /**************************************************************************************************
 *   public
@@ -37,4 +37,4 @@ Donate::~Donate()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, package)
+xNAMESPACE_END2(xl, package)

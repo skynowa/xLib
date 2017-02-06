@@ -12,7 +12,7 @@
 #include <xLib/Test/Test.h>
 #include <xLib/Test/Data.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, test)
+xNAMESPACE_BEGIN2(xl, test)
 
 struct UnitData
     /// testing data
@@ -84,7 +84,7 @@ private:
     xNO_COPY_ASSIGN(Unit)
 };
 
-xNAMESPACE_END2(xlib, test)
+xNAMESPACE_END2(xl, test)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Unit.cpp"

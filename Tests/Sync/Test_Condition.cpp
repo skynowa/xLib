@@ -7,7 +7,7 @@
 #include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
-using namespace xlib;
+using namespace xl;
 
 xTEST_CLASS(Test_Condition)
 xTEST_UNIT(Test_Condition)

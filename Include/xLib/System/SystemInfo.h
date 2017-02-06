@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, system)
+xNAMESPACE_BEGIN2(xl, system)
 
 class SystemInfo
     /// system information
@@ -148,7 +148,7 @@ xPLATFORM_IMPL:
     ulong_t        _pageSize_impl() const xWARN_UNUSED_RV;
 };
 
-xNAMESPACE_END2(xlib, system)
+xNAMESPACE_END2(xl, system)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "SystemInfo.cpp"

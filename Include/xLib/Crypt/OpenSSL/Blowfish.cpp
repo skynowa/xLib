@@ -18,7 +18,7 @@
 #include <xLib/Debug/ErrorReport.h>
 
 
-xNAMESPACE_BEGIN2(xlib, crypt)
+xNAMESPACE_BEGIN2(xl, crypt)
 
 /**************************************************************************************************
 *    public
@@ -187,6 +187,6 @@ Blowfish::encryptFileCfb64(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, crypt)
+xNAMESPACE_END2(xl, crypt)
 
 #endif // cmOPENSSL_CRYPTO_FOUND

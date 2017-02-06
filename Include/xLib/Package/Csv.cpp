@@ -12,7 +12,7 @@
 #include <xLib/IO/File.h>
 
 
-xNAMESPACE_BEGIN2(xlib, package)
+xNAMESPACE_BEGIN2(xl, package)
 
 /**************************************************************************************************
 *   CsvReader - public
@@ -163,4 +163,4 @@ CsvWriter::saveString(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, package)
+xNAMESPACE_END2(xl, package)

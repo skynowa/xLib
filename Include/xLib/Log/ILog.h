@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, log)
+xNAMESPACE_BEGIN2(xl, log)
 
 class xNO_VTABLE ILog
     /// logging interface
@@ -55,7 +55,7 @@ private:
     xNO_COPY_ASSIGN(ILog)
 };
 
-xNAMESPACE_END2(xlib, log)
+xNAMESPACE_END2(xl, log)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "ILog.cpp"

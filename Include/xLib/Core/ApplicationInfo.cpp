@@ -11,7 +11,7 @@
 #include <xLib/Core/Format.h>
 
 
-xNAMESPACE_BEGIN2(xlib, core)
+xNAMESPACE_BEGIN2(xl, core)
 
 /**************************************************************************************************
 *   public
@@ -53,4 +53,4 @@ ApplicationInfo::~ApplicationInfo()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, core)
+xNAMESPACE_END2(xl, core)

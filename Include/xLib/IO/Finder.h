@@ -9,7 +9,7 @@
 #include <xLib/Core/Core.h>
 #include <xLib/IO/FileType.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, io)
+xNAMESPACE_BEGIN2(xl, io)
 
 class Finder
     ///< filesystem finder
@@ -82,7 +82,7 @@ xPLATFORM_IMPL:
     bool_t            _moveFirst_impl() xWARN_UNUSED_RV;
 };
 
-xNAMESPACE_END2(xlib, io)
+xNAMESPACE_END2(xl, io)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Finder.cpp"

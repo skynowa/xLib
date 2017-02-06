@@ -10,7 +10,7 @@
 #include <xLib/Log/FileLog.h>
 #include <xLib/Core/DateTime.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, debug)
+xNAMESPACE_BEGIN2(xl, debug)
 
 class Profiler
     /// code profiling
@@ -47,7 +47,7 @@ private:
     xNO_COPY_ASSIGN(Profiler)
 };
 
-xNAMESPACE_END2(xlib, debug)
+xNAMESPACE_END2(xl, debug)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Profiler.cpp"

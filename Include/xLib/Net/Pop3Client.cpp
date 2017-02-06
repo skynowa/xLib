@@ -16,7 +16,7 @@
 #include <xLib/Debug/ErrorReport.h>
 
 
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 /**************************************************************************************************
 *    private
@@ -577,4 +577,4 @@ Pop3Client::_isError(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)

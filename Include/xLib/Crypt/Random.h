@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, crypt)
+xNAMESPACE_BEGIN2(xl, crypt)
 
 class xNO_VTABLE ISeedPolicy
     /// seed policy interface
@@ -114,7 +114,7 @@ private:
 typedef Random<int_t,  StdSeedPolicy>    StdRandom;
 typedef Random<long_t, NativeSeedPolicy> NativeRandom;
 
-xNAMESPACE_END2(xlib, crypt)
+xNAMESPACE_END2(xl, crypt)
 //-------------------------------------------------------------------------------------------------
 #include "Random.inl"
 

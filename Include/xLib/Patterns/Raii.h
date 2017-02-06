@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, patterns)
+xNAMESPACE_BEGIN2(xl, patterns)
 
 template<typename T, void (T::*MemberT)(void)>
 class Raii
@@ -43,5 +43,5 @@ private:
     xNO_COPY_ASSIGN(Raii)
 };
 
-xNAMESPACE_END2(xlib, patterns)
+xNAMESPACE_END2(xl, patterns)
 //-------------------------------------------------------------------------------------------------

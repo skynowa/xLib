@@ -16,13 +16,13 @@
 ////#include <boost\bind.hpp>
 ////#include <functional>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, log)
+xNAMESPACE_BEGIN2(xl, log)
 
 class Trace;
 
-xNAMESPACE_END2(xlib, log)
+xNAMESPACE_END2(xl, log)
 
-xNAMESPACE_BEGIN2(xlib, sync)
+xNAMESPACE_BEGIN2(xl, sync)
 
 class Mutex;
 class AutoMutex;
@@ -93,6 +93,6 @@ private:
     xNO_COPY_ASSIGN(ThreadPool)
 };
 
-xNAMESPACE_END2(xlib, sync)
+xNAMESPACE_END2(xl, sync)
 //-------------------------------------------------------------------------------------------------
 #include "ThreadPool.inl"

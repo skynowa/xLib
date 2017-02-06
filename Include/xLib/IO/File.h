@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, io)
+xNAMESPACE_BEGIN2(xl, io)
 
 class FileType;
 
@@ -319,7 +319,7 @@ xPLATFORM_IMPL:
                        const time_t &access, const time_t &modified);
 };
 
-xNAMESPACE_END2(xlib, io)
+xNAMESPACE_END2(xl, io)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "File.cpp"

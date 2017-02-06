@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, debug)
+xNAMESPACE_BEGIN2(xl, debug)
 
 struct StackTraceData
     /// StackTrace data
@@ -56,7 +56,7 @@ xPLATFORM_IMPL:
 #endif
 };
 
-xNAMESPACE_END2(xlib, debug)
+xNAMESPACE_END2(xl, debug)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "StackTrace.cpp"

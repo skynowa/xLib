@@ -10,7 +10,7 @@
 #include <xLib/IO/Path.h>
 
 
-xNAMESPACE_BEGIN2(xlib, debug)
+xNAMESPACE_BEGIN2(xl, debug)
 
 /**************************************************************************************************
 *   public
@@ -441,4 +441,4 @@ BuildInfo::cmake() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xlib, debug)
+xNAMESPACE_END2(xl, debug)

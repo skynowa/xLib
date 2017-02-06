@@ -11,7 +11,7 @@
 #include <xLib/Net/DnsClient.h>
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xlib, net)
+xNAMESPACE_BEGIN2(xl, net)
 
 class MimeHeader;
 class MimeBody;
@@ -64,7 +64,7 @@ private:
     xNO_COPY_ASSIGN(Pop3Client)
 };
 
-xNAMESPACE_END2(xlib, net)
+xNAMESPACE_END2(xl, net)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "Pop3Client.cpp"
