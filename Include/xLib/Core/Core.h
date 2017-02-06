@@ -93,34 +93,36 @@
 // xLib
 namespace xlib
 {
-    namespace core {}
-    namespace crypt {}
-    namespace db {}
-    namespace debug {}
-    namespace io {}
-    namespace ui {}
-    namespace log {}
-    namespace net {}
-    namespace patterns {}
-    namespace sync {}
-    namespace system {}
-    namespace test {}
-    namespace package {}
 
-    using namespace xlib::core;
-    using namespace xlib::crypt;
-    using namespace xlib::db;
-    using namespace xlib::debug;
-    using namespace xlib::io;
-    using namespace xlib::ui;
-    using namespace xlib::log;
-    using namespace xlib::net;
-    using namespace xlib::patterns;
-    using namespace xlib::sync;
-    using namespace xlib::system;
-    using namespace xlib::test;
-    using namespace xlib::package;
-}
+namespace core {}
+namespace crypt {}
+namespace db {}
+namespace debug {}
+namespace io {}
+namespace ui {}
+namespace log {}
+namespace net {}
+namespace patterns {}
+namespace sync {}
+namespace system {}
+namespace test {}
+namespace package {}
+
+using namespace xlib::core;
+using namespace xlib::crypt;
+using namespace xlib::db;
+using namespace xlib::debug;
+using namespace xlib::io;
+using namespace xlib::ui;
+using namespace xlib::log;
+using namespace xlib::net;
+using namespace xlib::patterns;
+using namespace xlib::sync;
+using namespace xlib::system;
+using namespace xlib::test;
+using namespace xlib::package;
+
+} // namespace xlib
 
 namespace xl = xlib;
 
