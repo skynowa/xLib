@@ -41,7 +41,7 @@ CmdOptions::parse(
     std::vec_tstring_t args;
     ProcessInfo::commandLine(a_argsNum, a_argv, &args);
 
-    /// Trace() << xTRACE_VAR(args) << "\n";
+    Trace() << xTRACE_VAR(args) << "\n";
 }
 //-------------------------------------------------------------------------------------------------
 
