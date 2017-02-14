@@ -37,9 +37,9 @@ Test_CmdOptions::unit()
         cint_t        argc       = 3;
         cptr_ctchar_t argv[argc] =
         {
-            "a=1",
-            "b=2",
-            "c=3"
+            "-a=1",
+            "-b=2",
+            "-c"
         };
 
         CmdOptions cmdOptions;
