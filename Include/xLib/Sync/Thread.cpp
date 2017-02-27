@@ -690,7 +690,7 @@ Thread::_s_jobEntry(
         xTEST_EQ(bRv, true);
     }
 
-    uint_t exitStatus = 0U;
+    static uint_t exitStatus = 0U;
     {
         {
             // TODO: Thread::_s_jobEntry() - begin of thread function
