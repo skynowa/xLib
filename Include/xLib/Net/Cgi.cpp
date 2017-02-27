@@ -271,7 +271,7 @@ Cgi::urlEscape(char *a_s, FILE *a_fw)
     xUNUSED(a_s);
     xUNUSED(a_fw);
 
-//    register int_t    c;
+//    int_t    c;
 //
 //    while((c = *s++) != (char)0) {
 //        switch(c) {
@@ -337,7 +337,7 @@ Cgi::cgl_hex2char(char *a_what)
 
     xUNUSED(a_what);
 
-    register char digit = '\0';
+    char digit = '\0';
 
 //    if (!what)
 //        return (char)0;

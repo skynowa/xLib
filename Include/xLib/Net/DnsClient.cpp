@@ -76,29 +76,38 @@ DnsClient::hostNameByAddr(
     hostent *host = xPTR_NULL;
 
     switch (a_family) {
+    case Socket::afInet:
+		{
+			in_addr iaAddr = {0};
+
+			iaAddr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
+			xTEST_DIFF(iaAddr.s_addr, INADDR_NONE);
+
+			host = ::gethostbyaddr(reinterpret_cast<char *>(&iaAddr), sizeof(iaAddr), Socket::afInet);
+			xTEST_PTR(host);
+		}
+        break;
+#if (xWINVER >= xOS_WIN_VISTA)
     case Socket::afInet6:
-    #if (xWINVER >= xOS_WIN_VISTA)
-        #if xTODO
-            IN6_ADDR iaAddr6 = {0};
+		{
+		#if xTODO
+			IN6_ADDR iaAddr6 = {0};
 
-            iRv = ::inet_pton(afInet6, a_casHostAddr.c_str(), &iaAddr6);
-            xTEST_DIFF(iRv, 0);
+			iRv = ::inet_pton(afInet6, a_casHostAddr.c_str(), &iaAddr6);
+			xTEST_DIFF(iRv, 0);
 
-            host = ::gethostbyaddr(reinterpret_cast<char *>( &iaAddr6 ), 16, afInet6);
-            xTEST_PTR(host);
-        #endif
-    #endif
+			host = ::gethostbyaddr(reinterpret_cast<char *>( &iaAddr6 ), 16, afInet6);
+			xTEST_PTR(host);
+		#endif
+		}
         break;
+#endif
     default:
-        in_addr iaAddr = {0};
-
-        iaAddr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
-        xTEST_DIFF(iaAddr.s_addr, INADDR_NONE);
-
-        host = ::gethostbyaddr(reinterpret_cast<char *>(&iaAddr), sizeof(iaAddr), Socket::afInet);
-        xTEST_PTR(host);
-
-        break;
+		{
+			*a_hostName = xA2T("");
+			return;
+		}
+    	break;
     }
 
     *a_hostName = xA2T(host->h_name);
