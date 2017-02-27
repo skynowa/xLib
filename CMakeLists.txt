@@ -245,6 +245,20 @@ install(
     FILES_MATCHING
         PATTERN "*" PATTERN "*.h.in" EXCLUDE)
 #--------------------------------------------------------------------------------------------------
+# clang-tidy
+add_custom_target(clang-tidy
+    COMMAND
+        ${cmCLANG_TIDY_FILE_PATH}
+        ${XLIB_SOURCES}
+        -config=''
+        -export-fixes='clang-tidy-fixes.dat'
+        --header-filter='.*'
+        # -checks='*'
+        # -list-checks
+        --
+        -std=c++11
+        -I${XLIB_INCLUDES})
+#--------------------------------------------------------------------------------------------------
 # uninstall
 add_custom_target(uninstall
     COMMAND
