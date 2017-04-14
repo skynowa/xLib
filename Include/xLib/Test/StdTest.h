@@ -8,7 +8,7 @@
 
 // FreeBSD
 #if defined(__FreeBSD__)
-	#include <sys/sysctl.h>
+    #include <sys/sysctl.h>
 #endif
 
 // C library
@@ -140,6 +140,17 @@
 #define STD_TEST_RET(expr, ret_expr) \
     STD_TEST_DO(expr, return ret_expr)
     ///< test macros
+
+#define STD_TEST_PTR(expr) \
+    STD_TEST_DO(expr != nullptr, {})
+    ///< test macros
+#define STD_TEST_PTR_DO(expr, do_expr) \
+    STD_TEST_DO(expr != nullptr, do_expr)
+    ///< test macros
+#define STD_TEST_PTR_RET(expr, ret_expr) \
+    STD_TEST_DO(expr != nullptr, return ret_expr)
+    ///< test macros
+
 #define STD_TEST_NA(expr) \
     ;
     ///< test macros
@@ -182,25 +193,25 @@ currentDateTime()
 inline std::string
 modulePath()
 {
-	std::string srv;
+    std::string srv;
 
 #if defined(KERN_PROC_PATHNAME)
-	const u_int mibSize            = 4;
-	int         mib[mibSize]       = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
-	char        buff[PATH_MAX + 1] = {0};
-	std::size_t buffSize           = sizeof(buff) - 1;
+    const u_int mibSize            = 4;
+    int         mib[mibSize]       = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
+    char        buff[PATH_MAX + 1] = {0};
+    std::size_t buffSize           = sizeof(buff) - 1;
 
-	int irv = ::sysctl(mib, mibSize, buff, &buffSize, NULL, 0U);
-	if (irv == - 1) {
-		return std::string("<unknown>");
-	}
+    int irv = ::sysctl(mib, mibSize, buff, &buffSize, NULL, 0U);
+    if (irv == - 1) {
+        return std::string("<unknown>");
+    }
 
-	srv.assign(buff);
+    srv.assign(buff);
 #else
-	srv = "<unknown>";
+    srv = "<unknown>";
 #endif
 
-	return srv;
+    return srv;
 }
 //-------------------------------------------------------------------------------------------------
 
