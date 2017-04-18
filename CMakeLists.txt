@@ -48,7 +48,7 @@ endif()
 set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 #--------------------------------------------------------------------------------------------------
 # modules
-set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/../CMakeLib ${XLIB_LOCATION}/CMake)
+set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMake ${XLIB_LOCATION}/../CMakeLib)
 
 include(${XLIB_LOCATION}/Config.cmake)
 include(Configure)
