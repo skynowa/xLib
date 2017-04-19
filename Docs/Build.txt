@@ -16,6 +16,9 @@ Dependencies:
         Apple:
             - MacOS:   -lexecinfo
 
+Switch compiler (Ubuntu):
+    sudo update-alternatives --config c++
+
 Installation:
     cd ./Build
     ./[platform_script]
