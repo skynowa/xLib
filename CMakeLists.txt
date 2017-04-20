@@ -131,7 +131,7 @@ if     (MSVC)
 elseif (MINGW)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ws2_32 netapi32 psapi uuid ole32 mpr dbghelp)
 elseif (CMAKE_COMPILER_IS_CLANGXX)
-    # add_compile_options(-stdlib=libc++)
+    add_compile_options(-stdlib=libc++ -lc++abi)
 
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} pthread rt m z)
 elseif (CMAKE_COMPILER_IS_GNUCXX)
