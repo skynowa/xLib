@@ -6,11 +6,6 @@
 
 
 # vars
-export CC="gcc"
-export CXX="g++"
-# export CC="clang"
-# export CXX="clang++"
-
 DIR_XLIB="../xLib"
 DIR_BUILD="../../xLib_android_eclipse"
 
