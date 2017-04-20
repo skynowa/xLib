@@ -60,7 +60,7 @@ find_package(MySQL QUIET REQUIRED)
 find_package(Ssh2 QUIET REQUIRED)
 
 if (ENV_UNIX)
-   find_package(ExecInfo QUIET REQUIRED)
+   find_package(ExecInfo QUIET)    # TODO: REQUIRED - add
    find_package(XCB QUIET REQUIRED)
    find_package(Addr2Line QUIET REQUIRED)
 endif()
