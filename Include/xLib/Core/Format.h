@@ -20,6 +20,8 @@ public:
     static std::tstring_t strV(cptr_ctchar_t format, va_list args) xWARN_UNUSED_RV;
 };
 //-------------------------------------------------------------------------------------------------
+#define FORMAT_DEPR 0
+
 class Format
     ///< format string
 {
@@ -62,94 +64,94 @@ private:
     tchar_t           _unprintableChar() xWARN_UNUSED_RV;
         ///< unprintable char
 
-    static void_t _format(std::tstringstream_t &ss, const bool value);
-    static void_t _format(std::tstringstream_t &ss, const char value);
-    static void_t _format(std::tstringstream_t &ss, const wchar_t value);
-    static void_t _format(std::tstringstream_t &ss, const unsigned char value);
-    static void_t _format(std::tstringstream_t &ss, const short value);
-    static void_t _format(std::tstringstream_t &ss, const unsigned short value);
-    static void_t _format(std::tstringstream_t &ss, const int value);
-    static void_t _format(std::tstringstream_t &ss, const unsigned int value);
-    static void_t _format(std::tstringstream_t &ss, const long value);
-    static void_t _format(std::tstringstream_t &ss, const unsigned long value);
-    static void_t _format(std::tstringstream_t &ss, const long long value);
-    static void_t _format(std::tstringstream_t &ss, const unsigned long long value);
-    static void_t _format(std::tstringstream_t &ss, const float value);
-    static void_t _format(std::tstringstream_t &ss, const double value);
-    static void_t _format(std::tstringstream_t &ss, const long double value);
-    static void_t _format(std::tstringstream_t &ss, const void * value);
-    static void_t _format(std::tstringstream_t &ss, const char * value);
-    static void_t _format(std::tstringstream_t &ss, const wchar_t * value);
-    static void_t _format(std::tstringstream_t &ss, const std::wstring &value);
-    static void_t _format(std::tstringstream_t &ss, const std::string &value);
-    static void_t _format(std::tstringstream_t &ss, const std::ustring_t &value);
+    static void_t _format(std::tostream_t &os, const bool value);
+    static void_t _format(std::tostream_t &os, const char value);
+    static void_t _format(std::tostream_t &os, const wchar_t value);
+    static void_t _format(std::tostream_t &os, const unsigned char value);
+    static void_t _format(std::tostream_t &os, const short value);
+    static void_t _format(std::tostream_t &os, const unsigned short value);
+    static void_t _format(std::tostream_t &os, const int value);
+    static void_t _format(std::tostream_t &os, const unsigned int value);
+    static void_t _format(std::tostream_t &os, const long value);
+    static void_t _format(std::tostream_t &os, const unsigned long value);
+    static void_t _format(std::tostream_t &os, const long long value);
+    static void_t _format(std::tostream_t &os, const unsigned long long value);
+    static void_t _format(std::tostream_t &os, const float value);
+    static void_t _format(std::tostream_t &os, const double value);
+    static void_t _format(std::tostream_t &os, const long double value);
+    static void_t _format(std::tostream_t &os, const void * value);
+    static void_t _format(std::tostream_t &os, const char * value);
+    static void_t _format(std::tostream_t &os, const wchar_t * value);
+    static void_t _format(std::tostream_t &os, const std::wstring &value);
+    static void_t _format(std::tostream_t &os, const std::string &value);
+    static void_t _format(std::tostream_t &os, const std::ustring_t &value);
 
     template<typename T, std::size_t N>
-    static void_t _format(std::tstringstream_t &ss, const Array<T, N> &value);
+    static void_t _format(std::tostream_t &os, const Array<T, N> &value);
 
     template<typename T1, typename T2>
-    static void_t _format(std::tstringstream_t &ss, const std::pair<T1, T2> &value);
+    static void_t _format(std::tostream_t &os, const std::pair<T1, T2> &value);
 
     template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const std::vector<T> &value);
+    static void_t _format(std::tostream_t &os, const std::vector<T> &value);
 
     template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const std::list<T> &value);
+    static void_t _format(std::tostream_t &os, const std::list<T> &value);
 
     template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const std::set<T> &value);
+    static void_t _format(std::tostream_t &os, const std::set<T> &value);
 
     template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const std::multiset<T> &value);
+    static void_t _format(std::tostream_t &os, const std::multiset<T> &value);
 
     template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const std::deque<T> &value);
+    static void_t _format(std::tostream_t &os, const std::deque<T> &value);
 
     template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const std::queue<T> &value);
+    static void_t _format(std::tostream_t &os, const std::queue<T> &value);
 
     template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const std::priority_queue<T> &value);
+    static void_t _format(std::tostream_t &os, const std::priority_queue<T> &value);
 
     template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const std::stack<T> &value);
+    static void_t _format(std::tostream_t &os, const std::stack<T> &value);
 
     template<typename T1, typename T2>
-    static void_t _format(std::tstringstream_t &ss, const std::map<T1, T2> &value);
+    static void_t _format(std::tostream_t &os, const std::map<T1, T2> &value);
 
     template<typename T1, typename T2>
-    static void_t _format(std::tstringstream_t &ss, const std::multimap<T1, T2> &value);
+    static void_t _format(std::tostream_t &os, const std::multimap<T1, T2> &value);
 
     template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const T &value);
+    static void_t _format(std::tostream_t &os, const T &value);
         ///< format other types with overload std::tostream_t::operator <<
 
 #if xLANG_CPP11
-    static void_t _format(std::tstringstream_t &ss, const std::nullptr_t value);
+    static void_t _format(std::tostream_t &os, const std::nullptr_t value);
 
     template<typename T, std::size_t N>
-    static void_t _format(std::tstringstream_t &ss, const std::array<T, N> &value);
+    static void_t _format(std::tostream_t &os, const std::array<T, N> &value);
 
     template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const std::forward_list<T> &value);
+    static void_t _format(std::tostream_t &os, const std::forward_list<T> &value);
 
     template<typename T1, typename T2>
-    static void_t _format(std::tstringstream_t &ss, const std::unordered_map<T1, T2> &value);
+    static void_t _format(std::tostream_t &os, const std::unordered_map<T1, T2> &value);
 
     template<typename T1, typename T2>
-    static void_t _format(std::tstringstream_t &ss, const std::unordered_multimap<T1, T2> &value);
+    static void_t _format(std::tostream_t &os, const std::unordered_multimap<T1, T2> &value);
 
     template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const std::unordered_set<T> &value);
+    static void_t _format(std::tostream_t &os, const std::unordered_set<T> &value);
 
     template<typename T>
-    static void_t _format(std::tstringstream_t &ss, const std::unordered_multiset<T> &value);
+    static void_t _format(std::tostream_t &os, const std::unordered_multiset<T> &value);
 
     template<typename T, std::size_t N>
     struct TupleFormat
     {
         static void_t
-        format(std::tstringstream_t &a_ss, const T &a_value)
+        format(std::tostream_t &a_ss, const T &a_value)
         {
             TupleFormat<T, N - 1>::format(a_ss, a_value);
             a_ss << Format::_delimiter() << std::get<N - 1>(a_value);
@@ -160,18 +162,18 @@ private:
     struct TupleFormat<T, 1>
     {
         static void_t
-        format(std::tstringstream_t &a_ss, const T &a_value)
+        format(std::tostream_t &a_ss, const T &a_value)
         {
             a_ss << std::get<0>(a_value);
         }
     };
 
     template<typename... Args>
-    static void_t _format(std::tstringstream_t &ss, const std::tuple<Args...> &value);
+    static void_t _format(std::tostream_t &os, const std::tuple<Args...> &value);
 #endif
 
 #if xLIB_QT
-    static void_t _format(std::tstringstream_t &ss, const QString &value);
+    static void_t _format(std::tostream_t &os, const QString &value);
 #endif
 
 private:
@@ -179,16 +181,16 @@ private:
     xNO_COPY_ASSIGN(Format)
 
     template<typename IteratorT>
-    static void_t _formatString(std::tstringstream_t &ss, IteratorT first, IteratorT last);
+    static void_t _formatString(std::tostream_t &os, IteratorT first, IteratorT last);
 
     template<typename IteratorT>
-    static void_t _formatRange(std::tstringstream_t &ss, IteratorT first, IteratorT last);
+    static void_t _formatRange(std::tostream_t &os, IteratorT first, IteratorT last);
 
     template<typename T>
-    static void_t _formatContainer(std::tstringstream_t &ss, const T &value);
+    static void_t _formatContainer(std::tostream_t &os, const T &value);
 
     template<typename T>
-    static void_t _formatFloat(std::tstringstream_t &ss, const T value);
+    static void_t _formatFloat(std::tostream_t &os, const T value);
 
     template<typename T>
     static int_t _floatPrecisionMax() xWARN_UNUSED_RV;

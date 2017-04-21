@@ -130,213 +130,213 @@ Format::_unprintableChar()
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const bool            a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const bool       a_value   ///< value
 )
 {
-    a_ss << std::boolalpha;
-    a_ss << a_value;
+    a_os << std::boolalpha;
+    a_os << a_value;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const char            a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const char       a_value   ///< value
 )
 {
 #if xANSI
-    a_ss << a_value;
+    a_os << a_value;
 #else
-    a_ss << static_cast<wchar_t>(a_value);
+    a_os << static_cast<wchar_t>(a_value);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const wchar_t         a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const wchar_t    a_value   ///< value
 )
 {
     if ( ::iswprint(  static_cast<wint_t>(a_value) ) ) {
-        a_ss << static_cast<tchar_t>(a_value);
+        a_os << static_cast<tchar_t>(a_value);
     } else {
-        a_ss << _formatUnprintableChar(a_value);
+        a_os << _formatUnprintableChar(a_value);
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const unsigned char   a_value   ///< value
+    std::tostream_t     &a_os,     ///< [out]
+    const unsigned char  a_value   ///< value
 )
 {
     if ( ::isprint(a_value) ) {
-        a_ss << a_value;
+        a_os << a_value;
     } else {
-        a_ss << _formatUnprintableChar(a_value);
+        a_os << _formatUnprintableChar(a_value);
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const short           a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const short      a_value   ///< value
 )
 {
-    a_ss << a_value;
+    a_os << a_value;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
+    std::tostream_t      &a_os,     ///< [out]
     const unsigned short  a_value   ///< value
 )
 {
-    a_ss << a_value;
+    a_os << a_value;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const int             a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const int        a_value   ///< value
 )
 {
-    a_ss << a_value;
+    a_os << a_value;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const unsigned int    a_value   ///< value
+    std::tostream_t    &a_os,     ///< [out]
+    const unsigned int  a_value   ///< value
 )
 {
-    a_ss << a_value;
+    a_os << a_value;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const long            a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const long       a_value   ///< value
 )
 {
-    a_ss << a_value;
+    a_os << a_value;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const unsigned long   a_value   ///< value
+    std::tostream_t     &a_os,     ///< [out]
+    const unsigned long  a_value   ///< value
 )
 {
-    a_ss << a_value;
+    a_os << a_value;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const long long       a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const long long  a_value   ///< value
 )
 {
-    a_ss << a_value;
+    a_os << a_value;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t     &a_ss,     ///< [out]
+    std::tostream_t          &a_os,     ///< [out]
     const unsigned long long  a_value   ///< value
 )
 {
-    a_ss << a_value;
+    a_os << a_value;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const float           a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const float      a_value   ///< value
 )
 {
-    _formatFloat(a_ss, a_value);
+    _formatFloat(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const double          a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const double     a_value   ///< value
 )
 {
-    _formatFloat(a_ss, a_value);
+    _formatFloat(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const long double     a_value   ///< value
+    std::tostream_t   &a_os,     ///< [out]
+    const long double  a_value   ///< value
 )
 {
-    _formatFloat(a_ss, a_value);
+    _formatFloat(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const void *          a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const void *     a_value   ///< value
 )
 {
     if (a_value == xPTR_NULL) {
-        a_ss << xT("null");
+        a_os << xT("null");
     } else {
-        a_ss << a_value;
+        a_os << a_value;
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const char *          a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const char *     a_value   ///< value
 )
 {
     if (a_value == xPTR_NULL) {
-        a_ss << xT("null");
+        a_os << xT("null");
     } else {
-        _format(a_ss, std::string(a_value));
+        _format(a_os, std::string(a_value));
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const wchar_t *       a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const wchar_t *  a_value   ///< value
 )
 {
     if (a_value == xPTR_NULL) {
-        a_ss << xT("null");
+        a_os << xT("null");
     } else {
-        _format(a_ss, std::wstring(a_value));
+        _format(a_os, std::wstring(a_value));
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const std::wstring   &a_value   ///< value
+    std::tostream_t    &a_os,     ///< [out]
+    const std::wstring &a_value   ///< value
 )
 {
     std::tstring_t sRv;
@@ -350,31 +350,31 @@ Format::_format(
         }
     }
 
-    a_ss << sRv;
+    a_os << sRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const std::string    &a_value   ///< value
+    std::tostream_t   &a_os,     ///< [out]
+    const std::string &a_value   ///< value
 )
 {
 #if xANSI
-    a_ss << a_value;
+    a_os << a_value;
 #else
-    a_ss << std::wstring(a_value.begin(), a_value.end());
+    a_os << std::wstring(a_value.begin(), a_value.end());
 #endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
+    std::tostream_t      &a_os,     ///< [out]
     const std::ustring_t &a_value   ///< value
 )
 {
-    _formatString(a_ss, a_value.begin(), a_value.end());
+    _formatString(a_os, a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
 #if xLANG_CPP11
@@ -382,13 +382,13 @@ Format::_format(
 /* static */
 xINLINE void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
+    std::tostream_t      &a_os,     ///< [out]
     const std::nullptr_t  a_value   ///< value
 )
 {
     xUNUSED(a_value);
 
-    a_ss << xT("nullptr");
+    a_os << xT("nullptr");
 }
 
 #endif
