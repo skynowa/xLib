@@ -12,7 +12,6 @@
 
 #if 1
     #include <xLib/Core/Format.h>
-    #include <xLib/Core/StdStream.h>
     #include <xLib/Log/Trace.h>
 #endif
 
