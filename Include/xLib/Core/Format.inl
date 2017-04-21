@@ -516,7 +516,7 @@ Format::_formatFloat(
         << std::showpoint
         << a_value;
 
-#if 0
+#if FORMAT_DEPR
     std::tstring_t value = a_os.str();
 #else
     std::tstreambuf_t *buff = a_os.rdbuf();
@@ -536,7 +536,7 @@ Format::_formatFloat(
         value = value.substr(0, i + 1);
     }
 
-#if 0
+#if FORMAT_DEPR
     a_os.str(value);
 #else
     a_os << value;
