@@ -172,89 +172,89 @@ template<typename T, std::size_t N>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const Array<T, N>    &a_value   ///< value
+    std::tostream_t   &a_os,     ///< [out]
+    const Array<T, N> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t    &a_ss,     ///< [out]
+    std::tostream_t         &a_os,     ///< [out]
     const std::pair<T1, T2> &a_value   ///< value
 )
 {
-    _format(a_ss, xT("{"));
-    _format(a_ss, a_value.first);
-    _format(a_ss, _delimiter());
-    _format(a_ss, a_value.second);
-    _format(a_ss, xT("}"));
+    _format(a_os, xT("{"));
+    _format(a_os, a_value.first);
+    _format(a_os, _delimiter());
+    _format(a_os, a_value.second);
+    _format(a_os, xT("}"));
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
+    std::tostream_t      &a_os,     ///< [out]
     const std::vector<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const std::list<T>   &a_value   ///< value
+    std::tostream_t    &a_os,     ///< [out]
+    const std::list<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const std::set<T>    &a_value   ///< value
+    std::tostream_t   &a_os,     ///< [out]
+    const std::set<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t   &a_ss,     ///< [out]
+    std::tostream_t        &a_os,     ///< [out]
     const std::multiset<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const std::deque<T>  &a_value   ///< value
+    std::tostream_t     &a_os,     ///< [out]
+    const std::deque<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const std::queue<T>  &a_value   ///< value
+    std::tostream_t     &a_os,     ///< [out]
+    const std::queue<T> &a_value   ///< value
 )
 {
     typedef const T* const_iterator;
@@ -262,14 +262,14 @@ Format::_format(
     const_iterator begin = &a_value.front();
     const_iterator end   = &a_value.back() + 1;
 
-    _formatRange(a_ss, begin, end);
+    _formatRange(a_os, begin, end);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t         &a_ss,     ///< [out]
+    std::tostream_t              &a_os,     ///< [out]
     const std::priority_queue<T> &a_value   ///< value
 )
 {
@@ -278,15 +278,15 @@ Format::_format(
     const_iterator begin = &a_value.top();
     const_iterator end   = &a_value.top() + a_value.size();
 
-    _formatRange(a_ss, begin, end);
+    _formatRange(a_os, begin, end);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const std::stack<T>  &a_value   ///< value
+    std::tostream_t     &a_os,     ///< [out]
+    const std::stack<T> &a_value   ///< value
 )
 {
     typedef const T* const_iterator;
@@ -294,40 +294,40 @@ Format::_format(
     const_iterator begin = &a_value.top() - a_value.size() + 1;
     const_iterator end   = &a_value.top() + 1;
 
-    _formatRange(a_ss, begin, end);
+    _formatRange(a_os, begin, end);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t   &a_ss,     ///< [out]
+    std::tostream_t        &a_os,     ///< [out]
     const std::map<T1, T2> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t        &a_ss,     ///< [out]
+    std::tostream_t             &a_os,     ///< [out]
     const std::multimap<T1, T2> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const T              &a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const T         &a_value   ///< value
 )
 {
-    a_ss << a_value;
+    a_os << a_value;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -344,78 +344,78 @@ template<typename T, std::size_t N>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t   &a_ss,     ///< [out]
+    std::tostream_t        &a_os,     ///< [out]
     const std::array<T, N> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t       &a_ss,     ///< [out]
+    std::tostream_t            &a_os,     ///< [out]
     const std::forward_list<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t             &a_ss,     ///< [out]
+    std::tostream_t                  &a_os,     ///< [out]
     const std::unordered_map<T1, T2> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t                  &a_ss,     ///< [out]
+    std::tostream_t                       &a_os,     ///< [out]
     const std::unordered_multimap<T1, T2> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t        &a_ss,     ///< [out]
+    std::tostream_t             &a_os,     ///< [out]
     const std::unordered_set<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t             &a_ss,     ///< [out]
+    std::tostream_t                  &a_os,     ///< [out]
     const std::unordered_multiset<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_ss, a_value);
+    _formatContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename... Args>
 inline void_t
 Format::_format(
-    std::tstringstream_t      &a_ss,     ///< [out]
+    std::tostream_t           &a_os,     ///< [out]
     const std::tuple<Args...> &a_value   ///< value
 )
 {
-    a_ss << xT("{");
-    TupleFormat<decltype(a_value), sizeof...(Args)>::format(a_ss, a_value);
-    a_ss << xT("}");
+    a_os << xT("{");
+    TupleFormat<decltype(a_value), sizeof...(Args)>::format(a_os, a_value);
+    a_os << xT("}");
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -433,14 +433,14 @@ Format::_format(
 /* static */
 inline void_t
 Format::_format(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const QString        &a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const QString   &a_value   ///< value
 )
 {
 #if xANSI
-    a_ss << a_value.toStdString();
+    a_os << a_value.toStdString();
 #else
-    a_ss << a_value.toStdWString();
+    a_os << a_value.toStdWString();
 #endif
 }
 
@@ -458,13 +458,13 @@ template<typename IteratorT>
 /* static */
 inline void_t
 Format::_formatString(
-    std::tstringstream_t &a_ss,     ///< [out]
-    IteratorT             a_first,  ///< first iterator
-    IteratorT             a_last    ///< last iterator
+    std::tostream_t &a_os,     ///< [out]
+    IteratorT        a_first,  ///< first iterator
+    IteratorT        a_last    ///< last iterator
 )
 {
     for (; a_first != a_last; ++ a_first) {
-        a_ss << str(_specifier(), *a_first);
+        a_os << str(_specifier(), *a_first);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -472,51 +472,60 @@ template<typename IteratorT>
 /* static */
 inline void_t
 Format::_formatRange(
-    std::tstringstream_t &a_ss,     ///< [out]
-    IteratorT             a_first,  ///< first iterator
-    IteratorT             a_last    ///< last iterator
+    std::tostream_t &a_os,     ///< [out]
+    IteratorT        a_first,  ///< first iterator
+    IteratorT        a_last    ///< last iterator
 )
 {
     if (a_first == a_last) {
-        a_ss << xT("{}");
+        a_os << xT("{}");
         return;
     }
 
-    a_ss << xT("{");
-    a_ss << str(_specifier(), *a_first);
+    a_os << xT("{");
+    a_os << str(_specifier(), *a_first);
 
     for (++ a_first; a_first != a_last; ++ a_first) {
-        a_ss << str(_delimiter() + _specifier(), *a_first);
+        a_os << str(_delimiter() + _specifier(), *a_first);
     }
 
-    a_ss << xT("}");
+    a_os << xT("}");
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_formatContainer(
-    std::tstringstream_t &a_ss,     ///< [out]
-    const T              &a_value   ///< value
+    std::tostream_t &a_os,     ///< [out]
+    const T         &a_value   ///< value
 )
 {
-    _formatRange(a_ss, a_value.begin(), a_value.end());
+    _formatRange(a_os, a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
 Format::_formatFloat(
-    std::tstringstream_t &a_ss,
-    const T               a_value
+    std::tostream_t &a_os,
+    const T          a_value
 )
 {
-    a_ss
+    a_os
         << std::setprecision( _floatPrecisionMax<T>() )
         << std::showpoint
         << a_value;
 
-    std::tstring_t value = a_ss.str();
+#if 0
+    std::tstring_t value = a_os.str();
+#else
+    std::tstreambuf_t *buff = a_os.rdbuf();
+
+    std::tstring_t value = std::tstring_t(
+        std::istreambuf_iterator<tchar_t>(buff),
+        std::istreambuf_iterator<tchar_t>());
+#endif
+
     std::size_t    i     = value.find_last_not_of(xT('0'));
 
     if (i != std::tstring_t::npos && i != value.size() - 1) {
@@ -527,7 +536,11 @@ Format::_formatFloat(
         value = value.substr(0, i + 1);
     }
 
-    a_ss.str(value);
+#if 0
+    a_os.str(value);
+#else
+    a_os << value;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
