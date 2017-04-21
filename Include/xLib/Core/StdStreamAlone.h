@@ -1,5 +1,5 @@
 /**
- * \file  StdStream.h
+ * \file  StdStreamAlone.h
  * \brief std stream printers
  */
 
