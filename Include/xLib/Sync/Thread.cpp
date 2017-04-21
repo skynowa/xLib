@@ -680,7 +680,8 @@ Thread::_s_jobEntry(
     currentSleep(waitVaildHandleTimeoutMsec);
 
     Event::ExObjectState osRv = self->_eventStarter->wait(notInfiniteTimeoutMsec);
-    xTEST_EQ(Event::osSignaled, osRv);
+    // TODO: StdStreamV2
+    ///-- xTEST_EQ(Event::osSignaled, osRv);
 
     xPTR_DELETE(self->_eventStarter);
 
@@ -735,9 +736,10 @@ Thread::_waitResumption()
     }
 
     Event::ExObjectState osRv = _eventPause.wait();
-    xTEST_DIFF(Event::osFailed, osRv);
-    xTEST_DIFF(Event::osTimeout, osRv);
-    xTEST_EQ(Event::osSignaled, osRv);
+    // TODO: StdStreamV2
+    ///-- xTEST_DIFF(Event::osFailed, osRv);
+    ///-- xTEST_DIFF(Event::osTimeout, osRv);
+    ///-- xTEST_EQ(Event::osSignaled, osRv);
 
     return (Event::osSignaled == osRv);
 }
