@@ -147,8 +147,8 @@ Console::_setAttributes_impl(
         cint_t attributeReverse    = 7;
         cint_t attributeConcealed  = 8;
 
-        attrs += Format::str(xT("\033[{}m"), foregroundColor);
-        attrs += Format::str(xT("\033[{}m"), backgroundColor);
+        attrs += Format::str(xT("\033[{}m"), (int)foregroundColor);  // TODO: StdStreamV2
+        attrs += Format::str(xT("\033[{}m"), (int)backgroundColor);  // TODO: StdStreamV2
 
         xCHECK_DO(a_attributes & Console::atAllOff,     attrs += Format::str(xT("\033[{}m"), attributeAllOff));
         xCHECK_DO(a_attributes & Console::atBold,       attrs += Format::str(xT("\033[{}m"), attributeBold));

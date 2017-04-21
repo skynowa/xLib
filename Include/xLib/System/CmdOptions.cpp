@@ -56,7 +56,7 @@ CmdOptions::parse(
 	const std::vector<CmdOptionsUsage> &a_usage
 )
 {
-    Trace() << xTRACE_VAR(a_args) << "\n";
+    // Trace() << xTRACE_VAR(a_args) << "\n";
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -993,7 +993,8 @@ File::textWrite(
 {
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_NA(a_content);
-    xTEST_DIFF(a_mode, omUnknown);
+    // TODO: StdStreamV2
+    ///-- xTEST_DIFF(a_mode, omUnknown);
 
     File file;
     file.create(a_filePath, a_mode);
@@ -1036,7 +1037,8 @@ File::textWrite(
 {
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_NA(a_content);
-    xTEST_DIFF(a_mode, omUnknown);
+    // TODO: StdStreamV2
+    ///-- xTEST_DIFF(a_mode, omUnknown);
 
     std::tstring_t content;
 
@@ -1128,7 +1130,8 @@ File::textWrite(
     xTEST_EQ(a_filePath.empty(),  false);
     xTEST_EQ(a_separator.empty(), false);
     xTEST_NA(a_content);
-    xTEST_DIFF(a_mode, omUnknown);
+    // TODO: StdStreamV2
+    ///-- xTEST_DIFF(a_mode, omUnknown);
 
     File file;
     file.create(a_filePath, a_mode);

@@ -107,7 +107,8 @@ Ssh2Client::authPassword(
 )
 {
     xTEST_PTR(_session);
-    xTEST_DIFF(a_userAuth, uaUnknown);
+    // TODO: StdStreamV2
+    ///-- xTEST_DIFF(a_userAuth, uaUnknown);
 
     int iRv = - 1;
 
