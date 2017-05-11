@@ -26,6 +26,7 @@ pipelines:
   default:
     - step:
         script: # Modify the commands below to build your repository.
+          - apt-get -qq update
           - apt-get install -y cmake
           - ./Build/makefile.sh
 
