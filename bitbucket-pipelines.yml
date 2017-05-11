@@ -13,6 +13,7 @@ init:
   - cmake --version
 
 before_install:
+  - sudo apt-get -qq update
   - sudo apt-get install -y cmake
 
 image: gcc:6.1
