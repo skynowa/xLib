@@ -15,6 +15,6 @@ DIR_BUILD="../../xLib_makefile"
 mkdir -p $DIR_BUILD
 cd $DIR_BUILD
 
-/usr/local/bin/cmake \
+cmake \
 	-G"Unix Makefiles" \
 	$DIR_XLIB
