@@ -20,8 +20,8 @@ before_script:
   - git submodule update --init --recursive
 
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y cmake
+  - apt-get -qq update
+  - apt-get install -y cmake
 
 image: gcc:6.1
 language: cpp
@@ -35,6 +35,9 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - apt-get -qq update
           - apt-get install -y cmake
-          - git submodule update --init --recursive
+          - apt-get install libx11-xcb-dev
+          - apt-get installlibssl-dev
+          - apt-get installlibssh2-1-dev
+          - apt-get installlibmysqlclient-dev
           - git clone https://skynowa:5582000*aaa@bitbucket.org/skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
           - ./Build/makefile-yaml.sh
