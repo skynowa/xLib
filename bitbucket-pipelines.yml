@@ -6,6 +6,12 @@
 
 
 sudo: required
+
+init:
+  # Print environment info ( set / systeminfo)
+  - env
+  - cmake --version
+
 before_script:
   - sudo apt-get install cmake
 
