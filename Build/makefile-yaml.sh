@@ -7,7 +7,7 @@
 set -ex
 
 # vars
-DIR_XLIB="../xlib"
+DIR_XLIB="../build"
 DIR_BUILD="../../xLib_makefile"
 
 
