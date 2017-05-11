@@ -41,5 +41,3 @@ pipelines:
           - apt-get install -y libmysqlclient-dev
           - git clone https://skynowa:5582000*aaa@bitbucket.org/skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
           - ./Build/makefile-yaml.sh
-          - pwd
-          - make
