@@ -20,4 +20,4 @@ cmake \
 	$DIR_XLIB
 
 make
-# ctest
+ctest
