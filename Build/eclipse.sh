@@ -26,6 +26,9 @@ DIR_BUILD="../../xLib_eclipse"
 
 mkdir -p $DIR_BUILD
 cd $DIR_BUILD
+
+echo `which cmake`
+
 `which cmake` \
 	-G"Eclipse CDT4 - Unix Makefiles" \
 	-D_ECLIPSE_VERSION=4.3 \
