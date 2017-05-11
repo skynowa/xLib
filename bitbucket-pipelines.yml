@@ -31,3 +31,10 @@ pipelines:
 deps:
   apt_get:
   - name: cmake
+
+
+addons:
+  apt:
+    packages:
+    - cmake
+    - time
