@@ -7,6 +7,9 @@
 
 sudo: required
 
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
 init:
   # Print environment info ( set / systeminfo)
   - env
@@ -30,13 +33,4 @@ pipelines:
           - apt-get install -y cmake
           - ./Build/makefile-yaml.sh
 
-deps:
-  apt_get:
-  - name: cmake
 
-
-addons:
-  apt:
-    packages:
-    - cmake
-    - time
