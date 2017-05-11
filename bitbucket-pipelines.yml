@@ -36,5 +36,5 @@ pipelines:
           - apt-get -qq update
           - apt-get install -y cmake
           - git submodule update --init --recursive
-          - git clone https://skynowa@bitbucket.org/skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
+          - git clone git@bitbucket.org:skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
           - ./Build/makefile-yaml.sh
