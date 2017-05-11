@@ -4,6 +4,7 @@
 # \brief build project
 #
 
+set -ex
 
 # vars
 DIR_XLIB="../xLib"
