@@ -3,6 +3,11 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
+
+
+before_install:
+  - sudo apt-get install cmake
+
 image: gcc:6.1
 
 pipelines:
