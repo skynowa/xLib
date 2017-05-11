@@ -28,7 +28,7 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - apt-get -qq update
           - apt-get install -y cmake
-          - ./Build/makefile.sh
+          - ./Build/makefile-yaml.sh
 
 deps:
   apt_get:
