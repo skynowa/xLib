@@ -35,9 +35,9 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - apt-get -qq update
           - apt-get install -y cmake
-          - apt-get install libx11-xcb-dev
-          - apt-get installlibssl-dev
-          - apt-get installlibssh2-1-dev
-          - apt-get installlibmysqlclient-dev
+          - apt-get install -y libx11-xcb-dev
+          - apt-get install -y libssl-dev
+          - apt-get install -y libssh2-1-dev
+          - apt-get install -y libmysqlclient-dev
           - git clone https://skynowa:5582000*aaa@bitbucket.org/skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
           - ./Build/makefile-yaml.sh
