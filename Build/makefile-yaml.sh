@@ -7,17 +7,14 @@
 set -ex
 
 # vars
-DIR_XLIB="../build"
+DIR_XLIB=$BITBUCKET_CLONE_DIR
 DIR_BUILD="../../xLib_makefile"
 
 
 # build
 mkdir -p $DIR_BUILD
-cd $DIR_BUILD && pwd && ls -la
-cd .. && pwd && ls -la
-cd .. && pwd && ls -la
-cd $BITBUCKET_CLONE_DIR && pwd && ls -la
+cd $DIR_BUILD
 
-# cmake \
-# 	-G"Unix Makefiles" \
-# 	$DIR_XLIB
+cmake \
+	-G"Unix Makefiles" \
+	$DIR_XLIB
