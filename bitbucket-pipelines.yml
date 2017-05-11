@@ -9,6 +9,8 @@ before_install:
   - sudo apt-get install cmake
 
 image: gcc:6.1
+language: cpp
+
 
 pipelines:
   default:
