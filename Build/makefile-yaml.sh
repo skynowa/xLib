@@ -16,7 +16,7 @@ mkdir -p $DIR_BUILD
 cd $DIR_BUILD && pwd && ls -la
 cd .. && pwd && ls -la
 cd .. && pwd && ls -la
-cd $BITBUCKET_CLONE DIR && pwd && ls -la
+cd $BITBUCKET_CLONE_DIR && pwd && ls -la
 
 # cmake \
 # 	-G"Unix Makefiles" \
