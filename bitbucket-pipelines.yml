@@ -26,3 +26,11 @@ pipelines:
     - step:
         script: # Modify the commands below to build your repository.
           - ./Build/makefile.sh
+
+deps:
+  brew:
+  - name: git
+  - name: cmake
+  apt_get:
+  - name: git
+  - name: cmake
