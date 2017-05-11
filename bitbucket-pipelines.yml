@@ -25,10 +25,4 @@ pipelines:
   default:
     - step:
         script: # Modify the commands below to build your repository.
-          deps:
-            brew:
-            - name: cmake
-            apt_get:
-            - name: cmake
-
           - ./Build/makefile.sh
