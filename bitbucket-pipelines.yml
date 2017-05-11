@@ -12,7 +12,7 @@ init:
   - env
   - cmake --version
 
-before_script:
+install:
   - sudo apt-get install cmake
 
 image: gcc:6.1
