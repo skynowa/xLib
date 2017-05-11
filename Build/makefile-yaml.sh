@@ -13,9 +13,9 @@ DIR_BUILD="../../xLib_makefile"
 
 # build
 mkdir -p $DIR_BUILD
-cd $DIR_BUILD
-cd ..
-ls -la
+cd $DIR_BUILD && pwd && ls -la
+cd .. && pwd && ls -la
+cd .. && pwd && ls -la
 
 # cmake \
 # 	-G"Unix Makefiles" \
