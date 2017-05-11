@@ -32,7 +32,7 @@ compiler:
 pipelines:
   default:
     - step:
-        script: # Modify the commands below to build your repository.
+        script:
           - apt-get -qq update
           - apt-get install -y cmake
           - apt-get install -y libx11-xcb-dev
