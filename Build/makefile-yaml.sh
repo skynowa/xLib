@@ -19,4 +19,4 @@ cmake \
 	-G"Unix Makefiles" \
 	$DIR_XLIB
 
-make $DIR_BUILD
+make
