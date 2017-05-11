@@ -35,6 +35,7 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - apt-get -qq update
           - apt-get install -y cmake
+          - git submodule update --init --recursive
           - ./Build/makefile-yaml.sh
 
 
