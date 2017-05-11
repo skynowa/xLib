@@ -13,8 +13,7 @@ DIR_BUILD="../../xLib_makefile"
 # build
 mkdir -p $DIR_BUILD
 cd $DIR_BUILD
-echo `which cmake`
 
-`which cmake` \
+cmake \
 	-G"Unix Makefiles" \
 	$DIR_XLIB
