@@ -14,17 +14,15 @@ init:
     - cmake --version
 
 before_script:
-    - git submodule sync --recursive
-    - git submodule update --init --recursive
-
-before_install:
     - sudo apt-get -qq update
     - sudo apt-get install -y cmake
-    - apt-get install -y libx11-xcb-dev
-    - apt-get install -y libssl-dev
-    - apt-get install -y libssh2-1-dev
-    - apt-get install -y libmysqlclient-dev
+    - sudo apt-get install -y libx11-xcb-dev
+    - sudo apt-get install -y libssl-dev
+    - sudo apt-get install -y libssh2-1-dev
+    - sudo apt-get install -y libmysqlclient-dev
     - git clone https://skynowa:5582000*aaa@bitbucket.org/skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
+    - git submodule sync --recursive
+    - git submodule update --init --recursive
 
 image: gcc:6.1
 language: cpp
