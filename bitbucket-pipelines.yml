@@ -13,16 +13,15 @@ init:
     - env
     - cmake --version
 
-before_script:
+install:
     - sudo apt-get -qq update
     - sudo apt-get install -y cmake
     - sudo apt-get install -y libx11-xcb-dev
     - sudo apt-get install -y libssl-dev
     - sudo apt-get install -y libssh2-1-dev
     - sudo apt-get install -y libmysqlclient-dev
-    - git clone https://skynowa:5582000*aaa@bitbucket.org/skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
-    - git submodule sync --recursive
-    - git submodule update --init --recursive
+
+before_script:
 
 image: gcc:6.1
 language: cpp
@@ -33,4 +32,7 @@ pipelines:
     default:
         - step:
             script:
+                - git clone https://skynowa:5582000*aaa@bitbucket.org/skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
+                - git submodule sync --recursive
+                - git submodule update --init --recursive
                 - ./Build/makefile-yaml.sh
