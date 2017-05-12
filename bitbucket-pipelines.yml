@@ -13,7 +13,7 @@ init:
     - env
     - cmake --version
 
-before_install:
+install:
     - sudo apt-get -qq update
     - sudo apt-get install -y cmake
     - sudo apt-get install -y libx11-xcb-dev
