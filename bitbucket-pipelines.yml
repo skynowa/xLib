@@ -10,7 +10,7 @@ image: gcc:6.1
 language: cpp
 compiler:
     - gcc
-required: sudo
+require: sudo
 #---------------------------------------------------------------------------------------------------
 apt addons:
 cache components:
