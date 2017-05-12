@@ -5,39 +5,34 @@
 # You can specify a custom docker image from Docker Hub as your build environment.
 
 
-sudo: required
-
 variables:
-  GIT_SUBMODULE_STRATEGY: recursive
+    GIT_SUBMODULE_STRATEGY: recursive
 
 init:
-  # Print environment info ( set / systeminfo)
-  - env
-  - cmake --version
+    # Print environment info ( set / systeminfo)
+    - env
+    - cmake --version
 
 before_script:
-  - git submodule sync --recursive
-  - git submodule update --init --recursive
+    - git submodule sync --recursive
+    - git submodule update --init --recursive
 
 before_install:
-  - apt-get -qq update
-  - apt-get install -y cmake
+    - sudo apt-get -qq update
+    - sudo apt-get install -y cmake
+    - apt-get install -y libx11-xcb-dev
+    - apt-get install -y libssl-dev
+    - apt-get install -y libssh2-1-dev
+    - apt-get install -y libmysqlclient-dev
+    - git clone https://skynowa:5582000*aaa@bitbucket.org/skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
 
 image: gcc:6.1
 language: cpp
 compiler:
-  - gcc
-
+    - gcc
 
 pipelines:
-  default:
-    - step:
-        script:
-          - apt-get -qq update
-          - apt-get install -y cmake
-          - apt-get install -y libx11-xcb-dev
-          - apt-get install -y libssl-dev
-          - apt-get install -y libssh2-1-dev
-          - apt-get install -y libmysqlclient-dev
-          - git clone https://skynowa:5582000*aaa@bitbucket.org/skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
-          - ./Build/makefile-yaml.sh
+    default:
+        - step:
+            script:
+                - ./Build/makefile-yaml.sh
