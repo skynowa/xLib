@@ -12,14 +12,6 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-class FormatC
-    ///< format string in C style
-{
-public:
-    static std::tstring_t str(cptr_ctchar_t format, ...) xWARN_UNUSED_RV;
-    static std::tstring_t strV(cptr_ctchar_t format, va_list args) xWARN_UNUSED_RV;
-};
-//-------------------------------------------------------------------------------------------------
 #define FORMAT_DEPR 0
 
 class Format
