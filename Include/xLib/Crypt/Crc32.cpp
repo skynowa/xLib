@@ -8,8 +8,15 @@
     #include "Crc32.h"
 #endif
 
-#include <xLib/Core/Format.h>
+#include <xLib/Core/FormatC.h>
 #include <xLib/IO/File.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/StdError.h>
+#include <xLib/Debug/StackTrace.h>
+#include <xLib/Debug/ErrorReport.h>
+#include <xLib/Debug/Debugger.h>
+#include <xLib/Core/FormatC.h>
+#include <xLib/Test/Test.h>
 
 
 xNAMESPACE_BEGIN2(xl, crypt)

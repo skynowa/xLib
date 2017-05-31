@@ -9,8 +9,13 @@
 #endif
 
 #include <xLib/Core/Const.h>
-#include <xLib/Core/Format.h>
+#include <xLib/Core/FormatC.h>
 #include <xLib/Core/DateTime.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/StdError.h>
+#include <xLib/Debug/StackTrace.h>
+#include <xLib/Debug/ErrorReport.h>
+#include <xLib/Debug/Debugger.h>
 #include <xLib/IO/Path.h>
 #include <xLib/IO/File.h>
 #include <xLib/Sync/AutoIpcMutex.h>
