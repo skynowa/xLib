@@ -18,6 +18,8 @@ public:
     static std::tstring_t str(cptr_ctchar_t format, ...) xWARN_UNUSED_RV;
     static std::tstring_t strV(cptr_ctchar_t format, va_list args) xWARN_UNUSED_RV;
 };
+
+xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 
 #if cmOPTION_PROJECT_HEADER_ONLY
