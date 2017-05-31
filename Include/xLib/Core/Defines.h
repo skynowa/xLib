@@ -309,16 +309,16 @@
 // xUNUSED
 #if   (xCOMPILER_MINGW || xCOMPILER_MS)
     #define xUNUSED(arg) \
-    ( static_cast<xl::void_t>( arg ) )
+    ( static_cast<void>( arg ) )
 #elif xCOMPILER_CODEGEAR
     #define xUNUSED(arg) \
-    ( static_cast<xl::void_t>( arg ) )
+    ( static_cast<void>( arg ) )
 #elif xCOMPILER_GNUC
     #define xUNUSED(arg) \
-    { static_cast<xl::void_t>( true ? (arg) : (arg) ); }
+    { static_cast<void>( true ? (arg) : (arg) ); }
 #else
     #define xUNUSED(arg) \
-    ( static_cast<xl::void_t>( arg ) )
+    ( static_cast<void>( arg ) )
 #endif
     ///< hide "unused variable" warnings
 //-------------------------------------------------------------------------------------------------
