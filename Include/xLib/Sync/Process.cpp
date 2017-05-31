@@ -10,7 +10,7 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
-#include <xLib/Core/Format.h>
+#include <xLib/Core/FormatC.h>
 #include <xLib/IO/Path.h>
 #include <xLib/IO/File.h>
 #include <xLib/IO/Dll.h>

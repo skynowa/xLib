@@ -8,7 +8,7 @@
     #include "AutoProfiler.h"
 #endif
 
-#include <xLib/Core/Format.h>
+#include <xLib/Core/FormatC.h>
 
 
 xNAMESPACE_BEGIN2(xl, debug)

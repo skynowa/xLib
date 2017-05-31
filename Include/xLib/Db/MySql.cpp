@@ -9,6 +9,7 @@
 #endif
 
 #include <xLib/Core/String.h>
+#include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 
 

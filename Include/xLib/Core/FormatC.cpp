@@ -8,7 +8,9 @@
     #include "FormatC.h"
 #endif
 
+#include <xLib/Debug/Debug.h>
 #include <xLib/Test/StdTest.h>
+#include <xLib/Test/Test.h>
 
 
 xNAMESPACE_BEGIN2(xl, core)

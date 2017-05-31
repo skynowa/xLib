@@ -9,7 +9,12 @@
 #endif
 
 #include <xLib/Core/Const.h>
-#include <xLib/Core/Format.h>
+#include <xLib/Core/FormatC.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/StdError.h>
+#include <xLib/Debug/StackTrace.h>
+#include <xLib/Debug/ErrorReport.h>
+#include <xLib/Debug/Debugger.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Trace_win.inl"

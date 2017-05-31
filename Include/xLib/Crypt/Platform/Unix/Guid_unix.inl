@@ -6,6 +6,8 @@
 
 #include <xLib/Crypt/Random.h>
 
+#include <xLib/Core/FormatC.h>
+
 
 xNAMESPACE_BEGIN2(xl, crypt)
 
