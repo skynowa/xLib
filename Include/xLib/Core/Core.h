@@ -108,19 +108,19 @@ namespace system {}
 namespace test {}
 namespace package {}
 
-using namespace xl::core;
-using namespace xl::crypt;
-using namespace xl::db;
-using namespace xl::debug;
-using namespace xl::io;
-using namespace xl::ui;
-using namespace xl::log;
-using namespace xl::net;
-using namespace xl::patterns;
-using namespace xl::sync;
-using namespace xl::system;
-using namespace xl::test;
-using namespace xl::package;
+using namespace core;
+using namespace crypt;
+using namespace db;
+using namespace debug;
+using namespace io;
+using namespace ui;
+using namespace log;
+using namespace net;
+using namespace patterns;
+using namespace sync;
+using namespace system;
+using namespace test;
+using namespace package;
 
 } // namespace xl
 
