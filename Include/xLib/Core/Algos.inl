@@ -19,6 +19,24 @@ xNAMESPACE_BEGIN2(xl, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+template<typename T, typename UnaryPredicate>
+inline bool_t
+findIfAll(
+    T              &a_container,    ///<
+    T              &a_out,          ///< [out]
+    UnaryPredicate  a_pred          ///< predicate
+)
+{
+    for (typename T::const_iterator it = std::find_if(a_container.begin(), a_container.end(), a_pred);
+        it != a_container.end();
+        it = std::find_if(++ it, a_container.end(), a_pred))
+    {
+        a_out.push_back(*it);
+    }
+
+    return !a_out.empty();
+}
+//-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Algos::isInBounds(
