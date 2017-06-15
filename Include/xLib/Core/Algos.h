@@ -14,6 +14,10 @@ class Algos
     ///< Algorithms
 {
 public:
+    template<typename T, typename UnaryPredicate>
+    static
+    bool_t findIfAll(const T &container, T &out, UnaryPredicate pred);
+        ///< Find all elements in container
     template<typename T>
     static
     bool_t isInBounds(const T &value, const T &low, const T &high);
