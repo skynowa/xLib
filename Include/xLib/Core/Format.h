@@ -12,8 +12,6 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-#define FORMAT_DEPR 0
-
 class Format
     ///< format string
 {
