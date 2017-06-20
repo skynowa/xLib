@@ -516,15 +516,11 @@ Format::_formatFloat(
         << std::showpoint
         << a_value;
 
-#if FORMAT_DEPR
-    std::tstring_t value = a_os.str();
-#else
     std::tstreambuf_t *buff = a_os.rdbuf();
 
     std::tstring_t value = std::tstring_t(
         std::istreambuf_iterator<tchar_t>(buff),
         std::istreambuf_iterator<tchar_t>());
-#endif
 
     std::size_t i = value.find_last_not_of(xT('0'));
 
@@ -536,11 +532,7 @@ Format::_formatFloat(
         value = value.substr(0, i + 1);
     }
 
-#if FORMAT_DEPR
-    a_os.str(value);
-#else
     a_os << value;
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
