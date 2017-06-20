@@ -48,6 +48,12 @@ public:
 private:
     static
     std::ctstring_t & _specifier() xWARN_UNUSED_RV;
+        ///< open specifier
+    static
+    std::ctstring_t & _specifierOpen() xWARN_UNUSED_RV;
+        ///< close specifier
+    static
+    std::ctstring_t & _specifierClose() xWARN_UNUSED_RV;
         ///< specifier
     static
     std::ctstring_t & _delimiter() xWARN_UNUSED_RV;

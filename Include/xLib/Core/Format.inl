@@ -187,11 +187,11 @@ Format::_format(
     const std::pair<T1, T2> &a_value   ///< value
 )
 {
-    _format(a_os, xT("{"));
+    _format(a_os, _specifierOpen());
     _format(a_os, a_value.first);
     _format(a_os, _delimiter());
     _format(a_os, a_value.second);
-    _format(a_os, xT("}"));
+    _format(a_os, _specifierClose());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -413,9 +413,9 @@ Format::_format(
     const std::tuple<Args...> &a_value   ///< value
 )
 {
-    a_os << xT("{");
+    a_os << _specifierOpen();
     TupleFormat<decltype(a_value), sizeof...(Args)>::format(a_os, a_value);
-    a_os << xT("}");
+    a_os << _specifierClose();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -478,18 +478,18 @@ Format::_formatRange(
 )
 {
     if (a_first == a_last) {
-        a_os << xT("{}");
+        a_os << _specifier();
         return;
     }
 
-    a_os << xT("{");
+    a_os << _specifierOpen();
     a_os << str(_specifier(), *a_first);
 
     for (++ a_first; a_first != a_last; ++ a_first) {
         a_os << str(_delimiter() + _specifier(), *a_first);
     }
 
-    a_os << xT("}");
+    a_os << _specifierClose();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -526,7 +526,7 @@ Format::_formatFloat(
         std::istreambuf_iterator<tchar_t>());
 #endif
 
-    std::size_t    i     = value.find_last_not_of(xT('0'));
+    std::size_t i = value.find_last_not_of(xT('0'));
 
     if (i != std::tstring_t::npos && i != value.size() - 1) {
         if (value[i] == xT('.')) {

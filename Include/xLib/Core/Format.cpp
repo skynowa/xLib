@@ -23,7 +23,25 @@ xNAMESPACE_BEGIN2(xl, core)
 xINLINE std::ctstring_t &
 Format::_specifier()
 {
-    static std::ctstring_t sRv(xT("{}"));
+    static std::ctstring_t sRv(_specifierOpen() + _specifierClose());
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE std::ctstring_t &
+Format::_specifierOpen()
+{
+    static std::ctstring_t sRv(xT("{"));
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+xINLINE std::ctstring_t &
+Format::_specifierClose()
+{
+    static std::ctstring_t sRv(xT("}"));
 
     return sRv;
 }
