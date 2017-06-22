@@ -48,7 +48,7 @@ Flags<T>::operator = (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-size_t &
+T &
 Flags<T>::get() const
 {
     return _flags;

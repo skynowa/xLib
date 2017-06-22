@@ -27,7 +27,7 @@ public:
     Flags &  operator = (const Flags &values);
         ///< operator =
 
-    size_t & get() const;
+    T &      get() const;
         ///< get all flags
     void_t   set(const T &values);
         ///< set all flags
@@ -46,7 +46,7 @@ public:
         ///< toggle flag
 
 private:
-    size_t   _flags;
+    T        _flags;
 };
 
 xNAMESPACE_END2(xl, core)
