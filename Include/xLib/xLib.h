@@ -27,13 +27,14 @@
 #include <xLib/Core/HandleT.h>
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/Algos.h>
+#include <xLib/Core/StdStream.h>
+#include <xLib/Core/StdStreamOp.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Functors.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Core/Application.h>
-#include <xLib/Core/StdStream.h>
 
 // Crypt
 #include <xLib/Crypt/OpenSSL/Blowfish.h>
