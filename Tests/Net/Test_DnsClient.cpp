@@ -33,7 +33,7 @@ Test_DnsClient::unit()
         std::tstring_t sHostName = xT("");
         std::tstring_t sHostAddr = xT("127.0.0.1");
 
-        DnsClient::hostNameByAddr(sHostAddr, Socket::afInet, &sHostName);
+        DnsClient::hostNameByAddr(sHostAddr, ISocket::afInet, &sHostName);
 
         //std::tcout << xT("[hostNameByAddr]: ") << sHostName << std::endl;
     }

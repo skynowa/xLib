@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Net/Socket.h>
+#include <xLib/Net/ISocket.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, net)
 
@@ -19,14 +19,14 @@ public:
     void_t   hostAddrByName(std::ctstring_t &hostName, std::tstring_t *hostAddr);
         ///< get host address by name
     static
-    void_t   hostNameByAddr(std::ctstring_t &hostAddr, const Socket::ExAddressFamily &family,
+    void_t   hostNameByAddr(std::ctstring_t &hostAddr, const ISocket::ExAddressFamily &family,
                  std::tstring_t *hostName);
         ///< get host name by address
     static
     void_t   localHostName(std::tstring_t *hostName);
         ///< get local host name
     static
-    void_t   nameInfo(Socket::ExAddressFamily &family, std::ctstring_t &hostAddr, cushort_t &port);
+    void_t   nameInfo(ISocket::ExAddressFamily &family, std::ctstring_t &hostAddr, cushort_t &port);
         ///< get name info
     static
     void_t   hostAddrInfo(std::ctstring_t &hostName, std::ctstring_t &port, caddrinfo_t *hints,

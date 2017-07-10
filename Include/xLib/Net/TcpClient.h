@@ -6,13 +6,13 @@
 
 #pragma once
 
-#include <xLib/Net/Socket.h>
+#include <xLib/Net/ISocket.h>
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, net)
 
 class TcpClient :
-    public Socket
+    public ISocket
     /// client socket
 {
 public:

@@ -40,7 +40,7 @@ SmtpClient::SmtpClient() :
     _port       (0),
     _isConnected(false)
 {
-////--    Socket::bInit();
+////--    ISocket::bInit();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
@@ -48,7 +48,7 @@ SmtpClient::~SmtpClient()
 {
     disconnect();
 
-////--    Socket::bClean();
+////--    ISocket::bClean();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
@@ -78,7 +78,7 @@ SmtpClient::connect()
 
     //-------------------------------------
     //������� �����
-    _socket.create(Socket::afInet, Socket::tpStream, Socket::ptIp);
+    _socket.create(ISocket::afInet, ISocket::tpStream, ISocket::ptIp);
 
     //-------------------------------------
     //������ �����

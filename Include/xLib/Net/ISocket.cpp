@@ -1,11 +1,11 @@
 /**
- * \file  Socket.inl
+ * \file  ISocket.inl
  * \brief blocking socket
  */
 
 
 #if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Socket.h"
+    #include "ISocket.h"
 #endif
 
 #include <xLib/Test/Test.h>
@@ -34,7 +34,7 @@ xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
 xINLINE
-Socket::Socket() :
+ISocket::ISocket() :
     _handle(xSOCKET_HANDLE_INVALID),
     _family(- 1),
     _ip    (),
@@ -43,7 +43,7 @@ Socket::Socket() :
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
-Socket::~Socket()
+ISocket::~ISocket()
 {
     close();
 }
@@ -57,7 +57,7 @@ Socket::~Socket()
 
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Socket::create(
+ISocket::create(
     cExAddressFamily &a_family,
     cExType          &a_type,
     cExProtocol      &a_protocol
@@ -72,7 +72,7 @@ Socket::create(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE socket_t
-Socket::handle() const
+ISocket::handle() const
 {
     xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
 
@@ -80,7 +80,7 @@ Socket::handle() const
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
-Socket::isReadable() const
+ISocket::isReadable() const
 {
     timeval timeoutVal = {1, 0};
     fd_set  fds;         FD_ZERO(&fds);
@@ -94,7 +94,7 @@ Socket::isReadable() const
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
-Socket::isWritable() const
+ISocket::isWritable() const
 {
     timeval timeoutVal = {1, 0};
     fd_set  fds;         FD_ZERO(&fds);
@@ -108,7 +108,7 @@ Socket::isWritable() const
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
-Socket::isValid() const
+ISocket::isValid() const
 {
     // n/a
 
@@ -116,7 +116,7 @@ Socket::isValid() const
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Socket::assign(
+ISocket::assign(
     csocket_t &a_handle
 )
 {
@@ -127,7 +127,7 @@ Socket::assign(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Socket::close()
+ISocket::close()
 {
     xCHECK_DO(!isValid(), return);
 
@@ -145,13 +145,13 @@ Socket::close()
 
 //-------------------------------------------------------------------------------------------------
 xINLINE ssize_t
-Socket::send(
+ISocket::send(
     cptr_ctchar_t  a_buff,
     std::csize_t  &a_buffSize,
     cint_t        &a_flags
 )
 {
-    // TODO: Socket::send() - LINUX: ssize_t send(int_t sockfd, cptr_cvoid_t buf, size_t len, int_t flags);
+    // TODO: ISocket::send() - LINUX: ssize_t send(int_t sockfd, cptr_cvoid_t buf, size_t len, int_t flags);
 
     xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
     xTEST_PTR(a_buff);
@@ -161,7 +161,7 @@ Socket::send(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Socket::sendAll(
+ISocket::sendAll(
     std::ctstring_t &a_buff,
     cint_t          &a_flags
 )
@@ -171,7 +171,7 @@ Socket::sendAll(
     xTEST_LESS(size_t(0U), a_buff.size());
 
     size_t currPos  = 0;
-    // TODO: Socket::send() - overflow Socket::sendAll()
+    // TODO: ISocket::send() - overflow ISocket::sendAll()
     size_t leftSize = a_buff.size() * sizeof(tchar_t);
 
     // if size of data more than size of buffer - sizeof buffer SOCKET_BUFF_SIZE
@@ -201,7 +201,7 @@ Socket::sendAll(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE ssize_t
-Socket::receive(
+ISocket::receive(
     tchar_t      *a_buff,
     std::csize_t &a_buffSize,
     cint_t       &a_flags
@@ -217,7 +217,7 @@ Socket::receive(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
-Socket::recvAll(
+ISocket::recvAll(
     cint_t &a_flags
 )
 {
@@ -246,7 +246,7 @@ Socket::recvAll(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
-Socket::recvAll(
+ISocket::recvAll(
     cint_t          &a_flags,
     std::ctstring_t &a_delimiter
 )
@@ -264,7 +264,7 @@ Socket::recvAll(
         sRv.append(in.begin(), in.begin() + iRv);
 
         // if delimiter was find - break
-        size_t delimiterPos = sRv.find(a_delimiter); // TODO: Socket::recvAll() - from unicode ???
+        size_t delimiterPos = sRv.find(a_delimiter); // TODO: ISocket::recvAll() - from unicode ???
         xCHECK_DO(delimiterPos != std::tstring_t::npos, break);
     }
 
@@ -272,12 +272,12 @@ Socket::recvAll(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int_t
-Socket::sendBytes(
+ISocket::sendBytes(
     char    *a_buff,
     ssize_t &a_messageLength
 )
 {
-    // TODO: Socket::sendBytes()
+    // TODO: ISocket::sendBytes()
 
     int_t   iRv           = 0;
     ssize_t sendStatus    = 0;
@@ -316,7 +316,7 @@ Socket::sendBytes(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int_t
-Socket::receiveBytes(
+ISocket::receiveBytes(
     char    *a_buff,
     ssize_t &a_stillToReceive
 )
@@ -366,7 +366,7 @@ Socket::receiveBytes(
 
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Socket::peerName(
+ISocket::peerName(
     std::tstring_t *a_peerAddr,
     ushort_t       *a_peerPort
 )
@@ -378,7 +378,7 @@ Socket::peerName(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Socket::socketName(
+ISocket::socketName(
     std::tstring_t *a_socketAddr,
     ushort_t       *a_socketPort
 )
@@ -399,7 +399,7 @@ Socket::socketName(
 //-------------------------------------------------------------------------------------------------
 /* static */
 xINLINE int_t
-Socket::select(
+ISocket::select(
     int_t    a_nfds,
     fd_set  *a_readfds,
     fd_set  *a_writefds,
@@ -420,7 +420,7 @@ Socket::select(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int_t
-Socket::nativeError()
+ISocket::nativeError()
 {
     // n/a
 
