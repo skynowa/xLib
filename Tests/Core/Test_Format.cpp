@@ -27,13 +27,13 @@ operator << (
 {
     switch (a_value) {
     case etUnknown:
-        a_out << xLEX_TO_STR(EnumTest::etUnknown);
+        a_out << xLEX_TO_STR(etUnknown);
         break;
     case etOne:
-        a_out << xLEX_TO_STR(EnumTest::etOne);
+        a_out << xLEX_TO_STR(etOne);
         break;
     case etTwo:
-        a_out << xLEX_TO_STR(EnumTest::etTwo);
+        a_out << xLEX_TO_STR(etTwo);
         break;
     default:
         a_out << xT("???");
