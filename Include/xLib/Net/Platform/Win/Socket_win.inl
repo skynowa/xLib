@@ -1,5 +1,5 @@
 /**
- * \file  Socket.inl
+ * \file  ISocket.inl
  * \brief blocking socket
  */
 
@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Socket::_close_impl()
+ISocket::_close_impl()
 {
     xCHECK_DO(!isValid(), return);
 
@@ -37,28 +37,28 @@ Socket::_close_impl()
 
 //-------------------------------------------------------------------------------------------------
 xINLINE ssize_t
-Socket::_send_impl(
+ISocket::_send_impl(
     cptr_ctchar_t *a_buff,
     std::csize_t  &a_buffSize,
     cint_t        &a_flags
 )
 {
     ssize_t iRv = ::send(_handle, (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
-    xTEST_EQ(iRv != xSOCKET_ERROR && Socket::nativeError() != WSAEWOULDBLOCK, true);
+    xTEST_EQ(iRv != xSOCKET_ERROR && ISocket::nativeError() != WSAEWOULDBLOCK, true);
     xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
 
     return iRv / sizeof(tchar_t);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE ssize_t
-Socket::_receive_impl(
+ISocket::_receive_impl(
     tchar_t      *a_buff,
     std::csize_t &a_buffSize,
     cint_t       &a_flags
 )
 {
     int_t iRv = ::recv(_handle, (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
-    xTEST_EQ(iRv != xSOCKET_ERROR && Socket::nativeError() != WSAEWOULDBLOCK, true);
+    xTEST_EQ(iRv != xSOCKET_ERROR && ISocket::nativeError() != WSAEWOULDBLOCK, true);
     xTEST_DIFF(iRv, 0);  // gracefully closed
     xTEST_GR_EQ(int_t(a_buffSize * sizeof(tchar_t)), iRv);
 
@@ -74,7 +74,7 @@ Socket::_receive_impl(
 
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Socket::_peerName_impl(
+ISocket::_peerName_impl(
     std::tstring_t *a_peerAddr,
     ushort_t       *a_peerPort
 )
@@ -99,7 +99,7 @@ Socket::_peerName_impl(
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
-Socket::_socketName_impl(
+ISocket::_socketName_impl(
     std::tstring_t *a_socketAddr,
     ushort_t       *a_socketPort
 )
@@ -132,7 +132,7 @@ Socket::_socketName_impl(
 
 //-------------------------------------------------------------------------------------------------
 xINLINE int_t
-Socket::_nativeError_impl()
+ISocket::_nativeError_impl()
 {
     return ::WSAGetLastError();
 }

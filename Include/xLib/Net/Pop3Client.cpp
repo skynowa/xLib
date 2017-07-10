@@ -67,7 +67,7 @@ Pop3Client::connect()
 {
      //-------------------------------------
      //Create sock
-     _socket.create(Socket::afInet, Socket::tpStream, Socket::ptIp);
+     _socket.create(ISocket::afInet, ISocket::tpStream, ISocket::ptIp);
 
      //-------------------------------------
      //Parse domain

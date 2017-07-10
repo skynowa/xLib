@@ -126,10 +126,10 @@ TcpClient::isServerAlive(
     xTEST_EQ((65535 > a_port) && (0 < a_port), true);
 
     TcpClient client;
-    client.create(Socket::afInet, Socket::tpStream, Socket::ptIp);
+    client.create(ISocket::afInet, ISocket::tpStream, ISocket::ptIp);
 
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
-    sockAddr.sin_family      = Socket::afInet;
+    sockAddr.sin_family      = ISocket::afInet;
     sockAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_ip).c_str());
     sockAddr.sin_port        = htons(a_port); // TODO: TcpClient::isServerAlive() - htons
 

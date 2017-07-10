@@ -21,9 +21,9 @@ Test_TcpServer::unit()
         return true;
     }
 
-    Socket::ExAddressFamily afAf       = Socket::afInet;
-    Socket::ExType          tpType     = Socket::tpStream;
-    Socket::ExProtocol      ptProtocol = Socket::ptIp;
+    ISocket::ExAddressFamily afAf       = ISocket::afInet;
+    ISocket::ExType          tpType     = ISocket::tpStream;
+    ISocket::ExProtocol      ptProtocol = ISocket::ptIp;
 
     std::ctstring_t         csDomain        = xT("127.0.0.1");
     std::tstring_t          sIp             = xT("");

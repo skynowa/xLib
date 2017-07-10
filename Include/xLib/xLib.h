@@ -83,7 +83,7 @@
 
 // Net
 #include <xLib/Net/SocketInit.h>
-#include <xLib/Net/Socket.h>
+#include <xLib/Net/ISocket.h>
 #include <xLib/Net/TcpClient.h>
 #include <xLib/Net/TcpServer.h>
 #include <xLib/Net/DnsClient.h>

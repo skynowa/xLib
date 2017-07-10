@@ -1,5 +1,5 @@
 /**
- * \file  Socket.h
+ * \file  ISocket.h
  * \brief blocking socket
  *
  * +-----------------------------------------------------+ +----------------------------------------------------+
@@ -41,7 +41,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, net)
 
-class Socket
+class ISocket
     /// socket
 {
 public:
@@ -99,7 +99,7 @@ public:
         afIpx         = AF_IPX,
         afAppletalk   = AF_APPLETALK
 
-        // TODO: Socket - add AP-*
+        // TODO: ISocket - add AP-*
     #endif
     };
     xTYPEDEF_CONST(ExAddressFamily);
@@ -217,7 +217,7 @@ public:
         ptSctp        = IPPROTO_SCTP,
         ptRaw         = IPPROTO_RAW,
         ptMax         = IPPROTO_MAX
-        // TODO: Socket - add IPPROTO-*
+        // TODO: ISocket - add IPPROTO-*
     #endif
     };
     xTYPEDEF_CONST(ExProtocol);
@@ -230,9 +230,9 @@ public:
     };
     xTYPEDEF_CONST(ExOptions);
 
-                   Socket();
+                   ISocket();
         ///< constructor
-    virtual       ~Socket() = 0;
+    virtual       ~ISocket() = 0;
         ///< destructor
 
 
@@ -313,7 +313,7 @@ protected:
     std::tstring_t _ip;       ///< IP
     ushort_t       _port;     ///< port
 
-    xNO_COPY_ASSIGN(Socket)
+    xNO_COPY_ASSIGN(ISocket)
 
 xPLATFORM_IMPL:
     void_t         _close_impl();
@@ -331,7 +331,7 @@ xPLATFORM_IMPL:
 xNAMESPACE_END2(xl, net)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Socket.cpp"
+    #include "ISocket.cpp"
 #endif
 
 
@@ -349,7 +349,7 @@ xNAMESPACE_END2(xl, net)
 
 #if xTODO
     int_t
-    Socket::WaitForData(SOCKET *pSocketForReceiving, SOCKET *pSocketForSending,
+    ISocket::WaitForData(SOCKET *pSocketForReceiving, SOCKET *pSocketForSending,
         SOCKET *pSocketForExceptions)
     {
         int_t nSocketsReady = 0;

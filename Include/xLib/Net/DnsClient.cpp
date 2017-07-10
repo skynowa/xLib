@@ -66,7 +66,7 @@ DnsClient::hostAddrByName(
 xINLINE void_t
 DnsClient::hostNameByAddr(
     std::ctstring_t               &a_hostAddr,
-    const Socket::ExAddressFamily &a_family,
+    const ISocket::ExAddressFamily &a_family,
     std::tstring_t                *a_hostName
 )
 {
@@ -76,19 +76,19 @@ DnsClient::hostNameByAddr(
     hostent *host = xPTR_NULL;
 
     switch (a_family) {
-    case Socket::afInet:
+    case ISocket::afInet:
 		{
 			in_addr iaAddr = {0};
 
 			iaAddr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
 			xTEST_DIFF(iaAddr.s_addr, INADDR_NONE);
 
-			host = ::gethostbyaddr(reinterpret_cast<char *>(&iaAddr), sizeof(iaAddr), Socket::afInet);
+			host = ::gethostbyaddr(reinterpret_cast<char *>(&iaAddr), sizeof(iaAddr), ISocket::afInet);
 			xTEST_PTR(host);
 		}
         break;
 #if (xWINVER >= xOS_WIN_VISTA)
-    case Socket::afInet6:
+    case ISocket::afInet6:
 		{
 		#if xTODO
 			IN6_ADDR iaAddr6 = {0};
@@ -134,7 +134,7 @@ DnsClient::localHostName(
 /* static */
 xINLINE void_t
 DnsClient::nameInfo(
-    Socket::ExAddressFamily &a_family,
+    ISocket::ExAddressFamily &a_family,
     std::ctstring_t         &a_hostAddr,
     cushort_t               &a_port
 )

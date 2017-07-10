@@ -87,7 +87,7 @@ Ssh2Client::connect()
         DnsClient::hostAddrByName(_data.hostName, &hostAddr);
     }
 
-    _tcpClient.create(Socket::afInet, Socket::tpStream, Socket::ptIp);
+    _tcpClient.create(ISocket::afInet, ISocket::tpStream, ISocket::ptIp);
     _tcpClient.connect(hostAddr, _data.port);
 
     _session = ::libssh2_session_init();
