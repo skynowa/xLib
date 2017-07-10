@@ -40,6 +40,7 @@ Socket::_send_impl(
 {
     xUNUSED(a_flags);
 
+    // TODO: a_flags as MSG_NOSIGNAL
 #if !defined(MSG_NOSIGNAL)
     cint_t MSG_NOSIGNAL = 0x20000;
 #endif
