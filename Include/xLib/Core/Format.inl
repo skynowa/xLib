@@ -176,10 +176,10 @@ Format::_format(
     const T         &a_value   ///< value
 )
 {
-#if 0
+#if 1
 	a_os << a_value;
 #else
-	// a_os.operator <<(a_value);
+	a_os.operator <<(a_value);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
