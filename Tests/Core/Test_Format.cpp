@@ -136,7 +136,7 @@ Test_Format::unit()
         m_sRv = Format::str(xT("{},{}"), value1, value2);
         xTEST_EQ(m_sRv, std::tstring_t(xT("false,true")));
     }
-
+#if 0
     xTEST_CASE("char")
     {
         const char value = 'a';
@@ -633,7 +633,7 @@ Test_Format::unit()
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{7, std::string, c_str}")));
     }
-
+#endif
     return true;
 }
 //-------------------------------------------------------------------------------------------------
