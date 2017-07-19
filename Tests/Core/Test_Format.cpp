@@ -19,7 +19,7 @@ enum EnumTest
     etTwo
 };
 
-inline std::ostream &
+std::ostream &
 operator << (
     std::ostream   &a_out,
     const EnumTest &a_value
@@ -51,7 +51,7 @@ struct StructTest
     const char *c;
 };
 
-inline std::ostream &
+std::ostream &
 operator << (
     std::ostream     &a_out,
     const StructTest &a_value
