@@ -177,7 +177,7 @@ Format::_format(
     const T         &a_value   ///< value
 )
 {
-	std::cout << STD_TRACE_VAR2(Type::name(a_value), a_value) << std::endl;
+	std::cout << "Type: " << Type::name(a_value) << ", " << STD_TRACE_VAR(a_value) << std::endl;
 
 #if 1
 	a_os << a_value;
