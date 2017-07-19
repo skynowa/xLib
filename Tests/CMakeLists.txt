@@ -25,8 +25,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         target_link_libraries(${TEST_NAME} ${PROJECT_NAME}_static)
     endif()
 
-    install(TARGETS ${TEST_NAME} DESTINATION "bin")
-
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
     # add_custom_command(TARGET ${TEST_NAME} POST_BUILD COMMAND ${TEST_NAME})
 endforeach()
