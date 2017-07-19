@@ -13,6 +13,7 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Core/Char.h>
 #include <xLib/Core/Algos.h>
+#include <xLib/Core/Type.h>
 
 
 xNAMESPACE_BEGIN2(xl, core)
@@ -176,6 +177,8 @@ Format::_format(
     const T         &a_value   ///< value
 )
 {
+	std::cout << STD_TRACE_VAR2(Type::name(a_value), a_value) << std::endl;
+
 #if 1
 	a_os << a_value;
 #else
