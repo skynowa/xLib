@@ -4,11 +4,6 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Enum.h"
-#endif
-
-
 xNAMESPACE_BEGIN2(xl, core)
 
 /**************************************************************************************************
@@ -17,15 +12,26 @@ xNAMESPACE_BEGIN2(xl, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
-Enum::Enum()
+template<typename T, const std::size_t N>
+std::tstring_t
+Enum<T, N>::toString(
+	const T a_value
+)
 {
+	std::tstringstream_t ss;
+	ss << static_cast<longlong_t>(a_value);
+
+	return ss.str();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
-Enum::~Enum()
+template<typename T, const std::size_t N>
+std::ostream &
+operator << (std::ostream &os, const T &value)
 {
-}
+    os << static_cast<int>(value);
+
+    return os;
+};
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, core)
