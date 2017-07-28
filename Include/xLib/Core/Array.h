@@ -232,7 +232,7 @@ public:
     void_t
     clear()
     {
-        fill(0);
+        fill( T() );
     }
 
     // check range (may be private because it is static)

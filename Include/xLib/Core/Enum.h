@@ -7,31 +7,32 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/Array.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-class Enum
+template<typename T, const std::size_t N>
+class Enum :
+    public Array<T, N>
     ///< Enumeration
 {
 public:
-             Enum();
-        ///< constructor
-    virtual ~Enum();
-        ///< destructor
+    std::tstring_t toString(const T value);
+    // bool_t         isValid();
 
-    std::tstring_t toString();
-    void_t         print();
-    bool_t         isValid();
+    // size_t         begin();
+    // size_t         end();
+    // size_t         size();
 
     // operators
     // iterators
 
+    friend std::ostream & operator << (std::ostream &os, const T &value);
+
 private:
-    xNO_COPY_ASSIGN(Enum)
+
 };
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Enum.cpp"
-#endif
+#include "Enum.inl"

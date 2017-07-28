@@ -24,6 +24,7 @@
 #include <xLib/Core/Char.h>
 #include <xLib/Core/Flags.h>
 #include <xLib/Core/Array.h>
+#include <xLib/Core/Enum.h>
 #include <xLib/Core/HandleT.h>
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/Algos.h>

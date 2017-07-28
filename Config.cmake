@@ -18,7 +18,7 @@ if (IS_PARENT_SCOPE)
     set(CMAKE_CONFIGURATION_TYPES      "Debug;Release;RelWithDebInfo" STRING "" PARENT_SCOPE)
     set(CMAKE_BUILD_TYPE               "RelWithDebInfo" PARENT_SCOPE)
 
-    set(OPTION_CPP11                   0 PARENT_SCOPE)
+    set(OPTION_CPP11                   1 PARENT_SCOPE)
     set(OPTION_UNICODE                 0 PARENT_SCOPE)
     set(cmOPTION_DEBUG_MODE_MSGBOX     0 PARENT_SCOPE)
     set(cmOPTION_DEBUG_MODE_STDOUT     1 PARENT_SCOPE)
@@ -44,7 +44,7 @@ else()
         # RelWithDebInfo (CMAKE_C_FLAGS_RELWITHDEBINFO or CMAKE_CXX_FLAGS_RELWITHDEBINFO
         # MinSizeRel     (CMAKE_C_FLAGS_MINSIZEREL or CMAKE_CXX_FLAGS_MINSIZEREL)
 
-    set(OPTION_CPP11                   0)
+    set(OPTION_CPP11                   1)
     set(OPTION_UNICODE                 0)
     set(cmOPTION_DEBUG_MODE_MSGBOX     0)
     set(cmOPTION_DEBUG_MODE_STDOUT     1)
