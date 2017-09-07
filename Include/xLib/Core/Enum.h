@@ -11,26 +11,26 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-template<typename T, const std::size_t N>
+template<typename T, const std::size_t N = 0>
 class Enum :
     public Array<T, N>
     ///< Enumeration
 {
 public:
-    std::tstring_t toString(const T value);
-    // bool_t         isValid();
+    Enum<T, N>();
+    Enum<T, N>(const Array<T, N> &enumeration);
 
-    // size_t         begin();
-    // size_t         end();
-    // size_t         size();
+    static
+    std::tstring_t toString(const T value);
+    bool_t         isValid(const ssize_t value) const;
 
     // operators
-    // iterators
+    static
+    T              inc(const T &value);
+    static
+    T              dec(const T &value);
 
-    friend std::ostream & operator << (std::ostream &os, const T &value);
-
-private:
-
+    friend std::ostream & operator << (std::ostream &os, const T value);
 };
 
 xNAMESPACE_END2(xl, core)
