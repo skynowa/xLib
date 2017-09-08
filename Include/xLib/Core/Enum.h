@@ -22,6 +22,8 @@ public:
 
     static
     std::tstring_t toString(const T value);
+    static
+    std::tstring_t asString(const T value);
     bool_t         isValid(const ssize_t value) const;
 
     // operators
