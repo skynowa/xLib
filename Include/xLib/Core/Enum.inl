@@ -69,16 +69,16 @@ Enum<T>::dec(
     return static_cast<T>( static_cast<ssize_t>( a_value ) - 1 );
 }
 //-------------------------------------------------------------------------------------------------
-// template<typename T>
-// std::ostream &
-// operator << (
-// 	std::ostream &a_os, const T a_value
-// )
-// {
-//     a_os << static_cast<ssize_t>(a_value);
+template<typename T>
+std::ostream &
+operator << (
+	std::ostream &a_os, const T a_value
+)
+{
+    a_os << static_cast<ssize_t>(a_value);
 
-//     return a_os;
-// };
+    return a_os;
+};
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, core)
