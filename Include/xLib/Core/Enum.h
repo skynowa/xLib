@@ -29,12 +29,13 @@ public:
     static
     T              dec(const T &value);
 
-    friend
-    std::tostream_t & operator << (std::tostream_t &os, const T value);
-
 private:
     Enum<T>();
 };
+
+template<typename T>
+std::tostream_t &
+operator << (std::tostream_t &a_os, const Enum<T> &a_value);
 //-------------------------------------------------------------------------------------------------
 template<typename T, const std::size_t N = 0>
 class EnumArray :
