@@ -20,7 +20,7 @@ Enum<T>::toString(
 )
 {
 	std::tstringstream_t ss;
-	ss << static_cast<ssize_t>(a_value);
+	ss << static_cast<::ssize_t>(a_value);
 
 	return ss.str();
 }
@@ -56,7 +56,7 @@ Enum<T>::inc(
     const T &a_value
 )
 {
-    return static_cast<T>( static_cast<ssize_t>( a_value ) + 1 );
+    return static_cast<T>( static_cast<::ssize_t>( a_value ) + 1 );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -66,16 +66,16 @@ Enum<T>::dec(
     const T &a_value
 )
 {
-    return static_cast<T>( static_cast<ssize_t>( a_value ) - 1 );
+    return static_cast<T>( static_cast<::ssize_t>( a_value ) - 1 );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-std::ostream &
+std::tostream_t &
 operator << (
-	std::ostream &a_os, const T a_value
+	std::tostream_t  &a_os, const T a_value
 )
 {
-    a_os << static_cast<ssize_t>(a_value);
+    a_os << static_cast<::ssize_t>(a_value);
 
     return a_os;
 };

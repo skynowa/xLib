@@ -27,15 +27,15 @@ enum TestType
 bool_t
 Test_Enum::unit()
 {
-    xTEST_CASE("EnumContainer::EnumContainer")
+    xTEST_CASE("EnumArray::EnumArray")
     {
         const size_t enumSize = 5;
 
-        const EnumContainer<TestType, enumSize> enumeration;
+        const EnumArray<TestType, enumSize> enumeration;
         xTEST_EQ(enumeration.size(), enumSize);
     }
 
-    const EnumContainer<TestType, 5> enumeration(
+    const EnumArray<TestType, 5> enumeration(
         {
             TestType::ttUnknown,
             TestType::ttFirst,
@@ -44,7 +44,7 @@ Test_Enum::unit()
             TestType::ttLast
         });
 
-    xTEST_CASE("EnumContainer::isValid")
+    xTEST_CASE("EnumArray::isValid")
     {
         m_bRv = enumeration.isValid(0);
         xTEST_EQ(m_bRv, true);

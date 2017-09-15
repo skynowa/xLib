@@ -30,25 +30,25 @@ public:
     T              dec(const T &value);
 
     friend
-    std::ostream & operator << (std::ostream &os, const T value);
+    std::tostream_t & operator << (std::tostream_t &os, const T value);
 
 private:
     Enum<T>();
 };
 //-------------------------------------------------------------------------------------------------
 template<typename T, const std::size_t N = 0>
-class EnumContainer :
+class EnumArray :
     public Array<T, N>
     ///< Enumeration container
 {
 public:
-           EnumContainer<T, N>();
-           EnumContainer<T, N>(const Array<T, N> &enumeration);
+           EnumArray<T, N>();
+           EnumArray<T, N>(const Array<T, N> &enumeration);
 
-    bool_t isValid(const ssize_t value) const;
+    bool_t isValid(const ::ssize_t value) const;
 };
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "Enum.inl"
-#include "EnumContainer.inl"
+#include "EnumArray.inl"
