@@ -38,6 +38,29 @@ Enum<T, N>::toString(
 	return ss.str();
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+template<typename T, const std::size_t N>
+T
+Enum<T, N>::fromString(
+	const std::tstring_t &a_value
+)
+{
+	return static_cast<T>( std::strtoll(a_value.c_str(), nullptr, 10) );
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+template<typename T, const std::size_t N>
+std::tstring_t
+Enum<T, N>::asString(
+	const T value
+)
+{
+	std::tstring_t sRv;
+
+
+	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 template<typename T, const std::size_t N>
 bool_t
 Enum<T, N>::isValid(

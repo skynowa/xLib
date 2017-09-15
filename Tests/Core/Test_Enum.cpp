@@ -50,6 +50,18 @@ Test_Enum::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("1")));
     }
 
+    xTEST_CASE("Enum::fromString")
+    {
+        TestType ttRv = Enum<TestType, 5>::fromString(xT("2"));
+        xTEST_EQ(ttRv, TestType::ttSecond);
+    }
+
+    xTEST_CASE("Enum::asString")
+    {
+        m_sRv = Enum<TestType, 5>::asString(TestType::ttThird);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("ttThird")));
+    }
+
     xTEST_CASE("Enum::isValid")
     {
         m_bRv = enumeration.isValid(0);
