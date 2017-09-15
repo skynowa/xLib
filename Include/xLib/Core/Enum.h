@@ -53,3 +53,20 @@ xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "Enum.inl"
 #include "EnumArray.inl"
+
+#define STRONG_ENUM(Name, ...) \
+    class Name { \
+    public: \
+        enum Name##_ { \
+            __VA_ARGS__ \
+        }; \
+    public: \
+        Name(Name::Name##_ v) : mValue(v) {} \
+        operator Name::Name##_() const { return mValue; } \
+        Name& operator=(Name::Name##_ v) { \
+            mValue = v; \
+            return *this; \
+        } \
+    private: \
+        Name::Name##_ mValue; \
+    }

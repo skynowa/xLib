@@ -91,6 +91,20 @@ Test_Enum::unit()
         xTEST_EQ(ssC11.str(), std::tstring_t(xT("01234")));
     }
 
+    {
+        STRONG_ENUM(Color,
+            ttUnknown,
+            ttFirst,
+            ttSecond,
+            ttThird,
+            ttLast
+        );
+
+        for (auto &it_enum : enumeration) {
+            ssC11 << it_enum;
+        }
+    }
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
