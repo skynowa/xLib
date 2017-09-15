@@ -92,17 +92,22 @@ Test_Enum::unit()
     }
 
     {
-        STRONG_ENUM(Color,
-            ttUnknown,
-            ttFirst,
+        xENUM_CLASS(Color,
+            ttUnknown = - 1,
+            ttFirst = 2,
             ttSecond,
             ttThird,
             ttLast
         );
 
-        for (auto &it_enum : enumeration) {
-            ssC11 << it_enum;
-        }
+        Color color;
+        std::cout << xTRACE_VAR(color) << std::endl;
+
+        std::cout << xTRACE_VAR(Color::ttUnknown) << std::endl;
+        std::cout << xTRACE_VAR(Color::ttFirst)   << std::endl;
+        std::cout << xTRACE_VAR(Color::ttSecond)  << std::endl;
+        std::cout << xTRACE_VAR(Color::ttThird)   << std::endl;
+        std::cout << xTRACE_VAR(Color::ttLast)    << std::endl;
     }
 
     return true;

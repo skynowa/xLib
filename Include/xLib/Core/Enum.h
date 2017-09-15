@@ -54,19 +54,35 @@ xNAMESPACE_END2(xl, core)
 #include "Enum.inl"
 #include "EnumArray.inl"
 
-#define STRONG_ENUM(Name, ...) \
-    class Name { \
+#define xENUM_CLASS(Name, ...) \
+    class Name \
+    { \
     public: \
-        enum Name##_ { \
+        enum _Enum \
+        { \
             __VA_ARGS__ \
         }; \
-    public: \
-        Name(Name::Name##_ v) : mValue(v) {} \
-        operator Name::Name##_() const { return mValue; } \
-        Name& operator=(Name::Name##_ v) { \
-            mValue = v; \
+        \
+        Name() : \
+            _value( static_cast<_Enum>(0) ) \
+        { \
+        } \
+        \
+        Name(const Name::_Enum a_value) : \
+            _value(a_value) \
+        { \
+        } \
+        \
+        operator Name::_Enum() const \
+        { \
+            return _value; \
+        } \
+        \
+        Name& operator=(Name::_Enum a_value) \
+        { \
+            _value = a_value; \
             return *this; \
         } \
     private: \
-        Name::Name##_ mValue; \
+        Name::_Enum _value; \
     }
