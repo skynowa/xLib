@@ -12,23 +12,10 @@ xNAMESPACE_BEGIN2(xl, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T, const std::size_t N>
-Enum<T, N>::Enum()
-{
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T, const std::size_t N>
-Enum<T, N>::Enum(
-	const Array<T, N> &a_enumeration
-) :
-    Array<T, N>(a_enumeration)
-{
-}
-//-------------------------------------------------------------------------------------------------
 /* static */
-template<typename T, const std::size_t N>
+template<typename T>
 std::tstring_t
-Enum<T, N>::toString(
+Enum<T>::toString(
 	const T a_value
 )
 {
@@ -39,9 +26,9 @@ Enum<T, N>::toString(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-template<typename T, const std::size_t N>
+template<typename T>
 T
-Enum<T, N>::fromString(
+Enum<T>::fromString(
 	const std::tstring_t &a_value
 )
 {
@@ -49,31 +36,23 @@ Enum<T, N>::fromString(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-template<typename T, const std::size_t N>
+template<typename T>
 std::tstring_t
-Enum<T, N>::asString(
+Enum<T>::asString(
 	const T value
 )
 {
 	std::tstring_t sRv;
 
+	// TODO: Enum::asString()
 
 	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, const std::size_t N>
-bool_t
-Enum<T, N>::isValid(
-	const ssize_t a_value
-) const
-{
-	return std::find(this->begin(), this->end(), static_cast<T>(a_value)) != this->end();
-}
-//-------------------------------------------------------------------------------------------------
 /* static */
-template<typename T, const std::size_t N>
+template<typename T>
 T
-Enum<T, N>::inc(
+Enum<T>::inc(
     const T &a_value
 )
 {
@@ -81,25 +60,25 @@ Enum<T, N>::inc(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-template<typename T, const std::size_t N>
+template<typename T>
 T
-Enum<T, N>::dec(
+Enum<T>::dec(
     const T &a_value
 )
 {
     return static_cast<T>( static_cast<ssize_t>( a_value ) - 1 );
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, const std::size_t N>
-std::ostream &
-operator << (
-	std::ostream &os, const T value
-)
-{
-    os << static_cast<int>(value);
+// template<typename T>
+// std::ostream &
+// operator << (
+// 	std::ostream &a_os, const T a_value
+// )
+// {
+//     a_os << static_cast<ssize_t>(a_value);
 
-    return os;
-};
+//     return a_os;
+// };
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, core)

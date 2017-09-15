@@ -27,15 +27,15 @@ enum TestType
 bool_t
 Test_Enum::unit()
 {
-    xTEST_CASE("Enum::Enum")
+    xTEST_CASE("EnumContainer::EnumContainer")
     {
         const size_t enumSize = 5;
 
-        const Enum<TestType, enumSize> enumeration;
+        const EnumContainer<TestType, enumSize> enumeration;
         xTEST_EQ(enumeration.size(), enumSize);
     }
 
-    const Enum<TestType, 5> enumeration(
+    const EnumContainer<TestType, 5> enumeration(
         {
             TestType::ttUnknown,
             TestType::ttFirst,
@@ -44,31 +44,25 @@ Test_Enum::unit()
             TestType::ttLast
         });
 
-    xTEST_CASE("Enum::toString")
-    {
-        m_sRv = Enum<TestType, 5>::toString(TestType::ttFirst);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("1")));
-    }
-
-    xTEST_CASE("Enum::fromString")
-    {
-        TestType ttRv = Enum<TestType, 5>::fromString(xT("2"));
-        xTEST_EQ(ttRv, TestType::ttSecond);
-    }
-
-    xTEST_CASE("Enum::asString")
-    {
-        m_sRv = Enum<TestType, 5>::asString(TestType::ttThird);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("ttThird")));
-    }
-
-    xTEST_CASE("Enum::isValid")
+    xTEST_CASE("EnumContainer::isValid")
     {
         m_bRv = enumeration.isValid(0);
         xTEST_EQ(m_bRv, true);
 
         m_bRv = enumeration.isValid(10);
         xTEST_EQ(m_bRv, false);
+    }
+
+    xTEST_CASE("Enum::toString")
+    {
+        m_sRv = Enum<TestType>::toString(TestType::ttFirst);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("1")));
+    }
+
+    xTEST_CASE("Enum::fromString")
+    {
+        TestType ttRv = Enum<TestType>::fromString(xT("2"));
+        xTEST_EQ(ttRv, TestType::ttSecond);
     }
 
     xTEST_CASE("Enum::inc/dec")
