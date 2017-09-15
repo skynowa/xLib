@@ -29,8 +29,8 @@ public:
     static
     T              dec(const T &value);
 
-    // friend
-    // std::ostream & operator << (std::ostream &os, const T value);
+    friend
+    std::ostream & operator << (std::ostream &os, const T value);
 
 private:
     Enum<T>();
