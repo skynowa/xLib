@@ -13,11 +13,13 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T, const std::size_t N>
+inline
 EnumArray<T, N>::EnumArray()
 {
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, const std::size_t N>
+inline
 EnumArray<T, N>::EnumArray(
 	const Array<T, N> &a_enumeration
 ) :
