@@ -27,7 +27,6 @@
 #include <xLib/Core/Enum.h>
 #include <xLib/Core/HandleT.h>
 #include <xLib/Core/Locale.h>
-#include <xLib/Core/Algos.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/String.h>
@@ -35,6 +34,11 @@
 #include <xLib/Core/DateTime.h>
 #include <xLib/Core/Application.h>
 #include <xLib/Core/StdStream.h>
+
+// Interface
+
+// Algo
+#include <xLib/Algo/Algos.h>
 
 // Crypt
 #include <xLib/Crypt/OpenSSL/Blowfish.h>
@@ -99,10 +103,10 @@
 #include <xLib/Net/SmtpClient.h>
 #include <xLib/Net/Cgi.h>
 
-// Patterns
-#include <xLib/Patterns/Raii.h>
-#include <xLib/Patterns/Singleton.h>
-#include <xLib/Patterns/Observer.h>
+// Pattern
+#include <xLib/Pattern/Raii.h>
+#include <xLib/Pattern/Singleton.h>
+#include <xLib/Pattern/Observer.h>
 
 // Sync
 #include <xLib/Sync/AtomicLongInt.h>
