@@ -19,5 +19,5 @@ cmake \
 	-G"Unix Makefiles" \
 	$DIR_XLIB
 
-make
+cmake --build .
 ctest
