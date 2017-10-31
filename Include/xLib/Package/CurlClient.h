@@ -1,6 +1,8 @@
 /**
  * \file   CurlClient.h
  * \brief  CURL client
+ *
+ * https://curl.haxx.se/libcurl/c/allfuncs.html
  */
 
 
@@ -58,3 +60,22 @@ xNAMESPACE_END2(xl, Package)
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "CurlClient.cpp"
 #endif
+
+
+/**
+ * TODO: curl_easy
+ *
+ * url_easy_cleanup
+ * curl_easy_duphandle
+ * curl_easy_escape
+ * curl_easy_getinfo
+ * curl_easy_init
+ * curl_easy_pause
+ * curl_easy_perform
+ * curl_easy_recv
+ * curl_easy_reset
+ * curl_easy_send
+ * curl_easy_setopt
+ * curl_easy_strerror
+ * curl_easy_unescape
+ */
