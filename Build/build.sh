@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# \file  makefile.sh
+# \file  build.sh
 # \brief build project
 #
 
