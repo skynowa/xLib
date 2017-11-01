@@ -135,6 +135,14 @@ File::get() const
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
+xINLINE int_t
+File::getNative() const
+{
+    xTEST_EQ(isValid(), true);
+
+    return _nativeHandle(_handle);
+}
+//-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 File::path() const
 {

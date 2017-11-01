@@ -76,6 +76,7 @@
 #include <xLib/IO/Finder.h>
 #include <xLib/IO/Backup.h>
 #include <xLib/IO/Config.h>
+#include <xLib/IO/FsWatcher.h>
 
 // Ui
 #include <xLib/Ui/MsgBox.h>
