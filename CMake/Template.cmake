@@ -13,8 +13,8 @@ unset(cmXLIB_TEMPLATE_NS       CACHE)
 
 set(cmXLIB_TEMPLATE          "FsWatcher")
 set(cmXLIB_TEMPLATE_COMMENTS "File system watcher")
-set(cmXLIB_TEMPLATE_SUBDIR   "Package")
-set(cmXLIB_TEMPLATE_NS       "Package")
+set(cmXLIB_TEMPLATE_SUBDIR   "IO")
+set(cmXLIB_TEMPLATE_NS       "io")
 
 if (NOT cmXLIB_TEMPLATE OR
     NOT cmXLIB_TEMPLATE_COMMENTS OR
