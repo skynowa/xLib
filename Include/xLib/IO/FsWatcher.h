@@ -14,17 +14,32 @@ class FsWatcher
     ///< File system watcher
 {
 public:
-             FsWatcher();
+    explicit FsWatcher(std::cvec_tstring_t &dbWatchDirPathsDisabled);
         ///< constructor
     virtual ~FsWatcher();
         ///< destructor
 
+    bool     open(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &dbCmds);
+    bool     openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &dbCmds);
+    void     watch();
+    void     close();
+
 private:
     xNO_COPY_ASSIGN(FsWatcher)
+
+    std::ctstring_t     fileMaskCpp {"*.cc"};
+
+    std::vec_tstring_t  _filePaths;
+    std::vector<int_t>  _fileHandles;
+    std::cvec_tstring_t _dbWatchDirPathsDisabled;
+    std::map_tstring_t  _dbCmds;
+    int_t               _kQueue {-1};
 
 xPLATFORM_IMPL:
     void_t   _construct_impl();
     void_t   _destruct_impl();
+    void_t   _watch_impl();
+    void_t   _close_impl();
 };
 
 xNAMESPACE_END2(xl, io)

@@ -124,6 +124,8 @@ public:
         ///< reopen with different file or mode
     std::FILE*     get() const xWARN_UNUSED_RV;
         ///< get handle
+    int_t          getNative() const xWARN_UNUSED_RV;
+        ///< get native file descriptor associated with a stream
     std::tstring_t path() const xWARN_UNUSED_RV;
         ///< get file path
     void_t         attach(std::FILE *file, std::ctstring_t &filePath);
