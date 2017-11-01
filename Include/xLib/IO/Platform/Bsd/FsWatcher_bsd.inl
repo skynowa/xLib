@@ -37,7 +37,7 @@ FsWatcher::_watch_impl()
     struct kevent change[ _filePaths.size() ];
 
     for (size_t i = 0; i < _filePaths.size(); ++ i) {
-        auto &it_filePath = _filePaths.at(i);
+        auto &it_filePath = _filePaths[i];
 
         EV_SET(&change[i], _fileHandles[i], EVFILT_VNODE,
                 EV_ADD | EV_ENABLE | EV_ONESHOT,
@@ -79,9 +79,9 @@ FsWatcher::_watch_impl()
         {
             // std::tcout << "[FsWatcher] File modified: " << data << std::endl;
 
-            for (auto &it_dbCmd : _dbCmds) {
-                const std::string &module_path = it_dbCmd.first;
-                const std::string &script_path = it_dbCmd.second;
+            for (auto &itCmd : _cmds) {
+                const std::string &module_path = itCmd.first;
+                const std::string &script_path = itCmd.second;
 
                 if (data.find(module_path) == std::string::npos) {
                     continue;
@@ -112,7 +112,7 @@ FsWatcher::_watch_impl()
             #endif
 
                 break;
-            } // for (_dbCmds)
+            } // for (_cmds)
 
             std::tcout << "[FsWatcher] Done!" << std::endl;
         }
@@ -126,7 +126,7 @@ FsWatcher::_watch_impl()
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
-void
+void_t
 FsWatcher::_close_impl()
 {
     if (_kQueue != - 1) {

@@ -590,6 +590,8 @@ Thread::currentSleep(
 {
     // n/a
 
+    xCHECK_DO(a_timeoutMsec == 0UL, return);
+
     _currentSleep_impl(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
