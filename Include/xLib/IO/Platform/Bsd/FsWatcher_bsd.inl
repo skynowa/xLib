@@ -37,12 +37,12 @@ FsWatcher::_watch_impl()
     struct kevent change[ _filePaths.size() ];
 
     for (size_t i = 0; i < _filePaths.size(); ++ i) {
-        auto &it_filePath = _filePaths[i];
+        auto &itFilePath = _filePaths[i];
 
         EV_SET(&change[i], _fileHandles[i], EVFILT_VNODE,
                 EV_ADD | EV_ENABLE | EV_ONESHOT,
                 NOTE_DELETE | NOTE_EXTEND | NOTE_WRITE | NOTE_ATTRIB,
-                0, (void_t *)it_filePath.c_str());
+                0, (void_t *)itFilePath.c_str());
     }
 
     bool_t isLogEnable = true;
@@ -87,15 +87,15 @@ FsWatcher::_watch_impl()
                     continue;
                 }
 
-                std::string sub_project_name;
+                std::string subProjectName;
                 {
-                    sub_project_name = module_path;
-                    sub_project_name.resize(sub_project_name.size() - 1);
-                    std::transform(sub_project_name.begin(), sub_project_name.end(),
-                            sub_project_name.begin(), ::toupper);
+                    subProjectName = module_path;
+                    subProjectName.resize(subProjectName.size() - 1);
+                    std::transform(subProjectName.begin(), subProjectName.end(),
+                            subProjectName.begin(), ::toupper);
                 }
 
-                std::tcout << "\n\n::::::::::::::: " << sub_project_name << " :::::::::::::::\n" << std::endl;
+                std::tcout << "\n\n::::::::::::::: " << subProjectName << " :::::::::::::::\n" << std::endl;
                 std::tcout << "[FsWatcher] File modified: " << data << std::endl << std::endl;
 
             #if 1
