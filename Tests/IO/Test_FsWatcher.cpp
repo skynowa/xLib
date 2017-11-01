@@ -17,19 +17,17 @@ xTEST_UNIT(Test_FsWatcher)
 bool_t
 Test_FsWatcher::unit()
 {
-    bool bRv = false;
-
-    static const std::map<std::string, std::string> dbCmds
+    static std::cmap_tstring_t dbCmds
     {
         #include "cmds.db"
     };
 
-    static const std::vector<std::string> dbWatchDirPaths
+    static std::cvec_tstring_t dbWatchDirPaths
     {
         #include "fs_watcher_dirs.db"
     };
 
-    static const std::vector<std::string> dbWatchDirPathsDisabled
+    static std::cvec_tstring_t dbWatchDirPathsDisabled
     {
         #include "fs_watcher_dirs_disabled.db"
     };
@@ -37,14 +35,13 @@ Test_FsWatcher::unit()
     xTEST_CASE("FsWatcher::FsWatcher")
     {
         for ( ; ; ) {
-            FsWatcher watcher(dbWatchDirPathsDisabled);
-            bRv = watcher.openDirs(dbWatchDirPaths, dbCmds);
-            if (!bRv) {
+            FsWatcher watcher(dbWatchDirPathsDisabled, "*.cc");
+            m_bRv = watcher.openDirs(dbWatchDirPaths, dbCmds);
+            if ( !m_bRv ) {
                 continue;
             }
 
-            watcher.watch();
-            ::sleep(5);
+            watcher.watch(5 * 1000);
         }
     }
 

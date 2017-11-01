@@ -24,6 +24,7 @@
 
 #include <xLib/IO/File.h>
 #include <xLib/IO/Finder.h>
+#include <xLib/Sync/Thread.h>
 
 
 xNAMESPACE_BEGIN2(xl, io)
@@ -36,9 +37,11 @@ xNAMESPACE_BEGIN2(xl, io)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 FsWatcher::FsWatcher(
-    std::cvec_tstring_t &a_dbWatchDirPathsDisabled
+    std::cvec_tstring_t &a_dirPathsDisabled,
+    std::ctstring_t     &a_shellFilter
 ) :
-    _dbWatchDirPathsDisabled(a_dbWatchDirPathsDisabled)
+    _dirPathsDisabled(a_dirPathsDisabled),
+    _shellFilter     (a_shellFilter)
 {
     _construct_impl();
 }
@@ -55,7 +58,7 @@ xINLINE
 bool_t
 FsWatcher::open(
     std::cvec_tstring_t &a_filePaths,
-    std::cmap_tstring_t &a_dbCmds
+    std::cmap_tstring_t &a_cmds
 )
 {
     // _filePaths
@@ -77,7 +80,7 @@ FsWatcher::open(
     }
 
     // a_dbCmds
-    _dbCmds = a_dbCmds;
+    _cmds = a_cmds;
 
     return true;
 }
@@ -86,19 +89,19 @@ xINLINE
 bool
 FsWatcher::openDirs(
     std::cvec_tstring_t &a_dirPaths,
-    std::cmap_tstring_t &a_dbCmds
+    std::cmap_tstring_t &a_cmds
 )
 {
     bool bRv = false;
 
     for (auto &it_dirPath : a_dirPaths) {
         std::vec_tstring_t filePaths;
-        Finder::files(it_dirPath, "*.cc", true, &filePaths);
+        Finder::files(it_dirPath, xT("*.cc"), true, &filePaths);
         if ( filePaths.empty() ) {
             continue;
         }
 
-        bRv = open(filePaths, a_dbCmds);
+        bRv = open(filePaths, a_cmds);
         if (!bRv) {
             continue;
         }
@@ -111,9 +114,13 @@ FsWatcher::openDirs(
 //-------------------------------------------------------------------------------------------------
 xINLINE
 void_t
-FsWatcher::watch()
+FsWatcher::watch(
+    cint_t a_timeoutMsec
+)
 {
     _watch_impl();
+
+    Thread::currentSleep(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
@@ -124,7 +131,7 @@ FsWatcher::close()
 
     _fileHandles.clear();
     _filePaths.clear();
-    _dbCmds.clear();
+    _cmds.clear();
 }
 //-------------------------------------------------------------------------------------------------
 
