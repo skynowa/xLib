@@ -79,7 +79,7 @@ FsWatcher::open(
         return false;
     }
 
-    // a_dbCmds
+    // a_cmds
     _cmds = a_cmds;
 
     return true;

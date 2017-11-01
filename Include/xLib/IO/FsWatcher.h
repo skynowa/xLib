@@ -32,9 +32,21 @@ private:
     std::vector<int_t>  _fileHandles;
     std::cvec_tstring_t _dirPathsDisabled;
     std::map_tstring_t  _cmds;
-    int_t               _kQueue {-1};
 
 xPLATFORM_IMPL:
+
+#if   xENV_WIN
+
+#elif xENV_UNIX
+    #if   xENV_LINUX
+
+    #elif xENV_BSD
+        int_t           _kQueue {-1};
+    #elif xENV_APPLE
+
+    #endif
+#endif
+
     void_t   _construct_impl();
     void_t   _destruct_impl();
     void_t   _watch_impl();

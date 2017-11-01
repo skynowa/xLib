@@ -135,6 +135,10 @@ FsWatcher::_close_impl()
     }
 
     for (size_t i = 0; i < _fileHandles.size(); ++ i) {
+        if (_fileHandles[i] <= 0) {
+            continue;
+        }
+
         ::close(_fileHandles[i]);
         _fileHandles[i] = - 1;
     }
