@@ -6,4 +6,4 @@
 
 set -ex
 
-build.sh
+./build.sh
