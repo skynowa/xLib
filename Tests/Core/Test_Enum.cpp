@@ -112,13 +112,13 @@ Test_Enum::unit()
         }
 
         const EnumArray<TestType, 5> enumeration(
-            {
-                TestType::ttUnknown,
-                TestType::ttFirst,
-                TestType::ttSecond,
-                TestType::ttThird,
-                TestType::ttLast
-            });
+        {
+            TestType::ttUnknown,
+            TestType::ttFirst,
+            TestType::ttSecond,
+            TestType::ttThird,
+            TestType::ttLast
+        });
 
         xTEST_CASE("EnumArray::isValid")
         {
