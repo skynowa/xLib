@@ -37,7 +37,7 @@ pipelines:
                 - apt-get install -y libssh2-1-dev
                 - apt-get install -y libmysqlclient-dev
 
-                - git clone git@bitbucket.org:skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
+                - git clone https://skynowa:5582000*aaa@bitbucket.org/skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
                 - git submodule sync --recursive
                 - git submodule update --init --recursive
                 - ./Build/makefile-yaml.sh
