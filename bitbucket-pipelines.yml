@@ -33,6 +33,7 @@ pipelines:
                 - apt-get install -y cmake
                 - apt-get install -y libx11-xcb-dev
                 - apt-get install -y libssl-dev
+                - apt-get install -y libcurl4-openssl-dev
                 - apt-get install -y libssh2-1-dev
                 - apt-get install -y libmysqlclient-dev
 
