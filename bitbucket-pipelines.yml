@@ -6,7 +6,7 @@
 
 
 #---------------------------------------------------------------------------------------------------
-image: gcc:6.1
+image: gcc:7.2
 language: cpp
 compiler:
     - gcc
@@ -29,14 +29,15 @@ pipelines:
     default:
         - step:
             script:
-                - sudo apt-get -qq update
-                - sudo apt-get install -y cmake
-                - sudo apt-get install -y libx11-xcb-dev
-                - sudo apt-get install -y libssl-dev
-                - sudo apt-get install -y libssh2-1-dev
-                - sudo apt-get install -y libmysqlclient-dev
+                - apt-get -qq update
+                - apt-get install -y cmake
+                - apt-get install -y libx11-xcb-dev
+                - apt-get install -y libssl-dev
+                - apt-get install -y libcurl4-openssl-dev
+                - apt-get install -y libssh2-1-dev
+                - apt-get install -y default-libmysqlclient-dev
 
-                - git clone https://skynowa:5582000*aaa@bitbucket.org/skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
+                - git clone git@bitbucket.org:skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
                 - git submodule sync --recursive
                 - git submodule update --init --recursive
                 - ./Build/makefile-yaml.sh
