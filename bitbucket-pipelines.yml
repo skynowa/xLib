@@ -29,7 +29,7 @@ pipelines:
     default:
         - step:
             script:
-                - sudo apt-get -qq update
+                - sudo apt-get update
                 - sudo apt-get install -y cmake
                 - sudo apt-get install -y libx11-xcb-dev
                 - sudo apt-get install -y libssl-dev
