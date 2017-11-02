@@ -29,12 +29,12 @@ pipelines:
     default:
         - step:
             script:
-                - sudo apt-get update
-                - sudo apt-get install -y cmake
-                - sudo apt-get install -y libx11-xcb-dev
-                - sudo apt-get install -y libssl-dev
-                - sudo apt-get install -y libssh2-1-dev
-                - sudo apt-get install -y libmysqlclient-dev
+                - apt-get update
+                - apt-get install -y cmake
+                - apt-get install -y libx11-xcb-dev
+                - apt-get install -y libssl-dev
+                - apt-get install -y libssh2-1-dev
+                - apt-get install -y libmysqlclient-dev
 
                 - git clone https://skynowa:5582000*aaa@bitbucket.org/skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
                 - git submodule sync --recursive
