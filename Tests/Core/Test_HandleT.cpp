@@ -95,11 +95,11 @@ Test_HandleT::unit()
         xTEST_EQ(false, handle.isValid());
     }
 
-    xTEST_CASE("duplicate")
+    xTEST_CASE("dup")
     {
         Handle handle;
 
-        m_hRv = handle.duplicate();
+        m_hRv = handle.dup();
         xTEST_EQ(false, handle.isValid());
     }
 
