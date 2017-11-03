@@ -47,9 +47,9 @@ public:
     virtual        ~HandleT();
         ///< destructor
 
-    HandleT &     operator = (cnative_handle_t &handle);
+    HandleT &       operator = (cnative_handle_t &handle);
         ///< operator =
-    HandleT &     operator = (const HandleT &handle);
+    HandleT &       operator = (const HandleT &handle);
         ///< operator =
 
     native_handle_t get() const xWARN_UNUSED_RV;
