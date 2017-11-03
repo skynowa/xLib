@@ -22,6 +22,7 @@ class Debugger;
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/IHandle.h>
 #include <xLib/Core/HandleErrorT.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
@@ -37,7 +38,8 @@ xNAMESPACE_BEGIN2(xl, core)
  */
 
 template<ExHandleValue tagT>
-class HandleT
+class HandleT :
+    public IHandle<native_handle_t>
     /// handle
 {
 public:
