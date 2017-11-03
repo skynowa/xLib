@@ -9,7 +9,8 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-namespace debug {
+namespace debug
+{
     class NativeError;
     class StackTrace;
     class ErrorReport;
