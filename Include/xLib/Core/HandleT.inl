@@ -15,13 +15,7 @@
 #if   xENV_WIN
     #include "Platform/Win/HandleT_win.inl"
 #elif xENV_UNIX
-    #if   xENV_LINUX
-        #include "Platform/Unix/HandleT_unix.inl"
-    #elif xENV_BSD
-        #include "Platform/Unix/HandleT_unix.inl"
-    #elif xENV_APPLE
-        #include "Platform/Unix/HandleT_unix.inl"
-    #endif
+    #include "Platform/Unix/HandleT_unix.inl"
 #endif
 
 
@@ -56,7 +50,7 @@ HandleT<tagT>::HandleT(
 {
     xTEST_NA(a_handle);
 
-    _handle = a_handle.duplicate();
+    _handle = a_handle.dup();
 }
 //-------------------------------------------------------------------------------------------------
 template<ExHandleValue tagT>
@@ -106,7 +100,7 @@ HandleT<tagT>::operator = (
 
     close();
 
-    _handle = a_handle.duplicate();
+    _handle = a_handle.dup();
     xTEST_NA(_handle);
 
     return *this;
@@ -132,11 +126,11 @@ HandleT<tagT>::set(
 //-------------------------------------------------------------------------------------------------
 template<ExHandleValue tagT>
 native_handle_t
-HandleT<tagT>::duplicate() const
+HandleT<tagT>::dup() const
 {
     xCHECK_RET(!isValid(), error_value_t::get());
 
-    return _duplicate_impl();
+    return _dup_impl();
 }
 //-------------------------------------------------------------------------------------------------
 template<ExHandleValue tagT>
