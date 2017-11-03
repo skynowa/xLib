@@ -16,9 +16,9 @@ class xNO_VTABLE IHandle
     /// handle interface
 {
 public:
-                   IHandle();
+                   IHandle() {};
         ///< constructor
-    virtual       ~IHandle() = 0;
+    virtual       ~IHandle() {};
         ///< destructor
 
     IHandle &      operator = (const IHandle &handle);
