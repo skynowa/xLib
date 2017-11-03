@@ -66,7 +66,7 @@ FsWatcher::_watch_impl()
             return;
         }
 
-        const std::string data = event.udata ? (const char *)event.udata : "<null>";
+        const std::tstring_t data = event.udata ? (const char *)event.udata : "<null>";
 
         if (event.fflags & NOTE_DELETE) {
             std::tcout << "[FsWatcher] File deleted: " << data << std::endl;
@@ -80,14 +80,14 @@ FsWatcher::_watch_impl()
             // std::tcout << "[FsWatcher] File modified: " << data << std::endl;
 
             for (auto &itCmd : _cmds) {
-                const std::string &module_path = itCmd.first;
-                const std::string &script_path = itCmd.second;
+                const std::tstring_t &module_path = itCmd.first;
+                const std::tstring_t &script_path = itCmd.second;
 
-                if (data.find(module_path) == std::string::npos) {
+                if (data.find(module_path) == std::tstring_t::npos) {
                     continue;
                 }
 
-                std::string subProjectName;
+                std::tstring_t subProjectName;
                 {
                     subProjectName = module_path;
                     subProjectName.resize(subProjectName.size() - 1);
