@@ -23,6 +23,14 @@ xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
+/**
+ * Types:
+ *
+ * Native
+ * NativeModule
+ * StdFile
+ */
+
 template<ExHandleValue tagT>
 class HandleT
     /// handle
@@ -46,7 +54,7 @@ public:
         ///< get
     void_t          set(cnative_handle_t &handle);
         ///< set
-    native_handle_t duplicate() const xWARN_UNUSED_RV;
+    native_handle_t dup() const xWARN_UNUSED_RV;
         ///< duplicate handle
 
     bool_t          isValid() const xWARN_UNUSED_RV;
