@@ -9,11 +9,14 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-namespace debug {
-    class NativeError;
-    class StackTrace;
-    class ErrorReport;
-    class Debugger;
+namespace debug
+{
+
+class NativeError;
+class StackTrace;
+class ErrorReport;
+class Debugger;
+
 }
 
 xNAMESPACE_END2(xl, core)
@@ -47,9 +50,9 @@ public:
     virtual        ~HandleT();
         ///< destructor
 
-    HandleT &     operator = (cnative_handle_t &handle);
+    HandleT &       operator = (cnative_handle_t &handle);
         ///< operator =
-    HandleT &     operator = (const HandleT &handle);
+    HandleT &       operator = (const HandleT &handle);
         ///< operator =
 
     native_handle_t get() const xWARN_UNUSED_RV;
@@ -81,7 +84,7 @@ private:
     native_handle_t _handle;    ///< handle
 
 xPLATFORM_IMPL:
-    native_handle_t _duplicate_impl() const;
+    native_handle_t _dup_impl() const;
     bool_t          _isValid_impl() const;
     void_t          _close_impl();
 };
