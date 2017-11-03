@@ -66,7 +66,7 @@ FsWatcher::_watch_impl()
             return;
         }
 
-        const std::tstring_t data = event.udata ? (const char *)event.udata : "<null>";
+        std::ctstring_t data = event.udata ? (const char *)event.udata : "<null>";
 
         if (event.fflags & NOTE_DELETE) {
             std::tcout << "[FsWatcher] File deleted: " << data << std::endl;
@@ -80,16 +80,16 @@ FsWatcher::_watch_impl()
             // std::tcout << "[FsWatcher] File modified: " << data << std::endl;
 
             for (auto &itCmd : _cmds) {
-                const std::tstring_t &module_path = itCmd.first;
-                const std::tstring_t &script_path = itCmd.second;
+                std::ctstring_t &modulePath = itCmd.first;
+                std::ctstring_t &scriptPath = itCmd.second;
 
-                if (data.find(module_path) == std::tstring_t::npos) {
+                if (data.find(modulePath) == std::tstring_t::npos) {
                     continue;
                 }
 
                 std::tstring_t subProjectName;
                 {
-                    subProjectName = module_path;
+                    subProjectName = modulePath;
                     subProjectName.resize(subProjectName.size() - 1);
                     std::transform(subProjectName.begin(), subProjectName.end(),
                             subProjectName.begin(), ::toupper);
@@ -101,7 +101,7 @@ FsWatcher::_watch_impl()
             #if 1
                 ::sleep(1);
 
-                int_t ret = std::system( script_path.c_str() );
+                int_t ret = std::system( scriptPath.c_str() );
                 if (WIFSIGNALED(ret) && (WTERMSIG(ret) == SIGINT || WTERMSIG(ret) == SIGQUIT) /* iRv != 0 */) {
                     std::tcout << "[FsWatcher] "
                         << "System error: " << strerror(errno) << ", "
