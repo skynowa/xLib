@@ -81,7 +81,7 @@ private:
     native_handle_t _handle;    ///< handle
 
 xPLATFORM_IMPL:
-    native_handle_t _duplicate_impl() const;
+    native_handle_t _dup_impl() const;
     bool_t          _isValid_impl() const;
     void_t          _close_impl();
 };
