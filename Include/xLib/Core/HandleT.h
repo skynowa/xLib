@@ -29,6 +29,8 @@ xNAMESPACE_BEGIN2(xl, core)
  * Native
  * NativeModule
  * StdFile
+ *
+ * Custom type
  */
 
 template<ExHandleValue tagT>
