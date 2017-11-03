@@ -136,7 +136,7 @@ HandleT<tagT>::dup() const
 {
     xCHECK_RET(!isValid(), error_value_t::get());
 
-    return _duplicate_impl();
+    return _dup_impl();
 }
 //-------------------------------------------------------------------------------------------------
 template<ExHandleValue tagT>

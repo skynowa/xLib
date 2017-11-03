@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 template<ExHandleValue tagT>
 native_handle_t
-HandleT<tagT>::_duplicate_impl() const
+HandleT<tagT>::_dup_impl() const
 {
     native_handle_t hRv = error_value_t::get();
 
