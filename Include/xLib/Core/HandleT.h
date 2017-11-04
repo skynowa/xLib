@@ -93,6 +93,7 @@ xPLATFORM_IMPL:
 
 typedef HandleT<native_handle_t, hvNull>    Handle;
 typedef HandleT<native_handle_t, hvInvalid> HandleInvalid;
+typedef HandleT<FILE *,          hvStd>     HandleStd;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

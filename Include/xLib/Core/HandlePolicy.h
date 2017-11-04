@@ -14,7 +14,8 @@ enum ExHandlePolicyType
     /// error handle type
 {
     hvInvalid = - 1,    ///< like "invalid"
-    hvNull    = 0       ///< like "null"
+    hvNull    = 0,      ///< like "null"
+    hvStd     = 1       ///< like xPTR_NULL
 };
 
 template<typename T, ExHandlePolicyType valueT>
@@ -40,6 +41,17 @@ struct HandlePolicy<T, hvNull>
     T null() xWARN_UNUSED_RV
     {
         return xNATIVE_HANDLE_NULL;
+    }
+};
+
+template<typename T>
+struct HandlePolicy<T, hvStd>
+    /// handle error is hvStd
+{
+    static
+    T null() xWARN_UNUSED_RV
+    {
+        return xPTR_NULL;
     }
 };
 
