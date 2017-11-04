@@ -37,7 +37,7 @@ xNAMESPACE_BEGIN2(xl, core)
  * Custom type
  */
 
-template<ExHandleValue tagT>
+template<ExHandleValue valueT>
 class HandleT :
     public IHandle<native_handle_t>
     /// handle
@@ -81,7 +81,7 @@ public:
 #endif
 
 private:
-    typedef HandleErrorT<tagT> error_value_t;
+    typedef HandleErrorT<valueT> error_value_t;
 
     native_handle_t _handle;    ///< handle
 
