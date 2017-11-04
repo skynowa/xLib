@@ -23,7 +23,7 @@ xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 #include <xLib/Interface/IHandle.h>
-#include <xLib/Core/HandleErrorT.h>
+#include <xLib/Core/HandlePolicy.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
@@ -81,7 +81,7 @@ public:
 #endif
 
 private:
-    typedef HandleErrorT<T, valueT> error_value_t;
+    typedef HandlePolicy<T, valueT> handle_policy_t;
 
     T         _handle;    ///< handle
 

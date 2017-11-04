@@ -25,7 +25,7 @@ template<typename T, ExHandleValue valueT>
 T
 HandleT<T, valueT>::_dup_impl() const
 {
-    T hRv = error_value_t::get();
+    T hRv = handle_policy_t::get();
 
     BOOL blRes = ::DuplicateHandle(::GetCurrentProcess(), _handle, ::GetCurrentProcess(), &hRv,
         DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
@@ -53,7 +53,7 @@ HandleT<T, valueT>::_isValid_impl() const
     // deleted
     bool_t cond6 = (_handle != reinterpret_cast<T>(0xDDDDDDDD));
     // compare with error handle value
-    bool_t cond7 = (_handle != error_value_t::get());
+    bool_t cond7 = (_handle != handle_policy_t::get());
 
     bRv = cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7;
 
@@ -67,7 +67,7 @@ HandleT<T, valueT>::_close_impl()
     BOOL blRes = ::CloseHandle(_handle);
     xTEST_DIFF(blRes, FALSE);
 
-    _handle = error_value_t::get();
+    _handle = handle_policy_t::get();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, ExHandleValue valueT>

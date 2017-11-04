@@ -1,5 +1,5 @@
 /**
- * \file  HandleErrorT.h
+ * \file  HandlePolicy.h
  * \brief error handle value
  */
 
@@ -18,11 +18,11 @@ enum ExHandleValue
 };
 
 template<typename T, ExHandleValue valueT>
-struct HandleErrorT;
+struct HandlePolicy;
     /// handle error
 
 template<typename T>
-struct HandleErrorT<T, hvInvalid>
+struct HandlePolicy<T, hvInvalid>
     /// handle error is hvInvalid
 {
     static
@@ -33,7 +33,7 @@ struct HandleErrorT<T, hvInvalid>
 };
 
 template<typename T>
-struct HandleErrorT<T, hvNull>
+struct HandlePolicy<T, hvNull>
     /// handle error is hvNull
 {
     static
