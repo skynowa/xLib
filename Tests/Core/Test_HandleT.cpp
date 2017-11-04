@@ -51,7 +51,7 @@ Test_HandleT::unit()
         xTEST_EQ(false, hHandle2.isValid());
     }
 
-    xTEST_CASE("operator = (const T &chHandle)")
+    xTEST_CASE("operator = (const native_handle_t &chHandle)")
     {
         Handle handle;
 

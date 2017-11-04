@@ -47,8 +47,8 @@ Console::_construct_impl()
 xINLINE void_t
 Console::_destruct_impl()
 {
-    (T)_stdIn.detach();
-    (T)_stdOut.detach();
+    (native_handle_t)_stdIn.detach();
+    (native_handle_t)_stdOut.detach();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
