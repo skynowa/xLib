@@ -27,13 +27,13 @@ xNAMESPACE_BEGIN2(xl, core)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 HandleT<T, valueT>::HandleT() :
     _handle( handle_policy_t::null() )
 {
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 HandleT<T, valueT>::HandleT(
     const T &a_handle
 ) :
@@ -42,7 +42,7 @@ HandleT<T, valueT>::HandleT(
     xTEST_NA(a_handle);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 HandleT<T, valueT>::HandleT(
     const HandleT &a_handle
 ) :
@@ -53,7 +53,7 @@ HandleT<T, valueT>::HandleT(
     _handle = a_handle.dup();
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 HandleT<T, valueT>::~HandleT()
 {
     close();
@@ -67,7 +67,7 @@ HandleT<T, valueT>::~HandleT()
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 HandleT<T, valueT> &
 HandleT<T, valueT>::operator = (
     const T &a_handle
@@ -87,7 +87,7 @@ HandleT<T, valueT>::operator = (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 HandleT<T, valueT> &
 HandleT<T, valueT>::operator = (
     const HandleT &a_handle
@@ -106,14 +106,14 @@ HandleT<T, valueT>::operator = (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 T
 HandleT<T, valueT>::get() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 void_t
 HandleT<T, valueT>::set(
     const T &a_handle
@@ -124,7 +124,7 @@ HandleT<T, valueT>::set(
     _handle = a_handle;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 T
 HandleT<T, valueT>::dup() const
 {
@@ -133,14 +133,14 @@ HandleT<T, valueT>::dup() const
     return _dup_impl();
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 bool_t
 HandleT<T, valueT>::isValid() const
 {
     return _isValid_impl();
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 void_t
 HandleT<T, valueT>::attach(
     const T &a_handle
@@ -154,7 +154,7 @@ HandleT<T, valueT>::attach(
     _handle = a_handle;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 T
 HandleT<T, valueT>::detach()
 {
@@ -165,7 +165,7 @@ HandleT<T, valueT>::detach()
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandleValue valueT>
+template<typename T, ExHandlePolicyType valueT>
 void_t
 HandleT<T, valueT>::close()
 {
