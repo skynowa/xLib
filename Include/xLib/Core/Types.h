@@ -87,7 +87,7 @@ xNAMESPACE_BEGIN(xl)
     xTYPEDEF_CONST(addrinfo_t);
         ///< hold host address information
 
-    // T
+    // native_handle_t
 #if   xENV_WIN
     typedef HANDLE native_handle_t;
 #elif xENV_UNIX
