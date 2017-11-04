@@ -37,7 +37,7 @@ public:
         ///< attach
     virtual T      detach() = 0;
         ///< detach
-    virtual void_t close();
+    virtual void_t close() = 0;
         ///< close
 };
 
