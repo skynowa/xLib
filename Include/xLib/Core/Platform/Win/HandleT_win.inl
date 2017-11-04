@@ -21,9 +21,9 @@ xNAMESPACE_BEGIN2(xl, core)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
+template<ExHandleValue valueT>
 native_handle_t
-HandleT<tagT>::_dup_impl() const
+HandleT<valueT>::_dup_impl() const
 {
     native_handle_t hRv = error_value_t::get();
 
@@ -34,9 +34,9 @@ HandleT<tagT>::_dup_impl() const
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
+template<ExHandleValue valueT>
 bool_t
-HandleT<tagT>::_isValid_impl() const
+HandleT<valueT>::_isValid_impl() const
 {
     bool_t bRv = false;
 
@@ -60,9 +60,9 @@ HandleT<tagT>::_isValid_impl() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
+template<ExHandleValue valueT>
 void_t
-HandleT<tagT>::_close_impl()
+HandleT<valueT>::_close_impl()
 {
     BOOL blRes = ::CloseHandle(_handle);
     xTEST_DIFF(blRes, FALSE);
@@ -70,9 +70,9 @@ HandleT<tagT>::_close_impl()
     _handle = error_value_t::get();
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
+template<ExHandleValue valueT>
 ulong_t
-HandleT<tagT>::info() const
+HandleT<valueT>::info() const
 {
     xTEST_EQ(isValid(), true);
 
@@ -85,9 +85,9 @@ HandleT<tagT>::info() const
     return flags;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
+template<ExHandleValue valueT>
 void_t
-HandleT<tagT>::setInfo(
+HandleT<valueT>::setInfo(
     culong_t &a_mask,
     culong_t &a_flags
 )
