@@ -17,27 +17,27 @@ enum ExHandleValue
     hvNull    = 0       ///< like "null"
 };
 
-template<ExHandleValue valueT>
+template<typename T, ExHandleValue valueT>
 struct HandleErrorT;
     /// handle error
 
-template<>
-struct HandleErrorT<hvInvalid>
+template<typename T>
+struct HandleErrorT<T, hvInvalid>
     /// handle error is hvInvalid
 {
     static
-    native_handle_t get() xWARN_UNUSED_RV
+    T get() xWARN_UNUSED_RV
     {
         return xNATIVE_HANDLE_INVALID;
     }
 };
 
-template<>
-struct HandleErrorT<hvNull>
+template<typename T>
+struct HandleErrorT<T, hvNull>
     /// handle error is hvNull
 {
     static
-    native_handle_t get() xWARN_UNUSED_RV
+    T get() xWARN_UNUSED_RV
     {
         return xNATIVE_HANDLE_NULL;
     }

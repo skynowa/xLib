@@ -37,38 +37,38 @@ xNAMESPACE_BEGIN2(xl, core)
  * Custom type
  */
 
-template<ExHandleValue valueT>
+template<typename T, ExHandleValue valueT>
 class HandleT :
-    public IHandle<native_handle_t>
+    public IHandle<T>
     /// handle
 {
 public:
                     HandleT();
         ///< constructor
-    explicit        HandleT(cnative_handle_t &handle);
+    explicit        HandleT(const T &handle);
         ///< constructor
     explicit        HandleT(const HandleT &handle);
         ///< constructor
     virtual        ~HandleT();
         ///< destructor
 
-    HandleT &       operator = (cnative_handle_t &handle);
+    HandleT &       operator = (const T &handle);
         ///< operator =
     HandleT &       operator = (const HandleT &handle);
         ///< operator =
 
-    native_handle_t get() const xWARN_UNUSED_RV;
+    T get() const xWARN_UNUSED_RV;
         ///< get
-    void_t          set(cnative_handle_t &handle);
+    void_t          set(const T &handle);
         ///< set
-    native_handle_t dup() const xWARN_UNUSED_RV;
+    T dup() const xWARN_UNUSED_RV;
         ///< duplicate handle
 
     bool_t          isValid() const xWARN_UNUSED_RV;
         ///< is valid
-    void_t          attach(cnative_handle_t &handle);
+    void_t          attach(const T &handle);
         ///< attach
-    native_handle_t detach() xWARN_UNUSED_RV;
+    T detach() xWARN_UNUSED_RV;
         ///< detach
     void_t          close();
         ///< close
@@ -81,18 +81,18 @@ public:
 #endif
 
 private:
-    typedef HandleErrorT<valueT> error_value_t;
+    typedef HandleErrorT<T, valueT> error_value_t;
 
-    native_handle_t _handle;    ///< handle
+    T _handle;    ///< handle
 
 xPLATFORM_IMPL:
-    native_handle_t _dup_impl() const;
+    T _dup_impl() const;
     bool_t          _isValid_impl() const;
     void_t          _close_impl();
 };
 
-typedef HandleT<hvNull>    Handle;
-typedef HandleT<hvInvalid> HandleInvalid;
+typedef HandleT<native_handle_t, hvNull>    Handle;
+typedef HandleT<native_handle_t, hvInvalid> HandleInvalid;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
