@@ -43,52 +43,52 @@ class HandleT :
     /// handle
 {
 public:
-                    HandleT();
+              HandleT();
         ///< constructor
-    explicit        HandleT(const T &handle);
+    explicit  HandleT(const T &handle);
         ///< constructor
-    explicit        HandleT(const HandleT &handle);
+    explicit  HandleT(const HandleT &handle);
         ///< constructor
-    virtual        ~HandleT();
+    virtual  ~HandleT();
         ///< destructor
 
-    HandleT &       operator = (const T &handle);
+    HandleT & operator = (const T &handle);
         ///< operator =
-    HandleT &       operator = (const HandleT &handle);
+    HandleT & operator = (const HandleT &handle);
         ///< operator =
 
-    T get() const xWARN_UNUSED_RV;
+    T         get() const xWARN_UNUSED_RV;
         ///< get
-    void_t          set(const T &handle);
+    void_t    set(const T &handle);
         ///< set
-    T dup() const xWARN_UNUSED_RV;
+    T         dup() const xWARN_UNUSED_RV;
         ///< duplicate handle
 
-    bool_t          isValid() const xWARN_UNUSED_RV;
+    bool_t    isValid() const xWARN_UNUSED_RV;
         ///< is valid
-    void_t          attach(const T &handle);
+    void_t    attach(const T &handle);
         ///< attach
-    T detach() xWARN_UNUSED_RV;
+    T         detach() xWARN_UNUSED_RV;
         ///< detach
-    void_t          close();
+    void_t    close();
         ///< close
 
 #if xENV_WIN
-    ulong_t         info() const xWARN_UNUSED_RV;
+    ulong_t   info() const xWARN_UNUSED_RV;
         ///< get certain properties of an object handle
-    void_t          setInfo(culong_t &mask, culong_t &flags);
+    void_t    setInfo(culong_t &mask, culong_t &flags);
         ///< set information
 #endif
 
 private:
     typedef HandleErrorT<T, valueT> error_value_t;
 
-    T _handle;    ///< handle
+    T         _handle;    ///< handle
 
 xPLATFORM_IMPL:
-    T _dup_impl() const;
-    bool_t          _isValid_impl() const;
-    void_t          _close_impl();
+    T         _dup_impl() const;
+    bool_t    _isValid_impl() const;
+    void_t    _close_impl();
 };
 
 typedef HandleT<native_handle_t, hvNull>    Handle;
