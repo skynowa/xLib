@@ -25,10 +25,10 @@ template<typename T, ExHandleValue valueT>
 T
 HandleT<T, valueT>::_dup_impl() const
 {
-    T hRv = error_value_t::get();
+    T hRv = handle_policy_t::get();
 
     hRv = ::dup(_handle);
-    xTEST_DIFF(error_value_t::get(), hRv);
+    xTEST_DIFF(handle_policy_t::get(), hRv);
 
     return hRv;
 }
@@ -40,9 +40,9 @@ HandleT<T, valueT>::_isValid_impl() const
     bool_t bRv = false;
 
     // compare with error handle value
-    bool_t cond1 = (_handle != error_value_t::get());
+    bool_t cond1 = (_handle != handle_policy_t::get());
     // handle value is negative
-    bool_t cond2 = (_handle >  error_value_t::get());
+    bool_t cond2 = (_handle >  handle_policy_t::get());
 
     bRv = cond1 && cond2;
 
@@ -56,7 +56,7 @@ HandleT<T, valueT>::_close_impl()
     int_t iRv = ::close(_handle);
     xTEST_DIFF(iRv, - 1);
 
-    _handle = error_value_t::get();
+    _handle = handle_policy_t::get();
 }
 //-------------------------------------------------------------------------------------------------
 
