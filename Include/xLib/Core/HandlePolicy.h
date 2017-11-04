@@ -26,7 +26,7 @@ struct HandlePolicy<T, hvInvalid>
     /// handle error is hvInvalid
 {
     static
-    T get() xWARN_UNUSED_RV
+    T null() xWARN_UNUSED_RV
     {
         return xNATIVE_HANDLE_INVALID;
     }
@@ -37,7 +37,7 @@ struct HandlePolicy<T, hvNull>
     /// handle error is hvNull
 {
     static
-    T get() xWARN_UNUSED_RV
+    T null() xWARN_UNUSED_RV
     {
         return xNATIVE_HANDLE_NULL;
     }
