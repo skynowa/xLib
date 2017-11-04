@@ -29,7 +29,7 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 template<typename T, ExHandleValue valueT>
 HandleT<T, valueT>::HandleT() :
-    _handle( handle_policy_t::get() )
+    _handle( handle_policy_t::null() )
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ template<typename T, ExHandleValue valueT>
 HandleT<T, valueT>::HandleT(
     const HandleT &a_handle
 ) :
-    _handle( handle_policy_t::get() )
+    _handle( handle_policy_t::null() )
 {
     xTEST_NA(a_handle);
 
@@ -128,7 +128,7 @@ template<typename T, ExHandleValue valueT>
 T
 HandleT<T, valueT>::dup() const
 {
-    xCHECK_RET(!isValid(), handle_policy_t::get());
+    xCHECK_RET(!isValid(), handle_policy_t::null());
 
     return _dup_impl();
 }
@@ -160,7 +160,7 @@ HandleT<T, valueT>::detach()
 {
     T hRv = _handle;
 
-    _handle = handle_policy_t::get();
+    _handle = handle_policy_t::null();
 
     return hRv;
 }
@@ -169,7 +169,7 @@ template<typename T, ExHandleValue valueT>
 void_t
 HandleT<T, valueT>::close()
 {
-    xCHECK_DO(!isValid(), _handle = handle_policy_t::get(); return);
+    xCHECK_DO(!isValid(), _handle = handle_policy_t::null(); return);
 
     _close_impl();
 }
