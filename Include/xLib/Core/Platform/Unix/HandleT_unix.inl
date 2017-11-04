@@ -21,11 +21,11 @@ xNAMESPACE_BEGIN2(xl, core)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
-native_handle_t
-HandleT<valueT>::_dup_impl() const
+template<typename T, ExHandleValue valueT>
+T
+HandleT<T, valueT>::_dup_impl() const
 {
-    native_handle_t hRv = error_value_t::get();
+    T hRv = error_value_t::get();
 
     hRv = ::dup(_handle);
     xTEST_DIFF(error_value_t::get(), hRv);
@@ -33,9 +33,9 @@ HandleT<valueT>::_dup_impl() const
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
+template<typename T, ExHandleValue valueT>
 bool_t
-HandleT<valueT>::_isValid_impl() const
+HandleT<T, valueT>::_isValid_impl() const
 {
     bool_t bRv = false;
 
@@ -49,9 +49,9 @@ HandleT<valueT>::_isValid_impl() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
+template<typename T, ExHandleValue valueT>
 void_t
-HandleT<valueT>::_close_impl()
+HandleT<T, valueT>::_close_impl()
 {
     int_t iRv = ::close(_handle);
     xTEST_DIFF(iRv, - 1);

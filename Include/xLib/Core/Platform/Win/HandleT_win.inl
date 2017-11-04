@@ -21,11 +21,11 @@ xNAMESPACE_BEGIN2(xl, core)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
-native_handle_t
-HandleT<valueT>::_dup_impl() const
+template<typename T, ExHandleValue valueT>
+T
+HandleT<T, valueT>::_dup_impl() const
 {
-    native_handle_t hRv = error_value_t::get();
+    T hRv = error_value_t::get();
 
     BOOL blRes = ::DuplicateHandle(::GetCurrentProcess(), _handle, ::GetCurrentProcess(), &hRv,
         DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
@@ -34,24 +34,24 @@ HandleT<valueT>::_dup_impl() const
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
+template<typename T, ExHandleValue valueT>
 bool_t
-HandleT<valueT>::_isValid_impl() const
+HandleT<T, valueT>::_isValid_impl() const
 {
     bool_t bRv = false;
 
     // created but not initialised
-    bool_t cond1 = (_handle != reinterpret_cast<native_handle_t>(0xCDCDCDCD));
+    bool_t cond1 = (_handle != reinterpret_cast<T>(0xCDCDCDCD));
     // uninitialized locals in VC6 when you compile w/ /GZ
-    bool_t cond2 = (_handle != reinterpret_cast<native_handle_t>(0xCCCCCCCC));
+    bool_t cond2 = (_handle != reinterpret_cast<T>(0xCCCCCCCC));
     // indicate an uninitialized variable
-    bool_t cond3 = (_handle != reinterpret_cast<native_handle_t>(0xBAADF00D));
+    bool_t cond3 = (_handle != reinterpret_cast<T>(0xBAADF00D));
     // no man's land (normally outside of a process)
-    bool_t cond4 = (_handle != reinterpret_cast<native_handle_t>(0xFDFDFDFD));
+    bool_t cond4 = (_handle != reinterpret_cast<T>(0xFDFDFDFD));
     // freed memory set by NT's heap manager
-    bool_t cond5 = (_handle != reinterpret_cast<native_handle_t>(0xFEEEFEEE));
+    bool_t cond5 = (_handle != reinterpret_cast<T>(0xFEEEFEEE));
     // deleted
-    bool_t cond6 = (_handle != reinterpret_cast<native_handle_t>(0xDDDDDDDD));
+    bool_t cond6 = (_handle != reinterpret_cast<T>(0xDDDDDDDD));
     // compare with error handle value
     bool_t cond7 = (_handle != error_value_t::get());
 
@@ -60,9 +60,9 @@ HandleT<valueT>::_isValid_impl() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
+template<typename T, ExHandleValue valueT>
 void_t
-HandleT<valueT>::_close_impl()
+HandleT<T, valueT>::_close_impl()
 {
     BOOL blRes = ::CloseHandle(_handle);
     xTEST_DIFF(blRes, FALSE);
@@ -70,9 +70,9 @@ HandleT<valueT>::_close_impl()
     _handle = error_value_t::get();
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
+template<typename T, ExHandleValue valueT>
 ulong_t
-HandleT<valueT>::info() const
+HandleT<T, valueT>::info() const
 {
     xTEST_EQ(isValid(), true);
 
@@ -85,9 +85,9 @@ HandleT<valueT>::info() const
     return flags;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
+template<typename T, ExHandleValue valueT>
 void_t
-HandleT<valueT>::setInfo(
+HandleT<T, valueT>::setInfo(
     culong_t &a_mask,
     culong_t &a_flags
 )

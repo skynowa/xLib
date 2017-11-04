@@ -27,23 +27,23 @@ xNAMESPACE_BEGIN2(xl, core)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
-HandleT<valueT>::HandleT() :
+template<typename T, ExHandleValue valueT>
+HandleT<T, valueT>::HandleT() :
     _handle( error_value_t::get() )
 {
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
-HandleT<valueT>::HandleT(
-    cnative_handle_t &a_handle
+template<typename T, ExHandleValue valueT>
+HandleT<T, valueT>::HandleT(
+    const T &a_handle
 ) :
     _handle(a_handle)
 {
     xTEST_NA(a_handle);
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
-HandleT<valueT>::HandleT(
+template<typename T, ExHandleValue valueT>
+HandleT<T, valueT>::HandleT(
     const HandleT &a_handle
 ) :
     _handle( error_value_t::get() )
@@ -53,8 +53,8 @@ HandleT<valueT>::HandleT(
     _handle = a_handle.dup();
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
-HandleT<valueT>::~HandleT()
+template<typename T, ExHandleValue valueT>
+HandleT<T, valueT>::~HandleT()
 {
     close();
 }
@@ -67,10 +67,10 @@ HandleT<valueT>::~HandleT()
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
-HandleT<valueT> &
-HandleT<valueT>::operator = (
-    cnative_handle_t &a_handle
+template<typename T, ExHandleValue valueT>
+HandleT<T, valueT> &
+HandleT<T, valueT>::operator = (
+    const T &a_handle
 )
 {
     xTEST_EQ(isValid(), false);
@@ -87,9 +87,9 @@ HandleT<valueT>::operator = (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
-HandleT<valueT> &
-HandleT<valueT>::operator = (
+template<typename T, ExHandleValue valueT>
+HandleT<T, valueT> &
+HandleT<T, valueT>::operator = (
     const HandleT &a_handle
 )
 {
@@ -106,17 +106,17 @@ HandleT<valueT>::operator = (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
-native_handle_t
-HandleT<valueT>::get() const
+template<typename T, ExHandleValue valueT>
+T
+HandleT<T, valueT>::get() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
+template<typename T, ExHandleValue valueT>
 void_t
-HandleT<valueT>::set(
-    cnative_handle_t &a_handle
+HandleT<T, valueT>::set(
+    const T &a_handle
 )
 {
     xTEST_NA(a_handle);
@@ -124,26 +124,26 @@ HandleT<valueT>::set(
     _handle = a_handle;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
-native_handle_t
-HandleT<valueT>::dup() const
+template<typename T, ExHandleValue valueT>
+T
+HandleT<T, valueT>::dup() const
 {
     xCHECK_RET(!isValid(), error_value_t::get());
 
     return _dup_impl();
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
+template<typename T, ExHandleValue valueT>
 bool_t
-HandleT<valueT>::isValid() const
+HandleT<T, valueT>::isValid() const
 {
     return _isValid_impl();
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
+template<typename T, ExHandleValue valueT>
 void_t
-HandleT<valueT>::attach(
-    cnative_handle_t &a_handle
+HandleT<T, valueT>::attach(
+    const T &a_handle
 )
 {
     xTEST_NA(a_handle);
@@ -154,20 +154,20 @@ HandleT<valueT>::attach(
     _handle = a_handle;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
-native_handle_t
-HandleT<valueT>::detach()
+template<typename T, ExHandleValue valueT>
+T
+HandleT<T, valueT>::detach()
 {
-    native_handle_t hRv = _handle;
+    T hRv = _handle;
 
     _handle = error_value_t::get();
 
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue valueT>
+template<typename T, ExHandleValue valueT>
 void_t
-HandleT<valueT>::close()
+HandleT<T, valueT>::close()
 {
     xCHECK_DO(!isValid(), _handle = error_value_t::get(); return);
 
