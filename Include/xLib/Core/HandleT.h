@@ -84,11 +84,6 @@ private:
     typedef HandlePolicy<T, valueT> handle_policy_t;
 
     T         _handle;    ///< handle
-
-xPLATFORM_IMPL:
-    T         _dup_impl() const;
-    bool_t    _isValid_impl() const;
-    void_t    _close_impl();
 };
 
 typedef HandleT<native_handle_t, hvNull>    Handle;
