@@ -12,12 +12,6 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
 
-#if   xENV_WIN
-    #include "Platform/Win/HandleT_win.inl"
-#elif xENV_UNIX
-    #include "Platform/Unix/HandleT_unix.inl"
-#endif
-
 
 xNAMESPACE_BEGIN2(xl, core)
 
@@ -130,14 +124,14 @@ HandleT<T, valueT>::dup() const
 {
     xCHECK_RET(!isValid(), handle_policy_t::null());
 
-    return _dup_impl();
+    return handle_policy_t::dup(_handle);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, ExHandlePolicyType valueT>
 bool_t
 HandleT<T, valueT>::isValid() const
 {
-    return _isValid_impl();
+    return handle_policy_t::isValid(_handle);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, ExHandlePolicyType valueT>
@@ -171,7 +165,7 @@ HandleT<T, valueT>::close()
 {
     xCHECK_DO(!isValid(), _handle = handle_policy_t::null(); return);
 
-    _close_impl();
+    return handle_policy_t::close(&_handle);
 }
 //-------------------------------------------------------------------------------------------------
 
