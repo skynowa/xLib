@@ -86,8 +86,8 @@ private:
     T         _handle;    ///< handle
 };
 
-typedef HandleT<native_handle_t, hvNull>    Handle;
 typedef HandleT<native_handle_t, hvInvalid> HandleInvalid;
+typedef HandleT<native_handle_t, hvNull>    HandleNull;
 typedef HandleT<FILE *,          hvStd>     HandleStd;
 
 xNAMESPACE_END2(xl, core)

@@ -93,6 +93,26 @@ struct HandlePolicy<T, hvStd>
     {
         return xPTR_NULL;
     }
+
+    static T dup(const T &a_handle) xWARN_UNUSED_RV
+    {
+        return _dup_impl(a_handle);
+    }
+
+    static bool_t isValid(const T &a_handle)
+    {
+        return _isValid_impl(a_handle);
+    }
+
+    static void_t close(T *a_handle)
+    {
+       return _close_impl(a_handle);
+    }
+
+xPLATFORM_IMPL:
+    static T      _dup_impl(const T &handle);
+    static bool_t _isValid_impl(const T &handle);
+    static void_t _close_impl(T *handle);
 };
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, core)
