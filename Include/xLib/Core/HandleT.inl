@@ -165,7 +165,7 @@ HandleT<T, valueT>::close()
 {
     xCHECK_DO(!isValid(), _handle = handle_policy_t::null(); return);
 
-    return handle_policy_t::close(&_handle);
+    handle_policy_t::close(&_handle);
 }
 //-------------------------------------------------------------------------------------------------
 
