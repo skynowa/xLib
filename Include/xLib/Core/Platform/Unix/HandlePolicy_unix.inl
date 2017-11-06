@@ -16,7 +16,7 @@
 xNAMESPACE_BEGIN2(xl, core)
 
 /**************************************************************************************************
-*    public - HandlePolicy<T, hvInvalid>
+*    public - HandleInvalid
 *
 **************************************************************************************************/
 
@@ -57,7 +57,7 @@ HandlePolicy<T, hvInvalid>::_close_impl(T *a_handle)
 
 
 /**************************************************************************************************
-*    public - HandlePolicy<T, hvNull>
+*    public - HandleNull
 *
 **************************************************************************************************/
 
@@ -90,6 +90,41 @@ void_t
 HandlePolicy<T, hvNull>::_close_impl(T *a_handle)
 {
     int_t iRv = ::close(*a_handle);
+    xTEST_DIFF(iRv, - 1);
+
+    *a_handle = null();
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*    public - HandleStd
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+T
+HandlePolicy<T, hvStd>::_dup_impl(const T &a_handle)
+{
+    int_t handle = /*::*/fileno(a_handle);
+    xTEST_DIFF(handle, - 1);
+
+    return ::dup(handle);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+bool_t
+HandlePolicy<T, hvStd>::_isValid_impl(const T &a_handle)
+{
+    return (a_handle != null());
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+void_t
+HandlePolicy<T, hvStd>::_close_impl(T *a_handle)
+{
+    int_t iRv = ::fclose(*a_handle);
     xTEST_DIFF(iRv, - 1);
 
     *a_handle = null();

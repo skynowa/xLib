@@ -18,7 +18,7 @@ Test_HandleT::unit()
 {
     xTEST_CASE("HandleT")
     {
-        Handle objNullHandle;
+        HandleNull objNullHandle;
         xTEST_EQ(false, objNullHandle.isValid());
 
         HandleInvalid objInvalidHandle;
@@ -27,7 +27,7 @@ Test_HandleT::unit()
 
     xTEST_CASE("HandleT(const HANDLE &chHandle)")
     {
-        Handle handle( Process::currentHandle() );
+        HandleNull handle( Process::currentHandle() );
 
         m_bRv = handle.isValid();
         xTEST_EQ(m_bRv, true);
@@ -38,10 +38,10 @@ Test_HandleT::unit()
 
     xTEST_CASE("HandleT(const HandleT &chHandle)")
     {
-        Handle hHandle1;
+        HandleNull hHandle1;
         xTEST_EQ(false, hHandle1.isValid());
 
-        Handle hHandle2( hHandle1 );
+        HandleNull hHandle2( hHandle1 );
         xTEST_EQ(false, hHandle2.isValid());
 
         m_hRv = hHandle1.detach();
@@ -53,7 +53,7 @@ Test_HandleT::unit()
 
     xTEST_CASE("operator = (const native_handle_t &chHandle)")
     {
-        Handle handle;
+        HandleNull handle;
 
         handle = Process::currentHandle();
 
@@ -63,10 +63,10 @@ Test_HandleT::unit()
 
     xTEST_CASE("operator = (const HandleT &chHandle)")
     {
-        Handle hHandle1;
+        HandleNull hHandle1;
         xTEST_EQ(false, hHandle1.isValid());
 
-        Handle hHandle2;
+        HandleNull hHandle2;
         xTEST_EQ(false, hHandle2.isValid());
 
         hHandle1 = hHandle2;
@@ -76,7 +76,7 @@ Test_HandleT::unit()
 
     xTEST_CASE("get set")
     {
-        Handle handle;
+        HandleNull handle;
 
         m_hRv = handle.get();
         xTEST_EQ(false, handle.isValid());
@@ -97,7 +97,7 @@ Test_HandleT::unit()
 
     xTEST_CASE("dup")
     {
-        Handle handle;
+        HandleNull handle;
 
         m_hRv = handle.dup();
         xTEST_EQ(false, handle.isValid());
@@ -105,7 +105,7 @@ Test_HandleT::unit()
 
     xTEST_CASE("isValid")
     {
-        Handle handle;
+        HandleNull handle;
 
         m_bRv = handle.isValid();
         xTEST_EQ(m_bRv, false);
@@ -118,14 +118,14 @@ Test_HandleT::unit()
 
     xTEST_CASE("attach")
     {
-        Handle handle;
+        HandleNull handle;
 
         handle.attach(Process::currentHandle());
     }
 
     xTEST_CASE("detach")
     {
-        Handle handle;
+        HandleNull handle;
 
         m_hRv = handle.detach();
         xTEST_EQ(false, handle.isValid());
@@ -133,7 +133,7 @@ Test_HandleT::unit()
 
     xTEST_CASE("close")
     {
-        Handle handle;
+        HandleNull handle;
 
         handle.close();
 
@@ -146,7 +146,7 @@ Test_HandleT::unit()
         // TEST: HandleT::setInfo
 
     #if   xENV_WIN
-        Handle handle;
+        HandleNull handle;
 
         handle = Process::currentHandle();
         xTEST_EQ(true, handle.isValid());
@@ -165,7 +165,7 @@ Test_HandleT::unit()
         // TEST: HandleT::info
 
     #if   xENV_WIN
-        Handle handle;
+        HandleNull handle;
 
         handle = Process::currentHandle();
         xTEST_EQ(true, handle.isValid());
