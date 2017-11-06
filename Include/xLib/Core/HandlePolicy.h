@@ -41,7 +41,7 @@ struct HandlePolicy<T, hvInvalid>
         return _isValid_impl(a_handle);
     }
 
-    static void_t close(T *&a_handle)
+    static void_t close(T *a_handle)
     {
         return _close_impl(a_handle);
     }
@@ -50,7 +50,7 @@ struct HandlePolicy<T, hvInvalid>
 xPLATFORM_IMPL:
     static T      _dup_impl(const T &handle);
     static bool_t _isValid_impl(const T &handle);
-    static void_t _close_impl(T *&handle);
+    static void_t _close_impl(T *handle);
 };
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -73,7 +73,7 @@ struct HandlePolicy<T, hvNull>
         return _isValid_impl(a_handle);
     }
 
-    static void_t close(T *&a_handle)
+    static void_t close(T *a_handle)
     {
        return _close_impl(a_handle);
     }
@@ -81,7 +81,7 @@ struct HandlePolicy<T, hvNull>
 xPLATFORM_IMPL:
     static T      _dup_impl(const T &handle);
     static bool_t _isValid_impl(const T &handle);
-    static void_t _close_impl(T *&handle);
+    static void_t _close_impl(T *handle);
 };
 //-------------------------------------------------------------------------------------------------
 template<typename T>
