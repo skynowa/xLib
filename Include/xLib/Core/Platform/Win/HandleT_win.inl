@@ -16,18 +16,18 @@
 xNAMESPACE_BEGIN2(xl, core)
 
 /*******************************************************************************
-*    public
+*    public - HandlePolicy<T, hvInvalid>
 *
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 template<typename T, ExHandlePolicyType valueT>
 T
-HandleT<T, valueT>::_dup_impl() const
+HandlePolicy<T, valueT>::_dup_impl(const T &a_handle) const
 {
-    T hRv = handle_policy_t::null();
+    T hRv = null();
 
-    BOOL blRes = ::DuplicateHandle(::GetCurrentProcess(), _handle, ::GetCurrentProcess(), &hRv,
+    BOOL blRes = ::DuplicateHandle(::GetCurrentProcess(), a_handle, ::GetCurrentProcess(), &hRv,
         DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
     xTEST_DIFF(blRes, FALSE);
 
@@ -36,24 +36,24 @@ HandleT<T, valueT>::_dup_impl() const
 //-------------------------------------------------------------------------------------------------
 template<typename T, ExHandlePolicyType valueT>
 bool_t
-HandleT<T, valueT>::_isValid_impl() const
+HandlePolicy<T, valueT>::_isValid_impl(const T &a_handle) const
 {
     bool_t bRv = false;
 
     // created but not initialised
-    bool_t cond1 = (_handle != reinterpret_cast<T>(0xCDCDCDCD));
+    bool_t cond1 = (a_handle != reinterpret_cast<T>(0xCDCDCDCD));
     // uninitialized locals in VC6 when you compile w/ /GZ
-    bool_t cond2 = (_handle != reinterpret_cast<T>(0xCCCCCCCC));
+    bool_t cond2 = (a_handle != reinterpret_cast<T>(0xCCCCCCCC));
     // indicate an uninitialized variable
-    bool_t cond3 = (_handle != reinterpret_cast<T>(0xBAADF00D));
+    bool_t cond3 = (a_handle != reinterpret_cast<T>(0xBAADF00D));
     // no man's land (normally outside of a process)
-    bool_t cond4 = (_handle != reinterpret_cast<T>(0xFDFDFDFD));
+    bool_t cond4 = (a_handle != reinterpret_cast<T>(0xFDFDFDFD));
     // freed memory set by NT's heap manager
-    bool_t cond5 = (_handle != reinterpret_cast<T>(0xFEEEFEEE));
+    bool_t cond5 = (a_handle != reinterpret_cast<T>(0xFEEEFEEE));
     // deleted
-    bool_t cond6 = (_handle != reinterpret_cast<T>(0xDDDDDDDD));
+    bool_t cond6 = (a_handle != reinterpret_cast<T>(0xDDDDDDDD));
     // compare with error handle value
-    bool_t cond7 = (_handle != handle_policy_t::null());
+    bool_t cond7 = (a_handle != null());
 
     bRv = cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7;
 
@@ -62,13 +62,23 @@ HandleT<T, valueT>::_isValid_impl() const
 //-------------------------------------------------------------------------------------------------
 template<typename T, ExHandlePolicyType valueT>
 void_t
-HandleT<T, valueT>::_close_impl()
+HandlePolicy<T, valueT>::_close_impl(T *a_handle)
 {
-    BOOL blRes = ::CloseHandle(_handle);
+    BOOL blRes = ::CloseHandle(*a_handle);
     xTEST_DIFF(blRes, FALSE);
 
-    _handle = handle_policy_t::null();
+    *a_handle = null();
 }
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*    public - HandlePolicy<T, hvNull>
+*
+**************************************************************************************************/
+
+// TODO: HandlePolicy<T, hvNull>
+
 //-------------------------------------------------------------------------------------------------
 template<typename T, ExHandlePolicyType valueT>
 ulong_t
