@@ -98,8 +98,8 @@ struct HandlePolicy<T, hvStd>
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #if   xENV_WIN
-    #include "Platform/Win/HandleT_win.inl"
+    #include "Platform/Win/HandlePolicy_win.inl"
 #elif xENV_UNIX
-    #include "Platform/Unix/HandleT_unix.inl"
+    #include "Platform/Unix/HandlePolicy_unix.inl"
 #endif
 //-------------------------------------------------------------------------------------------------

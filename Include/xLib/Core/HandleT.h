@@ -93,3 +93,7 @@ typedef HandleT<FILE *,          hvStd>     HandleStd;
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "HandleT.inl"
+
+#if xENV_WIN
+    #include "Platform/Win/HandleT_win.inl"
+#endif
