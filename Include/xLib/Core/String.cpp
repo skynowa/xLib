@@ -315,7 +315,15 @@ String::trimLeftChars(
 
     std::tstring_t sRv(a_str);
 
-    return sRv.erase(0, sRv.find_first_not_of(a_chars));
+    const std::tstring_t::size_type pos = sRv.find_first_not_of(a_chars);
+    if (pos == std::tstring_t::npos) {
+        sRv.erase();
+        return sRv;
+    }
+
+    sRv.erase(0, pos);
+
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -330,7 +338,15 @@ String::trimRightChars(
 
     std::tstring_t sRv(a_str);
 
-    return sRv.erase(sRv.find_last_not_of(a_chars) + 1);
+    const std::tstring_t::size_type pos = sRv.find_last_not_of(a_chars);
+    if (pos == std::tstring_t::npos) {
+        sRv.erase();
+        return sRv;
+    }
+
+    sRv.erase(pos + 1);
+
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
