@@ -59,20 +59,23 @@ Test_File::unit()
     xTEST_CASE("reopen")
     {
         File file;
-
+xTRACE_POINT;
         file.create(filePath, File::omCreateReadWrite);
-
+xTRACE_POINT;
         for (size_t i = 0; i < 7; ++ i) {
             file.reopen(filePath, File::omOpenReadWrite);
+            xTRACE_POINT;
         }
+xTRACE_POINT;
     }
-
+return true;
     xTEST_CASE("attach")
     {
+    xTRACE_POINT;
         File file;
-
+xTRACE_POINT;
         file.attach(stdout, std::tstring_t());
-
+xTRACE_POINT;
         m_bRv = file.isValid();
         xTEST_EQ(m_bRv, true);
 

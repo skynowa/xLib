@@ -132,7 +132,7 @@ File::get() const
 {
     xTEST_EQ(isValid(), true);
 
-    return _handle;
+    return _handle.get();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int_t
@@ -140,7 +140,7 @@ File::getNative() const
 {
     xTEST_EQ(isValid(), true);
 
-    return _nativeHandle(_handle);
+    return _nativeHandle(_handle.get());
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
@@ -473,7 +473,7 @@ File::resize(
 xINLINE bool_t
 File::isValid() const
 {
-    return (_handle != xPTR_NULL);
+    return _handle.isValid();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t

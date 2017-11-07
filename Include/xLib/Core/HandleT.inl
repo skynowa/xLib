@@ -67,7 +67,6 @@ HandleT<T, valueT>::operator = (
     const T &a_handle
 )
 {
-    xTEST_EQ(isValid(), false);
     xTEST_NA(a_handle);
 
     // Try m_Handle.Attach(other.Detach(), if you got an assertion here.
@@ -87,7 +86,6 @@ HandleT<T, valueT>::operator = (
     const HandleT &a_handle
 )
 {
-    xTEST_EQ(isValid(), false);
     xTEST_NA(a_handle);
 
     xCHECK_RET(this == &a_handle, *this);
@@ -163,7 +161,10 @@ template<typename T, HandlePolicyType valueT>
 void_t
 HandleT<T, valueT>::close()
 {
-    xCHECK_DO(!isValid(), _handle = handle_policy_t::null(); return);
+    if ( !isValid() ) {
+        _handle = handle_policy_t::null();
+        return;
+    }
 
     handle_policy_t::close(&_handle);
 }
