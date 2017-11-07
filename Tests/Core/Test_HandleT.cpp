@@ -23,6 +23,9 @@ Test_HandleT::unit()
 
         HandleInvalid objInvalidHandle;
         xTEST_EQ(false, objInvalidHandle.isValid());
+
+        HandleStd objStdHandle;
+        xTEST_EQ(false, objStdHandle.isValid());
     }
 
     xTEST_CASE("HandleT(const HANDLE &chHandle)")
