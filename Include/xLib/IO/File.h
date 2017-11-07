@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/HandleT.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, io)
 
@@ -292,7 +293,7 @@ public:
         ///< write binary data
 
 private:
-    std::FILE*     _handle;         ///< file handle
+    HandleStd      _handle;         ///< file handle
     std::tstring_t _filePath;       ///< file path
     cbool_t        _isUseBuffering; ///< is use buffering
 
