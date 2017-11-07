@@ -14,7 +14,7 @@ class Path
     /// file system path
 {
 public:
-    enum ExFileExt
+    enum FileExt
         /// file extension
     {
         seExe,    ///< execute module
@@ -103,7 +103,7 @@ public:
     std::tstring_t dll() xWARN_UNUSED_RV;
         ///< get full path to dll
     static
-    std::tstring_t fileExt(const ExFileExt &fileExt) xWARN_UNUSED_RV;
+    std::tstring_t fileExt(const FileExt &fileExt) xWARN_UNUSED_RV;
         ///< get standard extension
 
     static
@@ -150,7 +150,7 @@ xPLATFORM_IMPL:
     static
     std::tstring_t _dll_impl() xWARN_UNUSED_RV;
     static
-    std::tstring_t _fileExt_impl(const ExFileExt &fileExt) xWARN_UNUSED_RV;
+    std::tstring_t _fileExt_impl(const FileExt &fileExt) xWARN_UNUSED_RV;
     static
     bool_t         _isNameValid_impl(std::ctstring_t &fileName,
                       std::tstring_t *fileNameValid = xPTR_NULL) xWARN_UNUSED_RV;

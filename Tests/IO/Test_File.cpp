@@ -923,7 +923,7 @@ Test_File::unitPrivate()
         // TEST: File::_stdHandle
 
     #if xTODO
-        const File::ExOpenMode mode = File::omOpenReadWrite;
+        const File::OpenMode mode = File::omOpenReadWrite;
 
         File file;
 
@@ -939,7 +939,7 @@ Test_File::unitPrivate()
 
     xTEST_CASE("_openMode")
     {
-        std::vector< std::pair<File::ExOpenMode, std::tstring_t> > data;
+        std::vector< std::pair<File::OpenMode, std::tstring_t> > data;
 
         data.push_back( std::make_pair(File::omRead,               xT("r")) );
         data.push_back( std::make_pair(File::omWrite,              xT("w")) );
@@ -956,7 +956,7 @@ Test_File::unitPrivate()
         data.push_back( std::make_pair(File::omBinOpenReadAppend,  xT("ab+")) );
 
         for (size_t i = 0; i < data.size(); ++ i) {
-            File::ExOpenMode omRes = data.at(i).first;
+            File::OpenMode omRes = data.at(i).first;
             std::tstring_t     sRv   = data.at(i).second;
 
             m_sRv = File::_openMode(omRes);

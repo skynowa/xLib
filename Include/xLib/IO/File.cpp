@@ -71,8 +71,8 @@ File::~File()
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 File::create(
-    std::ctstring_t  &a_filePath,
-    const ExOpenMode &a_mode
+    std::ctstring_t &a_filePath,
+    const OpenMode  &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -100,8 +100,8 @@ File::create(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 File::reopen(
-    std::ctstring_t  &a_filePath,
-    const ExOpenMode &a_mode
+    std::ctstring_t &a_filePath,
+    const OpenMode  &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -380,8 +380,8 @@ File::clear() const
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 File::locking(
-    const ExLockingMode &a_mode,
-    clong_t             &a_bytes
+    const LockingMode &a_mode,
+    clong_t           &a_bytes
 )
 {
     xTEST_NA(a_mode);
@@ -399,8 +399,8 @@ File::locking(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 File::setPosition(
-    clong_t                 &a_offset,
-    const ExPointerPosition &a_pos
+    clong_t               &a_offset,
+    const PointerPosition &a_pos
 ) const
 {
     xTEST_NA(a_offset);
@@ -420,9 +420,9 @@ File::position() const {
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 File::setVBuff(
-    char                  *a_buff,
-    const ExBufferingMode &a_mode,
-    std::csize_t          &a_size
+    char                *a_buff,
+    const BufferingMode &a_mode,
+    std::csize_t        &a_size
 ) const
 {
     xTEST_NA(a_buff);
@@ -609,8 +609,8 @@ File::isExistsEx(
 /* static */
 xINLINE void_t
 File::access(
-    std::ctstring_t    &a_filePath,
-    const ExAccessMode &a_mode
+    std::ctstring_t  &a_filePath,
+    const AccessMode &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -623,8 +623,8 @@ File::access(
 /* static */
 xINLINE void_t
 File::chmod(
-    std::ctstring_t        &a_filePath,
-    const ExPermissionMode &a_mode
+    std::ctstring_t      &a_filePath,
+    const PermissionMode &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -994,9 +994,9 @@ File::textRead(
 /* static */
 xINLINE void_t
 File::textWrite(
-    std::ctstring_t  &a_filePath,
-    std::ctstring_t  &a_content,
-    const ExOpenMode &a_mode
+    std::ctstring_t &a_filePath,
+    std::ctstring_t &a_content,
+    const OpenMode  &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -1040,7 +1040,7 @@ xINLINE void_t
 File::textWrite(
     std::ctstring_t     &a_filePath,
     std::cvec_tstring_t &a_content,
-    const ExOpenMode    &a_mode
+    const OpenMode      &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -1132,7 +1132,7 @@ File::textWrite(
     std::ctstring_t     &a_filePath,
     std::ctstring_t     &a_separator,
     std::cmap_tstring_t &a_content,
-    const ExOpenMode    &a_mode
+    const OpenMode      &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(),  false);
@@ -1249,8 +1249,8 @@ File::_nativeHandle(
 /* static */
 xINLINE std::FILE *
 File::_stdHandle(
-    int_t             a_fileHandle,
-    const ExOpenMode &a_mode
+    int_t          a_fileHandle,
+    const OpenMode &a_mode
 )
 {
     xTEST_NA(a_fileHandle);
@@ -1265,7 +1265,7 @@ File::_stdHandle(
 /* static */
 xINLINE std::tstring_t
 File::_openMode(
-    const ExOpenMode &a_mode
+    const OpenMode &a_mode
 )
 {
     xTEST_NA(a_mode);

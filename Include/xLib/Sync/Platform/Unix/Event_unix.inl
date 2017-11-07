@@ -84,12 +84,12 @@ Event::_reset_impl()
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Event::ExObjectState
+xINLINE Event::ObjectState
 Event::_wait_impl(
     culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
-    ExObjectState osRv = osFailed;
+    ObjectState osRv = osFailed;
 
     int_t iRv = - 1;
 

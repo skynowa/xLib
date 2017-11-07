@@ -45,7 +45,7 @@ class ISocket
     /// socket
 {
 public:
-    enum ExAddressFamily
+    enum AddressFamily
         /// address family
     {
     #if   xENV_WIN
@@ -102,9 +102,9 @@ public:
         // TODO: ISocket - add AP-*
     #endif
     };
-    xTYPEDEF_CONST(ExAddressFamily);
+    xTYPEDEF_CONST(AddressFamily);
 
-    enum ExType
+    enum Type
        /// type
     {
         tpStream      = SOCK_STREAM,
@@ -113,9 +113,9 @@ public:
         tpRdm         = SOCK_RDM,
         tpSeqPacket   = SOCK_SEQPACKET
     };
-    xTYPEDEF_CONST(ExType);
+    xTYPEDEF_CONST(Type);
 
-    enum ExProtocol
+    enum Protocol
         /// protocol
     {
     #if xENV_WIN
@@ -220,15 +220,15 @@ public:
         // TODO: ISocket - add IPPROTO-*
     #endif
     };
-    xTYPEDEF_CONST(ExProtocol);
+    xTYPEDEF_CONST(Protocol);
 
-    enum ExOptions
+    enum Options
         /// options
     {
         SOCKET_TIMEOUT   = 0,       ///< (1000000 / 10)
         SOCKET_BUFF_SIZE = 32768    ///< 32 KB
     };
-    xTYPEDEF_CONST(ExOptions);
+    xTYPEDEF_CONST(Options);
 
                    ISocket();
         ///< constructor
@@ -241,7 +241,7 @@ public:
     *
     *******************************************************************************/
 
-    void_t         create(cExAddressFamily &family, cExType &type, cExProtocol &protocol);
+    void_t         create(cAddressFamily &family, cType &type, cProtocol &protocol);
         ///< creates a socket that is bound to a specific transport service provider
     socket_t       handle() const xWARN_UNUSED_RV;
         ///< get handle

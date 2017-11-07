@@ -37,7 +37,7 @@ xNAMESPACE_BEGIN2(xl, core)
  * Custom type
  */
 
-template<typename T, ExHandlePolicyType valueT>
+template<typename T, HandlePolicyType valueT>
 class HandleT :
     public IHandle<T>
     /// handle

@@ -14,7 +14,7 @@ class Backup
     /// backuper
 {
 public:
-    enum ExPeriod
+    enum Period
         /// backup period
     {
         bpUnknown,
@@ -23,9 +23,9 @@ public:
         bpWeekly,
         bpMonthly
     };
-    xTYPEDEF_CONST(ExPeriod);
+    xTYPEDEF_CONST(Period);
 
-    explicit  Backup(cExPeriod &period);
+    explicit  Backup(cPeriod &period);
         ///< constructor
     virtual  ~Backup() {}
         ///< destructor
@@ -35,7 +35,7 @@ public:
         ///< execute file backup
 
 private:
-    cExPeriod _period;  ///< backup period
+    cPeriod   _period;  ///< backup period
 
     xNO_COPY_ASSIGN(Backup)
 };

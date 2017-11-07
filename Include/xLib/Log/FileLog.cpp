@@ -97,7 +97,7 @@ FileLog::write(
 /* virtual */
 xINLINE void_t
 FileLog::write(
-    cExLevel      &a_level,
+    cLevel        &a_level,
     cptr_ctchar_t  a_format, ...
 ) const
 {

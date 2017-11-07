@@ -43,17 +43,17 @@ Process::_create_impl(
     _pid    = processInfo.dwProcessId;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Process::ExWaitResult
+xINLINE Process::WaitResult
 Process::_wait_impl(
     culong_t &a_timeoutMsec
 )
 {
-    ExWaitResult waitStatus = wrFailed;
+    WaitResult waitStatus = wrFailed;
 
     DWORD dwRv = ::WaitForSingleObject(_handle, a_timeoutMsec);
     xTEST_EQ(dwRv, WAIT_OBJECT_0);
 
-    waitStatus = static_cast<ExWaitResult>( dwRv );
+    waitStatus = static_cast<WaitResult>( dwRv );
 
     return waitStatus;
 }

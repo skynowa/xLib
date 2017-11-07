@@ -17,7 +17,7 @@ bool_t
 Test_FileType::unit()
 {
     std::ctstring_t  filePath = data.tempDirPath + Const::slash() + xT("Test.txt");
-    FileType::ExType value;
+    FileType::Type value;
 
     // prepare
     {
@@ -65,8 +65,8 @@ Test_FileType::unit()
     #if   xENV_WIN
         FileType ftType(filePath);
 
-        FileType::ExType faAttribute = FileType::faHidden;
-        FileType::ExType faValue     = FileType::faReadOnly;
+        FileType::Type faAttribute = FileType::faHidden;
+        FileType::Type faValue     = FileType::faReadOnly;
 
         ftType.clear();
         ftType.add(faAttribute);
@@ -122,11 +122,11 @@ Test_FileType::unit()
         FileType ftType(filePath);
 
     #if   xENV_WIN
-        const FileType::ExType cfaRemoveValue = value;
-        const FileType::ExType cfaAddValue    = FileType::faHidden;
+        const FileType::Type cfaRemoveValue = value;
+        const FileType::Type cfaAddValue    = FileType::faHidden;
     #elif xENV_UNIX
-        const FileType::ExType cfaRemoveValue = value;
-        const FileType::ExType cfaAddValue    = FileType::faSymbolicLink;
+        const FileType::Type cfaRemoveValue = value;
+        const FileType::Type cfaAddValue    = FileType::faSymbolicLink;
     #endif
 
         ftType.modify(cfaRemoveValue, cfaAddValue);
@@ -137,9 +137,9 @@ Test_FileType::unit()
         FileType ftType(filePath);
 
     #if   xENV_WIN
-        FileType::ExType faAttribute = FileType::faNormal;
+        FileType::Type faAttribute = FileType::faNormal;
     #elif xENV_UNIX
-        FileType::ExType faAttribute = FileType::faRegularFile;
+        FileType::Type faAttribute = FileType::faRegularFile;
     #endif
 
         ftType.clear();

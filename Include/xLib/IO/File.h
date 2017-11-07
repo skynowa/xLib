@@ -16,7 +16,7 @@ class File
     /// file
 {
 public:
-    enum ExOpenMode
+    enum OpenMode
         /// open mode
     {
         omUnknown,             ///< unknown
@@ -36,7 +36,7 @@ public:
     };
 
 #if xENV_WIN
-    enum ExTranslationMode
+    enum TranslationMode
         /// translation mode
     {
         tmText   = O_TEXT,
@@ -44,7 +44,7 @@ public:
     };
 #endif
 
-    enum ExAccessMode
+    enum AccessMode
         /// access mode
     {
         amExistence = 0,
@@ -53,7 +53,7 @@ public:
         amReadWrite = 6
     };
 
-    enum ExPointerPosition
+    enum PointerPosition
         /// pointer position
     {
         ppError = - 1L,
@@ -62,7 +62,7 @@ public:
         ppEnd   = SEEK_END
     };
 
-    enum ExBufferingMode
+    enum BufferingMode
         /// buffering mode
     {
         bmNo   = _IONBF,
@@ -70,7 +70,7 @@ public:
         bmFull = _IOFBF
     };
 
-    enum ExLockingMode
+    enum LockingMode
         /// locking mode
     {
     #if   xENV_WIN
@@ -84,7 +84,7 @@ public:
     #endif
     };
 
-    enum ExPermissionMode
+    enum PermissionMode
         /// permission mode
     {
     #if xENV_WIN
@@ -118,9 +118,9 @@ public:
         ///< destructor
 
     // open, get
-    void_t         create(std::ctstring_t &filePath, const ExOpenMode &mode);
+    void_t         create(std::ctstring_t &filePath, const OpenMode &mode);
         ///< open
-    void_t         reopen(std::ctstring_t &filePath, const ExOpenMode &mode);
+    void_t         reopen(std::ctstring_t &filePath, const OpenMode &mode);
         ///< reopen with different file or mode
     std::FILE*     get() const xWARN_UNUSED_RV;
         ///< get handle
@@ -164,17 +164,17 @@ public:
     // times
 
     // other
-    void_t         locking(const ExLockingMode &mode, clong_t &bytes);
+    void_t         locking(const LockingMode &mode, clong_t &bytes);
         ///< locks or unlocks bytes of a file
-    void_t         setPosition(clong_t &offset, const ExPointerPosition &pos) const;
+    void_t         setPosition(clong_t &offset, const PointerPosition &pos) const;
         ///< set stream position indicator
     long_t         position() const xWARN_UNUSED_RV;
         ///< get current position in stream
-    void_t         setVBuff(char *buff, const ExBufferingMode &mode, std::csize_t &size) const;
+    void_t         setVBuff(char *buff, const BufferingMode &mode, std::csize_t &size) const;
         ///< change stream buffering
 
 #if xENV_WIN
-    void_t         setMode(const ExTranslationMode &mode) const;
+    void_t         setMode(const TranslationMode &mode) const;
         ///< sets the file translation mode
 #endif
 
@@ -214,10 +214,10 @@ public:
     std::tstring_t isExistsEx(std::ctstring_t &filePath) xWARN_UNUSED_RV;
         ///< check for existence, if exists - generate new file name (file path), which not exists
     static
-    void_t         access(std::ctstring_t &filePath, const ExAccessMode &mode);
+    void_t         access(std::ctstring_t &filePath, const AccessMode &mode);
         ///< determine file-access permission
     static
-    void_t         chmod(std::ctstring_t &filePath, const ExPermissionMode &mode);
+    void_t         chmod(std::ctstring_t &filePath, const PermissionMode &mode);
         ///< change the file-permission settings
     static
     void_t         clear(std::ctstring_t &filePath);
@@ -265,14 +265,14 @@ public:
         ///< read to std::tstring_t
     static
     void_t         textWrite(std::ctstring_t &filePath, std::ctstring_t &content,
-                       const ExOpenMode &mode);
+                       const OpenMode &mode);
         ///< write std::tstring_t
     static
     void_t         textRead(std::ctstring_t &filePath, std::vec_tstring_t *content);
         ///< read to std::vector
     static
     void_t         textWrite(std::ctstring_t &filePath, std::cvec_tstring_t &content,
-                       const ExOpenMode &mode);
+                       const OpenMode &mode);
         ///< write std::vector
     static
     void_t         textRead(std::ctstring_t &filePath, std::ctstring_t &separator,
@@ -280,7 +280,7 @@ public:
         ///< read text to std::map
     static
     void_t         textWrite(std::ctstring_t &filePath, std::ctstring_t &separator,
-                       std::cmap_tstring_t &content, const ExOpenMode &mode);
+                       std::cmap_tstring_t &content, const OpenMode &mode);
         ///< write text from std::map
 
     // binary
@@ -300,10 +300,10 @@ private:
     int_t          _nativeHandle(std::FILE *file) xWARN_UNUSED_RV;
         ///< gets the file descriptor associated with a stream
     static
-    std::FILE*     _stdHandle(int_t fileHandle, const ExOpenMode &mode) xWARN_UNUSED_RV;
+    std::FILE*     _stdHandle(int_t fileHandle, const OpenMode &mode) xWARN_UNUSED_RV;
         ///< get stream by handle
     static
-    std::tstring_t _openMode(const ExOpenMode &mode) xWARN_UNUSED_RV;
+    std::tstring_t _openMode(const OpenMode &mode) xWARN_UNUSED_RV;
         ///< get open mode as string, by default use "r"
 
     xNO_COPY_ASSIGN(File)

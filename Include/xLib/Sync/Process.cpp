@@ -80,7 +80,7 @@ Process::create(
     _create_impl(a_filePath, cmdLine);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Process::ExWaitResult
+xINLINE Process::WaitResult
 Process::wait(
     culong_t &a_timeoutMsec
 )

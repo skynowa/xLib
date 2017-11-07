@@ -31,7 +31,7 @@ public:
         ///< execute file
 
 #if xENV_WIN
-    enum ExOperation
+    enum Operation
         /// operations
     {
         opEdit,
@@ -126,7 +126,7 @@ public:
     std::tstring_t findExecutable(std::ctstring_t &fileName, std::ctstring_t &findDirPath) const
                        xWARN_UNUSED_RV;
         ///< find executable file path
-    void_t         execute(const HWND &owner, const ExOperation &operation,
+    void_t         execute(const HWND &owner, const Operation &operation,
                        std::ctstring_t &filePath, std::ctstring_t &params, std::ctstring_t &dirPath,
                        const EShowFlag &showCmd) const;
         ///< execute

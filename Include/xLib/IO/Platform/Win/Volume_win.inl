@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, io)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE Volume::ExType
+xINLINE Volume::Type
 Volume::type() const
 {
     std::ctstring_t rootPath = Path( path() ).slashAppend();
@@ -20,7 +20,7 @@ Volume::type() const
     UINT uiRv = ::GetDriveType( rootPath.c_str() );
     xTEST_NA(uiRv);
 
-    return static_cast<ExType>(uiRv);
+    return static_cast<Type>(uiRv);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t

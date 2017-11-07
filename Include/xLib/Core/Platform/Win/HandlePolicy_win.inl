@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN2(xl, core)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandlePolicyType valueT>
+template<typename T, HandlePolicyType valueT>
 T
 HandlePolicy<T, valueT>::_dup_impl(const T &a_handle) const
 {
@@ -34,7 +34,7 @@ HandlePolicy<T, valueT>::_dup_impl(const T &a_handle) const
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandlePolicyType valueT>
+template<typename T, HandlePolicyType valueT>
 bool_t
 HandlePolicy<T, valueT>::_isValid_impl(const T &a_handle) const
 {
@@ -60,7 +60,7 @@ HandlePolicy<T, valueT>::_isValid_impl(const T &a_handle) const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandlePolicyType valueT>
+template<typename T, HandlePolicyType valueT>
 void_t
 HandlePolicy<T, valueT>::_close_impl(T *a_handle)
 {

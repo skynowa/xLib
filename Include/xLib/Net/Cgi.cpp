@@ -557,7 +557,7 @@ CgiEnvironment::countryCode() const
     return _countryCode;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE CgiEnvironment::ExRequestType
+xINLINE CgiEnvironment::RequestType
 CgiEnvironment::requestType() const
 {
     return _requestType;

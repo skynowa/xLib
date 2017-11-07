@@ -37,7 +37,7 @@ Test_Backup::unit()
         #endif
         }
 
-        Backup::cExPeriod periods[] = {
+        Backup::cPeriod periods[] = {
             // Backup::bpUnknown,
             Backup::bpHourly,
             Backup::bpDaily,

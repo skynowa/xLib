@@ -16,7 +16,7 @@
 xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandlePolicyType valueT>
+template<typename T, HandlePolicyType valueT>
 ulong_t
 HandleT<T, valueT>::info() const
 {
@@ -31,7 +31,7 @@ HandleT<T, valueT>::info() const
     return flags;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, ExHandlePolicyType valueT>
+template<typename T, HandlePolicyType valueT>
 void_t
 HandleT<T, valueT>::setInfo(
     culong_t &a_mask,
