@@ -124,7 +124,7 @@ template<typename T>
 void_t
 HandlePolicy<T, hvStd>::_close_impl(T *a_handle)
 {
-    int_t iRv = ::fclose(*a_handle);
+    int_t iRv = std::fclose(*a_handle);
     xTEST_DIFF(iRv, - 1);
 
     *a_handle = null();
