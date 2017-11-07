@@ -165,7 +165,7 @@ Debugger::_msgboxPlain(
     xCHECK_DO(!isEnabled(), return);
 
     MsgBox msgBox;
-    MsgBox::ExModalResult mrRv = msgBox.show(a_report.toString(), xT("xLib"), MsgBox::tpAbortRetryIgnore);
+    MsgBox::ModalResult mrRv = msgBox.show(a_report.toString(), xT("xLib"), MsgBox::tpAbortRetryIgnore);
     switch (mrRv) {
     case MsgBox::mrAbort:
         (void_t)::exit(EXIT_FAILURE);
@@ -178,7 +178,7 @@ Debugger::_msgboxPlain(
         if ( isActive() ) {
             breakPoint();
         } else {
-            MsgBox::ExModalResult nrRv = MsgBox().show(xT("Debugger is not present.\n"
+            MsgBox::ModalResult nrRv = MsgBox().show(xT("Debugger is not present.\n"
                 "The application will be terminated."), xT("xLib"));
             xUNUSED(nrRv);
             (void_t)::exit(EXIT_FAILURE);
@@ -195,7 +195,7 @@ Debugger::_stdoutPlain(
     xCHECK_DO(!isEnabled(), return);
 
     Console console;
-    Console::ExModalResult mrRv = console.msgBox(a_report.toString(), xT("xLib"), 0);
+    Console::ModalResult mrRv = console.msgBox(a_report.toString(), xT("xLib"), 0);
     switch (mrRv) {
     case Console::mrAbort:
         (void_t)::exit(EXIT_FAILURE);

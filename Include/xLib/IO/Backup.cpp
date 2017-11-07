@@ -28,7 +28,7 @@ xNAMESPACE_BEGIN2(xl, io)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 Backup::Backup(
-    cExPeriod &a_period
+    cPeriod &a_period
 ) :
     _period(a_period)
 {

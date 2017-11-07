@@ -22,7 +22,7 @@ Test_Volume::unit()
 
         std::ctstring_t volumePath = xT("C:");
 
-        Volume::ExType dtRes = Volume(volumePath).type();
+        Volume::Type dtRes = Volume(volumePath).type();
         xTEST_EQ(Volume::dtFixed, dtRes);
     }
 #endif

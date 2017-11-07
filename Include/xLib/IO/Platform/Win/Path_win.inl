@@ -65,7 +65,7 @@ Path::drive() const
 /* static */
 xINLINE std::tstring_t
 Path::_fileExt_impl(
-    const ExFileExt &a_fileExt
+    const FileExt &a_fileExt
 )
 {
     std::tstring_t sRv;

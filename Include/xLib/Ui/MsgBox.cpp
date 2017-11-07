@@ -33,11 +33,11 @@ xNAMESPACE_BEGIN2(xl, ui)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE MsgBox::ExModalResult
+xINLINE MsgBox::ModalResult
 MsgBox::show(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
-    cExType         &a_type    /* = tpOk */
+    cType           &a_type    /* = tpOk */
 ) const
 {
     // TODO: MsgBox - fix unused warnings

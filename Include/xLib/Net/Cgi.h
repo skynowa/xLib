@@ -19,7 +19,7 @@ class CgiEnvironment
     /// CGI environment
 {
 public:
-    enum ExRequestType
+    enum RequestType
         /// request type
     {
         rtUknown,
@@ -93,7 +93,7 @@ public:
     std::ctstring_t & countryCode() const xWARN_UNUSED_RV;
         ///< get country code
 
-    ExRequestType     requestType() const xWARN_UNUSED_RV;
+    RequestType       requestType() const xWARN_UNUSED_RV;
         ///< get request type
     std::tstring_t    dump() const xWARN_UNUSED_RV;
         ///< get dump
@@ -130,7 +130,7 @@ private:
     std::tstring_t    _httpHost;             ///< HTTP host
     std::tstring_t    _httpAcceptLanguage;   ///< HTTP accept language
     std::tstring_t    _countryCode;          ///< country code
-    ExRequestType     _requestType;          ///< request method
+    RequestType       _requestType;          ///< request method
 
     bool_t            _construct();
         ///< initiate class data

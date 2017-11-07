@@ -60,7 +60,7 @@ FileType::filePath() const
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
 FileType::isExists(
-    cExType &a_value
+    cType &a_value
 ) const
 {
     xTEST_EQ(filePath().empty(), false);
@@ -92,30 +92,30 @@ FileType::set(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 FileType::add(
-    cExType &a_value
+    cType &a_value
 ) const
 {
     xTEST_EQ(filePath().empty(), false);
     xTEST_NA(a_value);
 
-    modify(static_cast<ExType>( 0 ), a_value);
+    modify(static_cast<Type>( 0 ), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 FileType::remove(
-    cExType &a_value
+    cType &a_value
 ) const
 {
     xTEST_EQ(filePath().empty(), false);
     xTEST_NA(a_value);
 
-    modify(a_value, static_cast<ExType>( 0 ));
+    modify(a_value, static_cast<Type>( 0 ));
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 FileType::modify(
-    cExType &a_valueRemove,
-    cExType &a_valueAdd
+    cType &a_valueRemove,
+    cType &a_valueAdd
 ) const
 {
     xTEST_EQ(filePath().empty(), false);

@@ -44,7 +44,7 @@ xNAMESPACE_BEGIN2(xl, crypt)
 /* static */
 xINLINE std::tstring_t
 Guid::create(
-    cExType &a_type
+    cType &a_type
 ) const
 {
     std::tstring_t sRv;

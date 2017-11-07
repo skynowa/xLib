@@ -15,7 +15,7 @@
 xNAMESPACE_BEGIN3(xl, internal, enums)
 
 //-------------------------------------------------------------------------------------------------
-static Types<ILog::ExLevel, ssize_t, 10> levels =
+static Types<ILog::Level, ssize_t, 10> levels =
 {{
 #if   xENV_WIN
     {ILog::lvUnknown,  - 1},

@@ -57,7 +57,7 @@ ErrorReport::ErrorReport(
     _initPlain();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ErrorReport::ExType
+xINLINE ErrorReport::Type
 ErrorReport::type() const
 {
     return _type;
@@ -79,7 +79,7 @@ ErrorReport::toString() const
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 ErrorReport::_construct(
-    cExType          &a_type,
+    cType            &a_type,
     const SourceInfo &a_sourceInfo,
     std::ctstring_t  &a_var1,
     std::ctstring_t  &a_var2,

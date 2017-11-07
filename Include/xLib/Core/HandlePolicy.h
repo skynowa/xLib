@@ -10,7 +10,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-enum ExHandlePolicyType
+enum HandlePolicyType
     /// error handle type
 {
     hvInvalid = - 1,    ///< like "invalid"
@@ -18,7 +18,7 @@ enum ExHandlePolicyType
     hvStd     = 1       ///< like xPTR_NULL
 };
 
-template<typename T, ExHandlePolicyType valueT>
+template<typename T, HandlePolicyType valueT>
 struct HandlePolicy;
     /// handle error
 //-------------------------------------------------------------------------------------------------

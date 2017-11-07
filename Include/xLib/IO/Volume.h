@@ -14,7 +14,7 @@ class Volume
     /// volume
 {
 public:
-    enum ExType
+    enum Type
         /// drive type
     {
     #if   xENV_WIN
@@ -45,7 +45,7 @@ public:
     std::ctstring_t & path() const xWARN_UNUSED_RV;
         ///< volume path
 #if xENV_WIN
-    ExType          type() const xWARN_UNUSED_RV;
+    Type            type() const xWARN_UNUSED_RV;
         ///< drive type
 #endif
     std::tstring_t  fileSystem() const xWARN_UNUSED_RV;

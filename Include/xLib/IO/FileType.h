@@ -14,7 +14,7 @@ class FileType
     /// file attribute
 {
 public:
-    enum ExType
+    enum Type
         /// attribute
     {
     #if   xENV_WIN
@@ -44,7 +44,7 @@ public:
         faSocket            = S_IFSOCK
     #endif
     };
-    xTYPEDEF_CONST(ExType);
+    xTYPEDEF_CONST(Type);
 
 #if   xENV_WIN
     typedef DWORD  types_t;
@@ -63,17 +63,17 @@ public:
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< file path
 
-    bool_t            isExists(cExType &value) const xWARN_UNUSED_RV;
+    bool_t            isExists(cType &value) const xWARN_UNUSED_RV;
         ///< is exists
     types_t           get() const xWARN_UNUSED_RV;
         ///< get
     void_t            set(ctypes_t &values) const;
         ///< set
-    void_t            add(cExType &value) const;
+    void_t            add(cType &value) const;
         ///< add
-    void_t            remove(cExType &value) const;
+    void_t            remove(cType &value) const;
         ///< remove
-    void_t            modify(cExType &valueRemove, cExType &valueAdd) const;
+    void_t            modify(cType &valueRemove, cType &valueAdd) const;
         ///< modify
     void_t            clear() const;
         ///< clear (set normal attributes, only for Windows)

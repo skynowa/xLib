@@ -14,7 +14,7 @@ class MsgBox
     /// message box
 {
 public:
-    enum ExType
+    enum Type
         ///< windows type
     {
         tpUnknown,
@@ -26,9 +26,9 @@ public:
         tpAbortRetryIgnore,
         tpCancelTryContinue
     };
-    xTYPEDEF_CONST(ExType);
+    xTYPEDEF_CONST(Type);
 
-    enum ExModalResult
+    enum ModalResult
         /// modal result
     {
         mrUnknown,
@@ -42,14 +42,14 @@ public:
         mrRetry,
         mrTryAgain
     };
-    xTYPEDEF_CONST(ExModalResult);
+    xTYPEDEF_CONST(ModalResult);
 
                   MsgBox() {}
         ///< constructor
     virtual      ~MsgBox() {}
         ///< destructor
 
-    ExModalResult show(std::ctstring_t &text, std::ctstring_t &title, cExType &type = tpOk) const
+    ModalResult show(std::ctstring_t &text, std::ctstring_t &title, cType &type = tpOk) const
         xWARN_UNUSED_RV;
         ///< message box with custom text, custom title, custom type
 
@@ -57,8 +57,8 @@ private:
     xNO_COPY_ASSIGN(MsgBox)
 
 xPLATFORM_IMPL:
-    ExModalResult _show_impl(std::ctstring_t &text, std::ctstring_t &title,
-        cExType &type = tpOk) const xWARN_UNUSED_RV;
+    ModalResult _show_impl(std::ctstring_t &text, std::ctstring_t &title,
+        cType &type = tpOk) const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xl, ui)
