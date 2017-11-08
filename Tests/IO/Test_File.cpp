@@ -63,7 +63,6 @@ Test_File::unit()
 
         for (size_t i = 0; i < 7; ++ i) {
             file.reopen(filePath, File::omOpenReadWrite);
-            xTRACE_POINT;
         }
 xTRACE_POINT;
     }
