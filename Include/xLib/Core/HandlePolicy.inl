@@ -124,7 +124,7 @@ void_t
 HandlePolicy<T, hvStd>::close(T *a_handle)
 {
     int_t iRv = std::fclose(*a_handle);
-    xTEST_DIFF(iRv, - 1);
+    xTEST_DIFF(iRv, xTEOF);
 
     *a_handle = null();
 }
