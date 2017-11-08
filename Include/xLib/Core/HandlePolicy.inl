@@ -97,7 +97,7 @@ template<typename T>
 T
 HandlePolicy<T, hvStd>::null()
 {
-    return xPTR_NULL;
+    return static_cast<T>(xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
