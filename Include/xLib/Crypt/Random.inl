@@ -12,23 +12,23 @@ xNAMESPACE_BEGIN2(xl, crypt)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename RandomValue, class SeedPolicy>
-Random<RandomValue, SeedPolicy>::Random() :
-    _randMax( (std::numeric_limits<RandomValue>::max)() )
+template<typename RandomValueT, class SeedPolicyT>
+Random<RandomValueT, SeedPolicyT>::Random() :
+    _randMax( (std::numeric_limits<RandomValueT>::max)() )
 {
 }
 //-------------------------------------------------------------------------------------------------
-template<typename RandomValue, class SeedPolicy>
+template<typename RandomValueT, class SeedPolicyT>
 bool_t
-Random<RandomValue, SeedPolicy>::nextBool()
+Random<RandomValueT, SeedPolicyT>::nextBool()
 {
     return (0 == (_policy.next() % 2));
 }
 //-------------------------------------------------------------------------------------------------
-template<typename RandomValue, class SeedPolicy>
+template<typename RandomValueT, class SeedPolicyT>
 template<typename T>
 T
-Random<RandomValue, SeedPolicy>::nextChar()
+Random<RandomValueT, SeedPolicyT>::nextChar()
 {
     clong_t min = (std::numeric_limits<T>::min)();
     clong_t max = (std::numeric_limits<T>::max)();
@@ -36,10 +36,10 @@ Random<RandomValue, SeedPolicy>::nextChar()
     return static_cast<T>( nextInt(min, max) );
 }
 //-------------------------------------------------------------------------------------------------
-template<typename RandomValue, class SeedPolicy>
+template<typename RandomValueT, class SeedPolicyT>
 template<typename T>
 T
-Random<RandomValue, SeedPolicy>::nextInt(
+Random<RandomValueT, SeedPolicyT>::nextInt(
     const T &min,
     const T &max
 )
@@ -49,10 +49,10 @@ Random<RandomValue, SeedPolicy>::nextInt(
     return static_cast<T>(_policy.next() % width) + min;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename RandomValue, class SeedPolicy>
+template<typename RandomValueT, class SeedPolicyT>
 template<typename T>
 T
-Random<RandomValue, SeedPolicy>::nextFloat(
+Random<RandomValueT, SeedPolicyT>::nextFloat(
     const T &min,
     const T &max
 )
