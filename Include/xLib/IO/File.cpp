@@ -533,8 +533,7 @@ File::flush() const
 xINLINE void_t
 File::close()
 {
-    xTRACE_FUNC;
-    std::cout << xTRACE_VAR(_handle.get()) << std::endl;
+    std::cout << "\tFile::close(): " << xTRACE_VAR(_handle.get()) << std::endl;
 
     xCHECK_DO(!isValid(), return);
 

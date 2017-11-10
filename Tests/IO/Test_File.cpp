@@ -35,11 +35,15 @@ Test_File::unit()
         {
             File file;
             file.create(filePath, File::omCreateReadWrite);
+
+            std::cout << "\tTest-1 - end" << std::endl;
         }
 
         {
             File file;
             file.create(filePath, File::omCreateReadWrite);
+
+            std::cout << "\tTest-2 - end" << std::endl;
         }
 
         return false;

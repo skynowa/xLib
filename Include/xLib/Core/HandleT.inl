@@ -53,8 +53,7 @@ HandleT<T, valueT>::~HandleT()
 {
     close();
 
-    xTRACE_FUNC;
-    std::cout << xTRACE_VAR(_handle) << std::endl;
+    std::cout << "\tHandleT<>::~HandleT(): " << xTRACE_VAR(_handle) << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 
