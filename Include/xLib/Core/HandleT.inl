@@ -11,6 +11,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
+#include <xLib/Log/Trace.h>
 
 
 xNAMESPACE_BEGIN2(xl, core)
@@ -51,6 +52,9 @@ template<typename T, HandlePolicyType valueT>
 HandleT<T, valueT>::~HandleT()
 {
     close();
+
+    xTRACE_FUNC;
+    std::cout << xTRACE_VAR(_handle) << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 
