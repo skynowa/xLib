@@ -30,6 +30,22 @@ Test_File::unit()
 {
     std::ctstring_t filePath = data.tempDirPath + Const::slash() + xT("Test.txt");
 
+    {
+    #if 1
+        {
+            File file;
+            file.create(filePath, File::omCreateReadWrite);
+        }
+
+        {
+            File file;
+            file.create(filePath, File::omCreateReadWrite);
+        }
+
+        return;
+    #endif
+    }
+
 
     /*******************************************************************************
     *    prepare
@@ -64,9 +80,8 @@ Test_File::unit()
         for (size_t i = 0; i < 7; ++ i) {
             file.reopen(filePath, File::omOpenReadWrite);
         }
-xTRACE_POINT;
     }
-return true;
+
     xTEST_CASE("attach")
     {
         File file;

@@ -534,7 +534,7 @@ xINLINE void_t
 File::close()
 {
     xTRACE_FUNC;
-    std::cout << xTRACE_VAR(_handle) << std::endl;
+    std::cout << xTRACE_VAR(_handle.get()) << std::endl;
 
     xCHECK_DO(!isValid(), return);
 
