@@ -33,17 +33,17 @@ Test_File::unit()
     {
     #if 1
         {
+            std::cout << "\nTest-1:" << std::endl;
+
             File file;
             file.create(filePath, File::omCreateReadWrite);
-
-            std::cout << "\tTest-1 - end" << std::endl;
         }
 
         {
+            std::cout << "\nTest-2:" << std::endl;
+
             File file;
             file.create(filePath, File::omCreateReadWrite);
-
-            std::cout << "\tTest-2 - end" << std::endl;
         }
 
         return false;
