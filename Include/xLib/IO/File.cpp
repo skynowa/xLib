@@ -537,7 +537,7 @@ File::close()
 
     xCHECK_DO(!isValid(), return);
 
-    errorClear();
+    /// errorClear();
 
     twint_t iRv = std::fclose( get() ); _handle = xPTR_NULL;
     xTEST_DIFF(iRv, xTEOF);
