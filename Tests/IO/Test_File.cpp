@@ -42,7 +42,7 @@ Test_File::unit()
             file.create(filePath, File::omCreateReadWrite);
         }
 
-        return;
+        return false;
     #endif
     }
 
