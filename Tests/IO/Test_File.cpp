@@ -29,6 +29,7 @@ bool_t
 Test_File::unit()
 {
     std::ctstring_t filePath = data.tempDirPath + Const::slash() + xT("Test.txt");
+    std::cout << xTRACE_VAR(filePath) << std::endl;
 
     {
     #if 1
