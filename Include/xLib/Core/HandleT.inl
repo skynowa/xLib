@@ -26,6 +26,7 @@ template<typename T, HandlePolicyType valueT>
 HandleT<T, valueT>::HandleT() :
     _handle( handle_policy_t::null() )
 {
+    xTRACE_FUNC;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
@@ -34,6 +35,8 @@ HandleT<T, valueT>::HandleT(
 ) :
     _handle(a_handle)
 {
+    xTRACE_FUNC;
+
     xTEST_NA(a_handle);
 }
 //-------------------------------------------------------------------------------------------------
@@ -46,6 +49,8 @@ HandleT<T, valueT>::HandleT(
     xTEST_NA(a_handle);
 
     _handle = a_handle.dup();
+
+    xTRACE_FUNC_VAR(_handle);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
@@ -53,7 +58,7 @@ HandleT<T, valueT>::~HandleT()
 {
     close();
 
-    std::cout << "\tHandleT<>::~HandleT(): " << xTRACE_VAR(_handle) << std::endl;
+    xTRACE_FUNC_VAR(_handle);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -70,6 +75,8 @@ HandleT<T, valueT>::operator = (
     const T &a_handle
 )
 {
+    xTRACE_FUNC;
+
     xTEST_NA(a_handle);
 
     // Try m_Handle.Attach(other.Detach(), if you got an assertion here.
