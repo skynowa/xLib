@@ -176,7 +176,7 @@ HandleT<T, valueT>::close()
         return;
     }
 
-    handle_policy_t::close(&_handle);
+    handle_policy_t::close(_handle);
 }
 //-------------------------------------------------------------------------------------------------
 
