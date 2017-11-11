@@ -47,13 +47,6 @@ Test_File::unit()
             file.create(filePath, File::omCreateReadWrite);
         }
 
-        {
-            std::cout << "\nTest-3:" << std::endl;
-
-            File file;
-            file.create(filePath, File::omCreateReadWrite);
-        }
-
         return false;
     #endif
     }

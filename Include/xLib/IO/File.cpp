@@ -47,18 +47,24 @@ xINLINE
 File::File(
     cbool_t &a_isUseBuffering
 ) :
-    _handle        (xPTR_NULL),
+    _handle        (),
     _filePath      (),
     _isUseBuffering(a_isUseBuffering)
 {
     xTEST_NA(a_isUseBuffering);
+
+    std::cout << "\n\n" << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 xINLINE
 File::~File()
 {
+    std::cout << "\n\n" << std::endl;
+
     close();
+
+    xTRACE_FUNC;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -75,6 +81,8 @@ File::create(
     const OpenMode  &a_mode
 )
 {
+    xTRACE_FUNC;
+
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_NA(a_mode);
 
@@ -533,7 +541,7 @@ File::flush() const
 xINLINE void_t
 File::close()
 {
-    std::cout << "\tFile::close(): " << xTRACE_VAR(_handle.get()) << std::endl;
+    xTRACE_FUNC_VAR(_handle.get());
 
     xCHECK_DO(!isValid(), return);
 
