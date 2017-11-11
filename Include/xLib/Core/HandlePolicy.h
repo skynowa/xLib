@@ -29,12 +29,12 @@ struct HandlePolicy<T, hvInvalid>
     static T      null() xWARN_UNUSED_RV;
     static T      dup(const T &a_handle) xWARN_UNUSED_RV;
     static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV;
-    static void_t close(T *a_handle);
+    static void_t close(T &a_handle);
 
 xPLATFORM_IMPL:
     static T      _dup_impl(const T &handle);
     static bool_t _isValid_impl(const T &handle);
-    static void_t _close_impl(T *handle);
+    static void_t _close_impl(T &handle);
 };
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -44,12 +44,12 @@ struct HandlePolicy<T, hvNull>
     static T      null() xWARN_UNUSED_RV;
     static T      dup(const T &a_handle) xWARN_UNUSED_RV;
     static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV;
-    static void_t close(T *a_handle);
+    static void_t close(T &a_handle);
 
 xPLATFORM_IMPL:
     static T      _dup_impl(const T &handle);
     static bool_t _isValid_impl(const T &handle);
-    static void_t _close_impl(T *handle);
+    static void_t _close_impl(T &handle);
 };
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -59,7 +59,7 @@ struct HandlePolicy<T, hvStd>
     static T      null() xWARN_UNUSED_RV;
     static T      dup(const T &a_handle) xWARN_UNUSED_RV;
     static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV;
-    static void_t close(T *a_handle);
+    static void_t close(T &a_handle);
 };
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, core)

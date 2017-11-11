@@ -44,7 +44,7 @@ HandlePolicy<T, hvInvalid>::isValid(const T &a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-HandlePolicy<T, hvInvalid>::close(T *a_handle)
+HandlePolicy<T, hvInvalid>::close(T &a_handle)
 {
     _close_impl(a_handle);
 }
@@ -80,7 +80,7 @@ HandlePolicy<T, hvNull>::isValid(const T &a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-HandlePolicy<T, hvNull>::close(T *a_handle)
+HandlePolicy<T, hvNull>::close(T &a_handle)
 {
     _close_impl(a_handle);
 }
@@ -121,12 +121,12 @@ HandlePolicy<T, hvStd>::isValid(const T &a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-HandlePolicy<T, hvStd>::close(T *a_handle)
+HandlePolicy<T, hvStd>::close(T &a_handle)
 {
-    int_t iRv = std::fclose(*a_handle);
+    int_t iRv = std::fclose(a_handle);
     xTEST_DIFF(iRv, xTEOF);
 
-    *a_handle = null();
+    a_handle = null();
 }
 //-------------------------------------------------------------------------------------------------
 
