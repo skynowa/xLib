@@ -27,16 +27,6 @@ xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-/**
- * Types:
- *
- * Native
- * NativeModule
- * StdFile
- *
- * Custom type
- */
-
 template<typename T, HandlePolicyType valueT>
 class HandleT :
     public IHandle<T>
@@ -86,6 +76,14 @@ private:
     T         _handle;    ///< handle
 };
 
+/**
+ * Types:
+ *
+ * Native
+ * NativeModule
+ * StdFile
+ * Custom type
+ */
 typedef HandleT<native_handle_t, hvInvalid> HandleInvalid;
 typedef HandleT<native_handle_t, hvNull>    HandleNull;
 typedef HandleT<FILE *,          hvStd>     HandleStd;
