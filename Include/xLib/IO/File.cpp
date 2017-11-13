@@ -24,14 +24,6 @@
     #include "Platform/Win/File_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/File_unix.inl"
-
-    #if   xENV_LINUX
-
-    #elif xENV_BSD
-
-    #elif xENV_APPLE
-
-    #endif
 #endif
 
 
