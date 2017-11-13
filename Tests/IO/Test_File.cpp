@@ -29,19 +29,6 @@ bool_t
 Test_File::unit()
 {
     std::ctstring_t filePath = data.tempDirPath + Const::slash() + xT("Test.txt");
-    std::cout << xTRACE_VAR(filePath) << std::endl;
-
-    {
-    #if 1
-        File file;
-        file.create(filePath, File::omCreateReadWrite);
-        file.close();
-        file.create(filePath, File::omCreateReadWrite);
-        file.close();
-
-        return false;
-    #endif
-    }
 
     /*******************************************************************************
     *    prepare
@@ -53,11 +40,52 @@ Test_File::unit()
         File::remove(filePath);
     }
 
-
     /*******************************************************************************
     *    open, get
     *
     *******************************************************************************/
+
+    xTEST_CASE("operator =")
+    {
+        for (size_t i = 0; i < 10; ++ i) {
+            HandleStd _handle;
+            xTEST_EQ(_handle.isValid(), false);
+
+            {
+                std::FILE *file = xTFOPEN(filePath.c_str(), "w+");
+                xTEST_PTR(file);
+
+                _handle = file;
+                xTEST_EQ(file, _handle.get());
+                xTEST_EQ(_handle.isValid(), true);
+
+                twint_t iRv = std::fclose(_handle.get()); _handle = xPTR_NULL;
+                xTEST_DIFF(iRv, xTEOF);
+                xTEST_EQ(_handle.isValid(), false);
+            }
+
+            {
+                std::FILE *file = xTFOPEN(filePath.c_str(), "w+");
+                xTEST_PTR(file);
+
+                _handle = file;
+                xTEST_EQ(file, _handle.get());
+                xTEST_EQ(_handle.isValid(), true);
+
+                twint_t iRv = std::fclose(_handle.get()); _handle = xPTR_NULL;
+                xTEST_DIFF(iRv, xTEOF);
+                xTEST_EQ(_handle.isValid(), false);
+            }
+        }
+
+        for (size_t i = 0; i < 10; ++ i) {
+            File file;
+            file.create(filePath, File::omCreateReadWrite);
+            file.close();
+            file.create(filePath, File::omCreateReadWrite);
+            file.close();
+        }
+    }
 
     xTEST_CASE("create")
     {
