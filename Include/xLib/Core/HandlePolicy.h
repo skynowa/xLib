@@ -27,12 +27,12 @@ struct HandlePolicy<T, hvInvalid>
     /// handle error is hvInvalid
 {
     static T      null() xWARN_UNUSED_RV;
-    static T      dup(const T &a_handle) xWARN_UNUSED_RV;
+    static T      clone(const T &a_handle) xWARN_UNUSED_RV;
     static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV;
     static void_t close(T &a_handle);
 
 xPLATFORM_IMPL:
-    static T      _dup_impl(const T &handle);
+    static T      _clone_impl(const T &handle);
     static bool_t _isValid_impl(const T &handle);
     static void_t _close_impl(T &handle);
 };
@@ -42,12 +42,12 @@ struct HandlePolicy<T, hvNull>
     /// handle error is hvNull
 {
     static T      null() xWARN_UNUSED_RV;
-    static T      dup(const T &a_handle) xWARN_UNUSED_RV;
+    static T      clone(const T &a_handle) xWARN_UNUSED_RV;
     static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV;
     static void_t close(T &a_handle);
 
 xPLATFORM_IMPL:
-    static T      _dup_impl(const T &handle);
+    static T      _clone_impl(const T &handle);
     static bool_t _isValid_impl(const T &handle);
     static void_t _close_impl(T &handle);
 };
@@ -57,7 +57,7 @@ struct HandlePolicy<T, hvStd>
     /// handle error is hvStd
 {
     static T      null() xWARN_UNUSED_RV;
-    static T      dup(const T &a_handle) xWARN_UNUSED_RV;
+    static T      clone(const T &a_handle) xWARN_UNUSED_RV;
     static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV;
     static void_t close(T &a_handle);
 };

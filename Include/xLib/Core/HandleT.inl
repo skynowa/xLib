@@ -45,7 +45,7 @@ HandleT<T, valueT>::HandleT(
 {
     xTEST_NA(a_handle);
 
-    _handle = a_handle.dup();
+    _handle = a_handle.clone();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
@@ -94,7 +94,7 @@ HandleT<T, valueT>::operator = (
 
     close();
 
-    _handle = a_handle.dup();
+    _handle = a_handle.clone();
     xTEST_NA(_handle);
 
     return *this;
@@ -120,11 +120,11 @@ HandleT<T, valueT>::set(
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
 T
-HandleT<T, valueT>::dup() const
+HandleT<T, valueT>::clone() const
 {
     xCHECK_RET(!isValid(), handle_policy_t::null());
 
-    return handle_policy_t::dup(_handle);
+    return handle_policy_t::clone(_handle);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>

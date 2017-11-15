@@ -51,7 +51,7 @@ public:
         ///< get
     void_t    set(const T &handle);
         ///< set
-    T         dup() const xWARN_UNUSED_RV;
+    T         clone() const xWARN_UNUSED_RV;
         ///< duplicate handle
 
     bool_t    isValid() const xWARN_UNUSED_RV;

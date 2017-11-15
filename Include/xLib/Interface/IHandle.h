@@ -25,7 +25,7 @@ public:
         ///< get
     virtual void_t set(const T &handle) = 0;
         ///< set
-    virtual T      dup() const = 0;
+    virtual T      clone() const = 0;
         ///< duplicate handle
 
     virtual bool_t isValid() const = 0;

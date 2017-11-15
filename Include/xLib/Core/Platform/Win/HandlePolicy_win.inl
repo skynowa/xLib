@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
 T
-HandlePolicy<T, valueT>::_dup_impl(const T &a_handle) const
+HandlePolicy<T, valueT>::_clone_impl(const T &a_handle) const
 {
     T hRv = null();
 
