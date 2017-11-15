@@ -123,15 +123,15 @@ public:
         ///< open
     void_t         reopen(std::ctstring_t &filePath, const OpenMode &mode);
         ///< reopen with different file or mode
-    std::FILE*     get() const xWARN_UNUSED_RV;
+    HandleStd     &get() xWARN_UNUSED_RV;
         ///< get handle
     int_t          getNative() const xWARN_UNUSED_RV;
         ///< get native file descriptor associated with a stream
     std::tstring_t path() const xWARN_UNUSED_RV;
         ///< get file path
-    void_t         attach(std::FILE *file, std::ctstring_t &filePath);
+    void_t         attach(const HandleStd &handle, std::ctstring_t &filePath);
         ///< attach to stream
-    std::FILE*     detach() xWARN_UNUSED_RV;
+    HandleStd     &detach() xWARN_UNUSED_RV;
         ///< detach from stream
 
     // read, write

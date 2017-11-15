@@ -14,14 +14,14 @@ xNAMESPACE_BEGIN2(xl, io)
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 FileTemp::_create_impl(
-    FILE* &a_stdFile
+    HandleStd &a_stdFile
 )
 {
     int_t file = xTMKSTEMP(&_filePath.at(0));
     xTEST_DIFF(file, - 1);
 
     a_stdFile = xTFDOPEN(file, File::_openMode(File::omBinCreateReadWrite).c_str());
-    xTEST_PTR(a_stdFile);
+    xTEST_EQ(a_stdFile.isValid(), true);
 }
 //-------------------------------------------------------------------------------------------------
 

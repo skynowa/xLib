@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/HandleT.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, io)
 
@@ -32,7 +33,7 @@ private:
     xNO_COPY_ASSIGN(FileTemp)
 
 xPLATFORM_IMPL:
-    void_t          _create_impl(FILE* &stdFile);
+    void_t          _create_impl(HandleStd &stdFile);
 };
 
 xNAMESPACE_END2(xl, io)

@@ -24,14 +24,6 @@
     #include "Platform/Win/FileTemp_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/FileTemp_unix.inl"
-
-    #if   xENV_LINUX
-
-    #elif xENV_BSD
-
-    #elif xENV_APPLE
-
-    #endif
 #endif
 
 
@@ -83,9 +75,9 @@ FileTemp::create(
     Dir(a_dirPath).pathCreate();
     _filePath = Path(a_dirPath).slashAppend() + Path(a_filePath).fileName() + fileNameTemplate;
 
-    FILE *stdFile = xPTR_NULL;
+    HandleStd stdFile;
     _create_impl(stdFile);
-    xTEST_PTR(stdFile);
+    xTEST_EQ(stdFile.isValid(), true);
 
     // out
     a_file->attach(stdFile, _filePath);

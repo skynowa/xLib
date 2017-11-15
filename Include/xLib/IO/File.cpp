@@ -104,7 +104,7 @@ File::reopen(
 
     // create, reopen file
     {
-        std::FILE *file = xTFREOPEN(a_filePath.c_str(), _openMode(a_mode).c_str(), get());
+        std::FILE *file = xTFREOPEN(a_filePath.c_str(), _openMode(a_mode).c_str(), _handle.get());
         xTEST_PTR(file);
 
         _handle   = file;
@@ -119,12 +119,12 @@ File::reopen(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::FILE*
-File::get() const
+xINLINE HandleStd &
+File::get()
 {
     xTEST_EQ(isValid(), true);
 
-    return _handle.get();
+    return _handle;
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE int_t
@@ -132,7 +132,7 @@ File::getNative() const
 {
     xTEST_EQ(isValid(), true);
 
-    return _nativeHandle(_handle.get());
+    return _nativeHandle( _handle.get() );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
@@ -146,28 +146,28 @@ File::path() const
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 File::attach(
-    std::FILE       *a_file,
+    const HandleStd &a_handle,
     std::ctstring_t &a_filePath
 )
 {
-    xTEST_PTR(a_file);
+    xTEST_EQ(a_handle.isValid(), true);
     xTEST_NA(a_filePath);
 
     close();
 
-    _handle   = a_file;
+    _handle   = a_handle;
     _filePath = a_filePath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::FILE*
+xINLINE HandleStd &
 File::detach()
 {
-    std::FILE *file = get();
+    HandleStd &handle = _handle;
 
     _handle = xPTR_NULL;
     _filePath.clear();
 
-    return file;
+    return handle;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -187,7 +187,7 @@ File::read(
     xTEST_PTR(a_buff);
     xTEST_NA(a_count);
 
-    size_t uiRv = std::fread(a_buff, 1, a_count, get());
+    size_t uiRv = std::fread(a_buff, 1, a_count, _handle.get());
     xTEST_GR_EQ(a_count, uiRv);
 
     return uiRv;
@@ -202,7 +202,7 @@ File::write(
     xTEST_PTR(a_buff);
     xTEST_NA(a_count);
 
-    size_t uiRv = std::fwrite(a_buff, 1, a_count, get());
+    size_t uiRv = std::fwrite(a_buff, 1, a_count, _handle.get());
     xTEST_EQ(uiRv, a_count);
 
     return uiRv;
@@ -223,7 +223,7 @@ File::read(
     xCHECK_DO(fileSize == 0LL, return);
 
     size_t uiRv = std::fread(&a_buff->at(0), 1, a_buff->size() *
-        sizeof(std::ustring_t::value_type), get());
+        sizeof(std::ustring_t::value_type), _handle.get());
     xTEST_EQ(uiRv, a_buff->size());
 }
 //-------------------------------------------------------------------------------------------------
@@ -235,7 +235,7 @@ File::write(
     xTEST_NA(a_buff);
 
     size_t uiRv = std::fwrite(&a_buff.at(0), 1, a_buff.size() *
-        sizeof(std::ustring_t::value_type), get());
+        sizeof(std::ustring_t::value_type), _handle.get());
     xTEST_EQ(uiRv, a_buff.size());
 }
 //-------------------------------------------------------------------------------------------------
@@ -254,7 +254,7 @@ File::read(
     xCHECK_DO(fileSize == 0LL, return);
 
     size_t uiRv = std::fread(&a_buff->at(0), 1, a_buff->size() *
-        sizeof(std::tstring_t::value_type), get());
+        sizeof(std::tstring_t::value_type), _handle.get());
     xTEST_EQ(uiRv, a_buff->size());
 }
 //-------------------------------------------------------------------------------------------------
@@ -268,7 +268,7 @@ File::write(
     va_list args;
     xVA_START(args, a_format);
 
-    int_t iRv = xTVFPRINTF(get(), a_format, args);
+    int_t iRv = xTVFPRINTF(_handle.get(), a_format, args);
     xTEST_LESS(- 1, iRv);
 
     xVA_END(args);
@@ -285,7 +285,7 @@ File::writeV(
     xTEST_PTR(a_format);
     xTEST_NA(a_args);
 
-    int_t iRv = xTVFPRINTF(get(), a_format, a_args);
+    int_t iRv = xTVFPRINTF(_handle.get(), a_format, a_args);
     xTEST_LESS(- 1, iRv);
 
     return iRv;
@@ -303,7 +303,7 @@ File::readLine(
     std::tstring_t str;
     str.resize(a_maxCount + 1); // + 1 for 0
 
-    tchar_t *pszRv = xTFGETS(&str.at(0), static_cast<int_t>( str.size() ), get());
+    tchar_t *pszRv = xTFGETS(&str.at(0), static_cast<int_t>( str.size() ), _handle.get());
     xTEST_PTR(pszRv);
 
     // trim xPTR_NULL's from string, remove EOL
@@ -319,14 +319,14 @@ File::writeLine(
 {
     xTEST_NA(a_str);
 
-    int_t iRv = xTFPUTS((a_str + Const::eol()).c_str(), get());
+    int_t iRv = xTFPUTS((a_str + Const::eol()).c_str(), _handle.get());
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE tchar_t
 File::readChar() const
 {
-    twint_t iRv = xTFGETC(get());
+    twint_t iRv = xTFGETC(_handle.get());
     xTEST_DIFF(iRv, xTEOF);
 
     return static_cast<tchar_t>( iRv );
@@ -339,7 +339,7 @@ File::writeChar(
 {
     xTEST_NA(a_ch);
 
-    twint_t iRv = xTFPUTC(a_ch, get());
+    twint_t iRv = xTFPUTC(a_ch, _handle.get());
     xTEST_DIFF(iRv, xTEOF);
     xTEST_EQ(static_cast<tchar_t>( iRv ), a_ch);
 }
@@ -351,7 +351,7 @@ File::ungetChar(
 {
     xTEST_NA(a_ch);
 
-    twint_t iRv = xTUNGETC(a_ch, get());
+    twint_t iRv = xTUNGETC(a_ch, _handle.get());
     xTEST_DIFF(iRv, xTEOF);
     xTEST_EQ(static_cast<tchar_t>( iRv ), a_ch);
 }
@@ -385,7 +385,7 @@ File::locking(
     const off_t bytes = static_cast<off_t>( a_bytes );
 #endif
 
-    int_t iRv = xLOCKING(_nativeHandle(get()), a_mode, bytes);
+    int_t iRv = xLOCKING(_nativeHandle(_handle.get()), a_mode, bytes);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -398,13 +398,13 @@ File::setPosition(
     xTEST_NA(a_offset);
     xTEST_NA(a_pos);
 
-    int_t iRv = std::fseek(get(), a_offset, a_pos);
+    int_t iRv = std::fseek(_handle.get(), a_offset, a_pos);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE long_t
 File::position() const {
-    long_t liRv = std::ftell(get());
+    long_t liRv = std::ftell(_handle.get());
     xTEST_DIFF(liRv, - 1L);
 
     return liRv;
@@ -421,7 +421,7 @@ File::setVBuff(
     xTEST_NA(a_mode);
     xTEST_NA(a_size);
 
-    int_t iRv = std::setvbuf(get(), a_buff, a_mode, a_size);
+    int_t iRv = std::setvbuf(_handle.get(), a_buff, a_mode, a_size);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -450,7 +450,7 @@ File::resize(
     const off_t _size = static_cast<off_t>( a_size );
 #endif
 
-    int_t iRv = xCHSIZE(_nativeHandle( get() ), _size);
+    int_t iRv = xCHSIZE(_nativeHandle( _handle.get() ), _size);
     xTEST_EQ(iRv, 0);
     xTEST_EQ(a_size, size());
 }
@@ -486,7 +486,7 @@ File::isEmpty() const
 xINLINE bool_t
 File::isEof() const
 {
-    bool_t bRv = static_cast<bool_t>( std::feof(get()) );
+    bool_t bRv = static_cast<bool_t>( std::feof(_handle.get()) );
     xTEST_NA(bRv);
 
     return bRv;
@@ -495,7 +495,7 @@ File::isEof() const
 xINLINE bool_t
 File::isError() const
 {
-    bool_t bRv = static_cast<bool_t>( std::ferror(get()) );
+    bool_t bRv = static_cast<bool_t>( std::ferror(_handle.get()) );
     xTEST_NA(bRv);
 
     return bRv;
@@ -504,7 +504,7 @@ File::isError() const
 xINLINE void_t
 File::errorClear() const
 {
-    (void_t)std::clearerr( get() );
+    (void_t)std::clearerr( _handle.get() );
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -518,7 +518,7 @@ File::errorClear() const
 xINLINE void_t
 File::flush() const
 {
-    twint_t iRv = std::fflush( get() );
+    twint_t iRv = std::fflush( _handle.get() );
     xTEST_DIFF(iRv, xTEOF);
 }
 //-------------------------------------------------------------------------------------------------
@@ -720,7 +720,7 @@ File::wipe(
                     file.setPosition(0L, ppBegin);
 
                     for (longlong_t i = 0LL; i < size; ++ i) {
-                        size_t uiRv = std::fwrite(&rand, 1, sizeof(rand), file.get());
+                        size_t uiRv = std::fwrite(&rand, 1, sizeof(rand), file.get().get());
                         xTEST_EQ(uiRv, sizeof(rand));
                     }
                 }
@@ -730,7 +730,7 @@ File::wipe(
                     file.setPosition(0L, ppBegin);
 
                     for (longlong_t i = 0LL; i < size; ++ i) {
-                        size_t uiRv = std::fwrite(&char1, 1, sizeof(char1), file.get());
+                        size_t uiRv = std::fwrite(&char1, 1, sizeof(char1), file.get().get());
                         xTEST_EQ(uiRv, sizeof(char1));
                     }
                 }
@@ -740,7 +740,7 @@ File::wipe(
                     file.setPosition(0L, ppBegin);
 
                     for (longlong_t i = 0LL; i < size; ++ i) {
-                        size_t uiRv = std::fwrite(&char2, 1, sizeof(char2), file.get());
+                        size_t uiRv = std::fwrite(&char2, 1, sizeof(char2), file.get().get());
                         xTEST_EQ(uiRv, sizeof(char2));
                     }
                 }
