@@ -34,7 +34,7 @@ HandleT<T, valueT>::HandleT(
 ) :
     _handle(a_handle)
 {
-    xTEST_NA(a_handle);
+    ///+++ xTEST_NA(a_handle);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>

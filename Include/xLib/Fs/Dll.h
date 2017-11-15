@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/HandleT.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, fs)
 
@@ -19,37 +20,36 @@ public:
 #elif xENV_UNIX
     typedef void_t * proc_address_t;
 #endif
-                    Dll();
+                   Dll();
         ///< constructor
-    virtual        ~Dll();
+    virtual       ~Dll();
         ///< destructor
 
-    bool_t          isLoaded() const xWARN_UNUSED_RV;
+    HandleDll     &get() xWARN_UNUSED_RV;
+        ///< get handle
+    bool_t         isLoaded() const xWARN_UNUSED_RV;
         ///< is loaded
-    void_t          load(std::ctstring_t &dllPath);
+    void_t         load(std::ctstring_t &dllPath);
         ///< load
-    bool_t          isProcExists(std::ctstring_t &procName) const xWARN_UNUSED_RV;
+    bool_t         isProcExists(std::ctstring_t &procName) const xWARN_UNUSED_RV;
         ///< is function exists
-    proc_address_t  procAddress(std::ctstring_t &procName) const xWARN_UNUSED_RV;
+    proc_address_t procAddress(std::ctstring_t &procName) const xWARN_UNUSED_RV;
         ///< get address of an exported function or variable
+    void_t         close();
+        ///< close
 
 private:
-    dll_handle_t    _handle;   ///< dll module handle
-
-    void_t          _destruct();
-        ///< free
+    HandleDll      _handle;   ///< dll module handle
 
     xNO_COPY_ASSIGN(Dll)
 
 xPLATFORM_IMPL:
-    void_t          _load_impl(std::ctstring_t &dllPath);
+    void_t         _load_impl(std::ctstring_t &dllPath);
         ///< load
-    bool_t          _isProcExists_impl(std::ctstring_t &procName) const xWARN_UNUSED_RV;
+    bool_t         _isProcExists_impl(std::ctstring_t &procName) const xWARN_UNUSED_RV;
         ///< is function exists
-    proc_address_t  _procAddress_impl(std::ctstring_t &procName) const xWARN_UNUSED_RV;
+    proc_address_t _procAddress_impl(std::ctstring_t &procName) const xWARN_UNUSED_RV;
         ///< get address of an exported function or variable
-    void_t          _destruct_impl();
-        ///< free
 };
 
 xNAMESPACE_END2(xl, fs)
