@@ -15,8 +15,8 @@
 #include <xLib/System/Console.h>
 #include <xLib/Debug/BuildInfo.h>
 #include <xLib/Debug/Exception.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Sync/Thread.h>
 
 

@@ -17,7 +17,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>
-#include <xLib/IO/Path.h>
+#include <xLib/Fs/Path.h>
 #include <xLib/Ui/MsgBox.h>
 #include <xLib/System/Environment.h>
 
