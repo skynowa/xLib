@@ -34,13 +34,7 @@ public:
         ///< get address of an exported function or variable
 
 private:
-#if   xENV_WIN
-    typedef HMODULE  handle_t;
-#elif xENV_UNIX
-    typedef void_t * handle_t;
-#endif
-
-    handle_t        _handle;   ///< dll module handle
+    dll_handle_t    _handle;   ///< dll module handle
 
     void_t          _destruct();
         ///< free
