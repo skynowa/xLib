@@ -108,15 +108,20 @@ Test_File::unit()
 
     xTEST_CASE("attach")
     {
+        HandleStd handle(stdout);
+
+        std::ctstring_t filePath;
+
         File file;
-        file.attach(stdout, std::tstring_t());
+        file.attach(handle, filePath);
 
         m_bRv = file.isValid();
         xTEST_EQ(m_bRv, true);
 
-        FILE *stdFile = file.detach();
-        xTEST_PTR(stdFile);
-        xTEST_EQ(stdout, stdFile);
+        HandleStd stdFile;
+        stdFile = file.detach();
+        xTEST_EQ(stdFile.isValid(), true);
+        xTEST_EQ(stdout, stdFile.get());
     }
 
     xTEST_CASE("get")
@@ -125,7 +130,7 @@ Test_File::unit()
 
         file.create(filePath, File::omCreateReadWrite);
 
-        FILE *stdFile = file.get();
+        FILE *stdFile = file.get().get();
         xTEST_PTR(stdFile);
     }
 

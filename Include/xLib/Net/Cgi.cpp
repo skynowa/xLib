@@ -890,7 +890,9 @@ CgiFormData::_construct()
         File         file;
         std::tstring_t buff;
 
-        file.attach(stdin, xT(""));
+        HandleStd stdIn(stdin);
+
+        file.attach(stdIn, xT(""));
 
         buff.resize(postSize);
 
@@ -901,8 +903,9 @@ CgiFormData::_construct()
 
         _formData = buff;
 
-        FILE *f = file.detach();
-        xTEST_PTR(f);
+        HandleStd f;
+        f = file.detach();
+        xTEST_EQ(f.isValid(), true);
         break;
     }
     default:

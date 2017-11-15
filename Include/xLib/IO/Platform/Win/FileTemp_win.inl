@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN2(xl, io)
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 FileTemp::_create_impl(
-    FILE* &a_stdFile
+    HandleStd &a_stdFile
 )
 {
 #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
@@ -24,7 +24,7 @@ FileTemp::_create_impl(
     xTEST_PTR(file);
 
     a_stdFile = xTFOPEN(file, File::_openMode(File::omBinCreateReadWrite).c_str());
-    xTEST_PTR(a_stdFile);
+    xTEST_EQ(a_stdFile.isValid(), true);
 #else
     _filePath.resize(_filePath.size() + 1);
 
@@ -32,7 +32,7 @@ FileTemp::_create_impl(
     xTEST_EQ(0, error);
 
     a_stdFile = xTFOPEN(_filePath.c_str(), File::_openMode(File::omBinCreateReadWrite).c_str());
-    xTEST_PTR(a_stdFile);
+    xTEST_EQ(a_stdFile.isValid(), true);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
