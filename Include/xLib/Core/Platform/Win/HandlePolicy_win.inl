@@ -21,9 +21,9 @@ xNAMESPACE_BEGIN2(xl, core)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T, HandlePolicyType valueT>
+template<typename T>
 T
-HandlePolicy<T, valueT>::_clone_impl(const T &a_handle) const
+HandlePolicy<T, hvInvalid>::_clone_impl(const T &a_handle) const
 {
     T hRv = null();
 
@@ -34,9 +34,9 @@ HandlePolicy<T, valueT>::_clone_impl(const T &a_handle) const
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, HandlePolicyType valueT>
+template<typename T>
 bool_t
-HandlePolicy<T, valueT>::_isValid_impl(const T &a_handle) const
+HandlePolicy<T, hvInvalid>::_isValid_impl(const T &a_handle) const
 {
     bool_t bRv = false;
 
@@ -60,14 +60,55 @@ HandlePolicy<T, valueT>::_isValid_impl(const T &a_handle) const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, HandlePolicyType valueT>
+template<typename T>
 void_t
-HandlePolicy<T, valueT>::_close_impl(T *a_handle)
+HandlePolicy<T, hvInvalid>::_close_impl(T *a_handle)
 {
     BOOL blRes = ::CloseHandle(*a_handle);
     xTEST_DIFF(blRes, FALSE);
 
     *a_handle = null();
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/*******************************************************************************
+*    public - HandlePolicy<T, hvNull>
+*
+*******************************************************************************/
+
+// TODO: HandlePolicy
+
+
+/**************************************************************************************************
+*    public - HandleDll
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+T
+HandlePolicy<T, hvDll>::_clone_impl(const T &a_handle)
+{
+    // TODO: _clone_impl
+    return T();
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+bool_t
+HandlePolicy<T, hvDll>::_isValid_impl(const T &a_handle)
+{
+    return (a_handle != null());
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+void_t
+HandlePolicy<T, hvDll>::_close_impl(T &a_handle)
+{
+    BOOL blRv = ::FreeLibrary( a_handle.get() );
+    xTEST_DIFF(blRv, FALSE);
+
+    a_handle = null();
 }
 //-------------------------------------------------------------------------------------------------
 

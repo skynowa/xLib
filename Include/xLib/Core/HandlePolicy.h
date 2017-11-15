@@ -15,7 +15,8 @@ enum HandlePolicyType
 {
     hvInvalid = - 1,    ///< like "invalid"
     hvNull    = 0,      ///< like "null"
-    hvStd     = 1       ///< like xPTR_NULL
+    hvDll     = 1,      ///< DLL
+    hvStd     = 2       ///< like xPTR_NULL
 };
 
 template<typename T, HandlePolicyType valueT>
@@ -40,6 +41,21 @@ xPLATFORM_IMPL:
 template<typename T>
 struct HandlePolicy<T, hvNull>
     /// handle error is hvNull
+{
+    static T      null() xWARN_UNUSED_RV;
+    static T      clone(const T &a_handle) xWARN_UNUSED_RV;
+    static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV;
+    static void_t close(T &a_handle);
+
+xPLATFORM_IMPL:
+    static T      _clone_impl(const T &handle);
+    static bool_t _isValid_impl(const T &handle);
+    static void_t _close_impl(T &handle);
+};
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+struct HandlePolicy<T, hvDll>
+    /// handle error is hvDll
 {
     static T      null() xWARN_UNUSED_RV;
     static T      clone(const T &a_handle) xWARN_UNUSED_RV;
