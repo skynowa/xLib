@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, hvInvalid>::_dup_impl(const T &a_handle)
+HandlePolicy<T, hvInvalid>::_clone_impl(const T &a_handle)
 {
     return ::dup(a_handle);
 }
@@ -64,7 +64,7 @@ HandlePolicy<T, hvInvalid>::_close_impl(T &a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, hvNull>::_dup_impl(const T &a_handle)
+HandlePolicy<T, hvNull>::_clone_impl(const T &a_handle)
 {
     return ::dup(a_handle);
 }

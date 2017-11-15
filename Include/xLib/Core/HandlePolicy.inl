@@ -30,9 +30,9 @@ HandlePolicy<T, hvInvalid>::null()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, hvInvalid>::dup(const T &a_handle)
+HandlePolicy<T, hvInvalid>::clone(const T &a_handle)
 {
-    return _dup_impl(a_handle);
+    return _clone_impl(a_handle);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -66,9 +66,9 @@ HandlePolicy<T, hvNull>::null()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, hvNull>::dup(const T &a_handle)
+HandlePolicy<T, hvNull>::clone(const T &a_handle)
 {
-    return _dup_impl(a_handle);
+    return _clone_impl(a_handle);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -102,14 +102,14 @@ HandlePolicy<T, hvStd>::null()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, hvStd>::dup(const T &a_handle)
+HandlePolicy<T, hvStd>::clone(const T &a_handle)
 {
     int_t handle = /*::*/fileno(a_handle);
     xTEST_DIFF(handle, - 1);
 
-    native_handle_t nativeHandle = HandlePolicy<native_handle_t, hvInvalid>::dup(handle);
+    native_handle_t nativeHandle = HandlePolicy<native_handle_t, hvInvalid>::clone(handle);
 
-    return static_cast<T>( xTFDOPEN(nativeHandle, xT("r+")) );  // TODO: dup - open mode
+    return static_cast<T>( xTFDOPEN(nativeHandle, xT("r+")) );  // TODO: clone - open mode
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
