@@ -90,8 +90,7 @@ template<typename T>
 T
 HandlePolicy<T, hvDll>::_clone_impl(const T &a_handle)
 {
-    // TODO: _clone_impl
-    return T();
+    return a_handle;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
