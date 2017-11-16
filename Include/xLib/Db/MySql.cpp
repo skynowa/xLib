@@ -35,7 +35,6 @@ MySqlConnection::MySqlConnection() :
 xINLINE
 MySqlConnection::~MySqlConnection()
 {
-    close();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE HandleMySqlConn &
@@ -246,9 +245,6 @@ MySqlRecordset::MySqlRecordset(
 xINLINE
 MySqlRecordset::~MySqlRecordset()
 {
-    xTEST_NA(_result);
-
-    _result.close();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE HandleMySqlResult &
