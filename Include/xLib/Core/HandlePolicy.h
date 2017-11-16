@@ -23,60 +23,59 @@ template<typename T, HandlePolicyType valueT>
 struct HandlePolicy;
     /// handle error
 //-------------------------------------------------------------------------------------------------
-template<typename T>
-struct HandlePolicy<T, hvInvalid>
-    /// handle error is hvInvalid
-{
-    static T      null() xWARN_UNUSED_RV;
-    static T      clone(const T &a_handle) xWARN_UNUSED_RV;
-    static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV;
-    static void_t close(T &a_handle);
+#define xHANDLE_POLICY_FACTORY(type) \
+    template<typename T> \
+    struct HandlePolicy<T, type> \
+    { \
+        static T      null() xWARN_UNUSED_RV; \
+        static T      clone(const T &a_handle) xWARN_UNUSED_RV; \
+        static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV; \
+        static void_t close(T &a_handle); \
+    \
+    xPLATFORM_IMPL: \
+        static T      _clone_impl(const T &handle); \
+        static bool_t _isValid_impl(const T &handle); \
+        static void_t _close_impl(T &handle); \
+    }
 
-xPLATFORM_IMPL:
-    static T      _clone_impl(const T &handle);
-    static bool_t _isValid_impl(const T &handle);
-    static void_t _close_impl(T &handle);
-};
+#define xHANDLE_POLICY_FACTORY_IMPL(type, null_value) \
+    template<typename T> \
+    T \
+    HandlePolicy<T, type>::null() \
+    { \
+        return null_value; \
+    } \
+    \
+    template<typename T> \
+    T \
+    HandlePolicy<T, type>::clone(const T &a_handle) \
+    { \
+        return _clone_impl(a_handle); \
+    } \
+    \
+    template<typename T> \
+    bool_t \
+    HandlePolicy<T, type>::isValid(const T &a_handle) \
+    { \
+        return _isValid_impl(a_handle); \
+    } \
+    \
+    template<typename T> \
+    void_t \
+    HandlePolicy<T, type>::close(T &a_handle) \
+    { \
+        _close_impl(a_handle); \
+    }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
-struct HandlePolicy<T, hvNull>
-    /// handle error is hvNull
-{
-    static T      null() xWARN_UNUSED_RV;
-    static T      clone(const T &a_handle) xWARN_UNUSED_RV;
-    static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV;
-    static void_t close(T &a_handle);
+xHANDLE_POLICY_FACTORY(hvInvalid);
+xHANDLE_POLICY_FACTORY(hvNull);
+xHANDLE_POLICY_FACTORY(hvDll);
+xHANDLE_POLICY_FACTORY(hvStd);
 
-xPLATFORM_IMPL:
-    static T      _clone_impl(const T &handle);
-    static bool_t _isValid_impl(const T &handle);
-    static void_t _close_impl(T &handle);
-};
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-struct HandlePolicy<T, hvDll>
-    /// handle error is hvDll
-{
-    static T      null() xWARN_UNUSED_RV;
-    static T      clone(const T &a_handle) xWARN_UNUSED_RV;
-    static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV;
-    static void_t close(T &a_handle);
-
-xPLATFORM_IMPL:
-    static T      _clone_impl(const T &handle);
-    static bool_t _isValid_impl(const T &handle);
-    static void_t _close_impl(T &handle);
-};
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-struct HandlePolicy<T, hvStd>
-    /// handle error is hvStd
-{
-    static T      null() xWARN_UNUSED_RV;
-    static T      clone(const T &a_handle) xWARN_UNUSED_RV;
-    static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV;
-    static void_t close(T &a_handle);
-};
+xHANDLE_POLICY_FACTORY_IMPL(hvInvalid, xNATIVE_HANDLE_INVALID);
+xHANDLE_POLICY_FACTORY_IMPL(hvNull,    xNATIVE_HANDLE_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvDll,     xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvStd,     xPTR_NULL);
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
