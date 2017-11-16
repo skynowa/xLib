@@ -13,10 +13,13 @@ xNAMESPACE_BEGIN2(xl, core)
 enum HandlePolicyType
     /// error handle type
 {
-    hvInvalid = - 1,    ///< like "invalid"
-    hvNull    = 0,      ///< like "null"
-    hvDll     = 1,      ///< DLL
-    hvStd     = 2       ///< like xPTR_NULL
+    hvInvalid     = - 1,  ///< like "invalid"
+    hvNull        = 0,    ///< like "null"
+    hvDll         = 1,    ///< DLL
+    hvStd         = 2,    ///< like xPTR_NULL
+
+    hvMySqlConn   = 3,    ///< MySQL connection
+    hvMySqlResult = 4     ///< MySQL result
 };
 
 template<typename T, HandlePolicyType valueT>
@@ -71,11 +74,15 @@ xHANDLE_POLICY_FACTORY(hvInvalid);
 xHANDLE_POLICY_FACTORY(hvNull);
 xHANDLE_POLICY_FACTORY(hvDll);
 xHANDLE_POLICY_FACTORY(hvStd);
+xHANDLE_POLICY_FACTORY(hvMySqlConn);
+xHANDLE_POLICY_FACTORY(hvMySqlResult);
 
-xHANDLE_POLICY_FACTORY_IMPL(hvInvalid, xNATIVE_HANDLE_INVALID);
-xHANDLE_POLICY_FACTORY_IMPL(hvNull,    xNATIVE_HANDLE_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvDll,     xPTR_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvStd,     xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvInvalid,     xNATIVE_HANDLE_INVALID);
+xHANDLE_POLICY_FACTORY_IMPL(hvNull,        xNATIVE_HANDLE_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvDll,         xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvStd,         xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvMySqlConn,   xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvMySqlResult, xPTR_NULL);
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

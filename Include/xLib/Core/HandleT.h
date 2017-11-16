@@ -22,6 +22,7 @@ class Debugger;
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
+#include <xLib/Db/MySql.h>
 #include <xLib/Interface/IHandle.h>
 #include <xLib/Core/HandlePolicy.h>
 //-------------------------------------------------------------------------------------------------
@@ -76,10 +77,12 @@ private:
     T         _handle;    ///< handle
 };
 
-typedef HandleT<native_handle_t, hvInvalid> HandleInvalid;
-typedef HandleT<native_handle_t, hvNull>    HandleNull;
-typedef HandleT<dll_handle_t,    hvDll>     HandleDll;
-typedef HandleT<FILE *,          hvStd>     HandleStd;
+typedef HandleT<native_handle_t, hvInvalid>     HandleInvalid;
+typedef HandleT<native_handle_t, hvNull>        HandleNull;
+typedef HandleT<dll_handle_t,    hvDll>         HandleDll;
+typedef HandleT<FILE *,          hvStd>         HandleStd;
+typedef HandleT<MYSQL *,         hvMySqlConn>   HandleMySqlConn;
+typedef HandleT<MYSQL_RES *,     hvMySqlResult> HandleMySqlResult;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
