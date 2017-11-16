@@ -76,14 +76,6 @@ private:
     T         _handle;    ///< handle
 };
 
-/**
- * Types:
- *
- * Native
- * NativeModule
- * StdFile
- * Custom type
- */
 typedef HandleT<native_handle_t, hvInvalid> HandleInvalid;
 typedef HandleT<native_handle_t, hvNull>    HandleNull;
 typedef HandleT<dll_handle_t,    hvDll>     HandleDll;
