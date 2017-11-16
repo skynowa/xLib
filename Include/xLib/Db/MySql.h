@@ -80,7 +80,7 @@ public:
         ///< error message for the most recently invoked API function that failed
 
 private:
-    MYSQL         *_conn;
+    HandleMySqlConn _conn;
         ///< pointer to connection
 
     xNO_COPY_ASSIGN(MySqlConnection)
@@ -120,7 +120,7 @@ public:
 private:
     const MySqlConnection *_conn;
         ///< pointer to connection object
-    MYSQL_RES   *_result;
+    HandleMySqlResult _result;
         ///< for private use
 
     void_t       _fetchLengths(ulong_t **fieldLengths) const;

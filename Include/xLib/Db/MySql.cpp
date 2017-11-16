@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN2(xl, db)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 MySqlConnection::MySqlConnection() :
-    _conn(xPTR_NULL)
+    _conn()
 {
     xTEST_EQ(isValid(), false);
 
@@ -231,7 +231,7 @@ MySqlRecordset::MySqlRecordset(
     cbool_t               &a_isUseResult  ///< use result or store result
 ) :
     _conn  (&a_connection),
-    _result(xPTR_NULL)
+    _result()
 {
     xTEST_EQ(isValid(), false);
     xTEST_PTR(_conn->get());
