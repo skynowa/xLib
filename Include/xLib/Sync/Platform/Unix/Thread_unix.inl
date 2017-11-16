@@ -137,7 +137,7 @@ Thread::_isExited_impl()
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Thread::_setPriority_impl(
-    const ExPriority &a_priority
+    const Priority &a_priority
 ) const
 {
     if (!User().isAdmin()) {
@@ -152,7 +152,7 @@ Thread::_setPriority_impl(
     xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Thread::ExPriority
+xINLINE Thread::Priority
 Thread::_priority_impl() const
 {
     sched_param param  = {0};
@@ -161,7 +161,7 @@ Thread::_priority_impl() const
     int_t iRv = ::pthread_getschedparam(id(), &policy, &param);
     xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
 
-    Thread::ExPriority tpRv = static_cast<ExPriority>( param.sched_priority );
+    Thread::Priority tpRv = static_cast<Priority>( param.sched_priority );
 
     return tpRv;
 }

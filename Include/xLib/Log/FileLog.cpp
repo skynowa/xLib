@@ -16,8 +16,8 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Sync/AutoIpcMutex.h>
 
 
@@ -97,7 +97,7 @@ FileLog::write(
 /* virtual */
 xINLINE void_t
 FileLog::write(
-    cExLevel      &a_level,
+    cLevel        &a_level,
     cptr_ctchar_t  a_format, ...
 ) const
 {

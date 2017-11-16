@@ -11,12 +11,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
-
-#if   xENV_WIN
-    #include "Platform/Win/HandleT_win.inl"
-#elif xENV_UNIX
-    #include "Platform/Unix/HandleT_unix.inl"
-#endif
+#include <xLib/Log/Trace.h>
 
 
 xNAMESPACE_BEGIN2(xl, core)
@@ -27,34 +22,34 @@ xNAMESPACE_BEGIN2(xl, core)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
-HandleT<tagT>::HandleT() :
-    _handle( error_value_t::get() )
+template<typename T, HandlePolicyType valueT>
+HandleT<T, valueT>::HandleT() :
+    _handle( handle_policy_t::null() )
 {
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
-HandleT<tagT>::HandleT(
-    cnative_handle_t &a_handle
+template<typename T, HandlePolicyType valueT>
+HandleT<T, valueT>::HandleT(
+    const T &a_handle
 ) :
     _handle(a_handle)
 {
-    xTEST_NA(a_handle);
+    ///+++ xTEST_NA(a_handle);
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
-HandleT<tagT>::HandleT(
+template<typename T, HandlePolicyType valueT>
+HandleT<T, valueT>::HandleT(
     const HandleT &a_handle
 ) :
-    _handle( error_value_t::get() )
+    _handle( handle_policy_t::null() )
 {
     xTEST_NA(a_handle);
 
-    _handle = a_handle.dup();
+    _handle = a_handle.clone();
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
-HandleT<tagT>::~HandleT()
+template<typename T, HandlePolicyType valueT>
+HandleT<T, valueT>::~HandleT()
 {
     close();
 }
@@ -67,56 +62,55 @@ HandleT<tagT>::~HandleT()
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
-HandleT<tagT> &
-HandleT<tagT>::operator = (
-    cnative_handle_t &a_handle
+template<typename T, HandlePolicyType valueT>
+HandleT<T, valueT> &
+HandleT<T, valueT>::operator = (
+    const T &a_handle
 )
 {
-    xTEST_EQ(isValid(), false);
     xTEST_NA(a_handle);
 
     // Try m_Handle.Attach(other.Detach(), if you got an assertion here.
 
     xCHECK_RET(_handle == a_handle, *this);
 
-    close();
+    /// TODO: disabled (for remove) - file wasn't close
+    ///-- close();
 
     _handle = a_handle;
 
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
-HandleT<tagT> &
-HandleT<tagT>::operator = (
+template<typename T, HandlePolicyType valueT>
+HandleT<T, valueT> &
+HandleT<T, valueT>::operator = (
     const HandleT &a_handle
 )
 {
-    xTEST_EQ(isValid(), false);
     xTEST_NA(a_handle);
 
     xCHECK_RET(this == &a_handle, *this);
 
     close();
 
-    _handle = a_handle.dup();
+    _handle = a_handle.clone();
     xTEST_NA(_handle);
 
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
-native_handle_t
-HandleT<tagT>::get() const
+template<typename T, HandlePolicyType valueT>
+T
+HandleT<T, valueT>::get() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
+template<typename T, HandlePolicyType valueT>
 void_t
-HandleT<tagT>::set(
-    cnative_handle_t &a_handle
+HandleT<T, valueT>::set(
+    const T &a_handle
 )
 {
     xTEST_NA(a_handle);
@@ -124,26 +118,26 @@ HandleT<tagT>::set(
     _handle = a_handle;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
-native_handle_t
-HandleT<tagT>::dup() const
+template<typename T, HandlePolicyType valueT>
+T
+HandleT<T, valueT>::clone() const
 {
-    xCHECK_RET(!isValid(), error_value_t::get());
+    xCHECK_RET(!isValid(), handle_policy_t::null());
 
-    return _dup_impl();
+    return handle_policy_t::clone(_handle);
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
+template<typename T, HandlePolicyType valueT>
 bool_t
-HandleT<tagT>::isValid() const
+HandleT<T, valueT>::isValid() const
 {
-    return _isValid_impl();
+    return handle_policy_t::isValid(_handle);
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
+template<typename T, HandlePolicyType valueT>
 void_t
-HandleT<tagT>::attach(
-    cnative_handle_t &a_handle
+HandleT<T, valueT>::attach(
+    const T &a_handle
 )
 {
     xTEST_NA(a_handle);
@@ -154,24 +148,27 @@ HandleT<tagT>::attach(
     _handle = a_handle;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
-native_handle_t
-HandleT<tagT>::detach()
+template<typename T, HandlePolicyType valueT>
+T
+HandleT<T, valueT>::detach()
 {
-    native_handle_t hRv = _handle;
+    T hRv = _handle;
 
-    _handle = error_value_t::get();
+    _handle = handle_policy_t::null();
 
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<ExHandleValue tagT>
+template<typename T, HandlePolicyType valueT>
 void_t
-HandleT<tagT>::close()
+HandleT<T, valueT>::close()
 {
-    xCHECK_DO(!isValid(), _handle = error_value_t::get(); return);
+    if ( !isValid() ) {
+        _handle = handle_policy_t::null();
+        return;
+    }
 
-    _close_impl();
+    handle_policy_t::close(_handle);
 }
 //-------------------------------------------------------------------------------------------------
 

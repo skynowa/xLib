@@ -12,8 +12,8 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/Dll.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/Dll.h>
 #include <xLib/System/Environment.h>
 
 #if   xENV_WIN
@@ -46,7 +46,7 @@ SystemInfo::SystemInfo() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::ExOsType
+xINLINE SystemInfo::OsType
 SystemInfo::os()
 {
     return _os_impl();
@@ -58,7 +58,7 @@ SystemInfo::formatOs()
     return _formatOs_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::ExOsArch
+xINLINE SystemInfo::OsArch
 SystemInfo::osArch()
 {
     _osArch = _osArch_impl();
@@ -71,7 +71,7 @@ SystemInfo::formatOsArch()
 {
     std::tstring_t sRv;
 
-    ExOsArch arch = (_osArch == oaUnknown) ? osArch() : _osArch;
+    OsArch arch = (_osArch == oaUnknown) ? osArch() : _osArch;
     switch (arch) {
     case SystemInfo::oa32bit:
         sRv = xT("32-bit");
@@ -114,10 +114,10 @@ SystemInfo::currentCpuNum() const
     return _currentCpuNum_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::ExCpuVendor
+xINLINE SystemInfo::CpuVendor
 SystemInfo::cpuVendor() const
 {
-    ExCpuVendor     cvRv  = cvUnknown;
+    CpuVendor     cvRv  = cvUnknown;
     std::ctstring_t value = _cpuVendor_impl();
 
     if      (value == std::tstring_t(xT("GenuineIntel"))) {

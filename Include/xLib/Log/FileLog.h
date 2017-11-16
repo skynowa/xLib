@@ -18,7 +18,7 @@ class FileLog :
     /// logging to file
 {
 public:
-    enum ExLogSizes
+    enum LogSizes
         /// log size
     {
         lsDefaultMb    = xMB(20),
@@ -43,7 +43,7 @@ public:
 
     virtual void_t write(cptr_ctchar_t format, ...) const xOVERRIDE;
         ///< write to log
-    virtual void_t write(cExLevel &level, cptr_ctchar_t format, ...) const xOVERRIDE;
+    virtual void_t write(cLevel &level, cptr_ctchar_t format, ...) const xOVERRIDE;
         ///< write to log
     void_t         clear() const;
         ///< clear content

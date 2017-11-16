@@ -14,7 +14,7 @@ class xNO_VTABLE ILog
     /// logging interface
 {
 public:
-    enum ExLevel
+    enum Level
         /// log level
     {
         lvUnknown = - 1,
@@ -28,7 +28,7 @@ public:
         lvDebug,
         lvPlain
     };
-    xTYPEDEF_CONST(ExLevel);
+    xTYPEDEF_CONST(Level);
 
                     ILog();
         ///< constructor
@@ -42,12 +42,12 @@ public:
 
     virtual void_t  write(cptr_ctchar_t format, ...) const = 0;
         ///< write to log
-    virtual void_t  write(cExLevel &level, cptr_ctchar_t format, ...) const = 0;
+    virtual void_t  write(cLevel &level, cptr_ctchar_t format, ...) const = 0;
         ///< write to log
 
 protected:
     std::tostringstream_t _oss; ///< string stream
-    std::tstring_t  _levelString(cExLevel &level) const;
+    std::tstring_t  _levelString(cLevel &level) const;
 
 private:
     bool_t          _isEnable;  ///< is enabled
