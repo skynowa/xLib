@@ -27,8 +27,6 @@ public:
 
     HandleDll     &get() xWARN_UNUSED_RV;
         ///< get handle
-    bool_t         isLoaded() const xWARN_UNUSED_RV;
-        ///< is loaded
     void_t         load(std::ctstring_t &dllPath);
         ///< load
     bool_t         isProcExists(std::ctstring_t &procName) const xWARN_UNUSED_RV;

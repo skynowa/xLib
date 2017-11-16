@@ -44,7 +44,7 @@ Test_MySql::unit()
 
     xTEST_CASE("MySqlConnection::isValid")
     {
-        m_bRv = mysqlConn.isValid();
+        m_bRv = mysqlConn.get().isValid();
         xTEST_EQ(m_bRv, true);
     }
 
@@ -175,7 +175,7 @@ Test_MySql::unit()
 
     xTEST_CASE("MySqlRecordset::isValid")
     {
-        m_bRv = mysqlRecord.isValid();
+        m_bRv = mysqlRecord.get().isValid();
         xTEST_EQ(m_bRv, true);
     }
 

@@ -55,8 +55,6 @@ public:
 
     HandleMySqlConn &get() xWARN_UNUSED_RV;
         ///< get handle
-    bool_t         isValid() const xWARN_UNUSED_RV;
-        ///< validating handle
     void_t         options(const mysql_option &option, cptr_cvoid_t arg) const;
         ///< set extra connect options and affect behavior
     bool_t         ping(int_t *errorCode = xPTR_NULL) const xWARN_UNUSED_RV;
@@ -101,8 +99,6 @@ public:
 
     HandleMySqlResult &get() xWARN_UNUSED_RV;
         ///< get handle
-    bool_t       isValid() const xWARN_UNUSED_RV;
-        ///< validating handle
 
     uint_t       fieldsNum() const xWARN_UNUSED_RV;
         ///< number of columns in a result set

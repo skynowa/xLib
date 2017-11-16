@@ -185,10 +185,6 @@ public:
         ///< changes the file size
 
     // error handling
-    bool_t         isValid() const xWARN_UNUSED_RV;
-        ///< validating handle
-    bool_t         isOpen() const xWARN_UNUSED_RV;
-        ///< is open
     bool_t         isEmpty() const xWARN_UNUSED_RV;
         ///< is empty
     bool_t         isEof() const xWARN_UNUSED_RV;

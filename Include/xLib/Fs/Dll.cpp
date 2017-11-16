@@ -47,17 +47,9 @@ Dll::~Dll()
 xINLINE HandleDll &
 Dll::get()
 {
-    xTEST_EQ(isLoaded(), true);
+    xTEST_EQ(_handle.isValid(), true);
 
     return _handle;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-Dll::isLoaded() const
-{
-    xTESTS_NA;
-
-    return _handle.isValid();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
