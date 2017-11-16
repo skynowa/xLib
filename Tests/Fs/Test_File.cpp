@@ -466,39 +466,6 @@ Test_File::unit()
     *
     *******************************************************************************/
 
-    xTEST_CASE("isValid")
-    {
-        File file;
-
-        m_bRv = file.isValid();
-        xTEST_EQ(m_bRv, false);
-
-        file.create(filePath, File::omCreateReadWrite);
-
-        m_bRv = file.isValid();
-        xTEST_EQ(m_bRv, true);
-
-        file.close();
-    }
-
-    xTEST_CASE("isOpen")
-    {
-        File file;
-
-        m_bRv = file.isOpen();
-        xTEST_EQ(m_bRv, false);
-
-        file.create(filePath, File::omCreateReadWrite);
-
-        m_bRv = file.isOpen();
-        xTEST_EQ(m_bRv, true);
-
-        file.close();
-
-        m_bRv = file.isOpen();
-        xTEST_EQ(m_bRv, false);
-    }
-
     xTEST_CASE("isEmpty")
     {
         File file;
@@ -560,7 +527,7 @@ Test_File::unit()
         file.create(filePath, File::omCreateReadWrite);
         file.flush();
 
-        m_bRv = file.isValid();
+        m_bRv = file.get().isValid();
         xTEST_EQ(m_bRv, true);
     }
 
@@ -571,7 +538,7 @@ Test_File::unit()
         file.create(filePath, File::omCreateReadWrite);
         file.close();
 
-        m_bRv = file.isValid();
+        m_bRv = file.get().isValid();
         xTEST_EQ(m_bRv, false);
     }
 

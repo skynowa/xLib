@@ -42,14 +42,14 @@ Test_Dll::unit()
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
             Dll dll;
 
-            m_bRv = dll.isLoaded();
+            m_bRv = dll.get().isValid();
             xTEST_EQ(m_bRv, false);
 
             // load
             dll.load(data[i].test);
 
             // isLoaded
-            m_bRv = dll.isLoaded();
+            m_bRv = dll.get().isValid();
             xTEST_EQ(m_bRv, true);
 
             // isProcExists
@@ -80,7 +80,7 @@ Test_Dll::unit()
         #endif
 
             // isLoaded
-            m_bRv = dll.isLoaded();
+            m_bRv = dll.get().isValid();
             xTEST_EQ(m_bRv, true);
         } //for
     }

@@ -122,7 +122,7 @@ File::reopen(
 xINLINE HandleStd &
 File::get()
 {
-    xTEST_EQ(isValid(), true);
+    xTEST_EQ(_handle.isValid(), true);
 
     return _handle;
 }
@@ -130,7 +130,7 @@ File::get()
 xINLINE int_t
 File::getNative() const
 {
-    xTEST_EQ(isValid(), true);
+    xTEST_EQ(_handle.isValid(), true);
 
     return _nativeHandle( _handle.get() );
 }
@@ -463,18 +463,6 @@ File::resize(
 
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
-File::isValid() const
-{
-    return _handle.isValid();
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-File::isOpen() const
-{
-    return isValid();
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
 File::isEmpty() const
 {
     longlong_t fileSize = size();
@@ -525,7 +513,7 @@ File::flush() const
 xINLINE void_t
 File::close()
 {
-    xCHECK_DO(!isValid(), return);
+    xCHECK_DO(!_handle.isValid(), return);
 
     errorClear();
 

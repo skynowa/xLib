@@ -68,7 +68,7 @@ FileTemp::create(
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_EQ(a_dirPath.empty(),  false);
     xTEST_PTR(a_file);
-    xTEST_EQ(a_file->isValid(),  false);
+    xTEST_EQ(a_file->get().isValid(),  false);
 
     std::ctstring_t fileNameTemplate = xT("XXXXXX");
 
