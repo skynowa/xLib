@@ -9,10 +9,11 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/HandleT.h>
 #include <curl/curl.h>
 #include <curl/easy.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, Package)
+xNAMESPACE_BEGIN2(xl, package)
 
 class CurlClient
     ///< CURL client
@@ -27,9 +28,7 @@ public:
     std::tstring_t versionInfo(const CURLversion version);
 
     // handle
-    bool_t         isValid() const;
-    CURL *         get();
-    CURL *         dup();
+    HandleCurl &   get();
     void           reset();
 
     void           setOption(const CURLoption option, ...);
@@ -52,10 +51,10 @@ public:
 private:
     xNO_COPY_ASSIGN(CurlClient)
 
-    CURL    *_handle;
+    HandleCurl     _handle;
 };
 
-xNAMESPACE_END2(xl, Package)
+xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "CurlClient.cpp"

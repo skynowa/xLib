@@ -31,6 +31,8 @@ xNAMESPACE_END2(xl, core)
     #include <mysql/mysqld_error.h>
 #endif
 
+#include <curl/curl.h>
+
 #include <xLib/Core/Core.h>
 /// #include <xLib/Db/MySql.h>
 #include <xLib/Interface/IHandle.h>
@@ -93,6 +95,7 @@ typedef HandleT<dll_handle_t,    hvDll>         HandleDll;
 typedef HandleT<FILE *,          hvStd>         HandleStd;
 typedef HandleT<MYSQL *,         hvMySqlConn>   HandleMySqlConn;
 typedef HandleT<MYSQL_RES *,     hvMySqlResult> HandleMySqlResult;
+typedef HandleT<CURL *,          hvCurl>        HandleCurl;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
