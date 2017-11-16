@@ -26,7 +26,7 @@ Sleeper::sleep(
 {
     // n/a
 
-    Event::ExObjectState osRv = _event.wait(a_timeoutMsec);
+    Event::ObjectState osRv = _event.wait(a_timeoutMsec);
     xTEST_EQ(osRv == Event::osSignaled || osRv == Event::osTimeout, true);
 }
 //-------------------------------------------------------------------------------------------------

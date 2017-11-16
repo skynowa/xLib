@@ -54,16 +54,16 @@ Event::_reset_impl()
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Event::ExObjectState
+xINLINE Event::ObjectState
 Event::_wait_impl(
     culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
-    ExObjectState osRv = osFailed;
+    ObjectState osRv = osFailed;
 
     xTEST_EQ(_event.isValid(), true);
 
-    osRv = static_cast<ExObjectState>( ::WaitForSingleObject(handle().get(), a_timeoutMs) );
+    osRv = static_cast<ObjectState>( ::WaitForSingleObject(handle().get(), a_timeoutMs) );
 
     return osRv;
 }

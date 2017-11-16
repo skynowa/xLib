@@ -48,7 +48,7 @@ Shell::findExecutable(
 xINLINE void_t
 Shell::execute(
     const HWND        &a_owner,
-    const ExOperation &a_operation,
+    const Operation   &a_operation,
     std::ctstring_t   &a_filePath,
     std::ctstring_t   &a_params,
     std::ctstring_t   &a_dirPath,

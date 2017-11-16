@@ -14,7 +14,7 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
-#include <xLib/IO/Path.h>
+#include <xLib/Fs/Path.h>
 #include "Platform/SystemLog_internal.inl"
 
 #if   xENV_WIN
@@ -97,14 +97,14 @@ SystemLog::write(
 /* virtual */
 xINLINE void_t
 SystemLog::write(
-    cExLevel      &a_level,
+    cLevel        &a_level,
     cptr_ctchar_t  a_format, ...
 ) const
 {
     xCHECK_DO(!isEnabled(), return);
     xTEST_PTR(a_format);
 
-    ExLevel level = lvUnknown;
+    Level level = lvUnknown;
     {
         xCHECK_DO(a_level == lvPlain, level = lvInfo);
     }

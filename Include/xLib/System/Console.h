@@ -15,7 +15,7 @@ class Console
     /// console
 {
 public:
-    enum ExForeground
+    enum Foreground
         /// foreground color
     {
         fgUnknown,
@@ -29,9 +29,9 @@ public:
         fgWhite,
         fgGray
     };
-    xTYPEDEF_CONST(ExForeground);
+    xTYPEDEF_CONST(Foreground);
 
-    enum ExBackground
+    enum Background
         /// background color
     {
         bgUnknown,
@@ -45,9 +45,9 @@ public:
         bgWhite,
         bgGray
     };
-    xTYPEDEF_CONST(ExBackground);
+    xTYPEDEF_CONST(Background);
 
-    enum ExTextAttribute
+    enum TextAttribute
         /// text attribute
     {
         atUnknown,
@@ -58,23 +58,23 @@ public:
         atReverse,
         atConcealed
     };
-    xTYPEDEF_CONST(ExTextAttribute);
+    xTYPEDEF_CONST(TextAttribute);
 
-    enum ExModalResult
+    enum ModalResult
         /// modal result
     {
         mrAbort  = 3,
         mrIgnore = 5,
         mrRetry  = 4
     };
-    xTYPEDEF_CONST(ExModalResult);
+    xTYPEDEF_CONST(ModalResult);
 
                    Console();
         ///< constructor
     virtual       ~Console();
         ///< destructor
 
-    std::tstring_t setAttributes(cExForeground &foreground, cExBackground &background,
+    std::tstring_t setAttributes(cForeground &foreground, cBackground &background,
                        cint_t &attributes) const xWARN_UNUSED_RV;
         ///< set text color
     std::tstring_t setAttributesDef() const xWARN_UNUSED_RV;
@@ -87,7 +87,7 @@ public:
         ///< write line
     void_t         writeErrLine(std::ctstring_t &str) const;
         ///< write error message
-    ExModalResult  msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type) const
+    ModalResult    msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type) const
                        xWARN_UNUSED_RV;
         ///< show console message dialog
     void_t         prompt(std::ctstring_t &prompt, cbool_t &isVisible, std::tstring_t *answer)
@@ -135,7 +135,7 @@ private:
 xPLATFORM_IMPL:
     void_t         _construct_impl();
     void_t         _destruct_impl();
-    std::tstring_t _setAttributes_impl(cExForeground &foreground, cExBackground &background,
+    std::tstring_t _setAttributes_impl(cForeground &foreground, cBackground &background,
     					cint_t &attributes) const xWARN_UNUSED_RV;
     std::tstring_t _setAttributesDef_impl() const xWARN_UNUSED_RV;
     std::tstring_t _read_impl() const xWARN_UNUSED_RV;

@@ -46,7 +46,7 @@ public:
     virtual       ~StdSeedPolicy();
         ///< destructor
 
-    virtual long_t next();
+    virtual long_t next() xOVERRIDE;
         ///< get integer in the range between 0 and RAND_MAX
 
 xPLATFORM_IMPL:
@@ -64,7 +64,7 @@ public:
     virtual       ~NativeSeedPolicy();
         ///< destructor
 
-    virtual long_t next();
+    virtual long_t next() xOVERRIDE;
         ///< get long integer in the range between 0 and RAND_MAX
 
 private:
@@ -82,7 +82,7 @@ xPLATFORM_IMPL:
     long_t         _next_impl();
 };
 //-------------------------------------------------------------------------------------------------
-template<typename RandomValue, class SeedPolicy>
+template<typename RandomValueT, class SeedPolicyT>
 class Random
     /// random
 {
@@ -105,8 +105,8 @@ public:
        ///< get float value between min and max
 
 private:
-    const RandomValue _randMax;
-    SeedPolicy _policy;
+    const RandomValueT _randMax;
+    SeedPolicyT _policy;
 
     xNO_COPY_ASSIGN(Random)
 };

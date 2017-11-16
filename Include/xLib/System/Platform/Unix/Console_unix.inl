@@ -31,12 +31,12 @@ Console::_destruct_impl()
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 Console::_setAttributes_impl(
-    cExForeground &a_foreground,
-    cExBackground &a_background,
+    cForeground &a_foreground,
+    cBackground &a_background,
     cint_t        &a_attributes
 ) const
 {
-    ExForeground foregroundColor;
+    Foreground foregroundColor;
     {
         cint_t foregroundColorBlack   = 30;
         cint_t foregroundColorRed     = 31;
@@ -84,10 +84,10 @@ Console::_setAttributes_impl(
             break;
         }
 
-        foregroundColor = static_cast<ExForeground>( iRv );
+        foregroundColor = static_cast<Foreground>( iRv );
     }
 
-    ExBackground backgroundColor;
+    Background backgroundColor;
     {
         cint_t backgroundColorBlack   = 40;
         cint_t backgroundColorRed     = 41;
@@ -135,7 +135,7 @@ Console::_setAttributes_impl(
             break;
         }
 
-        backgroundColor = static_cast<ExBackground>( iRv );
+        backgroundColor = static_cast<Background>( iRv );
     }
 
     std::tstring_t attrs;

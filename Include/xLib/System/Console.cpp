@@ -57,8 +57,8 @@ Console::~Console()
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 Console::setAttributes(
-    cExForeground &a_foreground,
-    cExBackground &a_background,
+    cForeground &a_foreground,
+    cBackground &a_background,
     cint_t        &a_attributes
 ) const
 {
@@ -103,7 +103,7 @@ Console::writeErrLine(
     pause(xTIMEOUT_INFINITE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Console::ExModalResult
+xINLINE Console::ModalResult
 Console::msgBox(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
@@ -112,7 +112,7 @@ Console::msgBox(
 {
     xUNUSED(a_type);
 
-    ExModalResult mrRv;
+    ModalResult mrRv;
 
     std::csize_t width     = 100;
     ctchar_t     cmdAbort  = xT('a');

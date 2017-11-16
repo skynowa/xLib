@@ -20,10 +20,10 @@ Test_Console::unit()
     {
         Console console;
 
-        std::tstring_t        text;
-        Console::ExForeground foreground = Console::fgBlue;
-        Console::ExBackground background = Console::bgYellow;
-        cint_t                attributes = Console::atBold | Console::atUnderscore | Console::atReverse;
+        std::tstring_t      text;
+        Console::Foreground foreground = Console::fgBlue;
+        Console::Background background = Console::bgYellow;
+        cint_t              attributes = Console::atBold | Console::atUnderscore | Console::atReverse;
 
         m_sRv = console.setAttributes(foreground, background, attributes);
         xTEST_NA(m_sRv);
@@ -93,7 +93,7 @@ Test_Console::unit()
 
 		Console console;
 
-		Console::ExModalResult mrRes = console.msgBox(text, title, type);
+		Console::ModalResult mrRes = console.msgBox(text, title, type);
 		xUNUSED(mrRes);
     #else
         Trace() << xT("[skip]");
