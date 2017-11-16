@@ -53,8 +53,8 @@ Console::_destruct_impl()
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
 Console::_setAttributes_impl(
-    cExForeground &a_foreground,
-    cExBackground &a_background,
+    cForeground &a_foreground,
+    cBackground &a_background,
     cint_t        &a_attributes
 ) const
 {
@@ -62,7 +62,7 @@ Console::_setAttributes_impl(
     xTEST_EQ(_stdIn.isValid(), true);
     xTEST_EQ(_stdOut.isValid(), true);
 
-    ExForeground foregroundColor;
+    Foreground foregroundColor;
     {
         /*
             #define COLOR_BLACK     0
@@ -129,10 +129,10 @@ Console::_setAttributes_impl(
             break;
         }
 
-        foregroundColor = static_cast<ExForeground>( iRv );
+        foregroundColor = static_cast<Foreground>( iRv );
     }
 
-    ExBackground backgroundColor;
+    Background backgroundColor;
     {
         const WORD backgroundColorBlack   = 0;
         const WORD backgroundColorRed     = BACKGROUND_RED;
@@ -180,7 +180,7 @@ Console::_setAttributes_impl(
             break;
         }
 
-        backgroundColor = static_cast<ExBackground>( iRv );
+        backgroundColor = static_cast<Background>( iRv );
     }
 
     WORD attrs = 0U;

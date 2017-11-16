@@ -18,7 +18,7 @@ Test_Guid::unit()
 {
     xTEST_CASE("create")
     {
-        Guid::cExType data[] = {
+        Guid::cType data[] = {
             Guid::tpRandomBased
         };
 

@@ -12,10 +12,10 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::ExOsType
+xINLINE SystemInfo::OsType
 SystemInfo::_os_impl()
 {
-    ExOsType otRv = otUnknown;
+    OsType otRv = otUnknown;
 
     utsname info; xSTRUCT_ZERO(info);
 
@@ -56,10 +56,10 @@ SystemInfo::_formatOs_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::ExOsArch
+xINLINE SystemInfo::OsArch
 SystemInfo::_osArch_impl()
 {
-    ExOsArch oaRv = oaUnknown;
+    OsArch oaRv = oaUnknown;
 
     std::tstring_t infoMachine;
     {

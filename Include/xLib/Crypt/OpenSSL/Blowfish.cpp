@@ -11,8 +11,8 @@
 #if cmOPENSSL_CRYPTO_FOUND
 
 #include <xLib/Core/Utils.h>
-#include <xLib/IO/File.h>
-#include <xLib/IO/Path.h>
+#include <xLib/Fs/File.h>
+#include <xLib/Fs/Path.h>
 #include <xLib/Crypt/Crc32.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
@@ -127,7 +127,7 @@ Blowfish::encryptCfb64(
     uchar_t           *a_out,
     clong_t           &a_inSize,
     int_t             *a_num,
-    const ExCryptMode &a_mode
+    const CryptMode &a_mode
 )
 {
     xTEST_PTR(a_in);
@@ -144,7 +144,7 @@ xINLINE void_t
 Blowfish::encryptCfb64(
     std::custring_t   &a_in,
     std::ustring_t    *a_out,
-    const ExCryptMode &a_mode
+    const CryptMode &a_mode
 )
 {
     xTEST_EQ(a_in.empty(), false);
@@ -163,7 +163,7 @@ xINLINE void_t
 Blowfish::encryptFileCfb64(
     std::ctstring_t   &a_filePathIn,
     std::ctstring_t   &a_filePathOut,
-    const ExCryptMode &a_mode
+    const CryptMode &a_mode
 )
 {
     xTEST_EQ(a_filePathIn.empty(), false);

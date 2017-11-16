@@ -96,6 +96,15 @@ xNAMESPACE_BEGIN(xl)
     xTYPEDEF_CONST(native_handle_t);
         ///< native handle
 
+    // dll_handle_t
+#if   xENV_WIN
+    typedef HMODULE dll_handle_t;
+#elif xENV_UNIX
+    typedef void_t *dll_handle_t;
+#endif
+    xTYPEDEF_CONST(dll_handle_t);
+        ///< DLL handle
+
     // socket_t
 #if   xENV_WIN
     typedef SOCKET socket_t;

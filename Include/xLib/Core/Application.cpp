@@ -14,8 +14,8 @@
 #include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Log/FileLog.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/Dir.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/Dir.h>
 #include <xLib/System/ProcessInfo.h>
 #include <xLib/System/User.h>
 

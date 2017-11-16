@@ -23,7 +23,7 @@ public:
     typedef pid_t   id_t;     ///< ID
 #endif
 
-    enum ExWaitResult
+    enum WaitResult
         /// wait result
     {
         #if   xENV_WIN
@@ -44,7 +44,7 @@ public:
 
     void_t       create(std::ctstring_t &filePath, cptr_ctchar_t params, ...);
         ///< execute a file
-    ExWaitResult wait(culong_t &timeoutMsec) xWARN_UNUSED_RV;
+    WaitResult   wait(culong_t &timeoutMsec) xWARN_UNUSED_RV;
         ///< wait for termination
     void_t       kill(culong_t &timeoutMsec);
         ///< kills the calling process and all of its threads
@@ -104,7 +104,7 @@ private:
 xPLATFORM_IMPL:
     void_t       _destruct_impl();
     void_t       _create_impl(std::ctstring_t &filePath, std::ctstring_t &params);
-    ExWaitResult _wait_impl(culong_t &timeoutMsec) xWARN_UNUSED_RV;
+    WaitResult   _wait_impl(culong_t &timeoutMsec) xWARN_UNUSED_RV;
     void_t       _kill_impl(culong_t &timeoutMsec);
     ulong_t      _exitStatus_impl() const xWARN_UNUSED_RV;
 

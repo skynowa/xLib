@@ -58,9 +58,9 @@ ISocket::~ISocket()
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 ISocket::create(
-    cExAddressFamily &a_family,
-    cExType          &a_type,
-    cExProtocol      &a_protocol
+    cAddressFamily &a_family,
+    cType          &a_type,
+    cProtocol      &a_protocol
 )
 {
     xTEST_EQ(_handle, xSOCKET_HANDLE_INVALID);

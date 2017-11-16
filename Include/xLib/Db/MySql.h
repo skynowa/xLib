@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include <xLib/Core/Core.h>
-
 #if xENV_WIN
     #include <mysql.h>
     #include <errmsg.h>
@@ -17,6 +15,9 @@
     #include <mysql/errmsg.h>
     #include <mysql/mysqld_error.h>
 #endif
+
+#include <xLib/Core/Core.h>
+#include <xLib/Core/HandleT.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, db)
 
@@ -52,7 +53,7 @@ public:
     virtual       ~MySqlConnection();
         ///< destructor
 
-    MYSQL         *get() const xWARN_UNUSED_RV;
+    HandleMySqlConn &get() xWARN_UNUSED_RV;
         ///< get handle
     bool_t         isValid() const xWARN_UNUSED_RV;
         ///< validating handle
@@ -79,7 +80,7 @@ public:
         ///< error message for the most recently invoked API function that failed
 
 private:
-    MYSQL         *_conn;
+    HandleMySqlConn _conn;
         ///< pointer to connection
 
     xNO_COPY_ASSIGN(MySqlConnection)
@@ -93,12 +94,12 @@ class MySqlRecordset
     /// MySql recordset
 {
 public:
-                 MySqlRecordset(const MySqlConnection &connection, cbool_t &isUseResult);
+                 MySqlRecordset(MySqlConnection &connection, cbool_t &isUseResult);
         ///< constructor
     virtual     ~MySqlRecordset();
         ///< destructor
 
-    MYSQL_RES   *get() const xWARN_UNUSED_RV;
+    HandleMySqlResult &get() xWARN_UNUSED_RV;
         ///< get handle
     bool_t       isValid() const xWARN_UNUSED_RV;
         ///< validating handle
@@ -117,9 +118,9 @@ public:
         ///< fetching row
 
 private:
-    const MySqlConnection *_conn;
+    MySqlConnection  *_conn;
         ///< pointer to connection object
-    MYSQL_RES   *_result;
+    HandleMySqlResult _result;
         ///< for private use
 
     void_t       _fetchLengths(ulong_t **fieldLengths) const;
