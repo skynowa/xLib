@@ -82,4 +82,35 @@ HandlePolicy<T, hvMySqlConn>::_close_impl(T &a_handle)
 }
 //-------------------------------------------------------------------------------------------------
 
+
+/**************************************************************************************************
+*    public - HandlePolicy hvMySqlResult
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+T
+HandlePolicy<T, hvMySqlResult>::_clone_impl(const T &a_handle)
+{
+    return a_handle;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+bool_t
+HandlePolicy<T, hvMySqlResult>::_isValid_impl(const T &a_handle)
+{
+    return (a_handle != null());
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+void_t
+HandlePolicy<T, hvMySqlResult>::_close_impl(T &a_handle)
+{
+    (void_t)::mysql_free_result(a_handle);
+
+    a_handle = null();
+}
+//-------------------------------------------------------------------------------------------------
+
 xNAMESPACE_END2(xl, core)
