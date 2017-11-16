@@ -21,8 +21,18 @@ class Debugger;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
+#if xENV_WIN
+    #include <mysql.h>
+    #include <errmsg.h>
+    #include <mysqld_error.h>
+#else
+    #include <mysql/mysql.h>
+    #include <mysql/errmsg.h>
+    #include <mysql/mysqld_error.h>
+#endif
+
 #include <xLib/Core/Core.h>
-#include <xLib/Db/MySql.h>
+/// #include <xLib/Db/MySql.h>
 #include <xLib/Interface/IHandle.h>
 #include <xLib/Core/HandlePolicy.h>
 //-------------------------------------------------------------------------------------------------
