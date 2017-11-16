@@ -150,3 +150,4 @@
 #include <xLib/Package/Csv.h>
 #include <xLib/Package/Ssh2Client.h>
 #include <xLib/Package/Donate.h>
+#include <xLib/Package/CurlClient.h>
