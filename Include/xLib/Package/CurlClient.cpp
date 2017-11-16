@@ -19,7 +19,7 @@
 #include <xLib/Test/Test.h>
 
 
-xNAMESPACE_BEGIN2(xl, Package)
+xNAMESPACE_BEGIN2(xl, package)
 
 /**************************************************************************************************
 *   public
@@ -29,16 +29,15 @@ xNAMESPACE_BEGIN2(xl, Package)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 CurlClient::CurlClient() :
-    _handle(xPTR_NULL)
+    _handle()
 {
     _handle = ::curl_easy_init();
-    xTEST_PTR(_handle);
+    xTEST_EQ(_handle.isValid(), true);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
 CurlClient::~CurlClient()
 {
-    (void_t)::curl_easy_cleanup( get() );
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -90,30 +89,18 @@ CurlClient::versionInfo(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
-CurlClient::isValid() const
-{
-    return (_handle != xPTR_NULL);
-}
-//-------------------------------------------------------------------------------------------------
-CURL *
+HandleCurl &
 CurlClient::get()
 {
-    xTEST_PTR(_handle);
+    xTEST_EQ(_handle.isValid(), true);
 
     return _handle;
-}
-//-------------------------------------------------------------------------------------------------
-CURL *
-CurlClient::dup()
-{
-    return ::curl_easy_duphandle( get() );
 }
 //-------------------------------------------------------------------------------------------------
 void
 CurlClient::reset()
 {
-    ::curl_easy_reset( get() );
+    (void_t)::curl_easy_reset( _handle.get() );
 }
 //-------------------------------------------------------------------------------------------------
 void
@@ -123,7 +110,7 @@ CurlClient::setOption(
 {
     va_list args;
     xVA_START(args, a_option);
-    CURLcode iRv = ::curl_easy_setopt(get(), a_option, args);
+    CURLcode iRv = ::curl_easy_setopt(_handle.get(), a_option, args);
     xVA_END(args);
 
     xTEST_EQ(iRv, CURLE_OK);
@@ -132,7 +119,7 @@ CurlClient::setOption(
 void
 CurlClient::perform()
 {
-    CURLcode iRv = ::curl_easy_perform( get() );
+    CURLcode iRv = ::curl_easy_perform( _handle.get() );
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
@@ -141,7 +128,7 @@ CurlClient::pause(
     cint_t a_bitmask
 )
 {
-    CURLcode iRv = ::curl_easy_pause(get(), a_bitmask);
+    CURLcode iRv = ::curl_easy_pause(_handle.get(), a_bitmask);
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
@@ -152,7 +139,7 @@ CurlClient::info(
 {
     va_list args;
     xVA_START(args, a_info);
-    CURLcode iRv = ::curl_easy_getinfo(get(), a_info, args);
+    CURLcode iRv = ::curl_easy_getinfo(_handle.get(), a_info, args);
     xVA_END(args);
 
     xTEST_EQ(iRv, CURLE_OK);
@@ -165,7 +152,7 @@ CurlClient::recv(
     size_t       *a_n
 )
 {
-    CURLcode iRv = ::curl_easy_recv(get(), a_buffer, a_buflen, a_n);
+    CURLcode iRv = ::curl_easy_recv(_handle.get(), a_buffer, a_buflen, a_n);
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
@@ -176,7 +163,7 @@ CurlClient::send(
     size_t       *a_n
 )
 {
-    CURLcode iRv = ::curl_easy_send(get(), a_buffer, a_buflen, a_n);
+    CURLcode iRv = ::curl_easy_send(_handle.get(), a_buffer, a_buflen, a_n);
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
@@ -187,7 +174,7 @@ CurlClient::escape(
 {
     std::tstring_t sRv;
 
-    char *szRv = ::curl_easy_escape(get(), a_str.c_str(), static_cast<int>( a_str.size() ));
+    char *szRv = ::curl_easy_escape(_handle.get(), a_str.c_str(), static_cast<int>( a_str.size() ));
     xTEST_PTR(szRv);
 
     sRv.assign(szRv);
@@ -208,8 +195,8 @@ CurlClient::unescape(
     std::tstring_t sRv;
 
     int size_out = 0;
-    char *szRv = ::curl_easy_unescape(get(), a_str.c_str(), static_cast<int>( a_str.size() ),
-        &size_out);
+    char *szRv = ::curl_easy_unescape(_handle.get(), a_str.c_str(),
+        static_cast<int>( a_str.size() ), &size_out);
     xTEST_PTR(szRv);
 
     sRv.assign(szRv, static_cast<std::size_t>(size_out));
@@ -236,4 +223,4 @@ CurlClient::strError(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, Package)
+xNAMESPACE_END2(xl, package)

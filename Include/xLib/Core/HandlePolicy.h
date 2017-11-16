@@ -19,7 +19,9 @@ enum HandlePolicyType
     hvStd         = 2,    ///< like xPTR_NULL
 
     hvMySqlConn   = 3,    ///< MySQL connection
-    hvMySqlResult = 4     ///< MySQL result
+    hvMySqlResult = 4,    ///< MySQL result
+
+    hvCurl        = 5     ///< CURL
 };
 
 template<typename T, HandlePolicyType valueT>
@@ -76,6 +78,7 @@ xHANDLE_POLICY_FACTORY(hvDll);
 xHANDLE_POLICY_FACTORY(hvStd);
 xHANDLE_POLICY_FACTORY(hvMySqlConn);
 xHANDLE_POLICY_FACTORY(hvMySqlResult);
+xHANDLE_POLICY_FACTORY(hvCurl);
 
 xHANDLE_POLICY_FACTORY_IMPL(hvInvalid,     xNATIVE_HANDLE_INVALID);
 xHANDLE_POLICY_FACTORY_IMPL(hvNull,        xNATIVE_HANDLE_NULL);
@@ -83,6 +86,7 @@ xHANDLE_POLICY_FACTORY_IMPL(hvDll,         xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvStd,         xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvMySqlConn,   xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvMySqlResult, xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvCurl,        xPTR_NULL);
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
