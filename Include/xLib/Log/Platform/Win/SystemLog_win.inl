@@ -35,7 +35,7 @@ SystemLog::_destruct_impl()
 /* virtual */
 xINLINE void_t
 SystemLog::_write_impl(
-    cExLevel        &a_level,
+    cLevel          &a_level,
     std::ctstring_t &a_msg
 ) const
 {

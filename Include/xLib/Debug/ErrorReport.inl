@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, debug)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 ErrorReport::ErrorReport(
-    cExType          &a_type,
+    cType            &a_type,
     std::ctstring_t  &a_var1,
     std::ctstring_t  &a_var2,
     const T          &a_var1Value,

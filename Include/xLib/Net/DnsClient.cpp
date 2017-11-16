@@ -65,9 +65,9 @@ DnsClient::hostAddrByName(
 /* static */
 xINLINE void_t
 DnsClient::hostNameByAddr(
-    std::ctstring_t               &a_hostAddr,
-    const ISocket::ExAddressFamily &a_family,
-    std::tstring_t                *a_hostName
+    std::ctstring_t              &a_hostAddr,
+    const ISocket::AddressFamily &a_family,
+    std::tstring_t               *a_hostName
 )
 {
     xTEST_EQ(a_hostAddr.empty(), false);
@@ -134,9 +134,9 @@ DnsClient::localHostName(
 /* static */
 xINLINE void_t
 DnsClient::nameInfo(
-    ISocket::ExAddressFamily &a_family,
-    std::ctstring_t         &a_hostAddr,
-    cushort_t               &a_port
+    ISocket::AddressFamily &a_family,
+    std::ctstring_t        &a_hostAddr,
+    cushort_t              &a_port
 )
 {
     xTEST_NA(a_family);

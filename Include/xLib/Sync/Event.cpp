@@ -80,14 +80,14 @@ Event::reset()
     _reset_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Event::ExObjectState
+xINLINE Event::ObjectState
 Event::wait(
     culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< timeout (msec)
 )
 {
     xTEST_NA(a_timeoutMs);
 
-    ExObjectState osRv = _wait_impl(a_timeoutMs);
+    ObjectState osRv = _wait_impl(a_timeoutMs);
 
     xTEST_EQ_MSG((osRv == osSignaled) || (osRv == osTimeout), true, NativeError::format(osRv));
 

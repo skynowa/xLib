@@ -18,8 +18,8 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Crypt/Base64.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Net/DnsClient.h>
 
 

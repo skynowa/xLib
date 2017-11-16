@@ -11,10 +11,10 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/FormatC.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
-#include <xLib/IO/Dll.h>
-#include <xLib/IO/Finder.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/File.h>
+#include <xLib/Fs/Dll.h>
+#include <xLib/Fs/Finder.h>
 #include <xLib/Sync/Thread.h>
 
 #if   xENV_WIN
@@ -80,7 +80,7 @@ Process::create(
     _create_impl(a_filePath, cmdLine);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Process::ExWaitResult
+xINLINE Process::WaitResult
 Process::wait(
     culong_t &a_timeoutMsec
 )

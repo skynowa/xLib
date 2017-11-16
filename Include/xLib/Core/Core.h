@@ -98,7 +98,7 @@ namespace core {}
 namespace crypt {}
 namespace db {}
 namespace debug {}
-namespace io {}
+namespace fs {}
 namespace ui {}
 namespace log {}
 namespace net {}
@@ -112,7 +112,7 @@ using namespace core;
 using namespace crypt;
 using namespace db;
 using namespace debug;
-using namespace io;
+using namespace fs;
 using namespace ui;
 using namespace log;
 using namespace net;

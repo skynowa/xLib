@@ -16,7 +16,7 @@ class Thread
     /// thread
 {
 public:
-    enum ExPriority
+    enum Priority
         /// priotity
     {
     #if   xENV_WIN
@@ -101,9 +101,9 @@ public:
 #endif
 
     // priority
-    void_t          setPriority(const ExPriority &priority) const;
+    void_t          setPriority(const Priority &priority) const;
         ///< set priority (under Linux must use admin privilege)
-    ExPriority      priority() const xWARN_UNUSED_RV;
+    Priority        priority() const xWARN_UNUSED_RV;
         ///< get priority
     std::tstring_t  priorityString() const xWARN_UNUSED_RV;
         ///< get priority as string
@@ -239,8 +239,8 @@ xPLATFORM_IMPL:
     bool_t          _isRunning_impl() const xWARN_UNUSED_RV;
     bool_t          _isPaused_impl() xWARN_UNUSED_RV;
     bool_t          _isExited_impl() xWARN_UNUSED_RV;
-    void_t          _setPriority_impl(const ExPriority &priority) const;
-    ExPriority      _priority_impl() const xWARN_UNUSED_RV;
+    void_t          _setPriority_impl(const Priority &priority) const;
+    Priority        _priority_impl() const xWARN_UNUSED_RV;
     bool_t          _isPriorityBoost_impl() const xWARN_UNUSED_RV;
     void_t          _setPriorityBoost_impl(cbool_t &isEnabled) const;
     void_t          _setCpuAffinity_impl(cint_t &procNum) const;

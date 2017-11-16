@@ -9,7 +9,7 @@
 #endif
 
 #include <xLib/Core/FormatC.h>
-#include <xLib/IO/File.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StdError.h>
 #include <xLib/Debug/StackTrace.h>
