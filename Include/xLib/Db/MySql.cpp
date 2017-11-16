@@ -28,7 +28,7 @@ MySqlConnection::MySqlConnection() :
     xTEST_EQ(isValid(), false);
 
     _conn = ::mysql_init(xPTR_NULL);
-    xTEST_PTR_MSG(_conn, lastErrorStr());
+    xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -38,8 +38,8 @@ MySqlConnection::~MySqlConnection()
     close();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE MYSQL *
-MySqlConnection::get() const
+xINLINE HandleMySqlConn &
+MySqlConnection::get()
 {
     xTEST_EQ(isValid(), true);
 
@@ -49,7 +49,7 @@ MySqlConnection::get() const
 xINLINE bool_t
 MySqlConnection::isValid() const
 {
-    return (_conn != xPTR_NULL);
+    return _conn.isValid();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -63,9 +63,9 @@ MySqlConnection::options(
     xTEST_NA(a_arg);
 
 #if MYSQL_VERSION_ID < 50154
-    int_t iRv = ::mysql_options(_conn, a_option, static_cast<ctchar_t *>( a_arg ));
+    int_t iRv = ::mysql_options(_conn.get(), a_option, static_cast<ctchar_t *>( a_arg ));
 #else
-    int_t iRv = ::mysql_options(_conn, a_option, a_arg);
+    int_t iRv = ::mysql_options(_conn.get(), a_option, a_arg);
 #endif
     xTEST_EQ_MSG(0, iRv, lastErrorStr());
 }
@@ -75,7 +75,7 @@ MySqlConnection::ping(
     int_t *out_errorCode    /* = xPTR_NULL */
 ) const
 {
-    int_t iRv = ::mysql_ping( get() );
+    int_t iRv = ::mysql_ping( _conn.get() );
 
     Utils::ptrAssignT(out_errorCode, iRv);
 
@@ -133,11 +133,11 @@ MySqlConnection::connect(
     xTEST_EQ(isValid(), true);
     xTEST_NA(a_data);
 
-    _conn = ::mysql_real_connect(_conn, xT2A(a_data.host).c_str(), xT2A(a_data.user).c_str(),
+    _conn = ::mysql_real_connect(_conn.get(), xT2A(a_data.host).c_str(), xT2A(a_data.user).c_str(),
         xT2A(a_data.password).c_str(), xT2A(a_data.db).c_str(), a_data.port,
         xT2A(a_data.unixSocket).c_str(), a_data.clientFlag);
 
-    xTEST_PTR_MSG(_conn, lastErrorStr());
+    xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -157,7 +157,7 @@ MySqlConnection::query(
 
     const std::string asSqlQuery = xT2A(sqlQuery);
 
-    int_t iRv = ::mysql_real_query(_conn, asSqlQuery.data(),
+    int_t iRv = ::mysql_real_query(_conn.get(), asSqlQuery.data(),
         static_cast<ulong_t>( asSqlQuery.size() ));
     xTEST_EQ_MSG(0, iRv, lastErrorStr());
 }
@@ -167,7 +167,7 @@ MySqlConnection::fieldCount() const
 {
     xTEST_EQ(isValid(), true);
 
-    return ::mysql_field_count(_conn);
+    return ::mysql_field_count(_conn.get());
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -175,10 +175,7 @@ MySqlConnection::close()
 {
     xTEST_NA(_conn);
 
-    xCHECK_DO(!isValid(), return);
-
-    (void_t)::mysql_close(_conn);
-    _conn = xPTR_NULL;
+    _conn.close();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -194,7 +191,7 @@ MySqlConnection::lastError() const
 {
     xTEST_EQ(isValid(), true);
 
-    return ::mysql_errno(_conn);
+    return ::mysql_errno( _conn.get() );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE std::tstring_t
@@ -205,7 +202,7 @@ MySqlConnection::lastErrorStr() const
     std::tstring_t sRv;
 
     cuint_t     _lastError = lastError();
-    const char *error      = ::mysql_error(_conn);
+    const char *error      = ::mysql_error( _conn.get() );
     xTEST_PTR(error);
 
     if (_lastError == 0U) {
@@ -227,21 +224,21 @@ MySqlConnection::lastErrorStr() const
 //-------------------------------------------------------------------------------------------------
 xINLINE
 MySqlRecordset::MySqlRecordset(
-    const MySqlConnection &a_connection, ///< connection
-    cbool_t               &a_isUseResult  ///< use result or store result
+    MySqlConnection &a_connection,  ///< connection
+    cbool_t         &a_isUseResult  ///< use result or store result
 ) :
     _conn  (&a_connection),
     _result()
 {
     xTEST_EQ(isValid(), false);
-    xTEST_PTR(_conn->get());
+    xTEST_EQ(_conn->isValid(), true);
 
     if (a_isUseResult) {
-        _result = ::mysql_use_result  ( _conn->get() );
-        xTEST_PTR_MSG(_result, _conn->lastErrorStr());
+        _result = ::mysql_use_result  ( _conn->get().get() );
+        xTEST_EQ_MSG(_result.isValid(), true, _conn->lastErrorStr());
     } else {
-        _result = ::mysql_store_result( _conn->get() );
-        xTEST_PTR_MSG(_result, _conn->lastErrorStr());
+        _result = ::mysql_store_result( _conn->get().get() );
+        xTEST_EQ_MSG(_result.isValid(), true, _conn->lastErrorStr());
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -251,14 +248,11 @@ MySqlRecordset::~MySqlRecordset()
 {
     xTEST_NA(_result);
 
-    xCHECK_DO(!isValid(), return);
-
-    (void_t)::mysql_free_result(_result);
-    _result = xPTR_NULL;
+    _result.close();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE MYSQL_RES *
-MySqlRecordset::get() const
+xINLINE HandleMySqlResult &
+MySqlRecordset::get()
 {
     xTEST_EQ(isValid(), true);
 
@@ -268,7 +262,7 @@ MySqlRecordset::get() const
 xINLINE bool_t
 MySqlRecordset::isValid() const
 {
-    return (_result != xPTR_NULL);
+    return _result.isValid();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE uint_t
@@ -276,7 +270,7 @@ MySqlRecordset::fieldsNum() const
 {
     xTEST_EQ(isValid(), true);
 
-    return ::mysql_num_fields(_result);
+    return ::mysql_num_fields( _result.get() );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE my_ulonglong
@@ -284,7 +278,7 @@ MySqlRecordset::rowsNum() const
 {
     xTEST_EQ(isValid(), true);
 
-    return ::mysql_num_rows(_result);
+    return ::mysql_num_rows( _result.get() );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -295,7 +289,7 @@ MySqlRecordset::fetchField(
     xTEST_EQ(isValid(), true);
     xTEST_PTR(a_field);
 
-    a_field = ::mysql_fetch_field(_result);
+    a_field = ::mysql_fetch_field( _result.get() );
     xTEST_PTR_MSG(a_field, _conn->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
@@ -309,7 +303,7 @@ MySqlRecordset::fetchFieldDirect(
     xTEST_NA(a_fieldNumber)
     xTEST_PTR(a_field);
 
-    a_field = ::mysql_fetch_field_direct(_result, a_fieldNumber);
+    a_field = ::mysql_fetch_field_direct(_result.get(), a_fieldNumber);
     xTEST_PTR_MSG(a_field, _conn->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
@@ -321,7 +315,7 @@ MySqlRecordset::fetchFields(
     xTEST_EQ(isValid(), true);
     xTEST_PTR(a_field);
 
-    a_field = ::mysql_fetch_fields(_result);
+    a_field = ::mysql_fetch_fields(_result.get());
     xTEST_PTR_MSG(a_field, _conn->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
@@ -341,10 +335,10 @@ MySqlRecordset::fetchRow(
 
     // TODO: MySqlRecordset::fetchRow()
 #if xTODO
-    //--uint_t   fieldsNum   = mysql_num_fields   (_result);
+    //--uint_t   fieldsNum   = mysql_num_fields   (_result.get());
     uint_t     fieldsNum  = _conn->ufieldCount();
-    MYSQL_ROW  prow       = mysql_fetch_row    (_result); // array of strings
-    ulong_t   *rowLengths = mysql_fetch_lengths(_result); // TODO: MySqlRecordset::fetchRow() - may be 64-bit bug
+    MYSQL_ROW  prow       = mysql_fetch_row    (_result.get()); // array of strings
+    ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: MySqlRecordset::fetchRow() - may be 64-bit bug
 #endif
 
     fieldsNum = _conn->fieldCount();
@@ -384,7 +378,7 @@ MySqlRecordset::_fetchRow(
     xTEST_EQ(isValid(), true);
     xTEST_PTR(a_row);
 
-    *a_row = ::mysql_fetch_row(_result);
+    *a_row = ::mysql_fetch_row(_result.get());
     xTEST_NA(a_row);
     xTEST_PTR(*a_row);
 }
@@ -397,7 +391,7 @@ MySqlRecordset::_fetchLengths(
     xTEST_EQ(isValid(), true);
     xTEST_PTR(*a_fieldLengths);
 
-    *a_fieldLengths = ::mysql_fetch_lengths(_result);
+    *a_fieldLengths = ::mysql_fetch_lengths(_result.get());
     xTEST_PTR_MSG(*a_fieldLengths, _conn->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------

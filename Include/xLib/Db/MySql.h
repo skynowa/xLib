@@ -53,7 +53,7 @@ public:
     virtual       ~MySqlConnection();
         ///< destructor
 
-    MYSQL         *get() const xWARN_UNUSED_RV;
+    HandleMySqlConn &get() xWARN_UNUSED_RV;
         ///< get handle
     bool_t         isValid() const xWARN_UNUSED_RV;
         ///< validating handle
@@ -94,12 +94,12 @@ class MySqlRecordset
     /// MySql recordset
 {
 public:
-                 MySqlRecordset(const MySqlConnection &connection, cbool_t &isUseResult);
+                 MySqlRecordset(MySqlConnection &connection, cbool_t &isUseResult);
         ///< constructor
     virtual     ~MySqlRecordset();
         ///< destructor
 
-    MYSQL_RES   *get() const xWARN_UNUSED_RV;
+    HandleMySqlResult &get() xWARN_UNUSED_RV;
         ///< get handle
     bool_t       isValid() const xWARN_UNUSED_RV;
         ///< validating handle
@@ -118,7 +118,7 @@ public:
         ///< fetching row
 
 private:
-    const MySqlConnection *_conn;
+    MySqlConnection  *_conn;
         ///< pointer to connection object
     HandleMySqlResult _result;
         ///< for private use
