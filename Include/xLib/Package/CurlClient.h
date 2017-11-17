@@ -7,6 +7,8 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <curl/curl.h>
+#include <curl/easy.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, Package)
 
