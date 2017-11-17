@@ -35,6 +35,33 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/home/skynowa/Projects/xLib/Include/xLib/Package/CurlClient.h",
+			"settings":
+			{
+				"buffer_size": 673,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/skynowa/Projects/xLib/Include/xLib/Package/Readme.txt",
+			"settings":
+			{
+				"buffer_size": 46,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "https://github.com/jpbarrette/curlpp"
+			}
+		},
+		{
+			"file": "/home/skynowa/Projects/xLib/Include/xLib/Package/CurlClient.cpp",
+			"settings":
+			{
+				"buffer_size": 781,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -357,7 +384,9 @@
 	},
 	"expanded_folders":
 	[
-		"/home/skynowa/Projects/xLib"
+		"/home/skynowa/Projects/xLib",
+		"/home/skynowa/Projects/xLib/Include",
+		"/home/skynowa/Projects/xLib/Include/xLib"
 	],
 	"file_history":
 	[
@@ -529,8 +558,103 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/home/skynowa/Projects/xLib/Include/xLib/Package/CurlClient.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 673,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								56,
+								56
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"syntax": "Packages/cppStartingKit/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/skynowa/Projects/xLib/Include/xLib/Package/Readme.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 46,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								45,
+								45
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_name": "https://github.com/jpbarrette/curlpp",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"file": "/home/skynowa/Projects/xLib/Include/xLib/Package/CurlClient.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 781,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"syntax": "Packages/cppStartingKit/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -551,11 +675,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":

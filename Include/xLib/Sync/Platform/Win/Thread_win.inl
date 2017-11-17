@@ -254,7 +254,7 @@ Thread::messageWaitQueue(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Thread::_setPriority_impl(
-    const ExPriority &a_priority
+    const Priority &a_priority
 ) const
 {
     xTEST_EQ(_handle.isValid(), true);
@@ -263,10 +263,10 @@ Thread::_setPriority_impl(
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Thread::ExPriority
+xINLINE Thread::Priority
 Thread::_priority_impl() const
 {
-    Thread::ExPriority tpRv = static_cast<ExPriority>( ::GetThreadPriority(_handle.get()) );
+    Thread::Priority tpRv = static_cast<Priority>( ::GetThreadPriority(_handle.get()) );
     xTEST_DIFF(tpError, tpRv);
 
     return tpRv;

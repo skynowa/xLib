@@ -14,14 +14,14 @@ class HttpClient
     /// protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
 {
 public:
-    enum ExProtocolVersion
+    enum ProtocolVersion
         /// protocol version
     {
         pv10 = 0,
         pv11 = 1
     };
 
-    enum ExMethod
+    enum Method
         /// method
     {
         hmHead,

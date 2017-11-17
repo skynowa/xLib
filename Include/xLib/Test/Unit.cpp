@@ -9,8 +9,8 @@
 #endif
 
 #include <xLib/Debug/Exception.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/Dir.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/Dir.h>
 
 
 xNAMESPACE_BEGIN2(xl, test)

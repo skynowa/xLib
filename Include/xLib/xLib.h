@@ -66,17 +66,17 @@
 #include <xLib/Debug/Profiler.h>
 #include <xLib/Debug/AutoProfiler.h>
 
-// IO
-#include <xLib/IO/FileType.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
-#include <xLib/IO/FileTemp.h>
-#include <xLib/IO/Dir.h>
-#include <xLib/IO/Volume.h>
-#include <xLib/IO/Dll.h>
-#include <xLib/IO/Finder.h>
-#include <xLib/IO/Backup.h>
-#include <xLib/IO/Config.h>
+// Fs
+#include <xLib/Fs/FileType.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileTemp.h>
+#include <xLib/Fs/Dir.h>
+#include <xLib/Fs/Volume.h>
+#include <xLib/Fs/Dll.h>
+#include <xLib/Fs/Finder.h>
+#include <xLib/Fs/Backup.h>
+#include <xLib/Fs/Config.h>
 #include <xLib/IO/FsWatcher.h>
 
 // Ui
@@ -151,3 +151,4 @@
 #include <xLib/Package/Csv.h>
 #include <xLib/Package/Ssh2Client.h>
 #include <xLib/Package/Donate.h>
+#include <xLib/Package/CurlClient.h>

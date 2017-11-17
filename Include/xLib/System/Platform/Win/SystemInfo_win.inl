@@ -12,10 +12,10 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::ExOsType
+xINLINE SystemInfo::OsType
 SystemInfo::_os_impl()
 {
-    ExOsType otRv = otUnknown;
+    OsType otRv = otUnknown;
 
     OSVERSIONINFO info = {0};
     info.dwOSVersionInfoSize = sizeof(info);
@@ -63,7 +63,7 @@ SystemInfo::_formatOs_impl()
 {
     std::tstring_t sRv;
 
-    ExOsType type = (_osType == otUnknown) ? os() : _osType;
+    OsType type = (_osType == otUnknown) ? os() : _osType;
     switch (type) {
     case otWindows3:
         sRv = xT("Windows 3.1");
@@ -115,10 +115,10 @@ SystemInfo::_formatOs_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::ExOsArch
+xINLINE SystemInfo::OsArch
 SystemInfo::_osArch_impl()
 {
-    ExOsArch oaRv = oaUnknown;
+    OsArch oaRv = oaUnknown;
 
 #if   xARCH_BITS_32
     BOOL isFuncExist = FALSE;

@@ -160,7 +160,7 @@ Test_Thread::unit()
 
     xTEST_CASE("vSetPriority, tpGetPriority")
     {
-        const Thread::ExPriority ctpPriority = Thread::tpLowest;
+        const Thread::Priority ctpPriority = Thread::tpLowest;
 
         #if   xENV_WIN
             pthT->setPriority(ctpPriority);

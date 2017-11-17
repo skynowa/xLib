@@ -21,14 +21,11 @@ public:
     virtual       ~IHandle() {};
         ///< destructor
 
-    IHandle &      operator = (const IHandle &handle);
-        ///< operator =
-
     virtual T      get() const = 0 ;
         ///< get
     virtual void_t set(const T &handle) = 0;
         ///< set
-    virtual T      dup() const = 0;
+    virtual T      clone() const = 0;
         ///< duplicate handle
 
     virtual bool_t isValid() const = 0;
@@ -37,7 +34,7 @@ public:
         ///< attach
     virtual T      detach() = 0;
         ///< detach
-    virtual void_t close();
+    virtual void_t close() = 0;
         ///< close
 };
 

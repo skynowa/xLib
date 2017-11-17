@@ -18,7 +18,7 @@ Test_SystemInfo::unit()
 {
     xTEST_CASE("os")
     {
-        const SystemInfo::ExOsType otType = SystemInfo().os();
+        const SystemInfo::OsType otType = SystemInfo().os();
         xTEST_DIFF(SystemInfo::otUnknown, otType);
 
         #if   xENV_WIN
@@ -56,7 +56,7 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("osArch")
     {
-        SystemInfo::ExOsArch oaRes = SystemInfo::oaUnknown;
+        SystemInfo::OsArch oaRes = SystemInfo::oaUnknown;
 
         oaRes = SystemInfo().osArch();
         xTEST_DIFF(SystemInfo::oaUnknown, oaRes);
@@ -97,7 +97,7 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("cpuVendor")
     {
-        SystemInfo::ExCpuVendor cvType = SystemInfo().cpuVendor();
+        SystemInfo::CpuVendor cvType = SystemInfo().cpuVendor();
         xTEST_EQ(true, SystemInfo::cvIntel == cvType || SystemInfo::cvAmd == cvType);
     }
 

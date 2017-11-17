@@ -38,13 +38,13 @@ Test_MySql::unit()
 
     xTEST_CASE("MySqlConnection::get")
     {
-        MYSQL *handle = mysqlConn.get();
-        xTEST_PTR(handle);
+        HandleMySqlConn &handle = mysqlConn.get();
+        xTEST_EQ(handle.isValid(), true);
     }
 
     xTEST_CASE("MySqlConnection::isValid")
     {
-        m_bRv = mysqlConn.isValid();
+        m_bRv = mysqlConn.get().isValid();
         xTEST_EQ(m_bRv, true);
     }
 
@@ -169,13 +169,13 @@ Test_MySql::unit()
 
     xTEST_CASE("MySqlRecordset::get")
     {
-        MYSQL_RES *handle = mysqlRecord.get();
-        xTEST_PTR(handle);
+        HandleMySqlResult &handle = mysqlRecord.get();
+        xTEST_EQ(handle.isValid(), true);
     }
 
     xTEST_CASE("MySqlRecordset::isValid")
     {
-        m_bRv = mysqlRecord.isValid();
+        m_bRv = mysqlRecord.get().isValid();
         xTEST_EQ(m_bRv, true);
     }
 
