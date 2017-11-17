@@ -4,4 +4,3 @@ sudo apt-get install \
 	libssh2-1-dev \
 	default-libmysqlclient-dev \
 	libcurl4-openssl-dev
-	default-libmysqlclient-dev
