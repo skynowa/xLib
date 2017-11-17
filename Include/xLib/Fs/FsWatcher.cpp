@@ -11,8 +11,6 @@
 #if   xENV_WIN
     #include "Platform/Win/FsWatcher_win.inl"
 #elif xENV_UNIX
-    // #include "Platform/Unix/FsWatcher_unix.inl"
-
     #if   xENV_LINUX
         #include "Platform/Linux/FsWatcher_linux.inl"
     #elif xENV_BSD
@@ -27,7 +25,7 @@
 #include <xLib/Sync/Thread.h>
 
 
-xNAMESPACE_BEGIN2(xl, io)
+xNAMESPACE_BEGIN2(xl, fs)
 
 /**************************************************************************************************
 *   public
@@ -135,4 +133,4 @@ FsWatcher::close()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, io)
+xNAMESPACE_END2(xl, fs)
