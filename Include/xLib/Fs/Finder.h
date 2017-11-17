@@ -51,13 +51,13 @@ private:
     struct _Entry
     {
     #if   xENV_WIN
-        HANDLE handle;
+        HANDLE          handle;
         WIN32_FIND_DATA data;
 
         _Entry() : handle(xNATIVE_HANDLE_INVALID), data() {}
     #elif xENV_UNIX
-        DIR * handle;
-        dirent data;
+        DIR    *handle;
+        dirent  data;
 
         _Entry() : handle(xPTR_NULL), data() {}
     #endif
