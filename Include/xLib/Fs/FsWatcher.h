@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, io)
+xNAMESPACE_BEGIN2(xl, fs)
 
 class FsWatcher
     ///< File system watcher
@@ -53,7 +53,7 @@ xPLATFORM_IMPL:
     void_t   _close_impl();
 };
 
-xNAMESPACE_END2(xl, io)
+xNAMESPACE_END2(xl, fs)
 //-------------------------------------------------------------------------------------------------
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "FsWatcher.cpp"
