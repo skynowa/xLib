@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
 HandleT<T, valueT>::HandleT() :
-    _handle( handle_policy_t::null() )
+    _handle( null() )
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ template<typename T, HandlePolicyType valueT>
 HandleT<T, valueT>::HandleT(
     const HandleT &a_handle
 ) :
-    _handle( handle_policy_t::null() )
+    _handle( null() )
 {
     xTEST_NA(a_handle);
 
@@ -102,6 +102,13 @@ HandleT<T, valueT>::operator = (
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
 T
+HandleT<T, valueT>::null()
+{
+    return handle_policy_t::null();
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T, HandlePolicyType valueT>
+T
 HandleT<T, valueT>::get() const
 {
     return _handle;
@@ -122,7 +129,7 @@ template<typename T, HandlePolicyType valueT>
 T
 HandleT<T, valueT>::clone() const
 {
-    xCHECK_RET(!isValid(), handle_policy_t::null());
+    xCHECK_RET(!isValid(), null());
 
     return handle_policy_t::clone(_handle);
 }
@@ -154,7 +161,7 @@ HandleT<T, valueT>::detach()
 {
     T hRv = _handle;
 
-    _handle = handle_policy_t::null();
+    _handle = null();
 
     return hRv;
 }
@@ -164,7 +171,7 @@ void_t
 HandleT<T, valueT>::close()
 {
     if ( !isValid() ) {
-        _handle = handle_policy_t::null();
+        _handle = null();
         return;
     }
 
