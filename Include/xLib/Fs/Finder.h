@@ -57,7 +57,7 @@ private:
 
         _Entry() : handle(xNATIVE_HANDLE_INVALID), data() {}
     #elif xENV_UNIX
-        HandleDir_unix  handle;
+        HandleFindDir   handle;
         dirent          data;
 
         _Entry() : handle(xPTR_NULL), data() {}

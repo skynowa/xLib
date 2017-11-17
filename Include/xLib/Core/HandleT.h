@@ -96,7 +96,7 @@ typedef HandleT<FILE *,          hvStd>         HandleStd;
 typedef HandleT<MYSQL *,         hvMySqlConn>   HandleMySqlConn;
 typedef HandleT<MYSQL_RES *,     hvMySqlResult> HandleMySqlResult;
 typedef HandleT<CURL *,          hvCurl>        HandleCurl;
-typedef HandleT<DIR *,           hvDir_unix>    HandleDir_unix;
+typedef HandleT<DIR *,           hvFindDir>     HandleFindDir;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

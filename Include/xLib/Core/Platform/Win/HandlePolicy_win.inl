@@ -113,30 +113,30 @@ HandlePolicy<T, hvDll>::_close_impl(T &a_handle)
 
 
 /**************************************************************************************************
-*    public - HandlePolicy hvDir_win
+*    public - HandlePolicy hvFindDir
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, hvDir_win>::_clone_impl(const T &a_handle)
+HandlePolicy<T, hvFindDir>::_clone_impl(const T &a_handle)
 {
     return a_handle;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, hvDir_win>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, hvFindDir>::_isValid_impl(const T &a_handle)
 {
     return (a_handle != null());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-HandlePolicy<T, hvDir_win>::_close_impl(T &a_handle)
+HandlePolicy<T, hvFindDir>::_close_impl(T &a_handle)
 {
-    BOOL blRv = ::FindClose(_entry.handle);
+    BOOL blRv = ::FindClose(a_handle);
     xTEST_DIFF(blRv, FALSE);
 
     a_handle = null();
