@@ -83,7 +83,7 @@ Test_Debugger::unit()
 
     xTEST_CASE("reportMake")
     {
-        const ErrorReport::ExType type[] = {
+        const ErrorReport::Type type[] = {
             ErrorReport::rtMsgbox,
             ErrorReport::rtStdout,
             ErrorReport::rtLog

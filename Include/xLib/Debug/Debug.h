@@ -121,9 +121,18 @@
         xl::debug::SourceInfo      sourceInfo(data); \
         \
         xl::log::Trace() \
-            << xT("\t::: ")  << sourceInfo.data().funcName << xT(" :::"); \
+            << xT("\t::: ") << sourceInfo.data().funcName << xT(" :::"); \
     }
     ///< trace function (use Trace)
+#define xTRACE_FUNC_VAR(v) \
+    { \
+        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        xl::debug::SourceInfo      sourceInfo(data); \
+        \
+        xl::log::Trace() \
+            << xT("\t::: ") << sourceInfo.data().funcName << xT(": ") << xTRACE_VAR(v) << xT(" :::"); \
+    }
+    ///< trace function variable (use Trace)
 #define xNOT_IMPLEMENTED \
     { xTEST_FAIL_MSG(xT("Not implemented")); }
     ///< show not implemented message

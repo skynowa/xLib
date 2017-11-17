@@ -16,8 +16,8 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/File.h>
 
 
 xNAMESPACE_BEGIN2(xl, debug)

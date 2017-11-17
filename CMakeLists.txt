@@ -72,6 +72,11 @@ if (cmSSH2_FOUND)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${SSH2_LIBRARIES})
 endif()
 
+if (CURL_FOUND)
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${CURL_INCLUDE_DIRS})
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CURL_LIBRARIES})
+endif()
+
 if (ENV_UNIX)
     if (cmXCB_FOUND)
         set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${XCB_INCLUDE_DIR})
@@ -107,13 +112,17 @@ include(CxxFlags)
 # include(CMakeVariables)
 #--------------------------------------------------------------------------------------------------
 # definitions
-if (OPTION_CPP11)
+if     (OPTION_CPP11)
     set(CMAKE_CXX_STANDARD 11)
-
-    # add_definitions(-std=c++11)
-    set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} "-std=c++11")
+    add_definitions(-std=c++11)
+elseif (OPTION_CPP14)
+    set(CMAKE_CXX_STANDARD 14)
+    add_definitions(-std=c++14)
+elseif (OPTION_CPP17)
+    set(CMAKE_CXX_STANDARD 17)
+    add_definitions(-std=c++17)
 else()
-    set(CMAKE_CXX_STANDARD 98)  # 98, 11 and 14
+    set(CMAKE_CXX_STANDARD 98)  # 98
 endif()
 
 if (OPTION_UNICODE)

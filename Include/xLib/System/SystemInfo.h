@@ -14,7 +14,7 @@ class SystemInfo
     /// system information
 {
 public:
-    enum ExOsType
+    enum OsType
         /// OS type
     {
         otUnknown,
@@ -41,7 +41,7 @@ public:
         otMac
     };
 
-    enum ExOsArch
+    enum OsArch
         /// OS architecture
     {
         oaUnknown,
@@ -49,7 +49,7 @@ public:
         oa64bit
     };
 
-    enum ExCpuVendor
+    enum CpuVendor
         /// CPU type
     {
         cvUnknown,
@@ -63,12 +63,12 @@ public:
         ///< destructor
 
     // OS
-    ExOsType       os() xWARN_UNUSED_RV;
+    OsType         os() xWARN_UNUSED_RV;
         ///< get information about the current OS
     std::tstring_t formatOs() xWARN_UNUSED_RV;
         ///< format OS type
 
-    ExOsArch       osArch() xWARN_UNUSED_RV;
+    OsArch         osArch() xWARN_UNUSED_RV;
         ///< get OS architecture
     std::tstring_t formatOsArch() xWARN_UNUSED_RV;
         ///< format get OS architecture
@@ -86,7 +86,7 @@ public:
     ulong_t        currentCpuNum() const xWARN_UNUSED_RV;
         ///< get the number of the processor the current thread was running on during
         ///< the call to this function
-    ExCpuVendor    cpuVendor() const xWARN_UNUSED_RV;
+    CpuVendor      cpuVendor() const xWARN_UNUSED_RV;
         ///< get CPU vendor
     std::tstring_t cpuModel() const xWARN_UNUSED_RV;
         ///< get CPU model name
@@ -116,16 +116,16 @@ public:
 #endif
 
 private:
-    ExOsType       _osType;
-    ExOsArch       _osArch;
+    OsType         _osType;
+    OsArch         _osArch;
 
     xNO_COPY_ASSIGN(SystemInfo)
 
 xPLATFORM_IMPL:
     // OS
-    ExOsType       _os_impl() xWARN_UNUSED_RV;
+    OsType         _os_impl() xWARN_UNUSED_RV;
     std::tstring_t _formatOs_impl() xWARN_UNUSED_RV;
-    ExOsArch       _osArch_impl() xWARN_UNUSED_RV;
+    OsArch         _osArch_impl() xWARN_UNUSED_RV;
     std::tstring_t _hostName_impl() const xWARN_UNUSED_RV;
 
     // users

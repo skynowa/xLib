@@ -271,13 +271,13 @@ Thread::isExited()
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 Thread::setPriority(
-    const ExPriority &a_priority
+    const Priority &a_priority
 ) const
 {
     _setPriority_impl(a_priority);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Thread::ExPriority
+xINLINE Thread::Priority
 Thread::priority() const
 {
 #if   xENV_WIN
@@ -324,8 +324,8 @@ Thread::priorityUp() const
 
 #endif
 
-    ExPriority tpOldLevel  = tpError;
-    ExPriority tpiNewLevel = tpError;
+    Priority tpOldLevel  = tpError;
+    Priority tpiNewLevel = tpError;
 
     tpOldLevel = priority();
     switch (tpOldLevel) {
@@ -367,8 +367,8 @@ Thread::priorityDown() const
 
 #endif
 
-    ExPriority tpOldLevel  = tpError;
-    ExPriority tpiNewLevel = tpError;
+    Priority tpOldLevel  = tpError;
+    Priority tpiNewLevel = tpError;
 
     tpOldLevel = priority();
     switch (tpOldLevel) {
@@ -681,7 +681,7 @@ Thread::_s_jobEntry(
     // handle must be valid
     currentSleep(waitVaildHandleTimeoutMsec);
 
-    Event::ExObjectState osRv = self->_eventStarter->wait(notInfiniteTimeoutMsec);
+    Event::ObjectState osRv = self->_eventStarter->wait(notInfiniteTimeoutMsec);
     // TODO: StdStreamV2
     ///-- xTEST_EQ(Event::osSignaled, osRv);
 
@@ -737,7 +737,7 @@ Thread::_waitResumption()
         /* _state.isRunning */// n/a
     }
 
-    Event::ExObjectState osRv = _eventPause.wait();
+    Event::ObjectState osRv = _eventPause.wait();
     // TODO: StdStreamV2
     ///-- xTEST_DIFF(Event::osFailed, osRv);
     ///-- xTEST_DIFF(Event::osTimeout, osRv);

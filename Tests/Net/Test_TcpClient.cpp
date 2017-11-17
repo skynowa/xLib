@@ -16,9 +16,9 @@ xTEST_UNIT(Test_TcpClient)
 bool_t
 Test_TcpClient::unit()
 {
-    ISocket::ExAddressFamily addressFamily = ISocket::afInet;
-    ISocket::ExType          type          = ISocket::tpStream;
-    ISocket::ExProtocol      ptProtocol    = ISocket::ptIp;
+    ISocket::AddressFamily addressFamily = ISocket::afInet;
+    ISocket::Type          type          = ISocket::tpStream;
+    ISocket::Protocol      ptProtocol    = ISocket::ptIp;
 
 #if 0
 	std::ctstring_t         hostName      = xT("skynowa-pc");

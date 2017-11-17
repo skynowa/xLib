@@ -14,7 +14,7 @@
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 #include <xLib/System/Environment.h>
-#include <xLib/IO/File.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Net/CookiePv0.h>
 #include <xLib/Net/CookiePv1.h>
 
@@ -557,7 +557,7 @@ CgiEnvironment::countryCode() const
     return _countryCode;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE CgiEnvironment::ExRequestType
+xINLINE CgiEnvironment::RequestType
 CgiEnvironment::requestType() const
 {
     return _requestType;
@@ -890,7 +890,9 @@ CgiFormData::_construct()
         File         file;
         std::tstring_t buff;
 
-        file.attach(stdin, xT(""));
+        HandleStd stdIn(stdin);
+
+        file.attach(stdIn, xT(""));
 
         buff.resize(postSize);
 
@@ -901,8 +903,9 @@ CgiFormData::_construct()
 
         _formData = buff;
 
-        FILE *f = file.detach();
-        xTEST_PTR(f);
+        HandleStd f;
+        f = file.detach();
+        xTEST_EQ(f.isValid(), true);
         break;
     }
     default:

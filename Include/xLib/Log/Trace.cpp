@@ -68,7 +68,7 @@ Trace::write(
 /* virtual */
 xINLINE void_t
 Trace::write(
-    cExLevel      &a_level,
+    cLevel        &a_level,
     cptr_ctchar_t  a_format, ...
 ) const
 {
