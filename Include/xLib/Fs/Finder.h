@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/HandleT.h>
 #include <xLib/Fs/FileType.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, fs)
@@ -51,13 +52,13 @@ private:
     struct _Entry
     {
     #if   xENV_WIN
-        HANDLE          handle;
+        HandleInvalid   handle;
         WIN32_FIND_DATA data;
 
         _Entry() : handle(xNATIVE_HANDLE_INVALID), data() {}
     #elif xENV_UNIX
-        DIR    *handle;
-        dirent  data;
+        HandleDir_unix  handle;
+        dirent          data;
 
         _Entry() : handle(xPTR_NULL), data() {}
     #endif
