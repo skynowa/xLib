@@ -22,8 +22,8 @@
     #endif
 #endif
 
-#include <xLib/IO/File.h>
-#include <xLib/IO/Finder.h>
+#include <xLib/Fs/File.h>
+#include <xLib/Fs/Finder.h>
 #include <xLib/Sync/Thread.h>
 
 
@@ -66,7 +66,7 @@ FsWatcher::open(
         File file;
         file.create(it_filePath, File::omRead);
 
-        if ( !file.isValid() ) {
+        if ( !file.get().isValid() ) {
             std::tcout << "[FsWatcher] Can't open: " << it_filePath << std::endl;
             continue;
         }
