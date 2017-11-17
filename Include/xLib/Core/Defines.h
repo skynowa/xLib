@@ -641,6 +641,19 @@
 #endif
 ///@}
 //-------------------------------------------------------------------------------------------------
+///@name xFIND_DIR_HANDLE_NULL
+///@{
+#if   xENV_WIN
+    #define xFIND_DIR_HANDLE_NULL \
+        INVALID_HANDLE_VALUE
+        ///< find directory handle
+#elif xENV_UNIX
+    #define xFIND_DIR_HANDLE_NULL \
+        xPTR_NULL
+        ///< find directory handle
+#endif
+///@}
+//-------------------------------------------------------------------------------------------------
 ///@name xSOCKET_ERROR, xSOCKET_HANDLE_INVALID
 ///@{
 #if xENV_WIN
