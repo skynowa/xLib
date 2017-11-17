@@ -60,6 +60,9 @@ public:
     HandleT & operator = (const HandleT &handle);
         ///< operator =
 
+    static
+    T         null() xWARN_UNUSED_RV;
+        ///< get
     T         get() const xWARN_UNUSED_RV;
         ///< get
     void_t    set(const T &handle);
