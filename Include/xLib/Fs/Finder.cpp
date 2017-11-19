@@ -47,9 +47,9 @@ Finder::Finder(
     _shellFilter(a_shellFilter),
     _isMoveFirst(true)
 {
-    xTEST_EQ(isValid(),             false);
-    xTEST_EQ(a_rootDirPath.empty(), false);
-    xTEST_EQ(a_shellFilter.empty(), false);
+    xTEST_EQ(_entry.handle.isValid(), false);
+    xTEST_EQ(a_rootDirPath.empty(),   false);
+    xTEST_EQ(a_shellFilter.empty(),   false);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -78,7 +78,7 @@ Finder::shellFilter() const
 xINLINE std::tstring_t
 Finder::entryName() const
 {
-    xTEST_EQ(isValid(), true);
+    xTEST_EQ(_entry.handle.isValid(), true);
 
     std::tstring_t sRv = _entryName_impl();
     xTEST_EQ(sRv.empty(), false);
@@ -89,7 +89,7 @@ Finder::entryName() const
 xINLINE std::tstring_t
 Finder::entryPath() const
 {
-    xTEST_EQ(isValid(), true);
+    xTEST_EQ(_entry.handle.isValid(), true);
 
     std::tstring_t sRv;
 
@@ -101,15 +101,9 @@ Finder::entryPath() const
 xINLINE FileType::types_t
 Finder::fileTypes() const
 {
-    xTEST_EQ(isValid(), true);
+    xTEST_EQ(_entry.handle.isValid(), true);
 
     return _fileTypes_impl();
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-Finder::isValid() const
-{
-    return _isValid_impl();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t
@@ -121,7 +115,7 @@ Finder::moveNext()
         bRv = _moveFirst();
         xCHECK_RET(!bRv, false);
     } else {
-        xTEST_EQ(isValid(), true);
+        xTEST_EQ(_entry.handle.isValid(), true);
 
         bRv = _moveNext_impl();
         xCHECK_RET(!bRv, false);
@@ -135,7 +129,7 @@ Finder::close()
 {
     _isMoveFirst = true;
 
-    xCHECK_DO(!isValid(), return);
+    xCHECK_DO(!_entry.handle.isValid(), return);
 
     _close_impl();
 }
@@ -237,7 +231,7 @@ Finder::files(
 xINLINE bool_t
 Finder::_moveFirst()
 {
-    xTEST_EQ(isValid(), false);
+    xTEST_EQ(_entry.handle.isValid(), false);
 
     _isMoveFirst = false;
 
