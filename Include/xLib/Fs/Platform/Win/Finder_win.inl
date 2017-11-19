@@ -31,7 +31,7 @@ Finder::_fileTypes_impl() const
 xINLINE bool_t
 Finder::_isValid_impl() const
 {
-    xCHECK_RET(_entry.handle == xNATIVE_HANDLE_INVALID, false);
+    xCHECK_RET(!_entry.handle.isValid(), false);
     xCHECK_NA(_entry.data);
 
     return true;
@@ -40,7 +40,7 @@ Finder::_isValid_impl() const
 xINLINE bool_t
 Finder::_moveNext_impl()
 {
-    BOOL blRv = ::FindNextFile(_entry.handle, &_entry.data);
+    BOOL blRv = ::FindNextFile(_entry.handle.get(), &_entry.data);
     if (blRv == FALSE) {
         xCHECK_RET(NativeError::get() == ERROR_NO_MORE_FILES, false);
 
@@ -54,11 +54,9 @@ xINLINE void_t
 Finder::_close_impl()
 {
     // close handle
-    BOOL blRv = ::FindClose(_entry.handle);
-    xTEST_DIFF(blRv, FALSE);
+    _entry.handle.close();
 
     // clear data
-    _entry.handle = xNATIVE_HANDLE_INVALID;
     xSTRUCT_ZERO(_entry.data);
 }
 //-------------------------------------------------------------------------------------------------
@@ -75,7 +73,7 @@ Finder::_moveFirst_impl()
 {
     _entry.handle = ::FindFirstFile((rootDirPath() + Const::slash() + shellFilter()).c_str(),
         &_entry.data);
-    xCHECK_RET(_entry.handle == xNATIVE_HANDLE_INVALID, false);
+    xCHECK_RET(!_entry.handle.isValid(), false);
 
     return true;
 }

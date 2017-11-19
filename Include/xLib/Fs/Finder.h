@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/HandleT.h>
 #include <xLib/Fs/FileType.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, fs)
@@ -31,8 +32,6 @@ public:
     FileType::types_t fileTypes() const xWARN_UNUSED_RV;
         ///< file attributes
 
-    bool_t            isValid() const xWARN_UNUSED_RV;
-        ///< is valid handle
     bool_t            moveNext() xWARN_UNUSED_RV;
         ///< move next entry
     void_t            close();
@@ -50,17 +49,8 @@ public:
 private:
     struct _Entry
     {
-    #if   xENV_WIN
-        HANDLE          handle;
-        WIN32_FIND_DATA data;
-
-        _Entry() : handle(xNATIVE_HANDLE_INVALID), data() {}
-    #elif xENV_UNIX
-        DIR    *handle;
-        dirent  data;
-
-        _Entry() : handle(xPTR_NULL), data() {}
-    #endif
+        HandleFindDir   handle;
+        find_dir_data_t data;
     };
 
     _Entry            _entry;       ///< entry handle
