@@ -60,6 +60,9 @@ public:
     HandleT & operator = (const HandleT &handle);
         ///< operator =
 
+    static
+    T         null() xWARN_UNUSED_RV;
+        ///< get
     T         get() const xWARN_UNUSED_RV;
         ///< get
     void_t    set(const T &handle);
@@ -96,6 +99,7 @@ typedef HandleT<FILE *,          hvStd>         HandleStd;
 typedef HandleT<MYSQL *,         hvMySqlConn>   HandleMySqlConn;
 typedef HandleT<MYSQL_RES *,     hvMySqlResult> HandleMySqlResult;
 typedef HandleT<CURL *,          hvCurl>        HandleCurl;
+typedef HandleT<DIR *,           hvFindDir>     HandleFindDir;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

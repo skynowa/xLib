@@ -60,7 +60,7 @@ Finder::_fileTypes_impl() const
 xINLINE bool_t
 Finder::_isValid_impl() const
 {
-    xCHECK_RET(_entry.handle == xPTR_NULL, false);
+    xCHECK_RET(!_entry.handle.isValid(), false);
     xCHECK_NA(entry.data);
 
     return true;
@@ -74,7 +74,7 @@ Finder::_moveNext_impl()
     for ( ; ; ) {
         dirent *entryRv = xPTR_NULL;
 
-        iRv = ::readdir_r(_entry.handle, &_entry.data, &entryRv);
+        iRv = ::readdir_r(_entry.handle.get(), &_entry.data, &entryRv);
         xTEST_EQ(iRv, 0);
         xCHECK_RET(entryRv == xPTR_NULL, false);
 
@@ -93,11 +93,9 @@ xINLINE void_t
 Finder::_close_impl()
 {
     // close handle
-    int_t iRv = ::closedir(_entry.handle);
-    xTEST_DIFF(iRv, - 1);
+    _entry.handle.close();
 
     // clear data
-    _entry.handle = xPTR_NULL;
     xSTRUCT_ZERO(_entry.data);
 }
 //-------------------------------------------------------------------------------------------------
@@ -113,7 +111,7 @@ xINLINE bool_t
 Finder::_moveFirst_impl()
 {
     _entry.handle = ::opendir(xT2A(rootDirPath()).c_str());
-    xCHECK_RET(_entry.handle == xPTR_NULL, false);
+    xCHECK_RET(!_entry.handle.isValid(), false);
 
     bool_t bRv = moveNext();
     xCHECK_RET(!bRv, false);
