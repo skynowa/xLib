@@ -26,6 +26,7 @@ TcpClient::_setNonBlockingMode_impl(
     int_t optLen = sizeof(int_t);
 
     ::setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (char *)&optVal, optLen);
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -11,25 +11,6 @@ xNAMESPACE_BEGIN2(xl, net)
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-xINLINE void_t
-ISocket::_close_impl()
-{
-    xCHECK_DO(!isValid(), return);
-
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
-
-    int_t iRv = shutdown(_handle, SD_BOTH);
-    xTEST_DIFF(iRv, xSOCKET_ERROR);
-
-    iRv = ::closesocket(_handle);
-    xTEST_DIFF(iRv, xSOCKET_ERROR);
-
-    _handle = xSOCKET_HANDLE_INVALID;
-}
-//-------------------------------------------------------------------------------------------------
-
-
 /**************************************************************************************************
 * I/O
 *
@@ -43,7 +24,7 @@ ISocket::_send_impl(
     cint_t        &a_flags
 )
 {
-    ssize_t iRv = ::send(_handle, (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
+    ssize_t iRv = ::send(_handle.get(), (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_EQ(iRv != xSOCKET_ERROR && ISocket::nativeError() != WSAEWOULDBLOCK, true);
     xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
 
@@ -57,7 +38,7 @@ ISocket::_receive_impl(
     cint_t       &a_flags
 )
 {
-    int_t iRv = ::recv(_handle, (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
+    int_t iRv = ::recv(_handle.get(), (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_EQ(iRv != xSOCKET_ERROR && ISocket::nativeError() != WSAEWOULDBLOCK, true);
     xTEST_DIFF(iRv, 0);  // gracefully closed
     xTEST_GR_EQ(int_t(a_buffSize * sizeof(tchar_t)), iRv);
@@ -82,7 +63,7 @@ ISocket::_peerName_impl(
     SOCKADDR_IN sockAddr    = {0};
     int_t       sockAddrLen = sizeof(sockAddr);
 
-    int_t iRv = ::getpeername(_handle, Utils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
+    int_t iRv = ::getpeername(_handle.get(), Utils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
         &sockAddrLen);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 
@@ -107,7 +88,7 @@ ISocket::_socketName_impl(
     SOCKADDR_IN sockAddr     = {0};
     int_t       sockAddrLen = sizeof(sockAddr);
 
-    int_t iRv = ::getsockname(_handle, Utils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
+    int_t iRv = ::getsockname(_handle.get(), Utils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
         &sockAddrLen);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 
