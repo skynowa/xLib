@@ -4,6 +4,9 @@
  */
 
 
+#include <xLib/System/Shell.h>
+
+
 xNAMESPACE_BEGIN2(xl, fs)
 
 /**************************************************************************************************
@@ -96,6 +99,8 @@ FsWatcher::_watch_impl()
                     exit(0);
                     break;
                 }
+            #else
+                Shell::execute(scriptPath.c_str(), std::tstring_t());
             #endif
 
                 break;
