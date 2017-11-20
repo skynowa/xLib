@@ -29,7 +29,7 @@ void_t
 FsWatcher::_watch_impl()
 {
     _kQueue = ::kqueue();
-    if (_kQueue == - 1) {
+    if ( !_kQueue.isValid() ) {
         std::tcout << "[FsWatcher] kqueue: fail" << std::endl;
         return;
     }
@@ -55,7 +55,7 @@ FsWatcher::_watch_impl()
         }
 
         struct kevent event {};
-        int_t kEvent = ::kevent(_kQueue, change, _filePaths.size(), &event, 1, nullptr);
+        int_t kEvent = ::kevent(_kQueue.get(), change, _filePaths.size(), &event, 1, nullptr);
         if (kEvent == - 1 || kEvent == 0) {
             std::tcout << "[FsWatcher] kevent: fail - " << kEvent << std::endl;
             return;
@@ -129,10 +129,7 @@ xINLINE
 void_t
 FsWatcher::_close_impl()
 {
-    if (_kQueue != - 1) {
-        ::close(_kQueue);
-        _kQueue = - 1;
-    }
+    _kQueue.close();
 
     for (size_t i = 0; i < _fileHandles.size(); ++ i) {
         if (_fileHandles[i] <= 0) {
