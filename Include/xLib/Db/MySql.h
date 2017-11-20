@@ -6,15 +6,9 @@
 
 #pragma once
 
-#if xENV_WIN
-    #include <mysql.h>
-    #include <errmsg.h>
-    #include <mysqld_error.h>
-#else
-    #include <mysql/mysql.h>
-    #include <mysql/errmsg.h>
-    #include <mysql/mysqld_error.h>
-#endif
+#include <mysql/mysql.h>
+#include <mysql/errmsg.h>
+#include <mysql/mysqld_error.h>
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/HandleT.h>
