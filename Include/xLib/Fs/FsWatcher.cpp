@@ -52,8 +52,7 @@ FsWatcher::~FsWatcher()
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
-bool_t
+xINLINE bool_t
 FsWatcher::open(
     std::cvec_tstring_t &a_filePaths,
     std::cmap_tstring_t &a_cmds
@@ -83,14 +82,13 @@ FsWatcher::open(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
-bool
+xINLINE bool_t
 FsWatcher::openDirs(
     std::cvec_tstring_t &a_dirPaths,
     std::cmap_tstring_t &a_cmds
 )
 {
-    bool bRv = false;
+    bool_t bRv = false;
 
     for (auto &it_dirPath : a_dirPaths) {
         std::vec_tstring_t filePaths;
@@ -110,8 +108,7 @@ FsWatcher::openDirs(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
-void_t
+xINLINE void_t
 FsWatcher::watch(
     cint_t a_timeoutMsec
 )
@@ -121,8 +118,7 @@ FsWatcher::watch(
     Thread::currentSleep(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
-void_t
+xINLINE void_t
 FsWatcher::close()
 {
     _close_impl();

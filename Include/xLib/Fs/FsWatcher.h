@@ -20,8 +20,8 @@ public:
     virtual ~FsWatcher();
         ///< destructor
 
-    bool     open(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);
-    bool     openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &cmds);
+    bool_t   open(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);
+    bool_t   openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &cmds);
     void_t   watch(cint_t timeoutMsec);
     void_t   close();
 
@@ -42,7 +42,7 @@ xPLATFORM_IMPL:
     #if   xENV_LINUX
 
     #elif xENV_BSD
-        int_t           _kQueue {-1};
+        HandleInvalid   _kQueue;
     #elif xENV_APPLE
 
     #endif
