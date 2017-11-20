@@ -100,7 +100,8 @@ FsWatcher::_watch_impl()
                     break;
                 }
             #else
-                Shell::execute(scriptPath.c_str(), std::tstring_t());
+                Shell shell;
+                shell.execute(scriptPath.c_str(), std::tstring_t());
             #endif
 
                 break;
