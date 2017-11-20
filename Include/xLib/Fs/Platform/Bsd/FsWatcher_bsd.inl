@@ -92,6 +92,10 @@ FsWatcher::_watch_impl()
 
             #if 0
                 int_t ret = std::system( scriptPath.c_str() );
+            #else
+                Shell shell;
+                int_t ret = shell.execute(scriptPath.c_str(), std::tstring_t());
+            #endif
                 if (WIFSIGNALED(ret) && (WTERMSIG(ret) == SIGINT || WTERMSIG(ret) == SIGQUIT) /* iRv != 0 */) {
                     std::tcout << "[FsWatcher] "
                         << "System error: " << strerror(errno) << ", "
@@ -99,10 +103,6 @@ FsWatcher::_watch_impl()
                     exit(0);
                     break;
                 }
-            #else
-                Shell shell;
-                shell.execute(scriptPath.c_str(), std::tstring_t());
-            #endif
 
                 break;
             } // for (_cmds)

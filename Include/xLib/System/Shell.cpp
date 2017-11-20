@@ -51,6 +51,14 @@ Shell::isAvailable() const
 //-------------------------------------------------------------------------------------------------
 xINLINE int_t
 Shell::execute(
+    std::ctstring_t &a_filePath ///< file path to binary file
+) const
+{
+    return execute(a_filePath, std::tstring_t());
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE int_t
+Shell::execute(
     std::ctstring_t &a_filePath,   ///< file path to binary file
     std::ctstring_t &a_params      ///< command line params for binary file
 ) const
