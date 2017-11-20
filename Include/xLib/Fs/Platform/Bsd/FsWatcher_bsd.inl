@@ -88,9 +88,9 @@ FsWatcher::_watch_impl()
                 std::tcout << "\n\n::::::::::::::: " << subProjectName << " :::::::::::::::\n" << std::endl;
                 std::tcout << "[FsWatcher] File modified: " << data << std::endl << std::endl;
 
-            #if 1
                 ::sleep(1);
 
+            #if 0
                 int_t ret = std::system( scriptPath.c_str() );
                 if (WIFSIGNALED(ret) && (WTERMSIG(ret) == SIGINT || WTERMSIG(ret) == SIGQUIT) /* iRv != 0 */) {
                     std::tcout << "[FsWatcher] "
