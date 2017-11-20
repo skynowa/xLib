@@ -49,7 +49,15 @@ Shell::isAvailable() const
     return _isAvailable_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+xINLINE int_t
+Shell::execute(
+    std::ctstring_t &a_filePath ///< file path to binary file
+) const
+{
+    return execute(a_filePath, std::tstring_t());
+}
+//-------------------------------------------------------------------------------------------------
+xINLINE int_t
 Shell::execute(
     std::ctstring_t &a_filePath,   ///< file path to binary file
     std::ctstring_t &a_params      ///< command line params for binary file
@@ -58,14 +66,17 @@ Shell::execute(
     xTEST_NA(a_filePath);
     xTEST_NA(a_params);
 
-    xCHECK_DO(a_filePath.empty(), return);
-    xCHECK_DO(!isAvailable(),     return);
+    xCHECK_RET(a_filePath.empty(), -1);
+    xCHECK_RET(!isAvailable(),     -1);
 
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
-    std::ctstring_t cmd = Format::str(xT("{} \"{}\""), a_filePath, a_params);
+    std::ctstring_t cmd = a_params.empty() ?
+        a_filePath : Format::str(xT("{} \"{}\""), a_filePath, a_params);
 
     int_t iRv = xTSYSTEM(cmd.c_str());
-    xTEST_DIFF(iRv, - 1);
+    xTEST_DIFF(iRv, -1);
+
+    return iRv;
 }
 //-------------------------------------------------------------------------------------------------
 

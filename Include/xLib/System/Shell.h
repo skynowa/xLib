@@ -27,8 +27,10 @@ public:
 
     bool_t     isAvailable() const xWARN_UNUSED_RV;
         ///< is available
-    void_t     execute(std::ctstring_t &filePath, std::ctstring_t &params) const;
-        ///< execute file
+    int_t      execute(std::ctstring_t &filePath) const;
+        ///< execute file (no params)
+    int_t      execute(std::ctstring_t &filePath, std::ctstring_t &params) const;
+        ///< execute file (with params)
 
 #if xENV_WIN
     enum Operation
