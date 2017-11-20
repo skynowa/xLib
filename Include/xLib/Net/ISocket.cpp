@@ -35,7 +35,7 @@ xNAMESPACE_BEGIN2(xl, net)
 //-------------------------------------------------------------------------------------------------
 xINLINE
 ISocket::ISocket() :
-    _handle(xSOCKET_HANDLE_INVALID),
+    _handle(),
     _family(- 1),
     _ip    (),
     _port  (0)
@@ -45,7 +45,6 @@ ISocket::ISocket() :
 xINLINE
 ISocket::~ISocket()
 {
-    close();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -63,18 +62,18 @@ ISocket::create(
     cProtocol      &a_protocol
 )
 {
-    xTEST_EQ(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), false);
 
     _handle = ::socket(a_family, a_type, a_protocol);
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_DIFF(_handle.isValid(), true);
 
     _family = a_family;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE socket_t
-ISocket::handle() const
+xINLINE HandleSocket &
+ISocket::handle()
 {
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), true);
 
     return _handle;
 }
@@ -85,10 +84,10 @@ ISocket::isReadable() const
     timeval timeoutVal = {1, 0};
     fd_set  fds;         FD_ZERO(&fds);
 
-    FD_SET(_handle, &fds);
+    FD_SET(_handle.get(), &fds);
 
     int_t iRv = ::select(0, &fds, xPTR_NULL, xPTR_NULL, &timeoutVal);
-    xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle, &fds), false);
+    xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle.get(), &fds), false);
 
     return true;
 }
@@ -99,20 +98,12 @@ ISocket::isWritable() const
     timeval timeoutVal = {1, 0};
     fd_set  fds;         FD_ZERO(&fds);
 
-    FD_SET(_handle, &fds);
+    FD_SET(_handle.get(), &fds);
 
     int_t iRv = ::select(0, xPTR_NULL, &fds, xPTR_NULL, &timeoutVal);
-    xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle, &fds), false);
+    xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle.get(), &fds), false);
 
     return true;
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-ISocket::isValid() const
-{
-    // n/a
-
-    return (_handle >= 0);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
@@ -129,11 +120,9 @@ ISocket::assign(
 xINLINE void_t
 ISocket::close()
 {
-    xCHECK_DO(!isValid(), return);
+    xTESTS_NA;
 
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
-
-    _close_impl();
+    _handle.close();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -153,7 +142,7 @@ ISocket::send(
 {
     // TODO: ISocket::send() - LINUX: ssize_t send(int_t sockfd, cptr_cvoid_t buf, size_t len, int_t flags);
 
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), true);
     xTEST_PTR(a_buff);
     /////xTEST_LESS(0, ::lstrlen(buff));
 
@@ -166,7 +155,7 @@ ISocket::sendAll(
     cint_t          &a_flags
 )
 {
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), true);
     xTEST_EQ(a_buff.empty(), false);
     xTEST_LESS(size_t(0U), a_buff.size());
 
@@ -207,7 +196,7 @@ ISocket::receive(
     cint_t       &a_flags
 )
 {
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), true);
     xTEST_PTR(a_buff);
     xTEST_DIFF(a_buffSize, (size_t)0);
 
@@ -231,12 +220,12 @@ ISocket::recvAll(
         int_t   iRv = - 1;
         ulong_t arg = (ulong_t)a_flags;
 
-        iRv = xIOCTLSOCKET(_handle, FIONREAD, &arg);
+        iRv = xIOCTLSOCKET(_handle.get(), FIONREAD, &arg);
         xCHECK_DO(iRv != 0,       break);
         xCHECK_DO(arg == 0,       break);
         xCHECK_DO(buffSize < arg, arg = buffSize);
 
-        ssize_t uiRv = ::recv(_handle, (char *)&buff[0], arg, 0);
+        ssize_t uiRv = ::recv(_handle.get(), (char *)&buff[0], arg, 0);
         xCHECK_DO(uiRv <= 0, break);
 
         sRv.append(buff, static_cast<std::size_t>(uiRv));
@@ -289,7 +278,7 @@ ISocket::sendBytes(
     sendTimeout.tv_usec = SOCKET_TIMEOUT;
 
     fd_set fds;    FD_ZERO(&fds);
-    FD_SET(_handle, &fds);
+    FD_SET(_handle.get(), &fds);
 
     // ..as long_t as we need to send data...
     while (messageLength > 0) {
@@ -302,7 +291,7 @@ ISocket::sendBytes(
         xCHECK_RET(iRv < 0, nativeError());
 
         // send a few bytes
-        sendStatus = ::send(_handle, a_buff, static_cast<std::size_t>(messageLength), 0);
+        sendStatus = ::send(_handle.get(), a_buff, static_cast<std::size_t>(messageLength), 0);
 
         // An error occurred when sending data
         xCHECK_RET(sendStatus < 0, nativeError());
@@ -331,7 +320,7 @@ ISocket::receiveBytes(
     receiveTimeout.tv_usec = SOCKET_TIMEOUT;
 
     fd_set fds;    FD_ZERO(&fds);
-    FD_SET(_handle, &fds);
+    FD_SET(_handle.get(), &fds);
 
     // Until the data is sent
     while (stillToReceive > 0) {
@@ -344,7 +333,7 @@ ISocket::receiveBytes(
         xCHECK_RET(iRv < 0, nativeError());
 
         // receive a few bytes
-        receiveStatus = ::recv(_handle, a_buff, static_cast<std::size_t>(stillToReceive), 0);
+        receiveStatus = ::recv(_handle.get(), a_buff, static_cast<std::size_t>(stillToReceive), 0);
 
         // An error occurred when the function recv ()
         xCHECK_RET(receiveStatus < 0, nativeError());

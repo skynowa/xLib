@@ -38,6 +38,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/HandleT.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, net)
 
@@ -243,14 +244,12 @@ public:
 
     void_t         create(cAddressFamily &family, cType &type, cProtocol &protocol);
         ///< creates a socket that is bound to a specific transport service provider
-    socket_t       handle() const xWARN_UNUSED_RV;
+    HandleSocket  &handle() xWARN_UNUSED_RV;
         ///< get handle
     bool_t         isReadable() const xWARN_UNUSED_RV;
         ///< checking for readability
     bool_t         isWritable() const xWARN_UNUSED_RV;
         ///< checking for writability
-    bool_t         isValid() const xWARN_UNUSED_RV;
-        ///< checking for validness
     void_t         assign(csocket_t &handle);
         ///< assign to another handle
     void_t         close();
@@ -308,7 +307,7 @@ public:
         ///< get error status for the last operation that failed
 
 protected:
-    socket_t       _handle;   ///< socket handle
+    HandleSocket   _handle;   ///< socket handle
     short_t        _family;   ///< family
     std::tstring_t _ip;       ///< IP
     ushort_t       _port;     ///< port
