@@ -48,7 +48,7 @@ Test_File::unit()
     xTEST_CASE("operator =")
     {
         for (size_t i = 0; i < 10; ++ i) {
-            HandleStd _handle;
+            HandleStdFile _handle;
             xTEST_EQ(_handle.isValid(), false);
 
             {
@@ -110,7 +110,7 @@ Test_File::unit()
     xTEST_CASE("attach")
     {
     #if xTEMP_DISABLED
-        HandleStd handle(stdout);
+        HandleStdFile handle(stdout);
 
         std::ctstring_t filePath;
 
@@ -120,7 +120,7 @@ Test_File::unit()
         m_bRv = file.isValid();
         xTEST_EQ(m_bRv, true);
 
-        HandleStd stdFile;
+        HandleStdFile stdFile;
         stdFile = file.detach();
         xTEST_EQ(stdFile.isValid(), true);
         xTEST_EQ(stdout, stdFile.get());

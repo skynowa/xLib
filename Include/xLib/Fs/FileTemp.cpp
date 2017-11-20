@@ -75,7 +75,7 @@ FileTemp::create(
     Dir(a_dirPath).pathCreate();
     _filePath = Path(a_dirPath).slashAppend() + Path(a_filePath).fileName() + fileNameTemplate;
 
-    HandleStd stdFile;
+    HandleStdFile stdFile;
     _create_impl(stdFile);
     xTEST_EQ(stdFile.isValid(), true);
 

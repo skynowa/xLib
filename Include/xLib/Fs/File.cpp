@@ -119,7 +119,7 @@ File::reopen(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE HandleStd &
+xINLINE HandleStdFile &
 File::get()
 {
     xTEST_EQ(_handle.isValid(), true);
@@ -146,8 +146,8 @@ File::path() const
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 File::attach(
-    const HandleStd &a_handle,
-    std::ctstring_t &a_filePath
+    const HandleStdFile &a_handle,
+    std::ctstring_t     &a_filePath
 )
 {
     xTEST_EQ(a_handle.isValid(), true);
@@ -159,10 +159,10 @@ File::attach(
     _filePath = a_filePath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE HandleStd &
+xINLINE HandleStdFile &
 File::detach()
 {
-    HandleStd &handle = _handle;
+    HandleStdFile &handle = _handle;
 
     _handle = xPTR_NULL;
     _filePath.clear();
