@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 FileTemp::_create_impl(
-    HandleStd &a_stdFile
+    HandleStdFile &a_stdFile
 )
 {
 #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR

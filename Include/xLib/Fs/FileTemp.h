@@ -33,7 +33,7 @@ private:
     xNO_COPY_ASSIGN(FileTemp)
 
 xPLATFORM_IMPL:
-    void_t          _create_impl(HandleStd &stdFile);
+    void_t          _create_impl(HandleStdFile &stdFile);
 };
 
 xNAMESPACE_END2(xl, fs)

@@ -123,15 +123,15 @@ public:
         ///< open
     void_t         reopen(std::ctstring_t &filePath, const OpenMode &mode);
         ///< reopen with different file or mode
-    HandleStd     &get() xWARN_UNUSED_RV;
+    HandleStdFile &get() xWARN_UNUSED_RV;
         ///< get handle
     int_t          getNative() const xWARN_UNUSED_RV;
         ///< get native file descriptor associated with a stream
     std::tstring_t path() const xWARN_UNUSED_RV;
         ///< get file path
-    void_t         attach(const HandleStd &handle, std::ctstring_t &filePath);
+    void_t         attach(const HandleStdFile &handle, std::ctstring_t &filePath);
         ///< attach to stream
-    HandleStd     &detach() xWARN_UNUSED_RV;
+    HandleStdFile &detach() xWARN_UNUSED_RV;
         ///< detach from stream
 
     // read, write
@@ -289,7 +289,7 @@ public:
         ///< write binary data
 
 private:
-    HandleStd      _handle;         ///< file handle
+    HandleStdFile  _handle;         ///< file handle
     std::tstring_t _filePath;       ///< file path
     cbool_t        _isUseBuffering; ///< is use buffering
 

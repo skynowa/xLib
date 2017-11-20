@@ -890,7 +890,7 @@ CgiFormData::_construct()
         File         file;
         std::tstring_t buff;
 
-        HandleStd stdIn(stdin);
+        HandleStdFile stdIn(stdin);
 
         file.attach(stdIn, xT(""));
 
@@ -903,7 +903,7 @@ CgiFormData::_construct()
 
         _formData = buff;
 
-        HandleStd f;
+        HandleStdFile f;
         f = file.detach();
         xTEST_EQ(f.isValid(), true);
         break;
