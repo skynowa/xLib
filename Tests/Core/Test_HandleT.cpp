@@ -24,7 +24,7 @@ Test_HandleT::unit()
         HandleInvalid objInvalidHandle;
         xTEST_EQ(false, objInvalidHandle.isValid());
 
-        HandleStd objStdHandle;
+        HandleStdFile objStdHandle;
         xTEST_EQ(false, objStdHandle.isValid());
     }
 
