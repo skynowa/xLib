@@ -89,7 +89,7 @@ FsWatcher::openDirs(
 
     for (auto &it_dirPath : a_dirPaths) {
         std::vec_tstring_t filePaths;
-        Finder::files(it_dirPath, xT("*.cc"), true, &filePaths);
+        Finder::files(it_dirPath, _shellFilter, true, &filePaths);
         if ( filePaths.empty() ) {
             continue;
         }
