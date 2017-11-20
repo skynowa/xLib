@@ -22,7 +22,7 @@ enum HandlePolicyType
     hvInvalid = -1, ///< like "invalid"
     hvNull,         ///< like "null"
     hvDll,          ///< DLL
-    hvStd,          ///< like xPTR_NULL
+    hvStdFile,          ///< like xPTR_NULL
     hvMySqlConn,    ///< MySQL connection
     hvMySqlResult,  ///< MySQL result
     hvCurl,         ///< CURL
@@ -85,7 +85,7 @@ struct HandlePolicy;
 xHANDLE_POLICY_FACTORY(hvInvalid);
 xHANDLE_POLICY_FACTORY(hvNull);
 xHANDLE_POLICY_FACTORY(hvDll);
-xHANDLE_POLICY_FACTORY(hvStd);
+xHANDLE_POLICY_FACTORY(hvStdFile);
 xHANDLE_POLICY_FACTORY(hvMySqlConn);
 xHANDLE_POLICY_FACTORY(hvMySqlResult);
 xHANDLE_POLICY_FACTORY(hvCurl);
@@ -95,7 +95,7 @@ xHANDLE_POLICY_FACTORY(hvSocket);
 xHANDLE_POLICY_FACTORY_IMPL(hvInvalid,     xNATIVE_HANDLE_INVALID);
 xHANDLE_POLICY_FACTORY_IMPL(hvNull,        xNATIVE_HANDLE_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvDll,         xPTR_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvStd,         xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvStdFile,     xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvMySqlConn,   xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvMySqlResult, xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvCurl,        xPTR_NULL);
@@ -105,7 +105,7 @@ xHANDLE_POLICY_FACTORY_IMPL(hvSocket,      xSOCKET_HANDLE_INVALID);
 typedef HandleT<native_handle_t, hvInvalid>     HandleInvalid;
 typedef HandleT<native_handle_t, hvNull>        HandleNull;
 typedef HandleT<dll_handle_t,    hvDll>         HandleDll;
-typedef HandleT<FILE *,          hvStd>         HandleStd;
+typedef HandleT<FILE *,          hvStdFile>     HandleStdFile;
 typedef HandleT<MYSQL *,         hvMySqlConn>   HandleMySqlConn;
 typedef HandleT<MYSQL_RES *,     hvMySqlResult> HandleMySqlResult;
 typedef HandleT<CURL *,          hvCurl>        HandleCurl;
