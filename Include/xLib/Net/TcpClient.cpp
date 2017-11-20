@@ -47,7 +47,7 @@ TcpClient::connect(
     cushort_t       &a_port
 ) const
 {
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), true);
     xTEST_EQ(a_ip.empty(), false);
     xTEST_EQ((65535 > a_port) && (0 < a_port), true);
 
@@ -56,7 +56,7 @@ TcpClient::connect(
     sockAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_ip).c_str());
     sockAddr.sin_port        = htons(a_port); // TODO: TcpClient::connect() - htons
 
-    int_t iRv = ::connect(_handle, Utils::reinterpretCastT<sockaddr *>( &sockAddr ),
+    int_t iRv = ::connect(_handle.get(), Utils::reinterpretCastT<sockaddr *>( &sockAddr ),
         sizeof(sockAddr));
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 }
@@ -67,9 +67,9 @@ TcpClient::ioctl(
     ulong_t *a_args
 ) const
 {
-    xTEST_DIFF(xSOCKET_HANDLE_INVALID, _handle);
+    xTEST_EQ(_handle.isValid(), true);
 
-    int_t iRv = xIOCTLSOCKET(_handle, static_cast<ulong_t>(a_command), a_args);
+    int_t iRv = xIOCTLSOCKET(_handle.get(), static_cast<ulong_t>(a_command), a_args);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 }
 //-------------------------------------------------------------------------------------------------
@@ -133,7 +133,7 @@ TcpClient::isServerAlive(
     sockAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_ip).c_str());
     sockAddr.sin_port        = htons(a_port); // TODO: TcpClient::isServerAlive() - htons
 
-    int_t iRv = ::connect(client.handle(), Utils::reinterpretCastT<sockaddr *>( &sockAddr ),
+    int_t iRv = ::connect(client.handle().get(), Utils::reinterpretCastT<sockaddr *>( &sockAddr ),
         sizeof(sockAddr));
     xTEST_NA(iRv);
 
