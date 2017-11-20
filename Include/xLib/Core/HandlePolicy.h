@@ -6,6 +6,12 @@
 
 #pragma once
 
+#include <mysql/mysql.h>
+#include <mysql/errmsg.h>
+#include <mysql/mysqld_error.h>
+
+#include <curl/curl.h>
+
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
@@ -23,6 +29,10 @@ enum HandlePolicyType
     hvFindDir     = 7,    ///< Dir find
     hvSocket      = 8     ///< Socket
 };
+
+template<typename T, HandlePolicyType valueT>
+class HandleT;
+    /// handle
 
 template<typename T, HandlePolicyType valueT>
 struct HandlePolicy;
@@ -91,6 +101,16 @@ xHANDLE_POLICY_FACTORY_IMPL(hvMySqlResult, xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvCurl,        xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvFindDir,     xFIND_DIR_HANDLE_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvSocket,      xSOCKET_HANDLE_INVALID);
+
+typedef HandleT<native_handle_t, hvInvalid>     HandleInvalid;
+typedef HandleT<native_handle_t, hvNull>        HandleNull;
+typedef HandleT<dll_handle_t,    hvDll>         HandleDll;
+typedef HandleT<FILE *,          hvStd>         HandleStd;
+typedef HandleT<MYSQL *,         hvMySqlConn>   HandleMySqlConn;
+typedef HandleT<MYSQL_RES *,     hvMySqlResult> HandleMySqlResult;
+typedef HandleT<CURL *,          hvCurl>        HandleCurl;
+typedef HandleT<DIR *,           hvFindDir>     HandleFindDir;
+typedef HandleT<socket_t,        hvSocket>      HandleSocket;
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
