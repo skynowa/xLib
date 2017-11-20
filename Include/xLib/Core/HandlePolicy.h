@@ -19,15 +19,15 @@ xNAMESPACE_BEGIN2(xl, core)
 enum HandlePolicyType
     /// error handle type
 {
-    hvInvalid     = - 1,  ///< like "invalid"
-    hvNull        = 0,    ///< like "null"
-    hvDll         = 1,    ///< DLL
-    hvStd         = 2,    ///< like xPTR_NULL
-    hvMySqlConn   = 3,    ///< MySQL connection
-    hvMySqlResult = 4,    ///< MySQL result
-    hvCurl        = 5,    ///< CURL
-    hvFindDir     = 7,    ///< Dir find
-    hvSocket      = 8     ///< Socket
+    hvInvalid = -1, ///< like "invalid"
+    hvNull,         ///< like "null"
+    hvDll,          ///< DLL
+    hvStd,          ///< like xPTR_NULL
+    hvMySqlConn,    ///< MySQL connection
+    hvMySqlResult,  ///< MySQL result
+    hvCurl,         ///< CURL
+    hvFindDir,      ///< Dir find
+    hvSocket        ///< Socket
 };
 
 template<typename T, HandlePolicyType valueT>
