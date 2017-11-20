@@ -93,7 +93,7 @@ Ssh2Client::connect()
     _session = ::libssh2_session_init();
     xTEST_PTR(_session);
 
-    while ((iRv = ::libssh2_session_startup(_session, _tcpClient.handle())) == LIBSSH2_ERROR_EAGAIN) {
+    while ((iRv = ::libssh2_session_startup(_session, _tcpClient.handle().get())) == LIBSSH2_ERROR_EAGAIN) {
         _wait(waitTimeoutSec);
     }
     xTEST_EQ(iRv, 0);
@@ -411,7 +411,7 @@ Ssh2Client::_wait(
 
     fd_set fd;
     FD_ZERO(&fd);
-    FD_SET(_tcpClient.handle(), &fd);
+    FD_SET(_tcpClient.handle().get(), &fd);
 
     // now make sure we wait in the correct direction
     cint_t directions = ::libssh2_session_block_directions(_session);
@@ -426,7 +426,7 @@ Ssh2Client::_wait(
         writefd = &fd;
     }
 
-    iRv = ::select(_tcpClient.handle() + 1, readfd, writefd, xPTR_NULL, &timeout);
+    iRv = ::select(_tcpClient.handle().get() + 1, readfd, writefd, xPTR_NULL, &timeout);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------

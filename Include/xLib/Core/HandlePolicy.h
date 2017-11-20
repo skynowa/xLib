@@ -17,13 +17,11 @@ enum HandlePolicyType
     hvNull        = 0,    ///< like "null"
     hvDll         = 1,    ///< DLL
     hvStd         = 2,    ///< like xPTR_NULL
-
     hvMySqlConn   = 3,    ///< MySQL connection
     hvMySqlResult = 4,    ///< MySQL result
-
     hvCurl        = 5,    ///< CURL
-
-    hvFindDir     = 7     ///< Dir find
+    hvFindDir     = 7,    ///< Dir find
+    hvSocket      = 8     ///< Socket
 };
 
 template<typename T, HandlePolicyType valueT>
@@ -82,6 +80,7 @@ xHANDLE_POLICY_FACTORY(hvMySqlConn);
 xHANDLE_POLICY_FACTORY(hvMySqlResult);
 xHANDLE_POLICY_FACTORY(hvCurl);
 xHANDLE_POLICY_FACTORY(hvFindDir);
+xHANDLE_POLICY_FACTORY(hvSocket);
 
 xHANDLE_POLICY_FACTORY_IMPL(hvInvalid,     xNATIVE_HANDLE_INVALID);
 xHANDLE_POLICY_FACTORY_IMPL(hvNull,        xNATIVE_HANDLE_NULL);
@@ -91,6 +90,7 @@ xHANDLE_POLICY_FACTORY_IMPL(hvMySqlConn,   xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvMySqlResult, xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvCurl,        xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvFindDir,     xFIND_DIR_HANDLE_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvSocket,      xSOCKET_HANDLE_INVALID);
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

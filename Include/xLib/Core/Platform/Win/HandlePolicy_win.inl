@@ -143,4 +143,39 @@ HandlePolicy<T, hvFindDir>::_close_impl(T &a_handle)
 }
 //-------------------------------------------------------------------------------------------------
 
+
+/**************************************************************************************************
+*    public - HandlePolicy hvSocket
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+T
+HandlePolicy<T, hvSocket>::_clone_impl(const T &a_handle)
+{
+    return a_handle;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+bool_t
+HandlePolicy<T, hvSocket>::_isValid_impl(const T &a_handle)
+{
+    return (a_handle >= 0);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+void_t
+HandlePolicy<T, hvSocket>::_close_impl(T &a_handle)
+{
+    int_t iRv = shutdown(a_handle, SD_BOTH);
+    xTEST_DIFF(iRv, xSOCKET_ERROR);
+
+    iRv = ::closesocket(a_handle);
+    xTEST_DIFF(iRv, xSOCKET_ERROR);
+
+    a_handle = null();
+}
+//-------------------------------------------------------------------------------------------------
+
 xNAMESPACE_END2(xl, core)
