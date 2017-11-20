@@ -41,15 +41,12 @@ FsWatcher::FsWatcher(
     _dirPathsDisabled(a_dirPathsDisabled),
     _shellFilter     (a_shellFilter)
 {
-    _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
 FsWatcher::~FsWatcher()
 {
     close();
-
-    _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE bool_t

@@ -48,8 +48,6 @@ xPLATFORM_IMPL:
     #endif
 #endif
 
-    void_t   _construct_impl();
-    void_t   _destruct_impl();
     void_t   _watch_impl();
     void_t   _close_impl();
 };
