@@ -62,7 +62,8 @@ Shell::execute(
     xCHECK_DO(!isAvailable(),     return);
 
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
-    std::ctstring_t cmd = Format::str(xT("{} \"{}\""), a_filePath, a_params);
+    std::ctstring_t cmd = a_params.empty() ?
+        a_filePath : Format::str(xT("{} \"{}\""), a_filePath, a_params);
 
     int_t iRv = xTSYSTEM(cmd.c_str());
     xTEST_DIFF(iRv, - 1);
