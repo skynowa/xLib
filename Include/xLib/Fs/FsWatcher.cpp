@@ -107,7 +107,7 @@ FsWatcher::openDirs(
 //-------------------------------------------------------------------------------------------------
 xINLINE void_t
 FsWatcher::watch(
-    cint_t a_timeoutMsec
+    culong_t a_timeoutMsec
 )
 {
     _watch_impl();

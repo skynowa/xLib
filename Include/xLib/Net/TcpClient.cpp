@@ -52,7 +52,7 @@ TcpClient::connect(
     xTEST_EQ((65535 > a_port) && (0 < a_port), true);
 
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
-    sockAddr.sin_family      = static_cast<ushort_t>(_family);
+    sockAddr.sin_family      = static_cast<sa_family_t>(_family);
     sockAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_ip).c_str());
     sockAddr.sin_port        = htons(a_port); // TODO: TcpClient::connect() - htons
 

@@ -45,14 +45,14 @@ FsWatcher::_watch_impl()
         }
 
         struct kevent event {};
-        int_t kEvent = ::kevent(_kQueue.get(), change, _filePaths.size(), &event, 1, nullptr);
+        int_t kEvent = ::kevent(_kQueue.get(), change, (int)_filePaths.size(), &event, 1, nullptr);
         if (kEvent == - 1 || kEvent == 0) {
             std::tcout << "[FsWatcher] kevent: fail - " << kEvent << std::endl;
             return;
         }
 
         if (event.flags & EV_ERROR) {
-            std::tcout << "[FsWatcher] Event error: " << strerror(event.data);
+            std::tcout << "[FsWatcher] Event error: " << strerror((int)event.data);
             return;
         }
 

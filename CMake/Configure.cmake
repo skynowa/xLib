@@ -62,7 +62,7 @@ find_package(Ssh2 QUIET REQUIRED)
 
 if (ENV_UNIX)
    find_package(ExecInfo QUIET)    # TODO: REQUIRED - add
-   find_package(XCB QUIET REQUIRED)
+   find_package(XCB QUIET)         # TODO: REQUIRED - add
    find_package(Addr2Line QUIET REQUIRED)
 endif()
 #--------------------------------------------------------------------------------------------------
@@ -104,11 +104,11 @@ elseif (ENV_UNIX)
     endif()
 
     # cmCS_GNU_LIBPTHREAD_VERSION_FOUND
-    CHECK_FUNCTION_EXISTS(confstr _xCONFSTR)
-    CHECK_SYMBOL_EXISTS(_CS_GNU_LIBPTHREAD_VERSION "unistd.h" _xCS_GNU_LIBPTHREAD_VERSION)
-    if (${_xCONFSTR} AND ${_xCS_GNU_LIBPTHREAD_VERSION})
-        set(cmCS_GNU_LIBPTHREAD_VERSION_FOUND 1)
-    endif()
+    ### CHECK_FUNCTION_EXISTS(confstr _xCONFSTR)
+    ### CHECK_SYMBOL_EXISTS(_CS_GNU_LIBPTHREAD_VERSION "unistd.h" _xCS_GNU_LIBPTHREAD_VERSION)
+    ### if (${_xCONFSTR} AND ${_xCS_GNU_LIBPTHREAD_VERSION})
+    ###     set(cmCS_GNU_LIBPTHREAD_VERSION_FOUND 1)
+    ### endif()
 
     # Linux
     if (ENV_LINUX)

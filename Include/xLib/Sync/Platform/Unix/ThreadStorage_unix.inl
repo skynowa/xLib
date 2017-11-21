@@ -24,7 +24,7 @@ ThreadStorage::_construct_impl()
     index_t index = _indexInvalid_impl();
 
     int_t iRv = ::pthread_key_create(&index, xPTR_NULL);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     _index = index;
 }
@@ -33,7 +33,7 @@ xINLINE void_t
 ThreadStorage::_destruct_impl()
 {
     int_t iRv = ::pthread_key_delete(_index);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     _index = _indexInvalid_impl();
 }
@@ -62,7 +62,7 @@ ThreadStorage::_setValue_impl(
 ) const
 {
     int_t iRv = ::pthread_setspecific(_index, *a_value);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
 
