@@ -22,16 +22,16 @@ public:
 
     bool_t   open(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);
     bool_t   openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &cmds);
-    void_t   watch(cint_t timeoutMsec);
+    void_t   watch(culong_t timeoutMsec);
     void_t   close();
 
 private:
     xNO_COPY_ASSIGN(FsWatcher)
 
+    std::cvec_tstring_t _dirPathsDisabled;
     std::ctstring_t     _shellFilter;
     std::vec_tstring_t  _filePaths;
     std::vector<int_t>  _fileHandles;
-    std::cvec_tstring_t _dirPathsDisabled;
     std::map_tstring_t  _cmds;
 
 xPLATFORM_IMPL:

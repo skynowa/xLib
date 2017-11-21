@@ -361,8 +361,12 @@
         #include <bits/c++config.h>
     #endif
 #elif xENV_UNIX
-    #include <features.h>
-    #include <bits/c++config.h>
+	#if   xENV_LINUX
+		#include <features.h>
+		#include <bits/c++config.h>
+	#elif xENV_BSD
+		#include <sys/param.h>
+	#endif
 #endif
 
 #if   xENV_WIN
@@ -452,7 +456,7 @@
             xVER_FULL_STR(xSTD_LIBC_K_VER_MAJOR, xSTD_LIBC_K_VER_MINOR, xSTD_LIBC_K_VER_PATCH)
             ///< klibc
     #else
-        #warning xLib: unknown standard C library
+        /// #warning xLib: unknown standard C library
     #endif
 #endif
 ///@}

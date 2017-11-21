@@ -103,6 +103,7 @@ Test_Enum::unit()
 
     // EnumArray
     {
+    #if xTEMP_DISABLED
         xTEST_CASE("EnumArray::EnumArray")
         {
             const size_t enumSize = 5;
@@ -185,6 +186,7 @@ Test_Enum::unit()
             std::cout << xTRACE_VAR(Color::ttThird)   << std::endl;
             std::cout << xTRACE_VAR(Color::ttLast)    << std::endl;
         }
+    #endif
     }
 
     return true;

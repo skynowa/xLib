@@ -27,7 +27,7 @@ Test_Dll::unit()
         #elif xENV_UNIX
             #if xOS_FREEBSD
                 // TEST: if -static Dll::load() don't load any 'so'-libraries
-                return;
+                return false;
 
                 const data2_tstring_t data[] = {
                     {xT("libm.so.6"), xT("cos")}

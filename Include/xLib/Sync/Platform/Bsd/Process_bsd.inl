@@ -22,10 +22,11 @@ Process::_idByName_impl(
 {
     id_t ulRv;
 
-    int_t  mib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
-    size_t buffSize = 0U;
+    const u_int mibSize      = 3;
+    int_t       mib[mibSize] = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
+    size_t      buffSize     = 0U;
 
-    int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), xPTR_NULL, &buffSize, xPTR_NULL, 0U);
+    int_t iRv = ::sysctl(mib, mibSize, xPTR_NULL, &buffSize, xPTR_NULL, 0U);
     xTEST_DIFF(iRv, - 1);
 
     // allocate memory and populate info in the  processes structure
@@ -39,7 +40,7 @@ Process::_idByName_impl(
 
         infoProc = infoProcNew;
 
-        iRv = ::sysctl(mib, xARRAY_SIZE(mib), infoProc, &buffSize, xPTR_NULL, 0U);
+        iRv = ::sysctl(mib, mibSize, infoProc, &buffSize, xPTR_NULL, 0U);
         xCHECK_DO(!(iRv == - 1 && errno == ENOMEM), break);
     }
 
@@ -69,10 +70,11 @@ Process::_ids_impl(
 {
     std::vector<id_t> vidRv;
 
-    int_t  mib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
-    size_t buffSize = 0U;
+	const u_int mibSize      = 3;
+    int_t       mib[mibSize] = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
+    size_t      buffSize     = 0U;
 
-    int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), xPTR_NULL, &buffSize, xPTR_NULL, 0U);
+    int_t iRv = ::sysctl(mib, mibSize, xPTR_NULL, &buffSize, xPTR_NULL, 0U);
     xTEST_DIFF(iRv, - 1);
 
     // allocate memory and populate info in the  processes structure
@@ -86,7 +88,7 @@ Process::_ids_impl(
 
         infoProc = infoProcNew;
 
-        iRv = ::sysctl(mib, xARRAY_SIZE(mib), infoProc, &buffSize, xPTR_NULL, 0U);
+        iRv = ::sysctl(mib, mibSize, infoProc, &buffSize, xPTR_NULL, 0U);
         xCHECK_DO(!(iRv == - 1 && errno == ENOMEM), break);
     }
 

@@ -60,7 +60,7 @@ Process::_wait_impl(
     while (liRv < 0L && NativeError::get() == EINTR);
     xTEST_EQ(liRv, _pid);
 
-    _exitStatus = WEXITSTATUS(status);
+    _exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
     waitStatus  = static_cast<WaitResult>( WEXITSTATUS(status) );
 
     return waitStatus;
@@ -120,9 +120,9 @@ Process::_isCurrent_impl(
     const Process::id_t &a_id
 )
 {
-    bool_t bRv = ::pthread_equal(static_cast<pthread_t>( currentId() ), static_cast<pthread_t>(a_id));
+    int_t iRv = ::pthread_equal(reinterpret_cast<pthread_t>( currentId() ), reinterpret_cast<pthread_t>(a_id));
 
-    return bRv;
+    return (iRv != 0);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE Process::id_t

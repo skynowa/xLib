@@ -143,9 +143,7 @@ Test_Utils::unit()
 
     xTEST_CASE("structZeroT")
     {
-        struct tm data = {
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "aaa"
-        };
+        struct tm data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, const_cast<char *>("aaa")};
 
         Utils::structZeroT(data);
         xTEST_EQ(data.tm_sec, 0);

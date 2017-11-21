@@ -6,6 +6,8 @@
 
 #if cmXCB_FOUND
     #include "XcbMsgBox.h"
+#else
+    #include <xLib/System/Console.h>
 #endif
 
 
@@ -33,7 +35,8 @@ MsgBox::_show_impl(
     mrRv = static_cast<MsgBox::ModalResult>( msgBox.show(a_text, a_title, XcbMsgBox::tpOk) );
 #else
     Console console;
-    console.msgBox(a_text, a_title, 0);
+    Console::ModalResult mrConsole = console.msgBox(a_text, a_title, 0);
+    xUNUSED(mrConsole);
 
     mrRv = mrOk;
 #endif
