@@ -120,9 +120,7 @@ Process::_isCurrent_impl(
     const Process::id_t &a_id
 )
 {
-    int_t iRv = ::pthread_equal(currentId(), a_id);
-
-    return (iRv != 0);
+    return (currentId() == a_id);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE Process::id_t
