@@ -121,14 +121,14 @@
             #define xOS_FREEBSD 1
                 ///< OS FreeBSD
         #else
-                #error xLib: unsupported OS
+            #error xLib: unsupported OS
         #endif
     #elif xENV_APPLE
         #if defined(__APPLE__ && __MACH__)
             #define xOS_MACOSX 1
                 ///< OS MacOSX
         #else
-                #error xLib: unsupported OS
+            #error xLib: unsupported OS
         #endif
     #endif
 #endif
@@ -365,7 +365,15 @@
 		#include <features.h>
 		#include <bits/c++config.h>
 	#elif xENV_BSD
-		#include <sys/param.h>
+       /**
+        * <features.h>
+        *
+        * Notice that the <features.h> header file does not exist on all platforms, so it cannot be
+        * included without further ado. However, since it is included by other GNU glibc header
+        * files, a better way to obtain the above-mentioned macros is to include the <limits.h>
+        * header file (see e.g. paragraph 4/6 in ISO/IEC 9899:1999).
+        */
+		#include <sys/limits.h>
 	#endif
 #endif
 
@@ -456,7 +464,7 @@
             xVER_FULL_STR(xSTD_LIBC_K_VER_MAJOR, xSTD_LIBC_K_VER_MINOR, xSTD_LIBC_K_VER_PATCH)
             ///< klibc
     #else
-        /// #warning xLib: unknown standard C library
+        /// #pragma message "xLib: unknown standard C library"
     #endif
 #endif
 ///@}
@@ -486,9 +494,9 @@
             ///< GNU libstdc++
     #endif
 #elif xENV_UNIX
-    #if   defined(__CPPLIB_VER)
+    #if   defined(_CPPLIB_VER)
         #define XSTD_LIBCPP_DINKUMWARE           1
-        #define xSTD_LIBCPP_DINKUMWARE_VER_MAJOR __CPPLIB_VER
+        #define xSTD_LIBCPP_DINKUMWARE_VER_MAJOR _CPPLIB_VER
         #define xSTD_LIBCPP_DINKUMWARE_VER_MINOR 0
         #define xSTD_LIBCPP_DINKUMWARE_VER_PATCH 0
         #define xSTD_LIBCPP_DINKUMWARE_VER \
@@ -527,7 +535,7 @@
             xVER_FULL_STR(xSTD_LIBCPP_LIBCPP_VER_MAJOR, xSTD_LIBCPP_LIBCPP_VER_MINOR, xSTD_LIBCPP_LIBCPP_VER_PATCH)
             ///< libc++
     #else
-        #warning xLib: unknown standard C++ library
+        #pragma message "xLib: unknown standard C++ library"
     #endif
 #endif
 ///@}
