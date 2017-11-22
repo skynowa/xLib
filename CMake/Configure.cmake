@@ -99,7 +99,6 @@ elseif (ENV_UNIX)
     # cmGNU_GET_LIBC_FOUND
     CHECK_FUNCTION_EXISTS(gnu_get_libc_version _xGNU_GET_LIBC_VERSION)
     CHECK_FUNCTION_EXISTS(gnu_get_libc_release _xGNU_GET_LIBC_RELEASE)
-
     if (_xGNU_GET_LIBC_VERSION AND _xGNU_GET_LIBC_RELEASE)
         set(cmGNU_GET_LIBC_FOUND 1)
     endif()
