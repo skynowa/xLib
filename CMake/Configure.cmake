@@ -74,14 +74,17 @@ endif()
 if (ENV_WIN)
     # TODO: windows part
 elseif (ENV_UNIX)
-    ########## Libs ##########
+    # Headers
+    CHECK_INCLUDE_FILES(features.h cmHAVE_FEATURES_H)
 
-    ########## Symbols ##########
+    # Libs
+
+    # Symbols
     CHECK_SYMBOL_EXISTS(PR_SET_DUMPABLE "sys/prctl.h"    cmPR_SET_DUMPABLE_FOUND)
     CHECK_SYMBOL_EXISTS(RLIMIT_CORE     "sys/resource.h" cmRLIMIT_CORE_FOUND)
     # CHECK_SYMBOL_EXISTS(xxxxx         aaaaaaa          cmDDDDDDDDDDDDDDDD_FOUND)
 
-    ########## Functions ##########
+    # Functions
     CHECK_FUNCTION_EXISTS(sched_getcpu      cmSCHED_GETCPU_FOUND)
     CHECK_FUNCTION_EXISTS(getcpu            cmGETCPU_FOUND)
     CHECK_FUNCTION_EXISTS(getlogin_r        cmGETLOGIN_R_FOUND)
@@ -128,7 +131,7 @@ elseif (ENV_UNIX)
 
     # Apple
     if (ENV_APPLE)
-        ########## Symbols ##########
+        # Symbols
         CHECK_SYMBOL_EXISTS(PT_DENY_ATTACH "sys/ptrace.h" cmPT_DENY_ATTACH_FOUND)
     endif()
 endif()
