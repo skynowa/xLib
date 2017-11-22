@@ -76,7 +76,7 @@ if (ENV_WIN)
     # TODO: windows part
 elseif (ENV_UNIX)
     # Headers
-    CHECK_INCLUDE_FILES(features.h cmHAVE_FEATURES_H)
+    CHECK_INCLUDE_FILES("features.h" cmHAVE_FEATURES_H)
 
     # Libs
 
