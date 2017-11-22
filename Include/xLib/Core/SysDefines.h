@@ -361,10 +361,10 @@
         #include <bits/c++config.h>
     #endif
 #elif xENV_UNIX
-	#if   xENV_LINUX
+	#if cmHAVE_FEATURES_H
 		#include <features.h>
 		#include <bits/c++config.h>
-	#elif xENV_BSD
+	#else
        /**
         * <features.h>
         *
