@@ -77,6 +77,7 @@ if (ENV_WIN)
 elseif (ENV_UNIX)
     # Headers
     CHECK_INCLUDE_FILES("features.h" cmHAVE_FEATURES_H)
+    message(STATUS "cmHAVE_FEATURES_H : ${cmHAVE_FEATURES_H}")
 
     # Libs
 
