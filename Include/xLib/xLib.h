@@ -7,9 +7,9 @@
 #pragma once
 
 // Core
-#include <xLib/Config.h>
 #include <xLib/Core/Core.h>
 #include <xLib/Core/SysDefines.h>
+#include <xLib/Config.h>
 #include <xLib/Internal/Warnings.h>
 #include <xLib/Core/Units.h>
 #include <xLib/Core/Defines.h>
