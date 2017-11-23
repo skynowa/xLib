@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include <xLib/Config.h>
-
 #if   xCOMPILER_MINGW
     // off
 #elif xCOMPILER_MS
