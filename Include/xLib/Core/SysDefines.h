@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <xLib/Config.h>
 #include <cstdlib> // compilers
 #include <climits> // standard C libraries
 //-------------------------------------------------------------------------------------------------
