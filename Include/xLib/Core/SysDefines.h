@@ -374,7 +374,7 @@
         * files, a better way to obtain the above-mentioned macros is to include the <limits.h>
         * header file (see e.g. paragraph 4/6 in ISO/IEC 9899:1999).
         */
-		#include <climits>
+		#include <sys/limits.h>
 	#endif
 #endif
 
