@@ -48,12 +48,12 @@ watch(
     */
 
     iRv = ::pthread_mutex_lock(&::mtMutex);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     {
         while (::counter < ::counterMax) {
             iRv = ::pthread_cond_wait(&::cndCondition, &::mtMutex);
-            xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+            xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
             Trace() << Format::str(xT("watch(): thread: {} Condition signal received"), id);
 
@@ -64,7 +64,7 @@ watch(
     }
 
     iRv = ::pthread_mutex_unlock(&::mtMutex);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     return xPTR_NULL;
 }
@@ -86,7 +86,7 @@ job(
 
     for (size_t i = 0; i < ::jobLoops; ++ i) {
         iRv = ::pthread_mutex_lock(&::mtMutex);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
         {
             ++ ::counter;
@@ -94,7 +94,7 @@ job(
             // Check the value of count and signal waiting thread when condition is reached
             if (::counter == ::counterMax) {
                 iRv = ::pthread_cond_signal(&::cndCondition);
-                xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+                xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
                 Trace() << Format::str(xT("job(): thread: {} counter: {} threshold reached"), id, ::counter);
             }
@@ -103,7 +103,7 @@ job(
         }
 
         iRv = ::pthread_mutex_unlock(&::mtMutex);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
         // do some "work" so threads can alternate on mutex lock
         {
@@ -131,31 +131,31 @@ Test_Condition::unit()
     // initialize
     {
         iRv = ::pthread_mutex_init(&::mtMutex, xPTR_NULL);   // mutex not recursive
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
         iRv = ::pthread_cond_init(&::cndCondition, xPTR_NULL);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
         // for portability, explicitly create threads in a joinable state
         pthread_attr_t attr;
 
         iRv = ::pthread_attr_init(&attr);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
         iRv = ::pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
         iRv = ::pthread_create(&threads[0], &attr, watch, (void_t *)&id1);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
         iRv = ::pthread_create(&threads[1], &attr, job,   (void_t *)&id2);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
         iRv = ::pthread_create(&threads[2], &attr, job,   (void_t *)&id3);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
         iRv = ::pthread_attr_destroy(&attr);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
     }
 
     // wait for all threads to complete
@@ -164,7 +164,7 @@ Test_Condition::unit()
 
 		for (size_t i = 0; i < ::threadsNum; ++ i) {
 			iRv = ::pthread_join(threads[i], xPTR_NULL);
-			xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+			xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 		}
 
 		Trace() << Format::str(xT("Main(): waited on {} threads. Done"), ::threadsNum);
@@ -173,10 +173,10 @@ Test_Condition::unit()
     // clean up
     {
         iRv = ::pthread_cond_destroy(&::cndCondition);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
         iRv = ::pthread_mutex_destroy(&::mtMutex);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
     }
 
     // ::exit(0);

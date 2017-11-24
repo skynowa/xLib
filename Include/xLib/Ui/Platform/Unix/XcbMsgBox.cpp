@@ -8,6 +8,8 @@
     #include "XcbMsgBox.h"
 #endif
 
+#if cmXCB_FOUND
+
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
@@ -485,3 +487,5 @@ XcbMsgBox::_modifiersStr(
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, ui)
+
+#endif // cmXCB_FOUND

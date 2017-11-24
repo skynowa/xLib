@@ -19,12 +19,13 @@ Path::_exe_impl()
     std::tstring_t sRv;
 
 #if defined(KERN_PROC_PATHNAME)
-    int_t mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
+    const u_int mibSize      = 4;
+    int_t       mib[mibSize] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
 
     tchar_t     buff[PATH_MAX + 1] = {0};
     std::size_t buffSize           = sizeof(buff) - 1;
 
-    int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), buff, &buffSize, xPTR_NULL, 0U);
+    int_t iRv = ::sysctl(mib, mibSize, buff, &buffSize, xPTR_NULL, 0U);
     xTEST_DIFF(iRv, - 1);
 
     sRv.assign(buff);

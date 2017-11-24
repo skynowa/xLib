@@ -148,6 +148,13 @@ xNAMESPACE_BEGIN(xl)
 	xTYPEDEF_PTR_CONST(tchar_t);
 	xTYPEDEF_PTR_CONST(uchar_t);
 
+	// sighandler_t
+#if xENV_BSD
+	#if !defined(sighandler_t)
+		typedef void (*sighandler_t)(int);
+	#endif
+#endif
+
 xNAMESPACE_END(xl)
 
 xNAMESPACE_BEGIN(std)

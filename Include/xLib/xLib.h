@@ -10,6 +10,7 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/SysDefines.h>
 #include <xLib/Config.h>
+#include <xLib/Internal/Warnings.h>
 #include <xLib/Core/Units.h>
 #include <xLib/Core/Defines.h>
 #include <xLib/Core/Limits.h>
@@ -77,6 +78,7 @@
 #include <xLib/Fs/Finder.h>
 #include <xLib/Fs/Backup.h>
 #include <xLib/Fs/Config.h>
+#include <xLib/Fs/FsWatcher.h>
 
 // Ui
 #include <xLib/Ui/MsgBox.h>

@@ -6,7 +6,11 @@
 
 #pragma once
 
+
 #include <xLib/Core/Core.h>
+
+#if cmXCB_FOUND
+
 #include <xcb/xcb.h>
 //-------------------------------------------------------------------------------------------------
 #define xLIB_XCB_MSGBOX_DEBUG 0
@@ -75,3 +79,5 @@ xNAMESPACE_END2(xl, ui)
 #if cmOPTION_PROJECT_HEADER_ONLY
     #include "XcbMsgBox.cpp"
 #endif
+
+#endif // cmXCB_FOUND

@@ -14,14 +14,6 @@
     #include "Platform/Win/MsgBox_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/MsgBox_unix.inl"
-
-    #if   xENV_LINUX
-
-    #elif xENV_BSD
-
-    #elif xENV_APPLE
-
-    #endif
 #endif
 
 
