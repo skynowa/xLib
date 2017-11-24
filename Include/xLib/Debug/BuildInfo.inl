@@ -397,9 +397,7 @@ BuildInfo::xlibBinaryType() const
 {
     std::tstring_t sRv;
 
-#if   cmOPTION_PROJECT_HEADER_ONLY
-    sRv = xT("Header only");
-#elif cmOPTION_PROJECT_LIB_STATIC
+#if   cmOPTION_PROJECT_LIB_STATIC
     sRv = xT("Static library");
 #elif cmOPTION_PROJECT_LIB_SHARE
     sRv = xT("Share library");

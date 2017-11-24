@@ -116,6 +116,3 @@ private:
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Application.cpp"
-#endif

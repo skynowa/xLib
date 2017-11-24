@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Algos.h"
-#endif
+#include "Algos.h"
 
 
 xNAMESPACE_BEGIN2(xl, core)
@@ -17,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Algos::startsWith(
     std::ctstring_t &a_value,
     std::ctstring_t &a_prefix
@@ -26,7 +24,7 @@ Algos::startsWith(
     return a_value.size() >= a_prefix.size() && a_value.substr(0, a_prefix.size()) == a_prefix;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Algos::endsWith(
     std::ctstring_t &a_value,
     std::ctstring_t &a_suffix
@@ -36,7 +34,7 @@ Algos::endsWith(
         a_value.substr(a_value.size() - a_suffix.size(), a_suffix.size()) == a_suffix;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Algos::contains(
     std::ctstring_t &a_value,
     std::ctstring_t &a_infix

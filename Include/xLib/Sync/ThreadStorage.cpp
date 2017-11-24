@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "ThreadStorage.h"
-#endif
+#include "ThreadStorage.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -40,7 +38,6 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 ThreadStorage::ThreadStorage() :
 #if   xENV_WIN
     _index(TLS_OUT_OF_INDEXES)
@@ -56,7 +53,6 @@ ThreadStorage::ThreadStorage() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 ThreadStorage::~ThreadStorage()
 {
     xTEST_EQ(isValid(), true);
@@ -66,19 +62,19 @@ ThreadStorage::~ThreadStorage()
     xTEST_EQ(isValid(), false);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 ThreadStorage::isValid() const
 {
     return (_index != _indexInvalid_impl());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 ThreadStorage::isSet() const
 {
     return _isSet_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t *
+void_t *
 ThreadStorage::value() const
 {
     xTEST_EQ(isValid(), true);
@@ -86,7 +82,7 @@ ThreadStorage::value() const
     return _value_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ThreadStorage::setValue(
     void_t **a_value
 ) const

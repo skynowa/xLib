@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "CurlClient.h"
-#endif
+#include "CurlClient.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Utils.h>
@@ -27,7 +25,6 @@ xNAMESPACE_BEGIN2(xl, package)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 CurlClient::CurlClient() :
     _handle()
 {
@@ -35,7 +32,6 @@ CurlClient::CurlClient() :
     xTEST_EQ(_handle.isValid(), true);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 CurlClient::~CurlClient()
 {
 }

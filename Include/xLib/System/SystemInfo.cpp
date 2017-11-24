@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "SystemInfo.h"
-#endif
+#include "SystemInfo.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
@@ -39,26 +37,25 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 SystemInfo::SystemInfo() :
     _osType(otUnknown),
     _osArch(oaUnknown)
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::OsType
+SystemInfo::OsType
 SystemInfo::os()
 {
     return _os_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::formatOs()
 {
     return _formatOs_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::OsArch
+SystemInfo::OsArch
 SystemInfo::osArch()
 {
     _osArch = _osArch_impl();
@@ -66,7 +63,7 @@ SystemInfo::osArch()
     return _osArch;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::formatOsArch()
 {
     std::tstring_t sRv;
@@ -90,31 +87,31 @@ SystemInfo::formatOsArch()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::desktopName() const
 {
     return _desktopName_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::hostName() const
 {
     return _hostName_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::numOfCpus() const
 {
     return _numOfCpus_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::currentCpuNum() const
 {
     return _currentCpuNum_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::CpuVendor
+SystemInfo::CpuVendor
 SystemInfo::cpuVendor() const
 {
     CpuVendor     cvRv  = cvUnknown;
@@ -133,43 +130,43 @@ SystemInfo::cpuVendor() const
     return cvRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::cpuModel() const
 {
     return _cpuModel_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::cpuSpeed() const
 {
     return _cpuSpeed_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::cpuUsage() const
 {
     return _cpuUsage_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulonglong_t
+ulonglong_t
 SystemInfo::ramTotal() const
 {
     return _ramTotal_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulonglong_t
+ulonglong_t
 SystemInfo::ramAvailable() const
 {
     return _ramAvailable_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::ramUsage() const
 {
     return _ramUsage_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::pageSize() const
 {
     return _pageSize_impl();

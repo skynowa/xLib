@@ -4,10 +4,6 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Algos.h"
-#endif
-
 #include <xLib/Core/Utils.h>
 
 

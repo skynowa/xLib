@@ -124,10 +124,6 @@ private:
 xNAMESPACE_END2(xl, db)
 
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "MySql.cpp"
-#endif
-
 
 #if xTODO
     MYSQL_ROW row;

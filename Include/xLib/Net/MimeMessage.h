@@ -32,6 +32,3 @@ private:
 
 xNAMESPACE_END2(xl, net)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "MimeMessage.cpp"
-#endif

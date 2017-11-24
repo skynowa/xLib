@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_numOfCpus_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -23,7 +23,7 @@ SystemInfo::_numOfCpus_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_cpuVendor_impl() const
 {
     std::tstring_t value;
@@ -34,7 +34,7 @@ SystemInfo::_cpuVendor_impl() const
     return value;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_cpuModel_impl() const
 {
     std::tstring_t sRv;
@@ -45,7 +45,7 @@ SystemInfo::_cpuModel_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_cpuSpeed_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -56,7 +56,7 @@ SystemInfo::_cpuSpeed_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_cpuUsage_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -67,7 +67,7 @@ SystemInfo::_cpuUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulonglong_t
+ulonglong_t
 SystemInfo::_ramTotal_impl() const
 {
     ulonglong_t ullRv = 0ULL;
@@ -78,7 +78,7 @@ SystemInfo::_ramTotal_impl() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulonglong_t
+ulonglong_t
 SystemInfo::_ramAvailable_impl() const
 {
     ulonglong_t ullRv = 0ULL;
@@ -89,7 +89,7 @@ SystemInfo::_ramAvailable_impl() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_ramUsage_impl() const
 {
     ulong_t ulRv = 0UL;

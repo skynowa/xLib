@@ -58,6 +58,3 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, debug)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "StackTrace.cpp"
-#endif

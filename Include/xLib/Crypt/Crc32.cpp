@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Crc32.h"
-#endif
+#include "Crc32.h"
 
 #include <xLib/Core/FormatC.h>
 #include <xLib/Fs/File.h>
@@ -27,13 +25,12 @@ xNAMESPACE_BEGIN2(xl, crypt)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Crc32::Crc32() :
     _crc32(0UL)
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 Crc32::calc(
     uchar_t  *a_buff,
     culong_t &a_buffSize
@@ -135,7 +132,7 @@ Crc32::calc(
     return _crc32;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 Crc32::calcFile(
     std::ctstring_t &a_filePath
 )
@@ -152,7 +149,7 @@ Crc32::calcFile(
     return _crc32;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Crc32::formatHex() const
 {
     std::tstring_t sRv;

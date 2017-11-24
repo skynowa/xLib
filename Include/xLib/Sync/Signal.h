@@ -72,6 +72,3 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, sync)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Signal.cpp"
-#endif

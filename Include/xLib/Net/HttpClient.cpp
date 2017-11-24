@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "HttpClient.h"
-#endif
+#include "HttpClient.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -22,12 +20,11 @@
 xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 HttpClient::HttpClient()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 HttpClient::head(
     std::ctstring_t &a_url,
     std::tstring_t  *a_response
@@ -52,7 +49,7 @@ HttpClient::head(
     body      = xT("");
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 HttpClient::get(
     std::ctstring_t &a_url,
     std::tstring_t  *a_response
@@ -64,7 +61,7 @@ HttpClient::get(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 HttpClient::post(
     std::ctstring_t &a_url,
     std::ctstring_t &a_params,
@@ -78,7 +75,7 @@ HttpClient::post(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 HttpClient::options(
     std::ctstring_t &a_url
 )
@@ -88,7 +85,7 @@ HttpClient::options(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 HttpClient::trace(
     std::ctstring_t &a_url
 )
@@ -98,7 +95,7 @@ HttpClient::trace(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 HttpClient::put(
     std::ctstring_t &a_url
 )
@@ -108,7 +105,7 @@ HttpClient::put(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 HttpClient::del(
     std::ctstring_t &a_url
 )
@@ -118,7 +115,7 @@ HttpClient::del(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 HttpClient::connect(
     std::ctstring_t &a_url
 )
@@ -128,7 +125,7 @@ HttpClient::connect(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 HttpClient::patch(
     std::ctstring_t &a_url
 )
@@ -138,7 +135,7 @@ HttpClient::patch(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 HttpClient::link(
     std::ctstring_t &a_url
 )
@@ -148,7 +145,7 @@ HttpClient::link(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 HttpClient::unlink(
     std::ctstring_t &a_url
 )

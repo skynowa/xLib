@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Sleeper.h"
-#endif
+#include "Sleeper.h"
 
 
 xNAMESPACE_BEGIN2(xl, sync)
@@ -17,14 +15,13 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Sleeper::Sleeper() :
     _event(false, false)
 {
     _event.create();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Sleeper::sleep(
     culong_t &a_timeoutMsec  ///< in milliseconds
 )
@@ -35,7 +32,7 @@ Sleeper::sleep(
     xTEST_EQ(osRv == Event::osSignaled || osRv == Event::osTimeout, true);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Sleeper::wakeUp()
 {
     // n/a
@@ -43,7 +40,7 @@ Sleeper::wakeUp()
     _event.set();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Sleeper::isSleeping() const
 {
     // n/a

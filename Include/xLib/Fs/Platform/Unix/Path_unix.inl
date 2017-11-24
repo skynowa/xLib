@@ -27,7 +27,7 @@ xNAMESPACE_ANONYM_BEGIN
 xNAMESPACE_ANONYM_END
 
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Path::_dll_impl()
 {
     std::tstring_t sRv;
@@ -48,7 +48,7 @@ Path::_dll_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 Path::_isNameValid_impl(
     std::ctstring_t &a_fileName,                    ///< file, directory name
     std::tstring_t  *a_fileNameValid /* = xPTR_NULL */   ///< [out] normalized name
@@ -121,13 +121,13 @@ Path::_isNameValid_impl(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Path::_isAbsolute_impl() const
 {
     return false;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Path::_toNative_impl(
     std::tstring_t *a_filePath
 ) const
@@ -135,7 +135,7 @@ Path::_toNative_impl(
     *a_filePath = String::replaceAll(*a_filePath, Const::winSlash(), Const::slash());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Path::_absolute_impl() const
 {
     std::string asRv;
@@ -152,7 +152,7 @@ Path::_absolute_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE size_t
+size_t
 Path::_maxSize_impl()
 {
     size_t uiRv = 0;
@@ -185,7 +185,7 @@ Path::_maxSize_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE size_t
+size_t
 Path::_nameMaxSize_impl()
 {
     size_t uiRv = 0;
@@ -217,7 +217,7 @@ Path::_nameMaxSize_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Path::proc(
     std::ctstring_t    &a_procPath,
     std::vec_tstring_t *a_fileLines
@@ -259,7 +259,7 @@ Path::proc(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Path::procValue(
     std::ctstring_t &a_procPath,    ///< file path to proc-file
     std::ctstring_t &a_key          ///< target search data string

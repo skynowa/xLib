@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "AutoIpcMutex.h"
-#endif
+#include "AutoIpcMutex.h"
 
 #include <xLib/Sync/IpcMutex.h>
 
@@ -19,7 +17,6 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 AutoIpcMutex::AutoIpcMutex(
     IpcMutex      &a_mutex,
     std::ctstring_t &a_name
@@ -30,7 +27,6 @@ AutoIpcMutex::AutoIpcMutex(
     _mutex.lock(xTIMEOUT_INFINITE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 AutoIpcMutex::~AutoIpcMutex()
 {
     _mutex.unlock();

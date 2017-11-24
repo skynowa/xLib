@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "User.h"
-#endif
+#include "User.h"
 
 #include <xLib/Log/Trace.h>
 #include <xLib/System/Environment.h>
@@ -36,55 +34,53 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 User::User()
 {
     _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 User::~User()
 {
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 User::isAdmin() const
 {
     return _isAdmin_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 User::loginName() const
 {
     return _loginName_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 User::name() const
 {
     return _loginName_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE uint_t
+uint_t
 User::userId() const
 {
     return _userId_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE uint_t
+uint_t
 User::groupId() const
 {
     return _groupId_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 User::homeDir() const
 {
     return _homeDir_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 User::shellPath() const
 {
     return _shellPath_impl();

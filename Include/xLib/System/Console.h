@@ -147,10 +147,6 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, system)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Console.cpp"
-#endif
-
 
 #if xTODO
     #include <io.h>

@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN(std)
  * get std::clock_t (http://bugs.vcmi.eu/view.php?id=719)
  */
 
-xINLINE std::clock_t
+std::clock_t
 clock() /* xWARN_UNUSED_RV */
 {
     rusage ruUsage; xSTRUCT_ZERO(ruUsage);

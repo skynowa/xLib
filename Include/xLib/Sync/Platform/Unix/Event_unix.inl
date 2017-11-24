@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::_dectruct_impl()
 {
     int_t iRv = - 1;
@@ -24,13 +24,13 @@ Event::_dectruct_impl()
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE const Event::handle_t &
+const Event::handle_t &
 Event::_handle_impl() const
 {
     return _cond;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::_create_impl()
 {
 
@@ -43,7 +43,7 @@ Event::_create_impl()
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::_set_impl()
 {
     int_t iRv = - 1;
@@ -68,7 +68,7 @@ Event::_set_impl()
 
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::_reset_impl()
 {
     int_t iRv = - 1;
@@ -84,7 +84,7 @@ Event::_reset_impl()
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Event::ObjectState
+Event::ObjectState
 Event::_wait_impl(
     culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
@@ -161,7 +161,7 @@ Event::_wait_impl(
     return osRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Event::_isSignaled_impl() const
 {
     // n/a

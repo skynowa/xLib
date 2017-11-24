@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "TcpClient.h"
-#endif
+#include "TcpClient.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -34,14 +32,13 @@ xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 TcpClient::TcpClient() :
     _timeout()
 {
     setTimeout(0L, SOCKET_TIMEOUT);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpClient::connect(
     std::ctstring_t &a_ip,
     cushort_t       &a_port
@@ -61,7 +58,7 @@ TcpClient::connect(
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpClient::ioctl(
     clong_t &a_command,
     ulong_t *a_args
@@ -73,7 +70,7 @@ TcpClient::ioctl(
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpClient::setNonBlockingMode(
     cbool_t &a_flag
 ) const
@@ -81,7 +78,7 @@ TcpClient::setNonBlockingMode(
     _setNonBlockingMode_impl(a_flag);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpClient::timeout(
     long_t *a_seconds,
     long_t *a_microsec
@@ -94,7 +91,7 @@ TcpClient::timeout(
     Utils::ptrAssignT(a_microsec, static_cast<long_t>( _timeout.tv_usec ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpClient::setTimeout(
     clong_t &a_seconds,
     clong_t &a_microsec
@@ -116,7 +113,7 @@ TcpClient::setTimeout(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 TcpClient::isServerAlive(
     std::ctstring_t &a_ip,
     cushort_t       &a_port

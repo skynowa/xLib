@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "MsgBox.h"
-#endif
+#include "MsgBox.h"
 
 #include "Platform/MsgBox_internal.inl"
 
@@ -25,7 +23,7 @@ xNAMESPACE_BEGIN2(xl, ui)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE MsgBox::ModalResult
+MsgBox::ModalResult
 MsgBox::show(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,

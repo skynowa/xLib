@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Base64.h"
-#endif
+#include "Base64.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -32,7 +30,7 @@ xNAMESPACE_BEGIN2(xl, crypt)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE std::string
+std::string
 Base64::encode(
     cuchar_t     *a_bytes,
     std::csize_t &a_size
@@ -83,7 +81,7 @@ Base64::encode(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::string
+std::string
 Base64::encode(
     std::cstring_t &a_str
 )
@@ -93,7 +91,7 @@ Base64::encode(
     return encode(reinterpret_cast<cuchar_t  *>( a_str.data() ), a_str.size());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::string
+std::string
 Base64::decode(
     std::cstring_t &a_str
 )
@@ -155,7 +153,7 @@ Base64::decode(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Base64::_isValid(
     cuchar_t &a_ch
 )

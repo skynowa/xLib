@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "FileTemp.h"
-#endif
+#include "FileTemp.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -35,7 +33,6 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 FileTemp::FileTemp(
     cbool_t &a_isAutoDelete
 ) :
@@ -46,7 +43,6 @@ FileTemp::FileTemp(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 FileTemp::~FileTemp()
 {
     if (_file != xPTR_NULL) {
@@ -58,7 +54,7 @@ FileTemp::~FileTemp()
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 FileTemp::create(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_dirPath,

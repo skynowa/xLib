@@ -29,6 +29,3 @@ private:
 
 xNAMESPACE_END2(xl, debug)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "AutoProfiler.cpp"
-#endif

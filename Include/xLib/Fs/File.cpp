@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "File.h"
-#endif
+#include "File.h"
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
@@ -35,7 +33,6 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 File::File(
     cbool_t &a_isUseBuffering
 ) :
@@ -47,7 +44,6 @@ File::File(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 File::~File()
 {
     close();
@@ -61,7 +57,7 @@ File::~File()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::create(
     std::ctstring_t &a_filePath,
     const OpenMode  &a_mode
@@ -90,7 +86,7 @@ File::create(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::reopen(
     std::ctstring_t &a_filePath,
     const OpenMode  &a_mode
@@ -119,7 +115,7 @@ File::reopen(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE HandleStdFile &
+HandleStdFile &
 File::get()
 {
     xTEST_EQ(_handle.isValid(), true);
@@ -127,7 +123,7 @@ File::get()
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 File::getNative() const
 {
     xTEST_EQ(_handle.isValid(), true);
@@ -135,7 +131,7 @@ File::getNative() const
     return _nativeHandle( _handle.get() );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 File::path() const
 {
     xTEST_EQ(_filePath.empty(),   false);
@@ -144,7 +140,7 @@ File::path() const
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::attach(
     const HandleStdFile &a_handle,
     std::ctstring_t     &a_filePath
@@ -159,7 +155,7 @@ File::attach(
     _filePath = a_filePath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE HandleStdFile &
+HandleStdFile &
 File::detach()
 {
     HandleStdFile &handle = _handle;
@@ -178,7 +174,7 @@ File::detach()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE size_t
+size_t
 File::read(
     void_t       *a_buff,
     std::csize_t &a_count
@@ -193,7 +189,7 @@ File::read(
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE size_t
+size_t
 File::write(
     cptr_cvoid_t  a_buff,
     std::csize_t &a_count
@@ -208,7 +204,7 @@ File::write(
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::read(
     std::ustring_t *a_buff
 ) const
@@ -227,7 +223,7 @@ File::read(
     xTEST_EQ(uiRv, a_buff->size());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::write(
     std::custring_t &a_buff
 ) const
@@ -239,7 +235,7 @@ File::write(
     xTEST_EQ(uiRv, a_buff.size());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::read(
     std::tstring_t *a_buff
 ) const
@@ -258,7 +254,7 @@ File::read(
     xTEST_EQ(uiRv, a_buff->size());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 File::write(
     cptr_ctchar_t a_format, ...
 ) const
@@ -276,7 +272,7 @@ File::write(
     return iRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 File::writeV(
     cptr_ctchar_t a_format,
     va_list       a_args
@@ -291,7 +287,7 @@ File::writeV(
     return iRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::readLine(
     std::tstring_t *a_str,
     std::csize_t   &a_maxCount
@@ -312,7 +308,7 @@ File::readLine(
     a_str->swap(str);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::writeLine(
     std::ctstring_t &a_str
 ) const
@@ -323,7 +319,7 @@ File::writeLine(
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE tchar_t
+tchar_t
 File::readChar() const
 {
     twint_t iRv = xTFGETC(_handle.get());
@@ -332,7 +328,7 @@ File::readChar() const
     return static_cast<tchar_t>( iRv );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::writeChar(
     ctchar_t &a_ch
 ) const
@@ -344,7 +340,7 @@ File::writeChar(
     xTEST_EQ(static_cast<tchar_t>( iRv ), a_ch);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::ungetChar(
     ctchar_t &a_ch
 ) const
@@ -356,7 +352,7 @@ File::ungetChar(
     xTEST_EQ(static_cast<tchar_t>( iRv ), a_ch);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::clear() const
 {
     resize(0L);
@@ -370,7 +366,7 @@ File::clear() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::locking(
     const LockingMode &a_mode,
     clong_t           &a_bytes
@@ -389,7 +385,7 @@ File::locking(
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::setPosition(
     clong_t               &a_offset,
     const PointerPosition &a_pos
@@ -402,7 +398,7 @@ File::setPosition(
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE long_t
+long_t
 File::position() const {
     long_t liRv = std::ftell(_handle.get());
     xTEST_DIFF(liRv, - 1L);
@@ -410,7 +406,7 @@ File::position() const {
     return liRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::setVBuff(
     char                *a_buff,
     const BufferingMode &a_mode,
@@ -425,7 +421,7 @@ File::setVBuff(
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE longlong_t
+longlong_t
 File::size() const
 {
     long_t currStreamPos = position();
@@ -437,7 +433,7 @@ File::size() const
     return static_cast<longlong_t>( streamSize );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::resize(
     clonglong_t &a_size
 ) const
@@ -462,7 +458,7 @@ File::resize(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 File::isEmpty() const
 {
     longlong_t fileSize = size();
@@ -471,7 +467,7 @@ File::isEmpty() const
     return (fileSize == 0LL);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 File::isEof() const
 {
     bool_t bRv = static_cast<bool_t>( std::feof(_handle.get()) );
@@ -480,7 +476,7 @@ File::isEof() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 File::isError() const
 {
     bool_t bRv = static_cast<bool_t>( std::ferror(_handle.get()) );
@@ -489,7 +485,7 @@ File::isError() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::errorClear() const
 {
     (void_t)std::clearerr( _handle.get() );
@@ -503,14 +499,14 @@ File::errorClear() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::flush() const
 {
     twint_t iRv = std::fflush( _handle.get() );
     xTEST_DIFF(iRv, xTEOF);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::close()
 {
     xCHECK_DO(!_handle.isValid(), return);
@@ -529,7 +525,7 @@ File::close()
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 File::isFile(
     std::ctstring_t &a_filePath
 )
@@ -543,7 +539,7 @@ File::isFile(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 File::isExists(
     std::ctstring_t &a_filePath
 )
@@ -559,7 +555,7 @@ File::isExists(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 File::isExistsEx(
     std::ctstring_t &a_filePath
 )
@@ -586,7 +582,7 @@ File::isExistsEx(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::access(
     std::ctstring_t  &a_filePath,
     const AccessMode &a_mode
@@ -600,7 +596,7 @@ File::access(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::chmod(
     std::ctstring_t      &a_filePath,
     const PermissionMode &a_mode
@@ -620,7 +616,7 @@ File::chmod(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::clear(
     std::ctstring_t &a_filePath
 )
@@ -633,7 +629,7 @@ File::clear(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::remove(
     std::ctstring_t &a_filePath
 )
@@ -650,7 +646,7 @@ File::remove(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::tryRemove(
     std::ctstring_t &a_filePath,
     std::csize_t    &a_attempts,
@@ -676,7 +672,7 @@ File::tryRemove(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::wipe(
     std::ctstring_t &a_filePath,
     std::csize_t    &a_passes
@@ -767,7 +763,7 @@ File::wipe(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::unlink(
     std::ctstring_t &a_filePath
 )
@@ -779,7 +775,7 @@ File::unlink(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::rename(
     std::ctstring_t &a_filePathOld,
     std::ctstring_t &a_filePathNew
@@ -793,7 +789,7 @@ File::rename(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::move(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_dirPath
@@ -806,7 +802,7 @@ File::move(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::copy(
     std::ctstring_t &a_filePathFrom,
     std::ctstring_t &a_filePathTo,
@@ -859,7 +855,7 @@ File::copy(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE longlong_t
+longlong_t
 File::size(
     std::ctstring_t &a_filePath
 )
@@ -876,7 +872,7 @@ File::size(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE ulonglong_t
+ulonglong_t
 File::lines(
     std::ctstring_t &a_filePath
 )
@@ -900,7 +896,7 @@ File::lines(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::time(
     std::ctstring_t &a_filePath,
     time_t          *a_create,
@@ -917,7 +913,7 @@ File::time(
 }
 //-------------------------------------------------------------------------------------------------
 /*static */
-xINLINE void_t
+void_t
 File::setTime(
     std::ctstring_t &a_filePath,
     const time_t    &a_create,
@@ -942,7 +938,7 @@ File::setTime(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::textRead(
     std::ctstring_t &a_filePath,
     std::tstring_t  *a_content
@@ -971,7 +967,7 @@ File::textRead(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::textWrite(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_content,
@@ -993,7 +989,7 @@ File::textWrite(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::textRead(
     std::ctstring_t    &a_filePath,
     std::vec_tstring_t *a_content
@@ -1015,7 +1011,7 @@ File::textRead(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::textWrite(
     std::ctstring_t     &a_filePath,
     std::cvec_tstring_t &a_content,
@@ -1035,7 +1031,7 @@ File::textWrite(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::textRead(
     std::ctstring_t    &a_filePath,
     std::ctstring_t    &a_separator,
@@ -1106,7 +1102,7 @@ File::textRead(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::textWrite(
     std::ctstring_t     &a_filePath,
     std::ctstring_t     &a_separator,
@@ -1156,7 +1152,7 @@ File::textWrite(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::binRead(
     std::ctstring_t &a_filePath,
     std::ustring_t  *a_content
@@ -1185,7 +1181,7 @@ File::binRead(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::binWrite(
     std::ctstring_t &a_filePath,
     std::custring_t &a_content
@@ -1212,7 +1208,7 @@ File::binWrite(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE int_t
+int_t
 File::_nativeHandle(
     std::FILE *a_file
 )
@@ -1226,7 +1222,7 @@ File::_nativeHandle(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::FILE *
+std::FILE *
 File::_stdHandle(
     int_t          a_fileHandle,
     const OpenMode &a_mode
@@ -1242,7 +1238,7 @@ File::_stdHandle(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 File::_openMode(
     const OpenMode &a_mode
 )

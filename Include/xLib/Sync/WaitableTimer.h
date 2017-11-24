@@ -43,11 +43,3 @@ xNAMESPACE_END2(xl, sync)
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xENV_WIN
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "WaitableTimer.cpp"
-#endif
-
-#endif
-

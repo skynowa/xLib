@@ -57,6 +57,3 @@ private:
 
 xNAMESPACE_END2(xl, log)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "ILog.cpp"
-#endif

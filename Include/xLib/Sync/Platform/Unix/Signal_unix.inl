@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Signal::_decription_impl(
     cint_t &a_signalNum
 )

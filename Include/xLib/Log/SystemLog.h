@@ -46,7 +46,3 @@ xPLATFORM_IMPL:
 xNAMESPACE_END2(xl, log)
 //-------------------------------------------------------------------------------------------------
 #include "SystemLog.inl"
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "SystemLog.cpp"
-#endif

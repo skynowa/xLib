@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE AtomicLongInt &
+AtomicLongInt &
 AtomicLongInt::_addAssign_impl(
     const AtomicLongInt &a_value
 )
@@ -22,7 +22,7 @@ AtomicLongInt::_addAssign_impl(
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE AtomicLongInt &
+AtomicLongInt &
 AtomicLongInt::_addAssign_impl(
     clong_t &a_value
 )
@@ -32,7 +32,7 @@ AtomicLongInt::_addAssign_impl(
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE AtomicLongInt &
+AtomicLongInt &
 AtomicLongInt::_subtractAssign_impl(
     const AtomicLongInt &a_value
 )
@@ -42,7 +42,7 @@ AtomicLongInt::_subtractAssign_impl(
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE AtomicLongInt &
+AtomicLongInt &
 AtomicLongInt::_subtractAssign_impl(
     clong_t &a_value
 )
@@ -52,7 +52,7 @@ AtomicLongInt::_subtractAssign_impl(
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE AtomicLongInt &
+AtomicLongInt &
 AtomicLongInt::_assign_impl(
     const AtomicLongInt &a_value
 )
@@ -62,7 +62,7 @@ AtomicLongInt::_assign_impl(
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE AtomicLongInt &
+AtomicLongInt &
 AtomicLongInt::_assign_impl(
     clong_t &a_value
 )
@@ -72,7 +72,7 @@ AtomicLongInt::_assign_impl(
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE AtomicLongInt &
+AtomicLongInt &
 AtomicLongInt::_inc_impl(
     cint_t a_value
 )
@@ -86,7 +86,7 @@ AtomicLongInt::_inc_impl(
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE AtomicLongInt &
+AtomicLongInt &
 AtomicLongInt::_decr_impl(
     cint_t a_value
 )
@@ -100,7 +100,7 @@ AtomicLongInt::_decr_impl(
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE long_t
+long_t
 AtomicLongInt::_value_impl() const
 {
     return _value;

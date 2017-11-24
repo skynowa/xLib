@@ -9,7 +9,6 @@
 //-------------------------------------------------------------------------------------------------
 ///@name project type: executable binary, static library, share (dynamic-link) library
 ///@{
-#cmakedefine cmOPTION_PROJECT_HEADER_ONLY 1
 #cmakedefine cmOPTION_PROJECT_LIB_STATIC 1
 #cmakedefine cmOPTION_PROJECT_LIB_SHARE 1
 #cmakedefine cmOPTION_PROJECT_LIB_MODULE 1

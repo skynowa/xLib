@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Backup.h"
-#endif
+#include "Backup.h"
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/DateTime.h>
@@ -26,7 +24,6 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Backup::Backup(
     cPeriod &a_period
 ) :
@@ -34,7 +31,7 @@ Backup::Backup(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Backup::fileExec(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_destDirPath,

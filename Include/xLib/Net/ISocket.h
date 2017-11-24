@@ -329,10 +329,6 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, net)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "ISocket.cpp"
-#endif
-
 
 #if xTODO
     //http://www.yolinux.com/TUTORIALS/Sockets.html

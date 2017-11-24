@@ -7,7 +7,7 @@
 xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 File::setMode(
     const TranslationMode &a_mode
 ) const
@@ -26,7 +26,7 @@ File::setMode(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 File::_isFile_impl(
     const FileType &a_type
 )
@@ -49,7 +49,7 @@ File::_isFile_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 File::_time_impl(
     std::ctstring_t &a_filePath,
     time_t          *a_create,
@@ -76,7 +76,7 @@ File::_time_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /*static */
-xINLINE void_t
+void_t
 File::_setTime_impl(
     std::ctstring_t &a_filePath,
     const time_t    &a_create,

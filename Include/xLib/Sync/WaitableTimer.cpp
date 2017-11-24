@@ -6,9 +6,7 @@
 
 #if xENV_WIN
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "WaitableTimer.h"
-#endif
+#include "WaitableTimer.h"
 
 #if   xENV_WIN
     #include "Platform/Win/WaitableTimer_win.inl"
@@ -32,7 +30,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE HANDLE
+HANDLE
 WaitableTimer::handle() const
 {
     xTEST_EQ(_handle.isValid(), true);
@@ -40,7 +38,7 @@ WaitableTimer::handle() const
     return _handle.get();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 WaitableTimer::create(
     cbool_t                     &a_bManualReset,
     std::ctstring_t             &a_name,
@@ -55,7 +53,7 @@ WaitableTimer::create(
     _handle.set(hRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 WaitableTimer::open(
     std::ctstring_t &a_name,
     culong_t        &a_access,
@@ -79,7 +77,7 @@ WaitableTimer::open(
     _handle.set(hRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 WaitableTimer::cancel() const
 {
     xTEST_EQ(_handle.isValid(), true);
@@ -88,7 +86,7 @@ WaitableTimer::cancel() const
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 WaitableTimer::set(
     clonglong_t      &a_dueTimeMsec,
     clong_t          &a_period,
@@ -107,7 +105,7 @@ WaitableTimer::set(
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 WaitableTimer::wait(
     culong_t &a_timeoutMsec
 ) const

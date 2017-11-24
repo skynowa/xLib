@@ -39,6 +39,3 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, crypt)
 //---------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Guid.cpp"
-#endif

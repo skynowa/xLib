@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN2(xl, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Debugger::_coreDumpsEnable_impl(
     cbool_t &a_flag,
     bool_t  *a_isEnable
@@ -63,7 +63,7 @@ Debugger::_coreDumpsEnable_impl(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Debugger::_breakPoint_impl() const
 {
     int_t iRv = ::raise(SIGTRAP);

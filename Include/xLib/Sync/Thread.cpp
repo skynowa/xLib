@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Thread.h"
-#endif
+#include "Thread.h"
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Utils.h>
@@ -37,7 +35,6 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Thread::Thread(
     cbool_t &a_isAutoDelete
 ) :
@@ -58,7 +55,6 @@ Thread::Thread(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 Thread::~Thread()
 {
     // close thread, if it still running
@@ -88,7 +84,7 @@ Thread::~Thread()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::setTag(
     culong_t &a_tag
 )
@@ -96,13 +92,13 @@ Thread::setTag(
     _tag = a_tag;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 Thread::tag() const
 {
     return _tag;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::create(
     cbool_t &a_isPaused,
     cuint_t &a_stackSizeBytes,
@@ -148,7 +144,7 @@ Thread::create(
     _eventStarter->set();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::resume()
 {
 #if   xENV_WIN
@@ -166,7 +162,7 @@ Thread::resume()
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::pause()
 {
 #if   xENV_WIN
@@ -184,7 +180,7 @@ Thread::pause()
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::exit()
 {
 #if   xENV_WIN
@@ -204,7 +200,7 @@ Thread::exit()
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::kill(
     culong_t &a_timeoutMsec
 )
@@ -213,7 +209,7 @@ Thread::kill(
     _clear(0U);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::wait(
     culong_t &a_timeoutMsec
 ) const
@@ -229,7 +225,7 @@ Thread::wait(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::isCreated() const
 {
     // _handle - n/a
@@ -237,7 +233,7 @@ Thread::isCreated() const
     return _isCreated_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::isRunning() const
 {
     // _handle - n/a
@@ -245,7 +241,7 @@ Thread::isRunning() const
     return _isRunning_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::isPaused()
 {
     // _handle - n/a
@@ -253,7 +249,7 @@ Thread::isPaused()
     return _isPaused_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::isExited()
 {
     // _handle - n/a
@@ -269,7 +265,7 @@ Thread::isExited()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::setPriority(
     const Priority &a_priority
 ) const
@@ -277,7 +273,7 @@ Thread::setPriority(
     _setPriority_impl(a_priority);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Thread::Priority
+Thread::Priority
 Thread::priority() const
 {
 #if   xENV_WIN
@@ -289,7 +285,7 @@ Thread::priority() const
     return _priority_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Thread::priorityString() const
 {
     // n/a
@@ -315,7 +311,7 @@ Thread::priorityString() const
     return xT("N/A");
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::priorityUp() const
 {
 #if   xENV_WIN
@@ -358,7 +354,7 @@ Thread::priorityUp() const
     setPriority(tpiNewLevel);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::priorityDown() const
 {
 #if   xENV_WIN
@@ -401,13 +397,13 @@ Thread::priorityDown() const
     setPriority(tpiNewLevel);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::isPriorityBoost() const
 {
     return _isPriorityBoost_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::setPriorityBoost(
     cbool_t &a_isEnabled
 ) const
@@ -423,7 +419,7 @@ Thread::setPriorityBoost(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::setCpuAffinity(
     cint_t &a_procNum
 ) const
@@ -431,7 +427,7 @@ Thread::setCpuAffinity(
     _setCpuAffinity_impl(a_procNum);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::setCpuIdeal(
     culong_t &a_idealCpu    ///< value is zero-based
 ) const
@@ -439,7 +435,7 @@ Thread::setCpuIdeal(
     _setCpuIdeal_impl(a_idealCpu);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 Thread::cpuIdeal() const
 {
 #if   xENV_WIN
@@ -452,7 +448,7 @@ Thread::cpuIdeal() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE ulong_t
+ulong_t
 Thread::cpuCount()
 {
     ulong_t ulRv = SystemInfo().numOfCpus();
@@ -471,13 +467,13 @@ Thread::cpuCount()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE Thread::handle_t
+Thread::handle_t
 Thread::handle() const
 {
     return _handle_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Thread::id_t
+Thread::id_t
 Thread::id() const
 {
 #if   xENV_WIN
@@ -489,19 +485,19 @@ Thread::id() const
     return _id;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::isCurrent() const
 {
     return isCurrent( currentId() );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 Thread::exitStatus() const
 {
     return _exitStatus_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::setDebugName(
     std::ctstring_t &a_name
 ) const
@@ -529,7 +525,7 @@ Thread::setDebugName(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE Thread::handle_t
+Thread::handle_t
 Thread::open(
     culong_t &a_access,
     cbool_t  &a_isInheritHandle,
@@ -551,7 +547,7 @@ Thread::open(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::isCurrent(
     const Thread::id_t &a_id
 )
@@ -559,7 +555,7 @@ Thread::isCurrent(
     return _isCurrent_impl(a_id);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Thread::id_t
+Thread::id_t
 Thread::currentId()
 {
     // n/a
@@ -567,7 +563,7 @@ Thread::currentId()
     return _currentId_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Thread::handle_t
+Thread::handle_t
 Thread::currentHandle()
 {
     // n/a
@@ -575,7 +571,7 @@ Thread::currentHandle()
     return _currentHandle_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::currentYield()
 {
     // n/a
@@ -583,7 +579,7 @@ Thread::currentYield()
     _currentYield_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::currentSleep(
     culong_t &a_timeoutMsec
 )
@@ -604,7 +600,7 @@ Thread::currentSleep(
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE uint_t
+uint_t
 Thread::onRun(
     void_t *a_param
 ) /* = 0 */
@@ -635,7 +631,7 @@ Thread::onRun(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::isTimeToExit()
 {
     // n/a
@@ -665,7 +661,7 @@ Thread::isTimeToExit()
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE Thread::exit_status_t xSTDCALL
+Thread::exit_status_t xSTDCALL
 Thread::_s_jobEntry(
     void_t *a_param
 )
@@ -728,7 +724,7 @@ Thread::_s_jobEntry(
     return esRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::_waitResumption()
 {
     // states
@@ -746,7 +742,7 @@ Thread::_waitResumption()
     return (Event::osSignaled == osRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::_clear(
     cuint_t &a_exitStatus
 )
@@ -769,14 +765,14 @@ Thread::_clear(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE int_t
+int_t
 Thread::_priorityMin()
 {
     return _priorityMin_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE int_t
+int_t
 Thread::_priorityMax()
 {
     return _priorityMax_impl();

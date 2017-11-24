@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Shell.h"
-#endif
+#include "Shell.h"
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
@@ -41,7 +39,7 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Shell::isAvailable() const
 {
     xTESTS_NA;
@@ -49,7 +47,7 @@ Shell::isAvailable() const
     return _isAvailable_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 Shell::execute(
     std::ctstring_t &a_filePath ///< file path to binary file
 ) const
@@ -57,7 +55,7 @@ Shell::execute(
     return execute(a_filePath, std::tstring_t());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 Shell::execute(
     std::ctstring_t &a_filePath,   ///< file path to binary file
     std::ctstring_t &a_params      ///< command line params for binary file

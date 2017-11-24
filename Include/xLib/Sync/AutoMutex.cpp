@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "AutoMutex.h"
-#endif
+#include "AutoMutex.h"
 
 #include <xLib/Sync/Mutex.h>
 
@@ -19,7 +17,6 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 AutoMutex::AutoMutex(
     Mutex *a_mutex
 ) :
@@ -29,7 +26,6 @@ AutoMutex::AutoMutex(
     _mutex->lock();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 AutoMutex::~AutoMutex()
 {
     _mutex->unlock();

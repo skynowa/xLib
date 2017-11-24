@@ -61,7 +61,3 @@ private:
 xNAMESPACE_END2(xl, log)
 //-------------------------------------------------------------------------------------------------
 #include "FileLog.inl"
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "FileLog.cpp"
-#endif

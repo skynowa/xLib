@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "DateTime.h"
-#endif
+#include "DateTime.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
@@ -75,7 +73,7 @@ cint_t weekDayMax  = 6;
 xNAMESPACE_ANONYM_END
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::year(
     cint_t &a_year
 )
@@ -83,7 +81,7 @@ DateTimeValidator::year(
     return (a_year >= yearMin && a_year <= yearMax);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::month(
     cint_t &a_month
 )
@@ -91,7 +89,7 @@ DateTimeValidator::month(
     return (a_month >= monthMin && a_month <= monthMax);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::day(
     cint_t &a_day
 )
@@ -99,7 +97,7 @@ DateTimeValidator::day(
     return (a_day >= dayMin && a_day <= dayMax);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::hour(
     cint_t &a_hour
 )
@@ -107,7 +105,7 @@ DateTimeValidator::hour(
     return (a_hour >= hourMin && a_hour <= hourMax);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::minute(
     cint_t &a_minute
 )
@@ -115,7 +113,7 @@ DateTimeValidator::minute(
     return (a_minute >= minuteMin && a_minute <= minuteMax);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::second(
     cint_t &a_second
 )
@@ -123,7 +121,7 @@ DateTimeValidator::second(
     return (a_second >= secondMin && a_second <= secondMax);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::msec(
     cint_t &a_msec
 )
@@ -131,7 +129,7 @@ DateTimeValidator::msec(
     return (a_msec >= msecMin && a_msec <= msecMax);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::weekDay(
     cint_t &a_weekDay
 )
@@ -139,7 +137,7 @@ DateTimeValidator::weekDay(
     return (a_weekDay >= weekDayMin && a_weekDay <= weekDayMax);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::date(
     cint_t &a_year,
     cint_t &a_month,
@@ -149,7 +147,7 @@ DateTimeValidator::date(
     return (year(a_year) && month(a_month) && day(a_day));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::time(
     cint_t &a_hour,
     cint_t &a_minute,
@@ -160,7 +158,7 @@ DateTimeValidator::time(
     return (hour(a_hour) && minute(a_minute) && second(a_second) && msec(a_msec));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::datetime(
     cint_t &a_year,
     cint_t &a_month,
@@ -176,7 +174,7 @@ DateTimeValidator::datetime(
     return (date(a_year, a_month, a_day) && time(a_hour, a_minute, a_second, a_msec));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::datetime(
     const DateTime &a_datetime
 )
@@ -185,7 +183,7 @@ DateTimeValidator::datetime(
             time(a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTimeValidator::dateOrTime(
     cint_t &a_year,
     cint_t &a_month,
@@ -207,7 +205,6 @@ DateTimeValidator::dateOrTime(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 DateTime::DateTime() :
     _year    (yearMin),
     _month   (monthMin),
@@ -220,7 +217,6 @@ DateTime::DateTime() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 DateTime::DateTime(
     const DateTime &a_datetime
 ) :
@@ -241,7 +237,6 @@ DateTime::DateTime(
         a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 DateTime::DateTime(
     culonglong_t &a_msec
 ) :
@@ -257,7 +252,6 @@ DateTime::DateTime(
     set(a_msec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 DateTime::DateTime(
     cint_t &a_hour,
     cint_t &a_minute,
@@ -278,7 +272,6 @@ DateTime::DateTime(
     set(0, 0, 0, a_hour, a_minute, a_second, a_msec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 DateTime::DateTime(
     cint_t &a_year,
     cint_t &a_month,
@@ -298,7 +291,6 @@ DateTime::DateTime(
     set(a_year, a_month, a_day, 0, 0, 0, 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 DateTime::DateTime(
     cint_t &a_year,
     cint_t &a_month,
@@ -331,7 +323,7 @@ DateTime::DateTime(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTime::operator == (
     const DateTime &a_datetime
 ) const
@@ -341,7 +333,7 @@ DateTime::operator == (
     return (_thisMSec == a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTime::operator != (
     const DateTime &a_datetime
 ) const
@@ -351,7 +343,7 @@ DateTime::operator != (
     return (_thisMSec != a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTime::operator < (
     const DateTime &a_datetime
 ) const
@@ -361,7 +353,7 @@ DateTime::operator < (
     return (_thisMSec < a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTime::operator <= (
     const DateTime &a_datetime
 ) const
@@ -371,7 +363,7 @@ DateTime::operator <= (
     return (_thisMSec <= a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTime::operator > (
     const DateTime &a_datetime
 ) const
@@ -381,7 +373,7 @@ DateTime::operator > (
     return (_thisMSec > a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 DateTime::operator >= (
     const DateTime &a_datetime
 ) const
@@ -399,7 +391,7 @@ DateTime::operator >= (
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE const DateTime &
+const DateTime &
 DateTime::operator = (
     const DateTime &a_datetime
 )
@@ -411,7 +403,7 @@ DateTime::operator = (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE const DateTime &
+const DateTime &
 DateTime::operator = (
     culonglong_t &a_msec
 )
@@ -421,7 +413,7 @@ DateTime::operator = (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE DateTime
+DateTime
 DateTime::operator + (
     const DateTime &a_datetime
 ) const
@@ -429,7 +421,7 @@ DateTime::operator + (
     return DateTime(_thisMSec + a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE DateTime
+DateTime
 DateTime::operator - (
     const DateTime &a_datetime
 ) const
@@ -437,7 +429,7 @@ DateTime::operator - (
     return DateTime(_thisMSec - a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE const DateTime &
+const DateTime &
 DateTime::operator += (
     const DateTime &a_datetime
 )
@@ -449,7 +441,7 @@ DateTime::operator += (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE const DateTime &
+const DateTime &
 DateTime::operator -= (
     const DateTime &a_datetime
 )
@@ -469,7 +461,7 @@ DateTime::operator -= (
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 DateTime::get(
     int_t *a_year,
     int_t *a_month,
@@ -491,7 +483,7 @@ DateTime::get(
     Utils::ptrAssignT(a_msec,   _msec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 DateTime::dayOfWeek() const
 {
     xTEST_EQ(DateTimeValidator::datetime(*this), true);
@@ -512,13 +504,13 @@ DateTime::dayOfWeek() const
 }
 //-------------------------------------------------------------------------------------------------
 // TODO: toMsec
-xINLINE ulonglong_t
+ulonglong_t
 DateTime::toMsec() const
 {
     return _thisMSec;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 DateTime::set(
     culonglong_t &a_msec
 )
@@ -553,7 +545,7 @@ DateTime::set(
     _msec    = static_cast<int_t>( msec );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 DateTime::set(
     cint_t &a_year,
     cint_t &a_month,
@@ -587,7 +579,7 @@ DateTime::set(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE ulonglong_t
+ulonglong_t
 DateTime::_toMsec() const
 {
     xTESTS_NA;
@@ -613,7 +605,7 @@ DateTime::_toMsec() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 DateTime::format(
     std::ctstring_t &a_format,                         ///< datetime format
     std::ctstring_t &a_formatMsec /* = xT(".%03d") */  ///< milliseconds format
@@ -655,14 +647,14 @@ DateTime::format(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE DateTime
+DateTime
 DateTime::current()
 {
     return _current_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE int_t
+int_t
 DateTime::daysInMonth(
     cint_t &a_year,
     cint_t &a_month
@@ -679,7 +671,7 @@ DateTime::daysInMonth(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 DateTime::isLeapYear(
     cint_t &a_year
 )
@@ -696,7 +688,7 @@ DateTime::isLeapYear(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 DateTime::zodiacSign(
     cint_t &a_month,
     cint_t &a_day
@@ -783,7 +775,7 @@ DateTime::zodiacSign(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 DateTime::monthStr(
     cint_t  &a_month,
     cbool_t &a_isShortName
@@ -838,7 +830,7 @@ DateTime::monthStr(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE int_t
+int_t
 DateTime::monthNum(
     std::ctstring_t &a_month,
     cbool_t         &a_isShortName
@@ -893,7 +885,7 @@ DateTime::monthNum(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 DateTime::weekDayStr(
     cint_t  &a_week_day,
     cbool_t &a_isShortName
@@ -938,7 +930,7 @@ DateTime::weekDayStr(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE int_t
+int_t
 DateTime::weekDayNum(
     std::ctstring_t &a_week_day,
     cbool_t         &a_isShortName

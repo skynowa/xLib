@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Signal.h"
-#endif
+#include "Signal.h"
 
 #if   xENV_WIN
     #include "Platform/Win/Signal_win.inl"
@@ -35,24 +33,23 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Signal::Signal() :
 	_state(0)
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE /* virtual */
+/* virtual */
 Signal::~Signal()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::sig_atomic_t
+std::sig_atomic_t
 Signal::state() const
 {
     return _state;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::setState(
     const std::sig_atomic_t &a_state	///<
 )
@@ -64,7 +61,7 @@ Signal::setState(
     _state = a_state;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connect(
     const std::vector<int_t> &a_signalNums,	///<
     const sighandler_t        a_onSignals	///<
@@ -109,7 +106,7 @@ Signal::connect(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connectAll(
     const sighandler_t a_onSignals	///<
 ) const
@@ -141,7 +138,7 @@ Signal::connectAll(
 	connect(signalNums, a_onSignals);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connectInfo(
     const std::vector<int_t> &a_signalNums,	///<
     const on_info_t           a_onInfo		///<
@@ -198,7 +195,7 @@ Signal::connectInfo(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connectInfoAll(
     const on_info_t a_onInfo	///<
 ) const
@@ -230,7 +227,7 @@ Signal::connectInfoAll(
 	connectInfo(signalNums, a_onInfo);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connectExit(
     const on_exit_t a_onExit	///<
 ) const
@@ -241,7 +238,7 @@ Signal::connectExit(
     xTEST(iRv == 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connectTerminate(
     const std::terminate_handler a_onTerminate	///<
 ) const
@@ -250,7 +247,7 @@ Signal::connectTerminate(
     xUNUSED(handler_old);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connectUnexpected(
     const std::unexpected_handler a_onUnexpected	///<
 ) const
@@ -259,7 +256,7 @@ Signal::connectUnexpected(
     xUNUSED(handler_old);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::raise(
     cint_t &a_signalNum	///<
 ) const
@@ -277,7 +274,7 @@ Signal::raise(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 Signal::isValid(
     cint_t &a_signalNum ///< signal number
 )
@@ -298,7 +295,7 @@ struct _SignalInfo
 xNAMESPACE_ANONYM_END
 
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Signal::infoDescription(
     const siginfo_t &a_info	///<  signal info struct
 )
@@ -419,7 +416,7 @@ Signal::infoDescription(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Signal::decription(
     cint_t &a_signalNum ///< signal number
 )

@@ -162,6 +162,3 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, fs)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Path.cpp"
-#endif

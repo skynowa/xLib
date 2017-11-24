@@ -67,10 +67,6 @@ xNAMESPACE_END2(xl, crypt)
 
 #endif // cmOPENSSL_CRYPTO_FOUND
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Blowfish.cpp"
-#endif
-
 
 /*
 void_t  BF_set_key      (BF_KEY *key, int_t len, unsigned char *data);

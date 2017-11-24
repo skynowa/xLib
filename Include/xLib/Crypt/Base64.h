@@ -34,6 +34,3 @@ private:
 
 xNAMESPACE_END2(xl, crypt)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Base64.cpp"
-#endif

@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN2(xl, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 StackTrace::_get_impl(
     std::vector<std::vec_tstring_t> *a_stack
 ) const
@@ -120,7 +120,7 @@ StackTrace::_get_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 StackTrace::_addr2Line(
     cptr_cvoid_t    a_symbolAddress,
     std::tstring_t *a_filePath,

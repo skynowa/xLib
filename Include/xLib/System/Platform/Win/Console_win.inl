@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_construct_impl()
 {
     _stdIn = ::GetStdHandle(STD_INPUT_HANDLE);
@@ -44,14 +44,14 @@ Console::_construct_impl()
     // _menu - n/a
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_destruct_impl()
 {
     (native_handle_t)_stdIn.detach();
     (native_handle_t)_stdOut.detach();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Console::_setAttributes_impl(
     cForeground &a_foreground,
     cBackground &a_background,
@@ -209,7 +209,7 @@ Console::_setAttributes_impl(
     return std::tstring_t();    // not need for Windows
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Console::_setAttributesDef_impl() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
@@ -222,7 +222,7 @@ Console::_setAttributesDef_impl() const
     return std::tstring_t();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Console::_read_impl() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
@@ -243,7 +243,7 @@ Console::_read_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_write_impl(
     std::ctstring_t &a_str
 ) const
@@ -262,7 +262,7 @@ Console::_write_impl(
     // TODO: Console::_write_impl() - flush
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_clear_impl() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
@@ -299,7 +299,7 @@ Console::_clear_impl() const
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
@@ -312,7 +312,7 @@ Console::_setTitle_impl(
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Console::title() const
 {
     xTEST_NA(_wnd);
@@ -333,7 +333,7 @@ Console::title() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::centerWindow() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
@@ -360,7 +360,7 @@ Console::centerWindow() const
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::setFullScreen() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
@@ -388,7 +388,7 @@ Console::setFullScreen() const
     centerWindow();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::enableClose(
     cbool_t &a_flag
 )
@@ -424,7 +424,7 @@ Console::enableClose(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE HWND
+HWND
 Console::_wndHandle()
 {
     HWND           hRv = xPTR_NULL;
@@ -454,7 +454,7 @@ Console::_wndHandle()
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE HMENU
+HMENU
 Console::_menuHandle(
     cbool_t &a_isRevert
 )
@@ -470,7 +470,7 @@ Console::_menuHandle(
     return _menu;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_setStdinEcho_impl(
     cbool_t &a_isEnable
 ) const

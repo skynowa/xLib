@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::OsType
+SystemInfo::OsType
 SystemInfo::_os_impl()
 {
     OsType otRv = otUnknown;
@@ -40,7 +40,7 @@ SystemInfo::_os_impl()
     return otRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_formatOs_impl()
 {
     std::tstring_t sRv;
@@ -56,7 +56,7 @@ SystemInfo::_formatOs_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::OsArch
+SystemInfo::OsArch
 SystemInfo::_osArch_impl()
 {
     OsArch oaRv = oaUnknown;
@@ -106,7 +106,7 @@ SystemInfo::_osArch_impl()
     return oaRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_desktopName_impl() const
 {
     std::tstring_t sRv;
@@ -117,7 +117,7 @@ SystemInfo::_desktopName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_hostName_impl() const
 {
     std::tstring_t sRv;
@@ -132,7 +132,7 @@ SystemInfo::_hostName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_currentCpuNum_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -170,7 +170,7 @@ SystemInfo::_currentCpuNum_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_pageSize_impl() const
 {
     long_t liRv = ::sysconf(xPAGE_SIZE);
@@ -191,7 +191,7 @@ SystemInfo::_pageSize_impl() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::glibcVersion() const
 {
     std::tstring_t version;
@@ -228,7 +228,7 @@ SystemInfo::glibcVersion() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::libPthreadVersion() const
 {
     std::tstring_t sRv;

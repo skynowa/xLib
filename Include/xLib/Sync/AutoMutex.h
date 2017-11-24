@@ -29,6 +29,3 @@ private:
 
 xNAMESPACE_END2(xl, sync)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "AutoMutex.cpp"
-#endif

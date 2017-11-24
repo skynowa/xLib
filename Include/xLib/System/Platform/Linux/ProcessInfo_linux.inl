@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 ProcessInfo::_exeName_impl() const
 {
     std::string asRv;
@@ -41,7 +41,7 @@ ProcessInfo::_exeName_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 ProcessInfo::_commandLine_impl(
     std::vec_tstring_t *a_args
 ) const

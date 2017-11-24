@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Profiler.h"
-#endif
+#include "Profiler.h"
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/FormatC.h>
@@ -28,7 +26,6 @@ xNAMESPACE_BEGIN2(xl, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Profiler::Profiler() :
     _isStarted(false),
     _log      (FileLog::lsDefaultMb),
@@ -39,7 +36,6 @@ Profiler::Profiler() :
     _reset();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Profiler::~Profiler()
 {
     if ( !_log.filePath().empty() ) {
@@ -47,7 +43,7 @@ Profiler::~Profiler()
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Profiler::setLogPath(
     std::ctstring_t &a_logPath
 )
@@ -57,13 +53,13 @@ Profiler::setLogPath(
     _log.setFilePath(a_logPath);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Profiler::logPath() const
 {
     return _log.filePath();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Profiler::start()
 {
     xTEST_EQ(_isStarted, false);
@@ -81,7 +77,7 @@ Profiler::start()
     _isStarted = true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE size_t
+size_t
 Profiler::stop(
     cptr_ctchar_t a_comment, ...
 )
@@ -119,7 +115,7 @@ Profiler::stop(
     return durationMsec2;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE size_t
+size_t
 Profiler::restart(
     cptr_ctchar_t a_comment, ...
 )
@@ -151,7 +147,7 @@ Profiler::restart(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Profiler::_reset()
 {
     // TODO: set normal thread priority
