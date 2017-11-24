@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "${cmXLIB_TEMPLATE}.h"
-#endif
+#include "${cmXLIB_TEMPLATE}.h"
 
 #if   xENV_WIN
     #include "Platform/Win/${cmXLIB_TEMPLATE}_win.inl"

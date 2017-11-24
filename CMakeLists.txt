@@ -192,10 +192,6 @@ else()
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
-if (cmOPTION_PROJECT_HEADER_ONLY)
-    # n/a
-endif()
-
 if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
 

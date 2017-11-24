@@ -29,6 +29,3 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, ${cmXLIB_TEMPLATE_NS})
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "${cmXLIB_TEMPLATE}.cpp"
-#endif
