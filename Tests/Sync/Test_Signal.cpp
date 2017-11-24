@@ -52,8 +52,8 @@ Test_Signal::unit()
 	#if !xENV_BSD
         signalNums.push_back(SIGPOLL);
         signalNums.push_back(SIGPWR);
-		signalNums.push_back(SIGSTKFLT);
-		signalNums.push_back(SIGCLD);
+        signalNums.push_back(SIGSTKFLT);
+        signalNums.push_back(SIGCLD);
 	#endif
 
         xFOR_EACH_CONST(std::vector<int_t>, it, signalNums) {
