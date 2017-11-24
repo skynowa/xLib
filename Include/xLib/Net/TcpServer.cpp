@@ -30,7 +30,7 @@ TcpServer::bind(
     xTEST_NA(a_port);
 
     sockaddr_in sockAddr;    xSTRUCT_ZERO(sockAddr);
-    sockAddr.sin_family      = static_cast<ushort_t>(_family);
+    sockAddr.sin_family      = static_cast<sa_family_t>(_family);
     sockAddr.sin_addr.s_addr = INADDR_ANY;
     sockAddr.sin_port        = htons(a_port);
 

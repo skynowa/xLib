@@ -62,6 +62,10 @@
 
 ///@name detecting features
 ///@{
+
+// Headers
+#cmakedefine cmHAVE_FEATURES_H 1
+
 #cmakedefine cmOPENSSL_CRYPTO_FOUND 1
 #cmakedefine cmPR_SET_DUMPABLE_FOUND 1
 #cmakedefine cmRLIMIT_CORE_FOUND 1
@@ -124,6 +128,4 @@
     #endif
 #endif
 ///@}
-
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Internal/Warnings.h>

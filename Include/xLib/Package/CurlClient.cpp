@@ -56,7 +56,7 @@ CurlClient::versionInfo(
     curl_version_info_data *infoData = ::curl_version_info(a_version);
     xTEST_PTR(infoData);
 
-    Format::str(
+    sRv = Format::str(
         "age: {}\n"
         "version: {}\n"
         "version_num: {}\n"

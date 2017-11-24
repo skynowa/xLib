@@ -50,9 +50,10 @@ User::_loginName_impl() const
     // try API
     {
     #if cmGETLOGIN_R_FOUND
-        char buff[xUSER_NAME_MAX + 1] = {0}; // TODO: User::loginName() - LOGIN_NAME_MAX
+        cint_t buffSize       = xUSER_NAME_MAX + 1;
+        char   buff[buffSize] = {0}; // TODO: User::loginName() - LOGIN_NAME_MAX
 
-        int_t iRv = ::getlogin_r(buff, xARRAY_SIZE(buff));
+        int_t iRv = ::getlogin_r(buff, buffSize);
         if (iRv == 0) {
             sRv = xA2T(buff);
             return sRv;

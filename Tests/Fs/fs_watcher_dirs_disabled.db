@@ -1,0 +1,47 @@
+// api
+"api/site",
+"api/modules/crs_functions",
+
+// booked
+"booked/site",
+
+// core
+"core/scripts",
+"core/gen",
+"core/gen-data",
+"core/release",
+"core/config",
+"core/cms",
+"core/compiled",
+
+"core/modules/crs_functions",
+
+// flights
+"flights/site",
+"flights/cms",
+
+// suppliers
+"suppliers/cms",
+"suppliers/config",
+"suppliers/scripts",
+"suppliers/compiled",
+"suppliers/release",
+"suppliers/gen",
+"suppliers/gen-data",
+"suppliers/databases",
+
+"suppliers/modules/crs_functions",
+
+// secure
+"secure/site",
+"secure/gen",
+"secure/gen-data",
+"secure/config",
+"secure/compiled",
+"secure/release",
+
+// widgets
+"widgets/site",
+
+// visagw
+"visagw/site"

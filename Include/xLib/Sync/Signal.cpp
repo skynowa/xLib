@@ -309,9 +309,11 @@ Signal::infoDescription(
 	const _SignalInfo signalInfos[] =
 	{
 		// _KERNEL
+	#if !xENV_BSD
 		{_KERNEL, SI_ASYNCNL,    xLEX_TO_STR(SI_ASYNCNL),    xT("Sent by asynch name lookup completion")},
 		{_KERNEL, SI_TKILL,      xLEX_TO_STR(SI_TKILL),      xT("Sent by tkill")},
 		{_KERNEL, SI_SIGIO,      xLEX_TO_STR(SI_SIGIO),      xT("Sent by queued SIGIO")},
+	#endif
 		{_KERNEL, SI_ASYNCIO,    xLEX_TO_STR(SI_ASYNCIO),    xT("Sent by AIO completion")},
 		{_KERNEL, SI_MESGQ,      xLEX_TO_STR(SI_MESGQ),      xT("Sent by real time mesq state change")},
 		{_KERNEL, SI_TIMER,      xLEX_TO_STR(SI_TIMER),      xT("Sent by timer expiration")},
@@ -347,8 +349,10 @@ Signal::infoDescription(
 		{SIGBUS,  BUS_ADRALN,    xLEX_TO_STR(BUS_ADRALN),    xT("Invalid address alignment")},
 		{SIGBUS,  BUS_ADRERR,    xLEX_TO_STR(BUS_ADRERR),    xT("Non-existant physical address")},
 		{SIGBUS,  BUS_OBJERR,    xLEX_TO_STR(BUS_OBJERR),    xT("Object specific hardware error")},
+	#if !xENV_BSD
 		{SIGBUS,  BUS_MCEERR_AR, xLEX_TO_STR(BUS_MCEERR_AR), xT("Hardware memory error: action required")},
 		{SIGBUS,  BUS_MCEERR_AO, xLEX_TO_STR(BUS_MCEERR_AO), xT("Hardware memory error: action optional")},
+	#endif
 
 		// SIGTRAP
 		{SIGTRAP, TRAP_BRKPT,    xLEX_TO_STR(TRAP_BRKPT),    xT("Process breakpoint")},
@@ -360,15 +364,18 @@ Signal::infoDescription(
 		{SIGCHLD, CLD_DUMPED,    xLEX_TO_STR(CLD_DUMPED),    xT("Child terminated abnormally")},
 		{SIGCHLD, CLD_TRAPPED,   xLEX_TO_STR(CLD_TRAPPED),   xT("Traced child has trapped")},
 		{SIGCHLD, CLD_STOPPED,   xLEX_TO_STR(CLD_STOPPED),   xT("Child has stopped")},
-		{SIGCHLD, CLD_CONTINUED, xLEX_TO_STR(CLD_CONTINUED), xT("Stopped child has continued")},
+		{SIGCHLD, CLD_CONTINUED, xLEX_TO_STR(CLD_CONTINUED), xT("Stopped child has continued")}
 
 		// SIGPOLL
+	#if !xENV_BSD
+		,
 		{SIGPOLL, POLL_IN,       xLEX_TO_STR(POLL_IN),       xT("Data input available")},
 		{SIGPOLL, POLL_OUT,      xLEX_TO_STR(POLL_OUT),      xT("Output buffers available")},
 		{SIGPOLL, POLL_MSG,      xLEX_TO_STR(POLL_MSG),      xT("Input message available")},
 		{SIGPOLL, POLL_ERR,      xLEX_TO_STR(POLL_ERR),      xT("I/O error")},
 		{SIGPOLL, POLL_PRI,      xLEX_TO_STR(POLL_PRI),      xT("High priority input available")},
 		{SIGPOLL, POLL_HUP,      xLEX_TO_STR(POLL_HUP),      xT("Device disconnected")}
+	#endif
 	};
 
 	xFOR_ARRAY(i, signalInfos) {
@@ -382,7 +389,7 @@ Signal::infoDescription(
 				signalInfo.codeStr,
 				signalInfo.code,
 				signalInfo.description,
-				NativeError::format( static_cast<ulong>(a_info.si_errno)) );
+				NativeError::format( static_cast<ulong_t>(a_info.si_errno)) );
 
 		break;
 	}
@@ -403,7 +410,7 @@ Signal::infoDescription(
 				signalInfo.codeStr,
 				signalInfo.code,
 				signalInfo.description,
-				NativeError::format( static_cast<ulong>(a_info.si_errno)) );
+				NativeError::format( static_cast<ulong_t>(a_info.si_errno)) );
 
 		break;
 	}
