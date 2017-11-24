@@ -77,14 +77,14 @@ if (ENV_WIN)
 elseif (ENV_UNIX)
     # Headers
     CHECK_INCLUDE_FILES("features.h" cmHAVE_FEATURES_H)
-    message(STATUS "cmHAVE_FEATURES_H : ${cmHAVE_FEATURES_H}")
+    # CHECK_INCLUDE_FILES(xxxxx         aaaaaaa          cmHAVE_DDDDDDDDDDDDDDDD)
 
     # Libs
 
     # Symbols
     CHECK_SYMBOL_EXISTS(PR_SET_DUMPABLE "sys/prctl.h"    cmPR_SET_DUMPABLE_FOUND)
     CHECK_SYMBOL_EXISTS(RLIMIT_CORE     "sys/resource.h" cmRLIMIT_CORE_FOUND)
-    # CHECK_SYMBOL_EXISTS(xxxxx         aaaaaaa          cmDDDDDDDDDDDDDDDD_FOUND)
+    # CHECK_SYMBOL_EXISTS(xxxxx         aaaaaaa          cmHAVE_DDDDDDDDDDDDDDDD)
 
     # Functions
     CHECK_FUNCTION_EXISTS(sched_getcpu      cmSCHED_GETCPU_FOUND)
@@ -99,7 +99,7 @@ elseif (ENV_UNIX)
     CHECK_FUNCTION_EXISTS(rand_r            cmRAND_R_FOUND)
     CHECK_FUNCTION_EXISTS(srandom_r         cmSRANDOM_R_FOUND)
     CHECK_FUNCTION_EXISTS(srandom_r         cmRANDOM_R_FOUND)
-    # CHECK_FUNCTION_EXISTS(xxxxx           cmDDDDDDDDDDDDDDDD_FOUND)
+    # CHECK_FUNCTION_EXISTS(xxxxx           cmHAVE_DDDDDDDDDDDDDDDD)
 
     # cmGNU_GET_LIBC_FOUND
     CHECK_FUNCTION_EXISTS(gnu_get_libc_version _xGNU_GET_LIBC_VERSION)
