@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Dll::_load_impl(
     std::ctstring_t &a_dllPath
 )
@@ -21,7 +21,7 @@ Dll::_load_impl(
     xTEST_EQ_MSG(_handle.isValid(), true, StdError::format());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Dll::_isProcExists_impl(
     std::ctstring_t &a_procName
 ) const
@@ -41,7 +41,7 @@ Dll::_isProcExists_impl(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Dll::proc_address_t
+Dll::proc_address_t
 Dll::_procAddress_impl(
     std::ctstring_t &a_procName
 ) const

@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "SocketInit.h"
-#endif
+#include "SocketInit.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -40,7 +38,6 @@ xNAMESPACE_BEGIN2(xl, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 SocketInit::SocketInit(
     cushort_t &a_versionMajor,
     cushort_t &a_versionMinor
@@ -49,7 +46,6 @@ SocketInit::SocketInit(
     _construct_impl(a_versionMajor, a_versionMinor);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 SocketInit::~SocketInit()
 {
     _destruct_impl();

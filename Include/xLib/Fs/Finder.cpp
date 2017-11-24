@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Finder.h"
-#endif
+#include "Finder.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Core/String.h>
@@ -37,7 +35,6 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Finder::Finder(
     std::ctstring_t &a_rootDirPath,   ///< target root dir
     std::ctstring_t &a_shellFilter    ///< shell wildcard pattern
@@ -53,13 +50,12 @@ Finder::Finder(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 Finder::~Finder()
 {
     close();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 Finder::rootDirPath() const
 {
     xTEST_EQ(_rootDirPath.empty(), false);
@@ -67,7 +63,7 @@ Finder::rootDirPath() const
     return _rootDirPath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 Finder::shellFilter() const
 {
     xTEST_EQ(_shellFilter.empty(), false);
@@ -75,7 +71,7 @@ Finder::shellFilter() const
     return _shellFilter;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Finder::entryName() const
 {
     xTEST_EQ(_entry.handle.isValid(), true);
@@ -86,7 +82,7 @@ Finder::entryName() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Finder::entryPath() const
 {
     xTEST_EQ(_entry.handle.isValid(), true);
@@ -98,7 +94,7 @@ Finder::entryPath() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE FileType::types_t
+FileType::types_t
 Finder::fileTypes() const
 {
     xTEST_EQ(_entry.handle.isValid(), true);
@@ -106,7 +102,7 @@ Finder::fileTypes() const
     return _fileTypes_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Finder::moveNext()
 {
     bool_t bRv = false;
@@ -124,7 +120,7 @@ Finder::moveNext()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Finder::close()
 {
     _isMoveFirst = true;
@@ -143,7 +139,7 @@ Finder::close()
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Finder::dirs(
     std::ctstring_t    &a_rootDirPath,   ///< target root dir
     std::ctstring_t    &a_shellFilter,   ///< shell wildcard pattern
@@ -178,7 +174,7 @@ Finder::dirs(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Finder::files(
     std::ctstring_t    &a_rootDirPath,   ///< target root dir
     std::ctstring_t    &a_shellFilter,   ///< shell wildcard pattern
@@ -228,7 +224,7 @@ Finder::files(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Finder::_moveFirst()
 {
     xTEST_EQ(_entry.handle.isValid(), false);

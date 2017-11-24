@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "SourceInfo.h"
-#endif
+#include "SourceInfo.h"
 
 #include <xLib/Core/Format.h>
 
@@ -19,7 +17,6 @@ xNAMESPACE_BEGIN2(xl, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 SourceInfo::SourceInfo(
     cSourceInfoData &a_data
 ) :
@@ -27,20 +24,20 @@ SourceInfo::SourceInfo(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE cSourceInfoData &
+cSourceInfoData &
 SourceInfo::data() const
 {
     return _data;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SourceInfo::format() const
 {
     return Format::str(xT("#{} in {}:{}, func: {}"), _data.counter, _data.filePath, _data.lineNum,
     	_data.funcName);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SourceInfo::at() const
 {
     return Format::str(xT("{}:{}"), _data.filePath, _data.lineNum);

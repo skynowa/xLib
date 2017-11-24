@@ -43,7 +43,3 @@ xPLATFORM_IMPL:
 xNAMESPACE_END2(xl, log)
 //-------------------------------------------------------------------------------------------------
 #include "Trace.inl"
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Trace.cpp"
-#endif

@@ -62,7 +62,3 @@ private:
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "Algos.inl"
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Algos.cpp"
-#endif

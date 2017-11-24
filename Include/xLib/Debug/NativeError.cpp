@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "NativeError.h"
-#endif
+#include "NativeError.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
@@ -41,14 +39,14 @@ xNAMESPACE_BEGIN2(xl, debug)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 NativeError::isSuccess()
 {
     return _isSuccess_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE ulong_t
+ulong_t
 NativeError::get()
 {
     culong_t code = _get_impl();
@@ -59,7 +57,7 @@ NativeError::get()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 NativeError::set(
     culong_t &a_code
 )
@@ -68,21 +66,21 @@ NativeError::set(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 NativeError::reset()
 {
     set( _nativeCodeSuccess() );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 NativeError::format()
 {
     return format( get() );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 NativeError::format(
     culong_t &a_code
 )
@@ -99,7 +97,7 @@ NativeError::format(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE ulong_t
+ulong_t
 NativeError::_nativeCodeSuccess()
 {
     return _nativeCodeSuccess_impl();

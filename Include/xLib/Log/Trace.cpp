@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Trace.h"
-#endif
+#include "Trace.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/FormatC.h>
@@ -40,14 +38,13 @@ xNAMESPACE_BEGIN2(xl, log)
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 Trace::~Trace()
 {
     write(xT("%s"), _oss.str().c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE void_t
+void_t
 Trace::write(
     cptr_ctchar_t a_format, ...
 ) const
@@ -66,7 +63,7 @@ Trace::write(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE void_t
+void_t
 Trace::write(
     cLevel        &a_level,
     cptr_ctchar_t  a_format, ...

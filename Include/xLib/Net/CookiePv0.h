@@ -80,6 +80,3 @@ private:
 
 xNAMESPACE_END2(xl, net)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "CookiePv0.cpp"
-#endif

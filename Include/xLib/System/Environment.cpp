@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Environment.h"
-#endif
+#include "Environment.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
@@ -37,7 +35,7 @@ xNAMESPACE_BEGIN2(xl, system)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 Environment::isExists(
     std::ctstring_t &a_varName
 )
@@ -50,7 +48,7 @@ Environment::isExists(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 Environment::isVarValid(
     std::ctstring_t &a_varName
 )
@@ -64,7 +62,7 @@ Environment::isVarValid(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 Environment::isValueValid(
     std::ctstring_t &a_varValue
 )
@@ -77,7 +75,7 @@ Environment::isValueValid(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Environment::var(
     std::ctstring_t &a_varName
 )
@@ -90,7 +88,7 @@ Environment::var(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Environment::setVar(
     std::ctstring_t &a_varName,
     std::ctstring_t &a_value
@@ -103,7 +101,7 @@ Environment::setVar(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Environment::deleteVar(
     std::ctstring_t &a_varName
 )
@@ -116,7 +114,7 @@ Environment::deleteVar(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Environment::values(
     std::vec_tstring_t *a_values
 )
@@ -129,7 +127,7 @@ Environment::values(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Environment::expandStrings(
     std::ctstring_t &a_var
 )

@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Uri.h"
-#endif
+#include "Uri.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
@@ -26,7 +24,6 @@ xNAMESPACE_BEGIN2(xl, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Uri::Uri() :
     _scheme   (),
     _authority(),
@@ -39,7 +36,6 @@ Uri::Uri() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Uri::Uri(
     std::ctstring_t &a_uri
 ) :
@@ -64,7 +60,7 @@ Uri::Uri(
  * |                |                |            |       |
  * scheme        authority           path        query   fragment
  */
-xINLINE std::tstring_t
+std::tstring_t
 Uri::uri() const
 {
     std::tstring_t sRv;
@@ -103,7 +99,7 @@ Uri::uri() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Uri::setUri(
     std::ctstring_t &a_scheme,
     std::ctstring_t &a_authority,
@@ -119,13 +115,13 @@ Uri::setUri(
     setFragment (a_fragment);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Uri::scheme() const
 {
     return encodeComponent(_scheme);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Uri::setScheme(
     std::ctstring_t &a_scheme
 )
@@ -133,7 +129,7 @@ Uri::setScheme(
     _scheme = decodeComponent(a_scheme);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Uri::authority() const
 {
     std::tstring_t tempAuthority;
@@ -157,7 +153,7 @@ Uri::authority() const
     return encodeComponent(tempAuthority/*_authority*/);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Uri::setAuthority(
     std::ctstring_t &a_authority
 )
@@ -165,13 +161,13 @@ Uri::setAuthority(
     _authority = decodeComponent(a_authority);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Uri::userInfo() const
 {
     return encodeComponent(_userInfo);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Uri::setUserInfo(
     std::ctstring_t &a_userInfo
 )
@@ -181,13 +177,13 @@ Uri::setUserInfo(
     // TODO: setAuthority
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Uri::host() const
 {
     return encodeComponent(_host);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Uri::setHost(
     std::ctstring_t &a_host
 )
@@ -197,13 +193,13 @@ Uri::setHost(
     // TODO: setAuthority
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ushort_t
+ushort_t
 Uri::port()
 {
     return _port;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Uri::setPort(
     cushort_t &a_port
 )
@@ -213,13 +209,13 @@ Uri::setPort(
     // TODO: Uri::setPort() - setAuthority
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Uri::path() const
 {
     return encodeComponent(_path);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Uri::setPath(
     std::ctstring_t &a_path
 )
@@ -227,13 +223,13 @@ Uri::setPath(
     _path = decodeComponent(a_path);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Uri::query() const
 {
     return encodeComponent(_query);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Uri::setQuery(
     std::ctstring_t &a_query
 )
@@ -241,13 +237,13 @@ Uri::setQuery(
     _query = decodeComponent(a_query);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Uri::fragment() const
 {
     return encodeComponent(_fragment);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Uri::setFragment(
     std::ctstring_t &a_fragment
 )
@@ -255,7 +251,7 @@ Uri::setFragment(
     _fragment = decodeComponent(a_fragment);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Uri::clear()
 {
     _scheme.clear();
@@ -269,7 +265,7 @@ Uri::clear()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Uri::escape(
     std::ctstring_t &a_uri
 )
@@ -305,7 +301,7 @@ Uri::escape(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Uri::unescape(
     std::ctstring_t &a_uri
 )
@@ -320,7 +316,7 @@ Uri::unescape(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Uri::encodeComponent(
     std::ctstring_t &a_uri
 )
@@ -364,7 +360,7 @@ Uri::encodeComponent(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Uri::decodeComponent(
     std::ctstring_t &a_uri
 )
@@ -434,7 +430,7 @@ Uri::decodeComponent(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 Uri::_reservedPath()
 {
     static std::ctstring_t sRv(xT("?#"));
@@ -442,7 +438,7 @@ Uri::_reservedPath()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 Uri::_reservedQuery()
 {
     static std::ctstring_t sRv(xT("#"));
@@ -450,7 +446,7 @@ Uri::_reservedQuery()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 Uri::_reservedFragment()
 {
     static std::ctstring_t sRv(xT(""));
@@ -458,7 +454,7 @@ Uri::_reservedFragment()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 Uri::_illegal()
 {
     static std::ctstring_t sRv(xT("%<>{}|\\\"^`"));
@@ -474,7 +470,7 @@ Uri::_illegal()
  * |                |                |            |       |
  * scheme        authority           path        query   fragment
  */
-xINLINE void_t
+void_t
 Uri::_parse(
     std::ctstring_t &a_uri
 )
@@ -585,7 +581,7 @@ Uri::_parse(
     _fragment = String::cut(a_uri, fragmentStart, fragmentEnd);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Uri::_normilize(
     std::ctstring_t &a_uri
 )
@@ -601,7 +597,7 @@ Uri::_normilize(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ushort_t
+ushort_t
 Uri::_defaultPort() const
 {
     if      (_scheme == xT("ftp")) {
@@ -633,7 +629,7 @@ Uri::_defaultPort() const
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Uri::_isDefaultPort() const
 {
     return ( _port == _defaultPort() );

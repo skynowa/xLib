@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xl, log)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-xINLINE Trace &
+Trace &
 Trace::operator << (
     const T &a_valueT
 )

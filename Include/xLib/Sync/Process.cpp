@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Process.h"
-#endif
+#include "Process.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
@@ -40,7 +38,6 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Process::Process() :
     _handle    (0),
 #if xENV_WIN
@@ -52,13 +49,12 @@ Process::Process() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 Process::~Process()
 {
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Process::create(
     std::ctstring_t &a_filePath,
     cptr_ctchar_t    a_params, ...
@@ -80,7 +76,7 @@ Process::create(
     _create_impl(a_filePath, cmdLine);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Process::WaitResult
+Process::WaitResult
 Process::wait(
     culong_t &a_timeoutMsec
 )
@@ -88,7 +84,7 @@ Process::wait(
     return _wait_impl(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Process::kill(
     culong_t &a_timeoutMsec
 )
@@ -96,25 +92,25 @@ Process::kill(
     _kill_impl(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Process::handle_t
+Process::handle_t
 Process::handle() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Process::id_t
+Process::id_t
 Process::id() const
 {
     return _pid;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Process::isCurrent() const
 {
     return isCurrent( currentId() );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 Process::exitStatus() const
 {
     return _exitStatus_impl();
@@ -128,7 +124,7 @@ Process::exitStatus() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE Process::id_t
+Process::id_t
 Process::idByHandle(
     const handle_t &a_handle    ///< handle
 )
@@ -136,7 +132,7 @@ Process::idByHandle(
     return _idByHandle_impl(a_handle);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Process::handle_t
+Process::handle_t
 Process::handleById(
     const id_t &a_id   ///< ID
 )
@@ -145,7 +141,6 @@ Process::handleById(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE
 Process::id_t
 Process::idByName(
     std::ctstring_t &a_processName
@@ -155,7 +150,7 @@ Process::idByName(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 Process::isRunning(
     const id_t &a_id
 )
@@ -171,7 +166,7 @@ Process::isRunning(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Process::ids(
     std::vector<Process::id_t> *a_ids
 )
@@ -181,7 +176,7 @@ Process::ids(
     _ids_impl(a_ids);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Process::isCurrent(
     const Process::id_t &a_id
 )
@@ -189,7 +184,7 @@ Process::isCurrent(
     return _isCurrent_impl(a_id);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Process::id_t
+Process::id_t
 Process::currentId()
 {
     // n/a
@@ -197,7 +192,7 @@ Process::currentId()
     return _currentId_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Process::id_t
+Process::id_t
 Process::currentParentId()
 {
     // n/a
@@ -206,7 +201,7 @@ Process::currentParentId()
 }
 //-------------------------------------------------------------------------------------------------
 // TODO: tests
-xINLINE Process::handle_t
+Process::handle_t
 Process::currentHandle()
 {
     // n/a
@@ -215,7 +210,7 @@ Process::currentHandle()
 }
 //-------------------------------------------------------------------------------------------------
 // TODO: Process::currentExit() - tests
-xINLINE void_t
+void_t
 Process::currentExit(
     cuint_t &a_exitCode
 )

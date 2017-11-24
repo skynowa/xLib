@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "FsWatcher.h"
-#endif
+#include "FsWatcher.h"
 
 #if   xENV_WIN
     #include "Platform/Win/FsWatcher_win.inl"
@@ -33,7 +31,6 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 FsWatcher::FsWatcher(
     std::cvec_tstring_t &a_dirPathsDisabled,
     std::ctstring_t     &a_shellFilter
@@ -43,13 +40,12 @@ FsWatcher::FsWatcher(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 FsWatcher::~FsWatcher()
 {
     close();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 FsWatcher::open(
     std::cvec_tstring_t &a_filePaths,
     std::cmap_tstring_t &a_cmds
@@ -79,7 +75,7 @@ FsWatcher::open(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 FsWatcher::openDirs(
     std::cvec_tstring_t &a_dirPaths,
     std::cmap_tstring_t &a_cmds
@@ -105,7 +101,7 @@ FsWatcher::openDirs(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 FsWatcher::watch(
     culong_t a_timeoutMsec
 )
@@ -115,7 +111,7 @@ FsWatcher::watch(
     Thread::currentSleep(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 FsWatcher::close()
 {
     _close_impl();

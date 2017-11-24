@@ -15,17 +15,17 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 User::_construct_impl()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 User::_destruct_impl()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 User::_isAdmin_impl() const
 {
     const uid_t rootId = 0;
@@ -42,7 +42,7 @@ User::_isAdmin_impl() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 User::_loginName_impl() const
 {
     std::tstring_t sRv;
@@ -92,7 +92,7 @@ User::_loginName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 User::_name_impl() const
 {
     std::string sRv;
@@ -102,7 +102,7 @@ User::_name_impl() const
     return xA2T(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE uint_t
+uint_t
 User::_userId_impl() const
 {
     uid_t uiRv;
@@ -112,7 +112,7 @@ User::_userId_impl() const
     return static_cast<uint_t>(uiRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE uint_t
+uint_t
 User::_groupId_impl() const
 {
     gid_t uiRv;
@@ -122,7 +122,7 @@ User::_groupId_impl() const
     return static_cast<uint_t>(uiRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 User::_homeDir_impl() const
 {
     std::tstring_t sRv;
@@ -152,7 +152,7 @@ User::_homeDir_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 User::_shellPath_impl() const
 {
     std::string sRv;
@@ -169,7 +169,7 @@ User::_shellPath_impl() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 User::_passwd(
     std::string *a_pw_name,   ///< [out] Username (maybe as xPTR_NULL)
     std::string *a_pw_passwd, ///< [out] Password (maybe as xPTR_NULL)

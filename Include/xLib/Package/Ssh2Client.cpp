@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Ssh2Client.h"
-#endif
+#include "Ssh2Client.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Utils.h>
@@ -35,7 +33,6 @@ clong_t        waitTimeoutSec = 10;
 
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Ssh2Client::Ssh2Client(
     cSsh2ClientData &a_data
 ) :
@@ -50,13 +47,12 @@ Ssh2Client::Ssh2Client(
     xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Ssh2Client::~Ssh2Client()
 {
     (void_t)::libssh2_exit();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Ssh2Client::isAlive()
 {
     std::tstring_t hostAddr;
@@ -72,7 +68,7 @@ Ssh2Client::isAlive()
     return TcpClient::isServerAlive(hostAddr, _data.port);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Ssh2Client::connect()
 {
     int_t iRv = 0;
@@ -101,7 +97,7 @@ Ssh2Client::connect()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Ssh2Client::authPassword(
     cUserAuth a_userAuth
 )
@@ -138,7 +134,7 @@ Ssh2Client::authPassword(
     xTEST_EQ_MSG(iRv, 0, lastErrorFormat());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Ssh2Client::authPublicKey(
     std::ctstring_t &a_keyDirPath
 )
@@ -160,7 +156,7 @@ Ssh2Client::authPublicKey(
     xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Ssh2Client::channelExec(
     std::ctstring_t &a_cmd,
     cbool_t          a_isBlockingMode
@@ -206,7 +202,7 @@ Ssh2Client::channelExec(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Ssh2Client::channelReadLine(
     std::tstring_t *a_stdOut,
     std::tstring_t *a_stdErr
@@ -273,7 +269,7 @@ Ssh2Client::channelReadLine(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Ssh2Client::_channelStdStreamReadLine(
     cbool_t         a_stdOutOrErr,  ///< std::out (true) ot std::cerr (false) stream
     std::tstring_t *a_stdStream,    ///< std stream
@@ -324,7 +320,7 @@ Ssh2Client::_channelStdStreamReadLine(
 //-------------------------------------------------------------------------------------------------
 
 
-xINLINE void_t
+void_t
 Ssh2Client::channelClose()
 {
     xTEST_PTR(_channel);
@@ -343,7 +339,7 @@ Ssh2Client::channelClose()
     xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Ssh2Client::disconnect()
 {
     xTEST_PTR(_session);
@@ -364,13 +360,13 @@ Ssh2Client::disconnect()
     xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int
+int
 Ssh2Client::lastError()
 {
     return ::libssh2_session_last_errno(_session);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Ssh2Client::lastErrorFormat()
 {
     std::string asRv;
@@ -398,7 +394,7 @@ Ssh2Client::lastErrorFormat()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Ssh2Client::_wait(
     clong_t a_timeoutSec ///< timeout (seconds)
 )
@@ -431,7 +427,7 @@ Ssh2Client::_wait(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Ssh2Client::_authPassword_OnKeyboardInteractive(
     const char                           *a_name,
     int                                   a_nameLen,
@@ -459,7 +455,7 @@ Ssh2Client::_authPassword_OnKeyboardInteractive(
     xUNUSED(a_abstract);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Ssh2Client::_convertStdToHtml(
     std::tstring_t *a_std
 )

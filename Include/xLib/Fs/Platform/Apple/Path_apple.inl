@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Path::_exe_impl()
 {
     std::tstring_t sRv;
@@ -24,7 +24,7 @@ Path::_exe_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Path::_fileExt_impl(
     const FileExt &a_fileExt
 )

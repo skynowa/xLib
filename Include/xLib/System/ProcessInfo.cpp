@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "ProcessInfo.h"
-#endif
+#include "ProcessInfo.h"
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
@@ -39,13 +37,12 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 ProcessInfo::ProcessInfo() :
     _id(0)
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ProcessInfo::setProcessId(
     const Process::id_t &a_id
 )
@@ -53,37 +50,37 @@ ProcessInfo::setProcessId(
     _id = a_id;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 ProcessInfo::cpuUsage() const
 {
     return _cpuUsage_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 ProcessInfo::ramUsage() const
 {
     return _ramUsage_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 ProcessInfo::ioBytes() const
 {
     return _ioBytes_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 ProcessInfo::exeName() const
 {
     return _exeName_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 ProcessInfo::parentId() const
 {
     return _parentId_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ProcessInfo::commandLine(
     std::vec_tstring_t *a_args
 ) const
@@ -96,14 +93,14 @@ ProcessInfo::commandLine(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE long_t
+long_t
 ProcessInfo::commandLineArgsMax()
 {
     return _commandLineArgsMax_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 ProcessInfo::commandLine(
     cint_t             &a_argsNum,
     cptr_ctchar_t       a_argv[],

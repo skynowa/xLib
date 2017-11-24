@@ -76,8 +76,4 @@ private:
 
 xNAMESPACE_END2(xl, ui)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "XcbMsgBox.cpp"
-#endif
-
 #endif // cmXCB_FOUND

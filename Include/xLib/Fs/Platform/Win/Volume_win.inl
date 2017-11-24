@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE Volume::Type
+Volume::Type
 Volume::type() const
 {
     std::ctstring_t rootPath = Path( path() ).slashAppend();
@@ -23,7 +23,7 @@ Volume::type() const
     return static_cast<Type>(uiRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Volume::_fileSystem_impl() const
 {
     std::tstring_t sRv;
@@ -41,7 +41,7 @@ Volume::_fileSystem_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Volume::_label_impl() const
 {
     std::tstring_t sRv;
@@ -59,7 +59,7 @@ Volume::_label_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Volume::_isValid_impl() const
 {
     bool_t bRv = Dir( path() ).isRoot();
@@ -68,7 +68,7 @@ Volume::_isValid_impl() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Volume::_isReady_impl() const
 {
     bool_t         bRv           = false;
@@ -95,7 +95,7 @@ Volume::_isReady_impl() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Volume::_mount_impl(
     std::ctstring_t &a_destPath    ///< destination path
 ) const
@@ -116,7 +116,7 @@ Volume::_mount_impl(
     xTEST_EQ(dwRv, static_cast<DWORD>( NO_ERROR ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Volume::_unMount_impl(
     cbool_t &a_isForce     ///< force unmount even if busy
 ) const
@@ -135,7 +135,7 @@ Volume::_unMount_impl(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Volume::_space_impl(
     std::ctstring_t &a_dirPath,     ///< directory path
     ulonglong_t*    &a_available,   ///< available space (for unprivileged users)
@@ -156,7 +156,7 @@ Volume::_space_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Volume::_paths_impl(
     std::vec_tstring_t *a_volumePaths    ///< volume paths
 )

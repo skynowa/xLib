@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN2(xl, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE ssize_t
+ssize_t
 ISocket::_send_impl(
     cptr_ctchar_t *a_buff,
     std::csize_t  &a_buffSize,
@@ -31,7 +31,7 @@ ISocket::_send_impl(
     return iRv / sizeof(tchar_t);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ssize_t
+ssize_t
 ISocket::_receive_impl(
     tchar_t      *a_buff,
     std::csize_t &a_buffSize,
@@ -54,7 +54,7 @@ ISocket::_receive_impl(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::_peerName_impl(
     std::tstring_t *a_peerAddr,
     ushort_t       *a_peerPort
@@ -79,7 +79,7 @@ ISocket::_peerName_impl(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::_socketName_impl(
     std::tstring_t *a_socketAddr,
     ushort_t       *a_socketPort
@@ -112,7 +112,7 @@ ISocket::_socketName_impl(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 ISocket::_nativeError_impl()
 {
     return ::WSAGetLastError();

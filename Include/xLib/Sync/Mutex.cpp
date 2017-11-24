@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Mutex.h"
-#endif
+#include "Mutex.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -41,37 +39,36 @@ xNAMESPACE_BEGIN2(xl, sync)
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 Mutex::~Mutex()
 {
     _destruc_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Mutex::create()
 {
     _create_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE const Mutex::handle_t &
+const Mutex::handle_t &
 Mutex::handle() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Mutex::lock()
 {
     _lock_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Mutex::tryLock()
 {
     return _tryLock_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Mutex::unlock()
 {
     _unlock_impl();

@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "ISocket.h"
-#endif
+#include "ISocket.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -33,7 +31,6 @@ xNAMESPACE_BEGIN2(xl, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 ISocket::ISocket() :
     _handle(),
     _family(- 1),
@@ -42,7 +39,6 @@ ISocket::ISocket() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 ISocket::~ISocket()
 {
 }
@@ -55,7 +51,7 @@ ISocket::~ISocket()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::create(
     cAddressFamily &a_family,
     cType          &a_type,
@@ -70,7 +66,7 @@ ISocket::create(
     _family = a_family;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE HandleSocket &
+HandleSocket &
 ISocket::handle()
 {
     xTEST_EQ(_handle.isValid(), true);
@@ -78,7 +74,7 @@ ISocket::handle()
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 ISocket::isReadable() const
 {
     timeval timeoutVal = {1, 0};
@@ -92,7 +88,7 @@ ISocket::isReadable() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 ISocket::isWritable() const
 {
     timeval timeoutVal = {1, 0};
@@ -106,7 +102,7 @@ ISocket::isWritable() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::assign(
     csocket_t &a_handle
 )
@@ -117,7 +113,7 @@ ISocket::assign(
     _handle = a_handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::close()
 {
     xTESTS_NA;
@@ -133,7 +129,7 @@ ISocket::close()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE ssize_t
+ssize_t
 ISocket::send(
     cptr_ctchar_t  a_buff,
     std::csize_t  &a_buffSize,
@@ -149,7 +145,7 @@ ISocket::send(
     return _send_impl(a_buff, a_buffSize, a_flags);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::sendAll(
     std::ctstring_t &a_buff,
     cint_t          &a_flags
@@ -189,7 +185,7 @@ ISocket::sendAll(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ssize_t
+ssize_t
 ISocket::receive(
     tchar_t      *a_buff,
     std::csize_t &a_buffSize,
@@ -205,7 +201,7 @@ ISocket::receive(
     return _receive_impl(a_buff, a_buffSize, a_flags);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 ISocket::recvAll(
     cint_t &a_flags
 )
@@ -234,7 +230,7 @@ ISocket::recvAll(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 ISocket::recvAll(
     cint_t          &a_flags,
     std::ctstring_t &a_delimiter
@@ -260,7 +256,7 @@ ISocket::recvAll(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 ISocket::sendBytes(
     char    *a_buff,
     ssize_t &a_messageLength
@@ -304,7 +300,7 @@ ISocket::sendBytes(
     return 0;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 ISocket::receiveBytes(
     char    *a_buff,
     ssize_t &a_stillToReceive
@@ -354,7 +350,7 @@ ISocket::receiveBytes(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::peerName(
     std::tstring_t *a_peerAddr,
     ushort_t       *a_peerPort
@@ -366,7 +362,7 @@ ISocket::peerName(
     _peerName_impl(a_peerAddr, a_peerPort);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::socketName(
     std::tstring_t *a_socketAddr,
     ushort_t       *a_socketPort
@@ -387,7 +383,7 @@ ISocket::socketName(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE int_t
+int_t
 ISocket::select(
     int_t    a_nfds,
     fd_set  *a_readfds,
@@ -408,7 +404,7 @@ ISocket::select(
      return iRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 ISocket::nativeError()
 {
     // n/a

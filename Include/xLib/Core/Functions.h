@@ -99,7 +99,3 @@
     #endif
 #endif
     ///< filesystem statfs (struct and function)
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Functions.cpp"
-#endif

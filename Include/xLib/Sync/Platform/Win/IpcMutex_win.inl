@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcMutex::_create_impl(
     std::ctstring_t &a_name
 )
@@ -34,7 +34,7 @@ IpcMutex::_create_impl(
     _name = a_name;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcMutex::_open_impl(
     std::ctstring_t &a_name
 )
@@ -56,7 +56,7 @@ IpcMutex::_open_impl(
     _name = a_name;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcMutex::_lock_impl(
     culong_t &a_timeoutMsec
 ) const
@@ -66,7 +66,7 @@ IpcMutex::_lock_impl(
     xTEST_DIFF(dwRv, WAIT_ABANDONED);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcMutex::_unlock_impl() const
 {
     BOOL blRv = ::ReleaseMutex(_handle.get());

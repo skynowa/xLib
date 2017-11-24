@@ -6,9 +6,7 @@
 
 #if xENV_WIN
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Com.inl"
-#endif
+#include "Com.h"
 
 #if xCOMPILER_MINGW
     // lib: -lole32
@@ -23,7 +21,6 @@ xNAMESPACE_BEGIN2(xl, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Com::Com(
     const COINIT &a_concurrencyModel
 )
@@ -34,7 +31,6 @@ Com::Com(
     xTEST_EQ(SUCCEEDED(hrRv), true);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Com::~Com()
 {
     (void_t)::CoUninitialize();

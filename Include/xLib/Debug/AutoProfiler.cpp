@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "AutoProfiler.h"
-#endif
+#include "AutoProfiler.h"
 
 #include <xLib/Core/FormatC.h>
 
@@ -19,7 +17,6 @@ xNAMESPACE_BEGIN2(xl, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 AutoProfiler::AutoProfiler(
     std::ctstring_t &a_filePath,
     cptr_ctchar_t    a_comment, ...
@@ -39,7 +36,6 @@ AutoProfiler::AutoProfiler(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 AutoProfiler::~AutoProfiler()
 {
     size_t uiRv = _profiler.stop(xT("%s"), _comment.c_str());

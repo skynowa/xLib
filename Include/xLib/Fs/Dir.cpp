@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Dir.h"
-#endif
+#include "Dir.h"
 
 #include <xLib/Core/String.h>
 #include <xLib/Debug/Exception.h>
@@ -32,7 +30,6 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Dir::Dir(
     std::ctstring_t &a_dirPath
 ) :
@@ -41,7 +38,7 @@ Dir::Dir(
     xTEST_EQ(a_dirPath.empty(), false);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 Dir::dirPath() const
 {
     xTEST_EQ(_dirPath.empty(), false);
@@ -49,7 +46,7 @@ Dir::dirPath() const
     return _dirPath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Dir::isExists() const
 {
     xCHECK_RET(dirPath().empty(), false);
@@ -64,7 +61,7 @@ Dir::isExists() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Dir::isEmpty(
     std::ctstring_t &a_shellFilter /* = Const::maskAll() */
 ) const
@@ -88,13 +85,13 @@ Dir::isEmpty(
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Dir::isRoot() const
 {
     return _isRoot_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Dir::isDir() const
 {
     bool_t bRv = FileType( dirPath() ).isExists(FileType::faDirectory);
@@ -103,7 +100,7 @@ Dir::isDir() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Dir::create() const
 {
     bool_t bRv = isExists();
@@ -113,7 +110,7 @@ Dir::create() const
     xTEST_EQ(isExists(), true);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Dir::pathCreate() const
 {
     std::vec_tstring_t pathParts;
@@ -132,7 +129,7 @@ Dir::pathCreate() const
     xTEST_EQ(isExists(), true);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Dir::copy(
     std::ctstring_t &a_dirPathTo,
     cbool_t         &a_failIfExists
@@ -173,7 +170,7 @@ Dir::copy(
     // TODO: rollback copy
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Dir::move(
     std::ctstring_t &a_dirPathTo,
     cbool_t         &a_failIfExists
@@ -189,7 +186,7 @@ Dir::move(
     dir.pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Dir::remove() const
 {
     bool_t bRv = isExists();
@@ -201,7 +198,7 @@ Dir::remove() const
     xTEST_EQ(isExists(), false);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Dir::tryRemove(
     std::csize_t &a_attempts,
     culong_t     &a_timeoutMsec
@@ -227,7 +224,7 @@ Dir::tryRemove(
     xTEST_EQ(isExists(), false);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Dir::pathClear() const
 {
     xTEST_EQ(isExists(), true);
@@ -263,7 +260,7 @@ Dir::pathClear() const
     xTEST_EQ(isEmpty(), true);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Dir::pathDelete() const
 {
     bool_t bRv = isExists();
@@ -284,14 +281,14 @@ Dir::pathDelete() const
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Dir::current()
 {
     return _current_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Dir::setCurrent(
     std::ctstring_t &a_dirPath
 )
@@ -300,7 +297,7 @@ Dir::setCurrent(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Dir::temp()
 {
     std::tstring_t sRv;

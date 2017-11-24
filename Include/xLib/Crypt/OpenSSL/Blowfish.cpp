@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Blowfish.h"
-#endif
+#include "Blowfish.h"
 
 #if cmOPENSSL_CRYPTO_FOUND
 
@@ -26,21 +24,19 @@ xNAMESPACE_BEGIN2(xl, crypt)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Blowfish::Blowfish()
 {
     clearKey();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 Blowfish::~Blowfish()
 {
     // for security
     clearKey();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Blowfish::setKey(
     uchar_t *a_key,
     cint_t  &a_keySize
@@ -53,7 +49,7 @@ Blowfish::setKey(
     (void_t)::BF_set_key(&_key, a_keySize, a_key);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Blowfish::setKey(
     std::custring_t &a_key
 )
@@ -64,7 +60,7 @@ Blowfish::setKey(
     setKey(const_cast<uchar_t *>( a_key.data() ), static_cast<int_t>( a_key.size() ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Blowfish::setKey(
     std::ctstring_t &a_key
 )
@@ -75,7 +71,7 @@ Blowfish::setKey(
     setKey(std::ustring_t(a_key.begin(), a_key.end()));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Blowfish::setFileKey(
     std::ctstring_t &a_filePath
 )
@@ -96,7 +92,7 @@ Blowfish::setFileKey(
     std::fill(fileKey.begin(), fileKey.end(), 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Blowfish::clearKey()
 {
     xSTRUCT_ZERO(_key);
@@ -104,7 +100,7 @@ Blowfish::clearKey()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE size_t
+size_t
 Blowfish::keySizeMax()
 {
     xTEST_STATIC(CHAR_BIT == 8);
@@ -121,7 +117,7 @@ Blowfish::keySizeMax()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Blowfish::encryptCfb64(
     uchar_t           *a_in,
     uchar_t           *a_out,
@@ -140,7 +136,7 @@ Blowfish::encryptCfb64(
     (void_t)::BF_cfb64_encrypt(a_in, a_out, a_inSize, &_key, _ivec, a_num, a_mode);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Blowfish::encryptCfb64(
     std::custring_t   &a_in,
     std::ustring_t    *a_out,
@@ -159,7 +155,7 @@ Blowfish::encryptCfb64(
     xTEST_LESS(- 1, num);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Blowfish::encryptFileCfb64(
     std::ctstring_t   &a_filePathIn,
     std::ctstring_t   &a_filePathOut,

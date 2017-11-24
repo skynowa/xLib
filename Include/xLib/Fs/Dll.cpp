@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Dll.h"
-#endif
+#include "Dll.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -32,19 +30,17 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Dll::Dll() :
     _handle()
 {
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 Dll::~Dll()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE HandleDll &
+HandleDll &
 Dll::get()
 {
     xTEST_EQ(_handle.isValid(), true);
@@ -52,7 +48,7 @@ Dll::get()
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Dll::load(
     std::ctstring_t &a_dllPath
 )
@@ -65,7 +61,7 @@ Dll::load(
     _load_impl(a_dllPath);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Dll::isProcExists(
     std::ctstring_t &a_procName
 ) const
@@ -73,7 +69,7 @@ Dll::isProcExists(
     return _isProcExists_impl(a_procName);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Dll::proc_address_t
+Dll::proc_address_t
 Dll::procAddress(
     std::ctstring_t &a_procName
 ) const
@@ -81,7 +77,7 @@ Dll::procAddress(
     return _procAddress_impl(a_procName);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Dll::close()
 {
     xTESTS_NA;

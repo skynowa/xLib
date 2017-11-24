@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "FormatC.h"
-#endif
+#include "FormatC.h"
 
 #include <xLib/Debug/Debug.h>
 #include <xLib/Test/StdTest.h>
@@ -23,7 +21,7 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 FormatC::str(
     cptr_ctchar_t a_format, ...    ///< string format
 )
@@ -43,7 +41,7 @@ FormatC::str(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 FormatC::strV(
     cptr_ctchar_t a_format,    ///< string format
     va_list       a_args       ///< arguments

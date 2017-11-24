@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "TcpServer.h"
-#endif
+#include "TcpServer.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -21,7 +19,7 @@
 xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpServer::bind(
     cushort_t &a_port
 ) const
@@ -47,7 +45,7 @@ TcpServer::bind(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpServer::listen(
     cint_t &a_backlog /* = xSOCKET_CONNECTIONS_MAX */
 ) const
@@ -58,7 +56,7 @@ TcpServer::listen(
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpServer::accept(
     TcpServer      *a_serverSocket,
     std::tstring_t *a_fromIp

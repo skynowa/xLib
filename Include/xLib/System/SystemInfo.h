@@ -150,9 +150,5 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, system)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "SystemInfo.cpp"
-#endif
-
 
 // https://github.com/joyent/node/blob/master/src/platform_linux.cc

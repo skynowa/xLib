@@ -104,15 +104,6 @@
 #endif
     ///< keyword "no inline"
 //-------------------------------------------------------------------------------------------------
-// xINLINE (for header only library)
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #define xINLINE inline
-        ///< enable inlines
-#else
-    #define xINLINE
-        ///< disable inlines
-#endif
-//-------------------------------------------------------------------------------------------------
 // xSTDCALL
 #if   xENV_WIN
     #define xSTDCALL \

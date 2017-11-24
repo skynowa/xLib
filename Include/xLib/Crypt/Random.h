@@ -117,7 +117,3 @@ typedef Random<long_t, NativeSeedPolicy> NativeRandom;
 xNAMESPACE_END2(xl, crypt)
 //-------------------------------------------------------------------------------------------------
 #include "Random.inl"
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Random.cpp"
-#endif

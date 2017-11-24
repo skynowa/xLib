@@ -12,13 +12,13 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcSemaphore::_construct_impl()
 {
     xNA;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcSemaphore::_destruct_impl()
 {
     xTEST_EQ(_isValid(), true);
@@ -26,13 +26,13 @@ IpcSemaphore::_destruct_impl()
     xNA;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE long_t
+long_t
 IpcSemaphore::_valueMax_impl() const
 {
     return xCUSTOM_SEMAPHORE_VALUE_MAX_WIN;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcSemaphore::_create_impl(
     clong_t         &a_initialValue,
     std::ctstring_t &a_name
@@ -57,7 +57,7 @@ IpcSemaphore::_create_impl(
     _name = a_name;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcSemaphore::_open_impl(
     std::ctstring_t &a_name
 )
@@ -79,7 +79,7 @@ IpcSemaphore::_open_impl(
     _name = a_name;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcSemaphore::_post_impl() const
 {
    const LONG postValue = 1L;
@@ -88,7 +88,7 @@ IpcSemaphore::_post_impl() const
    xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcSemaphore::_wait_impl(
     culong_t &a_timeoutMsec
 ) const
@@ -97,7 +97,7 @@ IpcSemaphore::_wait_impl(
     xTEST_EQ(dwRv, WAIT_OBJECT_0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE long_t
+long_t
 IpcSemaphore::_value_impl() const
 {
     const LONG postValue = 0L;
@@ -116,7 +116,7 @@ IpcSemaphore::_value_impl() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 IpcSemaphore::_isValid_impl() const
 {
     return _handle.isValid();

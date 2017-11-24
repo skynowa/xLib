@@ -85,8 +85,3 @@ private:
 xNAMESPACE_END2(xl, debug)
 //-------------------------------------------------------------------------------------------------
 #include "ErrorReport.inl"
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "ErrorReport.cpp"
-#endif
-

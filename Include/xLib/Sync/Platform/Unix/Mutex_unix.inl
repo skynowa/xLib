@@ -12,14 +12,14 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Mutex::_destruc_impl()
 {
     int_t iRv = ::pthread_mutex_destroy(&_handle);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Mutex::_create_impl()
 {
     int_t iRv = - 1;
@@ -47,14 +47,14 @@ Mutex::_create_impl()
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Mutex::_lock_impl()
 {
     int_t iRv = ::pthread_mutex_lock(&_handle);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Mutex::_tryLock_impl()
 {
     int_t iRv = ::pthread_mutex_trylock(&_handle);
@@ -63,7 +63,7 @@ Mutex::_tryLock_impl()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Mutex::_unlock_impl()
 {
     int_t iRv = ::pthread_mutex_unlock(&_handle);

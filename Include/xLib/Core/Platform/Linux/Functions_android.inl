@@ -9,7 +9,7 @@
 #define F_TEST  LOCK_EX // TODO: lockf() - F_TEST - n/a
 #define F_ULOCK LOCK_UN
 
-xINLINE int
+int
 lockf(
     int   a_fd,
     int   a_cmd,

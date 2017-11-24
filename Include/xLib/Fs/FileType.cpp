@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "FileType.h"
-#endif
+#include "FileType.h"
 
 #include <xLib/Core/Utils.h>
 #include <xLib/Test/Test.h>
@@ -41,7 +39,6 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 FileType::FileType(
     std::ctstring_t &a_filePath
 ) :
@@ -50,7 +47,7 @@ FileType::FileType(
     xTEST_EQ(a_filePath.empty(), false);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 FileType::filePath() const
 {
     xTEST_EQ(_filePath.empty(), false);
@@ -58,7 +55,7 @@ FileType::filePath() const
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 FileType::isExists(
     cType &a_value
 ) const
@@ -71,7 +68,7 @@ FileType::isExists(
     return false;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE FileType::types_t
+FileType::types_t
 FileType::get() const
 {
     xTEST_EQ(filePath().empty(), false);
@@ -79,7 +76,7 @@ FileType::get() const
     return _get_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 FileType::set(
     ctypes_t &a_values
 ) const
@@ -90,7 +87,7 @@ FileType::set(
     _set_impl(a_values);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 FileType::add(
     cType &a_value
 ) const
@@ -101,7 +98,7 @@ FileType::add(
     modify(static_cast<Type>( 0 ), a_value);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 FileType::remove(
     cType &a_value
 ) const
@@ -112,7 +109,7 @@ FileType::remove(
     modify(a_value, static_cast<Type>( 0 ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 FileType::modify(
     cType &a_valueRemove,
     cType &a_valueAdd
@@ -135,7 +132,7 @@ FileType::modify(
     set(values);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 FileType::clear() const
 {
     xTEST_EQ(filePath().empty(), false);

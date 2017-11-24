@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Manager.h"
-#endif
+#include "Manager.h"
 
 #include <xLib/Core/Type.h>
 #include <xLib/Core/String.h>
@@ -27,7 +25,6 @@ xNAMESPACE_BEGIN2(xl, test)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Manager::Manager(
     cint_t        &a_argsNum,
     cptr_ctchar_t  a_args[]
@@ -39,7 +36,6 @@ Manager::Manager(
     _construct(a_argsNum, a_args);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Manager::Manager(
     cManagerData &a_data
 ) :
@@ -51,12 +47,11 @@ Manager::Manager(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 Manager::~Manager()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Manager::add(
     Unit *a_unit
 )
@@ -70,7 +65,7 @@ Manager::add(
     _units.push_back(a_unit);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Manager::run()
 {
     bool_t isUnitsPassed = true;
@@ -114,7 +109,7 @@ Manager::run()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Manager::_construct(
     cint_t        &a_argsNum,
     cptr_ctchar_t  a_args[]
