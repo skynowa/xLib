@@ -17,19 +17,30 @@ xTEST_UNIT(Test_FsWatcher)
 bool_t
 Test_FsWatcher::unit()
 {
+	struct Cmd
+	{
+		std::tstring_t projectName;
+		std::tstring_t dirPath;
+		std::tstring_t dirPathsDisabled;
+		size_t         buildPriority;
+		std::tstring_t cmdPath;
+		std::tstring_t cmdPathQuick;
+		bool           isEnabled;
+	};
+
     static std::cmap_tstring_t dbCmds
     {
-        #include "cmds.db"
+		#include "cmds_suppliers.db"
     };
 
     static std::cvec_tstring_t dbWatchDirPaths
     {
-        #include "fs_watcher_dirs.db"
+		#include "fs_watcher_dirs_suppliers.db"
     };
 
     static std::cvec_tstring_t dbWatchDirPathsDisabled
     {
-        #include "fs_watcher_dirs_disabled.db"
+        #include "fs_watcher_dirs_disabled_suppliers.db"
     };
 
     xTEST_CASE("FsWatcher::FsWatcher")

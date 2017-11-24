@@ -20,11 +20,12 @@ FsWatcher::_watch_impl()
 {
     _kQueue = ::kqueue();
     if ( !_kQueue.isValid() ) {
-        std::tcout << "[FsWatcher] kqueue: fail" << std::endl;
+        std::tcout << "[FsWatcher] kqueue: fail, " << NativeError::format() << std::endl;
         return;
     }
 
     struct kevent change[ _filePaths.size() ];
+    const int     changeSize = static_cast<int>( _filePaths.size() );
 
     for (size_t i = 0; i < _filePaths.size(); ++ i) {
         auto &itFilePath = _filePaths[i];
@@ -45,9 +46,9 @@ FsWatcher::_watch_impl()
         }
 
         struct kevent event {};
-        int_t kEvent = ::kevent(_kQueue.get(), change, (int)_filePaths.size(), &event, 1, nullptr);
+        int_t kEvent = ::kevent(_kQueue.get(), change, changeSize, &event, 1, nullptr);
         if (kEvent == - 1 || kEvent == 0) {
-            std::tcout << "[FsWatcher] kevent: fail - " << kEvent << std::endl;
+            std::tcout << "[FsWatcher] kevent: fail - " << kEvent << ", " << NativeError::format() << std::endl;
             return;
         }
 
