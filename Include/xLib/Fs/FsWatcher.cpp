@@ -63,6 +63,9 @@ FsWatcher::open(
 
         _filePaths.push_back(it_filePath);
         _fileHandles.push_back( file.getNative() );
+
+        HandleStdFile &handle = file.detach();
+        xUNUSED(handle);
     }
 
     if ( _filePaths.empty() ) {
@@ -115,6 +118,13 @@ void_t
 FsWatcher::close()
 {
     _close_impl();
+
+	for (auto &it_fileHandle : _fileHandles) {
+		HandleInvalid handle;
+		handle = it_fileHandle;
+
+		handle.close();
+	}
 
     _fileHandles.clear();
     _filePaths.clear();
