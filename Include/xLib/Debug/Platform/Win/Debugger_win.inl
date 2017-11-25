@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Debugger::_isActive_impl() const
 {
     // local debugger
@@ -28,7 +28,7 @@ Debugger::_isActive_impl() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Debugger::_coreDumpsEnable_impl(
     cbool_t &a_flag,
     bool_t  *a_isEnable
@@ -42,7 +42,7 @@ Debugger::_coreDumpsEnable_impl(
     #pragma message("xLib: Debugger::coreDumpsEnable() - n/a")
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Debugger::_breakPoint_impl() const
 {
     (void_t)::DebugBreak();

@@ -27,11 +27,13 @@ public:
 
     bool_t     isAvailable() const xWARN_UNUSED_RV;
         ///< is available
-    void_t     execute(std::ctstring_t &filePath, std::ctstring_t &params) const;
-        ///< execute file
+    int_t      execute(std::ctstring_t &filePath) const;
+        ///< execute file (no params)
+    int_t      execute(std::ctstring_t &filePath, std::ctstring_t &params) const;
+        ///< execute file (with params)
 
 #if xENV_WIN
-    enum ExOperation
+    enum Operation
         /// operations
     {
         opEdit,
@@ -126,7 +128,7 @@ public:
     std::tstring_t findExecutable(std::ctstring_t &fileName, std::ctstring_t &findDirPath) const
                        xWARN_UNUSED_RV;
         ///< find executable file path
-    void_t         execute(const HWND &owner, const ExOperation &operation,
+    void_t         execute(const HWND &owner, const Operation &operation,
                        std::ctstring_t &filePath, std::ctstring_t &params, std::ctstring_t &dirPath,
                        const EShowFlag &showCmd) const;
         ///< execute
@@ -157,6 +159,3 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, system)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Shell.cpp"
-#endif

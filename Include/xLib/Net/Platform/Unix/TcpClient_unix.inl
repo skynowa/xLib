@@ -12,14 +12,14 @@ xNAMESPACE_BEGIN2(xl, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpClient::_setNonBlockingMode_impl(
     cbool_t &a_flag
 ) const
 {
     int_t flags = - 1;
 
-    flags = ::fcntl(_handle, F_GETFL);
+    flags = ::fcntl(_handle.get(), F_GETFL);
     xTEST_DIFF(flags, xSOCKET_ERROR);
 
     if (a_flag) {
@@ -28,7 +28,7 @@ TcpClient::_setNonBlockingMode_impl(
         flags = (flags & ~O_NONBLOCK);
     }
 
-    flags = ::fcntl(_handle, F_SETFL, flags);
+    flags = ::fcntl(_handle.get(), F_SETFL, flags);
     xTEST_DIFF(flags, xSOCKET_ERROR);
 }
 //-------------------------------------------------------------------------------------------------

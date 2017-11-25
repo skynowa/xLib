@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Console.h"
-#endif
+#include "Console.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
@@ -35,7 +33,6 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Console::Console()
 #if xENV_WIN
     :
@@ -49,35 +46,34 @@ Console::Console()
     _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Console::~Console()
 {
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Console::setAttributes(
-    cExForeground &a_foreground,
-    cExBackground &a_background,
+    cForeground &a_foreground,
+    cBackground &a_background,
     cint_t        &a_attributes
 ) const
 {
     return _setAttributes_impl(a_foreground, a_background, a_attributes);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Console::setAttributesDef() const
 {
     return _setAttributesDef_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Console::read() const
 {
     return _read_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::write(
     std::ctstring_t &a_str
 ) const
@@ -85,7 +81,7 @@ Console::write(
     _write_impl(a_str);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::writeLine(
     std::ctstring_t &a_str /* = xT("") */
 ) const
@@ -93,7 +89,7 @@ Console::writeLine(
     write(a_str + Const::nl());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::writeErrLine(
     std::ctstring_t &a_str
 ) const
@@ -103,7 +99,7 @@ Console::writeErrLine(
     pause(xTIMEOUT_INFINITE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Console::ExModalResult
+Console::ModalResult
 Console::msgBox(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
@@ -112,7 +108,7 @@ Console::msgBox(
 {
     xUNUSED(a_type);
 
-    ExModalResult mrRv;
+    ModalResult mrRv;
 
     std::csize_t width     = 100;
     ctchar_t     cmdAbort  = xT('a');
@@ -170,7 +166,7 @@ Console::msgBox(
     return mrRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::prompt(
     std::ctstring_t &a_prompt,		///< input text
     cbool_t         &a_isVisible,	///< is input text visible
@@ -207,7 +203,7 @@ Console::prompt(
 	}
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::pause(
     culong_t &a_timeoutMsec
 ) const
@@ -230,13 +226,13 @@ Console::pause(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::clear() const
 {
     _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::setTitle(
     std::ctstring_t &a_title
 ) const
@@ -252,7 +248,7 @@ Console::setTitle(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Console::_msgBoxLine(
 	std::ctstring_t &a_text,	///< text
 	std::csize_t    &a_width	///< msgbox width
@@ -281,7 +277,7 @@ Console::_msgBoxLine(
 	return line;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_setStdinEcho(
 	cbool_t &a_isEnable
 ) const

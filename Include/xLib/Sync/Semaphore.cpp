@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Semaphore.h"
-#endif
+#include "Semaphore.h"
 
 
 xNAMESPACE_BEGIN2(xl, sync)

@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "CookiePv1.h"
-#endif
+#include "CookiePv1.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
@@ -21,7 +19,6 @@ xNAMESPACE_BEGIN2(xl, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 CookiePv1::CookiePv1() :
     _name    (),
     _value   (),
@@ -35,7 +32,6 @@ CookiePv1::CookiePv1() :
     init(std::tstring_t());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 CookiePv1::CookiePv1(
     std::ctstring_t &a_rawCookie
 ) :
@@ -51,12 +47,12 @@ CookiePv1::CookiePv1(
     init(a_rawCookie);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 CookiePv1::name() const {
     return _name;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CookiePv1::setName(
     std::ctstring_t &a_name
 )
@@ -64,13 +60,13 @@ CookiePv1::setName(
     _name = a_name;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 CookiePv1::value() const
 {
     return _value;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CookiePv1::setValue(
     std::ctstring_t &a_value
 )
@@ -78,13 +74,13 @@ CookiePv1::setValue(
     _value = a_value;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 CookiePv1::comment() const
 {
     return _comment;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CookiePv1::setComment(
     std::ctstring_t &a_comment
 )
@@ -92,13 +88,13 @@ CookiePv1::setComment(
     _comment = a_comment;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 CookiePv1::domain() const
 {
     return _domain;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CookiePv1::setDomain(
     std::ctstring_t &a_domain
 )
@@ -106,13 +102,13 @@ CookiePv1::setDomain(
     _domain = a_domain;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 CookiePv1::path() const
 {
     return _path;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CookiePv1::setPath(
     std::ctstring_t &a_path
 )
@@ -120,13 +116,13 @@ CookiePv1::setPath(
     _path = a_path;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE longlong_t
+longlong_t
 CookiePv1::maxAge() const
 {
     return _maxAge;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CookiePv1::setMaxAge(
     clonglong_t &a_maxAge
 )
@@ -134,13 +130,13 @@ CookiePv1::setMaxAge(
     _maxAge = a_maxAge;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 CookiePv1::secure() const
 {
     return _isSecure;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CookiePv1::setSecure(
     cbool_t &a_flag
 )
@@ -148,13 +144,13 @@ CookiePv1::setSecure(
     _isSecure = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 CookiePv1::httpOnly() const
 {
     return _isHttpOnly;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CookiePv1::setHttpOnly(
     cbool_t &a_flag
 )
@@ -162,7 +158,7 @@ CookiePv1::setHttpOnly(
     _isHttpOnly = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 CookiePv1::toString() const
 {
     std::tstring_t sRv;
@@ -211,7 +207,7 @@ CookiePv1::toString() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 CookiePv1::dump() const
 {
     std::tstring_t sRv;
@@ -239,7 +235,7 @@ CookiePv1::dump() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CookiePv1::clear()
 {
     _name.clear();
@@ -260,7 +256,7 @@ CookiePv1::clear()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CookiePv1::init(
     std::ctstring_t &a_rawCookie
 )

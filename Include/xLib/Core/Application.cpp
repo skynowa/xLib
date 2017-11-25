@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Application.h"
-#endif
+#include "Application.h"
 
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/String.h>
@@ -14,8 +12,8 @@
 #include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Log/FileLog.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/Dir.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/Dir.h>
 #include <xLib/System/ProcessInfo.h>
 #include <xLib/System/User.h>
 
@@ -111,15 +109,9 @@ std::ctstring_t _langDirName   = xT("Lang");
 
 xNAMESPACE_ANONYM_END
 
-
-#if !cmOPTION_PROJECT_HEADER_ONLY
-
 ApplicationInfo Application::_info;
 Donate          Application::_donate;
-
-#endif
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Application::Application(
     std::ctstring_t &a_appGuid, ///< application GUID
     std::ctstring_t &a_locale   ///< locale, empty value for current locale
@@ -134,7 +126,6 @@ Application::Application(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 Application::~Application()
 {
 }
@@ -147,7 +138,7 @@ Application::~Application()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Application::args(
     cbool_t            &a_withoutFirstArg,  ///< erase first argument
     std::vec_tstring_t *a_args              ///< [out] command line arguments
@@ -162,7 +153,7 @@ Application::args(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Application::isRunAsAdmin() const
 {
     User user;
@@ -170,7 +161,7 @@ Application::isRunAsAdmin() const
     return user.isAdmin();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Application::isRunnig() const
 {
     xUNUSED(_appGuid);
@@ -180,7 +171,7 @@ Application::isRunnig() const
     return false;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Application::dirsCreate()
 {
     Dir( configDirPath() ).pathCreate();
@@ -191,7 +182,7 @@ Application::dirsCreate()
     Dir( langDirPath() ).pathCreate();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Application::selfCheck() const
 {
 #if xLIB_QT
@@ -211,7 +202,7 @@ Application::selfCheck() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Application::exit(
     cint_t &a_status
 )
@@ -220,14 +211,14 @@ Application::exit(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Application::terminate()
 {
     (void_t)std::terminate();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 Application::abort()
 {
     (void_t)std::abort();
@@ -241,7 +232,7 @@ Application::abort()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE const Signal &
+const Signal &
 Application::signal() const
 {
     static Signal signal;
@@ -250,14 +241,14 @@ Application::signal() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE ApplicationInfo &
+ApplicationInfo &
 Application::info()
 {
     return _info;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+void
 Application::setInfo(
     const ApplicationInfo &a_info
 )
@@ -266,7 +257,7 @@ Application::setInfo(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE const BuildInfo &
+const BuildInfo &
 Application::buildInfo()
 {
     static BuildInfo info;
@@ -275,14 +266,14 @@ Application::buildInfo()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE Donate &
+Donate &
 Application::donate()
 {
     return _donate;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void
+void
 Application::setDonate(
     const Donate &a_donate
 )
@@ -299,14 +290,14 @@ Application::setDonate(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Application::filePath()
 {
     return Path::exe();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Application::configPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
@@ -316,7 +307,7 @@ Application::configPath()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Application::logPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
@@ -326,7 +317,7 @@ Application::logPath()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Application::dbPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
@@ -344,7 +335,7 @@ Application::dbPath()
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Application::dirPath()
 {
 #if xOS_ANDROID
@@ -355,42 +346,42 @@ Application::dirPath()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Application::configDirPath()
 {
     return Format::str(xT("{}/{}"), dirPath(), _configDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Application::logDirPath()
 {
     return Format::str(xT("{}/{}"), dirPath(), _logDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Application::dbDirPath()
 {
     return Format::str(xT("{}/{}"), dirPath(), _dbDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Application::backupDirPath()
 {
     return Format::str(xT("{}/{}"), dirPath(), _backupDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Application::tempDirPath()
 {
     return Format::str(xT("{}/{}"), dirPath(), _tempDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Application::langDirPath()
 {
     return Format::str(xT("{}/{}"), dirPath(), _langDirName);
@@ -405,7 +396,7 @@ Application::langDirPath()
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE int_t
+int_t
 Application::run()
 {
     cbool_t opt_useException = false;
@@ -445,7 +436,7 @@ Application::run()
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE int_t
+int_t
 Application::onRun()
 {
     xTEST(false);

@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcMutex::_create_impl(
     std::ctstring_t &a_name
 )
@@ -31,7 +31,7 @@ IpcMutex::_create_impl(
     _name   = unixName;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcMutex::_open_impl(
     std::ctstring_t &a_name
 )
@@ -47,7 +47,7 @@ IpcMutex::_open_impl(
     _name   = unixName;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcMutex::_lock_impl(
     culong_t &a_timeoutMsec
 ) const
@@ -101,7 +101,7 @@ IpcMutex::_lock_impl(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcMutex::_unlock_impl() const
 {
     int_t iRv = ::sem_post(_handle);

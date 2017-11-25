@@ -12,19 +12,19 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE ThreadStorage::index_t
+ThreadStorage::index_t
 ThreadStorage::_indexInvalid_impl() const;
 {
     return TLS_OUT_OF_INDEXES;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ThreadStorage::_construct_impl()
 {
     _index = ::TlsAlloc();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ThreadStorage::_destruct_impl()
 {
     BOOL blRv = ::TlsFree(_index);
@@ -33,7 +33,7 @@ ThreadStorage::_destruct_impl()
     _index = _indexInvalid_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 ThreadStorage::_isSet_impl() const
 {
     void_t *pvRv = ::TlsGetValue(_index);
@@ -42,7 +42,7 @@ ThreadStorage::_isSet_impl() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t *
+void_t *
 ThreadStorage::_value_impl() const
 {
     void_t *pvRv = ::TlsGetValue(_index);
@@ -51,7 +51,7 @@ ThreadStorage::_value_impl() const
     return pvRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ThreadStorage::_setValue_impl(
     void_t* &a_value
 ) const

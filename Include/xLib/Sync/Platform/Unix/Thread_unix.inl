@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::_create_impl(
     cuint_t &a_stackSizeBytes
 )
@@ -22,41 +22,41 @@ Thread::_create_impl(
     pthread_attr_t attrs; xSTRUCT_ZERO(attrs);
 
     iRv = ::pthread_attr_init(&attrs);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     // TODO: Thread::_create_impl() - PTHREAD_CREATE_DETACHED
     iRv = ::pthread_attr_setdetachstate(&attrs, PTHREAD_CREATE_JOINABLE);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     if (a_stackSizeBytes != 0U) {
         // TODO: Thread::_create_impl() - size_t size = PTHREAD_STACK_MIN + 0x4000;
         iRv = ::pthread_attr_setstacksize(&attrs, a_stackSizeBytes);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
     }
 
     iRv = ::pthread_create(&hid, &attrs, &_s_jobEntry, this);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
-    xTEST_EQ_MSG(true, hid > 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_EQ_MSG(true, hid > 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     iRv = ::pthread_attr_destroy(&attrs);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     _handle = hid;  // TODO: Thread::_create_impl() - is it right?
     _id     = hid;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::_kill_impl(
     culong_t &a_timeoutMsec
 )
 {
     int_t iRv = ::pthread_kill(_id, SIGALRM);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     currentSleep(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::_wait_impl(
     culong_t &a_timeoutMsec
 ) const
@@ -67,7 +67,7 @@ Thread::_wait_impl(
     // FIX:  Thread::_wait_impl(( - a_timeoutMsec
 
     int_t iRv = ::pthread_join(_id, xPTR_NULL);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -78,7 +78,7 @@ Thread::_wait_impl(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::_isCreated_impl() const
 {
     bool_t bRv = _state.isCreated && (_handle != 0UL);
@@ -86,7 +86,7 @@ Thread::_isCreated_impl() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::_isRunning_impl() const
 {
     bool_t bRv = false;
@@ -105,7 +105,7 @@ Thread::_isRunning_impl() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::_isPaused_impl()
 {
     bool_t bRv = !_eventPause.isSignaled() /* && (0UL != _handle) */;
@@ -113,7 +113,7 @@ Thread::_isPaused_impl()
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::_isExited_impl()
 {
     bool_t bRv = _eventExit.isSignaled() && (0UL != _handle);
@@ -135,9 +135,9 @@ Thread::_isExited_impl()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::_setPriority_impl(
-    const ExPriority &a_priority
+    const Priority &a_priority
 ) const
 {
     if (!User().isAdmin()) {
@@ -149,30 +149,30 @@ Thread::_setPriority_impl(
     param.sched_priority = a_priority;
 
     int_t iRv = ::pthread_setschedparam(id(), SCHED_FIFO, &param);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Thread::ExPriority
+Thread::Priority
 Thread::_priority_impl() const
 {
     sched_param param  = {0};
     int_t       policy = SCHED_FIFO;
 
     int_t iRv = ::pthread_getschedparam(id(), &policy, &param);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
-    Thread::ExPriority tpRv = static_cast<ExPriority>( param.sched_priority );
+    Thread::Priority tpRv = static_cast<Priority>( param.sched_priority );
 
     return tpRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::_isPriorityBoost_impl() const
 {
     return false;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::_setPriorityBoost_impl(
     cbool_t &a_isEnabled
 ) const
@@ -190,7 +190,7 @@ Thread::_setPriorityBoost_impl(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::_setCpuAffinity_impl(
     cint_t &a_procNum
 ) const
@@ -207,13 +207,13 @@ Thread::_setCpuAffinity_impl(
     // ANDROID: ::sched_setaffinity
 #if xTODO_ANDROID && 0
     int_t iRv = ::sched_setaffinity(static_cast<pid_t>( id() ), sizeof(cpuSet), &cpuSet);
-    xTEST_DIFF_MSG(- 1, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_DIFF_MSG(- 1, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 #endif
 
     // pthread_setaffinity_np
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::_setCpuIdeal_impl(
     culong_t &a_idealCpu    ///< value is zero-based
 ) const
@@ -223,7 +223,7 @@ Thread::_setCpuIdeal_impl(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 Thread::_cpuIdeal_impl() const
 {
     ulong_t ulRv = (ulong_t) - 1;
@@ -241,19 +241,19 @@ Thread::_cpuIdeal_impl() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE Thread::handle_t
+Thread::handle_t
 Thread::_handle_impl() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 Thread::_exitStatus_impl() const
 {
     return _exitStatus;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::_setDebugName_impl(
     std::ctstring_t &a_name
 ) const
@@ -275,7 +275,7 @@ Thread::_setDebugName_impl(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE Thread::handle_t
+Thread::handle_t
 Thread::_open_impl(
     culong_t &a_access,
     cbool_t  &a_isInheritHandle,
@@ -301,7 +301,7 @@ Thread::_open_impl(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Thread::_isCurrent_impl(
     const Thread::id_t &a_id
 )
@@ -311,7 +311,7 @@ Thread::_isCurrent_impl(
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Thread::id_t
+Thread::id_t
 Thread::_currentId_impl()
 {
     id_t ulRv = ::pthread_self();
@@ -320,7 +320,7 @@ Thread::_currentId_impl()
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Thread::handle_t
+Thread::handle_t
 Thread::_currentHandle_impl()
 {
     handle_t hRv = ::pthread_self();
@@ -329,14 +329,14 @@ Thread::_currentHandle_impl()
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::_currentYield_impl()
 {
     int_t iRv = ::sched_yield();
-    xTEST_DIFF_MSG(- 1, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_DIFF_MSG(- 1, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Thread::_currentSleep_impl(
     culong_t &a_timeoutMsec
 )
@@ -357,21 +357,21 @@ Thread::_currentSleep_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE int_t
+int_t
 Thread::_priorityMin_impl()
 {
     int_t iRv = ::sched_get_priority_min(SCHED_FIFO);
-    xTEST_DIFF_MSG(- 1, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_DIFF_MSG(- 1, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     return iRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE int_t
+int_t
 Thread::_priorityMax_impl()
 {
     int_t iRv = ::sched_get_priority_max(SCHED_FIFO);
-    xTEST_DIFF_MSG(- 1, iRv, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_DIFF_MSG(- 1, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     return iRv;
 }

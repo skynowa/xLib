@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "CmdOptions.h"
-#endif
+#include "CmdOptions.h"
 
 #include <xLib/System/ProcessInfo.h>
 
@@ -24,17 +22,14 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 CmdOptions::CmdOptions()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 CmdOptions::~CmdOptions()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 void_t
 CmdOptions::parse(
 	cint_t                              a_argsNum,
@@ -48,7 +43,6 @@ CmdOptions::parse(
     parse(args, a_usage);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 void_t
 CmdOptions::parse(
 	std::cvec_tstring_t                &a_args,

@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "${cmXLIB_TEMPLATE}.h"
-#endif
+#include "${cmXLIB_TEMPLATE}.h"
 
 #if   xENV_WIN
     #include "Platform/Win/${cmXLIB_TEMPLATE}_win.inl"
@@ -14,11 +12,11 @@
     // #include "Platform/Unix/${cmXLIB_TEMPLATE}_unix.inl"
 
     #if   xENV_LINUX
-        // #include "Platform/Unix/${cmXLIB_TEMPLATE}_linux.inl"
+        // #include "Platform/Linux/${cmXLIB_TEMPLATE}_linux.inl"
     #elif xENV_BSD
-        // #include "Platform/Unix/${cmXLIB_TEMPLATE}_bsd.inl"
+        // #include "Platform/Bsd/${cmXLIB_TEMPLATE}_bsd.inl"
     #elif xENV_APPLE
-        // #include "Platform/Unix/${cmXLIB_TEMPLATE}_apple.inl"
+        // #include "Platform/Apple/${cmXLIB_TEMPLATE}_apple.inl"
     #endif
 #endif
 

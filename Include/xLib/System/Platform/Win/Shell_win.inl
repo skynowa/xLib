@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Shell::_isAvailable_impl() const
 {
     int_t iRv = xTSYSTEM(xPTR_NULL);
@@ -26,7 +26,7 @@ Shell::_isAvailable_impl() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Shell::findExecutable(
     std::ctstring_t &a_fileName,
     std::ctstring_t &a_findDirPath
@@ -45,10 +45,10 @@ Shell::findExecutable(
     return std::tstring_t(buff);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Shell::execute(
     const HWND        &a_owner,
-    const ExOperation &a_operation,
+    const Operation   &a_operation,
     std::ctstring_t   &a_filePath,
     std::ctstring_t   &a_params,
     std::ctstring_t   &a_dirPath,
@@ -96,7 +96,7 @@ Shell::execute(
     xTEST_LESS(32, iRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Shell::executeEx(
     SHELLEXECUTEINFO &a_info
 ) const
@@ -107,7 +107,7 @@ Shell::executeEx(
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Shell::executeHttp(
     std::ctstring_t &a_url
 ) const
@@ -120,7 +120,7 @@ Shell::executeHttp(
     execute(xPTR_NULL, opOpen, xT("IEXPLORE.EXE"), url, xT(""), sfShowNormal);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Shell::executeFtp(
     std::ctstring_t &a_url
 ) const
@@ -133,7 +133,7 @@ Shell::executeFtp(
     execute(xPTR_NULL, opOpen, xT("explorer.exe"), xT("/e, ") + url, xT(""), sfShowNormal);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Shell::executeEmail(
     std::ctstring_t &a_toEmail,
     std::ctstring_t &a_subject,
@@ -167,7 +167,7 @@ Shell::executeEmail(
     execute(xPTR_NULL, opOpen, cmd, xT(""), xT(""), sfShowNormal);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Shell::specialDirPath(
     const ESpecialDir &a_dir,
     const HANDLE      &a_token
@@ -192,7 +192,7 @@ Shell::specialDirPath(
     return std::tstring_t(buff);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Shell::createShortcut(
     std::ctstring_t &a_shortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
                                          ///< Если не указан путь, ярлык будет создан в папке,

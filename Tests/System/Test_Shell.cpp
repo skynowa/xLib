@@ -40,7 +40,8 @@ Test_Shell::unit()
             std::ctstring_t csFilePath = casData[i][0];
             std::ctstring_t csParams   = casData[i][1];
 
-            Shell().execute(csFilePath, csParams);
+            m_iRv = Shell().execute(csFilePath, csParams);
+            xTEST_DIFF(m_iRv , -1);
         }
     }
 

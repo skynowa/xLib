@@ -10,6 +10,7 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/SysDefines.h>
 #include <xLib/Config.h>
+#include <xLib/Internal/Warnings.h>
 #include <xLib/Core/Units.h>
 #include <xLib/Core/Defines.h>
 #include <xLib/Core/Limits.h>
@@ -24,9 +25,9 @@
 #include <xLib/Core/Char.h>
 #include <xLib/Core/Flags.h>
 #include <xLib/Core/Array.h>
+#include <xLib/Core/Enum.h>
 #include <xLib/Core/HandleT.h>
 #include <xLib/Core/Locale.h>
-#include <xLib/Core/Algos.h>
 #include <xLib/Core/StdStream.h>
 #include <xLib/Core/StdStreamOp.h>
 #include <xLib/Core/FormatC.h>
@@ -35,6 +36,12 @@
 #include <xLib/Core/Functors.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Core/Application.h>
+
+// Interface
+#include <xLib/Interface/IHandle.h>
+
+// Algo
+#include <xLib/Algo/Algos.h>
 
 // Crypt
 #include <xLib/Crypt/OpenSSL/Blowfish.h>
@@ -61,17 +68,18 @@
 #include <xLib/Debug/Profiler.h>
 #include <xLib/Debug/AutoProfiler.h>
 
-// IO
-#include <xLib/IO/FileType.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
-#include <xLib/IO/FileTemp.h>
-#include <xLib/IO/Dir.h>
-#include <xLib/IO/Volume.h>
-#include <xLib/IO/Dll.h>
-#include <xLib/IO/Finder.h>
-#include <xLib/IO/Backup.h>
-#include <xLib/IO/Config.h>
+// Fs
+#include <xLib/Fs/FileType.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileTemp.h>
+#include <xLib/Fs/Dir.h>
+#include <xLib/Fs/Volume.h>
+#include <xLib/Fs/Dll.h>
+#include <xLib/Fs/Finder.h>
+#include <xLib/Fs/Backup.h>
+#include <xLib/Fs/Config.h>
+#include <xLib/Fs/FsWatcher.h>
 
 // Ui
 #include <xLib/Ui/MsgBox.h>
@@ -99,10 +107,10 @@
 #include <xLib/Net/SmtpClient.h>
 #include <xLib/Net/Cgi.h>
 
-// Patterns
-#include <xLib/Patterns/Raii.h>
-#include <xLib/Patterns/Singleton.h>
-#include <xLib/Patterns/Observer.h>
+// Pattern
+#include <xLib/Pattern/Raii.h>
+#include <xLib/Pattern/Singleton.h>
+#include <xLib/Pattern/Observer.h>
 
 // Sync
 #include <xLib/Sync/AtomicLongInt.h>
@@ -145,3 +153,4 @@
 #include <xLib/Package/Csv.h>
 #include <xLib/Package/Ssh2Client.h>
 #include <xLib/Package/Donate.h>
+#include <xLib/Package/CurlClient.h>

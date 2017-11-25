@@ -6,17 +6,12 @@
 
 #pragma once
 
-#include <xLib/Core/Core.h>
+#include <mysql/mysql.h>
+#include <mysql/errmsg.h>
+#include <mysql/mysqld_error.h>
 
-#if xENV_WIN
-    #include <mysql.h>
-    #include <errmsg.h>
-    #include <mysqld_error.h>
-#else
-    #include <mysql/mysql.h>
-    #include <mysql/errmsg.h>
-    #include <mysql/mysqld_error.h>
-#endif
+#include <xLib/Core/Core.h>
+#include <xLib/Core/HandleT.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, db)
 
@@ -52,10 +47,8 @@ public:
     virtual       ~MySqlConnection();
         ///< destructor
 
-    MYSQL         *get() const xWARN_UNUSED_RV;
+    HandleMySqlConn &get() xWARN_UNUSED_RV;
         ///< get handle
-    bool_t         isValid() const xWARN_UNUSED_RV;
-        ///< validating handle
     void_t         options(const mysql_option &option, cptr_cvoid_t arg) const;
         ///< set extra connect options and affect behavior
     bool_t         ping(int_t *errorCode = xPTR_NULL) const xWARN_UNUSED_RV;
@@ -79,7 +72,7 @@ public:
         ///< error message for the most recently invoked API function that failed
 
 private:
-    MYSQL         *_conn;
+    HandleMySqlConn _conn;
         ///< pointer to connection
 
     xNO_COPY_ASSIGN(MySqlConnection)
@@ -93,15 +86,13 @@ class MySqlRecordset
     /// MySql recordset
 {
 public:
-                 MySqlRecordset(const MySqlConnection &connection, cbool_t &isUseResult);
+                 MySqlRecordset(MySqlConnection &connection, cbool_t &isUseResult);
         ///< constructor
     virtual     ~MySqlRecordset();
         ///< destructor
 
-    MYSQL_RES   *get() const xWARN_UNUSED_RV;
+    HandleMySqlResult &get() xWARN_UNUSED_RV;
         ///< get handle
-    bool_t       isValid() const xWARN_UNUSED_RV;
-        ///< validating handle
 
     uint_t       fieldsNum() const xWARN_UNUSED_RV;
         ///< number of columns in a result set
@@ -117,9 +108,9 @@ public:
         ///< fetching row
 
 private:
-    const MySqlConnection *_conn;
+    MySqlConnection  *_conn;
         ///< pointer to connection object
-    MYSQL_RES   *_result;
+    HandleMySqlResult _result;
         ///< for private use
 
     void_t       _fetchLengths(ulong_t **fieldLengths) const;
@@ -133,10 +124,6 @@ private:
 xNAMESPACE_END2(xl, db)
 
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "MySql.cpp"
-#endif
-
 
 #if xTODO
     MYSQL_ROW row;

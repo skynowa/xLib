@@ -12,10 +12,10 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::ExOsType
+SystemInfo::OsType
 SystemInfo::_os_impl()
 {
-    ExOsType otRv = otUnknown;
+    OsType otRv = otUnknown;
 
     utsname info; xSTRUCT_ZERO(info);
 
@@ -40,7 +40,7 @@ SystemInfo::_os_impl()
     return otRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_formatOs_impl()
 {
     std::tstring_t sRv;
@@ -56,10 +56,10 @@ SystemInfo::_formatOs_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::ExOsArch
+SystemInfo::OsArch
 SystemInfo::_osArch_impl()
 {
-    ExOsArch oaRv = oaUnknown;
+    OsArch oaRv = oaUnknown;
 
     std::tstring_t infoMachine;
     {
@@ -106,7 +106,7 @@ SystemInfo::_osArch_impl()
     return oaRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_desktopName_impl() const
 {
     std::tstring_t sRv;
@@ -117,7 +117,7 @@ SystemInfo::_desktopName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_hostName_impl() const
 {
     std::tstring_t sRv;
@@ -132,7 +132,7 @@ SystemInfo::_hostName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_currentCpuNum_impl() const
 {
     ulong_t ulRv = 0UL;
@@ -170,7 +170,7 @@ SystemInfo::_currentCpuNum_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_pageSize_impl() const
 {
     long_t liRv = ::sysconf(xPAGE_SIZE);
@@ -191,7 +191,7 @@ SystemInfo::_pageSize_impl() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::glibcVersion() const
 {
     std::tstring_t version;
@@ -228,7 +228,7 @@ SystemInfo::glibcVersion() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::libPthreadVersion() const
 {
     std::tstring_t sRv;

@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "SystemLog.h"
-#endif
+#include "SystemLog.h"
 
 #include <xLib/Core/FormatC.h>
 #include <xLib/Debug/NativeError.h>
@@ -14,7 +12,7 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
-#include <xLib/IO/Path.h>
+#include <xLib/Fs/Path.h>
 #include "Platform/SystemLog_internal.inl"
 
 #if   xENV_WIN
@@ -44,7 +42,6 @@ xNAMESPACE_BEGIN2(xl, log)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 SystemLog::SystemLog()
 #if xENV_WIN
     :
@@ -54,7 +51,6 @@ SystemLog::SystemLog()
     _construct_impl( Path( Path::exe() ).fileBaseName() );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 SystemLog::SystemLog(
     std::ctstring_t &a_logName
 )
@@ -67,7 +63,6 @@ SystemLog::SystemLog(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 SystemLog::~SystemLog()
 {
     write(xT("%s"), _oss.str().c_str());
@@ -76,7 +71,7 @@ SystemLog::~SystemLog()
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE void_t
+void_t
 SystemLog::write(
     cptr_ctchar_t a_format, ...
 ) const
@@ -95,16 +90,16 @@ SystemLog::write(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE void_t
+void_t
 SystemLog::write(
-    cExLevel      &a_level,
+    cLevel        &a_level,
     cptr_ctchar_t  a_format, ...
 ) const
 {
     xCHECK_DO(!isEnabled(), return);
     xTEST_PTR(a_format);
 
-    ExLevel level = lvUnknown;
+    Level level = lvUnknown;
     {
         xCHECK_DO(a_level == lvPlain, level = lvInfo);
     }

@@ -28,7 +28,7 @@ typedef struct
 #define CPU_ZERO(cpusetp) \
     std::memset((cpusetp), 0, sizeof(cpu_set_t))
 
-xINLINE int
+int
 sched_setaffinity(
     pid_t      a_pid,
     size_t     a_cpusetsize,
@@ -42,7 +42,7 @@ sched_setaffinity(
 //-------------------------------------------------------------------------------------------------
 #if !defined(cmGETSID_FOUND)
 
-xINLINE pid_t
+pid_t
 getsid(
     pid_t a_pid
 ) /* xWARN_UNUSED_RV */
@@ -54,7 +54,7 @@ getsid(
 //-------------------------------------------------------------------------------------------------
 #if !defined(cmSETMNTENT_FOUND)
 
-xINLINE FILE *
+FILE *
 setmntent(
     const char *a_fileName,
     const char *a_type
@@ -67,7 +67,7 @@ setmntent(
 //-------------------------------------------------------------------------------------------------
 #if !defined(cmENDMNTENT_FOUND)
 
-xINLINE int
+int
 endmntent(FILE *a_file)
 {
     return std::fclose(a_file);
@@ -75,7 +75,7 @@ endmntent(FILE *a_file)
 
 #endif
 //-------------------------------------------------------------------------------------------------
-xINLINE wchar_t *
+wchar_t *
 setlocaleW(
    int            a_category,
    const wchar_t *a_locale
@@ -89,7 +89,7 @@ setlocaleW(
     return xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int
+int
 statW(
     const wchar_t *a_path,
     struct stat   *a_buf
@@ -103,7 +103,7 @@ statW(
     return -1;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int
+int
 chmodW(
     const wchar_t *a_path,
     mode_t         a_mode
@@ -117,7 +117,7 @@ chmodW(
     return -1;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE FILE *
+FILE *
 fopenW(
     const wchar_t *a_path,
     const wchar_t *a_mode
@@ -131,7 +131,7 @@ fopenW(
     return xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE FILE *
+FILE *
 fdopenW(
     int            a_fd,
     const wchar_t *a_mode
@@ -145,7 +145,7 @@ fdopenW(
     return xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE FILE *
+FILE *
 freopenW(
     const wchar_t *a_path,
     const wchar_t *a_mode,
@@ -161,7 +161,7 @@ freopenW(
     return xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int
+int
 accessW(
     const wchar_t *a_pathname,
     int            a_mode
@@ -175,7 +175,7 @@ accessW(
     return - 1;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int
+int
 removeW(
     const wchar_t *a_pathname
 )
@@ -187,7 +187,7 @@ removeW(
     return - 1;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int
+int
 unlinkW(
     const wchar_t *a_pathname
 )
@@ -199,7 +199,7 @@ unlinkW(
     return - 1;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int
+int
 renameW(
    const wchar_t *a_oldname,
    const wchar_t *a_newname
@@ -213,7 +213,7 @@ renameW(
     return - 1;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int
+int
 mkstempW(
     wchar_t *a_template
 )
@@ -225,7 +225,7 @@ mkstempW(
     return - 1;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int
+int
 getnameinfoW(
     const struct sockaddr *a_sa,
     socklen_t              a_salen,
@@ -249,7 +249,7 @@ getnameinfoW(
     return - 1;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int
+int
 getaddrinfoW(
     const wchar_t          *a_node,
     const wchar_t          *a_service,
@@ -267,7 +267,7 @@ getaddrinfoW(
     return - 1;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int
+int
 systemW(
     const wchar_t *a_command
 )

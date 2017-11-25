@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Shell.h"
-#endif
+#include "Shell.h"
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
@@ -41,7 +39,7 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Shell::isAvailable() const
 {
     xTESTS_NA;
@@ -49,7 +47,15 @@ Shell::isAvailable() const
     return _isAvailable_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+int_t
+Shell::execute(
+    std::ctstring_t &a_filePath ///< file path to binary file
+) const
+{
+    return execute(a_filePath, std::tstring_t());
+}
+//-------------------------------------------------------------------------------------------------
+int_t
 Shell::execute(
     std::ctstring_t &a_filePath,   ///< file path to binary file
     std::ctstring_t &a_params      ///< command line params for binary file
@@ -58,14 +64,17 @@ Shell::execute(
     xTEST_NA(a_filePath);
     xTEST_NA(a_params);
 
-    xCHECK_DO(a_filePath.empty(), return);
-    xCHECK_DO(!isAvailable(),     return);
+    xCHECK_RET(a_filePath.empty(), -1);
+    xCHECK_RET(!isAvailable(),     -1);
 
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
-    std::ctstring_t cmd = Format::str(xT("{} \"{}\""), a_filePath, a_params);
+    std::ctstring_t cmd = a_params.empty() ?
+        a_filePath : Format::str(xT("{} \"{}\""), a_filePath, a_params);
 
     int_t iRv = xTSYSTEM(cmd.c_str());
-    xTEST_DIFF(iRv, - 1);
+    xTEST_DIFF(iRv, -1);
+
+    return iRv;
 }
 //-------------------------------------------------------------------------------------------------
 

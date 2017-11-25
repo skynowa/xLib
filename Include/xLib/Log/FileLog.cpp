@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "FileLog.h"
-#endif
+#include "FileLog.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/FormatC.h>
@@ -16,8 +14,8 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Sync/AutoIpcMutex.h>
 
 
@@ -29,7 +27,6 @@ xNAMESPACE_BEGIN2(xl, log)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 FileLog::FileLog() :
     _filePath        (),
     _fileSizeMaxBytes(lsDefaultMb)
@@ -37,7 +34,6 @@ FileLog::FileLog() :
     xTEST_EQ(_filePath.empty(), true);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 FileLog::FileLog(
     std::csize_t &a_fileSizeMaxBytes
 ) :
@@ -48,13 +44,12 @@ FileLog::FileLog(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 FileLog::~FileLog()
 {
     write(xT("%s"), _oss.str().c_str());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 FileLog::setFilePath(
     std::ctstring_t &a_filePath ///< full path or name
 )
@@ -68,14 +63,14 @@ FileLog::setFilePath(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 FileLog::filePath() const
 {
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE void_t
+void_t
 FileLog::write(
     cptr_ctchar_t a_format, ...
 ) const
@@ -95,9 +90,9 @@ FileLog::write(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE void_t
+void_t
 FileLog::write(
-    cExLevel      &a_level,
+    cLevel        &a_level,
     cptr_ctchar_t  a_format, ...
 ) const
 {
@@ -131,13 +126,13 @@ FileLog::write(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 FileLog::clear() const
 {
     File::clear( filePath() );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 FileLog::remove() const
 {
     File::remove( filePath() );
@@ -151,7 +146,7 @@ FileLog::remove() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 FileLog::_removeIfFull() const
 {
     bool_t bRv = File::isExists( filePath() );

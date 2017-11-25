@@ -12,89 +12,89 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::_dectruct_impl()
 {
     int_t iRv = - 1;
 
     iRv = ::pthread_cond_destroy(&_cond);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     iRv = ::pthread_mutex_destroy(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE const Event::handle_t &
+const Event::handle_t &
 Event::_handle_impl() const
 {
     return _cond;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::_create_impl()
 {
 
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_mutex, xPTR_NULL);   // mutex not recursive
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     iRv = ::pthread_cond_init(&_cond, xPTR_NULL);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::_set_impl()
 {
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     {
         if (_isAutoReset) {
             iRv = ::pthread_cond_signal(&_cond);
-            xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+            xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
         } else {
             iRv = ::pthread_cond_broadcast(&_cond);
-            xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+            xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
         }
 
         _isSignaled = true;
     }
 
     iRv = ::pthread_mutex_unlock(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::_reset_impl()
 {
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     {
         _isSignaled = false;
     }
 
     iRv = ::pthread_mutex_unlock(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Event::ExObjectState
+Event::ObjectState
 Event::_wait_impl(
     culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
-    ExObjectState osRv = osFailed;
+    ObjectState osRv = osFailed;
 
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     {
         // if (!_isSignaled) {
@@ -156,12 +156,12 @@ Event::_wait_impl(
     }
 
     iRv = ::pthread_mutex_unlock(&_mutex);
-    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     return osRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Event::_isSignaled_impl() const
 {
     // n/a

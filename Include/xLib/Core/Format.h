@@ -54,7 +54,3 @@ private:
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "Format.inl"
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Format.cpp"
-#endif

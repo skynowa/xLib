@@ -4,12 +4,10 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "IpcMutex.h"
-#endif
+#include "IpcMutex.h"
 
 #include <xLib/Core/Const.h>
-#include <xLib/IO/Path.h>
+#include <xLib/Fs/Path.h>
 
 #if   xENV_WIN
     #include "Platform/Win/IpcMutex_win.inl"
@@ -33,7 +31,6 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 IpcMutex::IpcMutex() :
 #if   xENV_WIN
     _handle(),
@@ -44,13 +41,13 @@ IpcMutex::IpcMutex() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE const IpcMutex::handle_t &
+const IpcMutex::handle_t &
 IpcMutex::handle() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcMutex::create(
     std::ctstring_t &a_name
 )
@@ -65,7 +62,7 @@ IpcMutex::create(
     _create_impl(a_name);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcMutex::open(
     std::ctstring_t &a_name
 )
@@ -73,7 +70,7 @@ IpcMutex::open(
     _open_impl(a_name);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcMutex::lock(
     culong_t &a_timeoutMsec
 ) const
@@ -84,7 +81,7 @@ IpcMutex::lock(
     _lock_impl(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcMutex::unlock() const
 {
     ////xTEST_EQ(_handle.isValid(), true);

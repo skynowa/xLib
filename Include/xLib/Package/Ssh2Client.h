@@ -78,6 +78,3 @@ private:
 
 xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Ssh2Client.cpp"
-#endif

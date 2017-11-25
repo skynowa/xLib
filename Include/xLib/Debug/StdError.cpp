@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "StdError.h"
-#endif
+#include "StdError.h"
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
@@ -40,7 +38,7 @@ xNAMESPACE_BEGIN2(xl, debug)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 StdError::isSuccess()
 {
     bool_t bRv = (errno == _stdCodeSuccess());
@@ -49,7 +47,7 @@ StdError::isSuccess()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE int_t
+int_t
 StdError::get()
 {
     int_t code = errno;
@@ -60,7 +58,7 @@ StdError::get()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 StdError::set(
     cint_t &a_code
 )
@@ -69,21 +67,21 @@ StdError::set(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 StdError::reset()
 {
     set( _stdCodeSuccess() );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 StdError::format()
 {
     return format(get());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 StdError::format(
     cint_t &a_code
 )
@@ -100,7 +98,7 @@ StdError::format(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE int_t
+int_t
 StdError::_stdCodeSuccess()
 {
     return 0;

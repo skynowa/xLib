@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Operators.h"
-#endif
+#include "Operators.h"
 
 
 xNAMESPACE_BEGIN2(xl, core)
@@ -19,14 +17,14 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-xINLINE T &
+T &
 operator ++ (T &a_value)
 {
     return a_value = static_cast<T>(a_value + 1);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-xINLINE T &
+T &
 operator -- (T &a_value)
 {
     return a_value = static_cast<T>(a_value - 1);

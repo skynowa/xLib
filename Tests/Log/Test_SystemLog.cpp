@@ -40,7 +40,7 @@ Test_SystemLog::unit()
 
     xTEST_CASE("write")
     {
-        ILog::cExLevel logLevel[] = {
+        ILog::cLevel logLevel[] = {
             ILog::lvEmerg, ILog::lvAlert,   ILog::lvCritical,
             ILog::lvError, ILog::lvWarning, ILog::lvNotice,
             ILog::lvInfo,  ILog::lvDebug

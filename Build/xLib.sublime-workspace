@@ -1,0 +1,774 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"hotel",
+				"hotel_id"
+			],
+			[
+				"$cert",
+				"$cert_test"
+			],
+			[
+				"XLIB_TE",
+				"cmXLIB_TEMPLATE_DIR"
+			],
+			[
+				"google",
+				"google_hotel_parser"
+			],
+			[
+				"p",
+				"page"
+			],
+			[
+				"log",
+				"logs"
+			],
+			[
+				"te",
+				"text"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/home/skynowa/Projects/xLib/Include/xLib/Package/CurlClient.h",
+			"settings":
+			{
+				"buffer_size": 673,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/skynowa/Projects/xLib/Include/xLib/Package/Readme.txt",
+			"settings":
+			{
+				"buffer_size": 46,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "https://github.com/jpbarrette/curlpp"
+			}
+		},
+		{
+			"file": "/home/skynowa/Projects/xLib/Include/xLib/Package/CurlClient.cpp",
+			"settings":
+			{
+				"buffer_size": 781,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/C++/C++.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/C++11/C++11.sublime-build",
+					""
+				],
+				[
+					"Packages/C++11/C++11.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/cppStartingKit/C++ - Starting Kit.sublime-build",
+					""
+				],
+				[
+					"Packages/cppStartingKit/C++ - Starting Kit.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/C++11.sublime-build",
+					""
+				],
+				[
+					"Packages/User/C++11.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/User/C++11.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/C++.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/C++.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/C++11.sublime-build",
+					""
+				],
+				[
+					"Packages/User/C++11.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/User/C++11.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/C11.sublime-build",
+					""
+				],
+				[
+					"Packages/User/C11.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/User/C11.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/cppStartingKit/C++ - Starting Kit.sublime-build",
+					""
+				],
+				[
+					"Packages/cppStartingKit/C++ - Starting Kit.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/C++11.sublime-build",
+					""
+				],
+				[
+					"Packages/User/C++11.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/User/C++11.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/User/C++.sublime-build",
+					""
+				],
+				[
+					"Packages/User/C++.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/User/C++.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/User/C++.sublime-build",
+					""
+				],
+				[
+					"Packages/User/C++.sublime-build",
+					"Run C++11"
+				]
+			],
+			[
+				"Packages/User/C++.sublime-build",
+				"Run C++11"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 184.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Easy",
+				"EasyClangComplete: Settings"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Pa",
+				"Package Control: Install Package"
+			],
+			[
+				"clang",
+				"Package Control: List Unmanaged Packages"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			],
+			[
+				"format",
+				"CodeFormatter: Format Code"
+			],
+			[
+				"forma",
+				"CodeFormatter: Format Code"
+			],
+			[
+				"for",
+				"CodeFormatter: Format Code"
+			],
+			[
+				"codef",
+				"CodeFormatter: Format as HTML Syntax"
+			],
+			[
+				"inst",
+				"Preferences: Settings - Default"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			],
+			[
+				"Pack",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 497.0
+	},
+	"console":
+	{
+		"height": 170.0,
+		"history":
+		[
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print('Please restart Sublime Text to finish installation')"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/skynowa/Projects/xLib",
+		"/home/skynowa/Projects/xLib/Include",
+		"/home/skynowa/Projects/xLib/Include/xLib"
+	],
+	"file_history":
+	[
+		"/home/skynowa/Fabrica/Projects/Templates/[gds]_functions.cc.in",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedCountryAvg.xml",
+		"/home/skynowa/tmp/tmp/base_rest_api/base_rest_api.cc",
+		"/home/skynowa/tmp/tmp/base_rest_api/base_rest_api.h",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-backend/scripts/services/gds_stats_service.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedHotel.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedCountry.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedCity.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/config/suppliers_config.xml",
+		"/home/skynowa/Fabrica/Configs/.bashrc_fabrica",
+		"/home/skynowa/Dropbox/Fabrica/clang-tidy.txt",
+		"/home/skynowa/tmp/VPN/skynowa.ovpn",
+		"/home/skynowa/Projects/FAQ/Ubuntu.txt",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedAvailGdsHotelRoom.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedTopDestination.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/config/gds_config.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/jumbo_sync.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/suppliers/cms/www/js/mod.js",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/cms/templates/unjoin_bcity.xsl",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/jumbo_test.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/cms/templates/mod_merge.xsl",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/cms/tmp/error.log",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/cms/templates/unjoin_bhotel.xsl",
+		"/home/skynowa/tmp/1.txt",
+		"/home/skynowa/tmp/2.txt",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/APegHotel.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/secure/config/xml/booked_ssl_config.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/secure/site/templates/post_booking.xsl",
+		"/home/skynowa/Dropbox/403.txt",
+		"/home/skynowa/Dropbox/Lybed.txt",
+		"/home/skynowa/Fabrica/Projects/Templates/[gds]_test.sh.in",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/databases/hotels_pro/hotels-49.json",
+		"/home/skynowa/Fabrica/Projects/Templates/[gds]_services_sync.cc.in",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/hotels_pro_v2_test.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/pegasus_services_bw_avails.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedBooking.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedAvail.xml",
+		"/home/skynowa/tmp/Pegasus/bw_bookings/6941370-PegasusNetRates-1.csv",
+		"/home/skynowa/tmp/Pegasus/bw_bookings/build.sh",
+		"/home/skynowa/Fabrica/Projects/Templates/[gds]_sync.sh.in",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/hotels_pro_v2_sync.sh",
+		"/home/skynowa/Fabrica/Projects/Templates/Task.jira.in",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/cms/www/js/mod.js",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/MergeData.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/AGdsHotel.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/suppliers/gen/sql/APegHotels.sql",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/suppliers/gen/sql/AHBedsHotels.sql",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/suppliers/gen/sql/ABHotels.sql",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/suppliers/gen/sql/AGdsHotels.sql",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/AHBedsHotel.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/ABHotel.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/suppliers/gen-data/AHBedsHotel.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/suppliers/gen-data/APegHotel.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedGds.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/ABCity.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/ABRegion.xml",
+		"/home/skynowa/tmp/Tourico/tourico.log",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/ati_test.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/cms/templates/mod_merge_help.xsl",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/core/scripts/get_log.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/pegasus_services_bw_bookings.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/pegasus_services_bw.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/APegAmenity.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedDelete.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gulpfile.js",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/config/shared.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/config/locals/shared_release.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedRegion.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/SuspectUnObject.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/AGdsDestination.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/APegCity.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/AHBedsDestination.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/ABArea.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/ABCountry.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/WTS/CMake/Configure.cmake",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/WTS/CMakeLists.txt",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/WTS/Config.cmake",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/core/scripts/get_avail_log.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/WTS/Source/config.h.in",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/WTS/Source/config.h",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/modules/crs_functions/jumbo_nationalities.txt",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/WTS/CMake/FindExecInfo.cmake",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/travel-data/doc/HGta/FAQ_GTA.txt",
+		"/home/skynowa/Fabrica/Projects/Templates/Questions.txt",
+		"/home/skynowa/Fabrica/Docs/FAQ.txt",
+		"/home/skynowa/Fabrica/Docs/TODO.txt",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/core/config/cms_config.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/core/config/gds_config.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedRoomBedTypeTranslation.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/WTS/uninstall.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/WTS/install.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/core/scripts/amex_services.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedBookingInfo.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/WTS/build.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/WTS/clang-tidy.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/WTS/deploy.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/WTS/test.sh",
+		"/home/skynowa/Fabrica/Configs/.zshrc",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/MultiModeration.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/gen-data/BookedGdsStat.xml",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/nginx-restart.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/booked/site/www/gulpfile.js",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/hgta_test.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/hgta_sync_inc.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/hgta_sync.sh",
+		"/home/skynowa/tmp/Getaroom/booking.log",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/affiliate_sync/hotels_com_sync.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/pegasus_sync_update_d.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/pegasus_sync_update.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/pegasus_sync_hotellist.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/pegasus_services.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/suppliers/scripts/sync/pegasus_services.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/cms/tmp/crs_utils.log",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/suppliers/scripts/sync/pegasus_services_bw.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/services/pegasus_services.cc",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/bonotel_sync.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/bonotel_test.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/pegasus_services_lng.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/pegasus_services_local.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/pegasus_services_pan.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/pegasus_services_photo.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/whl_sync.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/sync/whl_test.sh",
+		"/home/skynowa/tmp/Getaroom/booking1.log",
+		"/home/skynowa/tmp/Getaroom/booking2.log",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-suppliers/scripts/affiliate_sync/hotels_com_test.sh",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/booked/site/www/js/rooms_form.js",
+		"/home/skynowa/Fabrica/Projects/triptake_smb/triptake-all/booked/site/templates/static.xsl"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "/home/skynowa/Projects/xLib"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/home/skynowa/Projects/xLib/Include/xLib/Package/CurlClient.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 673,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								56,
+								56
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"syntax": "Packages/cppStartingKit/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/skynowa/Projects/xLib/Include/xLib/Package/Readme.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 46,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								45,
+								45
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_name": "https://github.com/jpbarrette/curlpp",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"file": "/home/skynowa/Projects/xLib/Include/xLib/Package/CurlClient.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 781,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"syntax": "Packages/cppStartingKit/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.astyle_error_message":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 296.0
+	},
+	"output.find_results":
+	{
+		"height": 94.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 94.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 70.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"product",
+				"~/Fabrica/Projects/triptake_smb/triptake-all/doc/Miki/5.1/CitySearch/XML examples/citySearchRequest01.xml"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 132.0,
+		"last_filter": "export",
+		"selected_items":
+		[
+			[
+				"export",
+				"actFile_OnExportCsv"
+			],
+			[
+				"expo",
+				"exportCsv"
+			]
+		],
+		"width": 476.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 231.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

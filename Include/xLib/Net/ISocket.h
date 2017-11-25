@@ -38,6 +38,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/HandleT.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, net)
 
@@ -45,7 +46,7 @@ class ISocket
     /// socket
 {
 public:
-    enum ExAddressFamily
+    enum AddressFamily
         /// address family
     {
     #if   xENV_WIN
@@ -102,9 +103,9 @@ public:
         // TODO: ISocket - add AP-*
     #endif
     };
-    xTYPEDEF_CONST(ExAddressFamily);
+    xTYPEDEF_CONST(AddressFamily);
 
-    enum ExType
+    enum Type
        /// type
     {
         tpStream      = SOCK_STREAM,
@@ -113,9 +114,9 @@ public:
         tpRdm         = SOCK_RDM,
         tpSeqPacket   = SOCK_SEQPACKET
     };
-    xTYPEDEF_CONST(ExType);
+    xTYPEDEF_CONST(Type);
 
-    enum ExProtocol
+    enum Protocol
         /// protocol
     {
     #if xENV_WIN
@@ -220,15 +221,15 @@ public:
         // TODO: ISocket - add IPPROTO-*
     #endif
     };
-    xTYPEDEF_CONST(ExProtocol);
+    xTYPEDEF_CONST(Protocol);
 
-    enum ExOptions
+    enum Options
         /// options
     {
         SOCKET_TIMEOUT   = 0,       ///< (1000000 / 10)
         SOCKET_BUFF_SIZE = 32768    ///< 32 KB
     };
-    xTYPEDEF_CONST(ExOptions);
+    xTYPEDEF_CONST(Options);
 
                    ISocket();
         ///< constructor
@@ -241,16 +242,14 @@ public:
     *
     *******************************************************************************/
 
-    void_t         create(cExAddressFamily &family, cExType &type, cExProtocol &protocol);
+    void_t         create(cAddressFamily &family, cType &type, cProtocol &protocol);
         ///< creates a socket that is bound to a specific transport service provider
-    socket_t       handle() const xWARN_UNUSED_RV;
+    HandleSocket  &handle() xWARN_UNUSED_RV;
         ///< get handle
     bool_t         isReadable() const xWARN_UNUSED_RV;
         ///< checking for readability
     bool_t         isWritable() const xWARN_UNUSED_RV;
         ///< checking for writability
-    bool_t         isValid() const xWARN_UNUSED_RV;
-        ///< checking for validness
     void_t         assign(csocket_t &handle);
         ///< assign to another handle
     void_t         close();
@@ -308,7 +307,7 @@ public:
         ///< get error status for the last operation that failed
 
 protected:
-    socket_t       _handle;   ///< socket handle
+    HandleSocket   _handle;   ///< socket handle
     short_t        _family;   ///< family
     std::tstring_t _ip;       ///< IP
     ushort_t       _port;     ///< port
@@ -330,10 +329,6 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, net)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "ISocket.cpp"
-#endif
-
 
 #if xTODO
     //http://www.yolinux.com/TUTORIALS/Sockets.html

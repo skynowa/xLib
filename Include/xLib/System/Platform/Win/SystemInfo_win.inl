@@ -12,10 +12,10 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::ExOsType
+SystemInfo::OsType
 SystemInfo::_os_impl()
 {
-    ExOsType otRv = otUnknown;
+    OsType otRv = otUnknown;
 
     OSVERSIONINFO info = {0};
     info.dwOSVersionInfoSize = sizeof(info);
@@ -58,12 +58,12 @@ SystemInfo::_os_impl()
     return otRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_formatOs_impl()
 {
     std::tstring_t sRv;
 
-    ExOsType type = (_osType == otUnknown) ? os() : _osType;
+    OsType type = (_osType == otUnknown) ? os() : _osType;
     switch (type) {
     case otWindows3:
         sRv = xT("Windows 3.1");
@@ -115,10 +115,10 @@ SystemInfo::_formatOs_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE SystemInfo::ExOsArch
+SystemInfo::OsArch
 SystemInfo::_osArch_impl()
 {
-    ExOsArch oaRv = oaUnknown;
+    OsArch oaRv = oaUnknown;
 
 #if   xARCH_BITS_32
     BOOL isFuncExist = FALSE;
@@ -145,7 +145,7 @@ SystemInfo::_osArch_impl()
     return oaRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_desktopName_impl() const
 {
     std::tstring_t  sRv;
@@ -170,7 +170,7 @@ SystemInfo::_desktopName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_hostName_impl() const
 {
     std::tstring_t sRv;
@@ -186,7 +186,7 @@ SystemInfo::_hostName_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_numOfCpus_impl() const
 {
     SYSTEM_INFO sysInfo = {{0}};
@@ -198,7 +198,7 @@ SystemInfo::_numOfCpus_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_currentCpuNum_impl() const
 {
     typedef DWORD (WINAPI *func_t)(void_t);
@@ -219,7 +219,7 @@ SystemInfo::_currentCpuNum_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_cpuVendor_impl() const
 {
     std::tstring_t value;
@@ -244,7 +244,7 @@ SystemInfo::_cpuVendor_impl() const
     return value;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 SystemInfo::_cpuModel_impl() const
 {
     std::tstring_t sRv;
@@ -291,7 +291,7 @@ SystemInfo::_cpuModel_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_cpuSpeed_impl() const
 {
     DWORD cpuSpeedMHz = 0UL;
@@ -314,7 +314,7 @@ SystemInfo::_cpuSpeed_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_cpuUsage_impl() const
 {
     double                dRv            = 0.0;
@@ -357,7 +357,7 @@ SystemInfo::_cpuUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulonglong_t
+ulonglong_t
 SystemInfo::_ramTotal_impl() const
 {
     MEMORYSTATUSEX status = {0};
@@ -371,7 +371,7 @@ SystemInfo::_ramTotal_impl() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulonglong_t
+ulonglong_t
 SystemInfo::_ramAvailable_impl() const
 {
     MEMORYSTATUSEX status = {0};
@@ -385,7 +385,7 @@ SystemInfo::_ramAvailable_impl() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_ramUsage_impl() const
 {
     MEMORYSTATUSEX status = {0};
@@ -399,7 +399,7 @@ SystemInfo::_ramUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ulong_t
+ulong_t
 SystemInfo::_pageSize_impl() const
 {
     SYSTEM_INFO sysInfo = {{0}};

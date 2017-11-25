@@ -12,13 +12,13 @@ xNAMESPACE_BEGIN2(xl, crypt)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 StdSeedPolicy::_construct_impl()
 {
     xNA
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE long_t
+long_t
 StdSeedPolicy::_next_impl()
 {
     long_t liRv = 0L;
@@ -40,7 +40,7 @@ StdSeedPolicy::_next_impl()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 NativeSeedPolicy::_construct_impl()
 {
 #if cmSRANDOM_R_FOUND
@@ -59,7 +59,7 @@ NativeSeedPolicy::_construct_impl()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 NativeSeedPolicy::_destruct_impl()
 {
 #if (cmSRANDOM_R_FOUND && cmRANDOM_R_FOUND)
@@ -67,7 +67,7 @@ NativeSeedPolicy::_destruct_impl()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE long_t
+long_t
 NativeSeedPolicy::_next_impl()
 {
     long_t liRv = 0L;

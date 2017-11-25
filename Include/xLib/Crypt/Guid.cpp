@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Guid.h"
-#endif
+#include "Guid.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Core/Format.h>
@@ -42,9 +40,9 @@ xNAMESPACE_BEGIN2(xl, crypt)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Guid::create(
-    cExType &a_type
+    cType &a_type
 ) const
 {
     std::tstring_t sRv;

@@ -33,7 +33,7 @@ public:
 
     virtual void_t write(cptr_ctchar_t format, ...) const xOVERRIDE;
         ///< tracing to debugger, std::cout
-    virtual void_t write(cExLevel &level, cptr_ctchar_t format, ...) const xOVERRIDE;
+    virtual void_t write(cLevel &level, cptr_ctchar_t format, ...) const xOVERRIDE;
         ///< tracing to debugger, std::cout
 
 xPLATFORM_IMPL:
@@ -43,7 +43,3 @@ xPLATFORM_IMPL:
 xNAMESPACE_END2(xl, log)
 //-------------------------------------------------------------------------------------------------
 #include "Trace.inl"
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Trace.cpp"
-#endif

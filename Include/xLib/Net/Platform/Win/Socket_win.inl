@@ -11,53 +11,34 @@ xNAMESPACE_BEGIN2(xl, net)
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-xINLINE void_t
-ISocket::_close_impl()
-{
-    xCHECK_DO(!isValid(), return);
-
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
-
-    int_t iRv = shutdown(_handle, SD_BOTH);
-    xTEST_DIFF(iRv, xSOCKET_ERROR);
-
-    iRv = ::closesocket(_handle);
-    xTEST_DIFF(iRv, xSOCKET_ERROR);
-
-    _handle = xSOCKET_HANDLE_INVALID;
-}
-//-------------------------------------------------------------------------------------------------
-
-
 /**************************************************************************************************
 * I/O
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE ssize_t
+ssize_t
 ISocket::_send_impl(
     cptr_ctchar_t *a_buff,
     std::csize_t  &a_buffSize,
     cint_t        &a_flags
 )
 {
-    ssize_t iRv = ::send(_handle, (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
+    ssize_t iRv = ::send(_handle.get(), (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_EQ(iRv != xSOCKET_ERROR && ISocket::nativeError() != WSAEWOULDBLOCK, true);
     xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
 
     return iRv / sizeof(tchar_t);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ssize_t
+ssize_t
 ISocket::_receive_impl(
     tchar_t      *a_buff,
     std::csize_t &a_buffSize,
     cint_t       &a_flags
 )
 {
-    int_t iRv = ::recv(_handle, (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
+    int_t iRv = ::recv(_handle.get(), (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_EQ(iRv != xSOCKET_ERROR && ISocket::nativeError() != WSAEWOULDBLOCK, true);
     xTEST_DIFF(iRv, 0);  // gracefully closed
     xTEST_GR_EQ(int_t(a_buffSize * sizeof(tchar_t)), iRv);
@@ -73,7 +54,7 @@ ISocket::_receive_impl(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::_peerName_impl(
     std::tstring_t *a_peerAddr,
     ushort_t       *a_peerPort
@@ -82,7 +63,7 @@ ISocket::_peerName_impl(
     SOCKADDR_IN sockAddr    = {0};
     int_t       sockAddrLen = sizeof(sockAddr);
 
-    int_t iRv = ::getpeername(_handle, Utils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
+    int_t iRv = ::getpeername(_handle.get(), Utils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
         &sockAddrLen);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 
@@ -98,7 +79,7 @@ ISocket::_peerName_impl(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::_socketName_impl(
     std::tstring_t *a_socketAddr,
     ushort_t       *a_socketPort
@@ -107,7 +88,7 @@ ISocket::_socketName_impl(
     SOCKADDR_IN sockAddr     = {0};
     int_t       sockAddrLen = sizeof(sockAddr);
 
-    int_t iRv = ::getsockname(_handle, Utils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
+    int_t iRv = ::getsockname(_handle.get(), Utils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
         &sockAddrLen);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 
@@ -131,7 +112,7 @@ ISocket::_socketName_impl(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 ISocket::_nativeError_impl()
 {
     return ::WSAGetLastError();

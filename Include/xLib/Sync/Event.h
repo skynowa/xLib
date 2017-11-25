@@ -21,7 +21,7 @@ public:
     typedef pthread_cond_t handle_t;   ///< handle
 #endif
 
-    enum ExObjectState
+    enum ObjectState
         /// current object state
     {
         #if   xENV_WIN
@@ -49,7 +49,7 @@ public:
         ///< signal the event for the waiting thread (!!! unlock !!!)
     void_t           reset();
         ///< once signaled, the event class must be "reset" before responding to a new signal
-    ExObjectState    wait(culong_t &timeoutMs = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
+    ObjectState      wait(culong_t &timeoutMs = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
         ///< wait either for the Event to be signaled by another thread or for the specified
         ///< timeout duration
     bool_t           isSignaled() const xWARN_UNUSED_RV;
@@ -75,12 +75,9 @@ xPLATFORM_IMPL:
     void_t           _create_impl();
     void_t           _set_impl();
     void_t           _reset_impl();
-    ExObjectState    _wait_impl(culong_t &timeoutMs = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
+    ObjectState      _wait_impl(culong_t &timeoutMs = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
     bool_t           _isSignaled_impl() const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xl, sync)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Event.cpp"
-#endif

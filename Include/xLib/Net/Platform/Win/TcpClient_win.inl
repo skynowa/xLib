@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN2(xl, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpClient::_setNonBlockingMode_impl(
     cbool_t &a_flag
 ) const
@@ -26,6 +26,7 @@ TcpClient::_setNonBlockingMode_impl(
     int_t optLen = sizeof(int_t);
 
     ::setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (char *)&optVal, optLen);
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 

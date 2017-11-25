@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "ISocket.h"
-#endif
+#include "ISocket.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -33,19 +31,16 @@ xNAMESPACE_BEGIN2(xl, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 ISocket::ISocket() :
-    _handle(xSOCKET_HANDLE_INVALID),
+    _handle(),
     _family(- 1),
     _ip    (),
     _port  (0)
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 ISocket::~ISocket()
 {
-    close();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -56,66 +51,58 @@ ISocket::~ISocket()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::create(
-    cExAddressFamily &a_family,
-    cExType          &a_type,
-    cExProtocol      &a_protocol
+    cAddressFamily &a_family,
+    cType          &a_type,
+    cProtocol      &a_protocol
 )
 {
-    xTEST_EQ(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), false);
 
     _handle = ::socket(a_family, a_type, a_protocol);
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_DIFF(_handle.isValid(), true);
 
     _family = a_family;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE socket_t
-ISocket::handle() const
+HandleSocket &
+ISocket::handle()
 {
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), true);
 
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 ISocket::isReadable() const
 {
     timeval timeoutVal = {1, 0};
     fd_set  fds;         FD_ZERO(&fds);
 
-    FD_SET(_handle, &fds);
+    FD_SET(_handle.get(), &fds);
 
     int_t iRv = ::select(0, &fds, xPTR_NULL, xPTR_NULL, &timeoutVal);
-    xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle, &fds), false);
+    xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle.get(), &fds), false);
 
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 ISocket::isWritable() const
 {
     timeval timeoutVal = {1, 0};
     fd_set  fds;         FD_ZERO(&fds);
 
-    FD_SET(_handle, &fds);
+    FD_SET(_handle.get(), &fds);
 
     int_t iRv = ::select(0, xPTR_NULL, &fds, xPTR_NULL, &timeoutVal);
-    xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle, &fds), false);
+    xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle.get(), &fds), false);
 
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
-ISocket::isValid() const
-{
-    // n/a
-
-    return (_handle >= 0);
-}
-//-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::assign(
     csocket_t &a_handle
 )
@@ -126,14 +113,12 @@ ISocket::assign(
     _handle = a_handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::close()
 {
-    xCHECK_DO(!isValid(), return);
+    xTESTS_NA;
 
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
-
-    _close_impl();
+    _handle.close();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -144,7 +129,7 @@ ISocket::close()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE ssize_t
+ssize_t
 ISocket::send(
     cptr_ctchar_t  a_buff,
     std::csize_t  &a_buffSize,
@@ -153,20 +138,20 @@ ISocket::send(
 {
     // TODO: ISocket::send() - LINUX: ssize_t send(int_t sockfd, cptr_cvoid_t buf, size_t len, int_t flags);
 
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), true);
     xTEST_PTR(a_buff);
     /////xTEST_LESS(0, ::lstrlen(buff));
 
     return _send_impl(a_buff, a_buffSize, a_flags);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::sendAll(
     std::ctstring_t &a_buff,
     cint_t          &a_flags
 )
 {
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), true);
     xTEST_EQ(a_buff.empty(), false);
     xTEST_LESS(size_t(0U), a_buff.size());
 
@@ -200,14 +185,14 @@ ISocket::sendAll(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ssize_t
+ssize_t
 ISocket::receive(
     tchar_t      *a_buff,
     std::csize_t &a_buffSize,
     cint_t       &a_flags
 )
 {
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), true);
     xTEST_PTR(a_buff);
     xTEST_DIFF(a_buffSize, (size_t)0);
 
@@ -216,7 +201,7 @@ ISocket::receive(
     return _receive_impl(a_buff, a_buffSize, a_flags);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 ISocket::recvAll(
     cint_t &a_flags
 )
@@ -231,12 +216,12 @@ ISocket::recvAll(
         int_t   iRv = - 1;
         ulong_t arg = (ulong_t)a_flags;
 
-        iRv = xIOCTLSOCKET(_handle, FIONREAD, &arg);
+        iRv = xIOCTLSOCKET(_handle.get(), FIONREAD, &arg);
         xCHECK_DO(iRv != 0,       break);
         xCHECK_DO(arg == 0,       break);
         xCHECK_DO(buffSize < arg, arg = buffSize);
 
-        ssize_t uiRv = ::recv(_handle, (char *)&buff[0], arg, 0);
+        ssize_t uiRv = ::recv(_handle.get(), (char *)&buff[0], arg, 0);
         xCHECK_DO(uiRv <= 0, break);
 
         sRv.append(buff, static_cast<std::size_t>(uiRv));
@@ -245,7 +230,7 @@ ISocket::recvAll(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 ISocket::recvAll(
     cint_t          &a_flags,
     std::ctstring_t &a_delimiter
@@ -271,7 +256,7 @@ ISocket::recvAll(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 ISocket::sendBytes(
     char    *a_buff,
     ssize_t &a_messageLength
@@ -289,7 +274,7 @@ ISocket::sendBytes(
     sendTimeout.tv_usec = SOCKET_TIMEOUT;
 
     fd_set fds;    FD_ZERO(&fds);
-    FD_SET(_handle, &fds);
+    FD_SET(_handle.get(), &fds);
 
     // ..as long_t as we need to send data...
     while (messageLength > 0) {
@@ -302,7 +287,7 @@ ISocket::sendBytes(
         xCHECK_RET(iRv < 0, nativeError());
 
         // send a few bytes
-        sendStatus = ::send(_handle, a_buff, static_cast<std::size_t>(messageLength), 0);
+        sendStatus = ::send(_handle.get(), a_buff, static_cast<std::size_t>(messageLength), 0);
 
         // An error occurred when sending data
         xCHECK_RET(sendStatus < 0, nativeError());
@@ -315,7 +300,7 @@ ISocket::sendBytes(
     return 0;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 ISocket::receiveBytes(
     char    *a_buff,
     ssize_t &a_stillToReceive
@@ -331,7 +316,7 @@ ISocket::receiveBytes(
     receiveTimeout.tv_usec = SOCKET_TIMEOUT;
 
     fd_set fds;    FD_ZERO(&fds);
-    FD_SET(_handle, &fds);
+    FD_SET(_handle.get(), &fds);
 
     // Until the data is sent
     while (stillToReceive > 0) {
@@ -344,7 +329,7 @@ ISocket::receiveBytes(
         xCHECK_RET(iRv < 0, nativeError());
 
         // receive a few bytes
-        receiveStatus = ::recv(_handle, a_buff, static_cast<std::size_t>(stillToReceive), 0);
+        receiveStatus = ::recv(_handle.get(), a_buff, static_cast<std::size_t>(stillToReceive), 0);
 
         // An error occurred when the function recv ()
         xCHECK_RET(receiveStatus < 0, nativeError());
@@ -365,7 +350,7 @@ ISocket::receiveBytes(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::peerName(
     std::tstring_t *a_peerAddr,
     ushort_t       *a_peerPort
@@ -377,7 +362,7 @@ ISocket::peerName(
     _peerName_impl(a_peerAddr, a_peerPort);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ISocket::socketName(
     std::tstring_t *a_socketAddr,
     ushort_t       *a_socketPort
@@ -398,7 +383,7 @@ ISocket::socketName(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE int_t
+int_t
 ISocket::select(
     int_t    a_nfds,
     fd_set  *a_readfds,
@@ -419,7 +404,7 @@ ISocket::select(
      return iRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE int_t
+int_t
 ISocket::nativeError()
 {
     // n/a

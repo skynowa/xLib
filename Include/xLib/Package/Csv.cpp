@@ -4,12 +4,10 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Csv.h"
-#endif
+#include "Csv.h"
 
 #include <xLib/Core/String.h>
-#include <xLib/IO/File.h>
+#include <xLib/Fs/File.h>
 
 
 xNAMESPACE_BEGIN2(xl, package)
@@ -20,7 +18,6 @@ xNAMESPACE_BEGIN2(xl, package)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 CsvReader::CsvReader(
     cCsvData &a_data
 ) :
@@ -29,7 +26,7 @@ CsvReader::CsvReader(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 CsvReader::loadFile(
     std::ctstring_t &a_filePath
 )
@@ -39,7 +36,7 @@ CsvReader::loadFile(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 CsvReader::loadString(
     std::ctstring_t &a_rawString
 )
@@ -49,13 +46,13 @@ CsvReader::loadString(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ICsv::row_t
+ICsv::row_t
 CsvReader::headers()
 {
     return _rows.at(0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 CsvReader::header(
     std::csize_t a_column
 )
@@ -63,19 +60,19 @@ CsvReader::header(
     return headers().at(a_column);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::size_t
+std::size_t
 CsvReader::columns()
 {
     return headers().size();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::size_t
+std::size_t
 CsvReader::rows()
 {
     return _rows.size();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 CsvReader::cell(
     std::csize_t a_row,		///< row
     std::csize_t a_column	///< column
@@ -84,13 +81,13 @@ CsvReader::cell(
     return _rows.at(a_row).at(a_column);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 CsvReader::_isValid()
 {
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CsvReader::_clear()
 {
 	_rows.clear();
@@ -104,7 +101,6 @@ CsvReader::_clear()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 CsvWriter::CsvWriter(
     cCsvData &a_data
 ) :
@@ -112,7 +108,7 @@ CsvWriter::CsvWriter(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CsvWriter::saveFile(
 	crow_t          &a_header,
 	crows_t         &a_rows,
@@ -137,7 +133,7 @@ CsvWriter::saveFile(
 	}
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 CsvWriter::saveString(
 	crow_t         &a_header,
 	crows_t        &a_rows,
