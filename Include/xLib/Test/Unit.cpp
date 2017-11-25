@@ -4,13 +4,11 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Unit.h"
-#endif
+#include "Unit.h"
 
 #include <xLib/Debug/Exception.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/Dir.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/Dir.h>
 
 
 xNAMESPACE_BEGIN2(xl, test)
@@ -21,7 +19,6 @@ xNAMESPACE_BEGIN2(xl, test)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Unit::Unit() :
     m_pvRv  (xPTR_NULL),
     m_chRv  (0),
@@ -52,13 +49,12 @@ Unit::Unit() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 Unit::~Unit() /* = 0 */
 {
     Dir( data.tempDirPath ).pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Unit::setData(
     cUnitData &a_data
 )
@@ -69,7 +65,7 @@ Unit::setData(
     data.name        = a_data.name;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Unit::run()
 {
     bool_t isPassed = true;
@@ -112,7 +108,7 @@ Unit::run()
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE bool_t
+bool_t
 Unit::unit() /* = 0 */
 {
 #if 1
@@ -135,7 +131,7 @@ Unit::unit() /* = 0 */
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Unit::_createTempDir(
     std::ctstring_t &a_dirName
 )

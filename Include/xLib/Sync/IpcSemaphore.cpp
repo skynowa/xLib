@@ -4,12 +4,10 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "IpcSemaphore.h"
-#endif
+#include "IpcSemaphore.h"
 
 #include <xLib/Core/Const.h>
-#include <xLib/IO/Path.h>
+#include <xLib/Fs/Path.h>
 
 #if   xENV_WIN
     #include "Platform/Win/IpcSemaphore_win.inl"
@@ -34,7 +32,6 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 IpcSemaphore::IpcSemaphore() :
 #if   xENV_WIN
     _handle(),
@@ -48,7 +45,6 @@ IpcSemaphore::IpcSemaphore() :
     _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 IpcSemaphore::~IpcSemaphore()
 {
     xTEST_EQ(_isValid(), true);
@@ -56,13 +52,13 @@ IpcSemaphore::~IpcSemaphore()
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE long_t
+long_t
 IpcSemaphore::valueMax() const
 {
     return _valueMax_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE const IpcSemaphore::handle_t &
+const IpcSemaphore::handle_t &
 IpcSemaphore::handle() const
 {
     xTEST_EQ(_isValid(), true);
@@ -70,7 +66,7 @@ IpcSemaphore::handle() const
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcSemaphore::create(
     clong_t         &a_initialValue,
     std::ctstring_t &a_name
@@ -83,7 +79,7 @@ IpcSemaphore::create(
     _create_impl(a_initialValue, a_name);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcSemaphore::open(
     std::ctstring_t &a_name
 )
@@ -94,7 +90,7 @@ IpcSemaphore::open(
     _open_impl(a_name);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcSemaphore::post() const
 {
     xTEST_EQ(_isValid(), true);
@@ -102,7 +98,7 @@ IpcSemaphore::post() const
     _post_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 IpcSemaphore::wait(
     culong_t &a_timeoutMsec
 ) const
@@ -113,7 +109,7 @@ IpcSemaphore::wait(
     _wait_impl(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE long_t
+long_t
 IpcSemaphore::value() const
 {
     xTEST_EQ(_isValid(), true);
@@ -129,7 +125,7 @@ IpcSemaphore::value() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 IpcSemaphore::_isValid() const
 {
     return _isValid_impl();

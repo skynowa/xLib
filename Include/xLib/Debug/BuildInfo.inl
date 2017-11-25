@@ -7,7 +7,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Format.h>
-#include <xLib/IO/Path.h>
+#include <xLib/Fs/Path.h>
 
 
 xNAMESPACE_BEGIN2(xl, debug)
@@ -397,9 +397,7 @@ BuildInfo::xlibBinaryType() const
 {
     std::tstring_t sRv;
 
-#if   cmOPTION_PROJECT_HEADER_ONLY
-    sRv = xT("Header only");
-#elif cmOPTION_PROJECT_LIB_STATIC
+#if   cmOPTION_PROJECT_LIB_STATIC
     sRv = xT("Static library");
 #elif cmOPTION_PROJECT_LIB_SHARE
     sRv = xT("Share library");

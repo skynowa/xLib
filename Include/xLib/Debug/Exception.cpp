@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Exception.h"
-#endif
+#include "Exception.h"
 
 #include <xLib/Core/String.h>
 
@@ -19,7 +17,7 @@ xNAMESPACE_BEGIN2(xl, debug)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 Exception::what() const
 {
     return _msgT;

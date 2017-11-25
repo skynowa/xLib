@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Condition.h"
-#endif
+#include "Condition.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -40,7 +38,6 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Condition::Condition()
 #if !xENV_WIN
     :
@@ -51,19 +48,18 @@ Condition::Condition()
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 Condition::~Condition()
 {
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Condition::create()
 {
     _create_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Condition::wait(
     culong_t &a_timeoutMs
 )
@@ -71,13 +67,13 @@ Condition::wait(
     _wait_impl(a_timeoutMs);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Condition::signal()
 {
     _signal_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Condition::broadcast()
 {
     _broadcast_impl();

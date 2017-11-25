@@ -9,76 +9,80 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-namespace debug {
-    class NativeError;
-    class StackTrace;
-    class ErrorReport;
-    class Debugger;
+namespace debug
+{
+
+class NativeError;
+class StackTrace;
+class ErrorReport;
+class Debugger;
+
 }
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
-#include <xLib/Core/HandleErrorT.h>
+#include <xLib/Interface/IHandle.h>
+#include <xLib/Core/HandlePolicy.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-template<ExHandleValue tagT>
-class HandleT
+template<typename T, HandlePolicyType valueT>
+class HandleT :
+    public IHandle<T>
     /// handle
 {
 public:
-                    HandleT();
+              HandleT();
         ///< constructor
-    explicit        HandleT(cnative_handle_t &handle);
+    explicit  HandleT(const T &handle);
         ///< constructor
-    explicit        HandleT(const HandleT &handle);
+    explicit  HandleT(const HandleT &handle);
         ///< constructor
-    virtual        ~HandleT();
+    virtual  ~HandleT();
         ///< destructor
 
-    HandleT &     operator = (cnative_handle_t &handle);
+    HandleT & operator = (const T &handle);
         ///< operator =
-    HandleT &     operator = (const HandleT &handle);
+    HandleT & operator = (const HandleT &handle);
         ///< operator =
 
-    native_handle_t get() const xWARN_UNUSED_RV;
+    static
+    T         null() xWARN_UNUSED_RV;
         ///< get
-    void_t          set(cnative_handle_t &handle);
+    T         get() const xWARN_UNUSED_RV;
+        ///< get
+    void_t    set(const T &handle);
         ///< set
-    native_handle_t duplicate() const xWARN_UNUSED_RV;
+    T         clone() const xWARN_UNUSED_RV;
         ///< duplicate handle
 
-    bool_t          isValid() const xWARN_UNUSED_RV;
+    bool_t    isValid() const xWARN_UNUSED_RV;
         ///< is valid
-    void_t          attach(cnative_handle_t &handle);
+    void_t    attach(const T &handle);
         ///< attach
-    native_handle_t detach() xWARN_UNUSED_RV;
+    T         detach() xWARN_UNUSED_RV;
         ///< detach
-    void_t          close();
+    void_t    close();
         ///< close
 
 #if xENV_WIN
-    ulong_t         info() const xWARN_UNUSED_RV;
+    ulong_t   info() const xWARN_UNUSED_RV;
         ///< get certain properties of an object handle
-    void_t          setInfo(culong_t &mask, culong_t &flags);
+    void_t    setInfo(culong_t &mask, culong_t &flags);
         ///< set information
 #endif
 
 private:
-    typedef HandleErrorT<tagT> error_value_t;
+    typedef HandlePolicy<T, valueT> handle_policy_t;
 
-    native_handle_t _handle;    ///< handle
-
-xPLATFORM_IMPL:
-    native_handle_t _duplicate_impl() const;
-    bool_t          _isValid_impl() const;
-    void_t          _close_impl();
+    T         _handle;    ///< handle
 };
-
-typedef HandleT<hvNull>    Handle;
-typedef HandleT<hvInvalid> HandleInvalid;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "HandleT.inl"
+
+#if xENV_WIN
+    #include "Platform/Win/HandleT_win.inl"
+#endif

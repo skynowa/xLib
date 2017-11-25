@@ -12,12 +12,13 @@ xNAMESPACE_BEGIN2(xl, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Debugger::_isActive_impl() const
 {
-    int_t      mib[4];  xSTRUCT_ZERO(mib);
-    kinfo_proc info;    xSTRUCT_ZERO(info);
-    size_t     infoSize = 0;
+    const u_int mibSize = 4;
+    int_t       mib[mibSize];  xSTRUCT_ZERO(mib);
+    kinfo_proc  info;          xSTRUCT_ZERO(info);
+    size_t      infoSize = 0;
 
     mib[0] = CTL_KERN;
     mib[1] = KERN_PROC;
@@ -29,7 +30,7 @@ Debugger::_isActive_impl() const
 
     infoSize = sizeof(info);
 
-    int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), &info, &infoSize, xPTR_NULL, 0);
+    int_t iRv = ::sysctl(mib, mibSize, &info, &infoSize, xPTR_NULL, 0);
     xCHECK_RET(iRv == - 1, false);
 
     // we're being debugged if the P_TRACED flag is set.

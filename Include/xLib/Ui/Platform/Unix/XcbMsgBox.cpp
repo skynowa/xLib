@@ -4,9 +4,9 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "XcbMsgBox.h"
-#endif
+#include "XcbMsgBox.h"
+
+#if cmXCB_FOUND
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
@@ -33,7 +33,6 @@ const int16_t  lineIndent     = 24;
 
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
-xINLINE
 XcbMsgBox::XcbMsgBox() :
     _conn    (xPTR_NULL),
     _screen  (xPTR_NULL),
@@ -59,7 +58,6 @@ XcbMsgBox::XcbMsgBox() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 XcbMsgBox::~XcbMsgBox()
 {
     _error    = xPTR_NULL;
@@ -72,7 +70,7 @@ XcbMsgBox::~XcbMsgBox()
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE XcbMsgBox::ExModalResult
+XcbMsgBox::ExModalResult
 XcbMsgBox::show(
     std::ctstring_t &a_text,    ///< text
     std::ctstring_t &a_title,   ///< title
@@ -133,7 +131,7 @@ XcbMsgBox::show(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 XcbMsgBox::_setTitle(
     std::ctstring_t &a_text
 )
@@ -146,7 +144,7 @@ XcbMsgBox::_setTitle(
     xTEST_GR(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 XcbMsgBox::_setText(
     std::cvec_tstring_t &a_text
 )
@@ -169,7 +167,7 @@ struct MaxElementComp
     }
 };
 
-xINLINE void_t
+void_t
 XcbMsgBox::_autoResize(
     std::ctstring_t     &a_title,
     std::cvec_tstring_t &a_text
@@ -224,7 +222,7 @@ XcbMsgBox::_autoResize(
     _resize(width, height);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 XcbMsgBox::_setOnTop()
 {
     const uint32_t values[] = {XCB_STACK_MODE_ABOVE};
@@ -233,7 +231,7 @@ XcbMsgBox::_setOnTop()
     xTEST_GR(_cookie.sequence, 0U);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE XcbMsgBox::ExModalResult
+XcbMsgBox::ExModalResult
 XcbMsgBox::_execute(
     std::cvec_tstring_t &a_text
 )
@@ -381,7 +379,7 @@ l_endFor:
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE xcb_gcontext_t
+xcb_gcontext_t
 XcbMsgBox::_fontGContext(
     std::ctstring_t &a_fontName
 )
@@ -419,7 +417,7 @@ XcbMsgBox::_fontGContext(
     return gcontextId;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 XcbMsgBox::_resize(
     const uint32_t &a_width,
     const uint32_t &a_height
@@ -431,7 +429,7 @@ XcbMsgBox::_resize(
         XCB_CONFIG_WINDOW_WIDTH | XCB_CONFIG_WINDOW_HEIGHT, values);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 XcbMsgBox::_setTextLine(
     const int16_t   &a_left,
     const int16_t   &a_top,
@@ -458,7 +456,7 @@ XcbMsgBox::_setTextLine(
     xTEST_GR(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 XcbMsgBox::_modifiersStr(
     const uint32_t &a_valueMask
 ) const
@@ -485,3 +483,5 @@ XcbMsgBox::_modifiersStr(
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, ui)
+
+#endif // cmXCB_FOUND

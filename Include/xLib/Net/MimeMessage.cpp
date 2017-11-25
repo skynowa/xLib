@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "MimeMessage.h"
-#endif
+#include "MimeMessage.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -23,13 +21,12 @@
 xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 MimeMessage::MimeMessage() :
     _rawMessage()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 MimeMessage::parse(
     std::ctstring_t &a_rawMessage,
     MimeHeader    &a_header,
@@ -43,7 +40,7 @@ MimeMessage::parse(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 MimeMessage::loadFromRawFile(
     std::ctstring_t &a_filePath ///< raw msg
 )
@@ -53,7 +50,7 @@ MimeMessage::loadFromRawFile(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 MimeMessage::saveToRawFile(
     std::ctstring_t &a_filePath ///< raw msg
 )

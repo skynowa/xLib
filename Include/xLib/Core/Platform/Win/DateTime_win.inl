@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE DateTime
+DateTime
 DateTime::_current_impl()
 {
     SYSTEMTIME dateTime = {0};
@@ -27,7 +27,7 @@ DateTime::_current_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE longlong_t
+longlong_t
 DateTime::fileToInt64(
     const FILETIME &a_fileTime
 )
@@ -36,7 +36,7 @@ DateTime::fileToInt64(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 DateTime::unixToFile(
     const time_t &a_unixTime,
     FILETIME     *a_fileTime
@@ -53,7 +53,7 @@ DateTime::unixToFile(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE time_t
+time_t
 DateTime::fileToUnix(
     const FILETIME &a_fileTime
 )

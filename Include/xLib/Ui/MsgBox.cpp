@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "MsgBox.h"
-#endif
+#include "MsgBox.h"
 
 #include "Platform/MsgBox_internal.inl"
 
@@ -14,14 +12,6 @@
     #include "Platform/Win/MsgBox_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/MsgBox_unix.inl"
-
-    #if   xENV_LINUX
-
-    #elif xENV_BSD
-
-    #elif xENV_APPLE
-
-    #endif
 #endif
 
 
@@ -33,11 +23,11 @@ xNAMESPACE_BEGIN2(xl, ui)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE MsgBox::ExModalResult
+MsgBox::ModalResult
 MsgBox::show(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
-    cExType         &a_type    /* = tpOk */
+    cType           &a_type    /* = tpOk */
 ) const
 {
     // TODO: MsgBox - fix unused warnings

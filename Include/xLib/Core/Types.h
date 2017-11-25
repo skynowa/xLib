@@ -96,6 +96,15 @@ xNAMESPACE_BEGIN(xl)
     xTYPEDEF_CONST(native_handle_t);
         ///< native handle
 
+    // dll_handle_t
+#if   xENV_WIN
+    typedef HMODULE dll_handle_t;
+#elif xENV_UNIX
+    typedef void_t *dll_handle_t;
+#endif
+    xTYPEDEF_CONST(dll_handle_t);
+        ///< DLL handle
+
     // socket_t
 #if   xENV_WIN
     typedef SOCKET socket_t;
@@ -114,6 +123,15 @@ xNAMESPACE_BEGIN(xl)
     xTYPEDEF_CONST(socket_length_t);
         ///< socket address length
 
+    // find_dir_data_t
+#if   xENV_WIN
+    typedef WIN32_FIND_DATA find_dir_data_t;
+#elif xENV_UNIX
+    typedef dirent          find_dir_data_t;
+#endif
+    xTYPEDEF_CONST(find_dir_data_t);
+        ///< find directory data
+
     // twint_t
 #if xUNICODE
     typedef wint_t twint_t;
@@ -129,6 +147,13 @@ xNAMESPACE_BEGIN(xl)
 	xTYPEDEF_PTR_CONST(wchar_t);
 	xTYPEDEF_PTR_CONST(tchar_t);
 	xTYPEDEF_PTR_CONST(uchar_t);
+
+	// sighandler_t
+#if xENV_BSD
+	#if !defined(sighandler_t)
+		typedef void (*sighandler_t)(int);
+	#endif
+#endif
 
 xNAMESPACE_END(xl)
 

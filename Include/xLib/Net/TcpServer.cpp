@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "TcpServer.h"
-#endif
+#include "TcpServer.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -21,57 +19,58 @@
 xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpServer::bind(
     cushort_t &a_port
 ) const
 {
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), true);
     xTEST_NA(a_port);
 
     sockaddr_in sockAddr;    xSTRUCT_ZERO(sockAddr);
-    sockAddr.sin_family      = static_cast<ushort_t>(_family);
+    sockAddr.sin_family      = static_cast<sa_family_t>(_family);
     sockAddr.sin_addr.s_addr = INADDR_ANY;
     sockAddr.sin_port        = htons(a_port);
 
-    int_t iRv = ::bind(_handle, Utils::reinterpretCastT<const sockaddr *>( &sockAddr ),
+    int_t iRv = ::bind(_handle.get(), Utils::reinterpretCastT<const sockaddr *>( &sockAddr ),
         sizeof(sockAddr));
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 
 #if 0
     int_t iOpt = 1;
 
-    if (::setsockopt(_handle, SOL_SOCKET, SO_REUSEADDR, (LPSTR)&iOpt, sizeof(iOpt)) < 0) {
+    if (::setsockopt(_handle.get(), SOL_SOCKET, SO_REUSEADDR, (LPSTR)&iOpt, sizeof(iOpt)) < 0) {
         return false;
     }
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpServer::listen(
     cint_t &a_backlog /* = xSOCKET_CONNECTIONS_MAX */
 ) const
 {
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), true);
 
-    int_t iRv = ::listen(_handle, a_backlog);
+    int_t iRv = ::listen(_handle.get(), a_backlog);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 TcpServer::accept(
     TcpServer      *a_serverSocket,
     std::tstring_t *a_fromIp
 ) const
 {
-    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle.isValid(), true);
     xTEST_PTR(a_serverSocket);
     xTEST_PTR(a_fromIp);
 
     sockaddr_in     cliaddr; xSTRUCT_ZERO(cliaddr);
     socket_length_t addrlen = sizeof(cliaddr);
 
-    socket_t client = ::accept(_handle, Utils::reinterpretCastT<sockaddr *>( &cliaddr ), &addrlen);
+    socket_t client = ::accept(_handle.get(), Utils::reinterpretCastT<sockaddr *>( &cliaddr ),
+        &addrlen);
     xTEST_DIFF(client, xSOCKET_HANDLE_INVALID);
 
 #if 0

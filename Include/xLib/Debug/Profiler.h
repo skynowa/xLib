@@ -49,10 +49,6 @@ private:
 
 xNAMESPACE_END2(xl, debug)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Profiler.cpp"
-#endif
-
 
 // http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
 

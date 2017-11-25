@@ -13,11 +13,13 @@ xNAMESPACE_BEGIN2(xl, ${cmXLIB_TEMPLATE_NS})
 
 //-------------------------------------------------------------------------------------------------
 xINLINE
+void_t
 ${cmXLIB_TEMPLATE}::_construct_impl()
 {
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE
+void_t
 ${cmXLIB_TEMPLATE}::_destruct_impl()
 {
 }

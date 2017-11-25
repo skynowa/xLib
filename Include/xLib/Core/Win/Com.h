@@ -29,6 +29,3 @@ xNAMESPACE_END2(xl, core)
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Com.cpp"
-#endif

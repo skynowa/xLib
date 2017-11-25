@@ -35,6 +35,3 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Locale.cpp"
-#endif

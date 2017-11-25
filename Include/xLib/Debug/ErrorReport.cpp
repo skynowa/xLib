@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "ErrorReport.h"
-#endif
+#include "ErrorReport.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
@@ -15,8 +13,8 @@
 #include <xLib/System/Console.h>
 #include <xLib/Debug/BuildInfo.h>
 #include <xLib/Debug/Exception.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Sync/Thread.h>
 
 
@@ -29,7 +27,6 @@ xNAMESPACE_ANONYM_END
 xNAMESPACE_BEGIN2(xl, debug)
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 ErrorReport::ErrorReport(
     culong_t         &a_nativeError,
     const SourceInfo &a_sourceInfo,
@@ -57,13 +54,13 @@ ErrorReport::ErrorReport(
     _initPlain();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE ErrorReport::ExType
+ErrorReport::Type
 ErrorReport::type() const
 {
     return _type;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::ctstring_t &
+std::ctstring_t &
 ErrorReport::toString() const
 {
     return _report;
@@ -77,9 +74,9 @@ ErrorReport::toString() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ErrorReport::_construct(
-    cExType          &a_type,
+    cType            &a_type,
     const SourceInfo &a_sourceInfo,
     std::ctstring_t  &a_var1,
     std::ctstring_t  &a_var2,
@@ -116,7 +113,7 @@ ErrorReport::_construct(
     _comment          = a_comment.empty() ? Const::hyphen() : a_comment;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ErrorReport::_initPlain()
 {
     _report = Format::str(

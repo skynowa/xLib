@@ -16,15 +16,8 @@ file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
 foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     get_filename_component(TEST_NAME ${IT_SOURCE} NAME_WE)
-
     add_executable(${TEST_NAME} ${IT_SOURCE})
-
-    if (cmOPTION_PROJECT_HEADER_ONLY)
-        target_link_libraries(${TEST_NAME} ${XLIB_LIBRARIES})
-    else()
-        target_link_libraries(${TEST_NAME} ${PROJECT_NAME}_static)
-    endif()
-
+    target_link_libraries(${TEST_NAME} ${PROJECT_NAME}_static)
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
     # add_custom_command(TARGET ${TEST_NAME} POST_BUILD COMMAND ${TEST_NAME})
 endforeach()

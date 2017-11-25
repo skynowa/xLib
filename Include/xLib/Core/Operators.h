@@ -19,6 +19,3 @@ T &operator -- (T &value);
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Operators.cpp"
-#endif

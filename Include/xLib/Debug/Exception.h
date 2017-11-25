@@ -33,7 +33,3 @@ private:
 xNAMESPACE_END2(xl, debug)
 //-------------------------------------------------------------------------------------------------
 #include "Exception.inl"
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Exception.cpp"
-#endif

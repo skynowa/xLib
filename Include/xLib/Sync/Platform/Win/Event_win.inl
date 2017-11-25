@@ -12,19 +12,19 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::_dectruct_impl()
 {
     xNA;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE const Event::handle_t &
+const Event::handle_t &
 Event::_handle_impl() const
 {
     return _event;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::_create_impl()
 {
     xTEST_EQ(_event.isValid(), false);
@@ -36,7 +36,7 @@ Event::_create_impl()
     // n/a
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::_set_impl()
 {
     xTEST_EQ(_event.isValid(), true);
@@ -45,7 +45,7 @@ Event::_set_impl()
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::_reset_impl()
 {
     xTEST_EQ(_event.isValid(), true);
@@ -54,21 +54,21 @@ Event::_reset_impl()
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Event::ExObjectState
+Event::ObjectState
 Event::_wait_impl(
     culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
-    ExObjectState osRv = osFailed;
+    ObjectState osRv = osFailed;
 
     xTEST_EQ(_event.isValid(), true);
 
-    osRv = static_cast<ExObjectState>( ::WaitForSingleObject(handle().get(), a_timeoutMs) );
+    osRv = static_cast<ObjectState>( ::WaitForSingleObject(handle().get(), a_timeoutMs) );
 
     return osRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Event::_isSignaled_impl() const
 {
     bool_t bRv = false;

@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Signal.h"
-#endif
+#include "Signal.h"
 
 #if   xENV_WIN
     #include "Platform/Win/Signal_win.inl"
@@ -35,24 +33,23 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Signal::Signal() :
 	_state(0)
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE /* virtual */
+/* virtual */
 Signal::~Signal()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::sig_atomic_t
+std::sig_atomic_t
 Signal::state() const
 {
     return _state;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::setState(
     const std::sig_atomic_t &a_state	///<
 )
@@ -64,7 +61,7 @@ Signal::setState(
     _state = a_state;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connect(
     const std::vector<int_t> &a_signalNums,	///<
     const sighandler_t        a_onSignals	///<
@@ -109,7 +106,7 @@ Signal::connect(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connectAll(
     const sighandler_t a_onSignals	///<
 ) const
@@ -141,7 +138,7 @@ Signal::connectAll(
 	connect(signalNums, a_onSignals);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connectInfo(
     const std::vector<int_t> &a_signalNums,	///<
     const on_info_t           a_onInfo		///<
@@ -198,7 +195,7 @@ Signal::connectInfo(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connectInfoAll(
     const on_info_t a_onInfo	///<
 ) const
@@ -230,7 +227,7 @@ Signal::connectInfoAll(
 	connectInfo(signalNums, a_onInfo);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connectExit(
     const on_exit_t a_onExit	///<
 ) const
@@ -241,7 +238,7 @@ Signal::connectExit(
     xTEST(iRv == 0);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connectTerminate(
     const std::terminate_handler a_onTerminate	///<
 ) const
@@ -250,7 +247,7 @@ Signal::connectTerminate(
     xUNUSED(handler_old);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::connectUnexpected(
     const std::unexpected_handler a_onUnexpected	///<
 ) const
@@ -259,7 +256,7 @@ Signal::connectUnexpected(
     xUNUSED(handler_old);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Signal::raise(
     cint_t &a_signalNum	///<
 ) const
@@ -277,7 +274,7 @@ Signal::raise(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 Signal::isValid(
     cint_t &a_signalNum ///< signal number
 )
@@ -298,7 +295,7 @@ struct _SignalInfo
 xNAMESPACE_ANONYM_END
 
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Signal::infoDescription(
     const siginfo_t &a_info	///<  signal info struct
 )
@@ -309,9 +306,11 @@ Signal::infoDescription(
 	const _SignalInfo signalInfos[] =
 	{
 		// _KERNEL
+	#if !xENV_BSD
 		{_KERNEL, SI_ASYNCNL,    xLEX_TO_STR(SI_ASYNCNL),    xT("Sent by asynch name lookup completion")},
 		{_KERNEL, SI_TKILL,      xLEX_TO_STR(SI_TKILL),      xT("Sent by tkill")},
 		{_KERNEL, SI_SIGIO,      xLEX_TO_STR(SI_SIGIO),      xT("Sent by queued SIGIO")},
+	#endif
 		{_KERNEL, SI_ASYNCIO,    xLEX_TO_STR(SI_ASYNCIO),    xT("Sent by AIO completion")},
 		{_KERNEL, SI_MESGQ,      xLEX_TO_STR(SI_MESGQ),      xT("Sent by real time mesq state change")},
 		{_KERNEL, SI_TIMER,      xLEX_TO_STR(SI_TIMER),      xT("Sent by timer expiration")},
@@ -347,8 +346,10 @@ Signal::infoDescription(
 		{SIGBUS,  BUS_ADRALN,    xLEX_TO_STR(BUS_ADRALN),    xT("Invalid address alignment")},
 		{SIGBUS,  BUS_ADRERR,    xLEX_TO_STR(BUS_ADRERR),    xT("Non-existant physical address")},
 		{SIGBUS,  BUS_OBJERR,    xLEX_TO_STR(BUS_OBJERR),    xT("Object specific hardware error")},
+	#if !xENV_BSD
 		{SIGBUS,  BUS_MCEERR_AR, xLEX_TO_STR(BUS_MCEERR_AR), xT("Hardware memory error: action required")},
 		{SIGBUS,  BUS_MCEERR_AO, xLEX_TO_STR(BUS_MCEERR_AO), xT("Hardware memory error: action optional")},
+	#endif
 
 		// SIGTRAP
 		{SIGTRAP, TRAP_BRKPT,    xLEX_TO_STR(TRAP_BRKPT),    xT("Process breakpoint")},
@@ -360,15 +361,18 @@ Signal::infoDescription(
 		{SIGCHLD, CLD_DUMPED,    xLEX_TO_STR(CLD_DUMPED),    xT("Child terminated abnormally")},
 		{SIGCHLD, CLD_TRAPPED,   xLEX_TO_STR(CLD_TRAPPED),   xT("Traced child has trapped")},
 		{SIGCHLD, CLD_STOPPED,   xLEX_TO_STR(CLD_STOPPED),   xT("Child has stopped")},
-		{SIGCHLD, CLD_CONTINUED, xLEX_TO_STR(CLD_CONTINUED), xT("Stopped child has continued")},
+		{SIGCHLD, CLD_CONTINUED, xLEX_TO_STR(CLD_CONTINUED), xT("Stopped child has continued")}
 
 		// SIGPOLL
+	#if !xENV_BSD
+		,
 		{SIGPOLL, POLL_IN,       xLEX_TO_STR(POLL_IN),       xT("Data input available")},
 		{SIGPOLL, POLL_OUT,      xLEX_TO_STR(POLL_OUT),      xT("Output buffers available")},
 		{SIGPOLL, POLL_MSG,      xLEX_TO_STR(POLL_MSG),      xT("Input message available")},
 		{SIGPOLL, POLL_ERR,      xLEX_TO_STR(POLL_ERR),      xT("I/O error")},
 		{SIGPOLL, POLL_PRI,      xLEX_TO_STR(POLL_PRI),      xT("High priority input available")},
 		{SIGPOLL, POLL_HUP,      xLEX_TO_STR(POLL_HUP),      xT("Device disconnected")}
+	#endif
 	};
 
 	xFOR_ARRAY(i, signalInfos) {
@@ -382,7 +386,7 @@ Signal::infoDescription(
 				signalInfo.codeStr,
 				signalInfo.code,
 				signalInfo.description,
-				NativeError::format( static_cast<ulong>(a_info.si_errno)) );
+				NativeError::format( static_cast<ulong_t>(a_info.si_errno)) );
 
 		break;
 	}
@@ -403,7 +407,7 @@ Signal::infoDescription(
 				signalInfo.codeStr,
 				signalInfo.code,
 				signalInfo.description,
-				NativeError::format( static_cast<ulong>(a_info.si_errno)) );
+				NativeError::format( static_cast<ulong_t>(a_info.si_errno)) );
 
 		break;
 	}
@@ -412,7 +416,7 @@ Signal::infoDescription(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 Signal::decription(
     cint_t &a_signalNum ///< signal number
 )

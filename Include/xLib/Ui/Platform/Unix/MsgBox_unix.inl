@@ -6,6 +6,8 @@
 
 #if cmXCB_FOUND
     #include "XcbMsgBox.h"
+#else
+    #include <xLib/System/Console.h>
 #endif
 
 
@@ -17,23 +19,24 @@ xNAMESPACE_BEGIN2(xl, ui)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE MsgBox::ExModalResult
+MsgBox::ModalResult
 MsgBox::_show_impl(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
-    cExType         &a_type    /* = tpOk */
+    cType           &a_type    /* = tpOk */
 ) const
 {
     xUNUSED(a_type);
 
-    ExModalResult mrRv = mrUnknown;
+    ModalResult mrRv = mrUnknown;
 
 #if cmXCB_FOUND
     XcbMsgBox msgBox;
-    mrRv = static_cast<MsgBox::ExModalResult>( msgBox.show(a_text, a_title, XcbMsgBox::tpOk) );
+    mrRv = static_cast<MsgBox::ModalResult>( msgBox.show(a_text, a_title, XcbMsgBox::tpOk) );
 #else
     Console console;
-    console.msgBox(a_text, a_title, 0);
+    Console::ModalResult mrConsole = console.msgBox(a_text, a_title, 0);
+    xUNUSED(mrConsole);
 
     mrRv = mrOk;
 #endif

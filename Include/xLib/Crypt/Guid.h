@@ -14,20 +14,20 @@ class Guid
     /// GUID (globally unique identifier)
 {
 public:
-    enum ExType
+    enum Type
     {
         tpUnknown     = 0,
         tpRandomBased = 1
 
     };
-    xTYPEDEF_CONST(ExType);
+    xTYPEDEF_CONST(Type);
 
                    Guid() {}
         ///< constructor
     virtual       ~Guid() {}
         ///< destructor
 
-    std::tstring_t create(cExType &type) const xWARN_UNUSED_RV;
+    std::tstring_t create(cType &type) const xWARN_UNUSED_RV;
         ///< generate GUID
 
     xNO_COPY_ASSIGN(Guid)
@@ -39,6 +39,3 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, crypt)
 //---------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Guid.cpp"
-#endif

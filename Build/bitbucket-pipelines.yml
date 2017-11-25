@@ -1,0 +1,43 @@
+# This is a sample build configuration for C++ – Make.
+# Check our guides at https://confluence.atlassian.com/x/5Q4SMw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+
+
+#---------------------------------------------------------------------------------------------------
+image: gcc:7.2
+language: cpp
+compiler:
+    - gcc
+sudo: required
+#---------------------------------------------------------------------------------------------------
+apt addons:
+cache components:
+before_install:
+install:
+before_script:
+script:
+before_cache:
+after_success: # or after_failure
+before_deploy:
+deploy:
+after_deploy:
+after_script:
+#---------------------------------------------------------------------------------------------------
+pipelines:
+    default:
+        - step:
+            script:
+                - apt-get -qq update
+                - apt-get install -y cmake
+                - apt-get install -y libx11-xcb-dev
+                - apt-get install -y libssl-dev
+                - apt-get install -y libcurl4-openssl-dev
+                - apt-get install -y libssh2-1-dev
+                - apt-get install -y default-libmysqlclient-dev
+
+                - git clone git@bitbucket.org:skynowa/cmakelib.git $BITBUCKET_CLONE_DIR/../CMakeLib
+                - git submodule sync --recursive
+                - git submodule update --init --recursive
+                - ./Build/makefile-yaml.sh

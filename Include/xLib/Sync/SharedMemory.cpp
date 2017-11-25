@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "SharedMemory.h"
-#endif
+#include "SharedMemory.h"
 
 
 xNAMESPACE_BEGIN2(xl, sync)

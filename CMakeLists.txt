@@ -58,28 +58,33 @@ set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
 file(GLOB_RECURSE XLIB_SOURCES ${XLIB_LOCATION}/Include/*.cpp)
 
 if (OPENSSL_FOUND)
-    set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${OPENSSL_INCLUDE_DIR})
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${OPENSSL_INCLUDE_DIR})
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${OPENSSL_LIBRARIES})
 endif()
 
 if (cmMYSQL_FOUND)
-    set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${MYSQL_INCLUDES})
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${MYSQL_INCLUDES})
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${MYSQL_LIBRARIES})
 endif()
 
 if (cmSSH2_FOUND)
-    set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${SSH2_INCLUDES})
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${SSH2_INCLUDES})
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${SSH2_LIBRARIES})
+endif()
+
+if (CURL_FOUND)
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${CURL_INCLUDE_DIRS})
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CURL_LIBRARIES})
 endif()
 
 if (ENV_UNIX)
     if (cmXCB_FOUND)
-        set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${XCB_INCLUDE_DIR})
+        set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${XCB_INCLUDE_DIR})
         set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${XCB_LIBRARIES})
     endif()
 
     if (cmEXECINFO_FOUND)
-        set(XLIB_INCLUDES  ${XLIB_INCLUDES} ${EXECINFO_INCLUDES})
+        set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${EXECINFO_INCLUDES})
         set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${EXECINFO_LIBRARIES})
     endif()
 
@@ -107,13 +112,22 @@ include(CxxFlags)
 # include(CMakeVariables)
 #--------------------------------------------------------------------------------------------------
 # definitions
-if (OPTION_CPP11)
+if     (OPTION_CPP_98)
+    set(CMAKE_CXX_STANDARD 98)
+elseif (OPTION_CPP_11)
     set(CMAKE_CXX_STANDARD 11)
-
-    # add_definitions(-std=c++11)
-    set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} "-std=c++11")
+    add_definitions(-std=c++11)
+elseif (OPTION_CPP_14)
+    set(CMAKE_CXX_STANDARD 14)
+    add_definitions(-std=c++14)
+elseif (OPTION_CPP_17_EXP)
+    set(CMAKE_CXX_STANDARD 17)
+    add_definitions(-std=c++1z)
+elseif (OPTION_CPP_17)
+    set(CMAKE_CXX_STANDARD 17)
+    add_definitions(-std=c++17)
 else()
-    set(CMAKE_CXX_STANDARD 98)  # 98, 11 and 14
+    message(FATAL_ERROR "CMAKE_CXX_STANDARD: ${CMAKE_CXX_STANDARD} - unknown")
 endif()
 
 if (OPTION_UNICODE)
@@ -178,10 +192,6 @@ else()
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
-if (cmOPTION_PROJECT_HEADER_ONLY)
-    # n/a
-endif()
-
 if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
 

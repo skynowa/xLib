@@ -86,6 +86,3 @@ private:
 
 xNAMESPACE_END2(xl, test)
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Unit.cpp"
-#endif

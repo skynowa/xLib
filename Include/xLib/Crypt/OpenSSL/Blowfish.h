@@ -18,7 +18,7 @@ class Blowfish
     /// blowfish
 {
 public:
-    enum ExCryptMode
+    enum CryptMode
         /// crypt mode
     {
         cmUnknown = - 1,
@@ -48,12 +48,12 @@ public:
 
     // cfb64
     void_t   encryptCfb64(uchar_t *in, uchar_t *out, clong_t &inSize, int_t *num,
-                 const ExCryptMode &mode);
+                 const CryptMode &mode);
         ///< encrypt buffer
-    void_t   encryptCfb64(std::custring_t &in, std::ustring_t *out, const ExCryptMode &mode);
+    void_t   encryptCfb64(std::custring_t &in, std::ustring_t *out, const CryptMode &mode);
         ///< encrypt std::ustring_t
     void_t   encryptFileCfb64(std::ctstring_t &filePathIn, std::ctstring_t &filePathOut,
-                const ExCryptMode &mode);
+                const CryptMode &mode);
         ///< encrypt file
 
 private:
@@ -67,10 +67,6 @@ xNAMESPACE_END2(xl, crypt)
 
 #endif // cmOPENSSL_CRYPTO_FOUND
 //-------------------------------------------------------------------------------------------------
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "Blowfish.cpp"
-#endif
-
 
 /*
 void_t  BF_set_key      (BF_KEY *key, int_t len, unsigned char *data);

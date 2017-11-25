@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 /* static */
 template<typename T>
-xINLINE std::tstring_t
+std::tstring_t
 String::cast(
     const T &a_value    ///< source value
 )
@@ -43,7 +43,7 @@ String::cast(
 //-------------------------------------------------------------------------------------------------
 /* static */
 template<typename T>
-xINLINE std::tstring_t
+std::tstring_t
 String::cast(
     const T &a_value,   ///< source value
     cint_t  &a_base     ///< valid values: 8, 10, 16
@@ -74,7 +74,7 @@ String::cast(
 //-------------------------------------------------------------------------------------------------
 /* static */
 template<typename T>
-xINLINE T
+T
 String::cast(
     std::ctstring_t &a_str  ///< source string
 )
@@ -101,7 +101,7 @@ String::cast(
 //-------------------------------------------------------------------------------------------------
 /* static */
 template<typename T>
-xINLINE T
+T
 String::cast(
     std::ctstring_t &a_str, ///< source string
     cint_t          &a_base ///< valid values: 8, 10, 16

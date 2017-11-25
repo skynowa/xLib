@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Random.h"
-#endif
+#include "Random.h"
 
 #include <xLib/Core/Functions.h>
 #include <xLib/Core/Utils.h>
@@ -42,14 +40,13 @@ xNAMESPACE_BEGIN2(xl, crypt)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 ISeedPolicy::ISeedPolicy() :
     _seed(0U)
 {
     _seed = _seedTimeBased();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE uint_t
+uint_t
 ISeedPolicy::_seedTimeBased() const
 {
     timeval tv = {0, 0};
@@ -60,7 +57,7 @@ ISeedPolicy::_seedTimeBased() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE long_t
+long_t
 ISeedPolicy::valueMax()
 {
    /**
@@ -82,7 +79,6 @@ ISeedPolicy::valueMax()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 StdSeedPolicy::StdSeedPolicy() :
     ISeedPolicy()
 {
@@ -90,13 +86,12 @@ StdSeedPolicy::StdSeedPolicy() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 StdSeedPolicy::~StdSeedPolicy()
 {
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE long_t
+long_t
 StdSeedPolicy::next()
 {
     return _next_impl();
@@ -110,7 +105,6 @@ StdSeedPolicy::next()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 NativeSeedPolicy::NativeSeedPolicy() :
     ISeedPolicy()
 {
@@ -118,14 +112,13 @@ NativeSeedPolicy::NativeSeedPolicy() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 NativeSeedPolicy::~NativeSeedPolicy()
 {
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE long_t
+long_t
 NativeSeedPolicy::next()
 {
     return _next_impl();

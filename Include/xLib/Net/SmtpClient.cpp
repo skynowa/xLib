@@ -4,10 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "SmtpClient.h"
-#endif
-
+#include "SmtpClient.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -18,8 +15,8 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Crypt/Base64.h>
-#include <xLib/IO/Path.h>
-#include <xLib/IO/File.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Net/DnsClient.h>
 
 
@@ -31,7 +28,6 @@ xNAMESPACE_BEGIN2(xl, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 SmtpClient::SmtpClient() :
     _socket     (),
     _user       (),
@@ -43,7 +39,6 @@ SmtpClient::SmtpClient() :
 ////--    ISocket::bInit();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 SmtpClient::~SmtpClient()
 {
     disconnect();
@@ -51,7 +46,6 @@ SmtpClient::~SmtpClient()
 ////--    ISocket::bClean();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 void_t
 SmtpClient::create(
     std::ctstring_t &a_user,
@@ -71,7 +65,7 @@ SmtpClient::create(
     _port     = a_port;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 SmtpClient::connect()
 {
     std::tstring_t sRv;
@@ -104,7 +98,7 @@ SmtpClient::connect()
     _isConnected = true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 SmtpClient::login()
 {
     //-------------------------------------
@@ -138,7 +132,7 @@ SmtpClient::login()
     _command(passwordCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 SmtpClient::noop()
 {
     //-------------------------------------
@@ -157,7 +151,7 @@ SmtpClient::noop()
     _command(noopCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 SmtpClient::rset()
 {
     //-------------------------------------
@@ -176,7 +170,7 @@ SmtpClient::rset()
     _command(rsetCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 SmtpClient::sendRaw
 (
     std::ctstring_t &a_filePath,
@@ -223,7 +217,7 @@ SmtpClient::sendRaw
     _command(text + endCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 SmtpClient::send(
     std::ctstring_t &a_text,
     std::ctstring_t &a_from,
@@ -268,7 +262,7 @@ SmtpClient::send(
     _command(endCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 SmtpClient::disconnect()
 {
     xCHECK_DO(!_isConnected, disconnect());
@@ -301,7 +295,7 @@ SmtpClient::disconnect()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 SmtpClient::_command(
     std::ctstring_t &a_command,
     std::ctstring_t &a_replyDelimiter,
@@ -319,7 +313,7 @@ SmtpClient::_command(
     a_reply.swap(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 SmtpClient::_isError(
     std::ctstring_t &a_text
 )

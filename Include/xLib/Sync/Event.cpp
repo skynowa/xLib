@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Event.h"
-#endif
+#include "Event.h"
 
 #include <xLib/Log/Trace.h>
 
@@ -32,7 +30,6 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Event::Event(
     cbool_t &a_isAutoReset,    ///< is auto reset
     cbool_t &a_isSignaled      ///< is signaled (false - wait, lock)
@@ -49,52 +46,51 @@ Event::Event(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Event::~Event()
 {
     _dectruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE const Event::handle_t &
+const Event::handle_t &
 Event::handle() const
 {
     return _handle_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::create()
 {
     _create_impl();
 }
 //-------------------------------------------------------------------------------------------------
 // NOTE: unblock threads blocked on a condition variable
-xINLINE void_t
+void_t
 Event::set()
 {
     _set_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Event::reset()
 {
     _reset_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE Event::ExObjectState
+Event::ObjectState
 Event::wait(
     culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< timeout (msec)
 )
 {
     xTEST_NA(a_timeoutMs);
 
-    ExObjectState osRv = _wait_impl(a_timeoutMs);
+    ObjectState osRv = _wait_impl(a_timeoutMs);
 
     xTEST_EQ_MSG((osRv == osSignaled) || (osRv == osTimeout), true, NativeError::format(osRv));
 
     return osRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Event::isSignaled() const
 {
     // n/a

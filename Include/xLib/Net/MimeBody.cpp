@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "MimeBody.h"
-#endif
+#include "MimeBody.h"
 
 xNAMESPACE_BEGIN2(xl, net)
 

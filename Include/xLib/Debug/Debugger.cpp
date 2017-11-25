@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Debugger.h"
-#endif
+#include "Debugger.h"
 
 #include <xLib/Core/Char.h>
 #include <xLib/Core/String.h>
@@ -17,7 +15,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>
-#include <xLib/IO/Path.h>
+#include <xLib/Fs/Path.h>
 #include <xLib/Ui/MsgBox.h>
 #include <xLib/System/Environment.h>
 
@@ -44,7 +42,6 @@ xNAMESPACE_BEGIN2(xl, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 Debugger::Debugger() :
     _isEnabled(true),
     _logPath  ()
@@ -59,13 +56,13 @@ Debugger::Debugger() :
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Debugger::isEnabled() const
 {
     return _isEnabled;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Debugger::setEnabled(
     cbool_t &a_flag
 )
@@ -73,13 +70,13 @@ Debugger::setEnabled(
     _isEnabled = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 Debugger::isActive() const
 {
     return _isActive_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Debugger::coreDumpsEnable(
     cbool_t &a_flag
 )
@@ -93,7 +90,7 @@ Debugger::coreDumpsEnable(
     xCHECK_DO(!isEnable, Trace() << xT("xLib: Debugger::coreDumpsEnable() - n/a"));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Debugger::breakPoint() const
 {
     xCHECK_DO(!isEnabled(), return);
@@ -101,7 +98,7 @@ Debugger::breakPoint() const
     _breakPoint_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Debugger::setLogPath(
     std::ctstring_t &a_filePath
 )
@@ -109,13 +106,13 @@ Debugger::setLogPath(
     _logPath = a_filePath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Debugger::logPath() const
 {
     return _logPath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Debugger::reportMake(
     const ErrorReport &a_report
 )
@@ -157,7 +154,7 @@ Debugger::reportMake(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Debugger::_msgboxPlain(
     const ErrorReport &a_report
 ) const
@@ -165,7 +162,7 @@ Debugger::_msgboxPlain(
     xCHECK_DO(!isEnabled(), return);
 
     MsgBox msgBox;
-    MsgBox::ExModalResult mrRv = msgBox.show(a_report.toString(), xT("xLib"), MsgBox::tpAbortRetryIgnore);
+    MsgBox::ModalResult mrRv = msgBox.show(a_report.toString(), xT("xLib"), MsgBox::tpAbortRetryIgnore);
     switch (mrRv) {
     case MsgBox::mrAbort:
         (void_t)::exit(EXIT_FAILURE);
@@ -178,7 +175,7 @@ Debugger::_msgboxPlain(
         if ( isActive() ) {
             breakPoint();
         } else {
-            MsgBox::ExModalResult nrRv = MsgBox().show(xT("Debugger is not present.\n"
+            MsgBox::ModalResult nrRv = MsgBox().show(xT("Debugger is not present.\n"
                 "The application will be terminated."), xT("xLib"));
             xUNUSED(nrRv);
             (void_t)::exit(EXIT_FAILURE);
@@ -187,7 +184,7 @@ Debugger::_msgboxPlain(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Debugger::_stdoutPlain(
     const ErrorReport &a_report
 ) const
@@ -195,7 +192,7 @@ Debugger::_stdoutPlain(
     xCHECK_DO(!isEnabled(), return);
 
     Console console;
-    Console::ExModalResult mrRv = console.msgBox(a_report.toString(), xT("xLib"), 0);
+    Console::ModalResult mrRv = console.msgBox(a_report.toString(), xT("xLib"), 0);
     switch (mrRv) {
     case Console::mrAbort:
         (void_t)::exit(EXIT_FAILURE);
@@ -217,7 +214,7 @@ Debugger::_stdoutPlain(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Debugger::_loggingPlain(
     const ErrorReport &a_report
 ) const

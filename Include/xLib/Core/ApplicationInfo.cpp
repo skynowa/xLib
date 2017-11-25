@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "ApplicationInfo.h"
-#endif
+#include "ApplicationInfo.h"
 
 #include <xLib/Core/Format.h>
 
@@ -19,7 +17,7 @@ xNAMESPACE_BEGIN2(xl, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 ApplicationInfoData::versionFull() const
 {
     return Format::str(xT("{}.{}.{} {} {}"),
@@ -34,12 +32,10 @@ ApplicationInfoData::versionFull() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 ApplicationInfo::ApplicationInfo()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 ApplicationInfo::ApplicationInfo(
     cApplicationInfoData &a_data
 ) :
@@ -47,7 +43,6 @@ ApplicationInfo::ApplicationInfo(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE
 ApplicationInfo::~ApplicationInfo()
 {
 }

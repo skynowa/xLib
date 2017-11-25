@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xl, debug)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE bool_t
+bool_t
 NativeError::_isSuccess_impl()
 {
     bool_t bRv = (static_cast<ulong_t>( errno ) == _nativeCodeSuccess());
@@ -22,7 +22,7 @@ NativeError::_isSuccess_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE ulong_t
+ulong_t
 NativeError::_get_impl()
 {
     culong_t code = static_cast<ulong_t>( errno );
@@ -31,7 +31,7 @@ NativeError::_get_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE void_t
+void_t
 NativeError::_set_impl(
     culong_t &a_code
 )
@@ -48,7 +48,7 @@ NativeError::_set_impl(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE ulong_t
+ulong_t
 NativeError::_nativeCodeSuccess_impl()
 {
     return 0UL;

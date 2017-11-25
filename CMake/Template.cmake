@@ -11,10 +11,10 @@ unset(cmXLIB_TEMPLATE_COMMENTS CACHE)
 unset(cmXLIB_TEMPLATE_SUBDIR   CACHE)
 unset(cmXLIB_TEMPLATE_NS       CACHE)
 
-set(cmXLIB_TEMPLATE          "IData")
-set(cmXLIB_TEMPLATE_COMMENTS "Data struct")
-set(cmXLIB_TEMPLATE_SUBDIR   "Package")
-set(cmXLIB_TEMPLATE_NS       "package")
+set(cmXLIB_TEMPLATE          "FsWatcher")
+set(cmXLIB_TEMPLATE_COMMENTS "File system watcher")
+set(cmXLIB_TEMPLATE_SUBDIR   "Fs")
+set(cmXLIB_TEMPLATE_NS       "io")
 
 if (NOT cmXLIB_TEMPLATE OR
     NOT cmXLIB_TEMPLATE_COMMENTS OR

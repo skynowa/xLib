@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "ILog.h"
-#endif
+#include "ILog.h"
 
 
 xNAMESPACE_BEGIN2(xl, log)
@@ -17,19 +15,17 @@ xNAMESPACE_BEGIN2(xl, log)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 ILog::ILog() :
     _isEnable(true)
 {
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE
 ILog::~ILog()
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 ILog::setEnabled(
     cbool_t &a_flag
 )
@@ -37,7 +33,7 @@ ILog::setEnabled(
     _isEnable = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE bool_t
+bool_t
 ILog::isEnabled() const
 {
     return _isEnable;
@@ -51,9 +47,9 @@ ILog::isEnabled() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 ILog::_levelString(
-    cExLevel &a_level
+    cLevel &a_level
 ) const
 {
     std::tstring_t sRv;

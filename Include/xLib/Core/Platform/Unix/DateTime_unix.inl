@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE DateTime
+DateTime
 DateTime::_current_impl()
 {
     // get msec

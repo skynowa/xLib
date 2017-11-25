@@ -9,7 +9,6 @@
 //-------------------------------------------------------------------------------------------------
 ///@name project type: executable binary, static library, share (dynamic-link) library
 ///@{
-#cmakedefine cmOPTION_PROJECT_HEADER_ONLY 1
 #cmakedefine cmOPTION_PROJECT_LIB_STATIC 1
 #cmakedefine cmOPTION_PROJECT_LIB_SHARE 1
 #cmakedefine cmOPTION_PROJECT_LIB_MODULE 1
@@ -62,6 +61,10 @@
 
 ///@name detecting features
 ///@{
+
+// Headers
+#cmakedefine cmHAVE_FEATURES_H 1
+
 #cmakedefine cmOPENSSL_CRYPTO_FOUND 1
 #cmakedefine cmPR_SET_DUMPABLE_FOUND 1
 #cmakedefine cmRLIMIT_CORE_FOUND 1
@@ -124,6 +127,4 @@
     #endif
 #endif
 ///@}
-
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Internal/Warnings.h>

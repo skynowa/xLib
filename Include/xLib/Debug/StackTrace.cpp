@@ -4,15 +4,13 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "StackTrace.h"
-#endif
+#include "StackTrace.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
-#include <xLib/IO/Path.h>
+#include <xLib/Fs/Path.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Test/StdTest.h>
 
@@ -46,7 +44,6 @@ xNAMESPACE_BEGIN2(xl, debug)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 StackTrace::StackTrace(
     cStackTraceData &a_data
 ) :
@@ -54,7 +51,7 @@ StackTrace::StackTrace(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 StackTrace::toString()
 {
     std::tstring_t                  sRv;
@@ -77,7 +74,7 @@ StackTrace::toString()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 StackTrace::_format(
     std::vector<std::vec_tstring_t> &a_stack,     ///< stack as std::vector
     std::tstring_t                  *a_stackStr   ///< [out] stack as formatted string

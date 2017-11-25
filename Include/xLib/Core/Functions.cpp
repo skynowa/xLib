@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Functions.h"
-#endif
+#include "Functions.h"
 
 #if   xENV_WIN
     #include "Platform/Win/Functions_win.inl"

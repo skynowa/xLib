@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Service.h"
-#endif
+#include "Service.h"
 
 #if   xENV_WIN
     #include "Platform/Win/Service_win.inl"
@@ -31,32 +29,32 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Service::create()
 {
     return _create_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Service::start()
 {
     return _start_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Service::stop()
 {
     return _stop_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Service::restart()
 {
     stop();
     start();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Service::close()
 {
     return _close_impl();

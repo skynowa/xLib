@@ -4,22 +4,19 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "MimeHeader.h"
-#endif
+#include "MimeHeader.h"
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Locale.h>
 #include <xLib/Crypt/Guid.h>
-#include <xLib/IO/File.h>
+#include <xLib/Fs/File.h>
 #include <xLib/System/SystemInfo.h>
 
 
 xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
-xINLINE
 MimeHeader::MimeHeader() :
     _attrDelimiter(xT(":")),
     _endOfHeader  (xT("\r\n\r\n")),
@@ -27,7 +24,7 @@ MimeHeader::MimeHeader() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 MimeHeader::parse(
     std::ctstring_t &a_rawHeader
 )
@@ -116,7 +113,7 @@ MimeHeader::parse(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 MimeHeader::field(
     std::ctstring_t &a_name
 )
@@ -137,7 +134,7 @@ MimeHeader::field(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE size_t
+size_t
 MimeHeader::count()
 {
     return _header.size();
@@ -190,7 +187,7 @@ MimeHeader::loadFromFile(
 
 #endif
 
-xINLINE void_t
+void_t
 MimeHeader::loadFromFile(
     std::ctstring_t &a_rawMessageFilePath
 )
@@ -226,7 +223,7 @@ MimeHeader::loadFromFile(
     parse(sRawHeader);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 MimeHeader::saveToFile(
     std::ctstring_t &a_filePath
 )
@@ -238,7 +235,7 @@ MimeHeader::saveToFile(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE std::tstring_t
+std::tstring_t
 MimeHeader::generateMessageID()
 {
     std::tstring_t sRv;

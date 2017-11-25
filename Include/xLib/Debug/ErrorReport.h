@@ -17,7 +17,7 @@ class ErrorReport
     /// debug report
 {
 public:
-    enum ExType
+    enum Type
         /// type
     {
         rtUnknown,  ///< unknown
@@ -27,13 +27,13 @@ public:
         rtStdoutLog,///< to std::cout and log
         rtException ///< to exception
     };
-    xTYPEDEF_CONST(ExType);
+    xTYPEDEF_CONST(Type);
 
                    ErrorReport(culong_t &nativeError, const SourceInfo &sourceInfo,
                        std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< constructor (for Exception)
                    template<typename T>
-                   ErrorReport(cExType &type, std::ctstring_t &var1, std::ctstring_t &var2,
+                   ErrorReport(cType &type, std::ctstring_t &var1, std::ctstring_t &var2,
                        const T &var1ValueT, const T &var2ValueT, std::ctstring_t &exprSign,
                        culong_t &nativeError, const SourceInfo &sourceInfo,
                        std::ctstring_t &stackTrace, std::ctstring_t &comment);
@@ -41,13 +41,13 @@ public:
     virtual       ~ErrorReport() {}
         ///< destructor
 
-    ExType         type() const;
+    Type           type() const;
         ///< report type
     std::ctstring_t & toString() const;
         ///< report message
 
 private:
-    ExType         _type;             ///< report type
+    Type           _type;             ///< report type
     std::tstring_t _report;           ///< report message
 
     // exe
@@ -71,7 +71,7 @@ private:
     // comment
     std::tstring_t _comment;        ///< comment
 
-    void_t         _construct(cExType &type, const SourceInfo &sourceInfo,
+    void_t         _construct(cType &type, const SourceInfo &sourceInfo,
                        std::ctstring_t &var1, std::ctstring_t &var2, std::ctstring_t &var1Value,
                        std::ctstring_t &var2Value, std::ctstring_t &exprSign, culong_t &nativeError,
                        std::ctstring_t &stackTrace, std::ctstring_t &comment);
@@ -85,8 +85,3 @@ private:
 xNAMESPACE_END2(xl, debug)
 //-------------------------------------------------------------------------------------------------
 #include "ErrorReport.inl"
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "ErrorReport.cpp"
-#endif
-

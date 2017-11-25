@@ -35,8 +35,6 @@ Test_Signal::unit()
         signalNums.push_back(SIGPIPE);
         signalNums.push_back(SIGALRM);
         signalNums.push_back(SIGTERM);
-        signalNums.push_back(SIGSTKFLT);
-        signalNums.push_back(SIGCLD);
         signalNums.push_back(SIGCHLD);
         signalNums.push_back(SIGCONT);
         signalNums.push_back(SIGSTOP);
@@ -49,10 +47,14 @@ Test_Signal::unit()
         signalNums.push_back(SIGVTALRM);
         signalNums.push_back(SIGPROF);
         signalNums.push_back(SIGWINCH);
-        signalNums.push_back(SIGPOLL);
         signalNums.push_back(SIGIO);
-        signalNums.push_back(SIGPWR);
         signalNums.push_back(SIGSYS);
+	#if !xENV_BSD
+        signalNums.push_back(SIGPOLL);
+        signalNums.push_back(SIGPWR);
+        signalNums.push_back(SIGSTKFLT);
+        signalNums.push_back(SIGCLD);
+	#endif
 
         xFOR_EACH_CONST(std::vector<int_t>, it, signalNums) {
             m_sRv = Signal::decription(*it);

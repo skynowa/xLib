@@ -49,7 +49,7 @@ Test_DnsClient::unit()
 
     xTEST_CASE("nameInfo")
     {
-        ////DnsClient::ExAddressFamily afFamily  = DnsClient::afInet;
+        ////DnsClient::AddressFamily afFamily  = DnsClient::afInet;
         ////std::tstring_t                     sHostAddr = /*xT("207.46.172.252");*/    xT("forum.vingrad.ru");
         ////ushort_t                      usPort    = 27015;
 

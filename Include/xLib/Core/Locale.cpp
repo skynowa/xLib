@@ -4,9 +4,7 @@
  */
 
 
-#if !cmOPTION_PROJECT_HEADER_ONLY
-    #include "Locale.h"
-#endif
+#include "Locale.h"
 
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
@@ -40,7 +38,7 @@ xNAMESPACE_BEGIN2(xl, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Locale::current() const
 {
     // n/a
@@ -48,7 +46,7 @@ Locale::current() const
     return _current_impl();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Locale::setCurrent(
     std::ctstring_t &a_locale
 ) const
@@ -61,7 +59,7 @@ Locale::setCurrent(
     xTEST_PTR(pcszRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Locale::setDefault() const
 {
     setCurrent( current() );

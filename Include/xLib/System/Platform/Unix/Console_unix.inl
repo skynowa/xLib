@@ -17,26 +17,26 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_construct_impl()
 {
     xNA;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_destruct_impl()
 {
     xNA;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Console::_setAttributes_impl(
-    cExForeground &a_foreground,
-    cExBackground &a_background,
+    cForeground &a_foreground,
+    cBackground &a_background,
     cint_t        &a_attributes
 ) const
 {
-    ExForeground foregroundColor;
+    Foreground foregroundColor;
     {
         cint_t foregroundColorBlack   = 30;
         cint_t foregroundColorRed     = 31;
@@ -84,10 +84,10 @@ Console::_setAttributes_impl(
             break;
         }
 
-        foregroundColor = static_cast<ExForeground>( iRv );
+        foregroundColor = static_cast<Foreground>( iRv );
     }
 
-    ExBackground backgroundColor;
+    Background backgroundColor;
     {
         cint_t backgroundColorBlack   = 40;
         cint_t backgroundColorRed     = 41;
@@ -135,7 +135,7 @@ Console::_setAttributes_impl(
             break;
         }
 
-        backgroundColor = static_cast<ExBackground>( iRv );
+        backgroundColor = static_cast<Background>( iRv );
     }
 
     std::tstring_t attrs;
@@ -161,13 +161,13 @@ Console::_setAttributes_impl(
     return attrs;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Console::_setAttributesDef_impl() const
 {
     return xT("\033[0;0m");
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE std::tstring_t
+std::tstring_t
 Console::_read_impl() const
 {
     std::tstring_t sRv;
@@ -178,7 +178,7 @@ Console::_read_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_write_impl(
     std::ctstring_t &a_str
 ) const
@@ -186,13 +186,13 @@ Console::_write_impl(
     std::tcout << a_str << std::flush;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_clear_impl() const
 {
     writeLine( Const::ff() );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
@@ -200,7 +200,7 @@ Console::_setTitle_impl(
     writeLine( Format::str(xT("{}]0;{}{}"), xT('\033'), a_title, xT('\007')) );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE void_t
+void_t
 Console::_setStdinEcho_impl(
     cbool_t &a_isEnable
 ) const

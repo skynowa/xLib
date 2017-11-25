@@ -104,15 +104,6 @@
 #endif
     ///< keyword "no inline"
 //-------------------------------------------------------------------------------------------------
-// xINLINE (for header only library)
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #define xINLINE inline
-        ///< enable inlines
-#else
-    #define xINLINE
-        ///< disable inlines
-#endif
-//-------------------------------------------------------------------------------------------------
 // xSTDCALL
 #if   xENV_WIN
     #define xSTDCALL \
@@ -638,6 +629,19 @@
     #define xNATIVE_HANDLE_INVALID \
         ( static_cast<native_handle_t>( - 1 ) )
         ///< native handle value "invalid"
+#endif
+///@}
+//-------------------------------------------------------------------------------------------------
+///@name xFIND_DIR_HANDLE_NULL
+///@{
+#if   xENV_WIN
+    #define xFIND_DIR_HANDLE_NULL \
+        INVALID_HANDLE_VALUE
+        ///< find directory handle
+#elif xENV_UNIX
+    #define xFIND_DIR_HANDLE_NULL \
+        xPTR_NULL
+        ///< find directory handle
 #endif
 ///@}
 //-------------------------------------------------------------------------------------------------
