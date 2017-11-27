@@ -144,12 +144,12 @@ SystemInfo::_currentCpuNum_impl() const
     xTEST_DIFF(liRv, - 1L);
 
     ulRv = cpu;
-#elif cmSCHED_GETCPU_FOUND
+#elif cmHAVE_SCHED_GETCPU
     int_t iRv = ::sched_getcpu();
     xTEST_DIFF(iRv, - 1);
 
     ulRv = static_cast<ulong_t>( iRv );
-#elif cmGETCPU_FOUND
+#elif cmHAVE_GETCPU
     // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
     uint_t cpu = 0U;
 

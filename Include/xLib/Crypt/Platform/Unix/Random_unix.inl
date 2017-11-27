@@ -23,7 +23,7 @@ StdSeedPolicy::_next_impl()
 {
     long_t liRv = 0L;
 
-#if cmRAND_R_FOUND
+#if cmHAVE_RAND_R
     liRv = ::rand_r(&_seed);
 #else
     liRv = ::rand();
@@ -43,7 +43,7 @@ StdSeedPolicy::_next_impl()
 void_t
 NativeSeedPolicy::_construct_impl()
 {
-#if cmSRANDOM_R_FOUND
+#if cmHAVE_SRANDOM_R
     int_t iRv = 0;
 
     xSTRUCT_ZERO(_data);
@@ -62,7 +62,7 @@ NativeSeedPolicy::_construct_impl()
 void_t
 NativeSeedPolicy::_destruct_impl()
 {
-#if (cmSRANDOM_R_FOUND && cmRANDOM_R_FOUND)
+#if (cmHAVE_SRANDOM_R && cmHAVE_RANDOM_R)
     xSTRUCT_ZERO(_data)
 #endif
 }
@@ -72,7 +72,7 @@ NativeSeedPolicy::_next_impl()
 {
     long_t liRv = 0L;
 
-#if cmRANDOM_R_FOUND
+#if cmHAVE_RANDOM_R
     int32_t i32Rv = 0;
 
     int iRv = ::random_r(&_data, &i32Rv);

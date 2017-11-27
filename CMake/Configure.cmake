@@ -6,6 +6,8 @@
 
 #--------------------------------------------------------------------------------------------------
 # unset cache
+
+# libs
 unset(cmMYSQL_FOUND CACHE)
 unset(cmEXECINFO_FOUND CACHE)
 unset(cmXCB_FOUND CACHE)
@@ -16,24 +18,26 @@ unset(cmGIT_REVISION_BRANCH CACHE)
 unset(cmGIT_REVISION_HASH CACHE)
 unset(cmCOMPILER_FLAGS CACHE)
 unset(cmOPENSSL_CRYPTO_FOUND CACHE)
-unset(cmHAVE_FEATURES_H CACHE)
-unset(cmPR_SET_DUMPABLE_FOUND CACHE)
-unset(cmRLIMIT_CORE_FOUND CACHE)
-unset(cmPT_DENY_ATTACH_FOUND CACHE)
-unset(cmSCHED_GETCPU_FOUND CACHE)
-unset(cmGETCPU_FOUND CACHE)
-unset(cmGETLOGIN_R_FOUND CACHE)
-unset(cmGNU_GET_LIBC_FOUND CACHE)
 unset(cmCS_GNU_LIBPTHREAD_VERSION_FOUND CACHE)
-unset(cmSCHED_SETAFFINITY_FOUND CACHE)
-unset(cmGETSID_FOUND CACHE)
-unset(cmGETPWUID_R_FOUND CACHE)
-unset(cmSETMNTENT_FOUND CACHE)
-unset(cmGETMNTENT_R_FOUND CACHE)
-unset(cmENDMNTENT_FOUND CACHE)
-unset(cmRAND_R_FOUND CACHE)
-unset(cmSRANDOM_R_FOUND CACHE)
-unset(cmRANDOM_R_FOUND CACHE)
+unset(cmGNU_GET_LIBC_FOUND CACHE)
+
+# haves
+unset(cmHAVE_FEATURES_H CACHE)
+unset(cmHAVE_PR_SET_DUMPABLE CACHE)
+unset(cmHAVE_RLIMIT_CORE CACHE)
+unset(cmHAVE_PT_DENY_ATTACH CACHE)
+unset(cmHAVE_SCHED_GETCPU CACHE)
+unset(cmHAVE_GETCPU CACHE)
+unset(cmHAVE_GETLOGIN_R CACHE)
+unset(cmHAVE_SCHED_SETAFFINITY CACHE)
+unset(cmHAVE_GETSID CACHE)
+unset(cmHAVE_GETPWUID_R CACHE)
+unset(cmHAVE_SETMNTENT CACHE)
+unset(cmHAVE_GETMNTENT_R CACHE)
+unset(cmHAVE_ENDMNTENT CACHE)
+unset(cmHAVE_RAND_R CACHE)
+unset(cmHAVE_SRANDOM_R CACHE)
+unset(cmHAVE_RANDOM_R CACHE)
 
 # internal
 unset(_xGNU_GET_LIBC_VERSION CACHE)
@@ -60,46 +64,16 @@ find_package(OS QUIET REQUIRED)
 find_package(OpenSSL QUIET REQUIRED)
 find_package(MySQL QUIET REQUIRED)
 find_package(Ssh2 QUIET REQUIRED)
+find_package(CURL QUIET REQUIRED)
+
+if (OPENSSL_FOUND)
+    check_library_exists(crypto BF_cfb64_encrypt "" cmOPENSSL_CRYPTO_FOUND)
+endif()
 
 if (ENV_UNIX)
    find_package(ExecInfo QUIET)    # TODO: REQUIRED - add
    find_package(XCB QUIET)         # TODO: REQUIRED - add
    find_package(Addr2Line QUIET REQUIRED)
-endif()
-#--------------------------------------------------------------------------------------------------
-# configure
-if (OPENSSL_FOUND)
-    check_library_exists(crypto BF_cfb64_encrypt "" cmOPENSSL_CRYPTO_FOUND)
-endif()
-
-if (ENV_WIN)
-    # TODO: windows part
-elseif (ENV_UNIX)
-    # Headers
-    CHECK_INCLUDE_FILES("features.h" cmHAVE_FEATURES_H)
-    # CHECK_INCLUDE_FILES(xxxxx         aaaaaaa          cmHAVE_DDDDDDDDDDDDDDDD)
-
-    # Libs
-
-    # Symbols
-    CHECK_SYMBOL_EXISTS(PR_SET_DUMPABLE "sys/prctl.h"    cmPR_SET_DUMPABLE_FOUND)
-    CHECK_SYMBOL_EXISTS(RLIMIT_CORE     "sys/resource.h" cmRLIMIT_CORE_FOUND)
-    # CHECK_SYMBOL_EXISTS(xxxxx         aaaaaaa          cmHAVE_DDDDDDDDDDDDDDDD)
-
-    # Functions
-    CHECK_FUNCTION_EXISTS(sched_getcpu      cmSCHED_GETCPU_FOUND)
-    CHECK_FUNCTION_EXISTS(getcpu            cmGETCPU_FOUND)
-    CHECK_FUNCTION_EXISTS(getlogin_r        cmGETLOGIN_R_FOUND)
-    CHECK_FUNCTION_EXISTS(sched_setaffinity cmSCHED_SETAFFINITY_FOUND)
-    CHECK_FUNCTION_EXISTS(getsid            cmGETSID_FOUND)
-    CHECK_FUNCTION_EXISTS(getpwuid_r        cmGETPWUID_R_FOUND)
-    CHECK_FUNCTION_EXISTS(setmntent         cmSETMNTENT_FOUND)
-    CHECK_FUNCTION_EXISTS(getmntent_r       cmGETMNTENT_R_FOUND)
-    CHECK_FUNCTION_EXISTS(endmntent         cmENDMNTENT_FOUND)
-    CHECK_FUNCTION_EXISTS(rand_r            cmRAND_R_FOUND)
-    CHECK_FUNCTION_EXISTS(srandom_r         cmSRANDOM_R_FOUND)
-    CHECK_FUNCTION_EXISTS(srandom_r         cmRANDOM_R_FOUND)
-    # CHECK_FUNCTION_EXISTS(xxxxx           cmHAVE_DDDDDDDDDDDDDDDD)
 
     # cmGNU_GET_LIBC_FOUND
     CHECK_FUNCTION_EXISTS(gnu_get_libc_version _xGNU_GET_LIBC_VERSION)
@@ -114,6 +88,34 @@ elseif (ENV_UNIX)
     if (_xCONFSTR AND _xCS_GNU_LIBPTHREAD_VERSION)
         set(cmCS_GNU_LIBPTHREAD_VERSION_FOUND 1)
     endif()
+endif()
+#--------------------------------------------------------------------------------------------------
+# configure
+if (ENV_WIN)
+    # TODO: windows part
+elseif (ENV_UNIX)
+    # Headers
+    CHECK_INCLUDE_FILES("features.h" cmHAVE_FEATURES_H)
+
+    # Libs
+
+    # Symbols
+    CHECK_SYMBOL_EXISTS(PR_SET_DUMPABLE "sys/prctl.h"    cmHAVE_PR_SET_DUMPABLE)
+    CHECK_SYMBOL_EXISTS(RLIMIT_CORE     "sys/resource.h" cmHAVE_RLIMIT_CORE)
+
+    # Functions
+    CHECK_FUNCTION_EXISTS(sched_getcpu      cmHAVE_SCHED_GETCPU)
+    CHECK_FUNCTION_EXISTS(getcpu            cmHAVE_GETCPU)
+    CHECK_FUNCTION_EXISTS(getlogin_r        cmHAVE_GETLOGIN_R)
+    CHECK_FUNCTION_EXISTS(sched_setaffinity cmHAVE_SCHED_SETAFFINITY)
+    CHECK_FUNCTION_EXISTS(getsid            cmHAVE_GETSID)
+    CHECK_FUNCTION_EXISTS(getpwuid_r        cmHAVE_GETPWUID_R)
+    CHECK_FUNCTION_EXISTS(setmntent         cmHAVE_SETMNTENT)
+    CHECK_FUNCTION_EXISTS(getmntent_r       cmHAVE_GETMNTENT_R)
+    CHECK_FUNCTION_EXISTS(endmntent         cmHAVE_ENDMNTENT)
+    CHECK_FUNCTION_EXISTS(rand_r            cmHAVE_RAND_R)
+    CHECK_FUNCTION_EXISTS(srandom_r         cmHAVE_SRANDOM_R)
+    CHECK_FUNCTION_EXISTS(random_r          cmHAVE_RANDOM_R)
 
     # Linux
     if (ENV_LINUX)
@@ -134,7 +136,7 @@ elseif (ENV_UNIX)
     # Apple
     if (ENV_APPLE)
         # Symbols
-        CHECK_SYMBOL_EXISTS(PT_DENY_ATTACH "sys/ptrace.h" cmPT_DENY_ATTACH_FOUND)
+        CHECK_SYMBOL_EXISTS(PT_DENY_ATTACH "sys/ptrace.h" cmHAVE_PT_DENY_ATTACH)
     endif()
 endif()
 #--------------------------------------------------------------------------------------------------
