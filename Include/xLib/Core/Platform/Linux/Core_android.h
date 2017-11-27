@@ -14,7 +14,7 @@
 #include <sys/sysinfo.h>
 #include <mntent.h>
 
-// #if cmGETCPU_FOUND
+// #if cmHAVE_GETCPU
 //     #include <linux/getcpu.h>
 // #endif
 

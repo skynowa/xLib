@@ -49,7 +49,7 @@ User::_loginName_impl() const
 
     // try API
     {
-    #if cmGETLOGIN_R_FOUND
+    #if cmHAVE_GETLOGIN_R
         cint_t buffSize       = xUSER_NAME_MAX + 1;
         char   buff[buffSize] = {0}; // TODO: User::loginName() - LOGIN_NAME_MAX
 
@@ -191,7 +191,7 @@ User::_passwd(
     const uid_t userId = ::getuid();
     xTEST_NA(userId);
 
-#if cmGETPWUID_R_FOUND
+#if cmHAVE_GETPWUID_R
     long_t buffSize = - 1L;
     {
         buffSize = ::sysconf(_SC_GETPW_R_SIZE_MAX);
