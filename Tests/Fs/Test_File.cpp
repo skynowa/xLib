@@ -866,7 +866,7 @@ Test_File::unit1()
         xTEST_EQ(true, content == msStr);
     }
 
-    xTEST_CASE("textRead, textWrite")
+    xTEST_CASE("binRead, binWrite")
     {
         // binary
         std::ustring_t content;   content.resize(1024 * 5);
@@ -893,7 +893,7 @@ Test_File::unit1()
         xTEST_EQ(true, content == str);
     }
 
-    xTEST_CASE("textRead, textWrite")
+    xTEST_CASE("binRead, binWrite")
     {
         // empty content
         std::ustring_t content;

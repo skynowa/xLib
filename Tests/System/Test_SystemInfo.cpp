@@ -54,6 +54,12 @@ Test_SystemInfo::unit()
         xTEST_EQ(false, m_sRv.empty());
     }
 
+    xTEST_CASE("distro")
+    {
+        m_sRv = SystemInfo().distro();
+        xTEST_EQ(m_sRv.empty(), false);
+    }
+
     xTEST_CASE("osArch")
     {
         SystemInfo::OsArch oaRes = SystemInfo::oaUnknown;

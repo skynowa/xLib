@@ -115,6 +115,12 @@ SystemInfo::_formatOs_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+SystemInfo::_distro_impl() const
+{
+    return formatOs();
+}
+//-------------------------------------------------------------------------------------------------
 SystemInfo::OsArch
 SystemInfo::_osArch_impl()
 {
