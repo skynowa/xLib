@@ -99,14 +99,14 @@ xNAMESPACE_END2(xl, internal)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
-xl::cbool_t     isDevel        = false;
+xl::cbool_t     isDevel       = false;
 
-std::ctstring_t _backupDirName = xT("Backup");
-std::ctstring_t _configDirName = xT("Config");
-std::ctstring_t _logDirName    = xT("Log");
-std::ctstring_t _dbDirName     = xT("Db");
-std::ctstring_t _tempDirName   = xT("Temp");
-std::ctstring_t _langDirName   = xT("Lang");
+std::ctstring_t backupDirName = xT("Backup");
+std::ctstring_t configDirName = xT("Config");
+std::ctstring_t logDirName    = xT("Log");
+std::ctstring_t dbDirName     = xT("Db");
+std::ctstring_t tempDirName   = xT("Temp");
+std::ctstring_t langDirName   = xT("Lang");
 
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
@@ -370,42 +370,42 @@ Application::dirPath()
 std::tstring_t
 Application::configDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), _configDirName);
+    return Format::str(xT("{}/{}"), dirPath(), ::configDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Application::logDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), _logDirName);
+    return Format::str(xT("{}/{}"), dirPath(), ::logDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Application::dbDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), _dbDirName);
+    return Format::str(xT("{}/{}"), dirPath(), ::dbDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Application::backupDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), _backupDirName);
+    return Format::str(xT("{}/{}"), dirPath(), ::backupDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Application::tempDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), _tempDirName);
+    return Format::str(xT("{}/{}"), dirPath(), ::tempDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Application::langDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), _langDirName);
+    return Format::str(xT("{}/{}"), dirPath(), ::langDirName);
 }
 //-------------------------------------------------------------------------------------------------
 
