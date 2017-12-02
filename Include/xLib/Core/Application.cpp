@@ -89,7 +89,6 @@ private:
 
 xNAMESPACE_END2(xl, internal)
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
 
 
 /**************************************************************************************************
@@ -100,6 +99,8 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
+xl::cbool_t     isDevel        = false;
+
 std::ctstring_t _backupDirName = xT("Backup");
 std::ctstring_t _configDirName = xT("Config");
 std::ctstring_t _logDirName    = xT("Log");
@@ -108,6 +109,9 @@ std::ctstring_t _tempDirName   = xT("Temp");
 std::ctstring_t _langDirName   = xT("Lang");
 
 xNAMESPACE_ANONYM_END
+//-------------------------------------------------------------------------------------------------
+
+xNAMESPACE_BEGIN2(xl, core)
 
 ApplicationInfo Application::_info;
 Donate          Application::_donate;
@@ -116,6 +120,7 @@ Application::Application(
     std::ctstring_t &a_appGuid, ///< application GUID
     std::ctstring_t &a_locale   ///< locale, empty value for current locale
 ) :
+    _isDevel(::isDevel),
     _appGuid(a_appGuid)
 {
     xTEST_EQ(a_appGuid.empty(), false);
@@ -128,6 +133,22 @@ Application::Application(
 /* virtual */
 Application::~Application()
 {
+}
+//-------------------------------------------------------------------------------------------------
+/* virtual */
+bool_t
+Application::setDevel(
+    cbool_t a_flag
+)
+{
+    _isDevel = a_flag;
+}
+//-------------------------------------------------------------------------------------------------
+/* virtual */
+bool_t
+Application::isDevel() const
+{
+    return _isDevel;
 }
 //-------------------------------------------------------------------------------------------------
 
