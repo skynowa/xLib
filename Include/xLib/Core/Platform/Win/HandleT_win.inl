@@ -1,5 +1,5 @@
 /**
- * \file  HandleT.inl
+ * \file  Handle.inl
  * \brief handle
  */
 
@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
 ulong_t
-HandleT<T, valueT>::info() const
+Handle<T, valueT>::info() const
 {
     xTEST_EQ(isValid(), true);
 
@@ -33,7 +33,7 @@ HandleT<T, valueT>::info() const
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
 void_t
-HandleT<T, valueT>::setInfo(
+Handle<T, valueT>::setInfo(
     culong_t &a_mask,
     culong_t &a_flags
 )

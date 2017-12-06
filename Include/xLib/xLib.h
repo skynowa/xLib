@@ -26,7 +26,7 @@
 #include <xLib/Core/Flags.h>
 #include <xLib/Core/Array.h>
 #include <xLib/Core/Enum.h>
-#include <xLib/Core/HandleT.h>
+#include <xLib/Core/Handle.h>
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
