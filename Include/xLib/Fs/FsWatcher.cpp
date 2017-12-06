@@ -120,7 +120,7 @@ FsWatcher::close()
     _close_impl();
 
 	for (auto &it_fileHandle : _fileHandles) {
-		HandleInvalid handle;
+		HandleNativeInvalid handle;
 		handle = it_fileHandle;
 
 		handle.close();
