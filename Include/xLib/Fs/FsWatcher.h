@@ -42,7 +42,7 @@ xPLATFORM_IMPL:
     #if   xENV_LINUX
 
     #elif xENV_BSD
-        HandleInvalid   _kQueue;
+        HandleNativeInvalid   _kQueue;
     #elif xENV_APPLE
 
     #endif

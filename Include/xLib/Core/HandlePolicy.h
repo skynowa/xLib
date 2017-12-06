@@ -102,8 +102,8 @@ xHANDLE_POLICY_FACTORY_IMPL(hvCurl,        xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvFindDir,     xFIND_DIR_HANDLE_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvSocket,      xSOCKET_HANDLE_INVALID);
 
-typedef Handle<native_handle_t, hvInvalid>     HandleInvalid;
-typedef Handle<native_handle_t, hvNull>        HandleNull;
+typedef Handle<native_handle_t, hvInvalid>     HandleNativeInvalid;
+typedef Handle<native_handle_t, hvNull>        HandleNative;
 typedef Handle<dll_handle_t,    hvDll>         HandleDll;
 typedef Handle<FILE *,          hvStdFile>     HandleStdFile;
 typedef Handle<MYSQL *,         hvMySqlConn>   HandleMySqlConn;
