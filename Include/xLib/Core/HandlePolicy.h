@@ -31,7 +31,7 @@ enum HandlePolicyType
 };
 
 template<typename T, HandlePolicyType valueT>
-class HandleT;
+class Handle;
     /// handle
 
 template<typename T, HandlePolicyType valueT>
@@ -102,15 +102,15 @@ xHANDLE_POLICY_FACTORY_IMPL(hvCurl,        xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvFindDir,     xFIND_DIR_HANDLE_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvSocket,      xSOCKET_HANDLE_INVALID);
 
-typedef HandleT<native_handle_t, hvInvalid>     HandleInvalid;
-typedef HandleT<native_handle_t, hvNull>        HandleNull;
-typedef HandleT<dll_handle_t,    hvDll>         HandleDll;
-typedef HandleT<FILE *,          hvStdFile>     HandleStdFile;
-typedef HandleT<MYSQL *,         hvMySqlConn>   HandleMySqlConn;
-typedef HandleT<MYSQL_RES *,     hvMySqlResult> HandleMySqlResult;
-typedef HandleT<CURL *,          hvCurl>        HandleCurl;
-typedef HandleT<DIR *,           hvFindDir>     HandleFindDir;
-typedef HandleT<socket_t,        hvSocket>      HandleSocket;
+typedef Handle<native_handle_t, hvInvalid>     HandleInvalid;
+typedef Handle<native_handle_t, hvNull>        HandleNull;
+typedef Handle<dll_handle_t,    hvDll>         HandleDll;
+typedef Handle<FILE *,          hvStdFile>     HandleStdFile;
+typedef Handle<MYSQL *,         hvMySqlConn>   HandleMySqlConn;
+typedef Handle<MYSQL_RES *,     hvMySqlResult> HandleMySqlResult;
+typedef Handle<CURL *,          hvCurl>        HandleCurl;
+typedef Handle<DIR *,           hvFindDir>     HandleFindDir;
+typedef Handle<socket_t,        hvSocket>      HandleSocket;
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

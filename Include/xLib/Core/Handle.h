@@ -1,5 +1,5 @@
 /**
- * \file  HandleT.h
+ * \file  Handle.h
  * \brief handle
  */
 
@@ -28,23 +28,23 @@ xNAMESPACE_END2(xl, core)
 xNAMESPACE_BEGIN2(xl, core)
 
 template<typename T, HandlePolicyType valueT>
-class HandleT :
+class Handle :
     public IHandle<T>
     /// handle
 {
 public:
-              HandleT();
+              Handle();
         ///< constructor
-    explicit  HandleT(const T &handle);
+    explicit  Handle(const T &handle);
         ///< constructor
-    explicit  HandleT(const HandleT &handle);
+    explicit  Handle(const Handle &handle);
         ///< constructor
-    virtual  ~HandleT();
+    virtual  ~Handle();
         ///< destructor
 
-    HandleT & operator = (const T &handle);
+    Handle & operator = (const T &handle);
         ///< operator =
-    HandleT & operator = (const HandleT &handle);
+    Handle & operator = (const Handle &handle);
         ///< operator =
 
     static
@@ -81,7 +81,7 @@ private:
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
-#include "HandleT.inl"
+#include "Handle.inl"
 
 #if xENV_WIN
     #include "Platform/Win/HandleT_win.inl"
