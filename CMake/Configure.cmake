@@ -64,7 +64,7 @@ find_package(OS QUIET REQUIRED)
 find_package(OpenSSL QUIET REQUIRED)
 find_package(MySQL QUIET REQUIRED)
 find_package(Ssh2 QUIET REQUIRED)
-find_package(CURL QUIET REQUIRED)
+find_package(CURL QUIET)
 
 if (OPENSSL_FOUND)
     check_library_exists(crypto BF_cfb64_encrypt "" cmOPENSSL_CRYPTO_FOUND)
