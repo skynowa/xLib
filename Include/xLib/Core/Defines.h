@@ -636,11 +636,11 @@
 ///@{
 #if   xENV_WIN
     #define xFIND_DIR_HANDLE_NULL \
-        static_cast<find_dir_handle_t>( INVALID_HANDLE_VALUE )
+        ( static_cast<find_dir_handle_t>( INVALID_HANDLE_VALUE ) )
         ///< find directory handle
 #elif xENV_UNIX
     #define xFIND_DIR_HANDLE_NULL \
-        static_cast<find_dir_handle_t>( xPTR_NULL )
+        ( static_cast<find_dir_handle_t>( xPTR_NULL ) )
         ///< find directory handle
 #endif
 ///@}
