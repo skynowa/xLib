@@ -20,7 +20,7 @@ public:
     virtual ~FsWatcher();
         ///< destructor
 
-    bool_t   open(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);
+    bool_t   openFiles(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);
     bool_t   openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &cmds);
     void_t   watch(culong_t timeoutMsec);
     void_t   close();

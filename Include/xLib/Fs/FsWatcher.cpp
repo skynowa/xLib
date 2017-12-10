@@ -46,7 +46,7 @@ FsWatcher::~FsWatcher()
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-FsWatcher::open(
+FsWatcher::openFiles(
     std::cvec_tstring_t &a_filePaths,
     std::cmap_tstring_t &a_cmds
 )
@@ -93,7 +93,7 @@ FsWatcher::openDirs(
             continue;
         }
 
-        bRv = open(filePaths, a_cmds);
+        bRv = openFiles(filePaths, a_cmds);
         if (!bRv) {
             continue;
         }
