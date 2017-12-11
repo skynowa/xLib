@@ -102,9 +102,16 @@ Handle<T, valueT>::operator = (
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
 T
-Handle<T, valueT>::null()
+Handle<T, valueT>::null() const
 {
     return handle_policy_t::null();
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T, HandlePolicyType valueT>
+std::size_t
+Handle<T, valueT>::openMax() const
+{
+    return handle_policy_t::openMax();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>

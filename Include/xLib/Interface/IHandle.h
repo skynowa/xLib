@@ -21,7 +21,14 @@ public:
     virtual       ~IHandle() {};
         ///< destructor
 
-    virtual T      get() const = 0 ;
+    virtual
+    T              null() const = 0;
+        ///< get
+    virtual
+    std::size_t    openMax() const = 0;
+		///< maximum open handles
+
+    virtual T      get() const = 0;
         ///< get
     virtual void_t set(const T &handle) = 0;
         ///< set

@@ -42,15 +42,17 @@ struct HandlePolicy;
     template<typename T> \
     struct HandlePolicy<T, type> \
     { \
-        static T      null() xWARN_UNUSED_RV; \
-        static T      clone(const T &a_handle) xWARN_UNUSED_RV; \
-        static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV; \
-        static void_t close(T &a_handle); \
+        static T           null() xWARN_UNUSED_RV; \
+        static std::size_t openMax() xWARN_UNUSED_RV; \
+        static T           clone(const T &a_handle) xWARN_UNUSED_RV; \
+        static bool_t      isValid(const T &a_handle) xWARN_UNUSED_RV; \
+        static void_t      close(T &a_handle); \
     \
     xPLATFORM_IMPL: \
-        static T      _clone_impl(const T &handle); \
-        static bool_t _isValid_impl(const T &handle); \
-        static void_t _close_impl(T &handle); \
+        static std::size_t _openMax_impl(); \
+        static T           _clone_impl(const T &handle); \
+        static bool_t      _isValid_impl(const T &handle); \
+        static void_t      _close_impl(T &handle); \
     }
 
 #define xHANDLE_POLICY_FACTORY_IMPL(type, null_value) \
@@ -59,6 +61,13 @@ struct HandlePolicy;
     HandlePolicy<T, type>::null() \
     { \
         return null_value; \
+    } \
+    \
+    template<typename T> \
+    std::size_t \
+    HandlePolicy<T, type>::openMax() \
+    { \
+        return _openMax_impl(); \
     } \
     \
     template<typename T> \
