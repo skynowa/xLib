@@ -22,8 +22,17 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+std::size_t
+HandlePolicy<T, hvInvalid>::_openMax_impl()
+{
+	// TODO: _openMax_impl
+
+    return 0;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 T
-HandlePolicy<T, hvInvalid>::_clone_impl(const T &a_handle) const
+HandlePolicy<T, hvInvalid>::_clone_impl(const T &a_handle)
 {
     T hRv = null();
 
@@ -36,7 +45,7 @@ HandlePolicy<T, hvInvalid>::_clone_impl(const T &a_handle) const
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, hvInvalid>::_isValid_impl(const T &a_handle) const
+HandlePolicy<T, hvInvalid>::_isValid_impl(const T &a_handle)
 {
     bool_t bRv = false;
 
@@ -87,6 +96,15 @@ HandlePolicy<T, hvInvalid>::_close_impl(T *a_handle)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+std::size_t
+HandlePolicy<T, hvDll>::_openMax_impl()
+{
+	// TODO: _openMax_impl
+
+    return 0;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 T
 HandlePolicy<T, hvDll>::_clone_impl(const T &a_handle)
 {
@@ -119,6 +137,15 @@ HandlePolicy<T, hvDll>::_close_impl(T &a_handle)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+std::size_t
+HandlePolicy<T, hvFindDir>::_openMax_impl()
+{
+	// TODO: _openMax_impl
+
+    return 0;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 T
 HandlePolicy<T, hvFindDir>::_clone_impl(const T &a_handle)
 {
@@ -149,6 +176,15 @@ HandlePolicy<T, hvFindDir>::_close_impl(T &a_handle)
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+std::size_t
+HandlePolicy<T, hvSocket>::_openMax_impl()
+{
+	// TODO: _openMax_impl
+
+    return 0;
+}
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T

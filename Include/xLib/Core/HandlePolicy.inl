@@ -22,6 +22,15 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+std::size_t
+HandlePolicy<T, hvStdFile>::_openMax_impl()
+{
+	// TODO: _openMax_impl
+
+    return 0;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 T
 HandlePolicy<T, hvStdFile>::_clone_impl(const T &a_handle)
 {
@@ -59,6 +68,15 @@ HandlePolicy<T, hvStdFile>::_close_impl(T &a_handle)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+std::size_t
+HandlePolicy<T, hvMySqlConn>::_openMax_impl()
+{
+	// TODO: _openMax_impl
+
+    return 0;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 T
 HandlePolicy<T, hvMySqlConn>::_clone_impl(const T &a_handle)
 {
@@ -88,6 +106,15 @@ HandlePolicy<T, hvMySqlConn>::_close_impl(T &a_handle)
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+std::size_t
+HandlePolicy<T, hvMySqlResult>::_openMax_impl()
+{
+	// TODO: _openMax_impl
+
+    return 0;
+}
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
@@ -121,6 +148,15 @@ HandlePolicy<T, hvMySqlResult>::_close_impl(T &a_handle)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+std::size_t
+HandlePolicy<T, hvCurl>::_openMax_impl()
+{
+	// TODO: _openMax_impl
+
+    return 0;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 T
 HandlePolicy<T, hvCurl>::_clone_impl(const T &a_handle)
 {
@@ -152,6 +188,15 @@ HandlePolicy<T, hvCurl>::_close_impl(T &a_handle)
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+std::size_t
+HandlePolicy<T, hvXXXXXXXXXX>::_openMax_impl()
+{
+	// TODO: _openMax_impl
+
+    return 0;
+}
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T

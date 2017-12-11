@@ -33,50 +33,52 @@ class Handle :
     /// handle
 {
 public:
-              Handle();
+                Handle();
         ///< constructor
-    explicit  Handle(const T &handle);
+    explicit    Handle(const T &handle);
         ///< constructor
-    explicit  Handle(const Handle &handle);
+    explicit    Handle(const Handle &handle);
         ///< constructor
-    virtual  ~Handle();
+    virtual    ~Handle();
         ///< destructor
 
-    Handle & operator = (const T &handle);
+    Handle &    operator = (const T &handle);
         ///< operator =
-    Handle & operator = (const Handle &handle);
+    Handle &    operator = (const Handle &handle);
         ///< operator =
 
-    static
-    T         null() xWARN_UNUSED_RV;
+    T           null() const xWARN_UNUSED_RV;
         ///< get
-    T         get() const xWARN_UNUSED_RV;
+    std::size_t openMax() const xWARN_UNUSED_RV;
+		///< maximum open handles
+
+    T           get() const xWARN_UNUSED_RV;
         ///< get
-    void_t    set(const T &handle);
+    void_t      set(const T &handle);
         ///< set
-    T         clone() const xWARN_UNUSED_RV;
+    T           clone() const xWARN_UNUSED_RV;
         ///< duplicate handle
 
-    bool_t    isValid() const xWARN_UNUSED_RV;
+    bool_t      isValid() const xWARN_UNUSED_RV;
         ///< is valid
-    void_t    attach(const T &handle);
+    void_t      attach(const T &handle);
         ///< attach
-    T         detach() xWARN_UNUSED_RV;
+    T           detach() xWARN_UNUSED_RV;
         ///< detach
-    void_t    close();
+    void_t      close();
         ///< close
 
 #if xENV_WIN
-    ulong_t   info() const xWARN_UNUSED_RV;
+    ulong_t     info() const xWARN_UNUSED_RV;
         ///< get certain properties of an object handle
-    void_t    setInfo(culong_t &mask, culong_t &flags);
+    void_t      setInfo(culong_t &mask, culong_t &flags);
         ///< set information
 #endif
 
 private:
     typedef HandlePolicy<T, valueT> handle_policy_t;
 
-    T         _handle;    ///< handle
+    T           _handle;    ///< handle
 };
 
 xNAMESPACE_END2(xl, core)
