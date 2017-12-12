@@ -15,55 +15,6 @@
 
 xNAMESPACE_BEGIN2(xl, core)
 
-/**************************************************************************************************
-*    public - HandleNativeInvalid
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-std::size_t
-HandlePolicy<T, hvNativeInvalid>::_openMax_impl()
-{
-	// TODO: _openMax_impl
-
-    return 0;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-T
-HandlePolicy<T, hvNativeInvalid>::_clone_impl(const T &a_handle)
-{
-    return ::dup(a_handle);
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-bool_t
-HandlePolicy<T, hvNativeInvalid>::_isValid_impl(const T &a_handle)
-{
-    bool_t bRv = false;
-
-    // compare with error handle value
-    bool_t cond1 = (a_handle != null());
-    // handle value is negative
-    bool_t cond2 = (a_handle >  null());
-
-    bRv = cond1 && cond2;
-
-    return bRv;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-void_t
-HandlePolicy<T, hvNativeInvalid>::_close_impl(T &a_handle)
-{
-    int_t iRv = ::close(a_handle);
-    xTEST_DIFF(iRv, - 1);
-
-    a_handle = null();
-}
-//-------------------------------------------------------------------------------------------------
-
 
 /**************************************************************************************************
 *    public - HandleNative
@@ -130,6 +81,54 @@ HandlePolicy<T, hvNative>::_close_impl(T &a_handle)
 
 
 /**************************************************************************************************
+*    public - HandleNativeInvalid
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+std::size_t
+HandlePolicy<T, hvNativeInvalid>::_openMax_impl()
+{
+    return HandlePolicy<native_handle_t, hvNative>::openMax();
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+T
+HandlePolicy<T, hvNativeInvalid>::_clone_impl(const T &a_handle)
+{
+    return ::dup(a_handle);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+bool_t
+HandlePolicy<T, hvNativeInvalid>::_isValid_impl(const T &a_handle)
+{
+    bool_t bRv = false;
+
+    // compare with error handle value
+    bool_t cond1 = (a_handle != null());
+    // handle value is negative
+    bool_t cond2 = (a_handle >  null());
+
+    bRv = cond1 && cond2;
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+void_t
+HandlePolicy<T, hvNativeInvalid>::_close_impl(T &a_handle)
+{
+    int_t iRv = ::close(a_handle);
+    xTEST_DIFF(iRv, - 1);
+
+    a_handle = null();
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
 *    public - HandleDll
 *
 **************************************************************************************************/
@@ -139,9 +138,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, hvDll>::_openMax_impl()
 {
-	// TODO: _openMax_impl
-
-    return 0;
+    return HandlePolicy<native_handle_t, hvNative>::openMax();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -180,9 +177,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, hvFindDir>::_openMax_impl()
 {
-	// TODO: _openMax_impl
-
-    return 0;
+    return HandlePolicy<native_handle_t, hvNative>::openMax();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -221,9 +216,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, hvSocket>::_openMax_impl()
 {
-    // TODO: _openMax_impl
-
-    return 0;
+    return HandlePolicy<native_handle_t, hvNative>::openMax();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>

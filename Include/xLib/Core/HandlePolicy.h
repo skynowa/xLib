@@ -19,15 +19,15 @@ xNAMESPACE_BEGIN2(xl, core)
 enum HandlePolicyType
     /// error handle type
 {
-    hvNativeInvalid = -1,   ///< like "invalid"
-    hvNative,               ///< like "null"
-    hvDll,                  ///< DLL
-    hvStdFile,              ///< like xPTR_NULL
-    hvMySqlConn,            ///< MySQL connection
-    hvMySqlResult,          ///< MySQL result
-    hvCurl,                 ///< CURL
-    hvFindDir,              ///< Dir find
-    hvSocket                ///< Socket
+    hvNative = 0,       ///< like "null"
+    hvNativeInvalid,    ///< like "invalid" (-1)
+    hvDll,              ///< DLL
+    hvStdFile,          ///< like xPTR_NULL
+    hvMySqlConn,        ///< MySQL connection
+    hvMySqlResult,      ///< MySQL result
+    hvCurl,             ///< CURL
+    hvFindDir,          ///< Dir find
+    hvSocket            ///< Socket
 };
 
 template<typename T, HandlePolicyType valueT>
@@ -91,8 +91,8 @@ struct HandlePolicy;
         _close_impl(a_handle); \
     }
 //-------------------------------------------------------------------------------------------------
-xHANDLE_POLICY_FACTORY(hvNativeInvalid);
 xHANDLE_POLICY_FACTORY(hvNative);
+xHANDLE_POLICY_FACTORY(hvNativeInvalid);
 xHANDLE_POLICY_FACTORY(hvDll);
 xHANDLE_POLICY_FACTORY(hvStdFile);
 xHANDLE_POLICY_FACTORY(hvMySqlConn);
@@ -101,8 +101,8 @@ xHANDLE_POLICY_FACTORY(hvCurl);
 xHANDLE_POLICY_FACTORY(hvFindDir);
 xHANDLE_POLICY_FACTORY(hvSocket);
 
-xHANDLE_POLICY_FACTORY_IMPL(hvNativeInvalid, xNATIVE_HANDLE_INVALID);
 xHANDLE_POLICY_FACTORY_IMPL(hvNative,        xNATIVE_HANDLE_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvNativeInvalid, xNATIVE_HANDLE_INVALID);
 xHANDLE_POLICY_FACTORY_IMPL(hvDll,           xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvStdFile,       xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvMySqlConn,     xPTR_NULL);
@@ -111,8 +111,8 @@ xHANDLE_POLICY_FACTORY_IMPL(hvCurl,          xPTR_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvFindDir,       xFIND_DIR_HANDLE_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvSocket,        xSOCKET_HANDLE_INVALID);
 
-typedef Handle<native_handle_t,   hvNativeInvalid> HandleNativeInvalid;
 typedef Handle<native_handle_t,   hvNative>        HandleNative;
+typedef Handle<native_handle_t,   hvNativeInvalid> HandleNativeInvalid;
 typedef Handle<dll_handle_t,      hvDll>           HandleDll;
 typedef Handle<FILE *,            hvStdFile>       HandleStdFile;
 typedef Handle<MYSQL *,           hvMySqlConn>     HandleMySqlConn;
