@@ -58,7 +58,7 @@ HandlePolicy<T, hvStdFile>::_clone_impl(const T &a_handle)
     int_t handle = /*::*/fileno(a_handle);
     xTEST_DIFF(handle, - 1);
 
-    native_handle_t nativeHandle = HandlePolicy<native_handle_t, hvInvalid>::clone(handle);
+    native_handle_t nativeHandle = HandlePolicy<native_handle_t, hvNativeInvalid>::clone(handle);
 
     return static_cast<T>( xTFDOPEN(nativeHandle, xT("r+")) );  // TODO: clone - open mode
 }
