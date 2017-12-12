@@ -47,9 +47,11 @@ public:
     Handle &    operator = (const Handle &handle);
         ///< operator =
 
-    T           null() const xWARN_UNUSED_RV;
+    static
+    T           null() xWARN_UNUSED_RV;
         ///< get
-    std::size_t openMax() const xWARN_UNUSED_RV;
+    static
+    std::size_t openMax() xWARN_UNUSED_RV;
 		///< maximum open handles
 
     T           get() const xWARN_UNUSED_RV;
