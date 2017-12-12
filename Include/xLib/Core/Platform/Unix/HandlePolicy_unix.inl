@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 std::size_t
-HandlePolicy<T, hvInvalid>::_openMax_impl()
+HandlePolicy<T, hvNativeInvalid>::_openMax_impl()
 {
 	// TODO: _openMax_impl
 
@@ -32,14 +32,14 @@ HandlePolicy<T, hvInvalid>::_openMax_impl()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, hvInvalid>::_clone_impl(const T &a_handle)
+HandlePolicy<T, hvNativeInvalid>::_clone_impl(const T &a_handle)
 {
     return ::dup(a_handle);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, hvInvalid>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, hvNativeInvalid>::_isValid_impl(const T &a_handle)
 {
     bool_t bRv = false;
 
@@ -55,7 +55,7 @@ HandlePolicy<T, hvInvalid>::_isValid_impl(const T &a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-HandlePolicy<T, hvInvalid>::_close_impl(T &a_handle)
+HandlePolicy<T, hvNativeInvalid>::_close_impl(T &a_handle)
 {
     int_t iRv = ::close(a_handle);
     xTEST_DIFF(iRv, - 1);
@@ -73,7 +73,7 @@ HandlePolicy<T, hvInvalid>::_close_impl(T &a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 std::size_t
-HandlePolicy<T, hvNull>::_openMax_impl()
+HandlePolicy<T, hvNative>::_openMax_impl()
 {
 	// TODO: _openMax_impl
 
@@ -82,14 +82,14 @@ HandlePolicy<T, hvNull>::_openMax_impl()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, hvNull>::_clone_impl(const T &a_handle)
+HandlePolicy<T, hvNative>::_clone_impl(const T &a_handle)
 {
     return ::dup(a_handle);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, hvNull>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, hvNative>::_isValid_impl(const T &a_handle)
 {
     bool_t bRv = false;
 
@@ -105,7 +105,7 @@ HandlePolicy<T, hvNull>::_isValid_impl(const T &a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-HandlePolicy<T, hvNull>::_close_impl(T &a_handle)
+HandlePolicy<T, hvNative>::_close_impl(T &a_handle)
 {
     int_t iRv = ::close(a_handle);
     xTEST_DIFF(iRv, - 1);
