@@ -73,6 +73,18 @@ HandlePolicy<T, hvMySqlConn>::_openMax_impl()
 {
 	// TODO: _openMax_impl
 
+   /**
+	* show variables like "max_connections"
+	*
+    * +-----------------+-------+
+    * | Variable_name   | Value |
+    * +-----------------+-------+
+    * | max_connections | 100   |
+    * +-----------------+-------+
+    *
+    * set global max_connections = 200;
+    */
+
     return 0;
 }
 //-------------------------------------------------------------------------------------------------
