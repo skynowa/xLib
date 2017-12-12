@@ -75,9 +75,23 @@ template<typename T>
 std::size_t
 HandlePolicy<T, hvNative>::_openMax_impl()
 {
-	// TODO: _openMax_impl
+    std::size_t uiRv = 0;
 
-    return 0;
+    rlimit limit;   xSTRUCT_ZERO(limit);
+
+    #if xENV_BSD
+        cint_t resource = RLIMIT_OFILE;
+    #else
+        cint_t resource = RLIMIT_NOFILE;
+    #endif
+
+    int_t iRv = ::getrlimit(resource, &limit);
+    xTEST_EQ(iRv, 0);
+
+    uiRv = limit.rlim_cur;
+    xTEST_GR(uiRv, 0);
+
+    return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
