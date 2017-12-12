@@ -35,11 +35,10 @@ HandlePolicy<T, hvStdFile>::_openMax_impl()
 #elif xENV_UNIX
     rlimit limit;   xSTRUCT_ZERO(limit);
 
-    cint_t resource =
     #if xENV_BSD
-        RLIMIT_OFILE;
+        cint_t resource = RLIMIT_OFILE;
     #else
-        RLIMIT_NOFILE;
+        cint_t resource = RLIMIT_NOFILE;
     #endif
 
     int_t iRv = ::getrlimit(resource, &limit);
