@@ -184,9 +184,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, hvCurl>::_openMax_impl()
 {
-	// TODO: _openMax_impl
-
-    return 0;
+    return static_cast<std::size_t>(CURLOPT_MAXCONNECTS);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
