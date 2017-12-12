@@ -101,15 +101,17 @@ Handle<T, valueT>::operator = (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
+/* static */
 T
-Handle<T, valueT>::null() const
+Handle<T, valueT>::null()
 {
     return handle_policy_t::null();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
+/* static */
 std::size_t
-Handle<T, valueT>::openMax() const
+Handle<T, valueT>::openMax()
 {
     return handle_policy_t::openMax();
 }
