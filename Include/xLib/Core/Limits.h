@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <sys/socket.h>
+
 //-------------------------------------------------------------------------------------------------
 // xHOST_NAME_MAX
 #if   xENV_WIN
@@ -128,12 +130,12 @@
 #endif
     ///< infinite timeout
 //-------------------------------------------------------------------------------------------------
-// xSOCKET_CONNECTIONS_MAX
-#if !defined(SOMAXCONN)
-    #define xSOCKET_CONNECTIONS_MAX \
+// xSOCKET_LISTEN_CONNECTIONS_MAX
+#if defined(SOMAXCONN)
+    #define xSOCKET_LISTEN_CONNECTIONS_MAX \
             ( SOMAXCONN )
 #else
-    #error xLib: xSOCKET_CONNECTIONS_MAX not defined
+    #error xLib: xSOCKET_LISTEN_CONNECTIONS_MAX not defined
 #endif
     ///< Maximum queue length specifiable by listen
 //-------------------------------------------------------------------------------------------------

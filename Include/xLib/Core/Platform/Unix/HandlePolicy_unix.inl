@@ -207,7 +207,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, hvSocket>::_openMax_impl()
 {
-	// TODO: _openMax_impl
+    // TODO: _openMax_impl
 
     return 0;
 }

@@ -47,7 +47,7 @@ TcpServer::bind(
 //-------------------------------------------------------------------------------------------------
 void_t
 TcpServer::listen(
-    cint_t &a_backlog /* = xSOCKET_CONNECTIONS_MAX */
+    cint_t &a_backlog /* = xSOCKET_LISTEN_CONNECTIONS_MAX */
 ) const
 {
     xTEST_EQ(_handle.isValid(), true);

@@ -39,7 +39,7 @@ Test_TcpServer::unit()
     objListenSocket.create(afAf, tpType, ptProtocol);
     DnsClient::hostAddrByName(csDomain, &sIp);
     objListenSocket.bind(usPort);
-    objListenSocket.listen(SOMAXCONN);
+    objListenSocket.listen(xSOCKET_LISTEN_CONNECTIONS_MAX);
     objListenSocket.accept(&objClientSocket, &sIp);
 
     for ( ; ; ) {
