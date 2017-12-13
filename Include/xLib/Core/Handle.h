@@ -83,6 +83,9 @@ private:
     typedef HandlePolicy<T, valueT> handle_policy_t;
 
     T           _handle;    ///< handle
+
+xPLATFORM_IMPL:
+    void_t      _setCloExec_impl(cbool_t flag);
 };
 
 xNAMESPACE_END2(xl, core)

@@ -169,30 +169,7 @@ Handle<T, valueT>::setCloExec(
 	* descriptors are labeled FD_CLOEXEC except for the ones you need to be duplicated.
 	*/
 
-#if   xENV_WIN
-	BOOL blRv = FALSE;
-
-	if (a_flag) {
-		blRv = ::SetHandleInformation(_handle, HANDLE_FLAG_INHERIT, 0);
-		xTEST_DIFF(blRv, FALSE);
-	} else {
-		blRv = ::SetHandleInformation(_handle, HANDLE_FLAG_INHERIT, 1)
-		xTEST_DIFF(blRv, FALSE);
-	}
-#elif xENV_UNIX
-	int_t iRv = - 1;
-
-	cint_t flags = ::fcntl(_handle, F_GETFD);
-	xTEST_DIFF(flags, - 1);
-
-	if (a_flag) {
-		iRv = ::fcntl(_handle, F_SETFD, flags |  FD_CLOEXEC);
-		xTEST_DIFF(iRv, - 1);
-	} else {
-		iRv = ::fcntl(_handle, F_SETFD, flags & ~FD_CLOEXEC);
-		xTEST_DIFF(iRv, - 1);
-	}
-#endif
+	_setCloExec_impl(a_flag);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
