@@ -164,7 +164,7 @@ if (NOT (XLIB_INCLUDES AND XLIB_LIBRARIES))
     set(XLIB_SOURCES          "")
     set(XLIB_LIBRARIES        "")
 else()
-    set(cmXLIB_FOUND     1)
+    set(cmXLIB_FOUND          1)
 endif()
 #--------------------------------------------------------------------------------------------------
 # vars
@@ -190,7 +190,7 @@ if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
 
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_STATIC}  ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "bin")
 
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_STATIC})
@@ -200,7 +200,7 @@ if (cmOPTION_PROJECT_LIB_SHARE)
     set(PROJECT_LIB_SHARE ${PROJECT_NAME}_shared)
 
     add_library(${PROJECT_LIB_SHARE} SHARED ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_SHARE}  ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_SHARE} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_SHARE} DESTINATION "bin")
 
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_SHARE})
@@ -210,7 +210,7 @@ if (cmOPTION_PROJECT_LIB_MODULE)
     set(PROJECT_LIB_MODULE ${PROJECT_NAME}_module)
 
     add_library(${PROJECT_LIB_MODULE} MODULE ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_MODULE}  ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_MODULE} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_MODULE} DESTINATION "bin")
 
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_MODULE})
