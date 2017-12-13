@@ -17,6 +17,18 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
+void_t
+Handle<T, valueT>::_setCloExec_impl(
+	cbool_t a_flag
+)
+{
+	const DWORD flags = a_flag ? 0 : 1;
+
+	BOOL blRv = setInfo(HANDLE_FLAG_INHERIT, flags);
+	xTEST_DIFF(blRv, FALSE);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T, HandlePolicyType valueT>
 ulong_t
 Handle<T, valueT>::info() const
 {
