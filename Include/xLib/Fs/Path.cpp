@@ -328,6 +328,14 @@ Path::isNameValid(
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
+Path::isCaseSensitive() const
+{
+    xCHECK_RET(filePath().empty(), false);
+
+    return _isCaseSensitive_impl();
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
 Path::isAbsolute() const
 {
     xCHECK_RET(filePath().empty(),                         false);

@@ -55,5 +55,11 @@ Path::_fileExt_impl(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+bool_t
+Path::_isCaseSensitive_impl() const
+{
+	return ::pathconf(path, _PC_CASE_SENSITIVE) ? true : false;
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, fs)
