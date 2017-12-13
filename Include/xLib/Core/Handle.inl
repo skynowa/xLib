@@ -144,6 +144,58 @@ Handle<T, valueT>::clone() const
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
+void_t
+Handle<T, valueT>::setCloExec(
+	cbool_t a_flag
+)
+{
+   /**
+	* Dealing with Duplicate File Descriptors from Sub-Processes
+	*
+	* https://oroboro.com/file-handle-leaks-server/
+	*
+	* When you spawn subprocesses they inherit all the open file descriptors of the parent process
+	* unless those descriptors have been specifically flagged as FD_CLOEXEC
+	*
+	* This is because the operating system doesn’t know which file descriptors will be used by the
+	* subprocess for inter-process communication. Or if the subprocess will be the one that will
+	* handle an open network socket.
+	*
+	* Normally when you spawn subprocesses the only file descriptors that need to stay open are
+	* the pipes that are connected to STDIN, STDOUT, and STDERR of the child process. But every
+	* subprocess is different.
+	*
+	* Right before your server calls fork() or exec(), call showFdInfo() to make sure that all file
+	* descriptors are labeled FD_CLOEXEC except for the ones you need to be duplicated.
+	*/
+
+#if   xENV_WIN
+	BOOL blRv = FALSE;
+
+	if (a_flag) {
+		blRv = ::SetHandleInformation(_handle, HANDLE_FLAG_INHERIT, 0);
+		xTEST_DIFF(blRv, FALSE);
+	} else {
+		blRv = ::SetHandleInformation(_handle, HANDLE_FLAG_INHERIT, 1)
+		xTEST_DIFF(blRv, FALSE);
+	}
+#elif xENV_UNIX
+	int_t iRv = - 1;
+
+	cint_t flags = ::fcntl(_handle, F_GETFD);
+	xTEST_DIFF(flags, - 1);
+
+	if (a_flag) {
+		iRv = ::fcntl(_handle, F_SETFD, flags |  FD_CLOEXEC);
+		xTEST_DIFF(iRv, - 1);
+	} else {
+		iRv = ::fcntl(_handle, F_SETFD, flags & ~FD_CLOEXEC);
+		xTEST_DIFF(iRv, - 1);
+	}
+#endif
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T, HandlePolicyType valueT>
 bool_t
 Handle<T, valueT>::isValid() const
 {

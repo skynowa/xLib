@@ -60,6 +60,8 @@ public:
         ///< set
     T           clone() const xWARN_UNUSED_RV;
         ///< duplicate handle
+    void_t      setCloExec(cbool_t flag);
+		///< duplicate file descriptors from sub-processes
 
     bool_t      isValid() const xWARN_UNUSED_RV;
         ///< is valid
