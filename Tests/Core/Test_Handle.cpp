@@ -1,5 +1,5 @@
 /**
- * \file   Test_HandleT.cpp
+ * \file   Test_Handle.cpp
  * \brief
  */
 
@@ -9,12 +9,12 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xl;
 
-xTEST_CLASS(Test_HandleT)
-xTEST_UNIT(Test_HandleT)
+xTEST_CLASS(Test_Handle)
+xTEST_UNIT(Test_Handle)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_HandleT::unit()
+Test_Handle::unit()
 {
     xTEST_CASE("Handle")
     {
