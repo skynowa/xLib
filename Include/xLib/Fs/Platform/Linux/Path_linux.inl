@@ -77,6 +77,8 @@ Path::_fileExt_impl(
 bool_t
 Path::_isCaseSensitive_impl() const
 {
+	xUNUSED(_filePath);
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
