@@ -136,7 +136,7 @@ Application::~Application()
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-bool_t
+void_t
 Application::setDevel(
     cbool_t a_flag
 )

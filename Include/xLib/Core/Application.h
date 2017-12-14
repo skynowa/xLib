@@ -23,7 +23,7 @@ public:
     virtual       ~Application();
         ///< destructor
 
-    bool_t         setDevel(cbool_t flag);
+    void_t         setDevel(cbool_t flag);
         ///< set devel
     bool_t         isDevel() const;
         ///< is devel
