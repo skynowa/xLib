@@ -30,13 +30,7 @@ HandlePolicy<T, hvNative>::_openMax_impl()
 
     rlimit limit;   xSTRUCT_ZERO(limit);
 
-    #if xENV_BSD
-        cint_t resource = RLIMIT_OFILE;
-    #else
-        cint_t resource = RLIMIT_NOFILE;
-    #endif
-
-    int_t iRv = ::getrlimit(resource, &limit);
+    int_t iRv = ::getrlimit(RLIMIT_NOFILE, &limit);
     xTEST_EQ(iRv, 0);
 
     uiRv = limit.rlim_cur;
