@@ -26,17 +26,13 @@ template<typename T>
 std::size_t
 HandlePolicy<T, hvNative>::_openMax_impl()
 {
-    std::size_t uiRv = 0;
-
     rlimit limit;   xSTRUCT_ZERO(limit);
 
     int_t iRv = ::getrlimit(RLIMIT_NOFILE, &limit);
     xTEST_EQ(iRv, 0);
+    xTEST_GR(limit.rlim_cur, 0);
 
-    uiRv = limit.rlim_cur;
-    xTEST_GR(uiRv, 0);
-
-    return uiRv;
+    return static_cast<std::size_t>( limit.rlim_cur );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
