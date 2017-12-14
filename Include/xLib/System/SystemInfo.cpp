@@ -51,7 +51,7 @@ SystemInfo::os()
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-SystemInfo::formatOs()
+SystemInfo::formatOs() const
 {
     return _formatOs_impl();
 }
