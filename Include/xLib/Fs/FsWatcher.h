@@ -40,9 +40,10 @@ xPLATFORM_IMPL:
 
 #elif xENV_UNIX
     #if   xENV_LINUX
-
+        HandleNativeInvalid _inotifyFd;
+        std::vector<int>    _watchFds;
     #elif xENV_BSD
-        HandleNativeInvalid   _kQueue;
+        HandleNativeInvalid _kQueue;
     #elif xENV_APPLE
 
     #endif

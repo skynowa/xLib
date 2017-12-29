@@ -28,7 +28,7 @@ FsWatcher::_watch_impl()
     const int     changeSize = static_cast<int>( _filePaths.size() );
 
     for (size_t i = 0; i < _filePaths.size(); ++ i) {
-        auto &itFilePath = _filePaths[i];
+        std::tstring_t &itFilePath = _filePaths[i];
 
         EV_SET(&change[i], _fileHandles[i], EVFILT_VNODE,
                 EV_ADD | EV_ENABLE | EV_ONESHOT,
