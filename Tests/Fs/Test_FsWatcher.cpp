@@ -35,7 +35,11 @@ Test_FsWatcher::unit()
 
     static std::cvec_tstring_t dbWatchDirPaths
     {
+	#if 0
 		#include "fs_watcher_dirs_suppliers.db"
+	#else
+		#include "/home/skynowa/Projects/xLib/Tests/Fs/Test_FsWatcher.cpp"
+	#endif
     };
 
     static std::cvec_tstring_t dbWatchDirPathsDisabled
