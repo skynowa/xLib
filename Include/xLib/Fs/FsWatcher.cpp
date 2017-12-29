@@ -51,6 +51,8 @@ FsWatcher::openFiles(
     std::cmap_tstring_t &a_cmds
 )
 {
+	close();
+
     // _filePaths
     for (auto &it_filePath : a_filePaths) {
         File file;
@@ -85,6 +87,8 @@ FsWatcher::openDirs(
 )
 {
     bool_t bRv = false;
+
+	close();
 
     for (auto &it_dirPath : a_dirPaths) {
         std::vec_tstring_t filePaths;
