@@ -42,6 +42,8 @@ xPLATFORM_IMPL:
     #if   xENV_LINUX
         HandleNativeInvalid _inotifyFd;
         std::vector<int>    _watchFds;
+
+        void_t              _onEvent(const inotify_event &event);
     #elif xENV_BSD
         HandleNativeInvalid _kQueue;
     #elif xENV_APPLE
