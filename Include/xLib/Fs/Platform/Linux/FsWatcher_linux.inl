@@ -104,11 +104,11 @@ FsWatcher::_onEvent(
 		constexpr _Event events[] =
 		{
 			{IN_ACCESS,        "IN_ACCESS"},
-			{IN_ATTRIB,        "IN_ATTRIB"},
-			{IN_CLOSE_NOWRITE, "IN_CLOSE_NOWRITE"},
-			{IN_CLOSE_WRITE,   "IN_CLOSE_WRITE"},
+			{IN_ATTRIB,        "IN_ATTRIB"},        /// crossplatform
+			{IN_CLOSE_NOWRITE, "IN_CLOSE_NOWRITE"}, /// crossplatform
+			{IN_CLOSE_WRITE,   "IN_CLOSE_WRITE"},   /// crossplatform
 			{IN_CREATE,        "IN_CREATE"},
-			{IN_DELETE,        "IN_DELETE"},
+			{IN_DELETE,        "IN_DELETE"},        /// crossplatform
 			{IN_DELETE_SELF,   "IN_DELETE_SELF"},
 			{IN_IGNORED,       "IN_IGNORED"},
 			{IN_ISDIR,         "IN_ISDIR"},
@@ -116,7 +116,7 @@ FsWatcher::_onEvent(
 			{IN_MOVE_SELF,     "IN_MOVE_SELF"},
 			{IN_MOVED_FROM,    "IN_MOVED_FROM"},
 			{IN_MOVED_TO,      "IN_MOVED_TO"},
-			{IN_OPEN,          "IN_OPEN"},
+			{IN_OPEN,          "IN_OPEN"},          /// crossplatform
 			{IN_Q_OVERFLOW,    "IN_Q_OVERFLOW"},
 			{IN_UNMOUNT,       "IN_UNMOUNT"}
 		};
@@ -128,7 +128,7 @@ FsWatcher::_onEvent(
 				std::tcout << itEvent.name << " ";
 			}
 		}
-	}
+	} // log
 }
 //-------------------------------------------------------------------------------------------------
 
