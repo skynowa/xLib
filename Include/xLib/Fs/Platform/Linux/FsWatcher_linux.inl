@@ -86,27 +86,42 @@ FsWatcher::_onEvent(
 		printf("cookie =%4d; ", a_event.cookie);
 		printf("mask = ");
 
-		if (a_event.mask & IN_ACCESS)        printf("IN_ACCESS ");
-		if (a_event.mask & IN_ATTRIB)        printf("IN_ATTRIB ");
-		if (a_event.mask & IN_CLOSE_NOWRITE) printf("IN_CLOSE_NOWRITE ");
-		if (a_event.mask & IN_CLOSE_WRITE)   printf("IN_CLOSE_WRITE ");
-		if (a_event.mask & IN_CREATE)        printf("IN_CREATE ");
-		if (a_event.mask & IN_DELETE)        printf("IN_DELETE ");
-		if (a_event.mask & IN_DELETE_SELF)   printf("IN_DELETE_SELF ");
-		if (a_event.mask & IN_IGNORED)       printf("IN_IGNORED ");
-		if (a_event.mask & IN_ISDIR)         printf("IN_ISDIR ");
-		if (a_event.mask & IN_MODIFY)        printf("IN_MODIFY ");
-		if (a_event.mask & IN_MOVE_SELF)     printf("IN_MOVE_SELF ");
-		if (a_event.mask & IN_MOVED_FROM)    printf("IN_MOVED_FROM ");
-		if (a_event.mask & IN_MOVED_TO)      printf("IN_MOVED_TO ");
-		if (a_event.mask & IN_OPEN)          printf("IN_OPEN ");
-		if (a_event.mask & IN_Q_OVERFLOW)    printf("IN_Q_OVERFLOW ");
-		if (a_event.mask & IN_UNMOUNT)       printf("IN_UNMOUNT ");
+		struct _Event
+		{
+			uint32_t  mask;
+			ctchar_t *maskStr;
+		};
+
+		constexpr _Event events[] =
+		{
+			{IN_ACCESS,        "IN_ACCESS"},
+			{IN_ATTRIB,        "IN_ATTRIB"},
+			{IN_CLOSE_NOWRITE, "IN_CLOSE_NOWRITE"},
+			{IN_CLOSE_WRITE,   "IN_CLOSE_WRITE"},
+			{IN_CREATE,        "IN_CREATE"},
+			{IN_DELETE,        "IN_DELETE"},
+			{IN_DELETE_SELF,   "IN_DELETE_SELF"},
+			{IN_IGNORED,       "IN_IGNORED"},
+			{IN_ISDIR,         "IN_ISDIR"},
+			{IN_MODIFY,        "IN_MODIFY"},
+			{IN_MOVE_SELF,     "IN_MOVE_SELF"},
+			{IN_MOVED_FROM,    "IN_MOVED_FROM"},
+			{IN_MOVED_TO,      "IN_MOVED_TO"},
+			{IN_OPEN,          "IN_OPEN"},
+			{IN_Q_OVERFLOW,    "IN_Q_OVERFLOW"},
+			{IN_UNMOUNT,       "IN_UNMOUNT"}
+		};
+
+		for (size_t i = 0; i < Utils::arraySizeT(events); ++ i) {
+			const _Event &itEvent = events[i];
+
+			if (a_event.mask & itEvent.mask) {
+				std::tcout << itEvent.maskStr << " ";
+			}
+		}
 
 		printf("\n");
-
-		if (a_event.len > 0)
-			printf("        name = %s\n", a_event.name);
+		printf("        name = %s\n", (a_event.len > 0) ? a_event.name : "<empty>");
 	}
 }
 //-------------------------------------------------------------------------------------------------
