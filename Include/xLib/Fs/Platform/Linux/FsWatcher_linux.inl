@@ -39,7 +39,6 @@ FsWatcher::_watch_impl()
 
 	for ( ; ; )  {
 		char buf[BUF_LEN] = {};
-
 		ssize_t numRead = ::read(_inotifyFd.get(), buf, BUF_LEN);
 		xTEST_GR(numRead, (ssize_t)0);
 
@@ -81,31 +80,34 @@ FsWatcher::_onEvent(
 	const inotify_event &a_event	///< inotify event
 )
 {
-	printf("    wd =%2d; ", a_event.wd);
-	printf("cookie =%4d; ", a_event.cookie);
-	printf("mask = ");
+	// log
+	{
+		printf("    wd =%2d; ", a_event.wd);
+		printf("cookie =%4d; ", a_event.cookie);
+		printf("mask = ");
 
-	if (a_event.mask & IN_ACCESS)        printf("IN_ACCESS ");
-	if (a_event.mask & IN_ATTRIB)        printf("IN_ATTRIB ");
-	if (a_event.mask & IN_CLOSE_NOWRITE) printf("IN_CLOSE_NOWRITE ");
-	if (a_event.mask & IN_CLOSE_WRITE)   printf("IN_CLOSE_WRITE ");
-	if (a_event.mask & IN_CREATE)        printf("IN_CREATE ");
-	if (a_event.mask & IN_DELETE)        printf("IN_DELETE ");
-	if (a_event.mask & IN_DELETE_SELF)   printf("IN_DELETE_SELF ");
-	if (a_event.mask & IN_IGNORED)       printf("IN_IGNORED ");
-	if (a_event.mask & IN_ISDIR)         printf("IN_ISDIR ");
-	if (a_event.mask & IN_MODIFY)        printf("IN_MODIFY ");
-	if (a_event.mask & IN_MOVE_SELF)     printf("IN_MOVE_SELF ");
-	if (a_event.mask & IN_MOVED_FROM)    printf("IN_MOVED_FROM ");
-	if (a_event.mask & IN_MOVED_TO)      printf("IN_MOVED_TO ");
-	if (a_event.mask & IN_OPEN)          printf("IN_OPEN ");
-	if (a_event.mask & IN_Q_OVERFLOW)    printf("IN_Q_OVERFLOW ");
-	if (a_event.mask & IN_UNMOUNT)       printf("IN_UNMOUNT ");
+		if (a_event.mask & IN_ACCESS)        printf("IN_ACCESS ");
+		if (a_event.mask & IN_ATTRIB)        printf("IN_ATTRIB ");
+		if (a_event.mask & IN_CLOSE_NOWRITE) printf("IN_CLOSE_NOWRITE ");
+		if (a_event.mask & IN_CLOSE_WRITE)   printf("IN_CLOSE_WRITE ");
+		if (a_event.mask & IN_CREATE)        printf("IN_CREATE ");
+		if (a_event.mask & IN_DELETE)        printf("IN_DELETE ");
+		if (a_event.mask & IN_DELETE_SELF)   printf("IN_DELETE_SELF ");
+		if (a_event.mask & IN_IGNORED)       printf("IN_IGNORED ");
+		if (a_event.mask & IN_ISDIR)         printf("IN_ISDIR ");
+		if (a_event.mask & IN_MODIFY)        printf("IN_MODIFY ");
+		if (a_event.mask & IN_MOVE_SELF)     printf("IN_MOVE_SELF ");
+		if (a_event.mask & IN_MOVED_FROM)    printf("IN_MOVED_FROM ");
+		if (a_event.mask & IN_MOVED_TO)      printf("IN_MOVED_TO ");
+		if (a_event.mask & IN_OPEN)          printf("IN_OPEN ");
+		if (a_event.mask & IN_Q_OVERFLOW)    printf("IN_Q_OVERFLOW ");
+		if (a_event.mask & IN_UNMOUNT)       printf("IN_UNMOUNT ");
 
-	printf("\n");
+		printf("\n");
 
-	if (a_event.len > 0)
-		printf("        name = %s\n", a_event.name);
+		if (a_event.len > 0)
+			printf("        name = %s\n", a_event.name);
+	}
 }
 //-------------------------------------------------------------------------------------------------
 
