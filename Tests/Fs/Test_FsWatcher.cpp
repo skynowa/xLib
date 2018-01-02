@@ -51,7 +51,7 @@ Test_FsWatcher::unit()
     xTEST_CASE("FsWatcher::FsWatcher")
     {
         for ( ; ; ) {
-            FsWatcher watcher(dbWatchDirPathsDisabled, xT("*.cpp"));
+            FsWatcher watcher(dbWatchDirPathsDisabled, xT("*.inl"));
             m_bRv = watcher.openDirs(dbWatchDirPaths, dbCmds);
             if ( !m_bRv ) {
                 continue;
