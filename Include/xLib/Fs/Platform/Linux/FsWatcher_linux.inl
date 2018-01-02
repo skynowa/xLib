@@ -34,7 +34,7 @@ FsWatcher::_watch_impl()
 	}
 
 	// Read events forever
-	constexpr std::size_t EVENT_SIZE = sizeof(struct inotify_event);
+	constexpr std::size_t EVENT_SIZE = sizeof(inotify_event);
 	constexpr std::size_t BUF_LEN    = (EVENT_SIZE + NAME_MAX + 1) * 10;
 
 	for ( ; ; )  {
@@ -46,7 +46,7 @@ FsWatcher::_watch_impl()
 
 		// Process all of the events in buffer returned by read()
 		for (char *p = buf; p < buf + numRead; ) {
-			struct inotify_event *event = (struct inotify_event *)p;
+			inotify_event *event = (inotify_event *)p;
 			xTEST_PTR(event);
 
 			_onEvent(*event);
