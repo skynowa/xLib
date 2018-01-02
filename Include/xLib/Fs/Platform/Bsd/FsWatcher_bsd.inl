@@ -134,5 +134,55 @@ FsWatcher::_close_impl()
     }
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+FsWatcher::_onEvent(
+    const kevent &a_event    ///< kevent event
+)
+{
+    // log
+    {
+       /**
+        * struct kevent
+        * {
+        *     uintptr_t ident;  // identifier for this event
+        *     short     filter; // filter for event
+        *     u_short   flags;  // action flags for kqueue
+        *     u_int     fflags; // filter flag value
+        *     intptr_t  data;   // filter data value
+        *     void     *udata;  // opaque user data identifier
+        * };
+        */
+
+        struct _Event
+        {
+            u_int     mask;
+            ctchar_t *name;
+        };
+
+        constexpr _Event events[] =
+        {
+            {NOTE_ATTRIB,      "NOTE_ATTRIB"},
+            {NOTE_CLOSE,       "NOTE_CLOSE"},
+            {NOTE_CLOSE_WRITE, "NOTE_CLOSE_WRITE"},
+            {NOTE_DELETE,      "NOTE_DELETE"},
+            {NOTE_EXTEND,      "NOTE_EXTEND"},
+            {NOTE_LINK,        "NOTE_LINK"},
+            {NOTE_OPEN,        "NOTE_OPEN"},
+            {NOTE_READ,        "NOTE_READ"},
+            {NOTE_RENAME,      "NOTE_RENAME"},
+            {NOTE_REVOKE,      "NOTE_REVOKE"},
+            {NOTE_WRITE,       "NOTE_WRITE"}
+        };
+
+        for (size_t i = 0; i < Utils::arraySizeT(events); ++ i) {
+            const _Event &itEvent = events[i];
+
+            if (a_event.fflags & itEvent.mask) {
+                std::tcout << itEvent.name << " ";
+            }
+        }
+    }
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, fs)
