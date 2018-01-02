@@ -6,7 +6,9 @@
 
 #pragma once
 
-#include <xLib/Core/Core.h>
+#include "Trace.h"
+#include "FileLog.h"
+#include "SystemLog.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, log)
 
@@ -16,19 +18,21 @@ class AutoLog
 {
 public:
     AutoLog(std::ctstring_t &a_str, cbool_t a_isEnable = true) :
-        _str(a_str)
+        _str     (a_str),
+        _isEnable(a_isEnable)
     {
-        _log.setEnabled(a_isEnable);
-
-        _log << xT("\n\n::: Start ") << _str << xT(" :::\n");
+        _log.setEnabled(_isEnable);
+        _log.write(xT("\n\n::: Start %s :::\n"), _str.c_str());
     }
+
    ~AutoLog()
     {
-        _log << xT("\n::: Finish ") << _str << xT(" :::\n");
+        _log.write(xT("\n\n::: Finish %s :::\n"), _str.c_str());
     }
 
 private:
     std::ctstring_t _str;
+    cbool_t         _isEnable;
     T               _log;
 
     xNO_COPY_ASSIGN(AutoLog)

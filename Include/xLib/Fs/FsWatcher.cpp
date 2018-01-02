@@ -6,6 +6,8 @@
 
 #include "FsWatcher.h"
 
+#include <xLib/Log/AutoLog.h>
+
 #if   xENV_WIN
     #include "Platform/Win/FsWatcher_win.inl"
 #elif xENV_UNIX
