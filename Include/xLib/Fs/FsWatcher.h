@@ -50,6 +50,7 @@ xPLATFORM_IMPL:
         void_t              _onEvent(const inotify_event &event);
     #elif xENV_BSD
         HandleNativeInvalid _kQueue;
+        void_t              _onEvent(const kevent &event);
     #elif xENV_APPLE
 
     #endif

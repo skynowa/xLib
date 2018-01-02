@@ -82,14 +82,21 @@ FsWatcher::_onEvent(
 {
 	// log
 	{
-		printf("    wd = %2d; ", a_event.wd);
-		printf("cookie = %4d; ", a_event.cookie);
-		printf("mask = ");
+       /**
+        * struct inotify_event
+        * {
+        *     int       wd;         // Watch descriptor.
+        *     uint32_t  mask;       // Watch mask.
+        *     uint32_t  cookie;     // Cookie to synchronize two events.
+        *     uint32_t  len;        // Length (including NULs) of name.
+        *     char name __flexarr;  // Name.
+        * };
+        */
 
 		struct _Event
 		{
 			uint32_t  mask;
-			ctchar_t *maskStr;
+			ctchar_t *name;
 		};
 
 		constexpr _Event events[] =
@@ -116,12 +123,9 @@ FsWatcher::_onEvent(
 			const _Event &itEvent = events[i];
 
 			if (a_event.mask & itEvent.mask) {
-				std::tcout << itEvent.maskStr << " ";
+				std::tcout << itEvent.name << " ";
 			}
 		}
-
-		printf("\n");
-		printf("        name = %s\n", (a_event.len > 0) ? a_event.name : "<empty>");
 	}
 }
 //-------------------------------------------------------------------------------------------------
