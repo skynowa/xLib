@@ -33,14 +33,15 @@ Test_FsWatcher::unit()
 		#include "cmds_suppliers.db"
     };
 
-    static std::cvec_tstring_t dbWatchDirPaths
-    {
-	#if 0
+    std::vec_tstring_t dbWatchDirPaths
+#if 0
+	{
 		#include "fs_watcher_dirs_suppliers.db"
-	#else
-		#include "/home/skynowa/Projects/xLib/Tests/Fs/Test_FsWatcher.cpp"
-	#endif
-    };
+	};
+#else
+	;
+	dbWatchDirPaths.push_back("/home/skynowa/Projects/xLib/Tests/Fs/Test_FsWatcher.cpp");
+#endif
 
     static std::cvec_tstring_t dbWatchDirPathsDisabled
     {
