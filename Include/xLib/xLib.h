@@ -88,6 +88,7 @@
 #include <xLib/Log/Trace.h>
 #include <xLib/Log/FileLog.h>
 #include <xLib/Log/SystemLog.h>
+#include <xLib/Log/AutoLog.h>
 
 // Net
 #include <xLib/Net/SocketInit.h>
