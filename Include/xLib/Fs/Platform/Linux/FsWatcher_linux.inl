@@ -15,6 +15,8 @@ xNAMESPACE_BEGIN2(xl, fs)
 void_t
 FsWatcher::_watch_impl()
 {
+    AutoTrace autoLog(xFUNCTION);
+
 	int iRv = 0;
 
 	// Create inotify instance
