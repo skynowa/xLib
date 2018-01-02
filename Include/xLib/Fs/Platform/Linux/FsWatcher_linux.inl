@@ -82,8 +82,8 @@ FsWatcher::_onEvent(
 {
 	// log
 	{
-		printf("    wd =%2d; ", a_event.wd);
-		printf("cookie =%4d; ", a_event.cookie);
+		printf("    wd = %2d; ", a_event.wd);
+		printf("cookie = %4d; ", a_event.cookie);
 		printf("mask = ");
 
 		struct _Event
