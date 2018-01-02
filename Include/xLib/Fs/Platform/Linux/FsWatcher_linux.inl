@@ -36,12 +36,12 @@ FsWatcher::_watch_impl()
 	}
 
 	// Read events forever
-	constexpr std::size_t EVENT_SIZE = sizeof(inotify_event);
-	constexpr std::size_t BUF_LEN    = (EVENT_SIZE + NAME_MAX + 1) * 10;
+	constexpr std::size_t eventSize = sizeof(inotify_event);
+	constexpr std::size_t buffSize  = (eventSize + NAME_MAX + 1) * 10;
 
 	for ( ; ; )  {
-		char buf[BUF_LEN] = {};
-		ssize_t numRead = ::read(_inotifyFd.get(), buf, BUF_LEN);
+		char buf[buffSize] = {};
+		ssize_t numRead = ::read(_inotifyFd.get(), buf, buffSize);
 		xTEST_GR(numRead, (ssize_t)0);
 
 		printf("Read %ld bytes from inotify fd\n", (long)numRead);
@@ -53,7 +53,7 @@ FsWatcher::_watch_impl()
 
 			_onEvent(*event);
 
-			p += EVENT_SIZE + event->len;
+			p += eventSize + event->len;
 		}
 	}
 }
