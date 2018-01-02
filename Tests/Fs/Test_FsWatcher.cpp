@@ -40,7 +40,7 @@ Test_FsWatcher::unit()
 	};
 #else
 	;
-	dbWatchDirPaths.push_back("/home/skynowa/Projects/xLib/Tests/Fs/Test_FsWatcher.cpp");
+	dbWatchDirPaths.push_back("/home/skynowa/Projects/xLib/Include/xLib/Fs");
 #endif
 
     static std::cvec_tstring_t dbWatchDirPathsDisabled
