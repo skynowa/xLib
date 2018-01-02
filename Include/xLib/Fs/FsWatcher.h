@@ -8,6 +8,10 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
+
+#if xENV_LINUX
+	#include <sys/inotify.h>
+#endif
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, fs)
 

@@ -4,9 +4,6 @@
  */
 
 
-#include <sys/inotify.h>
-
-
 xNAMESPACE_BEGIN2(xl, fs)
 
 /**************************************************************************************************
@@ -41,7 +38,7 @@ FsWatcher::_watch_impl()
 	constexpr std::size_t BUF_LEN    = (EVENT_SIZE + NAME_MAX + 1) * 10;
 
 	for ( ; ; )  {
-		char buf[BUF_LEN];
+		char buf[BUF_LEN] = {};
 
 		ssize_t numRead = ::read(_inotifyFd.get(), buf, BUF_LEN);
 		xTEST_GR(numRead, (ssize_t)0);
