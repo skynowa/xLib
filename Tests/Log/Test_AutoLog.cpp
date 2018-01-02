@@ -25,12 +25,12 @@ Test_Trace::unit()
 
     xTEST_CASE("AutoFileLog")
     {
-        AutoTrace autoLog(xT("AutoFileLog"), isEnabled);
+        AutoFileLog autoLog(xT("AutoFileLog"), isEnabled);
     }
 
     xTEST_CASE("AutoSystemLog")
     {
-        AutoTrace autoLog(xT("AutoSystemLog"), isEnabled);
+        AutoSystemLog autoLog(xT("AutoSystemLog"), isEnabled);
     }
 
     return true;
