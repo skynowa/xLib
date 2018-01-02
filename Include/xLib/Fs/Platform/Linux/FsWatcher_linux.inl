@@ -15,37 +15,6 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-// Display information from inotify_event structure
-static void
-inotifyEventDump(inotify_event *a_event)
-{
-	printf("    wd =%2d; ", a_event->wd);
-	printf("cookie =%4d; ", a_event->cookie);
-	printf("mask = ");
-
-	if (a_event->mask & IN_ACCESS)        printf("IN_ACCESS ");
-	if (a_event->mask & IN_ATTRIB)        printf("IN_ATTRIB ");
-	if (a_event->mask & IN_CLOSE_NOWRITE) printf("IN_CLOSE_NOWRITE ");
-	if (a_event->mask & IN_CLOSE_WRITE)   printf("IN_CLOSE_WRITE ");
-	if (a_event->mask & IN_CREATE)        printf("IN_CREATE ");
-	if (a_event->mask & IN_DELETE)        printf("IN_DELETE ");
-	if (a_event->mask & IN_DELETE_SELF)   printf("IN_DELETE_SELF ");
-	if (a_event->mask & IN_IGNORED)       printf("IN_IGNORED ");
-	if (a_event->mask & IN_ISDIR)         printf("IN_ISDIR ");
-	if (a_event->mask & IN_MODIFY)        printf("IN_MODIFY ");
-	if (a_event->mask & IN_MOVE_SELF)     printf("IN_MOVE_SELF ");
-	if (a_event->mask & IN_MOVED_FROM)    printf("IN_MOVED_FROM ");
-	if (a_event->mask & IN_MOVED_TO)      printf("IN_MOVED_TO ");
-	if (a_event->mask & IN_OPEN)          printf("IN_OPEN ");
-	if (a_event->mask & IN_Q_OVERFLOW)    printf("IN_Q_OVERFLOW ");
-	if (a_event->mask & IN_UNMOUNT)       printf("IN_UNMOUNT ");
-
-	printf("\n");
-
-	if (a_event->len > 0)
-		printf("        name = %s\n", a_event->name);
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 FsWatcher::_watch_impl()
 {
@@ -82,7 +51,9 @@ FsWatcher::_watch_impl()
 		// Process all of the events in buffer returned by read()
 		for (char *p = buf; p < buf + numRead; ) {
 			struct inotify_event *event = (struct inotify_event *)p;
-			inotifyEventDump(event);
+			xTEST_PTR(event);
+
+			_onEvent(*event);
 
 			p += EVENT_SIZE + event->len;
 		}
@@ -106,6 +77,38 @@ FsWatcher::_close_impl()
 
 	// _inotifyFd
     _inotifyFd.close();
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+FsWatcher::_onEvent(
+	const inotify_event &a_event	///< inotify event
+)
+{
+	printf("    wd =%2d; ", a_event.wd);
+	printf("cookie =%4d; ", a_event.cookie);
+	printf("mask = ");
+
+	if (a_event.mask & IN_ACCESS)        printf("IN_ACCESS ");
+	if (a_event.mask & IN_ATTRIB)        printf("IN_ATTRIB ");
+	if (a_event.mask & IN_CLOSE_NOWRITE) printf("IN_CLOSE_NOWRITE ");
+	if (a_event.mask & IN_CLOSE_WRITE)   printf("IN_CLOSE_WRITE ");
+	if (a_event.mask & IN_CREATE)        printf("IN_CREATE ");
+	if (a_event.mask & IN_DELETE)        printf("IN_DELETE ");
+	if (a_event.mask & IN_DELETE_SELF)   printf("IN_DELETE_SELF ");
+	if (a_event.mask & IN_IGNORED)       printf("IN_IGNORED ");
+	if (a_event.mask & IN_ISDIR)         printf("IN_ISDIR ");
+	if (a_event.mask & IN_MODIFY)        printf("IN_MODIFY ");
+	if (a_event.mask & IN_MOVE_SELF)     printf("IN_MOVE_SELF ");
+	if (a_event.mask & IN_MOVED_FROM)    printf("IN_MOVED_FROM ");
+	if (a_event.mask & IN_MOVED_TO)      printf("IN_MOVED_TO ");
+	if (a_event.mask & IN_OPEN)          printf("IN_OPEN ");
+	if (a_event.mask & IN_Q_OVERFLOW)    printf("IN_Q_OVERFLOW ");
+	if (a_event.mask & IN_UNMOUNT)       printf("IN_UNMOUNT ");
+
+	printf("\n");
+
+	if (a_event.len > 0)
+		printf("        name = %s\n", a_event.name);
 }
 //-------------------------------------------------------------------------------------------------
 
