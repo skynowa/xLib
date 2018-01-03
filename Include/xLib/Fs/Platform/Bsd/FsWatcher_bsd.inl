@@ -33,7 +33,7 @@ FsWatcher::_watch_impl()
     for (size_t i = 0; i < _filePaths.size(); ++ i) {
         std::tstring_t &itFilePath = _filePaths[i];
 
-        EV_SET(&change[i], _fileHandles[i], EVFILT_VNODE, EV_ADD | EV_ENABLE /*| EV_ONESHOT*/,
+        EV_SET(&change[i], _fileHandles[i], EVFILT_VNODE, EV_ADD | EV_CLEAR /*| EV_ONESHOT*/,
                 noteAllEvents, 0, (void_t *)itFilePath.c_str());
     }
 
