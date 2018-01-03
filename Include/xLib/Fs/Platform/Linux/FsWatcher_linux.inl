@@ -30,7 +30,7 @@ FsWatcher::_watch_impl()
 		int watchFd = ::inotify_add_watch(_inotifyFd.get(), itFilePath.c_str(), IN_ALL_EVENTS /*| IN_ONESHOT*/);
 		xTEST_DIFF(watchFd, -1);
 
-		printf("Watching %s: wd=%d\n", itFilePath.c_str(), watchFd);
+		printf("Watch %s: wd=%d\n", itFilePath.c_str(), watchFd);
 
 		_watchFds.insert( {watchFd, itFilePath} );
 	}
