@@ -104,21 +104,17 @@ FsWatcher::_onEvent(
 		constexpr _Event events[] =
 		{
 			{IN_ACCESS,        "IN_ACCESS"},
-			{IN_ATTRIB,        "IN_ATTRIB"},        /// crossplatform
-			{IN_CLOSE_NOWRITE, "IN_CLOSE_NOWRITE"}, /// crossplatform
-			{IN_CLOSE_WRITE,   "IN_CLOSE_WRITE"},   /// crossplatform
-			{IN_CREATE,        "IN_CREATE"},
-			{IN_DELETE,        "IN_DELETE"},        /// crossplatform
-			{IN_DELETE_SELF,   "IN_DELETE_SELF"},
-			{IN_IGNORED,       "IN_IGNORED"},
-			{IN_ISDIR,         "IN_ISDIR"},
 			{IN_MODIFY,        "IN_MODIFY"},
-			{IN_MOVE_SELF,     "IN_MOVE_SELF"},
+			{IN_ATTRIB,        "IN_ATTRIB"}, 		/// crossplatform
+			{IN_CLOSE_NOWRITE, "IN_CLOSE_NOWRITE"}, /// crossplatform
+			{IN_CLOSE_WRITE,   "IN_CLOSE_WRITE"}, 	/// crossplatform
+			{IN_OPEN,          "IN_OPEN"}, 			/// crossplatform
 			{IN_MOVED_FROM,    "IN_MOVED_FROM"},
 			{IN_MOVED_TO,      "IN_MOVED_TO"},
-			{IN_OPEN,          "IN_OPEN"},          /// crossplatform
-			{IN_Q_OVERFLOW,    "IN_Q_OVERFLOW"},
-			{IN_UNMOUNT,       "IN_UNMOUNT"}
+			{IN_CREATE,        "IN_CREATE"},
+			{IN_DELETE,        "IN_DELETE"}, 		/// crossplatform
+			{IN_DELETE_SELF,   "IN_DELETE_SELF"},
+			{IN_MOVE_SELF,     "IN_MOVE_SELF"},
 		};
 
 		for (size_t i = 0; i < Utils::arraySizeT(events); ++ i) {
