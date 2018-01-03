@@ -24,16 +24,17 @@ FsWatcher::_watch_impl()
         return;
     }
 
+    constexpr int noteAllEvents = (NOTE_ATTRIB | NOTE_CLOSE | NOTE_CLOSE_WRITE | NOTE_DELETE |
+        NOTE_EXTEND | NOTE_LINK | NOTE_OPEN | NOTE_READ | NOTE_RENAME | NOTE_REVOKE | NOTE_WRITE);
+
     struct kevent change[ _filePaths.size() ];
     const int     changeSize = static_cast<int>( _filePaths.size() );
 
     for (size_t i = 0; i < _filePaths.size(); ++ i) {
         std::tstring_t &itFilePath = _filePaths[i];
 
-        EV_SET(&change[i], _fileHandles[i], EVFILT_VNODE,
-                EV_ADD | EV_ENABLE /*| EV_ONESHOT*/,
-                NOTE_DELETE | NOTE_EXTEND | NOTE_WRITE | NOTE_ATTRIB,
-                0, (void_t *)itFilePath.c_str());
+        EV_SET(&change[i], _fileHandles[i], EVFILT_VNODE, EV_ADD | EV_ENABLE /*| EV_ONESHOT*/,
+                noteAllEvents, 0, (void_t *)itFilePath.c_str());
     }
 
     bool_t isLogEnable = true;
@@ -93,7 +94,7 @@ FsWatcher::_onEvent_impl(
 		{Unknown,      NOTE_LINK,        "NOTE_LINK"},
 		{Open,         NOTE_OPEN,        "NOTE_OPEN"},        /// crossplatform
 		{Unknown,      NOTE_READ,        "NOTE_READ"},
-		{Unknown,      NOTE_RENAME,      "NOTE_RENAME"},
+		{MovedTo,      NOTE_RENAME,      "NOTE_RENAME"},
 		{Unknown,      NOTE_REVOKE,      "NOTE_REVOKE"},
 		{Unknown,      NOTE_WRITE,       "NOTE_WRITE"}
 	};

@@ -26,7 +26,8 @@ public:
 		CloseNoWrite = 2,
 		CloseWrite   = 3,
 		Open         = 4,
-		Delete       = 5
+		MovedTo      = 5,
+		Delete       = 6
 	};
 	xTYPEDEF_CONST(Event);
 

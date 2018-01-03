@@ -40,6 +40,9 @@ public:
 		case Open:
 			std::tcout << xT("Open") << " ";
 			break;
+		case MovedTo:
+			std::tcout << xT("MovedTo") << " ";
+			break;
 		case Delete:
 			std::tcout << xT("Delete") << " ";
 			break;
