@@ -30,17 +30,17 @@ public:
 	};
 	xTYPEDEF_CONST(Event);
 
-             FsWatcher(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter);
+                   FsWatcher(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter);
         ///< constructor
-    virtual ~FsWatcher();
+    virtual       ~FsWatcher();
         ///< destructor
 
-    bool_t   openFiles(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);
-    bool_t   openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &cmds);
-    void_t   watch(culong_t timeoutMsec);
-    void_t   close();
+    bool_t         openFiles(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);
+    bool_t         openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &cmds);
+    void_t         watch(culong_t timeoutMsec);
+    void_t         close();
 
-    virtual void_t onEvent(cEvent event);
+    virtual void_t onEvent(cEvent event, std::ctstring_t &fsName);
 
 private:
     xNO_COPY_ASSIGN(FsWatcher)
@@ -57,8 +57,8 @@ xPLATFORM_IMPL:
 
 #elif xENV_UNIX
     #if   xENV_LINUX
-        HandleNativeInvalid _inotifyFd;
-        std::vector<int>    _watchFds;
+        HandleNativeInvalid             _inotifyFd;
+        std::map<int_t, std::tstring_t> _watchFds;
 
         void_t              _onEvent_impl(const inotify_event &event);
     #elif xENV_BSD
@@ -69,8 +69,8 @@ xPLATFORM_IMPL:
     #endif
 #endif
 
-    void_t   _watch_impl();
-    void_t   _close_impl();
+    void_t _watch_impl();
+    void_t _close_impl();
 };
 
 xNAMESPACE_END2(xl, fs)

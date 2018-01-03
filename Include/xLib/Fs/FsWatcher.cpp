@@ -6,6 +6,7 @@
 
 #include "FsWatcher.h"
 
+#include <xLib/Core/Const.h>
 #include <xLib/Log/AutoLog.h>
 
 #if   xENV_WIN
@@ -141,9 +142,12 @@ FsWatcher::close()
 /* virtual */
 void_t
 FsWatcher::onEvent(
-	cEvent a_event
+	cEvent           a_event,
+	std::ctstring_t &a_fsName
 )
 {
+	std::tcout << xTRACE_VAR(a_fsName) << ": ";
+
 	switch (a_event) {
 	case Attrib:
 		std::tcout << xT("Attrib") << " ";
@@ -165,6 +169,8 @@ FsWatcher::onEvent(
 		std::tcout << xT("Unknown") << " ";
 		break;
 	}
+
+	std::tcout << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 
