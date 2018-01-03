@@ -40,7 +40,7 @@ public:
     void_t         watch(culong_t timeoutMsec);
     void_t         close();
 
-    virtual void_t onEvent(cEvent event, std::ctstring_t &fsName);
+    virtual void_t onEvent(std::ctstring_t &fsName, cEvent event) = 0;
 
 private:
     xNO_COPY_ASSIGN(FsWatcher)
