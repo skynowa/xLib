@@ -98,7 +98,7 @@ FsWatcher::_onEvent_impl(
 		{CloseWrite,   IN_CLOSE_WRITE,   "IN_CLOSE_WRITE"}, 	/// crossplatform
 		{Open,         IN_OPEN,          "IN_OPEN"}, 			/// crossplatform
 		{Delete,       IN_MOVED_FROM,    "IN_MOVED_FROM"},
-		{Unknown,      IN_MOVED_TO,      "IN_MOVED_TO"},
+		{MovedTo,      IN_MOVED_TO,      "IN_MOVED_TO"},
 		{Unknown,      IN_CREATE,        "IN_CREATE"},
 		{Unknown,      IN_DELETE,        "IN_DELETE"}, 			/// crossplatform
 		{Unknown,      IN_DELETE_SELF,   "IN_DELETE_SELF"},
