@@ -19,6 +19,16 @@ class FsWatcher
     ///< File system watcher
 {
 public:
+	enum Event
+	{
+		Unknown      = 0,
+		Attrib       = 1,
+		CloseNoWrite = 2,
+		CloseWrite   = 3,
+		Open         = 4,
+		Delete       = 5
+	};
+
              FsWatcher(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter);
         ///< constructor
     virtual ~FsWatcher();
