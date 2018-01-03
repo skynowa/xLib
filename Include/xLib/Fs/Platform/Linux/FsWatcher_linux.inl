@@ -51,7 +51,7 @@ FsWatcher::_watch_impl()
 			inotify_event *event = (inotify_event *)p;
 			xTEST_PTR(event);
 
-			_onEvent(*event);
+			_onEvent_impl(*event);
 
 			p += eventSize + event->len;
 		}
@@ -78,53 +78,40 @@ FsWatcher::_close_impl()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-FsWatcher::_onEvent(
+FsWatcher::_onEvent_impl(
 	const inotify_event &a_event	///< inotify event
 )
 {
-	// log
+	struct _Event
 	{
-       /**
-        * struct inotify_event
-        * {
-        *     int       wd;         // Watch descriptor.
-        *     uint32_t  mask;       // Watch mask.
-        *     uint32_t  cookie;     // Cookie to synchronize two events.
-        *     uint32_t  len;        // Length (including NULs) of name.
-        *     char name __flexarr;  // Name.
-        * };
-        */
+		Event     id;
+		uint32_t  id_impl;
+		ctchar_t *name;
+	};
 
-		struct _Event
-		{
-			uint32_t  mask;
-			ctchar_t *name;
-		};
+	constexpr _Event events[] =
+	{
+		{Unknown,      IN_ACCESS,        "IN_ACCESS"},
+		{Unknown,      IN_MODIFY,        "IN_MODIFY"},
+		{Attrib,       IN_ATTRIB,        "IN_ATTRIB"},			/// crossplatform
+		{CloseNoWrite, IN_CLOSE_NOWRITE, "IN_CLOSE_NOWRITE"},	/// crossplatform
+		{CloseWrite,   IN_CLOSE_WRITE,   "IN_CLOSE_WRITE"}, 	/// crossplatform
+		{Open,         IN_OPEN,          "IN_OPEN"}, 			/// crossplatform
+		{Delete,       IN_MOVED_FROM,    "IN_MOVED_FROM"},
+		{Unknown,      IN_MOVED_TO,      "IN_MOVED_TO"},
+		{Unknown,      IN_CREATE,        "IN_CREATE"},
+		{Unknown,      IN_DELETE,        "IN_DELETE"}, 			/// crossplatform
+		{Unknown,      IN_DELETE_SELF,   "IN_DELETE_SELF"},
+		{Unknown,      IN_MOVE_SELF,     "IN_MOVE_SELF"},
+	};
 
-		constexpr _Event events[] =
-		{
-			{IN_ACCESS,        "IN_ACCESS"},
-			{IN_MODIFY,        "IN_MODIFY"},
-			{IN_ATTRIB,        "IN_ATTRIB"}, 		/// crossplatform
-			{IN_CLOSE_NOWRITE, "IN_CLOSE_NOWRITE"}, /// crossplatform
-			{IN_CLOSE_WRITE,   "IN_CLOSE_WRITE"}, 	/// crossplatform
-			{IN_OPEN,          "IN_OPEN"}, 			/// crossplatform
-			{IN_MOVED_FROM,    "IN_MOVED_FROM"},
-			{IN_MOVED_TO,      "IN_MOVED_TO"},
-			{IN_CREATE,        "IN_CREATE"},
-			{IN_DELETE,        "IN_DELETE"}, 		/// crossplatform
-			{IN_DELETE_SELF,   "IN_DELETE_SELF"},
-			{IN_MOVE_SELF,     "IN_MOVE_SELF"},
-		};
+	for (size_t i = 0; i < Utils::arraySizeT(events); ++ i) {
+		const _Event &itEvent = events[i];
 
-		for (size_t i = 0; i < Utils::arraySizeT(events); ++ i) {
-			const _Event &itEvent = events[i];
-
-			if (a_event.mask & itEvent.mask) {
-				std::tcout << itEvent.name << " ";
-			}
+		if (a_event.mask & itEvent.id_impl) {
+			onEvent(itEvent.id);
 		}
-	} // log
+	}
 }
 //-------------------------------------------------------------------------------------------------
 

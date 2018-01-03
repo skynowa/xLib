@@ -138,5 +138,34 @@ FsWatcher::close()
     _cmds.clear();
 }
 //-------------------------------------------------------------------------------------------------
+/* virtual */
+void_t
+FsWatcher::onEvent(
+	cEvent a_event
+)
+{
+	switch (a_event) {
+	case Attrib:
+		std::tcout << xT("Attrib") << " ";
+		break;
+	case CloseNoWrite:
+		std::tcout << xT("CloseNoWrite") << " ";
+		break;
+	case CloseWrite:
+		std::tcout << xT("CloseWrite") << " ";
+		break;
+	case Open:
+		std::tcout << xT("Open") << " ";
+		break;
+	case Delete:
+		std::tcout << xT("Delete") << " ";
+		break;
+	case Unknown:
+	default:
+		std::tcout << xT("Unknown") << " ";
+		break;
+	}
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, fs)
