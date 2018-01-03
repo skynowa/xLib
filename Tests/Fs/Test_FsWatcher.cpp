@@ -13,6 +13,46 @@ using namespace xl;
 xTEST_CLASS(Test_FsWatcher)
 xTEST_UNIT(Test_FsWatcher)
 //-------------------------------------------------------------------------------------------------
+class AutoBuilder :
+    public FsWatcher
+{
+public:
+	AutoBuilder(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter) :
+		FsWatcher(dirPathsDisabled, shellFilter)
+	{
+	}
+
+	virtual
+	void_t onEvent(std::ctstring_t &a_fsName, cEvent a_event) xOVERRIDE
+	{
+		std::tcout << xTRACE_VAR(a_fsName) << ": ";
+
+		switch (a_event) {
+		case Attrib:
+			std::tcout << xT("Attrib") << " ";
+			break;
+		case CloseNoWrite:
+			std::tcout << xT("CloseNoWrite") << " ";
+			break;
+		case CloseWrite:
+			std::tcout << xT("CloseWrite") << " ";
+			break;
+		case Open:
+			std::tcout << xT("Open") << " ";
+			break;
+		case Delete:
+			std::tcout << xT("Delete") << " ";
+			break;
+		case Unknown:
+		default:
+			std::tcout << xT("Unknown") << " ";
+			break;
+		}
+
+		std::tcout << std::endl;
+	}
+};
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
 Test_FsWatcher::unit()
@@ -51,13 +91,13 @@ Test_FsWatcher::unit()
     xTEST_CASE("FsWatcher::FsWatcher")
     {
         for ( ; ; ) {
-            FsWatcher watcher(dbWatchDirPathsDisabled, xT("*.inl"));
-            m_bRv = watcher.openDirs(dbWatchDirPaths, dbCmds);
+            AutoBuilder builder(dbWatchDirPathsDisabled, xT("*.inl"));
+            m_bRv = builder.openDirs(dbWatchDirPaths, dbCmds);
             if ( !m_bRv ) {
                 continue;
             }
 
-            watcher.watch(5 * 1000);
+            builder.watch(5 * 1000);
         }
     }
 

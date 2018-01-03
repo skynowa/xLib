@@ -102,7 +102,9 @@ FsWatcher::_onEvent_impl(
 		const _Event &itEvent = events[i];
 
 		if (a_event.mask & itEvent.id_impl) {
-			onEvent(itEvent.id);
+			std::ctstring_t fsName = a_event.udata ? std::ctstring_t((const char *)a_event.udata) : Const::strUnknown();
+
+			onEvent(fsName, itEvent.id);
 		}
 	}
 
@@ -114,7 +116,7 @@ return;
         return;
     }
 
-    std::ctstring_t data = a_event.udata ? (const char *)a_event.udata : "<null>";
+    std::ctstring_t data = a_event.udata ? std::ctstring_t((const char *)a_event.udata) : Const::strUnknown();
 
     if (a_event.fflags & NOTE_DELETE) {
         std::tcout << "[FsWatcher] File deleted: " << data << std::endl;

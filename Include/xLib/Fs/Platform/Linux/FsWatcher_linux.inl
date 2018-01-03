@@ -109,7 +109,7 @@ FsWatcher::_onEvent_impl(
 		const _Event &itEvent = events[i];
 
 		if (a_event.mask & itEvent.id_impl) {
-			onEvent(itEvent.id, _watchFds[a_event.wd]);
+			onEvent(_watchFds[a_event.wd], itEvent.id);
 		}
 	}
 }
