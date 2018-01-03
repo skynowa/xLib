@@ -31,6 +31,9 @@ public:
 	};
 	xTYPEDEF_CONST(Event);
 
+                   // TODO: int events=wxFSW_EVENT_ALL
+                   // TODO: followSymLinks
+                   // TODO: followSymLinksOutOfScope
                    FsWatcher(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter);
         ///< constructor
     virtual       ~FsWatcher();
