@@ -28,6 +28,7 @@ public:
 		Open         = 4,
 		Delete       = 5
 	};
+	xTYPEDEF_CONST(Event);
 
              FsWatcher(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter);
         ///< constructor
@@ -38,6 +39,8 @@ public:
     bool_t   openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &cmds);
     void_t   watch(culong_t timeoutMsec);
     void_t   close();
+
+    virtual void_t onEvent(cEvent event);
 
 private:
     xNO_COPY_ASSIGN(FsWatcher)
@@ -57,10 +60,10 @@ xPLATFORM_IMPL:
         HandleNativeInvalid _inotifyFd;
         std::vector<int>    _watchFds;
 
-        void_t              _onEvent(const inotify_event &event);
+        void_t              _onEvent_impl(const inotify_event &event);
     #elif xENV_BSD
         HandleNativeInvalid _kQueue;
-        void_t              _onEvent(const kevent &event);
+        void_t              _onEvent_impl(const kevent &event);
     #elif xENV_APPLE
 
     #endif
