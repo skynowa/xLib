@@ -29,69 +29,69 @@ public:
 
 		switch (a_event) {
 		case Attrib:
-			std::tcout << xT("Attrib") << " ";
+			std::tcout << xT("Attrib");
 			break;
 		case CloseNoWrite:
-			std::tcout << xT("CloseNoWrite") << " ";
+			std::tcout << xT("CloseNoWrite");
 			break;
 		case CloseWrite:
-			std::tcout << xT("CloseWrite") << " ";
+			std::tcout << xT("CloseWrite");
 			break;
 		case Open:
-			std::tcout << xT("Open") << " ";
+			std::tcout << xT("Open");
 			break;
 		case Read:
-			std::tcout << xT("Read") << " ";
+			std::tcout << xT("Read");
 			break;
 		case Moved:
-			std::tcout << xT("Moved") << " ";
+			std::tcout << xT("Moved");
 			break;
 		case Delete:
-			std::tcout << xT("Delete") << " ";
+			std::tcout << xT("Delete");
 			break;
 
 
 		// Linux
         case Modify_linux:
-            std::tcout << xT("Modify_linux") << " ";
+            std::tcout << xT("Modify_linux");
             break;
         case MovedFrom_linux:
-            std::tcout << xT("MovedFrom_linux") << " ";
+            std::tcout << xT("MovedFrom_linux");
             break;
         case MovedTo_linux:
-            std::tcout << xT("MovedTo_linux") << " ";
+            std::tcout << xT("MovedTo_linux");
             break;
         case Create_linux:
-            std::tcout << xT("Create_linux") << " ";
+            std::tcout << xT("Create_linux");
             break;
         case Delete_linux:
-            std::tcout << xT("Delete_linux") << " ";
+            std::tcout << xT("Delete_linux");
             break;
 
         // BSD
         case Delete_bsd:
-            std::tcout << xT("Delete_bsd") << " ";
+            std::tcout << xT("Delete_bsd");
             break;
         case Extend_bsd:
-            std::tcout << xT("Extend_bsd") << " ";
+            std::tcout << xT("Extend_bsd");
             break;
         case Link_bsd:
-            std::tcout << xT("Link_bsd") << " ";
+            std::tcout << xT("Link_bsd");
             break;
         case Revoke_bsd:
-            std::tcout << xT("Revoke_bsd") << " ";
+            std::tcout << xT("Revoke_bsd");
             break;
         case Write_bsd:
-            std::tcout << xT("Write_bsd") << " ";
+            std::tcout << xT("Write_bsd");
             break;
 
 		case Unknown:
 		default:
-			std::tcout << xT("Unknown") << " ";
+			std::tcout << xT("Unknown");
 			break;
 		}
 
-		std::tcout << std::endl;
+		std::tcout << xT(" ") << std::endl;
 	}
 };
 //-------------------------------------------------------------------------------------------------
