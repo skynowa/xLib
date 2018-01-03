@@ -27,12 +27,12 @@ FsWatcher::_watch_impl()
 	for (int i = 0; i < _filePaths.size(); ++ i) {
 		std::tstring_t &itFilePath = _filePaths[i];
 
-		int watchFd = ::inotify_add_watch(_inotifyFd.get(), itFilePath.c_str(), IN_ALL_EVENTS);
+		int watchFd = ::inotify_add_watch(_inotifyFd.get(), itFilePath.c_str(), IN_ALL_EVENTS /*| IN_ONESHOT*/);
 		xTEST_DIFF(watchFd, -1);
 
-		printf("Watching %s using wd %d\n", itFilePath.c_str(), watchFd);
+		printf("Watching %s: wd=%d\n", itFilePath.c_str(), watchFd);
 
-		_watchFds.push_back(watchFd);
+		_watchFds.insert( {watchFd, itFilePath} );
 	}
 
 	// Read events forever
@@ -43,8 +43,6 @@ FsWatcher::_watch_impl()
 		char buf[buffSize] = {};
 		ssize_t numRead = ::read(_inotifyFd.get(), buf, buffSize);
 		xTEST_GR(numRead, (ssize_t)0);
-
-		printf("Read %ld bytes from inotify fd\n", (long)numRead);
 
 		// Process all of the events in buffer returned by read()
 		for (char *p = buf; p < buf + numRead; ) {
@@ -65,8 +63,10 @@ FsWatcher::_close_impl()
 
 	// _watchFds
 	{
-		for (size_t i = 0; i < _watchFds.size(); ++ i) {
-			iRv = ::inotify_rm_watch(_inotifyFd.get(), _watchFds[i]);
+		typedef std::map<int_t, std::tstring_t> watch_fds_t;
+
+		xFOR_EACH_CONST(watch_fds_t, itWatchFd, _watchFds) {
+			iRv = ::inotify_rm_watch(_inotifyFd.get(), itWatchFd->first);
 			xTEST_DIFF(iRv, -1);
 		}
 
@@ -109,7 +109,7 @@ FsWatcher::_onEvent_impl(
 		const _Event &itEvent = events[i];
 
 		if (a_event.mask & itEvent.id_impl) {
-			onEvent(itEvent.id);
+			onEvent(itEvent.id, _watchFds[a_event.wd]);
 		}
 	}
 }
