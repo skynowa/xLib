@@ -86,17 +86,17 @@ FsWatcher::_onEvent_impl(
 
 	constexpr _Event events[] =
 	{
-		{Attrib,       NOTE_ATTRIB,      "NOTE_ATTRIB"},      /// crossplatform
-		{CloseNoWrite, NOTE_CLOSE,       "NOTE_CLOSE"},       /// crossplatform
-		{CloseWrite,   NOTE_CLOSE_WRITE, "NOTE_CLOSE_WRITE"}, /// crossplatform
-		{Unknown,      NOTE_DELETE,      "NOTE_DELETE"},      /// crossplatform
-		{Unknown,      NOTE_EXTEND,      "NOTE_EXTEND"},
-		{Unknown,      NOTE_LINK,        "NOTE_LINK"},
-		{Open,         NOTE_OPEN,        "NOTE_OPEN"},        /// crossplatform
-		{Unknown,      NOTE_READ,        "NOTE_READ"},
-		{MovedTo,      NOTE_RENAME,      "NOTE_RENAME"},
-		{Unknown,      NOTE_REVOKE,      "NOTE_REVOKE"},
-		{Unknown,      NOTE_WRITE,       "NOTE_WRITE"}
+		{Attrib,       NOTE_ATTRIB,      "NOTE_ATTRIB"},
+		{CloseNoWrite, NOTE_CLOSE,       "NOTE_CLOSE"},
+		{CloseWrite,   NOTE_CLOSE_WRITE, "NOTE_CLOSE_WRITE"},
+		{Delete_bsd,   NOTE_DELETE,      "NOTE_DELETE"},
+		{Extend_bsd,   NOTE_EXTEND,      "NOTE_EXTEND"},
+		{Link_bsd,     NOTE_LINK,        "NOTE_LINK"},
+		{Open,         NOTE_OPEN,        "NOTE_OPEN"},
+		{Read,         NOTE_READ,        "NOTE_READ"},
+		{Moved,        NOTE_RENAME,      "NOTE_RENAME"},
+		{Revoke_bsd,   NOTE_REVOKE,      "NOTE_REVOKE"},
+		{Write_bsd,    NOTE_WRITE,       "NOTE_WRITE"}
 	};
 
 	for (size_t i = 0; i < Utils::arraySizeT(events); ++ i) {

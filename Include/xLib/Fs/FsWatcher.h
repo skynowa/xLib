@@ -21,19 +21,35 @@ class FsWatcher
 public:
 	enum Event
 	{
-		Unknown      = 0,
-		Attrib       = 1,
-		CloseNoWrite = 2,
-		CloseWrite   = 3,
-		Open         = 4,
-		MovedTo      = 5,
-		Delete       = 6
+		Unknown = 0,
+		Attrib,
+		CloseNoWrite,
+		CloseWrite,
+		Open,
+		Read,
+		Moved,
+		Delete,
+
+        // Linux
+        Modify_linux,
+        MovedFrom_linux,
+        MovedTo_linux,
+        Create_linux,
+        Delete_linux,
+
+        // BSD
+        Delete_bsd,
+        Extend_bsd,
+        Link_bsd,
+        Revoke_bsd,
+        Write_bsd
 	};
 	xTYPEDEF_CONST(Event);
 
                    // TODO: int events=wxFSW_EVENT_ALL
                    // TODO: followSymLinks
                    // TODO: followSymLinksOutOfScope
+                   // TODO: Dir/file events
                    FsWatcher(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter);
         ///< constructor
     virtual       ~FsWatcher();
