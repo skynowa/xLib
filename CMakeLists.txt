@@ -272,6 +272,17 @@ add_custom_target(uninstall
         -DXLIB_INSTALL_PATH="${XLIB_INSTALL_PATH}"
         -P ${XLIB_LOCATION}/CMake/Uninstall.cmake)
 #--------------------------------------------------------------------------------------------------
+add_custom_target(
+        cppcheck
+        COMMAND /usr/bin/cppcheck
+        --enable=warning,performance,portability,information,missingInclude
+        --std=c++11
+        --library=qt.cfg
+        --template="[{severity}][{id}] {message} {callstack} \(On {file}:{line}\)"
+        --verbose
+        --quiet
+        ${XLIB_SOURCES})
+#--------------------------------------------------------------------------------------------------
 # template
 add_custom_target(template
     COMMAND
@@ -288,3 +299,5 @@ if (cmOPTION_BUILD_TESTS)
     add_subdirectory(${XLIB_LOCATION}/Tests)
 endif()
 #--------------------------------------------------------------------------------------------------
+# enable_cppcheck(On)
+# enable_clang_tidy(On)
