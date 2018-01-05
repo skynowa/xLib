@@ -42,7 +42,6 @@ ProcessInfo::_commandLine_impl(
     std::vec_tstring_t *a_args
 ) const
 {
-    std::string        sRv;
     std::vec_tstring_t args;
 
     int_t iRv = - 1;

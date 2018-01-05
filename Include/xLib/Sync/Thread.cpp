@@ -64,12 +64,7 @@ Thread::~Thread()
 
         // TODO: Thread::~Thread()
     #if xTODO
-        if (!bRv) {
-            kill(_s_exitTimeoutMsec);
-            if (!bRv) {
-                xTEST_FAIL;
-            }
-        }
+        kill(_s_exitTimeoutMsec);
     #endif
     }
 

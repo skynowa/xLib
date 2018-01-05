@@ -174,8 +174,6 @@ Thread::postThreadMessage(
         static_cast<LPARAM>( a_param2 ));
     xTEST_DIFF(blRv, FALSE);
 }
-
-#endif
 //-------------------------------------------------------------------------------------------------
 bool_t
 Thread::tryPostThreadMessage(

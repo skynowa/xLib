@@ -99,7 +99,6 @@ Base64::decode(
     std::string sRv;
     int         inSize        = static_cast<int>( a_str.size() );
     int         i             = 0;
-    int         j             = 0;
     std::size_t in            = 0;
     uchar_t     charArray4[4] = {0};
     uchar_t     charArray3[3] = {0};
@@ -125,6 +124,8 @@ Base64::decode(
     }
 
     if (i != 0) {
+        int j = 0;
+
         for (j = i; j < 4; ++ j) {
             charArray4[j] = 0;
         }

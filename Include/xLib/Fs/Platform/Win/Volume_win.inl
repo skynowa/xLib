@@ -75,10 +75,7 @@ Volume::_isReady_impl() const
     std::tstring_t volumeDirPath = Path( path() ).slashAppend();
     std::tstring_t oldDirPath;
 
-    std::tstring_t sRv;
-    UINT           oldErrorMode = 0U;
-
-    oldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT |
+    UINT oldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT |
         SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
     xTEST_NA(oldErrorMode);
 
