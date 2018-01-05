@@ -57,8 +57,13 @@ include(CheckCSourceCompiles)
 include(CheckCXXSourceCompiles)
 #--------------------------------------------------------------------------------------------------
 # find packages
-find_package(CMakeLib QUIET REQUIRED)
+
+## programs
+find_package(CppCheck QUIET REQUIRED)
 find_package(ClangTidy QUIET REQUIRED)
+
+## libs
+find_package(CMakeLib QUIET REQUIRED)
 find_package(GitRevision QUIET REQUIRED)
 find_package(OS QUIET REQUIRED)
 find_package(OpenSSL QUIET REQUIRED)
