@@ -52,6 +52,7 @@ set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMake ${XLIB_LOCATION}/../CMakeLib)
 
 include(${XLIB_LOCATION}/Config.cmake)
 include(Configure)
+include(CppCheck)
 #--------------------------------------------------------------------------------------------------
 # includes, libs
 set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
@@ -129,7 +130,7 @@ if (OPTION_UNICODE)
     add_definitions(-D_UNICODE=1)
 endif()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS} -fPIC")
 #--------------------------------------------------------------------------------------------------
 # libraries
 set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
@@ -186,12 +187,15 @@ else()
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
+perform_cppcheck(${XLIB_LOCATION})
+
 if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
 
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "bin")
+    add_dependencies(cppcheck ${PROJECT_LIB_STATIC})
 
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_STATIC})
 endif()
@@ -272,16 +276,7 @@ add_custom_target(uninstall
         -DXLIB_INSTALL_PATH="${XLIB_INSTALL_PATH}"
         -P ${XLIB_LOCATION}/CMake/Uninstall.cmake)
 #--------------------------------------------------------------------------------------------------
-add_custom_target(
-        cppcheck
-        COMMAND /usr/bin/cppcheck
-        --enable=warning,performance,portability,information,missingInclude
-        --std=c++11
-        --library=qt.cfg
-        --template="[{severity}][{id}] {message} {callstack} \(On {file}:{line}\)"
-        --verbose
-        --quiet
-        ${XLIB_SOURCES})
+
 #--------------------------------------------------------------------------------------------------
 # template
 add_custom_target(template
