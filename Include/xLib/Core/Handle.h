@@ -93,5 +93,5 @@ xNAMESPACE_END2(xl, core)
 #include "Handle.inl"
 
 #if xENV_WIN
-    #include "Platform/Win/HandleT_win.inl"
+    #include "Platform/Win/Handle_win.inl"
 #endif

@@ -53,7 +53,6 @@ xNAMESPACE_END2(xl, debug)
 // http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
 
 #if xTODO
-    //system.h:
     #ifndef SYSTEM_H_INCLUDED
     #define SYSTEM_H_INCLUDED
 
@@ -61,7 +60,6 @@ xNAMESPACE_END2(xl, debug)
 
 
     // system_posix.inl:
-    #include "system.h"
     #include <sys/time.h>
 
     double time_in_seconds() {
@@ -72,7 +70,6 @@ xNAMESPACE_END2(xl, debug)
 
 
     // system_standard.inl:
-    #include "system.h"
     #include <ctime>
 
     double time_in_seconds() {

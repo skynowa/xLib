@@ -56,6 +56,7 @@ include(CppCheck)
 #--------------------------------------------------------------------------------------------------
 # includes, libs
 set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
+file(GLOB_RECURSE XLIB_HEADERS ${XLIB_LOCATION}/Include/ *.h *.inl)
 file(GLOB_RECURSE XLIB_SOURCES ${XLIB_LOCATION}/Include/*.cpp)
 
 if (OPENSSL_FOUND)
@@ -187,7 +188,7 @@ else()
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
-perform_cppcheck(${XLIB_LOCATION})
+perform_cppcheck(${XLIB_HEADERS} ${XLIB_LOCATION})
 
 if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
