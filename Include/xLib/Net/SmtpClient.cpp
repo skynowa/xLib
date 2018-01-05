@@ -240,6 +240,7 @@ SmtpClient::send(
     //////[HELO DrWEB\r\n]
     ////bRv = _bCommand(helloCmd, "\r\n", /*ref*/sRv);
     ////xCHECK_RET(!bRv, false);
+    xUNUSED(helloCmd);
 
     //-------------------------------------
     //[MAIL FROM:<my_mail@mail.ru>\r\n]

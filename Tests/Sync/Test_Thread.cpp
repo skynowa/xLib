@@ -35,7 +35,7 @@ class CWorkThread :
     public:
         size_t         m_uiIndex;
 
-                       CWorkThread(cbool_t &cbAutoDelete);
+        explicit       CWorkThread(cbool_t &cbAutoDelete);
         virtual       ~CWorkThread();
 
     protected:

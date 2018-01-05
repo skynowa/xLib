@@ -53,9 +53,9 @@ bug_StackOverflow();
 xNO_INLINE bool_t
 Failer::bug_StackOverflow()
 {
+#if xTEMP_DISABLED
 	int foo[1000000];
 
-#if xTEMP_DISABLED
     (void)foo;
     bug_StackOverflow();
 #endif

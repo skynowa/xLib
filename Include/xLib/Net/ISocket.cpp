@@ -178,7 +178,7 @@ ISocket::sendAll(
         xCHECK_DO(leftSize < buffOutSize, buffOutSize = leftSize);
 
         // id data is finished - exit from loop
-        if (0 >= leftSize) {
+        if (leftSize == 0) {
             xTEST_EQ(a_buff.size() * sizeof(tchar_t), currPos);
             break;
         }
@@ -213,10 +213,9 @@ ISocket::recvAll(
     tchar_t        buff[buffSize + 1] = {0};
 
     for ( ; ; ) {
-        int_t   iRv = - 1;
         ulong_t arg = (ulong_t)a_flags;
 
-        iRv = xIOCTLSOCKET(_handle.get(), FIONREAD, &arg);
+        int_t iRv = xIOCTLSOCKET(_handle.get(), FIONREAD, &arg);
         xCHECK_DO(iRv != 0,       break);
         xCHECK_DO(arg == 0,       break);
         xCHECK_DO(buffSize < arg, arg = buffSize);
@@ -265,7 +264,6 @@ ISocket::sendBytes(
     // TODO: ISocket::sendBytes()
 
     int_t   iRv           = 0;
-    ssize_t sendStatus    = 0;
     timeval sendTimeout   = {0, 0};
     ssize_t messageLength = a_messageLength;
 
@@ -287,7 +285,7 @@ ISocket::sendBytes(
         xCHECK_RET(iRv < 0, nativeError());
 
         // send a few bytes
-        sendStatus = ::send(_handle.get(), a_buff, static_cast<std::size_t>(messageLength), 0);
+        ssize_t sendStatus = ::send(_handle.get(), a_buff, static_cast<std::size_t>(messageLength), 0);
 
         // An error occurred when sending data
         xCHECK_RET(sendStatus < 0, nativeError());
@@ -307,7 +305,6 @@ ISocket::receiveBytes(
 )
 {
     int_t   iRv            = 0;
-    ssize_t receiveStatus  = 0;
     timeval receiveTimeout = {0, 0};
     ssize_t stillToReceive = a_stillToReceive;
 
@@ -329,7 +326,7 @@ ISocket::receiveBytes(
         xCHECK_RET(iRv < 0, nativeError());
 
         // receive a few bytes
-        receiveStatus = ::recv(_handle.get(), a_buff, static_cast<std::size_t>(stillToReceive), 0);
+        ssize_t receiveStatus = ::recv(_handle.get(), a_buff, static_cast<std::size_t>(stillToReceive), 0);
 
         // An error occurred when the function recv ()
         xCHECK_RET(receiveStatus < 0, nativeError());

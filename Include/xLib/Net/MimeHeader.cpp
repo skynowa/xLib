@@ -152,7 +152,7 @@ MimeHeader::loadFromFile(
     xTEST_EQ(filePath.empty(), false);
     xTEST_EQ( File::isExists(filePath), true);
 
-    std::tstring_t sUknownEmail("Uknown@Uknown.Uknown");
+    std::tstring_t sUknownEmail("Uknown@Uknown.Uknown"); xUNUSED(sUknownEmail);
     std::tstring_t sLine("");
     std::ifstream  ifsStream(filePath.c_str());
     xTEST_EQ(!!ifsStream, true);

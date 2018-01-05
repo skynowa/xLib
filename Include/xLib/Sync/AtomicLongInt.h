@@ -15,6 +15,7 @@ class AtomicLongInt
 {
 public:
                     AtomicLongInt();
+                    // TODO: The class 'AtomicLongInt' has 'operator=' but lack of 'copy constructor'.
     virtual        ~AtomicLongInt() {}
 
     AtomicLongInt & operator += (const AtomicLongInt &value);
