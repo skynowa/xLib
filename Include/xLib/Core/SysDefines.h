@@ -125,7 +125,7 @@
             #error xLib: unsupported OS
         #endif
     #elif xENV_APPLE
-        #if defined(__APPLE__ && __MACH__)
+        #if defined(__APPLE__) && defined(__MACH__)
             #define xOS_MACOSX 1
                 ///< OS MacOSX
         #else
