@@ -23,10 +23,11 @@ cmake_minimum_required(VERSION 2.6)
 # options
 set(PROJECT_TYPE "CXX")
 
-set(CMAKE_COLOR_MAKEFILE        ON)
-set(CMAKE_VERBOSE_MAKEFILE      OFF)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_REQUIRED_QUIET        ON)
+set(CMAKE_COLOR_MAKEFILE          ON)
+set(CMAKE_VERBOSE_MAKEFILE        OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED   ON)
+set(CMAKE_REQUIRED_QUIET          ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
@@ -53,6 +54,7 @@ set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMake ${XLIB_LOCATION}/../CMakeLib)
 include(${XLIB_LOCATION}/Config.cmake)
 include(Configure)
 include(CppCheck)
+include(PvsStudio)
 #--------------------------------------------------------------------------------------------------
 # includes, libs
 set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
@@ -189,6 +191,7 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
 perform_cppcheck(${XLIB_HEADERS} ${XLIB_LOCATION})
+perform_pvs_studio()
 
 if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
@@ -196,7 +199,9 @@ if (cmOPTION_PROJECT_LIB_STATIC)
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "bin")
-    add_dependencies(cppcheck ${PROJECT_LIB_STATIC})
+
+    # add_dependencies(cppcheck   ${PROJECT_LIB_STATIC})
+    # add_dependencies(pvs-studio ${PROJECT_LIB_STATIC})
 
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_STATIC})
 endif()
@@ -295,5 +300,3 @@ if (cmOPTION_BUILD_TESTS)
     add_subdirectory(${XLIB_LOCATION}/Tests)
 endif()
 #--------------------------------------------------------------------------------------------------
-# enable_cppcheck(On)
-# enable_clang_tidy(On)

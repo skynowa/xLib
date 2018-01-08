@@ -61,6 +61,7 @@ include(CheckCXXSourceCompiles)
 ## programs
 find_package(CppCheck QUIET REQUIRED)
 find_package(ClangTidy QUIET REQUIRED)
+find_package(PvsStudio QUIET REQUIRED)
 
 ## libs
 find_package(CMakeLib QUIET REQUIRED)
