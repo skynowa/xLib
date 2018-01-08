@@ -20,9 +20,9 @@ endif()
 
 find_path(CMAKELIB_INCLUDES
     NAMES
-        "Find[PROGRAM].cmake.template"
+        "Find[PROGRAM].cmake"
     PATHS
-        "${XLIB_LOCATION}/../CMakeLib"
+        "${XLIB_LOCATION}/../CMakeLib/Templates"
     PATH_SUFFIXES
         "CMakeLib")
 

@@ -38,7 +38,7 @@ AtomicLongInt::AtomicLongInt(
     const AtomicLongInt &a_value
 )
 {
-    _value = a_value;
+    _value = a_value._value;
 }
 //-------------------------------------------------------------------------------------------------
 AtomicLongInt &
