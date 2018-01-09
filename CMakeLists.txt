@@ -47,6 +47,12 @@ if (NOT XLIB_LOCATION)
 endif()
 
 set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
+
+include(ProcessorCount)
+
+set(JOBS_NUM 0)
+ProcessorCount(JOBS_NUM)
+math(EXPR JOBS_NUM "${JOBS_NUM}*2")
 #--------------------------------------------------------------------------------------------------
 # modules
 set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMake ${XLIB_LOCATION}/../CMakeLib)
@@ -190,8 +196,8 @@ else()
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
-perform_cppcheck(${XLIB_HEADERS} ${XLIB_LOCATION})
-perform_pvs_studio()
+perform_cppcheck(${JOBS_NUM} ${XLIB_HEADERS} ${XLIB_LOCATION})
+perform_pvs_studio(${JOBS_NUM})
 
 if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
