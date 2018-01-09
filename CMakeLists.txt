@@ -273,14 +273,18 @@ add_custom_target(clang-tidy
         # -list-checks
         --
         -std=c++11
-        -I${XLIB_INCLUDES})
+        -I${XLIB_INCLUDES}
+    COMMENT
+        "Clang-Tidy...")
 #--------------------------------------------------------------------------------------------------
 # uninstall
 add_custom_target(uninstall
     COMMAND
         ${CMAKE_COMMAND}
         -DXLIB_INSTALL_PATH="${XLIB_INSTALL_PATH}"
-        -P ${XLIB_LOCATION}/CMake/Uninstall.cmake)
+        -P ${XLIB_LOCATION}/CMake/Uninstall.cmake
+    COMMENT
+        "Uninstall...")
 #--------------------------------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------------------------------
@@ -289,7 +293,9 @@ add_custom_target(template
     COMMAND
         ${CMAKE_COMMAND}
         -DXLIB_LOCATION="${XLIB_LOCATION}" -DXLIB_TEMPLATES="${XLIB_TEMPLATES}"
-        -P ${XLIB_LOCATION}/CMake/Template.cmake)
+        -P ${XLIB_LOCATION}/CMake/Template.cmake
+    COMMENT
+        "Template...")
 #--------------------------------------------------------------------------------------------------
 # fix warning "Manually-specified variables were not used by the project"
 unset(CMAKE_TOOLCHAIN_FILE)
