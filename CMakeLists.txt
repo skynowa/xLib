@@ -196,8 +196,8 @@ else()
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
-perform_cppcheck(${JOBS_NUM} ${XLIB_HEADERS} ${XLIB_LOCATION})
-perform_pvs_studio(${JOBS_NUM})
+target_cpp_check(${JOBS_NUM} ${XLIB_HEADERS} ${XLIB_LOCATION})
+target_pvs_studio(${JOBS_NUM})
 
 if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
@@ -206,7 +206,7 @@ if (cmOPTION_PROJECT_LIB_STATIC)
     target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "bin")
 
-    # add_dependencies(cppcheck   ${PROJECT_LIB_STATIC})
+    # add_dependencies(cpp-check  ${PROJECT_LIB_STATIC})
     # add_dependencies(pvs-studio ${PROJECT_LIB_STATIC})
 
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_STATIC})
