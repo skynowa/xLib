@@ -47,20 +47,19 @@ if (NOT XLIB_LOCATION)
 endif()
 
 set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
-
-include(ProcessorCount)
-
-set(JOBS_NUM 0)
-ProcessorCount(JOBS_NUM)
-math(EXPR JOBS_NUM "${JOBS_NUM}*2")
 #--------------------------------------------------------------------------------------------------
 # modules
 set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMake ${XLIB_LOCATION}/../CMakeLib)
 
 include(${XLIB_LOCATION}/Config.cmake)
 include(Configure)
+include(JobsNum)
 include(CppCheck)
 include(PvsStudio)
+
+set(JOBS_NUM 0)
+jobs_num(JOBS_NUM)
+# message(FATAL_ERROR "JOBS_NUM: ${JOBS_NUM}")
 #--------------------------------------------------------------------------------------------------
 # includes, libs
 set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
