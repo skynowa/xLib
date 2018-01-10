@@ -205,9 +205,6 @@ if (cmOPTION_PROJECT_LIB_STATIC)
     target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "bin")
 
-    # add_dependencies(cpp-check  ${PROJECT_LIB_STATIC})
-    # add_dependencies(pvs-studio ${PROJECT_LIB_STATIC})
-
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_STATIC})
 endif()
 
