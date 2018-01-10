@@ -27,7 +27,7 @@ set(CMAKE_COLOR_MAKEFILE          ON)
 set(CMAKE_VERBOSE_MAKEFILE        OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED   ON)
 set(CMAKE_REQUIRED_QUIET          ON)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)   # PVS-Studio, CppCheck
 
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
@@ -196,7 +196,7 @@ else()
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
-target_cpp_check(${JOBS_NUM} ${XLIB_HEADERS} ${XLIB_LOCATION})
+target_cpp_check(${JOBS_NUM} ${XLIB_LOCATION})
 target_pvs_studio(${JOBS_NUM})
 
 if (cmOPTION_PROJECT_LIB_STATIC)
