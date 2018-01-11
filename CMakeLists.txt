@@ -266,7 +266,7 @@ install(
 # clang-tidy
 add_custom_target(clang-tidy
     COMMAND
-        ${cmCLANG_TIDY_FILE_PATH}
+        ${CLANG_TIDY_FILE_PATH}
         ${XLIB_SOURCES}
         -config=''
         -export-fixes='clang-tidy-fixes.dat'
