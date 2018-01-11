@@ -30,7 +30,7 @@ HandlePolicy<T, hvNative>::_openMax_impl()
 
     int_t iRv = ::getrlimit(RLIMIT_NOFILE, &limit);
     xTEST_EQ(iRv, 0);
-    xTEST_GR(limit.rlim_cur, 0L);
+    xTEST_GR(static_cast<std::size_t>(limit.rlim_cur), 0UL);
 
     return static_cast<std::size_t>( limit.rlim_cur );
 }
