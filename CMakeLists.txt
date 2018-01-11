@@ -27,7 +27,7 @@ set(CMAKE_COLOR_MAKEFILE          ON)
 set(CMAKE_VERBOSE_MAKEFILE        OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED   ON)
 set(CMAKE_REQUIRED_QUIET          ON)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)   # PVS-Studio, CppCheck
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)   # PVS-Studio, CppCheck, Clang-tidy
 
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
@@ -267,7 +267,7 @@ install(
 add_custom_target(clang-tidy
     COMMAND
         ${CLANG_TIDY_FILE_PATH}
-        ${XLIB_SOURCES}
+        ${XLIB_HEADERS} ${XLIB_SOURCES}
         -config=''
         -export-fixes='clang-tidy-fixes.dat'
         --header-filter='.*'
