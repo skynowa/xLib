@@ -57,7 +57,7 @@ MimeHeader::parse(
 
     std::vec_tstring_t vsHeader;
     _m_bRv = String::bSplit(rawHeader, _endOfLine, &vsHeader);
-    // TODO: MimeHeader::parse()
+    // TODO: [skynowa] MimeHeader::parse()
 
     //-------------------------------------
     //???? ???? "+OK..." ? ?????? ??????, ?? ??????? ??? ??????
@@ -147,7 +147,7 @@ MimeHeader::loadFromFile(
     std::ctstring_t &filePath
 )
 {
-    // TODO: MimeHeader::loadFromFile(()
+    // TODO: [skynowa] MimeHeader::loadFromFile(()
 
     xTEST_EQ(filePath.empty(), false);
     xTEST_EQ( File::isExists(filePath), true);
@@ -230,7 +230,7 @@ MimeHeader::saveToFile(
 {
     xUNUSED(a_filePath);
 
-    // TODO: MimeHeader::saveToFile()
+    // TODO: [skynowa] MimeHeader::saveToFile()
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------

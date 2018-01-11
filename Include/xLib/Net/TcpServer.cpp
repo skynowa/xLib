@@ -74,7 +74,7 @@ TcpServer::accept(
     xTEST_DIFF(client, xSOCKET_HANDLE_INVALID);
 
 #if 0
-    // TODO: TcpServer::accept()
+    // TODO: [skynowa] TcpServer::accept()
     scktAcceptSocket.assign(client);
 #endif
     a_serverSocket->assign(client);

@@ -46,7 +46,7 @@ Console::_setAttributes_impl(
         cint_t foregroundColorMagenta = 35;
         cint_t foregroundColorYellow  = 33;
         cint_t foregroundColorWhite   = 37;
-        cint_t foregroundColorGray    = 37;  // TODO: Console::setAttributes() - foregroundColorGray
+        cint_t foregroundColorGray    = 37;  // TODO: [skynowa] Console::setAttributes() - foregroundColorGray
 
         int_t iRv = - 1;
 
@@ -97,7 +97,7 @@ Console::_setAttributes_impl(
         cint_t backgroundColorMagenta = 45;
         cint_t backgroundColorYellow  = 43;
         cint_t backgroundColorWhite   = 47;
-        cint_t backgroundColorGray    = 47; // TODO: Console::setAttributes() - Unix - backgroundColorGray
+        cint_t backgroundColorGray    = 47; // TODO: [skynowa] Console::setAttributes() - Unix - backgroundColorGray
 
         int_t iRv = - 1;
 
@@ -147,8 +147,8 @@ Console::_setAttributes_impl(
         cint_t attributeReverse    = 7;
         cint_t attributeConcealed  = 8;
 
-        attrs += Format::str(xT("\033[{}m"), (int)foregroundColor);  // TODO: StdStreamV2
-        attrs += Format::str(xT("\033[{}m"), (int)backgroundColor);  // TODO: StdStreamV2
+        attrs += Format::str(xT("\033[{}m"), (int)foregroundColor);  // TODO: [skynowa] StdStreamV2
+        attrs += Format::str(xT("\033[{}m"), (int)backgroundColor);  // TODO: [skynowa] StdStreamV2
 
         xCHECK_DO(a_attributes & Console::atAllOff,     attrs += Format::str(xT("\033[{}m"), attributeAllOff));
         xCHECK_DO(a_attributes & Console::atBold,       attrs += Format::str(xT("\033[{}m"), attributeBold));

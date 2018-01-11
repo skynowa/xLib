@@ -24,7 +24,7 @@ IpcMutex::_create_impl(
     const mode_t    modeDefault = S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH;
 
     handle_t hRv = ::sem_open(xT2A(unixName).c_str(), O_CREAT | O_RDWR, modeDefault, 1U);
-    // TODO: StdStreamV2
+    // TODO: [skynowa] StdStreamV2
     ///-- xTEST_DIFF(hRv, static_cast<handle_t>( SEM_FAILED ));
 
     _handle = hRv;
@@ -40,7 +40,7 @@ IpcMutex::_open_impl(
     const mode_t    modeDefault = S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH;
 
     handle_t hRv = ::sem_open(xT2A(unixName).c_str(), O_RDWR, modeDefault, 1U);
-    // TODO: StdStreamV2
+    // TODO: [skynowa] StdStreamV2
     ///-- xTEST_DIFF(hRv, static_cast<handle_t>( SEM_FAILED ));
 
     _handle = hRv;

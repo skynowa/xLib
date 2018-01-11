@@ -6,7 +6,7 @@
 
 //-------------------------------------------------------------------------------------------------
 #define F_LOCK  LOCK_EX
-#define F_TEST  LOCK_EX // TODO: lockf() - F_TEST - n/a
+#define F_TEST  LOCK_EX // TODO: [skynowa] lockf() - F_TEST - n/a
 #define F_ULOCK LOCK_UN
 
 int

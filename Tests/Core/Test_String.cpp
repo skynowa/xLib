@@ -169,7 +169,7 @@ Test_String::unit()
 
     xTEST_CASE("castA castW")
     {
-        // TODO: tests for String::castA, String::castW
+        // TODO: [skynowa] tests for String::castA, String::castW
     }
 
     xTEST_CASE("castA, castW")
@@ -237,7 +237,7 @@ Test_String::unit()
                 sWinStr = String::castCodePage(sKoiStr,      20866, 1251);
                 xTEST_EQ(true, csAnsiStr[i] == sWinStr);
             #elif xENV_UNIX
-                // TODO: TETST - String::castCodePage()
+                // TODO: [skynowa] TETST - String::castCodePage()
                 // xNOT_IMPLEMENTED_RET(RET_VALUE);
             #endif
         }
@@ -263,7 +263,7 @@ Test_String::unit()
             sRv = String::castFromOem(("1111, hdbhjgjk hkl, jl.,kh."));
             xTEST_EQ(true, std::tstring_t(xT("1111, hdbhjgjk hkl, jl.,kh.")) == sRv);
         #elif xENV_UNIX
-            // TODO: String::castFromOem()
+            // TODO: [skynowa] String::castFromOem()
         #endif
     }
 

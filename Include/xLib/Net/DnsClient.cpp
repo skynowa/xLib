@@ -149,7 +149,7 @@ DnsClient::nameInfo(
     tchar_t hostName[NI_MAXHOST + 1] = {0};
     tchar_t servInfo[NI_MAXSERV + 1] = {0};
 
-    // TODO: DnsClient::nameInfo()
+    // TODO: [skynowa] DnsClient::nameInfo()
     int_t iRv = xGETNAMEINFO(reinterpret_cast<sockaddr *>(&socketAddr), sizeof(socketAddr),
         &hostName[0], NI_MAXHOST, &servInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     xTEST_EQ(iRv, 0);

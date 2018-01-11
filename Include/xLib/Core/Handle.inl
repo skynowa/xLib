@@ -74,7 +74,7 @@ Handle<T, valueT>::operator = (
 
     xCHECK_RET(_handle == a_handle, *this);
 
-    /// TODO: disabled (for remove) - file wasn't close
+    /// TODO: [skynowa] disabled (for remove) - file wasn't close
     ///-- close();
 
     _handle = a_handle;

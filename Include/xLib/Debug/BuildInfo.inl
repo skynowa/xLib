@@ -145,7 +145,7 @@ BuildInfo::os() const
     #elif xOS_FREEBSD
         osVersion = String::cast(xOS_FREEBSD_VER);
     #elif xOS_MACOSX
-        // TODO: BuildInfo::os() - OS version
+        // TODO: [skynowa] BuildInfo::os() - OS version
         osVersion = Const::strUnknown();
     #endif
     }

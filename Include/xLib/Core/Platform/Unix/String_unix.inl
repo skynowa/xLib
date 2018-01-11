@@ -24,7 +24,7 @@ String::_castA_impl(
     xUNUSED(a_str);
     xUNUSED(a_codePage);
 
-    // TODO: String::castA() - Unix
+    // TODO: [skynowa] String::castA() - Unix
     xNOT_IMPLEMENTED
 
     return asRv;
@@ -42,7 +42,7 @@ String::_castW_impl(
     xUNUSED(a_str);
     xUNUSED(a_codePage);
 
-    // TODO: String::castW() - Unix
+    // TODO: [skynowa] String::castW() - Unix
     xNOT_IMPLEMENTED
 
     return wsRv;
@@ -58,7 +58,7 @@ String::_castToOem_impl(
 
     xUNUSED(a_str);
 
-    // TODO: String::castToOem()
+    // TODO: [skynowa] String::castToOem()
     xNOT_IMPLEMENTED
 
     return dest;
@@ -74,7 +74,7 @@ String::_castFromOem_impl(
 
     xUNUSED(a_str);
 
-    // TODO: String::castFromOem()
+    // TODO: [skynowa] String::castFromOem()
     xNOT_IMPLEMENTED
 
     return dest;

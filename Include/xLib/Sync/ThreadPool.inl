@@ -45,7 +45,7 @@ ThreadPool<T>::ThreadPool(
 {
     xUNUSED(a_isPaused);
 
-    // TODO: ThreadPool - a_isPaused()
+    // TODO: [skynowa] ThreadPool - a_isPaused()
 
     _s_log.write(xT("--------------------------------"));
     _s_log.write(xT("ThreadPool: construct"));
@@ -75,7 +75,7 @@ ThreadPool<T>::groupCreate(
     std::csize_t     &a_maxRunningTasks
 )
 {
-    xTEST_NA(a_stackSize);    // TODO: ThreadPool<T>::groupCreate() - MaxValue
+    xTEST_NA(a_stackSize);    // TODO: [skynowa] ThreadPool<T>::groupCreate() - MaxValue
     xTEST_NA(a_funcPtr);
     xTEST_NA(a_param);
     xTEST_NA(a_numTasks);
@@ -150,7 +150,7 @@ ThreadPool<T>::groupExit(
 {
     xUNUSED(a_timeoutMsec);
 
-    // TODO: ThreadPool<T>::groupExit() - a_timeoutMsec
+    // TODO: [skynowa] ThreadPool<T>::groupExit() - a_timeoutMsec
 
     xCHECK_DO(!isRunning(), _s_log.write(xT("ThreadPool: not running")); return);
 
@@ -381,7 +381,7 @@ ThreadPool<T>::onRun(
 {
     xUNUSED(a_param);
 
-    // TODO: ThreadPool - a_param
+    // TODO: [skynowa] ThreadPool - a_param
 
     uint_t uiRes = 0U;
 
@@ -453,13 +453,13 @@ ThreadPool<T>::_taskAdd(
 {
     xUNUSED(a_item);
 
-    // TODO: ThreadPool - a_item
+    // TODO: [skynowa] ThreadPool - a_item
 
     T *task = new T(_isGroupAutoDelete);
 
     task->index = _currTask;
-    // TODO: task->vAttachHandler_OnEnter( xCLOSURE(this, &ThreadPool::_vOnEnterTask) );
-    // TODO: task->vAttachHandler_OnExit ( xCLOSURE(this, &ThreadPool::_vOnExitTask ) );
+    // TODO: [skynowa] task->vAttachHandler_OnEnter( xCLOSURE(this, &ThreadPool::_vOnEnterTask) );
+    // TODO: [skynowa] task->vAttachHandler_OnExit ( xCLOSURE(this, &ThreadPool::_vOnExitTask ) );
 
     task->create(_isGroupPaused, _stackSize, _param);
     task->resume();

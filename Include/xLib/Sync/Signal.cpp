@@ -129,7 +129,7 @@ Signal::connectAll(
 				break;
 			}
 
-			// TODO: [ANDROID] SIGCLD
+			// TODO: [skynowa] [ANDROID] SIGCLD
 		}
 
 		signalNums.push_back(i);
@@ -218,7 +218,7 @@ Signal::connectInfoAll(
 				break;
 			}
 
-			// TODO: [ANDROID] SIGCLD
+			// TODO: [skynowa] [ANDROID] SIGCLD
 		}
 
 		signalNums.push_back(i);

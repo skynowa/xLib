@@ -702,7 +702,7 @@ Test_Path::unit()
                 xTEST_EQ(m_bRv, true);
                 xTEST_EQ(str,   data[i].expect);
 
-                // TODO: Tests - Path::isNameValid()
+                // TODO: [skynowa] Tests - Path::isNameValid()
             }
         }
     }

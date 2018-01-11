@@ -95,13 +95,13 @@ public:
     double    safeDivT(const T1 &value1, const T2 &value2) xWARN_UNUSED_RV;
         ///< safe division
 
-    // TODO: enumIncT - depreciated
+    // TODO: [skynowa] enumIncT - depreciated
     template<typename T>
     static
     T         enumIncT(const T &value) xWARN_UNUSED_RV;
         ///< increment enumerator
 
-    // TODO: enumIncT - depreciated
+    // TODO: [skynowa] enumIncT - depreciated
     template<typename T>
     static
     T         enumDecT(const T &value) xWARN_UNUSED_RV;

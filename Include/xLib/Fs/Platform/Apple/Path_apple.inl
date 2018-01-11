@@ -18,7 +18,7 @@ Path::_exe_impl()
 {
     std::tstring_t sRv;
 
-    // TODO: Path::_exe_impl()
+    // TODO: [skynowa] Path::_exe_impl()
 
     return sRv;
 }

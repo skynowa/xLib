@@ -55,7 +55,7 @@ private:
 
     _Entry            _entry;       ///< entry handle
     std::ctstring_t   _rootDirPath; ///< root directory path
-    /// TODO: use std::vector
+    /// TODO: [skynowa] use std::vector
     std::ctstring_t   _shellFilter; ///< shell wild card filter
     bool_t            _isMoveFirst; ///< is first movement
 

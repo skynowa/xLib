@@ -103,7 +103,7 @@ Ssh2Client::authPassword(
 )
 {
     xTEST_PTR(_session);
-    // TODO: StdStreamV2
+    // TODO: [skynowa] StdStreamV2
     ///-- xTEST_DIFF(a_userAuth, uaUnknown);
 
     int iRv = - 1;
@@ -234,7 +234,7 @@ Ssh2Client::channelReadLine(
         // skip
         break;
     case Ssh2ClientData::sfText:
-        // TODO: sfText
+        // TODO: [skynowa] sfText
         break;
     case Ssh2ClientData::sfHtml:
         if ( !stdErr.empty() ) {

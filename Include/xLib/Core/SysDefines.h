@@ -60,7 +60,7 @@
 #endif
 
 #if (__cplusplus >= 201103L)
-	// TODO: xLANG_CPP11 (Android)
+	// TODO: [skynowa] xLANG_CPP11 (Android)
 	#define xLANG_CPP11 1
 		///< ISO/IEC 14882:2011
 #endif

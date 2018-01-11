@@ -62,7 +62,7 @@ Thread::~Thread()
     if (bRv) {
         exit();
 
-        // TODO: Thread::~Thread()
+        // TODO: [skynowa] Thread::~Thread()
     #if xTODO
         kill(_s_exitTimeoutMsec);
     #endif
@@ -449,7 +449,7 @@ Thread::cpuCount()
     ulong_t ulRv = SystemInfo().numOfCpus();
     xCHECK_RET(ulRv < 1UL || ulRv > 32UL, 1UL);
 
-    // TODO: Thread::cpuCount() - make constant 32UL
+    // TODO: [skynowa] Thread::cpuCount() - make constant 32UL
 
     return ulRv;
 }
@@ -506,7 +506,7 @@ Thread::setDebugName(
         name.resize(xTHREAD_NAME_LENGTH_MAX);
     }
 
-    // TODO: Thread::setDebugName() - xCHECK_RET(!Debugger().isActive(), true);
+    // TODO: [skynowa] Thread::setDebugName() - xCHECK_RET(!Debugger().isActive(), true);
 
     _setDebugName_impl(name);
 }
@@ -673,7 +673,7 @@ Thread::_s_jobEntry(
     currentSleep(waitVaildHandleTimeoutMsec);
 
     Event::ObjectState osRv = self->_eventStarter->wait(notInfiniteTimeoutMsec);
-    // TODO: StdStreamV2
+    // TODO: [skynowa] StdStreamV2
     ///-- xTEST_EQ(Event::osSignaled, osRv);
 
     xPTR_DELETE(self->_eventStarter);
@@ -687,7 +687,7 @@ Thread::_s_jobEntry(
     static uint_t exitStatus = 0U;
     {
         {
-            // TODO: Thread::_s_jobEntry() - begin of thread function
+            // TODO: [skynowa] Thread::_s_jobEntry() - begin of thread function
         }
 
         // run thread function
@@ -703,7 +703,7 @@ Thread::_s_jobEntry(
         }
 
         {
-            // TODO: Thread::_s_jobEntry() - end of thread function
+            // TODO: [skynowa] Thread::_s_jobEntry() - end of thread function
         }
     }
 
@@ -729,7 +729,7 @@ Thread::_waitResumption()
     }
 
     Event::ObjectState osRv = _eventPause.wait();
-    // TODO: StdStreamV2
+    // TODO: [skynowa] StdStreamV2
     ///-- xTEST_DIFF(Event::osFailed, osRv);
     ///-- xTEST_DIFF(Event::osTimeout, osRv);
     ///-- xTEST_EQ(Event::osSignaled, osRv);

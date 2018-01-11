@@ -84,7 +84,7 @@ setlocaleW(
     xUNUSED(a_category);
     xUNUSED(a_locale);
 
-    // TODO: setlocaleW - not impl
+    // TODO: [skynowa] setlocaleW - not impl
 
     return xPTR_NULL;
 }
@@ -98,7 +98,7 @@ statW(
     xUNUSED(a_path);
     xUNUSED(a_buf);
 
-    // TODO: statW - not impl
+    // TODO: [skynowa] statW - not impl
 
     return -1;
 }
@@ -112,7 +112,7 @@ chmodW(
     xUNUSED(a_path);
     xUNUSED(a_mode);
 
-    // TODO: chmodW - not impl
+    // TODO: [skynowa] chmodW - not impl
 
     return -1;
 }
@@ -126,7 +126,7 @@ fopenW(
     xUNUSED(a_path);
     xUNUSED(a_mode);
 
-    // TODO: fopenW - not impl
+    // TODO: [skynowa] fopenW - not impl
 
     return xPTR_NULL;
 }
@@ -140,7 +140,7 @@ fdopenW(
     xUNUSED(a_fd);
     xUNUSED(a_mode);
 
-    // TODO: fdopenW - not impl
+    // TODO: [skynowa] fdopenW - not impl
 
     return xPTR_NULL;
 }
@@ -156,7 +156,7 @@ freopenW(
     xUNUSED(a_mode);
     xUNUSED(a_stream);
 
-    // TODO: freopenW - not impl
+    // TODO: [skynowa] freopenW - not impl
 
     return xPTR_NULL;
 }
@@ -170,7 +170,7 @@ accessW(
     xUNUSED(a_pathname);
     xUNUSED(a_mode);
 
-    // TODO: accessW - not impl
+    // TODO: [skynowa] accessW - not impl
 
     return - 1;
 }
@@ -182,7 +182,7 @@ removeW(
 {
     xUNUSED(a_pathname);
 
-    // TODO: removeW - not impl
+    // TODO: [skynowa] removeW - not impl
 
     return - 1;
 }
@@ -194,7 +194,7 @@ unlinkW(
 {
     xUNUSED(a_pathname);
 
-    // TODO: unlinkW - not impl
+    // TODO: [skynowa] unlinkW - not impl
 
     return - 1;
 }
@@ -208,7 +208,7 @@ renameW(
     xUNUSED(a_oldname);
     xUNUSED(a_newname);
 
-    // TODO: renameW - not impl
+    // TODO: [skynowa] renameW - not impl
 
     return - 1;
 }
@@ -220,7 +220,7 @@ mkstempW(
 {
     xUNUSED(a_template);
 
-    // TODO: mkstempW - not impl
+    // TODO: [skynowa] mkstempW - not impl
 
     return - 1;
 }
@@ -244,7 +244,7 @@ getnameinfoW(
     xUNUSED(a_servlen);
     xUNUSED(a_flags);
 
-    // TODO: getnameinfoW - not impl
+    // TODO: [skynowa] getnameinfoW - not impl
 
     return - 1;
 }
@@ -262,7 +262,7 @@ getaddrinfoW(
     xUNUSED(a_hints);
     xUNUSED(a_res);
 
-    // TODO: getaddrinfoW - not impl
+    // TODO: [skynowa] getaddrinfoW - not impl
 
     return - 1;
 }
@@ -274,7 +274,7 @@ systemW(
 {
     xUNUSED(a_command);
 
-    // TODO: systemW - not impl
+    // TODO: [skynowa] systemW - not impl
 
     return - 1;
 }

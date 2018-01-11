@@ -116,7 +116,7 @@ public:
     ulonglong_t     toMsec() const xWARN_UNUSED_RV;
         ///< convert DateTime to milliseconds
 
-    // TODO: ToUniversalTime, ToLocalTime
+    // TODO: [skynowa] ToUniversalTime, ToLocalTime
 #if xTODO
 	ToUniversalTime();
 	ToLocalTime();

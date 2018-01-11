@@ -187,7 +187,7 @@ Application::isRunnig() const
 {
     xUNUSED(_appGuid);
 
-    // TODO: Application::isRunnig()
+    // TODO: [skynowa] Application::isRunnig()
 
     return false;
 }

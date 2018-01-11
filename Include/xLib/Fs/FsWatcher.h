@@ -46,10 +46,10 @@ public:
 	};
 	xTYPEDEF_CONST(Event);
 
-                   // TODO: int events=wxFSW_EVENT_ALL
-                   // TODO: followSymLinks
-                   // TODO: followSymLinksOutOfScope
-                   // TODO: Dir/file events
+                   // TODO: [skynowa] int events=wxFSW_EVENT_ALL
+                   // TODO: [skynowa] followSymLinks
+                   // TODO: [skynowa] followSymLinksOutOfScope
+                   // TODO: [skynowa] Dir/file events
                    FsWatcher(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter);
         ///< constructor
     virtual       ~FsWatcher();
