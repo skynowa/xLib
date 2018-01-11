@@ -51,7 +51,7 @@ TcpClient::connect(
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
     sockAddr.sin_family      = static_cast<sa_family_t>(_family);
     sockAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_ip).c_str());
-    sockAddr.sin_port        = htons(a_port); // TODO: TcpClient::connect() - htons
+    sockAddr.sin_port        = htons(a_port); // TODO: [skynowa] TcpClient::connect() - htons
 
     int_t iRv = ::connect(_handle.get(), Utils::reinterpretCastT<sockaddr *>( &sockAddr ),
         sizeof(sockAddr));
@@ -128,7 +128,7 @@ TcpClient::isServerAlive(
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
     sockAddr.sin_family      = ISocket::afInet;
     sockAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_ip).c_str());
-    sockAddr.sin_port        = htons(a_port); // TODO: TcpClient::isServerAlive() - htons
+    sockAddr.sin_port        = htons(a_port); // TODO: [skynowa] TcpClient::isServerAlive() - htons
 
     int_t iRv = ::connect(client.handle().get(), Utils::reinterpretCastT<sockaddr *>( &sockAddr ),
         sizeof(sockAddr));

@@ -29,7 +29,7 @@ ProcessInfo::_exeName_impl() const
 
     sRv.assign(buff);
 #else
-    // TODO: ProcessInfo::exeName()
+    // TODO: [skynowa] ProcessInfo::exeName()
     xNOT_IMPLEMENTED_RET(std::tstring_t());
 #endif
 

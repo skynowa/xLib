@@ -23,7 +23,7 @@ Signal::_decription_impl(
 {
     std::tstring_t sRv;
 
-    // TODO: Signal::_decription_impl()
+    // TODO: [skynowa] Signal::_decription_impl()
     sRv = Const::strUnknown();
 
     return sRv;

@@ -37,7 +37,7 @@ HandlePolicy<T, hvStdFile>::_clone_impl(const T &a_handle)
 
     native_handle_t nativeHandle = HandlePolicy<native_handle_t, hvNative>::clone(handle);
 
-    return static_cast<T>( xTFDOPEN(nativeHandle, xT("r+")) );  // TODO: clone - open mode
+    return static_cast<T>( xTFDOPEN(nativeHandle, xT("r+")) );  // TODO: [skynowa] clone - open mode
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -69,7 +69,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, hvMySqlConn>::_openMax_impl()
 {
-	// TODO: _openMax_impl
+	// TODO: [skynowa] _openMax_impl
 
    /**
 	* show variables like "max_connections"
@@ -121,7 +121,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, hvMySqlResult>::_openMax_impl()
 {
-	// TODO: _openMax_impl
+	// TODO: [skynowa] _openMax_impl
 
     return 0;
 }
@@ -201,7 +201,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, hvXXXXXXXXXX>::_openMax_impl()
 {
-	// TODO: _openMax_impl
+	// TODO: [skynowa] _openMax_impl
 
     return 0;
 }

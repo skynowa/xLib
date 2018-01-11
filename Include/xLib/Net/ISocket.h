@@ -100,7 +100,7 @@ public:
         afIpx         = AF_IPX,
         afAppletalk   = AF_APPLETALK
 
-        // TODO: ISocket - add AP-*
+        // TODO: [skynowa] ISocket - add AP-*
     #endif
     };
     xTYPEDEF_CONST(AddressFamily);
@@ -218,7 +218,7 @@ public:
         ptSctp        = IPPROTO_SCTP,
         ptRaw         = IPPROTO_RAW,
         ptMax         = IPPROTO_MAX
-        // TODO: ISocket - add IPPROTO-*
+        // TODO: [skynowa] ISocket - add IPPROTO-*
     #endif
     };
     xTYPEDEF_CONST(Protocol);

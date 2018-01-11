@@ -102,7 +102,7 @@ Cgi::uriEncode(
     std::tstring_t  *a_encodedStr
 )
 {
-    // TODO: Cgi::uriEncode()
+    // TODO: [skynowa] Cgi::uriEncode()
 
     xFOR_EACH_CONST(std::tstring_t, it, a_uri) {
         tchar_t ch = *it;
@@ -192,7 +192,7 @@ Cgi::uriDecode(
 int_t
 cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query)
 {
-    // TODO: Cgi::cgl_parsecgibuf()
+    // TODO: [skynowa] Cgi::cgl_parsecgibuf()
 
     xUNUSED(a_query);
 //    char *s;
@@ -237,7 +237,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query)
 //int_t
 //Cgi::cgl_urlencode(char *s, FILE *fw)
 // {
-//  // TODO: Cgi::cgl_urlencode()
+//  // TODO: [skynowa] Cgi::cgl_urlencode()
 //    if (!s)
 //        return 0;
 //
@@ -252,7 +252,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query)
 //void_t
 //Cgi::cgl_urldecode(char *s)
 // {
-//  // TODO: Cgi::cgl_urldecode()
+//  // TODO: [skynowa] Cgi::cgl_urldecode()
 //    //--cgl_charify(s, '+', ' ');
 //    std::tstring_t sRv;
 //
@@ -264,7 +264,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query)
 void_t
 Cgi::urlEscape(char *a_s, FILE *a_fw)
 {
-    // TODO: Cgi::urlEscape()
+    // TODO: [skynowa] Cgi::urlEscape()
 
     xUNUSED(a_s);
     xUNUSED(a_fw);
@@ -294,7 +294,7 @@ Cgi::urlEscape(char *a_s, FILE *a_fw)
 void_t
 Cgi::urlUnescape(char *a_s)
 {
-    // TODO: Cgi::urlUnescape()
+    // TODO: [skynowa] Cgi::urlUnescape()
 
     xUNUSED(a_s);
 //    int_t    error;
@@ -331,7 +331,7 @@ Cgi::urlUnescape(char *a_s)
 char
 Cgi::cgl_hex2char(char *a_what)
 {
-    // TODO: Cgi::cgl_hex2char()
+    // TODO: [skynowa] Cgi::cgl_hex2char()
 
     xUNUSED(a_what);
 
@@ -856,7 +856,7 @@ CgiFormData::_construct()
     case CgiEnvironment::rtGet:
         xTEST_EQ(_cgi.Environment.queryString().empty(), false);
 
-        // TODO: CgiFormData::_construct() - cgl_parsecgibuf()
+        // TODO: [skynowa] CgiFormData::_construct() - cgl_parsecgibuf()
 
         _formData = _cgi.Environment.queryString();
         break;
@@ -892,7 +892,7 @@ CgiFormData::_construct()
         size_t uiRv = file.read(&buff.at(0), buff.size());
         xTEST_EQ(uiRv, buff.size());
 
-        // TODO: CgiFormData::_construct() - cgl_parsecgibuf()
+        // TODO: [skynowa] CgiFormData::_construct() - cgl_parsecgibuf()
 
         _formData = buff;
 

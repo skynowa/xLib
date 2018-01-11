@@ -178,7 +178,7 @@ SmtpClient::sendRaw
     std::ctstring_t &a_to
 )
 {
-    // TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket,   false);
+    // TODO: [skynowa] xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket,   false);
     xTEST_EQ(a_from.empty(), false);
     xTEST_EQ(a_to.empty(), false);
 
@@ -224,7 +224,7 @@ SmtpClient::send(
     std::ctstring_t &a_to
 )
 {
-    // TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
+    // TODO: [skynowa] xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
     xTEST_EQ(a_from.empty(), false);
     xTEST_EQ(a_to.empty(), false);
 

@@ -259,7 +259,7 @@ Console::_write_impl(
     xTEST_DIFF(blRv, FALSE);
     xTEST_EQ(static_cast<size_t>( written ), a_str.size());
 
-    // TODO: Console::_write_impl() - flush
+    // TODO: [skynowa] Console::_write_impl() - flush
 }
 //-------------------------------------------------------------------------------------------------
 void_t

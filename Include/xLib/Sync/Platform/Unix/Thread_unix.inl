@@ -24,12 +24,12 @@ Thread::_create_impl(
     iRv = ::pthread_attr_init(&attrs);
     xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
-    // TODO: Thread::_create_impl() - PTHREAD_CREATE_DETACHED
+    // TODO: [skynowa] Thread::_create_impl() - PTHREAD_CREATE_DETACHED
     iRv = ::pthread_attr_setdetachstate(&attrs, PTHREAD_CREATE_JOINABLE);
     xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     if (a_stackSizeBytes != 0U) {
-        // TODO: Thread::_create_impl() - size_t size = PTHREAD_STACK_MIN + 0x4000;
+        // TODO: [skynowa] Thread::_create_impl() - size_t size = PTHREAD_STACK_MIN + 0x4000;
         iRv = ::pthread_attr_setstacksize(&attrs, a_stackSizeBytes);
         xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
     }
@@ -41,7 +41,7 @@ Thread::_create_impl(
     iRv = ::pthread_attr_destroy(&attrs);
     xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
-    _handle = hid;  // TODO: Thread::_create_impl() - is it right?
+    _handle = hid;  // TODO: [skynowa] Thread::_create_impl() - is it right?
     _id     = hid;
 }
 //-------------------------------------------------------------------------------------------------
@@ -63,7 +63,7 @@ Thread::_wait_impl(
 {
     xUNUSED(a_timeoutMsec);
 
-    // TODO: Thread::_wait_impl() - thread must not be detached
+    // TODO: [skynowa] Thread::_wait_impl() - thread must not be detached
     // FIX:  Thread::_wait_impl(( - a_timeoutMsec
 
     int_t iRv = ::pthread_join(_id, xPTR_NULL);
@@ -288,7 +288,7 @@ Thread::_open_impl(
 
     handle_t hRv = 0;
 
-    // TODO: Thread::_open_impl()
+    // TODO: [skynowa] Thread::_open_impl()
 
     return hRv;
 }

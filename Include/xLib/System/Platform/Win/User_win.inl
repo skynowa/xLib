@@ -58,7 +58,7 @@ User::_loginName_impl() const
 
     // try API
     {
-        char buff[xUSER_NAME_MAX + 1] = {0}; // TODO: User::loginName() - LOGIN_NAME_MAX
+        char buff[xUSER_NAME_MAX + 1] = {0}; // TODO: [skynowa] User::loginName() - LOGIN_NAME_MAX
 
         int_t iRv = ::getlogin_r(buff, xARRAY_SIZE(buff));
         if (iRv == 0) {
@@ -111,7 +111,7 @@ User::_name_impl() const
 uint_t
 User::_userId_impl() const
 {
-    // TODO: User::userId
+    // TODO: [skynowa] User::userId
 
     xNOT_IMPLEMENTED;
 
@@ -121,7 +121,7 @@ User::_userId_impl() const
 uint_t
 User::_groupId_impl() const
 {
-    // TODO: User::groupId
+    // TODO: [skynowa] User::groupId
 
     xNOT_IMPLEMENTED;
 

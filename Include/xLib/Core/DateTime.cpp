@@ -503,7 +503,7 @@ DateTime::dayOfWeek() const
     return iRv;
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: toMsec
+// TODO: [skynowa] toMsec
 ulonglong_t
 DateTime::toMsec() const
 {
@@ -586,7 +586,7 @@ DateTime::_toMsec() const
 
     ulonglong_t ullRv = 0ULL;
 
-    ullRv += xYEAR(_year);    // TODO: DateTime::_toMsec() - days in month 30 or 31 ???
+    ullRv += xYEAR(_year);    // TODO: [skynowa] DateTime::_toMsec() - days in month 30 or 31 ???
     ullRv += xMONTH(_month);
     ullRv += xDAY(_day);
     ullRv += xHOUR(_hour);

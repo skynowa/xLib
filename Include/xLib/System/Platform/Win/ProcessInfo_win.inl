@@ -17,7 +17,7 @@ ProcessInfo::_cpuUsage_impl() const
 {
     ulong_t ulRv = 0UL;
 
-    // TODO: ProcessInfo::cpuUsage()
+    // TODO: [skynowa] ProcessInfo::cpuUsage()
     xNOT_IMPLEMENTED
 
     return ulRv;
@@ -28,7 +28,7 @@ ProcessInfo::_ramUsage_impl() const
 {
     ulong_t ulRv = 0UL;
 
-    // TODO: ProcessInfo::ramUsage()
+    // TODO: [skynowa] ProcessInfo::ramUsage()
     xNOT_IMPLEMENTED
 
     return ulRv;
@@ -39,7 +39,7 @@ ProcessInfo::_ioBytes_impl() const
 {
     ulong_t ulRv = 0UL;
 
-    // TODO: ProcessInfo::ioBytes()
+    // TODO: [skynowa] ProcessInfo::ioBytes()
     xNOT_IMPLEMENTED
 
     return ulRv;
@@ -66,7 +66,7 @@ ProcessInfo::_parentId_impl() const
 {
     ulong_t ulRv = 0UL;
 
-    // TODO: ProcessInfo::parentId()
+    // TODO: [skynowa] ProcessInfo::parentId()
     xNOT_IMPLEMENTED
 
     return ulRv;
@@ -145,7 +145,7 @@ ProcessInfo::_commandLine_impl(
             const DWORD               basicInfoSize   = sizeof(basicInfo);   // in bytes
             DWORD                     returnSizeBytes = 0UL;
 
-            // TODO: ProcessBasicInformation (for x64)
+            // TODO: [skynowa] ProcessBasicInformation (for x64)
             NTSTATUS nsRv = func(a_process, info, &basicInfo, basicInfoSize, &returnSizeBytes);
             xTEST_EQ(NT_SUCCESS(nsRv), true);
             xTEST_EQ(basicInfoSize, returnSizeBytes);
