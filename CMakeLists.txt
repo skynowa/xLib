@@ -54,6 +54,7 @@ set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMake ${XLIB_LOCATION}/../CMakeLib)
 include(${XLIB_LOCATION}/Config.cmake)
 include(Configure)
 include(JobsNum)
+include(ClangTidy)
 include(CppCheck)
 include(PvsStudio)
 
@@ -63,7 +64,7 @@ jobs_num(JOBS_NUM)
 #--------------------------------------------------------------------------------------------------
 # includes, libs
 set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
-file(GLOB_RECURSE XLIB_HEADERS ${XLIB_LOCATION}/Include/ *.h *.inl)
+file(GLOB_RECURSE XLIB_HEADERS ${XLIB_LOCATION}/Include/ *.h)
 file(GLOB_RECURSE XLIB_SOURCES ${XLIB_LOCATION}/Include/*.cpp)
 
 if (OPENSSL_FOUND)
@@ -195,6 +196,7 @@ else()
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
+target_clang_tidy(${JOBS_NUM} "${XLIB_INCLUDES}" "${XLIB_HEADERS}" "${XLIB_SOURCES}")
 target_cpp_check(${JOBS_NUM} ${XLIB_LOCATION})
 target_pvs_studio(${JOBS_NUM})
 
@@ -263,22 +265,6 @@ install(
     FILES_MATCHING
         PATTERN "*" PATTERN "*.h.in" EXCLUDE)
 #--------------------------------------------------------------------------------------------------
-# clang-tidy
-add_custom_target(clang-tidy
-    COMMAND
-        ${CLANG_TIDY_FILE_PATH}
-        ${XLIB_HEADERS} ${XLIB_SOURCES}
-        -config=''
-        -export-fixes='clang-tidy-fixes.dat'
-        --header-filter='.*'
-        # -checks='*'
-        # -list-checks
-        --
-        -std=c++11
-        -I${XLIB_INCLUDES}
-    COMMENT
-        "Clang-Tidy...")
-#--------------------------------------------------------------------------------------------------
 # uninstall
 add_custom_target(uninstall
     COMMAND
@@ -287,8 +273,6 @@ add_custom_target(uninstall
         -P ${XLIB_LOCATION}/CMake/Uninstall.cmake
     COMMENT
         "Uninstall...")
-#--------------------------------------------------------------------------------------------------
-
 #--------------------------------------------------------------------------------------------------
 # template
 add_custom_target(template
