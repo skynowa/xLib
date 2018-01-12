@@ -49,14 +49,17 @@ endif()
 set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 #--------------------------------------------------------------------------------------------------
 # modules
-set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMake ${XLIB_LOCATION}/../CMakeLib)
+set(CMAKE_MODULE_PATH
+    ${XLIB_LOCATION}/CMake
+    ${XLIB_LOCATION}/../CMakeLib
+    ${XLIB_LOCATION}/../CMakeLib/StaticAnalisis)
 
 include(${XLIB_LOCATION}/Config.cmake)
 include(Configure)
-include(JobsNum)
-include(ClangTidy)
-include(CppCheck)
-include(PvsStudio)
+include(Functions/JobsNum)
+include(StaticAnalisis/ClangTidy)
+include(StaticAnalisis/CppCheck)
+include(StaticAnalisis/PvsStudio)
 
 set(JOBS_NUM 0)
 jobs_num(JOBS_NUM)
