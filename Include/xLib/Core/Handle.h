@@ -60,7 +60,7 @@ public:
         ///< set
     T           clone() const xWARN_UNUSED_RV;
         ///< duplicate handle
-    void_t      setCloExec(cbool_t flag);
+    void_t      setCloseOnExec(cbool_t flag);
 		///< duplicate file descriptors from sub-processes
 
     bool_t      isValid() const xWARN_UNUSED_RV;
@@ -85,7 +85,7 @@ private:
     T           _handle;    ///< handle
 
 xPLATFORM_IMPL:
-    void_t      _setCloExec_impl(cbool_t flag);
+    void_t      _setCloseOnExec_impl(cbool_t flag);
 };
 
 xNAMESPACE_END2(xl, core)
