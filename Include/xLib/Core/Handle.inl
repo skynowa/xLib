@@ -145,7 +145,7 @@ Handle<T, valueT>::clone() const
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
 void_t
-Handle<T, valueT>::setCloExec(
+Handle<T, valueT>::setCloseOnExec(
 	cbool_t a_flag
 )
 {
@@ -169,7 +169,7 @@ Handle<T, valueT>::setCloExec(
 	* descriptors are labeled FD_CLOEXEC except for the ones you need to be duplicated.
 	*/
 
-	_setCloExec_impl(a_flag);
+	_setCloseOnExec_impl(a_flag);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>

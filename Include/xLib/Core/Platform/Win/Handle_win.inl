@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
 void_t
-Handle<T, valueT>::_setCloExec_impl(
+Handle<T, valueT>::_setCloseOnExec_impl(
 	cbool_t a_flag
 )
 {
