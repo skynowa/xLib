@@ -12,6 +12,8 @@
 #include <libxml/xpath.h>
 #include <libxml/xpathInternals.h>
 #include <libxml/xmlsave.h>
+
+#include <iconv.h>
 //-------------------------------------------------------------------------------------------------
 class TXmlNode;
 
