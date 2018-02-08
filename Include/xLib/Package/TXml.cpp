@@ -295,7 +295,7 @@ void TXmlDoc::registerNamespace(std::ctstring_t& ns, std::ctstring_t& url)
 	return;
 }
 //-------------------------------------------------------------------------------------------------
-void TXmlDoc::registerNamespaces(const std::map<std::tstring_t, std::tstring_t> &namespaces)
+void TXmlDoc::registerNamespaces(std::cmap_tstring_t &namespaces)
 {
 	for (auto &it_namespace : namespaces) {
 		registerNamespace(it_namespace.first, it_namespace.second);
@@ -304,7 +304,7 @@ void TXmlDoc::registerNamespaces(const std::map<std::tstring_t, std::tstring_t> 
 //-------------------------------------------------------------------------------------------------
 void TXmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
 {
-	std::map<std::tstring_t, std::tstring_t>::iterator ns;
+	std::map_tstring_t::iterator ns;
 
 	for( ns = _namespaces.begin(); ns != _namespaces.end(); ++ns )
 	{
@@ -690,7 +690,7 @@ std::tstring_t TXmlDoc::format(
 std::tstring_t TXmlDoc::format(
 	std::ctstring_t &a_str,		///< target XML std::tstring_t
 	std::ctstring_t &a_charset,	///< character encoding (sample: "UTF-8")
-	const std::map<std::tstring_t, std::tstring_t> &a_namespaces /* = {} */	///< XML namespaces
+	std::cmap_tstring_t &a_namespaces /* = {} */	///< XML namespaces
 )
 {
 	if ( a_str.empty() )

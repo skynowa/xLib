@@ -46,19 +46,19 @@ public:
     xmlDocPtr getDoc() { return _doc; }
 
     void registerNamespace(std::ctstring_t& ns, std::ctstring_t& url);
-    void registerNamespaces(const std::map<std::tstring_t, std::tstring_t> &namespaces);
+    void registerNamespaces(std::cmap_tstring_t &namespaces);
 
     int saveToFilename(std::ctstring_t& filename);
 
     std::tstring_t format(std::ctstring_t &charset);
-    static std::tstring_t format(std::ctstring_t &str, std::ctstring_t &charset, const std::map<std::tstring_t, std::tstring_t> &namespaces = {});
+    static std::tstring_t format(std::ctstring_t &str, std::ctstring_t &charset, std::cmap_tstring_t &namespaces = {});
 
 protected:
     xmlDocPtr _doc;
     iconv_t _iconv;
     int _auto_clean;
     int _error;
-    std::map<std::tstring_t, std::tstring_t> _namespaces;
+    std::map_tstring_t _namespaces;
     bool _without_encoding;
 
 public:
