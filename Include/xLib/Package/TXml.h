@@ -9,6 +9,7 @@
 #include <list>
 #include <map>
 #include <iostream>
+
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
@@ -21,12 +22,6 @@ class TXmlNode;
 
 class TXmlDoc
 {
-protected:
-    xmlDocPtr _doc;
-    iconv_t _iconv;
-    int _auto_clean;
-    int _error;
-    map<string, string> _namespaces;
 public:
     TXmlDoc();
     TXmlDoc(const TXmlDoc &) = delete;
@@ -64,6 +59,11 @@ public:
     static string format(const string &str, const string &charset, const map<string, string> &namespaces = {});
 
 protected:
+    xmlDocPtr _doc;
+    iconv_t _iconv;
+    int _auto_clean;
+    int _error;
+    map<string, string> _namespaces;
     bool _without_encoding;
 
 public:
@@ -76,10 +76,7 @@ public:
 class TXmlNode
 {
 protected:
-    xmlNodePtr _node;
-    iconv_t _iconv;
-    int _error;
-    TXmlDoc* _doc;
+
 public:
     TXmlNode();
     TXmlNode(iconv_t iconv);
@@ -94,16 +91,21 @@ public:
     int dumpToString(const string& xpathExpr, string& res, bool includeCurrent = false);
     int getContentList(const string& xpathExpr, list<TXmlNode>& res);
 
-
-
     void setIconv(iconv_t icnv) { _iconv = icnv; }
 
     void setNode(xmlNodePtr node) { _node = node; }
     xmlNodePtr getNode() { return _node; }
+
 protected:
+    xmlNodePtr _node;
+    iconv_t _iconv;
+    int _error;
+    TXmlDoc* _doc;
+
     bool _without_encoding;
     bool _is_debug;
     string _debug_path;
+
 public:
     void setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
     bool isText() { if (_node) return xmlNodeIsText(_node); return 0; }
