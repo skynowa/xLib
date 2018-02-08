@@ -15,10 +15,10 @@
 //-------------------------------------------------------------------------------------------------
 TXmlDoc::TXmlDoc()
 {
-	_auto_clean = 1;
-	_iconv = iconv_open("UTF-8", "UTF-8");
-	_doc = xPTR_NULL;
-	_error = 0;
+	_auto_clean       = 1;
+	_iconv            = iconv_open("UTF-8", "UTF-8");
+	_doc              = xPTR_NULL;
+	_error            = 0;
 	_without_encoding = true;
 	_namespaces.clear();
 }
@@ -26,13 +26,15 @@ TXmlDoc::TXmlDoc()
 TXmlDoc::TXmlDoc(std::tstring_t charset)
 {
 	_auto_clean = 1;
-	_iconv = iconv_open(charset.c_str(), "UTF-8");
-	_doc = xPTR_NULL;
-	_error = 0;
+	_iconv      = iconv_open(charset.c_str(), "UTF-8");
+	_doc        = xPTR_NULL;
+	_error      = 0;
+
 	if (charset == "UTF-8")
 		_without_encoding = true;
 	else
 		_without_encoding = false;
+
 	_namespaces.clear();
 }
 //-------------------------------------------------------------------------------------------------
@@ -40,6 +42,7 @@ TXmlDoc::~TXmlDoc()
 {
 	if (_iconv != (iconv_t)(-1))
 		iconv_close(_iconv);
+
 	if (_auto_clean)
 		Clean();
 }
@@ -103,6 +106,7 @@ TXmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 {
 	std::tstring_t::size_type pos, pos1, pos2, pos5;
 	pos = 0;
+
 	std::tstring_t text = str;
 	while ( (pos = text.find("xmlns", pos)) != std::tstring_t::npos )
 	{
@@ -152,7 +156,8 @@ TXmlDoc::Clean()
 	_doc = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
-bool TXmlDoc::findContent(const std::list<std::tstring_t>& xpathExprs, TXmlNode& res)
+bool
+TXmlDoc::findContent(const std::list<std::tstring_t>& xpathExprs, TXmlNode& res)
 {
 	for (const auto &it_xpathExpr : xpathExprs) {
 		int irv = getContent(it_xpathExpr, res);
@@ -172,6 +177,7 @@ TXmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 	{
 		return 1;
 	}
+
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
     xmlXPathObjectPtr xpathObj = xPTR_NULL;
 	xpathCtx = xmlXPathNewContext(_doc);
@@ -281,6 +287,7 @@ TXmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 	xmlFree(content);
 	xmlXPathFreeObject(xpathObj);
 	xmlXPathFreeContext(xpathCtx);
+
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
@@ -332,6 +339,7 @@ TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& r
 	{
 		return 1;
 	}
+
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
 	xmlXPathObjectPtr xpathObj = xPTR_NULL;
 	xpathCtx = xmlXPathNewContext(_doc);
@@ -365,7 +373,6 @@ TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& r
 		return 4;
 	}
 
-
 	for (int i=0;i<nodes->nodeNr;i++)
 	{
 		cur = nodes->nodeTab[i];
@@ -394,11 +401,7 @@ TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& r
 			char* buf = (char*) malloc(len2*sizeof(char) + 1);
 			char* ptr = buf;
 
-//#if defined(__FreeBSD__) || defined(__APPLE__)
-//			iconv(_iconv, (const char**)&cnt, &len, &ptr, &len2);
-//#else
 			iconv(_iconv, &cnt, &len, &ptr, &len2);
-//#endif
 
 			buf[xmlUTF8Strlen(content)] = 0;
 			res.push_back(buf);
@@ -409,7 +412,9 @@ TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& r
 	}
 	xmlXPathFreeObject(xpathObj);
 	xmlXPathFreeContext(xpathCtx);
+
 	if ( res.empty() ) return 3;
+
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
@@ -420,6 +425,7 @@ TXmlDoc::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
 	{
 		return 1;
 	}
+
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
 	xmlXPathObjectPtr xpathObj = xPTR_NULL;
 	xpathCtx = xmlXPathNewContext(_doc);
@@ -427,6 +433,7 @@ TXmlDoc::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
 	{
 		return 1;
     }
+
 	_registerNamespaces(xpathCtx);
 
 	xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
@@ -482,6 +489,7 @@ TXmlDoc::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
 
 	xmlXPathFreeObject(xpathObj);
 	xmlXPathFreeContext(xpathCtx);
+
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
@@ -493,6 +501,7 @@ TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
 	{
 		return 1;
 	}
+
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
     xmlXPathObjectPtr xpathObj = xPTR_NULL;
 	xpathCtx = xmlXPathNewContext(_doc);
@@ -500,6 +509,7 @@ TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
 	{
 		return 1;
     }
+
 	_registerNamespaces(xpathCtx);
 
 	xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
@@ -535,9 +545,12 @@ TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
 		node.setWithoutEncoding(_without_encoding);
 		res.push_back(node);
 	}
+
 	xmlXPathFreeObject(xpathObj);
 	xmlXPathFreeContext(xpathCtx);
+
 	if ( res.empty() ) return 3;
+
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
@@ -549,11 +562,12 @@ TXmlDoc::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res)
 	{
 		return 1;
 	}
+
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
     xmlXPathObjectPtr xpathObj = xPTR_NULL;
     _error = 0;
 	xpathCtx = xmlXPathNewContext(_doc);
-	if (!xpathCtx)
+		if (!xpathCtx)
 	{
 		return 1;
     }
@@ -609,7 +623,6 @@ TXmlDoc::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res)
 	xmlBufferPtr nodeBuffer = xmlBufferCreate();
 	xmlNodeDump(nodeBuffer, cur->doc, cur->xmlChildrenNode, 0, 1);
 
-
 	if( !nodeBuffer )
 	{
 		if (xpathObj)
@@ -634,12 +647,11 @@ TXmlDoc::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res)
 		return 0;
 	}
 
-
-
 	res = cnt;
 	xmlBufferFree(nodeBuffer);
 	xmlXPathFreeObject(xpathObj);
 	xmlXPathFreeContext(xpathCtx);
+
 	return 0;
 
 }
@@ -649,13 +661,16 @@ TXmlDoc::getRootNode(TXmlNode& root)
 {
 	if (!_doc)
 		return 1;
+
 	xmlNodePtr root_node = xmlDocGetRootElement(_doc);
 	if ( !root_node )
 		return 2;
+
 	root.setIconv(_iconv);
 	root.setNode(root_node);
 	root.setDoc(this);
 	root.setWithoutEncoding(_without_encoding);
+
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
@@ -681,6 +696,7 @@ TXmlDoc::format(
 {
 	if (!_doc)
 		return {};
+
 	if ( a_charset.empty() )
 		return {};
 
@@ -738,19 +754,19 @@ TXmlDoc::format(
 //-------------------------------------------------------------------------------------------------
 TXmlNode::TXmlNode(iconv_t iconv)
 {
-	_iconv = iconv;
-	_node = xPTR_NULL;
-	_error = 0;
-	_doc = xPTR_NULL;
+	_iconv    = iconv;
+	_node     = xPTR_NULL;
+	_error    = 0;
+	_doc      = xPTR_NULL;
 	_is_debug = false;
 }
 //-------------------------------------------------------------------------------------------------
 TXmlNode::TXmlNode()
 {
-	_iconv = (iconv_t)(-1);
-	_node = xPTR_NULL;
-	_error = 0;
-	_doc = xPTR_NULL;
+	_iconv    = (iconv_t)(-1);
+	_node     = xPTR_NULL;
+	_error    = 0;
+	_doc      = xPTR_NULL;
 	_is_debug = false;
 }
 //-------------------------------------------------------------------------------------------------
@@ -765,6 +781,7 @@ TXmlNode::getName()
 		return "";
 	if ( _node->name )
 		return (char*)_node->name;
+
 	return "";
 }
 //-------------------------------------------------------------------------------------------------
@@ -774,11 +791,13 @@ TXmlNode::getText()
 	std::tstring_t text;
 	if (!_node || _iconv == (iconv_t)(-1))
 		return text;
+
 	xmlChar* content;
 	if ( xmlNodeIsText(_node) )
 		content = xmlNodeGetContent( _node);
 	else
 		content = xmlNodeListGetString( _node->doc, _node->xmlChildrenNode, 1);
+
 	if( !content)
 	{
 		return text;
@@ -804,10 +823,12 @@ TXmlNode::getText()
 
 		buf[xmlUTF8Strlen(content)] = 0;
 		text = buf;
+
 		free(buf);
 	}
 
 	xmlFree(content);
+
 	return text;
 }
 //-------------------------------------------------------------------------------------------------
@@ -817,8 +838,10 @@ TXmlNode::getChildren(std::list<TXmlNode>& val, std::tstring_t name)
 	val.clear();
 	if (!_node || _iconv == (iconv_t)(-1))
 		return;
+
 	xmlNodePtr curitem;
 	curitem=_node->xmlChildrenNode;
+
 	while( curitem != xPTR_NULL )
 	{
 
@@ -843,6 +866,7 @@ TXmlNode::getChildren(std::list<TXmlNode>& val, std::tstring_t name)
 				node.setDoc(_doc);
 			val.push_back(node);
 		}
+
 		curitem = curitem->next;
 	}
 }
@@ -855,9 +879,11 @@ TXmlNode::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool inc
 	{
 		return 1;
 	}
+
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
     xmlXPathObjectPtr xpathObj = xPTR_NULL;
     _error = 0;
+
 	xpathCtx = xmlXPathNewContext(_node->doc);
 	if (!xpathCtx)
 	{
@@ -926,7 +952,6 @@ TXmlNode::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool inc
 		xmlNodeDump(nodeBuffer, cur->doc, cur->xmlChildrenNode, 0, 1);
 	}
 
-
 	if( !nodeBuffer )
 	{
 		if (xpathObj)
@@ -951,14 +976,12 @@ TXmlNode::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool inc
 		return 0;
 	}
 
-
-
 	res = cnt;
 	xmlBufferFree(nodeBuffer);
 	xmlXPathFreeObject(xpathObj);
 	xmlXPathFreeContext(xpathCtx);
-	return 0;
 
+	return 0;
 }
 //-------------------------------------------------------------------------------------------------
 int
@@ -969,6 +992,7 @@ TXmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 	{
 		return 1;
 	}
+
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
     xmlXPathObjectPtr xpathObj = xPTR_NULL;
     _error = 0;
@@ -990,6 +1014,7 @@ TXmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 		if (xpathCtx)
 			xmlXPathFreeContext(xpathCtx);
 		xpathCtx = xPTR_NULL;
+
 		return 2;
     }
 
@@ -1052,7 +1077,6 @@ TXmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 		return 0;
 	}
 
-
 	size_t len  = (size_t)xmlStrlen(content);
 	size_t len2 = (size_t)xmlUTF8Strlen(content);
 	if (len2 && iconv != (iconv_t)-1)
@@ -1070,8 +1094,8 @@ TXmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 	xmlFree(content);
 	xmlXPathFreeObject(xpathObj);
 	xmlXPathFreeContext(xpathCtx);
-	return 0;
 
+	return 0;
 }
 //-------------------------------------------------------------------------------------------------
 int
@@ -1082,13 +1106,16 @@ TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& 
 	{
 		return 1;
 	}
+
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
 	xmlXPathObjectPtr xpathObj = xPTR_NULL;
+
 	xpathCtx = xmlXPathNewContext(_node->doc);
 	if ( !xpathCtx )
 	{
 		return 1;
 	}
+
 	if (_doc)
 	{
 		_doc->_registerNamespaces(xpathCtx);
@@ -1147,11 +1174,7 @@ TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& 
 			char* buf = (char*) malloc(len2*sizeof(char) + 1);
 			char* ptr = buf;
 
-//#if defined(__FreeBSD__) || defined(__APPLE__)
-//			iconv(_iconv, (const char**)&cnt, &len, &ptr, &len2);
-//#else
 			iconv(_iconv, &cnt, &len, &ptr, &len2);
-//#endif
 
 			buf[xmlUTF8Strlen(content)] = 0;
 			res.push_back(buf);
@@ -1160,9 +1183,12 @@ TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& 
 
 		xmlFree(content);
 	}
+
 	xmlXPathFreeObject(xpathObj);
 	xmlXPathFreeContext(xpathCtx);
+
 	if ( res.empty() ) return 3;
+
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
@@ -1173,6 +1199,7 @@ TXmlNode::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
 	{
 		return 1;
 	}
+
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
 	xmlXPathObjectPtr xpathObj = xPTR_NULL;
 	xpathCtx = xmlXPathNewContext(_node->doc);
@@ -1240,6 +1267,7 @@ TXmlNode::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
 
 	xmlXPathFreeObject(xpathObj);
 	xmlXPathFreeContext(xpathCtx);
+
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
@@ -1251,6 +1279,7 @@ TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
 	{
 		return 1;
 	}
+
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
 	xmlXPathObjectPtr xpathObj = xPTR_NULL;
 	xpathCtx = xmlXPathNewContext(_node->doc);
@@ -1263,6 +1292,7 @@ TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
     {
 		_doc->_registerNamespaces(xpathCtx);
 	}
+
 	xpathCtx->node = _node;
 	xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
 	if (!xpathObj)
@@ -1272,6 +1302,7 @@ TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
 		xpathCtx = xPTR_NULL;
 		return 2;
 	}
+
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
 	if ( !nodes )
@@ -1297,9 +1328,12 @@ TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
 			node.setDoc(_doc);
 		res.push_back(node);
 	}
+
 	xmlXPathFreeObject(xpathObj);
 	xmlXPathFreeContext(xpathCtx);
+
 	if ( res.empty() ) return 3;
+
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
@@ -1307,7 +1341,6 @@ void
 TXmlNode::getAttributeList(std::list<std::tstring_t>& val)
 {
 	val.clear();
-
 
 	if ((_node == xPTR_NULL) || (_node->type != XML_ELEMENT_NODE))
 		return;
