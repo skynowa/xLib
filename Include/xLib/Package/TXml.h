@@ -70,13 +70,10 @@ public:
     TXmlDoc(string charset);
     void setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
     void _registerNamespaces(xmlXPathContext* ctx);
-
 };
 //-------------------------------------------------------------------------------------------------
 class TXmlNode
 {
-protected:
-
 public:
     TXmlNode();
     TXmlNode(iconv_t iconv);
