@@ -1,19 +1,19 @@
 /**
- * \file  TXml.h
+ * \file  Xml.h
  * \brief LinXml2 wrapper
  */
 
 
-#include "TXml.h"
+#include "Xml.h"
 
 
 /**************************************************************************************************
-*   TXmlDoc
+*   XmlDoc
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-TXmlDoc::TXmlDoc()
+XmlDoc::XmlDoc()
 {
 	_auto_clean       = 1;
 	_iconv            = iconv_open("UTF-8", "UTF-8");
@@ -23,7 +23,7 @@ TXmlDoc::TXmlDoc()
 	_namespaces.clear();
 }
 //-------------------------------------------------------------------------------------------------
-TXmlDoc::TXmlDoc(std::tstring_t charset)
+XmlDoc::XmlDoc(std::tstring_t charset)
 {
 	_auto_clean = 1;
 	_iconv      = iconv_open(charset.c_str(), "UTF-8");
@@ -38,7 +38,7 @@ TXmlDoc::TXmlDoc(std::tstring_t charset)
 	_namespaces.clear();
 }
 //-------------------------------------------------------------------------------------------------
-TXmlDoc::~TXmlDoc()
+XmlDoc::~XmlDoc()
 {
 	if (_iconv != (iconv_t)(-1))
 		iconv_close(_iconv);
@@ -48,14 +48,14 @@ TXmlDoc::~TXmlDoc()
 }
 //-------------------------------------------------------------------------------------------------
 void
-TXmlDoc::LoadDoc(xmlDocPtr doc)
+XmlDoc::LoadDoc(xmlDocPtr doc)
 {
 	Clean();
 	_doc = doc;
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlDoc::LoadFile(std::ctstring_t& file)
+XmlDoc::LoadFile(std::ctstring_t& file)
 {
 	try
 	{
@@ -81,7 +81,7 @@ TXmlDoc::LoadFile(std::ctstring_t& file)
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlDoc::LoadString(std::ctstring_t& str)
+XmlDoc::LoadString(std::ctstring_t& str)
 {
 	try
 	{
@@ -102,7 +102,7 @@ TXmlDoc::LoadString(std::ctstring_t& str)
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
+XmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 {
 	std::tstring_t::size_type pos, pos1, pos2, pos5;
 	pos = 0;
@@ -147,7 +147,7 @@ TXmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 }
 //-------------------------------------------------------------------------------------------------
 void
-TXmlDoc::Clean()
+XmlDoc::Clean()
 {
 	if (_doc)
 	{
@@ -157,7 +157,7 @@ TXmlDoc::Clean()
 }
 //-------------------------------------------------------------------------------------------------
 bool
-TXmlDoc::findContent(const std::list<std::tstring_t>& xpathExprs, TXmlNode& res)
+XmlDoc::findContent(const std::list<std::tstring_t>& xpathExprs, XmlNode& res)
 {
 	for (const auto &it_xpathExpr : xpathExprs) {
 		int irv = getContent(it_xpathExpr, res);
@@ -170,7 +170,7 @@ TXmlDoc::findContent(const std::list<std::tstring_t>& xpathExprs, TXmlNode& res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
+XmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 {
 	res.clear();
 	if (!_doc)
@@ -292,7 +292,7 @@ TXmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-TXmlDoc::getContentStr(std::ctstring_t& xpathExpr)
+XmlDoc::getContentStr(std::ctstring_t& xpathExpr)
 {
 	std::tstring_t srv;
 
@@ -305,13 +305,13 @@ TXmlDoc::getContentStr(std::ctstring_t& xpathExpr)
 }
 //-------------------------------------------------------------------------------------------------
 void
-TXmlDoc::registerNamespace(std::ctstring_t& ns, std::ctstring_t& url)
+XmlDoc::registerNamespace(std::ctstring_t& ns, std::ctstring_t& url)
 {
 	_namespaces[ns] = url;
 }
 //-------------------------------------------------------------------------------------------------
 void
-TXmlDoc::registerNamespaces(std::cmap_tstring_t &namespaces)
+XmlDoc::registerNamespaces(std::cmap_tstring_t &namespaces)
 {
 	for (auto &it_namespace : namespaces) {
 		registerNamespace(it_namespace.first, it_namespace.second);
@@ -319,7 +319,7 @@ TXmlDoc::registerNamespaces(std::cmap_tstring_t &namespaces)
 }
 //-------------------------------------------------------------------------------------------------
 void
-TXmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
+XmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
 {
 	std::map_tstring_t::iterator ns;
 
@@ -332,7 +332,7 @@ TXmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res)
+XmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res)
 {
 	res.clear();
 	if (!_doc)
@@ -419,7 +419,7 @@ TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& r
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlDoc::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
+XmlDoc::getContent(std::ctstring_t& xpathExpr, XmlNode& res)
 {
 	if (!_doc)
 	{
@@ -494,7 +494,7 @@ TXmlDoc::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
+XmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<XmlNode>& res)
 {
 	res.clear();
 	if (!_doc)
@@ -539,7 +539,7 @@ TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
 	{
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
-		TXmlNode node(_iconv);
+		XmlNode node(_iconv);
 		node.setNode(cur);
 		node.setDoc(this);
 		node.setWithoutEncoding(_without_encoding);
@@ -555,7 +555,7 @@ TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlDoc::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res)
+XmlDoc::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res)
 {
 	res.clear();
 	if ( !_doc )
@@ -657,7 +657,7 @@ TXmlDoc::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlDoc::getRootNode(TXmlNode& root)
+XmlDoc::getRootNode(XmlNode& root)
 {
 	if (!_doc)
 		return 1;
@@ -675,7 +675,7 @@ TXmlDoc::getRootNode(TXmlNode& root)
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlDoc::saveToFilename(std::ctstring_t& filename)
+XmlDoc::saveToFilename(std::ctstring_t& filename)
 {
 	if (!_doc) return -1;
 
@@ -690,7 +690,7 @@ TXmlDoc::saveToFilename(std::ctstring_t& filename)
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-TXmlDoc::format(
+XmlDoc::format(
 	std::ctstring_t &a_charset	///< character encoding (sample: "UTF-8")
 )
 {
@@ -721,7 +721,7 @@ TXmlDoc::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-TXmlDoc::format(
+XmlDoc::format(
 	std::ctstring_t &a_str,		///< target XML std::tstring_t
 	std::ctstring_t &a_charset,	///< character encoding (sample: "UTF-8")
 	std::cmap_tstring_t &a_namespaces /* = {} */	///< XML namespaces
@@ -735,7 +735,7 @@ TXmlDoc::format(
 	std::tstring_t  srv;
 	int     irv = 0;
 
-	TXmlDoc doc(a_charset);
+	XmlDoc doc(a_charset);
 	doc.registerNamespaces(a_namespaces);
 	irv = doc.LoadString(a_str);
 	if (irv != 0)
@@ -747,12 +747,12 @@ TXmlDoc::format(
 
 
 /**************************************************************************************************
-*   TXmlNode
+*   XmlNode
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-TXmlNode::TXmlNode(iconv_t iconv)
+XmlNode::XmlNode(iconv_t iconv)
 {
 	_iconv    = iconv;
 	_node     = xPTR_NULL;
@@ -761,7 +761,7 @@ TXmlNode::TXmlNode(iconv_t iconv)
 	_is_debug = false;
 }
 //-------------------------------------------------------------------------------------------------
-TXmlNode::TXmlNode()
+XmlNode::XmlNode()
 {
 	_iconv    = (iconv_t)(-1);
 	_node     = xPTR_NULL;
@@ -770,12 +770,12 @@ TXmlNode::TXmlNode()
 	_is_debug = false;
 }
 //-------------------------------------------------------------------------------------------------
-TXmlNode::~TXmlNode()
+XmlNode::~XmlNode()
 {
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-TXmlNode::getName()
+XmlNode::getName()
 {
 	if ( !_node )
 		return "";
@@ -786,7 +786,7 @@ TXmlNode::getName()
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-TXmlNode::getText()
+XmlNode::getText()
 {
 	std::tstring_t text;
 	if (!_node || _iconv == (iconv_t)(-1))
@@ -833,7 +833,7 @@ TXmlNode::getText()
 }
 //-------------------------------------------------------------------------------------------------
 void
-TXmlNode::getChildren(std::list<TXmlNode>& val, std::tstring_t name)
+XmlNode::getChildren(std::list<XmlNode>& val, std::tstring_t name)
 {
 	val.clear();
 	if (!_node || _iconv == (iconv_t)(-1))
@@ -849,7 +849,7 @@ TXmlNode::getChildren(std::list<TXmlNode>& val, std::tstring_t name)
 		{
 			if (!xmlStrcmp(curitem->name,(xmlChar*)name.c_str()))
 			{
-				TXmlNode node(_iconv);
+				XmlNode node(_iconv);
 				node.setNode(curitem);
 				node.setWithoutEncoding(_without_encoding);
 				if (_doc)
@@ -859,7 +859,7 @@ TXmlNode::getChildren(std::list<TXmlNode>& val, std::tstring_t name)
 		}
 		else
 		{
-			TXmlNode node(_iconv);
+			XmlNode node(_iconv);
 			node.setNode(curitem);
 			node.setWithoutEncoding(_without_encoding);
 			if (_doc)
@@ -872,7 +872,7 @@ TXmlNode::getChildren(std::list<TXmlNode>& val, std::tstring_t name)
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlNode::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool includeCurrent)
+XmlNode::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool includeCurrent)
 {
 	res.clear();
 	if (!_node)
@@ -985,7 +985,7 @@ TXmlNode::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool inc
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
+XmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 {
 	res.clear();
 	if (!_node)
@@ -1099,7 +1099,7 @@ TXmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res)
+XmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res)
 {
 	res.clear();
 	if (!_node)
@@ -1193,7 +1193,7 @@ TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& 
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlNode::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
+XmlNode::getContent(std::ctstring_t& xpathExpr, XmlNode& res)
 {
 	if (!_node)
 	{
@@ -1272,7 +1272,7 @@ TXmlNode::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
+XmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<XmlNode>& res)
 {
 	res.clear();
 	if (!_node)
@@ -1321,7 +1321,7 @@ TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
 
-		TXmlNode node(_iconv);
+		XmlNode node(_iconv);
 		node.setNode(cur);
 		node.setWithoutEncoding(_without_encoding);
 		if (_doc)
@@ -1338,7 +1338,7 @@ TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
 }
 //-------------------------------------------------------------------------------------------------
 void
-TXmlNode::getAttributeList(std::list<std::tstring_t>& val)
+XmlNode::getAttributeList(std::list<std::tstring_t>& val)
 {
 	val.clear();
 
