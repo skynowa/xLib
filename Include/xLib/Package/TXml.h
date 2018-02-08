@@ -19,7 +19,7 @@ class TXmlDoc
 {
 public:
                    TXmlDoc();
-                   TXmlDoc(std::tstring_t charset);
+    explicit       TXmlDoc(std::tstring_t charset);
                    TXmlDoc(const TXmlDoc &) = delete;
                    TXmlDoc(TXmlDoc &&) = delete;
                   ~TXmlDoc();
@@ -28,7 +28,6 @@ public:
     TXmlDoc & operator = (TXmlDoc &&) = delete;
 
     void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
-    void           _registerNamespaces(xmlXPathContext* ctx);
 
     void           LoadDoc(xmlDocPtr doc);
     int            LoadFile(std::ctstring_t& file);
@@ -51,6 +50,7 @@ public:
 
     void           registerNamespace(std::ctstring_t& ns, std::ctstring_t& url);
     void           registerNamespaces(std::cmap_tstring_t &namespaces);
+    void           _registerNamespaces(xmlXPathContext* ctx);
 
     int            saveToFilename(std::ctstring_t& filename);
 
@@ -71,7 +71,7 @@ class TXmlNode
 {
 public:
                    TXmlNode();
-                   TXmlNode(iconv_t iconv);
+    explicit       TXmlNode(iconv_t iconv);
                   ~TXmlNode();
 
     void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
