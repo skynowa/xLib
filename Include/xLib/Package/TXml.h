@@ -1,10 +1,14 @@
+/**
+ * \file  TXml.h
+ * \brief LinXml2 wrapper
+ */
 
-#ifndef XML_DOC_H
-#define XML_DOC_H
+#pragma once
 
 #include <string>
 #include <list>
 #include <map>
+#include <iostream>
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
@@ -12,7 +16,7 @@
 #include <libxml/xmlsave.h>
 
 using namespace std;
-
+//-------------------------------------------------------------------------------------------------
 class TXmlNode;
 
 class TXmlDoc
@@ -68,7 +72,7 @@ class TXmlDoc
 		void _registerNamespaces(xmlXPathContext* ctx);
 
 };
-
+//-------------------------------------------------------------------------------------------------
 class TXmlNode
 {
 	protected:
@@ -107,8 +111,4 @@ class TXmlNode
 		void setDoc(TXmlDoc* doc) { _doc = doc; }
 		void setIsDebug(bool is_debug, const string& path) { _is_debug = is_debug; _debug_path = path; }
 };
-
-
-
-#endif
-
+//-------------------------------------------------------------------------------------------------

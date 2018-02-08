@@ -1,7 +1,13 @@
+/**
+ * \file  TXml.h
+ * \brief LinXml2 wrapper
+ */
+
+
 #include "TXml.h"
-#include <iostream>
 
 
+//-------------------------------------------------------------------------------------------------
 TXmlDoc::TXmlDoc()
 {
 	_auto_clean = 1;
@@ -11,7 +17,7 @@ TXmlDoc::TXmlDoc()
 	_without_encoding = true;
 	_namespaces.clear();
 }
-
+//-------------------------------------------------------------------------------------------------
 TXmlDoc::TXmlDoc(string charset)
 {
 	_auto_clean = 1;
@@ -24,7 +30,7 @@ TXmlDoc::TXmlDoc(string charset)
 		_without_encoding = false;
 	_namespaces.clear();
 }
-
+//-------------------------------------------------------------------------------------------------
 TXmlDoc::~TXmlDoc()
 {
 	if (_iconv != (iconv_t)(-1))
@@ -32,13 +38,13 @@ TXmlDoc::~TXmlDoc()
 	if (_auto_clean)
 		Clean();
 }
-
+//-------------------------------------------------------------------------------------------------
 void TXmlDoc::LoadDoc(xmlDocPtr doc)
 {
 	Clean();
 	_doc = doc;
 }
-
+//-------------------------------------------------------------------------------------------------
 int TXmlDoc::LoadFile(const string& file)
 {
 	try
@@ -63,7 +69,7 @@ int TXmlDoc::LoadFile(const string& file)
 		return _error;
 	}
 }
-
+//-------------------------------------------------------------------------------------------------
 int TXmlDoc::LoadString(const string& str)
 {
 	try
@@ -83,7 +89,7 @@ int TXmlDoc::LoadString(const string& str)
 		return _error;
 	}
 }
-
+//-------------------------------------------------------------------------------------------------
 int TXmlDoc::LoadStringWithoutNS(const string& str)
 {
 	string::size_type pos, pos1, pos2, pos5;
@@ -126,7 +132,7 @@ int TXmlDoc::LoadStringWithoutNS(const string& str)
 
 	return LoadString(text);
 }
-
+//-------------------------------------------------------------------------------------------------
 void TXmlDoc::Clean()
 {
 	if (_doc)
@@ -135,7 +141,7 @@ void TXmlDoc::Clean()
 	}
 	_doc = NULL;
 }
-
+//-------------------------------------------------------------------------------------------------
 bool TXmlDoc::findContent(const list<string>& xpathExprs, TXmlNode& res)
 {
 	for (const auto &it_xpathExpr : xpathExprs) {
@@ -147,7 +153,7 @@ bool TXmlDoc::findContent(const list<string>& xpathExprs, TXmlNode& res)
 
 	return false;
 }
-
+//-------------------------------------------------------------------------------------------------
 int TXmlDoc::getContent(const string& xpathExpr, string& res)
 {
 	res.clear();
@@ -270,7 +276,7 @@ int TXmlDoc::getContent(const string& xpathExpr, string& res)
 	xmlXPathFreeContext(xpathCtx);
 	return 0;
 }
-
+//-------------------------------------------------------------------------------------------------
 string TXmlDoc::getContentStr(const string& xpathExpr)
 {
 	string srv;
@@ -282,20 +288,20 @@ string TXmlDoc::getContentStr(const string& xpathExpr)
 
 	return srv;
 }
-
+//-------------------------------------------------------------------------------------------------
 void TXmlDoc::registerNamespace(const string& ns, const string& url)
 {
 	_namespaces[ns] = url;
 	return;
 }
-
+//-------------------------------------------------------------------------------------------------
 void TXmlDoc::registerNamespaces(const map<string, string> &namespaces)
 {
 	for (auto &it_namespace : namespaces) {
 		registerNamespace(it_namespace.first, it_namespace.second);
 	}
 }
-
+//-------------------------------------------------------------------------------------------------
 void TXmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
 {
 	map<string, string>::iterator ns;
@@ -307,7 +313,7 @@ void TXmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
 
 	return;
 }
-
+//-------------------------------------------------------------------------------------------------
 int TXmlDoc::getContentList(const string& xpathExpr, list<string>& res)
 {
 	res.clear();
@@ -395,7 +401,7 @@ int TXmlDoc::getContentList(const string& xpathExpr, list<string>& res)
 	if ( res.empty() ) return 3;
 	return 0;
 }
-
+//-------------------------------------------------------------------------------------------------
 int TXmlDoc::getContent(const string& xpathExpr, TXmlNode& res)
 {
 	if (!_doc)
@@ -466,8 +472,7 @@ int TXmlDoc::getContent(const string& xpathExpr, TXmlNode& res)
 	xmlXPathFreeContext(xpathCtx);
 	return 0;
 }
-
-
+//-------------------------------------------------------------------------------------------------
 int TXmlDoc::getContentList(const string& xpathExpr, list<TXmlNode>& res)
 {
 	res.clear();
@@ -522,8 +527,7 @@ int TXmlDoc::getContentList(const string& xpathExpr, list<TXmlNode>& res)
 	if ( res.empty() ) return 3;
 	return 0;
 }
-
-
+//-------------------------------------------------------------------------------------------------
 int TXmlDoc::dumpToString(const string& xpathExpr, string& res)
 {
 	res.clear();
@@ -625,8 +629,7 @@ int TXmlDoc::dumpToString(const string& xpathExpr, string& res)
 	return 0;
 
 }
-
-
+//-------------------------------------------------------------------------------------------------
 int TXmlDoc::getRootNode(TXmlNode& root)
 {
 	if (!_doc)
@@ -640,7 +643,7 @@ int TXmlDoc::getRootNode(TXmlNode& root)
 	root.setWithoutEncoding(_without_encoding);
 	return 0;
 }
-
+//-------------------------------------------------------------------------------------------------
 int TXmlDoc::saveToFilename(const string& filename)
 {
 	if (!_doc) return -1;
@@ -654,7 +657,7 @@ int TXmlDoc::saveToFilename(const string& filename)
 
 	return -1;
 }
-
+//-------------------------------------------------------------------------------------------------
 string TXmlDoc::format(
 	const string &a_charset	///< character encoding (sample: "UTF-8")
 )
@@ -682,7 +685,7 @@ string TXmlDoc::format(
 
 	return srv;
 }
-
+//-------------------------------------------------------------------------------------------------
 /* static */
 string TXmlDoc::format(
 	const string &a_str,		///< target XML string
@@ -706,7 +709,7 @@ string TXmlDoc::format(
 
 	return doc.format(a_charset);
 }
-
+//-------------------------------------------------------------------------------------------------
 TXmlNode::TXmlNode(iconv_t iconv)
 {
 	_iconv = iconv;
@@ -715,7 +718,7 @@ TXmlNode::TXmlNode(iconv_t iconv)
 	_doc = NULL;
 	_is_debug = false;
 }
-
+//-------------------------------------------------------------------------------------------------
 TXmlNode::TXmlNode()
 {
 	_iconv = (iconv_t)(-1);
@@ -724,11 +727,11 @@ TXmlNode::TXmlNode()
 	_doc = NULL;
 	_is_debug = false;
 }
-
+//-------------------------------------------------------------------------------------------------
 TXmlNode::~TXmlNode()
 {
 }
-
+//-------------------------------------------------------------------------------------------------
 string TXmlNode::getName()
 {
 	if ( !_node )
@@ -737,7 +740,7 @@ string TXmlNode::getName()
 		return (char*)_node->name;
 	return "";
 }
-
+//-------------------------------------------------------------------------------------------------
 string TXmlNode::getText()
 {
 	string text;
@@ -783,8 +786,7 @@ string TXmlNode::getText()
 	xmlFree(content);
 	return text;
 }
-
-
+//-------------------------------------------------------------------------------------------------
 void TXmlNode::getChildren(list<TXmlNode>& val, string name)
 {
 	val.clear();
@@ -819,8 +821,7 @@ void TXmlNode::getChildren(list<TXmlNode>& val, string name)
 		curitem = curitem->next;
 	}
 }
-
-
+//-------------------------------------------------------------------------------------------------
 int TXmlNode::dumpToString(const string& xpathExpr, string& res, bool includeCurrent)
 {
 	res.clear();
@@ -933,7 +934,7 @@ int TXmlNode::dumpToString(const string& xpathExpr, string& res, bool includeCur
 	return 0;
 
 }
-
+//-------------------------------------------------------------------------------------------------
 int TXmlNode::getContent(const string& xpathExpr, string& res)
 {
 	res.clear();
@@ -1049,7 +1050,7 @@ int TXmlNode::getContent(const string& xpathExpr, string& res)
 	return 0;
 
 }
-
+//-------------------------------------------------------------------------------------------------
 int TXmlNode::getContentList(const string& xpathExpr, list<string>& res)
 {
 	res.clear();
@@ -1140,8 +1141,7 @@ int TXmlNode::getContentList(const string& xpathExpr, list<string>& res)
 	if ( res.empty() ) return 3;
 	return 0;
 }
-
-
+//-------------------------------------------------------------------------------------------------
 int TXmlNode::getContent(const string& xpathExpr, TXmlNode& res)
 {
 	if (!_node)
@@ -1217,8 +1217,7 @@ int TXmlNode::getContent(const string& xpathExpr, TXmlNode& res)
 	xmlXPathFreeContext(xpathCtx);
 	return 0;
 }
-
-
+//-------------------------------------------------------------------------------------------------
 int TXmlNode::getContentList(const string& xpathExpr, list<TXmlNode>& res)
 {
 	res.clear();
@@ -1277,7 +1276,7 @@ int TXmlNode::getContentList(const string& xpathExpr, list<TXmlNode>& res)
 	if ( res.empty() ) return 3;
 	return 0;
 }
-
+//-------------------------------------------------------------------------------------------------
 void TXmlNode::getAttributeList(list<string>& val)
 {
 	val.clear();
@@ -1297,4 +1296,4 @@ void TXmlNode::getAttributeList(list<string>& val)
 		while (prop != NULL);
 	}
 }
-
+//-------------------------------------------------------------------------------------------------
