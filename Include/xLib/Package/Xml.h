@@ -1,5 +1,5 @@
 /**
- * \file  TXml.h
+ * \file  Xml.h
  * \brief LinXml2 wrapper
  */
 
@@ -15,19 +15,19 @@
 
 #include <iconv.h>
 //-------------------------------------------------------------------------------------------------
-class TXmlNode;
+class XmlNode;
 
-class TXmlDoc
+class XmlDoc
 {
 public:
-                   TXmlDoc();
-    explicit       TXmlDoc(std::tstring_t charset);
-                   TXmlDoc(const TXmlDoc &) = delete;
-                   TXmlDoc(TXmlDoc &&) = delete;
-                  ~TXmlDoc();
+                   XmlDoc();
+    explicit       XmlDoc(std::tstring_t charset);
+                   XmlDoc(const XmlDoc &) = delete;
+                   XmlDoc(XmlDoc &&) = delete;
+                  ~XmlDoc();
 
-    TXmlDoc & operator = (const TXmlDoc &) = delete;
-    TXmlDoc & operator = (TXmlDoc &&) = delete;
+    XmlDoc & operator = (const XmlDoc &) = delete;
+    XmlDoc & operator = (XmlDoc &&) = delete;
 
     void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
 
@@ -36,14 +36,14 @@ public:
     int            LoadString(std::ctstring_t& str);
     int            LoadStringWithoutNS(std::ctstring_t& str);
     void           Clean();
-    bool           findContent(const std::list<std::tstring_t>& xpathExprs, TXmlNode& res);
+    bool           findContent(const std::list<std::tstring_t>& xpathExprs, XmlNode& res);
     int            getContent(std::ctstring_t& xpathExpr, std::tstring_t& res);
     std::tstring_t getContentStr(std::ctstring_t& xpathExpr);
     int            getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res);
-    int            getContent(std::ctstring_t& xpathExpr, TXmlNode& res);
-    int            getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res);
+    int            getContent(std::ctstring_t& xpathExpr, XmlNode& res);
+    int            getContentList(std::ctstring_t& xpathExpr, std::list<XmlNode>& res);
     int            dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res);
-    int            getRootNode(TXmlNode& root);
+    int            getRootNode(XmlNode& root);
 
     void           setIconv(iconv_t icnv) { _iconv = icnv; }
     void           setAutoClean(int val) { _auto_clean = val; }
@@ -69,28 +69,28 @@ protected:
     bool               _without_encoding;
 };
 //-------------------------------------------------------------------------------------------------
-class TXmlNode
+class XmlNode
 {
 public:
-                   TXmlNode();
-    explicit       TXmlNode(iconv_t iconv);
-                  ~TXmlNode();
+                   XmlNode();
+    explicit       XmlNode(iconv_t iconv);
+                  ~XmlNode();
 
     void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
     bool           isText() { if (_node) return xmlNodeIsText(_node); return 0; }
     void           getAttributeList(std::list<std::tstring_t>& val);
-    void           setDoc(TXmlDoc* doc) { _doc = doc; }
+    void           setDoc(XmlDoc* doc) { _doc = doc; }
     void           setIsDebug(bool is_debug, std::ctstring_t& path) { _is_debug = is_debug; _debug_path = path; }
 
     std::tstring_t getName();
     std::tstring_t getText();
-    void           getChildren(std::list<TXmlNode>& val,std::tstring_t name = "");
+    void           getChildren(std::list<XmlNode>& val,std::tstring_t name = "");
     int            getContent(std::ctstring_t& xpathExpr, std::tstring_t& res);
     std::tstring_t getContentStr(std::ctstring_t& xpathExpr)  { std::tstring_t text; if (!getContent(xpathExpr,text)) return text; return "";	}
     int            getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res);
-    int            getContent(std::ctstring_t& xpathExpr, TXmlNode& res);
+    int            getContent(std::ctstring_t& xpathExpr, XmlNode& res);
     int            dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool includeCurrent = false);
-    int            getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res);
+    int            getContentList(std::ctstring_t& xpathExpr, std::list<XmlNode>& res);
 
     void           setIconv(iconv_t icnv) { _iconv = icnv; }
 
@@ -101,7 +101,7 @@ protected:
     xmlNodePtr     _node;
     iconv_t        _iconv;
     int            _error;
-    TXmlDoc       *_doc;
+    XmlDoc       *_doc;
 
     bool           _without_encoding;
     bool           _is_debug;
