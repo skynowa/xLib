@@ -7,6 +7,11 @@
 #include "TXml.h"
 
 
+/**************************************************************************************************
+*   TXmlDoc
+*
+**************************************************************************************************/
+
 //-------------------------------------------------------------------------------------------------
 TXmlDoc::TXmlDoc()
 {
@@ -39,13 +44,15 @@ TXmlDoc::~TXmlDoc()
 		Clean();
 }
 //-------------------------------------------------------------------------------------------------
-void TXmlDoc::LoadDoc(xmlDocPtr doc)
+void
+TXmlDoc::LoadDoc(xmlDocPtr doc)
 {
 	Clean();
 	_doc = doc;
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlDoc::LoadFile(std::ctstring_t& file)
+int
+TXmlDoc::LoadFile(std::ctstring_t& file)
 {
 	try
 	{
@@ -70,7 +77,8 @@ int TXmlDoc::LoadFile(std::ctstring_t& file)
 	}
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlDoc::LoadString(std::ctstring_t& str)
+int
+TXmlDoc::LoadString(std::ctstring_t& str)
 {
 	try
 	{
@@ -90,7 +98,8 @@ int TXmlDoc::LoadString(std::ctstring_t& str)
 	}
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
+int
+TXmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 {
 	std::tstring_t::size_type pos, pos1, pos2, pos5;
 	pos = 0;
@@ -133,7 +142,8 @@ int TXmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 	return LoadString(text);
 }
 //-------------------------------------------------------------------------------------------------
-void TXmlDoc::Clean()
+void
+TXmlDoc::Clean()
 {
 	if (_doc)
 	{
@@ -154,7 +164,8 @@ bool TXmlDoc::findContent(const std::list<std::tstring_t>& xpathExprs, TXmlNode&
 	return false;
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
+int
+TXmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 {
 	res.clear();
 	if (!_doc)
@@ -260,11 +271,7 @@ int TXmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 		char* buf = (char*) malloc(len2*sizeof(char) + 1);
 		char* ptr = buf;
 
-//#if defined(__FreeBSD__) || defined(__APPLE__)
-//		iconv(_iconv, (const char**)&cnt, &len, &ptr, &len2);
-//#else
 		iconv(_iconv, &cnt, &len, &ptr, &len2);
-//#endif
 
 		buf[xmlUTF8Strlen(content)] = 0;
 		res = buf;
@@ -277,7 +284,8 @@ int TXmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t TXmlDoc::getContentStr(std::ctstring_t& xpathExpr)
+std::tstring_t
+TXmlDoc::getContentStr(std::ctstring_t& xpathExpr)
 {
 	std::tstring_t srv;
 
@@ -289,20 +297,23 @@ std::tstring_t TXmlDoc::getContentStr(std::ctstring_t& xpathExpr)
 	return srv;
 }
 //-------------------------------------------------------------------------------------------------
-void TXmlDoc::registerNamespace(std::ctstring_t& ns, std::ctstring_t& url)
+void
+TXmlDoc::registerNamespace(std::ctstring_t& ns, std::ctstring_t& url)
 {
 	_namespaces[ns] = url;
 	return;
 }
 //-------------------------------------------------------------------------------------------------
-void TXmlDoc::registerNamespaces(std::cmap_tstring_t &namespaces)
+void
+TXmlDoc::registerNamespaces(std::cmap_tstring_t &namespaces)
 {
 	for (auto &it_namespace : namespaces) {
 		registerNamespace(it_namespace.first, it_namespace.second);
 	}
 }
 //-------------------------------------------------------------------------------------------------
-void TXmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
+void
+TXmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
 {
 	std::map_tstring_t::iterator ns;
 
@@ -314,7 +325,8 @@ void TXmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
 	return;
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res)
+int
+TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res)
 {
 	res.clear();
 	if (!_doc)
@@ -402,7 +414,8 @@ int TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlDoc::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
+int
+TXmlDoc::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
 {
 	if (!_doc)
 	{
@@ -473,7 +486,8 @@ int TXmlDoc::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
+int
+TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
 {
 	res.clear();
 	if (!_doc)
@@ -528,7 +542,8 @@ int TXmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlDoc::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res)
+int
+TXmlDoc::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res)
 {
 	res.clear();
 	if ( !_doc )
@@ -630,7 +645,8 @@ int TXmlDoc::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res)
 
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlDoc::getRootNode(TXmlNode& root)
+int
+TXmlDoc::getRootNode(TXmlNode& root)
 {
 	if (!_doc)
 		return 1;
@@ -644,7 +660,8 @@ int TXmlDoc::getRootNode(TXmlNode& root)
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlDoc::saveToFilename(std::ctstring_t& filename)
+int
+TXmlDoc::saveToFilename(std::ctstring_t& filename)
 {
 	if (!_doc) return -1;
 
@@ -658,7 +675,8 @@ int TXmlDoc::saveToFilename(std::ctstring_t& filename)
 	return -1;
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t TXmlDoc::format(
+std::tstring_t
+TXmlDoc::format(
 	std::ctstring_t &a_charset	///< character encoding (sample: "UTF-8")
 )
 {
@@ -687,7 +705,8 @@ std::tstring_t TXmlDoc::format(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-std::tstring_t TXmlDoc::format(
+std::tstring_t
+TXmlDoc::format(
 	std::ctstring_t &a_str,		///< target XML std::tstring_t
 	std::ctstring_t &a_charset,	///< character encoding (sample: "UTF-8")
 	std::cmap_tstring_t &a_namespaces /* = {} */	///< XML namespaces
@@ -709,6 +728,14 @@ std::tstring_t TXmlDoc::format(
 
 	return doc.format(a_charset);
 }
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   TXmlNode
+*
+**************************************************************************************************/
+
 //-------------------------------------------------------------------------------------------------
 TXmlNode::TXmlNode(iconv_t iconv)
 {
@@ -732,7 +759,8 @@ TXmlNode::~TXmlNode()
 {
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t TXmlNode::getName()
+std::tstring_t
+TXmlNode::getName()
 {
 	if ( !_node )
 		return "";
@@ -741,7 +769,8 @@ std::tstring_t TXmlNode::getName()
 	return "";
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t TXmlNode::getText()
+std::tstring_t
+TXmlNode::getText()
 {
 	std::tstring_t text;
 	if (!_node || _iconv == (iconv_t)(-1))
@@ -772,11 +801,7 @@ std::tstring_t TXmlNode::getText()
 		char* buf = (char*) malloc(len2*sizeof(char) + 1);
 		char* ptr = buf;
 
-//#if defined(__FreeBSD__) || defined(__APPLE__)
-//		iconv(_iconv, (const char**)&cnt, &len, &ptr, &len2);
-//#else
 		iconv(_iconv, &cnt, &len, &ptr, &len2);
-//#endif
 
 		buf[xmlUTF8Strlen(content)] = 0;
 		text = buf;
@@ -787,7 +812,8 @@ std::tstring_t TXmlNode::getText()
 	return text;
 }
 //-------------------------------------------------------------------------------------------------
-void TXmlNode::getChildren(std::list<TXmlNode>& val, std::tstring_t name)
+void
+TXmlNode::getChildren(std::list<TXmlNode>& val, std::tstring_t name)
 {
 	val.clear();
 	if (!_node || _iconv == (iconv_t)(-1))
@@ -822,7 +848,8 @@ void TXmlNode::getChildren(std::list<TXmlNode>& val, std::tstring_t name)
 	}
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlNode::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool includeCurrent)
+int
+TXmlNode::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool includeCurrent)
 {
 	res.clear();
 	if (!_node)
@@ -935,7 +962,8 @@ int TXmlNode::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool
 
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
+int
+TXmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 {
 	res.clear();
 	if (!_node)
@@ -1033,11 +1061,7 @@ int TXmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 		char* buf = (char*) malloc(len2*sizeof(char) + 1);
 		char* ptr = buf;
 
-//#if defined(__FreeBSD__) || defined(__APPLE__)
-//		iconv(_iconv, (const char**)&cnt, &len, &ptr, &len2);
-//#else
 		iconv(_iconv, &cnt, &len, &ptr, &len2);
-//#endif
 
 		buf[xmlUTF8Strlen(content)] = 0;
 		res = buf;
@@ -1051,7 +1075,8 @@ int TXmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res)
+int
+TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res)
 {
 	res.clear();
 	if (!_node)
@@ -1142,7 +1167,8 @@ int TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlNode::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
+int
+TXmlNode::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
 {
 	if (!_node)
 	{
@@ -1218,7 +1244,8 @@ int TXmlNode::getContent(std::ctstring_t& xpathExpr, TXmlNode& res)
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
-int TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
+int
+TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& res)
 {
 	res.clear();
 	if (!_node)
@@ -1277,7 +1304,8 @@ int TXmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<TXmlNode>& re
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
-void TXmlNode::getAttributeList(std::list<std::tstring_t>& val)
+void
+TXmlNode::getAttributeList(std::list<std::tstring_t>& val)
 {
 	val.clear();
 
