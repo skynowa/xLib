@@ -19,7 +19,6 @@ XmlDoc::XmlDoc()
 	_doc              = xPTR_NULL;
 	_error            = 0;
 	_without_encoding = true;
-	_namespaces.clear();
 }
 //-------------------------------------------------------------------------------------------------
 XmlDoc::XmlDoc(std::tstring_t charset)
@@ -32,8 +31,6 @@ XmlDoc::XmlDoc(std::tstring_t charset)
 		_without_encoding = true;
 	else
 		_without_encoding = false;
-
-	_namespaces.clear();
 }
 //-------------------------------------------------------------------------------------------------
 XmlDoc::~XmlDoc()
@@ -128,7 +125,7 @@ XmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 void
 XmlDoc::free()
 {
-	Utils::freeT(_doc, ::xmlFreeDoc);
+	/// Utils::freeT(_doc, ::xmlFreeDoc);
 }
 //-------------------------------------------------------------------------------------------------
 bool

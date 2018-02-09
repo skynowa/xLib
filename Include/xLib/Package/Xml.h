@@ -6,6 +6,7 @@
 #pragma once
 
 #include <xLib/xLib.h>
+#include <xLib/Core/Utils.h>
 
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
