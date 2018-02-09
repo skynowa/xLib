@@ -267,7 +267,7 @@ XmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 		char* buf = (char*) malloc(len2*sizeof(char) + 1);
 		char* ptr = buf;
 
-		iconv(_iconv, &cnt, &len, &ptr, &len2);
+		::iconv(_iconv, &cnt, &len, &ptr, &len2);
 
 		buf[xmlUTF8Strlen(content)] = 0;
 		res = buf;
@@ -391,7 +391,7 @@ XmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& re
 			char* buf = (char*) malloc(len2*sizeof(char) + 1);
 			char* ptr = buf;
 
-			iconv(_iconv, &cnt, &len, &ptr, &len2);
+			::iconv(_iconv, &cnt, &len, &ptr, &len2);
 
 			buf[xmlUTF8Strlen(content)] = 0;
 			res.push_back(buf);
@@ -746,9 +746,9 @@ XmlDoc::format(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-XmlNode::XmlNode(iconv_t iconv)
+XmlNode::XmlNode(iconv_t ::iconv)
 {
-	_iconv    = iconv;
+	_iconv    = ::iconv;
 	_node     = xPTR_NULL;
 	_is_debug = false;
 }
@@ -809,7 +809,7 @@ XmlNode::getText()
 		char* buf = (char*) malloc(len2*sizeof(char) + 1);
 		char* ptr = buf;
 
-		iconv(_iconv, &cnt, &len, &ptr, &len2);
+		::iconv(_iconv, &cnt, &len, &ptr, &len2);
 
 		buf[xmlUTF8Strlen(content)] = 0;
 		text = buf;
@@ -1073,12 +1073,12 @@ XmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 
 	size_t len  = (size_t)xmlStrlen(content);
 	size_t len2 = (size_t)xmlUTF8Strlen(content);
-	if (len2 && iconv != ::iconvError)
+	if (len2 && ::iconv != ::iconvError)
 	{
 		char* buf = (char*) malloc(len2*sizeof(char) + 1);
 		char* ptr = buf;
 
-		iconv(_iconv, &cnt, &len, &ptr, &len2);
+		::iconv(_iconv, &cnt, &len, &ptr, &len2);
 
 		buf[xmlUTF8Strlen(content)] = 0;
 		res = buf;
@@ -1169,7 +1169,7 @@ XmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& r
 			char* buf = (char*) malloc(len2*sizeof(char) + 1);
 			char* ptr = buf;
 
-			iconv(_iconv, &cnt, &len, &ptr, &len2);
+			::iconv(_iconv, &cnt, &len, &ptr, &len2);
 
 			buf[xmlUTF8Strlen(content)] = 0;
 			res.push_back(buf);
