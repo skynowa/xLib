@@ -16,7 +16,7 @@
 XmlDoc::XmlDoc()
 {
 	_auto_clean       = 1;
-	_iconv            = iconv_open("UTF-8", "UTF-8");
+	_iconv            = ::iconv_open("UTF-8", "UTF-8");
 	_doc              = xPTR_NULL;
 	_error            = 0;
 	_without_encoding = true;
@@ -26,7 +26,7 @@ XmlDoc::XmlDoc()
 XmlDoc::XmlDoc(std::tstring_t charset)
 {
 	_auto_clean = 1;
-	_iconv      = iconv_open(charset.c_str(), "UTF-8");
+	_iconv      = ::iconv_open(charset.c_str(), "UTF-8");
 	_doc        = xPTR_NULL;
 	_error      = 0;
 
@@ -41,7 +41,7 @@ XmlDoc::XmlDoc(std::tstring_t charset)
 XmlDoc::~XmlDoc()
 {
 	if (_iconv != (iconv_t)(-1))
-		iconv_close(_iconv);
+		::iconv_close(_iconv);
 
 	if (_auto_clean)
 		Clean();
