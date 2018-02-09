@@ -22,12 +22,7 @@ class XmlDoc
 public:
                    XmlDoc();
     explicit       XmlDoc(std::tstring_t charset);
-                   XmlDoc(const XmlDoc &) = delete;
-                   XmlDoc(XmlDoc &&) = delete;
                   ~XmlDoc();
-
-    XmlDoc & operator = (const XmlDoc &) = delete;
-    XmlDoc & operator = (XmlDoc &&) = delete;
 
     void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
 
@@ -59,6 +54,9 @@ public:
     std::tstring_t format(std::ctstring_t &charset);
     static
     std::tstring_t format(std::ctstring_t &str, std::ctstring_t &charset, std::cmap_tstring_t &namespaces = {});
+
+	/// xNO_DEFAULT_CONSTRUCT(XmlDoc);
+	xNO_COPY_ASSIGN(XmlDoc);
 
 protected:
     xmlDocPtr          _doc;
@@ -96,6 +94,9 @@ public:
 
     void           setNode(xmlNodePtr node) { _node = node; }
     xmlNodePtr     getNode() { return _node; }
+
+	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
+	xNO_COPY_ASSIGN(XmlNode);
 
 protected:
     xmlNodePtr     _node;
