@@ -99,6 +99,20 @@ Utils::structZeroT(
     xUNUSED(pvRv);
 }
 //-------------------------------------------------------------------------------------------------
+template<typename T, typename F>
+/* static */ inline
+void_t
+Utils::freeT(
+    T * &a_ptr,
+    F    a_func
+)
+{
+    xCHECK_DO(a_ptr == xPTR_NULL, return);
+
+    a_func(a_ptr);
+    a_ptr = xPTR_NULL;
+}
+//-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */ inline
 void_t
@@ -106,10 +120,7 @@ Utils::bufferFreeT(
     T * &a_ptr
 )
 {
-    xCHECK_DO(a_ptr == xPTR_NULL, return);
-
-    std::free(a_ptr);
-    a_ptr = xPTR_NULL;
+    freeT(a_ptr, std::free);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */ inline
@@ -118,10 +129,7 @@ Utils::fileClose(
     FILE * &a_fileHandle
 )
 {
-    xCHECK_DO(a_fileHandle == xPTR_NULL, return);
-
-    std::fclose(a_fileHandle);
-    a_fileHandle = xPTR_NULL;
+    freeT(a_fileHandle, std::fclose);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
