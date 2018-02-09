@@ -30,7 +30,7 @@ public:
     int            LoadFile(std::ctstring_t& file);
     int            LoadString(std::ctstring_t& str);
     int            LoadStringWithoutNS(std::ctstring_t& str);
-    void           Clean();
+    void           free();
 
     bool           findContent(const std::list<std::tstring_t>& xpathExprs, XmlNode& res); // +++
     int            getContent(std::ctstring_t& xpathExpr, std::tstring_t& res); // +++
@@ -43,7 +43,6 @@ public:
     int            getRootNode(XmlNode& root);
 
     void           setIconv(iconv_t icnv) { _iconv = icnv; }
-    void           setAutoClean(int val) { _auto_clean = val; }
 
     xmlDocPtr      getDoc() { return _doc; }
 
@@ -63,7 +62,6 @@ public:
 protected:
     xmlDocPtr          _doc;
     iconv_t            _iconv;
-    int                _auto_clean;
     int                _error;
     std::map_tstring_t _namespaces;
     bool               _without_encoding;
