@@ -748,7 +748,7 @@ XmlDoc::format(
 //-------------------------------------------------------------------------------------------------
 XmlNode::XmlNode(iconv_t iconv)
 {
-	_iconv    = ::iconv;
+	_iconv    = iconv;
 	_node     = xPTR_NULL;
 	_is_debug = false;
 }
