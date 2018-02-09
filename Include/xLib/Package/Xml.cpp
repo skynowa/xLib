@@ -16,16 +16,12 @@
 XmlDoc::XmlDoc()
 {
 	_iconv            = ::iconv_open("UTF-8", "UTF-8");
-	_doc              = xPTR_NULL;
-	_error            = 0;
 	_without_encoding = true;
 }
 //-------------------------------------------------------------------------------------------------
 XmlDoc::XmlDoc(std::tstring_t charset)
 {
 	_iconv = ::iconv_open(charset.c_str(), "UTF-8");
-	_doc   = xPTR_NULL;
-	_error = 0;
 
 	if (charset == "UTF-8")
 		_without_encoding = true;
@@ -54,7 +50,7 @@ XmlDoc::LoadFile(std::ctstring_t& file)
 {
 	free();
 
-	_doc = ::xmlParseFile(file.c_str());
+	_doc = ::xmlParseFile( file.c_str() );
 	if (_doc == xPTR_NULL) {
 		_error = 1;
 		return _error;
@@ -68,7 +64,7 @@ XmlDoc::LoadString(std::ctstring_t& str)
 {
 	free();
 
-	_doc = ::xmlParseDoc((xmlChar*)str.c_str());
+	_doc = ::xmlParseDoc( (xmlChar *)str.c_str() );
 	if (_doc == xPTR_NULL) {
 		_error = 1;
 		return _error;
@@ -84,8 +80,8 @@ XmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 	pos = 0;
 
 	std::tstring_t text = str;
-	while ( (pos = text.find("xmlns", pos)) != std::tstring_t::npos )
-	{
+
+	while ( (pos = text.find("xmlns", pos)) != std::tstring_t::npos ) {
 		if ( (pos1 = text.find_first_of("\"", pos+1) ) == std::tstring_t::npos) break;
 		if ( (pos1 = text.find_first_of("\"", pos1+1) ) == std::tstring_t::npos) break;
 
@@ -93,8 +89,7 @@ XmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 	}
 
 	pos = 0;
-	while ( (pos = text.find("xsi", pos)) != std::tstring_t::npos )
-	{
+	while ( (pos = text.find("xsi", pos)) != std::tstring_t::npos ) {
 		if ( (pos1 = text.find_first_of("\"",pos+1) ) == std::tstring_t::npos) break;
 		if ( (pos1 = text.find_first_of("\"",pos1+1) ) == std::tstring_t::npos) break;
 
@@ -102,19 +97,20 @@ XmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 	}
 
 	pos = 0;
-	while ( pos < text.length() && (pos = text.find("<", pos) ) != std::tstring_t::npos )
-	{
-		++pos;
+	while ( pos < text.length() && (pos = text.find("<", pos) ) != std::tstring_t::npos ) {
+		++ pos;
+
 		if ( !(pos<text.length()) ) break;
-		if ( text[pos] == '!' ) { pos = text.find("]]>", pos); if ( pos == std::tstring_t::npos ) { break; } continue; }
+		if ( text[pos] == '!' ) { pos = text.find("]]>", pos);
+		if ( pos == std::tstring_t::npos ) { break; } continue; }
 		if ( text[pos] == '/' ) ++pos;
 		if ( !(pos<text.length()) ) break;
 		if ( (pos2 = text.find_first_of(">", pos) ) == std::tstring_t::npos ) break;
 		if ( (pos1 = text.find_first_of(":", pos) ) == std::tstring_t::npos ) continue;
+
 		pos5 = text.find_first_of(" ", pos);
 
-		if ( pos1<pos2 && (pos5 == std::tstring_t::npos || pos5>pos1) )
-		{
+		if ( pos1<pos2 && (pos5 == std::tstring_t::npos || pos5>pos1) ) {
 			text.erase(pos, pos1 - pos + 1);
 		}
 	}
@@ -145,8 +141,8 @@ int
 XmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 {
 	res.clear();
-	if (!_doc)
-	{
+
+	if ( !_doc ) {
 		return 1;
 	}
 
@@ -733,8 +729,6 @@ XmlNode::XmlNode(iconv_t iconv)
 {
 	_iconv    = iconv;
 	_node     = xPTR_NULL;
-	_error    = 0;
-	_doc      = xPTR_NULL;
 	_is_debug = false;
 }
 //-------------------------------------------------------------------------------------------------
@@ -742,8 +736,6 @@ XmlNode::XmlNode()
 {
 	_iconv    = (iconv_t)(-1);
 	_node     = xPTR_NULL;
-	_error    = 0;
-	_doc      = xPTR_NULL;
 	_is_debug = false;
 }
 //-------------------------------------------------------------------------------------------------
