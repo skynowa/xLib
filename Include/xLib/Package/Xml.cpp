@@ -148,12 +148,6 @@ XmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 void
 XmlDoc::free()
 {
-	xCHECK_DO(_doc == xPTR_NULL, return);
-
-	::xmlFreeDoc(_doc);
-	_doc = xPTR_NULL;
-
-
 	Utils::freeT(_doc, ::xmlFreeDoc);
 }
 //-------------------------------------------------------------------------------------------------
