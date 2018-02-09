@@ -276,7 +276,7 @@ XmlDoc::getContentStr(std::ctstring_t& xpathExpr)
 void
 XmlDoc::registerNamespace(std::ctstring_t& ns, std::ctstring_t& url)
 {
-	_namespaces[ns] = url;
+	_namespaces.insert( {ns, url} );
 }
 //-------------------------------------------------------------------------------------------------
 void
@@ -292,9 +292,8 @@ XmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
 {
 	std::map_tstring_t::iterator ns;
 
-	for( ns = _namespaces.begin(); ns != _namespaces.end(); ++ns )
-	{
-		xmlXPathRegisterNs(xmlXPathContextPtr, (xmlChar*)ns->first.c_str(), (xmlChar*)ns->second.c_str());
+	for (auto &ns : _namespaces) {
+		::xmlXPathRegisterNs(xmlXPathContextPtr, (xmlChar *)ns.first.c_str(), (xmlChar *)ns.second.c_str());
 	}
 
 	return;
