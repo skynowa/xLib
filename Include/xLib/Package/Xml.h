@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include <xLib/xLib.h>
+#include <xLib/Core/Core.h>
 
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
@@ -14,6 +14,8 @@
 #include <libxml/xmlsave.h>
 
 #include <iconv.h>
+//-------------------------------------------------------------------------------------------------
+xNAMESPACE_BEGIN2(xl, package)
 //-------------------------------------------------------------------------------------------------
 class XmlNode;
 
@@ -110,4 +112,6 @@ protected:
     bool           _is_debug;
     std::tstring_t _debug_path;
 };
+//-------------------------------------------------------------------------------------------------
+xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------
