@@ -15,7 +15,6 @@
 //-------------------------------------------------------------------------------------------------
 XmlDoc::XmlDoc()
 {
-	_auto_clean       = 1;
 	_iconv            = ::iconv_open("UTF-8", "UTF-8");
 	_doc              = xPTR_NULL;
 	_error            = 0;
@@ -25,10 +24,9 @@ XmlDoc::XmlDoc()
 //-------------------------------------------------------------------------------------------------
 XmlDoc::XmlDoc(std::tstring_t charset)
 {
-	_auto_clean = 1;
-	_iconv      = ::iconv_open(charset.c_str(), "UTF-8");
-	_doc        = xPTR_NULL;
-	_error      = 0;
+	_iconv = ::iconv_open(charset.c_str(), "UTF-8");
+	_doc   = xPTR_NULL;
+	_error = 0;
 
 	if (charset == "UTF-8")
 		_without_encoding = true;
@@ -43,14 +41,13 @@ XmlDoc::~XmlDoc()
 	if (_iconv != (iconv_t)(-1))
 		::iconv_close(_iconv);
 
-	if (_auto_clean)
-		Clean();
+	free();
 }
 //-------------------------------------------------------------------------------------------------
 void
 XmlDoc::LoadDoc(xmlDocPtr doc)
 {
-	Clean();
+	free();
 	_doc = doc;
 }
 //-------------------------------------------------------------------------------------------------
@@ -59,7 +56,7 @@ XmlDoc::LoadFile(std::ctstring_t& file)
 {
 	try
 	{
-		Clean();
+		free();
 		_doc=xmlParseFile(file.c_str());
 		if (_doc==xPTR_NULL)
 		{
@@ -85,7 +82,7 @@ XmlDoc::LoadString(std::ctstring_t& str)
 {
 	try
 	{
-		Clean();
+		free();
 		_doc = xmlParseDoc((xmlChar*)str.c_str());
 		if ( _doc == xPTR_NULL )
 		{
@@ -147,7 +144,7 @@ XmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlDoc::Clean()
+XmlDoc::free()
 {
 	if (_doc)
 	{
@@ -281,7 +278,7 @@ XmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 
 		buf[xmlUTF8Strlen(content)] = 0;
 		res = buf;
-		free(buf);
+		std::free(buf);
 	}
 
 	xmlFree(content);
@@ -405,7 +402,7 @@ XmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& re
 
 			buf[xmlUTF8Strlen(content)] = 0;
 			res.push_back(buf);
-			free(buf);
+			std::free(buf);
 		}
 
 		xmlFree(content);
@@ -827,7 +824,7 @@ XmlNode::getText()
 		buf[xmlUTF8Strlen(content)] = 0;
 		text = buf;
 
-		free(buf);
+		std::free(buf);
 	}
 
 	xmlFree(content);
@@ -1095,7 +1092,8 @@ XmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 
 		buf[xmlUTF8Strlen(content)] = 0;
 		res = buf;
-		free(buf);
+
+		std::free(buf);
 	}
 
 	xmlFree(content);
@@ -1185,7 +1183,8 @@ XmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& r
 
 			buf[xmlUTF8Strlen(content)] = 0;
 			res.push_back(buf);
-			free(buf);
+
+			std::free(buf);
 		}
 
 		xmlFree(content);
