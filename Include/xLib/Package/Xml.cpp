@@ -55,49 +55,29 @@ XmlDoc::LoadDoc(xmlDocPtr doc)
 int
 XmlDoc::LoadFile(std::ctstring_t& file)
 {
-	try
-	{
-		free();
+	free();
 
-		_doc=xmlParseFile(file.c_str());
-		if (_doc==xPTR_NULL)
-		{
-			_error = 1;
-			return _error;
-		}
-		return 0;
-	}
-	catch(const std::exception& ex)
-	{
+	_doc = ::xmlParseFile(file.c_str());
+	if (_doc == xPTR_NULL) {
 		_error = 1;
 		return _error;
 	}
-	catch(...)
-	{
-		_error = 1;
-		return _error;
-	}
+
+	return 0;
 }
 //-------------------------------------------------------------------------------------------------
 int
 XmlDoc::LoadString(std::ctstring_t& str)
 {
-	try
-	{
-		free();
-		_doc = xmlParseDoc((xmlChar*)str.c_str());
-		if ( _doc == xPTR_NULL )
-		{
-			_error = 1;
-			return _error;
-		}
-		return 0;
-	}
-	catch(const std::exception& ex)
-	{
+	free();
+
+	_doc = ::xmlParseDoc((xmlChar*)str.c_str());
+	if (_doc == xPTR_NULL) {
 		_error = 1;
 		return _error;
 	}
+
+	return 0;
 }
 //-------------------------------------------------------------------------------------------------
 int
@@ -276,6 +256,7 @@ XmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 
 		buf[xmlUTF8Strlen(content)] = 0;
 		res = buf;
+
 		std::free(buf);
 	}
 
@@ -400,6 +381,7 @@ XmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& re
 
 			buf[xmlUTF8Strlen(content)] = 0;
 			res.push_back(buf);
+
 			std::free(buf);
 		}
 
