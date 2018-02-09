@@ -539,11 +539,14 @@ XmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<XmlNode>& res)
 	{
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
+
 		XmlNode node(_iconv);
 		node.setNode(cur);
 		node.setDoc(this);
 		node.setWithoutEncoding(_without_encoding);
-		res.push_back(node);
+
+		// TODO: XmlNode - xNO_COPY_ASSIGN
+		/// res.push_back(node);
 	}
 
 	xmlXPathFreeObject(xpathObj);
@@ -854,7 +857,9 @@ XmlNode::getChildren(std::list<XmlNode>& val, std::tstring_t name)
 				node.setWithoutEncoding(_without_encoding);
 				if (_doc)
 					node.setDoc(_doc);
-				val.push_back(node);
+
+				// TODO: XmlNode - xNO_COPY_ASSIGN
+				/// val.push_back(node);
 			}
 		}
 		else
@@ -864,7 +869,9 @@ XmlNode::getChildren(std::list<XmlNode>& val, std::tstring_t name)
 			node.setWithoutEncoding(_without_encoding);
 			if (_doc)
 				node.setDoc(_doc);
-			val.push_back(node);
+
+			// TODO: XmlNode - xNO_COPY_ASSIGN
+			/// val.push_back(node);
 		}
 
 		curitem = curitem->next;
@@ -1326,7 +1333,9 @@ XmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<XmlNode>& res)
 		node.setWithoutEncoding(_without_encoding);
 		if (_doc)
 			node.setDoc(_doc);
-		res.push_back(node);
+
+		// TODO: XmlNode - xNO_COPY_ASSIGN
+		/// res.push_back(node);
 	}
 
 	xmlXPathFreeObject(xpathObj);
