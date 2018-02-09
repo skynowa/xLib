@@ -61,9 +61,9 @@ public:
 	xNO_COPY_ASSIGN(XmlDoc);
 
 protected:
-    xmlDocPtr          _doc;
-    iconv_t            _iconv;
-    int                _error;
+    xmlDocPtr          _doc {};
+    iconv_t            _iconv {};
+    int                _error {};
     std::map_tstring_t _namespaces;
     bool               _without_encoding;
 };
@@ -103,9 +103,9 @@ public:
 
 protected:
     xmlNodePtr     _node;
-    iconv_t        _iconv;
-    int            _error;
-    XmlDoc       *_doc;
+    iconv_t        _iconv {};
+    int            _error {};
+    XmlDoc        *_doc {};
 
     bool           _without_encoding;
     bool           _is_debug;
