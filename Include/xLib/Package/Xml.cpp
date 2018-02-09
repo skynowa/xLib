@@ -48,6 +48,7 @@ void
 XmlDoc::LoadDoc(xmlDocPtr doc)
 {
 	free();
+
 	_doc = doc;
 }
 //-------------------------------------------------------------------------------------------------
@@ -57,6 +58,7 @@ XmlDoc::LoadFile(std::ctstring_t& file)
 	try
 	{
 		free();
+
 		_doc=xmlParseFile(file.c_str());
 		if (_doc==xPTR_NULL)
 		{
@@ -146,11 +148,13 @@ XmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 void
 XmlDoc::free()
 {
-	if (_doc)
-	{
-		xmlFreeDoc(_doc);
-	}
+	xCHECK_DO(_doc == xPTR_NULL, return);
+
+	::xmlFreeDoc(_doc);
 	_doc = xPTR_NULL;
+
+
+	Utils::freeT(_doc, ::xmlFreeDoc);
 }
 //-------------------------------------------------------------------------------------------------
 bool
