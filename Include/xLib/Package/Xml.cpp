@@ -31,8 +31,10 @@ XmlDoc::XmlDoc(std::tstring_t charset)
 //-------------------------------------------------------------------------------------------------
 XmlDoc::~XmlDoc()
 {
-	if (_iconv != (iconv_t)(-1))
-		::iconv_close(_iconv);
+	if (_iconv != (iconv_t)-1) {
+		int iRv = ::iconv_close(_iconv);
+		/// xTEST_EQ(iRv, 0);
+	}
 
 	free();
 }
@@ -240,7 +242,7 @@ XmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 
 	size_t len  = (size_t)xmlStrlen(content);
 	size_t len2 = (size_t)xmlUTF8Strlen(content);
-	if (len2 && _iconv != (iconv_t)(-1))
+	if (len2 && _iconv != (iconv_t)-1)
 	{
 		char* buf = (char*) malloc(len2*sizeof(char) + 1);
 		char* ptr = buf;
@@ -364,7 +366,7 @@ XmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& re
 
 		size_t len  = (size_t)xmlStrlen(content);
 		size_t len2 = (size_t)xmlUTF8Strlen(content);
-		if (len2 && _iconv != (iconv_t)(-1))
+		if (len2 && _iconv != (iconv_t)-1)
 		{
 			char* buf = (char*) malloc(len2*sizeof(char) + 1);
 			char* ptr = buf;
@@ -733,7 +735,7 @@ XmlNode::XmlNode(iconv_t iconv)
 //-------------------------------------------------------------------------------------------------
 XmlNode::XmlNode()
 {
-	_iconv    = (iconv_t)(-1);
+	_iconv    = (iconv_t)-1;
 	_node     = xPTR_NULL;
 	_is_debug = false;
 }
@@ -757,7 +759,7 @@ std::tstring_t
 XmlNode::getText()
 {
 	std::tstring_t text;
-	if (!_node || _iconv == (iconv_t)(-1))
+	if (!_node || _iconv == (iconv_t)-1)
 		return text;
 
 	xmlChar* content;
@@ -782,7 +784,7 @@ XmlNode::getText()
 
 	size_t len  = (size_t)xmlStrlen(content);
 	size_t len2 = (size_t)xmlUTF8Strlen(content);
-	if (len2 && _iconv != (iconv_t)(-1))
+	if (len2 && _iconv != (iconv_t)-1)
 	{
 		char* buf = (char*) malloc(len2*sizeof(char) + 1);
 		char* ptr = buf;
@@ -804,7 +806,7 @@ void
 XmlNode::getChildren(std::list<XmlNode>& val, std::tstring_t name)
 {
 	val.clear();
-	if (!_node || _iconv == (iconv_t)(-1))
+	if (!_node || _iconv == (iconv_t)-1)
 		return;
 
 	xmlNodePtr curitem;
@@ -1142,7 +1144,7 @@ XmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& r
 
 		size_t len  = (size_t)xmlStrlen(content);
 		size_t len2 = (size_t)xmlUTF8Strlen(content);
-		if (len2 && _iconv != (iconv_t)(-1))
+		if (len2 && _iconv != (iconv_t)-1)
 		{
 			char* buf = (char*) malloc(len2*sizeof(char) + 1);
 			char* ptr = buf;
