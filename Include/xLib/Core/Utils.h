@@ -48,9 +48,9 @@ public:
     void_t    structZeroT(T &object);
         ///< zero buffer memory
 
-    template<typename T, typename F>
+    template<typename T, typename F, typename N>
     static
-    void_t    freeT(T * &ptr, F func);
+    void_t    freeT(T * &ptr, F func, N null = xPTR_NULL);
         ///< free pointer
     template<typename T>
     static
