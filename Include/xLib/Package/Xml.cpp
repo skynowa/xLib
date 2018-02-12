@@ -531,8 +531,7 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		return 4;
 	}
 
-	for ( int i=0 ; i<nodes->nodeNr ; i++)
-	{
+	for (int i = 0; i < nodes->nodeNr; ++ i) {
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
 
@@ -1126,8 +1125,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &r
 		return 4;
 	}
 
-	for (int i=0 ; i<nodes->nodeNr ; i++)
-	{
+	for (int i = 0; i < nodes->nodeNr; ++ i) {
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
 
