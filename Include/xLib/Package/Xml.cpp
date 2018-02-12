@@ -235,7 +235,6 @@ XmlDoc::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 	}
 
 	cur = nodes->nodeTab[0];
-
 	if ( !cur )
 	{
 		if (xpathObj)
@@ -405,6 +404,7 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &re
 
 		xmlFree(content);
 	}
+
 	xmlXPathFreeObject(xpathObj);
 	xmlXPathFreeContext(xpathCtx);
 
@@ -1052,7 +1052,7 @@ XmlNode::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 
 	size_t len  = (size_t)xmlStrlen(content);
 	size_t len2 = (size_t)xmlUTF8Strlen(content);
-	if (len2 && ::iconv != ::iconvError)
+	if (len2 && _iconv != ::iconvError)
 	{
 		char* buf = (char*) malloc(len2*sizeof(char) + 1);
 		char* ptr = buf;
