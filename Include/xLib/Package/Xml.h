@@ -28,34 +28,35 @@ public:
 
     void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
 
-    int            parseFile(std::ctstring_t& file);
-    int            parseString(std::ctstring_t& str);
-    int            parseStringNoNs(std::ctstring_t& str);
+    int            parseFile(std::ctstring_t &filePath);
+    int            parseString(std::ctstring_t &str);
+    int            parseStringNoNs(std::ctstring_t &str);
     void           free();
 
-    bool           findContent(std::clist_tstring_t& xpathExprs, XmlNode& res); // +++
-    int            getContent(std::ctstring_t& xpathExpr, std::tstring_t& res); // +++
-    std::tstring_t getContentStr(std::ctstring_t& xpathExpr); // +++
-    int            getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res); // +++
-    int            getContent(std::ctstring_t& xpathExpr, XmlNode& res); // +++
-    int            getContentList(std::ctstring_t& xpathExpr, std::list<XmlNode>& res); // +++
+    bool           findContent(std::clist_tstring_t &xpathExprs, XmlNode &res); // +++
+    int            getContent(std::ctstring_t &xpathExpr, std::tstring_t &res); // +++
+    std::tstring_t getContentStr(std::ctstring_t &xpathExpr); // +++
+    int            getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res); // +++
+    int            getContent(std::ctstring_t &xpathExpr, XmlNode &res); // +++
+    int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res); // +++
 
-    int            dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res);
-    int            getRootNode(XmlNode& root);
+    int            dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res);
+    int            getRootNode(XmlNode &root);
 
     void           setIconv(iconv_t icnv) { _iconv = icnv; }
 
     xmlDocPtr      getDoc() { return _doc; }
 
-    void           registerNamespace(std::ctstring_t& ns, std::ctstring_t& url);
+    void           registerNamespace(std::ctstring_t &ns, std::ctstring_t &url);
     void           registerNamespaces(std::cmap_tstring_t &namespaces);
     void           _registerNamespaces(xmlXPathContext* ctx);
 
-    int            saveToFilename(std::ctstring_t& filename);
+    int            saveToFilename(std::ctstring_t &filename);
 
     std::tstring_t format(std::ctstring_t &charset);
     static
-    std::tstring_t format(std::ctstring_t &str, std::ctstring_t &charset, std::cmap_tstring_t &namespaces = {});
+    std::tstring_t format(std::ctstring_t &str, std::ctstring_t &charset,
+						std::cmap_tstring_t &namespaces = {});
 
 	/// xNO_DEFAULT_CONSTRUCT(XmlDoc);
 	xNO_COPY_ASSIGN(XmlDoc);
@@ -77,21 +78,21 @@ public:
 
     void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
     bool           isText() { if (_node) return xmlNodeIsText(_node); return 0; }
-    void           getAttributeList(std::list<std::tstring_t>& val);
+    void           getAttributeList(std::list<std::tstring_t> &val);
     void           setDoc(XmlDoc* doc) { _doc = doc; }
-    void           setIsDebug(bool is_debug, std::ctstring_t& path) { _is_debug = is_debug; _debug_path = path; }
+    void           setIsDebug(bool is_debug, std::ctstring_t &path) { _is_debug = is_debug; _debug_path = path; }
 
     std::tstring_t getName();
     std::tstring_t getText();
-    void           getChildren(std::list<XmlNode>& val,std::tstring_t name = "");
+    void           getChildren(std::list<XmlNode> &val,std::tstring_t name = "");
 
-    int            getContent(std::ctstring_t& xpathExpr, std::tstring_t& res); // +++
-    std::tstring_t getContentStr(std::ctstring_t& xpathExpr)  { std::tstring_t text; if (!getContent(xpathExpr,text)) return text; return "";	} // +++
-    int            getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res); // +++
-    int            getContent(std::ctstring_t& xpathExpr, XmlNode& res); // +++
-    int            getContentList(std::ctstring_t& xpathExpr, std::list<XmlNode>& res); // +++
+    int            getContent(std::ctstring_t &xpathExpr, std::tstring_t &res); // +++
+    std::tstring_t getContentStr(std::ctstring_t &xpathExpr)  { std::tstring_t text; if (!getContent(xpathExpr,text)) return text; return "";	} // +++
+    int            getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res); // +++
+    int            getContent(std::ctstring_t &xpathExpr, XmlNode &res); // +++
+    int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res); // +++
 
-    int            dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool includeCurrent = false);
+    int            dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res, bool includeCurrent = false);
 
     void           setIconv(iconv_t icnv) { _iconv = icnv; }
 
