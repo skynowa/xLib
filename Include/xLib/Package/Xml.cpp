@@ -60,11 +60,11 @@ XmlDoc::~XmlDoc()
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::parseFile(std::ctstring_t& file)
+XmlDoc::parseFile(std::ctstring_t &a_filePath)
 {
 	free();
 
-	_doc = ::xmlParseFile( file.c_str() );
+	_doc = ::xmlParseFile( a_filePath.c_str() );
 	if (_doc == xPTR_NULL) {
 		_error = 1;
 		return _error;
@@ -74,11 +74,11 @@ XmlDoc::parseFile(std::ctstring_t& file)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::parseString(std::ctstring_t& str)
+XmlDoc::parseString(std::ctstring_t &a_str)
 {
 	free();
 
-	_doc = ::xmlParseDoc( (xmlChar *)str.c_str() );
+	_doc = ::xmlParseDoc( (xmlChar *)a_str.c_str() );
 	if (_doc == xPTR_NULL) {
 		_error = 1;
 		return _error;
@@ -88,14 +88,14 @@ XmlDoc::parseString(std::ctstring_t& str)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::parseStringNoNs(std::ctstring_t& str)
+XmlDoc::parseStringNoNs(std::ctstring_t &a_str)
 {
 	std::tstring_t::size_type pos  {};
 	std::tstring_t::size_type pos1 {};
 	std::tstring_t::size_type pos2 {};
 	std::tstring_t::size_type pos5 {};
 
-	std::tstring_t text = str;
+	std::tstring_t text = a_str;
 
 	pos = 0;
 	while ( (pos = text.find("xmlns", pos)) != std::tstring_t::npos ) {
@@ -142,7 +142,7 @@ XmlDoc::free()
 }
 //-------------------------------------------------------------------------------------------------
 bool
-XmlDoc::findContent(std::clist_tstring_t& xpathExprs, XmlNode& res)
+XmlDoc::findContent(std::clist_tstring_t &xpathExprs, XmlNode &res)
 {
 	for (const auto &it_xpathExpr : xpathExprs) {
 		int irv = getContent(it_xpathExpr, res);
@@ -155,7 +155,7 @@ XmlDoc::findContent(std::clist_tstring_t& xpathExprs, XmlNode& res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
+XmlDoc::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 {
 	res.clear();
 
@@ -278,7 +278,7 @@ XmlDoc::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlDoc::getContentStr(std::ctstring_t& xpathExpr)
+XmlDoc::getContentStr(std::ctstring_t &xpathExpr)
 {
 	std::tstring_t srv;
 
@@ -291,7 +291,7 @@ XmlDoc::getContentStr(std::ctstring_t& xpathExpr)
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlDoc::registerNamespace(std::ctstring_t& ns, std::ctstring_t& url)
+XmlDoc::registerNamespace(std::ctstring_t &ns, std::ctstring_t &url)
 {
 	_namespaces.insert( {ns, url} );
 }
@@ -317,7 +317,7 @@ XmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res)
+XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res)
 {
 	res.clear();
 	if (!_doc)
@@ -405,7 +405,7 @@ XmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& re
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::getContent(std::ctstring_t& xpathExpr, XmlNode& res)
+XmlDoc::getContent(std::ctstring_t &xpathExpr, XmlNode &res)
 {
 	if (!_doc)
 	{
@@ -480,7 +480,7 @@ XmlDoc::getContent(std::ctstring_t& xpathExpr, XmlNode& res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<XmlNode>& res)
+XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 {
 	res.clear();
 	if (!_doc)
@@ -544,7 +544,7 @@ XmlDoc::getContentList(std::ctstring_t& xpathExpr, std::list<XmlNode>& res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res)
+XmlDoc::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res)
 {
 	res.clear();
 	if ( !_doc )
@@ -646,7 +646,7 @@ XmlDoc::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::getRootNode(XmlNode& root)
+XmlDoc::getRootNode(XmlNode &root)
 {
 	if (!_doc)
 		return 1;
@@ -664,7 +664,7 @@ XmlDoc::getRootNode(XmlNode& root)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::saveToFilename(std::ctstring_t& filename)
+XmlDoc::saveToFilename(std::ctstring_t &filename)
 {
 	if (!_doc) return -1;
 
@@ -818,7 +818,7 @@ XmlNode::getText()
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getChildren(std::list<XmlNode>& val, std::tstring_t name)
+XmlNode::getChildren(std::list<XmlNode> &val, std::tstring_t name)
 {
 	val.clear();
 	if (!_node || _iconv == ::iconvError)
@@ -861,7 +861,7 @@ XmlNode::getChildren(std::list<XmlNode>& val, std::tstring_t name)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlNode::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool includeCurrent)
+XmlNode::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res, bool includeCurrent)
 {
 	res.clear();
 	if (!_node)
@@ -974,7 +974,7 @@ XmlNode::dumpToString(std::ctstring_t& xpathExpr, std::tstring_t& res, bool incl
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
+XmlNode::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 {
 	res.clear();
 	if (!_node)
@@ -1089,7 +1089,7 @@ XmlNode::getContent(std::ctstring_t& xpathExpr, std::tstring_t& res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res)
+XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res)
 {
 	res.clear();
 	if (!_node)
@@ -1184,7 +1184,7 @@ XmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& r
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlNode::getContent(std::ctstring_t& xpathExpr, XmlNode& res)
+XmlNode::getContent(std::ctstring_t &xpathExpr, XmlNode &res)
 {
 	if (!_node)
 	{
@@ -1263,7 +1263,7 @@ XmlNode::getContent(std::ctstring_t& xpathExpr, XmlNode& res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<XmlNode>& res)
+XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 {
 	res.clear();
 	if (!_node)
@@ -1331,7 +1331,7 @@ XmlNode::getContentList(std::ctstring_t& xpathExpr, std::list<XmlNode>& res)
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getAttributeList(std::list<std::tstring_t>& val)
+XmlNode::getAttributeList(std::list<std::tstring_t> &val)
 {
 	val.clear();
 
