@@ -211,7 +211,7 @@ XmlDoc::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 		if (xpathCtx)
 			xmlXPathFreeContext(xpathCtx);
 		xpathCtx = xPTR_NULL;
-		return 14;
+		return 4;
 	}
 
 	if ( nodes->nodeNr <= 0 )
