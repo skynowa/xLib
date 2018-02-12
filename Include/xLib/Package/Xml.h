@@ -33,7 +33,7 @@ public:
     int            parseStringNoNs(std::ctstring_t& str);
     void           free();
 
-    bool           findContent(const std::list<std::tstring_t>& xpathExprs, XmlNode& res); // +++
+    bool           findContent(std::clist_tstring_t& xpathExprs, XmlNode& res); // +++
     int            getContent(std::ctstring_t& xpathExpr, std::tstring_t& res); // +++
     std::tstring_t getContentStr(std::ctstring_t& xpathExpr); // +++
     int            getContentList(std::ctstring_t& xpathExpr, std::list<std::tstring_t>& res); // +++
