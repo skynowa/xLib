@@ -98,11 +98,14 @@ XmlDoc::LoadString(std::ctstring_t& str)
 int
 XmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 {
-	std::tstring_t::size_type pos, pos1, pos2, pos5;
-	pos = 0;
+	std::tstring_t::size_type pos  {};
+	std::tstring_t::size_type pos1 {};
+	std::tstring_t::size_type pos2 {};
+	std::tstring_t::size_type pos5 {};
 
 	std::tstring_t text = str;
 
+	pos = 0;
 	while ( (pos = text.find("xmlns", pos)) != std::tstring_t::npos ) {
 		if ( (pos1 = text.find_first_of("\"", pos+1) ) == std::tstring_t::npos) break;
 		if ( (pos1 = text.find_first_of("\"", pos1+1) ) == std::tstring_t::npos) break;
