@@ -326,8 +326,6 @@ XmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
 	for (auto &ns : _namespaces) {
 		::xmlXPathRegisterNs(xmlXPathContextPtr, (xmlChar *)ns.first.c_str(), (xmlChar *)ns.second.c_str());
 	}
-
-	return;
 }
 //-------------------------------------------------------------------------------------------------
 int
