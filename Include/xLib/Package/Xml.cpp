@@ -142,7 +142,7 @@ XmlDoc::free()
 }
 //-------------------------------------------------------------------------------------------------
 bool
-XmlDoc::findContent(const std::list<std::tstring_t>& xpathExprs, XmlNode& res)
+XmlDoc::findContent(std::clist_tstring_t& xpathExprs, XmlNode& res)
 {
 	for (const auto &it_xpathExpr : xpathExprs) {
 		int irv = getContent(it_xpathExpr, res);
