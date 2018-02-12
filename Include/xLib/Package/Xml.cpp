@@ -39,7 +39,7 @@ XmlDoc::XmlDoc()
 	_without_encoding = true;
 }
 //-------------------------------------------------------------------------------------------------
-XmlDoc::XmlDoc(std::tstring_t charset)
+XmlDoc::XmlDoc(std::ctstring_t &charset)
 {
 	_iconv = ::iconv_open(charset.c_str(), "UTF-8");
 
