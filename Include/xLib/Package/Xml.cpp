@@ -66,8 +66,7 @@ XmlDoc::parseFile(std::ctstring_t &a_filePath)
 
 	_doc = ::xmlParseFile( a_filePath.c_str() );
 	if (_doc == xPTR_NULL) {
-		_error = 1;
-		return _error;
+		return 1;
 	}
 
 	return 0;
@@ -80,8 +79,7 @@ XmlDoc::parseString(std::ctstring_t &a_str)
 
 	_doc = ::xmlParseDoc( (xmlChar *)a_str.c_str() );
 	if (_doc == xPTR_NULL) {
-		_error = 1;
-		return _error;
+		return 1;
 	}
 
 	return 0;
@@ -563,7 +561,7 @@ XmlDoc::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res)
 
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
 	xmlXPathObjectPtr xpathObj = xPTR_NULL;
-	_error = 0;
+
 	xpathCtx = xmlXPathNewContext(_doc);
 	if ( !xpathCtx ) {
 		return 1;
@@ -863,7 +861,6 @@ XmlNode::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res, bool incl
 
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
 	xmlXPathObjectPtr xpathObj = xPTR_NULL;
-	_error = 0;
 
 	xpathCtx = xmlXPathNewContext(_node->doc);
 	if ( !xpathCtx ) {
@@ -975,7 +972,7 @@ XmlNode::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
 	xmlXPathObjectPtr xpathObj = xPTR_NULL;
-	_error = 0;
+
 	xpathCtx = xmlXPathNewContext(_node->doc);
 	if ( !xpathCtx ) {
 		return 1;
