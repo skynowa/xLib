@@ -28,10 +28,9 @@ public:
 
     void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
 
-    void           LoadDoc(xmlDocPtr doc);
-    int            LoadFile(std::ctstring_t& file);
-    int            LoadString(std::ctstring_t& str);
-    int            LoadStringWithoutNS(std::ctstring_t& str);
+    int            parseFile(std::ctstring_t& file);
+    int            parseString(std::ctstring_t& str);
+    int            parseStringNoNs(std::ctstring_t& str);
     void           free();
 
     bool           findContent(const std::list<std::tstring_t>& xpathExprs, XmlNode& res); // +++

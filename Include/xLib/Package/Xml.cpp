@@ -60,7 +60,7 @@ XmlDoc::~XmlDoc()
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::LoadFile(std::ctstring_t& file)
+XmlDoc::parseFile(std::ctstring_t& file)
 {
 	free();
 
@@ -74,7 +74,7 @@ XmlDoc::LoadFile(std::ctstring_t& file)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::LoadString(std::ctstring_t& str)
+XmlDoc::parseString(std::ctstring_t& str)
 {
 	free();
 
@@ -88,7 +88,7 @@ XmlDoc::LoadString(std::ctstring_t& str)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
+XmlDoc::parseStringNoNs(std::ctstring_t& str)
 {
 	std::tstring_t::size_type pos  {};
 	std::tstring_t::size_type pos1 {};
@@ -132,7 +132,7 @@ XmlDoc::LoadStringWithoutNS(std::ctstring_t& str)
 		}
 	}
 
-	return LoadString(text);
+	return parseString(text);
 }
 //-------------------------------------------------------------------------------------------------
 void
@@ -726,7 +726,7 @@ XmlDoc::format(
 
 	XmlDoc doc(a_charset);
 	doc.registerNamespaces(a_namespaces);
-	irv = doc.LoadString(a_str);
+	irv = doc.parseString(a_str);
 	if (irv != 0)
 		return {};
 
