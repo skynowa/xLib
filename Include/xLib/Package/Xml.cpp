@@ -182,7 +182,7 @@ XmlDoc::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 	}
 
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
-    xmlXPathObjectPtr xpathObj = xPTR_NULL;
+	xmlXPathObjectPtr xpathObj = xPTR_NULL;
 	xpathCtx = xmlXPathNewContext(_doc);
 	if ( !xpathCtx )
 	{
@@ -198,7 +198,7 @@ XmlDoc::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 			xmlXPathFreeContext(xpathCtx);
 		xpathCtx = xPTR_NULL;
 		return 2;
-    }
+	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
@@ -434,7 +434,7 @@ XmlDoc::getContent(std::ctstring_t &xpathExpr, XmlNode &res)
 	if ( !xpathCtx )
 	{
 		return 1;
-    }
+	}
 
 	_registerNamespaces(xpathCtx);
 
@@ -445,7 +445,7 @@ XmlDoc::getContent(std::ctstring_t &xpathExpr, XmlNode &res)
 			xmlXPathFreeContext(xpathCtx);
 		xpathCtx = xPTR_NULL;
 		return 2;
-    }
+	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
@@ -505,12 +505,12 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 	}
 
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
-    xmlXPathObjectPtr xpathObj = xPTR_NULL;
+	xmlXPathObjectPtr xpathObj = xPTR_NULL;
 	xpathCtx = xmlXPathNewContext(_doc);
 	if ( !xpathCtx )
 	{
 		return 1;
-    }
+	}
 
 	_registerNamespaces(xpathCtx);
 
@@ -521,7 +521,7 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 			xmlXPathFreeContext(xpathCtx);
 		xpathCtx = xPTR_NULL;
 		return 2;
-    }
+	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
@@ -569,13 +569,13 @@ XmlDoc::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res)
 	}
 
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
-    xmlXPathObjectPtr xpathObj = xPTR_NULL;
-    _error = 0;
+	xmlXPathObjectPtr xpathObj = xPTR_NULL;
+	_error = 0;
 	xpathCtx = xmlXPathNewContext(_doc);
 		if (!xpathCtx)
 	{
 		return 1;
-    }
+	}
 
 	_registerNamespaces(xpathCtx);
 
@@ -586,7 +586,7 @@ XmlDoc::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res)
 			xmlXPathFreeContext(xpathCtx);
 		xpathCtx = xPTR_NULL;
 		return 2;
-    }
+	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
@@ -868,14 +868,14 @@ XmlNode::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res, bool incl
 	}
 
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
-    xmlXPathObjectPtr xpathObj = xPTR_NULL;
-    _error = 0;
+	xmlXPathObjectPtr xpathObj = xPTR_NULL;
+	_error = 0;
 
 	xpathCtx = xmlXPathNewContext(_node->doc);
 	if (!xpathCtx)
 	{
 		return 1;
-    }
+	}
 
 	if (_doc)
 	{
@@ -890,7 +890,7 @@ XmlNode::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res, bool incl
 			xmlXPathFreeContext(xpathCtx);
 		xpathCtx = xPTR_NULL;
 		return 2;
-    }
+	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
@@ -981,13 +981,13 @@ XmlNode::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 	}
 
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
-    xmlXPathObjectPtr xpathObj = xPTR_NULL;
-    _error = 0;
+	xmlXPathObjectPtr xpathObj = xPTR_NULL;
+	_error = 0;
 	xpathCtx = xmlXPathNewContext(_node->doc);
 	if (!xpathCtx)
 	{
 		return 1;
-    }
+	}
 
 	if (_doc)
 	{
@@ -1003,7 +1003,7 @@ XmlNode::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 		xpathCtx = xPTR_NULL;
 
 		return 2;
-    }
+	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
@@ -1118,7 +1118,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &r
 			xmlXPathFreeContext(xpathCtx);
 		xpathCtx = xPTR_NULL;
 		return 2;
-    }
+	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
@@ -1275,10 +1275,10 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 	if ( !xpathCtx )
 	{
 		return 1;
-    }
+	}
 
-    if (_doc)
-    {
+	if (_doc)
+	{
 		_doc->_registerNamespaces(xpathCtx);
 	}
 
@@ -1337,12 +1337,12 @@ XmlNode::getAttributeList(std::list<std::tstring_t> &val)
 		return;
 	xmlAttrPtr prop;
 
-        if (_node->properties != xPTR_NULL)
+		if (_node->properties != xPTR_NULL)
 	{
 		prop = _node->properties;
 		do {
-		    val.push_back((char*)prop->name);
-		    prop = prop->next;
+			val.push_back((char*)prop->name);
+			prop = prop->next;
 		}
 		while (prop != xPTR_NULL);
 	}
