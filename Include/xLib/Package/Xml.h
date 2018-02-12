@@ -33,6 +33,7 @@ public:
     int            parseStringNoNs(std::ctstring_t &str);
     void           free();
 
+    int            getRootNode(XmlNode &root);
     bool           findContent(std::clist_tstring_t &xpathExprs, XmlNode &res); // +++
     int            getContent(std::ctstring_t &xpathExpr, std::tstring_t &res); // +++
     std::tstring_t getContentStr(std::ctstring_t &xpathExpr); // +++
@@ -41,7 +42,6 @@ public:
     int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res); // +++
 
     int            dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res);
-    int            getRootNode(XmlNode &root);
 
     void           setIconv(iconv_t icnv) { _iconv = icnv; }
 
