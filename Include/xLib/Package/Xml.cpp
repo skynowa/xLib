@@ -141,6 +141,24 @@ XmlDoc::free()
 	Utils::freeT(_doc, ::xmlFreeDoc, xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
+int
+XmlDoc::getRootNode(XmlNode &root)
+{
+	if (!_doc)
+		return 1;
+
+	xmlNodePtr root_node = xmlDocGetRootElement(_doc);
+	if ( !root_node )
+		return 2;
+
+	root.setIconv(_iconv);
+	root.setNode(root_node);
+	root.setDoc(this);
+	root.setWithoutEncoding(_without_encoding);
+
+	return 0;
+}
+//-------------------------------------------------------------------------------------------------
 bool
 XmlDoc::findContent(std::clist_tstring_t &xpathExprs, XmlNode &res)
 {
@@ -307,8 +325,6 @@ XmlDoc::registerNamespaces(std::cmap_tstring_t &namespaces)
 void
 XmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
 {
-	std::map_tstring_t::iterator ns;
-
 	for (auto &ns : _namespaces) {
 		::xmlXPathRegisterNs(xmlXPathContextPtr, (xmlChar *)ns.first.c_str(), (xmlChar *)ns.second.c_str());
 	}
@@ -643,24 +659,6 @@ XmlDoc::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res)
 
 	return 0;
 
-}
-//-------------------------------------------------------------------------------------------------
-int
-XmlDoc::getRootNode(XmlNode &root)
-{
-	if (!_doc)
-		return 1;
-
-	xmlNodePtr root_node = xmlDocGetRootElement(_doc);
-	if ( !root_node )
-		return 2;
-
-	root.setIconv(_iconv);
-	root.setNode(root_node);
-	root.setDoc(this);
-	root.setWithoutEncoding(_without_encoding);
-
-	return 0;
 }
 //-------------------------------------------------------------------------------------------------
 int
