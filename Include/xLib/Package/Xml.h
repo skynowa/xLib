@@ -23,7 +23,7 @@ class XmlDoc
 {
 public:
                    XmlDoc();
-    explicit       XmlDoc(std::tstring_t charset);
+    explicit       XmlDoc(std::ctstring_t &charset);
                   ~XmlDoc();
 
     void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
