@@ -144,8 +144,9 @@ XmlDoc::free()
 int
 XmlDoc::getRootNode(XmlNode &root)
 {
-	if (!_doc)
+	if (!_doc) {
 		return 1;
+	}
 
 	xmlNodePtr root_node = xmlDocGetRootElement(_doc);
 	if ( !root_node )
@@ -336,8 +337,7 @@ int
 XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res)
 {
 	res.clear();
-	if (!_doc)
-	{
+	if (!_doc) {
 		return 1;
 	}
 
@@ -423,8 +423,7 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &re
 int
 XmlDoc::getContent(std::ctstring_t &xpathExpr, XmlNode &res)
 {
-	if (!_doc)
-	{
+	if (!_doc) {
 		return 1;
 	}
 
@@ -499,8 +498,7 @@ int
 XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 {
 	res.clear();
-	if (!_doc)
-	{
+	if (!_doc) {
 		return 1;
 	}
 
@@ -664,7 +662,9 @@ XmlDoc::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res)
 int
 XmlDoc::saveToFilename(std::ctstring_t &filename)
 {
-	if (!_doc) return -1;
+	if (!_doc) {
+		return 1;
+	}
 
 	xmlSaveCtxtPtr savectxt = xmlSaveToFilename(filename.c_str(), xPTR_NULL, XML_SAVE_FORMAT);
 	if (savectxt) {
