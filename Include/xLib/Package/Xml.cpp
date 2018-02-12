@@ -201,7 +201,7 @@ XmlDoc::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
 
-	if (!nodes)
+	if ( !nodes )
 	{
 		if (xpathObj)
 			xmlXPathFreeObject(xpathObj);
@@ -357,7 +357,7 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &re
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
 
-	if (!nodes)
+	if ( !nodes )
 	{
 		if (xpathObj)
 			xmlXPathFreeObject(xpathObj);
