@@ -415,7 +415,7 @@ XmlDoc::saveToFile(std::ctstring_t &filename)
 		return 0;
 	}
 
-	return -1;
+	return 1;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
