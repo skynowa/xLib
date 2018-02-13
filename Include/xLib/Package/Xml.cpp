@@ -150,9 +150,6 @@ int
 XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 {
 	res.clear();
-	if (!_doc) {
-		return 1;
-	}
 
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
 	xmlXPathObjectPtr xpathObj = xPTR_NULL;
@@ -236,9 +233,6 @@ int
 XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 {
 	res.clear();
-	if (!_doc) {
-		return 1;
-	}
 
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
 	xmlXPathObjectPtr xpathObj = xPTR_NULL;
@@ -292,10 +286,6 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 int
 XmlDoc::saveToFile(std::ctstring_t &filePath)
 {
-	if (!_doc) {
-		return 1;
-	}
-
 	xmlSaveCtxtPtr savectxt = xmlSaveToFilename(filePath.c_str(), xPTR_NULL, XML_SAVE_FORMAT);
 	if (savectxt) {
 		xmlSaveDoc(savectxt, _doc);
@@ -311,9 +301,6 @@ XmlDoc::format(
 	std::ctstring_t &a_charset	///< character encoding (sample: "UTF-8")
 )
 {
-	if (!_doc)
-		return {};
-
 	if ( a_charset.empty() )
 		return {};
 
