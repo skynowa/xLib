@@ -276,7 +276,7 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
 
-		XmlNode node(this, cur, _iconv);
+		XmlNode node(this, cur);
 		// TODO: XmlNode - xNO_COPY_ASSIGN
 		// res.push_back(node);
 	}
@@ -346,12 +346,10 @@ XmlDoc::format(
 //-------------------------------------------------------------------------------------------------
 XmlNode::XmlNode(
 	XmlDoc    *a_doc,
-	xmlNodePtr a_node,
-	iconv_t    a_iconv
+	xmlNodePtr a_node
 ) :
-	_doc  (a_doc),
-	_node (a_node),
-	_iconv(a_iconv)
+	_doc (a_doc),
+	_node(a_node)
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -396,7 +394,7 @@ XmlNode::getText()
 		char* buf = (char*) malloc(len2*sizeof(char) + 1);
 		char* ptr = buf;
 
-		::iconv(_iconv, &cnt, &len, &ptr, &len2);
+		::iconv(_doc->getIconv(), &cnt, &len, &ptr, &len2);
 
 		buf[xmlUTF8Strlen(content)] = 0;
 		text = buf;
@@ -476,7 +474,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 			char* buf = (char*) malloc(len2*sizeof(char) + 1);
 			char* ptr = buf;
 
-			::iconv(_iconv, &cnt, &len, &ptr, &len2);
+			::iconv(_doc->getIconv(), &cnt, &len, &ptr, &len2);
 
 			buf[xmlUTF8Strlen(content)] = 0;
 			res.push_back(buf);
@@ -539,7 +537,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
 
-		XmlNode node(_doc, cur, _iconv);
+		XmlNode node(_doc, cur);
 		// TODO: XmlNode - xNO_COPY_ASSIGN
 		/// res.push_back(node);
 	}
