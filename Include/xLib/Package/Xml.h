@@ -57,8 +57,6 @@ public:
 				   XmlNode(XmlDoc *doc, xmlNodePtr node, iconv_t iconv);
 				  ~XmlNode() = default;
 
-	void           setIconv(iconv_t icnv) { _iconv = icnv; }
-
 	std::tstring_t getName();
 	std::tstring_t getText();
 
