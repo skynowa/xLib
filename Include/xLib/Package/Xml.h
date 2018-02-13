@@ -56,17 +56,16 @@ public:
 	explicit       XmlNode(XmlDoc *doc);
 				  ~XmlNode() = default;
 
+	void           setNode(xmlNodePtr node) { _node = node; }
+	void           setIconv(iconv_t icnv) { _iconv = icnv; }
 	void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
-	void           getAttributeList(std::list_tstring_t &val);
 
 	std::tstring_t getName();
 	std::tstring_t getText();
 
 	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
-
-	void           setNode(xmlNodePtr node) { _node = node; }
-	void           setIconv(iconv_t icnv) { _iconv = icnv; }
+	void           getAttributeList(std::list_tstring_t &val);
 
 	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
 	xNO_COPY_ASSIGN(XmlNode);
