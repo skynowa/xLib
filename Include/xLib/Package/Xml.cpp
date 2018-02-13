@@ -422,7 +422,6 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
-	xmlNodePtr cur;
 	if ( !nodes )
 	{
 		if (xpathObj)
@@ -435,8 +434,9 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 	}
 
 	for (int i = 0; i < nodes->nodeNr; ++ i) {
-		cur = nodes->nodeTab[i];
-		if ( !cur ) continue;
+		xmlNodePtr cur = nodes->nodeTab[i];
+		if ( !cur )
+			continue;
 
 		xmlChar* content = xmlNodeListGetString( cur->doc, cur->xmlChildrenNode, 1);
 		if( !content ) {
@@ -507,7 +507,6 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
-	xmlNodePtr cur;
 	if ( !nodes )
 	{
 		if (xpathObj)
@@ -519,10 +518,10 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		return 4;
 	}
 
-	for (int i=0 ; i<nodes->nodeNr ; i++)
-	{
-		cur = nodes->nodeTab[i];
-		if ( !cur ) continue;
+	for (int i = 0; i < nodes->nodeNr; ++ i) {
+		xmlNodePtr cur = nodes->nodeTab[i];
+		if ( !cur )
+			continue;
 
 		XmlNode node(_xmlDoc, cur);
 		// TODO: XmlNode - xNO_COPY_ASSIGN
