@@ -73,7 +73,7 @@ class XmlNode
 public:
 				   XmlNode();
 	explicit       XmlNode(iconv_t iconv);
-				  ~XmlNode();
+				  ~XmlNode() = default;
 
 	void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
 	bool           isText() { if (_node) return xmlNodeIsText(_node); return 0; }
