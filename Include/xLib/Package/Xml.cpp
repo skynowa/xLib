@@ -433,6 +433,14 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 			continue;
 
 		xmlChar* content = xmlNodeListGetString( cur->doc, cur->xmlChildrenNode, 1);
+
+
+		xmlChar* content;
+		if ( xmlNodeIsText(_node) )
+			content = xmlNodeGetContent( _node);
+		else
+			content = xmlNodeListGetString( _node->doc, _node->xmlChildrenNode, 1);
+
 		if( !content ) {
 			continue;
 		}
