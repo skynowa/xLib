@@ -25,7 +25,8 @@ public:
 	explicit       XmlDoc(std::ctstring_t &charset);
 				  ~XmlDoc();
 
-	bool           isWithoutEncoding() {return _without_encoding;};
+	iconv_t        getIconv() { return _iconv; }
+	bool           isWithoutEncoding() { return _without_encoding; }
 
 	int            parseFile(std::ctstring_t &filePath);
 	int            parseString(std::ctstring_t &str);
@@ -54,7 +55,7 @@ protected:
 class XmlNode
 {
 public:
-				   XmlNode(XmlDoc *doc, xmlNodePtr node, iconv_t iconv);
+				   XmlNode(XmlDoc *doc, xmlNodePtr node);
 				  ~XmlNode() = default;
 
 	std::tstring_t getName();
@@ -70,7 +71,6 @@ public:
 protected:
 	XmlDoc        *_doc {};
 	xmlNodePtr     _node {};
-	iconv_t        _iconv { (iconv_t)-1 };
 };
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, package)
