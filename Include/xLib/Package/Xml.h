@@ -103,3 +103,4 @@ xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------
 
 // TODO: findContent
+// https://github.com/unnonouno/iconvpp/blob/master/iconv.hpp
