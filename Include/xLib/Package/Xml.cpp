@@ -520,51 +520,6 @@ XmlNode::getText()
 	return text;
 }
 //-------------------------------------------------------------------------------------------------
-void
-XmlNode::getChildren(std::list<XmlNode> &val, std::tstring_t name)
-{
-	val.clear();
-	if (!_node || _iconv == ::iconvError)
-		return;
-
-	xmlNodePtr curitem;
-	curitem=_node->xmlChildrenNode;
-
-	while( curitem != xPTR_NULL )
-	{
-
-		if (name.length())
-		{
-			if (!xmlStrcmp(curitem->name,(xmlChar*)name.c_str()))
-			{
-				XmlNode node;
-				node.setIconv(_iconv);
-				node.setNode(curitem);
-				node.setWithoutEncoding(_without_encoding);
-				if (_doc)
-					node.setDoc(_doc);
-
-				// TODO: XmlNode - xNO_COPY_ASSIGN
-				/// val.push_back(node);
-			}
-		}
-		else
-		{
-			XmlNode node;
-			node.setIconv(_iconv);
-			node.setNode(curitem);
-			node.setWithoutEncoding(_without_encoding);
-			if (_doc)
-				node.setDoc(_doc);
-
-			// TODO: XmlNode - xNO_COPY_ASSIGN
-			/// val.push_back(node);
-		}
-
-		curitem = curitem->next;
-	}
-}
-//-------------------------------------------------------------------------------------------------
 int
 XmlNode::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res, bool includeCurrent)
 {

@@ -67,7 +67,6 @@ public:
 
 	std::tstring_t getName();
 	std::tstring_t getText();
-	void           getChildren(std::list<XmlNode> &val,std::tstring_t name = "");
 
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
