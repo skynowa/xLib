@@ -402,7 +402,7 @@ XmlDoc::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::saveToFilename(std::ctstring_t &filename)
+XmlDoc::saveToFile(std::ctstring_t &filename)
 {
 	if (!_doc) {
 		return 1;
@@ -467,6 +467,7 @@ XmlNode::getName()
 {
 	if ( !_node )
 		return "";
+
 	if ( _node->name )
 		return (char*)_node->name;
 

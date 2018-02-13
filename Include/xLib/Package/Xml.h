@@ -32,8 +32,8 @@ public:
 	int            parseStringNoNs(std::ctstring_t &str);
 	void           close();
 
-	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res); // +++
-	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res); // +++
+	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
+	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
 
 	int            dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res);
 
@@ -41,7 +41,7 @@ public:
 	void           registerNamespaces(std::cmap_tstring_t &namespaces);
 	void           _registerNamespaces(xmlXPathContext* ctx);
 
-	int            saveToFilename(std::ctstring_t &filename);
+	int            saveToFile(std::ctstring_t &filename);
 
 	std::tstring_t format(std::ctstring_t &charset);
 
