@@ -197,7 +197,7 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 
 		char* cnt = (char*) content;
 
-		if (_without_encoding)
+		if ( isWithoutEncoding() )
 		{
 			std::tstring_t cont;
 			cont = cnt;
