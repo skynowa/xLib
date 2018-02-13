@@ -79,7 +79,6 @@ public:
 	bool           isText() { if (_node) return xmlNodeIsText(_node); return 0; }
 	void           getAttributeList(std::list<std::tstring_t> &val);
 	void           setDoc(XmlDoc* doc) { _doc = doc; }
-	void           setIsDebug(bool is_debug, std::ctstring_t &path) { _is_debug = is_debug; _debug_path = path; }
 
 	std::tstring_t getName();
 	std::tstring_t getText();
@@ -107,8 +106,6 @@ protected:
 	XmlDoc        *_doc {};
 
 	bool           _without_encoding;
-	bool           _is_debug;
-	std::tstring_t _debug_path;
 };
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, package)
