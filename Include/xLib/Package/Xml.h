@@ -32,7 +32,7 @@ public:
 	int            parseStringNoNs(std::ctstring_t &str);
 	void           close();
 
-	int            getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res); // +++
+	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res); // +++
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res); // +++
 
 	int            dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res);
@@ -62,13 +62,13 @@ public:
 				  ~XmlNode() = default;
 
 	void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
-	void           getAttributeList(std::list<std::tstring_t> &val);
+	void           getAttributeList(std::list_tstring_t &val);
 	void           setDoc(XmlDoc* doc) { _doc = doc; }
 
 	std::tstring_t getName();
 	std::tstring_t getText();
 
-	int            getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res);
+	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
 
 	int            dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res, bool includeCurrent = false);

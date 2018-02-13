@@ -153,7 +153,7 @@ XmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res)
+XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 {
 	res.clear();
 	if (!_doc) {
@@ -633,7 +633,7 @@ XmlNode::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res, bool incl
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res)
+XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 {
 	res.clear();
 	if (!_node)
@@ -796,17 +796,18 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getAttributeList(std::list<std::tstring_t> &val)
+XmlNode::getAttributeList(std::list_tstring_t &val)
 {
 	val.clear();
 
 	if ((_node == xPTR_NULL) || (_node->type != XML_ELEMENT_NODE))
 		return;
+
 	xmlAttrPtr prop;
 
-		if (_node->properties != xPTR_NULL)
-	{
+	if (_node->properties != xPTR_NULL) {
 		prop = _node->properties;
+
 		do {
 			val.push_back((char*)prop->name);
 			prop = prop->next;
