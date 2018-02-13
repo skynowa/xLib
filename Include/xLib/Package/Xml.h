@@ -25,8 +25,6 @@ public:
 	explicit       XmlDoc(std::ctstring_t &charset);
 				  ~XmlDoc();
 
-	void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
-
 	int            parseFile(std::ctstring_t &filePath);
 	int            parseString(std::ctstring_t &str);
 	int            parseStringNoNs(std::ctstring_t &str);
