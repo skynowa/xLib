@@ -276,9 +276,8 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
 
-		XmlNode node(this);
+		XmlNode node(this, cur);
 		node.setIconv(_iconv);
-		node.setNode(cur);
 		node.setWithoutEncoding(_without_encoding);
 
 		// TODO: XmlNode - xNO_COPY_ASSIGN
@@ -348,8 +347,12 @@ XmlDoc::format(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-XmlNode::XmlNode(XmlDoc *a_doc) :
-	_doc(a_doc)
+XmlNode::XmlNode(
+	XmlDoc    *a_doc,
+	xmlNodePtr a_node
+) :
+	_doc (a_doc),
+	_node(a_node)
 {
 	_iconv = ::iconvError;
 }
@@ -357,9 +360,6 @@ XmlNode::XmlNode(XmlDoc *a_doc) :
 std::tstring_t
 XmlNode::getName()
 {
-	if ( !_node )
-		return "";
-
 	if ( _node->name )
 		return (char*)_node->name;
 
@@ -370,7 +370,7 @@ std::tstring_t
 XmlNode::getText()
 {
 	std::tstring_t text;
-	if (!_node || _iconv == ::iconvError)
+	if (_iconv == ::iconvError)
 		return text;
 
 	xmlChar* content;
@@ -417,10 +417,6 @@ int
 XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 {
 	res.clear();
-	if (!_node)
-	{
-		return 1;
-	}
 
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
 	xmlXPathObjectPtr xpathObj = xPTR_NULL;
@@ -507,10 +503,6 @@ int
 XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 {
 	res.clear();
-	if (!_node)
-	{
-		return 1;
-	}
 
 	xmlXPathContextPtr xpathCtx = xPTR_NULL;
 	xmlXPathObjectPtr xpathObj = xPTR_NULL;
@@ -551,9 +543,8 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
 
-		XmlNode node(_doc);
+		XmlNode node(_doc, cur);
 		node.setIconv(_iconv);
-		node.setNode(cur);
 		node.setWithoutEncoding(_without_encoding);
 
 		// TODO: XmlNode - xNO_COPY_ASSIGN
@@ -573,7 +564,7 @@ XmlNode::getAttributeList(std::list_tstring_t &val)
 {
 	val.clear();
 
-	if ((_node == xPTR_NULL) || (_node->type != XML_ELEMENT_NODE))
+	if (_node->type != XML_ELEMENT_NODE)
 		return;
 
 	xmlAttrPtr prop;
