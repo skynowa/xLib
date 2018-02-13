@@ -130,25 +130,6 @@ XmlDoc::close()
 	Utils::freeT(_doc, ::xmlFreeDoc, xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
-int
-XmlDoc::getRootNode(XmlNode &root)
-{
-	if (!_doc) {
-		return 1;
-	}
-
-	xmlNodePtr root_node = xmlDocGetRootElement(_doc);
-	if ( !root_node )
-		return 2;
-
-	root.setIconv(_iconv);
-	root.setNode(root_node);
-	root.setDoc(this);
-	root.setWithoutEncoding(_without_encoding);
-
-	return 0;
-}
-//-------------------------------------------------------------------------------------------------
 void
 XmlDoc::registerNamespace(std::ctstring_t &ns, std::ctstring_t &url)
 {
