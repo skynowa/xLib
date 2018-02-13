@@ -154,3 +154,4 @@
 #include <xLib/Package/Ssh2Client.h>
 #include <xLib/Package/Donate.h>
 #include <xLib/Package/CurlClient.h>
+#include <xLib/Package/Xml.h>
