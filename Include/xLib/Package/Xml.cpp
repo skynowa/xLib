@@ -730,14 +730,14 @@ XmlDoc::format(
 //-------------------------------------------------------------------------------------------------
 XmlNode::XmlNode(iconv_t iconv)
 {
-	_iconv    = iconv;
-	_node     = xPTR_NULL;
+	_iconv = iconv;
+	_node  = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 XmlNode::XmlNode()
 {
-	_iconv    = ::iconvError;
-	_node     = xPTR_NULL;
+	_iconv = ::iconvError;
+	_node  = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 XmlNode::~XmlNode()
