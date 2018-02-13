@@ -55,7 +55,7 @@ protected:
 class XmlNode
 {
 public:
-				   XmlNode(XmlDoc *doc, xmlNodePtr node);
+				   XmlNode(XmlDoc *xmlDoc, xmlNodePtr node);
 				  ~XmlNode() = default;
 
 	std::tstring_t getName();
@@ -69,7 +69,7 @@ public:
 	xNO_COPY_ASSIGN(XmlNode);
 
 protected:
-	XmlDoc        *_doc {};
+	XmlDoc        *_xmlDoc {};
 	xmlNodePtr     _node {};
 };
 //-------------------------------------------------------------------------------------------------
