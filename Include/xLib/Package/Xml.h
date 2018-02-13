@@ -34,10 +34,8 @@ public:
 	void           free();
 
 	int            getRootNode(XmlNode &root);
-	bool           findContent(std::clist_tstring_t &xpathExprs, XmlNode &res); // +++
 	int            getContent(std::ctstring_t &xpathExpr, std::tstring_t &res); // +++
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res); // +++
-	int            getContent(std::ctstring_t &xpathExpr, XmlNode &res); // +++
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res); // +++
 
 	int            dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res);
@@ -105,3 +103,5 @@ protected:
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------
+
+// TODO: findContent

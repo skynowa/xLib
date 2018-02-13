@@ -158,19 +158,6 @@ XmlDoc::getRootNode(XmlNode &root)
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
-bool
-XmlDoc::findContent(std::clist_tstring_t &xpathExprs, XmlNode &res)
-{
-	for (const auto &it_xpathExpr : xpathExprs) {
-		int irv = getContent(it_xpathExpr, res);
-		if (irv == 0) {
-			return true;
-		}
-	}
-
-	return false;
-}
-//-------------------------------------------------------------------------------------------------
 int
 XmlDoc::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 {
