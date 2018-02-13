@@ -94,9 +94,9 @@ public:
 	xNO_COPY_ASSIGN(XmlNode);
 
 protected:
+	XmlDoc        *_doc {};
 	xmlNodePtr     _node;
 	iconv_t        _iconv {};
-	XmlDoc        *_doc {};
 
 	bool           _without_encoding;
 };
