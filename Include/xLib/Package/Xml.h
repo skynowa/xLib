@@ -72,7 +72,6 @@ class XmlNode
 {
 public:
 				   XmlNode();
-	explicit       XmlNode(iconv_t iconv);
 				  ~XmlNode() = default;
 
 	void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }

@@ -530,7 +530,8 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
 
-		XmlNode node(_iconv);
+		XmlNode node;
+		node.setIconv(_iconv);
 		node.setNode(cur);
 		node.setDoc(this);
 		node.setWithoutEncoding(_without_encoding);
@@ -728,12 +729,6 @@ XmlDoc::format(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-XmlNode::XmlNode(iconv_t iconv)
-{
-	_iconv = iconv;
-	_node  = xPTR_NULL;
-}
-//-------------------------------------------------------------------------------------------------
 XmlNode::XmlNode()
 {
 	_iconv = ::iconvError;
@@ -815,7 +810,8 @@ XmlNode::getChildren(std::list<XmlNode> &val, std::tstring_t name)
 		{
 			if (!xmlStrcmp(curitem->name,(xmlChar*)name.c_str()))
 			{
-				XmlNode node(_iconv);
+				XmlNode node;
+				node.setIconv(_iconv);
 				node.setNode(curitem);
 				node.setWithoutEncoding(_without_encoding);
 				if (_doc)
@@ -827,7 +823,8 @@ XmlNode::getChildren(std::list<XmlNode> &val, std::tstring_t name)
 		}
 		else
 		{
-			XmlNode node(_iconv);
+			XmlNode node;
+			node.setIconv(_iconv);
 			node.setNode(curitem);
 			node.setWithoutEncoding(_without_encoding);
 			if (_doc)
@@ -1287,7 +1284,8 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
 
-		XmlNode node(_iconv);
+		XmlNode node;
+		node.setIconv(_iconv);
 		node.setNode(cur);
 		node.setWithoutEncoding(_without_encoding);
 		if (_doc)
