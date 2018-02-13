@@ -131,16 +131,10 @@ XmlDoc::close()
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlDoc::registerNamespace(std::ctstring_t &ns, std::ctstring_t &url)
-{
-	_namespaces.insert( {ns, url} );
-}
-//-------------------------------------------------------------------------------------------------
-void
 XmlDoc::registerNamespaces(std::cmap_tstring_t &namespaces)
 {
 	for (auto &it_namespace : namespaces) {
-		registerNamespace(it_namespace.first, it_namespace.second);
+		_namespaces.insert( {it_namespace.first, it_namespace.second} );
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -358,7 +352,6 @@ XmlDoc::format(
 XmlNode::XmlNode()
 {
 	_iconv = ::iconvError;
-	_node  = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t

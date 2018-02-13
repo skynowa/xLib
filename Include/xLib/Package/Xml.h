@@ -33,7 +33,6 @@ public:
 	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
 
-	void           registerNamespace(std::ctstring_t &ns, std::ctstring_t &url);
 	void           registerNamespaces(std::cmap_tstring_t &namespaces);
 	void           _registerNamespaces(xmlXPathContext* ctx);
 
@@ -48,7 +47,7 @@ protected:
 	xmlDocPtr          _doc {};
 	iconv_t            _iconv {};
 	std::map_tstring_t _namespaces;
-	bool               _without_encoding;
+	bool               _without_encoding {};
 };
 //-------------------------------------------------------------------------------------------------
 class XmlNode
@@ -75,10 +74,9 @@ public:
 
 protected:
 	XmlDoc        *_doc {};
-	xmlNodePtr     _node;
+	xmlNodePtr     _node {};
 	iconv_t        _iconv {};
-
-	bool           _without_encoding;
+	bool           _without_encoding {};
 };
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, package)
