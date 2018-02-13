@@ -276,7 +276,7 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
 
-		XmlNode node(this, cur, _iconv, _without_encoding);
+		XmlNode node(this, cur, _iconv);
 		// TODO: XmlNode - xNO_COPY_ASSIGN
 		// res.push_back(node);
 	}
@@ -347,13 +347,11 @@ XmlDoc::format(
 XmlNode::XmlNode(
 	XmlDoc    *a_doc,
 	xmlNodePtr a_node,
-	iconv_t    a_iconv,
-	bool       a_without_encoding
+	iconv_t    a_iconv
 ) :
-	_doc             (a_doc),
-	_node            (a_node),
-	_iconv           (a_iconv),
-	_without_encoding(a_without_encoding)
+	_doc  (a_doc),
+	_node (a_node),
+	_iconv(a_iconv)
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -384,7 +382,7 @@ XmlNode::getText()
 
 	char* cnt = (char*) content;
 
-	if ( _without_encoding )
+	if ( _doc->isWithoutEncoding() )
 	{
 		text = cnt;
 		xmlFree(content);
@@ -462,7 +460,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 
 		char* cnt = (char*) content;
 
-		if (_without_encoding)
+		if ( _doc->isWithoutEncoding() )
 		{
 			std::tstring_t cont;
 			cont = cnt;
@@ -541,7 +539,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		cur = nodes->nodeTab[i];
 		if ( !cur ) continue;
 
-		XmlNode node(_doc, cur, _iconv, _without_encoding);
+		XmlNode node(_doc, cur, _iconv);
 		// TODO: XmlNode - xNO_COPY_ASSIGN
 		/// res.push_back(node);
 	}
