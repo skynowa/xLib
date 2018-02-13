@@ -453,7 +453,7 @@ XmlDoc::format(
 	int          buff_size = 0;
 
 	::xmlKeepBlanksDefault(0);
-	::xmlDocDumpFormatMemoryEnc(getDoc(), &buff, &buff_size, a_charset.c_str(), 1);
+	::xmlDocDumpFormatMemoryEnc(_doc, &buff, &buff_size, a_charset.c_str(), 1);
 	if (buff == nullptr)
 		return {};
 	if (buff_size <= 0)
@@ -465,31 +465,6 @@ XmlDoc::format(
 	buff = nullptr;
 
 	return srv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-XmlDoc::format(
-	std::ctstring_t &a_str,		///< target XML std::tstring_t
-	std::ctstring_t &a_charset,	///< character encoding (sample: "UTF-8")
-	std::cmap_tstring_t &a_namespaces /* = {} */	///< XML namespaces
-)
-{
-	if ( a_str.empty() )
-		return {};
-	if ( a_charset.empty() )
-		return {};
-
-	std::tstring_t  srv;
-	int     irv = 0;
-
-	XmlDoc doc(a_charset);
-	doc.registerNamespaces(a_namespaces);
-	irv = doc.parseString(a_str);
-	if (irv != 0)
-		return {};
-
-	return doc.format(a_charset);
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -38,8 +38,6 @@ public:
 
 	int            dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res);
 
-	xmlDocPtr      getDoc() { return _doc; }
-
 	void           registerNamespace(std::ctstring_t &ns, std::ctstring_t &url);
 	void           registerNamespaces(std::cmap_tstring_t &namespaces);
 	void           _registerNamespaces(xmlXPathContext* ctx);
@@ -47,9 +45,6 @@ public:
 	int            saveToFilename(std::ctstring_t &filename);
 
 	std::tstring_t format(std::ctstring_t &charset);
-	static
-	std::tstring_t format(std::ctstring_t &str, std::ctstring_t &charset,
-						std::cmap_tstring_t &namespaces = {});
 
 	/// xNO_DEFAULT_CONSTRUCT(XmlDoc);
 	xNO_COPY_ASSIGN(XmlDoc);
@@ -83,7 +78,6 @@ public:
 	void           setIconv(iconv_t icnv) { _iconv = icnv; }
 
 	void           setNode(xmlNodePtr node) { _node = node; }
-	xmlNodePtr     getNode() { return _node; }
 
 	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
 	xNO_COPY_ASSIGN(XmlNode);
