@@ -1,45 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Response ResponseReference="REF_P_010_36442-89763-531241508725073">
-	<ResponseDetails Language="en">
-		<SearchBookingItemResponse>
-			<BookingReferences>
-				<BookingReference ReferenceSource="client"><![CDATA[2664201]]></BookingReference>
-				<BookingReference ReferenceSource="api"><![CDATA[17059477]]></BookingReference>
-			</BookingReferences>
-			<BookingCreationDate>2015-11-24</BookingCreationDate>
-			<BookingDepartureDate>2015-12-10</BookingDepartureDate>
-			<BookingName><![CDATA[GRANT SMITH]]></BookingName>
-			<BookingPrice Commission="0.00" Currency="USD" Gross="156.00" Nett="156.00"/>
-			<BookingStatus Code="C "><![CDATA[Confirmed]]></BookingStatus>
-			<PaxNames>
-				<PaxName PaxId="1"><![CDATA[Grant Smith]]></PaxName>
-			</PaxNames>
-			<BookingItems>
-				<BookingItem ItemType="hotel">
-					<ItemReference>1</ItemReference>
-					<ItemCity Code="PAR"><![CDATA[Paris]]></ItemCity>
-					<Item Code="96E"><![CDATA[Hotel de Bordeaux]]></Item>
-					<ItemPrice Commission="0.00" Currency="USD" Gross="156.00" Nett="156.00"/>
-					<ItemStatus Code="C "><![CDATA[Confirmed]]></ItemStatus>
-					<ItemConfirmationReference>L5NF777358 - 010/17059477</ItemConfirmationReference>
-					<HotelItem>
-						<PeriodOfStay>
-							<CheckInDate>2015-12-10</CheckInDate>
-							<CheckOutDate>2015-12-13</CheckOutDate>
-						</PeriodOfStay>
-						<HotelPaxRoom Adults="1" Children="0" Cots="0" Id="001:96E:105337:S127017:149995:250672">
-							<Description><![CDATA[Standard Single]]></Description>
-							<PaxIds>
-								<PaxId>1</PaxId>
-							</PaxIds>
-						</HotelPaxRoom>
-						<Meals>
-							<Basis Code="B"><![CDATA[Breakfast]]></Basis>
-							<Breakfast Code="C"><![CDATA[Continental]]></Breakfast>
-						</Meals>
-					</HotelItem>
-				</BookingItem>
-			</BookingItems>
-		</SearchBookingItemResponse>
-	</ResponseDetails>
-</Response>
+<?xml version="1.0" encoding="utf-8"?>
+<AvailabilitySearchResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Currency>EUR</Currency>
+    <TestMode>true</TestMode>
+    <HotelAvailability>
+        <Hotel id="95005" name="Triple Two Silom"/>
+        <Result id="13030163-2">
+            <Room>
+                <RoomType code="1004527" text="Double Or Twin Deluxe"/>
+                <MealType code="1000018" text="Bed and breakfast"/>
+                <Price amt="211.40"/>
+            </Room>
+        </Result>
+        <Result id="13030163-1">
+            <Room>
+                <RoomType code="2060152" text="Double or Twin DELUXE-SHARING BEDDING"/>
+                <MealType code="1000018" text="Bed and breakfast"/>
+                <Price amt="161.20"/>
+            </Room>
+        </Result>
+        <Result id="13030163-0">
+            <Room>
+                <RoomType code="1015049" text="Triple (Deluxe Room)"/>
+                <MealType code="1000030" text="Full Breakfast"/>
+                <Price amt="172.00"/>
+            </Room>
+        </Result>
+    </HotelAvailability>
+</AvailabilitySearchResult>

@@ -24,6 +24,10 @@ Test_Xml::unit()
 		XmlDoc doc("UTF-8");
 		m_iRv = doc.parseFile(filePath);
 		xTEST_EQ(m_iRv, 0);
+
+		std::list<XmlNode> results;
+		m_iRv = doc.getContentList("/AvailabilitySearchResult/HotelAvailability/Result", results);
+		xTEST_EQ(m_iRv, 0);
     }
 
     return true;
