@@ -536,7 +536,7 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		node.setWithoutEncoding(_without_encoding);
 
 		// TODO: XmlNode - xNO_COPY_ASSIGN
-		/// res.push_back(node);
+		// res.push_back(node);
 	}
 
 	xmlXPathFreeObject(xpathObj);
@@ -732,14 +732,12 @@ XmlNode::XmlNode(iconv_t iconv)
 {
 	_iconv    = iconv;
 	_node     = xPTR_NULL;
-	_is_debug = false;
 }
 //-------------------------------------------------------------------------------------------------
 XmlNode::XmlNode()
 {
 	_iconv    = ::iconvError;
 	_node     = xPTR_NULL;
-	_is_debug = false;
 }
 //-------------------------------------------------------------------------------------------------
 XmlNode::~XmlNode()
