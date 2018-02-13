@@ -52,7 +52,7 @@ protected:
 class XmlNode
 {
 public:
-				   XmlNode(XmlDoc *doc, xmlNodePtr node);
+				   XmlNode(XmlDoc *doc, xmlNodePtr node, iconv_t iconv, bool a_without_encoding);
 				  ~XmlNode() = default;
 
 	void           setIconv(iconv_t icnv) { _iconv = icnv; }
@@ -71,7 +71,7 @@ public:
 protected:
 	XmlDoc        *_doc {};
 	xmlNodePtr     _node {};
-	iconv_t        _iconv {};
+	iconv_t        _iconv { (iconv_t)-1 };
 	bool           _without_encoding {};
 };
 //-------------------------------------------------------------------------------------------------
