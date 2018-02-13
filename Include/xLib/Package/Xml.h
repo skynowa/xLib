@@ -41,7 +41,7 @@ public:
 	void           registerNamespaces(std::cmap_tstring_t &namespaces);
 	void           _registerNamespaces(xmlXPathContext* ctx);
 
-	int            saveToFile(std::ctstring_t &filename);
+	int            saveToFile(std::ctstring_t &filePath);
 
 	std::tstring_t format(std::ctstring_t &charset);
 

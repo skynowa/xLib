@@ -402,13 +402,13 @@ XmlDoc::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::saveToFile(std::ctstring_t &filename)
+XmlDoc::saveToFile(std::ctstring_t &filePath)
 {
 	if (!_doc) {
 		return 1;
 	}
 
-	xmlSaveCtxtPtr savectxt = xmlSaveToFilename(filename.c_str(), xPTR_NULL, XML_SAVE_FORMAT);
+	xmlSaveCtxtPtr savectxt = xmlSaveToFilename(filePath.c_str(), xPTR_NULL, XML_SAVE_FORMAT);
 	if (savectxt) {
 		xmlSaveDoc(savectxt, _doc);
 		xmlSaveClose(savectxt);
