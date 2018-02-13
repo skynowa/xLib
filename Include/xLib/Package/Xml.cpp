@@ -200,7 +200,6 @@ XmlDoc::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
-
 	if ( !nodes )
 	{
 		if (xpathObj)
@@ -355,7 +354,6 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &re
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
-
 	if ( !nodes )
 	{
 		if (xpathObj)
@@ -440,7 +438,6 @@ XmlDoc::getContent(std::ctstring_t &xpathExpr, XmlNode &res)
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
-
 	if ( !nodes )
 	{
 		if (xpathObj)
@@ -514,7 +511,6 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
-
 	if ( !nodes )
 	{
 		if (xpathObj)
@@ -578,7 +574,6 @@ XmlDoc::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res)
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
-
 	if ( !nodes )
 	{
 		if (xpathObj)
@@ -873,7 +868,6 @@ XmlNode::dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res, bool incl
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
-
 	if ( !nodes )
 	{
 		if (xpathObj)
@@ -986,7 +980,6 @@ XmlNode::getContent(std::ctstring_t &xpathExpr, std::tstring_t &res)
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
-
 	if ( !nodes )
 	{
 		if (xpathObj)
@@ -1100,7 +1093,6 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &r
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
-
 	if ( !nodes )
 	{
 		if (xpathObj)
@@ -1188,9 +1180,9 @@ XmlNode::getContent(std::ctstring_t &xpathExpr, XmlNode &res)
 		xpathCtx = xPTR_NULL;
 		return 2;
 	}
+
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	xmlNodePtr cur;
-
 	if ( !nodes )
 	{
 		if (xpathObj)
