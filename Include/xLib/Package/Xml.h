@@ -53,12 +53,11 @@ protected:
 class XmlNode
 {
 public:
-				   XmlNode();
+	explicit       XmlNode(XmlDoc *doc);
 				  ~XmlNode() = default;
 
 	void           setWithoutEncoding(bool ws_en) { _without_encoding = ws_en; }
 	void           getAttributeList(std::list_tstring_t &val);
-	void           setDoc(XmlDoc* doc) { _doc = doc; }
 
 	std::tstring_t getName();
 	std::tstring_t getText();
