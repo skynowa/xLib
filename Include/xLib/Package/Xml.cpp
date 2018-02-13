@@ -169,7 +169,6 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
-	xmlNodePtr cur;
 	if ( !nodes )
 	{
 		if (xpathObj)
@@ -182,10 +181,18 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 	}
 
 	for (int i = 0; i < nodes->nodeNr; ++ i) {
-		cur = nodes->nodeTab[i];
-		if ( !cur ) continue;
+		xmlNodePtr cur = nodes->nodeTab[i];
+		if ( !cur )
+		    continue;
 
-		xmlChar* content = xmlNodeListGetString( cur->doc, cur->xmlChildrenNode, 1);
+		xmlChar *content {};
+        {
+            if ( xmlNodeIsText(cur) )
+                content = xmlNodeGetContent( cur);
+            else
+                content = xmlNodeListGetString( cur->doc, cur->xmlChildrenNode, 1);
+        }
+
 		if( !content ) {
 			continue;
 		}
@@ -432,14 +439,13 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 		if ( !cur )
 			continue;
 
-		xmlChar* content = xmlNodeListGetString( cur->doc, cur->xmlChildrenNode, 1);
-
-
-		xmlChar* content;
-		if ( xmlNodeIsText(_node) )
-			content = xmlNodeGetContent( _node);
-		else
-			content = xmlNodeListGetString( _node->doc, _node->xmlChildrenNode, 1);
+		xmlChar *content {};
+        {
+            if ( xmlNodeIsText(cur) )
+                content = xmlNodeGetContent( cur);
+            else
+                content = xmlNodeListGetString( cur->doc, cur->xmlChildrenNode, 1);
+        }
 
 		if( !content ) {
 			continue;
