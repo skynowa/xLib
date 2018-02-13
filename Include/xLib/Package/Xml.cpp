@@ -430,10 +430,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 		return 1;
 	}
 
-	if (_doc)
-	{
-		_doc->_registerNamespaces(xpathCtx);
-	}
+	_doc->_registerNamespaces(xpathCtx);
 
 	xpathCtx->node = _node;
 
@@ -522,10 +519,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		return 1;
 	}
 
-	if (_doc)
-	{
-		_doc->_registerNamespaces(xpathCtx);
-	}
+	_doc->_registerNamespaces(xpathCtx);
 
 	xpathCtx->node = _node;
 
