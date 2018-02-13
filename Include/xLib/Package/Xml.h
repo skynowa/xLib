@@ -36,7 +36,6 @@ public:
 	int            getRootNode(XmlNode &root);
 	bool           findContent(std::clist_tstring_t &xpathExprs, XmlNode &res); // +++
 	int            getContent(std::ctstring_t &xpathExpr, std::tstring_t &res); // +++
-	std::tstring_t getContentStr(std::ctstring_t &xpathExpr); // +++
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res); // +++
 	int            getContent(std::ctstring_t &xpathExpr, XmlNode &res); // +++
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res); // +++
@@ -83,9 +82,7 @@ public:
 	void           getChildren(std::list<XmlNode> &val,std::tstring_t name = "");
 
 	int            getContent(std::ctstring_t &xpathExpr, std::tstring_t &res); // +++
-	std::tstring_t getContentStr(std::ctstring_t &xpathExpr)  { std::tstring_t text; if (!getContent(xpathExpr,text)) return text; return "";	} // +++
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res); // +++
-	int            getContent(std::ctstring_t &xpathExpr, XmlNode &res); // +++
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res); // +++
 
 	int            dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res, bool includeCurrent = false);
