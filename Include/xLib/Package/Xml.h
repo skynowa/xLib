@@ -22,7 +22,6 @@ class XmlNode;
 class XmlDoc
 {
 public:
-				   XmlDoc();
 	explicit       XmlDoc(std::ctstring_t &charset);
 				  ~XmlDoc();
 
@@ -38,8 +37,6 @@ public:
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res); // +++
 
 	int            dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res);
-
-	void           setIconv(iconv_t icnv) { _iconv = icnv; }
 
 	xmlDocPtr      getDoc() { return _doc; }
 
