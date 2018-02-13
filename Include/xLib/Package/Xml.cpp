@@ -151,16 +151,14 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 {
 	res.clear();
 
-	xmlXPathContextPtr xpathCtx = xPTR_NULL;
-	xmlXPathObjectPtr xpathObj = xPTR_NULL;
-	xpathCtx = xmlXPathNewContext(_doc);
+	xmlXPathContextPtr xpathCtx = xmlXPathNewContext(_doc);
 	if ( !xpathCtx ) {
 		return 1;
 	}
 
 	_registerNamespaces(xpathCtx);
 
-	xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
+	xmlXPathObjectPtr xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
 	if ( !xpathObj )
 	{
 		if (xpathCtx)
@@ -234,16 +232,14 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 {
 	res.clear();
 
-	xmlXPathContextPtr xpathCtx = xPTR_NULL;
-	xmlXPathObjectPtr xpathObj = xPTR_NULL;
-	xpathCtx = xmlXPathNewContext(_doc);
+	xmlXPathContextPtr xpathCtx = xmlXPathNewContext(_doc);
 	if ( !xpathCtx ) {
 		return 1;
 	}
 
 	_registerNamespaces(xpathCtx);
 
-	xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
+	xmlXPathObjectPtr xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
 	if ( !xpathObj )
 	{
 		if (xpathCtx)
@@ -399,10 +395,8 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 {
 	res.clear();
 
-	xmlXPathContextPtr xpathCtx = xPTR_NULL;
-	xmlXPathObjectPtr xpathObj = xPTR_NULL;
 
-	xpathCtx = xmlXPathNewContext(_node->doc);
+	xmlXPathContextPtr xpathCtx = xmlXPathNewContext(_node->doc);
 	if ( !xpathCtx ) {
 		return 1;
 	}
@@ -411,7 +405,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 
 	xpathCtx->node = _node;
 
-	xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
+	xmlXPathObjectPtr xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
 	if ( !xpathObj )
 	{
 		if (xpathCtx)
@@ -485,9 +479,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 {
 	res.clear();
 
-	xmlXPathContextPtr xpathCtx = xPTR_NULL;
-	xmlXPathObjectPtr xpathObj = xPTR_NULL;
-	xpathCtx = xmlXPathNewContext(_node->doc);
+	xmlXPathContextPtr xpathCtx = xmlXPathNewContext(_node->doc);
 	if ( !xpathCtx ) {
 		return 1;
 	}
@@ -496,7 +488,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 
 	xpathCtx->node = _node;
 
-	xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
+	xmlXPathObjectPtr xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
 	if ( !xpathObj )
 	{
 		if (xpathCtx)
