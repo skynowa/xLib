@@ -33,20 +33,11 @@ xNAMESPACE_BEGIN2(xl, package)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-XmlDoc::XmlDoc()
+XmlDoc::XmlDoc(std::ctstring_t &a_charset)
 {
-	_iconv            = ::iconv_open("UTF-8", "UTF-8");
-	_without_encoding = true;
-}
-//-------------------------------------------------------------------------------------------------
-XmlDoc::XmlDoc(std::ctstring_t &charset)
-{
-	_iconv = ::iconv_open(charset.c_str(), "UTF-8");
+	_iconv = ::iconv_open(a_charset.c_str(), "UTF-8");
 
-	if (charset == "UTF-8")
-		_without_encoding = true;
-	else
-		_without_encoding = false;
+	_without_encoding = (a_charset == "UTF-8");
 }
 //-------------------------------------------------------------------------------------------------
 XmlDoc::~XmlDoc()
