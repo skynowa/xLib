@@ -33,8 +33,6 @@ public:
 	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
 
-	int            dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res);
-
 	void           registerNamespace(std::ctstring_t &ns, std::ctstring_t &url);
 	void           registerNamespaces(std::cmap_tstring_t &namespaces);
 	void           _registerNamespaces(xmlXPathContext* ctx);
@@ -69,11 +67,8 @@ public:
 	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
 
-	int            dumpToString(std::ctstring_t &xpathExpr, std::tstring_t &res, bool includeCurrent = false);
-
-	void           setIconv(iconv_t icnv) { _iconv = icnv; }
-
 	void           setNode(xmlNodePtr node) { _node = node; }
+	void           setIconv(iconv_t icnv) { _iconv = icnv; }
 
 	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
 	xNO_COPY_ASSIGN(XmlNode);
