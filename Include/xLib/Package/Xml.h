@@ -31,7 +31,7 @@ public:
 	int            parseFile(std::ctstring_t &filePath);
 	int            parseString(std::ctstring_t &str);
 	int            parseStringNoNs(std::ctstring_t &str);
-	void           free();
+	void           close();
 
 	int            getRootNode(XmlNode &root);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<std::tstring_t> &res); // +++
