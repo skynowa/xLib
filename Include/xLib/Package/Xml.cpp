@@ -56,13 +56,13 @@ XmlDoc::~XmlDoc()
 		xTEST_EQ(iRv, 0);
 	}
 
-	free();
+	close();
 }
 //-------------------------------------------------------------------------------------------------
 int
 XmlDoc::parseFile(std::ctstring_t &a_filePath)
 {
-	free();
+	close();
 
 	_doc = ::xmlParseFile( a_filePath.c_str() );
 	if (_doc == xPTR_NULL) {
@@ -75,7 +75,7 @@ XmlDoc::parseFile(std::ctstring_t &a_filePath)
 int
 XmlDoc::parseString(std::ctstring_t &a_str)
 {
-	free();
+	close();
 
 	_doc = ::xmlParseDoc( (xmlChar *)a_str.c_str() );
 	if (_doc == xPTR_NULL) {
@@ -134,7 +134,7 @@ XmlDoc::parseStringNoNs(std::ctstring_t &a_str)
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlDoc::free()
+XmlDoc::close()
 {
 	Utils::freeT(_doc, ::xmlFreeDoc, xPTR_NULL);
 }
