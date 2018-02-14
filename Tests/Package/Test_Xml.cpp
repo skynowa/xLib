@@ -17,7 +17,7 @@ xTEST_UNIT(Test_Xml)
 bool_t
 Test_Xml::unit()
 {
-    xTEST_CASE("Xml::[TEST_CASE_1]")
+    xTEST_CASE("1.xml")
     {
     	std::ctstring_t filePath = "/home/skynowa/Projects/xLib/Tests/Package/Xml/1.xml";
 
