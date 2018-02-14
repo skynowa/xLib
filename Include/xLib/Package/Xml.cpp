@@ -352,7 +352,7 @@ XmlNode::XmlNode(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlNode::getName()
+XmlNode::getName() const
 {
 	if ( _node->name )
 		return (char*)_node->name;
@@ -361,7 +361,7 @@ XmlNode::getName()
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlNode::getText()
+XmlNode::getText() const
 {
 	std::tstring_t text;
 
@@ -553,7 +553,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getAttributes(std::map_tstring_t &a_values)
+XmlNode::getAttributes(std::map_tstring_t &a_values) const
 {
 	a_values.clear();
 
