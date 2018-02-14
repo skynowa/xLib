@@ -765,6 +765,9 @@
 //-------------------------------------------------------------------------------------------------
 ///@name Class disallows
 ///@{
+#define xNO_DEFAULT_CONSTRUCT(class_name) \
+	class_name() = delete
+	///< disallow default constructor
 #define xNO_COPY(className) \
     private: \
         className(const className &);
