@@ -66,7 +66,7 @@ public:
 	void           getAttributeList(std::list_tstring_t &val);
 
 	xNO_DEFAULT_CONSTRUCT(XmlNode);
-	xNO_COPY_ASSIGN(XmlNode);
+	/// xNO_COPY_ASSIGN(XmlNode);
 
 protected:
 	const XmlDoc  &_xmlDoc;

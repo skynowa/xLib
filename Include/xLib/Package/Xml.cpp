@@ -275,7 +275,7 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 
 		XmlNode node(*this, cur);
 		// TODO: XmlNode - xNO_COPY_ASSIGN
-		// res.push_back(node);
+		res.push_back(node);
 	}
 
 	xmlXPathFreeObject(xpathObj);
@@ -533,7 +533,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 
 		XmlNode node(_xmlDoc, cur);
 		// TODO: XmlNode - xNO_COPY_ASSIGN
-		/// res.push_back(node);
+		res.push_back(node);
 	}
 
 	xmlXPathFreeObject(xpathObj);

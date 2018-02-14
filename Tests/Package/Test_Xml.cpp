@@ -28,6 +28,18 @@ Test_Xml::unit()
 		std::list<XmlNode> results;
 		m_iRv = doc.getContentList("/AvailabilitySearchResult/HotelAvailability/Result", results);
 		xTEST_EQ(m_iRv, 0);
+
+		Trace() << xTRACE_VAR(results.size());
+
+		for (auto &it_result : results) {
+			std::list<XmlNode> prices;
+			m_iRv = it_result.getContentList("Room/Price", prices);
+			xTEST_EQ(m_iRv, 0);
+
+			Trace() << xTRACE_VAR(prices.size());
+
+			Trace() << xTRACE_VAR(prices.begin()->getText());
+		}
     }
 
     return true;
