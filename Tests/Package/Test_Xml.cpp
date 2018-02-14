@@ -38,7 +38,7 @@ Test_Xml::unit()
 
             const XmlNode &price = *prices.begin();
 
-			Trace() << xTRACE_VAR(price.getText());
+			std::cout << xTRACE_VAR(price.getText()) << ", ";
 
 			std::map_tstring_t priceAttrs;
 			price.getAttributes(priceAttrs);
