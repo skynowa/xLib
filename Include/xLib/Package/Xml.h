@@ -42,7 +42,7 @@ public:
 	int            saveToFile(std::ctstring_t &filePath);
 	std::tstring_t format(std::ctstring_t &charset);
 
-	/// xNO_DEFAULT_CONSTRUCT(XmlDoc);
+	xNO_DEFAULT_CONSTRUCT(XmlDoc);
 	xNO_COPY_ASSIGN(XmlDoc);
 
 protected:
@@ -65,7 +65,7 @@ public:
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
 	void           getAttributeList(std::list_tstring_t &val);
 
-	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
+	xNO_DEFAULT_CONSTRUCT(XmlNode);
 	xNO_COPY_ASSIGN(XmlNode);
 
 protected:
