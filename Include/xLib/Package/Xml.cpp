@@ -357,11 +357,13 @@ XmlNode::getText()
 {
 	std::tstring_t text;
 
-	xmlChar* content;
-	if ( xmlNodeIsText(_node) )
-		content = xmlNodeGetContent( _node);
-	else
-		content = xmlNodeListGetString( _node->doc, _node->xmlChildrenNode, 1);
+	xmlChar *content {};
+	{
+		if ( xmlNodeIsText(_node) )
+			content = xmlNodeGetContent( _node);
+		else
+			content = xmlNodeListGetString( _node->doc, _node->xmlChildrenNode, 1);
+	}
 
 	if( !content)
 	{
