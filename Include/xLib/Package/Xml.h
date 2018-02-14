@@ -56,6 +56,7 @@ class XmlNode
 {
 public:
 				   XmlNode(const XmlDoc &xmlDoc, xmlNodePtr node);
+				   XmlNode(const XmlNode &xmlDoc);
 				  ~XmlNode() = default;
 
 	std::tstring_t getName();
@@ -66,7 +67,7 @@ public:
 	void           getAttributeList(std::list_tstring_t &val);
 
 	xNO_DEFAULT_CONSTRUCT(XmlNode);
-	/// xNO_COPY_ASSIGN(XmlNode);
+	xNO_ASSIGN(XmlNode);
 
 protected:
 	const XmlDoc  &_xmlDoc;
