@@ -39,6 +39,11 @@ Test_Xml::unit()
 			Trace() << xTRACE_VAR(prices.size());
 
 			Trace() << xTRACE_VAR(prices.begin()->getText());
+
+			std::map_tstring_t attrs;
+			prices.begin()->getAttributeList(attrs);
+
+			std::cout << xTRACE_VAR(attrs) << "\n";
 		}
     }
 
