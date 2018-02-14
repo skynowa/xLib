@@ -36,14 +36,14 @@ Test_Xml::unit()
 			xTEST_EQ(m_iRv, 0);
 			xTEST_EQ(prices.size(), (std::size_t)1);
 
-            const XmlNode &result = *prices.begin();
+            const XmlNode &price = *prices.begin();
 
-			Trace() << xTRACE_VAR(result.getText());
+			Trace() << xTRACE_VAR(price.getText());
 
-			std::map_tstring_t attrs;
-			result.getAttributes(attrs);
+			std::map_tstring_t priceAttrs;
+			price.getAttributes(priceAttrs);
 
-			std::cout << xTRACE_VAR(attrs) << "\n";
+			std::cout << xTRACE_VAR(priceAttrs) << "\n";
 		}
     }
 
