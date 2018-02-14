@@ -553,7 +553,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getAttributeList(std::map_tstring_t &a_values)
+XmlNode::getAttributes(std::map_tstring_t &a_values)
 {
 	a_values.clear();
 
