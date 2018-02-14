@@ -553,23 +553,25 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getAttributeList(std::list_tstring_t &val)
+XmlNode::getAttributeList(std::map_tstring_t &a_values)
 {
-	val.clear();
+	a_values.clear();
 
-	if (_node->type != XML_ELEMENT_NODE)
+	if (_node->type != XML_ELEMENT_NODE) {
 		return;
+	}
 
-	xmlAttrPtr prop;
+	xmlAttrPtr property = _node->properties;
 
-	if (_node->properties != xPTR_NULL) {
-		prop = _node->properties;
+	while (property != xPTR_NULL) {
+		const xmlChar *name  = property->name;
+		xmlChar       *value = ::xmlGetProp(_node, property->name);
 
-		do {
-			val.push_back((char*)prop->name);
-			prop = prop->next;
-		}
-		while (prop != xPTR_NULL);
+		a_values.insert( {(const char *)name, (const char *)value} );
+
+		::xmlFree(value);
+
+		property = property->next;
 	}
 }
 //-------------------------------------------------------------------------------------------------
