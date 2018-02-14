@@ -31,12 +31,9 @@ Test_Xml::unit()
 		xTEST_EQ(results.size(), (std::size_t)3);
 
 		for (auto &it_result : results) {
-			std::list<XmlNode> prices;
-			m_iRv = it_result.getContentList("Room/Price", prices);
+			XmlNode price;
+			m_iRv = it_result.getContent("Room/Price", price);
 			xTEST_EQ(m_iRv, 0);
-			xTEST_EQ(prices.size(), (std::size_t)1);
-
-            const XmlNode &price = *prices.begin();
 
 			std::cout << xTRACE_VAR(price.getText()) << ", ";
 

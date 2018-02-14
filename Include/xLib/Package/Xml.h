@@ -56,22 +56,25 @@ protected:
 class XmlNode
 {
 public:
-				   XmlNode(const XmlDoc &xmlDoc, xmlNodePtr node);
-				   XmlNode(const XmlNode &xmlDoc);
+                   XmlNode() = default;
+				   XmlNode(XmlDoc *xmlDoc, xmlNodePtr node);
+				   XmlNode(const XmlNode &xmlNode);
 				  ~XmlNode() = default;
+
+    XmlNode       &operator = (const XmlNode &xmlNode);
 
 	std::tstring_t getName() const;
 	std::tstring_t getText() const;
 
 	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
+	int            getContent(std::ctstring_t &xpathExpr, XmlNode &res);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
 	void           getAttributes(std::map_tstring_t &values) const;
 
-	xNO_DEFAULT_CONSTRUCT(XmlNode);
-	xNO_ASSIGN(XmlNode);
+	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
 
 protected:
-	const XmlDoc  &_xmlDoc;
+	XmlDoc        *_xmlDoc {};
 	xmlNodePtr     _node {};
 };
 //-------------------------------------------------------------------------------------------------
