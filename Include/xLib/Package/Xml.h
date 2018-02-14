@@ -65,7 +65,7 @@ public:
 
 	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
-	void           getAttributeList(std::map_tstring_t &values);
+	void           getAttributes(std::map_tstring_t &values);
 
 	xNO_DEFAULT_CONSTRUCT(XmlNode);
 	xNO_ASSIGN(XmlNode);
