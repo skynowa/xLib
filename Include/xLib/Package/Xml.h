@@ -60,12 +60,12 @@ public:
 				   XmlNode(const XmlNode &xmlDoc);
 				  ~XmlNode() = default;
 
-	std::tstring_t getName();
-	std::tstring_t getText();
+	std::tstring_t getName() const;
+	std::tstring_t getText() const;
 
 	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
-	void           getAttributes(std::map_tstring_t &values);
+	void           getAttributes(std::map_tstring_t &values) const;
 
 	xNO_DEFAULT_CONSTRUCT(XmlNode);
 	xNO_ASSIGN(XmlNode);
