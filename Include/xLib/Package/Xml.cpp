@@ -43,6 +43,7 @@ XmlDoc::XmlDoc(
 	_without_encoding = (a_charset == "UTF-8");
 }
 //-------------------------------------------------------------------------------------------------
+/* virtual */
 XmlDoc::~XmlDoc()
 {
 	Utils::freeT(_iconv, ::iconv_close, ::iconvError);
@@ -144,7 +145,7 @@ XmlDoc::getRootNode(
 	XmlNode &a_root
 )
 {
-	xmlNodePtr rootNode = xmlDocGetRootElement(_doc);
+	xmlNodePtr rootNode = ::xmlDocGetRootElement(_doc);
 	xTEST_PTR(rootNode);
 
 	XmlNode root(this, rootNode);
@@ -159,7 +160,7 @@ XmlDoc::saveToFile(
 )
 {
 	xmlSaveCtxtPtr savectxt = ::xmlSaveToFilename(a_filePath.c_str(), xPTR_NULL, XML_SAVE_FORMAT);
-	if (savectxt) {
+	if (savectxt != xPTR_NULL) {
 		::xmlSaveDoc(savectxt, _doc);
 		::xmlSaveClose(savectxt);
 
@@ -178,8 +179,8 @@ XmlDoc::format(
 		return {};
 
 	std::tstring_t  srv;
-	xmlChar     *buff      = nullptr;
-	int          buff_size = 0;
+	xmlChar        *buff {};
+	int             buff_size {};
 
 	::xmlKeepBlanksDefault(0);
 	::xmlDocDumpFormatMemoryEnc(_doc, &buff, &buff_size, a_charset.c_str(), 1);
@@ -190,8 +191,7 @@ XmlDoc::format(
 
 	srv.assign(reinterpret_cast<const char *>(buff), static_cast<size_t>(buff_size));
 
-	::xmlFree(buff);
-	buff = nullptr;
+	Utils::freeT(buff, ::xmlFree, xPTR_NULL);
 
 	return srv;
 }
