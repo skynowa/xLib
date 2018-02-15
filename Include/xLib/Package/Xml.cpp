@@ -139,12 +139,12 @@ XmlDoc::close()
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
+XmlDoc::getContents(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 {
 	res.clear();
 
 	std::list<XmlNode> values;
-	int iRv = getContentList(xpathExpr, values);
+	int iRv = getContents(xpathExpr, values);
 	xTEST_EQ(iRv, 0);
 
 	for (auto &it_value : values) {
@@ -155,7 +155,7 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
+XmlDoc::getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 {
 	res.clear();
 
@@ -366,18 +366,18 @@ int
 XmlNode::getContent(std::ctstring_t &xpathExpr, XmlNode &res)
 {
     std::list<XmlNode> nodes;
-    int iRv = getContentList(xpathExpr, nodes);
+    int iRv = getContents(xpathExpr, nodes);
 
     res = *nodes.begin();
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
+XmlNode::getContents(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 {
 	res.clear();
 
 	std::list<XmlNode> values;
-	int iRv = getContentList(xpathExpr, values);
+	int iRv = getContents(xpathExpr, values);
 	xTEST_EQ(iRv, 0);
 
 	for (auto &it_value : values) {
@@ -388,7 +388,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
+XmlNode::getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 {
 	res.clear();
 
