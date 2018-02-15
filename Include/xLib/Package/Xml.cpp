@@ -312,6 +312,22 @@ XmlNode::getText() const
 	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+bool
+XmlNode::findContent(
+	std::clist_tstring_t &a_xpaths,
+	XmlNode              &a_value	///< [out]
+) const
+{
+	for (auto &itXpath : a_xpaths) {
+		int iRv = getContent(itXpath, a_value);
+		if (iRv == 0) {
+			return true;
+		}
+	}
+
+	return false;
+}
+//-------------------------------------------------------------------------------------------------
 int
 XmlNode::getContent(
 	std::ctstring_t &a_xpath,
