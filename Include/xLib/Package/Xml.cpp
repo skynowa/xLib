@@ -434,89 +434,6 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 {
 	res.clear();
 
-#if 0
-	xmlXPathContextPtr xpathCtx = xmlXPathNewContext(_node->doc);
-	if ( !xpathCtx ) {
-		return 1;
-	}
-
-	_xmlDoc->_registerNamespaces(xpathCtx);
-
-	xpathCtx->node = _node;
-
-	xmlXPathObjectPtr xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
-	if ( !xpathObj )
-	{
-		if (xpathCtx)
-			xmlXPathFreeContext(xpathCtx);
-		xpathCtx = xPTR_NULL;
-
-		return 2;
-	}
-
-	xmlNodeSetPtr nodes = xpathObj->nodesetval;
-	if ( !nodes )
-	{
-		if (xpathObj)
-			xmlXPathFreeObject(xpathObj);
-		xpathObj = xPTR_NULL;
-		if (xpathCtx)
-			xmlXPathFreeContext(xpathCtx);
-		xpathCtx = xPTR_NULL;
-		return 4;
-	}
-
-	for (int i = 0; i < nodes->nodeNr; ++ i) {
-		xmlNodePtr cur = nodes->nodeTab[i];
-		if ( !cur )
-			continue;
-
-		xmlChar *content {};
-		{
-			if ( xmlNodeIsText(cur) )
-				content = xmlNodeGetContent( cur);
-			else
-				content = xmlNodeListGetString( cur->doc, cur->xmlChildrenNode, 1);
-		}
-
-		if( !content ) {
-			continue;
-		}
-
-		char* cnt = (char*) content;
-
-		if ( _xmlDoc->isWithoutEncoding() )
-		{
-			std::tstring_t cont;
-			cont = cnt;
-			res.push_back(cont);
-			xmlFree(content);
-			continue;
-		}
-
-		size_t len  = (size_t)xmlStrlen(content);
-		size_t len2 = (size_t)xmlUTF8Strlen(content);
-		if (len2)
-		{
-			char* buf = (char*) malloc(len2*sizeof(char) + 1);
-			char* ptr = buf;
-
-			::iconv(_xmlDoc->getIconv(), &cnt, &len, &ptr, &len2);
-
-			buf[xmlUTF8Strlen(content)] = 0;
-			res.push_back(buf);
-
-			std::free(buf);
-		}
-
-		xmlFree(content);
-	}
-
-	xmlXPathFreeObject(xpathObj);
-	xmlXPathFreeContext(xpathCtx);
-
-	if ( res.empty() ) return 3;
-#else
 	std::list<XmlNode> values;
 	int iRv = getContentList(xpathExpr, values);
 	xTEST_EQ(iRv, 0);
@@ -524,7 +441,6 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 	for (auto &it_value : values) {
 		res.emplace_back( it_value.getText() );
 	}
-#endif
 
 	return 0;
 }
