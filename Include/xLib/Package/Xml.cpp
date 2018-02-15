@@ -277,20 +277,20 @@ XmlNode::getText() const
 	if (_xmlDoc->_without_encoding) {
 		sRv = cnt;
 	} else {
-		size_t bytesIn  = (size_t)::xmlStrlen(content);
-		size_t bytesOut = (size_t)::xmlUTF8Strlen(content);
+		std::size_t bytesIn  = (std::size_t)::xmlStrlen(content);
+		std::size_t bytesOut = (std::size_t)::xmlUTF8Strlen(content);
+		xTEST_DIFF(bytesOut, (std::size_t)-1);
 
-		if (bytesOut > 0) {
-			char *buf     = (char *)::malloc(bytesOut * sizeof(char) + 1);
-			char *buffOut = buf;
+		char *buff    = (char *)::malloc(bytesOut * sizeof(char) + 1);
+		char *buffOut = buff;
 
-			::iconv(_xmlDoc->_iconv, &cnt, &bytesIn, &buffOut, &bytesOut);
+		size_t uiRv = ::iconv(_xmlDoc->_iconv, &cnt, &bytesIn, &buffOut, &bytesOut);
+		xTEST_DIFF(uiRv, (std::size_t) -1);
 
-			buf[::xmlUTF8Strlen(content)] = 0;
-			sRv = buf;
+		buff[bytesOut] = 0;
+		sRv = buff;
 
-			Utils::freeT(buf, ::free, xPTR_NULL);
-		}
+		Utils::freeT(buff, ::free, xPTR_NULL);
 	}
 
 	Utils::freeT(content, ::xmlFree, xPTR_NULL);
