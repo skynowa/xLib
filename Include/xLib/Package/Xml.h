@@ -33,6 +33,8 @@ public:
 	int            parseStringNoNs(std::ctstring_t &str);
 	void           close();
 
+	int            getRootNode(XmlNode &root);
+
 	int            getContent(std::ctstring_t &xpathExpr, XmlNode &res);	/// +++
 	int            getContents(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
 	int            getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);	/// +++
