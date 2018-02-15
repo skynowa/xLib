@@ -264,10 +264,7 @@ XmlNode::operator = (
 std::tstring_t
 XmlNode::getName() const
 {
-	if ( _node->name )
-		return (char*)_node->name;
-
-	return "";
+	return (_node->name == xPTR_NULL) ? "" : (char *)_node->name;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
