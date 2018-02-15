@@ -259,8 +259,12 @@ XmlDoc::_registerNamespaces(
 	xmlXPathContextPtr xmlXPathContextPtr
 ) const
 {
-	for (auto &ns : _namespaces) {
-		::xmlXPathRegisterNs(xmlXPathContextPtr, (xmlChar *)ns.first.c_str(), (xmlChar *)ns.second.c_str());
+	for (auto &itNamespace : _namespaces) {
+		const xmlChar *prefix = (xmlChar *)itNamespace.first.c_str();
+		const xmlChar *nsUri  = (xmlChar *)itNamespace.second.c_str();
+
+		int iRv = ::xmlXPathRegisterNs(xmlXPathContextPtr, prefix, nsUri);
+		xTEST_EQ(iRv, 0);
 	}
 }
 //-------------------------------------------------------------------------------------------------
