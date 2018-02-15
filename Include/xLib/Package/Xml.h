@@ -58,7 +58,7 @@ public:
                    XmlNode() = default;
 				   XmlNode(XmlDoc *xmlDoc, xmlNodePtr node);
 				   XmlNode(const XmlNode &xmlNode);
-				  ~XmlNode() = default;
+	virtual       ~XmlNode() = default;
 
     XmlNode       &operator = (const XmlNode &xmlNode);
 
