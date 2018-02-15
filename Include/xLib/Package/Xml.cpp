@@ -272,10 +272,10 @@ XmlNode::getText() const
 		}
 	}
 
-	char *cnt = (char *)content;
+	char *buffIn = (char *)content;
 
 	if (_xmlDoc->_without_encoding) {
-		sRv = cnt;
+		sRv = buffIn;
 	} else {
 		std::size_t bytesIn  = (std::size_t)::xmlStrlen(content);
 		std::size_t bytesOut = (std::size_t)::xmlUTF8Strlen(content);
@@ -286,7 +286,7 @@ XmlNode::getText() const
 
 		char *buffOut = buff;
 
-		size_t uiRv = ::iconv(_xmlDoc->_iconv, &cnt, &bytesIn, &buffOut, &bytesOut);
+		size_t uiRv = ::iconv(_xmlDoc->_iconv, &buffIn, &bytesIn, &buffOut, &bytesOut);
 		xTEST_DIFF(uiRv, (std::size_t) -1);
 
 		buff[bytesOut] = 0;
