@@ -131,10 +131,10 @@ XmlDoc::close()
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlDoc::registerNamespaces(std::cmap_tstring_t &namespaces) const
+XmlDoc::registerNss(std::cmap_tstring_t &nss) const
 {
-	for (auto &it_namespace : namespaces) {
-		_namespaces.insert( {it_namespace.first, it_namespace.second} );
+	for (auto &itNs : nss) {
+		_nss.insert( {itNs.first, itNs.second} );
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -164,7 +164,7 @@ XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		return 1;
 	}
 
-	_registerNamespaces(xpathCtx);
+	_registerNss(xpathCtx);
 
 	xmlXPathObjectPtr xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
 	if ( !xpathObj )
@@ -255,13 +255,13 @@ XmlDoc::format(
 
 //-------------------------------------------------------------------------------------------------
 void
-XmlDoc::_registerNamespaces(
+XmlDoc::_registerNss(
 	xmlXPathContextPtr xmlXPathContextPtr
 ) const
 {
-	for (auto &itNamespace : _namespaces) {
-		const xmlChar *prefix = (xmlChar *)itNamespace.first.c_str();
-		const xmlChar *nsUri  = (xmlChar *)itNamespace.second.c_str();
+	for (auto &itNs : _nss) {
+		const xmlChar *prefix = (xmlChar *)itNs.first.c_str();
+		const xmlChar *nsUri  = (xmlChar *)itNs.second.c_str();
 
 		int iRv = ::xmlXPathRegisterNs(xmlXPathContextPtr, prefix, nsUri);
 		xTEST_EQ(iRv, 0);
@@ -397,7 +397,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		return 1;
 	}
 
-	_xmlDoc->_registerNamespaces(xpathCtx);
+	_xmlDoc->_registerNss(xpathCtx);
 
 	xpathCtx->node = _node;
 
