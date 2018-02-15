@@ -35,17 +35,15 @@ xNAMESPACE_BEGIN2(xl, package)
 //-------------------------------------------------------------------------------------------------
 XmlDoc::XmlDoc(
 	std::ctstring_t &a_charset
-)
+) :
+    _iconv(a_charset, "UTF-8")
 {
-	_iconv = ::iconv_open(a_charset.c_str(), "UTF-8");
-
 	_without_encoding = (a_charset == "UTF-8");
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 XmlDoc::~XmlDoc()
 {
-	Utils::freeT(_iconv, ::iconv_close, ::iconvError);
 	_close();
 }
 //-------------------------------------------------------------------------------------------------
@@ -280,31 +278,17 @@ XmlNode::getText() const
 			content = ::xmlNodeListGetString(_node->doc, _node->xmlChildrenNode, 1);
 
 		if (content == xPTR_NULL) {
+		    xTEST_FAIL;
 			return {};
 		}
 	}
 
-	char *buffIn = (char *)content;
+	const char *buffIn = (char *)content;
 
 	if (_xmlDoc->_without_encoding) {
 		sRv = buffIn;
 	} else {
-		std::size_t bytesIn  = (std::size_t)::xmlStrlen(content);
-		std::size_t bytesOut = (std::size_t)::xmlUTF8Strlen(content);
-		xTEST_DIFF(bytesOut, (std::size_t)-1);
-
-		char *buff = (char *)::malloc(bytesOut * sizeof(char) + 1);
-		xTEST_PTR(buff);
-
-		char *buffOut = buff;
-
-		size_t uiRv = ::iconv(_xmlDoc->_iconv, &buffIn, &bytesIn, &buffOut, &bytesOut);
-		xTEST_DIFF(uiRv, (std::size_t) -1);
-
-		buff[bytesOut] = '\0';
-		sRv = buff;
-
-		Utils::freeT(buff, ::free, xPTR_NULL);
+        _xmlDoc->_iconv.convert(buffIn, &sRv);
 	}
 
 	Utils::freeT(content, ::xmlFree, xPTR_NULL);

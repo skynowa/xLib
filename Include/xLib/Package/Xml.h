@@ -42,7 +42,7 @@ public:
 
 protected:
 	xmlDocPtr      _doc {};
-	iconv_t        _iconv {};
+	Iconv          _iconv;
 	mutable std::map_tstring_t _nss;
 	bool           _without_encoding {};
 
