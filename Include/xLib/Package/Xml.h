@@ -65,7 +65,7 @@ public:
 	std::tstring_t getName() const;
 	std::tstring_t getText() const;
 
-	bool           findContent(std::clist_tstring_t &xpaths, XmlNode &value) const;
+	bool           findContents(std::clist_tstring_t &xpaths, std::list<XmlNode> &values) const;
 	int            getContent(std::ctstring_t &xpath, XmlNode &value) const;
 	int            getContents(std::ctstring_t &xpath, std::list_tstring_t &values) const;
 	int            getContents(std::ctstring_t &xpath, std::list<XmlNode> &values) const;
