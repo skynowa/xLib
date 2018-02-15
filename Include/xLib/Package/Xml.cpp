@@ -277,14 +277,14 @@ XmlNode::getText() const
 	if (_xmlDoc->_without_encoding) {
 		sRv = cnt;
 	} else {
-		size_t len  = (size_t)::xmlStrlen(content);
-		size_t len2 = (size_t)::xmlUTF8Strlen(content);
+		size_t bytesIn  = (size_t)::xmlStrlen(content);
+		size_t bytesOut = (size_t)::xmlUTF8Strlen(content);
 
-		if (len2 > 0) {
-			char *buf = (char *)::malloc(len2 * sizeof(char) + 1);
-			char *ptr = buf;
+		if (bytesOut > 0) {
+			char *buf     = (char *)::malloc(bytesOut * sizeof(char) + 1);
+			char *buffOut = buf;
 
-			::iconv(_xmlDoc->_iconv, &cnt, &len, &ptr, &len2);
+			::iconv(_xmlDoc->_iconv, &cnt, &bytesIn, &buffOut, &bytesOut);
 
 			buf[::xmlUTF8Strlen(content)] = 0;
 			sRv = buf;
