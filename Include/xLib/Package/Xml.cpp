@@ -313,19 +313,24 @@ XmlNode::getText() const
 }
 //-------------------------------------------------------------------------------------------------
 bool
-XmlNode::findContent(
-	std::clist_tstring_t &a_xpaths,
-	XmlNode              &a_value	///< [out]
+XmlNode::findContents(
+	std::clist_tstring_t &a_xpaths,	///<
+	std::list<XmlNode>   &a_values	///< [out]
 ) const
 {
+	a_values.clear();
+
 	for (auto &itXpath : a_xpaths) {
-		int iRv = getContent(itXpath, a_value);
-		if (iRv == 0) {
-			return true;
+		std::list<XmlNode> values;
+		int iRv = getContents(itXpath, values);
+		xTEST_NA(iRv);
+
+		for (auto &itValue : values) {
+			a_values.emplace_back(itValue);
 		}
 	}
 
-	return false;
+	return !a_values.empty();
 }
 //-------------------------------------------------------------------------------------------------
 int
