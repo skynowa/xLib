@@ -301,7 +301,10 @@ XmlNode::getText() const
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlNode::getContent(std::ctstring_t &xpathExpr, XmlNode &res)
+XmlNode::getContent(
+	std::ctstring_t &xpathExpr,
+	XmlNode         &res
+) const
 {
     std::list<XmlNode> nodes;
     int iRv = getContents(xpathExpr, nodes);
@@ -310,7 +313,10 @@ XmlNode::getContent(std::ctstring_t &xpathExpr, XmlNode &res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlNode::getContents(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
+XmlNode::getContents(
+	std::ctstring_t     &xpathExpr,
+	std::list_tstring_t &res
+) const
 {
 	res.clear();
 
@@ -329,7 +335,7 @@ int
 XmlNode::getContents(
 	std::ctstring_t    &xpathExpr,
 	std::list<XmlNode> &res
-)
+) const
 {
 	res.clear();
 
