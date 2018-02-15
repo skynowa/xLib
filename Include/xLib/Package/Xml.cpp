@@ -50,10 +50,10 @@ XmlDoc::~XmlDoc()
 //-------------------------------------------------------------------------------------------------
 void
 XmlDoc::registerNss(
-	std::cmap_tstring_t &nss
+	std::cmap_tstring_t &a_nss
 ) const
 {
-	for (auto &itNs : nss) {
+	for (auto &itNs : a_nss) {
 		_nss.insert( {itNs.first, itNs.second} );
 	}
 }
@@ -154,13 +154,14 @@ XmlDoc::getRootNode(
 //-------------------------------------------------------------------------------------------------
 int
 XmlDoc::saveToFile(
-	std::ctstring_t &filePath
+	std::ctstring_t &a_filePath
 )
 {
-	xmlSaveCtxtPtr savectxt = xmlSaveToFilename(filePath.c_str(), xPTR_NULL, XML_SAVE_FORMAT);
+	xmlSaveCtxtPtr savectxt = ::xmlSaveToFilename(a_filePath.c_str(), xPTR_NULL, XML_SAVE_FORMAT);
 	if (savectxt) {
-		xmlSaveDoc(savectxt, _doc);
-		xmlSaveClose(savectxt);
+		::xmlSaveDoc(savectxt, _doc);
+		::xmlSaveClose(savectxt);
+
 		return 0;
 	}
 
@@ -204,14 +205,14 @@ XmlDoc::format(
 //-------------------------------------------------------------------------------------------------
 void
 XmlDoc::_registerNss(
-	xmlXPathContextPtr xmlXPathContextPtr
+	xmlXPathContextPtr a_xmlXPathContextPtr
 ) const
 {
 	for (auto &itNs : _nss) {
 		const xmlChar *prefix = (xmlChar *)itNs.first.c_str();
 		const xmlChar *nsUri  = (xmlChar *)itNs.second.c_str();
 
-		int iRv = ::xmlXPathRegisterNs(xmlXPathContextPtr, prefix, nsUri);
+		int iRv = ::xmlXPathRegisterNs(a_xmlXPathContextPtr, prefix, nsUri);
 		xTEST_EQ(iRv, 0);
 	}
 }
@@ -316,30 +317,30 @@ XmlNode::getText() const
 //-------------------------------------------------------------------------------------------------
 int
 XmlNode::getContent(
-	std::ctstring_t &xpathExpr,
-	XmlNode         &res
+	std::ctstring_t &a_xpathExpr,
+	XmlNode         &a_res
 ) const
 {
     std::list<XmlNode> nodes;
-    int iRv = getContents(xpathExpr, nodes);
+    int iRv = getContents(a_xpathExpr, nodes);
 
-    res = *nodes.begin();
+    a_res = *nodes.begin();
 }
 //-------------------------------------------------------------------------------------------------
 int
 XmlNode::getContents(
-	std::ctstring_t     &xpathExpr,
-	std::list_tstring_t &res
+	std::ctstring_t     &a_xpathExpr,
+	std::list_tstring_t &a_res
 ) const
 {
-	res.clear();
+	a_res.clear();
 
 	std::list<XmlNode> values;
-	int iRv = getContents(xpathExpr, values);
+	int iRv = getContents(a_xpathExpr, values);
 	xTEST_EQ(iRv, 0);
 
 	for (auto &it_value : values) {
-		res.emplace_back( it_value.getText() );
+		a_res.emplace_back( it_value.getText() );
 	}
 
 	return 0;
@@ -347,11 +348,11 @@ XmlNode::getContents(
 //-------------------------------------------------------------------------------------------------
 int
 XmlNode::getContents(
-	std::ctstring_t    &xpathExpr,
-	std::list<XmlNode> &res
+	std::ctstring_t    &a_xpathExpr,
+	std::list<XmlNode> &a_res
 ) const
 {
-	res.clear();
+	a_res.clear();
 
 	xmlXPathContextPtr xpathCtx = ::xmlXPathNewContext(_node->doc);
 	if (xpathCtx == xPTR_NULL) {
@@ -362,7 +363,7 @@ XmlNode::getContents(
 
 	xpathCtx->node = _node;
 
-	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((xmlChar *)xpathExpr.c_str(), xpathCtx);
+	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((xmlChar *)a_xpathExpr.c_str(), xpathCtx);
 	if (xpathObj == xPTR_NULL) {
 		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, xPTR_NULL);
 
@@ -383,13 +384,13 @@ XmlNode::getContents(
 			continue;
 		}
 
-		res.push_back( {_xmlDoc, cur} );
+		a_res.push_back( {_xmlDoc, cur} );
 	}
 
 	Utils::freeT(xpathObj, ::xmlXPathFreeObject,  xPTR_NULL);
 	Utils::freeT(xpathCtx, ::xmlXPathFreeContext, xPTR_NULL);
 
-	if ( res.empty() ) {
+	if ( a_res.empty() ) {
 		return 3;
 	}
 
