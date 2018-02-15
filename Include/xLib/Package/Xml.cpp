@@ -258,48 +258,44 @@ XmlNode::getName() const
 std::tstring_t
 XmlNode::getText() const
 {
-	std::tstring_t text;
+	std::tstring_t sRv;
 
 	xmlChar *content {};
 	{
-		if ( xmlNodeIsText(_node) )
-			content = xmlNodeGetContent( _node);
+		if ( ::xmlNodeIsText(_node) )
+			content = ::xmlNodeGetContent(_node);
 		else
-			content = xmlNodeListGetString( _node->doc, _node->xmlChildrenNode, 1);
+			content = ::xmlNodeListGetString(_node->doc, _node->xmlChildrenNode, 1);
+
+		if (content == xPTR_NULL) {
+			return {};
+		}
 	}
 
-	if( !content)
-	{
-		return text;
+	char *cnt = (char *)content;
+
+	if (_xmlDoc->_without_encoding) {
+		sRv = cnt;
+	} else {
+		size_t len  = (size_t)::xmlStrlen(content);
+		size_t len2 = (size_t)::xmlUTF8Strlen(content);
+
+		if (len2 > 0) {
+			char *buf = (char *)::malloc(len2 * sizeof(char) + 1);
+			char *ptr = buf;
+
+			::iconv(_xmlDoc->_iconv, &cnt, &len, &ptr, &len2);
+
+			buf[::xmlUTF8Strlen(content)] = 0;
+			sRv = buf;
+
+			Utils::freeT(buf, ::free, xPTR_NULL);
+		}
 	}
 
-	char* cnt = (char*) content;
+	Utils::freeT(content, ::xmlFree, xPTR_NULL);
 
-	if (_xmlDoc->_without_encoding)
-	{
-		text = cnt;
-		xmlFree(content);
-		return text;
-	}
-
-	size_t len  = (size_t)xmlStrlen(content);
-	size_t len2 = (size_t)xmlUTF8Strlen(content);
-	if (len2)
-	{
-		char* buf = (char*) malloc(len2*sizeof(char) + 1);
-		char* ptr = buf;
-
-		::iconv(_xmlDoc->_iconv, &cnt, &len, &ptr, &len2);
-
-		buf[xmlUTF8Strlen(content)] = 0;
-		text = buf;
-
-		std::free(buf);
-	}
-
-	xmlFree(content);
-
-	return text;
+	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 int
