@@ -314,26 +314,27 @@ XmlNode::getText() const
 //-------------------------------------------------------------------------------------------------
 int
 XmlNode::getContent(
-	std::ctstring_t &a_xpathExpr,
+	std::ctstring_t &a_xpath,
 	XmlNode         &a_value
 ) const
 {
     std::list<XmlNode> nodes;
-    int iRv = getContents(a_xpathExpr, nodes);
+    int iRv = getContents(a_xpath, nodes);
+	xTEST_EQ(iRv, 0);
 
     a_value = *nodes.begin();
 }
 //-------------------------------------------------------------------------------------------------
 int
 XmlNode::getContents(
-	std::ctstring_t     &a_xpathExpr,
+	std::ctstring_t     &a_xpath,
 	std::list_tstring_t &a_values
 ) const
 {
 	a_values.clear();
 
 	std::list<XmlNode> values;
-	int iRv = getContents(a_xpathExpr, values);
+	int iRv = getContents(a_xpath, values);
 	xTEST_EQ(iRv, 0);
 
 	for (auto &it_value : values) {
@@ -345,7 +346,7 @@ XmlNode::getContents(
 //-------------------------------------------------------------------------------------------------
 int
 XmlNode::getContents(
-	std::ctstring_t    &a_xpathExpr,
+	std::ctstring_t    &a_xpath,
 	std::list<XmlNode> &a_res
 ) const
 {
@@ -360,7 +361,7 @@ XmlNode::getContents(
 
 	xpathCtx->node = _node;
 
-	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((xmlChar *)a_xpathExpr.c_str(), xpathCtx);
+	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((xmlChar *)a_xpath.c_str(), xpathCtx);
 	if (xpathObj == xPTR_NULL) {
 		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, xPTR_NULL);
 
