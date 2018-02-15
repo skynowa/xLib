@@ -35,10 +35,6 @@ public:
 
 	int            getRootNode(XmlNode &root);
 
-	int            getContent(std::ctstring_t &xpathExpr, XmlNode &res);	/// +++
-	int            getContents(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
-	int            getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);	/// +++
-
 	int            saveToFile(std::ctstring_t &filePath);
 	std::tstring_t format(std::ctstring_t &charset);
 
