@@ -48,6 +48,9 @@ Iconv::Iconv(
 	xTEST_NA(a_ignoreErrors);
 
 	_iconv = ::iconv_open(a_charsetOut.c_str(), a_charsetIn.c_str());
+	if (errno == EINVAL) {
+		xTEST_FAIL_MSG("Not supported convert " + a_charsetIn + " -> " + a_charsetOut);
+	}
 	xTEST_DIFF(_iconv, ::iconvError);
 }
 //-------------------------------------------------------------------------------------------------
