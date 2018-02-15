@@ -17,7 +17,8 @@ class Iconv
 {
 public:
              Iconv(std::ctstring_t &charsetIn, std::ctstring_t &charsetOut,
-                 std::csize_t buffSize = 1024, cbool_t ignoreErrors = false);
+                 std::csize_t buffSize = 1024, cbool_t isSkipErrors = false,
+                 cbool_t isForceEncoding = false);
         ///< constructor
     virtual ~Iconv();
         ///< destructor
@@ -29,7 +30,8 @@ private:
     xNO_COPY_ASSIGN(Iconv)
 
 	std::csize_t _buffSize {};
-	cbool_t  _ignoreErrors {};
+	cbool_t  _isSkipErrors {};
+    cbool_t  _isSkipEncoding {};
 
 	iconv_t  _iconv {};
 

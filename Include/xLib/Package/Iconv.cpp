@@ -36,16 +36,21 @@ xNAMESPACE_BEGIN2(xl, package)
 Iconv::Iconv(
 	std::ctstring_t &a_charsetIn,
 	std::ctstring_t &a_charsetOut,
-	std::csize_t     a_buffSize     /* = 1024 */,
-	cbool_t          a_ignoreErrors /* = false */
+	std::csize_t     a_buffSize,       /* = 1024 */
+	cbool_t          a_isSkipErrors,   /* = false */
+	cbool_t          a_isForceEncoding /* = false */
 ) :
-	_buffSize    (a_buffSize),
-	_ignoreErrors(a_ignoreErrors)
+	_buffSize      (a_buffSize),
+	_isSkipErrors  (a_isSkipErrors),
+	_isSkipEncoding(!a_isForceEncoding && (a_charsetIn == a_charsetOut))
 {
 	xTEST_EQ(a_charsetIn.empty(), false);
 	xTEST_EQ(a_charsetOut.empty(), false);
 	xTEST_DIFF(a_buffSize, (std::size_t)0);
-	xTEST_NA(a_ignoreErrors);
+	xTEST_NA(a_isSkipErrors);
+	xTEST_NA(a_isForceEncoding);
+
+	xCHECK_MSG_DO(_isSkipEncoding, "Skip convert " + a_charsetIn + " -> " + a_charsetOut, return);
 
 	_iconv = ::iconv_open(a_charsetOut.c_str(), a_charsetIn.c_str());
 	if (errno == EINVAL) {
@@ -57,6 +62,8 @@ Iconv::Iconv(
 /* virtual */
 Iconv::~Iconv()
 {
+    xCHECK_DO(_isSkipEncoding, return);
+
 	Utils::freeT(_iconv, ::iconv_close, ::iconvError);
 }
 //-------------------------------------------------------------------------------------------------
@@ -67,6 +74,8 @@ Iconv::convert(
 ) const
 {
 	xTEST_PTR(a_output);
+
+	xCHECK_DO(_isSkipEncoding, *a_output = a_input; return);
 
 	a_output->clear();
 
@@ -89,7 +98,7 @@ Iconv::convert(
 			if      (errno == E2BIG)  {
 				// ignore this error
 			}
-			else if (_ignoreErrors) {
+			else if (_isSkipErrors) {
 				// skip character
 				++ srcPtr;
 				-- srcSize;

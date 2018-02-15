@@ -36,9 +36,8 @@ xNAMESPACE_BEGIN2(xl, package)
 XmlDoc::XmlDoc(
 	std::ctstring_t &a_charset
 ) :
-    _iconv(a_charset, "UTF-8")
+    _iconv(a_charset, "UTF-8", 1024, false, true)   // TODO: Iconv::isForceEncoding = false
 {
-	_without_encoding = (a_charset == "UTF-8");
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -283,13 +282,7 @@ XmlNode::getText() const
 		}
 	}
 
-	const char *buffIn = (char *)content;
-
-	if (_xmlDoc->_without_encoding) {
-		sRv = buffIn;
-	} else {
-        _xmlDoc->_iconv.convert(buffIn, &sRv);
-	}
+    _xmlDoc->_iconv.convert((ctchar_t *)content, &sRv);
 
 	Utils::freeT(content, ::xmlFree, xPTR_NULL);
 
