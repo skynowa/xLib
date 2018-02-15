@@ -31,7 +31,6 @@ public:
 	int            parseFile(std::ctstring_t &filePath);
 	int            parseString(std::ctstring_t &str);
 	int            parseStringNoNs(std::ctstring_t &str);
-	void           close();
 
 	int            getRootNode(XmlNode &root);
 
@@ -48,6 +47,7 @@ protected:
 	bool           _without_encoding {};
 
 	void           _registerNss(xmlXPathContextPtr ctx) const;
+	void           _close();
 
 	friend class XmlNode;
 };

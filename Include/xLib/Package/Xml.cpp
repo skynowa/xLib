@@ -43,7 +43,7 @@ XmlDoc::XmlDoc(std::ctstring_t &a_charset)
 XmlDoc::~XmlDoc()
 {
 	Utils::freeT(_iconv, ::iconv_close, ::iconvError);
-	close();
+	_close();
 }
 //-------------------------------------------------------------------------------------------------
 void
@@ -57,7 +57,7 @@ XmlDoc::registerNss(std::cmap_tstring_t &nss) const
 int
 XmlDoc::parseFile(std::ctstring_t &a_filePath)
 {
-	close();
+	_close();
 
 	_doc = ::xmlParseFile( a_filePath.c_str() );
 	if (_doc == xPTR_NULL) {
@@ -70,7 +70,7 @@ XmlDoc::parseFile(std::ctstring_t &a_filePath)
 int
 XmlDoc::parseString(std::ctstring_t &a_str)
 {
-	close();
+	_close();
 
 	_doc = ::xmlParseDoc( (xmlChar *)a_str.c_str() );
 	if (_doc == xPTR_NULL) {
@@ -126,12 +126,6 @@ XmlDoc::parseStringNoNs(std::ctstring_t &a_str)
 	}
 
 	return parseString(text);
-}
-//-------------------------------------------------------------------------------------------------
-void
-XmlDoc::close()
-{
-	Utils::freeT(_doc, ::xmlFreeDoc, xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
 int
@@ -206,6 +200,12 @@ XmlDoc::_registerNss(
 		int iRv = ::xmlXPathRegisterNs(xmlXPathContextPtr, prefix, nsUri);
 		xTEST_EQ(iRv, 0);
 	}
+}
+//-------------------------------------------------------------------------------------------------
+void
+XmlDoc::_close()
+{
+	Utils::freeT(_doc, ::xmlFreeDoc, xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
 
