@@ -33,8 +33,9 @@ public:
 	int            parseStringNoNs(std::ctstring_t &str);
 	void           close();
 
+	int            getContent(std::ctstring_t &xpathExpr, XmlNode &res);	/// +++
 	int            getContents(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
-	int            getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
+	int            getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);	/// +++
 
 	int            saveToFile(std::ctstring_t &filePath);
 	std::tstring_t format(std::ctstring_t &charset);
@@ -66,9 +67,9 @@ public:
 	std::tstring_t getName() const;
 	std::tstring_t getText() const;
 
-	int            getContent(std::ctstring_t &xpathExpr, XmlNode &res);
+	int            getContent(std::ctstring_t &xpathExpr, XmlNode &res);	/// +++
 	int            getContents(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
-	int            getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
+	int            getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);	/// +++
 	void           getAttributes(std::map_tstring_t &values) const;
 
 	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
