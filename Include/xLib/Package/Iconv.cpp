@@ -54,6 +54,7 @@ Iconv::Iconv(
 	xTEST_DIFF(_iconv, ::iconvError);
 }
 //-------------------------------------------------------------------------------------------------
+/* virtual */
 Iconv::~Iconv()
 {
 	Utils::freeT(_iconv, ::iconv_close, ::iconvError);
