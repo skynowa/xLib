@@ -281,7 +281,9 @@ XmlNode::getText() const
 		std::size_t bytesOut = (std::size_t)::xmlUTF8Strlen(content);
 		xTEST_DIFF(bytesOut, (std::size_t)-1);
 
-		char *buff    = (char *)::malloc(bytesOut * sizeof(char) + 1);
+		char *buff = (char *)::malloc(bytesOut * sizeof(char) + 1);
+		xTEST_PTR(buff);
+
 		char *buffOut = buff;
 
 		size_t uiRv = ::iconv(_xmlDoc->_iconv, &cnt, &bytesIn, &buffOut, &bytesOut);
