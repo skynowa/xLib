@@ -65,9 +65,9 @@ public:
 	std::tstring_t getName() const;
 	std::tstring_t getText() const;
 
-	int            getContent(std::ctstring_t &xpathExpr, XmlNode &res) const;
-	int            getContents(std::ctstring_t &xpathExpr, std::list_tstring_t &res) const;
-	int            getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res) const;
+	int            getContent(std::ctstring_t &xpathExpr, XmlNode &value) const;
+	int            getContents(std::ctstring_t &xpathExpr, std::list_tstring_t &values) const;
+	int            getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &values) const;
 	void           getAttributes(std::map_tstring_t &values) const;
 
 	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
