@@ -326,11 +326,14 @@ XmlNode::getContents(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlNode::getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
+XmlNode::getContents(
+	std::ctstring_t    &xpathExpr,
+	std::list<XmlNode> &res
+)
 {
 	res.clear();
 
-	xmlXPathContextPtr xpathCtx = xmlXPathNewContext(_node->doc);
+	xmlXPathContextPtr xpathCtx = ::xmlXPathNewContext(_node->doc);
 	if ( !xpathCtx ) {
 		return 1;
 	}
@@ -339,9 +342,8 @@ XmlNode::getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 
 	xpathCtx->node = _node;
 
-	xmlXPathObjectPtr xpathObj = xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
-	if ( !xpathObj )
-	{
+	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
+	if ( !xpathObj ) {
 		if (xpathCtx)
 			xmlXPathFreeContext(xpathCtx);
 		xpathCtx = xPTR_NULL;
@@ -350,14 +352,15 @@ XmlNode::getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
-	if ( !nodes )
-	{
+	if ( !nodes ) {
 		if (xpathObj)
-			xmlXPathFreeObject(xpathObj);
+			::xmlXPathFreeObject(xpathObj);
 		xpathObj = xPTR_NULL;
+
 		if (xpathCtx)
-			xmlXPathFreeContext(xpathCtx);
+			::xmlXPathFreeContext(xpathCtx);
 		xpathCtx = xPTR_NULL;
+
 		return 4;
 	}
 
@@ -371,10 +374,12 @@ XmlNode::getContents(std::ctstring_t &xpathExpr, std::list<XmlNode> &res)
 		res.push_back(node);
 	}
 
-	xmlXPathFreeObject(xpathObj);
-	xmlXPathFreeContext(xpathCtx);
+	::xmlXPathFreeObject(xpathObj);
+	::xmlXPathFreeContext(xpathCtx);
 
-	if ( res.empty() ) return 3;
+	if ( res.empty() ) {
+		return 3;
+	}
 
 	return 0;
 }
