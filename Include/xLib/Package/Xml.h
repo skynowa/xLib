@@ -26,12 +26,12 @@ public:
 	explicit       XmlDoc(std::ctstring_t &charset);
 				  ~XmlDoc();
 
+	void           registerNss(std::cmap_tstring_t &nss) const;
+
 	int            parseFile(std::ctstring_t &filePath);
 	int            parseString(std::ctstring_t &str);
 	int            parseStringNoNs(std::ctstring_t &str);
 	void           close();
-
-	void           registerNss(std::cmap_tstring_t &nss) const;
 
 	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);

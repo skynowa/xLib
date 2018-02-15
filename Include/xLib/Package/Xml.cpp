@@ -50,6 +50,14 @@ XmlDoc::~XmlDoc()
 	close();
 }
 //-------------------------------------------------------------------------------------------------
+void
+XmlDoc::registerNss(std::cmap_tstring_t &nss) const
+{
+	for (auto &itNs : nss) {
+		_nss.insert( {itNs.first, itNs.second} );
+	}
+}
+//-------------------------------------------------------------------------------------------------
 int
 XmlDoc::parseFile(std::ctstring_t &a_filePath)
 {
@@ -128,14 +136,6 @@ void
 XmlDoc::close()
 {
 	Utils::freeT(_doc, ::xmlFreeDoc, xPTR_NULL);
-}
-//-------------------------------------------------------------------------------------------------
-void
-XmlDoc::registerNss(std::cmap_tstring_t &nss) const
-{
-	for (auto &itNs : nss) {
-		_nss.insert( {itNs.first, itNs.second} );
-	}
 }
 //-------------------------------------------------------------------------------------------------
 int
