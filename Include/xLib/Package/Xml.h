@@ -44,7 +44,6 @@ protected:
 	xmlDocPtr      _doc {};
 	Iconv          _iconv;
 	mutable std::map_tstring_t _nss;
-	bool           _without_encoding {};
 
 	void           _registerNss(xmlXPathContextPtr ctx) const;
 	void           _close();
