@@ -334,7 +334,7 @@ XmlNode::getContents(
 	res.clear();
 
 	xmlXPathContextPtr xpathCtx = ::xmlXPathNewContext(_node->doc);
-	if ( !xpathCtx ) {
+	if (xpathCtx == xPTR_NULL) {
 		return 1;
 	}
 
@@ -342,8 +342,8 @@ XmlNode::getContents(
 
 	xpathCtx->node = _node;
 
-	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((xmlChar*) xpathExpr.c_str(), xpathCtx);
-	if ( !xpathObj ) {
+	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((xmlChar *)xpathExpr.c_str(), xpathCtx);
+	if (xpathObj == xPTR_NULL) {
 		if (xpathCtx)
 			xmlXPathFreeContext(xpathCtx);
 		xpathCtx = xPTR_NULL;
@@ -352,7 +352,7 @@ XmlNode::getContents(
 	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
-	if ( !nodes ) {
+	if (nodes == xPTR_NULL) {
 		if (xpathObj)
 			::xmlXPathFreeObject(xpathObj);
 		xpathObj = xPTR_NULL;
@@ -366,7 +366,7 @@ XmlNode::getContents(
 
 	for (int i = 0; i < nodes->nodeNr; ++ i) {
 		xmlNodePtr cur = nodes->nodeTab[i];
-		if ( !cur )
+		if (cur == xPTR_NULL)
 			continue;
 
 		XmlNode node(_xmlDoc, cur);
