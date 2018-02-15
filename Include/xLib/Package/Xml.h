@@ -14,7 +14,7 @@
 #include <libxml/xpathInternals.h>
 #include <libxml/xmlsave.h>
 
-#include <iconv.h>
+#include <xLib/Package/Iconv.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, package)
 //-------------------------------------------------------------------------------------------------
