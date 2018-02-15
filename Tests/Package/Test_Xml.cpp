@@ -25,6 +25,18 @@ Test_Xml::unit()
 		m_iRv = doc.parseFile(filePath);
 		xTEST_EQ(m_iRv, 0);
 
+		// getRootNode
+		{
+			XmlNode root;
+			m_iRv = doc.getRootNode(root);
+			xTEST_EQ(m_iRv, 0);
+
+			std::list<XmlNode> results;
+			m_iRv = root.getContents("/AvailabilitySearchResult/HotelAvailability/Result", results);
+			xTEST_EQ(m_iRv, 0);
+			xTEST_EQ(results.size(), (std::size_t)3);
+		}
+
 		std::list<XmlNode> results;
 		m_iRv = doc.getContents("/AvailabilitySearchResult/HotelAvailability/Result", results);
 		xTEST_EQ(m_iRv, 0);
