@@ -344,38 +344,30 @@ XmlNode::getContents(
 
 	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((xmlChar *)xpathExpr.c_str(), xpathCtx);
 	if (xpathObj == xPTR_NULL) {
-		if (xpathCtx)
-			xmlXPathFreeContext(xpathCtx);
-		xpathCtx = xPTR_NULL;
+		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, xPTR_NULL);
 
 		return 2;
 	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	if (nodes == xPTR_NULL) {
-		if (xpathObj)
-			::xmlXPathFreeObject(xpathObj);
-		xpathObj = xPTR_NULL;
-
-		if (xpathCtx)
-			::xmlXPathFreeContext(xpathCtx);
-		xpathCtx = xPTR_NULL;
+		Utils::freeT(xpathObj, ::xmlXPathFreeObject,  xPTR_NULL);
+		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, xPTR_NULL);
 
 		return 4;
 	}
 
 	for (int i = 0; i < nodes->nodeNr; ++ i) {
 		xmlNodePtr cur = nodes->nodeTab[i];
-		if (cur == xPTR_NULL)
+		if (cur == xPTR_NULL) {
 			continue;
+		}
 
-		XmlNode node(_xmlDoc, cur);
-		// TODO: XmlNode - xNO_COPY_ASSIGN
-		res.push_back(node);
+		res.push_back( {_xmlDoc, cur} );
 	}
 
-	::xmlXPathFreeObject(xpathObj);
-	::xmlXPathFreeContext(xpathCtx);
+	Utils::freeT(xpathObj, ::xmlXPathFreeObject,  xPTR_NULL);
+	Utils::freeT(xpathCtx, ::xmlXPathFreeContext, xPTR_NULL);
 
 	if ( res.empty() ) {
 		return 3;
