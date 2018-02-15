@@ -69,37 +69,38 @@ Iconv::convert(
 
 	a_output->clear();
 
+	std::tstring_t sRV;
+
 	// copy the string to a buffer as iconv function requires a non-const char pointer
 	std::vec_tchar_t buffIn(a_input.begin(), a_input.end());
 
-	tchar_t *src_ptr  = &buffIn[0];
-	size_t   src_size = a_input.size();
+	tchar_t *srcPtr  = &buffIn[0];
+	size_t   srcSize = a_input.size();
 
 	std::vec_tchar_t buff(_buffSize);
-	std::tstring_t   dst;
 
-	while (0 < src_size) {
-		tchar_t    *dst_ptr  = &buff[0];
-		std::size_t dst_size = buff.size();
+	while (0 < srcSize) {
+		tchar_t    *dstPtr  = &buff[0];
+		std::size_t dstSize = buff.size();
 
-		std::size_t uiRv = ::iconv(_iconv, &src_ptr, &src_size, &dst_ptr, &dst_size);
+		std::size_t uiRv = ::iconv(_iconv, &srcPtr, &srcSize, &dstPtr, &dstSize);
 		if (uiRv == (size_t)-1) {
 			if      (errno == E2BIG)  {
 				// ignore this error
 			}
 			else if (_ignoreErrors) {
 				// skip character
-				++ src_ptr;
-				-- src_size;
+				++ srcPtr;
+				-- srcSize;
 			} else {
 				_checkError();
 			}
 		}
 
-		dst.append(&buff[0], buff.size() - dst_size);
+		sRV.append(&buff[0], buff.size() - dstSize);
 	}
 
-	dst.swap(*a_output);
+	sRV.swap(*a_output);
 }
 //-------------------------------------------------------------------------------------------------
 
