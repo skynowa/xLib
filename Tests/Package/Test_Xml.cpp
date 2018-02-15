@@ -32,10 +32,25 @@ Test_Xml::unit()
 		m_iRv = doc.getRootNode(root);
 		xTEST_EQ(m_iRv, 0);
 
+		// getContents
 		std::list<XmlNode> results;
 		m_iRv = root.getContents("/AvailabilitySearchResult/HotelAvailability/Result", results);
 		xTEST_EQ(m_iRv, 0);
 		xTEST_EQ(results.size(), (std::size_t)3);
+
+		// findContents
+		{
+			std::clist_tstring_t xpaths
+			{
+				"/AvailabilitySearchResult/HotelAvailability/Result",
+				"/AvailabilitySearchResult/HotelAvailability/Result/Room"
+			};
+
+			std::list<XmlNode> finds;
+			m_bRv = root.findContents(xpaths, finds);
+			xTEST_EQ(m_bRv, true);
+			xTEST_EQ(finds.size(), (std::size_t)6);
+		}
 
 		for (size_t i = 0; i < results.size(); ++ i) {
 			XmlNode &it_result = *std::next(results.begin(), i);

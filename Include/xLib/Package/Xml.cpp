@@ -324,6 +324,7 @@ XmlNode::findContents(
 		std::list<XmlNode> values;
 		int iRv = getContents(itXpath, values);
 		xTEST_NA(iRv);
+		std::cout << xTRACE_VAR_2(itXpath, iRv) << std::endl;
 
 		for (auto &itValue : values) {
 			a_values.emplace_back(itValue);
