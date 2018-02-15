@@ -139,6 +139,15 @@ XmlDoc::close()
 }
 //-------------------------------------------------------------------------------------------------
 int
+XmlDoc::getContent(std::ctstring_t &xpathExpr, XmlNode &res)
+{
+    std::list<XmlNode> nodes;
+    int iRv = getContents(xpathExpr, nodes);
+
+    res = *nodes.begin();
+}
+//-------------------------------------------------------------------------------------------------
+int
 XmlDoc::getContents(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 {
 	res.clear();
