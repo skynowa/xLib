@@ -24,7 +24,7 @@ class XmlDoc
 {
 public:
 	explicit       XmlDoc(std::ctstring_t &charset);
-				  ~XmlDoc();
+	virtual       ~XmlDoc();
 
 	void           registerNss(std::cmap_tstring_t &nss) const;
 
