@@ -315,29 +315,29 @@ XmlNode::getText() const
 int
 XmlNode::getContent(
 	std::ctstring_t &a_xpathExpr,
-	XmlNode         &a_res
+	XmlNode         &a_value
 ) const
 {
     std::list<XmlNode> nodes;
     int iRv = getContents(a_xpathExpr, nodes);
 
-    a_res = *nodes.begin();
+    a_value = *nodes.begin();
 }
 //-------------------------------------------------------------------------------------------------
 int
 XmlNode::getContents(
 	std::ctstring_t     &a_xpathExpr,
-	std::list_tstring_t &a_res
+	std::list_tstring_t &a_values
 ) const
 {
-	a_res.clear();
+	a_values.clear();
 
 	std::list<XmlNode> values;
 	int iRv = getContents(a_xpathExpr, values);
 	xTEST_EQ(iRv, 0);
 
 	for (auto &it_value : values) {
-		a_res.emplace_back( it_value.getText() );
+		a_values.emplace_back( it_value.getText() );
 	}
 
 	return 0;
