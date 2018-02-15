@@ -17,6 +17,8 @@ xTEST_UNIT(Test_Xml)
 bool_t
 Test_Xml::unit()
 {
+	LIBXML_TEST_VERSION
+
     xTEST_CASE("1.xml")
     {
     	std::ctstring_t filePath = "/home/skynowa/Projects/xLib/Tests/Package/Xml/1.xml";
