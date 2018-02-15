@@ -42,11 +42,7 @@ XmlDoc::XmlDoc(std::ctstring_t &a_charset)
 //-------------------------------------------------------------------------------------------------
 XmlDoc::~XmlDoc()
 {
-	if (_iconv != ::iconvError) {
-		int iRv = ::iconv_close(_iconv);
-		xTEST_EQ(iRv, 0);
-	}
-
+	Utils::freeT(_iconv, ::iconv_close, ::iconvError);
 	close();
 }
 //-------------------------------------------------------------------------------------------------
