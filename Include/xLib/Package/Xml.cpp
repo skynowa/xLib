@@ -399,7 +399,7 @@ XmlNode::getAttributes(std::map_tstring_t &a_values) const
 
 		a_values.insert( {(const char *)name, (const char *)value} );
 
-		::xmlFree(value);
+		Utils::freeT(value, ::xmlFree,  xPTR_NULL);
 
 		property = property->next;
 	}
