@@ -150,6 +150,7 @@
 
 // Package
 #include <xLib/Package/IData.h>
+#include <xLib/Package/Iconv.h>
 #include <xLib/Package/Csv.h>
 #include <xLib/Package/Ssh2Client.h>
 #include <xLib/Package/Donate.h>
