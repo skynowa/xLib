@@ -33,7 +33,9 @@ xNAMESPACE_BEGIN2(xl, package)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-XmlDoc::XmlDoc(std::ctstring_t &a_charset)
+XmlDoc::XmlDoc(
+	std::ctstring_t &a_charset
+)
 {
 	_iconv = ::iconv_open(a_charset.c_str(), "UTF-8");
 
@@ -47,7 +49,9 @@ XmlDoc::~XmlDoc()
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlDoc::registerNss(std::cmap_tstring_t &nss) const
+XmlDoc::registerNss(
+	std::cmap_tstring_t &nss
+) const
 {
 	for (auto &itNs : nss) {
 		_nss.insert( {itNs.first, itNs.second} );
@@ -55,7 +59,9 @@ XmlDoc::registerNss(std::cmap_tstring_t &nss) const
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::parseFile(std::ctstring_t &a_filePath)
+XmlDoc::parseFile(
+	std::ctstring_t &a_filePath
+)
 {
 	_close();
 
@@ -68,7 +74,9 @@ XmlDoc::parseFile(std::ctstring_t &a_filePath)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::parseString(std::ctstring_t &a_str)
+XmlDoc::parseString(
+	std::ctstring_t &a_str
+)
 {
 	_close();
 
@@ -81,7 +89,9 @@ XmlDoc::parseString(std::ctstring_t &a_str)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::parseStringNoNs(std::ctstring_t &a_str)
+XmlDoc::parseStringNoNs(
+	std::ctstring_t &a_str
+)
 {
 	std::tstring_t::size_type pos  {};
 	std::tstring_t::size_type pos1 {};
@@ -129,7 +139,9 @@ XmlDoc::parseStringNoNs(std::ctstring_t &a_str)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::getRootNode(XmlNode &a_root)
+XmlDoc::getRootNode(
+	XmlNode &a_root
+)
 {
 	xmlNodePtr rootNode = xmlDocGetRootElement(_doc);
 	xTEST_PTR(rootNode);
@@ -141,7 +153,9 @@ XmlDoc::getRootNode(XmlNode &a_root)
 }
 //-------------------------------------------------------------------------------------------------
 int
-XmlDoc::saveToFile(std::ctstring_t &filePath)
+XmlDoc::saveToFile(
+	std::ctstring_t &filePath
+)
 {
 	xmlSaveCtxtPtr savectxt = xmlSaveToFilename(filePath.c_str(), xPTR_NULL, XML_SAVE_FORMAT);
 	if (savectxt) {
@@ -383,7 +397,9 @@ XmlNode::getContents(
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getAttributes(std::map_tstring_t &a_values) const
+XmlNode::getAttributes(
+	std::map_tstring_t &a_values
+) const
 {
 	a_values.clear();
 
