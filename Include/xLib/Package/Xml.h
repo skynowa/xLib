@@ -26,16 +26,12 @@ public:
 	explicit       XmlDoc(std::ctstring_t &charset);
 				  ~XmlDoc();
 
-	iconv_t        getIconv() const { return _iconv; }
-	bool           isWithoutEncoding() const { return _without_encoding; }
-
 	int            parseFile(std::ctstring_t &filePath);
 	int            parseString(std::ctstring_t &str);
 	int            parseStringNoNs(std::ctstring_t &str);
 	void           close();
 
 	void           registerNamespaces(std::cmap_tstring_t &namespaces) const;
-	void           _registerNamespaces(xmlXPathContext* ctx) const;
 
 	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
@@ -47,10 +43,14 @@ public:
 	xNO_COPY_ASSIGN(XmlDoc);
 
 protected:
-	xmlDocPtr          _doc {};
-	iconv_t            _iconv {};
+	xmlDocPtr      _doc {};
+	iconv_t        _iconv {};
 	mutable std::map_tstring_t _namespaces;
-	bool               _without_encoding {};
+	bool           _without_encoding {};
+
+	void           _registerNamespaces(xmlXPathContextPtr ctx) const;
+
+	friend class XmlNode;
 };
 //-------------------------------------------------------------------------------------------------
 class XmlNode

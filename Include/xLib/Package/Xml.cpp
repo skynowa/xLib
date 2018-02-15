@@ -138,14 +138,6 @@ XmlDoc::registerNamespaces(std::cmap_tstring_t &namespaces) const
 	}
 }
 //-------------------------------------------------------------------------------------------------
-void
-XmlDoc::_registerNamespaces(xmlXPathContextPtr xmlXPathContextPtr) const
-{
-	for (auto &ns : _namespaces) {
-		::xmlXPathRegisterNs(xmlXPathContextPtr, (xmlChar *)ns.first.c_str(), (xmlChar *)ns.second.c_str());
-	}
-}
-//-------------------------------------------------------------------------------------------------
 int
 XmlDoc::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 {
@@ -257,6 +249,24 @@ XmlDoc::format(
 
 
 /**************************************************************************************************
+*   XmlDoc - private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+void
+XmlDoc::_registerNamespaces(
+	xmlXPathContextPtr xmlXPathContextPtr
+) const
+{
+	for (auto &ns : _namespaces) {
+		::xmlXPathRegisterNs(xmlXPathContextPtr, (xmlChar *)ns.first.c_str(), (xmlChar *)ns.second.c_str());
+	}
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
 *   XmlNode
 *
 **************************************************************************************************/
@@ -321,7 +331,7 @@ XmlNode::getText() const
 
 	char* cnt = (char*) content;
 
-	if ( _xmlDoc->isWithoutEncoding() )
+	if (_xmlDoc->_without_encoding)
 	{
 		text = cnt;
 		xmlFree(content);
@@ -335,7 +345,7 @@ XmlNode::getText() const
 		char* buf = (char*) malloc(len2*sizeof(char) + 1);
 		char* ptr = buf;
 
-		::iconv(_xmlDoc->getIconv(), &cnt, &len, &ptr, &len2);
+		::iconv(_xmlDoc->_iconv, &cnt, &len, &ptr, &len2);
 
 		buf[xmlUTF8Strlen(content)] = 0;
 		text = buf;
