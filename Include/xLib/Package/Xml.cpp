@@ -384,7 +384,8 @@ XmlNode::getContents(
 			continue;
 		}
 
-		a_res.push_back( {_xmlDoc, cur} );
+		XmlNode node(_xmlDoc, cur);
+		a_res.emplace_back(node);
 	}
 
 	Utils::freeT(xpathObj, ::xmlXPathFreeObject,  xPTR_NULL);
