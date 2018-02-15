@@ -135,6 +135,18 @@ XmlDoc::close()
 }
 //-------------------------------------------------------------------------------------------------
 int
+XmlDoc::getRootNode(XmlNode &a_root)
+{
+	xmlNodePtr rootNode = xmlDocGetRootElement(_doc);
+	xTEST_PTR(rootNode);
+
+	XmlNode root(this, rootNode);
+	a_root = root;
+
+	return 0;
+}
+//-------------------------------------------------------------------------------------------------
+int
 XmlDoc::getContent(std::ctstring_t &xpathExpr, XmlNode &res)
 {
     std::list<XmlNode> nodes;
