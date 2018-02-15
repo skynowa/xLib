@@ -289,7 +289,7 @@ XmlNode::getText() const
 		size_t uiRv = ::iconv(_xmlDoc->_iconv, &buffIn, &bytesIn, &buffOut, &bytesOut);
 		xTEST_DIFF(uiRv, (std::size_t) -1);
 
-		buff[bytesOut] = 0;
+		buff[bytesOut] = '\0';
 		sRv = buff;
 
 		Utils::freeT(buff, ::free, xPTR_NULL);
