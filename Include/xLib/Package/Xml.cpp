@@ -274,7 +274,7 @@ XmlNode::getText() const
 
 	xmlChar *content {};
 	{
-		if ( ::xmlNodeIsText(_node) )
+		if (::xmlNodeIsText(_node) == 1)
 			content = ::xmlNodeGetContent(_node);
 		else
 			content = ::xmlNodeListGetString(_node->doc, _node->xmlChildrenNode, 1);
