@@ -31,7 +31,7 @@ public:
 	int            parseStringNoNs(std::ctstring_t &str);
 	void           close();
 
-	void           registerNamespaces(std::cmap_tstring_t &namespaces) const;
+	void           registerNss(std::cmap_tstring_t &nss) const;
 
 	int            getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res);
 	int            getContentList(std::ctstring_t &xpathExpr, std::list<XmlNode> &res);
@@ -45,10 +45,10 @@ public:
 protected:
 	xmlDocPtr      _doc {};
 	iconv_t        _iconv {};
-	mutable std::map_tstring_t _namespaces;
+	mutable std::map_tstring_t _nss;
 	bool           _without_encoding {};
 
-	void           _registerNamespaces(xmlXPathContextPtr ctx) const;
+	void           _registerNss(xmlXPathContextPtr ctx) const;
 
 	friend class XmlNode;
 };
