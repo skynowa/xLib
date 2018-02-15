@@ -434,7 +434,7 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 {
 	res.clear();
 
-
+#if 0
 	xmlXPathContextPtr xpathCtx = xmlXPathNewContext(_node->doc);
 	if ( !xpathCtx ) {
 		return 1;
@@ -472,12 +472,12 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 			continue;
 
 		xmlChar *content {};
-        {
-            if ( xmlNodeIsText(cur) )
-                content = xmlNodeGetContent( cur);
-            else
-                content = xmlNodeListGetString( cur->doc, cur->xmlChildrenNode, 1);
-        }
+		{
+			if ( xmlNodeIsText(cur) )
+				content = xmlNodeGetContent( cur);
+			else
+				content = xmlNodeListGetString( cur->doc, cur->xmlChildrenNode, 1);
+		}
 
 		if( !content ) {
 			continue;
@@ -516,6 +516,15 @@ XmlNode::getContentList(std::ctstring_t &xpathExpr, std::list_tstring_t &res)
 	xmlXPathFreeContext(xpathCtx);
 
 	if ( res.empty() ) return 3;
+#else
+	std::list<XmlNode> values;
+	int iRv = getContentList(xpathExpr, values);
+	xTEST_EQ(iRv, 0);
+
+	for (auto &it_value : values) {
+		res.emplace_back( it_value.getText() );
+	}
+#endif
 
 	return 0;
 }
