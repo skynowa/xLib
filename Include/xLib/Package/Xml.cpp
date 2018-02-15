@@ -15,6 +15,7 @@
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Test/Test.h>
+#include <xLib/Package/Iconv.h>
 
 //-------------------------------------------------------------------------------------------------
 namespace
