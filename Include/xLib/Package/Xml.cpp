@@ -426,10 +426,8 @@ XmlNode::getAttributes(
 		return;
 	}
 
-	xmlAttrPtr property = _node->properties;
-
-	while (property != xPTR_NULL) {
-		const xmlChar *name  = property->name;
+	for (xmlAttrPtr p = _node->properties; p != xPTR_NULL; p = p->next) {
+		const xmlChar *name  = p->name;
 		xTEST_PTR(name);
 
 		xmlChar *value = ::xmlGetProp(_node, name);
@@ -438,8 +436,6 @@ XmlNode::getAttributes(
 		a_values.insert( {(cptr_ctchar_t)name, (cptr_ctchar_t)value} );
 
 		Utils::freeT(value, ::xmlFree, xPTR_NULL);
-
-		property = property->next;
 	}
 }
 //-------------------------------------------------------------------------------------------------
