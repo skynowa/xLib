@@ -1,6 +1,8 @@
 /**
  * \file   Iconv.cpp
  * \brief  Perform character set conversion
+ *
+ * $ iconv --list (list all known coded character sets)
  */
 
 
