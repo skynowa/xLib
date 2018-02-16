@@ -19,7 +19,7 @@ Test_Iconv::unit()
 {
 	// TEST: Iconv
 
-	xTEST_CASE("Iconv - trivial")
+	xTEST_CASE("Iconv::convert - trivial")
 	{
 		Iconv conv("EUC-JP", "UTF-8");
 		std::tstring_t in = "hello iconv";
@@ -38,7 +38,7 @@ Test_Iconv::unit()
 	#endif
 	}
 
-	xTEST_CASE("Iconv - large")
+	xTEST_CASE("Iconv::convert - large")
 	{
 		Iconv conv("EUC-JP", "UTF-8");
 		std::tstring_t in = std::tstring_t(2048, 'a');
@@ -47,7 +47,7 @@ Test_Iconv::unit()
 		xTEST_EQ(in, out);
 	}
 
-	xTEST_CASE("Iconv - unsupported")
+	xTEST_CASE("Iconv::convert - unsupported")
 	{
 	#if 0
 		xTEST_THROW(Iconv("unknown", "UTF-8"), std::runtime_error);
@@ -55,7 +55,7 @@ Test_Iconv::unit()
 	#endif
 	}
 
-	xTEST_CASE("Iconv - invalid")
+	xTEST_CASE("Iconv::convert - invalid")
 	{
 	#if 0
 		Iconv conv("UTF-8", "EUC-JP");
@@ -64,7 +64,7 @@ Test_Iconv::unit()
 	#endif
 	}
 
-	xTEST_CASE("Iconv - ignore_error")
+	xTEST_CASE("Iconv::convert - ignore_error")
 	{
 	#if 0
 		Iconv conv("UTF-8", "EUC-JP", true);
@@ -73,7 +73,7 @@ Test_Iconv::unit()
 	#endif
 	}
 
-	xTEST_CASE("Iconv - zero_buffer")
+	xTEST_CASE("Iconv::convert - zero_buffer")
 	{
 	#if 0
 		xTEST_THROW(Iconv("UTF-8", "EUC-JP", false, 0), std::runtime_error);
