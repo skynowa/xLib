@@ -174,7 +174,7 @@ XmlDoc::format(
 	if ( a_charset.empty() )
 		return {};
 
-	std::tstring_t  srv;
+	std::tstring_t  sRv;
 	xmlChar        *buff {};
 	int             buff_size {};
 
@@ -185,11 +185,11 @@ XmlDoc::format(
 	if (buff_size <= 0)
 		return {};
 
-	srv.assign(reinterpret_cast<const char *>(buff), static_cast<size_t>(buff_size));
+	sRv.assign(reinterpret_cast<cptr_ctchar_t>(buff), static_cast<size_t>(buff_size));
 
 	Utils::freeT(buff, ::xmlFree, xPTR_NULL);
 
-	return srv;
+	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 
