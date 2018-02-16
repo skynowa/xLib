@@ -19,7 +19,7 @@ Thread::_create_impl(
 {
     int_t          iRv = - 1;
     id_t           hid;
-    pthread_attr_t attrs; xSTRUCT_ZERO(attrs);
+    pthread_attr_t attrs; Utils::structZeroT(attrs);
 
     iRv = ::pthread_attr_init(&attrs);
     xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));

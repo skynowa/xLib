@@ -360,7 +360,7 @@ Test_Thread::unit()
 
     if (!cbAutoDelete) {
         xTEST_PTR(pthT);
-        xPTR_DELETE(pthT);
+        Utils::ptrDeleteT(pthT);
     }
 
     m_bRv = unit1();

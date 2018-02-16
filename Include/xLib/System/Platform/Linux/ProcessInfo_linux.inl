@@ -65,7 +65,7 @@ ProcessInfo::_commandLine_impl(
         }
     }
 
-    xFCLOSE(procFile);
+    Utils::fileClose(procFile);
 
     // out
     a_args->swap(args);

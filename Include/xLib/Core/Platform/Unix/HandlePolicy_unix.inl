@@ -26,7 +26,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, hvNative>::_openMax_impl()
 {
-    rlimit limit;   xSTRUCT_ZERO(limit);
+    rlimit limit;   Utils::structZeroT(limit);
 
     int_t iRv = ::getrlimit(RLIMIT_NOFILE, &limit);
     xTEST_EQ(iRv, 0);

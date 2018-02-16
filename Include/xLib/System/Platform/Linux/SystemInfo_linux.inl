@@ -243,7 +243,7 @@ SystemInfo::_cpuUsage_impl() const
 ulonglong_t
 SystemInfo::_ramTotal_impl() const
 {
-    struct sysinfo info;   xSTRUCT_ZERO(info);
+    struct sysinfo info;   Utils::structZeroT(info);
 
     int_t iRv = ::sysinfo(&info);
     xTEST_DIFF(iRv, - 1);
@@ -256,7 +256,7 @@ SystemInfo::_ramTotal_impl() const
 ulonglong_t
 SystemInfo::_ramAvailable_impl() const
 {
-    struct sysinfo info;   xSTRUCT_ZERO(info);
+    struct sysinfo info;   Utils::structZeroT(info);
 
     int_t iRv = ::sysinfo(&info);
     xTEST_DIFF(iRv, - 1);
@@ -269,7 +269,7 @@ SystemInfo::_ramAvailable_impl() const
 ulong_t
 SystemInfo::_ramUsage_impl() const
 {
-    struct sysinfo info;   xSTRUCT_ZERO(info);
+    struct sysinfo info;   Utils::structZeroT(info);
 
     int_t iRv = ::sysinfo(&info);
     xTEST_DIFF(iRv, - 1);

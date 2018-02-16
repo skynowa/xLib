@@ -676,7 +676,7 @@ Thread::_s_jobEntry(
     // TODO: [skynowa] StdStreamV2
     ///-- xTEST_EQ(Event::osSignaled, osRv);
 
-    xPTR_DELETE(self->_eventStarter);
+    Utils::ptrDeleteT(self->_eventStarter);
 
     // if created suspended thread - wait for resumption
     if ( self->isPaused() ) {
@@ -708,7 +708,7 @@ Thread::_s_jobEntry(
     }
 
     self->_clear(exitStatus);
-    xCHECK_DO(self->_isAutoDelete, xPTR_DELETE(self));
+    xCHECK_DO(self->_isAutoDelete, Utils::ptrDeleteT(self));
 
 #if   xENV_WIN
     exit_status_t esRv = exitStatus;

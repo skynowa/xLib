@@ -45,7 +45,7 @@ StackTrace::_get_impl(
         std::tstring_t byteOffset;
         std::tstring_t functionName;
 
-        Dl_info dlinfo;  xSTRUCT_ZERO(dlinfo);
+        Dl_info dlinfo;  Utils::structZeroT(dlinfo);
 
         int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
         if (iRv == 0) {
@@ -78,7 +78,7 @@ StackTrace::_get_impl(
             byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
             functionName = (symbolName == xPTR_NULL) ? dataNotFound : xA2T(symbolName);
 
-            xBUFF_FREE(demangleName);
+            Utils::bufferFreeT(demangleName);
         }
 
         // swap file paths

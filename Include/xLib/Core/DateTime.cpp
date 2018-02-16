@@ -489,7 +489,7 @@ DateTime::dayOfWeek() const
     xTEST_EQ(DateTimeValidator::datetime(*this), true);
 
     int_t   iRv = 0;
-    std::tm timeInfo;  xSTRUCT_ZERO(timeInfo);
+    std::tm timeInfo;  Utils::structZeroT(timeInfo);
 
     timeInfo.tm_year = _year  - 1900;
     timeInfo.tm_mon  = _month - 1;
@@ -618,7 +618,7 @@ DateTime::format(
     std::tstring_t sRv;
     tchar_t        buff[80 + 1] = {};
 
-    std::tm time; xSTRUCT_ZERO(time);
+    std::tm time; Utils::structZeroT(time);
     time.tm_year = _year  - 1900;
     time.tm_mon  = _month - 1;
     time.tm_mday = _day;

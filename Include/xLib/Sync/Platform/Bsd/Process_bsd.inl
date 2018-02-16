@@ -56,7 +56,7 @@ Process::_idByName_impl(
         }
     }
 
-    xBUFF_FREE(infoProc);
+    Utils::bufferFreeT(infoProc);
 
     return ulRv;
 }
@@ -100,7 +100,7 @@ Process::_ids_impl(
         vidRv.push_back(pid);
     }
 
-    xBUFF_FREE(infoProc);
+    Utils::bufferFreeT(infoProc);
 
     // out
     a_ids->swap(vidRv);

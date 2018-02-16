@@ -46,7 +46,7 @@ NativeSeedPolicy::_construct_impl()
 #if cmHAVE_SRANDOM_R
     int_t iRv = 0;
 
-    xSTRUCT_ZERO(_data);
+    Utils::structZeroT(_data);
 
     char state[32] = {0};
     iRv = ::initstate_r(_seed, state, sizeof(state), &_data);
@@ -63,7 +63,7 @@ void_t
 NativeSeedPolicy::_destruct_impl()
 {
 #if (cmHAVE_SRANDOM_R && cmHAVE_RANDOM_R)
-    xSTRUCT_ZERO(_data)
+    Utils::structZeroT(_data);
 #endif
 }
 //-------------------------------------------------------------------------------------------------

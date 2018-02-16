@@ -567,7 +567,7 @@ Test_Path::unit()
                 };
             #endif
 
-                for (size_t i = 0; i < xARRAY_SIZE2(data); ++ i) {
+                for (size_t i = 0; i < Utils::arraySizeT(data); ++ i) {
                     bool_t bRv1 = Path::isNameValid(data[i].test);
                     bool_t bRv2 = data[i].expect;
                     xTEST_EQ(bRv1, bRv2);

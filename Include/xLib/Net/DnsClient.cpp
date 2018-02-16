@@ -141,7 +141,7 @@ DnsClient::nameInfo(
     xTEST_EQ(a_hostAddr.empty(), false);
     xTEST_GR(a_port, static_cast<ushort_t>(0));
 
-    sockaddr_in socketAddr; xSTRUCT_ZERO(socketAddr);
+    sockaddr_in socketAddr; Utils::structZeroT(socketAddr);
     socketAddr.sin_family      = a_family;
     socketAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
     socketAddr.sin_port        = htons(a_port);
@@ -364,7 +364,7 @@ DnsClient::isAddressIpv4(
     std::ctstring_t &a_ip
 )
 {
-    sockaddr_in sa; xSTRUCT_ZERO(sa);
+    sockaddr_in sa; Utils::structZeroT(sa);
 
     return (::inet_pton(AF_INET, xT2A(a_ip).c_str(), &sa.sin_addr) != 0);
 }
@@ -375,7 +375,7 @@ DnsClient::isAddressIpv6(
     std::ctstring_t &a_ip
 )
 {
-    sockaddr_in6 sa; xSTRUCT_ZERO(sa);
+    sockaddr_in6 sa; Utils::structZeroT(sa);
 
     return (::inet_pton(AF_INET6, xT2A(a_ip).c_str(), &sa.sin6_addr) != 0);
 }

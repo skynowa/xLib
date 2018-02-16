@@ -337,7 +337,7 @@ XcbMsgBox::_execute(
                 case keyCode_Esc:
                 case keyCode_Enter:
                 case keyCode_KeyPadEnter:
-                    xBUFF_FREE(event);
+                    Utils::bufferFreeT(event);
                     goto l_endFor;
 
                     break;
@@ -364,7 +364,7 @@ XcbMsgBox::_execute(
             break;
         } // switch
 
-        xBUFF_FREE(event);
+        Utils::bufferFreeT(event);
     } // switch
 
 l_endFor:

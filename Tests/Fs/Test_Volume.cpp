@@ -202,7 +202,7 @@ Test_Volume::unit()
                 {(std::numeric_limits<std::size_t>::max)(), false}
             };
 
-            for (size_t i = 0; i < xARRAY_SIZE2(data); ++ i) {
+            for (size_t i = 0; i < Utils::arraySizeT(data); ++ i) {
                 culonglong_t needBytes = data[i].test;
                 cbool_t      bRv       = data[i].expect;
 
