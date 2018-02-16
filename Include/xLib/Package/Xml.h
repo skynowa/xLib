@@ -6,6 +6,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Package/Iconv.h>
 
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
@@ -13,8 +14,6 @@
 #include <libxml/tree.h>
 #include <libxml/xpathInternals.h>
 #include <libxml/xmlsave.h>
-
-#include <xLib/Package/Iconv.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, package)
 //-------------------------------------------------------------------------------------------------
