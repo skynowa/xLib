@@ -68,6 +68,7 @@ public:
 	int            getContent(std::ctstring_t &xpath, XmlNode &value) const;
 	int            getContents(std::ctstring_t &xpath, std::list_tstring_t &values) const;
 	int            getContents(std::ctstring_t &xpath, std::list<XmlNode> &values) const;
+	std::tstring_t getAttribute(std::ctstring_t &name) const;
 	void           getAttributes(std::map_tstring_t &values) const;
 
 	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
