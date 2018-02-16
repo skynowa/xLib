@@ -77,7 +77,7 @@ Test_Xml::unit()
 				}
 			}
 
-			// getAttributes
+			// getAttribute, getAttributes
 			{
 				std::map_tstring_t priceAttrs;
 				price.getAttributes(priceAttrs);
@@ -87,18 +87,21 @@ Test_Xml::unit()
 					{
 						std::map_tstring_t expected {{"amt1", "211.40"}, {"amt2", "211.50"}};
 						xTEST_EQ(priceAttrs, expected);
+						xTEST_EQ(price.getAttribute("amt1"), std::tstring_t("211.40"));
 					}
 					break;
 				case 1:
 					{
 						std::map_tstring_t expected {{"amt1", "161.20"}, {"amt2", "211.50"}, {"amt3", "211.60"}};
 						xTEST_EQ(priceAttrs, expected);
+						xTEST_EQ(price.getAttribute("amt2"), std::tstring_t("211.50"));
 					}
 					break;
 				case 2:
 					{
 						std::map_tstring_t expected {{"amt1", "172.00"}, {"amt2", "211.50"}, {"amt3", "211.60"}, {"amt4", "211.70"}};
 						xTEST_EQ(priceAttrs, expected);
+						xTEST_EQ(price.getAttribute("amt3"), std::tstring_t("211.60"));
 					}
 					break;
 				default:

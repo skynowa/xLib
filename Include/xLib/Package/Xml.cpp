@@ -261,7 +261,7 @@ XmlNode::operator = (
 std::tstring_t
 XmlNode::getName() const
 {
-	return (_node->name == xPTR_NULL) ? "" : (char *)_node->name;
+	return (_node->name == xPTR_NULL) ? "" : (cptr_ctchar_t)_node->name;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -282,7 +282,7 @@ XmlNode::getText() const
 		}
 	}
 
-    _xmlDoc->_iconv.convert((ctchar_t *)content, &sRv);
+    _xmlDoc->_iconv.convert((cptr_ctchar_t)content, &sRv);
 
 	Utils::freeT(content, ::xmlFree, xPTR_NULL);
 
@@ -394,9 +394,30 @@ XmlNode::getContents(
 	return 0;
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+XmlNode::getAttribute(
+	std::ctstring_t &a_name	///< attribute name
+) const
+{
+	if (_node->type != XML_ELEMENT_NODE) {
+		return {};
+	}
+
+	std::tstring_t sRv;
+
+	xmlChar *value = ::xmlGetProp(_node, (xmlChar *)a_name.c_str());
+	xTEST_PTR(value);
+
+	sRv = (cptr_ctchar_t)value;
+
+	Utils::freeT(value, ::xmlFree, xPTR_NULL);
+
+	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 void
 XmlNode::getAttributes(
-	std::map_tstring_t &a_values
+	std::map_tstring_t &a_values	///< [out] attributes (name -> value)
 ) const
 {
 	a_values.clear();
@@ -409,11 +430,14 @@ XmlNode::getAttributes(
 
 	while (property != xPTR_NULL) {
 		const xmlChar *name  = property->name;
-		xmlChar       *value = ::xmlGetProp(_node, name);
+		xTEST_PTR(name);
 
-		a_values.insert( {(const char *)name, (const char *)value} );
+		xmlChar *value = ::xmlGetProp(_node, name);
+		xTEST_PTR(value);
 
-		Utils::freeT(value, ::xmlFree,  xPTR_NULL);
+		a_values.insert( {(cptr_ctchar_t)name, (cptr_ctchar_t)value} );
+
+		Utils::freeT(value, ::xmlFree, xPTR_NULL);
 
 		property = property->next;
 	}
