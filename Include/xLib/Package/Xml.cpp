@@ -409,7 +409,7 @@ XmlNode::getAttributes(
 
 	while (property != xPTR_NULL) {
 		const xmlChar *name  = property->name;
-		xmlChar       *value = ::xmlGetProp(_node, property->name);
+		xmlChar       *value = ::xmlGetProp(_node, name);
 
 		a_values.insert( {(const char *)name, (const char *)value} );
 
