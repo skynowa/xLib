@@ -52,7 +52,7 @@ Type::name(
     char *realName = abi::__cxa_demangle(typeid(a_objT).name(), xPTR_NULL, xPTR_NULL, &status);
     className = (realName == xPTR_NULL) ? Const::strUnknownA() : realName;
 
-    xBUFF_FREE(realName);
+    Utils::bufferFreeT(realName);
 #else
     className.assign( typeid(a_objT).name() );
 

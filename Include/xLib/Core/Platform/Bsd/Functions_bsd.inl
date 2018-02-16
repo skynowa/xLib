@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN(std)
 std::clock_t
 clock() /* xWARN_UNUSED_RV */
 {
-    rusage ruUsage; xSTRUCT_ZERO(ruUsage);
+    rusage ruUsage; Utils::structZeroT(ruUsage);
 
     int_t iRv = ::getrusage(RUSAGE_SELF, &ruUsage);
     if (iRv == - 1) {

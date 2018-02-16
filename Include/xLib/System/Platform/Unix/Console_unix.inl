@@ -205,7 +205,7 @@ Console::_setStdinEcho_impl(
     cbool_t &a_isEnable
 ) const
 {
-    struct termios tty; xSTRUCT_ZERO(tty);
+    struct termios tty; Utils::structZeroT(tty);
 
     int_t iRv = ::tcgetattr(STDIN_FILENO, &tty);
     xTEST_DIFF(iRv, -1);

@@ -35,7 +35,7 @@ Debugger::_coreDumpsEnable_impl(
     int_t iRv = ::prctl(PR_SET_DUMPABLE, isDumpable);
     *a_isEnable = (iRv == 0);
 #elif cmHAVE_RLIMIT_CORE
-    rlimit limit;   xSTRUCT_ZERO(limit);
+    rlimit limit;   Utils::structZeroT(limit);
     if (a_flag) {
         limit.rlim_cur = RLIM_INFINITY;
         limit.rlim_max = RLIM_INFINITY;

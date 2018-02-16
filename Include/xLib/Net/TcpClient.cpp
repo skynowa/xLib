@@ -48,7 +48,7 @@ TcpClient::connect(
     xTEST_EQ(a_ip.empty(), false);
     xTEST_EQ((65535 > a_port) && (0 < a_port), true);
 
-    sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
+    sockaddr_in sockAddr;   Utils::structZeroT(sockAddr);
     sockAddr.sin_family      = static_cast<sa_family_t>(_family);
     sockAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_ip).c_str());
     sockAddr.sin_port        = htons(a_port); // TODO: [skynowa] TcpClient::connect() - htons
@@ -125,7 +125,7 @@ TcpClient::isServerAlive(
     TcpClient client;
     client.create(ISocket::afInet, ISocket::tpStream, ISocket::ptIp);
 
-    sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
+    sockaddr_in sockAddr;   Utils::structZeroT(sockAddr);
     sockAddr.sin_family      = ISocket::afInet;
     sockAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_ip).c_str());
     sockAddr.sin_port        = htons(a_port); // TODO: [skynowa] TcpClient::isServerAlive() - htons

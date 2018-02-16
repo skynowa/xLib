@@ -253,39 +253,9 @@
 //-------------------------------------------------------------------------------------------------
 ///@name Utils
 ///@{
-#define xPTR_DELETE(p) \
-    { Utils::ptrDeleteT(p); }
-    ///< delete object by pointer
-#define xARRAY_DELETE(p) \
-    { Utils::arrayDeleteT(p); }
-    ///< delete array by pointer
 #define xARRAY_SIZE(a) \
-    ( Utils::arraySizeT(a) )
-    ///< get array size
-#define xARRAY_SIZE2(a) \
     ( sizeof(a) / sizeof((a)[0]) )
     ///< get array size
-#define xMEMORY_ZERO(ptr, n) \
-    { Utils::memoryZero(ptr, n); }
-    ///< zero buffer memory
-#define xARRAY_ZERO(a) \
-    { Utils::arrayZeroT(a); }
-    ///< zero buffer memory
-#define xSTRUCT_ZERO(s) \
-    { Utils::structZeroT(s); }
-    ///< zero struct memory
-#define xBUFF_FREE(buff) \
-    { Utils::bufferFreeT(buff); }
-    ///< free buffer memory
-#define xFCLOSE(f) \
-    { Utils::fileClose(f); }
-    ///< close file stream (FILE *)
-#define xMAX(a, b) \
-    ( Utils::maxT( (a), (b) ) )
-    ///< get max value
-#define xMIN(a, b) \
-    ( Utils::minT( (a), (b) ) )
-    ///< get min value
 #define xSWITCH_CASE_RETURN_STRINGISED(x) \
     case x: return #x
     ///< help for switch
@@ -729,7 +699,7 @@
 ///@name xFOR_ARRAY
 ///@{
 #define xFOR_ARRAY(i, cont) \
-    for (size_t i = 0; i < xARRAY_SIZE(cont); ++ i)
+    for (size_t i = 0; i < Utils::arraySizeT(cont); ++ i)
 ///@}
 //-------------------------------------------------------------------------------------------------
 ///@name xTHROW_REPORT, xTRY, xCATCH_ALL
@@ -765,8 +735,9 @@
 //-------------------------------------------------------------------------------------------------
 ///@name Class disallows
 ///@{
-#define xNO_DEFAULT_CONSTRUCT(class_name) \
-	class_name() = delete
+#define xNO_DEFAULT_CONSTRUCT(className) \
+    private: \
+        className();
 	///< disallow default constructor
 #define xNO_COPY(className) \
     private: \

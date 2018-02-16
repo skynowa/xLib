@@ -33,7 +33,7 @@ Path::_dll_impl()
     std::tstring_t sRv;
 
 #if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
-    Dl_info  diInfo;          xSTRUCT_ZERO(diInfo);
+    Dl_info  diInfo;          Utils::structZeroT(diInfo);
     void_t (*procAddress)() = function;
 
     int_t iRv = ::dladdr(&procAddress, &diInfo);

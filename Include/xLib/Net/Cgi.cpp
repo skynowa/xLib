@@ -722,7 +722,7 @@ CgiCookies::CgiCookies(
 CgiCookies::~CgiCookies()
 {
     xFOR_EACH(TCookies, it, items) {
-        xPTR_DELETE(*it);
+        Utils::ptrDeleteT(*it);
     }
 }
 //-------------------------------------------------------------------------------------------------

@@ -202,7 +202,7 @@ User::_passwd(
         xTEST_GR(buffSize, 0L);
     }
 
-    struct passwd pwBuff; xSTRUCT_ZERO(pwBuff);
+    struct passwd pwBuff; Utils::structZeroT(pwBuff);
     std::string   buff;
     buff.resize( static_cast<std::size_t>(buffSize) );
 
