@@ -27,6 +27,7 @@ public:
     	///< convert string
 
 private:
+    xNO_DEFAULT_CONSTRUCT(Iconv);
     xNO_COPY_ASSIGN(Iconv)
 
 	std::csize_t _buffSize {};
