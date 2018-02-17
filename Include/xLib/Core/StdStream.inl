@@ -12,7 +12,7 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Core/Char.h>
-#include <xLib/Core/Algos.h>
+#include <xLib/Algo/Algos.h>
 
 
 xNAMESPACE_BEGIN2(xl, core)
