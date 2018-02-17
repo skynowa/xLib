@@ -5,7 +5,7 @@
 
 
 #if   xCOMPILER_MINGW
-    // TODO: StackTrace - includes
+    // TODO: [skynowa] StackTrace - includes
 #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
     #ifdef xUNICODE
         #define DBGHELP_TRANSLATE_TCHAR 1
@@ -34,7 +34,7 @@ StackTrace::_get_impl(
     std::ctstring_t                 dataNotFound = xT("[???]");
 
 #if   xCOMPILER_MINGW
-    // TODO: StackTrace::_get()
+    // TODO: [skynowa] StackTrace::_get()
 #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
     void_t      *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
     SYMBOL_INFO *symbol                             = xPTR_NULL;

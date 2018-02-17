@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Core/HandleT.h>
+#include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, net)
 
@@ -28,7 +28,7 @@ public:
         rtPost
     };
 
-                      CgiEnvironment(Cgi &cgi);
+    explicit          CgiEnvironment(Cgi &cgi);
         ///< constructor
     virtual          ~CgiEnvironment() {}
         ///< destructor
@@ -150,7 +150,7 @@ public:
 
     TCookies        items;    ///< cookie items
 
-                    CgiCookies(Cgi &cgi);
+    explicit        CgiCookies(Cgi &cgi);
         ///< constructor
     virtual        ~CgiCookies();
         ///< destructor

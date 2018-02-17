@@ -28,7 +28,7 @@ Process::_create_impl(
     xTEST_EQ(pid != - 1L, true);
 
     if (pid == 0L) {
-        // TODO: Process::_create_impl() - a_filePath is executable
+        // TODO: [skynowa] Process::_create_impl() - a_filePath is executable
 
         int_t iRv = ::execlp(xT2A(a_filePath).c_str(), xT2A(a_filePath).c_str(),
             xT2A(a_params).c_str(), static_cast<const char *>( xPTR_NULL ));
@@ -50,7 +50,7 @@ Process::_wait_impl(
 
     xUNUSED(a_timeoutMsec);
 
-    // TODO: Process::_wait_impl() - a_timeoutMsec
+    // TODO: [skynowa] Process::_wait_impl() - a_timeoutMsec
     pid_t liRv   = - 1L;
     int_t status = 0;
 
@@ -150,7 +150,7 @@ Process::_currentHandle_impl()
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: tests
+// TODO: [skynowa] tests
 void_t
 Process::_currentExit_impl(
     cuint_t &a_exitCode

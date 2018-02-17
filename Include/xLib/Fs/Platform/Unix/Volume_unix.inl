@@ -72,7 +72,7 @@ Volume::_space_impl(
     ulonglong_t*    &a_free         ///< free space
 )
 {
-    struct xSTATVFS info;   xSTRUCT_ZERO(info);
+    struct xSTATVFS info;   Utils::structZeroT(info);
 
     int_t iRv = xSTATVFS(xT2A(a_dirPath).c_str(), &info);
     xTEST_DIFF(iRv, - 1);

@@ -65,8 +65,10 @@ public:
     // OS
     OsType         os() xWARN_UNUSED_RV;
         ///< get information about the current OS
-    std::tstring_t formatOs() xWARN_UNUSED_RV;
+    std::tstring_t formatOs() const xWARN_UNUSED_RV;
         ///< format OS type
+    std::tstring_t distro() const xWARN_UNUSED_RV;
+        ///< distributive info
 
     OsArch         osArch() xWARN_UNUSED_RV;
         ///< get OS architecture
@@ -124,7 +126,8 @@ private:
 xPLATFORM_IMPL:
     // OS
     OsType         _os_impl() xWARN_UNUSED_RV;
-    std::tstring_t _formatOs_impl() xWARN_UNUSED_RV;
+    std::tstring_t _formatOs_impl() const xWARN_UNUSED_RV;
+    std::tstring_t _distro_impl() const xWARN_UNUSED_RV;
     OsArch         _osArch_impl() xWARN_UNUSED_RV;
     std::tstring_t _hostName_impl() const xWARN_UNUSED_RV;
 

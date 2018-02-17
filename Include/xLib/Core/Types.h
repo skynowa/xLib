@@ -123,6 +123,15 @@ xNAMESPACE_BEGIN(xl)
     xTYPEDEF_CONST(socket_length_t);
         ///< socket address length
 
+    // find_dir_handle_t
+#if   xENV_WIN
+    typedef HANDLE find_dir_handle_t;
+#elif xENV_UNIX
+    typedef DIR *  find_dir_handle_t;
+#endif
+    xTYPEDEF_CONST(find_dir_handle_t);
+        ///< find directory handle
+
     // find_dir_data_t
 #if   xENV_WIN
     typedef WIN32_FIND_DATA find_dir_data_t;

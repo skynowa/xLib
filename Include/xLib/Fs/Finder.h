@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Core/HandleT.h>
+#include <xLib/Core/Handle.h>
 #include <xLib/Fs/FileType.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, fs)
@@ -55,6 +55,7 @@ private:
 
     _Entry            _entry;       ///< entry handle
     std::ctstring_t   _rootDirPath; ///< root directory path
+    /// TODO: [skynowa] use std::vector
     std::ctstring_t   _shellFilter; ///< shell wild card filter
     bool_t            _isMoveFirst; ///< is first movement
 

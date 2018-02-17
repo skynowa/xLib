@@ -44,7 +44,7 @@ Enum<T>::asString(
 {
 	std::tstring_t sRv;
 
-	// TODO: Enum::asString()
+	// TODO: [skynowa] Enum::asString()
 
 	return sRv;
 }

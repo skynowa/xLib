@@ -174,8 +174,6 @@ Thread::postThreadMessage(
         static_cast<LPARAM>( a_param2 ));
     xTEST_DIFF(blRv, FALSE);
 }
-
-#endif
 //-------------------------------------------------------------------------------------------------
 bool_t
 Thread::tryPostThreadMessage(
@@ -397,7 +395,7 @@ Thread::_setDebugName_impl(
     tagTHREADNAME_INFO info = {0};
     info.dwType = 0x1000;
 #if xUNICODE
-    // TODO: Thread::setDebugName() - convert from Unicode to Ansi
+    // TODO: [skynowa] Thread::setDebugName() - convert from Unicode to Ansi
     //// info.pszName    = xT2A(csName).c_str();
     info.pszName    = "[Unknown]";
 #else
@@ -414,9 +412,9 @@ Thread::_setDebugName_impl(
         //n/a
     }
 #elif xCOMPILER_MINGW
-    // TODO: Thread::setDebugName() - xCOMPILER_MINGW
+    // TODO: [skynowa] Thread::setDebugName() - xCOMPILER_MINGW
 #else
-    // TODO: Thread::setDebugName() - other
+    // TODO: [skynowa] Thread::setDebugName() - other
 #endif
 }
 //-------------------------------------------------------------------------------------------------

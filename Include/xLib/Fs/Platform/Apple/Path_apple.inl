@@ -18,7 +18,7 @@ Path::_exe_impl()
 {
     std::tstring_t sRv;
 
-    // TODO: Path::_exe_impl()
+    // TODO: [skynowa] Path::_exe_impl()
 
     return sRv;
 }
@@ -53,6 +53,12 @@ Path::_fileExt_impl(
     }
 
     return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Path::_isCaseSensitive_impl() const
+{
+	return ::pathconf(_filePath.c_str(), _PC_CASE_SENSITIVE) ? true : false;
 }
 //-------------------------------------------------------------------------------------------------
 

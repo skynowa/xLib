@@ -66,7 +66,7 @@ Profiler::start()
 
     _reset();
 
-    // TODO: set highest thread priority
+    // TODO: [skynowa] set highest thread priority
     {
 
     }
@@ -150,7 +150,7 @@ Profiler::restart(
 void_t
 Profiler::_reset()
 {
-    // TODO: set normal thread priority
+    // TODO: [skynowa] set normal thread priority
     {
 
     }

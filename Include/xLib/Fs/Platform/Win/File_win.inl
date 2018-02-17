@@ -61,7 +61,7 @@ File::_time_impl(
     FILETIME timeAccess   = {0};
     FILETIME timeModified = {0};
 
-    HandleInvalid file;
+    HandleNativeInvalid file;
 
     file = ::CreateFile(a_filePath.c_str(), GENERIC_READ, FILE_SHARE_READ, xPTR_NULL, OPEN_EXISTING,
         FileType::faNormal, xPTR_NULL);
@@ -93,7 +93,7 @@ File::_setTime_impl(
     FILETIME timeModified = {0};
     DateTime::unixToFile(a_modified, &timeModified);
 
-    HandleInvalid file;
+    HandleNativeInvalid file;
 
     file = ::CreateFile(a_filePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, xPTR_NULL,
         OPEN_EXISTING, FileType::faNormal, xPTR_NULL);

@@ -80,7 +80,7 @@ Test_Finder::unit()
             {xT("*.log"),        1}
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE2(data); ++ i) {
+        for (size_t i = 0; i < Utils::arraySizeT(data); ++ i) {
             std::vec_tstring_t entries;
             std::ctstring_t    filter = data[i].test;
             Finder           finder(rootDirPath, filter);
@@ -143,7 +143,7 @@ Test_Finder::unit()
                 {xT("*.log"),        1}
             };
 
-            for (size_t i = 0; i < xARRAY_SIZE2(data); ++ i) {
+            for (size_t i = 0; i < Utils::arraySizeT(data); ++ i) {
                 m_vsRv.clear();
 
                 Finder::files(rootDirPath, data[i].test, false, &m_vsRv);
@@ -168,7 +168,7 @@ Test_Finder::unit()
                 {xT("*.log"),        3}
             };
 
-            for (size_t i = 0; i < xARRAY_SIZE2(data); ++ i) {
+            for (size_t i = 0; i < Utils::arraySizeT(data); ++ i) {
                 m_vsRv.clear();
 
                 Finder::files(rootDirPath, data[i].test, true, &m_vsRv);

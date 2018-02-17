@@ -18,23 +18,23 @@ Test_Locale::unit()
 {
     xTEST_CASE("current")
     {
-        m_sRv = Locale().current();
+        m_sRv = core::Locale().current();
         xTEST_EQ(false, m_sRv.empty());
     }
 
     xTEST_CASE("setCurrent")
     {
-        Locale().setCurrent( Locale().current() );
+        core::Locale().setCurrent( core::Locale().current() );
     }
 
     xTEST_CASE("setDefault")
     {
-        Locale().setDefault();
+        core::Locale().setDefault();
     }
 
     xTEST_CASE("setCurrent")
     {
-        Locale().setCurrent( Locale().current() );
+        core::Locale().setCurrent( core::Locale().current() );
     }
 
     return true;

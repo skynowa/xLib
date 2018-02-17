@@ -23,10 +23,12 @@ cmake_minimum_required(VERSION 2.6)
 # options
 set(PROJECT_TYPE "CXX")
 
-set(CMAKE_COLOR_MAKEFILE        ON)
-set(CMAKE_VERBOSE_MAKEFILE      OFF)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_REQUIRED_QUIET        ON)
+set(CMAKE_COLOR_MAKEFILE          ON)
+set(CMAKE_VERBOSE_MAKEFILE        OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED   ON)
+set(CMAKE_REQUIRED_QUIET          ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)   # PVS-Studio, CppCheck, Clang-tidy
+set(CMAKE_INDEPENDENT_CODE        ON)   # -fPIC
 
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
@@ -48,13 +50,25 @@ endif()
 set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 #--------------------------------------------------------------------------------------------------
 # modules
-set(CMAKE_MODULE_PATH ${XLIB_LOCATION}/CMake ${XLIB_LOCATION}/../CMakeLib)
+set(CMAKE_MODULE_PATH
+    ${XLIB_LOCATION}/CMake
+    ${XLIB_LOCATION}/../CMakeLib
+    ${XLIB_LOCATION}/../CMakeLib/StaticAnalisis)
 
 include(${XLIB_LOCATION}/Config.cmake)
 include(Configure)
+include(Functions/JobsNum)
+include(StaticAnalisis/ClangTidy)
+include(StaticAnalisis/CppCheck)
+include(StaticAnalisis/PvsStudio)
+
+set(JOBS_NUM 0)
+jobs_num(JOBS_NUM)
+# message(FATAL_ERROR "JOBS_NUM: ${JOBS_NUM}")
 #--------------------------------------------------------------------------------------------------
 # includes, libs
 set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
+file(GLOB_RECURSE XLIB_HEADERS ${XLIB_LOCATION}/Include/ *.h)
 file(GLOB_RECURSE XLIB_SOURCES ${XLIB_LOCATION}/Include/*.cpp)
 
 if (OPENSSL_FOUND)
@@ -75,6 +89,20 @@ endif()
 if (CURL_FOUND)
     set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${CURL_INCLUDE_DIRS})
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CURL_LIBRARIES})
+endif()
+
+if (LIBXML2_FOUND)
+    set(XLIB_INCLUDES    ${XLIB_INCLUDES}    ${LIBXML2_INCLUDE_DIR})
+    set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   ${LIBXML2_LIBRARIES})
+    set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} ${LIBXML2_DEFINITIONS})
+endif()
+
+if (ICONV_FOUND)
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${ICONV_INCLUDES})
+
+    if (ICONV_LIBRARIES)
+        set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${ICONV_LIBRARIES})
+    endif()
 endif()
 
 if (ENV_UNIX)
@@ -116,16 +144,10 @@ if     (OPTION_CPP_98)
     set(CMAKE_CXX_STANDARD 98)
 elseif (OPTION_CPP_11)
     set(CMAKE_CXX_STANDARD 11)
-    add_definitions(-std=c++11)
 elseif (OPTION_CPP_14)
     set(CMAKE_CXX_STANDARD 14)
-    add_definitions(-std=c++14)
-elseif (OPTION_CPP_17_EXP)
-    set(CMAKE_CXX_STANDARD 17)
-    add_definitions(-std=c++1z)
 elseif (OPTION_CPP_17)
     set(CMAKE_CXX_STANDARD 17)
-    add_definitions(-std=c++17)
 else()
     message(FATAL_ERROR "CMAKE_CXX_STANDARD: ${CMAKE_CXX_STANDARD} - unknown")
 endif()
@@ -170,7 +192,7 @@ if (NOT (XLIB_INCLUDES AND XLIB_LIBRARIES))
     set(XLIB_SOURCES          "")
     set(XLIB_LIBRARIES        "")
 else()
-    set(cmXLIB_FOUND     1)
+    set(cmXLIB_FOUND          1)
 endif()
 #--------------------------------------------------------------------------------------------------
 # vars
@@ -192,11 +214,15 @@ else()
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
+target_clang_tidy(${JOBS_NUM} "${XLIB_INCLUDES}" "${XLIB_SOURCES}")
+target_cpp_check(${JOBS_NUM} ${XLIB_LOCATION})
+target_pvs_studio(${JOBS_NUM})
+
 if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
 
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_STATIC}  ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "bin")
 
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_STATIC})
@@ -206,7 +232,7 @@ if (cmOPTION_PROJECT_LIB_SHARE)
     set(PROJECT_LIB_SHARE ${PROJECT_NAME}_shared)
 
     add_library(${PROJECT_LIB_SHARE} SHARED ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_SHARE}  ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_SHARE} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_SHARE} DESTINATION "bin")
 
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_SHARE})
@@ -216,7 +242,7 @@ if (cmOPTION_PROJECT_LIB_MODULE)
     set(PROJECT_LIB_MODULE ${PROJECT_NAME}_module)
 
     add_library(${PROJECT_LIB_MODULE} MODULE ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_MODULE}  ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_MODULE} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_MODULE} DESTINATION "bin")
 
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_MODULE})
@@ -257,33 +283,23 @@ install(
     FILES_MATCHING
         PATTERN "*" PATTERN "*.h.in" EXCLUDE)
 #--------------------------------------------------------------------------------------------------
-# clang-tidy
-add_custom_target(clang-tidy
-    COMMAND
-        ${cmCLANG_TIDY_FILE_PATH}
-        ${XLIB_SOURCES}
-        -config=''
-        -export-fixes='clang-tidy-fixes.dat'
-        --header-filter='.*'
-        # -checks='*'
-        # -list-checks
-        --
-        -std=c++11
-        -I${XLIB_INCLUDES})
-#--------------------------------------------------------------------------------------------------
 # uninstall
 add_custom_target(uninstall
     COMMAND
         ${CMAKE_COMMAND}
         -DXLIB_INSTALL_PATH="${XLIB_INSTALL_PATH}"
-        -P ${XLIB_LOCATION}/CMake/Uninstall.cmake)
+        -P ${XLIB_LOCATION}/CMake/Uninstall.cmake
+    COMMENT
+        "Uninstall...")
 #--------------------------------------------------------------------------------------------------
 # template
 add_custom_target(template
     COMMAND
         ${CMAKE_COMMAND}
         -DXLIB_LOCATION="${XLIB_LOCATION}" -DXLIB_TEMPLATES="${XLIB_TEMPLATES}"
-        -P ${XLIB_LOCATION}/CMake/Template.cmake)
+        -P ${XLIB_LOCATION}/CMake/Template.cmake
+    COMMENT
+        "Template...")
 #--------------------------------------------------------------------------------------------------
 # fix warning "Manually-specified variables were not used by the project"
 unset(CMAKE_TOOLCHAIN_FILE)

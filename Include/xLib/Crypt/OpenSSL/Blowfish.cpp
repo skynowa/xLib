@@ -95,8 +95,8 @@ Blowfish::setFileKey(
 void_t
 Blowfish::clearKey()
 {
-    xSTRUCT_ZERO(_key);
-    xARRAY_ZERO(_ivec);
+    Utils::structZeroT(_key);
+    Utils::arraySizeT(_ivec);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -131,7 +131,7 @@ Blowfish::encryptCfb64(
     xTEST_LESS(- 1L, a_inSize);
     xTEST_PTR(a_num);
 
-    xARRAY_ZERO(_ivec);
+    Utils::arraySizeT(_ivec);
 
     (void_t)::BF_cfb64_encrypt(a_in, a_out, a_inSize, &_key, _ivec, a_num, a_mode);
 }

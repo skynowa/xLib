@@ -38,57 +38,8 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
-// C library
-#include <cstdio>
-#include <cstdlib>
-#include <cctype>
-#include <cstring>
-#include <ctime>
-#include <cerrno>
-#include <cstdarg>
-#include <cstddef>
-#include <cmath>
-#include <climits>
-#include <cassert>
-#include <clocale>
-
-#if xUNICODE
-    #include <cwchar>
-    #include <cwctype>
-#endif
-
 // STL
-#include <typeinfo>
-#include <limits>
-#include <string>
-#include <sstream>
-#include <iostream>
-#include <fstream>
-
-#if xLANG_CPP11
-    #include <array>
-    #include <forward_list>
-    #include <unordered_map>
-    #include <unordered_set>
-    #include <tuple>
-#else
-    // #include <xLib/Core/Array.h>
-#endif
-
-#include <vector>
-#include <list>
-#include <set>
-#include <deque>
-#include <queue>
-#include <stack>
-#include <map>
-#include <algorithm>
-#include <iterator>
-#include <utility>
-#include <iomanip>
-#include <cerrno>
-#include <stdexcept>
-#include <locale>
+#include <xLib/Core/Stl.h>
 
 // xLib
 namespace xl

@@ -23,6 +23,11 @@ public:
     virtual       ~Application();
         ///< destructor
 
+    void_t         setDevel(cbool_t flag);
+        ///< set devel
+    bool_t         isDevel() const;
+        ///< is devel
+
     // actions
     void_t         args(cbool_t &withoutFirstArg, std::vec_tstring_t *args) const;
         ///< command line arguments
@@ -106,7 +111,8 @@ public:
     std::tstring_t langDirPath();
         ///< language translation directory
 
-private:
+protected:
+    bool_t                 _isDevel;
     std::ctstring_t        _appGuid;
     static ApplicationInfo _info;
     static Donate          _donate;

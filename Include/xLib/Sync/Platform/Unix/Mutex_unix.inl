@@ -32,7 +32,7 @@ Mutex::_create_impl()
     iRv = ::pthread_mutexattr_setpshared(&attr, PTHREAD_PROCESS_PRIVATE);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
-    // TODO: Mutex::create() - Unix - PTHREAD_MUTEX_RECURSIVE
+    // TODO: [skynowa] Mutex::create() - Unix - PTHREAD_MUTEX_RECURSIVE
 #if 1
     iRv = ::pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));

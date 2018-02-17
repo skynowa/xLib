@@ -17,7 +17,7 @@ ProcessInfo::_cpuUsage_impl() const
 {
     ulong_t ulRv = 0UL;
 
-    // TODO: ProcessInfo::cpuUsage()
+    // TODO: [skynowa] ProcessInfo::cpuUsage()
     // xNOT_IMPLEMENTED
 
     return ulRv;
@@ -29,10 +29,10 @@ ProcessInfo::_ramUsage_impl() const
     ulong_t ulRv = 0UL;
 
     if (Process::isCurrent( Process::currentId() )) {
-        // TODO: ProcessInfo::ramUsage()
+        // TODO: [skynowa] ProcessInfo::ramUsage()
         // xNOT_IMPLEMENTED
     } else {
-        // TODO: ProcessInfo::ramUsage()
+        // TODO: [skynowa] ProcessInfo::ramUsage()
         // xNOT_IMPLEMENTED
     }
 
@@ -82,7 +82,7 @@ ProcessInfo::_parentId_impl() const
 {
     ulong_t ulRv = 0UL;
 
-    // TODO: ProcessInfo::parentId()
+    // TODO: [skynowa] ProcessInfo::parentId()
     // xNOT_IMPLEMENTED
 
     return ulRv;

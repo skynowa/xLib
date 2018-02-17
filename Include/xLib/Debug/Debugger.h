@@ -35,7 +35,7 @@ public:
         ///< set log file path
     std::tstring_t logPath() const xWARN_UNUSED_RV;
         ///< get log file path
-    void_t         reportMake(const ErrorReport &report);
+    void_t         reportMake(const ErrorReport &report) const;
         ///< make report
 
 private:

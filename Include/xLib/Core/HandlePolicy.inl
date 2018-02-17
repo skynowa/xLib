@@ -1,5 +1,5 @@
 /**
- * \file  HandleT.inl
+ * \file  Handle.inl
  * \brief handle
  */
 
@@ -22,15 +22,22 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+std::size_t
+HandlePolicy<T, hvStdFile>::_openMax_impl()
+{
+    return HandlePolicy<native_handle_t, hvNative>::openMax();
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 T
 HandlePolicy<T, hvStdFile>::_clone_impl(const T &a_handle)
 {
     int_t handle = /*::*/fileno(a_handle);
     xTEST_DIFF(handle, - 1);
 
-    native_handle_t nativeHandle = HandlePolicy<native_handle_t, hvInvalid>::clone(handle);
+    native_handle_t nativeHandle = HandlePolicy<native_handle_t, hvNative>::clone(handle);
 
-    return static_cast<T>( xTFDOPEN(nativeHandle, xT("r+")) );  // TODO: clone - open mode
+    return static_cast<T>( xTFDOPEN(nativeHandle, xT("r+")) );  // TODO: [skynowa] clone - open mode
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -57,6 +64,27 @@ HandlePolicy<T, hvStdFile>::_close_impl(T &a_handle)
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+std::size_t
+HandlePolicy<T, hvMySqlConn>::_openMax_impl()
+{
+	// TODO: [skynowa] _openMax_impl
+
+   /**
+	* show variables like "max_connections"
+	*
+    * +-----------------+-------+
+    * | Variable_name   | Value |
+    * +-----------------+-------+
+    * | max_connections | 100   |
+    * +-----------------+-------+
+    *
+    * set global max_connections = 200;
+    */
+
+    return 0;
+}
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
@@ -90,6 +118,15 @@ HandlePolicy<T, hvMySqlConn>::_close_impl(T &a_handle)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+std::size_t
+HandlePolicy<T, hvMySqlResult>::_openMax_impl()
+{
+	// TODO: [skynowa] _openMax_impl
+
+    return 0;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 T
 HandlePolicy<T, hvMySqlResult>::_clone_impl(const T &a_handle)
 {
@@ -119,6 +156,13 @@ HandlePolicy<T, hvMySqlResult>::_close_impl(T &a_handle)
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+std::size_t
+HandlePolicy<T, hvCurl>::_openMax_impl()
+{
+    return static_cast<std::size_t>(CURLOPT_MAXCONNECTS);
+}
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
@@ -152,6 +196,15 @@ HandlePolicy<T, hvCurl>::_close_impl(T &a_handle)
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+std::size_t
+HandlePolicy<T, hvXXXXXXXXXX>::_openMax_impl()
+{
+	// TODO: [skynowa] _openMax_impl
+
+    return 0;
+}
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T

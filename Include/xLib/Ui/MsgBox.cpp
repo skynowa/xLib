@@ -30,7 +30,7 @@ MsgBox::show(
     cType           &a_type    /* = tpOk */
 ) const
 {
-    // TODO: MsgBox - fix unused warnings
+    // TODO: [skynowa] MsgBox - fix unused warnings
     xUNUSED(internal::enums::modalResults);
     xUNUSED(internal::enums::types);
 

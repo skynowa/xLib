@@ -15,6 +15,8 @@ class AtomicLongInt
 {
 public:
                     AtomicLongInt();
+                    AtomicLongInt(const AtomicLongInt &value);
+
     virtual        ~AtomicLongInt() {}
 
     AtomicLongInt & operator += (const AtomicLongInt &value);

@@ -200,7 +200,7 @@ Process::currentParentId()
     return _currentParentId_impl();
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: tests
+// TODO: [skynowa] tests
 Process::handle_t
 Process::currentHandle()
 {
@@ -209,7 +209,7 @@ Process::currentHandle()
     return _currentHandle_impl() ;
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: Process::currentExit() - tests
+// TODO: [skynowa] Process::currentExit() - tests
 void_t
 Process::currentExit(
     cuint_t &a_exitCode

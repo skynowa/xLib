@@ -19,19 +19,19 @@ xNAMESPACE_BEGIN2(xl, core)
 enum HandlePolicyType
     /// error handle type
 {
-    hvInvalid = -1, ///< like "invalid"
-    hvNull,         ///< like "null"
-    hvDll,          ///< DLL
+    hvNative = 0,       ///< like "null"
+    hvNativeInvalid,    ///< like "invalid" (-1)
+    hvDll,              ///< DLL
     hvStdFile,          ///< like xPTR_NULL
-    hvMySqlConn,    ///< MySQL connection
-    hvMySqlResult,  ///< MySQL result
-    hvCurl,         ///< CURL
-    hvFindDir,      ///< Dir find
-    hvSocket        ///< Socket
+    hvMySqlConn,        ///< MySQL connection
+    hvMySqlResult,      ///< MySQL result
+    hvCurl,             ///< CURL
+    hvFindDir,          ///< Dir find
+    hvSocket            ///< Socket
 };
 
 template<typename T, HandlePolicyType valueT>
-class HandleT;
+class Handle;
     /// handle
 
 template<typename T, HandlePolicyType valueT>
@@ -42,15 +42,17 @@ struct HandlePolicy;
     template<typename T> \
     struct HandlePolicy<T, type> \
     { \
-        static T      null() xWARN_UNUSED_RV; \
-        static T      clone(const T &a_handle) xWARN_UNUSED_RV; \
-        static bool_t isValid(const T &a_handle) xWARN_UNUSED_RV; \
-        static void_t close(T &a_handle); \
+        static T           null() xWARN_UNUSED_RV; \
+        static std::size_t openMax() xWARN_UNUSED_RV; \
+        static T           clone(const T &a_handle) xWARN_UNUSED_RV; \
+        static bool_t      isValid(const T &a_handle) xWARN_UNUSED_RV; \
+        static void_t      close(T &a_handle); \
     \
     xPLATFORM_IMPL: \
-        static T      _clone_impl(const T &handle); \
-        static bool_t _isValid_impl(const T &handle); \
-        static void_t _close_impl(T &handle); \
+        static std::size_t _openMax_impl(); \
+        static T           _clone_impl(const T &handle); \
+        static bool_t      _isValid_impl(const T &handle); \
+        static void_t      _close_impl(T &handle); \
     }
 
 #define xHANDLE_POLICY_FACTORY_IMPL(type, null_value) \
@@ -59,6 +61,13 @@ struct HandlePolicy;
     HandlePolicy<T, type>::null() \
     { \
         return null_value; \
+    } \
+    \
+    template<typename T> \
+    std::size_t \
+    HandlePolicy<T, type>::openMax() \
+    { \
+        return _openMax_impl(); \
     } \
     \
     template<typename T> \
@@ -82,8 +91,8 @@ struct HandlePolicy;
         _close_impl(a_handle); \
     }
 //-------------------------------------------------------------------------------------------------
-xHANDLE_POLICY_FACTORY(hvInvalid);
-xHANDLE_POLICY_FACTORY(hvNull);
+xHANDLE_POLICY_FACTORY(hvNative);
+xHANDLE_POLICY_FACTORY(hvNativeInvalid);
 xHANDLE_POLICY_FACTORY(hvDll);
 xHANDLE_POLICY_FACTORY(hvStdFile);
 xHANDLE_POLICY_FACTORY(hvMySqlConn);
@@ -92,25 +101,25 @@ xHANDLE_POLICY_FACTORY(hvCurl);
 xHANDLE_POLICY_FACTORY(hvFindDir);
 xHANDLE_POLICY_FACTORY(hvSocket);
 
-xHANDLE_POLICY_FACTORY_IMPL(hvInvalid,     xNATIVE_HANDLE_INVALID);
-xHANDLE_POLICY_FACTORY_IMPL(hvNull,        xNATIVE_HANDLE_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvDll,         xPTR_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvStdFile,     xPTR_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvMySqlConn,   xPTR_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvMySqlResult, xPTR_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvCurl,        xPTR_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvFindDir,     xFIND_DIR_HANDLE_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvSocket,      xSOCKET_HANDLE_INVALID);
+xHANDLE_POLICY_FACTORY_IMPL(hvNative,        xNATIVE_HANDLE_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvNativeInvalid, xNATIVE_HANDLE_INVALID);
+xHANDLE_POLICY_FACTORY_IMPL(hvDll,           xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvStdFile,       xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvMySqlConn,     xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvMySqlResult,   xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvCurl,          xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvFindDir,       xFIND_DIR_HANDLE_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvSocket,        xSOCKET_HANDLE_INVALID);
 
-typedef HandleT<native_handle_t, hvInvalid>     HandleInvalid;
-typedef HandleT<native_handle_t, hvNull>        HandleNull;
-typedef HandleT<dll_handle_t,    hvDll>         HandleDll;
-typedef HandleT<FILE *,          hvStdFile>     HandleStdFile;
-typedef HandleT<MYSQL *,         hvMySqlConn>   HandleMySqlConn;
-typedef HandleT<MYSQL_RES *,     hvMySqlResult> HandleMySqlResult;
-typedef HandleT<CURL *,          hvCurl>        HandleCurl;
-typedef HandleT<DIR *,           hvFindDir>     HandleFindDir;
-typedef HandleT<socket_t,        hvSocket>      HandleSocket;
+typedef Handle<native_handle_t,   hvNative>        HandleNative;
+typedef Handle<native_handle_t,   hvNativeInvalid> HandleNativeInvalid;
+typedef Handle<dll_handle_t,      hvDll>           HandleDll;
+typedef Handle<FILE *,            hvStdFile>       HandleStdFile;
+typedef Handle<MYSQL *,           hvMySqlConn>     HandleMySqlConn;
+typedef Handle<MYSQL_RES *,       hvMySqlResult>   HandleMySqlResult;
+typedef Handle<CURL *,            hvCurl>          HandleCurl;
+typedef Handle<find_dir_handle_t, hvFindDir>       HandleFindDir;
+typedef Handle<socket_t,          hvSocket>        HandleSocket;
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

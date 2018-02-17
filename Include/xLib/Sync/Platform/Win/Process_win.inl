@@ -67,7 +67,7 @@ Process::_kill_impl(
     xTEST_NA(a_timeoutMsec);
 
 #if 0
-    // TODO: Process::_kill_impl()
+    // TODO: [skynowa] Process::_kill_impl()
     I would attempt to close a (Process with) Window(s) in the following order:
         WM_CLOSE
         WM_QUIT
@@ -256,7 +256,7 @@ Process::_currentParentId_impl()
         dll.procAddress(xT("NtQueryInformationProcess"));
     xTEST_PTR(DllNtQueryInformationProcess);
 
-    // TODO: ProcessBasicInformation (for x64)
+    // TODO: [skynowa] ProcessBasicInformation (for x64)
     NTSTATUS ntsRv = DllNtQueryInformationProcess(currentHandle(), infoClass, &processInformation,
         sizeof(processInformation), &returnSizeBytes);
     xTEST_EQ(NT_SUCCESS(ntsRv), true);

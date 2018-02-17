@@ -23,9 +23,7 @@ Dir::_isRoot_impl() const
 void_t
 Dir::_create_impl() const
 {
-    const mode_t modeDefault = S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH;
-
-    int_t iRv = ::mkdir(xT2A(dirPath()).c_str(), modeDefault);
+    int_t iRv = ::mkdir(xT2A(dirPath()).c_str(), ACCESSPERMS);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -75,7 +73,7 @@ Dir::_setCurrent_impl(
 {
     std::tstring_t dirPath = Path(a_dirPath).slashAppend();
 
-    int_t iRv = ::chdir(xT2A(a_dirPath).c_str());
+    int_t iRv = ::chdir(xT2A(dirPath).c_str());
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------

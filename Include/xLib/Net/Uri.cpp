@@ -51,7 +51,7 @@ Uri::Uri(
     _parse(a_uri);
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: Uri::uri()
+// TODO: [skynowa] Uri::uri()
 /**
  * URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
  *
@@ -174,7 +174,7 @@ Uri::setUserInfo(
 {
     _userInfo = decodeComponent(a_userInfo);
 
-    // TODO: setAuthority
+    // TODO: [skynowa] setAuthority
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -190,7 +190,7 @@ Uri::setHost(
 {
     _host = decodeComponent(a_host);
 
-    // TODO: setAuthority
+    // TODO: [skynowa] setAuthority
 }
 //-------------------------------------------------------------------------------------------------
 ushort_t
@@ -206,7 +206,7 @@ Uri::setPort(
 {
     _port = a_port;
 
-    // TODO: Uri::setPort() - setAuthority
+    // TODO: [skynowa] Uri::setPort() - setAuthority
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -310,7 +310,7 @@ Uri::unescape(
 
     std::tstring_t sRv;
 
-    // TODO: unescape
+    // TODO: [skynowa] unescape
 
     return sRv;
 }
@@ -321,7 +321,7 @@ Uri::encodeComponent(
     std::ctstring_t &a_uri
 )
 {
-    // TODO: Uri::encodeComponent()
+    // TODO: [skynowa] Uri::encodeComponent()
 
     std::tstring_t sRv;
 
@@ -365,7 +365,7 @@ Uri::decodeComponent(
     std::ctstring_t &a_uri
 )
 {
-    // TODO: Uri::decodeComponent()
+    // TODO: [skynowa] Uri::decodeComponent()
 
     std::tstring_t sRv;
 
@@ -475,7 +475,7 @@ Uri::_parse(
     std::ctstring_t &a_uri
 )
 {
-    // TODO: Uri::_parse()
+    // TODO: [skynowa] Uri::_parse()
 
     // normilize();
 
@@ -588,7 +588,7 @@ Uri::_normilize(
 {
     xUNUSED(a_uri);
 
-    // TODO: Uri::_normilize()
+    // TODO: [skynowa] Uri::_normilize()
 
     // trim
     // lowcase(_scheme)

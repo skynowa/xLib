@@ -1,5 +1,5 @@
 /**
- * \file  HandleT.inl
+ * \file  Handle.inl
  * \brief handle
  */
 
@@ -17,8 +17,20 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
+void_t
+Handle<T, valueT>::_setCloseOnExec_impl(
+	cbool_t a_flag
+)
+{
+	const DWORD flags = a_flag ? 0 : 1;
+
+	BOOL blRv = setInfo(HANDLE_FLAG_INHERIT, flags);
+	xTEST_DIFF(blRv, FALSE);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T, HandlePolicyType valueT>
 ulong_t
-HandleT<T, valueT>::info() const
+Handle<T, valueT>::info() const
 {
     xTEST_EQ(isValid(), true);
 
@@ -33,7 +45,7 @@ HandleT<T, valueT>::info() const
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
 void_t
-HandleT<T, valueT>::setInfo(
+Handle<T, valueT>::setInfo(
     culong_t &a_mask,
     culong_t &a_flags
 )

@@ -45,7 +45,7 @@ StackTrace::_get_impl(
         std::tstring_t byteOffset;
         std::tstring_t functionName;
 
-        Dl_info dlinfo;  xSTRUCT_ZERO(dlinfo);
+        Dl_info dlinfo;  Utils::structZeroT(dlinfo);
 
         int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
         if (iRv == 0) {
@@ -78,7 +78,7 @@ StackTrace::_get_impl(
             byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
             functionName = (symbolName == xPTR_NULL) ? dataNotFound : xA2T(symbolName);
 
-            xBUFF_FREE(demangleName);
+            Utils::bufferFreeT(demangleName);
         }
 
         // swap file paths
@@ -149,7 +149,7 @@ StackTrace::_addr2Line(
     std::ctstring_t cmdLine = Format::str(
         xT("{} -e {} -f -C {}"), cmADDR2LINE_FILE_PATH, Path::exe(), a_symbolAddress);
 
-    // TODO: [apple]
+    // TODO: [skynowa] [apple]
     //// sprintf(addr2line_cmd,"atos -o %.256s %p", program_name, addr);
 
     FILE *file = ::popen(xT2A(cmdLine).c_str(), "r");

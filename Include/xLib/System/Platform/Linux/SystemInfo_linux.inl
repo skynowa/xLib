@@ -12,6 +12,116 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+SystemInfo::_distro_impl() const
+{
+    std::tstring_t sRv;
+
+    enum _OsType
+    {
+        Unknown = 0,
+        Os,
+        Arch,
+        Fedora,
+        Redhat,
+        SuSE,
+        Gentoo,
+        Slackware,
+        Frugalware,
+        Altlinux,
+        Mandriva,
+        Meego,
+        Angstrom,
+        Mageia,
+        Debian
+    };
+
+    struct _OsRelease
+    {
+        _OsType        type;
+        std::tstring_t filePath;
+        std::tstring_t name;
+    };
+
+    typedef const std::vector<_OsRelease> cos_release_t;
+
+    cos_release_t osReleases
+    {
+        {Os,         xT("/etc/os-release"),         xT("")},
+        {Arch,       xT("/etc/arch-release"),       xT("Arch Linux")},
+        {Fedora,     xT("/etc/fedora-release"),     xT("")},
+        {Redhat,     xT("/etc/redhat-release"),     xT("")},
+        {SuSE,       xT("/etc/SuSE-release"),       xT("")},
+        {Gentoo,     xT("/etc/gentoo-release"),     xT("")},
+        {Slackware,  xT("/etc/slackware-version"),  xT("")},
+        {Frugalware, xT("/etc/frugalware-release"), xT("")},
+        {Altlinux,   xT("/etc/altlinux-release"),   xT("")},
+        {Mandriva,   xT("/etc/mandriva-release"),   xT("")},
+        {Meego,      xT("/etc/meego-release"),      xT("")},
+        {Angstrom,   xT("/etc/angstrom-version"),   xT("")},
+        {Mageia,     xT("/etc/mageia-release"),     xT("")},
+        {Debian,     xT("/etc/debian_version"),     xT("Debian GNU/Linux")}
+    };
+
+    xFOR_EACH_CONST(cos_release_t, it, osReleases) {
+        switch (it->type) {
+        case Os:
+            {
+                std::map_tstring_t values;
+                File::textRead(it->filePath, xT("="), &values);
+
+                if ( !values.empty() ) {
+                    sRv = values["NAME"];
+
+                    if ( !values["VERSION_ID"].empty() ) {
+                        sRv += xT(" ") + values["VERSION_ID"];
+                    }
+
+                    sRv += xT(" (") + values["ID_LIKE"];
+
+                    if ( !values["VERSION_CODENAME"].empty() ) {
+                        sRv += xT(", ") + values["VERSION_CODENAME"];
+                    }
+
+                    sRv += xT(")");
+
+                    sRv = String::removeAll(sRv, Const::dqm());
+                }
+            }
+            break;
+        case Arch:
+            sRv = it->name;
+            break;
+        case Debian:
+            {
+                sRv = it->name;
+
+                std::vec_tstring_t values;
+                File::textRead(it->filePath, &values);
+
+                if ( !values.empty() ) {
+                    sRv += xT(" ") + values[0];
+                }
+            }
+            break;
+        default:
+            {
+                std::vec_tstring_t values;
+                File::textRead(it->filePath, &values);
+
+                if ( !values.empty() ) {
+                    sRv = values[0];
+                }
+            }
+            break;
+        }
+
+        xCHECK_DO(!sRv.empty(), break);
+    } // for (osReleases)
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 ulong_t
 SystemInfo::_numOfCpus_impl() const
 {
@@ -133,7 +243,7 @@ SystemInfo::_cpuUsage_impl() const
 ulonglong_t
 SystemInfo::_ramTotal_impl() const
 {
-    struct sysinfo info;   xSTRUCT_ZERO(info);
+    struct sysinfo info;   Utils::structZeroT(info);
 
     int_t iRv = ::sysinfo(&info);
     xTEST_DIFF(iRv, - 1);
@@ -146,7 +256,7 @@ SystemInfo::_ramTotal_impl() const
 ulonglong_t
 SystemInfo::_ramAvailable_impl() const
 {
-    struct sysinfo info;   xSTRUCT_ZERO(info);
+    struct sysinfo info;   Utils::structZeroT(info);
 
     int_t iRv = ::sysinfo(&info);
     xTEST_DIFF(iRv, - 1);
@@ -159,7 +269,7 @@ SystemInfo::_ramAvailable_impl() const
 ulong_t
 SystemInfo::_ramUsage_impl() const
 {
-    struct sysinfo info;   xSTRUCT_ZERO(info);
+    struct sysinfo info;   Utils::structZeroT(info);
 
     int_t iRv = ::sysinfo(&info);
     xTEST_DIFF(iRv, - 1);

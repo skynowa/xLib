@@ -21,7 +21,7 @@ public:
     virtual       ~IHandle() {};
         ///< destructor
 
-    virtual T      get() const = 0 ;
+    virtual T      get() const = 0;
         ///< get
     virtual void_t set(const T &handle) = 0;
         ///< set

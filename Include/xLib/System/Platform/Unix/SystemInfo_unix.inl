@@ -17,7 +17,7 @@ SystemInfo::_os_impl()
 {
     OsType otRv = otUnknown;
 
-    utsname info; xSTRUCT_ZERO(info);
+    utsname info; Utils::structZeroT(info);
 
     int_t iRv = ::uname(&info);
     xTEST_DIFF(iRv, - 1);
@@ -41,11 +41,11 @@ SystemInfo::_os_impl()
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-SystemInfo::_formatOs_impl()
+SystemInfo::_formatOs_impl() const
 {
     std::tstring_t sRv;
 
-    utsname info; xSTRUCT_ZERO(info);
+    utsname info; Utils::structZeroT(info);
 
     int_t iRv = ::uname(&info);
     xTEST_DIFF(iRv, - 1);
@@ -63,7 +63,7 @@ SystemInfo::_osArch_impl()
 
     std::tstring_t infoMachine;
     {
-        utsname info; xSTRUCT_ZERO(info);
+        utsname info; Utils::structZeroT(info);
 
         int_t iRv = ::uname(&info);
         xTEST_DIFF(iRv, - 1);
@@ -122,7 +122,7 @@ SystemInfo::_hostName_impl() const
 {
     std::tstring_t sRv;
 
-    utsname info; xSTRUCT_ZERO(info);
+    utsname info; Utils::structZeroT(info);
 
     int_t iRv = ::uname(&info);
     xTEST_DIFF(iRv, - 1);
@@ -144,12 +144,12 @@ SystemInfo::_currentCpuNum_impl() const
     xTEST_DIFF(liRv, - 1L);
 
     ulRv = cpu;
-#elif cmSCHED_GETCPU_FOUND
+#elif cmHAVE_SCHED_GETCPU
     int_t iRv = ::sched_getcpu();
     xTEST_DIFF(iRv, - 1);
 
     ulRv = static_cast<ulong_t>( iRv );
-#elif cmGETCPU_FOUND
+#elif cmHAVE_GETCPU
     // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
     uint_t cpu = 0U;
 

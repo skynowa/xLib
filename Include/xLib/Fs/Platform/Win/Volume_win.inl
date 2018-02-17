@@ -75,10 +75,7 @@ Volume::_isReady_impl() const
     std::tstring_t volumeDirPath = Path( path() ).slashAppend();
     std::tstring_t oldDirPath;
 
-    std::tstring_t sRv;
-    UINT           oldErrorMode = 0U;
-
-    oldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT |
+    UINT oldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT |
         SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
     xTEST_NA(oldErrorMode);
 
@@ -100,7 +97,7 @@ Volume::_mount_impl(
     std::ctstring_t &a_destPath    ///< destination path
 ) const
 {
-    // TODO: Volume::mount - is it correct?
+    // TODO: [skynowa] Volume::mount - is it correct?
     NETRESOURCE netResource = {0};
 
     netResource.dwScope       = RESOURCE_GLOBALNET;
@@ -121,7 +118,7 @@ Volume::_unMount_impl(
     cbool_t &a_isForce     ///< force unmount even if busy
 ) const
 {
-    // TODO: Volume::unMount() - is it correct?
+    // TODO: [skynowa] Volume::unMount() - is it correct?
     DWORD dwRv = ::WNetCancelConnection2(path().c_str(), CONNECT_UPDATE_PROFILE, a_isForce);
     xTEST_EQ(dwRv, static_cast<DWORD>( NO_ERROR ));
 }

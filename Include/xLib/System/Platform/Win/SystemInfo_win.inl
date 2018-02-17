@@ -115,6 +115,12 @@ SystemInfo::_formatOs_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+SystemInfo::_distro_impl() const
+{
+    return formatOs();
+}
+//-------------------------------------------------------------------------------------------------
 SystemInfo::OsArch
 SystemInfo::_osArch_impl()
 {
@@ -152,14 +158,14 @@ SystemInfo::_desktopName_impl() const
     std::ctstring_t nativeDesktop = xT("explorer.exe");
 
 #if 0
-    // TODO: SystemInfo::desktopName()
+    // TODO: [skynowa] SystemInfo::desktopName()
     const Process::id_t pid = Process::idByName(nativeDesktop);
 
     bool_t bRv = Process::isRunning(pid);
     if (bRv) {
         sRv = nativeDesktop;
     } else {
-        // TODO: SystemInfo::desktopName() - checks for detecting Windows shell
+        // TODO: [skynowa] SystemInfo::desktopName() - checks for detecting Windows shell
     }
 
     xTEST_EQ(sRv.empty(), false);
@@ -237,7 +243,7 @@ SystemInfo::_cpuVendor_impl() const
     value = std::string(man);
     xTEST_EQ(value.empty(), false);
 #elif xCOMPILER_CODEGEAR
-    // TODO: SystemInfo::cpuVendor()
+    // TODO: [skynowa] SystemInfo::cpuVendor()
     value = std::tstring_t();
 #endif
 

@@ -12,6 +12,7 @@
 #include <xLib/Core/Utils.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dll.h>
+#include <xLib/Fs/File.h>
 #include <xLib/System/Environment.h>
 
 #if   xENV_WIN
@@ -50,9 +51,15 @@ SystemInfo::os()
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-SystemInfo::formatOs()
+SystemInfo::formatOs() const
 {
     return _formatOs_impl();
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+SystemInfo::distro() const
+{
+    return _distro_impl();
 }
 //-------------------------------------------------------------------------------------------------
 SystemInfo::OsArch

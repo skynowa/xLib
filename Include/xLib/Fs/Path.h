@@ -72,7 +72,8 @@ public:
     std::tstring_t removeExtIf(std::ctstring_t &ext) xWARN_UNUSED_RV;
         ///< remove extension if it equal some string
 
-
+	bool_t         isCaseSensitive() const xWARN_UNUSED_RV;
+		///< get case sensitivity
     bool_t         isAbsolute() const xWARN_UNUSED_RV;
         ///< is absolute
 
@@ -142,6 +143,7 @@ private:
 
 xPLATFORM_IMPL:
     void_t         _toNative_impl(std::tstring_t *filePath) const;
+    bool_t         _isCaseSensitive_impl() const xWARN_UNUSED_RV;
     bool_t         _isAbsolute_impl() const xWARN_UNUSED_RV;
     std::tstring_t _absolute_impl() const xWARN_UNUSED_RV;
 
