@@ -29,7 +29,7 @@ ProcessInfo::_exeName_impl() const
 
     sRv.assign(buff);
 #else
-    // TODO: ProcessInfo::exeName()
+    // TODO: [skynowa] ProcessInfo::exeName()
     xNOT_IMPLEMENTED_RET(std::tstring_t());
 #endif
 
@@ -42,7 +42,6 @@ ProcessInfo::_commandLine_impl(
     std::vec_tstring_t *a_args
 ) const
 {
-    std::string        sRv;
     std::vec_tstring_t args;
 
     int_t iRv = - 1;

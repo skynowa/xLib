@@ -71,7 +71,7 @@ private:
 #if   xENV_WIN
     HCRYPTPROV     _hProv;  ///< CSP handle
 #elif xENV_UNIX
-    #if (cmSRANDOM_R_FOUND && cmRANDOM_R_FOUND)
+    #if (cmHAVE_SRANDOM_R && cmHAVE_RANDOM_R)
         random_data _data;   ///< data for ::srandom_r()
     #endif
 #endif

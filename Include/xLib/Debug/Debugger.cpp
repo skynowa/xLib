@@ -115,7 +115,7 @@ Debugger::logPath() const
 void_t
 Debugger::reportMake(
     const ErrorReport &a_report
-)
+) const
 {
     // never corrupt last error value
     culong_t nativeError = NativeError::get();

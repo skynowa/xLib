@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Core/HandleT.h>
+#include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
 #if xENV_WIN
 

@@ -89,7 +89,6 @@ private:
 
 xNAMESPACE_END2(xl, internal)
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
 
 
 /**************************************************************************************************
@@ -100,14 +99,19 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
-std::ctstring_t _backupDirName = xT("Backup");
-std::ctstring_t _configDirName = xT("Config");
-std::ctstring_t _logDirName    = xT("Log");
-std::ctstring_t _dbDirName     = xT("Db");
-std::ctstring_t _tempDirName   = xT("Temp");
-std::ctstring_t _langDirName   = xT("Lang");
+xl::cbool_t     isDevel       = false;
+
+std::ctstring_t backupDirName = xT("Backup");
+std::ctstring_t configDirName = xT("Config");
+std::ctstring_t logDirName    = xT("Log");
+std::ctstring_t dbDirName     = xT("Db");
+std::ctstring_t tempDirName   = xT("Temp");
+std::ctstring_t langDirName   = xT("Lang");
 
 xNAMESPACE_ANONYM_END
+//-------------------------------------------------------------------------------------------------
+
+xNAMESPACE_BEGIN2(xl, core)
 
 ApplicationInfo Application::_info;
 Donate          Application::_donate;
@@ -116,6 +120,7 @@ Application::Application(
     std::ctstring_t &a_appGuid, ///< application GUID
     std::ctstring_t &a_locale   ///< locale, empty value for current locale
 ) :
+    _isDevel(::isDevel),
     _appGuid(a_appGuid)
 {
     xTEST_EQ(a_appGuid.empty(), false);
@@ -128,6 +133,22 @@ Application::Application(
 /* virtual */
 Application::~Application()
 {
+}
+//-------------------------------------------------------------------------------------------------
+/* virtual */
+void_t
+Application::setDevel(
+    cbool_t a_flag
+)
+{
+    _isDevel = a_flag;
+}
+//-------------------------------------------------------------------------------------------------
+/* virtual */
+bool_t
+Application::isDevel() const
+{
+    return _isDevel;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -166,7 +187,7 @@ Application::isRunnig() const
 {
     xUNUSED(_appGuid);
 
-    // TODO: Application::isRunnig()
+    // TODO: [skynowa] Application::isRunnig()
 
     return false;
 }
@@ -349,42 +370,42 @@ Application::dirPath()
 std::tstring_t
 Application::configDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), _configDirName);
+    return Format::str(xT("{}/{}"), dirPath(), ::configDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Application::logDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), _logDirName);
+    return Format::str(xT("{}/{}"), dirPath(), ::logDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Application::dbDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), _dbDirName);
+    return Format::str(xT("{}/{}"), dirPath(), ::dbDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Application::backupDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), _backupDirName);
+    return Format::str(xT("{}/{}"), dirPath(), ::backupDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Application::tempDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), _tempDirName);
+    return Format::str(xT("{}/{}"), dirPath(), ::tempDirName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Application::langDirPath()
 {
-    return Format::str(xT("{}/{}"), dirPath(), _langDirName);
+    return Format::str(xT("{}/{}"), dirPath(), ::langDirName);
 }
 //-------------------------------------------------------------------------------------------------
 

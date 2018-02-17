@@ -64,7 +64,7 @@ Test_Singleton::unit()
     {
         #if xTEST_IGNORE
             logger_singleton_t *log = new logger_singleton_t;
-            xPTR_DELETE(log);
+            Utils::ptrDeleteT(log);
         #endif
     }
 

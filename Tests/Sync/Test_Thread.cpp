@@ -35,7 +35,7 @@ class CWorkThread :
     public:
         size_t         m_uiIndex;
 
-                       CWorkThread(cbool_t &cbAutoDelete);
+        explicit       CWorkThread(cbool_t &cbAutoDelete);
         virtual       ~CWorkThread();
 
     protected:
@@ -360,7 +360,7 @@ Test_Thread::unit()
 
     if (!cbAutoDelete) {
         xTEST_PTR(pthT);
-        xPTR_DELETE(pthT);
+        Utils::ptrDeleteT(pthT);
     }
 
     m_bRv = unit1();

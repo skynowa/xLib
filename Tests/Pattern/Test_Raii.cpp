@@ -17,6 +17,10 @@ xNAMESPACE_ANONYM_BEGIN
 class A
 {
 public:
+    A() :
+	_value(xPTR_NULL)
+    {};
+
     void_t construct(
         std::tstring_t  *a_value,
         std::ctstring_t &a_clearValue

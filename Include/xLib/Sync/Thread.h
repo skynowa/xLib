@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Core/HandleT.h>
+#include <xLib/Core/Handle.h>
 #include <xLib/Sync/Event.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, sync)
@@ -48,7 +48,7 @@ public:
     typedef pthread_t id_t;     ///< ID
 #endif
 
-                    Thread(cbool_t &isAutoDelete);
+    explicit        Thread(cbool_t &isAutoDelete);
         ///< constructor
     // BUG: Thread:: ~Thread() - must pure virtual
     virtual        ~Thread() /* = 0*/;

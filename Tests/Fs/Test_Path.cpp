@@ -567,7 +567,7 @@ Test_Path::unit()
                 };
             #endif
 
-                for (size_t i = 0; i < xARRAY_SIZE2(data); ++ i) {
+                for (size_t i = 0; i < Utils::arraySizeT(data); ++ i) {
                     bool_t bRv1 = Path::isNameValid(data[i].test);
                     bool_t bRv2 = data[i].expect;
                     xTEST_EQ(bRv1, bRv2);
@@ -702,9 +702,26 @@ Test_Path::unit()
                 xTEST_EQ(m_bRv, true);
                 xTEST_EQ(str,   data[i].expect);
 
-                // TODO: Tests - Path::isNameValid()
+                // TODO: [skynowa] Tests - Path::isNameValid()
             }
         }
+    }
+
+    xTEST_CASE("isCaseSensitive")
+    {
+        m_bRv = Path( Path::exe() ).isCaseSensitive();
+
+		#if   xENV_WIN
+			xTEST_EQ(m_bRv, false);
+		#elif xENV_UNIX
+			#if   xENV_LINUX
+				xTEST_EQ(m_bRv, true);
+			#elif xENV_BSD
+				xTEST_EQ(m_bRv, true);
+			#elif xENV_APPLE
+				xTEST_EQ(m_bRv, true);
+			#endif
+		#endif
     }
 
     xTEST_CASE("isAbsolute")

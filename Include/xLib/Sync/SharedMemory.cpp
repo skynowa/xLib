@@ -1,5 +1,5 @@
 /**
- * \file  SharedMemory.inl
+ * \file  SharedMemory.cpp
  * \brief share memory
  */
 

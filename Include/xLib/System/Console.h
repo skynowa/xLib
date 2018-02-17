@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Core/HandleT.h>
+#include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, system)
 
@@ -113,11 +113,11 @@ public:
 
 private:
 #if xENV_WIN
-    HWND           _wnd;             ///< console window handle
-    HMENU          _menu;            ///< console menu handle
-    HandleInvalid  _stdIn;           ///< standard input handle
-    HandleInvalid  _stdOut;          ///< standard output handle
-    WORD           _attributesDef;   ///< default console attributes
+    HWND                _wnd;           ///< console window handle
+    HMENU               _menu;          ///< console menu handle
+    HandleNativeInvalid _stdIn;         ///< standard input handle
+    HandleNativeInvalid _stdOut;        ///< standard output handle
+    WORD                _attributesDef; ///< default console attributes
 
     HWND           _wndHandle() xWARN_UNUSED_RV;
         ///< get console window handle

@@ -60,7 +60,7 @@
 #endif
 
 #if (__cplusplus >= 201103L)
-	// TODO: xLANG_CPP11 (Android)
+	// TODO: [skynowa] xLANG_CPP11 (Android)
 	#define xLANG_CPP11 1
 		///< ISO/IEC 14882:2011
 #endif
@@ -125,7 +125,7 @@
             #error xLib: unsupported OS
         #endif
     #elif xENV_APPLE
-        #if defined(__APPLE__ && __MACH__)
+        #if defined(__APPLE__) && defined(__MACH__)
             #define xOS_MACOSX 1
                 ///< OS MacOSX
         #else

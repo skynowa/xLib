@@ -1,5 +1,5 @@
 /**
- * \file  HandleT.h
+ * \file  Handle.h
  * \brief handle
  */
 
@@ -28,61 +28,70 @@ xNAMESPACE_END2(xl, core)
 xNAMESPACE_BEGIN2(xl, core)
 
 template<typename T, HandlePolicyType valueT>
-class HandleT :
+class Handle :
     public IHandle<T>
     /// handle
 {
 public:
-              HandleT();
+                Handle();
         ///< constructor
-    explicit  HandleT(const T &handle);
+    explicit    Handle(const T &handle);
         ///< constructor
-    explicit  HandleT(const HandleT &handle);
+    explicit    Handle(const Handle &handle);
         ///< constructor
-    virtual  ~HandleT();
+    virtual    ~Handle();
         ///< destructor
 
-    HandleT & operator = (const T &handle);
+    Handle &    operator = (const T &handle);
         ///< operator =
-    HandleT & operator = (const HandleT &handle);
+    Handle &    operator = (const Handle &handle);
         ///< operator =
 
     static
-    T         null() xWARN_UNUSED_RV;
+    T           null() xWARN_UNUSED_RV;
         ///< get
-    T         get() const xWARN_UNUSED_RV;
-        ///< get
-    void_t    set(const T &handle);
-        ///< set
-    T         clone() const xWARN_UNUSED_RV;
-        ///< duplicate handle
+    static
+    std::size_t openMax() xWARN_UNUSED_RV;
+		///< maximum open handles
 
-    bool_t    isValid() const xWARN_UNUSED_RV;
+    T           get() const xWARN_UNUSED_RV;
+        ///< get
+    void_t      set(const T &handle);
+        ///< set
+    T           clone() const xWARN_UNUSED_RV;
+        ///< duplicate handle
+    void_t      setCloseOnExec(cbool_t flag);
+		///< duplicate file descriptors from sub-processes
+
+    bool_t      isValid() const xWARN_UNUSED_RV;
         ///< is valid
-    void_t    attach(const T &handle);
+    void_t      attach(const T &handle);
         ///< attach
-    T         detach() xWARN_UNUSED_RV;
+    T           detach() xWARN_UNUSED_RV;
         ///< detach
-    void_t    close();
+    void_t      close();
         ///< close
 
 #if xENV_WIN
-    ulong_t   info() const xWARN_UNUSED_RV;
+    ulong_t     info() const xWARN_UNUSED_RV;
         ///< get certain properties of an object handle
-    void_t    setInfo(culong_t &mask, culong_t &flags);
+    void_t      setInfo(culong_t &mask, culong_t &flags);
         ///< set information
 #endif
 
 private:
     typedef HandlePolicy<T, valueT> handle_policy_t;
 
-    T         _handle;    ///< handle
+    T           _handle;    ///< handle
+
+xPLATFORM_IMPL:
+    void_t      _setCloseOnExec_impl(cbool_t flag);
 };
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
-#include "HandleT.inl"
+#include "Handle.inl"
 
 #if xENV_WIN
-    #include "Platform/Win/HandleT_win.inl"
+    #include "Platform/Win/Handle_win.inl"
 #endif

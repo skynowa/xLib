@@ -77,7 +77,7 @@ Signal::connect(
 
 	struct sigaction action;
 	{
-		xSTRUCT_ZERO(action);
+		Utils::structZeroT(action);
 		action.sa_handler = a_onSignals;
 
 		iRv = ::sigemptyset(&action.sa_mask);
@@ -129,7 +129,7 @@ Signal::connectAll(
 				break;
 			}
 
-			// TODO: [ANDROID] SIGCLD
+			// TODO: [skynowa] [ANDROID] SIGCLD
 		}
 
 		signalNums.push_back(i);
@@ -218,7 +218,7 @@ Signal::connectInfoAll(
 				break;
 			}
 
-			// TODO: [ANDROID] SIGCLD
+			// TODO: [skynowa] [ANDROID] SIGCLD
 		}
 
 		signalNums.push_back(i);

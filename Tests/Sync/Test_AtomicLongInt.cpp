@@ -16,6 +16,15 @@ xTEST_UNIT(Test_AtomicLongInt)
 bool_t
 Test_AtomicLongInt::unit()
 {
+    xTEST_CASE("(const AtomicLongInt &value)")
+    {
+        AtomicLongInt alLong1;
+        alLong1 = 13L;
+
+        AtomicLongInt alLong2(alLong1);
+        xTEST_EQ(alLong1.value(), 13L);
+    }
+
     xTEST_CASE("operator += (const AtomicLongInt &cRight)")
     {
         AtomicLongInt alLong1;

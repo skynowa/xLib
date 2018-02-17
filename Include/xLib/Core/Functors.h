@@ -77,7 +77,7 @@ struct Delete
     template<typename T>
     void_t operator () (T* &a_ptr) const
     {
-        xPTR_DELETE(a_ptr);
+        Utils::ptrDeleteT(a_ptr);
     }
 };
 //-------------------------------------------------------------------------------------------------

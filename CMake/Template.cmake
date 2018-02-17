@@ -11,10 +11,10 @@ unset(cmXLIB_TEMPLATE_COMMENTS CACHE)
 unset(cmXLIB_TEMPLATE_SUBDIR   CACHE)
 unset(cmXLIB_TEMPLATE_NS       CACHE)
 
-set(cmXLIB_TEMPLATE          "FsWatcher")
-set(cmXLIB_TEMPLATE_COMMENTS "File system watcher")
-set(cmXLIB_TEMPLATE_SUBDIR   "Fs")
-set(cmXLIB_TEMPLATE_NS       "io")
+set(cmXLIB_TEMPLATE          "Iconv")
+set(cmXLIB_TEMPLATE_COMMENTS "Perform character set conversion")
+set(cmXLIB_TEMPLATE_SUBDIR   "Package")
+set(cmXLIB_TEMPLATE_NS       "package")
 
 if (NOT cmXLIB_TEMPLATE OR
     NOT cmXLIB_TEMPLATE_COMMENTS OR

@@ -170,14 +170,14 @@ CurlClient::escape(
 {
     std::tstring_t sRv;
 
-    char *szRv = ::curl_easy_escape(_handle.get(), a_str.c_str(), static_cast<int>( a_str.size() ));
-    xTEST_PTR(szRv);
+    char *pszRv = ::curl_easy_escape(_handle.get(), a_str.c_str(), static_cast<int>( a_str.size() ));
+    xTEST_PTR(pszRv);
 
-    sRv.assign(szRv);
+    sRv.assign(pszRv);
 
-    if (szRv != xPTR_NULL) {
-        ::curl_free(szRv);
-        szRv = xPTR_NULL;
+    if (pszRv != xPTR_NULL) {
+        ::curl_free(pszRv);
+        pszRv = xPTR_NULL;
     }
 
     return sRv;
@@ -191,15 +191,15 @@ CurlClient::unescape(
     std::tstring_t sRv;
 
     int size_out = 0;
-    char *szRv = ::curl_easy_unescape(_handle.get(), a_str.c_str(),
+    char *pszRv = ::curl_easy_unescape(_handle.get(), a_str.c_str(),
         static_cast<int>( a_str.size() ), &size_out);
-    xTEST_PTR(szRv);
+    xTEST_PTR(pszRv);
 
-    sRv.assign(szRv, static_cast<std::size_t>(size_out));
+    sRv.assign(pszRv, static_cast<std::size_t>(size_out));
 
-    if (szRv != xPTR_NULL) {
-        ::curl_free(szRv);
-        szRv = xPTR_NULL;
+    if (pszRv != xPTR_NULL) {
+        ::curl_free(pszRv);
+        pszRv = xPTR_NULL;
     }
 
     return sRv;

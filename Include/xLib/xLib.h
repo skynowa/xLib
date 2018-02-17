@@ -26,7 +26,7 @@
 #include <xLib/Core/Flags.h>
 #include <xLib/Core/Array.h>
 #include <xLib/Core/Enum.h>
-#include <xLib/Core/HandleT.h>
+#include <xLib/Core/Handle.h>
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/StdStream.h>
 #include <xLib/Core/StdStreamOp.h>
@@ -89,6 +89,7 @@
 #include <xLib/Log/Trace.h>
 #include <xLib/Log/FileLog.h>
 #include <xLib/Log/SystemLog.h>
+#include <xLib/Log/AutoLog.h>
 
 // Net
 #include <xLib/Net/SocketInit.h>
@@ -150,7 +151,9 @@
 
 // Package
 #include <xLib/Package/IData.h>
+#include <xLib/Package/Iconv.h>
 #include <xLib/Package/Csv.h>
 #include <xLib/Package/Ssh2Client.h>
 #include <xLib/Package/Donate.h>
 #include <xLib/Package/CurlClient.h>
+#include <xLib/Package/Xml.h>

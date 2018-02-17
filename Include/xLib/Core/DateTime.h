@@ -84,9 +84,9 @@ public:
         ///< operator >=
 
     // assignment operators
-    const DateTime &operator =  (const DateTime &datetime);
+    DateTime       &operator =  (const DateTime &datetime);
         ///< operator =
-    const DateTime &operator =  (culonglong_t &msec);
+    DateTime       &operator =  (culonglong_t &msec);
         ///< operator =
 
     DateTime        operator +  (const DateTime &datetime) const;
@@ -116,7 +116,7 @@ public:
     ulonglong_t     toMsec() const xWARN_UNUSED_RV;
         ///< convert DateTime to milliseconds
 
-    // TODO: ToUniversalTime, ToLocalTime
+    // TODO: [skynowa] ToUniversalTime, ToLocalTime
 #if xTODO
 	ToUniversalTime();
 	ToLocalTime();

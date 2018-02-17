@@ -167,7 +167,7 @@ Dir::copy(
         File::copy(*it, filePathTo, a_failIfExists);
     }
 
-    // TODO: rollback copy
+    // TODO: [skynowa] rollback copy
 }
 //-------------------------------------------------------------------------------------------------
 void_t

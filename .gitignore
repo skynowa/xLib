@@ -17,3 +17,8 @@ Include/xLib/Config.h
 CMakeLists.txt.user
 .project
 
+# PVS-Studio
+*.PVS-Studio.cfg
+*.i
+*.i.pvslock
+

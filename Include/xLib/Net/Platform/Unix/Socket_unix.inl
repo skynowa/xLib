@@ -26,7 +26,7 @@ ISocket::_send_impl(
 {
     xUNUSED(a_flags);
 
-    // TODO: a_flags as MSG_NOSIGNAL
+    // TODO: [skynowa] a_flags as MSG_NOSIGNAL
 #if !defined(MSG_NOSIGNAL)
     cint_t MSG_NOSIGNAL = 0x20000;
 #endif
@@ -67,7 +67,7 @@ ISocket::_peerName_impl(
     ushort_t       *a_peerPort
 )
 {
-    sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
+    sockaddr_in sockAddr;   Utils::structZeroT(sockAddr);
     socklen_t   sockAddrLen = sizeof(sockAddr);
 
     int_t iRv = ::getpeername(_handle.get(), Utils::reinterpretCastT<sockaddr *>( &sockAddr ),
@@ -93,7 +93,7 @@ ISocket::_socketName_impl(
     ushort_t       *a_socketPort
 )
 {
-    sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
+    sockaddr_in sockAddr;   Utils::structZeroT(sockAddr);
     socklen_t   sockAddrLen = sizeof(sockAddr);
 
     int_t iRv = ::getsockname(_handle.get(), Utils::reinterpretCastT<sockaddr *>( &sockAddr ),

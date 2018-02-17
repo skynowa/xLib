@@ -6,6 +6,9 @@
 
 #include "FsWatcher.h"
 
+#include <xLib/Core/Const.h>
+#include <xLib/Log/AutoLog.h>
+
 #if   xENV_WIN
     #include "Platform/Win/FsWatcher_win.inl"
 #elif xENV_UNIX
@@ -46,11 +49,13 @@ FsWatcher::~FsWatcher()
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-FsWatcher::open(
+FsWatcher::openFiles(
     std::cvec_tstring_t &a_filePaths,
     std::cmap_tstring_t &a_cmds
 )
 {
+	close();
+
     // _filePaths
     for (auto &it_filePath : a_filePaths) {
         File file;
@@ -86,14 +91,17 @@ FsWatcher::openDirs(
 {
     bool_t bRv = false;
 
+	close();
+
     for (auto &it_dirPath : a_dirPaths) {
         std::vec_tstring_t filePaths;
         Finder::files(it_dirPath, _shellFilter, true, &filePaths);
+        std::tcout << "[FsWatcher] Open dir: " << it_dirPath << ", " << filePaths.size() << std::endl;
         if ( filePaths.empty() ) {
             continue;
         }
 
-        bRv = open(filePaths, a_cmds);
+        bRv = openFiles(filePaths, a_cmds);
         if (!bRv) {
             continue;
         }
@@ -120,7 +128,7 @@ FsWatcher::close()
     _close_impl();
 
 	for (auto &it_fileHandle : _fileHandles) {
-		HandleInvalid handle;
+		HandleNativeInvalid handle;
 		handle = it_fileHandle;
 
 		handle.close();

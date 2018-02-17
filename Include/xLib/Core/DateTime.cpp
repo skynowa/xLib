@@ -391,7 +391,7 @@ DateTime::operator >= (
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-const DateTime &
+DateTime &
 DateTime::operator = (
     const DateTime &a_datetime
 )
@@ -403,7 +403,7 @@ DateTime::operator = (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-const DateTime &
+DateTime &
 DateTime::operator = (
     culonglong_t &a_msec
 )
@@ -489,7 +489,7 @@ DateTime::dayOfWeek() const
     xTEST_EQ(DateTimeValidator::datetime(*this), true);
 
     int_t   iRv = 0;
-    std::tm timeInfo;  xSTRUCT_ZERO(timeInfo);
+    std::tm timeInfo;  Utils::structZeroT(timeInfo);
 
     timeInfo.tm_year = _year  - 1900;
     timeInfo.tm_mon  = _month - 1;
@@ -503,7 +503,7 @@ DateTime::dayOfWeek() const
     return iRv;
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: toMsec
+// TODO: [skynowa] toMsec
 ulonglong_t
 DateTime::toMsec() const
 {
@@ -586,7 +586,7 @@ DateTime::_toMsec() const
 
     ulonglong_t ullRv = 0ULL;
 
-    ullRv += xYEAR(_year);    // TODO: DateTime::_toMsec() - days in month 30 or 31 ???
+    ullRv += xYEAR(_year);    // TODO: [skynowa] DateTime::_toMsec() - days in month 30 or 31 ???
     ullRv += xMONTH(_month);
     ullRv += xDAY(_day);
     ullRv += xHOUR(_hour);
@@ -618,7 +618,7 @@ DateTime::format(
     std::tstring_t sRv;
     tchar_t        buff[80 + 1] = {};
 
-    std::tm time; xSTRUCT_ZERO(time);
+    std::tm time; Utils::structZeroT(time);
     time.tm_year = _year  - 1900;
     time.tm_mon  = _month - 1;
     time.tm_mday = _day;
