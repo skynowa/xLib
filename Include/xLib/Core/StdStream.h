@@ -166,7 +166,3 @@ private:
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "StdStream.inl"
-
-#if cmOPTION_PROJECT_HEADER_ONLY
-    #include "StdStream.cpp"
-#endif
