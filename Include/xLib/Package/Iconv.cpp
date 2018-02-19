@@ -1,6 +1,8 @@
 /**
  * \file   Iconv.cpp
  * \brief  Perform character set conversion
+ *
+ * $ iconv --list (list all known coded character sets)
  */
 
 
@@ -20,7 +22,7 @@
 namespace
 {
 
-const iconv_t iconvError = reinterpret_cast<iconv_t>(-1);
+const iconv_t iconvError { (iconv_t)-1 };
 
 }
 //-------------------------------------------------------------------------------------------------
