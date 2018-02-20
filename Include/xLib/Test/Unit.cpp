@@ -70,10 +70,7 @@ Unit::run()
 {
     bool_t isPassed = true;
 
-	// TOOD: _createTempDir
-#if xTEMP_DISABLED
-	_createTempDir(xT("Temp"));
-#endif
+    _createTempDir(xT("Temp"));
 
     for (std::size_t i = 0; i < data.unitLoops; ++ i) {
         bool_t bRv = false;
