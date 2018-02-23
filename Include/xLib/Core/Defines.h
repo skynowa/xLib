@@ -363,6 +363,10 @@
     xFILE xT(":") xSTRINGIZE(xLINE)
     ///< source information
 
+#define xSOURCE_AT_EXPR(expr) \
+    xFILE xT(":") xSTRINGIZE(xLINE) #expr
+    ///< source information
+
 // xDATE
 #if defined(__DATE__)
     #define xDATE \
