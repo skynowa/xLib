@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Core/ApplicationInfo.h>
+#include <xLib/Package/ApplicationInfo.h>
 #include <xLib/Debug/BuildInfo.h>
 #include <xLib/Sync/Signal.h>
 #include <xLib/Package/Donate.h>
