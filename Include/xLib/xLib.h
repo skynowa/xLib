@@ -33,7 +33,6 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Functors.h>
 #include <xLib/Core/DateTime.h>
-#include <xLib/Core/Application.h>
 #include <xLib/Core/StdStream.h>
 
 // Interface
@@ -156,3 +155,5 @@
 #include <xLib/Package/Donate.h>
 #include <xLib/Package/CurlClient.h>
 #include <xLib/Package/Xml.h>
+#include <xLib/Package/Application.h>
+#include <xLib/Package/ApplicationInfo.h>
