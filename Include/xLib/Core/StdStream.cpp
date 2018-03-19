@@ -6,8 +6,6 @@
 
 #include "StdStream.h"
 
-#include <xLib/Core/Char.h>
-
 
 xNAMESPACE_BEGIN2(xl, core)
 

@@ -4,13 +4,13 @@
  */
 
 
-#include <xLib/Test/Test.h>
-#include <xLib/Debug/Debug.h>
-#include <xLib/Debug/NativeError.h>
-#include <xLib/Debug/StdError.h>
-#include <xLib/Debug/ErrorReport.h>
-#include <xLib/Debug/Debugger.h>
-#include <xLib/Debug/StackTrace.h>
+//#include <xLib/Test/Test.h>
+//#include <xLib/Debug/Debug.h>
+//#include <xLib/Debug/NativeError.h>
+//#include <xLib/Debug/StdError.h>
+//#include <xLib/Debug/ErrorReport.h>
+//#include <xLib/Debug/Debugger.h>
+//#include <xLib/Debug/StackTrace.h>
 #include <xLib/Core/Char.h>
 #include <xLib/Core/Type.h>
 #include <xLib/Algo/Algos.h>
@@ -143,7 +143,7 @@ xNAMESPACE_BEGIN2(xl, core)
         \
         sRv += a_format.substr(posPrev, a_format.size() - posPrev); \
         \
-        xTEST_EQ_MSG(param - 1, static_cast<std::size_t>(n), xT("Invalid params")); \
+        /*xTEST_EQ_MSG(param - 1, static_cast<std::size_t>(n), xT("Invalid params")); */ \
         \
         return sRv; \
     }
