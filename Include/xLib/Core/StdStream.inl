@@ -4,17 +4,6 @@
  */
 
 
-#include <xLib/Test/Test.h>
-#include <xLib/Debug/Debug.h>
-#include <xLib/Debug/NativeError.h>
-#include <xLib/Debug/StdError.h>
-#include <xLib/Debug/ErrorReport.h>
-#include <xLib/Debug/Debugger.h>
-#include <xLib/Debug/StackTrace.h>
-#include <xLib/Core/Char.h>
-#include <xLib/Algo/Algos.h>
-
-
 xNAMESPACE_BEGIN2(xl, core)
 
 /**************************************************************************************************
