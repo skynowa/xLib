@@ -16,15 +16,6 @@
         return a_os; \
     }
 
-template<typename T>
-std::tostream_t &
-operator << (std::tostream_t &a_os, const std::basic_string<T> &a_value)
-{
-    xl::core::StdStream::_format(a_os, a_value);
-    return a_os;
-}
-
-
 #define xSTD_OSTREAM_OP_ARRAY(cont_t) \
 	template<typename T, const std::size_t N> \
 	inline std::tostream_t & \
@@ -70,11 +61,9 @@ xSTD_OSTREAM_OP(unsigned char);
 /// xSTD_OSTREAM_OP(void *);
 xSTD_OSTREAM_OP(char *);
 xSTD_OSTREAM_OP(wchar_t *);
-#if 0
-    xSTD_OSTREAM_OP(std::wstring);
-    xSTD_OSTREAM_OP(std::string);
-    xSTD_OSTREAM_OP(std::ustring_t);
-#endif
+xSTD_OSTREAM_OP(std::wstring);
+/// xSTD_OSTREAM_OP(std::string);
+xSTD_OSTREAM_OP(std::ustring_t);
 xSTD_OSTREAM_OP_ARRAY(xl::core::Array);
 xSTD_OSTREAM_OP_2(std::pair);
 xSTD_OSTREAM_OP_1(std::vector);
