@@ -16,6 +16,8 @@
 #include <xLib/Log/FileLog.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
+#include <xLib/Debug/StackTrace.h>
+#include <xLib/Debug/Debugger.h>
 #include <xLib/Test/Test.h>
 
 //-------------------------------------------------------------------------------------------------

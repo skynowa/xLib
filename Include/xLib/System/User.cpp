@@ -9,7 +9,10 @@
 #include <xLib/Log/Trace.h>
 #include <xLib/System/Environment.h>
 #include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/SourceInfo.h>
 #include <xLib/Debug/ErrorReport.h>
+#include <xLib/Debug/StackTrace.h>
+#include <xLib/Debug/Debugger.h>
 
 #if   xENV_WIN
     #include "Platform/Win/User_win.inl"

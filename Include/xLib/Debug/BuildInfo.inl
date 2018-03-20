@@ -8,6 +8,11 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Fs/Path.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/SourceInfo.h>
+#include <xLib/Debug/ErrorReport.h>
+#include <xLib/Debug/StackTrace.h>
+#include <xLib/Debug/Debugger.h>
 
 
 xNAMESPACE_BEGIN2(xl, debug)
