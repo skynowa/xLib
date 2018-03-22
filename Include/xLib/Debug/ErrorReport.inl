@@ -5,6 +5,8 @@
 
 
 #include <xLib/Core/Format.h>
+#include <xLib/Core/StdStream.h>
+#include <xLib/Core/StdStreamOp.h>
 
 
 xNAMESPACE_BEGIN2(xl, debug)
