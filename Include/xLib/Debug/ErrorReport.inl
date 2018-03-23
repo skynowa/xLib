@@ -4,9 +4,9 @@
  */
 
 
-#include <xLib/Core/Format.h>
 #include <xLib/Core/StdStream.h>
 #include <xLib/Core/StdStreamOp.h>
+#include <xLib/Core/Format.h>
 
 
 xNAMESPACE_BEGIN2(xl, debug)
