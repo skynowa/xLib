@@ -14,6 +14,7 @@
 #include <xLib/Core/Char.h>
 #include <xLib/Core/Type.h>
 #include <xLib/Algo/Algos.h>
+#include <xLib/Core/StdStreamOp.h>
 
 
 xNAMESPACE_BEGIN2(xl, core)
@@ -25,7 +26,7 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_CASE(a_v) \
-            _format(ss, a_v)
+            _format(static_cast<std::tostream_t &>(ss), a_v)
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_CASE_1 \
             case 1: xFORMAT_SWITCH_CASE(a_v1); break;
@@ -177,13 +178,7 @@ Format::_format(
     const T         &a_value   ///< value
 )
 {
-	/// std::cout << "Type: " << Type::name(a_value) << ", " << STD_TRACE_VAR(a_value) << std::endl;
-
-#if 1
 	a_os << a_value;
-#else
-	a_os.operator <<(a_value);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 

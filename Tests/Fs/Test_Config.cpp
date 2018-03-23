@@ -9,6 +9,13 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xl;
 
+std::ostream &
+operator << (std::ostream &a_os, const std::basic_string<unsigned char> &a_value)
+{
+	/// xl::core::StdStream::_format(a_os, a_value);
+	return a_os;
+}
+
 xTEST_CLASS(Test_Config)
 xTEST_UNIT(Test_Config)
 //-------------------------------------------------------------------------------------------------
@@ -192,8 +199,8 @@ Test_Config::unit()
 
     xTEST_CASE("keyWriteBin, keyReadBin")
     {
-        std::custring_t value(10, 'z');
-        std::custring_t defaultValue(10, 'd');
+        std::ustring_t value(10, 'z');
+        std::ustring_t defaultValue(10, 'd');
 
         config.keyWriteBin(key1, value);
 

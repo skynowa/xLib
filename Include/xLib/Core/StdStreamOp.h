@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Defines.h>
+#include <xLib/Core/StdStream.h>
 //-------------------------------------------------------------------------------------------------
 #define xSTD_OSTREAM_OP(cont_t) \
     inline std::tostream_t & \
@@ -63,16 +64,7 @@ xSTD_OSTREAM_OP(char *);
 xSTD_OSTREAM_OP(wchar_t *);
 xSTD_OSTREAM_OP(std::wstring);
 /// xSTD_OSTREAM_OP(std::string);
-#if 0
-	xSTD_OSTREAM_OP(std::ustring_t);
-#else
-	inline std::tostream_t &
-    operator << (std::tostream_t &a_os, const std::ustring_t &a_value)
-    {
-        xl::core::StdStream::_format(a_os, a_value);
-        return a_os;
-    }
-#endif
+/// xSTD_OSTREAM_OP(std::ustring_t);
 xSTD_OSTREAM_OP_ARRAY(xl::core::Array);
 xSTD_OSTREAM_OP_2(std::pair);
 xSTD_OSTREAM_OP_1(std::vector);
