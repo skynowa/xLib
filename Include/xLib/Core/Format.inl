@@ -11,7 +11,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
-#include <xLib/Core/StdStreamOp.h>
+#include <xLib/Core/StdStream.h>
 
 
 xNAMESPACE_BEGIN2(xl, core)
