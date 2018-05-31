@@ -64,7 +64,7 @@ xSTD_OSTREAM_OP(char *);
 xSTD_OSTREAM_OP(wchar_t *);
 xSTD_OSTREAM_OP(std::wstring);
 /// xSTD_OSTREAM_OP(std::string);
-/// xSTD_OSTREAM_OP(std::ustring_t);
+xSTD_OSTREAM_OP(std::ustring_t);
 xSTD_OSTREAM_OP_ARRAY(xl::core::Array);
 xSTD_OSTREAM_OP_2(std::pair);
 xSTD_OSTREAM_OP_1(std::vector);
