@@ -9,13 +9,6 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xl;
 
-std::ostream &
-operator << (std::ostream &a_os, const std::basic_string<unsigned char> &a_value)
-{
-	/// xl::core::StdStream::_format(a_os, a_value);
-	return a_os;
-}
-
 xTEST_CLASS(Test_Config)
 xTEST_UNIT(Test_Config)
 //-------------------------------------------------------------------------------------------------
