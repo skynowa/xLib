@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN2(xl, core)
 template<typename T, std::size_t N>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t   &a_os,     ///< [out]
     const Array<T, N> &a_value   ///< value
 )
@@ -29,22 +29,22 @@ StdStream::_format(
 template<typename T1, typename T2>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t         &a_os,     ///< [out]
     const std::pair<T1, T2> &a_value   ///< value
 )
 {
-    _format(a_os, _specifierOpen());
-    _format(a_os, a_value.first);
-    _format(a_os, _delimiter());
-    _format(a_os, a_value.second);
-    _format(a_os, _specifierClose());
+    format(a_os, specifierOpen());
+    format(a_os, a_value.first);
+    format(a_os, delimiter());
+    format(a_os, a_value.second);
+    format(a_os, specifierClose());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t      &a_os,     ///< [out]
     const std::vector<T> &a_value   ///< value
 )
@@ -55,7 +55,7 @@ StdStream::_format(
 template<typename T>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t    &a_os,     ///< [out]
     const std::list<T> &a_value   ///< value
 )
@@ -66,7 +66,7 @@ StdStream::_format(
 template<typename T>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t   &a_os,     ///< [out]
     const std::set<T> &a_value   ///< value
 )
@@ -77,7 +77,7 @@ StdStream::_format(
 template<typename T>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t        &a_os,     ///< [out]
     const std::multiset<T> &a_value   ///< value
 )
@@ -88,7 +88,7 @@ StdStream::_format(
 template<typename T>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t     &a_os,     ///< [out]
     const std::deque<T> &a_value   ///< value
 )
@@ -99,7 +99,7 @@ StdStream::_format(
 template<typename T>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t     &a_os,     ///< [out]
     const std::queue<T> &a_value   ///< value
 )
@@ -115,7 +115,7 @@ StdStream::_format(
 template<typename T>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t              &a_os,     ///< [out]
     const std::priority_queue<T> &a_value   ///< value
 )
@@ -131,7 +131,7 @@ StdStream::_format(
 template<typename T>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t     &a_os,     ///< [out]
     const std::stack<T> &a_value   ///< value
 )
@@ -147,7 +147,7 @@ StdStream::_format(
 template<typename T1, typename T2>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t        &a_os,     ///< [out]
     const std::map<T1, T2> &a_value   ///< value
 )
@@ -158,7 +158,7 @@ StdStream::_format(
 template<typename T1, typename T2>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t             &a_os,     ///< [out]
     const std::multimap<T1, T2> &a_value   ///< value
 )
@@ -179,7 +179,7 @@ StdStream::_format(
 template<typename T, std::size_t N>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t        &a_os,     ///< [out]
     const std::array<T, N> &a_value   ///< value
 )
@@ -190,7 +190,7 @@ StdStream::_format(
 template<typename T>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t            &a_os,     ///< [out]
     const std::forward_list<T> &a_value   ///< value
 )
@@ -201,7 +201,7 @@ StdStream::_format(
 template<typename T1, typename T2>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t                  &a_os,     ///< [out]
     const std::unordered_map<T1, T2> &a_value   ///< value
 )
@@ -212,7 +212,7 @@ StdStream::_format(
 template<typename T1, typename T2>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t                       &a_os,     ///< [out]
     const std::unordered_multimap<T1, T2> &a_value   ///< value
 )
@@ -223,7 +223,7 @@ StdStream::_format(
 template<typename T>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t             &a_os,     ///< [out]
     const std::unordered_set<T> &a_value   ///< value
 )
@@ -234,7 +234,7 @@ StdStream::_format(
 template<typename T>
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t                  &a_os,     ///< [out]
     const std::unordered_multiset<T> &a_value   ///< value
 )
@@ -244,14 +244,14 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 template<typename... Args>
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t           &a_os,     ///< [out]
     const std::tuple<Args...> &a_value   ///< value
 )
 {
-    a_os << _specifierOpen();
+    a_os << specifierOpen();
     TupleFormat<decltype(a_value), sizeof...(Args)>::format(a_os, a_value);
-    a_os << _specifierClose();
+    a_os << specifierClose();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -268,7 +268,7 @@ StdStream::_format(
 
 /* static */
 inline void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const QString   &a_value   ///< value
 )
@@ -314,18 +314,18 @@ StdStream::_formatRange(
 )
 {
     if (a_first == a_last) {
-        a_os << _specifier();
+        a_os << specifier();
         return;
     }
 
-    a_os << _specifierOpen();
+    a_os << specifierOpen();
 	a_os << *a_first;
 
     for (++ a_first; a_first != a_last; ++ a_first) {
-        a_os << str(_delimiter() + _specifier(), *a_first);
+        a_os << str(delimiter() + specifier(), *a_first);
     }
 
-    a_os << _specifierClose();
+    a_os << specifierClose();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
