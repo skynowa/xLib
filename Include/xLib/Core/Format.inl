@@ -119,7 +119,7 @@ xNAMESPACE_BEGIN2(xl, core)
         \
         std::size_t param = 1; \
         for ( ; ; ++ param) { \
-            std::csize_t pos = a_format.find(StdStream::_specifier(), posPrev); \
+            std::csize_t pos = a_format.find(StdStream::specifier(), posPrev); \
             if (pos == std::tstring_t::npos) { \
                 break; \
             } \
@@ -136,7 +136,7 @@ xNAMESPACE_BEGIN2(xl, core)
             \
             sRv.append( ss.str() ); \
             \
-            posPrev = pos + StdStream::_specifier().size(); \
+            posPrev = pos + StdStream::specifier().size(); \
         } \
         \
         sRv += a_format.substr(posPrev, a_format.size() - posPrev); \

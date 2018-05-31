@@ -17,16 +17,16 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::ctstring_t &
-StdStream::_specifier()
+StdStream::specifier()
 {
-    static std::ctstring_t sRv(_specifierOpen() + _specifierClose());
+    static std::ctstring_t sRv(specifierOpen() + specifierClose());
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::ctstring_t &
-StdStream::_specifierOpen()
+StdStream::specifierOpen()
 {
     static std::ctstring_t sRv(xT("{"));
 
@@ -35,7 +35,7 @@ StdStream::_specifierOpen()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::ctstring_t &
-StdStream::_specifierClose()
+StdStream::specifierClose()
 {
     static std::ctstring_t sRv(xT("}"));
 
@@ -44,7 +44,7 @@ StdStream::_specifierClose()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::ctstring_t &
-StdStream::_delimiter()
+StdStream::delimiter()
 {
     static std::ctstring_t sRv(xT(", "));
 
@@ -53,7 +53,7 @@ StdStream::_delimiter()
 //-------------------------------------------------------------------------------------------------
 /* static */
 tchar_t
-StdStream::_unprintableChar()
+StdStream::unprintableChar()
 {
     static tchar_t chRv(xT('?'));
 
@@ -62,7 +62,7 @@ StdStream::_unprintableChar()
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const bool       a_value   ///< value
 )
@@ -73,7 +73,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const char       a_value   ///< value
 )
@@ -87,7 +87,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const wchar_t    a_value   ///< value
 )
@@ -101,7 +101,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t     &a_os,     ///< [out]
     const unsigned char  a_value   ///< value
 )
@@ -115,7 +115,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const short      a_value   ///< value
 )
@@ -125,7 +125,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t      &a_os,     ///< [out]
     const unsigned short  a_value   ///< value
 )
@@ -135,7 +135,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const int        a_value   ///< value
 )
@@ -145,7 +145,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t    &a_os,     ///< [out]
     const unsigned int  a_value   ///< value
 )
@@ -155,7 +155,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const long       a_value   ///< value
 )
@@ -165,7 +165,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t     &a_os,     ///< [out]
     const unsigned long  a_value   ///< value
 )
@@ -175,7 +175,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const long long  a_value   ///< value
 )
@@ -185,7 +185,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t          &a_os,     ///< [out]
     const unsigned long long  a_value   ///< value
 )
@@ -195,7 +195,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const float      a_value   ///< value
 )
@@ -205,7 +205,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const double     a_value   ///< value
 )
@@ -215,7 +215,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t   &a_os,     ///< [out]
     const long double  a_value   ///< value
 )
@@ -225,7 +225,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const void *     a_value   ///< value
 )
@@ -239,7 +239,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const char *     a_value   ///< value
 )
@@ -247,13 +247,13 @@ StdStream::_format(
     if (a_value == xPTR_NULL) {
         a_os << xT("null");
     } else {
-        _format(a_os, std::string(a_value));
+        format(a_os, std::string(a_value));
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t &a_os,     ///< [out]
     const wchar_t *  a_value   ///< value
 )
@@ -261,13 +261,13 @@ StdStream::_format(
     if (a_value == xPTR_NULL) {
         a_os << xT("null");
     } else {
-        _format(a_os, std::wstring(a_value));
+        format(a_os, std::wstring(a_value));
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t    &a_os,     ///< [out]
     const std::wstring &a_value   ///< value
 )
@@ -288,7 +288,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t   &a_os,     ///< [out]
     const std::string &a_value   ///< value
 )
@@ -302,7 +302,7 @@ StdStream::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t      &a_os,     ///< [out]
     const std::ustring_t &a_value   ///< value
 )
@@ -314,7 +314,7 @@ StdStream::_format(
 
 /* static */
 void_t
-StdStream::_format(
+StdStream::format(
     std::tostream_t      &a_os,     ///< [out]
     const std::nullptr_t  a_value   ///< value
 )
