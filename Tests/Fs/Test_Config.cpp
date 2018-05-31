@@ -192,8 +192,8 @@ Test_Config::unit()
 
     xTEST_CASE("keyWriteBin, keyReadBin")
     {
-        std::ustring_t value(10, 'z');
-        std::ustring_t defaultValue(10, 'd');
+        std::custring_t value(10, 'z');
+        std::custring_t defaultValue(10, 'd');
 
         config.keyWriteBin(key1, value);
 
