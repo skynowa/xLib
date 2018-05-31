@@ -297,11 +297,7 @@ StdStream::_formatString(
 )
 {
     for (; a_first != a_last; ++ a_first) {
-	#if 0
-		a_os << str(_specifier(), *a_first);
-	#else
 		a_os << *a_first;
-	#endif
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -320,11 +316,7 @@ StdStream::_formatRange(
     }
 
     a_os << _specifierOpen();
-#if 0
-	a_os << str(_specifier(), *a_first);
-#else
 	a_os << *a_first;
-#endif
 
     for (++ a_first; a_first != a_last; ++ a_first) {
         a_os << str(_delimiter() + _specifier(), *a_first);
