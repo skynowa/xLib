@@ -8,6 +8,7 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/System/Console.h>
 #include <xLib/Debug/BuildInfo.h>
