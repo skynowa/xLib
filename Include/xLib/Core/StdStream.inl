@@ -4,6 +4,9 @@
  */
 
 
+#include <xLib/Core/Char.h>
+#include <xLib/Algo/Algos.h>
+
 xNAMESPACE_BEGIN2(xl, core)
 
 /**************************************************************************************************
