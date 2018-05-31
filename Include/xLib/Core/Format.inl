@@ -26,7 +26,7 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_CASE(a_v) \
-            _format(static_cast<std::tostream_t &>(ss), a_v)
+            _format(ss, a_v)
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_SWITCH_CASE_1 \
             case 1: xFORMAT_SWITCH_CASE(a_v1); break;
