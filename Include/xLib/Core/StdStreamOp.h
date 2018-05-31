@@ -43,6 +43,8 @@
 		xl::core::StdStream::_format(a_os, a_value); \
 		return a_os; \
 	}
+//-------------------------------------------------------------------------------------------------
+xNAMESPACE_BEGIN2(xl, core)
 
 /// xSTD_OSTREAM_OP(bool);
 xSTD_OSTREAM_OP(char);
@@ -91,4 +93,6 @@ xSTD_OSTREAM_OP_2(std::multimap);
 #if xLIB_QT
 	xSTD_OSTREAM_OP(QString);
 #endif
+
+xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
