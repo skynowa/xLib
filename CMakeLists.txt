@@ -28,7 +28,7 @@ set(CMAKE_VERBOSE_MAKEFILE        OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED   ON)
 set(CMAKE_REQUIRED_QUIET          ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)   # PVS-Studio, CppCheck, Clang-tidy
-# set(CMAKE_INDEPENDENT_CODE        ON)   # -fPIC
+set(CMAKE_INDEPENDENT_CODE        ON)   # -fPIC
 
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
@@ -220,8 +220,6 @@ target_pvs_studio(${JOBS_NUM})
 
 if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
-
-    add_compile_options(-fPIC)
 
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
