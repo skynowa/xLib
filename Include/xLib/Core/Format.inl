@@ -12,7 +12,6 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Core/Char.h>
-#include <xLib/Core/Type.h>
 #include <xLib/Algo/Algos.h>
 #include <xLib/Core/StdStreamOp.h>
 
