@@ -1,6 +1,6 @@
 /**
  * \file   StdStream.inl
- * \brief  format string
+ * \brief  print string
  */
 
 
@@ -19,88 +19,88 @@ xNAMESPACE_BEGIN2(xl, core)
 template<typename T, std::size_t N>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t   &a_os,     ///< [out]
     const Array<T, N> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t         &a_os,     ///< [out]
     const std::pair<T1, T2> &a_value   ///< value
 )
 {
-    format(a_os, bracketOpen());
-    format(a_os, a_value.first);
-    format(a_os, delimiter());
-    format(a_os, a_value.second);
-    format(a_os, bracketClose());
+    print(a_os, _bracketOpen());
+    print(a_os, a_value.first);
+    print(a_os, _delimiter());
+    print(a_os, a_value.second);
+    print(a_os, _bracketClose());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t      &a_os,     ///< [out]
     const std::vector<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t    &a_os,     ///< [out]
     const std::list<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t   &a_os,     ///< [out]
     const std::set<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t        &a_os,     ///< [out]
     const std::multiset<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t     &a_os,     ///< [out]
     const std::deque<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t     &a_os,     ///< [out]
     const std::queue<T> &a_value   ///< value
 )
@@ -110,13 +110,13 @@ StdStream::format(
     const_iterator begin = &a_value.front();
     const_iterator end   = &a_value.back() + 1;
 
-    _formatRange(a_os, begin, end);
+    _printRange(a_os, begin, end);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t              &a_os,     ///< [out]
     const std::priority_queue<T> &a_value   ///< value
 )
@@ -126,13 +126,13 @@ StdStream::format(
     const_iterator begin = &a_value.top();
     const_iterator end   = &a_value.top() + a_value.size();
 
-    _formatRange(a_os, begin, end);
+    _printRange(a_os, begin, end);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t     &a_os,     ///< [out]
     const std::stack<T> &a_value   ///< value
 )
@@ -142,29 +142,29 @@ StdStream::format(
     const_iterator begin = &a_value.top() - a_value.size() + 1;
     const_iterator end   = &a_value.top() + 1;
 
-    _formatRange(a_os, begin, end);
+    _printRange(a_os, begin, end);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t        &a_os,     ///< [out]
     const std::map<T1, T2> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t             &a_os,     ///< [out]
     const std::multimap<T1, T2> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -180,79 +180,79 @@ StdStream::format(
 template<typename T, std::size_t N>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t        &a_os,     ///< [out]
     const std::array<T, N> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t            &a_os,     ///< [out]
     const std::forward_list<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t                  &a_os,     ///< [out]
     const std::unordered_map<T1, T2> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t                       &a_os,     ///< [out]
     const std::unordered_multimap<T1, T2> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t             &a_os,     ///< [out]
     const std::unordered_set<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t                  &a_os,     ///< [out]
     const std::unordered_multiset<T> &a_value   ///< value
 )
 {
-    _formatContainer(a_os, a_value);
+    _printContainer(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename... Args>
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t           &a_os,     ///< [out]
     const std::tuple<Args...> &a_value   ///< value
 )
 {
-    a_os << bracketOpen();
-    TupleFormat<decltype(a_value), sizeof...(Args)>::format(a_os, a_value);
-    a_os << bracketClose();
+    a_os << _bracketOpen();
+    TupleFormat<decltype(a_value), sizeof...(Args)>::print(a_os, a_value);
+    a_os << _bracketClose();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -269,7 +269,7 @@ StdStream::format(
 
 /* static */
 inline void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const QString   &a_value   ///< value
 )
@@ -294,7 +294,7 @@ StdStream::format(
 template<typename IteratorT>
 /* static */
 inline void_t
-StdStream::_formatString(
+StdStream::_printString(
     std::tostream_t &a_os,     ///< [out]
     IteratorT        a_first,  ///< first iterator
     IteratorT        a_last    ///< last iterator
@@ -308,43 +308,43 @@ StdStream::_formatString(
 template<typename IteratorT>
 /* static */
 inline void_t
-StdStream::_formatRange(
+StdStream::_printRange(
     std::tostream_t &a_os,     ///< [out]
     IteratorT        a_first,  ///< first iterator
     IteratorT        a_last    ///< last iterator
 )
 {
     if (a_first == a_last) {
-        a_os << bracketOpen();
-        a_os << bracketClose();
+        a_os << _bracketOpen();
+        a_os << _bracketClose();
         return;
     }
 
-    a_os << bracketOpen();
+    a_os << _bracketOpen();
 	a_os << *a_first;
 
     for (++ a_first; a_first != a_last; ++ a_first) {
-        a_os << delimiter() << *a_first;
+        a_os << _delimiter() << *a_first;
     }
 
-    a_os << bracketClose();
+    a_os << _bracketClose();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::_formatContainer(
+StdStream::_printContainer(
     std::tostream_t &a_os,     ///< [out]
     const T         &a_value   ///< value
 )
 {
-    _formatRange(a_os, a_value.begin(), a_value.end());
+    _printRange(a_os, a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */
 inline void_t
-StdStream::_formatFloat(
+StdStream::_printFloat(
     std::tostream_t &a_os,
     const T          a_value
 )
@@ -388,7 +388,7 @@ StdStream::_floatPrecisionMax()
 template<typename T>
 /* static */
 inline std::tstring_t
-StdStream::_formatUnprintableChar(
+StdStream::_printUnprintableChar(
     const T a_value
 )
 {
