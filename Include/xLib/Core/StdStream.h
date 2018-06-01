@@ -47,9 +47,9 @@ public:
     static void_t format(std::tostream_t &os, const float value);
     static void_t format(std::tostream_t &os, const double value);
     static void_t format(std::tostream_t &os, const long double value);
-    static void_t format(std::tostream_t &os, const void * value);
-    static void_t format(std::tostream_t &os, const char * value);
-    static void_t format(std::tostream_t &os, const wchar_t * value);
+    static void_t format(std::tostream_t &os, const void *value);
+    static void_t format(std::tostream_t &os, const char *value);
+    static void_t format(std::tostream_t &os, const wchar_t *value);
     static void_t format(std::tostream_t &os, const std::wstring &value);
     static void_t format(std::tostream_t &os, const std::string &value);
     static void_t format(std::tostream_t &os, const std::ustring_t &value);

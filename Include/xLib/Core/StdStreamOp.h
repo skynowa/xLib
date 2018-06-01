@@ -43,6 +43,15 @@
 		xl::core::StdStream::format(a_os, a_value); \
 		return a_os; \
 	}
+
+#define xSTD_OSTREAM_OP_VAR(cont_t) \
+	template<typename... Args> \
+	inline std::tostream_t & \
+	operator << (std::tostream_t &a_os, const cont_t<Args...> &a_value) \
+	{ \
+		xl::core::StdStream::format(a_os, a_value); \
+		return a_os; \
+	}
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
@@ -88,6 +97,7 @@ xSTD_OSTREAM_OP_2(std::multimap);
 	xSTD_OSTREAM_OP_2(std::unordered_multimap);
 	xSTD_OSTREAM_OP_1(std::unordered_set);
 	xSTD_OSTREAM_OP_1(std::unordered_multiset);
+	xSTD_OSTREAM_OP_VAR(std::tuple);
 #endif
 
 #if xLIB_QT
