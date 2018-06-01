@@ -322,7 +322,7 @@ StdStream::_formatRange(
 	a_os << *a_first;
 
     for (++ a_first; a_first != a_last; ++ a_first) {
-        a_os << str(delimiter() + specifier(), *a_first);
+        a_os << delimiter() << *a_first;
     }
 
     a_os << specifierClose();
