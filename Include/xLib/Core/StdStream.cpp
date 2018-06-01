@@ -1,6 +1,6 @@
 /**
  * \file   StdStream.cpp
- * \brief  format string
+ * \brief  print string
  */
 
 
@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const bool       a_value   ///< value
 )
@@ -28,7 +28,7 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const char       a_value   ///< value
 )
@@ -42,7 +42,7 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const wchar_t    a_value   ///< value
 )
@@ -50,13 +50,13 @@ StdStream::format(
     if ( ::iswprint(  static_cast<wint_t>(a_value) ) ) {
         a_os << static_cast<tchar_t>(a_value);
     } else {
-        a_os << _formatUnprintableChar(a_value);
+        a_os << _printUnprintableChar(a_value);
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t     &a_os,     ///< [out]
     const unsigned char  a_value   ///< value
 )
@@ -64,13 +64,13 @@ StdStream::format(
     if ( ::isprint(a_value) ) {
         a_os << a_value;
     } else {
-        a_os << _formatUnprintableChar(a_value);
+        a_os << _printUnprintableChar(a_value);
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const short      a_value   ///< value
 )
@@ -80,7 +80,7 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t      &a_os,     ///< [out]
     const unsigned short  a_value   ///< value
 )
@@ -90,7 +90,7 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const int        a_value   ///< value
 )
@@ -100,7 +100,7 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t    &a_os,     ///< [out]
     const unsigned int  a_value   ///< value
 )
@@ -110,7 +110,7 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const long       a_value   ///< value
 )
@@ -120,7 +120,7 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t     &a_os,     ///< [out]
     const unsigned long  a_value   ///< value
 )
@@ -130,7 +130,7 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const long long  a_value   ///< value
 )
@@ -140,7 +140,7 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t          &a_os,     ///< [out]
     const unsigned long long  a_value   ///< value
 )
@@ -150,37 +150,37 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const float      a_value   ///< value
 )
 {
-    _formatFloat(a_os, a_value);
+    _printFloat(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const double     a_value   ///< value
 )
 {
-    _formatFloat(a_os, a_value);
+    _printFloat(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t   &a_os,     ///< [out]
     const long double  a_value   ///< value
 )
 {
-    _formatFloat(a_os, a_value);
+    _printFloat(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const void *     a_value   ///< value
 )
@@ -194,7 +194,7 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const char *     a_value   ///< value
 )
@@ -202,13 +202,13 @@ StdStream::format(
     if (a_value == xPTR_NULL) {
         a_os << xT("null");
     } else {
-        format(a_os, std::string(a_value));
+        print(a_os, std::string(a_value));
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const wchar_t *  a_value   ///< value
 )
@@ -216,13 +216,13 @@ StdStream::format(
     if (a_value == xPTR_NULL) {
         a_os << xT("null");
     } else {
-        format(a_os, std::wstring(a_value));
+        print(a_os, std::wstring(a_value));
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t    &a_os,     ///< [out]
     const std::wstring &a_value   ///< value
 )
@@ -234,7 +234,7 @@ StdStream::format(
         if ( ::iswprint( static_cast<wint_t>(a_value[i])) ) {
             sRv += static_cast<tchar_t>( a_value[i] );
         } else {
-            sRv += _formatUnprintableChar( a_value[i] );
+            sRv += _printUnprintableChar( a_value[i] );
         }
     }
 
@@ -243,7 +243,7 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t   &a_os,     ///< [out]
     const std::string &a_value   ///< value
 )
@@ -257,19 +257,19 @@ StdStream::format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t      &a_os,     ///< [out]
     const std::ustring_t &a_value   ///< value
 )
 {
-    _formatString(a_os, a_value.begin(), a_value.end());
+    _printString(a_os, a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
 #if xLANG_CPP11
 
 /* static */
 void_t
-StdStream::format(
+StdStream::print(
     std::tostream_t      &a_os,     ///< [out]
     const std::nullptr_t  a_value   ///< value
 )

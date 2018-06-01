@@ -13,7 +13,7 @@
     inline std::tostream_t & \
     operator << (std::tostream_t &a_os, const cont_t &a_value) \
     { \
-        xl::core::StdStream::format(a_os, a_value); \
+        xl::core::StdStream::print(a_os, a_value); \
         return a_os; \
     }
 
@@ -22,7 +22,7 @@
 	inline std::tostream_t & \
 	operator << (std::tostream_t &a_os, const cont_t<T, N> &a_value) \
 	{ \
-		xl::core::StdStream::format(a_os, a_value); \
+		xl::core::StdStream::print(a_os, a_value); \
 		return a_os; \
 	}
 
@@ -31,7 +31,7 @@
 	inline std::tostream_t & \
 	operator << (std::tostream_t &a_os, const cont_t<T> &a_value) \
 	{ \
-		xl::core::StdStream::format(a_os, a_value); \
+		xl::core::StdStream::print(a_os, a_value); \
 		return a_os; \
 	}
 
@@ -40,7 +40,7 @@
 	inline std::tostream_t & \
 	operator << (std::tostream_t &a_os, const cont_t<T1, T2> &a_value) \
 	{ \
-		xl::core::StdStream::format(a_os, a_value); \
+		xl::core::StdStream::print(a_os, a_value); \
 		return a_os; \
 	}
 
@@ -49,7 +49,7 @@
 	inline std::tostream_t & \
 	operator << (std::tostream_t &a_os, const cont_t<Args...> &a_value) \
 	{ \
-		xl::core::StdStream::format(a_os, a_value); \
+		xl::core::StdStream::print(a_os, a_value); \
 		return a_os; \
 	}
 //-------------------------------------------------------------------------------------------------
