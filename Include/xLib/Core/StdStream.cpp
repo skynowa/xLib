@@ -1,70 +1,23 @@
 /**
- * \file   Format.cpp
- * \brief  format string
+ * \file   StdStream.cpp
+ * \brief  print string
  */
 
 
-#include "Format.h"
-
-#include <xLib/Core/Char.h>
+#include "StdStream.h"
 
 
 xNAMESPACE_BEGIN2(xl, core)
 
 /**************************************************************************************************
-*   Format - private
+*   public
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-std::ctstring_t &
-Format::_specifier()
-{
-    static std::ctstring_t sRv(_specifierOpen() + _specifierClose());
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::ctstring_t &
-Format::_specifierOpen()
-{
-    static std::ctstring_t sRv(xT("{"));
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::ctstring_t &
-Format::_specifierClose()
-{
-    static std::ctstring_t sRv(xT("}"));
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::ctstring_t &
-Format::_delimiter()
-{
-    static std::ctstring_t sRv(xT(", "));
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-tchar_t
-Format::_unprintableChar()
-{
-    static tchar_t chRv(xT('?'));
-
-    return chRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const bool       a_value   ///< value
 )
@@ -75,7 +28,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const char       a_value   ///< value
 )
@@ -89,7 +42,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const wchar_t    a_value   ///< value
 )
@@ -97,13 +50,13 @@ Format::_format(
     if ( ::iswprint(  static_cast<wint_t>(a_value) ) ) {
         a_os << static_cast<tchar_t>(a_value);
     } else {
-        a_os << _formatUnprintableChar(a_value);
+        a_os << _printUnprintableChar(a_value);
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t     &a_os,     ///< [out]
     const unsigned char  a_value   ///< value
 )
@@ -111,13 +64,13 @@ Format::_format(
     if ( ::isprint(a_value) ) {
         a_os << a_value;
     } else {
-        a_os << _formatUnprintableChar(a_value);
+        a_os << _printUnprintableChar(a_value);
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const short      a_value   ///< value
 )
@@ -127,7 +80,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t      &a_os,     ///< [out]
     const unsigned short  a_value   ///< value
 )
@@ -137,7 +90,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const int        a_value   ///< value
 )
@@ -147,7 +100,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t    &a_os,     ///< [out]
     const unsigned int  a_value   ///< value
 )
@@ -157,7 +110,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const long       a_value   ///< value
 )
@@ -167,7 +120,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t     &a_os,     ///< [out]
     const unsigned long  a_value   ///< value
 )
@@ -177,7 +130,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const long long  a_value   ///< value
 )
@@ -187,7 +140,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t          &a_os,     ///< [out]
     const unsigned long long  a_value   ///< value
 )
@@ -197,37 +150,37 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const float      a_value   ///< value
 )
 {
-    _formatFloat(a_os, a_value);
+    _printFloat(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const double     a_value   ///< value
 )
 {
-    _formatFloat(a_os, a_value);
+    _printFloat(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t   &a_os,     ///< [out]
     const long double  a_value   ///< value
 )
 {
-    _formatFloat(a_os, a_value);
+    _printFloat(a_os, a_value);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const void *     a_value   ///< value
 )
@@ -241,7 +194,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const char *     a_value   ///< value
 )
@@ -249,13 +202,13 @@ Format::_format(
     if (a_value == xPTR_NULL) {
         a_os << xT("null");
     } else {
-        _format(a_os, std::string(a_value));
+        print(a_os, std::string(a_value));
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t &a_os,     ///< [out]
     const wchar_t *  a_value   ///< value
 )
@@ -263,13 +216,13 @@ Format::_format(
     if (a_value == xPTR_NULL) {
         a_os << xT("null");
     } else {
-        _format(a_os, std::wstring(a_value));
+        print(a_os, std::wstring(a_value));
     }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t    &a_os,     ///< [out]
     const std::wstring &a_value   ///< value
 )
@@ -281,7 +234,7 @@ Format::_format(
         if ( ::iswprint( static_cast<wint_t>(a_value[i])) ) {
             sRv += static_cast<tchar_t>( a_value[i] );
         } else {
-            sRv += _formatUnprintableChar( a_value[i] );
+            sRv += _printUnprintableChar( a_value[i] );
         }
     }
 
@@ -290,7 +243,7 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t   &a_os,     ///< [out]
     const std::string &a_value   ///< value
 )
@@ -304,19 +257,19 @@ Format::_format(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t      &a_os,     ///< [out]
     const std::ustring_t &a_value   ///< value
 )
 {
-    _formatString(a_os, a_value.begin(), a_value.end());
+    _printString(a_os, a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
 #if xLANG_CPP11
 
 /* static */
 void_t
-Format::_format(
+StdStream::print(
     std::tostream_t      &a_os,     ///< [out]
     const std::nullptr_t  a_value   ///< value
 )
@@ -327,6 +280,50 @@ Format::_format(
 }
 
 #endif
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::ctstring_t &
+StdStream::_bracketOpen()
+{
+    static std::ctstring_t sRv(xT("{"));
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::ctstring_t &
+StdStream::_bracketClose()
+{
+    static std::ctstring_t sRv(xT("}"));
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::ctstring_t &
+StdStream::_delimiter()
+{
+    static std::ctstring_t sRv(xT(", "));
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+tchar_t
+StdStream::_unprintableChar()
+{
+    static tchar_t chRv(xT('?'));
+
+    return chRv;
+}
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, core)

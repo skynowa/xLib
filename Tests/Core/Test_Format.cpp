@@ -624,7 +624,7 @@ Test_Format::unit()
         EnumTest value2 = etTwo;
 
         m_sRv = Format::str(xT("{}, {}, {}"), etUnknown, etOne, etTwo);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("EnumTest::etUnknown, EnumTest::etOne, EnumTest::etTwo")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("etUnknown, etOne, etTwo")));
     }
 
     xTEST_CASE("struct")

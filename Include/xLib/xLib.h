@@ -28,6 +28,8 @@
 #include <xLib/Core/Enum.h>
 #include <xLib/Core/Handle.h>
 #include <xLib/Core/Locale.h>
+#include <xLib/Core/StdStream.h>
+#include <xLib/Core/StdStreamOp.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/String.h>
