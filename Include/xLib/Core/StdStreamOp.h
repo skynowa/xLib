@@ -55,26 +55,34 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-/// xSTD_OSTREAM_OP(bool);
+///@name std::ostream::operator <<
+///@{
+#if 0
+
+xSTD_OSTREAM_OP(bool);
+xSTD_OSTREAM_OP(short);
+xSTD_OSTREAM_OP(unsigned short);
+xSTD_OSTREAM_OP(int);
+xSTD_OSTREAM_OP(unsigned int);
+xSTD_OSTREAM_OP(long);
+xSTD_OSTREAM_OP(unsigned long);
+xSTD_OSTREAM_OP(long long);
+xSTD_OSTREAM_OP(unsigned long long);
+xSTD_OSTREAM_OP(float);
+xSTD_OSTREAM_OP(double);
+xSTD_OSTREAM_OP(long double);
+xSTD_OSTREAM_OP(void *);
+xSTD_OSTREAM_OP(std::string);
+
+#endif
+///@}
+
 xSTD_OSTREAM_OP(char);
 xSTD_OSTREAM_OP(wchar_t);
 xSTD_OSTREAM_OP(unsigned char);
-/// xSTD_OSTREAM_OP(short);
-/// xSTD_OSTREAM_OP(unsigned short);
-/// xSTD_OSTREAM_OP(int);
-/// xSTD_OSTREAM_OP(unsigned int);
-/// xSTD_OSTREAM_OP(long);
-/// xSTD_OSTREAM_OP(unsigned long);
-/// xSTD_OSTREAM_OP(long long);
-/// xSTD_OSTREAM_OP(unsigned long long);
-/// xSTD_OSTREAM_OP(float);
-/// xSTD_OSTREAM_OP(double);
-/// xSTD_OSTREAM_OP(long double);
-/// xSTD_OSTREAM_OP(void *);
 xSTD_OSTREAM_OP(char *);
 xSTD_OSTREAM_OP(wchar_t *);
 xSTD_OSTREAM_OP(std::wstring);
-/// xSTD_OSTREAM_OP(std::string);
 xSTD_OSTREAM_OP(std::ustring_t);
 xSTD_OSTREAM_OP_ARRAY(xl::core::Array);
 xSTD_OSTREAM_OP_2(std::pair);
