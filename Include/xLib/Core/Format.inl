@@ -120,7 +120,7 @@ xNAMESPACE_BEGIN2(xl, core)
         \
         std::size_t param = 1; \
         for ( ; ; ++ param) { \
-            std::csize_t pos = a_format.find(StdStream::specifier(), posPrev); \
+            std::csize_t pos = a_format.find(_specifier(), posPrev); \
             if (pos == std::tstring_t::npos) { \
                 break; \
             } \
@@ -137,7 +137,7 @@ xNAMESPACE_BEGIN2(xl, core)
             \
             sRv.append( ss.str() ); \
             \
-            posPrev = pos + StdStream::specifier().size(); \
+            posPrev = pos + _specifier().size(); \
         } \
         \
         sRv += a_format.substr(posPrev, a_format.size() - posPrev); \
@@ -167,6 +167,23 @@ xFORMAT_STR(17)
 xFORMAT_STR(18)
 xFORMAT_STR(19)
 xFORMAT_STR(20)
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline std::ctstring_t &
+Format::_specifier()
+{
+    static std::ctstring_t sRv(xT("{}"));
+
+    return sRv;
+}
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */

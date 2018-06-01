@@ -17,9 +17,6 @@ class StdStream
 {
 public:
     static
-    std::ctstring_t & specifier() xWARN_UNUSED_RV;
-        ///< open specifier
-    static
     std::ctstring_t & specifierOpen() xWARN_UNUSED_RV;
         ///< close specifier
     static
