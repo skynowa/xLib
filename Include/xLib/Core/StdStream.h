@@ -16,19 +16,6 @@ class StdStream
     ///< format string
 {
 public:
-    static
-    std::ctstring_t & bracketOpen() xWARN_UNUSED_RV;
-        ///< open bracket
-    static
-    std::ctstring_t & bracketClose() xWARN_UNUSED_RV;
-        ///< close bracket
-    static
-    std::ctstring_t & delimiter() xWARN_UNUSED_RV;
-        ///< delimiter
-    static
-    tchar_t           unprintableChar() xWARN_UNUSED_RV;
-        ///< unprintable char
-
     static void_t format(std::tostream_t &os, const bool value);
     static void_t format(std::tostream_t &os, const char value);
     static void_t format(std::tostream_t &os, const wchar_t value);
@@ -115,7 +102,7 @@ public:
         format(std::tostream_t &a_ss, const T &a_value)
         {
             TupleFormat<T, N - 1>::format(a_ss, a_value);
-            a_ss << delimiter() << std::get<N - 1>(a_value);
+            a_ss << _delimiter() << std::get<N - 1>(a_value);
         }
     };
 
@@ -138,6 +125,19 @@ public:
 #endif
 
 private:
+    static
+    std::ctstring_t & _bracketOpen() xWARN_UNUSED_RV;
+        ///< open bracket
+    static
+    std::ctstring_t & _bracketClose() xWARN_UNUSED_RV;
+        ///< close bracket
+    static
+    std::ctstring_t & _delimiter() xWARN_UNUSED_RV;
+        ///< _delimiter
+    static
+    tchar_t           _unprintableChar() xWARN_UNUSED_RV;
+        ///< unprintable char
+
     xNO_INSTANCE(StdStream)
     xNO_COPY_ASSIGN(StdStream)
 
