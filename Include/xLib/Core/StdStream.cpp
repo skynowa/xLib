@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::ctstring_t &
-StdStream::specifierOpen()
+StdStream::bracketOpen()
 {
     static std::ctstring_t sRv(xT("{"));
 
@@ -26,7 +26,7 @@ StdStream::specifierOpen()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::ctstring_t &
-StdStream::specifierClose()
+StdStream::bracketClose()
 {
     static std::ctstring_t sRv(xT("}"));
 

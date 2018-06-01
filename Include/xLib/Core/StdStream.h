@@ -17,11 +17,11 @@ class StdStream
 {
 public:
     static
-    std::ctstring_t & specifierOpen() xWARN_UNUSED_RV;
-        ///< close specifier
+    std::ctstring_t & bracketOpen() xWARN_UNUSED_RV;
+        ///< open bracket
     static
-    std::ctstring_t & specifierClose() xWARN_UNUSED_RV;
-        ///< specifier
+    std::ctstring_t & bracketClose() xWARN_UNUSED_RV;
+        ///< close bracket
     static
     std::ctstring_t & delimiter() xWARN_UNUSED_RV;
         ///< delimiter
