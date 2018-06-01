@@ -35,11 +35,11 @@ StdStream::format(
     const std::pair<T1, T2> &a_value   ///< value
 )
 {
-    format(a_os, specifierOpen());
+    format(a_os, bracketOpen());
     format(a_os, a_value.first);
     format(a_os, delimiter());
     format(a_os, a_value.second);
-    format(a_os, specifierClose());
+    format(a_os, bracketClose());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -250,9 +250,9 @@ StdStream::format(
     const std::tuple<Args...> &a_value   ///< value
 )
 {
-    a_os << specifierOpen();
+    a_os << bracketOpen();
     TupleFormat<decltype(a_value), sizeof...(Args)>::format(a_os, a_value);
-    a_os << specifierClose();
+    a_os << bracketClose();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -315,19 +315,19 @@ StdStream::_formatRange(
 )
 {
     if (a_first == a_last) {
-        a_os << specifierOpen();
-        a_os << specifierClose();
+        a_os << bracketOpen();
+        a_os << bracketClose();
         return;
     }
 
-    a_os << specifierOpen();
+    a_os << bracketOpen();
 	a_os << *a_first;
 
     for (++ a_first; a_first != a_last; ++ a_first) {
         a_os << delimiter() << *a_first;
     }
 
-    a_os << specifierClose();
+    a_os << bracketClose();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
