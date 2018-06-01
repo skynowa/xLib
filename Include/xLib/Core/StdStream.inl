@@ -315,7 +315,8 @@ StdStream::_formatRange(
 )
 {
     if (a_first == a_last) {
-        a_os << specifier();
+        a_os << specifierOpen();
+        a_os << specifierClose();
         return;
     }
 

@@ -43,6 +43,10 @@ public:
     xFORMAT_STR_DECLARE(20);
 
 private:
+    static
+    std::ctstring_t & _specifier() xWARN_UNUSED_RV;
+        ///< open specifier
+
     xNO_INSTANCE(Format)
     xNO_COPY_ASSIGN(Format)
 

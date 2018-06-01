@@ -17,15 +17,6 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::ctstring_t &
-StdStream::specifier()
-{
-    static std::ctstring_t sRv(specifierOpen() + specifierClose());
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::ctstring_t &
 StdStream::specifierOpen()
 {
     static std::ctstring_t sRv(xT("{"));
