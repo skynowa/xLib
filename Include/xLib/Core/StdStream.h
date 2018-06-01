@@ -125,6 +125,9 @@ public:
 #endif
 
 private:
+    xNO_INSTANCE(StdStream)
+    xNO_COPY_ASSIGN(StdStream)
+
     static
     std::ctstring_t & _bracketOpen() xWARN_UNUSED_RV;
         ///< open bracket
@@ -138,26 +141,29 @@ private:
     tchar_t           _unprintableChar() xWARN_UNUSED_RV;
         ///< unprintable char
 
-    xNO_INSTANCE(StdStream)
-    xNO_COPY_ASSIGN(StdStream)
+    template<typename IteratorT>
+    static
+    void_t _printString(std::tostream_t &os, IteratorT first, IteratorT last);
 
     template<typename IteratorT>
-    static void_t _printString(std::tostream_t &os, IteratorT first, IteratorT last);
-
-    template<typename IteratorT>
-    static void_t _printRange(std::tostream_t &os, IteratorT first, IteratorT last);
+    static
+    void_t _printRange(std::tostream_t &os, IteratorT first, IteratorT last);
 
     template<typename T>
-    static void_t _printContainer(std::tostream_t &os, const T &value);
+    static
+    void_t _printContainer(std::tostream_t &os, const T &value);
 
     template<typename T>
-    static void_t _printFloat(std::tostream_t &os, const T value);
+    static
+    void_t _printFloat(std::tostream_t &os, const T value);
 
     template<typename T>
-    static int_t _floatPrecisionMax() xWARN_UNUSED_RV;
+    static
+    int_t _floatPrecisionMax() xWARN_UNUSED_RV;
 
     template<typename T>
-    static std::tstring_t _printUnprintableChar(const T value) xWARN_UNUSED_RV;
+    static
+    std::tstring_t _printUnprintableChar(const T value) xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xl, core)
