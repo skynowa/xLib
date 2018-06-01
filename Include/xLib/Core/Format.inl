@@ -12,6 +12,7 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Core/StdStream.h>
+#include <xLib/Core/StdStreamOp.h>
 
 
 xNAMESPACE_BEGIN2(xl, core)
@@ -175,7 +176,15 @@ Format::_format(
     const T         &a_value   ///< value
 )
 {
+#if   1
 	a_os << a_value;
+#elif 0
+	a_os.operator <<(a_value);
+#elif 0
+	::std::operator << (a_os, a_value);
+#else
+	::xl::core::operator << (a_os, a_value);
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
