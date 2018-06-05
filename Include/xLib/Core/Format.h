@@ -47,12 +47,12 @@ private:
     std::ctstring_t & _specifier() xWARN_UNUSED_RV;
         ///< open specifier
 
-    xNO_INSTANCE(Format)
-    xNO_COPY_ASSIGN(Format)
-
     template<typename T>
     static void_t _format(std::tostream_t &os, const T &value);
         ///< format other types with overload std::tostream_t::operator <<
+
+    xNO_INSTANCE(Format)
+    xNO_COPY_ASSIGN(Format)
 };
 
 xNAMESPACE_END2(xl, core)
