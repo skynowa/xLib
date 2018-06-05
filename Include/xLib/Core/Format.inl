@@ -115,9 +115,6 @@ xNAMESPACE_BEGIN2(xl, core)
         std::tstring_t sRv; \
         std::size_t    posPrev = 0U; \
         \
-        static std::tstringstream_t ss; \
-        static std::ctstring_t      emptyString; \
-        \
         std::size_t param = 1; \
         for ( ; ; ++ param) { \
             std::csize_t pos = a_format.find(_specifier(), posPrev); \
@@ -127,8 +124,12 @@ xNAMESPACE_BEGIN2(xl, core)
             \
             sRv += a_format.substr(posPrev, pos - posPrev); \
             \
-            ss.str( emptyString ); \
-            ss.clear(); \
+            static std::tstringstream_t ss; \
+            { \
+                static std::ctstring_t emptyString; \
+                ss.str( emptyString ); \
+                ss.clear(); \
+            } \
             \
             switch (param) { \
             xFORMAT_SWITCH_CASE_##n \
