@@ -14,23 +14,11 @@
  *
  * void T::print(std::tostream_t&) const;
  */
-template<class T>
+template<class StreamT, class ValueT>
 auto
 operator << (
-	std::tostream_t &a_os,
-	const T         &a_value
-) -> decltype(a_value.print(a_os), a_os)
-{
-	a_value.print(a_os);
-
-	return a_os;
-}
-
-template<class T>
-auto
-operator << (
-	xl::core::StdStream2 &a_os,
-	const T              &a_value
+	StreamT      &a_os,
+	const ValueT &a_value
 ) -> decltype(a_value.print(a_os), a_os)
 {
 	a_value.print(a_os);
