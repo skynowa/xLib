@@ -9,8 +9,6 @@
 #include <xLib/Core/Defines.h>
 #include <xLib/Core/StdStream.h>
 //-------------------------------------------------------------------------------------------------
-#if xLANG_CPP11
-
 /**
  * Print any object which has a member:
  *
@@ -27,8 +25,6 @@ operator << (
 
 	return a_os;
 }
-
-#endif
 //-------------------------------------------------------------------------------------------------
 #define xSTD_OSTREAM_OP(cont_t) \
     inline std::tostream_t & \
