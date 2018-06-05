@@ -106,9 +106,10 @@ xNAMESPACE_BEGIN2(xl, core)
             case 20: xFORMAT_SWITCH_CASE(a_v20); break;
 //-------------------------------------------------------------------------------------------------
 #define xFORMAT_STR(n) \
+    template<typename PolicyT> \
     template<xVA_TYPES_##n> \
     inline std::tstring_t \
-    Format::str( \
+    FormatT<PolicyT>::str( \
         std::ctstring_t &a_format, xVA_VARS_##n \
     ) \
     { \
@@ -124,7 +125,7 @@ xNAMESPACE_BEGIN2(xl, core)
             \
             sRv += a_format.substr(posPrev, pos - posPrev); \
             \
-            static std::tstringstream_t ss; \
+            static PolicyT ss; \
             { \
                 static std::ctstring_t emptyString; \
                 ss.str( emptyString ); \
@@ -177,19 +178,21 @@ xFORMAT_STR(20)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+template<typename PolicyT>
 /* static */
 inline std::ctstring_t &
-Format::_specifier()
+FormatT<PolicyT>::_specifier()
 {
     static std::ctstring_t sRv(xT("{}"));
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+template<typename PolicyT>
 template<typename T>
 /* static */
 inline void_t
-Format::_format(
+FormatT<PolicyT>::_format(
     std::tostream_t &a_os,     ///< [out]
     const T         &a_value   ///< value
 )

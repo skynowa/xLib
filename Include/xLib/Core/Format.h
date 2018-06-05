@@ -11,7 +11,8 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-class Format
+template<typename PolicyT>
+class FormatT
     ///< format string
 {
 public:
@@ -53,9 +54,15 @@ private:
     void_t _format(std::tostream_t &os, const T &value);
         ///< format other types with overload std::tostream_t::operator <<
 
-    xNO_INSTANCE(Format)
-    xNO_COPY_ASSIGN(Format)
+    xNO_INSTANCE(FormatT)
+    xNO_COPY_ASSIGN(FormatT)
 };
+
+// TODO: StdStream2 - impl
+class StdStream2 {};
+
+typedef FormatT<std::tstringstream_t> Format;
+typedef FormatT<xl::core::StdStream2> FormatXl;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

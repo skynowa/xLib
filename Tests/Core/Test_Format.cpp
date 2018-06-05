@@ -64,6 +64,20 @@ operator << (
     return a_out;
 }
 //-------------------------------------------------------------------------------------------------
+struct StructTest2
+{
+    std::size_t a;
+    std::string b;
+    const char *c;
+
+    void print(std::tostream_t &a_os) const
+    {
+		a_os << xT("{");
+		a_os << a << xT(", ") << b << xT(", ") << c;
+		a_os << xT("}");
+    }
+};
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
 Test_Format::unit()
@@ -630,6 +644,13 @@ Test_Format::unit()
     xTEST_CASE("struct")
     {
         StructTest value = {7, xT("std::string"), xT("c_str")};
+        m_sRv = Format::str(xT("{}"), value);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{7, std::string, c_str}")));
+    }
+
+    xTEST_CASE("struct/print")
+    {
+        StructTest2 value = {7, xT("std::string"), xT("c_str")};
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{7, std::string, c_str}")));
     }
