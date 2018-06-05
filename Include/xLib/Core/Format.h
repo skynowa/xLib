@@ -19,7 +19,8 @@ public:
 
 #define xFORMAT_STR_DECLARE(n) \
     template<xVA_TYPES_##n> \
-    static std::tstring_t str(std::ctstring_t &format, xVA_VARS_##n) xWARN_UNUSED_RV
+    static \
+    std::tstring_t str(std::ctstring_t &format, xVA_VARS_##n) xWARN_UNUSED_RV
 
     xFORMAT_STR_DECLARE(1);
     xFORMAT_STR_DECLARE(2);
@@ -48,7 +49,8 @@ private:
         ///< open specifier
 
     template<typename T>
-    static void_t _format(std::tostream_t &os, const T &value);
+    static
+    void_t _format(std::tostream_t &os, const T &value);
         ///< format other types with overload std::tostream_t::operator <<
 
     xNO_INSTANCE(Format)
