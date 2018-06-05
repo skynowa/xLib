@@ -199,8 +199,10 @@ Format::_format(
 	a_os.operator <<(a_value);
 #elif 0
 	::std::operator << (a_os, a_value);
-#else
+#elif 0
 	::xl::core::operator << (a_os, a_value);
+#else
+	StdStream::print(a_os, a_value);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
