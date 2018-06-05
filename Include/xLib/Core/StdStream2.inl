@@ -300,7 +300,8 @@ StdStream2::_printString(
 )
 {
     for (; a_first != a_last; ++ a_first) {
-		_os << *a_first;
+		/// _os << *a_first;
+		StdStream2::operator << (*a_first);
     }
 }
 //-------------------------------------------------------------------------------------------------

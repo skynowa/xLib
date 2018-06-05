@@ -19,9 +19,10 @@ enum EnumTest
     etTwo
 };
 
-std::ostream &
+template<class T>
+T &
 operator << (
-    std::ostream   &a_out,
+    T              &a_out,
     const EnumTest &a_value
 )
 {
@@ -77,18 +78,12 @@ struct StructTest2
     std::string b;
     const char *c;
 
-    void print(std::tostream_t &a_os) const
+    template<class T>
+    void print(T &a_os) const
     {
 		a_os << xT("{");
 		a_os << a << xT(", ") << b << xT(", ") << c;
 		a_os << xT("}");
-    }
-
-    void print(xl::core::StdStream2 &a_os) const
-    {
-        a_os << xT("{");
-        a_os << a << xT(", ") << b << xT(", ") << c;
-        a_os << xT("}");
     }
 };
 //-------------------------------------------------------------------------------------------------
@@ -96,9 +91,9 @@ struct StructTest2
 bool_t
 Test_Format::unit()
 {
-	std::ios_base::sync_with_stdio(false);
-
     #define Format FormatXl
+
+	std::ios_base::sync_with_stdio(false);
 
     xTEST_CASE("FormatC::str")
     {
@@ -598,7 +593,7 @@ Test_Format::unit()
         value.insert(p3);
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{{1, bbb}, {1, bbb}, {0, aa}}")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}, {1, bbb}}")));
     }
 
     xTEST_CASE("std::unordered_set")
@@ -610,7 +605,7 @@ Test_Format::unit()
         value.insert(2);
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 1, 0}")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 0, 1}")));
     }
 
     xTEST_CASE("std::unordered_multiset")
@@ -622,7 +617,7 @@ Test_Format::unit()
         value.insert(2);
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 1, 1, 0}")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 0, 1, 1}")));
     }
 
     xTEST_CASE("std::tuple")
