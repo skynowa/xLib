@@ -193,7 +193,7 @@ template<typename T>
 /* static */
 inline void_t
 FormatT<PolicyT>::_format(
-    std::tostream_t &a_os,     ///< [out]
+    PolicyT &a_os,     ///< [out]
     const T         &a_value   ///< value
 )
 {

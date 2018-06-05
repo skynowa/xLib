@@ -49,6 +49,13 @@ struct StructTest
     std::size_t a;
     std::string b;
     const char *c;
+
+    void print(xl::core::StdStream2 &a_os) const
+    {
+        a_os << xT("{");
+        a_os << a << xT(", ") << b << xT(", ") << c;
+        a_os << xT("}");
+    }
 };
 
 std::ostream &
@@ -76,6 +83,13 @@ struct StructTest2
 		a_os << a << xT(", ") << b << xT(", ") << c;
 		a_os << xT("}");
     }
+
+    void print(xl::core::StdStream2 &a_os) const
+    {
+        a_os << xT("{");
+        a_os << a << xT(", ") << b << xT(", ") << c;
+        a_os << xT("}");
+    }
 };
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -83,6 +97,8 @@ bool_t
 Test_Format::unit()
 {
 	std::ios_base::sync_with_stdio(false);
+
+    #define Format FormatXl
 
     xTEST_CASE("FormatC::str")
     {

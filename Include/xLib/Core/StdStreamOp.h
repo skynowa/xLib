@@ -25,6 +25,18 @@ operator << (
 
 	return a_os;
 }
+
+template<class T>
+auto
+operator << (
+	xl::core::StdStream2 &a_os,
+	const T              &a_value
+) -> decltype(a_value.print(a_os), a_os)
+{
+	a_value.print(a_os);
+
+	return a_os;
+}
 //-------------------------------------------------------------------------------------------------
 #define xSTD_OSTREAM_OP(cont_t) \
     inline std::tostream_t & \

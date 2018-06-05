@@ -8,6 +8,7 @@
 
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
+#include <xLib/Core/StdStream2.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
@@ -51,15 +52,12 @@ private:
 
     template<typename T>
     static
-    void_t _format(std::tostream_t &os, const T &value);
+    void_t _format(PolicyT &os, const T &value);
         ///< format other types with overload std::tostream_t::operator <<
 
     xNO_INSTANCE(FormatT)
     xNO_COPY_ASSIGN(FormatT)
 };
-
-// TODO: StdStream2 - impl
-class StdStream2 {};
 
 typedef FormatT<std::tstringstream_t> Format;
 typedef FormatT<xl::core::StdStream2> FormatXl;
