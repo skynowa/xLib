@@ -9,6 +9,27 @@
 #include <xLib/Core/Defines.h>
 #include <xLib/Core/StdStream.h>
 //-------------------------------------------------------------------------------------------------
+#if xLANG_CPP11
+
+/**
+ * Print any object which has a member:
+ *
+ * void T::print(std::tostream_t&) const;
+ */
+template<class T>
+auto
+operator << (
+	std::tostream_t &a_os,
+	const T         &a_value
+) -> decltype(a_value.print(a_os), a_os)
+{
+	a_value.print(a_os);
+
+	return a_os;
+}
+
+#endif
+//-------------------------------------------------------------------------------------------------
 #define xSTD_OSTREAM_OP(cont_t) \
     inline std::tostream_t & \
     operator << (std::tostream_t &a_os, const cont_t &a_value) \
