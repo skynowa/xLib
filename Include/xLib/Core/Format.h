@@ -8,7 +8,7 @@
 
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
-#include <xLib/Core/StdStream2.h>
+#include <xLib/Core/OStream.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
@@ -60,7 +60,7 @@ private:
 };
 
 typedef FormatT<std::tstringstream_t> Format;
-typedef FormatT<xl::core::StdStream2> FormatXl;
+typedef FormatT<xl::core::OStream> FormatXl;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

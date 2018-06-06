@@ -51,7 +51,7 @@ struct StructTest
     std::string b;
     const char *c;
 
-    void print(xl::core::StdStream2 &a_os) const
+    void print(xl::core::OStream &a_os) const
     {
         a_os << xT("{");
         a_os << a << xT(", ") << b << xT(", ") << c;
