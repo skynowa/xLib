@@ -23,6 +23,7 @@ public:
     void_t         str(std::ctstring_t &value);
     void_t         clear();
 
+	// operators <<
     OStream & operator << (const bool value);
     OStream & operator << (const char value);
     OStream & operator << (const wchar_t value);
