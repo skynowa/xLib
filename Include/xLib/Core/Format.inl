@@ -192,8 +192,8 @@ template<typename T>
 /* static */
 inline void_t
 FormatT<PolicyT>::_format(
-    PolicyT &a_os,     ///< [out]
-    const T         &a_value   ///< value
+    PolicyT &a_os,      ///< [out]
+    const T &a_value    ///< value
 )
 {
 #if   1

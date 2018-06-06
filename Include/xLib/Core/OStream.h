@@ -147,6 +147,9 @@ private:
     tchar_t           _unprintableChar() xWARN_UNUSED_RV;
         ///< unprintable char
 
+    template<typename T>
+    void_t _printValue(const T &value);
+
     template<typename IteratorT>
     void_t _printString(IteratorT first, IteratorT last);
 
