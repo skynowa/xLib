@@ -77,7 +77,7 @@ OStream::operator << (
     if ( ::iswprint(  static_cast<wint_t>(a_value) ) ) {
         _os << static_cast<tchar_t>(a_value);
     } else {
-        _os << _printUnprintableChar(a_value);
+        _os << _unprintableChar(a_value);
     }
 
     return *this;
@@ -91,7 +91,7 @@ OStream::operator << (
     if ( ::isprint(a_value) ) {
         _os << a_value;
     } else {
-        _os << _printUnprintableChar(a_value);
+        _os << _unprintableChar(a_value);
     }
 
     return *this;
@@ -260,7 +260,7 @@ OStream::operator << (
         if ( ::iswprint( static_cast<wint_t>(a_value[i])) ) {
             sRv += static_cast<tchar_t>( a_value[i] );
         } else {
-            sRv += _printUnprintableChar( a_value[i] );
+            sRv += _unprintableChar( a_value[i] );
         }
     }
 

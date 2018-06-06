@@ -392,7 +392,7 @@ OStream::_floatPrecisionMax()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline std::tstring_t
-OStream::_printUnprintableChar(
+OStream::_unprintableChar(
     const T a_value
 )
 {

@@ -166,7 +166,7 @@ private:
     int_t _floatPrecisionMax() xWARN_UNUSED_RV;
 
     template<typename T>
-    std::tstring_t _printUnprintableChar(const T value) xWARN_UNUSED_RV;
+    std::tstring_t _unprintableChar(const T value) xWARN_UNUSED_RV;
 
     xNO_COPY_ASSIGN(OStream)
 };
