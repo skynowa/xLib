@@ -319,10 +319,13 @@ OStream::_printRange(
     }
 
     _os << _bracketOpen();
-	_os << *a_first;
+	/// _os << *a_first;
+	OStream::operator << (*a_first);
 
     for (++ a_first; a_first != a_last; ++ a_first) {
-        _os << _delimiter() << *a_first;
+        /// _os << _delimiter() << *a_first;
+        OStream::operator << (_delimiter());
+        OStream::operator << (*a_first);
     }
 
     _os << _bracketClose();

@@ -11,8 +11,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
-#include <xLib/Core/StdStream.h>
-#include <xLib/Core/StdStreamOp.h>
+#include <xLib/Core/OStream.h>
 
 
 xNAMESPACE_BEGIN2(xl, core)
@@ -206,7 +205,7 @@ FormatT<PolicyT>::_format(
 #elif 0
 	::xl::core::operator << (a_os, a_value);
 #else
-	StdStream::print(a_os, a_value);
+	OStream::print(a_os, a_value);
 #endif
 }
 //-------------------------------------------------------------------------------------------------

@@ -91,8 +91,6 @@ struct StructTest2
 bool_t
 Test_Format::unit()
 {
-    #define Format FormatXl
-
 	std::ios_base::sync_with_stdio(false);
 
     xTEST_CASE("FormatC::str")
