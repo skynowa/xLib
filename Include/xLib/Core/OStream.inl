@@ -292,24 +292,33 @@ OStream::operator << (
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+template<typename T>
+inline void_t
+OStream::_printValue(
+    const T &a_value   ///< value
+)
+{
+    OStream::operator << (a_value);
+}
+//-------------------------------------------------------------------------------------------------
 template<typename IteratorT>
 inline void_t
 OStream::_printString(
-    IteratorT        a_first,  ///< first iterator
-    IteratorT        a_last    ///< last iterator
+    IteratorT a_first,    ///< first iterator
+    IteratorT a_last      ///< last iterator
 )
 {
     for (; a_first != a_last; ++ a_first) {
 		/// _os << *a_first;
-		OStream::operator << (*a_first);
+		_printValue(*a_first);
     }
 }
 //-------------------------------------------------------------------------------------------------
 template<typename IteratorT>
 inline void_t
 OStream::_printRange(
-    IteratorT        a_first,  ///< first iterator
-    IteratorT        a_last    ///< last iterator
+    IteratorT a_first,    ///< first iterator
+    IteratorT a_last      ///< last iterator
 )
 {
     if (a_first == a_last) {
@@ -324,8 +333,8 @@ OStream::_printRange(
 
     for (++ a_first; a_first != a_last; ++ a_first) {
         /// _os << _delimiter() << *a_first;
-        OStream::operator << (_delimiter());
-        OStream::operator << (*a_first);
+        _printValue(_delimiter());
+        _printValue(*a_first);
     }
 
     _os << _bracketClose();
@@ -334,7 +343,7 @@ OStream::_printRange(
 template<typename T>
 inline void_t
 OStream::_printContainer(
-    const T         &a_value   ///< value
+    const T &a_value   ///< value
 )
 {
     _printRange(a_value.begin(), a_value.end());
@@ -343,7 +352,7 @@ OStream::_printContainer(
 template<typename T>
 inline void_t
 OStream::_printFloat(
-    const T          a_value
+    const T a_value
 )
 {
     _os

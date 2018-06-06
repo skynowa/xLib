@@ -46,7 +46,7 @@ OStream::clear()
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const bool       a_value   ///< value
+    const bool a_value   ///< value
 )
 {
     _os << std::boolalpha;
@@ -57,7 +57,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const char       a_value   ///< value
+    const char a_value   ///< value
 )
 {
 #if xANSI
@@ -71,7 +71,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const wchar_t    a_value   ///< value
+    const wchar_t a_value   ///< value
 )
 {
     if ( ::iswprint(  static_cast<wint_t>(a_value) ) ) {
@@ -85,7 +85,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const unsigned char  a_value   ///< value
+    const unsigned char a_value   ///< value
 )
 {
     if ( ::isprint(a_value) ) {
@@ -99,7 +99,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const short      a_value   ///< value
+    const short a_value   ///< value
 )
 {
     _os << a_value;
@@ -107,17 +107,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const unsigned short  a_value   ///< value
-)
-{
-    _os << a_value;
-
-    return *this;
-}
-//-------------------------------------------------------------------------------------------------
-OStream &
-OStream::operator << (
-    const int        a_value   ///< value
+    const unsigned short a_value   ///< value
 )
 {
     _os << a_value;
@@ -127,7 +117,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const unsigned int  a_value   ///< value
+    const int a_value   ///< value
 )
 {
     _os << a_value;
@@ -137,7 +127,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const long       a_value   ///< value
+    const unsigned int a_value   ///< value
 )
 {
     _os << a_value;
@@ -147,7 +137,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const unsigned long  a_value   ///< value
+    const long a_value   ///< value
 )
 {
     _os << a_value;
@@ -157,7 +147,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const long long  a_value   ///< value
+    const unsigned long a_value   ///< value
 )
 {
     _os << a_value;
@@ -167,7 +157,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const unsigned long long  a_value   ///< value
+    const long long a_value   ///< value
 )
 {
     _os << a_value;
@@ -177,7 +167,17 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const float      a_value   ///< value
+    const unsigned long long a_value   ///< value
+)
+{
+    _os << a_value;
+
+    return *this;
+}
+//-------------------------------------------------------------------------------------------------
+OStream &
+OStream::operator << (
+    const float a_value   ///< value
 )
 {
     _printFloat(a_value);
@@ -187,7 +187,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const double     a_value   ///< value
+    const double a_value   ///< value
 )
 {
     _printFloat(a_value);
@@ -197,7 +197,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const long double  a_value   ///< value
+    const long double a_value   ///< value
 )
 {
     _printFloat(a_value);
@@ -207,7 +207,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const void *     a_value   ///< value
+    const void *a_value   ///< value
 )
 {
     if (a_value == xPTR_NULL) {
@@ -221,7 +221,7 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const char *     a_value   ///< value
+    const char *a_value   ///< value
 )
 {
     if (a_value == xPTR_NULL) {
@@ -235,14 +235,14 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 OStream &
 OStream::operator << (
-    const wchar_t *  a_value   ///< value
+    const wchar_t *a_value   ///< value
 )
 {
     if (a_value == xPTR_NULL) {
         _os << xT("null");
     } else {
         /// _os << std::wstring(a_value);
-        OStream::operator << ( std::wstring(a_value) );
+        _printValue( std::wstring(a_value) );
     }
 
     return *this;
