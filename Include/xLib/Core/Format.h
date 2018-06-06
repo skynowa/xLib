@@ -53,7 +53,6 @@ private:
     template<typename T>
     static
     void_t _format(PolicyT &os, const T &value);
-        ///< format other types with overload std::tostream_t::operator <<
 
     xNO_INSTANCE(FormatT)
     xNO_COPY_ASSIGN(FormatT)
