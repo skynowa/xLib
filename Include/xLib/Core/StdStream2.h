@@ -16,22 +16,12 @@ class StdStream2
     ///< print string
 {
 public:
-    StdStream2() {};
+                   StdStream2();
+    virtual       ~StdStream2();
 
-    std::tstring_t str() const
-    {
-        return _os.str();
-    }
-
-    void_t str(std::ctstring_t &value)
-    {
-        _os.str(value);
-    }
-
-    void_t clear()
-    {
-        _os.clear();
-    }
+    std::tstring_t str() const;
+    void_t         str(std::ctstring_t &value);
+    void_t         clear();
 
     StdStream2 & operator << (const bool value);
     StdStream2 & operator << (const char value);
