@@ -1,5 +1,5 @@
 /**
- * \file   StdStream2.inl
+ * \file   OStream.inl
  * \brief  print string
  */
 
@@ -17,8 +17,8 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T, std::size_t N>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const Array<T, N> &a_value   ///< value
 )
 {
@@ -28,8 +28,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::pair<T1, T2> &a_value   ///< value
 )
 {
@@ -43,8 +43,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::vector<T> &a_value   ///< value
 )
 {
@@ -54,8 +54,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::list<T> &a_value   ///< value
 )
 {
@@ -65,8 +65,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::set<T> &a_value   ///< value
 )
 {
@@ -76,8 +76,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::multiset<T> &a_value   ///< value
 )
 {
@@ -87,8 +87,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::deque<T> &a_value   ///< value
 )
 {
@@ -98,8 +98,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::queue<T> &a_value   ///< value
 )
 {
@@ -114,8 +114,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::priority_queue<T> &a_value   ///< value
 )
 {
@@ -130,8 +130,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::stack<T> &a_value   ///< value
 )
 {
@@ -146,8 +146,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::map<T1, T2> &a_value   ///< value
 )
 {
@@ -157,8 +157,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::multimap<T1, T2> &a_value   ///< value
 )
 {
@@ -178,8 +178,8 @@ StdStream2::operator << (
 
 //-------------------------------------------------------------------------------------------------
 template<typename T, std::size_t N>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::array<T, N> &a_value   ///< value
 )
 {
@@ -189,8 +189,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::forward_list<T> &a_value   ///< value
 )
 {
@@ -200,8 +200,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::unordered_map<T1, T2> &a_value   ///< value
 )
 {
@@ -211,8 +211,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::unordered_multimap<T1, T2> &a_value   ///< value
 )
 {
@@ -222,8 +222,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::unordered_set<T> &a_value   ///< value
 )
 {
@@ -233,8 +233,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::unordered_multiset<T> &a_value   ///< value
 )
 {
@@ -244,8 +244,8 @@ StdStream2::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename... Args>
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const std::tuple<Args...> &a_value   ///< value
 )
 {
@@ -268,8 +268,8 @@ StdStream2::operator << (
 //-------------------------------------------------------------------------------------------------
 #if xLIB_QT
 
-inline StdStream2 &
-StdStream2::operator << (
+inline OStream &
+OStream::operator << (
     const QString   &a_value   ///< value
 )
 {
@@ -294,20 +294,20 @@ StdStream2::operator << (
 //-------------------------------------------------------------------------------------------------
 template<typename IteratorT>
 inline void_t
-StdStream2::_printString(
+OStream::_printString(
     IteratorT        a_first,  ///< first iterator
     IteratorT        a_last    ///< last iterator
 )
 {
     for (; a_first != a_last; ++ a_first) {
 		/// _os << *a_first;
-		StdStream2::operator << (*a_first);
+		OStream::operator << (*a_first);
     }
 }
 //-------------------------------------------------------------------------------------------------
 template<typename IteratorT>
 inline void_t
-StdStream2::_printRange(
+OStream::_printRange(
     IteratorT        a_first,  ///< first iterator
     IteratorT        a_last    ///< last iterator
 )
@@ -330,7 +330,7 @@ StdStream2::_printRange(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline void_t
-StdStream2::_printContainer(
+OStream::_printContainer(
     const T         &a_value   ///< value
 )
 {
@@ -339,7 +339,7 @@ StdStream2::_printContainer(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline void_t
-StdStream2::_printFloat(
+OStream::_printFloat(
     const T          a_value
 )
 {
@@ -369,7 +369,7 @@ StdStream2::_printFloat(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline int_t
-StdStream2::_floatPrecisionMax()
+OStream::_floatPrecisionMax()
 {
 #if xLANG_CPP11
     return std::numeric_limits<T>::max_digits10;
@@ -380,7 +380,7 @@ StdStream2::_floatPrecisionMax()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline std::tstring_t
-StdStream2::_printUnprintableChar(
+OStream::_printUnprintableChar(
     const T a_value
 )
 {

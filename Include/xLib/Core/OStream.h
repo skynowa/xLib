@@ -1,5 +1,5 @@
 /**
- * \file   StdStream2.h
+ * \file   OStream.h
  * \brief  print string
  */
 
@@ -12,95 +12,95 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-class StdStream2
+class OStream
     ///< print string
 {
 public:
-                   StdStream2();
-    virtual       ~StdStream2();
+                   OStream();
+    virtual       ~OStream();
 
     std::tstring_t str() const;
     void_t         str(std::ctstring_t &value);
     void_t         clear();
 
-    StdStream2 & operator << (const bool value);
-    StdStream2 & operator << (const char value);
-    StdStream2 & operator << (const wchar_t value);
-    StdStream2 & operator << (const unsigned char value);
-    StdStream2 & operator << (const short value);
-    StdStream2 & operator << (const unsigned short value);
-    StdStream2 & operator << (const int value);
-    StdStream2 & operator << (const unsigned int value);
-    StdStream2 & operator << (const long value);
-    StdStream2 & operator << (const unsigned long value);
-    StdStream2 & operator << (const long long value);
-    StdStream2 & operator << (const unsigned long long value);
-    StdStream2 & operator << (const float value);
-    StdStream2 & operator << (const double value);
-    StdStream2 & operator << (const long double value);
-    StdStream2 & operator << (const void *value);
-    StdStream2 & operator << (const char *value);
-    StdStream2 & operator << (const wchar_t *value);
-    StdStream2 & operator << (const std::wstring &value);
-    StdStream2 & operator << (const std::string &value);
-    StdStream2 & operator << (const std::ustring_t &value);
+    OStream & operator << (const bool value);
+    OStream & operator << (const char value);
+    OStream & operator << (const wchar_t value);
+    OStream & operator << (const unsigned char value);
+    OStream & operator << (const short value);
+    OStream & operator << (const unsigned short value);
+    OStream & operator << (const int value);
+    OStream & operator << (const unsigned int value);
+    OStream & operator << (const long value);
+    OStream & operator << (const unsigned long value);
+    OStream & operator << (const long long value);
+    OStream & operator << (const unsigned long long value);
+    OStream & operator << (const float value);
+    OStream & operator << (const double value);
+    OStream & operator << (const long double value);
+    OStream & operator << (const void *value);
+    OStream & operator << (const char *value);
+    OStream & operator << (const wchar_t *value);
+    OStream & operator << (const std::wstring &value);
+    OStream & operator << (const std::string &value);
+    OStream & operator << (const std::ustring_t &value);
 
     template<typename T, std::size_t N>
-    StdStream2 & operator << (const Array<T, N> &value);
+    OStream & operator << (const Array<T, N> &value);
 
     template<typename T1, typename T2>
-    StdStream2 & operator << (const std::pair<T1, T2> &value);
+    OStream & operator << (const std::pair<T1, T2> &value);
 
     template<typename T>
-    StdStream2 & operator << (const std::vector<T> &value);
+    OStream & operator << (const std::vector<T> &value);
 
     template<typename T>
-    StdStream2 & operator << (const std::list<T> &value);
+    OStream & operator << (const std::list<T> &value);
 
     template<typename T>
-    StdStream2 & operator << (const std::set<T> &value);
+    OStream & operator << (const std::set<T> &value);
 
     template<typename T>
-    StdStream2 & operator << (const std::multiset<T> &value);
+    OStream & operator << (const std::multiset<T> &value);
 
     template<typename T>
-    StdStream2 & operator << (const std::deque<T> &value);
+    OStream & operator << (const std::deque<T> &value);
 
     template<typename T>
-    StdStream2 & operator << (const std::queue<T> &value);
+    OStream & operator << (const std::queue<T> &value);
 
     template<typename T>
-    StdStream2 & operator << (const std::priority_queue<T> &value);
+    OStream & operator << (const std::priority_queue<T> &value);
 
     template<typename T>
-    StdStream2 & operator << (const std::stack<T> &value);
+    OStream & operator << (const std::stack<T> &value);
 
     template<typename T1, typename T2>
-    StdStream2 & operator << (const std::map<T1, T2> &value);
+    OStream & operator << (const std::map<T1, T2> &value);
 
     template<typename T1, typename T2>
-    StdStream2 & operator << (const std::multimap<T1, T2> &value);
+    OStream & operator << (const std::multimap<T1, T2> &value);
 
 #if xLANG_CPP11
-    StdStream2 & operator << (const std::nullptr_t value);
+    OStream & operator << (const std::nullptr_t value);
 
     template<typename T, std::size_t N>
-    StdStream2 & operator << (const std::array<T, N> &value);
+    OStream & operator << (const std::array<T, N> &value);
 
     template<typename T>
-    StdStream2 & operator << (const std::forward_list<T> &value);
+    OStream & operator << (const std::forward_list<T> &value);
 
     template<typename T1, typename T2>
-    StdStream2 & operator << (const std::unordered_map<T1, T2> &value);
+    OStream & operator << (const std::unordered_map<T1, T2> &value);
 
     template<typename T1, typename T2>
-    StdStream2 & operator << (const std::unordered_multimap<T1, T2> &value);
+    OStream & operator << (const std::unordered_multimap<T1, T2> &value);
 
     template<typename T>
-    StdStream2 & operator << (const std::unordered_set<T> &value);
+    OStream & operator << (const std::unordered_set<T> &value);
 
     template<typename T>
-    StdStream2 & operator << (const std::unordered_multiset<T> &value);
+    OStream & operator << (const std::unordered_multiset<T> &value);
 
     template<typename T, std::size_t N>
     struct TupleFormat
@@ -124,11 +124,11 @@ public:
     };
 
     template<typename... Args>
-    StdStream2 & operator << (const std::tuple<Args...> &value);
+    OStream & operator << (const std::tuple<Args...> &value);
 #endif
 
 #if xLIB_QT
-    StdStream2 & operator << (const QString &value);
+    OStream & operator << (const QString &value);
 #endif
 
 private:
@@ -165,9 +165,9 @@ private:
     template<typename T>
     std::tstring_t _printUnprintableChar(const T value) xWARN_UNUSED_RV;
 
-    xNO_COPY_ASSIGN(StdStream2)
+    xNO_COPY_ASSIGN(OStream)
 };
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
-#include "StdStream2.inl"
+#include "OStream.inl"

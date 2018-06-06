@@ -1,10 +1,10 @@
 /**
- * \file   StdStream2.cpp
+ * \file   OStream.cpp
  * \brief  print string
  */
 
 
-#include "StdStream2.h"
+#include "OStream.h"
 
 
 xNAMESPACE_BEGIN2(xl, core)
@@ -15,23 +15,23 @@ xNAMESPACE_BEGIN2(xl, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-StdStream2::StdStream2()
+OStream::OStream()
 {
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-StdStream2::~StdStream2()
+OStream::~OStream()
 {
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-StdStream2::str() const
+OStream::str() const
 {
 	return _os.str();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-StdStream2::str(
+OStream::str(
 	std::ctstring_t &a_value
 )
 {
@@ -39,13 +39,13 @@ StdStream2::str(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-StdStream2::clear()
+OStream::clear()
 {
 	_os.clear();
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const bool       a_value   ///< value
 )
 {
@@ -55,8 +55,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const char       a_value   ///< value
 )
 {
@@ -69,8 +69,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const wchar_t    a_value   ///< value
 )
 {
@@ -83,8 +83,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const unsigned char  a_value   ///< value
 )
 {
@@ -97,16 +97,16 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const short      a_value   ///< value
 )
 {
     _os << a_value;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const unsigned short  a_value   ///< value
 )
 {
@@ -115,8 +115,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const int        a_value   ///< value
 )
 {
@@ -125,8 +125,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const unsigned int  a_value   ///< value
 )
 {
@@ -135,8 +135,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const long       a_value   ///< value
 )
 {
@@ -145,8 +145,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const unsigned long  a_value   ///< value
 )
 {
@@ -155,8 +155,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const long long  a_value   ///< value
 )
 {
@@ -165,8 +165,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const unsigned long long  a_value   ///< value
 )
 {
@@ -175,8 +175,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const float      a_value   ///< value
 )
 {
@@ -185,8 +185,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const double     a_value   ///< value
 )
 {
@@ -195,8 +195,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const long double  a_value   ///< value
 )
 {
@@ -205,8 +205,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const void *     a_value   ///< value
 )
 {
@@ -219,8 +219,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const char *     a_value   ///< value
 )
 {
@@ -233,8 +233,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const wchar_t *  a_value   ///< value
 )
 {
@@ -242,14 +242,14 @@ StdStream2::operator << (
         _os << xT("null");
     } else {
         /// _os << std::wstring(a_value);
-        StdStream2::operator << ( std::wstring(a_value) );
+        OStream::operator << ( std::wstring(a_value) );
     }
 
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const std::wstring &a_value   ///< value
 )
 {
@@ -269,8 +269,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const std::string &a_value   ///< value
 )
 {
@@ -283,8 +283,8 @@ StdStream2::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const std::ustring_t &a_value   ///< value
 )
 {
@@ -295,8 +295,8 @@ StdStream2::operator << (
 //-------------------------------------------------------------------------------------------------
 #if xLANG_CPP11
 
-StdStream2 &
-StdStream2::operator << (
+OStream &
+OStream::operator << (
     const std::nullptr_t  a_value   ///< value
 )
 {
@@ -319,7 +319,7 @@ StdStream2::operator << (
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::ctstring_t &
-StdStream2::_bracketOpen()
+OStream::_bracketOpen()
 {
     static std::ctstring_t sRv(xT("{"));
 
@@ -328,7 +328,7 @@ StdStream2::_bracketOpen()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::ctstring_t &
-StdStream2::_bracketClose()
+OStream::_bracketClose()
 {
     static std::ctstring_t sRv(xT("}"));
 
@@ -337,7 +337,7 @@ StdStream2::_bracketClose()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::ctstring_t &
-StdStream2::_delimiter()
+OStream::_delimiter()
 {
     static std::ctstring_t sRv(xT(", "));
 
@@ -346,7 +346,7 @@ StdStream2::_delimiter()
 //-------------------------------------------------------------------------------------------------
 /* static */
 tchar_t
-StdStream2::_unprintableChar()
+OStream::_unprintableChar()
 {
     static tchar_t chRv(xT('?'));
 

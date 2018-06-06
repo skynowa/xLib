@@ -36,7 +36,7 @@
 #include <xLib/Core/Functors.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Core/StdStream.h>
-#include <xLib/Core/StdStream2.h>
+#include <xLib/Core/OStream.h>
 
 // Interface
 #include <xLib/Interface/IHandle.h>
