@@ -34,9 +34,9 @@ OStream::operator << (
 )
 {
     _os << _bracketOpen();
-    _os << a_value.first;
+    _printValue(a_value.first);
     _os << _delimiter();
-    _os << a_value.second;
+    _printValue(a_value.second);
     _os << _bracketClose();
 
     return *this;
@@ -309,7 +309,6 @@ OStream::_printString(
 )
 {
     for (; a_first != a_last; ++ a_first) {
-		/// _os << *a_first;
 		_printValue(*a_first);
     }
 }
@@ -328,12 +327,10 @@ OStream::_printRange(
     }
 
     _os << _bracketOpen();
-	/// _os << *a_first;
-	OStream::operator << (*a_first);
+	_printValue(*a_first);
 
     for (++ a_first; a_first != a_last; ++ a_first) {
-        /// _os << _delimiter() << *a_first;
-        _printValue(_delimiter());
+        _os << _delimiter();
         _printValue(*a_first);
     }
 
