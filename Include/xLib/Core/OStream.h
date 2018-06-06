@@ -103,27 +103,6 @@ public:
     template<typename T>
     OStream & operator << (const std::unordered_multiset<T> &value);
 
-    template<typename T, std::size_t N>
-    struct TupleFormat
-    {
-        static void_t
-        print(std::tostream_t &a_ss, const T &a_value)
-        {
-            TupleFormat<T, N - 1>::print(a_ss, a_value);
-            a_ss << _delimiter() << std::get<N - 1>(a_value);
-        }
-    };
-
-    template<typename T>
-    struct TupleFormat<T, 1>
-    {
-        static void_t
-        print(std::tostream_t &a_ss, const T &a_value)
-        {
-            a_ss << std::get<0>(a_value);
-        }
-    };
-
     template<typename... Args>
     OStream & operator << (const std::tuple<Args...> &value);
 #endif
@@ -168,6 +147,28 @@ private:
 
     template<typename T>
     std::tstring_t _unprintableChar(const T value) xWARN_UNUSED_RV;
+
+	// std::tuple
+	template<typename T, std::size_t N>
+	struct TupleFormat
+	{
+		static void_t
+		print(std::tostream_t &a_ss, const T &a_value)
+		{
+			TupleFormat<T, N - 1>::print(a_ss, a_value);
+			a_ss << _delimiter() << std::get<N - 1>(a_value);
+		}
+	};
+
+	template<typename T>
+	struct TupleFormat<T, 1>
+	{
+		static void_t
+		print(std::tostream_t &a_ss, const T &a_value)
+		{
+			a_ss << std::get<0>(a_value);
+		}
+	};
 
     xNO_COPY_ASSIGN(OStream)
 };
