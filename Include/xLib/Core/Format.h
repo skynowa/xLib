@@ -17,8 +17,6 @@ class FormatT
     ///< format string
 {
 public:
-    // TODO: [skynowa] more overload methods
-
 #define xFORMAT_STR_DECLARE(n) \
     template<xVA_TYPES_##n> \
     static \

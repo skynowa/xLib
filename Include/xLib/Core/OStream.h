@@ -24,6 +24,7 @@ public:
     void_t         clear();
 
 	// operators <<
+	// TODO: [skynowa] more overload methods
     OStream & operator << (const bool value);
     OStream & operator << (const char value);
     OStream & operator << (const wchar_t value);
