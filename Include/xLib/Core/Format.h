@@ -59,8 +59,8 @@ private:
     xNO_COPY_ASSIGN(FormatT)
 };
 
-typedef FormatT<std::tstringstream_t> Format;
-typedef FormatT<xl::core::OStream> FormatXl;
+typedef FormatT<std::tstringstream_t> FormatStd;
+typedef FormatT<xl::core::OStream>    Format;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
