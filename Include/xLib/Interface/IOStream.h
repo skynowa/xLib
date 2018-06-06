@@ -28,3 +28,24 @@ public:
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
+#if xLANG_CPP11
+
+/**
+ * Print any object which has a member:
+ *
+ * void T::print(std::tostream_t&) const;
+ */
+template<class StreamT, class ValueT>
+auto
+operator << (
+	StreamT      &a_os,
+	const ValueT &a_value
+) -> decltype(a_value.print(a_os), a_os)
+{
+	a_value.print(a_os);
+
+	return a_os;
+}
+
+#endif
+//-------------------------------------------------------------------------------------------------

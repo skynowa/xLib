@@ -37,6 +37,7 @@
 
 // Interface
 #include <xLib/Interface/IHandle.h>
+#include <xLib/Interface/IOStream.h>
 
 // Algo
 #include <xLib/Algo/Algos.h>
