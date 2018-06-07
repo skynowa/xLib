@@ -118,8 +118,6 @@ File::reopen(
 HandleStdFile &
 File::get()
 {
-    xTEST_EQ(_handle.isValid(), true);
-
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------

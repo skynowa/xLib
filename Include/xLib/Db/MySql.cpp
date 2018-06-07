@@ -36,8 +36,6 @@ MySqlConnection::~MySqlConnection()
 HandleMySqlConn &
 MySqlConnection::get()
 {
-    xTEST_EQ(_conn.isValid(), true);
-
     return _conn;
 }
 //-------------------------------------------------------------------------------------------------
@@ -238,8 +236,6 @@ MySqlRecordset::~MySqlRecordset()
 HandleMySqlResult &
 MySqlRecordset::get()
 {
-    xTEST_EQ(_result.isValid(), true);
-
     return _result;
 }
 //-------------------------------------------------------------------------------------------------
