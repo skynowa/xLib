@@ -29,7 +29,7 @@ xNAMESPACE_BEGIN2(xl, core)
 
 template<typename T, HandlePolicyType valueT>
 class Handle :
-    public IHandle<T>
+    public xl::interface::IHandle<T>
     /// handle
 {
 public:

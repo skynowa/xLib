@@ -9,7 +9,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+xNAMESPACE_BEGIN2(xl, interface)
 
 template <typename BaseT>
 class xNO_VTABLE IOStream :
@@ -26,7 +26,7 @@ public:
 		///<
 };
 
-xNAMESPACE_END2(xl, core)
+xNAMESPACE_END2(xl, interface)
 //-------------------------------------------------------------------------------------------------
 #if xLANG_CPP11
 
