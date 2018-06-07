@@ -88,8 +88,6 @@ CurlClient::versionInfo(
 HandleCurl &
 CurlClient::get()
 {
-    xTEST_EQ(_handle.isValid(), true);
-
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
