@@ -119,11 +119,11 @@ Blowfish::keySizeMax()
 //-------------------------------------------------------------------------------------------------
 void_t
 Blowfish::encryptCfb64(
-    uchar_t           *a_in,
-    uchar_t           *a_out,
-    clong_t           &a_inSize,
-    int_t             *a_num,
-    const CryptMode &a_mode
+    uchar_t   *a_in,
+    uchar_t   *a_out,
+    clong_t   &a_inSize,
+    int_t     *a_num,
+    cCryptMode a_mode
 )
 {
     xTEST_PTR(a_in);
@@ -138,9 +138,9 @@ Blowfish::encryptCfb64(
 //-------------------------------------------------------------------------------------------------
 void_t
 Blowfish::encryptCfb64(
-    std::custring_t   &a_in,
-    std::ustring_t    *a_out,
-    const CryptMode &a_mode
+    std::custring_t &a_in,
+    std::ustring_t  *a_out,
+    cCryptMode       a_mode
 )
 {
     xTEST_EQ(a_in.empty(), false);
@@ -157,9 +157,9 @@ Blowfish::encryptCfb64(
 //-------------------------------------------------------------------------------------------------
 void_t
 Blowfish::encryptFileCfb64(
-    std::ctstring_t   &a_filePathIn,
-    std::ctstring_t   &a_filePathOut,
-    const CryptMode &a_mode
+    std::ctstring_t &a_filePathIn,
+    std::ctstring_t &a_filePathOut,
+    cCryptMode       a_mode
 )
 {
     xTEST_EQ(a_filePathIn.empty(), false);

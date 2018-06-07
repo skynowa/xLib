@@ -25,6 +25,7 @@ public:
         cmEncrypt = BF_ENCRYPT,
         cmDecrypt = BF_DECRYPT
     };
+    xTYPEDEF_CONST(CryptMode);
 
              Blowfish();
         ///< constructor
@@ -48,12 +49,12 @@ public:
 
     // cfb64
     void_t   encryptCfb64(uchar_t *in, uchar_t *out, clong_t &inSize, int_t *num,
-                 const CryptMode &mode);
+                 cCryptMode mode);
         ///< encrypt buffer
-    void_t   encryptCfb64(std::custring_t &in, std::ustring_t *out, const CryptMode &mode);
+    void_t   encryptCfb64(std::custring_t &in, std::ustring_t *out, cCryptMode mode);
         ///< encrypt std::ustring_t
     void_t   encryptFileCfb64(std::ctstring_t &filePathIn, std::ctstring_t &filePathOut,
-                const CryptMode &mode);
+                cCryptMode mode);
         ///< encrypt file
 
 private:
