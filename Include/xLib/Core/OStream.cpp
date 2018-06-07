@@ -57,8 +57,7 @@ OStream::operator << (
     const bool a_value   ///< value
 )
 {
-    _os << std::boolalpha;
-    _os << a_value;
+    _os << a_value ? xT("true") : xT("false");
 
     return *this;
 }
@@ -304,7 +303,7 @@ OStream::operator << (
 
 OStream &
 OStream::operator << (
-    const std::nullptr_t  a_value   ///< value
+    const std::nullptr_t a_value   ///< value
 )
 {
     xUNUSED(a_value);
