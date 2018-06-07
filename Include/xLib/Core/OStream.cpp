@@ -57,7 +57,7 @@ OStream::operator << (
     const bool a_value   ///< value
 )
 {
-    _os << a_value ? xT("true") : xT("false");
+    _os << (a_value ? xT("true") : xT("false"));
 
     return *this;
 }
