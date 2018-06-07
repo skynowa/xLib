@@ -96,7 +96,7 @@ void_t
 Blowfish::clearKey()
 {
     Utils::structZeroT(_key);
-    Utils::arraySizeT(_ivec);
+    Utils::arrayZeroT(_ivec);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -131,7 +131,7 @@ Blowfish::encryptCfb64(
     xTEST_LESS(- 1L, a_inSize);
     xTEST_PTR(a_num);
 
-    Utils::arraySizeT(_ivec);
+    Utils::arrayZeroT(_ivec);
 
     (void_t)::BF_cfb64_encrypt(a_in, a_out, a_inSize, &_key, _ivec, a_num, a_mode);
 }
@@ -150,8 +150,7 @@ Blowfish::encryptCfb64(
 
     int_t num = 0;  // this integer must be initialized to zero when ivec is initialized
 
-    encryptCfb64(&a_in.at(0), &a_out->at(0),
-        static_cast<long_t>( a_in.size() ), &num, a_mode);
+    encryptCfb64(&a_in.at(0), &a_out->at(0), static_cast<long_t>( a_in.size() ), &num, a_mode);
     xTEST_LESS(- 1, num);
 }
 //-------------------------------------------------------------------------------------------------
