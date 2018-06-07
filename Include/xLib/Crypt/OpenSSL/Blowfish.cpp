@@ -119,7 +119,7 @@ Blowfish::keySizeMax()
 //-------------------------------------------------------------------------------------------------
 void_t
 Blowfish::encryptCfb64(
-    uchar_t   *a_in,
+    cuchar_t  *a_in,
     uchar_t   *a_out,
     clong_t   &a_inSize,
     int_t     *a_num,
@@ -150,7 +150,7 @@ Blowfish::encryptCfb64(
 
     int_t num = 0;  // this integer must be initialized to zero when ivec is initialized
 
-    encryptCfb64(const_cast<uchar_t *>( &a_in.at(0) ), &a_out->at(0),
+    encryptCfb64(&a_in.at(0), &a_out->at(0),
         static_cast<long_t>( a_in.size() ), &num, a_mode);
     xTEST_LESS(- 1, num);
 }

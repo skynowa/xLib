@@ -48,7 +48,7 @@ public:
         ///< get maximum key size
 
     // cfb64
-    void_t   encryptCfb64(uchar_t *in, uchar_t *out, clong_t &inSize, int_t *num,
+    void_t   encryptCfb64(cuchar_t *in, uchar_t *out, clong_t &inSize, int_t *num,
                  cCryptMode mode);
         ///< encrypt buffer
     void_t   encryptCfb64(std::custring_t &in, std::ustring_t *out, cCryptMode mode);
