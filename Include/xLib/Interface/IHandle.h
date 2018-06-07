@@ -9,7 +9,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+xNAMESPACE_BEGIN2(xl, interface)
 
 template<typename T>
 class xNO_VTABLE IHandle
@@ -38,5 +38,5 @@ public:
         ///< close
 };
 
-xNAMESPACE_END2(xl, core)
+xNAMESPACE_END2(xl, interface)
 //-------------------------------------------------------------------------------------------------
