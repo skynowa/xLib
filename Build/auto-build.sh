@@ -6,7 +6,7 @@
 
 APP_NAME="[AUTO_BUILD]"
 
-JOBS_NUM=`grep -c ^processor /proc/cpuinfo`
+JOBS_NUM=`nproc --all`
 MAKE="make -j$JOBS_NUM"
 
 PROJECT_DIR=/home/skynowa/Projects/xLib
