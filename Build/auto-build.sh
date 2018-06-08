@@ -6,6 +6,9 @@
 
 APP_NAME="[AUTO_BUILD]"
 
+JOBS_NUM=`grep -c ^processor /proc/cpuinfo`
+MAKE="make -j$JOBS_NUM"
+
 PROJECT_DIR=/home/skynowa/Projects/xLib
 BUILD_DIR=$PROJECT_DIR/../xLib_eclipse
 TEST_DIR=$BUILD_DIR/Tests
@@ -43,20 +46,19 @@ while true; do
 			continue
 		fi
 
-		reset
-		echo "$APP_NAME: Build $DIR$FILE - $EVENT..."
-
 		# prepare
+		reset
+		echo "$APP_NAME: Build (jobs $JOBS_NUM) $DIR$FILE - $EVENT..."
 		cd $BUILD_DIR
 
 		if     [[ "$FILE_PATH_CURRENT" =~ "$PROJECT_DIR/Include" ]]; then
 			echo -e "$APP_NAME: lib...\n"
-			make xLib_static || echo "$APP_NAME: Error - $?"
+			$MAKE xLib_static || echo "$APP_NAME: Error - $?"
 		elif [[ "$FILE_PATH_CURRENT" =~ "$PROJECT_DIR/Tests" ]]; then
 			TEST_UNIT=`basename --suffix=.cpp "$FILE_PATH_CURRENT"`
 
 			echo -e "$APP_NAME: test $TEST_UNIT...\n"
-			make $TEST_UNIT && $TEST_DIR/$TEST_UNIT || echo "$APP_NAME: Error - $?"
+			$MAKE $TEST_UNIT && $TEST_DIR/$TEST_UNIT || echo "$APP_NAME: Error - $?"
 		else
 			echo -e "$APP_NAME: Unknown path $FILE_PATH_CURRENT...\n"
 		fi

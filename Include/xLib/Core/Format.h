@@ -12,7 +12,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-template<typename PolicyT>
+template<typename StreamT>
 class FormatT
     ///< format string
 {
@@ -50,7 +50,7 @@ private:
 
     template<typename T>
     static
-    void_t _format(PolicyT &os, const T &value);
+    void_t _format(StreamT &os, const T &value);
 
     xNO_INSTANCE(FormatT)
     xNO_COPY_ASSIGN(FormatT)
