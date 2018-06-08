@@ -86,7 +86,7 @@ class MySqlRecordset
     /// MySql recordset
 {
 public:
-                 MySqlRecordset(MySqlConnection &connection, cbool_t &isUseResult);
+                 MySqlRecordset(MySqlConnection &connection, cbool_t isUseResult);
         ///< constructor
     virtual     ~MySqlRecordset();
         ///< destructor
