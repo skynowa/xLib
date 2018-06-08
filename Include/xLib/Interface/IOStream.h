@@ -11,19 +11,18 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, interface)
 
-template <typename BaseT>
-class xNO_VTABLE IOStream :
-	public BaseT
+template <typename StreamT>
+class xNO_VTABLE IOStream
 	/// ostream interface
 {
 public:
-	virtual std::tostream_t &print(std::tostream_t& os) const = 0;
-		///<
-	friend std::tostream_t& operator << (std::tostream_t &a_os, const IOStream &a_ios)
+	virtual StreamT &print(StreamT& os) const = 0;
+		///< print
+	friend StreamT& operator << (StreamT &a_os, const IOStream &a_ios)
 	{
 		return a_ios.print(a_os);
 	}
-		///<
+		///< operator <<
 };
 
 xNAMESPACE_END2(xl, interface)
@@ -33,7 +32,7 @@ xNAMESPACE_END2(xl, interface)
 /**
  * Print any object which has a member:
  *
- * void T::print(std::tostream_t&) const;
+ * void T::print(StreamT &) const
  */
 template<class StreamT, class ValueT>
 auto
