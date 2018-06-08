@@ -211,7 +211,7 @@ MySqlConnection::lastErrorStr() const
 //-------------------------------------------------------------------------------------------------
 MySqlRecordset::MySqlRecordset(
     MySqlConnection &a_connection,  ///< connection
-    cbool_t         &a_isUseResult  ///< use result or store result
+    cbool_t          a_isUseResult  ///< use result or store result
 ) :
     _conn  (&a_connection),
     _result()
