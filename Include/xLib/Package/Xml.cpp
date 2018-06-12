@@ -251,11 +251,11 @@ XmlDoc::_onError(
 	xmlErrorPtr  a_error    ///< XML error
 )
 {
-    size_t alloc_mem = 1, len = 0;
-
     if (!a_error || a_error->code == XML_ERR_OK) {
         return;
     }
+
+    size_t alloc_mem = 1, len = 0;
 
     const int   line    = a_error->line;     // Номер линии
     const int   column  = a_error->int2;     // Номер колонки
@@ -265,7 +265,7 @@ XmlDoc::_onError(
     /// (void)my_str_rtrim(message, strlen(message));
 
     // Получаем уровень возникшей ошибки в виде строки
-    const char *level_str = NULL;
+    const char *level_str = nullptr;
 
     switch (a_error->level) {
 	case XML_ERR_NONE:
@@ -298,7 +298,7 @@ XmlDoc::_onError(
     ::strncat(buff, level_str, alloc_mem);
 
     // Определяем где произошла ошибка (Файл, линиия, колонка) и Добавляем информацию в буфер
-    if (a_error->file != NULL) {
+    if (a_error->file != nullptr) {
         alloc_mem += ::strlen(a_error->file);
         buff = (char *)::realloc(buff, alloc_mem);
         if (!buff) {
@@ -308,7 +308,7 @@ XmlDoc::_onError(
         ::strncat(buff, a_error->file, alloc_mem);
     }
     else if ((line != 0) && (a_error->domain == XML_FROM_PARSER)) {
-        len = snprintf(NULL, 0, "Entity: line %d, column: %d", line, column);
+        len = snprintf(nullptr, 0, "Entity: line %d, column: %d", line, column);
         buff = (char *)::realloc(buff, alloc_mem + len);
         if (!buff) {
             return;
@@ -319,9 +319,9 @@ XmlDoc::_onError(
     }
 
     // Определяем название элемента в котором произошла ошибка и Добавляем информацию в буфер
-    if ((a_error->node != NULL) && ((xmlNodePtr)a_error->node)->type == XML_ELEMENT_NODE) {
+    if ((a_error->node != nullptr) && ((xmlNodePtr)a_error->node)->type == XML_ELEMENT_NODE) {
         const xmlChar *node_name = ((xmlNodePtr)a_error->node)->name;
-        len = snprintf(NULL, 0, ", element %s: ", node_name);
+        len = snprintf(nullptr, 0, ", element %s: ", node_name);
         buff = (char *)::realloc(buff, alloc_mem + len);
         if (!buff) {
             return;
@@ -350,7 +350,7 @@ XmlDoc::_onError(
 
     // Если есть дополнительная информация,
     // то также помещаем ее в буфер
-    if ((a_error->domain == XML_FROM_XPATH) && (a_error->str1 != NULL)) {
+    if ((a_error->domain == XML_FROM_XPATH) && (a_error->str1 != nullptr)) {
         alloc_mem += strlen(a_error->str1) + 2;
         buff = (char *)::realloc(buff, alloc_mem);
         if (!buff) {
