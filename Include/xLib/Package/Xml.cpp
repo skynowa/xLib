@@ -40,6 +40,7 @@ XmlDoc::XmlDoc(
 ) :
     _iconv(a_charset, "UTF-8", 1024, false, true)   // TODO: Iconv::isForceEncoding = false
 {
+	_setOnError();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -220,6 +221,141 @@ void
 XmlDoc::_close()
 {
 	Utils::freeT(_doc, ::xmlFreeDoc, xPTR_NULL);
+}
+//-------------------------------------------------------------------------------------------------
+void
+XmlDoc::_setOnError()
+{
+	// FAQ: https://adobkin.com/2011/10/08/956/
+
+    FILE *handle = std::fopen("./XmlDoc_debug.log", "w+");
+    if (handle == nullptr) {
+        ::xmlSetGenericErrorFunc((void *)stderr, (xmlGenericErrorFunc)_onError);
+    } else {
+        ::xmlSetStructuredErrorFunc((void *)handle, (xmlStructuredErrorFunc)_onError);
+    }
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void
+XmlDoc::_onError(
+	void        *a_ctx,     ///< user data
+	xmlErrorPtr  a_error    ///< XML error
+)
+{
+    char *level_str = NULL;
+    char *buff      = NULL;
+    char *message   = NULL;
+
+    const xmlChar *node_name = NULL;
+    size_t alloc_mem = 1, len = 0;
+    int line = 0, column = 0;
+
+    if (!a_error || a_error->code == XML_ERR_OK) {
+        return;
+    }
+
+    line    = a_error->line;     // Номер линии
+    column  = a_error->int2;     // Номер колонки
+    message = a_error->message;  // Сообщение об ошибке сформированное парсером
+
+    // Удаляем пробельные символы с конца строки
+    /// (void)my_str_rtrim(message, strlen(message));
+
+    // Получаем уровень возникшей ошибки в виде строки
+    switch (a_error->level) {
+	case XML_ERR_NONE:
+		level_str = "";
+		break;
+	case XML_ERR_WARNING:
+		level_str = "Warning: ";
+		break;
+	case XML_ERR_ERROR:
+		level_str = "Error: ";
+		break;
+	case XML_ERR_FATAL:
+		level_str = "Fatal error: ";
+		break;
+    }
+
+    // Рассчитываем размер памяти, который необходимо выделить: длинна строки + 1 для '\0'
+    alloc_mem += ::strlen(level_str);
+
+    // Выделяем память
+    buff = (char *)::malloc(alloc_mem);
+    if (!buff) {
+        return;
+    }
+
+    // Помещаем в буфер строку
+    ::strncat(buff, level_str, alloc_mem);
+
+    // Определяем где произошла ошибка (Файл, линиия, колонка) и Добавляем информацию в буфер
+    if (a_error->file != NULL) {
+        alloc_mem += ::strlen(a_error->file);
+        buff = (char *)::realloc(buff, alloc_mem);
+        if (!buff) {
+            return;
+        }
+
+        ::strncat(buff, a_error->file, alloc_mem);
+    }
+    else if ((line != 0) && (a_error->domain == XML_FROM_PARSER)) {
+        len = snprintf(NULL, 0, "Entity: line %d, column: %d", line, column);
+        buff = (char *)::realloc(buff, alloc_mem + len);
+        if (!buff) {
+            return;
+        }
+
+        snprintf(buff + alloc_mem - 1, len + 1, "Entity: line %d, column: %d", line, column);
+        alloc_mem += len;
+    }
+
+    // Определяем название элемента в котором произошла ошибка и
+    // Добавляем информацию в буфер
+    if ((a_error->node != NULL) && ((xmlNodePtr)a_error->node)->type == XML_ELEMENT_NODE) {
+        node_name = ((xmlNodePtr)a_error->node)->name;
+        len = snprintf(NULL, 0, ", element %s: ", node_name);
+        buff = (char *)::realloc(buff, alloc_mem + len);
+        if (!buff) {
+            return;
+        }
+
+        snprintf(buff + alloc_mem - 1, len + 1, ", element %s: ", node_name);
+        alloc_mem += len;
+    } else {
+        alloc_mem += 2;
+        buff = (char *)::realloc(buff, alloc_mem);
+        if (!buff) {
+            return;
+        }
+
+        ::strncat(buff, ": ", alloc_mem);
+    }
+
+    // Добавляем в буфер сообщение об ощибке
+    alloc_mem += strlen(message);
+    buff = (char *)::realloc(buff, alloc_mem);
+    if (!buff) {
+        return;
+    }
+
+    ::strncat(buff, message, alloc_mem);
+
+    // Если есть дополнительная информация,
+    // то также помещаем ее в буфер
+    if ((a_error->domain == XML_FROM_XPATH) && (a_error->str1 != NULL)) {
+        alloc_mem += strlen(a_error->str1) + 2;
+        buff = (char *)::realloc(buff, alloc_mem);
+        if (!buff) {
+            return;
+        }
+
+        ::strncat(buff, ": ", alloc_mem);
+        ::strncat(buff, a_error->str1, alloc_mem);
+    }
+
+    fprintf((FILE *)a_ctx, "LibXML2: %s\n", buff);
 }
 //-------------------------------------------------------------------------------------------------
 

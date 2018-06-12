@@ -47,6 +47,11 @@ protected:
 	void           _registerNss(xmlXPathContextPtr ctx) const;
 	void           _close();
 
+private:
+	void           _setOnError();
+	static
+	void           _onError(void *ctx, xmlErrorPtr error);
+
 	friend class XmlNode;
 };
 //-------------------------------------------------------------------------------------------------
