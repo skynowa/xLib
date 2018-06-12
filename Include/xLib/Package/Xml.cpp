@@ -251,26 +251,22 @@ XmlDoc::_onError(
 	xmlErrorPtr  a_error    ///< XML error
 )
 {
-    char *level_str = NULL;
-    char *buff      = NULL;
-    char *message   = NULL;
-
-    const xmlChar *node_name = NULL;
     size_t alloc_mem = 1, len = 0;
-    int line = 0, column = 0;
 
     if (!a_error || a_error->code == XML_ERR_OK) {
         return;
     }
 
-    line    = a_error->line;     // Номер линии
-    column  = a_error->int2;     // Номер колонки
-    message = a_error->message;  // Сообщение об ошибке сформированное парсером
+    const int   line    = a_error->line;     // Номер линии
+    const int   column  = a_error->int2;     // Номер колонки
+    const char *message = a_error->message;  // Сообщение об ошибке сформированное парсером
 
     // Удаляем пробельные символы с конца строки
     /// (void)my_str_rtrim(message, strlen(message));
 
     // Получаем уровень возникшей ошибки в виде строки
+    const char *level_str = NULL;
+
     switch (a_error->level) {
 	case XML_ERR_NONE:
 		level_str = "";
@@ -282,7 +278,10 @@ XmlDoc::_onError(
 		level_str = "Error: ";
 		break;
 	case XML_ERR_FATAL:
-		level_str = "Fatal error: ";
+		level_str = "Fatal: ";
+		break;
+	default:
+		level_str = "<Unknown>: ";
 		break;
     }
 
@@ -290,7 +289,7 @@ XmlDoc::_onError(
     alloc_mem += ::strlen(level_str);
 
     // Выделяем память
-    buff = (char *)::malloc(alloc_mem);
+    char *buff = (char *)::malloc(alloc_mem);
     if (!buff) {
         return;
     }
@@ -321,7 +320,7 @@ XmlDoc::_onError(
 
     // Определяем название элемента в котором произошла ошибка и Добавляем информацию в буфер
     if ((a_error->node != NULL) && ((xmlNodePtr)a_error->node)->type == XML_ELEMENT_NODE) {
-        node_name = ((xmlNodePtr)a_error->node)->name;
+        const xmlChar *node_name = ((xmlNodePtr)a_error->node)->name;
         len = snprintf(NULL, 0, ", element %s: ", node_name);
         buff = (char *)::realloc(buff, alloc_mem + len);
         if (!buff) {
