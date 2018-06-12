@@ -319,8 +319,7 @@ XmlDoc::_onError(
         alloc_mem += len;
     }
 
-    // Определяем название элемента в котором произошла ошибка и
-    // Добавляем информацию в буфер
+    // Определяем название элемента в котором произошла ошибка и Добавляем информацию в буфер
     if ((a_error->node != NULL) && ((xmlNodePtr)a_error->node)->type == XML_ELEMENT_NODE) {
         node_name = ((xmlNodePtr)a_error->node)->name;
         len = snprintf(NULL, 0, ", element %s: ", node_name);
