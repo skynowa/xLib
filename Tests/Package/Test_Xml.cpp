@@ -116,6 +116,15 @@ Test_Xml::unit()
 		} // for (results)
     }
 
+    xTEST_CASE("bad.xml")
+    {
+        std::ctstring_t filePath = "/home/skynowa/Projects/xLib/Tests/Package/Xml/bad.xml";
+
+        XmlDoc doc("UTF-8");
+        m_iRv = doc.parseFile(filePath);
+        xTEST_DIFF(m_iRv, 0);
+    }
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
