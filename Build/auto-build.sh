@@ -5,6 +5,8 @@
 
 
 APP_NAME="[AUTO_BUILD]"
+INOTIFY_WAIT=inotifywait
+INOTIFY_WAIT_PATH=`which $INOTIFY_WAIT`
 
 JOBS_NUM=`nproc --all`
 MAKE="make -j$JOBS_NUM"
@@ -12,7 +14,6 @@ MAKE="make -j$JOBS_NUM"
 PROJECT_DIR=/home/skynowa/Projects/xLib
 BUILD_DIR=$PROJECT_DIR/../xLib_eclipse
 TEST_DIR=$BUILD_DIR/Tests
-INOTIFY_WAIT=`which inotifywait`
 
 EXCLUDE_DIRS='(.git/|Build/|Docs/|Tools/)'
 
@@ -23,11 +24,10 @@ EXCLUDE_FILES='\.([^h]|[^inl]|[^cpp])$'
 INCLUDE_FILES="\.(h|inl|cpp)$"
 FILE_PATH_LAST=""
 
-if [ ! -f $INOTIFY_WAIT ]; then
+if [ ! -f "$INOTIFY_WAIT_PATH" ]; then
     echo "$INOTIFY_WAIT - not found. Exit."
     exit 1
 fi
-
 
 cd $PROJECT_DIR
 echo "$APP_NAME: Watch $PROJECT_DIR..."
