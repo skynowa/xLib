@@ -195,6 +195,34 @@ XmlDoc::format(
 	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+XmlDoc::isValidLight(
+	std::ctstring_t &a_str
+)
+{
+	xCHECK_RET(a_str.empty(), false);
+
+   /**
+    * https://xmlwriter.net/xml_guide/xml_declaration.shtml
+    *
+    * <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+    */
+
+	std::ctstring_t xml_declaration_begin = xT("<?xml");
+
+	if (a_str.size() <= xml_declaration_begin.size()) {
+		return false;
+	}
+
+	std::ctstring_t str = a_str.substr(0, xml_declaration_begin.size());
+	if (str != xml_declaration_begin) {
+		return false;
+	}
+
+	return true;
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************

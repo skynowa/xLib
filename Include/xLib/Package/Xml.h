@@ -36,6 +36,10 @@ public:
 	int            saveToFile(std::ctstring_t &filePath);
 	std::tstring_t format(std::ctstring_t &charset);
 
+	static
+	bool_t         isValidLight(std::ctstring_t &str);
+		///< quick check string if XML document
+
 	xNO_DEFAULT_CONSTRUCT(XmlDoc);
 	xNO_COPY_ASSIGN(XmlDoc);
 
