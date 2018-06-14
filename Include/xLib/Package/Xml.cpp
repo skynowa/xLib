@@ -61,6 +61,22 @@ XmlDoc::registerNss(
 //-------------------------------------------------------------------------------------------------
 bool
 XmlDoc::parse(
+	cptr_ctchar_t a_buff,
+	cint_t        a_size
+)
+{
+	_close();
+
+	_doc = ::xmlParseMemory(a_buff, a_size);
+	if (_doc == nullptr) {
+		return false;
+	}
+
+	return true;
+}
+//-------------------------------------------------------------------------------------------------
+bool
+XmlDoc::parse(
 	std::ctstring_t &a_str,
 	cbool_t          a_isNss /* = true */
 )
