@@ -27,8 +27,8 @@ public:
 	explicit       XmlDoc(std::ctstring_t &charset);
 	virtual       ~XmlDoc();
 
-    virtual int_t          lastError() const xOVERRIDE xWARN_UNUSED_RV;
-    virtual std::tstring_t lastErrorStr() const xOVERRIDE xWARN_UNUSED_RV;
+    int_t          lastError() const xOVERRIDE xWARN_UNUSED_RV;
+    std::tstring_t lastErrorStr() const xOVERRIDE xWARN_UNUSED_RV;
 
 	void           registerNss(std::cmap_tstring_t &nss) const;
 
