@@ -60,14 +60,14 @@ XmlDoc::lastErrorStr() const
 {
     std::tstring_t sRv;
 
-	cint_t          lastError_ = lastError();
-	// TODO: lastError - get error string
-    std::ctstring_t error;
+	cint_t          error = lastError();
+	// TODO: lastError - get error description
+    std::ctstring_t errorDesc;
 
-    if (lastError_ == XML_ERR_OK) {
-        sRv = Format::str(xT("{} - \"{}\""), lastError_, xT("Success"));
+    if (error == XML_ERR_OK) {
+        sRv = Format::str(xT("{} - \"{}\""), error, xT("Success"));
     } else {
-        sRv = Format::str(xT("{} - \"{}\""), lastError_, error);
+        sRv = Format::str(xT("{} - \"{}\""), error, errorDesc);
     }
 
     return sRv;
