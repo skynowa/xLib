@@ -62,7 +62,7 @@ XmlDoc::lastErrorStr() const
     std::tstring_t sRv;
 
 	cint_t          error = lastError();
-	// TODO: lastError - get error description
+	// TODO: XmlDoc::lastErrorStr - get error description
     std::ctstring_t errorDesc;
 
     if (error == XML_ERR_OK) {
@@ -354,7 +354,7 @@ XmlDoc::_onError(
 		if (it != levels.end()) {
 			level = it->second;
 		} else {
-			level = xT("<Unknown>: ");
+			level = xT("Unknown");
 		}
 	}
 
@@ -420,7 +420,13 @@ XmlDoc::_onError(
 		LIBXML_VERSION, domain, code, level, file, line, column, element,
 			msg, msgExtra1, msgExtra2, msgExtra3);
 
-	std::tcout << errorMsg << std::endl;
+	// [out]
+	{
+		_lastError = code;
+		/// _lastErrorStr
+
+		std::tcout << errorMsg << std::endl;
+	}
 }
 //-------------------------------------------------------------------------------------------------
 
