@@ -133,8 +133,9 @@ XmlDoc::format(
 	std::ctstring_t &a_charset	///< character encoding (sample: "UTF-8")
 )
 {
-	if ( a_charset.empty() )
+	if ( a_charset.empty() ) {
 		return {};
+	}
 
 	std::tstring_t  sRv;
 	xmlChar        *buff {};
@@ -142,10 +143,12 @@ XmlDoc::format(
 
 	::xmlKeepBlanksDefault(0);
 	::xmlDocDumpFormatMemoryEnc(_doc, &buff, &buff_size, a_charset.c_str(), 1);
-	if (buff == nullptr)
+	if (buff == nullptr) {
 		return {};
-	if (buff_size <= 0)
+	}
+	if (buff_size <= 0) {
 		return {};
+	}
 
 	sRv.assign(reinterpret_cast<cptr_ctchar_t>(buff), static_cast<size_t>(buff_size));
 
@@ -220,16 +223,20 @@ XmlDoc::_stringNoNs(
 
 	pos = 0;
 	while ( (pos = text.find("xmlns", pos)) != std::tstring_t::npos ) {
-		if ( (pos1 = text.find_first_of("\"", pos+1) ) == std::tstring_t::npos) break;
-		if ( (pos1 = text.find_first_of("\"", pos1+1) ) == std::tstring_t::npos) break;
+		if ( (pos1 = text.find_first_of("\"", pos+1) ) == std::tstring_t::npos)
+			break;
+		if ( (pos1 = text.find_first_of("\"", pos1+1) ) == std::tstring_t::npos)
+			break;
 
 		text.erase(pos, pos1 - pos + 1);
 	}
 
 	pos = 0;
 	while ( (pos = text.find("xsi", pos)) != std::tstring_t::npos ) {
-		if ( (pos1 = text.find_first_of("\"",pos+1) ) == std::tstring_t::npos) break;
-		if ( (pos1 = text.find_first_of("\"",pos1+1) ) == std::tstring_t::npos) break;
+		if ( (pos1 = text.find_first_of("\"",pos+1) ) == std::tstring_t::npos)
+			break;
+		if ( (pos1 = text.find_first_of("\"",pos1+1) ) == std::tstring_t::npos)
+			break;
 
 		text.erase(pos, pos1 - pos + 1);
 	}
@@ -238,13 +245,17 @@ XmlDoc::_stringNoNs(
 	while ( pos < text.length() && (pos = text.find("<", pos) ) != std::tstring_t::npos ) {
 		++ pos;
 
-		if ( !(pos<text.length()) ) break;
+		if ( !(pos<text.length()) )
+			break;
 		if ( text[pos] == '!' ) { pos = text.find("]]>", pos);
 		if ( pos == std::tstring_t::npos ) { break; } continue; }
 		if ( text[pos] == '/' ) ++pos;
-		if ( !(pos<text.length()) ) break;
-		if ( (pos2 = text.find_first_of(">", pos) ) == std::tstring_t::npos ) break;
-		if ( (pos1 = text.find_first_of(":", pos) ) == std::tstring_t::npos ) continue;
+		if ( !(pos<text.length()) )
+			break;
+		if ( (pos2 = text.find_first_of(">", pos) ) == std::tstring_t::npos )
+			break;
+		if ( (pos1 = text.find_first_of(":", pos) ) == std::tstring_t::npos )
+			continue;
 
 		pos5 = text.find_first_of(" ", pos);
 
@@ -452,10 +463,11 @@ XmlNode::getText() const
 
 	xmlChar *content {};
 	{
-		if (::xmlNodeIsText(_node) == 1)
+		if (::xmlNodeIsText(_node) == 1) {
 			content = ::xmlNodeGetContent(_node);
-		else
+		} else {
 			content = ::xmlNodeListGetString(_node->doc, _node->xmlChildrenNode, 1);
+		}
 
 		if (content == nullptr) {
 		    xTEST_FAIL;
