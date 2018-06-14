@@ -67,7 +67,7 @@ XmlDoc::parseFile(
 	_close();
 
 	_doc = ::xmlParseFile( a_filePath.c_str() );
-	if (_doc == xPTR_NULL) {
+	if (_doc == nullptr) {
 		return 1;
 	}
 
@@ -91,7 +91,7 @@ XmlDoc::parseString(
 		_doc = ::xmlParseDoc( (const xmlChar *)a_str.data() );
 	}
 
-	if (_doc == xPTR_NULL) {
+	if (_doc == nullptr) {
 		return 1;
 	}
 
@@ -117,8 +117,8 @@ XmlDoc::saveToFile(
 	std::ctstring_t &a_filePath
 )
 {
-	xmlSaveCtxtPtr savectxt = ::xmlSaveToFilename(a_filePath.c_str(), xPTR_NULL, XML_SAVE_FORMAT);
-	if (savectxt != xPTR_NULL) {
+	xmlSaveCtxtPtr savectxt = ::xmlSaveToFilename(a_filePath.c_str(), nullptr, XML_SAVE_FORMAT);
+	if (savectxt != nullptr) {
 		::xmlSaveDoc(savectxt, _doc);
 		::xmlSaveClose(savectxt);
 
@@ -149,7 +149,7 @@ XmlDoc::format(
 
 	sRv.assign(reinterpret_cast<cptr_ctchar_t>(buff), static_cast<size_t>(buff_size));
 
-	Utils::freeT(buff, ::xmlFree, xPTR_NULL);
+	Utils::freeT(buff, ::xmlFree, nullptr);
 
 	return sRv;
 }
@@ -257,7 +257,7 @@ XmlDoc::_stringNoNs(
 void
 XmlDoc::_close()
 {
-	Utils::freeT(_doc, ::xmlFreeDoc, xPTR_NULL);
+	Utils::freeT(_doc, ::xmlFreeDoc, nullptr);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -442,7 +442,7 @@ XmlNode::operator = (
 std::tstring_t
 XmlNode::getName() const
 {
-	return (_node->name == xPTR_NULL) ? "" : (cptr_ctchar_t)_node->name;
+	return (_node->name == nullptr) ? "" : (cptr_ctchar_t)_node->name;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -457,7 +457,7 @@ XmlNode::getText() const
 		else
 			content = ::xmlNodeListGetString(_node->doc, _node->xmlChildrenNode, 1);
 
-		if (content == xPTR_NULL) {
+		if (content == nullptr) {
 		    xTEST_FAIL;
 			return {};
 		}
@@ -465,7 +465,7 @@ XmlNode::getText() const
 
     _xmlDoc->_iconv.convert((cptr_ctchar_t)content, &sRv);
 
-	Utils::freeT(content, ::xmlFree, xPTR_NULL);
+	Utils::freeT(content, ::xmlFree, nullptr);
 
 	return sRv;
 }
@@ -532,7 +532,7 @@ XmlNode::getContents(
 	a_res.clear();
 
 	xmlXPathContextPtr xpathCtx = ::xmlXPathNewContext(_node->doc);
-	if (xpathCtx == xPTR_NULL) {
+	if (xpathCtx == nullptr) {
 		return 1;
 	}
 
@@ -541,23 +541,23 @@ XmlNode::getContents(
 	xpathCtx->node = _node;
 
 	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((const xmlChar *)a_xpath.data(), xpathCtx);
-	if (xpathObj == xPTR_NULL) {
-		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, xPTR_NULL);
+	if (xpathObj == nullptr) {
+		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
 
 		return 2;
 	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
-	if (nodes == xPTR_NULL) {
-		Utils::freeT(xpathObj, ::xmlXPathFreeObject,  xPTR_NULL);
-		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, xPTR_NULL);
+	if (nodes == nullptr) {
+		Utils::freeT(xpathObj, ::xmlXPathFreeObject,  nullptr);
+		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
 
 		return 4;
 	}
 
 	for (int i = 0; i < nodes->nodeNr; ++ i) {
 		xmlNodePtr cur = nodes->nodeTab[i];
-		if (cur == xPTR_NULL) {
+		if (cur == nullptr) {
 			continue;
 		}
 
@@ -565,8 +565,8 @@ XmlNode::getContents(
 		a_res.emplace_back(node);
 	}
 
-	Utils::freeT(xpathObj, ::xmlXPathFreeObject,  xPTR_NULL);
-	Utils::freeT(xpathCtx, ::xmlXPathFreeContext, xPTR_NULL);
+	Utils::freeT(xpathObj, ::xmlXPathFreeObject,  nullptr);
+	Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
 
 	if ( a_res.empty() ) {
 		return 3;
@@ -591,7 +591,7 @@ XmlNode::getAttribute(
 
 	sRv = (cptr_ctchar_t)value;
 
-	Utils::freeT(value, ::xmlFree, xPTR_NULL);
+	Utils::freeT(value, ::xmlFree, nullptr);
 
 	return sRv;
 }
@@ -607,7 +607,7 @@ XmlNode::getAttributes(
 		return;
 	}
 
-	for (xmlAttrPtr p = _node->properties; p != xPTR_NULL; p = p->next) {
+	for (xmlAttrPtr p = _node->properties; p != nullptr; p = p->next) {
 		const xmlChar *name  = p->name;
 		xTEST_PTR(name);
 
@@ -616,7 +616,7 @@ XmlNode::getAttributes(
 
 		a_values.insert( {(cptr_ctchar_t)name, (cptr_ctchar_t)value} );
 
-		Utils::freeT(value, ::xmlFree, xPTR_NULL);
+		Utils::freeT(value, ::xmlFree, nullptr);
 	}
 }
 //-------------------------------------------------------------------------------------------------
