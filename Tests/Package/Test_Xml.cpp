@@ -116,6 +116,41 @@ Test_Xml::unit()
         } // for (results)
     }
 
+    xTEST_CASE("2.xml")
+    {
+        std::ctstring_t filePath = "/home/skynowa/Projects/xLib/Tests/Package/Xml/2.xml";
+
+        std::cmap_tstring_t expect
+        {
+            {xT("Currency"),  xT("EUR")},
+            {xT("TestMode"),  xT("true")},
+            {xT("HotelID"),   xT("12345")},
+            {xT("HotelName"), xT("XXXXX")},
+            {xT("RoomType"),  xT("Double Or Twin Deluxe")},
+            {xT("MealType"),  xT("Bed and breakfast")},
+            {xT("Price"),     xT("211.50")}
+        };
+
+        XmlDoc doc("UTF-8");
+        m_bRv = doc.parseFile(filePath);
+        xTEST(m_bRv);
+
+        // getRootNode
+        XmlNode root;
+        m_bRv = doc.getRootNode(root);
+        xTEST(m_bRv);
+
+        // getContents
+        std::map_tstring_t results;
+        m_bRv = root.getContents("/AvailabilitySearchResult", results);
+
+        std::cout << (OStream() << results).str() << "\n";
+
+        xTEST(m_bRv);
+        xTEST_EQ(results.size(), (std::size_t)7);
+        xTEST_EQ(results, expect);
+    }
+
     xTEST_CASE("bad.xml")
     {
         std::ctstring_t filePath = "/home/skynowa/Projects/xLib/Tests/Package/Xml/bad.xml";

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AvailabilitySearchResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Currency>EUR</Currency>
+    <TestMode>true</TestMode>
+    <HotelID>12345</HotelID>
+    <HotelName>XXXXX</HotelName>
+    <RoomType>Double Or Twin Deluxe</RoomType>
+    <MealType>Bed and breakfast</MealType>
+    <Price>211.50</Price>
+    <Items>
+        <Item>AAA</Item>
+        <Item>BBB</Item>
+        <Item>CCC</Item>
+    </Items>
+</AvailabilitySearchResult>
