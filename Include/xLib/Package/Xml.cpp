@@ -300,6 +300,9 @@ XmlDoc::_onError(
 
 	std::tstring_t errorMsg;
 
+	cint_t domain = a_error->domain;
+	cint_t code   = a_error->code;
+
 	std::tstring_t level;
 	{
 		const std::map<xmlErrorLevel, std::tstring_t> levels
@@ -358,7 +361,9 @@ XmlDoc::_onError(
 	}
 
 	errorMsg = Format::str(
-		xT("LibXML2:        {}\n")
+		xT("LibXML2 ver:    {}\n")
+		xT("domain:         {}\n")
+		xT("code:           {}\n")
 		xT("level:          {}\n")
 		xT("file:           {}\n")
 		xT("line:           {}\n")
@@ -368,7 +373,8 @@ XmlDoc::_onError(
 		xT("message extra1: {}\n")
 		xT("message extra2: {}\n")
 		xT("message extra3: {}\n"),
-		LIBXML_VERSION, level, file, line, column, element, msg, msgExtra1, msgExtra2, msgExtra3);
+		LIBXML_VERSION, domain, code, level, file, line, column, element,
+			msg, msgExtra1, msgExtra2, msgExtra3);
 
 	std::tcout << errorMsg << std::endl;
 }
