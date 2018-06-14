@@ -322,23 +322,29 @@ XmlDoc::_onError(
 	}
 
 	std::tstring_t file;
-	if (a_error->file != nullptr) {
-		file = a_error->file;
+	{
+		if (a_error->file != nullptr) {
+			file = a_error->file;
+		}
 	}
 
 	int_t line {};
 	int_t column {};
-	if (a_error->domain == XML_FROM_PARSER) {
-		line   = a_error->line;
-		column = a_error->int2;
+	{
+		if (a_error->domain == XML_FROM_PARSER) {
+			line   = a_error->line;
+			column = a_error->int2;
+		}
 	}
 
 	std::tstring_t element;
-	if (a_error->node != nullptr) {
-		if (((xmlNodePtr)a_error->node)->type == XML_ELEMENT_NODE) {
-			auto node_name = (cptr_ctchar_t)((xmlNodePtr)a_error->node)->name;
+	{
+		if (a_error->node != nullptr) {
+			if (((xmlNodePtr)a_error->node)->type == XML_ELEMENT_NODE) {
+				auto node_name = (cptr_ctchar_t)((xmlNodePtr)a_error->node)->name;
 
-			element = node_name;
+				element = node_name;
+			}
 		}
 	}
 
@@ -347,16 +353,17 @@ XmlDoc::_onError(
 	std::tstring_t msgExtra1;
 	std::tstring_t msgExtra2;
 	std::tstring_t msgExtra3;
-
-	if (a_error->domain == XML_FROM_XPATH) {
-		if (a_error->str1 != nullptr) {
-			msgExtra1 = a_error->str1;
-		}
-		if (a_error->str2 != nullptr) {
-			msgExtra2 = a_error->str2;
-		}
-		if (a_error->str3 != nullptr) {
-			msgExtra3 = a_error->str3;
+	{
+		if (a_error->domain == XML_FROM_XPATH) {
+			if (a_error->str1 != nullptr) {
+				msgExtra1 = a_error->str1;
+			}
+			if (a_error->str2 != nullptr) {
+				msgExtra2 = a_error->str2;
+			}
+			if (a_error->str3 != nullptr) {
+				msgExtra3 = a_error->str3;
+			}
 		}
 	}
 
