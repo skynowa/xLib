@@ -25,6 +25,9 @@ public:
 	explicit       XmlDoc(std::ctstring_t &charset);
 	virtual       ~XmlDoc();
 
+    int_t          lastError() const xWARN_UNUSED_RV;
+    std::tstring_t lastErrorStr() const xWARN_UNUSED_RV;
+
 	void           registerNss(std::cmap_tstring_t &nss) const;
 
 	bool           parse(cptr_ctchar_t buff, cint_t size);
@@ -44,6 +47,8 @@ public:
 	xNO_COPY_ASSIGN(XmlDoc);
 
 protected:
+	int_t          _lastError {XML_ERR_OK};
+
 	xmlDocPtr      _doc {};
 	Iconv          _iconv;
 	mutable std::map_tstring_t _nss;

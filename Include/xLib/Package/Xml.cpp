@@ -49,6 +49,30 @@ XmlDoc::~XmlDoc()
 	_close();
 }
 //-------------------------------------------------------------------------------------------------
+int_t
+XmlDoc::lastError() const xWARN_UNUSED_RV
+{
+	return _lastError;
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+XmlDoc::lastErrorStr() const xWARN_UNUSED_RV
+{
+    std::tstring_t sRv;
+
+	cint_t          lastError = lastError();
+	// TODO: lastError - get error string
+    std::ctstring_t error;
+
+    if (lastError() == XML_ERR_OK) {
+        sRv = Format::str(xT("{} - \"{}\""), lastError, xT("Success"));
+    } else {
+        sRv = Format::str(xT("{} - \"{}\""), lastError, error);
+    }
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 void
 XmlDoc::registerNss(
 	std::cmap_tstring_t &a_nss
