@@ -6,6 +6,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/ILastError.h>
 #include <xLib/Package/Iconv.h>
 
 #include <libxml/xmlmemory.h>
@@ -19,14 +20,15 @@ xNAMESPACE_BEGIN2(xl, package)
 //-------------------------------------------------------------------------------------------------
 class XmlNode;
 
-class XmlDoc
+class XmlDoc :
+	public xl::interface::ILastError<int_t>
 {
 public:
 	explicit       XmlDoc(std::ctstring_t &charset);
 	virtual       ~XmlDoc();
 
-    int_t          lastError() const xWARN_UNUSED_RV;
-    std::tstring_t lastErrorStr() const xWARN_UNUSED_RV;
+    virtual int_t          lastError() const xOVERRIDE xWARN_UNUSED_RV;
+    virtual std::tstring_t lastErrorStr() const xOVERRIDE xWARN_UNUSED_RV;
 
 	void           registerNss(std::cmap_tstring_t &nss) const;
 
@@ -47,8 +49,6 @@ public:
 	xNO_COPY_ASSIGN(XmlDoc);
 
 protected:
-	int_t          _lastError {XML_ERR_OK};
-
 	xmlDocPtr      _doc {};
 	Iconv          _iconv;
 	mutable std::map_tstring_t _nss;

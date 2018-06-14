@@ -50,24 +50,24 @@ XmlDoc::~XmlDoc()
 }
 //-------------------------------------------------------------------------------------------------
 int_t
-XmlDoc::lastError() const xWARN_UNUSED_RV
+XmlDoc::lastError() const
 {
 	return _lastError;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlDoc::lastErrorStr() const xWARN_UNUSED_RV
+XmlDoc::lastErrorStr() const
 {
     std::tstring_t sRv;
 
-	cint_t          lastError = lastError();
+	cint_t          lastError_ = lastError();
 	// TODO: lastError - get error string
     std::ctstring_t error;
 
-    if (lastError() == XML_ERR_OK) {
-        sRv = Format::str(xT("{} - \"{}\""), lastError, xT("Success"));
+    if (lastError_ == XML_ERR_OK) {
+        sRv = Format::str(xT("{} - \"{}\""), lastError_, xT("Success"));
     } else {
-        sRv = Format::str(xT("{} - \"{}\""), lastError, error);
+        sRv = Format::str(xT("{} - \"{}\""), lastError_, error);
     }
 
     return sRv;
