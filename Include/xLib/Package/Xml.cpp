@@ -86,9 +86,9 @@ XmlDoc::parseString(
 		std::tstring_t str = a_str;
 		_stringNoNs(&str);
 
-		_doc = ::xmlParseDoc( (xmlChar *)str.c_str() );
+		_doc = ::xmlParseDoc( (const xmlChar *)str.data() );
 	} else {
-		_doc = ::xmlParseDoc( (xmlChar *)a_str.c_str() );
+		_doc = ::xmlParseDoc( (const xmlChar *)a_str.data() );
 	}
 
 	if (_doc == xPTR_NULL) {
@@ -196,8 +196,8 @@ XmlDoc::_registerNss(
 ) const
 {
 	for (auto &itNs : _nss) {
-		const xmlChar *prefix = (xmlChar *)itNs.first.c_str();
-		const xmlChar *nsUri  = (xmlChar *)itNs.second.c_str();
+		auto prefix = (const xmlChar *)itNs.first.data();
+		auto nsUri  = (const xmlChar *)itNs.second.data();
 
 		int iRv = ::xmlXPathRegisterNs(a_xmlXPathContextPtr, prefix, nsUri);
 		xTEST_EQ(iRv, 0);
@@ -540,7 +540,7 @@ XmlNode::getContents(
 
 	xpathCtx->node = _node;
 
-	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((xmlChar *)a_xpath.c_str(), xpathCtx);
+	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((const xmlChar *)a_xpath.data(), xpathCtx);
 	if (xpathObj == xPTR_NULL) {
 		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, xPTR_NULL);
 
@@ -586,7 +586,7 @@ XmlNode::getAttribute(
 
 	std::tstring_t sRv;
 
-	xmlChar *value = ::xmlGetProp(_node, (xmlChar *)a_name.c_str());
+	xmlChar *value = ::xmlGetProp(_node, (const xmlChar *)a_name.data());
 	xTEST_PTR(value);
 
 	sRv = (cptr_ctchar_t)value;
