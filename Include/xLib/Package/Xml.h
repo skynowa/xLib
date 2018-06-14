@@ -27,8 +27,8 @@ public:
 
 	void           registerNss(std::cmap_tstring_t &nss) const;
 
+	bool           parse(std::ctstring_t &str, cbool_t isNss = true);
 	bool           parseFile(std::ctstring_t &filePath);
-	bool           parseString(std::ctstring_t &str, cbool_t isNss = true);
 
 	bool           getRootNode(XmlNode &root);
 
