@@ -20,7 +20,8 @@ public:
     virtual std::tstring_t lastErrorStr() const = 0;
 
 protected:
-	ErrorT _lastError {};
+	ErrorT         _lastError {};
+	std::tstring_t _lastErrorStr;
 };
 
 xNAMESPACE_END2(xl, interface)

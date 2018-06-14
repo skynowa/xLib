@@ -41,7 +41,7 @@ XmlDoc::XmlDoc(
     _iconv(a_charset, "UTF-8", 1024, false, true)   // TODO: Iconv::isForceEncoding = false
 {
 	// FAQ: https://adobkin.com/2011/10/08/956/
-	::xmlSetStructuredErrorFunc(nullptr, _onError);
+	::xmlSetStructuredErrorFunc(static_cast<void *>(this), _onError);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -327,6 +327,10 @@ XmlDoc::_onError(
 	xmlErrorPtr  a_error    ///< XML error
 )
 {
+	xTEST_PTR(a_ctx);
+
+	auto xmlDoc = static_cast<XmlDoc *>(a_ctx);
+
 	if (a_error == nullptr) {
 		return;
 	}
@@ -335,7 +339,7 @@ XmlDoc::_onError(
 		return;
 	}
 
-	std::tstring_t errorMsg;
+	std::tstring_t errorDesc;
 
 	cint_t domain = a_error->domain;
 	cint_t code   = a_error->code;
@@ -404,7 +408,7 @@ XmlDoc::_onError(
 		}
 	}
 
-	errorMsg = Format::str(
+	errorDesc = Format::str(
 		xT("LibXML2 ver:    {}\n")
 		xT("domain:         {}\n")
 		xT("code:           {}\n")
@@ -422,10 +426,10 @@ XmlDoc::_onError(
 
 	// [out]
 	{
-		_lastError = code;
-		/// _lastErrorStr
+		xmlDoc->_lastError    = code;
+		xmlDoc->_lastErrorStr = errorDesc;
 
-		std::tcout << errorMsg << std::endl;
+		std::tcout << errorDesc << std::endl;
 	}
 }
 //-------------------------------------------------------------------------------------------------
