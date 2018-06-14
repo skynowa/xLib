@@ -60,22 +60,7 @@ XmlDoc::registerNss(
 }
 //-------------------------------------------------------------------------------------------------
 bool
-XmlDoc::parseFile(
-	std::ctstring_t &a_filePath
-)
-{
-	_close();
-
-	_doc = ::xmlParseFile( a_filePath.c_str() );
-	if (_doc == nullptr) {
-		return false;
-	}
-
-	return true;
-}
-//-------------------------------------------------------------------------------------------------
-bool
-XmlDoc::parseString(
+XmlDoc::parse(
 	std::ctstring_t &a_str,
 	cbool_t          a_isNss /* = true */
 )
@@ -91,6 +76,21 @@ XmlDoc::parseString(
 		_doc = ::xmlParseDoc( (const xmlChar *)a_str.data() );
 	}
 
+	if (_doc == nullptr) {
+		return false;
+	}
+
+	return true;
+}
+//-------------------------------------------------------------------------------------------------
+bool
+XmlDoc::parseFile(
+	std::ctstring_t &a_filePath
+)
+{
+	_close();
+
+	_doc = ::xmlParseFile( a_filePath.c_str() );
 	if (_doc == nullptr) {
 		return false;
 	}
