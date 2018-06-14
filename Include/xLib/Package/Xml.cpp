@@ -310,7 +310,11 @@ XmlDoc::_onError(
 	xmlErrorPtr  a_error    ///< XML error
 )
 {
-	if (a_error == nullptr || a_error->code == XML_ERR_OK) {
+	if (a_error == nullptr) {
+		return;
+	}
+
+	if (a_error->code == XML_ERR_OK) {
 		return;
 	}
 
