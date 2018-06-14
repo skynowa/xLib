@@ -58,7 +58,6 @@ protected:
 	void           _close();
 
 private:
-	void           _setOnError();
 	static
 	void           _onError(void *ctx, xmlErrorPtr error);
 
