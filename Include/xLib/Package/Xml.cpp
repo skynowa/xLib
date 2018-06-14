@@ -76,67 +76,26 @@ XmlDoc::parseFile(
 //-------------------------------------------------------------------------------------------------
 int
 XmlDoc::parseString(
-	std::ctstring_t &a_str
+	std::ctstring_t &a_str,
+	cbool_t          a_isNss /* = true */
 )
 {
 	_close();
 
-	_doc = ::xmlParseDoc( (xmlChar *)a_str.c_str() );
+	if (!a_isNss) {
+		std::tstring_t str = a_str;
+		_stringNoNs(&str);
+
+		_doc = ::xmlParseDoc( (xmlChar *)str.c_str() );
+	} else {
+		_doc = ::xmlParseDoc( (xmlChar *)a_str.c_str() );
+	}
+
 	if (_doc == xPTR_NULL) {
 		return 1;
 	}
 
 	return 0;
-}
-//-------------------------------------------------------------------------------------------------
-int
-XmlDoc::parseStringNoNs(
-	std::ctstring_t &a_str
-)
-{
-	std::tstring_t::size_type pos  {};
-	std::tstring_t::size_type pos1 {};
-	std::tstring_t::size_type pos2 {};
-	std::tstring_t::size_type pos5 {};
-
-	std::tstring_t text = a_str;
-
-	pos = 0;
-	while ( (pos = text.find("xmlns", pos)) != std::tstring_t::npos ) {
-		if ( (pos1 = text.find_first_of("\"", pos+1) ) == std::tstring_t::npos) break;
-		if ( (pos1 = text.find_first_of("\"", pos1+1) ) == std::tstring_t::npos) break;
-
-		text.erase(pos, pos1 - pos + 1);
-	}
-
-	pos = 0;
-	while ( (pos = text.find("xsi", pos)) != std::tstring_t::npos ) {
-		if ( (pos1 = text.find_first_of("\"",pos+1) ) == std::tstring_t::npos) break;
-		if ( (pos1 = text.find_first_of("\"",pos1+1) ) == std::tstring_t::npos) break;
-
-		text.erase(pos, pos1 - pos + 1);
-	}
-
-	pos = 0;
-	while ( pos < text.length() && (pos = text.find("<", pos) ) != std::tstring_t::npos ) {
-		++ pos;
-
-		if ( !(pos<text.length()) ) break;
-		if ( text[pos] == '!' ) { pos = text.find("]]>", pos);
-		if ( pos == std::tstring_t::npos ) { break; } continue; }
-		if ( text[pos] == '/' ) ++pos;
-		if ( !(pos<text.length()) ) break;
-		if ( (pos2 = text.find_first_of(">", pos) ) == std::tstring_t::npos ) break;
-		if ( (pos1 = text.find_first_of(":", pos) ) == std::tstring_t::npos ) continue;
-
-		pos5 = text.find_first_of(" ", pos);
-
-		if ( pos1<pos2 && (pos5 == std::tstring_t::npos || pos5>pos1) ) {
-			text.erase(pos, pos1 - pos + 1);
-		}
-	}
-
-	return parseString(text);
 }
 //-------------------------------------------------------------------------------------------------
 int
@@ -242,6 +201,56 @@ XmlDoc::_registerNss(
 
 		int iRv = ::xmlXPathRegisterNs(a_xmlXPathContextPtr, prefix, nsUri);
 		xTEST_EQ(iRv, 0);
+	}
+}
+//-------------------------------------------------------------------------------------------------
+void
+XmlDoc::_stringNoNs(
+	std::tstring_t *a_str
+)
+{
+	xCHECK_DO(a_str == nullptr, return);
+
+	std::tstring_t::size_type pos  {};
+	std::tstring_t::size_type pos1 {};
+	std::tstring_t::size_type pos2 {};
+	std::tstring_t::size_type pos5 {};
+
+	std::tstring_t &text = *a_str;
+
+	pos = 0;
+	while ( (pos = text.find("xmlns", pos)) != std::tstring_t::npos ) {
+		if ( (pos1 = text.find_first_of("\"", pos+1) ) == std::tstring_t::npos) break;
+		if ( (pos1 = text.find_first_of("\"", pos1+1) ) == std::tstring_t::npos) break;
+
+		text.erase(pos, pos1 - pos + 1);
+	}
+
+	pos = 0;
+	while ( (pos = text.find("xsi", pos)) != std::tstring_t::npos ) {
+		if ( (pos1 = text.find_first_of("\"",pos+1) ) == std::tstring_t::npos) break;
+		if ( (pos1 = text.find_first_of("\"",pos1+1) ) == std::tstring_t::npos) break;
+
+		text.erase(pos, pos1 - pos + 1);
+	}
+
+	pos = 0;
+	while ( pos < text.length() && (pos = text.find("<", pos) ) != std::tstring_t::npos ) {
+		++ pos;
+
+		if ( !(pos<text.length()) ) break;
+		if ( text[pos] == '!' ) { pos = text.find("]]>", pos);
+		if ( pos == std::tstring_t::npos ) { break; } continue; }
+		if ( text[pos] == '/' ) ++pos;
+		if ( !(pos<text.length()) ) break;
+		if ( (pos2 = text.find_first_of(">", pos) ) == std::tstring_t::npos ) break;
+		if ( (pos1 = text.find_first_of(":", pos) ) == std::tstring_t::npos ) continue;
+
+		pos5 = text.find_first_of(" ", pos);
+
+		if ( pos1<pos2 && (pos5 == std::tstring_t::npos || pos5>pos1) ) {
+			text.erase(pos, pos1 - pos + 1);
+		}
 	}
 }
 //-------------------------------------------------------------------------------------------------
