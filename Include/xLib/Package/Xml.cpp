@@ -284,12 +284,7 @@ XmlDoc::_setOnError()
 {
 	// FAQ: https://adobkin.com/2011/10/08/956/
 
-    FILE *handle = std::fopen("./XmlDoc_debug.log", "w+");
-    if (handle == nullptr) {
-        ::xmlSetGenericErrorFunc((void *)stderr, (xmlGenericErrorFunc)_onError);
-    } else {
-        ::xmlSetStructuredErrorFunc((void *)handle, (xmlStructuredErrorFunc)_onError);
-    }
+	::xmlSetStructuredErrorFunc(nullptr, _onError);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -299,7 +294,7 @@ XmlDoc::_onError(
 	xmlErrorPtr  a_error    ///< XML error
 )
 {
-	if (!a_error || a_error->code == XML_ERR_OK) {
+	if (a_error == nullptr || a_error->code == XML_ERR_OK) {
 		return;
 	}
 
@@ -310,9 +305,9 @@ XmlDoc::_onError(
 		const std::map<xmlErrorLevel, std::tstring_t> levels
 		{
 			{XML_ERR_NONE,    xT("")},
-			{XML_ERR_WARNING, xT("Warning: ")},
-			{XML_ERR_ERROR,   xT("Error: ")},
-			{XML_ERR_FATAL,   xT("Fatal: ")}
+			{XML_ERR_WARNING, xT("Warning")},
+			{XML_ERR_ERROR,   xT("Error")},
+			{XML_ERR_FATAL,   xT("Fatal")}
 		};
 
 		auto it = levels.find(a_error->level);
@@ -344,29 +339,38 @@ XmlDoc::_onError(
 		}
 	}
 
-	std::ctstring_t message = String::trimSpace(a_error->message);
+	std::ctstring_t msg = String::trimSpace(a_error->message);
 
-	std::tstring_t message_extra;
-	if (a_error->str1 != nullptr) {
-		if (a_error->domain == XML_FROM_XPATH) {
-			message_extra = a_error->str1;
+	std::tstring_t msgExtra1;
+	std::tstring_t msgExtra2;
+	std::tstring_t msgExtra3;
+
+	if (a_error->domain == XML_FROM_XPATH) {
+		if (a_error->str1 != nullptr) {
+			msgExtra1 = a_error->str1;
+		}
+		if (a_error->str2 != nullptr) {
+			msgExtra2 = a_error->str2;
+		}
+		if (a_error->str3 != nullptr) {
+			msgExtra3 = a_error->str3;
 		}
 	}
 
 	errorMsg = Format::str(
-		xT("LibXML2:       {}\n")
-		xT("level:         {}\n")
-		xT("file:          {}\n")
-		xT("line:          {}\n")
-		xT("column:        {}\n")
-		xT("element:       {}\n")
-		xT("message:       {}\n")
-		xT("message_extra: {}\n"),
-		LIBXML_VERSION, level, file, line, column, element, message, message_extra);
+		xT("LibXML2:        {}\n")
+		xT("level:          {}\n")
+		xT("file:           {}\n")
+		xT("line:           {}\n")
+		xT("column:         {}\n")
+		xT("element:        {}\n")
+		xT("message:        {}\n")
+		xT("message extra1: {}\n")
+		xT("message extra2: {}\n")
+		xT("message extra3: {}\n"),
+		LIBXML_VERSION, level, file, line, column, element, msg, msgExtra1, msgExtra2, msgExtra3);
 
 	std::tcout << errorMsg << std::endl;
-
-	/// fprintf((FILE *)a_ctx, "LibXML2: %s\n", errorMsg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 
