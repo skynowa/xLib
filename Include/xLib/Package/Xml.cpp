@@ -40,7 +40,8 @@ XmlDoc::XmlDoc(
 ) :
     _iconv(a_charset, "UTF-8", 1024, false, true)   // TODO: Iconv::isForceEncoding = false
 {
-	_setOnError();
+	// FAQ: https://adobkin.com/2011/10/08/956/
+	::xmlSetStructuredErrorFunc(nullptr, _onError);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -318,14 +319,6 @@ XmlDoc::_close()
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-void
-XmlDoc::_setOnError()
-{
-	// FAQ: https://adobkin.com/2011/10/08/956/
-
-	::xmlSetStructuredErrorFunc(nullptr, _onError);
-}
 //-------------------------------------------------------------------------------------------------
 /* static */
 void
