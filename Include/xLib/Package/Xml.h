@@ -27,12 +27,12 @@ public:
 
 	void           registerNss(std::cmap_tstring_t &nss) const;
 
-	int            parseFile(std::ctstring_t &filePath);
-	int            parseString(std::ctstring_t &str, cbool_t isNss = true);
+	bool           parseFile(std::ctstring_t &filePath);
+	bool           parseString(std::ctstring_t &str, cbool_t isNss = true);
 
-	int            getRootNode(XmlNode &root);
+	bool           getRootNode(XmlNode &root);
 
-	int            saveToFile(std::ctstring_t &filePath);
+	bool           saveToFile(std::ctstring_t &filePath);
 	std::tstring_t format(std::ctstring_t &charset);
 
 	static
@@ -73,9 +73,9 @@ public:
 	std::tstring_t getText() const;
 
 	bool           findContents(std::clist_tstring_t &xpaths, std::list<XmlNode> &values) const;
-	int            getContent(std::ctstring_t &xpath, XmlNode &value) const;
-	int            getContents(std::ctstring_t &xpath, std::list_tstring_t &values) const;
-	int            getContents(std::ctstring_t &xpath, std::list<XmlNode> &values) const;
+	bool           getContent(std::ctstring_t &xpath, XmlNode &value) const;
+	bool           getContents(std::ctstring_t &xpath, std::list_tstring_t &values) const;
+	bool           getContents(std::ctstring_t &xpath, std::list<XmlNode> &values) const;
 	std::tstring_t getAttribute(std::ctstring_t &name) const;
 	void           getAttributes(std::map_tstring_t &values) const;
 

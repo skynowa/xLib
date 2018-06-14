@@ -24,18 +24,18 @@ Test_Xml::unit()
         std::ctstring_t filePath = "/home/skynowa/Projects/xLib/Tests/Package/Xml/1.xml";
 
         XmlDoc doc("UTF-8");
-        m_iRv = doc.parseFile(filePath);
-        xTEST_EQ(m_iRv, 0);
+        m_bRv = doc.parseFile(filePath);
+        xTEST(m_bRv);
 
         // getRootNode
         XmlNode root;
-        m_iRv = doc.getRootNode(root);
-        xTEST_EQ(m_iRv, 0);
+        m_bRv = doc.getRootNode(root);
+        xTEST(m_bRv);
 
         // getContents
         std::list<XmlNode> results;
-        m_iRv = root.getContents("/AvailabilitySearchResult/HotelAvailability/Result", results);
-        xTEST_EQ(m_iRv, 0);
+        m_bRv = root.getContents("/AvailabilitySearchResult/HotelAvailability/Result", results);
+        xTEST(m_bRv);
         xTEST_EQ(results.size(), (std::size_t)3);
 
         // findContents
@@ -48,7 +48,7 @@ Test_Xml::unit()
 
             std::list<XmlNode> finds;
             m_bRv = root.findContents(xpaths, finds);
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
             xTEST_EQ(finds.size(), (std::size_t)6);
         }
 
@@ -56,8 +56,8 @@ Test_Xml::unit()
             XmlNode &it_result = *std::next(results.begin(), i);
 
             XmlNode price;
-            m_iRv = it_result.getContent("Room/Price", price);
-            xTEST_EQ(m_iRv, 0);
+            m_bRv = it_result.getContent("Room/Price", price);
+            xTEST(m_bRv);
 
             // getText
             {
@@ -121,8 +121,8 @@ Test_Xml::unit()
         std::ctstring_t filePath = "/home/skynowa/Projects/xLib/Tests/Package/Xml/bad.xml";
 
         XmlDoc doc("UTF-8");
-        m_iRv = doc.parseFile(filePath);
-        xTEST_DIFF(m_iRv, 0);
+        m_bRv = doc.parseFile(filePath);
+        xTEST_DIFF(m_bRv, true);
     }
 
     xTEST_CASE("isValidLight")
