@@ -299,117 +299,74 @@ XmlDoc::_onError(
 	xmlErrorPtr  a_error    ///< XML error
 )
 {
-    if (!a_error || a_error->code == XML_ERR_OK) {
-        return;
-    }
+	if (!a_error || a_error->code == XML_ERR_OK) {
+		return;
+	}
 
-    size_t alloc_mem = 1, len = 0;
+	std::tstring_t errorMsg;
 
-    const int   line    = a_error->line;     // Номер линии
-    const int   column  = a_error->int2;     // Номер колонки
-    const char *message = a_error->message;  // Сообщение об ошибке сформированное парсером
+	std::tstring_t level;
+	{
+		const std::map<xmlErrorLevel, std::tstring_t> levels
+		{
+			{XML_ERR_NONE,    xT("")},
+			{XML_ERR_WARNING, xT("Warning: ")},
+			{XML_ERR_ERROR,   xT("Error: ")},
+			{XML_ERR_FATAL,   xT("Fatal: ")}
+		};
 
-    // Удаляем пробельные символы с конца строки
-    /// (void)my_str_rtrim(message, strlen(message));
+		auto it = levels.find(a_error->level);
+		if (it != levels.end()) {
+			level = it->second;
+		} else {
+			level = xT("<Unknown>: ");
+		}
+	}
 
-    // Получаем уровень возникшей ошибки в виде строки
-    const char *level_str = nullptr;
+	std::tstring_t file;
+	if (a_error->file != nullptr) {
+		file = a_error->file;
+	}
 
-    switch (a_error->level) {
-	case XML_ERR_NONE:
-		level_str = "";
-		break;
-	case XML_ERR_WARNING:
-		level_str = "Warning: ";
-		break;
-	case XML_ERR_ERROR:
-		level_str = "Error: ";
-		break;
-	case XML_ERR_FATAL:
-		level_str = "Fatal: ";
-		break;
-	default:
-		level_str = "<Unknown>: ";
-		break;
-    }
+	int_t line {};
+	int_t column {};
+	if (a_error->domain == XML_FROM_PARSER) {
+		line   = a_error->line;
+		column = a_error->int2;
+	}
 
-    // Рассчитываем размер памяти, который необходимо выделить: длинна строки + 1 для '\0'
-    alloc_mem += ::strlen(level_str);
+	std::tstring_t element;
+	if (a_error->node != nullptr) {
+		if (((xmlNodePtr)a_error->node)->type == XML_ELEMENT_NODE) {
+			auto node_name = (cptr_ctchar_t)((xmlNodePtr)a_error->node)->name;
 
-    // Выделяем память
-    char *buff = (char *)::malloc(alloc_mem);
-    if (!buff) {
-        return;
-    }
+			element = node_name;
+		}
+	}
 
-    // Помещаем в буфер строку
-    ::strncat(buff, level_str, alloc_mem);
+	std::ctstring_t message = String::trimSpace(a_error->message);
 
-    // Определяем где произошла ошибка (Файл, линиия, колонка) и Добавляем информацию в буфер
-    if (a_error->file != nullptr) {
-        alloc_mem += ::strlen(a_error->file);
-        buff = (char *)::realloc(buff, alloc_mem);
-        if (!buff) {
-            return;
-        }
+	std::tstring_t message_extra;
+	if (a_error->str1 != nullptr) {
+		if (a_error->domain == XML_FROM_XPATH) {
+			message_extra = a_error->str1;
+		}
+	}
 
-        ::strncat(buff, a_error->file, alloc_mem);
-    }
-    else if ((line != 0) && (a_error->domain == XML_FROM_PARSER)) {
-        len = snprintf(nullptr, 0, "Entity: line %d, column: %d", line, column);
-        buff = (char *)::realloc(buff, alloc_mem + len);
-        if (!buff) {
-            return;
-        }
+	errorMsg = Format::str(
+		xT("LibXML2:       {}\n")
+		xT("level:         {}\n")
+		xT("file:          {}\n")
+		xT("line:          {}\n")
+		xT("column:        {}\n")
+		xT("element:       {}\n")
+		xT("message:       {}\n")
+		xT("message_extra: {}\n"),
+		LIBXML_VERSION, level, file, line, column, element, message, message_extra);
 
-        snprintf(buff + alloc_mem - 1, len + 1, "Entity: line %d, column: %d", line, column);
-        alloc_mem += len;
-    }
+	std::tcout << errorMsg << std::endl;
 
-    // Определяем название элемента в котором произошла ошибка и Добавляем информацию в буфер
-    if ((a_error->node != nullptr) && ((xmlNodePtr)a_error->node)->type == XML_ELEMENT_NODE) {
-        const xmlChar *node_name = ((xmlNodePtr)a_error->node)->name;
-        len = snprintf(nullptr, 0, ", element %s: ", node_name);
-        buff = (char *)::realloc(buff, alloc_mem + len);
-        if (!buff) {
-            return;
-        }
-
-        snprintf(buff + alloc_mem - 1, len + 1, ", element %s: ", node_name);
-        alloc_mem += len;
-    } else {
-        alloc_mem += 2;
-        buff = (char *)::realloc(buff, alloc_mem);
-        if (!buff) {
-            return;
-        }
-
-        ::strncat(buff, ": ", alloc_mem);
-    }
-
-    // Добавляем в буфер сообщение об ощибке
-    alloc_mem += strlen(message);
-    buff = (char *)::realloc(buff, alloc_mem);
-    if (!buff) {
-        return;
-    }
-
-    ::strncat(buff, message, alloc_mem);
-
-    // Если есть дополнительная информация,
-    // то также помещаем ее в буфер
-    if ((a_error->domain == XML_FROM_XPATH) && (a_error->str1 != nullptr)) {
-        alloc_mem += strlen(a_error->str1) + 2;
-        buff = (char *)::realloc(buff, alloc_mem);
-        if (!buff) {
-            return;
-        }
-
-        ::strncat(buff, ": ", alloc_mem);
-        ::strncat(buff, a_error->str1, alloc_mem);
-    }
-
-    fprintf((FILE *)a_ctx, "LibXML2: %s\n", buff);
+	/// fprintf((FILE *)a_ctx, "LibXML2: %s\n", errorMsg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 
