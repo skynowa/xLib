@@ -554,7 +554,7 @@ XmlNode::getChildrenContents(
 	bool bRv = getContents(a_xpath, values);
 	xTEST(bRv);
 
-    for (xmlNode *itNode = _node->children; itNode != nullptr; itNode = itNode->next) {
+    for (xmlNodePtr itNode = _node->children; itNode != nullptr; itNode = itNode->next) {
         if (itNode->type != XML_ELEMENT_NODE) {
             continue;
         }

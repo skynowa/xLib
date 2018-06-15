@@ -16,7 +16,7 @@ xTEST_UNIT(Test_Csv)
 bool_t
 Test_Csv::unit()
 {
-    xTEST_CASE("CsvReader::CsvReader")
+    xTEST_CASE("CsvReader")
     {
         xl::package::CsvData csvData;
         csvData.fileExtension    = xT("csv");

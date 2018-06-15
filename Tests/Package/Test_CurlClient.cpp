@@ -17,7 +17,7 @@ xTEST_UNIT(Test_CurlClient)
 bool_t
 Test_CurlClient::unit()
 {
-    xTEST_CASE("CurlClient::[TEST_CASE_1]")
+    xTEST_CASE("[TEST_CASE_1]")
     {
 
     }
