@@ -87,6 +87,7 @@ public:
 	void           getAttributes(std::map_tstring_t &values) const;
 
 	std::tstring_t dump(cbool_t isIncludeCurrent = false);
+
 	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
 
 protected:
