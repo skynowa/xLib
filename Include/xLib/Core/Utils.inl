@@ -57,7 +57,7 @@ Utils::ptrAssignT(
 //-------------------------------------------------------------------------------------------------
 template<typename T, std::csize_t arraySize>
 /* static */ inline
-size_t
+constexpr size_t
 Utils::arraySizeT(
     const T (&)[arraySize]
 )
