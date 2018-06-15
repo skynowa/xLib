@@ -669,13 +669,14 @@ XmlNode::dump(
 		return {};
 	}
 
-	auto cnt = (cptr_ctchar_t)buff->content;
-	if (cnt == nullptr) {
+	auto content = (cptr_ctchar_t)buff->content;
+	if (content == nullptr) {
 		Utils::freeT(buff, ::xmlBufferFree,  nullptr);
 		return {};
 	}
 
-	sRv = cnt;
+	// [out]
+	sRv = content;
 
 	Utils::freeT(buff, ::xmlBufferFree,  nullptr);
 
