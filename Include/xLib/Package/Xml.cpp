@@ -17,6 +17,8 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Test/Test.h>
+#include <xLib/Core/ScopeExit.h>
+
 
 //-------------------------------------------------------------------------------------------------
 namespace
@@ -656,12 +658,22 @@ XmlNode::dump(
 	std::tstring_t sRv;
 	int_t          iRv {};
 
+#if 0
 	xmlBufferPtr buff = ::xmlBufferCreate();
 
+	ScopeExit buff_onExit(
+		[&]() { Utils::freeT(buff, ::xmlBufferFree, nullptr); }
+	);
+#else
+	using unique_xml_buff_ptr = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
+
+	unique_xml_buff_ptr buff(::xmlBufferCreate(), ::xmlBufferFree);
+#endif
+
 	if (a_isIncludeCurrent) {
-		iRv = ::xmlNodeDump(buff, _xmlDoc->_doc, _node, 0, 1);
+		iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, _node, 0, 1);
 	} else {
-		iRv = ::xmlNodeDump(buff, _xmlDoc->_doc, _node->children, 0, 1);
+		iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, _node->children, 0, 1);
 	}
 	xTEST_DIFF(iRv,  -1);
 
@@ -671,14 +683,11 @@ XmlNode::dump(
 
 	auto content = (cptr_ctchar_t)buff->content;
 	if (content == nullptr) {
-		Utils::freeT(buff, ::xmlBufferFree,  nullptr);
 		return {};
 	}
 
 	// [out]
 	sRv = content;
-
-	Utils::freeT(buff, ::xmlBufferFree,  nullptr);
 
 	return sRv;
 }
