@@ -648,6 +648,38 @@ XmlNode::getAttributes(
 	}
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+XmlNode::dump(
+	cbool_t a_isIncludeCurrent/* = false */
+)
+{
+	std::tstring_t sRv;
+
+	xmlBufferPtr buff = ::xmlBufferCreate();
+
+	if (a_isIncludeCurrent) {
+		::xmlNodeDump(buff, _xmlDoc->_doc, _node, 0, 1);
+	} else {
+		::xmlNodeDump(buff, _xmlDoc->_doc, _node->children, 0, 1);
+	}
+
+	if (buff == nullptr) {
+		return {};
+	}
+
+	auto cnt = (cptr_ctchar_t)buff->content;
+	if (cnt == nullptr) {
+		::xmlBufferFree(buff);
+		return {};
+	}
+
+	sRv = cnt;
+
+	::xmlBufferFree(buff);
+
+	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
