@@ -31,7 +31,7 @@ public:
 
     template<typename T, std::csize_t arraySize>
     static
-    size_t    arraySizeT(const T (&)[arraySize]) xWARN_UNUSED_RV;
+    constexpr size_t arraySizeT(const T (&)[arraySize]) xWARN_UNUSED_RV;
         ///< get array size
 
     static
