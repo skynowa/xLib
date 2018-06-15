@@ -107,9 +107,19 @@ Test_Xml::unit()
                 }
             }
 
-            //
-            {
-            }
+            // dump
+			if (i == 0) {
+				std::ctstring_t expected = xT("<Result id=\"13030163-2\">\n"
+					"            <Room>\n"
+					"                <RoomType code=\"1004527\" text=\"Double Or Twin Deluxe\"/>\n"
+					"                <MealType code=\"1000018\" text=\"Bed and breakfast\"/>\n"
+					"                <Price amt1=\"211.40\" amt2=\"211.50\">111</Price>\n"
+					"            </Room>\n"
+					"        </Result>");
+
+				m_sRv = it_result.dump(true);
+				xTEST_EQ(m_sRv, expected);
+			}
         } // for (results)
     }
 
