@@ -157,6 +157,7 @@ Test_Xml::unit()
             {xT("HotelName"), xT("XXXXX")},
             {xT("RoomType"),  xT("Double Or Twin Deluxe")},
             {xT("MealType"),  xT("Bed and breakfast")},
+            {xT("BedsID"),    xT("")},
             {xT("Price"),     xT("211.50")}
         };
 
@@ -170,14 +171,10 @@ Test_Xml::unit()
 
         std::map_tstring_t results;
         m_bRv = root.getChildrenContents("/AvailabilitySearchResult", results);
-
-        std::cout << (OStream() << results).str() << "\n";
-
         xTEST(m_bRv);
-        xTEST_EQ(results.size(), (std::size_t)7);
+        xTEST_EQ(results.size(), expect.size());
         xTEST_EQ(results, expect);
     }
-
 
     return true;
 }
