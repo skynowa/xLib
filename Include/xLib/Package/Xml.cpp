@@ -542,22 +542,8 @@ XmlNode::getContents(
 	return true;
 }
 //-------------------------------------------------------------------------------------------------
-static void
-print_element_names(xmlNode * a_node)
-{
-    xmlNode *cur_node = NULL;
-
-    for (cur_node = a_node; cur_node; cur_node = cur_node->next) {
-        if (cur_node->type == XML_ELEMENT_NODE) {
-            printf("{%s, %s}\n", cur_node->name, ::xmlNodeGetContent(cur_node));
-        }
-
-        print_element_names(cur_node->children);
-    }
-}
-
 bool
-XmlNode::getContents(
+XmlNode::getChildrenContents(
 	std::ctstring_t    &a_xpath,
 	std::map_tstring_t &a_values
 ) const
@@ -568,21 +554,16 @@ XmlNode::getContents(
 	bool bRv = getContents(a_xpath, values);
 	xTEST(bRv);
 
-	ulong_t elements = ::xmlChildElementCount(_node);
-	std::cout << xTRACE_VAR(elements) << std::endl;
-
-    for (xmlNode *cur_node = _node->children; cur_node != nullptr; cur_node = cur_node->next) {
-        if (cur_node->type != XML_ELEMENT_NODE) {
+    for (xmlNode *itNode = _node->children; itNode != nullptr; itNode = itNode->next) {
+        if (itNode->type != XML_ELEMENT_NODE) {
             continue;
         }
 
-        if (::xmlFirstElementChild(cur_node) != nullptr) {
+        if (::xmlFirstElementChild(itNode) != nullptr) {
             continue;
         }
 
-        /// std::cout << xTRACE_VAR_3(cur_node->name, cur_node->type, cur_node->children->content) << std::endl;
-
-        a_values.emplace(_getName(cur_node), _getText(cur_node));
+        a_values.emplace(_getName(itNode), _getText(itNode));
     }
 
 	return true;
