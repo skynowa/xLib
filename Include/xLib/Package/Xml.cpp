@@ -698,7 +698,6 @@ XmlNode::_getText(
         }
 
         if (content == nullptr) {
-            xTEST_FAIL;
             return {};
         }
     }
