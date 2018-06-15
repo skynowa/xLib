@@ -76,14 +76,14 @@ public:
 	std::tstring_t getName() const;
 	std::tstring_t getText() const;
 
-	bool           findContents(std::clist_tstring_t &xpaths, std::list<XmlNode> &values) const;
-	bool           getContent(std::ctstring_t &xpath, XmlNode &value) const;
-	bool           getContents(std::ctstring_t &xpath, std::list_tstring_t &values) const;
-	bool           getContents(std::ctstring_t &xpath, std::list<XmlNode> &values) const;
+	void           findContents(std::clist_tstring_t &xpaths, std::list<XmlNode> &values) const;
+	void           getContent(std::ctstring_t &xpath, XmlNode &value) const;
+	void           getContents(std::ctstring_t &xpath, std::list_tstring_t &values) const;
+	void           getContents(std::ctstring_t &xpath, std::list<XmlNode> &values) const;
 	std::tstring_t getAttribute(std::ctstring_t &name) const;
 	void           getAttributes(std::map_tstring_t &values) const;
 
-	bool           getChildrenContents(std::ctstring_t &xpath, std::map_tstring_t &values) const;
+	void           getChildrenContents(std::ctstring_t &xpath, std::map_tstring_t &values) const;
 
 	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
 

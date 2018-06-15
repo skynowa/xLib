@@ -487,7 +487,7 @@ XmlNode::getText() const
 	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlNode::findContents(
 	std::clist_tstring_t &a_xpaths,	///<
 	std::list<XmlNode>   &a_values	///< [out]
@@ -497,33 +497,27 @@ XmlNode::findContents(
 
 	for (auto &itXpath : a_xpaths) {
 		std::list<XmlNode> values;
-		int iRv = getContents(itXpath, values);
-		xTEST_NA(iRv);
+		getContents(itXpath, values);
 
 		for (auto &itValue : values) {
 			a_values.emplace_back(itValue);
 		}
 	}
-
-	return !a_values.empty();
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlNode::getContent(
 	std::ctstring_t &a_xpath,
 	XmlNode         &a_value
 ) const
 {
     std::list<XmlNode> nodes;
-    bool bRv = getContents(a_xpath, nodes);
-	xTEST(bRv);
+    getContents(a_xpath, nodes);
 
     a_value = *nodes.begin();
-
-    return true;
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlNode::getContents(
 	std::ctstring_t     &a_xpath,
 	std::list_tstring_t &a_values
@@ -532,17 +526,14 @@ XmlNode::getContents(
 	a_values.clear();
 
 	std::list<XmlNode> values;
-	bool bRv = getContents(a_xpath, values);
-	xTEST(bRv);
+	getContents(a_xpath, values);
 
 	for (auto &it_value : values) {
 		a_values.emplace_back( it_value.getText() );
 	}
-
-	return true;
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlNode::getChildrenContents(
 	std::ctstring_t    &a_xpath,
 	std::map_tstring_t &a_values
@@ -551,8 +542,7 @@ XmlNode::getChildrenContents(
 	a_values.clear();
 
 	std::list<XmlNode> values;
-	bool bRv = getContents(a_xpath, values);
-	xTEST(bRv);
+	getContents(a_xpath, values);
 
     for (xmlNodePtr itNode = _node->children; itNode != nullptr; itNode = itNode->next) {
         if (itNode->type != XML_ELEMENT_NODE) {
@@ -565,11 +555,9 @@ XmlNode::getChildrenContents(
 
         a_values.emplace(_getName(itNode), _getText(itNode));
     }
-
-	return true;
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlNode::getContents(
 	std::ctstring_t    &a_xpath,
 	std::list<XmlNode> &a_res
@@ -579,7 +567,7 @@ XmlNode::getContents(
 
 	xmlXPathContextPtr xpathCtx = ::xmlXPathNewContext(_node->doc);
 	if (xpathCtx == nullptr) {
-		return false;
+		return;
 	}
 
 	_xmlDoc->_registerNss(xpathCtx);
@@ -590,7 +578,7 @@ XmlNode::getContents(
 	if (xpathObj == nullptr) {
 		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
 
-		return false;
+		return;
 	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
@@ -598,7 +586,7 @@ XmlNode::getContents(
 		Utils::freeT(xpathObj, ::xmlXPathFreeObject,  nullptr);
 		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
 
-		return false;
+		return;
 	}
 
 	for (int i = 0; i < nodes->nodeNr; ++ i) {
@@ -613,12 +601,6 @@ XmlNode::getContents(
 
 	Utils::freeT(xpathObj, ::xmlXPathFreeObject,  nullptr);
 	Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
-
-	if ( a_res.empty() ) {
-		return false;
-	}
-
-	return true;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t

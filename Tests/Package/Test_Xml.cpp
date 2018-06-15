@@ -34,8 +34,7 @@ Test_Xml::unit()
 
         // getContents
         std::list<XmlNode> results;
-        m_bRv = root.getContents("/AvailabilitySearchResult/HotelAvailability/Result", results);
-        xTEST(m_bRv);
+        root.getContents("/AvailabilitySearchResult/HotelAvailability/Result", results);
         xTEST_EQ(results.size(), (std::size_t)3);
 
         // findContents
@@ -47,8 +46,7 @@ Test_Xml::unit()
             };
 
             std::list<XmlNode> finds;
-            m_bRv = root.findContents(xpaths, finds);
-            xTEST(m_bRv);
+            root.findContents(xpaths, finds);
             xTEST_EQ(finds.size(), (std::size_t)6);
         }
 
@@ -56,8 +54,7 @@ Test_Xml::unit()
             XmlNode &it_result = *std::next(results.begin(), i);
 
             XmlNode price;
-            m_bRv = it_result.getContent("Room/Price", price);
-            xTEST(m_bRv);
+            it_result.getContent("Room/Price", price);
 
             // getText
             {
@@ -170,8 +167,7 @@ Test_Xml::unit()
         xTEST(m_bRv);
 
         std::map_tstring_t results;
-        m_bRv = root.getChildrenContents("/AvailabilitySearchResult", results);
-        xTEST(m_bRv);
+        root.getChildrenContents("/AvailabilitySearchResult", results);
         xTEST_EQ(results.size(), expect.size());
         xTEST_EQ(results, expect);
     }
