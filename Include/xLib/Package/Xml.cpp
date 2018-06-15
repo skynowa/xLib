@@ -534,30 +534,6 @@ XmlNode::getContents(
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getChildrenContents(
-	std::ctstring_t    &a_xpath,
-	std::map_tstring_t &a_values
-) const
-{
-	a_values.clear();
-
-	std::list<XmlNode> values;
-	getContents(a_xpath, values);
-
-    for (xmlNodePtr itNode = _node->children; itNode != nullptr; itNode = itNode->next) {
-        if (itNode->type != XML_ELEMENT_NODE) {
-            continue;
-        }
-
-        if (::xmlFirstElementChild(itNode) != nullptr) {
-            continue;
-        }
-
-        a_values.emplace(_getName(itNode), _getText(itNode));
-    }
-}
-//-------------------------------------------------------------------------------------------------
-void
 XmlNode::getContents(
 	std::ctstring_t    &a_xpath,
 	std::list<XmlNode> &a_res
@@ -601,6 +577,30 @@ XmlNode::getContents(
 
 	Utils::freeT(xpathObj, ::xmlXPathFreeObject,  nullptr);
 	Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
+}
+//-------------------------------------------------------------------------------------------------
+void
+XmlNode::getChildrenContents(
+	std::ctstring_t    &a_xpath,
+	std::map_tstring_t &a_values
+) const
+{
+	a_values.clear();
+
+	std::list<XmlNode> values;
+	getContents(a_xpath, values);
+
+    for (xmlNodePtr itNode = _node->children; itNode != nullptr; itNode = itNode->next) {
+        if (itNode->type != XML_ELEMENT_NODE) {
+            continue;
+        }
+
+        if (::xmlFirstElementChild(itNode) != nullptr) {
+            continue;
+        }
+
+        a_values.emplace(_getName(itNode), _getText(itNode));
+    }
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
