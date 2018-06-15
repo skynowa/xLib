@@ -53,7 +53,7 @@ protected:
 	mutable std::map_tstring_t _nss;
 
 	void           _registerNss(xmlXPathContextPtr ctx) const;
-	void           _stringNoNs(std::tstring_t *str);
+	void           _stringNoNs(std::tstring_t *str) const;
 	void           _close();
 
 private:

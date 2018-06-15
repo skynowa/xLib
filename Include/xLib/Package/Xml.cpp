@@ -251,7 +251,7 @@ XmlDoc::_registerNss(
 void
 XmlDoc::_stringNoNs(
 	std::tstring_t *a_str
-)
+) const
 {
 	xCHECK_DO(a_str == nullptr, return);
 
