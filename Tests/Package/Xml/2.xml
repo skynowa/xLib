@@ -6,10 +6,10 @@
     <HotelName>XXXXX</HotelName>
     <RoomType>Double Or Twin Deluxe</RoomType>
     <MealType>Bed and breakfast</MealType>
-    <Price>211.50</Price>
     <Items>
         <Item>AAA</Item>
         <Item>BBB</Item>
         <Item>CCC</Item>
     </Items>
+    <Price>211.50</Price>
 </AvailabilitySearchResult>
