@@ -80,10 +80,11 @@ public:
 	void           getContent(std::ctstring_t &xpath, XmlNode &value) const;
 	void           getContents(std::ctstring_t &xpath, std::list_tstring_t &values) const;
 	void           getContents(std::ctstring_t &xpath, std::list<XmlNode> &values) const;
-	std::tstring_t getAttribute(std::ctstring_t &name) const;
-	void           getAttributes(std::map_tstring_t &values) const;
 
 	void           getChildrenContents(std::ctstring_t &xpath, std::map_tstring_t &values) const;
+
+	std::tstring_t getAttribute(std::ctstring_t &name) const;
+	void           getAttributes(std::map_tstring_t &values) const;
 
 	std::tstring_t dump(cbool_t isIncludeCurrent = false);
 	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
