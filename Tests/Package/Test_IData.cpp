@@ -38,7 +38,7 @@ public:
 bool_t
 Test_IData::unit()
 {
-    xTEST_CASE("IData::IData")
+    xTEST_CASE("IData")
     {
         Data d;
         d.clear();
