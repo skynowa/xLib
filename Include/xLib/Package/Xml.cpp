@@ -654,14 +654,16 @@ XmlNode::dump(
 )
 {
 	std::tstring_t sRv;
+	int_t          iRv {};
 
 	xmlBufferPtr buff = ::xmlBufferCreate();
 
 	if (a_isIncludeCurrent) {
-		::xmlNodeDump(buff, _xmlDoc->_doc, _node, 0, 1);
+		iRv = ::xmlNodeDump(buff, _xmlDoc->_doc, _node, 0, 1);
 	} else {
-		::xmlNodeDump(buff, _xmlDoc->_doc, _node->children, 0, 1);
+		iRv = ::xmlNodeDump(buff, _xmlDoc->_doc, _node->children, 0, 1);
 	}
+	xTEST_DIFF(iRv,  -1);
 
 	if (buff == nullptr) {
 		return {};
@@ -669,13 +671,13 @@ XmlNode::dump(
 
 	auto cnt = (cptr_ctchar_t)buff->content;
 	if (cnt == nullptr) {
-		::xmlBufferFree(buff);
+		Utils::freeT(buff, ::xmlBufferFree,  nullptr);
 		return {};
 	}
 
 	sRv = cnt;
 
-	::xmlBufferFree(buff);
+	Utils::freeT(buff, ::xmlBufferFree,  nullptr);
 
 	return sRv;
 }
