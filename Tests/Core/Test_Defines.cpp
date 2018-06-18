@@ -302,7 +302,7 @@ Test_Defines::unit()
 
         std::size_t var = 0;
         xTEST_NA(var);
-        xTESTS_NA;
+        xTEST_NA;
         xNA;
     }
 

@@ -706,7 +706,7 @@ XmlNode::_getText(
         }
 
         if (content == nullptr) {
-        	xTESTS_NA;
+            xTEST_NA;
             return {};
         }
     }
