@@ -43,7 +43,7 @@ XmlDoc::XmlDoc(
     _iconv(a_charset, "UTF-8", 1024, false, true)   // TODO: Iconv::isForceEncoding = false
 {
 	// FAQ: https://adobkin.com/2011/10/08/956/
-	::xmlSetStructuredErrorFunc(static_cast<void *>(this), _onError);
+	::xmlSetStructuredErrorFunc(this, _onError);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -79,7 +79,7 @@ XmlDoc::lastErrorStr() const
 void
 XmlDoc::registerNss(
 	std::cmap_tstring_t &a_nss
-) const
+)
 {
 	for (auto &itNs : a_nss) {
 		_nss.insert( {itNs.first, itNs.second} );
@@ -165,6 +165,7 @@ XmlDoc::saveToFile(
 
 	long_t liRv = ::xmlSaveDoc(saveCtxt, _doc);
 	xTEST_EQ(liRv, 0L);
+
 	int_t  iRv = ::xmlSaveClose(saveCtxt);
 	xTEST_EQ(iRv, 0);
 
