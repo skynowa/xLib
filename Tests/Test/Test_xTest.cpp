@@ -77,7 +77,7 @@ Test_xTest::unit()
     xTEST_CASE("xTEST_NA")
     {
         xTEST_NA(1978);
-        xTESTS_NA;
+        xTEST_NA;
     }
 
     xTEST_CASE("xTEST_STATIC")
