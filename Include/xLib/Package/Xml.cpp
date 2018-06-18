@@ -171,12 +171,8 @@ XmlDoc::format(
 
 	::xmlKeepBlanksDefault(0);
 	::xmlDocDumpFormatMemoryEnc(_doc, &buff, &buff_size, a_charset.c_str(), 1);
-	if (buff == nullptr) {
-		return {};
-	}
-	if (buff_size <= 0) {
-		return {};
-	}
+	xTEST_PTR(buff);
+	xTEST_GR(buff_size, 0);
 
 	sRv.assign(reinterpret_cast<cptr_ctchar_t>(buff), static_cast<size_t>(buff_size));
 
@@ -525,6 +521,7 @@ XmlNode::getContents(
 
 	xmlXPathContextPtr xpathCtx = ::xmlXPathNewContext(_node->doc);
 	if (xpathCtx == nullptr) {
+		xTEST_FAIL;
 		return;
 	}
 
@@ -536,6 +533,8 @@ XmlNode::getContents(
 	if (xpathObj == nullptr) {
 		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
 
+		xTEST_FAIL;
+
 		return;
 	}
 
@@ -544,12 +543,15 @@ XmlNode::getContents(
 		Utils::freeT(xpathObj, ::xmlXPathFreeObject,  nullptr);
 		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
 
+		xTEST_FAIL;
+
 		return;
 	}
 
 	for (int i = 0; i < nodes->nodeNr; ++ i) {
 		xmlNodePtr cur = nodes->nodeTab[i];
 		if (cur == nullptr) {
+			xTEST_FAIL;
 			continue;
 		}
 
@@ -662,6 +664,7 @@ XmlNode::dump(
 
 	auto content = (cptr_ctchar_t)buff->content;
 	if (content == nullptr) {
+		xTEST_FAIL;
 		return {};
 	}
 
@@ -703,6 +706,7 @@ XmlNode::_getText(
         }
 
         if (content == nullptr) {
+        	xTESTS_NA;
             return {};
         }
     }
