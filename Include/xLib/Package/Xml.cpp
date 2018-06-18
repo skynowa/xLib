@@ -43,7 +43,7 @@ XmlDoc::XmlDoc(
     _iconv(a_charset, "UTF-8", 1024, false, true)   // TODO: Iconv::isForceEncoding = false
 {
 	// FAQ: https://adobkin.com/2011/10/08/956/
-	::xmlSetStructuredErrorFunc(this, _onError);
+	(void)::xmlSetStructuredErrorFunc(this, _onError);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -61,19 +61,11 @@ XmlDoc::lastError() const
 std::tstring_t
 XmlDoc::lastErrorStr() const
 {
-    std::tstring_t sRv;
-
-	cint_t          error = lastError();
+	cint_t          error     = lastError();
 	// TODO: XmlDoc::lastErrorStr - get error description
-    std::ctstring_t errorDesc;
+    std::ctstring_t errorDesc = (error == XML_ERR_OK) ? xT("Success") : xT("");
 
-    if (error == XML_ERR_OK) {
-        sRv = Format::str(xT("{} - \"{}\""), error, xT("Success"));
-    } else {
-        sRv = Format::str(xT("{} - \"{}\""), error, errorDesc);
-    }
-
-    return sRv;
+    return Format::str(xT("{} - \"{}\""), error, errorDesc);
 }
 //-------------------------------------------------------------------------------------------------
 void
