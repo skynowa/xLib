@@ -30,12 +30,12 @@ Test_Xml::unit()
         XmlNode root;
         doc.getRootNode(root);
 
-        // getContents
+        // nodes
         std::list<XmlNode> results;
-        root.getContents("/AvailabilitySearchResult/HotelAvailability/Result", results);
+        root.nodes("/AvailabilitySearchResult/HotelAvailability/Result", results);
         xTEST_EQ(results.size(), (std::size_t)3);
 
-        // findContents
+        // findNodes
         {
             std::clist_tstring_t xpaths
             {
@@ -44,7 +44,7 @@ Test_Xml::unit()
             };
 
             std::list<XmlNode> finds;
-            root.findContents(xpaths, finds);
+            root.findNodes(xpaths, finds);
             xTEST_EQ(finds.size(), (std::size_t)6);
         }
 
@@ -52,19 +52,19 @@ Test_Xml::unit()
             XmlNode &it_result = *std::next(results.begin(), i);
 
             XmlNode price;
-            it_result.getContent("Room/Price", price);
+            it_result.node("Room/Price", price);
 
-            // getText
+            // text
             {
                 switch (i) {
                 case 0:
-                    xTEST_EQ(price.getText(), std::tstring_t("111"));
+                    xTEST_EQ(price.text(), std::tstring_t("111"));
                     break;
                 case 1:
-                    xTEST_EQ(price.getText(), std::tstring_t("222"));
+                    xTEST_EQ(price.text(), std::tstring_t("222"));
                     break;
                 case 2:
-                    xTEST_EQ(price.getText(), std::tstring_t("333"));
+                    xTEST_EQ(price.text(), std::tstring_t("333"));
                     break;
                 default:
                     xTEST_FAIL;
@@ -72,31 +72,31 @@ Test_Xml::unit()
                 }
             }
 
-            // getAttribute, getAttributes
+            // attribute, attributes
             {
                 std::map_tstring_t priceAttrs;
-                price.getAttributes(priceAttrs);
+                price.attributes(priceAttrs);
 
                 switch (i) {
                 case 0:
                     {
                         std::map_tstring_t expected {{"amt1", "211.40"}, {"amt2", "211.50"}};
                         xTEST_EQ(priceAttrs, expected);
-                        xTEST_EQ(price.getAttribute("amt1"), std::tstring_t("211.40"));
+                        xTEST_EQ(price.attribute("amt1"), std::tstring_t("211.40"));
                     }
                     break;
                 case 1:
                     {
                         std::map_tstring_t expected {{"amt1", "161.20"}, {"amt2", "211.50"}, {"amt3", "211.60"}};
                         xTEST_EQ(priceAttrs, expected);
-                        xTEST_EQ(price.getAttribute("amt2"), std::tstring_t("211.50"));
+                        xTEST_EQ(price.attribute("amt2"), std::tstring_t("211.50"));
                     }
                     break;
                 case 2:
                     {
                         std::map_tstring_t expected {{"amt1", "172.00"}, {"amt2", "211.50"}, {"amt3", "211.60"}, {"amt4", "211.70"}};
                         xTEST_EQ(priceAttrs, expected);
-                        xTEST_EQ(price.getAttribute("amt3"), std::tstring_t("211.60"));
+                        xTEST_EQ(price.attribute("amt3"), std::tstring_t("211.60"));
                     }
                     break;
                 default:
@@ -151,7 +151,7 @@ Test_Xml::unit()
         }
     }
 
-    xTEST_CASE("XmlNode::getChildrenContents")
+    xTEST_CASE("XmlNode::childrenMap")
     {
         std::ctstring_t filePath = "/home/skynowa/Projects/xLib/Tests/Package/Xml/2.xml";
 
@@ -174,7 +174,7 @@ Test_Xml::unit()
         doc.getRootNode(root);
 
         std::map_tstring_t results;
-        root.getChildrenContents("/AvailabilitySearchResult", results);
+        root.childrenMap("/AvailabilitySearchResult", results);
         xTEST_EQ(results.size(), expect.size());
         xTEST_EQ(results, expect);
     }
