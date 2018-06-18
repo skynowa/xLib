@@ -24,13 +24,11 @@ Test_Xml::unit()
         std::ctstring_t filePath = "/home/skynowa/Projects/xLib/Tests/Package/Xml/1.xml";
 
         XmlDoc doc("UTF-8");
-        m_bRv = doc.parseFile(filePath);
-        xTEST(m_bRv);
+        doc.parseFile(filePath);
 
         // getRootNode
         XmlNode root;
-        m_bRv = doc.getRootNode(root);
-        xTEST(m_bRv);
+        doc.getRootNode(root);
 
         // getContents
         std::list<XmlNode> results;
@@ -128,8 +126,7 @@ Test_Xml::unit()
         std::ctstring_t filePath = "/home/skynowa/Projects/xLib/Tests/Package/Xml/bad.xml";
 
         XmlDoc doc("UTF-8");
-        m_bRv = doc.parseFile(filePath);
-        xTEST_DIFF(m_bRv, true);
+        doc.parseFile(filePath);
     }
 
     xTEST_CASE("isValidLight")
@@ -169,12 +166,10 @@ Test_Xml::unit()
         };
 
         XmlDoc doc("UTF-8");
-        m_bRv = doc.parseFile(filePath);
-        xTEST(m_bRv);
+        doc.parseFile(filePath);
 
         XmlNode root;
-        m_bRv = doc.getRootNode(root);
-        xTEST(m_bRv);
+        doc.getRootNode(root);
 
         std::map_tstring_t results;
         root.getChildrenContents("/AvailabilitySearchResult", results);
