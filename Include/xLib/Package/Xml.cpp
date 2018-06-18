@@ -651,9 +651,7 @@ XmlNode::dump(
 
 	unique_xml_buff_ptr buff(::xmlBufferCreate(), ::xmlBufferFree);
 #endif
-	if (buff == nullptr) {
-		return {};
-	}
+	xTEST_PTR(buff.get());
 
 	if (a_isIncludeCurrent) {
 		iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, _node, 0, 1);
