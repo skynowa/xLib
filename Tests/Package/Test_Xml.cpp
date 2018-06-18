@@ -49,7 +49,7 @@ Test_Xml::unit()
         }
 
         for (size_t i = 0; i < results.size(); ++ i) {
-            XmlNode &it_result = *std::next(results.begin(), i);
+            XmlNode &it_result = results[i];
 
             XmlNode price;
             it_result.node("Room/Price", price);
