@@ -1,25 +1,27 @@
+//-------------------------------------------------------------------------------------------------
 Editor:
 
 - Sublime config Preferences.sublime-settings
 - intend size:
-  1 tab
+    4 spaces
 - line length:
-  120
+    120
 - file encoding:
-  UTF-8
+    UTF-8
 - line ending:
-  Unix
+    Unix
 - class member visibility order:
-  public, protected, private
+    public, protected, private
 - function parameters order:
-  input first (const by reference)
+    input first (const by reference)
 - output params pass by:
-  reference
+    pointer
 - remove trailing whitespace:
-  in all lines
-  in edited lines
+    in all lines
+    in edited lines
 - newline at the end of file
 
+//-------------------------------------------------------------------------------------------------
 for, if:
 
 - always braces
@@ -32,6 +34,7 @@ if ()
 if () {
     continue;
 }
+
 - braces position
 
 if () {
@@ -41,10 +44,12 @@ if () {
 for ( ; ; ) {
     // ...
 }
+
 - no nested if
 
 // BAD
-void foo (const bool is_var1, const bool is_var2)
+void
+foo(const bool is_var1, const bool is_var2)
 {
     if (is_var1) {
         if (is_var2) {
@@ -54,7 +59,8 @@ void foo (const bool is_var1, const bool is_var2)
 }
 
 // GOOD
-void foo (const bool is_var1, const bool is_var2)
+void
+foo(const bool is_var1, const bool is_var2)
 {
     if ( !is_var1 ) {
         return;
@@ -66,6 +72,7 @@ void foo (const bool is_var1, const bool is_var2)
 
     // ..
 }
+
 - if with explicit condition (apart from bool type)
 
 char *ptr = &str;
@@ -86,6 +93,7 @@ if (ptr != nullptr) {
 if (i > 0) {
     // ...
 }
+
 - use spaces
 
 // BAD
@@ -98,6 +106,7 @@ for (int i = 0; i < 10; ++ i) {
     // ...
 }
 
+//-------------------------------------------------------------------------------------------------
 Naming:
 
 - files:
@@ -151,13 +160,16 @@ size_t  file_size_bytes = getFileSizeBytes();
 size_t  distance_km     = 10;
 int32_t price_usd       = 700;
 
+
+//-------------------------------------------------------------------------------------------------
 Prefixes:
 
 
 “ _” - private member of some data structure
 
 TWTSLite *_wts;
-“ a_” - function param (optional rule)
+“ a_” - function param
+“ out_” - function param (out)
 
 void foo(const Date &a_date);
 “ it_” - iterator
@@ -171,20 +183,19 @@ bool is_valid = false;
 bool isValid() const;
 
 
+//-------------------------------------------------------------------------------------------------
 Comments:
-
 
 
 - remove "dead" code
 
 
+//-------------------------------------------------------------------------------------------------
 Etc:
 
 
 - no C-cast, use C++ casts
-
 - don't use default function's parameters
-
 - Init simple type (bool, interger, double, pointer) class members with "{}":
 
 class A
@@ -207,7 +218,7 @@ for functions - WTSFunc (libwts3/WTSFunc.h)
 - don't use exceptions
 
 
-
+//-------------------------------------------------------------------------------------------------
 Doxygen:
 
 
@@ -215,131 +226,18 @@ http://www.stack.nl/~dimitri/doxygen/manual/index.html
 http://habrahabr.ru/post/252101/
 http://habrahabr.ru/post/252443/
 
-To generate documentation use triptake-all/generate_doc.sh script.
 
-Config file: triptake-all/Doxyfile.
-
-Plugin for Sublime Text: DoxyDoxygen.
-
-Settings for DoxyDoxygen:
-
-{
-    "doxygen_command_prefix":"\\",
-    "preferred_comments_styles":[
-        [
-            "/*!",
-            " ",
-            "*/"
-        ],
-        [
-            "//!",
-            " ",
-            "*/"
-        ]
-    ],
-    "block_layout_default":{
-        "Doxygen":[
-            {
-                "tags":[
-                    "@brief",
-                    " ",
-                    " ",
-                    "@param"
-                    //"",
-                    //"@retval",
-                    //"",
-                    //"@throws",
-                    //"",
-                    //"@pre",
-                    //"",
-                    //"@post",
-                    //"",
-                    //"@attention",
-                    //"",
-                    //"@bug",
-                    //"",
-                    //"@warning",
-                    //"",
-                    //"@todo",
-                ],
-                "context":[
-                    {
-                        "key":"kind",
-                        "operator":"not_equal",
-                        "operand":""
-                    }
-                ]
-            }
-        ]
-    }
-}
-
-
-XML objects documentation:
-
-Object description example:
-
-<module>
-     <name>BookedHotel</name>
-     <mname>BookedHotels</mname>
-     <description>Booked hotels.</description>
-
-    ...
-
-Comment for field:
-
-<field>
-
-   <name>MergeStatus</name>
-   <type>select</type>
-   <label>MergeStatus</label>
-   <description>Merge status (hotels, destinations)</description>
-
-   ....
-
-
-
-Variants for enum fields:
-
-<variants>
-    <variant>
-     <name>Unknown</name>
-     <ename>Unknown</ename>
-     <value>0</value>
-     <description>Unknown (default)</description>
-    </variant>
-
-...
-
-
-
-Class method documentation example:
-
- <class_method_c>
-      <rettype>int</rettype>
-      <declaration>
-      <![CDATA[
-           getHotelPhotos(
-                string& result,   ///&lt; [out] result
-                int     response_type ///&lt; response type
-           )
-     ]]>
-     </declaration>
-  <description>get hotel photos</description>
-
-
-
+//-------------------------------------------------------------------------------------------------
 Git:
 
 - line length:
-  120
+    120
 - single line:
-  [module]: [comments]
+    [module]: [comments]
 - multi line:
-  [module]: [brief comments]
+    [module]: [brief comments]
 
-  [full comments]
+    [full comments]
 
 - branch naming:
-  TRAVEL-1234-some-short-description
-
+    TRAVEL-1234-some-short-description
