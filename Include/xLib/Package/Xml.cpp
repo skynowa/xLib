@@ -549,13 +549,13 @@ XmlNode::nodes(
 	}
 
 	for (int i = 0; i < nodes->nodeNr; ++ i) {
-		xmlNodePtr cur = nodes->nodeTab[i];
-		if (cur == nullptr) {
+		xmlNodePtr itNode = nodes->nodeTab[i];
+		if (itNode == nullptr) {
 			xTEST_FAIL;
 			continue;
 		}
 
-		XmlNode node(_xmlDoc, cur);
+		XmlNode node(_xmlDoc, itNode);
 		a_res.emplace_back(node);
 	}
 
