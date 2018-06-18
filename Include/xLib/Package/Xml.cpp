@@ -323,8 +323,6 @@ XmlDoc::_onError(
 		return;
 	}
 
-	std::tstring_t errorDesc;
-
 	cint_t domain = a_error->domain;
 	cint_t code   = a_error->code;
 
@@ -392,7 +390,7 @@ XmlDoc::_onError(
 		}
 	}
 
-	errorDesc = Format::str(
+	std::ctstring_t errorDesc = Format::str(
 		xT("LibXML2 ver:    {}\n")
 		xT("domain:         {}\n")
 		xT("code:           {}\n")
