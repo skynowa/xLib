@@ -653,11 +653,11 @@ XmlNode::dump(
 #endif
 	xTEST_PTR(buff.get());
 
-	if (a_isIncludeCurrent) {
-		iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, _node, 0, 1);
-	} else {
-		iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, _node->children, 0, 1);
-	}
+	xmlNodePtr node   = a_isIncludeCurrent ? _node : _node->children;
+	cint_t     level  = 0;
+	cint_t     format = 1;
+
+	iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, node, level, format);
 	xTEST_DIFF(iRv,  -1);
 
 	auto content = (cptr_ctchar_t)buff->content;
