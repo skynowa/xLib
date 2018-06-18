@@ -78,8 +78,8 @@ public:
 
 	void           findNodes(std::clist_tstring_t &xpaths, std::list<XmlNode> &values) const;
 	void           node(std::ctstring_t &xpath, XmlNode &value) const;
-	void           texts(std::ctstring_t &xpath, std::list_tstring_t &values) const;
 	void           nodes(std::ctstring_t &xpath, std::list<XmlNode> &values) const;
+	void           texts(std::ctstring_t &xpath, std::list_tstring_t &values) const;
 
 	void           childrenMap(std::ctstring_t &xpath, std::map_tstring_t &values) const;
 
