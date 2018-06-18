@@ -86,7 +86,7 @@ XmlDoc::registerNss(
 	}
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlDoc::parse(
 	cptr_ctchar_t a_buff,
 	cint_t        a_size
@@ -95,14 +95,10 @@ XmlDoc::parse(
 	_close();
 
 	_doc = ::xmlParseMemory(a_buff, a_size);
-	if (_doc == nullptr) {
-		return false;
-	}
-
-	return true;
+	xTEST_PTR(_doc);
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlDoc::parse(
 	std::ctstring_t &a_str,
 	cbool_t          a_isNss /* = true */
@@ -119,14 +115,10 @@ XmlDoc::parse(
 		_doc = ::xmlParseDoc( (const xmlChar *)a_str.data() );
 	}
 
-	if (_doc == nullptr) {
-		return false;
-	}
-
-	return true;
+	xTEST_PTR(_doc);
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlDoc::parseFile(
 	std::ctstring_t &a_filePath
 )
@@ -134,14 +126,10 @@ XmlDoc::parseFile(
 	_close();
 
 	_doc = ::xmlParseFile( a_filePath.c_str() );
-	if (_doc == nullptr) {
-		return false;
-	}
-
-	return true;
+	xTEST_PTR(_doc);
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlDoc::getRootNode(
 	XmlNode &a_root
 )
@@ -151,11 +139,9 @@ XmlDoc::getRootNode(
 
 	XmlNode root(this, rootNode);
 	a_root = root;
-
-	return true;
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlDoc::saveToFile(
 	std::ctstring_t &a_filePath
 )
@@ -168,8 +154,6 @@ XmlDoc::saveToFile(
 
 	int_t  iRv = ::xmlSaveClose(saveCtxt);
 	xTEST_EQ(iRv, 0);
-
-	return true;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t

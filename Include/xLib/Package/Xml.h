@@ -31,13 +31,13 @@ public:
     std::tstring_t lastErrorStr() const xOVERRIDE xWARN_UNUSED_RV;
 
 	void           registerNss(std::cmap_tstring_t &nss);
-	bool           parse(cptr_ctchar_t buff, cint_t size);
-	bool           parse(std::ctstring_t &str, cbool_t isNss = true);
-	bool           parseFile(std::ctstring_t &filePath);
+	void           parse(cptr_ctchar_t buff, cint_t size);
+	void           parse(std::ctstring_t &str, cbool_t isNss = true);
+	void           parseFile(std::ctstring_t &filePath);
 
-	bool           getRootNode(XmlNode &root);
+	void           getRootNode(XmlNode &root);
 
-	bool           saveToFile(std::ctstring_t &filePath);
+	void           saveToFile(std::ctstring_t &filePath);
 	std::tstring_t format(std::ctstring_t &charset);
 
 	static
