@@ -30,7 +30,7 @@ public:
     int_t          lastError() const xOVERRIDE xWARN_UNUSED_RV;
     std::tstring_t lastErrorStr() const xOVERRIDE xWARN_UNUSED_RV;
 
-	void           registerNss(std::cmap_tstring_t &nss) const;
+	void           registerNss(std::cmap_tstring_t &nss);
 	bool           parse(cptr_ctchar_t buff, cint_t size);
 	bool           parse(std::ctstring_t &str, cbool_t isNss = true);
 	bool           parseFile(std::ctstring_t &filePath);
@@ -50,7 +50,7 @@ public:
 protected:
 	xmlDocPtr      _doc {};
 	Iconv          _iconv;
-	mutable std::map_tstring_t _nss;
+	std::map_tstring_t _nss;
 
 	void           _registerNss(xmlXPathContextPtr ctx) const;
 	void           _stringNoNs(std::tstring_t *str) const;
