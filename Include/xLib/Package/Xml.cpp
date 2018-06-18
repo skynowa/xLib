@@ -73,8 +73,8 @@ XmlDoc::registerNss(
 	std::cmap_tstring_t &a_nss
 )
 {
-	for (auto &itNs : a_nss) {
-		_nss.insert( {itNs.first, itNs.second} );
+	for (auto &it_ns : a_nss) {
+		_nss.insert( {it_ns.first, it_ns.second} );
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -214,9 +214,9 @@ XmlDoc::_registerNss(
 	xmlXPathContextPtr a_xmlXPathContextPtr
 ) const
 {
-	for (auto &itNs : _nss) {
-		auto prefix = (const xmlChar *)itNs.first.data();
-		auto nsUri  = (const xmlChar *)itNs.second.data();
+	for (auto &it_ns : _nss) {
+		auto prefix = (const xmlChar *)it_ns.first.data();
+		auto nsUri  = (const xmlChar *)it_ns.second.data();
 
 		int iRv = ::xmlXPathRegisterNs(a_xmlXPathContextPtr, prefix, nsUri);
 		xTEST_EQ(iRv, 0);
@@ -465,12 +465,12 @@ XmlNode::findNodes(
 {
 	a_values.clear();
 
-	for (auto &itXpath : a_xpaths) {
+	for (auto &it_xpath : a_xpaths) {
 		std::list<XmlNode> values;
-		nodes(itXpath, values);
+		nodes(it_xpath, values);
 
-		for (auto &itValue : values) {
-			a_values.emplace_back(itValue);
+		for (auto &it_value : values) {
+			a_values.emplace_back(it_value);
 		}
 	}
 }
@@ -525,13 +525,13 @@ XmlNode::nodes(
 	}
 
 	for (int i = 0; i < nodes->nodeNr; ++ i) {
-		xmlNodePtr itNode = nodes->nodeTab[i];
-		if (itNode == nullptr) {
+		xmlNodePtr it_node = nodes->nodeTab[i];
+		if (it_node == nullptr) {
 			xTEST_FAIL;
 			continue;
 		}
 
-		XmlNode node(_xmlDoc, itNode);
+		XmlNode node(_xmlDoc, it_node);
 		a_res.emplace_back(node);
 	}
 
@@ -566,16 +566,16 @@ XmlNode::childrenMap(
 	std::list<XmlNode> values;
 	nodes(a_xpath, values);
 
-    for (xmlNodePtr itNode = _node->children; itNode != nullptr; itNode = itNode->next) {
-        if (itNode->type != XML_ELEMENT_NODE) {
+    for (xmlNodePtr it_node = _node->children; it_node != nullptr; it_node = it_node->next) {
+        if (it_node->type != XML_ELEMENT_NODE) {
             continue;
         }
 
-        if (::xmlFirstElementChild(itNode) != nullptr) {
+        if (::xmlFirstElementChild(it_node) != nullptr) {
             continue;
         }
 
-        a_values.emplace(_name(itNode), _text(itNode));
+        a_values.emplace(_name(it_node), _text(it_node));
     }
 }
 //-------------------------------------------------------------------------------------------------
