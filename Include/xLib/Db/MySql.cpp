@@ -274,7 +274,7 @@ MySqlRecordset::fetchFieldDirect(
 ) const
 {
     xTEST_EQ(_result.isValid(), true);
-    xTEST_NA(a_fieldNumber)
+    xTEST_NA(a_fieldNumber);
     xTEST_PTR(a_field);
 
     a_field = ::mysql_fetch_field_direct(_result.get(), a_fieldNumber);
