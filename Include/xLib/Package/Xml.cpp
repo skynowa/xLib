@@ -460,13 +460,13 @@ XmlNode::text() const
 void
 XmlNode::findNodes(
 	std::clist_tstring_t &a_xpaths,	///<
-	std::list<XmlNode>   &a_values	///< [out]
+	std::vector<XmlNode> &a_values	///< [out]
 ) const
 {
 	a_values.clear();
 
 	for (auto &it_xpath : a_xpaths) {
-		std::list<XmlNode> values;
+		std::vector<XmlNode> values;
 		nodes(it_xpath, values);
 
 		for (auto &it_value : values) {
@@ -481,7 +481,7 @@ XmlNode::node(
 	XmlNode         &a_value
 ) const
 {
-    std::list<XmlNode> _nodes;
+    std::vector<XmlNode> _nodes;
     nodes(a_xpath, _nodes);
 
     a_value = *_nodes.begin();
@@ -489,8 +489,8 @@ XmlNode::node(
 //-------------------------------------------------------------------------------------------------
 void
 XmlNode::nodes(
-	std::ctstring_t    &a_xpath,
-	std::list<XmlNode> &a_res
+	std::ctstring_t      &a_xpath,
+	std::vector<XmlNode> &a_res
 ) const
 {
 	a_res.clear();
@@ -541,13 +541,13 @@ XmlNode::nodes(
 //-------------------------------------------------------------------------------------------------
 void
 XmlNode::texts(
-	std::ctstring_t     &a_xpath,
-	std::list_tstring_t &a_values
+	std::ctstring_t    &a_xpath,
+	std::vec_tstring_t &a_values
 ) const
 {
 	a_values.clear();
 
-	std::list<XmlNode> values;
+	std::vector<XmlNode> values;
 	nodes(a_xpath, values);
 
 	for (auto &it_value : values) {
@@ -563,7 +563,7 @@ XmlNode::childrenMap(
 {
 	a_values.clear();
 
-	std::list<XmlNode> values;
+	std::vector<XmlNode> values;
 	nodes(a_xpath, values);
 
     for (xmlNodePtr it_node = _node->children; it_node != nullptr; it_node = it_node->next) {

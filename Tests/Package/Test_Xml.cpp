@@ -31,7 +31,7 @@ Test_Xml::unit()
         doc.getRootNode(root);
 
         // nodes
-        std::list<XmlNode> results;
+        std::vector<XmlNode> results;
         root.nodes("/AvailabilitySearchResult/HotelAvailability/Result", results);
         xTEST_EQ(results.size(), (std::size_t)3);
 
@@ -43,7 +43,7 @@ Test_Xml::unit()
                 "/AvailabilitySearchResult/HotelAvailability/Result/Room"
             };
 
-            std::list<XmlNode> finds;
+            std::vector<XmlNode> finds;
             root.findNodes(xpaths, finds);
             xTEST_EQ(finds.size(), (std::size_t)6);
         }
