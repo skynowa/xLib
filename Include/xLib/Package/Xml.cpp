@@ -669,6 +669,9 @@ XmlNode::dump(
 
 	unique_xml_buff_ptr buff(::xmlBufferCreate(), ::xmlBufferFree);
 #endif
+	if (buff == nullptr) {
+		return {};
+	}
 
 	if (a_isIncludeCurrent) {
 		iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, _node, 0, 1);
@@ -676,10 +679,6 @@ XmlNode::dump(
 		iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, _node->children, 0, 1);
 	}
 	xTEST_DIFF(iRv,  -1);
-
-	if (buff == nullptr) {
-		return {};
-	}
 
 	auto content = (cptr_ctchar_t)buff->content;
 	if (content == nullptr) {
