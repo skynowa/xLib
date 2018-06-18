@@ -86,7 +86,7 @@ public:
 	std::tstring_t attribute(std::ctstring_t &name) const;
 	void           attributes(std::map_tstring_t &values) const;
 
-	std::tstring_t dump(cbool_t isIncludeCurrent = false);
+	std::tstring_t dump(cbool_t isFromCurrent = false, cbool_t isFormat = true);
 
 protected:
 	XmlDoc        *_xmlDoc {};
