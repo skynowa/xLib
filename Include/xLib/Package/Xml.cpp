@@ -450,23 +450,23 @@ XmlNode::operator = (
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlNode::getName() const
+XmlNode::name() const
 {
-	return _getName(_node);
+	return _name(_node);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlNode::getText() const
+XmlNode::text() const
 {
 	std::tstring_t sRv;
 
-    _xmlDoc->_iconv.convert(_getText(_node), &sRv);
+    _xmlDoc->_iconv.convert(_text(_node), &sRv);
 
 	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::findContents(
+XmlNode::findNodes(
 	std::clist_tstring_t &a_xpaths,	///<
 	std::list<XmlNode>   &a_values	///< [out]
 ) const
@@ -475,7 +475,7 @@ XmlNode::findContents(
 
 	for (auto &itXpath : a_xpaths) {
 		std::list<XmlNode> values;
-		getContents(itXpath, values);
+		nodes(itXpath, values);
 
 		for (auto &itValue : values) {
 			a_values.emplace_back(itValue);
@@ -484,19 +484,19 @@ XmlNode::findContents(
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getContent(
+XmlNode::node(
 	std::ctstring_t &a_xpath,
 	XmlNode         &a_value
 ) const
 {
-    std::list<XmlNode> nodes;
-    getContents(a_xpath, nodes);
+    std::list<XmlNode> _nodes;
+    nodes(a_xpath, _nodes);
 
-    a_value = *nodes.begin();
+    a_value = *_nodes.begin();
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getContents(
+XmlNode::texts(
 	std::ctstring_t     &a_xpath,
 	std::list_tstring_t &a_values
 ) const
@@ -504,15 +504,15 @@ XmlNode::getContents(
 	a_values.clear();
 
 	std::list<XmlNode> values;
-	getContents(a_xpath, values);
+	nodes(a_xpath, values);
 
 	for (auto &it_value : values) {
-		a_values.emplace_back( it_value.getText() );
+		a_values.emplace_back( it_value.text() );
 	}
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getContents(
+XmlNode::nodes(
 	std::ctstring_t    &a_xpath,
 	std::list<XmlNode> &a_res
 ) const
@@ -564,7 +564,7 @@ XmlNode::getContents(
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getChildrenContents(
+XmlNode::childrenMap(
 	std::ctstring_t    &a_xpath,
 	std::map_tstring_t &a_values
 ) const
@@ -572,7 +572,7 @@ XmlNode::getChildrenContents(
 	a_values.clear();
 
 	std::list<XmlNode> values;
-	getContents(a_xpath, values);
+	nodes(a_xpath, values);
 
     for (xmlNodePtr itNode = _node->children; itNode != nullptr; itNode = itNode->next) {
         if (itNode->type != XML_ELEMENT_NODE) {
@@ -583,12 +583,12 @@ XmlNode::getChildrenContents(
             continue;
         }
 
-        a_values.emplace(_getName(itNode), _getText(itNode));
+        a_values.emplace(_name(itNode), _text(itNode));
     }
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlNode::getAttribute(
+XmlNode::attribute(
 	std::ctstring_t &a_name	///< attribute name
 ) const
 {
@@ -609,7 +609,7 @@ XmlNode::getAttribute(
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getAttributes(
+XmlNode::attributes(
 	std::map_tstring_t &a_values	///< [out] attributes (name -> value)
 ) const
 {
@@ -681,7 +681,7 @@ XmlNode::dump(
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlNode::_getName(
+XmlNode::_name(
     xmlNodePtr a_node
 )
 {
@@ -689,7 +689,7 @@ XmlNode::_getName(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlNode::_getText(
+XmlNode::_text(
     xmlNodePtr a_node
 )
 {

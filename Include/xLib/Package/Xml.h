@@ -73,18 +73,18 @@ public:
 
     XmlNode       &operator = (const XmlNode &xmlNode);
 
-	std::tstring_t getName() const;
-	std::tstring_t getText() const;
+	std::tstring_t name() const;
+	std::tstring_t text() const;
 
-	void           findContents(std::clist_tstring_t &xpaths, std::list<XmlNode> &values) const;
-	void           getContent(std::ctstring_t &xpath, XmlNode &value) const;
-	void           getContents(std::ctstring_t &xpath, std::list_tstring_t &values) const;
-	void           getContents(std::ctstring_t &xpath, std::list<XmlNode> &values) const;
+	void           findNodes(std::clist_tstring_t &xpaths, std::list<XmlNode> &values) const;
+	void           node(std::ctstring_t &xpath, XmlNode &value) const;
+	void           texts(std::ctstring_t &xpath, std::list_tstring_t &values) const;
+	void           nodes(std::ctstring_t &xpath, std::list<XmlNode> &values) const;
 
-	void           getChildrenContents(std::ctstring_t &xpath, std::map_tstring_t &values) const;
+	void           childrenMap(std::ctstring_t &xpath, std::map_tstring_t &values) const;
 
-	std::tstring_t getAttribute(std::ctstring_t &name) const;
-	void           getAttributes(std::map_tstring_t &values) const;
+	std::tstring_t attribute(std::ctstring_t &name) const;
+	void           attributes(std::map_tstring_t &values) const;
 
 	std::tstring_t dump(cbool_t isIncludeCurrent = false);
 
@@ -94,9 +94,9 @@ protected:
 
 private:
     static
-    std::tstring_t _getName(xmlNodePtr node);
+    std::tstring_t _name(xmlNodePtr node);
     static
-    std::tstring_t _getText(xmlNodePtr node);
+    std::tstring_t _text(xmlNodePtr node);
 };
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, package)
