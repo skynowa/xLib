@@ -496,22 +496,6 @@ XmlNode::node(
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::texts(
-	std::ctstring_t     &a_xpath,
-	std::list_tstring_t &a_values
-) const
-{
-	a_values.clear();
-
-	std::list<XmlNode> values;
-	nodes(a_xpath, values);
-
-	for (auto &it_value : values) {
-		a_values.emplace_back( it_value.text() );
-	}
-}
-//-------------------------------------------------------------------------------------------------
-void
 XmlNode::nodes(
 	std::ctstring_t    &a_xpath,
 	std::list<XmlNode> &a_res
@@ -561,6 +545,22 @@ XmlNode::nodes(
 
 	Utils::freeT(xpathObj, ::xmlXPathFreeObject,  nullptr);
 	Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
+}
+//-------------------------------------------------------------------------------------------------
+void
+XmlNode::texts(
+	std::ctstring_t     &a_xpath,
+	std::list_tstring_t &a_values
+) const
+{
+	a_values.clear();
+
+	std::list<XmlNode> values;
+	nodes(a_xpath, values);
+
+	for (auto &it_value : values) {
+		a_values.emplace_back( it_value.text() );
+	}
 }
 //-------------------------------------------------------------------------------------------------
 void
