@@ -634,7 +634,8 @@ XmlNode::attributes(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 XmlNode::dump(
-	cbool_t a_isIncludeCurrent/* = false */
+	cbool_t a_isFromCurrent	/* = false */,
+	cbool_t a_isFormat		/* = true */
 )
 {
 	std::tstring_t sRv;
@@ -653,9 +654,9 @@ XmlNode::dump(
 #endif
 	xTEST_PTR(buff.get());
 
-	xmlNodePtr node   = a_isIncludeCurrent ? _node : _node->children;
+	xmlNodePtr node   = a_isFromCurrent ? _node : _node->children;
 	cint_t     level  = 0;
-	cint_t     format = 1;
+	cint_t     format = a_isFormat ? 1 : 0;
 
 	iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, node, level, format);
 	xTEST_DIFF(iRv,  -1);
