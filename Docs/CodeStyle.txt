@@ -168,22 +168,22 @@ Naming:
 Prefixes:
 
 
-“ _” - private member of some data structure:
+"_" - private member of some data structure:
 
     TWTSLite *_wts;
 
-“ a_”   - function param (in),
-“ out_” - function param (out):
+" a_"   - function param (in),
+" out_" - function param (out):
 
     void foo(const Date &a_date, string *out_date);
 
-“ it_” - iterator:
+" it_" - iterator:
 
     for (auto &it_stat : stats) {
         // ...
     }
 
-“is” - for boolean variables/function:
+"is" - for boolean variables/function:
 
     bool is_valid = false;
     bool isValid() const;
