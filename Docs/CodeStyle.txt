@@ -52,10 +52,10 @@ for, if:
 
     // BAD
     void
-    foo(const bool is_var1, const bool is_var2)
+    foo(const bool isVar1, const bool isVar2)
     {
-        if (is_var1) {
-            if (is_var2) {
+        if (isVar1) {
+            if (isVar2) {
                 // ...
             }
         }
@@ -63,13 +63,13 @@ for, if:
 
     // GOOD
     void
-    foo(const bool is_var1, const bool is_var2)
+    foo(const bool isVar1, const bool isVar2)
     {
-        if ( !is_var1 ) {
+        if ( !isVar1 ) {
             return;
         }
 
-        if ( !is_var2 ) {
+        if ( !isVar2 ) {
             return;
         }
 
@@ -97,7 +97,7 @@ for, if:
         // ...
     }
 
-    - use spaces
+- use spaces
 
     // BAD
     for (int i=0; i<10; ++i) {
@@ -114,22 +114,20 @@ Naming:
 
 
 - files:
-    low_case
+    UpperCamelCase
 - typedef with "_t":
     typedef vector<string> csv_line_t;
 - class, struct, union, enum:
     UpperCamelCase
-- functions, methods:
+- variables (+ constants), class members, functions, methods:
     lowCamelCase
-- variables (+ constants), class members:
-    low_case
 - macros:
-    UPPER_CASE
+    [PREFIX]_UPPER_CASE
 - measure units postfix:
-    timeout_sec, size_bytes, ..
+    timeoutSec, sizeBytes, ..
 
 - files:
-    #include <services/merge_service_v2.h>
+    #include <Services/MergeService.h>
 
 - typedef with "_t":
     typedef vector<string> csv_line_t;
@@ -152,17 +150,17 @@ Naming:
     void processBookedHotels();
 
 - variables (+ constants), class members:
-    size_t       hotels_count;
-    const size_t pax_number;
+    size_t       hotelsCount;
+    const size_t paxNumber;
 
 - macros:
-    #define MOBILE_PROJECT 1
+    #define xMOBILE_PROJECT 1
 
 - measure units postfix:
-    time_t  timeout_sec     = 300;
-    size_t  file_size_bytes = getFileSizeBytes();
-    size_t  distance_km     = 10;
-    int32_t price_usd       = 700;
+    time_t  timeoutSec    = 300;
+    size_t  fileSizeBytes = getFileSizeBytes();
+    size_t  distanceKm    = 10;
+    int32_t priceUsd      = 700;
 
 //-------------------------------------------------------------------------------------------------
 Prefixes:
@@ -170,7 +168,7 @@ Prefixes:
 
 "_" - private member of some data structure:
 
-    TWTSLite *_wts;
+    TWTSLite *_wts {};
 
 " a_"   - function param (in),
 " out_" - function param (out):
@@ -185,7 +183,7 @@ Prefixes:
 
 "is" - for boolean variables/function:
 
-    bool is_valid = false;
+    bool isValid {};
     bool isValid() const;
 
 
@@ -206,21 +204,19 @@ Etc:
     class A
     {
     public:
-        bool  is_valid {};
+        bool  isValid {};
         int   count {};
         float percent {};
-        TWTS *wts_big {};
+        TWTS *wtsBig {};
 
-        A()
-        {
-        }
+        A();
     };
 
 - base (parent) classes:
 
-    for services  - WTSService (libwts3/WTSService.h)
-    for modules   - WTSModule (libwts3/WTSModule.h)
-    for functions - WTSFunc (libwts3/WTSFunc.h)
+    IService - for services
+    IModule  - for modules
+    IFunc    - for functions
 
 - don't use exceptions:
 
@@ -247,4 +243,4 @@ Git:
     [full comments]
 
 - branch naming:
-    TRAVEL-1234-some-short-description
+    [task-ID]-[task-short-description]
