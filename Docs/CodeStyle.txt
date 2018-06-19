@@ -1,7 +1,9 @@
 //-------------------------------------------------------------------------------------------------
 Editor:
 
-- Sublime config Preferences.sublime-settings
+
+- Sublime config:
+    Preferences.sublime-settings
 - intend size:
     4 spaces
 - line length:
@@ -24,163 +26,167 @@ Editor:
 //-------------------------------------------------------------------------------------------------
 for, if:
 
-- always braces
 
-// BAD
-if ()
-    continue;
+- always braces:
 
-// GOOD
-if () {
-    continue;
-}
+    // BAD
+    if ()
+        continue;
 
-- braces position
+    // GOOD
+    if () {
+        continue;
+    }
 
-if () {
-    // ...
-}
+- braces position:
 
-for ( ; ; ) {
-    // ...
-}
+    if () {
+        // ...
+    }
 
-- no nested if
+    for ( ; ; ) {
+        // ...
+    }
 
-// BAD
-void
-foo(const bool is_var1, const bool is_var2)
-{
-    if (is_var1) {
-        if (is_var2) {
-            // ...
+- no nested if:
+
+    // BAD
+    void
+    foo(const bool is_var1, const bool is_var2)
+    {
+        if (is_var1) {
+            if (is_var2) {
+                // ...
+            }
         }
     }
-}
 
-// GOOD
-void
-foo(const bool is_var1, const bool is_var2)
-{
-    if ( !is_var1 ) {
-        return;
+    // GOOD
+    void
+    foo(const bool is_var1, const bool is_var2)
+    {
+        if ( !is_var1 ) {
+            return;
+        }
+
+        if ( !is_var2 ) {
+            return;
+        }
+
+        // ..
     }
 
-    if ( !is_var2 ) {
-        return;
+- if with explicit condition (apart from bool type):
+
+    char *ptr = &str;
+    int   i   = 0;
+
+    // BAD
+    if (ptr) {
+        // ...
+    }
+    if (i) {
+        // ...
     }
 
-    // ..
-}
+    // GOOD
+    if (ptr != nullptr) {
+        // ...
+    }
+    if (i > 0) {
+        // ...
+    }
 
-- if with explicit condition (apart from bool type)
+    - use spaces
 
-char *ptr = &str;
-int   i   = 0;
+    // BAD
+    for (int i=0; i<10; ++i) {
+        // ...
+    }
 
-// BAD
-if (ptr) {
-    // ...
-}
-if (i) {
-    // ...
-}
-
-// GOOD
-if (ptr != nullptr) {
-    // ...
-}
-if (i > 0) {
-    // ...
-}
-
-- use spaces
-
-// BAD
-for (int i=0; i<10; ++i) {
-    // ...
-}
-
-// GOOD
-for (int i = 0; i < 10; ++ i) {
-    // ...
-}
+    // GOOD
+    for (int i = 0; i < 10; ++ i) {
+        // ...
+    }
 
 //-------------------------------------------------------------------------------------------------
 Naming:
 
+
 - files:
-  low_case
+    low_case
 - typedef with "_t":
-  typedef vector<string> csv_line_t;
+    typedef vector<string> csv_line_t;
 - class, struct, union, enum:
-  UpperCamelCase
+    UpperCamelCase
 - functions, methods:
-  lowCamelCase
+    lowCamelCase
 - variables (+ constants), class members:
-  low_case
+    low_case
 - macros:
-  UPPER_CASE
+    UPPER_CASE
 - measure units postfix:
-  timeout_sec, size_bytes, ..
+    timeout_sec, size_bytes, ..
 
-// files:
-#include <services/merge_service_v2.h>
+- files:
+    #include <services/merge_service_v2.h>
 
-// typedef with "_t":
-typedef vector<string> csv_line_t;
-using room_rate_t = map<string, string>;
+- typedef with "_t":
+    typedef vector<string> csv_line_t;
+    using room_rate_t = map<string, string>;
 
-// class, struct, union, enum:
-class PayPalFunc
-{
-};
+- class, struct, union, enum:
+    class PayPalFunc
+    {
+    };
 
-enum class CodeStyleType
-{
-    Unknown = 0,
-    Good    = 1,
-    Bad     = 2,
-    Mixed   = 3
-};
+    enum class CodeStyleType
+    {
+        Unknown = 0,
+        Good    = 1,
+        Bad     = 2,
+        Mixed   = 3
+    };
 
-// functions, methods:
-void processBookedHotels();
+- functions, methods:
+    void processBookedHotels();
 
-// variables (+ constants), class members:
-size_t       hotels_count;
-const size_t pax_number;
+- variables (+ constants), class members:
+    size_t       hotels_count;
+    const size_t pax_number;
 
-// macros:
-#define MOBILE_PROJECT 1
+- macros:
+    #define MOBILE_PROJECT 1
 
-// measure units postfix:
-time_t  timeout_sec     = 300;
-size_t  file_size_bytes = getFileSizeBytes();
-size_t  distance_km     = 10;
-int32_t price_usd       = 700;
-
+- measure units postfix:
+    time_t  timeout_sec     = 300;
+    size_t  file_size_bytes = getFileSizeBytes();
+    size_t  distance_km     = 10;
+    int32_t price_usd       = 700;
 
 //-------------------------------------------------------------------------------------------------
 Prefixes:
 
 
-“ _” - private member of some data structure
+“ _” - private member of some data structure:
 
-TWTSLite *_wts;
-“ a_” - function param
-“ out_” - function param (out)
+    TWTSLite *_wts;
 
-void foo(const Date &a_date);
-“ it_” - iterator
+“ a_”   - function param (in),
+“ out_” - function param (out):
 
-for (auto &it_stat : stats) {
-    // ...
-}
-“is” - for boolean variables/function
+    void foo(const Date &a_date, string *out_date);
 
-bool is_valid = false;
-bool isValid() const;
+“ it_” - iterator:
+
+    for (auto &it_stat : stats) {
+        // ...
+    }
+
+“is” - for boolean variables/function:
+
+    bool is_valid = false;
+    bool isValid() const;
 
 
 //-------------------------------------------------------------------------------------------------
@@ -188,7 +194,6 @@ Comments:
 
 
 - remove "dead" code
-
 
 //-------------------------------------------------------------------------------------------------
 Etc:
@@ -198,24 +203,26 @@ Etc:
 - don't use default function's parameters
 - Init simple type (bool, interger, double, pointer) class members with "{}":
 
-class A
-{
-public:
-  bool  is_valid {};
-  int   count {};
-  float percent {};
-  TWTS *wts_big {};
-
-  A()
+    class A
     {
-    }
-};
-- base (parent) classes
+    public:
+        bool  is_valid {};
+        int   count {};
+        float percent {};
+        TWTS *wts_big {};
 
-for services - WTSService (libwts3/WTSService.h)
-for modules - WTSModule (libwts3/WTSModule.h)
-for functions - WTSFunc (libwts3/WTSFunc.h)
-- don't use exceptions
+        A()
+        {
+        }
+    };
+
+- base (parent) classes:
+
+    for services  - WTSService (libwts3/WTSService.h)
+    for modules   - WTSModule (libwts3/WTSModule.h)
+    for functions - WTSFunc (libwts3/WTSFunc.h)
+
+- don't use exceptions:
 
 
 //-------------------------------------------------------------------------------------------------
