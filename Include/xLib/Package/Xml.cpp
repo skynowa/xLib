@@ -633,9 +633,9 @@ XmlNode::dump(
 	std::tstring_t sRv;
 	int_t          iRv {};
 
-	using unique_xml_buff_ptr = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
+	using buff_unique_ptr_t = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
 
-	unique_xml_buff_ptr buff(::xmlBufferCreate(), ::xmlBufferFree);
+	buff_unique_ptr_t buff(::xmlBufferCreate(), ::xmlBufferFree);
 	xTEST_PTR(buff.get());
 
 	xmlNodePtr node   = a_isFromCurrent ? _node : _node->children;
