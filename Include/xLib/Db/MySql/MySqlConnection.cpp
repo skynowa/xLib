@@ -140,54 +140,60 @@ MySqlConnection::connect(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 MySqlConnection::quoted(
-	std::ctstring_t &a_sql
+	std::ctstring_t &a_sql	///< SQL string
 ) const
 {
-    unsigned long  n {};
+	unsigned long  quoted_size {};
 
-    std::tstring_t from = a_sql;
-    std::tstring_t to(from.size() * 2 + 1, '\0');
+	std::tstring_t from;
+	std::tstring_t to;
 
-    // \'
+	// \'
 	{
-	    n = ::mysql_real_escape_string_quote(_conn.get(), &to[0], from.data(), static_cast<unsigned long>(from.size()), '\'');
-		if (n < 0) {
+		from = a_sql;
+		to.resize(from.size() * 2 + 1, '\0');
+
+		quoted_size = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
+			from.data(), static_cast<unsigned long>(from.size()), '\'');
+		if (quoted_size < 0) {
 			to.resize(0);
 		} else {
-			to.resize(n);
+			to.resize(quoted_size);
 			fprintf(stdout, "['] %s\n", to.c_str());
 		}
 	}
 
-    // \"
+	// \"
 	{
-	    from = to;
+		from = to;
 		to.resize(from.size() * 2 + 1, '\0');
 
-		n = ::mysql_real_escape_string_quote(_conn.get(), &to[0], from.data(), static_cast<unsigned long>(from.size()), '"');
-		if (n < 0) {
+		quoted_size = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
+			from.data(), static_cast<unsigned long>(from.size()), '"');
+		if (quoted_size < 0) {
 			to.resize(0);
 		} else {
-			to.resize(n);
+			to.resize(quoted_size);
 			fprintf(stdout, "[\"] %s\n", to.c_str());
 		}
 	}
 
 	// '\\'
 	{
-	    from = to;
+		from = to;
 		to.resize(from.size() * 2 + 1, '\0');
 
-		n = ::mysql_real_escape_string_quote(_conn.get(), &to[0], from.data(), static_cast<unsigned long>(from.size()), '\\');
-		if (n < 0) {
+		quoted_size = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
+			from.data(), static_cast<unsigned long>(from.size()), '\\');
+		if (quoted_size < 0) {
 			to.resize(0);
 		} else {
-			to.resize(n);
+			to.resize(quoted_size);
 			fprintf(stdout, "[\\] %s\n", to.c_str());
 		}
 	}
 
-    return to;
+	return to;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
