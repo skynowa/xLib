@@ -48,12 +48,23 @@ Test_MySql::unit()
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("MySqlConnection::options")
+    xTEST_CASE("MySqlConnection::option")
     {
         mysql_option option = MYSQL_OPT_COMPRESS;
-        cptr_cvoid_t arg    = xPTR_NULL;
+        cptr_cvoid_t arg    = 0;
 
-        mysqlConn.options(option, arg);
+        mysqlConn.option(option, arg);
+    }
+
+    xTEST_CASE("MySqlConnection::options")
+    {
+        const std::map<mysql_option, cptr_cvoid_t> options
+        {
+            {MYSQL_OPT_COMPRESS, 0},
+            {MYSQL_INIT_COMMAND, "SET autocommit=0"}
+        };
+
+        mysqlConn.options(options);
     }
 
     xTEST_CASE("MySqlConnection::ping")
