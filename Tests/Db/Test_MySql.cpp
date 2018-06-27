@@ -60,7 +60,7 @@ Test_MySql::unit()
     {
         const unsigned int connectTimeout = 60;
         const bool         isReconnect    = true;
-        const char        *initCommand    = "SET autocommit=0";
+        const char         initCommand[]  = "SET autocommit=0";
 
         const std::map<mysql_option, cptr_cvoid_t> options
         {
