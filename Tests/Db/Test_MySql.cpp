@@ -58,10 +58,16 @@ Test_MySql::unit()
 
     xTEST_CASE("MySqlConnection::setOptions")
     {
+        const unsigned int connectTimeout = 60;
+        const bool         isReconnect    = true;
+        const char        *initCommand    = "SET autocommit=0";
+
         const std::map<mysql_option, cptr_cvoid_t> options
         {
-            {MYSQL_OPT_COMPRESS, 0},
-            {MYSQL_INIT_COMMAND, "SET autocommit=0"}
+            {MYSQL_OPT_COMPRESS,        0},
+            {MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
+            {MYSQL_OPT_RECONNECT,       &isReconnect},
+            {MYSQL_INIT_COMMAND,        &initCommand}
         };
 
         mysqlConn.setOptions(options);
