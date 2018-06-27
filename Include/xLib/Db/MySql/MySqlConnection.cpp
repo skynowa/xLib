@@ -138,6 +138,58 @@ MySqlConnection::connect(
     xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+MySqlConnection::quoted(
+	std::ctstring_t &a_sql
+) const
+{
+    unsigned long  n {};
+
+    std::tstring_t from = a_sql;
+    std::tstring_t to(from.size() * 2 + 1, '\0');
+
+    // \'
+	{
+	    n = ::mysql_real_escape_string_quote(_conn.get(), &to[0], from.data(), static_cast<unsigned long>(from.size()), '\'');
+		if (n < 0) {
+			to.resize(0);
+		} else {
+			to.resize(n);
+			fprintf(stdout, "['] %s\n", to.c_str());
+		}
+	}
+
+    // \"
+	{
+	    from = to;
+		to.resize(from.size() * 2 + 1, '\0');
+
+		n = ::mysql_real_escape_string_quote(_conn.get(), &to[0], from.data(), static_cast<unsigned long>(from.size()), '"');
+		if (n < 0) {
+			to.resize(0);
+		} else {
+			to.resize(n);
+			fprintf(stdout, "[\"] %s\n", to.c_str());
+		}
+	}
+
+	// '\\'
+	{
+	    from = to;
+		to.resize(from.size() * 2 + 1, '\0');
+
+		n = ::mysql_real_escape_string_quote(_conn.get(), &to[0], from.data(), static_cast<unsigned long>(from.size()), '\\');
+		if (n < 0) {
+			to.resize(0);
+		} else {
+			to.resize(n);
+			fprintf(stdout, "[\\] %s\n", to.c_str());
+		}
+	}
+
+    return to;
+}
+//-------------------------------------------------------------------------------------------------
 void_t
 MySqlConnection::query(
     cptr_ctchar_t a_sqlFormat, ...

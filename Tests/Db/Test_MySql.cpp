@@ -122,6 +122,10 @@ Test_MySql::unit()
         xTEST_EQ(m_bRv, true);
     }
 
+    xTEST_CASE("MySqlConnection::quoted")
+    {
+    }
+
     xTEST_CASE("MySqlConnection::query")
     {
         mysqlConn.connect(mysqlData);
