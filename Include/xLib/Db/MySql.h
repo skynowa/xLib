@@ -12,6 +12,7 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
+#include <xLib/Interface/ILastError.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, db)
 
@@ -38,7 +39,8 @@ struct MySqlConnectionData
 };
 xTYPEDEF_CONST(MySqlConnectionData);
 
-class MySqlConnection
+class MySqlConnection :
+	public xl::interface::ILastError<uint_t>
     /// MySql connection
 {
 public:
@@ -66,9 +68,9 @@ public:
         ///< closes a previously opened connection
 
     // errors
-    uint_t         lastError() const xWARN_UNUSED_RV;
+    uint_t         lastError() const xOVERRIDE xWARN_UNUSED_RV;
         ///< error code for the most recently invoked API function that can succeed or fail
-    std::tstring_t lastErrorStr() const xWARN_UNUSED_RV;
+    std::tstring_t lastErrorStr() const xOVERRIDE xWARN_UNUSED_RV;
         ///< error message for the most recently invoked API function that failed
 
 private:
