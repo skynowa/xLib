@@ -41,7 +41,7 @@ MySqlConnection::get()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlConnection::options(
+MySqlConnection::option(
     const mysql_option &a_option,
     cptr_cvoid_t        a_arg
 ) const
@@ -56,6 +56,16 @@ MySqlConnection::options(
     int_t iRv = ::mysql_options(_conn.get(), a_option, a_arg);
 #endif
     xTEST_EQ_MSG(0, iRv, lastErrorStr());
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+MySqlConnection::options(
+	const std::map<mysql_option, cptr_cvoid_t> &a_options
+) const
+{
+	for (auto &it_option : a_options) {
+		option(it_option.first, it_option.second);
+	}
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
