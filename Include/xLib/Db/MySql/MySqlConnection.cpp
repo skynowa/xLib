@@ -41,7 +41,7 @@ MySqlConnection::get()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlConnection::option(
+MySqlConnection::setOption(
     const mysql_option &a_option,
     cptr_cvoid_t        a_arg
 ) const
@@ -59,12 +59,12 @@ MySqlConnection::option(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlConnection::options(
+MySqlConnection::setOptions(
 	const std::map<mysql_option, cptr_cvoid_t> &a_options
 ) const
 {
 	for (auto &it_option : a_options) {
-		option(it_option.first, it_option.second);
+		setOption(it_option.first, it_option.second);
 	}
 }
 //-------------------------------------------------------------------------------------------------

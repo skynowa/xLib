@@ -41,9 +41,9 @@ public:
 
     HandleMySqlConn &get() xWARN_UNUSED_RV;
         ///< get handle
-    void_t         option(const mysql_option &option, cptr_cvoid_t arg) const;
+    void_t         setOption(const mysql_option &option, cptr_cvoid_t arg) const;
         ///< set extra connect options and affect behavior
-    void_t         options(const std::map<mysql_option, cptr_cvoid_t> &options) const;
+    void_t         setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
         ///< set extra connect options and affect behavior
     bool_t         ping(int_t *errorCode = xPTR_NULL) const xWARN_UNUSED_RV;
         ///< checks whether the connection to the server is working
