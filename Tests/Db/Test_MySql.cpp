@@ -64,7 +64,7 @@ Test_MySql::unit()
 
         const std::map<mysql_option, cptr_cvoid_t> options
         {
-            {MYSQL_OPT_COMPRESS,        0},
+            {MYSQL_OPT_COMPRESS,        0 /* not used */},
             {MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
             {MYSQL_OPT_RECONNECT,       &isReconnect},
             {MYSQL_INIT_COMMAND,        &initCommand}
