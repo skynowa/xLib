@@ -23,19 +23,9 @@ struct MySqlConnectionData
     std::tstring_t user;
     std::tstring_t password;
     std::tstring_t db;
-    uint_t         port;
+    uint_t         port {};
     std::tstring_t unixSocket;
-    ulong_t        clientFlag;
-
-    MySqlConnectionData() :
-        host      (),
-        user      (),
-        password  (),
-        db        (),
-        port      (0),
-        unixSocket(),
-        clientFlag(0)
-    {}
+    ulong_t        clientFlag {};
 };
 xTYPEDEF_CONST(MySqlConnectionData);
 
