@@ -143,55 +143,13 @@ MySqlConnection::quoted(
 	std::ctstring_t &a_sql	///< SQL string
 ) const
 {
-	unsigned long  quoted_size {};
+	std::tstring_t to(a_sql.size() * 2 + 1, '\0');
 
-	std::tstring_t from;
-	std::tstring_t to;
+	unsigned long quotedSize = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
+		a_sql.data(), static_cast<unsigned long>(a_sql.size()), '\\');
+	xTEST_GR_MSG(quotedSize, 0UL, lastErrorStr());
 
-	// \'
-	{
-		from = a_sql;
-		to.resize(from.size() * 2 + 1, '\0');
-
-		quoted_size = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
-			from.data(), static_cast<unsigned long>(from.size()), '\'');
-		if (quoted_size < 0) {
-			to.resize(0);
-		} else {
-			to.resize(quoted_size);
-			fprintf(stdout, "['] %s\n", to.c_str());
-		}
-	}
-
-	// \"
-	{
-		from = to;
-		to.resize(from.size() * 2 + 1, '\0');
-
-		quoted_size = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
-			from.data(), static_cast<unsigned long>(from.size()), '"');
-		if (quoted_size < 0) {
-			to.resize(0);
-		} else {
-			to.resize(quoted_size);
-			fprintf(stdout, "[\"] %s\n", to.c_str());
-		}
-	}
-
-	// '\\'
-	{
-		from = to;
-		to.resize(from.size() * 2 + 1, '\0');
-
-		quoted_size = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
-			from.data(), static_cast<unsigned long>(from.size()), '\\');
-		if (quoted_size < 0) {
-			to.resize(0);
-		} else {
-			to.resize(quoted_size);
-			fprintf(stdout, "[\\] %s\n", to.c_str());
-		}
-	}
+	to.resize(quotedSize);
 
 	return to;
 }

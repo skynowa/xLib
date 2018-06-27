@@ -97,6 +97,23 @@ Test_MySql::unit()
         }
     }
 
+    xTEST_CASE("MySqlConnection::quoted")
+    {
+        const std::vector<data2_tstring_t> data
+        {
+            //{ xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), xT("") }
+            { xT("CREATE DATABASE IF NOT EXISTS '%s' \"%s\" \a CHARACTER SET utf8"), xT("") }
+        };
+
+		for (auto &it_data : data) {
+			m_sRv = mysqlConn.quoted(it_data.test);
+			std::cout << (OStream() << xTRACE_VAR(it_data.test)).str() << std::endl;
+			std::cout << (OStream() << xTRACE_VAR(m_sRv)).str()        << std::endl;
+		} // for (vars)
+    }
+
+return 1;
+
     xTEST_CASE("MySqlConnection::connect")
     {
         cbool_t isDbExists = MySqlConnection::isExists(mysqlData);
@@ -120,10 +137,6 @@ Test_MySql::unit()
 
         m_bRv = MySqlConnection::isExists(mysqlData);
         xTEST_EQ(m_bRv, true);
-    }
-
-    xTEST_CASE("MySqlConnection::quoted")
-    {
     }
 
     xTEST_CASE("MySqlConnection::query")
