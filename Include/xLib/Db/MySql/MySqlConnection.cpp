@@ -21,8 +21,7 @@ xNAMESPACE_BEGIN2(xl, db)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-MySqlConnection::MySqlConnection() :
-    _conn()
+MySqlConnection::MySqlConnection()
 {
     xTEST_EQ(_conn.isValid(), false);
 
