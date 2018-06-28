@@ -43,7 +43,7 @@ XmlDoc::XmlDoc(
     _iconv(a_charset, "UTF-8", 1024, false, true)   // TODO: Iconv::isForceEncoding = false
 {
 	// FAQ: https://adobkin.com/2011/10/08/956/
-	::xmlSetStructuredErrorFunc(static_cast<void *>(this), _onError);
+	(void)::xmlSetStructuredErrorFunc(this, _onError);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -61,32 +61,24 @@ XmlDoc::lastError() const
 std::tstring_t
 XmlDoc::lastErrorStr() const
 {
-    std::tstring_t sRv;
-
-	cint_t          error = lastError();
+	cint_t          error     = lastError();
 	// TODO: XmlDoc::lastErrorStr - get error description
-    std::ctstring_t errorDesc;
+    std::ctstring_t errorDesc = (error == XML_ERR_OK) ? xT("Success") : xT("");
 
-    if (error == XML_ERR_OK) {
-        sRv = Format::str(xT("{} - \"{}\""), error, xT("Success"));
-    } else {
-        sRv = Format::str(xT("{} - \"{}\""), error, errorDesc);
-    }
-
-    return sRv;
+    return Format::str(xT("{} - \"{}\""), error, errorDesc);
 }
 //-------------------------------------------------------------------------------------------------
 void
 XmlDoc::registerNss(
 	std::cmap_tstring_t &a_nss
-) const
+)
 {
-	for (auto &itNs : a_nss) {
-		_nss.insert( {itNs.first, itNs.second} );
+	for (auto &it_ns : a_nss) {
+		_nss.insert( {it_ns.first, it_ns.second} );
 	}
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlDoc::parse(
 	cptr_ctchar_t a_buff,
 	cint_t        a_size
@@ -95,14 +87,10 @@ XmlDoc::parse(
 	_close();
 
 	_doc = ::xmlParseMemory(a_buff, a_size);
-	if (_doc == nullptr) {
-		return false;
-	}
-
-	return true;
+	xTEST_PTR(_doc);
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlDoc::parse(
 	std::ctstring_t &a_str,
 	cbool_t          a_isNss /* = true */
@@ -119,14 +107,10 @@ XmlDoc::parse(
 		_doc = ::xmlParseDoc( (const xmlChar *)a_str.data() );
 	}
 
-	if (_doc == nullptr) {
-		return false;
-	}
-
-	return true;
+	xTEST_PTR(_doc);
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlDoc::parseFile(
 	std::ctstring_t &a_filePath
 )
@@ -134,14 +118,10 @@ XmlDoc::parseFile(
 	_close();
 
 	_doc = ::xmlParseFile( a_filePath.c_str() );
-	if (_doc == nullptr) {
-		return false;
-	}
-
-	return true;
+	xTEST_PTR(_doc);
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlDoc::getRootNode(
 	XmlNode &a_root
 )
@@ -151,11 +131,9 @@ XmlDoc::getRootNode(
 
 	XmlNode root(this, rootNode);
 	a_root = root;
-
-	return true;
 }
 //-------------------------------------------------------------------------------------------------
-bool
+void
 XmlDoc::saveToFile(
 	std::ctstring_t &a_filePath
 )
@@ -165,10 +143,9 @@ XmlDoc::saveToFile(
 
 	long_t liRv = ::xmlSaveDoc(saveCtxt, _doc);
 	xTEST_EQ(liRv, 0L);
+
 	int_t  iRv = ::xmlSaveClose(saveCtxt);
 	xTEST_EQ(iRv, 0);
-
-	return true;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -186,12 +163,8 @@ XmlDoc::format(
 
 	::xmlKeepBlanksDefault(0);
 	::xmlDocDumpFormatMemoryEnc(_doc, &buff, &buff_size, a_charset.c_str(), 1);
-	if (buff == nullptr) {
-		return {};
-	}
-	if (buff_size <= 0) {
-		return {};
-	}
+	xTEST_PTR(buff);
+	xTEST_GR(buff_size, 0);
 
 	sRv.assign(reinterpret_cast<cptr_ctchar_t>(buff), static_cast<size_t>(buff_size));
 
@@ -241,9 +214,9 @@ XmlDoc::_registerNss(
 	xmlXPathContextPtr a_xmlXPathContextPtr
 ) const
 {
-	for (auto &itNs : _nss) {
-		auto prefix = (const xmlChar *)itNs.first.data();
-		auto nsUri  = (const xmlChar *)itNs.second.data();
+	for (auto &it_ns : _nss) {
+		auto prefix = (const xmlChar *)it_ns.first.data();
+		auto nsUri  = (const xmlChar *)it_ns.second.data();
 
 		int iRv = ::xmlXPathRegisterNs(a_xmlXPathContextPtr, prefix, nsUri);
 		xTEST_EQ(iRv, 0);
@@ -330,18 +303,13 @@ XmlDoc::_onError(
 )
 {
 	xTEST_PTR(a_ctx);
+	xTEST_PTR(a_error);
 
 	auto xmlDoc = static_cast<XmlDoc *>(a_ctx);
-
-	if (a_error == nullptr) {
-		return;
-	}
 
 	if (a_error->code == XML_ERR_OK) {
 		return;
 	}
-
-	std::tstring_t errorDesc;
 
 	cint_t domain = a_error->domain;
 	cint_t code   = a_error->code;
@@ -410,7 +378,7 @@ XmlDoc::_onError(
 		}
 	}
 
-	errorDesc = Format::str(
+	std::ctstring_t errorDesc = Format::str(
 		xT("LibXML2 ver:    {}\n")
 		xT("domain:         {}\n")
 		xT("code:           {}\n")
@@ -474,77 +442,62 @@ XmlNode::operator = (
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlNode::getName() const
+XmlNode::name() const
 {
-	return _getName(_node);
+	return _name(_node);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlNode::getText() const
+XmlNode::text() const
 {
 	std::tstring_t sRv;
 
-    _xmlDoc->_iconv.convert(_getText(_node), &sRv);
+    _xmlDoc->_iconv.convert(_text(_node), &sRv);
 
 	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::findContents(
+XmlNode::findNodes(
 	std::clist_tstring_t &a_xpaths,	///<
-	std::list<XmlNode>   &a_values	///< [out]
+	std::vector<XmlNode> &a_values	///< [out]
 ) const
 {
 	a_values.clear();
 
-	for (auto &itXpath : a_xpaths) {
-		std::list<XmlNode> values;
-		getContents(itXpath, values);
+	for (auto &it_xpath : a_xpaths) {
+		std::vector<XmlNode> values;
+		nodes(it_xpath, values);
 
-		for (auto &itValue : values) {
-			a_values.emplace_back(itValue);
+		for (auto &it_value : values) {
+			a_values.emplace_back(it_value);
 		}
 	}
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getContent(
+XmlNode::node(
 	std::ctstring_t &a_xpath,
 	XmlNode         &a_value
 ) const
 {
-    std::list<XmlNode> nodes;
-    getContents(a_xpath, nodes);
+    std::vector<XmlNode> _nodes;
+    nodes(a_xpath, _nodes);
 
-    a_value = *nodes.begin();
+    a_value = *_nodes.begin();
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getContents(
-	std::ctstring_t     &a_xpath,
-	std::list_tstring_t &a_values
-) const
-{
-	a_values.clear();
-
-	std::list<XmlNode> values;
-	getContents(a_xpath, values);
-
-	for (auto &it_value : values) {
-		a_values.emplace_back( it_value.getText() );
-	}
-}
-//-------------------------------------------------------------------------------------------------
-void
-XmlNode::getContents(
-	std::ctstring_t    &a_xpath,
-	std::list<XmlNode> &a_res
+XmlNode::nodes(
+	std::ctstring_t      &a_xpath,
+	std::vector<XmlNode> &a_res
 ) const
 {
 	a_res.clear();
 
 	xmlXPathContextPtr xpathCtx = ::xmlXPathNewContext(_node->doc);
 	if (xpathCtx == nullptr) {
+		xTEST_FAIL;
 		return;
 	}
 
@@ -556,6 +509,8 @@ XmlNode::getContents(
 	if (xpathObj == nullptr) {
 		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
 
+		xTEST_FAIL;
+
 		return;
 	}
 
@@ -564,16 +519,19 @@ XmlNode::getContents(
 		Utils::freeT(xpathObj, ::xmlXPathFreeObject,  nullptr);
 		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
 
+		xTEST_FAIL;
+
 		return;
 	}
 
 	for (int i = 0; i < nodes->nodeNr; ++ i) {
-		xmlNodePtr cur = nodes->nodeTab[i];
-		if (cur == nullptr) {
+		xmlNodePtr it_node = nodes->nodeTab[i];
+		if (it_node == nullptr) {
+			xTEST_FAIL;
 			continue;
 		}
 
-		XmlNode node(_xmlDoc, cur);
+		XmlNode node(_xmlDoc, it_node);
 		a_res.emplace_back(node);
 	}
 
@@ -582,31 +540,47 @@ XmlNode::getContents(
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getChildrenContents(
+XmlNode::texts(
+	std::ctstring_t    &a_xpath,
+	std::vec_tstring_t &a_values
+) const
+{
+	a_values.clear();
+
+	std::vector<XmlNode> values;
+	nodes(a_xpath, values);
+
+	for (auto &it_value : values) {
+		a_values.emplace_back( it_value.text() );
+	}
+}
+//-------------------------------------------------------------------------------------------------
+void
+XmlNode::childrenMap(
 	std::ctstring_t    &a_xpath,
 	std::map_tstring_t &a_values
 ) const
 {
 	a_values.clear();
 
-	std::list<XmlNode> values;
-	getContents(a_xpath, values);
+	std::vector<XmlNode> values;
+	nodes(a_xpath, values);
 
-    for (xmlNodePtr itNode = _node->children; itNode != nullptr; itNode = itNode->next) {
-        if (itNode->type != XML_ELEMENT_NODE) {
+    for (xmlNodePtr it_node = _node->children; it_node != nullptr; it_node = it_node->next) {
+        if (it_node->type != XML_ELEMENT_NODE) {
             continue;
         }
 
-        if (::xmlFirstElementChild(itNode) != nullptr) {
+        if (::xmlFirstElementChild(it_node) != nullptr) {
             continue;
         }
 
-        a_values.emplace(_getName(itNode), _getText(itNode));
+        a_values.emplace(_name(it_node), _text(it_node));
     }
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlNode::getAttribute(
+XmlNode::attribute(
 	std::ctstring_t &a_name	///< attribute name
 ) const
 {
@@ -627,7 +601,7 @@ XmlNode::getAttribute(
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlNode::getAttributes(
+XmlNode::attributes(
 	std::map_tstring_t &a_values	///< [out] attributes (name -> value)
 ) const
 {
@@ -652,37 +626,28 @@ XmlNode::getAttributes(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 XmlNode::dump(
-	cbool_t a_isIncludeCurrent/* = false */
+	cbool_t a_isFromCurrent	/* = false */,
+	cbool_t a_isFormat		/* = true */
 )
 {
 	std::tstring_t sRv;
 	int_t          iRv {};
 
-#if 0
-	xmlBufferPtr buff = ::xmlBufferCreate();
+	using buff_unique_ptr_t = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
 
-	ScopeExit buff_onExit(
-		[&]() { Utils::freeT(buff, ::xmlBufferFree, nullptr); }
-	);
-#else
-	using unique_xml_buff_ptr = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
+	buff_unique_ptr_t buff(::xmlBufferCreate(), ::xmlBufferFree);
+	xTEST_PTR(buff.get());
 
-	unique_xml_buff_ptr buff(::xmlBufferCreate(), ::xmlBufferFree);
-#endif
+	xmlNodePtr node   = a_isFromCurrent ? _node : _node->children;
+	cint_t     level  = 0;
+	cint_t     format = a_isFormat ? 1 : 0;
 
-	if (a_isIncludeCurrent) {
-		iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, _node, 0, 1);
-	} else {
-		iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, _node->children, 0, 1);
-	}
+	iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, node, level, format);
 	xTEST_DIFF(iRv,  -1);
-
-	if (buff == nullptr) {
-		return {};
-	}
 
 	auto content = (cptr_ctchar_t)buff->content;
 	if (content == nullptr) {
+		xTEST_FAIL;
 		return {};
 	}
 
@@ -701,7 +666,7 @@ XmlNode::dump(
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlNode::_getName(
+XmlNode::_name(
     xmlNodePtr a_node
 )
 {
@@ -709,7 +674,7 @@ XmlNode::_getName(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlNode::_getText(
+XmlNode::_text(
     xmlNodePtr a_node
 )
 {
@@ -724,6 +689,7 @@ XmlNode::_getText(
         }
 
         if (content == nullptr) {
+            xTEST_NA;
             return {};
         }
     }

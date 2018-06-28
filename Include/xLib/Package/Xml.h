@@ -30,14 +30,14 @@ public:
     int_t          lastError() const xOVERRIDE xWARN_UNUSED_RV;
     std::tstring_t lastErrorStr() const xOVERRIDE xWARN_UNUSED_RV;
 
-	void           registerNss(std::cmap_tstring_t &nss) const;
-	bool           parse(cptr_ctchar_t buff, cint_t size);
-	bool           parse(std::ctstring_t &str, cbool_t isNss = true);
-	bool           parseFile(std::ctstring_t &filePath);
+	void           registerNss(std::cmap_tstring_t &nss);
+	void           parse(cptr_ctchar_t buff, cint_t size);
+	void           parse(std::ctstring_t &str, cbool_t isNss = true);
+	void           parseFile(std::ctstring_t &filePath);
 
-	bool           getRootNode(XmlNode &root);
+	void           getRootNode(XmlNode &root);
 
-	bool           saveToFile(std::ctstring_t &filePath);
+	void           saveToFile(std::ctstring_t &filePath);
 	std::tstring_t format(std::ctstring_t &charset);
 
 	static
@@ -50,7 +50,7 @@ public:
 protected:
 	xmlDocPtr      _doc {};
 	Iconv          _iconv;
-	mutable std::map_tstring_t _nss;
+	std::map_tstring_t _nss;
 
 	void           _registerNss(xmlXPathContextPtr ctx) const;
 	void           _stringNoNs(std::tstring_t *str) const;
@@ -73,22 +73,20 @@ public:
 
     XmlNode       &operator = (const XmlNode &xmlNode);
 
-	std::tstring_t getName() const;
-	std::tstring_t getText() const;
+	std::tstring_t name() const;
+	std::tstring_t text() const;
 
-	void           findContents(std::clist_tstring_t &xpaths, std::list<XmlNode> &values) const;
-	void           getContent(std::ctstring_t &xpath, XmlNode &value) const;
-	void           getContents(std::ctstring_t &xpath, std::list_tstring_t &values) const;
-	void           getContents(std::ctstring_t &xpath, std::list<XmlNode> &values) const;
+	void           findNodes(std::clist_tstring_t &xpaths, std::vector<XmlNode> &values) const;
+	void           node(std::ctstring_t &xpath, XmlNode &value) const;
+	void           nodes(std::ctstring_t &xpath, std::vector<XmlNode> &values) const;
+	void           texts(std::ctstring_t &xpath, std::vec_tstring_t &values) const;
 
-	void           getChildrenContents(std::ctstring_t &xpath, std::map_tstring_t &values) const;
+	void           childrenMap(std::ctstring_t &xpath, std::map_tstring_t &values) const;
 
-	std::tstring_t getAttribute(std::ctstring_t &name) const;
-	void           getAttributes(std::map_tstring_t &values) const;
+	std::tstring_t attribute(std::ctstring_t &name) const;
+	void           attributes(std::map_tstring_t &values) const;
 
-	std::tstring_t dump(cbool_t isIncludeCurrent = false);
-
-	/// xNO_DEFAULT_CONSTRUCT(XmlNode);
+	std::tstring_t dump(cbool_t isFromCurrent = false, cbool_t isFormat = true);
 
 protected:
 	XmlDoc        *_xmlDoc {};
@@ -96,9 +94,9 @@ protected:
 
 private:
     static
-    std::tstring_t _getName(xmlNodePtr node);
+    std::tstring_t _name(xmlNodePtr node);
     static
-    std::tstring_t _getText(xmlNodePtr node);
+    std::tstring_t _text(xmlNodePtr node);
 };
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, package)

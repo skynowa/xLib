@@ -42,7 +42,7 @@ xNAMESPACE_BEGIN2(xl, system)
 bool_t
 Shell::isAvailable() const
 {
-    xTESTS_NA;
+    xTEST_NA;
 
     return _isAvailable_impl();
 }
