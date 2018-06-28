@@ -270,7 +270,7 @@ OStream::operator << (
 
 inline OStream &
 OStream::operator << (
-    const QString   &a_value   ///< value
+    const QString &a_value   ///< value
 )
 {
 #if xANSI
