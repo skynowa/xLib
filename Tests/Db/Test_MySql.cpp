@@ -48,12 +48,29 @@ Test_MySql::unit()
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("MySqlConnection::options")
+    xTEST_CASE("MySqlConnection::setOption")
     {
         mysql_option option = MYSQL_OPT_COMPRESS;
-        cptr_cvoid_t arg    = xPTR_NULL;
+        cptr_cvoid_t arg    = 0;
 
-        mysqlConn.options(option, arg);
+        mysqlConn.setOption(option, arg);
+    }
+
+    xTEST_CASE("MySqlConnection::setOptions")
+    {
+        const unsigned int connectTimeout = 60;
+        const bool         isReconnect    = true;
+        const char         initCommand[]  = "SET autocommit=0";
+
+        const std::map<mysql_option, cptr_cvoid_t> options
+        {
+            {MYSQL_OPT_COMPRESS,        0 /* not used */},
+            {MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
+            {MYSQL_OPT_RECONNECT,       &isReconnect},
+            {MYSQL_INIT_COMMAND,        &initCommand}
+        };
+
+        mysqlConn.setOptions(options);
     }
 
     xTEST_CASE("MySqlConnection::ping")
@@ -79,6 +96,23 @@ Test_MySql::unit()
             xTEST_EQ(bRes1, bRes2);
         }
     }
+
+    xTEST_CASE("MySqlConnection::quoted")
+    {
+        const std::vector<data2_tstring_t> data
+        {
+            //{ xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), xT("") }
+            { xT("CREATE DATABASE IF NOT EXISTS '%s' \"%s\" \a CHARACTER SET utf8"), xT("") }
+        };
+
+		for (auto &it_data : data) {
+			m_sRv = mysqlConn.quoted(it_data.test);
+			std::cout << (OStream() << xTRACE_VAR(it_data.test)).str() << std::endl;
+			std::cout << (OStream() << xTRACE_VAR(m_sRv)).str()        << std::endl;
+		} // for (vars)
+    }
+
+return 1;
 
     xTEST_CASE("MySqlConnection::connect")
     {

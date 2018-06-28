@@ -51,7 +51,7 @@ Dll::load(
     std::ctstring_t &a_dllPath
 )
 {
-    xTESTS_NA;
+    xTEST_NA;
     xTEST_EQ(a_dllPath.empty(), false);
 
     close();
@@ -78,7 +78,7 @@ Dll::procAddress(
 void_t
 Dll::close()
 {
-    xTESTS_NA;
+    xTEST_NA;
 
     _handle.close();
 }

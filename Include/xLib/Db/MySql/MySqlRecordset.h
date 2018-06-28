@@ -7,78 +7,10 @@
 #pragma once
 
 #include <mysql/mysql.h>
-#include <mysql/errmsg.h>
-#include <mysql/mysqld_error.h>
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
-//-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, db)
-
-struct MySqlConnectionData
-    /// MySqlConnection data
-{
-    std::tstring_t host;
-    std::tstring_t user;
-    std::tstring_t password;
-    std::tstring_t db;
-    uint_t         port;
-    std::tstring_t unixSocket;
-    ulong_t        clientFlag;
-
-    MySqlConnectionData() :
-        host      (),
-        user      (),
-        password  (),
-        db        (),
-        port      (0),
-        unixSocket(),
-        clientFlag(0)
-    {}
-};
-xTYPEDEF_CONST(MySqlConnectionData);
-
-class MySqlConnection
-    /// MySql connection
-{
-public:
-                   MySqlConnection();
-        ///< constructor
-    virtual       ~MySqlConnection();
-        ///< destructor
-
-    HandleMySqlConn &get() xWARN_UNUSED_RV;
-        ///< get handle
-    void_t         options(const mysql_option &option, cptr_cvoid_t arg) const;
-        ///< set extra connect options and affect behavior
-    bool_t         ping(int_t *errorCode = xPTR_NULL) const xWARN_UNUSED_RV;
-        ///< checks whether the connection to the server is working
-    static
-    bool_t         isExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
-        ///< check connection
-    void_t         connect(cMySqlConnectionData &data);
-        ///< attempts to establish a connection to a MySql database engine running on host
-    void_t         query(cptr_ctchar_t sqlFormat, ...) const;
-        ///< executes the SQL statement
-    uint_t         fieldCount() const xWARN_UNUSED_RV;
-        ///< number of columns in a result set
-    void_t         close();
-        ///< closes a previously opened connection
-
-    // errors
-    uint_t         lastError() const xWARN_UNUSED_RV;
-        ///< error code for the most recently invoked API function that can succeed or fail
-    std::tstring_t lastErrorStr() const xWARN_UNUSED_RV;
-        ///< error message for the most recently invoked API function that failed
-
-private:
-    HandleMySqlConn _conn;
-        ///< pointer to connection
-
-    xNO_COPY_ASSIGN(MySqlConnection)
-};
-
-xNAMESPACE_END2(xl, db)
+#include <xLib/Db/MySql/MySqlConnection.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, db)
 
@@ -122,7 +54,6 @@ private:
 };
 
 xNAMESPACE_END2(xl, db)
-
 //-------------------------------------------------------------------------------------------------
 
 #if xTODO
