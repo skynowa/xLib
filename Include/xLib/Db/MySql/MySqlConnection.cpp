@@ -155,7 +155,7 @@ MySqlConnection::escapeString(
 		*
 		* the return value is the word “NULL” without enclosing single quotation marks
 		*/
-		return a_value;
+		return a_sqlValue;
 	}
 
 	std::tstring_t sRv(a_sqlValue.size() * 2 + 1, xT('\0'));
