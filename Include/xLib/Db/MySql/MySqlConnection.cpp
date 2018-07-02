@@ -139,17 +139,37 @@ MySqlConnection::connect(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-MySqlConnection::escape(
-	std::ctstring_t &a_sql	///< SQL string
+MySqlConnection::escapeString(
+	std::ctstring_t &a_value	///< SQL string value
 ) const
 {
-	std::tstring_t to(a_sql.size() * 2 + 1, '\0');
+   /**
+	* If the argument is NULL:
+	*
+	* the return value is the word “NULL” without enclosing single quotation marks
+	*/
+	if (a_value == "NULL") {
+		return a_value;
+	}
 
-	unsigned long quotedSize = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
-		a_sql.data(), static_cast<unsigned long>(a_sql.size()), '\'');
+	std::tstring_t to(a_value.size() * 2 + 1, '\0');
+
+	culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
+		a_value.data(), static_cast<ulong_t>(a_value.size()), '\'');
 	xTEST_GR_MSG(quotedSize, 0UL, lastErrorStr());
 
-	to.resize(quotedSize);
+	to.resize(quotedSize * sizeof(std::tstring_t::value_type));
+
+   /**
+	* If the ANSI_QUOTES SQL mode is enabled:
+	*
+	* string literals can be quoted only within single quotation marks because
+	* a string quoted within double quotation marks is interpreted as an identifier.
+	*/
+	cbool_t isQuoted {true};
+	if (isQuoted) {
+		to = xT("'") + to + xT("'");
+	}
 
 	return to;
 }

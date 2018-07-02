@@ -97,20 +97,23 @@ Test_MySql::unit()
         }
     }
 
-    xTEST_CASE("MySqlConnection::escape")
+    xTEST_CASE("MySqlConnection::escapeString")
     {
         const std::vector<data2_tstring_t> data
         {
-            {xT("t_table"),     xT("t_table")},
-            {xT("\"t_table\""), xT("\\\"t_table\\\"")},
-            {xT("'t_table'"),   xT("\\\'t_table\\\'")},
-            {xT("\\t_table\\"), xT("\\\\t_table\\\\")},
+            {xT("NULL"),       xT("NULL")},
+            {xT("value"),      xT("'value'")},
+            {xT("\"value\""),  xT("'\\\"value\\\"'")},
+            {xT("'value'"),    xT("'\\\'value\\\''")},
+            {xT("\\value\\"),  xT("'\\\\value\\\\'")},
+            {xT(" value xxx"), xT("' value xxx'")},
+            /// {xT("value\0\r\n"), xT("value\\\0\\\r\\\n")},
             {xT(" , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _"),
-                                xT(" , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _")}
+                                xT("' , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _'")}
         };
 
 		for (auto &it_data : data) {
-			m_sRv = mysqlConn.escape(it_data.test);
+			m_sRv = mysqlConn.escapeString(it_data.test);
 			xTEST_EQ(m_sRv, it_data.expect);
 		}
     }
