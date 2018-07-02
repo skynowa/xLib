@@ -141,15 +141,15 @@ MySqlConnection::connect(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 MySqlConnection::escapeString(
-	std::ctstring_t &a_value,					///< SQL string value
+	std::ctstring_t &a_sqlValue,				///< SQL string value
 	cbool_t          a_isQuoted /* = true */	///< is quote SQL string value
 ) const
 {
-	if ( a_value.empty() ) {
+	if ( a_sqlValue.empty() ) {
 		return Const::sqm() + Const::sqm();
 	}
 
-	if (a_value == xT("NULL")) {
+	if (a_sqlValue == xT("NULL")) {
 	   /**
 		* If the argument is NULL:
 		*
@@ -158,10 +158,10 @@ MySqlConnection::escapeString(
 		return a_value;
 	}
 
-	std::tstring_t sRv(a_value.size() * 2 + 1, xT('\0'));
+	std::tstring_t sRv(a_sqlValue.size() * 2 + 1, xT('\0'));
 
 	culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get(), &sRv[0],
-		a_value.data(), static_cast<ulong_t>(a_value.size()), Const::sqmA()[0]);
+		a_sqlValue.data(), static_cast<ulong_t>(a_sqlValue.size()), Const::sqmA()[0]);
 	xTEST_GR_MSG(quotedSize, 0UL, lastErrorStr());
 
 	sRv.resize(quotedSize * sizeof(std::tstring_t::value_type));
