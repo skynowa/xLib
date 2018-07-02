@@ -148,22 +148,22 @@ MySqlConnection::escapeString(
 		return Const::sqm() + Const::sqm();
 	}
 
-   /**
-	* If the argument is NULL:
-	*
-	* the return value is the word “NULL” without enclosing single quotation marks
-	*/
 	if (a_value == xT("NULL")) {
+	   /**
+		* If the argument is NULL:
+		*
+		* the return value is the word “NULL” without enclosing single quotation marks
+		*/
 		return a_value;
 	}
 
-	std::tstring_t to(a_value.size() * 2 + 1, xT('\0'));
+	std::tstring_t sRv(a_value.size() * 2 + 1, xT('\0'));
 
-	culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
+	culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get(), &sRv[0],
 		a_value.data(), static_cast<ulong_t>(a_value.size()), Const::sqmA()[0]);
 	xTEST_GR_MSG(quotedSize, 0UL, lastErrorStr());
 
-	to.resize(quotedSize * sizeof(std::tstring_t::value_type));
+	sRv.resize(quotedSize * sizeof(std::tstring_t::value_type));
 
    /**
 	* If the ANSI_QUOTES SQL mode is enabled:
@@ -171,9 +171,9 @@ MySqlConnection::escapeString(
 	* string literals can be quoted only within single quotation marks because
 	* a string quoted within double quotation marks is interpreted as an identifier.
 	*/
-	to = Const::sqm() + to + Const::sqm();
+	sRv = Const::sqm() + sRv + Const::sqm();
 
-	return to;
+	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
