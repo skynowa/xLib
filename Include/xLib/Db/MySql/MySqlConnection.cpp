@@ -141,7 +141,8 @@ MySqlConnection::connect(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 MySqlConnection::escapeString(
-	std::ctstring_t &a_value	///< SQL string value
+	std::ctstring_t &a_value,					///< SQL string value
+	cbool_t          a_isQuoted /* = true */	///< is quote SQL string value
 ) const
 {
 	if ( a_value.empty() ) {
@@ -165,13 +166,15 @@ MySqlConnection::escapeString(
 
 	sRv.resize(quotedSize * sizeof(std::tstring_t::value_type));
 
-   /**
-	* If the ANSI_QUOTES SQL mode is enabled:
-	*
-	* string literals can be quoted only within single quotation marks because
-	* a string quoted within double quotation marks is interpreted as an identifier.
-	*/
-	sRv = Const::sqm() + sRv + Const::sqm();
+	if (a_isQuoted) {
+		/**
+		 * If the ANSI_QUOTES SQL mode is enabled:
+		 *
+		 * string literals can be quoted only within single quotation marks because
+		 * a string quoted within double quotation marks is interpreted as an identifier.
+		 */
+		 sRv = Const::sqm() + sRv + Const::sqm();
+	}
 
 	return sRv;
 }
