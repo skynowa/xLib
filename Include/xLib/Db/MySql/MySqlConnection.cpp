@@ -156,7 +156,7 @@ MySqlConnection::escapeString(
 		return a_value;
 	}
 
-	std::tstring_t to(a_value.size() * 2 + 1, '\0');
+	std::tstring_t to(a_value.size() * 2 + 1, xT('\0'));
 
 	culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
 		a_value.data(), static_cast<ulong_t>(a_value.size()), '\'');
