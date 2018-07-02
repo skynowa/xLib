@@ -101,7 +101,7 @@ Test_MySql::unit()
     {
         const std::vector<data2_tstring_t> data
         {
-            {xT(""),                 ssxT("")},
+            {xT(""),                 xT("")},
             {xT("NULL"),             xT("NULL")},
             {xT("value"),            xT("'value'")},
             {xT("\"value\""),        xT("'\\\"value\\\"'")},
