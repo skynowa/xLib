@@ -143,12 +143,16 @@ MySqlConnection::escapeString(
 	std::ctstring_t &a_value	///< SQL string value
 ) const
 {
+	if ( a_value.empty() ) {
+		return {};
+	}
+
    /**
 	* If the argument is NULL:
 	*
 	* the return value is the word “NULL” without enclosing single quotation marks
 	*/
-	if (a_value == "NULL") {
+	if (a_value == xT("NULL")) {
 		return a_value;
 	}
 
