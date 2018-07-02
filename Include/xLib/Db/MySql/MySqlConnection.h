@@ -52,7 +52,7 @@ public:
         ///< check connection
     void_t         connect(cMySqlConnectionData &data);
         ///< attempts to establish a connection to a MySql database engine running on host
-	std::tstring_t quoted(std::ctstring_t &sql) const xWARN_UNUSED_RV;
+	std::tstring_t escape(std::ctstring_t &sql) const xWARN_UNUSED_RV;
 		///< creates a legal SQL string for use in an SQL statement:
 		///<
 		///< Double quotes turn into: \"
