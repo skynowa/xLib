@@ -101,15 +101,18 @@ Test_MySql::unit()
     {
         const std::vector<data2_tstring_t> data
         {
-            //{ xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), xT("") }
-            { xT("CREATE DATABASE IF NOT EXISTS '%s' \"%s\" \a CHARACTER SET utf8"), xT("") }
+            {xT("t_table"),     xT("t_table")},
+            {xT("\"t_table\""), xT("\\\"t_table\\\"")},
+            {xT("'t_table'"),   xT("\\\'t_table\\\'")},
+            {xT("\\t_table\\"), xT("\\\\t_table\\\\")},
+            {xT(" , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _"),
+                                xT(" , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _")}
         };
 
 		for (auto &it_data : data) {
 			m_sRv = mysqlConn.quoted(it_data.test);
-			std::cout << (OStream() << xTRACE_VAR(it_data.test)).str() << std::endl;
-			std::cout << (OStream() << xTRACE_VAR(m_sRv)).str()        << std::endl;
-		} // for (vars)
+			xTEST_EQ(m_sRv, it_data.expect);
+		}
     }
 
 return 1;
