@@ -6,6 +6,7 @@
 
 #include "MySqlConnection.h"
 
+#include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
@@ -144,7 +145,7 @@ MySqlConnection::escapeString(
 ) const
 {
 	if ( a_value.empty() ) {
-		return xT("''");
+		return Const::sqm() + Const::sqm();
 	}
 
    /**
@@ -159,7 +160,7 @@ MySqlConnection::escapeString(
 	std::tstring_t to(a_value.size() * 2 + 1, xT('\0'));
 
 	culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
-		a_value.data(), static_cast<ulong_t>(a_value.size()), '\'');
+		a_value.data(), static_cast<ulong_t>(a_value.size()), Const::sqmA()[0]);
 	xTEST_GR_MSG(quotedSize, 0UL, lastErrorStr());
 
 	to.resize(quotedSize * sizeof(std::tstring_t::value_type));
@@ -170,7 +171,7 @@ MySqlConnection::escapeString(
 	* string literals can be quoted only within single quotation marks because
 	* a string quoted within double quotation marks is interpreted as an identifier.
 	*/
-	to = xT("'") + to + xT("'");
+	to = Const::sqm() + to + Const::sqm();
 
 	return to;
 }
