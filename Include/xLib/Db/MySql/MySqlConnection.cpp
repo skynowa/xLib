@@ -144,7 +144,7 @@ MySqlConnection::escapeString(
 ) const
 {
 	if ( a_value.empty() ) {
-		return {};
+		return xT("''");
 	}
 
    /**
@@ -170,10 +170,7 @@ MySqlConnection::escapeString(
 	* string literals can be quoted only within single quotation marks because
 	* a string quoted within double quotation marks is interpreted as an identifier.
 	*/
-	cbool_t isQuoted {true};
-	if (isQuoted) {
-		to = xT("'") + to + xT("'");
-	}
+	to = xT("'") + to + xT("'");
 
 	return to;
 }

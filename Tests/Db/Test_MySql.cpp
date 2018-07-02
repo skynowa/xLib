@@ -101,7 +101,7 @@ Test_MySql::unit()
     {
         const std::vector<data2_tstring_t> data
         {
-            {xT(""),                 xT("")},
+            {xT(""),                 xT("''")},
             {xT("NULL"),             xT("NULL")},
             {xT("value"),            xT("'value'")},
             {xT("\"value\""),        xT("'\\\"value\\\"'")},
@@ -116,6 +116,8 @@ Test_MySql::unit()
 		for (auto &it_data : data) {
 			m_sRv = mysqlConn.escapeString(it_data.test);
 			xTEST_EQ(m_sRv, it_data.expect);
+
+			std::cout << xTRACE_VAR(m_sRv) << std::endl;
 		}
     }
 
