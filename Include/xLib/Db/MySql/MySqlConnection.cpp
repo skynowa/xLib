@@ -139,7 +139,7 @@ MySqlConnection::connect(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-MySqlConnection::quoted(
+MySqlConnection::escape(
 	std::ctstring_t &a_sql	///< SQL string
 ) const
 {

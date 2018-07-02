@@ -97,7 +97,7 @@ Test_MySql::unit()
         }
     }
 
-    xTEST_CASE("MySqlConnection::quoted")
+    xTEST_CASE("MySqlConnection::escape")
     {
         const std::vector<data2_tstring_t> data
         {
@@ -110,7 +110,7 @@ Test_MySql::unit()
         };
 
 		for (auto &it_data : data) {
-			m_sRv = mysqlConn.quoted(it_data.test);
+			m_sRv = mysqlConn.escape(it_data.test);
 			xTEST_EQ(m_sRv, it_data.expect);
 		}
     }
