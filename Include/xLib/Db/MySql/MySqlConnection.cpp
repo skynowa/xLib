@@ -146,7 +146,7 @@ MySqlConnection::escape(
 	std::tstring_t to(a_sql.size() * 2 + 1, '\0');
 
 	unsigned long quotedSize = ::mysql_real_escape_string_quote(_conn.get(), &to[0],
-		a_sql.data(), static_cast<unsigned long>(a_sql.size()), '\\');
+		a_sql.data(), static_cast<unsigned long>(a_sql.size()), '\'');
 	xTEST_GR_MSG(quotedSize, 0UL, lastErrorStr());
 
 	to.resize(quotedSize);
