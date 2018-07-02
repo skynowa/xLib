@@ -101,15 +101,15 @@ Test_MySql::unit()
     {
         const std::vector<data2_tstring_t> data
         {
-            {xT("NULL"),       xT("NULL")},
-            {xT("value"),      xT("'value'")},
-            {xT("\"value\""),  xT("'\\\"value\\\"'")},
-            {xT("'value'"),    xT("'\\\'value\\\''")},
-            {xT("\\value\\"),  xT("'\\\\value\\\\'")},
-            {xT(" value xxx"), xT("' value xxx'")},
-            /// {xT("value\0\r\n"), xT("value\\\0\\\r\\\n")},
+            {xT("NULL"),             xT("NULL")},
+            {xT("value"),            xT("'value'")},
+            {xT("\"value\""),        xT("'\\\"value\\\"'")},
+            {xT("'value'"),          xT("'\\\'value\\\''")},
+            {xT("\\value\\"),        xT("'\\\\value\\\\'")},
+            {xT(" value xxx"),       xT("' value xxx'")},
+            {{xT("value\0\r\n"), 8}, {xT("'value\\0\\r\\n'"), 13}},
             {xT(" , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _"),
-                                xT("' , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _'")}
+                                     xT("' , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _'")}
         };
 
 		for (auto &it_data : data) {
