@@ -26,6 +26,7 @@ struct MySqlConnectionData
     uint_t         port {};
     std::tstring_t unixSocket;
     ulong_t        clientFlag {};
+    std::tstring_t charset; 		///< specifies a valid character set name
 };
 xTYPEDEF_CONST(MySqlConnectionData);
 
@@ -45,11 +46,6 @@ public:
         ///< set extra connect options and affect behavior
     void_t         setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
         ///< set extra connect options and affect behavior
-
-	void_t         setCharset(std::ctstring_t &charset);
-		///< set the default character set for the current connection
-	std::tstring_t getCharset() const;
-		///< default character set name for the current connection
 
     bool_t         ping(int_t *errorCode = nullptr) const xWARN_UNUSED_RV;
         ///< checks whether the connection to the server is working
