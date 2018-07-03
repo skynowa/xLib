@@ -107,9 +107,9 @@ MySqlRecordset::fetchRow(
     xTEST_EQ(_result.isValid(), true);
     xTEST_PTR(a_row);
 
-    uint_t     fieldsNum    = 0;
-    MYSQL_ROW  row          = nullptr;
-    ulong_t   *fieldLengths = nullptr;
+    uint_t     fieldsNum    {};
+    MYSQL_ROW  row          {};
+    ulong_t   *fieldLengths {};
 
     a_row->clear();
 
@@ -131,7 +131,7 @@ MySqlRecordset::fetchRow(
         std::tstring_t field;
 
         if (row[i] == nullptr) {
-            field = std::tstring_t();
+            field.clear();
         } else {
             std::string asField(row[i], fieldLengths[i]);
 
