@@ -73,6 +73,12 @@ Test_MySql::unit()
         mysqlConn.setOptions(options);
     }
 
+    xTEST_CASE("MySqlConnection::setCharset, getCharset")
+    {
+        mysqlConn.setCharset(xT("utf8"));
+        xTEST_EQ(mysqlConn.getCharset(), std::tstring_t(xT("utf8")));
+    }
+
     xTEST_CASE("MySqlConnection::ping")
     {
         int_t errorCode;
