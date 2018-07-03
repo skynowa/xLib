@@ -27,6 +27,18 @@ Test_MySql::unit()
     mysqlData.clientFlag = 0UL;
     mysqlData.charset    = xT("utf8");
 
+	// options
+	const unsigned int connectTimeout {60};
+	const bool         isReconnect    {true};
+	const char *       initCommand    {"SET autocommit=0"};
+
+	mysqlData.options =  {
+		{MYSQL_OPT_COMPRESS,        0 /* not used */},
+		{MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
+		{MYSQL_OPT_RECONNECT,       &isReconnect},
+		{MYSQL_INIT_COMMAND,        &initCommand}
+	};
+
     std::ctstring_t tableName = xT("t_main");
 
 
@@ -47,31 +59,6 @@ Test_MySql::unit()
     {
         m_bRv = mysqlConn.get().isValid();
         xTEST_EQ(m_bRv, true);
-    }
-
-    xTEST_CASE("MySqlConnection::setOption")
-    {
-        mysql_option option = MYSQL_OPT_COMPRESS;
-        cptr_cvoid_t arg    = 0;
-
-        mysqlConn.setOption(option, arg);
-    }
-
-    xTEST_CASE("MySqlConnection::setOptions")
-    {
-        const unsigned int connectTimeout = 60;
-        const bool         isReconnect    = true;
-        const char         initCommand[]  = "SET autocommit=0";
-
-        const std::map<mysql_option, cptr_cvoid_t> options
-        {
-            {MYSQL_OPT_COMPRESS,        0 /* not used */},
-            {MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
-            {MYSQL_OPT_RECONNECT,       &isReconnect},
-            {MYSQL_INIT_COMMAND,        &initCommand}
-        };
-
-        mysqlConn.setOptions(options);
     }
 
     xTEST_CASE("MySqlConnection::ping")

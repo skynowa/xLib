@@ -36,34 +36,6 @@ MySqlConnection::get()
     return _conn;
 }
 //-------------------------------------------------------------------------------------------------
-void_t
-MySqlConnection::setOption(
-    const mysql_option &a_option,
-    cptr_cvoid_t        a_arg
-) const
-{
-    xTEST_EQ(_conn.isValid(), true);
-    xTEST_NA(a_option);
-    xTEST_NA(a_arg);
-
-#if MYSQL_VERSION_ID < 50154
-    int_t iRv = ::mysql_options(_conn.get(), a_option, static_cast<cptr_ctchar_t>( a_arg ));
-#else
-    int_t iRv = ::mysql_options(_conn.get(), a_option, a_arg);
-#endif
-    xTEST_EQ_MSG(0, iRv, lastErrorStr());
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-MySqlConnection::setOptions(
-	const std::map<mysql_option, cptr_cvoid_t> &a_options
-) const
-{
-	for (auto &it_option : a_options) {
-		setOption(it_option.first, it_option.second);
-	}
-}
-//-------------------------------------------------------------------------------------------------
 bool_t
 MySqlConnection::ping(
     int_t *out_errorCode    /* = nullptr */
@@ -126,6 +98,8 @@ MySqlConnection::connect(
 {
     xTEST_EQ(_conn.isValid(), true);
     xTEST_NA(a_data);
+
+	_setOptions(a_data.options);
 
 	int_t iRv = ::mysql_set_character_set(_conn.get(), a_data.charset.c_str());
 	xTEST_EQ_MSG(iRv, 0, lastErrorStr());
@@ -249,6 +223,42 @@ MySqlConnection::lastErrorStr() const
     }
 
     return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+void_t
+MySqlConnection::_setOption(
+    const mysql_option &a_option,
+    cptr_cvoid_t        a_arg
+) const
+{
+    xTEST_EQ(_conn.isValid(), true);
+    xTEST_NA(a_option);
+    xTEST_NA(a_arg);
+
+#if MYSQL_VERSION_ID < 50154
+    int_t iRv = ::mysql_options(_conn.get(), a_option, static_cast<cptr_ctchar_t>(a_arg));
+#else
+    int_t iRv = ::mysql_options(_conn.get(), a_option, a_arg);
+#endif
+    xTEST_EQ_MSG(0, iRv, lastErrorStr());
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+MySqlConnection::_setOptions(
+	const std::map<mysql_option, cptr_cvoid_t> &a_options
+) const
+{
+	for (auto &it_option : a_options) {
+		_setOption(it_option.first, it_option.second);
+	}
 }
 //-------------------------------------------------------------------------------------------------
 
