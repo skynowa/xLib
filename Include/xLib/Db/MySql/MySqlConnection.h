@@ -27,6 +27,7 @@ struct MySqlConnectionData
     std::tstring_t unixSocket;
     ulong_t        clientFlag {};
     std::tstring_t charset; 		///< specifies a valid character set name
+    std::map<mysql_option, cptr_cvoid_t> options;
 };
 xTYPEDEF_CONST(MySqlConnectionData);
 
@@ -42,10 +43,6 @@ public:
 
     HandleMySqlConn &get() xWARN_UNUSED_RV;
         ///< get handle
-    void_t         setOption(const mysql_option &option, cptr_cvoid_t arg) const;
-        ///< set extra connect options and affect behavior
-    void_t         setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
-        ///< set extra connect options and affect behavior
 
     bool_t         ping(int_t *errorCode = nullptr) const xWARN_UNUSED_RV;
         ///< checks whether the connection to the server is working
@@ -78,6 +75,11 @@ public:
 private:
     HandleMySqlConn _conn;
         ///< pointer to connection
+
+    void_t         _setOption(const mysql_option &option, cptr_cvoid_t arg) const;
+        ///< set extra connect options and affect behavior
+    void_t         _setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
+        ///< set extra connect options and affect behavior
 
     xNO_COPY_ASSIGN(MySqlConnection)
 };
