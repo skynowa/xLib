@@ -69,6 +69,24 @@ MySqlConnection::setOptions(
 	}
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+MySqlConnection::setCharset(
+	std::ctstring_t &a_charset ///< specifies a valid character set name
+)
+{
+	int_t iRv = ::mysql_set_character_set(_conn.get(), a_charset.c_str());
+	xTEST_EQ_MSG(iRv, 0, lastErrorStr());
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+MySqlConnection::getCharset() const
+{
+	cptr_ctchar_t cpszRv = ::mysql_character_set_name(_conn.get());
+	xTEST_PTR_MSG(cpszRv, lastErrorStr());
+
+	return cpszRv;
+}
+//-------------------------------------------------------------------------------------------------
 bool_t
 MySqlConnection::ping(
     int_t *out_errorCode    /* = xPTR_NULL */
