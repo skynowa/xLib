@@ -109,7 +109,7 @@ MySqlConnection::isExists(
     cMySqlConnectionData &a_data
 )
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     MySqlConnection conn;
 
@@ -212,7 +212,7 @@ MySqlConnection::query(
     sqlQuery = FormatC::strV(a_sqlFormat, args);
     xVA_END(args);
 
-    const std::string asSqlQuery = xT2A(sqlQuery);
+    std::cstring_t asSqlQuery = xT2A(sqlQuery);
 
     int_t iRv = ::mysql_real_query(_conn.get(), asSqlQuery.data(),
         static_cast<ulong_t>( asSqlQuery.size() ));
@@ -258,8 +258,8 @@ MySqlConnection::lastErrorStr() const
 
     std::tstring_t sRv;
 
-    cuint_t     _lastError = lastError();
-    const char *error      = ::mysql_error( _conn.get() );
+    cuint_t    _lastError = lastError();
+    cptr_cchar error      = ::mysql_error( _conn.get() );
     xTEST_PTR(error);
 
     if (_lastError == 0U) {
