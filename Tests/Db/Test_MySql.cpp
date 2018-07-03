@@ -25,8 +25,9 @@ Test_MySql::unit()
     mysqlData.port       = 0U;
     mysqlData.unixSocket = xT("");
     mysqlData.clientFlag = 0UL;
+    mysqlData.charset    = xT("utf8");
 
-    std::ctstring_t tableName  = xT("t_main");
+    std::ctstring_t tableName = xT("t_main");
 
 
     /*******************************************************************************
@@ -71,12 +72,6 @@ Test_MySql::unit()
         };
 
         mysqlConn.setOptions(options);
-    }
-
-    xTEST_CASE("MySqlConnection::setCharset, getCharset")
-    {
-        mysqlConn.setCharset(xT("utf8"));
-        xTEST_EQ(mysqlConn.getCharset(), std::tstring_t(xT("utf8")));
     }
 
     xTEST_CASE("MySqlConnection::ping")
