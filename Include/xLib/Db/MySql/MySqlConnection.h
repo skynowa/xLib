@@ -51,7 +51,7 @@ public:
 	std::tstring_t getCharset() const;
 		///< default character set name for the current connection
 
-    bool_t         ping(int_t *errorCode = xPTR_NULL) const xWARN_UNUSED_RV;
+    bool_t         ping(int_t *errorCode = nullptr) const xWARN_UNUSED_RV;
         ///< checks whether the connection to the server is working
     static
     bool_t         isExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
