@@ -26,7 +26,7 @@ MySqlConnection::MySqlConnection()
 {
     xTEST_EQ(_conn.isValid(), false);
 
-    _conn = ::mysql_init(xPTR_NULL);
+    _conn = ::mysql_init(nullptr);
     xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
@@ -89,7 +89,7 @@ MySqlConnection::getCharset() const
 //-------------------------------------------------------------------------------------------------
 bool_t
 MySqlConnection::ping(
-    int_t *out_errorCode    /* = xPTR_NULL */
+    int_t *out_errorCode    /* = nullptr */
 ) const
 {
     int_t iRv = ::mysql_ping( _conn.get() );

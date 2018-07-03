@@ -278,7 +278,7 @@ return 1;
     {
         // TEST: Mysql::fetchLengths()
 
-        //ulong_t *pulFieldLengths = xPTR_NULL;
+        //ulong_t *pulFieldLengths = nullptr;
 
         //mysqlRecord.vFetchLengths(&pulFieldLengths);
         //xTEST_PTR(pulFieldLengths);
