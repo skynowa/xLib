@@ -36,7 +36,7 @@ class MySqlConnection :
 public:
                    MySqlConnection();
         ///< constructor
-    virtual       ~MySqlConnection();
+    virtual       ~MySqlConnection() = default;
         ///< destructor
 
     HandleMySqlConn &get() xWARN_UNUSED_RV;

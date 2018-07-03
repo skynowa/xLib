@@ -30,11 +30,6 @@ MySqlConnection::MySqlConnection()
     xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
-/* virtual */
-MySqlConnection::~MySqlConnection()
-{
-}
-//-------------------------------------------------------------------------------------------------
 HandleMySqlConn &
 MySqlConnection::get()
 {
