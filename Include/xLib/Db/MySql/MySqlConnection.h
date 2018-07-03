@@ -19,15 +19,15 @@ xNAMESPACE_BEGIN2(xl, db)
 struct MySqlConnectionData
     /// MySqlConnection data
 {
-    std::tstring_t host;
-    std::tstring_t user;
-    std::tstring_t password;
-    std::tstring_t db;
-    uint_t         port {};
-    std::tstring_t unixSocket;
-    ulong_t        clientFlag {};
-    std::tstring_t charset; 		///< specifies a valid character set name
-    std::map<mysql_option, cptr_cvoid_t> options;
+    std::tstring_t host;			///< host
+    std::tstring_t user;			///< user name
+    std::tstring_t password;		///< password
+    std::tstring_t db;				///< DB name
+    uint_t         port {};			///<
+    std::tstring_t unixSocket;		///<
+    ulong_t        clientFlag {};	///<
+    std::tstring_t charset; 		///< specifies character name
+    std::map<mysql_option, cptr_cvoid_t> options;	///< extra options
 };
 xTYPEDEF_CONST(MySqlConnectionData);
 
