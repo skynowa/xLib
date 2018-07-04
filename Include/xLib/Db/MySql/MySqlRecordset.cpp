@@ -58,7 +58,7 @@ MySqlRecordset::rowsNum() const
 //-------------------------------------------------------------------------------------------------
 void_t
 MySqlRecordset::fetchField(
-    MYSQL_FIELD *a_field
+    MYSQL_FIELD *a_field	///< metadata: information about a field
 ) const
 {
     xTEST_EQ(_result.isValid(), true);
@@ -147,7 +147,7 @@ MySqlRecordset::fetchRow(
 //-------------------------------------------------------------------------------------------------
 void_t
 MySqlRecordset::_fetchRow(
-    MYSQL_ROW *a_row
+    MYSQL_ROW *a_row	///< one row of data
 ) const
 {
     xTEST_EQ(_result.isValid(), true);

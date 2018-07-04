@@ -43,7 +43,7 @@ private:
     MySqlConnection  *_conn;
         ///< pointer to connection object
     HandleMySqlResult _result;
-        ///< for private use
+        ///< result of a query that returns row
 
     void_t       _fetchLengths(ulong_t **fieldLengths) const;
         ///< An array of unsigned long_t integers representing the size of each column
