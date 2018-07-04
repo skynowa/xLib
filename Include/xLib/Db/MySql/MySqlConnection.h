@@ -74,7 +74,7 @@ public:
 
 private:
     HandleMySqlConn _conn;
-        ///< pointer to connection
+        ///< handler for one database connection
 
     void_t         _setOption(const mysql_option &option, cptr_cvoid_t arg) const;
         ///< set extra connect options and affect behavior
