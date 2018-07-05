@@ -18,14 +18,15 @@ Test_MySql::unit()
 {
 #if cmMYSQL_FOUND
     MySqlConnectionData mysqlData;
-    mysqlData.host       = xT("127.0.0.1");
-    mysqlData.user       = xT("root");
-    mysqlData.password   = xT("root");
-    mysqlData.db         = xT("db_test");
-    mysqlData.port       = 0U;
-    mysqlData.unixSocket = xT("");
-    mysqlData.clientFlag = 0UL;
-    mysqlData.charset    = xT("utf8");
+    mysqlData.host         = xT("127.0.0.1");
+    mysqlData.user         = xT("root");
+    mysqlData.password     = xT("root");
+    mysqlData.db           = xT("db_test");
+    mysqlData.port         = 0U;
+    mysqlData.unixSocket   = xT("");
+    mysqlData.clientFlag   = 0UL;
+    mysqlData.charset      = xT("utf8");
+    mysqlData.isAutoCommit = true;
 
 	// options
 	const unsigned int connectTimeout {60};

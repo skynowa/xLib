@@ -107,6 +107,9 @@ MySqlConnection::connect(
         xT2A(a_data.password).c_str(), xT2A(a_data.db).c_str(), a_data.port,
         xT2A(a_data.unixSocket).c_str(), a_data.clientFlag);
 
+    // setAutoCommit() must be called AFTER connect()
+    setAutoCommit(a_data.isAutoCommit);
+
     xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
