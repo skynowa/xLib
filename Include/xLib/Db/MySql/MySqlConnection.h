@@ -27,6 +27,7 @@ struct MySqlConnectionData
     std::tstring_t unixSocket;		///<
     ulong_t        clientFlag {};	///<
     std::tstring_t charset; 		///< specifies character name
+    bool_t         isAutoCommit;	///< sets autocommit mode on
     std::map<mysql_option, cptr_cvoid_t> options;	///< extra options
 };
 xTYPEDEF_CONST(MySqlConnectionData);
@@ -62,7 +63,7 @@ public:
     void_t         query(cptr_ctchar_t sqlFormat, ...) const;
         ///< executes the SQL statement
     void_t         setAutoCommit(cbool_t flag) const;
-        ///< Sets autocommit mode on
+        ///< sets autocommit mode on (setAutoCommit() must be called AFTER connect())
     void_t         commit();
         ///< commits the current transaction
     void_t         rollback();
