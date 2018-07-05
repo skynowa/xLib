@@ -61,7 +61,6 @@ MySqlConnection::isExists(
     bool_t bRv {};
 
     MySqlConnection conn;
-
     {
         bRv = conn.get().isValid();
         xCHECK_RET(!bRv, false);
@@ -74,9 +73,9 @@ MySqlConnection::isExists(
             "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"), a_data.db.c_str());
     }
 
-    MySqlRecordset rec(conn, false);
-
     {
+        MySqlRecordset rec(conn, false);
+
         bRv = rec.get().isValid();
         xTEST_EQ(bRv, true);
         xTEST_EQ(rec.rowsNum(), 1ULL);
