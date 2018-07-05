@@ -126,7 +126,7 @@ return 1;
             mysqlDataDefault.clientFlag = mysqlData.clientFlag;
 
             mysqlConn.connect(mysqlDataDefault);
-            mysqlConn.reconnect(mysqlDataDefault);
+            mysqlConn.reconnect();
             mysqlConn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"),
                 mysqlData.db.c_str());
         } else {
