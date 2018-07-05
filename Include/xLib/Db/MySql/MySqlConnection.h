@@ -52,6 +52,8 @@ public:
         ///< check connection
     void_t         connect(cMySqlConnectionData &data);
         ///< attempts to establish a connection to a MySql database engine running on host
+    void_t         reconnect(cMySqlConnectionData &data);
+        ///< reconnect to DB
 	std::tstring_t escapeString(std::ctstring_t &sqlValue, cbool_t isQuoted = true) const xWARN_UNUSED_RV;
 		///< creates a legal SQL string for use in an SQL statement:
 		///<

@@ -113,6 +113,15 @@ MySqlConnection::connect(
     xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+MySqlConnection::reconnect(
+    cMySqlConnectionData &a_data
+)
+{
+    close();
+    connect(a_data);
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
 MySqlConnection::escapeString(
 	std::ctstring_t &a_sqlValue,				///< SQL string value
