@@ -173,6 +173,29 @@ MySqlConnection::query(
     xTEST_EQ_MSG(0, iRv, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+MySqlConnection::setAutoCommit(
+	cbool_t a_flag	///< flag (if mode is true, off if mode is false)
+) const
+{
+	bool_t bRv = ::mysql_autocommit(_conn.get(), a_flag);
+	xTEST_MSG(bRv, lastErrorStr());
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+MySqlConnection::commit()
+{
+	bool_t bRv = ::mysql_commit(_conn.get());
+	xTEST_MSG(bRv, lastErrorStr());
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+MySqlConnection::rollback()
+{
+	bool_t bRv = ::mysql_rollback(_conn.get());
+	xTEST_MSG(bRv, lastErrorStr());
+}
+//-------------------------------------------------------------------------------------------------
 uint_t
 MySqlConnection::fieldCount() const
 {

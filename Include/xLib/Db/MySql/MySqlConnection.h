@@ -61,6 +61,12 @@ public:
 
     void_t         query(cptr_ctchar_t sqlFormat, ...) const;
         ///< executes the SQL statement
+    void_t         setAutoCommit(cbool_t flag) const;
+        ///< Sets autocommit mode on
+    void_t         commit();
+        ///< commits the current transaction
+    void_t         rollback();
+        ///< rolls back the current transaction
     uint_t         fieldCount() const xWARN_UNUSED_RV;
         ///< number of columns in a result set
     void_t         close();
@@ -89,15 +95,11 @@ xNAMESPACE_END2(xl, db)
 #if 0
 
 DB
-	https://dev.mysql.com/doc/refman/8.0/en/mysql-create-db.html
-	https://dev.mysql.com/doc/refman/8.0/en/mysql-drop-db.html
-	https://dev.mysql.com/doc/refman/8.0/en/mysql-select-db.html
-	https://dev.mysql.com/doc/refman/8.0/en/mysql-list-dbs.html
-	https://dev.mysql.com/doc/refman/8.0/en/mysql-list-tables.html
+	https://dev.mysql.com/doc/refman/8.0/en/mysql-create-db.html -> CREATE DATABASE
+	https://dev.mysql.com/doc/refman/8.0/en/mysql-drop-db.html -> DROP DATABASE
+	ALTER DATABASE
 
 Connection
-	https://dev.mysql.com/doc/refman/8.0/en/mysql-reset-connection.html
-
 	https://dev.mysql.com/doc/refman/8.0/en/mysql-autocommit.html
 	https://dev.mysql.com/doc/refman/8.0/en/mysql-commit.html
 	https://dev.mysql.com/doc/refman/8.0/en/mysql-rollback.html
