@@ -102,11 +102,6 @@ DB
 	https://dev.mysql.com/doc/refman/8.0/en/mysql-drop-db.html -> DROP DATABASE
 	ALTER DATABASE
 
-Connection
-	https://dev.mysql.com/doc/refman/8.0/en/mysql-autocommit.html
-	https://dev.mysql.com/doc/refman/8.0/en/mysql-commit.html
-	https://dev.mysql.com/doc/refman/8.0/en/mysql-rollback.html
-
 #endif
 
 #if xTODO
