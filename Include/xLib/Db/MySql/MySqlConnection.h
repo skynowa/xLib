@@ -52,7 +52,7 @@ public:
         ///< check connection
     void_t         connect(cMySqlConnectionData &data);
         ///< attempts to establish a connection to a MySql database engine running on host
-    void_t         reconnect(cMySqlConnectionData &data);
+    void_t         reconnect();
         ///< reconnect to DB
 	std::tstring_t escapeString(std::ctstring_t &sqlValue, cbool_t isQuoted = true) const xWARN_UNUSED_RV;
 		///< creates a legal SQL string for use in an SQL statement:
@@ -82,8 +82,8 @@ public:
         ///< error message for the most recently invoked API function that failed
 
 private:
-    HandleMySqlConn _conn;
-        ///< handler for one database connection
+	MySqlConnectionData _data; ///< MySqlConnection data
+    HandleMySqlConn     _conn; ///< handler for one database connection
 
     void_t         _setOption(const mysql_option &option, cptr_cvoid_t arg) const;
         ///< set extra connect options and affect behavior

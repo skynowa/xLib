@@ -114,12 +114,10 @@ MySqlConnection::connect(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlConnection::reconnect(
-    cMySqlConnectionData &a_data
-)
+MySqlConnection::reconnect()
 {
     close();
-    connect(a_data);
+    connect(_data);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
