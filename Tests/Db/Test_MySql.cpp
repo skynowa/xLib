@@ -24,21 +24,26 @@ Test_MySql::unit()
     mysqlData.db           = xT("db_test");
     mysqlData.port         = 0U;
     mysqlData.unixSocket   = xT("");
-    mysqlData.clientFlag   = 0UL;
     mysqlData.charset      = xT("utf8");
     mysqlData.isAutoCommit = true;
+    mysqlData.isCompress   = true;
 
-	// options
-	const unsigned int connectTimeout {60};
-	const bool         isReconnect    {true};
-	const char *       initCommand    {"SET autocommit=0"};
+	std::map<mysql_option, cptr_cvoid_t> options;
+	{
+		const unsigned int connectTimeout {60};
+		const bool         isReconnect    {true};
+		const char *       initCommand    {"SET autocommit=0"};
 
-	mysqlData.options =  {
-		{MYSQL_OPT_COMPRESS,        0 /* not used */},
-		{MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
-		{MYSQL_OPT_RECONNECT,       &isReconnect},
-		{MYSQL_INIT_COMMAND,        &initCommand}
-	};
+		options =
+		{
+			{MYSQL_OPT_COMPRESS,        0 /* not used */},
+			{MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
+			{MYSQL_OPT_RECONNECT,       &isReconnect},
+			{MYSQL_INIT_COMMAND,        &initCommand}
+		};
+	}
+
+	mysqlData.options = options;
 
     std::ctstring_t tableName = xT("t_main");
 
@@ -117,13 +122,16 @@ return 1;
         cbool_t isDbExists = MySqlConnection::isExists(mysqlData);
         if ( !isDbExists ) {
             MySqlConnectionData mysqlDataDefault;
-            mysqlDataDefault.host       = mysqlData.host;
-            mysqlDataDefault.user       = mysqlData.user;
-            mysqlDataDefault.password   = mysqlData.password;
-            mysqlDataDefault.db         = xT("");  // create Db
-            mysqlDataDefault.port       = mysqlData.port;
-            mysqlDataDefault.unixSocket = mysqlData.unixSocket;
-            mysqlDataDefault.clientFlag = mysqlData.clientFlag;
+            mysqlDataDefault.host         = mysqlData.host;
+            mysqlDataDefault.user         = mysqlData.user;
+            mysqlDataDefault.password     = mysqlData.password;
+            mysqlDataDefault.db           = xT("");  // create Db
+            mysqlDataDefault.port         = mysqlData.port;
+            mysqlDataDefault.unixSocket   = mysqlData.unixSocket;
+            mysqlDataDefault.charset      = xT("utf8");
+            mysqlDataDefault.isAutoCommit = true;
+            mysqlDataDefault.isCompress   = true;
+            mysqlDataDefault.options      = options;
 
             mysqlConn.connect(mysqlDataDefault);
             mysqlConn.reconnect();

@@ -98,6 +98,13 @@ MySqlConnection::connect(
     xTEST_EQ(_conn.isValid(), true);
     xTEST_NA(a_data);
 
+	ulong_t clientFlag {};
+	{
+		if (a_data.isCompress) {
+			clientFlag |= CLIENT_COMPRESS;
+		}
+	}
+
 	_setOptions(a_data.options);
 
 	int_t iRv = ::mysql_set_character_set(_conn.get(), a_data.charset.c_str());
@@ -105,7 +112,7 @@ MySqlConnection::connect(
 
     _conn = ::mysql_real_connect(_conn.get(), xT2A(a_data.host).c_str(), xT2A(a_data.user).c_str(),
         xT2A(a_data.password).c_str(), xT2A(a_data.db).c_str(), a_data.port,
-        xT2A(a_data.unixSocket).c_str(), a_data.clientFlag);
+        xT2A(a_data.unixSocket).c_str(), clientFlag);
 
     // setAutoCommit() must be called AFTER connect()
     setAutoCommit(a_data.isAutoCommit);
