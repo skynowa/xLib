@@ -25,9 +25,9 @@ struct MySqlConnectionData
     std::tstring_t db;				///< DB name
     uint_t         port {};			///<
     std::tstring_t unixSocket;		///<
-    ulong_t        clientFlag {};	///<
     std::tstring_t charset; 		///< specifies character name
-    bool_t         isAutoCommit;	///< sets autocommit mode on
+    bool_t         isAutoCommit {};	///< sets autocommit mode on
+    bool_t         isCompress {};	///< Use compression in the client/server protocol
     std::map<mysql_option, cptr_cvoid_t> options;	///< extra options
 };
 xTYPEDEF_CONST(MySqlConnectionData);
