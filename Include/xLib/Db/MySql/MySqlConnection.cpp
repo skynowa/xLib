@@ -113,11 +113,10 @@ MySqlConnection::connect(
     _conn = ::mysql_real_connect(_conn.get(), xT2A(a_data.host).c_str(), xT2A(a_data.user).c_str(),
         xT2A(a_data.password).c_str(), xT2A(a_data.db).c_str(), a_data.port,
         xT2A(a_data.unixSocket).c_str(), clientFlag);
+    xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
 
     // setAutoCommit() must be called AFTER connect()
     setAutoCommit(a_data.isAutoCommit);
-
-    xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t

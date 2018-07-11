@@ -115,8 +115,6 @@ Test_MySql::unit()
 		}
     }
 
-return 1;
-
     xTEST_CASE("MySqlConnection::connect, reconnect")
     {
         cbool_t isDbExists = MySqlConnection::isExists(mysqlData);
@@ -128,9 +126,9 @@ return 1;
             mysqlDataDefault.db           = xT("");  // create Db
             mysqlDataDefault.port         = mysqlData.port;
             mysqlDataDefault.unixSocket   = mysqlData.unixSocket;
-            mysqlDataDefault.charset      = xT("utf8");
-            mysqlDataDefault.isAutoCommit = true;
-            mysqlDataDefault.isCompress   = true;
+            mysqlDataDefault.charset      = mysqlData.charset;
+            mysqlDataDefault.isAutoCommit = mysqlData.isAutoCommit;
+            mysqlDataDefault.isCompress   = mysqlData.isCompress;
             mysqlDataDefault.options      = options;
 
             mysqlConn.connect(mysqlDataDefault);
@@ -145,6 +143,8 @@ return 1;
         m_bRv = MySqlConnection::isExists(mysqlData);
         xTEST_EQ(m_bRv, true);
     }
+
+return 1;
 
     xTEST_CASE("MySqlConnection::query")
     {
