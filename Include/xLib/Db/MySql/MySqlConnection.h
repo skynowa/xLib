@@ -27,7 +27,7 @@ struct MySqlConnectionData
     std::tstring_t password;
         ///< password
     std::tstring_t db;
-        ///< DB name. If empty -  create Db
+        ///< DB name.
     uint_t         port {};
         ///< If port is not 0, the value is used as the port number for the TCP/IP connection
     std::tstring_t unixSocket;
