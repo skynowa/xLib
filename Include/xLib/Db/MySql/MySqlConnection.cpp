@@ -98,6 +98,20 @@ MySqlConnection::connect(
     xTEST_EQ(_conn.isValid(), true);
     xTEST_NA(a_data);
 
+	const char *db {};
+	{
+		if ( !a_data.db.empty() ) {
+			db = xT2A(a_data.db).c_str();
+		}
+	}
+
+	const char *unixSocket {};
+	{
+		if ( !a_data.unixSocket.empty() ) {
+			unixSocket = xT2A(a_data.unixSocket).c_str();
+		}
+	}
+
 	ulong_t clientFlag {};
 	{
 		if (a_data.isCompress) {
@@ -107,13 +121,26 @@ MySqlConnection::connect(
 
 	_setOptions(a_data.options);
 
+	{
+	#if 1
+		int connect_timeout_sec = 5;
+		int read_timeout_sec    = connect_timeout_sec * 10;
+		int write_timeout_sec   = connect_timeout_sec * 10;
+
+		::mysql_options(_conn.get(), MYSQL_OPT_CONNECT_TIMEOUT, &connect_timeout_sec);
+		::mysql_options(_conn.get(), MYSQL_OPT_READ_TIMEOUT,    &read_timeout_sec);
+		::mysql_options(_conn.get(), MYSQL_OPT_WRITE_TIMEOUT,   &write_timeout_sec);
+	#endif
+	}
+
 	int_t iRv = ::mysql_set_character_set(_conn.get(), a_data.charset.c_str());
 	xTEST_EQ_MSG(iRv, 0, lastErrorStr());
 
-    _conn = ::mysql_real_connect(_conn.get(), xT2A(a_data.host).c_str(), xT2A(a_data.user).c_str(),
-        xT2A(a_data.password).c_str(), xT2A(a_data.db).c_str(), a_data.port,
-        xT2A(a_data.unixSocket).c_str(), clientFlag);
-    xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
+    MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(a_data.host).c_str(), xT2A(a_data.user).c_str(),
+        xT2A(a_data.password).c_str(), db, a_data.port, unixSocket, clientFlag);
+    xTEST_PTR_MSG(conn, lastErrorStr());
+
+    _conn = conn;
 
     // setAutoCommit() must be called AFTER connect()
     setAutoCommit(a_data.isAutoCommit);

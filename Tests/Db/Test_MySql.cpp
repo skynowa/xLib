@@ -18,11 +18,11 @@ Test_MySql::unit()
 {
 #if cmMYSQL_FOUND
     MySqlConnectionData mysqlData;
-    mysqlData.host         = xT("127.0.0.1");
+    mysqlData.host         = xT("127.0.0.1");	// xT("localhost");
     mysqlData.user         = xT("root");
     mysqlData.password     = xT("root");
     mysqlData.db           = xT("db_test");
-    mysqlData.port         = 0U;
+    mysqlData.port         = 3306;	// 0;
     mysqlData.unixSocket   = xT("");
     mysqlData.charset      = xT("utf8");
     mysqlData.isAutoCommit = true;
@@ -32,7 +32,7 @@ Test_MySql::unit()
 	{
 		const unsigned int connectTimeout {60};
 		const bool         isReconnect    {true};
-		const char *       initCommand    {"SET autocommit=0"};
+		const char         initCommand[]  {"SET autocommit=1"};
 
 		options =
 		{
