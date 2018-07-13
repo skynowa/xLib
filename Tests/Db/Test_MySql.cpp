@@ -75,7 +75,7 @@ Test_MySql::unit()
         xTEST_DIFF(errorCode, 0);
     }
 
-    xTEST_CASE("MySqlConnection::isExists")
+    xTEST_CASE("MySqlConnection::isDbExists")
     {
         std::ctstring_t data[][2] = {
             { xT("000000"),     xT("false") },
@@ -85,7 +85,7 @@ Test_MySql::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            bool_t bRes1 = MySqlConnection::isExists(mysqlData);
+            bool_t bRes1 = MySqlConnection::isDbExists(mysqlData);
             bool_t bRes2 = String::castBool(data[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
@@ -117,7 +117,7 @@ Test_MySql::unit()
 
     xTEST_CASE("MySqlConnection::connect")
     {
-        cbool_t isDbExists = MySqlConnection::isExists(mysqlData);
+        cbool_t isDbExists = MySqlConnection::isDbExists(mysqlData);
         if ( !isDbExists ) {
             MySqlConnectionData mysqlDataDefault;
             mysqlDataDefault.host         = mysqlData.host;
@@ -139,7 +139,7 @@ Test_MySql::unit()
             mysqlConn.connect(mysqlData);
         }
 
-        m_bRv = MySqlConnection::isExists(mysqlData);
+        m_bRv = MySqlConnection::isDbExists(mysqlData);
         xTEST_EQ(m_bRv, true);
     }
 
@@ -296,7 +296,7 @@ return 1;
         mysqlConn.query(xT("DROP TABLE IF EXISTS `%s`"),    tableName.c_str());
         mysqlConn.query(xT("DROP DATABASE IF EXISTS `%s`"), mysqlData.db.c_str());
 
-        m_bRv = MySqlConnection::isExists(mysqlData);
+        m_bRv = MySqlConnection::isDbExists(mysqlData);
         xTEST_EQ(m_bRv, false);
     }
 
