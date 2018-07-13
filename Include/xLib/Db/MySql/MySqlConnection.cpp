@@ -139,8 +139,7 @@ MySqlConnection::connect(
     MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(a_data.host).c_str(), xT2A(a_data.user).c_str(),
         xT2A(a_data.password).c_str(), db, a_data.port, unixSocket, clientFlag);
     xTEST_PTR_MSG(conn, lastErrorStr());
-
-    _conn = conn;
+    xTEST_EQ(_conn.get(), conn);
 
     // setAutoCommit() must be called AFTER connect()
     setAutoCommit(a_data.isAutoCommit);
