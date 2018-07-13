@@ -55,8 +55,10 @@ MySqlConnection::isDbExists(
         xCHECK_RET(!bRv, false);
 
         conn.connect(data);
-        conn.query(xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
-            "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"), db.c_str());
+        conn.query(
+            xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
+               "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
+               db.c_str());
     }
 
     {
@@ -69,11 +71,43 @@ MySqlConnection::isDbExists(
         std::vec_tstring_t row;
         rec.fetchRow(&row);
         xTEST_EQ(row.size(), static_cast<size_t>(1));
-        xCHECK_RET(StringCI::compare(xT("false"), row.at(0)), false);
-        xTEST_EQ(StringCI::compare(xT("true"), row.at(0)), true);
+        xCHECK_RET(StringCI::compare(xT("false"), row[0]), false);
+        xTEST_EQ(StringCI::compare(xT("true"), row[0]), true);
     }
 
     return true;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+MySqlConnection::dbCreate(
+    cMySqlConnectionData &a_data
+)
+{
+	std::ctstring_t db = a_data.db;
+
+	MySqlConnectionData data = a_data;
+	data.db = {};
+
+	MySqlConnection conn;
+	conn.connect(data);
+	conn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), db.c_str());
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+MySqlConnection::dbDrop(
+    cMySqlConnectionData &a_data
+)
+{
+	std::ctstring_t db = a_data.db;
+
+	MySqlConnectionData data = a_data;
+	data.db = {};
+
+	MySqlConnection conn;
+	conn.connect(data);
+	conn.query(xT("DROP DATABASE IF EXISTS `%s`"), db.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 void_t

@@ -59,6 +59,13 @@ public:
     static
     bool_t         isDbExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
         ///< check connection
+    static
+    void_t         dbCreate(cMySqlConnectionData &data) xWARN_UNUSED_RV;
+        ///< create DB
+    static
+    void_t         dbDrop(cMySqlConnectionData &data) xWARN_UNUSED_RV;
+        ///< drop DB
+
     void_t         connect(cMySqlConnectionData &data);
         ///< attempts to establish a connection to a MySql database engine running on host
     void_t         reconnect();
