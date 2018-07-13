@@ -164,7 +164,7 @@ MySqlRecordset::_fetchLengths(
 ) const
 {
     xTEST_EQ(_result.isValid(), true);
-    xTEST_PTR(*a_fieldLengths);
+    xTEST_PTR_FAIL(*a_fieldLengths);
 
     *a_fieldLengths = ::mysql_fetch_lengths(_result.get());
     xTEST_PTR_MSG(*a_fieldLengths, _conn->lastErrorStr());
