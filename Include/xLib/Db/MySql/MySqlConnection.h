@@ -59,7 +59,7 @@ public:
     bool_t         ping(int_t *errorCode = nullptr) const xWARN_UNUSED_RV;
         ///< checks whether the connection to the server is working
     static
-    bool_t         isExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
+    bool_t         isDbExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
         ///< check connection
     void_t         connect(cMySqlConnectionData &data);
         ///< attempts to establish a connection to a MySql database engine running on host

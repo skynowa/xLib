@@ -54,7 +54,7 @@ MySqlConnection::ping(
 //-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
-MySqlConnection::isExists(
+MySqlConnection::isDbExists(
     cMySqlConnectionData &a_data
 )
 {
