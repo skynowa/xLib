@@ -167,6 +167,12 @@ void_t
 MySqlConnection::reconnect()
 {
     close();
+
+    xTEST_EQ(_conn.isValid(), false);
+
+    _conn = ::mysql_init(nullptr);
+    xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
+
     connect(_data);
 }
 //-------------------------------------------------------------------------------------------------
