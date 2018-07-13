@@ -119,9 +119,9 @@ MySqlConnection::connect(
 		}
 	}
 
-	_setOptions(a_data.options);
-
 	{
+		_setOptions(a_data.options);
+
 	#if 1
 		int connect_timeout_sec = 5;
 		int read_timeout_sec    = connect_timeout_sec * 10;
@@ -133,13 +133,13 @@ MySqlConnection::connect(
 	#endif
 	}
 
-	int_t iRv = ::mysql_set_character_set(_conn.get(), a_data.charset.c_str());
-	xTEST_EQ_MSG(iRv, 0, lastErrorStr());
-
     MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(a_data.host).c_str(), xT2A(a_data.user).c_str(),
         xT2A(a_data.password).c_str(), db, a_data.port, unixSocket, clientFlag);
     xTEST_PTR_MSG(conn, lastErrorStr());
     xTEST_EQ(_conn.get(), conn);
+
+	int_t iRv = ::mysql_set_character_set(_conn.get(), a_data.charset.c_str());
+	xTEST_EQ_MSG(iRv, 0, lastErrorStr());
 
     // setAutoCommit() must be called AFTER connect()
     setAutoCommit(a_data.isAutoCommit);
