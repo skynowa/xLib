@@ -36,22 +36,6 @@ MySqlConnection::get()
     return _conn;
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
-MySqlConnection::ping(
-    int_t *out_errorCode    /* = nullptr */
-) const
-{
-    int_t iRv = ::mysql_ping( _conn.get() );
-
-    Utils::ptrAssignT(out_errorCode, iRv);
-
-    if (iRv != 0) {
-        return false;
-    }
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
 MySqlConnection::isDbExists(
@@ -150,6 +134,22 @@ MySqlConnection::reconnect()
 {
     close();
     connect(_data);
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+MySqlConnection::ping(
+    int_t *out_errorCode    /* = nullptr */
+) const
+{
+    int_t iRv = ::mysql_ping( _conn.get() );
+
+    Utils::ptrAssignT(out_errorCode, iRv);
+
+    if (iRv != 0) {
+        return false;
+    }
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
