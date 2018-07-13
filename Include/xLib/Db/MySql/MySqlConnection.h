@@ -136,7 +136,6 @@ xNAMESPACE_END2(xl, db)
     mysql_library_init()
     {
         mysql_init()
-
         mysql_options()
 
         mysql_real_connect()
