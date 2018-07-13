@@ -134,7 +134,7 @@ return 1;
 
     xTEST_CASE("MySqlConnection::reconnect")
     {
-            mysqlConn.reconnect();
+        mysqlConn.reconnect();
     }
 
     xTEST_CASE("MySqlConnection::ping")
