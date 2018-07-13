@@ -130,12 +130,12 @@ Test_MySql::unit()
         xTEST_EQ(m_bRv, true);
     }
 
-return 1;
-
     xTEST_CASE("MySqlConnection::reconnect")
     {
         mysqlConn.reconnect();
     }
+
+return 1;
 
     xTEST_CASE("MySqlConnection::ping")
     {
