@@ -113,14 +113,6 @@ private:
 
 xNAMESPACE_END2(xl, db)
 //-------------------------------------------------------------------------------------------------
-#if 0
-
-DB
-	https://dev.mysql.com/doc/refman/8.0/en/mysql-create-db.html -> CREATE DATABASE
-	https://dev.mysql.com/doc/refman/8.0/en/mysql-drop-db.html -> DROP DATABASE
-	ALTER DATABASE
-
-#endif
 
 #if xTODO
     MYSQL_ROW row;
