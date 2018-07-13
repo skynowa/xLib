@@ -56,8 +56,6 @@ public:
     HandleMySqlConn &get() xWARN_UNUSED_RV;
         ///< get handle
 
-    bool_t         ping(int_t *errorCode = nullptr) const xWARN_UNUSED_RV;
-        ///< checks whether the connection to the server is working
     static
     bool_t         isDbExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
         ///< check connection
@@ -65,6 +63,9 @@ public:
         ///< attempts to establish a connection to a MySql database engine running on host
     void_t         reconnect();
         ///< reconnect to DB
+    bool_t         ping(int_t *errorCode = nullptr) const xWARN_UNUSED_RV;
+        ///< checks whether the connection to the server is working
+
 	std::tstring_t escapeString(std::ctstring_t &sqlValue, cbool_t isQuoted = true) const xWARN_UNUSED_RV;
 		///< creates a legal SQL string for use in an SQL statement:
 		///<
@@ -72,7 +73,6 @@ public:
 		///< single quotes turn into: \'
 		///< Single slashes turn into: \\ (double slashes)
 		///< Note unescaped: spaces, |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _, etc
-
     void_t         query(cptr_ctchar_t sqlFormat, ...) const;
         ///< executes the SQL statement
     void_t         setAutoCommit(cbool_t flag) const;

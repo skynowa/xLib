@@ -67,14 +67,6 @@ Test_MySql::unit()
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("MySqlConnection::ping")
-    {
-        int_t errorCode;
-        m_bRv = mysqlConn.ping(&errorCode);
-        xTEST_EQ(m_bRv, false);
-        xTEST_DIFF(errorCode, 0);
-    }
-
     xTEST_CASE("MySqlConnection::isDbExists")
     {
         std::ctstring_t data[][2] = {
@@ -148,6 +140,14 @@ return 1;
     xTEST_CASE("MySqlConnection::reconnect")
     {
             mysqlConn.reconnect();
+    }
+
+    xTEST_CASE("MySqlConnection::ping")
+    {
+        int_t errorCode;
+        m_bRv = mysqlConn.ping(&errorCode);
+        xTEST_EQ(m_bRv, false);
+        xTEST_DIFF(errorCode, 0);
     }
 
     xTEST_CASE("MySqlConnection::query")
