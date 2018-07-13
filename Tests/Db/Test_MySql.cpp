@@ -67,20 +67,15 @@ Test_MySql::unit()
         xTEST_EQ(m_bRv, true);
     }
 
-    xTEST_CASE("MySqlConnection::isDbExists")
+    xTEST_CASE("MySqlConnection::isDbExists,dbCreate,dbDrop")
     {
-        std::ctstring_t data[][2] = {
-            { xT("000000"),     xT("false") },
-            { xT("1111111"),    xT("false") },
-            { xT("222222222"),  xT("false") },
-            { xT("xxxxxxxxxx"), xT("false") }
-        };
-
-        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            bool_t bRes1 = MySqlConnection::isDbExists(mysqlData);
-            bool_t bRes2 = String::castBool(data[i][1]);
-            xTEST_EQ(bRes1, bRes2);
-        }
+		cbool_t isExists = MySqlConnection::isDbExists(mysqlData);
+		if (isExists) {
+			MySqlConnection::dbDrop(mysqlData);
+			MySqlConnection::dbCreate(mysqlData);
+		} else {
+			MySqlConnection::dbCreate(mysqlData);
+		}
     }
 
     xTEST_CASE("MySqlConnection::escapeString")
