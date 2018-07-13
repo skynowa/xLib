@@ -60,17 +60,19 @@ MySqlConnection::isExists(
 {
     bool_t bRv {};
 
+    std::ctstring_t db = a_data.db;
+
+    MySqlConnectionData data = a_data;
+    data.db = {};
+
     MySqlConnection conn;
     {
         bRv = conn.get().isValid();
         xCHECK_RET(!bRv, false);
 
-        bRv = conn.ping();
-        xCHECK_RET(!bRv, false);
-
-        conn.connect(a_data);
+        conn.connect(data);
         conn.query(xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
-            "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"), a_data.db.c_str());
+            "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"), db.c_str());
     }
 
     {
@@ -122,7 +124,6 @@ MySqlConnection::connect(
 	{
 		_setOptions(a_data.options);
 
-	#if 1
 		int connect_timeout_sec = 5;
 		int read_timeout_sec    = connect_timeout_sec * 10;
 		int write_timeout_sec   = connect_timeout_sec * 10;
@@ -130,7 +131,6 @@ MySqlConnection::connect(
 		::mysql_options(_conn.get(), MYSQL_OPT_CONNECT_TIMEOUT, &connect_timeout_sec);
 		::mysql_options(_conn.get(), MYSQL_OPT_READ_TIMEOUT,    &read_timeout_sec);
 		::mysql_options(_conn.get(), MYSQL_OPT_WRITE_TIMEOUT,   &write_timeout_sec);
-	#endif
 	}
 
     MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(a_data.host).c_str(), xT2A(a_data.user).c_str(),
@@ -142,7 +142,7 @@ MySqlConnection::connect(
 	xTEST_EQ_MSG(iRv, 0, lastErrorStr());
 
     // setAutoCommit() must be called AFTER connect()
-    setAutoCommit(a_data.isAutoCommit);
+    /// setAutoCommit(a_data.isAutoCommit);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
