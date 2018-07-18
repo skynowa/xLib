@@ -4,6 +4,7 @@ xLib
 Pre-requisites:
     - bash-compatible Unix command shell (for Unix)
     - Doxygen 1.8.2
+    - sudo apt-get install cmake pkg-config
 
 Dependencies:
     - Linkage flags

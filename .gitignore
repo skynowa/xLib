@@ -10,12 +10,14 @@
 Docs/html/
 [Bb]in
 .idea/
+.vscode/
 
 ################################################################################
 # files
 Include/xLib/Config.h
 CMakeLists.txt.user
 .project
+xLib.pc
 
 # PVS-Studio
 *.PVS-Studio.cfg

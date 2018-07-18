@@ -62,11 +62,13 @@ include(CheckCXXSourceCompiles)
 find_package(CppCheck QUIET REQUIRED)
 find_package(ClangTidy QUIET REQUIRED)
 find_package(PvsStudio QUIET REQUIRED)
+find_package(PkgConfig QUIET REQUIRED)
 
 ## libs
 find_package(CMakeLib QUIET REQUIRED)
 find_package(GitRevision QUIET REQUIRED)
 find_package(OS QUIET REQUIRED)
+find_package(Threads QUIET REQUIRED)
 find_package(OpenSSL QUIET REQUIRED)
 find_package(MySQL QUIET REQUIRED)
 find_package(Ssh2 QUIET REQUIRED)
