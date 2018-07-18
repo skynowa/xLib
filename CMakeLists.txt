@@ -16,8 +16,13 @@
 #--------------------------------------------------------------------------------------------------
 
 
-project(xLib)
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.5.0)
+
+project(
+    xLib
+    DESCRIPTION "xLib library"
+    VERSION      1.0.0.0
+)
 
 #--------------------------------------------------------------------------------------------------
 # options
@@ -159,7 +164,7 @@ endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC ${XLIB_DEFINITIONS}")
 #--------------------------------------------------------------------------------------------------
 # libraries
-set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
+set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS})
 
 if     (MSVC)
 
@@ -210,6 +215,10 @@ else()
     # message("    XLIB_INCLUDES:         ${XLIB_INCLUDES}")
     # message("    XLIB_LIBRARIES:        ${XLIB_LIBRARIES}")
     # message("    XLIB_SOURCES:          ${XLIB_SOURCES}")
+    
+    # message(STATUS "CMAKE_THREAD_LIBS: ${CMAKE_THREAD_LIBS}")
+    # message(STATUS "CMAKE_DL_LIBS: ${CMAKE_DL_LIBS}")
+    # message(STATUS "CMAKE_EXE_LINKER_FLAGS: ${CMAKE_EXE_LINKER_FLAGS}")
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
@@ -224,7 +233,7 @@ if (cmOPTION_PROJECT_LIB_STATIC)
     target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "bin")
 
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_STATIC})
+    #-- set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_STATIC})
 endif()
 
 if (cmOPTION_PROJECT_LIB_SHARE)
@@ -234,7 +243,7 @@ if (cmOPTION_PROJECT_LIB_SHARE)
     target_link_libraries(${PROJECT_LIB_SHARE} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_SHARE} DESTINATION "bin")
 
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_SHARE})
+    #-- set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_SHARE})
 endif()
 
 if (cmOPTION_PROJECT_LIB_MODULE)
@@ -244,7 +253,7 @@ if (cmOPTION_PROJECT_LIB_MODULE)
     target_link_libraries(${PROJECT_LIB_MODULE} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_MODULE} DESTINATION "bin")
 
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_MODULE})
+    #-- set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_MODULE})
 endif()
 
 get_directory_property(IS_PARENT_SCOPE PARENT_DIRECTORY)
@@ -273,7 +282,41 @@ configure_file(
     ${XLIB_LOCATION}/Include/xLib/Config.h.in
     ${XLIB_LOCATION}/Include/xLib/Config.h)
 #--------------------------------------------------------------------------------------------------
+# pkg-config
+set(PKG_CONFIG_REQUIRES     "")
+set(PKG_CONFIG_LIBDIR       "\${prefix}/lib")
+set(PKG_CONFIG_INCLUDEDIR   "\${prefix}/include/lib${PROJECT_NAME}")
+set(PKG_CONFIG_LIBS         "-L\${libdir} -l${PROJECT_NAME}")
+
+# PKG_CONFIG_LIBS_PRIVATE
+set(PKG_CONFIG_LIBS_PRIVATE "")
+string(REPLACE ";" " " PKG_CONFIG_LIBS_PRIVATE "${XLIB_LIBRARIES}")
+message(STATUS "PKG_CONFIG_LIBS_PRIVATE     : ${PKG_CONFIG_LIBS_PRIVATE}")
+
+# PKG_CONFIG_INCLUDE_DIRS
+set(PKG_CONFIG_INCLUDE_DIRS)
+get_directory_property(PKG_CONFIG_INCLUDE_DIRS DIRECTORY ${CMAKE_SOURCE_DIR} INCLUDE_DIRECTORIES)
+string(REPLACE ";" " -I" PKG_CONFIG_INCLUDE_DIRS ";${PKG_CONFIG_INCLUDE_DIRS}")
+message(STATUS "PKG_CONFIG_INCLUDE_DIRS     : ${PKG_CONFIG_INCLUDE_DIRS}")
+
+# PKG_CONFIG_DEFINITIONS
+get_directory_property(PKG_CONFIG_DEFINITIONS DIRECTORY ${CMAKE_SOURCE_DIR} COMPILE_DEFINITIONS)
+string(REPLACE ";" " -D" PKG_CONFIG_DEFINITIONS ";${PKG_CONFIG_DEFINITIONS}")
+message(STATUS "PKG_CONFIG_DEFINITIONS     : ${PKG_CONFIG_DEFINITIONS}")
+
+set(PKG_CONFIG_CFLAGS "-I\${includedir} ${PKG_CONFIG_INCLUDE_DIRS} ${PKG_CONFIG_DEFINITIONS}")
+
+configure_file(
+    ${XLIB_LOCATION}/pkg-config.pc.in
+    ${XLIB_LOCATION}/${PROJECT_NAME}.pc)
+#--------------------------------------------------------------------------------------------------
 # install
+install(
+    FILES
+        ${XLIB_LOCATION}/${PROJECT_NAME}.pc
+    DESTINATION
+        lib/pkgconfig)
+
 install(
     DIRECTORY
         ${XLIB_LOCATION}/Include/xLib/
