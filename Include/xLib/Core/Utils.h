@@ -146,6 +146,7 @@ implicitCast(const From &a_from)
 {
     return a_from;
 }
+	///< https://www.boost.org/doc/libs/1_64_0/boost/implicit_cast.hpp
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
