@@ -139,6 +139,14 @@ private:
     const T &_value;
 };
 
+// TEST: implicitCast
+template<typename To, typename From>
+inline To
+implicitCast(const From &a_from)
+{
+    return a_from;
+}
+
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "Utils.inl"
