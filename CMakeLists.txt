@@ -24,6 +24,8 @@ project(
     VERSION      1.0.0.0
 )
 
+set(XLIB_PROJECT_URL "https://bitbucket.org/skynowa/xlib/")
+
 #--------------------------------------------------------------------------------------------------
 # options
 set(PROJECT_TYPE "CXX")
