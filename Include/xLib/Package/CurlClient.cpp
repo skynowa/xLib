@@ -207,6 +207,48 @@ CurlClient::unescape(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+CurlClient::escapeUrl(
+    std::ctstring_t &a_str
+)
+{
+    std::tstring_t sRv;
+
+    char *pszRv = ::curl_escape(a_str.c_str(), static_cast<int>( a_str.size() ));
+    xTEST_PTR(pszRv);
+
+    sRv.assign(pszRv);
+
+    if (pszRv != xPTR_NULL) {
+        ::curl_free(pszRv);
+        pszRv = xPTR_NULL;
+    }
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+CurlClient::unescapeUrl(
+    std::ctstring_t &a_str
+)
+{
+    std::tstring_t sRv;
+
+    char *pszRv = ::curl_unescape(a_str.c_str(), static_cast<int>( a_str.size() ));
+    xTEST_PTR(pszRv);
+
+    sRv.assign(pszRv);
+
+    if (pszRv != xPTR_NULL) {
+        ::curl_free(pszRv);
+        pszRv = xPTR_NULL;
+    }
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
 CurlClient::strError(
    const CURLcode a_code
