@@ -34,6 +34,13 @@ Test_CurlClient::unit()
 		}
     }
 
+    xTEST_CASE("setOption")
+	{
+		const CURLoption option = CURLOPT_URL;
+
+		curl.setOption(option);
+	}
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
