@@ -1,10 +1,7 @@
 /**
- * \file   Operators.cpp
+ * \file   Operators.inl
  * \brief  Type operators
  */
-
-
-#include "Operators.h"
 
 
 xNAMESPACE_BEGIN2(xl, core)
@@ -17,6 +14,7 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+inline
 T &
 operator ++ (T &a_value)
 {
@@ -24,6 +22,7 @@ operator ++ (T &a_value)
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+inline
 T &
 operator -- (T &a_value)
 {
