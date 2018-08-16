@@ -263,4 +263,59 @@ CurlClient::strError(
 }
 //-------------------------------------------------------------------------------------------------
 
+
+/**************************************************************************************************
+*   protected
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+size_t
+CurlClient::onWriteHeader(
+	void_t *a_buff,
+	size_t  a_size,
+	size_t  a_items,
+	void_t *a_userData
+)
+{
+	const size_t buffSize = a_items * a_size;
+
+	auto *buff = static_cast<CurlBuffer *>(a_userData);
+	buff->add(static_cast<char *>(a_buff), buffSize);
+
+	return buffSize;
+}
+//-------------------------------------------------------------------------------------------------
+size_t
+CurlClient::onWriteData(
+	void_t *a_buff,
+	size_t  a_size,
+	size_t  a_items,
+	void_t *a_userData
+)
+{
+	const size_t buffSize = a_items * a_size;
+
+	auto *buff = static_cast<CurlBuffer *>(a_userData);
+	buff->add(static_cast<char *>(a_buff), buffSize);
+
+	return buffSize;
+}
+//-------------------------------------------------------------------------------------------------
+size_t
+CurlClient::onReadData(
+	void_t *a_buff,
+	size_t  a_size,
+	size_t  a_items,
+	void_t *a_userData
+)
+{
+	const size_t buffSize = a_items * a_size;
+
+	auto *buff = static_cast<CurlBuffer *>(a_userData);
+
+	return buff->get(static_cast<char *>(a_buff), buffSize);
+}
+//-------------------------------------------------------------------------------------------------
+
 xNAMESPACE_END2(xl, package)
