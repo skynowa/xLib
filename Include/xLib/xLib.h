@@ -103,7 +103,6 @@
 #include <xLib/Net/MimeHeader.h>
 #include <xLib/Net/MimeBody.h>
 #include <xLib/Net/MimeMessage.h>
-#include <xLib/Net/HttpClient.h>
 #include <xLib/Net/Pop3Client.h>
 #include <xLib/Net/SmtpClient.h>
 #include <xLib/Net/Cgi.h>
