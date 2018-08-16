@@ -119,10 +119,10 @@ CurlClient::perform()
 //-------------------------------------------------------------------------------------------------
 void
 CurlClient::pause(
-    cint_t a_bitmask
+    cint_t a_bitMask
 )
 {
-    CURLcode iRv = ::curl_easy_pause(_handle.get(), a_bitmask);
+    CURLcode iRv = ::curl_easy_pause(_handle.get(), a_bitMask);
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
@@ -141,23 +141,23 @@ CurlClient::info(
 //-------------------------------------------------------------------------------------------------
 void
 CurlClient::receive(
-    void         *a_buffer,
-    const size_t  a_buflen,
+    void         *a_buff,
+    const size_t  a_buffSize,
     size_t       *a_n
 )
 {
-    CURLcode iRv = ::curl_easy_recv(_handle.get(), a_buffer, a_buflen, a_n);
+    CURLcode iRv = ::curl_easy_recv(_handle.get(), a_buff, a_buffSize, a_n);
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
 void
 CurlClient::send(
-    const void   *a_buffer,
-    const size_t  a_buflen,
+    const void   *a_buff,
+    const size_t  a_buffSize,
     size_t       *a_n
 )
 {
-    CURLcode iRv = ::curl_easy_send(_handle.get(), a_buffer, a_buflen, a_n);
+    CURLcode iRv = ::curl_easy_send(_handle.get(), a_buff, a_buffSize, a_n);
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------

@@ -33,11 +33,11 @@ public:
 
     void           setOption(const CURLoption option, ...);
     void           perform();
-    void           pause(cint_t bitmask);
+    void           pause(cint_t bitMask);
     void           info(const CURLINFO info, ...);
 
-    void           receive(void *buffer, const size_t buflen, size_t *n);
-    void           send(const void *buffer, const size_t buflen, size_t *n);
+    void           receive(void *buff, const size_t buffSize, size_t *n);
+    void           send(const void *buff, const size_t buffSize, size_t *n);
 
 
     std::tstring_t escape(std::ctstring_t &str);
