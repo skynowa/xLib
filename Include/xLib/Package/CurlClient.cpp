@@ -28,12 +28,16 @@ xNAMESPACE_BEGIN2(xl, package)
 CurlClient::CurlClient() :
     _handle()
 {
+	CURLcode iRv = ::curl_global_init(CURL_GLOBAL_ALL);
+	xTEST_EQ(iRv, CURLE_OK);
+
     _handle = ::curl_easy_init();
     xTEST_EQ(_handle.isValid(), true);
 }
 //-------------------------------------------------------------------------------------------------
 CurlClient::~CurlClient()
 {
+	(void_t)::curl_global_cleanup();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
