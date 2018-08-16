@@ -140,7 +140,7 @@ CurlClient::info(
 }
 //-------------------------------------------------------------------------------------------------
 void
-CurlClient::recv(
+CurlClient::receive(
     void         *a_buffer,
     const size_t  a_buflen,
     size_t       *a_n

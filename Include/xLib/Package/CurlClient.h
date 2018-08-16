@@ -36,7 +36,7 @@ public:
     void           pause(cint_t bitmask);
     void           info(const CURLINFO info, ...);
 
-    void           recv(void *buffer, const size_t buflen, size_t *n);
+    void           receive(void *buffer, const size_t buflen, size_t *n);
     void           send(const void *buffer, const size_t buflen, size_t *n);
 
 
