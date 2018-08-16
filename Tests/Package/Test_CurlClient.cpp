@@ -19,6 +19,8 @@ Test_CurlClient::unit()
 {
 	CurlClient curl;
 
+	CURL *curlHandle = curl.get().get();
+
     xTEST_CASE("version, versionInfo")
     {
 		{
@@ -36,9 +38,24 @@ Test_CurlClient::unit()
 
     xTEST_CASE("setOption")
 	{
-		const CURLoption option = CURLOPT_URL;
+		std::tstring_t url = xT("http://www.cplusplus.com/reference/");
 
-		curl.setOption(option);
+		curl.setOption(CURLOPT_URL, url.c_str());
+
+		// header
+		CurlBuffer headerBuff;
+		::curl_easy_setopt(curlHandle, CURLOPT_WRITEHEADER, &headerBuff);
+		::curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, CurlClient::onWriteHeader);
+
+		// data
+		CurlBuffer writeBuff;
+		::curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &writeBuff);
+		::curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, CurlClient::onWriteData);
+
+		::curl_easy_setopt(curlHandle, CURLOPT_POST,0);
+		::curl_easy_setopt(curlHandle, CURLOPT_NOBODY, 0);
+
+		curl.perform();
 	}
 
     return true;

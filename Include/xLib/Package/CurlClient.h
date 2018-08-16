@@ -15,6 +15,58 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, package)
 
+struct CurlBuffer
+{
+	CurlBuffer()
+	{
+		buf = NULL;
+		size = 0;
+		read_pos = 0;
+	}
+
+	void add(char* buffer, size_t buflen)
+	{
+		buf=(char*)realloc(buf, size + buflen + 1);
+		if (buf)
+		{
+			memcpy(buf + size, buffer, buflen);
+			size += buflen;
+			buf[size] = 0;
+		}
+	}
+
+	size_t get(char* buffer, size_t buflen)
+	{
+		if ( read_pos < size )
+		{
+			size_t len = ( size - read_pos < buflen ) ? (size - read_pos) : buflen;
+			memcpy(buffer, buf + read_pos, len);
+			read_pos += len;
+			return len;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+	int Free()
+	{
+		if (buf&&size)
+		{
+			free(buf);
+			buf = NULL;
+			size = 0;
+			return 1;
+		}
+		return 0;
+	}
+
+	char* buf;
+	size_t size;
+	size_t read_pos;
+};
+
 class CurlClient
     ///< CURL client
 {
@@ -52,6 +104,15 @@ public:
     /// void               curl_slist_free_all(struct curl_slist *);
 
     std::tstring_t strError(const CURLcode code);
+
+public:
+	static
+	size_t onWriteHeader(void_t *buff, size_t size, size_t items, void_t *userData);
+	static
+	size_t onWriteData(void_t *buff, size_t size, size_t items, void_t *userData);
+
+	static
+	size_t onReadData(void_t *buff, size_t size, size_t items, void_t *userData);
 
 private:
     xNO_COPY_ASSIGN(CurlClient)
