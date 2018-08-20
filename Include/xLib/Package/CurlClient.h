@@ -3,6 +3,7 @@
  * \brief  CURL client
  *
  * https://curl.haxx.se/libcurl/c/allfuncs.html
+ * https://curl.haxx.se/libcurl/c/example.html
  */
 
 
