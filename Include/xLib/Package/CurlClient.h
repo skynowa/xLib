@@ -16,27 +16,28 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, package)
 
-struct CurlBuffer
+class CurlBuffer
 {
+public:
 	CurlBuffer()
 	{
 	}
 
-	void add(char *buffer, const size_t buflen)
+	void add(const char *a_buffer, const size_t a_buflen)
 	{
-		_buff = (char *)::realloc(_buff, _size + buflen + 1);
+		_buff = (char *)::realloc(_buff, _size + a_buflen + 1);
 		if (_buff) {
-			::memcpy(_buff + _size, buffer, buflen);
-			_size += buflen;
+			::memcpy(_buff + _size, a_buffer, a_buflen);
+			_size       += a_buflen;
 			_buff[_size] = 0;
 		}
 	}
 
-	size_t get(char *buffer, const size_t buflen)
+	size_t get(char *a_buffer, const size_t a_buflen) const
 	{
 		if (_read_pos < _size) {
-			size_t len = ( _size - _read_pos < buflen ) ? (_size - _read_pos) : buflen;
-			::memcpy(buffer, _buff + _read_pos, len);
+			size_t len = ( _size - _read_pos < a_buflen ) ? (_size - _read_pos) : a_buflen;
+			::memcpy(a_buffer, _buff + _read_pos, len);
 			_read_pos += len;
 
 			return len;
@@ -58,11 +59,14 @@ struct CurlBuffer
 		return 0;
 	}
 
-	char   *_buff {};
-	size_t  _size {};
-	size_t  _read_pos {};
-};
+private:
+	char          *_buff {};
+	size_t         _size {};
+	mutable size_t _read_pos {};
 
+	xNO_COPY_ASSIGN(CurlBuffer);
+};
+//-------------------------------------------------------------------------------------------------
 class CurlClient
     ///< CURL client
 {
