@@ -270,6 +270,7 @@ CurlClient::strError(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+/* static */
 size_t
 CurlClient::onWriteHeader(
 	void_t *a_buff,
@@ -286,6 +287,7 @@ CurlClient::onWriteHeader(
 	return buffSize;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 size_t
 CurlClient::onWriteData(
 	void_t *a_buff,
@@ -302,9 +304,10 @@ CurlClient::onWriteData(
 	return buffSize;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 size_t
 CurlClient::onReadData(
-	void_t *a_buff,
+	void_t *a_buff,			///< [out]
 	size_t  a_size,
 	size_t  a_items,
 	void_t *a_userData
