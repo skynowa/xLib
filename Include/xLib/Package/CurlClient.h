@@ -20,52 +20,47 @@ struct CurlBuffer
 {
 	CurlBuffer()
 	{
-		buf = NULL;
-		size = 0;
-		read_pos = 0;
 	}
 
-	void add(char* buffer, size_t buflen)
+	void add(char *buffer, const size_t buflen)
 	{
-		buf=(char*)realloc(buf, size + buflen + 1);
-		if (buf)
-		{
-			memcpy(buf + size, buffer, buflen);
-			size += buflen;
-			buf[size] = 0;
+		_buff = (char *)::realloc(_buff, _size + buflen + 1);
+		if (_buff) {
+			::memcpy(_buff + _size, buffer, buflen);
+			_size += buflen;
+			_buff[_size] = 0;
 		}
 	}
 
-	size_t get(char* buffer, size_t buflen)
+	size_t get(char *buffer, const size_t buflen)
 	{
-		if ( read_pos < size )
-		{
-			size_t len = ( size - read_pos < buflen ) ? (size - read_pos) : buflen;
-			memcpy(buffer, buf + read_pos, len);
-			read_pos += len;
+		if (_read_pos < _size) {
+			size_t len = ( _size - _read_pos < buflen ) ? (_size - _read_pos) : buflen;
+			::memcpy(buffer, _buff + _read_pos, len);
+			_read_pos += len;
+
 			return len;
 		}
-		else
-		{
-			return 0;
-		}
-	}
 
-	int Free()
-	{
-		if (buf&&size)
-		{
-			free(buf);
-			buf = NULL;
-			size = 0;
-			return 1;
-		}
 		return 0;
 	}
 
-	char* buf;
-	size_t size;
-	size_t read_pos;
+	int free()
+	{
+		if (_buff && _size) {
+			::free(_buff);
+			_buff = nullptr;
+			_size = 0;
+
+			return 1;
+		}
+
+		return 0;
+	}
+
+	char   *_buff {};
+	size_t  _size {};
+	size_t  _read_pos {};
 };
 
 class CurlClient
