@@ -102,7 +102,7 @@ public:
     void           reset();
 
     void           setOption(const CURLoption option, ...);
-    void           setOptions();
+    void           setOptionsDefault();
     void           perform();
     void           pause(cint_t bitMask);
     void           info(const CURLINFO info, ...);
