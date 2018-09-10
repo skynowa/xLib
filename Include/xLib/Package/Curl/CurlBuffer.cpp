@@ -6,6 +6,8 @@
 
 #include "CurlBuffer.h"
 
+#include <xLib/Core/Utils.h>
+
 
 xNAMESPACE_BEGIN2(xl, package)
 
@@ -14,6 +16,16 @@ xNAMESPACE_BEGIN2(xl, package)
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+CurlBuffer::CurlBuffer()
+{
+
+}
+//-------------------------------------------------------------------------------------------------
+CurlBuffer::~CurlBuffer()
+{
+	clear();
+}
 //-------------------------------------------------------------------------------------------------
 bool
 CurlBuffer::isEmpty() const
@@ -31,20 +43,6 @@ std::size_t
 CurlBuffer::size() const
 {
 	return _size;
-}
-//-------------------------------------------------------------------------------------------------
-void
-CurlBuffer::set(
-	const char   *a_buff,
-	const size_t  a_buffSize
-)
-{
-	_buff = (char *)::realloc(_buff, _size + a_buffSize + 1);
-	if (_buff) {
-		::memcpy(_buff + _size, a_buff, a_buffSize);
-		_size       += a_buffSize;
-		_buff[_size] = '\0';
-	}
 }
 //-------------------------------------------------------------------------------------------------
 size_t
@@ -65,14 +63,28 @@ CurlBuffer::get(
 }
 //-------------------------------------------------------------------------------------------------
 void
+CurlBuffer::set(
+	const char   *a_buff,
+	const size_t  a_buffSize
+)
+{
+	_buff = (char *)::realloc(_buff, _size + a_buffSize + 1);
+	if (_buff) {
+		::memcpy(_buff + _size, a_buff, a_buffSize);
+		_size       += a_buffSize;
+		_buff[_size] = '\0';
+	}
+}
+//-------------------------------------------------------------------------------------------------
+void
 CurlBuffer::clear()
 {
-	if (_buff && _size) {
-		::free(_buff);
-
-		_buff = nullptr;
-		_size = 0;
+	if ( isEmpty() ) {
+		return;
 	}
+
+	Utils::bufferFreeT(_buff);
+	_size = 0;
 }
 //-------------------------------------------------------------------------------------------------
 
