@@ -35,30 +35,30 @@ CurlBuffer::size() const
 //-------------------------------------------------------------------------------------------------
 void
 CurlBuffer::add(
-	const char   *a_buffer,
-	const size_t  a_buflen
+	const char   *a_buff,
+	const size_t  a_buffSize
 )
 {
-	_buff = (char *)::realloc(_buff, _size + a_buflen + 1);
+	_buff = (char *)::realloc(_buff, _size + a_buffSize + 1);
 	if (_buff) {
-		::memcpy(_buff + _size, a_buffer, a_buflen);
-		_size       += a_buflen;
+		::memcpy(_buff + _size, a_buff, a_buffSize);
+		_size       += a_buffSize;
 		_buff[_size] = 0;
 	}
 }
 //-------------------------------------------------------------------------------------------------
 size_t
 CurlBuffer::get(
-	char         *a_buffer,
-	const size_t  a_buflen
+	char         *a_buff,
+	const size_t  a_buffSize
 ) const
 {
 	if (_read_pos < _size) {
-		size_t len = ( _size - _read_pos < a_buflen ) ? (_size - _read_pos) : a_buflen;
-		::memcpy(a_buffer, _buff + _read_pos, len);
-		_read_pos += len;
+		const size_t size = (_size - _read_pos < a_buffSize) ? (_size - _read_pos) : a_buffSize;
+		::memcpy(a_buff, _buff + _read_pos, size);
+		_read_pos += size;
 
-		return len;
+		return size;
 	}
 
 	return 0;

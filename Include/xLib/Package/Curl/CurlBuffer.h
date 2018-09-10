@@ -23,9 +23,9 @@ public:
 
 	std::size_t size() const;
 
-	void        add(const char *a_buffer, const size_t a_buflen);
+	void        add(const char *buff, const size_t buffSize);
 
-	size_t      get(char *a_buffer, const size_t a_buflen) const;
+	size_t      get(char *buff, const size_t buffSize) const;
 
 	void        clear();
 
