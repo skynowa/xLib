@@ -6,6 +6,7 @@
 
 #pragma once
 
+
 #include <xLib/Package/Curl/CurlClient.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, package)
@@ -15,9 +16,9 @@ struct CurlBaseData
 {
 	long int    use_header {};
 
-	long int    ssl_verify_peer {};
-	long int    ssl_verify_host {};
-	long int    ssl_version {};
+	long int    ssl_verify_peer {1};
+	long int    ssl_verify_host {2};
+	long int    ssl_version {CURL_SSLVERSION_DEFAULT};
 	std::string ssl_cert;
 	std::string ssl_cert_pass;
 
@@ -37,13 +38,13 @@ struct CurlBaseData
 	int         timeout_ms {};
 	int         continue_timeout_ms {};
 
-	ProxyType   proxy_type {};
+	ProxyType   proxy_type {ProxyType::Http};
 	std::string proxy;
 	std::string proxy_userpass;
 	std::string userpass;
 
 	curl_slist *slist {};
-	std::map<std::string, std::string> add_header;
+	std::map_tstring_t add_header;
 
 	std::string referer;
 	std::string accept_encoding;
