@@ -277,7 +277,7 @@ CurlClient::getOptionsOut()
 	{
 		char *buff {};
 
-		ccRv = ::curl_easy_getinfo(curl, CURLINFO_CONTENT_TYPE, &buff);
+		ccRv = info(CURLINFO_CONTENT_TYPE, &buff);
 		if (ccRv != CURLE_OK) {
 			_data.content_type.clear();
 		} else {
@@ -288,7 +288,7 @@ CurlClient::getOptionsOut()
 	{
 		char *buff {};
 
-		ccRv = ::curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &buff);
+		ccRv = info(CURLINFO_EFFECTIVE_URL, &buff);
 		if (ccRv != CURLE_OK) {
 			_data.efective_url.clear();
 		} else {
@@ -298,7 +298,7 @@ CurlClient::getOptionsOut()
 
 	{
 		int state {};
-		ccRv = ::curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &state);
+		ccRv = info(CURLINFO_RESPONSE_CODE, &state);
 		if (ccRv != CURLE_OK) {
 			_data.state = 0;
 		} else {
@@ -308,7 +308,7 @@ CurlClient::getOptionsOut()
 
 	{
 		double total_time_sec {};
-		ccRv = ::curl_easy_getinfo(curl, CURLINFO_TOTAL_TIME, &total_time_sec);
+		ccRv = info(CURLINFO_TOTAL_TIME, &total_time_sec);
 		if (ccRv != CURLE_OK) {
 			_data.total_time_sec = 0.0;
 		} else {
