@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xl, package)
 
 struct CurlBaseData
-    /// CURL base data
+    /// base data
 {
 	long int    use_header {};
 
