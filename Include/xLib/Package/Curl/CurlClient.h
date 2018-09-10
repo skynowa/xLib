@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN2(xl, package)
 
 //-------------------------------------------------------------------------------------------------
 class CurlClient
-    ///< CURL client
+    ///< client
 {
 public:
     explicit       CurlClient();

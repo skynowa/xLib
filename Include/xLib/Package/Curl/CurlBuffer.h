@@ -12,6 +12,7 @@
 xNAMESPACE_BEGIN2(xl, package)
 
 class CurlBuffer
+	/// buffer
 {
 public:
 	            CurlBuffer() = default;
