@@ -99,11 +99,11 @@ CurlBase::setOptionsDefault()
 				setOption(CURLOPT_CONNECTTIMEOUT_MS, data.timeout_ms);
 			}
 		}
-		else if (data.timeout > 0) {
+		else if (data.timeout_sec > 0) {
 			setOption(CURLOPT_TIMEOUT_MS,        0L);
 			setOption(CURLOPT_CONNECTTIMEOUT_MS, 0L);
-			setOption(CURLOPT_TIMEOUT,           data.timeout);
-			setOption(CURLOPT_CONNECTTIMEOUT,    data.timeout);
+			setOption(CURLOPT_TIMEOUT,           data.timeout_sec);
+			setOption(CURLOPT_CONNECTTIMEOUT,    data.timeout_sec);
 		}
 
 		if (data.continue_timeout_ms > 0) {
