@@ -25,8 +25,10 @@ xNAMESPACE_BEGIN2(xl, package)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-CurlClient::CurlClient() :
-    _handle()
+CurlClient::CurlClient(
+	CurlClientData &a_data
+) :
+	_data(a_data)
 {
 	CURLcode iRv = ::curl_global_init(CURL_GLOBAL_ALL);
 	xTEST_EQ(iRv, CURLE_OK);
@@ -117,72 +119,25 @@ CurlClient::setOption(
 void
 CurlClient::setOptionsDefault()
 {
-#if 1
-	long int    _use_header {};
-
-	long int    _ssl_verify_peer {};
-	long int    _ssl_verify_host {};
-	long int    _ssl_version {};
-	std::string _ssl_cert;
-	std::string _ssl_cert_pass;
-
-	long int    _http_version {20};
-
-	bool        _verbose {true};
-
-	std::string _cookie_file;
-	std::string _add_cookie;
-
-	std::string _encoding_param;
-	std::string _ciphers;
-
-	char        _error_str[255] {};
-
-	int         _timeout {};
-	int         _timeout_ms {};
-	int         _continue_timeout_ms {};
-
-	ProxyType   _proxy_type {};
-	std::string _proxy;
-	std::string _proxy_userpass;
-	std::string _userpass;
-
-	curl_slist *_slist {};
-	std::map<std::string, std::string> _add_header;
-
-	std::string _referer;
-	std::string _accept_encoding;
-	std::string _agent;
-
-	bool        _follow_location {true};
-	int         _max_redirects {100};
-
-	bool        _debug_header {true};
-	std::string _debug_header_in;
-	std::string _debug_header_out;
-	std::string _debug_all_data;
-	DebugData   _debug_data;
-#endif
-
 	CURL *curl = get().get();
 
-	setOption(CURLOPT_HEADER, _use_header);
+	setOption(CURLOPT_HEADER, _data.use_header);
 
 	//  CURLOPT_SSL...
 	{
-		setOption(CURLOPT_SSL_VERIFYPEER, _ssl_verify_peer);
-		setOption(CURLOPT_SSL_VERIFYHOST, _ssl_verify_host);
-		setOption(CURLOPT_SSLVERSION,     _ssl_version);
+		setOption(CURLOPT_SSL_VERIFYPEER, _data.ssl_verify_peer);
+		setOption(CURLOPT_SSL_VERIFYHOST, _data.ssl_verify_host);
+		setOption(CURLOPT_SSLVERSION,     _data.ssl_version);
 
-		if ( !_ssl_cert.empty() ) {
-			setOption(CURLOPT_SSLCERT,       _ssl_cert.c_str());
-			setOption(CURLOPT_SSLCERTPASSWD, _ssl_cert_pass.c_str());
+		if ( !_data.ssl_cert.empty() ) {
+			setOption(CURLOPT_SSLCERT,       _data.ssl_cert.c_str());
+			setOption(CURLOPT_SSLCERTPASSWD, _data.ssl_cert_pass.c_str());
 		}
 	}
 
 	// CURLOPT_HTTP_VERSION
 	{
-		switch (_http_version) {
+		switch (_data.http_version) {
 		case 10:
 			setOption(CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
 			break;
@@ -198,33 +153,33 @@ CurlClient::setOptionsDefault()
 		}
 	}
 
-	if (_verbose) {
+	if (_data.verbose) {
 		setOption(CURLOPT_VERBOSE, 1L);
 	}
 
 	// CURLOPT_COOKIE...
 	{
-		if ( !_cookie_file.empty() ) {
+		if ( !_data.cookie_file.empty() ) {
 			setOption(CURLOPT_COOKIESESSION, 0L);
-			setOption(CURLOPT_COOKIEFILE,    _cookie_file.c_str());
-			setOption(CURLOPT_COOKIEJAR,     _cookie_file.c_str());
+			setOption(CURLOPT_COOKIEFILE,    _data.cookie_file.c_str());
+			setOption(CURLOPT_COOKIEJAR,     _data.cookie_file.c_str());
 		}
 
-		if ( !_add_cookie.empty() ) {
-			setOption(CURLOPT_COOKIE, _add_cookie.c_str());
+		if ( !_data.add_cookie.empty() ) {
+			setOption(CURLOPT_COOKIE, _data.add_cookie.c_str());
 		}
 	}
 
-	if ( !_encoding_param.empty() ) {
-		setOption(CURLOPT_ACCEPT_ENCODING, _encoding_param.c_str());
+	if ( !_data.encoding_param.empty() ) {
+		setOption(CURLOPT_ACCEPT_ENCODING, _data.encoding_param.c_str());
 	}
 
-	if ( !_ciphers.empty() ) {
-		setOption(CURLOPT_SSL_CIPHER_LIST, _ciphers.c_str());
+	if ( !_data.ciphers.empty() ) {
+		setOption(CURLOPT_SSL_CIPHER_LIST, _data.ciphers.c_str());
 	}
 
 
-	setOption(CURLOPT_ERRORBUFFER, _error_str);
+	setOption(CURLOPT_ERRORBUFFER, _data.error_str);
 
 	// FTP
 	{
@@ -237,89 +192,89 @@ CurlClient::setOptionsDefault()
 
 	// CURLOPT_TIMEOUT...
 	{
-		if (_timeout_ms > 0) {
-			if (_timeout_ms >= 1000) {
+		if (_data.timeout_ms > 0) {
+			if (_data.timeout_ms >= 1000) {
 				setOption(CURLOPT_TIMEOUT_MS,        0L);
 				setOption(CURLOPT_CONNECTTIMEOUT_MS, 0L);
-				setOption(CURLOPT_TIMEOUT,           _timeout_ms / 1000);
-				setOption(CURLOPT_CONNECTTIMEOUT ,   _timeout_ms / 1000);
+				setOption(CURLOPT_TIMEOUT,           _data.timeout_ms / 1000);
+				setOption(CURLOPT_CONNECTTIMEOUT ,   _data.timeout_ms / 1000);
 			} else {
 				setOption(CURLOPT_TIMEOUT,           0L);
 				setOption(CURLOPT_CONNECTTIMEOUT,    0L);
-				setOption(CURLOPT_TIMEOUT_MS,        _timeout_ms);
-				setOption(CURLOPT_CONNECTTIMEOUT_MS, _timeout_ms);
+				setOption(CURLOPT_TIMEOUT_MS,        _data.timeout_ms);
+				setOption(CURLOPT_CONNECTTIMEOUT_MS, _data.timeout_ms);
 			}
 		}
-		else if (_timeout > 0) {
+		else if (_data.timeout > 0) {
 			setOption(CURLOPT_TIMEOUT_MS,        0L);
 			setOption(CURLOPT_CONNECTTIMEOUT_MS, 0L);
-			setOption(CURLOPT_TIMEOUT,           _timeout);
-			setOption(CURLOPT_CONNECTTIMEOUT,    _timeout);
+			setOption(CURLOPT_TIMEOUT,           _data.timeout);
+			setOption(CURLOPT_CONNECTTIMEOUT,    _data.timeout);
 		}
 
-		if (_continue_timeout_ms > 0) {
-			setOption(CURLOPT_EXPECT_100_TIMEOUT_MS, _continue_timeout_ms);
+		if (_data.continue_timeout_ms > 0) {
+			setOption(CURLOPT_EXPECT_100_TIMEOUT_MS, _data.continue_timeout_ms);
 		}
 	}
 
 	// CURLOPT_PROXY
-	if ( !_proxy.empty() ) {
-		setOption(CURLOPT_PROXY,     _proxy.c_str());
-		setOption(CURLOPT_PROXYTYPE, _proxy_type);
+	if ( !_data.proxy.empty() ) {
+		setOption(CURLOPT_PROXY,     _data.proxy.c_str());
+		setOption(CURLOPT_PROXYTYPE, _data.proxy_type);
 
-		if ( !_proxy_userpass.empty() ) {
-			setOption(CURLOPT_PROXYUSERPWD, _proxy_userpass.c_str());
+		if ( !_data.proxy_userpass.empty() ) {
+			setOption(CURLOPT_PROXYUSERPWD, _data.proxy_userpass.c_str());
 		}
 	}
 
-	if ( !_userpass.empty() ) {
-		setOption(CURLOPT_USERPWD, _userpass.c_str());
+	if ( !_data.userpass.empty() ) {
+		setOption(CURLOPT_USERPWD, _data.userpass.c_str());
 	}
 
 	// CURLOPT_HTTPHEADER
 	{
-		_slist = nullptr;
+		_data.slist = nullptr;
 
-		for (auto &it_header : _add_header) {
+		for (auto &it_header : _data.add_header) {
 			const std::string value = it_header.first + ": " + it_header.second;
 
-			_slist = ::curl_slist_append(_slist, value.c_str());
+			_data.slist = ::curl_slist_append(_data.slist, value.c_str());
 		}
 
-		setOption(CURLOPT_HTTPHEADER, _slist);
+		setOption(CURLOPT_HTTPHEADER, _data.slist);
 	}
 
-	if ( !_referer.empty() ) {
-		setOption(CURLOPT_REFERER, _referer.c_str());
+	if ( !_data.referer.empty() ) {
+		setOption(CURLOPT_REFERER, _data.referer.c_str());
 	}
 
-	if ( !_accept_encoding.empty() ) {
-		setOption(CURLOPT_ACCEPT_ENCODING, _accept_encoding.c_str());
+	if ( !_data.accept_encoding.empty() ) {
+		setOption(CURLOPT_ACCEPT_ENCODING, _data.accept_encoding.c_str());
 	}
 
-	if ( !_agent.empty() ) {
-		setOption(CURLOPT_USERAGENT, _agent.c_str());
+	if ( !_data.agent.empty() ) {
+		setOption(CURLOPT_USERAGENT, _data.agent.c_str());
 	}
 
 	// curl_easy_setopt(curl, CURLOPT_AUTOREFERER , 1);
-	setOption(CURLOPT_FOLLOWLOCATION, _follow_location);
-	setOption(CURLOPT_MAXREDIRS,      _max_redirects);
+	setOption(CURLOPT_FOLLOWLOCATION, _data.follow_location);
+	setOption(CURLOPT_MAXREDIRS,      _data.max_redirects);
 
 	// CURLOPT_DEBUG...
 	{
-		_debug_header_in.clear();
-		_debug_header_out.clear();
-		_debug_all_data.clear();
+		_data.debug_header_in.clear();
+		_data.debug_header_out.clear();
+		_data.debug_all_data.clear();
 
-		if (_debug_header) {
+		if (_data.debug_header) {
 			setOption(CURLOPT_VERBOSE,       1L);
 			setOption(CURLOPT_DEBUGFUNCTION, onDebug);
 
-			_debug_data.header_in.free();
-			_debug_data.header_out.free();
-			_debug_data.all_data.free();
+			_data.debug_data.header_in.free();
+			_data.debug_data.header_out.free();
+			_data.debug_data.all_data.free();
 
-			setOption(CURLOPT_DEBUGDATA, &_debug_data);
+			setOption(CURLOPT_DEBUGDATA, &_data.debug_data);
 		}
 	}
 }

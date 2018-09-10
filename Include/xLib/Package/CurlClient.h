@@ -67,29 +67,79 @@ private:
 	xNO_COPY_ASSIGN(CurlBuffer);
 };
 //-------------------------------------------------------------------------------------------------
+enum class ProxyType
+{
+	Http           = CURLPROXY_HTTP,
+	Http10         = CURLPROXY_HTTP_1_0,
+	Https          = CURLPROXY_HTTPS,
+	Socks4         = CURLPROXY_SOCKS4,
+	Socks4A        = CURLPROXY_SOCKS4A,
+	Socks5         = CURLPROXY_SOCKS5,
+	Socks5Hostname = CURLPROXY_SOCKS5_HOSTNAME
+};
+
+struct DebugData
+{
+	CurlBuffer header_in;
+	CurlBuffer header_out;
+	CurlBuffer all_data;
+};
+//-------------------------------------------------------------------------------------------------
+struct CurlClientData
+    /// CURL client data
+{
+	long int    use_header {};
+
+	long int    ssl_verify_peer {};
+	long int    ssl_verify_host {};
+	long int    ssl_version {};
+	std::string ssl_cert;
+	std::string ssl_cert_pass;
+
+	long int    http_version {20};
+
+	bool        verbose {true};
+
+	std::string cookie_file;
+	std::string add_cookie;
+
+	std::string encoding_param;
+	std::string ciphers;
+
+	char        error_str[255] {};
+
+	int         timeout {};
+	int         timeout_ms {};
+	int         continue_timeout_ms {};
+
+	ProxyType   proxy_type {};
+	std::string proxy;
+	std::string proxy_userpass;
+	std::string userpass;
+
+	curl_slist *slist {};
+	std::map<std::string, std::string> add_header;
+
+	std::string referer;
+	std::string accept_encoding;
+	std::string agent;
+
+	bool        follow_location {true};
+	int         max_redirects {100};
+
+	bool        debug_header {true};
+	std::string debug_header_in;
+	std::string debug_header_out;
+	std::string debug_all_data;
+	DebugData   debug_data;
+};
+xTYPEDEF_CONST(CurlClientData);
+//-------------------------------------------------------------------------------------------------
 class CurlClient
     ///< CURL client
 {
 public:
-	enum class ProxyType
-	{
-		Http           = CURLPROXY_HTTP,
-		Http10         = CURLPROXY_HTTP_1_0,
-		Https          = CURLPROXY_HTTPS,
-		Socks4         = CURLPROXY_SOCKS4,
-		Socks4A        = CURLPROXY_SOCKS4A,
-		Socks5         = CURLPROXY_SOCKS5,
-		Socks5Hostname = CURLPROXY_SOCKS5_HOSTNAME
-	};
-
-	struct DebugData
-	{
-		CurlBuffer header_in;
-		CurlBuffer header_out;
-		CurlBuffer all_data;
-	};
-
-                   CurlClient();
+    explicit       CurlClient(CurlClientData &data);
         ///< constructor
     virtual       ~CurlClient();
         ///< destructor
@@ -133,6 +183,9 @@ public:
 	size_t onReadData(void_t *buff, size_t size, size_t items, void_t *userData);
 	static
 	int    onDebug(CURL *curl, curl_infotype type, char *buf, size_t len, void *useData);
+
+protected:
+	CurlClientData &_data;
 
 private:
     xNO_COPY_ASSIGN(CurlClient)
