@@ -15,19 +15,14 @@ class CurlBuffer
 	/// buffer
 {
 public:
-	            CurlBuffer() = default;
-	           ~CurlBuffer() = default;
+	            CurlBuffer();
+	           ~CurlBuffer();
 
 	bool        isEmpty() const;
-
 	std::string buffer() const;
-
 	std::size_t size() const;
-
-	void        set(const char *buff, const size_t buffSize);
-
 	size_t      get(char *buff, const size_t buffSize) const;
-
+	void        set(const char *buff, const size_t buffSize);
 	void        clear();
 
 private:
