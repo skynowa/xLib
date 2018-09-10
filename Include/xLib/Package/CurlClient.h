@@ -111,8 +111,64 @@ struct DebugData
 	CurlBuffer all_data;
 };
 //-------------------------------------------------------------------------------------------------
-struct CurlClientData
-    /// CURL client data
+class CurlClient
+    ///< CURL client
+{
+public:
+    explicit       CurlClient();
+        ///< constructor
+    virtual       ~CurlClient();
+        ///< destructor
+
+    std::tstring_t version();
+    std::tstring_t versionInfo(const CURLversion version);
+
+    // handle
+    HandleCurl &   get();
+    void           reset();
+
+    void           setOption(const CURLoption option, ...);
+
+    void           perform();
+    void           pause(cint_t bitMask);
+
+    void           info(const CURLINFO info, ...);
+
+    void           receive(void *buff, const size_t buffSize, size_t *n);
+    void           send(const void *buff, const size_t buffSize, size_t *n);
+
+
+    std::tstring_t escape(std::ctstring_t &str);
+    std::tstring_t unescape(std::ctstring_t &str);
+
+    static
+    std::tstring_t escapeUrl(std::ctstring_t &str);
+    static
+    std::tstring_t unescapeUrl(std::ctstring_t &str);
+
+    /// struct curl_slist *curl_slist_append(struct curl_slist *,  const char *);
+    /// void               curl_slist_free_all(struct curl_slist *);
+
+    std::tstring_t strError(const CURLcode code);
+
+protected:
+	static
+	size_t         onWriteHeader(void_t *buff, size_t size, size_t items, void_t *userData);
+	static
+	size_t         onWriteData(void_t *buff, size_t size, size_t items, void_t *userData);
+	static
+	size_t         onReadData(void_t *buff, size_t size, size_t items, void_t *userData);
+	static
+	int            onDebug(CURL *curl, curl_infotype type, char *buf, size_t len, void *useData);
+
+    HandleCurl _handle;
+
+private:
+    xNO_COPY_ASSIGN(CurlClient)
+};
+//-------------------------------------------------------------------------------------------------
+struct CurlBaseData
+    /// CURL base data
 {
 	long int    use_header {};
 
@@ -165,69 +221,24 @@ struct CurlClientData
 	int         state {};
 	double      total_time_sec {};
 };
-xTYPEDEF_CONST(CurlClientData);
+xTYPEDEF_CONST(CurlBaseData);
 //-------------------------------------------------------------------------------------------------
-class CurlClient
-    ///< CURL client
+class CurlBase :
+	public CurlClient
+    ///< CURL base
 {
-public:
-    explicit       CurlClient(CurlClientData &data);
+protected:
+	CurlBaseData &data;
+
+    explicit CurlBase(CurlBaseData &data);
         ///< constructor
-    virtual       ~CurlClient();
+    virtual ~CurlBase();
         ///< destructor
 
-    std::tstring_t version();
-    std::tstring_t versionInfo(const CURLversion version);
-
-    // handle
-    HandleCurl &   get();
-    void           reset();
-
-    void           setOption(const CURLoption option, ...);
-
-    void           perform();
-    void           pause(cint_t bitMask);
-
-    void           info(const CURLINFO info, ...);
-
-    void           receive(void *buff, const size_t buffSize, size_t *n);
-    void           send(const void *buff, const size_t buffSize, size_t *n);
-
-
-    std::tstring_t escape(std::ctstring_t &str);
-    std::tstring_t unescape(std::ctstring_t &str);
-
-    static
-    std::tstring_t escapeUrl(std::ctstring_t &str);
-    static
-    std::tstring_t unescapeUrl(std::ctstring_t &str);
-
-    /// struct curl_slist *curl_slist_append(struct curl_slist *,  const char *);
-    /// void               curl_slist_free_all(struct curl_slist *);
-
-    std::tstring_t strError(const CURLcode code);
-
-protected:
-	CurlClientData &_data;
-
-    void           setOptionsDefault();
+    void     setOptionsDefault();
         ///< set options in
-    void           getInfos();
+    void     getInfos();
         ///< get options out
-
-	static
-	size_t         onWriteHeader(void_t *buff, size_t size, size_t items, void_t *userData);
-	static
-	size_t         onWriteData(void_t *buff, size_t size, size_t items, void_t *userData);
-	static
-	size_t         onReadData(void_t *buff, size_t size, size_t items, void_t *userData);
-	static
-	int            onDebug(CURL *curl, curl_infotype type, char *buf, size_t len, void *useData);
-
-private:
-    xNO_COPY_ASSIGN(CurlClient)
-
-    HandleCurl _handle;
 };
 
 xNAMESPACE_END2(xl, package)
