@@ -115,7 +115,7 @@ CurlClient::setOption(
 }
 //-------------------------------------------------------------------------------------------------
 void
-CurlClient::setOptions()
+CurlClient::setOptionsDefault()
 {
 #if 1
 	long int    _use_header {};
