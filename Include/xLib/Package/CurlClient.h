@@ -71,6 +71,24 @@ class CurlClient
     ///< CURL client
 {
 public:
+	enum class ProxyType
+	{
+		Http           = CURLPROXY_HTTP,
+		Http10         = CURLPROXY_HTTP_1_0,
+		Https          = CURLPROXY_HTTPS,
+		Socks4         = CURLPROXY_SOCKS4,
+		Socks4A        = CURLPROXY_SOCKS4A,
+		Socks5         = CURLPROXY_SOCKS5,
+		Socks5Hostname = CURLPROXY_SOCKS5_HOSTNAME
+	};
+
+	struct DebugData
+	{
+		CurlBuffer header_in;
+		CurlBuffer header_out;
+		CurlBuffer all_data;
+	};
+
                    CurlClient();
         ///< constructor
     virtual       ~CurlClient();
@@ -84,6 +102,7 @@ public:
     void           reset();
 
     void           setOption(const CURLoption option, ...);
+    void           setOptions();
     void           perform();
     void           pause(cint_t bitMask);
     void           info(const CURLINFO info, ...);
@@ -110,14 +129,15 @@ public:
 	size_t onWriteHeader(void_t *buff, size_t size, size_t items, void_t *userData);
 	static
 	size_t onWriteData(void_t *buff, size_t size, size_t items, void_t *userData);
-
 	static
 	size_t onReadData(void_t *buff, size_t size, size_t items, void_t *userData);
+	static
+	int    onDebug(CURL *curl, curl_infotype type, char *buf, size_t len, void *useData);
 
 private:
     xNO_COPY_ASSIGN(CurlClient)
 
-    HandleCurl     _handle;
+    HandleCurl _handle;
 };
 
 xNAMESPACE_END2(xl, package)
