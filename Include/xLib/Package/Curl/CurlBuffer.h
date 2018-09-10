@@ -24,7 +24,7 @@ public:
 
 	std::size_t size() const;
 
-	void        add(const char *buff, const size_t buffSize);
+	void        set(const char *buff, const size_t buffSize);
 
 	size_t      get(char *buff, const size_t buffSize) const;
 
