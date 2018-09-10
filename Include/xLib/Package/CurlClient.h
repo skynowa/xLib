@@ -67,6 +67,15 @@ private:
 	xNO_COPY_ASSIGN(CurlBuffer);
 };
 //-------------------------------------------------------------------------------------------------
+enum class HttpVersion
+{
+	Default = CURL_HTTP_VERSION_NONE,
+	v1      = CURL_HTTP_VERSION_1_0,
+	v2      = CURL_HTTP_VERSION_2_0,
+	v2Tls   = CURL_HTTP_VERSION_2TLS,
+	v2Prior = CURL_HTTP_VERSION_2_PRIOR_KNOWLEDGE
+};
+
 enum class ProxyType
 {
 	Http           = CURLPROXY_HTTP,
@@ -96,7 +105,7 @@ struct CurlClientData
 	std::string ssl_cert;
 	std::string ssl_cert_pass;
 
-	long int    http_version {20};
+	HttpVersion http_version {HttpVersion::Default};
 
 	bool        verbose {true};
 

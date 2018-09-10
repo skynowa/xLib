@@ -135,23 +135,7 @@ CurlClient::setOptionsDefault()
 		}
 	}
 
-	// CURLOPT_HTTP_VERSION
-	{
-		switch (_data.http_version) {
-		case 10:
-			setOption(CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
-			break;
-		case 11:
-			setOption(CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-			break;
-		case 20:
-			setOption(CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_2_0);
-			break;
-		default:
-			xTEST(false);
-			break;
-		}
-	}
+	setOption(CURLOPT_HTTP_VERSION, _data.http_version);
 
 	if (_data.verbose) {
 		setOption(CURLOPT_VERBOSE, 1L);
