@@ -264,6 +264,78 @@ CurlClient::setOptionsDefault()
 }
 //-------------------------------------------------------------------------------------------------
 void
+CurlClient::getOptions()
+{
+	if ( !_handle.isValid() ) {
+		return;
+	}
+
+	CURLcode  ccRv {};
+
+	CURL *curl = get().get();
+
+	{
+		char *tmp_buf {};
+
+		ccRv = ::curl_easy_getinfo(curl, CURLINFO_CONTENT_TYPE, &tmp_buf);
+		if (ccRv == CURLE_OK) {
+			_data.content_type = (tmp_buf == nullptr ? "" : tmp_buf);
+		} else {
+			_data.content_type.clear();
+		}
+	}
+
+	{
+		char *tmp_buf {};
+
+		ccRv = ::curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &tmp_buf);
+		if (ccRv == CURLE_OK) {
+			_data.efective_url = (tmp_buf == nullptr ? "" : tmp_buf);
+		} else {
+			_data.efective_url.clear();
+		}
+	}
+
+	{
+		int state {};
+		ccRv = ::curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &state);
+		if (ccRv == CURLE_OK) {
+			_data.state = state;
+		} else {
+			_data.state = 0;
+		}
+	}
+
+	{
+		double total_time {};
+		ccRv = ::curl_easy_getinfo(curl, CURLINFO_TOTAL_TIME, &total_time);
+		if (ccRv == CURLE_OK) {
+			_data.total_time = total_time;
+		} else {
+			_data.total_time = 0.0;
+		}
+	}
+
+	if (_data.debug_header) {
+		if ( !_data.debug_data.header_in.isEmpty() ) {
+			_data.debug_header_in = _data.debug_data.header_in.buffer();
+		}
+
+		if ( !_data.debug_data.header_out.isEmpty() ) {
+			_data.debug_header_out = _data.debug_data.header_out.buffer();
+		}
+
+		if ( !_data.debug_data.all_data.isEmpty() ) {
+			_data.debug_all_data = _data.debug_data.all_data.buffer();
+		}
+
+		_data.debug_data.header_in.free();
+		_data.debug_data.header_out.free();
+		_data.debug_data.all_data.free();
+	}
+}
+//-------------------------------------------------------------------------------------------------
+void
 CurlClient::perform()
 {
     CURLcode iRv = ::curl_easy_perform( _handle.get() );

@@ -19,8 +19,22 @@ xNAMESPACE_BEGIN2(xl, package)
 class CurlBuffer
 {
 public:
-	CurlBuffer()
+	CurlBuffer() = default;
+	~CurlBuffer() = default;
+
+	bool isEmpty() const
 	{
+		return (_buff == nullptr || _size == 0);
+	}
+
+	std::string buffer() const
+	{
+		return {_buff, _size};
+	}
+
+	std::size_t size() const
+	{
+		return _size;
 	}
 
 	void add(const char *a_buffer, const size_t a_buflen)
@@ -141,6 +155,12 @@ struct CurlClientData
 	std::string debug_header_out;
 	std::string debug_all_data;
 	DebugData   debug_data;
+
+	// out
+	std::string content_type;
+	std::string efective_url;
+	int         state {};
+	double      total_time {};
 };
 xTYPEDEF_CONST(CurlClientData);
 //-------------------------------------------------------------------------------------------------
@@ -161,7 +181,10 @@ public:
     void           reset();
 
     void           setOption(const CURLoption option, ...);
+
     void           setOptionsDefault();
+    void           getOptions();
+
     void           perform();
     void           pause(cint_t bitMask);
     void           info(const CURLINFO info, ...);
