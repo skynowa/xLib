@@ -33,7 +33,7 @@ struct CurlBaseData
 
 	char        error_str[255] {};
 
-	int         timeout {};
+	int         timeout_sec {};
 	int         timeout_ms {};
 	int         continue_timeout_ms {};
 
