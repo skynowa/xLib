@@ -43,7 +43,7 @@ CurlBuffer::add(
 	if (_buff) {
 		::memcpy(_buff + _size, a_buff, a_buffSize);
 		_size       += a_buffSize;
-		_buff[_size] = 0;
+		_buff[_size] = '\0';
 	}
 }
 //-------------------------------------------------------------------------------------------------
