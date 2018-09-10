@@ -56,7 +56,7 @@ struct CurlBaseData
 	bool        debug_header {true};
 	std::string debug_header_in;
 	std::string debug_header_out;
-	std::string debug_all_data;
+	std::string debug_data_all;
 	DebugData   debug_data;
 
 	// out
