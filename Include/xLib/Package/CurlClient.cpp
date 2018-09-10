@@ -115,6 +115,216 @@ CurlClient::setOption(
 }
 //-------------------------------------------------------------------------------------------------
 void
+CurlClient::setOptions()
+{
+#if 1
+	long int    _use_header {};
+
+	long int    _ssl_verify_peer {};
+	long int    _ssl_verify_host {};
+	long int    _ssl_version {};
+	std::string _ssl_cert;
+	std::string _ssl_cert_pass;
+
+	long int    _http_version {20};
+
+	bool        _verbose {true};
+
+	std::string _cookie_file;
+	std::string _add_cookie;
+
+	std::string _encoding_param;
+	std::string _ciphers;
+
+	char        _error_str[255] {};
+
+	int         _timeout {};
+	int         _timeout_ms {};
+	int         _continue_timeout_ms {};
+
+	ProxyType   _proxy_type {};
+	std::string _proxy;
+	std::string _proxy_userpass;
+	std::string _userpass;
+
+	curl_slist *_slist {};
+	std::map<std::string, std::string> _add_header;
+
+	std::string _referer;
+	std::string _accept_encoding;
+	std::string _agent;
+
+	bool        _follow_location {true};
+	int         _max_redirects {100};
+
+	bool        _debug_header {true};
+	std::string _debug_header_in;
+	std::string _debug_header_out;
+	std::string _debug_all_data;
+	DebugData   _debug_data;
+#endif
+
+	CURL *curl = get().get();
+
+	setOption(CURLOPT_HEADER, _use_header);
+
+	//  CURLOPT_SSL...
+	{
+		setOption(CURLOPT_SSL_VERIFYPEER, _ssl_verify_peer);
+		setOption(CURLOPT_SSL_VERIFYHOST, _ssl_verify_host);
+		setOption(CURLOPT_SSLVERSION,     _ssl_version);
+
+		if ( !_ssl_cert.empty() ) {
+			setOption(CURLOPT_SSLCERT,       _ssl_cert.c_str());
+			setOption(CURLOPT_SSLCERTPASSWD, _ssl_cert_pass.c_str());
+		}
+	}
+
+	// CURLOPT_HTTP_VERSION
+	{
+		switch (_http_version) {
+		case 10:
+			setOption(CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
+			break;
+		case 11:
+			setOption(CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+			break;
+		case 20:
+			setOption(CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_2_0);
+			break;
+		default:
+			xTEST(false);
+			break;
+		}
+	}
+
+	if (_verbose) {
+		setOption(CURLOPT_VERBOSE, 1L);
+	}
+
+	// CURLOPT_COOKIE...
+	{
+		if ( !_cookie_file.empty() ) {
+			setOption(CURLOPT_COOKIESESSION, 0L);
+			setOption(CURLOPT_COOKIEFILE,    _cookie_file.c_str());
+			setOption(CURLOPT_COOKIEJAR,     _cookie_file.c_str());
+		}
+
+		if ( !_add_cookie.empty() ) {
+			setOption(CURLOPT_COOKIE, _add_cookie.c_str());
+		}
+	}
+
+	if ( !_encoding_param.empty() ) {
+		setOption(CURLOPT_ACCEPT_ENCODING, _encoding_param.c_str());
+	}
+
+	if ( !_ciphers.empty() ) {
+		setOption(CURLOPT_SSL_CIPHER_LIST, _ciphers.c_str());
+	}
+
+
+	setOption(CURLOPT_ERRORBUFFER, _error_str);
+
+	// FTP
+	{
+		curl_slist *quotes {};
+		setOption(CURLOPT_QUOTE, quotes);
+
+		curl_slist *postQuotes {};
+		setOption(CURLOPT_POSTQUOTE, postQuotes);
+	}
+
+	// CURLOPT_TIMEOUT...
+	{
+		if (_timeout_ms > 0) {
+			if (_timeout_ms >= 1000) {
+				setOption(CURLOPT_TIMEOUT_MS,        0L);
+				setOption(CURLOPT_CONNECTTIMEOUT_MS, 0L);
+				setOption(CURLOPT_TIMEOUT,           _timeout_ms / 1000);
+				setOption(CURLOPT_CONNECTTIMEOUT ,   _timeout_ms / 1000);
+			} else {
+				setOption(CURLOPT_TIMEOUT,           0L);
+				setOption(CURLOPT_CONNECTTIMEOUT,    0L);
+				setOption(CURLOPT_TIMEOUT_MS,        _timeout_ms);
+				setOption(CURLOPT_CONNECTTIMEOUT_MS, _timeout_ms);
+			}
+		}
+		else if (_timeout > 0) {
+			setOption(CURLOPT_TIMEOUT_MS,        0L);
+			setOption(CURLOPT_CONNECTTIMEOUT_MS, 0L);
+			setOption(CURLOPT_TIMEOUT,           _timeout);
+			setOption(CURLOPT_CONNECTTIMEOUT,    _timeout);
+		}
+
+		if (_continue_timeout_ms > 0) {
+			setOption(CURLOPT_EXPECT_100_TIMEOUT_MS, _continue_timeout_ms);
+		}
+	}
+
+	// CURLOPT_PROXY
+	if ( !_proxy.empty() ) {
+		setOption(CURLOPT_PROXY,     _proxy.c_str());
+		setOption(CURLOPT_PROXYTYPE, _proxy_type);
+
+		if ( !_proxy_userpass.empty() ) {
+			setOption(CURLOPT_PROXYUSERPWD, _proxy_userpass.c_str());
+		}
+	}
+
+	if ( !_userpass.empty() ) {
+		setOption(CURLOPT_USERPWD, _userpass.c_str());
+	}
+
+	// CURLOPT_HTTPHEADER
+	{
+		_slist = nullptr;
+
+		for (auto &it_header : _add_header) {
+			const std::string value = it_header.first + ": " + it_header.second;
+
+			_slist = ::curl_slist_append(_slist, value.c_str());
+		}
+
+		setOption(CURLOPT_HTTPHEADER, _slist);
+	}
+
+	if ( !_referer.empty() ) {
+		setOption(CURLOPT_REFERER, _referer.c_str());
+	}
+
+	if ( !_accept_encoding.empty() ) {
+		setOption(CURLOPT_ACCEPT_ENCODING, _accept_encoding.c_str());
+	}
+
+	if ( !_agent.empty() ) {
+		setOption(CURLOPT_USERAGENT, _agent.c_str());
+	}
+
+	// curl_easy_setopt(curl, CURLOPT_AUTOREFERER , 1);
+	setOption(CURLOPT_FOLLOWLOCATION, _follow_location);
+	setOption(CURLOPT_MAXREDIRS,      _max_redirects);
+
+	// CURLOPT_DEBUG...
+	{
+		_debug_header_in.clear();
+		_debug_header_out.clear();
+		_debug_all_data.clear();
+
+		if (_debug_header) {
+			setOption(CURLOPT_VERBOSE,       1L);
+			setOption(CURLOPT_DEBUGFUNCTION, onDebug);
+
+			_debug_data.header_in.free();
+			_debug_data.header_out.free();
+			_debug_data.all_data.free();
+
+			setOption(CURLOPT_DEBUGDATA, &_debug_data);
+		}
+	}
+}
+//-------------------------------------------------------------------------------------------------
+void
 CurlClient::perform()
 {
     CURLcode iRv = ::curl_easy_perform( _handle.get() );
@@ -318,6 +528,52 @@ CurlClient::onReadData(
 	auto *buff = static_cast<CurlBuffer *>(a_userData);
 
 	return buff->get(static_cast<char *>(a_buff), buffSize);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+int
+CurlClient::onDebug(
+	CURL          *a_curl,
+	curl_infotype  a_type,
+	char          *a_buf,
+	size_t         a_len,
+	void          *a_useData
+)
+{
+	if (a_useData == nullptr) {
+		return CURLE_OK;
+	}
+
+	auto *data = static_cast<DebugData *>(a_useData);
+	if (data == nullptr) {
+		return CURLE_OK;
+	}
+
+	switch (a_type) {
+	case CURLINFO_HEADER_IN:
+		data->header_in.add(a_buf, a_len);
+		break;
+	case CURLINFO_HEADER_OUT:
+		data->header_out.add(a_buf, a_len);
+		break;
+	case CURLINFO_TEXT:
+	case CURLINFO_DATA_IN:
+	case CURLINFO_DATA_OUT:
+	case CURLINFO_END:
+		break;
+	case CURLINFO_SSL_DATA_IN:
+	case CURLINFO_SSL_DATA_OUT:
+		return CURLE_OK;
+		break;
+	default:
+		xTEST(false);
+		return CURLE_OK;
+		break;
+	}
+
+	data->all_data.add(a_buf, a_len);
+
+	return CURLE_OK;
 }
 //-------------------------------------------------------------------------------------------------
 
