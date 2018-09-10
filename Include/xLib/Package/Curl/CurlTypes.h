@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xl, package)
 
 enum class HttpVersion
-	///< HTTP version
+	/// HTTP version
 {
 	Default = CURL_HTTP_VERSION_NONE,
 	v1      = CURL_HTTP_VERSION_1_0,
@@ -21,7 +21,7 @@ enum class HttpVersion
 };
 
 enum class ProxyType
-	///< Proxy type
+	/// Proxy type
 {
 	Http           = CURLPROXY_HTTP,
 	Http10         = CURLPROXY_HTTP_1_0,

@@ -158,7 +158,7 @@ CurlBase::setOptionsDefault()
 	{
 		data.debug_header_in.clear();
 		data.debug_header_out.clear();
-		data.debug_all_data.clear();
+		data.debug_data_all.clear();
 
 		if (data.debug_header) {
 			setOption(CURLOPT_VERBOSE,       1L);
@@ -166,7 +166,7 @@ CurlBase::setOptionsDefault()
 
 			data.debug_data.header_in.clear();
 			data.debug_data.header_out.clear();
-			data.debug_data.all_data.clear();
+			data.debug_data.data_all.clear();
 
 			setOption(CURLOPT_DEBUGDATA, &data.debug_data);
 		}
@@ -215,13 +215,13 @@ CurlBase::getInfos()
 			data.debug_header_out = data.debug_data.header_out.buffer();
 		}
 
-		if ( !data.debug_data.all_data.isEmpty() ) {
-			data.debug_all_data = data.debug_data.all_data.buffer();
+		if ( !data.debug_data.data_all.isEmpty() ) {
+			data.debug_data_all = data.debug_data.data_all.buffer();
 		}
 
 		data.debug_data.header_in.clear();
 		data.debug_data.header_out.clear();
-		data.debug_data.all_data.clear();
+		data.debug_data.data_all.clear();
 	}
 }
 //-------------------------------------------------------------------------------------------------
