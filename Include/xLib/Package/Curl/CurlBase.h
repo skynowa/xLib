@@ -61,7 +61,7 @@ struct CurlBaseData
 
 	// out
 	std::string content_type;
-	std::string efective_url;
+	std::string effective_url;
 	int         state {};
 	double      total_time_sec {};
 };

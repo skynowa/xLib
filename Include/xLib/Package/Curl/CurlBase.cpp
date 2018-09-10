@@ -186,10 +186,10 @@ CurlBase::getInfos()
 	}
 
 	{
-		char *efective_url {};
-		info(CURLINFO_EFFECTIVE_URL, &efective_url);
+		char *effective_url {};
+		info(CURLINFO_EFFECTIVE_URL, &effective_url);
 
-		data.efective_url = (efective_url == nullptr ? "" : efective_url);
+		data.effective_url = (effective_url == nullptr ? "" : effective_url);
 	}
 
 	{
