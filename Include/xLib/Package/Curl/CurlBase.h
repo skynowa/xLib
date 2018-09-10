@@ -10,7 +10,6 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, package)
 
-//-------------------------------------------------------------------------------------------------
 struct CurlBaseData
     /// CURL base data
 {
@@ -66,7 +65,7 @@ struct CurlBaseData
 	double      total_time_sec {};
 };
 xTYPEDEF_CONST(CurlBaseData);
-//-------------------------------------------------------------------------------------------------
+
 class CurlBase :
 	public CurlClient
     ///< CURL base
