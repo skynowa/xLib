@@ -264,7 +264,7 @@ CurlClient::setOptionsDefault()
 }
 //-------------------------------------------------------------------------------------------------
 void
-CurlClient::getOptions()
+CurlClient::getOptionsOut()
 {
 	if ( !_handle.isValid() ) {
 		return;

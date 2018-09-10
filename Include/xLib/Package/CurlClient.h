@@ -183,7 +183,7 @@ public:
     void           setOption(const CURLoption option, ...);
 
     void           setOptionsDefault();
-    void           getOptions();
+    void           getOptionsOut();
 
     void           perform();
     void           pause(cint_t bitMask);
