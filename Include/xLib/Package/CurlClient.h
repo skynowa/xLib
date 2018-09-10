@@ -185,11 +185,9 @@ public:
 
     void           setOption(const CURLoption option, ...);
 
-    void           setOptionsDefault();
-    void           getOptionsOut();
-
     void           perform();
     void           pause(cint_t bitMask);
+
     void           info(const CURLINFO info, ...);
 
     void           receive(void *buff, const size_t buffSize, size_t *n);
@@ -209,18 +207,22 @@ public:
 
     std::tstring_t strError(const CURLcode code);
 
-public:
-	static
-	size_t onWriteHeader(void_t *buff, size_t size, size_t items, void_t *userData);
-	static
-	size_t onWriteData(void_t *buff, size_t size, size_t items, void_t *userData);
-	static
-	size_t onReadData(void_t *buff, size_t size, size_t items, void_t *userData);
-	static
-	int    onDebug(CURL *curl, curl_infotype type, char *buf, size_t len, void *useData);
-
 protected:
 	CurlClientData &_data;
+
+    void           setOptionsDefault();
+        ///< set options in
+    void           getInfos();
+        ///< get options out
+
+	static
+	size_t         onWriteHeader(void_t *buff, size_t size, size_t items, void_t *userData);
+	static
+	size_t         onWriteData(void_t *buff, size_t size, size_t items, void_t *userData);
+	static
+	size_t         onReadData(void_t *buff, size_t size, size_t items, void_t *userData);
+	static
+	int            onDebug(CURL *curl, curl_infotype type, char *buf, size_t len, void *useData);
 
 private:
     xNO_COPY_ASSIGN(CurlClient)
