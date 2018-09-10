@@ -22,22 +22,26 @@ public:
 	CurlBuffer() = default;
 	~CurlBuffer() = default;
 
-	bool isEmpty() const
+	bool
+	isEmpty() const
 	{
 		return (_buff == nullptr || _size == 0);
 	}
 
-	std::string buffer() const
+	std::string
+	buffer() const
 	{
 		return {_buff, _size};
 	}
 
-	std::size_t size() const
+	std::size_t
+	size() const
 	{
 		return _size;
 	}
 
-	void add(const char *a_buffer, const size_t a_buflen)
+	void
+	add(const char *a_buffer, const size_t a_buflen)
 	{
 		_buff = (char *)::realloc(_buff, _size + a_buflen + 1);
 		if (_buff) {
@@ -47,7 +51,8 @@ public:
 		}
 	}
 
-	size_t get(char *a_buffer, const size_t a_buflen) const
+	size_t
+	get(char *a_buffer, const size_t a_buflen) const
 	{
 		if (_read_pos < _size) {
 			size_t len = ( _size - _read_pos < a_buflen ) ? (_size - _read_pos) : a_buflen;
@@ -60,17 +65,15 @@ public:
 		return 0;
 	}
 
-	int free()
+	void
+	clear()
 	{
 		if (_buff && _size) {
 			::free(_buff);
+
 			_buff = nullptr;
 			_size = 0;
-
-			return 1;
 		}
-
-		return 0;
 	}
 
 private:

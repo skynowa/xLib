@@ -254,9 +254,9 @@ CurlClient::setOptionsDefault()
 			setOption(CURLOPT_VERBOSE,       1L);
 			setOption(CURLOPT_DEBUGFUNCTION, onDebug);
 
-			_data.debug_data.header_in.free();
-			_data.debug_data.header_out.free();
-			_data.debug_data.all_data.free();
+			_data.debug_data.header_in.clear();
+			_data.debug_data.header_out.clear();
+			_data.debug_data.all_data.clear();
 
 			setOption(CURLOPT_DEBUGDATA, &_data.debug_data);
 		}
@@ -270,50 +270,32 @@ CurlClient::getOptionsOut()
 		return;
 	}
 
-	CURLcode ccRv {};
-
-	CURL *curl = get().get();
-
 	{
 		char *buff {};
+		info(CURLINFO_CONTENT_TYPE, &buff);
 
-		ccRv = info(CURLINFO_CONTENT_TYPE, &buff);
-		if (ccRv != CURLE_OK) {
-			_data.content_type.clear();
-		} else {
-			_data.content_type = (buff == nullptr ? "" : buff);
-		}
+		_data.content_type = (buff == nullptr ? "" : buff);
 	}
 
 	{
 		char *buff {};
+		info(CURLINFO_EFFECTIVE_URL, &buff);
 
-		ccRv = info(CURLINFO_EFFECTIVE_URL, &buff);
-		if (ccRv != CURLE_OK) {
-			_data.efective_url.clear();
-		} else {
-			_data.efective_url = (buff == nullptr ? "" : buff);
-		}
+		_data.efective_url = (buff == nullptr ? "" : buff);
 	}
 
 	{
 		int state {};
-		ccRv = info(CURLINFO_RESPONSE_CODE, &state);
-		if (ccRv != CURLE_OK) {
-			_data.state = 0;
-		} else {
-			_data.state = state;
-		}
+		info(CURLINFO_RESPONSE_CODE, &state);
+
+		_data.state = state;
 	}
 
 	{
 		double total_time_sec {};
-		ccRv = info(CURLINFO_TOTAL_TIME, &total_time_sec);
-		if (ccRv != CURLE_OK) {
-			_data.total_time_sec = 0.0;
-		} else {
-			_data.total_time_sec = total_time_sec;
-		}
+		info(CURLINFO_TOTAL_TIME, &total_time_sec);
+
+		_data.total_time_sec = total_time_sec;
 	}
 
 	if (_data.debug_header) {
@@ -329,9 +311,9 @@ CurlClient::getOptionsOut()
 			_data.debug_all_data = _data.debug_data.all_data.buffer();
 		}
 
-		_data.debug_data.header_in.free();
-		_data.debug_data.header_out.free();
-		_data.debug_data.all_data.free();
+		_data.debug_data.header_in.clear();
+		_data.debug_data.header_out.clear();
+		_data.debug_data.all_data.clear();
 	}
 }
 //-------------------------------------------------------------------------------------------------
