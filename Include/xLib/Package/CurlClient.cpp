@@ -270,27 +270,27 @@ CurlClient::getOptions()
 		return;
 	}
 
-	CURLcode  ccRv {};
+	CURLcode ccRv {};
 
 	CURL *curl = get().get();
 
 	{
-		char *tmp_buf {};
+		char *buff {};
 
-		ccRv = ::curl_easy_getinfo(curl, CURLINFO_CONTENT_TYPE, &tmp_buf);
+		ccRv = ::curl_easy_getinfo(curl, CURLINFO_CONTENT_TYPE, &buff);
 		if (ccRv == CURLE_OK) {
-			_data.content_type = (tmp_buf == nullptr ? "" : tmp_buf);
+			_data.content_type = (buff == nullptr ? "" : buff);
 		} else {
 			_data.content_type.clear();
 		}
 	}
 
 	{
-		char *tmp_buf {};
+		char *buff {};
 
-		ccRv = ::curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &tmp_buf);
+		ccRv = ::curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &buff);
 		if (ccRv == CURLE_OK) {
-			_data.efective_url = (tmp_buf == nullptr ? "" : tmp_buf);
+			_data.efective_url = (buff == nullptr ? "" : buff);
 		} else {
 			_data.efective_url.clear();
 		}
