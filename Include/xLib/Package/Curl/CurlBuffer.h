@@ -37,5 +37,13 @@ private:
 	xNO_COPY_ASSIGN(CurlBuffer);
 };
 
+struct DebugData
+	/// debug data
+{
+	CurlBuffer header_in;
+	CurlBuffer header_out;
+	CurlBuffer data_all;
+};
+
 xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------

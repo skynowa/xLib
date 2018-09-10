@@ -360,7 +360,7 @@ CurlClient::onDebug(
 		break;
 	}
 
-	data->all_data.add(a_buf, a_len);
+	data->data_all.add(a_buf, a_len);
 
 	return CURLE_OK;
 }

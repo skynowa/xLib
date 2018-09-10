@@ -19,13 +19,6 @@
 xNAMESPACE_BEGIN2(xl, package)
 
 //-------------------------------------------------------------------------------------------------
-struct DebugData
-{
-	CurlBuffer header_in;
-	CurlBuffer header_out;
-	CurlBuffer all_data;
-};
-//-------------------------------------------------------------------------------------------------
 class CurlClient
     ///< CURL client
 {
