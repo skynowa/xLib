@@ -160,7 +160,7 @@ struct CurlClientData
 	std::string content_type;
 	std::string efective_url;
 	int         state {};
-	double      total_time {};
+	double      total_time_sec {};
 };
 xTYPEDEF_CONST(CurlClientData);
 //-------------------------------------------------------------------------------------------------
