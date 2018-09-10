@@ -271,17 +271,17 @@ CurlClient::getOptionsOut()
 	}
 
 	{
-		char *buff {};
-		info(CURLINFO_CONTENT_TYPE, &buff);
+		char *content_type {};
+		info(CURLINFO_CONTENT_TYPE, &content_type);
 
-		_data.content_type = (buff == nullptr ? "" : buff);
+		_data.content_type = (content_type == nullptr ? "" : content_type);
 	}
 
 	{
-		char *buff {};
-		info(CURLINFO_EFFECTIVE_URL, &buff);
+		char *efective_url {};
+		info(CURLINFO_EFFECTIVE_URL, &efective_url);
 
-		_data.efective_url = (buff == nullptr ? "" : buff);
+		_data.efective_url = (efective_url == nullptr ? "" : efective_url);
 	}
 
 	{
