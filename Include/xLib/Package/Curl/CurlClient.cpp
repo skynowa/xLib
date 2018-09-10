@@ -281,7 +281,7 @@ CurlClient::onWriteHeader(
 	const size_t buffSize = a_items * a_size;
 
 	auto *buff = static_cast<CurlBuffer *>(a_userData);
-	buff->add(static_cast<char *>(a_buff), buffSize);
+	buff->set(static_cast<char *>(a_buff), buffSize);
 
 	return buffSize;
 }
@@ -298,7 +298,7 @@ CurlClient::onWriteData(
 	const size_t buffSize = a_items * a_size;
 
 	auto *buff = static_cast<CurlBuffer *>(a_userData);
-	buff->add(static_cast<char *>(a_buff), buffSize);
+	buff->set(static_cast<char *>(a_buff), buffSize);
 
 	return buffSize;
 }
@@ -340,10 +340,10 @@ CurlClient::onDebug(
 
 	switch (a_type) {
 	case CURLINFO_HEADER_IN:
-		data->header_in.add(a_buf, a_len);
+		data->header_in.set(a_buf, a_len);
 		break;
 	case CURLINFO_HEADER_OUT:
-		data->header_out.add(a_buf, a_len);
+		data->header_out.set(a_buf, a_len);
 		break;
 	case CURLINFO_TEXT:
 	case CURLINFO_DATA_IN:
@@ -360,7 +360,7 @@ CurlClient::onDebug(
 		break;
 	}
 
-	data->data_all.add(a_buf, a_len);
+	data->data_all.set(a_buf, a_len);
 
 	return CURLE_OK;
 }

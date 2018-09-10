@@ -34,7 +34,7 @@ CurlBuffer::size() const
 }
 //-------------------------------------------------------------------------------------------------
 void
-CurlBuffer::add(
+CurlBuffer::set(
 	const char   *a_buff,
 	const size_t  a_buffSize
 )
