@@ -62,7 +62,7 @@ struct CurlBaseData
 	// out
 	std::string content_type;
 	std::string effective_url;
-	int         state {};
+	int         response_code {};
 	double      total_time_sec {};
 };
 xTYPEDEF_CONST(CurlBaseData);

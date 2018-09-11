@@ -1,6 +1,8 @@
 /**
  * \file  CurlBuffer.h
  * \brief CURL client
+ *
+ * https://www.codesynthesis.com/~boris/data/buffer/buffer-1.0.0/
  */
 
 
