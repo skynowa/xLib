@@ -27,6 +27,14 @@ CurlBase::~CurlBase()
 }
 //-------------------------------------------------------------------------------------------------
 void
+CurlBase::setProtocols(
+	clong_t a_bitMask
+)
+{
+	setOption(CURLOPT_PROTOCOLS, a_bitMask);
+}
+//-------------------------------------------------------------------------------------------------
+void
 CurlBase::setOptionsDefault()
 {
 	xTEST(_handle.isValid());
