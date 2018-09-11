@@ -85,6 +85,8 @@ protected:
     virtual ~CurlBase();
         ///< destructor
 
+    void     setProtocols(clong_t bitMask);
+		///< set allowed protocols
     void     setOptionsDefault();
         ///< set options in
     void     getInfos();
