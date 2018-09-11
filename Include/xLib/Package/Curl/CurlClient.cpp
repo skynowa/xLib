@@ -15,6 +15,7 @@
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Test/Test.h>
+#include "CurlBase.h"
 
 
 xNAMESPACE_BEGIN2(xl, package)
@@ -333,7 +334,7 @@ CurlClient::onDebug(
 		return CURLE_OK;
 	}
 
-	auto *data = static_cast<DebugData *>(a_useData);
+	auto *data = static_cast<CurlBaseData::DebugData *>(a_useData);
 	if (data == nullptr) {
 		return CURLE_OK;
 	}
