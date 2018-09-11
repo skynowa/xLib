@@ -28,7 +28,7 @@ CurlBase::~CurlBase()
 //-------------------------------------------------------------------------------------------------
 void
 CurlBase::setProtocols(
-	clong_t a_bitMask
+	clong_t a_bitMask	///< bitmask of CURLPROTO_* defines (CURLPROTO_HTTP, ..., CURLPROTO_ALL)
 )
 {
 	setOption(CURLOPT_PROTOCOLS, a_bitMask);
