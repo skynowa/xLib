@@ -54,6 +54,21 @@ struct CurlBaseData
 	int         max_redirects {100};
 
 	bool        isDebugHeader {true};
+
+	struct DebugData
+		/// debug data
+	{
+		CurlBuffer text;
+		CurlBuffer header_in;
+		CurlBuffer header_out;
+		CurlBuffer data_in;
+		CurlBuffer data_out;
+		CurlBuffer ssl_data_in;
+		CurlBuffer ssl_data_out;
+
+		void clear();
+	};
+
 	DebugData   debug_data;
 
 	// out

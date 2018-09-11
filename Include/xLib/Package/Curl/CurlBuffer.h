@@ -9,7 +9,6 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include "CurlBuffer.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, package)
 
@@ -33,20 +32,6 @@ private:
 	mutable size_t _read_pos {};
 
 	xNO_COPY_ASSIGN(CurlBuffer);
-};
-
-struct DebugData
-	/// debug data
-{
-	CurlBuffer text;
-	CurlBuffer header_in;
-	CurlBuffer header_out;
-	CurlBuffer data_in;
-	CurlBuffer data_out;
-	CurlBuffer ssl_data_in;
-	CurlBuffer ssl_data_out;
-
-	void clear();
 };
 
 xNAMESPACE_END2(xl, package)
