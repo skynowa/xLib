@@ -193,10 +193,10 @@ CurlBase::getInfos()
 	}
 
 	{
-		int state {};
-		info(CURLINFO_RESPONSE_CODE, &state);
+		int response_code {};
+		info(CURLINFO_RESPONSE_CODE, &response_code);
 
-		data.state = state;
+		data.response_code = response_code;
 	}
 
 	{
