@@ -38,9 +38,13 @@ private:
 struct DebugData
 	/// debug data
 {
+	CurlBuffer text;
 	CurlBuffer header_in;
 	CurlBuffer header_out;
-	CurlBuffer data_all;
+	CurlBuffer data_in;
+	CurlBuffer data_out;
+	CurlBuffer ssl_data_in;
+	CurlBuffer ssl_data_out;
 };
 
 xNAMESPACE_END2(xl, package)

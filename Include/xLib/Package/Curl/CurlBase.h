@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN2(xl, package)
 struct CurlBaseData
     /// base data
 {
-	long int    use_header {};
+	bool        isUseHeader {true};
 
 	long int    ssl_verify_peer {1};
 	long int    ssl_verify_host {2};
@@ -24,7 +24,7 @@ struct CurlBaseData
 
 	HttpVersion http_version {HttpVersion::Default};
 
-	bool        verbose {true};
+	bool        isVerbose {true};
 
 	std::string cookie_file;
 	std::string add_cookie;
@@ -50,13 +50,19 @@ struct CurlBaseData
 	std::string accept_encoding;
 	std::string agent;
 
-	bool        follow_location {true};
+	bool        isFollowLocation {true};
 	int         max_redirects {100};
 
-	bool        debug_header {true};
+	bool        isDebugHeader {true};
+
+
+	std::string debug_text;
 	std::string debug_header_in;
 	std::string debug_header_out;
-	std::string debug_data_all;
+	std::string debug_data_in;
+	std::string debug_data_out;
+	std::string debug_ssl_data_in;
+	std::string debug_ssl_data_out;
 	DebugData   debug_data;
 
 	// out

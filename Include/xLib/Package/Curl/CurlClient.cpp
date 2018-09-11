@@ -339,28 +339,32 @@ CurlClient::onDebug(
 	}
 
 	switch (a_type) {
+	case CURLINFO_TEXT:
+		data->text.set(a_buf, a_len);
+		break;
 	case CURLINFO_HEADER_IN:
 		data->header_in.set(a_buf, a_len);
 		break;
 	case CURLINFO_HEADER_OUT:
 		data->header_out.set(a_buf, a_len);
 		break;
-	case CURLINFO_TEXT:
 	case CURLINFO_DATA_IN:
+		data->data_in.set(a_buf, a_len);
+		break;
 	case CURLINFO_DATA_OUT:
-	case CURLINFO_END:
+		data->data_out.set(a_buf, a_len);
 		break;
 	case CURLINFO_SSL_DATA_IN:
-	case CURLINFO_SSL_DATA_OUT:
-		return CURLE_OK;
+		data->ssl_data_in.set(a_buf, a_len);
 		break;
+	case CURLINFO_SSL_DATA_OUT:
+		data->ssl_data_out.set(a_buf, a_len);
+		break;
+	case CURLINFO_END:
 	default:
 		xTEST(false);
-		return CURLE_OK;
 		break;
 	}
-
-	data->data_all.set(a_buf, a_len);
 
 	return CURLE_OK;
 }

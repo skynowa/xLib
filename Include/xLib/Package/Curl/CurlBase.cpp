@@ -31,7 +31,7 @@ CurlBase::setOptionsDefault()
 {
 	xTEST(_handle.isValid());
 
-	setOption(CURLOPT_HEADER, data.use_header);
+	setOption(CURLOPT_HEADER, static_cast<long int>(data.isUseHeader));
 
 	//  CURLOPT_SSL...
 	{
@@ -47,9 +47,7 @@ CurlBase::setOptionsDefault()
 
 	setOption(CURLOPT_HTTP_VERSION, data.http_version);
 
-	if (data.verbose) {
-		setOption(CURLOPT_VERBOSE, 1L);
-	}
+	setOption(CURLOPT_VERBOSE, static_cast<long int>(data.isVerbose));
 
 	// CURLOPT_COOKIE...
 	{
@@ -71,7 +69,6 @@ CurlBase::setOptionsDefault()
 	if ( !data.ciphers.empty() ) {
 		setOption(CURLOPT_SSL_CIPHER_LIST, data.ciphers.c_str());
 	}
-
 
 	setOption(CURLOPT_ERRORBUFFER, data.error_str);
 
@@ -151,22 +148,31 @@ CurlBase::setOptionsDefault()
 	}
 
 	// curl_easy_setopt(curl, CURLOPT_AUTOREFERER , 1);
-	setOption(CURLOPT_FOLLOWLOCATION, data.follow_location);
+	setOption(CURLOPT_FOLLOWLOCATION, static_cast<long int>(data.isFollowLocation));
 	setOption(CURLOPT_MAXREDIRS,      data.max_redirects);
 
 	// CURLOPT_DEBUG...
 	{
+		data.debug_text.clear();
+		data.debug_header_in.clear();
 		data.debug_header_in.clear();
 		data.debug_header_out.clear();
-		data.debug_data_all.clear();
+		data.debug_data_in.clear();
+		data.debug_data_out.clear();
+		data.debug_ssl_data_in.clear();
+		data.debug_ssl_data_out.clear();
 
-		if (data.debug_header) {
+		if (data.isDebugHeader) {
 			setOption(CURLOPT_VERBOSE,       1L);
 			setOption(CURLOPT_DEBUGFUNCTION, onDebug);
 
+			data.debug_data.text.clear();
 			data.debug_data.header_in.clear();
 			data.debug_data.header_out.clear();
-			data.debug_data.data_all.clear();
+			data.debug_data.data_in.clear();
+			data.debug_data.data_out.clear();
+			data.debug_data.ssl_data_in.clear();
+			data.debug_data.ssl_data_out.clear();
 
 			setOption(CURLOPT_DEBUGDATA, &data.debug_data);
 		}
@@ -206,22 +212,36 @@ CurlBase::getInfos()
 		data.total_time_sec = total_time_sec;
 	}
 
-	if (data.debug_header) {
+	if (data.isDebugHeader) {
+		if ( !data.debug_data.text.isEmpty() ) {
+			data.debug_text = data.debug_data.text.buffer();
+		}
 		if ( !data.debug_data.header_in.isEmpty() ) {
 			data.debug_header_in = data.debug_data.header_in.buffer();
 		}
-
 		if ( !data.debug_data.header_out.isEmpty() ) {
 			data.debug_header_out = data.debug_data.header_out.buffer();
 		}
-
-		if ( !data.debug_data.data_all.isEmpty() ) {
-			data.debug_data_all = data.debug_data.data_all.buffer();
+		if ( !data.debug_data.data_in.isEmpty() ) {
+			data.debug_data_in = data.debug_data.data_in.buffer();
+		}
+		if ( !data.debug_data.data_out.isEmpty() ) {
+			data.debug_data_out = data.debug_data.data_out.buffer();
+		}
+		if ( !data.debug_data.ssl_data_in.isEmpty() ) {
+			data.debug_ssl_data_in = data.debug_data.ssl_data_in.buffer();
+		}
+		if ( !data.debug_data.ssl_data_out.isEmpty() ) {
+			data.debug_ssl_data_out = data.debug_data.ssl_data_out.buffer();
 		}
 
+		data.debug_data.text.clear();
 		data.debug_data.header_in.clear();
 		data.debug_data.header_out.clear();
-		data.debug_data.data_all.clear();
+		data.debug_data.data_in.clear();
+		data.debug_data.data_out.clear();
+		data.debug_data.ssl_data_in.clear();
+		data.debug_data.ssl_data_out.clear();
 	}
 }
 //-------------------------------------------------------------------------------------------------
