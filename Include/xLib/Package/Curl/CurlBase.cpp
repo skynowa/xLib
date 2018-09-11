@@ -31,12 +31,12 @@ CurlBase::setOptionsDefault()
 {
 	xTEST(_handle.isValid());
 
-	setOption(CURLOPT_HEADER, static_cast<long int>(data.isUseHeader));
+	setOption(CURLOPT_HEADER, static_cast<long_t>(data.isUseHeader));
 
 	//  CURLOPT_SSL...
 	{
-		setOption(CURLOPT_SSL_VERIFYPEER, data.ssl_verify_peer);
-		setOption(CURLOPT_SSL_VERIFYHOST, data.ssl_verify_host);
+		setOption(CURLOPT_SSL_VERIFYPEER, static_cast<long_t>(data.isSslVerifyPeer));
+		setOption(CURLOPT_SSL_VERIFYHOST, data.isSslVerifyHost ? 2L : 0L);
 		setOption(CURLOPT_SSLVERSION,     data.ssl_version);
 
 		if ( !data.ssl_cert.empty() ) {
@@ -47,7 +47,7 @@ CurlBase::setOptionsDefault()
 
 	setOption(CURLOPT_HTTP_VERSION, data.http_version);
 
-	setOption(CURLOPT_VERBOSE, static_cast<long int>(data.isVerbose));
+	setOption(CURLOPT_VERBOSE, static_cast<long_t>(data.isVerbose));
 
 	// CURLOPT_COOKIE...
 	{
@@ -148,7 +148,7 @@ CurlBase::setOptionsDefault()
 	}
 
 	// curl_easy_setopt(curl, CURLOPT_AUTOREFERER , 1);
-	setOption(CURLOPT_FOLLOWLOCATION, static_cast<long int>(data.isFollowLocation));
+	setOption(CURLOPT_FOLLOWLOCATION, static_cast<long_t>(data.isFollowLocation));
 	setOption(CURLOPT_MAXREDIRS,      data.max_redirects);
 
 	// CURLOPT_DEBUG...

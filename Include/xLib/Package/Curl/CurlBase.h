@@ -16,8 +16,8 @@ struct CurlBaseData
 {
 	bool        isUseHeader {true};
 
-	long int    ssl_verify_peer {1};
-	long int    ssl_verify_host {2};
+	bool        isSslVerifyPeer {true};
+	bool        isSslVerifyHost {true};
 	long int    ssl_version {CURL_SSLVERSION_DEFAULT};
 	std::string ssl_cert;
 	std::string ssl_cert_pass;
