@@ -160,30 +160,13 @@ CurlBase::setOptionsDefault()
 	setOption(CURLOPT_MAXREDIRS,      data.max_redirects);
 
 	// CURLOPT_DEBUG...
-	{
-		data.debug_text.clear();
-		data.debug_header_in.clear();
-		data.debug_header_in.clear();
-		data.debug_header_out.clear();
-		data.debug_data_in.clear();
-		data.debug_data_out.clear();
-		data.debug_ssl_data_in.clear();
-		data.debug_ssl_data_out.clear();
+	if (data.isDebugHeader) {
+		setOption(CURLOPT_VERBOSE,       1L);
+		setOption(CURLOPT_DEBUGFUNCTION, onDebug);
 
-		if (data.isDebugHeader) {
-			setOption(CURLOPT_VERBOSE,       1L);
-			setOption(CURLOPT_DEBUGFUNCTION, onDebug);
+		data.debug_data.clear();
 
-			data.debug_data.text.clear();
-			data.debug_data.header_in.clear();
-			data.debug_data.header_out.clear();
-			data.debug_data.data_in.clear();
-			data.debug_data.data_out.clear();
-			data.debug_data.ssl_data_in.clear();
-			data.debug_data.ssl_data_out.clear();
-
-			setOption(CURLOPT_DEBUGDATA, &data.debug_data);
-		}
+		setOption(CURLOPT_DEBUGDATA, &data.debug_data);
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -221,35 +204,7 @@ CurlBase::getInfos()
 	}
 
 	if (data.isDebugHeader) {
-		if ( !data.debug_data.text.isEmpty() ) {
-			data.debug_text = data.debug_data.text.buffer();
-		}
-		if ( !data.debug_data.header_in.isEmpty() ) {
-			data.debug_header_in = data.debug_data.header_in.buffer();
-		}
-		if ( !data.debug_data.header_out.isEmpty() ) {
-			data.debug_header_out = data.debug_data.header_out.buffer();
-		}
-		if ( !data.debug_data.data_in.isEmpty() ) {
-			data.debug_data_in = data.debug_data.data_in.buffer();
-		}
-		if ( !data.debug_data.data_out.isEmpty() ) {
-			data.debug_data_out = data.debug_data.data_out.buffer();
-		}
-		if ( !data.debug_data.ssl_data_in.isEmpty() ) {
-			data.debug_ssl_data_in = data.debug_data.ssl_data_in.buffer();
-		}
-		if ( !data.debug_data.ssl_data_out.isEmpty() ) {
-			data.debug_ssl_data_out = data.debug_data.ssl_data_out.buffer();
-		}
-
-		data.debug_data.text.clear();
-		data.debug_data.header_in.clear();
-		data.debug_data.header_out.clear();
-		data.debug_data.data_in.clear();
-		data.debug_data.data_out.clear();
-		data.debug_data.ssl_data_in.clear();
-		data.debug_data.ssl_data_out.clear();
+		// data.debug_data - with data
 	}
 }
 //-------------------------------------------------------------------------------------------------
