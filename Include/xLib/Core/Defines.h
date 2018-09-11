@@ -740,24 +740,28 @@
 ///@name Class disallows
 ///@{
 #define xNO_DEFAULT_CONSTRUCT(className) \
-    private: \
-        className();
+    className() = delete;
 	///< disallow default constructor
 #define xNO_COPY(className) \
-    private: \
-        className(const className &);
+    className(const className &) = delete;
     ///< disallow copy
+#define xNO_MOVE(className) \
+    className(className &&) = delete;
+    ///< disallow move
 #define xNO_ASSIGN(className) \
-    private: \
-        className & operator = (const className &);
+    className & operator = (const className &) = delete;
     ///< disallow assign
+#define xNO_MOVE_ASSIGN(className) \
+    className & operator = (className &&) = delete;
+    ///< disallow move assign
 #define xNO_COPY_ASSIGN(className) \
     xNO_COPY(className) \
-    xNO_ASSIGN(className)
-    ///< disallow copy and assign
+    xNO_MOVE(className) \
+    xNO_ASSIGN(className) \
+    xNO_MOVE_ASSIGN(className)
+    ///< disallow copy, move, assign, move assign
 #define xNO_INSTANCE(className) \
-    private: \
-        className();
+    className() = delete;
     ///< disallow make instance
 #define xNO_HEAP \
     private: \
