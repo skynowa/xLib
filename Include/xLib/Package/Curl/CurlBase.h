@@ -54,15 +54,6 @@ struct CurlBaseData
 	int         max_redirects {100};
 
 	bool        isDebugHeader {true};
-
-
-	std::string debug_text;
-	std::string debug_header_in;
-	std::string debug_header_out;
-	std::string debug_data_in;
-	std::string debug_data_out;
-	std::string debug_ssl_data_in;
-	std::string debug_ssl_data_out;
 	DebugData   debug_data;
 
 	// out

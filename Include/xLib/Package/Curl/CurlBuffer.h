@@ -45,6 +45,8 @@ struct DebugData
 	CurlBuffer data_out;
 	CurlBuffer ssl_data_in;
 	CurlBuffer ssl_data_out;
+
+	void clear();
 };
 
 xNAMESPACE_END2(xl, package)
