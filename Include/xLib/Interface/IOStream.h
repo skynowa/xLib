@@ -16,6 +16,9 @@ class xNO_VTABLE IOStream
 	/// ostream interface
 {
 public:
+                     IOStream() = default;
+    virtual         ~IOStream() = default;
+
 	virtual StreamT &print(StreamT& os) const = 0;
 		///< print
 	friend StreamT& operator << (StreamT &a_os, const IOStream &a_ios)
