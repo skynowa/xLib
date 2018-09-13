@@ -14,6 +14,7 @@ xNAMESPACE_BEGIN2(xl, package)
 struct CurlBaseData
     /// base data
 {
+	std::string url;
 	bool        isUseHeader {true};
 
 	bool        isSslVerifyPeer {true};

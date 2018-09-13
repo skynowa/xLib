@@ -59,6 +59,18 @@ CurlBase::setOptionsDefault()
 {
 	xTEST(_handle.isValid());
 
+	setOption(CURLOPT_URL, data.url.c_str());
+
+	CurlBuffer buffHeader;
+	CurlBuffer buffData;
+	{
+		setOption(CURLOPT_HEADERFUNCTION, onWriteHeader);
+		setOption(CURLOPT_WRITEHEADER, &buffHeader);
+
+		setOption(CURLOPT_WRITEFUNCTION, onWriteData);
+		setOption(CURLOPT_WRITEDATA, &buffData);
+	}
+
 	setOption(CURLOPT_HEADER, static_cast<long_t>(data.isUseHeader));
 
 	//  CURLOPT_SSL...
@@ -185,7 +197,6 @@ CurlBase::setOptionsDefault()
 		setOption(CURLOPT_DEBUGFUNCTION, onDebug);
 
 		data.debug_data.clear();
-
 		setOption(CURLOPT_DEBUGDATA, &data.debug_data);
 	}
 }
