@@ -288,7 +288,7 @@ CurlClient::onWriteHeader(
 	const size_t buffSize = a_items * a_size;
 
 	auto *buff = static_cast<CurlBuffer *>(a_userData);
-	buff->set(static_cast<char *>(a_buff), buffSize);
+	buff->set(static_cast<const char *>(a_buff), buffSize);
 
 	return buffSize;
 }
@@ -305,7 +305,7 @@ CurlClient::onWriteData(
 	const size_t buffSize = a_items * a_size;
 
 	auto *buff = static_cast<CurlBuffer *>(a_userData);
-	buff->set(static_cast<char *>(a_buff), buffSize);
+	buff->set(static_cast<const char *>(a_buff), buffSize);
 
 	return buffSize;
 }
@@ -321,7 +321,7 @@ CurlClient::onReadData(
 {
 	const size_t buffSize = a_items * a_size;
 
-	auto *buff = static_cast<CurlBuffer *>(a_userData);
+	const auto *buff = static_cast<CurlBuffer *>(a_userData);
 
 	return buff->get(static_cast<char *>(a_buff), buffSize);
 }
