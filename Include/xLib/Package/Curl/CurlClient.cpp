@@ -89,6 +89,12 @@ CurlClient::versionInfo(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+CurlClient::versionInfoCurrent()
+{
+    return versionInfo(CURLVERSION_NOW);
+}
+//-------------------------------------------------------------------------------------------------
 HandleCurl &
 CurlClient::get()
 {

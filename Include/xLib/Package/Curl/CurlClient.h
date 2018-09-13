@@ -30,6 +30,7 @@ public:
 
     std::tstring_t version();
     std::tstring_t versionInfo(const CURLversion version);
+    std::tstring_t versionInfoCurrent();
 
     // handle
     HandleCurl &   get();
