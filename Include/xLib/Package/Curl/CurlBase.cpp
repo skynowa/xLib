@@ -55,20 +55,26 @@ CurlBase::setProtocols(
 }
 //-------------------------------------------------------------------------------------------------
 void
-CurlBase::setOptionsDefault()
+CurlBase::setOptionsDefault(
+	CurlBuffer *out_buffHeader,	///< [out]
+	CurlBuffer *out_buffData	///< [out]
+)
 {
 	xTEST(_handle.isValid());
+	xTEST_PTR(out_buffHeader);
+	xTEST_PTR(out_buffData);
+
+	out_buffHeader->clear();
+	out_buffData->clear();
 
 	setOption(CURLOPT_URL, data.url.c_str());
 
-	CurlBuffer buffHeader;
-	CurlBuffer buffData;
 	{
 		setOption(CURLOPT_HEADERFUNCTION, onWriteHeader);
-		setOption(CURLOPT_WRITEHEADER, &buffHeader);
+		setOption(CURLOPT_WRITEHEADER, out_buffHeader);
 
 		setOption(CURLOPT_WRITEFUNCTION, onWriteData);
-		setOption(CURLOPT_WRITEDATA, &buffData);
+		setOption(CURLOPT_WRITEDATA, out_buffData);
 	}
 
 	setOption(CURLOPT_HEADER, static_cast<long_t>(data.isUseHeader));

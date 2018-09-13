@@ -154,8 +154,11 @@
 #include <xLib/Package/Csv.h>
 #include <xLib/Package/Ssh2Client.h>
 #include <xLib/Package/Donate.h>
+
 #include <xLib/Package/Curl/CurlClient.h>
 #include <xLib/Package/Curl/CurlBase.h>
+#include <xLib/Package/Curl/HttpClient.h>
+
 #include <xLib/Package/Xml.h>
 #include <xLib/Package/Application.h>
 #include <xLib/Package/ApplicationInfo.h>

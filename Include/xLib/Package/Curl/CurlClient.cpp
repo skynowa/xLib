@@ -108,19 +108,6 @@ CurlClient::reset()
 }
 //-------------------------------------------------------------------------------------------------
 void
-CurlClient::setOption(
-    const CURLoption a_option, ...
-)
-{
-    va_list args;
-    xVA_START(args, a_option);
-    CURLcode iRv = ::curl_easy_setopt(_handle.get(), a_option, args);
-    xVA_END(args);
-
-    xTEST_EQ(iRv, CURLE_OK);
-}
-//-------------------------------------------------------------------------------------------------
-void
 CurlClient::perform()
 {
     CURLcode iRv = ::curl_easy_perform( _handle.get() );
