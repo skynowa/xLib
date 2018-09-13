@@ -28,6 +28,7 @@ public:
     virtual       ~CurlClient();
         ///< destructor
 
+	// TODO: curl::curl_info
     std::tstring_t version();
     std::tstring_t versionInfo(const CURLversion version);
     std::tstring_t versionInfoCurrent();
