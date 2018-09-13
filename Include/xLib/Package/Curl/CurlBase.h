@@ -98,6 +98,9 @@ protected:
         ///< set options in
     void     getInfos();
         ///< get options out
+
+private:
+    xNO_COPY_ASSIGN(CurlBase)
 };
 
 xNAMESPACE_END2(xl, package)
