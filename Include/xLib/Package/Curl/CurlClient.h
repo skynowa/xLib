@@ -37,7 +37,8 @@ public:
     HandleCurl &   get();
     void           reset();
 
-    void           setOption(const CURLoption option, ...);
+	template<typename T>
+	void           setOption(const CURLoption option, const T a_value);
     void           perform();
     void           pause(cint_t bitMask);
     void           info(const CURLINFO info, ...);
@@ -76,6 +77,8 @@ private:
 
 xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------
+
+#include "CurlClient.inl"
 
 /**
  * TODO: curl_easy

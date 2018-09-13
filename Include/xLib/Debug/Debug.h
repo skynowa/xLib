@@ -100,6 +100,8 @@
 
     #define xUNKNOWN_VAR(v) \
         xT("Unknown ") << xTRACE_VAR(v)
+    #define xINVALID_VAR(v) \
+        xT("Invalid ") << xTRACE_VAR(v)
     #define xTRACE_PTR(p) \
         #p xT(": ") << xT("{") << p << xT(", ") << (p ? *p : 0) << xT("}")
 #endif

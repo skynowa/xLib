@@ -33,7 +33,7 @@ struct CurlBaseData
 	std::string encoding_param;
 	std::string ciphers;
 
-	char        error_str[255] {};
+	char        error_str[1024 + 1] {};
 
 	int         timeout_sec {};
 	int         timeout_ms {};
@@ -94,12 +94,13 @@ protected:
 
     void     setProtocols(clong_t bitMask);
 		///< set allowed protocols
-    void     setOptionsDefault();
+    void     setOptionsDefault(CurlBuffer *buffHeader, CurlBuffer *buffData);
         ///< set options in
     void     getInfos();
         ///< get options out
 
 private:
+	xNO_DEFAULT_CONSTRUCT(CurlBase)
     xNO_COPY_ASSIGN(CurlBase)
 };
 
