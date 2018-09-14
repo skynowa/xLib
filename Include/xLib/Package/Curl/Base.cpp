@@ -56,14 +56,16 @@ CurlBase::setProtocols(
 //-------------------------------------------------------------------------------------------------
 void
 CurlBase::setOptionsDefault(
-	Buffer *out_buffHeader,	///< [out]
-	Buffer *out_buffData	///< [out]
+	curl_slist *out_headers,	///< [out]
+	Buffer     *out_buffHeader,	///< [out]
+	Buffer     *out_buffData	///< [out]
 )
 {
 	xTEST(_handle.isValid());
 	xTEST_PTR(out_buffHeader);
 	xTEST_PTR(out_buffData);
 
+	out_headers = nullptr;
 	out_buffHeader->clear();
 	out_buffData->clear();
 
@@ -170,15 +172,13 @@ CurlBase::setOptionsDefault(
 
 	// CURLOPT_HTTPHEADER
 	{
-		data.slist = nullptr;
-
 		for (auto &it_header : data.addHeader) {
-			const std::string value = it_header.first + xT(": ") + it_header.second;
+			std::ctstring_t value = it_header.first + xT(": ") + it_header.second;
 
-			data.slist = ::curl_slist_append(data.slist, value.c_str());
+			out_headers = ::curl_slist_append(out_headers, value.c_str());
 		}
 
-		setOption(CURLOPT_HTTPHEADER, data.slist);
+		setOption(CURLOPT_HTTPHEADER, out_headers);
 	}
 
 	if ( !data.referer.empty() ) {
