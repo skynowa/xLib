@@ -28,7 +28,7 @@ xNAMESPACE_BEGIN2(xl, package)
 //-------------------------------------------------------------------------------------------------
 CurlClient::CurlClient()
 {
-	CURLcode iRv = ::curl_global_init(CURL_GLOBAL_ALL);
+	cCURLcode iRv = ::curl_global_init(CURL_GLOBAL_ALL);
 	xTEST_EQ(iRv, CURLE_OK);
 
     _handle = ::curl_easy_init();
@@ -110,7 +110,7 @@ CurlClient::reset()
 void_t
 CurlClient::perform()
 {
-    CURLcode iRv = ::curl_easy_perform( _handle.get() );
+    cCURLcode iRv = ::curl_easy_perform( _handle.get() );
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
@@ -119,7 +119,7 @@ CurlClient::pause(
     cint_t a_bitMask
 )
 {
-    CURLcode iRv = ::curl_easy_pause(_handle.get(), a_bitMask);
+    cCURLcode iRv = ::curl_easy_pause(_handle.get(), a_bitMask);
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
@@ -130,7 +130,7 @@ CurlClient::receive(
     std::size_t  *a_n
 )
 {
-    CURLcode iRv = ::curl_easy_recv(_handle.get(), a_buff, a_buffSize, a_n);
+    cCURLcode iRv = ::curl_easy_recv(_handle.get(), a_buff, a_buffSize, a_n);
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
