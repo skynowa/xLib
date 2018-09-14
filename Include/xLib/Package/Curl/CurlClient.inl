@@ -24,5 +24,17 @@ CurlClient::setOption(
 	xTEST_EQ_MSG(iRv, CURLE_OK, Format::str(xT("Option: {} - {}"), a_option, strError(iRv)));
 }
 //-------------------------------------------------------------------------------------------------
+template<typename T>
+inline void_t
+CurlClient::info(
+    cCURLINFO a_info,
+    const T   a_value
+)
+{
+    CURLcode iRv = ::curl_easy_getinfo(_handle.get(), a_info, a_value);
+
+    xTEST_EQ_MSG(iRv, CURLE_OK, Format::str(xT("Info: {} - {}"), a_info, strError(iRv)));
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, package)
