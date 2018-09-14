@@ -16,9 +16,8 @@
 #include "CurlTypes.h"
 #include "CurlBuffer.h"
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, package)
+xNAMESPACE_BEGIN3(xl, package, curl)
 
-//-------------------------------------------------------------------------------------------------
 class CurlClient
     ///< client
 {
@@ -77,7 +76,7 @@ private:
     xNO_COPY_ASSIGN(CurlClient)
 };
 
-xNAMESPACE_END2(xl, package)
+xNAMESPACE_END3(xl, package, curl)
 //-------------------------------------------------------------------------------------------------
 
 #include "CurlClient.inl"
