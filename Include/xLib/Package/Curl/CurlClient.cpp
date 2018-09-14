@@ -139,8 +139,8 @@ CurlClient::info(
 void_t
 CurlClient::receive(
     void_t       *a_buff,
-    const size_t  a_buffSize,
-    size_t       *a_n
+    std::csize_t  a_buffSize,
+    std::size_t  *a_n
 )
 {
     CURLcode iRv = ::curl_easy_recv(_handle.get(), a_buff, a_buffSize, a_n);
@@ -149,9 +149,9 @@ CurlClient::receive(
 //-------------------------------------------------------------------------------------------------
 void_t
 CurlClient::send(
-    const void_t *a_buff,
-    const size_t  a_buffSize,
-    size_t       *a_n
+    cvoid_t      *a_buff,
+    std::csize_t  a_buffSize,
+    std::size_t  *a_n
 )
 {
     CURLcode iRv = ::curl_easy_send(_handle.get(), a_buff, a_buffSize, a_n);
@@ -264,15 +264,15 @@ CurlClient::strError(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-size_t
+std::size_t
 CurlClient::onWriteHeader(
 	void_t *a_buff,
-	size_t  a_size,
-	size_t  a_items,
+	std::size_t  a_size,
+	std::size_t  a_items,
 	void_t *a_userData
 )
 {
-	const size_t buffSize = a_items * a_size;
+	std::csize_t buffSize = a_items * a_size;
 
 	auto *buff = static_cast<CurlBuffer *>(a_userData);
 	buff->set(static_cast<const char *>(a_buff), buffSize);
@@ -281,15 +281,15 @@ CurlClient::onWriteHeader(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-size_t
+std::size_t
 CurlClient::onWriteData(
-	void_t *a_buff,
-	size_t  a_size,
-	size_t  a_items,
-	void_t *a_userData
+	void_t      *a_buff,
+	std::size_t  a_size,
+	std::size_t  a_items,
+	void_t      *a_userData
 )
 {
-	const size_t buffSize = a_items * a_size;
+	std::csize_t buffSize = a_items * a_size;
 
 	auto *buff = static_cast<CurlBuffer *>(a_userData);
 	buff->set(static_cast<const char *>(a_buff), buffSize);
@@ -298,15 +298,15 @@ CurlClient::onWriteData(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-size_t
+std::size_t
 CurlClient::onReadData(
-	void_t *a_buff,			///< [out]
-	size_t  a_size,
-	size_t  a_items,
-	void_t *a_userData
+	void_t      *a_buff,			///< [out]
+	std::size_t  a_size,
+	std::size_t  a_items,
+	void_t      *a_userData
 )
 {
-	const size_t buffSize = a_items * a_size;
+	std::csize_t buffSize = a_items * a_size;
 
 	auto *buff = static_cast<const CurlBuffer *>(a_userData);
 
@@ -319,7 +319,7 @@ CurlClient::onDebug(
 	CURL          *a_curl,
 	curl_infotype  a_type,
 	char          *a_buf,
-	size_t         a_len,
+	std::size_t    a_len,
 	void_t        *a_useData
 )
 {

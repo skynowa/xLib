@@ -43,8 +43,8 @@ public:
     void_t         pause(cint_t bitMask);
     void_t         info(cCURLINFO info, ...);
 
-    void_t         receive(void_t *buff, const size_t buffSize, size_t *n);
-    void_t         send(const void_t *buff, const size_t buffSize, size_t *n);
+    void_t         receive(void_t *buff, std::csize_t buffSize, std::size_t *n);
+    void_t         send(cvoid_t *buff, std::csize_t buffSize, std::size_t *n);
 
     std::tstring_t escape(std::ctstring_t &str);
     std::tstring_t unescape(std::ctstring_t &str);
@@ -61,13 +61,13 @@ public:
 
 protected:
 	static
-	size_t         onWriteHeader(void_t *buff, size_t size, size_t items, void_t *userData);
+	std::size_t    onWriteHeader(void_t *buff, std::size_t size, std::size_t items, void_t *userData);
 	static
-	size_t         onWriteData(void_t *buff, size_t size, size_t items, void_t *userData);
+	std::size_t    onWriteData(void_t *buff, std::size_t size, std::size_t items, void_t *userData);
 	static
-	size_t         onReadData(void_t *buff, size_t size, size_t items, void_t *userData);
+	std::size_t    onReadData(void_t *buff, std::size_t size, std::size_t items, void_t *userData);
 	static
-	int            onDebug(CURL *curl, curl_infotype type, char *buf, size_t len, void_t *useData);
+	int            onDebug(CURL *curl, curl_infotype type, char *buf, std::size_t len, void_t *useData);
 
     HandleCurl _handle;
 
