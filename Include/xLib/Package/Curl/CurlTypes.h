@@ -10,6 +10,9 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, package)
 
+xTYPEDEF_CONST(CURLversion);
+xTYPEDEF_CONST(CURLoption);
+
 enum class HttpVersion
 	/// HTTP version
 {

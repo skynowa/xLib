@@ -30,7 +30,7 @@ public:
 
 	// TODO: curl::curl_info
     std::tstring_t version();
-    std::tstring_t versionInfo(const CURLversion version);
+    std::tstring_t versionInfo(cCURLversion version);
     std::tstring_t versionInfoCurrent();
 
     // handle
@@ -38,7 +38,7 @@ public:
     void_t         reset();
 
 	template<typename T>
-	void_t         setOption(const CURLoption option, const T a_value);
+	void_t         setOption(cCURLoption option, const T a_value);
     void_t         perform();
     void_t         pause(cint_t bitMask);
     void_t         info(const CURLINFO info, ...);

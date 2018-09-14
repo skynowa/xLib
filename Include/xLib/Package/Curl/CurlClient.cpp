@@ -48,7 +48,7 @@ CurlClient::version()
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 CurlClient::versionInfo(
-    const CURLversion a_version
+    cCURLversion a_version
 )
 {
     std::tstring_t sRv;
