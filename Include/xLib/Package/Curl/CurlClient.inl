@@ -21,7 +21,7 @@ CurlClient::setOption(
 {
 	CURLcode iRv = ::curl_easy_setopt(_handle.get(), a_option, a_value);
 
-	xTEST_EQ_MSG(iRv, CURLE_OK, "Option: " + std::to_string(a_option) + " - " + strError(iRv));
+	xTEST_EQ_MSG(iRv, CURLE_OK, Format::str(xT("Option: {} - {}"), a_option, strError(iRv)));
 }
 //-------------------------------------------------------------------------------------------------
 
