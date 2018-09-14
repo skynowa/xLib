@@ -229,6 +229,7 @@ CurlClient::unescapeUrl(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 std::tstring_t
 CurlClient::strError(
    cCURLcode a_code
