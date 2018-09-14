@@ -7,7 +7,7 @@
 #include "HttpClient.h"
 
 
-xNAMESPACE_BEGIN2(xl, package)
+xNAMESPACE_BEGIN3(xl, package, curl)
 
 /**************************************************************************************************
 *   public
@@ -120,4 +120,4 @@ HttpClient::request(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, package)
+xNAMESPACE_END3(xl, package, curl)

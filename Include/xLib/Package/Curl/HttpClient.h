@@ -10,7 +10,7 @@
 
 #include <xLib/Package/Curl/CurlBase.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, package)
+xNAMESPACE_BEGIN3(xl, package, curl)
 
 class HttpClient :
 	private CurlBase
@@ -56,5 +56,5 @@ private:
     xNO_COPY_ASSIGN(HttpClient)
 };
 
-xNAMESPACE_END2(xl, package)
+xNAMESPACE_END3(xl, package, curl)
 //-------------------------------------------------------------------------------------------------

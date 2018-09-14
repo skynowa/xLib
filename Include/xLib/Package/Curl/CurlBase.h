@@ -9,7 +9,7 @@
 
 #include <xLib/Package/Curl/CurlClient.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, package)
+xNAMESPACE_BEGIN3(xl, package, curl)
 
 struct CurlBaseData
     /// base data
@@ -104,5 +104,5 @@ private:
     xNO_COPY_ASSIGN(CurlBase)
 };
 
-xNAMESPACE_END2(xl, package)
+xNAMESPACE_END3(xl, package, curl)
 //-------------------------------------------------------------------------------------------------

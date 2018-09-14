@@ -10,7 +10,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, package)
+xNAMESPACE_BEGIN3(xl, package, curl)
 
 class CurlBuffer
 	/// buffer
@@ -34,5 +34,5 @@ private:
 	xNO_COPY_ASSIGN(CurlBuffer);
 };
 
-xNAMESPACE_END2(xl, package)
+xNAMESPACE_END3(xl, package, curl)
 //-------------------------------------------------------------------------------------------------

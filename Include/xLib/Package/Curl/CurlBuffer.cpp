@@ -9,7 +9,7 @@
 #include <xLib/Core/Utils.h>
 
 
-xNAMESPACE_BEGIN2(xl, package)
+xNAMESPACE_BEGIN3(xl, package, curl)
 
 /**************************************************************************************************
 *   public
@@ -87,4 +87,4 @@ CurlBuffer::clear()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, package)
+xNAMESPACE_END3(xl, package, curl)
