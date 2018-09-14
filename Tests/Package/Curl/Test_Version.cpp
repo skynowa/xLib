@@ -18,18 +18,12 @@ xTEST_UNIT(Test_HttpClient)
 bool_t
 Test_HttpClient::unit()
 {
-    xTEST_CASE("HttpClient::request (Get)")
-    {
-		std::ctstring_t url     = "https://example.com/";
-		std::ctstring_t request = "";
-		std::tstring_t  responseHeader;
-		std::tstring_t  responseBody;
+	Version version;
 
-		HttpClient http;
-		m_bRv = http.request(HttpClient::RequestType::Get, url, request, &responseHeader, &responseBody);
-		xTEST(m_bRv);
-		xTEST_EQ(responseHeader.empty(), false);
-		xTEST_EQ(responseBody.empty(), false);
+    xTEST_CASE("Version::version")
+    {
+		m_sRv = version.version();
+		xTEST_EQ(m_sRv.empty(), false);
     }
 
     return true;

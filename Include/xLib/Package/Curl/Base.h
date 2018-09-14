@@ -7,11 +7,11 @@
 #pragma once
 
 
-#include <xLib/Package/Curl/CurlClient.h>
+#include <xLib/Package/Curl/Client.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN3(xl, package, curl)
 
-struct CurlBaseData
+struct BaseData
     /// base data
 {
 	std::string url;
@@ -59,13 +59,13 @@ struct CurlBaseData
 	struct DebugData
 		/// debug data
 	{
-		CurlBuffer text;
-		CurlBuffer headerIn;
-		CurlBuffer headerOut;
-		CurlBuffer dataIn;
-		CurlBuffer dataOut;
-		CurlBuffer sslDataIn;
-		CurlBuffer sslDataOut;
+		Buffer text;
+		Buffer headerIn;
+		Buffer headerOut;
+		Buffer dataIn;
+		Buffer dataOut;
+		Buffer sslDataIn;
+		Buffer sslDataOut;
 
 		void clear();
 	};
@@ -78,23 +78,23 @@ struct CurlBaseData
 	int         responseCode {};
 	double      totalTimeSec {};
 };
-xTYPEDEF_CONST(CurlBaseData);
+xTYPEDEF_CONST(BaseData);
 
 class CurlBase :
-	public CurlClient
+	public Client
     ///< CURL base
 {
 protected:
-	CurlBaseData &data;
+	BaseData &data;
 
-    explicit CurlBase(CurlBaseData &data);
+    explicit CurlBase(BaseData &data);
         ///< constructor
     virtual ~CurlBase();
         ///< destructor
 
     void     setProtocols(clong_t bitMask);
 		///< set allowed protocols
-    void     setOptionsDefault(CurlBuffer *buffHeader, CurlBuffer *buffData);
+    void     setOptionsDefault(Buffer *buffHeader, Buffer *buffData);
         ///< set options in
     void     getInfos();
         ///< get options out

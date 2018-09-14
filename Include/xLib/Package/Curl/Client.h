@@ -1,5 +1,5 @@
 /**
- * \file   CurlClient.h
+ * \file   Client.h
  * \brief  CURL client
  *
  * https://curl.haxx.se/libcurl/c/allfuncs.html
@@ -13,18 +13,18 @@
 #include <xLib/Core/Handle.h>
 #include <curl/curl.h>
 #include <curl/easy.h>
-#include "CurlTypes.h"
-#include "CurlBuffer.h"
+#include "Types.h"
+#include "Buffer.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN3(xl, package, curl)
 
-class CurlClient
+class Client
     ///< client
 {
 public:
-    explicit       CurlClient();
+    explicit       Client();
         ///< constructor
-    virtual       ~CurlClient();
+    virtual       ~Client();
         ///< destructor
 
 	// TODO: curl::curl_info
@@ -73,13 +73,13 @@ protected:
     HandleCurl _handle;
 
 private:
-    xNO_COPY_ASSIGN(CurlClient)
+    xNO_COPY_ASSIGN(Client)
 };
 
 xNAMESPACE_END3(xl, package, curl)
 //-------------------------------------------------------------------------------------------------
 
-#include "CurlClient.inl"
+#include "Client.inl"
 
 /**
  * TODO: curl_easy

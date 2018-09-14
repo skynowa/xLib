@@ -1,10 +1,10 @@
 /**
- * \file  CurlBuffer.cpp
+ * \file  Buffer.cpp
  * \brief CURL client
  */
 
 
-#include "CurlBuffer.h"
+#include "Buffer.h"
 
 #include <xLib/Core/Utils.h>
 
@@ -17,35 +17,35 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-CurlBuffer::CurlBuffer()
+Buffer::Buffer()
 {
 }
 //-------------------------------------------------------------------------------------------------
-CurlBuffer::~CurlBuffer()
+Buffer::~Buffer()
 {
 	clear();
 }
 //-------------------------------------------------------------------------------------------------
 bool
-CurlBuffer::isEmpty() const
+Buffer::isEmpty() const
 {
 	return (_buff == nullptr || _size == 0);
 }
 //-------------------------------------------------------------------------------------------------
 std::string
-CurlBuffer::buffer() const
+Buffer::buffer() const
 {
 	return {_buff, _size};
 }
 //-------------------------------------------------------------------------------------------------
 std::size_t
-CurlBuffer::size() const
+Buffer::size() const
 {
 	return _size;
 }
 //-------------------------------------------------------------------------------------------------
 size_t
-CurlBuffer::get(
+Buffer::get(
 	char         *a_buff,
 	const size_t  a_buffSize
 ) const
@@ -62,7 +62,7 @@ CurlBuffer::get(
 }
 //-------------------------------------------------------------------------------------------------
 void
-CurlBuffer::set(
+Buffer::set(
 	const char   *a_buff,
 	const size_t  a_buffSize
 )
@@ -76,7 +76,7 @@ CurlBuffer::set(
 }
 //-------------------------------------------------------------------------------------------------
 void
-CurlBuffer::clear()
+Buffer::clear()
 {
 	if ( isEmpty() ) {
 		return;

@@ -13,8 +13,8 @@
 #include <xLib/Core/Handle.h>
 #include <curl/curl.h>
 #include <curl/easy.h>
-#include "CurlTypes.h"
-#include "CurlBuffer.h"
+#include "Types.h"
+#include "Buffer.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN3(xl, package, curl)
 
@@ -22,14 +22,15 @@ class Version
     ///< client
 {
 public:
-    explicit       Version();
+                   Version() = default;
         ///< constructor
-    virtual       ~Version();
+                  ~Version() = default;
         ///< destructor
 
-    std::tstring_t version();
-    std::tstring_t versionInfo(cCURLversion version);
-    std::tstring_t versionInfoCurrent();
+    std::tstring_t version() const;
+    std::tstring_t info(cCURLversion version) const;
+    std::tstring_t infoCurrent() const;
+    void_t         protocols(std::vec_tstring_t *values) const;
 
 private:
     xNO_COPY_ASSIGN(Version)

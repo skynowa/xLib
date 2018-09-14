@@ -1,5 +1,5 @@
 /**
- * \file  CurlBuffer.h
+ * \file  Buffer.h
  * \brief CURL client
  *
  * https://www.codesynthesis.com/~boris/data/buffer/buffer-1.0.0/
@@ -12,12 +12,12 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN3(xl, package, curl)
 
-class CurlBuffer
+class Buffer
 	/// buffer
 {
 public:
-	            CurlBuffer();
-	           ~CurlBuffer();
+	            Buffer();
+	           ~Buffer();
 
 	bool        isEmpty() const;
 	std::string buffer() const;
@@ -31,7 +31,7 @@ private:
 	size_t         _size {};
 	mutable size_t _read_pos {};
 
-	xNO_COPY_ASSIGN(CurlBuffer);
+	xNO_COPY_ASSIGN(Buffer);
 };
 
 xNAMESPACE_END3(xl, package, curl)

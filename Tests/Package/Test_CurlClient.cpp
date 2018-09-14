@@ -1,6 +1,6 @@
 /**
  * \file   Test_CurlClient.cpp
- * \brief  test CurlClient
+ * \brief  test Client
  */
 
 
@@ -17,7 +17,7 @@ xTEST_UNIT(Test_CurlClient)
 bool_t
 Test_CurlClient::unit()
 {
-	CurlClient curl;
+	Client curl;
 
 	CURL *curlHandle = curl.get().get();
 
@@ -43,14 +43,14 @@ Test_CurlClient::unit()
 		curl.setOption(CURLOPT_URL, url.c_str());
 
 		// header
-		CurlBuffer headerBuff;
+		Buffer headerBuff;
 		::curl_easy_setopt(curlHandle, CURLOPT_WRITEHEADER, &headerBuff);
-		::curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, CurlClient::onWriteHeader);
+		::curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, Client::onWriteHeader);
 
 		// data
-		CurlBuffer writeBuff;
+		Buffer writeBuff;
 		::curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &writeBuff);
-		::curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, CurlClient::onWriteData);
+		::curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, Client::onWriteData);
 
 		::curl_easy_setopt(curlHandle, CURLOPT_POST,0);
 		::curl_easy_setopt(curlHandle, CURLOPT_NOBODY, 0);

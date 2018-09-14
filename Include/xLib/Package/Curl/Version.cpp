@@ -6,17 +6,6 @@
 
 #include "Version.h"
 
-#include <xLib/Core/Const.h>
-#include <xLib/Core/Utils.h>
-#include <xLib/Core/String.h>
-#include <xLib/Core/Format.h>
-#include <xLib/Log/Trace.h>
-#include <xLib/Log/FileLog.h>
-#include <xLib/Debug/NativeError.h>
-#include <xLib/Debug/ErrorReport.h>
-#include <xLib/Test/Test.h>
-#include "CurlBase.h"
-
 
 xNAMESPACE_BEGIN3(xl, package, curl)
 
@@ -26,24 +15,16 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Version::Version()
-{
-}
-//-------------------------------------------------------------------------------------------------
-Version::~Version()
-{
-}
-//-------------------------------------------------------------------------------------------------
 std::tstring_t
-Version::version()
+Version::version() const
 {
     return ::curl_version();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Version::versionInfo(
+Version::info(
     cCURLversion a_version
-)
+) const
 {
     std::tstring_t sRv;
 
@@ -84,9 +65,28 @@ Version::versionInfo(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Version::versionInfoCurrent()
+Version::infoCurrent() const
 {
-    return versionInfo(CURLVERSION_NOW);
+    return info(CURLVERSION_NOW);
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Version::protocols(
+	std::vec_tstring_t *a_values	///< [out]
+) const
+{
+	xTEST_PTR(a_values);
+
+	a_values->clear();
+
+    curl_version_info_data *infoData = ::curl_version_info(CURLVERSION_NOW);
+    xTEST_PTR(infoData);
+
+    const char *const *const prot = infoData->protocols;
+
+    for (std::size_t i = 0; *(prot + i) != nullptr; ++ i) {
+        a_values->push_back(*(prot + i));
+    }
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <xLib/Package/Curl/CurlBase.h>
+#include <xLib/Package/Curl/Base.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN3(xl, package, curl)
 

@@ -4,7 +4,7 @@
  */
 
 
-#include "CurlBase.h"
+#include "Base.h"
 
 
 xNAMESPACE_BEGIN3(xl, package, curl)
@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 
 //-------------------------------------------------------------------------------------------------
 void
-CurlBaseData::DebugData::clear()
+BaseData::DebugData::clear()
 {
 	text.clear();
 	headerIn.clear();
@@ -36,7 +36,7 @@ CurlBaseData::DebugData::clear()
 
 //-------------------------------------------------------------------------------------------------
 CurlBase::CurlBase(
-	CurlBaseData &a_data
+	BaseData &a_data
 ) :
 	data(a_data)
 {
@@ -56,8 +56,8 @@ CurlBase::setProtocols(
 //-------------------------------------------------------------------------------------------------
 void
 CurlBase::setOptionsDefault(
-	CurlBuffer *out_buffHeader,	///< [out]
-	CurlBuffer *out_buffData	///< [out]
+	Buffer *out_buffHeader,	///< [out]
+	Buffer *out_buffData	///< [out]
 )
 {
 	xTEST(_handle.isValid());
