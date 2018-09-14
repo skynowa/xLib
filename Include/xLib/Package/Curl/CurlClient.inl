@@ -15,8 +15,8 @@ xNAMESPACE_BEGIN2(xl, package)
 template<typename ValueT>
 inline void_t
 CurlClient::setOption(
-	const CURLoption a_option,
-	const ValueT     a_value
+	cCURLoption  a_option,
+	const ValueT a_value
 )
 {
 	CURLcode iRv = ::curl_easy_setopt(_handle.get(), a_option, a_value);
