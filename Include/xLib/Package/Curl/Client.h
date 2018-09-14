@@ -27,11 +27,6 @@ public:
     virtual       ~Client();
         ///< destructor
 
-	// TODO: curl::curl_info
-    std::tstring_t version();
-    std::tstring_t versionInfo(cCURLversion version);
-    std::tstring_t versionInfoCurrent();
-
     // handle
     HandleCurl &   get();
     void_t         reset();
