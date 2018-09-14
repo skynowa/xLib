@@ -17,42 +17,42 @@ struct CurlBaseData
 	std::string url;
 	bool        isUseHeader {true};
 
-	bool        isSslVerifyPeer {true};
+		bool        isSslVerifyPeer {true};
 	bool        isSslVerifyHost {true};
-	long int    ssl_version {CURL_SSLVERSION_DEFAULT};
-	std::string ssl_cert;
-	std::string ssl_cert_pass;
+	long int    sslVersion {CURL_SSLVERSION_DEFAULT};
+	std::string sslCert;
+	std::string sslCertPass;
 
-	HttpVersion http_version {HttpVersion::Default};
+	HttpVersion httpVersion {HttpVersion::Default};
 
 	bool        isVerbose {true};
 
-	std::string cookie_file;
-	std::string add_cookie;
+	std::string cookieFile;
+	std::string addCookie;
 
-	std::string encoding_param;
+	std::string encodingParam;
 	std::string ciphers;
 
-	char        error_str[1024 + 1] {};
+	char        errorStr[1024 + 1] {};
 
-	int         timeout_sec {};
-	int         timeout_ms {};
-	int         continue_timeout_ms {};
+	int         timeoutSec {};
+	int         timeoutMs {};
+	int         continueTimeoutMs {};
 
-	ProxyType   proxy_type {ProxyType::Http};
+	ProxyType   proxyType {ProxyType::Http};
 	std::string proxy;
-	std::string proxy_userpass;
-	std::string userpass;
+	std::string proxyUserPass;
+	std::string userPass;
 
 	curl_slist *slist {};
-	std::map_tstring_t add_header;
+	std::map_tstring_t addHeader;
 
 	std::string referer;
-	std::string accept_encoding;
+	std::string acceptEncoding;
 	std::string agent;
 
 	bool        isFollowLocation {true};
-	int         max_redirects {100};
+	int         maxRedirects {100};
 
 	bool        isDebugHeader {true};
 
@@ -60,23 +60,23 @@ struct CurlBaseData
 		/// debug data
 	{
 		CurlBuffer text;
-		CurlBuffer header_in;
-		CurlBuffer header_out;
-		CurlBuffer data_in;
-		CurlBuffer data_out;
-		CurlBuffer ssl_data_in;
-		CurlBuffer ssl_data_out;
+		CurlBuffer headerIn;
+		CurlBuffer headerOut;
+		CurlBuffer dataIn;
+		CurlBuffer dataOut;
+		CurlBuffer sslDataIn;
+		CurlBuffer sslDataOut;
 
 		void clear();
 	};
 
-	DebugData   debug_data;
+	DebugData   debugData;
 
 	// out
-	std::string content_type;
-	std::string effective_url;
-	int         response_code {};
-	double      total_time_sec {};
+	std::string contentType;
+	std::string effectiveUrl;
+	int         responseCode {};
+	double      totalTimeSec {};
 };
 xTYPEDEF_CONST(CurlBaseData);
 
