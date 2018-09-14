@@ -35,16 +35,16 @@ public:
 
     // handle
     HandleCurl &   get();
-    void           reset();
+    void_t         reset();
 
 	template<typename T>
-	void           setOption(const CURLoption option, const T a_value);
-    void           perform();
-    void           pause(cint_t bitMask);
-    void           info(const CURLINFO info, ...);
+	void_t         setOption(const CURLoption option, const T a_value);
+    void_t         perform();
+    void_t         pause(cint_t bitMask);
+    void_t         info(const CURLINFO info, ...);
 
-    void           receive(void *buff, const size_t buffSize, size_t *n);
-    void           send(const void *buff, const size_t buffSize, size_t *n);
+    void_t         receive(void_t *buff, const size_t buffSize, size_t *n);
+    void_t         send(const void_t *buff, const size_t buffSize, size_t *n);
 
     std::tstring_t escape(std::ctstring_t &str);
     std::tstring_t unescape(std::ctstring_t &str);
@@ -55,7 +55,7 @@ public:
     std::tstring_t unescapeUrl(std::ctstring_t &str);
 
     /// struct curl_slist *curl_slist_append(struct curl_slist *,  const char *);
-    /// void               curl_slist_free_all(struct curl_slist *);
+    /// void_t               curl_slist_free_all(struct curl_slist *);
 
     std::tstring_t strError(const CURLcode code);
 
@@ -67,7 +67,7 @@ protected:
 	static
 	size_t         onReadData(void_t *buff, size_t size, size_t items, void_t *userData);
 	static
-	int            onDebug(CURL *curl, curl_infotype type, char *buf, size_t len, void *useData);
+	int            onDebug(CURL *curl, curl_infotype type, char *buf, size_t len, void_t *useData);
 
     HandleCurl _handle;
 

@@ -101,20 +101,20 @@ CurlClient::get()
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 CurlClient::reset()
 {
     (void_t)::curl_easy_reset( _handle.get() );
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 CurlClient::perform()
 {
     CURLcode iRv = ::curl_easy_perform( _handle.get() );
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 CurlClient::pause(
     cint_t a_bitMask
 )
@@ -123,7 +123,7 @@ CurlClient::pause(
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 CurlClient::info(
     const CURLINFO a_info, ...
 )
@@ -136,9 +136,9 @@ CurlClient::info(
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 CurlClient::receive(
-    void         *a_buff,
+    void_t       *a_buff,
     const size_t  a_buffSize,
     size_t       *a_n
 )
@@ -147,9 +147,9 @@ CurlClient::receive(
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 CurlClient::send(
-    const void   *a_buff,
+    const void_t *a_buff,
     const size_t  a_buffSize,
     size_t       *a_n
 )
@@ -320,7 +320,7 @@ CurlClient::onDebug(
 	curl_infotype  a_type,
 	char          *a_buf,
 	size_t         a_len,
-	void          *a_useData
+	void_t        *a_useData
 )
 {
 	if (a_useData == nullptr) {
