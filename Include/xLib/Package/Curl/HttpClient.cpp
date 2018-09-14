@@ -108,10 +108,7 @@ HttpClient::request(
 
 	getInfos();
 
-	if (headers) {
-		::curl_slist_free_all(headers);
-		headers = nullptr;
-	}
+	Utils::freeT(headers, ::curl_slist_free_all, nullptr);
 
 	/// _error = st;
 
