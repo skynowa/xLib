@@ -231,7 +231,7 @@ CurlClient::unescapeUrl(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 CurlClient::strError(
-   const CURLcode a_code
+   cCURLcode a_code
 )
 {
     const char *pszRv = ::curl_easy_strerror(a_code);
@@ -326,22 +326,22 @@ CurlClient::onDebug(
 		data->text.set(a_buf, a_len);
 		break;
 	case CURLINFO_HEADER_IN:
-		data->header_in.set(a_buf, a_len);
+		data->headerIn.set(a_buf, a_len);
 		break;
 	case CURLINFO_HEADER_OUT:
-		data->header_out.set(a_buf, a_len);
+		data->headerOut.set(a_buf, a_len);
 		break;
 	case CURLINFO_DATA_IN:
-		data->data_in.set(a_buf, a_len);
+		data->dataIn.set(a_buf, a_len);
 		break;
 	case CURLINFO_DATA_OUT:
-		data->data_out.set(a_buf, a_len);
+		data->dataOut.set(a_buf, a_len);
 		break;
 	case CURLINFO_SSL_DATA_IN:
-		data->ssl_data_in.set(a_buf, a_len);
+		data->sslDataIn.set(a_buf, a_len);
 		break;
 	case CURLINFO_SSL_DATA_OUT:
-		data->ssl_data_out.set(a_buf, a_len);
+		data->sslDataOut.set(a_buf, a_len);
 		break;
 	case CURLINFO_END:
 	default:
