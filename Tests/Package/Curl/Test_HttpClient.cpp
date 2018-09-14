@@ -18,7 +18,7 @@ xTEST_UNIT(Test_HttpClient)
 bool_t
 Test_HttpClient::unit()
 {
-    xTEST_CASE("HttpClient::request (Get)")
+    xTEST_CASE("request (Get)")
     {
 		std::ctstring_t url     = "https://example.com/";
 		std::ctstring_t request = "";
