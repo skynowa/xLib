@@ -155,9 +155,6 @@
 #include <xLib/Package/Ssh2Client.h>
 #include <xLib/Package/Donate.h>
 
-#include <xLib/Package/Curl/Version.h>
-#include <xLib/Package/Curl/CurlClient.h>
-#include <xLib/Package/Curl/CurlBase.h>
 #include <xLib/Package/Curl/HttpClient.h>
 
 #include <xLib/Package/Xml.h>

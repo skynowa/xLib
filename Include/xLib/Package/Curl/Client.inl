@@ -1,5 +1,5 @@
 /**
- * \file   CurlClient.inl
+ * \file   Client.inl
  * \brief  CURL client
  */
 
@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline void_t
-CurlClient::setOption(
+Client::setOption(
 	cCURLoption a_option,
 	const T     a_value
 )
@@ -26,7 +26,7 @@ CurlClient::setOption(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline void_t
-CurlClient::info(
+Client::info(
     cCURLINFO a_info,
     const T   a_value
 )

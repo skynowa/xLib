@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 *
 **************************************************************************************************/
 
-CurlBaseData baseData;
+BaseData baseData;
 
 //-------------------------------------------------------------------------------------------------
 HttpClient::HttpClient() :
@@ -98,8 +98,8 @@ HttpClient::request(
 		break;
 	}
 
-	CurlBuffer buffHeader;
-	CurlBuffer buffData;
+	Buffer buffHeader;
+	Buffer buffData;
 	CurlBase::setOptionsDefault(&buffHeader, &buffData);
 
 	/*CURLcode st = */ perform();
