@@ -44,7 +44,6 @@ struct BaseData
 	std::string proxyUserPass;
 	std::string userPass;
 
-	curl_slist *slist {};
 	std::map_tstring_t addHeader;
 
 	std::string referer;
@@ -94,7 +93,7 @@ protected:
 
     void     setProtocols(clong_t bitMask);
 		///< set allowed protocols
-    void     setOptionsDefault(Buffer *buffHeader, Buffer *buffData);
+    void     setOptionsDefault(curl_slist *headers, Buffer *buffHeader, Buffer *buffData);
         ///< set options in
     void     getInfos();
         ///< get options out

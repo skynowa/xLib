@@ -99,17 +99,19 @@ HttpClient::request(
 		break;
 	}
 
-	Buffer buffHeader;
-	Buffer buffData;
-	CurlBase::setOptionsDefault(&buffHeader, &buffData);
+	curl_slist *headers {};
+	Buffer      buffHeader;
+	Buffer      buffData;
+	CurlBase::setOptionsDefault(headers, &buffHeader, &buffData);
 
 	/*CURLcode st = */ perform();
 
 	getInfos();
-#if 0
-	if (_slist)
-		curl_slist_free_all(_slist);
-#endif
+
+	if (headers) {
+		::curl_slist_free_all(headers);
+		headers = nullptr;
+	}
 
 	/// _error = st;
 
