@@ -58,6 +58,7 @@ public:
     /// struct curl_slist *curl_slist_append(struct curl_slist *,  const char *);
     /// void_t               curl_slist_free_all(struct curl_slist *);
 
+	static
     std::tstring_t strError(cCURLcode code);
 
 protected:

@@ -44,6 +44,7 @@ HttpClient::request(
 	out_responseHeader->clear();
 	out_responseBody->clear();
 
+	// CurlBase - overrides
 	data.url = a_url;
 
 	setProtocols(CURLPROTO_HTTP | CURLPROTO_HTTPS);
