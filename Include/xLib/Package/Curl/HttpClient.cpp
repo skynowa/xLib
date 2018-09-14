@@ -74,7 +74,7 @@ HttpClient::request(
 		break;
 	case RequestType::Delete:
 		{
-			setOption(CURLOPT_CUSTOMREQUEST, "DELETE");
+			setOption(CURLOPT_CUSTOMREQUEST, xT("DELETE"));
 		}
 		break;
 	case RequestType::Connect:

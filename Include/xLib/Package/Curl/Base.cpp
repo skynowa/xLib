@@ -173,7 +173,7 @@ CurlBase::setOptionsDefault(
 		data.slist = nullptr;
 
 		for (auto &it_header : data.addHeader) {
-			const std::string value = it_header.first + ": " + it_header.second;
+			const std::string value = it_header.first + xT(": ") + it_header.second;
 
 			data.slist = ::curl_slist_append(data.slist, value.c_str());
 		}
@@ -216,14 +216,14 @@ CurlBase::getInfos()
 		char *contentType {};
 		info(CURLINFO_CONTENT_TYPE, &contentType);
 
-		data.contentType = (contentType == nullptr ? "" : contentType);
+		data.contentType = (contentType == nullptr ? xT("") : contentType);
 	}
 
 	{
 		char *effectiveUrl {};
 		info(CURLINFO_EFFECTIVE_URL, &effectiveUrl);
 
-		data.effectiveUrl = (effectiveUrl == nullptr ? "" : effectiveUrl);
+		data.effectiveUrl = (effectiveUrl == nullptr ? xT("") : effectiveUrl);
 	}
 
 	{
