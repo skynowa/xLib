@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xl, package)
 
 //-------------------------------------------------------------------------------------------------
 template<typename ValueT>
-inline void
+inline void_t
 CurlClient::setOption(
 	const CURLoption a_option,
 	const ValueT     a_value
