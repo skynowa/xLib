@@ -38,10 +38,11 @@ public:
     void_t         reset();
 
 	template<typename T>
-	void_t         setOption(cCURLoption option, const T a_value);
+	void_t         setOption(cCURLoption option, const T value);
     void_t         perform();
     void_t         pause(cint_t bitMask);
-    void_t         info(cCURLINFO info, ...);
+    template<typename T>
+    void_t         info(cCURLINFO info, const T value);
 
     void_t         receive(void_t *buff, std::csize_t buffSize, std::size_t *n);
     void_t         send(cvoid_t *buff, std::csize_t buffSize, std::size_t *n);

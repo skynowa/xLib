@@ -124,19 +124,6 @@ CurlClient::pause(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-CurlClient::info(
-    const CURLINFO a_info, ...
-)
-{
-    va_list args;
-    xVA_START(args, a_info);
-    CURLcode iRv = ::curl_easy_getinfo(_handle.get(), a_info, args);
-    xVA_END(args);
-
-    xTEST_EQ(iRv, CURLE_OK);
-}
-//-------------------------------------------------------------------------------------------------
-void_t
 CurlClient::receive(
     void_t       *a_buff,
     std::csize_t  a_buffSize,
@@ -323,6 +310,8 @@ CurlClient::onDebug(
 	void_t        *a_useData
 )
 {
+	xUNUSED(a_curl);
+
 	if (a_useData == nullptr) {
 		return CURLE_OK;
 	}
