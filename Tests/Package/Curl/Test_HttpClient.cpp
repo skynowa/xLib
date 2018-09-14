@@ -25,7 +25,8 @@ Test_HttpClient::unit()
 		std::tstring_t  responseBody;
 
 		HttpClient http;
-		http.request(HttpClient::RequestType::Get, url, request, &responseHeader, &responseBody);
+		m_bRv = http.request(HttpClient::RequestType::Get, url, request, &responseHeader, &responseBody);
+		xTEST(m_bRv);
 		xTEST_EQ(responseHeader.empty(), false);
 		xTEST_EQ(responseBody.empty(), false);
     }
