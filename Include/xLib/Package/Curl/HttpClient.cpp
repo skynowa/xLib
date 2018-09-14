@@ -69,6 +69,7 @@ HttpClient::request(
 	case RequestType::Put:
 		{
 			// TODO: RequestType::Put
+			setOption(CURLOPT_UPLOAD, 1L);
 		}
 		break;
 	case RequestType::Delete:
