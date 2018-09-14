@@ -41,7 +41,7 @@ public:
 	void_t         setOption(cCURLoption option, const T a_value);
     void_t         perform();
     void_t         pause(cint_t bitMask);
-    void_t         info(const CURLINFO info, ...);
+    void_t         info(cCURLINFO info, ...);
 
     void_t         receive(void_t *buff, const size_t buffSize, size_t *n);
     void_t         send(const void_t *buff, const size_t buffSize, size_t *n);
