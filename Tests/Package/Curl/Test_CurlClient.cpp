@@ -24,8 +24,9 @@ Test_CurlClient::unit()
 
     xTEST_CASE("setOption")
 	{
-		std::tstring_t url = xT("http://www.cplusplus.com/reference/");
+		std::ctstring_t url = xT("http://www.cplusplus.com/reference/");
 
+		// options
 		curl.setOption(CURLOPT_URL, url.c_str());
 
 		// header
@@ -33,7 +34,7 @@ Test_CurlClient::unit()
 		::curl_easy_setopt(curlHandle, CURLOPT_WRITEHEADER, &headerBuff);
 		::curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, Client::onWriteHeader);
 
-		// data
+		// body
 		Buffer writeBuff;
 		::curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &writeBuff);
 		::curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, Client::onWriteData);
