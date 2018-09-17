@@ -55,7 +55,7 @@ public:
 	static
     std::tstring_t strError(cCURLcode code);
 
-protected:
+    // callbacks
 	static
 	std::size_t    onWriteHeader(void_t *buff, std::size_t size, std::size_t items, void_t *userData);
 	static
