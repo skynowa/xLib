@@ -34,6 +34,11 @@ Test_HttpClient::unit()
 		xTEST_EQ(m_sRv.empty(), false);
 
 		// std::tcout << (OStream() << xTRACE_VAR(m_sRv)).str() << std::endl;
+
+		for (CURLversion v = CURLVERSION_FIRST; v < CURLVERSION_LAST; ++ v) {
+			m_sRv = version.info(v);
+			xTEST_EQ(m_sRv.empty(), false);
+		}
 	}
 
 	xTEST_CASE("infoCurrent")
