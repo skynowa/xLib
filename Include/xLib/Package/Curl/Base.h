@@ -17,7 +17,7 @@ struct BaseData
 	std::string url;
 	bool        isUseHeader {true};
 
-		bool        isSslVerifyPeer {true};
+	bool        isSslVerifyPeer {true};
 	bool        isSslVerifyHost {true};
 	long int    sslVersion {CURL_SSLVERSION_DEFAULT};
 	std::string sslCert;
