@@ -43,6 +43,9 @@ Test_CurlClient::unit()
 		::curl_easy_setopt(curlHandle, CURLOPT_NOBODY, 0L);
 
 		curl.perform();
+
+		xTEST_EQ(buffHeader.buffer().empty(), false);
+		xTEST_EQ(dataBuff.buffer().empty(), false);
 	}
 
     return true;
