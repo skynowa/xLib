@@ -35,8 +35,8 @@ Test_CurlClient::unit()
 		::curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, Client::onWriteHeader);
 
 		// body
-		Buffer bodyBuff;
-		::curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &bodyBuff);
+		Buffer dataBuff;
+		::curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &dataBuff);
 		::curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, Client::onWriteData);
 
 		::curl_easy_setopt(curlHandle, CURLOPT_POST, 0L);
