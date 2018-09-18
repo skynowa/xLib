@@ -20,8 +20,8 @@ Test_HttpClient::unit()
 {
     xTEST_CASE("request (Get)")
     {
-		std::ctstring_t url     = "https://example.com/";
-		std::ctstring_t request = "";
+		std::ctstring_t url     = xT("https://example.com/");
+		std::ctstring_t request = xT("");
 		std::tstring_t  responseHeader;
 		std::tstring_t  responseBody;
 
