@@ -30,17 +30,17 @@ Test_CurlClient::unit()
 		curl.setOption(CURLOPT_URL, url.c_str());
 
 		// header
-		Buffer headerBuff;
-		::curl_easy_setopt(curlHandle, CURLOPT_WRITEHEADER, &headerBuff);
+		Buffer buffHeader;
+		::curl_easy_setopt(curlHandle, CURLOPT_WRITEHEADER, &buffHeader);
 		::curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, Client::onWriteHeader);
 
 		// body
-		Buffer writeBuff;
-		::curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &writeBuff);
+		Buffer bodyBuff;
+		::curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &bodyBuff);
 		::curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, Client::onWriteData);
 
-		::curl_easy_setopt(curlHandle, CURLOPT_POST,0);
-		::curl_easy_setopt(curlHandle, CURLOPT_NOBODY, 0);
+		::curl_easy_setopt(curlHandle, CURLOPT_POST, 0L);
+		::curl_easy_setopt(curlHandle, CURLOPT_NOBODY, 0L);
 
 		curl.perform();
 	}
