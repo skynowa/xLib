@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN3(xl, package, curl)
 
 struct BaseData
-    /// base data
+    /// base data (in)
 {
 	std::tstring_t url;
 	bool_t         isUseHeader {true};
@@ -76,7 +76,7 @@ struct BaseData
 xTYPEDEF_CONST(BaseData);
 //-------------------------------------------------------------------------------------------------
 struct BaseDataOut
-    /// base data out
+    /// base data (out)
 {
 	std::tstring_t contentType;
 	std::tstring_t effectiveUrl;
