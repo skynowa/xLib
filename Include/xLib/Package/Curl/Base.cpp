@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 BaseData::DebugData::clear()
 {
 	text.clear();
@@ -43,7 +43,7 @@ CurlBase::~CurlBase()
 {
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 CurlBase::setProtocols(
 	clong_t a_bitMask	///< bitmask of CURLPROTO_* defines (CURLPROTO_HTTP, ..., CURLPROTO_ALL)
 )
@@ -51,7 +51,7 @@ CurlBase::setProtocols(
 	setOption(CURLOPT_PROTOCOLS, a_bitMask);
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 CurlBase::setOptionsDefault(
 	BaseData   *a_data,			///< [in,out]
 	curl_slist *out_headers,	///< [out]
@@ -205,7 +205,7 @@ CurlBase::setOptionsDefault(
 	}
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 CurlBase::getInfos(
 	BaseDataOut *out_dataOut	///< [out]
 )
@@ -213,28 +213,28 @@ CurlBase::getInfos(
 	xTEST(_handle.isValid());
 
 	{
-		char *contentType {};
+		tchar_t *contentType {};
 		info(CURLINFO_CONTENT_TYPE, &contentType);
 
 		out_dataOut->contentType = (contentType == nullptr ? xT("") : contentType);
 	}
 
 	{
-		char *effectiveUrl {};
+		tchar_t *effectiveUrl {};
 		info(CURLINFO_EFFECTIVE_URL, &effectiveUrl);
 
 		out_dataOut->effectiveUrl = (effectiveUrl == nullptr ? xT("") : effectiveUrl);
 	}
 
 	{
-		int responseCode {};
+		int_t responseCode {};
 		info(CURLINFO_RESPONSE_CODE, &responseCode);
 
 		out_dataOut->responseCode = responseCode;
 	}
 
 	{
-		double totalTimeSec {};
+		double_t totalTimeSec {};
 		info(CURLINFO_TOTAL_TIME, &totalTimeSec);
 
 		out_dataOut->totalTimeSec = totalTimeSec;

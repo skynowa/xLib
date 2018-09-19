@@ -14,48 +14,48 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 struct BaseData
     /// base data
 {
-	std::string url;
-	bool        isUseHeader {true};
+	std::tstring_t url;
+	bool_t         isUseHeader {true};
 
-	bool        isSslVerifyPeer {true};
-	bool        isSslVerifyHost {true};
-	long int    sslVersion {CURL_SSLVERSION_DEFAULT};
-	std::string sslCert;
-	std::string sslCertPass;
+	bool_t         isSslVerifyPeer {true};
+	bool_t         isSslVerifyHost {true};
+	long_t         sslVersion {CURL_SSLVERSION_DEFAULT};
+	std::tstring_t sslCert;
+	std::tstring_t sslCertPass;
 
-	HttpVersion httpVersion {HttpVersion::Default};
+	HttpVersion    httpVersion {HttpVersion::Default};
 
-	bool        isVerbose {true};
+	bool_t         isVerbose {true};
 
-	std::string cookieFile;
-	std::string addCookie;
+	std::tstring_t cookieFile;
+	std::tstring_t addCookie;
 
-	std::string encodingParam;
-	std::string ciphers;
+	std::tstring_t encodingParam;
+	std::tstring_t ciphers;
 
-	char        errorStr[1024 + 1] {};
+	tchar_t        errorStr[1024 + 1] {};
 
-	int         timeoutSec {};
-	int         timeoutMs {};
-	int         continueTimeoutMs {};
+	int_t          timeoutSec {};
+	int_t          timeoutMs {};
+	int_t          continueTimeoutMs {};
 
-	ProxyType   proxyType {ProxyType::Http};
-	std::string proxy;
-	std::string proxyUserPass;
-	std::string userPass;
+	ProxyType      proxyType {ProxyType::Http};
+	std::tstring_t proxy;
+	std::tstring_t proxyUserPass;
+	std::tstring_t userPass;
 
 	std::map_tstring_t addHeader;
 
-	std::string referer;
-	std::string acceptEncoding;
-	std::string agent;
+	std::tstring_t referer;
+	std::tstring_t acceptEncoding;
+	std::tstring_t agent;
 
-	bool        isFollowLocation {true};
-	int         maxRedirects {100};
+	bool_t         isFollowLocation {true};
+	int_t          maxRedirects {100};
 
-	bool        isDebugHeader {true};
+	bool_t         isDebugHeader {true};
 
-	std::string request;
+	std::tstring_t request;
 
 	struct DebugData
 		/// debug data
@@ -68,23 +68,23 @@ struct BaseData
 		Buffer sslDataIn;
 		Buffer sslDataOut;
 
-		void clear();
+		void_t clear();
 	};
 
-	DebugData   debugData;
+	DebugData      debugData;
 };
 xTYPEDEF_CONST(BaseData);
 //-------------------------------------------------------------------------------------------------
 struct BaseDataOut
     /// base data out
 {
-	std::string contentType;
-	std::string effectiveUrl;
-	int         responseCode {};
-	double      totalTimeSec {};
+	std::tstring_t contentType;
+	std::tstring_t effectiveUrl;
+	int_t          responseCode {};
+	double_t       totalTimeSec {};
 
-	std::string headers;
-	std::string body;
+	std::tstring_t headers;
+	std::tstring_t body;
 };
 xTYPEDEF_CONST(BaseDataOut);
 //-------------------------------------------------------------------------------------------------
@@ -98,11 +98,11 @@ protected:
     virtual ~CurlBase();
         ///< destructor
 
-    void     setProtocols(clong_t bitMask);
+    void_t   setProtocols(clong_t bitMask);
 		///< set allowed protocols
-    void     setOptionsDefault(BaseData *data, curl_slist *headers, Buffer *buffHeader, Buffer *buffData);
+    void_t   setOptionsDefault(BaseData *data, curl_slist *headers, Buffer *buffHeader, Buffer *buffData);
         ///< set options in
-    void     getInfos(BaseDataOut *dataOut);
+    void_t   getInfos(BaseDataOut *dataOut);
         ///< get options out
 
 private:
