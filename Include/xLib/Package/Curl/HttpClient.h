@@ -48,8 +48,7 @@ public:
 	};
 	xTYPEDEF_CONST(RequestType);
 
-    bool_t request(cRequestType type, std::ctstring_t &url, std::ctstring_t &request,
-				std::tstring_t *responseHeader, std::tstring_t *responseBody);
+    bool_t request(cRequestType type, BaseData &baseData, BaseDataOut *out_baseDataOut);
 
 private:
 
