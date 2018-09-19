@@ -14,11 +14,10 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 *
 **************************************************************************************************/
 
-BaseData baseData;
+
 
 //-------------------------------------------------------------------------------------------------
-HttpClient::HttpClient() :
-	CurlBase(baseData)
+HttpClient::HttpClient()
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -28,24 +27,16 @@ HttpClient::~HttpClient()
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::request(
-	cRequestType     a_type,				///<
-	std::ctstring_t &a_url,					///<
-	std::ctstring_t &a_request,				///<
-	std::tstring_t  *out_responseHeader,	///< [out]
-	std::tstring_t  *out_responseBody		///< [out]
+	cRequestType     a_type,			///<
+	BaseData        &a_baseData,		///< [in,out]
+	BaseDataOut     *out_baseDataOut	///< [out]
 )
 {
 	xTEST_DIFF((int)a_type, (int)RequestType::Unknown);
-	xTEST_EQ(a_url.empty(), false);
-	xTEST_NA(a_request);
-	xTEST_PTR(out_responseHeader);
-	xTEST_PTR(out_responseBody);
+	xTEST_PTR(out_baseDataOut);
 
-	out_responseHeader->clear();
-	out_responseBody->clear();
-
-	// CurlBase - overrides
-	data.url = a_url;
+	out_baseDataOut->headers.clear();
+	out_baseDataOut->body.clear();
 
 	setProtocols(CURLPROTO_HTTP | CURLPROTO_HTTPS);
 
@@ -102,19 +93,19 @@ HttpClient::request(
 	curl_slist *headers {};
 	Buffer      buffHeader;
 	Buffer      buffData;
-	CurlBase::setOptionsDefault(headers, &buffHeader, &buffData);
+	CurlBase::setOptionsDefault(&a_baseData, headers, &buffHeader, &buffData);
 
 	/*CURLcode st = */ perform();
 
-	getInfos();
+	CurlBase::getInfos(out_baseDataOut);
 
 	Utils::freeT(headers, ::curl_slist_free_all, nullptr);
 
 	/// _error = st;
 
 	// [out]
-	*out_responseHeader = buffHeader.buffer();
-	*out_responseBody   = buffData.buffer();
+	out_baseDataOut->headers = buffHeader.buffer();
+	out_baseDataOut->body    = buffData.buffer();
 
 	return true;
 }

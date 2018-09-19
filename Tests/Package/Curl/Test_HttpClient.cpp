@@ -20,16 +20,26 @@ Test_HttpClient::unit()
 {
     xTEST_CASE("request (Get)")
     {
-		std::ctstring_t url     = xT("https://example.com/");
-		std::ctstring_t request = xT("");
-		std::tstring_t  responseHeader;
-		std::tstring_t  responseBody;
+		BaseData baseData;
+		baseData.url     = xT("https://example.com/");
+		baseData.request = xT("");
+
+		BaseDataOut baseDataOut;
 
 		HttpClient http;
-		m_bRv = http.request(HttpClient::RequestType::Get, url, request, &responseHeader, &responseBody);
+		m_bRv = http.request(HttpClient::RequestType::Get, baseData, &baseDataOut);
 		xTEST(m_bRv);
-		xTEST_EQ(responseHeader.empty(), false);
-		xTEST_EQ(responseBody.empty(), false);
+		xTEST_EQ(baseDataOut.headers.empty(), false);
+		xTEST_EQ(baseDataOut.body.empty(), false);
+
+		std::cout
+			<< xTRACE_VAR(baseDataOut.contentType)  << "\n"
+			<< xTRACE_VAR(baseDataOut.effectiveUrl) << "\n"
+			<< xTRACE_VAR(baseDataOut.responseCode) << "\n"
+			<< xTRACE_VAR(baseDataOut.totalTimeSec) << "\n"
+			<< "\n"
+			<< xTRACE_VAR(baseDataOut.headers)      << "\n"
+			<< xTRACE_VAR(baseDataOut.body.size())  << "\n";
     }
 
     return true;

@@ -55,6 +55,8 @@ struct BaseData
 
 	bool        isDebugHeader {true};
 
+	std::string request;
+
 	struct DebugData
 		/// debug data
 	{
@@ -70,36 +72,40 @@ struct BaseData
 	};
 
 	DebugData   debugData;
-
-	// out
+};
+xTYPEDEF_CONST(BaseData);
+//-------------------------------------------------------------------------------------------------
+struct BaseDataOut
+    /// base data out
+{
 	std::string contentType;
 	std::string effectiveUrl;
 	int         responseCode {};
 	double      totalTimeSec {};
-};
-xTYPEDEF_CONST(BaseData);
 
+	std::string headers;
+	std::string body;
+};
+xTYPEDEF_CONST(BaseDataOut);
+//-------------------------------------------------------------------------------------------------
 class CurlBase :
 	public Client
     ///< CURL base
 {
 protected:
-	BaseData &data;
-
-    explicit CurlBase(BaseData &data);
+    explicit CurlBase();
         ///< constructor
     virtual ~CurlBase();
         ///< destructor
 
     void     setProtocols(clong_t bitMask);
 		///< set allowed protocols
-    void     setOptionsDefault(curl_slist *headers, Buffer *buffHeader, Buffer *buffData);
+    void     setOptionsDefault(BaseData *data, curl_slist *headers, Buffer *buffHeader, Buffer *buffData);
         ///< set options in
-    void     getInfos();
+    void     getInfos(BaseDataOut *dataOut);
         ///< get options out
 
 private:
-	xNO_DEFAULT_CONSTRUCT(CurlBase)
     xNO_COPY_ASSIGN(CurlBase)
 };
 
