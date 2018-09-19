@@ -36,7 +36,7 @@ public:
 	};
 	xTYPEDEF_CONST(RequestType);
 
-    bool_t request(cRequestType type, BaseData &baseData, BaseDataOut *out_baseDataOut);
+    bool_t request(cRequestType type, BaseData &baseData, BaseDataOut *baseDataOut);
 
 private:
 
