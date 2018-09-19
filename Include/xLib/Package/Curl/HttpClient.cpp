@@ -43,43 +43,78 @@ HttpClient::request(
 	switch (a_type) {
 	case RequestType::Get:
 		{
+		   /**
+			* Retrieve information from the given server using a given URI.
+			* Requests using GET should only retrieve data and should have no other effect
+			* on the data
+			*/
+
 			setOption(CURLOPT_POST, 0L);
 			setOption(CURLOPT_NOBODY, 0L);
 		}
 		break;
 	case RequestType::Head:
 		{
+		   /**
+			* Same as GET, but transfers the status line and header section only
+			*/
+
 			setOption(CURLOPT_NOBODY, 1L);
 		}
 		break;
 	case RequestType::Post:
 		{
+		   /**
+			* Send data to the server, for example, customer information, file upload, etc.
+			* using HTML forms
+			*/
+
 			setOption(CURLOPT_POST, 1L);
 		}
 		break;
 	case RequestType::Put:
 		{
+		   /**
+			* Replaces all current representations of the target resource with uploaded content
+			*/
+
 			// TODO: RequestType::Put
 			setOption(CURLOPT_UPLOAD, 1L);
 		}
 		break;
 	case RequestType::Delete:
 		{
+		   /**
+			* Removes all current representations of the target resource given by a URI
+			*/
+
 			setOption(CURLOPT_CUSTOMREQUEST, xT("DELETE"));
 		}
 		break;
 	case RequestType::Connect:
 		{
+		   /**
+			* Establishes a tunnel to the server identified by a given URI
+			*/
+
 			// TODO: RequestType::Connect
 		}
 		break;
 	case RequestType::Options:
 		{
+		   /**
+			* Describes the communication options for the target resource
+			*/
+
 			// TODO: RequestType::Options
 		}
 		break;
 	case RequestType::Trace:
 		{
+		   /**
+			* Performs a message loop-back test along the path to the target resource
+			*/
+
 			// TODO: RequestType::Trace
 		}
 		break;
