@@ -190,6 +190,8 @@ public:
 
 		std::tcout << OStream::str();
 
+		this->clear();
+
 		return *this;
     }
 };
