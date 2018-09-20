@@ -33,13 +33,13 @@ Test_HttpClient::unit()
 		xTEST_EQ(baseDataOut.body.empty(), false);
 
 		Cout()
-			<< xTRACE_VAR(baseDataOut.contentType)  << xT("\n")
-			<< xTRACE_VAR(baseDataOut.effectiveUrl) << xT("\n")
-			<< xTRACE_VAR(baseDataOut.responseCode) << xT("\n")
-			<< xTRACE_VAR(baseDataOut.totalTimeSec) << xT("\n")
+			<< xTRACE_VAR(baseDataOut.contentType)  << std::endl
+			<< xTRACE_VAR(baseDataOut.effectiveUrl) << std::endl
+			<< xTRACE_VAR(baseDataOut.responseCode) << std::endl
+			<< xTRACE_VAR(baseDataOut.totalTimeSec) << std::endl
 			<< xT("\n")
-			<< xTRACE_VAR(baseDataOut.headers)      << xT("\n")
-			<< xTRACE_VAR(baseDataOut.body.size())  << xT("\n");
+			<< xTRACE_VAR(baseDataOut.headers)      << std::endl
+			<< xTRACE_VAR(baseDataOut.body.size())  << std::endl;
     }
 
     return true;

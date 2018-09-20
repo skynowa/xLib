@@ -112,7 +112,14 @@ public:
     OStream & operator << (const QString &value);
 #endif
 
-private:
+	OStream & operator << (std::tostream_t& (*a_os)(std::tostream_t &))
+	{
+		this->_os << a_os;
+
+		return *this;
+	}
+
+protected:
     std::tstringstream_t _os;
 
     static
@@ -175,7 +182,7 @@ private:
 };
 
 class Cout :
-	private OStream
+	public OStream
     /// print std::cout
 {
 public:
@@ -185,9 +192,8 @@ public:
     xNO_COPY_ASSIGN(Cout)
 
 	template<typename T>
-    Cout &
-    operator << (const T a_value)
-    {
+	Cout & operator << (const T a_value)
+	{
 		OStream::operator << (a_value);
 
 		std::tcout << OStream::str();
@@ -196,7 +202,15 @@ public:
 		this->clear();
 
 		return *this;
-    }
+	}
+
+	Cout & operator << (std::tostream_t& (*a_os)(std::tostream_t &))
+	{
+		/// this->_os << a_os;
+		a_os(std::tcout);
+
+		return *this;
+	}
 };
 
 xNAMESPACE_END2(xl, core)
