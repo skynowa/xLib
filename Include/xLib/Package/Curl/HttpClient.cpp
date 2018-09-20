@@ -142,8 +142,10 @@ HttpClient::request(
 	/// _error = st;
 
 	// [out]
-	String::split(buffHeader.buffer(), Const::nl(), xT(": "), &out_baseDataOut->headers);
+	String::split(buffHeader.buffer(), Const::crNl(), xT(": "), &out_baseDataOut->headers);
 	out_baseDataOut->body = buffData.buffer();
+
+	/// std::cout << "buffHeader.buffer() : [" << buffHeader.buffer() << "]" << std::endl;
 
 	return true;
 }
