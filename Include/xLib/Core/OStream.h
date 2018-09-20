@@ -174,6 +174,26 @@ private:
     xNO_COPY_ASSIGN(OStream)
 };
 
+class CoutStream :
+	public OStream
+    /// print std::cout
+{
+public:
+                   CoutStream() = default;
+    virtual       ~CoutStream() = default;
+
+	template<typename T>
+    CoutStream &
+    operator << (const T &a_value)
+    {
+		*this << a_value;
+
+		std::tcout << OStream::str();
+
+		return *this;
+    }
+};
+
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "OStream.inl"
