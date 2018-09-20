@@ -615,7 +615,7 @@ Test_String::unit()
 				{"ccc", "333"}
 			};
 
-			String::split(xT("aaa:111\nbbb:222\nccc:333"), xT("\n"), xT(":"), &m_msRv);
+			String::split(xT("aaa:111\r\nbbb:222\r\nccc:333"), xT("\r\n"), xT(":"), &m_msRv);
 			xTEST_EQ(m_msRv, m);
 		}
 
@@ -628,25 +628,25 @@ Test_String::unit()
 				{"ccc", "333"}
 			};
 
-			String::split(xT("aaa:111\nbbb:222\nccc:333\nccc:333"), xT("\n"), xT(":"), &m_mmsRv);
+			String::split(xT("aaa:111\r\nbbb:222\r\nccc:333\r\nccc:333"), xT("\r\n"), xT(":"), &m_mmsRv);
 			xTEST_EQ(m_mmsRv, m);
 		}
 
 		{
 			std::ctstring_t sRv =
-				"HTTP/1.1 200 OK\n"
-				"Cache-Control: max-age=604800\n"
-				"Content-Type: text/html; charset=UTF-8\n"
-				"Date: Thu, 20 Sep 2018 06:50:29 GMT\n"
-				"Etag: \"1541025663+ident\"\n"
-				"Expires: Thu, 27 Sep 2018 06:50:29 GMT\n"
-				"Last-Modified: Fri, 09 Aug 2013 23:54:35 GMT\n"
-				"Server: ECS (dca/24E0)\n"
-				"Vary: Accept-Encoding\n"
-				"X-Cache: HIT\n"
-				"Content-Length: 1270\n"
-				"\n"
-				"\n";
+				"HTTP/1.1 200 OK\r\n"
+				"Cache-Control: max-age=604800\r\n"
+				"Content-Type: text/html; charset=UTF-8\r\n"
+				"Date: Thu, 20 Sep 2018 06:50:29 GMT\r\n"
+				"Etag: \"1541025663+ident\"\r\n"
+				"Expires: Thu, 27 Sep 2018 06:50:29 GMT\r\n"
+				"Last-Modified: Fri, 09 Aug 2013 23:54:35 GMT\r\n"
+				"Server: ECS (dca/24E0)\r\n"
+				"Vary: Accept-Encoding\r\n"
+				"X-Cache: HIT\r\n"
+				"Content-Length: 1270\r\n"
+				"\r\n"
+				"\r\n";
 
 			std::cmmap_tstring_t m
 			{
@@ -662,7 +662,7 @@ Test_String::unit()
 				{"X-Cache",        "HIT"}
 			};
 
-			String::split(sRv, xT("\n"), xT(": "), &m_mmsRv);
+			String::split(sRv, xT("\r\n"), xT(": "), &m_mmsRv);
 			xTEST_EQ(m_mmsRv, m);
 		}
 	}
@@ -701,8 +701,8 @@ Test_String::unit()
 				{"ccc", "333"}
 			};
 
-			m_sRv = String::join(m, xT("\n"), xT(":"));
-			xTEST_EQ(m_sRv, std::tstring_t(xT("aaa:111\nbbb:222\nccc:333\n")));
+			m_sRv = String::join(m, xT("\r\n"), xT(":"));
+			xTEST_EQ(m_sRv, std::tstring_t(xT("aaa:111\r\nbbb:222\r\nccc:333\r\n")));
 		}
 
 		{
@@ -714,8 +714,8 @@ Test_String::unit()
 				{"ccc", "333"}
 			};
 
-			m_sRv = String::join(m, xT("\n"), xT(":"));
-			xTEST_EQ(m_sRv, std::tstring_t(xT("aaa:111\nbbb:222\nccc:333\nccc:333\n")));
+			m_sRv = String::join(m, xT("\r\n"), xT(":"));
+			xTEST_EQ(m_sRv, std::tstring_t(xT("aaa:111\r\nbbb:222\r\nccc:333\r\nccc:333\r\n")));
 		}
 	}
 
