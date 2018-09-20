@@ -605,6 +605,34 @@ Test_String::unit()
         xTEST_EQ(m_vsRv.empty(), true);
     }
 
+	xTEST_CASE("split (maps)")
+    {
+		{
+			std::cmap_tstring_t m
+			{
+				{"aaa", "111"},
+				{"bbb", "222"},
+				{"ccc", "333"}
+			};
+
+			String::split(xT("aaa:111\nbbb:222\nccc:333"), xT("\n"), xT(":"), &m_msRv);
+			xTEST_EQ(m_msRv, m);
+		}
+
+		{
+			std::cmmap_tstring_t m
+			{
+				{"aaa", "111"},
+				{"bbb", "222"},
+				{"ccc", "333"},
+				{"ccc", "333"}
+			};
+
+			String::split(xT("aaa:111\nbbb:222\nccc:333\nccc:333"), xT("\n"), xT(":"), &m_mmsRv);
+			xTEST_EQ(m_mmsRv, m);
+		}
+	}
+
     xTEST_CASE("join")
     {
         std::vec_tstring_t vsRes;
@@ -628,6 +656,34 @@ Test_String::unit()
         m_sRv = String::join(vsRes, xT('-'));
         xTEST_EQ(std::tstring_t(xT("111--222-333")), m_sRv);
     }
+
+	xTEST_CASE("join (maps)")
+    {
+		{
+			std::cmap_tstring_t m
+			{
+				{"aaa", "111"},
+				{"bbb", "222"},
+				{"ccc", "333"}
+			};
+
+			m_sRv = String::join(m, xT("\n"), xT(":"));
+			xTEST_EQ(m_sRv, std::tstring_t(xT("aaa:111\nbbb:222\nccc:333\n")));
+		}
+
+		{
+			std::cmmap_tstring_t m
+			{
+				{"aaa", "111"},
+				{"bbb", "222"},
+				{"ccc", "333"},
+				{"ccc", "333"}
+			};
+
+			m_sRv = String::join(m, xT("\n"), xT(":"));
+			xTEST_EQ(m_sRv, std::tstring_t(xT("aaa:111\nbbb:222\nccc:333\nccc:333\n")));
+		}
+	}
 
     xTEST_CASE("cut")
     {
