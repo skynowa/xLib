@@ -6,6 +6,9 @@
 
 #include "HttpClient.h"
 
+#include <xLib/Core/Const.h>
+#include <xLib/Core/String.h>
+
 
 xNAMESPACE_BEGIN3(xl, package, curl)
 
@@ -139,8 +142,8 @@ HttpClient::request(
 	/// _error = st;
 
 	// [out]
-	out_baseDataOut->headers = buffHeader.buffer();
-	out_baseDataOut->body    = buffData.buffer();
+	String::split(buffHeader.buffer(), Const::nl(), xT(": "), &out_baseDataOut->headers);
+	out_baseDataOut->body = buffData.buffer();
 
 	return true;
 }
