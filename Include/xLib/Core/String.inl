@@ -4,6 +4,14 @@
  */
 
 
+#include <xLib/Debug/Debug.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/StdError.h>
+#include <xLib/Debug/ErrorReport.h>
+#include <xLib/Debug/Debugger.h>
+#include <xLib/Debug/StackTrace.h>
+
+
 xNAMESPACE_BEGIN2(xl, core)
 
 /*******************************************************************************
@@ -126,6 +134,66 @@ String::cast(
     }
 
     return rvT;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+/* static */
+void_t
+String::split(
+	std::ctstring_t &a_str,			///<
+	std::ctstring_t &a_sepLine,		///<
+	std::ctstring_t &a_sepKeyValue,	///<
+	T               *a_map			///< [out]
+)
+{
+    xTEST_NA(a_str);
+    xTEST_NA(a_sepLine);
+    xTEST_NA(a_sepKeyValue);
+    xTEST_NA(a_map);
+
+    xCHECK_DO(a_map != xPTR_NULL, a_map->clear());
+
+    xCHECK_DO(a_str.empty(), return);
+    xCHECK_DO(a_sepLine.empty(), return);
+    xCHECK_DO(a_sepKeyValue.empty(), return);
+    xCHECK_DO(a_map == xPTR_NULL, return);
+
+    std::vec_tstring_t lines;
+    split(a_str, a_sepLine, &lines);
+
+	for (auto &it_line : lines) {
+		xCHECK_DO(it_line.empty(), continue);
+		xCHECK_DO(it_line.find(a_sepKeyValue) == std::tstring_t::npos, continue);
+
+		std::vec_tstring_t keyValue;
+		split(it_line, a_sepKeyValue, &keyValue);
+		xTEST_EQ(keyValue.size(), (std::size_t)2);
+
+		// [out]
+		a_map->insert( {keyValue[0], keyValue[1]} );
+	}
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+/* static */
+std::tstring_t
+String::join(
+	const T         &a_map,			///<
+	std::ctstring_t &a_sepLine,		///<
+	std::ctstring_t &a_sepKeyValue	///<
+)
+{
+    xTEST_NA(a_map);
+    xTEST_NA(a_sepLine);
+    xTEST_NA(a_sepKeyValue);
+
+    std::tstring_t sRv;
+
+    for (auto &it : a_map) {
+        sRv += it.first + a_sepKeyValue + it.second + a_sepLine;
+    }
+
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -132,15 +132,29 @@ public:
                        xWARN_UNUSED_RV;
         ///< remove all strings
 
+	// split
     static
     void_t         split(std::ctstring_t &str, std::ctstring_t &sep, std::vec_tstring_t *rv);
         ///< split by separator
+	template<typename T>
+    static
+    void_t         split(std::ctstring_t &str, std::ctstring_t &sepLine,
+                        std::ctstring_t &sepKeyValue, T *map);
+        ///< split by separator
+
+    // join
     static
     std::tstring_t join(std::cvec_tstring_t &vec, ctchar_t &sep) xWARN_UNUSED_RV;
         ///< join with char separator
     static
     std::tstring_t join(std::cvec_tstring_t &vec, std::ctstring_t &sep) xWARN_UNUSED_RV;
         ///< join with string separator
+    template<typename T>
+    static
+    std::tstring_t join(const T &map, std::ctstring_t &sepLine, std::ctstring_t &sepKeyValue)
+                        xWARN_UNUSED_RV;
+        ///< join with string separator
+
     static
     std::tstring_t cut(std::ctstring_t &str, std::ctstring_t &sepLeft, std::ctstring_t &sepRight)
                        xWARN_UNUSED_RV;
