@@ -78,13 +78,13 @@ xTYPEDEF_CONST(BaseData);
 struct BaseDataOut
     /// base data (out)
 {
-	std::tstring_t     contentType;
-	std::tstring_t     effectiveUrl;
-	int_t              responseCode {};
-	double_t           totalTimeSec {};
+	std::tstring_t      contentType;
+	std::tstring_t      effectiveUrl;
+	int_t               responseCode {};
+	double_t            totalTimeSec {};
 
-	std::map_tstring_t headers;
-	std::tstring_t     body;
+	std::mmap_tstring_t headers;
+	std::tstring_t      body;
 };
 xTYPEDEF_CONST(BaseDataOut);
 //-------------------------------------------------------------------------------------------------

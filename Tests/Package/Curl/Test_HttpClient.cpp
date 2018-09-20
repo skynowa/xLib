@@ -34,13 +34,13 @@ Test_HttpClient::unit()
 
 		OStream os;
 		os
-			<< xTRACE_VAR(baseDataOut.contentType)  << "\n"
-			<< xTRACE_VAR(baseDataOut.effectiveUrl) << "\n"
-			<< xTRACE_VAR(baseDataOut.responseCode) << "\n"
-			<< xTRACE_VAR(baseDataOut.totalTimeSec) << "\n"
-			<< "\n"
-			<< xTRACE_VAR(baseDataOut.headers)      << "\n"
-			<< xTRACE_VAR(baseDataOut.body.size())  << "\n";
+			<< xTRACE_VAR(baseDataOut.contentType)  << xT("\n")
+			<< xTRACE_VAR(baseDataOut.effectiveUrl) << xT("\n")
+			<< xTRACE_VAR(baseDataOut.responseCode) << xT("\n")
+			<< xTRACE_VAR(baseDataOut.totalTimeSec) << xT("\n")
+			<< xT("\n")
+			<< xTRACE_VAR(baseDataOut.headers)      << xT("\n")
+			<< xTRACE_VAR(baseDataOut.body.size())  << xT("\n");
 
 		std::cout << os;
     }
