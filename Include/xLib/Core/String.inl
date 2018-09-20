@@ -163,14 +163,15 @@ String::split(
 
 	for (auto &it_line : lines) {
 		xCHECK_DO(it_line.empty(), continue);
-		xCHECK_DO(it_line.find(a_sepKeyValue) == std::tstring_t::npos, continue);
 
-		std::vec_tstring_t keyValue;
-		split(it_line, a_sepKeyValue, &keyValue);
-		xTEST_EQ(keyValue.size(), (std::size_t)2);
+		std::csize_t pos = it_line.find(a_sepKeyValue);
+		xCHECK_DO(pos == std::tstring_t::npos, continue);
+
+		std::ctstring_t &key   = it_line.substr(0, pos);
+		std::ctstring_t &value = it_line.substr(pos + a_sepKeyValue.size(), std::tstring_t::npos);
 
 		// [out]
-		a_map->insert( {keyValue[0], keyValue[1]} );
+		a_map->insert( {key, value} );
 	}
 }
 //-------------------------------------------------------------------------------------------------
