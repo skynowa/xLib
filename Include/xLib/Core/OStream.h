@@ -175,7 +175,7 @@ private:
 };
 
 class CoutStream :
-	public OStream
+	private OStream
     /// print std::cout
 {
 public:
@@ -184,9 +184,9 @@ public:
 
 	template<typename T>
     CoutStream &
-    operator << (const T &a_value)
+    operator << (const T a_value)
     {
-		*this << a_value;
+		OStream::operator << (a_value);
 
 		std::tcout << OStream::str();
 
