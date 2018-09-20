@@ -32,7 +32,8 @@ Test_HttpClient::unit()
 		xTEST_EQ(baseDataOut.headers.empty(), false);
 		xTEST_EQ(baseDataOut.body.empty(), false);
 
-		std::cout
+		OStream os;
+		os
 			<< xTRACE_VAR(baseDataOut.contentType)  << "\n"
 			<< xTRACE_VAR(baseDataOut.effectiveUrl) << "\n"
 			<< xTRACE_VAR(baseDataOut.responseCode) << "\n"
@@ -40,6 +41,8 @@ Test_HttpClient::unit()
 			<< "\n"
 			<< xTRACE_VAR(baseDataOut.headers)      << "\n"
 			<< xTRACE_VAR(baseDataOut.body.size())  << "\n";
+
+		std::cout << os;
     }
 
     return true;
