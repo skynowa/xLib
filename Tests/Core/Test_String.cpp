@@ -631,6 +631,40 @@ Test_String::unit()
 			String::split(xT("aaa:111\nbbb:222\nccc:333\nccc:333"), xT("\n"), xT(":"), &m_mmsRv);
 			xTEST_EQ(m_mmsRv, m);
 		}
+
+		{
+			std::ctstring_t sRv =
+				"HTTP/1.1 200 OK\n"
+				"Cache-Control: max-age=604800\n"
+				"Content-Type: text/html; charset=UTF-8\n"
+				"Date: Thu, 20 Sep 2018 06:50:29 GMT\n"
+				"Etag: \"1541025663+ident\"\n"
+				"Expires: Thu, 27 Sep 2018 06:50:29 GMT\n"
+				"Last-Modified: Fri, 09 Aug 2013 23:54:35 GMT\n"
+				"Server: ECS (dca/24E0)\n"
+				"Vary: Accept-Encoding\n"
+				"X-Cache: HIT\n"
+				"Content-Length: 1270\n"
+				"\n"
+				"\n";
+
+			std::cmmap_tstring_t m
+			{
+				{"Cache-Control",  "max-age=604800"},
+				{"Content-Length", "1270"},
+				{"Content-Type",   "text/html; charset=UTF-8"},
+				{"Date",           "Thu, 20 Sep 2018 06:50:29 GMT"},
+				{"Etag",           "\"1541025663+ident\""},
+				{"Expires",        "Thu, 27 Sep 2018 06:50:29 GMT"},
+				{"Last-Modified",  "Fri, 09 Aug 2013 23:54:35 GMT"},
+				{"Server",         "ECS (dca/24E0)"},
+				{"Vary",           "Accept-Encoding"},
+				{"X-Cache",        "HIT"}
+			};
+
+			String::split(sRv, xT("\n"), xT(": "), &m_mmsRv);
+			xTEST_EQ(m_mmsRv, m);
+		}
 	}
 
     xTEST_CASE("join")
