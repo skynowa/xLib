@@ -352,39 +352,27 @@ OStream::_printFloat(
     const T a_value
 )
 {
-    _os
-        << std::setprecision( _floatPrecisionMax<T>() )
-        << std::showpoint
-        << a_value;
+	std::tstring_t value = std::to_string(a_value);
 
-    std::tstreambuf_t *buff = _os.rdbuf();
+   /**
+    * Skip extras '0' from end:
+    *
+    * - 15.000   -> 15.0
+    * - 12.99000 -> 12.99
+    */
 
-    std::tstring_t value = std::tstring_t(
-        std::istreambuf_iterator<tchar_t>(buff),
-        std::istreambuf_iterator<tchar_t>());
+	std::size_t pos = value.find_last_not_of(xT('0'));
+	if (pos != std::tstring_t::npos &&
+		pos != value.size() - 1)
+	{
+		if (value[pos] == xT('.')) {
+			++ pos;
+		}
 
-    std::size_t i = value.find_last_not_of(xT('0'));
+		value = value.substr(0, pos + 1);
+	}
 
-    if (i != std::tstring_t::npos && i != value.size() - 1) {
-        if (value[i] == xT('.')) {
-            ++ i;
-        }
-
-        value = value.substr(0, i + 1);
-    }
-
-    _os << value;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-inline int_t
-OStream::_floatPrecisionMax()
-{
-#if xLANG_CPP11
-    return std::numeric_limits<T>::max_digits10;
-#else
-    return std::numeric_limits<T>::digits10 + 1;
-#endif
+	_os << value;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
