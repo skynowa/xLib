@@ -24,6 +24,25 @@ Test_Type::unit()
         xTEST_EQ(false, m_sRv.empty());
     }
 
+	{
+		Cout() << GET_TYPE_NAME(float()) << endl;
+		Cout() << GET_TYPE_NAME(std::string()) << endl;
+		Cout() << GET_TYPE_NAME(std::map_tstring_t()) << endl;
+		Cout() << GET_TYPE_NAME(std::mmap_tstring_t()) << endl;
+	}
+
+
+    xTEST_CASE("nameEx")
+    {
+		if (0) {
+			Cout()
+				<< Type::nameEx(float())               << std::endl
+				<< Type::nameEx(std::string())         << std::endl
+				<< Type::nameEx(std::map_tstring_t())  << std::endl
+				<< Type::nameEx(std::mmap_tstring_t()) << std::endl;
+		}
+    }
+
     xTEST_CASE("rawName")
     {
         std::tstring_t sObject;

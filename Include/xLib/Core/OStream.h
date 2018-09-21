@@ -136,6 +136,9 @@ protected:
         ///< unprintable char
 
     template<typename T>
+    void_t _printContainerTitle(const T &a_value);
+
+    template<typename T>
     void_t _printValue(const T &value);
 
     template<typename IteratorT>
@@ -144,8 +147,14 @@ protected:
     template<typename IteratorT>
     void_t _printRange(IteratorT first, IteratorT last);
 
+    template<typename IteratorT>
+    void_t _printRangeMap(IteratorT first, IteratorT last);
+
     template<typename T>
     void_t _printContainer(const T &value);
+
+    template<typename T>
+    void_t _printMap(const T &value);
 
     template<typename T>
     void_t _printFloat(const T value);

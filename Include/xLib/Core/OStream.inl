@@ -4,6 +4,7 @@
  */
 
 
+#include <xLib/Core/Const.h>
 #include <xLib/Core/Char.h>
 #include <xLib/Algo/Algos.h>
 
@@ -151,7 +152,8 @@ OStream::operator << (
     const std::map<T1, T2> &a_value   ///< value
 )
 {
-    _printContainer(a_value);
+	_printContainerTitle(a_value);
+    _printMap(a_value);
 
     return *this;
 }
@@ -162,7 +164,8 @@ OStream::operator << (
     const std::multimap<T1, T2> &a_value   ///< value
 )
 {
-    _printContainer(a_value);
+	_printContainerTitle(a_value);
+    _printMap(a_value);
 
     return *this;
 }
@@ -205,7 +208,8 @@ OStream::operator << (
     const std::unordered_map<T1, T2> &a_value   ///< value
 )
 {
-    _printContainer(a_value);
+	_printContainerTitle(a_value);
+    _printMap(a_value);
 
     return *this;
 }
@@ -216,7 +220,8 @@ OStream::operator << (
     const std::unordered_multimap<T1, T2> &a_value   ///< value
 )
 {
-    _printContainer(a_value);
+	_printContainerTitle(a_value);
+    _printMap(a_value);
 
     return *this;
 }
@@ -294,6 +299,15 @@ OStream::operator << (
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline void_t
+OStream::_printContainerTitle(
+	const T &a_value   ///< value
+)
+{
+	_os << xT("std::map (size=") << a_value.size() << xT("):") << std::endl;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline void_t
 OStream::_printValue(
     const T &a_value   ///< value
 )
@@ -337,6 +351,30 @@ OStream::_printRange(
     _os << _bracketClose();
 }
 //-------------------------------------------------------------------------------------------------
+template<typename IteratorT>
+inline void_t
+OStream::_printRangeMap(
+    IteratorT a_first,    ///< first iterator
+    IteratorT a_last      ///< last iterator
+)
+{
+    if (a_first == a_last) {
+        _os << _bracketOpen();
+        _os << _bracketClose();
+        return;
+    }
+
+    _os << _bracketOpen();
+	_printValue(*a_first);
+
+    for (++ a_first; a_first != a_last; ++ a_first) {
+        _os << Const::nl();
+        _printValue(*a_first);
+    }
+
+    _os << _bracketClose();
+}
+//-------------------------------------------------------------------------------------------------
 template<typename T>
 inline void_t
 OStream::_printContainer(
@@ -344,6 +382,15 @@ OStream::_printContainer(
 )
 {
     _printRange(a_value.begin(), a_value.end());
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline void_t
+OStream::_printMap(
+    const T &a_value   ///< value
+)
+{
+    _printRangeMap(a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>

@@ -64,6 +64,35 @@ Type::name(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+template<typename T>
+/* static */
+std::tstring_t
+Type::nameEx(
+    T
+)
+{
+    std::tstring_t sRv;
+
+#if 0
+	if      (std::is_same<T, int>::value)
+		sRv = "int";
+	else if (std::is_same<T, std::string>::value)
+		sRv = "std::string";
+	else if (std::is_same<T, std::map_tstring_t>::value)
+		sRv = "std::map_tstring_t";
+	else if (std::is_same<T, std::mmap_tstring_t>::value)
+		sRv = "std::mmap_tstring_t";
+	else
+		sRv = xT("unknown");
+#elif 1
+	sRv = _TypeEx<T>::name();
+#else
+
+#endif
+
+	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 template<typename T1, class T2>
 /* static */
 bool_t
