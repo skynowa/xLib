@@ -151,9 +151,6 @@ protected:
     void_t _printFloat(const T value);
 
     template<typename T>
-    int_t _floatPrecisionMax() xWARN_UNUSED_RV;
-
-    template<typename T>
     std::tstring_t _unprintableChar(const T value) xWARN_UNUSED_RV;
 
 	// std::tuple
