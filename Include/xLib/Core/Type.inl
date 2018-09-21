@@ -85,9 +85,7 @@ Type::nameEx(
 	else
 		sRv = xT("unknown");
 #elif 1
-	sRv = _TypeEx<T>::name();
-#else
-
+	sRv = TypeEx<T>::name();
 #endif
 
 	return sRv;

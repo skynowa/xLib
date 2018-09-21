@@ -25,12 +25,13 @@ Test_Type::unit()
     }
 
 	{
-		Cout() << GET_TYPE_NAME(float()) << endl;
-		Cout() << GET_TYPE_NAME(std::string()) << endl;
-		Cout() << GET_TYPE_NAME(std::map_tstring_t()) << endl;
-		Cout() << GET_TYPE_NAME(std::mmap_tstring_t()) << endl;
+		Cout()
+			<< GET_TYPE_NAME(m_fRv)   << std::endl
+			<< GET_TYPE_NAME(m_sRv)   << std::endl
+			<< GET_TYPE_NAME(m_msRv)  << std::endl
+			<< GET_TYPE_NAME(m_mmsRv) << std::endl
+			<< GET_TYPE_NAME(m_vsRv)  << std::endl;
 	}
-
 
     xTEST_CASE("nameEx")
     {
