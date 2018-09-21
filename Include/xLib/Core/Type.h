@@ -8,56 +8,45 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
+xNAMESPACE_BEGIN2(xl, core)
+
+//-------------------------------------------------------------------------------------------------
 /**
  * http://www.cplusplus.com/forum/general/21246/
  * https://stackoverflow.com/questions/81870/is-it-possible-to-print-a-variables-type-in-standard-c
- *
  */
 template<typename T>
-struct _TypeEx
+class TypeEx
 {
-	static const char* name()
+public:
+	static
+	constexpr char * name()
 	{
 		/// static_assert(false, "You are missing a DECL_TYPE_NAME");
-		return "";
+		return xT("Unknown");
 	}
 };
 
-#define DECL_TYPE_NAME(type) \
+#define DECLARE_TYPE_NAME(type) \
 	template<> \
-	struct _TypeEx<type> \
+	class TypeEx<type> \
 	{ \
-		static const char* name() \
+	public: \
+		static \
+		constexpr char * name() \
 		{ \
 			return #type; \
 		} \
 	}
 
-DECL_TYPE_NAME(float);
-DECL_TYPE_NAME(std::string);
-DECL_TYPE_NAME(std::map_tstring_t);
-DECL_TYPE_NAME(std::mmap_tstring_t);
-//-------------------------------------------------------------------------------------------------
-#include <iostream>
-using namespace std;
-
-template <typename T> class type_name
-{
-public:
-    static char *name ;
-};
-
-
-#define DECLARE_TYPE_NAME(x) template<> const char *type_name<x>::name = #x;
-#define GET_TYPE_NAME(x) (type_name<typeof(x)>::name)
-
-DECLARE_TYPE_NAME(float);
-DECLARE_TYPE_NAME(std::string);
+DECLARE_TYPE_NAME(float_t);
+DECLARE_TYPE_NAME(std::tstring_t);
 DECLARE_TYPE_NAME(std::map_tstring_t);
 DECLARE_TYPE_NAME(std::mmap_tstring_t);
-//-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
 
+#define GET_TYPE_NAME(x) \
+	(TypeEx<decltype(x)>::name())
+//-------------------------------------------------------------------------------------------------
 class Type
     /// type info
 {
