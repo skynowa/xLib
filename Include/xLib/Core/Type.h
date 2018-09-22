@@ -20,7 +20,7 @@ class TypeEx
 {
 public:
 	static
-	constexpr char * name()
+	constexpr cptr_ctchar_t name()
 	{
 		/// static_assert(false, "You are missing a DECL_TYPE_NAME");
 		return xT("Unknown");
@@ -33,7 +33,7 @@ public:
 	{ \
 	public: \
 		static \
-		constexpr char * name() \
+		constexpr cptr_ctchar_t name() \
 		{ \
 			return #type; \
 		} \
@@ -44,8 +44,8 @@ DECLARE_TYPE_NAME(std::tstring_t);
 DECLARE_TYPE_NAME(std::map_tstring_t);
 DECLARE_TYPE_NAME(std::mmap_tstring_t);
 
-#define GET_TYPE_NAME(x) \
-	(TypeEx<decltype(x)>::name())
+#define GET_TYPE_NAME(type) \
+	(TypeEx<decltype(type)>::name())
 //-------------------------------------------------------------------------------------------------
 class Type
     /// type info
