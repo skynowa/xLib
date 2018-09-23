@@ -6,6 +6,7 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Char.h>
+#include <xLib/Core/Type.h>
 #include <xLib/Algo/Algos.h>
 
 
@@ -152,7 +153,6 @@ OStream::operator << (
     const std::map<T1, T2> &a_value   ///< value
 )
 {
-	_printContainerTitle(a_value);
     _printMap(a_value);
 
     return *this;
@@ -164,7 +164,6 @@ OStream::operator << (
     const std::multimap<T1, T2> &a_value   ///< value
 )
 {
-	_printContainerTitle(a_value);
     _printMap(a_value);
 
     return *this;
@@ -208,7 +207,6 @@ OStream::operator << (
     const std::unordered_map<T1, T2> &a_value   ///< value
 )
 {
-	_printContainerTitle(a_value);
     _printMap(a_value);
 
     return *this;
@@ -220,7 +218,6 @@ OStream::operator << (
     const std::unordered_multimap<T1, T2> &a_value   ///< value
 )
 {
-	_printContainerTitle(a_value);
     _printMap(a_value);
 
     return *this;
@@ -303,7 +300,7 @@ OStream::_printContainerTitle(
 	const T &a_value   ///< value
 )
 {
-	_os << xT("std::map (size=") << a_value.size() << xT("):") << std::endl;
+	_os << TypeEx<T>::name() << xT(" (size=") << a_value.size() << xT("):") << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -381,6 +378,7 @@ OStream::_printContainer(
     const T &a_value   ///< value
 )
 {
+	_printContainerTitle(a_value);
     _printRange(a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
@@ -390,6 +388,7 @@ OStream::_printMap(
     const T &a_value   ///< value
 )
 {
+	_printContainerTitle(a_value);
     _printRangeMap(a_value.begin(), a_value.end());
 }
 //-------------------------------------------------------------------------------------------------
