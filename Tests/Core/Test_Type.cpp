@@ -31,6 +31,13 @@ Test_Type::unit()
 			<< GET_TYPE_NAME(m_msRv)  << std::endl
 			<< GET_TYPE_NAME(m_mmsRv) << std::endl
 			<< GET_TYPE_NAME(m_vsRv)  << std::endl;
+
+		Cout()
+			<< xTRACE_VAR(m_fRv)   << std::endl
+			<< xTRACE_VAR(m_sRv)   << std::endl
+			<< xTRACE_VAR(m_msRv)  << std::endl
+			<< xTRACE_VAR(m_mmsRv) << std::endl
+			<< xTRACE_VAR(m_vsRv)  << std::endl;
 	}
 
     xTEST_CASE("nameEx")
