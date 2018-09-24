@@ -39,13 +39,55 @@ public:
 		} \
 	}
 
-xTYPE_NAME_DECLARE(float_t);
-xTYPE_NAME_DECLARE(std::tstring_t);
-xTYPE_NAME_DECLARE(std::map_tstring_t);
-xTYPE_NAME_DECLARE(std::mmap_tstring_t);
-
 #define xTYPE_NAME_GET(type) \
 	(TypeName<decltype(type)>::get())
+
+// basic
+xTYPE_NAME_DECLARE(void);
+xTYPE_NAME_DECLARE(bool);
+xTYPE_NAME_DECLARE(char);
+xTYPE_NAME_DECLARE(wchar_t);
+xTYPE_NAME_DECLARE(unsigned char);
+xTYPE_NAME_DECLARE(int);
+xTYPE_NAME_DECLARE(signed short int);
+xTYPE_NAME_DECLARE(signed long int);
+xTYPE_NAME_DECLARE(signed long long int);
+xTYPE_NAME_DECLARE(unsigned int);
+xTYPE_NAME_DECLARE(unsigned short int);
+xTYPE_NAME_DECLARE(unsigned long int);
+xTYPE_NAME_DECLARE(unsigned long long int);
+xTYPE_NAME_DECLARE(float);
+xTYPE_NAME_DECLARE(double);
+xTYPE_NAME_DECLARE(long double);
+
+// std strings
+xTYPE_NAME_DECLARE(std::string);
+xTYPE_NAME_DECLARE(std::wstring);
+xTYPE_NAME_DECLARE(std::ustring_t);
+
+// std files
+xTYPE_NAME_DECLARE(std::tios_t);
+xTYPE_NAME_DECLARE(std::tstreambuf_t);
+xTYPE_NAME_DECLARE(std::tistream_t);
+xTYPE_NAME_DECLARE(std::tiostream_t);
+xTYPE_NAME_DECLARE(std::tstringbuf_t);
+xTYPE_NAME_DECLARE(std::tistringstream_t);
+xTYPE_NAME_DECLARE(std::tostringstream_t);
+xTYPE_NAME_DECLARE(std::tstringstream_t);
+xTYPE_NAME_DECLARE(std::tfilebuf_t);
+xTYPE_NAME_DECLARE(std::tifstream_t);
+xTYPE_NAME_DECLARE(std::tofstream_t);
+xTYPE_NAME_DECLARE(std::tfstream_t);
+
+// std containers
+xTYPE_NAME_DECLARE(std::pair_tstring_t);
+xTYPE_NAME_DECLARE(std::vec_tchar_t);
+xTYPE_NAME_DECLARE(std::vec_uchar_t);
+xTYPE_NAME_DECLARE(std::vec_tstring_t);
+xTYPE_NAME_DECLARE(std::list_tstring_t);
+xTYPE_NAME_DECLARE(std::vec_ustring_t);
+xTYPE_NAME_DECLARE(std::map_tstring_t);
+xTYPE_NAME_DECLARE(std::mmap_tstring_t);
 //-------------------------------------------------------------------------------------------------
 class Type
     /// type info
