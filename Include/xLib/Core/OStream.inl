@@ -300,7 +300,7 @@ OStream::_printContainerTitle(
 	const T &a_value   ///< value
 )
 {
-	_os << TypeEx<T>::name() << xT(" (size=") << a_value.size() << xT("):") << std::endl;
+	_os << TypeName<T>::get() << xT(" (size=") << a_value.size() << xT("):") << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>

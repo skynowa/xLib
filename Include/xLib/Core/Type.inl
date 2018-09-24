@@ -85,7 +85,7 @@ Type::name(
 	else
 		sRv = xT("unknown");
 #elif 1
-	sRv = TypeEx<decltype(objT)>::name();
+	sRv = TypeName<decltype(objT)>::get();
 #endif
 
 	return sRv;
