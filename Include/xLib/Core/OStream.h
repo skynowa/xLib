@@ -118,6 +118,7 @@ public:
 
 		return *this;
 	}
+        ///< print std::endl
 
 protected:
     std::tstringstream_t _os;
