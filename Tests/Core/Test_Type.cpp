@@ -19,18 +19,20 @@ Test_Type::unit()
     xTEST_CASE("TypeName")
     {
 		Cout()
+			<< xT("Print types:")      << std::endl
 			<< xTYPE_NAME_GET(m_fRv)   << std::endl
 			<< xTYPE_NAME_GET(m_sRv)   << std::endl
 			<< xTYPE_NAME_GET(m_msRv)  << std::endl
 			<< xTYPE_NAME_GET(m_mmsRv) << std::endl
-			<< xTYPE_NAME_GET(m_vsRv)  << std::endl;
+			<< xTYPE_NAME_GET(m_vsRv)  << std::endl << std::endl;
 
 		Cout()
+			<< xT("Print vars:")   << std::endl
 			<< xTRACE_VAR(m_fRv)   << std::endl
 			<< xTRACE_VAR(m_sRv)   << std::endl
 			<< xTRACE_VAR(m_msRv)  << std::endl
 			<< xTRACE_VAR(m_mmsRv) << std::endl
-			<< xTRACE_VAR(m_vsRv)  << std::endl;
+			<< xTRACE_VAR(m_vsRv)  << std::endl << std::endl;
 
 		if (0) {
 			Cout()
