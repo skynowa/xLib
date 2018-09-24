@@ -164,25 +164,10 @@ protected:
 
 	// std::tuple
 	template<typename T, std::csize_t N>
-	struct TupleFormat
-	{
-		static void_t
-		print(std::tostream_t &a_ss, const T &a_value)
-		{
-			TupleFormat<T, N - 1>::print(a_ss, a_value);
-			a_ss << _delimiter() << std::get<N - 1>(a_value);
-		}
-	};
+	struct TuplePrint;
 
 	template<typename T>
-	struct TupleFormat<T, 1>
-	{
-		static void_t
-		print(std::tostream_t &a_ss, const T &a_value)
-		{
-			a_ss << std::get<0>(a_value);
-		}
-	};
+	struct TuplePrint<T, 1>;
 
     xNO_COPY_ASSIGN(OStream)
 };
