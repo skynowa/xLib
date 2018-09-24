@@ -163,7 +163,7 @@ protected:
     std::tstring_t _unprintableChar(const T value) xWARN_UNUSED_RV;
 
 	// std::tuple
-	template<typename T, std::size_t N>
+	template<typename T, std::csize_t N>
 	struct TupleFormat
 	{
 		static void_t
