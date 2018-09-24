@@ -94,12 +94,16 @@ Type::name(
 template<typename T1, class T2>
 /* static */
 bool_t
-Type::isEquals(
+Type::isEqual(
     const T1 &a_obj1T,
     const T2 &a_obj2T
 )
 {
-    return ( nameRaw(a_obj1T) == nameRaw(a_obj2T) );
+#if xLANG_CPP11
+	return std::is_same<T1, T2>::value;
+#else
+	return (typeid(T1) == typeid(T2));
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
