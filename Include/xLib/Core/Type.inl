@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN2(xl, core)
 template<typename T>
 /* static */
 std::tstring_t
-Type::rawName(
+Type::nameRaw(
     const T &a_objT
 )
 {
@@ -39,7 +39,7 @@ Type::rawName(
 template<typename T>
 /* static */
 std::tstring_t
-Type::name(
+Type::nameDemangle(
     const T &a_objT
 )
 {
@@ -67,8 +67,8 @@ Type::name(
 template<typename T>
 /* static */
 std::tstring_t
-Type::nameEx(
-    T
+Type::name(
+    const T &objT
 )
 {
     std::tstring_t sRv;
@@ -85,7 +85,7 @@ Type::nameEx(
 	else
 		sRv = xT("unknown");
 #elif 1
-	sRv = TypeEx<T>::name();
+	sRv = TypeEx<decltype(objT)>::name();
 #endif
 
 	return sRv;
@@ -99,7 +99,7 @@ Type::isEquals(
     const T2 &a_obj2T
 )
 {
-    return ( rawName(a_obj1T) == rawName(a_obj2T) );
+    return ( nameRaw(a_obj1T) == nameRaw(a_obj2T) );
 }
 //-------------------------------------------------------------------------------------------------
 

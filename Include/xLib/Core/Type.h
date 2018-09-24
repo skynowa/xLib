@@ -53,17 +53,17 @@ class Type
 public:
     template<typename T>
     static
+    std::tstring_t nameDemangle(const T &objT) xWARN_UNUSED_RV;
+        ///< get name
+
+    template<typename T>
+    static
     std::tstring_t name(const T &objT) xWARN_UNUSED_RV;
         ///< get name
 
     template<typename T>
     static
-    std::tstring_t nameEx(T) xWARN_UNUSED_RV;
-        ///< get name
-
-    template<typename T>
-    static
-    std::tstring_t rawName(const T &objT) xWARN_UNUSED_RV;
+    std::tstring_t nameRaw(const T &objT) xWARN_UNUSED_RV;
         ///< get raw name
 
     template<typename T1, class T2>

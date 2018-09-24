@@ -16,11 +16,11 @@ xTEST_UNIT(Test_Type)
 bool_t
 Test_Type::unit()
 {
-    xTEST_CASE("name")
+    xTEST_CASE("nameDemangle")
     {
         std::tstring_t sObject;
 
-        m_sRv = Type::name(sObject);
+        m_sRv = Type::nameDemangle(sObject);
         xTEST_EQ(false, m_sRv.empty());
     }
 
@@ -44,18 +44,18 @@ Test_Type::unit()
     {
 		if (0) {
 			Cout()
-				<< Type::nameEx(float())               << std::endl
-				<< Type::nameEx(std::string())         << std::endl
-				<< Type::nameEx(std::map_tstring_t())  << std::endl
-				<< Type::nameEx(std::mmap_tstring_t()) << std::endl;
+				<< Type::name(float())               << std::endl
+				<< Type::name(std::string())         << std::endl
+				<< Type::name(std::map_tstring_t())  << std::endl
+				<< Type::name(std::mmap_tstring_t()) << std::endl;
 		}
     }
 
-    xTEST_CASE("rawName")
+    xTEST_CASE("nameRaw")
     {
         std::tstring_t sObject;
 
-        m_sRv = Type::rawName(sObject);
+        m_sRv = Type::nameRaw(sObject);
         xTEST_EQ(false, m_sRv.empty())
     }
 
