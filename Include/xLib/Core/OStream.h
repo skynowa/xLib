@@ -202,6 +202,7 @@ public:
 
 		return *this;
 	}
+        ///< print std::endl
 };
 
 xNAMESPACE_END2(xl, core)
