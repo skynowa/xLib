@@ -40,7 +40,7 @@ Test_Type::unit()
 			<< xTRACE_VAR(m_vsRv)  << std::endl;
 	}
 
-    xTEST_CASE("nameEx")
+    xTEST_CASE("name")
     {
 		if (0) {
 			Cout()
@@ -59,13 +59,23 @@ Test_Type::unit()
         xTEST_EQ(false, m_sRv.empty())
     }
 
-    xTEST_CASE("isEquals")
+    xTEST_CASE("isEqual")
     {
-        std::string  sObject1;
-        std::wstring wsObject2;
+		{
+			std::string  sObject1;
+			std::wstring wsObject2;
 
-        m_bRv = Type::isEquals(sObject1, wsObject2);
-        xTEST_EQ(m_bRv, false);
+			m_bRv = Type::isEqual(sObject1, wsObject2);
+			xTEST_EQ(m_bRv, false);
+		}
+
+		{
+			std::tstring_t sObject1;
+			std::tstring_t sObject2;
+
+			m_bRv = Type::isEqual(sObject1, sObject2);
+			xTEST_EQ(m_bRv, true);
+		}
     }
 
     return true;
