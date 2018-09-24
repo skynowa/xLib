@@ -186,7 +186,7 @@ protected:
 
     xNO_COPY_ASSIGN(OStream)
 };
-
+//-------------------------------------------------------------------------------------------------
 class Cout :
 	public OStream
     /// print std::cout
@@ -204,8 +204,8 @@ public:
 
 		std::tcout << OStream::str();
 
-		this->str({});
-		this->clear();
+		OStream::str({});
+		OStream::clear();
 
 		return *this;
 	}
