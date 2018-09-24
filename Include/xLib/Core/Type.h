@@ -16,11 +16,11 @@ xNAMESPACE_BEGIN2(xl, core)
  * https://stackoverflow.com/questions/81870/is-it-possible-to-print-a-variables-type-in-standard-c
  */
 template<typename T>
-class TypeEx
+class TypeName
 {
 public:
 	static
-	constexpr cptr_ctchar_t name()
+	constexpr cptr_ctchar_t get()
 	{
 		/// static_assert(false, "You are missing a DECL_TYPE_NAME");
 		return xT("Unknown");
@@ -29,11 +29,11 @@ public:
 
 #define xTYPE_NAME_DECLARE(type) \
 	template<> \
-	class TypeEx<type> \
+	class TypeName<type> \
 	{ \
 	public: \
 		static \
-		constexpr cptr_ctchar_t name() \
+		constexpr cptr_ctchar_t get() \
 		{ \
 			return #type; \
 		} \
@@ -45,7 +45,7 @@ xTYPE_NAME_DECLARE(std::map_tstring_t);
 xTYPE_NAME_DECLARE(std::mmap_tstring_t);
 
 #define xTYPE_NAME_GET(type) \
-	(TypeEx<decltype(type)>::name())
+	(TypeName<decltype(type)>::get())
 //-------------------------------------------------------------------------------------------------
 class Type
     /// type info
