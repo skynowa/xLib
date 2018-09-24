@@ -56,7 +56,7 @@ Type::nameDemangle(
 #else
     className.assign( typeid(a_objT).name() );
 
-    // or use UnDecorateSymbolName
+    // TODO: use UnDecorateSymbolName
 #endif
 
     sRv = xA2T(className);
