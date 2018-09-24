@@ -252,7 +252,7 @@ OStream::operator << (
 )
 {
     _os << _bracketOpen();
-    TupleFormat<decltype(a_value), sizeof...(Args)>::print(_os, a_value);
+    TuplePrint<decltype(a_value), sizeof...(Args)>::print(_os, a_value);
     _os << _bracketClose();
 
     return *this;
@@ -466,6 +466,27 @@ OStream::_unprintableChar(
         return xT("?");
     }
 }
+//-------------------------------------------------------------------------------------------------
+template<typename T, std::csize_t N>
+struct OStream::TuplePrint
+{
+    static void_t
+    print(std::tostream_t &a_ss, const T &a_value)
+    {
+        TuplePrint<T, N - 1>::print(a_ss, a_value);
+        a_ss << _delimiter() << std::get<N - 1>(a_value);
+    }
+};
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+struct OStream::TuplePrint<T, 1>
+{
+    static void_t
+    print(std::tostream_t &a_ss, const T &a_value)
+    {
+        a_ss << std::get<0>(a_value);
+    }
+};
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, core)
