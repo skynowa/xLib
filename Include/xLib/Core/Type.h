@@ -27,7 +27,7 @@ public:
 	}
 };
 
-#define DECLARE_TYPE_NAME(type) \
+#define xTYPE_NAME_DECLARE(type) \
 	template<> \
 	class TypeEx<type> \
 	{ \
@@ -39,12 +39,12 @@ public:
 		} \
 	}
 
-DECLARE_TYPE_NAME(float_t);
-DECLARE_TYPE_NAME(std::tstring_t);
-DECLARE_TYPE_NAME(std::map_tstring_t);
-DECLARE_TYPE_NAME(std::mmap_tstring_t);
+xTYPE_NAME_DECLARE(float_t);
+xTYPE_NAME_DECLARE(std::tstring_t);
+xTYPE_NAME_DECLARE(std::map_tstring_t);
+xTYPE_NAME_DECLARE(std::mmap_tstring_t);
 
-#define GET_TYPE_NAME(type) \
+#define xTYPE_NAME_GET(type) \
 	(TypeEx<decltype(type)>::name())
 //-------------------------------------------------------------------------------------------------
 class Type
