@@ -102,9 +102,9 @@ Client::escape(
 
     sRv.assign(pszRv);
 
-    if (pszRv != xPTR_NULL) {
+    if (pszRv != nullptr) {
         ::curl_free(pszRv);
-        pszRv = xPTR_NULL;
+        pszRv = nullptr;
     }
 
     return sRv;
@@ -124,9 +124,9 @@ Client::unescape(
 
     sRv.assign(pszRv, static_cast<std::size_t>(size_out));
 
-    if (pszRv != xPTR_NULL) {
+    if (pszRv != nullptr) {
         ::curl_free(pszRv);
-        pszRv = xPTR_NULL;
+        pszRv = nullptr;
     }
 
     return sRv;
@@ -145,9 +145,9 @@ Client::escapeUrl(
 
     sRv.assign(pszRv);
 
-    if (pszRv != xPTR_NULL) {
+    if (pszRv != nullptr) {
         ::curl_free(pszRv);
-        pszRv = xPTR_NULL;
+        pszRv = nullptr;
     }
 
     return sRv;
@@ -166,9 +166,9 @@ Client::unescapeUrl(
 
     sRv.assign(pszRv);
 
-    if (pszRv != xPTR_NULL) {
+    if (pszRv != nullptr) {
         ::curl_free(pszRv);
-        pszRv = xPTR_NULL;
+        pszRv = nullptr;
     }
 
     return sRv;
@@ -181,7 +181,7 @@ Client::strError(
 )
 {
     const char *pszRv = ::curl_easy_strerror(a_code);
-    if (pszRv == xPTR_NULL) {
+    if (pszRv == nullptr) {
         return Const::strUnknown();
     }
 

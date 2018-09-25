@@ -23,10 +23,10 @@ Utils::ptrDeleteT(
     T * &a_ptr
 )
 {
-    T* tmp = xPTR_NULL;
+    T* tmp = nullptr;
     std::swap(a_ptr, tmp);
 
-    delete tmp; tmp = xPTR_NULL;
+    delete tmp; tmp = nullptr;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -36,10 +36,10 @@ Utils::arrayDeleteT(
     T * &a_ptr
 )
 {
-    T* tmp = xPTR_NULL;
+    T* tmp = nullptr;
     std::swap(a_ptr, tmp);
 
-    delete [] tmp; tmp = xPTR_NULL;
+    delete [] tmp; tmp = nullptr;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -50,7 +50,7 @@ Utils::ptrAssignT(
     const T &a_value
 )
 {
-    xCHECK_DO(a_ptr == xPTR_NULL, return);
+    xCHECK_DO(a_ptr == nullptr, return);
 
     *a_ptr = a_value;
 }
@@ -72,7 +72,7 @@ Utils::memoryZero(
     std::csize_t &a_sizeBytes
 )
 {
-    xCHECK_DO(a_ptr == xPTR_NULL, return);
+    xCHECK_DO(a_ptr == nullptr, return);
 
     void_t *pvRv = std::memset(a_ptr, 0, a_sizeBytes);
     xUNUSED(pvRv);
@@ -105,7 +105,7 @@ void_t
 Utils::freeT(
     T * &a_ptr,
     F    a_func,
-    N    a_null /* = xPTR_NULL */
+    N    a_null /* = nullptr */
 )
 {
     xCHECK_DO(a_ptr == a_null, return);
@@ -121,7 +121,7 @@ Utils::bufferFreeT(
     T * &a_ptr
 )
 {
-    freeT(a_ptr, ::free, xPTR_NULL);
+    freeT(a_ptr, ::free, nullptr);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */ inline
@@ -130,7 +130,7 @@ Utils::fileClose(
     FILE * &a_fileHandle
 )
 {
-    freeT(a_fileHandle, std::fclose, xPTR_NULL);
+    freeT(a_fileHandle, std::fclose, nullptr);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>

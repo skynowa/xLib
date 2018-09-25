@@ -36,8 +36,8 @@ xNAMESPACE_BEGIN2(xl, system)
 Console::Console()
 #if xENV_WIN
     :
-    _wnd          (xPTR_NULL),
-    _menu         (xPTR_NULL),
+    _wnd          (nullptr),
+    _menu         (nullptr),
     _stdIn        (),
     _stdOut       (),
     _attributesDef(0)

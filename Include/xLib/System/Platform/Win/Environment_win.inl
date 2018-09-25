@@ -72,7 +72,7 @@ Environment::_deleteVar_impl(
     std::ctstring_t &a_varName
 )
 {
-    BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), xPTR_NULL);
+    BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), nullptr);
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
@@ -87,8 +87,8 @@ Environment::_values_impl(
     LPTCH lpvEnv = ::GetEnvironmentStrings();
     xTEST_PTR(lpvEnv);
 
-    // variable strings are separated by xPTR_NULL byte,
-    // and the block is terminated by a xPTR_NULL byte
+    // variable strings are separated by nullptr byte,
+    // and the block is terminated by a nullptr byte
     for (
         LPTSTR var = static_cast<LPTSTR>( lpvEnv );
         *var != xT('\0');

@@ -60,7 +60,7 @@ User::_loginName_impl() const
         }
     #else
         const char *buff = ::getlogin();
-        if (buff != xPTR_NULL) {
+        if (buff != nullptr) {
             sRv = xA2T(buff);
             return sRv;
         }
@@ -97,7 +97,7 @@ User::_name_impl() const
 {
     std::string sRv;
 
-    _passwd(&sRv, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL);
+    _passwd(&sRv, nullptr, nullptr, nullptr, nullptr, nullptr);
 
     return xA2T(sRv);
 }
@@ -107,7 +107,7 @@ User::_userId_impl() const
 {
     uid_t uiRv;
 
-    _passwd(xPTR_NULL, xPTR_NULL, &uiRv, xPTR_NULL, xPTR_NULL, xPTR_NULL);
+    _passwd(nullptr, nullptr, &uiRv, nullptr, nullptr, nullptr);
 
     return static_cast<uint_t>(uiRv);
 }
@@ -117,7 +117,7 @@ User::_groupId_impl() const
 {
     gid_t uiRv;
 
-    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, &uiRv, xPTR_NULL, xPTR_NULL);
+    _passwd(nullptr, nullptr, nullptr, &uiRv, nullptr, nullptr);
 
     return static_cast<uint_t>(uiRv);
 }
@@ -142,7 +142,7 @@ User::_homeDir_impl() const
     // try to get from API
     std::string asRv;
 
-    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &asRv, xPTR_NULL);
+    _passwd(nullptr, nullptr, nullptr, nullptr, &asRv, nullptr);
     xCHECK_RET(!asRv.empty(), xA2T(asRv));
 
     // try to get from system environment
@@ -157,7 +157,7 @@ User::_shellPath_impl() const
 {
     std::string sRv;
 
-    _passwd(xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, &sRv);
+    _passwd(nullptr, nullptr, nullptr, nullptr, nullptr, &sRv);
 
     return xA2T(sRv);
 }
@@ -171,12 +171,12 @@ User::_shellPath_impl() const
 //-------------------------------------------------------------------------------------------------
 void_t
 User::_passwd(
-    std::string *a_pw_name,   ///< [out] Username (maybe as xPTR_NULL)
-    std::string *a_pw_passwd, ///< [out] Password (maybe as xPTR_NULL)
-    uid_t       *a_pw_uid,    ///< [out] User ID (maybe as xPTR_NULL)
-    gid_t       *a_pw_gid,    ///< [out] Group ID (maybe as xPTR_NULL)
-    std::string *a_pw_dir,    ///< [out] Home directory (maybe as xPTR_NULL)
-    std::string *a_pw_shell   ///< [out] Shell program (maybe as xPTR_NULL)
+    std::string *a_pw_name,   ///< [out] Username (maybe as nullptr)
+    std::string *a_pw_passwd, ///< [out] Password (maybe as nullptr)
+    uid_t       *a_pw_uid,    ///< [out] User ID (maybe as nullptr)
+    gid_t       *a_pw_gid,    ///< [out] Group ID (maybe as nullptr)
+    std::string *a_pw_dir,    ///< [out] Home directory (maybe as nullptr)
+    std::string *a_pw_shell   ///< [out] Shell program (maybe as nullptr)
 ) const
 {
     xTEST_NA(a_pw_name);
@@ -186,7 +186,7 @@ User::_passwd(
     xTEST_NA(a_pw_dir);
     xTEST_NA(a_pw_shell);
 
-    struct passwd *pwRv = xPTR_NULL;
+    struct passwd *pwRv = nullptr;
 
     const uid_t userId = ::getuid();
     xTEST_NA(userId);

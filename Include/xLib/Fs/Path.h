@@ -108,11 +108,11 @@ public:
         ///< get standard extension
 
     static
-    bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid = xPTR_NULL)
+    bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid = nullptr)
                       xWARN_UNUSED_RV;
         ///< path validation
     static
-    bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid = xPTR_NULL)
+    bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid = nullptr)
                       xWARN_UNUSED_RV;
         ///< name validation
 
@@ -155,7 +155,7 @@ xPLATFORM_IMPL:
     std::tstring_t _fileExt_impl(const FileExt &fileExt) xWARN_UNUSED_RV;
     static
     bool_t         _isNameValid_impl(std::ctstring_t &fileName,
-                      std::tstring_t *fileNameValid = xPTR_NULL) xWARN_UNUSED_RV;
+                      std::tstring_t *fileNameValid = nullptr) xWARN_UNUSED_RV;
     static
     size_t         _maxSize_impl() xWARN_UNUSED_RV;
     static

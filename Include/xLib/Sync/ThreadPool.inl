@@ -33,8 +33,8 @@ ThreadPool<T>::ThreadPool(
 ) :
     Thread            (a_isAutoDelete),
     _stackSize        (0U),
-    _funcPtr          (xPTR_NULL),
-    _param            (xPTR_NULL),
+    _funcPtr          (nullptr),
+    _param            (nullptr),
     _isGroupPaused    (a_isGroupPaused),
     _isGroupAutoDelete(a_isGroupAutoDelete),
     _semaphore        (),
@@ -93,7 +93,7 @@ ThreadPool<T>::groupCreate(
 
     //-------------------------------------
     //
-    create(false, 0U, xPTR_NULL);
+    create(false, 0U, nullptr);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -411,7 +411,7 @@ ThreadPool<T>::onRun(
 
         //-------------------------------------
         // .
-        _taskAdd(xPTR_NULL);                       //_semaphore.bWait(INFINITE);
+        _taskAdd(nullptr);                       //_semaphore.bWait(INFINITE);
         xTEST_EQ(bRv, true);                //continue ???
 
         ++ _currTask;

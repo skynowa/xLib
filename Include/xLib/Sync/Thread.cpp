@@ -43,12 +43,12 @@ Thread::Thread(
     _handle      (),
     _id          (0UL),
     _exitStatus  (0U),
-    _param       (xPTR_NULL),
+    _param       (nullptr),
     _isAutoDelete(a_isAutoDelete),
     // states
     _state       (),
     // other
-    _eventStarter(xPTR_NULL),
+    _eventStarter(nullptr),
     _eventPause  (false, false),
     _eventExit   (true,  false)
 {
@@ -752,7 +752,7 @@ Thread::_clear(
 
     _id         = 0UL;
     _exitStatus = a_exitStatus;
-    _param      = xPTR_NULL;
+    _param      = nullptr;
 
     // states
     _state.isCreated = false;

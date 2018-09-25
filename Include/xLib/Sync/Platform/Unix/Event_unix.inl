@@ -36,10 +36,10 @@ Event::_create_impl()
 
     int_t iRv = - 1;
 
-    iRv = ::pthread_mutex_init(&_mutex, xPTR_NULL);   // mutex not recursive
+    iRv = ::pthread_mutex_init(&_mutex, nullptr);   // mutex not recursive
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
-    iRv = ::pthread_cond_init(&_cond, xPTR_NULL);
+    iRv = ::pthread_cond_init(&_cond, nullptr);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ Event::_wait_impl(
             if (a_timeoutMs != xTIMEOUT_INFINITE) {
                 timeval timeNow  = {0, 0};
 
-                iRv = ::gettimeofday(&timeNow, xPTR_NULL);
+                iRv = ::gettimeofday(&timeNow, nullptr);
                 xTEST_DIFF(iRv, - 1);
 
                 timeoutMsec.tv_sec  = timeNow.tv_sec + static_cast<time_t>(a_timeoutMs) / 1000;

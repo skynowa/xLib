@@ -50,7 +50,7 @@ uint_t
 ISeedPolicy::_seedTimeBased() const
 {
     timeval tv = {0, 0};
-    int_t iRv = ::gettimeofday(&tv, xPTR_NULL);
+    int_t iRv = ::gettimeofday(&tv, nullptr);
     xTEST_DIFF(iRv, - 1);
 
     return static_cast<uint_t>( tv.tv_usec );

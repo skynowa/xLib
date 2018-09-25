@@ -23,7 +23,7 @@ ThreadStorage::_construct_impl()
 {
     index_t index = _indexInvalid_impl();
 
-    int_t iRv = ::pthread_key_create(&index, xPTR_NULL);
+    int_t iRv = ::pthread_key_create(&index, nullptr);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     _index = index;
@@ -42,7 +42,7 @@ bool_t
 ThreadStorage::_isSet_impl() const
 {
     void_t *pvRv = ::pthread_getspecific(_index);
-    xCHECK_RET(pvRv == xPTR_NULL, false);
+    xCHECK_RET(pvRv == nullptr, false);
 
     return true;
 }

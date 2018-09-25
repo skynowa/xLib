@@ -20,7 +20,7 @@ Thread::_create_impl(
 {
     id_t id = 0UL;
 
-    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(xPTR_NULL, a_stackSizeBytes,
+    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(nullptr, a_stackSizeBytes,
         _s_jobEntry, this, 0U, (uint_t *)&id) );
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
     xTEST_LESS(0UL, id);
@@ -210,7 +210,7 @@ Thread::messageWaitQueue(
     std::vector<uint_t> msgs;
     msgs.push_back(a_msg);
 
-    messageWaitQueue(msgs, xPTR_NULL, a_param1, a_param2);
+    messageWaitQueue(msgs, nullptr, a_param1, a_param2);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -227,7 +227,7 @@ Thread::messageWaitQueue(
     BOOL blRv = FALSE;
     MSG  msg  = {0};
 
-    while ((blRv = ::GetMessage(&msg, xPTR_NULL, 0, 0 ))) {
+    while ((blRv = ::GetMessage(&msg, nullptr, 0, 0 ))) {
         xTEST_DIFF(blRv, - 1);
 
         for (size_t i = 0; i < a_msgs.size(); ++ i) {

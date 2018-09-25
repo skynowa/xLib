@@ -364,14 +364,14 @@ xNAMESPACE_END2(xl, net)
         }
 
         TIMEVAL tv;
-        TIMEVAL *ptv = xPTR_NULL;
+        TIMEVAL *ptv = nullptr;
 
         if (_m_timeout) {
             tv.tv_sec =  _m_timeout / 1000;
             tv.tv_usec = _m_timeout * 1000 - tv.tv_sec * 1000000;
             ptv = &tv;
         } else {
-            ptv = xPTR_NULL; // xPTR_NULL for blocking operation (never times out)
+            ptv = nullptr; // nullptr for blocking operation (never times out)
         }
 
         nSocketsReady = select(0, &FdSetReceive, &FdSetSend, &FdSetError, ptv);

@@ -43,7 +43,7 @@ Manager::Manager(
     _units        (),
     _isConstructed(false)
 {
-    _construct(0, xPTR_NULL);
+    _construct(0, nullptr);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -126,7 +126,7 @@ Manager::_construct(
     }
 
     // parse params
-    if (a_args == xPTR_NULL) {
+    if (a_args == nullptr) {
         _isConstructed = true;
     } else {
         std::vec_tstring_t args;

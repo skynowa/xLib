@@ -123,7 +123,7 @@ Volume::isSpaceEnough(
     xTEST_NA(a_needBytes);
 
     ulonglong_t totalFreeBytes = 0ULL;
-    space(path(), xPTR_NULL, xPTR_NULL, &totalFreeBytes);
+    space(path(), nullptr, nullptr, &totalFreeBytes);
 
     xCHECK_RET(a_needBytes > totalFreeBytes, false);
 

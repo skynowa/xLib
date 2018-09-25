@@ -38,17 +38,17 @@ IpcSemaphore::_create_impl(
     std::ctstring_t &a_name
 )
 {
-    ctchar_t       *winName = xPTR_NULL;
+    ctchar_t       *winName = nullptr;
     std::tstring_t  _winName;
 
     if (a_name.empty()) {
-        winName  = xPTR_NULL;
+        winName  = nullptr;
     } else {
         _winName = xT("Global\\") + a_name;
         winName  = _winName.c_str();
     }
 
-    HANDLE  hRv       = ::CreateSemaphore(xPTR_NULL, a_initialValue, valueMax(), winName);
+    HANDLE  hRv       = ::CreateSemaphore(nullptr, a_initialValue, valueMax(), winName);
     ulong_t nativeError = NativeError::get();
     xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
     xTEST_DIFF(nativeError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
@@ -62,11 +62,11 @@ IpcSemaphore::_open_impl(
     std::ctstring_t &a_name
 )
 {
-    ctchar_t       *winName = xPTR_NULL;
+    ctchar_t       *winName = nullptr;
     std::tstring_t  _winName;
 
     if (a_name.empty()) {
-        winName  = xPTR_NULL;
+        winName  = nullptr;
     } else {
         _winName = xT("Global\\") + a_name;
         winName  = _winName.c_str();
@@ -84,7 +84,7 @@ IpcSemaphore::_post_impl() const
 {
    const LONG postValue = 1L;
 
-   BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, xPTR_NULL);
+   BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, nullptr);
    xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------

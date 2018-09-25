@@ -114,16 +114,6 @@
 #endif
     ///< calling convention
 //-------------------------------------------------------------------------------------------------
-// xPTR_NULL
-#if xLANG_CPP11
-    #define xPTR_NULL \
-        nullptr
-#else
-    #define xPTR_NULL \
-        NULL
-#endif
-    ///< "null" pointer
-//-------------------------------------------------------------------------------------------------
 // xWARN_UNUSED_RV
 #if   xCOMPILER_MINGW
     #define xWARN_UNUSED_RV \
@@ -306,7 +296,7 @@
 
 // xBASE_FILE
 #define xBASE_FILE \
-    ((std::strrchr(xFILE, '/') == xPTR_NULL) ? xFILE : std::strrchr(xFILE, '/') + 1)
+    ((std::strrchr(xFILE, '/') == nullptr) ? xFILE : std::strrchr(xFILE, '/') + 1)
     ///< file basename
 
 // xLINE
@@ -567,7 +557,7 @@
 ///@{
 #if   xENV_WIN
     #define xNATIVE_HANDLE_NULL \
-        ( static_cast<native_handle_t>( xPTR_NULL ) )
+        ( static_cast<native_handle_t>( nullptr ) )
         ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID \
         ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )
@@ -590,7 +580,7 @@
         ///< find directory handle
 #elif xENV_UNIX
     #define xFIND_DIR_HANDLE_NULL \
-        ( static_cast<find_dir_handle_t>( xPTR_NULL ) )
+        ( static_cast<find_dir_handle_t>( nullptr ) )
         ///< find directory handle
 #endif
 ///@}
@@ -617,7 +607,7 @@
 // xWND_NATIVE_HANDLE_NULL
 #if xENV_WIN
     #define xWND_NATIVE_HANDLE_NULL \
-        ( static_cast<HWND>( xPTR_NULL ) )
+        ( static_cast<HWND>( nullptr ) )
         ///< window native handle value "null"
 #endif
 
@@ -741,12 +731,12 @@
     ///< disallow make instance
 #define xNO_HEAP \
     private: \
-        void_t* operator new    (size_t) throw() { return xPTR_NULL; } \
+        void_t* operator new    (size_t) throw() { return nullptr; } \
         void_t  operator delete (void_t*)        { ; }
     ///< disallow object on heap
 #define xNO_ARRAY_HEAP \
     private: \
-        void_t* operator new []    (size_t) throw() { return xPTR_NULL; } \
+        void_t* operator new []    (size_t) throw() { return nullptr; } \
         void_t  operator delete [] (void_t*)        { ; }
     ///< disallow array on heap
 ///@}

@@ -235,7 +235,7 @@ Console::_read_impl() const
     culong_t buffSize           = 1024UL * 4UL;
     tchar_t  buff[buffSize + 1] = {0};
 
-    BOOL blRv = ::ReadConsole(_stdIn.get(), &buff[0], buffSize, &read, xPTR_NULL);
+    BOOL blRv = ::ReadConsole(_stdIn.get(), &buff[0], buffSize, &read, nullptr);
     xTEST_DIFF(blRv, FALSE);
 
     sRv.assign(buff, read - Const::crNl().size());
@@ -255,7 +255,7 @@ Console::_write_impl(
     DWORD written = 0UL;
 
     BOOL blRv = ::WriteConsole(_stdOut.get(), &a_str.at(0), static_cast<DWORD>( a_str.size() ),
-        &written, xPTR_NULL);
+        &written, nullptr);
     xTEST_DIFF(blRv, FALSE);
     xTEST_EQ(static_cast<size_t>( written ), a_str.size());
 
@@ -398,7 +398,7 @@ Console::enableClose(
     xTEST_EQ(_stdOut.isValid(), true);
 
     _menu = _menuHandle(false);
-    xTEST_EQ(_menu != xPTR_NULL, true);
+    xTEST_EQ(_menu != nullptr, true);
 
     if (!a_flag) {
         BOOL blRv = ::DeleteMenu(_menu, SC_CLOSE, MF_BYCOMMAND);
@@ -410,7 +410,7 @@ Console::enableClose(
         blRv = ::EnableMenuItem(_menuHandle(false), SC_CLOSE, MF_ENABLED);
         xTEST_DIFF(TRUE, blRv);
 
-        blRv = ::SetWindowPos(_wndHandle(), xPTR_NULL, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE |
+        blRv = ::SetWindowPos(_wndHandle(), nullptr, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE |
             SWP_NOZORDER | SWP_DRAWFRAME);
         xTEST_DIFF(blRv, FALSE);
     }
@@ -427,7 +427,7 @@ Console::enableClose(
 HWND
 Console::_wndHandle()
 {
-    HWND           hRv = xPTR_NULL;
+    HWND           hRv = nullptr;
     std::tstring_t newWndTitle;
     std::tstring_t oldWndTitle;
 
@@ -445,7 +445,7 @@ Console::_wndHandle()
     Thread::currentSleep(50UL);
 
     // look for NewWindowTitle.
-    hRv = ::FindWindow(xPTR_NULL, newWndTitle.c_str());
+    hRv = ::FindWindow(nullptr, newWndTitle.c_str());
     xTEST_DIFF(hRv, xWND_NATIVE_HANDLE_NULL);
 
     // restore original window title.
@@ -462,9 +462,9 @@ Console::_menuHandle(
     _menu = ::GetSystemMenu(_wnd, a_isRevert);
 
     if (a_isRevert) {
-        xTEST_EQ(_menu == xPTR_NULL, true);
+        xTEST_EQ(_menu == nullptr, true);
     } else {
-        xTEST_EQ(_menu != xPTR_NULL, true);
+        xTEST_EQ(_menu != nullptr, true);
     }
 
     return _menu;

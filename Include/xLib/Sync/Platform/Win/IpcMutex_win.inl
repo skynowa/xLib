@@ -17,17 +17,17 @@ IpcMutex::_create_impl(
     std::ctstring_t &a_name
 )
 {
-    ctchar_t       *winName = xPTR_NULL;
+    ctchar_t       *winName = nullptr;
     std::tstring_t  _winName;
 
     if (a_name.empty()) {
-        winName  = xPTR_NULL;
+        winName  = nullptr;
     } else {
         _winName = xT("Global\\") + a_name;
         winName  = _winName.c_str();
     }
 
-    HANDLE hRv = ::CreateMutex(xPTR_NULL, FALSE, winName);
+    HANDLE hRv = ::CreateMutex(nullptr, FALSE, winName);
     xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
 
     _handle.set(hRv);
@@ -39,11 +39,11 @@ IpcMutex::_open_impl(
     std::ctstring_t &a_name
 )
 {
-    ctchar_t       *winName = xPTR_NULL;
+    ctchar_t       *winName = nullptr;
     std::tstring_t _winName;
 
     if (a_name.empty()) {
-        winName = xPTR_NULL;
+        winName = nullptr;
     } else {
         _winName = xT("Global\\") + a_name;
         winName  = _winName.c_str();

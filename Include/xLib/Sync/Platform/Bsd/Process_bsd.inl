@@ -25,11 +25,11 @@ Process::_idByName_impl(
     int_t       mib[mibSize] = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
     size_t      buffSize     = 0U;
 
-    int_t iRv = ::sysctl(mib, mibSize, xPTR_NULL, &buffSize, xPTR_NULL, 0U);
+    int_t iRv = ::sysctl(mib, mibSize, nullptr, &buffSize, nullptr, 0U);
     xTEST_DIFF(iRv, - 1);
 
     // allocate memory and populate info in the  processes structure
-    kinfo_proc *infoProc = xPTR_NULL;
+    kinfo_proc *infoProc = nullptr;
 
     for ( ; ; ) {
         buffSize += buffSize / 10;
@@ -39,7 +39,7 @@ Process::_idByName_impl(
 
         infoProc = infoProcNew;
 
-        iRv = ::sysctl(mib, mibSize, infoProc, &buffSize, xPTR_NULL, 0U);
+        iRv = ::sysctl(mib, mibSize, infoProc, &buffSize, nullptr, 0U);
         xCHECK_DO(!(iRv == - 1 && errno == ENOMEM), break);
     }
 
@@ -73,11 +73,11 @@ Process::_ids_impl(
     int_t       mib[mibSize] = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
     size_t      buffSize     = 0U;
 
-    int_t iRv = ::sysctl(mib, mibSize, xPTR_NULL, &buffSize, xPTR_NULL, 0U);
+    int_t iRv = ::sysctl(mib, mibSize, nullptr, &buffSize, nullptr, 0U);
     xTEST_DIFF(iRv, - 1);
 
     // allocate memory and populate info in the  processes structure
-    kinfo_proc *infoProc = xPTR_NULL;
+    kinfo_proc *infoProc = nullptr;
 
     for ( ; ; ) {
         buffSize += buffSize / 10;
@@ -87,7 +87,7 @@ Process::_ids_impl(
 
         infoProc = infoProcNew;
 
-        iRv = ::sysctl(mib, mibSize, infoProc, &buffSize, xPTR_NULL, 0U);
+        iRv = ::sysctl(mib, mibSize, infoProc, &buffSize, nullptr, 0U);
         xCHECK_DO(!(iRv == - 1 && errno == ENOMEM), break);
     }
 

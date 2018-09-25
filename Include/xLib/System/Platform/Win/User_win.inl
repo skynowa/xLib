@@ -27,7 +27,7 @@ User::_isAdmin_impl() const
 {
     bool_t                   isAdmin     = false;
     SID_IDENTIFIER_AUTHORITY ntAuthority = { SECURITY_NT_AUTHORITY };
-    PSID                     adminGroup  = xPTR_NULL;
+    PSID                     adminGroup  = nullptr;
 
     BOOL blRv = ::AllocateAndInitializeSid(&ntAuthority, 2, SECURITY_BUILTIN_DOMAIN_RID,
         DOMAIN_ALIAS_RID_ADMINS, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, &adminGroup);
@@ -36,7 +36,7 @@ User::_isAdmin_impl() const
     {
         BOOL isMember = FALSE;
 
-        blRv = ::CheckTokenMembership(xPTR_NULL, adminGroup, &isMember);
+        blRv = ::CheckTokenMembership(nullptr, adminGroup, &isMember);
         if (blRv == FALSE || isMember == FALSE) {
             isAdmin = false;
         } else {
@@ -135,7 +135,7 @@ User::_homeDir_impl() const
 
     tchar_t buff[MAX_PATH + 1] = {0};
 
-    HRESULT hrRv = SHGetFolderPath(xPTR_NULL, CSIDL_PROFILE, xPTR_NULL, 0UL, &buff[0]);
+    HRESULT hrRv = SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0UL, &buff[0]);
     xTEST_EQ(S_OK == hrRv, true);
 
     sRv.assign(buff);
@@ -150,7 +150,7 @@ User::_shellPath_impl() const
 
     LPITEMIDLIST idList = {0};
 
-    HRESULT hrRv = ::SHGetSpecialFolderLocation(xPTR_NULL, CSIDL_WINDOWS, &idList);
+    HRESULT hrRv = ::SHGetSpecialFolderLocation(nullptr, CSIDL_WINDOWS, &idList);
     xTEST_EQ(hrRv, S_OK);
 
     tchar_t buff[MAX_PATH + 1] = {0};

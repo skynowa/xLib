@@ -28,7 +28,7 @@ Volume::_mount_impl(
     std::ctstring_t &a_destPath    ///< destination path
 ) const
 {
-    int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), MNT_UPDATE, xPTR_NULL);
+    int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), MNT_UPDATE, nullptr);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------

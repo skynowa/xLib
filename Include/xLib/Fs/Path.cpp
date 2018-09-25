@@ -273,7 +273,7 @@ Path::removeExtIf(
 bool_t
 Path::isValid(
     std::ctstring_t &a_filePath,                    ///< file, directory path
-    std::tstring_t  *a_filePathValid /* = xPTR_NULL */   ///< [out] normalized path
+    std::tstring_t  *a_filePathValid /* = nullptr */   ///< [out] normalized path
 )
 {
     xTEST_NA(a_filePath);
@@ -301,7 +301,7 @@ Path::isValid(
 bool_t
 Path::isNameValid(
     std::ctstring_t &a_fileName,                    ///< file, directory name
-    std::tstring_t  *a_fileNameValid /* = xPTR_NULL */   ///< [out] normalized name
+    std::tstring_t  *a_fileNameValid /* = nullptr */   ///< [out] normalized name
 )
 {
     xTEST_NA(a_fileName);
@@ -311,7 +311,7 @@ Path::isNameValid(
 
     // check: empty name
     if ( sRv.empty() ) {
-        xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
+        xCHECK_RET(a_fileNameValid == nullptr, false);
 
         a_fileNameValid->clear();
         return true;
@@ -319,7 +319,7 @@ Path::isNameValid(
 
     // check: name size
     if (sRv.size() > xNAME_MAX) {
-        xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
+        xCHECK_RET(a_fileNameValid == nullptr, false);
 
         sRv.resize(xNAME_MAX);
     }

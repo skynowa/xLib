@@ -53,7 +53,7 @@ ProcessInfo::_exeName_impl() const
 
     Process::handle_t handle = Process::handleById(_id);
 
-    DWORD stored = ::GetModuleFileNameEx(handle, xPTR_NULL, &sRv.at(0), static_cast<DWORD>(sRv.size()));
+    DWORD stored = ::GetModuleFileNameEx(handle, nullptr, &sRv.at(0), static_cast<DWORD>(sRv.size()));
     xTEST_DIFF(stored, 0UL);
 
     sRv.resize(stored);
@@ -165,18 +165,18 @@ ProcessInfo::_commandLine_impl(
     xTEST_EQ(processHandle.isValid(), true);
 
     PVOID pebAddress               = _Functor::pebAddress(processHandle.get());
-    PVOID rtlUserProcParamsAddress = xPTR_NULL;
+    PVOID rtlUserProcParamsAddress = nullptr;
 
     // get the address of ProcessParameters
     BOOL blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(pebAddress) + 0x10,
-        &rtlUserProcParamsAddress, sizeof(PVOID), xPTR_NULL);
+        &rtlUserProcParamsAddress, sizeof(PVOID), nullptr);
     xTEST_DIFF(blRv, FALSE);
 
     // read the commandLine UNICODE_STRING structure
     UNICODE_STRING commandLine = {0};
 
     blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(rtlUserProcParamsAddress) +
-        0x40, &commandLine, sizeof(commandLine), xPTR_NULL);
+        0x40, &commandLine, sizeof(commandLine), nullptr);
     xTEST_DIFF(blRv, FALSE);
 
     // allocate memory to hold the command line
@@ -186,7 +186,7 @@ ProcessInfo::_commandLine_impl(
 
         // read the command line
         blRv = ::ReadProcessMemory(processHandle.get(), commandLine.Buffer, commandLineContents,
-            commandLine.Length, xPTR_NULL);
+            commandLine.Length, nullptr);
         xTEST_DIFF(blRv, FALSE);
 
         // length specifier is in characters, but commandLine.Length is in bytes a WCHAR is 2 bytes
@@ -199,7 +199,7 @@ ProcessInfo::_commandLine_impl(
         sRv = String::castA(wsRv, CP_ACP);
     #endif
 
-        (void_t)::free(commandLineContents); commandLineContents = xPTR_NULL;
+        (void_t)::free(commandLineContents); commandLineContents = nullptr;
     }
 
     String::split(sRv, Const::space(), &args);

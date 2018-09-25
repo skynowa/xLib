@@ -38,8 +38,8 @@ Ssh2Client::Ssh2Client(
 ) :
     _data     (a_data),
     _tcpClient(),
-    _session  (xPTR_NULL),
-    _channel  (xPTR_NULL)
+    _session  (nullptr),
+    _channel  (nullptr)
 {
     userPassword = a_data.password;
 
@@ -335,7 +335,7 @@ Ssh2Client::channelClose()
     while ((iRv = ::libssh2_channel_free(_channel)) == LIBSSH2_ERROR_EAGAIN) {
         _wait(waitTimeoutSec);
     }
-    _channel = xPTR_NULL;
+    _channel = nullptr;
     xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
@@ -356,7 +356,7 @@ Ssh2Client::disconnect()
     while ((iRv = ::libssh2_session_free(_session)) == LIBSSH2_ERROR_EAGAIN) {
         _wait(waitTimeoutSec);
     }
-    _session = xPTR_NULL;
+    _session = nullptr;
     xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
@@ -371,13 +371,13 @@ Ssh2Client::lastErrorFormat()
 {
     std::string asRv;
 
-    char *error     = xPTR_NULL;
+    char *error     = nullptr;
     int   errorSize = 0;
 
     int_t iRv = ::libssh2_session_last_error(_session, &error, &errorSize, 0);
     xUNUSED(iRv);
 
-    if (error == xPTR_NULL) {
+    if (error == nullptr) {
         asRv = "[Unknown]";
     } else {
         asRv.assign(error, static_cast<std::size_t>( errorSize ));
@@ -412,17 +412,17 @@ Ssh2Client::_wait(
     // now make sure we wait in the correct direction
     cint_t directions = ::libssh2_session_block_directions(_session);
 
-    fd_set *readfd = xPTR_NULL;
+    fd_set *readfd = nullptr;
     if (directions & LIBSSH2_SESSION_BLOCK_INBOUND) {
         readfd = &fd;
     }
 
-    fd_set *writefd = xPTR_NULL;
+    fd_set *writefd = nullptr;
     if (directions & LIBSSH2_SESSION_BLOCK_OUTBOUND) {
         writefd = &fd;
     }
 
-    iRv = ::select(_tcpClient.handle().get() + 1, readfd, writefd, xPTR_NULL, &timeout);
+    iRv = ::select(_tcpClient.handle().get() + 1, readfd, writefd, nullptr, &timeout);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------

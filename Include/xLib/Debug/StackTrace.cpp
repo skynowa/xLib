@@ -81,7 +81,7 @@ StackTrace::_format(
 ) const
 {
     xCHECK_DO(a_stack.empty(),         return);
-    xCHECK_DO(a_stackStr == xPTR_NULL, return);
+    xCHECK_DO(a_stackStr == nullptr, return);
 
     std::tstring_t     sRv;
     std::vector<int_t> maxs(::elementsNum, 0);

@@ -68,24 +68,24 @@
         Debugger().reportMake(report); \
     }
 #define xTEST_PTR_MSG_IMPL(reportType, ptr, msg) \
-    if ( intptr_t(ptr) == intptr_t(xPTR_NULL) ) { \
+    if ( intptr_t(ptr) == intptr_t(nullptr) ) { \
         culong_t        nativeError    = NativeError::get(); \
         cSourceInfoData sourceInfoData = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
         SourceInfo      sourceInfo(sourceInfoData); \
         \
-        ErrorReport report(reportType, xLEX_TO_STR(xPTR_NULL), xT(#ptr), intptr_t(ptr), \
-            intptr_t(xPTR_NULL), xLEX_TO_STR(!=), nativeError, sourceInfo, \
+        ErrorReport report(reportType, xLEX_TO_STR(nullptr), xT(#ptr), intptr_t(ptr), \
+            intptr_t(nullptr), xLEX_TO_STR(!=), nativeError, sourceInfo, \
             StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }
 #define xTEST_PTR_FAIL_MSG_IMPL(reportType, ptr, msg) \
-    if ( intptr_t(ptr) != intptr_t(xPTR_NULL) ) { \
+    if ( intptr_t(ptr) != intptr_t(nullptr) ) { \
         culong_t        nativeError    = NativeError::get(); \
         cSourceInfoData sourceInfoData = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
         SourceInfo      sourceInfo(sourceInfoData); \
         \
-        ErrorReport report(reportType, xLEX_TO_STR(xPTR_NULL), xT(#ptr), intptr_t(ptr), \
-            intptr_t(xPTR_NULL), xLEX_TO_STR(==), nativeError, sourceInfo, \
+        ErrorReport report(reportType, xLEX_TO_STR(nullptr), xT(#ptr), intptr_t(ptr), \
+            intptr_t(nullptr), xLEX_TO_STR(==), nativeError, sourceInfo, \
             StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }

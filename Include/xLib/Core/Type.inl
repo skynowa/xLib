@@ -49,8 +49,8 @@ Type::nameDemangle(
 #if xCOMPILER_MINGW || xCOMPILER_GNUC
     int_t status = - 1;
 
-    char *realName = abi::__cxa_demangle(typeid(a_objT).name(), xPTR_NULL, xPTR_NULL, &status);
-    className = (realName == xPTR_NULL) ? Const::strUnknownA() : realName;
+    char *realName = abi::__cxa_demangle(typeid(a_objT).name(), nullptr, nullptr, &status);
+    className = (realName == nullptr) ? Const::strUnknownA() : realName;
 
     Utils::bufferFreeT(realName);
 #else
@@ -99,11 +99,7 @@ Type::isEqual(
     const T2 &a_obj2T
 )
 {
-#if xLANG_CPP11
 	return std::is_same<T1, T2>::value;
-#else
-	return (typeid(T1) == typeid(T2));
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 

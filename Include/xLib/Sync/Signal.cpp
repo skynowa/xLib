@@ -106,7 +106,7 @@ Signal::connect(
             break;
         }
 
-		iRv = ::sigaction(*it, &action, xPTR_NULL);
+		iRv = ::sigaction(*it, &action, nullptr);
 		xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(*it)));
     }
 }
@@ -195,7 +195,7 @@ Signal::connectInfo(
             break;
         }
 
-		iRv = ::sigaction(*it, &action, xPTR_NULL);
+		iRv = ::sigaction(*it, &action, nullptr);
 		xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(*it)));
     }
 }
@@ -237,7 +237,7 @@ Signal::connectExit(
     const on_exit_t a_onExit	///<
 ) const
 {
-    xCHECK_DO(a_onExit == xPTR_NULL, return);
+    xCHECK_DO(a_onExit == nullptr, return);
 
     int_t iRv = std::atexit(a_onExit);
     xTEST(iRv == 0);
@@ -284,7 +284,7 @@ Signal::isValid(
     cint_t &a_signalNum ///< signal number
 )
 {
-	return (::sigaction(a_signalNum, xPTR_NULL, xPTR_NULL) == 0);
+	return (::sigaction(a_signalNum, nullptr, nullptr) == 0);
 }
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN

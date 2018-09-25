@@ -444,7 +444,7 @@ Test_Path::unit()
 
     xTEST_CASE("isNameValid")
     {
-        // // a_fileNameValid == xPTR_NULL
+        // // a_fileNameValid == nullptr
         {
             {
             #if   xENV_WIN
@@ -548,7 +548,7 @@ Test_Path::unit()
                     {xT("clock"),        true},
                     {xT(".aux.txt"),     false},
                     {xT("auxx.aux.txt"), true},
-                    {xT("xPTR_NULL"),         true},
+                    {xT("nullptr"),         true},
                     {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), false},
                     {xT(""),             false},
                     {xT("C:\\test\\"),   false},
@@ -587,7 +587,7 @@ Test_Path::unit()
         #endif
         }
 
-        // a_fileNameValid != xPTR_NULL
+        // a_fileNameValid != nullptr
         {
         #if   xENV_WIN
             const data2_tstring_t data[] =
@@ -681,7 +681,7 @@ Test_Path::unit()
                 {xT("clock"),        xT("clock")},
                 {xT(".aux.txt"),     xT("")},
                 {xT("auxx.aux.txt"), xT("auxx.aux.txt")},
-                {xT("xPTR_NULL"),         xT("xPTR_NULL")},
+                {xT("nullptr"),         xT("nullptr")},
                 {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), xT("ValidTestName")},
             };
         #elif xENV_UNIX

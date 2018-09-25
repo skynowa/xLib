@@ -83,7 +83,6 @@ public:
     template<typename T1, typename T2>
     OStream & operator << (const std::multimap<T1, T2> &value);
 
-#if xLANG_CPP11
     OStream & operator << (const std::nullptr_t value);
 
     template<typename T, std::size_t N>
@@ -106,7 +105,6 @@ public:
 
     template<typename... Args>
     OStream & operator << (const std::tuple<Args...> &value);
-#endif
 
 #if xLIB_QT
     OStream & operator << (const QString &value);

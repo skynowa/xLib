@@ -30,7 +30,7 @@ Debugger::_isActive_impl() const
 
     infoSize = sizeof(info);
 
-    int_t iRv = ::sysctl(mib, mibSize, &info, &infoSize, xPTR_NULL, 0);
+    int_t iRv = ::sysctl(mib, mibSize, &info, &infoSize, nullptr, 0);
     xCHECK_RET(iRv == - 1, false);
 
     // we're being debugged if the P_TRACED flag is set.

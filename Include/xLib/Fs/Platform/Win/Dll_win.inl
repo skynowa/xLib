@@ -29,7 +29,7 @@ Dll::_isProcExists_impl(
     xTEST_EQ(_handle.isValid(), true);
 
     proc_address_t paRv = ::GetProcAddress(_handle.get(), xT2A(a_procName).c_str());
-    xCHECK_RET(paRv == xPTR_NULL, false);
+    xCHECK_RET(paRv == nullptr, false);
 
     return true;
 }

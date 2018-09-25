@@ -22,7 +22,7 @@ Environment::_isExists_impl(
 {
     const char *pcszRv = ::getenv(xT2A(a_varName).c_str());
     xTEST_NA(pcszRv);
-    xCHECK_RET(pcszRv == xPTR_NULL, false);
+    xCHECK_RET(pcszRv == nullptr, false);
 
     return true;
 }

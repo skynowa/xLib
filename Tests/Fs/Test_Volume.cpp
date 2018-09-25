@@ -240,7 +240,7 @@ Test_Volume::unit()
 
             // xCHECK_DO(!Volume(*it).isReady(), continue);
 
-            Volume::space(*it, xPTR_NULL, xPTR_NULL, xPTR_NULL);
+            Volume::space(*it, nullptr, nullptr, nullptr);
             xTEST_EQ(0ULL, available);
             xTEST_EQ(0ULL, total);
             xTEST_EQ(0ULL, free);

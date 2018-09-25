@@ -35,7 +35,7 @@ IpcMutex::IpcMutex() :
 #if   xENV_WIN
     _handle(),
 #elif xENV_UNIX
-    _handle(xPTR_NULL),
+    _handle(nullptr),
 #endif
     _name  ()
 {

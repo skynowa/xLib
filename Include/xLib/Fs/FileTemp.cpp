@@ -37,7 +37,7 @@ FileTemp::FileTemp(
     cbool_t &a_isAutoDelete
 ) :
     _isAutoDelete(a_isAutoDelete),
-    _file        (xPTR_NULL),
+    _file        (nullptr),
     _filePath    ()
 {
 }
@@ -45,7 +45,7 @@ FileTemp::FileTemp(
 /* virtual */
 FileTemp::~FileTemp()
 {
-    if (_file != xPTR_NULL) {
+    if (_file != nullptr) {
         _file->close();
     }
 

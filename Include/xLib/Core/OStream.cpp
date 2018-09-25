@@ -219,7 +219,7 @@ OStream::operator << (
     const void *a_value   ///< value
 )
 {
-    if (a_value == xPTR_NULL) {
+    if (a_value == nullptr) {
         _os << xT("null");
     } else {
         _os << a_value;
@@ -233,7 +233,7 @@ OStream::operator << (
     const char *a_value   ///< value
 )
 {
-    if (a_value == xPTR_NULL) {
+    if (a_value == nullptr) {
         _os << xT("null");
     } else {
         _os << std::string(a_value);
@@ -247,7 +247,7 @@ OStream::operator << (
     const wchar_t *a_value   ///< value
 )
 {
-    if (a_value == xPTR_NULL) {
+    if (a_value == nullptr) {
         _os << xT("null");
     } else {
         _printValue( std::wstring(a_value) );
@@ -301,8 +301,6 @@ OStream::operator << (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-#if xLANG_CPP11
-
 OStream &
 OStream::operator << (
     const std::nullptr_t a_value   ///< value
@@ -314,8 +312,6 @@ OStream::operator << (
 
     return *this;
 }
-
-#endif
 //-------------------------------------------------------------------------------------------------
 
 

@@ -21,7 +21,7 @@ Path::_exe_impl()
     std::tstring_t sRv;
     sRv.resize(xPATH_MAX);
 
-    DWORD stored = ::GetModuleFileName(xPTR_NULL, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    DWORD stored = ::GetModuleFileName(nullptr, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(stored, 0UL);
 
     sRv.resize(stored);
@@ -116,7 +116,7 @@ Path::setDrive(
 bool_t
 Path::_isNameValid_impl(
     std::ctstring_t &a_fileName,                    ///< file, directory name
-    std::tstring_t  *a_fileNameValid /* = xPTR_NULL */   ///< [out] normalized name
+    std::tstring_t  *a_fileNameValid /* = nullptr */   ///< [out] normalized name
 )
 {
     std::tstring_t sRv(a_fileName);
@@ -137,7 +137,7 @@ Path::_isNameValid_impl(
         ctchar_t begin = *sRv.begin();
         ctchar_t end   = *sRv.back();
 
-        if (a_fileNameValid == xPTR_NULL) {
+        if (a_fileNameValid == nullptr) {
             // space
             xCHECK_RET(Const::space().at(0) == begin, false);
             xCHECK_RET(Const::space().at(0) == end,   false);
@@ -174,7 +174,7 @@ Path::_isNameValid_impl(
 
         std::csize_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
-            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
+            xCHECK_RET(a_fileNameValid == nullptr, false);
 
             for ( ; ; ) {
                 sRv.erase(pos, 1);
@@ -200,7 +200,7 @@ Path::_isNameValid_impl(
 
         cit = std::find_if(sRv.begin(), sRv.end(), CharT::isControl);
         if (cit != sRv.end()) {
-            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
+            xCHECK_RET(a_fileNameValid == nullptr, false);
 
             for ( ; ; ) {
                 std::tstring_t::iterator itNewEnd;
@@ -243,7 +243,7 @@ Path::_isNameValid_impl(
             bool_t bRv = StringCI::compare(baseFileName, reservedNames[i]);
             xCHECK_DO(!bRv, continue);
 
-            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
+            xCHECK_RET(a_fileNameValid == nullptr, false);
 
             a_fileNameValid->clear();
             return true;
@@ -252,7 +252,7 @@ Path::_isNameValid_impl(
     }
 
     // out
-    if (a_fileNameValid != xPTR_NULL) {
+    if (a_fileNameValid != nullptr) {
         *a_fileNameValid = sRv;
     }
 
@@ -292,13 +292,13 @@ Path::_absolute_impl() const
     DWORD          dwRv = 0UL;
     std::tstring_t buff;
 
-    dwRv = ::GetFullPathName(&filePath().at(0), 0, xPTR_NULL, xPTR_NULL);
+    dwRv = ::GetFullPathName(&filePath().at(0), 0, nullptr, nullptr);
     xTEST_DIFF(dwRv, 0UL);
 
     buff.resize(dwRv);
 
     dwRv = ::GetFullPathName(&filePath().at(0), static_cast<DWORD>( buff.size() ), &buff.at(0),
-        xPTR_NULL);
+        nullptr);
     xTEST_DIFF(dwRv, 0UL);
 
     buff.resize(dwRv);

@@ -27,17 +27,17 @@ Volume::_fileSystem_impl() const
         char   buff[buffLen] = {0};
 
         const mntent *mountPoint = ::getmntent_r(file, &mnt, buff, buffLen);
-        xCHECK_DO(mountPoint == xPTR_NULL, break);
+        xCHECK_DO(mountPoint == nullptr, break);
 
         bool_t bRv = StringCI::compare(path(), xA2T(mountPoint->mnt_dir));
         xCHECK_DO(!bRv, continue);
 
-        sRv = (mountPoint->mnt_type == xPTR_NULL) ? Const::strEmpty() : xA2T(mountPoint->mnt_type);
+        sRv = (mountPoint->mnt_type == nullptr) ? Const::strEmpty() : xA2T(mountPoint->mnt_type);
 
         break;
     }
 
-    int_t iRv = ::endmntent(file);  file = xPTR_NULL;
+    int_t iRv = ::endmntent(file);  file = nullptr;
     xTEST_EQ(iRv, 1);
 #else
     // ANDROID: ::setmntent, ::endmntent
@@ -47,17 +47,17 @@ Volume::_fileSystem_impl() const
 
         for ( ; ; ) {
             const mntent *mountPoint = ::getmntent(file);
-            xCHECK_DO(mountPoint == xPTR_NULL, break);
+            xCHECK_DO(mountPoint == nullptr, break);
 
             bool_t bRv = StringCI::compare(path(), mountPoint->mnt_dir);
             xCHECK_DO(!bRv, continue);
 
-            sRv = (mountPoint->mnt_type == xPTR_NULL) ? Const::strEmpty() : mountPoint->mnt_type;
+            sRv = (mountPoint->mnt_type == nullptr) ? Const::strEmpty() : mountPoint->mnt_type;
 
             break;
         }
 
-        int_t iRv = ::endmntent(file);  file = xPTR_NULL;
+        int_t iRv = ::endmntent(file);  file = nullptr;
         xTEST_EQ(iRv, 1);
     #endif
 #endif
@@ -70,7 +70,7 @@ Volume::_mount_impl(
     std::ctstring_t &a_destPath    ///< destination path
 ) const
 {
-    int_t iRv = ::mount(xT2A(path()).c_str(), xT2A(a_destPath).c_str(), xPTR_NULL, MS_REMOUNT, xPTR_NULL);
+    int_t iRv = ::mount(xT2A(path()).c_str(), xT2A(a_destPath).c_str(), nullptr, MS_REMOUNT, nullptr);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------

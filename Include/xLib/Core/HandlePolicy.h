@@ -22,7 +22,7 @@ enum HandlePolicyType
     hvNative = 0,       ///< like "null"
     hvNativeInvalid,    ///< like "invalid" (-1)
     hvDll,              ///< DLL
-    hvStdFile,          ///< like xPTR_NULL
+    hvStdFile,          ///< like nullptr
     hvMySqlConn,        ///< MySQL connection
     hvMySqlResult,      ///< MySQL result
     hvCurl,             ///< CURL
@@ -103,11 +103,11 @@ xHANDLE_POLICY_FACTORY(hvSocket);
 
 xHANDLE_POLICY_FACTORY_IMPL(hvNative,        xNATIVE_HANDLE_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvNativeInvalid, xNATIVE_HANDLE_INVALID);
-xHANDLE_POLICY_FACTORY_IMPL(hvDll,           xPTR_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvStdFile,       xPTR_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvMySqlConn,     xPTR_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvMySqlResult,   xPTR_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvCurl,          xPTR_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(hvDll,           nullptr);
+xHANDLE_POLICY_FACTORY_IMPL(hvStdFile,       nullptr);
+xHANDLE_POLICY_FACTORY_IMPL(hvMySqlConn,     nullptr);
+xHANDLE_POLICY_FACTORY_IMPL(hvMySqlResult,   nullptr);
+xHANDLE_POLICY_FACTORY_IMPL(hvCurl,          nullptr);
 xHANDLE_POLICY_FACTORY_IMPL(hvFindDir,       xFIND_DIR_HANDLE_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvSocket,        xSOCKET_HANDLE_INVALID);
 

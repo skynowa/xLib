@@ -28,7 +28,7 @@ Dll::_isProcExists_impl(
 {
     xTEST_EQ(_handle.isValid(), true);
 
-    const char *error = xPTR_NULL;
+    const char *error = nullptr;
 
     error = ::dlerror();
     xTEST_PTR_FAIL(error);
@@ -36,7 +36,7 @@ Dll::_isProcExists_impl(
     (void_t)::dlsym(_handle.get(), xT2A(a_procName).c_str());
 
     error = ::dlerror();
-    xCHECK_RET(error != xPTR_NULL, false);
+    xCHECK_RET(error != nullptr, false);
 
     return true;
 }
@@ -48,7 +48,7 @@ Dll::_procAddress_impl(
 {
     xTEST_EQ(_handle.isValid(), true);
 
-    const char *error = xPTR_NULL;
+    const char *error = nullptr;
 
     error = ::dlerror();
     xTEST_PTR_FAIL(error);

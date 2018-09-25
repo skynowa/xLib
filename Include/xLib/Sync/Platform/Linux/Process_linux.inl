@@ -30,7 +30,7 @@ Process::_idByName_impl(
     // enumerate all entries in directory until process found
     for ( ; ; ) {
         dirent *dirEntry = ::readdir(dir);
-        xCHECK_DO(dirEntry == xPTR_NULL, break);
+        xCHECK_DO(dirEntry == nullptr, break);
 
         // skip non-numeric entries
         int_t id = ::atoi(dirEntry->d_name);
@@ -56,7 +56,7 @@ Process::_idByName_impl(
         }
     }
 
-    int_t iRv = ::closedir(dir); dir = xPTR_NULL;
+    int_t iRv = ::closedir(dir); dir = nullptr;
     xTEST_DIFF(iRv, - 1);
 
     ulRv = pid;

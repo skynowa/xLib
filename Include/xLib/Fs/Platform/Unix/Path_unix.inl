@@ -51,7 +51,7 @@ Path::_dll_impl()
 bool_t
 Path::_isNameValid_impl(
     std::ctstring_t &a_fileName,                    ///< file, directory name
-    std::tstring_t  *a_fileNameValid /* = xPTR_NULL */   ///< [out] normalized name
+    std::tstring_t  *a_fileNameValid /* = nullptr */   ///< [out] normalized name
 )
 {
     std::tstring_t sRv(a_fileName);
@@ -67,7 +67,7 @@ Path::_isNameValid_impl(
 
         std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
-            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
+            xCHECK_RET(a_fileNameValid == nullptr, false);
 
             for ( ; ; ) {
                 sRv.erase(pos, 1);
@@ -86,7 +86,7 @@ Path::_isNameValid_impl(
    /**
     * check: excepted chars
     * /  (forward slash)
-    * \0 (xPTR_NULL character)
+    * \0 (nullptr character)
     */
     {
         std::tstring_t exceptedChars;
@@ -96,7 +96,7 @@ Path::_isNameValid_impl(
 
         std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
-            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
+            xCHECK_RET(a_fileNameValid == nullptr, false);
 
             for ( ; ; ) {
                 sRv.erase(pos, 1);
@@ -114,7 +114,7 @@ Path::_isNameValid_impl(
 #endif
 
     // out
-    if (a_fileNameValid != xPTR_NULL) {
+    if (a_fileNameValid != nullptr) {
         *a_fileNameValid = sRv;
     }
 

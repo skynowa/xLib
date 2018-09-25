@@ -50,7 +50,7 @@ public:
 
     template<typename T, typename F, typename N>
     static
-    void_t    freeT(T * &ptr, F func, N null = xPTR_NULL);
+    void_t    freeT(T * &ptr, F func, N null = nullptr);
         ///< free pointer
     template<typename T>
     static

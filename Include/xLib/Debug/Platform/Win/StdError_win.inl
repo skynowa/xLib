@@ -22,7 +22,7 @@ StdError::_format_impl(
 
 #if   xCOMPILER_MINGW
     cptr_ctchar_t error = xSTRERROR(a_code);
-    xCHECK_RET(error == xPTR_NULL, sRv.append(xT("[Cann't format error message]")));
+    xCHECK_RET(error == nullptr, sRv.append(xT("[Cann't format error message]")));
 
     sRv.append(error);
 #elif xCOMPILER_MS || xCOMPILER_CODEGEAR

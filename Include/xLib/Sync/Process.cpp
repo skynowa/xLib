@@ -41,7 +41,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 Process::Process() :
     _handle    (0),
 #if xENV_WIN
-    _thread    (xPTR_NULL),
+    _thread    (nullptr),
 #endif
     _pid       (0UL),
     _exitStatus(0U)

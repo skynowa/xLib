@@ -42,9 +42,9 @@ StdSeedPolicy::_next_impl()
 void_t
 NativeSeedPolicy::_construct_impl()
 {
-    _hProv = xPTR_NULL;
+    _hProv = nullptr;
 
-    BOOL blRv = ::CryptAcquireContext(&_hProv, xPTR_NULL, xPTR_NULL, PROV_RSA_FULL,
+    BOOL blRv = ::CryptAcquireContext(&_hProv, nullptr, nullptr, PROV_RSA_FULL,
         CRYPT_VERIFYCONTEXT | CRYPT_SILENT);
     xTEST_DIFF(blRv, FALSE);
 }
@@ -52,7 +52,7 @@ NativeSeedPolicy::_construct_impl()
 void_t
 NativeSeedPolicy::_destruct_impl()
 {
-    BOOL blRv = ::CryptReleaseContext(_hProv, 0UL);   _hProv = xPTR_NULL;
+    BOOL blRv = ::CryptReleaseContext(_hProv, 0UL);   _hProv = nullptr;
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
