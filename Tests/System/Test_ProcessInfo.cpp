@@ -22,9 +22,9 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        xFOR_EACH_CONST(std::vector<Process::id_t>, it, vidIds) {
+        for (auto &it : vidIds) {
             ProcessInfo info;
-            info.setProcessId(/* *it */ Process::currentId());
+            info.setProcessId(/* it */ Process::currentId());
 
             m_ulRv = info.cpuUsage();
             #if xTEST_IGNORE
@@ -39,9 +39,9 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        xFOR_EACH_CONST(std::vector<Process::id_t>, it, vidIds) {
+        for (auto &it : vidIds) {
             ProcessInfo info;
-            info.setProcessId(/* *it */ Process::currentId());
+            info.setProcessId(/* it */ Process::currentId());
 
             m_ulRv = info.ramUsage();
             #if xTEST_IGNORE
@@ -57,9 +57,9 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        xFOR_EACH_CONST(std::vector<Process::id_t>, it, vidIds) {
+        for (auto &it : vidIds) {
             ProcessInfo info;
-            info.setProcessId(/* *it */ Process::currentId());
+            info.setProcessId(/* it */ Process::currentId());
 
             m_ulRv = info.ioBytes();
             #if xTEST_IGNORE
@@ -75,9 +75,9 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        xFOR_EACH_CONST(std::vector<Process::id_t>, it, vidIds) {
+        for (auto &it : vidIds) {
             ProcessInfo info;
-            info.setProcessId(/* *it */ Process::currentId());
+            info.setProcessId(/* it */ Process::currentId());
 
             m_sRv = info.exeName();
             xTEST_EQ(true,  File::isExists(m_sRv));
@@ -91,9 +91,9 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        xFOR_EACH_CONST(std::vector<Process::id_t>, it, vidIds) {
+        for (auto &it : vidIds) {
             ProcessInfo info;
-            info.setProcessId(/* *it */ Process::currentId());
+            info.setProcessId(/* it */ Process::currentId());
 
             m_ulRv = info.parentId();
             // xTEST_DIFF(0UL, m_ulRv);
@@ -106,15 +106,15 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        xFOR_EACH_CONST(std::vector<Process::id_t>, it, vidIds) {
+        for (auto &it : vidIds) {
         #if   xENV_WIN
-            xCHECK_DO(0 == *it, continue);
-            xCHECK_DO(344 == *it, continue);
+            xCHECK_DO(0 == it, continue);
+            xCHECK_DO(344 == it, continue);
         #elif xENV_UNIX
 
         #endif
             ProcessInfo info;
-            info.setProcessId(/* *it */ Process::currentId());
+            info.setProcessId(/* it */ Process::currentId());
 
             info.commandLine(&m_vsRv);
             xTEST_EQ(false, m_vsRv.empty());

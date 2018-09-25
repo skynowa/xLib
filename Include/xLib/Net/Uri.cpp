@@ -325,8 +325,8 @@ Uri::encodeComponent(
 
     std::tstring_t sRv;
 
-    xFOR_EACH_CONST(std::tstring_t, it, a_uri) {
-        tchar_t c = *it;
+    for (auto &it : a_uri) {
+        tchar_t c = it;
 
         if (
             (c >= 'a' && c <= 'z') ||

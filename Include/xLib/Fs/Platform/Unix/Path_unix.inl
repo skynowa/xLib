@@ -270,15 +270,15 @@ Path::procValue(
 
     proc(a_procPath, &procFile);
 
-    xFOR_EACH_CONST(std::vec_tstring_t, it, procFile) {
-        std::csize_t pos = StringCI::find(*it, a_key);
+    for (auto &it : procFile) {
+        std::csize_t pos = StringCI::find(it, a_key);
         xCHECK_DO(pos == std::tstring_t::npos, continue);
 
         // parse value
-        std::csize_t delimPos = it->find(xT(":"));
+        std::csize_t delimPos = it.find(xT(":"));
         xTEST_DIFF(delimPos, std::string::npos);
 
-        sRv = it->substr(delimPos + 1);
+        sRv = it.substr(delimPos + 1);
         sRv = String::trimSpace(sRv);
 
         break;

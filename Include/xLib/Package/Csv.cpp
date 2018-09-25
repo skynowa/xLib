@@ -125,9 +125,9 @@ CsvWriter::saveFile(
 	}
 
 	// a_rows
-	xFOR_EACH_CONST(crows_t, it_row, a_rows)
+	for (auto &it_row : a_rows)
 	{
-		std::ctstring_t &row = String::join(*it_row, _data.delimiter);
+		std::ctstring_t &row = String::join(it_row, _data.delimiter);
 
 		File::textWrite(a_filePath, row + Const::nl(), File::omAppend);
 	}
@@ -150,9 +150,9 @@ CsvWriter::saveString(
 	}
 
 	// a_rows
-	xFOR_EACH_CONST(crows_t, it_row, a_rows)
+	for (auto &it_row : a_rows)
 	{
-		std::ctstring_t &row = String::join(*it_row, _data.delimiter);
+		std::ctstring_t &row = String::join(it_row, _data.delimiter);
 
 		*out_rawString += row + Const::nl();
 	}

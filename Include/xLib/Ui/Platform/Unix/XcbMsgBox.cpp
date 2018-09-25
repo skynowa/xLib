@@ -157,8 +157,8 @@ XcbMsgBox::_setText(
     const int16_t left = left_default;
     int16_t       top  = top_default;
 
-    xFOR_EACH_CONST(std::cvec_tstring_t, it, a_text) {
-        _setTextLine(left, top, *it);
+    for (auto &it : a_text) {
+        _setTextLine(left, top, it);
 
         top += lineIndent;
     }

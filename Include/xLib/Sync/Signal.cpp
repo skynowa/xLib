@@ -91,8 +91,8 @@ Signal::connect(
 		action.sa_flags = SA_RESTART | SA_SIGINFO;
 	}
 
-    xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
-        switch (*it) {
+    for (auto &it : a_signalNums) {
+        switch (it) {
         case SIGKILL:
 			Trace() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
 							xLEX_TO_STR(SIGKILL), SIGKILL);
@@ -106,8 +106,8 @@ Signal::connect(
             break;
         }
 
-		iRv = ::sigaction(*it, &action, nullptr);
-		xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(*it)));
+		iRv = ::sigaction(it, &action, nullptr);
+		xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(it)));
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -165,12 +165,12 @@ Signal::connectInfo(
 			iRv = ::sigemptyset(&blockMask);
 			xTEST_DIFF(iRv, - 1);
 
-			xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
-				if (*it == SIGKILL || *it == SIGSTOP) {
+			for (auto &it : a_signalNums) {
+				if (it == SIGKILL || it == SIGSTOP) {
 					continue;
 				}
 
-				iRv = ::sigaddset(&blockMask, *it);
+				iRv = ::sigaddset(&blockMask, it);
 				xTEST_DIFF(iRv, - 1);
 			}
 		}
@@ -180,8 +180,8 @@ Signal::connectInfo(
 		action.sa_flags     = SA_RESTART | SA_SIGINFO;
 	}
 
-    xFOR_EACH_CONST(std::vector<int_t>, it, a_signalNums) {
-        switch (*it) {
+    for (auto &it : a_signalNums) {
+        switch (it) {
         case SIGKILL:
 			Trace() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
 							xLEX_TO_STR(SIGKILL), SIGKILL);
@@ -195,8 +195,8 @@ Signal::connectInfo(
             break;
         }
 
-		iRv = ::sigaction(*it, &action, nullptr);
-		xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(*it)));
+		iRv = ::sigaction(it, &action, nullptr);
+		xTEST_DIFF_MSG(iRv, - 1, Format::str(xT("Signal: {}"), decription(it)));
     }
 }
 //-------------------------------------------------------------------------------------------------

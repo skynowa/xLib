@@ -120,8 +120,8 @@ Dir::pathCreate() const
      String::split( Path(dirPath()).toNative(false), Const::slash(), &pathParts );
 
     // create dirs by steps
-    xFOR_EACH_CONST(std::vec_tstring_t, it, pathParts) {
-        buildPath.append(*it).append(Const::slash());
+    for (auto &it : pathParts) {
+        buildPath.append(it).append(Const::slash());
 
         Dir(buildPath).create();
     }
