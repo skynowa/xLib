@@ -104,8 +104,8 @@ Cgi::uriEncode(
 {
     // TODO: [skynowa] Cgi::uriEncode()
 
-    xFOR_EACH_CONST(std::tstring_t, it, a_uri) {
-        tchar_t ch = *it;
+    for (auto &it : a_uri) {
+        tchar_t ch = it;
 
         if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9') ||
              ch == '-' || ch == '_'  || ch == '.' || ch == '~')
@@ -731,10 +731,10 @@ CgiCookies::operator [] (
     std::ctstring_t &a_cookieName
 )
 {
-    xFOR_EACH_CONST(TCookies, it, items) {
-        xCHECK_DO(!StringCI::compare(a_cookieName, (*it)->value()), continue);
+    for (auto &it : items) {
+        xCHECK_DO(!StringCI::compare(a_cookieName, it->value()), continue);
 
-        return (*it)->value();
+        return it->value();
     }
 
     return std::tstring_t();
@@ -747,7 +747,7 @@ CgiCookies::dump() const
 
     sRv.append(xT("[CgiCookies dump]\n\n"));
 
-    xFOR_EACH_CONST(TCookies, it, items) {
+    for (auto &it : items) {
         std::tstring_t itemN = Format::str(
                 xT("Name: {}\n")
                 xT("Value: {}\n")
@@ -756,13 +756,13 @@ CgiCookies::dump() const
                 xT("Expires: {}\n")
                 xT("Secure: {}\n")
                 xT("HttpOnly: {}\n\n"),
-                (*it)->name(),
-                (*it)->value(),
-                (*it)->domain(),
-                (*it)->path(),
-                (*it)->expires(),
-                (*it)->secure(),
-                (*it)->httpOnly());
+                it->name(),
+                it->value(),
+                it->domain(),
+                it->path(),
+                it->expires(),
+                it->secure(),
+                it->httpOnly());
 
         sRv.append( xT("[Item]:\n") );
         sRv.append(itemN);
@@ -788,8 +788,8 @@ CgiCookies::_construct()
 
     String::split(rawCookies, Const::semicolon(), &vsRawCookies);
 
-    xFOR_EACH_CONST(std::vec_tstring_t, it, vsRawCookies) {
-        CookiePv0 *pckItem = new(std::nothrow) CookiePv0(*it);
+    for (auto &it : vsRawCookies) {
+        CookiePv0 *pckItem = new(std::nothrow) CookiePv0(it);
         xTEST_PTR(pckItem);
 
         cookies.push_back(pckItem);

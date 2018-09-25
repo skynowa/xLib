@@ -29,8 +29,8 @@ Test_Finder::unit()
             dirs.push_back( rootDirPath + Const::slash() + xT("BBB") );
             dirs.push_back( rootDirPath + Const::slash() + xT("CCC") );
 
-            xFOR_EACH_CONST(std::vec_tstring_t, cit, dirs) {
-                Dir(*cit).pathCreate();
+            for (auto &it : dirs) {
+                Dir(it).pathCreate();
             }
 
             xTEST_EQ(size_t(3), dirs.size());
@@ -56,8 +56,8 @@ Test_Finder::unit()
                                Const::slash() + xT("BBB") +
                                Const::slash() + xT("File_4.log") );
 
-            xFOR_EACH_CONST(std::vec_tstring_t, cit, files) {
-                File::clear(*cit);
+            for (auto &it : files) {
+                File::clear(it);
             }
 
             xTEST_EQ(size_t(12), files.size());

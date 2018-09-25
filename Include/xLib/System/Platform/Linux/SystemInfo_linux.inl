@@ -63,12 +63,12 @@ SystemInfo::_distro_impl() const
         {Debian,     xT("/etc/debian_version"),     xT("Debian GNU/Linux")}
     };
 
-    xFOR_EACH_CONST(cos_release_t, it, osReleases) {
-        switch (it->type) {
+    for (auto &it : osReleases) {
+        switch (it.type) {
         case Os:
             {
                 std::map_tstring_t values;
-                File::textRead(it->filePath, xT("="), &values);
+                File::textRead(it.filePath, xT("="), &values);
 
                 if ( !values.empty() ) {
                     sRv = values["NAME"];
@@ -90,14 +90,14 @@ SystemInfo::_distro_impl() const
             }
             break;
         case Arch:
-            sRv = it->name;
+            sRv = it.name;
             break;
         case Debian:
             {
-                sRv = it->name;
+                sRv = it.name;
 
                 std::vec_tstring_t values;
-                File::textRead(it->filePath, &values);
+                File::textRead(it.filePath, &values);
 
                 if ( !values.empty() ) {
                     sRv += xT(" ") + values[0];
@@ -107,7 +107,7 @@ SystemInfo::_distro_impl() const
         default:
             {
                 std::vec_tstring_t values;
-                File::textRead(it->filePath, &values);
+                File::textRead(it.filePath, &values);
 
                 if ( !values.empty() ) {
                     sRv = values[0];

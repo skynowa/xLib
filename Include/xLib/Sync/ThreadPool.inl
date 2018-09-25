@@ -107,10 +107,10 @@ ThreadPool<T>::groupResume()
     {
         AutoMutex mutex(&_s_mutex);
 
-        xFOR_EACH_CONST(typename std::list<T *>, it, _tasks) {
-            xCHECK_DO(!(*it)->isRunning(), _s_log.write(xT("Not running")); continue);
+        for (auto &it : _tasks) {
+            xCHECK_DO(!it->isRunning(), _s_log.write(xT("Not running")); continue);
 
-            (*it)->resume();
+            it->resume();
         }
     }
 
@@ -134,10 +134,10 @@ ThreadPool<T>::groupPause()
     {
         AutoMutex mutex(&_s_mutex);
 
-        xFOR_EACH_CONST(typename std::list<T *>, it, _tasks) {
-            xCHECK_DO(!(*it)->isRunning(), _s_log.write(xT("Not running")); continue);
+        for (auto &it : _tasks) {
+            xCHECK_DO(!it->isRunning(), _s_log.write(xT("Not running")); continue);
 
-            (*it)->pause();
+            it->pause();
         }
     }
 }
@@ -163,11 +163,11 @@ ThreadPool<T>::groupExit(
     {
         AutoMutex mutex(&_s_mutex);
 
-        xFOR_EACH_CONST(typename std::list<T *>, it, _tasks)    {
-            xCHECK_DO(!(*it)->isRunning(), _s_log.write(xT("ThreadPool: not running"));
+        for (auto &it : _tasks)    {
+            xCHECK_DO(!it->isRunning(), _s_log.write(xT("ThreadPool: not running"));
                 continue);
 
-            (*it)->exit(/* a_timeoutMsec */);
+            it->exit(/* a_timeoutMsec */);
         }
     }
 }
@@ -187,10 +187,10 @@ ThreadPool<T>::groupKill(
     {
         AutoMutex mutex(&_s_mutex);
 
-        xFOR_EACH_CONST(typename std::list<T *>, it, _tasks)    {
-            xCHECK_DO(!(*it)->isRunning(), _s_log.write(xT("Not running")); continue);
+        for (auto &it : _tasks)    {
+            xCHECK_DO(!it->isRunning(), _s_log.write(xT("Not running")); continue);
 
-            (*it)->kill(a_timeoutMsec);
+            it->kill(a_timeoutMsec);
         }
     }
 
@@ -212,10 +212,10 @@ ThreadPool<T>::groupWait(
     {
         AutoMutex mutex(&_s_mutex);
 
-        xFOR_EACH_CONST(typename std::list<T *>, it, _tasks)    {
-            xCHECK_DO(!(*it)->isRunning(), _s_log.write(xT("Not running")); continue);
+        for (auto &it : _tasks)    {
+            xCHECK_DO(!it->isRunning(), _s_log.write(xT("Not running")); continue);
 
-            (*it)->wait(a_timeoutMsec);
+            it->wait(a_timeoutMsec);
         }
     }
 

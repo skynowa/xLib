@@ -77,10 +77,10 @@ Process::_ids_impl(
     Finder::dirs(xT("/proc"), Const::maskAll(), false, &dirPaths);
 
     // skip non-numeric entries
-    xFOR_EACH_CONST(std::vec_tstring_t, it, dirPaths) {
+    for (auto &it : dirPaths) {
         int_t pid = 0;
         {
-            std::tstring_t dirName = Path(*it).fileName();
+            std::tstring_t dirName = Path(it).fileName();
 
             pid = String::cast<int_t>( dirName.c_str() );
             xCHECK_DO(0 >= pid, continue);

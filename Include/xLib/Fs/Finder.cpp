@@ -210,8 +210,8 @@ Finder::files(
         // files in root dir and each subdir
         files(a_rootDirPath, a_shellFilter, false, a_filePaths);
 
-        xFOR_EACH_CONST(std::vec_tstring_t, it, dirPaths) {
-            files(*it, a_shellFilter, false, a_filePaths);
+        for (auto &it : dirPaths) {
+            files(it, a_shellFilter, false, a_filePaths);
         }
     }
 }

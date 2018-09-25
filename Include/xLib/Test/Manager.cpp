@@ -84,10 +84,10 @@ Manager::run()
                 Path::exe(), _data.allLoops, _data.unitLoops, _data.caseLoops, _units.size()));
 
     for (std::size_t i = 0; i < _data.allLoops; ++ i) {
-        xFOR_EACH_CONST(units_t, it, _units) {
-            xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: run unit ") << (*it)->data.name);
+        for (auto &it : _units) {
+            xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: run unit ") << it->data.name);
 
-            bool_t bRv = (*it)->run();
+            bool_t bRv = it->run();
             if (!bRv) {
                 isUnitsPassed = false;
             } else {
