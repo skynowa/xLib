@@ -41,7 +41,7 @@ struct MySqlConnectionData
     std::map<mysql_option, cptr_cvoid_t> options;
         ///< extra options
 };
-xTYPEDEF_CONST(MySqlConnectionData);
+xUSING_CONST(MySqlConnectionData);
 
 class MySqlConnection :
 	public xl::interface::ILastError<uint_t>

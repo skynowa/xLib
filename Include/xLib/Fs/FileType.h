@@ -44,15 +44,15 @@ public:
         faSocket            = S_IFSOCK
     #endif
     };
-    xTYPEDEF_CONST(Type);
+    xUSING_CONST(Type);
 
 #if   xENV_WIN
-    typedef DWORD  types_t;
+    using types_t = DWORD;
 #elif xENV_UNIX
-    typedef mode_t types_t;
+    using types_t = mode_t;
 #endif
 
-    xTYPEDEF_CONST(types_t);
+    xUSING_CONST(types_t);
         ///< all types
 
     explicit          FileType(std::ctstring_t &filePath);

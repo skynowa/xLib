@@ -26,7 +26,7 @@ public:
         tpAbortRetryIgnore,
         tpCancelTryContinue
     };
-    xTYPEDEF_CONST(Type);
+    xUSING_CONST(Type);
 
     enum ModalResult
         /// modal result
@@ -42,7 +42,7 @@ public:
         mrRetry,
         mrTryAgain
     };
-    xTYPEDEF_CONST(ModalResult);
+    xUSING_CONST(ModalResult);
 
                   MsgBox() {}
         ///< constructor

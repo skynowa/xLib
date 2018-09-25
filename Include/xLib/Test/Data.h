@@ -19,23 +19,23 @@ struct Data1
     T1 test;
 };
 
-typedef Data1<bool_t>          data1_bool_t;
-typedef Data1<tchar_t>         data1_tchar_t;
-typedef Data1<uchar_t>         data1_uchar_t;
-typedef Data1<short_t>         data1_short_t;
-typedef Data1<ushort_t>        data1_ushort_t;
-typedef Data1<int_t>           data1_int_t;
-typedef Data1<uint_t>          data1_uint_t;
-typedef Data1<ssize_t>         data1_ssize_t;
-typedef Data1<size_t>          data1_size_t;
-typedef Data1<long_t>          data1_long_t;
-typedef Data1<ulong_t>         data1_ulong_t;
-typedef Data1<longlong_t>      data1_longlong_t;
-typedef Data1<ulonglong_t>     data1_ulonglong_t;
-typedef Data1<float_t>         data1_float_t;
-typedef Data1<double>          data1_double_t;
-typedef Data1<std::tstring_t>  data1_tstring_t;
-typedef Data1<std::ustring_t>  data1_ustring_t;
+using data1_bool_t      =  Data1<bool_t>;
+using data1_tchar_t     =  Data1<tchar_t>;
+using data1_uchar_t     =  Data1<uchar_t>;
+using data1_short_t     =  Data1<short_t>;
+using data1_ushort_t    =  Data1<ushort_t>;
+using data1_int_t       =  Data1<int_t>;
+using data1_uint_t      =  Data1<uint_t>;
+using data1_ssize_t     =  Data1<ssize_t>;
+using data1_size_t      =  Data1<size_t>;
+using data1_long_t      =  Data1<long_t>;
+using data1_ulong_t     =  Data1<ulong_t>;
+using data1_longlong_t  =  Data1<longlong_t>;
+using data1_ulonglong_t =  Data1<ulonglong_t>;
+using data1_float_t     =  Data1<float_t>;
+using data1_double_t    =  Data1<double>;
+using data1_tstring_t   =  Data1<std::tstring_t>;
+using data1_ustring_t   =  Data1<std::ustring_t>;
 ///@}
 //-------------------------------------------------------------------------------------------------
 ///@name  data (use 2 values)
@@ -48,23 +48,23 @@ struct Data2
     T2 expect;
 };
 
-typedef Data2<std::tstring_t, bool_t>          data2_bool_t;
-typedef Data2<std::tstring_t, tchar_t>         data2_tchar_t;
-typedef Data2<std::tstring_t, uchar_t>         data2_uchar_t;
-typedef Data2<std::tstring_t, short_t>         data2_short_t;
-typedef Data2<std::tstring_t, ushort_t>        data2_ushort_t;
-typedef Data2<std::tstring_t, int_t>           data2_int_t;
-typedef Data2<std::tstring_t, uint_t>          data2_uint_t;
-typedef Data2<std::tstring_t, ssize_t>         data2_ssize_t;
-typedef Data2<std::tstring_t, size_t>          data2_size_t;
-typedef Data2<std::tstring_t, long_t>          data2_long_t;
-typedef Data2<std::tstring_t, ulong_t>         data2_ulong_t;
-typedef Data2<std::tstring_t, longlong_t>      data2_longlong_t;
-typedef Data2<std::tstring_t, ulonglong_t>     data2_ulonglong_t;
-typedef Data2<std::tstring_t, float_t>         data2_float_t;
-typedef Data2<std::tstring_t, double>          data2_double_t;
-typedef Data2<std::tstring_t, std::tstring_t>  data2_tstring_t;
-typedef Data2<std::tstring_t, std::ustring_t>  data2_ustring_t;
+using data2_bool_t      = Data2<std::tstring_t, bool_t>;
+using data2_tchar_t     = Data2<std::tstring_t, tchar_t>;
+using data2_uchar_t     = Data2<std::tstring_t, uchar_t>;
+using data2_short_t     = Data2<std::tstring_t, short_t>;
+using data2_ushort_t    = Data2<std::tstring_t, ushort_t>;
+using data2_int_t       = Data2<std::tstring_t, int_t>;
+using data2_uint_t      = Data2<std::tstring_t, uint_t>;
+using data2_ssize_t     = Data2<std::tstring_t, ssize_t>;
+using data2_size_t      = Data2<std::tstring_t, size_t>;
+using data2_long_t      = Data2<std::tstring_t, long_t>;
+using data2_ulong_t     = Data2<std::tstring_t, ulong_t>;
+using data2_longlong_t  = Data2<std::tstring_t, longlong_t>;
+using data2_ulonglong_t = Data2<std::tstring_t, ulonglong_t>;
+using data2_float_t     = Data2<std::tstring_t, float_t>;
+using data2_double_t    = Data2<std::tstring_t, double>;
+using data2_tstring_t   = Data2<std::tstring_t, std::tstring_t>;
+using data2_ustring_t   = Data2<std::tstring_t, std::ustring_t>;
 ///@}
 //-------------------------------------------------------------------------------------------------
 ///@name  data (use 3 values)
@@ -78,23 +78,23 @@ struct Data3
     T3 expect;
 };
 
-typedef Data3<std::tstring_t, std::tstring_t, bool_t>          data3_bool_t;
-typedef Data3<std::tstring_t, std::tstring_t, tchar_t>         data3_tchar_t;
-typedef Data3<std::tstring_t, std::tstring_t, uchar_t>         data3_uchar_t;
-typedef Data3<std::tstring_t, std::tstring_t, short_t>         data3_short_t;
-typedef Data3<std::tstring_t, std::tstring_t, ushort_t>        data3_ushort_t;
-typedef Data3<std::tstring_t, std::tstring_t, int_t>           data3_int_t;
-typedef Data3<std::tstring_t, std::tstring_t, uint_t>          data3_uint_t;
-typedef Data3<std::tstring_t, std::tstring_t, ssize_t>         data3_ssize_t;
-typedef Data3<std::tstring_t, std::tstring_t, size_t>          data3_size_t;
-typedef Data3<std::tstring_t, std::tstring_t, long_t>          data3_long_t;
-typedef Data3<std::tstring_t, std::tstring_t, ulong_t>         data3_ulong_t;
-typedef Data3<std::tstring_t, std::tstring_t, longlong_t>      data3_longlong_t;
-typedef Data3<std::tstring_t, std::tstring_t, ulonglong_t>     data3_ulonglong_t;
-typedef Data3<std::tstring_t, std::tstring_t, float_t>         data3_float_t;
-typedef Data3<std::tstring_t, std::tstring_t, double>          data3_double_t;
-typedef Data3<std::tstring_t, std::tstring_t, std::tstring_t>  data3_tstring_t;
-typedef Data3<std::tstring_t, std::tstring_t, std::ustring_t>  data3_ustring_t;
+using data3_bool_t      = Data3<std::tstring_t, std::tstring_t, bool_t>;
+using data3_tchar_t     = Data3<std::tstring_t, std::tstring_t, tchar_t>;
+using data3_uchar_t     = Data3<std::tstring_t, std::tstring_t, uchar_t>;
+using data3_short_t     = Data3<std::tstring_t, std::tstring_t, short_t>;
+using data3_ushort_t    = Data3<std::tstring_t, std::tstring_t, ushort_t>;
+using data3_int_t       = Data3<std::tstring_t, std::tstring_t, int_t>;
+using data3_uint_t      = Data3<std::tstring_t, std::tstring_t, uint_t>;
+using data3_ssize_t     = Data3<std::tstring_t, std::tstring_t, ssize_t>;
+using data3_size_t      = Data3<std::tstring_t, std::tstring_t, size_t>;
+using data3_long_t      = Data3<std::tstring_t, std::tstring_t, long_t>;
+using data3_ulong_t     = Data3<std::tstring_t, std::tstring_t, ulong_t>;
+using data3_longlong_t  = Data3<std::tstring_t, std::tstring_t, longlong_t>;
+using data3_ulonglong_t = Data3<std::tstring_t, std::tstring_t, ulonglong_t>;
+using data3_float_t     = Data3<std::tstring_t, std::tstring_t, float_t>;
+using data3_double_t    = Data3<std::tstring_t, std::tstring_t, double>;
+using data3_tstring_t   = Data3<std::tstring_t, std::tstring_t, std::tstring_t>;
+using data3_ustring_t   = Data3<std::tstring_t, std::tstring_t, std::ustring_t>;
 ///@}
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, test)

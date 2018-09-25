@@ -16,9 +16,9 @@ class Event
 {
 public:
 #if   xENV_WIN
-    typedef Handle       handle_t;   ///< handle
+    using handle_t = Handle;           ///< handle
 #elif xENV_UNIX
-    typedef pthread_cond_t handle_t;   ///< handle
+    using handle_t = pthread_cond_t;   ///< handle
 #endif
 
     enum ObjectState

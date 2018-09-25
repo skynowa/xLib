@@ -44,7 +44,7 @@ public:
         Revoke_bsd,
         Write_bsd
 	};
-	xTYPEDEF_CONST(Event);
+	xUSING_CONST(Event);
 
                    // TODO: [skynowa] int events=wxFSW_EVENT_ALL
                    // TODO: [skynowa] followSymLinks

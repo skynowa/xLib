@@ -32,7 +32,7 @@ struct CmdOptionsUsage
 	std::tstring_t args;
 	std::tstring_t help;
 };
-xTYPEDEF_CONST(CmdOptionsUsage);
+xUSING_CONST(CmdOptionsUsage);
 
 class CmdOptions
     ///< Command-line options parser

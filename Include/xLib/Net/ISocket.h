@@ -103,7 +103,7 @@ public:
         // TODO: [skynowa] ISocket - add AP-*
     #endif
     };
-    xTYPEDEF_CONST(AddressFamily);
+    xUSING_CONST(AddressFamily);
 
     enum Type
        /// type
@@ -114,7 +114,7 @@ public:
         tpRdm         = SOCK_RDM,
         tpSeqPacket   = SOCK_SEQPACKET
     };
-    xTYPEDEF_CONST(Type);
+    xUSING_CONST(Type);
 
     enum Protocol
         /// protocol
@@ -221,7 +221,7 @@ public:
         // TODO: [skynowa] ISocket - add IPPROTO-*
     #endif
     };
-    xTYPEDEF_CONST(Protocol);
+    xUSING_CONST(Protocol);
 
     enum Options
         /// options
@@ -229,7 +229,7 @@ public:
         SOCKET_TIMEOUT   = 0,       ///< (1000000 / 10)
         SOCKET_BUFF_SIZE = 32768    ///< 32 KB
     };
-    xTYPEDEF_CONST(Options);
+    xUSING_CONST(Options);
 
                    ISocket();
         ///< constructor

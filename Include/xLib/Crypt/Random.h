@@ -111,8 +111,8 @@ private:
     xNO_COPY_ASSIGN(Random)
 };
 
-typedef Random<int_t,  StdSeedPolicy>    StdRandom;
-typedef Random<long_t, NativeSeedPolicy> NativeRandom;
+using StdRandom    = Random<int_t,  StdSeedPolicy>;
+using NativeRandom = Random<long_t, NativeSeedPolicy>;
 
 xNAMESPACE_END2(xl, crypt)
 //-------------------------------------------------------------------------------------------------

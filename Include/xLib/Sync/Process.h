@@ -16,11 +16,11 @@ class Process
 {
 public:
 #if   xENV_WIN
-    typedef HANDLE  handle_t; ///< handle
-    typedef DWORD   id_t;     ///< ID
+    using handle_t = HANDLE; ///< handle
+    using id_t     = DWORD;  ///< ID
 #elif xENV_UNIX
-    typedef pid_t   handle_t; ///< handle
-    typedef pid_t   id_t;     ///< ID
+    using handle_t = pid_t; ///< handle
+    using id_t     = pid_t; ///< ID
 #endif
 
     enum WaitResult

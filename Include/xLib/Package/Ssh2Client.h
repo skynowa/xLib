@@ -21,7 +21,7 @@ struct Ssh2ClientData
         sfText    = 2,
         sfHtml    = 3
     };
-    xTYPEDEF_CONST(StdFormat);
+    xUSING_CONST(StdFormat);
 
     std::tstring_t hostName;
     ushort_t       port;
@@ -29,7 +29,7 @@ struct Ssh2ClientData
     std::tstring_t password;
     StdFormat      stdFormat;
 };
-xTYPEDEF_CONST(Ssh2ClientData);
+xUSING_CONST(Ssh2ClientData);
 
 class Ssh2Client
 {
@@ -40,7 +40,7 @@ public:
         uaPassword            = 1,
         uaKeyboardInteractive = 2,
     };
-    xTYPEDEF_CONST(UserAuth);
+    xUSING_CONST(UserAuth);
 
     explicit       Ssh2Client(cSsh2ClientData &data);
     virtual       ~Ssh2Client();

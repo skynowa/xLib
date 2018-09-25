@@ -38,9 +38,9 @@ private:
     xNO_COPY_ASSIGN(AutoLog)
 };
 
-typedef AutoLog<Trace>     AutoTrace;
-typedef AutoLog<FileLog>   AutoFileLog;
-typedef AutoLog<SystemLog> AutoSystemLog;
+using AutoTrace     = AutoLog<Trace>;
+using AutoFileLog   = AutoLog<FileLog>;
+using AutoSystemLog = AutoLog<SystemLog>;
 
 xNAMESPACE_END2(xl, log)
 //-------------------------------------------------------------------------------------------------

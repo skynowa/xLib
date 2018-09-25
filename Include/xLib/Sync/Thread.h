@@ -41,11 +41,11 @@ public:
     };
 
 #if   xENV_WIN
-    typedef HANDLE    handle_t; ///< handle
-    typedef DWORD     id_t;     ///< ID
+    using handle_t = HANDLE;	///< handle
+    using id_t     = DWORD;     ///< ID
 #elif xENV_UNIX
-    typedef pthread_t handle_t; ///< handle
-    typedef pthread_t id_t;     ///< ID
+    using handle_t = pthread_t; ///< handle
+    using id_t     = pthread_t;	///< ID
 #endif
 
     explicit        Thread(cbool_t &isAutoDelete);
@@ -172,9 +172,9 @@ protected:
 
 private:
 #if   xENV_WIN
-    typedef uint_t   exit_status_t;
+    using exit_status_t = uint_t;
 #elif xENV_UNIX
-    typedef void_t * exit_status_t;
+    using exit_status_t = void_t *;
 #endif
 
     // constants
@@ -189,7 +189,7 @@ private:
     volatile ulong_t _tag;           ///< data tag
 
 #if   xENV_WIN
-    Handle        _handle;        ///< native handle
+    Handle          _handle;        ///< native handle
 #elif xENV_UNIX
     handle_t        _handle;        ///< native handle
 #endif

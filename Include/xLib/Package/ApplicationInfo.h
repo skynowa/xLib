@@ -34,7 +34,7 @@ struct ApplicationInfoData
 
     std::tstring_t versionFull() const;
 };
-xTYPEDEF_CONST(ApplicationInfoData);
+xUSING_CONST(ApplicationInfoData);
 
 class ApplicationInfo
     ///< Application information

@@ -80,7 +80,7 @@ public:
 #endif
 
 private:
-    typedef HandlePolicy<T, valueT> handle_policy_t;
+    using handle_policy_t = HandlePolicy<T, valueT>;
 
     T           _handle;    ///< handle
 

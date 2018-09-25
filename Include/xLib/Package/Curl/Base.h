@@ -73,7 +73,7 @@ struct BaseData
 
 	DebugData      debugData;
 };
-xTYPEDEF_CONST(BaseData);
+xUSING_CONST(BaseData);
 //-------------------------------------------------------------------------------------------------
 struct BaseDataOut
     /// base data (out)
@@ -86,7 +86,7 @@ struct BaseDataOut
 	std::mmap_tstring_t headers;
 	std::tstring_t      body;
 };
-xTYPEDEF_CONST(BaseDataOut);
+xUSING_CONST(BaseDataOut);
 //-------------------------------------------------------------------------------------------------
 class CurlBase :
 	public Client

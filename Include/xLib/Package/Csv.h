@@ -32,17 +32,17 @@ struct CsvData
 	{
 	}
 };
-xTYPEDEF_CONST(CsvData);
+xUSING_CONST(CsvData);
 
 class ICsv
     ///< CSV interface
 {
 public:
-    typedef std::vec_tstring_t row_t;
-    xTYPEDEF_CONST(row_t);
+    using row_t = std::vec_tstring_t;
+    xUSING_CONST(row_t);
 
-    typedef std::vector<row_t> rows_t;
-    xTYPEDEF_CONST(rows_t);
+    using rows_t = std::vector<row_t>;
+    xUSING_CONST(rows_t);
 };
 //-------------------------------------------------------------------------------------------------
 class CsvReader :

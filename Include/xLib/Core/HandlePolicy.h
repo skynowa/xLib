@@ -111,15 +111,15 @@ xHANDLE_POLICY_FACTORY_IMPL(hvCurl,          nullptr);
 xHANDLE_POLICY_FACTORY_IMPL(hvFindDir,       xFIND_DIR_HANDLE_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(hvSocket,        xSOCKET_HANDLE_INVALID);
 
-typedef Handle<native_handle_t,   hvNative>        HandleNative;
-typedef Handle<native_handle_t,   hvNativeInvalid> HandleNativeInvalid;
-typedef Handle<dll_handle_t,      hvDll>           HandleDll;
-typedef Handle<FILE *,            hvStdFile>       HandleStdFile;
-typedef Handle<MYSQL *,           hvMySqlConn>     HandleMySqlConn;
-typedef Handle<MYSQL_RES *,       hvMySqlResult>   HandleMySqlResult;
-typedef Handle<CURL *,            hvCurl>          HandleCurl;
-typedef Handle<find_dir_handle_t, hvFindDir>       HandleFindDir;
-typedef Handle<socket_t,          hvSocket>        HandleSocket;
+using HandleNative        = Handle<native_handle_t,   hvNative>;
+using HandleNativeInvalid = Handle<native_handle_t,   hvNativeInvalid>;
+using HandleDll           = Handle<dll_handle_t,      hvDll>;
+using HandleStdFile       = Handle<FILE *,            hvStdFile>;
+using HandleMySqlConn     = Handle<MYSQL *,           hvMySqlConn>;
+using HandleMySqlResult   = Handle<MYSQL_RES *,       hvMySqlResult>;
+using HandleCurl          = Handle<CURL *,            hvCurl>;
+using HandleFindDir       = Handle<find_dir_handle_t, hvFindDir>;
+using HandleSocket        = Handle<socket_t,          hvSocket>;
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

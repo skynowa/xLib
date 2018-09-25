@@ -27,7 +27,7 @@ public:
         rtStdoutLog,///< to std::cout and log
         rtException ///< to exception
     };
-    xTYPEDEF_CONST(Type);
+    xUSING_CONST(Type);
 
                    ErrorReport(culong_t &nativeError, const SourceInfo &sourceInfo,
                        std::ctstring_t &stackTrace, std::ctstring_t &comment);

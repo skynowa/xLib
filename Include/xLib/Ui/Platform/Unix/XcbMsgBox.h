@@ -29,7 +29,7 @@ public:
         tpUnknown,
         tpOk
     };
-    xTYPEDEF_CONST(ExType);
+    xUSING_CONST(ExType);
 
     enum ExModalResult
         /// modal result
@@ -37,7 +37,7 @@ public:
         mrUnknown,
         mrOk
     };
-    xTYPEDEF_CONST(ExModalResult);
+    xUSING_CONST(ExModalResult);
 
                    XcbMsgBox();
     virtual       ~XcbMsgBox();

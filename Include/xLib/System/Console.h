@@ -29,7 +29,7 @@ public:
         fgWhite,
         fgGray
     };
-    xTYPEDEF_CONST(Foreground);
+    xUSING_CONST(Foreground);
 
     enum Background
         /// background color
@@ -45,7 +45,7 @@ public:
         bgWhite,
         bgGray
     };
-    xTYPEDEF_CONST(Background);
+    xUSING_CONST(Background);
 
     enum TextAttribute
         /// text attribute
@@ -58,7 +58,7 @@ public:
         atReverse,
         atConcealed
     };
-    xTYPEDEF_CONST(TextAttribute);
+    xUSING_CONST(TextAttribute);
 
     enum ModalResult
         /// modal result
@@ -67,7 +67,7 @@ public:
         mrIgnore = 5,
         mrRetry  = 4
     };
-    xTYPEDEF_CONST(ModalResult);
+    xUSING_CONST(ModalResult);
 
                    Console();
         ///< constructor

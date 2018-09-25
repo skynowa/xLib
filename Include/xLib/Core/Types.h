@@ -10,157 +10,157 @@
 
 xNAMESPACE_BEGIN(xl)
 
-    typedef void void_t;
-    xTYPEDEF_CONST(void_t);
+    using void_t = void;
+    xUSING_CONST(void_t);
 
-    typedef bool bool_t;
-    xTYPEDEF_CONST(bool_t);
+    using bool_t = bool;
+    xUSING_CONST(bool_t);
 
-    xTYPEDEF_CONST(char);
-    xTYPEDEF_CONST(wchar_t);
+    xUSING_CONST(char);
+    xUSING_CONST(wchar_t);
 
     // tchar_t
 #if xUNICODE
-    typedef wchar_t tchar_t;
+    using tchar_t = wchar_t;
 #else
-    typedef char    tchar_t;
+    using tchar_t = char;
 #endif
-    xTYPEDEF_CONST(tchar_t);
+    xUSING_CONST(tchar_t);
         ///< tchar_t
 
-    typedef unsigned char uchar_t;
-    xTYPEDEF_CONST(uchar_t);
+    using uchar_t = unsigned char;
+    xUSING_CONST(uchar_t);
 
-    typedef int int_t;
-    xTYPEDEF_CONST(int_t);
+    using int_t = int;
+    xUSING_CONST(int_t);
 
-    typedef signed short int short_t;
-    xTYPEDEF_CONST(short_t);
+    using short_t = signed short int;
+    xUSING_CONST(short_t);
 
-    typedef signed long int long_t;
-    xTYPEDEF_CONST(long_t);
+    using long_t = signed long int;
+    xUSING_CONST(long_t);
 
     // longlong_t
 #if xCOMPILER_GNUC
     __extension__
 #endif
-    typedef signed long long int longlong_t;
-    xTYPEDEF_CONST(longlong_t);
+    using longlong_t = signed long long int;
+    xUSING_CONST(longlong_t);
 
-    typedef unsigned int uint_t;
-    xTYPEDEF_CONST(uint_t);
+    using uint_t = unsigned int;
+    xUSING_CONST(uint_t);
 
-    typedef unsigned short int ushort_t;
-    xTYPEDEF_CONST(ushort_t);
+    using ushort_t = unsigned short int;
+    xUSING_CONST(ushort_t);
 
-    typedef unsigned long int ulong_t;
-    xTYPEDEF_CONST(ulong_t);
+    using ulong_t = unsigned long int;
+    xUSING_CONST(ulong_t);
 
     // ulonglong_t
 #if xCOMPILER_GNUC
     __extension__
 #endif
-    typedef unsigned long long int ulonglong_t;
-    xTYPEDEF_CONST(ulonglong_t);
+    using ulonglong_t = unsigned long long int;
+    xUSING_CONST(ulonglong_t);
 
-    typedef float float_t;
-    xTYPEDEF_CONST(float_t);
+    using float_t = float;
+    xUSING_CONST(float_t);
 
-    typedef double double_t;
-    xTYPEDEF_CONST(double_t);
+    using double_t = double;
+    xUSING_CONST(double_t);
 
-    typedef long double longdouble_t;
-    xTYPEDEF_CONST(longdouble_t);
+    using longdouble_t = long double;
+    xUSING_CONST(longdouble_t);
 
     // addrinfo_t
 #if   xENV_WIN
     #if   xCOMPILER_MINGW
-        typedef addrinfo  addrinfo_t;
+        using addrinfo_t = addrinfo;
     #elif xCOMPILER_CODEGEAR
-        typedef addrinfo  addrinfo_t;
+        using addrinfo_t = addrinfo;
     #else
-        typedef ADDRINFOT addrinfo_t;
+        using addrinfo_t = ADDRINFOT;
     #endif
 #elif xENV_UNIX
-    typedef addrinfo      addrinfo_t;
+    using addrinfo_t = addrinfo;
 #endif
-    xTYPEDEF_CONST(addrinfo_t);
+    xUSING_CONST(addrinfo_t);
         ///< hold host address information
 
     // native_handle_t
 #if   xENV_WIN
-    typedef HANDLE native_handle_t;
+    using native_handle_t = HANDLE;
 #elif xENV_UNIX
-    typedef int    native_handle_t;
+    using native_handle_t = int;
 #endif
-    xTYPEDEF_CONST(native_handle_t);
+    xUSING_CONST(native_handle_t);
         ///< native handle
 
     // dll_handle_t
 #if   xENV_WIN
-    typedef HMODULE dll_handle_t;
+    using dll_handle_t = HMODULE;
 #elif xENV_UNIX
-    typedef void_t *dll_handle_t;
+    using dll_handle_t = void_t *;
 #endif
-    xTYPEDEF_CONST(dll_handle_t);
+    xUSING_CONST(dll_handle_t);
         ///< DLL handle
 
     // socket_t
 #if   xENV_WIN
-    typedef SOCKET socket_t;
+    using socket_t = SOCKET;
 #elif xENV_UNIX
-    typedef int    socket_t;
+    using socket_t = int;
 #endif
-    xTYPEDEF_CONST(socket_t);
+    xUSING_CONST(socket_t);
         ///< socket native handle
 
     // socklen_t
 #if   xENV_WIN
-    typedef int_t     socket_length_t;
+    using socket_length_t = int_t;
 #elif xENV_UNIX
-    typedef socklen_t socket_length_t;
+    using socket_length_t = socklen_t;
 #endif
-    xTYPEDEF_CONST(socket_length_t);
+    xUSING_CONST(socket_length_t);
         ///< socket address length
 
     // find_dir_handle_t
 #if   xENV_WIN
-    typedef HANDLE find_dir_handle_t;
+    using find_dir_handle_t = HANDLE;
 #elif xENV_UNIX
-    typedef DIR *  find_dir_handle_t;
+    using find_dir_handle_t = DIR *;
 #endif
-    xTYPEDEF_CONST(find_dir_handle_t);
+    xUSING_CONST(find_dir_handle_t);
         ///< find directory handle
 
     // find_dir_data_t
 #if   xENV_WIN
-    typedef WIN32_FIND_DATA find_dir_data_t;
+    using find_dir_data_t = WIN32_FIND_DATA;
 #elif xENV_UNIX
-    typedef dirent          find_dir_data_t;
+    using find_dir_data_t = dirent;
 #endif
-    xTYPEDEF_CONST(find_dir_data_t);
+    xUSING_CONST(find_dir_data_t);
         ///< find directory data
 
     // twint_t
 #if xUNICODE
-    typedef wint_t twint_t;
+    using twint_t = wint_t;
 #else
-    typedef int    twint_t;
+    using twint_t = int;
 #endif
-    xTYPEDEF_CONST(twint_t);
+    xUSING_CONST(twint_t);
         ///< twint_t
 
 	// Pointers
-	xTYPEDEF_PTR_CONST(void_t);
-	xTYPEDEF_PTR_CONST(char);
-	xTYPEDEF_PTR_CONST(wchar_t);
-	xTYPEDEF_PTR_CONST(tchar_t);
-	xTYPEDEF_PTR_CONST(uchar_t);
+	xUSING_PTR_CONST(void_t);
+	xUSING_PTR_CONST(char);
+	xUSING_PTR_CONST(wchar_t);
+	xUSING_PTR_CONST(tchar_t);
+	xUSING_PTR_CONST(uchar_t);
 
 	// sighandler_t
 #if xENV_BSD
 	#if !defined(sighandler_t)
-		typedef void (*sighandler_t)(int);
+		using sighandler_t = void (*)(int);
 	#endif
 #endif
 
@@ -169,87 +169,87 @@ xNAMESPACE_END(xl)
 xNAMESPACE_BEGIN(std)
     // std::size_t
 #if xOS_WIN
-    typedef SSIZE_T ::ssize_t;
-    xTYPEDEF_CONST(ssize_t);
+    using ::ssize_t = SSIZE_T;
+    xUSING_CONST(ssize_t);
 #endif
 
-    xTYPEDEF_CONST(size_t);
-    xTYPEDEF_CONST(ssize_t);
+    xUSING_CONST(size_t);
+    xUSING_CONST(ssize_t);
 
     // std::string
-    typedef const string cstring_t;
-    typedef const wstring cwstring_t;
+    using cstring_t  = const string;
+    using cwstring_t = const wstring;
 
-    typedef basic_string<xl::tchar_t> tstring_t;
-    xTYPEDEF_CONST(tstring_t);
+    using tstring_t = basic_string<xl::tchar_t>;
+    xUSING_CONST(tstring_t);
 
-    typedef basic_string<xl::uchar_t> ustring_t;
-    xTYPEDEF_CONST(ustring_t);
+    using ustring_t = basic_string<xl::uchar_t>;
+    xUSING_CONST(ustring_t);
 
-    typedef basic_ios<xl::tchar_t> tios_t;
-    xTYPEDEF_CONST(tios_t);
+    using tios_t = basic_ios<xl::tchar_t>;
+    xUSING_CONST(tios_t);
 
-    typedef basic_streambuf<xl::tchar_t> tstreambuf_t;
-    xTYPEDEF_CONST(tstreambuf_t);
+    using tstreambuf_t = basic_streambuf<xl::tchar_t>;
+    xUSING_CONST(tstreambuf_t);
 
-    typedef basic_istream<xl::tchar_t> tistream_t;
-    xTYPEDEF_CONST(tistream_t);
+    using tistream_t = basic_istream<xl::tchar_t>;
+    xUSING_CONST(tistream_t);
 
-    typedef basic_ostream<xl::tchar_t> tostream_t;
-    xTYPEDEF_CONST(tostream_t);
+    using tostream_t = basic_ostream<xl::tchar_t>;
+    xUSING_CONST(tostream_t);
 
-    typedef basic_iostream<xl::tchar_t> tiostream_t;
-    xTYPEDEF_CONST(tiostream_t);
+    using tiostream_t = basic_iostream<xl::tchar_t>;
+    xUSING_CONST(tiostream_t);
 
-    typedef basic_stringbuf<xl::tchar_t> tstringbuf_t;
-    xTYPEDEF_CONST(tstringbuf_t);
+    using tstringbuf_t = basic_stringbuf<xl::tchar_t>;
+    xUSING_CONST(tstringbuf_t);
 
-    typedef basic_istringstream<xl::tchar_t> tistringstream_t;
-    xTYPEDEF_CONST(tistringstream_t);
+    using tistringstream_t = basic_istringstream<xl::tchar_t>;
+    xUSING_CONST(tistringstream_t);
 
-    typedef basic_ostringstream<xl::tchar_t> tostringstream_t;
-    xTYPEDEF_CONST(tostringstream_t);
+    using tostringstream_t = basic_ostringstream<xl::tchar_t>;
+    xUSING_CONST(tostringstream_t);
 
-    typedef basic_stringstream<xl::tchar_t> tstringstream_t;
-    xTYPEDEF_CONST(tstringstream_t);
+    using tstringstream_t = basic_stringstream<xl::tchar_t>;
+    xUSING_CONST(tstringstream_t);
 
-    typedef basic_filebuf<xl::tchar_t> tfilebuf_t;
-    xTYPEDEF_CONST(tfilebuf_t);
+    using tfilebuf_t = basic_filebuf<xl::tchar_t>;
+    xUSING_CONST(tfilebuf_t);
 
-    typedef basic_ifstream<xl::tchar_t> tifstream_t;
-    xTYPEDEF_CONST(tifstream_t);
+    using tifstream_t = basic_ifstream<xl::tchar_t>;
+    xUSING_CONST(tifstream_t);
 
-    typedef basic_ofstream<xl::tchar_t> tofstream_t;
-    xTYPEDEF_CONST(tofstream_t);
+    using tofstream_t = basic_ofstream<xl::tchar_t>;
+    xUSING_CONST(tofstream_t);
 
-    typedef basic_fstream<xl::tchar_t> tfstream_t;
-    xTYPEDEF_CONST(tfstream_t);
+    using tfstream_t = basic_fstream<xl::tchar_t>;
+    xUSING_CONST(tfstream_t);
 
     // std::pair
-    typedef pair<tstring_t, tstring_t> pair_tstring_t;
-    xTYPEDEF_CONST(pair_tstring_t);
+    using pair_tstring_t = pair<tstring_t, tstring_t>;
+    xUSING_CONST(pair_tstring_t);
 
     // std::vector
-    typedef vector<xl::tchar_t> vec_tchar_t;
-    xTYPEDEF_CONST(vec_tchar_t);
+    using vec_tchar_t = vector<xl::tchar_t>;
+    xUSING_CONST(vec_tchar_t);
 
-    typedef vector<xl::uchar_t> vec_uchar_t;
-    xTYPEDEF_CONST(vec_uchar_t);
+    using vec_uchar_t = vector<xl::uchar_t>;
+    xUSING_CONST(vec_uchar_t);
 
-    typedef vector<tstring_t> vec_tstring_t;
-    xTYPEDEF_CONST(vec_tstring_t);
+    using vec_tstring_t = vector<tstring_t>;
+    xUSING_CONST(vec_tstring_t);
 
-    typedef list<tstring_t> list_tstring_t;
-    xTYPEDEF_CONST(list_tstring_t);
+    using list_tstring_t = list<tstring_t>;
+    xUSING_CONST(list_tstring_t);
 
-    typedef vector<ustring_t> vec_ustring_t;
-    xTYPEDEF_CONST(vec_ustring_t);
+    using vec_ustring_t = vector<ustring_t>;
+    xUSING_CONST(vec_ustring_t);
 
     // std::map
-    typedef map<tstring_t, tstring_t> map_tstring_t;
-    xTYPEDEF_CONST(map_tstring_t);
+    using map_tstring_t = map<tstring_t, tstring_t>;
+    xUSING_CONST(map_tstring_t);
 
-    typedef multimap<tstring_t, tstring_t> mmap_tstring_t;
-    xTYPEDEF_CONST(mmap_tstring_t);
+    using mmap_tstring_t = multimap<tstring_t, tstring_t>;
+    xUSING_CONST(mmap_tstring_t);
 
 xNAMESPACE_END(std)

@@ -1119,10 +1119,8 @@ File::textWrite(
 
     xCHECK_DO(a_content.empty(), return);
 
-    typedef std::map_tstring_t content_t;
-
-    xFOR_EACH_CONST(content_t, it, a_content) {
-        file.writeLine(it->first + a_separator + it->second);
+    for (auto &it : a_content) {
+        file.writeLine(it.first + a_separator + it.second);
     }
 
 #if xTODO

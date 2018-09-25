@@ -94,7 +94,7 @@ OStream::operator << (
     const std::queue<T> &a_value   ///< value
 )
 {
-    typedef const T* const_iterator;
+	using const_iterator = const T *;
 
     const_iterator begin = &a_value.front();
     const_iterator end   = &a_value.back() + 1;
@@ -110,7 +110,7 @@ OStream::operator << (
     const std::priority_queue<T> &a_value   ///< value
 )
 {
-    typedef const T* const_iterator;
+    using const_iterator = const T *;
 
     const_iterator begin = &a_value.top();
     const_iterator end   = &a_value.top() + a_value.size();
@@ -126,7 +126,7 @@ OStream::operator << (
     const std::stack<T> &a_value   ///< value
 )
 {
-    typedef const T* const_iterator;
+    using const_iterator = const T *;
 
     const_iterator begin = &a_value.top() - a_value.size() + 1;
     const_iterator end   = &a_value.top() + 1;

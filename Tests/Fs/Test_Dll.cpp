@@ -61,7 +61,7 @@ Test_Dll::unit()
             Dll::proc_address_t paRv = dll.procAddress(data[i].expect);
             xTEST_PTR(paRv);
 
-            typedef void_t (__stdcall *ptr_dll_func_t)(ulong_t, ulong_t);
+            using ptr_dll_func_t = void_t (__stdcall *)(ulong_t, ulong_t);
             ptr_dll_func_t loadBeep = (ptr_dll_func_t)paRv;
 
             loadBeep(1, 1);
@@ -69,7 +69,7 @@ Test_Dll::unit()
             Dll::proc_address_t paRv = dll.procAddress(data[i].expect);
             xTEST_PTR(paRv);
 
-            typedef double (*ptr_dll_func_t)(double);
+            using ptr_dll_func_t = double (*)(double);
             ptr_dll_func_t cosine = (ptr_dll_func_t)paRv;
 
             double dRv = cosine(2.0);

@@ -104,8 +104,8 @@ ProcessInfo::_commandLine_impl(
     }
 
 #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
-    // typedef __success(return >= 0) LONG NTSTATUS;
-    typedef LONG NTSTATUS;
+    // using NTSTATUS = __success(return >= 0) LONG;
+    using NTSTATUS = LONG ;
 
     enum PROCESSINFOCLASS
         // process info type
@@ -115,7 +115,7 @@ ProcessInfo::_commandLine_impl(
     };
 #endif
 
-    typedef NTSTATUS (WINAPI *func_t) (HANDLE ProcessHandle,
+    using func_t = NTSTATUS (WINAPI *) (HANDLE ProcessHandle,
         PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation,
         ULONG ProcessInformationLength, PULONG ReturnLength);
 

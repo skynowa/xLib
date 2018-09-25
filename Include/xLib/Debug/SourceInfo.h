@@ -18,7 +18,7 @@ struct SourceInfoData
     std::ctstring_t funcName; ///< function name
     culong_t        counter;  ///< counter
 };
-xTYPEDEF_CONST(SourceInfoData);
+xUSING_CONST(SourceInfoData);
 
 class SourceInfo
     ///< Source info

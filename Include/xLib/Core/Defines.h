@@ -166,14 +166,14 @@
     ///< end namespaces
 ///@}
 //-----------------------------------------------------------------------------------------------
-///@name typedefs
+///@name usings
 ///@{
-#define xTYPEDEF_CONST(t) \
-    typedef const t c##t
-    ///< typedef const types
-#define xTYPEDEF_PTR_CONST(t) \
-    typedef const t * const cptr_##c##t
-    ///< typedef const types
+#define xUSING_CONST(t) \
+    using c##t = const t
+    ///< using const types
+#define xUSING_PTR_CONST(t) \
+    using cptr_##c##t = const t * const
+    ///< using const types
 ///@}
 //-----------------------------------------------------------------------------------------------
 ///@name Declare enum
@@ -186,8 +186,8 @@
 #define xENUM_END(e) \
         }; \
     }; \
-    typedef e::type       e##_t; \
-    typedef const e::type c##e##_t
+    using e##_t    = e::type; \
+    using c##e##_t = const e::type
     ///< end enum
 ///@}
 //-------------------------------------------------------------------------------------------------
