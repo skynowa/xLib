@@ -10,7 +10,6 @@
 #include <xLib/Core/Functors.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>
-#include <xLib/Core/Array.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>

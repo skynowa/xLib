@@ -7,7 +7,6 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Core/Array.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
@@ -39,12 +38,12 @@ operator << (std::tostream_t &a_os, const Enum<T> &a_value);
 //-------------------------------------------------------------------------------------------------
 template<typename T, const std::size_t N = 0>
 class EnumArray :
-    public Array<T, N>
+    public std::array<T, N>
     ///< Enumeration container
 {
 public:
            EnumArray<T, N>();
-           EnumArray<T, N>(const Array<T, N> &enumeration);
+           EnumArray<T, N>(const std::array<T, N> &enumeration);
 
     bool_t isValid(const ::ssize_t value) const;
 };
