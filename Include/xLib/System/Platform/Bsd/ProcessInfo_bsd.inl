@@ -24,7 +24,7 @@ ProcessInfo::_exeName_impl() const
     tchar_t buff[PATH_MAX + 1] = {0};
     size_t  buffSize           = sizeof(buff) - 1;
 
-    int_t iRv = ::sysctl(mib, mibSize, buff, &buffSize, xPTR_NULL, 0U);
+    int_t iRv = ::sysctl(mib, mibSize, buff, &buffSize, nullptr, 0U);
     xTEST_DIFF(iRv, - 1);
 
     sRv.assign(buff);
@@ -53,15 +53,15 @@ ProcessInfo::_commandLine_impl(
     size_t      buffSize = 0;
 
     // get buffSize
-    iRv = ::sysctl(mib, mibSize, xPTR_NULL, &buffSize, xPTR_NULL, 0);
+    iRv = ::sysctl(mib, mibSize, nullptr, &buffSize, nullptr, 0);
     xTEST_DIFF(iRv, - 1);
 
     buff.resize(buffSize);
 
-    iRv = ::sysctl(mib, mibSize, &buff.at(0), &buffSize, xPTR_NULL, 0U);
+    iRv = ::sysctl(mib, mibSize, &buff.at(0), &buffSize, nullptr, 0U);
     xTEST_DIFF(iRv, - 1);
 
-    // remove xPTR_NULL terminating symbol
+    // remove nullptr terminating symbol
     buff.resize(buffSize - 1);
 
     String::split(buff, Const::space(), &args);

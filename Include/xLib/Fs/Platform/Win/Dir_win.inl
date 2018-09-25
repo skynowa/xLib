@@ -30,7 +30,7 @@ Dir::_isRoot_impl() const
 void_t
 Dir::_create_impl() const
 {
-    BOOL blRv = ::CreateDirectory(dirPath().c_str(), xPTR_NULL);
+    BOOL blRv = ::CreateDirectory(dirPath().c_str(), nullptr);
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------

@@ -17,7 +17,7 @@ SystemLog::_construct_impl(
     std::ctstring_t &a_logName
 )
 {
-    _handle = ::RegisterEventSource(xPTR_NULL, a_logName.c_str());
+    _handle = ::RegisterEventSource(nullptr, a_logName.c_str());
     xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
 }
 //-------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ SystemLog::_write_impl(
     WORD    level_impl = internal::enums::toCross(a_level);
     LPCTSTR strings    = a_msg.c_str();
 
-    BOOL bRv = ::ReportEvent(_handle, level, 0, 0UL, xPTR_NULL, 1, 0UL, &strings, xPTR_NULL);
+    BOOL bRv = ::ReportEvent(_handle, level, 0, 0UL, nullptr, 1, 0UL, &strings, nullptr);
     xTEST_DIFF(bRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------

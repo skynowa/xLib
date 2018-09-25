@@ -59,7 +59,7 @@ Test_File::unit()
                 xTEST_EQ(file, _handle.get());
                 xTEST_EQ(_handle.isValid(), true);
 
-                twint_t iRv = std::fclose(_handle.get()); _handle = xPTR_NULL;
+                twint_t iRv = std::fclose(_handle.get()); _handle = nullptr;
                 xTEST_DIFF(iRv, xTEOF);
                 xTEST_EQ(_handle.isValid(), false);
             }
@@ -72,7 +72,7 @@ Test_File::unit()
                 xTEST_EQ(file, _handle.get());
                 xTEST_EQ(_handle.isValid(), true);
 
-                twint_t iRv = std::fclose(_handle.get()); _handle = xPTR_NULL;
+                twint_t iRv = std::fclose(_handle.get()); _handle = nullptr;
                 xTEST_DIFF(iRv, xTEOF);
                 xTEST_EQ(_handle.isValid(), false);
             }

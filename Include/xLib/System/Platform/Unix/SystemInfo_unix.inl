@@ -140,7 +140,7 @@ SystemInfo::_currentCpuNum_impl() const
 #if defined(SYS_getcpu)
     ulong_t cpu = 0UL;
 
-    long_t liRv = ::syscall(SYS_getcpu, &cpu, xPTR_NULL, xPTR_NULL);
+    long_t liRv = ::syscall(SYS_getcpu, &cpu, nullptr, nullptr);
     xTEST_DIFF(liRv, - 1L);
 
     ulRv = cpu;
@@ -153,7 +153,7 @@ SystemInfo::_currentCpuNum_impl() const
     // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
     uint_t cpu = 0U;
 
-    int_t iRv = ::getcpu(&cpu, xPTR_NULL, xPTR_NULL);
+    int_t iRv = ::getcpu(&cpu, nullptr, nullptr);
     xTEST_DIFF(iRv, - 1);
 
     ulRv = cpu;
@@ -198,7 +198,7 @@ SystemInfo::glibcVersion() const
     {
     #if cmGNU_GET_LIBC_FOUND
         cchar *libc_version = ::gnu_get_libc_version();
-        if (libc_version == xPTR_NULL) {
+        if (libc_version == nullptr) {
             version = Const::strUnknown();
         } else {
             version = xA2T(libc_version);
@@ -213,7 +213,7 @@ SystemInfo::glibcVersion() const
     {
     #if cmGNU_GET_LIBC_FOUND
         cchar *libc_release = ::gnu_get_libc_release();
-        if (libc_release == xPTR_NULL) {
+        if (libc_release == nullptr) {
             release = Const::strUnknown();
         } else {
             release = xA2T(libc_release);
@@ -238,7 +238,7 @@ SystemInfo::libPthreadVersion() const
 
     std::size_t buffBytes;
     {
-        buffBytes = ::confstr(_CS_GNU_LIBPTHREAD_VERSION, xPTR_NULL, 0);
+        buffBytes = ::confstr(_CS_GNU_LIBPTHREAD_VERSION, nullptr, 0);
         xCHECK_RET(buffBytes == 0, Const::strUnknown());
 
         buff.resize(buffBytes);

@@ -135,11 +135,11 @@ String::castA(
 
     cptr_cwchar_t    itBegin   = &a_str.at(0);
     cptr_cwchar_t    itEnd     = &a_str.at(0) + a_str.size();
-    const wchar_t   *itNext    = xPTR_NULL;
+    const wchar_t   *itNext    = nullptr;
 
     char            *itToBegin = &asRv.at(0);
     char            *itToEnd   = &asRv.at(0) + asRv.size();
-    char            *itToNext  = xPTR_NULL;
+    char            *itToNext  = nullptr;
 
     codec.out(state, itBegin, itEnd, itNext, itToBegin, itToEnd, itToNext);
 
@@ -458,7 +458,7 @@ String::split(
     xTEST_NA(a_sep);
     xTEST_NA(a_rv);
 
-    xCHECK_DO(a_rv != xPTR_NULL, a_rv->clear());
+    xCHECK_DO(a_rv != nullptr, a_rv->clear());
 
     xCHECK_DO(a_str.empty(), return);
     xCHECK_DO(a_sep.empty(), return);
@@ -714,7 +714,7 @@ String::memoryZeroSecure(
     size_t buffSize = a_buffSize;
 
     for (volatile uchar_t *buff = static_cast<volatile uchar_t *>( a_buff );
-         a_buff != xPTR_NULL && 0 != buffSize;
+         a_buff != nullptr && 0 != buffSize;
          ++ buff, -- buffSize)
     {
         *buff = 0;

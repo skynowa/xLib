@@ -43,7 +43,7 @@ DnsClient::hostAddrByName(
 
     struct in_addr **addrList = reinterpret_cast<struct in_addr **>(host->h_addr_list);
 
-    for (std::size_t i = 0; addrList[i] != xPTR_NULL; ++ i) {
+    for (std::size_t i = 0; addrList[i] != nullptr; ++ i) {
         sRv = inet_ntoa(*addrList[i]);
 
         break;
@@ -51,7 +51,7 @@ DnsClient::hostAddrByName(
 
     xTEST_EQ(sRv.empty(), false);
 
-    if (host->h_name != xPTR_NULL) {
+    if (host->h_name != nullptr) {
         const std::string hostName = host->h_name;
         xTEST_EQ(hostName.empty(), false);
         xTEST_EQ(a_hostName, xA2T(hostName));
@@ -71,7 +71,7 @@ DnsClient::hostNameByAddr(
     xTEST_EQ(a_hostAddr.empty(), false);
     xTEST_PTR(a_hostName);
 
-    hostent *host = xPTR_NULL;
+    hostent *host = nullptr;
 
     switch (a_family) {
     case ISocket::afInet:
@@ -195,12 +195,12 @@ DnsClient::protocolByName(
     xTEST_PTR(info);
 
     // a_name
-    if (a_name != xPTR_NULL) {
+    if (a_name != nullptr) {
         *a_name = xA2T(info->p_name);
     }
 
     // a_aliases
-    if (a_aliases != xPTR_NULL) {
+    if (a_aliases != nullptr) {
         a_aliases->clear();
 
         for (char **s = info->p_aliases; s && *s; ++ s) {
@@ -230,12 +230,12 @@ DnsClient::protocolByNumber(
     xTEST_PTR(info);
 
     // a_name
-    if (a_name != xPTR_NULL) {
+    if (a_name != nullptr) {
         *a_name = xA2T(info->p_name);
     }
 
     // a_aliases
-    if (a_aliases != xPTR_NULL) {
+    if (a_aliases != nullptr) {
         a_aliases->clear();
 
         for (char **s = info->p_aliases; s && *s; ++ s) {
@@ -269,12 +269,12 @@ DnsClient::serviceByName(
     xTEST_PTR(info);
 
     // name
-    if (a_name != xPTR_NULL) {
+    if (a_name != nullptr) {
        *a_name = xA2T(info->s_name);
     }
 
     // aliases
-    if (a_aliases != xPTR_NULL) {
+    if (a_aliases != nullptr) {
         a_aliases->clear();
 
         for (char **s = info->s_aliases; s && *s; ++ s) {
@@ -286,7 +286,7 @@ DnsClient::serviceByName(
     Utils::ptrAssignT(a_port, *a_port = info->s_port);
 
     // protocolName_rv
-    if (a_protocolName_rv != xPTR_NULL) {
+    if (a_protocolName_rv != nullptr) {
         *a_protocolName_rv = xA2T(info->s_proto);
     }
 }
@@ -313,12 +313,12 @@ DnsClient::serviceByPort(
     xTEST_PTR(info);
 
     // name
-    if (a_name != xPTR_NULL) {
+    if (a_name != nullptr) {
         *a_name = xA2T(info->s_name);
     }
 
     // aliases
-    if (a_aliases != xPTR_NULL) {
+    if (a_aliases != nullptr) {
         a_aliases->clear();
 
         for (char **s = info->s_aliases; s && *s; ++ s) {
@@ -330,7 +330,7 @@ DnsClient::serviceByPort(
     Utils::ptrAssignT(a_port_rv, static_cast<short_t>( info->s_port ));
 
     // protocolName_rv
-    if (a_protocolName_rv != xPTR_NULL) {
+    if (a_protocolName_rv != nullptr) {
         *a_protocolName_rv = xA2T(info->s_proto);
     }
 }

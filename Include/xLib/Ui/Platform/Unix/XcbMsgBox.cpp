@@ -39,14 +39,14 @@ const int16_t  lineIndent     = 24;
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 XcbMsgBox::XcbMsgBox() :
-    _conn    (xPTR_NULL),
-    _screen  (xPTR_NULL),
+    _conn    (nullptr),
+    _screen  (nullptr),
     _windowId(0),
-    _error   (xPTR_NULL)
+    _error   (nullptr)
 {
     // Open the connection to the X server
     int_t screenPreferredNum = 0;
-    _conn = ::xcb_connect(xPTR_NULL, &screenPreferredNum);
+    _conn = ::xcb_connect(nullptr, &screenPreferredNum);
     xTEST_PTR(_conn);
 
     xcb_screen_iterator_t it = ::xcb_setup_roots_iterator( ::xcb_get_setup(_conn) );
@@ -65,13 +65,13 @@ XcbMsgBox::XcbMsgBox() :
 /* virtual */
 XcbMsgBox::~XcbMsgBox()
 {
-    _error    = xPTR_NULL;
+    _error    = nullptr;
     _windowId = 0;
-    _screen   = xPTR_NULL;
+    _screen   = nullptr;
 
-    if (_conn != xPTR_NULL) {
+    if (_conn != nullptr) {
         (void_t)::xcb_disconnect(_conn);
-        _conn = xPTR_NULL;
+        _conn = nullptr;
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -243,7 +243,7 @@ XcbMsgBox::_execute(
 {
     for ( ; ; ) {
         xcb_generic_event_t *event = ::xcb_wait_for_event(_conn);
-        xCHECK_DO(event == xPTR_NULL, break);
+        xCHECK_DO(event == nullptr, break);
 
         switch (event->response_type & ~0x80) {
         case XCB_EXPOSE: {
@@ -397,7 +397,7 @@ XcbMsgBox::_fontGContext(
             static_cast<uint16_t>( a_fontName.size() ), xT2A(a_fontName).c_str());
 
         _error = ::xcb_request_check(_conn, cookieFont);
-        xTEST(_error == xPTR_NULL);
+        xTEST(_error == nullptr);
     }
 
     xcb_gcontext_t gcontextId = 0;
@@ -411,13 +411,13 @@ XcbMsgBox::_fontGContext(
             valueList);
 
         _error = ::xcb_request_check(_conn, cookie_gc);
-        xTEST(_error == xPTR_NULL);
+        xTEST(_error == nullptr);
     }
 
     cookieFont = ::xcb_close_font_checked(_conn, fontId);
 
     _error = ::xcb_request_check(_conn, cookieFont);
-    xTEST(_error == xPTR_NULL);
+    xTEST(_error == nullptr);
 
     return gcontextId;
 }
@@ -450,12 +450,12 @@ XcbMsgBox::_setTextLine(
         _windowId, gcontext, a_left, a_top, xT2A(a_text).c_str());
 
     _error = ::xcb_request_check(_conn, cookie_text);
-    xTEST(_error == xPTR_NULL);
+    xTEST(_error == nullptr);
 
     cookie_gc = ::xcb_free_gc(_conn, gcontext);
 
     _error = ::xcb_request_check(_conn, cookie_gc);
-    xTEST(_error == xPTR_NULL);
+    xTEST(_error == nullptr);
 
     int_t iRv = ::xcb_flush(_conn);
     xTEST_GR(iRv, 0);

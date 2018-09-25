@@ -430,9 +430,9 @@ Application::run()
     signal().connectTerminate(internal::CrashCallback::onTerminate);
     signal().connectUnexpected(internal::CrashCallback::onUnexpected);
 #else
-    signal().connectExit(xPTR_NULL);
-    signal().connectTerminate(xPTR_NULL);
-    signal().connectUnexpected(xPTR_NULL);
+    signal().connectExit(nullptr);
+    signal().connectTerminate(nullptr);
+    signal().connectUnexpected(nullptr);
 #endif
 
     if (opt_useException) {

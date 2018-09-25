@@ -19,7 +19,7 @@ DateTime::_current_impl()
     // get msec
     timeval timeNow;   Utils::structZeroT(timeNow);
 
-    int_t iRv = ::gettimeofday(&timeNow, xPTR_NULL);
+    int_t iRv = ::gettimeofday(&timeNow, nullptr);
     xTEST_DIFF(iRv, - 1);
 
     // get datetime

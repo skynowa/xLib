@@ -28,7 +28,7 @@ StackTrace::_get_impl(
     std::vector<std::vec_tstring_t> *a_stack
 ) const
 {
-    xCHECK_DO(a_stack == xPTR_NULL, return);
+    xCHECK_DO(a_stack == nullptr, return);
 
     std::vector<std::vec_tstring_t> stack;
     std::ctstring_t                 dataNotFound = xT("[???]");
@@ -37,19 +37,19 @@ StackTrace::_get_impl(
     // TODO: [skynowa] StackTrace::_get()
 #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
     void_t      *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
-    SYMBOL_INFO *symbol                             = xPTR_NULL;
-    HANDLE       process                            = xPTR_NULL;
+    SYMBOL_INFO *symbol                             = nullptr;
+    HANDLE       process                            = nullptr;
 
     process = ::GetCurrentProcess();
 
-    BOOL blRv = ::SymInitialize(process, xPTR_NULL, TRUE);
+    BOOL blRv = ::SymInitialize(process, nullptr, TRUE);
     xCHECK_DO(blRv == FALSE, return);
 
-    ushort_t framesNum = ::CaptureStackBackTrace(0UL, xSTACK_TRACE_FRAMES_MAX, stackBuff, xPTR_NULL);
+    ushort_t framesNum = ::CaptureStackBackTrace(0UL, xSTACK_TRACE_FRAMES_MAX, stackBuff, nullptr);
     xCHECK_DO(framesNum == 0U, return);
 
     symbol = new (std::nothrow) SYMBOL_INFO[sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t)];
-    STD_VERIFY(symbol != xPTR_NULL);
+    STD_VERIFY(symbol != nullptr);
     symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
     symbol->MaxNameLen   = 255UL;
 
@@ -93,10 +93,10 @@ StackTrace::_get_impl(
 
         // byteOffset, functionName
         {
-            blRv = ::SymFromAddr(process, reinterpret_cast<DWORD64>( stackBuff[i] ), xPTR_NULL,
+            blRv = ::SymFromAddr(process, reinterpret_cast<DWORD64>( stackBuff[i] ), nullptr,
                 symbol);
             if (blRv == FALSE) {
-                byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(xPTR_NULL));
+                byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(nullptr));
                 functionName = dataNotFound;
             } else {
                 byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(symbol->Address));
@@ -137,7 +137,7 @@ StackTrace::_get_impl(
 
     xARRAY_DELETE(symbol);
 
-    (void_t)::SymCleanup(process); process = xPTR_NULL;
+    (void_t)::SymCleanup(process); process = nullptr;
 #endif
 
     // out

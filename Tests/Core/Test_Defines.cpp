@@ -184,9 +184,9 @@ Test_Defines::unit()
     #endif
     }
 
-    xTEST_CASE("xPTR_NULL")
+    xTEST_CASE("nullptr")
     {
-       void_t *ptr = xPTR_NULL;
+       void_t *ptr = nullptr;
        xUNUSED(ptr);
     }
 

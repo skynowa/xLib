@@ -151,12 +151,12 @@ String::split(
     xTEST_NA(a_sepKeyValue);
     xTEST_NA(a_map);
 
-    xCHECK_DO(a_map != xPTR_NULL, a_map->clear());
+    xCHECK_DO(a_map != nullptr, a_map->clear());
 
     xCHECK_DO(a_str.empty(), return);
     xCHECK_DO(a_sepLine.empty(), return);
     xCHECK_DO(a_sepKeyValue.empty(), return);
-    xCHECK_DO(a_map == xPTR_NULL, return);
+    xCHECK_DO(a_map == nullptr, return);
 
     std::vec_tstring_t lines;
     split(a_str, a_sepLine, &lines);

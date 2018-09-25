@@ -24,7 +24,7 @@ IpcSemaphore::_construct_impl()
 void_t
 IpcSemaphore::_destruct_impl()
 {
-    int_t iRv = ::sem_close(_handle);  _handle = xPTR_NULL;
+    int_t iRv = ::sem_close(_handle);  _handle = nullptr;
     xTEST_DIFF(iRv, - 1);
 
     // sem_destroy
@@ -179,7 +179,7 @@ IpcSemaphore::_value_impl() const
 bool_t
 IpcSemaphore::_isValid_impl() const
 {
-    return (_handle != xPTR_NULL);
+    return (_handle != nullptr);
 }
 //-------------------------------------------------------------------------------------------------
 

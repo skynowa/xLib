@@ -34,7 +34,7 @@ Process::_create_impl(
     PROCESS_INFORMATION processInfo = {0};
 
     BOOL blRv = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( a_params.c_str() ),
-        xPTR_NULL, xPTR_NULL, FALSE, NORMAL_PRIORITY_CLASS, xPTR_NULL, xPTR_NULL, &startupInfo,
+        nullptr, nullptr, FALSE, NORMAL_PRIORITY_CLASS, nullptr, nullptr, &startupInfo,
         &processInfo);
     xTEST_DIFF(blRv, FALSE);
 

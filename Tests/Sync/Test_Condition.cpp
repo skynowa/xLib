@@ -66,7 +66,7 @@ watch(
     iRv = ::pthread_mutex_unlock(&::mtMutex);
     xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
-    return xPTR_NULL;
+    return nullptr;
 }
 
 #endif // xENV_UNIX
@@ -111,7 +111,7 @@ job(
         }
     }
 
-    return xPTR_NULL;
+    return nullptr;
 }
 
 #endif // xENV_UNIX
@@ -130,10 +130,10 @@ Test_Condition::unit()
 
     // initialize
     {
-        iRv = ::pthread_mutex_init(&::mtMutex, xPTR_NULL);   // mutex not recursive
+        iRv = ::pthread_mutex_init(&::mtMutex, nullptr);   // mutex not recursive
         xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
-        iRv = ::pthread_cond_init(&::cndCondition, xPTR_NULL);
+        iRv = ::pthread_cond_init(&::cndCondition, nullptr);
         xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
         // for portability, explicitly create threads in a joinable state
@@ -163,7 +163,7 @@ Test_Condition::unit()
 		Trace() << Format::str(xT("Main(): waited on {} threads..."), ::threadsNum);
 
 		for (size_t i = 0; i < ::threadsNum; ++ i) {
-			iRv = ::pthread_join(threads[i], xPTR_NULL);
+			iRv = ::pthread_join(threads[i], nullptr);
 			xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 		}
 

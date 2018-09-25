@@ -66,7 +66,7 @@ Thread::_wait_impl(
     // TODO: [skynowa] Thread::_wait_impl() - thread must not be detached
     // FIX:  Thread::_wait_impl(( - a_timeoutMsec
 
-    int_t iRv = ::pthread_join(_id, xPTR_NULL);
+    int_t iRv = ::pthread_join(_id, nullptr);
     xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------

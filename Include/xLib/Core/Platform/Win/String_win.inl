@@ -21,12 +21,12 @@ String::_castA_impl(
 {
     std::string asRv;
 
-    int_t size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1, xPTR_NULL, 0, xPTR_NULL, xPTR_NULL);
+    int_t size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1, nullptr, 0, nullptr, nullptr);
     xTEST_LESS(0, size);
 
     asRv.resize(size - 1);    // remove '\0'
     size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1,
-        static_cast<LPSTR>(&asRv.at(0)), size, xPTR_NULL, xPTR_NULL);
+        static_cast<LPSTR>(&asRv.at(0)), size, nullptr, nullptr);
     xTEST_LESS(0, size);
 
     return asRv;
@@ -44,7 +44,7 @@ String::_castW_impl(
 
     std::wstring wsRv;
 
-    int_t size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1, xPTR_NULL, 0);
+    int_t size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1, nullptr, 0);
     xTEST_LESS(0, size);
 
     wsRv.resize(size - 1);    // remove '\0'

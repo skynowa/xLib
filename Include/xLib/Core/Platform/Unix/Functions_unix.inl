@@ -86,7 +86,7 @@ setlocaleW(
 
     // TODO: [skynowa] setlocaleW - not impl
 
-    return xPTR_NULL;
+    return nullptr;
 }
 //-------------------------------------------------------------------------------------------------
 int
@@ -128,7 +128,7 @@ fopenW(
 
     // TODO: [skynowa] fopenW - not impl
 
-    return xPTR_NULL;
+    return nullptr;
 }
 //-------------------------------------------------------------------------------------------------
 FILE *
@@ -142,7 +142,7 @@ fdopenW(
 
     // TODO: [skynowa] fdopenW - not impl
 
-    return xPTR_NULL;
+    return nullptr;
 }
 //-------------------------------------------------------------------------------------------------
 FILE *
@@ -158,7 +158,7 @@ freopenW(
 
     // TODO: [skynowa] freopenW - not impl
 
-    return xPTR_NULL;
+    return nullptr;
 }
 //-------------------------------------------------------------------------------------------------
 int

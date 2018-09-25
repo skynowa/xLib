@@ -88,11 +88,11 @@ Test_ThreadPool::unit()
 
     {
         cuint_t  stackSize       = 0UL;
-        void_t  *param           = xPTR_NULL;
+        void_t  *param           = nullptr;
         cuint_t  tasksNum        = 5;
         cuint_t  runningTasksMax = 10U;
 
-        pool->groupCreate(stackSize, xPTR_NULL, param, tasksNum, runningTasksMax);
+        pool->groupCreate(stackSize, nullptr, param, tasksNum, runningTasksMax);
     }
 
     pool->groupResume();

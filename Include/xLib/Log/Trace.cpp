@@ -50,7 +50,7 @@ Trace::write(
 ) const
 {
     xCHECK_DO(!isEnabled(),          return);
-    xCHECK_DO(a_format == xPTR_NULL, return);
+    xCHECK_DO(a_format == nullptr, return);
 
     std::tstring_t msg;
 

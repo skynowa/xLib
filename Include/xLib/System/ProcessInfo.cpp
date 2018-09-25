@@ -87,7 +87,7 @@ ProcessInfo::commandLine(
 {
     xTEST_PTR(a_args);
 
-    xCHECK_DO(a_args != xPTR_NULL, a_args->clear());
+    xCHECK_DO(a_args != nullptr, a_args->clear());
 
     _commandLine_impl(a_args);
 }
@@ -111,7 +111,7 @@ ProcessInfo::commandLine(
     xTEST_PTR(a_argv);
     xTEST_PTR(a_args);
 
-    xCHECK_DO(a_args != xPTR_NULL, a_args->clear());
+    xCHECK_DO(a_args != nullptr, a_args->clear());
 
     for (int_t i = 0; i < a_argsNum; ++ i) {
          a_args->push_back( a_argv[i] );

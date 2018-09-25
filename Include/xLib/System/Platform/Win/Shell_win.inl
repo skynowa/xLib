@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN2(xl, system)
 bool_t
 Shell::_isAvailable_impl() const
 {
-    int_t iRv = xTSYSTEM(xPTR_NULL);
+    int_t iRv = xTSYSTEM(nullptr);
     xCHECK_RET(iRv == 0 && StdError::get() == ENOENT, false);
 
     return true;
@@ -37,7 +37,7 @@ Shell::findExecutable(
 
     int_t         iRv            = SE_ERR_FNF;
     tchar_t       buff[MAX_PATH] = {0};
-    cptr_ctchar_t findDirPath    = a_findDirPath.empty() ? xPTR_NULL : a_findDirPath.c_str();
+    cptr_ctchar_t findDirPath    = a_findDirPath.empty() ? nullptr : a_findDirPath.c_str();
 
     iRv = reinterpret_cast<int_t>( ::FindExecutable(a_fileName.c_str(), findDirPath, buff) );
     xTEST_LESS(32, iRv);
@@ -117,7 +117,7 @@ Shell::executeHttp(
     std::ctstring_t url = String::trimSpace(a_url);
     xTEST_EQ(url.empty(), false);
 
-    execute(xPTR_NULL, opOpen, xT("IEXPLORE.EXE"), url, xT(""), sfShowNormal);
+    execute(nullptr, opOpen, xT("IEXPLORE.EXE"), url, xT(""), sfShowNormal);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -130,7 +130,7 @@ Shell::executeFtp(
     std::ctstring_t url = String::trimSpace(a_url);
     xTEST_EQ(url.empty(), false);
 
-    execute(xPTR_NULL, opOpen, xT("explorer.exe"), xT("/e, ") + url, xT(""), sfShowNormal);
+    execute(nullptr, opOpen, xT("explorer.exe"), xT("/e, ") + url, xT(""), sfShowNormal);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -164,7 +164,7 @@ Shell::executeEmail(
     xCHECK_DO(!subject.empty(),                  cmd.append(xT("subject=") + subject));
     xCHECK_DO(!body.empty(),                     cmd.append(xT("&body=")   + body   ));
 
-    execute(xPTR_NULL, opOpen, cmd, xT(""), xT(""), sfShowNormal);
+    execute(nullptr, opOpen, cmd, xT(""), xT(""), sfShowNormal);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -177,16 +177,16 @@ Shell::specialDirPath(
     xTEST_NA(a_token);
 
     HRESULT       hRv    = S_FALSE;
-    LPITEMIDLIST *idList = xPTR_NULL;
+    LPITEMIDLIST *idList = nullptr;
 
-    hRv = ::SHGetFolderLocation(xPTR_NULL, a_dir, a_token, 0UL, idList);
+    hRv = ::SHGetFolderLocation(nullptr, a_dir, a_token, 0UL, idList);
     xTEST_EQ(hRv, S_OK);
     xTEST_PTR(idList);
 
     tchar_t buff[MAX_PATH + sizeof(tchar_t)] = {0};
 
     BOOL bRv = ::SHGetPathFromIDList(idList, &buff[0]);
-    (void_t)::ILFree(idList);   idList = xPTR_NULL;
+    (void_t)::ILFree(idList);   idList = nullptr;
     xTEST_DIFF(bRv, FALSE);
 
     return std::tstring_t(buff);
@@ -227,9 +227,9 @@ Shell::createShortcut(
     Com com(COINIT_MULTITHREADED);
 
     HRESULT     hRv  = 0;
-    IShellLink *link = xPTR_NULL;
+    IShellLink *link = nullptr;
 
-    hRv = ::CoCreateInstance(CLSID_ShellLink, xPTR_NULL, CLSCTX_INPROC_SERVER, IID_IShellLink,
+    hRv = ::CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER, IID_IShellLink,
         (void_t **)&link);
     xTEST_EQ(SUCCEEDED(hRv), true);
 
@@ -256,7 +256,7 @@ Shell::createShortcut(
         xTEST_EQ(SUCCEEDED(hRv), true);
     }
 
-    IPersistFile *file = xPTR_NULL;
+    IPersistFile *file = nullptr;
 
     hRv = link->QueryInterface(IID_IPersistFile, Utils::reinterpretCastT<void_t **>( &file ));
     xTEST_EQ(SUCCEEDED(hRv), true);
@@ -270,8 +270,8 @@ Shell::createShortcut(
     hRv = file->Save(buff, true);
 #endif
 
-    file->Release();    file = xPTR_NULL;
-    link->Release();    link = xPTR_NULL;
+    file->Release();    file = nullptr;
+    link->Release();    link = nullptr;
 }
 //-------------------------------------------------------------------------------------------------
 

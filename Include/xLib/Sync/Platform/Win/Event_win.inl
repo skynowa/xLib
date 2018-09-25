@@ -29,8 +29,8 @@ Event::_create_impl()
 {
     xTEST_EQ(_event.isValid(), false);
 
-    HANDLE hRv = ::CreateEvent(xPTR_NULL, ! _isAutoReset, _initState, xPTR_NULL);
-    xTEST_DIFF(hRv, static_cast<HANDLE>(xPTR_NULL));
+    HANDLE hRv = ::CreateEvent(nullptr, ! _isAutoReset, _initState, nullptr);
+    xTEST_DIFF(hRv, static_cast<HANDLE>(nullptr));
 
     _event.set(hRv);
     // n/a

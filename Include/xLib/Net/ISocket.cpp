@@ -82,7 +82,7 @@ ISocket::isReadable() const
 
     FD_SET(_handle.get(), &fds);
 
-    int_t iRv = ::select(0, &fds, xPTR_NULL, xPTR_NULL, &timeoutVal);
+    int_t iRv = ::select(0, &fds, nullptr, nullptr, &timeoutVal);
     xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle.get(), &fds), false);
 
     return true;
@@ -96,7 +96,7 @@ ISocket::isWritable() const
 
     FD_SET(_handle.get(), &fds);
 
-    int_t iRv = ::select(0, xPTR_NULL, &fds, xPTR_NULL, &timeoutVal);
+    int_t iRv = ::select(0, nullptr, &fds, nullptr, &timeoutVal);
     xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle.get(), &fds), false);
 
     return true;
@@ -276,7 +276,7 @@ ISocket::sendBytes(
 
     // ..as long_t as we need to send data...
     while (messageLength > 0) {
-        iRv = ::select(0, xPTR_NULL, &fds, xPTR_NULL, &sendTimeout);
+        iRv = ::select(0, nullptr, &fds, nullptr, &sendTimeout);
 
         // timed out, return error
         xCHECK_RET(!iRv, xSOCKET_ERROR);
@@ -317,7 +317,7 @@ ISocket::receiveBytes(
 
     // Until the data is sent
     while (stillToReceive > 0) {
-        iRv = ::select(0, &fds, xPTR_NULL, xPTR_NULL, &receiveTimeout);
+        iRv = ::select(0, &fds, nullptr, nullptr, &receiveTimeout);
 
         // return by timeout
         xCHECK_RET(!iRv, xSOCKET_ERROR);

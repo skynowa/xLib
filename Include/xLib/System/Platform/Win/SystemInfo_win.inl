@@ -302,17 +302,17 @@ SystemInfo::_cpuSpeed_impl() const
 {
     DWORD cpuSpeedMHz = 0UL;
     DWORD buffSize    = sizeof(cpuSpeedMHz);
-    HKEY  key         = xPTR_NULL;
+    HKEY  key         = nullptr;
 
     LONG lRv = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, xT("HARDWARE\\DESCRIPTION\\System\\"
         "CentralProcessor\\0"), 0UL, KEY_READ, &key);
     xTEST_EQ(lRv, ERROR_SUCCESS);
 
-    lRv = ::RegQueryValueEx(key, xT("~MHz"), xPTR_NULL, xPTR_NULL, reinterpret_cast<LPBYTE>( &cpuSpeedMHz ),
+    lRv = ::RegQueryValueEx(key, xT("~MHz"), nullptr, nullptr, reinterpret_cast<LPBYTE>( &cpuSpeedMHz ),
         &buffSize);
     xTEST_EQ(lRv, ERROR_SUCCESS);
 
-    lRv = ::RegCloseKey(key);    key = xPTR_NULL;
+    lRv = ::RegCloseKey(key);    key = nullptr;
     xTEST_EQ(lRv, ERROR_SUCCESS);
 
     ulong_t ulRv = cpuSpeedMHz;

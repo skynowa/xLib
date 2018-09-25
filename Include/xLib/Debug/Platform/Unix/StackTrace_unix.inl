@@ -24,7 +24,7 @@ StackTrace::_get_impl(
     std::vector<std::vec_tstring_t> *a_stack
 ) const
 {
-    xCHECK_DO(a_stack == xPTR_NULL, return);
+    xCHECK_DO(a_stack == nullptr, return);
 
     std::vector<std::vec_tstring_t> stack;
     std::ctstring_t                 dataNotFound = xT("[???]");
@@ -36,7 +36,7 @@ StackTrace::_get_impl(
     xCHECK_DO(framesNum <= 0, return);
 
     char **symbols = ::backtrace_symbols(stackBuff, framesNum);
-    xCHECK_DO(symbols == xPTR_NULL, return);
+    xCHECK_DO(symbols == nullptr, return);
 
     for (int_t i = _data.skipFramesNum; i < framesNum; ++ i) {
         std::tstring_t modulePath;
@@ -49,17 +49,17 @@ StackTrace::_get_impl(
 
         int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
         if (iRv == 0) {
-            modulePath   = (dlinfo.dli_fname == xPTR_NULL) ? dataNotFound : xA2T(dlinfo.dli_fname);
+            modulePath   = (dlinfo.dli_fname == nullptr) ? dataNotFound : xA2T(dlinfo.dli_fname);
             filePath     = dataNotFound;
             fileLine     = dataNotFound;
-            byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(xPTR_NULL));
-            functionName = (symbols[i] == xPTR_NULL) ? dataNotFound : xA2T(symbols[i]);
+            byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(nullptr));
+            functionName = (symbols[i] == nullptr) ? dataNotFound : xA2T(symbols[i]);
         } else {
-            const char *symbolName = xPTR_NULL;
+            const char *symbolName = nullptr;
             int_t       status     = - 1;
 
-            char *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, xPTR_NULL, xPTR_NULL, &status);
-            if (demangleName != xPTR_NULL && status == 0) {
+            char *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, nullptr, nullptr, &status);
+            if (demangleName != nullptr && status == 0) {
                 symbolName = demangleName;
             } else {
                 symbolName = dlinfo.dli_sname;
@@ -72,11 +72,11 @@ StackTrace::_get_impl(
             _addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
             xUNUSED(_functionName);
 
-            modulePath   = (dlinfo.dli_fname == xPTR_NULL) ? dataNotFound : xA2T(dlinfo.dli_fname);
+            modulePath   = (dlinfo.dli_fname == nullptr) ? dataNotFound : xA2T(dlinfo.dli_fname);
             filePath     = _filePath.empty()               ? dataNotFound : _filePath;
             fileLine     = String::cast(_sourceLine);
             byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
-            functionName = (symbolName == xPTR_NULL) ? dataNotFound : xA2T(symbolName);
+            functionName = (symbolName == nullptr) ? dataNotFound : xA2T(symbolName);
 
             Utils::bufferFreeT(demangleName);
         }
@@ -153,14 +153,14 @@ StackTrace::_addr2Line(
     //// sprintf(addr2line_cmd,"atos -o %.256s %p", program_name, addr);
 
     FILE *file = ::popen(xT2A(cmdLine).c_str(), "r");
-    STD_VERIFY(file != xPTR_NULL);
+    STD_VERIFY(file != nullptr);
 
     // get function name
     {
         tchar_t buff[1024 + 1] = {0};
 
         cptr_ctchar_t functionName = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
-        STD_VERIFY(functionName != xPTR_NULL);
+        STD_VERIFY(functionName != nullptr);
 
         a_functionName->assign(functionName);
     }
@@ -170,7 +170,7 @@ StackTrace::_addr2Line(
         tchar_t buff[1024 + 1] = {0};
 
         cptr_ctchar_t fileAndLine = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
-        STD_VERIFY(fileAndLine != xPTR_NULL);
+        STD_VERIFY(fileAndLine != nullptr);
 
        /**
         * Parse that variants of fileAndLine string:
@@ -189,7 +189,7 @@ StackTrace::_addr2Line(
         *a_sourceLine = String::cast<ulong_t>( line.at(1) );
     }
 
-    int_t iRv = ::pclose(file);   file = xPTR_NULL;
+    int_t iRv = ::pclose(file);   file = nullptr;
     STD_VERIFY(iRv != - 1);
 #else
     xUNUSED(a_symbolAddress);

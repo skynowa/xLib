@@ -68,13 +68,13 @@ ISocket::_peerName_impl(
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 
     // out
-    if (a_peerAddr != xPTR_NULL) {
+    if (a_peerAddr != nullptr) {
         std::string peerAddr = ::inet_ntoa(sockAddr.sin_addr);
 
         *a_peerAddr = xA2T(peerAddr);
     }
 
-    if (a_peerPort != xPTR_NULL) {
+    if (a_peerPort != nullptr) {
         *a_peerPort = ntohs(sockAddr.sin_port);
     }
 }
@@ -93,13 +93,13 @@ ISocket::_socketName_impl(
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 
     // out
-    if (a_socketAddr != xPTR_NULL) {
+    if (a_socketAddr != nullptr) {
         std::string socketAddr = ::inet_ntoa(sockAddr.sin_addr);
 
         *a_socketAddr = xA2T(socketAddr);
     }
 
-    if (a_socketPort != xPTR_NULL) {
+    if (a_socketPort != nullptr) {
         *a_socketPort = ntohs(sockAddr.sin_port);
     }
 }

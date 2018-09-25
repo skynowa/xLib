@@ -80,9 +80,9 @@ File::create(
 
     // buffering
     if (_isUseBuffering) {
-        setVBuff(xPTR_NULL, bmFull, BUFSIZ);
+        setVBuff(nullptr, bmFull, BUFSIZ);
     } else {
-        setVBuff(xPTR_NULL, bmNo,   0);
+        setVBuff(nullptr, bmNo,   0);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -109,9 +109,9 @@ File::reopen(
 
     // buffering
     if (_isUseBuffering) {
-        setVBuff(xPTR_NULL, bmFull, BUFSIZ);
+        setVBuff(nullptr, bmFull, BUFSIZ);
     } else {
-        setVBuff(xPTR_NULL, bmNo,   0);
+        setVBuff(nullptr, bmNo,   0);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -158,7 +158,7 @@ File::detach()
 {
     HandleStdFile &handle = _handle;
 
-    _handle = xPTR_NULL;
+    _handle = nullptr;
     _filePath.clear();
 
     return handle;
@@ -300,7 +300,7 @@ File::readLine(
     tchar_t *pszRv = xTFGETS(&str.at(0), static_cast<int_t>( str.size() ), _handle.get());
     xTEST_PTR(pszRv);
 
-    // trim xPTR_NULL's from string, remove EOL
+    // trim nullptr's from string, remove EOL
     str = String::removeEol( str.c_str() );
     // out
     a_str->swap(str);

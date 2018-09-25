@@ -160,10 +160,10 @@ xNAMESPACE_END2(xl, system)
       if (AllocConsole()) {
         int_t hCrt = _open_osfhandle((long_t) GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT);
         *stdout = *(::_fdopen(hCrt, "w"));
-        ::setvbuf(stdout, xPTR_NULL, _IONBF, 0);
+        ::setvbuf(stdout, nullptr, _IONBF, 0);
 
         *stderr = *(::_fdopen(hCrt, "w"));
-        ::setvbuf(stderr, xPTR_NULL, _IONBF, 0);
+        ::setvbuf(stderr, nullptr, _IONBF, 0);
 
         return true;
       }

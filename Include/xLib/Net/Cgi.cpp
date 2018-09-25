@@ -218,7 +218,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query)
 //        if (*s == '&') {
 //            *s = '\0'; s++;
 //        }
-//        if ((vp = strchr(np, '=')) != xPTR_NULL) {
+//        if ((vp = strchr(np, '=')) != nullptr) {
 //            *vp = '\0';
 //            vp++;
 //            cgl_urlunescape(np);

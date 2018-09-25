@@ -293,7 +293,7 @@ Test_Format::unit()
         Data2<cptr_cvoid_t, std::tstring_t> data[] =
         {
             {(cptr_cvoid_t)0x7fff0fd3e100, xT("0x7fff0fd3e100")},
-            {(cptr_cvoid_t)xPTR_NULL,      xT("null")}
+            {(cptr_cvoid_t)nullptr,      xT("null")}
         };
 
         xFOR_ARRAY(i, data) {
@@ -321,7 +321,7 @@ Test_Format::unit()
         Data2<const char *, std::tstring_t> data[] =
         {
             {"bbb",                   xT("bbb")},
-            {(const char *)xPTR_NULL, xT("null")}
+            {(const char *)nullptr, xT("null")}
         };
 
         xFOR_ARRAY(i, data) {
@@ -335,7 +335,7 @@ Test_Format::unit()
         Data2<cptr_cwchar_t, std::tstring_t> data[] =
         {
             {L"bbb",                   xT("bbb")},
-            {(cptr_cwchar_t)xPTR_NULL, xT("null")}
+            {(cptr_cwchar_t)nullptr, xT("null")}
         };
 
         xFOR_ARRAY(i, data) {
@@ -541,7 +541,6 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}, {1, bbb}}")));
     }
 
-#if xLANG_CPP11
     xTEST_CASE("std::nullptr_t")
     {
         std::nullptr_t value = nullptr;
@@ -625,7 +624,6 @@ Test_Format::unit()
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{test, 3, 14, y}")));
     }
-#endif // xLANG_CPP11
 
     xTEST_CASE("QString")
     {

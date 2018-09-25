@@ -72,11 +72,11 @@ Finder::_moveNext_impl()
     int_t iRv = 0;
 
     for ( ; ; ) {
-        dirent *entryRv = xPTR_NULL;
+        dirent *entryRv = nullptr;
 
         iRv = ::readdir_r(_entry.handle.get(), &_entry.data, &entryRv);
         xTEST_EQ(iRv, 0);
-        xCHECK_RET(entryRv == xPTR_NULL, false);
+        xCHECK_RET(entryRv == nullptr, false);
 
         // filter by pattern
         iRv = ::fnmatch(xT2A(shellFilter()).c_str(), xT2A(entryName()).c_str(), 0);

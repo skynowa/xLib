@@ -27,7 +27,7 @@ Signal::_decription_impl(
     */
 
     cptr_cchar pcszRv = ::strsignal(a_signalNum);
-    if (pcszRv == xPTR_NULL) {
+    if (pcszRv == nullptr) {
         return Const::strUnknown();
     }
 

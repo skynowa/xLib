@@ -48,11 +48,11 @@ NativeError::_format_impl(
     std::tstring_t sRv;
 
     DWORD  dwRv = 0UL;
-    LPVOID buff = xPTR_NULL;
+    LPVOID buff = nullptr;
 
     dwRv = ::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM |
-        FORMAT_MESSAGE_IGNORE_INSERTS, xPTR_NULL, a_code, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-        reinterpret_cast<LPTSTR>( &buff ), 0UL, xPTR_NULL);
+        FORMAT_MESSAGE_IGNORE_INSERTS, nullptr, a_code, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+        reinterpret_cast<LPTSTR>( &buff ), 0UL, nullptr);
 
     xCHECK_RET(get() == ERROR_MR_MID_NOT_FOUND, sRv.append(xT("Unknown error")));
     xCHECK_RET(dwRv  == 0UL,                    sRv.append(xT("[Cann't format error message]")));

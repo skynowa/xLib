@@ -32,8 +32,8 @@ Volume::_fileSystem_impl() const
 
     NativeError::reset();
 
-    BOOL blRv = ::GetVolumeInformation(Path( path() ).slashAppend().c_str(), xPTR_NULL, 0UL, xPTR_NULL,
-        xPTR_NULL, xPTR_NULL, &fileSystemName[0], static_cast<DWORD>( xARRAY_SIZE(fileSystemName) ));
+    BOOL blRv = ::GetVolumeInformation(Path( path() ).slashAppend().c_str(), nullptr, 0UL, nullptr,
+        nullptr, nullptr, &fileSystemName[0], static_cast<DWORD>( xARRAY_SIZE(fileSystemName) ));
     xTEST_DIFF(blRv != FALSE && NativeError::isSuccess(), false);
 
     sRv.assign(volumeName);
@@ -51,7 +51,7 @@ Volume::_label_impl() const
     NativeError::reset();
 
     BOOL blRv = ::GetVolumeInformation(Path( path() ).slashAppend().c_str(), &volumeName[0],
-        static_cast<DWORD>( xARRAY_SIZE(volumeName) ), xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, 0UL);
+        static_cast<DWORD>( xARRAY_SIZE(volumeName) ), nullptr, nullptr, nullptr, nullptr, 0UL);
     xTEST_DIFF(blRv != FALSE && NativeError::isSuccess(), false);
 
     sRv.assign(volumeName);
@@ -106,10 +106,10 @@ Volume::_mount_impl(
     netResource.dwUsage       = RESOURCEUSAGE_CONTAINER;
     netResource.lpLocalName   = const_cast<tchar_t *>( a_destPath.c_str() );
     netResource.lpRemoteName  = const_cast<tchar_t *>( path().c_str() );
-    netResource.lpComment     = xPTR_NULL;
-    netResource.lpProvider    = xPTR_NULL;
+    netResource.lpComment     = nullptr;
+    netResource.lpProvider    = nullptr;
 
-    DWORD dwRv = ::WNetAddConnection2(&netResource, xPTR_NULL, xPTR_NULL, CONNECT_UPDATE_PROFILE);
+    DWORD dwRv = ::WNetAddConnection2(&netResource, nullptr, nullptr, CONNECT_UPDATE_PROFILE);
     xTEST_EQ(dwRv, static_cast<DWORD>( NO_ERROR ));
 }
 //-------------------------------------------------------------------------------------------------
@@ -163,7 +163,7 @@ Volume::_paths_impl(
     std::tstring_t sRv;
     DWORD          dwRv = 0UL;
 
-    dwRv = ::GetLogicalDriveStrings(0UL, xPTR_NULL);
+    dwRv = ::GetLogicalDriveStrings(0UL, nullptr);
     xTEST_DIFF(dwRv, 0UL);
 
     sRv.resize(dwRv);

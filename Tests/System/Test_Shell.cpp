@@ -92,7 +92,7 @@ Test_Shell::unit()
 
     xTEST_CASE("specialDirPath")
     {
-        m_sRv = Shell().specialDirPath(Shell::sfFonts, xPTR_NULL);
+        m_sRv = Shell().specialDirPath(Shell::sfFonts, nullptr);
         xTEST_EQ(std::tstring_t(xT("C:\\WINDOWS\\Fonts")), m_sRv);
     }
 #endif

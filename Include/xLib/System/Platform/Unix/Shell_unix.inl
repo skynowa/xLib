@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, system)
 bool_t
 Shell::_isAvailable_impl() const
 {
-    int_t iRv = xTSYSTEM(xPTR_NULL);
+    int_t iRv = xTSYSTEM(nullptr);
     xCHECK_RET(iRv == 0, false);
 
     return true;

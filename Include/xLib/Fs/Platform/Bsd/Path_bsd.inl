@@ -25,7 +25,7 @@ Path::_exe_impl()
     tchar_t     buff[PATH_MAX + 1] = {0};
     std::size_t buffSize           = sizeof(buff) - 1;
 
-    int_t iRv = ::sysctl(mib, mibSize, buff, &buffSize, xPTR_NULL, 0U);
+    int_t iRv = ::sysctl(mib, mibSize, buff, &buffSize, nullptr, 0U);
     xTEST_DIFF(iRv, - 1);
 
     sRv.assign(buff);

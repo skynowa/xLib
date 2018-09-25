@@ -26,7 +26,7 @@ SystemInfo::_numOfCpus_impl() const
     int_t  mib[]   = {CTL_HW, HW_NCPU};
     size_t resSize = sizeof(ulRv);
 
-    int_t iRv = ::sysctl(mib, static_cast<u_int>( xARRAY_SIZE(mib) ), &ulRv, &resSize, xPTR_NULL, 0);
+    int_t iRv = ::sysctl(mib, static_cast<u_int>( xARRAY_SIZE(mib) ), &ulRv, &resSize, nullptr, 0);
     xTEST_DIFF(iRv, - 1);
 
     return ulRv;
@@ -97,13 +97,13 @@ SystemInfo::_cpuModel_impl() const
     std::string value;
     size_t      valueSize = 0;
 
-    iRv = ::sysctlbyname("hw.model", xPTR_NULL, &valueSize, xPTR_NULL, 0U);
+    iRv = ::sysctlbyname("hw.model", nullptr, &valueSize, nullptr, 0U);
     xTEST_DIFF(iRv, - 1);
     xTEST_DIFF(valueSize, size_t(0));
 
     value.resize(valueSize);
 
-    iRv = ::sysctlbyname("hw.model", &value.at(0), &valueSize, xPTR_NULL, 0U);
+    iRv = ::sysctlbyname("hw.model", &value.at(0), &valueSize, nullptr, 0U);
     xTEST_DIFF(iRv, - 1);
     xTEST_EQ(value.size(), valueSize);
 
@@ -120,7 +120,7 @@ SystemInfo::_cpuSpeed_impl() const
     ulong_t cpuSpeedMHz     = 0UL;
     size_t  cpuSpeedMHzSize = sizeof(cpuSpeedMHz);
 
-    int_t iRv = ::sysctlbyname("hw.clockrate", &cpuSpeedMHz, &cpuSpeedMHzSize, xPTR_NULL, 0);
+    int_t iRv = ::sysctlbyname("hw.clockrate", &cpuSpeedMHz, &cpuSpeedMHzSize, nullptr, 0);
     xTEST_DIFF(iRv, - 1);
 
     ulRv = cpuSpeedMHz;
@@ -142,7 +142,7 @@ SystemInfo::_cpuUsage_impl() const
     ulong_t        cpuTime[CPUSTATES] = {0};
     size_t         cpuTimeSize        = sizeof(cpuTime);
 
-    int_t iRv = ::sysctlbyname("kern.cp_time", &cpuTime, &cpuTimeSize, xPTR_NULL, 0);
+    int_t iRv = ::sysctlbyname("kern.cp_time", &cpuTime, &cpuTimeSize, nullptr, 0);
     xTEST_DIFF(iRv, - 1);
 
     used       = cpuTime[CP_USER] + cpuTime[CP_NICE] + cpuTime[CP_SYS];
@@ -168,7 +168,7 @@ SystemInfo::_ramTotal_impl() const
     int_t       mib[]        = {CTL_HW, HW_PHYSMEM};
     size_t      ramTotalSize = sizeof(ramTotal);
 
-    int_t iRv = ::sysctl(mib, 2, &ramTotal, &ramTotalSize, xPTR_NULL, 0);
+    int_t iRv = ::sysctl(mib, 2, &ramTotal, &ramTotalSize, nullptr, 0);
     xTEST_DIFF(iRv, - 1);
 
     ullRv = ramTotal;
@@ -183,7 +183,7 @@ SystemInfo::_ramAvailable_impl() const
     size_t      availPhysPagesSize = sizeof(availPhysPages);
 
     int_t iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &availPhysPages,
-        &availPhysPagesSize, xPTR_NULL, 0);
+        &availPhysPagesSize, nullptr, 0);
     xTEST_DIFF(iRv, - 1);
 
     ulonglong_t ullRv = availPhysPages * pageSize();
@@ -199,7 +199,7 @@ SystemInfo::_ramUsage_impl() const
         int_t  mib[]        = {CTL_HW, HW_PHYSMEM};
         size_t ramTotalSize = sizeof(ramTotal);
 
-        int_t iRv = ::sysctl(mib, 2, &ramTotal, &ramTotalSize, xPTR_NULL, 0);
+        int_t iRv = ::sysctl(mib, 2, &ramTotal, &ramTotalSize, nullptr, 0);
         xTEST_DIFF(iRv, - 1);
     }
 
@@ -209,7 +209,7 @@ SystemInfo::_ramUsage_impl() const
         size_t      availPhysPagesSize = sizeof(availPhysPages);
 
         int_t iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &availPhysPages,
-            &availPhysPagesSize, xPTR_NULL, 0);
+            &availPhysPagesSize, nullptr, 0);
         xTEST_DIFF(iRv, - 1);
 
         ramFree = availPhysPages * pageSize();

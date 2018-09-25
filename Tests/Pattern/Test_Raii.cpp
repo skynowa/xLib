@@ -18,7 +18,7 @@ class A
 {
 public:
     A() :
-	_value(xPTR_NULL)
+	_value(nullptr)
     {};
 
     void_t construct(

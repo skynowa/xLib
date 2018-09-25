@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN2(xl, test)
 
 //-------------------------------------------------------------------------------------------------
 Unit::Unit() :
-    m_pvRv  (xPTR_NULL),
+    m_pvRv  (nullptr),
     m_chRv  (0),
     m_ucRv  (0),
     m_bRv   (false),
@@ -47,7 +47,7 @@ Unit::Unit() :
     m_msRv  (),
     m_hRv   (xNATIVE_HANDLE_NULL),
 #if xENV_WIN
-    m_hwndRv(xPTR_NULL),
+    m_hwndRv(nullptr),
 #endif
     data    ()
 {

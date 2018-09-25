@@ -28,7 +28,7 @@ FormatC::str(
 {
     xTEST_NA(a_format);
 
-    xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
+    xCHECK_RET(a_format == nullptr, std::tstring_t());
 
     std::tstring_t sRv;
 
@@ -50,13 +50,13 @@ FormatC::strV(
     xTEST_NA(a_format);
     xTEST_NA(a_args);
 
-    xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
+    xCHECK_RET(a_format == nullptr, std::tstring_t());
 
     std::size_t buffSize = 0;
     {
         va_list args;
         xVA_COPY(args, a_args);
-        cint_t iRv = xTVSNPRINTF(xPTR_NULL, 0, a_format, args);
+        cint_t iRv = xTVSNPRINTF(nullptr, 0, a_format, args);
         xVA_END(args);
 
         STD_VERIFY(iRv != - 1);
