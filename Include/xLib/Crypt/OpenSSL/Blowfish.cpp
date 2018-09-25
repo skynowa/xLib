@@ -103,7 +103,7 @@ Blowfish::clearKey()
 size_t
 Blowfish::keySizeMax()
 {
-    xTEST_STATIC(CHAR_BIT == 8);
+    static_assert(CHAR_BIT == 8, "test: CHAR_BIT");
 
     // max key size 448 bit = 56 byte
     return 448 / CHAR_BIT;

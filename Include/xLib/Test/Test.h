@@ -285,10 +285,6 @@
     ;
     ///< at this point debug code for variables is not applicable
 
-#define xTEST_STATIC(expr) \
-    { switch (0) {case 0: case (expr):;} }
-    ///< static assert
-
 #if cmOPTION_TEST_TRACING
     #define xTEST_CASE(caseName) \
         Trace() << xT("\tCase: ") << xT(caseName); \

@@ -80,15 +80,6 @@ Test_xTest::unit()
         xTEST_NA;
     }
 
-    xTEST_CASE("xTEST_STATIC")
-    {
-        xTEST_STATIC(true);
-
-    #if xTEST_IGNORE
-        xTEST_STATIC(false);
-    #endif
-    }
-
     xTEST_CASE("xVERIFY")
     {
         STD_VERIFY(true);
