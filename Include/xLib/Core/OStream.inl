@@ -18,17 +18,6 @@ xNAMESPACE_BEGIN2(xl, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T, std::size_t N>
-inline OStream &
-OStream::operator << (
-    const Array<T, N> &a_value   ///< value
-)
-{
-    _printContainer(a_value);
-
-    return *this;
-}
-//-------------------------------------------------------------------------------------------------
 template<typename T1, typename T2>
 inline OStream &
 OStream::operator << (

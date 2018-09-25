@@ -394,9 +394,9 @@ Test_Format::unit()
         }
     }
 
-    xTEST_CASE("Array")
+    xTEST_CASE("std::array")
     {
-        Array<int_t, 5> value = {{2, 16, 77, 34, 50}};
+        std::array<int_t, 5> value = {{2, 16, 77, 34, 50}};
 
         m_sRv = Format::str(xT("{}"), value);
         xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 16, 77, 34, 50}")));

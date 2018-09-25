@@ -21,9 +21,9 @@ EnumArray<T, N>::EnumArray()
 template<typename T, const std::size_t N>
 inline
 EnumArray<T, N>::EnumArray(
-	const Array<T, N> &a_enumeration
+	const std::array<T, N> &a_enumeration
 ) :
-    Array<T, N>(a_enumeration)
+    std::array<T, N>(a_enumeration)
 {
 }
 //-------------------------------------------------------------------------------------------------

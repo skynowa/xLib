@@ -8,7 +8,6 @@
 
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
-#include <xLib/Core/Array.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
@@ -46,9 +45,6 @@ public:
     OStream & operator << (const std::wstring &value);
     OStream & operator << (const std::string &value);
     OStream & operator << (const std::ustring_t &value);
-
-    template<typename T, std::size_t N>
-    OStream & operator << (const Array<T, N> &value);
 
     template<typename T1, typename T2>
     OStream & operator << (const std::pair<T1, T2> &value);

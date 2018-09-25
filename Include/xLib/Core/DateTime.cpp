@@ -8,7 +8,6 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
-#include <xLib/Core/Array.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Units.h>
 #include <xLib/Core/FormatC.h>
@@ -662,7 +661,7 @@ DateTime::daysInMonth(
 {
     xCHECK_RET(a_month == 2 && isLeapYear(a_year), 29);
 
-    const Array<int_t, monthMax + 1> monthsDays =
+    const std::array<int_t, monthMax + 1> monthsDays =
     {{
         31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
     }};
@@ -788,7 +787,7 @@ DateTime::monthStr(
 
     if (!a_isShortName) {
         // months numbering: 0-11
-        const Array<std::tstring_t, monthMax + 1> longMonths =
+        const std::array<std::tstring_t, monthMax + 1> longMonths =
         {{
             xT("January"),
             xT("February"),
@@ -807,7 +806,7 @@ DateTime::monthStr(
         sRv = longMonths[ static_cast<std::size_t>(a_month) ];
     } else {
         // months numbering: 0-11
-        const Array<std::tstring_t, monthMax + 1> shortMonths =
+        const std::array<std::tstring_t, monthMax + 1> shortMonths =
         {{
             xT("Jan"),
             xT("Feb"),
@@ -840,7 +839,7 @@ DateTime::monthNum(
     xTEST_NA(a_isShortName);
 
     // months numbering: 0-11
-    const Array<std::tstring_t, monthMax + 1> longMonths =
+    const std::array<std::tstring_t, monthMax + 1> longMonths =
     {{
         xT("January"),
         xT("February"),
@@ -857,7 +856,7 @@ DateTime::monthNum(
     }};
 
     // months numbering: 0-11
-    const Array<std::tstring_t, monthMax + 1> shortMonths =
+    const std::array<std::tstring_t, monthMax + 1> shortMonths =
     {{
         xT("Jan"),
         xT("Feb"),
@@ -899,7 +898,7 @@ DateTime::weekDayStr(
     std::tstring_t sRv;
 
     if (!a_isShortName) {
-        const Array<std::tstring_t, weekDayMax + 1> longDays =
+        const std::array<std::tstring_t, weekDayMax + 1> longDays =
         {{
             xT("Sunday"),
             xT("Monday"),
@@ -912,7 +911,7 @@ DateTime::weekDayStr(
 
         sRv = longDays[ static_cast<std::size_t>(a_week_day) ];
     } else {
-        const Array<std::tstring_t, weekDayMax + 1> shortDays =
+        const std::array<std::tstring_t, weekDayMax + 1> shortDays =
         {{
             xT("Sun"),
             xT("Mon"),
@@ -939,7 +938,7 @@ DateTime::weekDayNum(
     xTEST_NA(a_week_day);
     xTEST_NA(a_isShortName);
 
-    const Array<std::tstring_t, weekDayMax + 1> longDays =
+    const std::array<std::tstring_t, weekDayMax + 1> longDays =
     {{
         xT("Monday"),
         xT("Tuesday"),
@@ -950,7 +949,7 @@ DateTime::weekDayNum(
         xT("Sunday")
     }};
 
-    const Array<std::tstring_t, weekDayMax + 1> shortDays =
+    const std::array<std::tstring_t, weekDayMax + 1> shortDays =
     {{
         xT("Mon"),
         xT("Tue"),
