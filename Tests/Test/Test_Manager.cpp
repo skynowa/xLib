@@ -19,7 +19,7 @@ class Test_Simple1 :
 public:
                    Test_Simple1() {}
 
-    virtual bool_t unit() xOVERRIDE
+    virtual bool_t unit() override
     {
         xTEST(true);
 

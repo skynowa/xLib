@@ -23,7 +23,7 @@ public:
 	}
 
 	virtual
-	void_t onEvent(std::ctstring_t &a_fsName, cEvent a_event) xOVERRIDE
+	void_t onEvent(std::ctstring_t &a_fsName, cEvent a_event) override
 	{
 		std::tcout << xTRACE_VAR(a_fsName) << ": ";
 

@@ -61,7 +61,7 @@ public:
     std::size_t    size() const xWARN_UNUSED_RV;
 
 protected:
-    virtual uint_t onRun(void_t *param) xOVERRIDE xWARN_UNUSED_RV;
+    virtual uint_t onRun(void_t *param) override xWARN_UNUSED_RV;
 
 private:
     uint_t         _stackSize;

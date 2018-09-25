@@ -94,9 +94,9 @@ public:
         ///< closes a previously opened connection
 
     // errors
-    uint_t         lastError() const xOVERRIDE xWARN_UNUSED_RV;
+    uint_t         lastError() const override xWARN_UNUSED_RV;
         ///< error code for the most recently invoked API function that can succeed or fail
-    std::tstring_t lastErrorStr() const xOVERRIDE xWARN_UNUSED_RV;
+    std::tstring_t lastErrorStr() const override xWARN_UNUSED_RV;
         ///< error message for the most recently invoked API function that failed
 
 private:

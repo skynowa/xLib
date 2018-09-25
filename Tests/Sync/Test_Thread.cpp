@@ -15,7 +15,7 @@ class Test_Thread :
 public:
                    Test_Thread() {}
 
-    virtual bool_t unit() xOVERRIDE;
+    virtual bool_t unit() override;
 
 private:
     bool_t         unit1();
@@ -39,7 +39,7 @@ class CWorkThread :
         virtual       ~CWorkThread();
 
     protected:
-        virtual uint_t onRun      (void_t *pData) xOVERRIDE;
+        virtual uint_t onRun      (void_t *pData) override;
 };
 //-------------------------------------------------------------------------------------------------
 
