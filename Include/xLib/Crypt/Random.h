@@ -46,7 +46,7 @@ public:
     virtual       ~StdSeedPolicy();
         ///< destructor
 
-    virtual long_t next() xOVERRIDE;
+    virtual long_t next() override;
         ///< get integer in the range between 0 and RAND_MAX
 
 xPLATFORM_IMPL:
@@ -64,7 +64,7 @@ public:
     virtual       ~NativeSeedPolicy();
         ///< destructor
 
-    virtual long_t next() xOVERRIDE;
+    virtual long_t next() override;
         ///< get long integer in the range between 0 and RAND_MAX
 
 private:

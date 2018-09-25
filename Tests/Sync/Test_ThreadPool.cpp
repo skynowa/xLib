@@ -22,7 +22,7 @@ public:
     virtual       ~PoolThread();
 
 protected:
-    virtual uint_t onRun(void_t *param) xOVERRIDE;
+    virtual uint_t onRun(void_t *param) override;
 };
 //-------------------------------------------------------------------------------------------------
 PoolThread::PoolThread(

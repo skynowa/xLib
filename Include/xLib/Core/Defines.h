@@ -114,30 +114,6 @@
 #endif
     ///< calling convention
 //-------------------------------------------------------------------------------------------------
-// xOVERRIDE
-#if xLANG_CPP11
-    #define xOVERRIDE \
-        override
-#else
-    #if   xCOMPILER_MINGW
-        #define xOVERRIDE \
-            xNOT_AVAILABLE
-    #elif xCOMPILER_MS
-        #define xOVERRIDE \
-            override
-    #elif xCOMPILER_CODEGEAR
-        #define xOVERRIDE \
-            xNOT_AVAILABLE
-    #elif xCOMPILER_GNUC
-        #define xOVERRIDE \
-            xNOT_AVAILABLE
-    #else
-        #define xOVERRIDE \
-            xNOT_AVAILABLE
-    #endif
-#endif
-    ///< keyword "override"
-//-------------------------------------------------------------------------------------------------
 // xPTR_NULL
 #if xLANG_CPP11
     #define xPTR_NULL \

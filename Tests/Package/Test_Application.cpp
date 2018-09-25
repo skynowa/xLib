@@ -117,7 +117,7 @@ public:
 	}
 
     xNO_INLINE virtual int_t
-    onRun() xOVERRIDE
+    onRun() override
     {
         Failer().bug();
 
