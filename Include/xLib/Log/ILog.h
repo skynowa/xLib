@@ -29,7 +29,7 @@ public:
         lvDebug,
         lvPlain
     };
-    xTYPEDEF_CONST(Level);
+    xUSING_CONST(Level);
 
                     ILog();
         ///< constructor

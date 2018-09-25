@@ -23,7 +23,7 @@ public:
         bpWeekly,
         bpMonthly
     };
-    xTYPEDEF_CONST(Period);
+    xUSING_CONST(Period);
 
     explicit  Backup(cPeriod &period);
         ///< constructor

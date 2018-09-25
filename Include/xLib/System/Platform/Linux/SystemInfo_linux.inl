@@ -43,7 +43,7 @@ SystemInfo::_distro_impl() const
         std::tstring_t name;
     };
 
-    typedef const std::vector<_OsRelease> cos_release_t;
+    using cos_release_t = const std::vector<_OsRelease>;
 
     cos_release_t osReleases
     {

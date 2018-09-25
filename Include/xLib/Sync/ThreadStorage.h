@@ -30,9 +30,9 @@ public:
 
 private:
 #if xENV_WIN
-    typedef DWORD         index_t;
+    using index_t = DWORD;
 #elif xENV_UNIX
-    typedef pthread_key_t index_t;
+    using index_t = pthread_key_t;
 #endif
 
     index_t  _index;

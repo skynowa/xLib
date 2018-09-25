@@ -18,7 +18,7 @@ struct DonateData
     std::tstring_t yandexMoney;
     std::tstring_t private24;
 };
-xTYPEDEF_CONST(DonateData);
+xUSING_CONST(DonateData);
 
 class Donate
     ///< Donate money

@@ -16,9 +16,9 @@ class Dll
 {
 public:
 #if   xENV_WIN
-    typedef FARPROC  proc_address_t;
+    using proc_address_t = FARPROC;
 #elif xENV_UNIX
-    typedef void_t * proc_address_t;
+    using proc_address_t = void_t *;
 #endif
                    Dll();
         ///< constructor

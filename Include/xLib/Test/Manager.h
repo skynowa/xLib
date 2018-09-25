@@ -27,7 +27,7 @@ struct ManagerData
         caseLoops   (1)
     {}
 };
-xTYPEDEF_CONST(ManagerData);
+xUSING_CONST(ManagerData);
 
 class Unit;
 
@@ -48,7 +48,7 @@ public:
         ///< run all units
 
 private:
-    typedef std::vector<Unit *> units_t;
+    using units_t = std::vector<Unit *>;
 
     ManagerData _data;          ///< data
     units_t     _units;         ///< units

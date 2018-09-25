@@ -25,7 +25,7 @@ public:
         cmEncrypt = BF_ENCRYPT,
         cmDecrypt = BF_DECRYPT
     };
-    xTYPEDEF_CONST(CryptMode);
+    xUSING_CONST(CryptMode);
 
              Blowfish();
         ///< constructor

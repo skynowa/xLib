@@ -146,7 +146,7 @@ class CgiCookies
     /// CGI cookies
 {
 public:
-    typedef std::vector<CookiePv0 *> TCookies;
+    using TCookies = std::vector<CookiePv0 *>;
 
     TCookies        items;    ///< cookie items
 

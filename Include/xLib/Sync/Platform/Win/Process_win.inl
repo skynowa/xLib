@@ -216,8 +216,8 @@ Process::_currentParentId_impl()
     id_t ulRv;
 
     #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
-        // typedef __success(return >= 0) LONG NTSTATUS;
-        typedef LONG NTSTATUS;
+        // using NTSTATUS = __success(return >= 0) LONG;
+        using NTSTATUS = LONG;
 
         enum PROCESSINFOCLASS
             /// process info type
@@ -227,7 +227,7 @@ Process::_currentParentId_impl()
         };
     #endif
 
-    typedef NTSTATUS (WINAPI *Dll_NtQueryInformationProcess_t) (
+    using Dll_NtQueryInformationProcess_t = NTSTATUS (WINAPI *) (
         HANDLE           ProcessHandle,
         PROCESSINFOCLASS ProcessInformationClass,
         PVOID            ProcessInformation,

@@ -15,9 +15,9 @@ class Mutex
 {
 public:
 #if   xENV_WIN
-    typedef CRITICAL_SECTION handle_t;
+    using handle_t = CRITICAL_SECTION;
 #elif xENV_UNIX
-    typedef pthread_mutex_t  handle_t;
+    using handle_t = pthread_mutex_t;
 #endif
 
                      Mutex() {}

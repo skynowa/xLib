@@ -23,7 +23,7 @@ struct StackTraceData
         isFuncParamsDisable(true)
     {}
 };
-xTYPEDEF_CONST(StackTraceData);
+xUSING_CONST(StackTraceData);
 
 class StackTrace
     /// stack trace

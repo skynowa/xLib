@@ -34,7 +34,7 @@ public:
 		Options = 7,
 		Trace   = 8
 	};
-	xTYPEDEF_CONST(RequestType);
+	xUSING_CONST(RequestType);
 
     bool_t request(cRequestType type, BaseData &baseData, BaseDataOut *baseDataOut);
 

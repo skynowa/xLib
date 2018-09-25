@@ -20,7 +20,7 @@ public:
         tpRandomBased = 1
 
     };
-    xTYPEDEF_CONST(Type);
+    xUSING_CONST(Type);
 
                    Guid() {}
         ///< constructor

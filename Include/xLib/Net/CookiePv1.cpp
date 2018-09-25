@@ -264,8 +264,8 @@ CookiePv1::init(
     // _m_msCookie - n/a
     // rawCookie - n/a
 
-    typedef std::map<std::tstring_t, std::tstring_t/*, SCompareCI*/> TStringMap;
-    typedef std::pair<std::tstring_t, std::tstring_t>                TStringPair;
+    using TStringMap  = std::map<std::tstring_t, std::tstring_t/*, SCompareCI*/>;
+    using TStringPair = std::pair<std::tstring_t, std::tstring_t>;
 
     TStringMap     cookies;
     std::tstring_t cookie;

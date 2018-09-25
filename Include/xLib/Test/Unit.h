@@ -29,7 +29,7 @@ struct UnitData
         name       ()
     {}
 };
-xTYPEDEF_CONST(UnitData);
+xUSING_CONST(UnitData);
 
 class Unit
     /// testing

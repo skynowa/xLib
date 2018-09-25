@@ -16,9 +16,9 @@ class IpcSemaphore
 {
 public:
 #if   xENV_WIN
-    typedef Handle handle_t;
+    using handle_t = Handle;
 #elif xENV_UNIX
-    typedef sem_t *  handle_t;
+    using handle_t = sem_t *;
 #endif
 
                      IpcSemaphore();

@@ -207,7 +207,7 @@ SystemInfo::_numOfCpus_impl() const
 ulong_t
 SystemInfo::_currentCpuNum_impl() const
 {
-    typedef DWORD (WINAPI *func_t)(void_t);
+    using func_t = DWORD (WINAPI *)(void_t);
 
     Dll dll;
 

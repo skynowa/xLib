@@ -34,7 +34,7 @@ class ThreadPool :
     /// thread pool
 {
 public:
-    typedef void_t (T::*func_ptr_t)(void_t *);
+    using func_ptr_t = void_t (T::*)(void_t *);
 
     // construct? destruct
                    ThreadPool(cbool_t &isPaused, cbool_t &isAutoDelete, cbool_t &isGroupPaused,

@@ -64,10 +64,10 @@ private:
     xNO_COPY_ASSIGN(Char)
 };
 
-typedef Char<char>    CharA;
-typedef Char<wchar_t> CharW;
-typedef Char<uchar_t> CharU;
-typedef Char<tchar_t> CharT;
+using CharA = Char<char>;
+using CharW = Char<wchar_t>;
+using CharU = Char<uchar_t>;
+using CharT = Char<tchar_t>;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

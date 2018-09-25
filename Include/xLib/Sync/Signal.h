@@ -14,9 +14,9 @@ class Signal
     ///< signal
 {
 public:
-    typedef void_t (*on_info_t) (int_t sig, siginfo_t *siginfo, void_t *context);
+    using on_info_t = void_t (*) (int_t sig, siginfo_t *siginfo, void_t *context);
         ///< signal info handler type
-    typedef void_t (*on_exit_t)();
+    using on_exit_t = void_t (*)();
         ///< exit handler type
 
              Signal();

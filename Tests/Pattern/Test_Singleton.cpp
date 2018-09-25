@@ -41,7 +41,7 @@ Test_Singleton::unit()
 {
     xTEST_CASE("get")
     {
-        typedef Singleton<CLogger> logger_singleton_t;
+        using logger_singleton_t = Singleton<CLogger>;
 
         logger_singleton_t::get().open();
         logger_singleton_t::get().write();

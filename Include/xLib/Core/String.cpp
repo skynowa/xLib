@@ -124,8 +124,8 @@ String::castA(
     xCHECK_RET(!std::has_facet<std::ctype<wchar_t> >(a_locale), std::string());
     xCHECK_RET(!std::has_facet<std::ctype<char> >(a_locale),    std::string());
 
-    typedef std::wstring::traits_type::state_type     state_type_t;
-    typedef std::codecvt<wchar_t, char, state_type_t> codecvt_t;
+    using state_type_t = std::wstring::traits_type::state_type;
+    using codecvt_t    = std::codecvt<wchar_t, char, state_type_t>;
 
     std::string      asRv(a_str.size(), std::wstring::value_type());
 

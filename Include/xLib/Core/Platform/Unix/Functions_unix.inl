@@ -18,10 +18,10 @@ xNAMESPACE_BEGIN2(xl, core)
 #define CPU_SETSIZE 1024UL
 #define __NCPUBITS  (8UL * sizeof(unsigned long))
 
-typedef struct
+using cpu_set_t = struct
 {
     unsigned long __bits[CPU_SETSIZE / __NCPUBITS];
-} cpu_set_t;
+};
 
 #define CPU_SET(cpu, cpusetp) \
     ((cpusetp)->__bits[(cpu)/__NCPUBITS] |= (1UL << ((cpu) % __NCPUBITS)))

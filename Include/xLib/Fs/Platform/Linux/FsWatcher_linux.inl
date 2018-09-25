@@ -63,10 +63,8 @@ FsWatcher::_close_impl()
 
 	// _watchFds
 	{
-		typedef std::map<int_t, std::tstring_t> watch_fds_t;
-
-		xFOR_EACH_CONST(watch_fds_t, itWatchFd, _watchFds) {
-			iRv = ::inotify_rm_watch(_inotifyFd.get(), itWatchFd->first);
+		for (auto &itWatchFd : _watchFds) {
+			iRv = ::inotify_rm_watch(_inotifyFd.get(), itWatchFd.first);
 			xTEST_DIFF(iRv, -1);
 		}
 
