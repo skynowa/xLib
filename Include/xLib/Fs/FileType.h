@@ -14,7 +14,15 @@ class FileType
     /// file attribute
 {
 public:
-    enum class Type : uint64_t
+#if   xENV_WIN
+    using types_t = DWORD;
+#elif xENV_UNIX
+    using types_t = mode_t;
+#endif
+    xUSING_CONST(types_t);
+        ///< all types
+
+    enum class Type : types_t
         /// attribute
     {
     #if   xENV_WIN
@@ -45,15 +53,6 @@ public:
     #endif
     };
     xUSING_CONST(Type);
-
-#if   xENV_WIN
-    using types_t = DWORD;
-#elif xENV_UNIX
-    using types_t = mode_t;
-#endif
-
-    xUSING_CONST(types_t);
-        ///< all types
 
     explicit          FileType(std::ctstring_t &filePath);
         ///< constructor
