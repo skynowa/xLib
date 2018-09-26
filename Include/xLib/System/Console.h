@@ -15,7 +15,7 @@ class Console
     /// console
 {
 public:
-    enum Foreground
+    enum class Foreground
         /// foreground color
     {
         fgUnknown,
@@ -31,7 +31,7 @@ public:
     };
     xUSING_CONST(Foreground);
 
-    enum Background
+    enum class Background
         /// background color
     {
         bgUnknown,
@@ -47,7 +47,7 @@ public:
     };
     xUSING_CONST(Background);
 
-    enum TextAttribute
+    enum class TextAttribute
         /// text attribute
     {
         atUnknown,
@@ -60,7 +60,7 @@ public:
     };
     xUSING_CONST(TextAttribute);
 
-    enum ModalResult
+    enum class ModalResult
         /// modal result
     {
         mrAbort  = 3,

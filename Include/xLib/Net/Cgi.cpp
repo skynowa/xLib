@@ -363,8 +363,8 @@ Cgi::cgl_hex2char(char *a_what)
 CgiEnvironment::CgiEnvironment(
     Cgi &a_cgi
 ) :
-    _cgi         (a_cgi),
-    _requestType(rtUknown)
+    _cgi        (a_cgi),
+    _requestType(RequestType::rtUknown)
 {
     // fix warning "is not used"
     std::tstring_t sRv = _cgi.dump();
@@ -686,12 +686,12 @@ CgiEnvironment::_construct()
     //--------------------------------------------------
     //is data from a GET or a POST?
     if        (StringCI::compare(xT("GET"), requestMethod())) {
-        _requestType = rtGet;
+        _requestType = RequestType::rtGet;
     } else if (StringCI::compare(xT("POST"), requestMethod())) {
-        _requestType = rtPost;
+        _requestType = RequestType::rtPost;
     }
     else {
-        _requestType = rtUknown;
+        _requestType = RequestType::rtUknown;
     }
 
     return true;
@@ -851,16 +851,16 @@ CgiFormData::dump() const
 void_t
 CgiFormData::_construct()
 {
-    int_t iRv = _cgi.Environment.requestType();
+    auto iRv = _cgi.Environment.requestType();
     switch (iRv) {
-    case CgiEnvironment::rtGet:
+    case CgiEnvironment::RequestType::rtGet:
         xTEST_EQ(_cgi.Environment.queryString().empty(), false);
 
         // TODO: [skynowa] CgiFormData::_construct() - cgl_parsecgibuf()
 
         _formData = _cgi.Environment.queryString();
         break;
-    case CgiEnvironment::rtPost: {
+    case CgiEnvironment::RequestType::rtPost: {
         bool_t bRv = false;
 
         bRv = StringCI::compare(xT("application/x-www-form-urlencoded"),

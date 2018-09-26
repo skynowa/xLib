@@ -48,7 +48,7 @@ public:
         Trace() << Signal::infoDescription(*a_info) << "\n";
         Trace() << Signal::decription(0) << "\n";
 
-        FileLog log(FileLog::lsDefaultMb);
+        FileLog log( static_cast<std::size_t>(FileLog::LogSizes::lsDefaultMb) );
         log.setFilePath(xT("crash.log"));
 
         std::ctstring_t msg = Format::str(
@@ -322,7 +322,7 @@ std::tstring_t
 Application::configPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
-    std::ctstring_t ext      = Path::fileExt(Path::seConfig);
+    std::ctstring_t ext      = Path::fileExt(Path::FileExt::seConfig);
 
     return Format::str(xT("{}/{}.{}"), configDirPath(), basename, ext);
 }
@@ -332,7 +332,7 @@ std::tstring_t
 Application::logPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
-    std::ctstring_t ext      = Path::fileExt(Path::seLog);
+    std::ctstring_t ext      = Path::fileExt(Path::FileExt::seLog);
 
     return Format::str(xT("{}/{}.{}"), logDirPath(), basename, ext);
 }
@@ -342,7 +342,7 @@ std::tstring_t
 Application::dbPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
-    std::ctstring_t ext      = Path::fileExt(Path::seDb);
+    std::ctstring_t ext      = Path::fileExt(Path::FileExt::seDb);
 
     return Format::str(xT("{}/{}.{}"), dbDirPath(), basename, ext);
 }

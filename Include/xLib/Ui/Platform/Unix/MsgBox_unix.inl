@@ -28,11 +28,11 @@ MsgBox::_show_impl(
 {
     xUNUSED(a_type);
 
-    ModalResult mrRv = mrUnknown;
+    ModalResult mrRv = ModalResult::mrUnknown;
 
 #if cmXCB_FOUND
     XcbMsgBox msgBox;
-    mrRv = static_cast<MsgBox::ModalResult>( msgBox.show(a_text, a_title, XcbMsgBox::tpOk) );
+    mrRv = static_cast<MsgBox::ModalResult>( msgBox.show(a_text, a_title, XcbMsgBox::ExType::tpOk) );
 #else
     Console console;
     Console::ModalResult mrConsole = console.msgBox(a_text, a_title, 0);

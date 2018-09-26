@@ -18,7 +18,7 @@ class Blowfish
     /// blowfish
 {
 public:
-    enum CryptMode
+    enum class CryptMode
         /// crypt mode
     {
         cmUnknown = - 1,

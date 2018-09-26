@@ -20,7 +20,7 @@ class CgiEnvironment
     /// CGI environment
 {
 public:
-    enum RequestType
+    enum class RequestType
         /// request type
     {
         rtUknown,

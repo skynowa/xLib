@@ -28,7 +28,7 @@ xNAMESPACE_BEGIN2(xl, debug)
 //-------------------------------------------------------------------------------------------------
 Profiler::Profiler() :
     _isStarted(false),
-    _log      (FileLog::lsDefaultMb),
+    _log      ( static_cast<std::size_t>(FileLog::LogSizes::lsDefaultMb) ),
     _start    (0),
     _stop     (0),
     _duration (0)

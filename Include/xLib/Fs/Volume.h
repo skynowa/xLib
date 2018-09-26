@@ -14,7 +14,7 @@ class Volume
     /// volume
 {
 public:
-    enum Type
+    enum class Type
         /// drive type
     {
     #if   xENV_WIN

@@ -48,10 +48,10 @@ Guid::create(
     std::tstring_t sRv;
 
     switch (a_type) {
-    case tpRandomBased:
+    case Type::tpRandomBased:
         sRv = _randomBased_impl();
         break;
-    case tpUnknown:
+    case Type::tpUnknown:
     default:
         xTEST_FAIL;
         break;

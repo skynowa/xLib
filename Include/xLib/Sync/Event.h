@@ -21,7 +21,7 @@ public:
     using handle_t = pthread_cond_t;   ///< handle
 #endif
 
-    enum ObjectState
+    enum class ObjectState
         /// current object state
     {
         #if   xENV_WIN

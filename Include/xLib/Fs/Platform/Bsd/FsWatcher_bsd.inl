@@ -86,17 +86,17 @@ FsWatcher::_onEvent_impl(
 
 	constexpr _Event events[] =
 	{
-		{Attrib,       NOTE_ATTRIB,      "NOTE_ATTRIB"},
-		{CloseNoWrite, NOTE_CLOSE,       "NOTE_CLOSE"},
-		{CloseWrite,   NOTE_CLOSE_WRITE, "NOTE_CLOSE_WRITE"},
-		{Delete_bsd,   NOTE_DELETE,      "NOTE_DELETE"},
-		{Extend_bsd,   NOTE_EXTEND,      "NOTE_EXTEND"},
-		{Link_bsd,     NOTE_LINK,        "NOTE_LINK"},
-		{Open,         NOTE_OPEN,        "NOTE_OPEN"},
-		{Read,         NOTE_READ,        "NOTE_READ"},
-		{Moved,        NOTE_RENAME,      "NOTE_RENAME"},
-		{Revoke_bsd,   NOTE_REVOKE,      "NOTE_REVOKE"},
-		{Write_bsd,    NOTE_WRITE,       "NOTE_WRITE"}
+		{Event::Attrib,       NOTE_ATTRIB,      "NOTE_ATTRIB"},
+		{Event::CloseNoWrite, NOTE_CLOSE,       "NOTE_CLOSE"},
+		{Event::CloseWrite,   NOTE_CLOSE_WRITE, "NOTE_CLOSE_WRITE"},
+		{Event::Delete_bsd,   NOTE_DELETE,      "NOTE_DELETE"},
+		{Event::Extend_bsd,   NOTE_EXTEND,      "NOTE_EXTEND"},
+		{Event::Link_bsd,     NOTE_LINK,        "NOTE_LINK"},
+		{Event::Open,         NOTE_OPEN,        "NOTE_OPEN"},
+		{Event::Read,         NOTE_READ,        "NOTE_READ"},
+		{Event::Moved,        NOTE_RENAME,      "NOTE_RENAME"},
+		{Event::Revoke_bsd,   NOTE_REVOKE,      "NOTE_REVOKE"},
+		{Event::Write_bsd,    NOTE_WRITE,       "NOTE_WRITE"}
 	};
 
 	for (size_t i = 0; i < Utils::arraySizeT(events); ++ i) {

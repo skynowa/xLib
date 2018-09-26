@@ -14,7 +14,7 @@ class FileType
     /// file attribute
 {
 public:
-    enum Type
+    enum class Type : uint64_t
         /// attribute
     {
     #if   xENV_WIN
@@ -34,7 +34,7 @@ public:
         faNotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
         faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
     #elif xENV_UNIX
-        faInvalid           = (mode_t)- 1,
+        faInvalid           = static_cast<mode_t>(-1),
         faDirectory         = S_IFDIR,
         faCharacterDevice   = S_IFCHR,
         faBlockDevice       = S_IFBLK,

@@ -14,7 +14,7 @@ class Guid
     /// GUID (globally unique identifier)
 {
 public:
-    enum Type
+    enum class Type
     {
         tpUnknown     = 0,
         tpRandomBased = 1

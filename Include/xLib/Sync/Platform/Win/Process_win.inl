@@ -219,7 +219,7 @@ Process::_currentParentId_impl()
         // using NTSTATUS = __success(return >= 0) LONG;
         using NTSTATUS = LONG;
 
-        enum PROCESSINFOCLASS
+        enum class PROCESSINFOCLASS
             /// process info type
         {
             ProcessBasicInformation = 0,

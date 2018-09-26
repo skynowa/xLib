@@ -33,7 +33,7 @@ ErrorReport::ErrorReport(
     std::ctstring_t  &a_stackTrace,
     std::ctstring_t  &a_comment
 ) :
-    _type            (rtUnknown),
+    _type            (Type::rtUnknown),
     _report          (),
     _program         (),
     _processId       (0UL),
@@ -49,7 +49,7 @@ ErrorReport::ErrorReport(
     _stackTrace      (),
     _comment         ()
 {
-    _construct(rtStdout, a_sourceInfo, xT(""), xT(""), xT(""), xT(""), xT(""), a_nativeError,
+    _construct(Type::rtStdout, a_sourceInfo, xT(""), xT(""), xT(""), xT(""), xT(""), a_nativeError,
         a_stackTrace, a_comment);
     _initPlain();
 }

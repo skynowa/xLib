@@ -59,7 +59,7 @@ Trace::write(
     msg = FormatC::strV(a_format, args);
     xVA_END(args);
 
-    write(lvPlain, xT("%s"), msg.c_str());
+    write(Level::lvPlain, xT("%s"), msg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -78,7 +78,7 @@ Trace::write(
         msg = FormatC::strV(a_format, args);
         xVA_END(args);
 
-        if (a_level != lvPlain) {
+        if (a_level != Level::lvPlain) {
             msg = _levelString(a_level) + xT(": ") + msg;
         }
     }

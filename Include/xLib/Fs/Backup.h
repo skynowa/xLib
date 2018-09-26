@@ -14,7 +14,7 @@ class Backup
     /// backuper
 {
 public:
-    enum Period
+    enum class Period
         /// backup period
     {
         bpUnknown,

@@ -19,7 +19,7 @@ class FsWatcher
     ///< File system watcher
 {
 public:
-	enum Event
+	enum class Event
 	{
 		Unknown = 0,
 		Attrib,

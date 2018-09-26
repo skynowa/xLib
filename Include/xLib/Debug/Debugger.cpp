@@ -121,20 +121,20 @@ Debugger::reportMake(
     culong_t nativeError = NativeError::get();
 
     switch (a_report.type()) {
-    case ErrorReport::rtMsgbox:
+    case ErrorReport::Type::rtMsgbox:
         _msgboxPlain(a_report);
         break;
-    case ErrorReport::rtStdout:
+    case ErrorReport::Type::rtStdout:
         _stdoutPlain(a_report);
         break;
-    case ErrorReport::rtLog:
+    case ErrorReport::Type::rtLog:
         _loggingPlain(a_report);
         break;
-    case ErrorReport::rtStdoutLog:
+    case ErrorReport::Type::rtStdoutLog:
         _stdoutPlain(a_report);
         _loggingPlain(a_report);
         break;
-    case ErrorReport::rtException:
+    case ErrorReport::Type::rtException:
         throw Exception() << a_report.toString();
         break;
     default:
@@ -162,16 +162,17 @@ Debugger::_msgboxPlain(
     xCHECK_DO(!isEnabled(), return);
 
     MsgBox msgBox;
-    MsgBox::ModalResult mrRv = msgBox.show(a_report.toString(), xT("xLib"), MsgBox::tpAbortRetryIgnore);
+    MsgBox::ModalResult mrRv = msgBox.show(a_report.toString(), xT("xLib"),
+    	MsgBox::Type::tpAbortRetryIgnore);
     switch (mrRv) {
-    case MsgBox::mrAbort:
+    case MsgBox::ModalResult::mrAbort:
         (void_t)::exit(EXIT_FAILURE);
         break;
     default:
-    case MsgBox::mrIgnore:
+    case MsgBox::ModalResult::mrIgnore:
         xNA;
         break;
-    case MsgBox::mrRetry:
+    case MsgBox::ModalResult::mrRetry:
         if ( isActive() ) {
             breakPoint();
         } else {
@@ -194,12 +195,12 @@ Debugger::_stdoutPlain(
     Console console;
     Console::ModalResult mrRv = console.msgBox(a_report.toString(), xT("xLib"), 0);
     switch (mrRv) {
-    case Console::mrAbort:
+    case Console::ModalResult::mrAbort:
         (void_t)::exit(EXIT_FAILURE);
         break;
-    case Console::mrIgnore:
+    case Console::ModalResult::mrIgnore:
         break;
-    case Console::mrRetry:
+    case Console::ModalResult::mrRetry:
         if ( isActive() ) {
             breakPoint();
         } else {

@@ -15,7 +15,7 @@ class xNO_VTABLE ILog
     /// TODO: https://oopscenities.net/2011/04/30/c-the-curiously-recurring-template-pattern/#more-21
 {
 public:
-    enum Level
+    enum class Level
         /// log level
     {
         lvUnknown = - 1,

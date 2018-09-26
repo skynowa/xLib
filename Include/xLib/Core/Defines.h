@@ -176,21 +176,6 @@
     ///< using const types
 ///@}
 //-----------------------------------------------------------------------------------------------
-///@name Declare enum
-///@{
-#define xENUM_BEGIN(e) \
-    struct e { \
-        enum type \
-        {
-    ///< begin enum
-#define xENUM_END(e) \
-        }; \
-    }; \
-    using e##_t    = e::type; \
-    using c##e##_t = const e::type
-    ///< end enum
-///@}
-//-------------------------------------------------------------------------------------------------
 ///@name Converters
 ///@{
 #if xUNICODE

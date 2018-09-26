@@ -59,7 +59,7 @@ FsWatcher::openFiles(
     // _filePaths
     for (auto &it_filePath : a_filePaths) {
         File file;
-        file.create(it_filePath, File::omRead);
+        file.create(it_filePath, File::OpenMode::omRead);
 
         if ( !file.get().isValid() ) {
             std::tcout << "[FsWatcher] Can't open: " << it_filePath << std::endl;

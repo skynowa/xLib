@@ -16,7 +16,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-enum HandlePolicyType
+enum class HandlePolicyType
     /// error handle type
 {
     hvNative = 0,       ///< like "null"
@@ -91,35 +91,35 @@ struct HandlePolicy;
         _close_impl(a_handle); \
     }
 //-------------------------------------------------------------------------------------------------
-xHANDLE_POLICY_FACTORY(hvNative);
-xHANDLE_POLICY_FACTORY(hvNativeInvalid);
-xHANDLE_POLICY_FACTORY(hvDll);
-xHANDLE_POLICY_FACTORY(hvStdFile);
-xHANDLE_POLICY_FACTORY(hvMySqlConn);
-xHANDLE_POLICY_FACTORY(hvMySqlResult);
-xHANDLE_POLICY_FACTORY(hvCurl);
-xHANDLE_POLICY_FACTORY(hvFindDir);
-xHANDLE_POLICY_FACTORY(hvSocket);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNative);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNativeInvalid);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvDll);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvStdFile);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvMySqlConn);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvMySqlResult);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvCurl);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvFindDir);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvSocket);
 
-xHANDLE_POLICY_FACTORY_IMPL(hvNative,        xNATIVE_HANDLE_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvNativeInvalid, xNATIVE_HANDLE_INVALID);
-xHANDLE_POLICY_FACTORY_IMPL(hvDll,           nullptr);
-xHANDLE_POLICY_FACTORY_IMPL(hvStdFile,       nullptr);
-xHANDLE_POLICY_FACTORY_IMPL(hvMySqlConn,     nullptr);
-xHANDLE_POLICY_FACTORY_IMPL(hvMySqlResult,   nullptr);
-xHANDLE_POLICY_FACTORY_IMPL(hvCurl,          nullptr);
-xHANDLE_POLICY_FACTORY_IMPL(hvFindDir,       xFIND_DIR_HANDLE_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(hvSocket,        xSOCKET_HANDLE_INVALID);
+xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvNative,        xNATIVE_HANDLE_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvNativeInvalid, xNATIVE_HANDLE_INVALID);
+xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvDll,           nullptr);
+xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvStdFile,       nullptr);
+xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvMySqlConn,     nullptr);
+xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvMySqlResult,   nullptr);
+xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvCurl,          nullptr);
+xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvFindDir,       xFIND_DIR_HANDLE_NULL);
+xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvSocket,        xSOCKET_HANDLE_INVALID);
 
-using HandleNative        = Handle<native_handle_t,   hvNative>;
-using HandleNativeInvalid = Handle<native_handle_t,   hvNativeInvalid>;
-using HandleDll           = Handle<dll_handle_t,      hvDll>;
-using HandleStdFile       = Handle<FILE *,            hvStdFile>;
-using HandleMySqlConn     = Handle<MYSQL *,           hvMySqlConn>;
-using HandleMySqlResult   = Handle<MYSQL_RES *,       hvMySqlResult>;
-using HandleCurl          = Handle<CURL *,            hvCurl>;
-using HandleFindDir       = Handle<find_dir_handle_t, hvFindDir>;
-using HandleSocket        = Handle<socket_t,          hvSocket>;
+using HandleNative        = Handle<native_handle_t,   HandlePolicyType::hvNative>;
+using HandleNativeInvalid = Handle<native_handle_t,   HandlePolicyType::hvNativeInvalid>;
+using HandleDll           = Handle<dll_handle_t,      HandlePolicyType::hvDll>;
+using HandleStdFile       = Handle<FILE *,            HandlePolicyType::hvStdFile>;
+using HandleMySqlConn     = Handle<MYSQL *,           HandlePolicyType::hvMySqlConn>;
+using HandleMySqlResult   = Handle<MYSQL_RES *,       HandlePolicyType::hvMySqlResult>;
+using HandleCurl          = Handle<CURL *,            HandlePolicyType::hvCurl>;
+using HandleFindDir       = Handle<find_dir_handle_t, HandlePolicyType::hvFindDir>;
+using HandleSocket        = Handle<socket_t,          HandlePolicyType::hvSocket>;
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

@@ -56,19 +56,19 @@ Path::_fileExt_impl(
     std::tstring_t sRv;
 
     switch (a_fileExt) {
-    case seExe:
+    case FileExt::seExe:
         sRv = xT("");
         break;
-    case seDll:
+    case FileExt::seDll:
         sRv = xT("so");
         break;
-    case seLib:
+    case FileExt::seLib:
         sRv = xT("a");
         break;
-    case seObj:
+    case FileExt::seObj:
         sRv = xT("o");
         break;
-    case seShell:
+    case FileExt::seShell:
         sRv = xT("sh");
         break;
     default:

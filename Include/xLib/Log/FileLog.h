@@ -18,7 +18,7 @@ class FileLog :
     /// logging to file
 {
 public:
-    enum LogSizes
+    enum class LogSizes : uint64_t
         /// log size
     {
         lsDefaultMb    = xMB(20),

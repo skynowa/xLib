@@ -23,7 +23,7 @@ ErrorReport::ErrorReport(
     std::ctstring_t  &a_stackTrace,
     std::ctstring_t  &a_comment
 ) :
-    _type            (rtUnknown),
+    _type            (Type::rtUnknown),
     _report          (),
     _program         (),
     _processId       (0UL),
@@ -45,11 +45,11 @@ ErrorReport::ErrorReport(
     _construct(a_type, a_sourceInfo, a_var1, a_var2, var1Value, var2Value, a_exprSign,
         a_nativeError, a_stackTrace, a_comment);
     switch (a_type) {
-    case rtMsgbox:
-    case rtStdout:
-    case rtLog:
-    case rtStdoutLog:
-    case rtException:
+    case Type::rtMsgbox:
+    case Type::rtStdout:
+    case Type::rtLog:
+    case Type::rtStdoutLog:
+    case Type::rtException:
         _initPlain();
         break;
     default:
