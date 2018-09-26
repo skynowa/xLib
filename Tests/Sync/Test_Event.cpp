@@ -113,7 +113,7 @@ Test_Event::unit()
             xTEST_EQ(cbInitialState, m_bRv);
 
             Event::ObjectState osRes = objEvent.wait(5);
-            xTEST_EQ(Event::osTimeout, osRes);
+            xTEST_EQ((int)Event::ObjectState::osTimeout, (int)osRes);
 
             m_bRv = objEvent.isSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
@@ -132,7 +132,7 @@ Test_Event::unit()
             xTEST_EQ(cbInitialState, m_bRv);
 
             Event::ObjectState osRes = objEvent.wait(10);
-            xTEST_EQ(Event::osTimeout, osRes);
+            xTEST_EQ((int)Event::ObjectState::osTimeout, (int)osRes);
 
             m_bRv = objEvent.isSignaled();
             xTEST_EQ(m_bRv, false);
@@ -150,7 +150,7 @@ Test_Event::unit()
             xTEST_EQ(cbInitialState, m_bRv);
 
             Event::ObjectState osRes = objEvent.wait(10);
-            xTEST_EQ(Event::osTimeout, osRes);
+            xTEST_EQ((int)Event::ObjectState::osTimeout, (int)osRes);
 
             m_bRv = objEvent.isSignaled();
             xTEST_EQ(m_bRv, false);
@@ -168,7 +168,7 @@ Test_Event::unit()
             xTEST_EQ(cbInitialState, m_bRv);
 
             Event::ObjectState osRes = objEvent.wait(10);
-            xTEST_EQ(Event::osSignaled, osRes);
+            xTEST_EQ((int)Event::ObjectState::osSignaled, (int)osRes);
 
             m_bRv = objEvent.isSignaled();
             xTEST_EQ(m_bRv, true);

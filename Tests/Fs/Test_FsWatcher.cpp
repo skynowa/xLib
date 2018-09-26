@@ -28,64 +28,63 @@ public:
 		std::tcout << xTRACE_VAR(a_fsName) << ": ";
 
 		switch (a_event) {
-		case Attrib:
+		case Event::Attrib:
 			std::tcout << xT("Attrib");
 			break;
-		case CloseNoWrite:
+		case Event::CloseNoWrite:
 			std::tcout << xT("CloseNoWrite");
 			break;
-		case CloseWrite:
+		case Event::CloseWrite:
 			std::tcout << xT("CloseWrite");
 			break;
-		case Open:
+		case Event::Open:
 			std::tcout << xT("Open");
 			break;
-		case Read:
+		case Event::Read:
 			std::tcout << xT("Read");
 			break;
-		case Moved:
+		case Event::Moved:
 			std::tcout << xT("Moved");
 			break;
-		case Delete:
+		case Event::Delete:
 			std::tcout << xT("Delete");
 			break;
 
-
 		// Linux
-        case Modify_linux:
+        case Event::Modify_linux:
             std::tcout << xT("Modify_linux");
             break;
-        case MovedFrom_linux:
+        case Event::MovedFrom_linux:
             std::tcout << xT("MovedFrom_linux");
             break;
-        case MovedTo_linux:
+        case Event::MovedTo_linux:
             std::tcout << xT("MovedTo_linux");
             break;
-        case Create_linux:
+        case Event::Create_linux:
             std::tcout << xT("Create_linux");
             break;
-        case Delete_linux:
+        case Event::Delete_linux:
             std::tcout << xT("Delete_linux");
             break;
 
         // BSD
-        case Delete_bsd:
+        case Event::Delete_bsd:
             std::tcout << xT("Delete_bsd");
             break;
-        case Extend_bsd:
+        case Event::Extend_bsd:
             std::tcout << xT("Extend_bsd");
             break;
-        case Link_bsd:
+        case Event::Link_bsd:
             std::tcout << xT("Link_bsd");
             break;
-        case Revoke_bsd:
+        case Event::Revoke_bsd:
             std::tcout << xT("Revoke_bsd");
             break;
-        case Write_bsd:
+        case Event::Write_bsd:
             std::tcout << xT("Write_bsd");
             break;
 
-		case Unknown:
+		case Event::Unknown:
 		default:
 			std::tcout << xT("Unknown");
 			break;
