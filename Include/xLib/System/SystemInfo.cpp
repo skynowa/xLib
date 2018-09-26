@@ -77,13 +77,13 @@ SystemInfo::formatOsArch()
 
     OsArch arch = (_osArch == OsArch::oaUnknown) ? osArch() : _osArch;
     switch (arch) {
-    case SystemInfo::OsArch::oa32bit:
+    case OsArch::oa32bit:
         sRv = xT("32-bit");
         break;
-    case SystemInfo::OsArch::oa64bit:
+    case OsArch::oa64bit:
         sRv = xT("64-bit");
         break;
-    case SystemInfo::OsArch::oaUnknown:
+    case OsArch::oaUnknown:
         sRv = Const::strUnknown();
         break;
     default:
@@ -121,7 +121,7 @@ SystemInfo::currentCpuNum() const
 SystemInfo::CpuVendor
 SystemInfo::cpuVendor() const
 {
-    CpuVendor     cvRv  = CpuVendor::cvUnknown;
+    CpuVendor       cvRv  = CpuVendor::cvUnknown;
     std::ctstring_t value = _cpuVendor_impl();
 
     if      (value == std::tstring_t(xT("GenuineIntel"))) {

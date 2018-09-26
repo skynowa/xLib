@@ -65,25 +65,25 @@ Path::drive() const
 /* static */
 std::tstring_t
 Path::_fileExt_impl(
-    const FileExt &a_fileExt
+    cFileExt &a_fileExt
 )
 {
     std::tstring_t sRv;
 
     switch (a_fileExt) {
-    case seExe:
+    case FileExt::seExe:
         sRv = xT("exe");
         break;
-    case seDll:
+    case FileExt::seDll:
         sRv = xT("dll");
         break;
-    case seLib:
+    case FileExt::seLib:
         sRv = xT("lib");
         break;
-    case seObj:
+    case FileExt::seObj:
         sRv = xT("obj");
         break;
-    case seShell:
+    case FileExt::seShell:
         sRv = xT("bat");
         break;
     default:

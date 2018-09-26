@@ -39,8 +39,8 @@ xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
 SocketInit::SocketInit(
-    cushort_t &a_versionMajor,
-    cushort_t &a_versionMinor
+    cushort_t a_versionMajor,
+    cushort_t a_versionMinor
 )
 {
     _construct_impl(a_versionMajor, a_versionMinor);

@@ -145,7 +145,7 @@ Path::ext() const
 /* static */
 std::tstring_t
 Path::fileExt(
-    const FileExt &a_fileExt
+    cFileExt &a_fileExt
 )
 {
     std::tstring_t sRv;

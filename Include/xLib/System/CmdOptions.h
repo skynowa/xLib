@@ -18,12 +18,14 @@ struct CmdOptionsUsage
 		Disabled = 0,
 		Enabled  = 1
 	};
+	xUSING_CONST(EnableType);
 
 	enum class MandatoryType
 	{
 		Optional  = 0,
 		Mandatory = 1
 	};
+	xUSING_CONST(MandatoryType);
 
 	EnableType     enableType;
 	MandatoryType  mandatoryType;

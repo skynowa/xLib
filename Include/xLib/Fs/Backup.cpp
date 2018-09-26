@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 Backup::Backup(
-    cPeriod &a_period
+    cPeriod a_period
 ) :
     _period(a_period)
 {
