@@ -41,8 +41,8 @@ Test_Blowfish::unit()
             std::ustring_t decrypted;
 
             blowfish.setKey(key);
-            blowfish.encryptCfb64(plain[i], &encrypted, Blowfish::cmEncrypt);
-            blowfish.encryptCfb64(encrypted, &decrypted, Blowfish::cmDecrypt);
+            blowfish.encryptCfb64(plain[i], &encrypted, Blowfish::CryptMode::cmEncrypt);
+            blowfish.encryptCfb64(encrypted, &decrypted, Blowfish::CryptMode::cmDecrypt);
 
             xTEST_EQ(plain[i], decrypted);
             xTEST_EQ(Crc32().calc(&(plain[i]).at(0), plain[i].size()),
@@ -60,20 +60,20 @@ Test_Blowfish::unit()
 
         // prepare
         {
-            File::textWrite(filePlain, xT("text_text"), File::omWrite);
+            File::textWrite(filePlain, xT("text_text"), File::OpenMode::omWrite);
         }
 
         // test
         blowfish.setKey(key);
-        blowfish.encryptFileCfb64(filePlain, fileEncrypted, Blowfish::cmEncrypt);
-        blowfish.encryptFileCfb64(fileEncrypted, fileDecrypted, Blowfish::cmDecrypt);
+        blowfish.encryptFileCfb64(filePlain, fileEncrypted, Blowfish::CryptMode::cmEncrypt);
+        blowfish.encryptFileCfb64(fileEncrypted, fileDecrypted, Blowfish::CryptMode::cmDecrypt);
 
         {
             File fileIn;
-            fileIn.create(filePlain, File::omBinRead);
+            fileIn.create(filePlain, File::OpenMode::omBinRead);
 
             File fileOut;
-            fileOut.create(fileDecrypted, File::omBinRead);
+            fileOut.create(fileDecrypted, File::OpenMode::omBinRead);
 
             xTEST_EQ(fileIn.size(), fileOut.size());
             xTEST_EQ(Crc32().calcFile(filePlain), Crc32().calcFile(fileDecrypted));

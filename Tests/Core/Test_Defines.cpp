@@ -190,29 +190,6 @@ Test_Defines::unit()
        xUNUSED(ptr);
     }
 
-    xTEST_CASE("xENUM_...")
-    {
-        class A
-        {
-        public:
-            xENUM_BEGIN(FileMode)
-                Unknown = 0,
-                Text,
-                Bynary
-            xENUM_END(FileMode);
-
-            A::FileMode_t textMode() const
-            {
-                A::FileMode_t fileMode = FileMode::Text;
-                return fileMode;
-            }
-        };
-
-        A a;
-        A::cFileMode_t mode = a.textMode();
-        xTEST_EQ((int)mode, (int)A::FileMode::Text);
-    }
-
     xTEST_CASE("xT2U")
     {
 

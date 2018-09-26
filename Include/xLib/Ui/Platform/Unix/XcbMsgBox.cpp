@@ -75,11 +75,11 @@ XcbMsgBox::~XcbMsgBox()
     }
 }
 //-------------------------------------------------------------------------------------------------
-XcbMsgBox::ExModalResult
+XcbMsgBox::ModalResult
 XcbMsgBox::show(
     std::ctstring_t &a_text,    ///< text
     std::ctstring_t &a_title,   ///< title
-    cExType         &a_type     ///< type
+    cType           &a_type     ///< type
 )
 {
     xUNUSED(a_type);
@@ -236,7 +236,7 @@ XcbMsgBox::_setOnTop()
     xTEST_GR(_cookie.sequence, 0U);
 }
 //-------------------------------------------------------------------------------------------------
-XcbMsgBox::ExModalResult
+XcbMsgBox::ModalResult
 XcbMsgBox::_execute(
     std::cvec_tstring_t &a_text
 )
@@ -373,7 +373,7 @@ XcbMsgBox::_execute(
     } // switch
 
 l_endFor:
-    return XcbMsgBox::ExModalResult::mrOk;
+    return XcbMsgBox::ModalResult::mrOk;
 }
 //-------------------------------------------------------------------------------------------------
 

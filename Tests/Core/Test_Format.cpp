@@ -12,7 +12,7 @@ using namespace xl;
 xTEST_CLASS(Test_Format)
 xTEST_UNIT(Test_Format)
 //-------------------------------------------------------------------------------------------------
-enum EnumTest
+enum class EnumTest
 {
     etUnknown,
     etOne,
@@ -27,13 +27,13 @@ operator << (
 )
 {
     switch (a_value) {
-    case etUnknown:
+    case EnumTest::etUnknown:
         a_out << xLEX_TO_STR(etUnknown);
         break;
-    case etOne:
+    case EnumTest::etOne:
         a_out << xLEX_TO_STR(etOne);
         break;
-    case etTwo:
+    case EnumTest::etTwo:
         a_out << xLEX_TO_STR(etTwo);
         break;
     default:
@@ -640,11 +640,11 @@ Test_Format::unit()
 
     xTEST_CASE("enum")
     {
-        EnumTest value0 = etUnknown;
-        EnumTest value1 = etOne;
-        EnumTest value2 = etTwo;
+        EnumTest value0 = EnumTest::etUnknown;
+        EnumTest value1 = EnumTest::etOne;
+        EnumTest value2 = EnumTest::etTwo;
 
-        m_sRv = Format::str(xT("{}, {}, {}"), etUnknown, etOne, etTwo);
+        m_sRv = Format::str(xT("{}, {}, {}"), EnumTest::etUnknown, EnumTest::etOne, EnumTest::etTwo);
         xTEST_EQ(m_sRv, std::tstring_t(xT("etUnknown, etOne, etTwo")));
     }
 

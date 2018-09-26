@@ -16,21 +16,21 @@ xTEST_UNIT(Test_FileType)
 bool_t
 Test_FileType::unit()
 {
-    std::ctstring_t  filePath = data.tempDirPath + Const::slash() + xT("Test.txt");
-    FileType::Type value;
+    std::ctstring_t filePath = data.tempDirPath + Const::slash() + xT("Test.txt");
+    FileType::Type  value;
 
     // prepare
     {
     #if   xENV_WIN
-        value = FileType::faReadOnly;
+        value = FileType::Type::faReadOnly;
     #elif xENV_UNIX
-        value = FileType::faRegularFile;
+        value = FileType::Type::faRegularFile;
     #endif
 
         File::remove(filePath);
 
         File F;
-        F.create(filePath, File::omCreateReadWrite);
+        F.create(filePath, File::OpenMode::omCreateReadWrite);
         F.close();
 
         m_bRv = File::isExists(filePath);
@@ -41,7 +41,7 @@ Test_FileType::unit()
     {
         FileType ftType(filePath);
 
-        ftType.set(value);
+        ftType.set( static_cast<FileType::types_t>(value) );
 
         FileType::types_t faRes;
 
@@ -95,10 +95,10 @@ Test_FileType::unit()
         {
             FileType ftType(filePath);
 
-            m_bRv = ftType.isExists(FileType::faRegularFile);
+            m_bRv = ftType.isExists(FileType::Type::faRegularFile);
             xTEST_EQ(m_bRv, true);
 
-            m_bRv = ftType.isExists(FileType::faRegularFile);
+            m_bRv = ftType.isExists(FileType::Type::faRegularFile);
             xTEST_EQ(m_bRv, true);
         }
 
@@ -108,10 +108,10 @@ Test_FileType::unit()
 
             FileType ftType(csDirPath);
 
-            m_bRv = ftType.isExists(FileType::faDirectory);
+            m_bRv = ftType.isExists(FileType::Type::faDirectory);
             xTEST_EQ(m_bRv, true);
 
-            m_bRv = ftType.isExists(FileType::faDirectory);
+            m_bRv = ftType.isExists(FileType::Type::faDirectory);
             xTEST_EQ(m_bRv, true);
         }
     #endif
@@ -123,10 +123,10 @@ Test_FileType::unit()
 
     #if   xENV_WIN
         const FileType::Type cfaRemoveValue = value;
-        const FileType::Type cfaAddValue    = FileType::faHidden;
+        const FileType::Type cfaAddValue    = FileType::Type::faHidden;
     #elif xENV_UNIX
         const FileType::Type cfaRemoveValue = value;
-        const FileType::Type cfaAddValue    = FileType::faSymbolicLink;
+        const FileType::Type cfaAddValue    = FileType::Type::faSymbolicLink;
     #endif
 
         ftType.modify(cfaRemoveValue, cfaAddValue);
@@ -137,9 +137,9 @@ Test_FileType::unit()
         FileType ftType(filePath);
 
     #if   xENV_WIN
-        FileType::Type faAttribute = FileType::faNormal;
+        FileType::Type faAttribute = FileType::Type::faNormal;
     #elif xENV_UNIX
-        FileType::Type faAttribute = FileType::faRegularFile;
+        FileType::Type faAttribute = FileType::Type::faRegularFile;
     #endif
 
         ftType.clear();
@@ -158,9 +158,9 @@ Test_FileType::unit()
 
         faRv = ftType.get();
     #if   xENV_WIN
-        xTEST_EQ((ulong_t)FileType::faNormal, (ulong_t)faRv);
+        xTEST_EQ((ulong_t)FileType::Type::faNormal, (ulong_t)faRv);
     #elif xENV_UNIX
-        xTEST_EQ((ulong_t)FileType::faRegularFile, (ulong_t)faRv);
+        xTEST_EQ((ulong_t)FileType::Type::faRegularFile, (ulong_t)faRv);
     #endif
     }
 

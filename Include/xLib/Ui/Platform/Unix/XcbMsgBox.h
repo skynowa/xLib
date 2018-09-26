@@ -23,26 +23,26 @@ class XcbMsgBox
     ///<      https://www.x.org/releases/X11R7.6/doc/libxcb/tutorial/index.html
 {
 public:
-    enum class ExType
+    enum class Type
         ///< windows type
     {
         tpUnknown,
         tpOk
     };
-    xUSING_CONST(ExType);
+    xUSING_CONST(Type);
 
-    enum class ExModalResult
+    enum class ModalResult
         /// modal result
     {
         mrUnknown,
         mrOk
     };
-    xUSING_CONST(ExModalResult);
+    xUSING_CONST(ModalResult);
 
                    XcbMsgBox();
     virtual       ~XcbMsgBox();
 
-    ExModalResult  show(std::ctstring_t &text, std::ctstring_t &title, cExType &type) xWARN_UNUSED_RV;
+    ModalResult    show(std::ctstring_t &text, std::ctstring_t &title, cType &type) xWARN_UNUSED_RV;
 		///< message box with custom text, custom title, custom type
 
 private:
@@ -60,7 +60,7 @@ private:
         ///< auto resize
     void_t         _setOnTop();
         ///< move the window on the top of the stack
-	ExModalResult  _execute(std::cvec_tstring_t &text);
+	ModalResult    _execute(std::cvec_tstring_t &text);
 		///< execute
 
 private:
