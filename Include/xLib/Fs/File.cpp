@@ -60,7 +60,7 @@ File::~File()
 void_t
 File::create(
     std::ctstring_t &a_filePath,
-    const OpenMode  &a_mode
+    cOpenMode       &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -89,7 +89,7 @@ File::create(
 void_t
 File::reopen(
     std::ctstring_t &a_filePath,
-    const OpenMode  &a_mode
+    cOpenMode       &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -366,8 +366,8 @@ File::clear() const
 //-------------------------------------------------------------------------------------------------
 void_t
 File::locking(
-    const LockingMode &a_mode,
-    clong_t           &a_bytes
+    cLockingMode &a_mode,
+    clong_t      &a_bytes
 )
 {
     xTEST_NA(a_mode);
@@ -385,8 +385,8 @@ File::locking(
 //-------------------------------------------------------------------------------------------------
 void_t
 File::setPosition(
-    clong_t               &a_offset,
-    const PointerPosition &a_pos
+    clong_t          &a_offset,
+    cPointerPosition &a_pos
 ) const
 {
     xTEST_NA(a_offset);
@@ -406,9 +406,9 @@ File::position() const {
 //-------------------------------------------------------------------------------------------------
 void_t
 File::setVBuff(
-    char                *a_buff,
-    const BufferingMode &a_mode,
-    std::csize_t        &a_size
+    char           *a_buff,
+    cBufferingMode &a_mode,
+    std::csize_t   &a_size
 ) const
 {
     xTEST_NA(a_buff);
@@ -582,8 +582,8 @@ File::isExistsEx(
 /* static */
 void_t
 File::access(
-    std::ctstring_t  &a_filePath,
-    const AccessMode &a_mode
+    std::ctstring_t &a_filePath,
+    cAccessMode     &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -596,8 +596,8 @@ File::access(
 /* static */
 void_t
 File::chmod(
-    std::ctstring_t      &a_filePath,
-    const PermissionMode &a_mode
+    std::ctstring_t &a_filePath,
+    cPermissionMode &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -1105,7 +1105,7 @@ File::textWrite(
     std::ctstring_t     &a_filePath,
     std::ctstring_t     &a_separator,
     std::cmap_tstring_t &a_content,
-    const OpenMode      &a_mode
+    cOpenMode           &a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(),  false);
@@ -1220,8 +1220,8 @@ File::_nativeHandle(
 /* static */
 std::FILE *
 File::_stdHandle(
-    int_t          a_fileHandle,
-    const OpenMode &a_mode
+    int_t      a_fileHandle,
+    cOpenMode &a_mode
 )
 {
     xTEST_NA(a_fileHandle);
@@ -1236,7 +1236,7 @@ File::_stdHandle(
 /* static */
 std::tstring_t
 File::_openMode(
-    const OpenMode &a_mode
+    cOpenMode &a_mode
 )
 {
     xTEST_NA(a_mode);
