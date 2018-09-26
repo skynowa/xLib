@@ -64,7 +64,7 @@ ISocket::create(
     	static_cast<int_t>(a_protocol));
     xTEST_DIFF(_handle.isValid(), true);
 
-    _family = static_cast<short_t>(a_family);
+    _family = static_cast<sa_family_t>(a_family);
 }
 //-------------------------------------------------------------------------------------------------
 HandleSocket &

@@ -27,6 +27,7 @@ public:
         rtGet,
         rtPost
     };
+    xUSING_CONST(RequestType);
 
     explicit          CgiEnvironment(Cgi &cgi);
         ///< constructor

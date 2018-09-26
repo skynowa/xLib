@@ -40,6 +40,7 @@ public:
         // Apple family
         otMac
     };
+    xUSING_CONST(OsType);
 
     enum class OsArch
         /// OS architecture
@@ -48,6 +49,7 @@ public:
         oa32bit,
         oa64bit
     };
+    xUSING_CONST(OsArch);
 
     enum class CpuVendor
         /// CPU type
@@ -56,6 +58,7 @@ public:
         cvIntel,
         cvAmd
     };
+    xUSING_CONST(CpuVendor);
 
                    SystemInfo();
         ///< constructor

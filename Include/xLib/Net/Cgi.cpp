@@ -89,9 +89,12 @@ Cgi::pageShow(
 *
 **************************************************************************************************/
 
-namespace {
-    std::ctstring_t URI_ILLEGAL = xT("%<>{}|\\\"^`");
-    //// static std::ctstring_t ILLEGAL_CHARS = xT("()[]/|\\',;");     //for cookie
+namespace
+{
+
+std::ctstring_t URI_ILLEGAL = xT("%<>{}|\\\"^`");
+//// static std::ctstring_t ILLEGAL_CHARS = xT("()[]/|\\',;");     //for cookie
+
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

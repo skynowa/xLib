@@ -24,8 +24,8 @@ xNAMESPACE_BEGIN2(xl, net)
 //-------------------------------------------------------------------------------------------------
 void_t
 SocketInit::_construct_impl(
-    cushort_t &a_versionMajor,
-    cushort_t &a_versionMinor
+    cushort_t a_versionMajor,
+    cushort_t a_versionMinor
 ) const
 {
     WSADATA wdData = {0};

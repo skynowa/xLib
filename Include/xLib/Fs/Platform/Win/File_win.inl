@@ -33,16 +33,16 @@ File::_isFile_impl(
 {
     bool_t bRv = false;
 
-    bRv = a_type.isExists(FileType::faDirectory);
+    bRv = a_type.isExists(FileType::Type::faDirectory);
     xCHECK_RET(bRv, false);
 
-    bRv = a_type.isExists(FileType::faDevice);
+    bRv = a_type.isExists(FileType::Type::faDevice);
     xCHECK_RET(bRv, false);
 
-    bRv = a_type.isExists(FileType::faReparsePoint);
+    bRv = a_type.isExists(FileType::Type::faReparsePoint);
     xCHECK_RET(bRv, false);
 
-    bRv = a_type.isExists(FileType::faOffline);
+    bRv = a_type.isExists(FileType::Type::faOffline);
     xCHECK_RET(bRv, false);
 
     return true;

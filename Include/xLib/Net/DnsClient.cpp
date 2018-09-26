@@ -144,7 +144,7 @@ DnsClient::nameInfo(
     xTEST_GR(a_port, static_cast<ushort_t>(0));
 
     sockaddr_in socketAddr; Utils::structZeroT(socketAddr);
-    socketAddr.sin_family      = static_cast<short_t>(a_family);
+    socketAddr.sin_family      = static_cast<sa_family_t>(a_family);
     socketAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
     socketAddr.sin_port        = htons(a_port);
 

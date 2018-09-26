@@ -43,6 +43,7 @@ public:
         opPrint,
         opNull
     };
+    xUSING_CONST(Operation);
 
     enum class EShowFlag
         /// The flags that specify how an application is to be displayed when it is opened
@@ -60,6 +61,7 @@ public:
         sfShowNoActivate  = SW_SHOWNOACTIVATE,
         sfShowNormal      = SW_SHOWNORMAL
     };
+    xUSING_CONST(EShowFlag);
 
     enum class ESpecialDir
         /// special folders
@@ -124,13 +126,13 @@ public:
         sfTemplates              = CSIDL_TEMPLATES,
         sfWindows                = CSIDL_WINDOWS
     };
+    xUSING_CONST(ESpecialDir);
 
     std::tstring_t findExecutable(std::ctstring_t &fileName, std::ctstring_t &findDirPath) const
                        xWARN_UNUSED_RV;
         ///< find executable file path
-    void_t         execute(const HWND &owner, const Operation &operation,
-                       std::ctstring_t &filePath, std::ctstring_t &params, std::ctstring_t &dirPath,
-                       const EShowFlag &showCmd) const;
+    void_t         execute(const HWND &owner, cOperation &operation, std::ctstring_t &filePath,
+                        std::ctstring_t &params, std::ctstring_t &dirPath, cEShowFlag &showCmd) const;
         ///< execute
     void_t         executeEx(SHELLEXECUTEINFO &info) const;
         ///< execute
@@ -141,7 +143,7 @@ public:
     void_t         executeEmail(std::ctstring_t &toEmail, std::ctstring_t &subject,
                        std::ctstring_t &body) const;
         ///< execute email
-    std::tstring_t specialDirPath(const ESpecialDir &dir, const HANDLE &token) const
+    std::tstring_t specialDirPath(cESpecialDir &dir, const HANDLE &token) const
                        xWARN_UNUSED_RV;
         ///< get special dir path
     void_t         createShortcut(std::ctstring_t &shortCutFilePath, std::ctstring_t &filePath,
