@@ -18,16 +18,19 @@ class FileLog :
     /// logging to file
 {
 public:
-    enum class LogSizes : uint64_t
+    enum class LogSizes : std::size_t
         /// log size
     {
         lsDefaultMb    = xMB(20),
         lsDefaultMaxMb = xMB(50)
     };
+    xUSING_CONST(LogSizes);
 
                    FileLog();
         ///< constructor
-    explicit       FileLog(std::csize_t &fileSizeMaxBytes);
+    explicit       FileLog(cLogSizes fileSizeMaxBytes);
+        ///< constructor
+    explicit       FileLog(std::csize_t fileSizeMaxBytes);
         ///< constructor
     virtual       ~FileLog();
         ///< destructor
