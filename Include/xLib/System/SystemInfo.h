@@ -14,7 +14,7 @@ class SystemInfo
     /// system information
 {
 public:
-    enum OsType
+    enum class OsType
         /// OS type
     {
         otUnknown,
@@ -41,7 +41,7 @@ public:
         otMac
     };
 
-    enum OsArch
+    enum class OsArch
         /// OS architecture
     {
         oaUnknown,
@@ -49,7 +49,7 @@ public:
         oa64bit
     };
 
-    enum CpuVendor
+    enum class CpuVendor
         /// CPU type
     {
         cvUnknown,

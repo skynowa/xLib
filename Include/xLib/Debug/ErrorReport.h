@@ -17,7 +17,7 @@ class ErrorReport
     /// debug report
 {
 public:
-    enum Type
+    enum class Type
         /// type
     {
         rtUnknown,  ///< unknown

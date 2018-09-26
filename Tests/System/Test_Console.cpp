@@ -21,9 +21,12 @@ Test_Console::unit()
         Console console;
 
         std::tstring_t      text;
-        Console::Foreground foreground = Console::fgBlue;
-        Console::Background background = Console::bgYellow;
-        cint_t              attributes = Console::atBold | Console::atUnderscore | Console::atReverse;
+        Console::Foreground foreground = Console::Foreground::fgBlue;
+        Console::Background background = Console::Background::bgYellow;
+        cint_t              attributes =
+        	static_cast<int_t>(Console::TextAttribute::atBold) |
+        	static_cast<int_t>(Console::TextAttribute::atUnderscore) |
+        	static_cast<int_t>(Console::TextAttribute::atReverse);
 
         m_sRv = console.setAttributes(foreground, background, attributes);
         xTEST_NA(m_sRv);

@@ -83,7 +83,7 @@ Ssh2Client::connect()
         DnsClient::hostAddrByName(_data.hostName, &hostAddr);
     }
 
-    _tcpClient.create(ISocket::afInet, ISocket::tpStream, ISocket::ptIp);
+    _tcpClient.create(ISocket::AddressFamily::afInet, ISocket::Type::tpStream, ISocket::Protocol::ptIp);
     _tcpClient.connect(hostAddr, _data.port);
 
     _session = ::libssh2_session_init();
@@ -109,7 +109,7 @@ Ssh2Client::authPassword(
     int iRv = - 1;
 
     switch (a_userAuth) {
-    case uaPassword:
+    case UserAuth::uaPassword:
         while ((iRv = ::libssh2_userauth_password(_session, xT2A(_data.userName).c_str(),
             xT2A(_data.password).c_str())) == LIBSSH2_ERROR_EAGAIN)
         {
@@ -117,7 +117,7 @@ Ssh2Client::authPassword(
         }
 
         break;
-    case uaKeyboardInteractive:
+    case UserAuth::uaKeyboardInteractive:
         while ((iRv = ::libssh2_userauth_keyboard_interactive(_session, xT2A(_data.userName).c_str(),
             &_authPassword_OnKeyboardInteractive)) == LIBSSH2_ERROR_EAGAIN)
         {
@@ -125,7 +125,7 @@ Ssh2Client::authPassword(
         }
 
         break;
-    case uaUnknown:
+    case UserAuth::uaUnknown:
     default:
         iRv = - 1;
         break;
@@ -230,13 +230,13 @@ Ssh2Client::channelReadLine(
 
     // data format
     switch (_data.stdFormat) {
-    case Ssh2ClientData::sfRaw:
+    case Ssh2ClientData::StdFormat::sfRaw:
         // skip
         break;
-    case Ssh2ClientData::sfText:
+    case Ssh2ClientData::StdFormat::sfText:
         // TODO: [skynowa] sfText
         break;
-    case Ssh2ClientData::sfHtml:
+    case Ssh2ClientData::StdFormat::sfHtml:
         if ( !stdErr.empty() ) {
             Trace() << "\n" << stdErr;
 
@@ -256,7 +256,7 @@ Ssh2Client::channelReadLine(
             log << "\n" << stdErr << "\n\n\n";
         }
         break;
-    case Ssh2ClientData::sfUnknown:
+    case Ssh2ClientData::StdFormat::sfUnknown:
     default:
         xTEST(false);
         break;

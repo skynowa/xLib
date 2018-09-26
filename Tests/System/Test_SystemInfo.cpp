@@ -19,31 +19,31 @@ Test_SystemInfo::unit()
     xTEST_CASE("os")
     {
         const SystemInfo::OsType otType = SystemInfo().os();
-        xTEST_DIFF(SystemInfo::otUnknown, otType);
+        xTEST_DIFF((int)SystemInfo::OsType::otUnknown, (int)otType);
 
         #if   xENV_WIN
             m_bRv =
-                otType == SystemInfo::otWindows3 ||
-                otType == SystemInfo::otWindows95 ||
-                otType == SystemInfo::otWindows98 ||
-                otType == SystemInfo::otWindowsNT ||
-                otType == SystemInfo::otWindows2000 ||
-                otType == SystemInfo::otWindowsXP ||
-                otType == SystemInfo::otWindowsXPProx64Edition ||
-                otType == SystemInfo::otWindowsServer2003 ||
-                otType == SystemInfo::otWindowsHomeServer ||
-                otType == SystemInfo::otWindowsServer2003R2 ||
-                otType == SystemInfo::otWindowsVista ||
-                otType == SystemInfo::otWindowsServer2008 ||
-                otType == SystemInfo::otWindowsServer2008R2 ||
-                otType == SystemInfo::otWindows7;
+                otType == SystemInfo::OsType::otWindows3 ||
+                otType == SystemInfo::OsType::otWindows95 ||
+                otType == SystemInfo::OsType::otWindows98 ||
+                otType == SystemInfo::OsType::otWindowsNT ||
+                otType == SystemInfo::OsType::otWindows2000 ||
+                otType == SystemInfo::OsType::otWindowsXP ||
+                otType == SystemInfo::OsType::otWindowsXPProx64Edition ||
+                otType == SystemInfo::OsType::otWindowsServer2003 ||
+                otType == SystemInfo::OsType::otWindowsHomeServer ||
+                otType == SystemInfo::OsType::otWindowsServer2003R2 ||
+                otType == SystemInfo::OsType::otWindowsVista ||
+                otType == SystemInfo::OsType::otWindowsServer2008 ||
+                otType == SystemInfo::OsType::otWindowsServer2008R2 ||
+                otType == SystemInfo::OsType::otWindows7;
 
             xTEST_EQ(m_bRv, true);
         #elif xENV_UNIX
             #if xOS_FREEBSD
-                xTEST_EQ(SystemInfo::otFreeBSD, otType);
+                xTEST_EQ((int)SystemInfo::OsType::otFreeBSD, (int)otType);
             #else
-                xTEST_EQ(SystemInfo::otLinux, otType);
+                xTEST_EQ((int)SystemInfo::OsType::otLinux, (int)otType);
             #endif
         #endif
     }
@@ -62,10 +62,10 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("osArch")
     {
-        SystemInfo::OsArch oaRes = SystemInfo::oaUnknown;
+        SystemInfo::OsArch oaRes = SystemInfo::OsArch::oaUnknown;
 
         oaRes = SystemInfo().osArch();
-        xTEST_DIFF(SystemInfo::oaUnknown, oaRes);
+        xTEST_DIFF((int)SystemInfo::OsArch::oaUnknown, (int)oaRes);
     }
 
     xTEST_CASE("formatOsArch")
@@ -104,7 +104,7 @@ Test_SystemInfo::unit()
     xTEST_CASE("cpuVendor")
     {
         SystemInfo::CpuVendor cvType = SystemInfo().cpuVendor();
-        xTEST_EQ(true, SystemInfo::cvIntel == cvType || SystemInfo::cvAmd == cvType);
+        xTEST_EQ(true, SystemInfo::CpuVendor::cvIntel == cvType || SystemInfo::CpuVendor::cvAmd == cvType);
     }
 
     xTEST_CASE("cpuModel")

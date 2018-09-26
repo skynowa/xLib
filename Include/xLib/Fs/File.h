@@ -17,7 +17,7 @@ class File
     /// file
 {
 public:
-    enum OpenMode
+    enum class OpenMode
         /// open mode
     {
         omUnknown,             ///< unknown
@@ -45,7 +45,7 @@ public:
     };
 #endif
 
-    enum AccessMode
+    enum class AccessMode
         /// access mode
     {
         amExistence = 0,
@@ -54,7 +54,7 @@ public:
         amReadWrite = 6
     };
 
-    enum PointerPosition
+    enum class PointerPosition
         /// pointer position
     {
         ppError = - 1L,
@@ -63,7 +63,7 @@ public:
         ppEnd   = SEEK_END
     };
 
-    enum BufferingMode
+    enum class BufferingMode
         /// buffering mode
     {
         bmNo   = _IONBF,
@@ -71,7 +71,7 @@ public:
         bmFull = _IOFBF
     };
 
-    enum LockingMode
+    enum class LockingMode
         /// locking mode
     {
     #if   xENV_WIN
@@ -85,7 +85,7 @@ public:
     #endif
     };
 
-    enum PermissionMode
+    enum class PermissionMode
         /// permission mode
     {
     #if xENV_WIN

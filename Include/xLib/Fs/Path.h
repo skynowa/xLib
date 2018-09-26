@@ -14,7 +14,7 @@ class Path
     /// file system path
 {
 public:
-    enum FileExt
+    enum class FileExt
         /// file extension
     {
         seExe,    ///< execute module

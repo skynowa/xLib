@@ -16,7 +16,7 @@ class Thread
     /// thread
 {
 public:
-    enum Priority
+    enum class Priority
         /// priotity
     {
     #if   xENV_WIN

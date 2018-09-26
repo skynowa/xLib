@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 //-------------------------------------------------------------------------------------------------
 Config::Config() :
     _separator(Const::equal()),
-    _fileExt  ( Path::fileExt(Path::seConfig) ),
+    _fileExt  ( Path::fileExt(Path::FileExt::seConfig) ),
     _filePath (),
     _config   ()
 {
@@ -39,7 +39,7 @@ Config::Config(
     std::ctstring_t &a_filePath
 ) :
     _separator(Const::equal()),
-    _fileExt  ( Path::fileExt(Path::seConfig) ),
+    _fileExt  ( Path::fileExt(Path::FileExt::seConfig) ),
     _filePath (),
     _config   ()
 {
@@ -64,7 +64,7 @@ Config::createDefault(
 {
     xTEST_NA(a_content);
 
-    File::textWrite(path(), a_content, File::omWrite);
+    File::textWrite(path(), a_content, File::OpenMode::omWrite);
 }
 //-------------------------------------------------------------------------------------------------
 std::ctstring_t &
@@ -96,7 +96,7 @@ Config::get()
 void_t
 Config::flush() const
 {
-    File::textWrite(path(), _separator, _config, File::omWrite);
+    File::textWrite(path(), _separator, _config, File::OpenMode::omWrite);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -310,7 +310,7 @@ Config::keyDelete(
     _config.erase(a_key);
 
     // write to file
-    File::textWrite(path(), _separator, _config, File::omWrite);
+    File::textWrite(path(), _separator, _config, File::OpenMode::omWrite);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -364,7 +364,7 @@ Config::_write(
     }
 
     // write to file
-    File::textWrite(path(), _separator, _config, File::omWrite);
+    File::textWrite(path(), _separator, _config, File::OpenMode::omWrite);
 }
 //-------------------------------------------------------------------------------------------------
 

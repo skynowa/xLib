@@ -18,70 +18,70 @@ xNAMESPACE_BEGIN3(xl, internal, enums)
 static Types<MsgBox::ModalResult, ssize_t, 10> modalResults =
 {{
 #if   xENV_WIN
-    {MsgBox::mrUnknown,  - 1},
-    {MsgBox::mrOk,       IDOK},
-    {MsgBox::mrYes,      IDYES},
-    {MsgBox::mrNo,       IDNO},
-    {MsgBox::mrAbort,    IDABORT},
-    {MsgBox::mrCancel,   IDCANCEL},
-    {MsgBox::mrContinue, IDCONTINUE},
-    {MsgBox::mrIgnore,   IDIGNORE},
-    {MsgBox::mrRetry,    IDRETRY},
-    {MsgBox::mrTryAgain, IDTRYAGAIN}
+    {MsgBox::ModalResult::mrUnknown,  - 1},
+    {MsgBox::ModalResult::mrOk,       IDOK},
+    {MsgBox::ModalResult::mrYes,      IDYES},
+    {MsgBox::ModalResult::mrNo,       IDNO},
+    {MsgBox::ModalResult::mrAbort,    IDABORT},
+    {MsgBox::ModalResult::mrCancel,   IDCANCEL},
+    {MsgBox::ModalResult::mrContinue, IDCONTINUE},
+    {MsgBox::ModalResult::mrIgnore,   IDIGNORE},
+    {MsgBox::ModalResult::mrRetry,    IDRETRY},
+    {MsgBox::ModalResult::mrTryAgain, IDTRYAGAIN}
 #elif xENV_UNIX
-    {MsgBox::mrUnknown,  - 1},
-    {MsgBox::mrOk,       0},
-    {MsgBox::mrYes,      1},
-    {MsgBox::mrNo,       2},
-    {MsgBox::mrAbort,    3},
-    {MsgBox::mrCancel,   4},
-    {MsgBox::mrContinue, 5},
-    {MsgBox::mrIgnore,   6},
-    {MsgBox::mrRetry,    7},
-    {MsgBox::mrTryAgain, 8}
+    {MsgBox::ModalResult::mrUnknown,  - 1},
+    {MsgBox::ModalResult::mrOk,       0},
+    {MsgBox::ModalResult::mrYes,      1},
+    {MsgBox::ModalResult::mrNo,       2},
+    {MsgBox::ModalResult::mrAbort,    3},
+    {MsgBox::ModalResult::mrCancel,   4},
+    {MsgBox::ModalResult::mrContinue, 5},
+    {MsgBox::ModalResult::mrIgnore,   6},
+    {MsgBox::ModalResult::mrRetry,    7},
+    {MsgBox::ModalResult::mrTryAgain, 8}
 #elif xENV_APPLE
-    {MsgBox::mrUnknown,  - 1},
-    {MsgBox::mrOk,       0},
-    {MsgBox::mrYes,      1},
-    {MsgBox::mrNo,       2},
-    {MsgBox::mrAbort,    3},
-    {MsgBox::mrCancel,   4},
-    {MsgBox::mrContinue, 5},
-    {MsgBox::mrIgnore,   6},
-    {MsgBox::mrRetry,    7},
-    {MsgBox::mrTryAgain, 8}
+    {MsgBox::ModalResult::mrUnknown,  - 1},
+    {MsgBox::ModalResult::mrOk,       0},
+    {MsgBox::ModalResult::mrYes,      1},
+    {MsgBox::ModalResult::mrNo,       2},
+    {MsgBox::ModalResult::mrAbort,    3},
+    {MsgBox::ModalResult::mrCancel,   4},
+    {MsgBox::ModalResult::mrContinue, 5},
+    {MsgBox::ModalResult::mrIgnore,   6},
+    {MsgBox::ModalResult::mrRetry,    7},
+    {MsgBox::ModalResult::mrTryAgain, 8}
 #endif
 }};
 //-------------------------------------------------------------------------------------------------
 static Types<MsgBox::Type, ssize_t, 8> types =
 {{
 #if   xENV_WIN
-    {MsgBox::tpUnknown,           - 1},
-    {MsgBox::tpOk,                MB_OK},
-    {MsgBox::tpOkCancel,          MB_OKCANCEL},
-    {MsgBox::tpYesNo,             MB_YESNO},
-    {MsgBox::tpRetryCancel,       MB_RETRYCANCEL},
-    {MsgBox::tpYesNoCancel,       MB_YESNOCANCEL},
-    {MsgBox::tpAbortRetryIgnore,  MB_ABORTRETRYIGNORE},
-    {MsgBox::tpCancelTryContinue, MB_CANCELTRYCONTINUE}
+    {MsgBox::Type::tpUnknown,           - 1},
+    {MsgBox::Type::tpOk,                MB_OK},
+    {MsgBox::Type::tpOkCancel,          MB_OKCANCEL},
+    {MsgBox::Type::tpYesNo,             MB_YESNO},
+    {MsgBox::Type::tpRetryCancel,       MB_RETRYCANCEL},
+    {MsgBox::Type::tpYesNoCancel,       MB_YESNOCANCEL},
+    {MsgBox::Type::tpAbortRetryIgnore,  MB_ABORTRETRYIGNORE},
+    {MsgBox::Type::tpCancelTryContinue, MB_CANCELTRYCONTINUE}
 #elif xENV_UNIX
-    {MsgBox::tpUnknown,           - 1},
-    {MsgBox::tpOk,                0},
-    {MsgBox::tpOkCancel,          1},
-    {MsgBox::tpYesNo,             2},
-    {MsgBox::tpRetryCancel,       3},
-    {MsgBox::tpYesNoCancel,       4},
-    {MsgBox::tpAbortRetryIgnore,  5},
-    {MsgBox::tpCancelTryContinue, 6}
+    {MsgBox::Type::tpUnknown,           - 1},
+    {MsgBox::Type::tpOk,                0},
+    {MsgBox::Type::tpOkCancel,          1},
+    {MsgBox::Type::tpYesNo,             2},
+    {MsgBox::Type::tpRetryCancel,       3},
+    {MsgBox::Type::tpYesNoCancel,       4},
+    {MsgBox::Type::tpAbortRetryIgnore,  5},
+    {MsgBox::Type::tpCancelTryContinue, 6}
 #elif xENV_APPLE
-    {MsgBox::tpUnknown,           - 1},
-    {MsgBox::tpOk,                0},
-    {MsgBox::tpOkCancel,          1},
-    {MsgBox::tpYesNo,             2},
-    {MsgBox::tpRetryCancel,       3},
-    {MsgBox::tpYesNoCancel,       4},
-    {MsgBox::tpAbortRetryIgnore,  5},
-    {MsgBox::tpCancelTryContinue, 6}
+    {MsgBox::Type::tpUnknown,           - 1},
+    {MsgBox::Type::tpOk,                0},
+    {MsgBox::Type::tpOkCancel,          1},
+    {MsgBox::Type::tpYesNo,             2},
+    {MsgBox::Type::tpRetryCancel,       3},
+    {MsgBox::Type::tpYesNoCancel,       4},
+    {MsgBox::Type::tpAbortRetryIgnore,  5},
+    {MsgBox::Type::tpCancelTryContinue, 6}
 #endif
 }};
 //-------------------------------------------------------------------------------------------------

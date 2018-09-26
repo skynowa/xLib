@@ -23,7 +23,7 @@ class XcbMsgBox
     ///<      https://www.x.org/releases/X11R7.6/doc/libxcb/tutorial/index.html
 {
 public:
-    enum ExType
+    enum class ExType
         ///< windows type
     {
         tpUnknown,
@@ -31,7 +31,7 @@ public:
     };
     xUSING_CONST(ExType);
 
-    enum ExModalResult
+    enum class ExModalResult
         /// modal result
     {
         mrUnknown,

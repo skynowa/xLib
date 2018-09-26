@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN2(xl, package)
 
 struct Ssh2ClientData
 {
-    enum StdFormat
+    enum class StdFormat
     {
         sfUnknown = 0,
         sfRaw     = 1,
@@ -34,7 +34,7 @@ xUSING_CONST(Ssh2ClientData);
 class Ssh2Client
 {
 public:
-    enum UserAuth
+    enum class UserAuth
     {
         uaUnknown             = 0,
         uaPassword            = 1,

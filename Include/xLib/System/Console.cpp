@@ -108,7 +108,7 @@ Console::msgBox(
 {
     xUNUSED(a_type);
 
-    ModalResult mrRv;
+    ModalResult mrRv {};
 
     std::csize_t width     = 100;
     ctchar_t     cmdAbort  = xT('a');
@@ -146,19 +146,19 @@ Console::msgBox(
 
     switch (consoleCmd) {
     case cmdAbort:
-        mrRv = mrAbort;
+        mrRv = ModalResult::mrAbort;
         writeLine(xT("Abort..."));
         break;
     case cmdIgnore:
-        mrRv = mrIgnore;
+        mrRv = ModalResult::mrIgnore;
         writeLine(xT("Ignore..."));
         break;
     case cmdRetry:
-        mrRv = mrRetry;
+        mrRv = ModalResult::mrRetry;
         writeLine(xT("Retry..."));
         break;
     default:
-        mrRv = mrRetry;
+        mrRv = ModalResult::mrRetry;
         writeLine(xT("Retry..."));
         break;
     }

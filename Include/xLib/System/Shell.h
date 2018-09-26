@@ -33,7 +33,7 @@ public:
         ///< execute file (with params)
 
 #if xENV_WIN
-    enum Operation
+    enum class Operation
         /// operations
     {
         opEdit,
@@ -44,7 +44,7 @@ public:
         opNull
     };
 
-    enum EShowFlag
+    enum class EShowFlag
         /// The flags that specify how an application is to be displayed when it is opened
     {
         sfHide            = SW_HIDE,
@@ -61,7 +61,7 @@ public:
         sfShowNormal      = SW_SHOWNORMAL
     };
 
-    enum ESpecialDir
+    enum class ESpecialDir
         /// special folders
     {
         sfAdminTools             = CSIDL_ADMINTOOLS,

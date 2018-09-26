@@ -72,7 +72,7 @@ SmtpClient::connect()
 
     //-------------------------------------
     //������� �����
-    _socket.create(ISocket::afInet, ISocket::tpStream, ISocket::ptIp);
+    _socket.create(ISocket::AddressFamily::afInet, ISocket::Type::tpStream, ISocket::Protocol::ptIp);
 
     //-------------------------------------
     //������ �����

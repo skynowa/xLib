@@ -63,7 +63,7 @@ Pop3Client::connect()
 {
      //-------------------------------------
      //Create sock
-     _socket.create(ISocket::afInet, ISocket::tpStream, ISocket::ptIp);
+     _socket.create(ISocket::AddressFamily::afInet, ISocket::Type::tpStream, ISocket::Protocol::ptIp);
 
      //-------------------------------------
      //Parse domain
@@ -327,7 +327,7 @@ Pop3Client::retriveRaw(
     //-------------------------------------
     //��������� ���� �� ����
     File file;
-    file.create(a_dirPath + xT("\\") + a_fileName, File::omBinWrite);
+    file.create(a_dirPath + xT("\\") + a_fileName, File::OpenMode::omBinWrite);
 
     size_t writeSize = file.write((cptr_cvoid_t)&_sRv[0], _sRv.size());
     //???
@@ -383,7 +383,7 @@ Pop3Client::retriveRawAndBackup(
     //-------------------------------------
     if (!a_dirPath.empty()) {
         File original;
-        original.create(a_dirPath + xT("\\") + a_fileName, File::omBinWrite);
+        original.create(a_dirPath + xT("\\") + a_fileName, File::OpenMode::omBinWrite);
 
         size_t originalWriteSize = original.write((cptr_cvoid_t)&_sRv[0], _sRv.size());
         xTEST_DIFF(size_t(0), originalWriteSize);
@@ -392,7 +392,7 @@ Pop3Client::retriveRawAndBackup(
     //-------------------------------------
     if (!a_backupDirPath.empty()) {
         File backup;
-        backup.create(a_backupDirPath + xT("\\") + a_fileName, File::omBinWrite);
+        backup.create(a_backupDirPath + xT("\\") + a_fileName, File::OpenMode::omBinWrite);
 
         size_t backupWriteSize = backup.write((cptr_cvoid_t)&_sRv[0], _sRv.size());
         xTEST_DIFF(backupWriteSize, size_t(0));

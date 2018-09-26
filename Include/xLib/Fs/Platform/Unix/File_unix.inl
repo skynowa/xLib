@@ -18,7 +18,7 @@ File::_isFile_impl(
     const FileType &a_type
 )
 {
-    bool_t bRv = a_type.isExists(FileType::faRegularFile);
+    bool_t bRv = a_type.isExists(FileType::Type::faRegularFile);
     xCHECK_RET(!bRv, false);
 
     return true;

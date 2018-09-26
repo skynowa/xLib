@@ -162,7 +162,7 @@ Finder::dirs(
         xCHECK_DO(finder.entryName() == Const::dot2(), continue);
 
         // set filter for dirs
-        xCHECK_DO(!(FileType::faDirectory & finder.fileTypes()), continue);
+        xCHECK_DO(!(static_cast<FileType::types_t>(FileType::Type::faDirectory) & finder.fileTypes()), continue);
 
         a_dirPaths->push_back( finder.entryPath() );
 
@@ -198,7 +198,7 @@ Finder::files(
             xCHECK_DO(finder.entryName() == Const::dot2(), continue);
 
             // set filter for files
-            xCHECK_DO(FileType::faDirectory & finder.fileTypes(), continue);
+            xCHECK_DO(!(static_cast<FileType::types_t>(FileType::Type::faDirectory) & finder.fileTypes()), continue);
 
             a_filePaths->push_back(finder.entryPath());
         }

@@ -63,7 +63,7 @@ FileType::isExists(
     xTEST_EQ(filePath().empty(), false);
     xTEST_NA(a_value);
 
-    xCHECK_RET(a_value == (get() & a_value), true);
+    xCHECK_RET(a_value == static_cast<Type>(get() & static_cast<FileType::types_t>(a_value)), true);
 
     return false;
 }

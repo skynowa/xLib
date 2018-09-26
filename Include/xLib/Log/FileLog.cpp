@@ -29,7 +29,7 @@ xNAMESPACE_BEGIN2(xl, log)
 //-------------------------------------------------------------------------------------------------
 FileLog::FileLog() :
     _filePath        (),
-    _fileSizeMaxBytes(lsDefaultMb)
+    _fileSizeMaxBytes( static_cast<std::size_t>(LogSizes::lsDefaultMb) )
 {
     xTEST_EQ(_filePath.empty(), true);
 }
@@ -86,7 +86,7 @@ FileLog::write(
     msg = FormatC::strV(a_format, args);
     xVA_END(args);
 
-    write(lvPlain, xT("%s"), msg.c_str());
+    write(Level::lvPlain, xT("%s"), msg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -112,7 +112,7 @@ FileLog::write(
         msg = FormatC::strV(a_format, args);
         xVA_END(args);
 
-        if (a_level != lvPlain) {
+        if (a_level != Level::lvPlain) {
             msg = _levelString(a_level) + xT(": ") + msg;
         }
     }
@@ -120,7 +120,7 @@ FileLog::write(
     // write
     {
         File file(false);
-        file.create(filePath(), File::omAppend);
+        file.create(filePath(), File::OpenMode::omAppend);
         int_t iRv = file.write(xT("[%s] %s\n"), time.c_str(), msg.c_str());
         xTEST_DIFF(iRv, - 1);
     }

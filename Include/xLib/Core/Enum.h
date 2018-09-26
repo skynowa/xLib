@@ -57,7 +57,7 @@ xNAMESPACE_END2(xl, core)
     class Name \
     { \
     public: \
-        enum _Enum \
+        enum class _Enum \
         { \
             __VA_ARGS__ \
         }; \

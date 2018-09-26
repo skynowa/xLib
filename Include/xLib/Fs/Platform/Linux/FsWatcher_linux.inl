@@ -114,18 +114,18 @@ FsWatcher::_onEvent_impl(
 
 	constexpr _Event events[] =
 	{
-		{Read,            IN_ACCESS,        "IN_ACCESS"},
-		{Modify_linux,    IN_MODIFY,        "IN_MODIFY"},
-		{Attrib,          IN_ATTRIB,        "IN_ATTRIB"},
-		{CloseNoWrite,    IN_CLOSE_NOWRITE, "IN_CLOSE_NOWRITE"},
-		{CloseWrite,      IN_CLOSE_WRITE,   "IN_CLOSE_WRITE"},
-		{Open,            IN_OPEN,          "IN_OPEN"},
-		{MovedFrom_linux, IN_MOVED_FROM,    "IN_MOVED_FROM"},
-		{MovedTo_linux,   IN_MOVED_TO,      "IN_MOVED_TO"},
-		{Create_linux,    IN_CREATE,        "IN_CREATE"},
-		{Delete_linux,    IN_DELETE,        "IN_DELETE"},
-		{Delete,          IN_DELETE_SELF,   "IN_DELETE_SELF"},
-		{Moved,           IN_MOVE_SELF,     "IN_MOVE_SELF"},
+		{Event::Read,            IN_ACCESS,        "IN_ACCESS"},
+		{Event::Modify_linux,    IN_MODIFY,        "IN_MODIFY"},
+		{Event::Attrib,          IN_ATTRIB,        "IN_ATTRIB"},
+		{Event::CloseNoWrite,    IN_CLOSE_NOWRITE, "IN_CLOSE_NOWRITE"},
+		{Event::CloseWrite,      IN_CLOSE_WRITE,   "IN_CLOSE_WRITE"},
+		{Event::Open,            IN_OPEN,          "IN_OPEN"},
+		{Event::MovedFrom_linux, IN_MOVED_FROM,    "IN_MOVED_FROM"},
+		{Event::MovedTo_linux,   IN_MOVED_TO,      "IN_MOVED_TO"},
+		{Event::Create_linux,    IN_CREATE,        "IN_CREATE"},
+		{Event::Delete_linux,    IN_DELETE,        "IN_DELETE"},
+		{Event::Delete,          IN_DELETE_SELF,   "IN_DELETE_SELF"},
+		{Event::Moved,           IN_MOVE_SELF,     "IN_MOVE_SELF"},
 	};
 
 	for (size_t i = 0; i < Utils::arraySizeT(events); ++ i) {
