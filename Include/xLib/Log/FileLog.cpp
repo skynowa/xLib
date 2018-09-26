@@ -35,7 +35,16 @@ FileLog::FileLog() :
 }
 //-------------------------------------------------------------------------------------------------
 FileLog::FileLog(
-    std::csize_t &a_fileSizeMaxBytes
+    cLogSizes a_fileSizeMaxBytes
+) :
+    _filePath        (),
+    _fileSizeMaxBytes( static_cast<std::size_t>(a_fileSizeMaxBytes) )
+{
+    xTEST_EQ(_filePath.empty(), true);
+}
+//-------------------------------------------------------------------------------------------------
+FileLog::FileLog(
+    std::csize_t a_fileSizeMaxBytes
 ) :
     _filePath        (),
     _fileSizeMaxBytes(a_fileSizeMaxBytes)
