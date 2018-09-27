@@ -28,7 +28,7 @@ public:
         ///< format Crc32 like "0AADDEA0"
 
 private:
-    ulong_t _crc32;
+    ulong_t _crc32 {};
 
     xNO_COPY_ASSIGN(Crc32)
 };

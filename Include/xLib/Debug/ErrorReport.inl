@@ -22,22 +22,7 @@ ErrorReport::ErrorReport(
     const SourceInfo &a_sourceInfo,
     std::ctstring_t  &a_stackTrace,
     std::ctstring_t  &a_comment
-) :
-    _type            (Type::rtUnknown),
-    _report          (),
-    _program         (),
-    _processId       (0UL),
-    _threadId        (0UL),
-    _sourceFilePath  (),
-    _sourceLineNum   (),
-    _sourceFuncName  (),
-    _sourceExpr      (),
-    _sourceExprValues(),
-    _nativeError     (0UL),
-    _nativeErrorStr  (),
-    _currentDate     (),
-    _stackTrace      (),
-    _comment         ()
+)
 {
     std::ctstring_t var1Value = Format::str(xT("{}"), a_var1Value);
     std::ctstring_t var2Value = Format::str(xT("{}"), a_var2Value);

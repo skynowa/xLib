@@ -31,10 +31,10 @@ private:
     xNO_COPY_ASSIGN(Iconv)
 
 	std::csize_t _buffSize {};
-	cbool_t  _isSkipErrors {};
-    cbool_t  _isSkipEncoding {};
+	cbool_t      _isSkipErrors {};
+    cbool_t      _isSkipEncoding {};
 
-	iconv_t  _iconv {};
+	iconv_t      _iconv {};
 
 	void     _checkError() const;
 };

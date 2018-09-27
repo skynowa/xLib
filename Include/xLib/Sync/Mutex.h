@@ -37,7 +37,7 @@ public:
         ///< unlock
 
 private:
-    handle_t         _handle;   ///< mutex native handle
+    handle_t         _handle {};   ///< mutex native handle
 
     xNO_COPY_ASSIGN(Mutex)
 

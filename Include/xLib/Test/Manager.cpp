@@ -28,10 +28,7 @@ xNAMESPACE_BEGIN2(xl, test)
 Manager::Manager(
     cint_t        &a_argsNum,
     cptr_ctchar_t  a_args[]
-) :
-    _data         (),
-    _units        (),
-    _isConstructed(false)
+)
 {
     _construct(a_argsNum, a_args);
 }
@@ -39,9 +36,7 @@ Manager::Manager(
 Manager::Manager(
     cManagerData &a_data
 ) :
-    _data         (a_data),
-    _units        (),
-    _isConstructed(false)
+    _data(a_data)
 {
     _construct(0, nullptr);
 }

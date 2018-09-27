@@ -64,19 +64,19 @@ protected:
     virtual uint_t onRun(void_t *param) override xWARN_UNUSED_RV;
 
 private:
-    uint_t         _stackSize;
-    func_ptr_t     _funcPtr;
-    void_t        *_param;
+    uint_t         _stackSize {};
+    func_ptr_t     _funcPtr {};
+    void_t        *_param {};
 
-    cbool_t        _isGroupPaused;
-    cbool_t        _isGroupAutoDelete;
+    cbool_t        _isGroupPaused {};
+    cbool_t        _isGroupAutoDelete {};
 
     mutable IpcSemaphore _semaphore;
     std::list<T *> _tasks;
 
-    std::size_t    _maxRunningTasks;
-    std::size_t    _numTasks;
-    std::size_t    _currTask;
+    std::size_t    _maxRunningTasks {};
+    std::size_t    _numTasks {};
+    std::size_t    _currTask {};
 
     //static
     static Mutex   _s_mutex;

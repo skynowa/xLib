@@ -112,7 +112,7 @@ public:
         ///< language translation directory
 
 protected:
-    bool_t                 _isDevel;
+    bool_t                 _isDevel {};
     std::ctstring_t        _appGuid;
     static ApplicationInfo _info;
     static Donate          _donate;

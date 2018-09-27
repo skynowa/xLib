@@ -57,8 +57,8 @@ public:
         ///< encrypt file
 
 private:
-    BF_KEY  _key;            ///< crypt key
-    uchar_t _ivec[BF_BLOCK]; ///< ivec
+    BF_KEY  _key {};            ///< crypt key
+    uchar_t _ivec[BF_BLOCK] {}; ///< ivec
 
     xNO_COPY_ASSIGN(Blowfish)
 };

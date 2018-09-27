@@ -47,21 +47,21 @@ public:
         ///< report message
 
 private:
-    Type           _type;             ///< report type
+    Type           _type {Type::rtUnknown}; ///< report type
     std::tstring_t _report;           ///< report message
 
     // exe
     std::tstring_t _program;          ///< program name
-    ulong_t        _processId;        ///< current process id
-    ulong_t        _threadId;         ///< current thread id
+    ulong_t        _processId {};     ///< current process id
+    ulong_t        _threadId {};      ///< current thread id
 
     // source
     std::tstring_t _sourceFilePath;   ///< source file path
-    ulong_t        _sourceLineNum;    ///< source file number
+    ulong_t        _sourceLineNum {}; ///< source file number
     std::tstring_t _sourceFuncName;   ///< source function name
     std::tstring_t _sourceExpr;       ///< source expression
     std::tstring_t _sourceExprValues; ///< source expression values
-    ulong_t        _nativeError;      ///< system last error
+    ulong_t        _nativeError {};   ///< system last error
     std::tstring_t _nativeErrorStr;   ///< system last error as string
 
     // other
@@ -69,7 +69,7 @@ private:
     std::tstring_t _stackTrace;       ///< stack trace
 
     // comment
-    std::tstring_t _comment;        ///< comment
+    std::tstring_t _comment;          ///< comment
 
     void_t         _construct(cType type, const SourceInfo &sourceInfo,
                        std::ctstring_t &var1, std::ctstring_t &var2, std::ctstring_t &var1Value,

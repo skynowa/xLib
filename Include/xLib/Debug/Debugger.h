@@ -39,7 +39,7 @@ public:
         ///< make report
 
 private:
-    bool_t         _isEnabled;
+    bool_t         _isEnabled {true};
         ///< is debugger enabled
     std::tstring_t _logPath;
         ///< log path

@@ -38,11 +38,7 @@ const int16_t  lineIndent     = 24;
 
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
-XcbMsgBox::XcbMsgBox() :
-    _conn    (nullptr),
-    _screen  (nullptr),
-    _windowId(0),
-    _error   (nullptr)
+XcbMsgBox::XcbMsgBox()
 {
     // Open the connection to the X server
     int_t screenPreferredNum = 0;

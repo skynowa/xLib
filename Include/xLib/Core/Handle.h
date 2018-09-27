@@ -82,7 +82,7 @@ public:
 private:
     using handle_policy_t = HandlePolicy<T, valueT>;
 
-    T           _handle;    ///< handle
+    T           _handle {};    ///< handle
 
 xPLATFORM_IMPL:
     void_t      _setCloseOnExec_impl(cbool_t flag);

@@ -27,7 +27,7 @@ public:
         ///< maximum possible value
 
 protected:
-    uint_t _seed; ///< current seed
+    uint_t _seed {}; ///< current seed
 
 private:
     uint_t         _seedTimeBased() const;
@@ -69,10 +69,10 @@ public:
 
 private:
 #if   xENV_WIN
-    HCRYPTPROV     _hProv;  ///< CSP handle
+    HCRYPTPROV     _hProv {};  ///< CSP handle
 #elif xENV_UNIX
     #if (cmHAVE_SRANDOM_R && cmHAVE_RANDOM_R)
-        random_data _data;   ///< data for ::srandom_r()
+        random_data _data {};   ///< data for ::srandom_r()
     #endif
 #endif
 

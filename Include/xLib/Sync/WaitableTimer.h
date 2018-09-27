@@ -31,7 +31,7 @@ public:
     void_t   wait(culong_t &timeoutMsec) const;
 
 private:
-    Handle _handle;
+    Handle _handle {};
 
     xNO_COPY_ASSIGN(WaitableTimer)
 

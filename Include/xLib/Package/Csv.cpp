@@ -21,8 +21,7 @@ xNAMESPACE_BEGIN2(xl, package)
 CsvReader::CsvReader(
     cCsvData &a_data
 ) :
-    _data(a_data),
-	_rows()
+    _data(a_data)
 {
 }
 //-------------------------------------------------------------------------------------------------

@@ -39,10 +39,8 @@ Finder::Finder(
     std::ctstring_t &a_rootDirPath,   ///< target root dir
     std::ctstring_t &a_shellFilter    ///< shell wildcard pattern
 ) :
-    _entry      (),
     _rootDirPath( Path(a_rootDirPath).toNative(false) ),
-    _shellFilter(a_shellFilter),
-    _isMoveFirst(true)
+    _shellFilter(a_shellFilter)
 {
     xTEST_EQ(_entry.handle.isValid(), false);
     xTEST_EQ(a_rootDirPath.empty(),   false);
