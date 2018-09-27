@@ -242,7 +242,7 @@ public:
     *
     *******************************************************************************/
 
-    void_t         create(cAddressFamily &family, cType &type, cProtocol &protocol);
+    void_t         create(cAddressFamily family, cType type, cProtocol protocol);
         ///< creates a socket that is bound to a specific transport service provider
     HandleSocket  &handle() xWARN_UNUSED_RV;
         ///< get handle

@@ -134,7 +134,7 @@ Blowfish::encryptCfb64(
     Utils::arrayZeroT(_ivec);
 
     (void_t)::BF_cfb64_encrypt(a_in, a_out, a_inSize, &_key, _ivec, a_num,
-    	static_cast<int>(a_mode));
+    	static_cast<int_t>(a_mode));
 }
 //-------------------------------------------------------------------------------------------------
 void_t

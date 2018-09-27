@@ -29,7 +29,7 @@ public:
 
     virtual void_t write(cptr_ctchar_t format, ...) const override;
         ///< write to log
-    virtual void_t write(cLevel &level, cptr_ctchar_t format, ...) const override;
+    virtual void_t write(cLevel level, cptr_ctchar_t format, ...) const override;
         ///< write to log
 
 private:
@@ -40,7 +40,7 @@ private:
 xPLATFORM_IMPL:
     void_t         _construct_impl(std::ctstring_t &logName);
     void_t         _destruct_impl();
-    void_t         _write_impl(cLevel &level, std::ctstring_t &msg) const;
+    void_t         _write_impl(cLevel level, std::ctstring_t &msg) const;
 };
 
 xNAMESPACE_END2(xl, log)

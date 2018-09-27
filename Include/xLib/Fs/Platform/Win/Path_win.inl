@@ -65,7 +65,7 @@ Path::drive() const
 /* static */
 std::tstring_t
 Path::_fileExt_impl(
-    cFileExt &a_fileExt
+    cFileExt a_fileExt
 )
 {
     std::tstring_t sRv;

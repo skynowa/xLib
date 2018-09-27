@@ -62,17 +62,17 @@ public:
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< file path
 
-    bool_t            isExists(cType &value) const xWARN_UNUSED_RV;
+    bool_t            isExists(cType value) const xWARN_UNUSED_RV;
         ///< is exists
     types_t           get() const xWARN_UNUSED_RV;
         ///< get
-    void_t            set(ctypes_t &values) const;
+    void_t            set(ctypes_t values) const;
         ///< set
-    void_t            add(cType &value) const;
+    void_t            add(cType value) const;
         ///< add
-    void_t            remove(cType &value) const;
+    void_t            remove(cType value) const;
         ///< remove
-    void_t            modify(cType &valueRemove, cType &valueAdd) const;
+    void_t            modify(cType valueRemove, cType valueAdd) const;
         ///< modify
     void_t            clear() const;
         ///< clear (set normal attributes, only for Windows)
@@ -84,7 +84,7 @@ private:
 
 xPLATFORM_IMPL:
     types_t           _get_impl() const xWARN_UNUSED_RV;
-    void_t            _set_impl(ctypes_t &values) const;
+    void_t            _set_impl(ctypes_t values) const;
     void_t            _clear_impl() const;
 };
 

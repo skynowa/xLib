@@ -76,7 +76,7 @@ ErrorReport::toString() const
 //-------------------------------------------------------------------------------------------------
 void_t
 ErrorReport::_construct(
-    cType            &a_type,
+    cType             a_type,
     const SourceInfo &a_sourceInfo,
     std::ctstring_t  &a_var1,
     std::ctstring_t  &a_var2,

@@ -53,9 +53,9 @@ Console::~Console()
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Console::setAttributes(
-    cForeground &a_foreground,
-    cBackground &a_background,
-    cint_t        &a_attributes
+    cForeground a_foreground,
+    cBackground a_background,
+    cint_t      a_attributes
 ) const
 {
     return _setAttributes_impl(a_foreground, a_background, a_attributes);

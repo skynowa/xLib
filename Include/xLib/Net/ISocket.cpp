@@ -53,9 +53,9 @@ ISocket::~ISocket()
 //-------------------------------------------------------------------------------------------------
 void_t
 ISocket::create(
-    cAddressFamily &a_family,
-    cType          &a_type,
-    cProtocol      &a_protocol
+    cAddressFamily a_family,
+    cType          a_type,
+    cProtocol      a_protocol
 )
 {
     xTEST_EQ(_handle.isValid(), false);

@@ -42,7 +42,7 @@ public:
                    XcbMsgBox();
     virtual       ~XcbMsgBox();
 
-    ModalResult    show(std::ctstring_t &text, std::ctstring_t &title, cType &type) xWARN_UNUSED_RV;
+    ModalResult    show(std::ctstring_t &text, std::ctstring_t &title, cType type) xWARN_UNUSED_RV;
 		///< message box with custom text, custom title, custom type
 
 private:

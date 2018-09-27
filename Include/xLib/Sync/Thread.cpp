@@ -262,7 +262,7 @@ Thread::isExited()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::setPriority(
-    const Priority &a_priority
+    const Priority a_priority
 ) const
 {
     _setPriority_impl(a_priority);

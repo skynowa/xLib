@@ -79,7 +79,7 @@ XcbMsgBox::ModalResult
 XcbMsgBox::show(
     std::ctstring_t &a_text,    ///< text
     std::ctstring_t &a_title,   ///< title
-    cType           &a_type     ///< type
+    cType            a_type     ///< type
 )
 {
     xUNUSED(a_type);

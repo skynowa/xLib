@@ -49,7 +49,7 @@ ILog::isEnabled() const
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 ILog::_levelString(
-    cLevel &a_level
+    cLevel a_level
 ) const
 {
     std::tstring_t sRv;

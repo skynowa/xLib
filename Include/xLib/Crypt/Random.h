@@ -27,7 +27,7 @@ public:
         ///< maximum possible value
 
 protected:
-    uint_t         _seed; ///< current seed
+    uint_t _seed; ///< current seed
 
 private:
     uint_t         _seedTimeBased() const;

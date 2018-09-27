@@ -105,7 +105,7 @@ public:
     std::tstring_t dll() xWARN_UNUSED_RV;
         ///< get full path to dll
     static
-    std::tstring_t fileExt(cFileExt &fileExt) xWARN_UNUSED_RV;
+    std::tstring_t fileExt(cFileExt fileExt) xWARN_UNUSED_RV;
         ///< get standard extension
 
     static
@@ -153,7 +153,7 @@ xPLATFORM_IMPL:
     static
     std::tstring_t _dll_impl() xWARN_UNUSED_RV;
     static
-    std::tstring_t _fileExt_impl(cFileExt &fileExt) xWARN_UNUSED_RV;
+    std::tstring_t _fileExt_impl(cFileExt fileExt) xWARN_UNUSED_RV;
     static
     bool_t         _isNameValid_impl(std::ctstring_t &fileName,
                       std::tstring_t *fileNameValid = nullptr) xWARN_UNUSED_RV;
