@@ -33,7 +33,7 @@ public:
     void_t         disconnect();
 
 private:
-    TcpClient    _socket;
+    TcpClient      _socket;
     std::tstring_t _user;
     std::tstring_t _password;
     std::tstring_t _server;

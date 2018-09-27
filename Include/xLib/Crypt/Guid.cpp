@@ -42,7 +42,7 @@ xNAMESPACE_BEGIN2(xl, crypt)
 /* static */
 std::tstring_t
 Guid::create(
-    cType &a_type
+    cType a_type
 ) const
 {
     std::tstring_t sRv;

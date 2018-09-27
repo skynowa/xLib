@@ -31,9 +31,9 @@ Console::_destruct_impl()
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Console::_setAttributes_impl(
-    cForeground &a_foreground,
-    cBackground &a_background,
-    cint_t      &a_attributes
+    cForeground a_foreground,
+    cBackground a_background,
+    cint_t      a_attributes
 ) const
 {
     Foreground foregroundColor;

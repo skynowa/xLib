@@ -24,15 +24,15 @@ public:
     enum class ObjectState
         /// current object state
     {
-        #if   xENV_WIN
-            osSignaled = WAIT_OBJECT_0, ///< signaled
-            osTimeout  = WAIT_TIMEOUT,  ///< time-out interval elapsed and the object's state is nonsignaled
-            osFailed   = WAIT_FAILED    ///< failed
-        #elif xENV_UNIX
-            osSignaled = 0,             ///< signaled
-            osTimeout  = ETIMEDOUT,     ///< time-out interval elapsed and the object's state is nonsignaled
-            osFailed /* other values */ ///< failed
-        #endif
+	#if   xENV_WIN
+		osSignaled = WAIT_OBJECT_0, ///< signaled
+		osTimeout  = WAIT_TIMEOUT,  ///< time-out interval elapsed and the object's state is nonsignaled
+		osFailed   = WAIT_FAILED    ///< failed
+	#elif xENV_UNIX
+		osSignaled = 0,             ///< signaled
+		osTimeout  = ETIMEDOUT,     ///< time-out interval elapsed and the object's state is nonsignaled
+		osFailed /* other values */ ///< failed
+	#endif
     };
 
 
@@ -57,7 +57,7 @@ public:
 
 private:
 #if   xENV_WIN
-    Handle         _event;        ///< event
+    Handle           _event;        ///< event
 #elif xENV_UNIX
     pthread_mutex_t  _mutex;        ///< mutex
     handle_t         _cond;         ///< condition variable

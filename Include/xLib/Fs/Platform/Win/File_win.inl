@@ -9,7 +9,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 //-------------------------------------------------------------------------------------------------
 void_t
 File::setMode(
-    cTranslationMode &a_mode
+    cTranslationMode a_mode
 ) const
 {
     xTEST_NA(a_mode);

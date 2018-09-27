@@ -101,8 +101,8 @@ FileLog::write(
 /* virtual */
 void_t
 FileLog::write(
-    cLevel        &a_level,
-    cptr_ctchar_t  a_format, ...
+    cLevel        a_level,
+    cptr_ctchar_t a_format, ...
 ) const
 {
     xCHECK_DO(!isEnabled(),       return);

@@ -16,7 +16,7 @@ MsgBox::ModalResult
 MsgBox::_show_impl(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
-    cType           &a_type    /* = tpOk */
+    cType            a_type    /* = tpOk */
 ) const
 {
     ModalResult mrRv = ModalResult::mrAbort;

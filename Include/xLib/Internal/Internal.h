@@ -37,13 +37,13 @@ struct Types
     Type<crossT, implT> values[sizeT]; ///< crossplatform to implementation (native) values
 
     crossT
-    toCross(std::cssize_t &a_value) const
+    toCross(std::cssize_t a_value) const
     {
         return static_cast<crossT>( values[a_value].cross );
     }
         ///< implementation (native) value to crossplatform
     implT
-    toImpl(std::cssize_t &a_value) const
+    toImpl(std::cssize_t a_value) const
     {
         return static_cast<implT>( values[a_value].impl );
     }
