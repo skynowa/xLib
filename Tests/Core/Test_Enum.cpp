@@ -100,7 +100,6 @@ Test_Enum::unit()
         }
     }
 
-
     // EnumArray
     {
     #if xTEMP_DISABLED
@@ -187,6 +186,33 @@ Test_Enum::unit()
             std::cout << xTRACE_VAR(Color::ttLast)    << std::endl;
         }
     #endif
+
+		/**************************************************************************************************
+		*   Operators
+		*
+		**************************************************************************************************/
+
+    	enum class Type
+		{
+			Zero  = 0,
+			One   = 1,
+			Two   = 2,
+			Three = 3
+		};
+
+		xTEST_CASE("Operators::operator ++")
+		{
+			Type t {Type::Zero};
+			++ t;
+			xTEST_EQ((int_t)t, (int_t)Type::One);
+		}
+
+		xTEST_CASE("Operators::operator --")
+		{
+			Type t {Type::Three};
+			-- t;
+			xTEST_EQ((int_t)t, (int_t)Type::Two);
+		}
     }
 
     return true;
