@@ -19,30 +19,14 @@ xNAMESPACE_BEGIN2(xl, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-CookiePv1::CookiePv1() :
-    _name    (),
-    _value   (),
-    _comment (),
-    _domain  (),
-    _path    (),
-    _maxAge (- 1),
-    _isSecure  (false),
-    _isHttpOnly(false)
+CookiePv1::CookiePv1()
 {
     init(std::tstring_t());
 }
 //-------------------------------------------------------------------------------------------------
 CookiePv1::CookiePv1(
     std::ctstring_t &a_rawCookie
-) :
-    _name    (),
-    _value   (),
-    _comment (),
-    _domain  (),
-    _path    (),
-    _maxAge (- 1),
-    _isSecure  (false),
-    _isHttpOnly(false)
+)
 {
     init(a_rawCookie);
 }

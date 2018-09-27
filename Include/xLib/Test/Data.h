@@ -16,7 +16,7 @@ template<typename T1>
 struct Data1
     /// test data
 {
-    T1 test;
+    T1 test {};
 };
 
 using data1_bool_t      =  Data1<bool_t>;
@@ -44,8 +44,8 @@ template<typename T1, class T2>
 struct Data2
     /// test data
 {
-    T1 test;
-    T2 expect;
+    T1 test {};
+    T2 expect {};
 };
 
 using data2_bool_t      = Data2<std::tstring_t, bool_t>;
@@ -73,9 +73,9 @@ template<typename T1, class T2, class T3>
 struct Data3
     /// test data
 {
-    T1 test1;
-    T2 test2;
-    T3 expect;
+    T1 test1 {};
+    T2 test2 {};
+    T3 expect {};
 };
 
 using data3_bool_t      = Data3<std::tstring_t, std::tstring_t, bool_t>;

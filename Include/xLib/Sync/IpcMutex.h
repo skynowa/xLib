@@ -36,8 +36,8 @@ public:
         ///< lock
 
 private:
-    handle_t         _handle;   ///< mutex native handle
-    std::tstring_t   _name;     ///< mutex name
+    handle_t         _handle {};    ///< mutex native handle
+    std::tstring_t   _name;         ///< mutex name
 
     xNO_COPY_ASSIGN(IpcMutex)
 

@@ -43,10 +43,6 @@ xNAMESPACE_BEGIN2(xl, log)
 
 //-------------------------------------------------------------------------------------------------
 SystemLog::SystemLog()
-#if xENV_WIN
-    :
-    _handle(xNATIVE_HANDLE_NULL)
-#endif
 {
     _construct_impl( Path( Path::exe() ).fileBaseName() );
 }
@@ -54,10 +50,6 @@ SystemLog::SystemLog()
 SystemLog::SystemLog(
     std::ctstring_t &a_logName
 )
-#if xENV_WIN
-    :
-    _handle(xNATIVE_HANDLE_NULL)
-#endif
 {
     _construct_impl(a_logName);
 }

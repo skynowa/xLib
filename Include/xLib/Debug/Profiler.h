@@ -34,12 +34,12 @@ public:
         ///< stop, start measurement
 
 private:
-    bool_t         _isStarted;  ///< is started
-    FileLog        _log;        ///< file log
+    bool_t         _isStarted {};  ///< is started
+    FileLog        _log {FileLog::LogSizes::lsDefaultMb};   ///< file log
 
-    std::clock_t   _start;      ///< start value
-    std::clock_t   _stop;       ///< stop value
-    std::clock_t   _duration;   ///< duration value
+    std::clock_t   _start {};      ///< start value
+    std::clock_t   _stop {};       ///< stop value
+    std::clock_t   _duration {};   ///< duration value
 
     void_t         _reset();
         ///< reset all data

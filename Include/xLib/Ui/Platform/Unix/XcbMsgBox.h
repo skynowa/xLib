@@ -46,11 +46,11 @@ public:
 		///< message box with custom text, custom title, custom type
 
 private:
-    xcb_connection_t    *_conn;		///< connection
-    xcb_screen_t        *_screen;	///< screen
-    xcb_window_t         _windowId;	///< window ID
-    xcb_void_cookie_t    _cookie;	///< cookie
-    xcb_generic_error_t *_error;	///< error
+    xcb_connection_t    *_conn {};		///< connection
+    xcb_screen_t        *_screen {};	///< screen
+    xcb_window_t         _windowId {};	///< window ID
+    xcb_void_cookie_t    _cookie {};	///< cookie
+    xcb_generic_error_t *_error {};	    ///< error
 
     void_t         _setTitle(std::ctstring_t &text);
         ///< set title

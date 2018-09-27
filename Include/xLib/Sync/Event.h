@@ -57,15 +57,15 @@ public:
 
 private:
 #if   xENV_WIN
-    Handle           _event;        ///< event
+    Handle           _event;            ///< event
 #elif xENV_UNIX
-    pthread_mutex_t  _mutex;        ///< mutex
-    handle_t         _cond;         ///< condition variable
-    bool_t           _isSignaled;   ///< is signaled flag
+    pthread_mutex_t  _mutex {};         ///< mutex
+    handle_t         _cond {};          ///< condition variable
+    bool_t           _isSignaled {};    ///< is signaled flag
 #endif
 
-    cbool_t          _isAutoReset;  ///< auto-reset flag
-    cbool_t          _initState;    ///< initial state
+    cbool_t          _isAutoReset {};   ///< auto-reset flag
+    cbool_t          _initState {};     ///< initial state
 
     xNO_COPY_ASSIGN(Event)
 

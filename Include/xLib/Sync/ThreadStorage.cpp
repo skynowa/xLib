@@ -38,12 +38,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-ThreadStorage::ThreadStorage() :
-#if   xENV_WIN
-    _index(TLS_OUT_OF_INDEXES)
-#elif xENV_UNIX
-    _index(static_cast<index_t>( - 1 ))
-#endif
+ThreadStorage::ThreadStorage()
 {
     xTEST_EQ(isValid(), false);
 

@@ -55,7 +55,7 @@ public:
 
 private:
     std::tstring_t _filePath;            ///< file path
-    std::size_t    _fileSizeMaxBytes;    ///< maximum file size in bytes
+    std::size_t    _fileSizeMaxBytes {}; ///< maximum file size in bytes
 
     void_t         _removeIfFull() const;
         ///< delete log, if full

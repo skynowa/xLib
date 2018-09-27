@@ -207,13 +207,13 @@ class Cgi
     /// CGI
 {
 public:
-    std::csize_t &          MAX_DATA_SIZE_DEFAULT()
-         ///< maximum data size by default
+    std::csize_t & MAX_DATA_SIZE_DEFAULT()
     {
         static std::csize_t uiRv = 1024U * 1024U;
 
         return uiRv;
     }
+         ///< maximum data size by default
 
     CgiEnvironment        Environment;    ///< CgiEnvironment object
     CgiCookies            Cookies;        ///< CgiCookies object

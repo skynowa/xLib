@@ -32,8 +32,7 @@ xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-TcpClient::TcpClient() :
-    _timeout()
+TcpClient::TcpClient()
 {
     setTimeout(0L, Options::SOCKET_TIMEOUT);
 }

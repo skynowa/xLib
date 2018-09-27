@@ -32,13 +32,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-IpcSemaphore::IpcSemaphore() :
-#if   xENV_WIN
-    _handle(),
-#elif xENV_UNIX
-    _handle(nullptr),
-#endif
-    _name  ()
+IpcSemaphore::IpcSemaphore()
 {
     xTEST_EQ(_isValid(), false);
 
