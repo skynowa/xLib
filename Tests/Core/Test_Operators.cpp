@@ -16,14 +16,26 @@ xTEST_UNIT(Test_Operators)
 bool_t
 Test_Operators::unit()
 {
+	enum class Type
+	{
+		Zero  = 0,
+		One   = 1,
+		Two   = 2,
+		Three = 3
+	};
+
     xTEST_CASE("Operators::operator ++")
     {
-        // TODO: [skynowa] Test_Operators - operator ++
+        Type t {Type::Zero};
+        ++ t;
+        xTEST_EQ((int_t)t, (int_t)Type::One);
     }
 
     xTEST_CASE("Operators::operator --")
     {
-        // TODO: [skynowa] Test_Operators - operator --
+        Type t {Type::Three};
+        -- t;
+        xTEST_EQ((int_t)t, (int_t)Type::Two);
     }
 
     return true;
