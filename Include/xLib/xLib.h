@@ -20,12 +20,12 @@
 #include <xLib/Core/ScopeExit.h>
 #include <xLib/Core/Type.h>
 #include <xLib/Core/Win/Com.h>
-#include <xLib/Core/Operators.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Char.h>
 #include <xLib/Core/Flags.h>
-#include <xLib/Core/Enum.h>
+#include <xLib/Core/Enum/Enum.h>
+#include <xLib/Core/Enum/Operators.h>
 #include <xLib/Core/Handle.h>
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/OStream.h>
