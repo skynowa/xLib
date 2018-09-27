@@ -53,17 +53,18 @@ ISocket::~ISocket()
 //-------------------------------------------------------------------------------------------------
 void_t
 ISocket::create(
-    cAddressFamily &a_family,
-    cType          &a_type,
-    cProtocol      &a_protocol
+    cAddressFamily a_family,
+    cType          a_type,
+    cProtocol      a_protocol
 )
 {
     xTEST_EQ(_handle.isValid(), false);
 
-    _handle = ::socket(a_family, a_type, a_protocol);
+    _handle = ::socket(static_cast<int_t>(a_family), static_cast<int_t>(a_type),
+    	static_cast<int_t>(a_protocol));
     xTEST_DIFF(_handle.isValid(), true);
 
-    _family = a_family;
+    _family = static_cast<sa_family_t>(a_family);
 }
 //-------------------------------------------------------------------------------------------------
 HandleSocket &
@@ -161,8 +162,8 @@ ISocket::sendAll(
 
     // if size of data more than size of buffer - sizeof buffer SOCKET_BUFF_SIZE
     size_t buffOutSize  = 0;
-    if (leftSize >= SOCKET_BUFF_SIZE) {
-        buffOutSize = SOCKET_BUFF_SIZE;
+    if (leftSize >= Options::SOCKET_BUFF_SIZE) {
+        buffOutSize = Options::SOCKET_BUFF_SIZE;
     } else {
         buffOutSize = leftSize;
     }
@@ -236,7 +237,7 @@ ISocket::recvAll(
 )
 {
     std::tstring_t sRv;
-    std::size_t    inSize = SOCKET_BUFF_SIZE * sizeof(tchar_t);
+    std::size_t    inSize = Options::SOCKET_BUFF_SIZE * sizeof(tchar_t);
     std::tstring_t in(inSize, xT('\0'));
 
     // read from socket by blocks, write to string

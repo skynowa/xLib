@@ -53,9 +53,9 @@ Console::_destruct_impl()
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Console::_setAttributes_impl(
-    cForeground &a_foreground,
-    cBackground &a_background,
-    cint_t        &a_attributes
+    cForeground a_foreground,
+    cBackground a_background,
+    cint_t      a_attributes
 ) const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
@@ -96,34 +96,34 @@ Console::_setAttributes_impl(
         int_t iRv = - 1;
 
         switch (a_foreground) {
-        case fgBlack:
+        case Foreground::fgBlack:
             iRv = foregroundColorBlack;
             break;
-        case fgRed:
+        case Foreground::fgRed:
             iRv = foregroundColorRed;
             break;
-        case fgGreen:
+        case Foreground::fgGreen:
             iRv = foregroundColorGreen;
             break;
-        case fgYellow:
+        case Foreground::fgYellow:
             iRv = foregroundColorYellow;
             break;
-        case fgBlue:
+        case Foreground::fgBlue:
             iRv = foregroundColorBlue;
             break;
-        case fgMagenta:
+        case Foreground::fgMagenta:
             iRv = foregroundColorMagenta;
             break;
-        case fgCyan:
+        case Foreground::fgCyan:
             iRv = foregroundColorCyan;
             break;
-        case fgWhite:
+        case Foreground::fgWhite:
             iRv = foregroundColorWhite;
             break;
-        case fgGray:
+        case Foreground::fgGray:
             iRv = foregroundColorGray;
             break;
-        case fgUnknown:
+        case Foreground::fgUnknown:
         default:
             xTEST_FAIL;
             break;
@@ -147,34 +147,34 @@ Console::_setAttributes_impl(
         int_t iRv = - 1;
 
         switch (a_background) {
-        case fgBlack:
+        case Background::bgBlack:
             iRv = backgroundColorBlack;
             break;
-        case fgRed:
+        case Background::bgRed:
             iRv = backgroundColorRed;
             break;
-        case fgGreen:
+        case Background::bgGreen:
             iRv = backgroundColorGreen;
             break;
-        case fgYellow:
+        case Background::bgYellow:
             iRv = backgroundColorYellow;
             break;
-        case fgBlue:
+        case Background::bgBlue:
             iRv = backgroundColorBlue;
             break;
-        case fgMagenta:
+        case Background::bgMagenta:
             iRv = backgroundColorMagenta;
             break;
-        case fgCyan:
+        case Background::bgCyan:
             iRv = backgroundColorCyan;
             break;
-        case fgWhite:
+        case Background::bgWhite:
             iRv = backgroundColorWhite;
             break;
-        case fgGray:
+        case Background::bgGray:
             iRv = backgroundColorGray;
             break;
-        case fgUnknown:
+        case Background::bgUnknown:
         default:
             xTEST_FAIL;
             break;
@@ -195,12 +195,12 @@ Console::_setAttributes_impl(
         attrs |= foregroundColor;
         attrs |= backgroundColor;
 
-        xCHECK_DO(a_attributes & Console::atAllOff,     attrs |= attributeAllOff);
-        xCHECK_DO(a_attributes & Console::atBold,       attrs |= attributeBold);
-        xCHECK_DO(a_attributes & Console::atUnderscore, /* attrs |= attributeUnderscore */);   // not supported
-        xCHECK_DO(a_attributes & Console::atBlink,      /* attrs |= attributeBlink */);        // not supported
-        xCHECK_DO(a_attributes & Console::atReverse,    /* attrs |= attributeReverse */);      // not supported
-        xCHECK_DO(a_attributes & Console::atConcealed,  /* attrs |= attributeConcealed */);    // not supported
+        xCHECK_DO(a_attributes & TextAttribute::atAllOff,     attrs |= attributeAllOff);
+        xCHECK_DO(a_attributes & TextAttribute::atBold,       attrs |= attributeBold);
+        xCHECK_DO(a_attributes & TextAttribute::atUnderscore, /* attrs |= attributeUnderscore */);   // not supported
+        xCHECK_DO(a_attributes & TextAttribute::atBlink,      /* attrs |= attributeBlink */);        // not supported
+        xCHECK_DO(a_attributes & TextAttribute::atReverse,    /* attrs |= attributeReverse */);      // not supported
+        xCHECK_DO(a_attributes & TextAttribute::atConcealed,  /* attrs |= attributeConcealed */);    // not supported
     }
 
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), attrs);

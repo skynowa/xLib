@@ -15,14 +15,14 @@ xNAMESPACE_BEGIN2(xl, fs)
 FileType::types_t
 FileType::_get_impl() const
 {
-    types_t ftRv = faInvalid;
+    types_t ftRv = static_cast<types_t>(Type::faInvalid);
 
     xTSTAT_STRUCT info;   Utils::structZeroT(info);
 
     int_t iRv = xTSTAT(filePath().c_str(), &info);
     xTEST_NA(iRv);
     if (iRv == - 1) {
-        ftRv = faInvalid;
+        ftRv = static_cast<types_t>(Type::faInvalid);
     } else {
         ftRv = (info.st_mode & S_IFMT);
     }
@@ -32,7 +32,7 @@ FileType::_get_impl() const
 //-------------------------------------------------------------------------------------------------
 void_t
 FileType::_set_impl(
-    ctypes_t &a_values
+    ctypes_t a_values
 ) const
 {
     int_t iRv = xTCHMOD(filePath().c_str(), a_values);

@@ -102,15 +102,15 @@
 
 // _xREPORT_TYPE
 #if   cmOPTION_DEBUG_MODE_STDOUT
-    #define _xREPORT_TYPE ErrorReport::rtStdout
+    #define _xREPORT_TYPE ErrorReport::Type::rtStdout
 #elif cmOPTION_DEBUG_MODE_MSGBOX
-    #define _xREPORT_TYPE ErrorReport::rtMsgbox
+    #define _xREPORT_TYPE ErrorReport::Type::rtMsgbox
 #elif cmOPTION_DEBUG_MODE_LOG
-    #define _xREPORT_TYPE ErrorReport::rtLog
+    #define _xREPORT_TYPE ErrorReport::Type::rtLog
 #elif cmOPTION_DEBUG_MODE_STDOUT_LOG
-    #define _xREPORT_TYPE ErrorReport::rtStdoutLog
+    #define _xREPORT_TYPE ErrorReport::Type::rtStdoutLog
 #elif cmOPTION_DEBUG_MODE_EXCEPTION
-    #define _xREPORT_TYPE ErrorReport::rtException
+    #define _xREPORT_TYPE ErrorReport::Type::rtException
 #endif
 
 #if defined(_xREPORT_TYPE)

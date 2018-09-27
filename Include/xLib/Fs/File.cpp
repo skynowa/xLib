@@ -60,7 +60,7 @@ File::~File()
 void_t
 File::create(
     std::ctstring_t &a_filePath,
-    const OpenMode  &a_mode
+    cOpenMode        a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -80,16 +80,16 @@ File::create(
 
     // buffering
     if (_isUseBuffering) {
-        setVBuff(nullptr, bmFull, BUFSIZ);
+        setVBuff(nullptr, BufferingMode::bmFull, BUFSIZ);
     } else {
-        setVBuff(nullptr, bmNo,   0);
+        setVBuff(nullptr, BufferingMode::bmNo,   0);
     }
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 File::reopen(
     std::ctstring_t &a_filePath,
-    const OpenMode  &a_mode
+    cOpenMode        a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -109,9 +109,9 @@ File::reopen(
 
     // buffering
     if (_isUseBuffering) {
-        setVBuff(nullptr, bmFull, BUFSIZ);
+        setVBuff(nullptr, BufferingMode::bmFull, BUFSIZ);
     } else {
-        setVBuff(nullptr, bmNo,   0);
+        setVBuff(nullptr, BufferingMode::bmNo,   0);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -210,7 +210,7 @@ File::read(
     xTEST_PTR(a_buff);
 
     longlong_t fileSize = size();
-    xTEST_DIFF(static_cast<longlong_t>( ppError ), fileSize);
+    xTEST_DIFF(static_cast<longlong_t>( PointerPosition::ppError ), fileSize);
 
     a_buff->clear();
     a_buff->resize( static_cast<size_t>( fileSize ) );
@@ -241,7 +241,7 @@ File::read(
     xTEST_PTR(a_buff);
 
     clonglong_t fileSize = size();
-    xTEST_DIFF(static_cast<longlong_t>( ppError ), fileSize);
+    xTEST_DIFF(static_cast<longlong_t>( PointerPosition::ppError ), fileSize);
 
     a_buff->clear();
     a_buff->resize( static_cast<size_t>( fileSize) );
@@ -366,8 +366,8 @@ File::clear() const
 //-------------------------------------------------------------------------------------------------
 void_t
 File::locking(
-    const LockingMode &a_mode,
-    clong_t           &a_bytes
+    cLockingMode a_mode,
+    clong_t     &a_bytes
 )
 {
     xTEST_NA(a_mode);
@@ -379,20 +379,20 @@ File::locking(
     const off_t bytes = static_cast<off_t>( a_bytes );
 #endif
 
-    int_t iRv = xLOCKING(_nativeHandle(_handle.get()), a_mode, bytes);
+    int_t iRv = xLOCKING(_nativeHandle(_handle.get()), static_cast<int>(a_mode), bytes);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 File::setPosition(
-    clong_t               &a_offset,
-    const PointerPosition &a_pos
+    clong_t          &a_offset,
+    cPointerPosition &a_pos
 ) const
 {
     xTEST_NA(a_offset);
     xTEST_NA(a_pos);
 
-    int_t iRv = std::fseek(_handle.get(), a_offset, a_pos);
+    int_t iRv = std::fseek(_handle.get(), a_offset, static_cast<int>(a_pos));
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -406,16 +406,16 @@ File::position() const {
 //-------------------------------------------------------------------------------------------------
 void_t
 File::setVBuff(
-    char                *a_buff,
-    const BufferingMode &a_mode,
-    std::csize_t        &a_size
+    char          *a_buff,
+    cBufferingMode a_mode,
+    std::csize_t  &a_size
 ) const
 {
     xTEST_NA(a_buff);
     xTEST_NA(a_mode);
     xTEST_NA(a_size);
 
-    int_t iRv = std::setvbuf(_handle.get(), a_buff, a_mode, a_size);
+    int_t iRv = std::setvbuf(_handle.get(), a_buff, static_cast<int>(a_mode), a_size);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
@@ -423,10 +423,10 @@ longlong_t
 File::size() const
 {
     long_t currStreamPos = position();
-    setPosition(0, ppEnd);
+    setPosition(0, PointerPosition::ppEnd);
 
     long_t streamSize = position();
-    setPosition(currStreamPos, ppBegin);
+    setPosition(currStreamPos, PointerPosition::ppBegin);
 
     return static_cast<longlong_t>( streamSize );
 }
@@ -531,7 +531,7 @@ File::isFile(
     xTEST_NA(a_filePath);
 
     FileType type(a_filePath);
-    xCHECK_RET(type.get() == FileType::faInvalid, false);
+    xCHECK_RET(type.get() == static_cast<FileType::types_t>(FileType::Type::faInvalid), false);
 
     return _isFile_impl(type);
 }
@@ -546,7 +546,7 @@ File::isExists(
 
     xCHECK_RET(!isFile(a_filePath), false);
 
-    int_t iRv = xTACCESS(a_filePath.c_str(), amExistence);
+    int_t iRv = xTACCESS(a_filePath.c_str(), static_cast<int_t>(AccessMode::amExistence));
     xCHECK_RET(iRv == - 1 && StdError::get() == ENOENT, false);
 
     return true;
@@ -582,22 +582,22 @@ File::isExistsEx(
 /* static */
 void_t
 File::access(
-    std::ctstring_t  &a_filePath,
-    const AccessMode &a_mode
+    std::ctstring_t &a_filePath,
+    cAccessMode      a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_NA(a_mode);
 
-    int_t iRv = xTACCESS(a_filePath.c_str(), a_mode);
+    int_t iRv = xTACCESS(a_filePath.c_str(), static_cast<int_t>(a_mode));
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
 File::chmod(
-    std::ctstring_t      &a_filePath,
-    const PermissionMode &a_mode
+    std::ctstring_t &a_filePath,
+    cPermissionMode  a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -622,7 +622,7 @@ File::clear(
     xTEST_EQ(a_filePath.empty(), false);
 
     File file;
-    file.create(a_filePath, omWrite);
+    file.create(a_filePath, OpenMode::omWrite);
     file.clear();
 }
 //-------------------------------------------------------------------------------------------------
@@ -636,7 +636,7 @@ File::remove(
 
     xCHECK_DO(!isExists(a_filePath), return);
 
-    chmod(a_filePath, pmWrite);
+    chmod(a_filePath, PermissionMode::pmWrite);
 
     int_t iRv = xTREMOVE(a_filePath.c_str());
     xTEST_DIFF(iRv, - 1);
@@ -687,7 +687,7 @@ File::wipe(
 
         // open
         File file;
-        file.create(a_filePath, omBinWrite);
+        file.create(a_filePath, OpenMode::omBinWrite);
 
         clonglong_t size = file.size();
         if (size > 0LL) {
@@ -699,7 +699,7 @@ File::wipe(
 
                 // rand
                 {
-                    file.setPosition(0L, ppBegin);
+                    file.setPosition(0L, PointerPosition::ppBegin);
 
                     for (longlong_t i = 0LL; i < size; ++ i) {
                         size_t uiRv = std::fwrite(&rand, 1, sizeof(rand), file.get().get());
@@ -709,7 +709,7 @@ File::wipe(
 
                 // char1
                 {
-                    file.setPosition(0L, ppBegin);
+                    file.setPosition(0L, PointerPosition::ppBegin);
 
                     for (longlong_t i = 0LL; i < size; ++ i) {
                         size_t uiRv = std::fwrite(&char1, 1, sizeof(char1), file.get().get());
@@ -719,7 +719,7 @@ File::wipe(
 
                 // char2
                 {
-                    file.setPosition(0L, ppBegin);
+                    file.setPosition(0L, PointerPosition::ppBegin);
 
                     for (longlong_t i = 0LL; i < size; ++ i) {
                         size_t uiRv = std::fwrite(&char2, 1, sizeof(char2), file.get().get());
@@ -824,10 +824,10 @@ File::copy(
     {
         // open files
         File fileFrom;
-        fileFrom.create(a_filePathFrom, omBinRead);
+        fileFrom.create(a_filePathFrom, OpenMode::omBinRead);
 
         File fileTo;
-        fileTo.create(a_filePathTo, omBinWrite);
+        fileTo.create(a_filePathTo, OpenMode::omBinWrite);
 
         if ( !fileFrom.isEmpty() ) {
             // copy files
@@ -862,7 +862,7 @@ File::size(
     xTEST_EQ(isExists(a_filePath), true);
 
     File file;
-    file.create(a_filePath, omRead);
+    file.create(a_filePath, OpenMode::omRead);
     longlong_t liRv = file.size();
     xTEST_GR_EQ(liRv, 0LL);
 
@@ -948,10 +948,10 @@ File::textRead(
     File           file;
     std::tstring_t sRv;
 
-    file.create(a_filePath, omBinRead);
+    file.create(a_filePath, OpenMode::omBinRead);
 
     clonglong_t fileSize = file.size();
-    xTEST_DIFF(fileSize, static_cast<longlong_t>( ppError ));
+    xTEST_DIFF(fileSize, static_cast<longlong_t>( PointerPosition::ppError ));
 
     xCHECK_DO(fileSize == 0LL, a_content->clear(); return);
 
@@ -969,7 +969,7 @@ void_t
 File::textWrite(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_content,
-    const OpenMode  &a_mode
+    cOpenMode        a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -1013,7 +1013,7 @@ void_t
 File::textWrite(
     std::ctstring_t     &a_filePath,
     std::cvec_tstring_t &a_content,
-    const OpenMode      &a_mode
+    cOpenMode            a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -1105,7 +1105,7 @@ File::textWrite(
     std::ctstring_t     &a_filePath,
     std::ctstring_t     &a_separator,
     std::cmap_tstring_t &a_content,
-    const OpenMode      &a_mode
+    cOpenMode            a_mode
 )
 {
     xTEST_EQ(a_filePath.empty(),  false);
@@ -1160,10 +1160,10 @@ File::binRead(
     File         file;
     std::ustring_t usRv;
 
-    file.create(a_filePath, omBinRead);
+    file.create(a_filePath, OpenMode::omBinRead);
 
     longlong_t fileSize = file.size();
-    xTEST_DIFF(fileSize, static_cast<longlong_t>( ppError ));
+    xTEST_DIFF(fileSize, static_cast<longlong_t>( PointerPosition::ppError ));
 
     xCHECK_DO(fileSize == 0LL, a_content->clear(); return);
 
@@ -1187,7 +1187,7 @@ File::binWrite(
     xTEST_NA(a_content);
 
     File file;
-    file.create(a_filePath, omBinWrite);
+    file.create(a_filePath, OpenMode::omBinWrite);
 
     xCHECK_DO(a_content.empty(), return);
 
@@ -1220,8 +1220,8 @@ File::_nativeHandle(
 /* static */
 std::FILE *
 File::_stdHandle(
-    int_t          a_fileHandle,
-    const OpenMode &a_mode
+    int_t     a_fileHandle,
+    cOpenMode a_mode
 )
 {
     xTEST_NA(a_fileHandle);
@@ -1236,7 +1236,7 @@ File::_stdHandle(
 /* static */
 std::tstring_t
 File::_openMode(
-    const OpenMode &a_mode
+    cOpenMode a_mode
 )
 {
     xTEST_NA(a_mode);
@@ -1245,46 +1245,46 @@ File::_openMode(
 
     switch (a_mode) {
     // text modes
-    case omRead:
+    case OpenMode::omRead:
         sRv = xT("r");
         break;
-    case omWrite:
+    case OpenMode::omWrite:
         sRv = xT("w");
         break;
-    case omAppend:
+    case OpenMode::omAppend:
         sRv = xT("a");
         break;
-    case omOpenReadWrite:
+    case OpenMode::omOpenReadWrite:
         sRv = xT("r+");
         break;
-    case omCreateReadWrite:
+    case OpenMode::omCreateReadWrite:
         sRv = xT("w+");
         break;
-    case omOpenReadAppend:
+    case OpenMode::omOpenReadAppend:
         sRv = xT("a+");
         break;
 
     // binary modes
-    case omBinRead:
+    case OpenMode::omBinRead:
         sRv = xT("rb");
         break;
-    case omBinWrite:
+    case OpenMode::omBinWrite:
         sRv = xT("wb");
         break;
-    case omBinAppend:
+    case OpenMode::omBinAppend:
         sRv = xT("ab");
         break;
-    case omBinOpenReadWrite:
+    case OpenMode::omBinOpenReadWrite:
         sRv = xT("rb+");
         break;
-    case omBinCreateReadWrite:
+    case OpenMode::omBinCreateReadWrite:
         sRv = xT("wb+");
         break;
-    case omBinOpenReadAppend:
+    case OpenMode::omBinOpenReadAppend:
         sRv = xT("ab+");
         break;
 
-    case omUnknown:
+    case OpenMode::omUnknown:
     default:
         sRv = xT("r");
         break;

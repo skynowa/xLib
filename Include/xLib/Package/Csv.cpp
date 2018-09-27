@@ -121,7 +121,7 @@ CsvWriter::saveFile(
 	{
 		std::ctstring_t &header = String::join(a_header, _data.delimiter);
 
-		File::textWrite(a_filePath, header + Const::nl(), File::omAppend);
+		File::textWrite(a_filePath, header + Const::nl(), File::OpenMode::omAppend);
 	}
 
 	// a_rows
@@ -129,7 +129,7 @@ CsvWriter::saveFile(
 	{
 		std::ctstring_t &row = String::join(it_row, _data.delimiter);
 
-		File::textWrite(a_filePath, row + Const::nl(), File::omAppend);
+		File::textWrite(a_filePath, row + Const::nl(), File::OpenMode::omAppend);
 	}
 }
 //-------------------------------------------------------------------------------------------------

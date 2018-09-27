@@ -89,7 +89,7 @@ Event::_wait_impl(
     culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
-    ObjectState osRv = osFailed;
+    ObjectState osRv = ObjectState::osFailed;
 
     int_t iRv = - 1;
 
@@ -139,15 +139,15 @@ Event::_wait_impl(
                 _isSignaled = false;
             }
 
-            osRv = osSignaled;
+            osRv = ObjectState::osSignaled;
             break;
         case ETIMEDOUT:
-            osRv = osTimeout;
+            osRv = ObjectState::osTimeout;
 
             if (_isAutoReset) {
                 _isSignaled = false;
             } else {
-                osRv = _initState ? osSignaled : osTimeout;
+                osRv = _initState ? ObjectState::osSignaled : ObjectState::osTimeout;
                 _isSignaled = _initState;
             }
             break;

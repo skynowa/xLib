@@ -137,7 +137,7 @@ Thread::_isExited_impl()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_setPriority_impl(
-    const Priority &a_priority
+    const Priority a_priority
 ) const
 {
     if (!User().isAdmin()) {
@@ -146,7 +146,7 @@ Thread::_setPriority_impl(
     }
 
     sched_param param = {0};
-    param.sched_priority = a_priority;
+    param.sched_priority = static_cast<int>(a_priority);
 
     int_t iRv = ::pthread_setschedparam(id(), SCHED_FIFO, &param);
     xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));

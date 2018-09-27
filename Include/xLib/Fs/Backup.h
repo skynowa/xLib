@@ -14,7 +14,7 @@ class Backup
     /// backuper
 {
 public:
-    enum Period
+    enum class Period
         /// backup period
     {
         bpUnknown,
@@ -25,7 +25,7 @@ public:
     };
     xUSING_CONST(Period);
 
-    explicit  Backup(cPeriod &period);
+    explicit  Backup(cPeriod period);
         ///< constructor
     virtual  ~Backup() {}
         ///< destructor

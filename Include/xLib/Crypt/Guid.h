@@ -14,11 +14,10 @@ class Guid
     /// GUID (globally unique identifier)
 {
 public:
-    enum Type
+    enum class Type
     {
         tpUnknown     = 0,
         tpRandomBased = 1
-
     };
     xUSING_CONST(Type);
 
@@ -27,7 +26,7 @@ public:
     virtual       ~Guid() {}
         ///< destructor
 
-    std::tstring_t create(cType &type) const xWARN_UNUSED_RV;
+    std::tstring_t create(cType type) const xWARN_UNUSED_RV;
         ///< generate GUID
 
     xNO_COPY_ASSIGN(Guid)

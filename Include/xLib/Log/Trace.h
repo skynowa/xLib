@@ -33,7 +33,7 @@ public:
 
     virtual void_t write(cptr_ctchar_t format, ...) const override;
         ///< tracing to debugger, std::cout
-    virtual void_t write(cLevel &level, cptr_ctchar_t format, ...) const override;
+    virtual void_t write(cLevel level, cptr_ctchar_t format, ...) const override;
         ///< tracing to debugger, std::cout
 
 xPLATFORM_IMPL:

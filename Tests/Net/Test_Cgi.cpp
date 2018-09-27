@@ -205,60 +205,6 @@ Test_Cgi::unit()
     #endif
     }
 
-    xTEST_CASE("uriEncode, decodedStr")
-    {
-        //1
-        {
-            std::ctstring_t sData[] = {
-                xT("TEST_STRING_1"),
-                xT("http://forum.vingrad.ru/forum/topic-327003/anchor-entry2330816/0.html"),
-                xT("http://www.google.ru/search?hl=ru&source=hp&q=dddddddd&aq=f&aqi=g-s10&aql=&oq="),
-                xT("http://www.w3schools.com/jsref/jsref_obj_string.asp"),
-            };
-
-            for (std::size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-                std::ctstring_t ILLEGAL_CHARS(xT("()[]/|\\',;"));
-
-
-                std::tstring_t sUri        = sData[i];
-                std::tstring_t sEncodedStr;
-
-                Cgi::uriEncode(sUri, ILLEGAL_CHARS, &sEncodedStr);
-                xTEST_EQ(false, sEncodedStr.empty());
-
-                std::tstring_t sDecodedStr;
-
-                Cgi::uriDecode(sEncodedStr, &sDecodedStr);
-                xTEST_EQ(sUri, sDecodedStr);
-            }
-        }
-
-        //2
-        {
-            std::ctstring_t sData[] = {
-                xT("search?hl=ru&source=hp&q=%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%B0%D1%80%D0%B8%D0%B9&aq=f&aqi=g-s10&aql=&oq="),
-                xT("%E3%81%BB%E3%82%93%E3%81%A8%E3%81%86%E3%81%AB%E3%81%AA%E3%81%8C%E3%81%84%E3%82%8F%E3%81%91%E3%81%AE%E3%82%8F%E3%81%8B%E3%82%89%E3%81%AA%E3%81%84%E3%81%A9%E3%82%81%E3%81%84%E3%82%93%E3%82%81%E3%81%84%E3%81%AE%E3%82%89%E3%81%B9%E3%82%8B%E3%81%BE%E3%81%A0%E3%81%AA%E3%81%8C%E3%81%8F%E3%81%97%E3%81%AA%E3%81%84%E3%81%A8%E3%81%9F%E3%82%8A%E3%81%AA%E3%81%84.%E3%81%BB%E3%82%93%E3%81%A8%E3%81%86%E3%81%AB%E3%81%AA%E3%81%8C%E3%81%84%E3%82%8F%E3%81%91%E3%81%AE%E3%82%8F%E3%81%8B%E3%82%89%E3%81%AA%E3%81%84%E3%81%A9%E3%82%81%E3%81%84%E3%82%93%E3%82%81%E3%81%84%E3%81%AE%E3%82%89%E3%81%B9%E3%82%8B%E3%81%BE%E3%81%A0%E3%81%AA%E3%81%8C%E3%81%8F%E3%81%97%E3%81%AA%E3%81%84%E3%81%A8%E3%81%9F%E3%82%8A%E3%81%AA%E3%81%84.%E3%81%BB%E3%82%93%E3%81%A8%E3%81%86%E3%81%AB%E3%81%AA%E3%81%8C%E3%81%84%E3%82%8F%E3%81%91%E3%81%AE%E3%82%8F%E3%81%8B%E3%82%89%E3%81%AA%E3%81%84%E3%81%A9%E3%82%81%E3%81%84%E3%82%93%E3%82%81%E3%81%84%E3%81%AE%E3%82%89%E3%81%B9%E3%82%8B%E3%81%BE%E3%81%A0%E3%81%AA%E3%81%8C%E3%81%8F%E3%81%97%E3%81%AA%E3%81%84%E3%81%A8%E3%81%9F%E3%82%8A%E3%81%AA%E3%81%84.w3.mag.keio.ac.jp"),
-                xT("xn--n8jaaaaai5bhf7as8fsfk3jnknefdde3fg11amb5gzdb4wi9bya3kc6lra.xn--n8jaaaaai5bhf7as8fsfk3jnknefdde3fg11amb5gzdb4wi9bya3kc6lra.xn--n8jaaaaai5bhf7as8fsfk3jnknefdde3fg11amb5gzdb4wi9bya3kc6lra.w3.mag.keio.ac.jp")
-            };
-
-            for (std::size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-                std::ctstring_t ILLEGAL_CHARS(xT("()[]/|\\',;"));
-
-
-                std::tstring_t sUri        = sData[i];
-                std::tstring_t sDecodedStr;
-
-                Cgi::uriDecode(sUri, &sDecodedStr);
-                xTEST_EQ(false, sDecodedStr.empty());
-
-                std::tstring_t sEncodedStr;
-
-                Cgi::uriEncode(sDecodedStr, ILLEGAL_CHARS, &sEncodedStr);
-                xTEST_EQ(sUri,  sEncodedStr);
-            }
-        }
-    }
-
     return true;
 }
 //-------------------------------------------------------------------------------------------------

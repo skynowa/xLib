@@ -14,7 +14,7 @@ class SocketInit
     /// initiates use of the Winsock DLL by a process
 {
 public:
-             SocketInit(cushort_t &versionMajor, cushort_t &versionMinor);
+             SocketInit(cushort_t versionMajor, cushort_t versionMinor);
         ///< constructor (init winsock DLL)
     virtual ~SocketInit();
         ///< destructor  (clean winsock DLL)
@@ -22,7 +22,7 @@ public:
     xNO_COPY_ASSIGN(SocketInit)
 
 xPLATFORM_IMPL:
-    void_t   _construct_impl(cushort_t &versionMajor, cushort_t &versionMinor) const;
+    void_t   _construct_impl(cushort_t versionMajor, cushort_t versionMinor) const;
     void_t   _destruct_impl() const;
 };
 

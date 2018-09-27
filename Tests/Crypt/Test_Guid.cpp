@@ -19,7 +19,7 @@ Test_Guid::unit()
     xTEST_CASE("create")
     {
         Guid::cType data[] = {
-            Guid::tpRandomBased
+            Guid::Type::tpRandomBased
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {

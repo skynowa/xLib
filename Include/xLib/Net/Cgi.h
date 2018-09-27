@@ -20,13 +20,14 @@ class CgiEnvironment
     /// CGI environment
 {
 public:
-    enum RequestType
+    enum class RequestType
         /// request type
     {
         rtUknown,
         rtGet,
         rtPost
     };
+    xUSING_CONST(RequestType);
 
     explicit          CgiEnvironment(Cgi &cgi);
         ///< constructor
@@ -232,34 +233,7 @@ public:
     void_t                  pageShow(std::ctstring_t &filePath);
         ///< show page from file
 
-    //encoding, decoding
-    static
-    void_t                  uriEncode(std::ctstring_t &uri, std::ctstring_t &reserved,
-                                std::tstring_t *encodedStr);
-        ///< encode URI
-    static
-    void_t                  uriDecode(std::ctstring_t &uri, std::tstring_t *decodedStr);
-        ///< decode URI
-
 private:
-    //--------------------------------------------------
-    //encoding, decoding
-    int_t                   cgl_parsecgibuf(/*cgllist *cdata, */char *query) xWARN_UNUSED_RV;
-        ///< cgl_parsecgibuf
-
-    int_t                   cgl_urlencode(char *s, FILE *fw) xWARN_UNUSED_RV;
-        ///< cgl_urlencode
-    void_t                  cgl_urldecode(char *s);
-        ///< cgl_urldecode
-
-    void_t                  urlEscape(char *s, FILE *fw);
-        ///< URL escape
-    void_t                  urlUnescape(char *s);
-        ///< URL unescape
-
-    char                    cgl_hex2char(char *what) xWARN_UNUSED_RV;
-        ///< hex to char
-
     xNO_COPY_ASSIGN(Cgi)
 };
 

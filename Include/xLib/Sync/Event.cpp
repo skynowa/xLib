@@ -85,7 +85,8 @@ Event::wait(
 
     ObjectState osRv = _wait_impl(a_timeoutMs);
 
-    xTEST_EQ_MSG((osRv == osSignaled) || (osRv == osTimeout), true, NativeError::format(osRv));
+    xTEST_EQ_MSG((osRv == ObjectState::osSignaled) || (osRv == ObjectState::osTimeout), true,
+    	NativeError::format( static_cast<int_t>(osRv) ));
 
     return osRv;
 }

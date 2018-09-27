@@ -57,13 +57,13 @@ FileType::filePath() const
 //-------------------------------------------------------------------------------------------------
 bool_t
 FileType::isExists(
-    cType &a_value
+    cType a_value
 ) const
 {
     xTEST_EQ(filePath().empty(), false);
     xTEST_NA(a_value);
 
-    xCHECK_RET(a_value == (get() & a_value), true);
+    xCHECK_RET(a_value == static_cast<Type>(get() & static_cast<FileType::types_t>(a_value)), true);
 
     return false;
 }
@@ -78,7 +78,7 @@ FileType::get() const
 //-------------------------------------------------------------------------------------------------
 void_t
 FileType::set(
-    ctypes_t &a_values
+    ctypes_t a_values
 ) const
 {
     xTEST_EQ(filePath().empty(), false);
@@ -89,7 +89,7 @@ FileType::set(
 //-------------------------------------------------------------------------------------------------
 void_t
 FileType::add(
-    cType &a_value
+    cType a_value
 ) const
 {
     xTEST_EQ(filePath().empty(), false);
@@ -100,7 +100,7 @@ FileType::add(
 //-------------------------------------------------------------------------------------------------
 void_t
 FileType::remove(
-    cType &a_value
+    cType a_value
 ) const
 {
     xTEST_EQ(filePath().empty(), false);
@@ -111,8 +111,8 @@ FileType::remove(
 //-------------------------------------------------------------------------------------------------
 void_t
 FileType::modify(
-    cType &a_valueRemove,
-    cType &a_valueAdd
+    cType a_valueRemove,
+    cType a_valueAdd
 ) const
 {
     xTEST_EQ(filePath().empty(), false);

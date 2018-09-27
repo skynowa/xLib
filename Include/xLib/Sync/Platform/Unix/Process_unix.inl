@@ -46,7 +46,7 @@ Process::_wait_impl(
     culong_t &a_timeoutMsec
 )
 {
-    WaitResult waitStatus = wrFailed;
+    WaitResult waitStatus = WaitResult::wrFailed;
 
     xUNUSED(a_timeoutMsec);
 

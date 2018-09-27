@@ -49,40 +49,40 @@ ILog::isEnabled() const
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 ILog::_levelString(
-    cLevel &a_level
+    cLevel a_level
 ) const
 {
     std::tstring_t sRv;
 
     switch (a_level) {
-    case lvEmerg:
+    case Level::lvEmerg:
         sRv = xT("Emerg");
         break;
-    case lvAlert:
+    case Level::lvAlert:
         sRv = xT("Alert");
         break;
-    case lvCritical:
+    case Level::lvCritical:
         sRv = xT("Critical");
     break;
-    case lvError:
+    case Level::lvError:
         sRv = xT("Error");
         break;
-    case lvWarning:
+    case Level::lvWarning:
         sRv = xT("Warning");
         break;
-    case lvNotice:
+    case Level::lvNotice:
         sRv = xT("Notice");
     break;
-    case lvInfo:
+    case Level::lvInfo:
         sRv = xT("Info");
         break;
-    case lvDebug:
+    case Level::lvDebug:
         sRv = xT("Debug");
         break;
-    case lvPlain:
+    case Level::lvPlain:
         sRv = xT("");
         break;
-    case lvUnknown:
+    case Level::lvUnknown:
     default:
         sRv = xT("Unknown");
         break;

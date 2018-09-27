@@ -31,9 +31,9 @@ Console::_destruct_impl()
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Console::_setAttributes_impl(
-    cForeground &a_foreground,
-    cBackground &a_background,
-    cint_t        &a_attributes
+    cForeground a_foreground,
+    cBackground a_background,
+    cint_t      a_attributes
 ) const
 {
     Foreground foregroundColor;
@@ -51,34 +51,34 @@ Console::_setAttributes_impl(
         int_t iRv = - 1;
 
         switch (a_foreground) {
-        case fgBlack:
+        case Foreground::fgBlack:
             iRv = foregroundColorBlack;
             break;
-        case fgRed:
+        case Foreground::fgRed:
             iRv = foregroundColorRed;
             break;
-        case fgGreen:
+        case Foreground::fgGreen:
             iRv = foregroundColorGreen;
             break;
-        case fgYellow:
+        case Foreground::fgYellow:
             iRv = foregroundColorYellow;
             break;
-        case fgBlue:
+        case Foreground::fgBlue:
             iRv = foregroundColorBlue;
             break;
-        case fgMagenta:
+        case Foreground::fgMagenta:
             iRv = foregroundColorMagenta;
             break;
-        case fgCyan:
+        case Foreground::fgCyan:
             iRv = foregroundColorCyan;
             break;
-        case fgWhite:
+        case Foreground::fgWhite:
             iRv = foregroundColorWhite;
             break;
-        case fgGray:
+        case Foreground::fgGray:
             iRv = foregroundColorGray;
             break;
-        case fgUnknown:
+        case Foreground::fgUnknown:
         default:
             xTEST_FAIL;
             break;
@@ -102,34 +102,34 @@ Console::_setAttributes_impl(
         int_t iRv = - 1;
 
         switch (a_background) {
-        case fgBlack:
+        case Background::bgBlack:
             iRv = backgroundColorBlack;
             break;
-        case fgRed:
+        case Background::bgRed:
             iRv = backgroundColorRed;
             break;
-        case fgGreen:
+        case Background::bgGreen:
             iRv = backgroundColorGreen;
             break;
-        case fgYellow:
+        case Background::bgYellow:
             iRv = backgroundColorYellow;
             break;
-        case fgBlue:
+        case Background::bgBlue:
             iRv = backgroundColorBlue;
             break;
-        case fgMagenta:
+        case Background::bgMagenta:
             iRv = backgroundColorMagenta;
             break;
-        case fgCyan:
+        case Background::bgCyan:
             iRv = backgroundColorCyan;
             break;
-        case fgWhite:
+        case Background::bgWhite:
             iRv = backgroundColorWhite;
             break;
-        case fgGray:
+        case Background::bgGray:
             iRv = backgroundColorGray;
             break;
-        case fgUnknown:
+        case Background::bgUnknown:
         default:
             xTEST_FAIL;
             break;
@@ -150,12 +150,12 @@ Console::_setAttributes_impl(
         attrs += Format::str(xT("\033[{}m"), (int)foregroundColor);  // TODO: [skynowa] StdStreamV2
         attrs += Format::str(xT("\033[{}m"), (int)backgroundColor);  // TODO: [skynowa] StdStreamV2
 
-        xCHECK_DO(a_attributes & Console::atAllOff,     attrs += Format::str(xT("\033[{}m"), attributeAllOff));
-        xCHECK_DO(a_attributes & Console::atBold,       attrs += Format::str(xT("\033[{}m"), attributeBold));
-        xCHECK_DO(a_attributes & Console::atUnderscore, attrs += Format::str(xT("\033[{}m"), attributeUnderscore));
-        xCHECK_DO(a_attributes & Console::atBlink,      attrs += Format::str(xT("\033[{}m"), attributeBlink));
-        xCHECK_DO(a_attributes & Console::atReverse,    attrs += Format::str(xT("\033[{}m"), attributeReverse));
-        xCHECK_DO(a_attributes & Console::atConcealed,  attrs += Format::str(xT("\033[{}m"), attributeConcealed));
+        xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atAllOff),     attrs += Format::str(xT("\033[{}m"), attributeAllOff));
+        xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atBold),       attrs += Format::str(xT("\033[{}m"), attributeBold));
+        xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atUnderscore), attrs += Format::str(xT("\033[{}m"), attributeUnderscore));
+        xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atBlink),      attrs += Format::str(xT("\033[{}m"), attributeBlink));
+        xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atReverse),    attrs += Format::str(xT("\033[{}m"), attributeReverse));
+        xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atConcealed),  attrs += Format::str(xT("\033[{}m"), attributeConcealed));
     }
 
     return attrs;

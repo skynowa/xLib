@@ -32,7 +32,7 @@ Test_Process::unit()
             proc.create(filePath, xT("%s"), cmdLine.c_str());
 
             Process::WaitResult wrRes = proc.wait(xTIMEOUT_INFINITE);
-            xTEST_EQ(Process::wrAbandoned, wrRes);
+            xTEST_EQ((int)Process::WaitResult::wrAbandoned, (int)wrRes);
         #endif
     }
 

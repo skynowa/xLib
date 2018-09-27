@@ -35,7 +35,7 @@ xNAMESPACE_BEGIN2(xl, net)
 TcpClient::TcpClient() :
     _timeout()
 {
-    setTimeout(0L, SOCKET_TIMEOUT);
+    setTimeout(0L, Options::SOCKET_TIMEOUT);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -123,10 +123,10 @@ TcpClient::isServerAlive(
     xTEST_EQ((65535 > a_port) && (0 < a_port), true);
 
     TcpClient client;
-    client.create(ISocket::afInet, ISocket::tpStream, ISocket::ptIp);
+    client.create(ISocket::AddressFamily::afInet, ISocket::Type::tpStream, ISocket::Protocol::ptIp);
 
     sockaddr_in sockAddr;   Utils::structZeroT(sockAddr);
-    sockAddr.sin_family      = ISocket::afInet;
+    sockAddr.sin_family      = static_cast<sa_family_t>(ISocket::AddressFamily::afInet);
     sockAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_ip).c_str());
     sockAddr.sin_port        = htons(a_port); // TODO: [skynowa] TcpClient::isServerAlive() - htons
 

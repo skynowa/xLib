@@ -84,9 +84,9 @@ Test_Debugger::unit()
     xTEST_CASE("reportMake")
     {
         const ErrorReport::Type type[] = {
-            ErrorReport::rtMsgbox,
-            ErrorReport::rtStdout,
-            ErrorReport::rtLog
+            ErrorReport::Type::rtMsgbox,
+            ErrorReport::Type::rtStdout,
+            ErrorReport::Type::rtLog
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(type); ++ i) {

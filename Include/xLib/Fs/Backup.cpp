@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 Backup::Backup(
-    cPeriod &a_period
+    cPeriod a_period
 ) :
     _period(a_period)
 {
@@ -66,23 +66,23 @@ Backup::fileExec(
     std::tstring_t dateTimeStamp;
     {
         switch (_period) {
-        case bpHourly:
+        case Period::bpHourly:
             // format: 2013-12-21_23
             dateTimeStamp = DateTime::current().format(xT("%Y-%m-%d_%H"), xT(""));
             break;
-        case bpDaily:
+        case Period::bpDaily:
             // format: 2013-12-21
             dateTimeStamp = DateTime::current().format(xT("%Y-%m-%d"), xT(""));
             break;
-        case bpWeekly:
+        case Period::bpWeekly:
             // format: 2013_01
             dateTimeStamp = DateTime::current().format(xT("%Y_%U"), xT(""));
             break;
-        case bpMonthly:
+        case Period::bpMonthly:
             // format: 2013-12
             dateTimeStamp = DateTime::current().format(xT("%Y-%m"), xT(""));
             break;
-        case bpUnknown:
+        case Period::bpUnknown:
         default:
             xTEST_FAIL;
             return;
@@ -93,7 +93,7 @@ Backup::fileExec(
     // format file full name
     std::ctstring_t backupFilePath = Path(a_destDirPath).slashAppend() +
         Path(a_filePath).fileName() + xT("_[") + dateTimeStamp + xT("].") +
-        Path::fileExt(Path::seBackup);
+        Path::fileExt(Path::FileExt::seBackup);
 
     // check for existence source file
     {
