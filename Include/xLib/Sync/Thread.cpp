@@ -262,7 +262,7 @@ Thread::isExited()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::setPriority(
-    const Priority &a_priority
+    const Priority a_priority
 ) const
 {
     _setPriority_impl(a_priority);
@@ -285,21 +285,21 @@ Thread::priorityString() const
 {
     // n/a
 
-    int_t iRv = priority();
+    auto iRv = priority();
     switch (iRv) {
-    case tpIdle:
+    case Priority::tpIdle:
         return xT("Idle");
-    case tpLowest:
+    case Priority::tpLowest:
         return xT("Lowest");
-    case tpBelowNormal:
+    case Priority::tpBelowNormal:
         return xT("Below normal");
-    case tpNormal:
+    case Priority::tpNormal:
         return xT("Normal");
-    case tpAboveNormal:
+    case Priority::tpAboveNormal:
         return xT("Above normal");
-    case tpHighest:
+    case Priority::tpHighest:
         return xT("Highest");
-    case tpTimeCritical:
+    case Priority::tpTimeCritical:
         return xT("Time critical");
     }
 
@@ -315,30 +315,30 @@ Thread::priorityUp() const
 
 #endif
 
-    Priority tpOldLevel  = tpError;
-    Priority tpiNewLevel = tpError;
+    Priority tpOldLevel  = Priority::tpError;
+    Priority tpiNewLevel = Priority::tpError;
 
     tpOldLevel = priority();
     switch (tpOldLevel) {
-    case tpIdle:
-        tpiNewLevel = tpLowest;
+    case Priority::tpIdle:
+        tpiNewLevel = Priority::tpLowest;
         break;
-    case tpLowest:
-        tpiNewLevel = tpBelowNormal;
+    case Priority::tpLowest:
+        tpiNewLevel = Priority::tpBelowNormal;
         break;
-    case tpBelowNormal:
-        tpiNewLevel = tpNormal;
+    case Priority::tpBelowNormal:
+        tpiNewLevel = Priority::tpNormal;
         break;
-    case tpNormal:
-        tpiNewLevel = tpAboveNormal;
+    case Priority::tpNormal:
+        tpiNewLevel = Priority::tpAboveNormal;
         break;
-    case tpAboveNormal:
-        tpiNewLevel = tpHighest;
+    case Priority::tpAboveNormal:
+        tpiNewLevel = Priority::tpHighest;
         break;
-    case tpHighest:
-        tpiNewLevel = tpTimeCritical;
+    case Priority::tpHighest:
+        tpiNewLevel = Priority::tpTimeCritical;
         break;
-    case tpTimeCritical:
+    case Priority::tpTimeCritical:
         return;
         break;
     default:
@@ -358,31 +358,31 @@ Thread::priorityDown() const
 
 #endif
 
-    Priority tpOldLevel  = tpError;
-    Priority tpiNewLevel = tpError;
+    Priority tpOldLevel  = Priority::tpError;
+    Priority tpiNewLevel = Priority::tpError;
 
     tpOldLevel = priority();
     switch (tpOldLevel) {
-    case tpIdle:
+    case Priority::tpIdle:
         return;
         break;
-    case tpLowest:
-        tpiNewLevel = tpIdle;
+    case Priority::tpLowest:
+        tpiNewLevel = Priority::tpIdle;
         break;
-    case tpBelowNormal:
-        tpiNewLevel = tpLowest;
+    case Priority::tpBelowNormal:
+        tpiNewLevel = Priority::tpLowest;
         break;
-    case tpNormal:
-        tpiNewLevel = tpBelowNormal;
+    case Priority::tpNormal:
+        tpiNewLevel = Priority::tpBelowNormal;
         break;
-    case tpAboveNormal:
-        tpiNewLevel = tpNormal;
+    case Priority::tpAboveNormal:
+        tpiNewLevel = Priority::tpNormal;
         break;
-    case tpHighest:
-        tpiNewLevel = tpAboveNormal;
+    case Priority::tpHighest:
+        tpiNewLevel = Priority::tpAboveNormal;
         break;
-    case tpTimeCritical:
-        tpiNewLevel = tpHighest;
+    case Priority::tpTimeCritical:
+        tpiNewLevel =Priority::tpHighest;
         break;
     default:
         xTEST_FAIL;
@@ -730,11 +730,11 @@ Thread::_waitResumption()
 
     Event::ObjectState osRv = _eventPause.wait();
     // TODO: [skynowa] StdStreamV2
-    ///-- xTEST_DIFF(Event::osFailed, osRv);
-    ///-- xTEST_DIFF(Event::osTimeout, osRv);
-    ///-- xTEST_EQ(Event::osSignaled, osRv);
+    ///-- xTEST_DIFF(Event::ObjectState::osFailed, osRv);
+    ///-- xTEST_DIFF(Event::ObjectState::osTimeout, osRv);
+    ///-- xTEST_EQ(Event::ObjectState::osSignaled, osRv);
 
-    return (Event::osSignaled == osRv);
+    return (Event::ObjectState::osSignaled == osRv);
 }
 //-------------------------------------------------------------------------------------------------
 void_t

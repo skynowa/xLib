@@ -17,7 +17,7 @@ SystemInfo::_distro_impl() const
 {
     std::tstring_t sRv;
 
-    enum _OsType
+    enum class _OsType
     {
         Unknown = 0,
         Os,
@@ -47,25 +47,25 @@ SystemInfo::_distro_impl() const
 
     cos_release_t osReleases
     {
-        {Os,         xT("/etc/os-release"),         xT("")},
-        {Arch,       xT("/etc/arch-release"),       xT("Arch Linux")},
-        {Fedora,     xT("/etc/fedora-release"),     xT("")},
-        {Redhat,     xT("/etc/redhat-release"),     xT("")},
-        {SuSE,       xT("/etc/SuSE-release"),       xT("")},
-        {Gentoo,     xT("/etc/gentoo-release"),     xT("")},
-        {Slackware,  xT("/etc/slackware-version"),  xT("")},
-        {Frugalware, xT("/etc/frugalware-release"), xT("")},
-        {Altlinux,   xT("/etc/altlinux-release"),   xT("")},
-        {Mandriva,   xT("/etc/mandriva-release"),   xT("")},
-        {Meego,      xT("/etc/meego-release"),      xT("")},
-        {Angstrom,   xT("/etc/angstrom-version"),   xT("")},
-        {Mageia,     xT("/etc/mageia-release"),     xT("")},
-        {Debian,     xT("/etc/debian_version"),     xT("Debian GNU/Linux")}
+        {_OsType::Os,         xT("/etc/os-release"),         xT("")},
+        {_OsType::Arch,       xT("/etc/arch-release"),       xT("Arch Linux")},
+        {_OsType::Fedora,     xT("/etc/fedora-release"),     xT("")},
+        {_OsType::Redhat,     xT("/etc/redhat-release"),     xT("")},
+        {_OsType::SuSE,       xT("/etc/SuSE-release"),       xT("")},
+        {_OsType::Gentoo,     xT("/etc/gentoo-release"),     xT("")},
+        {_OsType::Slackware,  xT("/etc/slackware-version"),  xT("")},
+        {_OsType::Frugalware, xT("/etc/frugalware-release"), xT("")},
+        {_OsType::Altlinux,   xT("/etc/altlinux-release"),   xT("")},
+        {_OsType::Mandriva,   xT("/etc/mandriva-release"),   xT("")},
+        {_OsType::Meego,      xT("/etc/meego-release"),      xT("")},
+        {_OsType::Angstrom,   xT("/etc/angstrom-version"),   xT("")},
+        {_OsType::Mageia,     xT("/etc/mageia-release"),     xT("")},
+        {_OsType::Debian,     xT("/etc/debian_version"),     xT("Debian GNU/Linux")}
     };
 
     for (auto &it : osReleases) {
         switch (it.type) {
-        case Os:
+        case _OsType::Os:
             {
                 std::map_tstring_t values;
                 File::textRead(it.filePath, xT("="), &values);
@@ -89,10 +89,10 @@ SystemInfo::_distro_impl() const
                 }
             }
             break;
-        case Arch:
+        case _OsType::Arch:
             sRv = it.name;
             break;
-        case Debian:
+        case _OsType::Debian:
             {
                 sRv = it.name;
 

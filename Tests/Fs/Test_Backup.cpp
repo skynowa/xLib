@@ -26,7 +26,7 @@ Test_Backup::unit()
         {
             File F;
 
-            F.create(filePath, File::omBinCreateReadWrite);
+            F.create(filePath, File::OpenMode::omBinCreateReadWrite);
             F.resize(100L);
 
         #if 0
@@ -38,11 +38,11 @@ Test_Backup::unit()
         }
 
         Backup::cPeriod periods[] = {
-            // Backup::bpUnknown,
-            Backup::bpHourly,
-            Backup::bpDaily,
-            Backup::bpWeekly,
-            Backup::bpMonthly
+            // Backup::Period::bpUnknown,
+            Backup::Period::bpHourly,
+            Backup::Period::bpDaily,
+            Backup::Period::bpWeekly,
+            Backup::Period::bpMonthly
         };
 
         for (size_t p = 0; p < xARRAY_SIZE(periods); ++ p) {

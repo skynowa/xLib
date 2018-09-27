@@ -13,17 +13,19 @@ xNAMESPACE_BEGIN2(xl, system)
 struct CmdOptionsUsage
     /// CmdOptions usage
 {
-	enum EnableType
+	enum class EnableType
 	{
 		Disabled = 0,
 		Enabled  = 1
 	};
+	xUSING_CONST(EnableType);
 
-	enum MandatoryType
+	enum class MandatoryType
 	{
 		Optional  = 0,
 		Mandatory = 1
 	};
+	xUSING_CONST(MandatoryType);
 
 	EnableType     enableType;
 	MandatoryType  mandatoryType;

@@ -14,7 +14,15 @@ class FileType
     /// file attribute
 {
 public:
-    enum Type
+#if   xENV_WIN
+    using types_t = DWORD;
+#elif xENV_UNIX
+    using types_t = mode_t;
+#endif
+    xUSING_CONST(types_t);
+        ///< all types
+
+    enum class Type : types_t
         /// attribute
     {
     #if   xENV_WIN
@@ -34,7 +42,7 @@ public:
         faNotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
         faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
     #elif xENV_UNIX
-        faInvalid           = (mode_t)- 1,
+        faInvalid           = static_cast<types_t>(-1),
         faDirectory         = S_IFDIR,
         faCharacterDevice   = S_IFCHR,
         faBlockDevice       = S_IFBLK,
@@ -46,15 +54,6 @@ public:
     };
     xUSING_CONST(Type);
 
-#if   xENV_WIN
-    using types_t = DWORD;
-#elif xENV_UNIX
-    using types_t = mode_t;
-#endif
-
-    xUSING_CONST(types_t);
-        ///< all types
-
     explicit          FileType(std::ctstring_t &filePath);
         ///< constructor
     virtual          ~FileType() {}
@@ -63,17 +62,17 @@ public:
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< file path
 
-    bool_t            isExists(cType &value) const xWARN_UNUSED_RV;
+    bool_t            isExists(cType value) const xWARN_UNUSED_RV;
         ///< is exists
     types_t           get() const xWARN_UNUSED_RV;
         ///< get
-    void_t            set(ctypes_t &values) const;
+    void_t            set(ctypes_t values) const;
         ///< set
-    void_t            add(cType &value) const;
+    void_t            add(cType value) const;
         ///< add
-    void_t            remove(cType &value) const;
+    void_t            remove(cType value) const;
         ///< remove
-    void_t            modify(cType &valueRemove, cType &valueAdd) const;
+    void_t            modify(cType valueRemove, cType valueAdd) const;
         ///< modify
     void_t            clear() const;
         ///< clear (set normal attributes, only for Windows)
@@ -85,7 +84,7 @@ private:
 
 xPLATFORM_IMPL:
     types_t           _get_impl() const xWARN_UNUSED_RV;
-    void_t            _set_impl(ctypes_t &values) const;
+    void_t            _set_impl(ctypes_t values) const;
     void_t            _clear_impl() const;
 };
 

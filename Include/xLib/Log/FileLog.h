@@ -18,16 +18,19 @@ class FileLog :
     /// logging to file
 {
 public:
-    enum LogSizes
+    enum class LogSizes : std::size_t
         /// log size
     {
         lsDefaultMb    = xMB(20),
         lsDefaultMaxMb = xMB(50)
     };
+    xUSING_CONST(LogSizes);
 
                    FileLog();
         ///< constructor
-    explicit       FileLog(std::csize_t &fileSizeMaxBytes);
+    explicit       FileLog(cLogSizes fileSizeMaxBytes);
+        ///< constructor
+    explicit       FileLog(std::csize_t fileSizeMaxBytes);
         ///< constructor
     virtual       ~FileLog();
         ///< destructor
@@ -43,7 +46,7 @@ public:
 
     virtual void_t write(cptr_ctchar_t format, ...) const override;
         ///< write to log
-    virtual void_t write(cLevel &level, cptr_ctchar_t format, ...) const override;
+    virtual void_t write(cLevel level, cptr_ctchar_t format, ...) const override;
         ///< write to log
     void_t         clear() const;
         ///< clear content

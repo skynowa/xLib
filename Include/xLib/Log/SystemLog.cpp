@@ -76,7 +76,7 @@ SystemLog::write(
     cptr_ctchar_t a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),          return);
+    xCHECK_DO(!isEnabled(),        return);
     xCHECK_DO(a_format == nullptr, return);
 
     std::tstring_t msg;
@@ -86,22 +86,22 @@ SystemLog::write(
     msg = FormatC::strV(a_format, args);
     xVA_END(args);
 
-    write(lvPlain, xT("%s"), msg.c_str());
+    write(Level::lvPlain, xT("%s"), msg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 SystemLog::write(
-    cLevel        &a_level,
-    cptr_ctchar_t  a_format, ...
+    cLevel        a_level,
+    cptr_ctchar_t a_format, ...
 ) const
 {
     xCHECK_DO(!isEnabled(), return);
     xTEST_PTR(a_format);
 
-    Level level = lvUnknown;
+    Level level = Level::lvUnknown;
     {
-        xCHECK_DO(a_level == lvPlain, level = lvInfo);
+        xCHECK_DO(a_level == Level::lvPlain, level = Level::lvInfo);
     }
 
     std::tstring_t msg;

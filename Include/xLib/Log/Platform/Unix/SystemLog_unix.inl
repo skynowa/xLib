@@ -29,11 +29,12 @@ SystemLog::_destruct_impl()
 /* virtual */
 void_t
 SystemLog::_write_impl(
-    cLevel          &a_level,
+    cLevel           a_level,
     std::ctstring_t &a_msg
 ) const
 {
-    cint_t level_impl = internal::enums::levels.toCross(a_level);
+    cint_t level_impl = static_cast<int_t>(
+    	internal::enums::levels.toCross( static_cast<::ssize_t>(a_level)) );
 
     (void_t)::syslog(level_impl, "%s", xT2A(a_msg).c_str());
 }

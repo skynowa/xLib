@@ -39,7 +39,7 @@ class CWorkThread :
         virtual       ~CWorkThread();
 
     protected:
-        virtual uint_t onRun      (void_t *pData) override;
+        virtual uint_t onRun(void_t *pData) override;
 };
 //-------------------------------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ class CWorkThread :
 CWorkThread::CWorkThread(
     cbool_t &cbAutoDelete
 ) :
-    Thread (cbAutoDelete),
+    Thread   (cbAutoDelete),
     m_uiIndex(0U)
 {
 }
@@ -160,7 +160,7 @@ Test_Thread::unit()
 
     xTEST_CASE("vSetPriority, tpGetPriority")
     {
-        const Thread::Priority ctpPriority = Thread::tpLowest;
+        const Thread::Priority ctpPriority = Thread::Priority::tpLowest;
 
         #if   xENV_WIN
             pthT->setPriority(ctpPriority);
@@ -170,8 +170,8 @@ Test_Thread::unit()
         #elif xENV_UNIX
             pthT->setPriority(ctpPriority);
 
-            m_iRv = pthT->priority();
-            //TODO: xTEST_EQ(ctpPriority, m_iRv);
+            const Thread::Priority _ctpPriority = pthT->priority();
+            //TODO: xTEST_EQ(_ctpPriority, m_iRv);
         #endif
     }
 

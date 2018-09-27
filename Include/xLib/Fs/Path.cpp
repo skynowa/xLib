@@ -145,31 +145,31 @@ Path::ext() const
 /* static */
 std::tstring_t
 Path::fileExt(
-    const FileExt &a_fileExt
+    cFileExt a_fileExt
 )
 {
     std::tstring_t sRv;
 
     switch (a_fileExt) {
-    case seConfig:
+    case FileExt::seConfig:
         sRv = xT("cfg");
         break;
-    case seLog:
+    case FileExt::seLog:
         sRv = xT("log");
         break;
-    case seDb:
+    case FileExt::seDb:
         sRv = xT("db");
         break;
-    case seDat:
+    case FileExt::seDat:
         sRv = xT("dat");
         break;
-    case seBackup:
+    case FileExt::seBackup:
         sRv = xT("bak");
         break;
-    case seTemp:
+    case FileExt::seTemp:
         sRv = xT("tmp");
         break;
-    case seText:
+    case FileExt::seText:
         sRv = xT("txt");
         break;
     default:

@@ -23,38 +23,38 @@ Finder::_entryName_impl() const
 FileType::types_t
 Finder::_fileTypes_impl() const
 {
-    FileType::types_t ftRv = FileType::faInvalid;
+    auto ftRv = FileType::Type::faInvalid;
 
     cuchar_t ucRv = _entry.data.d_type;
     switch (ucRv) {
     case DT_BLK: // block device
-        ftRv = FileType::faBlockDevice;
+        ftRv = FileType::Type::faBlockDevice;
         break;
     case DT_CHR: // character device
-        ftRv = FileType::faCharacterDevice;
+        ftRv = FileType::Type::faCharacterDevice;
         break;
     case DT_DIR: // directory
-        ftRv = FileType::faDirectory;
+        ftRv = FileType::Type::faDirectory;
         break;
     case DT_FIFO: // named pipe (FIFO)
-        ftRv = FileType::faFifo;
+        ftRv = FileType::Type::faFifo;
         break;
     case DT_LNK: // symbolic link
-        ftRv = FileType::faSymbolicLink;
+        ftRv = FileType::Type::faSymbolicLink;
         break;
     case DT_REG: // regular file
-        ftRv = FileType::faRegularFile;
+        ftRv = FileType::Type::faRegularFile;
         break;
     case DT_SOCK: // UNIX domain socket
-        ftRv = FileType::faSocket;
+        ftRv = FileType::Type::faSocket;
         break;
     case DT_UNKNOWN: // type is unknown
     default:
-        ftRv = FileType::faInvalid;
+        ftRv = FileType::Type::faInvalid;
         break;
     }
 
-    return ftRv;
+    return static_cast<FileType::types_t>(ftRv);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t

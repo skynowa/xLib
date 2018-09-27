@@ -15,7 +15,7 @@ class xNO_VTABLE ILog
     /// TODO: https://oopscenities.net/2011/04/30/c-the-curiously-recurring-template-pattern/#more-21
 {
 public:
-    enum Level
+    enum class Level
         /// log level
     {
         lvUnknown = - 1,
@@ -43,12 +43,12 @@ public:
 
     virtual void_t  write(cptr_ctchar_t format, ...) const = 0;
         ///< write to log
-    virtual void_t  write(cLevel &level, cptr_ctchar_t format, ...) const = 0;
+    virtual void_t  write(cLevel level, cptr_ctchar_t format, ...) const = 0;
         ///< write to log
 
 protected:
     std::tostringstream_t _oss; ///< string stream
-    std::tstring_t  _levelString(cLevel &level) const;
+    std::tstring_t  _levelString(cLevel level) const;
 
 private:
     bool_t          _isEnable;  ///< is enabled

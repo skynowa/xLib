@@ -16,44 +16,43 @@ MsgBox::ModalResult
 MsgBox::_show_impl(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
-    cType           &a_type    /* = tpOk */
+    cType            a_type    /* = tpOk */
 ) const
 {
-    ModalResult mrRv = mrAbort;
+    ModalResult mrRv = ModalResult::mrAbort;
 
     NSString *btnDefault = nil;
     NSString *btnAlt     = nil;
     NSString *btnOther   = nil;
 
-    switch(a_type)
-    {
+    switch(a_type) {
     default:
-    case tpOk:
+    case ModalResult::tpOk:
         btnDefault = @"Ok";
         break;
-    case tpOkCancel:
+    case ModalResult::tpOkCancel:
         btnDefault = @"Ok";
         btnAlt     = @"Cancel";
         break;
-    case tpYesNo:
+    case ModalResult::ModalResult::tpYesNo:
         btnDefault = @"Yes";
         btnAlt     = @"No";
         break;
-    case tpRetryCancel:
+    case ModalResult::tpRetryCancel:
         btnDefault = @"Retry";
         btnAlt     = @"Cancel";
         break;
-    case tpYesNoCancel:
+    case ModalResult::tpYesNoCancel:
         btnDefault = @"Yes";
         btnAlt     = @"No";
         btnOther   = @"Cancel";
         break;
-    case tpAbortRetryIgnore:
+    case ModalResult::tpAbortRetryIgnore:
         btnDefault = @"Abort";
         btnAlt     = @"Retry";
         btnOther   = @"Ignore";
         break;
-    case tpCancelTryContinue:
+    case ModalResult::tpCancelTryContinue:
         btnDefault = @"Cancel";
         btnAlt     = @"Try Again";
         btnOther   = @"Continue";
@@ -74,52 +73,52 @@ MsgBox::_show_impl(
     // Convert the NSAlert return values into my MB_* return values.
     if (iRv == NSAlertDefaultReturn) {
         switch (a_type) {
-        case tpOk:
-        case tpOkCancel:
+        case ModalResult::tpOk:
+        case ModalResult::tpOkCancel:
             mrRv = mrOk;
             break;
-        case tpYesNo:
-        case tpYesNoCancel:
+        case ModalResult::tpYesNo:
+        case ModalResult::tpYesNoCancel:
             mrRv = mrYes;
             break;
-        case tpRetryCancel:
+        case ModalResult::tpRetryCancel:
             mrRv = mrRetry;
             break;
-        case tpAbortRetryIgnore:
+        case ModalResult::tpAbortRetryIgnore:
             mrRv = mrAbort;
             break;
-        case tpCancelTryContinue:
+        case ModalResult::tpCancelTryContinue:
             mrRv = mrCancel;
             break;
         }
     }
     else if (iRv == NSAlertAlternateReturn) {
         switch(a_type) {
-        case tpOkCancel:
-        case tpRetryCancel:
+        case ModalResult::tpOkCancel:
+        case ModalResult::tpRetryCancel:
             mrRv = mrCancel;
             break;
-        case tpYesNo:
-        case tpYesNoCancel:
+        case ModalResult::tpYesNo:
+        case ModalResult::tpYesNoCancel:
             mrRv = mrNo;
             break;
-        case tpAbortRetryIgnore:
+        case ModalResult::tpAbortRetryIgnore:
             mrRv = mrRetry;
             break;
-        case tpCancelTryContinue:
+        case ModalResult::tpCancelTryContinue:
             mrRv = mrTryAgain;
             break;
         }
     }
     else if (iRv == NSAlertOtherReturn) {
         switch(a_type) {
-        case tpYesNoCancel:
+        case ModalResult::tpYesNoCancel:
             mrRv = mrCancel;
             break;
-        case tpAbortRetryIgnore:
+        case ModalResult::tpAbortRetryIgnore:
             mrRv = mrIgnore;
             break;
-        case tpCancelTryContinue:
+        case ModalResult::tpCancelTryContinue:
             mrRv = mrContinue;
             break;
         }

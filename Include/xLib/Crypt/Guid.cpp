@@ -42,16 +42,16 @@ xNAMESPACE_BEGIN2(xl, crypt)
 /* static */
 std::tstring_t
 Guid::create(
-    cType &a_type
+    cType a_type
 ) const
 {
     std::tstring_t sRv;
 
     switch (a_type) {
-    case tpRandomBased:
+    case Type::tpRandomBased:
         sRv = _randomBased_impl();
         break;
-    case tpUnknown:
+    case Type::tpUnknown:
     default:
         xTEST_FAIL;
         break;

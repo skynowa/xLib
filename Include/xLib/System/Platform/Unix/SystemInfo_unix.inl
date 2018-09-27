@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, system)
 SystemInfo::OsType
 SystemInfo::_os_impl()
 {
-    OsType otRv = otUnknown;
+    OsType otRv = OsType::otUnknown;
 
     utsname info; Utils::structZeroT(info);
 
@@ -23,16 +23,16 @@ SystemInfo::_os_impl()
     xTEST_DIFF(iRv, - 1);
 
     if      (StringCI::compare(xA2T(info.sysname), xT("Linux"))) {
-        otRv = otLinux;
+        otRv = OsType::otLinux;
     }
     else if (StringCI::compare(xA2T(info.sysname), xT("FreeBSD"))) {
-        otRv = otFreeBSD;
+        otRv = OsType::otFreeBSD;
     }
     else if (StringCI::compare(xA2T(info.sysname), xT("Darwin"))) {
-        otRv = otMac;
+        otRv = OsType::otMac;
     }
     else {
-        otRv = otUnknown;
+        otRv = OsType::otUnknown;
     }
 
     _osType = otRv;
@@ -59,7 +59,7 @@ SystemInfo::_formatOs_impl() const
 SystemInfo::OsArch
 SystemInfo::_osArch_impl()
 {
-    OsArch oaRv = oaUnknown;
+    OsArch oaRv = OsArch::oaUnknown;
 
     std::tstring_t infoMachine;
     {
@@ -73,32 +73,32 @@ SystemInfo::_osArch_impl()
 
     // 32-bit checks
     if      (StringCI::compare(infoMachine, xT("i386"))) {
-        oaRv = oa32bit;
+        oaRv = OsArch::oa32bit;
     }
     else if (StringCI::compare(infoMachine, xT("i486"))) {
-        oaRv = oa32bit;
+        oaRv = OsArch::oa32bit;
     }
     else if (StringCI::compare(infoMachine, xT("i586"))) {
-        oaRv = oa32bit;
+        oaRv = OsArch::oa32bit;
     }
     else if (StringCI::compare(infoMachine, xT("i686"))) {
-        oaRv = oa32bit;
+        oaRv = OsArch::oa32bit;
     }
 
     // 64-bit checks
     else if (StringCI::compare(infoMachine, xT("x86_64"))) {
-        oaRv = oa64bit;
+        oaRv = OsArch::oa64bit;
     }
     else if (StringCI::compare(infoMachine, xT("ia64"))) {
-        oaRv = oa64bit;
+        oaRv = OsArch::oa64bit;
     }
     else if (StringCI::compare(infoMachine, xT("amd64"))) {
-        oaRv = oa64bit;
+        oaRv = OsArch::oa64bit;
     }
 
     // unknown
     else {
-        oaRv = oaUnknown;
+        oaRv = OsArch::oaUnknown;
     }
 
     _osArch = oaRv;

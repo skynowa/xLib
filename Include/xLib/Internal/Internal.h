@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN2(xl, internal)
 ///@{
 xNAMESPACE_BEGIN(enums)
 
-template<typename crossT, class implT>
+template<typename crossT, typename implT>
 struct Type
     ///< enum values
 {
@@ -30,22 +30,22 @@ struct Type
     implT  impl;   ///< implementation (native) value
 };
 
-template<typename crossT, class implT, std::csize_t sizeT>
+template<typename crossT, typename implT, std::csize_t sizeT>
 struct Types
     ///< convert implementation (native) <-> crossplatform values
 {
     Type<crossT, implT> values[sizeT]; ///< crossplatform to implementation (native) values
 
     crossT
-    toCross(std::cssize_t &a_value) const
+    toCross(std::cssize_t a_value) const
     {
-        return static_cast<crossT>( this->values[a_value].cross );
+        return static_cast<crossT>( values[a_value].cross );
     }
         ///< implementation (native) value to crossplatform
     implT
-    toImpl(std::cssize_t &a_value) const
+    toImpl(std::cssize_t a_value) const
     {
-        return static_cast<implT>( this->values[a_value].impl );
+        return static_cast<implT>( values[a_value].impl );
     }
         ///< crossplatform value to implementation (native)
 };

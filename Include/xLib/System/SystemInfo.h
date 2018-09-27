@@ -14,7 +14,7 @@ class SystemInfo
     /// system information
 {
 public:
-    enum OsType
+    enum class OsType
         /// OS type
     {
         otUnknown,
@@ -40,22 +40,25 @@ public:
         // Apple family
         otMac
     };
+    xUSING_CONST(OsType);
 
-    enum OsArch
+    enum class OsArch
         /// OS architecture
     {
         oaUnknown,
         oa32bit,
         oa64bit
     };
+    xUSING_CONST(OsArch);
 
-    enum CpuVendor
+    enum class CpuVendor
         /// CPU type
     {
         cvUnknown,
         cvIntel,
         cvAmd
     };
+    xUSING_CONST(CpuVendor);
 
                    SystemInfo();
         ///< constructor

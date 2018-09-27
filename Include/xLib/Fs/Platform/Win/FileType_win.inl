@@ -25,7 +25,7 @@ FileType::_get_impl() const
 //-------------------------------------------------------------------------------------------------
 void_t
 FileType::_set_impl(
-    ctypes_t &a_values
+    ctypes_t a_values
 ) const
 {
     BOOL blRv = ::SetFileAttributes(filePath().c_str(), a_values);

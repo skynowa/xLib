@@ -252,7 +252,7 @@ Thread::messageWaitQueue(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_setPriority_impl(
-    const Priority &a_priority
+    const Priority a_priority
 ) const
 {
     xTEST_EQ(_handle.isValid(), true);

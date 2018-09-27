@@ -46,7 +46,7 @@ class ISocket
     /// socket
 {
 public:
-    enum AddressFamily
+    enum class AddressFamily
         /// address family
     {
     #if   xENV_WIN
@@ -105,7 +105,7 @@ public:
     };
     xUSING_CONST(AddressFamily);
 
-    enum Type
+    enum class Type
        /// type
     {
         tpStream      = SOCK_STREAM,
@@ -116,7 +116,7 @@ public:
     };
     xUSING_CONST(Type);
 
-    enum Protocol
+    enum class Protocol
         /// protocol
     {
     #if xENV_WIN
@@ -242,7 +242,7 @@ public:
     *
     *******************************************************************************/
 
-    void_t         create(cAddressFamily &family, cType &type, cProtocol &protocol);
+    void_t         create(cAddressFamily family, cType type, cProtocol protocol);
         ///< creates a socket that is bound to a specific transport service provider
     HandleSocket  &handle() xWARN_UNUSED_RV;
         ///< get handle
@@ -308,7 +308,7 @@ public:
 
 protected:
     HandleSocket   _handle;   ///< socket handle
-    short_t        _family;   ///< family
+    sa_family_t    _family;   ///< family
     std::tstring_t _ip;       ///< IP
     ushort_t       _port;     ///< port
 

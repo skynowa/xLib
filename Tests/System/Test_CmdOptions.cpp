@@ -23,8 +23,8 @@ Test_CmdOptions::unit()
         {
             cCmdOptionsUsage cmdOption =
             {
-                CmdOptionsUsage::Enabled,
-                CmdOptionsUsage::Mandatory,
+                CmdOptionsUsage::EnableType::Enabled,
+                CmdOptionsUsage::MandatoryType::Mandatory,
                 "c",
                 "create",
                 "",

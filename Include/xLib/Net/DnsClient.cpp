@@ -74,19 +74,20 @@ DnsClient::hostNameByAddr(
     hostent *host = nullptr;
 
     switch (a_family) {
-    case ISocket::afInet:
+    case ISocket::AddressFamily::afInet:
 		{
 			in_addr iaAddr = {0};
 
 			iaAddr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
 			xTEST_DIFF(iaAddr.s_addr, INADDR_NONE);
 
-			host = ::gethostbyaddr(reinterpret_cast<char *>(&iaAddr), sizeof(iaAddr), ISocket::afInet);
+			host = ::gethostbyaddr(reinterpret_cast<char *>(&iaAddr), sizeof(iaAddr),
+				static_cast<int_t>(ISocket::AddressFamily::afInet));
 			xTEST_PTR(host);
 		}
         break;
 #if (xWINVER >= xOS_WIN_VISTA)
-    case ISocket::afInet6:
+    case ISocket::AddressFamily::afInet6:
 		{
 		#if xTODO
 			IN6_ADDR iaAddr6 = {0};
@@ -94,7 +95,8 @@ DnsClient::hostNameByAddr(
 			iRv = ::inet_pton(afInet6, a_casHostAddr.c_str(), &iaAddr6);
 			xTEST_DIFF(iRv, 0);
 
-			host = ::gethostbyaddr(reinterpret_cast<char *>( &iaAddr6 ), 16, afInet6);
+			host = ::gethostbyaddr(reinterpret_cast<char *>( &iaAddr6 ), 16,
+				static_cast<std::size_t>(ISocket::AddressFamily::afInet6));
 			xTEST_PTR(host);
 		#endif
 		}
@@ -142,7 +144,7 @@ DnsClient::nameInfo(
     xTEST_GR(a_port, static_cast<ushort_t>(0));
 
     sockaddr_in socketAddr; Utils::structZeroT(socketAddr);
-    socketAddr.sin_family      = a_family;
+    socketAddr.sin_family      = static_cast<sa_family_t>(a_family);
     socketAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
     socketAddr.sin_port        = htons(a_port);
 

@@ -15,7 +15,7 @@ class Console
     /// console
 {
 public:
-    enum Foreground
+    enum class Foreground
         /// foreground color
     {
         fgUnknown,
@@ -31,7 +31,7 @@ public:
     };
     xUSING_CONST(Foreground);
 
-    enum Background
+    enum class Background
         /// background color
     {
         bgUnknown,
@@ -47,7 +47,7 @@ public:
     };
     xUSING_CONST(Background);
 
-    enum TextAttribute
+    enum class TextAttribute
         /// text attribute
     {
         atUnknown,
@@ -60,7 +60,7 @@ public:
     };
     xUSING_CONST(TextAttribute);
 
-    enum ModalResult
+    enum class ModalResult
         /// modal result
     {
         mrAbort  = 3,
@@ -74,8 +74,8 @@ public:
     virtual       ~Console();
         ///< destructor
 
-    std::tstring_t setAttributes(cForeground &foreground, cBackground &background,
-                       cint_t &attributes) const xWARN_UNUSED_RV;
+    std::tstring_t setAttributes(cForeground foreground, cBackground background,
+                       cint_t attributes) const xWARN_UNUSED_RV;
         ///< set text color
     std::tstring_t setAttributesDef() const xWARN_UNUSED_RV;
         ///< set text color
@@ -135,8 +135,8 @@ private:
 xPLATFORM_IMPL:
     void_t         _construct_impl();
     void_t         _destruct_impl();
-    std::tstring_t _setAttributes_impl(cForeground &foreground, cBackground &background,
-    					cint_t &attributes) const xWARN_UNUSED_RV;
+    std::tstring_t _setAttributes_impl(cForeground foreground, cBackground background,
+    					cint_t attributes) const xWARN_UNUSED_RV;
     std::tstring_t _setAttributesDef_impl() const xWARN_UNUSED_RV;
     std::tstring_t _read_impl() const xWARN_UNUSED_RV;
     void_t         _write_impl(std::ctstring_t &str) const;

@@ -47,12 +47,12 @@ Shell::findExecutable(
 //-------------------------------------------------------------------------------------------------
 void_t
 Shell::execute(
-    const HWND        &a_owner,
-    const Operation   &a_operation,
-    std::ctstring_t   &a_filePath,
-    std::ctstring_t   &a_params,
-    std::ctstring_t   &a_dirPath,
-    const EShowFlag   &a_showCmd
+    const HWND      &a_owner,
+    cOperation       a_operation,
+    std::ctstring_t &a_filePath,
+    std::ctstring_t &a_params,
+    std::ctstring_t &a_dirPath,
+    cShowFlag        a_showCmd
 ) const
 {
     xTEST_NA(a_owner);
@@ -68,22 +68,22 @@ Shell::execute(
 
     std::tstring_t operation;
     switch (a_operation) {
-    case opEdit:
+    case ShowFlag::opEdit:
         operation = xT("edit");
         break;
-    case opExplore:
+    case ShowFlag::opExplore:
         operation = xT("explore");
         break;
-    case opFind:
+    case ShowFlag::opFind:
         operation = xT("find");
         break;
-    case opOpen:
+    case ShowFlag::opOpen:
         operation = xT("open");
         break;
-    case opPrint:
+    case ShowFlag::opPrint:
         operation = xT("print");
         break;
-    case opNull:
+    case ShowFlag::opNull:
         operation = xT("");
         break;
     default:
@@ -169,8 +169,8 @@ Shell::executeEmail(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Shell::specialDirPath(
-    const ESpecialDir &a_dir,
-    const HANDLE      &a_token
+    cSpecialDir   a_dir,
+    const HANDLE &a_token
 ) const
 {
     xTEST_NA(a_dir);

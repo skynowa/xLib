@@ -23,7 +23,7 @@ public:
     using id_t     = pid_t; ///< ID
 #endif
 
-    enum WaitResult
+    enum class WaitResult
         /// wait result
     {
         #if   xENV_WIN
