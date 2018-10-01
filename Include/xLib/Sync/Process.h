@@ -26,17 +26,17 @@ public:
     enum class WaitResult
         /// wait result
     {
-        #if   xENV_WIN
-            wrFailed    = WAIT_FAILED,
-            wrAbandoned = WAIT_ABANDONED,
-            wrObject0   = WAIT_OBJECT_0,
-            wrTimeout   = WAIT_TIMEOUT
-        #elif xENV_UNIX
-            wrFailed    = - 1,
-            wrAbandoned = 0,
-            wrObject0   = 1,
-            wrTimeout   = 2
-        #endif
+    #if   xENV_WIN
+        wrFailed    = WAIT_FAILED,
+        wrAbandoned = WAIT_ABANDONED,
+        wrObject0   = WAIT_OBJECT_0,
+        wrTimeout   = WAIT_TIMEOUT
+    #elif xENV_UNIX
+        wrFailed    = - 1,
+        wrAbandoned = 0,
+        wrObject0   = 1,
+        wrTimeout   = 2
+    #endif
     };
 
                  Process();
@@ -92,12 +92,12 @@ public:
         ///< ends the calling process and all its threads
 
 private:
-    handle_t     _handle;
+    handle_t     _handle {};
 #if xENV_WIN
-    HANDLE       _thread;
+    HANDLE       _thread {};
 #endif
-    id_t         _pid;
-    uint_t       _exitStatus;            ///< exit code
+    id_t         _pid {};
+    uint_t       _exitStatus {};    ///< exit code
 
     xNO_COPY_ASSIGN(Process)
 

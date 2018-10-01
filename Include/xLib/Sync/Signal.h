@@ -60,7 +60,7 @@ private:
     xNO_COPY_ASSIGN(Signal)
 
     volatile
-    std::sig_atomic_t _state;
+    std::sig_atomic_t _state {};
         ///< Integral type of an object that can be accessed as an atomic entity,
         ///< even in the presence of asynchronous signals.
 

@@ -67,13 +67,13 @@ public:
         ///< clear
 
 private:
-    std::tstring_t    _name;        ///< name
-    std::tstring_t    _value;       ///< value
-    std::tstring_t    _domain;      ///< domain
-    std::tstring_t    _path;        ///< path
-    std::tstring_t    _expires;     ///< expire
-    bool_t            _isSecure;      ///< secure
-    bool_t            _isHttpOnly;    ///< http only
+    std::tstring_t    _name;            ///< name
+    std::tstring_t    _value;           ///< value
+    std::tstring_t    _domain;          ///< domain
+    std::tstring_t    _path;            ///< path
+    std::tstring_t    _expires;         ///< expire
+    bool_t            _isSecure {};     ///< secure
+    bool_t            _isHttpOnly {};   ///< http only
 
     xNO_COPY_ASSIGN(CookiePv0)
 };

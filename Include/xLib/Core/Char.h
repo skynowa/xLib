@@ -58,7 +58,7 @@ public:
         ///< char as symbol
 
 private:
-    const T         _ch;
+    const T         _ch {};
     const xTLOCALE &_locale;
 
     xNO_COPY_ASSIGN(Char)

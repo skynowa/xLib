@@ -36,8 +36,8 @@ public:
 
 private:
 #if !xENV_WIN
-    pthread_mutex_t         _mutex;
-    pthread_cond_t          _handle;
+    pthread_mutex_t         _mutex {};
+    pthread_cond_t          _handle {};
 #endif
 
     xNO_COPY_ASSIGN(Condition)

@@ -38,19 +38,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 Thread::Thread(
     cbool_t &a_isAutoDelete
 ) :
-    // data
-    _tag         (0UL),
-    _handle      (),
-    _id          (0UL),
-    _exitStatus  (0U),
-    _param       (nullptr),
-    _isAutoDelete(a_isAutoDelete),
-    // states
-    _state       (),
-    // other
-    _eventStarter(nullptr),
-    _eventPause  (false, false),
-    _eventExit   (true,  false)
+    _isAutoDelete(a_isAutoDelete)
 {
 }
 //-------------------------------------------------------------------------------------------------

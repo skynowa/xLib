@@ -32,16 +32,8 @@ ThreadPool<T>::ThreadPool(
     cbool_t &a_isGroupAutoDelete
 ) :
     Thread            (a_isAutoDelete),
-    _stackSize        (0U),
-    _funcPtr          (nullptr),
-    _param            (nullptr),
     _isGroupPaused    (a_isGroupPaused),
-    _isGroupAutoDelete(a_isGroupAutoDelete),
-    _semaphore        (),
-    _tasks            (),
-    _maxRunningTasks  (0U),
-    _numTasks         (0U),
-    _currTask         (0U)
+    _isGroupAutoDelete(a_isGroupAutoDelete)
 {
     xUNUSED(a_isPaused);
 

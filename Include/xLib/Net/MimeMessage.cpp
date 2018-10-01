@@ -21,16 +21,15 @@
 xNAMESPACE_BEGIN2(xl, net)
 
 //-------------------------------------------------------------------------------------------------
-MimeMessage::MimeMessage() :
-    _rawMessage()
+MimeMessage::MimeMessage()
 {
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 MimeMessage::parse(
     std::ctstring_t &a_rawMessage,
-    MimeHeader    &a_header,
-    MimeBody      &a_body
+    MimeHeader      &a_header,
+    MimeBody        &a_body
 )
 {
     xUNUSED(a_rawMessage);

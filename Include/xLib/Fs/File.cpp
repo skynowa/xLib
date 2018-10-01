@@ -36,8 +36,6 @@ xNAMESPACE_BEGIN2(xl, fs)
 File::File(
     cbool_t &a_isUseBuffering
 ) :
-    _handle        (),
-    _filePath      (),
     _isUseBuffering(a_isUseBuffering)
 {
     xTEST_NA(a_isUseBuffering);

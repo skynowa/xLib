@@ -72,7 +72,7 @@ private:
     std::tstring_t    _authority;
     std::tstring_t    _userInfo;
     std::tstring_t    _host;
-    ushort_t          _port;
+    ushort_t          _port {};
     std::tstring_t    _path;
     std::tstring_t    _query;
     std::tstring_t    _fragment;

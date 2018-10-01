@@ -35,10 +35,8 @@ Event::Event(
     cbool_t &a_isSignaled      ///< is signaled (false - wait, lock)
 ) :
 #if   xENV_WIN
-    _event      (),
+    // n/a
 #elif xENV_UNIX
-    _mutex      (),
-    _cond       (),
     _isSignaled (a_isSignaled),
 #endif
     _isAutoReset(a_isAutoReset),

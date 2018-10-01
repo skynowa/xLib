@@ -36,9 +36,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 FileTemp::FileTemp(
     cbool_t &a_isAutoDelete
 ) :
-    _isAutoDelete(a_isAutoDelete),
-    _file        (nullptr),
-    _filePath    ()
+    _isAutoDelete(a_isAutoDelete)
 {
 }
 //-------------------------------------------------------------------------------------------------

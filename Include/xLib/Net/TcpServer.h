@@ -29,7 +29,7 @@ public:
         ///< permits an incoming connection attempt on a socket
 
 protected:
-    timeval  _timeout;  ///< timeout
+    timeval  _timeout {};  ///< timeout
 
     xNO_COPY_ASSIGN(TcpServer)
 };

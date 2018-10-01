@@ -51,7 +51,7 @@ protected:
     std::tstring_t  _levelString(cLevel level) const;
 
 private:
-    bool_t          _isEnable;  ///< is enabled
+    bool_t          _isEnable {true};  ///< is enabled
 
     xNO_COPY_ASSIGN(ILog)
 };

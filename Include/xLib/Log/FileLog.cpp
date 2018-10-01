@@ -28,7 +28,6 @@ xNAMESPACE_BEGIN2(xl, log)
 
 //-------------------------------------------------------------------------------------------------
 FileLog::FileLog() :
-    _filePath        (),
     _fileSizeMaxBytes( static_cast<std::size_t>(LogSizes::lsDefaultMb) )
 {
     xTEST_EQ(_filePath.empty(), true);
@@ -37,7 +36,6 @@ FileLog::FileLog() :
 FileLog::FileLog(
     cLogSizes a_fileSizeMaxBytes
 ) :
-    _filePath        (),
     _fileSizeMaxBytes( static_cast<std::size_t>(a_fileSizeMaxBytes) )
 {
     xTEST_EQ(_filePath.empty(), true);
@@ -46,7 +44,6 @@ FileLog::FileLog(
 FileLog::FileLog(
     std::csize_t a_fileSizeMaxBytes
 ) :
-    _filePath        (),
     _fileSizeMaxBytes(a_fileSizeMaxBytes)
 {
     xTEST_EQ(_filePath.empty(), true);

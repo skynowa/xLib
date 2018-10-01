@@ -40,7 +40,7 @@ public:
         ///< fetching row
 
 private:
-    MySqlConnection  *_conn;
+    MySqlConnection  *_conn {};
         ///< pointer to connection object
     HandleMySqlResult _result;
         ///< result of a query that returns row

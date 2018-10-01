@@ -48,12 +48,12 @@ public:
 private:
     std::tstring_t    _sRv;
     /////SocketInit _socketInit;
-    TcpClient       _socket;
+    TcpClient         _socket;
     std::tstring_t    _user;
     std::tstring_t    _password;
     std::tstring_t    _server;
-    ushort_t          _port;
-    bool_t            _isConnected;
+    ushort_t          _port {};
+    bool_t            _isConnected {};
 
     void_t            _command(std::ctstring_t &command, std::ctstring_t &replyDelimiter,
                           std::tstring_t *reply);

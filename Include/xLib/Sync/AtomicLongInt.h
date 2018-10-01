@@ -52,7 +52,7 @@ public:
     long_t          value() const xWARN_UNUSED_RV;
 
 private:
-    volatile long_t _value;
+    volatile long_t _value {};
 
 xPLATFORM_IMPL:
     AtomicLongInt & _addAssign_impl(const AtomicLongInt &value);
