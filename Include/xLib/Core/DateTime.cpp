@@ -327,7 +327,7 @@ DateTime::operator == (
     const DateTime &a_datetime
 ) const
 {
-	xTEST_NA;
+	xTESTS_NA;
 
     return (_thisMSec == a_datetime._thisMSec);
 }
@@ -337,7 +337,7 @@ DateTime::operator != (
     const DateTime &a_datetime
 ) const
 {
-	xTEST_NA;
+	xTESTS_NA;
 
     return (_thisMSec != a_datetime._thisMSec);
 }
@@ -347,7 +347,7 @@ DateTime::operator < (
     const DateTime &a_datetime
 ) const
 {
-	xTEST_NA;
+	xTESTS_NA;
 
     return (_thisMSec < a_datetime._thisMSec);
 }
@@ -357,7 +357,7 @@ DateTime::operator <= (
     const DateTime &a_datetime
 ) const
 {
-	xTEST_NA;
+	xTESTS_NA;
 
     return (_thisMSec <= a_datetime._thisMSec);
 }
@@ -367,7 +367,7 @@ DateTime::operator > (
     const DateTime &a_datetime
 ) const
 {
-	xTEST_NA;
+	xTESTS_NA;
 
     return (_thisMSec > a_datetime._thisMSec);
 }
@@ -377,7 +377,7 @@ DateTime::operator >= (
     const DateTime &a_datetime
 ) const
 {
-	xTEST_NA;
+	xTESTS_NA;
 
     return (_thisMSec >= a_datetime._thisMSec);
 }
@@ -471,7 +471,7 @@ DateTime::get(
     int_t *a_msec
 ) const
 {
-    xTEST_NA;
+    xTESTS_NA;
 
     Utils::ptrAssignT(a_year,   _year);
     Utils::ptrAssignT(a_month,  _month);
@@ -514,7 +514,7 @@ DateTime::set(
     culonglong_t &a_msec
 )
 {
-    xTEST_NA;
+    xTESTS_NA;
 
     // datetime msec member
     _thisMSec = a_msec;
@@ -555,7 +555,7 @@ DateTime::set(
     cint_t &a_msec
 )
 {
-    xTEST_NA;
+    xTESTS_NA;
 
     // datetime members
     _year   = a_year;
@@ -581,7 +581,7 @@ DateTime::set(
 ulonglong_t
 DateTime::_toMsec() const
 {
-    xTEST_NA;
+    xTESTS_NA;
 
     ulonglong_t ullRv = 0ULL;
 
@@ -610,7 +610,7 @@ DateTime::format(
     std::ctstring_t &a_formatMsec /* = xT(".%03d") */  ///< milliseconds format
 ) const
 {
-    xTEST_NA;
+    xTESTS_NA;
     xTEST_EQ(a_format.empty(), false);
     xTEST_NA(a_formatMsec);
 

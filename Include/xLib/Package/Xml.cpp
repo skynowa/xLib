@@ -689,7 +689,7 @@ XmlNode::_text(
         }
 
         if (content == nullptr) {
-            xTEST_NA;
+            xTESTS_NA;
             return {};
         }
     }
