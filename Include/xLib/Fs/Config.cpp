@@ -24,9 +24,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 //-------------------------------------------------------------------------------------------------
 Config::Config() :
     _separator(Const::equal()),
-    _fileExt  ( Path::fileExt(Path::FileExt::seConfig) ),
-    _filePath (),
-    _config   ()
+    _fileExt  ( Path::fileExt(Path::FileExt::seConfig) )
 {
     xTEST_EQ(_separator.empty(), false);
     xTEST_EQ(_fileExt.empty(), false);
@@ -39,9 +37,7 @@ Config::Config(
     std::ctstring_t &a_filePath
 ) :
     _separator(Const::equal()),
-    _fileExt  ( Path::fileExt(Path::FileExt::seConfig) ),
-    _filePath (),
-    _config   ()
+    _fileExt  ( Path::fileExt(Path::FileExt::seConfig) )
 {
     xTEST_EQ(_separator.empty(), false);
     xTEST_EQ(_fileExt.empty(), false);

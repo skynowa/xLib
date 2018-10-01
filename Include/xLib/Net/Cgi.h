@@ -132,7 +132,7 @@ private:
     std::tstring_t    _httpHost;             ///< HTTP host
     std::tstring_t    _httpAcceptLanguage;   ///< HTTP accept language
     std::tstring_t    _countryCode;          ///< country code
-    RequestType       _requestType;          ///< request method
+    RequestType       _requestType {};       ///< request method
 
     bool_t            _construct();
         ///< initiate class data

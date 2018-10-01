@@ -19,8 +19,7 @@ MySqlRecordset::MySqlRecordset(
     MySqlConnection &a_connection,  ///< connection
     cbool_t          a_isUseResult  ///< use result or store result
 ) :
-    _conn  (&a_connection),
-    _result()
+    _conn(&a_connection)
 {
     xTEST_EQ(_result.isValid(), false);
     xTEST_EQ(_conn->get().isValid(), true);

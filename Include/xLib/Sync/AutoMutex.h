@@ -22,7 +22,7 @@ public:
         ///< destructor
 
 private:
-    Mutex *_mutex;    ///< mutex
+    Mutex *_mutex {};    ///< mutex
 
     xNO_COPY_ASSIGN(AutoMutex)
 };

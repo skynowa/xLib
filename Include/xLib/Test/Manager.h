@@ -44,7 +44,7 @@ private:
     using units_t = std::vector<Unit *>;
 
     ManagerData _data;              ///< data
-    units_t     _units;             ///< units
+    units_t     _units {};          ///< units
     bool_t      _isConstructed {};  ///< is object constructed
 
     void_t   _construct(cint_t &a_argsNum, cptr_ctchar_t a_args[]);
