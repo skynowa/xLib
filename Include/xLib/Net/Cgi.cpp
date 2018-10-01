@@ -97,8 +97,7 @@ Cgi::pageShow(
 CgiEnvironment::CgiEnvironment(
     Cgi &a_cgi
 ) :
-    _cgi        (a_cgi),
-    _requestType(RequestType::rtUknown)
+    _cgi(a_cgi)
 {
     // fix warning "is not used"
     std::tstring_t sRv = _cgi.dump();
@@ -546,7 +545,7 @@ CgiCookies::_construct()
 
 //-------------------------------------------------------------------------------------------------
 CgiFormData::CgiFormData(
-    Cgi        &a_cgi,
+    Cgi          &a_cgi,
     std::csize_t &a_maxSize
 ) :
     _maxData(a_maxSize),

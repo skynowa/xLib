@@ -12,9 +12,10 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
-struct ToLower
+class ToLower
     /// char to lower case
 {
+public:
     explicit ToLower(const xTLOCALE &a_locale) :
         _locale(a_locale)
     {
@@ -29,9 +30,10 @@ private:
     const xTLOCALE &_locale;
 };
 //-------------------------------------------------------------------------------------------------
-struct ToUpper
+class ToUpper
     /// char, std:tstring_t to upper case
 {
+public:
     explicit ToUpper(const xTLOCALE &a_locale) :
         _locale(a_locale)
     {
@@ -46,9 +48,10 @@ private:
     const xTLOCALE &_locale;
 };
 //-------------------------------------------------------------------------------------------------
-struct CompareCI
+class CompareCI
     /// case insensitive comparison
 {
+public:
     explicit CompareCI(const xTLOCALE &a_locale) :
         _locale(a_locale)
     {
@@ -71,9 +74,10 @@ private:
     const xTLOCALE &_locale;
 };
 //-------------------------------------------------------------------------------------------------
-struct Delete
+class Delete
     /// container items deleter
 {
+public:
     template<typename T>
     void_t operator () (T* &a_ptr) const
     {
@@ -81,9 +85,10 @@ struct Delete
     }
 };
 //-------------------------------------------------------------------------------------------------
-struct Narrow
+class Narrow
     ///
 {
+public:
     explicit Narrow(const std::locale &a_locale) :
         _locale(a_locale)
     {
@@ -98,9 +103,10 @@ private:
     const std::locale &_locale;
 };
 //-------------------------------------------------------------------------------------------------
-struct Widen
+class Widen
     ///
 {
+public:
     explicit Widen(const std::locale &a_locale) :
         _locale(a_locale)
     {

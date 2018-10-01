@@ -20,9 +20,7 @@ xNAMESPACE_BEGIN2(xl, debug)
 AutoProfiler::AutoProfiler(
     std::ctstring_t &a_filePath,
     cptr_ctchar_t    a_comment, ...
-) :
-    _profiler(),
-    _comment ()
+)
 {
     // format comment
     va_list args;
