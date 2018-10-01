@@ -32,11 +32,11 @@ User::_isAdmin_impl() const
     uid_t       userId = 0;
 
     userId = ::getuid();
-    xTEST_NA;
+    xTESTS_NA;
     xCHECK_RET(userId != rootId, false);
 
     userId = ::geteuid();
-    xTEST_NA;
+    xTESTS_NA;
     xCHECK_RET(userId != rootId, false);
 
     return true;

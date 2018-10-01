@@ -100,7 +100,7 @@ using namespace package;
 #endif
 
 #include <xLib/Core/Version.h>
-#include <xLib/Core/Types.h>
+#include <xLib/Core/Type/Types.h>
 #include <xLib/Internal/Internal.h>    // internal
 #include <xLib/Core/Functions.h>
 #include <xLib/Test/StdTest.h>
