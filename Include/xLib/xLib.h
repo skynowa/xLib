@@ -15,10 +15,10 @@
 #include <xLib/Core/Defines.h>
 #include <xLib/Core/Limits.h>
 #include <xLib/Core/Version.h>
-#include <xLib/Core/Types.h>
+#include <xLib/Core/Type/Types.h>
+#include <xLib/Core/Type/Type.h>
 #include <xLib/Core/Functions.h>
 #include <xLib/Core/ScopeExit.h>
-#include <xLib/Core/Type.h>
 #include <xLib/Core/Win/Com.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>
@@ -36,7 +36,9 @@
 #include <xLib/Core/DateTime.h>
 
 // Interface
+#include <xLib/Interface/IData.h>
 #include <xLib/Interface/IHandle.h>
+#include <xLib/Interface/ILastError.h>
 #include <xLib/Interface/IOStream.h>
 
 // Algo
@@ -148,7 +150,6 @@
 #include <xLib/Test/StdTest.h>
 
 // Package
-#include <xLib/Package/IData.h>
 #include <xLib/Package/Iconv.h>
 #include <xLib/Package/Csv.h>
 #include <xLib/Package/Ssh2Client.h>

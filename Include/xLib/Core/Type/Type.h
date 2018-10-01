@@ -14,6 +14,7 @@ xNAMESPACE_BEGIN2(xl, core)
 /**
  * http://www.cplusplus.com/forum/general/21246/
  * https://stackoverflow.com/questions/81870/is-it-possible-to-print-a-variables-type-in-standard-c
+ * https://stackoverflow.com/questions/35941045/can-i-obtain-c-type-names-in-a-constexpr-way/35943472#35943472
  */
 template<typename T>
 class TypeName
