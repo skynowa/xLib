@@ -15,10 +15,10 @@
 #include <xLib/Core/Defines.h>
 #include <xLib/Core/Limits.h>
 #include <xLib/Core/Version.h>
-#include <xLib/Core/Types.h>
+#include <xLib/Core/Type/Types.h>
+#include <xLib/Core/Type/Type.h>
 #include <xLib/Core/Functions.h>
 #include <xLib/Core/ScopeExit.h>
-#include <xLib/Core/Type.h>
 #include <xLib/Core/Win/Com.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>

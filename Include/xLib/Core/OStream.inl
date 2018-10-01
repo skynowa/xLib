@@ -6,7 +6,7 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Char.h>
-#include <xLib/Core/Type.h>
+#include <xLib/Core/Type/Type.h>
 #include <xLib/Algo/Algos.h>
 
 

@@ -6,7 +6,7 @@
 
 #include "Manager.h"
 
-#include <xLib/Core/Type.h>
+#include <xLib/Core/Type/Type.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Functors.h>
 #include <xLib/Core/Format.h>
