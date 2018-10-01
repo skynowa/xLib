@@ -307,10 +307,10 @@ public:
         ///< get error status for the last operation that failed
 
 protected:
-    HandleSocket   _handle;   ///< socket handle
-    sa_family_t    _family;   ///< family
-    std::tstring_t _ip;       ///< IP
-    ushort_t       _port;     ///< port
+    HandleSocket   _handle;         ///< socket handle
+    sa_family_t    _family {-1};    ///< family
+    std::tstring_t _ip;             ///< IP
+    ushort_t       _port {};        ///< port
 
     xNO_COPY_ASSIGN(ISocket)
 
@@ -324,7 +324,6 @@ xPLATFORM_IMPL:
     void_t         _socketName_impl(std::tstring_t *socketAddr, ushort_t *socketPort);
     static
     int_t          _nativeError_impl() xWARN_UNUSED_RV;
-
 };
 
 xNAMESPACE_END2(xl, net)

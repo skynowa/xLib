@@ -15,17 +15,10 @@ xNAMESPACE_BEGIN2(xl, test)
 struct ManagerData
     /// manager data
 {
-    bool_t      isUseTracing;
-    std::size_t allLoops;
-    std::size_t unitLoops;
-    std::size_t caseLoops;
-
-    ManagerData() :
-        isUseTracing(false),
-        allLoops    (1),
-        unitLoops   (1),
-        caseLoops   (1)
-    {}
+    bool_t      isUseTracing {false};
+    std::size_t allLoops     {1};
+    std::size_t unitLoops    {1};
+    std::size_t caseLoops    {1};
 };
 xUSING_CONST(ManagerData);
 
@@ -50,9 +43,9 @@ public:
 private:
     using units_t = std::vector<Unit *>;
 
-    ManagerData _data;          ///< data
-    units_t     _units;         ///< units
-    bool_t      _isConstructed; ///< is object constructed
+    ManagerData _data;              ///< data
+    units_t     _units {};          ///< units
+    bool_t      _isConstructed {};  ///< is object constructed
 
     void_t   _construct(cint_t &a_argsNum, cptr_ctchar_t a_args[]);
 

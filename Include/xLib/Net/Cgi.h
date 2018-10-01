@@ -132,7 +132,7 @@ private:
     std::tstring_t    _httpHost;             ///< HTTP host
     std::tstring_t    _httpAcceptLanguage;   ///< HTTP accept language
     std::tstring_t    _countryCode;          ///< country code
-    RequestType       _requestType;          ///< request method
+    RequestType       _requestType {};       ///< request method
 
     bool_t            _construct();
         ///< initiate class data
@@ -207,13 +207,13 @@ class Cgi
     /// CGI
 {
 public:
-    std::csize_t &          MAX_DATA_SIZE_DEFAULT()
-         ///< maximum data size by default
+    std::csize_t & MAX_DATA_SIZE_DEFAULT()
     {
         static std::csize_t uiRv = 1024U * 1024U;
 
         return uiRv;
     }
+         ///< maximum data size by default
 
     CgiEnvironment        Environment;    ///< CgiEnvironment object
     CgiCookies            Cookies;        ///< CgiCookies object

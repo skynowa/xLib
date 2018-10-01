@@ -35,7 +35,11 @@ private:
     using index_t = pthread_key_t;
 #endif
 
-    index_t  _index;
+#if   xENV_WIN
+    index_t _index {TLS_OUT_OF_INDEXES};
+#elif xENV_UNIX
+    index_t _index {static_cast<index_t>( - 1 )};
+#endif
         ///< thread storage index
 
     xNO_COPY_ASSIGN(ThreadStorage)

@@ -34,7 +34,7 @@ public:
 
 private:
 #if xENV_WIN
-    HANDLE         _handle;     ///< event log handle
+    HANDLE         _handle {xNATIVE_HANDLE_NULL};     ///< event log handle
 #endif
 
 xPLATFORM_IMPL:

@@ -43,7 +43,7 @@ public:
         ///< get arguments
 
 private:
-    Process::id_t _id;  ///< target process ID
+    Process::id_t _id {};  ///< target process ID
 
     xNO_COPY_ASSIGN(ProcessInfo)
 

@@ -13,15 +13,9 @@ xNAMESPACE_BEGIN2(xl, debug)
 struct StackTraceData
     /// StackTrace data
 {
-    cint_t  skipFramesNum;
-    cbool_t isWrapFilePaths;
-    cbool_t isFuncParamsDisable;
-
-    StackTraceData() :
-        skipFramesNum      (0),
-        isWrapFilePaths    (true),
-        isFuncParamsDisable(true)
-    {}
+    cint_t  skipFramesNum {0};
+    cbool_t isWrapFilePaths {true};
+    cbool_t isFuncParamsDisable {true};
 };
 xUSING_CONST(StackTraceData);
 

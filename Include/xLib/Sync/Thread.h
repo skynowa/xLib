@@ -186,32 +186,30 @@ private:
         ///< exit timeout (msec)
 
     // thread data
-    volatile ulong_t _tag;           ///< data tag
+    volatile ulong_t _tag {};          ///< data tag
 
 #if   xENV_WIN
-    Handle          _handle;        ///< native handle
+    Handle          _handle;           ///< native handle
 #elif xENV_UNIX
-    handle_t        _handle;        ///< native handle
+    handle_t        _handle {};        ///< native handle
 #endif
 
-    id_t            _id;            ///< ID
-    uint_t          _exitStatus;    ///< exit code
-    void_t         *_param;         ///< param for job function
-    cbool_t         _isAutoDelete;  ///< is auto delete thread object
+    id_t            _id {};            ///< ID
+    uint_t          _exitStatus {};    ///< exit code
+    void_t         *_param {};         ///< param for job function
+    cbool_t         _isAutoDelete {};  ///< is auto delete thread object
 
     struct State
         ///< thread state flags
     {
-        bool_t isCreated;  ///< is created
-        bool_t isRunning;  ///< is running
-
-        State() : isCreated(false), isRunning(false) {}
+        bool_t isCreated {};  ///< is created
+        bool_t isRunning {};  ///< is running
     } _state;
 
     // other
-    Event *_eventStarter;  ///< starter event
-    Event  _eventPause;    ///< pause event
-    Event  _eventExit;     ///< exit event
+    Event *_eventStarter {};            ///< starter event
+    Event  _eventPause {false, false};  ///< pause event
+    Event  _eventExit {true,  false};   ///< exit event
 
     static
     exit_status_t xSTDCALL _s_jobEntry(void_t *param) xWARN_UNUSED_RV;

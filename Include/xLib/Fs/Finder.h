@@ -53,11 +53,11 @@ private:
         find_dir_data_t data;
     };
 
-    _Entry            _entry;       ///< entry handle
-    std::ctstring_t   _rootDirPath; ///< root directory path
+    _Entry            _entry;               ///< entry handle
+    std::ctstring_t   _rootDirPath;         ///< root directory path
     /// TODO: [skynowa] use std::vector
-    std::ctstring_t   _shellFilter; ///< shell wild card filter
-    bool_t            _isMoveFirst; ///< is first movement
+    std::ctstring_t   _shellFilter;         ///< shell wild card filter
+    bool_t            _isMoveFirst {true};  ///< is first movement
 
     bool_t            _moveFirst() xWARN_UNUSED_RV;
         ///< move first entry

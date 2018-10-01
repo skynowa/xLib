@@ -121,8 +121,8 @@ public:
 #endif
 
 private:
-    OsType         _osType;
-    OsArch         _osArch;
+    OsType         _osType {};
+    OsArch         _osArch {};
 
     xNO_COPY_ASSIGN(SystemInfo)
 

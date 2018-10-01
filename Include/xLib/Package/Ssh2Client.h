@@ -62,8 +62,8 @@ public:
 private:
     cSsh2ClientData &_data;
     TcpClient        _tcpClient;
-    LIBSSH2_SESSION *_session;
-    LIBSSH2_CHANNEL *_channel;
+    LIBSSH2_SESSION *_session {};
+    LIBSSH2_CHANNEL *_channel {};
 
     void_t         _wait(clong_t timeoutSec);
     static

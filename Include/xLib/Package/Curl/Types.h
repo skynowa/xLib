@@ -24,6 +24,7 @@ enum class HttpVersion
 	v2Tls   = CURL_HTTP_VERSION_2TLS,
 	v2Prior = CURL_HTTP_VERSION_2_PRIOR_KNOWLEDGE
 };
+xUSING_CONST(HttpVersion);
 
 enum class ProxyType
 	/// Proxy type
@@ -36,6 +37,7 @@ enum class ProxyType
 	Socks5         = CURLPROXY_SOCKS5,
 	Socks5Hostname = CURLPROXY_SOCKS5_HOSTNAME
 };
+xUSING_CONST(ProxyType);
 
 xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------

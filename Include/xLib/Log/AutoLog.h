@@ -32,7 +32,7 @@ public:
 
 private:
     std::ctstring_t _str;
-    cbool_t         _isEnable;
+    cbool_t         _isEnable {};
     T               _log;
 
     xNO_COPY_ASSIGN(AutoLog)

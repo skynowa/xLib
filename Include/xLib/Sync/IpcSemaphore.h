@@ -40,7 +40,7 @@ public:
         ///< get value
 
 private:
-    handle_t         _handle;
+    handle_t         _handle {};
     std::tstring_t   _name;
 
     bool_t           _isValid() const xWARN_UNUSED_RV;

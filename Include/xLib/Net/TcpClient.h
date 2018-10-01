@@ -38,7 +38,7 @@ public:
         ///< is sever socket available
 
 protected:
-    timeval  _timeout;    ///< timeout
+    timeval  _timeout {};    ///< timeout
 
     xNO_COPY_ASSIGN(TcpClient)
 

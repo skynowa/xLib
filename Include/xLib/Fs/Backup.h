@@ -35,7 +35,7 @@ public:
         ///< execute file backup
 
 private:
-    cPeriod   _period;  ///< backup period
+    cPeriod   _period {};  ///< backup period
 
     xNO_COPY_ASSIGN(Backup)
 };

@@ -36,10 +36,7 @@ xNAMESPACE_ANONYM_END
 Ssh2Client::Ssh2Client(
     cSsh2ClientData &a_data
 ) :
-    _data     (a_data),
-    _tcpClient(),
-    _session  (nullptr),
-    _channel  (nullptr)
+    _data(a_data)
 {
     userPassword = a_data.password;
 

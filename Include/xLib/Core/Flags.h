@@ -46,7 +46,7 @@ public:
         ///< toggle flag
 
 private:
-    T        _flags;
+    T        _flags {};
 };
 
 xNAMESPACE_END2(xl, core)

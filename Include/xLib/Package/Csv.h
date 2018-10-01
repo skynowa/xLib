@@ -13,24 +13,13 @@ xNAMESPACE_BEGIN2(xl, package)
 //-------------------------------------------------------------------------------------------------
 struct CsvData
 {
-	std::tstring_t fileExtension;		// TODO: [skynowa] now ignore
-	bool_t         hasHeader;			// TODO: [skynowa] now ignore
-	std::tstring_t eol;					// TODO: [skynowa] now ignore
-	tchar_t        delimiter;
-	tchar_t        textDelimeter;		// TODO: [skynowa] now ignore
-	bool_t         isTrimCells;			// TODO: [skynowa] now ignore
-	bool_t         isSkipEmptyLines;	// TODO: [skynowa] now ignore
-
-	CsvData() :
-		fileExtension   ( xT("csv") ),
-		hasHeader       ( true ),
-		eol             ( Const::nl() ),
-		delimiter       ( xT(',') ),
-		textDelimeter   ( xT('"') ),
-		isTrimCells     ( false ),
-		isSkipEmptyLines( true )
-	{
-	}
+	std::tstring_t fileExtension    {xT("csv")};	// TODO: [skynowa] now ignore
+	bool_t         hasHeader        {true};			// TODO: [skynowa] now ignore
+	std::tstring_t eol              {Const::nl()};	// TODO: [skynowa] now ignore
+	tchar_t        delimiter        {xT(',')};
+	tchar_t        textDelimeter    {xT('"')};		// TODO: [skynowa] now ignore
+	bool_t         isTrimCells      {false};		// TODO: [skynowa] now ignore
+	bool_t         isSkipEmptyLines {true};	        // TODO: [skynowa] now ignore
 };
 xUSING_CONST(CsvData);
 
