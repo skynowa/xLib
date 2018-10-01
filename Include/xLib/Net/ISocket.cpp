@@ -117,7 +117,7 @@ ISocket::assign(
 void_t
 ISocket::close()
 {
-    xTEST_NA;
+    xTESTS_NA;
 
     _handle.close();
 }
