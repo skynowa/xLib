@@ -41,7 +41,7 @@ class CsvReader :
 public:
     explicit       CsvReader(cCsvData &data);
         ///< constructor
-    virtual       ~CsvReader() = delete;
+    virtual       ~CsvReader() = default;
         ///< destructor
 
     bool_t         loadFile(std::ctstring_t &filePath);
