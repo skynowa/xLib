@@ -24,10 +24,10 @@ class Donate
     ///< Donate money
 {
 public:
-              Donate();
+              Donate() = default;
     explicit  Donate(cDonateData &data);
         ///< constructor
-    virtual  ~Donate();
+    virtual  ~Donate() = default;
         ///< destructor
 
     xPROPERTY(DonateData, data);

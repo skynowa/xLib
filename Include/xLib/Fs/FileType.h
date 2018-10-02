@@ -56,7 +56,7 @@ public:
 
     explicit          FileType(std::ctstring_t &filePath);
         ///< constructor
-    virtual          ~FileType() {}
+    virtual          ~FileType() = default;
         ///< destructor
 
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;

@@ -53,8 +53,8 @@ public:
         ///< dettach object
     void_t updateAll(cint_t &a_type, const T &a_message)
     {
-        xFOR_EACH(typename std::vector<IObserver<T> *>, it, _observers) {
-            (*it)->update(a_type, a_message);
+        for (auto &it : _observers) {
+            it->update(a_type, a_message);
         }
     }
         ///< update all objects

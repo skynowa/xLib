@@ -22,7 +22,7 @@ class Trace :
     /// tracing
 {
 public:
-                   Trace() {}
+                   Trace() = default;
         ///< constructor
     virtual       ~Trace();
         ///< destructor

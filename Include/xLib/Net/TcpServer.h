@@ -16,9 +16,9 @@ class TcpServer :
     /// server socket
 {
 public:
-             TcpServer() {}
+             TcpServer() = default;
         ///< constructor
-    virtual ~TcpServer() {}
+    virtual ~TcpServer() = default;
         ///< destructor
 
     void_t   bind(cushort_t &port) const;

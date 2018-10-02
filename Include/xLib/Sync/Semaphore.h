@@ -14,9 +14,9 @@ class Semaphore
     /// semaphore
 {
 public:
-             Semaphore();
+             Semaphore() = default;
         ///< constructor
-    virtual ~Semaphore();
+    virtual ~Semaphore() = default;
         ///< destructor
 
 private:

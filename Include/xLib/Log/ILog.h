@@ -31,7 +31,7 @@ public:
     };
     xUSING_CONST(Level);
 
-                    ILog();
+                    ILog() = default;
         ///< constructor
     virtual        ~ILog() = 0;
         ///< destructor

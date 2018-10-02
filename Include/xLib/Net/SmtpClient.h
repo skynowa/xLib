@@ -18,7 +18,7 @@ class SmtpClient
     /// SMTP (RFC 2821)
 {
 public:
-                   SmtpClient();
+                   SmtpClient() = default;
                   ~SmtpClient();
 
     void_t         create(std::ctstring_t &user, std::ctstring_t &password,

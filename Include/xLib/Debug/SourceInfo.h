@@ -26,7 +26,7 @@ class SourceInfo
 public:
     explicit          SourceInfo(cSourceInfoData &data);
         ///< constructor
-    virtual          ~SourceInfo() {};
+    virtual          ~SourceInfo() = default;
         ///< destructor
 
     cSourceInfoData & data() const;

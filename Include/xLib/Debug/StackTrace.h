@@ -25,7 +25,7 @@ class StackTrace
 public:
     explicit       StackTrace(cStackTraceData &data = cStackTraceData());
         ///< constructor
-    virtual       ~StackTrace() {}
+    virtual       ~StackTrace() = default;
         ///< destructor
 
     std::tstring_t toString() xWARN_UNUSED_RV;

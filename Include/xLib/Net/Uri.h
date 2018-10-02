@@ -14,9 +14,9 @@ class Uri
     /// URI (RFC 3986)
 {
 public:
-                      Uri();
+                      Uri() = default;
     explicit          Uri(std::ctstring_t &uri);
-    virtual          ~Uri() {}
+    virtual          ~Uri() = default;
 
     std::tstring_t    uri() const xWARN_UNUSED_RV;
     void_t            setUri(std::ctstring_t &scheme, std::ctstring_t &authority,

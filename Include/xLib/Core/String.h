@@ -203,11 +203,7 @@ public:
         ///< is repeated
 
 private:
-                   String();
-        ///< constructor
-                  ~String();
-        ///< destructor
-
+    xNO_INSTANCE(String)
     xNO_COPY_ASSIGN(String)
 
 xPLATFORM_IMPL:

@@ -16,7 +16,7 @@ class xNO_VTABLE ISeedPolicy
 public:
                    ISeedPolicy();
         ///< constructor
-    virtual       ~ISeedPolicy() {};
+    virtual       ~ISeedPolicy() = default;
         ///< destructor
 
     virtual long_t next() = 0;
@@ -43,7 +43,7 @@ class StdSeedPolicy :
 public:
                    StdSeedPolicy();
         ///< constructor
-    virtual       ~StdSeedPolicy();
+    virtual       ~StdSeedPolicy() = default;
         ///< destructor
 
     virtual long_t next() override;
@@ -89,7 +89,7 @@ class Random
 public:
                Random();
         ///< constructor
-    virtual   ~Random() {}
+    virtual   ~Random() = default;
         ///< destructor
 
     bool_t     nextBool();

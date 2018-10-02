@@ -34,15 +34,11 @@ public:
         ///< get last error as string
 
 private:
-                   StdError();
-        ///< constructor
-                  ~StdError() {}
-        ///< destructor
-
     static
     int_t          _stdCodeSuccess() xWARN_UNUSED_RV;
         ///< native success code
 
+    xNO_INSTANCE(StdError)
     xNO_COPY_ASSIGN(StdError)
 
 xPLATFORM_IMPL:

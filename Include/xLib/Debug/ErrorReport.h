@@ -38,7 +38,7 @@ public:
                        culong_t &nativeError, const SourceInfo &sourceInfo,
                        std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< constructor (for Debugger)
-    virtual       ~ErrorReport() {}
+    virtual       ~ErrorReport() = default;
         ///< destructor
 
     Type           type() const;

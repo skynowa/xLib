@@ -14,8 +14,8 @@ class MimeBody
     /// MIME body (RFC 822)
 {
 public:
-            MimeBody();
-   virtual ~MimeBody();
+            MimeBody() = default;
+   virtual ~MimeBody() = default;
 
 private:
     std::mmap_tstring_t _body;

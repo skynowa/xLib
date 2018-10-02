@@ -15,7 +15,7 @@ class MimeHeader
 {
 public:
                         MimeHeader();
-    virtual            ~MimeHeader() {}
+    virtual            ~MimeHeader() = default;
 
     void_t              parse(std::ctstring_t &rawHeader);
     std::tstring_t      field(std::ctstring_t &name) xWARN_UNUSED_RV;

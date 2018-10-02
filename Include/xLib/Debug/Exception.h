@@ -14,9 +14,9 @@ class Exception
     /// exception
 {
 public:
-                      Exception() {}
+                      Exception() = default;
         ///< constructor
-    virtual          ~Exception() {}
+    virtual          ~Exception() = default;
         ///< destructor
 
     std::ctstring_t & what() const xWARN_UNUSED_RV;

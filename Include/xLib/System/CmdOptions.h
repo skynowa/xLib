@@ -40,9 +40,9 @@ class CmdOptions
     ///< Command-line options parser
 {
 public:
-             CmdOptions();
+             CmdOptions() = default;
         ///< constructor
-    virtual ~CmdOptions();
+    virtual ~CmdOptions() = default;
         ///< destructor
 
     void_t   parse(cint_t argsNum, cptr_ctchar_t argv[], const std::vector<CmdOptionsUsage> &usage);

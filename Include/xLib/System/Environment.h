@@ -40,11 +40,7 @@ public:
         ///< expands strings by separator "%"
 
 private:
-                   Environment();
-        ///< constructor
-    virtual       ~Environment();
-        ///< destructor
-
+    xNO_INSTANCE(Environment)
     xNO_COPY_ASSIGN(Environment)
 
 xPLATFORM_IMPL:

@@ -14,9 +14,9 @@ class Crc32
     /// Crc32
 {
 public:
-                   Crc32();
+                   Crc32() = default;
         ///< constructor
-    virtual       ~Crc32() {};
+    virtual       ~Crc32() = default;
         ///< destructor
 
     ulong_t        calc(uchar_t *buff, culong_t &buffSize) xWARN_UNUSED_RV;

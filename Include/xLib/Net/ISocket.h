@@ -231,7 +231,7 @@ public:
     };
     xUSING_CONST(Options);
 
-                   ISocket();
+                   ISocket() = default;
         ///< constructor
     virtual       ~ISocket() = 0;
         ///< destructor

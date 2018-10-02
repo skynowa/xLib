@@ -20,9 +20,9 @@ class Shell
     /// shell
 {
 public:
-               Shell() {}
+               Shell() = default;
         ///< constructor
-    virtual   ~Shell() {}
+    virtual   ~Shell() = default;
         ///< destructor
 
     bool_t     isAvailable() const xWARN_UNUSED_RV;

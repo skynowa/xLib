@@ -17,8 +17,8 @@ class WaitableTimer
     /// waitable timer
 {
 public:
-             WaitableTimer() {}
-    virtual ~WaitableTimer() {}
+             WaitableTimer() = default;
+    virtual ~WaitableTimer() = default;
 
     HANDLE   handle() const xWARN_UNUSED_RV;
     void_t   create(cbool_t &isManualReset, std::ctstring_t &name/* = nullptr*/,

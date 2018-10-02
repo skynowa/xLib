@@ -40,10 +40,10 @@ class ApplicationInfo
     ///< Application information
 {
 public:
-                 ApplicationInfo();
+                 ApplicationInfo() = default;
     explicit     ApplicationInfo(cApplicationInfoData &data);
         ///< constructor
-    virtual     ~ApplicationInfo();
+    virtual     ~ApplicationInfo() = default;
         ///< destructor
 
     xPROPERTY(ApplicationInfoData, data);

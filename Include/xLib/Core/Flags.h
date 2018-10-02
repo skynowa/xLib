@@ -15,7 +15,7 @@ class Flags
     /// bit mask flags
 {
 public:
-             Flags();
+             Flags() = default;
         ///< constructor
     explicit Flags(const Flags &values);
         ///< constructor

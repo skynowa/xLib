@@ -34,15 +34,11 @@ public:
         ///< get last error as string
 
 private:
-                   NativeError();
-        ///< constructor
-                  ~NativeError() {}
-        ///< destructor
-
     static
     ulong_t        _nativeCodeSuccess() xWARN_UNUSED_RV;
         ///< native success code
 
+    xNO_INSTANCE(NativeError)
     xNO_COPY_ASSIGN(NativeError)
 
 xPLATFORM_IMPL:
