@@ -111,11 +111,7 @@ public:
         ///< decrement enumerator
 
 private:
-                     Utils();
-        ///< constructor
-                    ~Utils();
-        ///< destructor
-
+    xNO_INSTANCE(Utils)
     xNO_COPY_ASSIGN(Utils)
 };
 

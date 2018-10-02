@@ -39,7 +39,7 @@ public:
 
     explicit        Volume(std::ctstring_t &path);
         ///< constructor
-    virtual        ~Volume() {}
+    virtual        ~Volume() = default;
         ///< destructor
 
     std::ctstring_t & path() const xWARN_UNUSED_RV;

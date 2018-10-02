@@ -58,7 +58,7 @@ public:
 
     UnitData            data;
 
-                        Unit();
+                        Unit() = default;
         ///< constructor
     virtual            ~Unit() = 0;
         ///< destructor

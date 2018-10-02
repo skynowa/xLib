@@ -14,10 +14,10 @@ class AtomicLongInt
     /// atomic operations with long_t
 {
 public:
-                    AtomicLongInt();
+                    AtomicLongInt() = default;
                     AtomicLongInt(const AtomicLongInt &value);
 
-    virtual        ~AtomicLongInt() {}
+    virtual        ~AtomicLongInt() = default;
 
     AtomicLongInt & operator += (const AtomicLongInt &value);
     AtomicLongInt & operator += (clong_t &right);

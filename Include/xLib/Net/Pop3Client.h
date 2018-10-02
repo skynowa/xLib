@@ -20,7 +20,7 @@ class Pop3Client
     /// POP3 (RFC 2821)
 {
 public:
-                      Pop3Client();
+                      Pop3Client() = default;
                      ~Pop3Client();
 
     void_t            create(std::ctstring_t &user, std::ctstring_t &password,

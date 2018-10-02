@@ -17,7 +17,7 @@ class Sleeper
 public:
              Sleeper();
         ///< constructor
-    virtual ~Sleeper() {}
+    virtual ~Sleeper() = default;
         ///< destructor
 
     void_t   sleep(culong_t &timeoutMsec);

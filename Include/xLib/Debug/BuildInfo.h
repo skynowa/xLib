@@ -14,9 +14,9 @@ class BuildInfo
     ///< build information
 {
 public:
-                   BuildInfo() {}
+                   BuildInfo() = default;
         ///< constructor
-    virtual       ~BuildInfo() {}
+    virtual       ~BuildInfo() = default;
         ///< destructor
 
     bool_t         isRelease() const xWARN_UNUSED_RV;

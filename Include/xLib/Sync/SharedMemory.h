@@ -14,8 +14,8 @@ class SharedMemory
     /// share memory
 {
 public:
-             SharedMemory();
-    virtual ~SharedMemory();
+             SharedMemory() = default;
+    virtual ~SharedMemory() = default;
 
 private:
     xNO_COPY_ASSIGN(SharedMemory)

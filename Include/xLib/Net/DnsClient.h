@@ -68,11 +68,7 @@ public:
         ///< is address IP v6
 
 private:
-             DnsClient();
-        ///< constructor
-    virtual ~DnsClient();
-        ///< destructor
-
+    xNO_INSTANCE(DnsClient)
     xNO_COPY_ASSIGN(DnsClient)
 };
 

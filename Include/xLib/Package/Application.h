@@ -20,7 +20,7 @@ class Application
 public:
                    Application(std::ctstring_t &appGuid, std::ctstring_t &locale);
         ///< constructor
-    virtual       ~Application();
+    virtual       ~Application() = default;
         ///< destructor
 
     void_t         setDevel(cbool_t flag);

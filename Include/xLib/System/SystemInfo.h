@@ -60,9 +60,9 @@ public:
     };
     xUSING_CONST(CpuVendor);
 
-                   SystemInfo();
+                   SystemInfo() = default;
         ///< constructor
-    virtual       ~SystemInfo() {}
+    virtual       ~SystemInfo() = default;
         ///< destructor
 
     // OS

@@ -44,9 +44,9 @@ public:
     };
     xUSING_CONST(ModalResult);
 
-                  MsgBox() {}
+                  MsgBox() = default;
         ///< constructor
-    virtual      ~MsgBox() {}
+    virtual      ~MsgBox() = default;
         ///< destructor
 
     ModalResult show(std::ctstring_t &text, std::ctstring_t &title, cType type = Type::tpOk) const

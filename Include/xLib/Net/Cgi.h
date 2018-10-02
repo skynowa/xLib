@@ -31,7 +31,7 @@ public:
 
     explicit          CgiEnvironment(Cgi &cgi);
         ///< constructor
-    virtual          ~CgiEnvironment() {}
+    virtual          ~CgiEnvironment() = default;
         ///< destructor
 
     std::ctstring_t & authType() const xWARN_UNUSED_RV;

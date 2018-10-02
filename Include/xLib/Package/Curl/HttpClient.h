@@ -17,9 +17,9 @@ class HttpClient :
     ///< HTTP client
 {
 public:
-             HttpClient();
+             HttpClient() = default;
         ///< constructor
-    virtual ~HttpClient();
+    virtual ~HttpClient() = default;
         ///< destructor
 
 	enum class RequestType

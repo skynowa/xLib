@@ -16,7 +16,7 @@ class Buffer
 	/// buffer
 {
 public:
-	            Buffer();
+	            Buffer() = default;
 	           ~Buffer();
 
 	bool        isEmpty() const;

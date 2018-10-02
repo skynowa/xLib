@@ -15,8 +15,8 @@ class OStream
     ///< print string
 {
 public:
-                   OStream();
-    virtual       ~OStream();
+                   OStream() = default;
+    virtual       ~OStream() = default;
 
     std::tstring_t str() const;
     void_t         str(std::ctstring_t &value);

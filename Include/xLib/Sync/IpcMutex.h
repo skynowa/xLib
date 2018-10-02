@@ -21,8 +21,8 @@ public:
     using handle_t = sem_t *;
 #endif
 
-                     IpcMutex();
-    virtual         ~IpcMutex() {}
+                     IpcMutex() = default;
+    virtual         ~IpcMutex() = default;
 
     const handle_t & handle() const xWARN_UNUSED_RV;
         ///< get handle

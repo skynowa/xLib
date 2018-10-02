@@ -20,7 +20,7 @@ public:
     using handle_t = pthread_mutex_t;
 #endif
 
-                     Mutex() {}
+                     Mutex() = default;
         ///< constructor
     virtual         ~Mutex();
         ///< destructor

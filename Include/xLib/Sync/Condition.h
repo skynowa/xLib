@@ -14,7 +14,7 @@ class Condition
     /// condition variable
 {
 public:
-                            Condition();
+                            Condition() = default;
         ///< constructor
     virtual                ~Condition();
         ///< destructor

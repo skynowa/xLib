@@ -24,11 +24,7 @@ public:
     }
 
 private:
-    Singleton();
-        ///< constructor
-   ~Singleton();
-        ///< destructor
-
+    xNO_INSTANCE(Singleton)
     xNO_COPY_ASSIGN(Singleton)
 };
 

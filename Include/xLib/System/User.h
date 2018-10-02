@@ -14,9 +14,9 @@ class User
     ///< user info
 {
 public:
-                   User();
+                   User() = default;
         ///< constructor
-    virtual       ~User();
+    virtual       ~User() = default;
         ///< destructor
 
     bool_t         isAdmin() const xWARN_UNUSED_RV;
@@ -43,9 +43,6 @@ private:
     xNO_COPY_ASSIGN(User)
 
 xPLATFORM_IMPL:
-    void_t         _construct_impl();
-    void_t         _destruct_impl();
-
     bool_t         _isAdmin_impl() const xWARN_UNUSED_RV;
     std::tstring_t _loginName_impl() const xWARN_UNUSED_RV;
     std::tstring_t _name_impl() const xWARN_UNUSED_RV;

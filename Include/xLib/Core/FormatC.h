@@ -15,6 +15,8 @@ class FormatC
     ///< format string in C style
 {
 public:
+	xNO_INSTANCE(FormatC);
+
     static std::tstring_t str(cptr_ctchar_t format, ...) xWARN_UNUSED_RV;
     static std::tstring_t strV(cptr_ctchar_t format, va_list args) xWARN_UNUSED_RV;
 };

@@ -27,7 +27,7 @@ public:
 
     explicit  Backup(cPeriod period);
         ///< constructor
-    virtual  ~Backup() {}
+    virtual  ~Backup() = default;
         ///< destructor
 
     void_t    fileExec(std::ctstring_t &filePath, std::ctstring_t &destDirPath,

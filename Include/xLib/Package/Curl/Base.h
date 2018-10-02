@@ -93,9 +93,9 @@ class CurlBase :
     ///< CURL base
 {
 protected:
-    explicit CurlBase();
+             CurlBase() = default;
         ///< constructor
-    virtual ~CurlBase();
+    virtual ~CurlBase() = default;
         ///< destructor
 
     void_t   setProtocols(clong_t bitMask);

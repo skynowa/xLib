@@ -18,7 +18,7 @@ class TcpClient :
 public:
              TcpClient();
         ///< constructor
-    virtual ~TcpClient() {}
+    virtual ~TcpClient() = default;
         ///< constructor
 
     void_t   connect(std::ctstring_t &ip, cushort_t &port) const;

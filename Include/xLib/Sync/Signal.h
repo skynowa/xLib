@@ -19,9 +19,9 @@ public:
     using on_exit_t = void_t (*)();
         ///< exit handler type
 
-             Signal();
+             Signal() = default;
         ///< constructor
-    virtual ~Signal();
+    virtual ~Signal() = default;
         ///< destructor
 
     std::sig_atomic_t state() const;

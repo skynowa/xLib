@@ -17,8 +17,8 @@ class MimeMessage
     /// MIME message (RFC 822)
 {
 public:
-                   MimeMessage();
-    virtual       ~MimeMessage() {}
+                   MimeMessage() = default;
+    virtual       ~MimeMessage() = default;
 
     void_t         parse(std::ctstring_t &rawMessage, MimeHeader &header, MimeBody &body);
     void_t         loadFromRawFile(std::ctstring_t &filePath);

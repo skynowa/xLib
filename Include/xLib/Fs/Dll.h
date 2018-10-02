@@ -20,9 +20,9 @@ public:
 #elif xENV_UNIX
     using proc_address_t = void_t *;
 #endif
-                   Dll();
+                   Dll() = default;
         ///< constructor
-    virtual       ~Dll();
+    virtual       ~Dll() = default;
         ///< destructor
 
     HandleDll     &get() xWARN_UNUSED_RV;
