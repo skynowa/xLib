@@ -74,17 +74,6 @@ private:
     const xTLOCALE _locale;
 };
 //-------------------------------------------------------------------------------------------------
-class Delete
-    /// container items deleter
-{
-public:
-    template<typename T>
-    void_t operator () (T* &a_ptr) const
-    {
-        Utils::ptrDeleteT(a_ptr);
-    }
-};
-//-------------------------------------------------------------------------------------------------
 class Narrow
     ///
 {
