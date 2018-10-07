@@ -27,7 +27,7 @@ public:
     }
 
 private:
-    const xTLOCALE &_locale;
+    const xTLOCALE _locale;
 };
 //-------------------------------------------------------------------------------------------------
 class ToUpper
@@ -45,7 +45,7 @@ public:
     }
 
 private:
-    const xTLOCALE &_locale;
+    const xTLOCALE _locale;
 };
 //-------------------------------------------------------------------------------------------------
 class CompareCI
@@ -71,7 +71,7 @@ public:
     }
 
 private:
-    const xTLOCALE &_locale;
+    const xTLOCALE _locale;
 };
 //-------------------------------------------------------------------------------------------------
 class Delete
@@ -89,7 +89,7 @@ class Narrow
     ///
 {
 public:
-    explicit Narrow(const std::locale &a_locale) :
+    explicit Narrow(const xTLOCALE &a_locale) :
         _locale(a_locale)
     {
     }
@@ -100,14 +100,14 @@ public:
     }
 
 private:
-    const std::locale &_locale;
+    const xTLOCALE _locale;
 };
 //-------------------------------------------------------------------------------------------------
 class Widen
     ///
 {
 public:
-    explicit Widen(const std::locale &a_locale) :
+    explicit Widen(const xTLOCALE &a_locale) :
         _locale(a_locale)
     {
     }
@@ -118,7 +118,7 @@ public:
     }
 
 private:
-    const std::locale &_locale;
+    const xTLOCALE _locale;
 };
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xl, core)
