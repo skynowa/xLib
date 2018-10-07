@@ -58,7 +58,8 @@ public:
     }
 
     bool_t operator () (
-        const std::tstring_t::value_type &a_ch1, const std::tstring_t::value_type &a_ch2) const
+        const std::tstring_t::value_type a_ch1,
+        const std::tstring_t::value_type a_ch2) const
     {
         return CharT(a_ch1, _locale).toLower() == CharT(a_ch2, _locale).toLower();
     }
@@ -83,7 +84,7 @@ public:
     {
     }
 
-    std::string::value_type operator () (const std::wstring::value_type &a_ch) const
+    std::string::value_type operator () (const std::wstring::value_type a_ch) const
     {
         return std::use_facet< std::ctype<std::wstring::value_type> >(_locale).narrow(a_ch, '@');
     }
@@ -101,7 +102,7 @@ public:
     {
     }
 
-    std::wstring::value_type operator () (const std::string::value_type &a_ch) const
+    std::wstring::value_type operator () (const std::string::value_type a_ch) const
     {
         return std::use_facet< std::ctype<std::string::value_type> >(_locale).widen(a_ch);
     }
