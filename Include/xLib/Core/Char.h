@@ -65,9 +65,16 @@ private:
 };
 
 using CharA = Char<char>;
+xUSING_CONST(CharA);
+
 using CharW = Char<wchar_t>;
+xUSING_CONST(CharW);
+
 using CharU = Char<uchar_t>;
+xUSING_CONST(CharU);
+
 using CharT = Char<tchar_t>;
+xUSING_CONST(CharT);
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

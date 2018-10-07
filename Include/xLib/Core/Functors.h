@@ -61,7 +61,10 @@ public:
         const std::tstring_t::value_type a_ch1,
         const std::tstring_t::value_type a_ch2) const
     {
-        return CharT(a_ch1, _locale).toLower() == CharT(a_ch2, _locale).toLower();
+        cCharT ch1(a_ch1, _locale);
+        cCharT ch2(a_ch2, _locale);
+
+        return (ch1.toLower() == ch2.toLower());
     }
 
     bool_t operator () (
