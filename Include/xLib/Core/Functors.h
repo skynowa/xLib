@@ -78,7 +78,7 @@ private:
 };
 //-------------------------------------------------------------------------------------------------
 class Narrow
-    ///
+    /// convert to std::string
 {
 public:
     explicit Narrow(const xTLOCALE &a_locale) :
@@ -96,7 +96,7 @@ private:
 };
 //-------------------------------------------------------------------------------------------------
 class Widen
-    ///
+    /// convert to std::wstring
 {
 public:
     explicit Widen(const xTLOCALE &a_locale) :
