@@ -20,7 +20,7 @@ public:
     {
     }
 
-    tchar_t operator () (std::ctstring_t::value_type &a_ch) const
+    std::tstring_t::value_type operator () (std::ctstring_t::value_type &a_ch) const
     {
         return xTTOLOWER_L(a_ch, _locale);
     }
@@ -38,7 +38,7 @@ public:
     {
     }
 
-    tchar_t operator () (std::ctstring_t::value_type &a_ch) const
+    std::tstring_t::value_type operator () (std::ctstring_t::value_type &a_ch) const
     {
         return xTTOUPPER_L(a_ch, _locale);
     }
