@@ -45,8 +45,10 @@ Double<T>::isEqual(
 template <typename T>
 inline bool_t
 Double<T>::isAlmostEqual(
-	const T     &a_value,
-	const int_t  a_ulp /* = 2 */
+	const T     &a_value,		///<
+	const int_t  a_ulp /* = 2 *////< ULP (Units in the Last Place):
+								///< difference between the integer representations tells us
+								///< how many Units in the Last Place the numbers differ by
 ) const
 {
 	return
