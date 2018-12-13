@@ -34,7 +34,7 @@ Double<T>::operator = (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline bool
+inline bool_t
 Double<T>::isEqual(
 	const T a_value	///< value 2
 )
@@ -43,7 +43,7 @@ Double<T>::isEqual(
 }
 //-------------------------------------------------------------------------------------------------
 template <typename T>
-inline bool
+inline bool_t
 Double<T>::isAlmostEqual(
 	const T   &a_value,
 	const int  ulp /* = 2 */
@@ -55,7 +55,7 @@ Double<T>::isAlmostEqual(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline bool
+inline bool_t
 Double<T>::isNull()
 {
 	return isAlmostEqual(_value, 0.0);

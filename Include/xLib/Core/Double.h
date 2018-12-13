@@ -25,11 +25,11 @@ public:
     Double & operator = (const T &values);
         ///< operator =
 
-	bool     isEqual(const T value);
+	bool_t   isEqual(const T value);
 		///< compare values
-	bool     isAlmostEqual(const T &value, const int ulp = 2);
+	bool_t   isAlmostEqual(const T &value, const int ulp = 2);
 		///< ???
-	bool     isNull();
+	bool_t   isNull();
 		///< compare values
 	T	     safeDivision(const T &y, const T &value_default = {});
 		///< safe division, if devision by 0.0 return 0.0
