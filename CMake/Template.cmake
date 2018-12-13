@@ -11,10 +11,10 @@ unset(cmXLIB_TEMPLATE_COMMENTS CACHE)
 unset(cmXLIB_TEMPLATE_SUBDIR   CACHE)
 unset(cmXLIB_TEMPLATE_NS       CACHE)
 
-set(cmXLIB_TEMPLATE          "HttpClient")
-set(cmXLIB_TEMPLATE_COMMENTS "HTTP client")
-set(cmXLIB_TEMPLATE_SUBDIR   "Package/Curl")
-set(cmXLIB_TEMPLATE_NS       "package")
+set(cmXLIB_TEMPLATE          "Double")
+set(cmXLIB_TEMPLATE_COMMENTS "Double's operations")
+set(cmXLIB_TEMPLATE_SUBDIR   "Core")
+set(cmXLIB_TEMPLATE_NS       "core")
 
 if (NOT cmXLIB_TEMPLATE OR
     NOT cmXLIB_TEMPLATE_COMMENTS OR
