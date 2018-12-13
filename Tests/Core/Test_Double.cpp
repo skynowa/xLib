@@ -19,9 +19,14 @@ Test_Double::unit()
 {
     xTEST_CASE("Double")
     {
-		dfloat_t  f(1.0);
+		dfloat_t f(1.0);
+		xUNUSED(f);
 
 		ddouble_t d(1.0);
+		xUNUSED(d);
+
+		dlongdouble_t l(1.0);
+		xUNUSED(l);
     }
 
     xTEST_CASE("operator =")

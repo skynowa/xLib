@@ -42,9 +42,23 @@ private:
     T _value {};
 };
 
-using dfloat_t  = Double<float>;
-using ddouble_t = Double<double>;
+using dfloat_t      = Double<float>;
+using ddouble_t     = Double<double>;
+using dlongdouble_t = Double<long double>;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "Double.inl"
+
+/**
+ * TODO: public struct Double : IComparable, IComparable<double>, IConvertible, IEquatable<double>, IFormattable
+ * TODO: delimiter
+ * TODO: toString()
+ * TODO: tisInfinite()
+ *
+ *
+ * TODO: C library
+ * TODO: https://stackoverflow.com/questions/17333/what-is-the-most-effective-way-for-float-and-double-comparison
+ * TODO: https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
+ */
+
