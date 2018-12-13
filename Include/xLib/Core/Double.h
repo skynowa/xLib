@@ -25,7 +25,7 @@ public:
     Double & operator = (const T &values);
         ///< operator =
 
-	bool     isEqual(const double value);
+	bool     isEqual(const T value);
 		///< compare values
 	bool     isAlmostEqual(const T &value, const int ulp = 2);
 		///< ???
