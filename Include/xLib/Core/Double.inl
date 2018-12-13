@@ -45,13 +45,13 @@ Double<T>::isEqual(
 template <typename T>
 inline bool_t
 Double<T>::isAlmostEqual(
-	const T   &a_value,
-	const int  ulp /* = 2 */
+	const T     &a_value,
+	const int_t  a_ulp /* = 2 */
 )
 {
 	return
 		std::abs(_value - a_value) <=
-		std::numeric_limits<T>::epsilon() * std::max(std::abs(_value), std::abs(a_value)) * ulp;
+		std::numeric_limits<T>::epsilon() * std::max(std::abs(_value), std::abs(a_value)) * a_ulp;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
