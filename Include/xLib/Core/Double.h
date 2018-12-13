@@ -27,7 +27,7 @@ public:
 
 	bool_t   isEqual(const T value);
 		///< compare values
-	bool_t   isAlmostEqual(const T &value, const int ulp = 2);
+	bool_t   isAlmostEqual(const T &value, const int_t ulp = 2);
 		///< ???
 	bool_t   isNull();
 		///< compare values
