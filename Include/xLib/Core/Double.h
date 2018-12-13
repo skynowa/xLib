@@ -22,6 +22,9 @@ public:
     virtual ~Double() = default;
         ///< destructor
 
+    Double & operator = (const T &values);
+        ///< operator =
+
 	bool     isEqual(const double value);
 		///< compare values
 	bool     isAlmostEqual(const T &value, const int ulp = 2);
@@ -33,7 +36,7 @@ public:
     void_t   clear();
         ///< set to 0
 
-    /// xNO_COPY_ASSIGN(Double)
+    xNO_MOVE(Double)
 
 private:
     T _value {};

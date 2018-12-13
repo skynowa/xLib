@@ -21,6 +21,19 @@ Double<T>::Double(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+Double<T> &
+Double<T>::operator = (
+    const T &a_values
+)
+{
+    xCHECK_RET(this == &a_values, *this);
+
+    _value = a_values._value;
+
+    return *this;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 inline bool
 Double<T>::isEqual(
 	const double a_value	///< value 2
