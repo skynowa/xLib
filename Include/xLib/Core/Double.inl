@@ -37,7 +37,7 @@ template<typename T>
 inline bool_t
 Double<T>::isEqual(
 	const T a_value	///< value 2
-)
+) const
 {
 	return isAlmostEqual(_value, a_value);
 }
@@ -47,7 +47,7 @@ inline bool_t
 Double<T>::isAlmostEqual(
 	const T     &a_value,
 	const int_t  a_ulp /* = 2 */
-)
+) const
 {
 	return
 		std::abs(_value - a_value) <=
@@ -56,9 +56,9 @@ Double<T>::isAlmostEqual(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
-Double<T>::isNull()
+Double<T>::isNull() const
 {
-	return isAlmostEqual(_value, 0.0);
+	return isAlmostEqual(_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -66,7 +66,7 @@ inline T
 Double<T>::safeDivision(
 	const T &a_value,
 	const T &a_value_default /* = {} */
-)
+) const
 {
 	if ( isNull() ) {
 		return a_value_default;
