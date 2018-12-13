@@ -36,7 +36,7 @@ Double<T>::operator = (
 template<typename T>
 inline bool
 Double<T>::isEqual(
-	const double a_value	///< value 2
+	const T a_value	///< value 2
 )
 {
 	return isAlmostEqual(_value, a_value);
