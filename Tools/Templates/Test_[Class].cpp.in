@@ -17,7 +17,7 @@ xTEST_UNIT(Test_${cmXLIB_TEMPLATE})
 bool_t
 Test_${cmXLIB_TEMPLATE}::unit()
 {
-    xTEST_CASE("${cmXLIB_TEMPLATE}::[TEST_CASE_1]")
+    xTEST_CASE("[TEST_CASE_1]")
     {
 
     }
