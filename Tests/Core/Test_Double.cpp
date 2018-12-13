@@ -24,10 +24,16 @@ Test_Double::unit()
 		ddouble_t d(1.0);
     }
 
+    xTEST_CASE("operator =")
+    {
+		ddouble_t d(7.0);
+		xTEST(d.isEqual(7.0));
+    }
+
     xTEST_CASE("isEqual")
     {
     	ddouble_t d(1.0);
-    	xTEST(d.isEqual(1.0));
+        xTEST(d.isEqual(1.0));
     }
 
     xTEST_CASE("isAlmostEqual")
@@ -55,8 +61,7 @@ Test_Double::unit()
 		ddouble_t d(10.0);
 		d.clear();
 
-    	ddouble_t dRv(d);
-    	xTEST(dRv.isNull());
+    	xTEST(d.isNull());
     }
 
     return true;
