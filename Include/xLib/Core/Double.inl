@@ -107,31 +107,19 @@ Double<T>::operator != (
 template<typename T>
 inline bool_t
 Double<T>::isEqual(
-	const T a_value	///< value
+	const T &a_value	///< value
 ) const
 {
-	return isAlmostEqual(_value, a_value);
-}
-//-------------------------------------------------------------------------------------------------
-template <typename T>
-inline bool_t
-Double<T>::isAlmostEqual(
-	const T     &a_value,		///<
-	const int_t  a_ulp /* = 2 *////< ULP (Units in the Last Place):
-								///< difference between the integer representations tells us
-								///< how many Units in the Last Place the numbers differ by
-) const
-{
-	return
-		std::abs(_value - a_value) <=
-		std::numeric_limits<T>::epsilon() * std::max(std::abs(_value), std::abs(a_value)) * a_ulp;
+	constexpr T epsilon = std::numeric_limits<T>::epsilon();
+
+	return std::abs(_value - a_value) <= (epsilon * std::abs(_value));
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Double<T>::isNull() const
 {
-	return isAlmostEqual(_value);
+	return isEqual(_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
