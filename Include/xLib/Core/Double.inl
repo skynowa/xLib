@@ -23,12 +23,12 @@ Double<T>::Double(
 template<typename T>
 Double<T> &
 Double<T>::operator = (
-    const T &a_values
+    const T &a_value
 )
 {
-    xCHECK_RET(this == &a_values, *this);
+    xCHECK_RET(this == &a_value, *this);
 
-    _value = a_values._value;
+    _value = a_value._value;
 
     return *this;
 }
@@ -36,7 +36,7 @@ Double<T>::operator = (
 template<typename T>
 inline bool_t
 Double<T>::isEqual(
-	const T a_value	///< value 2
+	const T a_value	///< value
 ) const
 {
 	return isAlmostEqual(_value, a_value);

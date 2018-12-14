@@ -22,7 +22,7 @@ public:
     virtual ~Double() = default;
         ///< destructor
 
-    Double & operator = (const T &values);
+    Double & operator = (const T &value);
         ///< operator =
 
 	bool_t   isEqual(const T value) const;
