@@ -31,7 +31,7 @@ public:
 		///< ???
 	bool_t   isNull() const;
 		///< compare values
-	T	     safeDivision(const T &y, const T &value_default = {}) const;
+	T	     safeDiv(const T &y, const T &value_default = {}) const;
 		///< safe division, if devision by 0.0 return 0.0
     void_t   clear();
         ///< set to 0
@@ -53,6 +53,7 @@ xNAMESPACE_END2(xl, core)
 /**
  * TODO: public struct Double : IComparable, IComparable<double>, IConvertible, IEquatable<double>, IFormattable
  * TODO: delimiter
+ * TODO: operators <,>,==,<=,=>
  * TODO: toString()
  * TODO: tisInfinite()
  *
