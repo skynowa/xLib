@@ -26,12 +26,12 @@ public:
     Double & operator = (const T &value);
         ///< operator =
 
-	bool     operator <  (const T &value) const;
-	bool     operator >  (const T &value) const;
-	bool     operator <= (const T &value) const;
-	bool     operator >= (const T &value) const;
-	bool     operator == (const T &value) const;
-	bool     operator != (const T &value) const;
+	bool_t   operator <  (const T &value) const;
+	bool_t   operator >  (const T &value) const;
+	bool_t   operator <= (const T &value) const;
+	bool_t   operator >= (const T &value) const;
+	bool_t   operator == (const T &value) const;
+	bool_t   operator != (const T &value) const;
 
 	// methods
 	bool_t   isEqual(const T &value) const;

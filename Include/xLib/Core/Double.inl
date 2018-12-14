@@ -43,7 +43,7 @@ Double<T>::operator = (
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline bool
+inline bool_t
 Double<T>::operator < (
 	const T &a_value
 ) const
@@ -52,7 +52,7 @@ Double<T>::operator < (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline bool
+inline bool_t
 Double<T>::operator > (
 	const T &a_value
 ) const
@@ -61,7 +61,7 @@ Double<T>::operator > (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline bool
+inline bool_t
 Double<T>::operator <= (
 	const T &a_value
 ) const
@@ -70,7 +70,7 @@ Double<T>::operator <= (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline bool
+inline bool_t
 Double<T>::operator >= (
 	const T &a_value
 ) const
@@ -79,7 +79,7 @@ Double<T>::operator >= (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline bool
+inline bool_t
 Double<T>::operator == (
 	const T &a_value
 ) const
@@ -88,7 +88,7 @@ Double<T>::operator == (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline bool
+inline bool_t
 Double<T>::operator != (
 	const T &a_value
 ) const
