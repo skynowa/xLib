@@ -65,7 +65,7 @@ Double<T>::isNull() const
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline T
-Double<T>::safeDivision(
+Double<T>::safeDiv(
 	const T &a_value,
 	const T &a_value_default /* = {} */
 ) const

@@ -53,11 +53,11 @@ Test_Double::unit()
     	xTEST(d.isNull());
     }
 
-    xTEST_CASE("safeDivision")
+    xTEST_CASE("safeDiv")
     {
     	ddouble_t d(10.0);
 
-    	ddouble_t dRv( d.safeDivision(0.0) );
+    	ddouble_t dRv( d.safeDiv(0.0) );
     	xTEST(dRv.isNull());
     }
 
