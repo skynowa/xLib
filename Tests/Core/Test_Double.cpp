@@ -29,10 +29,12 @@ Test_Double::unit()
 		xUNUSED(l);
     }
 
-    xTEST_CASE("operator =")
+    xTEST_CASE("operators")
     {
 		ddouble_t d(7.0);
 		xTEST(d.isEqual(7.0));
+
+		// TODO: tests
     }
 
     xTEST_CASE("isEqual")
