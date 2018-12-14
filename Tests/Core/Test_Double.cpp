@@ -43,12 +43,6 @@ Test_Double::unit()
         xTEST(d.isEqual(1.0));
     }
 
-    xTEST_CASE("isAlmostEqual")
-    {
-    	ddouble_t d(1.0);
-    	xTEST(d.isAlmostEqual(1.0));
-    }
-
     xTEST_CASE("isNull")
     {
     	ddouble_t d(0.0);
