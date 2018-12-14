@@ -22,9 +22,18 @@ public:
     virtual ~Double() = default;
         ///< destructor
 
+	// operators
     Double & operator = (const T &value);
         ///< operator =
 
+	bool     operator <  (const T& value) const;
+	bool     operator >  (const T& value) const;
+	bool     operator <= (const T& value) const;
+	bool     operator >= (const T& value) const;
+	bool     operator == (const T& value) const;
+	bool     operator != (const T& value) const;
+
+	// methods
 	bool_t   isEqual(const T value) const;
 		///< compare values
 	bool_t   isAlmostEqual(const T &value, const int_t ulp = 2) const;
