@@ -27,7 +27,7 @@ Double<T>::operator = (
     const T &a_value
 )
 {
-    xCHECK_RET(this == &a_value, *this);
+    xCHECK_RET(_value == a_value, *this);
 
     _value = a_value._value;
 
