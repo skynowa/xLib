@@ -125,6 +125,13 @@ Double<T>::operator != (
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+const T &
+Double<T>::get() const
+{
+	return _value;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 inline bool_t
 Double<T>::isNull() const
 {
