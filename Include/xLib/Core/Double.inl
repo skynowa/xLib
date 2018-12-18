@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, core)
 template<typename T>
 inline
 Double<T>::Double(
-	const T &a_value
+	const T a_value
 ) :
     _value(a_value)
 {
@@ -24,7 +24,7 @@ Double<T>::Double(
 template<typename T>
 inline Double<T> &
 Double<T>::operator = (
-    const T &a_value
+    const T a_value
 )
 {
     _value = a_value._value;
@@ -43,7 +43,7 @@ Double<T>::operator = (
 template<typename T>
 inline bool_t
 Double<T>::operator < (
-	const T &a_value
+	const T a_value
 ) const
 {
 	return (_value < a_value);
@@ -52,7 +52,7 @@ Double<T>::operator < (
 template<typename T>
 inline bool_t
 Double<T>::operator > (
-	const T &a_value
+	const T a_value
 ) const
 {
 	return (a_value < *this);
@@ -61,7 +61,7 @@ Double<T>::operator > (
 template<typename T>
 inline bool_t
 Double<T>::operator <= (
-	const T &a_value
+	const T a_value
 ) const
 {
 	return !(*this > a_value);
@@ -70,7 +70,7 @@ Double<T>::operator <= (
 template<typename T>
 inline bool_t
 Double<T>::operator >= (
-	const T &a_value
+	const T a_value
 ) const
 {
 	return !(*this < a_value);
@@ -79,7 +79,7 @@ Double<T>::operator >= (
 template<typename T>
 inline bool_t
 Double<T>::operator == (
-	const T &a_value
+	const T a_value
 ) const
 {
 	constexpr T epsilon = std::numeric_limits<T>::epsilon();
@@ -90,7 +90,7 @@ Double<T>::operator == (
 template<typename T>
 inline bool_t
 Double<T>::operator != (
-	const T &a_value
+	const T a_value
 ) const
 {
 	return !(*this == a_value);
@@ -114,8 +114,8 @@ Double<T>::isNull() const
 template<typename T>
 inline T
 Double<T>::safeDiv(
-	const T &a_value,
-	const T &a_value_default /* = {} */
+	const T a_value,
+	const T a_value_default /* = {} */
 ) const
 {
 	if (a_value == 0.0) {

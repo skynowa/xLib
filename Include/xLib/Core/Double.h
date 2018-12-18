@@ -17,26 +17,26 @@ class Double
 public:
              Double() = default;
         ///< constructor
-    explicit Double(const T &value);
+    explicit Double(const T value);
         ///< constructor
     virtual ~Double() = default;
         ///< destructor
 
 	// operators
-    Double & operator = (const T &value);
+    Double & operator = (const T value);
         ///< operator =
 
-	bool_t   operator <  (const T &value) const;
-	bool_t   operator >  (const T &value) const;
-	bool_t   operator <= (const T &value) const;
-	bool_t   operator >= (const T &value) const;
-	bool_t   operator == (const T &value) const;
-	bool_t   operator != (const T &value) const;
+	bool_t   operator <  (const T value) const;
+	bool_t   operator >  (const T value) const;
+	bool_t   operator <= (const T value) const;
+	bool_t   operator >= (const T value) const;
+	bool_t   operator == (const T value) const;
+	bool_t   operator != (const T value) const;
 
 	// methods
 	bool_t   isNull() const;
 		///< compare values
-	T	     safeDiv(const T &y, const T &value_default = {}) const;
+	T	     safeDiv(const T y, const T value_default = {}) const;
 		///< safe division, if devision by 0.0 return 0.0
     void_t   clear();
         ///< set to 0
