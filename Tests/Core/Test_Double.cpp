@@ -19,17 +19,14 @@ Test_Double::unit()
 {
     xTEST_CASE("Double")
     {
-		dfloat_t f(1.0);
-		xUNUSED(f);
-
 		ddouble_t d(1.0);
-		xUNUSED(d);
+		xTEST(d == 1.0);
+    }
 
-		dlongdouble_t l(1.0);
-		xUNUSED(l);
-
-		dfloat_t f2 = 5.75;
-		xTEST(f2 == 5.75);
+    xTEST_CASE("Double(const T)")
+    {
+		ddouble_t f = 5.75;
+		xTEST(f == 5.75);
     }
 
     xTEST_CASE("operators")
@@ -49,7 +46,7 @@ Test_Double::unit()
 
     xTEST_CASE("operator ==")
     {
-		const Data3<float_t, float_t, bool_t> data[]
+		const Data3<double_t, double_t, bool_t> data[]
 		{
 			{10.5,   11.0,   false},
 			{10.0,   10.0,   true},
@@ -64,7 +61,7 @@ Test_Double::unit()
 		};
 
 		for (auto &it_data : data) {
-			dfloat_t f(it_data.test1);
+			ddouble_t f(it_data.test1);
 
 			m_bRv = (f == it_data.test2);
 			xTEST(m_bRv == it_data.expect);

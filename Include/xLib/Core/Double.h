@@ -15,16 +15,22 @@ class Double
     ///< Double's operations
 {
 public:
+	// default
              Double() = default;
-        ///< constructor
-             Double(const T value);
-        ///< constructor
-    virtual ~Double() = default;
-        ///< destructor
 
-	// operators
+    // copy
+             Double(const T &value);
+
+    // move
+             Double(T &&value);
+
+	// destructor
+    virtual ~Double() = default;
+
+	// Copy assignment
     Double & operator = (const T value);
         ///< operator =
+	// Move assignment
 
 	bool_t   operator <  (const T value) const;
 	bool_t   operator >  (const T value) const;
@@ -40,8 +46,6 @@ public:
 		///< safe division, if devision by 0.0 return 0.0
     void_t   clear();
         ///< set to 0
-
-    xNO_MOVE(Double)
 
 private:
     T _value {};
