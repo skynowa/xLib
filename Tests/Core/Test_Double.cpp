@@ -27,6 +27,9 @@ Test_Double::unit()
 
 		dlongdouble_t l(1.0);
 		xUNUSED(l);
+
+		dfloat_t f2 = 5.75;
+		xTEST(f2 == 5.75);
     }
 
     xTEST_CASE("operators")
@@ -37,7 +40,14 @@ Test_Double::unit()
 		// TODO: tests
     }
 
-    xTEST_CASE("operator =")
+    xTEST_CASE("operator = ")
+    {
+		ddouble_t d;
+		d = 7.0;
+		xTEST(d == 7.0);
+    }
+
+    xTEST_CASE("operator ==")
     {
 		const Data3<float_t, float_t, bool_t> data[]
 		{

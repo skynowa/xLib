@@ -17,7 +17,7 @@ class Double
 public:
              Double() = default;
         ///< constructor
-    explicit Double(const T value);
+             Double(const T &value);
         ///< constructor
     virtual ~Double() = default;
         ///< destructor
