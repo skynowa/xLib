@@ -98,6 +98,13 @@ Test_Double::unit()
     	xTEST(d.isNull());
     }
 
+    xTEST_CASE("operator OStream <<")
+    {
+		ddouble_t d(10.0);
+
+		OStream() << d;
+    }
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
