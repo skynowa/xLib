@@ -82,7 +82,9 @@ Double<T>::operator == (
 	const T &a_value
 ) const
 {
-	return (_value == a_value);
+	constexpr T epsilon = std::numeric_limits<T>::epsilon();
+
+	return std::abs(_value - a_value) <= (epsilon * std::abs(_value));
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -104,20 +106,9 @@ Double<T>::operator != (
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
-Double<T>::isEqual(
-	const T &a_value	///< value
-) const
-{
-	constexpr T epsilon = std::numeric_limits<T>::epsilon();
-
-	return std::abs(_value - a_value) <= (epsilon * std::abs(_value));
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-inline bool_t
 Double<T>::isNull() const
 {
-	return isEqual(_value);
+	return (_value == 0.0);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -127,7 +118,7 @@ Double<T>::safeDiv(
 	const T &a_value_default /* = {} */
 ) const
 {
-	if ( isNull() ) {
+	if (a_value == 0.0) {
 		return a_value_default;
 	}
 

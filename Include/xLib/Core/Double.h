@@ -34,8 +34,6 @@ public:
 	bool_t   operator != (const T &value) const;
 
 	// methods
-	bool_t   isEqual(const T &value) const;
-		///< compare values
 	bool_t   isNull() const;
 		///< compare values
 	T	     safeDiv(const T &y, const T &value_default = {}) const;
