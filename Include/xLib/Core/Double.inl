@@ -143,7 +143,7 @@ Double<T>::safeDiv(
 	const T a_value_default /* = {} */
 ) const
 {
-	if (a_value == 0.0) {
+	if ( isEqual(a_value, 0.0) ) {
 		return a_value_default;
 	}
 
