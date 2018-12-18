@@ -32,12 +32,12 @@ Test_Double::unit()
     xTEST_CASE("operators")
     {
 		ddouble_t d(7.0);
-		xTEST(d.isEqual(7.0));
+		xTEST(d == 7.0);
 
 		// TODO: tests
     }
 
-    xTEST_CASE("isEqual")
+    xTEST_CASE("operator =")
     {
 		const Data3<float_t, float_t, bool_t> data[]
 		{
@@ -56,7 +56,7 @@ Test_Double::unit()
 		for (auto &it_data : data) {
 			dfloat_t f(it_data.test1);
 
-			m_bRv = f.isEqual(it_data.test2);
+			m_bRv = (f == it_data.test2);
 			xTEST(m_bRv == it_data.expect);
 		}
     }
