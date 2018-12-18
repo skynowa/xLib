@@ -28,10 +28,12 @@ public:
     virtual ~Double() = default;
 
 	// Copy assignment
-    Double & operator = (const T value);
-        ///< operator =
-	// Move assignment
+    Double & operator = (const T &value);
 
+	// Move assignment
+    Double & operator = (T &&value);
+
+	// Comparison
 	bool_t   operator <  (const T value) const;
 	bool_t   operator >  (const T value) const;
 	bool_t   operator <= (const T value) const;
@@ -42,7 +44,7 @@ public:
 	// methods
 	bool_t   isNull() const;
 		///< compare values
-	T	     safeDiv(const T y, const T value_default = {}) const;
+	T	     safeDiv(const T value, const T value_default = {}) const;
 		///< safe division, if devision by 0.0 return 0.0
     void_t   clear();
         ///< set to 0

@@ -33,10 +33,21 @@ Double<T>::Double(
 template<typename T>
 inline Double<T> &
 Double<T>::operator = (
-    const T a_value
+    const T &a_value
 )
 {
     _value = a_value;
+
+    return *this;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline Double<T> &
+Double<T>::operator = (
+    T &&a_value
+)
+{
+    _value = std::move(a_value);
 
     return *this;
 }
