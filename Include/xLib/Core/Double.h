@@ -42,6 +42,8 @@ public:
 	bool_t   operator != (const T value) const;
 
 	// methods
+	const T &get() const;
+		///< get native value
 	bool_t   isNull() const;
 		///< compare values
 	T	     safeDiv(const T value, const T value_default = {}) const;
