@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, core)
 template<typename T>
 inline
 Double<T>::Double(
-	const T a_value
+	const T &a_value
 ) :
     _value(a_value)
 {
@@ -27,7 +27,7 @@ Double<T>::operator = (
     const T a_value
 )
 {
-    _value = a_value._value;
+    _value = a_value;
 
     return *this;
 }
