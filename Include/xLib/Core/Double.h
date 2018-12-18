@@ -71,7 +71,7 @@ xNAMESPACE_END2(xl, core)
  * TODO: delimiter
  * DONE: operators <,>,==,<=,=>
  * TODO: toString()
- * TODO: tisInfinite()
+ * TODO: isInfinite()
  *
  * TODO: C library
  * TODO: https://stackoverflow.com/questions/17333/what-is-the-most-effective-way-for-float-and-double-comparison
