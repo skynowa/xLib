@@ -65,6 +65,9 @@ Test_Double::unit()
 
 			m_bRv = (f == it_data.test2);
 			xTEST(m_bRv == it_data.expect);
+
+			m_bRv = (ddouble_t::isEqual(it_data.test1, it_data.test2));
+			xTEST(m_bRv == it_data.expect);
 		}
     }
 

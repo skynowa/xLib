@@ -40,6 +40,8 @@ public:
 	bool_t   operator >= (const T value) const;
 	bool_t   operator == (const T value) const;
 	bool_t   operator != (const T value) const;
+    static
+    bool_t   isEqual(const T value1, const T value2);
 
 	// methods
 	const T &get() const;
