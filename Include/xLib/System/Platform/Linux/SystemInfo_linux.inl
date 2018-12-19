@@ -276,7 +276,7 @@ SystemInfo::_ramUsage_impl() const
 
     ulong_t usage = info.totalram - info.freeram;
 
-    ulong_t ulRv = static_cast<ulong_t>( Utils::safeDivT(usage * 100, info.totalram) );
+    ulong_t ulRv = static_cast<ulong_t>( Utils::intSafeDiv(usage * 100, info.totalram) );
     xTEST_EQ(info.totalram, usage + info.freeram);
 
     return ulRv;

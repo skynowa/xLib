@@ -115,8 +115,10 @@ public:
         ///< print std::endl
 
     // xLib
+#if 0
 	template<typename T>
 	OStream & operator << (const Double<T> &value);
+#endif
 
 protected:
     std::tstringstream_t _os;

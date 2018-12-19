@@ -182,37 +182,6 @@ Utils::reinterpretCastT(
     return ResT;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */ inline
-bool_t
-Utils::doubleIsEqual(
-    const double &x,
-    const double &y
-)
-{
-    cdouble_t epsilon = std::numeric_limits<double>::epsilon();
-
-    return std::abs(x - y) <= (epsilon * std::abs(x));
-}
-//-------------------------------------------------------------------------------------------------
-/* static */ inline
-double
-Utils::roundDouble(
-    cdouble_t &a_value
-)
-{
-    xTEST_NA(a_value);
-
-    double dRv = 0.0;
-
-    if (a_value > 0.0) {
-        dRv = std::floor(a_value + 0.5);
-    } else {
-        dRv = std::ceil(a_value - 0.5);
-    }
-
-    return dRv;
-}
-//-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */ inline
 T
@@ -234,23 +203,19 @@ Utils::roundIntT(
     return iRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T1, class T2>
+template<typename T>
 /* static */ inline
-double
-Utils::safeDivT(
-    const T1 &a_value1,
-    const T2 &a_value2
+T
+Utils::intSafeDiv(
+    const T &a_value1,
+    const T &a_value2
 )
 {
-    double dRv = 0.0;
-
-    if (static_cast<T2>( 0 ) == a_value2) {
-        dRv = 0.0;
-    } else {
-        dRv = static_cast<double>( a_value1 ) / static_cast<double>( a_value2 );
+    if (a_value2 == 0) {
+        return 0;
     }
 
-    return dRv;
+    return a_value1 / a_value2;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>

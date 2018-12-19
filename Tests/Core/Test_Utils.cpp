@@ -216,45 +216,6 @@ Test_Utils::unit()
         // TODO: [skynowa] test for Utils::reinterpretCastT
     }
 
-    xTEST_CASE("doubleIsEqual")
-    {
-        cdouble_t cdData[][3] = {
-            {10.5,   11.0, 0.0},
-            {10.0,   10.0, 1.0},
-            {10.4,   10.0, 0.0},
-            {0.0,    0.0,  1.0},
-            {-10.4, -10.0, 0.0},
-            {-10.4, -10.4, 1.0},
-            {-10.5, -11.0, 0.0},
-            {-10.6, -11.0, 0.0}
-        };
-
-        for (size_t i = 0; i < Utils::arraySizeT(cdData); ++ i) {
-            cbool_t bRv  = static_cast<bool_t>( cdData[i][2] );
-            m_bRv = Utils::doubleIsEqual(cdData[i][0], cdData[i][1]);
-            xTEST_EQ(m_bRv, bRv);
-        }
-    }
-
-    xTEST_CASE("roundDouble")
-    {
-        cdouble_t cdData[][2] = {
-            {10.5,   11.0},
-            {10.0,   10.0},
-            {10.4,   10.0},
-            {0.0,    0.0},
-            {-10.4, -10.0},
-            {-10.5, -11.0},
-            {-10.6, -11.0}
-        };
-
-        for (size_t i = 0; i < Utils::arraySizeT(cdData); ++ i) {
-            double dRv1 = Utils::roundDouble(cdData[i][0]);
-            double dRv2 = cdData[i][1];
-            xTEST_EQ(dRv1, dRv2);
-        }
-    }
-
     xTEST_CASE("roundIntT")
     {
         cdouble_t cdData[][2] = {
@@ -274,19 +235,19 @@ Test_Utils::unit()
         }
     }
 
-    xTEST_CASE("safeDivT")
+    xTEST_CASE("intSafeDiv")
     {
-        m_dRv = Utils::safeDivT(0, 0);
-        xTEST_EQ(true, Utils::doubleIsEqual(m_dRv, 0.0));
+        m_iRv = Utils::intSafeDiv(0, 0);
+        xTEST_EQ(m_iRv, 0);
 
-        m_dRv = Utils::safeDivT(0, 1);
-        xTEST_EQ(true, Utils::doubleIsEqual(m_dRv, 0.0));
+        m_iRv = Utils::intSafeDiv(0, 1);
+        xTEST_EQ(m_iRv, 0);
 
-        m_dRv = Utils::safeDivT(1, 0);
-        xTEST_EQ(true, Utils::doubleIsEqual(m_dRv, 0.0));
+        m_iRv = Utils::intSafeDiv(1, 0);
+        xTEST_EQ(m_iRv, 0);
 
-        m_dRv = Utils::safeDivT(1, 1);
-        xTEST_EQ(true, Utils::doubleIsEqual(m_dRv, 1.0));
+        m_iRv = Utils::intSafeDiv(1, 1);
+        xTEST_EQ(m_iRv, 0);
     }
 
     xTEST_CASE("enumIncT enumDecT")
