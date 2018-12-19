@@ -345,7 +345,7 @@ SystemInfo::_cpuUsage_impl() const
     (void_t)::CopyMemory(&ulSysKernel, &sysKernel, sizeof(sysKernel));
     (void_t)::CopyMemory(&ulSysUser,   &sysUser,   sizeof(sysUser));
 
-    dRv = Utils::safeDivT(
+    dRv = Utils::intSafeDiv(
                 (ulSysKernel.QuadPart - s_sysKernelOld.QuadPart) +
                 (ulSysUser.QuadPart   - s_sysUserOld.QuadPart)   -
                 (ulSysIdle.QuadPart   - s_sysIdleOld.QuadPart)

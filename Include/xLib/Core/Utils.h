@@ -80,25 +80,16 @@ public:
     ToT       reinterpretCastT(const FromT &ptr) xWARN_UNUSED_RV;
         ///< allows any pointer to be converted into any other pointer type
 
-    static
-    bool_t    doubleIsEqual(const double &x, const double &y);
-        ///< compare double values
-
-    static
-    double    roundDouble(cdouble_t &value) xWARN_UNUSED_RV;
-        ///< round double value to the integer part
-
     template<typename T>
     static
     T         roundIntT(cdouble_t &value) xWARN_UNUSED_RV;
         ///< round double value to long_t
 
-    template<typename T1, class T2>
+    template<typename T>
     static
-    double    safeDivT(const T1 &value1, const T2 &value2) xWARN_UNUSED_RV;
+    T         intSafeDiv(const T &value1, const T &value2) xWARN_UNUSED_RV;
         ///< safe division
 
-    // TODO: [skynowa] enumIncT - depreciated
     template<typename T>
     static
     T         enumIncT(const T &value) xWARN_UNUSED_RV;

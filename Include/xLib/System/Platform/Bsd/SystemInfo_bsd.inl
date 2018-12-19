@@ -148,7 +148,7 @@ SystemInfo::_cpuUsage_impl() const
     used       = cpuTime[CP_USER] + cpuTime[CP_NICE] + cpuTime[CP_SYS];
     total      = cpuTime[CP_USER] + cpuTime[CP_NICE] + cpuTime[CP_SYS] + cpuTime[CP_IDLE];
 
-    cpuUsage   = Utils::safeDivT(used - s_usedOld, total - s_totalOld) * 100.0;
+    cpuUsage   = Utils::intSafeDiv(used - s_usedOld, total - s_totalOld) * 100.0;
 
     s_usedOld  = used;
     s_totalOld = total;
@@ -217,7 +217,7 @@ SystemInfo::_ramUsage_impl() const
 
     ulonglong_t ramUsage = ramTotal - ramFree;
 
-    ulong_t ulRv = static_cast<ulong_t>( Utils::safeDivT(ramUsage * 100.0, ramTotal) );
+    ulong_t ulRv = static_cast<ulong_t>( Utils::intSafeDiv(ramUsage * 100.0, ramTotal) );
     xTEST_EQ(ramTotal, ramUsage + ramFree);
 
     return ulRv;
