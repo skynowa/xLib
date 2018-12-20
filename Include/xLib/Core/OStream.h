@@ -8,6 +8,7 @@
 
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
+#include <xLib/Core/Double.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
@@ -115,10 +116,8 @@ public:
         ///< print std::endl
 
     // xLib
-#if 0
 	template<typename T>
 	OStream & operator << (const Double<T> &value);
-#endif
 
 protected:
     std::tstringstream_t _os;
