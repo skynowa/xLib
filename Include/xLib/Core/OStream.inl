@@ -278,7 +278,7 @@ OStream::operator << (
 	const Double<T> &a_value ///< value
 )
 {
-	_os << a_value.get();
+	_printFloat( a_value.get() );
 
 	return *this;
 }
