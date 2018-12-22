@@ -14,6 +14,28 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline
+Double<T>::Double()
+{
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+/* virtual */
+inline
+Double<T>::~Double()
+{
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline
+Double<T>::Double(
+	const Double &a_value
+) :
+    _value(a_value._value)
+{
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline
 Double<T>::Double(
 	const T &a_value
 ) :
@@ -24,19 +46,19 @@ Double<T>::Double(
 template<typename T>
 inline
 Double<T>::Double(
-	T &&a_value
+	Double &&a_value
 ) :
-    _value( std::move(a_value) )
+    _value( std::move(a_value._value) )
 {
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline Double<T> &
 Double<T>::operator = (
-    const T &a_value
+    const Double &a_value
 )
 {
-    _value = a_value;
+    _value = a_value._value;
 
     return *this;
 }
@@ -44,10 +66,10 @@ Double<T>::operator = (
 template<typename T>
 inline Double<T> &
 Double<T>::operator = (
-    T &&a_value
+    Double &&a_value
 )
 {
-    _value = std::move(a_value);
+    _value = std::move(a_value._value);
 
     return *this;
 }
@@ -63,16 +85,16 @@ Double<T>::operator = (
 template<typename T>
 inline bool_t
 Double<T>::operator < (
-	const T a_value
+	const Double a_value
 ) const
 {
-	return (_value < a_value);
+	return (_value < a_value._value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Double<T>::operator > (
-	const T a_value
+	const Double a_value
 ) const
 {
 	return (a_value < *this);
@@ -81,7 +103,7 @@ Double<T>::operator > (
 template<typename T>
 inline bool_t
 Double<T>::operator <= (
-	const T a_value
+	const Double a_value
 ) const
 {
 	return !(*this > a_value);
@@ -90,7 +112,7 @@ Double<T>::operator <= (
 template<typename T>
 inline bool_t
 Double<T>::operator >= (
-	const T a_value
+	const Double a_value
 ) const
 {
 	return !(*this < a_value);
@@ -99,16 +121,16 @@ Double<T>::operator >= (
 template<typename T>
 inline bool_t
 Double<T>::operator == (
-	const T a_value
+	const Double a_value
 ) const
 {
-	return isEqual(_value, a_value);
+	return isEqual(_value, a_value._value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Double<T>::operator != (
-	const T a_value
+	const Double a_value
 ) const
 {
 	return !(*this == a_value);
@@ -137,6 +159,19 @@ Double<T>::isNull() const
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+/* static */
+inline bool_t
+Double<T>::isEqual(
+	const T a_value1,
+	const T a_value2
+)
+{
+	constexpr T epsilon = std::numeric_limits<T>::epsilon();
+
+	return std::abs(a_value1 - a_value2) <= (epsilon * std::abs(a_value1));
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 inline T
 Double<T>::safeDiv(
 	const T a_value,
@@ -155,19 +190,6 @@ inline void_t
 Double<T>::clear()
 {
     _value = {};
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-/* static */
-inline bool_t
-Double<T>::isEqual(
-	const T a_value1,
-	const T a_value2
-)
-{
-	constexpr T epsilon = std::numeric_limits<T>::epsilon();
-
-	return std::abs(a_value1 - a_value2) <= (epsilon * std::abs(a_value1));
 }
 //-------------------------------------------------------------------------------------------------
 

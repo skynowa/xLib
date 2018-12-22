@@ -16,45 +16,43 @@ class Double
 {
 public:
 	// default
-             Double() = default;
+             Double();
 
     // copy
+             Double(const Double &value);
              Double(const T &value);
-             Double(T &&value) {};
 
     // move
-             Double(T &&value);
+             Double(Double &&value);
 
 	// destructor
-    virtual ~Double() = default;
+    virtual ~Double();
 
 	// Copy assignment
-    Double & operator = (const T &value);
+    Double & operator = (const Double &value);
 
 	// Move assignment
-    Double & operator = (T &&value);
+    Double & operator = (Double &&value);
 
 	// Comparison
-	bool_t   operator <  (const T value) const;
-	bool_t   operator >  (const T value) const;
-	bool_t   operator <= (const T value) const;
-	bool_t   operator >= (const T value) const;
-	bool_t   operator == (const T value) const;
-	bool_t   operator != (const T value) const;
-    static
-    bool_t   isEqual(const T value1, const T value2);
+	bool_t   operator <  (const Double value) const;
+	bool_t   operator >  (const Double value) const;
+	bool_t   operator <= (const Double value) const;
+	bool_t   operator >= (const Double value) const;
+	bool_t   operator == (const Double value) const;
+	bool_t   operator != (const Double value) const;
 
 	// methods
 	const T &get() const;
 		///< get native value
 	bool_t   isNull() const;
 		///< compare values
+    static
+    bool_t   isEqual(const T value1, const T value2);
 	T	     safeDiv(const T value, const T value_default = {}) const;
 		///< safe division, if devision by 0.0 return 0.0
     void_t   clear();
         ///< set to 0
-
-    /// xNO_COPY_ASSIGN(Double);
 
 private:
     T _value {};
