@@ -20,6 +20,7 @@ public:
 
     // copy
              Double(const T &value);
+             Double(T &&value) {};
 
     // move
              Double(T &&value);
@@ -52,6 +53,8 @@ public:
 		///< safe division, if devision by 0.0 return 0.0
     void_t   clear();
         ///< set to 0
+
+    /// xNO_COPY_ASSIGN(Double);
 
 private:
     T _value {};
