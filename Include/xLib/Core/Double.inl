@@ -1,5 +1,5 @@
 /**
- * \file   Double.cpp
+ * \file   Double.inl
  * \brief  Double's operations
  */
 
