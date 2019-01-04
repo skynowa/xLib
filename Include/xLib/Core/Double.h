@@ -47,12 +47,14 @@ public:
 		///< get native value
 	bool_t   isNull() const;
 		///< compare values
-    static
-    bool_t   isEqual(const T value1, const T value2);
 	T	     safeDiv(const T value, const T value_default = {}) const;
 		///< safe division, if devision by 0.0 return 0.0
     void_t   clear();
         ///< set to 0
+
+	// static
+    static
+    bool_t   isEqual(const T value1, const T value2);
 
 private:
     T _value {};

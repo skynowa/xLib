@@ -159,19 +159,6 @@ Double<T>::isNull() const
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */
-inline bool_t
-Double<T>::isEqual(
-	const T a_value1,
-	const T a_value2
-)
-{
-	constexpr T epsilon = std::numeric_limits<T>::epsilon();
-
-	return std::abs(a_value1 - a_value2) <= (epsilon * std::abs(a_value1));
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
 inline T
 Double<T>::safeDiv(
 	const T a_value,
@@ -190,6 +177,27 @@ inline void_t
 Double<T>::clear()
 {
     _value = {};
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   public / methods
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+/* static */
+inline bool_t
+Double<T>::isEqual(
+	const T a_value1,
+	const T a_value2
+)
+{
+	constexpr T epsilon = std::numeric_limits<T>::epsilon();
+
+	return std::abs(a_value1 - a_value2) <= (epsilon * std::abs(a_value1));
 }
 //-------------------------------------------------------------------------------------------------
 
