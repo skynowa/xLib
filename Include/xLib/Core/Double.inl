@@ -85,7 +85,7 @@ Double<T>::operator = (
 template<typename T>
 inline bool_t
 Double<T>::operator < (
-	const Double a_value
+	const Double &a_value
 ) const
 {
 	return (_value < a_value._value);
@@ -94,7 +94,7 @@ Double<T>::operator < (
 template<typename T>
 inline bool_t
 Double<T>::operator > (
-	const Double a_value
+	const Double &a_value
 ) const
 {
 	return (a_value < *this);
@@ -103,7 +103,7 @@ Double<T>::operator > (
 template<typename T>
 inline bool_t
 Double<T>::operator <= (
-	const Double a_value
+	const Double &a_value
 ) const
 {
 	return !(*this > a_value);
@@ -112,7 +112,7 @@ Double<T>::operator <= (
 template<typename T>
 inline bool_t
 Double<T>::operator >= (
-	const Double a_value
+	const Double &a_value
 ) const
 {
 	return !(*this < a_value);
@@ -121,7 +121,7 @@ Double<T>::operator >= (
 template<typename T>
 inline bool_t
 Double<T>::operator == (
-	const Double a_value
+	const Double &a_value
 ) const
 {
 	return isEqual(_value, a_value._value);
@@ -130,7 +130,7 @@ Double<T>::operator == (
 template<typename T>
 inline bool_t
 Double<T>::operator != (
-	const Double a_value
+	const Double &a_value
 ) const
 {
 	return !(*this == a_value);

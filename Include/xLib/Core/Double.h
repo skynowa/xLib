@@ -35,12 +35,12 @@ public:
     Double & operator = (Double &&value);
 
 	// Comparison
-	bool_t   operator <  (const Double value) const;
-	bool_t   operator >  (const Double value) const;
-	bool_t   operator <= (const Double value) const;
-	bool_t   operator >= (const Double value) const;
-	bool_t   operator == (const Double value) const;
-	bool_t   operator != (const Double value) const;
+	bool_t   operator <  (const Double &value) const;
+	bool_t   operator >  (const Double &value) const;
+	bool_t   operator <= (const Double &value) const;
+	bool_t   operator >= (const Double &value) const;
+	bool_t   operator == (const Double &value) const;
+	bool_t   operator != (const Double &value) const;
 
 	// methods
 	const T &get() const;
