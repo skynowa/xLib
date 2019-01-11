@@ -15,6 +15,7 @@
 
 xNAMESPACE_ANONYM_BEGIN
 
+// TODO: use CMake
 std::ctstring_t zipPath    = xT("/usr/bin/zip");
 std::ctstring_t tarPath    = xT("/usr/bin/tar");
 
