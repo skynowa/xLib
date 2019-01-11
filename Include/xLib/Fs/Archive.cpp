@@ -13,6 +13,19 @@
 #include <xLib/Sync/Process.h>
 
 
+xNAMESPACE_ANONYM_BEGIN
+
+std::ctstring_t zipPath    = xT("/usr/bin/zip");
+std::ctstring_t tarPath    = xT("/usr/bin/tar");
+
+std::ctstring_t unzipPath  = xT("/usr/bin/unzip");
+std::ctstring_t unrarPath  = xT("/usr/local/bin/unrar");
+std::ctstring_t gunzipPath = xT("/usr/bin/gunzip");
+
+std::ctstring_t chmodPath  = xT("chmod");
+
+xNAMESPACE_ANONYM_END
+
 xNAMESPACE_BEGIN2(xl, fs)
 
 /**************************************************************************************************
@@ -41,21 +54,21 @@ Archive::fileUnarchive(
 	{
 		switch (a_archive_type) {
 		case Type::Zip:
-			binPath = "/usr/bin/unzip";
+			binPath = unzipPath;
 			params  = quoted(a_archive_path) + " -d " + quoted(a_dest_dir);
 			break;
 		case Type::Rar:
-			binPath = "/usr/local/bin/unrar";
+			binPath = unrarPath;
 			params  = "x -r " + quoted(a_archive_path) + " " + quoted(a_dest_dir);
 			break;
 		case Type::Gz:
 			xUNUSED(a_dest_dir);
 
-			binPath = "/usr/bin/gunzip";
+			binPath = gunzipPath;
 			params  = quoted(a_archive_path);
 			break;
 		case Type::TarBz2:
-			binPath = "/usr/bin/tar";
+			binPath = tarPath;
 			params  = "xvjf " + quoted(a_archive_path) + " -C " + quoted(a_dest_dir);
 			break;
 		case Type::Unknown:
@@ -81,7 +94,7 @@ Archive::fileUnarchive(
 	if (a_archive_type == Type::Zip &&
 		!Dir(a_dest_dir).isExists())
 	{
-		std::ctstring_t binPath = xT("chmod");
+		std::ctstring_t binPath = chmodPath;
 		std::ctstring_t params  = xT("-R 0777 ") + quoted(a_dest_dir);
 
 		Process::create(binPath, xTIMEOUT_INFINITE, params);
@@ -112,7 +125,7 @@ Archive::dirArchive(
 	{
 		switch (a_archive_type) {
 		case Type::Zip:
-			binPath = "/usr/bin/zip";
+			binPath = zipPath;
 			params  = "-9 -r -Dj " + quoted(a_dest_archive_path) + " " + quoted(a_source_path);
 			break;
 		case Type::Rar:
