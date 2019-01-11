@@ -11,10 +11,10 @@ unset(cmXLIB_TEMPLATE_COMMENTS CACHE)
 unset(cmXLIB_TEMPLATE_SUBDIR   CACHE)
 unset(cmXLIB_TEMPLATE_NS       CACHE)
 
-set(cmXLIB_TEMPLATE          "Double")
-set(cmXLIB_TEMPLATE_COMMENTS "Double's operations")
-set(cmXLIB_TEMPLATE_SUBDIR   "Core")
-set(cmXLIB_TEMPLATE_NS       "core")
+set(cmXLIB_TEMPLATE          "Archive")
+set(cmXLIB_TEMPLATE_COMMENTS "Pack/unpack archives")
+set(cmXLIB_TEMPLATE_SUBDIR   "Fs")
+set(cmXLIB_TEMPLATE_NS       "fs")
 
 if (NOT cmXLIB_TEMPLATE OR
     NOT cmXLIB_TEMPLATE_COMMENTS OR

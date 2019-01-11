@@ -52,7 +52,7 @@ Shell::execute(
     std::ctstring_t &a_filePath ///< file path to binary file
 ) const
 {
-    return execute(a_filePath, std::tstring_t());
+    return execute(a_filePath, {});
 }
 //-------------------------------------------------------------------------------------------------
 int_t
@@ -69,7 +69,7 @@ Shell::execute(
 
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
     std::ctstring_t cmd = a_params.empty() ?
-        a_filePath : Format::str(xT("{} \"{}\""), a_filePath, a_params);
+        a_filePath : Format::str(xT("{} {}"), a_filePath, a_params);
 
     int_t iRv = xTSYSTEM(cmd.c_str());
     xTEST_DIFF(iRv, -1);

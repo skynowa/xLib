@@ -82,6 +82,7 @@
 #include <xLib/Fs/Backup.h>
 #include <xLib/Fs/Config.h>
 #include <xLib/Fs/FsWatcher.h>
+#include <xLib/Fs/Archive.h>
 
 // Ui
 #include <xLib/Ui/MsgBox.h>

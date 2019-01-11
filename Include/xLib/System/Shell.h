@@ -16,6 +16,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, system)
 
+// TODO: Shell - move to sync::Process
 class Shell
     /// shell
 {
