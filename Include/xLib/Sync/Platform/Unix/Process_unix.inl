@@ -24,13 +24,15 @@ Process::_create_impl(
     std::ctstring_t &a_params
 )
 {
+	std::ctstring_t fileName = Path(a_filePath).fileName();
+
     pid_t pid = ::fork();
     xTEST_EQ(pid != - 1L, true);
 
     if (pid == 0L) {
         // TODO: [skynowa] Process::_create_impl() - a_filePath is executable
 
-        int_t iRv = ::execlp(xT2A(a_filePath).c_str(), xT2A(a_filePath).c_str(),
+        int_t iRv = ::execlp(xT2A(a_filePath).c_str(), xT2A(fileName).c_str(),
             xT2A(a_params).c_str(), static_cast<const char *>( nullptr ));
         xTEST_DIFF(iRv, - 1);
 
