@@ -213,4 +213,49 @@ Process::currentExit(
 }
 //-------------------------------------------------------------------------------------------------
 
+
+/**************************************************************************************************
+*    public, static
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+Process::create(
+    std::ctstring_t &a_filePath,        ///< binary file path
+    culong_t         a_waitTimeoutMsec, ///< waiting timeout
+    cptr_ctchar_t    a_params, ...      ///< commandline params
+)
+{
+    std::tstring_t cmdLine;
+
+    va_list args;
+    xVA_START(args, a_params);
+    cmdLine = FormatC::strV(a_params, args);
+    xVA_END(args);
+
+    Process proc;
+    proc.create(a_filePath, xT("%s"), cmdLine.c_str());
+
+    Process::WaitResult wrRes = proc.wait(xTIMEOUT_INFINITE);
+    xTEST_EQ((int)Process::WaitResult::wrAbandoned, (int)wrRes);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+Process::create(
+    std::ctstring_t &a_filePath,        ///< binary file path
+    culong_t         a_waitTimeoutMsec, ///< waiting timeout
+    std::ctstring_t &a_params           ///< commandline params
+)
+{
+    Process proc;
+    proc.create(a_filePath, a_params.c_str());
+
+    Process::WaitResult wrRes = proc.wait(xTIMEOUT_INFINITE);
+    xTEST_EQ((int)Process::WaitResult::wrAbandoned, (int)wrRes);
+}
+//-------------------------------------------------------------------------------------------------
+
 xNAMESPACE_END2(xl, sync)

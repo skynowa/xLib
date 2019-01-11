@@ -10,7 +10,7 @@
 #include <xLib/Fs/File.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/Finder.h>
-#include <xLib/System/Shell.h>
+#include <xLib/Sync/Process.h>
 
 
 xNAMESPACE_BEGIN2(xl, fs)
@@ -34,8 +34,6 @@ Archive::fileUnarchive(
 	xTEST(!a_dest_dir.empty());
 	xTEST_NA(a_is_remove_archive);
 
-	int_t iRv {};
-
 	Dir(a_dest_dir).pathCreate();
 
 	std::tstring_t binPath;
@@ -44,21 +42,21 @@ Archive::fileUnarchive(
 		switch (a_archive_type) {
 		case Type::Zip:
 			binPath = "/usr/bin/unzip";
-			params  = "\"" + a_archive_path + "\" -d \"" + a_dest_dir + "\"";
+			params  = quoted(a_archive_path) + " -d " + quoted(a_dest_dir);
 			break;
 		case Type::Rar:
 			binPath = "/usr/local/bin/unrar";
-			params  = "x -r \"" + a_archive_path + "\" \"" + a_dest_dir + "\"";
+			params  = "x -r " + quoted(a_archive_path) + " " + quoted(a_dest_dir);
 			break;
 		case Type::Gz:
 			xUNUSED(a_dest_dir);
 
 			binPath = "/usr/bin/gunzip";
-			params  = "\"" + a_archive_path + "\"";
+			params  = quoted(a_archive_path);
 			break;
 		case Type::TarBz2:
 			binPath = "/usr/bin/tar";
-			params  = "xvjf \"" + a_archive_path + "\" -C \"" + a_dest_dir + "\"";
+			params  = "xvjf " + quoted(a_archive_path) + " -C " + quoted(a_dest_dir);
 			break;
 		case Type::Unknown:
 		default:
@@ -68,10 +66,7 @@ Archive::fileUnarchive(
 		}
 	}
 
-	iRv = Shell().execute(binPath, params);
-	if (iRv == - 1) {
-		return false;
-	}
+	Process::create(binPath, xTIMEOUT_INFINITE, params);
 
 	// remove zip file
 	if (a_is_remove_archive) {
@@ -87,10 +82,9 @@ Archive::fileUnarchive(
 		!Dir(a_dest_dir).isExists())
 	{
 		std::ctstring_t binPath = xT("chmod");
-		std::ctstring_t params  = xT("-R 0777 ") + a_dest_dir;
+		std::ctstring_t params  = xT("-R 0777 ") + quoted(a_dest_dir);
 
-		iRv = Shell().execute(binPath, params);
-		xUNUSED(iRv);
+		Process::create(binPath, xTIMEOUT_INFINITE, params);
 	}
 
 	return true;
@@ -109,9 +103,6 @@ Archive::dirArchive(
 	xTEST(!a_dest_archive_path.empty());
 	xTEST_NA(a_is_remove_source);
 
-	bool_t bRv {};
-	int_t  iRv {};
-
 	std::ctstring_t dest_dir = Path(a_dest_archive_path).dir();
 
 	Dir(dest_dir).pathCreate();
@@ -122,7 +113,7 @@ Archive::dirArchive(
 		switch (a_archive_type) {
 		case Type::Zip:
 			binPath = "/usr/bin/zip";
-			params  = "-9 -r -Dj \"" + a_dest_archive_path + "\" \"" + a_source_path + "\"";
+			params  = "-9 -r -Dj " + quoted(a_dest_archive_path) + " " + quoted(a_source_path);
 			break;
 		case Type::Rar:
 			// TODO: Type::Rar
@@ -144,11 +135,7 @@ Archive::dirArchive(
 		}
 	}
 
-	iRv = Shell().execute(binPath, params);
-	if (iRv == - 1) {
-		xTEST(false);
-		return false;
-	}
+	Process::create(binPath, xTIMEOUT_INFINITE, params);
 
 	// remove source dir
 	if (a_is_remove_source) {
@@ -185,6 +172,24 @@ Archive::dirUnarchive(
 	}
 
 	return true;
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*    public, static
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Archive::quoted(
+	std::ctstring_t &a_value,							///<
+	std::ctstring_t &a_delimiter /* = Const::dqm() */	///<
+)
+{
+	return a_delimiter + a_value + a_delimiter;
 }
 //-------------------------------------------------------------------------------------------------
 

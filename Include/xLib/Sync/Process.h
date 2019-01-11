@@ -91,6 +91,15 @@ public:
     void_t       currentExit(cuint_t &exitCode);
         ///< ends the calling process and all its threads
 
+    // static
+    static
+    void_t       create(std::ctstring_t &filePath, culong_t waitTimeoutMsec, cptr_ctchar_t params,
+                    ...);
+        ///< create, wait process
+    static
+    void_t       create(std::ctstring_t &filePath, culong_t waitTimeoutMsec, std::ctstring_t &params);
+        ///< create, wait process
+
 private:
     handle_t     _handle {};
 #if xENV_WIN
