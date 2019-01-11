@@ -26,18 +26,33 @@ Process::_create_impl(
 {
 	std::ctstring_t fileName = Path(a_filePath).fileName();
 
-    pid_t pid = ::fork();
-    xTEST_EQ(pid != - 1L, true);
+    const pid_t pid = ::fork();
+    switch (pid) {
+	case - 1:
+		// child - error
+		{
+			xTEST(false);
+			std::exit(EXIT_FAILURE);
+		}
+		break;
+	case 0:
+		// child - OK
+		{
+			// TODO: [skynowa] Process::_create_impl() - a_filePath is executable
+			printf("[CHILD] PID: %d, parent PID: %d\n", getpid(), getppid());
 
-    if (pid == 0L) {
-        // TODO: [skynowa] Process::_create_impl() - a_filePath is executable
+			int_t status = ::execlp(xT2A(a_filePath).c_str(), xT2A(fileName).c_str(),
+				xT2A(a_params).c_str(), nullptr);	// this is the child
+			xTEST_DIFF(status, - 1);
 
-        int_t iRv = ::execlp(xT2A(a_filePath).c_str(), xT2A(fileName).c_str(),
-            xT2A(a_params).c_str(), static_cast<const char *>( nullptr ));
-        xTEST_DIFF(iRv, - 1);
-
-        (void_t)::_exit(EXIT_SUCCESS);  /* not std::exit() */
-    }
+			(void_t)::_exit(status);  /* not std::exit() */
+		}
+		break;
+	default:
+		// parent - OK (waitpid)
+		printf("[PARENT] PID: %d, parent PID: %d\n", getpid(), pid);
+		break;
+	}
 
     _handle = pid;
     _pid    = pid;
