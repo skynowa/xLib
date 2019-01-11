@@ -127,6 +127,19 @@ Test_Process::unit()
         xTEST_LESS(0UL, static_cast<ulong_t>( ulRv ));
     }
 
+    xTEST_CASE("create")
+    {
+        #if   xENV_WIN
+            std::ctstring_t filePath = xT("C:\\Windows\\System32\\attrib.exe");
+            std::ctstring_t cmdLine  = xT("");
+        #elif xENV_UNIX
+            std::ctstring_t filePath = xT("/bin/ls");
+            std::ctstring_t cmdLine  = xT("-la");
+        #endif
+
+        Process::create(filePath, xTIMEOUT_INFINITE, xT("%s"), cmdLine.c_str());
+    }
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------

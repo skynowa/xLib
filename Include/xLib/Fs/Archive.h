@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/Const.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, fs)
 
@@ -39,8 +40,15 @@ public:
 				std::ctstring_t &archive_shell_filter, std::ctstring_t &dest_dir,
 				cbool_t is_remove_archives);
 		///< unarchive dir
+
+		///< quote string
+
 private:
     xNO_COPY_ASSIGN(Archive)
+
+	// static
+	static
+	std::tstring_t quoted(std::ctstring_t &value, std::ctstring_t &delimiter = Const::dqm());
 };
 
 xNAMESPACE_END2(xl, fs)
