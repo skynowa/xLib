@@ -35,6 +35,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+/* static */
 bool_t
 Archive::fileArchive(
 	const Type       a_type,              ///< archive type
@@ -89,6 +90,7 @@ Archive::fileArchive(
 	return true;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 bool_t
 Archive::dirArchive(
 	const Type       a_type,             ///< archive type
@@ -143,6 +145,7 @@ Archive::dirArchive(
 	return true;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 bool_t
 Archive::fileUnarchive(
 	const Type       a_type,              ///< archive type
@@ -213,6 +216,7 @@ Archive::fileUnarchive(
 	return true;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 bool_t
 Archive::dirUnarchive(
 	const Type       a_type,                ///< archive type
