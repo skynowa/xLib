@@ -39,103 +39,103 @@ public:
     #endif
     };
 
-                 Process();
-    virtual     ~Process();
+               Process();
+    virtual   ~Process();
 
-    void_t       create(std::ctstring_t &filePath, cptr_ctchar_t params, ...);
+    void_t     create(std::ctstring_t &filePath, cptr_ctchar_t params, ...);
         ///< execute a file
-    WaitResult   wait(culong_t &timeoutMsec) xWARN_UNUSED_RV;
+    WaitResult wait(culong_t &timeoutMsec) xWARN_UNUSED_RV;
         ///< wait for termination
-    void_t       kill(culong_t &timeoutMsec);
+    void_t     kill(culong_t &timeoutMsec);
         ///< kills the calling process and all of its threads
 
-    handle_t     handle() const xWARN_UNUSED_RV;
+    handle_t   handle() const xWARN_UNUSED_RV;
         ///< get handle
-    id_t         id() const xWARN_UNUSED_RV;
+    id_t       id() const xWARN_UNUSED_RV;
         ///< get ID
-    bool_t       isCurrent() const xWARN_UNUSED_RV;
+    bool_t     isCurrent() const xWARN_UNUSED_RV;
         ///< is current
-    ulong_t      exitStatus() const xWARN_UNUSED_RV;
+    ulong_t    exitStatus() const xWARN_UNUSED_RV;
         ///< get termination status
 
     static
-    id_t         idByHandle(const handle_t &handle) xWARN_UNUSED_RV;
+    id_t       idByHandle(const handle_t &handle) xWARN_UNUSED_RV;
         ///< get ID by handle
     static
-    handle_t     handleById(const id_t &id) xWARN_UNUSED_RV;
+    handle_t   handleById(const id_t &id) xWARN_UNUSED_RV;
         ///< get handle by ID
     static
-    id_t         idByName(std::ctstring_t &processName) xWARN_UNUSED_RV;
+    id_t       idByName(std::ctstring_t &processName) xWARN_UNUSED_RV;
         ///< get ID by name
     static
-    bool_t       isRunning(const id_t &id) xWARN_UNUSED_RV;
+    bool_t     isRunning(const id_t &id) xWARN_UNUSED_RV;
         ///< is process running by name (with extension)
     static
-    void_t       ids(std::vector<Process::id_t> *ids);
+    void_t     ids(std::vector<Process::id_t> *ids);
         ///< get all IDs of current processes
 
     // current process
     static
-    bool_t       isCurrent(const Process::id_t &id) xWARN_UNUSED_RV;
+    bool_t     isCurrent(const Process::id_t &id) xWARN_UNUSED_RV;
         ///< is current id
     static
-    id_t         currentId() xWARN_UNUSED_RV;
+    id_t       currentId() xWARN_UNUSED_RV;
         ///< process ID of the calling process
     static
-    id_t         currentParentId() xWARN_UNUSED_RV;
+    id_t       currentParentId() xWARN_UNUSED_RV;
         ///< process ID of the parent of the calling process
     static
-    handle_t     currentHandle() xWARN_UNUSED_RV;
+    handle_t   currentHandle() xWARN_UNUSED_RV;
         ///< get pseudo handle for the calling process
     static
-    void_t       currentExit(cuint_t &exitCode);
+    void_t     currentExit(cuint_t &exitCode);
         ///< ends the calling process and all its threads
 
     // static
     static
-    void_t       create(std::ctstring_t &filePath, culong_t waitTimeoutMsec, cptr_ctchar_t params,
+    void_t     create(std::ctstring_t &filePath, culong_t waitTimeoutMsec, cptr_ctchar_t params,
                     ...);
         ///< create, wait process
     static
-    void_t       create(std::ctstring_t &filePath, culong_t waitTimeoutMsec, std::ctstring_t &params);
+    void_t     create(std::ctstring_t &filePath, culong_t waitTimeoutMsec, std::ctstring_t &params);
         ///< create, wait process
 
 private:
-    handle_t     _handle {};
+    handle_t _handle {};
 #if xENV_WIN
-    HANDLE       _thread {};
+    HANDLE   _thread {};
 #endif
-    id_t         _pid {};
-    uint_t       _exitStatus {};    ///< exit code
+    id_t     _pid {};
+    uint_t   _exitStatus {};    ///< exit code
 
     xNO_COPY_ASSIGN(Process)
 
 xPLATFORM_IMPL:
-    void_t       _destruct_impl();
-    void_t       _create_impl(std::ctstring_t &filePath, std::ctstring_t &params);
-    WaitResult   _wait_impl(culong_t &timeoutMsec) xWARN_UNUSED_RV;
-    void_t       _kill_impl(culong_t &timeoutMsec);
-    ulong_t      _exitStatus_impl() const xWARN_UNUSED_RV;
+    void_t     _destruct_impl();
+    void_t     _create_impl(std::ctstring_t &filePath, std::ctstring_t &params);
+    WaitResult _wait_impl(culong_t &timeoutMsec) xWARN_UNUSED_RV;
+    void_t     _kill_impl(culong_t &timeoutMsec);
+    ulong_t    _exitStatus_impl() const xWARN_UNUSED_RV;
 
     static
-    id_t         _idByHandle_impl(const handle_t &handle) xWARN_UNUSED_RV;
+    id_t       _idByHandle_impl(const handle_t &handle) xWARN_UNUSED_RV;
     static
-    handle_t     _handleById_impl(const id_t &id) xWARN_UNUSED_RV;
+    handle_t   _handleById_impl(const id_t &id) xWARN_UNUSED_RV;
     static
-    id_t         _idByName_impl(std::ctstring_t &processName) xWARN_UNUSED_RV;
+    id_t       _idByName_impl(std::ctstring_t &processName) xWARN_UNUSED_RV;
     static
-    void_t       _ids_impl(std::vector<Process::id_t> *ids);
+    void_t     _ids_impl(std::vector<Process::id_t> *ids);
     static
-    bool_t       _isCurrent_impl(const Process::id_t &a_id);
+    bool_t     _isCurrent_impl(const Process::id_t &a_id);
     static
-    id_t         _currentId_impl() xWARN_UNUSED_RV;
+    id_t       _currentId_impl() xWARN_UNUSED_RV;
 
     static
-    id_t         _currentParentId_impl() xWARN_UNUSED_RV;
+    id_t       _currentParentId_impl() xWARN_UNUSED_RV;
     static
-    handle_t     _currentHandle_impl() xWARN_UNUSED_RV;
+    handle_t   _currentHandle_impl() xWARN_UNUSED_RV;
     static
-    void_t       _currentExit_impl(cuint_t &exitCode);
+    void_t     _currentExit_impl(cuint_t &exitCode);
 };
 
 xNAMESPACE_END2(xl, sync)
