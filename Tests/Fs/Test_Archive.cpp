@@ -61,7 +61,7 @@ Test_Archive::unit()
 		{
 			std::ctstring_t zipFilePath = data.tempDirPath + Const::slash() + xT("ArchiveNew.zip");
 
-			m_bRv = Archive::dirArchive(type, destDirPath, zipFilePath, false);
+			m_bRv = Archive::dirCompress(type, destDirPath, zipFilePath, false);
 			xTEST(m_bRv);
 		}
 
