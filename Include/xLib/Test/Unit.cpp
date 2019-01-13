@@ -27,7 +27,7 @@ xNAMESPACE_BEGIN2(xl, test)
 /* virtual */
 Unit::~Unit() /* = 0 */
 {
-    /// Dir( data.tempDirPath ).pathDelete();
+    Dir( data.tempDirPath ).pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
