@@ -61,7 +61,7 @@ Test_Archive::unit()
          m_bRv = archive.dirUnarchive(type, sourceDirPath, "*.zip", destDirPath, false);
     }
 
-    /// File::remove(filePath);
+    File::remove(filePath);
 
     return true;
 }

@@ -38,17 +38,17 @@ xNAMESPACE_BEGIN2(xl, fs)
 bool_t
 Archive::fileArchive(
 	const Type       a_archive_type,		///< archive type
-	std::ctstring_t &a_source_path,			///< source path
-	std::ctstring_t &a_dest_archive_path,	///< destination archive path
+	std::ctstring_t &a_source_file_path,	///< source path
+	std::ctstring_t &a_dest_file_path,		///< destination archive path
 	cbool_t          a_is_remove_source		///< is remove source dir
 )
 {
 	xTEST_DIFF((int_t)a_archive_type, (int_t)Type::Unknown);
-	xTEST(!a_source_path.empty());
-	xTEST(!a_dest_archive_path.empty());
+	xTEST(!a_source_file_path.empty());
+	xTEST(!a_dest_file_path.empty());
 	xTEST_NA(a_is_remove_source);
 
-	std::ctstring_t dest_dir = Path(a_dest_archive_path).dir();
+	std::ctstring_t dest_dir = Path(a_dest_file_path).dir();
 	Dir(dest_dir).pathCreate();
 
 	std::tstring_t     binPath;
@@ -57,7 +57,7 @@ Archive::fileArchive(
 		switch (a_archive_type) {
 		case Type::Zip:
 			binPath = zipPath;
-			params  = {"-9", "-Dj", a_dest_archive_path, a_source_path};
+			params  = {"-9", "-Dj", a_dest_file_path, a_source_file_path};
 			break;
 		case Type::Rar:
 			// TODO: Type::Rar
@@ -83,7 +83,7 @@ Archive::fileArchive(
 
 	// remove source dir
 	if (a_is_remove_source) {
-		Dir(a_source_path).pathDelete();
+		Dir(a_source_file_path).pathDelete();
 	}
 
 	return true;
@@ -91,18 +91,18 @@ Archive::fileArchive(
 //-------------------------------------------------------------------------------------------------
 bool_t
 Archive::dirArchive(
-	const Type       a_archive_type,		///< archive type
-	std::ctstring_t &a_source_path,			///< source path
-	std::ctstring_t &a_dest_archive_path,	///< destination archive path
-	cbool_t          a_is_remove_source		///< is remove source dir
+	const Type       a_archive_type,	///< archive type
+	std::ctstring_t &a_source_dir_path,	///< source path
+	std::ctstring_t &a_dest_file_path,	///< destination archive path
+	cbool_t          a_is_remove_source	///< is remove source dir
 )
 {
 	xTEST_DIFF((int_t)a_archive_type, (int_t)Type::Unknown);
-	xTEST(!a_source_path.empty());
-	xTEST(!a_dest_archive_path.empty());
+	xTEST(!a_source_dir_path.empty());
+	xTEST(!a_dest_file_path.empty());
 	xTEST_NA(a_is_remove_source);
 
-	std::ctstring_t dest_dir = Path(a_dest_archive_path).dir();
+	std::ctstring_t dest_dir = Path(a_dest_file_path).dir();
 	Dir(dest_dir).pathCreate();
 
 	std::tstring_t     binPath;
@@ -111,7 +111,7 @@ Archive::dirArchive(
 		switch (a_archive_type) {
 		case Type::Zip:
 			binPath = zipPath;
-			params  = {"-9", "-r", "-Dj", a_dest_archive_path, a_source_path};
+			params  = {"-9", "-r", "-Dj", a_dest_file_path, a_source_dir_path};
 			break;
 		case Type::Rar:
 			// TODO: Type::Rar
@@ -137,7 +137,7 @@ Archive::dirArchive(
 
 	// remove source dir
 	if (a_is_remove_source) {
-		Dir(a_source_path).pathDelete();
+		Dir(a_source_dir_path).pathDelete();
 	}
 
 	return true;
@@ -146,17 +146,17 @@ Archive::dirArchive(
 bool_t
 Archive::fileUnarchive(
 	const Type       a_archive_type,       ///< archive type
-	std::ctstring_t &a_archive_path,       ///< file path
-	std::ctstring_t &a_dest_dir,           ///< destination dir
+	std::ctstring_t &a_source_file_path,   ///< file path
+	std::ctstring_t &a_dest_dir_path,      ///< destination dir
 	cbool_t          a_is_remove_archive   ///< is remove source archive file
 )
 {
 	xTEST_DIFF((int_t)a_archive_type, (int_t)Type::Unknown);
-	xTEST(!a_archive_path.empty());
-	xTEST(!a_dest_dir.empty());
+	xTEST(!a_source_file_path.empty());
+	xTEST(!a_dest_dir_path.empty());
 	xTEST_NA(a_is_remove_archive);
 
-	Dir(a_dest_dir).pathCreate();
+	Dir(a_dest_dir_path).pathCreate();
 
 	std::tstring_t     binPath;
 	std::vec_tstring_t params;
@@ -164,21 +164,21 @@ Archive::fileUnarchive(
 		switch (a_archive_type) {
 		case Type::Zip:
 			binPath = unzipPath;
-			params  = {a_archive_path, "-d", a_dest_dir};
+			params  = {a_source_file_path, "-d", a_dest_dir_path};
 			break;
 		case Type::Rar:
 			binPath = unrarPath;
-			params  = {"x", "-r", a_archive_path, a_dest_dir};
+			params  = {"x", "-r", a_source_file_path, a_dest_dir_path};
 			break;
 		case Type::Gz:
-			xUNUSED(a_dest_dir);
+			xUNUSED(a_dest_dir_path);
 
 			binPath = gunzipPath;
-			params  = {a_archive_path};
+			params  = {a_source_file_path};
 			break;
 		case Type::TarBz2:
 			binPath = tarPath;
-			params  = {"xvjf", a_archive_path, "-C", a_dest_dir};
+			params  = {"xvjf", a_source_file_path, "-C", a_dest_dir_path};
 			break;
 		case Type::Unknown:
 		default:
@@ -195,16 +195,16 @@ Archive::fileUnarchive(
 		if (a_archive_type == Type::Gz) {
 			// n/a
 		} else {
-			File::remove(a_archive_path);
+			File::remove(a_source_file_path);
 		}
 	}
 
 	// fix unzip bug - chmod for dest dir
 	if (a_archive_type == Type::Zip &&
-		!Dir(a_dest_dir).isExists())
+		!Dir(a_dest_dir_path).isExists())
 	{
 		std::ctstring_t     binPath = chmodPath;
-		std::cvec_tstring_t params  = {xT("-R 0777"), a_dest_dir};
+		std::cvec_tstring_t params  = {xT("-R 0777"), a_dest_dir_path};
 
 		Process::create(binPath, xTIMEOUT_INFINITE, params, {});
 	}
@@ -214,24 +214,25 @@ Archive::fileUnarchive(
 //-------------------------------------------------------------------------------------------------
 bool_t
 Archive::dirUnarchive(
-	const Type       a_archive_type,         ///< archive type
-	std::ctstring_t &a_archive_dir_path,     ///< dir path
-	std::ctstring_t &a_archive_shell_filter, ///< shell wildcard pattern
-	std::ctstring_t &a_dest_dir,             ///< destination dir
-	cbool_t          a_is_remove_archives    ///< is remove source archive files
+	const Type       a_archive_type,         	///< archive type
+	std::ctstring_t &a_source_dir_path,      	///< dir path
+	std::ctstring_t &a_file_shell_filter,    	///< shell wildcard pattern
+	std::ctstring_t &a_dest_dir_path,        	///< destination dir
+	cbool_t          a_is_remove_source_files	///< is remove source archive files
 )
 {
 	bool_t bRv {};
 
 	std::vec_tstring_t archive_files;
-	Finder::files(a_archive_dir_path, a_archive_shell_filter, true, &archive_files);
+	Finder::files(a_source_dir_path, a_file_shell_filter, true, &archive_files);
 	if ( archive_files.empty() ) {
 		xTEST(false);
 		return false;
 	}
 
 	for (auto &it_archive_file : archive_files) {
-		bRv = fileUnarchive(a_archive_type, it_archive_file, a_dest_dir, a_is_remove_archives);
+		bRv = fileUnarchive(a_archive_type, it_archive_file, a_dest_dir_path,
+			a_is_remove_source_files);
 		if (!bRv) {
 			xTEST(false);
 			return false;
