@@ -24,12 +24,16 @@ public:
 		Gz      = 3,
 		TarBz2  = 4
 	};
+	xUSING_CONST(Type);
 
              Archive() = default;
         ///< constructor
     virtual ~Archive() = default;
         ///< destructor
 
+	bool_t   fileArchive(const Type archive_type, std::ctstring_t &source_path,
+				std::ctstring_t &dest_archive_path, cbool_t is_remove_source);
+		///< archive file
 	bool_t   dirArchive(const Type archive_type, std::ctstring_t &source_path,
 				std::ctstring_t &dest_archive_path, cbool_t is_remove_source);
 		///< archive dir
@@ -41,8 +45,6 @@ public:
 				std::ctstring_t &archive_shell_filter, std::ctstring_t &dest_dir,
 				cbool_t is_remove_archives);
 		///< unarchive dir
-
-		///< quote string
 
 private:
     xNO_COPY_ASSIGN(Archive)
