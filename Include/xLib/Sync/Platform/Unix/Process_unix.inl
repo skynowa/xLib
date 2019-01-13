@@ -68,6 +68,8 @@ Process::_wait_impl(
     xUNUSED(a_timeoutMsec);
 
     // TODO: [skynowa] Process::_wait_impl() - a_timeoutMsec
+    // Thread::currentSleep(a_timeoutMsec);
+
     pid_t liRv   = - 1L;
     int_t status = 0;
 
