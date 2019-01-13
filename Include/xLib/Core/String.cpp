@@ -388,6 +388,33 @@ String::removeEol(
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
+String::quoted(
+    std::ctstring_t &a_str,                         ///< source string
+    ctchar_t         a_delimiter /* = xT('\"') */,  ///< delimiter
+    ctchar_t         a_escape    /* = xT('\\') */   ///< escape
+)
+{
+    std::tstring_t sRv;
+
+    sRv = a_delimiter;
+
+    for (auto &it : a_str) {
+        if (it == a_delimiter ||
+            it == a_escape)
+        {
+            sRv += a_escape;
+        }
+
+        sRv += it;
+    }
+
+    sRv += a_delimiter;
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
 String::replaceAll(
     std::ctstring_t &a_str,     ///< source string
     std::ctstring_t &a_strOld,  ///< old string

@@ -6,6 +6,7 @@
 
 #include "Archive.h"
 
+#include <xLib/Core/String.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/File.h>
 #include <xLib/Fs/Dir.h>
@@ -58,7 +59,8 @@ Archive::dirArchive(
 		switch (a_archive_type) {
 		case Type::Zip:
 			binPath = zipPath;
-			params  = "-9 -r -Dj " + quoted(a_dest_archive_path) + " " + quoted(a_source_path);
+			params  = "-9 -r -Dj " + String::quoted(a_dest_archive_path) + " " +
+					  String::quoted(a_source_path);
 			break;
 		case Type::Rar:
 			// TODO: Type::Rar
@@ -111,21 +113,21 @@ Archive::fileUnarchive(
 		switch (a_archive_type) {
 		case Type::Zip:
 			binPath = unzipPath;
-			params  = quoted(a_archive_path) + " -d " + quoted(a_dest_dir);
+			params  = String::quoted(a_archive_path) + " -d " + String::quoted(a_dest_dir);
 			break;
 		case Type::Rar:
 			binPath = unrarPath;
-			params  = "x -r " + quoted(a_archive_path) + " " + quoted(a_dest_dir);
+			params  = "x -r " + String::quoted(a_archive_path) + " " + String::quoted(a_dest_dir);
 			break;
 		case Type::Gz:
 			xUNUSED(a_dest_dir);
 
 			binPath = gunzipPath;
-			params  = quoted(a_archive_path);
+			params  = String::quoted(a_archive_path);
 			break;
 		case Type::TarBz2:
 			binPath = tarPath;
-			params  = "xvjf " + quoted(a_archive_path) + " -C " + quoted(a_dest_dir);
+			params  = "xvjf " + String::quoted(a_archive_path) + " -C " + String::quoted(a_dest_dir);
 			break;
 		case Type::Unknown:
 		default:
@@ -151,7 +153,7 @@ Archive::fileUnarchive(
 		!Dir(a_dest_dir).isExists())
 	{
 		std::ctstring_t binPath = chmodPath;
-		std::ctstring_t params  = xT("-R 0777 ") + quoted(a_dest_dir);
+		std::ctstring_t params  = xT("-R 0777 ") + String::quoted(a_dest_dir);
 
 		Process::create(binPath, xTIMEOUT_INFINITE, params);
 	}
@@ -186,24 +188,6 @@ Archive::dirUnarchive(
 	}
 
 	return true;
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*    public, static
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-Archive::quoted(
-	std::ctstring_t &a_value,							///<
-	std::ctstring_t &a_delimiter /* = Const::dqm() */	///<
-)
-{
-	return a_delimiter + a_value + a_delimiter;
 }
 //-------------------------------------------------------------------------------------------------
 

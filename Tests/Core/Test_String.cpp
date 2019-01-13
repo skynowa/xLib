@@ -497,6 +497,21 @@ Test_String::unit()
         }
     }
 
+    xTEST_CASE("quoted")
+    {
+        std::ctstring_t data[][2] =
+        {
+            {xT("TEST_STRING_1"),  xT("\"TEST_STRING_1\"")},
+            {xT("TEST_\"STRING\"_1"), xT("\"TEST_\\\"STRING\\\"_1\"")}
+        };
+
+        for (auto &it_data : data) {
+            std::tstring_t str1 = String::quoted(it_data[0], xT('\"'), xT('\\'));
+            std::tstring_t str2 = it_data[1];
+            xTEST_EQ(str1, str2);
+        }
+    }
+
     xTEST_CASE("replaceAll")
     {
         m_sRv = String::replaceAll(xT("aTaaaEaST_aSTaRINaaGaa_1a"), xT("a"), xT(""));
