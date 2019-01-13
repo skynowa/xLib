@@ -39,18 +39,18 @@ Process::_create_impl(
 		// child - OK
 		{
 			// TODO: [skynowa] Process::_create_impl() - a_filePath is executable
-			printf("[CHILD] PID: %d, parent PID: %d\n", getpid(), getppid());
+			// printf("[CHILD] PID: %d, parent PID: %d\n", getpid(), getppid());
 
 			int_t status = ::execlp(xT2A(a_filePath).c_str(), xT2A(fileName).c_str(),
 				xT2A(a_params).c_str(), nullptr);	// this is the child
 			xTEST_DIFF(status, - 1);
 
-			(void_t)::_exit(status);  /* not std::exit() */
+			(void_t)::_exit(status);  // not std::exit()
 		}
 		break;
 	default:
 		// parent - OK (waitpid)
-		printf("[PARENT] PID: %d, parent PID: %d\n", getpid(), pid);
+		// printf("[PARENT] PID: %d, parent PID: %d\n", getpid(), pid);
 		break;
 	}
 
