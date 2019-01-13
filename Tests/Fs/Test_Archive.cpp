@@ -17,10 +17,48 @@ xTEST_UNIT(Test_Archive)
 bool_t
 Test_Archive::unit()
 {
-    xTEST_CASE("[TEST_CASE_1]")
-    {
+    std::ctstring_t sourceDirPath = data.tempDirPath;
+    std::ctstring_t destDirPath   = data.tempDirPath;
 
+    std::ctstring_t filePath      = sourceDirPath + Const::slash() + xT("Archive.txt");
+    std::ctstring_t zipFilePath   = destDirPath   + Const::slash() + xT("Archive.zip");
+
+    std::ctstring_t fileContent = xT("12345abcdef");
+    File::textWrite(filePath, fileContent, File::OpenMode::omWrite);
+
+    Archive archive;
+    Archive::cType type = Archive::Type::Zip;
+
+    xTEST_CASE("fileArchive")
+    {
+        m_bRv = archive.fileArchive(type, filePath, zipFilePath, false);
+        xTEST(m_bRv);
     }
+
+
+
+
+
+
+//    xTEST_CASE("fileUnarchive")
+//    {
+//         m_bRv = archive.fileUnarchive(type, zipFilePath, destDirPath, false);
+//        xTEST(m_bRv);
+//    }
+
+//    xTEST_CASE("dirArchive")
+//    {
+//         archive.dirArchive(type, std::ctstring_t &source_path,
+//		 		std::ctstring_t &dest_archive_path, false);
+//    }
+//
+//    xTEST_CASE("dirUnarchive")
+//    {
+//         archive.dirUnarchive(type, std::ctstring_t &archive_dir_path,
+//		 		std::ctstring_t &archive_shell_filter, std::ctstring_t &dest_dir, false);
+//    }
+
+    /// File::remove(filePath);
 
     return true;
 }
