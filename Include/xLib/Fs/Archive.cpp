@@ -36,6 +36,61 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 bool_t
+Archive::dirArchive(
+	const Type       a_archive_type,		///< archive type
+	std::ctstring_t &a_source_path,			///< source path
+	std::ctstring_t &a_dest_archive_path,	///< destination archive path
+	cbool_t          a_is_remove_source		///< is remove source dir
+)
+{
+	xTEST_DIFF((int_t)a_archive_type, (int_t)Type::Unknown);
+	xTEST(!a_source_path.empty());
+	xTEST(!a_dest_archive_path.empty());
+	xTEST_NA(a_is_remove_source);
+
+	std::ctstring_t dest_dir = Path(a_dest_archive_path).dir();
+
+	Dir(dest_dir).pathCreate();
+
+	std::tstring_t binPath;
+	std::tstring_t params;
+	{
+		switch (a_archive_type) {
+		case Type::Zip:
+			binPath = zipPath;
+			params  = "-9 -r -Dj " + quoted(a_dest_archive_path) + " " + quoted(a_source_path);
+			break;
+		case Type::Rar:
+			// TODO: Type::Rar
+			return false;
+			break;
+		case Type::Gz:
+			// TODO: Type::Gz
+			return false;
+			break;
+		case Type::TarBz2:
+			// TODO: Type::TarBz2
+			return false;
+			break;
+		case Type::Unknown:
+		default:
+			xTEST(false);
+			return false;
+			break;
+		}
+	}
+
+	Process::create(binPath, xTIMEOUT_INFINITE, params);
+
+	// remove source dir
+	if (a_is_remove_source) {
+		Dir(a_source_path).pathDelete();
+	}
+
+	return true;
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
 Archive::fileUnarchive(
 	const Type       a_archive_type,       ///< archive type
 	std::ctstring_t &a_archive_path,       ///< file path
@@ -99,61 +154,6 @@ Archive::fileUnarchive(
 		std::ctstring_t params  = xT("-R 0777 ") + quoted(a_dest_dir);
 
 		Process::create(binPath, xTIMEOUT_INFINITE, params);
-	}
-
-	return true;
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-Archive::dirArchive(
-	const Type       a_archive_type,		///< archive type
-	std::ctstring_t &a_source_path,			///< source path
-	std::ctstring_t &a_dest_archive_path,	///< destination archive path
-	cbool_t          a_is_remove_source		///< is remove source dir
-)
-{
-	xTEST_DIFF((int_t)a_archive_type, (int_t)Type::Unknown);
-	xTEST(!a_source_path.empty());
-	xTEST(!a_dest_archive_path.empty());
-	xTEST_NA(a_is_remove_source);
-
-	std::ctstring_t dest_dir = Path(a_dest_archive_path).dir();
-
-	Dir(dest_dir).pathCreate();
-
-	std::tstring_t binPath;
-	std::tstring_t params;
-	{
-		switch (a_archive_type) {
-		case Type::Zip:
-			binPath = zipPath;
-			params  = "-9 -r -Dj " + quoted(a_dest_archive_path) + " " + quoted(a_source_path);
-			break;
-		case Type::Rar:
-			// TODO: Type::Rar
-			return false;
-			break;
-		case Type::Gz:
-			// TODO: Type::Gz
-			return false;
-			break;
-		case Type::TarBz2:
-			// TODO: Type::TarBz2
-			return false;
-			break;
-		case Type::Unknown:
-		default:
-			xTEST(false);
-			return false;
-			break;
-		}
-	}
-
-	Process::create(binPath, xTIMEOUT_INFINITE, params);
-
-	// remove source dir
-	if (a_is_remove_source) {
-		Dir(a_source_path).pathDelete();
 	}
 
 	return true;
