@@ -52,13 +52,20 @@ Test_Archive::unit()
 
     xTEST_CASE("dirArchive")
     {
-        m_bRv = archive.dirArchive(type, destDirPath, sourceDirPath, true);
+		std::ctstring_t zipFilePath = data.tempDirPath + Const::slash() + xT("ArchiveNew.zip");
+
+		m_bRv = archive.dirArchive(type, destDirPath, zipFilePath, false);
 		xTEST(m_bRv);
     }
 
     xTEST_CASE("dirUnarchive")
     {
-         m_bRv = archive.dirUnarchive(type, sourceDirPath, "*.zip", destDirPath, false);
+		std::ctstring_t destDirPath = data.tempDirPath + Const::slash() + "ArchiveNew";
+
+		Cout() << xTRACE_VAR(sourceDirPath) << "\n";
+		Cout() << xTRACE_VAR(destDirPath) << "\n";
+
+		m_bRv = archive.dirUnarchive(type, sourceDirPath, "*.zip", destDirPath, false);
     }
 
     File::remove(filePath);
