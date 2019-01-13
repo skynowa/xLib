@@ -41,7 +41,7 @@ Test_Archive::unit()
 		std::ctstring_t txtfilePath = destDirPath + Const::slash() + xT("Archive.txt");
 		File::remove(txtfilePath);
 
-		 m_bRv = archive.fileUnarchive(type, zipFilePath, destDirPath, false);
+		m_bRv = archive.fileUnarchive(type, zipFilePath, destDirPath, false);
 		xTEST(m_bRv);
 		xTEST(File::isExists(filePath));
 
@@ -50,17 +50,16 @@ Test_Archive::unit()
 		xTEST_EQ(_fileContent, fileContent);
     }
 
-//    xTEST_CASE("dirArchive")
-//    {
-//         archive.dirArchive(type, std::ctstring_t &source_path,
-//		 		std::ctstring_t &dest_archive_path, false);
-//    }
-//
-//    xTEST_CASE("dirUnarchive")
-//    {
-//         archive.dirUnarchive(type, std::ctstring_t &archive_dir_path,
-//		 		std::ctstring_t &archive_shell_filter, std::ctstring_t &dest_dir, false);
-//    }
+    xTEST_CASE("dirArchive")
+    {
+        m_bRv = archive.dirArchive(type, destDirPath, sourceDirPath, true);
+		xTEST(m_bRv);
+    }
+
+    xTEST_CASE("dirUnarchive")
+    {
+         m_bRv = archive.dirUnarchive(type, sourceDirPath, "*.zip", destDirPath, false);
+    }
 
     /// File::remove(filePath);
 
