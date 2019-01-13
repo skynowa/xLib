@@ -27,7 +27,8 @@ Process::_destruct_impl()
 void_t
 Process::_create_impl(
     std::ctstring_t     &a_filePath,
-    std::cvec_tstring_t &a_params
+    std::cvec_tstring_t &a_params,
+    std::cvec_tstring_t &a_envs
 )
 {
 	std::ctstring_t params = String::join(a_params, xT(" "));
@@ -35,8 +36,18 @@ Process::_create_impl(
     STARTUPINFO         startupInfo = {0};  startupInfo.cb = sizeof(startupInfo);
     PROCESS_INFORMATION processInfo = {0};
 
-    // TODO: _create_impl - use environment
-    LPVOID              environment {nullptr};
+	std::vector<char *> envs;
+	{
+		for (auto &it_env : a_envs) {
+			envs.push_back( const_cast<tchar_t *>(it_env).c_str() );
+		}
+
+		envs.push_back(nullptr);
+
+		// Cout() << xTRACE_VAR(envs) << "\n";
+	}
+
+	LPVOID environment = (LPVOID)envs.data();
 
     BOOL blRv = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( params.c_str() ),
         nullptr, nullptr, FALSE, NORMAL_PRIORITY_CLASS, environment, nullptr, &startupInfo,

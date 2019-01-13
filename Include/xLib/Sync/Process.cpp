@@ -51,14 +51,16 @@ Process::~Process()
 void_t
 Process::create(
     std::ctstring_t     &a_filePath,
-    std::cvec_tstring_t &a_params
+    std::cvec_tstring_t &a_params,
+    std::cvec_tstring_t &a_envs			///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_EQ(File::isExists(a_filePath), true);
     xTEST_NA(a_params);
+    xTEST_NA(a_envs);
 
-    _create_impl(a_filePath, a_params);
+    _create_impl(a_filePath, a_params, a_envs);
 }
 //-------------------------------------------------------------------------------------------------
 Process::WaitResult
@@ -216,11 +218,12 @@ void_t
 Process::create(
     std::ctstring_t     &a_filePath,        ///< binary file path
     culong_t             a_waitTimeoutMsec, ///< waiting timeout
-    std::cvec_tstring_t &a_params           ///< commandline params
+    std::cvec_tstring_t &a_params,          ///< commandline params
+    std::cvec_tstring_t &a_envs             ///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
 )
 {
     Process proc;
-    proc.create(a_filePath, a_params);
+    proc.create(a_filePath, a_params, a_envs);
 
     Process::WaitResult wrRes = proc.wait(xTIMEOUT_INFINITE);
     xTEST_EQ((int)Process::WaitResult::wrAbandoned, (int)wrRes);

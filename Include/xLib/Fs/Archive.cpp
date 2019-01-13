@@ -79,7 +79,7 @@ Archive::fileArchive(
 		}
 	}
 
-	Process::create(binPath, xTIMEOUT_INFINITE, params);
+	Process::create(binPath, xTIMEOUT_INFINITE, params, {});
 
 	// remove source dir
 	if (a_is_remove_source) {
@@ -133,7 +133,7 @@ Archive::dirArchive(
 		}
 	}
 
-	Process::create(binPath, xTIMEOUT_INFINITE, params);
+	Process::create(binPath, xTIMEOUT_INFINITE, params, {});
 
 	// remove source dir
 	if (a_is_remove_source) {
@@ -164,11 +164,11 @@ Archive::fileUnarchive(
 		switch (a_archive_type) {
 		case Type::Zip:
 			binPath = unzipPath;
-			params  = {a_archive_path, "-d " + a_dest_dir};
+			params  = {a_archive_path, "-d", a_dest_dir};
 			break;
 		case Type::Rar:
 			binPath = unrarPath;
-			params  = {"x -r " + a_archive_path, a_dest_dir};
+			params  = {"x", "-r", a_archive_path, a_dest_dir};
 			break;
 		case Type::Gz:
 			xUNUSED(a_dest_dir);
@@ -178,7 +178,7 @@ Archive::fileUnarchive(
 			break;
 		case Type::TarBz2:
 			binPath = tarPath;
-			params  = {"xvjf " + a_archive_path, "-C " + a_dest_dir};
+			params  = {"xvjf", a_archive_path, "-C", a_dest_dir};
 			break;
 		case Type::Unknown:
 		default:
@@ -188,7 +188,7 @@ Archive::fileUnarchive(
 		}
 	}
 
-	Process::create(binPath, xTIMEOUT_INFINITE, params);
+	Process::create(binPath, xTIMEOUT_INFINITE, params, {});
 
 	// remove zip file
 	if (a_is_remove_archive) {
@@ -206,7 +206,7 @@ Archive::fileUnarchive(
 		std::ctstring_t     binPath = chmodPath;
 		std::cvec_tstring_t params  = {xT("-R 0777"), a_dest_dir};
 
-		Process::create(binPath, xTIMEOUT_INFINITE, params);
+		Process::create(binPath, xTIMEOUT_INFINITE, params, {});
 	}
 
 	return true;
