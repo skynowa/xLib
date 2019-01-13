@@ -31,16 +31,20 @@ public:
     virtual ~Archive() = default;
         ///< destructor
 
+	static
 	bool_t   fileArchive(const Type type, std::ctstring_t &sourceFilePath,
 				std::ctstring_t &destFilePath, cbool_t isRemoveSourceFile);
 		///< archive file
+	static
 	bool_t   dirArchive(const Type type, std::ctstring_t &sourceDirPath,
 				std::ctstring_t &destFilePath, cbool_t isRemoveSourceDir);
 		///< archive dir
 
+	static
 	bool_t   fileUnarchive(const Type type, std::ctstring_t &sourceFilePath,
 				std::ctstring_t &destDirPath, cbool_t isRemoveSourceFile);
 		///< unarchive file
+	static
 	bool_t   dirUnarchive(const Type type, std::ctstring_t &sourceDirPath,
 				std::ctstring_t &fileShellFilter, std::ctstring_t &destDirPath,
 				cbool_t isRemoveSourceFiles);
