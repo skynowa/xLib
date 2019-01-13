@@ -118,6 +118,10 @@ public:
     static
     std::tstring_t removeEol(std::ctstring_t &str) xWARN_UNUSED_RV;
         ///< remove end of line from end of string
+    static
+    std::tstring_t quoted(std::ctstring_t &str, ctchar_t delimiter = xT('\"'),
+                       ctchar_t escape = xT('\\')) xWARN_UNUSED_RV;
+        ///< quote string
 
     static
     std::tstring_t replaceAll(std::ctstring_t &str, std::ctstring_t &strOld,
