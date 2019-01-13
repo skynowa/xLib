@@ -29,19 +29,19 @@ Test_Archive::unit()
 		std::ctstring_t fileContent = xT("12345abcdef");
 		File::textWrite(filePath, fileContent, File::OpenMode::omWrite);
 
-	    xTEST_CASE("fileArchive")
+	    xTEST_CASE("fileCompress")
 		{
-			m_bRv = Archive::fileArchive(type, filePath, zipFilePath, false);
+			m_bRv = Archive::fileCompress(type, filePath, zipFilePath, false);
 			xTEST(m_bRv);
 			xTEST(File::isExists(zipFilePath));
 		}
 
-		xTEST_CASE("fileUnarchive")
+		xTEST_CASE("fileUncompress")
 		{
 			std::ctstring_t txtfilePath = destDirPath + Const::slash() + xT("Archive.txt");
 			File::remove(txtfilePath);
 
-			m_bRv = Archive::fileUnarchive(type, zipFilePath, destDirPath, false);
+			m_bRv = Archive::fileUncompress(type, zipFilePath, destDirPath, false);
 			xTEST(m_bRv);
 			xTEST(File::isExists(filePath));
 
@@ -57,7 +57,7 @@ Test_Archive::unit()
 		std::ctstring_t sourceDirPath = data.tempDirPath;
 		std::ctstring_t destDirPath   = data.tempDirPath + Const::slash() + "Archive";
 
-	    xTEST_CASE("dirArchive")
+	    xTEST_CASE("dirCompress")
 		{
 			std::ctstring_t zipFilePath = data.tempDirPath + Const::slash() + xT("ArchiveNew.zip");
 
@@ -65,14 +65,14 @@ Test_Archive::unit()
 			xTEST(m_bRv);
 		}
 
-		xTEST_CASE("dirUnarchive")
+		xTEST_CASE("dirUncompress")
 		{
 			std::ctstring_t destDirPath = data.tempDirPath + Const::slash() + "ArchiveNew";
 
 			Cout() << xTRACE_VAR(sourceDirPath) << "\n";
 			Cout() << xTRACE_VAR(destDirPath) << "\n";
 
-			m_bRv = Archive::dirUnarchive(type, sourceDirPath, "*.zip", destDirPath, false);
+			m_bRv = Archive::dirUncompress(type, sourceDirPath, "*.zip", destDirPath, false);
 		}
 	}
 

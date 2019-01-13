@@ -37,7 +37,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 //-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
-Archive::fileArchive(
+Archive::fileCompress(
 	const Type       a_type,              ///< archive type
 	std::ctstring_t &a_sourceFilePath,    ///< source path
 	std::ctstring_t &a_destFilePath,      ///< destination archive path
@@ -92,7 +92,7 @@ Archive::fileArchive(
 //-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
-Archive::dirArchive(
+Archive::dirCompress(
 	const Type       a_type,             ///< archive type
 	std::ctstring_t &a_sourceDirPath,	 ///< source path
 	std::ctstring_t &a_destFilePath,	 ///< destination archive path
@@ -147,7 +147,7 @@ Archive::dirArchive(
 //-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
-Archive::fileUnarchive(
+Archive::fileUncompress(
 	const Type       a_type,              ///< archive type
 	std::ctstring_t &a_sourceFilePath,    ///< file path
 	std::ctstring_t &a_destDirPath,       ///< destination dir
@@ -218,7 +218,7 @@ Archive::fileUnarchive(
 //-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
-Archive::dirUnarchive(
+Archive::dirUncompress(
 	const Type       a_type,                ///< archive type
 	std::ctstring_t &a_sourceDirPath,      	///< dir path
 	std::ctstring_t &a_fileShellFilter,    	///< shell wildcard pattern
@@ -240,7 +240,7 @@ Archive::dirUnarchive(
 	}
 
 	for (auto &it_archive_file : archive_files) {
-		bRv = fileUnarchive(a_type, it_archive_file, a_destDirPath, a_isRemoveSourceFiles);
+		bRv = fileUncompress(a_type, it_archive_file, a_destDirPath, a_isRemoveSourceFiles);
 		if (!bRv) {
 			xTEST(false);
 			return false;
