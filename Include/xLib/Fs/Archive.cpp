@@ -205,7 +205,7 @@ Archive::fileUnarchive(
 		!Dir(a_dest_dir_path).isExists())
 	{
 		std::ctstring_t     binPath = chmodPath;
-		std::cvec_tstring_t params  = {xT("-R 0777"), a_dest_dir_path};
+		std::cvec_tstring_t params  = {xT("-R"), xT("0777"), a_dest_dir_path};
 
 		Process::create(binPath, xTIMEOUT_INFINITE, params, {});
 	}
