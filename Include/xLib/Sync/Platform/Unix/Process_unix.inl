@@ -21,7 +21,8 @@ Process::_destruct_impl()
 void_t
 Process::_create_impl(
     std::ctstring_t     &a_filePath,
-    std::cvec_tstring_t &a_params
+    std::cvec_tstring_t &a_params,
+    std::cvec_tstring_t &a_envs
 )
 {
 	/// std::ctstring_t fileName = Path(a_filePath).fileName();
@@ -44,8 +45,10 @@ Process::_create_impl(
 
 			std::vector<char *> envs;
 			{
-				/// envs.push_back("HOME=/usr/home");
-				/// envs.push_back("LOGNAME=home");
+				for (auto &it_env : a_envs) {
+					envs.push_back( const_cast<char *>( xT2A(it_env).c_str() ));
+				}
+
 				envs.push_back(nullptr);
 
 				// Cout() << xTRACE_VAR(envs) << "\n";

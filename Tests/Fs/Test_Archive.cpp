@@ -18,7 +18,7 @@ bool_t
 Test_Archive::unit()
 {
     std::ctstring_t sourceDirPath = data.tempDirPath;
-    std::ctstring_t destDirPath   = data.tempDirPath;
+    std::ctstring_t destDirPath   = data.tempDirPath + Const::slash() + "Archive";
 
     std::ctstring_t filePath      = sourceDirPath + Const::slash() + xT("Archive.txt");
     std::ctstring_t zipFilePath   = destDirPath   + Const::slash() + xT("Archive.zip");
@@ -33,18 +33,22 @@ Test_Archive::unit()
     {
         m_bRv = archive.fileArchive(type, filePath, zipFilePath, false);
         xTEST(m_bRv);
+        xTEST(File::isExists(zipFilePath));
     }
 
+    xTEST_CASE("fileUnarchive")
+    {
+		std::ctstring_t txtfilePath = destDirPath + Const::slash() + xT("Archive.txt");
+		File::remove(txtfilePath);
 
+		 m_bRv = archive.fileUnarchive(type, zipFilePath, destDirPath, false);
+		xTEST(m_bRv);
+		xTEST(File::isExists(filePath));
 
-
-
-
-//    xTEST_CASE("fileUnarchive")
-//    {
-//         m_bRv = archive.fileUnarchive(type, zipFilePath, destDirPath, false);
-//        xTEST(m_bRv);
-//    }
+		std::tstring_t _fileContent;
+		File::textRead(filePath, &_fileContent);
+		xTEST_EQ(_fileContent, fileContent);
+    }
 
 //    xTEST_CASE("dirArchive")
 //    {
