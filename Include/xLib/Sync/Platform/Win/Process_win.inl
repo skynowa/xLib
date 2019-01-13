@@ -26,15 +26,20 @@ Process::_destruct_impl()
 //-------------------------------------------------------------------------------------------------
 void_t
 Process::_create_impl(
-    std::ctstring_t &a_filePath,
-    std::ctstring_t &a_params
+    std::ctstring_t     &a_filePath,
+    std::cvec_tstring_t &a_params
 )
 {
+	std::ctstring_t params = String::join(a_params, xT(" "));
+
     STARTUPINFO         startupInfo = {0};  startupInfo.cb = sizeof(startupInfo);
     PROCESS_INFORMATION processInfo = {0};
 
-    BOOL blRv = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( a_params.c_str() ),
-        nullptr, nullptr, FALSE, NORMAL_PRIORITY_CLASS, nullptr, nullptr, &startupInfo,
+    // TODO: _create_impl - use environment
+    LPVOID              environment {nullptr};
+
+    BOOL blRv = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( params.c_str() ),
+        nullptr, nullptr, FALSE, NORMAL_PRIORITY_CLASS, environment, nullptr, &startupInfo,
         &processInfo);
     xTEST_DIFF(blRv, FALSE);
 

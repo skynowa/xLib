@@ -50,24 +50,15 @@ Process::~Process()
 //-------------------------------------------------------------------------------------------------
 void_t
 Process::create(
-    std::ctstring_t &a_filePath,
-    cptr_ctchar_t    a_params, ...
+    std::ctstring_t     &a_filePath,
+    std::cvec_tstring_t &a_params
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_EQ(File::isExists(a_filePath), true);
-    xTEST_PTR(a_params);
+    xTEST_NA(a_params);
 
-    std::tstring_t cmdLine;
-
-    va_list args;
-    xVA_START(args, a_params);
-    cmdLine = FormatC::strV(a_params, args);
-    xVA_END(args);
-
-    // xTRACEV(xT("cmdLine: %s"), cmdLine.c_str());
-
-    _create_impl(a_filePath, cmdLine);
+    _create_impl(a_filePath, a_params);
 }
 //-------------------------------------------------------------------------------------------------
 Process::WaitResult
@@ -223,35 +214,13 @@ Process::currentExit(
 /* static */
 void_t
 Process::create(
-    std::ctstring_t &a_filePath,        ///< binary file path
-    culong_t         a_waitTimeoutMsec, ///< waiting timeout
-    cptr_ctchar_t    a_params, ...      ///< commandline params
-)
-{
-    std::tstring_t cmdLine;
-
-    va_list args;
-    xVA_START(args, a_params);
-    cmdLine = FormatC::strV(a_params, args);
-    xVA_END(args);
-
-    Process proc;
-    proc.create(a_filePath, xT("%s"), cmdLine.c_str());
-
-    Process::WaitResult wrRes = proc.wait(xTIMEOUT_INFINITE);
-    xTEST_EQ((int)Process::WaitResult::wrAbandoned, (int)wrRes);
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-Process::create(
-    std::ctstring_t &a_filePath,        ///< binary file path
-    culong_t         a_waitTimeoutMsec, ///< waiting timeout
-    std::ctstring_t &a_params           ///< commandline params
+    std::ctstring_t     &a_filePath,        ///< binary file path
+    culong_t             a_waitTimeoutMsec, ///< waiting timeout
+    std::cvec_tstring_t &a_params           ///< commandline params
 )
 {
     Process proc;
-    proc.create(a_filePath, xT("%s"), a_params.c_str());
+    proc.create(a_filePath, a_params);
 
     Process::WaitResult wrRes = proc.wait(xTIMEOUT_INFINITE);
     xTEST_EQ((int)Process::WaitResult::wrAbandoned, (int)wrRes);
