@@ -251,7 +251,7 @@ Process::create(
 )
 {
     Process proc;
-    proc.create(a_filePath, a_params.c_str());
+    proc.create(a_filePath, xT("%s"), a_params.c_str());
 
     Process::WaitResult wrRes = proc.wait(xTIMEOUT_INFINITE);
     xTEST_EQ((int)Process::WaitResult::wrAbandoned, (int)wrRes);
