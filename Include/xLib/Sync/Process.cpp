@@ -50,9 +50,9 @@ Process::~Process()
 //-------------------------------------------------------------------------------------------------
 void_t
 Process::create(
-    std::ctstring_t     &a_filePath,
-    std::cvec_tstring_t &a_params,
-    std::cvec_tstring_t &a_envs			///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
+    std::ctstring_t                     &a_filePath,
+    std::cvec_tstring_t                 &a_params,
+    const std::set<std::pair_tstring_t> &a_envs      ///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -216,10 +216,10 @@ Process::currentExit(
 /* static */
 void_t
 Process::create(
-    std::ctstring_t     &a_filePath,        ///< binary file path
-    culong_t             a_waitTimeoutMsec, ///< waiting timeout
-    std::cvec_tstring_t &a_params,          ///< commandline params
-    std::cvec_tstring_t &a_envs             ///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
+    std::ctstring_t                     &a_filePath,        ///< binary file path
+    culong_t                             a_waitTimeoutMsec, ///< waiting timeout
+    std::cvec_tstring_t                 &a_params,          ///< commandline params
+    const std::set<std::pair_tstring_t> &a_envs             ///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
 )
 {
     Process proc;

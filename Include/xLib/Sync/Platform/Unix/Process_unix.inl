@@ -20,9 +20,9 @@ Process::_destruct_impl()
 //-------------------------------------------------------------------------------------------------
 void_t
 Process::_create_impl(
-    std::ctstring_t     &a_filePath,
-    std::cvec_tstring_t &a_params,
-    std::cvec_tstring_t &a_envs
+    std::ctstring_t                     &a_filePath,
+    std::cvec_tstring_t                 &a_params,
+    const std::set<std::pair_tstring_t> &a_envs
 )
 {
 	/// std::ctstring_t fileName = Path(a_filePath).fileName();
@@ -46,7 +46,9 @@ Process::_create_impl(
 			std::vector<char *> envs;
 			{
 				for (auto &it_env : a_envs) {
-					envs.push_back( const_cast<char *>( xT2A(it_env).c_str() ));
+					std::ctstring_t &envVarValue = it_env.first + Const::equal() + it_env.second;
+
+					envs.push_back( const_cast<char *>( xT2A(envVarValue).c_str() ));
 				}
 
 				envs.push_back(nullptr);
