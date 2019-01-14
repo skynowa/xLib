@@ -27,11 +27,6 @@ public:
 	};
 	xUSING_CONST(Type);
 
-             Archive() = default;
-        ///< constructor
-    virtual ~Archive() = default;
-        ///< destructor
-
 	static
 	bool_t   fileCompress(const Type type, std::ctstring_t &sourceFilePath,
 				std::ctstring_t &destFilePath, cbool_t isRemoveSourceFile);
@@ -52,6 +47,7 @@ public:
 		///< unarchive dir
 
 private:
+    xNO_DEFAULT_CONSTRUCT(Archive)
     xNO_COPY_ASSIGN(Archive)
 };
 
