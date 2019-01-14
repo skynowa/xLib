@@ -29,8 +29,8 @@ Test_Finder::unit()
             dirs.push_back( rootDirPath + Const::slash() + xT("BBB") );
             dirs.push_back( rootDirPath + Const::slash() + xT("CCC") );
 
-            for (auto &it : dirs) {
-                Dir(it).pathCreate();
+            for (auto &it_dir : dirs) {
+                Dir(it_dir).pathCreate();
             }
 
             xTEST_EQ(size_t(3), dirs.size());
@@ -56,8 +56,8 @@ Test_Finder::unit()
                                Const::slash() + xT("BBB") +
                                Const::slash() + xT("File_4.log") );
 
-            for (auto &it : files) {
-                File::clear(it);
+            for (auto &it_file : files) {
+                File::clear(it_file);
             }
 
             xTEST_EQ(size_t(12), files.size());
@@ -66,24 +66,25 @@ Test_Finder::unit()
 
     xTEST_CASE("Finder")
     {
-        const data2_size_t data[] = {
+        const data2_size_t data[]
+        {
             {Const::maskAll(), 12 - 2},
-            {xT("*"),            12 - 2},
+            {xT("*"),          12 - 2},
         #if   xENV_WIN
-            {xT("*.*"),          12 - 2},
+            {xT("*.*"),        12 - 2},
         #elif xENV_UNIX
-            {xT("*.*"),          12 - 3},
+            {xT("*.*"),        12 - 3},
         #endif
-            {xT("*.h"),          4},
-            {xT("*.cpp"),        4},
-            {xT("*.txt"),        0},
-            {xT("*.log"),        1}
+            {xT("*.h"),        4},
+            {xT("*.cpp"),      4},
+            {xT("*.txt"),      0},
+            {xT("*.log"),      1}
         };
 
-        for (size_t i = 0; i < Utils::arraySizeT(data); ++ i) {
+        for (auto &it_data : data) {
             std::vec_tstring_t entries;
-            std::ctstring_t    filter = data[i].test;
-            Finder           finder(rootDirPath, filter);
+            std::ctstring_t    filter = it_data.test;
+            Finder             finder(rootDirPath, filter);
 
             for ( ; ; ) {
                 m_bRv = finder.moveNext();
@@ -100,7 +101,7 @@ Test_Finder::unit()
             }
 
             // Tracer() << filter << "\n" << xTRACE_VAR(rootDirPath) << entries;
-            xTEST_EQ(data[i].expect, entries.size());
+            xTEST_EQ(it_data.expect, entries.size());
         }
     }
 
@@ -129,51 +130,53 @@ Test_Finder::unit()
     {
         // non recursive
         {
-            const data2_size_t data[] = {
+            const data2_size_t data[]
+            {
                 {Const::maskAll(), 12 - 2},
-                {xT("*"),            12 - 2},
+                {xT("*"),          12 - 2},
             #if   xENV_WIN
-                {xT("*.*"),          12 - 2},
+                {xT("*.*"),        12 - 2},
             #elif xENV_UNIX
-                {xT("*.*"),          12 - 3},
+                {xT("*.*"),        12 - 3},
             #endif
-                {xT("*.h"),          4},
-                {xT("*.cpp"),        4},
-                {xT("*.txt"),        0},
-                {xT("*.log"),        1}
+                {xT("*.h"),        4},
+                {xT("*.cpp"),      4},
+                {xT("*.txt"),      0},
+                {xT("*.log"),      1}
             };
 
-            for (size_t i = 0; i < Utils::arraySizeT(data); ++ i) {
+            for (auto &it_data : data) {
                 m_vsRv.clear();
 
-                Finder::files(rootDirPath, data[i].test, false, &m_vsRv);
+                Finder::files(rootDirPath, it_data.test, false, &m_vsRv);
                 // Tracer() << m_vsRv;
-                xTEST_EQ(data[i].expect, m_vsRv.size());
+                xTEST_EQ(it_data.expect, m_vsRv.size());
             }
         }
 
         // recursive
         {
-            const data2_size_t data[] = {
+            const data2_size_t data[]
+            {
                 {Const::maskAll(), 12},
-                {xT("*"),            12},
+                {xT("*"),          12},
             #if   xENV_WIN
-                {xT("*.*"),          12},
+                {xT("*.*"),        12},
             #elif xENV_UNIX
-                {xT("*.*"),          12 - 1},
+                {xT("*.*"),        12 - 1},
             #endif
-                {xT("*.h"),          4},
-                {xT("*.cpp"),        4},
-                {xT("*.txt"),        0},
-                {xT("*.log"),        3}
+                {xT("*.h"),        4},
+                {xT("*.cpp"),      4},
+                {xT("*.txt"),      0},
+                {xT("*.log"),      3}
             };
 
-            for (size_t i = 0; i < Utils::arraySizeT(data); ++ i) {
+            for (auto &it_data : data) {
                 m_vsRv.clear();
 
-                Finder::files(rootDirPath, data[i].test, true, &m_vsRv);
+                Finder::files(rootDirPath, it_data.test, true, &m_vsRv);
                 // Tracer() << m_vsRv;
-                xTEST_EQ(data[i].expect, m_vsRv.size());
+                xTEST_EQ(it_data.expect, m_vsRv.size());
             }
         }
     }
