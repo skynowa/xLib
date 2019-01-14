@@ -169,7 +169,6 @@ Archive::fileUncompress(
 	xTEST_NA(a_isRemoveSourceFile);
 
 	Dir(a_destDirPath).pathCreate();
-	Cout() << xTRACE_VAR(a_destDirPath) << "\n";
 
 	std::tstring_t     binPath;
 	std::vec_tstring_t params;
@@ -240,10 +239,6 @@ Archive::dirUncompress(
 )
 {
 	bool_t bRv {};
-
-	Cout() << xFUNCTION << "\n";
-	Cout() << xTRACE_VAR(a_sourceDirPath) << "\n";
-	Cout() << xTRACE_VAR(a_fileShellFilter) << "\n";
 
 	std::vec_tstring_t archive_files;
 	Finder::files(a_sourceDirPath, a_fileShellFilter, true, &archive_files);
