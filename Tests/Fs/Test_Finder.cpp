@@ -19,7 +19,6 @@ Test_Finder::unit()
     // prepare
     std::ctstring_t    rootDirPath = data.tempDirPath + Const::slash() + xT("Finder_Dir");
     std::vec_tstring_t dirs;
-    std::vec_tstring_t files;
 
     {
         Dir(rootDirPath).pathDelete();
@@ -37,6 +36,7 @@ Test_Finder::unit()
         }
 
         {
+    		std::vec_tstring_t files;
             files.push_back( rootDirPath + Const::slash() + xT("AAA.h") );
             files.push_back( rootDirPath + Const::slash() + xT("BBB.h") );
             files.push_back( rootDirPath + Const::slash() + xT("CCC.h") );
@@ -100,7 +100,7 @@ Test_Finder::unit()
                 entries.push_back(finder.entryName());
             }
 
-            // Tracer() << filter << "\n" << xTRACE_VAR(rootDirPath) << entries;
+            // Cout() << filter << "\n" << xTRACE_VAR(rootDirPath) << entries;
             xTEST_EQ(it_data.expect, entries.size());
         }
     }
@@ -112,7 +112,7 @@ Test_Finder::unit()
             m_vsRv.clear();
 
             Finder::dirs(rootDirPath, Const::maskAll(), false, &m_vsRv);
-            // Tracer() << m_vsRv;
+            // Cout() << m_vsRv;
             xTEST_EQ(dirs.size(), m_vsRv.size());
         }
 
@@ -121,7 +121,7 @@ Test_Finder::unit()
             m_vsRv.clear();
 
             Finder::dirs(rootDirPath, Const::maskAll(), true, &m_vsRv);
-            // Tracer() << m_vsRv;
+            // Cout() << m_vsRv;
             xTEST_EQ(size_t(6), m_vsRv.size());
         }
     }
@@ -149,7 +149,7 @@ Test_Finder::unit()
                 m_vsRv.clear();
 
                 Finder::files(rootDirPath, it_data.test, false, &m_vsRv);
-                // Tracer() << m_vsRv;
+                // Cout() << m_vsRv;
                 xTEST_EQ(it_data.expect, m_vsRv.size());
             }
         }
@@ -175,7 +175,7 @@ Test_Finder::unit()
                 m_vsRv.clear();
 
                 Finder::files(rootDirPath, it_data.test, true, &m_vsRv);
-                // Tracer() << m_vsRv;
+                // Cout() << m_vsRv;
                 xTEST_EQ(it_data.expect, m_vsRv.size());
             }
         }
