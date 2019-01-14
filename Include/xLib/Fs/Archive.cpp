@@ -17,6 +17,7 @@ xNAMESPACE_ANONYM_BEGIN
 
 // TODO: use CMake
 std::ctstring_t zipPath    = xT("/usr/bin/zip");
+std::ctstring_t zip7Path   = xT("/usr/bin/7z");
 std::ctstring_t tarPath    = xT("/usr/bin/tar");
 
 std::ctstring_t unzipPath  = xT("/usr/bin/unzip");
@@ -59,6 +60,10 @@ Archive::fileCompress(
 		case Type::Zip:
 			binPath = zipPath;
 			params  = {"-9", "-Dj", a_destFilePath, a_sourceFilePath};
+			break;
+		case Type::zip7:
+			// TODO: Type::zip7
+			return false;
 			break;
 		case Type::Rar:
 			// TODO: Type::Rar
@@ -115,6 +120,10 @@ Archive::dirCompress(
 			binPath = zipPath;
 			params  = {"-9", "-r", "-Dj", a_destFilePath, a_sourceDirPath};
 			break;
+		case Type::zip7:
+			// TODO: Type::zip7
+			return false;
+			break;
 		case Type::Rar:
 			// TODO: Type::Rar
 			return false;
@@ -169,6 +178,10 @@ Archive::fileUncompress(
 		case Type::Zip:
 			binPath = unzipPath;
 			params  = {a_sourceFilePath, "-d", a_destDirPath};
+			break;
+		case Type::zip7:
+			binPath = zip7Path;
+			params  = {"x", a_sourceFilePath, "-o", a_destDirPath};
 			break;
 		case Type::Rar:
 			binPath = unrarPath;
