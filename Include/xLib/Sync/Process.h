@@ -43,7 +43,7 @@ public:
     virtual   ~Process();
 
     void_t     create(std::ctstring_t &filePath, std::cvec_tstring_t &params,
-                    std::cvec_tstring_t &envs);
+                   const std::set<std::pair_tstring_t> &envs);
         ///< execute a file
     WaitResult wait(culong_t &timeoutMsec) xWARN_UNUSED_RV;
         ///< wait for termination
@@ -95,7 +95,7 @@ public:
     // static
     static
     void_t     create(std::ctstring_t &filePath, culong_t waitTimeoutMsec,
-                    std::cvec_tstring_t &params, std::cvec_tstring_t &envs);
+                    std::cvec_tstring_t &params, const std::set<std::pair_tstring_t> &envs);
         ///< create, wait process
 
 private:
@@ -111,7 +111,7 @@ private:
 xPLATFORM_IMPL:
     void_t     _destruct_impl();
     void_t     _create_impl(std::ctstring_t &filePath, std::cvec_tstring_t &params,
-                    std::cvec_tstring_t &envs);
+                    const std::set<std::pair_tstring_t> &envs);
     WaitResult _wait_impl(culong_t &timeoutMsec) xWARN_UNUSED_RV;
     void_t     _kill_impl(culong_t &timeoutMsec);
     ulong_t    _exitStatus_impl() const xWARN_UNUSED_RV;
