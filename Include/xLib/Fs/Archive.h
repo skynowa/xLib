@@ -20,9 +20,10 @@ public:
 	{
 		Unknown = 0,
 		Zip     = 1,
-		Rar     = 2,
-		Gz      = 3,
-		TarBz2  = 4
+		zip7    = 2,
+		Rar     = 3,
+		Gz      = 4,
+		TarBz2  = 5
 	};
 	xUSING_CONST(Type);
 
