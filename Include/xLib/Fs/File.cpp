@@ -540,7 +540,7 @@ File::isExecutable(
     std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
 
     return _isExecutable_impl(a_filePath);
 }
