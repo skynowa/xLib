@@ -30,6 +30,8 @@ File::_isExecutable_impl(
 	std::ctstring_t &a_filePath
 )
 {
+	xCHECK_RET(!File::isFile(a_filePath), false);
+
     int_t iRv = xTACCESS(a_filePath.c_str(), X_OK);
     xCHECK_RET(iRv == - 1, false);
 
