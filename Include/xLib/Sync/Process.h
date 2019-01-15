@@ -1,6 +1,14 @@
 /**
  * \file  Process.h
  * \brief process
+ *
+ * TODO: use pipes
+ * TODO: stopable (exit by signal)
+ * TODO: command line params
+ * TODO: as singleton
+ * TODO: multi-process
+ * TODO: set service name
+ * - env variables
  */
 
 
@@ -19,8 +27,8 @@ public:
     using handle_t = HANDLE; ///< handle
     using id_t     = DWORD;  ///< ID
 #elif xENV_UNIX
-    using handle_t = pid_t; ///< handle
-    using id_t     = pid_t; ///< ID
+    using handle_t = pid_t;  ///< handle
+    using id_t     = pid_t;  ///< ID
 #endif
 
     enum class WaitResult
