@@ -28,7 +28,7 @@ std::ctstring_t chmodPath  = xT("chmod");
 
 xNAMESPACE_ANONYM_END
 
-xNAMESPACE_BEGIN2(xl, fs)
+xNAMESPACE_BEGIN2(xl, package)
 
 /**************************************************************************************************
 *   public
@@ -259,4 +259,4 @@ Archive::dirUncompress(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, fs)
+xNAMESPACE_END2(xl, package)

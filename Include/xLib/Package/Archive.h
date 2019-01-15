@@ -7,9 +7,8 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Core/Const.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, fs)
+xNAMESPACE_BEGIN2(xl, package)
 
 class Archive
     ///< Pack/unpack archives
@@ -51,5 +50,5 @@ private:
     xNO_COPY_ASSIGN(Archive)
 };
 
-xNAMESPACE_END2(xl, fs)
+xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------

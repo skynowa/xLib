@@ -82,7 +82,6 @@
 #include <xLib/Fs/Backup.h>
 #include <xLib/Fs/Config.h>
 #include <xLib/Fs/FsWatcher.h>
-#include <xLib/Fs/Archive.h>
 
 // Ui
 #include <xLib/Ui/MsgBox.h>
@@ -152,6 +151,7 @@
 #include <xLib/Test/StdTest.h>
 
 // Package
+#include <xLib/Package/Archive.h>
 #include <xLib/Package/Iconv.h>
 #include <xLib/Package/Csv.h>
 #include <xLib/Package/Ssh2Client.h>
