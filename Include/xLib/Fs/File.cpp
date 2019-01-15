@@ -536,6 +536,17 @@ File::isFile(
 //-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
+File::isExecutable(
+    std::ctstring_t &a_filePath
+)
+{
+    xTEST_EQ(a_filePath.empty(), false);
+
+    return _isExecutable_impl(a_filePath);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
 File::isExists(
     std::ctstring_t &a_filePath
 )

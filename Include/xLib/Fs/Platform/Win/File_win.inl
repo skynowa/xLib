@@ -49,6 +49,22 @@ File::_isFile_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
+bool_t
+File::_isExecutable_impl(
+	std::ctstring_t &a_filePath
+)
+{
+	DWORD binaryType {-1};
+	BOOL blRv = ::GetBinaryType(a_filePath.c_str(), &binaryType);
+	xUNUSED(binaryType);
+	if (blRv == FALSE) {
+		return false;
+	}
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
 void_t
 File::_time_impl(
     std::ctstring_t &a_filePath,
