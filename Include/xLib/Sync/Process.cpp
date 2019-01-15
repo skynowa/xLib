@@ -50,8 +50,8 @@ Process::~Process()
 //-------------------------------------------------------------------------------------------------
 void_t
 Process::create(
-    std::ctstring_t                     &a_filePath,
-    std::cvec_tstring_t                 &a_params,
+    std::ctstring_t                     &a_filePath, ///< binary file path
+    std::cvec_tstring_t                 &a_params,   ///< command line params
     const std::set<std::pair_tstring_t> &a_envs      ///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
 )
 {
@@ -65,7 +65,7 @@ Process::create(
 //-------------------------------------------------------------------------------------------------
 Process::WaitResult
 Process::wait(
-    culong_t &a_timeoutMsec
+    culong_t &a_timeoutMsec    ///< waiting timeout
 )
 {
     return _wait_impl(a_timeoutMsec);
@@ -73,7 +73,7 @@ Process::wait(
 //-------------------------------------------------------------------------------------------------
 void_t
 Process::kill(
-    culong_t &a_timeoutMsec
+    culong_t &a_timeoutMsec    ///< waiting timeout
 )
 {
     _kill_impl(a_timeoutMsec);
@@ -218,7 +218,7 @@ void_t
 Process::create(
     std::ctstring_t                     &a_filePath,        ///< binary file path
     culong_t                             a_waitTimeoutMsec, ///< waiting timeout
-    std::cvec_tstring_t                 &a_params,          ///< commandline params
+    std::cvec_tstring_t                 &a_params,          ///< command line params
     const std::set<std::pair_tstring_t> &a_envs             ///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
 )
 {
