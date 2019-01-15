@@ -2,12 +2,14 @@
  * \file  Process.h
  * \brief process
  *
+ * TODO: File::isExecutable
  * TODO: use pipes
  * TODO: stopable (exit by signal)
  * TODO: command line params
  * TODO: as singleton
  * TODO: multi-process
  * TODO: set service name
+ *
  * - env variables
  */
 
