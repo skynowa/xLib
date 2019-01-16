@@ -26,7 +26,8 @@ public:
     void_t   localHostName(std::tstring_t *hostName);
         ///< get local host name
     static
-    void_t   nameInfo(ISocket::AddressFamily &family, std::ctstring_t &hostAddr, cushort_t &port);
+    void_t   nameInfo(ISocket::cAddressFamily &family, std::ctstring_t &hostAddr,
+    			cushort_t &hostPort, std::tstring_t *name, std::tstring_t *port);
         ///< get name info
     static
     void_t   hostAddrInfo(std::ctstring_t &hostName, std::ctstring_t &port, caddrinfo_t *hints,

@@ -54,7 +54,6 @@ DnsClient::hostAddrByName(
     if (host->h_name != nullptr) {
         const std::string hostName = host->h_name;
         xTEST_EQ(hostName.empty(), false);
-        xTEST_EQ(a_hostName, xA2T(hostName));
     }
 
     *a_hostAddr = sRv;
@@ -134,29 +133,44 @@ DnsClient::localHostName(
 /* static */
 void_t
 DnsClient::nameInfo(
-    ISocket::AddressFamily &a_family,
-    std::ctstring_t        &a_hostAddr,
-    cushort_t              &a_port
+    ISocket::cAddressFamily &a_family,		///< address family
+    std::ctstring_t         &a_hostAddr,	///< IP address
+    cushort_t               &a_hostPort,	///< port
+	std::tstring_t          *out_name,		///< [out] host name
+	std::tstring_t          *out_port		///< [out] service name
 )
 {
     xTEST_NA(a_family);
     xTEST_EQ(a_hostAddr.empty(), false);
-    xTEST_GR(a_port, static_cast<ushort_t>(0));
+    xTEST_GR(a_hostPort, static_cast<ushort_t>(0));
+	xTEST_NA(out_name);
+	xTEST_NA(out_port);
 
     sockaddr_in socketAddr; Utils::structZeroT(socketAddr);
     socketAddr.sin_family      = static_cast<sa_family_t>(a_family);
     socketAddr.sin_addr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
-    socketAddr.sin_port        = htons(a_port);
+    socketAddr.sin_port        = htons(a_hostPort);
 
     tchar_t hostName[NI_MAXHOST + 1] = {0};
-    tchar_t servInfo[NI_MAXSERV + 1] = {0};
+    tchar_t hostPort[NI_MAXSERV + 1] = {0};
 
-    // TODO: [skynowa] DnsClient::nameInfo()
     int_t iRv = xGETNAMEINFO(reinterpret_cast<sockaddr *>(&socketAddr), sizeof(socketAddr),
-        &hostName[0], NI_MAXHOST, &servInfo[0], NI_MAXSERV, NI_NUMERICSERV);
+        &hostName[0], NI_MAXHOST, &hostPort[0], NI_MAXSERV, NI_NUMERICSERV);
+#if   xENV_WIN
     xTEST_EQ(iRv, 0);
+#elif xENV_UNIX
+    xTEST_EQ_MSG(iRv, 0, ::gai_strerror(iRv));
+#endif
 
-    //hostname
+    // [out]
+    if (out_name != nullptr) {
+    	*out_name = hostName;
+    }
+
+    if (out_port != nullptr) {
+    	xTEST_EQ(a_hostPort, (ushort_t)std::atoi(hostPort));
+    	*out_port = hostPort;
+    }
 }
 //-------------------------------------------------------------------------------------------------
 // NOTE: http://www.geekpage.jp/en/programming/linux-network/getaddrinfo-0.php
@@ -165,18 +179,21 @@ void_t
 DnsClient::hostAddrInfo(
     std::ctstring_t  &a_hostName,
     std::ctstring_t  &a_port,
-    caddrinfo_t      *a_hints,
+    caddrinfo_t      *a_hints,		///< maybe nullptr
     addrinfo_t      **a_addrInfo
 )
 {
     xTEST_EQ(a_hostName.empty(), false);
     xTEST_EQ(a_port.empty(), false);
-    xTEST_PTR(a_hints);
+    xTEST_NA(a_hints);
     xTEST_PTR(a_addrInfo);
-    xTEST_PTR(*a_addrInfo);
 
     int_t iRv = xGETADDRINFO(a_hostName.c_str(), a_port.c_str(), a_hints, a_addrInfo);
+#if   xENV_WIN
     xTEST_EQ(iRv, 0);
+#elif xENV_UNIX
+    xTEST_EQ_MSG(iRv, 0, ::gai_strerror(iRv));
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
