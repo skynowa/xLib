@@ -247,7 +247,7 @@ Test_Utils::unit()
         xTEST_EQ(m_iRv, 0);
 
         m_iRv = Utils::intSafeDiv(1, 1);
-        xTEST_EQ(m_iRv, 0);
+        xTEST_EQ(m_iRv, 1);
     }
 
     xTEST_CASE("enumIncT enumDecT")
