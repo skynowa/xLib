@@ -26,6 +26,9 @@
 // thread
 #include <sys/sem.h>
 
+// socket
+#include <netdb.h>
+
 // GUI
 #if xTEMP_DISABLED
     #include <linux/kd.h>   // beep

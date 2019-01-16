@@ -5,7 +5,7 @@
  * TODO: File::isExecutable
  * TODO: use pipes
  * TODO: stopable (exit by signal)
- * TODO: command line params
+ * TODO: command line params (usage, ...)
  * TODO: as singleton
  * TODO: multi-process
  * TODO: set service name

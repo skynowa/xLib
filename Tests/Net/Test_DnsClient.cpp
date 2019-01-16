@@ -20,78 +20,70 @@ Test_DnsClient::unit()
 
     xTEST_CASE("hostAddrByName")
     {
-        std::tstring_t sHostName = xT("msdn.microsoft.com");
-        std::tstring_t sHostAddr = xT("");
+        std::ctstring_t hostName = xT("msdn.microsoft.com");
 
-        DnsClient::hostAddrByName(sHostName, &sHostAddr);
-
-        //std::tcout << xT("[hostAddrByName]: ") << sHostAddr << std::endl;
+        std::tstring_t hostAddr;
+        DnsClient::hostAddrByName(hostName, &hostAddr);
+		xTEST(!hostAddr.empty());
     }
 
     xTEST_CASE("hostNameByAddr")
     {
-        std::tstring_t sHostName = xT("");
-        std::tstring_t sHostAddr = xT("127.0.0.1");
+        std::ctstring_t hostAddr = xT("127.0.0.1");
 
-        DnsClient::hostNameByAddr(sHostAddr, ISocket::AddressFamily::afInet, &sHostName);
-
-        //std::tcout << xT("[hostNameByAddr]: ") << sHostName << std::endl;
+        std::tstring_t hostName;
+        DnsClient::hostNameByAddr(hostAddr, ISocket::AddressFamily::afInet, &hostName);
+        xTEST(!hostAddr.empty());
     }
 
     xTEST_CASE("localHostName")
     {
-        std::tstring_t sLocalHostName = xT("");
-
-        DnsClient::localHostName(&sLocalHostName);
-
-        //std::tcout << xT("[localHostName]: ") << sLocalHostName << std::endl;
+        std::tstring_t localHostName;
+        DnsClient::localHostName(&localHostName);
+        xTEST(!localHostName.empty());
     }
 
     xTEST_CASE("nameInfo")
     {
-        ////DnsClient::AddressFamily afFamily  = DnsClient::afInet;
-        ////std::tstring_t                     sHostAddr = /*xT("207.46.172.252");*/    xT("forum.vingrad.ru");
-        ////ushort_t                      usPort    = 27015;
+        ISocket::cAddressFamily family   = ISocket::AddressFamily::afInet;
+        std::ctstring_t         hostAddr = xT("127.0.0.1");
+        cushort_t               hostPort = 27015;
 
-        ////m_bRv = DnsClient::nameInfo(afFamily, sHostAddr, usPort);
-        ////xTEST_EQ(m_bRv, true);
-
-        //xSTD_COUT(xT("[nameInfo]: ") << sLocalHostName);
+		std::tstring_t name;
+		std::tstring_t port;
+        DnsClient::nameInfo(family, hostAddr, hostPort, &name, &port);
+        Cout() << xTRACE_VAR_2(name, port) << std::endl;
+        xTEST(!name.empty());
+        xTEST(!port.empty());
     }
 
     xTEST_CASE("hostAddrInfo")
     {
-        std::tstring_t sHostName = xT("www.google.ru");
-        std::tstring_t sPort     = xT("http");
+        std::ctstring_t hostName = xT("www.google.com");
+        std::ctstring_t port     = xT("http");
 
-        ////addrinfo_t aiHints  = {0};
-        addrinfo_t *paiList = nullptr;
+        addrinfo_t hints {};
+		hints.ai_family    = AF_UNSPEC;		// Allow IPv4 or IPv6
+		hints.ai_socktype  = SOCK_STREAM;
+		hints.ai_flags     = AI_PASSIVE;	// For wildcard IP address
+		hints.ai_protocol  = 0;				// Any protocol
+		hints.ai_canonname = nullptr;
+		hints.ai_addr      = nullptr;
+		hints.ai_next      = nullptr;
 
-        DnsClient::hostAddrInfo(sHostName, sPort, nullptr, &paiList);
+        addrinfo_t *result {};
+        DnsClient::hostAddrInfo(hostName, port, &hints, &result);
+        xTEST_PTR(result);
 
-        //xSTD_COUT(xT("[hostAddrInfo]: ") << sLocalHostName);
-
-        {
-            ///*int_t*/                 paiList->ai_flags;       // AI_PASSIVE, AI_CANONNAME, AI_NUMERICHOST
-            ///*int_t*/                 paiList->ai_family;      // PF_xxx
-            ///*int_t*/                 paiList->ai_socktype;    // SOCK_xxx
-            ///*int_t*/                 paiList->ai_protocol;    // 0 or IPPROTO_xxx for IPv4 and IPv6
-            ///*size_t*/              paiList->ai_addrlen;     // Length of ai_addr
-            ///*char **/              paiList->ai_canonname;   // Canonical name for nodename
-            ///*__field_bcount(ai_addrlen) struct sockaddr **/   paiList->ai_addr;        // Binary address
-            ///*struct addrinfo **/   paiList->ai_next;        // Next structure in linked list
-        }
-
-        #if   xENV_WIN
-            #if xCOMPILER_MS
-                ::FreeAddrInfo(paiList);
-            #else
-                freeaddrinfo(paiList);
-            #endif
-        #elif xENV_UNIX
-               freeaddrinfo(paiList);
-        #endif
-        // n/a
+	#if   xENV_WIN
+		#if xCOMPILER_MS
+			::FreeAddrInfo(result);
+		#else
+			freeaddrinfo(result);
+		#endif
+	#elif xENV_UNIX
+		   freeaddrinfo(result);
+	#endif
     }
 
     xTEST_CASE("protocolByName")
