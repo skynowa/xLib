@@ -21,7 +21,7 @@ std::ctstring_t zip7Path   = xT("/usr/bin/7z");
 std::ctstring_t tarPath    = xT("/usr/bin/tar");
 
 std::ctstring_t unzipPath  = xT("/usr/bin/unzip");
-std::ctstring_t unrarPath  = xT("/usr/local/bin/unrar");
+std::ctstring_t unrarPath  = xT("/usr/bin/unrar");
 std::ctstring_t gunzipPath = xT("/usr/bin/gunzip");
 
 std::ctstring_t chmodPath  = xT("chmod");
@@ -184,7 +184,7 @@ Archive::fileUncompress(
 			break;
 		case Type::Rar:
 			binPath = unrarPath;
-			params  = {"x", "-r", a_sourceFilePath, a_destDirPath};
+			params  = {"x", a_sourceFilePath, a_destDirPath};
 			break;
 		case Type::Gz:
 			xUNUSED(a_isRemoveSourceFile);
