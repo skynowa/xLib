@@ -2,7 +2,7 @@
  * \file  Process.h
  * \brief process
  *
- * TODO: File::isExecutable
+ * TODO: setLocale
  * TODO: use pipes
  * TODO: stopable, pause, ...  (exit by signal)
  * TODO: restartable (exit by signal)
@@ -11,6 +11,7 @@
  * TODO: multi-process
  * TODO: set service name
  *
+ * - File::isExecutable
  * - env variables
  */
 

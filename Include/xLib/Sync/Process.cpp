@@ -55,6 +55,12 @@ Process::create(
     const std::set<std::pair_tstring_t> &a_envs      ///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
 )
 {
+#if 0
+	Cout() << xTRACE_VAR(a_filePath) << std::endl;
+	Cout() << xTRACE_VAR(a_params) << std::endl;
+	Cout() << xTRACE_VAR(a_envs) << std::endl;
+#endif
+
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_EQ(File::isExists(a_filePath), true);
     xTEST_EQ(File::isExecutable(a_filePath), true);

@@ -17,7 +17,7 @@ xTEST_UNIT(Test_Archive)
 bool_t
 Test_Archive::unit()
 {
-    Archive::cType type = Archive::Type::Zip;
+	Archive::cType type = Archive::Type::Zip;
 
 	std::ctstring_t sourceDirPath = data.tempDirPath;
 
@@ -31,7 +31,7 @@ Test_Archive::unit()
 		std::ctstring_t fileContent = xT("12345abcdef");
 		File::textWrite(filePath, fileContent, File::OpenMode::omWrite);
 
-	    xTEST_CASE("fileCompress")
+		xTEST_CASE("fileCompress")
 		{
 			m_bRv = Archive::fileCompress(type, filePath, zipFilePath, false);
 			xTEST(m_bRv);
@@ -62,7 +62,7 @@ Test_Archive::unit()
 		std::ctstring_t fileContent = xT("12345abcdef");
 		File::textWrite(filePath, fileContent, File::OpenMode::omWrite);
 
-	    xTEST_CASE("dirCompress")
+		xTEST_CASE("dirCompress")
 		{
 			std::ctstring_t zipFilePath = data.tempDirPath + Const::slash() + xT("ArchiveNew.zip");
 
@@ -83,6 +83,19 @@ Test_Archive::unit()
 			File::textRead(txtfilePath, &_fileContent);
 			xTEST_EQ(_fileContent, fileContent);
 		}
+	}
+
+	{
+	#if 0
+		xTEST_CASE("fileUncompress")
+		{
+			std::ctstring_t filePathRar = xT("/media/skynowa/Disk/Foto/SriLanka.rar");
+			std::ctstring_t destDirPath = xT("/media/skynowa/Disk/Foto/SriLanka");
+
+			m_bRv = Archive::fileUncompress(Archive::Type::Rar, filePathRar, destDirPath, false);
+			xTEST(m_bRv);
+		}
+	#endif
 	}
 
     return true;
