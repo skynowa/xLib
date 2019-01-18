@@ -57,6 +57,7 @@ Process::create(
 {
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_EQ(File::isExists(a_filePath), true);
+    xTEST_EQ(File::isExecutable(a_filePath), true);
     xTEST_NA(a_params);
     xTEST_NA(a_envs);
 
