@@ -298,7 +298,7 @@ OStream::_printContainerTitle(
 )
 {
     // TODO: std::forward_list - max_size()
-    _os << TypeName<T>::get() << xT(" (size=") /*<< a_value.size()*/ << xT("):") << std::endl;
+    /// _os << TypeName<T>::get() << xT(" (size=") /*<< a_value.size()*/ << xT("):") << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>

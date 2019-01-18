@@ -520,10 +520,10 @@ Test_Format::unit()
         std::map<std::tstring_t, int> value;
         value[xT("0")] = 3;
         value[xT("1")] = 4;
-        value[xT("1")] = 5;
+        value[xT("3")] = 5;
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, 3}, {1, 5}}")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, 3}\n{1, 4}\n{3, 5}}")));
     }
 
     xTEST_CASE("std::multimap")
@@ -538,7 +538,7 @@ Test_Format::unit()
         value.insert(p3);
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}, {1, bbb}}")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}\n{1, bbb}\n{1, bbb}}")));
     }
 
     xTEST_CASE("std::nullptr_t")
@@ -575,7 +575,7 @@ Test_Format::unit()
         value[xT("1")] = 5;
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{{1, 5}, {0, 3}}")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{{1, 5}\n{0, 3}}")));
     }
 
     xTEST_CASE("std::unordered_multimap")
@@ -590,7 +590,7 @@ Test_Format::unit()
         value.insert(p3);
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}, {1, bbb}, {1, bbb}}")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}\n{1, bbb}\n{1, bbb}}")));
     }
 
     xTEST_CASE("std::unordered_set")
