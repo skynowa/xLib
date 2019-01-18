@@ -41,7 +41,18 @@ Process::_create_impl(
 		{
 			// printf("[CHILD] PID: %d, parent PID: %d\n", getpid(), getppid());
 
-			// TODO: [skynowa] Process::_create_impl() - a_filePath is executable
+			std::vector<char *> cmds;
+			{
+				cmds.push_back( const_cast<char *>(xT2A(a_filePath).c_str()) );
+
+				for (auto &it_param : a_params) {
+					cmds.push_back( const_cast<char *>( xT2A(it_param).c_str() ));
+				}
+
+				cmds.push_back(nullptr);
+
+				// Cout() << xTRACE_VAR(cmds) << "\n";
+			}
 
 			std::vector<char *> envs;
 			{
@@ -54,19 +65,6 @@ Process::_create_impl(
 				envs.push_back(nullptr);
 
 				// Cout() << xTRACE_VAR(envs) << "\n";
-			}
-
-			std::vector<char *> cmds;
-			{
-				cmds.push_back( const_cast<char *>(xT2A(a_filePath).c_str()) );
-
-				for (auto &it_param : a_params) {
-					cmds.push_back( const_cast<char *>( xT2A(it_param).c_str() ));
-				}
-
-				cmds.push_back(nullptr);
-
-				// Cout() << xTRACE_VAR(cmds) << "\n";
 			}
 
 			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmds.data(), envs.data());
