@@ -62,10 +62,13 @@ Process::create(
 #endif
 
     xTEST_EQ(a_filePath.empty(), false);
-    xTEST_EQ(File::isExists(a_filePath), true);
-    xTEST_EQ(File::isExecutable(a_filePath), true);
     xTEST_NA(a_params);
     xTEST_NA(a_envs);
+
+	xCHECK_DO(!File::isExists(a_filePath),
+		Cout() << xTRACE_VAR(a_filePath) << xT(" not exists"); return);
+	xCHECK_DO(!File::isExecutable(a_filePath),
+		Cout() << xTRACE_VAR(a_filePath) << xT(" not executable"); return);
 
     _create_impl(a_filePath, a_params, a_envs);
 }

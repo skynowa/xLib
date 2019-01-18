@@ -132,6 +132,8 @@ Test_Process::unit()
 	#endif
 
         Process::create(filePath, xTIMEOUT_INFINITE, cmdLine, {});
+
+        Process::create("badfile.txt", xTIMEOUT_INFINITE, {}, {});
     }
 
     return true;
