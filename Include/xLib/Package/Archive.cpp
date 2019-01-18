@@ -1,6 +1,6 @@
 /**
  * \file   Archive.cpp
- * \brief  Pack/unpack archives
+ * \brief  Compress/Uncompress archives
  */
 
 
@@ -157,23 +157,28 @@ Archive::dirCompress(
 /* static */
 bool_t
 Archive::fileUncompress(
-	const Type       a_type,              ///< archive type
-	std::ctstring_t &a_sourceFilePath,    ///< file path
-	std::ctstring_t &a_destDirPath,       ///< destination dir
-	cbool_t          a_isRemoveSourceFile ///< is remove source archive file
+	const Type       a_type,              	///< archive type
+	std::ctstring_t &a_sourceFilePath,    	///< file path
+	std::ctstring_t &a_destDirPath,       	///< destination dir
+	cbool_t          a_isRemoveSourceFile,	///< is remove source archive file
+	cbool_t          a_isAutoDetectType 	///< is auto detect archive type by file extention
 )
 {
-	xTEST_DIFF((int_t)a_type, (int_t)Type::Unknown);
+	if ( !a_isAutoDetectType ) {
+		xTEST_DIFF((int_t)a_type, (int_t)Type::Unknown);
+	}
 	xTEST(!a_sourceFilePath.empty());
 	xTEST(!a_destDirPath.empty());
 	xTEST_NA(a_isRemoveSourceFile);
 
 	Dir(a_destDirPath).pathCreate();
 
+	const auto type = a_isAutoDetectType ? _autoDetectType(a_sourceFilePath) : a_type;
+
 	std::tstring_t     binPath;
 	std::vec_tstring_t params;
 	{
-		switch (a_type) {
+		switch (type) {
 		case Type::Zip:
 			binPath = unzipPath;
 			params  = {a_sourceFilePath, "-d", a_destDirPath};
@@ -208,7 +213,7 @@ Archive::fileUncompress(
 
 	// remove zip file
 	if (a_isRemoveSourceFile) {
-		if (a_type == Type::Gz) {
+		if (type == Type::Gz) {
 			// n/a
 		} else {
 			File::remove(a_sourceFilePath);
@@ -216,7 +221,7 @@ Archive::fileUncompress(
 	}
 
 	// fix unzip bug - chmod for dest dir
-	if (a_type == Type::Zip &&
+	if (type == Type::Zip &&
 		!Dir(a_destDirPath).isExists())
 	{
 		std::ctstring_t     binPath = chmodPath;
@@ -235,7 +240,8 @@ Archive::dirUncompress(
 	std::ctstring_t &a_sourceDirPath,      	///< dir path
 	std::ctstring_t &a_fileShellFilter,    	///< shell wildcard pattern
 	std::ctstring_t &a_destDirPath,        	///< destination dir
-	cbool_t          a_isRemoveSourceFiles	///< is remove source archive files
+	cbool_t          a_isRemoveSourceFiles,	///< is remove source archive files
+	cbool_t          a_isAutoDetectType 	///< is auto detect archive type by file extention
 )
 {
 	bool_t bRv {};
@@ -248,7 +254,8 @@ Archive::dirUncompress(
 	}
 
 	for (auto &it_archive_file : archive_files) {
-		bRv = fileUncompress(a_type, it_archive_file, a_destDirPath, a_isRemoveSourceFiles);
+		bRv = fileUncompress(a_type, it_archive_file, a_destDirPath, a_isRemoveSourceFiles,
+					a_isAutoDetectType);
 		if (!bRv) {
 			xTEST(false);
 			return false;
@@ -256,6 +263,38 @@ Archive::dirUncompress(
 	}
 
 	return true;
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+/* static */
+Archive::Type
+Archive::_autoDetectType(
+	std::ctstring_t &sourceFilePath
+)
+{
+	static const std::map<std::tstring_t, Type> types
+	{
+		{xT(""),       Type::Unknown},
+		{xT("zip"),    Type::Zip},
+		{xT("7z"),     Type::zip7},
+		{xT("rar"),    Type::Rar},
+		{xT("gz"),     Type::Gz},
+		{xT("tarbz2"), Type::TarBz2}
+	};
+
+	std::ctstring_t fileExt = Path(sourceFilePath).ext();
+
+	auto it = types.find(fileExt);
+	xCHECK_RET(it == types.end(), Type::Unknown);
+
+	return it->second;
 }
 //-------------------------------------------------------------------------------------------------
 
