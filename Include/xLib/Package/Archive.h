@@ -1,6 +1,8 @@
 /**
  * \file   Archive.h
  * \brief  Pack/unpack archives
+ *
+ * TODO: auto detect Type from file name
  */
 
 
