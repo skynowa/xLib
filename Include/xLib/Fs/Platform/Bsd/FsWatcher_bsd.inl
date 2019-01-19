@@ -4,7 +4,7 @@
  */
 
 
-#include <xLib/System/Shell.h>
+#include <xLib/Sync/Process.h>
 
 
 xNAMESPACE_BEGIN2(xl, fs)
@@ -153,10 +153,10 @@ return;
 
         #if 0
             int_t ret = std::system( scriptPath.c_str() );
-        #else
+        #elif 0
             Shell shell;
             int_t ret = shell.execute(scriptPath.c_str(), std::tstring_t());
-        #endif
+
             if (WIFSIGNALED(ret) && (WTERMSIG(ret) == SIGINT || WTERMSIG(ret) == SIGQUIT) /* iRv != 0 */) {
                 std::tcout << "[FsWatcher] "
                     << "System error: " << strerror(errno) << ", "
@@ -164,6 +164,9 @@ return;
                 exit(0);
                 break;
             }
+        #else
+			Process::create(scriptPath, xTIMEOUT_INFINITE, {}, {});
+        #endif
 
             break;
         } // for (_cmds)
