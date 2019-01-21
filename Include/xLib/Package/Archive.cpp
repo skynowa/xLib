@@ -173,7 +173,7 @@ Archive::fileUncompress(
 
 	Dir(a_destDirPath).pathCreate();
 
-	const auto type = a_isAutoDetectType ? _autoDetectType(a_sourceFilePath) : a_type;
+	const auto type = a_isAutoDetectType ? _detectType(a_sourceFilePath) : a_type;
 
 	std::tstring_t     binPath;
 	std::vec_tstring_t params;
@@ -275,7 +275,7 @@ Archive::dirUncompress(
 //-------------------------------------------------------------------------------------------------
 /* static */
 Archive::Type
-Archive::_autoDetectType(
+Archive::_detectType(
 	std::ctstring_t &sourceFilePath
 )
 {
