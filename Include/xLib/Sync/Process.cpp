@@ -78,6 +78,8 @@ Process::wait(
     culong_t &a_timeoutMsec    ///< waiting timeout
 )
 {
+    xCHECK_RET(handle() == 0, WaitResult::wrFailed);
+
     return _wait_impl(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------

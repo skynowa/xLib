@@ -50,7 +50,7 @@ private:
     xNO_COPY_ASSIGN(Archive)
 
     static
-    Type  	_autoDetectType(std::ctstring_t &sourceFilePath);
+    Type  	_detectType(std::ctstring_t &sourceFilePath);
     	///< auto detect archive type by file extention
 };
 
