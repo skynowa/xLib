@@ -18,11 +18,11 @@ public:
 		/// archive type
 	{
 		Unknown = 0,
-		Zip     = 2,
-		zip7    = 3,
-		Rar     = 4,
-		Gz      = 5,
-		TarBz2  = 6
+		Zip     = 1,
+		zip7    = 2,
+		Rar     = 3,
+		Gz      = 4,
+		TarBz2  = 5
 	};
 	xUSING_CONST(Type);
 
