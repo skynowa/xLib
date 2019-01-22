@@ -121,7 +121,7 @@ Test_Process::unit()
         xTEST_LESS(0UL, static_cast<ulong_t>( ulRv ));
     }
 
-    xTEST_CASE("create")
+    xTEST_CASE("execute")
     {
 	#if   xENV_WIN
 		std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
@@ -131,9 +131,9 @@ Test_Process::unit()
 		std::cvec_tstring_t cmdLine  = {xT("-la")};
 	#endif
 
-        Process::create(filePath, xTIMEOUT_INFINITE, cmdLine, {});
+        Process::execute(filePath, xTIMEOUT_INFINITE, cmdLine, {});
 
-        Process::create("badfile.txt", xTIMEOUT_INFINITE, {}, {});
+        Process::execute("badfile.txt", xTIMEOUT_INFINITE, {}, {});
     }
 
     return true;
