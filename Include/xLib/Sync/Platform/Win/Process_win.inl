@@ -105,6 +105,23 @@ Process::_kill_impl(
     }
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+Process::_name_impl() const
+{
+    std::ctstring_t sRv = Path( Path::exe() ).fileBaseName();
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Process::_setName_impl(
+	std::ctstring_t &a_name
+) const
+{
+    // TODO: Process::_setName_impl()
+    xNOT_IMPLEMENTED
+}
+//-------------------------------------------------------------------------------------------------
 ulong_t
 Process::_exitStatus_impl() const
 {

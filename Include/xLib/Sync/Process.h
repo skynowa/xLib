@@ -2,6 +2,11 @@
  * \file  Process.h
  * \brief process
  *
+ * Features:
+ * - get/set process name
+ * - check file for xecutable writes
+ * - set environments variables
+ *
  * TODO: setLocale
  * TODO: use pipes
  * TODO: stopable, pause, ...  (exit by signal)
@@ -9,10 +14,6 @@
  * TODO: command line params (usage, ...)
  * TODO: as singleton
  * TODO: multi-process
- * TODO: set service name
- *
- * - File::isExecutable
- * - env variables
  */
 
 
@@ -66,6 +67,10 @@ public:
         ///< get handle
     id_t       id() const xWARN_UNUSED_RV;
         ///< get ID
+    std::tstring_t name() const xWARN_UNUSED_RV;
+        ///< get name
+    void_t     setName(std::ctstring_t &name) const;
+        ///< set name
     bool_t     isCurrent() const xWARN_UNUSED_RV;
         ///< is current
     ulong_t    exitStatus() const xWARN_UNUSED_RV;
@@ -126,6 +131,8 @@ xPLATFORM_IMPL:
                     const std::set<std::pair_tstring_t> &envs);
     WaitStatus _wait_impl(culong_t &timeoutMsec) xWARN_UNUSED_RV;
     void_t     _kill_impl(culong_t &timeoutMsec);
+    std::tstring_t _name_impl() const xWARN_UNUSED_RV;
+    void_t     _setName_impl(std::ctstring_t &name) const;
     ulong_t    _exitStatus_impl() const xWARN_UNUSED_RV;
 
     static
