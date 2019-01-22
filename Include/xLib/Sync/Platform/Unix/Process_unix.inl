@@ -32,7 +32,7 @@ Process::_create_impl(
 		ChildSuccess = 0,
 			///< PID of the child process is returned in the parent, and 0 is returned in the child
 		ParentSucces
-			///< parent - OK (waitpid)
+			///< value > 0, creates a new child process (waitpid)
 	};
 
     const pid_t pid = ::fork();
