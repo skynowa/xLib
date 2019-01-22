@@ -25,8 +25,6 @@ Process::_create_impl(
     const std::set<std::pair_tstring_t> &a_envs
 )
 {
-	/// std::ctstring_t fileName = Path(a_filePath).fileName();
-
 	enum ForkStatus : pid_t
 	{
 		ChildError   = - 1,
