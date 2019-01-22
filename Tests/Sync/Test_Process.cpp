@@ -18,44 +18,44 @@ Test_Process::unit()
 {
     xTEST_CASE("create, wait")
     {
-	#if   xENV_WIN
-		std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
-		std::cvec_tstring_t cmdLine  = {xT("")};
-	#elif xENV_UNIX
-		std::ctstring_t     filePath = xT("/bin/ls");
-		std::cvec_tstring_t cmdLine  = {xT("-la")};
-	#endif
+    #if   xENV_WIN
+        std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
+        std::cvec_tstring_t cmdLine  = {xT("")};
+    #elif xENV_UNIX
+        std::ctstring_t     filePath = xT("/bin/ls");
+        std::cvec_tstring_t cmdLine  = {xT("-la")};
+    #endif
 
-		Process proc;
-		proc.create(filePath, cmdLine, {});
-		Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
-		xTEST_EQ((int)Process::WaitStatus::Abandoned, (int)wrRes);
+        Process proc;
+        proc.create(filePath, cmdLine, {});
+        Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
+        xTEST_EQ((int)Process::WaitStatus::Abandoned, (int)wrRes);
     }
 
     xTEST_CASE("kill")
     {
-	#if   xENV_WIN
-		std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
-		std::cvec_tstring_t cmdLine  = {xT("/?")};
-	#elif xENV_UNIX
-		std::ctstring_t     filePath = xT("/usr/bin/xmessage");
-		std::cvec_tstring_t cmdLine  = {xT("-print"), xT("\"Test Message\"")};
-	#endif
+    #if   xENV_WIN
+        std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
+        std::cvec_tstring_t cmdLine  = {xT("/?")};
+    #elif xENV_UNIX
+        std::ctstring_t     filePath = xT("/usr/bin/xmessage");
+        std::cvec_tstring_t cmdLine  = {xT("-print"), xT("\"Test Message\"")};
+    #endif
 
         Process proc;
         proc.create(filePath, cmdLine, {});
         proc.kill(10UL);
     }
 
-    xTEST_CASE("handle, id")
+    xTEST_CASE("handle, id, name, setName")
     {
-	#if   xENV_WIN
-		std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
-		std::cvec_tstring_t cmdLine  = {xT("/?")};
-	#elif xENV_UNIX
-		std::ctstring_t     filePath = xT("/usr/bin/xmessage");
-		std::cvec_tstring_t cmdLine  = {xT("-print"), xT("\"Test Message\"")};
-	#endif
+    #if   xENV_WIN
+        std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
+        std::cvec_tstring_t cmdLine  = {xT("/?")};
+    #elif xENV_UNIX
+        std::ctstring_t     filePath = xT("/usr/bin/xmessage");
+        std::cvec_tstring_t cmdLine  = {xT("-print"), xT("\"Test Message\"")};
+    #endif
 
         Process proc;
         proc.create(filePath, cmdLine, {});
@@ -65,6 +65,17 @@ Test_Process::unit()
 
         Process::id_t id = proc.id();
         xTEST_LESS(static_cast<Process::id_t>(0), id);
+
+        // name, setName
+        std::ctstring_t procName = xT("Test_Process");
+        xTEST_EQ(proc.name(), procName);
+
+        std::ctstring_t procNameNew = xT("Test_Process_A");
+        proc.setName(procNameNew);
+        xTEST_EQ(proc.name(), procNameNew);
+
+        proc.setName(procName);
+        xTEST_EQ(proc.name(), procName);
 
         proc.kill(10UL);
     }
@@ -123,13 +134,13 @@ Test_Process::unit()
 
     xTEST_CASE("execute")
     {
-	#if   xENV_WIN
-		std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
-		std::cvec_tstring_t cmdLine  = {xT("")};
-	#elif xENV_UNIX
-		std::ctstring_t     filePath = xT("/bin/ls");
-		std::cvec_tstring_t cmdLine  = {xT("-la")};
-	#endif
+    #if   xENV_WIN
+        std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
+        std::cvec_tstring_t cmdLine  = {xT("")};
+    #elif xENV_UNIX
+        std::ctstring_t     filePath = xT("/bin/ls");
+        std::cvec_tstring_t cmdLine  = {xT("-la")};
+    #endif
 
         Process::execute(filePath, xTIMEOUT_INFINITE, cmdLine, {});
 

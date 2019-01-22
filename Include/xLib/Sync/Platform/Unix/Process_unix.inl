@@ -129,6 +129,43 @@ Process::_kill_impl(
     _exitStatus = 0U;
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+Process::_name_impl() const
+{
+#if   xENV_LINUX
+    // MAN: The buffer should allow space for up to 16 bytes,
+    // the returned string will be null-terminated.
+    char szRv[16 + 1] {};
+
+    int_t iRv = ::prctl(PR_GET_NAME, (unsigned long)szRv);
+    xTEST_DIFF(iRv, - 1);
+
+    return xA2T(szRv);
+#elif xENV_BSD
+    kinfo_proc *proc = kinfo_getproc( id() );
+    xTEST_PTR(proc);
+
+    std::ctstring_t sRv = xA2T(proc->ki_comm);
+
+    Utils::free(proc, std::free);
+
+    return sRv;
+#endif
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Process::_setName_impl(
+	std::ctstring_t &a_name
+) const
+{
+#if   xENV_LINUX
+    int_t iRv = ::prctl(PR_SET_NAME, (unsigned long)xT2A(a_name).c_str(), 0L, 0L, 0L	);
+    xTEST_DIFF(iRv, - 1);
+#elif xENV_BSD
+    (void_t)::setproctitle("%s", xT2A(a_name).c_str());
+#endif
+}
+//-------------------------------------------------------------------------------------------------
 ulong_t
 Process::_exitStatus_impl() const
 {

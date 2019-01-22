@@ -374,6 +374,7 @@ Thread::_exitStatus_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
+// TODO: Win10 - SetThreadDescription
 void_t
 Thread::_setDebugName_impl(
     std::ctstring_t &a_name
