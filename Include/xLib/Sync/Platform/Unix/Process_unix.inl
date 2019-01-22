@@ -38,14 +38,12 @@ Process::_create_impl(
     const pid_t pid = ::fork();
     switch (pid) {
 	case ForkStatus::ChildError:
-		// child - error
 		{
 			xTEST(false);
 			std::exit(EXIT_FAILURE);
 		}
 		break;
 	case ForkStatus::ChildSuccess:
-		// child - OK
 		{
 			// printf("[CHILD] PID: %d, parent PID: %d\n", getpid(), getppid());
 
