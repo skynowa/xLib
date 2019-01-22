@@ -89,12 +89,12 @@ Process::_create_impl(
     _pid    = pid;
 }
 //-------------------------------------------------------------------------------------------------
-Process::WaitResult
+Process::WaitStatus
 Process::_wait_impl(
     culong_t &a_timeoutMsec
 )
 {
-    WaitResult waitStatus = WaitResult::wrFailed;
+    WaitStatus waitStatus = WaitStatus::Failed;
 
     xUNUSED(a_timeoutMsec);
 
@@ -111,7 +111,7 @@ Process::_wait_impl(
     xTEST_EQ(liRv, _pid);
 
     _exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
-    waitStatus  = static_cast<WaitResult>( WEXITSTATUS(status) );
+    waitStatus  = static_cast<WaitStatus>( WEXITSTATUS(status) );
 
     return waitStatus;
 }

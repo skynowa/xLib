@@ -73,12 +73,12 @@ Process::create(
     _create_impl(a_filePath, a_params, a_envs);
 }
 //-------------------------------------------------------------------------------------------------
-Process::WaitResult
+Process::WaitStatus
 Process::wait(
     culong_t &a_timeoutMsec    ///< waiting timeout
 )
 {
-    xCHECK_RET(handle() == 0, WaitResult::wrFailed);
+    xCHECK_RET(handle() == 0, WaitStatus::Failed);
 
     return _wait_impl(a_timeoutMsec);
 }
@@ -237,8 +237,8 @@ Process::execute(
     Process proc;
     proc.create(a_filePath, a_params, a_envs);
 
-    Process::WaitResult wrRes = proc.wait(a_waitTimeoutMsec);
-    xTEST_EQ((int)Process::WaitResult::wrAbandoned, (int)wrRes);
+    Process::WaitStatus wrRes = proc.wait(a_waitTimeoutMsec);
+    xTEST_EQ((int)Process::WaitStatus::Abandoned, (int)wrRes);
 }
 //-------------------------------------------------------------------------------------------------
 
