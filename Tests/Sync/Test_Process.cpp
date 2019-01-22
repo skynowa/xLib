@@ -28,8 +28,8 @@ Test_Process::unit()
 
 		Process proc;
 		proc.create(filePath, cmdLine, {});
-		Process::WaitResult wrRes = proc.wait(xTIMEOUT_INFINITE);
-		xTEST_EQ((int)Process::WaitResult::wrAbandoned, (int)wrRes);
+		Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
+		xTEST_EQ((int)Process::WaitStatus::Abandoned, (int)wrRes);
     }
 
     xTEST_CASE("kill")

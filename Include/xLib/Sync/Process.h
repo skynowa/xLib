@@ -35,19 +35,19 @@ public:
     using id_t     = pid_t;  ///< ID
 #endif
 
-    enum class WaitResult
+    enum class WaitStatus
         /// wait result
     {
     #if   xENV_WIN
-        wrFailed    = WAIT_FAILED,
-        wrAbandoned = WAIT_ABANDONED,
-        wrObject0   = WAIT_OBJECT_0,
-        wrTimeout   = WAIT_TIMEOUT
+        Failed    = WAIT_FAILED,
+        Abandoned = WAIT_ABANDONED,
+        Object0   = WAIT_OBJECT_0,
+        Timeout   = WAIT_TIMEOUT
     #elif xENV_UNIX
-        wrFailed    = - 1,
-        wrAbandoned = 0,
-        wrObject0   = 1,
-        wrTimeout   = 2
+        Failed    = - 1,
+        Abandoned = 0,
+        Object0   = 1,
+        Timeout   = 2
     #endif
     };
 
@@ -57,7 +57,7 @@ public:
     void_t     create(std::ctstring_t &filePath, std::cvec_tstring_t &params,
                    const std::set<std::pair_tstring_t> &envs);
         ///< execute a file
-    WaitResult wait(culong_t &timeoutMsec) xWARN_UNUSED_RV;
+    WaitStatus wait(culong_t &timeoutMsec) xWARN_UNUSED_RV;
         ///< wait for termination
     void_t     kill(culong_t &timeoutMsec);
         ///< kills the calling process and all of its threads
@@ -124,7 +124,7 @@ xPLATFORM_IMPL:
     void_t     _destruct_impl();
     void_t     _create_impl(std::ctstring_t &filePath, std::cvec_tstring_t &params,
                     const std::set<std::pair_tstring_t> &envs);
-    WaitResult _wait_impl(culong_t &timeoutMsec) xWARN_UNUSED_RV;
+    WaitStatus _wait_impl(culong_t &timeoutMsec) xWARN_UNUSED_RV;
     void_t     _kill_impl(culong_t &timeoutMsec);
     ulong_t    _exitStatus_impl() const xWARN_UNUSED_RV;
 
