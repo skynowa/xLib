@@ -106,8 +106,8 @@ public:
 
     // static
     static
-    void_t     create(std::ctstring_t &filePath, culong_t waitTimeoutMsec,
-                    std::cvec_tstring_t &params, const std::set<std::pair_tstring_t> &envs);
+    void_t     execute(std::ctstring_t &filePath, culong_t waitTimeoutMsec,
+                   std::cvec_tstring_t &params, const std::set<std::pair_tstring_t> &envs);
         ///< create, wait process
 
 private:

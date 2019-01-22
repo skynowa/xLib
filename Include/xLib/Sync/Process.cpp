@@ -227,7 +227,7 @@ Process::currentExit(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Process::create(
+Process::execute(
     std::ctstring_t                     &a_filePath,        ///< binary file path
     culong_t                             a_waitTimeoutMsec, ///< waiting timeout
     std::cvec_tstring_t                 &a_params,          ///< command line params
