@@ -30,6 +30,19 @@ Test_Environment::unit()
         }
     }
 
+    xTEST_CASE("setVars")
+    {
+        const std::set<std::pair_tstring_t> vars
+        {
+            {xT("ENV_TEST_1"), xT("value1")},
+            {xT("ENV_TEST_2"), xT("value2")},
+            {xT("ENV_TEST_3"), xT("value3")},
+            {xT("ENV_TEST_4"), xT("value4")}
+        };
+
+        Environment::setVars(vars);
+    }
+
     xTEST_CASE("isExists")
     {
     #if   xENV_WIN

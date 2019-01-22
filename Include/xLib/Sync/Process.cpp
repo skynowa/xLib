@@ -237,7 +237,7 @@ Process::execute(
     Process proc;
     proc.create(a_filePath, a_params, a_envs);
 
-    Process::WaitResult wrRes = proc.wait(xTIMEOUT_INFINITE);
+    Process::WaitResult wrRes = proc.wait(a_waitTimeoutMsec);
     xTEST_EQ((int)Process::WaitResult::wrAbandoned, (int)wrRes);
 }
 //-------------------------------------------------------------------------------------------------
