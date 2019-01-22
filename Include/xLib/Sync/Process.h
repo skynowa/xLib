@@ -36,7 +36,7 @@ public:
 #endif
 
     enum class WaitStatus
-        /// wait result
+        /// wait status
     {
     #if   xENV_WIN
         Failed    = WAIT_FAILED,
