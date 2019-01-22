@@ -25,23 +25,25 @@ Process::_create_impl(
     const std::set<std::pair_tstring_t> &a_envs
 )
 {
-	enum ForkStatus : pid_t
+	enum ProcessStatus : pid_t
 	{
-		ProcessChildError   = - 1,
+		ChildError   = - 1,
 			///< returned in the parent, no child process is created, and errno is set
-		ProcessChildSuccess = 0
+		ChildSuccess = 0,
 			///< PID of the child process is returned in the parent, and 0 is returned in the child
+		ParentSucces
+			///< parent - OK (waitpid)
 	};
 
     const pid_t pid = ::fork();
     switch (pid) {
-	case ForkStatus::ProcessChildError:
+	case ProcessStatus::ChildError:
 		{
 			xTEST(false);
 			std::exit(EXIT_FAILURE);
 		}
 		break;
-	case ForkStatus::ProcessChildSuccess:
+	case ProcessStatus::ChildSuccess:
 		{
 			// printf("[CHILD] PID: %d, parent PID: %d\n", getpid(), getppid());
 
@@ -77,8 +79,8 @@ Process::_create_impl(
 			(void_t)::_exit(status);  // not std::exit()
 		}
 		break;
+	case ProcessStatus::ParentSucces:
 	default:
-		// parent - OK (waitpid)
 		// printf("[PARENT] PID: %d, parent PID: %d\n", getpid(), pid);
 		break;
 	}
