@@ -27,7 +27,7 @@ Process::_create_impl(
 {
 	/// std::ctstring_t fileName = Path(a_filePath).fileName();
 
-	enum ForkStatus
+	enum ForkStatus : pid_t
 	{
 		ChildError   = - 1,
 			///< returned in the parent, no child process is created, and errno is set
