@@ -27,16 +27,24 @@ Process::_create_impl(
 {
 	/// std::ctstring_t fileName = Path(a_filePath).fileName();
 
+	enum ForkStatus
+	{
+		ChildError   = - 1,
+			///< returned in the parent, no child process is created, and errno is set
+		ChildSuccess = 0
+			///< PID of the child process is returned in the parent, and 0 is returned in the child
+	};
+
     const pid_t pid = ::fork();
     switch (pid) {
-	case - 1:
+	case ForkStatus::ChildError:
 		// child - error
 		{
 			xTEST(false);
 			std::exit(EXIT_FAILURE);
 		}
 		break;
-	case 0:
+	case ForkStatus::ChildSuccess:
 		// child - OK
 		{
 			// printf("[CHILD] PID: %d, parent PID: %d\n", getpid(), getppid());
