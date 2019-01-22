@@ -105,6 +105,20 @@ Environment::setVar(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
+Environment::setVars(
+    const std::set<std::pair_tstring_t> &a_vars ///< vars ({"HOME=/usr/home","LOGNAME=home"})
+)
+{
+	for (auto &it_var : a_vars) {
+		const std::ctstring_t &name  = it_var.first;
+		const std::ctstring_t &value = it_var.second;
+
+		setVar(name, value);
+	} // for (vars)
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
 Environment::deleteVar(
     std::ctstring_t &a_varName
 )
