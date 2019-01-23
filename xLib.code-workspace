@@ -1,0 +1,39 @@
+{
+	"folders": [
+		{
+			"name": "Include",
+			"path": "Include/xLib"
+		},
+		{
+			"name": "Tests",
+			"path": "Tests"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.h": "cpp",
+			"*.inl": "cpp",
+			"*.cpp": "cpp",
+			"*.h.in": "cpp",
+			"*.inl.in": "cpp",
+			"*.cpp.in": "cpp"
+		},
+		"files.exclude": {
+			"**/.git": true,
+			// Bin
+			"**/*.o": true,
+			"**/*.so": true,
+			"**/*.core": true,
+			// Eclipse
+			"**/.cproject": true,
+			"**/.project": true,
+			"**/.settings": true,
+			// Bin dirs
+
+			// Etc
+
+			// Execute
+
+		}
+	}
+}
