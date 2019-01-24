@@ -1,12 +1,8 @@
 {
 	"folders": [
 		{
-			"name": "Include",
-			"path": "Include/xLib"
-		},
-		{
-			"name": "Tests",
-			"path": "Tests"
+			"name": "xLib",
+			"path": "/home/skynowa/Projects/xLib"
 		}
 	],
 	"settings": {
