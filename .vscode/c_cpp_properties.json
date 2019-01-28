@@ -11,8 +11,8 @@
                 "${workspaceFolder}/Include"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/clang",
-            "intelliSenseMode": "clang-x64",
+            "compilerPath": "/usr/bin/g++",
+            "intelliSenseMode": "gcc-x64",
             "browse": {
                 "path": [
                     "${workspaceFolder}"
