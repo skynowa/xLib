@@ -169,25 +169,6 @@ Test_Enum::unit()
             }
             xTEST_EQ(ssC11.str(), std::tstring_t(xT("01234")));
         }
-
-        {
-            xENUM_CLASS(Color,
-                Unknown = - 1,
-                First   = 2,
-                Second,
-                Third,
-                Last
-            );
-
-            Color color;
-            std::cout << xTRACE_VAR(color) << std::endl;
-
-            std::cout << xTRACE_VAR(Color::Unknown) << std::endl;
-            std::cout << xTRACE_VAR(Color::First)   << std::endl;
-            std::cout << xTRACE_VAR(Color::Second)  << std::endl;
-            std::cout << xTRACE_VAR(Color::Third)   << std::endl;
-            std::cout << xTRACE_VAR(Color::Last)    << std::endl;
-        }
     #endif
 
 		/**************************************************************************************************
