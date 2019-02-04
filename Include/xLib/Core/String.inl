@@ -14,11 +14,93 @@
 
 xNAMESPACE_BEGIN2(xl, core)
 
-/*******************************************************************************
+/***************************************************************************************************
 *   casting
 *
-*******************************************************************************/
+***************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+/* static */
+template<typename T>
+T
+String::castTo(
+    std::ctstring_t &a_value
+)
+{
+    T rv {};
+
+    try {
+        // bool
+        if      (std::is_same<T, bool_t>::value) {
+            rv = static_cast<T>( std::stoul(a_value) );
+        }
+
+        // tchar_t
+        else if (std::is_same<T, tchar_t>::value ||
+                 std::is_same<T, uchar_t>::value)
+        {
+            if ( a_value.size() > 0) {
+                rv = static_cast<T>(a_value[0]);
+            }
+        }
+
+        // short_t
+        else if (std::is_same<T, short_t>::value) {
+            rv = static_cast<T>( std::stoi(a_value) );
+        }
+        else if (std::is_same<T, ushort_t>::value) {
+            rv = static_cast<T>( std::stoul(a_value) );
+        }
+
+        // int
+        else if (std::is_same<T, int_t>::value) {
+            rv = std::stoi(a_value);
+        }
+        else if (std::is_same<T, uint_t>::value) {
+            rv = static_cast<T>( std::stoul(a_value) );
+        }
+
+        // long int
+        else if (std::is_same<T, long_t>::value) {
+            rv = std::stol(a_value);
+        }
+        else if (std::is_same<T, ulong_t>::value) {
+            rv = std::stoul(a_value);
+        }
+
+        // long long int
+        else if (std::is_same<T, longlong_t>::value) {
+            rv = std::stoll(a_value);
+        }
+        else if (std::is_same<T, ulonglong_t>::value) {
+            rv = std::stoull(a_value);
+        }
+
+        // double
+        else  if (std::is_same<T, float_t>::value) {
+            rv = std::stof(a_value);
+        }
+        else if (std::is_same<T, double_t>::value) {
+            rv = std::stod(a_value);
+        }
+        else if (std::is_same<T, longdouble_t>::value) {
+            rv = std::stold(a_value);
+        }
+
+        // other
+        else {
+            xTEST_FAIL_MSG(xT("Unknown type"));
+        }
+    }
+    catch (const std::exception &a_exp) {
+        xTEST_FAIL_MSG( std::tstring_t(a_exp.what()) );
+    }
+    catch (...) {
+        xTEST_FAIL_MSG(xT("Unknown exception"));
+    }
+
+    return rv;
+}
 //-------------------------------------------------------------------------------------------------
 /* static */
 template<typename T>

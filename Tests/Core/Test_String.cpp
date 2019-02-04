@@ -21,6 +21,51 @@ Test_String::unit()
     *
     *******************************************************************************/
 
+    xTEST_CASE("castTo")
+    {
+        // bool_t
+        m_bRv = String::castTo<bool_t>("0");
+        xTEST_EQ(m_bRv, false);
+
+        // tchar_t
+        m_chRv = String::castTo<tchar_t>("d");
+        xTEST_EQ(m_chRv, xT('d'));
+        // m_ucRv = String::castTo<uchar_t>("c");
+        // xTEST_EQ(m_ucRv, (uchar_t)'c');
+
+        // short_t
+        m_siRv = String::castTo<short_t>("-5");
+        xTEST_EQ(m_siRv, (short_t)-5);
+        m_usiRv = String::castTo<ushort_t>("6");
+        xTEST_EQ(m_usiRv, (ushort_t)6);
+
+        // int_t
+        m_iRv = String::castTo<int_t>("1");
+        xTEST_EQ(m_iRv, 1);
+        m_uiRv = String::castTo<uint_t>("8");
+        xTEST_EQ(m_uiRv, 8U);
+
+        // long_t
+        m_liRv = String::castTo<long_t>("-345");
+        xTEST_EQ(m_liRv, -345L);
+        m_ulRv = String::castTo<ulong_t>("234");
+        xTEST_EQ(m_ulRv, 234UL);
+
+        // longlong_t
+        m_llRv = String::castTo<longlong_t>("-789");
+        xTEST_EQ(m_llRv, -789LL);
+        m_ullRv = String::castTo<ulonglong_t>("145");
+        xTEST_EQ(m_ullRv, 145ULL);
+
+        // float_t
+        m_fRv = String::castTo<float_t>("-0.7");
+        xTEST_EQ(m_fRv, -0.7f);
+        m_dRv = String::castTo<double_t>("15.87");
+        xTEST_EQ(m_dRv, 15.87);
+        m_ldRv = String::castTo<longdouble_t>("178.89");
+        xTEST_EQ(m_ldRv, 178.89L);
+    }
+
     xTEST_CASE("cast (to string)")
     {
         m_sRv = String::cast(1);
