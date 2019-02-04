@@ -23,6 +23,11 @@ public:
 
     template<typename T>
     static
+    T              castTo(std::ctstring_t &value) xWARN_UNUSED_RV;
+        ///<
+
+    template<typename T>
+    static
     std::tstring_t cast(const T &value) xWARN_UNUSED_RV;
         ///< convert type to std::tstring_t
     template<typename T>
