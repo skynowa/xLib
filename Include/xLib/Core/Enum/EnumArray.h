@@ -25,36 +25,3 @@ public:
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "EnumArray.inl"
-
-#define xENUM_CLASS(Name, ...) \
-    class Name \
-    { \
-    public: \
-        enum class _Enum \
-        { \
-            __VA_ARGS__ \
-        }; \
-        \
-        Name() : \
-            _value( static_cast<_Enum>(0) ) \
-        { \
-        } \
-        \
-        Name(const Name::_Enum a_value) : \
-            _value(a_value) \
-        { \
-        } \
-        \
-        operator Name::_Enum() const \
-        { \
-            return _value; \
-        } \
-        \
-        Name& operator=(Name::_Enum a_value) \
-        { \
-            _value = a_value; \
-            return *this; \
-        } \
-    private: \
-        Name::_Enum _value; \
-    }
