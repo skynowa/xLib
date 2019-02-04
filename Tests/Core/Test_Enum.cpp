@@ -52,7 +52,7 @@ Test_Enum::unit()
 
     xTEST_CASE("operator <<")
     {
-    #if 0
+    #if 1
         const size_t enumSize = 5;
         const EnumArray<TestType, enumSize> enums;
 
