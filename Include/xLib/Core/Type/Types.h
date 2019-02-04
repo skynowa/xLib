@@ -252,4 +252,15 @@ xNAMESPACE_BEGIN(std)
     using mmap_tstring_t = multimap<tstring_t, tstring_t>;
     xUSING_CONST(mmap_tstring_t);
 
+    template<typename T>
+    inline tstring_t
+    to_tstring(const T &a_value)
+    {
+    #if xUNICODE
+        return to_wstring(a_value);
+    #else
+        return to_string(a_value);
+    #endif
+    }
+
 xNAMESPACE_END(std)
