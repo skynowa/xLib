@@ -72,29 +72,29 @@ Enum<T>::dec(
     return static_cast<T>( static_cast<::ssize_t>(a_value) - 1 );
 }
 //-------------------------------------------------------------------------------------------------
-// template<typename T>
-// inline std::tostream_t &
-// operator << (
-// 	std::tostream_t &a_os,
-// 	const T          a_value
-// )
-// {
-//     a_os << static_cast<::ssize_t>(a_value);
-
-//     return a_os;
-// }
-//-------------------------------------------------------------------------------------------------
 template<typename T>
-inline OStream &
+inline std::tostream_t &
 operator << (
-	OStream &a_os,
-	const T  a_value
+	std::tostream_t                    &a_os,
+	const typename Enum<T>::value_type  a_value
 )
 {
     a_os << static_cast<::ssize_t>(a_value);
 
     return a_os;
 }
+//-------------------------------------------------------------------------------------------------
+// template<typename T>
+// inline OStream &
+// operator << (
+// 	OStream &a_os,
+// 	const T  a_value
+// )
+// {
+//     a_os << static_cast<::ssize_t>(a_value);
+
+//     return a_os;
+// }
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, core)
