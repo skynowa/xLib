@@ -30,7 +30,7 @@ String::castTo(
     T rv {};
 
     try {
-        // bool
+        // bool_t
         if      (std::is_same<T, bool_t>::value) {
             rv = static_cast<T>( std::stoul(a_value) );
         }
@@ -52,7 +52,7 @@ String::castTo(
             rv = static_cast<T>( std::stoul(a_value) );
         }
 
-        // int
+        // int_t
         else if (std::is_same<T, int_t>::value) {
             rv = std::stoi(a_value);
         }
@@ -60,7 +60,7 @@ String::castTo(
             rv = static_cast<T>( std::stoul(a_value) );
         }
 
-        // long int
+        // long_t
         else if (std::is_same<T, long_t>::value) {
             rv = std::stol(a_value);
         }
@@ -68,7 +68,7 @@ String::castTo(
             rv = std::stoul(a_value);
         }
 
-        // long long int
+        // longlong_t
         else if (std::is_same<T, longlong_t>::value) {
             rv = std::stoll(a_value);
         }
@@ -76,7 +76,7 @@ String::castTo(
             rv = std::stoull(a_value);
         }
 
-        // double
+        // float_t
         else  if (std::is_same<T, float_t>::value) {
             rv = std::stof(a_value);
         }
@@ -94,9 +94,13 @@ String::castTo(
     }
     catch (const std::exception &a_exp) {
         xTEST_FAIL_MSG( std::tstring_t(a_exp.what()) );
+
+        rv = {};
     }
     catch (...) {
         xTEST_FAIL_MSG(xT("Unknown exception"));
+
+        rv = {};
     }
 
     return rv;
