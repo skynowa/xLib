@@ -21,15 +21,20 @@ public:
     {
     }
 
-    virtual ~Data()
+    ~Data() override
     {
     }
 
-    virtual void_t clear()
+    bool_t isValid() override
+    {
+        return true;
+    }
+
+    void_t clear() override
     {
     }
 
-    virtual void_t dump()
+    void_t dump() override
     {
     }
 };
@@ -41,6 +46,10 @@ Test_IData::unit()
     xTEST_CASE("IData")
     {
         Data d;
+
+        m_bRv = d.isValid();
+        xTEST(m_bRv);
+
         d.clear();
         d.dump();
     }

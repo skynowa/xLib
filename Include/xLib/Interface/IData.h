@@ -19,6 +19,8 @@ public:
     virtual       ~IData() = default;
         ///< destructor
 
+    virtual bool_t isValid() = 0;
+        ///< check validness
     virtual void_t clear() = 0;
         ///< clear data
     virtual void_t dump() = 0;
