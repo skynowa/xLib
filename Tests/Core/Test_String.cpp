@@ -30,8 +30,8 @@ Test_String::unit()
         // tchar_t
         m_chRv = String::castTo<tchar_t>("d");
         xTEST_EQ(m_chRv, xT('d'));
-        // m_ucRv = String::castTo<uchar_t>("c");
-        // xTEST_EQ(m_ucRv, (uchar_t)'c');
+        m_ucRv = String::castTo<uchar_t>("c");
+        xTEST_EQ(m_ucRv, (uchar_t)'c');
 
         // short_t
         m_siRv = String::castTo<short_t>("-5");
