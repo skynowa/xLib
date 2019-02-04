@@ -24,7 +24,7 @@ public:
     template<typename T>
     static
     T              castTo(std::ctstring_t &value) xWARN_UNUSED_RV;
-        ///< cast to bools, chars, ints, doubles
+        ///< cast to bools, chars, ints, doubles, enums
 
     template<typename T>
     static

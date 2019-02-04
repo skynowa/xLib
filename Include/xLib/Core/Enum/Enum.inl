@@ -4,6 +4,8 @@
  */
 
 
+#include <xLib/Core/String.h>
+
 xNAMESPACE_BEGIN2(xl, core)
 
 /**************************************************************************************************
@@ -29,10 +31,14 @@ Enum<T>::toString(
 template<typename T>
 inline T
 Enum<T>::fromString(
-	const std::tstring_t &a_value
+	std::ctstring_t &a_value
 )
 {
+#if 0
 	return static_cast<T>( std::strtoll(a_value.c_str(), nullptr, 10) );
+#else
+	return String::castTo<T>(a_value);
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -69,9 +75,24 @@ Enum<T>::dec(
     return static_cast<T>( static_cast<::ssize_t>( a_value ) - 1 );
 }
 //-------------------------------------------------------------------------------------------------
+// template<typename T>
+// inline std::tostream_t &
+// operator << (
+// 	std::tostream_t &a_os,
+// 	const T          a_value
+// )
+// {
+//     a_os << static_cast<::ssize_t>(a_value);
+
+//     return a_os;
+// }
+//-------------------------------------------------------------------------------------------------
 template<typename T>
-inline std::tostream_t &
-operator << (std::tostream_t &a_os, const Enum<T> &a_value)
+inline OStream &
+operator << (
+	OStream &a_os,
+	const T  a_value
+)
 {
     a_os << static_cast<::ssize_t>(a_value);
 

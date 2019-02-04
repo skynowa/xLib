@@ -54,7 +54,7 @@ String::castTo(
 
         // int_t
         else if (std::is_same<T, int_t>::value) {
-            rv = std::stoi(a_value);
+            rv = static_cast<T>( std::stoi(a_value) );
         }
         else if (std::is_same<T, uint_t>::value) {
             rv = static_cast<T>( std::stoul(a_value) );
@@ -62,33 +62,39 @@ String::castTo(
 
         // long_t
         else if (std::is_same<T, long_t>::value) {
-            rv = std::stol(a_value);
+            rv = static_cast<T>( std::stol(a_value) );
         }
         else if (std::is_same<T, ulong_t>::value) {
-            rv = std::stoul(a_value);
+            rv = static_cast<T>( std::stoul(a_value) );
         }
 
         // longlong_t
         else if (std::is_same<T, longlong_t>::value) {
-            rv = std::stoll(a_value);
+            rv = static_cast<T>( std::stoll(a_value) );
         }
         else if (std::is_same<T, ulonglong_t>::value) {
-            rv = std::stoull(a_value);
+            rv = static_cast<T>( std::stoull(a_value) );
         }
 
         // float_t
         else  if (std::is_same<T, float_t>::value) {
-            rv = std::stof(a_value);
+            rv = static_cast<T>( std::stof(a_value) );
         }
         else if (std::is_same<T, double_t>::value) {
-            rv = std::stod(a_value);
+            rv = static_cast<T>( std::stod(a_value) );
         }
         else if (std::is_same<T, longdouble_t>::value) {
-            rv = std::stold(a_value);
+            rv = static_cast<T>( std::stold(a_value) );
+        }
+
+        // enum
+        else if (std::is_enum<T>::value) {
+            rv = static_cast<T>( std::stoll(a_value) );
         }
 
         // other
         else {
+            static_assert(true, "Unknown type");
             xTEST_FAIL_MSG(xT("Unknown type"));
         }
     }
