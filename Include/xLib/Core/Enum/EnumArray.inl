@@ -1,6 +1,6 @@
 /**
- * \file   Enum.cpp
- * \brief  Enumeration
+ * \file   EnumArray.inl
+ * \brief  EnumArray
  */
 
 
@@ -21,9 +21,9 @@ EnumArray<T, N>::EnumArray()
 template<typename T, const std::size_t N>
 inline
 EnumArray<T, N>::EnumArray(
-	const std::array<T, N> &a_enumeration
+	const std::array<T, N> &a_enums
 ) :
-    std::array<T, N>(a_enumeration)
+    std::array<T, N>(a_enums)
 {
 }
 //-------------------------------------------------------------------------------------------------
