@@ -37,7 +37,7 @@ Enum::toInt(
 /* static */
 template<typename T>
 inline T
-Enum::fromString(
+Enum::toEnum(
 	std::ctstring_t &a_value
 )
 {
@@ -51,11 +51,11 @@ Enum::fromString(
 /* static */
 template<typename T>
 inline std::tstring_t
-Enum::asString(
+Enum::name(
 	const T &a_value
 )
 {
-	// TODO: [skynowa] Enum::asString()
+	// TODO: [skynowa] Enum::name()
 
 	std::tstring_t sRv;
 

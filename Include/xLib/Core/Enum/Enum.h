@@ -25,15 +25,15 @@ public:
 
     template<typename T>
     static
-    ::ssize_t toInt(const T &value);
+    ::ssize_t      toInt(const T &value);
 
     template<typename T>
     static
-    T              fromString(std::ctstring_t &value);
+    T              toEnum(std::ctstring_t &value);
 
     template<typename T>
     static
-    std::tstring_t asString(const T &value);
+    std::tstring_t name(const T &value);
 
     // operators
     template<typename T>
