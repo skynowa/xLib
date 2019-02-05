@@ -32,6 +32,12 @@ Test_Enum::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("1")));
     }
 
+    xTEST_CASE("toInt")
+    {
+        m_ullRv = Enum::toInt(TestType::Last);
+        xTEST_EQ(m_ullRv, 4ULL);
+    }
+
     xTEST_CASE("fromString")
     {
         auto arv = Enum::fromString<TestType>(xT("2"));
