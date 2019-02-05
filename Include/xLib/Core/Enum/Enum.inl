@@ -61,13 +61,13 @@ Enum::name(
 
 	switch (a_value) {
 	case T::First:
-		sRv = xT("TestType::First");
+		sRv = xT("First");
 		break;
 	case T::Second:
-		sRv = xT("TestType::Second");
+		sRv = xT("Second");
 		break;
 	case T::Third:
-		sRv = xT("TestType::Third");
+		sRv = xT("Third");
 		break;
 	default:
 		break;
