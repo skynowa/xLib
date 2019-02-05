@@ -43,7 +43,7 @@ public:
     longlong_t          m_llRv {};   ///< for global use
     ulonglong_t         m_ullRv {};  ///< for global use
     float_t             m_fRv {};    ///< for global use
-    double              m_dRv {};    ///< for global use
+    double_t            m_dRv {};    ///< for global use
     longdouble_t        m_ldRv {};   ///< for global use
     std::tstring_t      m_sRv;       ///< for global use
     std::ustring_t      m_usRv;      ///< for global use
