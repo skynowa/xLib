@@ -42,10 +42,10 @@ Test_Enum::unit()
     {
         TestType eRv = TestType::Unknown;
 
-        eRv = Enum::inc<TestType>(eRv);
+        eRv = Enum::inc(eRv);
         xTEST_EQ((int)eRv, (int)TestType::First);
 
-        eRv = Enum::dec<TestType>(eRv);
+        eRv = Enum::dec(eRv);
         xTEST_EQ((int)eRv, (int)TestType::Unknown);
     }
 
