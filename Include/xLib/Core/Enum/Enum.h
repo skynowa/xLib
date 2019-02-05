@@ -1,6 +1,10 @@
 /**
  * \file   Enum.h
  * \brief  Enumeration
+ *
+ * http://www.yolinux.com/TUTORIALS/C++Enum.html
+ * https://www.reddit.com/r/cpp/comments/48l2yo/automatically_printing_enum_names/
+ * http://www.edm2.com/0405/enumeration.html
  */
 
 
@@ -56,7 +60,3 @@ private:
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "Enum.inl"
-
-
-// https://www.reddit.com/r/cpp/comments/48l2yo/automatically_printing_enum_names/
-// http://www.edm2.com/0405/enumeration.html
