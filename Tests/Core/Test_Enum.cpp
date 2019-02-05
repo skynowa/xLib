@@ -26,21 +26,21 @@ enum class TestType
 bool_t
 Test_Enum::unit()
 {
-    xTEST_CASE("toString")
+    xTEST_CASE("str")
     {
-        m_sRv = Enum::toString(TestType::First);
+        m_sRv = Enum::str(TestType::First);
         xTEST_EQ(m_sRv, std::tstring_t(xT("1")));
     }
 
-    xTEST_CASE("toInt")
+    xTEST_CASE("value")
     {
-        m_ullRv = Enum::toInt(TestType::Last);
+        m_ullRv = Enum::value(TestType::Last);
         xTEST_EQ(m_ullRv, 4ULL);
     }
 
-    xTEST_CASE("toEnum")
+    xTEST_CASE("cast")
     {
-        auto arv = Enum::toEnum<TestType>(xT("2"));
+        auto arv = Enum::cast<TestType>(xT("2"));
         xTEST_EQ((int)arv, (int)TestType::Second);
     }
 
