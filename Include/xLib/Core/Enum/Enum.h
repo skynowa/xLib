@@ -21,15 +21,15 @@ class Enum
 public:
     template<typename T>
     static
-    std::tstring_t toString(const T &value);
+    std::tstring_t str(const T &value);
 
     template<typename T>
     static
-    ::ssize_t      toInt(const T &value);
+    ::ssize_t      value(const T &value);
 
     template<typename T>
     static
-    T              toEnum(std::ctstring_t &value);
+    T              cast(std::ctstring_t &value);
 
     template<typename T>
     static

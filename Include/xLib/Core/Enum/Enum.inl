@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN2(xl, core)
 /* static */
 template<typename T>
 inline std::tstring_t
-Enum::toString(
+Enum::str(
 	const T &a_value
 )
 {
@@ -27,7 +27,7 @@ Enum::toString(
 /* static */
 template<typename T>
 inline ::ssize_t
-Enum::toInt(
+Enum::value(
 	const T &a_value
 )
 {
@@ -37,7 +37,7 @@ Enum::toInt(
 /* static */
 template<typename T>
 inline T
-Enum::toEnum(
+Enum::cast(
 	std::ctstring_t &a_value
 )
 {
