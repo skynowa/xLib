@@ -11,29 +11,34 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-template<typename T>
 class Enum
     /// Enumeration
 {
 public:
-    using value_type = T;
-
+    template<typename T>
     static
-    std::tstring_t toString(const T value);
+    std::tstring_t toString(const T &value);
+
+    template<typename T>
     static
     T              fromString(std::ctstring_t &value);
+
+    template<typename T>
     static
-    std::tstring_t asString(const T value);
+    std::tstring_t asString(const T &value);
 
     // operators
+    template<typename T>
     static
     T              inc(const T &value);
+
+    template<typename T>
     static
     T              dec(const T &value);
 
 private:
-    xNO_INSTANCE(Enum<T>)
-    xNO_COPY_ASSIGN(Enum<T>)
+    xNO_INSTANCE(Enum)
+    xNO_COPY_ASSIGN(Enum)
 };
 
 // template<typename T>

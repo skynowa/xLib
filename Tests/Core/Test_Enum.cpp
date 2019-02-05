@@ -28,13 +28,13 @@ Test_Enum::unit()
 {
     xTEST_CASE("toString")
     {
-        m_sRv = Enum<TestType>::toString(TestType::First);
+        m_sRv = Enum::toString(TestType::First);
         xTEST_EQ(m_sRv, std::tstring_t(xT("1")));
     }
 
     xTEST_CASE("fromString")
     {
-        auto arv = Enum<TestType>::fromString(xT("2"));
+        auto arv = Enum::fromString<TestType>(xT("2"));
         xTEST_EQ((int)arv, (int)TestType::Second);
     }
 
@@ -42,10 +42,10 @@ Test_Enum::unit()
     {
         TestType eRv = TestType::Unknown;
 
-        eRv = Enum<TestType>::inc(eRv);
+        eRv = Enum::inc<TestType>(eRv);
         xTEST_EQ((int)eRv, (int)TestType::First);
 
-        eRv = Enum<TestType>::dec(eRv);
+        eRv = Enum::dec<TestType>(eRv);
         xTEST_EQ((int)eRv, (int)TestType::Unknown);
     }
 
@@ -61,7 +61,7 @@ Test_Enum::unit()
         }
         xTEST_EQ(ss.str(), std::tstring_t(xT("01234")));
     #else
-        std::tcout << TestType::First << std::endl;
+        // std::tcout << TestType::First << std::endl;
     #endif
     }
 
