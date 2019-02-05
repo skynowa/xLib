@@ -5,7 +5,6 @@
 
 
 #include <xLib/xLib.h>
-#include <initializer_list>
 
 
 //-------------------------------------------------------------------------------------------------
@@ -52,7 +51,7 @@ Test_Enum::unit()
 
     xTEST_CASE("operator <<")
     {
-    #if 1
+    #if 0
         const size_t enumSize = 5;
         const EnumArray<TestType, enumSize> enums;
 
@@ -61,6 +60,8 @@ Test_Enum::unit()
             ss << it_enum;
         }
         xTEST_EQ(ss.str(), std::tstring_t(xT("01234")));
+    #else
+        std::tcout << TestType::First << std::endl;
     #endif
     }
 

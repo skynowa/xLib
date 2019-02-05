@@ -16,7 +16,7 @@ class Enum
     /// Enumeration
 {
 public:
-    typedef T value_type;
+    using value_type = T;
 
     static
     std::tstring_t toString(const T value);
@@ -36,9 +36,9 @@ private:
     xNO_COPY_ASSIGN(Enum<T>)
 };
 
-template<typename T>
-std::tostream_t &
-operator << (std::tostream_t &os, const typename Enum<T>::value_type value);
+// template<typename T>
+// std::tostream_t &
+// operator << (std::tostream_t &os, const typename Enum<T>::value_type &value);
 
 // template<typename T>
 // xl::core::OStream &
