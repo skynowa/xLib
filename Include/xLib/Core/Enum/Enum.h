@@ -50,6 +50,10 @@ private:
     xNO_COPY_ASSIGN(Enum)
 };
 
+xNAMESPACE_END2(xl, core)
+//-------------------------------------------------------------------------------------------------
+#include "Enum.inl"
+//-------------------------------------------------------------------------------------------------
 // template<typename T>
 // std::tostream_t &
 // operator << (std::tostream_t &os, const typename Enum<T>::value_type &value);
@@ -57,7 +61,4 @@ private:
 // template<typename T>
 // xl::core::OStream &
 // operator << (OStream &os, const T value);
-
-xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
-#include "Enum.inl"
