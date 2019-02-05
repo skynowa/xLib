@@ -14,16 +14,10 @@ xNAMESPACE_BEGIN2(xl, core)
 //-------------------------------------------------------------------------------------------------
 template<typename T, const std::size_t N>
 inline
-EnumArray<T, N>::EnumArray()
-{
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T, const std::size_t N>
-inline
 EnumArray<T, N>::EnumArray(
-	const std::array<T, N> &a_enums
+	const std::array<T, N> &a_values
 ) :
-    std::array<T, N>(a_enums)
+    std::array<T, N>(a_values)
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -47,12 +41,13 @@ operator << (
 	const typename xl::core::EnumArray<T, N> &a_values
 )
 {
-    a_os << "EnumArray (" << a_values.size() << "):\n";
+    /// a_os << "EnumArray (" << a_values.size() << "):\n";
 
 	for (size_t i = 0; i < a_values.size(); ++ i) {
 		const auto &it_value = a_values[i];
 
-		a_os << xl::core::Enum::name(it_value);
+		/// a_os << xl::core::Enum::name(it_value);
+		a_os << xl::core::Enum::value(it_value);
 
 		if (i < (a_values.size() - 1)) {
 			a_os << ",";

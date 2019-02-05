@@ -10,14 +10,13 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, core)
 
-template<typename T, const std::size_t N = 0>
+template<typename T, const std::size_t N>
 class EnumArray :
     public std::array<T, N>
     /// Enumeration container
 {
 public:
-           EnumArray<T, N>();
-           EnumArray<T, N>(const std::array<T, N> &enums);
+           EnumArray<T, N>(const std::array<T, N> &values);
 
     bool_t isValid(const ::ssize_t value) const;
 };
