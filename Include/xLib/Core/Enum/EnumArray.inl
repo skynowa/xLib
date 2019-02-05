@@ -38,3 +38,27 @@ EnumArray<T, N>::isValid(
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, core)
+
+//-------------------------------------------------------------------------------------------------
+template<typename T, const std::size_t N>
+inline std::tostream_t &
+operator << (
+	std::tostream_t                          &a_os,
+	const typename xl::core::EnumArray<T, N> &a_values
+)
+{
+    a_os << "EnumArray (" << a_values.size() << "):\n";
+
+	for (size_t i = 0; i < a_values.size(); ++ i) {
+		const auto &it_value = a_values[i];
+
+		a_os << xl::core::Enum::name(it_value);
+
+		if (i < (a_values.size() - 1)) {
+			a_os << ",";
+		}
+	}
+
+    return a_os;
+}
+//-------------------------------------------------------------------------------------------------

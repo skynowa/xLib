@@ -52,6 +52,15 @@ Test_EnumArray::unit()
         xTEST(!m_bRv);
     }
 
+    xTEST_CASE("operator <<")
+    {
+        const EnumArray<TestType, 5> enums;
+
+        std::tstringstream_t ss;
+        ss << enums;
+        xTEST_EQ(ss.str(), std::tstring_t(xT("0,1,2,3,4")));
+    }
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
