@@ -26,14 +26,6 @@ enum class TestType
 bool_t
 Test_EnumArray::unit()
 {
-    xTEST_CASE("EnumArray")
-    {
-        const size_t enumSize = 5;
-
-        const EnumArray<TestType, enumSize> enums;
-        xTEST_EQ(enums.size(), enumSize);
-    }
-
     const EnumArray<TestType, 5> enums(
         {
             TestType::Unknown,
@@ -41,7 +33,8 @@ Test_EnumArray::unit()
             TestType::Second,
             TestType::Third,
             TestType::Last
-        });
+        }
+    );
 
     xTEST_CASE("isValid")
     {
@@ -54,8 +47,6 @@ Test_EnumArray::unit()
 
     xTEST_CASE("operator <<")
     {
-        const EnumArray<TestType, 5> enums;
-
         std::tstringstream_t ss;
         ss << enums;
         xTEST_EQ(ss.str(), std::tstring_t(xT("0,1,2,3,4")));
