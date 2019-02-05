@@ -38,15 +38,15 @@ Test_Enum::unit()
         xTEST_EQ(m_ullRv, 4ULL);
     }
 
-    xTEST_CASE("fromString")
+    xTEST_CASE("toEnum")
     {
-        auto arv = Enum::fromString<TestType>(xT("2"));
+        auto arv = Enum::toEnum<TestType>(xT("2"));
         xTEST_EQ((int)arv, (int)TestType::Second);
     }
 
-    xTEST_CASE("asString")
+    xTEST_CASE("name")
     {
-        m_sRv = Enum::asString(TestType::Third);
+        m_sRv = Enum::name(TestType::Third);
         xTEST_EQ(m_sRv, std::tstring_t(xT("TestType::Third")));
     }
 
