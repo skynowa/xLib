@@ -21,6 +21,10 @@ public:
 
     template<typename T>
     static
+    ::ssize_t toInt(const T &value);
+
+    template<typename T>
+    static
     T              fromString(std::ctstring_t &value);
 
     template<typename T>
@@ -55,3 +59,4 @@ xNAMESPACE_END2(xl, core)
 
 
 // https://www.reddit.com/r/cpp/comments/48l2yo/automatically_printing_enum_names/
+// http://www.edm2.com/0405/enumeration.html

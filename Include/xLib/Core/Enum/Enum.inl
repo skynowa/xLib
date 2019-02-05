@@ -26,6 +26,16 @@ Enum::toString(
 //-------------------------------------------------------------------------------------------------
 /* static */
 template<typename T>
+inline ::ssize_t
+Enum::toInt(
+	const T &a_value
+)
+{
+	return static_cast<::ssize_t>(a_value);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+template<typename T>
 inline T
 Enum::fromString(
 	std::ctstring_t &a_value
