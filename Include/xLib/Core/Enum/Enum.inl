@@ -17,8 +17,8 @@ xNAMESPACE_BEGIN2(xl, core)
 /* static */
 template<typename T>
 inline std::tstring_t
-Enum<T>::toString(
-	const T a_value
+Enum::toString(
+	const T &a_value
 )
 {
 	return std::to_tstring( static_cast<::ssize_t>(a_value) );
@@ -27,7 +27,7 @@ Enum<T>::toString(
 /* static */
 template<typename T>
 inline T
-Enum<T>::fromString(
+Enum::fromString(
 	std::ctstring_t &a_value
 )
 {
@@ -41,8 +41,8 @@ Enum<T>::fromString(
 /* static */
 template<typename T>
 inline std::tstring_t
-Enum<T>::asString(
-	const T value
+Enum::asString(
+	const T &value
 )
 {
 	std::tstring_t sRv;
@@ -55,7 +55,7 @@ Enum<T>::asString(
 /* static */
 template<typename T>
 inline T
-Enum<T>::inc(
+Enum::inc(
     const T &a_value
 )
 {
@@ -65,7 +65,7 @@ Enum<T>::inc(
 /* static */
 template<typename T>
 inline T
-Enum<T>::dec(
+Enum::dec(
     const T &a_value
 )
 {
