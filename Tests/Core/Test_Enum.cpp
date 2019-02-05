@@ -40,7 +40,7 @@ Test_Enum::unit()
 
     xTEST_CASE("inc/dec")
     {
-        TestType eRv = TestType::Unknown;
+        TestType eRv {};
 
         eRv = Enum::inc(eRv);
         xTEST_EQ((int)eRv, (int)TestType::First);
