@@ -42,12 +42,26 @@ Enum::fromString(
 template<typename T>
 inline std::tstring_t
 Enum::asString(
-	const T &value
+	const T &a_value
 )
 {
+	// TODO: [skynowa] Enum::asString()
+
 	std::tstring_t sRv;
 
-	// TODO: [skynowa] Enum::asString()
+	switch (a_value) {
+	case T::First:
+		sRv = xT("TestType::First");
+		break;
+	case T::Second:
+		sRv = xT("TestType::Second");
+		break;
+	case T::Third:
+		sRv = xT("TestType::Third");
+		break;
+	default:
+		break;
+	}
 
 	return sRv;
 }
