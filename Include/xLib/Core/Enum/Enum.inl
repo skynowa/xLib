@@ -70,6 +70,7 @@ Enum::name(
 		sRv = xT("Third");
 		break;
 	default:
+		sRv = xT("Unknown");
 		break;
 	}
 
