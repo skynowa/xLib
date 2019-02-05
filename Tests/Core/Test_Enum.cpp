@@ -47,7 +47,7 @@ Test_Enum::unit()
     xTEST_CASE("name")
     {
         m_sRv = Enum::name(TestType::Third);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("TestType::Third")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("Third")));
     }
 
     xTEST_CASE("inc/dec")
