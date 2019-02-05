@@ -5,6 +5,7 @@
  * http://www.yolinux.com/TUTORIALS/C++Enum.html
  * https://www.reddit.com/r/cpp/comments/48l2yo/automatically_printing_enum_names/
  * http://www.edm2.com/0405/enumeration.html
+ * https://docs.microsoft.com/en-us/dotnet/api/system.enum.getunderlyingtype?view=netframework-4.7.2
  */
 
 
