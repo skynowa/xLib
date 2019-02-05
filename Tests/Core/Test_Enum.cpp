@@ -38,6 +38,12 @@ Test_Enum::unit()
         xTEST_EQ((int)arv, (int)TestType::Second);
     }
 
+    xTEST_CASE("asString")
+    {
+        m_sRv = Enum::asString(TestType::Third);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("TestType::Third")));
+    }
+
     xTEST_CASE("inc/dec")
     {
         TestType eRv {};
