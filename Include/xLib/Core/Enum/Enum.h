@@ -47,3 +47,6 @@ operator << (std::tostream_t &os, const typename Enum<T>::value_type value);
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "Enum.inl"
+
+
+// https://www.reddit.com/r/cpp/comments/48l2yo/automatically_printing_enum_names/
