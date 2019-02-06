@@ -61,7 +61,7 @@ Test_Enum::unit()
         }
         xTEST_EQ(ss.str(), std::tstring_t(xT("01234")));
     #else
-        std::tcout << TestType::First << std::endl;
+        // std::tcout << TestType::First << std::endl;
     #endif
     }
 
