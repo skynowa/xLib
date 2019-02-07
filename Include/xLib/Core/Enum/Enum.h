@@ -45,6 +45,10 @@ public:
     static
     T              dec(const T &value);
 
+    template<typename StreamT, typename T>
+    static
+    void_t         print(StreamT &os, const T &value);
+
 private:
     xNO_INSTANCE(Enum)
     xNO_COPY_ASSIGN(Enum)
