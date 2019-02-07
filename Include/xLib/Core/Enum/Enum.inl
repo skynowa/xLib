@@ -97,6 +97,17 @@ Enum::dec(
     return static_cast<T>( static_cast<::ssize_t>(a_value) - 1 );
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+template<typename StreamT, typename T>
+void_t
+Enum::print(
+	StreamT &a_os,
+	const T &a_value
+)
+{
+	a_os << value(a_value);
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, core)
 
