@@ -49,6 +49,9 @@ public:
     static
     void_t         print(StreamT &os, const T &value);
 
+    // TODO: toPrintable
+    // TODO: fromPrintable
+
 private:
     xNO_INSTANCE(Enum)
     xNO_COPY_ASSIGN(Enum)
