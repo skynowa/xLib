@@ -1,6 +1,6 @@
 /**
  * \file  StdStreamAlone.h
- * \brief std stream printers
+ * \brief std::ostream printers
  */
 
 
