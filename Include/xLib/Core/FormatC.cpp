@@ -7,7 +7,6 @@
 #include "FormatC.h"
 
 #include <xLib/Debug/Debug.h>
-#include <xLib/Test/StdTest.h>
 #include <xLib/Test/Test.h>
 
 
