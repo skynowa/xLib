@@ -148,7 +148,6 @@
 #include <xLib/Test/Unit.h>
 #include <xLib/Test/Manager.h>
 #include <xLib/Test/Test.h>
-#include <xLib/Test/StdTest.h>
 
 // Package
 #include <xLib/Package/Archive.h>

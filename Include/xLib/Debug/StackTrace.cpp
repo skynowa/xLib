@@ -12,7 +12,6 @@
 #include <xLib/Core/Utils.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Log/Trace.h>
-#include <xLib/Test/StdTest.h>
 
 xNAMESPACE_ANONYM_BEGIN
 

@@ -103,4 +103,3 @@ using namespace package;
 #include <xLib/Core/Type/Types.h>
 #include <xLib/Internal/Internal.h>    // internal
 #include <xLib/Core/Functions.h>
-#include <xLib/Test/StdTest.h>

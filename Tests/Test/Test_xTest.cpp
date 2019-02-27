@@ -80,12 +80,6 @@ Test_xTest::unit()
         xTESTS_NA;
     }
 
-    xTEST_CASE("xVERIFY")
-    {
-        STD_VERIFY(true);
-        // STD_VERIFY(false);
-    }
-
     return true;
 }
 //-------------------------------------------------------------------------------------------------
