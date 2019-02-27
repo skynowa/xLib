@@ -15,7 +15,6 @@
 #include <cerrno>
 #include <ctime>
 #include <cstring>
-#include <cassert>
 
 // STL
 #include <string>
@@ -90,7 +89,9 @@
     }
     ///< trace function
 #define STD_NOT_IMPLEMENTED \
-    { STD_TEST_MSG_FAIL("Not implemented"); }
+    { \
+        STD_TEST(false && "Not implemented"); \
+    }
     ///< show not implemented message and return value
 //-------------------------------------------------------------------------------------------------
 #define STD_VERIFY(expr) \
