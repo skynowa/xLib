@@ -169,18 +169,18 @@ inline std::string
 currentDateTime()
 {
     std::string sRv;
-    char        buff[80 + 1] = {};
-    time_t      timeNow      = std::time(NULL);
-    std::tm    *timeLocal    = NULL;
+    char        buff[80 + 1] {};
+    time_t      timeNow      {std::time(nullptr)};
+    std::tm    *timeLocal    {};
 
     timeLocal = std::localtime(&timeNow);
-    if (timeLocal == NULL) {
-        return std::string();
+    if (timeLocal == nullptr) {
+        return {};
     }
 
     size_t uiRv = std::strftime(buff, sizeof(buff) - 1, "%Y-%m-%d.%X", timeLocal);
     if (uiRv == 0) {
-        return std::string();
+        return {};
     }
 
     sRv.assign(&buff[0], uiRv);
@@ -197,14 +197,14 @@ modulePath()
     std::string srv;
 
 #if defined(KERN_PROC_PATHNAME)
-    const u_int mibSize            = 4;
-    int         mib[mibSize]       = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
-    char        buff[PATH_MAX + 1] = {0};
-    std::size_t buffSize           = sizeof(buff) - 1;
+    const u_int mibSize            {4};
+    int         mib[mibSize]       {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
+    char        buff[PATH_MAX + 1] {};
+    std::size_t buffSize           {sizeof(buff) - 1};
 
-    int irv = ::sysctl(mib, mibSize, buff, &buffSize, NULL, 0U);
-    if (irv == - 1) {
-        return std::string("<unknown>");
+    int iRv = ::sysctl(mib, mibSize, buff, &buffSize, nuulptr, 0U);
+    if (iRv == - 1) {
+        return "<unknown>";
     }
 
     srv.assign(buff);
