@@ -89,6 +89,7 @@
 		},
 		"files.exclude": {
 			"**/.git": true,
+			".vscode/ipch/": true,
 			// Bin
 			"**/*.o": true,
 			"**/*.so": true,
