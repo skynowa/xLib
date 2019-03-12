@@ -337,3 +337,6 @@
         return bRv ? EXIT_SUCCESS : EXIT_FAILURE; \
     }
 //-------------------------------------------------------------------------------------------------
+// TODO: STD_VERIFY - fix
+#define STD_VERIFY(x) \
+    assert(x)
