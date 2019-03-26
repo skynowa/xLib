@@ -25,13 +25,8 @@ public:
 	using typename IContainer<T>::iterator;
 	using typename IContainer<T>::const_iterator;
 
-    Container()
-    {
-    }
-
-    ~Container()
-    {
-    }
+    Container() = default;
+    ~Container() = default;
 
 	// iterators
 	iterator
@@ -82,17 +77,17 @@ Test_IContainer::unit()
 {
     xTEST_CASE("IContainer")
     {
-        Container<int> cont;
+        Container<int_t> cont;
 		xTEST_EQ(cont.size(), ::buffSize);
 		xTEST(!cont.empty());
 		xTEST_PTR(cont.data());
 
 		// init
         {
-			auto it = std::find_if_not(cont.cbegin(), cont.cend(), [](int i) {return i == 0;});
+			auto it = std::find_if_not(cont.cbegin(), cont.cend(), [](int_t i) {return i == 0;});
 			xTEST(it == cont.end());
 
-			const std::vector<int> v {0,1,2,3,4,5,6,7,8,9};
+			const std::vector<int_t> v {0,1,2,3,4,5,6,7,8,9};
 			xTEST_EQ(v.size(), ::buffSize);
 
 			std::copy(v.cbegin(), v.cend(), cont.begin());
