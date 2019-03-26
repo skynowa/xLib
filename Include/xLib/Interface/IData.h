@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xl, interface)
 
 class xNO_VTABLE IData
-    ///< Data struct
+    /// Data interface
 {
 public:
                    IData() = default;
