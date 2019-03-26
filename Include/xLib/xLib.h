@@ -42,6 +42,7 @@
 #include <xLib/Interface/IHandle.h>
 #include <xLib/Interface/ILastError.h>
 #include <xLib/Interface/IOStream.h>
+#include <xLib/Interface/IContainer.h>
 
 // Algo
 #include <xLib/Algo/Algos.h>
