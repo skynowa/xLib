@@ -14,6 +14,10 @@ class Algos
     ///< Algorithms
 {
 public:
+    template<typename contT, typename valueT>
+    static
+    bool_t isContains(const contT &cont, const valueT &value)
+        ///< check value existence
     template<typename T, typename UnaryPredicate>
     static
     bool_t findIfAll(const T &container, T &out, UnaryPredicate pred);

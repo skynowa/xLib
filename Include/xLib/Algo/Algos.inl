@@ -15,9 +15,20 @@ xNAMESPACE_BEGIN2(xl, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+template<typename contT, typename valueT>
+/* static */
+inline bool_t
+Algos::isContains(
+    const contT  &a_cont,   ///< container
+    const valueT &a_value   ///< search value
+)
+{
+    return std::find(a_cont.begin(), a_cont.end(), a_value) != a_cont.end();
+}
+//-------------------------------------------------------------------------------------------------
 template<typename T, typename UnaryPredicate>
 inline bool_t
-findIfAll(
+Algos::findIfAll(
     T              &a_container,    ///<
     T              &a_out,          ///< [out]
     UnaryPredicate  a_pred          ///< predicate
