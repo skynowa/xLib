@@ -156,6 +156,7 @@
 #include <xLib/Package/Csv.h>
 #include <xLib/Package/Ssh2Client.h>
 #include <xLib/Package/Donate.h>
+#include <xLib/Package/IRestClient.h>
 
 #include <xLib/Package/Curl/Types.h>
 #include <xLib/Package/Curl/Buffer.h>

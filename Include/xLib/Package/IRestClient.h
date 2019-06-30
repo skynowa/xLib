@@ -7,6 +7,9 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Fs/Config.h>
+#include <xLib/Log/FileLog.h>
+#include <xLib/Package/Curl/HttpClient.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, package)
 
@@ -19,12 +22,13 @@ public:
     virtual ~IRestClient();
         ///< destructor
 
-	/// TODO: Version
-	/// TODO: Credentials
-	/// TODO: Config
-	/// TODO: Log
-	/// TODO: Temp dirs
-	/// TODO: HttpClient
+protected:
+	std::size_t        _version {};
+	std::map_tstring_t _credentials;
+	fs::Config         _config;
+	log::FileLog       _log;
+	std::tstring_t     _dirTmp;
+	curl::HttpClient   _http;
 	/// TODO: DbClient
 	/// TODO: IRequest / IResponse
 	/// TODO: Json/Xml/Csv
