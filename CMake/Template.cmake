@@ -11,8 +11,8 @@ unset(cmXLIB_TEMPLATE_COMMENTS CACHE)
 unset(cmXLIB_TEMPLATE_SUBDIR   CACHE)
 unset(cmXLIB_TEMPLATE_NS       CACHE)
 
-set(cmXLIB_TEMPLATE          "IRestClient")
-set(cmXLIB_TEMPLATE_COMMENTS "REST API client")
+set(cmXLIB_TEMPLATE          "Translate")
+set(cmXLIB_TEMPLATE_COMMENTS "Translate text")
 set(cmXLIB_TEMPLATE_SUBDIR   "Package")
 set(cmXLIB_TEMPLATE_NS       "package")
 
