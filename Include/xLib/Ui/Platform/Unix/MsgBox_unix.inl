@@ -38,7 +38,7 @@ MsgBox::_show_impl(
     Console::ModalResult mrConsole = console.msgBox(a_text, a_title, 0);
     xUNUSED(mrConsole);
 
-    mrRv = mrOk;
+    mrRv = ModalResult::mrOk;
 #endif
 
     return mrRv;
