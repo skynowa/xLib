@@ -15,28 +15,28 @@ xNAMESPACE_BEGIN2(xl, core)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename contT, typename valueT>
+template<typename ContT, typename ValueT>
 /* static */
 inline bool_t
 Algos::isContains(
-    const contT  &a_cont,   ///< container
-    const valueT &a_value   ///< search value
+    const ContT  &a_cont,   ///< container
+    const ValueT &a_value   ///< search value
 )
 {
     return std::find(a_cont.begin(), a_cont.end(), a_value) != a_cont.end();
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, typename UnaryPredicate>
+template<typename ContT, typename UnaryPredicateT>
 inline bool_t
 Algos::findIfAll(
-    T              &a_container,    ///<
-    T              &a_out,          ///< [out]
-    UnaryPredicate  a_pred          ///< predicate
+    const ContT     &a_cont, ///<
+    ContT           &a_out,  ///< [out]
+    UnaryPredicateT  a_pred  ///< predicate
 )
 {
-    for (typename T::const_iterator it = std::find_if(a_container.begin(), a_container.end(), a_pred);
-        it != a_container.end();
-        it = std::find_if(++ it, a_container.end(), a_pred))
+    for (typename ContT::const_iterator it = std::find_if(a_cont.begin(), a_cont.end(), a_pred);
+        it != a_cont.end();
+        it = std::find_if(++ it, a_cont.end(), a_pred))
     {
         a_out.push_back(*it);
     }
@@ -67,14 +67,14 @@ Algos::isInBounds(
     return !a_comp(a_value, a_low) && a_comp(a_value, a_high);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename ContT>
 inline void_t
 Algos::deleteAll(
-    T &a_container
+    ContT &a_cont
 )
 {
-    typename T::const_iterator it    = a_container.begin();
-    typename T::const_iterator itEnd = a_container.end();
+    typename ContT::const_iterator it    = a_cont.begin();
+    typename ContT::const_iterator itEnd = a_cont.end();
 
     for ( ; it != itEnd; ++ it) {
         Utils::ptrDeleteT(*it);
@@ -91,13 +91,13 @@ Algos::isUnique(
     return (std::adjacent_find(a_first, a_last) == a_last);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename ContT>
 inline bool_t
 Algos::isUniqueAll(
-    const T &a_container
+    const ContT &a_cont
 )
 {
-    return isUnique(a_container.begin(), a_container.end());
+    return isUnique(a_cont.begin(), a_cont.end());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>

@@ -14,13 +14,13 @@ class Algos
     ///< Algorithms
 {
 public:
-    template<typename contT, typename valueT>
+    template<typename ContT, typename ValueT>
     static
-    bool_t isContains(const contT &cont, const valueT &value)
+    bool_t isContains(const ContT &cont, const ValueT &value);
         ///< check value existence
-    template<typename T, typename UnaryPredicate>
+    template<typename ContT, typename UnaryPredicateT>
     static
-    bool_t findIfAll(const T &container, T &out, UnaryPredicate pred);
+    bool_t findIfAll(const ContT &cont, ContT &out, UnaryPredicateT pred);
         ///< Find all elements in container
     template<typename T>
     static
@@ -30,9 +30,9 @@ public:
     static
     bool_t isInBounds(const T &value, const R &low, const R &high, ComparatorT comp);
         ///< check value bounds (with custom comparator)
-    template<typename T>
+    template<typename ContT>
     static
-    void_t deleteAll(T &container);
+    void_t deleteAll(ContT &cont);
         ///< delete all values
     static
     bool_t startsWith(std::ctstring_t &value, std::ctstring_t &prefix);
@@ -47,9 +47,9 @@ public:
     static
     bool_t isUnique(T first, T last);
         ///< determining if sorted container has all unique elements
-    template<typename T>
+    template<typename ContT>
     static
-    bool_t isUniqueAll(const T &container);
+    bool_t isUniqueAll(const ContT &cont);
         ///< determining if sorted container has all unique elements
     template<typename T>
     static
