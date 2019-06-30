@@ -11,10 +11,10 @@ unset(cmXLIB_TEMPLATE_COMMENTS CACHE)
 unset(cmXLIB_TEMPLATE_SUBDIR   CACHE)
 unset(cmXLIB_TEMPLATE_NS       CACHE)
 
-set(cmXLIB_TEMPLATE          "Archive")
-set(cmXLIB_TEMPLATE_COMMENTS "Pack/unpack archives")
-set(cmXLIB_TEMPLATE_SUBDIR   "Fs")
-set(cmXLIB_TEMPLATE_NS       "fs")
+set(cmXLIB_TEMPLATE          "IRestClient")
+set(cmXLIB_TEMPLATE_COMMENTS "REST API client")
+set(cmXLIB_TEMPLATE_SUBDIR   "Package")
+set(cmXLIB_TEMPLATE_NS       "package")
 
 if (NOT cmXLIB_TEMPLATE OR
     NOT cmXLIB_TEMPLATE_COMMENTS OR

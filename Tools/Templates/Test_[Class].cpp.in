@@ -1,6 +1,6 @@
 /**
- * \file   Test_${cmXLIB_TEMPLATE}.cpp
- * \brief  test ${cmXLIB_TEMPLATE}
+ * \file  Test_${cmXLIB_TEMPLATE}.cpp
+ * \brief test ${cmXLIB_TEMPLATE}
  */
 
 

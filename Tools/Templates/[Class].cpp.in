@@ -1,6 +1,6 @@
 /**
- * \file   ${cmXLIB_TEMPLATE}.cpp
- * \brief  ${cmXLIB_TEMPLATE_COMMENTS}
+ * \file  ${cmXLIB_TEMPLATE}.cpp
+ * \brief ${cmXLIB_TEMPLATE_COMMENTS}
  */
 
 
