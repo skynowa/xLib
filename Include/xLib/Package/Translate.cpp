@@ -200,7 +200,7 @@ Translate::execute(
 //-------------------------------------------------------------------------------------------------
 void
 Translate::_responseParse(
-    QNetworkReply *a_reply,
+    std::ctstring_t &a_response,
     std::tstring_t       *a_textToBrief,
     std::tstring_t       *a_textToDetail,
     std::tstring_t       *a_textToRaw
