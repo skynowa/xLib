@@ -39,7 +39,7 @@ public:
         ///< translate text by Google API
 
 private:
-    void _responseParse(QNetworkReply *reply, std::tstring_t *textToBrief,
+    void _responseParse(std::ctstring_t &response, std::tstring_t *textToBrief,
     		std::tstring_t *textToDetail, std::tstring_t *textToRaw) const;
         ///< parse response
 
