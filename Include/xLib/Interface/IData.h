@@ -23,7 +23,7 @@ public:
         ///< check validness
     virtual void_t clear() = 0;
         ///< clear data
-    virtual void_t dump() = 0;
+    virtual void_t print() = 0;
         ///< print data
 
 private:
