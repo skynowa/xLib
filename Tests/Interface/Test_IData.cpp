@@ -25,7 +25,7 @@ public:
     {
     }
 
-    bool_t isValid() override
+    bool_t isValid() const override
     {
         return true;
     }
@@ -34,7 +34,7 @@ public:
     {
     }
 
-    void_t print() override
+    void_t print() const  override
     {
     }
 };
