@@ -34,7 +34,7 @@ public:
     {
     }
 
-    void_t dump() override
+    void_t print() override
     {
     }
 };
@@ -51,7 +51,7 @@ Test_IData::unit()
         xTEST(m_bRv);
 
         d.clear();
-        d.dump();
+        d.print();
     }
 
     return true;
