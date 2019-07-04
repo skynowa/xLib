@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, package)
 
 class Translate :
 	public IRestClient
-    ///< Translate text
+    ///< Translate text (by Google API)
 {
 public:
              Translate();
@@ -26,20 +26,22 @@ public:
     enum class Language
         ///< detected language
     {
-        Unknown,
-        En,
-        Ru
+        Unknown = 0,
+        Auto    = 1,	// TODO: Auto
+        En      = 2,
+        Ru      = 3
     };
+    xUSING_CONST(Language);
 
-    void languagesDetect(std::ctstring_t &text, Language *langFrom, Language *langTo,
-    		std::tstring_t *langCodeFrom, std::tstring_t *langCodeTo) const;
+    void_t languagesDetect(std::ctstring_t &text, Language *langFrom, Language *langTo) const;
         ///< detect languages
-    void execute(std::ctstring_t &textFrom, std::ctstring_t &langFrom, std::ctstring_t &langTo,
-    		std::tstring_t *textToBrief, std::tstring_t *textToDetail, std::tstring_t *textToRaw) const;
-        ///< translate text by Google API
+    void_t execute(std::ctstring_t &textFrom, cLanguage langFrom, cLanguage langTo,
+				std::tstring_t *textToBrief, std::tstring_t *textToDetail,
+				std::tstring_t *textToRaw) const;
+        ///< translate text
 
 private:
-    void _responseParse(std::ctstring_t &response, std::tstring_t *textToBrief,
+    void_t _responseParse(std::ctstring_t &response, std::tstring_t *textToBrief,
     		std::tstring_t *textToDetail, std::tstring_t *textToRaw) const;
         ///< parse response
 
