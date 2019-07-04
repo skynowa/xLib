@@ -23,7 +23,12 @@ public:
         ///< check validness
     virtual void_t clear() = 0;
         ///< clear data
-    virtual void_t print() const = 0;
+
+	friend std::tostream_t & operator << (std::tostream_t &os, const IData &data);
+		///< print to std::stream
+
+protected:
+    virtual void_t print(std::tostream_t &os) const = 0;
         ///< print data
 
 private:
@@ -32,3 +37,4 @@ private:
 
 xNAMESPACE_END2(xl, interface)
 //-------------------------------------------------------------------------------------------------
+#include "IData.inl"
