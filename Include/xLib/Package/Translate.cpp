@@ -226,17 +226,21 @@ Translate::_responseParse(
 		isDictionaryText = response.contains("Dictionary:");
 
 		// Trace() << xTRACE_VAR(response);
-		}
+	#endif
+	}
 
-		// proccess response
+	// proccess response
 
-		{
+	{
+	#if 0
 		response.replace("Dictionary:", "\n");
 		response.replace("<br>", "\n");
-		}
+	#endif
+	}
 
-		// parse response
-		{
+	// parse response
+	{
+	#if 0
 		QDomDocument document;
 		document.setContent(response);
 
@@ -259,16 +263,16 @@ Translate::_responseParse(
 
     // out
     {
-        a_textToBrief->swap(textToBrief);
-        a_textToDetail->swap(textToDetail);
+        out_textToBrief->swap(textToBrief);
+        out_textToDetail->swap(textToDetail);
 
-        if (a_textToRaw != nullptr) {
-            a_textToRaw->swap(textToRaw);
+        if (out_textToRaw != nullptr) {
+            out_textToRaw->swap(textToRaw);
         }
 
-        // Trace() << xTRACE_VAR(*a_textToBrief);
-        // Trace() << xTRACE_VAR(*a_textToDetail);
-        // Trace() << xTRACE_VAR(*a_textToRaw);
+        // Trace() << xTRACE_VAR(*out_textToBrief);
+        // Trace() << xTRACE_VAR(*out_textToDetail);
+        // Trace() << xTRACE_VAR(*out_textToRaw);
     }
 }
 //-------------------------------------------------------------------------------------------------
