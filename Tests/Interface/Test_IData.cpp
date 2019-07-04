@@ -17,25 +17,24 @@ class Data :
     public IData
 {
 public:
-    Data()
-    {
-    }
+	std::tstring_t s {"str"};
+	size_t         i {1978};
 
-    ~Data() override
-    {
-    }
-
-    bool_t isValid() const override
+    bool_t
+    isValid() const override
     {
         return true;
     }
 
-    void_t clear() override
+    void_t
+    clear() override
     {
     }
 
-    void_t print() const  override
+    void_t
+    print(std::tostream_t &a_os) const override
     {
+    	a_os << xTRACE_VAR_2(s, i) << std::endl;
     }
 };
 //-------------------------------------------------------------------------------------------------
@@ -51,7 +50,9 @@ Test_IData::unit()
         xTEST(m_bRv);
 
         d.clear();
-        d.print();
+        d.print(std::tcout);
+
+        std::tcout << d << std::endl;
     }
 
     return true;

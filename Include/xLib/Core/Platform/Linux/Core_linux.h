@@ -15,7 +15,7 @@
 #include <mntent.h>
 
 #if cmHAVE_GETCPU
-    #include <linux/getcpu.h>
+    /// #include <linux/getcpu.h>
 #endif
 
 // POSIX
