@@ -6,6 +6,7 @@
 
 #include "Translate.h"
 
+
 //-------------------------------------------------------------------------------------------------
 namespace
 {
@@ -44,18 +45,18 @@ Translate::languagesDetect(
     xTEST(a_langCodeFrom != nullptr);
     xTEST(a_langCodeTo   != nullptr);
 
-    std::ctstring_t lettersEn = std::tstring_t::fromUtf8("abcdefghijklmnopqrstuvwxyz");
-    std::ctstring_t lettersRu = std::tstring_t::fromUtf8("абвгдеёжзийклмнопрстуфхцчшщъыьэюя");
+    std::ctstring_t lettersEn = xT("abcdefghijklmnopqrstuvwxyz");
+    std::ctstring_t lettersRu = xT("абвгдеёжзийклмнопрстуфхцчшщъыьэюя");
 
     uint     countEn = 0;
     uint     countRu = 0;
 
     for (int i = 0; i < a_text.size(); ++ i) {
-        cQChar letter = a_text.at(i).toLower();
-        xCHECK_DO(!letter.isLetter(), continue);
+        core::CharT letter( a_text.at(i)/*.toLower()*/ );
+        xCHECK_DO(!letter.isAlpha(), continue);
 
-        xCHECK_DO(lettersEn.contains(letter), ++ countEn);
-        xCHECK_DO(lettersRu.contains(letter), ++ countRu);
+        xCHECK_DO(lettersEn.find(letter.character()) != std::tstring_t::npos, ++ countEn);
+        xCHECK_DO(lettersRu.find(letter.character()) != std::tstring_t::npos, ++ countRu);
     }
 
     cbool_t isEn      = (countEn != 0 && countRu == 0);
@@ -149,10 +150,9 @@ Translate::execute(
     xTEST(a_textToDetail != nullptr);
     xTEST_NA(a_textToRaw);
 
-    std::ctstring_t              host  = std::tstring_t("https://translate.google.com");
-    QNetworkAccessManager manager;
-    QNetworkRequest       request;
-    QNetworkReply        *reply = nullptr;
+    std::ctstring_t host  = std::tstring_t("https://translate.google.com");
+    std::tstring_t  request;
+    std::tstring_t  response;
 
     // request
     {
@@ -171,6 +171,7 @@ Translate::execute(
 		* </form>
 		*/
 
+	#if 0
 		cQUrl url = std::tstring_t("%1/m").arg(host);
 		url.toEncoded();
 
@@ -183,11 +184,12 @@ Translate::execute(
 		request.setUrl(url);
 		request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
-		reply = manager.post(request, query.toString(QUrl::FullyEncoded).toUtf8());
-		xTEST_PTR(reply);
+		response = manager.post(request, query.toString(QUrl::FullyEncoded).toUtf8());
+		xTEST(!response.empty());
+	#endif
      }
 
-     _responseParse(reply, a_textToBrief, a_textToDetail, a_textToRaw);
+     _responseParse(response, a_textToBrief, a_textToDetail, a_textToRaw);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -227,59 +229,61 @@ Translate::_responseParse(
         }
     #endif
 
-        if (a_reply->error() != QNetworkReply::NoError) {
-            *a_textToBrief  = a_reply->errorString();
-            *a_textToDetail = a_reply->errorString();
+	#if 0
+		if (a_reply->error() != QNetworkReply::NoError) {
+			*a_textToBrief  = a_reply->errorString();
+			*a_textToDetail = a_reply->errorString();
 
-            if (a_textToRaw != nullptr) {
-                *a_textToRaw = a_reply->errorString();
-            }
+			if (a_textToRaw != nullptr) {
+				*a_textToRaw = a_reply->errorString();
+			}
 
-            return;
-        }
+			return;
+		}
 
-        for ( ; ; ) {
-            QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+		for ( ; ; ) {
+			QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
-            xCHECK_DO(a_reply->isFinished(), break);
-        }
+			xCHECK_DO(a_reply->isFinished(), break);
+		}
 
-        response = std::tstring_t::fromUtf8(a_reply->readAll());
-        xTEST(!response.empty());
+		response = std::tstring_t::fromUtf8(a_reply->readAll());
+		xTEST(!response.empty());
 
-        textToRaw        = response;
-        isDictionaryText = response.contains("Dictionary:");
+		textToRaw        = response;
+		isDictionaryText = response.contains("Dictionary:");
 
-        // Trace() << xTRACE_VAR(response);
-    }
+		// Trace() << xTRACE_VAR(response);
+		}
 
-    // proccess response
+		// proccess response
 
-    {
-        response.replace("Dictionary:", "\n");
-        response.replace("<br>", "\n");
-    }
+		{
+		response.replace("Dictionary:", "\n");
+		response.replace("<br>", "\n");
+		}
 
-    // parse response
-    {
-        QDomDocument document;
-        document.setContent(response);
+		// parse response
+		{
+		QDomDocument document;
+		document.setContent(response);
 
-        QDomNodeList docList = document.elementsByTagName("div");
-        xTEST(docList.count() >= 3);
+		QDomNodeList docList = document.elementsByTagName("div");
+		xTEST(docList.count() >= 3);
 
-        // out - textToBrief
-        textToBrief = docList.at(2).toElement().text();
-        xTEST(!textToBrief.empty());
+		// out - textToBrief
+		textToBrief = docList.at(2).toElement().text();
+		xTEST(!textToBrief.empty());
 
-        // out - textToDetail
-        if (isDictionaryText) {
-            textToDetail = docList.at(5).toElement().text();
-            xTEST(!textToDetail.empty());
-        } else {
-            textToDetail = xT("n/a");
-        }
-    }
+		// out - textToDetail
+		if (isDictionaryText) {
+			textToDetail = docList.at(5).toElement().text();
+			xTEST(!textToDetail.empty());
+		} else {
+			textToDetail = xT("n/a");
+		}
+	#endif
+	}
 
     // out
     {
