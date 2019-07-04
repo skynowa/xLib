@@ -8,14 +8,6 @@
 
 
 //-------------------------------------------------------------------------------------------------
-namespace
-{
-
-std::ctstring_t langEn = "en";
-std::ctstring_t langRu = "ru";
-
-}
-//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_BEGIN2(xl, package)
 
@@ -30,34 +22,31 @@ Translate::Translate() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 Translate::languagesDetect(
-    std::ctstring_t                   &a_text,
-    Translate::Language *a_langFrom,
-    Translate::Language *a_langTo,
-    std::tstring_t                    *a_langCodeFrom,
-    std::tstring_t                    *a_langCodeTo
+    std::ctstring_t     &a_text,
+    Translate::Language *out_langFrom,
+    Translate::Language *out_langTo
 ) const
 {
     xTEST(!a_text.empty());
-    xTEST(a_langFrom     != nullptr);
-    xTEST(a_langTo       != nullptr);
-    xTEST(a_langCodeFrom != nullptr);
-    xTEST(a_langCodeTo   != nullptr);
+    xTEST(out_langFrom != nullptr);
+    xTEST(out_langTo != nullptr);
 
     std::ctstring_t lettersEn = xT("abcdefghijklmnopqrstuvwxyz");
     std::ctstring_t lettersRu = xT("абвгдеёжзийклмнопрстуфхцчшщъыьэюя");
 
-    uint     countEn = 0;
-    uint     countRu = 0;
+    std::size_t countEn {};
+    std::size_t countRu {};
+	{
+	    for (int i = 0; i < a_text.size(); ++ i) {
+			core::CharT letter( a_text.at(i)/*.toLower()*/ );
+			xCHECK_DO(!letter.isAlpha(), continue);
 
-    for (int i = 0; i < a_text.size(); ++ i) {
-        core::CharT letter( a_text.at(i)/*.toLower()*/ );
-        xCHECK_DO(!letter.isAlpha(), continue);
-
-        xCHECK_DO(lettersEn.find(letter.character()) != std::tstring_t::npos, ++ countEn);
-        xCHECK_DO(lettersRu.find(letter.character()) != std::tstring_t::npos, ++ countRu);
-    }
+			xCHECK_DO(lettersEn.find(letter.character()) != std::tstring_t::npos, ++ countEn);
+			xCHECK_DO(lettersRu.find(letter.character()) != std::tstring_t::npos, ++ countRu);
+		}
+	}
 
     cbool_t isEn      = (countEn != 0 && countRu == 0);
     cbool_t isRu      = (countEn == 0 && countRu != 0);
@@ -65,20 +54,14 @@ Translate::languagesDetect(
     cbool_t isUnknown = (countEn == 0 && countRu == 0);
 
     if      (isEn) {
-        *a_langFrom     = Translate::Language::En;
-        *a_langTo       = Translate::Language::Ru;
-
-        *a_langCodeFrom = ::langEn;
-        *a_langCodeTo   = ::langRu;
+        *out_langFrom = Translate::Language::En;
+        *out_langTo   = Translate::Language::Ru;
 
         Trace() << "Langs: en-ru\n";
     }
     else if (isRu) {
-        *a_langFrom     = Translate::Language::Ru;
-        *a_langTo       = Translate::Language::En;
-
-        *a_langCodeFrom = ::langRu;
-        *a_langCodeTo   = ::langEn;
+        *out_langFrom = Translate::Language::Ru;
+        *out_langTo   = Translate::Language::En;
 
         Trace() << "Langs: ru-en\n";
     }
@@ -89,20 +72,14 @@ Translate::languagesDetect(
         cbool_t isPreferRu = (countRu >  countEn);
 
         if      (isPreferEn) {
-            *a_langFrom     = Translate::Language::En;
-            *a_langTo       = Translate::Language::Ru;
-
-            *a_langCodeFrom = ::langEn;
-            *a_langCodeTo   = ::langRu;
+            *out_langFrom = Translate::Language::En;
+            *out_langTo   = Translate::Language::Ru;
 
             Trace() << "Langs (prefer): en-ru\n";
         }
         else if (isPreferRu) {
-            *a_langFrom     = Translate::Language::Ru;
-            *a_langTo       = Translate::Language::En;
-
-            *a_langCodeFrom = ::langRu;
-            *a_langCodeTo   = ::langEn;
+            *out_langFrom = Translate::Language::Ru;
+            *out_langTo   = Translate::Language::En;
 
             Trace() << "Langs (prefer): ru-en\n";
         }
@@ -111,20 +88,14 @@ Translate::languagesDetect(
         }
     }
     else if (isUnknown) {
-        *a_langFrom     = Translate::Language::Unknown;
-        *a_langTo       = Translate::Language::Unknown;
-
-        *a_langCodeFrom = "";
-        *a_langCodeTo   = "";
+        *out_langFrom = Translate::Language::Unknown;
+        *out_langTo   = Translate::Language::Unknown;
 
         Trace() << "Langs: unknown-unknown\n";
     }
     else {
-        *a_langFrom     = Translate::Language::Unknown;
-        *a_langTo       = Translate::Language::Unknown;
-
-        *a_langCodeFrom = "";
-        *a_langCodeTo   = "";
+        *out_langFrom = Translate::Language::Unknown;
+        *out_langTo   = Translate::Language::Unknown;
 
         Trace() << xTRACE_VAR(countEn);
         Trace() << xTRACE_VAR(countRu);
@@ -133,22 +104,22 @@ Translate::languagesDetect(
     }
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 Translate::execute(
-    std::ctstring_t         &a_textFrom,       ///< source text
-    std::ctstring_t         &a_langFrom,       ///< source text language
-    std::ctstring_t         &a_langTo,         ///< target text language
-    std::tstring_t          *a_textToBrief,    ///< [out] target brief translate
-    std::tstring_t          *a_textToDetail,   ///< [out] target detail translate
-    std::tstring_t          *a_textToRaw       ///< [out] target raw translate (HTML) (maybe nullptr)
+    std::ctstring_t &a_textFrom,		///< source text
+    cLanguage        a_langFrom,		///< source text language
+    cLanguage        a_langTo,			///< target text language
+    std::tstring_t  *out_textToBrief,	///< [out] target brief translate
+    std::tstring_t  *out_textToDetail,	///< [out] target detail translate
+    std::tstring_t  *out_textToRaw		///< [out] target raw translate (HTML) (maybe nullptr)
 ) const
 {
     xTEST(!a_textFrom.empty());
-    xTEST(!a_langFrom.empty());
-    xTEST(!a_langTo.empty());
-    xTEST(a_textToBrief  != nullptr);
-    xTEST(a_textToDetail != nullptr);
-    xTEST_NA(a_textToRaw);
+    xTEST(a_langFrom != Language::Unknown);
+    xTEST(a_langTo != Language::Unknown);
+    xTEST(out_textToBrief != nullptr);
+    xTEST(out_textToDetail != nullptr);
+    xTEST_NA(out_textToRaw);
 
     std::ctstring_t host  = std::tstring_t("https://translate.google.com");
     std::tstring_t  request;
@@ -189,7 +160,7 @@ Translate::execute(
 	#endif
      }
 
-     _responseParse(response, a_textToBrief, a_textToDetail, a_textToRaw);
+     _responseParse(response, out_textToBrief, out_textToDetail, out_textToRaw);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -200,12 +171,12 @@ Translate::execute(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 Translate::_responseParse(
-    std::ctstring_t &a_response,
-    std::tstring_t       *a_textToBrief,
-    std::tstring_t       *a_textToDetail,
-    std::tstring_t       *a_textToRaw
+    std::ctstring_t &a_response,		///<
+    std::tstring_t  *out_textToBrief,	///< [out]
+    std::tstring_t  *out_textToDetail,	///< [out]
+    std::tstring_t  *out_textToRaw		///< [out]
 ) const
 {
     std::tstring_t textToBrief;
@@ -213,7 +184,8 @@ Translate::_responseParse(
     std::tstring_t textToRaw;
 
     std::tstring_t response;
-    bool    isDictionaryText = false;
+
+    bool isDictionaryText {};
     {
     #if 0
         cQVariant httpStatusCode = a_reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
