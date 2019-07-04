@@ -42,7 +42,7 @@ public:
 
 private:
     void_t _responseParse(std::ctstring_t &response, std::tstring_t *textToBrief,
-    		std::tstring_t *textToDetail, std::tstring_t *textToRaw) const;
+    			std::tstring_t *textToDetail, std::tstring_t *textToRaw) const;
         ///< parse response
 
 private:
