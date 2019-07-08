@@ -111,7 +111,7 @@ std::ctstring_t langDirName   = xT("Lang");
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_BEGIN2(xl, core)
+xNAMESPACE_BEGIN2(xl, package)
 
 ApplicationInfo Application::_info;
 Donate          Application::_donate;
@@ -461,4 +461,4 @@ Application::onRun()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, core)
+xNAMESPACE_END2(xl, package)

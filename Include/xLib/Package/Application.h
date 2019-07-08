@@ -12,7 +12,7 @@
 #include <xLib/Sync/Signal.h>
 #include <xLib/Package/Donate.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+xNAMESPACE_BEGIN2(xl, package)
 
 class Application
     /// application
@@ -120,5 +120,5 @@ protected:
     xNO_COPY_ASSIGN(Application)
 };
 
-xNAMESPACE_END2(xl, core)
+xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------
