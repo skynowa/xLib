@@ -308,7 +308,7 @@ public:
 
 protected:
     HandleSocket   _handle;         ///< socket handle
-    sa_family_t    _family {-1};    ///< family
+    sa_family_t    _family {};      ///< family
     std::tstring_t _ip;             ///< IP
     ushort_t       _port {};        ///< port
 

@@ -60,10 +60,10 @@ public:
     bool_t         isDbExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
         ///< check connection
     static
-    void_t         dbCreate(cMySqlConnectionData &data) xWARN_UNUSED_RV;
+    void_t         dbCreate(cMySqlConnectionData &data);
         ///< create DB
     static
-    void_t         dbDrop(cMySqlConnectionData &data) xWARN_UNUSED_RV;
+    void_t         dbDrop(cMySqlConnectionData &data);
         ///< drop DB
 
     void_t         connect(cMySqlConnectionData &data);
