@@ -1,6 +1,6 @@
 /**
- * \file   IData.h
- * \brief  Data struct
+ * \file   IContainer.h
+ * \brief  Container
  */
 
 
