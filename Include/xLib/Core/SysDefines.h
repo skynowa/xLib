@@ -65,6 +65,18 @@
 		///< ISO/IEC 14882:2011
 #endif
 
+#if (__cplusplus >= 201402L)
+	// TODO: [skynowa] xLANG_CPP14 (Android)
+	#define xLANG_CPP14 1
+		///< ISO/IEC 14882:2011
+#endif
+
+#if (__cplusplus >= 201703L)
+	// TODO: [skynowa] xLANG_CPP17 (Android)
+	#define xLANG_CPP17 1
+		///< ISO/IEC 14882:2011
+#endif
+
 #if (__cplusplus_cli >= 200406L)
     #define xLANG_CPP_CLI 1
         ///< ECMA-372

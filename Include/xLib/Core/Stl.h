@@ -26,7 +26,7 @@
 #include <cstring>
 #include <ctime>
 
-#if __cplusplus >= 201103L	// xLANG_CPP98
+#if (__cplusplus >= 201103L)	// xLANG_CPP98
 #include <ccomplex>
 #include <cfenv>
 #include <cinttypes>
@@ -95,6 +95,18 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#if __cplusplus >= 201402L	// xLANG_CPP14
+#if (__cplusplus >= 201402L)	// xLANG_CPP14
 #include <shared_mutex>
+#endif
+
+#if (__cplusplus >= 201703L)	// xLANG_CPP17
+#include <any>
+#include <optional>
+#include <variant>
+#include <memory_resource>
+#include <string_view>
+#include <charconv>
+#include <execution>
+#include <filesystem>
+#include
 #endif

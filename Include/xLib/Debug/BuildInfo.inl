@@ -71,6 +71,10 @@ BuildInfo::langStandart() const
         langStandartCpp += xT("C++98");
     #elif xLANG_CPP11
         langStandartCpp += xT("C++11");
+    #elif xLANG_CPP14
+        langStandartCpp += xT("C++14");
+    #elif xLANG_CPP17
+        langStandartCpp += xT("C++17");
     #elif xLANG_CPP_CLI
         langStandartCpp += xT("C++/CLI");
     #elif xLANG_ECPP
