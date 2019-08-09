@@ -54,6 +54,8 @@
         ///< ISO/IEC 9899:2011
 #endif
 
+// TODO: C++11, 17
+
 #if (__cplusplus >= 199711L)
     #define xLANG_CPP98 1
         ///< ISO/IEC 14882:1998
