@@ -25,7 +25,7 @@
     #elif xENV_BSD
         #include "Platform/Bsd/Process_bsd.inl"
     #elif xENV_APPLE
-        // #include "Platform/Unix/Process_apple.inl"
+        #include "Platform/Unix/Process_apple.inl"
     #endif
 #endif
 
@@ -229,6 +229,16 @@ Process::currentExit(
 )
 {
     _currentExit_impl(a_exitCode);
+}
+//-------------------------------------------------------------------------------------------------
+// TODO: [skynowa] Process::currenQuicktExit() - tests
+// FAQ: https://github.com/boostorg/core/blob/develop/include/boost/core/quick_exit.hpp
+void_t
+Process::currenQuicktExit(
+    cuint_t &a_exitCode
+)
+{
+    std::quick_exit( static_cast<int_t>(a_exitCode) );
 }
 //-------------------------------------------------------------------------------------------------
 
