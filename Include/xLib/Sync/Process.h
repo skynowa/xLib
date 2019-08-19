@@ -109,7 +109,7 @@ public:
     void_t     currentExit(cuint_t &exitCode);
         ///< ends the calling process and all its threads
     static
-    void_t     currenQuicktExit(cuint_t &exitCode)
+    void_t     currenQuicktExit(cuint_t &exitCode);
         ///< Causes normal program termination to occur without completely cleaning the resources
 
     // static
