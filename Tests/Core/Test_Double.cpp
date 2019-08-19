@@ -98,6 +98,7 @@ Test_Double::unit()
         xTEST(ddouble_t(d.get()) == 11.55);
     }
 
+    xTEST_CASE("isNull")
     {
         ddouble_t d(0.0);
         xTEST(d.isNull());
