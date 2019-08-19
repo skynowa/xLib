@@ -97,7 +97,7 @@ Double<T>::operator > (
 	const Double &a_value
 ) const
 {
-	return (a_value < *this);
+	return (*this > a_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
