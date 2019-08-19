@@ -155,7 +155,7 @@ template<typename T>
 inline bool_t
 Double<T>::isNull() const
 {
-	return (_value == 0.0);
+	return isEqual(_value, 0.0);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
