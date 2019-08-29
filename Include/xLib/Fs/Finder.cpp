@@ -150,12 +150,7 @@ Finder::dirs(
     xTEST_NA(a_isRecursively);
     xTEST_PTR(a_dirPaths);
 
-    Finder finder(a_rootDirPath, a_shellFilter);
-
-    for ( ; ; ) {
-        bool_t bRv = finder.moveNext();
-        xCHECK_DO(!bRv, break);
-
+    for (Finder finder(a_rootDirPath, a_shellFilter); finder.moveNext(); ) {
         xCHECK_DO(finder.entryName() == Const::dot(),  continue);
         xCHECK_DO(finder.entryName() == Const::dot2(), continue);
 
@@ -188,12 +183,7 @@ Finder::files(
     xTEST_PTR(a_filePaths);
 
     if (!a_isRecursively) {
-        Finder finder(a_rootDirPath, a_shellFilter);
-
-        for ( ; ; ) {
-            bool_t bRv = finder.moveNext();
-            xCHECK_DO(!bRv, break);
-
+        for (Finder finder(a_rootDirPath, a_shellFilter); finder.moveNext(); ) {
             xCHECK_DO(finder.entryName() == Const::dot(),  continue);
             xCHECK_DO(finder.entryName() == Const::dot2(), continue);
 
