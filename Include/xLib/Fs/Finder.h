@@ -50,7 +50,7 @@ private:
     struct _Entry
     {
         HandleFindDir   handle;
-        find_dir_data_t data;
+        find_dir_data_t data {};
     };
 
     _Entry            _entry;               ///< entry handle
