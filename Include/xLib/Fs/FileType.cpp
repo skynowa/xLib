@@ -20,14 +20,6 @@
     #include "Platform/Win/FileType_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/FileType_unix.inl"
-
-    #if   xENV_LINUX
-
-    #elif xENV_BSD
-
-    #elif xENV_APPLE
-
-    #endif
 #endif
 
 
