@@ -70,7 +70,7 @@ Flags<T>::test(
 	const std::size_t a_index
 ) const
 {
-    return _flags & (1 << a_index);
+    return _flags & (static_cast<T>(1) << a_index);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
