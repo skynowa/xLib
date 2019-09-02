@@ -20,7 +20,7 @@ Test_Flags::unit()
 
     xTEST_CASE("Flags")
     {
-        Flags<ulonglong_t> iFlags(10ULL);
+        Flags iFlags(10.0);
         std::tcout << xTRACE_VAR(iFlags) << std::endl;
     }
 
