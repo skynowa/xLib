@@ -71,7 +71,9 @@ BuildInfo::langStandart() const
 
     std::tstring_t langStandartCpp;
     {
-    #if   xLANG_CPP98
+    #if   sxLANG_ECPP
+        langStandartCpp += xT("EC++");
+    #elif xLANG_CPP98
         langStandartCpp += xT("C++98");
     #elif xLANG_CPP11
         langStandartCpp += xT("C++11");
@@ -79,10 +81,6 @@ BuildInfo::langStandart() const
         langStandartCpp += xT("C++14");
     #elif xLANG_CPP17
         langStandartCpp += xT("C++17");
-    #elif xLANG_CPP_CLI
-        langStandartCpp += xT("C++/CLI");
-    #elif xLANG_ECPP
-        langStandartCpp += xT("EC++");
     #else
         xBUILD_UNKNOWN("BuildInfo::langStandart() - C++ standart");
     #endif
