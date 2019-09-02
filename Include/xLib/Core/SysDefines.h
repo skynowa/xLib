@@ -89,21 +89,21 @@
 ///@{
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || \
         defined(__WINDOWS__)
-    #define xENV_WIN   1
+    #define xENV_WIN 1
         ///< Windows environment
 #elif defined(__unix__) || defined(__unix)
-    #define xENV_UNIX  1
+    #define xENV_UNIX 1
         ///< Unix environment
 
     #if   defined(linux) || defined(__linux) || defined(__linux__)
-        #define xENV_LINUX   1
+        #define xENV_LINUX 1
             ///< Linux environment
     #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || \
             defined(__bsdi__) || defined(__DragonFly__)
-        #define xENV_BSD   1
+        #define xENV_BSD 1
             ///< BSD environment
     #elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
-        #define xENV_APPLE   1
+        #define xENV_APPLE 1
             ///< Apple environment
     #else
         #error xLib: unsupported OS environment
