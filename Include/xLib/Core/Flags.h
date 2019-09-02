@@ -1,6 +1,8 @@
 /**
  * \file  Flags.h
  * \brief bit mask flags
+ *
+ * like std::bitset
  */
 
 
@@ -21,7 +23,7 @@ public:
         ///< constructor
     explicit Flags(const T &values);
         ///< constructor
-    virtual ~Flags();
+    virtual ~Flags() = default;
         ///< destructor
 
     Flags &  operator = (const Flags &values);
@@ -34,6 +36,8 @@ public:
     void_t   clear();
         ///< reset all flags
 
+    bool_t   test(const std::size_t index) const;
+        ///< check bit at position is set
     bool_t   isSetFlag(const T &value) const;
         ///< flag is set
     bool_t   isSetAnyFlag(const T &value) const;
@@ -45,10 +49,17 @@ public:
     void_t   toggleFlag(const T &value);
         ///< toggle flag
 
+	constexpr
+	std::size_t size() const;
+
+    template<typename StreamT>
+    void_t   print(StreamT &os) const;
+
 private:
     T        _flags {};
 };
 
 xNAMESPACE_END2(xl, core)
+
 //-------------------------------------------------------------------------------------------------
 #include "Flags.inl"

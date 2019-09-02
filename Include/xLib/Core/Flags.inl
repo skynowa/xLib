@@ -66,6 +66,15 @@ Flags<T>::clear()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
+Flags<T>::test(
+	const std::size_t a_index
+) const
+{
+    return _flags & (1 << a_index);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+bool_t
 Flags<T>::isSetFlag(
     const T &a_value
 ) const
@@ -99,7 +108,6 @@ Flags<T>::unsetFlag(
 {
     _flags &= ~a_value;
 }
-
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
@@ -108,6 +116,31 @@ Flags<T>::toggleFlag(
 )
 {
     _flags ^= a_value;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+constexpr
+std::size_t
+Flags<T>::size() const
+{
+	return (sizeof(T) * CHAR_BIT);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+template<typename StreamT>
+void_t
+Flags<T>::print(
+	StreamT &a_os
+) const
+{
+	 a_os << xT("xlib::Flags (size = ") << size() << "):" << std::endl;
+
+	for (::ssize_t i = size(); i >= 0; -- i) {
+		if ( test(i) )
+			a_os << xT("1");
+		else
+			a_os << xT("0");
+	}
 }
 //-------------------------------------------------------------------------------------------------
 

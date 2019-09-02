@@ -16,9 +16,12 @@ xTEST_UNIT(Test_Flags)
 bool_t
 Test_Flags::unit()
 {
+	// TEST: Flags
+
     xTEST_CASE("Flags")
     {
-        // TEST: Flags
+        Flags<ulonglong_t> iFlags(10ULL);
+        std::tcout << xTRACE_VAR(iFlags) << std::endl;
     }
 
     return true;
