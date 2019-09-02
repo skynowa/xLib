@@ -1,6 +1,8 @@
 /**
  * \file  SysDefines.h
  * \brief predefined macros
+ *
+ * https://sourceforge.net/p/predef/wiki/Home/
  */
 
 
@@ -54,7 +56,22 @@
         ///< ISO/IEC 9899:2011
 #endif
 
-// TODO: C++11, 17
+#if (__STDC_VERSION__ >= 201112L)
+    #define xLANG_C11 1
+        ///< ISO/IEC 9899:2011
+#endif
+
+#if (__STDC_VERSION__ >= 201402L)
+    #define xLANG_C14 1
+        ///< C14
+#endif
+
+#if (__STDC_VERSION__ >= 201703L)
+    #define xLANG_C17 1
+        ///< C17
+#endif
+
+// TODO: C++14, 17
 
 #if (__cplusplus >= 199711L)
     #define xLANG_CPP98 1
