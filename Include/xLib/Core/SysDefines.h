@@ -31,44 +31,32 @@
 //-------------------------------------------------------------------------------------------------
 ///@name C language standard
 ///@{
-#if defined(__STDC__)
-    #define xLANG_C89 1
-        ///< ANSI X3.159-1989
-#endif
-
-#if defined(__STDC_VERSION__)
-    #define xLANG_C90 1
-        ///< ISO/IEC 9899:1990
-#endif
-
-#if (__STDC_VERSION__ >= 199409L)
-    #define xLANG_C94 1
-        ///< ISO/IEC 9899-1:1994
-#endif
-
-#if (__STDC_VERSION__ >= 199901L)
-    #define xLANG_C99 1
-        ///< ISO/IEC 9899:1999
-#endif
-
-#if (__STDC_VERSION__ >= 201112L)
-    #define xLANG_C11 1
-        ///< ISO/IEC 9899:2011
-#endif
-
-#if (__STDC_VERSION__ >= 201112L)
-    #define xLANG_C11 1
-        ///< ISO/IEC 9899:2011
-#endif
-
-#if (__STDC_VERSION__ >= 201402L)
-    #define xLANG_C14 1
-        ///< C14
-#endif
-
 #if (__STDC_VERSION__ >= 201703L)
     #define xLANG_C17 1
         ///< C17
+#elif (__STDC_VERSION__ >= 201402L)
+    #define xLANG_C14 1
+        ///< C14
+#elif (__STDC_VERSION__ >= 201112L)
+    #define xLANG_C11 1
+        ///< ISO/IEC 9899:2011
+#elif (__STDC_VERSION__ >= 201112L)
+    #define xLANG_C11 1
+        ///< ISO/IEC 9899:2011
+#elif (__STDC_VERSION__ >= 199901L)
+    #define xLANG_C99 1
+        ///< ISO/IEC 9899:1999
+#elif (__STDC_VERSION__ >= 199409L)
+    #define xLANG_C94 1
+        ///< ISO/IEC 9899-1:1994
+#elif defined(__STDC_VERSION__)
+    #define xLANG_C90 1
+        ///< ISO/IEC 9899:1990
+#elif defined(__STDC__)
+    #define xLANG_C89 1
+        ///< ANSI X3.159-1989
+#else
+	#error xLib: unsupported C language standard
 #endif
 ///@}
 //-------------------------------------------------------------------------------------------------
