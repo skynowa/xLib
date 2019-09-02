@@ -62,37 +62,26 @@
 //-------------------------------------------------------------------------------------------------
 ///@name C++ language standard
 ///@{
-#if (__cplusplus >= 199711L)
-    #define xLANG_CPP98 1
-        ///< ISO/IEC 14882:1998
-#endif
-
-#if (__cplusplus >= 201103L)
-	// TODO: [skynowa] xLANG_CPP11 (Android)
-	#define xLANG_CPP11 1
-		///< ISO/IEC 14882:2011
-#endif
-
-#if (__cplusplus >= 201402L)
-	// TODO: [skynowa] xLANG_CPP14 (Android)
-	#define xLANG_CPP14 1
-		///< ISO/IEC 14882:2011
-#endif
-
 #if (__cplusplus >= 201703L)
 	// TODO: [skynowa] xLANG_CPP17 (Android)
 	#define xLANG_CPP17 1
 		///< ISO/IEC 14882:2011
-#endif
-
-#if (__cplusplus_cli >= 200406L)
-    #define xLANG_CPP_CLI 1
-        ///< ECMA-372
-#endif
-
-#if defined(__embedded_cplusplus)
+#elif (__cplusplus >= 201402L)
+	// TODO: [skynowa] xLANG_CPP14 (Android)
+	#define xLANG_CPP14 1
+		///< ISO/IEC 14882:2011
+#elif (__cplusplus >= 201103L)
+	// TODO: [skynowa] xLANG_CPP11 (Android)
+	#define xLANG_CPP11 1
+		///< ISO/IEC 14882:2011
+#elif (__cplusplus >= 199711L)
+    #define xLANG_CPP98 1
+        ///< ISO/IEC 14882:1998
+#elif (__embedded_cplusplus)
     #define xLANG_ECPP 1
         ///< Embedded C++
+#else
+	#error xLib: unsupported C++ language standard
 #endif
 ///@}
 //-------------------------------------------------------------------------------------------------
