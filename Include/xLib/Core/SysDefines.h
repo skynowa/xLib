@@ -29,10 +29,8 @@
     ///< get Linux kernel version
 ///@}
 //-------------------------------------------------------------------------------------------------
-///@name Language standards
+///@name C language standard
 ///@{
-
-// C
 #if defined(__STDC__)
     #define xLANG_C89 1
         ///< ANSI X3.159-1989
@@ -72,8 +70,10 @@
     #define xLANG_C17 1
         ///< C17
 #endif
-
-// C++
+///@}
+//-------------------------------------------------------------------------------------------------
+///@name C++ language standard
+///@{
 #if (__cplusplus >= 199711L)
     #define xLANG_CPP98 1
         ///< ISO/IEC 14882:1998
