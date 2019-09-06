@@ -51,9 +51,11 @@ public:
 
 	constexpr
 	std::size_t size() const;
+		///< get number of bits
 
     template<typename StreamT>
     void_t   print(StreamT &os) const;
+        ///< print object to stream
 
 private:
     T        _flags {};
