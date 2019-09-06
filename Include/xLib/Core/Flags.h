@@ -3,6 +3,7 @@
  * \brief bit mask flags
  *
  * like std::bitset
+ * https://codereview.stackexchange.com/questions/86623/c-bitset-implementation
  */
 
 
@@ -28,6 +29,8 @@ public:
 
     Flags &  operator = (const Flags &values);
         ///< operator =
+	T &      operator [] (const std::size_t index);
+		///<
 
     T &      get() const;
         ///< get all flags
@@ -46,8 +49,8 @@ public:
         ///< set flag
     void_t   unsetFlag(const T &value);
         ///< unset flag
-    void_t   toggleFlag(const T &value);
-        ///< toggle flag
+    void_t   flipFlag(const T &value);
+        ///< flip flag
 
 	constexpr
 	std::size_t size() const;

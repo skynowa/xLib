@@ -43,6 +43,17 @@ Flags<T>::operator = (
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T &
+Flags<T>::operator [] (
+    const std::size_t a_index
+)
+{
+	/// TODO:
+
+    return *this;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+T &
 Flags<T>::get() const
 {
     return _flags;
@@ -111,7 +122,7 @@ Flags<T>::unsetFlag(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-Flags<T>::toggleFlag(
+Flags<T>::flipFlag(
     const T &a_value
 )
 {
