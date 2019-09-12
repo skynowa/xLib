@@ -24,7 +24,7 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Double.h>
 #include <xLib/Core/Char.h>
-#include <xLib/Core/Flags.h>
+#include <xLib/Core/Bitset.h>
 #include <xLib/Core/Enum/Enum.h>
 #include <xLib/Core/Enum/EnumArray.h>
 #include <xLib/Core/Enum/Operators.h>

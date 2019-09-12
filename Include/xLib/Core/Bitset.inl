@@ -1,5 +1,5 @@
 /**
- * \file   Flags.inl
+ * \file   Bitset.inl
  * \brief  bit mask flags
  */
 
@@ -13,15 +13,15 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-Flags<T>::Flags(
-    const Flags &a_values
+Bitset<T>::Bitset(
+    const Bitset &a_values
 ) :
     _flags(a_values._flags)
 {
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-Flags<T>::Flags(
+Bitset<T>::Bitset(
     const T &a_values
 ) :
     _flags(a_values)
@@ -29,9 +29,9 @@ Flags<T>::Flags(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-Flags<T> &
-Flags<T>::operator = (
-    const Flags &a_values
+Bitset<T> &
+Bitset<T>::operator = (
+    const Bitset &a_values
 )
 {
     xCHECK_RET(this == &a_values, *this);
@@ -43,7 +43,7 @@ Flags<T>::operator = (
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T &
-Flags<T>::operator [] (
+Bitset<T>::operator [] (
     const std::size_t a_index
 )
 {
@@ -54,14 +54,14 @@ Flags<T>::operator [] (
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T &
-Flags<T>::get() const
+Bitset<T>::get() const
 {
     return _flags;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-Flags<T>::set(
+Bitset<T>::set(
     const T &a_values
 )
 {
@@ -70,14 +70,14 @@ Flags<T>::set(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-Flags<T>::clear()
+Bitset<T>::clear()
 {
     _flags = 0;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-Flags<T>::test(
+Bitset<T>::test(
 	const std::size_t a_index
 ) const
 {
@@ -86,7 +86,7 @@ Flags<T>::test(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-Flags<T>::isSetFlag(
+Bitset<T>::isSetFlag(
     const T &a_value
 ) const
 {
@@ -95,7 +95,7 @@ Flags<T>::isSetFlag(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-Flags<T>::isSetAnyFlag(
+Bitset<T>::isSetAnyFlag(
     const T &a_value
 ) const
 {
@@ -104,7 +104,7 @@ Flags<T>::isSetAnyFlag(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-Flags<T>::setFlag(
+Bitset<T>::setFlag(
     const T &a_value
 )
 {
@@ -113,7 +113,7 @@ Flags<T>::setFlag(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-Flags<T>::unsetFlag(
+Bitset<T>::unsetFlag(
     const T &a_value
 )
 {
@@ -122,7 +122,7 @@ Flags<T>::unsetFlag(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-Flags<T>::flipFlag(
+Bitset<T>::flipFlag(
     const T &a_value
 )
 {
@@ -132,7 +132,7 @@ Flags<T>::flipFlag(
 template<typename T>
 constexpr
 std::size_t
-Flags<T>::size() const
+Bitset<T>::size() const
 {
 	return (sizeof(T) * CHAR_BIT);
 }
@@ -140,11 +140,11 @@ Flags<T>::size() const
 template<typename T>
 template<typename StreamT>
 void_t
-Flags<T>::print(
+Bitset<T>::print(
 	StreamT &a_os
 ) const
 {
-	 a_os << xT("xlib::Flags (size = ") << size() << "):" << std::endl;
+	 a_os << xT("xlib::Bitset (size = ") << size() << "):" << std::endl;
 
 	for (::ssize_t i = size(); i >= 0; -- i) {
 		if ( test(i) )

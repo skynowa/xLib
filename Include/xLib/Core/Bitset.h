@@ -1,5 +1,5 @@
 /**
- * \file  Flags.h
+ * \file  Bitset.h
  * \brief bit mask flags
  *
  * like std::bitset
@@ -14,20 +14,20 @@
 xNAMESPACE_BEGIN2(xl, core)
 
 template<typename T>
-class Flags
+class Bitset
     /// bit mask flags
 {
 public:
-             Flags() = default;
+             Bitset() = default;
         ///< constructor
-    explicit Flags(const Flags &values);
+    explicit Bitset(const Bitset &values);
         ///< constructor
-    explicit Flags(const T &values);
+    explicit Bitset(const T &values);
         ///< constructor
-    virtual ~Flags() = default;
+    virtual ~Bitset() = default;
         ///< destructor
 
-    Flags &  operator = (const Flags &values);
+    Bitset &  operator = (const Bitset &values);
         ///< operator =
 	T &      operator [] (const std::size_t index);
 		///<
@@ -67,4 +67,4 @@ private:
 xNAMESPACE_END2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
-#include "Flags.inl"
+#include "Bitset.inl"
