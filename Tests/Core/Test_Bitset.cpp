@@ -1,6 +1,6 @@
 /**
- * \file   Test_Flags.cpp
- * \brief  test Flags
+ * \file   Test_Bitset.cpp
+ * \brief  test Bitset
  */
 
 
@@ -9,19 +9,19 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xl;
 
-xTEST_CLASS(Test_Flags)
-xTEST_UNIT(Test_Flags)
+xTEST_CLASS(Test_Bitset)
+xTEST_UNIT(Test_Bitset)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_Flags::unit()
+Test_Bitset::unit()
 {
-	// TEST: Flags
+	// TEST: Bitset
 
-    xTEST_CASE("Flags")
+    xTEST_CASE("Bitset")
     {
-        Flags iFlags(10.0);
-        std::tcout << xTRACE_VAR(iFlags) << std::endl;
+        Bitset iBitset(10.0);
+        std::tcout << xTRACE_VAR(iBitset) << std::endl;
     }
 
     return true;
