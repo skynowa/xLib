@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, core)
 
 template<typename T>
 class Bitset
-    /// bit mask flags
+    /// bit flags
 {
 public:
              Bitset() = default;
@@ -33,23 +33,23 @@ public:
 		///<
 
     T &      get() const;
-        ///< get all flags
+        ///< get all bits
     void_t   set(const T &values);
-        ///< set all flags
+        ///< set all bits
     void_t   clear();
-        ///< reset all flags
+        ///< reset all bits
 
     bool_t   test(const std::size_t index) const;
         ///< check bit at position is set
-    bool_t   isSetFlag(const T &value) const;
+    bool_t   isSetBit(const T &value) const;
         ///< flag is set
-    bool_t   isSetAnyFlag(const T &value) const;
+    bool_t   isSetAnyBit(const T &value) const;
         ///< is any flag set
-    void_t   setFlag(const T &value);
+    void_t   setBit(const T &value);
         ///< set flag
-    void_t   unsetFlag(const T &value);
+    void_t   unsetBit(const T &value);
         ///< unset flag
-    void_t   flipFlag(const T &value);
+    void_t   flipBit(const T &value);
         ///< flip flag
 
 	constexpr

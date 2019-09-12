@@ -86,7 +86,7 @@ Bitset<T>::test(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-Bitset<T>::isSetFlag(
+Bitset<T>::isSetBit(
     const T &a_value
 ) const
 {
@@ -95,7 +95,7 @@ Bitset<T>::isSetFlag(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-Bitset<T>::isSetAnyFlag(
+Bitset<T>::isSetAnyBit(
     const T &a_value
 ) const
 {
@@ -104,7 +104,7 @@ Bitset<T>::isSetAnyFlag(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-Bitset<T>::setFlag(
+Bitset<T>::setBit(
     const T &a_value
 )
 {
@@ -113,7 +113,7 @@ Bitset<T>::setFlag(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-Bitset<T>::unsetFlag(
+Bitset<T>::unsetBit(
     const T &a_value
 )
 {
@@ -122,7 +122,7 @@ Bitset<T>::unsetFlag(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-Bitset<T>::flipFlag(
+Bitset<T>::flipBit(
     const T &a_value
 )
 {
