@@ -32,6 +32,7 @@ public:
 	T &      operator [] (const std::size_t index);
 		///<
 
+    // TODO: https://gcc.gnu.org/onlinedocs/cpp/C_002b_002b-Named-Operators.html#C_002b_002b-Named-Operators
     T &      get() const;
         ///< get all bits
     void_t   set(const T &values);
