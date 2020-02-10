@@ -211,7 +211,7 @@ Utils::intSafeDiv(
     const T &a_value2
 )
 {
-	static_assert(std::is_integral<T>, "");
+	static_assert(std::is_integral<T>::value, "");
 
     if (a_value2 == 0) {
         return 0;
