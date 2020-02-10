@@ -20,7 +20,7 @@ Test_Bitset::unit()
 
     xTEST_CASE("Bitset")
     {
-        Bitset iBitset(10.0);
+        Bitset iBitset(10);
         std::tcout << xTRACE_VAR(iBitset) << std::endl;
     }
 

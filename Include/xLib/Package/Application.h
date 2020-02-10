@@ -1,6 +1,19 @@
 /**
  * \file  Application.h
  * \brief
+ *
+ * Features:
+ * - arguments
+ * - signals
+ * - build info
+ * - configs
+ * - donate
+ * - locale
+ *
+ * TODO:
+ * - singleton
+ * - log
+ * - MT
  */
 
 
