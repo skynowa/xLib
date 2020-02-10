@@ -132,6 +132,26 @@ implicitCast(const From &a_from)
 }
 	///< https://www.boost.org/doc/libs/1_64_0/boost/implicit_cast.hpp
 
+/**************************************************************************************************
+* Auto functions
+*
+**************************************************************************************************/
+
+///@name type aliases
+///@{
+//-------------------------------------------------------------------------------------------------
+using file_unique_ptr_t = std::unique_ptr<std::FILE, int (*)(std::FILE *)>;
+using dir_unique_ptr_t  = std::unique_ptr<::DIR,     int (*)(::DIR *)>;
+using dll_unique_ptr_t  = std::unique_ptr<void,      int (*)(void *)>;
+//-------------------------------------------------------------------------------------------------
+template<class HandleT, class FunctorT, class DeleterT>
+HandleT makeUnique(FunctorT functor, DeleterT deleter);
+//-------------------------------------------------------------------------------------------------
+file_unique_ptr_t autoFile(std::ctstring_t &filePath, cptr_cchar flags);
+dir_unique_ptr_t  autoDir(std::ctstring_t &dirPath);
+dll_unique_ptr_t  autoDll(std::ctstring_t &dllPath, cint_t flags);
+///@}
+
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
 #include "Utils.inl"

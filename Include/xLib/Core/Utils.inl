@@ -230,4 +230,45 @@ Utils::enumDecT(
 }
 //-------------------------------------------------------------------------------------------------
 
+
+/**************************************************************************************************
+* Auto functions
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+template<class HandleT, class FunctorT, class DeleterT>
+inline HandleT
+makeUnique(FunctorT a_functor, DeleterT a_deleter)
+{
+	return HandleT(a_functor, a_deleter);
+}
+//-------------------------------------------------------------------------------------------------
+inline file_unique_ptr_t
+autoFile(
+	std::ctstring_t &a_filePath,
+	cptr_cchar       a_flags
+)
+{
+	return makeUnique<file_unique_ptr_t>(std::fopen(xT2A(a_filePath).c_str(), a_flags), std::fclose);
+}
+//-------------------------------------------------------------------------------------------------
+inline dir_unique_ptr_t
+autoDir(
+	std::ctstring_t &a_dirPath
+)
+{
+	return makeUnique<dir_unique_ptr_t>(::opendir(xT2A(a_dirPath).c_str()), ::closedir);
+}
+//-------------------------------------------------------------------------------------------------
+inline dll_unique_ptr_t
+autoDll(
+	std::ctstring_t &a_dllPath,
+	cint_t           a_flags
+)
+{
+	return makeUnique<dll_unique_ptr_t>(::dlopen(xT2A(a_dllPath).c_str(), a_flags), ::dlclose);
+}
+//-------------------------------------------------------------------------------------------------
+
 xNAMESPACE_END2(xl, core)
