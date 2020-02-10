@@ -1,5 +1,5 @@
 /**
- * \file   Application.h
+ * \file  Application.h
  * \brief
  */
 
