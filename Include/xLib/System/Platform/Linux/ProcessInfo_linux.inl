@@ -51,21 +51,24 @@ ProcessInfo::_commandLine_impl(
     // TODO: [skynowa] ProcessInfo::commandLine() - review
     std::ctstring_t procPath = Format::str(xT("/proc/{}/cmdline"), _id);
 
-    FILE *procFile = std::fopen(xT2A(procPath).c_str(), "r");
-    xTEST_PTR(procFile);
+#if 0
+	file_unique_ptr_t procFile {std::fopen(xT2A(procPath).c_str(), "r"), std::fclose};
+	xTEST_PTR(procFile.get());
+#else
+	auto procFile = autoFile(procPath, "r");
+	xTEST_PTR(procFile.get());
+#endif
 
     std::csize_t bufferSize       = 2048;
     char         buff[bufferSize] = {0};
 
-    while ( std::fgets(buff, static_cast<int_t>(bufferSize), procFile) ) {
+    while ( std::fgets(buff, static_cast<int_t>(bufferSize), procFile.get()) ) {
         for (size_t pos = 0; pos < bufferSize && buff[pos] != '\0'; ) {
             args.push_back( xA2T(buff + pos) );
 
             pos += std::strlen(buff + pos) + 1;
         }
     }
-
-    Utils::fileClose(procFile);
 
     // out
     a_args->swap(args);
