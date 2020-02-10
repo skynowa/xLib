@@ -177,17 +177,6 @@ Test_Utils::unit()
         }
     }
 
-    xTEST_CASE("fileClose")
-    {
-        std::ctstring_t csFilaPath = data.tempDirPath + Const::slash() + xT("test_fileclose.txt");
-
-        FILE *pFile = xTFOPEN(csFilaPath.c_str(), xT("w"));
-        xTEST_PTR(pFile);
-
-        Utils::fileClose(pFile);
-        xTEST_PTR_FAIL(pFile);
-    }
-
     xTEST_CASE("maxT")
     {
         m_uiRv = Utils::maxT(0U, 1U);

@@ -124,15 +124,6 @@ Utils::bufferFreeT(
     freeT(a_ptr, ::free, nullptr);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */ inline
-void_t
-Utils::fileClose(
-    FILE * &a_fileHandle
-)
-{
-    freeT(a_fileHandle, std::fclose, nullptr);
-}
-//-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */ inline
 const T &

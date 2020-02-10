@@ -56,9 +56,6 @@ public:
     static
     void_t    bufferFreeT(T * &ptr);
         ///< free buffer memory
-    static
-    void_t    fileClose(FILE * &fileHandle);
-        ///< close file stream (FILE *)
 
     template<typename T>
     static
