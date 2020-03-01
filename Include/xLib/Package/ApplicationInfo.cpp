@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN2(xl, package)
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-ApplicationInfoData::versionFull() const
+ApplicationInfo::versionFull() const
 {
     return Format::str(xT("{}.{}.{} {} {}"),
         versionMajor, versionMinor, versionPatch, versionType, versionRevision);
@@ -30,14 +30,5 @@ ApplicationInfoData::versionFull() const
 *   public
 *
 **************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-ApplicationInfo::ApplicationInfo(
-    cApplicationInfoData &a_data
-) :
-    _data(a_data)
-{
-}
-//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, package)

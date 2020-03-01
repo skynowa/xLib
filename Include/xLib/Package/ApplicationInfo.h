@@ -10,9 +10,10 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, package)
 
-struct ApplicationInfoData
-    /// SourceInfo data
+class ApplicationInfo
+    ///< Application information
 {
+public:
     std::tstring_t name;
     std::tstring_t decription;
     std::tstring_t copyrightYears;
@@ -33,23 +34,11 @@ struct ApplicationInfoData
     std::tstring_t vendorIcq;
 
     std::tstring_t versionFull() const;
-};
-xUSING_CONST(ApplicationInfoData);
 
-class ApplicationInfo
-    ///< Application information
-{
-public:
-                 ApplicationInfo() = default;
-    explicit     ApplicationInfo(cApplicationInfoData &data);
+             ApplicationInfo() = default;
         ///< constructor
-    virtual     ~ApplicationInfo() = default;
+    virtual ~ApplicationInfo() = default;
         ///< destructor
-
-    xPROPERTY(ApplicationInfoData, data);
-
-private:
-    // xNO_COPY_ASSIGN(ApplicationInfo)
 };
 
 xNAMESPACE_END2(xl, package)
