@@ -18,46 +18,44 @@ Test_ApplicationInfo::unit()
 {
     xTEST_CASE("data")
     {
-		ApplicationInfoData data;
-		data.name            = xT("[name]");
-		data.decription      = xT("[decription]");
-		data.copyrightYears  = xT("[copyrightYears]");
-		data.usage           = xT("[usage]");
-		data.help            = xT("[help]");
-		data.versionMajor    = xT("[versionMajor]");
-		data.versionMinor    = xT("[versionMinor]");
-		data.versionPatch    = xT("[versionPatch]");
-		data.versionType     = xT("[versionType]");
-		data.versionRevision = xT("[versionRevision]");
-		data.vendorName      = xT("[vendorName]");
-		data.vendorDomain    = xT("[vendorDomain]");
-		data.vendorAuthor    = xT("[vendorAuthor]");
-		data.vendorUrl       = xT("[vendorUrl]");
-		data.vendorEmail     = xT("[vendorEmail]");
-		data.vendorSkype     = xT("[vendorSkype]");
-		data.vendorJabber    = xT("[vendorJabber]");
-		data.vendorIcq       = xT("[vendorIcq]");
+		ApplicationInfo applicationInfo;
+		applicationInfo.name            = xT("[name]");
+		applicationInfo.decription      = xT("[decription]");
+		applicationInfo.copyrightYears  = xT("[copyrightYears]");
+		applicationInfo.usage           = xT("[usage]");
+		applicationInfo.help            = xT("[help]");
+		applicationInfo.versionMajor    = xT("[versionMajor]");
+		applicationInfo.versionMinor    = xT("[versionMinor]");
+		applicationInfo.versionPatch    = xT("[versionPatch]");
+		applicationInfo.versionType     = xT("[versionType]");
+		applicationInfo.versionRevision = xT("[versionRevision]");
+		applicationInfo.vendorName      = xT("[vendorName]");
+		applicationInfo.vendorDomain    = xT("[vendorDomain]");
+		applicationInfo.vendorAuthor    = xT("[vendorAuthor]");
+		applicationInfo.vendorUrl       = xT("[vendorUrl]");
+		applicationInfo.vendorEmail     = xT("[vendorEmail]");
+		applicationInfo.vendorSkype     = xT("[vendorSkype]");
+		applicationInfo.vendorJabber    = xT("[vendorJabber]");
+		applicationInfo.vendorIcq       = xT("[vendorIcq]");
 
-		ApplicationInfo applicationInfo(data);
-
-		xTEST_EQ(applicationInfo.get().name.empty(), false);
-		xTEST_EQ(applicationInfo.get().decription.empty(), false);
-		xTEST_EQ(applicationInfo.get().copyrightYears.empty(), false);
-		xTEST_EQ(applicationInfo.get().usage.empty(), false);
-		xTEST_EQ(applicationInfo.get().help.empty(), false);
-		xTEST_EQ(applicationInfo.get().versionMajor.empty(), false);
-		xTEST_EQ(applicationInfo.get().versionMinor.empty(), false);
-		xTEST_EQ(applicationInfo.get().versionPatch.empty(), false);
-		xTEST_EQ(applicationInfo.get().versionType.empty(), false);
-		xTEST_EQ(applicationInfo.get().versionRevision.empty(), false);
-		xTEST_EQ(applicationInfo.get().vendorName.empty(), false);
-		xTEST_EQ(applicationInfo.get().vendorDomain.empty(), false);
-		xTEST_EQ(applicationInfo.get().vendorAuthor.empty(), false);
-		xTEST_EQ(applicationInfo.get().vendorUrl.empty(), false);
-		xTEST_EQ(applicationInfo.get().vendorEmail.empty(), false);
-		xTEST_EQ(applicationInfo.get().vendorSkype.empty(), false);
-		xTEST_EQ(applicationInfo.get().vendorJabber.empty(), false);
-		xTEST_EQ(applicationInfo.get().vendorIcq.empty(), false);
+		xTEST_EQ(applicationInfo.name.empty(), false);
+		xTEST_EQ(applicationInfo.decription.empty(), false);
+		xTEST_EQ(applicationInfo.copyrightYears.empty(), false);
+		xTEST_EQ(applicationInfo.usage.empty(), false);
+		xTEST_EQ(applicationInfo.help.empty(), false);
+		xTEST_EQ(applicationInfo.versionMajor.empty(), false);
+		xTEST_EQ(applicationInfo.versionMinor.empty(), false);
+		xTEST_EQ(applicationInfo.versionPatch.empty(), false);
+		xTEST_EQ(applicationInfo.versionType.empty(), false);
+		xTEST_EQ(applicationInfo.versionRevision.empty(), false);
+		xTEST_EQ(applicationInfo.vendorName.empty(), false);
+		xTEST_EQ(applicationInfo.vendorDomain.empty(), false);
+		xTEST_EQ(applicationInfo.vendorAuthor.empty(), false);
+		xTEST_EQ(applicationInfo.vendorUrl.empty(), false);
+		xTEST_EQ(applicationInfo.vendorEmail.empty(), false);
+		xTEST_EQ(applicationInfo.vendorSkype.empty(), false);
+		xTEST_EQ(applicationInfo.vendorJabber.empty(), false);
+		xTEST_EQ(applicationInfo.vendorIcq.empty(), false);
     }
 
     return true;

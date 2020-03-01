@@ -165,7 +165,7 @@ Test_Application::unit()
 
     xTEST_CASE("info")
     {
-		ApplicationInfoData data;
+		ApplicationInfo data;
 		data.name            = xT("[name]");
 		data.decription      = xT("[decription]");
 		data.copyrightYears  = xT("[copyrightYears]");
@@ -185,28 +185,25 @@ Test_Application::unit()
 		data.vendorJabber    = xT("[vendorJabber]");
 		data.vendorIcq       = xT("[vendorIcq]");
 
-		ApplicationInfo applicationInfo;
-		applicationInfo.set(data);
-
-		UserApplication::setInfo(applicationInfo);
-		xTEST_EQ(UserApplication::info().get().name,            data.name);
-		xTEST_EQ(UserApplication::info().get().decription,      data.decription);
-		xTEST_EQ(UserApplication::info().get().copyrightYears,  data.copyrightYears);
-		xTEST_EQ(UserApplication::info().get().usage,           data.usage);
-		xTEST_EQ(UserApplication::info().get().help,            data.help);
-		xTEST_EQ(UserApplication::info().get().versionMajor,    data.versionMajor);
-		xTEST_EQ(UserApplication::info().get().versionMinor,    data.versionMinor);
-		xTEST_EQ(UserApplication::info().get().versionPatch,    data.versionPatch);
-		xTEST_EQ(UserApplication::info().get().versionType,     data.versionType);
-		xTEST_EQ(UserApplication::info().get().versionRevision, data.versionRevision);
-		xTEST_EQ(UserApplication::info().get().vendorName,      data.vendorName);
-		xTEST_EQ(UserApplication::info().get().vendorDomain,    data.vendorDomain);
-		xTEST_EQ(UserApplication::info().get().vendorAuthor,    data.vendorAuthor);
-		xTEST_EQ(UserApplication::info().get().vendorUrl,       data.vendorUrl);
-		xTEST_EQ(UserApplication::info().get().vendorEmail,     data.vendorEmail);
-		xTEST_EQ(UserApplication::info().get().vendorSkype,     data.vendorSkype);
-		xTEST_EQ(UserApplication::info().get().vendorJabber,    data.vendorJabber);
-		xTEST_EQ(UserApplication::info().get().vendorIcq,       data.vendorIcq);
+		UserApplication::setInfo(data);
+		xTEST_EQ(UserApplication::info().name,            data.name);
+		xTEST_EQ(UserApplication::info().decription,      data.decription);
+		xTEST_EQ(UserApplication::info().copyrightYears,  data.copyrightYears);
+		xTEST_EQ(UserApplication::info().usage,           data.usage);
+		xTEST_EQ(UserApplication::info().help,            data.help);
+		xTEST_EQ(UserApplication::info().versionMajor,    data.versionMajor);
+		xTEST_EQ(UserApplication::info().versionMinor,    data.versionMinor);
+		xTEST_EQ(UserApplication::info().versionPatch,    data.versionPatch);
+		xTEST_EQ(UserApplication::info().versionType,     data.versionType);
+		xTEST_EQ(UserApplication::info().versionRevision, data.versionRevision);
+		xTEST_EQ(UserApplication::info().vendorName,      data.vendorName);
+		xTEST_EQ(UserApplication::info().vendorDomain,    data.vendorDomain);
+		xTEST_EQ(UserApplication::info().vendorAuthor,    data.vendorAuthor);
+		xTEST_EQ(UserApplication::info().vendorUrl,       data.vendorUrl);
+		xTEST_EQ(UserApplication::info().vendorEmail,     data.vendorEmail);
+		xTEST_EQ(UserApplication::info().vendorSkype,     data.vendorSkype);
+		xTEST_EQ(UserApplication::info().vendorJabber,    data.vendorJabber);
+		xTEST_EQ(UserApplication::info().vendorIcq,       data.vendorIcq);
     }
 
     xTEST_CASE("files")
