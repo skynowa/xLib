@@ -168,3 +168,4 @@
 #include <xLib/Package/Xml.h>
 #include <xLib/Package/Application.h>
 #include <xLib/Package/ApplicationInfo.h>
+#include <xLib/Package/Translate.h>

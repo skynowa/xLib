@@ -17,9 +17,18 @@ xTEST_UNIT(Test_Translate)
 bool_t
 Test_Translate::unit()
 {
-    xTEST_CASE("[TEST_CASE_1]")
+    xTEST_CASE("Translate")
     {
+		std::ctstring_t      textFrom {xT("Coordinate")};
+		Translate::cLanguage langFrom {Translate::cLanguage::En};
+		Translate::cLanguage langTo   {Translate::cLanguage::Ru};
+		std::tstring_t       textToBrief;
+		std::tstring_t       textToDetail;
+		std::tstring_t       textToRaw;
 
+		Translate translate;
+		/// languagesDetect
+		translate.execute(textFrom, langFrom, langTo, &textToBrief, &textToDetail, &textToRaw);
     }
 
     return true;
