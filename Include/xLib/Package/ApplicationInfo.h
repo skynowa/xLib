@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+xNAMESPACE_BEGIN2(xl, package)
 
 struct ApplicationInfoData
     /// SourceInfo data
@@ -52,5 +52,5 @@ private:
     // xNO_COPY_ASSIGN(ApplicationInfo)
 };
 
-xNAMESPACE_END2(xl, core)
+xNAMESPACE_END2(xl, package)
 //-------------------------------------------------------------------------------------------------
