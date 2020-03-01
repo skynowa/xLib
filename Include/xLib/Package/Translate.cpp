@@ -179,7 +179,7 @@ Translate::execute(
 
 		curl::HttpClient http;
 		bRv = http.request(curl::HttpClient::RequestType::Post, baseData, &baseDataOut);
-		xTEST(m_bRv);
+		xTEST(bRv);
 		xTEST_EQ(baseDataOut.headers.empty(), false);
 		xTEST_EQ(baseDataOut.body.empty(), false);
 
