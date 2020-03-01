@@ -6,6 +6,8 @@
 
 #include "Translate.h"
 
+#include <xLib/Core/Const.h>
+#include <xLib/Core/String.h>
 #include <xLib/Package/Curl/HttpClient.h>
 
 
@@ -161,9 +163,18 @@ Translate::execute(
 		response = manager.post(request, query.toString(QUrl::FullyEncoded).toUtf8());
 		xTEST(!response.empty());
 	#else
+
+		const std::map_tstring_t request
+		{
+			{"h1", _languageCode(a_langFrom)},
+			{"tl", _languageCode(a_langTo)},
+			{"ie", "UTF-8"},
+			{"q",  a_textFrom}
+		};
+
 		curl::BaseData baseData;
 		baseData.url     = xT("https://translate.google.com/m");
-		baseData.request = xT("");
+		baseData.request = String::join(request, std::tstring_t(xT("&")), Const::equal());
 
 		curl::BaseDataOut baseDataOut;
 
@@ -287,6 +298,27 @@ Translate::_responseParse(
         // Trace() << xTRACE_VAR(*out_textToDetail);
         // Trace() << xTRACE_VAR(*out_textToRaw);
     }
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Translate::_languageCode(
+	cLanguage a_lang
+) const
+{
+	std::map<Language, std::tstring_t> langToCodes
+	{
+		{Language::Unknown, xT("")},
+		{Language::Auto,    xT("")},
+		{Language::En,      xT("en")},
+		{Language::Ru,      xT("ru")}
+	};
+
+	auto it = langToCodes.find(a_lang);
+	if (it == langToCodes.end()) {
+		return {};
+	}
+
+	return it->second;
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -27,6 +27,7 @@ Algos::isContains(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename ContT, typename UnaryPredicateT>
+/* static */
 inline bool_t
 Algos::findIfAll(
     const ContT     &a_cont, ///<
@@ -45,6 +46,7 @@ Algos::findIfAll(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+/* static */
 inline bool_t
 Algos::isInBounds(
     const T &a_value,
@@ -56,6 +58,7 @@ Algos::isInBounds(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, typename R, typename ComparatorT>
+/* static */
 inline bool_t
 Algos::isInBounds(
     const T     &a_value,
@@ -68,6 +71,7 @@ Algos::isInBounds(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename ContT>
+/* static */
 inline void_t
 Algos::deleteAll(
     ContT &a_cont
@@ -82,6 +86,7 @@ Algos::deleteAll(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+/* static */
 inline bool_t
 Algos::isUnique(
     T a_first,
@@ -92,6 +97,7 @@ Algos::isUnique(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename ContT>
+/* static */
 inline bool_t
 Algos::isUniqueAll(
     const ContT &a_cont
@@ -101,6 +107,7 @@ Algos::isUniqueAll(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+/* static */
 inline void_t
 Algos::remove(
     std::vector<T> &a_vec,
