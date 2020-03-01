@@ -115,10 +115,10 @@ Translate::execute(
 ) const
 {
     xTEST(!a_textFrom.empty());
-    xTEST(a_langFrom != Language::Unknown);
-    xTEST(a_langTo != Language::Unknown);
-    xTEST(out_textToBrief != nullptr);
-    xTEST(out_textToDetail != nullptr);
+    xTEST_DIFF(a_langFrom, Language::Unknown);
+    xTEST_DIFF(a_langTo, Language::Unknown);
+    xTEST_PTR(out_textToBrief);
+    xTEST_PTR(out_textToDetail);
     xTEST_NA(out_textToRaw);
 
     std::ctstring_t host  = std::tstring_t("https://translate.google.com");
