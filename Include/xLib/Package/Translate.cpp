@@ -6,8 +6,8 @@
 
 #include "Translate.h"
 
+#include <xLib/Package/Curl/HttpClient.h>
 
-//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_BEGIN2(xl, package)
 
@@ -121,9 +121,9 @@ Translate::execute(
     xTEST_PTR(out_textToDetail);
     xTEST_NA(out_textToRaw);
 
-    std::ctstring_t host = xT("https://translate.google.com");
-    std::tstring_t  request;
-    std::tstring_t  response;
+    bool_t bRv {};
+
+    std::tstring_t response;
 
     // request
     {
@@ -143,6 +143,9 @@ Translate::execute(
 		*/
 
 	#if 0
+		std::ctstring_t host = xT("https://translate.google.com");
+		std::tstring_t  request;
+
 		cQUrl url = std::tstring_t("%1/m").arg(host);
 		url.toEncoded();
 
@@ -157,6 +160,16 @@ Translate::execute(
 
 		response = manager.post(request, query.toString(QUrl::FullyEncoded).toUtf8());
 		xTEST(!response.empty());
+	#else
+		curl::BaseData baseData;
+		baseData.url     = xT("https://translate.google.com/m");
+		baseData.request = xT("");
+
+		curl::BaseDataOut baseDataOut;
+
+		curl::HttpClient http;
+		bRv = http.request(curl::HttpClient::RequestType::Post, baseData, &baseDataOut);
+
 	#endif
      }
 
