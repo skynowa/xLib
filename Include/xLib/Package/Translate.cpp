@@ -121,7 +121,7 @@ Translate::execute(
     xTEST_PTR(out_textToDetail);
     xTEST_NA(out_textToRaw);
 
-    std::ctstring_t host  = std::tstring_t("https://translate.google.com");
+    std::ctstring_t host = xT("https://translate.google.com");
     std::tstring_t  request;
     std::tstring_t  response;
 
@@ -137,7 +137,7 @@ Translate::execute(
 		*     <input type="hidden" name="tl" value="ru"/>
 		*     <input type="hidden" name="ie" value="UTF-8"/>
 		*     <input type="hidden" name="prev" value="_m"/>
-		*     <input type="text" name="q" style="width:65%" maxlength="2048" value=""/><br>
+		*     <input type="text"   name="q" style="width:65%" maxlength="2048" value=""/><br>
 		*     <input type="submit" value="Перевести"/>
 		* </form>
 		*/
