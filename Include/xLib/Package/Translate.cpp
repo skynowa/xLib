@@ -115,8 +115,8 @@ Translate::execute(
 ) const
 {
     xTEST(!a_textFrom.empty());
-    xTEST_DIFF(a_langFrom, Language::Unknown);
-    xTEST_DIFF(a_langTo, Language::Unknown);
+    xTEST_DIFF((int_t)a_langFrom, (int_t)Language::Unknown);
+    xTEST_DIFF((int_t)a_langTo, (int_t)Language::Unknown);
     xTEST_PTR(out_textToBrief);
     xTEST_PTR(out_textToDetail);
     xTEST_NA(out_textToRaw);
