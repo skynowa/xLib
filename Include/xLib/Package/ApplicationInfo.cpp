@@ -9,7 +9,7 @@
 #include <xLib/Core/Format.h>
 
 
-xNAMESPACE_BEGIN2(xl, core)
+xNAMESPACE_BEGIN2(xl, package)
 
 /**************************************************************************************************
 *   public
@@ -40,4 +40,4 @@ ApplicationInfo::ApplicationInfo(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, core)
+xNAMESPACE_END2(xl, package)
