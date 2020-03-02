@@ -62,7 +62,9 @@ HttpClient::request(
 			* using HTML forms
 			*/
 
-			setOption(CURLOPT_POST, 1L);
+			setOption(CURLOPT_POST,          1L);
+			setOption(CURLOPT_POSTFIELDS,    a_baseDataIn.request.c_str());
+			setOption(CURLOPT_POSTFIELDSIZE, a_baseDataIn.request.size());
 		}
 		break;
 	case RequestType::Put:

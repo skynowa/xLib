@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN3(xl, package, curl)
 
 class HttpClient :
-	private CurlBase
+	public CurlBase
     ///< HTTP client
 {
 public:
@@ -39,7 +39,6 @@ public:
     bool_t request(cRequestType type, BaseDataIn &baseDataIn, BaseDataOut *baseDataOut);
 
 private:
-
     xNO_COPY_ASSIGN(HttpClient)
 };
 

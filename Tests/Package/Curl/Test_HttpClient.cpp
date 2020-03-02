@@ -39,7 +39,8 @@ Test_HttpClient::unit()
 			<< xTRACE_VAR(baseDataOut.totalTimeSec) << std::endl
 			<< xT("\n")
 			<< xTRACE_VAR(baseDataOut.headers)      << std::endl
-			<< xTRACE_VAR(baseDataOut.body.size())  << std::endl;
+			<< xTRACE_VAR(baseDataOut.body.size())  << std::endl
+			<< xTRACE_VAR(baseDataOut.body)         << std::endl;
     }
 
     return true;

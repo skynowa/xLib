@@ -144,6 +144,8 @@ Translate::execute(
 		* </form>
 		*/
 
+		curl::HttpClient http;
+
 	#if 0
 		std::ctstring_t host = xT("https://translate.google.com");
 		std::tstring_t  request;
@@ -163,33 +165,44 @@ Translate::execute(
 		response = manager.post(request, query.toString(QUrl::FullyEncoded).toUtf8());
 		xTEST(!response.empty());
 	#else
-		const std::map_tstring_t request
-		{
-			{"h1", _languageCode(a_langFrom)},
-			{"tl", _languageCode(a_langTo)},
-			{"ie", "UTF-8"},
-			{"q",  a_textFrom}
-		};
-
 		curl::BaseDataIn baseDataIn;
-		baseDataIn.url     = xT("https://translate.google.com/m");
-		baseDataIn.request = String::join(request, std::tstring_t(xT("&")), Const::equal());
-
-		baseDataIn.addHeader =
 		{
-			{"Content-type",   "application/x-www-form-urlencoded"},
-			{"Content-length", std::to_string(baseDataIn.request.size())}
-		};
+			baseDataIn.url = xT("https://translate.google.com/m");
+
+			// baseDataIn.request
+			{
+				const std::map_tstring_t request
+				{
+					{"h1", _languageCode(a_langFrom)},
+					{"sl", _languageCode(a_langFrom)},
+					{"tl", _languageCode(a_langTo)},
+					{"ie", "UTF-8"},
+					{"q",  a_textFrom}
+				};
+
+				for (auto &it_request_data : request) {
+					baseDataIn.request += it_request_data.first + "=" + http.escape(it_request_data.second);
+					baseDataIn.request += "&";
+				}
+
+				baseDataIn.request = String::trimRightChars(baseDataIn.request, "&");
+			}
+
+			baseDataIn.acceptEncoding = "gzip, deflate";
+			baseDataIn.acceptLanguage = "en-us,en";
+			baseDataIn.acceptCharset  = "UTF-8";
+		}
 
 		curl::BaseDataOut baseDataOut;
 
-		curl::HttpClient http;
 		bRv = http.request(curl::HttpClient::RequestType::Post, baseDataIn, &baseDataOut);
 		xTEST(bRv);
 		xTEST_EQ(baseDataOut.headers.empty(), false);
 		xTEST_EQ(baseDataOut.body.empty(), false);
 
 		Cout()
+			<< xTRACE_VAR(baseDataIn.request)       << std::endl
+			<< xT("\n")
 			<< xTRACE_VAR(baseDataOut.contentType)  << std::endl
 			<< xTRACE_VAR(baseDataOut.effectiveUrl) << std::endl
 			<< xTRACE_VAR(baseDataOut.responseCode) << std::endl
@@ -325,7 +338,7 @@ Translate::_languageCode(
 	std::map<Language, std::tstring_t> langToCodes
 	{
 		{Language::Unknown, xT("")},
-		{Language::Auto,    xT("")},
+		{Language::Auto,    xT("auto")},
 		{Language::En,      xT("en")},
 		{Language::Ru,      xT("ru")}
 	};

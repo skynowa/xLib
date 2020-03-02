@@ -48,6 +48,8 @@ struct BaseDataIn
 
 	std::tstring_t referer;
 	std::tstring_t acceptEncoding;
+	std::tstring_t acceptLanguage;
+	std::tstring_t acceptCharset;
 	std::tstring_t agent;
 
 	bool_t         isFollowLocation {true};
