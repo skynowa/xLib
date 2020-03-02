@@ -211,13 +211,11 @@ Translate::_responseParse(
 ) const
 {
 	if (a_dataOut.responseCode != 200) {
-		Trace() << xTRACE_VAR(a_dataOut.responseCode);
-
-		*out_textToBrief  = xT("Error");
-		*out_textToDetail = xT("Error");
+		*out_textToBrief  = xT("Error: ") + a_dataOut.responseCode;
+		*out_textToDetail = xT("Error: ") + a_dataOut.responseCode;
 
 		if (out_textToRaw != nullptr) {
-			*out_textToRaw = xT("Error");
+			*out_textToRaw = xT("Error: ") + a_dataOut.responseCode;
 		}
 
 		return;
