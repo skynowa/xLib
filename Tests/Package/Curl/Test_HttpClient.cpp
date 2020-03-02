@@ -20,27 +20,27 @@ Test_HttpClient::unit()
 {
     xTEST_CASE("request (Get)")
     {
-		BaseDataIn baseDataIn;
-		baseDataIn.url     = xT("https://example.com/");
-		baseDataIn.request = xT("");
+		DataIn dataIn;
+		dataIn.url     = xT("https://example.com/");
+		dataIn.request = xT("");
 
-		BaseDataOut baseDataOut;
+		DataOut dataOut;
 
 		HttpClient http;
-		m_bRv = http.request(HttpClient::RequestType::Get, baseDataIn, &baseDataOut);
+		m_bRv = http.request(HttpClient::RequestType::Get, dataIn, &dataOut);
 		xTEST(m_bRv);
-		xTEST_EQ(baseDataOut.headers.empty(), false);
-		xTEST_EQ(baseDataOut.body.empty(), false);
+		xTEST_EQ(dataOut.headers.empty(), false);
+		xTEST_EQ(dataOut.body.empty(), false);
 
 		Cout()
-			<< xTRACE_VAR(baseDataOut.contentType)  << std::endl
-			<< xTRACE_VAR(baseDataOut.effectiveUrl) << std::endl
-			<< xTRACE_VAR(baseDataOut.responseCode) << std::endl
-			<< xTRACE_VAR(baseDataOut.totalTimeSec) << std::endl
+			<< xTRACE_VAR(dataOut.contentType)  << std::endl
+			<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
+			<< xTRACE_VAR(dataOut.responseCode) << std::endl
+			<< xTRACE_VAR(dataOut.totalTimeSec) << std::endl
 			<< xT("\n")
-			<< xTRACE_VAR(baseDataOut.headers)      << std::endl
-			<< xTRACE_VAR(baseDataOut.body.size())  << std::endl
-			<< xTRACE_VAR(baseDataOut.body)         << std::endl;
+			<< xTRACE_VAR(dataOut.headers)      << std::endl
+			<< xTRACE_VAR(dataOut.body.size())  << std::endl
+			<< xTRACE_VAR(dataOut.body)         << std::endl;
     }
 
     return true;
