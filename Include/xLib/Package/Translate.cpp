@@ -212,7 +212,6 @@ Translate::_responseParse(
 {
     std::tstring_t textToBrief;
     std::tstring_t textToDetail;
-    std::tstring_t textToRaw;
 
     std::tstring_t response;
 
@@ -231,9 +230,7 @@ Translate::_responseParse(
             return;
         }
 
-		textToRaw        = a_dataOut.body;
 		isDictionaryText = (a_dataOut.body.find("Dictionary:") != std::tstring_t::npos);
-
 		// TODO: rm
 		xTEST(!isDictionaryText);
 	}
@@ -283,11 +280,11 @@ Translate::_responseParse(
 
     // out
     {
-        out_textToBrief->swap(textToBrief);
-        out_textToDetail->swap(textToDetail);
+        out_textToBrief  = textToBrief;
+        out_textToDetail = textToDetail;
 
         if (out_textToRaw != nullptr) {
-            out_textToRaw->swap(textToRaw);
+            *out_textToRaw = a_dataOut.body;
         }
     }
 }
