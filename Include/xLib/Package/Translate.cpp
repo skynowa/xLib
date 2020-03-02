@@ -125,10 +125,10 @@ Translate::execute(
 
     bool_t bRv {};
 
-    std::tstring_t response;
+	curl::HttpClient http;
 
-    // request
-    {
+	curl::BaseDataIn baseDataIn;
+	{
 	   /**
 		* HTTP POST request:
 		*
@@ -144,57 +144,52 @@ Translate::execute(
 		* </form>
 		*/
 
-		curl::HttpClient http;
+		baseDataIn.url = xT("https://translate.google.com/m");
 
-		curl::BaseDataIn baseDataIn;
+		// baseDataIn.request
 		{
-			baseDataIn.url = xT("https://translate.google.com/m");
-
-			// baseDataIn.request
+			const std::map_tstring_t request
 			{
-				const std::map_tstring_t request
-				{
-					{"h1", _languageCode(a_langFrom)},
-					{"sl", _languageCode(a_langFrom)},
-					{"tl", _languageCode(a_langTo)},
-					{"ie", "UTF-8"},
-					{"q",  a_textFrom}
-				};
+				{"h1", _languageCode(a_langFrom)},
+				{"sl", _languageCode(a_langFrom)},
+				{"tl", _languageCode(a_langTo)},
+				{"ie", "UTF-8"},
+				{"q",  a_textFrom}
+			};
 
-				for (auto &it_request_data : request) {
-					baseDataIn.request += it_request_data.first + "=" + http.escape(it_request_data.second);
-					baseDataIn.request += "&";
-				}
-
-				baseDataIn.request = String::trimRightChars(baseDataIn.request, "&");
+			for (auto &it_request_data : request) {
+				baseDataIn.request += it_request_data.first + "=" + http.escape(it_request_data.second);
+				baseDataIn.request += "&";
 			}
 
-			baseDataIn.acceptEncoding = "gzip, deflate";
-			baseDataIn.acceptLanguage = "en-us,en";
-			baseDataIn.acceptCharset  = "UTF-8";
+			baseDataIn.request = String::trimRightChars(baseDataIn.request, "&");
 		}
 
-		curl::BaseDataOut baseDataOut;
+		baseDataIn.acceptEncoding = "gzip, deflate";
+		baseDataIn.acceptLanguage = "en-us,en";
+		baseDataIn.acceptCharset  = "UTF-8";
+	}
 
-		bRv = http.request(curl::HttpClient::RequestType::Post, baseDataIn, &baseDataOut);
-		xTEST(bRv);
-		xTEST_EQ(baseDataOut.headers.empty(), false);
-		xTEST_EQ(baseDataOut.body.empty(), false);
+	curl::BaseDataOut baseDataOut;
 
-		Cout()
-			<< xTRACE_VAR(baseDataIn.request)       << std::endl
-			<< xT("\n")
-			<< xTRACE_VAR(baseDataOut.contentType)  << std::endl
-			<< xTRACE_VAR(baseDataOut.effectiveUrl) << std::endl
-			<< xTRACE_VAR(baseDataOut.responseCode) << std::endl
-			<< xTRACE_VAR(baseDataOut.totalTimeSec) << std::endl
-			<< xT("\n")
-			<< xTRACE_VAR(baseDataOut.headers)      << std::endl
-			<< xTRACE_VAR(baseDataOut.body.size())  << std::endl
-			<< xTRACE_VAR(baseDataOut.body)         << std::endl;
-     }
+	bRv = http.request(curl::HttpClient::RequestType::Post, baseDataIn, &baseDataOut);
+	xTEST(bRv);
+	xTEST_EQ(baseDataOut.headers.empty(), false);
+	xTEST_EQ(baseDataOut.body.empty(), false);
 
-     _responseParse(response, out_textToBrief, out_textToDetail, out_textToRaw);
+	Cout()
+		<< xTRACE_VAR(baseDataIn.request)       << std::endl
+		<< xT("\n")
+		<< xTRACE_VAR(baseDataOut.contentType)  << std::endl
+		<< xTRACE_VAR(baseDataOut.effectiveUrl) << std::endl
+		<< xTRACE_VAR(baseDataOut.responseCode) << std::endl
+		<< xTRACE_VAR(baseDataOut.totalTimeSec) << std::endl
+		<< xT("\n")
+		<< xTRACE_VAR(baseDataOut.headers)      << std::endl
+		<< xTRACE_VAR(baseDataOut.body.size())  << std::endl
+		<< xTRACE_VAR(baseDataOut.body)         << std::endl;
+
+     _responseParse(baseDataOut.body, out_textToBrief, out_textToDetail, out_textToRaw);
 }
 //-------------------------------------------------------------------------------------------------
 
