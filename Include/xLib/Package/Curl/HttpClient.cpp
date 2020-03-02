@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 bool_t
 HttpClient::request(
 	cRequestType     a_type,			///<
-	BaseData        &a_baseData,		///< [in,out]
+	BaseDataIn      &a_baseDataIn,		///< [in,out]
 	BaseDataOut     *out_baseDataOut	///< [out]
 )
 {
@@ -121,7 +121,7 @@ HttpClient::request(
 	curl_slist *headers {};
 	Buffer      buffHeader;
 	Buffer      buffData;
-	CurlBase::setOptionsDefault(&a_baseData, headers, &buffHeader, &buffData);
+	CurlBase::setOptionsDefault(&a_baseDataIn, headers, &buffHeader, &buffData);
 
 	/*CURLcode st = */ perform();
 

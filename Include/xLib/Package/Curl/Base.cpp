@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 
 //-------------------------------------------------------------------------------------------------
 void_t
-BaseData::DebugData::clear()
+BaseDataIn::DebugData::clear()
 {
 	text.clear();
 	headerIn.clear();
@@ -45,10 +45,10 @@ CurlBase::setProtocols(
 //-------------------------------------------------------------------------------------------------
 void_t
 CurlBase::setOptionsDefault(
-	BaseData   *a_data,			///< [in,out]
-	curl_slist *out_headers,	///< [out]
-	Buffer     *out_buffHeader,	///< [out]
-	Buffer     *out_buffData	///< [out]
+	BaseDataIn  *a_dataIn,			///< [in,out]
+	curl_slist  *out_headers,		///< [out]
+	Buffer      *out_buffHeader,	///< [out]
+	Buffer      *out_buffData		///< [out]
 )
 {
 	xTEST(_handle.isValid());
@@ -59,7 +59,7 @@ CurlBase::setOptionsDefault(
 	out_buffHeader->clear();
 	out_buffData->clear();
 
-	setOption(CURLOPT_URL, a_data->url.c_str());
+	setOption(CURLOPT_URL, a_dataIn->url.c_str());
 
 	{
 		setOption(CURLOPT_HEADERFUNCTION, onWriteHeader);
@@ -69,46 +69,46 @@ CurlBase::setOptionsDefault(
 		setOption(CURLOPT_WRITEDATA, out_buffData);
 	}
 
-	setOption(CURLOPT_HEADER, static_cast<long_t>(a_data->isUseHeader));
+	setOption(CURLOPT_HEADER, static_cast<long_t>(a_dataIn->isUseHeader));
 
 	//  CURLOPT_SSL...
 	{
-		setOption(CURLOPT_SSL_VERIFYPEER, static_cast<long_t>(a_data->isSslVerifyPeer));
-		setOption(CURLOPT_SSL_VERIFYHOST, a_data->isSslVerifyHost ? 2L : 0L);
-		setOption(CURLOPT_SSLVERSION,     a_data->sslVersion);
+		setOption(CURLOPT_SSL_VERIFYPEER, static_cast<long_t>(a_dataIn->isSslVerifyPeer));
+		setOption(CURLOPT_SSL_VERIFYHOST, a_dataIn->isSslVerifyHost ? 2L : 0L);
+		setOption(CURLOPT_SSLVERSION,     a_dataIn->sslVersion);
 
-		if ( !a_data->sslCert.empty() ) {
-			setOption(CURLOPT_SSLCERT,       a_data->sslCert.c_str());
-			setOption(CURLOPT_SSLCERTPASSWD, a_data->sslCertPass.c_str());
+		if ( !a_dataIn->sslCert.empty() ) {
+			setOption(CURLOPT_SSLCERT,       a_dataIn->sslCert.c_str());
+			setOption(CURLOPT_SSLCERTPASSWD, a_dataIn->sslCertPass.c_str());
 		}
 	}
 
-	setOption(CURLOPT_HTTP_VERSION, a_data->httpVersion);
+	setOption(CURLOPT_HTTP_VERSION, a_dataIn->httpVersion);
 
-	setOption(CURLOPT_VERBOSE, static_cast<long_t>(a_data->isVerbose));
+	setOption(CURLOPT_VERBOSE, static_cast<long_t>(a_dataIn->isVerbose));
 
 	// CURLOPT_COOKIE...
 	{
-		if ( !a_data->cookieFile.empty() ) {
+		if ( !a_dataIn->cookieFile.empty() ) {
 			setOption(CURLOPT_COOKIESESSION, 0L);
-			setOption(CURLOPT_COOKIEFILE,    a_data->cookieFile.c_str());
-			setOption(CURLOPT_COOKIEJAR,     a_data->cookieFile.c_str());
+			setOption(CURLOPT_COOKIEFILE,    a_dataIn->cookieFile.c_str());
+			setOption(CURLOPT_COOKIEJAR,     a_dataIn->cookieFile.c_str());
 		}
 
-		if ( !a_data->addCookie.empty() ) {
-			setOption(CURLOPT_COOKIE, a_data->addCookie.c_str());
+		if ( !a_dataIn->addCookie.empty() ) {
+			setOption(CURLOPT_COOKIE, a_dataIn->addCookie.c_str());
 		}
 	}
 
-	if ( !a_data->encodingParam.empty() ) {
-		setOption(CURLOPT_ACCEPT_ENCODING, a_data->encodingParam.c_str());
+	if ( !a_dataIn->encodingParam.empty() ) {
+		setOption(CURLOPT_ACCEPT_ENCODING, a_dataIn->encodingParam.c_str());
 	}
 
-	if ( !a_data->ciphers.empty() ) {
-		setOption(CURLOPT_SSL_CIPHER_LIST, a_data->ciphers.c_str());
+	if ( !a_dataIn->ciphers.empty() ) {
+		setOption(CURLOPT_SSL_CIPHER_LIST, a_dataIn->ciphers.c_str());
 	}
 
-	setOption(CURLOPT_ERRORBUFFER, a_data->errorStr);
+	setOption(CURLOPT_ERRORBUFFER, a_dataIn->errorStr);
 
 	// FTP
 	{
@@ -121,48 +121,48 @@ CurlBase::setOptionsDefault(
 
 	// CURLOPT_TIMEOUT...
 	{
-		if (a_data->timeoutMs > 0) {
-			if (a_data->timeoutMs >= 1000) {
+		if (a_dataIn->timeoutMs > 0) {
+			if (a_dataIn->timeoutMs >= 1000) {
 				setOption(CURLOPT_TIMEOUT_MS,        0L);
 				setOption(CURLOPT_CONNECTTIMEOUT_MS, 0L);
-				setOption(CURLOPT_TIMEOUT,           a_data->timeoutMs / 1000);
-				setOption(CURLOPT_CONNECTTIMEOUT ,   a_data->timeoutMs / 1000);
+				setOption(CURLOPT_TIMEOUT,           a_dataIn->timeoutMs / 1000);
+				setOption(CURLOPT_CONNECTTIMEOUT ,   a_dataIn->timeoutMs / 1000);
 			} else {
 				setOption(CURLOPT_TIMEOUT,           0L);
 				setOption(CURLOPT_CONNECTTIMEOUT,    0L);
-				setOption(CURLOPT_TIMEOUT_MS,        a_data->timeoutMs);
-				setOption(CURLOPT_CONNECTTIMEOUT_MS, a_data->timeoutMs);
+				setOption(CURLOPT_TIMEOUT_MS,        a_dataIn->timeoutMs);
+				setOption(CURLOPT_CONNECTTIMEOUT_MS, a_dataIn->timeoutMs);
 			}
 		}
-		else if (a_data->timeoutSec > 0) {
+		else if (a_dataIn->timeoutSec > 0) {
 			setOption(CURLOPT_TIMEOUT_MS,        0L);
 			setOption(CURLOPT_CONNECTTIMEOUT_MS, 0L);
-			setOption(CURLOPT_TIMEOUT,           a_data->timeoutSec);
-			setOption(CURLOPT_CONNECTTIMEOUT,    a_data->timeoutSec);
+			setOption(CURLOPT_TIMEOUT,           a_dataIn->timeoutSec);
+			setOption(CURLOPT_CONNECTTIMEOUT,    a_dataIn->timeoutSec);
 		}
 
-		if (a_data->continueTimeoutMs > 0) {
-			setOption(CURLOPT_EXPECT_100_TIMEOUT_MS, a_data->continueTimeoutMs);
+		if (a_dataIn->continueTimeoutMs > 0) {
+			setOption(CURLOPT_EXPECT_100_TIMEOUT_MS, a_dataIn->continueTimeoutMs);
 		}
 	}
 
 	// CURLOPT_PROXY
-	if ( !a_data->proxy.empty() ) {
-		setOption(CURLOPT_PROXY,     a_data->proxy.c_str());
-		setOption(CURLOPT_PROXYTYPE, a_data->proxyType);
+	if ( !a_dataIn->proxy.empty() ) {
+		setOption(CURLOPT_PROXY,     a_dataIn->proxy.c_str());
+		setOption(CURLOPT_PROXYTYPE, a_dataIn->proxyType);
 
-		if ( !a_data->proxyUserPass.empty() ) {
-			setOption(CURLOPT_PROXYUSERPWD, a_data->proxyUserPass.c_str());
+		if ( !a_dataIn->proxyUserPass.empty() ) {
+			setOption(CURLOPT_PROXYUSERPWD, a_dataIn->proxyUserPass.c_str());
 		}
 	}
 
-	if ( !a_data->userPass.empty() ) {
-		setOption(CURLOPT_USERPWD, a_data->userPass.c_str());
+	if ( !a_dataIn->userPass.empty() ) {
+		setOption(CURLOPT_USERPWD, a_dataIn->userPass.c_str());
 	}
 
 	// CURLOPT_HTTPHEADER
 	{
-		for (auto &it_header : a_data->addHeader) {
+		for (auto &it_header : a_dataIn->addHeader) {
 			std::ctstring_t value = it_header.first + xT(": ") + it_header.second;
 
 			out_headers = ::curl_slist_append(out_headers, value.c_str());
@@ -171,29 +171,29 @@ CurlBase::setOptionsDefault(
 		setOption(CURLOPT_HTTPHEADER, out_headers);
 	}
 
-	if ( !a_data->referer.empty() ) {
-		setOption(CURLOPT_REFERER, a_data->referer.c_str());
+	if ( !a_dataIn->referer.empty() ) {
+		setOption(CURLOPT_REFERER, a_dataIn->referer.c_str());
 	}
 
-	if ( !a_data->acceptEncoding.empty() ) {
-		setOption(CURLOPT_ACCEPT_ENCODING, a_data->acceptEncoding.c_str());
+	if ( !a_dataIn->acceptEncoding.empty() ) {
+		setOption(CURLOPT_ACCEPT_ENCODING, a_dataIn->acceptEncoding.c_str());
 	}
 
-	if ( !a_data->agent.empty() ) {
-		setOption(CURLOPT_USERAGENT, a_data->agent.c_str());
+	if ( !a_dataIn->agent.empty() ) {
+		setOption(CURLOPT_USERAGENT, a_dataIn->agent.c_str());
 	}
 
 	// curl_easy_setopt(curl, CURLOPT_AUTOREFERER , 1);
-	setOption(CURLOPT_FOLLOWLOCATION, static_cast<long_t>(a_data->isFollowLocation));
-	setOption(CURLOPT_MAXREDIRS,      a_data->maxRedirects);
+	setOption(CURLOPT_FOLLOWLOCATION, static_cast<long_t>(a_dataIn->isFollowLocation));
+	setOption(CURLOPT_MAXREDIRS,      a_dataIn->maxRedirects);
 
 	// CURLOPT_DEBUG...
-	if (a_data->isDebugHeader) {
+	if (a_dataIn->isDebugHeader) {
 		setOption(CURLOPT_VERBOSE,       1L);
 		setOption(CURLOPT_DEBUGFUNCTION, onDebug);
 
-		a_data->debugData.clear();
-		setOption(CURLOPT_DEBUGDATA, &a_data->debugData);
+		a_dataIn->debugData.clear();
+		setOption(CURLOPT_DEBUGDATA, &a_dataIn->debugData);
 	}
 }
 //-------------------------------------------------------------------------------------------------

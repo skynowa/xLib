@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN3(xl, package, curl)
 
-struct BaseData
+struct BaseDataIn
     /// base data (in)
 {
 	std::tstring_t url;
@@ -73,7 +73,7 @@ struct BaseData
 
 	DebugData      debugData;
 };
-xUSING_CONST(BaseData);
+xUSING_CONST(BaseDataIn);
 //-------------------------------------------------------------------------------------------------
 struct BaseDataOut
     /// base data (out)
@@ -100,7 +100,8 @@ protected:
 
     void_t   setProtocols(clong_t bitMask);
 		///< set allowed protocols
-    void_t   setOptionsDefault(BaseData *data, curl_slist *headers, Buffer *buffHeader, Buffer *buffData);
+    void_t   setOptionsDefault(BaseDataIn *dataIn, curl_slist *headers, Buffer *buffHeader,
+				Buffer *buffData);
         ///< set options in
     void_t   getInfos(BaseDataOut *dataOut);
         ///< get options out
