@@ -146,6 +146,10 @@ Translate::execute(
 
 		baseDataIn.url = xT("https://translate.google.com/m");
 
+		baseDataIn.acceptEncoding = "gzip, deflate";
+		baseDataIn.acceptLanguage = "en-us,en";
+		baseDataIn.acceptCharset  = "UTF-8";
+
 		// baseDataIn.request
 		{
 			const std::map_tstring_t request
@@ -164,10 +168,6 @@ Translate::execute(
 
 			baseDataIn.request = String::trimRightChars(baseDataIn.request, "&");
 		}
-
-		baseDataIn.acceptEncoding = "gzip, deflate";
-		baseDataIn.acceptLanguage = "en-us,en";
-		baseDataIn.acceptCharset  = "UTF-8";
 	}
 
 	curl::BaseDataOut baseDataOut;
