@@ -42,7 +42,7 @@ HttpClient::request(
 			* on the data
 			*/
 
-			setOption(CURLOPT_POST, 0L);
+			setOption(CURLOPT_POST,   0L);
 			setOption(CURLOPT_NOBODY, 0L);
 		}
 		break;
@@ -125,7 +125,7 @@ HttpClient::request(
 	Buffer      buffData;
 	CurlBase::setOptionsDefault(&a_dataIn, headers, &buffHeader, &buffData);
 
-	/*CURLcode st = */ perform();
+	/* CURLcode st = */ perform();
 
 	CurlBase::getInfos(out_dataOut);
 
