@@ -19,15 +19,22 @@ Test_Translate::unit()
 {
     xTEST_CASE("Translate")
     {
-		std::ctstring_t      textFrom {xT("Coordinate")};
-		Translate::cLanguage langFrom {Translate::cLanguage::En};
-		Translate::cLanguage langTo   {Translate::cLanguage::Ru};
-		std::tstring_t       textToBrief;
-		std::tstring_t       textToDetail;
-		std::tstring_t       textToRaw;
+		std::ctstring_t textFrom {xT("Coordinate")};
+		std::tstring_t  textToBrief;
+		std::tstring_t  textToDetail;
+		std::tstring_t  textToRaw;
 
 		Translate translate;
-		/// languagesDetect
+
+		// languagesDetect
+		Translate::Language langFrom {};
+		Translate::Language langTo {};
+		{
+			translate.languagesDetect(textFrom, &langFrom, &langTo);
+			xTEST_EQ((int_t)langFrom, (int_t)Translate::Language::En);
+			xTEST_EQ((int_t)langTo,   (int_t)Translate::Language::Ru);
+		}
+
 		translate.execute(textFrom, langFrom, langTo, &textToBrief, &textToDetail, &textToRaw);
     }
 
