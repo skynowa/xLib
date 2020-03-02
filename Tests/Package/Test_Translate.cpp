@@ -19,9 +19,10 @@ Test_Translate::unit()
 {
     xTEST_CASE("Translate")
     {
-		std::ctstring_t textFrom {xT("Coordinate")};
-
 		Translate translate;
+
+		std::ctstring_t textFrom {xT("UTF-8 is now well-supported and the overwhelmingly "
+			"preferred character encoding")};
 
 		Translate::Language langFrom {};
 		Translate::Language langTo {};
