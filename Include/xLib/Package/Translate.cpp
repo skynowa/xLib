@@ -59,16 +59,16 @@ Translate::languagesDetect(
         *out_langFrom = Translate::Language::En;
         *out_langTo   = Translate::Language::Ru;
 
-        Trace() << "Langs: en-ru\n";
+        // Trace() << "Langs: en-ru\n";
     }
     else if (isRu) {
         *out_langFrom = Translate::Language::Ru;
         *out_langTo   = Translate::Language::En;
 
-        Trace() << "Langs: ru-en\n";
+        // Trace() << "Langs: ru-en\n";
     }
     else if (isMixed) {
-        Trace() << "Langs: mixed-mixed\n";
+        // Trace() << "Langs: mixed-mixed\n";
 
         cbool_t isPreferEn = (countEn >= countRu);
         cbool_t isPreferRu = (countRu >  countEn);
@@ -77,13 +77,13 @@ Translate::languagesDetect(
             *out_langFrom = Translate::Language::En;
             *out_langTo   = Translate::Language::Ru;
 
-            Trace() << "Langs (prefer): en-ru\n";
+            // Trace() << "Langs (prefer): en-ru\n";
         }
         else if (isPreferRu) {
             *out_langFrom = Translate::Language::Ru;
             *out_langTo   = Translate::Language::En;
 
-            Trace() << "Langs (prefer): ru-en\n";
+            // Trace() << "Langs (prefer): ru-en\n";
         }
         else {
             xTEST(false);
@@ -93,7 +93,7 @@ Translate::languagesDetect(
         *out_langFrom = Translate::Language::Unknown;
         *out_langTo   = Translate::Language::Unknown;
 
-        Trace() << "Langs: unknown-unknown\n";
+        // Trace() << "Langs: unknown-unknown\n";
     }
     else {
         *out_langFrom = Translate::Language::Unknown;
