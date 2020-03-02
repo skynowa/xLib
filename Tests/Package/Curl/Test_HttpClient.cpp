@@ -20,14 +20,14 @@ Test_HttpClient::unit()
 {
     xTEST_CASE("request (Get)")
     {
-		BaseData baseData;
-		baseData.url     = xT("https://example.com/");
-		baseData.request = xT("");
+		BaseDataIn baseDataIn;
+		baseDataIn.url     = xT("https://example.com/");
+		baseDataIn.request = xT("");
 
 		BaseDataOut baseDataOut;
 
 		HttpClient http;
-		m_bRv = http.request(HttpClient::RequestType::Get, baseData, &baseDataOut);
+		m_bRv = http.request(HttpClient::RequestType::Get, baseDataIn, &baseDataOut);
 		xTEST(m_bRv);
 		xTEST_EQ(baseDataOut.headers.empty(), false);
 		xTEST_EQ(baseDataOut.body.empty(), false);
