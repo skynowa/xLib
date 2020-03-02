@@ -26,7 +26,6 @@ Test_Translate::unit()
 
 		Translate translate;
 
-		// languagesDetect
 		Translate::Language langFrom {};
 		Translate::Language langTo {};
 		{
