@@ -177,6 +177,7 @@ Translate::execute(
 	xTEST_EQ(baseDataOut.headers.empty(), false);
 	xTEST_EQ(baseDataOut.body.empty(), false);
 
+#if 0
 	Cout()
 		<< xTRACE_VAR(baseDataIn.request)       << std::endl
 		<< xT("\n")
@@ -188,6 +189,7 @@ Translate::execute(
 		<< xTRACE_VAR(baseDataOut.headers)      << std::endl
 		<< xTRACE_VAR(baseDataOut.body.size())  << std::endl
 		<< xTRACE_VAR(baseDataOut.body)         << std::endl;
+#endif
 
      _responseParse(baseDataOut, out_textToBrief, out_textToDetail, out_textToRaw);
 }
