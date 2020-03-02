@@ -210,22 +210,23 @@ Translate::_responseParse(
     std::tstring_t      *out_textToRaw		///< [out]
 ) const
 {
+	if (a_dataOut.responseCode != 200) {
+		Trace() << xTRACE_VAR(a_dataOut.responseCode);
+
+		*out_textToBrief  = xT("Error");
+		*out_textToDetail = xT("Error");
+
+		if (out_textToRaw != nullptr) {
+			*out_textToRaw = xT("Error");
+		}
+
+		return;
+	}
+
     std::tstring_t body = a_dataOut.body;
 
     bool isDictionaryText {};
     {
-        if (a_dataOut.responseCode != 200) {
-            Trace() << xTRACE_VAR(a_dataOut.responseCode);
-
-			*out_textToBrief  = xT("Error");
-			*out_textToDetail = xT("Error");
-
-			if (out_textToRaw != nullptr) {
-				*out_textToRaw = xT("Error");
-			}
-
-            return;
-        }
 
 		isDictionaryText = (body.find("Dictionary:") != std::tstring_t::npos);
 		// TODO: rm
