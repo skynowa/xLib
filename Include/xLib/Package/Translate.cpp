@@ -171,20 +171,20 @@ Translate::execute(
 			{"q",  a_textFrom}
 		};
 
-		curl::BaseData baseData;
-		baseData.url     = xT("https://translate.google.com/m");
-		baseData.request = String::join(request, std::tstring_t(xT("&")), Const::equal());
+		curl::BaseDataIn baseDataIn;
+		baseDataIn.url     = xT("https://translate.google.com/m");
+		baseDataIn.request = String::join(request, std::tstring_t(xT("&")), Const::equal());
 
-		baseData.addHeader =
+		baseDataIn.addHeader =
 		{
 			{"Content-type",   "application/x-www-form-urlencoded"},
-			{"Content-length", std::to_string(baseData.request.size())}
+			{"Content-length", std::to_string(baseDataIn.request.size())}
 		};
 
 		curl::BaseDataOut baseDataOut;
 
 		curl::HttpClient http;
-		bRv = http.request(curl::HttpClient::RequestType::Post, baseData, &baseDataOut);
+		bRv = http.request(curl::HttpClient::RequestType::Post, baseDataIn, &baseDataOut);
 		xTEST(bRv);
 		xTEST_EQ(baseDataOut.headers.empty(), false);
 		xTEST_EQ(baseDataOut.body.empty(), false);
