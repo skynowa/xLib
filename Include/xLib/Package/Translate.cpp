@@ -174,8 +174,8 @@ Translate::execute(
 
 	bRv = http.request(curl::HttpClient::RequestType::Post, baseDataIn, &baseDataOut);
 	xTEST(bRv);
-	xTEST_EQ(baseDataOut.headers.empty(), false);
-	xTEST_EQ(baseDataOut.body.empty(), false);
+	xTEST(!baseDataOut.headers.empty());
+	xTEST(!baseDataOut.body.empty());
 
 #if 0
 	Cout()
