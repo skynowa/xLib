@@ -36,7 +36,7 @@ public:
 	};
 	xUSING_CONST(RequestType);
 
-    bool_t request(cRequestType type, BaseDataIn &baseDataIn, BaseDataOut *baseDataOut);
+    bool_t request(cRequestType type, DataIn &dataIn, DataOut *dataOut);
 
 private:
     xNO_COPY_ASSIGN(HttpClient)

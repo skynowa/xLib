@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 
 //-------------------------------------------------------------------------------------------------
 void_t
-BaseDataIn::DebugData::clear()
+DataIn::DebugData::clear()
 {
 	text.clear();
 	headerIn.clear();
@@ -45,7 +45,7 @@ CurlBase::setProtocols(
 //-------------------------------------------------------------------------------------------------
 void_t
 CurlBase::setOptionsDefault(
-	BaseDataIn  *a_dataIn,			///< [in,out]
+	DataIn      *a_dataIn,			///< [in,out]
 	curl_slist  *out_headers,		///< [out]
 	Buffer      *out_buffHeader,	///< [out]
 	Buffer      *out_buffData		///< [out]
@@ -211,7 +211,7 @@ CurlBase::setOptionsDefault(
 //-------------------------------------------------------------------------------------------------
 void_t
 CurlBase::getInfos(
-	BaseDataOut *out_dataOut	///< [out]
+	DataOut *out_dataOut	///< [out]
 )
 {
 	xTEST(_handle.isValid());

@@ -20,16 +20,16 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::request(
-	cRequestType     a_type,			///<
-	BaseDataIn      &a_baseDataIn,		///< [in,out]
-	BaseDataOut     *out_baseDataOut	///< [out]
+	cRequestType  a_type,		///<
+	DataIn       &a_dataIn,		///< [in,out]
+	DataOut      *out_dataOut	///< [out]
 )
 {
 	xTEST_DIFF((int)a_type, (int)RequestType::Unknown);
-	xTEST_PTR(out_baseDataOut);
+	xTEST_PTR(out_dataOut);
 
-	out_baseDataOut->headers.clear();
-	out_baseDataOut->body.clear();
+	out_dataOut->headers.clear();
+	out_dataOut->body.clear();
 
 	setProtocols(CURLPROTO_HTTP | CURLPROTO_HTTPS);
 
@@ -63,8 +63,8 @@ HttpClient::request(
 			*/
 
 			setOption(CURLOPT_POST,          1L);
-			setOption(CURLOPT_POSTFIELDS,    a_baseDataIn.request.c_str());
-			setOption(CURLOPT_POSTFIELDSIZE, a_baseDataIn.request.size());
+			setOption(CURLOPT_POSTFIELDS,    a_dataIn.request.c_str());
+			setOption(CURLOPT_POSTFIELDSIZE, a_dataIn.request.size());
 		}
 		break;
 	case RequestType::Put:
@@ -123,19 +123,19 @@ HttpClient::request(
 	curl_slist *headers {};
 	Buffer      buffHeader;
 	Buffer      buffData;
-	CurlBase::setOptionsDefault(&a_baseDataIn, headers, &buffHeader, &buffData);
+	CurlBase::setOptionsDefault(&a_dataIn, headers, &buffHeader, &buffData);
 
 	/*CURLcode st = */ perform();
 
-	CurlBase::getInfos(out_baseDataOut);
+	CurlBase::getInfos(out_dataOut);
 
 	Utils::freeT(headers, ::curl_slist_free_all, nullptr);
 
 	/// _error = st;
 
 	// [out]
-	String::split(buffHeader.buffer(), Const::crNl(), xT(": "), &out_baseDataOut->headers);
-	out_baseDataOut->body = buffData.buffer();
+	String::split(buffHeader.buffer(), Const::crNl(), xT(": "), &out_dataOut->headers);
+	out_dataOut->body = buffData.buffer();
 
 	/// std::cout << "buffHeader.buffer() : [" << buffHeader.buffer() << "]" << std::endl;
 

@@ -127,7 +127,7 @@ Translate::execute(
 
 	curl::HttpClient http;
 
-	curl::BaseDataIn baseDataIn;
+	curl::DataIn baseDataIn;
 	{
 	   /**
 		* HTTP POST request:
@@ -170,28 +170,28 @@ Translate::execute(
 		}
 	}
 
-	curl::BaseDataOut baseDataOut;
+	curl::DataOut dataOut;
 
-	bRv = http.request(curl::HttpClient::RequestType::Post, baseDataIn, &baseDataOut);
+	bRv = http.request(curl::HttpClient::RequestType::Post, baseDataIn, &dataOut);
 	xTEST(bRv);
-	xTEST(!baseDataOut.headers.empty());
-	xTEST(!baseDataOut.body.empty());
+	xTEST(!dataOut.headers.empty());
+	xTEST(!dataOut.body.empty());
 
 #if 0
 	Cout()
-		<< xTRACE_VAR(baseDataIn.request)       << std::endl
+		<< xTRACE_VAR(baseDataIn.request)   << std::endl
 		<< xT("\n")
-		<< xTRACE_VAR(baseDataOut.contentType)  << std::endl
-		<< xTRACE_VAR(baseDataOut.effectiveUrl) << std::endl
-		<< xTRACE_VAR(baseDataOut.responseCode) << std::endl
-		<< xTRACE_VAR(baseDataOut.totalTimeSec) << std::endl
+		<< xTRACE_VAR(dataOut.contentType)  << std::endl
+		<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
+		<< xTRACE_VAR(dataOut.responseCode) << std::endl
+		<< xTRACE_VAR(dataOut.totalTimeSec) << std::endl
 		<< xT("\n")
-		<< xTRACE_VAR(baseDataOut.headers)      << std::endl
-		<< xTRACE_VAR(baseDataOut.body.size())  << std::endl
-		<< xTRACE_VAR(baseDataOut.body)         << std::endl;
+		<< xTRACE_VAR(dataOut.headers)      << std::endl
+		<< xTRACE_VAR(dataOut.body.size())  << std::endl
+		<< xTRACE_VAR(dataOut.body)         << std::endl;
 #endif
 
-     _responseParse(baseDataOut, out_textToBrief, out_textToDetail, out_textToRaw);
+     _responseParse(dataOut, out_textToBrief, out_textToDetail, out_textToRaw);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -204,10 +204,10 @@ Translate::execute(
 //-------------------------------------------------------------------------------------------------
 void_t
 Translate::_responseParse(
-    const curl::BaseDataOut &a_baseDataOut,		///<
-    std::tstring_t          *out_textToBrief,	///< [out]
-    std::tstring_t          *out_textToDetail,	///< [out]
-    std::tstring_t          *out_textToRaw		///< [out]
+    const curl::DataOut &a_dataOut,			///<
+    std::tstring_t      *out_textToBrief,	///< [out]
+    std::tstring_t      *out_textToDetail,	///< [out]
+    std::tstring_t      *out_textToRaw		///< [out]
 ) const
 {
     std::tstring_t textToBrief;
@@ -218,8 +218,8 @@ Translate::_responseParse(
 
     bool isDictionaryText {};
     {
-        if (a_baseDataOut.responseCode != 200) {
-            Trace() << xTRACE_VAR(a_baseDataOut.responseCode);
+        if (a_dataOut.responseCode != 200) {
+            Trace() << xTRACE_VAR(a_dataOut.responseCode);
 
 			*out_textToBrief  = xT("Error");
 			*out_textToDetail = xT("Error");
@@ -231,8 +231,8 @@ Translate::_responseParse(
             return;
         }
 
-		textToRaw        = a_baseDataOut.body;
-		isDictionaryText = (a_baseDataOut.body.find("Dictionary:") != std::tstring_t::npos);
+		textToRaw        = a_dataOut.body;
+		isDictionaryText = (a_dataOut.body.find("Dictionary:") != std::tstring_t::npos);
 	}
 
 	// proccess response
@@ -265,7 +265,7 @@ Translate::_responseParse(
 		}
 	#else
 		// out - textToBrief
-		textToBrief = String::cut(a_baseDataOut.body, "<div dir=\"ltr\" class=\"t0\">", "</div>");
+		textToBrief = String::cut(a_dataOut.body, "<div dir=\"ltr\" class=\"t0\">", "</div>");
 		xTEST(!textToBrief.empty());
 
 		// out - textToDetail
