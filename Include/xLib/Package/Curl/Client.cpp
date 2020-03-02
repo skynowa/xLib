@@ -262,7 +262,7 @@ Client::onDebug(
 		return CURLE_OK;
 	}
 
-	auto *data = static_cast<BaseDataIn::DebugData *>(a_useData);
+	auto *data = static_cast<DataIn::DebugData *>(a_useData);
 	if (data == nullptr) {
 		return CURLE_OK;
 	}

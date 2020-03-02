@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN3(xl, package, curl)
 
-struct BaseDataIn
+struct DataIn
     /// base data (in)
 {
 	std::tstring_t url;
@@ -75,9 +75,9 @@ struct BaseDataIn
 
 	DebugData      debugData;
 };
-xUSING_CONST(BaseDataIn);
+xUSING_CONST(DataIn);
 //-------------------------------------------------------------------------------------------------
-struct BaseDataOut
+struct DataOut
     /// base data (out)
 {
 	std::tstring_t      contentType;
@@ -88,7 +88,7 @@ struct BaseDataOut
 	std::mmap_tstring_t headers;
 	std::tstring_t      body;
 };
-xUSING_CONST(BaseDataOut);
+xUSING_CONST(DataOut);
 //-------------------------------------------------------------------------------------------------
 class CurlBase :
 	public Client
@@ -102,10 +102,10 @@ protected:
 
     void_t   setProtocols(clong_t bitMask);
 		///< set allowed protocols
-    void_t   setOptionsDefault(BaseDataIn *dataIn, curl_slist *headers, Buffer *buffHeader,
+    void_t   setOptionsDefault(DataIn *dataIn, curl_slist *headers, Buffer *buffHeader,
 				Buffer *buffData);
         ///< set options in
-    void_t   getInfos(BaseDataOut *dataOut);
+    void_t   getInfos(DataOut *dataOut);
         ///< get options out
 
 private:
