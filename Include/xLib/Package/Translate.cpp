@@ -189,7 +189,7 @@ Translate::execute(
 		<< xTRACE_VAR(baseDataOut.body.size())  << std::endl
 		<< xTRACE_VAR(baseDataOut.body)         << std::endl;
 
-     _responseParse(baseDataOut.body, out_textToBrief, out_textToDetail, out_textToRaw);
+     _responseParse(baseDataOut, out_textToBrief, out_textToDetail, out_textToRaw);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -202,10 +202,10 @@ Translate::execute(
 //-------------------------------------------------------------------------------------------------
 void_t
 Translate::_responseParse(
-    std::ctstring_t &a_response,		///<
-    std::tstring_t  *out_textToBrief,	///< [out]
-    std::tstring_t  *out_textToDetail,	///< [out]
-    std::tstring_t  *out_textToRaw		///< [out]
+    const curl::BaseDataOut &a_baseDataOut,		///<
+    std::tstring_t          *out_textToBrief,	///< [out]
+    std::tstring_t          *out_textToDetail,	///< [out]
+    std::tstring_t          *out_textToRaw		///< [out]
 ) const
 {
     std::tstring_t textToBrief;
@@ -216,19 +216,10 @@ Translate::_responseParse(
 
     bool isDictionaryText {};
     {
-    #if 0
-        cQVariant httpStatusCode = a_reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-        if ( !httpStatusCode.isValid() ) {
-            Trace() << xTRACE_VAR(httpStatusCode);
+        if (a_baseDataOut.responseCode != 200) {
+            Trace() << xTRACE_VAR(a_baseDataOut.responseCode);
             return;
         }
-
-        int status = httpStatusCode.toInt();
-        if (status != 200) {
-            std::ctstring_t reason = a_reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
-            Trace() << xTRACE_VAR(reason);
-        }
-    #endif
 
 	#if 0
 		if (a_reply->error() != QNetworkReply::NoError) {
