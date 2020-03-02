@@ -20,9 +20,6 @@ Test_Translate::unit()
     xTEST_CASE("Translate")
     {
 		std::ctstring_t textFrom {xT("Coordinate")};
-		std::tstring_t  textToBrief;
-		std::tstring_t  textToDetail;
-		std::tstring_t  textToRaw;
 
 		Translate translate;
 
@@ -34,6 +31,9 @@ Test_Translate::unit()
 			xTEST_EQ((int_t)langTo,   (int_t)Translate::Language::Ru);
 		}
 
+		std::tstring_t textToBrief;
+		std::tstring_t textToDetail;
+		std::tstring_t textToRaw;
 		translate.execute(textFrom, langFrom, langTo, &textToBrief, &textToDetail, &textToRaw);
     }
 
