@@ -218,38 +218,19 @@ Translate::_responseParse(
     {
         if (a_baseDataOut.responseCode != 200) {
             Trace() << xTRACE_VAR(a_baseDataOut.responseCode);
+
+			*out_textToBrief  = xT("Error");
+			*out_textToDetail = xT("Error");
+
+			if (out_textToRaw != nullptr) {
+				*out_textToRaw = xT("Error");
+			}
+
             return;
         }
 
-	#if 0
-		if (a_reply->error() != QNetworkReply::NoError) {
-			*a_textToBrief  = a_reply->errorString();
-			*a_textToDetail = a_reply->errorString();
-
-			if (a_textToRaw != nullptr) {
-				*a_textToRaw = a_reply->errorString();
-			}
-
-			return;
-		}
-
-		for ( ; ; ) {
-			QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-
-			xCHECK_DO(a_reply->isFinished(), break);
-		}
-
-		response = std::tstring_t::fromUtf8(a_reply->readAll());
-		xTEST(!response.empty());
-
-		textToRaw        = response;
-		isDictionaryText = response.contains("Dictionary:");
-
-		// Trace() << xTRACE_VAR(response);
-	#else
-		isDictionaryText = (a_baseDataOut.body.find("Dictionary:") != std::tstring_t::npos);
 		textToRaw        = a_baseDataOut.body;
-	#endif
+		isDictionaryText = (a_baseDataOut.body.find("Dictionary:") != std::tstring_t::npos);
 	}
 
 	// proccess response
