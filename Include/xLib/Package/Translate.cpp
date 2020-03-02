@@ -246,11 +246,12 @@ Translate::_responseParse(
 		isDictionaryText = response.contains("Dictionary:");
 
 		// Trace() << xTRACE_VAR(response);
+	#else
+		textToRaw = a_baseDataOut.body;
 	#endif
 	}
 
 	// proccess response
-
 	{
 	#if 0
 		response.replace("Dictionary:", "\n");
