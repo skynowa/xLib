@@ -174,6 +174,17 @@ Translate::execute(
 
 	bRv = http.request(curl::HttpClient::RequestType::Post, baseDataIn, &dataOut);
 	xTEST(bRv);
+	if ( http.isSuccess(dataOut) ) {
+		*out_textToBrief  = xT("Error: ") + dataOut.responseCode;
+		*out_textToDetail = xT("Error: ") + dataOut.responseCode;
+
+		if (out_textToRaw != nullptr) {
+			*out_textToRaw = xT("Error: ") + dataOut.responseCode;
+		}
+
+		return;
+	}
+
 	xTEST(!dataOut.headers.empty());
 	xTEST(!dataOut.body.empty());
 
@@ -210,17 +221,6 @@ Translate::_responseParse(
     std::tstring_t      *out_textToRaw		///< [out]
 ) const
 {
-	if (a_dataOut.responseCode != static_cast<int_t>(curl::HttpClient::HttpCode::OK)) {
-		*out_textToBrief  = xT("Error: ") + a_dataOut.responseCode;
-		*out_textToDetail = xT("Error: ") + a_dataOut.responseCode;
-
-		if (out_textToRaw != nullptr) {
-			*out_textToRaw = xT("Error: ") + a_dataOut.responseCode;
-		}
-
-		return;
-	}
-
     std::tstring_t body = a_dataOut.body;
 
     bool isDictionaryText {};

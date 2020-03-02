@@ -142,5 +142,16 @@ HttpClient::request(
 	return true;
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * https://restfulapi.net/http-status-codes/
+ */
+bool_t
+HttpClient::isSuccess(
+	cDataOut &a_dataOut
+) const
+{
+	return (a_dataOut.responseCode >= 200 && a_dataOut.responseCode <= 299);
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END3(xl, package, curl)
