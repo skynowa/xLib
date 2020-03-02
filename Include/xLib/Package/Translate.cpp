@@ -247,7 +247,8 @@ Translate::_responseParse(
 
 		// Trace() << xTRACE_VAR(response);
 	#else
-		textToRaw = a_baseDataOut.body;
+		isDictionaryText = (a_baseDataOut.body.find("Dictionary:") != std::tstring_t::npos);
+		textToRaw        = a_baseDataOut.body;
 	#endif
 	}
 
@@ -279,6 +280,18 @@ Translate::_responseParse(
 		} else {
 			textToDetail = xT("n/a");
 		}
+	#else
+		// out - textToBrief
+		textToBrief = String::cut(a_baseDataOut.body, "<div dir=\"ltr\" class=\"t0\">", "</div>");
+		xTEST(!textToBrief.empty());
+
+		// out - textToDetail
+		if (isDictionaryText) {
+			textToDetail = "[TODO]";
+			xTEST(!textToDetail.empty());
+		} else {
+			textToDetail = xT("n/a");
+		}
 	#endif
 	}
 
@@ -290,10 +303,6 @@ Translate::_responseParse(
         if (out_textToRaw != nullptr) {
             out_textToRaw->swap(textToRaw);
         }
-
-        // Trace() << xTRACE_VAR(*out_textToBrief);
-        // Trace() << xTRACE_VAR(*out_textToDetail);
-        // Trace() << xTRACE_VAR(*out_textToRaw);
     }
 }
 //-------------------------------------------------------------------------------------------------

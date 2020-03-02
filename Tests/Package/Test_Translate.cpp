@@ -35,6 +35,10 @@ Test_Translate::unit()
 		std::tstring_t textToDetail;
 		std::tstring_t textToRaw;
 		translate.execute(textFrom, langFrom, langTo, &textToBrief, &textToDetail, &textToRaw);
+
+		Trace() << xTRACE_VAR(textToBrief);
+		Trace() << xTRACE_VAR(textToDetail);
+		Trace() << xTRACE_VAR(textToRaw);
     }
 
     return true;
