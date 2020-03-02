@@ -175,6 +175,12 @@ Translate::execute(
 		baseData.url     = xT("https://translate.google.com/m");
 		baseData.request = String::join(request, std::tstring_t(xT("&")), Const::equal());
 
+		baseData.addHeader =
+		{
+			{"Content-type",   "application/x-www-form-urlencoded"},
+			{"Content-length", std::to_string(baseData.request.size())}
+		};
+
 		curl::BaseDataOut baseDataOut;
 
 		curl::HttpClient http;
@@ -190,7 +196,8 @@ Translate::execute(
 			<< xTRACE_VAR(baseDataOut.totalTimeSec) << std::endl
 			<< xT("\n")
 			<< xTRACE_VAR(baseDataOut.headers)      << std::endl
-			<< xTRACE_VAR(baseDataOut.body.size())  << std::endl;
+			<< xTRACE_VAR(baseDataOut.body.size())  << std::endl
+			<< xTRACE_VAR(baseDataOut.body)         << std::endl;
 	#endif
      }
 
