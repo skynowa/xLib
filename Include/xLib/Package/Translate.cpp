@@ -210,7 +210,7 @@ Translate::_responseParse(
     std::tstring_t      *out_textToRaw		///< [out]
 ) const
 {
-	if (a_dataOut.responseCode != 200) {
+	if (a_dataOut.responseCode != static_cast<int_t>(curl::HttpClient::HttpCode::OK)) {
 		*out_textToBrief  = xT("Error: ") + a_dataOut.responseCode;
 		*out_textToDetail = xT("Error: ") + a_dataOut.responseCode;
 

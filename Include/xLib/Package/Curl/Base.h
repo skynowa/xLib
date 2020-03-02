@@ -1,6 +1,8 @@
 /**
  * \file  CurlBase.h
  * \brief CURL client
+ *
+ * https://curl.haxx.se/libcurl/c/example.html
  */
 
 
