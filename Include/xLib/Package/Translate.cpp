@@ -144,8 +144,7 @@ Translate::execute(
 		* </form>
 		*/
 
-		baseDataIn.url = xT("https://translate.google.com/m");
-
+		baseDataIn.url            = xT("https://translate.google.com/m");
 		baseDataIn.acceptEncoding = "gzip, deflate";
 		baseDataIn.acceptLanguage = "en-us,en";
 		baseDataIn.acceptCharset  = "UTF-8";
@@ -174,12 +173,12 @@ Translate::execute(
 
 	bRv = http.request(curl::HttpClient::RequestType::Post, baseDataIn, &dataOut);
 	xTEST(bRv);
-	if ( http.isSuccess(dataOut) ) {
-		*out_textToBrief  = xT("Error: ") + dataOut.responseCode;
-		*out_textToDetail = xT("Error: ") + dataOut.responseCode;
+	if ( !http.isSuccess(dataOut) ) {
+		*out_textToBrief  = xT("Error: ") + std::to_string(dataOut.responseCode);
+		*out_textToDetail = xT("Error: ") + std::to_string(dataOut.responseCode);
 
 		if (out_textToRaw != nullptr) {
-			*out_textToRaw = xT("Error: ") + dataOut.responseCode;
+			*out_textToRaw = xT("Error: ") + std::to_string(dataOut.responseCode);
 		}
 
 		return;
@@ -232,7 +231,7 @@ Translate::_responseParse(
 	}
 
 	// proccess body
-	{
+	if (isDictionaryText) {
 	#if 0
 		response.replace("Dictionary:", "\n");
 		response.replace("<br>", "\n");
