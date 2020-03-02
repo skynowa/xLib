@@ -146,25 +146,6 @@ Translate::execute(
 
 		curl::HttpClient http;
 
-	#if 0
-		std::ctstring_t host = xT("https://translate.google.com");
-		std::tstring_t  request;
-
-		cQUrl url = std::tstring_t("%1/m").arg(host);
-		url.toEncoded();
-
-		QUrlQuery query;
-		query.addQueryItem("h1", a_langFrom);
-		query.addQueryItem("tl", a_langTo);
-		query.addQueryItem("ie", "UTF-8");
-		query.addQueryItem("q",  a_textFrom);
-
-		request.setUrl(url);
-		request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-
-		response = manager.post(request, query.toString(QUrl::FullyEncoded).toUtf8());
-		xTEST(!response.empty());
-	#else
 		curl::BaseDataIn baseDataIn;
 		{
 			baseDataIn.url = xT("https://translate.google.com/m");
@@ -211,7 +192,6 @@ Translate::execute(
 			<< xTRACE_VAR(baseDataOut.headers)      << std::endl
 			<< xTRACE_VAR(baseDataOut.body.size())  << std::endl
 			<< xTRACE_VAR(baseDataOut.body)         << std::endl;
-	#endif
      }
 
      _responseParse(response, out_textToBrief, out_textToDetail, out_textToRaw);
