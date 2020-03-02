@@ -22,43 +22,6 @@ public:
     virtual ~HttpClient() = default;
         ///< destructor
 
-	enum class HttpCode
-	{
-		Unknown              = 0,
-
-		// 1xx: Informational
-		Continue             = 100,
-		SwitchingProtocols   = 101,
-		Processing           = 102,
-
-		// 2xx: Success
-		OK                   = 200,
-		Created              = 201,
-		Accepted             = 202,
-		NoContent            = 204,
-
-		// 3xx: Redirection
-		MovedPermanently     = 301,
-		Found                = 302,
-		SeeOther             = 303,
-		NotModified          = 304,
-		TemporaryRedirect    = 307,
-
-		// 4xx: Client Error
-		BadRequest           = 400,
-		Unauthorized         = 401,
-		Forbidden            = 403,
-		NotFound             = 404,
-		MethodNotAllowed     = 405,
-		NotAcceptable        = 406,
-		PreconditionFailed   = 412,
-		UnsupportedMediaType = 415,
-
-		// 5xx: Server Error
-		InternalServerError  = 500,
-		NotImplemented       = 501
-	};
-
 	enum class RequestType
 	{
 		Unknown = 0,
@@ -74,6 +37,9 @@ public:
 	xUSING_CONST(RequestType);
 
     bool_t request(cRequestType type, DataIn &dataIn, DataOut *dataOut);
+		///<
+    bool_t isSuccess(cDataOut &dataOut) const;
+		///<
 
 private:
     xNO_COPY_ASSIGN(HttpClient)
