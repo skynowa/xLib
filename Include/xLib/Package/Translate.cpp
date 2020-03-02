@@ -210,7 +210,7 @@ Translate::_responseParse(
     std::tstring_t      *out_textToRaw		///< [out]
 ) const
 {
-    std::tstring_t response;
+    std::tstring_t response = a_dataOut.body;
 
     bool isDictionaryText {};
     {
@@ -227,7 +227,7 @@ Translate::_responseParse(
             return;
         }
 
-		isDictionaryText = (a_dataOut.body.find("Dictionary:") != std::tstring_t::npos);
+		isDictionaryText = (response.find("Dictionary:") != std::tstring_t::npos);
 		// TODO: rm
 		xTEST(!isDictionaryText);
 	}
@@ -237,13 +237,16 @@ Translate::_responseParse(
 	#if 0
 		response.replace("Dictionary:", "\n");
 		response.replace("<br>", "\n");
+	#else
+		response = String::replaceAll(response, "Dictionary:", "\n");
+		response = String::replaceAll(response, "<br>",        "\n");
 	#endif
 	}
 
 	// parse response
 	{
 		// [out]
-		*out_textToBrief = String::cut(a_dataOut.body, "<div dir=\"ltr\" class=\"t0\">", "</div>");
+		*out_textToBrief = String::cut(response, "<div dir=\"ltr\" class=\"t0\">", "</div>");
 		xTEST(!out_textToBrief->empty());
 
 		// [out]
@@ -258,7 +261,7 @@ Translate::_responseParse(
 
     // out
 	if (out_textToRaw != nullptr) {
-		*out_textToRaw = a_dataOut.body;
+		*out_textToRaw = response;
 	}
 }
 //-------------------------------------------------------------------------------------------------
