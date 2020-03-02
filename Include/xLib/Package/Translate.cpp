@@ -210,9 +210,6 @@ Translate::_responseParse(
     std::tstring_t      *out_textToRaw		///< [out]
 ) const
 {
-    std::tstring_t textToBrief;
-    std::tstring_t textToDetail;
-
     std::tstring_t response;
 
     bool isDictionaryText {};
@@ -245,48 +242,24 @@ Translate::_responseParse(
 
 	// parse response
 	{
-	#if 0
-		QDomDocument document;
-		document.setContent(response);
+		// [out]
+		*out_textToBrief = String::cut(a_dataOut.body, "<div dir=\"ltr\" class=\"t0\">", "</div>");
+		xTEST(!out_textToBrief->empty());
 
-		QDomNodeList docList = document.elementsByTagName("div");
-		xTEST(docList.count() >= 3);
-
-		// out - textToBrief
-		textToBrief = docList.at(2).toElement().text();
-		xTEST(!textToBrief.empty());
-
-		// out - textToDetail
+		// [out]
 		if (isDictionaryText) {
-			textToDetail = docList.at(5).toElement().text();
-			xTEST(!textToDetail.empty());
+			// TODO: docList.at(5).toElement().text();
+			*out_textToDetail = "[TODO]";
+			xTEST(!out_textToDetail->empty());
 		} else {
-			textToDetail = xT("n/a");
+			*out_textToDetail = xT("n/a");
 		}
-	#else
-		// out - textToBrief
-		textToBrief = String::cut(a_dataOut.body, "<div dir=\"ltr\" class=\"t0\">", "</div>");
-		xTEST(!textToBrief.empty());
-
-		// out - textToDetail
-		if (isDictionaryText) {
-			textToDetail = "[TODO]";
-			xTEST(!textToDetail.empty());
-		} else {
-			textToDetail = xT("n/a");
-		}
-	#endif
 	}
 
     // out
-    {
-        out_textToBrief  = textToBrief;
-        out_textToDetail = textToDetail;
-
-        if (out_textToRaw != nullptr) {
-            *out_textToRaw = a_dataOut.body;
-        }
-    }
+	if (out_textToRaw != nullptr) {
+		*out_textToRaw = a_dataOut.body;
+	}
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
