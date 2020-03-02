@@ -233,6 +233,9 @@ Translate::_responseParse(
 
 		textToRaw        = a_dataOut.body;
 		isDictionaryText = (a_dataOut.body.find("Dictionary:") != std::tstring_t::npos);
+
+		// TODO: rm
+		xTEST(!isDictionaryText);
 	}
 
 	// proccess response
