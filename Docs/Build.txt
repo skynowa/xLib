@@ -5,6 +5,7 @@ Pre-requisites:
     - bash-compatible Unix command shell (for Unix)
     - Doxygen 1.8.2
     - sudo apt-get install cmake pkg-config
+    - /home/skynowa/Projects/CMakeLib/install.sh
 
 Dependencies:
     - Linkage flags
