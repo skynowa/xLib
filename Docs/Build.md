@@ -55,8 +55,10 @@ OSs:
 
 MySQL:
 
-`sudo apt-get install mysql-server`
-`sudo service mysql restart`
+```bash
+sudo apt-get install mysql-server
+sudo service mysql restart
+```
 
 ```bash
 sudo mysql
