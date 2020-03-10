@@ -1,7 +1,9 @@
 # xLib - C++ cross-platform library
 
-Authors: skynowa <br/>
-E-mail:  skynowa@gmail.com <br/>
+Authors: skynowa
+
+E-mail:  skynowa@gmail.com
+
 Skype:   skynowa777
 
 ## Features
