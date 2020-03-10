@@ -11,8 +11,8 @@ Web:     https://bitbucket.org/skynowa/xlib
 
 - platforms:
 
-  - Windows: (XP >)
-  - Unix: Linux, Android, BSD, Apple (OSX)
+    - Windows: (XP >)
+    - Unix: Linux, Android, BSD, Apple (OSX)
 
 - architecture: x86, x64
 - compilers: MinGW, MSVC, GCC, Clang
