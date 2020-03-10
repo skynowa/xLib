@@ -20,21 +20,6 @@ Web:     https://bitbucket.org/skynowa/xlib
 
 ## Repositories
 
-- https://code.google.com
-
-  git clone https://skynowa@code.google.com/p/xlib-library/
-
-- http://bitbucket.org
-
-  git clone https://skynowa@bitbucket.org/skynowa/xlib.git
-  git clone git@bitbucket.org:skynowa/xlib.git
-
-- http://github.com
-
-  git clone https://github.com/skynowa/xLib.git
-  git clone git://github.com/skynowa/xLib.git
-
-- http://sourceforge.net
-
-  git clone https://skynowa@git.code.sf.net/p/x-lib/code x-lib-code
-  git clone git://git.code.sf.net/p/x-lib/code x-lib-code
+- https://bitbucket.org/skynowa/xlib/src/master/
+- https://github.com/skynowa/xLib
+- https://sourceforge.net/projects/x-lib/
