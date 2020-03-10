@@ -13,7 +13,7 @@ Skype:   skynowa777
     - Windows: (XP >)
     - Unix: Linux, Android, BSD, Apple (OSX)
 
-- architecture: x86, x64
+- architecture: 32-bit (x86) and 64-bit (x86-64, IA64, and AMD64)
 - compilers: MinGW, MSVC, GCC, Clang
 - unicode support
 
