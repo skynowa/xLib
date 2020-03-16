@@ -30,7 +30,7 @@ public:
     virtual  ~Donate() = default;
         ///< destructor
 
-    xPROPERTY(DonateData, data);
+    xPROPERTY(DonateData, data, Data);
 
 private:
     // xNO_COPY_ASSIGN(Donate)

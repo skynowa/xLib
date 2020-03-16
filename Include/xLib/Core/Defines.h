@@ -729,35 +729,35 @@
 ///@name Class properties
 ///@{
 // TEST: Defines - xPROPERTY, add tests
-#define xPROPERTY(type, name) \
+#define xPROPERTY(type, name, Name) \
     public:\
-        type & get()                    { return _##name; } \
-        void   set(const type& a_value) { _##name = a_value; } \
+        type & name()                         { return _##name; } \
+        void   set##Name(const type& a_value) { _##name = a_value; } \
     private: \
-        type _##name
+        type _##name {}
     ///< property with read, write
 
 #define xPROPERTY_CONST(type, name) \
     public:\
-        const type & get() const { return _##name; } \
+        const type & name() const { return _##name; } \
     private: \
-        const type _##name
+        const type _##name {}
     ///< property with read
 
-#define xPROPERTY_STATIC(type, name) \
+#define xPROPERTY_STATIC(type, name, Name) \
     public:\
-        static type & get()                    { return _##name; } \
-        static void   set(const type& a_value) { _##name = a_value; } \
+        static type & name()                         { return _##name; } \
+        static void   set##Name(const type& a_value) { _##name = a_value; } \
     private: \
-        static type _##name
+        static type _##name {}
     ///< property with read, write (static)
 
-#define xPROPERTY_CONST_STATIC(type, name) \
+#define xPROPERTY_CONST_STATIC(type, name, Name) \
     public:\
-        static const type & get()                    { return _##name; } \
-        static void         set(const type& a_value) { _##name = a_value; } \
+        static const type & name()                         { return _##name; } \
+        static void         set##Name(const type& a_value) { _##name = a_value; } \
     private: \
-        static type _##name
+        static type _##name {}
     ///< property with read, write (static)
 ///@}
 //-------------------------------------------------------------------------------------------------
