@@ -23,7 +23,7 @@ public:
     void     setName(std::ctstring_t &name);
     void     setDescription(std::ctstring_t &desc);
     bool_t   isEnable() const;
-    void     setEnable(cbool_t flag);
+    void     setEnable(cbool_t enable);
     void     setIntervalTs(const DateTime &start, const DateTime &stop);
     void     setStop(const DateTime &stop);
     void     setPermissions();
