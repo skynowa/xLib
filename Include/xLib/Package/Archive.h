@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xl, package)
 
 class Archive
-    ///< Compress/unpack archives
+    /// Compress/unpack archives
 {
 public:
 	enum class Type

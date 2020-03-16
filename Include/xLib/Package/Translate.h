@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, package)
 
 class Translate :
 	public IRestClient
-    ///< Translate text (by Google API)
+    /// Translate text (by Google API)
 {
 public:
              Translate();

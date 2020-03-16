@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xl, package)
 
 class ApplicationInfo
-    ///< Application information
+    /// Application information
 {
 public:
     std::tstring_t name;

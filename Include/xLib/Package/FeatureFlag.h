@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN2(xl, package)
 
 class FeatureFlag
-    ///< Feature flag / toggle
+    /// Feature flag / toggle
 {
 public:
              FeatureFlag() = default;
