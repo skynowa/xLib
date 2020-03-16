@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/DateTime.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, package)
 
@@ -32,6 +33,10 @@ public:
     void     alert();
 
 private:
+    std::tstring_t _name;
+    std::tstring_t _desc;
+    bool_t         _is_enable {};
+
     xNO_COPY_ASSIGN(FeatureFlag)
 };
 
