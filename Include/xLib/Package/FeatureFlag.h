@@ -26,13 +26,17 @@ public:
 
 public:
     void setIntervalTs(const DateTime &start, const DateTime &stop);
+        ///<
     void setStop(const DateTime &stop);
+        ///<
     void setPermissions();
+        ///<
     void alert() const;
+        ///<
 
 private:
-	DateTime _start;
-	DateTime _stop;
+	DateTime _start; ///<
+	DateTime _stop;  ///<
 
     xNO_COPY_ASSIGN(FeatureFlag)
 };
