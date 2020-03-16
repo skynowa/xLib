@@ -24,40 +24,54 @@ FeatureFlag::~FeatureFlag()
 }
 //-------------------------------------------------------------------------------------------------
 void
-FeatureFlag::setName(std::ctstring_t &name)
+FeatureFlag::setName(
+	std::ctstring_t &a_name
+)
+{
+	_name = a_name;
+}
+//-------------------------------------------------------------------------------------------------
+void
+FeatureFlag::setDescription(
+	std::ctstring_t &a_desc
+)
+{
+	_desc = a_desc;
+}
+//-------------------------------------------------------------------------------------------------
+void
+FeatureFlag::setStartTs(
+	const DateTime &a_start
+)
 {
 }
 //-------------------------------------------------------------------------------------------------
 void
-FeatureFlag::setDescription(std::ctstring_t &desc)
+FeatureFlag::setStopTs(
+	const DateTime &a_stop
+)
 {
 }
 //-------------------------------------------------------------------------------------------------
 void
-FeatureFlag::setStartTs(const DateTime &start)
-{
-}
-//-------------------------------------------------------------------------------------------------
-void
-FeatureFlag::setStopTs(const DateTime &stop)
-{
-}
-//-------------------------------------------------------------------------------------------------
-void
-FeatureFlag::setStop(const DateTime &dateTime)
+FeatureFlag::setStop(
+	const DateTime &a_dateTime
+)
 {
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
 FeatureFlag::isEnable() const
 {
+	return _is_enable;
 }
 //-------------------------------------------------------------------------------------------------
 void
 FeatureFlag::setEnable(
-    cbool_t flag
+    cbool_t a_flag
 )
 {
+	_is_enable = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
 void
