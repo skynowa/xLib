@@ -15,9 +15,9 @@ class FeatureFlag
     ///< Feature flag / toggle
 {
 public:
-             FeatureFlag();
+             FeatureFlag() = default;
         ///< constructor
-    virtual ~FeatureFlag();
+    virtual ~FeatureFlag() = default;
         ///< destructor
 
 	xPROPERTY(std::tstring_t, name, Name);
