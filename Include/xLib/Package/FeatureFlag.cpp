@@ -39,27 +39,6 @@ FeatureFlag::setDescription(
 	_desc = a_desc;
 }
 //-------------------------------------------------------------------------------------------------
-void
-FeatureFlag::setStartTs(
-	const DateTime &a_start
-)
-{
-}
-//-------------------------------------------------------------------------------------------------
-void
-FeatureFlag::setStopTs(
-	const DateTime &a_stop
-)
-{
-}
-//-------------------------------------------------------------------------------------------------
-void
-FeatureFlag::setStop(
-	const DateTime &a_dateTime
-)
-{
-}
-//-------------------------------------------------------------------------------------------------
 bool_t
 FeatureFlag::isEnable() const
 {
@@ -72,6 +51,25 @@ FeatureFlag::setEnable(
 )
 {
 	_is_enable = a_flag;
+}
+//-------------------------------------------------------------------------------------------------
+void
+FeatureFlag::setIntervalTs(
+	const DateTime &a_start,
+	const DateTime &a_stop
+)
+{
+	_start = a_start;
+	_stop  = a_stop;
+}
+//-------------------------------------------------------------------------------------------------
+void
+FeatureFlag::setStop(
+	const DateTime &a_stop
+)
+{
+	_start = DateTime();
+	_stop  = a_stop;
 }
 //-------------------------------------------------------------------------------------------------
 void
