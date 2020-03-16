@@ -28,7 +28,7 @@ set(XLIB_PROJECT_URL "https://bitbucket.org/skynowa/xlib/")
 
 #--------------------------------------------------------------------------------------------------
 # options
-set(PROJECT_TYPE "CXX")
+set(PROJECT_TYPE CXX)
 
 set(CMAKE_COLOR_MAKEFILE          ON)
 set(CMAKE_VERBOSE_MAKEFILE        OFF)
