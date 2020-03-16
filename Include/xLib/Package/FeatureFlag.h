@@ -19,12 +19,20 @@ public:
     virtual ~FeatureFlag();
         ///< destructor
 
+    void     setName(std::ctstring_t &name);
+    void     setDescription(std::ctstring_t &desc);
+    void     setStartTs(const DateTime &start);
+    void     setStopTs(const DateTime &stop);
+    void     setStop(const DateTime &dateTime);
+
+    bool_t   isEnable() const;
+    void     setEnable(cbool_t flag);
+
+    void     setPermissions();
+    void     alert();
+
 private:
     xNO_COPY_ASSIGN(FeatureFlag)
-
-xPLATFORM_IMPL:
-    void_t   _construct_impl();
-    void_t   _destruct_impl();
 };
 
 xNAMESPACE_END2(xl, package)
