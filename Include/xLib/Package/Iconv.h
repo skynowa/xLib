@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN2(xl, package)
 
 class Iconv
-    ///< Perform character set conversion
+    /// Perform character set conversion
 {
 public:
              Iconv(std::ctstring_t &charsetIn, std::ctstring_t &charsetOut,

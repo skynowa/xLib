@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xl, ${cmXLIB_TEMPLATE_NS})
 
 class ${cmXLIB_TEMPLATE}
-    ///< ${cmXLIB_TEMPLATE_COMMENTS}
+    /// ${cmXLIB_TEMPLATE_COMMENTS}
 {
 public:
              ${cmXLIB_TEMPLATE}();

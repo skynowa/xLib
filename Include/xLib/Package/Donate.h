@@ -21,7 +21,7 @@ struct DonateData
 xUSING_CONST(DonateData);
 
 class Donate
-    ///< Donate money
+    /// Donate money
 {
 public:
               Donate() = default;

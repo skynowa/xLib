@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN2(xl, package)
 
 class IRestClient
-    ///< REST API client
+    /// REST API client
 {
 public:
              IRestClient();

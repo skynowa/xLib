@@ -24,7 +24,7 @@ struct CsvData
 xUSING_CONST(CsvData);
 
 class ICsv
-    ///< CSV interface
+    /// CSV interface
 {
 public:
     using row_t = std::vec_tstring_t;
@@ -36,7 +36,7 @@ public:
 //-------------------------------------------------------------------------------------------------
 class CsvReader :
     public ICsv
-    ///< CSV reader
+    /// CSV reader
 {
 public:
     explicit       CsvReader(cCsvData &data);
@@ -65,7 +65,7 @@ private:
 //-------------------------------------------------------------------------------------------------
 class CsvWriter :
     public ICsv
-    ///< CSV writer
+    /// CSV writer
 {
 public:
     explicit   CsvWriter(cCsvData &data);
