@@ -22,13 +22,10 @@ public:
 
     void     setName(std::ctstring_t &name);
     void     setDescription(std::ctstring_t &desc);
-    void     setStartTs(const DateTime &start);
-    void     setStopTs(const DateTime &stop);
-    void     setStop(const DateTime &dateTime);
-
     bool_t   isEnable() const;
     void     setEnable(cbool_t flag);
-
+    void     setIntervalTs(const DateTime &start, const DateTime &stop);
+    void     setStop(const DateTime &stop);
     void     setPermissions();
     void     alert();
 
@@ -36,6 +33,8 @@ private:
     std::tstring_t _name;
     std::tstring_t _desc;
     bool_t         _is_enable {};
+	DateTime       _start;
+	DateTime       _stop;
 
     xNO_COPY_ASSIGN(FeatureFlag)
 };
