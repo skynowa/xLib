@@ -24,6 +24,7 @@ public:
 	xPROPERTY(std::tstring_t, description, Description);
 	xPROPERTY(bool_t,         enable, Enable);
 
+public:
     void     setIntervalTs(const DateTime &start, const DateTime &stop);
     void     setStop(const DateTime &stop);
     void     setPermissions();
