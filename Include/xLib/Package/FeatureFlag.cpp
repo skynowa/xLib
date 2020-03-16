@@ -24,36 +24,6 @@ FeatureFlag::~FeatureFlag()
 }
 //-------------------------------------------------------------------------------------------------
 void
-FeatureFlag::setName(
-	std::ctstring_t &a_name
-)
-{
-	_name = a_name;
-}
-//-------------------------------------------------------------------------------------------------
-void
-FeatureFlag::setDescription(
-	std::ctstring_t &a_desc
-)
-{
-	_desc = a_desc;
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-FeatureFlag::isEnable() const
-{
-	return _is_enable;
-}
-//-------------------------------------------------------------------------------------------------
-void
-FeatureFlag::setEnable(
-    cbool_t a_enable
-)
-{
-	_is_enable = a_enable;
-}
-//-------------------------------------------------------------------------------------------------
-void
 FeatureFlag::setIntervalTs(
 	const DateTime &a_start,
 	const DateTime &a_stop

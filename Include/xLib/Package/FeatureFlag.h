@@ -20,21 +20,18 @@ public:
     virtual ~FeatureFlag();
         ///< destructor
 
-    void     setName(std::ctstring_t &name);
-    void     setDescription(std::ctstring_t &desc);
-    bool_t   isEnable() const;
-    void     setEnable(cbool_t enable);
+	xPROPERTY(std::tstring_t, name, Name);
+	xPROPERTY(std::tstring_t, description, Description);
+	xPROPERTY(bool_t,         enable, Enable);
+
     void     setIntervalTs(const DateTime &start, const DateTime &stop);
     void     setStop(const DateTime &stop);
     void     setPermissions();
     void     alert();
 
 private:
-    std::tstring_t _name;
-    std::tstring_t _desc;
-    bool_t         _is_enable {};
-	DateTime       _start;
-	DateTime       _stop;
+	DateTime _start;
+	DateTime _stop;
 
     xNO_COPY_ASSIGN(FeatureFlag)
 };
