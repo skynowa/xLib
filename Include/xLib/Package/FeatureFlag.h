@@ -25,10 +25,10 @@ public:
 	xPROPERTY(bool_t,         enable, Enable);
 
 public:
-    void     setIntervalTs(const DateTime &start, const DateTime &stop);
-    void     setStop(const DateTime &stop);
-    void     setPermissions();
-    void     alert();
+    void setIntervalTs(const DateTime &start, const DateTime &stop);
+    void setStop(const DateTime &stop);
+    void setPermissions();
+    void alert();
 
 private:
 	DateTime _start;
