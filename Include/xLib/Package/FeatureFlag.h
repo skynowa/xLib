@@ -28,7 +28,7 @@ public:
     void setIntervalTs(const DateTime &start, const DateTime &stop);
     void setStop(const DateTime &stop);
     void setPermissions();
-    void alert();
+    void alert() const;
 
 private:
 	DateTime _start;
