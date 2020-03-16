@@ -68,7 +68,7 @@ FeatureFlag::setStop(
 	const DateTime &a_stop
 )
 {
-	_start = DateTime();
+	_start = DateTime().current();
 	_stop  = a_stop;
 }
 //-------------------------------------------------------------------------------------------------
