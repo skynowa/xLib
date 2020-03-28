@@ -85,21 +85,15 @@ public:
         ///< aborts the current process, producing an abnormal program termination
 
     // info
-    static
-    ApplicationInfo & info();
+    xPROPERTY_STATIC(ApplicationInfo, info, Info);
         ///< application information
-    static
-    void           setInfo(const ApplicationInfo &info);
-        ///< set application information
+
     static
     const BuildInfo &buildInfo();
         ///< build information
-    static
-    Donate &       donate();
+
+	xPROPERTY_STATIC(Donate, donate, Donate);
         ///< application donate
-    static
-    void           setDonate(const Donate &info);
-        ///< set application donate
 
     // files
     static
@@ -139,10 +133,8 @@ public:
         ///< language translation directory
 
 protected:
-    bool_t                 _isDevel {};
-    std::ctstring_t        _appGuid;
-    static ApplicationInfo _info;
-    static Donate          _donate;
+    bool_t          _isDevel {};
+    std::ctstring_t _appGuid;
 
     xNO_COPY_ASSIGN(Application)
 };
