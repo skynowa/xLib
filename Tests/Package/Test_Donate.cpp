@@ -26,10 +26,10 @@ Test_Donate::unit()
 
 		Donate donate(data);
 
-		xTEST_EQ(donate.get().payPal, data.payPal);
-		xTEST_EQ(donate.get().webMoney, data.webMoney);
-		xTEST_EQ(donate.get().yandexMoney, data.yandexMoney);
-		xTEST_EQ(donate.get().private24, data.private24);
+		xTEST_EQ(donate.data().payPal, data.payPal);
+		xTEST_EQ(donate.data().webMoney, data.webMoney);
+		xTEST_EQ(donate.data().yandexMoney, data.yandexMoney);
+		xTEST_EQ(donate.data().private24, data.private24);
 	}
 
 	return true;
