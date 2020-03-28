@@ -34,7 +34,7 @@ public:
         xTRACE_FUNC;
         Trace() << Signal::decription(a_signal) << "\n";
 
-        Application::exit(EXIT_FAILURE);
+        Application::exit(Application::Failure);
     }
 
     xNO_INLINE static void_t
@@ -62,7 +62,7 @@ public:
 
         std::tcout << StackTrace().toString() << std::endl;
 
-        Application::exit(EXIT_FAILURE);
+        Application::exit(Application::Failure);
     }
 
     xNO_INLINE static void_t
@@ -202,7 +202,7 @@ bool_t
 Application::selfCheck() const
 {
 #if xLIB_QT
-    bool_t bRv = false;
+    bool_t bRv {};
 
     bRv = std::tstring_t(QT_VERSION_STR) == std::tstring_t( qVersion() );
     if (!bRv) {
@@ -220,7 +220,7 @@ Application::selfCheck() const
 /* static */
 void_t
 Application::exit(
-    cint_t &a_status
+    cExitCode a_status
 )
 {
     (void_t)std::exit(a_status);
@@ -412,12 +412,12 @@ Application::langDirPath()
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-int_t
+Application::ExitCode
 Application::run()
 {
     cbool_t opt_useException = false;
 
-    int_t iRv = EXIT_FAILURE;
+    ExitCode iRv {};
 
     signal().connectInfoAll(internal::CrashCallback::onInfo);
 #if 0
@@ -452,12 +452,12 @@ Application::run()
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-int_t
+Application::ExitCode
 Application::onRun()
 {
     xTEST(false);
 
-    return EXIT_FAILURE;
+    return ExitCode::Failure;
 }
 //-------------------------------------------------------------------------------------------------
 
