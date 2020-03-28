@@ -749,7 +749,7 @@
         static type & name()                         { return _##name; } \
         static void   set##Name(const type& a_value) { _##name = a_value; } \
     private: \
-        static type _##name {}
+        static type _##name
     ///< property with read, write (static)
 
 #define xPROPERTY_CONST_STATIC(type, name, Name) \
@@ -757,7 +757,7 @@
         static const type & name()                         { return _##name; } \
         static void         set##Name(const type& a_value) { _##name = a_value; } \
     private: \
-        static type _##name {}
+        static type _##name
     ///< property with read, write (static)
 ///@}
 //-------------------------------------------------------------------------------------------------
