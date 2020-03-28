@@ -116,12 +116,12 @@ public:
 	{
 	}
 
-    xNO_INLINE virtual int_t
+    xNO_INLINE virtual ExitCode
     onRun() override
     {
         Failer().bug();
 
-        return 0;
+        return ExitCode::Failure;
     }
 
 private:

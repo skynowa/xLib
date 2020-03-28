@@ -31,6 +31,14 @@ class Application
     /// application
 {
 public:
+    enum ExitCode : int
+        // exit code (not only as enum)
+    {
+        Failure = EXIT_FAILURE,
+        Success = EXIT_SUCCESS
+    };
+    xUSING_CONST(ExitCode);
+
                    Application(std::ctstring_t &appGuid, std::ctstring_t &locale);
         ///< constructor
     virtual       ~Application() = default;
@@ -54,13 +62,13 @@ public:
         ///< create all application directories
     bool_t         selfCheck() const;
         ///< self check
-    int_t          run();
+    ExitCode       run();
         ///< run
-    virtual int_t  onRun() = 0;
+    virtual ExitCode onRun() = 0;
         ///< run handle
 
     static
-    void_t         exit(cint_t &status);
+    void_t         exit(cExitCode status);
         ///< terminates the process normally, performing the regular cleanup,
         ///< objects with automatic storage are not destroyed
     static
