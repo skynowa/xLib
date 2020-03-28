@@ -72,6 +72,12 @@ public:
         ///< terminates the process normally, performing the regular cleanup,
         ///< objects with automatic storage are not destroyed
     static
+    void_t         exitFailure();
+        ///<
+    static
+    void_t         exitSuccess();
+        ///<
+    static
     void_t         terminate();
         ///< calls the current terminate handler
     static
