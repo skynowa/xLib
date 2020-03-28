@@ -120,8 +120,8 @@ Application::Application(
     std::ctstring_t &a_appGuid, ///< application GUID
     std::ctstring_t &a_locale   ///< locale, empty value for current locale
 ) :
-    _isDevel(::isDevel),
-    _appGuid(a_appGuid)
+    _isDevel{::isDevel},
+    _appGuid{a_appGuid}
 {
     xTEST_EQ(a_appGuid.empty(), false);
     xTEST_NA(a_locale);
