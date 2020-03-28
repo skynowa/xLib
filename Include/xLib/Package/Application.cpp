@@ -34,7 +34,7 @@ public:
         xTRACE_FUNC;
         Trace() << Signal::decription(a_signal) << "\n";
 
-        Application::exit(Application::Failure);
+        Application::exitFailure();
     }
 
     xNO_INLINE static void_t
@@ -62,7 +62,7 @@ public:
 
         std::tcout << StackTrace().toString() << std::endl;
 
-        Application::exit(Application::Failure);
+        Application::exitFailure();
     }
 
     xNO_INLINE static void_t
@@ -214,6 +214,8 @@ Application::selfCheck() const
     }
 #endif
 
+    // TODO: check configs
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
@@ -224,6 +226,20 @@ Application::exit(
 )
 {
     (void_t)std::exit(a_status);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+Application::exitFailure()
+{
+    exit(ExitCode::Failure);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+Application::exitSuccess()
+{
+    exit(ExitCode::Success);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -415,7 +431,7 @@ Application::langDirPath()
 Application::ExitCode
 Application::run()
 {
-    cbool_t opt_useException = false;
+    cbool_t opt_useException {false};
 
     ExitCode iRv {};
 
