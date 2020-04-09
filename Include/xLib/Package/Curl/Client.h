@@ -36,7 +36,7 @@ public:
     void_t         perform();
     void_t         pause(cint_t bitMask);
     template<typename T>
-    void_t         info(cCURLINFO info, const T value);
+    void_t         info(cCURLINFO info, const T &value);
 
     void_t         receive(void_t *buff, std::csize_t buffSize, std::size_t *n);
     void_t         send(cvoid_t *buff, std::csize_t buffSize, std::size_t *n);
