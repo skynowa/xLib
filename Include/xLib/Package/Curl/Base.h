@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN3(xl, package, curl)
 
 struct DataIn
-    /// base data (in)
+    /// Incoming data
 {
 	std::tstring_t url;
 	bool_t         isUseHeader {true};
@@ -49,12 +49,17 @@ struct DataIn
 	std::map_tstring_t addHeader;
 
 	std::tstring_t referer;
-	std::tstring_t acceptEncoding;
-	std::tstring_t acceptLanguage;
-	std::tstring_t acceptCharset;
+		///<
 	std::tstring_t accept;
 		///< specify certain media types which are acceptable
-	std::tstring_t agent;
+	std::tstring_t acceptEncoding;
+		///< similar to Accept, but restricts the content-codings that are acceptable
+	std::tstring_t acceptLanguage;
+		///< similar to Accept, but restricts the set of natural languages that are preferred
+	std::tstring_t acceptCharset;
+		///< indicate what character sets are acceptable
+	std::tstring_t user_agent;
+		///<
 
 	bool_t         isFollowLocation {true};
 	int_t          maxRedirects {100};
@@ -82,7 +87,7 @@ struct DataIn
 xUSING_CONST(DataIn);
 //-------------------------------------------------------------------------------------------------
 struct DataOut
-    /// base data (out)
+    /// Outcoming data
 {
 	std::tstring_t      contentType;
 	std::tstring_t      effectiveUrl;
