@@ -122,12 +122,17 @@ HttpClient::request(
 		break;
 	}
 
-	curl_slist *headers {};
-	Buffer      buffHeader;
-	Buffer      buffData;
+	curl_slist     *headers {};
+	std::tstring_t  buffHeader;
+	std::tstring_t  buffData;
 	CurlBase::setOptionsDefault(&a_dataIn, headers, &buffHeader, &buffData);
 
 	/* CURLcode st = */ perform();
+#if 0
+	Cout()
+		<< "Header: [" << buffHeader << "]\n"
+		<< "Body: ["   << buffData <<   "]";
+#endif
 
 	CurlBase::getInfos(out_dataOut);
 
@@ -136,11 +141,8 @@ HttpClient::request(
 	/// _error = st;
 
 	// [out]
-	String::split(buffHeader.buffer(), Const::crNl(), xT(": "), &out_dataOut->headers);
-	out_dataOut->body = buffData.buffer();
-
-	std::cout << "Header: [" << buffHeader.buffer() << "]" << std::endl;
-	std::cout << "Body: [" << buffData.buffer() << "]" << std::endl;
+	String::split(buffHeader, Const::crNl(), xT(": "), &out_dataOut->headers);
+	out_dataOut->body = buffData;
 
 	return true;
 }

@@ -14,7 +14,6 @@
 #include <curl/curl.h>
 #include <curl/easy.h>
 #include "Types.h"
-#include "Buffer.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN3(xl, package, curl)
 
@@ -57,11 +56,11 @@ public:
 
     // callbacks
 	static
-	std::size_t    onWriteHeader(void_t *buff, std::size_t size, std::size_t items, void_t *userData);
+	std::size_t    onWriteHeader(void_t *buff, std::size_t size, std::size_t items, std::tstring_t *userData);
 	static
-	std::size_t    onWriteData(void_t *buff, std::size_t size, std::size_t items, void_t *userData);
+	std::size_t    onWriteData(void_t *buff, std::size_t size, std::size_t items, std::tstring_t *userData);
 	static
-	std::size_t    onReadData(void_t *buff, std::size_t size, std::size_t items, void_t *userData);
+	std::size_t    onReadData(void_t *buff, std::size_t size, std::size_t items, std::tstring_t *userData);
 	static
 	int            onDebug(CURL *curl, curl_infotype type, char *buf, std::size_t len, void_t *useData);
 
