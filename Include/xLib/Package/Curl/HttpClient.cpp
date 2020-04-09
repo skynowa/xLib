@@ -132,7 +132,7 @@ HttpClient::request(
 	curl_slist     *headers {};
 	std::tstring_t  buffHeader;
 	std::tstring_t  buffData;
-	CurlBase::setOptionsDefault(&a_dataIn, headers, &buffHeader, &buffData);
+	Base::setOptionsDefault(&a_dataIn, headers, &buffHeader, &buffData);
 
 	/* CURLcode st = */ perform();
 #if 0
@@ -141,7 +141,7 @@ HttpClient::request(
 		<< "Body: ["   << buffData <<   "]";
 #endif
 
-	CurlBase::getInfos(out_dataOut);
+	Base::getInfos(out_dataOut);
 
 	Utils::freeT(headers, ::curl_slist_free_all, nullptr);
 

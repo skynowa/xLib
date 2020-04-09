@@ -1,5 +1,5 @@
 /**
- * \file  CurlBase.cpp
+ * \file  Base.cpp
  * \brief CURL client
  */
 
@@ -35,7 +35,7 @@ DataIn::DebugData::clear()
 
 //-------------------------------------------------------------------------------------------------
 void_t
-CurlBase::setProtocols(
+Base::setProtocols(
 	clong_t a_bitMask	///< bitmask of CURLPROTO_* defines (CURLPROTO_HTTP, ..., CURLPROTO_ALL)
 )
 {
@@ -43,7 +43,7 @@ CurlBase::setProtocols(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-CurlBase::setOptionsDefault(
+Base::setOptionsDefault(
 	DataIn         *a_dataIn,		///< [in,out]
 	curl_slist     *a_headers,		///< [in,out]
 	std::tstring_t *out_buffHeader,	///< [out]
@@ -227,7 +227,7 @@ CurlBase::setOptionsDefault(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-CurlBase::getInfos(
+Base::getInfos(
 	DataOut *out_dataOut	///< [out]
 )
 {
