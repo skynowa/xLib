@@ -181,12 +181,22 @@ CurlBase::setOptionsDefault(
 			a_headers = ::curl_slist_append(a_headers, value.c_str());
 		}
 
+		if (a_dataIn->isCacheControl) {
+			// use cache
+		} else {
+			// no cache
+			a_headers = ::curl_slist_append(a_headers, xT("Cache-Control: no-cache"));
+
+			// SEE: also set in HttpClient::request()
+		}
+
 		for (auto &[param, value] : a_dataIn->addHeaders) {
 			std::ctstring_t &value_ = param + xT(": ") + value;
 
 			a_headers = ::curl_slist_append(a_headers, value_.c_str());
 		}
 
+		// set list
 		setOption(CURLOPT_HTTPHEADER, a_headers);
 	}
 
@@ -205,15 +215,6 @@ CurlBase::setOptionsDefault(
 	// curl_easy_setopt(curl, CURLOPT_AUTOREFERER, 1);
 	setOption(CURLOPT_FOLLOWLOCATION, static_cast<long_t>(a_dataIn->isFollowLocation));
 	setOption(CURLOPT_MAXREDIRS,      a_dataIn->maxRedirects);
-
-	if (a_dataIn->isCacheControl) {
-		// use cache
-	} else {
-		// no cache
-		a_headers = ::curl_slist_append(a_headers, xT("Cache-Control: no-cache"));
-
-		// SEE: also set in HttpClient::request()
-	}
 
 	// CURLOPT_DEBUG...
 	if (a_dataIn->isDebugHeader) {
