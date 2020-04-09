@@ -1,5 +1,5 @@
 /**
- * \file   Test_CurlClient.cpp
+ * \file   Test_Client.cpp
  * \brief  test Client
  */
 
@@ -11,12 +11,12 @@
 using namespace xl;
 using namespace curl;
 
-xTEST_CLASS(Test_CurlClient)
-xTEST_UNIT(Test_CurlClient)
+xTEST_CLASS(Test_Client)
+xTEST_UNIT(Test_Client)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_CurlClient::unit()
+Test_Client::unit()
 {
 	Client curl;
 
