@@ -199,12 +199,17 @@ Client::strError(
 /* static */
 std::size_t
 Client::onWriteHeader(
-	void_t *a_buff,
+	void_t      *a_buff,
 	std::size_t  a_size,
 	std::size_t  a_items,
-	void_t *a_userData
+	void_t      *a_userData
 )
 {
+	xTEST_PTR(a_buff);
+	xTEST_DIFF(a_size, std::size_t{0});
+	xTEST_DIFF(a_items, std::size_t{0});
+	xTEST_PTR(a_userData);
+
 	std::csize_t buffSize = a_items * a_size;
 
 	auto *buff = static_cast<Buffer *>(a_userData);
@@ -222,6 +227,11 @@ Client::onWriteData(
 	void_t      *a_userData
 )
 {
+	xTEST_PTR(a_buff);
+	xTEST_DIFF(a_size, std::size_t{0});
+	xTEST_DIFF(a_items, std::size_t{0});
+	xTEST_PTR(a_userData);
+
 	std::csize_t buffSize = a_items * a_size;
 
 	auto *buff = static_cast<Buffer *>(a_userData);
