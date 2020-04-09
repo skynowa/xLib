@@ -181,10 +181,10 @@ CurlBase::setOptionsDefault(
 			a_headers = ::curl_slist_append(a_headers, value.c_str());
 		}
 
-		for (auto &it_header : a_dataIn->addHeader) {
-			std::ctstring_t &value = it_header.first + xT(": ") + it_header.second;
+		for (auto &[param, value] : a_dataIn->addHeaders) {
+			std::ctstring_t &value_ = param + xT(": ") + value;
 
-			a_headers = ::curl_slist_append(a_headers, value.c_str());
+			a_headers = ::curl_slist_append(a_headers, value_.c_str());
 		}
 
 		setOption(CURLOPT_HTTPHEADER, a_headers);

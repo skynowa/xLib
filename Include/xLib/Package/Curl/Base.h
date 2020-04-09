@@ -46,7 +46,7 @@ struct DataIn
 	std::tstring_t proxyUserPass;
 	std::tstring_t userPass;
 
-	std::map_tstring_t addHeader;
+	std::map_tstring_t addHeaders;
 
 	std::tstring_t referer;
 		///<
