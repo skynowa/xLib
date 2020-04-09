@@ -43,7 +43,7 @@ PrivaBankApi::getExchangeRates(
 
 	curl::HttpClient http;
 
-	curl::DataIn baseDataIn;
+	curl::DataIn dataIn;
 	{
 	   /**
 		* HTTP GET request:
@@ -51,13 +51,13 @@ PrivaBankApi::getExchangeRates(
 		* https://api.privatbank.ua/p24api/exchange_rates?date=01.12.2014
 		*/
 
-		baseDataIn.url            = xT("https://api.privatbank.ua/p24api/exchange_rates");
-		baseDataIn.accept         = "application/xml";
-		baseDataIn.acceptEncoding = "gzip, deflate";
-		baseDataIn.acceptLanguage = "en-us,en";
-		baseDataIn.acceptCharset  = "UTF-8";
+		dataIn.url            = xT("https://api.privatbank.ua/p24api/exchange_rates");
+		dataIn.accept         = "application/xml";
+		dataIn.acceptEncoding = "gzip, deflate";
+		dataIn.acceptLanguage = "en-us,en";
+		dataIn.acceptCharset  = "UTF-8";
 
-		// baseDataIn.request
+		// dataIn.request
 		{
 			cbool_t is_xml {true};
 
@@ -72,20 +72,20 @@ PrivaBankApi::getExchangeRates(
 					continue;
 				}
 
-				baseDataIn.request += param + "=" + http.escape(value);
-				baseDataIn.request += "&";
+				dataIn.request += param + "=" + http.escape(value);
+				dataIn.request += "&";
 			}
 
-			baseDataIn.request = String::trimRightChars(baseDataIn.request, "&");
+			dataIn.request = String::trimRightChars(dataIn.request, "&");
 		}
 	}
 
 	curl::DataOut dataOut;
-	bRv = http.request(curl::HttpClient::RequestType::Get, baseDataIn, &dataOut);
+	bRv = http.request(curl::HttpClient::RequestType::Get, dataIn, &dataOut);
 	xTEST(bRv);
 	if ( !http.isSuccess(dataOut) ) {
 		Cout()
-			<< xTRACE_VAR(baseDataIn.request)   << std::endl
+			<< xTRACE_VAR(dataIn.request)       << std::endl
 			<< xT("\n")
 			<< xTRACE_VAR(dataOut.contentType)  << std::endl
 			<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
@@ -104,7 +104,7 @@ PrivaBankApi::getExchangeRates(
 
 #if 1
 	Cout()
-		<< xTRACE_VAR(baseDataIn.request)   << std::endl
+		<< xTRACE_VAR(dataIn.request)       << std::endl
 		<< xT("\n")
 		<< xTRACE_VAR(dataOut.contentType)  << std::endl
 		<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
