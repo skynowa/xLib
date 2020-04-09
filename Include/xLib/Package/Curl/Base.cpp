@@ -202,7 +202,7 @@ CurlBase::setOptionsDefault(
 		setOption(CURLOPT_USERAGENT, a_dataIn->user_agent.c_str());
 	}
 
-	// curl_easy_setopt(curl, CURLOPT_AUTOREFERER , 1);
+	// curl_easy_setopt(curl, CURLOPT_AUTOREFERER, 1);
 	setOption(CURLOPT_FOLLOWLOCATION, static_cast<long_t>(a_dataIn->isFollowLocation));
 	setOption(CURLOPT_MAXREDIRS,      a_dataIn->maxRedirects);
 
