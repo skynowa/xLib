@@ -19,7 +19,7 @@ Test_PrivaBankApi::unit()
 {
 	xTEST_CASE("getExchangeRates")
 	{
-		std::ctstring_t               date = DateTime().current().format(xT("%d.%m.%Y"));
+		std::ctstring_t               date = DateTime().current().format(xT("%d.%m.%Y"), xT(""));
 		PrivaBankApi::exchange_rate_t data;
 
 		PrivaBankApi api;
