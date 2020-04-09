@@ -148,6 +148,7 @@ Translate::execute(
 		baseDataIn.acceptEncoding = "gzip, deflate";
 		baseDataIn.acceptLanguage = "en-us,en";
 		baseDataIn.acceptCharset  = "UTF-8";
+		baseDataIn.accept         = "text/html";
 
 		// baseDataIn.request
 		{
@@ -170,7 +171,6 @@ Translate::execute(
 	}
 
 	curl::DataOut dataOut;
-
 	bRv = http.request(curl::HttpClient::RequestType::Post, baseDataIn, &dataOut);
 	xTEST(bRv);
 	if ( !http.isSuccess(dataOut) ) {

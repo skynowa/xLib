@@ -174,6 +174,12 @@ CurlBase::setOptionsDefault(
 			out_headers = ::curl_slist_append(out_headers, value.c_str());
 		}
 
+		if ( !a_dataIn->accept.empty() ) {
+			std::ctstring_t &value = xT("Accept: ") + a_dataIn->accept;
+
+			out_headers = ::curl_slist_append(out_headers, value.c_str());
+		}
+
 		for (auto &it_header : a_dataIn->addHeader) {
 			std::ctstring_t &value = it_header.first + xT(": ") + it_header.second;
 
