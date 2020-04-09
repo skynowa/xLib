@@ -42,6 +42,8 @@ HttpClient::request(
 			* on the data
 			*/
 
+			a_dataIn.url += xT("?") + a_dataIn.request;
+
 			setOption(CURLOPT_POST,   0L);
 			setOption(CURLOPT_NOBODY, 0L);
 		}
