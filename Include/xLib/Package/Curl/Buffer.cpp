@@ -63,6 +63,7 @@ Buffer::set(
 	const size_t  a_buffSize
 )
 {
+#if 0
 	_buff = static_cast<char *>( ::realloc(_buff, _size + a_buffSize + 1) );
 	if (_buff == nullptr) {
 		return;
@@ -71,6 +72,24 @@ Buffer::set(
 	::memcpy(_buff + _size, a_buff, a_buffSize);
 	_size       += a_buffSize;
 	_buff[_size] = '\0';
+#else
+	// test
+	void *tmp = _buff;
+	_buff=(char*)realloc(_buff, _size + a_buffSize + 1);
+	if (_buff)
+	{
+		memcpy(_buff + _size, a_buff, a_buffSize);
+		_size += a_buffSize;
+		_buff[_size] = 0;
+	}
+	else
+	{
+		if ( tmp != nullptr )
+		{
+			free(tmp);
+		}
+	}
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 void
