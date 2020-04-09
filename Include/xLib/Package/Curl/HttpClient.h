@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN3(xl, package, curl)
 
 class HttpClient :
-	public CurlBase
+	public Base
     ///< HTTP client
 {
 public:
