@@ -33,6 +33,8 @@ Test_HttpClient::unit()
 		xTEST_EQ(dataOut.body.empty(), false);
 
 		Cout()
+			<< xTRACE_VAR(baseDataIn.request)   << std::endl
+			<< xT("\n")
 			<< xTRACE_VAR(dataOut.contentType)  << std::endl
 			<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
 			<< xTRACE_VAR(dataOut.responseCode) << std::endl
