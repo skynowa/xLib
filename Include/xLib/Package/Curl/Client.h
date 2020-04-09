@@ -23,7 +23,7 @@ class Client
 public:
     explicit       Client();
         ///< constructor
-    virtual       ~Client();
+    virtual       ~Client() = 0;
         ///< destructor
 
     // handle
