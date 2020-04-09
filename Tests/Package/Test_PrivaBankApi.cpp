@@ -19,12 +19,14 @@ Test_PrivaBankApi::unit()
 {
 	xTEST_CASE("getExchangeRates")
 	{
-		std::ctstring_t               date = xT("01.12.2014");
+		std::ctstring_t               date = DateTime().current().format(xT("%d.%m.%Y"));
 		PrivaBankApi::exchange_rate_t data;
 
 		PrivaBankApi api;
 		api.getExchangeRates(date, &data);
-		Cout() << xTRACE_VAR(data);
+
+		auto dataByDate = data[date]["EUR"];
+		Cout() << xTRACE_VAR(dataByDate);
 	}
 
 	return true;
