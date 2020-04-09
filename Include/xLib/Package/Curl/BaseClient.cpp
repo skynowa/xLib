@@ -1,10 +1,10 @@
 /**
- * \file  Base.cpp
+ * \file  BaseClient.cpp
  * \brief CURL client
  */
 
 
-#include "Base.h"
+#include <xLib/Package/Curl/BaseClient.h>
 
 xNAMESPACE_BEGIN3(xl, package, curl)
 
@@ -34,12 +34,12 @@ DataIn::DebugData::clear()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Base::~Base()
+BaseClient::~BaseClient()
 {
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Base::setProtocols(
+BaseClient::setProtocols(
 	clong_t a_bitMask	///< bitmask of CURLPROTO_* defines (CURLPROTO_HTTP, ..., CURLPROTO_ALL)
 )
 {
@@ -47,7 +47,7 @@ Base::setProtocols(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Base::setOptionsDefault(
+BaseClient::setOptionsDefault(
 	DataIn         *a_dataIn,		///< [in,out]
 	curl_slist     *a_headers,		///< [in,out]
 	std::tstring_t *out_buffHeader,	///< [out]
@@ -231,7 +231,7 @@ Base::setOptionsDefault(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Base::getInfos(
+BaseClient::getInfos(
 	DataOut *out_dataOut	///< [out]
 )
 {

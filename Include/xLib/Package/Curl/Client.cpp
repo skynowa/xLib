@@ -15,7 +15,6 @@
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Test/Test.h>
-#include "Base.h"
 
 
 xNAMESPACE_BEGIN3(xl, package, curl)
