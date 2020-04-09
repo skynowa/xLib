@@ -52,6 +52,8 @@ struct DataIn
 	std::tstring_t acceptEncoding;
 	std::tstring_t acceptLanguage;
 	std::tstring_t acceptCharset;
+	std::tstring_t accept;
+		///< specify certain media types which are acceptable
 	std::tstring_t agent;
 
 	bool_t         isFollowLocation {true};
