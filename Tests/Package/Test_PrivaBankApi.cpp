@@ -58,11 +58,10 @@ Test_PrivaBankApi::unit()
 			std::ctstring_t &it_date = dates[i];
 			auto            &it_data = datas[i];
 
-			auto eurSale = it_data[it_date]["EUR"]["PbRateSale"];
-			Cout() << xTRACE_VAR(eurSale) << std::endl;
+			const auto eurSale     = it_data[it_date]["EUR"]["PbRateSale"];
+			const auto eurPurchase = it_data[it_date]["EUR"]["PbRatePurchase"];
 
-			auto eurPurchase = it_data[it_date]["EUR"]["PbRatePurchase"];
-			Cout() << xTRACE_VAR(eurPurchase) << std::endl;
+			Cout() << xTRACE_VAR_3(it_date, eurSale, eurPurchase) << std::endl;
 		} // for
 	}
 
