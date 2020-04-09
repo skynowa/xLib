@@ -27,8 +27,8 @@ Client::setOption(
 template<typename T>
 inline void_t
 Client::info(
-    cCURLINFO a_info,
-    const T   a_value
+    cCURLINFO  a_info,
+    const T   &a_value
 )
 {
     CURLcode iRv = ::curl_easy_getinfo(_handle.get(), a_info, a_value);
