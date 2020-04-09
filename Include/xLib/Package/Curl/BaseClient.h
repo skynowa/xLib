@@ -10,10 +10,12 @@
 
 
 #include <xLib/Package/Curl/Client.h>
+#include <xLib/Interface/IData.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN3(xl, package, curl)
 
-struct DataIn
+struct DataIn :
+	public interface::IDataPrint
     /// Incoming data
 {
 	std::tstring_t url;
@@ -62,7 +64,7 @@ struct DataIn
 		///<
 
 	bool_t         isFollowLocation {true};
-	int_t          maxRedirects {100};
+	int_t          maxRedirects {50};
 	bool_t         isCacheControl {false}; // Impl for GET requests
 		///< false - no cache, force to reset cache
 
@@ -70,7 +72,8 @@ struct DataIn
 
 	std::tstring_t request;
 
-	struct DebugData
+	struct DebugData :
+		public interface::IDataPrint
 		/// debug data
 	{
 		std::tstring_t text;
@@ -81,14 +84,19 @@ struct DataIn
 		std::tstring_t sslDataIn;
 		std::tstring_t sslDataOut;
 
-		void_t clear();
+	protected:
+		void_t print(std::tostream_t &os) const override;
 	};
 
 	DebugData      debugData;
+
+protected:
+	void_t print(std::tostream_t &os) const override;
 };
 xUSING_CONST(DataIn);
 //-------------------------------------------------------------------------------------------------
-struct DataOut
+struct DataOut :
+	public interface::IDataPrint
     /// Outcoming data
 {
 	std::tstring_t      contentType;
@@ -98,6 +106,9 @@ struct DataOut
 
 	std::mmap_tstring_t headers;
 	std::tstring_t      body;
+
+protected:
+	void_t print(std::tostream_t &os) const override;
 };
 xUSING_CONST(DataOut);
 //-------------------------------------------------------------------------------------------------
