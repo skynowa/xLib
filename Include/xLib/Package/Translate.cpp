@@ -171,7 +171,7 @@ Translate::execute(
 	}
 
 	curl::DataOut dataOut;
-	bRv = http.request(curl::HttpClient::RequestType::Post, baseDataIn, &dataOut);
+	bRv = http.request(curl::HttpClient::Request::Post, baseDataIn, &dataOut);
 	xTEST(bRv);
 	if ( !http.isSuccess(dataOut) ) {
 		*out_textToBrief  = xT("Error: ") + std::to_string(dataOut.responseCode);

@@ -22,7 +22,7 @@ public:
     virtual ~HttpClient() = default;
         ///< destructor
 
-	enum class RequestType
+	enum class Request
 	{
 		Unknown = 0,
 		Get     = 1,
@@ -34,9 +34,9 @@ public:
 		Options = 7,
 		Trace   = 8
 	};
-	xUSING_CONST(RequestType);
+	xUSING_CONST(Request);
 
-    bool_t request(cRequestType type, DataIn &dataIn, DataOut *dataOut);
+    bool_t request(cRequest type, DataIn &dataIn, DataOut *dataOut);
 		///<
     bool_t isSuccess(cDataOut &dataOut) const;
 		///<

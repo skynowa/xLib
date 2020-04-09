@@ -81,7 +81,7 @@ PrivaBankApi::getExchangeRates(
 	}
 
 	curl::DataOut dataOut;
-	bRv = http.request(curl::HttpClient::RequestType::Get, dataIn, &dataOut);
+	bRv = http.request(curl::HttpClient::Request::Get, dataIn, &dataOut);
 	xTEST(bRv);
 	if ( !http.isSuccess(dataOut) ) {
 		Cout()

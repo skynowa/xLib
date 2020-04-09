@@ -21,12 +21,12 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::request(
-	cRequestType  a_type,		///<
-	DataIn       &a_dataIn,		///< [in,out]
-	DataOut      *out_dataOut	///< [out]
+	cRequest  a_type,		///<
+	DataIn   &a_dataIn,		///< [in,out]
+	DataOut  *out_dataOut	///< [out]
 )
 {
-	xTEST_DIFF((int)a_type, (int)RequestType::Unknown);
+	xTEST_DIFF((int)a_type, (int)Request::Unknown);
 	xTEST_PTR(out_dataOut);
 
 	out_dataOut->headers.clear();
@@ -35,7 +35,7 @@ HttpClient::request(
 	setProtocols(CURLPROTO_HTTP | CURLPROTO_HTTPS);
 
 	switch (a_type) {
-	case RequestType::Get:
+	case Request::Get:
 		{
 		   /**
 			* Retrieve information from the given server using a given URI.
@@ -55,7 +55,7 @@ HttpClient::request(
 			setOption(CURLOPT_NOBODY, 0L);
 		}
 		break;
-	case RequestType::Head:
+	case Request::Head:
 		{
 		   /**
 			* Same as GET, but transfers the status line and header section only
@@ -64,7 +64,7 @@ HttpClient::request(
 			setOption(CURLOPT_NOBODY, 1L);
 		}
 		break;
-	case RequestType::Post:
+	case Request::Post:
 		{
 		   /**
 			* Send data to the server, for example, customer information, file upload, etc.
@@ -76,17 +76,17 @@ HttpClient::request(
 			setOption(CURLOPT_POSTFIELDSIZE, a_dataIn.request.size());
 		}
 		break;
-	case RequestType::Put:
+	case Request::Put:
 		{
 		   /**
 			* Replaces all current representations of the target resource with uploaded content
 			*/
 
-			// TODO: RequestType::Put
+			// TODO: Request::Put
 			setOption(CURLOPT_UPLOAD, 1L);
 		}
 		break;
-	case RequestType::Delete:
+	case Request::Delete:
 		{
 		   /**
 			* Removes all current representations of the target resource given by a URI
@@ -95,34 +95,34 @@ HttpClient::request(
 			setOption(CURLOPT_CUSTOMREQUEST, xT("DELETE"));
 		}
 		break;
-	case RequestType::Connect:
+	case Request::Connect:
 		{
 		   /**
 			* Establishes a tunnel to the server identified by a given URI
 			*/
 
-			// TODO: RequestType::Connect
+			// TODO: Request::Connect
 		}
 		break;
-	case RequestType::Options:
+	case Request::Options:
 		{
 		   /**
 			* Describes the communication options for the target resource
 			*/
 
-			// TODO: RequestType::Options
+			// TODO: Request::Options
 		}
 		break;
-	case RequestType::Trace:
+	case Request::Trace:
 		{
 		   /**
 			* Performs a message loop-back test along the path to the target resource
 			*/
 
-			// TODO: RequestType::Trace
+			// TODO: Request::Trace
 		}
 		break;
-	case RequestType::Unknown:
+	case Request::Unknown:
 	default:
 		xTEST(false);
 		return false;
