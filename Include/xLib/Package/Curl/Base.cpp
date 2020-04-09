@@ -162,6 +162,12 @@ CurlBase::setOptionsDefault(
 
 	// CURLOPT_HTTPHEADER
 	{
+		if ( !a_dataIn->accept.empty() ) {
+			std::ctstring_t &value = xT("Accept: ") + a_dataIn->accept;
+
+			out_headers = ::curl_slist_append(out_headers, value.c_str());
+		}
+
 		if ( !a_dataIn->acceptLanguage.empty() ) {
 			std::ctstring_t &value = xT("Accept-Language: ") + a_dataIn->acceptLanguage;
 
@@ -170,12 +176,6 @@ CurlBase::setOptionsDefault(
 
 		if ( !a_dataIn->acceptCharset.empty() ) {
 			std::ctstring_t &value = xT("Accept-Charset: ") + a_dataIn->acceptCharset;
-
-			out_headers = ::curl_slist_append(out_headers, value.c_str());
-		}
-
-		if ( !a_dataIn->accept.empty() ) {
-			std::ctstring_t &value = xT("Accept: ") + a_dataIn->accept;
 
 			out_headers = ::curl_slist_append(out_headers, value.c_str());
 		}
@@ -197,8 +197,8 @@ CurlBase::setOptionsDefault(
 		setOption(CURLOPT_ACCEPT_ENCODING, a_dataIn->acceptEncoding.c_str());
 	}
 
-	if ( !a_dataIn->agent.empty() ) {
-		setOption(CURLOPT_USERAGENT, a_dataIn->agent.c_str());
+	if ( !a_dataIn->user_agent.empty() ) {
+		setOption(CURLOPT_USERAGENT, a_dataIn->user_agent.c_str());
 	}
 
 	// curl_easy_setopt(curl, CURLOPT_AUTOREFERER , 1);

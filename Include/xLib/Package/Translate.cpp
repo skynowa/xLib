@@ -145,10 +145,10 @@ Translate::execute(
 		*/
 
 		baseDataIn.url            = xT("https://translate.google.com/m");
+		baseDataIn.accept         = "text/html";
 		baseDataIn.acceptEncoding = "gzip, deflate";
 		baseDataIn.acceptLanguage = "en-us,en";
 		baseDataIn.acceptCharset  = "UTF-8";
-		baseDataIn.accept         = "text/html";
 
 		// baseDataIn.request
 		{
