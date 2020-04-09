@@ -63,6 +63,8 @@ struct DataIn
 
 	bool_t         isFollowLocation {true};
 	int_t          maxRedirects {100};
+	bool_t         isCacheControl {false}; // Impl for GET requests
+		///< false - no cache, force to reset cache
 
 	bool_t         isDebugHeader {true};
 

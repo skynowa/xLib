@@ -6,7 +6,6 @@
 
 #include "Base.h"
 
-
 xNAMESPACE_BEGIN3(xl, package, curl)
 
 /**************************************************************************************************
@@ -206,6 +205,15 @@ CurlBase::setOptionsDefault(
 	// curl_easy_setopt(curl, CURLOPT_AUTOREFERER , 1);
 	setOption(CURLOPT_FOLLOWLOCATION, static_cast<long_t>(a_dataIn->isFollowLocation));
 	setOption(CURLOPT_MAXREDIRS,      a_dataIn->maxRedirects);
+
+	if (a_dataIn->isCacheControl) {
+		// use cache
+	} else {
+		// no cache
+		out_headers = ::curl_slist_append(out_headers, xT("Cache-Control: no-cache"));
+
+		// SEE: also set in HttpClient::request()
+	}
 
 	// CURLOPT_DEBUG...
 	if (a_dataIn->isDebugHeader) {

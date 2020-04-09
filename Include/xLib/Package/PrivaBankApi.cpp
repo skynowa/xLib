@@ -53,7 +53,7 @@ PrivaBankApi::getExchangeRates(
 
 		baseDataIn.url            = xT("https://api.privatbank.ua/p24api/exchange_rates");
 		baseDataIn.accept         = "application/xml";
-		// baseDataIn.acceptEncoding = "gzip, deflate";
+		baseDataIn.acceptEncoding = "gzip, deflate";
 		baseDataIn.acceptLanguage = "en-us,en";
 		baseDataIn.acceptCharset  = "UTF-8";
 
@@ -67,8 +67,12 @@ PrivaBankApi::getExchangeRates(
 				{is_xml ? "" : "json", ""}
 			};
 
-			for (auto &it_request_data : request) {
-				baseDataIn.request += it_request_data.first + "=" + http.escape(it_request_data.second);
+			for (auto &[param, value] : request) {
+				if ( param.empty() ) {
+					continue;
+				}
+
+				baseDataIn.request += param + "=" + http.escape(value);
 				baseDataIn.request += "&";
 			}
 
@@ -98,7 +102,7 @@ PrivaBankApi::getExchangeRates(
 	xTEST(!dataOut.headers.empty());
 	xTEST(!dataOut.body.empty());
 
-#if 0
+#if 1
 	Cout()
 		<< xTRACE_VAR(baseDataIn.request)   << std::endl
 		<< xT("\n")
@@ -109,7 +113,8 @@ PrivaBankApi::getExchangeRates(
 		<< xT("\n")
 		<< xTRACE_VAR(dataOut.headers)      << std::endl
 		<< xTRACE_VAR(dataOut.body.size())  << std::endl
-		<< xTRACE_VAR(dataOut.body)         << std::endl;
+		// << xTRACE_VAR(dataOut.body)         << std::endl
+		;
 #endif
 
      _parseExchangeRates(a_date, dataOut.body, out_data);

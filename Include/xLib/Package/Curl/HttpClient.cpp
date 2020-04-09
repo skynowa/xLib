@@ -8,6 +8,7 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/DateTime.h>
 
 
 xNAMESPACE_BEGIN3(xl, package, curl)
@@ -43,6 +44,12 @@ HttpClient::request(
 			*/
 
 			a_dataIn.url += xT("?") + a_dataIn.request;
+
+			if (!a_dataIn.isCacheControl) {
+				std::ctstring_t sessId = std::to_string( DateTime().current().toMsec() );
+
+				a_dataIn.url += "&SessId=" + escape(sessId);
+			}
 
 			setOption(CURLOPT_POST,   0L);
 			setOption(CURLOPT_NOBODY, 0L);
