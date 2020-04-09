@@ -108,7 +108,7 @@ class Base :
 protected:
              Base() = default;
         ///< constructor
-    virtual ~Base() = default;
+    virtual ~Base() = 0;
         ///< destructor
 
     void_t   setProtocols(clong_t bitMask);
