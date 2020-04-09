@@ -30,12 +30,12 @@ Test_CurlClient::unit()
 		curl.setOption(CURLOPT_URL, url.c_str());
 
 		// header
-		Buffer buffHeader;
+		std::tstring_t buffHeader;
 		::curl_easy_setopt(curlHandle, CURLOPT_WRITEHEADER, &buffHeader);
 		::curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, Client::onWriteHeader);
 
 		// body
-		Buffer dataBuff;
+		std::tstring_t dataBuff;
 		::curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &dataBuff);
 		::curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, Client::onWriteData);
 
@@ -44,8 +44,8 @@ Test_CurlClient::unit()
 
 		curl.perform();
 
-		xTEST_EQ(buffHeader.buffer().empty(), false);
-		xTEST_EQ(dataBuff.buffer().empty(), false);
+		xTEST(!buffHeader.empty());
+		xTEST(!dataBuff.empty());
 	}
 
     return true;

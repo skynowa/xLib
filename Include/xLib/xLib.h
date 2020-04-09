@@ -160,7 +160,6 @@
 #include <xLib/Package/PrivaBankApi.h>
 
 #include <xLib/Package/Curl/Types.h>
-#include <xLib/Package/Curl/Buffer.h>
 #include <xLib/Package/Curl/Version.h>
 #include <xLib/Package/Curl/Client.h>
 #include <xLib/Package/Curl/Base.h>
