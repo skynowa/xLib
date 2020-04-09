@@ -14,8 +14,8 @@ xNAMESPACE_BEGIN2(xl, interface)
 //-------------------------------------------------------------------------------------------------
 inline std::tostream_t &
 operator << (
-	std::tostream_t &a_os,
-	const IData     &a_data
+	std::tostream_t  &a_os,
+	const IDataPrint &a_data
 )
 {
 	a_data.print(a_os);

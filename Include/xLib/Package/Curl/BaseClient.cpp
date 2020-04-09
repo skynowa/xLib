@@ -9,21 +9,94 @@
 xNAMESPACE_BEGIN3(xl, package, curl)
 
 /**************************************************************************************************
+*   DataOut public
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+void_t
+DataIn::print(
+	std::tostream_t &a_os
+) const
+{
+	a_os
+		<< xTRACE_VAR(url)               << xT("\n")
+		<< xTRACE_VAR(isUseHeader)       << xT("\n")
+		<< xTRACE_VAR(isSslVerifyPeer)   << xT("\n")
+		<< xTRACE_VAR(isSslVerifyHost)   << xT("\n")
+		<< xTRACE_VAR(sslVersion)        << xT("\n")
+		<< xTRACE_VAR(sslCert)           << xT("\n")
+		<< xTRACE_VAR(sslCertPass)       << xT("\n")
+		<< xTRACE_VAR((int)httpVersion)  << xT("\n")
+		<< xTRACE_VAR(isVerbose)         << xT("\n")
+		<< xTRACE_VAR(cookieFile)        << xT("\n")
+		<< xTRACE_VAR(addCookie)         << xT("\n")
+		<< xTRACE_VAR(encodingParam)     << xT("\n")
+		<< xTRACE_VAR(ciphers)           << xT("\n")
+		<< xTRACE_VAR(errorStr)          << xT("\n")
+		<< xTRACE_VAR(timeoutSec)        << xT("\n")
+		<< xTRACE_VAR(timeoutMs)         << xT("\n")
+		<< xTRACE_VAR(continueTimeoutMs) << xT("\n")
+		<< xTRACE_VAR((int)proxyType)    << xT("\n")
+		<< xTRACE_VAR(proxy)             << xT("\n")
+		<< xTRACE_VAR(proxyUserPass)     << xT("\n")
+		<< xTRACE_VAR(userPass)          << xT("\n")
+		/// << xTRACE_VAR(addHeaders)        << xT("\n")
+		<< xTRACE_VAR(referer)           << xT("\n")
+		<< xTRACE_VAR(accept)            << xT("\n")
+		<< xTRACE_VAR(acceptEncoding)    << xT("\n")
+		<< xTRACE_VAR(acceptLanguage)    << xT("\n")
+		<< xTRACE_VAR(acceptCharset)     << xT("\n")
+		<< xTRACE_VAR(user_agent)        << xT("\n")
+		<< xTRACE_VAR(isFollowLocation)  << xT("\n")
+		<< xTRACE_VAR(maxRedirects)      << xT("\n")
+		<< xTRACE_VAR(isCacheControl)    << xT("\n")
+		<< xTRACE_VAR(isDebugHeader)     << xT("\n")
+		<< xTRACE_VAR(request)           << xT("\n")
+		<< xTRACE_VAR(debugData);
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
 *   DebugData public
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 void_t
-DataIn::DebugData::clear()
+DataIn::DebugData::print(
+	std::tostream_t &a_os
+) const
 {
-	text.clear();
-	headerIn.clear();
-	headerOut.clear();
-	dataIn.clear();
-	dataOut.clear();
-	sslDataIn.clear();
-	sslDataOut.clear();
+	a_os
+		<< xTRACE_VAR(text)      << xT("\n")
+		<< xTRACE_VAR(headerIn)  << xT("\n")
+		<< xTRACE_VAR(headerOut) << xT("\n")
+		<< xTRACE_VAR(dataOut)   << xT("\n")
+		<< xTRACE_VAR(sslDataIn) << xT("\n")
+		<< xTRACE_VAR(sslDataOut);
+}
+//-------------------------------------------------------------------------------------------------
+
+/**************************************************************************************************
+*   DataOut public
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+void_t
+DataOut::print(
+	std::tostream_t &a_os
+) const
+{
+	a_os
+		<< xTRACE_VAR(contentType)  << xT("\n")
+		<< xTRACE_VAR(effectiveUrl) << xT("\n")
+		<< xTRACE_VAR(responseCode) << xT("\n")
+		<< xTRACE_VAR(totalTimeSec) << xT("\n")
+		// << xTRACE_VAR(headers)      << xT("\n")
+		<< xTRACE_VAR(body);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -222,11 +295,9 @@ BaseClient::setOptionsDefault(
 
 	// CURLOPT_DEBUG...
 	if (a_dataIn->isDebugHeader) {
-		setOption(CURLOPT_VERBOSE,       1L);
-		setOption(CURLOPT_DEBUGFUNCTION, onDebug);
-
-		a_dataIn->debugData.clear();
-		setOption(CURLOPT_DEBUGDATA, &a_dataIn->debugData);
+		setOption(CURLOPT_VERBOSE,        1L);
+		setOption(CURLOPT_DEBUGFUNCTION,  onDebug);
+		setOption(CURLOPT_DEBUGDATA,     &a_dataIn->debugData);
 	}
 }
 //-------------------------------------------------------------------------------------------------
