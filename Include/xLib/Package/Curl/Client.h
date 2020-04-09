@@ -32,7 +32,7 @@ public:
     void_t         reset();
 
 	template<typename T>
-	void_t         setOption(cCURLoption option, const T value);
+	void_t         setOption(cCURLoption option, const T &value);
     void_t         perform();
     void_t         pause(cint_t bitMask);
     template<typename T>
