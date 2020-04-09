@@ -10,6 +10,39 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, interface)
 
+//-------------------------------------------------------------------------------------------------
+class xNO_VTABLE IDataValid
+    /// Data interface
+{
+public:
+                   IDataValid() = default;
+        ///< constructor
+    virtual       ~IDataValid() = default;
+        ///< destructor
+
+    virtual bool_t isValid() const = 0;
+        ///< check validness
+
+private:
+    xNO_COPY_ASSIGN(IDataValid)
+};
+//-------------------------------------------------------------------------------------------------
+class xNO_VTABLE IDataClear
+    /// Data interface
+{
+public:
+                   IDataClear() = default;
+        ///< constructor
+    virtual       ~IDataClear() = default;
+        ///< destructor
+
+    virtual void_t clear() = 0;
+        ///< clear data
+
+private:
+    xNO_COPY_ASSIGN(IDataClear)
+};
+//-------------------------------------------------------------------------------------------------
 class xNO_VTABLE IDataPrint
     /// Data interface
 {
@@ -29,8 +62,10 @@ protected:
 private:
     xNO_COPY_ASSIGN(IDataPrint)
 };
-
+//-------------------------------------------------------------------------------------------------
 class xNO_VTABLE IData :
+	public IDataValid,
+	public IDataClear,
 	public IDataPrint
     /// Data interface
 {
@@ -40,14 +75,10 @@ public:
     virtual       ~IData() = default;
         ///< destructor
 
-    virtual bool_t isValid() const = 0;
-        ///< check validness
-    virtual void_t clear() = 0;
-        ///< clear data
-
 private:
     xNO_COPY_ASSIGN(IData)
 };
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, interface)
 //-------------------------------------------------------------------------------------------------
