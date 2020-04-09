@@ -12,29 +12,29 @@
 xNAMESPACE_BEGIN2(xl, package)
 
 class PrivaBankApi
-    /// PrivaBank API
+	/// PrivaBank API
 {
 public:
-             PrivaBankApi();
-        ///< constructor
-    virtual ~PrivaBankApi();
-        ///< destructor
+			 PrivaBankApi();
+		///< constructor
+	virtual ~PrivaBankApi();
+		///< destructor
 
 	using exchange_rate_t  = std::map<std::tstring_t, std::map<std::tstring_t, std::map_tstring_t>>;
 	using exchange_rates_t = std::vector<exchange_rate_t>;
 
-    void getExchangeRates(std::ctstring_t &date, exchange_rate_t *data)
-    		const;
+	void getExchangeRates(std::ctstring_t &date, exchange_rate_t *data)
+			const;
 		///< API позволяет получить информацию о наличных курсах валют ПриватБанка и НБУ
 		///< на выбранную дату. Архив хранит данные за последние 4 года
-    void getExchangeRates(std::cvec_tstring_t &dates, exchange_rates_t *datas)
-    		const;
+	void getExchangeRates(std::cvec_tstring_t &dates, exchange_rates_t *datas)
+			const;
 
 private:
-    void_t _parseExchangeRates(std::ctstring_t &date, std::ctstring_t &response, exchange_rate_t *data) const;
-        ///< parse response
+	void_t _parseExchangeRates(std::ctstring_t &date, std::ctstring_t &response, exchange_rate_t *data) const;
+		///< parse response
 
-    xNO_COPY_ASSIGN(PrivaBankApi)
+	xNO_COPY_ASSIGN(PrivaBankApi)
 };
 
 xNAMESPACE_END2(xl, package)

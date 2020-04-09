@@ -34,12 +34,12 @@ PrivaBankApi::getExchangeRates(
 	exchange_rate_t  *out_data
 ) const
 {
-    xTEST(!a_date.empty());
-    xTEST(out_data->empty());
+	xTEST(!a_date.empty());
+	xTEST(out_data->empty());
 
 	out_data->clear();
 
-    bool_t bRv {};
+	bool_t bRv {};
 
 	curl::HttpClient http;
 
@@ -99,7 +99,7 @@ PrivaBankApi::getExchangeRates(
 		<< xTRACE_VAR(dataOut) << std::endl;
 #endif
 
-     _parseExchangeRates(a_date, dataOut.body, out_data);
+	 _parseExchangeRates(a_date, dataOut.body, out_data);
 }
 //-------------------------------------------------------------------------------------------------
 void
@@ -130,8 +130,8 @@ PrivaBankApi::getExchangeRates(
 void_t
 PrivaBankApi::_parseExchangeRates(
 	std::ctstring_t &a_date,		///<
-    std::ctstring_t &a_response,	///<
-    exchange_rate_t *out_data		///< [out]
+	std::ctstring_t &a_response,	///<
+	exchange_rate_t *out_data		///< [out]
 ) const
 {
 	XmlDoc doc("UTF-8");
