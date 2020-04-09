@@ -45,18 +45,18 @@ CurlBase::setProtocols(
 void_t
 CurlBase::setOptionsDefault(
 	DataIn         *a_dataIn,		///< [in,out]
-	curl_slist     *out_headers,	///< [out]
+	curl_slist     *a_headers,		///< [in,out]
 	std::tstring_t *out_buffHeader,	///< [out]
 	std::tstring_t *out_buffData	///< [out]
 )
 {
 	xTEST(_handle.isValid());
 	xTEST_PTR(a_dataIn);
-	xTEST_PTR_FAIL(out_headers);
+	xTEST_PTR_FAIL(a_headers);
 	xTEST_PTR(out_buffHeader);
 	xTEST_PTR(out_buffData);
 
-	out_headers = nullptr;
+	a_headers = nullptr;
 	out_buffHeader->clear();
 	out_buffData->clear();
 
@@ -166,28 +166,28 @@ CurlBase::setOptionsDefault(
 		if ( !a_dataIn->accept.empty() ) {
 			std::ctstring_t &value = xT("Accept: ") + a_dataIn->accept;
 
-			out_headers = ::curl_slist_append(out_headers, value.c_str());
+			a_headers = ::curl_slist_append(a_headers, value.c_str());
 		}
 
 		if ( !a_dataIn->acceptLanguage.empty() ) {
 			std::ctstring_t &value = xT("Accept-Language: ") + a_dataIn->acceptLanguage;
 
-			out_headers = ::curl_slist_append(out_headers, value.c_str());
+			a_headers = ::curl_slist_append(a_headers, value.c_str());
 		}
 
 		if ( !a_dataIn->acceptCharset.empty() ) {
 			std::ctstring_t &value = xT("Accept-Charset: ") + a_dataIn->acceptCharset;
 
-			out_headers = ::curl_slist_append(out_headers, value.c_str());
+			a_headers = ::curl_slist_append(a_headers, value.c_str());
 		}
 
 		for (auto &it_header : a_dataIn->addHeader) {
 			std::ctstring_t &value = it_header.first + xT(": ") + it_header.second;
 
-			out_headers = ::curl_slist_append(out_headers, value.c_str());
+			a_headers = ::curl_slist_append(a_headers, value.c_str());
 		}
 
-		setOption(CURLOPT_HTTPHEADER, out_headers);
+		setOption(CURLOPT_HTTPHEADER, a_headers);
 	}
 
 	if ( !a_dataIn->referer.empty() ) {
@@ -210,7 +210,7 @@ CurlBase::setOptionsDefault(
 		// use cache
 	} else {
 		// no cache
-		out_headers = ::curl_slist_append(out_headers, xT("Cache-Control: no-cache"));
+		a_headers = ::curl_slist_append(a_headers, xT("Cache-Control: no-cache"));
 
 		// SEE: also set in HttpClient::request()
 	}
