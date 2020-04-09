@@ -12,10 +12,10 @@ unset(cmXLIB_TEMPLATE_SUBDIR         CACHE)
 unset(cmXLIB_TEMPLATE_NS             CACHE)
 unset(cmXLIB_TEMPLATE_PLATFORM_FILES CACHE)
 
-set(cmXLIB_TEMPLATE                "FeatureFlag")           # TODO: set manually
-set(cmXLIB_TEMPLATE_COMMENTS       "Feature flag / toggle") # TODO: set manually
-set(cmXLIB_TEMPLATE_SUBDIR         "Package")               # TODO: set manually
-set(cmXLIB_TEMPLATE_NS             "package")               # TODO: set manually
+set(cmXLIB_TEMPLATE                "PrivaBankApi")  # TODO: set manually
+set(cmXLIB_TEMPLATE_COMMENTS       "PrivaBank API") # TODO: set manually
+set(cmXLIB_TEMPLATE_SUBDIR         "Package")       # TODO: set manually
+set(cmXLIB_TEMPLATE_NS             "package")       # TODO: set manually
 set(cmXLIB_TEMPLATE_PLATFORM_FILES OFF)
 
 if (NOT cmXLIB_TEMPLATE OR
