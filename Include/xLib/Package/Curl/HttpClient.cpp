@@ -139,8 +139,8 @@ HttpClient::request(
 	String::split(buffHeader.buffer(), Const::crNl(), xT(": "), &out_dataOut->headers);
 	out_dataOut->body = buffData.buffer();
 
-	std::cout << "buffHeader.buffer() : [" << buffHeader.buffer() << "]" << std::endl;
-	std::cout << "buffData.buffer() : [" << buffData.buffer() << "]" << std::endl;
+	std::cout << "Header: [" << buffHeader.buffer() << "]" << std::endl;
+	std::cout << "Body: [" << buffData.buffer() << "]" << std::endl;
 
 	return true;
 }
