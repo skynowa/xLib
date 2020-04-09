@@ -27,10 +27,10 @@ Test_HttpClient::unit()
 		DataOut dataOut;
 
 		HttpClient http;
-		m_bRv = http.request(HttpClient::RequestType::Get, dataIn, &dataOut);
+		m_bRv = http.request(HttpClient::Request::Get, dataIn, &dataOut);
 		xTEST(m_bRv);
-		xTEST_EQ(dataOut.headers.empty(), false);
-		xTEST_EQ(dataOut.body.empty(), false);
+		xTEST(!dataOut.headers.empty());
+		xTEST(!dataOut.body.empty());
 
 		Cout()
 			<< xTRACE_VAR(dataIn.request)       << std::endl
