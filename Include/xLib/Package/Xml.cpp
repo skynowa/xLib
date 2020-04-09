@@ -93,7 +93,7 @@ XmlDoc::parse(
 void
 XmlDoc::parse(
 	std::ctstring_t &a_str,
-	cbool_t          a_isNss /* = true */
+	cbool_t          a_isNss
 )
 {
 	_close();
