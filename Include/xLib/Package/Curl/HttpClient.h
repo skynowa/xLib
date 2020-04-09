@@ -43,6 +43,22 @@ public:
 
 private:
     xNO_COPY_ASSIGN(HttpClient)
+
+// utils
+private:
+	struct SlistDeleter
+	{
+		void operator() (struct curl_slist *&a_list) const
+		{
+			if (a_list == nullptr) {
+				return;
+			}
+
+			::curl_slist_free_all(a_list); a_list = nullptr;
+		}
+	};
+
+	using slist_unique_ptr_t = std::unique_ptr<struct curl_slist, SlistDeleter>;
 };
 
 xNAMESPACE_END3(xl, package, curl)
