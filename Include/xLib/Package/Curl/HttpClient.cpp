@@ -129,10 +129,10 @@ HttpClient::request(
 		break;
 	}
 
-	curl_slist     *headers {};
+	curl_slist     *headersIn {};
 	std::tstring_t  buffHeader;
 	std::tstring_t  buffData;
-	Base::setOptionsDefault(&a_dataIn, headers, &buffHeader, &buffData);
+	Base::setOptionsDefault(&a_dataIn, headersIn, &buffHeader, &buffData);
 
 	/* CURLcode st = */ perform();
 #if 0
@@ -143,7 +143,7 @@ HttpClient::request(
 
 	Base::getInfos(out_dataOut);
 
-	Utils::freeT(headers, ::curl_slist_free_all, nullptr);
+	Utils::freeT(headersIn, ::curl_slist_free_all, nullptr);
 
 	/// _error = st;
 
