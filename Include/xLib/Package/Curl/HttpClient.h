@@ -8,12 +8,12 @@
 
 #pragma once
 
-#include <xLib/Package/Curl/Base.h>
+#include <xLib/Package/Curl/BaseClient.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN3(xl, package, curl)
 
 class HttpClient :
-	public Base
+	public BaseClient
     ///< HTTP client
 {
 public:

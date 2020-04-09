@@ -1,5 +1,5 @@
 /**
- * \file  Base.h
+ * \file  BaseClient.h
  * \brief CURL client
  *
  * https://curl.haxx.se/libcurl/c/example.html
@@ -101,14 +101,14 @@ struct DataOut
 };
 xUSING_CONST(DataOut);
 //-------------------------------------------------------------------------------------------------
-class Base :
+class BaseClient :
 	public Client
-    ///< CURL base
+    ///< Base client (proxy)
 {
 protected:
-             Base() = default;
+             BaseClient() = default;
         ///< constructor
-    virtual ~Base() = 0;
+    virtual ~BaseClient() = 0;
         ///< destructor
 
     void_t   setProtocols(clong_t bitMask);
@@ -120,7 +120,7 @@ protected:
         ///< get options out
 
 private:
-    xNO_COPY_ASSIGN(Base)
+    xNO_COPY_ASSIGN(BaseClient)
 };
 
 xNAMESPACE_END3(xl, package, curl)

@@ -152,7 +152,7 @@ HttpClient::request(
 	slist_unique_ptr_t headersIn;
 	std::tstring_t     buffHeaderOut;
 	std::tstring_t     buffDataOut;
-	Base::setOptionsDefault(&a_dataIn, headersIn.get(), &buffHeaderOut, &buffDataOut);
+	BaseClient::setOptionsDefault(&a_dataIn, headersIn.get(), &buffHeaderOut, &buffDataOut);
 
 	/* CURLcode st = */ perform();
 #if 0
@@ -161,7 +161,7 @@ HttpClient::request(
 		<< "buffDataOut: ["   << buffDataOut <<   "]";
 #endif
 
-	Base::getInfos(out_dataOut);
+	BaseClient::getInfos(out_dataOut);
 
 	/// _error = st;
 
