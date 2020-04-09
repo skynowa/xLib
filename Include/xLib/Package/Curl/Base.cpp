@@ -62,11 +62,11 @@ CurlBase::setOptionsDefault(
 	setOption(CURLOPT_URL, a_dataIn->url.c_str());
 
 	{
-		setOption(CURLOPT_HEADERFUNCTION, onWriteHeader);
 		setOption(CURLOPT_WRITEHEADER,    out_buffHeader);
+		setOption(CURLOPT_HEADERFUNCTION, onWriteHeader);
 
-		setOption(CURLOPT_WRITEFUNCTION,  onWriteData);
 		setOption(CURLOPT_WRITEDATA,      out_buffData);
+		setOption(CURLOPT_WRITEFUNCTION,  onWriteData);
 	}
 
 	setOption(CURLOPT_HEADER, static_cast<long_t>(a_dataIn->isUseHeader));
