@@ -14,7 +14,6 @@
 #include <curl/curl.h>
 #include <curl/easy.h>
 #include "Types.h"
-#include "Buffer.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN3(xl, package, curl)
 

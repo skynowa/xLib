@@ -45,13 +45,15 @@ CurlBase::setProtocols(
 //-------------------------------------------------------------------------------------------------
 void_t
 CurlBase::setOptionsDefault(
-	DataIn      *a_dataIn,			///< [in,out]
-	curl_slist  *out_headers,		///< [out]
-	Buffer      *out_buffHeader,	///< [out]
-	Buffer      *out_buffData		///< [out]
+	DataIn         *a_dataIn,		///< [in,out]
+	curl_slist     *out_headers,	///< [out]
+	std::tstring_t *out_buffHeader,	///< [out]
+	std::tstring_t *out_buffData	///< [out]
 )
 {
 	xTEST(_handle.isValid());
+	xTEST_PTR(a_dataIn);
+	xTEST_PTR_FAIL(out_headers);
 	xTEST_PTR(out_buffHeader);
 	xTEST_PTR(out_buffData);
 

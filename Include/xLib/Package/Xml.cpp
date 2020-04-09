@@ -591,7 +591,10 @@ XmlNode::attribute(
 	std::tstring_t sRv;
 
 	xmlChar *value = ::xmlGetProp(_node, (const xmlChar *)a_name.data());
-	xTEST_PTR(value);
+	if (value == nullptr) {
+		// attribute - not exists
+		return {};
+	}
 
 	sRv = (cptr_ctchar_t)value;
 

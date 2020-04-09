@@ -17,7 +17,7 @@ struct DataIn
     /// Incoming data
 {
 	std::tstring_t url;
-	bool_t         isUseHeader {true};
+	bool_t         isUseHeader {false};	///< headers in body
 
 	bool_t         isSslVerifyPeer {true};
 	bool_t         isSslVerifyHost {true};
@@ -71,13 +71,13 @@ struct DataIn
 	struct DebugData
 		/// debug data
 	{
-		Buffer text;
-		Buffer headerIn;
-		Buffer headerOut;
-		Buffer dataIn;
-		Buffer dataOut;
-		Buffer sslDataIn;
-		Buffer sslDataOut;
+		std::tstring_t text;
+		std::tstring_t headerIn;
+		std::tstring_t headerOut;
+		std::tstring_t dataIn;
+		std::tstring_t dataOut;
+		std::tstring_t sslDataIn;
+		std::tstring_t sslDataOut;
 
 		void_t clear();
 	};
@@ -111,8 +111,8 @@ protected:
 
     void_t   setProtocols(clong_t bitMask);
 		///< set allowed protocols
-    void_t   setOptionsDefault(DataIn *dataIn, curl_slist *headers, Buffer *buffHeader,
-				Buffer *buffData);
+    void_t   setOptionsDefault(DataIn *dataIn, curl_slist *headers, std::tstring_t *buffHeader,
+				std::tstring_t *buffData);
         ///< set options in
     void_t   getInfos(DataOut *dataOut);
         ///< get options out

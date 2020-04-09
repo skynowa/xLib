@@ -199,43 +199,39 @@ Client::strError(
 /* static */
 std::size_t
 Client::onWriteHeader(
-	void_t      *a_buff,
-	std::size_t  a_size,
-	std::size_t  a_items,
-	void_t      *a_userData
+	void_t         *a_buff,
+	std::size_t     a_size,
+	std::size_t     a_items,
+	std::tstring_t *out_userData
 )
 {
 	xTEST_PTR(a_buff);
 	xTEST_DIFF(a_size, std::size_t{0});
 	xTEST_DIFF(a_items, std::size_t{0});
-	xTEST_PTR(a_userData);
+	xTEST_PTR(out_userData);
 
 	std::csize_t buffSize = a_items * a_size;
+    out_userData->append(static_cast<char *>(a_buff), buffSize);
 
-	auto *buff = static_cast<Buffer *>(a_userData);
-	buff->set(static_cast<const char *>(a_buff), buffSize);
-
-	return buffSize;
+    return buffSize;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::size_t
 Client::onWriteData(
-	void_t      *a_buff,
-	std::size_t  a_size,
-	std::size_t  a_items,
-	void_t      *a_userData
+	void_t         *a_buff,
+	std::size_t     a_size,
+	std::size_t     a_items,
+	std::tstring_t *out_userData
 )
 {
 	xTEST_PTR(a_buff);
 	xTEST_DIFF(a_size, std::size_t{0});
 	xTEST_DIFF(a_items, std::size_t{0});
-	xTEST_PTR(a_userData);
+	xTEST_PTR(out_userData);
 
 	std::csize_t buffSize = a_items * a_size;
-
-	auto *buff = static_cast<Buffer *>(a_userData);
-	buff->set(static_cast<const char *>(a_buff), buffSize);
+    out_userData->append(static_cast<char *>(a_buff), buffSize);
 
 	return buffSize;
 }
@@ -243,17 +239,24 @@ Client::onWriteData(
 /* static */
 std::size_t
 Client::onReadData(
-	void_t      *a_buff,			///< [out]
-	std::size_t  a_size,
-	std::size_t  a_items,
-	void_t      *a_userData
+	void_t         *a_buff,			///< [out]
+	std::size_t     a_size,
+	std::size_t     a_items,
+	std::tstring_t *a_userData
 )
 {
+	// TODO: incorrect impl
+#if 0
 	std::csize_t buffSize = a_items * a_size;
 
 	auto *buff = static_cast<const Buffer *>(a_userData);
 
 	return buff->get(static_cast<char *>(a_buff), buffSize);
+#else
+	xNOT_IMPLEMENTED;
+
+	return 0;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -263,41 +266,41 @@ Client::onDebug(
 	curl_infotype  a_type,
 	char          *a_buf,
 	std::size_t    a_len,
-	void_t        *a_useData
+	void_t        *out_useData	///< as DataIn::DebugData
 )
 {
 	xUNUSED(a_curl);
 
-	if (a_useData == nullptr) {
+	if (out_useData == nullptr) {
 		return CURLE_OK;
 	}
 
-	auto *data = static_cast<DataIn::DebugData *>(a_useData);
+	auto *data = static_cast<DataIn::DebugData *>(out_useData);
 	if (data == nullptr) {
 		return CURLE_OK;
 	}
 
 	switch (a_type) {
 	case CURLINFO_TEXT:
-		data->text.set(a_buf, a_len);
+		data->text.assign(a_buf, a_len);
 		break;
 	case CURLINFO_HEADER_IN:
-		data->headerIn.set(a_buf, a_len);
+		data->headerIn.assign(a_buf, a_len);
 		break;
 	case CURLINFO_HEADER_OUT:
-		data->headerOut.set(a_buf, a_len);
+		data->headerOut.assign(a_buf, a_len);
 		break;
 	case CURLINFO_DATA_IN:
-		data->dataIn.set(a_buf, a_len);
+		data->dataIn.assign(a_buf, a_len);
 		break;
 	case CURLINFO_DATA_OUT:
-		data->dataOut.set(a_buf, a_len);
+		data->dataOut.assign(a_buf, a_len);
 		break;
 	case CURLINFO_SSL_DATA_IN:
-		data->sslDataIn.set(a_buf, a_len);
+		data->sslDataIn.assign(a_buf, a_len);
 		break;
 	case CURLINFO_SSL_DATA_OUT:
-		data->sslDataOut.set(a_buf, a_len);
+		data->sslDataOut.assign(a_buf, a_len);
 		break;
 	case CURLINFO_END:
 	default:
