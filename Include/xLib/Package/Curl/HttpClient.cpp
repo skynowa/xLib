@@ -137,8 +137,8 @@ HttpClient::request(
 	/* CURLcode st = */ perform();
 #if 0
 	Cout()
-		<< "Header: [" << buffHeaderOut << "]\n"
-		<< "Body: ["   << buffDataOut <<   "]";
+		<< "buffHeaderOut: [" << buffHeaderOut << "]\n"
+		<< "buffDataOut: ["   << buffDataOut <<   "]";
 #endif
 
 	Base::getInfos(out_dataOut);
