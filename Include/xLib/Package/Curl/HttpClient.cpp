@@ -173,14 +173,44 @@ HttpClient::request(
 }
 //-------------------------------------------------------------------------------------------------
 /**
+ * https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
  * https://restfulapi.net/http-status-codes/
  */
+HttpClient::HttpCode
+HttpClient::httpCode(
+	cDataOut &a_dataOut
+) const
+{
+	HttpCode hcRv {};
+
+	if      (a_dataOut.responseCode >= 100 && a_dataOut.responseCode <= 199) {
+		hcRv = HttpCode::Info;
+	}
+	else if (a_dataOut.responseCode >= 200 && a_dataOut.responseCode <= 299) {
+		hcRv = HttpCode::Success;
+	}
+	else if (a_dataOut.responseCode >= 300 && a_dataOut.responseCode <= 399) {
+		hcRv = HttpCode::Redirection;
+	}
+	else if (a_dataOut.responseCode >= 400 && a_dataOut.responseCode <= 499) {
+		hcRv = HttpCode::ClientError;
+	}
+	else if (a_dataOut.responseCode >= 500 && a_dataOut.responseCode <= 599) {
+		hcRv = HttpCode::ServerError;
+	}
+	else {
+		hcRv = HttpCode::Unknown;
+	}
+
+	return hcRv;
+}
+//-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::isSuccess(
 	cDataOut &a_dataOut
 ) const
 {
-	return (a_dataOut.responseCode >= 200 && a_dataOut.responseCode <= 299);
+	return (httpCode(a_dataOut) == HttpCode::Success);
 }
 //-------------------------------------------------------------------------------------------------
 

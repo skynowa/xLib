@@ -18,7 +18,7 @@
 xNAMESPACE_BEGIN3(xl, package, curl)
 
 class Version
-    ///< client
+    /// Client version
 {
 public:
                    Version() = default;

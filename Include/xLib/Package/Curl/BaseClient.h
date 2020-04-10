@@ -114,7 +114,7 @@ xUSING_CONST(DataOut);
 //-------------------------------------------------------------------------------------------------
 class BaseClient :
 	public Client
-    ///< Base client (proxy)
+    /// Base client (proxy)
 {
 protected:
              BaseClient() = default;
