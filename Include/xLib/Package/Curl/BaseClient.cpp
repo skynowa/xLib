@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 //-------------------------------------------------------------------------------------------------
 void_t
 DataIn::print(
-	std::tostream_t &a_os
+	core::OStream &a_os
 ) const
 {
 	a_os
@@ -41,7 +41,7 @@ DataIn::print(
 		<< xTRACE_VAR(proxy)             << xT("\n")
 		<< xTRACE_VAR(proxyUserPass)     << xT("\n")
 		<< xTRACE_VAR(userPass)          << xT("\n")
-		/// << xTRACE_VAR(addHeaders)        << xT("\n")
+		<< xTRACE_VAR(addHeaders)        << xT("\n")
 		<< xTRACE_VAR(referer)           << xT("\n")
 		<< xTRACE_VAR(accept)            << xT("\n")
 		<< xTRACE_VAR(acceptEncoding)    << xT("\n")
@@ -66,7 +66,7 @@ DataIn::print(
 //-------------------------------------------------------------------------------------------------
 void_t
 DataIn::DebugData::print(
-	std::tostream_t &a_os
+	core::OStream &a_os
 ) const
 {
 	a_os
@@ -87,7 +87,7 @@ DataIn::DebugData::print(
 //-------------------------------------------------------------------------------------------------
 void_t
 DataOut::print(
-	std::tostream_t &a_os
+	core::OStream &a_os
 ) const
 {
 	a_os

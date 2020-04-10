@@ -19,6 +19,8 @@ public:
                    OStream() = default;
     virtual       ~OStream() = default;
 
+    xNO_COPY_ASSIGN(OStream)
+
     std::tstring_t str() const;
     void_t         str(std::ctstring_t &value);
     void_t         clear();
@@ -168,8 +170,6 @@ protected:
 
 	template<typename T>
 	struct TuplePrint<T, 1>;
-
-    xNO_COPY_ASSIGN(OStream)
 };
 //-------------------------------------------------------------------------------------------------
 class Cout :
