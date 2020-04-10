@@ -18,7 +18,7 @@
 xNAMESPACE_BEGIN3(xl, package, curl)
 
 class Client
-    ///< client
+    /// Client (interface)
 {
 public:
     explicit       Client();

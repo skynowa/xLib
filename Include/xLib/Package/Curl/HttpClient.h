@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN3(xl, package, curl)
 
 class HttpClient :
 	public BaseClient
-    ///< HTTP client
+    /// HTTP client
 {
 public:
              HttpClient() = default;
@@ -39,15 +39,20 @@ public:
     bool_t request(cRequest type, DataIn &dataIn, DataOut *dataOut);
 		///<
 
-   /**
-	* HTTP response code
-	*
-	* 1xx - Transient code, a new one follows
-	* 2xx - Things are OK
-	* 3xx - The content is somewhere else
-	* 4xx - Failed because of a client problem
-	* 5xx - Failed because of a server problem
-	*/
+	enum class HttpCode
+		/// HTTP response code
+	{
+		Unknown     = 0,	///< Unknown
+		Info        = 1,	///< 1xx - Transient code, a new one follows
+		Success     = 2,	///< 2xx - Things are OK
+		Redirection = 3,	///< 3xx - The content is somewhere else
+		ClientError = 4,	///< 4xx - Failed because of a client problem
+		ServerError = 5		///< 5xx - Failed because of a server problem
+	};
+	xUSING_CONST(HttpCode);
+
+	HttpCode httpCode(cDataOut &dataOut) const;
+		///<
     bool_t isSuccess(cDataOut &dataOut) const;
 		///<
 
