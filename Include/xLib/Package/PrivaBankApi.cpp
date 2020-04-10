@@ -84,19 +84,20 @@ PrivaBankApi::getExchangeRates(
 	bRv = http.request(curl::HttpClient::Request::Get, dataIn, &dataOut);
 	xTEST(bRv);
 	if ( !http.isSuccess(dataOut) ) {
-		std::tcout
+		core::OStream()
 			<< xTRACE_VAR(dataIn)  << "\n"
-			<< xTRACE_VAR(dataOut) << std::endl;
+			<< xTRACE_VAR(dataOut) << "\n";
 		return;
 	}
 
 	xTEST(!dataOut.headers.empty());
 	xTEST(!dataOut.body.empty());
 
-#if 0
-	std::tcout
+#if 1
+	// TODO: core::Cout()
+	core::OStream()
 		<< xTRACE_VAR(dataIn)  << "\n"
-		<< xTRACE_VAR(dataOut) << std::endl;
+		<< xTRACE_VAR(dataOut) << "\n";
 #endif
 
 	 _parseExchangeRates(a_date, dataOut.body, out_data);

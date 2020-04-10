@@ -85,13 +85,13 @@ struct DataIn :
 		std::tstring_t sslDataOut;
 
 	protected:
-		void_t print(std::tostream_t &os) const override;
+		void_t print(core::OStream &os) const override;
 	};
 
 	DebugData      debugData;
 
 protected:
-	void_t print(std::tostream_t &os) const override;
+	void_t print(core::OStream &os) const override;
 };
 xUSING_CONST(DataIn);
 //-------------------------------------------------------------------------------------------------
@@ -108,7 +108,7 @@ struct DataOut :
 	std::tstring_t      body;
 
 protected:
-	void_t print(std::tostream_t &os) const override;
+	void_t print(core::OStream &os) const override;
 };
 xUSING_CONST(DataOut);
 //-------------------------------------------------------------------------------------------------

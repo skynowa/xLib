@@ -45,6 +45,7 @@ private:
 //-------------------------------------------------------------------------------------------------
 class xNO_VTABLE IDataPrint
     /// Data interface
+    /// std::tostream_t, core::OStream
 {
 public:
                    IDataPrint() = default;
@@ -52,11 +53,11 @@ public:
     virtual       ~IDataPrint() = default;
         ///< destructor
 
-	friend std::tostream_t & operator << (std::tostream_t &os, const IDataPrint &data);
+	friend core::OStream & operator << (core::OStream &os, const IDataPrint &data);
 		///< print to std::stream
 
 protected:
-    virtual void_t print(std::tostream_t &os) const = 0;
+    virtual void_t print(core::OStream &os) const = 0;
         ///< print data
 
 private:

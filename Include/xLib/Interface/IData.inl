@@ -12,9 +12,9 @@ xNAMESPACE_BEGIN2(xl, interface)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline std::tostream_t &
+inline core::OStream &
 operator << (
-	std::tostream_t  &a_os,
+	core::OStream    &a_os,
 	const IDataPrint &a_data
 )
 {
