@@ -38,6 +38,16 @@ public:
 
     bool_t request(cRequest type, DataIn &dataIn, DataOut *dataOut);
 		///<
+
+   /**
+	* HTTP response code
+	*
+	* 1xx - Transient code, a new one follows
+	* 2xx - Things are OK
+	* 3xx - The content is somewhere else
+	* 4xx - Failed because of a client problem
+	* 5xx - Failed because of a server problem
+	*/
     bool_t isSuccess(cDataOut &dataOut) const;
 		///<
 
