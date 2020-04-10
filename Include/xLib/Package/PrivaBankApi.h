@@ -1,6 +1,9 @@
 /**
  * \file  PrivaBankApi.h
  * \brief PrivaBank API
+ *
+ * https://api.privatbank.ua/#p24/exchangeArchive
+ * https://api.privatbank.ua/#p24/exchange
  */
 
 
