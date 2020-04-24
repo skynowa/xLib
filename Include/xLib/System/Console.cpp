@@ -15,14 +15,6 @@
     #include "Platform/Win/Console_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/Console_unix.inl"
-
-    #if   xENV_LINUX
-
-    #elif xENV_BSD
-
-    #elif xENV_APPLE
-
-    #endif
 #endif
 
 xNAMESPACE_BEGIN2(xl, system)
