@@ -28,7 +28,7 @@ PrivaBankApi::~PrivaBankApi()
 {
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 PrivaBankApi::getExchangeRates(
 	std::ctstring_t  &a_date,
 	exchange_rate_t  *out_data
@@ -103,7 +103,7 @@ PrivaBankApi::getExchangeRates(
 	 _parseExchangeRates(a_date, dataOut.body, out_data);
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 PrivaBankApi::getExchangeRates(
 	std::cvec_tstring_t &a_dates,
 	exchange_rates_t    *out_datas
