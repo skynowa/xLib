@@ -32,7 +32,7 @@ public:
     }
 
     void_t
-    print(std::tostream_t &a_os) const override
+    print(core::OStream &a_os) const override
     {
     	a_os << xTRACE_VAR_2(s, i) << std::endl;
     }
@@ -50,9 +50,11 @@ Test_IData::unit()
         xTEST(m_bRv);
 
         d.clear();
-        d.print(std::tcout);
 
-        std::tcout << d << std::endl;
+        core::OStream os;
+        d.print(os);
+
+        os << d << std::endl;
     }
 
     return true;
