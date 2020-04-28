@@ -52,10 +52,10 @@ PrivaBankApi::getExchangeRates(
 		*/
 
 		dataIn.url            = xT("https://api.privatbank.ua/p24api/exchange_rates");
-		dataIn.accept         = "application/xml";
-		dataIn.acceptEncoding = "gzip, deflate";
-		dataIn.acceptLanguage = "en-us,en";
-		dataIn.acceptCharset  = "UTF-8";
+		dataIn.accept         = xT("application/xml");
+		dataIn.acceptEncoding = xT("gzip, deflate");
+		dataIn.acceptLanguage = xT("en-us,en");
+		dataIn.acceptCharset  = xT("UTF-8");
 
 		// dataIn.request
 		{
