@@ -38,17 +38,15 @@ Test_PrivaBankApi::unit()
 	{
 		DateTime dateNow = DateTime().current();
 
-		DateTime date1 = dateNow - DateTime(1000 * 60 * 60 * 24 * 1);
-		DateTime date2 = dateNow - DateTime(1000 * 60 * 60 * 24 * 2);
-		DateTime date3 = dateNow - DateTime(1000 * 60 * 60 * 24 * 3);
+		std::vec_tstring_t dates;
+		dates.push_back( dateNow.format(xT("%d.%m.%Y"), xT("")) );
 
-		std::vec_tstring_t dates
-		{
-			dateNow.format(xT("%d.%m.%Y"), xT("")),
-			date1.format(xT("%d.%m.%Y"), xT("")),
-			date2.format(xT("%d.%m.%Y"), xT("")),
-			date3.format(xT("%d.%m.%Y"), xT(""))
-		};
+		for (size_t i = 1; i <= 7; ++ i) {
+			DateTime date = dateNow - DateTime(1000 * 60 * 60 * 24 * i);
+
+			dates.push_back( date.format(xT("%d.%m.%Y"), xT("")) );
+		}
+
 		PrivaBankApi::exchange_rates_t datas;
 
 		PrivaBankApi api;
