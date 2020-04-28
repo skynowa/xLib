@@ -26,16 +26,16 @@ public:
 	using exchange_rate_t  = std::map<std::tstring_t, std::map<std::tstring_t, std::map_tstring_t>>;
 	using exchange_rates_t = std::vector<exchange_rate_t>;
 
-	void_t getExchangeRates(std::ctstring_t &date, exchange_rate_t *data)
-			const;
+	void_t getExchangeRatesArchive(std::ctstring_t &date, exchange_rate_t *data)
+				const;
 		///< API позволяет получить информацию о наличных курсах валют ПриватБанка и НБУ
 		///< на выбранную дату. Архив хранит данные за последние 4 года
-	void_t getExchangeRates(std::cvec_tstring_t &dates, exchange_rates_t *datas)
-			const;
+	void_t getExchangeRatesArchive(std::cvec_tstring_t &dates, exchange_rates_t *datas)
+				const;
 
 private:
-	void_t _parseExchangeRates(std::ctstring_t &date, std::ctstring_t &response,
-			exchange_rate_t *data) const;
+	void_t _parseExchangeRatesArchive(std::ctstring_t &date, std::ctstring_t &response,
+				exchange_rate_t *data) const;
 		///< parse response
 
 	xNO_COPY_ASSIGN(PrivaBankApi)

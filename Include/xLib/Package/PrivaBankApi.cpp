@@ -29,7 +29,7 @@ PrivaBankApi::~PrivaBankApi()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-PrivaBankApi::getExchangeRates(
+PrivaBankApi::getExchangeRatesArchive(
 	std::ctstring_t  &a_date,
 	exchange_rate_t  *out_data
 ) const
@@ -100,11 +100,11 @@ PrivaBankApi::getExchangeRates(
 		<< xTRACE_VAR(dataOut) << "\n";
 #endif
 
-	 _parseExchangeRates(a_date, dataOut.body, out_data);
+	 _parseExchangeRatesArchive(a_date, dataOut.body, out_data);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-PrivaBankApi::getExchangeRates(
+PrivaBankApi::getExchangeRatesArchive(
 	std::cvec_tstring_t &a_dates,
 	exchange_rates_t    *out_datas
 ) const
@@ -114,7 +114,7 @@ PrivaBankApi::getExchangeRates(
 
 	for (auto &it_date : a_dates) {
 		exchange_rate_t out_data;
-		getExchangeRates(it_date, &out_data);
+		getExchangeRatesArchive(it_date, &out_data);
 
 		out_datas->emplace_back(out_data);
 	} // for (a_dates)
@@ -129,7 +129,7 @@ PrivaBankApi::getExchangeRates(
 
 //-------------------------------------------------------------------------------------------------
 void_t
-PrivaBankApi::_parseExchangeRates(
+PrivaBankApi::_parseExchangeRatesArchive(
 	std::ctstring_t &a_date,		///<
 	std::ctstring_t &a_response,	///<
 	exchange_rate_t *out_data		///< [out]
