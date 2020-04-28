@@ -1,14 +1,13 @@
 /**
- * \file  PrivaBankApi.cpp
+ * \file  PrivatBankApi.cpp
  * \brief PrivaBank API
  */
 
 
-#include "PrivaBankApi.h"
-
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Package/Curl/HttpClient.h>
+#include <xLib/Package/PrivatBankApi.h>
 #include <xLib/Package/Xml.h>
 
 
@@ -20,16 +19,16 @@ xNAMESPACE_BEGIN2(xl, package)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-PrivaBankApi::PrivaBankApi()
+PrivatBankApi::PrivatBankApi()
 {
 }
 //-------------------------------------------------------------------------------------------------
-PrivaBankApi::~PrivaBankApi()
+PrivatBankApi::~PrivatBankApi()
 {
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-PrivaBankApi::getExchangeRatesArchive(
+PrivatBankApi::getExchangeRatesArchive(
 	std::ctstring_t  &a_date,
 	exchange_rate_t  *out_data
 ) const
@@ -104,7 +103,7 @@ PrivaBankApi::getExchangeRatesArchive(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-PrivaBankApi::getExchangeRatesArchive(
+PrivatBankApi::getExchangeRatesArchive(
 	std::cvec_tstring_t &a_dates,
 	exchange_rates_t    *out_datas
 ) const
@@ -129,7 +128,7 @@ PrivaBankApi::getExchangeRatesArchive(
 
 //-------------------------------------------------------------------------------------------------
 void_t
-PrivaBankApi::_parseExchangeRatesArchive(
+PrivatBankApi::_parseExchangeRatesArchive(
 	std::ctstring_t &a_date,		///<
 	std::ctstring_t &a_response,	///<
 	exchange_rate_t *out_data		///< [out]

@@ -1,6 +1,6 @@
 /**
- * \file  Test_PrivaBankApi.cpp
- * \brief test PrivaBankApi
+ * \file  Test_PrivatBankApi.cpp
+ * \brief test PrivatBankApi
  */
 
 
@@ -10,20 +10,20 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xl;
 
-xTEST_CLASS(Test_PrivaBankApi)
-xTEST_UNIT(Test_PrivaBankApi)
+xTEST_CLASS(Test_PrivatBankApi)
+xTEST_UNIT(Test_PrivatBankApi)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_PrivaBankApi::unit()
+Test_PrivatBankApi::unit()
 {
-	xTEST_CASE("getExchangeRates")
+	xTEST_CASE("getExchangeRatesArchive")
 	{
 		if (false) {
 			std::ctstring_t               date = DateTime().current().format(xT("%d.%m.%Y"), xT(""));
-			PrivaBankApi::exchange_rate_t data;
+			PrivatBankApi::exchange_rate_t data;
 
-			PrivaBankApi api;
+			PrivatBankApi api;
 			api.getExchangeRatesArchive(date, &data);
 
 			auto eurSale = data[date]["EUR"]["PbRateSale"];
@@ -34,7 +34,7 @@ Test_PrivaBankApi::unit()
 		}
 	}
 
-	xTEST_CASE("getExchangeRates")
+	xTEST_CASE("getExchangeRatesArchive")
 	{
 		DateTime dateNow = DateTime().current();
 
@@ -47,9 +47,9 @@ Test_PrivaBankApi::unit()
 			dates.push_back( date.format(xT("%d.%m.%Y"), xT("")) );
 		}
 
-		PrivaBankApi::exchange_rates_t datas;
+		PrivatBankApi::exchange_rates_t datas;
 
-		PrivaBankApi api;
+		PrivatBankApi api;
 		api.getExchangeRatesArchive(dates, &datas);
 
 		for (size_t i = 0; i < dates.size(); ++ i) {

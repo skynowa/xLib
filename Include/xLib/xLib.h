@@ -157,7 +157,7 @@
 #include <xLib/Package/Ssh2Client.h>
 #include <xLib/Package/Donate.h>
 #include <xLib/Package/IRestClient.h>
-#include <xLib/Package/PrivaBankApi.h>
+#include <xLib/Package/PrivatBankApi.h>
 
 #include <xLib/Package/Curl/Types.h>
 #include <xLib/Package/Curl/Version.h>

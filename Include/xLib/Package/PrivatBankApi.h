@@ -1,5 +1,5 @@
 /**
- * \file  PrivaBankApi.h
+ * \file  PrivatBankApi.h
  * \brief PrivaBank API
  *
  * https://api.privatbank.ua/#p24/exchangeArchive
@@ -14,13 +14,13 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, package)
 
-class PrivaBankApi
+class PrivatBankApi
 	/// PrivaBank API
 {
 public:
-			 PrivaBankApi();
+			 PrivatBankApi();
 		///< constructor
-	virtual ~PrivaBankApi();
+	virtual ~PrivatBankApi();
 		///< destructor
 
 	using exchange_rate_t  = std::map<std::tstring_t, std::map<std::tstring_t, std::map_tstring_t>>;
@@ -38,7 +38,7 @@ private:
 				exchange_rate_t *data) const;
 		///< parse response
 
-	xNO_COPY_ASSIGN(PrivaBankApi)
+	xNO_COPY_ASSIGN(PrivatBankApi)
 };
 
 xNAMESPACE_END2(xl, package)
