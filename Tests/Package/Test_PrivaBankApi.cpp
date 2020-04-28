@@ -24,7 +24,7 @@ Test_PrivaBankApi::unit()
 			PrivaBankApi::exchange_rate_t data;
 
 			PrivaBankApi api;
-			api.getExchangeRates(date, &data);
+			api.getExchangeRatesArchive(date, &data);
 
 			auto eurSale = data[date]["EUR"]["PbRateSale"];
 			Cout() << xTRACE_VAR(eurSale) << std::endl;
@@ -50,7 +50,7 @@ Test_PrivaBankApi::unit()
 		PrivaBankApi::exchange_rates_t datas;
 
 		PrivaBankApi api;
-		api.getExchangeRates(dates, &datas);
+		api.getExchangeRatesArchive(dates, &datas);
 
 		for (size_t i = 0; i < dates.size(); ++ i) {
 			std::ctstring_t &it_date = dates[i];
