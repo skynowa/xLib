@@ -28,6 +28,7 @@ Test_Process::unit()
 
         Process proc;
         proc.create(filePath, cmdLine, {});
+
         Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
         xTEST_EQ((int)Process::WaitStatus::Abandoned, (int)wrRes);
     }
