@@ -403,7 +403,10 @@ Application::run()
 
     ExitCode iRv {};
 
-    signal().connectInfoAll(internal::CrashCallback::onInfo);
+#if 0
+	signal().connectInfoAll(internal::CrashCallback::onInfo);
+#endif
+
 #if 0
     signal().connectExit(internal::CrashCallback::onExit);
     signal().connectTerminate(internal::CrashCallback::onTerminate);
