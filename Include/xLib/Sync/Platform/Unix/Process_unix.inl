@@ -18,13 +18,26 @@ Process::_destruct_impl()
     xNA;
 }
 //-------------------------------------------------------------------------------------------------
+// TODO: out_stdError - impl
 void_t
 Process::_create_impl(
     std::ctstring_t                     &a_filePath,
     std::cvec_tstring_t                 &a_params,
-    const std::set<std::pair_tstring_t> &a_envs
+    const std::set<std::pair_tstring_t> &a_envs,
+    std::tstring_t                      *out_stdOut,  ///< [out] std::cout (maybe as nullptr)
+    std::tstring_t                      *out_stdError ///< [out] std::cerr (maybe as nullptr)
 )
 {
+	if (out_stdOut != nullptr) {
+		out_stdOut->clear();
+	}
+
+	if (out_stdError != nullptr) {
+		out_stdError->clear();
+	}
+
+	int_t iRv {};
+
 	enum ProcessStatus : pid_t
 	{
 		ChildError   = - 1,
@@ -41,17 +54,15 @@ Process::_create_impl(
 		Write = 1
 	};
 
-	std::tstring_t stdOut;
-
     int fds[2] {};	// 0- read, 1 - write
-	{
-	    int_t iRv = ::pipe(fds);
+	if (out_stdOut != nullptr) {
+	    iRv = ::pipe(fds);
 		xTEST_DIFF(iRv, - 1);
 		xCHECK_DO(iRv == -1, return);
 	}
 
     int fdsOld[3] {};
-	{
+	if (out_stdOut != nullptr) {
 		fdsOld[0] = ::dup(STDIN_FILENO);
 		fdsOld[1] = ::dup(STDOUT_FILENO);
 		fdsOld[2] = ::dup(STDERR_FILENO);
@@ -82,13 +93,12 @@ Process::_create_impl(
 			{
 				for (auto &[var, value] : a_envs) {
 					std::ctstring_t &envVarValue = var + Const::equal() + value;
-
 					envs.push_back( const_cast<char *>(xT2A(envVarValue).c_str()) );
 				}
 				envs.push_back(nullptr);
 			}
 
-			{
+			if (out_stdOut != nullptr) {
 				::close(fds[FdIndex::Read]);
 
 				::close(STDOUT_FILENO);
@@ -101,7 +111,7 @@ Process::_create_impl(
 			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmds.data(), envs.data());
 			xTEST_DIFF(status, - 1);
 
-			{
+			if (out_stdOut != nullptr) {
 				::close(fds[FdIndex::Write]);
 			}
 			(void_t)::_exit(status);  // not std::exit()
@@ -112,33 +122,38 @@ Process::_create_impl(
 		// printf("[PARENT] PID: %d, parent PID: %d\n", getpid(), pid);
 
 		// read
-		{
+		if (out_stdOut != nullptr) {
 			::close(fds[FdIndex::Write]);
 			::dup2(fds[FdIndex::Read], STDIN_FILENO);
 
-			int rc {1};
+			ssize_t readSize {1};
 
-			while (rc > 0) {
+			while (readSize > 0) {
 				constexpr std::size_t buffSize {256};
 				char                  buff[buffSize + 1] {};
+				readSize = ::read(fds[FdIndex::Read], buff, buffSize);
+				if (readSize == - 1L) {
+					xTEST_FAIL;
+					break;
+				}
 
-				rc = ::read(fds[FdIndex::Read], buff, buffSize);
-				stdOut.append(buff, rc);
+				// [out]
+				out_stdOut->append(buff, readSize);
 			}
 		}
 
 		// wait
-		{
+		if (out_stdOut != nullptr) {
 		#if 0
 			::waitpid(pid, nullptr, 0);
-			::close(fds[FdIndex::Read]);
 		#endif
+			::close(fds[FdIndex::Read]);
 		}
 
 		break;
 	}
 
-	{
+	if (out_stdOut != nullptr) {
 		::dup2(STDIN_FILENO,  fdsOld[0]);
 		::dup2(STDOUT_FILENO, fdsOld[1]);
 		::dup2(STDERR_FILENO, fdsOld[2]);
@@ -146,8 +161,6 @@ Process::_create_impl(
 
     _handle = pid;
     _pid    = pid;
-
-    std::tcout << xTRACE_VAR(stdOut.size()) << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 Process::WaitStatus

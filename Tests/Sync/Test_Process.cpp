@@ -27,7 +27,10 @@ Test_Process::unit()
     #endif
 
         Process proc;
-        proc.create(filePath, cmdLine, {});
+
+    	std::tstring_t stdOut;
+    	std::tstring_t stdError;
+        proc.create(filePath, cmdLine, {}, &stdOut, &stdError);
 
         Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
         xTEST_EQ((int)Process::WaitStatus::Abandoned, (int)wrRes);
@@ -46,7 +49,11 @@ Test_Process::unit()
     #endif
 
         Process proc;
-        proc.create(filePath, cmdLine, {});
+
+        std::tstring_t stdOut;
+    	std::tstring_t stdError;
+        proc.create(filePath, cmdLine, {}, &stdOut, &stdError);
+
        	proc.kill(10UL);
     }
 
@@ -61,7 +68,10 @@ Test_Process::unit()
     #endif
 
         Process proc;
-        proc.create(filePath, cmdLine, {});
+
+    	std::tstring_t stdOut;
+    	std::tstring_t stdError;
+        proc.create(filePath, cmdLine, {}, &stdOut, &stdError);
 
         Process::handle_t hHandle = proc.handle();
         xTEST_DIFF(hHandle, static_cast<Process::handle_t>(0));
@@ -104,7 +114,7 @@ Test_Process::unit()
         Process::id_t id = Process::idByName(procName);
         xTEST_DIFF(0UL, static_cast<ulong_t>( id ));
 
-        // Tracer() << xTRACE_VAR(id);
+        // Cout() << xTRACE_VAR(id);
     }
 
     xTEST_CASE("ids")
@@ -113,7 +123,7 @@ Test_Process::unit()
 
         Process::ids(&ids);
         #if xTEST_IGNORE
-            Tracer() << ids;
+            Cout() << ids;
         #endif
     }
 
@@ -145,8 +155,14 @@ Test_Process::unit()
         std::cvec_tstring_t cmdLine  = {xT("-la")};
     #endif
 
-        Process::execute(filePath, xTIMEOUT_INFINITE, cmdLine, {});
-        Process::execute("badfile.txt", xTIMEOUT_INFINITE, {}, {});
+    	std::tstring_t stdOut;
+    	std::tstring_t stdError;
+
+        Process::execute(filePath, xTIMEOUT_INFINITE, cmdLine, {}, &stdOut, &stdError);
+        Cout() << xTRACE_VAR_2(stdOut, stdError);
+
+        Process::execute("badfile.txt", xTIMEOUT_INFINITE, {}, {}, &stdOut, &stdError);
+        Cout() << xTRACE_VAR_2(stdOut, stdError);
     }
 
     return true;

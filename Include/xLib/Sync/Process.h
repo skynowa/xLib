@@ -56,7 +56,8 @@ public:
     virtual   ~Process();
 
     void_t     create(std::ctstring_t &filePath, std::cvec_tstring_t &params,
-                   const std::set<std::pair_tstring_t> &envs);
+                   const std::set<std::pair_tstring_t> &envs, std::tstring_t *stdOut,
+                   std::tstring_t *stdError);
         ///< execute a file
     WaitStatus wait(culong_t &timeoutMsec) xWARN_UNUSED_RV;
         ///< wait for termination
@@ -121,7 +122,8 @@ xPUBLIC_STATIC:
 	// Etc
     static
     void_t     execute(std::ctstring_t &filePath, culong_t waitTimeoutMsec,
-                   std::cvec_tstring_t &params, const std::set<std::pair_tstring_t> &envs);
+                   std::cvec_tstring_t &params, const std::set<std::pair_tstring_t> &envs,
+                   std::tstring_t *stdOut, std::tstring_t *stdError);
         ///< create, wait process
 
 private:
@@ -130,14 +132,16 @@ private:
     HANDLE   _thread {};
 #endif
     id_t     _pid {};
-    uint_t   _exitStatus {};    ///< exit code
+
+    uint_t _exitStatus {};    ///< exit code
 
     xNO_COPY_ASSIGN(Process)
 
 xPLATFORM_IMPL:
     void_t     _destruct_impl();
     void_t     _create_impl(std::ctstring_t &filePath, std::cvec_tstring_t &params,
-                    const std::set<std::pair_tstring_t> &envs);
+                    const std::set<std::pair_tstring_t> &envs, std::tstring_t *stdOut,
+                    std::tstring_t *stdError);
     WaitStatus _wait_impl(culong_t &timeoutMsec) xWARN_UNUSED_RV;
     void_t     _kill_impl(culong_t &timeoutMsec);
     std::tstring_t _name_impl() const xWARN_UNUSED_RV;

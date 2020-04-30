@@ -28,7 +28,9 @@ void_t
 Process::_create_impl(
     std::ctstring_t                     &a_filePath,
     std::cvec_tstring_t                 &a_params,
-    const std::set<std::pair_tstring_t> &a_envs
+    const std::set<std::pair_tstring_t> &a_envs,
+    std::tstring_t                      *out_stdOut,  ///< [out] std::cout (maybe as nullptr)
+    std::tstring_t                      *out_stdError ///< [out] std::cerr (maybe as nullptr)
 )
 {
 	std::ctstring_t params = String::join(a_params, xT(" "));
@@ -55,6 +57,8 @@ Process::_create_impl(
     _handle = processInfo.hProcess;
     _thread = processInfo.hThread;
     _pid    = processInfo.dwProcessId;
+
+    // TODO: out_stdOut, out_stdError - impl
 }
 //-------------------------------------------------------------------------------------------------
 Process::WaitStatus

@@ -50,9 +50,11 @@ Process::~Process()
 //-------------------------------------------------------------------------------------------------
 void_t
 Process::create(
-    std::ctstring_t                     &a_filePath, ///< binary file path
-    std::cvec_tstring_t                 &a_params,   ///< command line params
-    const std::set<std::pair_tstring_t> &a_envs      ///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
+    std::ctstring_t                     &a_filePath,  ///< binary file path
+    std::cvec_tstring_t                 &a_params,    ///< command line params
+    const std::set<std::pair_tstring_t> &a_envs,      ///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
+    std::tstring_t                      *out_stdOut,  ///< [out] std::cout (maybe as nullptr)
+    std::tstring_t                      *out_stdError ///< [out] std::cerr (maybe as nullptr)
 )
 {
 #if 0
@@ -64,13 +66,15 @@ Process::create(
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_NA(a_params);
     xTEST_NA(a_envs);
+    xTEST_NA(out_stdOut);
+    xTEST_NA(out_stdError);
 
 	xCHECK_DO(!File::isExists(a_filePath),
 		Cout() << xTRACE_VAR(a_filePath) << xT(" not exists"); return);
 	xCHECK_DO(!File::isExecutable(a_filePath),
 		Cout() << xTRACE_VAR(a_filePath) << xT(" not executable"); return);
 
-    _create_impl(a_filePath, a_params, a_envs);
+    _create_impl(a_filePath, a_params, a_envs, out_stdOut, out_stdError);
 }
 //-------------------------------------------------------------------------------------------------
 Process::WaitStatus
@@ -282,11 +286,13 @@ Process::execute(
     std::ctstring_t                     &a_filePath,        ///< binary file path
     culong_t                             a_waitTimeoutMsec, ///< waiting timeout
     std::cvec_tstring_t                 &a_params,          ///< command line params
-    const std::set<std::pair_tstring_t> &a_envs             ///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
+    const std::set<std::pair_tstring_t> &a_envs,            ///< evironments ({"HOME=/usr/home", "LOGNAME=home"})
+    std::tstring_t                      *out_stdOut,        ///< [out] std::cout (maybe as nullptr)
+    std::tstring_t                      *out_stdError       ///< [out] std::cerr (maybe as nullptr)
 )
 {
     Process proc;
-    proc.create(a_filePath, a_params, a_envs);
+    proc.create(a_filePath, a_params, a_envs, out_stdOut, out_stdError);
     xCHECK_DO(!proc.isValid(), return);
 
     Process::WaitStatus wrRes = proc.wait(a_waitTimeoutMsec);
