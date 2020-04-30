@@ -51,7 +51,7 @@ Process::_create_impl(
 		Write = 1
 	};
 
-	#define _XLIB_PIPE_OLD 1
+	#define _XLIB_PIPE_OLD 0
 
 	// Create pipes
 #if _XLIB_PIPE_OLD
@@ -202,11 +202,13 @@ Process::_create_impl(
 		break;
 	}
 
+#if _XLIB_PIPE_OLD
 	if (out_stdOut != nullptr) {
 		::dup2(STDIN_FILENO,  fdsOld[0]);
 		::dup2(STDOUT_FILENO, fdsOld[1]);
 		::dup2(STDERR_FILENO, fdsOld[2]);
 	}
+#endif
 
 	_handle = pid;
 	_pid    = pid;
