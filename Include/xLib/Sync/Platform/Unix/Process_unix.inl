@@ -128,9 +128,9 @@ Process::_create_impl(
 				::dup2(pipeOut[FdIndex::Write], STDOUT_FILENO);
 				::dup2(pipeOut[FdIndex::Write], STDERR_FILENO);
 			#else
-				dup2(pipeIn[FdIndex::Read],   STDIN_FILENO);
-				dup2(pipeOut[FdIndex::Write], STDOUT_FILENO);
-				dup2(pipeErr[FdIndex::Write], STDERR_FILENO);
+				::dup2(pipeIn[FdIndex::Read],   STDIN_FILENO);
+				::dup2(pipeOut[FdIndex::Write], STDOUT_FILENO);
+				::dup2(pipeErr[FdIndex::Write], STDERR_FILENO);
 
 				// close all other inherited descriptors child doesn't need
 				::close(pipeIn[FdIndex::Read]);
