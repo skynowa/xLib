@@ -188,47 +188,48 @@ Process::_create_impl(
 			#endif
 			}
 
-			for (ssize_t readSize = 1; readSize > 0; ) {
-				constexpr std::size_t buffSize {1024};
-				char                  buff[buffSize + 1] {};
+			auto _pipeAppend = [](cint_t a_pipeRead, std::tstring_t *out_stdStream) -> void
+			{
+				xTEST_GR(a_pipeRead, 0);
+				xTEST_NA(out_stdStream);
 
-				Cout() << "ParentOk - Start read";
-				readSize = ::read(pipeOut[FdIndex::Read], buff, buffSize);
-				Cout() << "ParentOk - Stop read, " << xTRACE_VAR(readSize);
-
-				if (readSize == - 1L) {
-					xTEST_FAIL;
-					break;
+				if (out_stdStream == nullptr) {
+					return;
 				}
 
-				// [out]
-				out_stdOut->append(buff, readSize);
-			}
-
-			for (ssize_t readSize = 1; readSize > 0; ) {
 				constexpr std::size_t buffSize {1024};
-				char                  buff[buffSize + 1] {};
 
-				Cout() << "ParentOk - Start read";
-				readSize = ::read(pipeErr[FdIndex::Read], buff, buffSize);
-				Cout() << "ParentOk - Stop read, " << xTRACE_VAR(readSize);
+				for (ssize_t readSize = 1; readSize > 0; ) {
+					// Cout() << "ParentOk - Start read: " << a_pipeRead;
 
-				if (readSize == - 1L) {
-					xTEST_FAIL;
-					break;
-				}
+					char buff[buffSize + 1] {};
+					readSize = ::read(a_pipeRead, buff, buffSize);
 
-				// [out]
-				out_stdError->append(buff, readSize);
-			}
+					// Cout() << "ParentOk - Stop read, " << xTRACE_VAR(readSize);
+
+					if (readSize == - 1L) {
+						xTEST_FAIL;
+						break;
+					}
+
+					// [out]
+					out_stdStream->append(buff, readSize);
+				} // for
+			};
+
+			_pipeAppend(pipeOut[FdIndex::Read], out_stdOut);
+			_pipeAppend(pipeErr[FdIndex::Read], out_stdError);
 
 			// wait
 			{
 			#if 0
 				::waitpid(pid, nullptr, 0);
-			#endif
+				::close(pipeOut[FdIndex::Read]);
+			#else
+				// ::waitpid(pid, nullptr, 0);
 				::close(pipeOut[FdIndex::Read]);
 				::close(pipeErr[FdIndex::Read]);
+			#endif
 			}
 		}
 
