@@ -120,8 +120,8 @@ Process::_create_impl(
 			int rc {1};
 
 			while (rc > 0) {
-				const size_t buff_size {256};
-				char         buff[buff_size] {};
+				std::csize_t buff_size {256};
+				char         buff[buff_size + 1] {};
 
 				rc = ::read(fd[FdIndex::Read], buff, buff_size);
 				stdOut.append(buff, rc);
