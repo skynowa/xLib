@@ -44,18 +44,18 @@ Process::_create_impl(
 	int            iRv {};
 	std::tstring_t stdOut;
 
-    int fd[2] {};	// 0- read, 1 - write
+    int fds[2] {};	// 0- read, 1 - write
 	{
-	    iRv = ::pipe(fd);
+	    iRv = ::pipe(fds);
 		xTEST_DIFF(iRv, - 1);
 		xCHECK_DO(iRv == -1, return);
 	}
 
-    int fdOld[3] {};
+    int fdsOld[3] {};
 	{
-		fdOld[0] = ::dup(STDIN_FILENO);
-		fdOld[1] = ::dup(STDOUT_FILENO);
-		fdOld[2] = ::dup(STDERR_FILENO);
+		fdsOld[0] = ::dup(STDIN_FILENO);
+		fdsOld[1] = ::dup(STDOUT_FILENO);
+		fdsOld[2] = ::dup(STDERR_FILENO);
 	}
 
     const pid_t pid = ::fork();
@@ -90,20 +90,20 @@ Process::_create_impl(
 			}
 
 			{
-				::close(fd[FdIndex::Read]);
+				::close(fds[FdIndex::Read]);
 
 				::close(STDOUT_FILENO);
 				::close(STDERR_FILENO);
 
-				::dup2(fd[FdIndex::Write], STDOUT_FILENO);
-				::dup2(fd[FdIndex::Write], STDERR_FILENO);
+				::dup2(fds[FdIndex::Write], STDOUT_FILENO);
+				::dup2(fds[FdIndex::Write], STDERR_FILENO);
 			}
 
 			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmds.data(), envs.data());
 			xTEST_DIFF(status, - 1);
 
 			{
-				::close(fd[FdIndex::Write]);
+				::close(fds[FdIndex::Write]);
 			}
 			(void_t)::_exit(status);  // not std::exit()
 		}
@@ -114,8 +114,8 @@ Process::_create_impl(
 
 		// read
 		{
-			::close(fd[FdIndex::Write]);
-			::dup2(fd[FdIndex::Read], STDIN_FILENO);
+			::close(fds[FdIndex::Write]);
+			::dup2(fds[FdIndex::Read], STDIN_FILENO);
 
 			int rc {1};
 
@@ -123,7 +123,7 @@ Process::_create_impl(
 				constexpr std::size_t buffSize {256};
 				char                  buff[buffSize + 1] {};
 
-				rc = ::read(fd[FdIndex::Read], buff, buffSize);
+				rc = ::read(fds[FdIndex::Read], buff, buffSize);
 				stdOut.append(buff, rc);
 			}
 		}
@@ -132,7 +132,7 @@ Process::_create_impl(
 		{
 		#if 0
 			::waitpid(pid, nullptr, 0);
-			::close(fd[FdIndex::Read]);
+			::close(fds[FdIndex::Read]);
 		#endif
 		}
 
@@ -140,9 +140,9 @@ Process::_create_impl(
 	}
 
 	{
-		::dup2(STDIN_FILENO,  fdOld[0]);
-		::dup2(STDOUT_FILENO, fdOld[1]);
-		::dup2(STDERR_FILENO, fdOld[2]);
+		::dup2(STDIN_FILENO,  fdsOld[0]);
+		::dup2(STDOUT_FILENO, fdsOld[1]);
+		::dup2(STDERR_FILENO, fdsOld[2]);
 	}
 
     _handle = pid;
