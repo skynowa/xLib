@@ -39,10 +39,10 @@ Test_Process::unit()
         std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
         std::cvec_tstring_t cmdLine  = {xT("/?")};
     #elif xENV_UNIX
-        // std::ctstring_t     filePath = xT("/usr/bin/xmessage");
-        // std::cvec_tstring_t cmdLine  = {xT("-print"), xT("\"Test Message\"")};
-        std::ctstring_t     filePath = xT("/usr/bin/man");
-        std::cvec_tstring_t cmdLine  = {xT("ls")};
+        std::ctstring_t     filePath = xT("/usr/bin/xmessage");
+        std::cvec_tstring_t cmdLine  = {xT("-print"), xT("\"Test Message\"")};
+        // std::ctstring_t     filePath = xT("/usr/bin/man");
+        // td::cvec_tstring_t cmdLine  = {xT("ls")};
     #endif
 
         Process proc;
