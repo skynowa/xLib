@@ -51,14 +51,14 @@ Process::_create_impl(
 		Write = 1
 	};
 
-	#define _XLIB_PIPE_OLD 0
+	#define _XLIB_PIPE_OLD 1
 
 	// Create pipes
 #if _XLIB_PIPE_OLD
-	int fds[2] {}; // See FdIndex
+	int pipeOut[2] {}; // See FdIndex
 
 	if (out_stdOut != nullptr) {
-		iRv = ::pipe(fds);
+		iRv = ::pipe(pipeOut);
 		xTEST_DIFF(iRv, - 1);
 		xCHECK_DO(iRv == -1, return);
 	}
@@ -90,7 +90,7 @@ Process::_create_impl(
 	switch (pid) {
 	case ProcessStatus::ChildError:
 		{
-			xTRACE_POINT;
+			Cout() << "\n::::: ChildError :::::";
 
 			xTEST(false);
 			std::exit(EXIT_FAILURE);
@@ -98,7 +98,7 @@ Process::_create_impl(
 		break;
 	case ProcessStatus::ChildOk:
 		{
-			xTRACE_POINT;
+			Cout() << "\n::::: ChildOk :::::";
 			// printf("[CHILD] PID: %d, parent PID: %d\n", getpid(), getppid());
 
 			std::vector<char *> cmds;
@@ -119,18 +119,16 @@ Process::_create_impl(
 				envs.push_back(nullptr);
 			}
 
-			xTRACE_POINT;
-
 			// close all other inherited descriptors child doesn't need
 			if (out_stdOut != nullptr) {
 			#if _XLIB_PIPE_OLD
-				::close(fds[FdIndex::Read]);
+				::close(pipeOut[FdIndex::Read]);
 
 				::close(STDOUT_FILENO);
 				::close(STDERR_FILENO);
 
-				::dup2(fds[FdIndex::Write], STDOUT_FILENO);
-				::dup2(fds[FdIndex::Write], STDERR_FILENO);
+				::dup2(pipeOut[FdIndex::Write], STDOUT_FILENO);
+				::dup2(pipeOut[FdIndex::Write], STDERR_FILENO);
 			#else
 				dup2(pipeIn[FdIndex::Read],   STDIN_FILENO);
 				dup2(pipeOut[FdIndex::Write], STDOUT_FILENO);
@@ -143,16 +141,16 @@ Process::_create_impl(
 			#endif
 			}
 
-			xTRACE_POINT;
-
+			Cout() << "Start execve";
 			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmds.data(), envs.data());
+			Cout() << "Stop execve, " << xTRACE_VAR(status);
 			xTEST_DIFF(status, - 1);
 
 			xTRACE_POINT;
 
 			if (out_stdOut != nullptr) {
 			#if _XLIB_PIPE_OLD
-				::close(fds[FdIndex::Write]);
+				::close(pipeOut[FdIndex::Write]);
 			#else
 
 			#endif
@@ -163,15 +161,15 @@ Process::_create_impl(
 		break;
 	case ProcessStatus::ParentOk:
 	default:
-		xTRACE_POINT;
+		Cout() << "\n::::: ParentOk :::::";
 		// printf("[PARENT] PID: %d, parent PID: %d\n", getpid(), pid);
 
 		// read
 		if (out_stdOut != nullptr) {
 		#if _XLIB_PIPE_OLD
-			::close(fds[FdIndex::Write]);
+			::close(pipeOut[FdIndex::Write]);
 
-			iRv = ::dup2(fds[FdIndex::Read], STDIN_FILENO);
+			iRv = ::dup2(pipeOut[FdIndex::Read], STDIN_FILENO);
 			xTEST_DIFF(iRv, - 1);
 		#else
 
@@ -180,13 +178,11 @@ Process::_create_impl(
 			ssize_t readSize {1};
 
 			while (readSize > 0) {
-				xTRACE_POINT;
-
 				constexpr std::size_t buffSize {1024};
 				char                  buff[buffSize + 1] {};
 				Cout() << "Start read";
-				readSize = ::read(fds[FdIndex::Read], buff, buffSize);
-				Cout() << xTRACE_VAR(readSize);
+				readSize = ::read(pipeOut[FdIndex::Read], buff, buffSize);
+				Cout() << "Stop read, " << xTRACE_VAR(readSize);
 				if (readSize == - 1L) {
 					xTEST_FAIL;
 					break;
@@ -196,17 +192,13 @@ Process::_create_impl(
 				out_stdOut->append(buff, readSize);
 			}
 
-			xTRACE_POINT;
-
 			// wait
 			{
 			#if 0
 				::waitpid(pid, nullptr, 0);
 			#endif
-				::close(fds[FdIndex::Read]);
+				::close(pipeOut[FdIndex::Read]);
 			}
-
-			xTRACE_POINT;
 		}
 
 		break;
@@ -220,6 +212,8 @@ Process::_create_impl(
 
 	_handle = pid;
 	_pid    = pid;
+
+	xTRACE_POINT;
 }
 //-------------------------------------------------------------------------------------------------
 Process::WaitStatus
