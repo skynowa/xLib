@@ -139,12 +139,10 @@ Process::_create_impl(
 			#endif
 			}
 
-			Cout() << "Start execve";
-			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmds.data(), envs.data());
-			Cout() << "Stop execve, " << xTRACE_VAR(status);
+			Cout() << "ChildOk - Start execve";
+			cint_t status = 0;	// ::execve(xT2A(a_filePath).c_str(), cmds.data(), envs.data());
+			Cout() << "ChildOk - Stop execve, " << xTRACE_VAR(status);
 			xTEST_DIFF(status, - 1);
-
-			xTRACE_POINT;
 
 			if (out_stdOut != nullptr) {
 			#if _XLIB_PIPE_OLD
@@ -153,6 +151,8 @@ Process::_create_impl(
 
 			#endif
 			}
+
+			Cout() << "\n::::: ChildOk - Finished :::::";
 
 			(void_t)::_exit(status);  // not std::exit()
 		}
@@ -178,9 +178,9 @@ Process::_create_impl(
 			while (readSize > 0) {
 				constexpr std::size_t buffSize {1024};
 				char                  buff[buffSize + 1] {};
-				Cout() << "Start read";
+				Cout() << "ParentOk - Start read";
 				readSize = ::read(pipeOut[FdIndex::Read], buff, buffSize);
-				Cout() << "Stop read, " << xTRACE_VAR(readSize);
+				Cout() << "ParentOk - Stop read, " << xTRACE_VAR(readSize);
 				if (readSize == - 1L) {
 					xTEST_FAIL;
 					break;

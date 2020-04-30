@@ -164,19 +164,17 @@ Test_Process::unit()
 		#if   xENV_WIN
 			{xT("C:\\Windows\\System32\\attrib.exe"), {}, {}, {}, {}}
 		#elif xENV_UNIX
-			{xT("/bin/ls"), {xT("-la")}, {}, {}, {}},
+			/// {xT("/bin/ls"), {xT("-la")}, {}, {}, {}},
 			{xT("/usr/bin/xmessage"), {xT("-print"), xT("\"Test Message\"")}, {}, {}, {}},
-			{xT("badfile.txt"), {}, {}, {}, {}}
+			/// {xT("badfile.txt"), {}, {}, {}, {}}
 		#endif
 		};
 
 		for (auto &it_data : datas) {
 			Process::execute(it_data.filePath, xTIMEOUT_INFINITE, it_data.params, it_data.envs,
 				&it_data.stdOut, &it_data.stdError);
-			// Cout() << xTRACE_VAR(it_data.stdOut);
-			// Cout() << xTRACE_VAR(it_data.stdError);
-
-			break;	///
+			Cout() << xTRACE_VAR(it_data.stdOut);
+			Cout() << xTRACE_VAR(it_data.stdError);
 		} // for (datas)
 	}
 
