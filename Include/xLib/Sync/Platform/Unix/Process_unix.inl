@@ -35,6 +35,12 @@ Process::_create_impl(
 			///< value > 0, creates a new child process (waitpid)
 	};
 
+	enum FdIndex : std::size_t
+	{
+		Read  = 0,
+		Write = 1
+	};
+
 	int            iRv {};
 	std::tstring_t stdOut;
 
@@ -91,20 +97,20 @@ Process::_create_impl(
 			}
 
 			{
-				::close(fd[0]);
+				::close(fd[FdIndex::Read]);
 
 				::close(STDOUT_FILENO);
 				::close(STDERR_FILENO);
 
-				::dup2(fd[1], STDOUT_FILENO);
-				::dup2(fd[1], STDERR_FILENO);
+				::dup2(fd[FdIndex::Write], STDOUT_FILENO);
+				::dup2(fd[FdIndex::Write], STDERR_FILENO);
 			}
 
 			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmds.data(), envs.data());
 			xTEST_DIFF(status, - 1);
 
 			{
-				::close(fd[1]);
+				::close(fd[FdIndex::Write]);
 			}
 			(void_t)::_exit(status);  // not std::exit()
 		}
@@ -115,8 +121,8 @@ Process::_create_impl(
 
 		// read
 		{
-			::close(fd[1]);
-			::dup2(fd[0], STDIN_FILENO);
+			::close(fd[FdIndex::Write]);
+			::dup2(fd[FdIndex::Read], STDIN_FILENO);
 
 			int rc {1};
 
@@ -124,7 +130,7 @@ Process::_create_impl(
 				const size_t buff_size {256};
 				char         buff[buff_size] {};
 
-				rc = ::read(fd[0], buff, buff_size);
+				rc = ::read(fd[FdIndex::Read], buff, buff_size);
 				stdOut.append(buff, rc);
 			}
 		}
@@ -133,7 +139,7 @@ Process::_create_impl(
 		{
 		#if 0
 			::waitpid(pid, nullptr, 0);
-			::close(fd[0]);
+			::close(fd[FdIndex::Read]);
 		#endif
 		}
 
@@ -149,7 +155,7 @@ Process::_create_impl(
     _handle = pid;
     _pid    = pid;
 
-    // std::tcout << xTRACE_VAR(stdOut) << std::endl;
+    std::tcout << xTRACE_VAR(stdOut.size()) << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 Process::WaitStatus
