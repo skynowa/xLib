@@ -21,20 +21,24 @@ Test_Console::unit()
         Console console;
 
         std::tstring_t      text = xT("Beware: since -r was given, this may take a while!");
-        Console::Foreground foreground = Console::Foreground::fgBlue;
-        Console::Background background = Console::Background::bgYellow;
-        cint_t              attributes =
-        	static_cast<int_t>(Console::TextAttribute::atBold) |
-        	static_cast<int_t>(Console::TextAttribute::atUnderscore) |
-        	static_cast<int_t>(Console::TextAttribute::atReverse);
+        Console::Foreground foreground = Console::Foreground::fgGreen;
+        Console::Background background = Console::Background::bgBlack; // Console::Background::bgYellow;
+        cint_t              attributes = 0;
+		#if 0
+			static_cast<int_t>(Console::TextAttribute::atBold) |
+			static_cast<int_t>(Console::TextAttribute::atUnderscore) |
+			static_cast<int_t>(Console::TextAttribute::atReverse);
+		#endif
 
         m_sRv = console.setAttributes(foreground, background, attributes);
         xTEST_NA(m_sRv);
 
-		console.writeLine(text);
+		console.write(m_sRv + text);
 
         m_sRv = console.setAttributesDef();
         xTEST_NA(m_sRv);
+
+		console.writeLine(m_sRv);
     }
 
     xTEST_CASE("read")
