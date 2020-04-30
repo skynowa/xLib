@@ -112,6 +112,7 @@ Process::_create_impl(
 			if (out_stdOut != nullptr) {
 				::close(fds[FdIndex::Write]);
 			}
+
 			(void_t)::_exit(status);  // not std::exit()
 		}
 		break;
