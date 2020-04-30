@@ -41,12 +41,11 @@ Process::_create_impl(
 		Write = 1
 	};
 
-	int            iRv {};
 	std::tstring_t stdOut;
 
     int fds[2] {};	// 0- read, 1 - write
 	{
-	    iRv = ::pipe(fds);
+	    int_t iRv = ::pipe(fds);
 		xTEST_DIFF(iRv, - 1);
 		xCHECK_DO(iRv == -1, return);
 	}
