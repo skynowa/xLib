@@ -145,35 +145,36 @@ Test_Process::unit()
         xTEST_LESS(0UL, static_cast<ulong_t>( ulRv ));
     }
 
-    xTEST_CASE("execute")
-    {
-    #if   xENV_WIN
-        std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
-        std::cvec_tstring_t cmdLine  = {xT("")};
-    #elif xENV_UNIX
-        // std::ctstring_t     filePath = xT("/bin/ls");
-        // std::cvec_tstring_t cmdLine  = {xT("-la")};
+	xTEST_CASE("execute")
+	{
+		struct Data
+		{
+			std::ctstring_t                     filePath;
+			std::cvec_tstring_t                 params;
+			const std::set<std::pair_tstring_t> envs;
+			std::tstring_t                      stdOut;
+			std::tstring_t                      stdError;
+		};
 
-        std::ctstring_t     filePath = xT("/usr/bin/xmessage");
-        std::cvec_tstring_t cmdLine  = {xT("-print"), xT("\"Test Message\"")};
-    #endif
+		std::vector<Data> datas
+		{
+		#if   xENV_WIN
+			{xT("C:\\Windows\\System32\\attrib.exe"), {}, {}, {}, {}}
+		#elif xENV_UNIX
+			{xT("/bin/ls"), {xT("-la")}, {}, {}, {}},
+			{xT("/usr/bin/xmessage"), {xT("-print"), xT("\"Test Message\"")}, {}, {}, {}},
+			{xT("badfile.txt"), {}, {}, {}, {}}
+		#endif
+		};
 
-		std::tstring_t stdOut;
-		std::tstring_t stdError;
+		for (auto &it_data : datas) {
+			Process::execute(it_data.filePath, xTIMEOUT_INFINITE, it_data.params, it_data.envs,
+				&it_data.stdOut, &it_data.stdError);
+			Cout() << xTRACE_VAR(it_data.stdOut);
+			Cout() << xTRACE_VAR(it_data.stdError);
+		} // for (datas)
+	}
 
-	#if 1
-		Process::execute(filePath, xTIMEOUT_INFINITE, cmdLine, {}, &stdOut, &stdError);
-		Cout() << xTRACE_VAR(stdOut);
-		Cout() << xTRACE_VAR(stdError);
-	#endif
-
-	#if 0
-		Process::execute("badfile.txt", xTIMEOUT_INFINITE, {}, {}, &stdOut, &stdError);
-		Cout() << xTRACE_VAR(stdOut);
-		Cout() << xTRACE_VAR(stdError);
-	#endif
-    }
-
-    return true;
+	return true;
 }
 //-------------------------------------------------------------------------------------------------
