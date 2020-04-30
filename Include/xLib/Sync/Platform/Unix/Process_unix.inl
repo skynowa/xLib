@@ -54,7 +54,7 @@ Process::_create_impl(
 		Write = 1
 	};
 
-    int fds[2] {};	// 0- read, 1 - write
+    int fds[2] {};	// See FdIndex
 	if (out_stdOut != nullptr) {
 	    iRv = ::pipe(fds);
 		xTEST_DIFF(iRv, - 1);
@@ -140,14 +140,14 @@ Process::_create_impl(
 				// [out]
 				out_stdOut->append(buff, readSize);
 			}
-		}
 
-		// wait
-		if (out_stdOut != nullptr) {
-		#if 0
-			::waitpid(pid, nullptr, 0);
-		#endif
-			::close(fds[FdIndex::Read]);
+			// wait
+			{
+			#if 0
+				::waitpid(pid, nullptr, 0);
+			#endif
+				::close(fds[FdIndex::Read]);
+			}
 		}
 
 		break;
