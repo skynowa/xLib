@@ -139,7 +139,7 @@ Process::_create_impl(
 			#endif
 			}
 
-		#if 0
+		#if 1
 			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmds.data(), envs.data());
 			xTEST_DIFF(status, - 1);
 		#else
