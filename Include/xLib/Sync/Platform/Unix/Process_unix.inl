@@ -40,12 +40,9 @@ Process::_create_impl(
 
 	enum ProcessStatus : pid_t
 	{
-		ChildError   = - 1,
-			///< returned in the parent, no child process is created, and errno is set
-		ChildSuccess = 0,
-			///< PID of the child process is returned in the parent, and 0 is returned in the child
-		ParentSucces
-			///< value > 0, creates a new child process (waitpid)
+		ChildError = - 1, ///< returned in the parent, no child process is created, errno is set
+		ChildOk    = 0,   ///< PID of the child process - in parent, 0 - in child
+		ParentOk          ///< value > 0, creates a new child process (waitpid)
 	};
 
 	enum FdIndex : std::size_t
@@ -76,7 +73,7 @@ Process::_create_impl(
 			std::exit(EXIT_FAILURE);
 		}
 		break;
-	case ProcessStatus::ChildSuccess:
+	case ProcessStatus::ChildOk:
 		{
 			// printf("[CHILD] PID: %d, parent PID: %d\n", getpid(), getppid());
 
@@ -98,6 +95,7 @@ Process::_create_impl(
 				envs.push_back(nullptr);
 			}
 
+			// close all other inherited descriptors child doesn't need
 			if (out_stdOut != nullptr) {
 				::close(fds[FdIndex::Read]);
 
@@ -117,7 +115,7 @@ Process::_create_impl(
 			(void_t)::_exit(status);  // not std::exit()
 		}
 		break;
-	case ProcessStatus::ParentSucces:
+	case ProcessStatus::ParentOk:
 	default:
 		// printf("[PARENT] PID: %d, parent PID: %d\n", getpid(), pid);
 

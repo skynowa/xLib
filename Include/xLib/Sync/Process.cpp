@@ -296,7 +296,7 @@ Process::execute(
     xCHECK_DO(!proc.isValid(), return);
 
     Process::WaitStatus wrRes = proc.wait(a_waitTimeoutMsec);
-    xTEST_EQ((int)Process::WaitStatus::Abandoned, (int)wrRes);
+    /// xTEST_EQ((int)Process::WaitStatus::Abandoned, (int)wrRes);
 }
 //-------------------------------------------------------------------------------------------------
 
