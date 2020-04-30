@@ -122,6 +122,15 @@ Process::_setName_impl(
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
+bool_t
+Process::_isExists_impl() const
+{
+    // TODO: Process::_isExists_impl()
+    xNOT_IMPLEMENTED
+
+    return false;
+}
+//-------------------------------------------------------------------------------------------------
 ulong_t
 Process::_exitStatus_impl() const
 {

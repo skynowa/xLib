@@ -35,6 +35,23 @@ Process::_create_impl(
 			///< value > 0, creates a new child process (waitpid)
 	};
 
+	int            iRv {};
+	std::tstring_t stdOut;
+
+    int fd[2] {};	// 0- read, 1 - write
+	{
+	    iRv = ::pipe(fd);
+		xTEST_DIFF(iRv, - 1);
+		xCHECK_DO(iRv == -1, return);
+	}
+
+    int fdOld[3] {};
+	{
+		fdOld[0] = ::dup(STDIN_FILENO);
+		fdOld[1] = ::dup(STDOUT_FILENO);
+		fdOld[2] = ::dup(STDERR_FILENO);
+	}
+
     const pid_t pid = ::fork();
     switch (pid) {
 	case ProcessStatus::ChildError:
@@ -73,20 +90,66 @@ Process::_create_impl(
 				// Cout() << xTRACE_VAR(envs) << "\n";
 			}
 
+			{
+				::close(fd[0]);
+
+				::close(STDOUT_FILENO);
+				::close(STDERR_FILENO);
+
+				::dup2(fd[1], STDOUT_FILENO);
+				::dup2(fd[1], STDERR_FILENO);
+			}
+
 			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmds.data(), envs.data());
 			xTEST_DIFF(status, - 1);
 
+			{
+				::close(fd[1]);
+			}
 			(void_t)::_exit(status);  // not std::exit()
 		}
 		break;
 	case ProcessStatus::ParentSucces:
 	default:
 		// printf("[PARENT] PID: %d, parent PID: %d\n", getpid(), pid);
+
+		// read
+		{
+			::close(fd[1]);
+			::dup2(fd[0], STDIN_FILENO);
+
+			int rc {1};
+
+			while (rc > 0) {
+				const size_t buff_size {256};
+				char         buff[buff_size] {};
+
+				rc = ::read(fd[0], buff, buff_size);
+				stdOut.append(buff, rc);
+			}
+		}
+
+		// wait
+		{
+		#if 0
+			::waitpid(pid, nullptr, 0);
+			::close(fd[0]);
+		#endif
+		}
+
 		break;
+	}
+
+	{
+		::dup2(STDIN_FILENO,  fdOld[0]);
+		::dup2(STDOUT_FILENO, fdOld[1]);
+		::dup2(STDERR_FILENO, fdOld[2]);
 	}
 
     _handle = pid;
     _pid    = pid;
+
+    // std::tcout << xTRACE_VAR(stdOut) << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 Process::WaitStatus
@@ -164,6 +227,33 @@ Process::_setName_impl(
 #elif xENV_BSD
     (void_t)::setproctitle("%s", xT2A(a_name).c_str());
 #endif
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Process::_isExists_impl() const
+{
+	errno = 0;
+
+	// If sig is 0, then no signal is sent, but error checking is still performed;
+	// this can be used to check for the existence of a process ID or process group ID
+	constexpr int sigExistence {0};
+
+	int_t iRv = ::kill(_pid, sigExistence);
+	xTEST_DIFF(iRv, - 1);
+
+	// Cout() << xTRACE_VAR_4(_pid, iRv, errno, isRunning(_pid)) << std::endl;
+
+	if (iRv >= 0) {
+		return true;
+	}
+
+	if (errno == ESRCH) {
+		// proc doesn't exist
+		return false;
+	}
+
+	// some oether error
+	return false;
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t

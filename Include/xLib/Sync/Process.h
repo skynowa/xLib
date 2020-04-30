@@ -71,11 +71,17 @@ public:
         ///< get name
     void_t     setName(std::ctstring_t &name) const;
         ///< set name
+    bool_t     isValid() const xWARN_UNUSED_RV;
+        ///< check for the handles, IDs validness
+    bool_t     isExists() const xWARN_UNUSED_RV;
+        ///< check for the existence of a process ID or process group ID, see isRunning()
     bool_t     isCurrent() const xWARN_UNUSED_RV;
         ///< is current
     ulong_t    exitStatus() const xWARN_UNUSED_RV;
         ///< get termination status
 
+xPUBLIC_STATIC:
+	// Hanfles, IDs
     static
     id_t       idByHandle(const handle_t &handle) xWARN_UNUSED_RV;
         ///< get ID by handle
@@ -112,7 +118,7 @@ public:
     void_t     currenQuicktExit(cuint_t &exitCode);
         ///< Causes normal program termination to occur without completely cleaning the resources
 
-    // static
+	// Etc
     static
     void_t     execute(std::ctstring_t &filePath, culong_t waitTimeoutMsec,
                    std::cvec_tstring_t &params, const std::set<std::pair_tstring_t> &envs);
@@ -136,6 +142,7 @@ xPLATFORM_IMPL:
     void_t     _kill_impl(culong_t &timeoutMsec);
     std::tstring_t _name_impl() const xWARN_UNUSED_RV;
     void_t     _setName_impl(std::ctstring_t &name) const;
+    bool_t     _isExists_impl() const;
     ulong_t    _exitStatus_impl() const xWARN_UNUSED_RV;
 
     static
