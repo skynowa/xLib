@@ -73,14 +73,10 @@ Process::_create_impl(
 			std::vector<char *> cmds;
 			{
 				cmds.push_back( const_cast<char *>(xT2A(a_filePath).c_str()) );
-
 				for (auto &it_param : a_params) {
 					cmds.push_back( const_cast<char *>( xT2A(it_param).c_str() ));
 				}
-
 				cmds.push_back(nullptr);
-
-				// Cout() << xTRACE_VAR(cmds) << "\n";
 			}
 
 			std::vector<char *> envs;
@@ -90,10 +86,7 @@ Process::_create_impl(
 
 					envs.push_back( const_cast<char *>( xT2A(envVarValue).c_str() ));
 				}
-
 				envs.push_back(nullptr);
-
-				// Cout() << xTRACE_VAR(envs) << "\n";
 			}
 
 			{
