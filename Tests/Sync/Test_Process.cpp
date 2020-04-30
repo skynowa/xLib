@@ -155,8 +155,8 @@ Test_Process::unit()
         std::cvec_tstring_t cmdLine  = {xT("-la")};
     #endif
 
-    	std::tstring_t stdOut;
-    	std::tstring_t stdError;
+		std::tstring_t stdOut;
+		std::tstring_t stdError;
 
         Process::execute(filePath, xTIMEOUT_INFINITE, cmdLine, {}, &stdOut, &stdError);
         Cout() << xTRACE_VAR_2(stdOut, stdError);
