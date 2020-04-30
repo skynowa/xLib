@@ -39,13 +39,15 @@ Test_Process::unit()
         std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
         std::cvec_tstring_t cmdLine  = {xT("/?")};
     #elif xENV_UNIX
-        std::ctstring_t     filePath = xT("/usr/bin/xmessage");
-        std::cvec_tstring_t cmdLine  = {xT("-print"), xT("\"Test Message\"")};
+        // std::ctstring_t     filePath = xT("/usr/bin/xmessage");
+        // std::cvec_tstring_t cmdLine  = {xT("-print"), xT("\"Test Message\"")};
+        std::ctstring_t     filePath = xT("/usr/bin/man");
+        std::cvec_tstring_t cmdLine  = {xT("ls")};
     #endif
 
         Process proc;
         proc.create(filePath, cmdLine, {});
-        proc.kill(10UL);
+       	proc.kill(10UL);
     }
 
     xTEST_CASE("handle, id, name, setName")
@@ -144,7 +146,6 @@ Test_Process::unit()
     #endif
 
         Process::execute(filePath, xTIMEOUT_INFINITE, cmdLine, {});
-
         Process::execute("badfile.txt", xTIMEOUT_INFINITE, {}, {});
     }
 
