@@ -88,7 +88,7 @@ Process::_create_impl(
 	switch (pid) {
 	case ProcessStatus::ChildError:
 		{
-			Cout() << "\n::::: ChildError :::::";
+			// Cout() << "\n::::: ChildError :::::";
 
 			xTEST(false);
 			std::exit(EXIT_FAILURE);
@@ -96,7 +96,7 @@ Process::_create_impl(
 		break;
 	case ProcessStatus::ChildOk:
 		{
-			Cout() << "\n::::: ChildOk :::::";
+			// Cout() << "\n::::: ChildOk :::::";
 			// printf("[CHILD] PID: %d, parent PID: %d\n", getpid(), getppid());
 
 			std::vector<char *> cmds;
@@ -157,14 +157,14 @@ Process::_create_impl(
 			#endif
 			}
 
-			Cout() << "\n::::: ChildOk - Finished :::::";
+			// Cout() << "\n::::: ChildOk - Finished :::::";
 
 			(void_t)::_exit(status);  // not std::exit()
 		}
 		break;
 	case ProcessStatus::ParentOk:
 	default:
-		Cout() << "\n::::: ParentOk :::::";
+		// Cout() << "\n::::: ParentOk :::::";
 		// printf("[PARENT] PID: %d, parent PID: %d\n", getpid(), pid);
 
 		// read
@@ -247,7 +247,7 @@ Process::_create_impl(
 	_handle = pid;
 	_pid    = pid;
 
-	Cout() << "\n::::: Finished :::::";
+	// Cout() << "\n::::: Finished :::::";
 }
 //-------------------------------------------------------------------------------------------------
 Process::WaitStatus
