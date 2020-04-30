@@ -124,12 +124,14 @@ Process::_create_impl(
 		// read
 		if (out_stdOut != nullptr) {
 			::close(fds[FdIndex::Write]);
-			::dup2(fds[FdIndex::Read], STDIN_FILENO);
+
+			iRv = ::dup2(fds[FdIndex::Read], STDIN_FILENO);
+			xTEST_DIFF(iRv, - 1);
 
 			ssize_t readSize {1};
 
 			while (readSize > 0) {
-				constexpr std::size_t buffSize {256};
+				constexpr std::size_t buffSize {1024};
 				char                  buff[buffSize + 1] {};
 				readSize = ::read(fds[FdIndex::Read], buff, buffSize);
 				if (readSize == - 1L) {
