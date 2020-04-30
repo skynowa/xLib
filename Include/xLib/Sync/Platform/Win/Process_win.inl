@@ -40,13 +40,9 @@ Process::_create_impl(
 	{
 		for (auto &it_env : a_envs) {
 			std::ctstring_t &envVarValue = it_env.first + Const::equal() + it_env.second;
-
 			envs.push_back( const_cast<tchar_t *>(envVarValue).c_str() );
 		}
-
 		envs.push_back(nullptr);
-
-		// Cout() << xTRACE_VAR(envs) << "\n";
 	}
 
 	LPVOID environment = (LPVOID)envs.data();
