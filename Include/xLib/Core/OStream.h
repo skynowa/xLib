@@ -177,8 +177,11 @@ class Cout :
     /// print std::cout
 {
 public:
-             Cout() = default;
-    virtual ~Cout() = default;
+    Cout() = default;
+   ~Cout() override
+    {
+        std::tcout << std::endl;
+    }
 
     xNO_COPY_ASSIGN(Cout)
 
