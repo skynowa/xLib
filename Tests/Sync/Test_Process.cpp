@@ -151,18 +151,27 @@ Test_Process::unit()
         std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
         std::cvec_tstring_t cmdLine  = {xT("")};
     #elif xENV_UNIX
-        std::ctstring_t     filePath = xT("/bin/ls");
-        std::cvec_tstring_t cmdLine  = {xT("-la")};
+        // std::ctstring_t     filePath = xT("/bin/ls");
+        // std::cvec_tstring_t cmdLine  = {xT("-la")};
+
+        std::ctstring_t     filePath = xT("/usr/bin/xmessage");
+        std::cvec_tstring_t cmdLine  = {xT("-print"), xT("\"Test Message\"")};
     #endif
 
 		std::tstring_t stdOut;
 		std::tstring_t stdError;
 
-        Process::execute(filePath, xTIMEOUT_INFINITE, cmdLine, {}, &stdOut, &stdError);
-        Cout() << xTRACE_VAR_2(stdOut, stdError);
+	#if 1
+		Process::execute(filePath, xTIMEOUT_INFINITE, cmdLine, {}, &stdOut, &stdError);
+		Cout() << xTRACE_VAR(stdOut);
+		Cout() << xTRACE_VAR(stdError);
+	#endif
 
-        Process::execute("badfile.txt", xTIMEOUT_INFINITE, {}, {}, &stdOut, &stdError);
-        Cout() << xTRACE_VAR_2(stdOut, stdError);
+	#if 0
+		Process::execute("badfile.txt", xTIMEOUT_INFINITE, {}, {}, &stdOut, &stdError);
+		Cout() << xTRACE_VAR(stdOut);
+		Cout() << xTRACE_VAR(stdError);
+	#endif
     }
 
     return true;
