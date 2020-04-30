@@ -178,9 +178,11 @@ Process::_create_impl(
 			while (readSize > 0) {
 				constexpr std::size_t buffSize {1024};
 				char                  buff[buffSize + 1] {};
+
 				Cout() << "ParentOk - Start read";
 				readSize = ::read(pipeOut[FdIndex::Read], buff, buffSize);
 				Cout() << "ParentOk - Stop read, " << xTRACE_VAR(readSize);
+
 				if (readSize == - 1L) {
 					xTEST_FAIL;
 					break;
