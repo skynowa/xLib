@@ -14,6 +14,8 @@ xNAMESPACE_BEGIN2(xl, internal)
 //-------------------------------------------------------------------------------------------------
 ///@name Macroses
 ///@{
+#define xPUBLIC_STATIC public
+    ///< for visual convenience
 #define xPLATFORM_IMPL private
     ///< platform implementation code
 ///@}
