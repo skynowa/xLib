@@ -139,10 +139,15 @@ Process::_create_impl(
 			#endif
 			}
 
-			Cout() << "ChildOk - Start execve";
-			cint_t status = 0;	// ::execve(xT2A(a_filePath).c_str(), cmds.data(), envs.data());
-			Cout() << "ChildOk - Stop execve, " << xTRACE_VAR(status);
+		#if 0
+			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmds.data(), envs.data());
 			xTEST_DIFF(status, - 1);
+		#else
+			cint_t status = 0;
+
+			Cout()    << "ChildOk - Stop execve (cout), " << xTRACE_VAR(status);
+			std::cerr << "ChildOk - Stop execve (cerr), " << xTRACE_VAR(status) << std::endl;
+		#endif
 
 			if (out_stdOut != nullptr) {
 			#if _XLIB_PIPE_OLD
@@ -164,18 +169,26 @@ Process::_create_impl(
 
 		// read
 		if (out_stdOut != nullptr) {
-		#if _XLIB_PIPE_OLD
-			::close(pipeOut[FdIndex::Write]);
+			// binds to pipes
+			{
+			#if _XLIB_PIPE_OLD
+				::close(pipeOut[FdIndex::Write]);
+				iRv = ::dup2(pipeOut[FdIndex::Read], STDIN_FILENO);
+				xTEST_DIFF(iRv, - 1);
+			#else
+				// pipeOut - for read
+				::close(pipeOut[FdIndex::Write]);
+				iRv = ::dup2(pipeOut[FdIndex::Read], STDIN_FILENO);
+				xTEST_DIFF(iRv, - 1);
 
-			iRv = ::dup2(pipeOut[FdIndex::Read], STDIN_FILENO);
-			xTEST_DIFF(iRv, - 1);
-		#else
+				// pipeErr - for read
+				::close(pipeErr[FdIndex::Write]);
+				iRv = ::dup2(pipeErr[FdIndex::Read], STDIN_FILENO);
+				xTEST_DIFF(iRv, - 1);
+			#endif
+			}
 
-		#endif
-
-			ssize_t readSize {1};
-
-			while (readSize > 0) {
+			for (ssize_t readSize = 1; readSize > 0; ) {
 				constexpr std::size_t buffSize {1024};
 				char                  buff[buffSize + 1] {};
 
@@ -190,6 +203,23 @@ Process::_create_impl(
 
 				// [out]
 				out_stdOut->append(buff, readSize);
+			}
+
+			for (ssize_t readSize = 1; readSize > 0; ) {
+				constexpr std::size_t buffSize {1024};
+				char                  buff[buffSize + 1] {};
+
+				Cout() << "ParentOk - Start read";
+				readSize = ::read(pipeErr[FdIndex::Read], buff, buffSize);
+				Cout() << "ParentOk - Stop read, " << xTRACE_VAR(readSize);
+
+				if (readSize == - 1L) {
+					xTEST_FAIL;
+					break;
+				}
+
+				// [out]
+				out_stdError->append(buff, readSize);
 			}
 
 			// wait
