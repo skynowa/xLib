@@ -88,6 +88,12 @@ Process::kill(
     culong_t &a_timeoutMsec    ///< waiting timeout
 )
 {
+	if ( !isExists() ) {
+		return;
+	}
+
+	Cout() << xT("Kill: ") << xTRACE_VAR(_pid) << std::endl;
+
     _kill_impl(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
@@ -118,9 +124,30 @@ Process::setName(
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
+Process::isValid() const
+{
+    if (_handle == 0 ||
+	#if xENV_WIN
+		_thread == 0 ||
+	#endif
+        _pid == 0)
+    {
+		return false;
+    }
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
 Process::isCurrent() const
 {
     return isCurrent( currentId() );
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Process::isExists() const
+{
+	return _isExists_impl();
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
@@ -260,6 +287,7 @@ Process::execute(
 {
     Process proc;
     proc.create(a_filePath, a_params, a_envs);
+    xCHECK_DO(!proc.isValid(), return);
 
     Process::WaitStatus wrRes = proc.wait(a_waitTimeoutMsec);
     xTEST_EQ((int)Process::WaitStatus::Abandoned, (int)wrRes);
