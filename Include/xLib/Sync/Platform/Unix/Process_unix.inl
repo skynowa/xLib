@@ -51,7 +51,7 @@ Process::_create_impl(
 		Write = 1
 	};
 
-	#define _XLIB_PIPE_OLD 1
+	#define _XLIB_PIPE_OLD 0
 
 	// Create pipes
 #if _XLIB_PIPE_OLD
