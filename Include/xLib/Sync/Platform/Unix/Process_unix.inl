@@ -228,6 +228,7 @@ Process::_create_impl(
 				::waitpid(pid, nullptr, 0);
 			#endif
 				::close(pipeOut[FdIndex::Read]);
+				::close(pipeErr[FdIndex::Read]);
 			}
 		}
 
