@@ -20,7 +20,7 @@ Test_Console::unit()
     {
         Console console;
 
-        std::tstring_t      text;
+        std::tstring_t      text = xT("Beware: since -r was given, this may take a while!");
         Console::Foreground foreground = Console::Foreground::fgBlue;
         Console::Background background = Console::Background::bgYellow;
         cint_t              attributes =
@@ -30,6 +30,8 @@ Test_Console::unit()
 
         m_sRv = console.setAttributes(foreground, background, attributes);
         xTEST_NA(m_sRv);
+
+		console.writeLine(text);
 
         m_sRv = console.setAttributesDef();
         xTEST_NA(m_sRv);
