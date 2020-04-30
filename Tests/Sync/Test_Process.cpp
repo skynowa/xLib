@@ -32,6 +32,9 @@ Test_Process::unit()
     	std::tstring_t stdError;
         proc.create(filePath, cmdLine, {}, &stdOut, &stdError);
 
+		Cout() << xTRACE_VAR(stdOut);
+		Cout() << xTRACE_VAR(stdError);
+
         Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
         xTEST_EQ((int)Process::WaitStatus::Abandoned, (int)wrRes);
     }
