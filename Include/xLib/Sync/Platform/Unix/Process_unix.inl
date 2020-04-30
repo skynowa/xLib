@@ -83,8 +83,6 @@ Process::_create_impl(
 	xTEST_DIFF(iRv, - 1);
 #endif
 
-	xTRACE_POINT;
-
 	// Create process
 	const pid_t pid = ::fork();
 	switch (pid) {
@@ -213,7 +211,7 @@ Process::_create_impl(
 	_handle = pid;
 	_pid    = pid;
 
-	xTRACE_POINT;
+	Cout() << "\n::::: Finished :::::";
 }
 //-------------------------------------------------------------------------------------------------
 Process::WaitStatus
