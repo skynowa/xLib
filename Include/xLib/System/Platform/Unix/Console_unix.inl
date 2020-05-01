@@ -29,6 +29,11 @@ Console::_destruct_impl()
     xNA;
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * Colors and formatting (ANSI/VT100 Control sequences)
+ *
+ * https://misc.flogisoft.com/bash/tip_colors_and_formatting
+ */
 std::tstring_t
 Console::_setAttributes_impl(
     cForeground a_foreground,
