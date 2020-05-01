@@ -34,7 +34,7 @@ Test_Console::unit()
 		console.writeLine( console.setAttributesDef() );
 
 		console.write(foreground, background, attributes, text);
-		console.write(Const::nl());
+		console.writeNl();
     }
 
     xTEST_CASE("read")
