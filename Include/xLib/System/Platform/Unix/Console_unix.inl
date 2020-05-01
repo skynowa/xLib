@@ -218,19 +218,23 @@ Console::_clear_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 /**
- set-title()
- {
- 	ORIG=$PS1
- 	TITLE="\e]2;$@\a"
- 	PS1=${ORIG}${TITLE}
- }
-*/
+ * Change the title of a terminal
+ *
+ * https://www.zachpfeffer.com/single-post/Change-the-title-of-a-terminal-on-Ubuntu-1604
+ *
+ * set-title()
+ * {
+ *     ORIG=$PS1
+ * 	   TITLE="\e]2;$@\a"
+ * 	   PS1=${ORIG}${TITLE}
+ * }
+ */
 void_t
 Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
 {
-    writeLine( Format::str(xT("{}]0;{}{}"), xT('\e'), a_title, xT('\a')) );
+    writeLine( Format::str(xT("\e]0;{}\a"), a_title) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
