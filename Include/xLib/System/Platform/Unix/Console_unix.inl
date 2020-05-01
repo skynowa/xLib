@@ -201,8 +201,8 @@ Console::_setAttributes_impl(
     }
 
 	// Terminals allow attribute combinations. The attributes must be separated by a semicolon (“;”).
-	sRv += Format::str(xT("\033[{};{}m"), attrs, (int)foregroundColor);	// TODO: [skynowa] StdStreamV2
-	sRv += Format::str(xT("\033[{}m"), (int)backgroundColor);  			// TODO: [skynowa] StdStreamV2
+	sRv += Format::str(xT("\e[{};{}m"), attrs, (int)foregroundColor);	// TODO: [skynowa] StdStreamV2
+	sRv += Format::str(xT("\e[{}m"), (int)backgroundColor);  			// TODO: [skynowa] StdStreamV2
 
 	return sRv;
 }
@@ -210,7 +210,7 @@ Console::_setAttributes_impl(
 std::tstring_t
 Console::_setAttributesDef_impl() const
 {
-    return xT("\033[0;0m");
+    return xT("\e[0;0m");
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -243,7 +243,7 @@ Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
 {
-    writeLine( Format::str(xT("{}]0;{}{}"), xT('\033'), a_title, xT('\007')) );
+    writeLine( Format::str(xT("{}]0;{}{}"), xT('\e'), a_title, xT('\007')) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
