@@ -18,7 +18,7 @@ public:
     enum class Foreground
         /// foreground color
     {
-        fgUnknown,
+        fgUnknown = 0,
         fgBlack,
         fgRed,
         fgGreen,
@@ -34,7 +34,7 @@ public:
     enum class Background
         /// background color
     {
-        bgUnknown,
+        bgUnknown = 0,
         bgBlack,
         bgRed,
         bgGreen,
@@ -50,7 +50,7 @@ public:
     enum class TextAttribute
         /// text attribute
     {
-        atUnknown,
+        atUnknown = 0,
         atAllOff,
         atBold,
         atUnderscore,
