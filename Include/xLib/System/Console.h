@@ -15,6 +15,16 @@ class Console
     /// console
 {
 public:
+                   Console();
+        ///< constructor
+    virtual       ~Console();
+        ///< destructor
+
+    /*******************************************************************************
+    *   Attributes
+    *
+    *******************************************************************************/
+
     enum class Foreground
         /// foreground (text) color
     {
@@ -71,16 +81,6 @@ public:
         Retry  = 4
     };
     xUSING_CONST(ModalResult);
-
-                   Console();
-        ///< constructor
-    virtual       ~Console();
-        ///< destructor
-
-    /*******************************************************************************
-    *   Attributes
-    *
-    *******************************************************************************/
 
     std::tstring_t setAttributes(cForeground foreground, cBackground background,
                        cint_t attributes) const xWARN_UNUSED_RV;
