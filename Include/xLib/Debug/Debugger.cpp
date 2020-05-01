@@ -181,12 +181,12 @@ Debugger::_stdoutPlain(
     Console console;
     Console::ModalResult mrRv = console.msgBox(a_report.toString(), xT("xLib"), 0);
     switch (mrRv) {
-    case Console::ModalResult::mrAbort:
+    case Console::ModalResult::Abort:
         (void_t)::exit(EXIT_FAILURE);
         break;
-    case Console::ModalResult::mrIgnore:
+    case Console::ModalResult::Ignore:
         break;
-    case Console::ModalResult::mrRetry:
+    case Console::ModalResult::Retry:
         if ( isActive() ) {
             breakPoint();
         } else {

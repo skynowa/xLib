@@ -59,37 +59,37 @@ Console::_setAttributes_impl(
         int_t iRv = - 1;
 
         switch (a_foreground) {
-        case Foreground::fgDefault:
+        case Foreground::Default:
             iRv = foregroundColorDefault;
             break;
-        case Foreground::fgBlack:
+        case Foreground::Black:
             iRv = foregroundColorBlack;
             break;
-        case Foreground::fgRed:
+        case Foreground::Red:
             iRv = foregroundColorRed;
             break;
-        case Foreground::fgGreen:
+        case Foreground::Green:
             iRv = foregroundColorGreen;
             break;
-        case Foreground::fgYellow:
+        case Foreground::Yellow:
             iRv = foregroundColorYellow;
             break;
-        case Foreground::fgBlue:
+        case Foreground::Blue:
             iRv = foregroundColorBlue;
             break;
-        case Foreground::fgMagenta:
+        case Foreground::Magenta:
             iRv = foregroundColorMagenta;
             break;
-        case Foreground::fgCyan:
+        case Foreground::Cyan:
             iRv = foregroundColorCyan;
             break;
-        case Foreground::fgWhite:
+        case Foreground::White:
             iRv = foregroundColorWhite;
             break;
-        case Foreground::fgGray:
+        case Foreground::Gray:
             iRv = foregroundColorGray;
             break;
-        case Foreground::fgUnknown:
+        case Foreground::Unknown:
         default:
             xTEST_FAIL;
             break;
@@ -114,37 +114,37 @@ Console::_setAttributes_impl(
         int_t iRv = - 1;
 
         switch (a_background) {
-        case Background::bgDefault:
+        case Background::Default:
             iRv = backgroundColorDefault;
             break;
-        case Background::bgBlack:
+        case Background::Black:
             iRv = backgroundColorBlack;
             break;
-        case Background::bgRed:
+        case Background::Red:
             iRv = backgroundColorRed;
             break;
-        case Background::bgGreen:
+        case Background::Green:
             iRv = backgroundColorGreen;
             break;
-        case Background::bgYellow:
+        case Background::Yellow:
             iRv = backgroundColorYellow;
             break;
-        case Background::bgBlue:
+        case Background::Blue:
             iRv = backgroundColorBlue;
             break;
-        case Background::bgMagenta:
+        case Background::Magenta:
             iRv = backgroundColorMagenta;
             break;
-        case Background::bgCyan:
+        case Background::Cyan:
             iRv = backgroundColorCyan;
             break;
-        case Background::bgWhite:
+        case Background::White:
             iRv = backgroundColorWhite;
             break;
-        case Background::bgGray:
+        case Background::Gray:
             iRv = backgroundColorGray;
             break;
-        case Background::bgUnknown:
+        case Background::Unknown:
         default:
             xTEST_FAIL;
             break;
@@ -165,22 +165,22 @@ Console::_setAttributes_impl(
         int_t iRv = - 1;
 
         switch ( static_cast<TextAttribute>(a_attributes) ) {
-		case TextAttribute::atAllOff:
+		case TextAttribute::AllOff:
 			iRv = attributeAllOff;
 			break;
-		case TextAttribute::atBold:
+		case TextAttribute::Bold:
 			iRv = attributeBold;
 			break;
-		case TextAttribute::atUnderscore:
+		case TextAttribute::Underscore:
 			iRv = attributeUnderscore;
 			break;
-		case TextAttribute::atBlink:
+		case TextAttribute::Blink:
 			iRv = attributeBlink;
 			break;
-		case TextAttribute::atReverse:
+		case TextAttribute::Reverse:
 			iRv = attributeReverse;
 			break;
-		case TextAttribute::atConcealed:
+		case TextAttribute::Concealed:
 			iRv = attributeConcealed;
 			break;
 		default:
@@ -191,12 +191,12 @@ Console::_setAttributes_impl(
 
 	#if 0
 		// TODO: use mask
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atAllOff),     attrs = attributeAllOff);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atBold),       attrs = attributeBold);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atUnderscore), attrs = attributeUnderscore);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atBlink),      attrs = attributeBlink);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atReverse),    attrs = attributeReverse);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atConcealed),  attrs = attributeConcealed);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::AllOff),     attrs = attributeAllOff);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Bold),       attrs = attributeBold);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Underscore), attrs = attributeUnderscore);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Blink),      attrs = attributeBlink);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Reverse),    attrs = attributeReverse);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Concealed),  attrs = attributeConcealed);
 	#endif
     }
 
