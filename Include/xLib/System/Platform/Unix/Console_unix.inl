@@ -38,6 +38,7 @@ Console::_setAttributes_impl(
 {
     Foreground foregroundColor;
     {
+        cint_t foregroundColorDefault = 39;
         cint_t foregroundColorBlack   = 30;
         cint_t foregroundColorRed     = 31;
         cint_t foregroundColorBlue    = 34;
@@ -51,6 +52,9 @@ Console::_setAttributes_impl(
         int_t iRv = - 1;
 
         switch (a_foreground) {
+        case Foreground::fgDefault:
+            iRv = foregroundColorDefault;
+            break;
         case Foreground::fgBlack:
             iRv = foregroundColorBlack;
             break;
@@ -89,6 +93,7 @@ Console::_setAttributes_impl(
 
     Background backgroundColor;
     {
+        cint_t backgroundColorDefault = 49;
         cint_t backgroundColorBlack   = 40;
         cint_t backgroundColorRed     = 41;
         cint_t backgroundColorBlue    = 44;
@@ -102,6 +107,9 @@ Console::_setAttributes_impl(
         int_t iRv = - 1;
 
         switch (a_background) {
+        case Background::bgDefault:
+            iRv = backgroundColorDefault;
+            break;
         case Background::bgBlack:
             iRv = backgroundColorBlack;
             break;
