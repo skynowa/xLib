@@ -163,37 +163,6 @@ Console::_setAttributes_impl(
         cint_t attributeReverse   = 7;
         cint_t attributeHidden    = 8;
 
-	#if 0
-        int_t iRv = - 1;
-
-        switch ( static_cast<Attribute>(a_attributes) ) {
-		case Attribute::AllOff:
-			iRv = attributeAllOff;
-			break;
-		case Attribute::Bold:
-			iRv = attributeBold;
-			break;
-		case Attribute::Dim:
-			iRv = attributeDim;
-			break;
-		case Attribute::Underline:
-			iRv = attributeUnderline;
-			break;
-		case Attribute::Blink:
-			iRv = attributeBlink;
-			break;
-		case Attribute::Reverse:
-			iRv = attributeReverse;
-			break;
-		case Attribute::Hidden:
-			iRv = attributeHidden;
-			break;
-		case Attribute::Unknown:
-			break;
-		}
-
-		attrs = iRv;
-	#else
 		xCHECK_DO(Bitset(a_attributes).isSetBit(static_cast<int_t>(Attribute::AllOff)),    attrs = attributeAllOff);
 		xCHECK_DO(Bitset(a_attributes).isSetBit(static_cast<int_t>(Attribute::Bold)),      attrs = attributeBold);
 		xCHECK_DO(Bitset(a_attributes).isSetBit(static_cast<int_t>(Attribute::Dim)),       attrs = attributeDim);
@@ -203,7 +172,6 @@ Console::_setAttributes_impl(
 		xCHECK_DO(Bitset(a_attributes).isSetBit(static_cast<int_t>(Attribute::Hidden)),    attrs = attributeHidden);
 
 		Cout() << xTRACE_VAR(attrs);
-	#endif
     }
 
 	// Terminals allow attribute combinations. The attributes must be separated by a semicolon (“;”).
