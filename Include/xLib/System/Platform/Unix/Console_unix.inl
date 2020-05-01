@@ -43,7 +43,7 @@ Console::_setAttributes_impl(
 {
     std::tstring_t sRv;
 
-    Foreground foregroundColor;
+    Foreground foregroundColor {};
     {
         cint_t foregroundColorDefault = 39;
         cint_t foregroundColorBlack   = 30;
@@ -56,7 +56,7 @@ Console::_setAttributes_impl(
         cint_t foregroundColorWhite   = 37;
         cint_t foregroundColorGray    = 37;  // TODO: [skynowa] Console::setAttributes() - foregroundColorGray
 
-        int_t iRv = - 1;
+        int_t iRv {};
 
         switch (a_foreground) {
         case Foreground::Default:
@@ -98,7 +98,7 @@ Console::_setAttributes_impl(
         foregroundColor = static_cast<Foreground>( iRv );
     }
 
-    Background backgroundColor;
+    Background backgroundColor {};
     {
         cint_t backgroundColorDefault = 49;
         cint_t backgroundColorBlack   = 40;
@@ -111,7 +111,7 @@ Console::_setAttributes_impl(
         cint_t backgroundColorWhite   = 47;
         cint_t backgroundColorGray    = 47; // TODO: [skynowa] Console::setAttributes() - Unix - backgroundColorGray
 
-        int_t iRv = - 1;
+        int_t iRv {};
 
         switch (a_background) {
         case Background::Default:
