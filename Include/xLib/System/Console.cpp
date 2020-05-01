@@ -84,6 +84,35 @@ Console::writeErrLine(
     pause(xTIMEOUT_INFINITE);
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+Console::pause(
+    culong_t &a_timeoutMsec
+) const
+{
+    std::tstring_t msg;
+
+    if (a_timeoutMsec == xTIMEOUT_INFINITE) {
+        msg = xT("Pause, press [ENTER] to continue...");
+
+        writeLine(msg);
+
+        std::cin.clear();
+        std::cin.ignore();
+    } else {
+        msg = Format::str(xT("Pause, wait for {} msec to continue..."), a_timeoutMsec);
+
+        writeLine(msg);
+
+        Thread::currentSleep(a_timeoutMsec);
+    }
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Console::clear() const
+{
+    _clear_impl();
+}
+//-------------------------------------------------------------------------------------------------
 Console::ModalResult
 Console::msgBox(
     std::ctstring_t &a_text,
@@ -186,35 +215,6 @@ Console::prompt(
 	if ( !a_isVisible ) {
 		_setStdinEcho(true);
 	}
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Console::pause(
-    culong_t &a_timeoutMsec
-) const
-{
-    std::tstring_t msg;
-
-    if (a_timeoutMsec == xTIMEOUT_INFINITE) {
-        msg = xT("Pause, press [ENTER] to continue...");
-
-        writeLine(msg);
-
-        std::cin.clear();
-        std::cin.ignore();
-    } else {
-        msg = Format::str(xT("Pause, wait for {} msec to continue..."), a_timeoutMsec);
-
-        writeLine(msg);
-
-        Thread::currentSleep(a_timeoutMsec);
-    }
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Console::clear() const
-{
-    _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
