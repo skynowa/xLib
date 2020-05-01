@@ -24,12 +24,10 @@ Test_Console::unit()
 
         Console::Foreground foreground = Console::Foreground::Green;
         Console::Background background = Console::Background::Default;
-        cint_t              attributes = static_cast<int_t>(Console::Attribute::Bold);
-		#if 0
+        cint_t              attributes =
 			static_cast<int_t>(Console::Attribute::Bold) |
 			static_cast<int_t>(Console::Attribute::Underline) |
 			static_cast<int_t>(Console::Attribute::Reverse);
-		#endif
 
 		console.write( console.setAttributes(foreground, background, attributes) );
 		console.write(text);

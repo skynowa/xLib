@@ -153,8 +153,12 @@ Console::_setAttributes_impl(
         backgroundColor = static_cast<Background>( iRv );
     }
 
-    int_t attrs;
+    std::tstring_t attrs;
     {
+        // Terminals allow attribute combinations.
+        // The attributes must be separated by a semicolon (“;”).
+        std::vec_tstring_t values;
+
         cint_t attributeAllOff    = 0;
         cint_t attributeBold      = 1;
         cint_t attributeDim       = 2;
@@ -165,18 +169,19 @@ Console::_setAttributes_impl(
 
 		Bitset bits(a_attributes);
 
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::AllOff)),    attrs = attributeAllOff);
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Bold)),      attrs = attributeBold);
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Dim)),       attrs = attributeDim);
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Underline)), attrs = attributeUnderline);
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Blink)),     attrs = attributeBlink);
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Reverse)),   attrs = attributeReverse);
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Hidden)),    attrs = attributeHidden);
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::AllOff)),    values.push_back( std::to_string(attributeAllOff) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Bold)),      values.push_back( std::to_string(attributeBold) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Dim)),       values.push_back( std::to_string(attributeDim) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Underline)), values.push_back( std::to_string(attributeUnderline) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Blink)),     values.push_back( std::to_string(attributeBlink) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Reverse)),   values.push_back( std::to_string(attributeReverse) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Hidden)),    values.push_back( std::to_string(attributeHidden) ));
+
+		attrs = String::join(values, xT(';'));
 
 		Cout() << xTRACE_VAR(attrs);
     }
 
-	// Terminals allow attribute combinations. The attributes must be separated by a semicolon (“;”).
 	sRv += Format::str(xT("\e[{};{}m"), attrs, static_cast<int>(foregroundColor));	// TODO: [skynowa] StdStreamV2
 	sRv += Format::str(xT("\e[{}m"), static_cast<int>(backgroundColor));			// TODO: [skynowa] StdStreamV2
 
