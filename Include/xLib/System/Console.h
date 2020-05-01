@@ -175,6 +175,11 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, system)
 //-------------------------------------------------------------------------------------------------
+/**
+ * TODO: Console
+ *
+ * https://github.com/ikalnytskyi/termcolor/blob/master/include/termcolor/termcolor.hpp
+ */
 
 #if xTODO
     #include <io.h>
@@ -253,3 +258,4 @@ xNAMESPACE_END2(xl, system)
     #endif
     };
 #endif
+//-------------------------------------------------------------------------------------------------
