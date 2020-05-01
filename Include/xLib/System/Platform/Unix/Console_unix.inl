@@ -157,6 +157,7 @@ Console::_setAttributes_impl(
     {
         cint_t attributeAllOff     = 0;
         cint_t attributeBold       = 1;
+        cint_t attributeDim        = 2;
         cint_t attributeUnderscore = 4;
         cint_t attributeBlink      = 5;
         cint_t attributeReverse    = 7;
@@ -171,6 +172,9 @@ Console::_setAttributes_impl(
 		case TextAttribute::Bold:
 			iRv = attributeBold;
 			break;
+		case TextAttribute::Dim:
+			iRv = attributeDim;
+			break;
 		case TextAttribute::Underscore:
 			iRv = attributeUnderscore;
 			break;
@@ -183,7 +187,7 @@ Console::_setAttributes_impl(
 		case TextAttribute::Concealed:
 			iRv = attributeConcealed;
 			break;
-		default:
+		case TextAttribute::Unknown:
 			break;
 		}
 
@@ -193,6 +197,7 @@ Console::_setAttributes_impl(
 		// TODO: use mask
 		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::AllOff),     attrs = attributeAllOff);
 		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Bold),       attrs = attributeBold);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Dim),        attrs = attributeDim);
 		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Underscore), attrs = attributeUnderscore);
 		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Blink),      attrs = attributeBlink);
 		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Reverse),    attrs = attributeReverse);
