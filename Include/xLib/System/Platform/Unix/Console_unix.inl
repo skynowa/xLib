@@ -201,8 +201,8 @@ Console::_setAttributes_impl(
     }
 
 	// Terminals allow attribute combinations. The attributes must be separated by a semicolon (“;”).
-	sRv += Format::str(xT("\e[{};{}m"), attrs, (int)foregroundColor);	// TODO: [skynowa] StdStreamV2
-	sRv += Format::str(xT("\e[{}m"), (int)backgroundColor);  			// TODO: [skynowa] StdStreamV2
+	sRv += Format::str(xT("\e[{};{}m"), attrs, static_cast<int>(foregroundColor));	// TODO: [skynowa] StdStreamV2
+	sRv += Format::str(xT("\e[{}m"), static_cast<int>(backgroundColor));			// TODO: [skynowa] StdStreamV2
 
 	return sRv;
 }
