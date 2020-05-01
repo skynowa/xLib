@@ -193,24 +193,24 @@ Console::_setAttributes_impl(
 
     WORD attrs = 0U;
     {
-        const WORD attributeAllOff     = 0;
-        const WORD attributeBold       = FOREGROUND_INTENSITY;
-        const WORD attributeDim        = - 1; // IMPL: dim
-        const WORD attributeUnderscore = - 1; xUNUSED(attributeUnderscore);   // not supported
-        const WORD attributeBlink      = - 1; xUNUSED(attributeBlink);        // not supported
-        const WORD attributeReverse    = - 1; xUNUSED(attributeReverse);      // not supported
-        const WORD attributeConcealed  = - 1; xUNUSED(attributeConcealed);    // not supported
+        const WORD attributeAllOff    = 0;
+        const WORD attributeBold      = FOREGROUND_INTENSITY;
+        const WORD attributeDim       = - 1; // IMPL: dim
+        const WORD attributeUnderline = - 1; xUNUSED(attributeUnderline); // not supported
+        const WORD attributeBlink     = - 1; xUNUSED(attributeBlink);     // not supported
+        const WORD attributeReverse   = - 1; xUNUSED(attributeReverse);   // not supported
+        const WORD attributeHidden    = - 1; xUNUSED(attributeHidden);    // not supported
 
         attrs |= foregroundColor;
         attrs |= backgroundColor;
 
-        xCHECK_DO(a_attributes & TextAttribute::AllOff,     attrs |= attributeAllOff);
-        xCHECK_DO(a_attributes & TextAttribute::Bold,       attrs |= attributeBold);
-        xCHECK_DO(a_attributes & TextAttribute::Dim,        /* attrs |= attributeDim */);          // IMPL: dim
-        xCHECK_DO(a_attributes & TextAttribute::Underscore, /* attrs |= attributeUnderscore */);   // not supported
-        xCHECK_DO(a_attributes & TextAttribute::Blink,      /* attrs |= attributeBlink */);        // not supported
-        xCHECK_DO(a_attributes & TextAttribute::Reverse,    /* attrs |= attributeReverse */);      // not supported
-        xCHECK_DO(a_attributes & TextAttribute::Concealed,  /* attrs |= attributeConcealed */);    // not supported
+        xCHECK_DO(a_attributes & TextAttribute::AllOff,    attrs |= attributeAllOff);
+        xCHECK_DO(a_attributes & TextAttribute::Bold,      attrs |= attributeBold);
+        xCHECK_DO(a_attributes & TextAttribute::Dim,       /* attrs |= attributeDim */);       // IMPL: dim
+        xCHECK_DO(a_attributes & TextAttribute::Underline, /* attrs |= attributeUnderline */); // not supported
+        xCHECK_DO(a_attributes & TextAttribute::Blink,     /* attrs |= attributeBlink */);     // not supported
+        xCHECK_DO(a_attributes & TextAttribute::Reverse,   /* attrs |= attributeReverse */);   // not supported
+        xCHECK_DO(a_attributes & TextAttribute::Hidden,    /* attrs |= attributeHidden */);    // not supported
     }
 
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), attrs);

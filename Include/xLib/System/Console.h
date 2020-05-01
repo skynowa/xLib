@@ -52,14 +52,14 @@ public:
     enum class TextAttribute
         /// text attribute
     {
-        Unknown = 0,
-        AllOff,
-        Bold,
-        Dim,
-        Underscore,
-        Blink,
-        Reverse,
-        Concealed
+        Unknown = 0,  ///<
+        AllOff,       ///<
+        Bold,         ///< Bold/Bright
+        Dim,          ///< Dim
+        Underline,    ///< Underlined
+        Blink,        ///< Blink (not work with most of the terminal emulators)
+        Reverse,      ///< Invert the foreground and background colors
+        Hidden        ///< Hidden (useful for passwords)
     };
     xUSING_CONST(TextAttribute);
 
