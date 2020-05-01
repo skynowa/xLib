@@ -81,7 +81,7 @@ Console::write(
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::writeLine(
-    std::ctstring_t &a_str /* = xT("") */
+    std::ctstring_t &a_str /* = {} */
 ) const
 {
     write(a_str + Const::nl());
