@@ -204,13 +204,15 @@ Console::_setAttributes_impl(
         attrs |= foregroundColor;
         attrs |= backgroundColor;
 
-        xCHECK_DO(Bitset(a_attributes).isSetBit(Attribute::AllOff)),    attrs |= attributeAllOff);
-        xCHECK_DO(Bitset(a_attributes).isSetBit(Attribute::Bold)),      attrs |= attributeBold);
-        xCHECK_DO(Bitset(a_attributes).isSetBit(Attribute::Dim)),       /* attrs |= attributeDim */);       // IMPL: dim
-        xCHECK_DO(Bitset(a_attributes).isSetBit(Attribute::Underline)), /* attrs |= attributeUnderline */); // not supported
-        xCHECK_DO(Bitset(a_attributes).isSetBit(Attribute::Blink)),     /* attrs |= attributeBlink */);     // not supported
-        xCHECK_DO(Bitset(a_attributes).isSetBit(Attribute::Reverse)),   /* attrs |= attributeReverse */);   // not supported
-        xCHECK_DO(Bitset(a_attributes).isSetBit(Attribute::Hidden)),    /* attrs |= attributeHidden */);    // not supported
+        Bitset bits(a_attributes);
+
+        xCHECK_DO(bits.isSetBit(Attribute::AllOff)),    attrs |= attributeAllOff);
+        xCHECK_DO(bits.isSetBit(Attribute::Bold)),      attrs |= attributeBold);
+        xCHECK_DO(bits.isSetBit(Attribute::Dim)),       /* attrs |= attributeDim */);       // IMPL: dim
+        xCHECK_DO(bits.isSetBit(Attribute::Underline)), /* attrs |= attributeUnderline */); // not supported
+        xCHECK_DO(bits.isSetBit(Attribute::Blink)),     /* attrs |= attributeBlink */);     // not supported
+        xCHECK_DO(bits.isSetBit(Attribute::Reverse)),   /* attrs |= attributeReverse */);   // not supported
+        xCHECK_DO(bits.isSetBit(Attribute::Hidden)),    /* attrs |= attributeHidden */);    // not supported
     }
 
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), attrs);
