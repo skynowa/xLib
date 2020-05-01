@@ -130,19 +130,19 @@ Console::msgBox(
 
     switch (consoleCmd) {
     case cmdAbort:
-        mrRv = ModalResult::mrAbort;
+        mrRv = ModalResult::Abort;
         writeLine(xT("Abort..."));
         break;
     case cmdIgnore:
-        mrRv = ModalResult::mrIgnore;
+        mrRv = ModalResult::Ignore;
         writeLine(xT("Ignore..."));
         break;
     case cmdRetry:
-        mrRv = ModalResult::mrRetry;
+        mrRv = ModalResult::Retry;
         writeLine(xT("Retry..."));
         break;
     default:
-        mrRv = ModalResult::mrRetry;
+        mrRv = ModalResult::Retry;
         writeLine(xT("Retry..."));
         break;
     }

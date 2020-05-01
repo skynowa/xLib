@@ -22,13 +22,13 @@ Test_Console::unit()
 
         std::tstring_t text = xT("Beware: since -r was given, this may take a while!");
 
-        Console::Foreground foreground = Console::Foreground::fgGreen;
-        Console::Background background = Console::Background::bgDefault;
-        cint_t              attributes = static_cast<int_t>(Console::TextAttribute::atBold);
+        Console::Foreground foreground = Console::Foreground::Green;
+        Console::Background background = Console::Background::Default;
+        cint_t              attributes = static_cast<int_t>(Console::TextAttribute::Bold);
 		#if 0
-			static_cast<int_t>(Console::TextAttribute::atBold) |
-			static_cast<int_t>(Console::TextAttribute::atUnderscore) |
-			static_cast<int_t>(Console::TextAttribute::atReverse);
+			static_cast<int_t>(Console::TextAttribute::Bold) |
+			static_cast<int_t>(Console::TextAttribute::Underscore) |
+			static_cast<int_t>(Console::TextAttribute::Reverse);
 		#endif
 
 		console.write( console.setAttributes(foreground, background, attributes) );

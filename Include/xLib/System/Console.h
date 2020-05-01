@@ -18,56 +18,56 @@ public:
     enum class Foreground
         /// foreground (text) color
     {
-        fgUnknown = 0,
-        fgDefault,
-        fgBlack,
-        fgRed,
-        fgGreen,
-        fgYellow,
-        fgBlue,
-        fgMagenta,
-        fgCyan,
-        fgWhite,
-        fgGray
+        Unknown = 0,
+        Default,
+        Black,
+        Red,
+        Green,
+        Yellow,
+        Blue,
+        Magenta,
+        Cyan,
+        White,
+        Gray
     };
     xUSING_CONST(Foreground);
 
     enum class Background
         /// background color
     {
-        bgUnknown = 0,
-        bgDefault,
-        bgBlack,
-        bgRed,
-        bgGreen,
-        bgYellow,
-        bgBlue,
-        bgMagenta,
-        bgCyan,
-        bgWhite,
-        bgGray
+        Unknown = 0,
+        Default,
+        Black,
+        Red,
+        Green,
+        Yellow,
+        Blue,
+        Magenta,
+        Cyan,
+        White,
+        Gray
     };
     xUSING_CONST(Background);
 
     enum class TextAttribute
         /// text attribute
     {
-        atUnknown = 0,
-        atAllOff,
-        atBold,
-        atUnderscore,
-        atBlink,
-        atReverse,
-        atConcealed
+        Unknown = 0,
+        AllOff,
+        Bold,
+        Underscore,
+        Blink,
+        Reverse,
+        Concealed
     };
     xUSING_CONST(TextAttribute);
 
     enum class ModalResult
         /// modal result
     {
-        mrAbort  = 3,
-        mrIgnore = 5,
-        mrRetry  = 4
+        Abort  = 3,
+        Ignore = 5,
+        Retry  = 4
     };
     xUSING_CONST(ModalResult);
 
