@@ -1,6 +1,6 @@
 /**
- * \file  Console.inl
- * \brief console
+ * \file  Console_unix.inl
+ * \brief Shell console
  */
 
 

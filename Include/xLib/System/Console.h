@@ -1,6 +1,6 @@
 /**
  * \file  Console.h
- * \brief console
+ * \brief Shell console
  */
 
 
@@ -12,12 +12,12 @@
 xNAMESPACE_BEGIN2(xl, system)
 
 class Console
-    /// console
+    /// Shell console
 {
 public:
-                   Console();
+             Console();
         ///< constructor
-    virtual       ~Console();
+    virtual ~Console();
         ///< destructor
 
     /*******************************************************************************
