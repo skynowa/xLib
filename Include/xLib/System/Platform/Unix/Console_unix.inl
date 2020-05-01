@@ -217,12 +217,20 @@ Console::_clear_impl() const
     writeLine( Const::ff() );
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ set-title()
+ {
+ 	ORIG=$PS1
+ 	TITLE="\e]2;$@\a"
+ 	PS1=${ORIG}${TITLE}
+ }
+*/
 void_t
 Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
 {
-    writeLine( Format::str(xT("{}]0;{}{}"), xT('\e'), a_title, xT('\007')) );
+    writeLine( Format::str(xT("{}]0;{}{}"), xT('\e'), a_title, xT('\a')) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
