@@ -49,7 +49,7 @@ public:
     };
     xUSING_CONST(Background);
 
-    enum class TextAttribute
+    enum class Attribute
         /// text attribute
     {
         Unknown = 0,  ///<
@@ -61,7 +61,7 @@ public:
         Reverse,      ///< Invert the foreground and background colors
         Hidden        ///< Hidden (useful for passwords)
     };
-    xUSING_CONST(TextAttribute);
+    xUSING_CONST(Attribute);
 
     enum class ModalResult
         /// modal result
