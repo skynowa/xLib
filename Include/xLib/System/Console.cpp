@@ -191,10 +191,7 @@ Console::msgBox(
     ctchar_t     cmdIgnore = xT('i');
     ctchar_t     cmdRetry  = xT('r');
 
-    std::tstring_t title;
-    {
-        title = _msgBoxLine(a_title, width) + Const::nl();
-    }
+    std::ctstring_t title = _msgBoxLine(a_title, width) + Const::nl();
 
     std::tstring_t multiText;
     {
