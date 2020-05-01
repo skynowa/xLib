@@ -197,7 +197,7 @@ Process::_create_impl(
 					return;
 				}
 
-				constexpr std::size_t buffSize {1024};
+				constexpr std::size_t buffSize {1024 * 10};
 
 				for (ssize_t readSize = 1; readSize > 0; ) {
 					// Cout() << "ParentOk - Start read: " << a_pipeRead;
