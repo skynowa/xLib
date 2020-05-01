@@ -155,13 +155,13 @@ Console::_setAttributes_impl(
 
     int_t attrs;
     {
-        cint_t attributeAllOff     = 0;
-        cint_t attributeBold       = 1;
-        cint_t attributeDim        = 2;
-        cint_t attributeUnderscore = 4;
-        cint_t attributeBlink      = 5;
-        cint_t attributeReverse    = 7;
-        cint_t attributeConcealed  = 8;
+        cint_t attributeAllOff    = 0;
+        cint_t attributeBold      = 1;
+        cint_t attributeDim       = 2;
+        cint_t attributeUnderline = 4;
+        cint_t attributeBlink     = 5;
+        cint_t attributeReverse   = 7;
+        cint_t attributeHidden    = 8;
 
         int_t iRv = - 1;
 
@@ -175,8 +175,8 @@ Console::_setAttributes_impl(
 		case TextAttribute::Dim:
 			iRv = attributeDim;
 			break;
-		case TextAttribute::Underscore:
-			iRv = attributeUnderscore;
+		case TextAttribute::Underline:
+			iRv = attributeUnderline;
 			break;
 		case TextAttribute::Blink:
 			iRv = attributeBlink;
@@ -184,8 +184,8 @@ Console::_setAttributes_impl(
 		case TextAttribute::Reverse:
 			iRv = attributeReverse;
 			break;
-		case TextAttribute::Concealed:
-			iRv = attributeConcealed;
+		case TextAttribute::Hidden:
+			iRv = attributeHidden;
 			break;
 		case TextAttribute::Unknown:
 			break;
@@ -195,13 +195,13 @@ Console::_setAttributes_impl(
 
 	#if 0
 		// TODO: use mask
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::AllOff),     attrs = attributeAllOff);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Bold),       attrs = attributeBold);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Dim),        attrs = attributeDim);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Underscore), attrs = attributeUnderscore);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Blink),      attrs = attributeBlink);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Reverse),    attrs = attributeReverse);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Concealed),  attrs = attributeConcealed);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::AllOff),    attrs = attributeAllOff);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Bold),      attrs = attributeBold);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Dim),       attrs = attributeDim);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Underline), attrs = attributeUnderline);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Blink),     attrs = attributeBlink);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Reverse),   attrs = attributeReverse);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Hidden),    attrs = attributeHidden);
 	#endif
     }
 
