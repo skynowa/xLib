@@ -27,7 +27,7 @@ Test_Console::unit()
         cint_t              attributes = static_cast<int_t>(Console::Attribute::Bold);
 		#if 0
 			static_cast<int_t>(Console::Attribute::Bold) |
-			static_cast<int_t>(Console::Attribute::Underscore) |
+			static_cast<int_t>(Console::Attribute::Underline) |
 			static_cast<int_t>(Console::Attribute::Reverse);
 		#endif
 
