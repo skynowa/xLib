@@ -189,7 +189,11 @@ Console::_setAttributes_impl(
 std::tstring_t
 Console::_setAttributesDef_impl() const
 {
-    return xT("\e[0;0m");
+#if 0
+	return xT("\e[0;0m");
+#else
+	return xT("\e[00m");
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
