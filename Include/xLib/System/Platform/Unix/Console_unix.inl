@@ -165,29 +165,29 @@ Console::_setAttributes_impl(
 
         int_t iRv = - 1;
 
-        switch ( static_cast<TextAttribute>(a_attributes) ) {
-		case TextAttribute::AllOff:
+        switch ( static_cast<Attribute>(a_attributes) ) {
+		case Attribute::AllOff:
 			iRv = attributeAllOff;
 			break;
-		case TextAttribute::Bold:
+		case Attribute::Bold:
 			iRv = attributeBold;
 			break;
-		case TextAttribute::Dim:
+		case Attribute::Dim:
 			iRv = attributeDim;
 			break;
-		case TextAttribute::Underline:
+		case Attribute::Underline:
 			iRv = attributeUnderline;
 			break;
-		case TextAttribute::Blink:
+		case Attribute::Blink:
 			iRv = attributeBlink;
 			break;
-		case TextAttribute::Reverse:
+		case Attribute::Reverse:
 			iRv = attributeReverse;
 			break;
-		case TextAttribute::Hidden:
+		case Attribute::Hidden:
 			iRv = attributeHidden;
 			break;
-		case TextAttribute::Unknown:
+		case Attribute::Unknown:
 			break;
 		}
 
@@ -195,13 +195,13 @@ Console::_setAttributes_impl(
 
 	#if 0
 		// TODO: use mask
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::AllOff),    attrs = attributeAllOff);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Bold),      attrs = attributeBold);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Dim),       attrs = attributeDim);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Underline), attrs = attributeUnderline);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Blink),     attrs = attributeBlink);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Reverse),   attrs = attributeReverse);
-		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::Hidden),    attrs = attributeHidden);
+		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::AllOff),    attrs = attributeAllOff);
+		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::Bold),      attrs = attributeBold);
+		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::Dim),       attrs = attributeDim);
+		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::Underline), attrs = attributeUnderline);
+		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::Blink),     attrs = attributeBlink);
+		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::Reverse),   attrs = attributeReverse);
+		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::Hidden),    attrs = attributeHidden);
 	#endif
     }
 
