@@ -88,6 +88,9 @@ public:
         ///< read
     void_t         write(std::ctstring_t &str) const;
         ///< write
+    void_t         write(cForeground foreground, cBackground background, cint_t attributes,
+                       std::ctstring_t &str) const xWARN_UNUSED_RV;
+        ///< write with colors
     void_t         writeLine(std::ctstring_t &str = xT("")) const;
         ///< write line
     void_t         writeErrLine(std::ctstring_t &str) const;
