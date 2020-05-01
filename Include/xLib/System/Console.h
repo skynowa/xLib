@@ -122,9 +122,9 @@ private:
     HandleNativeInvalid _stdOut;            ///< standard output handle
     WORD                _attributesDef {};  ///< default console attributes
 
-    HWND           _wndHandle() xWARN_UNUSED_RV;
+    HWND  _wndHandle() xWARN_UNUSED_RV;
         ///< get console window handle
-    HMENU          _menuHandle(cbool_t &isRevert) xWARN_UNUSED_RV;
+    HMENU _menuHandle(cbool_t &isRevert) xWARN_UNUSED_RV;
         ///< get console menu handle
 #endif
 
