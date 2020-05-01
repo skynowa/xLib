@@ -163,6 +163,7 @@ Console::_setAttributes_impl(
         cint_t attributeReverse   = 7;
         cint_t attributeHidden    = 8;
 
+	#if 0
         int_t iRv = - 1;
 
         switch ( static_cast<Attribute>(a_attributes) ) {
@@ -192,16 +193,16 @@ Console::_setAttributes_impl(
 		}
 
 		attrs = iRv;
+	#else
+		xCHECK_DO(Bitset(a_attributes).isSetBit(static_cast<int_t>(Attribute::AllOff)),    attrs = attributeAllOff);
+		xCHECK_DO(Bitset(a_attributes).isSetBit(static_cast<int_t>(Attribute::Bold)),      attrs = attributeBold);
+		xCHECK_DO(Bitset(a_attributes).isSetBit(static_cast<int_t>(Attribute::Dim)),       attrs = attributeDim);
+		xCHECK_DO(Bitset(a_attributes).isSetBit(static_cast<int_t>(Attribute::Underline)), attrs = attributeUnderline);
+		xCHECK_DO(Bitset(a_attributes).isSetBit(static_cast<int_t>(Attribute::Blink)),     attrs = attributeBlink);
+		xCHECK_DO(Bitset(a_attributes).isSetBit(static_cast<int_t>(Attribute::Reverse)),   attrs = attributeReverse);
+		xCHECK_DO(Bitset(a_attributes).isSetBit(static_cast<int_t>(Attribute::Hidden)),    attrs = attributeHidden);
 
-	#if 0
-		// TODO: use mask
-		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::AllOff),    attrs = attributeAllOff);
-		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::Bold),      attrs = attributeBold);
-		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::Dim),       attrs = attributeDim);
-		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::Underline), attrs = attributeUnderline);
-		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::Blink),     attrs = attributeBlink);
-		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::Reverse),   attrs = attributeReverse);
-		xCHECK_DO(a_attributes & static_cast<int_t>(Attribute::Hidden),    attrs = attributeHidden);
+		Cout() << xTRACE_VAR(attrs);
 	#endif
     }
 
