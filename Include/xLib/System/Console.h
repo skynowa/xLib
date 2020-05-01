@@ -73,15 +73,6 @@ public:
     };
     xUSING_CONST(Attribute);
 
-    enum class ModalResult
-        /// modal result
-    {
-        Abort  = 3,
-        Ignore = 5,
-        Retry  = 4
-    };
-    xUSING_CONST(ModalResult);
-
     std::tstring_t setAttributes(cForeground foreground, cBackground background,
                        cint_t attributes) const xWARN_UNUSED_RV;
         ///< set text color
@@ -110,6 +101,15 @@ public:
     *   UI
     *
     *******************************************************************************/
+
+    enum class ModalResult
+        /// modal result
+    {
+        Abort  = 3,
+        Ignore = 5,
+        Retry  = 4
+    };
+    xUSING_CONST(ModalResult);
 
     ModalResult    msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type) const
                        xWARN_UNUSED_RV;
