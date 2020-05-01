@@ -62,7 +62,7 @@ Console::_setAttributes_impl(
     xTEST_EQ(_stdIn.isValid(), true);
     xTEST_EQ(_stdOut.isValid(), true);
 
-    Foreground foregroundColor;
+    Foreground foregroundColor {};
     {
         /*
             #define COLOR_BLACK     0
@@ -94,7 +94,7 @@ Console::_setAttributes_impl(
         const WORD foregroundColorWhite   = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
         const WORD foregroundColorGray    = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
 
-        int_t iRv = - 1;
+        int_t iRv {};
 
         switch (a_foreground) {
         case Foreground::Default
@@ -136,7 +136,7 @@ Console::_setAttributes_impl(
         foregroundColor = static_cast<Foreground>( iRv );
     }
 
-    Background backgroundColor;
+    Background backgroundColor {};
     {
         const WORD backgroundColorDefault = 0;
         const WORD backgroundColorBlack   = 0;
@@ -149,7 +149,7 @@ Console::_setAttributes_impl(
         const WORD backgroundColorWhite   = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
         const WORD backgroundColorGray    = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
 
-        int_t iRv = - 1;
+        int_t iRv {};
 
         switch (a_background) {
         case Background::Default:
@@ -191,7 +191,7 @@ Console::_setAttributes_impl(
         backgroundColor = static_cast<Background>( iRv );
     }
 
-    WORD attrs = 0U;
+    WORD attrs {};
     {
         const WORD attributeAllOff    = 0;
         const WORD attributeBold      = FOREGROUND_INTENSITY;
@@ -243,9 +243,9 @@ Console::_read_impl() const
 
     std::tstring_t sRv;
 
-    DWORD    read               = 0UL;
-    culong_t buffSize           = 1024UL * 4UL;
-    tchar_t  buff[buffSize + 1] = {0};
+    DWORD     read               {};
+    constexpr ulong_t buffSize   {1024UL * 4UL};
+    tchar_t   buff[buffSize + 1] {};
 
     BOOL blRv = ::ReadConsole(_stdIn.get(), &buff[0], buffSize, &read, nullptr);
     xTEST_DIFF(blRv, FALSE);
@@ -264,7 +264,7 @@ Console::_write_impl(
     xTEST_EQ(_stdIn.isValid(), true);
     xTEST_EQ(_stdOut.isValid(), true);
 
-    DWORD written = 0UL;
+    DWORD written {};
 
     BOOL blRv = ::WriteConsole(_stdOut.get(), &a_str.at(0), static_cast<DWORD>( a_str.size() ),
         &written, nullptr);
@@ -281,10 +281,10 @@ Console::_clear_impl() const
     xTEST_EQ(_stdIn.isValid(), true);
     xTEST_EQ(_stdOut.isValid(), true);
 
-    COORD                      coordScreen  = {0};   // here's where we'll home the cursor
-    DWORD                      charsWritten = 0UL;
-    CONSOLE_SCREEN_BUFFER_INFO csbi         = {{0}}; // to get buffer info
-    DWORD                      conSize      = 0UL;   // number of chars cells in the current buffer
+    COORD                      coordScreen  {}; // here's where we'll home the cursor
+    DWORD                      charsWritten {};
+    CONSOLE_SCREEN_BUFFER_INFO csbi         {}; // to get buffer info
+    DWORD                      conSize      {}; // number of chars cells in the current buffer
 
     // get the number of character cells in the current buffer
     BOOL blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &csbi);
@@ -333,9 +333,9 @@ Console::title() const
 
     std::tstring_t sRv;
 
-    const DWORD buffSize           = 1024UL;
-    tchar_t     buff[buffSize + 1] = {0};
-    DWORD       titleSize          = 0UL;
+    constexpr DWORD buffSize           {1024UL};
+    tchar_t         buff[buffSize + 1] {};
+    DWORD           titleSize          {};
 
     titleSize = ::GetConsoleTitle(buff, buffSize);
     xTEST_LESS(0UL, titleSize);
@@ -352,13 +352,13 @@ Console::centerWindow() const
     xTEST_EQ(_stdIn.isValid(), true);
     xTEST_EQ(_stdOut.isValid(), true);
 
-    BOOL blRv = FALSE;
+    BOOL blRv {};
 
-    RECT origin = {0};
+    RECT origin  {};
     blRv = ::GetWindowRect(_wnd, &origin);
     xTEST_DIFF(blRv, FALSE);
 
-    RECT desktop = {0};
+    RECT desktop {};
     blRv = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &desktop, 0);
     xTEST_DIFF(blRv, FALSE);
 
@@ -385,7 +385,7 @@ Console::setFullScreen() const
     coord.X -= 2;
     coord.Y -= 2;
 
-    SMALL_RECT smallRec = {0};
+    SMALL_RECT smallRec {};
     smallRec.Left   = 0;
     smallRec.Top    = 0;
     smallRec.Right  = coord.X - 2;
@@ -487,7 +487,7 @@ Console::_setStdinEcho_impl(
     cbool_t &a_isEnable
 ) const
 {
-    DWORD mode;
+    DWORD mode {};
     BOOL blRv = ::GetConsoleMode(_stdIn, &mode);
     xTEST_DIFF(blRv, FALSE);
 
