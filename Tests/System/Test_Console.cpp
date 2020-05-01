@@ -31,15 +31,9 @@ Test_Console::unit()
 			static_cast<int_t>(Console::TextAttribute::atReverse);
 		#endif
 
-        m_sRv = console.setAttributes(foreground, background, attributes);
-        xTEST_NA(m_sRv);
-
-		console.write(m_sRv + text);
-
-        m_sRv = console.setAttributesDef();
-        xTEST_NA(m_sRv);
-
-		console.writeLine(m_sRv);
+		console.write( console.setAttributes(foreground, background, attributes) );
+		console.write(text);
+		console.writeLine( console.setAttributesDef() );
     }
 
     xTEST_CASE("read")
