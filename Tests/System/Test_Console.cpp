@@ -20,10 +20,11 @@ Test_Console::unit()
     {
         Console console;
 
-        std::tstring_t      text = xT("Beware: since -r was given, this may take a while!");
+        std::tstring_t text = xT("Beware: since -r was given, this may take a while!");
+
         Console::Foreground foreground = Console::Foreground::fgGreen;
         Console::Background background = Console::Background::bgDefault;
-        cint_t              attributes = 0;
+        cint_t              attributes = static_cast<int_t>(Console::TextAttribute::atBold);
 		#if 0
 			static_cast<int_t>(Console::TextAttribute::atBold) |
 			static_cast<int_t>(Console::TextAttribute::atUnderscore) |

@@ -36,6 +36,8 @@ Console::_setAttributes_impl(
     cint_t      a_attributes
 ) const
 {
+    std::tstring_t sRv;
+
     Foreground foregroundColor;
     {
         cint_t foregroundColorDefault = 39;
@@ -146,7 +148,7 @@ Console::_setAttributes_impl(
         backgroundColor = static_cast<Background>( iRv );
     }
 
-    std::tstring_t attrs;
+    int_t attrs;
     {
         cint_t attributeAllOff     = 0;
         cint_t attributeBold       = 1;
@@ -155,18 +157,49 @@ Console::_setAttributes_impl(
         cint_t attributeReverse    = 7;
         cint_t attributeConcealed  = 8;
 
-        attrs += Format::str(xT("\033[{}m"), (int)foregroundColor);  // TODO: [skynowa] StdStreamV2
-        attrs += Format::str(xT("\033[{}m"), (int)backgroundColor);  // TODO: [skynowa] StdStreamV2
+        int_t iRv = - 1;
 
-        xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atAllOff),     attrs += Format::str(xT("\033[{}m"), attributeAllOff));
-        xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atBold),       attrs += Format::str(xT("\033[{}m"), attributeBold));
-        xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atUnderscore), attrs += Format::str(xT("\033[{}m"), attributeUnderscore));
-        xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atBlink),      attrs += Format::str(xT("\033[{}m"), attributeBlink));
-        xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atReverse),    attrs += Format::str(xT("\033[{}m"), attributeReverse));
-        xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atConcealed),  attrs += Format::str(xT("\033[{}m"), attributeConcealed));
+        switch ( static_cast<TextAttribute>(a_attributes) ) {
+		case TextAttribute::atAllOff:
+			iRv = attributeAllOff;
+			break;
+		case TextAttribute::atBold:
+			iRv = attributeBold;
+			break;
+		case TextAttribute::atUnderscore:
+			iRv = attributeUnderscore;
+			break;
+		case TextAttribute::atBlink:
+			iRv = attributeBlink;
+			break;
+		case TextAttribute::atReverse:
+			iRv = attributeReverse;
+			break;
+		case TextAttribute::atConcealed:
+			iRv = attributeConcealed;
+			break;
+		default:
+			break;
+		}
+
+		attrs = iRv;
+
+	#if 0
+		// TODO: use mask
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atAllOff),     attrs = attributeAllOff);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atBold),       attrs = attributeBold);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atUnderscore), attrs = attributeUnderscore);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atBlink),      attrs = attributeBlink);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atReverse),    attrs = attributeReverse);
+		xCHECK_DO(a_attributes & static_cast<int_t>(TextAttribute::atConcealed),  attrs = attributeConcealed);
+	#endif
     }
 
-    return attrs;
+	// Terminals allow attribute combinations. The attributes must be separated by a semicolon (“;”).
+	sRv += Format::str(xT("\033[{};{}m"), attrs, (int)foregroundColor);	// TODO: [skynowa] StdStreamV2
+	sRv += Format::str(xT("\033[{}m"), (int)backgroundColor);  			// TODO: [skynowa] StdStreamV2
+
+	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
