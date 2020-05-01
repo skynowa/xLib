@@ -95,6 +95,8 @@ public:
     void_t         write(cForeground foreground, cBackground background, cint_t attributes,
                        std::ctstring_t &str) const xWARN_UNUSED_RV;
         ///< write with colors
+    void_t         writeNl() const;
+    	///< write new line (NL)
     void_t         pause(culong_t &timeoutMsec) const;
         ///< pause with timeout (msec)
     void_t         clear() const;
