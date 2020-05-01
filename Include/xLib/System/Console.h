@@ -55,6 +55,7 @@ public:
         Unknown = 0,
         AllOff,
         Bold,
+        Dim,
         Underscore,
         Blink,
         Reverse,
