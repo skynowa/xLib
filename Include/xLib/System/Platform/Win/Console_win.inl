@@ -83,6 +83,7 @@ Console::_setAttributes_impl(
             #define COLOR_LTWHITE   F
         */
 
+        const WORD foregroundColorDefault = 0;
         const WORD foregroundColorBlack   = 0;
         const WORD foregroundColorRed     = FOREGROUND_RED;
         const WORD foregroundColorBlue    = FOREGROUND_BLUE;
@@ -96,6 +97,9 @@ Console::_setAttributes_impl(
         int_t iRv = - 1;
 
         switch (a_foreground) {
+        case Foreground::fgDefault
+            iRv = foregroundColorDefault;
+            break;
         case Foreground::fgBlack:
             iRv = foregroundColorBlack;
             break;
@@ -134,6 +138,7 @@ Console::_setAttributes_impl(
 
     Background backgroundColor;
     {
+        const WORD backgroundColorDefault = 0;
         const WORD backgroundColorBlack   = 0;
         const WORD backgroundColorRed     = BACKGROUND_RED;
         const WORD backgroundColorBlue    = BACKGROUND_BLUE;
@@ -147,6 +152,9 @@ Console::_setAttributes_impl(
         int_t iRv = - 1;
 
         switch (a_background) {
+        case Background::bgDefault:
+            iRv = backgroundColorDefault;
+            break;
         case Background::bgBlack:
             iRv = backgroundColorBlack;
             break;
