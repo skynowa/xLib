@@ -95,7 +95,7 @@ Console::write(
    /**
 	* Unix vs Windows implementation
 	*
-	* Use sequence of wtite() methods, instead of concat strings
+	* Use sequence of write() methods, instead of concat strings
 	*/
 
 	write( setAttributes(a_foreground, a_background, a_attributes) );
