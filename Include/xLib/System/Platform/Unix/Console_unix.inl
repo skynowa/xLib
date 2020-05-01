@@ -178,8 +178,6 @@ Console::_setAttributes_impl(
 		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Hidden)),    values.push_back( std::to_string(attributeHidden) ));
 
 		attrs = String::join(values, xT(';'));
-
-		Cout() << xTRACE_VAR(attrs);
     }
 
 	sRv += Format::str(xT("\e[{};{}m"), attrs, static_cast<int>(foregroundColor));	// TODO: [skynowa] StdStreamV2
