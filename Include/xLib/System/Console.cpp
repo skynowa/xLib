@@ -67,6 +67,19 @@ Console::write(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
+Console::write(
+    cForeground      a_foreground,
+    cBackground      a_background,
+    cint_t           a_attributes,
+    std::ctstring_t &a_str
+) const
+{
+	write( setAttributes(a_foreground, a_background, a_attributes) );
+	write(a_str);
+	write( setAttributesDef() );
+}
+//-------------------------------------------------------------------------------------------------
+void_t
 Console::writeLine(
     std::ctstring_t &a_str /* = xT("") */
 ) const

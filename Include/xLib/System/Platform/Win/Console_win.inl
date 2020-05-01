@@ -218,7 +218,7 @@ Console::_setAttributes_impl(
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), attrs);
     xTEST_DIFF(blRv, FALSE);
 
-    return std::tstring_t();    // not need for Windows
+    return {};    // not need for Windows
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -231,7 +231,7 @@ Console::_setAttributesDef_impl() const
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), _attributesDef);
     xTEST_DIFF(blRv, FALSE);
 
-    return std::tstring_t();
+    return {};
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t

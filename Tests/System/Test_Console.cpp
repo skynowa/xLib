@@ -20,7 +20,7 @@ Test_Console::unit()
     {
         Console console;
 
-        std::tstring_t text = xT("Beware: since -r was given, this may take a while!");
+        std::tstring_t text = xT("AAA BBB CCC 123456 !@##$%^%^&*!!!");
 
         Console::Foreground foreground = Console::Foreground::Green;
         Console::Background background = Console::Background::Default;
@@ -32,6 +32,9 @@ Test_Console::unit()
 		console.write( console.setAttributes(foreground, background, attributes) );
 		console.write(text);
 		console.writeLine( console.setAttributesDef() );
+
+		console.write(foreground, background, attributes, text);
+		console.write(Const::nl());
     }
 
     xTEST_CASE("read")
