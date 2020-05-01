@@ -52,7 +52,7 @@ public:
     enum class Attribute
         /// text attribute
     {
-        Unknown = 0,  ///<
+        Unknown = 0,  ///< Unknown
         AllOff,       ///<
         Bold,         ///< Bold/Bright
         Dim,          ///< Dim

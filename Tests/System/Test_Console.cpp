@@ -24,11 +24,11 @@ Test_Console::unit()
 
         Console::Foreground foreground = Console::Foreground::Green;
         Console::Background background = Console::Background::Default;
-        cint_t              attributes = static_cast<int_t>(Console::TextAttribute::Bold);
+        cint_t              attributes = static_cast<int_t>(Console::Attribute::Bold);
 		#if 0
-			static_cast<int_t>(Console::TextAttribute::Bold) |
-			static_cast<int_t>(Console::TextAttribute::Underscore) |
-			static_cast<int_t>(Console::TextAttribute::Reverse);
+			static_cast<int_t>(Console::Attribute::Bold) |
+			static_cast<int_t>(Console::Attribute::Underscore) |
+			static_cast<int_t>(Console::Attribute::Reverse);
 		#endif
 
 		console.write( console.setAttributes(foreground, background, attributes) );
