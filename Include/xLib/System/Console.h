@@ -16,9 +16,10 @@ class Console
 {
 public:
     enum class Foreground
-        /// foreground color
+        /// foreground (text) color
     {
         fgUnknown = 0,
+        fgDefault,
         fgBlack,
         fgRed,
         fgGreen,
@@ -35,6 +36,7 @@ public:
         /// background color
     {
         bgUnknown = 0,
+        bgDefault,
         bgBlack,
         bgRed,
         bgGreen,
