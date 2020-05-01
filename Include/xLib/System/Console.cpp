@@ -67,19 +67,6 @@ Console::write(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Console::write(
-    cForeground      a_foreground,
-    cBackground      a_background,
-    cint_t           a_attributes,
-    std::ctstring_t &a_str
-) const
-{
-	write( setAttributes(a_foreground, a_background, a_attributes) );
-	write(a_str);
-	write( setAttributesDef() );
-}
-//-------------------------------------------------------------------------------------------------
-void_t
 Console::writeLine(
     std::ctstring_t &a_str /* = {} */
 ) const
@@ -95,6 +82,25 @@ Console::writeErrLine(
     writeLine(xT("Error: ") + a_str);
 
     pause(xTIMEOUT_INFINITE);
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Console::write(
+    cForeground      a_foreground,
+    cBackground      a_background,
+    cint_t           a_attributes,
+    std::ctstring_t &a_str
+) const
+{
+   /**
+	* Unix vs Windows implementation
+	*
+	* Use sequence of wtite() methods, instead of concat strings
+	*/
+
+	write( setAttributes(a_foreground, a_background, a_attributes) );
+	write(a_str);
+	write( setAttributesDef() );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
