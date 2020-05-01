@@ -63,7 +63,7 @@ public:
         /// text attribute
     {
         Unknown = 0,  ///< Unknown
-        AllOff,       ///<
+        AllOff,       ///< Reset all attributes
         Bold,         ///< Bold/Bright
         Dim,          ///< Dim
         Underline,    ///< Underlined
