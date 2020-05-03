@@ -510,11 +510,42 @@ Path::brief(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Path::homeAsBrief(
-	std::ctstring_t &a_path
+Path::brief(
+	std::csize_t a_leftDirsNum,			///<
+	std::csize_t a_rightDirsNum,		///<
+	cbool_t      a_isShowHiddenDirsNum	/// ("/dir1/..{3}../dirN")
 ) const
 {
-	return String::replaceAll(a_path, User().homeDir(), xT("~"));
+	std::tstring_t sRv;
+
+	std::ctstring_t &fullPath = filePath();
+
+	std::vec_tstring_t values;
+	String::split(fullPath, Const::slash(), &values);
+
+	std::csize_t allDirsNum  = a_leftDirsNum + a_rightDirsNum;
+	if (values.size() <= allDirsNum) {
+		return fullPath;
+	}
+
+	std::csize_t hideDirsNum = values.size() - allDirsNum;
+
+	std::ctstring_t &dots = a_isShowHiddenDirsNum ?
+		Format::str(xT("..{}.."), hideDirsNum) : xT("...");
+
+	values.erase(values.cbegin() + a_leftDirsNum,
+                 values.cbegin() + a_leftDirsNum + hideDirsNum - 1 /* dots */);
+	values.at(a_leftDirsNum) = dots;
+
+	sRv = String::join(values, Const::slash());
+
+	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Path::homeAsBrief() const
+{
+	return String::replaceAll(filePath(), User().homeDir(), xT("~"));
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
