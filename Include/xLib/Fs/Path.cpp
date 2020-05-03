@@ -14,6 +14,7 @@
 #include <xLib/Fs/Dir.h>
 #include <xLib/Sync/Process.h>
 #include <xLib/Log/Trace.h>
+#include <xLib/System/User.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Path_win.inl"
@@ -506,6 +507,14 @@ Path::brief(
     sRv = Path(sRv).toNative(false);
 
     return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Path::homeAsBrief(
+	std::ctstring_t &a_path
+) const
+{
+	return String::replaceAll(a_path, User().homeDir(), xT("~"));
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t

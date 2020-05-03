@@ -938,6 +938,22 @@ Test_Path::unit()
         }
     }
 
+    xTEST_CASE("homeAsBrief")
+    {
+		#if   xENV_WIN
+			std::ctstring_t filePath = xT("C:\Users\skynowa\test");
+		#elif xENV_UNIX
+			std::ctstring_t filePath = xT("/home/skynowa/Soft/eclipse/workspace/xLib.test/Debug");
+		#endif
+
+		m_sRv = Path(filePath).homeAsBrief(filePath);
+		#if   xENV_WIN
+			xTEST_EQ(std::tstring_t(xT("~\test")), m_sRv);
+		#elif xENV_UNIX
+			xTEST_EQ(std::tstring_t(xT("~/Soft/eclipse/workspace/xLib.test/Debug")), m_sRv);
+		#endif
+    }
+
     xTEST_CASE("slashAppend")
     {
         #if   xENV_WIN
