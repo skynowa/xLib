@@ -88,7 +88,10 @@ public:
         ///< get absolute path
     std::tstring_t brief(std::csize_t &maxSize) const xWARN_UNUSED_RV;
         ///< get short path
-    std::tstring_t homeAsBrief(std::ctstring_t &path) const xWARN_UNUSED_RV;
+    std::tstring_t brief(std::csize_t leftDirsNum, std::csize_t rightDirsNum,
+    					cbool_t isShowHiddenDirsNum) const xWARN_UNUSED_RV;
+        ///< get short path
+    std::tstring_t homeAsBrief() const xWARN_UNUSED_RV;
 		///< replace home dir with "~"
 
     std::tstring_t slashAppend() const xWARN_UNUSED_RV;

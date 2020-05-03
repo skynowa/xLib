@@ -938,6 +938,26 @@ Test_Path::unit()
         }
     }
 
+    xTEST_CASE("brief")
+    {
+    	std::csize_t leftDirsNum         {2};
+    	std::csize_t rightDirsNum        {2};
+    	cbool_t      isShowHiddenDirsNum {false};
+
+		#if   xENV_WIN
+			std::ctstring_t filePath = xT("D:\\xVCL\\Include\\xVCL\\Units\\Ui\\vSpeedButton_LoadDrives.cpp");
+		#elif xENV_UNIX
+			std::ctstring_t filePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
+		#endif
+
+		m_sRv = Path(filePath).brief(2, 2, isShowHiddenDirsNum);
+		#if   xENV_WIN
+			xTEST_EQ(m_sRv, std::tstring_t(xT("D:\\...\\vSpeedButton_LoadDrives.cpp")));
+		#elif xENV_UNIX
+			xTEST_EQ(m_sRv, std::tstring_t(xT("/home/.../Debug/filename")));
+		#endif
+    }
+
     xTEST_CASE("homeAsBrief")
     {
 		#if   xENV_WIN
@@ -946,7 +966,7 @@ Test_Path::unit()
 			std::ctstring_t filePath = xT("/home/skynowa/Soft/eclipse/workspace/xLib.test/Debug");
 		#endif
 
-		m_sRv = Path(filePath).homeAsBrief(filePath);
+		m_sRv = Path(filePath).homeAsBrief();
 		#if   xENV_WIN
 			xTEST_EQ(std::tstring_t(xT("~\test")), m_sRv);
 		#elif xENV_UNIX
