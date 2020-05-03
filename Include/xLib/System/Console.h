@@ -158,6 +158,11 @@ private:
 	void_t         _setStdinEcho(cbool_t &isEnable) const;
 		///< set stdin echo on/off
 
+#if xENV_UNIX
+	std::tstring_t _escapeValue(std::ctstring_t &value) const;
+		///< escape by "\[...\]"
+#endif
+
     xNO_COPY_ASSIGN(Console)
 
 xPLATFORM_IMPL:
