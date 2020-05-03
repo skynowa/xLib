@@ -21,7 +21,7 @@ SystemInfo::_distro_impl() const
 ulong_t
 SystemInfo::_numOfCpus_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     int_t  mib[]   = {CTL_HW, HW_NCPU};
     size_t resSize = sizeof(ulRv);
@@ -73,7 +73,7 @@ SystemInfo::_cpuVendor_impl() const
     #endif
     };
 
-    int_t cpuInfo[4] = {0};
+    int_t cpuInfo[4] {};
 
     (void_t)_Functor::__cpuid(cpuInfo, 0);
 
@@ -93,9 +93,9 @@ SystemInfo::_cpuModel_impl() const
 {
     std::tstring_t sRv;
 
-    int_t       iRv       = - 1;
+    int_t       iRv       {- 1};
     std::string value;
-    size_t      valueSize = 0;
+    size_t      valueSize {};
 
     iRv = ::sysctlbyname("hw.model", nullptr, &valueSize, nullptr, 0U);
     xTEST_DIFF(iRv, - 1);
@@ -115,9 +115,9 @@ SystemInfo::_cpuModel_impl() const
 ulong_t
 SystemInfo::_cpuSpeed_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
-    ulong_t cpuSpeedMHz     = 0UL;
+    ulong_t cpuSpeedMHz     = {};
     size_t  cpuSpeedMHzSize = sizeof(cpuSpeedMHz);
 
     int_t iRv = ::sysctlbyname("hw.clockrate", &cpuSpeedMHz, &cpuSpeedMHzSize, nullptr, 0);
@@ -131,15 +131,15 @@ SystemInfo::_cpuSpeed_impl() const
 ulong_t
 SystemInfo::_cpuUsage_impl() const
 {
-    double         cpuUsage           = 0.0;
+    double         cpuUsage           {};
 
-    static ulong_t s_totalOld         = - 1UL;
-    static ulong_t s_usedOld          = - 1UL;
+    static ulong_t s_totalOld         {- 1UL};
+    static ulong_t s_usedOld          {- 1UL};
 
-    ulong_t        used               = - 1UL;
-    ulong_t        total              = - 1UL;
+    ulong_t        used               {- 1UL};
+    ulong_t        total              {- 1UL};
 
-    ulong_t        cpuTime[CPUSTATES] = {0};
+    ulong_t        cpuTime[CPUSTATES] {};
     size_t         cpuTimeSize        = sizeof(cpuTime);
 
     int_t iRv = ::sysctlbyname("kern.cp_time", &cpuTime, &cpuTimeSize, nullptr, 0);
@@ -161,9 +161,9 @@ SystemInfo::_cpuUsage_impl() const
 ulonglong_t
 SystemInfo::_ramTotal_impl() const
 {
-    ulonglong_t ullRv = 0ULL;
+    ulonglong_t ullRv {};
 
-    ulonglong_t ramTotal     = 0ULL;
+    ulonglong_t ramTotal     {};
 
     int_t       mib[]        = {CTL_HW, HW_PHYSMEM};
     size_t      ramTotalSize = sizeof(ramTotal);
@@ -179,7 +179,7 @@ SystemInfo::_ramTotal_impl() const
 ulonglong_t
 SystemInfo::_ramAvailable_impl() const
 {
-    ulonglong_t availPhysPages     = 0ULL;
+    ulonglong_t availPhysPages     {};
     size_t      availPhysPagesSize = sizeof(availPhysPages);
 
     int_t iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &availPhysPages,
@@ -194,7 +194,7 @@ SystemInfo::_ramAvailable_impl() const
 ulong_t
 SystemInfo::_ramUsage_impl() const
 {
-    ulonglong_t ramTotal = 0ULL;
+    ulonglong_t ramTotal {};
     {
         int_t  mib[]        = {CTL_HW, HW_PHYSMEM};
         size_t ramTotalSize = sizeof(ramTotal);
@@ -205,7 +205,7 @@ SystemInfo::_ramUsage_impl() const
 
     ulonglong_t ramFree = 0ULL;
     {
-        ulonglong_t availPhysPages     = 0ULL;
+        ulonglong_t availPhysPages     {};
         size_t      availPhysPagesSize = sizeof(availPhysPages);
 
         int_t iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &availPhysPages,
