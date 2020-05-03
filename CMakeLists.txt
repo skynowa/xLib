@@ -56,10 +56,9 @@ endif()
 set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 #--------------------------------------------------------------------------------------------------
 # modules
-set(CMAKE_MODULE_PATH
-    ${XLIB_LOCATION}/CMake
-    ${XLIB_LOCATION}/../CMakeLib
-    ${XLIB_LOCATION}/../CMakeLib/StaticAnalisis)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_ROOT}/Modules/CMakeLib")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_ROOT}/Modules/CMakeLib/StaticAnalisis")
+list(APPEND CMAKE_MODULE_PATH "${XLIB_LOCATION}/CMake")
 
 include(${XLIB_LOCATION}/Config.cmake)
 include(Configure)
