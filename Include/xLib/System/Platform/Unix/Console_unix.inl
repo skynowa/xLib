@@ -234,7 +234,7 @@ Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
 {
-    writeLine( _escapeValue(Format::str(xT("\e]0;{}\a"), a_title)) );
+    write( _escapeValue(Format::str(xT("\e]0;{}\a"), a_title)) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
