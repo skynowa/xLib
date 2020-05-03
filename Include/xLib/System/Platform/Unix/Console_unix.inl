@@ -180,8 +180,8 @@ Console::_setAttributes_impl(
 		attrs = String::join(values, xT(';'));
     }
 
-	sRv += Format::str(xT("\e[{};{}m"), attrs, static_cast<int>(foregroundColor));	// TODO: [skynowa] StdStreamV2
-	sRv += Format::str(xT("\e[{}m"), static_cast<int>(backgroundColor));			// TODO: [skynowa] StdStreamV2
+	sRv += _escapeValue( Format::str(xT("\e[{};{}m"), attrs, static_cast<int>(foregroundColor)) ); // TODO: [skynowa] StdStreamV2
+	sRv += _escapeValue( Format::str(xT("\e[{}m"), static_cast<int>(backgroundColor)) );           // TODO: [skynowa] StdStreamV2
 
 	return sRv;
 }
@@ -189,11 +189,7 @@ Console::_setAttributes_impl(
 std::tstring_t
 Console::_setAttributesDef_impl() const
 {
-#if 0
-	return xT("\e[0;0m");
-#else
-	return xT("\e[00m");
-#endif
+	return _escapeValue(xT("\e[0;0m"));
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -238,7 +234,7 @@ Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
 {
-    writeLine( Format::str(xT("\e]0;{}\a"), a_title) );
+    writeLine( _escapeValue(Format::str(xT("\e]0;{}\a"), a_title)) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -259,6 +255,14 @@ Console::_setStdinEcho_impl(
 
     iRv = ::tcsetattr(STDIN_FILENO, TCSANOW, &tty);
     xTEST_DIFF(iRv, -1);
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Console::_escapeValue(
+	std::ctstring_t &a_value
+) const
+{
+	return xT("\\[") + a_value + xT("\\]");
 }
 //-------------------------------------------------------------------------------------------------
 
