@@ -155,6 +155,14 @@ private:
         ///< get console menu handle
 #endif
 
+    FILE  *_getStdStream(std::ctostream_t &stream) const;
+		///< Since C++ hasn't a true way to extract stream handler from the a given `std::ostream`
+    bool_t _isColorized(std::tostream_t &stream = std::cout) const;
+		///< Say whether a given stream should be colorized or not.
+		///< It's always true for ATTY streams and may be true for streams marked with colorize flag
+    bool_t _isAtty(std::ctostream_t &stream) const;
+        ///< Test whether a given `std::ostream` object refers to a terminal
+
 	std::tstring_t _msgBoxLine(std::ctstring_t &text, std::csize_t &width) const;
 		///< build MsgBox text line
 	void_t         _setStdinEcho(cbool_t &isEnable) const;

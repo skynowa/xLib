@@ -99,3 +99,17 @@
     #endif
 #endif
     ///< filesystem statfs (struct and function)
+
+// xISATTY
+#if   xENV_WIN
+	#define xISATTY ::_isatty
+#elif xENV_UNIX
+	#define xISATTY ::isatty
+#endif
+
+// xFILENO
+#if   xENV_WIN
+	#define xFILENO ::_fileno
+#elif xENV_UNIX
+	#define xFILENO ::fileno
+#endif
