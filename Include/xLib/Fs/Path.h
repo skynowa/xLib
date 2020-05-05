@@ -122,7 +122,7 @@ public:
         ///< name validation
 
     static
-    std::tstring_t shortName(std::ctstring_t &fileName, std::csize_t &maxSize) xWARN_UNUSED_RV;
+    std::tstring_t briefName(std::ctstring_t &fileName, std::csize_t &maxSize) xWARN_UNUSED_RV;
         ///< get short name
 
     static

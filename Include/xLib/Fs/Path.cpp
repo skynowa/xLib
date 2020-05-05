@@ -416,7 +416,7 @@ Path::absolute() const
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-Path::shortName(
+Path::briefName(
     std::ctstring_t &a_fileName,
     std::csize_t    &a_maxSize
 )

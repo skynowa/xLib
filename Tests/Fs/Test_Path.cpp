@@ -858,7 +858,7 @@ Test_Path::unit()
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("shortName")
+    xTEST_CASE("briefName")
     {
         const data2_tstring_t data[] = {
             {xT("Name"),                   xT("Name")},
@@ -873,7 +873,7 @@ Test_Path::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = Path::shortName(data[i].test, 4);
+            std::tstring_t str1 = Path::briefName(data[i].test, 4);
             std::tstring_t str2 = data[i].expect;
             xTEST_EQ(str1, str2);
         }
