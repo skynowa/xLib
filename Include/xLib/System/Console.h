@@ -22,6 +22,9 @@ public:
     virtual ~Console();
         ///< destructor
 
+    void setColorSupport(cbool_t flag);
+        ///< force set color support (for PS1, etc)
+
     /*******************************************************************************
     *   Attributes
     *
@@ -155,7 +158,7 @@ private:
         ///< get console menu handle
 #endif
 
-    cbool_t _isColorSupport {};
+    bool_t _isColorSupport {};
 		///< Say whether a given stream should be colorized or not
     FILE  *_getStdStream(std::ctostream_t &stream) const;
 		///< Since C++ hasn't a true way to extract stream handler from the a given `std::ostream`
