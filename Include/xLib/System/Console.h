@@ -155,6 +155,8 @@ private:
         ///< get console menu handle
 #endif
 
+    cbool_t _isColorSupport {};
+		///< Say whether a given stream should be colorized or not
     FILE  *_getStdStream(std::ctostream_t &stream) const;
 		///< Since C++ hasn't a true way to extract stream handler from the a given `std::ostream`
     bool_t _isColorized(std::tostream_t &stream = std::cout) const;
