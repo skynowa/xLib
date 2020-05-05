@@ -534,7 +534,7 @@ Path::brief(
 
 	// set dot(s) == hide dirs number
 	{
-		std::ctstring_t dots(hideDirsNum, xT('.'));
+		std::ctstring_t dots(hideDirsNum, Const::dot()[0]);
 		values.at(a_leftDirsNum) = dots;
 	}
 
