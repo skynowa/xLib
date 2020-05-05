@@ -20,7 +20,7 @@ Test_PrivatBankApi::unit()
 	xTEST_CASE("getExchangeRatesArchive")
 	{
 		if (false) {
-			std::ctstring_t               date = DateTime().current().format(xT("%d.%m.%Y"), xT(""));
+			std::ctstring_t                date = DateTime().current().format(xT("%d.%m.%Y"), xT(""));
 			PrivatBankApi::exchange_rate_t data;
 
 			PrivatBankApi api;
