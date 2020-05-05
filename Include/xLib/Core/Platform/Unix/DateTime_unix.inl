@@ -17,14 +17,13 @@ DateTime
 DateTime::_current_impl()
 {
     // get msec
-    timeval timeNow;   Utils::structZeroT(timeNow);
+    timeval timeNow {};
 
     int_t iRv = ::gettimeofday(&timeNow, nullptr);
     xTEST_DIFF(iRv, - 1);
 
     // get datetime
-    std::tm dateTime; Utils::structZeroT(dateTime);
-
+    std::tm dateTime {};
     std::tm *dtRv = ::localtime_r(&timeNow.tv_sec, &dateTime);
     xTEST_PTR(dtRv);
 
