@@ -52,7 +52,8 @@ Console::setAttributes(
     cint_t      a_attributes
 ) const
 {
-	xCHECK_RET(!_isColorSupport, xT(""));
+	// TODO: PS1 - not working
+	// xCHECK_RET(!_isColorSupport, xT(""));
 
     return _setAttributes_impl(a_foreground, a_background, a_attributes);
 }
@@ -60,7 +61,8 @@ Console::setAttributes(
 std::tstring_t
 Console::setAttributesDef() const
 {
-	xCHECK_RET(!_isColorSupport, xT(""));
+	// TODO: PS1 - not working
+	// xCHECK_RET(!_isColorSupport, xT(""));
 
     return _setAttributesDef_impl();
 }
@@ -322,8 +324,15 @@ Console::_isColorized(
 	// An index to be used to access a private storage of I/O streams. See
 	// colorize / nocolorize I/O manipulators for details.
 	static const int colorizeIndex = std::ios_base::xalloc();
+	if ( static_cast<bool_t>(a_stream.iword(colorizeIndex)) ) {
+		return true;
+	}
 
-    return _isAtty(a_stream) || static_cast<bool_t>(a_stream.iword(colorizeIndex));
+	if ( _isAtty(a_stream) ) {
+		return true;
+	}
+
+    return false;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
