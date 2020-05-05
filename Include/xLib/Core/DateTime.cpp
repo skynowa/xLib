@@ -452,8 +452,8 @@ DateTime::dayOfWeek() const
 {
     xTEST_EQ(DateTimeValidator::datetime(*this), true);
 
-    int_t   iRv = 0;
-    std::tm timeInfo;  Utils::structZeroT(timeInfo);
+    int_t   iRv {};
+    std::tm timeInfo {};
 
     timeInfo.tm_year = _year  - 1900;
     timeInfo.tm_mon  = _month - 1;
@@ -582,7 +582,7 @@ DateTime::format(
     std::tstring_t sRv;
     tchar_t        buff[80 + 1] = {};
 
-    std::tm time; Utils::structZeroT(time);
+    std::tm time {};
     time.tm_year = _year  - 1900;
     time.tm_mon  = _month - 1;
     time.tm_mday = _day;
@@ -735,7 +735,7 @@ DateTime::zodiacSign(
 
     xTEST_FAIL;
 
-    return std::tstring_t();
+    return {};
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
