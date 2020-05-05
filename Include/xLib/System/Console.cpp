@@ -186,10 +186,10 @@ Console::msgBox(
 
     ModalResult mrRv {};
 
-    std::csize_t width     = 100;
-    ctchar_t     cmdAbort  = xT('a');
-    ctchar_t     cmdIgnore = xT('i');
-    ctchar_t     cmdRetry  = xT('r');
+    std::csize_t width     {100};
+    ctchar_t     cmdAbort  {xT('a')};
+    ctchar_t     cmdIgnore {xT('i')};
+    ctchar_t     cmdRetry  {xT('r')};
 
     std::ctstring_t title = _msgBoxLine(a_title, width) + Const::nl();
 

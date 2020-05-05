@@ -154,7 +154,7 @@ private:
 #endif
 
 	std::tstring_t _msgBoxLine(std::ctstring_t &text, std::csize_t &width) const;
-		///< buil MsgBox text line
+		///< build MsgBox text line
 	void_t         _setStdinEcho(cbool_t &isEnable) const;
 		///< set stdin echo on/off
 
