@@ -511,35 +511,35 @@ Path::brief(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::brief(
-	std::csize_t a_leftDirsNum,			///<
-	std::csize_t a_rightDirsNum,		///<
-	cbool_t      a_isShowHiddenDirsNum	/// ("/dir1/..{3}../dirN")
+	std::csize_t a_leftDirsNum,	///<
+	std::csize_t a_rightDirsNum	///<
 ) const
 {
-	std::tstring_t sRv;
-
 	std::ctstring_t &fullPath = filePath();
 
 	std::vec_tstring_t values;
 	String::split(fullPath, Const::slash(), &values);
 
 	std::csize_t allDirsNum  = a_leftDirsNum + a_rightDirsNum;
+
+	// dots - n/a
 	if (values.size() <= allDirsNum) {
 		return fullPath;
 	}
 
 	std::csize_t hideDirsNum = values.size() - allDirsNum;
 
-	std::ctstring_t &dots = a_isShowHiddenDirsNum ?
-		Format::str(xT("..{}.."), hideDirsNum) : xT("...");
+	const auto it_cbegin = values.cbegin() + a_leftDirsNum;
+	values.erase(it_cbegin, it_cbegin + hideDirsNum - 1 /* dots */);
 
-	values.erase(values.cbegin() + a_leftDirsNum,
-                 values.cbegin() + a_leftDirsNum + hideDirsNum - 1 /* dots */);
-	values.at(a_leftDirsNum) = dots;
+	// set dot(s) == hide dirs number
+	{
+		std::ctstring_t dots(hideDirsNum, xT('.'));
 
-	sRv = String::join(values, Const::slash());
+		values.at(a_leftDirsNum) = dots;
+	}
 
-	return sRv;
+	return String::join(values, Const::slash());
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
