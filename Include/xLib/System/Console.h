@@ -77,7 +77,7 @@ public:
                        cint_t attributes) const xWARN_UNUSED_RV;
         ///< set text color
     std::tstring_t setAttributesDef() const xWARN_UNUSED_RV;
-        ///< set text color
+        ///< reset text color to default
 
     /*******************************************************************************
     *   Actions
