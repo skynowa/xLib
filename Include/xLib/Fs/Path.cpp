@@ -521,16 +521,18 @@ Path::brief(
 	String::split(fullPath, Const::slash(), &values);
 
 	std::csize_t allDirsNum  = a_leftDirsNum + a_rightDirsNum;
-
-	// dots - n/a
 	if (values.size() <= allDirsNum) {
+		// dots - n/a
 		return fullPath;
 	}
 
 	std::csize_t hideDirsNum = values.size() - allDirsNum;
 
-	const auto it_cbegin = values.cbegin() + a_leftDirsNum;
-	values.erase(it_cbegin, it_cbegin + hideDirsNum - 1 /* dots */);
+	// rm hide dirs
+	{
+		const auto it_cbegin = values.cbegin() + a_leftDirsNum;
+		values.erase(it_cbegin, it_cbegin + hideDirsNum - 1 /* dots */);
+	}
 
 	// set dot(s) == hide dirs number
 	{
