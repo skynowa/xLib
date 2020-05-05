@@ -948,7 +948,7 @@ Test_Path::unit()
 			std::tstring_t expect;
 		};
 
-		const DataN dataN[]
+		const DataN data[]
 		{
 			{xT("D:/xVCL/Include/xVCL/Units/Ui/vSpeedButton_LoadDrives.cpp"),
 				2, 2, xT("D:/xVCL/.../Ui/vSpeedButton_LoadDrives.cpp")},
@@ -961,7 +961,7 @@ Test_Path::unit()
 			{xT("/home/user/Soft"), 10, 1, xT("/home/user/Soft")}
 		};
 
-		for (auto &it_data : dataN) {
+		for (auto &it_data : data) {
 			m_sRv = Path(it_data.filePath).brief(it_data.leftDirsNum, it_data.rightDirsNum);
 			// Cout() << xTRACE_VAR_2(m_sRv, it_data.expect) << "<<<";
 			xTEST_EQ(m_sRv, it_data.expect);
