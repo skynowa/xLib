@@ -37,6 +37,12 @@ Console::~Console()
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
+void
+Console::setColorSupport(cbool_t a_flag)
+{
+	_isColorSupport = a_flag;
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
@@ -52,8 +58,7 @@ Console::setAttributes(
     cint_t      a_attributes
 ) const
 {
-	// TODO: PS1 - not working
-	// xCHECK_RET(!_isColorSupport, xT(""));
+	xCHECK_RET(!_isColorSupport, xT(""));
 
     return _setAttributes_impl(a_foreground, a_background, a_attributes);
 }
@@ -61,8 +66,7 @@ Console::setAttributes(
 std::tstring_t
 Console::setAttributesDef() const
 {
-	// TODO: PS1 - not working
-	// xCHECK_RET(!_isColorSupport, xT(""));
+	xCHECK_RET(!_isColorSupport, xT(""));
 
     return _setAttributesDef_impl();
 }
