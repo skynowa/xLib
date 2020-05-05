@@ -869,7 +869,7 @@ Test_Path::unit()
             {xT("Name.exe"),               xT("Name")},
             {xT("full name.txt"),          xT("full")},
             {xT("file name with ext.doc"), xT("file")},
-            {xT("comment.pdfx"),           xT("comm")},
+            {xT("comment.pdfx"),           xT("comm")}
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
@@ -938,24 +938,35 @@ Test_Path::unit()
         }
     }
 
-    xTEST_CASE("brief")
-    {
-    	std::csize_t leftDirsNum  {2};
-    	std::csize_t rightDirsNum {2};
+	xTEST_CASE("brief")
+	{
+		struct DataN
+		{
+			std::tstring_t filePath;
+			std::size_t    leftDirsNum;
+			std::size_t    rightDirsNum;
+			std::tstring_t expect;
+		};
 
-		#if   xENV_WIN
-			std::ctstring_t filePath = xT("D:\\xVCL\\Include\\xVCL\\Units\\Ui\\vSpeedButton_LoadDrives.cpp");
-		#elif xENV_UNIX
-			std::ctstring_t filePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
-		#endif
+		const DataN dataN[]
+		{
+			{xT("D:/xVCL/Include/xVCL/Units/Ui/vSpeedButton_LoadDrives.cpp"),
+				2, 2, xT("D:/xVCL/.../Ui/vSpeedButton_LoadDrives.cpp")},
+			{xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename"),
+				2, 2, xT("/home/...../Debug/filename")},
+			{xT("111"), 2, 2, xT("111")},
+			{xT("/home/user/Soft"), 10, 10, xT("/home/user/Soft")},
+			{xT("/home/user/Soft"), 0, 0, xT("....")},
+			{xT("/home/user/Soft"), 2, 10, xT("/home/user/Soft")},
+			{xT("/home/user/Soft"), 10, 1, xT("/home/user/Soft")}
+		};
 
-		m_sRv = Path(filePath).brief(leftDirsNum, rightDirsNum);
-		#if   xENV_WIN
-			xTEST_EQ(m_sRv, std::tstring_t(xT("D:\\...\\vSpeedButton_LoadDrives.cpp")));
-		#elif xENV_UNIX
-			xTEST_EQ(m_sRv, std::tstring_t(xT("/home/...../Debug/filename")));
-		#endif
-    }
+		for (auto &it_data : dataN) {
+			m_sRv = Path(it_data.filePath).brief(it_data.leftDirsNum, it_data.rightDirsNum);
+			// Cout() << xTRACE_VAR_2(m_sRv, it_data.expect) << "<<<";
+			xTEST_EQ(m_sRv, it_data.expect);
+		}
+	}
 
     xTEST_CASE("homeAsBrief")
     {
