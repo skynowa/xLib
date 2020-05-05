@@ -26,7 +26,8 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Console::Console()
+Console::Console() :
+	_isColorSupport{ _isColorized() }
 {
     _construct_impl();
 }
@@ -51,12 +52,16 @@ Console::setAttributes(
     cint_t      a_attributes
 ) const
 {
+	xCHECK_RET(!_isColorSupport, xT(""));
+
     return _setAttributes_impl(a_foreground, a_background, a_attributes);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Console::setAttributesDef() const
 {
+	xCHECK_RET(!_isColorSupport, xT(""));
+
     return _setAttributesDef_impl();
 }
 //-------------------------------------------------------------------------------------------------
