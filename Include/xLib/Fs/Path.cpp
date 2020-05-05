@@ -518,13 +518,13 @@ Path::brief(
 	std::vec_tstring_t values;
 	String::split(filePath(), Const::slash(), &values);
 
-	std::csize_t allDirsNum  = a_leftDirsNum + a_rightDirsNum;
-	if (values.size() <= allDirsNum) {
+	std::csize_t showDirsNum  = a_leftDirsNum + a_rightDirsNum;
+	if (showDirsNum > values.size()) {
 		// n/a dots - return full path
 		return filePath();
 	}
 
-	std::csize_t hideDirsNum = values.size() - allDirsNum;
+	std::csize_t hideDirsNum = values.size() - showDirsNum;
 
 	// rm hide dirs
 	{
