@@ -519,7 +519,7 @@ Path::brief(
 	String::split(filePath(), Const::slash(), &values);
 
 	std::csize_t showDirsNum  = a_leftDirsNum + a_rightDirsNum;
-	if (showDirsNum > values.size()) {
+	if (showDirsNum >= values.size()) {
 		// n/a dots - return full path
 		return filePath();
 	}
@@ -534,7 +534,7 @@ Path::brief(
 
 	// set dot(s) == hide dirs number
 	{
-		std::ctstring_t dots(hideDirsNum, Const::dot()[0]);
+		std::ctstring_t dots(hideDirsNum, xT('.'));
 		values.at(a_leftDirsNum) = dots;
 	}
 
