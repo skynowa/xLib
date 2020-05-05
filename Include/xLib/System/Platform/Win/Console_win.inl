@@ -133,7 +133,7 @@ Console::_setAttributes_impl(
             break;
         }
 
-        foregroundColor = static_cast<Foreground>( iRv );
+        foregroundColor = static_cast<Foreground>(iRv);
     }
 
     Background backgroundColor {};
@@ -188,7 +188,7 @@ Console::_setAttributes_impl(
             break;
         }
 
-        backgroundColor = static_cast<Background>( iRv );
+        backgroundColor = static_cast<Background>(iRv);
     }
 
     WORD attrs {};
@@ -206,13 +206,13 @@ Console::_setAttributes_impl(
 
         Bitset bits(a_attributes);
 
-        xCHECK_DO(bits.isSetBit(Attribute::AllOff)),    attrs |= attributeAllOff);
-        xCHECK_DO(bits.isSetBit(Attribute::Bold)),      attrs |= attributeBold);
-        xCHECK_DO(bits.isSetBit(Attribute::Dim)),       /* attrs |= attributeDim */);       // IMPL: dim
-        xCHECK_DO(bits.isSetBit(Attribute::Underline)), /* attrs |= attributeUnderline */); // not supported
-        xCHECK_DO(bits.isSetBit(Attribute::Blink)),     /* attrs |= attributeBlink */);     // not supported
-        xCHECK_DO(bits.isSetBit(Attribute::Reverse)),   /* attrs |= attributeReverse */);   // not supported
-        xCHECK_DO(bits.isSetBit(Attribute::Hidden)),    /* attrs |= attributeHidden */);    // not supported
+        xCHECK_DO(bits.isSetBit(Attribute::AllOff),    attrs |= attributeAllOff);
+        xCHECK_DO(bits.isSetBit(Attribute::Bold),      attrs |= attributeBold);
+        xCHECK_DO(bits.isSetBit(Attribute::Dim),       /* attrs |= attributeDim */);       // IMPL: dim
+        xCHECK_DO(bits.isSetBit(Attribute::Underline), /* attrs |= attributeUnderline */); // not supported
+        xCHECK_DO(bits.isSetBit(Attribute::Blink),     /* attrs |= attributeBlink */);     // not supported
+        xCHECK_DO(bits.isSetBit(Attribute::Reverse),   /* attrs |= attributeReverse */);   // not supported
+        xCHECK_DO(bits.isSetBit(Attribute::Hidden),    /* attrs |= attributeHidden */);    // not supported
     }
 
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), attrs);
