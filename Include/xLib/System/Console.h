@@ -1,6 +1,8 @@
 /**
  * \file  Console.h
  * \brief Shell console
+ *
+ * https://github.com/ikalnytskyi/termcolor/blob/master/include/termcolor/termcolor.hpp
  */
 
 
@@ -183,7 +185,6 @@ xNAMESPACE_END2(xl, system)
 /**
  * TODO: Console
  *
- * https://github.com/ikalnytskyi/termcolor/blob/master/include/termcolor/termcolor.hpp
  */
 
 #if xTODO
