@@ -30,7 +30,7 @@ Console::_construct_impl()
 
     // _attributesDef
     {
-        CONSOLE_SCREEN_BUFFER_INFO info = {};
+        CONSOLE_SCREEN_BUFFER_INFO info {};
 
         BOOL blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &info);
         xTEST_DIFF(blRv, FALSE);
@@ -64,23 +64,23 @@ Console::_setAttributes_impl(
 
     Foreground foregroundColor {};
     {
-        /*
-            #define COLOR_BLACK     0
-            #define COLOR_BLUE      1
-            #define COLOR_GREEN     2
-            #define COLOR_AQUA      3
-            #define COLOR_RED       4
-            #define COLOR_PURPLE    5
-            #define COLOR_YELLOW    6
-            #define COLOR_WHITE     7
-            #define COLOR_GRAY      8
-            #define COLOR_LTBLUE    9
-            #define COLOR_LTGREEN   A
-            #define COLOR_LTAQUA    B
-            #define COLOR_LTRED     C
-            #define COLOR_LTPURPLE  D
-            #define COLOR_LTYELLOW  E
-            #define COLOR_LTWHITE   F
+       /**
+        * #define COLOR_BLACK     0
+        * #define COLOR_BLUE      1
+        * #define COLOR_GREEN     2
+        * #define COLOR_AQUA      3
+        * #define COLOR_RED       4
+        * #define COLOR_PURPLE    5
+        * #define COLOR_YELLOW    6
+        * #define COLOR_WHITE     7
+        * #define COLOR_GRAY      8
+        * #define COLOR_LTBLUE    9
+        * #define COLOR_LTGREEN   A
+        * #define COLOR_LTAQUA    B
+        * #define COLOR_LTRED     C
+        * #define COLOR_LTPURPLE  D
+        * #define COLOR_LTYELLOW  E
+        * #define COLOR_LTWHITE   F
         */
 
         const WORD foregroundColorDefault = 0;
@@ -97,7 +97,7 @@ Console::_setAttributes_impl(
         int_t iRv {};
 
         switch (a_foreground) {
-        case Foreground::Default
+        case Foreground::Default:
             iRv = foregroundColorDefault;
             break;
         case Foreground::Black:
