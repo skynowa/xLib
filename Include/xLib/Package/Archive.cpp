@@ -85,7 +85,7 @@ Archive::fileCompress(
 		}
 	}
 
-	Process::execute(binPath, xTIMEOUT_INFINITE, params, {}, nullptr, nullptr);
+	Process::execute(binPath, params, {}, xTIMEOUT_INFINITE, nullptr, nullptr);
 
 	// remove source dir
 	if (a_isRemoveSourceFile) {
@@ -144,7 +144,7 @@ Archive::dirCompress(
 		}
 	}
 
-	Process::execute(binPath, xTIMEOUT_INFINITE, params, {}, nullptr, nullptr);
+	Process::execute(binPath, params, {}, xTIMEOUT_INFINITE, nullptr, nullptr);
 
 	// remove source dir
 	if (a_isRemoveSourceDir) {
@@ -209,7 +209,7 @@ Archive::fileUncompress(
 		}
 	}
 
-	Process::execute(binPath, xTIMEOUT_INFINITE, params, {}, nullptr, nullptr);
+	Process::execute(binPath, params, {}, xTIMEOUT_INFINITE, nullptr, nullptr);
 
 	// remove zip file
 	if (a_isRemoveSourceFile) {
@@ -227,7 +227,7 @@ Archive::fileUncompress(
 		std::ctstring_t     binPath = chmodPath;
 		std::cvec_tstring_t params  = {xT("-R"), xT("0777"), a_destDirPath};
 
-		Process::execute(binPath, xTIMEOUT_INFINITE, params, {}, nullptr, nullptr);
+		Process::execute(binPath, params, {}, xTIMEOUT_INFINITE, nullptr, nullptr);
 	}
 
 	return true;
