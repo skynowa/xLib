@@ -121,8 +121,8 @@ xPUBLIC_STATIC:
 
 	// Etc
     static
-    void_t     execute(std::ctstring_t &filePath, culong_t waitTimeoutMsec,
-                   std::cvec_tstring_t &params, const std::set<std::pair_tstring_t> &envs,
+    void_t     execute(std::ctstring_t &filePath, std::cvec_tstring_t &params,
+                   const std::set<std::pair_tstring_t> &envs, culong_t waitTimeoutMsec,
                    std::tstring_t *stdOut, std::tstring_t *stdError);
         ///< create, wait process
 
