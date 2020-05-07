@@ -784,7 +784,7 @@ std::size_t
 StringCI::find(
     std::ctstring_t &a_str,                      ///< source string
     std::ctstring_t &a_target,                   ///< target string
-    std::csize_t    &a_pos    /* = 0 */,         ///< start position
+    std::csize_t     a_pos    /* = 0 */,         ///< start position
     const xTLOCALE  &a_locale /* = xTLOCALE() */ ///< locale
 )
 {
@@ -808,7 +808,7 @@ bool_t
 StringCI::contains(
     std::ctstring_t &a_str,                      ///< source string
     std::ctstring_t &a_target,                   ///< target string
-    std::csize_t    &a_pos    /* = 0 */,         ///< start position
+    std::csize_t     a_pos    /* = 0 */,         ///< start position
     const xTLOCALE  &a_locale /* = xTLOCALE() */ ///< locale
 )
 {

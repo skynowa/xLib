@@ -244,11 +244,11 @@ public:
     *******************************************************************************/
 
     static
-    std::size_t find(std::ctstring_t &str, std::ctstring_t &target, std::csize_t &pos = 0,
+    std::size_t find(std::ctstring_t &str, std::ctstring_t &target, std::csize_t pos = 0,
                     const xTLOCALE &locale = xTLOCALE()) xWARN_UNUSED_RV;
         ///< no case search
     static
-    bool_t      contains(std::ctstring_t &str, std::ctstring_t &target, std::csize_t &pos = 0,
+    bool_t      contains(std::ctstring_t &str, std::ctstring_t &target, std::csize_t pos = 0,
                     const xTLOCALE &locale = xTLOCALE()) xWARN_UNUSED_RV;
         ///< no case search
     static
