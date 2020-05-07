@@ -228,6 +228,13 @@ Console::_clear_impl() const
  * 	   TITLE="\e]2;$@\a"
  * 	   PS1=${ORIG}${TITLE}
  * }
+ *
+ * ESC]0;stringBEL - Set icon name and window title to string
+ * ESC]1;stringBEL - Set icon name to string
+ * ESC]2;stringBEL - Set window title to string
+ *
+ * Icons:
+ * https://unicode.org/emoji/charts/full-emoji-list.html
  */
 void_t
 Console::_setTitle_impl(
