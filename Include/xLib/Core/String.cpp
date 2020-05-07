@@ -805,6 +805,18 @@ StringCI::find(
 //-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
+StringCI::find2(
+    std::ctstring_t &a_str,                     ///< source string
+    std::ctstring_t &a_target,                  ///< target string
+    std::csize_t    &a_pos    /* = 0 */,        ///< start position
+    const xTLOCALE  &a_locale /* = xTLOCALE() */ ///< locale
+)
+{
+    return (StringCI::find(a_str, a_target, a_pos, a_locale) != std::tstring_t::npos);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
 StringCI::compare(
     std::ctstring_t &a_str1,                    ///< source string
     std::ctstring_t &a_str2,                    ///< target string
