@@ -34,19 +34,18 @@ public:
 private:
     StackTraceData _data; ///< data
 
-    void_t         _format(std::vector<std::vec_tstring_t> &stack, std::tstring_t *stackStr)
-                       const;
+    void_t _format(std::vector<std::vec_tstring_t> &stack, std::tstring_t *stackStr) const;
         ///< format stack trace
 
     xNO_COPY_ASSIGN(StackTrace)
 
 xPLATFORM_IMPL:
-    void_t         _get_impl(std::vector<std::vec_tstring_t> *stack) const;
+    void_t _get_impl(std::vector<std::vec_tstring_t> *stack) const;
 
 #if xENV_UNIX
     static
-    void_t         _addr2Line(cptr_cvoid_t symbolAddress, std::tstring_t *filePath,
-                        std::tstring_t *functionName, ulong_t *sourceLine);
+    void_t _addr2Line(cptr_cvoid_t symbolAddress, std::tstring_t *filePath,
+    			std::tstring_t *functionName, ulong_t *sourceLine);
 #endif
 };
 
