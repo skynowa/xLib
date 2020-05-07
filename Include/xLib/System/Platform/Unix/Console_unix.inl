@@ -235,6 +235,7 @@ Console::_clear_impl() const
  *
  * Icons:
  * https://unicode.org/emoji/charts/full-emoji-list.html
+ * https://apps.timwhitlock.info/emoji/tables/unicode
  */
 void_t
 Console::_setTitle_impl(
