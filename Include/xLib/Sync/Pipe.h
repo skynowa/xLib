@@ -24,7 +24,9 @@ public:
         ///< destructor
 
     const HandleNative & handle() const override;
-        ///< get handle
+    const int_t & handleRead() const;
+    const int_t & handleWrite() const;
+
     void_t   create() override;
     void_t   close() override;
     void_t   closeRead();
