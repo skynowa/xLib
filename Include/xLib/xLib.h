@@ -43,6 +43,7 @@
 #include <xLib/Interface/ILastError.h>
 #include <xLib/Interface/IOStream.h>
 #include <xLib/Interface/IContainer.h>
+#include <xLib/Interface/ISync.h>
 
 // Algo
 #include <xLib/Algo/Algos.h>

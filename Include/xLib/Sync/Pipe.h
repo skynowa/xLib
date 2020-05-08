@@ -7,37 +7,35 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/Handle.h>
+#include <xLib/Core/HandlePolicy.h>
+#include <xLib/Interface/ISync.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, sync)
 
-class Pipe
+class Pipe :
+	public ISync<HandleNative>
     /// Pipe is a section of shared memory that processes use for communication
 {
 public:
-#if   xENV_WIN
-    using handle_t = HANDLE;
-#elif xENV_UNIX
-    using handle_t = int_t;
-#endif
-
              Pipe();
         ///< constructor
     virtual ~Pipe();
         ///< destructor
 
-    const handle_t & handle() const xWARN_UNUSED_RV;
+    const HandleNative & handle() const override;
         ///< get handle
-    void_t           create();
+    void_t   create() override;
 
 private:
-    handle_t         _handle {};   ///< native handle
+    HandleNative _handle {};    ///< native handle
 
     xNO_COPY_ASSIGN(Pipe)
 
 xPLATFORM_IMPL:
-    void_t   _construct_impl();
-    void_t   _destruct_impl();
-    void_t   _create_impl();
+    void_t _construct_impl();
+    void_t _destruct_impl();
+    void_t _create_impl();
 };
 
 xNAMESPACE_END2(xl, sync)
