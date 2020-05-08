@@ -16,7 +16,7 @@ set(cmXLIB_TEMPLATE                "Pipe")  # TODO: set manually
 set(cmXLIB_TEMPLATE_COMMENTS       "Pipe is a section of shared memory that processes use for communication") # TODO: set manually
 set(cmXLIB_TEMPLATE_SUBDIR         "Sync")       # TODO: set manually
 set(cmXLIB_TEMPLATE_NS             "sync")       # TODO: set manually
-set(cmXLIB_TEMPLATE_PLATFORM_FILES OFF)
+set(cmXLIB_TEMPLATE_PLATFORM_FILES ON)
 
 if (NOT cmXLIB_TEMPLATE OR
     NOT cmXLIB_TEMPLATE_COMMENTS OR
