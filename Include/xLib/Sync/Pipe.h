@@ -54,10 +54,9 @@ xPLATFORM_IMPL:
 
     enum class CloseMode
 	{
-		Unknown = 0,
-		Read    = 1,
-		Write   = 2,
-		All     = 3
+		Read  = 1,
+		Write = 2,
+		All   = 3
 	};
     xUSING_CONST(CloseMode);
 
