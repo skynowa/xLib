@@ -162,13 +162,8 @@ Process::_create_impl(
 
 		// read
 		if (out_stdOut != nullptr) {
-			// binds to pipes
+			// binds streams to pipes
 			{
-			#if _XLIB_PIPE_OLD
-				::close(pipeOut[FdIndex::Write]);
-				iRv = ::dup2(pipeOut[FdIndex::Read], STDIN_FILENO);
-				xTEST_DIFF(iRv, - 1);
-			#else
 				// pipeOut - for read
 				pipeOut.closeWrite();
 				iRv = ::dup2(pipeOut.handleRead(), STDIN_FILENO);
@@ -178,22 +173,17 @@ Process::_create_impl(
 				pipeErr.closeWrite();
 				iRv = ::dup2(pipeErr.handleRead(), STDIN_FILENO);
 				xTEST_DIFF(iRv, - 1);
-			#endif
 			}
 
+			// reads
 			*out_stdOut   += pipeOut.readAll();
 			*out_stdError += pipeErr.readAll();
 
 			// wait
 			{
-			#if 0
-				::waitpid(pid, nullptr, 0);
-				::close(pipeOut[FdIndex::Read]);
-			#else
 				// ::waitpid(pid, nullptr, 0);
 				pipeOut.closeRead();
 				pipeErr.closeRead();
-			#endif
 			}
 		}
 
