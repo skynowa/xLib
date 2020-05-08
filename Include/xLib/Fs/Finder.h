@@ -49,7 +49,7 @@ xPUBLIC_STATIC:
     static
 	std::tstring_t file(std::cvec_tstring_t &rootDirPaths, std::ctstring_t &shellFilter,
                           cbool_t isRecursively);
-        ///< search file in directories
+        ///< search file in directories (by priority)
 
 private:
     struct _Entry
