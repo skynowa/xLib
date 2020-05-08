@@ -127,6 +127,7 @@
 #include <xLib/Sync/Mutex.h>
 #include <xLib/Sync/Semaphore.h>
 #include <xLib/Sync/SharedMemory.h>
+#include <xLib/Sync/Pipe.h>
 #include <xLib/Sync/Sleeper.h>
 #include <xLib/Sync/Thread.h>
 #include <xLib/Sync/ThreadPool.h>
