@@ -26,6 +26,7 @@ public:
     const HandleNative & handle() const override;
         ///< get handle
     void_t   create() override;
+    void_t   close() override;
 
 private:
     HandleNative _handle {};    ///< native handle
@@ -33,9 +34,8 @@ private:
     xNO_COPY_ASSIGN(Pipe)
 
 xPLATFORM_IMPL:
-    void_t _construct_impl();
-    void_t _destruct_impl();
     void_t _create_impl();
+    void_t _close_impl();
 };
 
 xNAMESPACE_END2(xl, sync)
