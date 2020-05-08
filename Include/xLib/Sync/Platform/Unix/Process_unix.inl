@@ -65,13 +65,6 @@ Process::_create_impl(
 		xTEST_DIFF(iRv, - 1);
 		xCHECK_DO(iRv == -1, return);
 	}
-
-	int fdsOld[3] {};
-	if (out_stdOut != nullptr) {
-		fdsOld[0] = ::dup(STDIN_FILENO);
-		fdsOld[1] = ::dup(STDOUT_FILENO);
-		fdsOld[2] = ::dup(STDERR_FILENO);
-	}
 #else
 	Pipe pipeIn;
 	pipeIn.create();
@@ -207,14 +200,6 @@ Process::_create_impl(
 
 		break;
 	}
-
-#if _XLIB_PIPE_OLD
-	if (out_stdOut != nullptr) {
-		::dup2(STDIN_FILENO,  fdsOld[0]);
-		::dup2(STDOUT_FILENO, fdsOld[1]);
-		::dup2(STDERR_FILENO, fdsOld[2]);
-	}
-#endif
 
 	_handle = pid;
 	_pid    = pid;
