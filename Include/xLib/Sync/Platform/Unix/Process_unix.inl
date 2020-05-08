@@ -190,8 +190,8 @@ Process::_wait_impl(
     // TODO: [skynowa] Process::_wait_impl() - a_timeoutMsec
     // Thread::currentSleep(a_timeoutMsec);
 
-    pid_t pid    {- 1L};
     int_t status {};
+    pid_t pid    {- 1L};
 
    /**
 	* NativeError
