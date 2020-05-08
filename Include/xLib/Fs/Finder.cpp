@@ -212,7 +212,7 @@ Finder::files(
 std::tstring_t
 Finder::file(
 	std::cvec_tstring_t &a_rootDirPaths,
-	std::ctstring_t    &a_shellFilter,
+	std::ctstring_t     &a_shellFilter,
     cbool_t              a_isRecursively
 )
 {
