@@ -191,7 +191,6 @@ Process::_wait_impl(
     // Thread::currentSleep(a_timeoutMsec);
 
     int_t status {};
-    pid_t pid    {- 1L};
 
    /**
 	* NativeError
@@ -203,6 +202,9 @@ Process::_wait_impl(
 	* EINVAL - The value of options is incorrect.
 	*/
 
+    pid_t pid {- 1L};
+
+#if 0
 	do {
 		pid = ::waitpid(_pid, &status, WNOHANG);
 	}
@@ -211,11 +213,27 @@ Process::_wait_impl(
 
 	_exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
 	waitStatus  = static_cast<WaitStatus>( WEXITSTATUS(status) );
+#else
+	do {
+		pid = ::waitpid(pid, &status, WNOHANG);
+		if      (pid == -1) {
+			::perror("wait() error");
+		}
+		else if (pid == 0) {
+			puts("child is still running");
+		}
+		else {
+			if ( WIFEXITED(status) )
+				printf("child exited with status of %d (%d)\n", WEXITSTATUS(status), status);
+			else
+				puts("child did not exit successfully");
+		}
+	}
+	while (pid == 0);
 
-	if ( WIFEXITED(status) )
-		printf("child exited with status of %d (%d)\n", WEXITSTATUS(status), status);
-	else
-		puts("child did not exit successfully");
+	_exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
+	waitStatus  = static_cast<WaitStatus>( WEXITSTATUS(status) );
+#endif
 
 	return waitStatus;
 }
