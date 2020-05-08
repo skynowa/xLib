@@ -93,8 +93,8 @@ Process::_create_impl(
 				envs.push_back(nullptr);
 			}
 
-			// close all other inherited descriptors child doesn't need
 			if (out_stdOut != nullptr) {
+				// close all other inherited descriptors child doesn't need
 			#if _XLIB_PIPE_OLD
 				::close(pipeOut[FdIndex::Read]);
 
