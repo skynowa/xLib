@@ -190,19 +190,34 @@ Process::_wait_impl(
     // TODO: [skynowa] Process::_wait_impl() - a_timeoutMsec
     // Thread::currentSleep(a_timeoutMsec);
 
-    pid_t liRv   {- 1L};
+    pid_t pid    {- 1L};
     int_t status {};
 
-    do {
-        liRv = ::waitpid(_pid, &status, 0);
-    }
-    while (liRv < 0L && NativeError::get() == EINTR);
-    xTEST_EQ(liRv, _pid);
+   /**
+	* NativeError
+	*
+	* ECHILD - The process specified by pid does not exist or is not a child of the calling process,
+	*          or the process group specified by pid does not exist or does not have any member
+	*          process that is a child of the calling process.
+	* EINTR  - waitpid() was interrupted by a signal. The value of *status_ptr is undefined.
+	* EINVAL - The value of options is incorrect.
+	*/
 
-    _exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
-    waitStatus  = static_cast<WaitStatus>( WEXITSTATUS(status) );
+	do {
+		pid = ::waitpid(_pid, &status, WNOHANG);
+	}
+	while (pid < 0L && NativeError::get() == EINTR);
+	xTEST_EQ(pid, _pid);
 
-    return waitStatus;
+	_exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
+	waitStatus  = static_cast<WaitStatus>( WEXITSTATUS(status) );
+
+	if ( WIFEXITED(status) )
+		printf("child exited with status of %d (%d)\n", WEXITSTATUS(status), status);
+	else
+		puts("child did not exit successfully");
+
+	return waitStatus;
 }
 //-------------------------------------------------------------------------------------------------
 void_t

@@ -38,7 +38,7 @@ Test_Process::unit()
         Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
         xTEST_EQ((int)Process::WaitStatus::Abandoned, (int)wrRes);
     }
-
+return true;
     xTEST_CASE("kill")
     {
     #if   xENV_WIN
