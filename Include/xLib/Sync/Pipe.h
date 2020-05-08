@@ -31,6 +31,14 @@ public:
 private:
     HandleNative _handle {};    ///< native handle
 
+    enum FdIndex : std::size_t
+    {
+    	Read  = 0,
+    	Write = 1
+    };
+
+    std::vector<int_t> _handles;	///< native handles
+
     xNO_COPY_ASSIGN(Pipe)
 
 xPLATFORM_IMPL:
