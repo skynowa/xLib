@@ -190,8 +190,8 @@ Process::_wait_impl(
     // TODO: [skynowa] Process::_wait_impl() - a_timeoutMsec
     // Thread::currentSleep(a_timeoutMsec);
 
-    pid_t liRv   = - 1L;
-    int_t status = 0;
+    pid_t liRv   {- 1L};
+    int_t status {};
 
     do {
         liRv = ::waitpid(_pid, &status, 0);
