@@ -23,6 +23,16 @@ Pipe::_create_impl()
     _handle = iRv;
 }
 //-------------------------------------------------------------------------------------------------
+ssize_t
+Pipe::_read_impl(
+	cint_t        a_handleRead,	///<
+	void_t       *out_buff,		///< [out]
+	const size_t  a_buffSize	///<
+) const
+{
+	return ::read(a_handleRead, out_buff, a_buffSize);
+}
+//-------------------------------------------------------------------------------------------------
 void_t
 Pipe::_close_impl(
 	cCloseMode a_mode

@@ -189,37 +189,8 @@ Process::_create_impl(
 			#endif
 			}
 
-			auto _pipeAppend = [](cint_t a_pipeRead, std::tstring_t *out_stdStream) -> void
-			{
-				xTEST_GR(a_pipeRead, 0);
-				xTEST_NA(out_stdStream);
-
-				if (out_stdStream == nullptr) {
-					return;
-				}
-
-				constexpr std::size_t buffSize {1024 * 10};
-
-				for (ssize_t readSize = 1; readSize > 0; ) {
-					// Cout() << "ParentOk - Start read: " << a_pipeRead;
-
-					char buff[buffSize + 1] {};
-					readSize = ::read(a_pipeRead, buff, buffSize);
-
-					// Cout() << "ParentOk - Stop read, " << xTRACE_VAR(readSize);
-
-					if (readSize == - 1L) {
-						xTEST_FAIL;
-						break;
-					}
-
-					// [out]
-					out_stdStream->append(buff, readSize);
-				} // for
-			};
-
-			_pipeAppend(pipeOut.handleRead(), out_stdOut);
-			_pipeAppend(pipeErr.handleRead(), out_stdError);
+			*out_stdOut   += pipeOut.readAll();
+			*out_stdError += pipeErr.readAll();
 
 			// wait
 			{

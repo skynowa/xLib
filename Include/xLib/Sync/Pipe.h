@@ -28,6 +28,9 @@ public:
     const int_t & handleWrite() const;
 
     void_t   create() override;
+
+    std::tstring_t readAll() const;
+
     void_t   close() override;
     void_t   closeRead();
     void_t   closeWrite();
@@ -60,7 +63,8 @@ xPLATFORM_IMPL:
 	};
     xUSING_CONST(CloseMode);
 
-    void_t _close_impl(cCloseMode mode);
+    ssize_t _read_impl(cint_t handleRead, void_t *buff, const size_t buffSize) const;
+    void_t  _close_impl(cCloseMode mode);
 };
 
 xNAMESPACE_END2(xl, sync)
