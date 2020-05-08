@@ -47,16 +47,17 @@ Process::_create_impl(
 		ParentOk          ///< value > 0, creates a new child process (waitpid)
 	};
 
+
+	#define _XLIB_PIPE_OLD 0
+
+	// Create pipes
+#if _XLIB_PIPE_OLD
 	enum FdIndex : std::size_t
 	{
 		Read  = 0,
 		Write = 1
 	};
 
-	#define _XLIB_PIPE_OLD 0
-
-	// Create pipes
-#if _XLIB_PIPE_OLD
 	int pipeOut[2] {}; // See FdIndex
 
 	if (out_stdOut != nullptr) {
@@ -72,17 +73,14 @@ Process::_create_impl(
 		fdsOld[2] = ::dup(STDERR_FILENO);
 	}
 #else
-	int pipeIn[2] {};	// See FdIndex
-	iRv = ::pipe(pipeIn);
-	xTEST_DIFF(iRv, - 1);
+	Pipe pipeIn;
+	pipeIn.create();
 
-	int pipeOut[2] {};	// See FdIndex
-	iRv = ::pipe(pipeOut);
-	xTEST_DIFF(iRv, - 1);
+	Pipe pipeOut;
+	pipeOut.create();
 
-	int pipeErr[2] {};	// See FdIndex
-	iRv = ::pipe(pipeErr);
-	xTEST_DIFF(iRv, - 1);
+	Pipe pipeErr;
+	pipeErr.create();
 #endif
 
 	// Create process
@@ -130,14 +128,14 @@ Process::_create_impl(
 				::dup2(pipeOut[FdIndex::Write], STDOUT_FILENO);
 				::dup2(pipeOut[FdIndex::Write], STDERR_FILENO);
 			#else
-				::dup2(pipeIn[FdIndex::Read],   STDIN_FILENO);
-				::dup2(pipeOut[FdIndex::Write], STDOUT_FILENO);
-				::dup2(pipeErr[FdIndex::Write], STDERR_FILENO);
+				::dup2(pipeIn.handleRead(),   STDIN_FILENO);
+				::dup2(pipeOut.handleWrite(), STDOUT_FILENO);
+				::dup2(pipeErr.handleWrite(), STDERR_FILENO);
 
 				// close all other inherited descriptors child doesn't need
-				::close(pipeIn[FdIndex::Read]);
-				::close(pipeOut[FdIndex::Write]);
-				::close(pipeErr[FdIndex::Write]);
+				pipeIn.closeRead();
+				pipeOut.closeWrite();
+				pipeErr.closeWrite();
 			#endif
 			}
 
@@ -179,13 +177,14 @@ Process::_create_impl(
 				xTEST_DIFF(iRv, - 1);
 			#else
 				// pipeOut - for read
-				::close(pipeOut[FdIndex::Write]);
-				iRv = ::dup2(pipeOut[FdIndex::Read], STDIN_FILENO);
+				pipeOut.closeWrite();
+
+				iRv = ::dup2(pipeOut.handleRead(), STDIN_FILENO);
 				xTEST_DIFF(iRv, - 1);
 
 				// pipeErr - for read
-				::close(pipeErr[FdIndex::Write]);
-				iRv = ::dup2(pipeErr[FdIndex::Read], STDIN_FILENO);
+				pipeErr.closeWrite();
+				iRv = ::dup2(pipeErr.handleRead(), STDIN_FILENO);
 				xTEST_DIFF(iRv, - 1);
 			#endif
 			}
@@ -219,8 +218,8 @@ Process::_create_impl(
 				} // for
 			};
 
-			_pipeAppend(pipeOut[FdIndex::Read], out_stdOut);
-			_pipeAppend(pipeErr[FdIndex::Read], out_stdError);
+			_pipeAppend(pipeOut.handleRead(), out_stdOut);
+			_pipeAppend(pipeErr.handleRead(), out_stdError);
 
 			// wait
 			{
@@ -229,8 +228,8 @@ Process::_create_impl(
 				::close(pipeOut[FdIndex::Read]);
 			#else
 				// ::waitpid(pid, nullptr, 0);
-				::close(pipeOut[FdIndex::Read]);
-				::close(pipeErr[FdIndex::Read]);
+				pipeOut.closeRead();
+				pipeErr.closeRead();
 			#endif
 			}
 		}
