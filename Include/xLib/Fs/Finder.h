@@ -39,15 +39,15 @@ public:
 
 xPUBLIC_STATIC:
     static
-    void_t            dirs(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter,
+    void_t         dirs(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter,
                           cbool_t isRecursively, std::vec_tstring_t *dirPaths);
         ///< search subdirectories
     static
-    void_t            files(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter,
+    void_t         files(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter,
                           cbool_t isRecursively, std::vec_tstring_t *filePaths);
         ///< search files
     static
-	std::tstring_t    file(std::cvec_tstring_t &rootDirPaths, std::ctstring_t &shellFilter,
+	std::tstring_t file(std::cvec_tstring_t &rootDirPaths, std::ctstring_t &shellFilter,
                           cbool_t isRecursively);
         ///< search file in directories
 
