@@ -94,7 +94,8 @@ Test_Finder::unit()
                 xCHECK_DO(Const::dot2() == finder.entryName(), continue);
 
                 // set filter for files
-                xCHECK_DO(static_cast<int_t>(FileType::Type::faDirectory) & finder.fileTypes(), continue);
+                xCHECK_DO(static_cast<int_t>(FileType::Type::faDirectory) & finder.fileTypes(),
+                	continue);
                 xTEST_EQ(File::isExists( finder.entryPath() ), true);
 
                 entries.push_back(finder.entryName());
@@ -208,7 +209,7 @@ Test_Finder::unit()
 
 		for (auto &it_data : data_) {
 			m_sRv = Finder::file(it_data.dirPaths, it_data.fileName, it_data.isRecursively);
-			Cout() << xTRACE_VAR(m_sRv);
+			// Cout() << xTRACE_VAR(m_sRv);
 			xTEST_EQ(m_sRv, it_data.expect);
 		}
 	}
