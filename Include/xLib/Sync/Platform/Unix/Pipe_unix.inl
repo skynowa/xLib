@@ -28,31 +28,27 @@ Pipe::_close_impl(
 	cCloseMode a_mode
 )
 {
-	int_t iRv {};
+	auto handleClose = [this] (FdIndex a_index) -> void
+	{
+		auto &h = _handles[a_index];
+		if (h == 0) {
+			return;
+		}
+
+		int_t iRv = ::close(h);	h = 0;
+		xTEST_EQ(iRv, 0);
+	};
 
 	switch (a_mode) {
 	case CloseMode::Read:
-		if (auto &h = _handles[FdIndex::Read]; h != 0) {
-			iRv = ::close(h);	h = 0;
-			xTEST_EQ(iRv, 0);
-		}
+		handleClose(FdIndex::Read);
 		break;
 	case CloseMode::Write:
-		if (auto &h = _handles[FdIndex::Write]; h != 0) {
-			iRv = ::close(h);	h = 0;
-			xTEST_EQ(iRv, 0);
-		}
+		handleClose(FdIndex::Write);
 		break;
 	case CloseMode::All:
-		if (auto &h = _handles[FdIndex::Read]; h != 0) {
-			iRv = ::close(h);	h = 0;
-			xTEST_EQ(iRv, 0);
-		}
-
-		if (auto &h = _handles[FdIndex::Write]; h != 0) {
-			iRv = ::close(h);	h = 0;
-			xTEST_EQ(iRv, 0);
-		}
+		handleClose(FdIndex::Read);
+		handleClose(FdIndex::Write);
 		break;
 	}
 }
