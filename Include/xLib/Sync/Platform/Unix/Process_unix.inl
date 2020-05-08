@@ -73,7 +73,6 @@ Process::_create_impl(
 	case ProcessStatus::ChildOk:
 		{
 			// Cout() << "\n::::: ChildOk :::::";
-			// printf("[CHILD] PID: %d, parent PID: %d\n", getpid(), getppid());
 
 			std::vector<char *> cmds;
 			{
@@ -108,7 +107,7 @@ Process::_create_impl(
 				::dup2(pipeOut.handleWrite(), STDOUT_FILENO);
 				::dup2(pipeErr.handleWrite(), STDERR_FILENO);
 
-				// close all other inherited descriptors child doesn't need
+				// TODO: close all other inherited descriptors child doesn't need ?????????
 				pipeIn.closeRead();
 				pipeOut.closeWrite();
 				pipeErr.closeWrite();
