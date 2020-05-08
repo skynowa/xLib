@@ -192,7 +192,7 @@ Test_Finder::unit()
 			std::ctstring_t     expect;
 		};
 
-		const DataN data_[]
+		const DataN data[]
 		{
 		#if   xENV_WIN
 			{{xT("C:\\Windows\\System32\\Temp"), xT("C:\\Windows\\System32")},
@@ -207,7 +207,7 @@ Test_Finder::unit()
 		#endif
 		};
 
-		for (auto &it_data : data_) {
+		for (auto &it_data : data) {
 			m_sRv = Finder::file(it_data.dirPaths, it_data.fileName, it_data.isRecursively);
 			// Cout() << xTRACE_VAR(m_sRv);
 			xTEST_EQ(m_sRv, it_data.expect);
