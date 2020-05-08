@@ -32,23 +32,25 @@ Pipe::_close_impl(
 
 	switch (a_mode) {
 	case CloseMode::Read:
-		{
-			iRv = ::close(_handles[FdIndex::Read]);
+		if (auto &h = _handles[FdIndex::Read]; h != 0) {
+			iRv = ::close(h);	h = 0;
 			xTEST_EQ(iRv, 0);
 		}
 		break;
 	case CloseMode::Write:
-		{
-			iRv = ::close(_handles[FdIndex::Write]);
+		if (auto &h = _handles[FdIndex::Write];h != 0) {
+			iRv = ::close(h);	h = 0;
 			xTEST_EQ(iRv, 0);
 		}
 		break;
 	case CloseMode::All:
-		{
-			iRv = ::close(_handles[FdIndex::Read]);
+		if (auto &h = _handles[FdIndex::Read]; h != 0) {
+			iRv = ::close(h);	h = 0;
 			xTEST_EQ(iRv, 0);
+		}
 
-			iRv = ::close(_handles[FdIndex::Write]);
+		if (auto &h = _handles[FdIndex::Write];h != 0) {
+			iRv = ::close(h);	h = 0;
 			xTEST_EQ(iRv, 0);
 		}
 		break;
