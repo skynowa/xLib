@@ -27,23 +27,39 @@ public:
         ///< get handle
     void_t   create() override;
     void_t   close() override;
+    void_t   closeRead();
+    void_t   closeWrite();
 
 private:
     HandleNative _handle {};    ///< native handle
 
-    enum FdIndex : std::size_t
-    {
-    	Read  = 0,
-    	Write = 1
-    };
+#if   xENV_WIN
+	// TODO:
+#elif xENV_UNIX
+	enum FdIndex : std::size_t
+	{
+		Read  = 0,
+		Write = 1
+	};
 
-    std::vector<int_t> _handles;	///< native handles
+	std::vector<int_t> _handles;	///< native handles
+#endif
 
     xNO_COPY_ASSIGN(Pipe)
 
 xPLATFORM_IMPL:
     void_t _create_impl();
-    void_t _close_impl();
+
+    enum class CloseMode
+	{
+		Unknown = 0,
+		Read    = 1,
+		Write   = 2,
+		All     = 3
+	};
+    xUSING_CONST(CloseMode);
+
+    void_t _close_impl(cCloseMode mode);
 };
 
 xNAMESPACE_END2(xl, sync)
