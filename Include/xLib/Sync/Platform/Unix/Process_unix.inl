@@ -171,7 +171,6 @@ Process::_create_impl(
 			#else
 				// pipeOut - for read
 				pipeOut.closeWrite();
-
 				iRv = ::dup2(pipeOut.handleRead(), STDIN_FILENO);
 				xTEST_DIFF(iRv, - 1);
 
