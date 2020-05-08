@@ -15,9 +15,9 @@ class Pipe
 {
 public:
 #if   xENV_WIN
-    using handle_t = CRITICAL_SECTION;
+    using handle_t = HANDLE;
 #elif xENV_UNIX
-    using handle_t = pthread_mutex_t;
+    using handle_t = int_t;
 #endif
 
              Pipe();
