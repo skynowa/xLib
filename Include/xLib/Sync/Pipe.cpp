@@ -10,14 +10,6 @@
     #include "Platform/Win/Pipe_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/Pipe_unix.inl"
-
-    #if   xENV_LINUX
-        // #include "Platform/Linux/Pipe_linux.inl"
-    #elif xENV_BSD
-        // #include "Platform/Bsd/Pipe_bsd.inl"
-    #elif xENV_APPLE
-        // #include "Platform/Apple/Pipe_apple.inl"
-    #endif
 #endif
 
 
@@ -39,7 +31,7 @@ Pipe::~Pipe()
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-const Pipe::handle_t &
+const HandleNative &
 Pipe::handle() const
 {
     return _handle;
