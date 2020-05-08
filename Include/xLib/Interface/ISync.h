@@ -25,6 +25,8 @@ public:
         ///< get handle
     virtual void_t    create() = 0;
         ///< create
+    virtual void_t    close() = 0;
+        ///< close
 };
 
 xNAMESPACE_END2(xl, interface)
