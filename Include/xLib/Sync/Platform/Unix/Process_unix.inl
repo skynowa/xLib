@@ -183,9 +183,9 @@ Process::_wait_impl(
     culong_t &a_timeoutMsec
 )
 {
-    WaitStatus waitStatus = WaitStatus::Failed;
-
     xUNUSED(a_timeoutMsec);
+
+    WaitStatus waitStatus = WaitStatus::Failed;
 
     // TODO: [skynowa] Process::_wait_impl() - a_timeoutMsec
     // Thread::currentSleep(a_timeoutMsec);
