@@ -38,7 +38,7 @@ Pipe::_close_impl(
 		}
 		break;
 	case CloseMode::Write:
-		if (auto &h = _handles[FdIndex::Write];h != 0) {
+		if (auto &h = _handles[FdIndex::Write]; h != 0) {
 			iRv = ::close(h);	h = 0;
 			xTEST_EQ(iRv, 0);
 		}
@@ -49,7 +49,7 @@ Pipe::_close_impl(
 			xTEST_EQ(iRv, 0);
 		}
 
-		if (auto &h = _handles[FdIndex::Write];h != 0) {
+		if (auto &h = _handles[FdIndex::Write]; h != 0) {
 			iRv = ::close(h);	h = 0;
 			xTEST_EQ(iRv, 0);
 		}
