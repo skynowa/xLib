@@ -47,25 +47,9 @@ Process::_create_impl(
 		ParentOk          ///< value > 0, creates a new child process (waitpid)
 	};
 
-
 	#define _XLIB_PIPE_OLD 0
 
 	// Create pipes
-#if _XLIB_PIPE_OLD
-	enum FdIndex : std::size_t
-	{
-		Read  = 0,
-		Write = 1
-	};
-
-	int pipeOut[2] {}; // See FdIndex
-
-	if (out_stdOut != nullptr) {
-		iRv = ::pipe(pipeOut);
-		xTEST_DIFF(iRv, - 1);
-		xCHECK_DO(iRv == -1, return);
-	}
-#else
 	Pipe pipeIn;
 	pipeIn.create();
 
@@ -74,7 +58,6 @@ Process::_create_impl(
 
 	Pipe pipeErr;
 	pipeErr.create();
-#endif
 
 	// Create process
 	const pid_t pid = ::fork();
