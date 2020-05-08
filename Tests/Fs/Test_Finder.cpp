@@ -181,6 +181,38 @@ Test_Finder::unit()
         }
     }
 
+	xTEST_CASE("file")
+	{
+		struct DataN
+		{
+			std::cvec_tstring_t dirPaths;
+			std::ctstring_t     fileName;
+			cbool_t             isRecursively;
+			std::ctstring_t     expect;
+		};
+
+		const DataN data_[]
+		{
+		#if   xENV_WIN
+			{{xT("C:\\Windows\\System32\\Temp"), xT("C:\\Windows\\System32")},
+				xT("attrib.exe"),
+				false,
+				xT("C:\\Windows\\System32\\attrib.exe")}
+		#elif xENV_UNIX
+			{{xT("/usr/include"), xT("/usr/local/include"), xT("/usr/bin")},
+				xT("git"),
+				false,
+				xT("/usr/bin/git")}
+		#endif
+		};
+
+		for (auto &it_data : data_) {
+			m_sRv = Finder::file(it_data.dirPaths, it_data.fileName, it_data.isRecursively);
+			Cout() << xTRACE_VAR(m_sRv);
+			xTEST_EQ(m_sRv, it_data.expect);
+		}
+	}
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------

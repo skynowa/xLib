@@ -141,7 +141,7 @@ void_t
 Finder::dirs(
     std::ctstring_t    &a_rootDirPath,   ///< target root dir
     std::ctstring_t    &a_shellFilter,   ///< shell wildcard pattern
-    cbool_t            &a_isRecursively, ///< is recursive search
+    cbool_t             a_isRecursively, ///< is recursive search
     std::vec_tstring_t *a_dirPaths       ///< result dir paths
 )
 {
@@ -173,7 +173,7 @@ void_t
 Finder::files(
     std::ctstring_t    &a_rootDirPath,   ///< target root dir
     std::ctstring_t    &a_shellFilter,   ///< shell wildcard pattern
-    cbool_t            &a_isRecursively, ///< is recursive search
+    cbool_t             a_isRecursively, ///< is recursive search
     std::vec_tstring_t *a_filePaths      ///< result file paths
 )
 {
@@ -208,7 +208,27 @@ Finder::files(
     }
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Finder::file(
+	std::cvec_tstring_t &a_rootDirPaths,
+	std::ctstring_t    &a_shellFilter,
+    cbool_t              a_isRecursively
+)
+{
+	for (const auto &it_rootDirPath : a_rootDirPaths) {
+		std::vec_tstring_t outFles;
+		files(it_rootDirPath, a_shellFilter, a_isRecursively, &outFles);
+		if ( outFles.empty() ) {
+			continue;
+		}
 
+		return outFles.front();
+	}
+
+	return {};
+}
+//-------------------------------------------------------------------------------------------------
 
 /**************************************************************************************************
 *   private
