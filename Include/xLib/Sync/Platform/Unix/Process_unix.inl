@@ -231,7 +231,7 @@ Process::_wait_impl(
 
 				// WEXITSTATUS - macro should be employed only if WIFEXITED returned true
 				_exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
-				waitStatus  = WaitStatus::Object0;
+				waitStatus  = WaitStatus::Ok;
 			} else {
 				Cout() << "Child - did not exit successfully";
 
