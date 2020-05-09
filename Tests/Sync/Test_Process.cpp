@@ -39,7 +39,7 @@ Test_Process::unit()
         xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Object0);
         xTEST_DIFF((int)wrRes, (int)Process::WaitStatus::Abandoned);
     }
-return true;
+
     xTEST_CASE("kill")
     {
     #if   xENV_WIN
