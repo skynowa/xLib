@@ -36,8 +36,8 @@ Test_Process::unit()
 		Cout() << xTRACE_VAR(stdError);
 
         Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
-        xTEST_EQ((int)Process::WaitStatus::Object0, (int)wrRes);
-        xTEST_DIFF((int)Process::WaitStatus::Abandoned, (int)wrRes);
+        xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Object0);
+        xTEST_DIFF((int)wrRes, (int)Process::WaitStatus::Abandoned);
     }
 return true;
     xTEST_CASE("kill")
@@ -100,14 +100,14 @@ return true;
     xTEST_CASE("idByHandle")
     {
         Process::id_t id = Process::idByHandle( Process::currentHandle() );
-        xTEST_DIFF(0UL, static_cast<ulong_t>( id ));
+        xTEST_DIFF(static_cast<ulong_t>(id), 0UL);
     }
 
     xTEST_CASE("handleById")
     {
     #if xTODO
         Process::handle_t hHandle = Process::handleById( Process::currentId() );
-        xTEST_EQ(true, Handle(hHandle).isValid());
+        xTEST(Handle(hHandle).isValid());
     #endif
     }
 
@@ -116,7 +116,7 @@ return true;
         std::ctstring_t procName = Path( Path::exe() ).fileName();
 
         Process::id_t id = Process::idByName(procName);
-        xTEST_DIFF(0UL, static_cast<ulong_t>( id ));
+        xTEST_DIFF(static_cast<ulong_t>(id), 0UL);
 
         // Cout() << xTRACE_VAR(id);
     }
@@ -134,19 +134,19 @@ return true;
     xTEST_CASE("isRunning")
     {
         m_bRv = Process::isRunning( Process::currentId() );
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("currentId")
     {
         Process::id_t ulRv = Process::currentId();
-        xTEST_LESS(0UL, static_cast<ulong_t>( ulRv ));
+        xTEST_GR_EQ(static_cast<ulong_t>(ulRv), 0UL);
     }
 
     xTEST_CASE("currentParentId")
     {
         Process::id_t ulRv = Process::currentParentId();
-        xTEST_LESS(0UL, static_cast<ulong_t>( ulRv ));
+        xTEST_GR_EQ(static_cast<ulong_t>(ulRv), 0UL);
     }
 
 	xTEST_CASE("execute")
