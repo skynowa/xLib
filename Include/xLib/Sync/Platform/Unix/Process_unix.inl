@@ -190,16 +190,6 @@ Process::_wait_impl(
     // TODO: [skynowa] Process::_wait_impl() - a_timeoutMsec
     // Thread::currentSleep(a_timeoutMsec);
 
-   /**
-	* NativeError
-	*
-	* ECHILD - The process specified by pid does not exist or is not a child of the calling process,
-	*          or the process group specified by pid does not exist or does not have any member
-	*          process that is a child of the calling process.
-	* EINTR  - waitpid() was interrupted by a signal. The value of *status_ptr is undefined.
-	* EINVAL - The value of options is incorrect.
-	*/
-
     pid_t pid {};
 
 #if 0
@@ -216,6 +206,17 @@ Process::_wait_impl(
 		int_t status {};
 		pid = ::waitpid(pid, &status, WNOHANG);
 		if      (pid == -1) {
+		   /**
+			* If unsuccessful, waitpid() returns -1 and sets errno to one of the following values:
+			*
+			* ECHILD - The process specified by pid does not exist or
+			*          is not a child of the calling process, or
+			*          the process group specified by pid does not exist or
+			*          does not have any member process that is a child of the calling process
+			* EINTR  - waitpid() was interrupted by a signal. The value of *status_ptr is undefined
+			* EINVAL - The value of options is incorrect
+			*/
+
 			Cout() << "wait() - error";
 
 			_exitStatus = NativeError::get();
