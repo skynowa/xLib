@@ -198,7 +198,7 @@ Process::_wait_impl(
 
 	do {
 		int_t status {};
-		iRv = ::waitpid(_pid, &status, WNOHANG);
+		iRv = ::waitpid(_pid, &status, WUNTRACED | WCONTINUED /* or WNOHANG */ );
 		if      (iRv == -1) {
 		   /**
 			* If unsuccessful, waitpid() returns -1 and sets errno to one of the following values:
