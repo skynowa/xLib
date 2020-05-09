@@ -192,16 +192,6 @@ Process::_wait_impl(
 
     pid_t pid {};
 
-#if 0
-	do {
-		pid = ::waitpid(_pid, &status, WNOHANG);
-	}
-	while (pid < 0L && NativeError::get() == EINTR);
-	xTEST_EQ(pid, _pid);
-
-	_exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
-	waitStatus  = static_cast<WaitStatus>( WEXITSTATUS(status) );
-#else
 	do {
 		int_t status {};
 		pid = ::waitpid(pid, &status, WNOHANG);
@@ -252,7 +242,6 @@ Process::_wait_impl(
 		}
 	}
 	while (pid == 0);
-#endif
 
 	return waitStatus;
 }
