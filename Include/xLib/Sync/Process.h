@@ -41,12 +41,12 @@ public:
     {
     #if   xENV_WIN
         Failed    = WAIT_FAILED,    // 0xFFFFFFFF
-        Object0   = WAIT_OBJECT_0,  // 0x00000000L
+        Object0   = WAIT_OBJECT_0,  // 0x00000000L (Ok)
         Abandoned = WAIT_ABANDONED,	// 0x00000080L (Not Ok)
         Timeout   = WAIT_TIMEOUT    // 0x00000102L
     #elif xENV_UNIX
         Failed    = - 1,
-        Object0   = 0,
+        Object0   = 0,	// (Ok)
         Abandoned = 1,
         Timeout   = 2
     #endif
