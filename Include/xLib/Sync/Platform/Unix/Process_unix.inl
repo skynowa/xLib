@@ -180,6 +180,7 @@ Process::_create_impl(
 //-------------------------------------------------------------------------------------------------
 /**
  * https://www.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.bpxbd00/rtwaip.htm
+ * https://linux.die.net/man/2/waitpid
  */
 Process::WaitStatus
 Process::_wait_impl(
