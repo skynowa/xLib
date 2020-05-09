@@ -178,6 +178,9 @@ Process::_create_impl(
 	// Cout() << "\n::::: Finished :::::";
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * https://www.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.bpxbd00/rtwaip.htm
+ */
 Process::WaitStatus
 Process::_wait_impl(
     culong_t &a_timeoutMsec
