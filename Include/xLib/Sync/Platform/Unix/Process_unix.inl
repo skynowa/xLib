@@ -230,6 +230,7 @@ Process::_wait_impl(
 			*/
 
 			xTEST_EQ(iRv, _pid);
+			xTEST_GR(iRv, 0);
 
 			if ( WIFEXITED(status) ) {
 				// Cout() << "Child - exited status: " << WEXITSTATUS(status) << " (" << status << ")";
