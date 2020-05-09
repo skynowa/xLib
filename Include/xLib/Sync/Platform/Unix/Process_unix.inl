@@ -190,12 +190,12 @@ Process::_wait_impl(
     // TODO: [skynowa] Process::_wait_impl() - a_timeoutMsec
     // Thread::currentSleep(a_timeoutMsec);
 
-    pid_t pid {};
+    pid_t iRv {-1};
 
 	do {
 		int_t status {};
-		pid = ::waitpid(pid, &status, WNOHANG);
-		if      (pid == -1) {
+		iRv = ::waitpid(_pid, &status, WNOHANG);
+		if      (iRv == -1) {
 		   /**
 			* If unsuccessful, waitpid() returns -1 and sets errno to one of the following values:
 			*
@@ -212,7 +212,7 @@ Process::_wait_impl(
 			_exitStatus = NativeError::get();
 			waitStatus  = WaitStatus::Failed;
 		}
-		else if (pid == 0) {
+		else if (iRv == 0) {
 		   /**
 			* If WNOHANG was given, and if there is at least one process (usually a child)
 			* whose status information is not available, waitpid() returns 0
@@ -225,6 +225,8 @@ Process::_wait_impl(
 			* If successful, waitpid() returns a value of the process (usually a child)
 			* whose status information has been obtained
 			*/
+
+			xTEST_EQ(iRv, _pid);
 
 			if ( WIFEXITED(status) ) {
 				// Cout() << "Child - exited status: " << WEXITSTATUS(status) << " (" << status << ")";
@@ -240,7 +242,7 @@ Process::_wait_impl(
 			}
 		}
 	}
-	while (pid == 0);
+	while (iRv == 0);
 
 	return waitStatus;
 }
