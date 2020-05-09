@@ -216,23 +216,24 @@ Process::_wait_impl(
 		int_t status {};
 		pid = ::waitpid(pid, &status, WNOHANG);
 		if      (pid == -1) {
-			::perror("wait() error");
+			Cout() << "wait() - error";
 
 			_exitStatus = NativeError::get();
 			waitStatus  = WaitStatus::Failed;
 		}
 		else if (pid == 0) {
-			puts("child is still running");
+			Cout() << "Child - running";
 		}
 		else {
 			if ( WIFEXITED(status) ) {
-				printf("child exited with status of %d (%d)\n", WEXITSTATUS(status), status);
+				Cout() << "Child - exited with status: "
+					<< WEXITSTATUS(status) << " (" << status << ")";
 
 				// WEXITSTATUS - macro should be employed only if WIFEXITED returned true
 				_exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
 				waitStatus  = WaitStatus::Object0;
 			} else {
-				puts("child did not exit successfully");
+				Cout() << "Child - did not exit successfully";
 
 				_exitStatus = NativeError::get();
 				waitStatus  = WaitStatus::Abandoned;
