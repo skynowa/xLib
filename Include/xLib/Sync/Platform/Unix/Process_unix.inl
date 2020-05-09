@@ -190,8 +190,6 @@ Process::_wait_impl(
     // TODO: [skynowa] Process::_wait_impl() - a_timeoutMsec
     // Thread::currentSleep(a_timeoutMsec);
 
-    int_t status {};
-
    /**
 	* NativeError
 	*
@@ -202,7 +200,7 @@ Process::_wait_impl(
 	* EINVAL - The value of options is incorrect.
 	*/
 
-    pid_t pid {- 1L};
+    pid_t pid {};
 
 #if 0
 	do {
@@ -215,24 +213,33 @@ Process::_wait_impl(
 	waitStatus  = static_cast<WaitStatus>( WEXITSTATUS(status) );
 #else
 	do {
+		int_t status {};
 		pid = ::waitpid(pid, &status, WNOHANG);
 		if      (pid == -1) {
 			::perror("wait() error");
+
+			_exitStatus = NativeError::get();
+			waitStatus  = WaitStatus::Failed;
 		}
 		else if (pid == 0) {
 			puts("child is still running");
 		}
 		else {
-			if ( WIFEXITED(status) )
+			if ( WIFEXITED(status) ) {
 				printf("child exited with status of %d (%d)\n", WEXITSTATUS(status), status);
-			else
+
+				// WEXITSTATUS - macro should be employed only if WIFEXITED returned true
+				_exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
+				waitStatus  = WaitStatus::Object0;
+			} else {
 				puts("child did not exit successfully");
+
+				_exitStatus = NativeError::get();
+				waitStatus  = WaitStatus::Abandoned;
+			}
 		}
 	}
 	while (pid == 0);
-
-	_exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
-	waitStatus  = static_cast<WaitStatus>( WEXITSTATUS(status) );
 #endif
 
 	return waitStatus;
