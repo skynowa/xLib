@@ -218,7 +218,7 @@ Process::_wait_impl(
 			* whose status information is not available, waitpid() returns 0
 			*/
 
-			Cout() << "Child - running";
+			// Cout() << "Child - running";
 		}
 		else {
 		   /**
@@ -227,8 +227,7 @@ Process::_wait_impl(
 			*/
 
 			if ( WIFEXITED(status) ) {
-				Cout() << "Child - exited with status: "
-					<< WEXITSTATUS(status) << " (" << status << ")";
+				// Cout() << "Child - exited status: " << WEXITSTATUS(status) << " (" << status << ")";
 
 				// WEXITSTATUS - macro should be employed only if WIFEXITED returned true
 				_exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
