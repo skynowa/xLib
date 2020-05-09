@@ -81,7 +81,7 @@ return true;
         xTEST_DIFF(hHandle, static_cast<Process::handle_t>(0));
 
         Process::id_t id = proc.id();
-        xTEST_LESS(static_cast<Process::id_t>(0), id);
+        xTEST_GR_EQ(id, static_cast<Process::id_t>(0));
 
         // name, setName
         std::ctstring_t procName = xT("Test_Process");
