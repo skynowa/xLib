@@ -36,7 +36,7 @@ Test_Process::unit()
 		Cout() << xTRACE_VAR(stdError);
 
         Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
-        xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Object0);
+        xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Ok);
         xTEST_DIFF((int)wrRes, (int)Process::WaitStatus::Abandoned);
     }
 
