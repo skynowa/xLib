@@ -233,13 +233,23 @@ Process::_wait_impl(
 			xTEST_EQ(iRv, _pid);
 			xTEST_GR(iRv, 0);
 
-			if ( WIFEXITED(status) ) {
+			if      ( WIFEXITED(status) ) {
 				// Cout() << "Child - exited status: " << WEXITSTATUS(status) << " (" << status << ")";
 
 				// WEXITSTATUS - macro should be employed only if WIFEXITED returned true
 				_exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
 				waitStatus  = WaitStatus::Ok;
-			} else {
+			}
+			else if ( WIFSIGNALED(status) ) {
+				printf("killed by signal %d\n", WTERMSIG(status));
+			}
+			else if ( WIFSTOPPED(status) ) {
+				printf("stopped by signal %d\n", WSTOPSIG(status));
+			}
+			else if ( WIFCONTINUED(status) ) {
+				printf("continued\n");
+			}
+			else {
 				Cout() << "Child - did not exit successfully";
 
 				_exitStatus = NativeError::get();
