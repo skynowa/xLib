@@ -241,13 +241,13 @@ Process::_wait_impl(
 				waitStatus  = WaitStatus::Ok;
 			}
 			else if ( WIFSIGNALED(status) ) {
-				printf("killed by signal %d\n", WTERMSIG(status));
+				Cout() << "Child - killed by signal " << WTERMSIG(status);
 			}
 			else if ( WIFSTOPPED(status) ) {
-				printf("stopped by signal %d\n", WSTOPSIG(status));
+				Cout() << "Child - stopped by signal " << WSTOPSIG(status);
 			}
 			else if ( WIFCONTINUED(status) ) {
-				printf("continued\n");
+				Cout() << "Child - continued";
 			}
 			else {
 				Cout() << "Child - did not exit successfully";
