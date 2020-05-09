@@ -223,9 +223,19 @@ Process::_wait_impl(
 			waitStatus  = WaitStatus::Failed;
 		}
 		else if (pid == 0) {
+		   /**
+			* If WNOHANG was given, and if there is at least one process (usually a child)
+			* whose status information is not available, waitpid() returns 0
+			*/
+
 			Cout() << "Child - running";
 		}
 		else {
+		   /**
+			* If successful, waitpid() returns a value of the process (usually a child)
+			* whose status information has been obtained
+			*/
+
 			if ( WIFEXITED(status) ) {
 				Cout() << "Child - exited with status: "
 					<< WEXITSTATUS(status) << " (" << status << ")";
