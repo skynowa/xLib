@@ -83,6 +83,9 @@ public:
         ///< set text color
     std::tstring_t setAttributesDef() const xWARN_UNUSED_RV;
         ///< reset text color to default
+    std::tstring_t setAttributesText(cForeground foreground, cBackground background,
+                       cint_t attributes, std::ctstring_t &str) const xWARN_UNUSED_RV;
+        ///< set text color, text, reset text color to default
 
     /*******************************************************************************
     *   Actions

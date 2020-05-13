@@ -71,6 +71,20 @@ Console::setAttributesDef() const
     return _setAttributesDef_impl();
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+Console::setAttributesText(
+    cForeground      a_foreground,
+    cBackground      a_background,
+    cint_t           a_attributes,
+    std::ctstring_t &a_str
+) const
+{
+	return
+		setAttributes(a_foreground, a_background, a_attributes) +
+		a_str +
+		setAttributesDef();
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
