@@ -123,13 +123,11 @@ xPUBLIC_STATIC:
         ///< language translation directory
 
     // info
-    xPROPERTY_STATIC(ApplicationInfo, info, Info);
-        ///< application information
-
     static
     const BuildInfo &buildInfo();
         ///< build information
-
+    xPROPERTY_STATIC(ApplicationInfo, info, Info);
+        ///< application information
 	xPROPERTY_STATIC(Donate, donate, Donate);
         ///< application donate
 
