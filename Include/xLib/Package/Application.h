@@ -67,6 +67,7 @@ public:
     virtual ExitCode onRun() = 0;
         ///< run handle
 
+xPUBLIC_STATIC:
     static
     void_t         exit(cExitCode status);
         ///< terminates the process normally, performing the regular cleanup,
