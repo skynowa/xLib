@@ -85,17 +85,6 @@ xPUBLIC_STATIC:
     void_t         abort();
         ///< aborts the current process, producing an abnormal program termination
 
-    // info
-    xPROPERTY_STATIC(ApplicationInfo, info, Info);
-        ///< application information
-
-    static
-    const BuildInfo &buildInfo();
-        ///< build information
-
-	xPROPERTY_STATIC(Donate, donate, Donate);
-        ///< application donate
-
     // files
     static
     std::tstring_t filePath();
@@ -132,6 +121,17 @@ xPUBLIC_STATIC:
     static
     std::tstring_t langDirPath();
         ///< language translation directory
+
+    // info
+    xPROPERTY_STATIC(ApplicationInfo, info, Info);
+        ///< application information
+
+    static
+    const BuildInfo &buildInfo();
+        ///< build information
+
+	xPROPERTY_STATIC(Donate, donate, Donate);
+        ///< application donate
 
 protected:
     bool_t          _isDevel {};
