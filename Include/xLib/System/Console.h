@@ -22,13 +22,13 @@ public:
     virtual ~Console();
         ///< destructor
 
-    void setColorSupport(cbool_t flag);
-        ///< force set color support (for PS1, etc)
-
     /*******************************************************************************
     *   Attributes
     *
     *******************************************************************************/
+
+    void setColorSupport(cbool_t flag);
+        ///< force set color support (for PS1, etc)
 
     enum class Foreground
         /// foreground (text) color
