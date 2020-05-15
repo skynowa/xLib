@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 bool_t
-Algos::startsWith(
+Algos::isStartsWith(
     std::ctstring_t &a_value,
     std::ctstring_t &a_prefix
 )
@@ -25,7 +25,7 @@ Algos::startsWith(
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Algos::endsWith(
+Algos::isEndsWith(
     std::ctstring_t &a_value,
     std::ctstring_t &a_suffix
 )

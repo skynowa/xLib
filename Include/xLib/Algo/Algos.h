@@ -35,10 +35,10 @@ public:
     void_t deleteAll(ContT &cont);
         ///< delete all values
     static
-    bool_t startsWith(std::ctstring_t &value, std::ctstring_t &prefix);
+    bool_t isStartsWith(std::ctstring_t &value, std::ctstring_t &prefix);
         ///< starts with
     static
-    bool_t endsWith(std::ctstring_t &value, std::ctstring_t &suffix);
+    bool_t isEndsWith(std::ctstring_t &value, std::ctstring_t &suffix);
         ///< ends with
     static
     bool_t contains(std::ctstring_t &value, std::ctstring_t &infix);
