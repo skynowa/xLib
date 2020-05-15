@@ -53,7 +53,7 @@ public:
         ///< determining if sorted container has all unique elements
     template<typename T>
     static
-    void_t remove(std::vector<T> &vec, const T &item);
+    void_t vectorRemove(std::vector<T> &vec, const T &item);
         ///< remove item from std::vector
 
 private:
