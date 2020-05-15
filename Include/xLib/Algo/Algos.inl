@@ -109,7 +109,7 @@ Algos::isUniqueAll(
 template<typename T>
 /* static */
 inline void_t
-Algos::remove(
+Algos::vectorRemove(
     std::vector<T> &a_vec,
     const T        &a_value
 )
