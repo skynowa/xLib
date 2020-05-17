@@ -27,12 +27,12 @@ template<typename ...ArgsT>
 /* static */
 inline std::tstring_t
 FormatT<StreamT>::str(
-	const std::tstring_t  &fmt,
-	ArgsT                &&...args
+	std::ctstring_t  &fmt,
+	ArgsT           &&...args
 )
 {
-	constexpr std::size_t    argsSize  {sizeof...(ArgsT)};
-	const std::tstring_t specifier {"{}"};
+	constexpr std::size_t argsSize  {sizeof...(ArgsT)};
+	std::ctstring_t       specifier {"{}"};
 
 	auto func = [&] (
 		const std::tstring_t &a_fmt,		///<
