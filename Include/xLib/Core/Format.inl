@@ -28,7 +28,7 @@ template<typename ...ArgsT>
 inline std::tstring_t
 FormatT<StreamT>::str(
 	std::ctstring_t  &fmt,
-	ArgsT           &&...args
+	const ArgsT      &...args
 )
 {
 	constexpr std::size_t argsSize  {sizeof...(ArgsT)};
@@ -69,7 +69,7 @@ FormatT<StreamT>::str(
 	std::size_t    index   {};
 	std::size_t    posPrev {};
 
-    ( func(fmt, std::forward<ArgsT>(args), &sRv, index, posPrev), ...);
+    ( func(fmt, args, &sRv, index, posPrev), ...);
 
 	xTEST_EQ_MSG(argsSize, index, xT("Invalid params"));
 
