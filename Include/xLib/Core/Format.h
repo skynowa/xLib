@@ -19,7 +19,7 @@ class FormatT
 public:
     template<typename ...ArgsT>
     static
-    std::tstring_t str(const std::tstring_t &fmt, ArgsT &&...args);
+    std::tstring_t str(std::ctstring_t &fmt, ArgsT &&...args);
 
     xNO_INSTANCE(FormatT)
     xNO_COPY_ASSIGN(FormatT)
