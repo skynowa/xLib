@@ -27,8 +27,8 @@ template<typename ...ArgsT>
 /* static */
 inline std::tstring_t
 FormatT<StreamT>::str(
-	std::ctstring_t  &a_fmt,
-	const ArgsT      &...a_args
+	std::ctstring_view_t  a_fmt,
+	const ArgsT          &...a_args
 )
 {
 	constexpr std::size_t argsSize {sizeof...(ArgsT)};
@@ -57,10 +57,10 @@ FormatT<StreamT>::str(
 //-------------------------------------------------------------------------------------------------
 template<typename StreamT>
 /* static */
-inline std::ctstring_t &
+inline std::ctstring_view_t &
 FormatT<StreamT>::_specifier()
 {
-    static std::ctstring_t sRv(xT("{}"));
+    static std::ctstring_view_t sRv(xT("{}"));
 
     return sRv;
 }
@@ -70,16 +70,14 @@ template<typename T>
 /* static */
 inline void_t
 FormatT<StreamT>::_format(
-	std::ctstring_t &a_fmt,					///<
-	const T         &a_arg,					///<
-	std::tstring_t  &out_rv,				///< [out]
-	std::size_t     &out_specifiersFound,	///< [out]
-	std::size_t     &out_posPrev			///< [out]
+	std::ctstring_view_t  a_fmt,					///<
+	const T              &a_arg,					///<
+	std::tstring_t       &out_rv,				///< [out]
+	std::size_t          &out_specifiersFound,	///< [out]
+	std::size_t          &out_posPrev			///< [out]
 )
 {
-	std::ctstring_t specifier {"{}"};
-
-	std::csize_t pos = a_fmt.find(specifier, out_posPrev);
+	std::csize_t pos = a_fmt.find(_specifier(), out_posPrev);
 	if (pos == std::tstring_t::npos) {
 		return;
 	}
@@ -99,7 +97,7 @@ FormatT<StreamT>::_format(
 	out_rv += a_fmt.substr(out_posPrev, pos - out_posPrev);
 	out_rv += ss.str();
 
-	out_posPrev = pos + specifier.size();
+	out_posPrev = pos + _specifier().size();
 };
 //-------------------------------------------------------------------------------------------------
 

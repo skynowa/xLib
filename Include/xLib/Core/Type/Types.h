@@ -183,6 +183,9 @@ xNAMESPACE_BEGIN(std)
     using tstring_t = basic_string<xl::tchar_t>;
     xUSING_CONST(tstring_t);
 
+    using tstring_view_t = basic_string_view<xl::tchar_t>;
+    xUSING_CONST(tstring_view_t);
+
     using ustring_t = basic_string<xl::uchar_t>;
     xUSING_CONST(ustring_t);
 
