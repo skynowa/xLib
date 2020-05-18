@@ -69,7 +69,9 @@ FormatT<StreamT>::str(
 	std::size_t    index   {};
 	std::size_t    posPrev {};
 
-    ( func(fmt, args, &sRv, index, posPrev), ...);
+	(func(fmt, args, &sRv, index, posPrev), ...);
+
+	sRv += fmt.substr(posPrev, fmt.size() - posPrev);
 
 	xTEST_EQ_MSG(argsSize, index, xT("Invalid params"));
 
