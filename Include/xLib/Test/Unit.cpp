@@ -84,22 +84,26 @@ Unit::run()
 bool_t
 Unit::unit() /* = 0 */
 {
-#if 1
-    xTEST_CASE("CaseName")
-    {
-        std::ctstring_t testData[][2] =
-        {
-            {xT("TEST_STRING_1"), xT("MUST_BE_1")},
-            {xT("TEST_STRING_2"), xT("MUST_BE_2")},
-            {xT("TEST_STRING_3"), xT("MUST_BE_3")},
-            {xT("TEST_STRING_4"), xT("MUST_BE_4")}
-        };
-
-        for (size_t i = 0; i < xARRAY_SIZE(testData); ++ i) {
-
-        }
-    }
-#endif
+   /**
+    * \example unit
+    *
+    * \code
+    * xTEST_CASE("CaseName")
+    * {
+    *     std::ctstring_t testData[][2] =
+    *     {
+    *         {xT("TEST_STRING_1"), xT("MUST_BE_1")},
+    *         {xT("TEST_STRING_2"), xT("MUST_BE_2")},
+    *         {xT("TEST_STRING_3"), xT("MUST_BE_3")},
+    *         {xT("TEST_STRING_4"), xT("MUST_BE_4")}
+    *     };
+    *
+    *     for (size_t i = 0; i < xARRAY_SIZE(testData); ++ i) {
+    *
+    *     }
+    * }
+    * \endcode
+    */
 
     return true;
 }
