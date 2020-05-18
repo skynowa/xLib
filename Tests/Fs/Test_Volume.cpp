@@ -258,7 +258,7 @@ Test_Volume::unit()
             xTEST_DIFF(0ULL, total);
             xTEST_DIFF(0ULL, free);
 
-            Cout() << xTRACE_VAR_3(available, total, free);
+            // Cout() << xTRACE_VAR_3(available, total, free);
         }
 
         {
@@ -271,7 +271,17 @@ Test_Volume::unit()
             xTEST_DIFF(0ULL, total);
             xTEST_DIFF(0ULL, free);
 
-            Cout() << xTRACE_VAR_3(available, total, free);
+            culonglong_t usedPct = (total - available) * 100 / total;
+            xTEST_DIFF(usedPct, 0ULL);
+
+		#if 0
+			Cout() << xTRACE_VAR_3(available, total, free);
+			Cout()
+				<< "Available: " << xGB(available) << "Gb, "
+				<< "Total: "     << xGB(total) << "Gb, "
+				<< "Free: "      << xGB(free) << "Gb, "
+				<< "Used: "      << usedPct << "%";
+		#endif
         }
     }
 
