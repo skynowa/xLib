@@ -32,6 +32,9 @@ FormatT<StreamT>::str(
 )
 {
 	constexpr std::size_t argsSize {sizeof...(ArgsT)};
+	if constexpr (argsSize == 0) {
+		return {a_fmt.cbegin(), a_fmt.cend()};
+	}
 
 	std::tstring_t sRv;
 	std::size_t    specifiersFound {};
