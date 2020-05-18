@@ -23,6 +23,17 @@ public:
 
     xNO_INSTANCE(FormatT)
     xNO_COPY_ASSIGN(FormatT)
+
+private:
+    static
+    std::ctstring_t & _specifier();
+        ///< open specifier
+
+	template<typename T>
+	static
+	void _format(std::ctstring_t &fmt, const T &arg, std::tstring_t &rv, std::size_t &index,
+			std::size_t &posPrev);
+		///<
 };
 
 using FormatStd = FormatT<std::tstringstream_t>;

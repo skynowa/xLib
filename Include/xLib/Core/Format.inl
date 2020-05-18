@@ -31,45 +31,14 @@ FormatT<StreamT>::str(
 	const ArgsT      &...args
 )
 {
-	constexpr std::size_t argsSize  {sizeof...(ArgsT)};
-	std::ctstring_t       specifier {"{}"};
-
-	auto func = [&] (
-		const std::tstring_t &a_fmt,		///<
-		auto                    a_arg,		///<
-		std::tstring_t         *out_rv,		///< [out]
-		std::size_t            &out_index,	///< [out]
-		std::size_t            &out_posPrev	///< [out]
-	) -> void
-	{
-		std::csize_t pos = a_fmt.find(specifier, out_posPrev);
-		if (pos == std::tstring_t::npos) {
-			return;
-		}
-
-		++ out_index;
-
-		static StreamT ss;
-		{
-			static const std::tstring_t emptyString;
-			ss.str( emptyString );
-			ss.clear();
-
-			ss << a_arg;
-		}
-
-		// [out]
-		*out_rv += a_fmt.substr(out_posPrev, pos - out_posPrev);
-		*out_rv += ss.str();
-
-		out_posPrev = pos + specifier.size();
-	};
+	constexpr std::size_t argsSize {sizeof...(ArgsT)};
 
 	std::tstring_t sRv;
 	std::size_t    index   {};
 	std::size_t    posPrev {};
 
-	(func(fmt, args, &sRv, index, posPrev), ...);
+	// for each args
+	(_format(fmt, args, &sRv, index, posPrev), ...);
 
 	sRv += fmt.substr(posPrev, fmt.size() - posPrev);
 
@@ -77,6 +46,61 @@ FormatT<StreamT>::str(
 
 	return sRv;
 }
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+template<typename StreamT>
+/* static */
+inline std::ctstring_t &
+FormatT<StreamT>::_specifier()
+{
+    static std::ctstring_t sRv(xT("{}"));
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename StreamT>
+template<typename T>
+/* static */
+inline void
+FormatT<StreamT>::_format(
+	std::ctstring_t &a_fmt,			///<
+	const T         &a_arg,			///<
+	std::tstring_t  &out_rv,		///< [out]
+	std::size_t     &out_index,		///< [out]
+	std::size_t     &out_posPrev	///< [out]
+)
+{
+	std::ctstring_t specifier {"{}"};
+
+	std::csize_t pos = a_fmt.find(specifier, out_posPrev);
+	if (pos == std::tstring_t::npos) {
+		return;
+	}
+
+	++ out_index;
+
+	static StreamT ss;
+	{
+		static std::ctstring_t emptyString;
+		ss.str( emptyString );
+		ss.clear();
+
+		ss << a_arg;
+	}
+
+	// [out]
+	out_rv += a_fmt.substr(out_posPrev, pos - out_posPrev);
+	out_rv += ss.str();
+
+	out_posPrev = pos + specifier.size();
+};
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, core)
