@@ -73,11 +73,11 @@ template<typename T>
 /* static */
 inline void_t
 FormatT<StreamT>::_format(
-	std::ctstring_view_t  a_fmt,				///<
-	const T              &a_arg,				///<
-	std::tstring_t       &out_rv,				///< [out]
-	std::size_t          &out_specifiersFound,	///< [out]
-	std::size_t          &out_posPrev			///< [out]
+	std::ctstring_view_t  a_fmt,				///< format string
+	const T              &a_arg,				///< argument
+	std::tstring_t       &out_rv,				///< [in,out]
+	std::size_t          &out_specifiersFound,	///< [in,out]
+	std::size_t          &out_posPrev			///< [in,out]
 )
 {
 	std::csize_t pos = a_fmt.find(_specifier(), out_posPrev);
