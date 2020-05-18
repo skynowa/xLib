@@ -15,17 +15,17 @@ xNAMESPACE_BEGIN2(xl, core)
 #define xBYTES(x) \
     ( static_cast<culonglong_t>(x) )
 #define xKB(x) \
-    ( xBYTES(x) << 10 )
+    ( xBYTES(x) >> 10 )
 #define xMB(x) \
-    ( xBYTES(x) << 20 )
+    ( xBYTES(x) >> 20 )
 #define xGB(x) \
-    ( xBYTES(x) << 30 )
+    ( xBYTES(x) >> 30 )
 #define xTB(x) \
-    ( xBYTES(x) << 40 )
+    ( xBYTES(x) >> 40 )
 #define xPB(x) \
-    ( xBYTES(x) << 50 )
+    ( xBYTES(x) >> 50 )
 #define xEB(x) \
-    ( xBYTES(x) << 60 )
+    ( xBYTES(x) >> 60 )
 ///@}
 
 ///@name Datetime
