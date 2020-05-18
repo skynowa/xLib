@@ -25,7 +25,7 @@ public:
     xNO_COPY_ASSIGN(FormatT)
 
 private:
-	static constexpr bool_t _isTest {true};
+	static constexpr bool_t _isTest {true};	///< test formatted string
 
     static
     std::ctstring_view_t & _specifier();
