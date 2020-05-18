@@ -70,8 +70,8 @@ template<typename T>
 /* static */
 inline void_t
 FormatT<StreamT>::_format(
-	std::ctstring_view_t  a_fmt,					///<
-	const T              &a_arg,					///<
+	std::ctstring_view_t  a_fmt,				///<
+	const T              &a_arg,				///<
 	std::tstring_t       &out_rv,				///< [out]
 	std::size_t          &out_specifiersFound,	///< [out]
 	std::size_t          &out_posPrev			///< [out]
@@ -81,8 +81,6 @@ FormatT<StreamT>::_format(
 	if (pos == std::tstring_t::npos) {
 		return;
 	}
-
-	++ out_specifiersFound;
 
 	static StreamT ss;
 	{
@@ -94,10 +92,11 @@ FormatT<StreamT>::_format(
 	}
 
 	// [out]
-	out_rv += a_fmt.substr(out_posPrev, pos - out_posPrev);
-	out_rv += ss.str();
-
-	out_posPrev = pos + _specifier().size();
+	{
+		out_rv += a_fmt.substr(out_posPrev, pos - out_posPrev) + ss.str();
+		++ out_specifiersFound;
+		out_posPrev = pos + _specifier().size();
+	}
 };
 //-------------------------------------------------------------------------------------------------
 
