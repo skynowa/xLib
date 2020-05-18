@@ -26,11 +26,11 @@ Test_PrivatBankApi::unit()
 			PrivatBankApi api;
 			api.getExchangeRatesArchive(date, &data);
 
-			auto eurSale = data[date]["EUR"]["PbRateSale"];
-			Cout() << xTRACE_VAR(eurSale);
-
 			auto eurPurchase = data[date]["EUR"]["PbRatePurchase"];
 			Cout() << xTRACE_VAR(eurPurchase);
+
+			auto eurSale = data[date]["EUR"]["PbRateSale"];
+			Cout() << xTRACE_VAR(eurSale);
 		}
 	}
 
@@ -58,10 +58,10 @@ Test_PrivatBankApi::unit()
 			std::ctstring_t &it_date = dates[i];
 			auto            &it_data = datas[i];
 
-			const auto eurSale     = it_data[it_date]["EUR"]["PbRateSale"];
 			const auto eurPurchase = it_data[it_date]["EUR"]["PbRatePurchase"];
+			const auto eurSale     = it_data[it_date]["EUR"]["PbRateSale"];
 
-			Cout() << xTRACE_VAR_3(it_date, eurSale, eurPurchase);
+			Cout() << xTRACE_VAR_3(it_date, eurPurchase, eurSale);
 		} // for
 	}
 
