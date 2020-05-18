@@ -93,8 +93,11 @@ FormatT<StreamT>::_format(
 
 	// [out]
 	{
-		out_rv += a_fmt.substr(out_posPrev, pos - out_posPrev) + ss.str();
+		out_rv += a_fmt.substr(out_posPrev, pos - out_posPrev);
+		out_rv += ss.str();
+
 		++ out_specifiersFound;
+
 		out_posPrev = pos + _specifier().size();
 	}
 };
