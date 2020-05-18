@@ -61,4 +61,4 @@ using Format    = FormatT<xl::core::OStream>;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------
-#include "Format.inl"
+#include "Format_v1.inl"
