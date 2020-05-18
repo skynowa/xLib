@@ -38,7 +38,7 @@ FormatT<StreamT>::str(
 	std::size_t    posPrev {};
 
 	// for each args
-	(_format(fmt, args, &sRv, index, posPrev), ...);
+	(_format(fmt, args, sRv, index, posPrev), ...);
 
 	sRv += fmt.substr(posPrev, fmt.size() - posPrev);
 
