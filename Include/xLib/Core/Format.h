@@ -25,14 +25,19 @@ public:
     xNO_COPY_ASSIGN(FormatT)
 
 private:
+	static constexpr bool_t _isTest {true};
+
     static
     std::ctstring_view_t & _specifier();
         ///< specifier
-
 	template<typename T>
 	static
 	void_t _format(std::ctstring_view_t fmt, const T &arg, std::tstring_t &rv,
 				std::size_t &specifiersFound, std::size_t &posPrev);
+		///< format argument
+	static
+	bool_t _testFmt(std::ctstring_view_t fmt, std::csize_t argsSize, std::csize_t specifiersFound);
+		///< test formated string
 };
 
 using FormatStd = FormatT<std::tstringstream_t>;

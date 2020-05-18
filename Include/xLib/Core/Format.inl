@@ -45,7 +45,9 @@ FormatT<StreamT>::str(
 
 	sRv += a_fmt.substr(posPrev, a_fmt.size() - posPrev);
 
-	xTEST_EQ_MSG(argsSize, specifiersFound, xT("Invalid params"));
+	if (_isTest) {
+		_testFmt(a_fmt, argsSize, specifiersFound);
+	}
 
 	return sRv;
 }
@@ -104,6 +106,55 @@ FormatT<StreamT>::_format(
 		out_posPrev = pos + _specifier().size();
 	}
 };
+//-------------------------------------------------------------------------------------------------
+template<typename StreamT>
+/* static */
+inline bool_t
+FormatT<StreamT>::_testFmt(
+	std::ctstring_view_t a_fmt,
+	std::csize_t         a_argsSize,
+	std::csize_t         a_specifiersFound
+)
+{
+	std::size_t specifierOpen  {};
+	std::size_t specifierClose {};
+	{
+		for (auto &it_fmt : a_fmt) {
+			switch (it_fmt) {
+			case xT('{'):
+				++ specifierOpen;
+				break;
+			case xT('}'):
+				++ specifierClose;
+				break;
+			default:
+				break;
+			}
+		} // for (a_fmt)
+	}
+
+	if (specifierOpen != specifierClose) {
+		xTEST_MSG(false, xT("specifierOpen != specifierClose"));
+		return false;
+	}
+
+	if (specifierOpen < a_argsSize) {
+		xTEST_MSG(false, xT("specifierOpen < a_argsSize"));
+		return false;
+	}
+
+	if (specifierOpen > a_argsSize) {
+		xTEST_MSG(false, xT("specifierOpen > a_argsSize"));
+		return false;
+	}
+
+	if (a_argsSize != a_specifiersFound) {
+		xTEST_MSG(false, xT("a_argsSize != a_specifiersFound"));
+		return false;
+	}
+
+	return true;
+}
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, core)
