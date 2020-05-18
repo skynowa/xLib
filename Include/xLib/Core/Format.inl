@@ -27,22 +27,22 @@ template<typename ...ArgsT>
 /* static */
 inline std::tstring_t
 FormatT<StreamT>::str(
-	std::ctstring_t  &fmt,
-	const ArgsT      &...args
+	std::ctstring_t  &a_fmt,
+	const ArgsT      &...a_args
 )
 {
 	constexpr std::size_t argsSize {sizeof...(ArgsT)};
 
 	std::tstring_t sRv;
-	std::size_t    index   {};
+	std::size_t    specifiersFound {};
 	std::size_t    posPrev {};
 
 	// for each args
-	(_format(fmt, args, sRv, index, posPrev), ...);
+	(_format(a_fmt, a_args, sRv, specifiersFound, posPrev), ...);
 
-	sRv += fmt.substr(posPrev, fmt.size() - posPrev);
+	sRv += a_fmt.substr(posPrev, a_fmt.size() - posPrev);
 
-	xTEST_EQ_MSG(argsSize, index, xT("Invalid params"));
+	xTEST_EQ_MSG(argsSize, specifiersFound, xT("Invalid params"));
 
 	return sRv;
 }
@@ -68,13 +68,13 @@ FormatT<StreamT>::_specifier()
 template<typename StreamT>
 template<typename T>
 /* static */
-inline void
+inline void_t
 FormatT<StreamT>::_format(
-	std::ctstring_t &a_fmt,			///<
-	const T         &a_arg,			///<
-	std::tstring_t  &out_rv,		///< [out]
-	std::size_t     &out_index,		///< [out]
-	std::size_t     &out_posPrev	///< [out]
+	std::ctstring_t &a_fmt,					///<
+	const T         &a_arg,					///<
+	std::tstring_t  &out_rv,				///< [out]
+	std::size_t     &out_specifiersFound,	///< [out]
+	std::size_t     &out_posPrev			///< [out]
 )
 {
 	std::ctstring_t specifier {"{}"};
@@ -84,7 +84,7 @@ FormatT<StreamT>::_format(
 		return;
 	}
 
-	++ out_index;
+	++ out_specifiersFound;
 
 	static StreamT ss;
 	{
