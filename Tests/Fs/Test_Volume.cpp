@@ -52,9 +52,7 @@ Test_Volume::unit()
             m_sRv = Volume(it).label();
             xTEST_NA(m_sRv);
 
-            #if xTEST_IGNORE
-                std::tcout << m_sRv << std::endl;
-            #endif
+            // Trace() << xTRACE_VAR(m_sRv);
         }
     }
 
@@ -66,15 +64,16 @@ Test_Volume::unit()
 
             Volume::paths(&volumePaths);
 
-            xFOR_EACH(std::vec_tstring_t, it, volumePaths) {
-                m_bRv = Volume(*it).isValid();
+            for (auto &it : volumePaths) {
+                m_bRv = Volume(it).isValid();
                 xTEST_EQ(m_bRv, true);
             }
         }
 
         // false
         {
-            std::ctstring_t data[] = {
+            std::ctstring_t data[]
+			{
             #if   xENV_WIN
                 xT("1"),
                 xT("0"),
@@ -195,8 +194,9 @@ Test_Volume::unit()
         std::vec_tstring_t volumes;
         volumes.push_back( User().homeDir() );
 
-        xFOR_EACH(std::vec_tstring_t, it, volumes) {
-            const Data2<ulonglong_t, bool_t> data[] = {
+        for (auto &it : volumes) {
+            const Data2<ulonglong_t, bool_t> data[]
+			{
                 {0ULL, true},
                 {1ULL, true},
                 {(std::numeric_limits<std::size_t>::max)(), false}
@@ -206,7 +206,7 @@ Test_Volume::unit()
                 culonglong_t needBytes = data[i].test;
                 cbool_t      bRv       = data[i].expect;
 
-                Volume volume(*it);
+                Volume volume(it);
                 // xCHECK_DO(!volume.isReady(), continue);
 
                 m_bRv = volume.isSpaceEnough(needBytes);
@@ -220,62 +220,58 @@ Test_Volume::unit()
         std::vec_tstring_t volumePaths;
         volumePaths.push_back( User().homeDir() );
 
-        xFOR_EACH(std::vec_tstring_t, it, volumePaths) {
-            ulonglong_t available = 0ULL;
-            ulonglong_t total     = 0ULL;
-            ulonglong_t free      = 0ULL;
+        for (auto &it : volumePaths) {
+            ulonglong_t available {};
+            ulonglong_t total     {};
+            ulonglong_t free      {};
 
-            // xCHECK_DO(!Volume(*it).isReady(), continue);
+            // xCHECK_DO(!Volume(it).isReady(), continue);
 
-            Volume::space(*it, &available, &total, &free);
+            Volume::space(it, &available, &total, &free);
             xTEST_DIFF(0ULL, available);
             xTEST_DIFF(0ULL, total);
             xTEST_DIFF(0ULL, free);
         }
 
-        xFOR_EACH(std::vec_tstring_t, it, volumePaths) {
-            ulonglong_t available = 0ULL;
-            ulonglong_t total     = 0ULL;
-            ulonglong_t free      = 0ULL;
+        for (auto &it : volumePaths) {
+            ulonglong_t available {};
+            ulonglong_t total     {};
+            ulonglong_t free      {};
 
-            // xCHECK_DO(!Volume(*it).isReady(), continue);
+            // xCHECK_DO(!Volume(it).isReady(), continue);
 
-            Volume::space(*it, nullptr, nullptr, nullptr);
+            Volume::space(it, nullptr, nullptr, nullptr);
             xTEST_EQ(0ULL, available);
             xTEST_EQ(0ULL, total);
             xTEST_EQ(0ULL, free);
         }
 
-        xFOR_EACH(std::vec_tstring_t, it, volumePaths) {
-            ulonglong_t available = 0ULL;
-            ulonglong_t total     = 0ULL;
-            ulonglong_t free      = 0ULL;
+        for (auto &it : volumePaths) {
+            ulonglong_t available {};
+            ulonglong_t total     {};
+            ulonglong_t free      {};
 
-            // xCHECK_DO(!Volume(*it).isReady(), continue);
+            // xCHECK_DO(!Volume(it).isReady(), continue);
 
-            Volume::space(*it, &available, &total, &free);
+            Volume::space(it, &available, &total, &free);
             xTEST_DIFF(0ULL, available);
             xTEST_DIFF(0ULL, total);
             xTEST_DIFF(0ULL, free);
 
-            #if xTEST_IGNORE
-                xTRACEV(xT("available: %lld, total: %lld, free: %lld"), available, total, free);
-            #endif
+            Cout() << xTRACE_VAR_3(available, total, free);
         }
 
         {
-            ulonglong_t available = 0ULL;
-            ulonglong_t total     = 0ULL;
-            ulonglong_t free      = 0ULL;
+            ulonglong_t available {};
+            ulonglong_t total     {};
+            ulonglong_t free      {};
 
             Volume::space(Const::strEmpty(), &available, &total, &free);
             xTEST_DIFF(0ULL, available);
             xTEST_DIFF(0ULL, total);
             xTEST_DIFF(0ULL, free);
 
-            #if xTEST_IGNORE
-                xTRACEV(xT("available: %lld, total: %lld, free: %lld"), available, total, free);
-            #endif
+            Cout() << xTRACE_VAR_3(available, total, free);
         }
     }
 
