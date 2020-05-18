@@ -19,20 +19,20 @@ class FormatT
 public:
     template<typename ...ArgsT>
     static
-    std::tstring_t str(std::ctstring_t &fmt, const ArgsT &...args);
+    std::tstring_t str(std::ctstring_view_t fmt, const ArgsT &...args);
 
     xNO_INSTANCE(FormatT)
     xNO_COPY_ASSIGN(FormatT)
 
 private:
     static
-    std::ctstring_t & _specifier();
+    std::ctstring_view_t & _specifier();
         ///< specifier
 
 	template<typename T>
 	static
-	void_t _format(std::ctstring_t &fmt, const T &arg, std::tstring_t &rv,
-			std::size_t &specifiersFound, std::size_t &posPrev);
+	void_t _format(std::ctstring_view_t fmt, const T &arg, std::tstring_t &rv,
+				std::size_t &specifiersFound, std::size_t &posPrev);
 };
 
 using FormatStd = FormatT<std::tstringstream_t>;
