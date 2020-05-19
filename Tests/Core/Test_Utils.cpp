@@ -141,22 +141,6 @@ Test_Utils::unit()
         }
     }
 
-    xTEST_CASE("structZeroT")
-    {
-        struct tm data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, const_cast<char *>("aaa")};
-
-        Utils::structZeroT(data);
-        xTEST_EQ(data.tm_sec, 0);
-        xTEST_EQ(data.tm_min, 0);
-        xTEST_EQ(data.tm_hour, 0);
-        xTEST_EQ(data.tm_mday, 0);
-        xTEST_EQ(data.tm_mon, 0);
-        xTEST_EQ(data.tm_year, 0);
-        xTEST_EQ(data.tm_wday, 0);
-        xTEST_EQ(data.tm_yday, 0);
-        xTEST_EQ(data.tm_isdst, 0);
-    }
-
     xTEST_CASE("bufferFreeT")
     {
         // true

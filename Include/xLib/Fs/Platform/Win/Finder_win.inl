@@ -57,7 +57,7 @@ Finder::_close_impl()
     _entry.handle.close();
 
     // clear data
-    Utils::structZeroT(_entry.data);
+   _entry.data = {};
 }
 //-------------------------------------------------------------------------------------------------
 

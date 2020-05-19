@@ -45,7 +45,7 @@ StackTrace::_get_impl(
         std::tstring_t byteOffset;
         std::tstring_t functionName;
 
-        Dl_info dlinfo;  Utils::structZeroT(dlinfo);
+        Dl_info dlinfo {};
 
         int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
         if (iRv == 0) {

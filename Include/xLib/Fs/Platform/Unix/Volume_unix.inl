@@ -30,7 +30,7 @@ Volume::_label_impl() const
 bool_t
 Volume::_isValid_impl() const
 {
-    xCHECK_RET(path().empty(),                         false);
+    xCHECK_RET(path().empty(),                       false);
     xCHECK_RET(path().at(0) != Const::slash().at(0), false);
 
     return true;
@@ -39,7 +39,7 @@ Volume::_isValid_impl() const
 bool_t
 Volume::_isReady_impl() const
 {
-    bool_t         bRv           = false;
+    bool_t         bRv {};
     std::tstring_t volumeDirPath = Path( path() ).slashAppend();
     std::tstring_t dirPathOld;
 

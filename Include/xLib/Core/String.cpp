@@ -129,7 +129,7 @@ String::castA(
     std::string      asRv(a_str.size(), std::wstring::value_type());
 
     const codecvt_t &codec     = std::use_facet<codecvt_t>( a_locale );
-    state_type_t     state; Utils::structZeroT(state);
+    state_type_t     state {};
 
     cptr_cwchar_t    itBegin   = &a_str.at(0);
     cptr_cwchar_t    itEnd     = &a_str.at(0) + a_str.size();

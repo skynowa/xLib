@@ -70,9 +70,8 @@ Signal::connect(
 
     int_t iRv = 0;
 
-	struct sigaction action;
+	struct sigaction action {};
 	{
-		Utils::structZeroT(action);
 		action.sa_handler = a_onSignals;
 
 		iRv = ::sigemptyset(&action.sa_mask);

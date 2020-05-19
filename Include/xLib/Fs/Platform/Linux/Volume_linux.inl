@@ -22,7 +22,7 @@ Volume::_fileSystem_impl() const
     xTEST_PTR(file);
 
     for ( ; ; ) {
-        mntent mnt;  Utils::structZeroT(mnt);
+        mntent mnt {};
         cint_t buffLen       = 4096 + 1;
         char   buff[buffLen] = {0};
 
