@@ -125,7 +125,7 @@ Volume::isSpaceAvailable(
     ulonglong_t availableBytes {};
     space(path(), &availableBytes, nullptr, nullptr);
 
-    xCHECK_RET(a_needBytes > availableBytes, false);
+    xCHECK_RET(a_needBytes >= availableBytes, false);
 
     return true;
 }
