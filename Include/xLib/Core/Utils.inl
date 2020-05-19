@@ -85,7 +85,7 @@ Utils::arrayZeroT(
     T (&a_arrayT)[arraySize]
 )
 {
-    (void_t)std::fill_n(&a_arrayT[0], arraySize, {});
+    (void_t)std::fill_n(&a_arrayT[0], arraySize, T{});
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, typename F, typename N>
