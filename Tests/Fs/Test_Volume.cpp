@@ -66,7 +66,7 @@ Test_Volume::unit()
 
             for (auto &it : volumePaths) {
                 m_bRv = Volume(it).isValid();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -91,7 +91,7 @@ Test_Volume::unit()
 
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
                 m_bRv = Volume(data[i]).isValid();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -109,10 +109,10 @@ Test_Volume::unit()
         #endif
 
             m_bRv = Volume(volumePathWithSlash).isReady();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
 
             m_bRv = Volume(volumePathWithoutSlash).isReady();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         }
 
         // false
@@ -126,10 +126,10 @@ Test_Volume::unit()
         #endif
 
             m_bRv = Volume(volumePathWithSlash).isReady();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
 
             m_bRv = Volume(volumePathWithoutSlash).isReady();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
         }
     }
 
@@ -147,10 +147,10 @@ Test_Volume::unit()
         #endif
 
             m_bRv = Volume(volumePathWithSlash).isEmpty();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
 
             m_bRv = Volume(volumePathWithoutSlash).isEmpty();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         }
 
         // false
@@ -165,10 +165,10 @@ Test_Volume::unit()
 
         #if xTEMP_DISABLED
             m_bRv = Volume(volumePathWithSlash).isEmpty();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
 
             m_bRv = Volume(volumePathWithoutSlash).isEmpty();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
         #endif
         }
     }
@@ -228,9 +228,9 @@ Test_Volume::unit()
             // xCHECK_DO(!Volume(it).isReady(), continue);
 
             Volume::space(it, &total, &available, &free);
-            xTEST_DIFF(0ULL, total);
-            xTEST_DIFF(0ULL, available);
-            xTEST_DIFF(0ULL, free);
+            xTEST_DIFF(total, 0ULL);
+            xTEST_DIFF(available, 0ULL);
+            xTEST_DIFF(free, 0ULL);
         }
 
         for (auto &it : volumePaths) {
@@ -241,9 +241,9 @@ Test_Volume::unit()
             // xCHECK_DO(!Volume(it).isReady(), continue);
 
             Volume::space(it, nullptr, nullptr, nullptr);
-            xTEST_EQ(0ULL, total);
-            xTEST_EQ(0ULL, available);
-            xTEST_EQ(0ULL, free);
+            xTEST_EQ(total, 0ULL);
+            xTEST_EQ(available, 0ULL);
+            xTEST_EQ(free, 0ULL);
         }
 
         for (auto &it : volumePaths) {
@@ -254,9 +254,9 @@ Test_Volume::unit()
             // xCHECK_DO(!Volume(it).isReady(), continue);
 
             Volume::space(it, &total, &available, &free);
-            xTEST_DIFF(0ULL, total);
-            xTEST_DIFF(0ULL, available);
-            xTEST_DIFF(0ULL, free);
+            xTEST_DIFF(total, 0ULL);
+            xTEST_DIFF(available, 0ULL);
+            xTEST_DIFF(free, 0ULL);
 
             // Cout() << xTRACE_VAR_3(available, total, free);
         }
@@ -267,9 +267,9 @@ Test_Volume::unit()
             ulonglong_t free      {};
 
             Volume::space(Const::strEmpty(), &total, &available, &free);
-            xTEST_DIFF(0ULL, total);
-            xTEST_DIFF(0ULL, available);
-            xTEST_DIFF(0ULL, free);
+            xTEST_DIFF(total, 0ULL);
+            xTEST_DIFF(available, 0ULL);
+            xTEST_DIFF(free, 0ULL);
 
             culonglong_t usedPct = (total - available) * 100 / total;
             xTEST_DIFF(usedPct, 0ULL);
