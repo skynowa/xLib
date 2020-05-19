@@ -27,7 +27,7 @@ MySqlConnection::MySqlConnection()
     xTEST(!_conn.isValid());
 
     _conn = ::mysql_init(nullptr);
-    xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
+    xTEST_MSG(_conn.isValid(), lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 HandleMySqlConn &
@@ -65,7 +65,7 @@ MySqlConnection::isDbExists(
         MySqlRecordset rec(conn, false);
 
         bRv = rec.get().isValid();
-        xTEST_EQ(bRv, true);
+        xTEST(bRv);
         xTEST_EQ(rec.rowsNum(), 1ULL);
 
         std::vec_tstring_t row;
@@ -140,9 +140,9 @@ MySqlConnection::connect(
 	{
 		_setOptions(a_data.options);
 
-		int connect_timeout_sec = 5;
-		int read_timeout_sec    = connect_timeout_sec * 10;
-		int write_timeout_sec   = connect_timeout_sec * 10;
+		constexpr int connect_timeout_sec = 5;
+		constexpr int read_timeout_sec    = connect_timeout_sec * 10;
+		constexpr int write_timeout_sec   = connect_timeout_sec * 10;
 
 		::mysql_options(_conn.get(), MYSQL_OPT_CONNECT_TIMEOUT, &connect_timeout_sec);
 		::mysql_options(_conn.get(), MYSQL_OPT_READ_TIMEOUT,    &read_timeout_sec);
