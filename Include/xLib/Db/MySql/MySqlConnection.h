@@ -73,7 +73,8 @@ public:
     bool_t         ping(int_t *errorCode = nullptr) const xWARN_UNUSED_RV;
         ///< checks whether the connection to the server is working
 
-	std::tstring_t escapeString(std::ctstring_t &sqlValue, cbool_t isQuoted = true) const xWARN_UNUSED_RV;
+	std::tstring_t escapeString(std::ctstring_t &sqlValue, cbool_t isQuoted = true) const
+						xWARN_UNUSED_RV;
 		///< creates a legal SQL string for use in an SQL statement:
 		///<
 		///< Double quotes turn into: \"
@@ -103,9 +104,9 @@ private:
 	MySqlConnectionData _data; ///< MySqlConnection data
     HandleMySqlConn     _conn; ///< handler for one database connection
 
-    void_t         _setOption(const mysql_option &option, cptr_cvoid_t arg) const;
+    void_t _setOption(const mysql_option &option, cptr_cvoid_t arg) const;
         ///< set extra connect options and affect behavior
-    void_t         _setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
+    void_t _setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
         ///< set extra connect options and affect behavior
 
     xNO_COPY_ASSIGN(MySqlConnection)
