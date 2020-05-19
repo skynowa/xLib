@@ -23,7 +23,7 @@ Test_Volume::unit()
         std::ctstring_t volumePath = xT("C:");
 
         Volume::Type dtRes = Volume(volumePath).type();
-        xTEST_EQ(Volume::dtFixed, dtRes);
+        xTEST_EQ(Volume::Type::Fixed, dtRes);
     }
 #endif
 
@@ -221,64 +221,64 @@ Test_Volume::unit()
         volumePaths.push_back( User().homeDir() );
 
         for (auto &it : volumePaths) {
-            ulonglong_t available {};
             ulonglong_t total     {};
+            ulonglong_t available {};
             ulonglong_t free      {};
 
             // xCHECK_DO(!Volume(it).isReady(), continue);
 
-            Volume::space(it, &available, &total, &free);
-            xTEST_DIFF(0ULL, available);
+            Volume::space(it, &total, &available, &free);
             xTEST_DIFF(0ULL, total);
+            xTEST_DIFF(0ULL, available);
             xTEST_DIFF(0ULL, free);
         }
 
         for (auto &it : volumePaths) {
-            ulonglong_t available {};
             ulonglong_t total     {};
+            ulonglong_t available {};
             ulonglong_t free      {};
 
             // xCHECK_DO(!Volume(it).isReady(), continue);
 
             Volume::space(it, nullptr, nullptr, nullptr);
-            xTEST_EQ(0ULL, available);
             xTEST_EQ(0ULL, total);
+            xTEST_EQ(0ULL, available);
             xTEST_EQ(0ULL, free);
         }
 
         for (auto &it : volumePaths) {
-            ulonglong_t available {};
             ulonglong_t total     {};
+            ulonglong_t available {};
             ulonglong_t free      {};
 
             // xCHECK_DO(!Volume(it).isReady(), continue);
 
-            Volume::space(it, &available, &total, &free);
-            xTEST_DIFF(0ULL, available);
+            Volume::space(it, &total, &available, &free);
             xTEST_DIFF(0ULL, total);
+            xTEST_DIFF(0ULL, available);
             xTEST_DIFF(0ULL, free);
 
             // Cout() << xTRACE_VAR_3(available, total, free);
         }
 
         {
-            ulonglong_t available {};
             ulonglong_t total     {};
+            ulonglong_t available {};
             ulonglong_t free      {};
 
-            Volume::space(Const::strEmpty(), &available, &total, &free);
-            xTEST_DIFF(0ULL, available);
+            Volume::space(Const::strEmpty(), &total, &available, &free);
             xTEST_DIFF(0ULL, total);
+            xTEST_DIFF(0ULL, available);
             xTEST_DIFF(0ULL, free);
 
             culonglong_t usedPct = (total - available) * 100 / total;
             xTEST_DIFF(usedPct, 0ULL);
 
 		#if 0
-			Cout() << xTRACE_VAR_3(available, total, free);
+			Cout() << xTRACE_VAR_3(total, available, free);
 			Cout()
-				<< "Available: " << xGB(available) << "Gb, "
 				<< "Total: "     << xGB(total) << "Gb, "
+				<< "Available: " << xGB(available) << "Gb, "
 				<< "Free: "      << xGB(free) << "Gb, "
 				<< "Used: "      << usedPct << "%";
 		#endif

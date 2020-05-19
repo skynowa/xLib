@@ -18,22 +18,22 @@ public:
         /// drive type
     {
     #if   xENV_WIN
-        dtUnknown   = DRIVE_UNKNOWN,
-        dtNoRoot    = DRIVE_NO_ROOT_DIR,
-        dtRemovable = DRIVE_REMOVABLE,
-        dtFixed     = DRIVE_FIXED,
-        dtRemote    = DRIVE_REMOTE,
-        dtCdRom     = DRIVE_CDROM,
-        dtRam       = DRIVE_RAMDISK
+        Unknown   = DRIVE_UNKNOWN,
+        NoRoot    = DRIVE_NO_ROOT_DIR,
+        Removable = DRIVE_REMOVABLE,
+        Fixed     = DRIVE_FIXED,
+        Remote    = DRIVE_REMOTE,
+        CdRom     = DRIVE_CDROM,
+        Ram       = DRIVE_RAMDISK
     #elif xENV_UNIX
-        dtUnknown   = 0,
-        dtNoRoot    = 1,
-        dtRemovable = 2,
-        dtFixed     = 3,
-        dtRemote    = 4,
-        dtCdRom     = 5,
-        dtRam       = 6,
-        dtOther     = 7
+        Unknown   = 0,
+        NoRoot    = 1,
+        Removable = 2,
+        Fixed     = 3,
+        Remote    = 4,
+        CdRom     = 5,
+        Ram       = 6,
+        Other     = 7
     #endif
     };
 
@@ -67,11 +67,11 @@ public:
 
     // static
     static
-    void_t          space(std::ctstring_t &dirPath, ulonglong_t *availableBytes,
-                        ulonglong_t *totalBytes, ulonglong_t *freeBytes);
+    void_t          space(std::ctstring_t &dirPath, ulonglong_t *totalBytes,
+                        ulonglong_t *availableBytes, ulonglong_t *freeBytes);
         ///< get free space
     static
-    void_t          currentSpace(ulonglong_t *availableBytes, ulonglong_t *totalBytes,
+    void_t          currentSpace(ulonglong_t *totalBytes, ulonglong_t *availableBytes,
                         ulonglong_t *freeBytes);
         ///< get free space of current valume
     static
@@ -93,8 +93,8 @@ xPLATFORM_IMPL:
 
     // static
     static
-    void_t          _space_impl(std::ctstring_t &dirPath, ulonglong_t* &availableBytes,
-                        ulonglong_t* &totalBytes, ulonglong_t* &freeBytes);
+    void_t          _space_impl(std::ctstring_t &dirPath, ulonglong_t* &totalBytes,
+                        ulonglong_t* &availableBytes, ulonglong_t* &freeBytes);
     static
     void_t          _paths_impl(std::vec_tstring_t *volumePaths);
 
