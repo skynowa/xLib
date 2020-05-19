@@ -36,76 +36,6 @@ MySqlConnection::get()
     return _conn;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
-bool_t
-MySqlConnection::isDbExists(
-    cMySqlConnectionData &a_data
-)
-{
-    bool_t bRv {};
-
-    MySqlConnectionData data = a_data;
-    data.db = {};
-
-    MySqlConnection conn;
-    {
-        bRv = conn.get().isValid();
-        xCHECK_RET(!bRv, false);
-
-        conn.connect(data);
-        conn.query(
-            xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
-               "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
-               a_data.db.c_str());
-    }
-
-    {
-        MySqlRecordset rec(conn, false);
-
-        bRv = rec.get().isValid();
-        xTEST(bRv);
-        xTEST_EQ(rec.rowsNum(), std::size_t(1));
-
-        std::vec_tstring_t row;
-        rec.fetchRow(&row);
-        xTEST_EQ(row.size(), static_cast<size_t>(1));
-        xCHECK_RET(StringCI::compare(xT("false"), row[0]), false);
-        xTEST_EQ(StringCI::compare(xT("true"), row[0]), true);
-    }
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-MySqlConnection::dbCreate(
-    cMySqlConnectionData &a_data
-)
-{
-	std::ctstring_t db = a_data.db;
-
-	MySqlConnectionData data = a_data;
-	data.db = {};
-
-	MySqlConnection conn;
-	conn.connect(data);
-	conn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), db.c_str());
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-MySqlConnection::dbDrop(
-    cMySqlConnectionData &a_data
-)
-{
-	MySqlConnectionData data = a_data;
-	data.db = {};
-
-	MySqlConnection conn;
-	conn.connect(data);
-	conn.query(xT("DROP DATABASE IF EXISTS `%s`"), a_data.db.c_str());
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 MySqlConnection::connect(
     cMySqlConnectionData &a_data
@@ -324,6 +254,84 @@ MySqlConnection::lastErrorStr() const
     }
 
     return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   static
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+MySqlConnection::isDbExists(
+    cMySqlConnectionData &a_data
+)
+{
+    bool_t bRv {};
+
+    MySqlConnectionData data = a_data;
+    data.db = {};
+
+    MySqlConnection conn;
+    {
+        bRv = conn.get().isValid();
+        xCHECK_RET(!bRv, false);
+
+        conn.connect(data);
+        conn.query(
+            xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
+               "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
+               a_data.db.c_str());
+    }
+
+    {
+        MySqlRecordset rec(conn, false);
+
+        bRv = rec.get().isValid();
+        xTEST(bRv);
+        xTEST_EQ(rec.rowsNum(), std::size_t(1));
+
+        std::vec_tstring_t row;
+        rec.fetchRow(&row);
+        xTEST_EQ(row.size(), static_cast<size_t>(1));
+        xCHECK_RET(StringCI::compare(xT("false"), row[0]), false);
+        xTEST_EQ(StringCI::compare(xT("true"), row[0]), true);
+    }
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+MySqlConnection::dbCreate(
+    cMySqlConnectionData &a_data
+)
+{
+	std::ctstring_t db = a_data.db;
+
+	MySqlConnectionData data = a_data;
+	data.db = {};
+
+	MySqlConnection conn;
+	conn.connect(data);
+	conn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), db.c_str());
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+MySqlConnection::dbDrop(
+    cMySqlConnectionData &a_data
+)
+{
+	MySqlConnectionData data = a_data;
+	data.db = {};
+
+	MySqlConnection conn;
+	conn.connect(data);
+	conn.query(xT("DROP DATABASE IF EXISTS `%s`"), a_data.db.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 
