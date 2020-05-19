@@ -53,6 +53,8 @@ public:
     virtual       ~MySqlConnection() = default;
         ///< destructor
 
+    xNO_COPY_ASSIGN(MySqlConnection)
+
     HandleMySqlConn &get() xWARN_UNUSED_RV;
         ///< get handle
 
@@ -108,8 +110,6 @@ private:
         ///< set extra connect options and affect behavior
     void_t _setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
         ///< set extra connect options and affect behavior
-
-    xNO_COPY_ASSIGN(MySqlConnection)
 };
 
 xNAMESPACE_END2(xl, db)
