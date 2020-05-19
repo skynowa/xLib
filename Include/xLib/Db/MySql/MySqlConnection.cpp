@@ -248,7 +248,7 @@ MySqlConnection::query(
 
     int_t iRv = ::mysql_real_query(_conn.get(), asSqlQuery.data(),
         static_cast<ulong_t>( asSqlQuery.size() ));
-    xTEST_EQ_MSG(0, iRv, lastErrorStr());
+    xTEST_EQ_MSG(iRv, 0, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -350,7 +350,7 @@ MySqlConnection::_setOption(
 #else
     int_t iRv = ::mysql_options(_conn.get(), a_option, a_arg);
 #endif
-    xTEST_EQ_MSG(0, iRv, lastErrorStr());
+    xTEST_EQ_MSG(iRv, 0, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
