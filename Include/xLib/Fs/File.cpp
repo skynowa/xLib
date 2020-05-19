@@ -529,7 +529,7 @@ File::isFile(
     xTEST_NA(a_filePath);
 
     FileType type(a_filePath);
-    xCHECK_RET(type.get() == static_cast<FileType::types_t>(FileType::Type::faInvalid), false);
+    xCHECK_RET(type.get() == static_cast<FileType::types_t>(FileType::Type::Invalid), false);
 
     return _isFile_impl(type);
 }

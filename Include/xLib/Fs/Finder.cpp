@@ -155,7 +155,7 @@ Finder::dirs(
         xCHECK_DO(finder.entryName() == Const::dot2(), continue);
 
         // set filter for dirs
-        if ( !(static_cast<FileType::types_t>(FileType::Type::faDirectory) & finder.fileTypes()) ) {
+        if ( !(static_cast<FileType::types_t>(FileType::Type::Directory) & finder.fileTypes()) ) {
             continue;
         }
 
@@ -188,7 +188,7 @@ Finder::files(
             xCHECK_DO(finder.entryName() == Const::dot2(), continue);
 
             // set filter for files
-            if (static_cast<FileType::types_t>(FileType::Type::faDirectory) & finder.fileTypes()) {
+            if (static_cast<FileType::types_t>(FileType::Type::Directory) & finder.fileTypes()) {
                 continue;
             }
 

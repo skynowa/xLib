@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 FileType::types_t
 FileType::_get_impl() const
 {
-    types_t ftRv = faInvalid;
+    types_t ftRv = Type::Invalid;
 
     ftRv = ::GetFileAttributes(filePath().c_str());
     xTEST_NA(ftRv);
@@ -35,7 +35,7 @@ FileType::_set_impl(
 void_t
 FileType::_clear_impl() const
 {
-    set(faNormal);
+    set(Normal);
 }
 //-------------------------------------------------------------------------------------------------
 

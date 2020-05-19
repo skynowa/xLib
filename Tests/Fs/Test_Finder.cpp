@@ -94,7 +94,7 @@ Test_Finder::unit()
                 xCHECK_DO(Const::dot2() == finder.entryName(), continue);
 
                 // set filter for files
-                xCHECK_DO(static_cast<int_t>(FileType::Type::faDirectory) & finder.fileTypes(),
+                xCHECK_DO(static_cast<int_t>(FileType::Type::Directory) & finder.fileTypes(),
                 	continue);
                 xTEST_EQ(File::isExists( finder.entryPath() ), true);
 

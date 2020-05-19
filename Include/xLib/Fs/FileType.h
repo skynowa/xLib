@@ -26,30 +26,30 @@ public:
         /// attribute
     {
     #if   xENV_WIN
-        faInvalid           = INVALID_FILE_ATTRIBUTES,
-        faNormal            = FILE_ATTRIBUTE_NORMAL,
-        faReadOnly          = FILE_ATTRIBUTE_READONLY,
-        faHidden            = FILE_ATTRIBUTE_HIDDEN,
-        faSystem            = FILE_ATTRIBUTE_SYSTEM,
-        faDirectory         = FILE_ATTRIBUTE_DIRECTORY,
-        faArchive           = FILE_ATTRIBUTE_ARCHIVE,
-        faDevice            = FILE_ATTRIBUTE_DEVICE,
-        faTemporary         = FILE_ATTRIBUTE_TEMPORARY,
-        faSparseFile        = FILE_ATTRIBUTE_SPARSE_FILE,
-        faReparsePoint      = FILE_ATTRIBUTE_REPARSE_POINT,
-        faCompressed        = FILE_ATTRIBUTE_COMPRESSED,
-        faOffline           = FILE_ATTRIBUTE_OFFLINE,
-        faNotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
-        faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
+        Invalid           = INVALID_FILE_ATTRIBUTES,
+        Normal            = FILE_ATTRIBUTE_NORMAL,
+        ReadOnly          = FILE_ATTRIBUTE_READONLY,
+        Hidden            = FILE_ATTRIBUTE_HIDDEN,
+        System            = FILE_ATTRIBUTE_SYSTEM,
+        Directory         = FILE_ATTRIBUTE_DIRECTORY,
+        Archive           = FILE_ATTRIBUTE_ARCHIVE,
+        Device            = FILE_ATTRIBUTE_DEVICE,
+        Temporary         = FILE_ATTRIBUTE_TEMPORARY,
+        SparseFile        = FILE_ATTRIBUTE_SPARSE_FILE,
+        ReparsePoint      = FILE_ATTRIBUTE_REPARSE_POINT,
+        Compressed        = FILE_ATTRIBUTE_COMPRESSED,
+        Offline           = FILE_ATTRIBUTE_OFFLINE,
+        NotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
+        Encrypted         = FILE_ATTRIBUTE_ENCRYPTED
     #elif xENV_UNIX
-        faInvalid           = static_cast<types_t>(-1),
-        faDirectory         = S_IFDIR,
-        faCharacterDevice   = S_IFCHR,
-        faBlockDevice       = S_IFBLK,
-        faRegularFile       = S_IFREG,
-        faFifo              = S_IFIFO,
-        faSymbolicLink      = S_IFLNK,
-        faSocket            = S_IFSOCK
+        Invalid           = static_cast<types_t>(-1),
+        Directory         = S_IFDIR,
+        CharacterDevice   = S_IFCHR,
+        BlockDevice       = S_IFBLK,
+        RegularFile       = S_IFREG,
+        Fifo              = S_IFIFO,
+        SymbolicLink      = S_IFLNK,
+        Socket            = S_IFSOCK
     #endif
     };
     xUSING_CONST(Type);
