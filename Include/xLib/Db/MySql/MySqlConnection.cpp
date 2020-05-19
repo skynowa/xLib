@@ -44,8 +44,6 @@ MySqlConnection::isDbExists(
 {
     bool_t bRv {};
 
-    std::ctstring_t db = a_data.db;
-
     MySqlConnectionData data = a_data;
     data.db = {};
 
@@ -58,7 +56,7 @@ MySqlConnection::isDbExists(
         conn.query(
             xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
                "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
-               db.c_str());
+               a_data.db.c_str());
     }
 
     {
@@ -149,8 +147,9 @@ MySqlConnection::connect(
 		::mysql_options(_conn.get(), MYSQL_OPT_WRITE_TIMEOUT,   &write_timeout_sec);
 	}
 
-    MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(a_data.host).c_str(), xT2A(a_data.user).c_str(),
-        xT2A(a_data.password).c_str(), db, a_data.port, unixSocket, clientFlag);
+    MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(a_data.host).c_str(),
+    	xT2A(a_data.user).c_str(), xT2A(a_data.password).c_str(), db, a_data.port, unixSocket,
+		clientFlag);
     xTEST_PTR_MSG(conn, lastErrorStr());
     xTEST_EQ(_conn.get(), conn);
 
