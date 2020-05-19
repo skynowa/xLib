@@ -142,15 +142,15 @@ Volume::isSpaceAvailable(
 void_t
 Volume::space(
     std::ctstring_t &a_dirPath,     ///< directory path (if empty - use current volume)
-    ulonglong_t     *a_available,   ///< available space (for unprivileged users)
-    ulonglong_t     *a_total,       ///< total space
-    ulonglong_t     *a_free         ///< free space
+    ulonglong_t     *a_availableBytes,   ///< available space (for unprivileged users)
+    ulonglong_t     *a_totalBytes,       ///< total space
+    ulonglong_t     *a_freeBytes         ///< free space
 )
 {
     xTEST_NA(a_dirPath);
-    xTEST_NA(a_available);
-    xTEST_NA(a_total);
-    xTEST_NA(a_free);
+    xTEST_NA(a_availableBytes);
+    xTEST_NA(a_totalBytes);
+    xTEST_NA(a_freeBytes);
 
     std::tstring_t dirPath;
 
@@ -164,18 +164,18 @@ Volume::space(
     bool_t bRv = Dir(dirPath).isExists();
     xTEST_EQ(bRv, true);
 
-    _space_impl(dirPath, a_available, a_total, a_free);
+    _space_impl(dirPath, a_availableBytes, a_totalBytes, a_freeBytes);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
 Volume::currentSpace(
-    ulonglong_t *a_available,   ///< available space (for unprivileged users)
-    ulonglong_t *a_total,       ///< total space
-    ulonglong_t *a_free         ///< free space
+    ulonglong_t *a_availableBytes,   ///< available space (for unprivileged users)
+    ulonglong_t *a_totalBytes,       ///< total space
+    ulonglong_t *a_freeBytes         ///< free space
 )
 {
-	space({}, a_available, a_total, a_free);
+	space({}, a_availableBytes, a_totalBytes, a_freeBytes);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
