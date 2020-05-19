@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN2(xl, db)
 //-------------------------------------------------------------------------------------------------
 MySqlConnection::MySqlConnection()
 {
-    xTEST_EQ(_conn.isValid(), false);
+    xTEST(!_conn.isValid());
 
     _conn = ::mysql_init(nullptr);
     xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
@@ -113,7 +113,7 @@ MySqlConnection::connect(
     cMySqlConnectionData &a_data
 )
 {
-    xTEST_EQ(_conn.isValid(), true);
+    xTEST(_conn.isValid());
     xTEST_NA(a_data);
 
 	const char *db {};
@@ -235,7 +235,7 @@ MySqlConnection::query(
     cptr_ctchar_t a_sqlFormat, ...
 ) const
 {
-    xTEST_EQ(_conn.isValid(), true);
+    xTEST(_conn.isValid());
     xTEST_PTR(a_sqlFormat);
 
     std::tstring_t sqlQuery;
@@ -278,7 +278,7 @@ MySqlConnection::rollback()
 uint_t
 MySqlConnection::fieldCount() const
 {
-    xTEST_EQ(_conn.isValid(), true);
+    xTEST(_conn.isValid());
 
     return ::mysql_field_count(_conn.get());
 }
@@ -302,7 +302,7 @@ MySqlConnection::close()
 uint_t
 MySqlConnection::lastError() const
 {
-    xTEST_EQ(_conn.isValid(), true);
+    xTEST(_conn.isValid());
 
     return ::mysql_errno( _conn.get() );
 }
@@ -310,7 +310,7 @@ MySqlConnection::lastError() const
 std::tstring_t
 MySqlConnection::lastErrorStr() const
 {
-    xTEST_EQ(_conn.isValid(), true);
+    xTEST(_conn.isValid());
 
     std::tstring_t sRv;
 
@@ -342,7 +342,7 @@ MySqlConnection::_setOption(
     cptr_cvoid_t        a_arg
 ) const
 {
-    xTEST_EQ(_conn.isValid(), true);
+    xTEST(_conn.isValid());
     xTEST_NA(a_option);
     xTEST_NA(a_arg);
 
