@@ -26,6 +26,8 @@ xNAMESPACE_BEGIN2(xl, core)
     ( xBYTES(x) << 50 )
 #define xEB(x) \
     ( xBYTES(x) << 60 )
+#define xZB(x) \
+    ( xBYTES(x) << 70 )
 ///@}
 
 ///@name In milliseconds
