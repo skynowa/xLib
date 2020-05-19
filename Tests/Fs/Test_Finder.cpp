@@ -17,7 +17,7 @@ bool_t
 Test_Finder::unit()
 {
     // prepare
-    std::ctstring_t    rootDirPath = data.tempDirPath + Const::slash() + xT("Finder_Dir");
+    std::ctstring_t    rootDirPath = getData().tempDirPath + Const::slash() + xT("Finder_Dir");
     std::vec_tstring_t dirs;
 
     {
