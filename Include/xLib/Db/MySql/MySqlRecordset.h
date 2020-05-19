@@ -45,9 +45,9 @@ private:
     HandleMySqlResult _result;
         ///< result of a query that returns row
 
-    void_t       _fetchLengths(ulong_t **fieldLengths) const;
+    void_t _fetchLengths(ulong_t **fieldLengths) const;
         ///< An array of unsigned long_t integers representing the size of each column
-    void_t       _fetchRow(MYSQL_ROW *row) const;
+    void_t _fetchRow(MYSQL_ROW *row) const;
         ///< A MYSQL_ROW structure for the next row
 
     xNO_COPY_ASSIGN(MySqlRecordset)
