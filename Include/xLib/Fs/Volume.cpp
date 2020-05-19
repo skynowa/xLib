@@ -169,6 +169,17 @@ Volume::space(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
+Volume::currentSpace(
+    ulonglong_t *a_available,   ///< available space (for unprivileged users)
+    ulonglong_t *a_total,       ///< total space
+    ulonglong_t *a_free         ///< free space
+)
+{
+	space({}, a_available, a_total, a_free);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
 Volume::paths(
     std::vec_tstring_t *a_volumePaths    ///< volume paths
 )
