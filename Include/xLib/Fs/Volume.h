@@ -42,6 +42,8 @@ public:
     virtual        ~Volume() = default;
         ///< destructor
 
+    xNO_COPY_ASSIGN(Volume)
+
     std::ctstring_t & path() const xWARN_UNUSED_RV;
         ///< volume path
 #if xENV_WIN
@@ -80,8 +82,6 @@ public:
 
 private:
     std::ctstring_t _path;  ///< volume path
-
-    xNO_COPY_ASSIGN(Volume)
 
 xPLATFORM_IMPL:
     std::tstring_t  _fileSystem_impl() const xWARN_UNUSED_RV;
