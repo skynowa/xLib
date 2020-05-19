@@ -71,6 +71,9 @@ public:
                         ulonglong_t *free);
         ///< get free space
     static
+    void_t          currentSpace(ulonglong_t *available, ulonglong_t *total, ulonglong_t *free);
+        ///< get free space of current valume
+    static
     void_t          paths(std::vec_tstring_t *volumePaths);
         ///< get paths
 
