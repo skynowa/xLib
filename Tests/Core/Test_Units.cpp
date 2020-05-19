@@ -27,13 +27,13 @@ Test_Units::unit()
         culonglong_t Eb   = 1024ULL * 1024 * 1024 * 1024 * 1024 * 1024;
 
         for (size_t i = 0; i < 20; ++ i) {
-            xTEST_EQ(xBYTES(i), Byte * i);
-            xTEST_EQ(xKB(i),    Kb * i);
-            xTEST_EQ(xMB(i),    Mb * i);
-            xTEST_EQ(xGB(i),    Gb * i);
-            xTEST_EQ(xTB(i),    Tb * i);
-            xTEST_EQ(xPB(i),    Pb * i);
-            xTEST_EQ(xEB(i),    Eb * i);
+            xTEST_EQ(xBYTES(i), i * Byte);
+            xTEST_EQ(xKB(i),    i * Kb);
+            xTEST_EQ(xMB(i),    i * Mb);
+            xTEST_EQ(xGB(i),    i * Gb);
+            xTEST_EQ(xTB(i),    i * Tb);
+            xTEST_EQ(xPB(i),    i * Pb);
+            xTEST_EQ(xEB(i),    i * Eb);
         }
     }
 
