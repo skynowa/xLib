@@ -18,25 +18,25 @@ class MySqlRecordset
     /// MySql recordset
 {
 public:
-                 MySqlRecordset(MySqlConnection &connection, cbool_t isUseResult);
+                MySqlRecordset(MySqlConnection &connection, cbool_t isUseResult);
         ///< constructor
-    virtual     ~MySqlRecordset() = default;
+    virtual    ~MySqlRecordset() = default;
         ///< destructor
 
     HandleMySqlResult &get() xWARN_UNUSED_RV;
         ///< get handle
 
-    uint_t       fieldsNum() const xWARN_UNUSED_RV;
+    uint_t      fieldsNum() const xWARN_UNUSED_RV;
         ///< number of columns in a result set
-    std::size_t  rowsNum() const xWARN_UNUSED_RV;
+    std::size_t rowsNum() const xWARN_UNUSED_RV;
         ///< number of rows in the result set
-    void_t       fetchField(MYSQL_FIELD *field) const;
+    void_t      fetchField(MYSQL_FIELD *field) const;
         ///< The MYSQL_FIELD structure for the current column
-    void_t       fetchFieldDirect(cuint_t &fieldNumber, MYSQL_FIELD *field) const;
+    void_t      fetchFieldDirect(cuint_t &fieldNumber, MYSQL_FIELD *field) const;
         ///< The MYSQL_FIELD structure for the specified column
-    void_t       fetchFields(MYSQL_FIELD *field) const;
+    void_t      fetchFields(MYSQL_FIELD *field) const;
         ///< An array of MYSQL_FIELD structures for all columns of a result set
-    void_t       fetchRow(std::vec_tstring_t *row) const;
+    void_t      fetchRow(std::vec_tstring_t *row) const;
         ///< fetching row
 
 private:
