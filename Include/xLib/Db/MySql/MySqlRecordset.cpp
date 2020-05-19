@@ -6,6 +6,7 @@
 
 #include "MySqlRecordset.h"
 
+#include <xLib/Db/MySql/MySqlConnection.h>
 
 xNAMESPACE_BEGIN2(xl, db)
 
