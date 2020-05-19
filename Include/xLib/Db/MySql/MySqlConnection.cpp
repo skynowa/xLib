@@ -1,5 +1,5 @@
 /**
- * \file  MySql.inl
+ * \file  MySqlConnection.cpp
  * \brief MySql client
  */
 

@@ -1,5 +1,5 @@
 /**
- * \file  MySql.h
+ * \file  MySqlConnection.h
  * \brief MySql client
  */
 

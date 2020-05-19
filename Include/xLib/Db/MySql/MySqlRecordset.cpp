@@ -1,5 +1,5 @@
 /**
- * \file  MySql.inl
+ * \file  MySqlRecordset.cpp
  * \brief MySql client
  */
 
