@@ -27,7 +27,13 @@ xNAMESPACE_BEGIN2(xl, test)
 /* virtual */
 Unit::~Unit() /* = 0 */
 {
-    Dir( data.tempDirPath ).pathDelete();
+    Dir( _data.tempDirPath ).pathDelete();
+}
+//-------------------------------------------------------------------------------------------------
+UnitData &
+Unit::getData()
+{
+	return _data;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -35,10 +41,10 @@ Unit::setData(
     cUnitData &a_data
 )
 {
-    data.unitLoops   = a_data.unitLoops;
-    data.caseLoops   = a_data.caseLoops;
-    data.tempDirPath = a_data.tempDirPath;
-    data.name        = a_data.name;
+    _data.unitLoops   = a_data.unitLoops;
+    _data.caseLoops   = a_data.caseLoops;
+    _data.tempDirPath = a_data.tempDirPath;
+    _data.name        = a_data.name;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -48,25 +54,25 @@ Unit::run()
 
     _createTempDir(xT("Temp"));
 
-    for (std::size_t i = 0; i < data.unitLoops; ++ i) {
+    for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
         bool_t bRv = false;
 
         try {
             bRv = unit();
         }
         catch (const Exception &a_xlibException) {
-            xTEST_FAIL_MSG(data.name + xT(": ") + a_xlibException.what());
+            xTEST_FAIL_MSG(_data.name + xT(": ") + a_xlibException.what());
 
             bRv = false;
         }
         catch (const std::exception &a_stdException) {
             std::string asMsg = a_stdException.what();
-            xTEST_FAIL_MSG(data.name + xT(": ") + xA2T(asMsg));
+            xTEST_FAIL_MSG(_data.name + xT(": ") + xA2T(asMsg));
 
             bRv = false;
         }
         catch (...) {
-            xTEST_FAIL_MSG(data.name + xT(": Unknown error"));
+            xTEST_FAIL_MSG(_data.name + xT(": Unknown error"));
             bRv = false;
         }
 
@@ -75,7 +81,7 @@ Unit::run()
         } else {
 
         }
-    } // for (data.unitLoops)
+    } // for (_data.unitLoops)
 
     return isPassed;
 }
@@ -116,11 +122,11 @@ Unit::_createTempDir(
     xTEST_NA(a_dirName);
 
     if (a_dirName.empty()) {
-        data.tempDirPath = Dir::temp();
+        _data.tempDirPath = Dir::temp();
     } else {
-        data.tempDirPath = Path::exeDir() + Const::slash() + a_dirName;
+        _data.tempDirPath = Path::exeDir() + Const::slash() + a_dirName;
 
-        Dir(data.tempDirPath).pathCreate();
+        Dir(_data.tempDirPath).pathCreate();
     }
 }
 //-------------------------------------------------------------------------------------------------

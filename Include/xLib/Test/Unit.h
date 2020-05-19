@@ -60,13 +60,13 @@ public:
 #endif
 ///@}
 
-    UnitData            data;
-
                         Unit() = default;
         ///< constructor
     virtual            ~Unit() = 0;
         ///< destructor
 
+    UnitData           &getData();
+        ///< get data
     void_t              setData(cUnitData &data);
         ///< set data
     bool_t              run();
@@ -75,6 +75,8 @@ public:
         ///< unit
 
 private:
+    UnitData            _data;
+
     void_t              _createTempDir(std::ctstring_t &dirName);
         ///< create temp dir
 
