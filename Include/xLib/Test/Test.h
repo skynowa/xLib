@@ -307,12 +307,12 @@
 #define xTEST_UNIT(unitClassName) \
     int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[]) \
     { \
-        bool_t bRv = false; \
+        bool_t bRv {}; \
         \
         UnitData data; \
         data.unitLoops   = 1; \
         data.caseLoops   = 1; \
-        data.tempDirPath = xT(""); \
+        data.tempDirPath = {}; \
         data.name        = xLEX_TO_STR(unitClassName); \
         \
         unitClassName unit; \
