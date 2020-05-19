@@ -23,7 +23,7 @@ Utils::ptrDeleteT(
     T * &a_ptr
 )
 {
-    T* tmp = nullptr;
+    T* tmp {};
     std::swap(a_ptr, tmp);
 
     delete tmp; tmp = nullptr;
@@ -36,7 +36,7 @@ Utils::arrayDeleteT(
     T * &a_ptr
 )
 {
-    T* tmp = nullptr;
+    T* tmp {};
     std::swap(a_ptr, tmp);
 
     delete [] tmp; tmp = nullptr;
@@ -85,7 +85,7 @@ Utils::arrayZeroT(
     T (&a_arrayT)[arraySize]
 )
 {
-    (void_t)std::fill_n(&a_arrayT[0], arraySize, T());
+    (void_t)std::fill_n(&a_arrayT[0], arraySize, {});
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, typename F, typename N>
@@ -157,7 +157,7 @@ Utils::reinterpretCastT(
 )
 {
     void_t *pvVoidCast = static_cast<void_t *>( a_ptr );
-    ToT   ResT         = static_cast<ToT>( pvVoidCast );
+    ToT     ResT       = static_cast<ToT>( pvVoidCast );
 
     return ResT;
 }
@@ -172,7 +172,7 @@ Utils::roundIntT(
     assert(a_value >= static_cast<cdouble_t>( (std::numeric_limits<T>::min)() ) - 0.5);
     assert(a_value <= static_cast<cdouble_t>( (std::numeric_limits<T>::max)() ) + 0.5);
 
-    T iRv = 0;
+    T iRv {};
 
     if (a_value > 0.0) {
         iRv = static_cast<T>( a_value + 0.5 );
