@@ -117,15 +117,15 @@ Volume::unMount(
 //-------------------------------------------------------------------------------------------------
 bool_t
 Volume::isSpaceEnough(
-    culonglong_t &a_needBytes ///< need space in bytes
+    culonglong_t a_needBytes ///< need space in bytes
 ) const
 {
     xTEST_NA(a_needBytes);
 
-    ulonglong_t totalFreeBytes = 0ULL;
-    space(path(), nullptr, nullptr, &totalFreeBytes);
+    ulonglong_t availableBytes {};
+    space(path(), &availableBytes, nullptr, nullptr);
 
-    xCHECK_RET(a_needBytes > totalFreeBytes, false);
+    xCHECK_RET(a_needBytes > availableBytes, false);
 
     return true;
 }
