@@ -274,14 +274,7 @@ Test_Volume::unit()
             culonglong_t usedPct = (total - available) * 100 / total;
             xTEST_DIFF(usedPct, 0ULL);
 
-		#if 0
-			Cout() << xTRACE_VAR_3(total, available, free);
-			Cout()
-				<< "Total: "     << xGB(total) << "Gb, "
-				<< "Available: " << xGB(available) << "Gb, "
-				<< "Free: "      << xGB(free) << "Gb, "
-				<< "Used: "      << usedPct << "%";
-		#endif
+			// Cout() << xTRACE_VAR_4(total, available, free, usedPct);
         }
     }
 
