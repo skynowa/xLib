@@ -49,7 +49,7 @@ File::_time_impl(
 {
     xUNUSED(a_create);
 
-    xTSTAT_STRUCT info; Utils::structZeroT(info);
+    xTSTAT_STRUCT info {};
 
     int_t iRv = xTSTAT(a_filePath.c_str(), &info);
     xTEST_DIFF(iRv, - 1);

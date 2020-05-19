@@ -43,15 +43,11 @@ public:
     void_t    arrayZeroT(T (&arrayT)[arraySize]);
         ///< array zero
 
-    template<typename T>
-    static
-    void_t    structZeroT(T &object);
-        ///< zero buffer memory
-
     template<typename T, typename F, typename N>
     static
     void_t    freeT(T * &ptr, F func, N null = nullptr);
         ///< free pointer
+
     template<typename T>
     static
     void_t    bufferFreeT(T * &ptr);

@@ -17,7 +17,7 @@ FileType::_get_impl() const
 {
     types_t ftRv = static_cast<types_t>(Type::faInvalid);
 
-    xTSTAT_STRUCT info;   Utils::structZeroT(info);
+    xTSTAT_STRUCT info {};
 
     int_t iRv = xTSTAT(filePath().c_str(), &info);
     xTEST_NA(iRv);

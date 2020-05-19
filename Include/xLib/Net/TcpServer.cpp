@@ -27,7 +27,7 @@ TcpServer::bind(
     xTEST_EQ(_handle.isValid(), true);
     xTEST_NA(a_port);
 
-    sockaddr_in sockAddr;    Utils::structZeroT(sockAddr);
+    sockaddr_in sockAddr {};
     sockAddr.sin_family      = static_cast<sa_family_t>(_family);
     sockAddr.sin_addr.s_addr = INADDR_ANY;
     sockAddr.sin_port        = htons(a_port);
@@ -66,7 +66,7 @@ TcpServer::accept(
     xTEST_PTR(a_serverSocket);
     xTEST_PTR(a_fromIp);
 
-    sockaddr_in     cliaddr; Utils::structZeroT(cliaddr);
+    sockaddr_in     cliaddr {};
     socket_length_t addrlen = sizeof(cliaddr);
 
     socket_t client = ::accept(_handle.get(), Utils::reinterpretCastT<sockaddr *>( &cliaddr ),

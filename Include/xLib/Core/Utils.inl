@@ -88,17 +88,6 @@ Utils::arrayZeroT(
     (void_t)std::fill_n(&a_arrayT[0], arraySize, T());
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
-/* static */ inline
-void_t
-Utils::structZeroT(
-    T &a_object
-)
-{
-    void_t *pvRv = std::memset(&a_object, 0, sizeof(a_object));
-    xUNUSED(pvRv);
-}
-//-------------------------------------------------------------------------------------------------
 template<typename T, typename F, typename N>
 /* static */ inline
 void_t

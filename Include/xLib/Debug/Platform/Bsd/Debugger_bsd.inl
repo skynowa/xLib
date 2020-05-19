@@ -16,8 +16,8 @@ bool_t
 Debugger::_isActive_impl() const
 {
     const u_int mibSize = 4;
-    int_t       mib[mibSize];  Utils::structZeroT(mib);
-    kinfo_proc  info;          Utils::structZeroT(info);
+    int_t       mib[mibSize] {};
+    kinfo_proc  info {};
     size_t      infoSize = 0;
 
     mib[0] = CTL_KERN;
