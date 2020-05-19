@@ -228,7 +228,7 @@ return 1;
 
     xTEST_CASE("MySqlRecordset::rowsNum")
     {
-        my_ulonglong ullRv = mysqlRecord.rowsNum(); xUNUSED(ullRv);
+    	std::size_t ullRv = mysqlRecord.rowsNum(); xUNUSED(ullRv);
         //xTRACE("ullRowsNum: %lli", ullRv);
         //TODO: xTEST_LESS(0ULL, ullRv);
     }
@@ -279,7 +279,7 @@ return 1;
     {
         std::vec_tstring_t row;
 
-        for (my_ulonglong i = 0; i < mysqlRecord.rowsNum(); ++ i) {
+        for (std::size_t i = 0; i < mysqlRecord.rowsNum(); ++ i) {
             mysqlRecord.fetchRow(&row);
 
             //std::tcout << xT("Row ") << i << xT(": ") << row << std::endl;
