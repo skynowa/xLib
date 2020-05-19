@@ -10,9 +10,10 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
-#include <xLib/Db/MySql/MySqlConnection.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, db)
+
+class MySqlConnection;
 
 class MySqlRecordset
     /// MySql recordset
