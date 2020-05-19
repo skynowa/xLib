@@ -28,34 +28,37 @@ class Unit
     /// testing
 {
 public:
-    void_t *            m_pvRv {};   ///< for global use
-    tchar_t             m_chRv {};   ///< for global use
-    uchar_t             m_ucRv {};   ///< for global use
-    bool_t              m_bRv {};    ///< for global use
-    int_t               m_iRv {};    ///< for global use
-    short_t             m_siRv {};   ///< for global use
-    ushort_t            m_usiRv {};  ///< for global use
-    uint_t              m_uiRv {};   ///< for global use
-    size_t              m_stRv {};   ///< for global use
-    ssize_t             m_sstRv {};  ///< for global use
-    long_t              m_liRv {};   ///< for global use
-    ulong_t             m_ulRv {};   ///< for global use
-    longlong_t          m_llRv {};   ///< for global use
-    ulonglong_t         m_ullRv {};  ///< for global use
-    float_t             m_fRv {};    ///< for global use
-    double_t            m_dRv {};    ///< for global use
-    longdouble_t        m_ldRv {};   ///< for global use
-    std::tstring_t      m_sRv;       ///< for global use
-    std::ustring_t      m_usRv;      ///< for global use
-    std::vec_tchar_t    m_vchRv;     ///< for global use
-    std::vec_tstring_t  m_vsRv;      ///< for global use
-    std::map_tstring_t  m_msRv;      ///< for global use
-    std::mmap_tstring_t m_mmsRv;     ///< for global use
-    native_handle_t     m_hRv {};    ///< for global use
+///@name For global use
+///@{
+    void_t *            m_pvRv {};
+    tchar_t             m_chRv {};
+    uchar_t             m_ucRv {};
+    bool_t              m_bRv {};
+    int_t               m_iRv {};
+    short_t             m_siRv {};
+    ushort_t            m_usiRv {};
+    uint_t              m_uiRv {};
+    size_t              m_stRv {};
+    ssize_t             m_sstRv {};
+    long_t              m_liRv {};
+    ulong_t             m_ulRv {};
+    longlong_t          m_llRv {};
+    ulonglong_t         m_ullRv {};
+    float_t             m_fRv {};
+    double_t            m_dRv {};
+    longdouble_t        m_ldRv {};
+    std::tstring_t      m_sRv;
+    std::ustring_t      m_usRv;
+    std::vec_tchar_t    m_vchRv;
+    std::vec_tstring_t  m_vsRv;
+    std::map_tstring_t  m_msRv;
+    std::mmap_tstring_t m_mmsRv;
+    native_handle_t     m_hRv {};
 
 #if xENV_WIN
-    HWND                m_hwndRv {}; ///< for global use
+    HWND                m_hwndRv {};
 #endif
+///@}
 
     UnitData            data;
 
