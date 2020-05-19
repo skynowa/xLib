@@ -58,16 +58,6 @@ public:
     HandleMySqlConn &get() xWARN_UNUSED_RV;
         ///< get handle
 
-    static
-    bool_t         isDbExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
-        ///< check connection
-    static
-    void_t         dbCreate(cMySqlConnectionData &data);
-        ///< create DB
-    static
-    void_t         dbDrop(cMySqlConnectionData &data);
-        ///< drop DB
-
     void_t         connect(cMySqlConnectionData &data);
         ///< attempts to establish a connection to a MySql database engine running on host
     void_t         reconnect();
@@ -101,6 +91,17 @@ public:
         ///< error code for the most recently invoked API function that can succeed or fail
     std::tstring_t lastErrorStr() const override xWARN_UNUSED_RV;
         ///< error message for the most recently invoked API function that failed
+
+xPUBLIC_STATIC:
+	static
+	bool_t         isDbExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
+		///< check connection
+	static
+	void_t         dbCreate(cMySqlConnectionData &data);
+		///< create DB
+	static
+	void_t         dbDrop(cMySqlConnectionData &data);
+		///< drop DB
 
 private:
 	MySqlConnectionData _data; ///< MySqlConnection data
