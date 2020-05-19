@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN2(xl, core)
 
 template<typename StreamT>
-class FormatT
+class FormatT_v1
     ///< format string
 {
 public:
@@ -52,12 +52,12 @@ private:
     static
     void_t _format(StreamT &os, const T &value);
 
-    xNO_INSTANCE(FormatT)
-    xNO_COPY_ASSIGN(FormatT)
+    xNO_INSTANCE(FormatT_v1)
+    xNO_COPY_ASSIGN(FormatT_v1)
 };
 
-using FormatStd = FormatT<std::tstringstream_t>;
-using Format    = FormatT<xl::core::OStream>;
+using FormatStd_v1 = FormatT_v1<std::tstringstream_t>;
+using Format_v1    = FormatT_v1<xl::core::OStream>;
 
 xNAMESPACE_END2(xl, core)
 //-------------------------------------------------------------------------------------------------

@@ -61,16 +61,6 @@ FormatT<StreamT>::str(
 
 //-------------------------------------------------------------------------------------------------
 template<typename StreamT>
-/* static */
-inline std::ctstring_view_t &
-FormatT<StreamT>::_specifier()
-{
-    static std::ctstring_view_t sRv(xT("{}"));
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename StreamT>
 template<typename T>
 /* static */
 inline void_t
@@ -82,7 +72,7 @@ FormatT<StreamT>::_format(
 	std::size_t          &out_posPrev			///< [in,out]
 )
 {
-	std::csize_t pos = a_fmt.find(_specifier(), out_posPrev);
+	std::csize_t pos = a_fmt.find(_specifier, out_posPrev);
 	if (pos == std::tstring_t::npos) {
 		return;
 	}
@@ -103,7 +93,7 @@ FormatT<StreamT>::_format(
 
 		++ out_specifiersFound;
 
-		out_posPrev = pos + _specifier().size();
+		out_posPrev = pos + _specifier.size();
 	}
 };
 //-------------------------------------------------------------------------------------------------
@@ -121,10 +111,10 @@ FormatT<StreamT>::_testFmt(
 	{
 		for (auto &it_fmt : a_fmt) {
 			switch (it_fmt) {
-			case xT('{'):
+			case _specifier[0]:
 				++ specifierOpen;
 				break;
-			case xT('}'):
+			case _specifier[1]:
 				++ specifierClose;
 				break;
 			default:
