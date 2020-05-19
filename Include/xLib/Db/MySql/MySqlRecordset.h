@@ -28,7 +28,7 @@ public:
 
     uint_t       fieldsNum() const xWARN_UNUSED_RV;
         ///< number of columns in a result set
-    my_ulonglong rowsNum() const xWARN_UNUSED_RV;
+    std::size_t  rowsNum() const xWARN_UNUSED_RV;
         ///< number of rows in the result set
     void_t       fetchField(MYSQL_FIELD *field) const;
         ///< The MYSQL_FIELD structure for the current column

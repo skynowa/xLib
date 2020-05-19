@@ -47,7 +47,7 @@ MySqlRecordset::fieldsNum() const
     return ::mysql_num_fields( _result.get() );
 }
 //-------------------------------------------------------------------------------------------------
-my_ulonglong
+std::size_t
 MySqlRecordset::rowsNum() const
 {
     xTEST(_result.isValid());
