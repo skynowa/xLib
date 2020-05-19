@@ -116,7 +116,7 @@ Volume::unMount(
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Volume::isSpaceEnough(
+Volume::isSpaceAvailable(
     culonglong_t a_needBytes ///< need space in bytes
 ) const
 {

@@ -189,7 +189,7 @@ Test_Volume::unit()
     #endif
     }
 
-    xTEST_CASE("isSpaceEnough")
+    xTEST_CASE("isSpaceAvailable")
     {
         std::vec_tstring_t volumes;
         volumes.push_back( User().homeDir() );
@@ -209,7 +209,7 @@ Test_Volume::unit()
                 Volume volume(it);
                 // xCHECK_DO(!volume.isReady(), continue);
 
-                m_bRv = volume.isSpaceEnough(needBytes);
+                m_bRv = volume.isSpaceAvailable(needBytes);
                 xTEST_EQ(m_bRv, bRv);
             }
         }
