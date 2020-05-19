@@ -42,7 +42,7 @@ MySqlRecordset::get()
 uint_t
 MySqlRecordset::fieldsNum() const
 {
-    xTEST_EQ(_result.isValid(), true);
+    xTEST(_result.isValid());
 
     return ::mysql_num_fields( _result.get() );
 }
@@ -50,7 +50,7 @@ MySqlRecordset::fieldsNum() const
 my_ulonglong
 MySqlRecordset::rowsNum() const
 {
-    xTEST_EQ(_result.isValid(), true);
+    xTEST(_result.isValid());
 
     return ::mysql_num_rows( _result.get() );
 }
@@ -60,7 +60,7 @@ MySqlRecordset::fetchField(
     MYSQL_FIELD *a_field	///< metadata: information about a field
 ) const
 {
-    xTEST_EQ(_result.isValid(), true);
+    xTEST(_result.isValid());
     xTEST_PTR(a_field);
 
     a_field = ::mysql_fetch_field( _result.get() );
@@ -73,7 +73,7 @@ MySqlRecordset::fetchFieldDirect(
     MYSQL_FIELD *a_field
 ) const
 {
-    xTEST_EQ(_result.isValid(), true);
+    xTEST(_result.isValid());
     xTEST_NA(a_fieldNumber);
     xTEST_PTR(a_field);
 
@@ -86,7 +86,7 @@ MySqlRecordset::fetchFields(
     MYSQL_FIELD *a_field
 ) const
 {
-    xTEST_EQ(_result.isValid(), true);
+    xTEST(_result.isValid());
     xTEST_PTR(a_field);
 
     a_field = ::mysql_fetch_fields(_result.get());
@@ -98,7 +98,7 @@ MySqlRecordset::fetchRow(
     std::vec_tstring_t *a_row
 ) const
 {
-    xTEST_EQ(_result.isValid(), true);
+    xTEST(_result.isValid());
     xTEST_PTR(a_row);
 
     uint_t     fieldsNum    {};
@@ -149,7 +149,7 @@ MySqlRecordset::_fetchRow(
     MYSQL_ROW *a_row	///< one row of data
 ) const
 {
-    xTEST_EQ(_result.isValid(), true);
+    xTEST(_result.isValid());
     xTEST_PTR(a_row);
 
     *a_row = ::mysql_fetch_row(_result.get());
@@ -162,7 +162,7 @@ MySqlRecordset::_fetchLengths(
     ulong_t **a_fieldLengths
 ) const
 {
-    xTEST_EQ(_result.isValid(), true);
+    xTEST(_result.isValid());
     xTEST_PTR_FAIL(*a_fieldLengths);
 
     *a_fieldLengths = ::mysql_fetch_lengths(_result.get());
