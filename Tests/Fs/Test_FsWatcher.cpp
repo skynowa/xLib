@@ -98,6 +98,8 @@ public:
 bool_t
 Test_FsWatcher::unit()
 {
+	return false;
+
 	struct Cmd
 	{
 		std::tstring_t projectName;
