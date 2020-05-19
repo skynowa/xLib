@@ -11,5 +11,4 @@ DIR_BUILD="../xLib_eclipse"
 cd $DIR_BUILD
 
 cmake --build . -- -j16
-sudo cmake . --target install -- -j16
-sudo ldconfig
+sudo cmake --build . --target install
