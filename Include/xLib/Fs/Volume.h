@@ -67,11 +67,12 @@ public:
 
     // static
     static
-    void_t          space(std::ctstring_t &dirPath, ulonglong_t *available, ulonglong_t *total,
-                        ulonglong_t *free);
+    void_t          space(std::ctstring_t &dirPath, ulonglong_t *availableBytes,
+                        ulonglong_t *totalBytes, ulonglong_t *freeBytes);
         ///< get free space
     static
-    void_t          currentSpace(ulonglong_t *available, ulonglong_t *total, ulonglong_t *free);
+    void_t          currentSpace(ulonglong_t *availableBytes, ulonglong_t *totalBytes,
+                        ulonglong_t *freeBytes);
         ///< get free space of current valume
     static
     void_t          paths(std::vec_tstring_t *volumePaths);
@@ -92,8 +93,8 @@ xPLATFORM_IMPL:
 
     // static
     static
-    void_t          _space_impl(std::ctstring_t &dirPath, ulonglong_t* &available,
-                        ulonglong_t* &total, ulonglong_t* &free);
+    void_t          _space_impl(std::ctstring_t &dirPath, ulonglong_t* &availableBytes,
+                        ulonglong_t* &totalBytes, ulonglong_t* &freeBytes);
     static
     void_t          _paths_impl(std::vec_tstring_t *volumePaths);
 
