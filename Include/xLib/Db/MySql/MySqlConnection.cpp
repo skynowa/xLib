@@ -100,14 +100,12 @@ MySqlConnection::dbDrop(
     cMySqlConnectionData &a_data
 )
 {
-	std::ctstring_t db = a_data.db;
-
 	MySqlConnectionData data = a_data;
 	data.db = {};
 
 	MySqlConnection conn;
 	conn.connect(data);
-	conn.query(xT("DROP DATABASE IF EXISTS `%s`"), db.c_str());
+	conn.query(xT("DROP DATABASE IF EXISTS `%s`"), a_data.db.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
