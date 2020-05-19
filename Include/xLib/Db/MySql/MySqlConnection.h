@@ -94,13 +94,13 @@ public:
 
 xPUBLIC_STATIC:
 	static
-	bool_t         isDbExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
+	bool_t isDbExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
 		///< check connection
 	static
-	void_t         dbCreate(cMySqlConnectionData &data);
+	void_t dbCreate(cMySqlConnectionData &data);
 		///< create DB
 	static
-	void_t         dbDrop(cMySqlConnectionData &data);
+	void_t dbDrop(cMySqlConnectionData &data);
 		///< drop DB
 
 private:
