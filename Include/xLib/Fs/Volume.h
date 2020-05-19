@@ -62,7 +62,7 @@ public:
         ///< mount
     void_t          unMount(cbool_t &isForce) const;
         ///< unmount
-    bool_t          isSpaceEnough(culonglong_t &needBytes) const xWARN_UNUSED_RV;
+    bool_t          isSpaceEnough(culonglong_t needBytes) const xWARN_UNUSED_RV;
         ///< is enough space
 
     // static
