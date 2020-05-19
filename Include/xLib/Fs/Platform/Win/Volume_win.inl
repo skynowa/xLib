@@ -135,8 +135,8 @@ Volume::_unMount_impl(
 void_t
 Volume::_space_impl(
     std::ctstring_t &a_dirPath,          ///< directory path
-    ulonglong_t*    &a_availableBytes,   ///< available space (for unprivileged users)
     ulonglong_t*    &a_totalBytes,       ///< total space
+    ulonglong_t*    &a_availableBytes,   ///< available space (for unprivileged users)
     ulonglong_t*    &a_freeBytes         ///< free space
 )
 {
@@ -147,8 +147,8 @@ Volume::_space_impl(
     BOOL blRv = ::GetDiskFreeSpaceEx(a_dirPath.c_str(), &available, &total, &free);
     xTEST_DIFF(blRv, FALSE);
 
-    Utils::ptrAssignT(a_availableBytes, available.QuadPart);
     Utils::ptrAssignT(a_totalBytes,     total.QuadPart);
+    Utils::ptrAssignT(a_availableBytes, available.QuadPart);
     Utils::ptrAssignT(a_freeBytes,      free.QuadPart);
 }
 //-------------------------------------------------------------------------------------------------
