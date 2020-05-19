@@ -25,10 +25,8 @@ public:
     xNO_COPY_ASSIGN(FormatT)
 
 private:
-	static constexpr bool_t _isTest {true};	///< test formatted string
-
-    static
-    std::ctstring_view_t & _specifier();
+	static constexpr bool_t              _isTest {true};		///< test formatted string
+    static constexpr std::tstring_view_t _specifier {xT("{}")};	///<
         ///< specifier
 	template<typename T>
 	static

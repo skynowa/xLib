@@ -108,7 +108,7 @@ xNAMESPACE_BEGIN2(xl, core)
     template<typename StreamT> \
     template<xVA_TYPES_##n> \
     inline std::tstring_t \
-    FormatT<StreamT>::str( \
+    FormatT_v1<StreamT>::str( \
         std::ctstring_t &a_format, xVA_VARS_##n \
     ) \
     { \
@@ -180,7 +180,7 @@ xFORMAT_STR(20)
 template<typename StreamT>
 /* static */
 inline std::ctstring_t &
-FormatT<StreamT>::_specifier()
+FormatT_v1<StreamT>::_specifier()
 {
     static std::ctstring_t sRv(xT("{}"));
 
@@ -191,7 +191,7 @@ template<typename StreamT>
 template<typename T>
 /* static */
 inline void_t
-FormatT<StreamT>::_format(
+FormatT_v1<StreamT>::_format(
     StreamT &a_os,      ///< [out]
     const T &a_value    ///< value
 )
