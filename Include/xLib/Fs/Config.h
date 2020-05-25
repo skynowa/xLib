@@ -76,16 +76,15 @@ public:
         ///< delete key and value
 
 private:
-    std::ctstring_t   _separator;  ///< separator between key and value
-    std::ctstring_t   _fileExt;    ///< file extension
+    std::ctstring_t    _separator;  ///< separator between key and value
+    std::ctstring_t    _fileExt;    ///< file extension
 
-    std::tstring_t    _filePath;   ///< file path to file
-    std::map_tstring_t _config;    ///< std::map of keys and values
+    std::tstring_t     _filePath;   ///< file path to file
+    std::map_tstring_t _config;     ///< std::map of keys and values
 
-    void_t            _read(std::ctstring_t &key, std::ctstring_t &defaultValue,
-                          std::tstring_t *value);
+    void_t _read(std::ctstring_t &key, std::ctstring_t &defaultValue, std::tstring_t *value);
         ///< parse file
-    void_t            _write(std::ctstring_t &key, std::ctstring_t &value);
+    void_t _write(std::ctstring_t &key, std::ctstring_t &value);
         ///< flush to local_storage_t, file
 
     xNO_COPY_ASSIGN(Config)
