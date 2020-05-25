@@ -119,7 +119,6 @@ Config::keyIsExists(
 ) const
 {
     std::map_tstring_t cfg;
-
     File::textRead(path(), _separator, &cfg);
 
     xCHECK_RET(cfg.end() == cfg.find(a_key), false);
@@ -137,7 +136,6 @@ Config::keyReadString(
     xTEST_NA(a_defaultValue);
 
     std::tstring_t sRv;
-
     _read(a_key, a_defaultValue, &sRv);
 
     return sRv;
