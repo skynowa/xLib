@@ -47,6 +47,12 @@ public:
         ///< delete key and value
 
     // value
+    std::tstring_t    value(std::ctstring_t &key, cptr_ctchar_t defaultValue)
+                          xWARN_UNUSED_RV;
+        ///< read tchar_t
+    void_t            setValue(std::ctstring_t &key, cptr_ctchar_t value);
+        ///< write tchar_t
+
     std::tstring_t    value(std::ctstring_t &key, std::ctstring_t &defaultValue)
                           xWARN_UNUSED_RV;
         ///< read std::tstring_t
