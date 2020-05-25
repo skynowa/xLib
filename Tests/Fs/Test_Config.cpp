@@ -145,6 +145,29 @@ Test_Config::unit()
 
             config.setValue(key1, str);
 
+            m_sRv = config.value(key1, xT(""));
+            xTEST_EQ(m_sRv, str);
+        }
+
+        // false
+        {
+        	cptr_ctchar_t str = xT("sssssssssssss");
+
+            config.setValue(key1, str);
+
+            m_sRv = config.value(key1, xT(""));
+            xTEST(m_sRv == str);
+        }
+    }
+
+    xTEST_CASE("setValue, value")
+    {
+        // true
+        {
+            std::ctstring_t str = value1;
+
+            config.setValue(key1, str);
+
             m_sRv = config.value(key1, std::tstring_t());
             xTEST_EQ(m_sRv, str);
         }
@@ -206,7 +229,7 @@ Test_Config::unit()
 		config.keyClear(key3);
 		xTEST( config.keyIsExists(key3));
 
-		m_sRv = config.value(key3, std::tstring_t{xT("fasrfsefrtg")});
+		m_sRv = config.value(key3, xT("fasrfsefrtg"));
 		xTEST_EQ(m_sRv, Const::strEmpty());
     }
 

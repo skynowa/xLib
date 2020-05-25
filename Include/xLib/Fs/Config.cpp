@@ -165,6 +165,33 @@ Config::keyDelete(
 std::tstring_t
 Config::value(
     std::ctstring_t &a_key,
+	cptr_ctchar_t    a_defaultValue
+)
+{
+    xTEST_EQ(a_key.empty(), false);
+    xTEST_NA(a_defaultValue);
+
+    std::tstring_t sRv;
+    _read(a_key, a_defaultValue, &sRv);
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Config::setValue(
+    std::ctstring_t &a_key,
+	cptr_ctchar_t    a_value
+)
+{
+    xTEST_EQ(a_key.empty(), false);
+    xTEST_NA(a_value);
+
+    _write(a_key, a_value);
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Config::value(
+    std::ctstring_t &a_key,
     std::ctstring_t &a_defaultValue
 )
 {
