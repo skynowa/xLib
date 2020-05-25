@@ -70,13 +70,13 @@ Test_Config::unit()
 
         config.flush();
 
-        m_sRv = config.keyReadString(key1, std::tstring_t());
+        m_sRv = config.valueStr(key1, std::tstring_t());
         xTEST_EQ(value1, m_sRv);
 
-        m_sRv = config.keyReadString(key2, std::tstring_t());
+        m_sRv = config.valueStr(key2, std::tstring_t());
         xTEST_EQ(value2, m_sRv);
 
-        m_sRv = config.keyReadString(key3, std::tstring_t());
+        m_sRv = config.valueStr(key3, std::tstring_t());
         xTEST_EQ(value3, m_sRv);
 
         config.get().clear();
@@ -137,15 +137,15 @@ Test_Config::unit()
         config.flush();
     }
 
-    xTEST_CASE("keyWriteString, keyReadString")
+    xTEST_CASE("setValueStr, valueStr")
     {
         // true
         {
             std::ctstring_t str = value1;
 
-            config.keyWriteString(key1, str);
+            config.setValueStr(key1, str);
 
-            m_sRv = config.keyReadString(key1, std::tstring_t());
+            m_sRv = config.valueStr(key1, std::tstring_t());
             xTEST_EQ(str, m_sRv);
         }
 
@@ -153,51 +153,51 @@ Test_Config::unit()
         {
             std::ctstring_t str = xT("sssssssssssss");
 
-            config.keyWriteString(key1, str);
+            config.setValueStr(key1, str);
 
-            m_sRv = config.keyReadString(key1, std::tstring_t());
+            m_sRv = config.valueStr(key1, std::tstring_t());
             xTEST_EQ(str, m_sRv);
         }
     }
 
-    xTEST_CASE("keyReadInt, keyWriteInt")
+    xTEST_CASE("valueInt, keyWriteInt")
     {
         clong_t value = 10L;
 
-        config.keyWriteInt(key1, value);
+        config.setValueInt(key1, value);
 
-        m_liRv = config.keyReadInt(key1, 0L);
+        m_liRv = config.valueInt(key1, 0L);
         xTEST_EQ(value, m_liRv);
     }
 
-    xTEST_CASE("keyReadFloat, keyWriteFloat")
+    xTEST_CASE("valueFloat, setValueFloat")
     {
         cdouble_t value = 777.0f;
 
-        config.keyWriteFloat(key1, value);
+        config.setValueFloat(key1, value);
 
-        m_dRv = config.keyReadFloat(key1, 0.0f);
+        m_dRv = config.valueFloat(key1, 0.0f);
         xTEST_EQ(value, m_dRv);
     }
 
-    xTEST_CASE("keyReadBool, keyWriteBool")
+    xTEST_CASE("valueBool, setValueBool")
     {
         cbool_t value = false;
 
-        config.keyWriteBool(key1, value);
+        config.setValueBool(key1, value);
 
-        m_bRv = config.keyReadBool(key1, true);
+        m_bRv = config.valueBool(key1, true);
         xTEST_EQ(value, m_bRv);
     }
 
-    xTEST_CASE("keyWriteBin, keyReadBin")
+    xTEST_CASE("setValueBin, valueBin")
     {
         std::custring_t value(10, 'z');
         std::custring_t defaultValue(10, 'd');
 
-        config.keyWriteBin(key1, value);
+        config.setValueBin(key1, value);
 
-        m_usRv = config.keyReadBin(key1, defaultValue);
+        m_usRv = config.valueBin(key1, defaultValue);
         xTEST_EQ(value, m_usRv);
     }
 
@@ -206,7 +206,7 @@ Test_Config::unit()
         config.keyClear(key3);
         xTEST_EQ(true, config.keyIsExists(key3));
 
-        m_sRv = config.keyReadString(key3, xT("fasrfsefrtg"));
+        m_sRv = config.valueStr(key3, xT("fasrfsefrtg"));
         xTEST_EQ(Const::strEmpty(), m_sRv);
     }
 
@@ -215,7 +215,7 @@ Test_Config::unit()
         std::ctstring_t key   = xT("Key");
         std::ctstring_t value = xT("");
 
-        config.keyWriteString(key, value);
+        config.setValueStr(key, value);
         xTEST_EQ(true, config.keyIsExists(key));
 
         config.keyDelete(key);
