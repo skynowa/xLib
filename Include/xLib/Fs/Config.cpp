@@ -86,6 +86,8 @@ Config::get()
 void_t
 Config::save() const
 {
+	xCHECK_DO(_config.empty(), return);
+
     File::textWrite(path(), _separator, _config, File::OpenMode::omWrite);
 }
 //-------------------------------------------------------------------------------------------------
@@ -273,11 +275,7 @@ Config::value(
     xTEST_NA(a_key);
     xTEST_NA(a_defaultValue);
 
-    std::tstring_t str;
-
-    str = value(a_key, String::castBool(a_defaultValue));
-
-    return String::castBool(str);
+    return String::castBool( value(a_key, String::castBool(a_defaultValue)) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -345,12 +343,17 @@ void_t
 Config::_read(
     std::ctstring_t &a_key,
     std::ctstring_t &a_defaultValue,
-    std::tstring_t  *a_value
+    std::tstring_t  *out_value
 )
 {
     xTEST_NA(a_key);
     xTEST_NA(a_defaultValue);
-    xTEST_PTR(a_value);
+    xTEST_PTR(out_value);
+
+    if ( !File::isExists(path()) ) {
+		*out_value = a_defaultValue;
+		return;
+    }
 
     // read from file
     File::textRead(path(), _separator, &_config);
@@ -360,9 +363,9 @@ Config::_read(
     if (it == _config.end()) {
         _write(a_key, a_defaultValue);
 
-        *a_value = a_defaultValue;
+        *out_value = a_defaultValue;
     } else {
-        *a_value = it->second;
+        *out_value = it->second;
     }
 }
 //-------------------------------------------------------------------------------------------------
