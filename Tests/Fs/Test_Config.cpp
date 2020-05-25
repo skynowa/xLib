@@ -59,7 +59,7 @@ Test_Config::unit()
         xTEST_EQ(m_sRv, filePath);
     }
 
-    xTEST_CASE("get, flush")
+    xTEST_CASE("get, save")
     {
         std::map_tstring_t &_storage = config.get();
         xTEST(_storage.empty());
@@ -68,7 +68,7 @@ Test_Config::unit()
         _storage[key2] = value2;
         _storage[key3] = value3;
 
-        config.flush();
+        config.save();
 
         m_sRv = config.value(key1, std::tstring_t());
         xTEST_EQ(m_sRv, value1);
@@ -80,7 +80,7 @@ Test_Config::unit()
         xTEST_EQ(m_sRv, value3);
 
         config.get().clear();
-        config.flush();
+        config.save();
     }
 
     xTEST_CASE("keyIsExists")
@@ -92,7 +92,7 @@ Test_Config::unit()
         _storage[key2] = value2;
         _storage[key3] = value3;
 
-        config.flush();
+        config.save();
 
         // true
         {
@@ -134,7 +134,7 @@ Test_Config::unit()
         }
 
         config.get().clear();
-        config.flush();
+        config.save();
     }
 
     xTEST_CASE("get/set - cptr_ctchar_t")

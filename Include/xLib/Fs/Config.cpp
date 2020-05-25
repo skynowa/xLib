@@ -44,7 +44,7 @@ Config::Config(
 /* virtual */
 Config::~Config()
 {
-    flush();
+    save();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -84,7 +84,7 @@ Config::get()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::flush() const
+Config::save() const
 {
     File::textWrite(path(), _separator, _config, File::OpenMode::omWrite);
 }
