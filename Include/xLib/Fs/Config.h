@@ -47,32 +47,32 @@ public:
         ///< delete key and value
 
     // value
-    std::tstring_t    valueStr(std::ctstring_t &key, std::ctstring_t &defaultValue)
+    std::tstring_t    value(std::ctstring_t &key, std::ctstring_t &defaultValue)
                           xWARN_UNUSED_RV;
         ///< read std::tstring_t
-    void_t            setValueStr(std::ctstring_t &key, std::ctstring_t &value);
+    void_t            setValue(std::ctstring_t &key, std::ctstring_t &value);
         ///< write std::tstring_t
 
-    long_t            valueInt(std::ctstring_t &key, clong_t &defaultValue) xWARN_UNUSED_RV;
+    long_t            value(std::ctstring_t &key, clong_t &defaultValue) xWARN_UNUSED_RV;
         ///< read int_t
-    void_t            setValueInt(std::ctstring_t &key, clong_t &value);
+    void_t            setValue(std::ctstring_t &key, clong_t &value);
         ///< write int_t
 
-    double            valueFloat(std::ctstring_t &key, cdouble_t &defaultValue)
+    double            value(std::ctstring_t &key, cdouble_t &defaultValue)
                           xWARN_UNUSED_RV;
         ///< read float_t
-    void_t            setValueFloat(std::ctstring_t &key, cdouble_t &value);
+    void_t            setValue(std::ctstring_t &key, cdouble_t &value);
         ///< write float_t
 
-    bool_t            valueBool(std::ctstring_t &key, cbool_t &defaultValue) xWARN_UNUSED_RV;
+    bool_t            value(std::ctstring_t &key, cbool_t &defaultValue) xWARN_UNUSED_RV;
         ///< read bool_t
-    void_t            setValueBool(std::ctstring_t &key, cbool_t &value);
+    void_t            setValue(std::ctstring_t &key, cbool_t &value);
         ///< write bool_t
 
-    std::ustring_t    valueBin(std::ctstring_t &key, std::custring_t &defaultValue)
+    std::ustring_t    value(std::ctstring_t &key, std::custring_t &defaultValue)
                           xWARN_UNUSED_RV;
         ///< write std::ustring_t
-    void_t            setValueBin(std::ctstring_t &key, std::custring_t &value);
+    void_t            setValue(std::ctstring_t &key, std::custring_t &value);
         ///< read std::ustring_t
 
 private:
