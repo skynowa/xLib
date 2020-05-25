@@ -137,7 +137,7 @@ Test_Config::unit()
         config.flush();
     }
 
-    xTEST_CASE("setValue, value")
+    xTEST_CASE("get/set - cptr_ctchar_t")
     {
         // true
         {
@@ -160,7 +160,7 @@ Test_Config::unit()
         }
     }
 
-    xTEST_CASE("setValue, value")
+    xTEST_CASE("get/set - std::ctstring_t")
     {
         // true
         {
@@ -183,7 +183,7 @@ Test_Config::unit()
         }
     }
 
-    xTEST_CASE("value, setValue")
+    xTEST_CASE("get/set - clong_t")
     {
         clong_t value = 10L;
 
@@ -193,7 +193,7 @@ Test_Config::unit()
         xTEST_EQ(m_liRv, value);
     }
 
-    xTEST_CASE("value, setValue")
+    xTEST_CASE("get/set - cdouble_t")
     {
         cdouble_t value = 777.0f;
 
@@ -203,7 +203,7 @@ Test_Config::unit()
         xTEST_EQ(m_dRv, value);
     }
 
-    xTEST_CASE("value, setValue")
+    xTEST_CASE("get/set - cbool_t")
     {
         cbool_t value = false;
 
@@ -213,7 +213,7 @@ Test_Config::unit()
         xTEST_EQ(m_bRv, value);
     }
 
-    xTEST_CASE("value, setValue")
+    xTEST_CASE("get/set - std::custring_t")
     {
         std::custring_t value(10, 'z');
         std::custring_t defaultValue(10, 'd');
