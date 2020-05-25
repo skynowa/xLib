@@ -48,7 +48,7 @@ Test_Config::unit()
     xTEST_CASE("path")
     {
         m_sRv = config.path();
-        xTEST_EQ(filePath, m_sRv);
+        xTEST_EQ(m_sRv, filePath);
     }
 
     xTEST_CASE("setPath")
@@ -56,13 +56,13 @@ Test_Config::unit()
         config.setPath(filePath);
 
         m_sRv = config.path();
-        xTEST_EQ(filePath, m_sRv);
+        xTEST_EQ(m_sRv, filePath);
     }
 
     xTEST_CASE("get, flush")
     {
         std::map_tstring_t &_storage = config.get();
-        xTEST_EQ(true, _storage.empty());
+        xTEST(_storage.empty());
 
         _storage[key1] = value1;
         _storage[key2] = value2;
@@ -70,14 +70,14 @@ Test_Config::unit()
 
         config.flush();
 
-        m_sRv = config.valueStr(key1, std::tstring_t());
-        xTEST_EQ(value1, m_sRv);
+        m_sRv = config.value(key1, std::tstring_t());
+        xTEST_EQ(m_sRv, value1);
 
-        m_sRv = config.valueStr(key2, std::tstring_t());
-        xTEST_EQ(value2, m_sRv);
+        m_sRv = config.value(key2, std::tstring_t());
+        xTEST_EQ(m_sRv, value2);
 
-        m_sRv = config.valueStr(key3, std::tstring_t());
-        xTEST_EQ(value3, m_sRv);
+        m_sRv = config.value(key3, std::tstring_t());
+        xTEST_EQ(m_sRv, value3);
 
         config.get().clear();
         config.flush();
@@ -86,7 +86,7 @@ Test_Config::unit()
     xTEST_CASE("keyIsExists")
     {
         std::map_tstring_t &_storage = config.get();
-        xTEST_EQ(true, _storage.empty());
+        xTEST(_storage.empty());
 
         _storage[key1] = value1;
         _storage[key2] = value2;
@@ -106,10 +106,10 @@ Test_Config::unit()
                 std::vec_tstring_t pair;
 
                 String::split(pairs.at(i), Const::equal(), &pair);
-                xTEST_EQ(false, pair.empty());
+                xTEST(!pair.empty());
 
                 m_bRv = config.keyIsExists( pair.at(0) );
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -129,7 +129,7 @@ Test_Config::unit()
                  String::split(pairs.at(i), Const::equal(), &pair);
 
                 m_bRv = config.keyIsExists( pair.at(0) );
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
 
@@ -137,77 +137,77 @@ Test_Config::unit()
         config.flush();
     }
 
-    xTEST_CASE("setValueStr, valueStr")
+    xTEST_CASE("setValue, value")
     {
         // true
         {
             std::ctstring_t str = value1;
 
-            config.setValueStr(key1, str);
+            config.setValue(key1, str);
 
-            m_sRv = config.valueStr(key1, std::tstring_t());
-            xTEST_EQ(str, m_sRv);
+            m_sRv = config.value(key1, std::tstring_t());
+            xTEST_EQ(m_sRv, str);
         }
 
         // false
         {
             std::ctstring_t str = xT("sssssssssssss");
 
-            config.setValueStr(key1, str);
+            config.setValue(key1, str);
 
-            m_sRv = config.valueStr(key1, std::tstring_t());
-            xTEST_EQ(str, m_sRv);
+            m_sRv = config.value(key1, std::tstring_t());
+            xTEST_EQ(m_sRv, str);
         }
     }
 
-    xTEST_CASE("valueInt, keyWriteInt")
+    xTEST_CASE("value, setValue")
     {
         clong_t value = 10L;
 
-        config.setValueInt(key1, value);
+        config.setValue(key1, value);
 
-        m_liRv = config.valueInt(key1, 0L);
-        xTEST_EQ(value, m_liRv);
+        m_liRv = config.value(key1, 0L);
+        xTEST_EQ(m_liRv, value);
     }
 
-    xTEST_CASE("valueFloat, setValueFloat")
+    xTEST_CASE("value, setValue")
     {
         cdouble_t value = 777.0f;
 
-        config.setValueFloat(key1, value);
+        config.setValue(key1, value);
 
-        m_dRv = config.valueFloat(key1, 0.0f);
-        xTEST_EQ(value, m_dRv);
+        m_dRv = config.value(key1, 0.0f);
+        xTEST_EQ(m_dRv, value);
     }
 
-    xTEST_CASE("valueBool, setValueBool")
+    xTEST_CASE("value, setValue")
     {
         cbool_t value = false;
 
-        config.setValueBool(key1, value);
+        config.setValue(key1, value);
 
-        m_bRv = config.valueBool(key1, true);
-        xTEST_EQ(value, m_bRv);
+        m_bRv = config.value(key1, true);
+        xTEST_EQ(m_bRv, value);
     }
 
-    xTEST_CASE("setValueBin, valueBin")
+    xTEST_CASE("value, setValue")
     {
         std::custring_t value(10, 'z');
         std::custring_t defaultValue(10, 'd');
 
-        config.setValueBin(key1, value);
+        config.setValue(key1, value);
 
-        m_usRv = config.valueBin(key1, defaultValue);
-        xTEST_EQ(value, m_usRv);
+        m_usRv = config.value(key1, defaultValue);
+        xTEST_EQ(m_usRv, value);
     }
 
     xTEST_CASE("keyClear")
     {
-        config.keyClear(key3);
-        xTEST_EQ(true, config.keyIsExists(key3));
+		config.keyClear(key3);
+		xTEST( config.keyIsExists(key3));
 
-        m_sRv = config.valueStr(key3, xT("fasrfsefrtg"));
-        xTEST_EQ(Const::strEmpty(), m_sRv);
+		m_sRv = config.value(key3, std::tstring_t{xT("fasrfsefrtg")});
+		xTEST_EQ(m_sRv, Const::strEmpty());
     }
 
     xTEST_CASE("keyDelete")
@@ -215,23 +215,23 @@ Test_Config::unit()
         std::ctstring_t key   = xT("Key");
         std::ctstring_t value = xT("");
 
-        config.setValueStr(key, value);
-        xTEST_EQ(true, config.keyIsExists(key));
+        config.setValue(key, value);
+        xTEST(config.keyIsExists(key));
 
         config.keyDelete(key);
-        xTEST_EQ(false, config.keyIsExists(key));
+        xTEST(!config.keyIsExists(key));
     }
 
     xTEST_CASE("clear")
     {
         config.clear();
-        xTEST_EQ(0LL, File::size( config.path() ));
+        xTEST_EQ(File::size( config.path() ), 0LL);
     }
 
     xTEST_CASE("remove")
     {
         config.remove();
-        xTEST_EQ(false, File::isExists( config.path() ));
+        xTEST(!File::isExists( config.path() ));
     }
 
     return true;

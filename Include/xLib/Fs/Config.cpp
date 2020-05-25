@@ -133,7 +133,7 @@ Config::keyClear(
 {
     xTEST_EQ(a_key.empty(), false);
 
-    setValueStr(a_key, std::tstring_t());
+    setValue(a_key, std::tstring_t());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -163,7 +163,7 @@ Config::keyDelete(
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Config::valueStr(
+Config::value(
     std::ctstring_t &a_key,
     std::ctstring_t &a_defaultValue
 )
@@ -178,7 +178,7 @@ Config::valueStr(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::setValueStr(
+Config::setValue(
     std::ctstring_t &a_key,
     std::ctstring_t &a_value
 )
@@ -190,7 +190,7 @@ Config::setValueStr(
 }
 //-------------------------------------------------------------------------------------------------
 long_t
-Config::valueInt(
+Config::value(
     std::ctstring_t &a_key,
     clong_t         &a_defaultValue
 )
@@ -198,11 +198,11 @@ Config::valueInt(
     xTEST_NA(a_key);
     xTEST_NA(a_defaultValue);
 
-    return String::cast<long_t>( valueStr(a_key, String::cast(a_defaultValue)) );
+    return String::cast<long_t>( value(a_key, String::cast(a_defaultValue)) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::setValueInt(
+Config::setValue(
     std::ctstring_t &a_key,
     clong_t         &a_value
 )
@@ -210,11 +210,11 @@ Config::setValueInt(
     xTEST_NA(a_key);
     xTEST_NA(a_value);
 
-    setValueStr(a_key, String::cast(a_value));
+    setValue(a_key, String::cast(a_value));
 }
 //-------------------------------------------------------------------------------------------------
 double
-Config::valueFloat(
+Config::value(
     std::ctstring_t &a_key,
     cdouble_t       &a_defaultValue
 )
@@ -222,11 +222,11 @@ Config::valueFloat(
     xTEST_NA(a_key);
     xTEST_NA(a_defaultValue);
 
-    return String::cast<double>( valueStr(a_key, String::cast(a_defaultValue)) );
+    return String::cast<double>( value(a_key, String::cast(a_defaultValue)) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::setValueFloat(
+Config::setValue(
     std::ctstring_t &a_key,
     cdouble_t       &a_value
 )
@@ -234,11 +234,11 @@ Config::setValueFloat(
     xTEST_NA(a_key);
     xTEST_NA(a_value);
 
-    setValueStr(a_key, String::cast(a_value));
+    setValue(a_key, String::cast(a_value));
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Config::valueBool(
+Config::value(
     std::ctstring_t &a_key,
     cbool_t         &a_defaultValue
 )
@@ -248,13 +248,13 @@ Config::valueBool(
 
     std::tstring_t str;
 
-    str = valueStr(a_key, String::castBool(a_defaultValue));
+    str = value(a_key, String::castBool(a_defaultValue));
 
     return String::castBool(str);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::setValueBool(
+Config::setValue(
     std::ctstring_t &a_key,
     cbool_t         &a_value
 )
@@ -266,11 +266,11 @@ Config::setValueBool(
 
     value = String::castBool(a_value);
 
-    setValueStr(a_key, value);
+    setValue(a_key, value);
 }
 //-------------------------------------------------------------------------------------------------
 std::ustring_t
-Config::valueBin(
+Config::value(
     std::ctstring_t &a_key,
     std::custring_t &a_defaultValue
 )
@@ -280,7 +280,7 @@ Config::valueBin(
 
     std::tstring_t sRv;
 
-    std::tstring_t hexStr = valueStr(a_key, std::tstring_t(a_defaultValue.begin(),
+    std::tstring_t hexStr = value(a_key, std::tstring_t(a_defaultValue.begin(),
         a_defaultValue.end()));
 
     // hexStr -> usRv
@@ -290,7 +290,7 @@ Config::valueBin(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::setValueBin(
+Config::setValue(
     std::ctstring_t &a_key,
     std::custring_t &a_value
 )
@@ -303,7 +303,7 @@ Config::setValueBin(
 
     hexStr = String::cast( std::tstring_t(a_value.begin(), a_value.end()), 16);
 
-    setValueStr(a_key, hexStr);
+    setValue(a_key, hexStr);
 }
 //-------------------------------------------------------------------------------------------------
 
