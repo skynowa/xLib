@@ -44,7 +44,7 @@ Config::Config(
 /* virtual */
 Config::~Config()
 {
-    save();
+    /// save();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -358,15 +358,12 @@ Config::_read(
     // read from file
     File::textRead(path(), _separator, &_config);
 
+	Cout() << "_read: " << xTRACE_VAR(_config);
+
     // read to std::map_tstring_t
     const auto it = _config.find(a_key);
-    if (it == _config.end()) {
-        _write(a_key, a_defaultValue);
 
-        *out_value = a_defaultValue;
-    } else {
-        *out_value = it->second;
-    }
+    *out_value = (it == _config.end()) ? a_defaultValue : it->second;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -385,6 +382,8 @@ Config::_write(
     } else {
         it->second = a_value;
     }
+
+	Cout() << "_write: " << xTRACE_VAR(_config);
 
     // write to file
     File::textWrite(path(), _separator, _config, File::OpenMode::omWrite);
