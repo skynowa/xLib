@@ -41,7 +41,12 @@ public:
     // key
     bool_t            keyIsExists(std::ctstring_t &key) const xWARN_UNUSED_RV;
         ///< is exists
+    void_t            keyClear(std::ctstring_t &key);
+        ///< clear value
+    void_t            keyDelete(std::ctstring_t &key);
+        ///< delete key and value
 
+    // value
     std::tstring_t    valueStr(std::ctstring_t &key, std::ctstring_t &defaultValue)
                           xWARN_UNUSED_RV;
         ///< read std::tstring_t
@@ -69,11 +74,6 @@ public:
         ///< write std::ustring_t
     void_t            setValueBin(std::ctstring_t &key, std::custring_t &value);
         ///< read std::ustring_t
-
-    void_t            keyClear(std::ctstring_t &key);
-        ///< clear value
-    void_t            keyDelete(std::ctstring_t &key);
-        ///< delete key and value
 
 private:
     std::ctstring_t    _separator;  ///< separator between key and value
