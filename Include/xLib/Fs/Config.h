@@ -40,7 +40,7 @@ public:
         ///< delete
 ///@}
 
-///@name key's actions
+///@name Key's actions
 ///@{
     bool_t            keyIsExists(std::ctstring_t &key) const xWARN_UNUSED_RV;
         ///< is exists
@@ -50,7 +50,7 @@ public:
         ///< delete key and value
 ///@}
 
-///@name get/set values
+///@name Get/set values
 ///@{
     std::tstring_t    value(std::ctstring_t &key, cptr_ctchar_t defaultValue)
                           xWARN_UNUSED_RV;
