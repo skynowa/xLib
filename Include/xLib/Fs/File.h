@@ -319,15 +319,14 @@ private:
 
 xPLATFORM_IMPL:
     static
-    bool_t         _isFile_impl(const FileType &type) xWARN_UNUSED_RV;
+    bool_t _isFile_impl(const FileType &type) xWARN_UNUSED_RV;
     static
-    bool_t         _isExecutable_impl(std::ctstring_t &filePath) xWARN_UNUSED_RV;
+    bool_t _isExecutable_impl(std::ctstring_t &filePath) xWARN_UNUSED_RV;
     static
-    void_t         _time_impl(std::ctstring_t &filePath, time_t *create, time_t *access,
-                       time_t *modified);
+    void_t _time_impl(std::ctstring_t &filePath, time_t *create, time_t *access, time_t *modified);
     static
-    void_t         _setTime_impl(std::ctstring_t &filePath, const time_t &create,
-                       const time_t &access, const time_t &modified);
+    void_t _setTime_impl(std::ctstring_t &filePath, const time_t &create, const time_t &access,
+				const time_t &modified);
 };
 
 xNAMESPACE_END2(xl, fs)
