@@ -126,6 +126,34 @@ Config::keyIsExists(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+Config::keyClear(
+    std::ctstring_t &a_key
+)
+{
+    xTEST_EQ(a_key.empty(), false);
+
+    setValueStr(a_key, std::tstring_t());
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Config::keyDelete(
+   std::ctstring_t &a_key
+)
+{
+    xTEST_EQ(a_key.empty(), false);
+
+    // read from file
+    File::textRead(path(), _separator, &_config);
+    xCHECK_DO(_config.end() == _config.find(a_key), return);
+
+    // delete from std::map_tstring_t
+    _config.erase(a_key);
+
+    // write to file
+    File::textWrite(path(), _separator, _config, File::OpenMode::omWrite);
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
 Config::valueStr(
     std::ctstring_t &a_key,
@@ -268,34 +296,6 @@ Config::setValueBin(
     hexStr = String::cast( std::tstring_t(a_value.begin(), a_value.end()), 16);
 
     setValueStr(a_key, hexStr);
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Config::keyClear(
-    std::ctstring_t &a_key
-)
-{
-    xTEST_EQ(a_key.empty(), false);
-
-    setValueStr(a_key, std::tstring_t());
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Config::keyDelete(
-   std::ctstring_t &a_key
-)
-{
-    xTEST_EQ(a_key.empty(), false);
-
-    // read from file
-    File::textRead(path(), _separator, &_config);
-    xCHECK_DO(_config.end() == _config.find(a_key), return);
-
-    // delete from std::map_tstring_t
-    _config.erase(a_key);
-
-    // write to file
-    File::textWrite(path(), _separator, _config, File::OpenMode::omWrite);
 }
 //-------------------------------------------------------------------------------------------------
 
