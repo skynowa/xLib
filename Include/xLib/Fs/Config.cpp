@@ -23,21 +23,15 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 Config::Config() :
-    _separator(Const::equal()),
-    _fileExt  ( Path::fileExt(Path::FileExt::seConfig) )
+	Config( Path::exe() )
 {
-    xTEST_EQ(_separator.empty(), false);
-    xTEST_EQ(_fileExt.empty(), false);
-    xTEST_EQ(_filePath.empty(), true);
-
-    setPath( Path( Path::exe() ).setExt(_fileExt) );
 }
 //-------------------------------------------------------------------------------------------------
 Config::Config(
     std::ctstring_t &a_filePath
 ) :
-    _separator(Const::equal()),
-    _fileExt  ( Path::fileExt(Path::FileExt::seConfig) )
+    _separator{ Const::equal() },
+    _fileExt  { Path::fileExt(Path::FileExt::seConfig) }
 {
     xTEST_EQ(_separator.empty(), false);
     xTEST_EQ(_fileExt.empty(), false);
