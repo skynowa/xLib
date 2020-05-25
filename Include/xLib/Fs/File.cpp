@@ -1072,12 +1072,12 @@ File::textRead(
         line = String::trimRightChars(line, Const::eol());
 
         if ( line.empty() ) {
-            prRv = msRv.insert( std::make_pair(Const::strEmpty(), Const::strEmpty()) );
+            prRv = msRv.insert( {Const::strEmpty(), Const::strEmpty()} );
         } else {
             String::split(line, a_separator, &lines);
             xTEST_EQ(lines.size(), size_t(2));
 
-            prRv = msRv.insert( std::make_pair(lines.at(0), lines.at(1)) );
+            prRv = msRv.insert( {lines.at(0), lines.at(1)} );
         }
 
         // TODO: [skynowa] File::textRead() - xTEST_EQ(prRv.second, true);
