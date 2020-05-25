@@ -127,7 +127,7 @@ Config::keyIsExists(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Config::keyReadString(
+Config::valueStr(
     std::ctstring_t &a_key,
     std::ctstring_t &a_defaultValue
 )
@@ -142,7 +142,7 @@ Config::keyReadString(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::keyWriteString(
+Config::setValueStr(
     std::ctstring_t &a_key,
     std::ctstring_t &a_value
 )
@@ -154,7 +154,7 @@ Config::keyWriteString(
 }
 //-------------------------------------------------------------------------------------------------
 long_t
-Config::keyReadInt(
+Config::valueInt(
     std::ctstring_t &a_key,
     clong_t         &a_defaultValue
 )
@@ -162,11 +162,11 @@ Config::keyReadInt(
     xTEST_NA(a_key);
     xTEST_NA(a_defaultValue);
 
-    return String::cast<long_t>( keyReadString(a_key, String::cast(a_defaultValue)) );
+    return String::cast<long_t>( valueStr(a_key, String::cast(a_defaultValue)) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::keyWriteInt(
+Config::setValueInt(
     std::ctstring_t &a_key,
     clong_t         &a_value
 )
@@ -174,11 +174,11 @@ Config::keyWriteInt(
     xTEST_NA(a_key);
     xTEST_NA(a_value);
 
-    keyWriteString(a_key, String::cast(a_value));
+    setValueStr(a_key, String::cast(a_value));
 }
 //-------------------------------------------------------------------------------------------------
 double
-Config::keyReadFloat(
+Config::valueFloat(
     std::ctstring_t &a_key,
     cdouble_t       &a_defaultValue
 )
@@ -186,11 +186,11 @@ Config::keyReadFloat(
     xTEST_NA(a_key);
     xTEST_NA(a_defaultValue);
 
-    return String::cast<double>( keyReadString(a_key, String::cast(a_defaultValue)) );
+    return String::cast<double>( valueStr(a_key, String::cast(a_defaultValue)) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::keyWriteFloat(
+Config::setValueFloat(
     std::ctstring_t &a_key,
     cdouble_t       &a_value
 )
@@ -198,11 +198,11 @@ Config::keyWriteFloat(
     xTEST_NA(a_key);
     xTEST_NA(a_value);
 
-    keyWriteString(a_key, String::cast(a_value));
+    setValueStr(a_key, String::cast(a_value));
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Config::keyReadBool(
+Config::valueBool(
     std::ctstring_t &a_key,
     cbool_t         &a_defaultValue
 )
@@ -212,13 +212,13 @@ Config::keyReadBool(
 
     std::tstring_t str;
 
-    str = keyReadString(a_key, String::castBool(a_defaultValue));
+    str = valueStr(a_key, String::castBool(a_defaultValue));
 
     return String::castBool(str);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::keyWriteBool(
+Config::setValueBool(
     std::ctstring_t &a_key,
     cbool_t         &a_value
 )
@@ -230,11 +230,11 @@ Config::keyWriteBool(
 
     value = String::castBool(a_value);
 
-    keyWriteString(a_key, value);
+    setValueStr(a_key, value);
 }
 //-------------------------------------------------------------------------------------------------
 std::ustring_t
-Config::keyReadBin(
+Config::valueBin(
     std::ctstring_t &a_key,
     std::custring_t &a_defaultValue
 )
@@ -244,7 +244,7 @@ Config::keyReadBin(
 
     std::tstring_t sRv;
 
-    std::tstring_t hexStr = keyReadString(a_key, std::tstring_t(a_defaultValue.begin(),
+    std::tstring_t hexStr = valueStr(a_key, std::tstring_t(a_defaultValue.begin(),
         a_defaultValue.end()));
 
     // hexStr -> usRv
@@ -254,7 +254,7 @@ Config::keyReadBin(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::keyWriteBin(
+Config::setValueBin(
     std::ctstring_t &a_key,
     std::custring_t &a_value
 )
@@ -267,7 +267,7 @@ Config::keyWriteBin(
 
     hexStr = String::cast( std::tstring_t(a_value.begin(), a_value.end()), 16);
 
-    keyWriteString(a_key, hexStr);
+    setValueStr(a_key, hexStr);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -277,7 +277,7 @@ Config::keyClear(
 {
     xTEST_EQ(a_key.empty(), false);
 
-    keyWriteString(a_key, std::tstring_t());
+    setValueStr(a_key, std::tstring_t());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
