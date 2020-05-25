@@ -214,9 +214,7 @@ Config::keyReadBool(
 
     str = keyReadString(a_key, String::castBool(a_defaultValue));
 
-    bool_t bRv = String::castBool(str);
-
-    return bRv;
+    return String::castBool(str);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -291,7 +289,6 @@ Config::keyDelete(
 
     // read from file
     File::textRead(path(), _separator, &_config);
-
     xCHECK_DO(_config.end() == _config.find(a_key), return);
 
     // delete from std::map_tstring_t
@@ -324,7 +321,7 @@ Config::_read(
     File::textRead(path(), _separator, &_config);
 
     // read to std::map_tstring_t
-    std::map_tstring_t::const_iterator it = _config.find(a_key);
+    const auto it = _config.find(a_key);
     if (it == _config.end()) {
         _write(a_key, a_defaultValue);
 
@@ -344,9 +341,9 @@ Config::_write(
     xTEST_NA(a_value);
 
     // write to std::map_tstring_t
-    std::map_tstring_t::iterator it = _config.find(a_key);
+    auto it = _config.find(a_key);
     if (it == _config.end()) {
-        _config.insert( std::pair<std::tstring_t, std::tstring_t>(a_key, a_value) );
+        _config.insert( {a_key, a_value} );
     } else {
         it->second = a_value;
     }
