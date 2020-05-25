@@ -359,8 +359,6 @@ Config::_read(
     File::textRead(path(), _separator, &_config);
     _config.erase(Const::strEmpty());
 
-	Cout() << "_read: " << xTRACE_VAR(_config);
-
     // read to std::map_tstring_t
     const auto it = _config.find(a_key);
 
@@ -383,8 +381,6 @@ Config::_write(
     } else {
         it->second = a_value;
     }
-
-	Cout() << "_write: " << xTRACE_VAR(_config);
 
     // write to file
     File::textWrite(path(), _separator, _config, File::OpenMode::omWrite);
