@@ -44,7 +44,7 @@ Config::Config(
 /* virtual */
 Config::~Config()
 {
-    /// save();
+    save();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -357,6 +357,7 @@ Config::_read(
 
     // read from file
     File::textRead(path(), _separator, &_config);
+    _config.erase(Const::strEmpty());
 
 	Cout() << "_read: " << xTRACE_VAR(_config);
 
