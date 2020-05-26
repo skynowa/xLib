@@ -50,7 +50,7 @@ CmdOptions::parse(
 	const std::vector<CmdOptionsUsage> &a_usage
 )
 {
-    // Trace() << xTRACE_VAR(a_args) << "\n";
+	// a_args: {host-name=0, date=0, time=1}
 }
 //-------------------------------------------------------------------------------------------------
 
