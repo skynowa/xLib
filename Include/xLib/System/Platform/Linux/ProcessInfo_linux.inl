@@ -22,7 +22,7 @@ ProcessInfo::_exeName_impl() const
     bool_t bRv = File::isExists(procFile);
     xCHECK_RET(!bRv, std::tstring_t());
 
-    ssize_t readed = - 1;
+    ssize_t readed {- 1};
     asRv.resize(xPATH_MAX);
 
     for ( ; ; ) {
@@ -30,7 +30,7 @@ ProcessInfo::_exeName_impl() const
             sizeof(std::string::value_type));
         xTEST_DIFF(readed, ssize_t(- 1));
 
-        xCHECK_DO(asRv.size() * sizeof(std::string::value_type) > static_cast<size_t>( readed ), break);
+        xCHECK_DO(asRv.size() * sizeof(std::string::value_type) > static_cast<size_t>(readed), break);
 
         asRv.resize(asRv.size() * 2);
     }
@@ -43,12 +43,11 @@ ProcessInfo::_exeName_impl() const
 /* static */
 void_t
 ProcessInfo::_commandLine_impl(
-    std::vec_tstring_t *a_args
+    std::vec_tstring_t *out_args
 ) const
 {
     std::vec_tstring_t args;
 
-    // TODO: [skynowa] ProcessInfo::commandLine() - review
     std::ctstring_t procPath = Format::str(xT("/proc/{}/cmdline"), _id);
 
 	auto procFile = autoFile(procPath, "r");
@@ -66,7 +65,7 @@ ProcessInfo::_commandLine_impl(
     }
 
     // out
-    a_args->swap(args);
+    out_args->swap(args);
 }
 //-------------------------------------------------------------------------------------------------
 
