@@ -36,14 +36,42 @@ CmdOptions::parse(
 	const std::vector<CmdOptionsUsage> &a_usage
 )
 {
-	// a_args: {host-name=0, date=0, time=1}
+	xCHECK_DO(a_args.empty(), return);
 
-	for (auto &it_arg : a_args) {
+	// a_args: {host-name=0, date=0, time=1, test, =}
+	// Cout() << xTRACE_VAR(a_args);
+
+	std::cstring_t delimiter = xT("=");
+
+	for (const auto &it_arg : a_args) {
 		std::vec_tstring_t items;
-		String::split(it_arg, xT("="), &items);
+		String::split(it_arg, delimiter, &items);
 
-		Cout() << xTRACE_VAR(items);
+		switch ( items.size() ) {
+		case 0:
+			continue;
+			break;
+		case 1:
+			{
+				auto &key = items[0];
+				xCHECK_DO(key.empty(), continue);
+
+				_params.insert( {key, {}} );
+			}
+			break;
+		case 2:
+		default:
+			{
+				auto &key = items[0];
+				xCHECK_DO(key.empty(), continue);
+
+				_params.insert( {key, items[1]} );
+			}
+			break;
+		}
 	} // for (a_args)
+
+	// Cout() << xTRACE_VAR(_params);
 }
 //-------------------------------------------------------------------------------------------------
 
