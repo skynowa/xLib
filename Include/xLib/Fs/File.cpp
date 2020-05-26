@@ -34,7 +34,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 File::File(
-    cbool_t &a_isUseBuffering
+    cbool_t a_isUseBuffering /*  = true */
 ) :
     _isUseBuffering(a_isUseBuffering)
 {
@@ -207,11 +207,11 @@ File::read(
 {
     xTEST_PTR(a_buff);
 
-    longlong_t fileSize = size();
+    clonglong_t fileSize = size();
     xTEST_DIFF(static_cast<longlong_t>( PointerPosition::Error ), fileSize);
 
     a_buff->clear();
-    a_buff->resize( static_cast<size_t>( fileSize ) );
+    a_buff->resize( static_cast<size_t>(fileSize) );
     xCHECK_DO(fileSize == 0LL, return);
 
     size_t uiRv = std::fread(&a_buff->at(0), 1, a_buff->size() *
@@ -300,7 +300,8 @@ File::readLine(
 
     // trim nullptr's from string, remove EOL
     str = String::removeEol( str.c_str() );
-    // out
+
+    // [out]
     a_str->swap(str);
 }
 //-------------------------------------------------------------------------------------------------
@@ -321,7 +322,7 @@ File::readChar() const
     twint_t iRv = xTFGETC(_handle.get());
     xTEST_DIFF(iRv, xTEOF);
 
-    return static_cast<tchar_t>( iRv );
+    return static_cast<tchar_t>(iRv);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -333,7 +334,7 @@ File::writeChar(
 
     twint_t iRv = xTFPUTC(a_ch, _handle.get());
     xTEST_DIFF(iRv, xTEOF);
-    xTEST_EQ(static_cast<tchar_t>( iRv ), a_ch);
+    xTEST_EQ(static_cast<tchar_t>(iRv), a_ch);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -345,7 +346,7 @@ File::ungetChar(
 
     twint_t iRv = xTUNGETC(a_ch, _handle.get());
     xTEST_DIFF(iRv, xTEOF);
-    xTEST_EQ(static_cast<tchar_t>( iRv ), a_ch);
+    xTEST_EQ(static_cast<tchar_t>(iRv), a_ch);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -374,7 +375,7 @@ File::locking(
 #if   xENV_WIN
     clong_t     bytes = a_bytes;
 #elif xENV_UNIX
-    const off_t bytes = static_cast<off_t>( a_bytes );
+    const off_t bytes = static_cast<off_t>(a_bytes);
 #endif
 
     int_t iRv = xLOCKING(_nativeHandle(_handle.get()), static_cast<int>(a_mode), bytes);
@@ -420,10 +421,10 @@ File::setVBuff(
 longlong_t
 File::size() const
 {
-    long_t currStreamPos = position();
+    clong_t currStreamPos = position();
     setPosition(0, PointerPosition::End);
 
-    long_t streamSize = position();
+    clong_t streamSize = position();
     setPosition(currStreamPos, PointerPosition::Begin);
 
     return static_cast<longlong_t>( streamSize );
@@ -439,7 +440,7 @@ File::resize(
 #if   xENV_WIN
     clonglong_t _size = a_size;
 #elif xENV_UNIX
-    const off_t _size = static_cast<off_t>( a_size );
+    const off_t _size = static_cast<off_t>(a_size);
 #endif
 
     int_t iRv = xCHSIZE(_nativeHandle( _handle.get() ), _size);
@@ -457,7 +458,7 @@ File::resize(
 bool_t
 File::isEmpty() const
 {
-    longlong_t fileSize = size();
+    clonglong_t fileSize = size();
     xTEST_DIFF(fileSize, - 1LL);
 
     return (fileSize == 0LL);
@@ -466,19 +467,13 @@ File::isEmpty() const
 bool_t
 File::isEof() const
 {
-    bool_t bRv = static_cast<bool_t>( std::feof(_handle.get()) );
-    xTEST_NA(bRv);
-
-    return bRv;
+    return static_cast<bool_t>( std::feof(_handle.get()) );
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
 File::isError() const
 {
-    bool_t bRv = static_cast<bool_t>( std::ferror(_handle.get()) );
-    xTEST_NA(bRv);
-
-    return bRv;
+    return static_cast<bool_t>( std::ferror(_handle.get()) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -613,9 +608,9 @@ File::chmod(
     xTEST_NA(a_mode);
 
 #if   xENV_WIN
-    cint_t       mode = static_cast<int_t> ( a_mode );
+    cint_t       mode = static_cast<int_t> (a_mode);
 #elif xENV_UNIX
-    const mode_t mode = static_cast<mode_t>( a_mode );
+    const mode_t mode = static_cast<mode_t>(a_mode);
 #endif
 
     int_t iRv = xTCHMOD(a_filePath.c_str(), mode);
@@ -661,11 +656,11 @@ File::tryRemove(
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
-    xTEST_LESS(size_t(0U), a_attempts);
+    xTEST_GR(a_attempts, size_t(0U));
     xTEST_NA(a_timeoutMsec);
 
-    std::csize_t attemptsMax  = 100;  // MAGIC_NUMBER: attemptsMax
-    std::csize_t attemptsReal = (attemptsMax < a_attempts) ? attemptsMax : a_attempts;
+    std::csize_t attemptsMax  {100};  // MAGIC_NUMBER: attemptsMax
+    std::csize_t attemptsReal {attemptsMax < a_attempts ? attemptsMax : a_attempts};
 
     for (size_t i = 0; i < attemptsReal; ++ i) {
         xTRY {
@@ -745,9 +740,9 @@ File::wipe(
 
     // reset file time
     {
-        const time_t create   = 0;
-        const time_t access   = 0;
-        const time_t modified = 0;
+        constexpr time_t create   {};
+        constexpr time_t access   {};
+        constexpr time_t modified {};
 
         setTime(a_filePath, create, access, modified);
     }
@@ -820,7 +815,7 @@ File::copy(
     xTEST_EQ(a_filePathTo.empty(), false);
     xTEST_NA(a_isFailIfExists);
 
-    bool_t isCopyOk = true;
+    bool_t isCopyOk {true};
 
     // errors
     std::ctstring_t errorDestFileExists = xT("File - Destination file is exists");
@@ -840,8 +835,8 @@ File::copy(
 
         if ( !fileFrom.isEmpty() ) {
             // copy files
-            std::csize_t buffSize       = 1024;
-            uchar_t      buff[buffSize] = {0};
+            constexpr std::size_t buffSize       {1024};
+            uchar_t               buff[buffSize] {};
 
             for ( ; ; ) {
                 std::csize_t readed  = fileFrom.read(buff, buffSize);
@@ -889,12 +884,12 @@ File::lines(
 
     std::locale::global(std::locale());
 
-    ulonglong_t      ullRv = 0LL;
+    ulonglong_t      ullRv {};
     std::tifstream_t ifs(xT2A(a_filePath).c_str(), std::ios::in);
 
     xCHECK_RET(!ifs || ifs.fail() || !ifs.good() || !ifs.is_open() || ifs.eof(), 0LL);
 
-    tchar_t chChar;
+    tchar_t chChar {};
     for (ullRv = 0LL; ifs.get(chChar); ) {
         xCHECK_DO(chChar == xT('\n'), ++ ullRv);
     }
