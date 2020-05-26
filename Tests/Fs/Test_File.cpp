@@ -13,13 +13,13 @@ class Test_File :
     public Unit
 {
 public:
-                   Test_File() {}
+           Test_File() {}
 
-    virtual bool_t unit();
+    bool_t unit() override;
 
 private:
-    bool_t         unit1();
-    bool_t         unitPrivate();
+    bool_t unit1();
+    bool_t unitPrivate();
 };
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_File)
