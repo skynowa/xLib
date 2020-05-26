@@ -121,7 +121,7 @@ public:
     xUSING_CONST(PermissionMode);
 
     // constructors, destructor
-    explicit       File(cbool_t &isUseBuffering = true);
+    explicit       File(cbool_t isUseBuffering = true);
         ///< constructor
     virtual       ~File();
         ///< destructor
@@ -301,9 +301,9 @@ public:
         ///< write binary data
 
 private:
-    HandleStdFile  _handle;                 ///< file handle
-    std::tstring_t _filePath;               ///< file path
-    cbool_t        _isUseBuffering {true};  ///< is use buffering
+    HandleStdFile  _handle;            ///< file handle
+    std::tstring_t _filePath;          ///< file path
+    cbool_t        _isUseBuffering {}; ///< is use buffering
 
     static
     int_t          _nativeHandle(std::FILE *file) xWARN_UNUSED_RV;
