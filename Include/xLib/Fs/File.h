@@ -20,20 +20,20 @@ public:
     enum class OpenMode
         /// open mode
     {
-        omUnknown,             ///< unknown
-        omRead,                ///< "r"
-        omWrite,               ///< "w"
-        omAppend,              ///< "a"
-        omOpenReadWrite,       ///< "r+"
-        omCreateReadWrite,     ///< "w+"
-        omOpenReadAppend,      ///< "a+"
+        Unknown,             ///< unknown
+        Read,                ///< "r"
+        Write,               ///< "w"
+        Append,              ///< "a"
+        OpenReadWrite,       ///< "r+"
+        CreateReadWrite,     ///< "w+"
+        OpenReadAppend,      ///< "a+"
 
-        omBinRead,             ///< "rb"
-        omBinWrite,            ///< "wb"
-        omBinAppend,           ///< "ab"
-        omBinOpenReadWrite,    ///< "rb+"
-        omBinCreateReadWrite,  ///< "wb+"
-        omBinOpenReadAppend    ///< "ab+"
+        BinRead,             ///< "rb"
+        BinWrite,            ///< "wb"
+        BinAppend,           ///< "ab"
+        BinOpenReadWrite,    ///< "rb+"
+        BinCreateReadWrite,  ///< "wb+"
+        BinOpenReadAppend    ///< "ab+"
     };
     xUSING_CONST(OpenMode);
 
@@ -41,8 +41,8 @@ public:
     enum TranslationMode
         /// translation mode
     {
-        tmText   = O_TEXT,
-        tmBinary = O_BINARY
+        Text   = O_TEXT,
+        Binary = O_BINARY
     };
     xUSING_CONST(TranslationMode);
 #endif
@@ -50,29 +50,29 @@ public:
     enum class AccessMode
         /// access mode
     {
-        amExistence = 0,
-        amWrite     = 2,
-        amRead      = 4,
-        amReadWrite = 6
+        Existence = 0,
+        Write     = 2,
+        Read      = 4,
+        ReadWrite = 6
     };
     xUSING_CONST(AccessMode);
 
     enum class PointerPosition
         /// pointer position
     {
-        ppError = - 1L,
-        ppBegin = SEEK_SET,
-        ppCurr  = SEEK_CUR,
-        ppEnd   = SEEK_END
+        Error = - 1L,
+        Begin = SEEK_SET,
+        Curr  = SEEK_CUR,
+        End   = SEEK_END
     };
     xUSING_CONST(PointerPosition);
 
     enum class BufferingMode
         /// buffering mode
     {
-        bmNo   = _IONBF,
-        bmLine = _IOLBF,
-        bmFull = _IOFBF
+        No   = _IONBF,
+        Line = _IOLBF,
+        Full = _IOFBF
     };
     xUSING_CONST(BufferingMode);
 
@@ -80,13 +80,13 @@ public:
         /// locking mode
     {
     #if   xENV_WIN
-        lmLock    = LK_NBLCK,
-        lmTryLock = LK_LOCK,
-        lmUnlock  = LK_UNLCK
+        Lock    = LK_NBLCK,
+        TryLock = LK_LOCK,
+        Unlock  = LK_UNLCK
     #elif xENV_UNIX
-        lmLock    = F_LOCK,
-        lmTryLock = F_TEST,
-        lmUnlock  = F_ULOCK
+        Lock    = F_LOCK,
+        TryLock = F_TEST,
+        Unlock  = F_ULOCK
     #endif
     };
     xUSING_CONST(LockingMode);
@@ -95,26 +95,26 @@ public:
         /// permission mode
     {
     #if xENV_WIN
-        pmRead             = _S_IREAD,
-        pmWrite            = _S_IWRITE,
-        pmReadWrite        = (_S_IREAD | _S_IWRITE)
+        Read             = _S_IREAD,
+        Write            = _S_IWRITE,
+        ReadWrite        = (_S_IREAD | _S_IWRITE)
     #else
-        pmSetUserId        = S_ISUID,
-        pmSetGroupId       = S_ISGID,
-        pmStickyBit        = S_ISVTX,
+        SetUserId        = S_ISUID,
+        SetGroupId       = S_ISGID,
+        StickyBit        = S_ISVTX,
 
-        pmRead             = S_IRUSR,
-        pmWrite            = S_IWUSR,
-        pmReadWrite        = (S_IRUSR | S_IWUSR),
-        pmExecSearch       = S_IXUSR,
+        Read             = S_IRUSR,
+        Write            = S_IWUSR,
+        ReadWrite        = (S_IRUSR | S_IWUSR),
+        ExecSearch       = S_IXUSR,
 
-        pmGroupRead        = S_IRGRP,
-        pmGroupWrite       = S_IWGRP,
-        pmGroupExecSearch  = S_IXGRP,
+        GroupRead        = S_IRGRP,
+        GroupWrite       = S_IWGRP,
+        GroupExecSearch  = S_IXGRP,
 
-        pmOthersRead       = S_IROTH,
-        pmOthersWrite      = S_IWOTH,
-        pmOthersExecSearch = S_IXOTH
+        OthersRead       = S_IROTH,
+        OthersWrite      = S_IWOTH,
+        OthersExecSearch = S_IXOTH
     #endif
     };
     xUSING_CONST(PermissionMode);

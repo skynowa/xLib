@@ -29,7 +29,7 @@ Test_Archive::unit()
 		std::ctstring_t zipFilePath = destDirPath   + Const::slash() + xT("Archive.zip");
 
 		std::ctstring_t fileContent = xT("12345abcdef");
-		File::textWrite(filePath, fileContent, File::OpenMode::omWrite);
+		File::textWrite(filePath, fileContent, File::OpenMode::Write);
 
 		xTEST_CASE("fileCompress")
 		{
@@ -60,7 +60,7 @@ Test_Archive::unit()
 
 		std::ctstring_t filePath    = destDirPath + Const::slash() + xT("Archive.txt");
 		std::ctstring_t fileContent = xT("12345abcdef");
-		File::textWrite(filePath, fileContent, File::OpenMode::omWrite);
+		File::textWrite(filePath, fileContent, File::OpenMode::Write);
 
 		xTEST_CASE("dirCompress")
 		{

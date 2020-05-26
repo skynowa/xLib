@@ -60,7 +60,7 @@ Test_Blowfish::unit()
 
         // prepare
         {
-            File::textWrite(filePlain, xT("text_text"), File::OpenMode::omWrite);
+            File::textWrite(filePlain, xT("text_text"), File::OpenMode::Write);
         }
 
         // test
@@ -70,10 +70,10 @@ Test_Blowfish::unit()
 
         {
             File fileIn;
-            fileIn.create(filePlain, File::OpenMode::omBinRead);
+            fileIn.create(filePlain, File::OpenMode::BinRead);
 
             File fileOut;
-            fileOut.create(fileDecrypted, File::OpenMode::omBinRead);
+            fileOut.create(fileDecrypted, File::OpenMode::BinRead);
 
             xTEST_EQ(fileIn.size(), fileOut.size());
             xTEST_EQ(Crc32().calcFile(filePlain), Crc32().calcFile(fileDecrypted));
