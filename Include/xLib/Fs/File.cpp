@@ -983,8 +983,7 @@ File::textWrite(
 {
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_NA(a_content);
-    // TODO: [skynowa] StdStreamV2
-    ///-- xTEST_DIFF(a_mode, Unknown);
+    xTEST(a_mode != OpenMode::Unknown);
 
     File file;
     file.create(a_filePath, a_mode);
