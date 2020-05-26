@@ -954,9 +954,9 @@ File::textRead(
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_PTR(a_content);
 
-    File           file;
     std::tstring_t sRv;
 
+    File file;
     file.create(a_filePath, OpenMode::BinRead);
 
     clonglong_t fileSize = file.size();
@@ -964,9 +964,9 @@ File::textRead(
 
     xCHECK_DO(fileSize == 0LL, a_content->clear(); return);
 
-    sRv.resize( static_cast<size_t>( fileSize) );
+    sRv.resize( static_cast<size_t>(fileSize) );
 
-    size_t readLen = file.read((void_t *)&sRv.at(0), sRv.size());
+    std::csize_t readLen = file.read((void_t *)&sRv.at(0), sRv.size());
     xTEST_EQ(readLen, sRv.size());
 
     // out
