@@ -1,15 +1,6 @@
 /**
  * \file   CmdOptions.cpp
  * \brief  Command-line options parser
- *
- * FAQ:
- * - https://github.com/CppMicroServices/CppMicroServices/blob/development/third_party/optionparser.h
- * - https://github.com/CLIUtils/CLI11
- * - https://github.com/docopt
- * - https://github.com/jarro2783/cxxopts
- *
- * TODO:
- * -
  */
 
 
