@@ -281,10 +281,12 @@ public:
     void_t         textWrite(std::ctstring_t &filePath, std::cvec_tstring_t &content,
                         cOpenMode mode);
         ///< write std::vector
+    // TODO: std::map_tstring_t -> std::multimap
     static
     void_t         textRead(std::ctstring_t &filePath, std::ctstring_t &separator,
                        std::map_tstring_t *content);
         ///< read text to std::map
+    // TODO: std::map_tstring_t -> std::multimap
     static
     void_t         textWrite(std::ctstring_t &filePath, std::ctstring_t &separator,
                        std::cmap_tstring_t &content, cOpenMode mode);
