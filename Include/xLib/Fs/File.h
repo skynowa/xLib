@@ -143,9 +143,9 @@ public:
         ///< detach from stream
 
     // read, write
-    size_t         read(void_t *buff, std::csize_t &count) const xWARN_UNUSED_RV;
+    size_t         read(void_t *buff, std::csize_t count) const xWARN_UNUSED_RV;
         ///< read block of data
-    size_t         write(cptr_cvoid_t, std::csize_t &count) const xWARN_UNUSED_RV;
+    size_t         write(cptr_cvoid_t, std::csize_t count) const xWARN_UNUSED_RV;
         ///< write block of data
     void_t         read(std::ustring_t *buff) const;
         ///< read to std::ustring_t
@@ -157,7 +157,7 @@ public:
         ///< write formatted output to stream
     int_t          writeV(cptr_ctchar_t format, va_list arg) const xWARN_UNUSED_RV;
         ///< write formatted variable argument list to stream
-    void_t         readLine(std::tstring_t *str, std::csize_t &maxCount) const;
+    void_t         readLine(std::tstring_t *str, std::csize_t maxCount) const;
         ///< read string to newline or to the end of file
     void_t         writeLine(std::ctstring_t &str) const;
         ///< write string and end of line
@@ -179,7 +179,7 @@ public:
         ///< set stream position indicator
     long_t         position() const xWARN_UNUSED_RV;
         ///< get current position in stream
-    void_t         setVBuff(char *buff, cBufferingMode mode, std::csize_t &size) const;
+    void_t         setVBuff(char *buff, cBufferingMode mode, std::csize_t size) const;
         ///< change stream buffering
 
 #if xENV_WIN
@@ -235,11 +235,10 @@ public:
     void_t         remove(std::ctstring_t &filePath);
         ///< deleting
     static
-    void_t         tryRemove(std::ctstring_t &filePath, std::csize_t &attempts,
-                       culong_t &timeoutMsec);
+    void_t         tryRemove(std::ctstring_t &filePath, std::csize_t attempts, culong_t timeoutMsec);
         ///< try deleting, max 100 attempts
     static
-    void_t         wipe(std::ctstring_t &filePath, std::csize_t &passes);
+    void_t         wipe(std::ctstring_t &filePath, std::csize_t passes);
         ///< wipe
     static
     void_t         unlink(std::ctstring_t &filePath);
