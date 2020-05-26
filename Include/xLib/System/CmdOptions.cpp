@@ -6,6 +6,7 @@
 
 #include "CmdOptions.h"
 
+#include <xLib/Core/String.h>
 #include <xLib/System/ProcessInfo.h>
 
 xNAMESPACE_BEGIN2(xl, system)
@@ -36,6 +37,13 @@ CmdOptions::parse(
 )
 {
 	// a_args: {host-name=0, date=0, time=1}
+
+	for (auto &it_arg : a_args) {
+		std::vec_tstring_t items;
+		String::split(it_arg, xT("="), &items);
+
+		Cout() << xTRACE_VAR(items);
+	} // for (a_args)
 }
 //-------------------------------------------------------------------------------------------------
 
