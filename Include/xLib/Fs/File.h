@@ -99,13 +99,14 @@ public:
         Write            = _S_IWRITE,
         ReadWrite        = (_S_IREAD | _S_IWRITE)
     #else
+        Read             = S_IRUSR,
+        Write            = S_IWUSR,
+        ReadWrite        = (S_IRUSR | S_IWUSR),
+
         SetUserId        = S_ISUID,
         SetGroupId       = S_ISGID,
         StickyBit        = S_ISVTX,
 
-        Read             = S_IRUSR,
-        Write            = S_IWUSR,
-        ReadWrite        = (S_IRUSR | S_IWUSR),
         ExecSearch       = S_IXUSR,
 
         GroupRead        = S_IRGRP,
