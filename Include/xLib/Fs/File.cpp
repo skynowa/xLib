@@ -1066,18 +1066,18 @@ File::textRead(
     std::vec_tstring_t lines;
 
     for (size_t i = 0; !ifs.eof(); ++ i) {
-        std::pair<std::map_tstring_t::iterator, bool_t> prRv;
-
         std::getline(ifs, line);
         line = String::trimRightChars(line, Const::eol());
 
         if ( line.empty() ) {
-            prRv = msRv.insert( {Const::strEmpty(), Const::strEmpty()} );
+            auto prRv = msRv.insert( {Const::strEmpty(), Const::strEmpty()} );
+            xTEST_NA(prRv);
         } else {
             String::split(line, a_separator, &lines);
             xTEST_EQ(lines.size(), size_t(2));
 
-            prRv = msRv.insert( {lines.at(0), lines.at(1)} );
+            auto prRv = msRv.insert( {lines.at(0), lines.at(1)} );
+            xTEST_NA(prRv);
         }
 
         // TODO: [skynowa] File::textRead() - xTEST_EQ(prRv.second, true);
