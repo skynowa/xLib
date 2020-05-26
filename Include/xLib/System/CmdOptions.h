@@ -60,11 +60,32 @@ xNAMESPACE_END2(xl, system)
 //-------------------------------------------------------------------------------------------------
 /**
  * FEATURES:
- * -
+ *
+ * - Params
+ *    - default params (--help, --debug)
+ *    - param format: "one,-o,--one"
+ * 	  - param bind to callback
+ * 	  - ignore_case
+ * 	  - ignore_underscore
+ *    - Validator, check bad params
+ *
+ * - Print usage
+ *   Options:
+ *     -h,--help   (REQUIRED) Print this help message and exit
+ *     -b,--bool   (REQUIRED) This is a bool flag
+ *     -i,--int    (REQUIRED) This is an int flag
+ *     -p,--plain  (REQUIRED) This is a plain flag
+ *
+ * - delimiter (=)
+ *
+ *
+ *
+ *
+ *
  *
  * FAQ:
  * - https://github.com/CppMicroServices/CppMicroServices/blob/development/third_party/optionparser.h
- * - https://github.com/CLIUtils/CLI11
+ * - https://github.com/CLIUtils/CLI11 (https://cliutils.github.io/CLI11/book/chapters/options.html)
  * - https://github.com/docopt
  * - https://github.com/jarro2783/cxxopts
  *
