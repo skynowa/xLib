@@ -23,7 +23,7 @@ FileTemp::_create_impl(
     cptr_ctchar_t file = xTMKSTEMP(&_filePath.at(0));
     xTEST_PTR(file);
 
-    a_stdFile = xTFOPEN(file, File::_openMode(File::omBinCreateReadWrite).c_str());
+    a_stdFile = xTFOPEN(file, File::_openMode(File::BinCreateReadWrite).c_str());
     xTEST_EQ(a_stdFile.isValid(), true);
 #else
     _filePath.resize(_filePath.size() + 1);
@@ -31,7 +31,7 @@ FileTemp::_create_impl(
     errno_t error = xTMKSTEMP(&_filePath.at(0), _filePath.size() + 1);
     xTEST_EQ(0, error);
 
-    a_stdFile = xTFOPEN(_filePath.c_str(), File::_openMode(File::omBinCreateReadWrite).c_str());
+    a_stdFile = xTFOPEN(_filePath.c_str(), File::_openMode(File::BinCreateReadWrite).c_str());
     xTEST_EQ(a_stdFile.isValid(), true);
 #endif
 }

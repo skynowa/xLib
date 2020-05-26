@@ -78,9 +78,9 @@ File::create(
 
     // buffering
     if (_isUseBuffering) {
-        setVBuff(nullptr, BufferingMode::bmFull, BUFSIZ);
+        setVBuff(nullptr, BufferingMode::Full, BUFSIZ);
     } else {
-        setVBuff(nullptr, BufferingMode::bmNo,   0);
+        setVBuff(nullptr, BufferingMode::No,   0);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -107,9 +107,9 @@ File::reopen(
 
     // buffering
     if (_isUseBuffering) {
-        setVBuff(nullptr, BufferingMode::bmFull, BUFSIZ);
+        setVBuff(nullptr, BufferingMode::Full, BUFSIZ);
     } else {
-        setVBuff(nullptr, BufferingMode::bmNo,   0);
+        setVBuff(nullptr, BufferingMode::No,   0);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -208,7 +208,7 @@ File::read(
     xTEST_PTR(a_buff);
 
     longlong_t fileSize = size();
-    xTEST_DIFF(static_cast<longlong_t>( PointerPosition::ppError ), fileSize);
+    xTEST_DIFF(static_cast<longlong_t>( PointerPosition::Error ), fileSize);
 
     a_buff->clear();
     a_buff->resize( static_cast<size_t>( fileSize ) );
@@ -239,7 +239,7 @@ File::read(
     xTEST_PTR(a_buff);
 
     clonglong_t fileSize = size();
-    xTEST_DIFF(static_cast<longlong_t>( PointerPosition::ppError ), fileSize);
+    xTEST_DIFF(static_cast<longlong_t>( PointerPosition::Error ), fileSize);
 
     a_buff->clear();
     a_buff->resize( static_cast<size_t>( fileSize) );
@@ -421,10 +421,10 @@ longlong_t
 File::size() const
 {
     long_t currStreamPos = position();
-    setPosition(0, PointerPosition::ppEnd);
+    setPosition(0, PointerPosition::End);
 
     long_t streamSize = position();
-    setPosition(currStreamPos, PointerPosition::ppBegin);
+    setPosition(currStreamPos, PointerPosition::Begin);
 
     return static_cast<longlong_t>( streamSize );
 }
@@ -555,7 +555,7 @@ File::isExists(
 
     xCHECK_RET(!isFile(a_filePath), false);
 
-    int_t iRv = xTACCESS(a_filePath.c_str(), static_cast<int_t>(AccessMode::amExistence));
+    int_t iRv = xTACCESS(a_filePath.c_str(), static_cast<int_t>(AccessMode::Existence));
     xCHECK_RET(iRv == - 1 && StdError::get() == ENOENT, false);
 
     return true;
@@ -631,7 +631,7 @@ File::clear(
     xTEST_EQ(a_filePath.empty(), false);
 
     File file;
-    file.create(a_filePath, OpenMode::omWrite);
+    file.create(a_filePath, OpenMode::Write);
     file.clear();
 }
 //-------------------------------------------------------------------------------------------------
@@ -645,7 +645,7 @@ File::remove(
 
     xCHECK_DO(!isExists(a_filePath), return);
 
-    chmod(a_filePath, PermissionMode::pmWrite);
+    chmod(a_filePath, PermissionMode::Write);
 
     int_t iRv = xTREMOVE(a_filePath.c_str());
     xTEST_DIFF(iRv, - 1);
@@ -696,7 +696,7 @@ File::wipe(
 
         // open
         File file;
-        file.create(a_filePath, OpenMode::omBinWrite);
+        file.create(a_filePath, OpenMode::BinWrite);
 
         clonglong_t size = file.size();
         if (size > 0LL) {
@@ -708,7 +708,7 @@ File::wipe(
 
                 // rand
                 {
-                    file.setPosition(0L, PointerPosition::ppBegin);
+                    file.setPosition(0L, PointerPosition::Begin);
 
                     for (longlong_t i = 0LL; i < size; ++ i) {
                         size_t uiRv = std::fwrite(&rand, 1, sizeof(rand), file.get().get());
@@ -718,7 +718,7 @@ File::wipe(
 
                 // char1
                 {
-                    file.setPosition(0L, PointerPosition::ppBegin);
+                    file.setPosition(0L, PointerPosition::Begin);
 
                     for (longlong_t i = 0LL; i < size; ++ i) {
                         size_t uiRv = std::fwrite(&char1, 1, sizeof(char1), file.get().get());
@@ -728,7 +728,7 @@ File::wipe(
 
                 // char2
                 {
-                    file.setPosition(0L, PointerPosition::ppBegin);
+                    file.setPosition(0L, PointerPosition::Begin);
 
                     for (longlong_t i = 0LL; i < size; ++ i) {
                         size_t uiRv = std::fwrite(&char2, 1, sizeof(char2), file.get().get());
@@ -833,10 +833,10 @@ File::copy(
     {
         // open files
         File fileFrom;
-        fileFrom.create(a_filePathFrom, OpenMode::omBinRead);
+        fileFrom.create(a_filePathFrom, OpenMode::BinRead);
 
         File fileTo;
-        fileTo.create(a_filePathTo, OpenMode::omBinWrite);
+        fileTo.create(a_filePathTo, OpenMode::BinWrite);
 
         if ( !fileFrom.isEmpty() ) {
             // copy files
@@ -871,7 +871,7 @@ File::size(
     xTEST_EQ(isExists(a_filePath), true);
 
     File file;
-    file.create(a_filePath, OpenMode::omRead);
+    file.create(a_filePath, OpenMode::Read);
     longlong_t liRv = file.size();
     xTEST_GR_EQ(liRv, 0LL);
 
@@ -957,10 +957,10 @@ File::textRead(
     File           file;
     std::tstring_t sRv;
 
-    file.create(a_filePath, OpenMode::omBinRead);
+    file.create(a_filePath, OpenMode::BinRead);
 
     clonglong_t fileSize = file.size();
-    xTEST_DIFF(fileSize, static_cast<longlong_t>( PointerPosition::ppError ));
+    xTEST_DIFF(fileSize, static_cast<longlong_t>( PointerPosition::Error ));
 
     xCHECK_DO(fileSize == 0LL, a_content->clear(); return);
 
@@ -984,7 +984,7 @@ File::textWrite(
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_NA(a_content);
     // TODO: [skynowa] StdStreamV2
-    ///-- xTEST_DIFF(a_mode, omUnknown);
+    ///-- xTEST_DIFF(a_mode, Unknown);
 
     File file;
     file.create(a_filePath, a_mode);
@@ -1028,7 +1028,7 @@ File::textWrite(
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_NA(a_content);
     // TODO: [skynowa] StdStreamV2
-    ///-- xTEST_DIFF(a_mode, omUnknown);
+    ///-- xTEST_DIFF(a_mode, Unknown);
 
     std::tstring_t content;
 
@@ -1121,7 +1121,7 @@ File::textWrite(
     xTEST_EQ(a_separator.empty(), false);
     xTEST_NA(a_content);
     // TODO: [skynowa] StdStreamV2
-    ///-- xTEST_DIFF(a_mode, omUnknown);
+    ///-- xTEST_DIFF(a_mode, Unknown);
 
     File file;
     file.create(a_filePath, a_mode);
@@ -1169,10 +1169,10 @@ File::binRead(
     File         file;
     std::ustring_t usRv;
 
-    file.create(a_filePath, OpenMode::omBinRead);
+    file.create(a_filePath, OpenMode::BinRead);
 
     longlong_t fileSize = file.size();
-    xTEST_DIFF(fileSize, static_cast<longlong_t>( PointerPosition::ppError ));
+    xTEST_DIFF(fileSize, static_cast<longlong_t>( PointerPosition::Error ));
 
     xCHECK_DO(fileSize == 0LL, a_content->clear(); return);
 
@@ -1196,7 +1196,7 @@ File::binWrite(
     xTEST_NA(a_content);
 
     File file;
-    file.create(a_filePath, OpenMode::omBinWrite);
+    file.create(a_filePath, OpenMode::BinWrite);
 
     xCHECK_DO(a_content.empty(), return);
 
@@ -1254,46 +1254,46 @@ File::_openMode(
 
     switch (a_mode) {
     // text modes
-    case OpenMode::omRead:
+    case OpenMode::Read:
         sRv = xT("r");
         break;
-    case OpenMode::omWrite:
+    case OpenMode::Write:
         sRv = xT("w");
         break;
-    case OpenMode::omAppend:
+    case OpenMode::Append:
         sRv = xT("a");
         break;
-    case OpenMode::omOpenReadWrite:
+    case OpenMode::OpenReadWrite:
         sRv = xT("r+");
         break;
-    case OpenMode::omCreateReadWrite:
+    case OpenMode::CreateReadWrite:
         sRv = xT("w+");
         break;
-    case OpenMode::omOpenReadAppend:
+    case OpenMode::OpenReadAppend:
         sRv = xT("a+");
         break;
 
     // binary modes
-    case OpenMode::omBinRead:
+    case OpenMode::BinRead:
         sRv = xT("rb");
         break;
-    case OpenMode::omBinWrite:
+    case OpenMode::BinWrite:
         sRv = xT("wb");
         break;
-    case OpenMode::omBinAppend:
+    case OpenMode::BinAppend:
         sRv = xT("ab");
         break;
-    case OpenMode::omBinOpenReadWrite:
+    case OpenMode::BinOpenReadWrite:
         sRv = xT("rb+");
         break;
-    case OpenMode::omBinCreateReadWrite:
+    case OpenMode::BinCreateReadWrite:
         sRv = xT("wb+");
         break;
-    case OpenMode::omBinOpenReadAppend:
+    case OpenMode::BinOpenReadAppend:
         sRv = xT("ab+");
         break;
 
-    case OpenMode::omUnknown:
+    case OpenMode::Unknown:
     default:
         sRv = xT("r");
         break;

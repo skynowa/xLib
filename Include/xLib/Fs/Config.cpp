@@ -54,7 +54,7 @@ Config::createDefault(
 {
     xTEST_NA(a_content);
 
-    File::textWrite(path(), a_content, File::OpenMode::omWrite);
+    File::textWrite(path(), a_content, File::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 std::ctstring_t &
@@ -88,7 +88,7 @@ Config::save() const
 {
 	xCHECK_DO(_config.empty(), return);
 
-    File::textWrite(path(), _separator, _config, File::OpenMode::omWrite);
+    File::textWrite(path(), _separator, _config, File::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -153,7 +153,7 @@ Config::keyDelete(
     _config.erase(a_key);
 
     // write to file
-    File::textWrite(path(), _separator, _config, File::OpenMode::omWrite);
+    File::textWrite(path(), _separator, _config, File::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -383,7 +383,7 @@ Config::_write(
     }
 
     // write to file
-    File::textWrite(path(), _separator, _config, File::OpenMode::omWrite);
+    File::textWrite(path(), _separator, _config, File::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 

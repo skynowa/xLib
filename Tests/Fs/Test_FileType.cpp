@@ -30,7 +30,7 @@ Test_FileType::unit()
         File::remove(filePath);
 
         File F;
-        F.create(filePath, File::OpenMode::omCreateReadWrite);
+        F.create(filePath, File::OpenMode::CreateReadWrite);
         F.close();
 
         m_bRv = File::isExists(filePath);
