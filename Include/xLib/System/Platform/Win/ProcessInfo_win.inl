@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, system)
 ulong_t
 ProcessInfo::_cpuUsage_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     // TODO: [skynowa] ProcessInfo::cpuUsage()
     xNOT_IMPLEMENTED
@@ -26,7 +26,7 @@ ProcessInfo::_cpuUsage_impl() const
 ulong_t
 ProcessInfo::_ramUsage_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     // TODO: [skynowa] ProcessInfo::ramUsage()
     xNOT_IMPLEMENTED
@@ -37,7 +37,7 @@ ProcessInfo::_ramUsage_impl() const
 ulong_t
 ProcessInfo::_ioBytes_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     // TODO: [skynowa] ProcessInfo::ioBytes()
     xNOT_IMPLEMENTED
@@ -64,7 +64,7 @@ ProcessInfo::_exeName_impl() const
 ulong_t
 ProcessInfo::_parentId_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     // TODO: [skynowa] ProcessInfo::parentId()
     xNOT_IMPLEMENTED
@@ -75,7 +75,7 @@ ProcessInfo::_parentId_impl() const
 /* static */
 void_t
 ProcessInfo::_commandLine_impl(
-    std::vec_tstring_t *a_args
+    std::vec_tstring_t *out_args
 ) const
 {
     std::string        sRv;
@@ -90,7 +90,7 @@ ProcessInfo::_commandLine_impl(
         // Actual filename is ntoskrnl.exe, but other name will be in
         // Original Filename field of version block.
 
-        const Process::id_t ntoskrnlId = 4UL;  // MAGIC: ntoskrnlId
+        const Process::id_t ntoskrnlId {4UL};  // MAGIC: ntoskrnlId
 
         if (_id == ntoskrnlId) {
             sRv = Environment::expandStrings(xT("%SystemRoot%\\System32\\ntoskrnl.exe"));
@@ -141,9 +141,9 @@ ProcessInfo::_commandLine_impl(
         #else
             const PROCESSINFOCLASS    info            = ProcessWow64Information;
         #endif
-            PROCESS_BASIC_INFORMATION basicInfo       = {0};
-            const DWORD               basicInfoSize   = sizeof(basicInfo);   // in bytes
-            DWORD                     returnSizeBytes = 0UL;
+            PROCESS_BASIC_INFORMATION basicInfo       {};
+            const DWORD               basicInfoSize   { sizeof(basicInfo) };   // in bytes
+            DWORD                     returnSizeBytes {};
 
             // TODO: [skynowa] ProcessBasicInformation (for x64)
             NTSTATUS nsRv = func(a_process, info, &basicInfo, basicInfoSize, &returnSizeBytes);
@@ -165,7 +165,7 @@ ProcessInfo::_commandLine_impl(
     xTEST_EQ(processHandle.isValid(), true);
 
     PVOID pebAddress               = _Functor::pebAddress(processHandle.get());
-    PVOID rtlUserProcParamsAddress = nullptr;
+    PVOID rtlUserProcParamsAddress {};
 
     // get the address of ProcessParameters
     BOOL blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(pebAddress) + 0x10,
@@ -173,7 +173,7 @@ ProcessInfo::_commandLine_impl(
     xTEST_DIFF(blRv, FALSE);
 
     // read the commandLine UNICODE_STRING structure
-    UNICODE_STRING commandLine = {0};
+    UNICODE_STRING commandLine {};
 
     blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(rtlUserProcParamsAddress) +
         0x40, &commandLine, sizeof(commandLine), nullptr);
@@ -205,14 +205,14 @@ ProcessInfo::_commandLine_impl(
     String::split(sRv, Const::space(), &args);
 
     // out
-    a_args->swap(args);
+    out_args->swap(args);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 long_t
 ProcessInfo::_commandLineArgsMax_impl()
 {
-    return 32L * 1024L;
+    return {32L * 1024L};
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -1,5 +1,5 @@
 /**
- * \file   ProcessInfo.inl
+ * \file   ProcessInfo.cpp
  * \brief  process information
  */
 
@@ -99,17 +99,17 @@ void_t
 ProcessInfo::commandLine(
     cint_t             &a_argsNum,
     cptr_ctchar_t       a_argv[],
-    std::vec_tstring_t *a_args
+    std::vec_tstring_t *out_args
 )
 {
     xTEST_GR_EQ(a_argsNum, 0);
     xTEST_PTR(a_argv);
-    xTEST_PTR(a_args);
+    xTEST_PTR(out_args);
 
-    xCHECK_DO(a_args != nullptr, a_args->clear());
+    xCHECK_DO(out_args != nullptr, out_args->clear());
 
     for (int_t i = 0; i < a_argsNum; ++ i) {
-         a_args->push_back( a_argv[i] );
+    	out_args->push_back( a_argv[i] );
     }
 }
 //-------------------------------------------------------------------------------------------------

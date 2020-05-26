@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, system)
 ulong_t
 ProcessInfo::_cpuUsage_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     // TODO: [skynowa] ProcessInfo::cpuUsage()
     // xNOT_IMPLEMENTED
@@ -26,7 +26,7 @@ ProcessInfo::_cpuUsage_impl() const
 ulong_t
 ProcessInfo::_ramUsage_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     if (Process::isCurrent( Process::currentId() )) {
         // TODO: [skynowa] ProcessInfo::ramUsage()
@@ -58,13 +58,13 @@ ProcessInfo::_ioBytes_impl() const
 
     std::tstring_t procPath  = Format::str(xT("/proc/{}/io"), _id);
 
-    ulong_t readBytes = 0UL;
+    ulong_t readBytes {};
     {
         std::tstring_t value = Path::procValue(procPath, xT("read_bytes"));
         readBytes = String::cast<ulong_t>( value );
     }
 
-    ulong_t writeBytes = 0UL;
+    ulong_t writeBytes {};
     {
         std::tstring_t value = Path::procValue(procPath, xT("write_bytes"));
         writeBytes = String::cast<ulong_t>( value );
@@ -80,7 +80,7 @@ ProcessInfo::_ioBytes_impl() const
 ulong_t
 ProcessInfo::_parentId_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     // TODO: [skynowa] ProcessInfo::parentId()
     // xNOT_IMPLEMENTED
