@@ -1092,12 +1092,11 @@ File::textRead(
     bRv = textRead(filePath, &vsRv);
     xTEST_EQ(bRv, true);
 
-    std::vec_tstring_t::_const_iterator it;
-    for (it = vsRv.begin(); it != vsRv.end(); ++ it) {
+    for (auto it = vsRv.begin(); it != vsRv.end(); ++ it) {
         std::vec_tstring_t lines;
-
         String::split(vsRv.at(0), separator, &lines);
-        msRv.insert( std::pair<std::tstring_t, std::tstring_t>(lines.at(0), lines.at(1)) );
+
+        msRv.insert( {lines.at(0), lines.at(1)} );
     }
 
     // out
