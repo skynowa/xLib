@@ -20,20 +20,20 @@ public:
     enum class OpenMode
         /// open mode
     {
-        Unknown,             ///< unknown
-        Read,                ///< "r"
-        Write,               ///< "w"
-        Append,              ///< "a"
-        OpenReadWrite,       ///< "r+"
-        CreateReadWrite,     ///< "w+"
-        OpenReadAppend,      ///< "a+"
+        Unknown,            ///< unknown
+        Read,               ///< "r"
+        Write,              ///< "w"
+        Append,             ///< "a"
+        OpenReadWrite,      ///< "r+"
+        CreateReadWrite,    ///< "w+"
+        OpenReadAppend,     ///< "a+"
 
-        BinRead,             ///< "rb"
-        BinWrite,            ///< "wb"
-        BinAppend,           ///< "ab"
-        BinOpenReadWrite,    ///< "rb+"
-        BinCreateReadWrite,  ///< "wb+"
-        BinOpenReadAppend    ///< "ab+"
+        BinRead,            ///< "rb"
+        BinWrite,           ///< "wb"
+        BinAppend,          ///< "ab"
+        BinOpenReadWrite,   ///< "rb+"
+        BinCreateReadWrite, ///< "wb+"
+        BinOpenReadAppend   ///< "ab+"
     };
     xUSING_CONST(OpenMode);
 
