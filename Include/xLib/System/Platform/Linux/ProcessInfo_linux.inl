@@ -51,13 +51,8 @@ ProcessInfo::_commandLine_impl(
     // TODO: [skynowa] ProcessInfo::commandLine() - review
     std::ctstring_t procPath = Format::str(xT("/proc/{}/cmdline"), _id);
 
-#if 0
-	file_unique_ptr_t procFile {std::fopen(xT2A(procPath).c_str(), "r"), std::fclose};
-	xTEST_PTR(procFile.get());
-#else
 	auto procFile = autoFile(procPath, "r");
 	xTEST_PTR(procFile.get());
-#endif
 
     std::csize_t bufferSize       = 2048;
     char         buff[bufferSize] = {0};
