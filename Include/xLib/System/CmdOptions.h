@@ -45,18 +45,23 @@ public:
     virtual ~CmdOptions() = default;
         ///< destructor
 
+    xNO_COPY_ASSIGN(CmdOptions)
+
     void_t   parse(cint_t argsNum, cptr_ctchar_t argv[], const std::vector<CmdOptionsUsage> &usage);
         ///< parse cmd options
     void_t   parse(std::cvec_tstring_t &args, const std::vector<CmdOptionsUsage> &usage);
         ///< parse cmd options
 
 private:
-    xNO_COPY_ASSIGN(CmdOptions)
+    std::map_tstring_t _params;
 };
 
 xNAMESPACE_END2(xl, system)
 //-------------------------------------------------------------------------------------------------
 /**
+ * FEATURES:
+ * -
+ *
  * FAQ:
  * - https://github.com/CppMicroServices/CppMicroServices/blob/development/third_party/optionparser.h
  * - https://github.com/CLIUtils/CLI11
