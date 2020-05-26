@@ -1079,9 +1079,6 @@ File::textRead(
             auto prRv = msRv.insert( {lines.at(0), lines.at(1)} );
             xTEST_NA(prRv);
         }
-
-        // TODO: [skynowa] File::textRead() - xTEST_EQ(prRv.second, true);
-        xUNUSED(prRv);
     }
 
     // out
