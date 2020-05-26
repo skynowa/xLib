@@ -1128,24 +1128,9 @@ File::textWrite(
 
     xCHECK_DO(a_content.empty(), return);
 
-    for (auto &it : a_content) {
-        file.writeLine(it.first + a_separator + it.second);
+    for (const auto &[key, value] : a_content) {
+        file.writeLine(key + a_separator + value);
     }
-
-#if xTODO
-    std::tstring_t sRv;
-
-    xFOR_EACH_CONST(TContent, it, content) {
-        sRv.append(it->first);
-        sRv.append(separator);
-        sRv.append(it->second);
-        sRv.append(Const::nl());
-
-        xCHECK_DO(it != content.end(), sRv.append(Const::nl()));
-    }
-
-    textWrite(filePath, sRv, a_mode);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -1166,7 +1151,7 @@ File::binRead(
     xTEST_EQ(a_filePath.empty(), false);
     xTEST_PTR(a_content);
 
-    File         file;
+    File           file;
     std::ustring_t usRv;
 
     file.create(a_filePath, OpenMode::BinRead);
