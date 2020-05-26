@@ -173,7 +173,7 @@ File::detach()
 size_t
 File::read(
     void_t       *a_buff,
-    std::csize_t &a_count
+    std::csize_t  a_count
 ) const
 {
     xTEST_PTR(a_buff);
@@ -187,8 +187,8 @@ File::read(
 //-------------------------------------------------------------------------------------------------
 size_t
 File::write(
-    cptr_cvoid_t  a_buff,
-    std::csize_t &a_count
+    cptr_cvoid_t a_buff,
+    std::csize_t a_count
 ) const
 {
     xTEST_PTR(a_buff);
@@ -286,7 +286,7 @@ File::writeV(
 void_t
 File::readLine(
     std::tstring_t *a_str,
-    std::csize_t   &a_maxCount
+    std::csize_t    a_maxCount
 ) const
 {
     xTEST_PTR(a_str);
@@ -406,7 +406,7 @@ void_t
 File::setVBuff(
     char          *a_buff,
     cBufferingMode a_mode,
-    std::csize_t  &a_size
+    std::csize_t   a_size
 ) const
 {
     xTEST_NA(a_buff);
@@ -656,8 +656,8 @@ File::remove(
 void_t
 File::tryRemove(
     std::ctstring_t &a_filePath,
-    std::csize_t    &a_attempts,
-    culong_t        &a_timeoutMsec
+    std::csize_t     a_attempts,
+    culong_t         a_timeoutMsec
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
@@ -682,7 +682,7 @@ File::tryRemove(
 void_t
 File::wipe(
     std::ctstring_t &a_filePath,
-    std::csize_t    &a_passes
+    std::csize_t     a_passes
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
