@@ -8,12 +8,6 @@
 
 #include <xLib/System/ProcessInfo.h>
 
-#if 1
-    #include <xLib/Core/Format.h>
-    #include <xLib/Log/Trace.h>
-#endif
-
-
 xNAMESPACE_BEGIN2(xl, system)
 
 /**************************************************************************************************
