@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/String.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, fs)
 
@@ -54,27 +55,35 @@ public:
 
 ///@name Get/set values
 ///@{
-    std::tstring_t    value(std::ctstring_t &key, cptr_ctchar_t defaultValue)
-                          xWARN_UNUSED_RV;
-    void_t            setValue(std::ctstring_t &key, cptr_ctchar_t value);
+    template<typename T>
+    T                 value(std::ctstring_t &key, const T defaultValue);
+    template<typename T>
+    void_t            setValue(std::ctstring_t &key, const T value);
 
-    std::tstring_t    value(std::ctstring_t &key, std::ctstring_t &defaultValue)
-                          xWARN_UNUSED_RV;
-    void_t            setValue(std::ctstring_t &key, std::ctstring_t &value);
 
-    long_t            value(std::ctstring_t &key, clong_t &defaultValue) xWARN_UNUSED_RV;
-    void_t            setValue(std::ctstring_t &key, clong_t &value);
+#if 0
+	std::tstring_t    value(std::ctstring_t &key, cptr_ctchar_t defaultValue)
+						  xWARN_UNUSED_RV;
+	void_t            setValue(std::ctstring_t &key, cptr_ctchar_t value);
 
-    double            value(std::ctstring_t &key, cdouble_t &defaultValue)
-                          xWARN_UNUSED_RV;
-    void_t            setValue(std::ctstring_t &key, cdouble_t &value);
+	std::tstring_t    value(std::ctstring_t &key, std::ctstring_t &defaultValue)
+						  xWARN_UNUSED_RV;
+	void_t            setValue(std::ctstring_t &key, std::ctstring_t &value);
 
-    bool_t            value(std::ctstring_t &key, cbool_t &defaultValue) xWARN_UNUSED_RV;
-    void_t            setValue(std::ctstring_t &key, cbool_t &value);
+	long_t            value(std::ctstring_t &key, clong_t &defaultValue) xWARN_UNUSED_RV;
+	void_t            setValue(std::ctstring_t &key, clong_t &value);
 
-    std::ustring_t    value(std::ctstring_t &key, std::custring_t &defaultValue)
-                          xWARN_UNUSED_RV;
-    void_t            setValue(std::ctstring_t &key, std::custring_t &value);
+	double            value(std::ctstring_t &key, cdouble_t &defaultValue)
+						  xWARN_UNUSED_RV;
+	void_t            setValue(std::ctstring_t &key, cdouble_t &value);
+
+	bool_t            value(std::ctstring_t &key, cbool_t &defaultValue) xWARN_UNUSED_RV;
+	void_t            setValue(std::ctstring_t &key, cbool_t &value);
+
+	std::ustring_t    value(std::ctstring_t &key, std::custring_t &defaultValue)
+						  xWARN_UNUSED_RV;
+	void_t            setValue(std::ctstring_t &key, std::custring_t &value);
+#endif
 ///@}
 
 private:
@@ -86,6 +95,73 @@ private:
 
     xNO_COPY_ASSIGN(Config)
 };
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline T
+Config::value(std::ctstring_t &a_key, const T a_defaultValue)
+{
+//    xTEST(!a_key.empty());
+//    xTEST_NA(a_defaultValue);
+
+    auto it = _config.find(a_key);
+    if (it == _config.end()) {
+    	return a_defaultValue;
+    }
+
+    const auto &_value = it->second;
+
+    if      constexpr (std::is_same_v<T, bool_t>) {
+    	return String::castBool(_value);
+    }
+    else if constexpr (std::is_same_v<T, ctchar_t *>) {
+    	return _value.c_str();
+    }
+    else if constexpr (std::is_same_v<T, std::tstring_t>) {
+    	return String::cast<T>(_value);
+    }
+    else if constexpr (std::is_same_v<T, std::ustring_t>) {
+		// hex string
+		std::ctstring_t sRv = String::cast(_value, 16);
+
+		return {sRv.begin(), sRv.end()};
+    }
+    else {
+    	return String::cast<T>(_value);
+    }
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline void_t
+Config::setValue(std::ctstring_t &a_key, const T a_value)
+{
+//    xTEST(!a_key.empty());
+//    xTEST_NA(a_value);
+
+	if      constexpr (std::is_integral_v<T>) {
+	    _config[a_key] = std::to_string(a_value);
+	}
+    else if constexpr (std::is_same_v<T, bool_t>) {
+    	_config[a_key] = String::castBool(a_value);
+    }
+	else if constexpr (std::is_floating_point_v<T>) {
+	    _config[a_key] = std::to_string(a_value);
+	}
+	else if constexpr (std::is_same_v<T, ctchar_t *>) {
+		_config[a_key] = a_value;
+	}
+	else if constexpr (std::is_same_v<T, std::tstring_t>) {
+		_config[a_key] = a_value;
+	}
+	else if constexpr (std::is_same_v<T, std::ustring_t>) {
+		_config[a_key] = String::cast( std::tstring_t(a_value.begin(), a_value.end()), 16);
+	}
+	else {
+		Cout() << xTRACE_VAR(a_value);
+
+	    _config[a_key] = a_value;
+	}
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, fs)
 //-------------------------------------------------------------------------------------------------
