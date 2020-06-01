@@ -68,7 +68,7 @@ Test_Config::unit()
 
     xTEST_CASE("get, save")
     {
-        std::map_tstring_t &content = config.get();
+        auto &content = config.get();
         xTEST(content.empty());
 
         content[key1] = value1;
@@ -78,7 +78,7 @@ Test_Config::unit()
         config.save();
 
         m_sRv = config.value(key1, std::tstring_t());
-        //xTEST_EQ(m_sRv, value1);
+        xTEST_EQ(m_sRv, value1);
 
         m_sRv = config.value(key2, std::tstring_t());
         xTEST_EQ(m_sRv, value2);
@@ -92,7 +92,7 @@ Test_Config::unit()
 
     xTEST_CASE("keyIsExists")
     {
-        std::map_tstring_t &content = config.get();
+    	auto &content = config.get();
         xTEST(content.empty());
 
         content[key1] = value1;
@@ -112,7 +112,6 @@ Test_Config::unit()
 
             for (const auto &it_pair : pairs) {
                 std::vec_tstring_t pair;
-
                 String::split(it_pair, Const::equal(), &pair);
                 xTEST(!pair.empty());
 
@@ -134,7 +133,6 @@ Test_Config::unit()
 
             for (const auto &it_pair : pairs) {
                 std::vec_tstring_t pair;
-
                  String::split(it_pair, Const::equal(), &pair);
 
                 m_bRv = config.keyIsExists( pair.at(0) );
@@ -151,7 +149,6 @@ Test_Config::unit()
 		// true
 		{
 			std::ctstring_t str = value1;
-
 			config.setValue(key1, str);
 
 			m_sRv = config.value(key1, xT(""));
@@ -161,7 +158,6 @@ Test_Config::unit()
 		// false
 		{
 			std::ctstring_t str = xT("sssssssssssss");
-
 			config.setValue(key1, str);
 
 			m_sRv = config.value(key1, xT(""));
@@ -174,7 +170,6 @@ Test_Config::unit()
         // true
         {
             std::ctstring_t str = value1;
-
             config.setValue(key1, str);
 
             m_sRv = config.value(key1, std::tstring_t());
@@ -184,7 +179,6 @@ Test_Config::unit()
         // false
         {
             std::ctstring_t str = xT("sssssssssssss");
-
             config.setValue(key1, str);
 
             m_sRv = config.value(key1, std::tstring_t());
@@ -195,7 +189,6 @@ Test_Config::unit()
     xTEST_CASE("get/set - clong_t")
     {
         clong_t value = 10L;
-
         config.setValue(key1, value);
 
         m_liRv = config.value(key1, 1L);
@@ -205,7 +198,6 @@ Test_Config::unit()
     xTEST_CASE("get/set - cdouble_t")
     {
         cdouble_t value = 777.0f;
-
         config.setValue(key1, value);
 
         m_dRv = config.value(key1, 0.0f);
@@ -215,7 +207,6 @@ Test_Config::unit()
     xTEST_CASE("get/set - cbool_t")
     {
         cbool_t value = false;
-
         config.setValue(key1, value);
 
         m_bRv = config.value(key1, true);
