@@ -1,5 +1,5 @@
 /**
- * \file   Finder.inl
+ * \file   Finder.cpp
  * \brief  filesystem finder
  */
 

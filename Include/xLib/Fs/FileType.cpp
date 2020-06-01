@@ -87,7 +87,7 @@ FileType::add(
     xTEST_EQ(filePath().empty(), false);
     xTEST_NA(a_value);
 
-    modify(static_cast<Type>( 0 ), a_value);
+    modify(static_cast<Type>(0), a_value);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -98,7 +98,7 @@ FileType::remove(
     xTEST_EQ(filePath().empty(), false);
     xTEST_NA(a_value);
 
-    modify(a_value, static_cast<Type>( 0 ));
+    modify(a_value, static_cast<Type>(0));
 }
 //-------------------------------------------------------------------------------------------------
 void_t
