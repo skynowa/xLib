@@ -23,8 +23,6 @@ public:
 
 ///@name Creations
 ///@{
-    void_t            createDefault(std::cmap_tstring_t &content) const;
-        ///< create default file
     std::ctstring_t & path() const xWARN_UNUSED_RV;
         ///< get file path
     void_t            setPath(std::ctstring_t &filePath);
@@ -36,6 +34,8 @@ public:
         ///< parse file
     void_t            save() const;
         ///< save
+    void_t            saveDefault(std::cmap_tstring_t &content);
+        ///< save default file
     void_t            clear();
         ///< clear content
     void_t            remove();

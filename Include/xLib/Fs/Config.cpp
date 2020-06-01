@@ -47,16 +47,6 @@ Config::~Config()
     save();
 }
 //-------------------------------------------------------------------------------------------------
-void_t
-Config::createDefault(
-    std::cmap_tstring_t &a_content
-) const
-{
-    xTEST_NA(a_content);
-
-    File::textWrite(path(), _separator, a_content, File::OpenMode::Write);
-}
-//-------------------------------------------------------------------------------------------------
 std::ctstring_t &
 Config::path() const
 {
@@ -100,6 +90,17 @@ Config::save() const
 	xCHECK_DO(_config.empty(), return);
 
     File::textWrite(path(), _separator, _config, File::OpenMode::Write);
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Config::saveDefault(
+    std::cmap_tstring_t &a_content
+)
+{
+    xTEST_NA(a_content);
+
+    _config = a_content;
+    save();
 }
 //-------------------------------------------------------------------------------------------------
 void_t

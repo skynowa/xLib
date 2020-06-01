@@ -43,9 +43,9 @@ Test_Config::unit()
 
     Config config(filePath);
 
-    xTEST_CASE("createDefault,read")
+    xTEST_CASE("saveDefault,read")
     {
-        config.createDefault(content);
+        config.saveDefault(content);
         config.read();
         xTEST(!config.get().empty());
 
