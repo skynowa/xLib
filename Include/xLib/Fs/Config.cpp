@@ -49,12 +49,12 @@ Config::~Config()
 //-------------------------------------------------------------------------------------------------
 void_t
 Config::createDefault(
-    std::ctstring_t &a_content
+    std::cmap_tstring_t &a_content
 ) const
 {
     xTEST_NA(a_content);
 
-    File::textWrite(path(), a_content, File::OpenMode::Write);
+    File::textWrite(path(), _separator, a_content, File::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 std::ctstring_t &

@@ -23,7 +23,7 @@ public:
 
 ///@name Creations
 ///@{
-    void_t            createDefault(std::ctstring_t &content) const;
+    void_t            createDefault(std::cmap_tstring_t &content) const;
         ///< create default file
     std::ctstring_t & path() const xWARN_UNUSED_RV;
         ///< get file path
