@@ -27,9 +27,12 @@ Test_Config::unit()
     std::ctstring_t key3     = xT("c");
     std::ctstring_t value3   = xT("3");
 
-    std::ctstring_t content  = key1 + Const::equal() + value1 + Const::nl() +
-                               key2 + Const::equal() + value2 + Const::nl() +
-                               key3 + Const::equal() + value3 + Const::nl();
+    std::cmap_tstring_t content
+	{
+        {key1, value1},
+        {key2, value2},
+        {key3, value3}
+    };
 
     xTEST_CASE("Config")
     {
