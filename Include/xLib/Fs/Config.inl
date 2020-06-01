@@ -36,7 +36,7 @@ Config::value(
     else if constexpr (std::is_same_v<T, std::ustring_t>) {
 		std::ctstring_t hex = String::cast(_value, 16);
 
-		return {hex.cbegin(), hex.cend()};
+		return T{hex.cbegin(), hex.cend()};
     }
     else {
     	return String::cast<T>(_value);
