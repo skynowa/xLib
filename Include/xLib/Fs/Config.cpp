@@ -33,10 +33,10 @@ Config::Config(
     _separator{ Const::equal() },
     _fileExt  { Path::fileExt(Path::FileExt::seConfig) }
 {
-    xTEST_EQ(_separator.empty(), false);
-    xTEST_EQ(_fileExt.empty(), false);
-    xTEST_EQ(_filePath.empty(), true);
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!_separator.empty());
+    xTEST(!_fileExt.empty());
+    xTEST(_filePath.empty());
+    xTEST(!a_filePath.empty());
 
     setPath( Path(a_filePath).setExt(_fileExt) );
 }
@@ -70,7 +70,7 @@ Config::setPath(
     std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
 
     Dir( Path(a_filePath).dir() ).pathCreate();
 
@@ -122,7 +122,6 @@ Config::keyIsExists(
 {
     std::map_tstring_t cfg;
     File::textRead(path(), _separator, &cfg);
-
     xCHECK_RET(cfg.end() == cfg.find(a_key), false);
 
     return true;
@@ -133,7 +132,7 @@ Config::keyClear(
     std::ctstring_t &a_key
 )
 {
-    xTEST_EQ(a_key.empty(), false);
+    xTEST(!a_key.empty());
 
     setValue(a_key, std::tstring_t());
 }
@@ -143,7 +142,7 @@ Config::keyDelete(
    std::ctstring_t &a_key
 )
 {
-    xTEST_EQ(a_key.empty(), false);
+    xTEST(!a_key.empty());
 
     // read from file
     File::textRead(path(), _separator, &_config);
@@ -170,7 +169,7 @@ Config::value(
 	cptr_ctchar_t    a_defaultValue
 )
 {
-    xTEST_EQ(a_key.empty(), false);
+    xTEST(!a_key.empty());
     xTEST_NA(a_defaultValue);
 
     std::tstring_t sRv;
@@ -185,7 +184,7 @@ Config::setValue(
 	cptr_ctchar_t    a_value
 )
 {
-    xTEST_EQ(a_key.empty(), false);
+    xTEST(!a_key.empty());
     xTEST_NA(a_value);
 
     _write(a_key, a_value);
@@ -197,7 +196,7 @@ Config::value(
     std::ctstring_t &a_defaultValue
 )
 {
-    xTEST_EQ(a_key.empty(), false);
+    xTEST(!a_key.empty());
     xTEST_NA(a_defaultValue);
 
     std::tstring_t sRv;
@@ -212,7 +211,7 @@ Config::setValue(
     std::ctstring_t &a_value
 )
 {
-    xTEST_EQ(a_key.empty(), false);
+    xTEST(!a_key.empty());
     xTEST_NA(a_value);
 
     _write(a_key, a_value);
@@ -371,7 +370,7 @@ Config::_write(
     std::ctstring_t &a_value
 )
 {
-    xTEST_EQ(a_key.empty(), false);
+    xTEST(!a_key.empty());
     xTEST_NA(a_value);
 
     // write to std::map_tstring_t
