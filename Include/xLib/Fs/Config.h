@@ -32,6 +32,8 @@ public:
     std::map_tstring_t & get() xWARN_UNUSED_RV;
         ///< get inner local_storage_t, may be used with bFlush
 
+    void_t            read();
+        ///< parse file
     void_t            save() const;
         ///< save
     void_t            clear();
@@ -81,11 +83,6 @@ private:
 
     std::tstring_t     _filePath;   ///< file path to file
     std::map_tstring_t _config;     ///< std::map of keys and values
-
-    void_t _read(std::ctstring_t &key, std::ctstring_t &defaultValue, std::tstring_t *value);
-        ///< parse file
-    void_t _write(std::ctstring_t &key, std::ctstring_t &value);
-        ///< save to local_storage_t, file
 
     xNO_COPY_ASSIGN(Config)
 };

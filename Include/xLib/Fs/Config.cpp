@@ -84,6 +84,17 @@ Config::get()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
+Config::read()
+{
+    if ( !File::isExists(path()) ) {
+		return;
+    }
+
+    File::textRead(path(), _separator, &_config);
+    _config.erase(Const::strEmpty());
+}
+//-------------------------------------------------------------------------------------------------
+void_t
 Config::save() const
 {
 	xCHECK_DO(_config.empty(), return);
@@ -94,6 +105,7 @@ Config::save() const
 void_t
 Config::clear()
 {
+	_config.clear();
     File::clear(path());
 }
 //-------------------------------------------------------------------------------------------------
@@ -120,11 +132,7 @@ Config::keyIsExists(
     std::ctstring_t &a_key
 ) const
 {
-    std::map_tstring_t cfg;
-    File::textRead(path(), _separator, &cfg);
-    xCHECK_RET(cfg.end() == cfg.find(a_key), false);
-
-    return true;
+    return (_config.find(a_key) != _config.end());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -144,15 +152,7 @@ Config::keyDelete(
 {
     xTEST(!a_key.empty());
 
-    // read from file
-    File::textRead(path(), _separator, &_config);
-    xCHECK_DO(_config.end() == _config.find(a_key), return);
-
-    // delete from std::map_tstring_t
     _config.erase(a_key);
-
-    // write to file
-    File::textWrite(path(), _separator, _config, File::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -172,10 +172,12 @@ Config::value(
     xTEST(!a_key.empty());
     xTEST_NA(a_defaultValue);
 
-    std::tstring_t sRv;
-    _read(a_key, a_defaultValue, &sRv);
+    auto it = _config.find(a_key);
+    if (it == _config.end()) {
+    	return a_defaultValue;
+    }
 
-    return sRv;
+    return it->second;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -187,7 +189,7 @@ Config::setValue(
     xTEST(!a_key.empty());
     xTEST_NA(a_value);
 
-    _write(a_key, a_value);
+    _config[a_key] = a_value;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -199,10 +201,12 @@ Config::value(
     xTEST(!a_key.empty());
     xTEST_NA(a_defaultValue);
 
-    std::tstring_t sRv;
-    _read(a_key, a_defaultValue, &sRv);
+    auto it = _config.find(a_key);
+    if (it == _config.end()) {
+    	return a_defaultValue;
+    }
 
-    return sRv;
+    return it->second;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -214,7 +218,7 @@ Config::setValue(
     xTEST(!a_key.empty());
     xTEST_NA(a_value);
 
-    _write(a_key, a_value);
+    _config[a_key] = a_value;
 }
 //-------------------------------------------------------------------------------------------------
 long_t
@@ -238,7 +242,7 @@ Config::setValue(
     xTEST_NA(a_key);
     xTEST_NA(a_value);
 
-    setValue(a_key, String::cast(a_value));
+    _config[a_key] = String::cast(a_value);
 }
 //-------------------------------------------------------------------------------------------------
 double
@@ -262,7 +266,7 @@ Config::setValue(
     xTEST_NA(a_key);
     xTEST_NA(a_value);
 
-    setValue(a_key, String::cast(a_value));
+    _config[a_key] = String::cast(a_value);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -286,11 +290,7 @@ Config::setValue(
     xTEST_NA(a_key);
     xTEST_NA(a_value);
 
-    std::tstring_t value;
-
-    value = String::castBool(a_value);
-
-    setValue(a_key, value);
+    _config[a_key] = String::castBool(a_value);
 }
 //-------------------------------------------------------------------------------------------------
 std::ustring_t
@@ -323,11 +323,8 @@ Config::setValue(
     xTEST_NA(a_value);
 
     // value (std::ustring_t) -> hexStr (std::tstring_t)
-    std::tstring_t hexStr;
 
-    hexStr = String::cast( std::tstring_t(a_value.begin(), a_value.end()), 16);
-
-    setValue(a_key, hexStr);
+    _config[a_key] = String::cast( std::tstring_t(a_value.begin(), a_value.end()), 16);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -336,54 +333,5 @@ Config::setValue(
 *    private
 *
 **************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-void_t
-Config::_read(
-    std::ctstring_t &a_key,
-    std::ctstring_t &a_defaultValue,
-    std::tstring_t  *out_value
-)
-{
-    xTEST_NA(a_key);
-    xTEST_NA(a_defaultValue);
-    xTEST_PTR(out_value);
-
-    if ( !File::isExists(path()) ) {
-		*out_value = a_defaultValue;
-		return;
-    }
-
-    // read from file
-    File::textRead(path(), _separator, &_config);
-    _config.erase(Const::strEmpty());
-
-    // read to std::map_tstring_t
-    const auto it = _config.find(a_key);
-
-    *out_value = (it == _config.end()) ? a_defaultValue : it->second;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Config::_write(
-    std::ctstring_t &a_key,
-    std::ctstring_t &a_value
-)
-{
-    xTEST(!a_key.empty());
-    xTEST_NA(a_value);
-
-    // write to std::map_tstring_t
-    auto it = _config.find(a_key);
-    if (it == _config.end()) {
-        _config.insert( {a_key, a_value} );
-    } else {
-        it->second = a_value;
-    }
-
-    // write to file
-    File::textWrite(path(), _separator, _config, File::OpenMode::Write);
-}
-//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, fs)
