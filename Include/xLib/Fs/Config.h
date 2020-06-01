@@ -100,10 +100,10 @@ template<typename T>
 inline T
 Config::value(std::ctstring_t &a_key, const T a_defaultValue)
 {
-//    xTEST(!a_key.empty());
-//    xTEST_NA(a_defaultValue);
+    xTEST(!a_key.empty());
+    xTEST_NA(a_defaultValue);
 
-    auto it = _config.find(a_key);
+    const auto it = _config.find(a_key);
     if (it == _config.end()) {
     	return a_defaultValue;
     }
@@ -134,8 +134,8 @@ template<typename T>
 inline void_t
 Config::setValue(std::ctstring_t &a_key, const T a_value)
 {
-//    xTEST(!a_key.empty());
-//    xTEST_NA(a_value);
+    xTEST(!a_key.empty());
+    xTEST_NA(a_value);
 
 	if      constexpr (std::is_integral_v<T>) {
 	    _config[a_key] = std::to_string(a_value);
