@@ -43,9 +43,13 @@ Test_Config::unit()
 
     Config config(filePath);
 
-    xTEST_CASE("createDefault")
+    xTEST_CASE("createDefault,read")
     {
         config.createDefault(content);
+        config.read();
+        xTEST(!config.get().empty());
+
+        config.clear();
     }
 
     xTEST_CASE("path")
@@ -64,12 +68,12 @@ Test_Config::unit()
 
     xTEST_CASE("get, save")
     {
-        std::map_tstring_t &_storage = config.get();
-        xTEST(_storage.empty());
+        std::map_tstring_t &content = config.get();
+        xTEST(content.empty());
 
-        _storage[key1] = value1;
-        _storage[key2] = value2;
-        _storage[key3] = value3;
+        content[key1] = value1;
+        content[key2] = value2;
+        content[key3] = value3;
 
         config.save();
 
@@ -88,27 +92,28 @@ Test_Config::unit()
 
     xTEST_CASE("keyIsExists")
     {
-        std::map_tstring_t &_storage = config.get();
-        xTEST(_storage.empty());
+        std::map_tstring_t &content = config.get();
+        xTEST(content.empty());
 
-        _storage[key1] = value1;
-        _storage[key2] = value2;
-        _storage[key3] = value3;
+        content[key1] = value1;
+        content[key2] = value2;
+        content[key3] = value3;
 
         config.save();
 
         // true
         {
-            std::vec_tstring_t pairs;
+            std::cvec_tstring_t pairs
+			{
+				{key1 + Const::equal() + value1},
+				{key2 + Const::equal() + value2},
+				{key3 + Const::equal() + value3}
+			};
 
-            pairs.push_back(key1 + Const::equal() + value1);
-            pairs.push_back(key2 + Const::equal() + value2);
-            pairs.push_back(key3 + Const::equal() + value3);
-
-            for (size_t i = 0; i < pairs.size(); ++ i) {
+            for (const auto &it_pair : pairs) {
                 std::vec_tstring_t pair;
 
-                String::split(pairs.at(i), Const::equal(), &pair);
+                String::split(it_pair, Const::equal(), &pair);
                 xTEST(!pair.empty());
 
                 m_bRv = config.keyIsExists( pair.at(0) );
@@ -118,18 +123,19 @@ Test_Config::unit()
 
         // false
         {
-            std::vec_tstring_t pairs;
+            std::cvec_tstring_t pairs
+            {
+				{xT("not_existance_key")},
+				{xT("s<erfsenot_existance_key56eb54")},
+				{xT("not_exist456745g67ance_key")},
+				{xT("563yb675dfgv4g67")},
+				{xT("not_exi5g675467stance_key")}
+            };
 
-            pairs.push_back(xT("not_existance_key"));
-            pairs.push_back(xT("s<erfsenot_existance_key56eb54"));
-            pairs.push_back(xT("not_exist456745g67ance_key"));
-            pairs.push_back(xT("563yb675dfgv4g67"));
-            pairs.push_back(xT("not_exi5g675467stance_key"));
-
-            for (size_t i = 0; i < pairs.size(); ++ i) {
+            for (const auto &it_pair : pairs) {
                 std::vec_tstring_t pair;
 
-                 String::split(pairs.at(i), Const::equal(), &pair);
+                 String::split(it_pair, Const::equal(), &pair);
 
                 m_bRv = config.keyIsExists( pair.at(0) );
                 xTEST(!m_bRv);
