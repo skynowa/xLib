@@ -137,29 +137,33 @@ Config::setValue(std::ctstring_t &a_key, const T a_value)
     xTEST(!a_key.empty());
     xTEST_NA(a_value);
 
+    std::tstring_t _value;
+
 	if      constexpr (std::is_integral_v<T>) {
-	    _config[a_key] = std::to_string(a_value);
+	    _value = std::to_string(a_value);
 	}
     else if constexpr (std::is_same_v<T, bool_t>) {
-    	_config[a_key] = String::castBool(a_value);
+    	_value = String::castBool(a_value);
     }
 	else if constexpr (std::is_floating_point_v<T>) {
-	    _config[a_key] = std::to_string(a_value);
+	    _value = std::to_string(a_value);
 	}
 	else if constexpr (std::is_same_v<T, ctchar_t *>) {
-		_config[a_key] = a_value;
+		_value = a_value;
 	}
 	else if constexpr (std::is_same_v<T, std::tstring_t>) {
-		_config[a_key] = a_value;
+		_value = a_value;
 	}
 	else if constexpr (std::is_same_v<T, std::ustring_t>) {
-		_config[a_key] = String::cast( std::tstring_t(a_value.begin(), a_value.end()), 16);
+		_value = String::cast( std::tstring_t(a_value.begin(), a_value.end()), 16);
 	}
 	else {
 		Cout() << xTRACE_VAR(a_value);
 
 	    _config[a_key] = a_value;
 	}
+
+	_config[a_key] = _value;
 }
 //-------------------------------------------------------------------------------------------------
 
