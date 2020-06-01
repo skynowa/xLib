@@ -36,7 +36,7 @@ Config::value(
     else if constexpr (std::is_same_v<T, std::ustring_t>) {
 		std::ctstring_t hex = String::cast(_value, 16);
 
-		return {hex.begin(), hex.end()};
+		return {hex.cbegin(), hex.cend()};
     }
     else {
     	return String::cast<T>(_value);
@@ -71,7 +71,7 @@ Config::setValue(
 		_value = a_value;
 	}
 	else if constexpr (std::is_same_v<T, std::ustring_t>) {
-		_value = String::cast( std::tstring_t(a_value.begin(), a_value.end()), 16);
+		_value = String::cast( std::tstring_t(a_value.cbegin(), a_value.cend()), 16);
 	}
 	else {
 		Cout() << xTRACE_VAR(a_value);
