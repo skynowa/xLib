@@ -50,7 +50,7 @@ Config::~Config()
 std::ctstring_t &
 Config::path() const
 {
-    xTEST_EQ(_filePath.empty(), false);
+    xTEST(!_filePath.empty());
 
     return _filePath;
 }
