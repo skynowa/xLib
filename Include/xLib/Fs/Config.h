@@ -59,31 +59,6 @@ public:
     T                 value(std::ctstring_t &key, const T defaultValue);
     template<typename T>
     void_t            setValue(std::ctstring_t &key, const T value);
-
-
-#if 0
-	std::tstring_t    value(std::ctstring_t &key, cptr_ctchar_t defaultValue)
-						  xWARN_UNUSED_RV;
-	void_t            setValue(std::ctstring_t &key, cptr_ctchar_t value);
-
-	std::tstring_t    value(std::ctstring_t &key, std::ctstring_t &defaultValue)
-						  xWARN_UNUSED_RV;
-	void_t            setValue(std::ctstring_t &key, std::ctstring_t &value);
-
-	long_t            value(std::ctstring_t &key, clong_t &defaultValue) xWARN_UNUSED_RV;
-	void_t            setValue(std::ctstring_t &key, clong_t &value);
-
-	double            value(std::ctstring_t &key, cdouble_t &defaultValue)
-						  xWARN_UNUSED_RV;
-	void_t            setValue(std::ctstring_t &key, cdouble_t &value);
-
-	bool_t            value(std::ctstring_t &key, cbool_t &defaultValue) xWARN_UNUSED_RV;
-	void_t            setValue(std::ctstring_t &key, cbool_t &value);
-
-	std::ustring_t    value(std::ctstring_t &key, std::custring_t &defaultValue)
-						  xWARN_UNUSED_RV;
-	void_t            setValue(std::ctstring_t &key, std::custring_t &value);
-#endif
 ///@}
 
 private:
