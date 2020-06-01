@@ -9,7 +9,10 @@ xNAMESPACE_BEGIN2(xl, fs)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline T
-Config::value(std::ctstring_t &a_key, const T a_defaultValue)
+Config::value(
+	std::ctstring_t &a_key,
+	const T          a_defaultValue
+)
 {
     xTEST(!a_key.empty());
     xTEST_NA(a_defaultValue);
@@ -42,7 +45,10 @@ Config::value(std::ctstring_t &a_key, const T a_defaultValue)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline void_t
-Config::setValue(std::ctstring_t &a_key, const T a_value)
+Config::setValue(
+	std::ctstring_t &a_key,
+	const T          a_value
+)
 {
     xTEST(!a_key.empty());
     xTEST_NA(a_value);
