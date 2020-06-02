@@ -282,8 +282,8 @@ String::join(
 
     std::tstring_t sRv;
 
-    for (auto &it : a_map) {
-        sRv += it.first + a_sepKeyValue + it.second + a_sepLine;
+    for (const auto &[key, value] : a_map) {
+        sRv += key + a_sepKeyValue + value + a_sepLine;
     }
 
     return sRv;

@@ -366,8 +366,8 @@ MySqlConnection::_setOptions(
 	const std::map<mysql_option, cptr_cvoid_t> &a_options
 ) const
 {
-	for (auto &it_option : a_options) {
-		_setOption(it_option.first, it_option.second);
+	for (const auto &[name, value] : a_options) {
+		_setOption(name, value);
 	}
 }
 //-------------------------------------------------------------------------------------------------

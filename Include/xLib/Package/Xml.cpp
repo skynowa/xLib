@@ -73,8 +73,8 @@ XmlDoc::registerNss(
 	std::cmap_tstring_t &a_nss
 )
 {
-	for (auto &it_ns : a_nss) {
-		_nss.insert( {it_ns.first, it_ns.second} );
+	for (const auto &[prefix, path] : a_nss) {
+		_nss.insert( {prefix, path} );
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -214,9 +214,9 @@ XmlDoc::_registerNss(
 	xmlXPathContextPtr a_xmlXPathContextPtr
 ) const
 {
-	for (auto &it_ns : _nss) {
-		auto prefix = (const xmlChar *)it_ns.first.data();
-		auto nsUri  = (const xmlChar *)it_ns.second.data();
+	for (const auto &it_ns : _nss) {
+		auto prefix = reinterpret_cast<const xmlChar *>( it_ns.first.data() );
+		auto nsUri  = reinterpret_cast<const xmlChar *>( it_ns.second.data() );
 
 		int iRv = ::xmlXPathRegisterNs(a_xmlXPathContextPtr, prefix, nsUri);
 		xTEST_EQ(iRv, 0);

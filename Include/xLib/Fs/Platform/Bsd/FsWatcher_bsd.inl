@@ -130,10 +130,7 @@ return;
     {
         // std::tcout << "[FsWatcher] File modified: " << data << std::endl;
 
-        for (auto &itCmd : _cmds) {
-            std::ctstring_t &modulePath = itCmd.first;
-            std::ctstring_t &scriptPath = itCmd.second;
-
+        for (const auto &[modulePath, scriptPath] : _cmds) {
             if (data.find(modulePath) == std::tstring_t::npos) {
                 continue;
             }

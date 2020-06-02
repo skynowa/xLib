@@ -529,19 +529,19 @@ Ssh2Client::_convertStdToHtml(
     colorsCodes[xT("\e[46m")]   = xT("Cyan");
     colorsCodes[xT("\e[47m")]   = xT("White");
 
-    for (auto &it : colorsCodes) {
+    for (const auto &[code, name] : colorsCodes) {
         std::tstring_t htmlTag;
     #if 0
         {
-            if (it.first == xT("\e[0m")) {
+            if (code == xT("\e[0m")) {
                 htmlTag = xT("</font>");
             } else {
-                htmlTag = xT("<font color=\"") + it,second + xT("\">");
+                htmlTag = xT("<font color=\"") + name + xT("\">");
             }
         }
     #endif
 
-        *a_std = String::replaceAll(*a_std, it.first, htmlTag);
+        *a_std = String::replaceAll(*a_std, code, htmlTag);
     }
 }
 //-------------------------------------------------------------------------------------------------
