@@ -37,9 +37,7 @@ Test_FileType::unit()
 
         type.set( static_cast<FileType::types_t>(value) );
 
-        FileType::types_t faRes;
-
-        faRes = type.get();
+        FileType::ctypes_t faRes = type.get();
         xTEST_EQ((ulong_t)value, (ulong_t)faRes);
     }
 
@@ -59,8 +57,8 @@ Test_FileType::unit()
     #if   xENV_WIN
         FileType type(filePath);
 
-        FileType::Type attr  = FileType::Hidden;
-        FileType::Type value = FileType::ReadOnly;
+        const auto attr  = FileType::Type::Hidden;
+        const auto value = FileType::Type::ReadOnly;
 
         type.clear();
         type.add(attr);
@@ -115,21 +113,21 @@ Test_FileType::unit()
     {
         FileType type(filePath);
 
-        const FileType::Type cfaRemoveValue = value;
+        const FileType::Type removeValue = value;
     #if   xENV_WIN
-        const FileType::Type cfaAddValue    = FileType::Type::Hidden;
+        const FileType::Type addValue    = FileType::Type::Hidden;
     #elif xENV_UNIX
-        const FileType::Type cfaAddValue    = FileType::Type::SymbolicLink;
+        const FileType::Type addValue    = FileType::Type::SymbolicLink;
     #endif
 
-        type.modify(cfaRemoveValue, cfaAddValue);
+        type.modify(removeValue, addValue);
     }
 
     xTEST_CASE("isExists")
     {
         FileType type(filePath);
 
-        FileType::Type attr = FileType::Type::RegularFile;
+        const auto attr = FileType::Type::RegularFile;
 
         type.clear();
 
@@ -143,9 +141,7 @@ Test_FileType::unit()
 
         type.clear();
 
-        FileType::types_t faRv;
-
-        faRv = type.get();
+        FileType::ctypes_t faRv = type.get();
         xTEST_EQ((ulong_t)FileType::Type::RegularFile, (ulong_t)faRv);
     }
 
