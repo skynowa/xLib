@@ -29,8 +29,8 @@ public:
         /// attribute
     {
 	#if 0
-		NotFound	-1	Represents a file that does not exist.
-		None	0	Represents a file that has no type attribute. (Not supported.)
+		NotFound -1 Represents a file that does not exist.
+		None      0 Represents a file that has no type attribute. (Not supported.)
 	#endif
 
     #if   xENV_WIN
