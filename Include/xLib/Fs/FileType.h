@@ -27,7 +27,8 @@ public:
     {
     #if   xENV_WIN
         Invalid           = INVALID_FILE_ATTRIBUTES,
-        Normal            = FILE_ATTRIBUTE_NORMAL,
+        RegularFile       = FILE_ATTRIBUTE_NORMAL,
+
         ReadOnly          = FILE_ATTRIBUTE_READONLY,
         Hidden            = FILE_ATTRIBUTE_HIDDEN,
         System            = FILE_ATTRIBUTE_SYSTEM,
@@ -43,10 +44,11 @@ public:
         Encrypted         = FILE_ATTRIBUTE_ENCRYPTED
     #elif xENV_UNIX
         Invalid           = static_cast<types_t>(-1),
+        RegularFile       = S_IFREG,
+
         Directory         = S_IFDIR,
         CharacterDevice   = S_IFCHR,
         BlockDevice       = S_IFBLK,
-        RegularFile       = S_IFREG,
         Fifo              = S_IFIFO,
         SymbolicLink      = S_IFLNK,
         Socket            = S_IFSOCK

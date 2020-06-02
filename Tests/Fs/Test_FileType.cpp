@@ -17,16 +17,10 @@ bool_t
 Test_FileType::unit()
 {
     std::ctstring_t filePath = getData().tempDirPath + Const::slash() + xT("Test.txt");
-    FileType::Type  value;
+    const auto      value    = FileType::Type::RegularFile;
 
     // prepare
     {
-    #if   xENV_WIN
-        value = FileType::Type::ReadOnly;
-    #elif xENV_UNIX
-        value = FileType::Type::RegularFile;
-    #endif
-
         File::remove(filePath);
 
         File F;
@@ -136,11 +130,7 @@ Test_FileType::unit()
     {
         FileType ftType(filePath);
 
-    #if   xENV_WIN
-        FileType::Type faAttribute = FileType::Type::Normal;
-    #elif xENV_UNIX
         FileType::Type faAttribute = FileType::Type::RegularFile;
-    #endif
 
         ftType.clear();
 
@@ -157,11 +147,7 @@ Test_FileType::unit()
         FileType::types_t faRv;
 
         faRv = ftType.get();
-    #if   xENV_WIN
-        xTEST_EQ((ulong_t)FileType::Type::Normal, (ulong_t)faRv);
-    #elif xENV_UNIX
         xTEST_EQ((ulong_t)FileType::Type::RegularFile, (ulong_t)faRv);
-    #endif
     }
 
     return true;
