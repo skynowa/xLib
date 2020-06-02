@@ -6,7 +6,7 @@
 
 
 # vars
-DIR_BUILD="../xLib_eclipse"
+DIR_BUILD="../../xLib_eclipse"
 
 cd $DIR_BUILD
 
