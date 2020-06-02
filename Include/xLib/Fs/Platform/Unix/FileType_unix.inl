@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 FileType::types_t
 FileType::_get_impl() const
 {
-    types_t ftRv = static_cast<types_t>(Type::Invalid);
+    auto ftRv = static_cast<types_t>(Type::Invalid);
 
     xTSTAT_STRUCT info {};
 
