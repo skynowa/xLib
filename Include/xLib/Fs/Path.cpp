@@ -152,25 +152,25 @@ Path::fileExt(
     std::tstring_t sRv;
 
     switch (a_fileExt) {
-    case FileExt::seConfig:
+    case FileExt::Config:
         sRv = xT("cfg");
         break;
-    case FileExt::seLog:
+    case FileExt::Log:
         sRv = xT("log");
         break;
-    case FileExt::seDb:
+    case FileExt::Db:
         sRv = xT("db");
         break;
-    case FileExt::seDat:
+    case FileExt::Dat:
         sRv = xT("dat");
         break;
-    case FileExt::seBackup:
+    case FileExt::Backup:
         sRv = xT("bak");
         break;
-    case FileExt::seTemp:
+    case FileExt::Temp:
         sRv = xT("tmp");
         break;
-    case FileExt::seText:
+    case FileExt::Text:
         sRv = xT("txt");
         break;
     default:

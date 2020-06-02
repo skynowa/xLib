@@ -301,7 +301,7 @@ std::tstring_t
 Application::configPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
-    std::ctstring_t ext      = Path::fileExt(Path::FileExt::seConfig);
+    std::ctstring_t ext      = Path::fileExt(Path::FileExt::Config);
 
     return Format::str(xT("{}/{}.{}"), configDirPath(), basename, ext);
 }
@@ -311,7 +311,7 @@ std::tstring_t
 Application::logPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
-    std::ctstring_t ext      = Path::fileExt(Path::FileExt::seLog);
+    std::ctstring_t ext      = Path::fileExt(Path::FileExt::Log);
 
     return Format::str(xT("{}/{}.{}"), logDirPath(), basename, ext);
 }
@@ -321,7 +321,7 @@ std::tstring_t
 Application::dbPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
-    std::ctstring_t ext      = Path::fileExt(Path::FileExt::seDb);
+    std::ctstring_t ext      = Path::fileExt(Path::FileExt::Db);
 
     return Format::str(xT("{}/{}.{}"), dbDirPath(), basename, ext);
 }
