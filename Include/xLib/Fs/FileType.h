@@ -29,12 +29,12 @@ public:
         Invalid           = INVALID_FILE_ATTRIBUTES,
         RegularFile       = FILE_ATTRIBUTE_NORMAL,
         Directory         = FILE_ATTRIBUTE_DIRECTORY,
+        Device            = FILE_ATTRIBUTE_DEVICE,
 
         ReadOnly          = FILE_ATTRIBUTE_READONLY,
         Hidden            = FILE_ATTRIBUTE_HIDDEN,
         System            = FILE_ATTRIBUTE_SYSTEM,
         Archive           = FILE_ATTRIBUTE_ARCHIVE,
-        Device            = FILE_ATTRIBUTE_DEVICE,
         Temporary         = FILE_ATTRIBUTE_TEMPORARY,
         SparseFile        = FILE_ATTRIBUTE_SPARSE_FILE,
         ReparsePoint      = FILE_ATTRIBUTE_REPARSE_POINT,
@@ -46,9 +46,9 @@ public:
         Invalid           = static_cast<types_t>(-1),
         RegularFile       = S_IFREG,
         Directory         = S_IFDIR,
-
         CharacterDevice   = S_IFCHR,
         BlockDevice       = S_IFBLK,
+
         Fifo              = S_IFIFO,
         SymbolicLink      = S_IFLNK,
         Socket            = S_IFSOCK
