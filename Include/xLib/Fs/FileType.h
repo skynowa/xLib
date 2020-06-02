@@ -28,11 +28,11 @@ public:
     #if   xENV_WIN
         Invalid           = INVALID_FILE_ATTRIBUTES,
         RegularFile       = FILE_ATTRIBUTE_NORMAL,
+        Directory         = FILE_ATTRIBUTE_DIRECTORY,
 
         ReadOnly          = FILE_ATTRIBUTE_READONLY,
         Hidden            = FILE_ATTRIBUTE_HIDDEN,
         System            = FILE_ATTRIBUTE_SYSTEM,
-        Directory         = FILE_ATTRIBUTE_DIRECTORY,
         Archive           = FILE_ATTRIBUTE_ARCHIVE,
         Device            = FILE_ATTRIBUTE_DEVICE,
         Temporary         = FILE_ATTRIBUTE_TEMPORARY,
@@ -45,8 +45,8 @@ public:
     #elif xENV_UNIX
         Invalid           = static_cast<types_t>(-1),
         RegularFile       = S_IFREG,
-
         Directory         = S_IFDIR,
+
         CharacterDevice   = S_IFCHR,
         BlockDevice       = S_IFBLK,
         Fifo              = S_IFIFO,
