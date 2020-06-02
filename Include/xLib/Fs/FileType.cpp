@@ -15,6 +15,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Log/Trace.h>
+#include <xLib/Fs/File.h>
 
 #if   xENV_WIN
     #include "Platform/Win/FileType_win.inl"
@@ -134,13 +135,12 @@ FileType::clear() const
 //-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
-FileType::isExecutable(
-    std::ctstring_t &a_filePath
-)
+FileType::isExecutable() const
 {
-    xTEST(!a_filePath.empty());
+    xTEST(!filePath().empty());
+	xCHECK_RET(!File::isFile(filePath()), false);
 
-    return _isExecutable_impl(a_filePath);
+    return _isExecutable_impl();
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -40,12 +40,10 @@ FileType::_clear_impl() const
 //-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
-File::_isExecutable_impl(
-	std::ctstring_t &a_filePath
-)
+File::_isExecutable_impl() const
 {
 	DWORD binaryType {-1};
-	BOOL blRv = ::GetBinaryType(a_filePath.c_str(), &binaryType);
+	BOOL blRv = ::GetBinaryType(filePath().c_str(), &binaryType);
 	xUNUSED(binaryType);
 	if (blRv == FALSE) {
 		return false;
