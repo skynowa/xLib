@@ -28,8 +28,13 @@ public:
     enum class Type : types_t
         /// attribute
     {
+	#if 0
+		NotFound	-1	Represents a file that does not exist.
+		None	0	Represents a file that has no type attribute. (Not supported.)
+	#endif
+
     #if   xENV_WIN
-        Invalid           = INVALID_FILE_ATTRIBUTES,
+		Unknown           = INVALID_FILE_ATTRIBUTES,
         RegularFile       = FILE_ATTRIBUTE_NORMAL,
         Directory         = FILE_ATTRIBUTE_DIRECTORY,
         Device            = FILE_ATTRIBUTE_DEVICE,
@@ -46,16 +51,16 @@ public:
         NotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
         Encrypted         = FILE_ATTRIBUTE_ENCRYPTED
     #elif xENV_UNIX
-        Invalid           = static_cast<types_t>(-1),
-        RegularFile       = S_IFREG,
-        Directory         = S_IFDIR,
-        CharacterDevice   = S_IFCHR,
-        BlockDevice       = S_IFBLK,
-        Device            = (CharacterDevice | BlockDevice),
+		Unknown           = static_cast<types_t>(-1),	///< Status cannot be determined
+        RegularFile       = S_IFREG,					///<
+        Directory         = S_IFDIR,					///<
+        CharacterDevice   = S_IFCHR,					///<
+        BlockDevice       = S_IFBLK,					///<
+        Device            = (CharacterDevice | BlockDevice), ///<
 
-        Fifo              = S_IFIFO,
-        SymbolicLink      = S_IFLNK,
-        Socket            = S_IFSOCK
+        Fifo              = S_IFIFO,					///<
+        SymbolicLink      = S_IFLNK,					///<
+        Socket            = S_IFSOCK					///<
     #endif
     };
     xUSING_CONST(Type);

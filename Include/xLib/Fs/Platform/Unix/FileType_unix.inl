@@ -15,14 +15,14 @@ xNAMESPACE_BEGIN2(xl, fs)
 FileType::types_t
 FileType::_get_impl() const
 {
-    auto ftRv = static_cast<types_t>(Type::Invalid);
+    auto ftRv = static_cast<types_t>(Type::Unknown);
 
     xTSTAT_STRUCT info {};
 
     int_t iRv = xTSTAT(filePath().c_str(), &info);
     xTEST_NA(iRv);
     if (iRv == - 1) {
-        ftRv = static_cast<types_t>(Type::Invalid);
+        ftRv = static_cast<types_t>(Type::Unknown);
     } else {
         ftRv = (info.st_mode & S_IFMT);
     }
