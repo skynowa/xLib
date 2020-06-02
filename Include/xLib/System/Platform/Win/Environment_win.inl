@@ -90,7 +90,7 @@ Environment::_values_impl(
     // variable strings are separated by nullptr byte,
     // and the block is terminated by a nullptr byte
     for (
-        LPTSTR var = static_cast<LPTSTR>( lpvEnv );
+        LPTSTR var = static_cast<LPTSTR>(lpvEnv);
         *var != xT('\0');
         var += ::lstrlen(var) + 1)
     {
