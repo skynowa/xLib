@@ -177,60 +177,60 @@ Test_Path::unit()
 
     xTEST_CASE("fileExt")
     {
-        m_sRv = Path::fileExt(Path::FileExt::seExe);
+        m_sRv = Path::fileExt(Path::FileExt::Exe);
         #if   xENV_WIN
             xTEST_EQ(std::tstring_t(xT("exe")), m_sRv);
         #elif xENV_UNIX
             xTEST_EQ(std::tstring_t(xT("")), m_sRv);
         #endif
 
-        m_sRv = Path::fileExt(Path::FileExt::seDll);
+        m_sRv = Path::fileExt(Path::FileExt::Dll);
         #if   xENV_WIN
             xTEST_EQ(std::tstring_t(xT("dll")), m_sRv);
         #elif xENV_UNIX
             xTEST_EQ(std::tstring_t(xT("so")), m_sRv);
         #endif
 
-        m_sRv = Path::fileExt(Path::FileExt::seLib);
+        m_sRv = Path::fileExt(Path::FileExt::Lib);
         #if   xENV_WIN
             xTEST_EQ(std::tstring_t(xT("lib")), m_sRv);
         #elif xENV_UNIX
             xTEST_EQ(std::tstring_t(xT("a")), m_sRv);
         #endif
 
-        m_sRv = Path::fileExt(Path::FileExt::seObj);
+        m_sRv = Path::fileExt(Path::FileExt::Obj);
         #if   xENV_WIN
             xTEST_EQ(std::tstring_t(xT("obj")), m_sRv);
         #elif xENV_UNIX
             xTEST_EQ(std::tstring_t(xT("o")), m_sRv);
         #endif
 
-        m_sRv = Path::fileExt(Path::FileExt::seShell);
+        m_sRv = Path::fileExt(Path::FileExt::Shell);
         #if   xENV_WIN
             xTEST_EQ(std::tstring_t(xT("bat")), m_sRv);
         #elif xENV_UNIX
             xTEST_EQ(std::tstring_t(xT("sh")), m_sRv);
         #endif
 
-        m_sRv = Path::fileExt(Path::FileExt::seConfig);
+        m_sRv = Path::fileExt(Path::FileExt::Config);
         xTEST_EQ(std::tstring_t(xT("cfg")), m_sRv);
 
-        m_sRv = Path::fileExt(Path::FileExt::seLog);
+        m_sRv = Path::fileExt(Path::FileExt::Log);
         xTEST_EQ(std::tstring_t(xT("log")), m_sRv);
 
-        m_sRv = Path::fileExt(Path::FileExt::seDb);
+        m_sRv = Path::fileExt(Path::FileExt::Db);
         xTEST_EQ(std::tstring_t(xT("db")), m_sRv);
 
-        m_sRv = Path::fileExt(Path::FileExt::seDat);
+        m_sRv = Path::fileExt(Path::FileExt::Dat);
         xTEST_EQ(std::tstring_t(xT("dat")), m_sRv);
 
-        m_sRv = Path::fileExt(Path::FileExt::seBackup);
+        m_sRv = Path::fileExt(Path::FileExt::Backup);
         xTEST_EQ(std::tstring_t(xT("bak")), m_sRv);
 
-        m_sRv = Path::fileExt(Path::FileExt::seTemp);
+        m_sRv = Path::fileExt(Path::FileExt::Temp);
         xTEST_EQ(std::tstring_t(xT("tmp")), m_sRv);
 
-        m_sRv = Path::fileExt(Path::FileExt::seText);
+        m_sRv = Path::fileExt(Path::FileExt::Text);
         xTEST_EQ(std::tstring_t(xT("txt")), m_sRv);
     }
 

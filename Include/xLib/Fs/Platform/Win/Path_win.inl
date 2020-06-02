@@ -71,19 +71,19 @@ Path::_fileExt_impl(
     std::tstring_t sRv;
 
     switch (a_fileExt) {
-    case FileExt::seExe:
+    case FileExt::Exe:
         sRv = xT("exe");
         break;
-    case FileExt::seDll:
+    case FileExt::Dll:
         sRv = xT("dll");
         break;
-    case FileExt::seLib:
+    case FileExt::Lib:
         sRv = xT("lib");
         break;
-    case FileExt::seObj:
+    case FileExt::Obj:
         sRv = xT("obj");
         break;
-    case FileExt::seShell:
+    case FileExt::Shell:
         sRv = xT("bat");
         break;
     default:

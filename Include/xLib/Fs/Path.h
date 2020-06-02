@@ -17,18 +17,18 @@ public:
     enum class FileExt
         /// file extension
     {
-        seExe,    ///< execute module
-        seDll,    ///< dynamically linked shared library
-        seLib,    ///< static library
-        seObj,    ///< object file
-        seShell,  ///< shell script file
-        seConfig, ///< config file
-        seLog,    ///< log file
-        seDb,     ///< database file
-        seDat,    ///< data file
-        seBackup, ///< backup file
-        seTemp,   ///< temprary file
-        seText    ///< text file
+        Exe,    ///< execute module
+        Dll,    ///< dynamically linked shared library
+        Lib,    ///< static library
+        Obj,    ///< object file
+        Shell,  ///< shell script file
+        Config, ///< config file
+        Log,    ///< log file
+        Db,     ///< database file
+        Dat,    ///< data file
+        Backup, ///< backup file
+        Temp,   ///< temprary file
+        Text    ///< text file
     };
     xUSING_CONST(FileExt);
 

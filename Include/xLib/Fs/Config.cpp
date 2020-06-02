@@ -31,7 +31,7 @@ Config::Config(
     std::ctstring_t &a_filePath
 ) :
     _separator{ Const::equal() },
-    _fileExt  { Path::fileExt(Path::FileExt::seConfig) }
+    _fileExt  { Path::fileExt(Path::FileExt::Config) }
 {
     xTEST(!_separator.empty());
     xTEST(!_fileExt.empty());
