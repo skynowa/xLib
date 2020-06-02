@@ -15,9 +15,7 @@ class User
 {
 public:
                    User() = default;
-        ///< constructor
     virtual       ~User() = default;
-        ///< destructor
 
     bool_t         isAdmin() const xWARN_UNUSED_RV;
         ///< is current user an admin
@@ -35,8 +33,8 @@ public:
 
 private:
 #if xENV_UNIX
-    void_t         _passwd(std::string *pw_name, std::string *pw_passwd, uid_t *pw_uid,
-                       gid_t *pw_gid, std::string *pw_dir, std::string *pw_shell) const;
+    void_t _passwd(std::string *pw_name, std::string *pw_passwd, uid_t *pw_uid, gid_t *pw_gid,
+				std::string *pw_dir, std::string *pw_shell) const;
         ///< get password file entry
 #endif
 
