@@ -111,7 +111,7 @@ Environment::setVars(
 {
 	for (const auto &[name, value] : a_vars) {
 		setVar(name, value);
-	} // for (vars)
+	}
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
