@@ -72,7 +72,7 @@ Environment::isValueValid(
 {
     xTEST_NA(a_varValue);
 
-    xCHECK_RET(xENV_MAX < a_varValue.size(), false);
+    xCHECK_RET(a_varValue.size() >= xENV_MAX, false);
 
     return true;
 }
