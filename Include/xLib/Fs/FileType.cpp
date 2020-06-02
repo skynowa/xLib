@@ -132,5 +132,16 @@ FileType::clear() const
     _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+FileType::isExecutable(
+    std::ctstring_t &a_filePath
+)
+{
+    xTEST(!a_filePath.empty());
+
+    return _isExecutable_impl(a_filePath);
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xl, fs)

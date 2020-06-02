@@ -145,6 +145,27 @@ Test_FileType::unit()
         xTEST_EQ((ulong_t)FileType::Type::RegularFile, (ulong_t)faRv);
     }
 
+	xTEST_CASE("isExecutable")
+	{
+		const Data2<std::tstring_t, bool_t> datas[]
+		{
+			{filePath,         false},
+			{getData().tempDirPath, false},
+			{xT("wrong_path"), false},
+		#if   xENV_WIN
+			{xT("C:\\Windows\\System32\\attrib.exe"), true},
+		#elif xENV_UNIX
+			{xT("/bin/ls"),    true},
+		#endif
+			{xT("."),          false}
+		};
+
+		for (auto &it_data : datas) {
+			m_bRv = FileType::isExecutable(it_data.test);
+			xTEST_EQ(m_bRv, it_data.expect);
+		}
+	}
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
