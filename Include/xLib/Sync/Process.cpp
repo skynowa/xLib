@@ -71,7 +71,7 @@ Process::create(
 
 	xCHECK_DO(!File::isExists(a_filePath),
 		Cout() << xTRACE_VAR(a_filePath) << xT(" not exists"); return);
-	xCHECK_DO(!File::isExecutable(a_filePath),
+	xCHECK_DO(!FileType::isExecutable(a_filePath),
 		Cout() << xTRACE_VAR(a_filePath) << xT(" not executable"); return);
 
     _create_impl(a_filePath, a_params, a_envs, out_stdOut, out_stdError);

@@ -224,9 +224,6 @@ public:
     static
     void_t         chmod(std::ctstring_t &filePath, cPermissionMode mode);
         ///< change the file-permission settings
-    static
-    bool_t         isExecutable(std::ctstring_t &filePath) xWARN_UNUSED_RV;
-        ///< is executable
 
     static
     void_t         clear(std::ctstring_t &filePath);
@@ -322,8 +319,6 @@ private:
 xPLATFORM_IMPL:
     static
     bool_t _isFile_impl(const FileType &type) xWARN_UNUSED_RV;
-    static
-    bool_t _isExecutable_impl(std::ctstring_t &filePath) xWARN_UNUSED_RV;
     static
     void_t _time_impl(std::ctstring_t &filePath, time_t *create, time_t *access, time_t *modified);
     static

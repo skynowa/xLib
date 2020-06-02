@@ -578,27 +578,6 @@ Test_File::unit1()
         xTEST_EQ(m_bRv, false);
     }
 
-	xTEST_CASE("isExecutable")
-	{
-		const Data2<std::tstring_t, bool_t> datas[]
-		{
-			{filePath,         false},
-			{getData().tempDirPath, false},
-			{xT("wrong_path"), false},
-		#if   xENV_WIN
-			{xT("C:\\Windows\\System32\\attrib.exe"), true},
-		#elif xENV_UNIX
-			{xT("/bin/ls"),    true},
-		#endif
-			{xT("."),          false}
-		};
-
-		for (auto &it_data : datas) {
-			m_bRv = File::isExecutable(it_data.test);
-			xTEST_EQ(m_bRv, it_data.expect);
-		}
-	}
-
     xTEST_CASE("isExists")
     {
         m_bRv = File::isExists(filePath);

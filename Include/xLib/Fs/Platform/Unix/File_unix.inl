@@ -25,20 +25,6 @@ File::_isFile_impl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-bool_t
-File::_isExecutable_impl(
-	std::ctstring_t &a_filePath
-)
-{
-	xCHECK_RET(!File::isFile(a_filePath), false);
-
-    int_t iRv = xTACCESS(a_filePath.c_str(), X_OK);
-    xCHECK_RET(iRv == - 1, false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
 void_t
 File::_time_impl(
     std::ctstring_t &a_filePath,
