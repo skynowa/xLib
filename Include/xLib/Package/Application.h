@@ -40,9 +40,7 @@ public:
     xUSING_CONST(ExitCode);
 
                    Application(std::ctstring_t &appGuid, std::ctstring_t &locale);
-        ///< constructor
     virtual       ~Application() = default;
-        ///< destructor
 
     void_t         setDevel(cbool_t flag);
         ///< set devel

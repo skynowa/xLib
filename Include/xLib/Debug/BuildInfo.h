@@ -15,9 +15,7 @@ class BuildInfo
 {
 public:
                    BuildInfo() = default;
-        ///< constructor
     virtual       ~BuildInfo() = default;
-        ///< destructor
 
     bool_t         isRelease() const xWARN_UNUSED_RV;
         ///< is debug build (is NDEBUG macros is don't set)

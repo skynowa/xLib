@@ -20,9 +20,7 @@ public:
         ///< exit handler type
 
              Signal() = default;
-        ///< constructor
     virtual ~Signal() = default;
-        ///< destructor
 
     std::sig_atomic_t state() const;
         ///< get state flag

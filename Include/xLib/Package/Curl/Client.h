@@ -22,9 +22,7 @@ class Client
 {
 public:
     explicit       Client();
-        ///< constructor
     virtual       ~Client();
-        ///< destructor
 
     // handle
     HandleCurl &   get();

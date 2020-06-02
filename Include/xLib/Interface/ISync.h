@@ -17,9 +17,7 @@ class xNO_VTABLE ISync
 {
 public:
              ISync() = default;
-        ///< constructor
     virtual ~ISync() = default;
-        ///< destructor
 
     virtual const T & handle() const = 0;
         ///< get handle

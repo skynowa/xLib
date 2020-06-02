@@ -27,13 +27,9 @@ public:
     xUSING_CONST(LogSizes);
 
                    FileLog();
-        ///< constructor
     explicit       FileLog(cLogSizes fileSizeMaxBytes);
-        ///< constructor
     explicit       FileLog(std::csize_t fileSizeMaxBytes);
-        ///< constructor
     virtual       ~FileLog();
-        ///< destructor
 
     void_t         setFilePath(std::ctstring_t &filePath);
         ///< set log path
@@ -42,7 +38,6 @@ public:
 
     template<typename T>
     FileLog &      operator << (const T &valueT);
-        ///< operator <<
 
     virtual void_t write(cptr_ctchar_t format, ...) const override;
         ///< write to log

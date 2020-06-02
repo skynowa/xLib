@@ -38,9 +38,7 @@ public:
     };
 
     explicit        Volume(std::ctstring_t &path);
-        ///< constructor
     virtual        ~Volume() = default;
-        ///< destructor
 
     xNO_COPY_ASSIGN(Volume)
 

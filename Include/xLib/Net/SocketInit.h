@@ -15,9 +15,9 @@ class SocketInit
 {
 public:
              SocketInit(cushort_t versionMajor, cushort_t versionMinor);
-        ///< constructor (init winsock DLL)
+        ///< init winsock DLL
     virtual ~SocketInit();
-        ///< destructor  (clean winsock DLL)
+        ///< clean winsock DLL
 
     xNO_COPY_ASSIGN(SocketInit)
 

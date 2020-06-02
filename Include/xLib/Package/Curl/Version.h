@@ -22,9 +22,7 @@ class Version
 {
 public:
                    Version() = default;
-        ///< constructor
                   ~Version() = default;
-        ///< destructor
 
     std::tstring_t version() const;
     std::tstring_t info(cCURLversion version) const;

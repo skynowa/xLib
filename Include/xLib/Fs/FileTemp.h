@@ -18,9 +18,7 @@ class FileTemp
 {
 public:
     explicit        FileTemp(cbool_t &isAutoDelete);
-        ///< constructor
     virtual        ~FileTemp();
-        ///< destructor
 
     void_t          create(std::ctstring_t &filePath, std::ctstring_t &dirPath, File *file);
         ///< create temporary file, open it

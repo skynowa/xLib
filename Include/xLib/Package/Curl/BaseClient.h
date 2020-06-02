@@ -118,9 +118,7 @@ class BaseClient :
 {
 protected:
              BaseClient() = default;
-        ///< constructor
     virtual ~BaseClient() = 0;
-        ///< destructor
 
     void_t   setProtocols(clong_t bitMask);
 		///< set allowed protocols

@@ -15,9 +15,7 @@ class Service
 {
 public:
              Service() = default;
-        ///< constructor
     virtual ~Service() = default;
-        ///< destructor
 
     void_t   create();
         ///< create

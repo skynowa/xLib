@@ -15,9 +15,7 @@ class ThreadStorage
 {
 public:
              ThreadStorage();
-        ///< constructor
     virtual ~ThreadStorage();
-        ///< destructor
 
     bool_t   isValid() const xWARN_UNUSED_RV;
         ///< is valid

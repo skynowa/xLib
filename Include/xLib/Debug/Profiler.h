@@ -17,9 +17,7 @@ class Profiler
 {
 public:
     explicit       Profiler();
-        ///< constructor
     virtual       ~Profiler();
-        ///< destructor
 
     void_t         setLogPath(std::ctstring_t &logPath);
         ///< set log path

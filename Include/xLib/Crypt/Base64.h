@@ -15,9 +15,7 @@ class Base64
 {
 public:
                 Base64() = default;
-        ///< constructor
     virtual    ~Base64() = default;
-        ///< destructor
 
     std::string encode(cuchar_t *bytes, std::csize_t &size) xWARN_UNUSED_RV;
         ///< encoding

@@ -30,9 +30,7 @@ public:
     xUSING_CONST(RequestType);
 
     explicit          CgiEnvironment(Cgi &cgi);
-        ///< constructor
     virtual          ~CgiEnvironment() = default;
-        ///< destructor
 
     std::ctstring_t & authType() const xWARN_UNUSED_RV;
         ///< get auth type
@@ -152,9 +150,7 @@ public:
     TCookies        items;    ///< cookie items
 
     explicit        CgiCookies(Cgi &cgi);
-        ///< constructor
     virtual        ~CgiCookies();
-        ///< destructor
 
     std::tstring_t  dump() const xWARN_UNUSED_RV;
         ///< get dump
@@ -178,9 +174,7 @@ class CgiFormData
 {
 public:
                      CgiFormData(Cgi &cgi, std::csize_t &maxSize);
-        ///< constructor
     virtual         ~CgiFormData() {}
-        ///< destructor
 
     std::ctstring_t &rawData() const xWARN_UNUSED_RV;
         ///< get raw data
@@ -220,9 +214,7 @@ public:
     CgiFormData           Formdata;       ///< CgiFormData object
 
     explicit                Cgi(std::csize_t &maxSize);
-        ///< constructor
     virtual                ~Cgi() {}
-        ///< destructor
 
     std::tstring_t          dump() const xWARN_UNUSED_RV;
         ///< get dump

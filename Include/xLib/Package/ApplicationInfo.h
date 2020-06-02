@@ -36,9 +36,7 @@ public:
     std::tstring_t versionFull() const;
 
              ApplicationInfo() = default;
-        ///< constructor
     virtual ~ApplicationInfo() = default;
-        ///< destructor
 };
 
 xNAMESPACE_END2(xl, package)

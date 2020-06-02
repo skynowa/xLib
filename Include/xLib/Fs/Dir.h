@@ -16,9 +16,7 @@ class Dir
 {
 public:
     explicit          Dir(std::ctstring_t &dirPath);
-        ///< constructor
     virtual          ~Dir() = default;
-        ///< destructor
 
     std::ctstring_t & dirPath() const xWARN_UNUSED_RV;
         ///< directory path

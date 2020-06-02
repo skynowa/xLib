@@ -45,9 +45,7 @@ public:
     xUSING_CONST(ModalResult);
 
                   MsgBox() = default;
-        ///< constructor
     virtual      ~MsgBox() = default;
-        ///< destructor
 
     ModalResult show(std::ctstring_t &text, std::ctstring_t &title, cType type = Type::tpOk) const
         xWARN_UNUSED_RV;

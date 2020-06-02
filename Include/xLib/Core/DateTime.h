@@ -56,49 +56,30 @@ class DateTime
 public:
     // constructors, destructor
                     DateTime();
-        ///< constructor
                     DateTime(const DateTime &datetime);
-        ///< constructor
     explicit        DateTime(culonglong_t &msec);
-        ///< constructor
                     DateTime(cint_t &hour, cint_t &minute, cint_t &second, cint_t &msec);
-        ///< constructor
                     DateTime(cint_t &year, cint_t &month, cint_t &day);
-        ///< constructor
                     DateTime(cint_t &year, cint_t &month, cint_t &day, cint_t &hour,
                         cint_t &minute, cint_t &second, cint_t &msec);
-        ///< constructor
     virtual        ~DateTime() {}
-        ///< destructor
 
     // comparison operators
     bool_t          operator == (const DateTime &datetime) const;
-        ///< operator ==
     bool_t          operator != (const DateTime &datetime) const;
-        ///< operator !=
     bool_t          operator <  (const DateTime &datetime) const;
-        ///< operator <
     bool_t          operator <= (const DateTime &datetime) const;
-        ///< operator <=
     bool_t          operator >  (const DateTime &datetime) const;
-        ///< operator >
     bool_t          operator >= (const DateTime &datetime) const;
-        ///< operator >=
 
     // assignment operators
     DateTime       &operator =  (const DateTime &datetime);
-        ///< operator =
     DateTime       &operator =  (culonglong_t &msec);
-        ///< operator =
 
     DateTime        operator +  (const DateTime &datetime) const;
-        ///< operator +
     DateTime        operator -  (const DateTime &datetime) const;
-        ///< operator -
     const DateTime &operator += (const DateTime &datetime);
-        ///< operator +=
     const DateTime &operator -= (const DateTime &datetime);
-        ///< operator -=
     // ++
     // --
 

@@ -31,9 +31,7 @@ public:
     using const_reverse_iterator = std::reverse_iterator<const_iterator>;
 
              IContainer() = default;
-        ///< constructor
     virtual ~IContainer() = default;
-        ///< destructor
 
 	// iterators
 	virtual iterator       begin() = 0;

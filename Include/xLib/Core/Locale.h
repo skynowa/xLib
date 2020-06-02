@@ -15,9 +15,7 @@ class Locale
 {
 public:
                   Locale() = default;
-       ///< constructor
    virtual       ~Locale() = default;
-             ///< destructor
 
    std::tstring_t current() const xWARN_UNUSED_RV;
           ///< get current

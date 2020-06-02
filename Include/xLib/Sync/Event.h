@@ -37,9 +37,7 @@ public:
 
 
                      Event(cbool_t &isAutoReset, cbool_t &isSignaled);
-        ///< constructor
     virtual         ~Event();
-        ///< destructor
 
     const handle_t & handle() const xWARN_UNUSED_RV;
         ///< get handle

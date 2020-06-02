@@ -19,9 +19,7 @@ public:
              Iconv(std::ctstring_t &charsetIn, std::ctstring_t &charsetOut,
                  std::csize_t buffSize = 1024, cbool_t isSkipErrors = false,
                  cbool_t isForceEncoding = false);
-        ///< constructor
     virtual ~Iconv();
-        ///< destructor
 
     void     convert(std::ctstring_t &input, std::tstring_t *output) const;
     	///< convert string

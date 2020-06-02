@@ -51,9 +51,7 @@ public:
                    // TODO: [skynowa] followSymLinksOutOfScope
                    // TODO: [skynowa] Dir/file events
                    FsWatcher(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter);
-        ///< constructor
     virtual       ~FsWatcher();
-        ///< destructor
 
     bool_t         openFiles(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);
     bool_t         openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &cmds);

@@ -25,7 +25,6 @@ public:
 	{
 		return a_ios.print(a_os);
 	}
-		///< operator <<
 };
 
 xNAMESPACE_END2(xl, interface)

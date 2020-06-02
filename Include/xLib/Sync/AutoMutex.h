@@ -17,9 +17,7 @@ class AutoMutex
 {
 public:
     explicit AutoMutex(Mutex *mutex);
-        ///< constructor
     virtual ~AutoMutex();
-        ///< destructor
 
 private:
     Mutex *_mutex {};    ///< mutex

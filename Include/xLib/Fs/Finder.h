@@ -17,9 +17,7 @@ class Finder
 {
 public:
                       Finder(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter);
-        ///< constructor
     virtual          ~Finder();
-        ///< destructor
 
     std::ctstring_t & rootDirPath() const xWARN_UNUSED_RV;
         ///< root directory path

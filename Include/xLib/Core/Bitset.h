@@ -19,18 +19,12 @@ class Bitset
 {
 public:
              Bitset() = default;
-        ///< constructor
     explicit Bitset(const Bitset &values);
-        ///< constructor
     explicit Bitset(const T &values);
-        ///< constructor
     virtual ~Bitset() = default;
-        ///< destructor
 
-    Bitset &  operator = (const Bitset &values);
-        ///< operator =
+    Bitset & operator = (const Bitset &values);
 	T &      operator [] (const std::size_t index);
-		///<
 
     // TODO: https://gcc.gnu.org/onlinedocs/cpp/C_002b_002b-Named-Operators.html#C_002b_002b-Named-Operators
     // TODO: https://github.com/oliora/bitmask

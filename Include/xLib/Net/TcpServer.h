@@ -17,9 +17,7 @@ class TcpServer :
 {
 public:
              TcpServer() = default;
-        ///< constructor
     virtual ~TcpServer() = default;
-        ///< destructor
 
     void_t   bind(cushort_t &port) const;
         ///< associates a local address with a socket

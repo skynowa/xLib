@@ -34,18 +34,12 @@ class Handle :
 {
 public:
                 Handle();
-        ///< constructor
     explicit    Handle(const T &handle);
-        ///< constructor
     explicit    Handle(const Handle &handle);
-        ///< constructor
     virtual    ~Handle();
-        ///< destructor
 
     Handle &    operator = (const T &handle);
-        ///< operator =
     Handle &    operator = (const Handle &handle);
-        ///< operator =
 
     static
     T           null() xWARN_UNUSED_RV;

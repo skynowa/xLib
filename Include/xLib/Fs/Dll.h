@@ -21,9 +21,7 @@ public:
     using proc_address_t = void_t *;
 #endif
                    Dll() = default;
-        ///< constructor
     virtual       ~Dll() = default;
-        ///< destructor
 
     HandleDll     &get() xWARN_UNUSED_RV;
         ///< get handle
