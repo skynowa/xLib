@@ -40,8 +40,8 @@ Process::_create_impl(
 
 	std::vector<char *> envs;
 	{
-		for (auto &it_env : a_envs) {
-			std::ctstring_t &envVarValue = it_env.first + Const::equal() + it_env.second;
+		for (const auto &[name, value]  : a_envs) {
+			std::ctstring_t &envVarValue = name + Const::equal() + value;
 			envs.push_back( const_cast<tchar_t *>(envVarValue).c_str() );
 		}
 		envs.push_back(nullptr);

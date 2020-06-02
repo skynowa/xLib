@@ -161,8 +161,8 @@ Translate::execute(
 				{"q",  a_textFrom}
 			};
 
-			for (auto &it_request_data : request) {
-				baseDataIn.request += it_request_data.first + "=" + http.escape(it_request_data.second);
+			for (const auto &[param, value] : request) {
+				baseDataIn.request += param + "=" + http.escape(value);
 				baseDataIn.request += "&";
 			}
 
