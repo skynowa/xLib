@@ -250,14 +250,6 @@ Test_Defines::unit()
         xTEST_EQ(Local::foo(xLIBSSH2_ERROR_KEX_FAILURE), std::tstring_t("xLIBSSH2_ERROR_KEX_FAILURE"));
     }
 
-    xTEST_CASE("xDECLARE_LAMBDA")
-    {
-        xLAMBDA(int, lambda, (int x, int y) { return x + y; } );
-
-        m_iRv = lambda(1, 2);
-        xTEST_EQ(m_iRv, 3);
-    }
-
     xTEST_CASE("xUNUSED")
     {
         size_t value = 0U;
