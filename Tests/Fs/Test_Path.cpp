@@ -368,7 +368,7 @@ Test_Path::unit()
             {xT("C:\\Test.doc"),                  xT("xls"),    xT("C:\\Test.xls")},
             {xT("C:\\Test"),                      xT("xls"),    xT("C:\\Test.xls")},
             {xT("Z:\\okoval@winnerauto.ua.info"), xT("fdm"),    xT("Z:\\okoval@winnerauto.ua.fdm")},
-            {xT("TEST_STRING_3.doc"),             xT("xxxxxx"),    xT("TEST_STRING_3.xxxxxx")},
+            {xT("TEST_STRING_3.doc"),             xT("xxxxxx"), xT("TEST_STRING_3.xxxxxx")},
             {xT("D:\\Test.config"),               xT("txt"),    xT("D:\\Test.txt")},
             {xT("TEST_STRING_3.f"),               xT("fff"),    xT("TEST_STRING_3.fff")},
             {xT("TEST_STRING_4"),                 xT("fff"),    xT("TEST_STRING_4.fff")}
