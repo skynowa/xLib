@@ -28,125 +28,124 @@ Test_FileType::unit()
         F.close();
 
         m_bRv = File::isExists(filePath);
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("set, get")
     {
-        FileType ftType(filePath);
+        FileType type(filePath);
 
-        ftType.set( static_cast<FileType::types_t>(value) );
+        type.set( static_cast<FileType::types_t>(value) );
 
         FileType::types_t faRes;
 
-        faRes = ftType.get();
+        faRes = type.get();
         xTEST_EQ((ulong_t)value, (ulong_t)faRes);
     }
 
     xTEST_CASE("add")
     {
-        FileType ftType(filePath);
+        FileType type(filePath);
 
-        ftType.clear();
-        ftType.add(value);
+        type.clear();
+        type.add(value);
 
-        m_bRv = ftType.isExists(value);
-        xTEST_EQ(m_bRv, true);
+        m_bRv = type.isExists(value);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("remove")
     {
     #if   xENV_WIN
-        FileType ftType(filePath);
+        FileType type(filePath);
 
-        FileType::Type faAttribute = FileType::Hidden;
-        FileType::Type faValue     = FileType::ReadOnly;
+        FileType::Type attr  = FileType::Hidden;
+        FileType::Type value = FileType::ReadOnly;
 
-        ftType.clear();
-        ftType.add(faAttribute);
+        type.clear();
+        type.add(attr);
 
-        m_bRv = ftType.isExists(faAttribute);
-        xTEST_EQ(m_bRv, true);
+        m_bRv = type.isExists(attr);
+        xTEST(m_bRv);
 
-        ftType.add(faValue);
+        type.add(value);
 
-        m_bRv = ftType.isExists(faValue);
-        xTEST_EQ(m_bRv, true);
+        m_bRv = type.isExists(value);
+        xTEST(m_bRv);
 
         // remove
-        ftType.remove(faValue);
+        type.remove(value);
 
-        m_bRv = ftType.isExists(faValue);
-        xTEST_EQ(m_bRv, false);
+        m_bRv = type.isExists(value);
+        xTEST(m_bRv);
 
-        m_bRv = ftType.isExists(faAttribute);
-        xTEST_EQ(m_bRv, true);
+        m_bRv = type.isExists(attr);
+        xTEST(m_bRv);
 
-        FileType::types_t faRv = ftType.get();
-        xTEST_EQ((int_t)faAttribute, (int_t)faRv);
+        FileType::types_t faRv = type.get();
+        xTEST_EQ((int_t)attr, (int_t)faRv);
     #elif xENV_UNIX
         // file
         {
-            FileType ftType(filePath);
+            FileType type(filePath);
 
-            m_bRv = ftType.isExists(FileType::Type::RegularFile);
-            xTEST_EQ(m_bRv, true);
+            m_bRv = type.isExists(FileType::Type::RegularFile);
+            xTEST(m_bRv);
 
-            m_bRv = ftType.isExists(FileType::Type::RegularFile);
-            xTEST_EQ(m_bRv, true);
+            m_bRv = type.isExists(FileType::Type::RegularFile);
+            xTEST(m_bRv);
         }
 
         // dir
         {
-            std::ctstring_t csDirPath = getData().tempDirPath;
+            std::ctstring_t dirPath = getData().tempDirPath;
 
-            FileType ftType(csDirPath);
+            FileType type(dirPath);
 
-            m_bRv = ftType.isExists(FileType::Type::Directory);
-            xTEST_EQ(m_bRv, true);
+            m_bRv = type.isExists(FileType::Type::Directory);
+            xTEST(m_bRv);
 
-            m_bRv = ftType.isExists(FileType::Type::Directory);
-            xTEST_EQ(m_bRv, true);
+            m_bRv = type.isExists(FileType::Type::Directory);
+            xTEST(m_bRv);
         }
     #endif
     }
 
     xTEST_CASE("modify")
     {
-        FileType ftType(filePath);
+        FileType type(filePath);
 
-    #if   xENV_WIN
         const FileType::Type cfaRemoveValue = value;
+    #if   xENV_WIN
         const FileType::Type cfaAddValue    = FileType::Type::Hidden;
     #elif xENV_UNIX
-        const FileType::Type cfaRemoveValue = value;
         const FileType::Type cfaAddValue    = FileType::Type::SymbolicLink;
     #endif
 
-        ftType.modify(cfaRemoveValue, cfaAddValue);
+        type.modify(cfaRemoveValue, cfaAddValue);
     }
 
     xTEST_CASE("isExists")
     {
-        FileType ftType(filePath);
+        FileType type(filePath);
 
-        FileType::Type faAttribute = FileType::Type::RegularFile;
+        FileType::Type attr = FileType::Type::RegularFile;
 
-        ftType.clear();
+        type.clear();
 
-        m_bRv = ftType.isExists(faAttribute);
-        xTEST_EQ(m_bRv, true);
+        m_bRv = type.isExists(attr);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("clear")
     {
-        FileType ftType(filePath);
+        FileType type(filePath);
 
-        ftType.clear();
+        type.clear();
 
         FileType::types_t faRv;
 
-        faRv = ftType.get();
+        faRv = type.get();
         xTEST_EQ((ulong_t)FileType::Type::RegularFile, (ulong_t)faRv);
     }
 
