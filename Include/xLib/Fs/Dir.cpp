@@ -53,7 +53,7 @@ Dir::isExists() const
 
     FileType type(dirPath());
 
-    xCHECK_RET(type.get() == static_cast<FileType::types_t>(FileType::Type::Invalid), false);
+    xCHECK_RET(type.get() == static_cast<FileType::types_t>(FileType::Type::Unknown), false);
 
     bool_t bRv = type.isExists(FileType::Type::Directory);
     xCHECK_RET(!bRv, false);

@@ -23,7 +23,7 @@ Finder::_entryName_impl() const
 FileType::types_t
 Finder::_fileTypes_impl() const
 {
-    auto ftRv = FileType::Type::Invalid;
+    auto ftRv = FileType::Type::Unknown;
 
     cuchar_t ucRv = _entry.data.d_type;
     switch (ucRv) {
@@ -50,7 +50,7 @@ Finder::_fileTypes_impl() const
         break;
     case DT_UNKNOWN: // type is unknown
     default:
-        ftRv = FileType::Type::Invalid;
+        ftRv = FileType::Type::Unknown;
         break;
     }
 
