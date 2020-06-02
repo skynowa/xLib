@@ -85,7 +85,7 @@ public:
         ///< is executable
 
 private:
-    std::ctstring_t   _filePath;
+    std::ctstring_t _filePath;
 
     xNO_COPY_ASSIGN(FileType)
 
