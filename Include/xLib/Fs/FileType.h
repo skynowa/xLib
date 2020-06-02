@@ -61,9 +61,7 @@ public:
     xUSING_CONST(Type);
 
     explicit          FileType(std::ctstring_t &filePath);
-        ///< constructor
     virtual          ~FileType() = default;
-        ///< destructor
 
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< file path
@@ -83,8 +81,7 @@ public:
     void_t            clear() const;
         ///< clear (set normal attributes, only for Windows)
 
-    static
-    bool_t         isExecutable(std::ctstring_t &filePath) xWARN_UNUSED_RV;
+    bool_t            isExecutable() const;
         ///< is executable
 
 private:
@@ -97,8 +94,7 @@ xPLATFORM_IMPL:
     void_t  _set_impl(ctypes_t values) const;
     void_t  _clear_impl() const;
 
-    static
-    bool_t  _isExecutable_impl(std::ctstring_t &filePath) xWARN_UNUSED_RV;
+    bool_t  _isExecutable_impl() const;
 };
 
 xNAMESPACE_END2(xl, fs)

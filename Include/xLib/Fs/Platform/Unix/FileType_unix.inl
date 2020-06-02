@@ -4,9 +4,6 @@
  */
 
 
-#include <xLib/Fs/File.h>
-
-
 xNAMESPACE_BEGIN2(xl, fs)
 
 /**************************************************************************************************
@@ -50,13 +47,9 @@ FileType::_clear_impl() const
 //-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
-FileType::_isExecutable_impl(
-	std::ctstring_t &a_filePath
-)
+FileType::_isExecutable_impl() const
 {
-	xCHECK_RET(!File::isFile(a_filePath), false);
-
-    int_t iRv = xTACCESS(a_filePath.c_str(), X_OK);
+    int_t iRv = xTACCESS(filePath().c_str(), X_OK);
     xCHECK_RET(iRv == - 1, false);
 
     return true;

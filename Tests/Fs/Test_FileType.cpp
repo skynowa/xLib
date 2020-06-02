@@ -149,19 +149,19 @@ Test_FileType::unit()
 	{
 		const Data2<std::tstring_t, bool_t> datas[]
 		{
-			{filePath,         false},
+			{filePath,              false},
 			{getData().tempDirPath, false},
-			{xT("wrong_path"), false},
+			{xT("wrong_path"),      false},
 		#if   xENV_WIN
 			{xT("C:\\Windows\\System32\\attrib.exe"), true},
 		#elif xENV_UNIX
-			{xT("/bin/ls"),    true},
+			{xT("/bin/ls"),         true},
 		#endif
-			{xT("."),          false}
+			{xT("."),               false}
 		};
 
 		for (auto &it_data : datas) {
-			m_bRv = FileType::isExecutable(it_data.test);
+			m_bRv = FileType(it_data.test).isExecutable();
 			xTEST_EQ(m_bRv, it_data.expect);
 		}
 	}
