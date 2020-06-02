@@ -102,7 +102,7 @@ xNAMESPACE_END2(xl, fs)
 /**
  * TODO:
  *
- * - Type:
+ * - Type: https://docs.microsoft.com/en-us/cpp/standard-library/filesystem-enumerations?view=vs-2019
  *	NotFound -1 Represents a file that does not exist.
  *	None      0 Represents a file that has no type attribute. (Not supported.)
  */
