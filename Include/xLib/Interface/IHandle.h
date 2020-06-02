@@ -17,9 +17,7 @@ class xNO_VTABLE IHandle
 {
 public:
                    IHandle() = default;
-        ///< constructor
     virtual       ~IHandle() = default;
-        ///< destructor
 
     virtual T      get() const = 0;
         ///< get

@@ -17,15 +17,11 @@ class SystemLog :
 {
 public:
                    SystemLog();
-        ///< constructor
     explicit       SystemLog(std::ctstring_t &logName);
-        ///< constructor
     virtual       ~SystemLog();
-        ///< destructor
 
     template<typename T>
     SystemLog &    operator << (const T &valueT);
-        ///< operator <<
 
     virtual void_t write(cptr_ctchar_t format, ...) const override;
         ///< write to log

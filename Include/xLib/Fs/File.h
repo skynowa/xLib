@@ -122,9 +122,7 @@ public:
 
     // constructors, destructor
     explicit       File(cbool_t isUseBuffering = true);
-        ///< constructor
     virtual       ~File();
-        ///< destructor
 
     // open, get
     void_t         create(std::ctstring_t &filePath, cOpenMode mode);

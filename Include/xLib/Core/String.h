@@ -258,9 +258,7 @@ public:
 
 private:
                 StringCI();
-        ///< constructor
                ~StringCI();
-        ///< destructor
 
     xNO_COPY_ASSIGN(StringCI)
 

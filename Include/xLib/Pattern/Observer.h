@@ -30,12 +30,12 @@ public:
     Observer()
     {
     }
-        ///< constructor
+
     virtual ~Observer()
     {
         _observers.clear();
     }
-        ///< destructor
+
 
     void_t attach(IObserver<T> *a_observer)
     {

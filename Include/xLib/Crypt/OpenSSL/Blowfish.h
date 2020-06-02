@@ -28,9 +28,7 @@ public:
     xUSING_CONST(CryptMode);
 
              Blowfish();
-        ///< constructor
     virtual ~Blowfish();
-        ///< destructor
 
     void_t   setKey(uchar_t *key, cint_t &keySize);
         ///< set key

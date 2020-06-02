@@ -41,9 +41,7 @@ class CmdOptions
 {
 public:
              CmdOptions() = default;
-        ///< constructor
     virtual ~CmdOptions() = default;
-        ///< destructor
 
     xNO_COPY_ASSIGN(CmdOptions)
 

@@ -16,9 +16,7 @@ class ProcessInfo
 {
 public:
                    ProcessInfo() = default;
-        ///< constructor
     virtual       ~ProcessInfo() = default;
-        ///< destructor
 
     void_t         setProcessId(const Process::id_t &a_id);
         ///< set target process ID

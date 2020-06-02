@@ -116,9 +116,7 @@ public:
 
 private:
                    Type();
-        ///< constructor
     virtual       ~Type();
-        ///< destructor
 
     xNO_COPY_ASSIGN(Type)
 };

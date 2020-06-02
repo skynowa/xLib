@@ -32,9 +32,7 @@ public:
     xUSING_CONST(Level);
 
                     ILog() = default;
-        ///< constructor
     virtual        ~ILog() = 0;
-        ///< destructor
 
     void_t          setEnabled(cbool_t &flag);
         ///< set enabled

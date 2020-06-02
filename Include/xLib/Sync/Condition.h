@@ -15,9 +15,8 @@ class Condition
 {
 public:
                             Condition() = default;
-        ///< constructor
     virtual                ~Condition();
-        ///< destructor
+
 #if !xENV_WIN
     const pthread_mutex_t & mutex() const xWARN_UNUSED_RV;
         ///< get mutex handle

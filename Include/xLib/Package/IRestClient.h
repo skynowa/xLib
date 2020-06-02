@@ -18,9 +18,7 @@ class IRestClient
 {
 public:
              IRestClient();
-        ///< constructor
     virtual ~IRestClient();
-        ///< destructor
 
 protected:
 	std::size_t        _version {};

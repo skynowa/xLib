@@ -61,9 +61,7 @@ public:
     xUSING_CONST(CpuVendor);
 
                    SystemInfo() = default;
-        ///< constructor
     virtual       ~SystemInfo() = default;
-        ///< destructor
 
     // OS
     OsType         os() xWARN_UNUSED_RV;

@@ -61,9 +61,7 @@ public:
 ///@}
 
                         Unit() = default;
-        ///< constructor
     virtual            ~Unit() = 0;
-        ///< destructor
 
     UnitData           &getData();
         ///< get data

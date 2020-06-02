@@ -33,9 +33,7 @@ public:
     xUSING_CONST(FileExt);
 
     explicit       Path(std::ctstring_t &filePath);
-        ///< constructor
     virtual       ~Path() = default;
-        ///< destructor
 
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< file path

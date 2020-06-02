@@ -19,9 +19,7 @@ class Translate :
 {
 public:
              Translate();
-        ///< constructor
     virtual ~Translate() = default;
-        ///< destructor
 
     enum class Language
         ///< detected language

@@ -16,9 +16,7 @@ class FeatureFlag
 {
 public:
              FeatureFlag() = default;
-        ///< constructor
     virtual ~FeatureFlag() = default;
-        ///< destructor
 
 	xPROPERTY(std::tstring_t, name, Name);
 	xPROPERTY(std::tstring_t, description, Description);

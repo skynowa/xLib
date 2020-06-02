@@ -18,9 +18,7 @@ class Console
 {
 public:
              Console();
-        ///< constructor
     virtual ~Console();
-        ///< destructor
 
     /*******************************************************************************
     *   Attributes

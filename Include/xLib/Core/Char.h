@@ -16,9 +16,7 @@ class Char
 {
 public:
     explicit        Char(const T &ch, const xTLOCALE &locale = xTLOCALE());
-        ///< constructor
     virtual        ~Char() {}
-        ///< destructor
 
     T               character() const xWARN_UNUSED_RV;
         ///< get character

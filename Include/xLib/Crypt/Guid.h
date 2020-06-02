@@ -22,9 +22,7 @@ public:
     xUSING_CONST(Type);
 
                    Guid() = default;
-        ///< constructor
     virtual       ~Guid() = default;
-        ///< destructor
 
     std::tstring_t create(cType type) const xWARN_UNUSED_RV;
         ///< generate GUID

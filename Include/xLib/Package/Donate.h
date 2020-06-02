@@ -26,9 +26,7 @@ class Donate
 public:
               Donate() = default;
     explicit  Donate(cDonateData &data);
-        ///< constructor
     virtual  ~Donate() = default;
-        ///< destructor
 
     xPROPERTY(DonateData, data, Data);
 

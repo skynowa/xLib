@@ -49,10 +49,8 @@ public:
 #endif
 
     explicit        Thread(cbool_t &isAutoDelete);
-        ///< constructor
     // BUG: Thread:: ~Thread() - must pure virtual
     virtual        ~Thread() /* = 0*/;
-        ///< destructor
 
     // actions
     void_t          setTag(culong_t &tag);

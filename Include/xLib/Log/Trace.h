@@ -23,13 +23,10 @@ class Trace :
 {
 public:
                    Trace() = default;
-        ///< constructor
     virtual       ~Trace();
-        ///< destructor
 
     template<typename T>
     Trace &        operator << (const T &valueT);
-        ///< operator <<
 
     virtual void_t write(cptr_ctchar_t format, ...) const override;
         ///< tracing to debugger, std::cout

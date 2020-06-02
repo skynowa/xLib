@@ -49,9 +49,7 @@ class MySqlConnection :
 {
 public:
                    MySqlConnection();
-        ///< constructor
     virtual       ~MySqlConnection() = default;
-        ///< destructor
 
     xNO_COPY_ASSIGN(MySqlConnection)
 

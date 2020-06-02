@@ -15,9 +15,7 @@ class Semaphore
 {
 public:
              Semaphore() = default;
-        ///< constructor
     virtual ~Semaphore() = default;
-        ///< destructor
 
 private:
     xNO_COPY_ASSIGN(Semaphore)

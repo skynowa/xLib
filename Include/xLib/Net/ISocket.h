@@ -232,9 +232,7 @@ public:
     xUSING_CONST(Options);
 
                    ISocket() = default;
-        ///< constructor
     virtual       ~ISocket() = 0;
-        ///< destructor
 
 
     /*******************************************************************************

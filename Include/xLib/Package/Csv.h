@@ -40,9 +40,7 @@ class CsvReader :
 {
 public:
     explicit       CsvReader(cCsvData &data);
-        ///< constructor
     virtual       ~CsvReader() = default;
-        ///< destructor
 
     bool_t         loadFile(std::ctstring_t &filePath);
     bool_t         loadString(std::ctstring_t &rawString);
@@ -69,9 +67,7 @@ class CsvWriter :
 {
 public:
     explicit   CsvWriter(cCsvData &data);
-        ///< constructor
     virtual   ~CsvWriter() = delete;
-        ///< destructor
 
     void_t     saveFile(crow_t &header, crows_t &rows, std::ctstring_t &filePath);
     void_t     saveString(crow_t &header, crows_t &rows, std::tstring_t *rawString);

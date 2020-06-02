@@ -19,12 +19,11 @@ public:
         _object(a_object)
     {
     }
-        ///< constructor
+
    ~Raii()
     {
         (_object.*MemberT)();
     }
-        ///< destructor
 
     T& get()
     {

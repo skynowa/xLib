@@ -15,9 +15,7 @@ class xNO_VTABLE ISeedPolicy
 {
 public:
                    ISeedPolicy();
-        ///< constructor
     virtual       ~ISeedPolicy() = default;
-        ///< destructor
 
     virtual long_t next() = 0;
         ///< next value
@@ -42,9 +40,7 @@ class StdSeedPolicy :
 {
 public:
                    StdSeedPolicy();
-        ///< constructor
     virtual       ~StdSeedPolicy() = default;
-        ///< destructor
 
     virtual long_t next() override;
         ///< get integer in the range between 0 and RAND_MAX
@@ -60,9 +56,7 @@ class NativeSeedPolicy :
 {
 public:
                    NativeSeedPolicy();
-        ///< constructor
     virtual       ~NativeSeedPolicy();
-        ///< destructor
 
     virtual long_t next() override;
         ///< get long integer in the range between 0 and RAND_MAX
@@ -88,9 +82,7 @@ class Random
 {
 public:
                Random();
-        ///< constructor
     virtual   ~Random() = default;
-        ///< destructor
 
     bool_t     nextBool();
         ///< get bool_t value

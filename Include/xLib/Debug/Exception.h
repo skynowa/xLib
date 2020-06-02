@@ -15,15 +15,12 @@ class Exception
 {
 public:
                       Exception() = default;
-        ///< constructor
     virtual          ~Exception() = default;
-        ///< destructor
 
     std::ctstring_t & what() const xWARN_UNUSED_RV;
         ///< get message
     template<typename T>
     Exception &       operator << (const T &msgT);
-        ///< put message
 
 private:
     std::tstring_t    _msgT;

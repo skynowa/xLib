@@ -29,11 +29,8 @@ class Manager
 {
 public:
              Manager(cint_t &argsNum, cptr_ctchar_t args[]);
-        ///< constructor
     explicit Manager(cManagerData &data = cManagerData());
-        ///< constructor
     virtual ~Manager();
-        ///< destructor
 
     void_t   add(Unit *unit);
         ///< add unit

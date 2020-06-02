@@ -17,9 +17,7 @@ class Debugger
 {
 public:
                    Debugger() = default;
-        ///< constructor
     virtual       ~Debugger() = default;
-        ///< destructor
 
     bool_t         isEnabled() const xWARN_UNUSED_RV;
         ///< is debugging enabled

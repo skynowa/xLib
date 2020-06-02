@@ -20,9 +20,7 @@ class MySqlRecordset
 {
 public:
                 MySqlRecordset(MySqlConnection &connection, cbool_t isUseResult);
-        ///< constructor
     virtual    ~MySqlRecordset() = default;
-        ///< destructor
 
     HandleMySqlResult &get() xWARN_UNUSED_RV;
         ///< get handle

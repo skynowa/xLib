@@ -15,11 +15,8 @@ class CookiePv1
 {
 public:
                       CookiePv1();
-        ///< constructor
     explicit          CookiePv1(std::ctstring_t &rawCookie);
-        ///< constructor
     virtual          ~CookiePv1() = default;
-        ///< destructor
 
     void_t            init(std::ctstring_t &rawCookie);
         ///< parsing raw cookie string pv0

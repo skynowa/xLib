@@ -17,9 +17,7 @@ class Com
 {
 public:
     explicit  Com(const COINIT &concurrencyModel);
-        ///< constructor
     virtual  ~Com();
-        ///< destructor
 
 private:
     xNO_COPY_ASSIGN(Com)

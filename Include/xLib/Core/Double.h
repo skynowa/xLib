@@ -15,26 +15,15 @@ class Double
     ///< Double's operations
 {
 public:
-	// default
              Double();
-
-    // copy
              Double(const Double &value);
              Double(const T &value);
-
-    // move
              Double(Double &&value);
-
-	// destructor
     virtual ~Double();
 
-	// Copy assignment
     Double & operator = (const Double &value);
-
-	// Move assignment
     Double & operator = (Double &&value);
 
-	// Comparison
 	bool_t   operator <  (const Double &value) const;
 	bool_t   operator >  (const Double &value) const;
 	bool_t   operator <= (const Double &value) const;

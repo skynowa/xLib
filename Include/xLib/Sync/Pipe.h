@@ -19,9 +19,7 @@ class Pipe :
 {
 public:
              Pipe();
-        ///< constructor
     virtual ~Pipe();
-        ///< destructor
 
     const HandleNative & handle() const override;
     const int_t & handleRead() const;

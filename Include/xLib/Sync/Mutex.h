@@ -21,9 +21,7 @@ public:
 #endif
 
                      Mutex() = default;
-        ///< constructor
     virtual         ~Mutex();
-        ///< destructor
 
     const handle_t & handle() const xWARN_UNUSED_RV;
         ///< get handle

@@ -16,9 +16,7 @@ class xNO_VTABLE IDataValid
 {
 public:
                    IDataValid() = default;
-        ///< constructor
     virtual       ~IDataValid() = default;
-        ///< destructor
 
     virtual bool_t isValid() const = 0;
         ///< check validness
@@ -32,9 +30,7 @@ class xNO_VTABLE IDataClear
 {
 public:
                    IDataClear() = default;
-        ///< constructor
     virtual       ~IDataClear() = default;
-        ///< destructor
 
     virtual void_t clear() = 0;
         ///< clear data
@@ -49,12 +45,9 @@ class xNO_VTABLE IDataPrint
 {
 public:
                    IDataPrint() = default;
-        ///< constructor
     virtual       ~IDataPrint() = default;
-        ///< destructor
 
 	friend core::OStream & operator << (core::OStream &os, const IDataPrint &data);
-		///< print to std::stream
 
 protected:
     virtual void_t print(core::OStream &os) const = 0;
@@ -72,9 +65,7 @@ class xNO_VTABLE IData :
 {
 public:
                    IData() = default;
-        ///< constructor
     virtual       ~IData() = default;
-        ///< destructor
 
 private:
     xNO_COPY_ASSIGN(IData)

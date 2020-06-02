@@ -16,9 +16,9 @@ class Config
 {
 public:
                       Config();
-        ///< constructor, exe-file path
+        ///< exe-file path
     explicit          Config(std::ctstring_t &filePath);
-        ///< constructor, file path
+        ///< file path
     virtual          ~Config();
         ///< destructor
 

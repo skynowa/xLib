@@ -26,9 +26,7 @@ public:
     xUSING_CONST(Period);
 
     explicit  Backup(cPeriod period);
-        ///< constructor
     virtual  ~Backup() = default;
-        ///< destructor
 
     void_t    fileExec(std::ctstring_t &filePath, std::ctstring_t &destDirPath,
                   std::tstring_t *destFilePath) const /* throw(Exception) */;
