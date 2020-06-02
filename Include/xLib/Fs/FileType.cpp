@@ -36,13 +36,13 @@ FileType::FileType(
 ) :
     _filePath(a_filePath)
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 std::ctstring_t &
 FileType::filePath() const
 {
-    xTEST_EQ(_filePath.empty(), false);
+    xTEST(!_filePath.empty());
 
     return _filePath;
 }
@@ -52,7 +52,7 @@ FileType::isExists(
     cType a_value
 ) const
 {
-    xTEST_EQ(filePath().empty(), false);
+    xTEST(!filePath().empty());
     xTEST_NA(a_value);
 
     xCHECK_RET(a_value == static_cast<Type>(get() & static_cast<FileType::types_t>(a_value)), true);
@@ -63,7 +63,7 @@ FileType::isExists(
 FileType::types_t
 FileType::get() const
 {
-    xTEST_EQ(filePath().empty(), false);
+    xTEST(!filePath().empty());
 
     return _get_impl();
 }
@@ -73,7 +73,7 @@ FileType::set(
     ctypes_t a_values
 ) const
 {
-    xTEST_EQ(filePath().empty(), false);
+    xTEST(!filePath().empty());
     xTEST_NA(a_values);
 
     _set_impl(a_values);
@@ -84,7 +84,7 @@ FileType::add(
     cType a_value
 ) const
 {
-    xTEST_EQ(filePath().empty(), false);
+    xTEST(!filePath().empty());
     xTEST_NA(a_value);
 
     modify(static_cast<Type>(0), a_value);
@@ -95,7 +95,7 @@ FileType::remove(
     cType a_value
 ) const
 {
-    xTEST_EQ(filePath().empty(), false);
+    xTEST(!filePath().empty());
     xTEST_NA(a_value);
 
     modify(a_value, static_cast<Type>(0));
@@ -107,14 +107,14 @@ FileType::modify(
     cType a_valueAdd
 ) const
 {
-    xTEST_EQ(filePath().empty(), false);
+    xTEST(!filePath().empty());
     xTEST_NA(a_valueRemove);
     xTEST_NA(a_valueAdd);
 
     // get current attributes
-    const types_t valueRemove = static_cast<types_t>( a_valueRemove );
-    const types_t valueAdd    = static_cast<types_t>( a_valueAdd );
-    types_t       values      = get();
+    ctypes_t valueRemove = static_cast<types_t>(a_valueRemove);
+    ctypes_t valueAdd    = static_cast<types_t>(a_valueAdd);
+    types_t  values      = get();
 
     // change bits
     values &= ~valueRemove;
@@ -127,7 +127,7 @@ FileType::modify(
 void_t
 FileType::clear() const
 {
-    xTEST_EQ(filePath().empty(), false);
+    xTEST(!filePath().empty());
 
     _clear_impl();
 }
