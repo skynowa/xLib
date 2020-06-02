@@ -7,6 +7,9 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, fs)
 
@@ -48,6 +51,7 @@ public:
         Directory         = S_IFDIR,
         CharacterDevice   = S_IFCHR,
         BlockDevice       = S_IFBLK,
+        Device            = (CharacterDevice | BlockDevice),
 
         Fifo              = S_IFIFO,
         SymbolicLink      = S_IFLNK,
