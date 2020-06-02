@@ -43,14 +43,14 @@ operator << (
 {
     /// a_os << "EnumArray (" << a_values.size() << "):\n";
 
-	for (size_t i = 0; i < a_values.size(); ++ i) {
+	for (std::size_t i = 0; i < a_values.size(); ++ i) {
 		const auto &it_value = a_values[i];
 
 		/// a_os << xl::core::Enum::name(it_value);
 		a_os << xl::core::Enum::value(it_value);
 
 		if (i < (a_values.size() - 1)) {
-			a_os << ",";
+			a_os << xT(",");
 		}
 	}
 
