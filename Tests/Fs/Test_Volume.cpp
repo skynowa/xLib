@@ -35,10 +35,14 @@ Test_Volume::unit()
         Volume::paths(&volumePaths);
         xTEST(!volumePaths.empty());
 
-        for (const auto &it : volumePaths) {
-            m_sRv = Volume(it).fileSystem();
+        for (const auto &itvolumePath : volumePaths) {
+            m_sRv = Volume(itvolumePath).fileSystem();
             xTEST(!m_sRv.empty());
         }
+
+		m_sRv = Volume("/").fileSystem();
+		xTEST(!m_sRv.empty());
+		Cout() << xTRACE_VAR(m_sRv);
     }
 
     xTEST_CASE("label")
