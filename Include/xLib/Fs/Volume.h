@@ -32,8 +32,7 @@ public:
         Fixed     = 3,
         Remote    = 4,
         CdRom     = 5,
-        Ram       = 6,
-        Other     = 7
+        Ram       = 6
     #endif
     };
 
