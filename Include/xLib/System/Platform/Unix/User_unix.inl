@@ -60,8 +60,8 @@ User::_loginName_impl() const
     // try API
     {
     #if cmHAVE_GETLOGIN_R
-        cint_t buffSize       = xUSER_NAME_MAX + 1;
-        char   buff[buffSize] = {0}; // TODO: [skynowa] User::loginName() - LOGIN_NAME_MAX
+        constexpr int_t buffSize       {xUSER_NAME_MAX + 1};
+        char            buff[buffSize] {}; // TODO: [skynowa] User::loginName() - LOGIN_NAME_MAX
 
         int_t iRv = ::getlogin_r(buff, buffSize);
         if (iRv == 0) {
