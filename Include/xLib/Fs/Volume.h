@@ -43,11 +43,9 @@ public:
     xNO_COPY_ASSIGN(Volume)
 
     std::ctstring_t & path() const xWARN_UNUSED_RV;
-        ///< volume path
-#if xENV_WIN
-    Type            type() const xWARN_UNUSED_RV;
-        ///< drive type
-#endif
+        ///< path
+    Type            type() const;
+        ///< type
     std::tstring_t  fileSystem() const xWARN_UNUSED_RV;
         ///< filesystem type
     std::tstring_t  label() const xWARN_UNUSED_RV;
@@ -82,6 +80,7 @@ private:
     std::ctstring_t _path;  ///< volume path
 
 xPLATFORM_IMPL:
+	Type            _type_impl() const;
     std::tstring_t  _fileSystem_impl() const xWARN_UNUSED_RV;
     std::tstring_t  _label_impl() const xWARN_UNUSED_RV;
     bool_t          _isValid_impl() const xWARN_UNUSED_RV;
