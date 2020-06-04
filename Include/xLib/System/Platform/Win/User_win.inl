@@ -35,30 +35,20 @@ User::_groupId_impl() const
 bool_t
 User::_isAdmin_impl() const
 {
-    bool_t                   isAdmin     = false;
-    SID_IDENTIFIER_AUTHORITY ntAuthority = { SECURITY_NT_AUTHORITY };
-    PSID                     adminGroup  = nullptr;
-
+    SID_IDENTIFIER_AUTHORITY ntAuthority { SECURITY_NT_AUTHORITY };
+    PSID                     adminGroup  {};
     BOOL blRv = ::AllocateAndInitializeSid(&ntAuthority, 2, SECURITY_BUILTIN_DOMAIN_RID,
         DOMAIN_ALIAS_RID_ADMINS, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, &adminGroup);
     xCHECK_RET(blRv == FALSE, false);
 
-    {
-        BOOL isMember = FALSE;
-
-        blRv = ::CheckTokenMembership(nullptr, adminGroup, &isMember);
-        if (blRv == FALSE || isMember == FALSE) {
-            isAdmin = false;
-        } else {
-            isAdmin = true;
-        }
-    }
+	BOOL isMember {};
+	blRv = ::CheckTokenMembership(nullptr, adminGroup, &isMember);
+	xCHECK_RET(blRv == FALSE, false);
 
     (void_t)::FreeSid(adminGroup);
+    adminGroup = nullptr;
 
-    xCHECK_RET(!isAdmin, false);
-
-    return true;
+    return static_cast<bool_t>(isMember);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
