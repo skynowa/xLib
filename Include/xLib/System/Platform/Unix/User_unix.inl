@@ -18,16 +18,10 @@ xNAMESPACE_BEGIN2(xl, system)
 bool_t
 User::_isAdmin_impl() const
 {
-    const uid_t rootId = 0;
-    uid_t       id = 0;
+    const uid_t rootId {0};
 
-    id = ::getuid();
-    xTESTS_NA;
-    xCHECK_RET(id != rootId, false);
-
-    id = ::geteuid();
-    xTESTS_NA;
-    xCHECK_RET(id != rootId, false);
+    xCHECK_RET(id()        != rootId, false);
+    xCHECK_RET(::geteuid() != rootId, false);
 
     return true;
 }
