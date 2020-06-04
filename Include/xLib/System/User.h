@@ -21,6 +21,8 @@ public:
 
     uint_t         id() const;
         ///< ID
+    uint_t         effectiveId() const;
+        ///< effective ID
     uint_t         groupId() const;
         ///< group ID
     bool_t         isAdmin() const xWARN_UNUSED_RV;
@@ -35,6 +37,7 @@ public:
 
 xPLATFORM_IMPL:
     uint_t         _id_impl() const xWARN_UNUSED_RV;
+    uint_t         _effectiveId_impl() const xWARN_UNUSED_RV;
     uint_t         _groupId_impl() const xWARN_UNUSED_RV;
     bool_t         _isAdmin_impl() const xWARN_UNUSED_RV;
     std::tstring_t _loginName_impl() const xWARN_UNUSED_RV;
@@ -44,7 +47,11 @@ xPLATFORM_IMPL:
 
 private:
 #if   xENV_WIN
+    uid_t _getuid() const;
+    uid_t _geteuid() const;
 
+    BOOL  _getUserSID(HANDLE token, PSID *sid) const;
+    uid_t _getUID(HANDLE token) const;
 #elif xENV_UNIX
     void_t _passwd(std::string *pw_name, std::string *pw_passwd, uid_t *pw_uid, gid_t *pw_gid,
 				std::string *pw_dir, std::string *pw_shell) const;
