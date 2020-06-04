@@ -19,15 +19,15 @@ bool_t
 User::_isAdmin_impl() const
 {
     const uid_t rootId = 0;
-    uid_t       userId = 0;
+    uid_t       id = 0;
 
-    userId = ::getuid();
+    id = ::getuid();
     xTESTS_NA;
-    xCHECK_RET(userId != rootId, false);
+    xCHECK_RET(id != rootId, false);
 
-    userId = ::geteuid();
+    id = ::geteuid();
     xTESTS_NA;
-    xCHECK_RET(userId != rootId, false);
+    xCHECK_RET(id != rootId, false);
 
     return true;
 }
@@ -93,7 +93,7 @@ User::_name_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
-User::_userId_impl() const
+User::_id_impl() const
 {
     uid_t uiRv;
 
@@ -178,8 +178,8 @@ User::_passwd(
 
     struct passwd *pwRv = nullptr;
 
-    const uid_t userId = ::getuid();
-    xTEST_NA(userId);
+    const uid_t id = ::getuid();
+    xTEST_NA(id);
 
 #if cmHAVE_GETPWUID_R
     long_t buffSize = - 1L;
@@ -196,10 +196,10 @@ User::_passwd(
     std::string   buff;
     buff.resize( static_cast<std::size_t>(buffSize) );
 
-    int_t iRv = ::getpwuid_r(userId, &pwBuff, &buff.at(0), buff.size(), &pwRv);
+    int_t iRv = ::getpwuid_r(id, &pwBuff, &buff.at(0), buff.size(), &pwRv);
     xTEST_EQ(iRv, 0);
 #else
-    pwRv = ::getpwuid(userId);
+    pwRv = ::getpwuid(id);
 #endif
 
     xTEST_PTR(pwRv);
