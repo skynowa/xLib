@@ -78,28 +78,20 @@ User::_loginName_impl() const
     }
 
     // try system environment
-    {
-        std::ctstring_t var = xT("LOGNAME");
+	{
+		const std::array envVars{xT("LOGNAME"), xT("USER")};
 
-        bool_t bRv = Environment::isExists(var);
-        if (bRv) {
-            sRv = Environment::var(var);
-            return sRv;
-        }
-    }
+		for (const auto &it_envVar : envVars) {
+			bool_t bRv = Environment::isExists(it_envVar);
+			xCHECK_DO(!bRv, continue);
 
-    // try system environment
-    {
-        std::ctstring_t var = xT("USER");
+			sRv = Environment::var(it_envVar);
 
-        bool_t bRv = Environment::isExists(var);
-        if (bRv) {
-            sRv = Environment::var(var);
-            return sRv;
-        }
-    }
+			return sRv;
+		}
+	}
 
-    return sRv;
+    return {};
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
