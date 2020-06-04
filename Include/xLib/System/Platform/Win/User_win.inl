@@ -16,6 +16,8 @@ uint_t
 User::_id_impl() const
 {
     // TODO: [skynowa] User::id - GetTokenInformation::TokenUser
+	// /home/skynowa/Projects/CppTest/Windows/getuid.cpp
+	// https://docs.microsoft.com/en-us/windows/win32/secauthz/searching-for-a-sid-in-an-access-token-in-c--
 
     xNOT_IMPLEMENTED;
 
@@ -58,8 +60,8 @@ User::_loginName_impl() const
 
     // try API
     {
-        char buff[xUSER_NAME_MAX + 1] = {0}; // TODO: [skynowa] User::loginName() - LOGIN_NAME_MAX
-
+    	// TODO: [skynowa] User::loginName() - LOGIN_NAME_MAX
+        char buff[xUSER_NAME_MAX + 1] = {0};
         int_t iRv = ::getlogin_r(buff, xARRAY_SIZE(buff));
         if (iRv == 0) {
             sRv.assign(buff);
