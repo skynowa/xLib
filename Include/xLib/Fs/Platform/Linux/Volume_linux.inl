@@ -79,11 +79,12 @@ Volume::_unMount_impl(
     cbool_t &a_isForce     ///< force unmount even if busy
 ) const
 {
-#if defined(MNT_DETACH)
-    cint_t mntDetach = MNT_DETACH;
-#else
-    cint_t mntDetach = MNT_FORCE;
-#endif
+	cint_t mntDetach =
+	#if defined(MNT_DETACH)
+		MNT_DETACH;
+	#else
+		MNT_FORCE;
+	#endif
 
     cint_t flag = a_isForce ? MNT_FORCE : mntDetach;
 
@@ -113,18 +114,18 @@ Volume::_paths_impl(
         std::tstring_t destination;
         std::tstring_t fsType;
         std::tstring_t options;
-        int_t          dump;
-        int_t          pass;
+        int_t          dump {};
+        int_t          pass {};
     };
 
-    std::tifstream_t procMounts("/proc/mounts");
-    xTEST_EQ(procMounts.good(), true);
+    std::tifstream_t procMounts(xT("/proc/mounts"));
+    xTEST(procMounts.good());
 
     for ( ; !procMounts.eof(); ) {
         _Mounts mounts;
-
-        procMounts >> mounts.device  >> mounts.destination >> mounts.fsType >>
-                      mounts.options >> mounts.dump        >> mounts.pass;
+        procMounts
+			>> mounts.device  >> mounts.destination >> mounts.fsType
+			>> mounts.options >> mounts.dump        >> mounts.pass;
         xCHECK_DO(mounts.device.empty(), continue);
 
         vsRv.push_back(mounts.destination);
