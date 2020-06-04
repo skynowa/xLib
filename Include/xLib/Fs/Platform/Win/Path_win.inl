@@ -94,24 +94,6 @@ Path::_fileExt_impl(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
-Path::setDrive(
-    std::ctstring_t &a_drivePath
-)
-{
-    // csDrivePath
-
-    std::tstring_t sRv(filePath());
-
-    std::tstring_t driveStr = Path(sRv).volume();
-    xTEST_EQ(driveStr.empty(), false);
-
-    std::csize_t pos = sRv.find(driveStr);
-    xTEST_DIFF(pos, std::tstring_t::npos);
-
-    return sRv.replace(pos, driveStr.size(), a_drivePath);
-}
-//-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
 Path::_isNameValid_impl(

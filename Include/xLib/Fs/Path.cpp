@@ -188,6 +188,22 @@ Path::fileExt(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
+Path::setVolume(
+    std::ctstring_t &a_volumePath
+) const
+{
+    std::tstring_t sRv(filePath());
+
+    std::tstring_t driveStr = Path(sRv).volume();
+    xTEST_EQ(driveStr.empty(), false);
+
+    std::csize_t pos = sRv.find(driveStr);
+    xTEST_DIFF(pos, std::tstring_t::npos);
+
+    return sRv.replace(pos, driveStr.size(), a_volumePath);
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
 Path::setDir(
     std::ctstring_t &a_dirPath
 )

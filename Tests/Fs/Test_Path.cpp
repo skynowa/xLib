@@ -40,10 +40,17 @@ Test_Path::unit()
 
     xTEST_CASE("volume")
     {
+	#if   xENV_WIN
 		std::ctstring_t filePath = xT("C:\\Test.txt");
 
 		m_sRv = Path(filePath).volume();
 		xTEST_EQ(m_sRv, std::tstring_t(xT("C:")));
+	#elif xENV_UNIX
+		std::ctstring_t filePath = xT("/home/skynowa/tmp");
+
+		m_sRv = Path(filePath).volume();
+		xTEST_EQ(m_sRv, std::tstring_t(xT("/")));
+	#endif
     }
 
     xTEST_CASE("dir")
@@ -234,25 +241,27 @@ Test_Path::unit()
 
     xTEST_CASE("setDrive")
     {
-        #if xENV_WIN
-            std::ctstring_t data[][3] = {
-                {xT("C:\\Test.doc"),                  xT("F:"),    xT("F:\\Test.doc")},
-                {xT("Z:\\okoval@winnerauto.ua.info"), xT("T:"),    xT("T:\\okoval@winnerauto.ua.info")},
-                ////{xT("TEST_STRING_3.doc"),             xT("R:"),    xT("")},
-                {xT("D:\\Test.config"),               xT("A:"),    xT("A:\\Test.config")},
-                ////{xT("TEST_STRING_3.f"),               xT("B:"),    xT("")}
-            };
+		std::ctstring_t data[][3] = {
+		#if xENV_WIN
+			{xT("C:\\Test.doc"),                  xT("F:"),    xT("F:\\Test.doc")},
+			{xT("Z:\\okoval@winnerauto.ua.info"), xT("T:"),    xT("T:\\okoval@winnerauto.ua.info")},
+			////{xT("TEST_STRING_3.doc"),             xT("R:"),    xT("")},
+			{xT("D:\\Test.config"),               xT("A:"),    xT("A:\\Test.config")},
+			////{xT("TEST_STRING_3.f"),               xT("B:"),    xT("")}
+		#else
+			{xT("/home/skynowa"),                 xT("/"),     xT("/home/skynowa")},
+		#endif
+		};
 
-            for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-                std::tstring_t str1 = Path(data[i][0]).setDrive(data[i][1]);
-                std::tstring_t str2 = Path(data[i][2]).setDrive(data[i][1]);
-                xTEST_EQ(str1, str2);
+		for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+			std::tstring_t str1 = Path(data[i][0]).setVolume(data[i][1]);
+			std::tstring_t str2 = Path(data[i][2]).setVolume(data[i][1]);
+			xTEST_EQ(str1, str2);
 
-                std::tstring_t str3 = Path(data[i][0]).setDrive(data[i][1]);
-                std::tstring_t str4 = data[i][2];
-                xTEST_EQ(str3, str4);
-            }
-        #endif
+			std::tstring_t str3 = Path(data[i][0]).setVolume(data[i][1]);
+			std::tstring_t str4 = data[i][2];
+			xTEST_EQ(str3, str4);
+		}
     }
 
     xTEST_CASE("setDir")
