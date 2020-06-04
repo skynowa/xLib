@@ -12,6 +12,16 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+Path::_volume_impl() const
+{
+    std::csize_t driveDelimPos = filePath().find(Const::colon());
+    xTEST_DIFF(driveDelimPos, std::tstring_t::npos);
+    xTEST_EQ(driveDelimPos, size_t(1));
+
+    return filePath().substr(0, driveDelimPos + Const::colon().size());
+}
+//-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Path::_exe_impl()
@@ -50,16 +60,6 @@ Path::_dll_impl()
     sRv.resize(stored);
 
     return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Path::drive() const
-{
-    std::csize_t driveDelimPos = filePath().find(Const::colon());
-    xTEST_DIFF(driveDelimPos, std::tstring_t::npos);
-    xTEST_EQ(driveDelimPos, size_t(1));
-
-    return filePath().substr(0, driveDelimPos + Const::colon().size());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -103,7 +103,7 @@ Path::setDrive(
 
     std::tstring_t sRv(filePath());
 
-    std::tstring_t driveStr = Path(sRv).drive();
+    std::tstring_t driveStr = Path(sRv).volume();
     xTEST_EQ(driveStr.empty(), false);
 
     std::csize_t pos = sRv.find(driveStr);

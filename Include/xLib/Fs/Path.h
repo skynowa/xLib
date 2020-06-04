@@ -38,10 +38,8 @@ public:
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< file path
 
-#if xENV_WIN
-    std::tstring_t drive() const xWARN_UNUSED_RV;
+    std::tstring_t volume() const;
         ///< get drive
-#endif
     std::tstring_t dir() const xWARN_UNUSED_RV;
         ///< get dir path, without a trailing backslash '\'
     std::tstring_t dirName() const xWARN_UNUSED_RV;
@@ -145,6 +143,7 @@ private:
     xNO_COPY_ASSIGN(Path)
 
 xPLATFORM_IMPL:
+    std::tstring_t _volume_impl() const;
     void_t         _toNative_impl(std::tstring_t *filePath) const;
     bool_t         _isCaseSensitive_impl() const xWARN_UNUSED_RV;
     bool_t         _isAbsolute_impl() const xWARN_UNUSED_RV;

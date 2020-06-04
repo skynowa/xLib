@@ -38,14 +38,12 @@ Test_Path::unit()
     #endif
     }
 
-    xTEST_CASE("drive")
+    xTEST_CASE("volume")
     {
-        #if xENV_WIN
-            std::ctstring_t filePath = xT("C:\\Test.txt");
+		std::ctstring_t filePath = xT("C:\\Test.txt");
 
-            m_sRv = Path(filePath).drive();
-            xTEST_EQ(m_sRv, std::tstring_t(xT("C:")));
-        #endif
+		m_sRv = Path(filePath).volume();
+		xTEST_EQ(m_sRv, std::tstring_t(xT("C:")));
     }
 
     xTEST_CASE("dir")
