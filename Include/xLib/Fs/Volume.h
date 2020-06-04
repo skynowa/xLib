@@ -65,17 +65,17 @@ public:
     bool_t          isSpaceAvailable(culonglong_t needBytes) const xWARN_UNUSED_RV;
         ///< is enough space
 
-    // static
+xPUBLIC_STATIC:
     static
-    void_t          space(std::ctstring_t &dirPath, ulonglong_t *totalBytes,
-                        ulonglong_t *availableBytes, ulonglong_t *freeBytes);
+    void_t space(std::ctstring_t &dirPath, ulonglong_t *totalBytes, ulonglong_t *availableBytes,
+				ulonglong_t *freeBytes);
         ///< get free space
     static
-    void_t          currentSpace(ulonglong_t *totalBytes, ulonglong_t *availableBytes,
-                        ulonglong_t *freeBytes);
+    void_t currentSpace(ulonglong_t *totalBytes, ulonglong_t *availableBytes,
+				ulonglong_t *freeBytes);
         ///< get free space of current valume
     static
-    void_t          paths(std::vec_tstring_t *volumePaths);
+    void_t paths(std::vec_tstring_t *volumePaths);
         ///< get paths
 
 private:
