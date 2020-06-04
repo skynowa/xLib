@@ -154,16 +154,14 @@ Test_Volume::unit()
             std::ctstring_t volumePathWithoutSlash = xT("C:");
         #elif xENV_UNIX
             std::ctstring_t volumePathWithSlash    = xT("/");
-            std::ctstring_t volumePathWithoutSlash = xT("/FLASH_4GB/");
+            std::ctstring_t volumePathWithoutSlash = xT("/tmp");
         #endif
 
-        #if xTEMP_DISABLED
             m_bRv = Volume(volumePathWithSlash).isEmpty();
             xTEST(!m_bRv);
 
             m_bRv = Volume(volumePathWithoutSlash).isEmpty();
             xTEST(!m_bRv);
-        #endif
         }
     }
 
