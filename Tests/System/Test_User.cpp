@@ -18,8 +18,16 @@ Test_User::unit()
 {
     User user;
 
-    xTEST_CASE("User")
+    xTEST_CASE("id")
     {
+        m_uiRv = user.id();
+        xTEST_DIFF(m_uiRv, 0U);
+    }
+
+    xTEST_CASE("groupId")
+    {
+        m_uiRv = user.groupId();
+        xTEST_DIFF(m_uiRv, 0U);
     }
 
     xTEST_CASE("isAdmin")
@@ -38,18 +46,6 @@ Test_User::unit()
     {
         m_sRv = user.name();
         xTEST_EQ(m_sRv.empty(), false);
-    }
-
-    xTEST_CASE("id")
-    {
-        m_uiRv = user.id();
-        xTEST_DIFF(m_uiRv, 0U);
-    }
-
-    xTEST_CASE("groupId")
-    {
-        m_uiRv = user.groupId();
-        xTEST_DIFF(m_uiRv, 0U);
     }
 
     xTEST_CASE("homeDir")
