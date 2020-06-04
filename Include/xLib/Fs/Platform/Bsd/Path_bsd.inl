@@ -19,11 +19,11 @@ Path::_exe_impl()
     std::tstring_t sRv;
 
 #if defined(KERN_PROC_PATHNAME)
-    const u_int mibSize      = 4;
-    int_t       mib[mibSize] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
+    constexpr u_int mibSize      {4};
+    int_t           mib[mibSize] {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
 
-    tchar_t     buff[PATH_MAX + 1] = {0};
-    std::size_t buffSize           = sizeof(buff) - 1;
+    tchar_t     buff[PATH_MAX + 1] {};
+    std::size_t buffSize           {sizeof(buff) - 1};
 
     int_t iRv = ::sysctl(mib, mibSize, buff, &buffSize, nullptr, 0U);
     xTEST_DIFF(iRv, - 1);
@@ -37,9 +37,9 @@ Path::_exe_impl()
     info.commandLine(&args);
 
     bool_t bRv = info.commandLine(Process::currentId(), &args);
-    xTEST_EQ(bRv, true);
-    xTEST_EQ(args.empty(), false);
-    xTEST_EQ(isAbsolute(args.at(0)), false);
+    xTEST_EQ(bRv);
+    xTEST_EQ(!args.empty());
+    xTEST_EQ(!isAbsolute(args.at(0)));
 
     sRv = absolute(args.at(0));
 #endif
