@@ -20,9 +20,11 @@ public:
     xNO_COPY_ASSIGN(User)
 
     uint_t         id() const;
-        ///< ID
+        ///< It is account of owner of this process. It defines which files that this process
+        /// has access to
     uint_t         effectiveId() const;
-        ///< effective ID
+        ///< It is normally same as Real UserID, but sometimes it is changed to enable
+        ///< a non-privileged user to access files that can only be accessed by root
     uint_t         groupId() const;
         ///< group ID
     bool_t         isAdmin() const xWARN_UNUSED_RV;
