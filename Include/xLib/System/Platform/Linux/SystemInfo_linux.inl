@@ -63,7 +63,7 @@ SystemInfo::_distro_impl() const
         {_OsType::Debian,     xT("/etc/debian_version"),     xT("Debian GNU/Linux")}
     };
 
-    for (auto &it : osReleases) {
+    for (const auto &it : osReleases) {
         switch (it.type) {
         case _OsType::Os:
             {
