@@ -84,7 +84,7 @@ public:
         ///< convert slashes to native style
     std::tstring_t absolute() const xWARN_UNUSED_RV;
         ///< get absolute path
-    std::tstring_t brief(std::csize_t &maxSize) const xWARN_UNUSED_RV;
+    std::tstring_t brief(std::csize_t maxSize) const xWARN_UNUSED_RV;
         ///< get short path
     std::tstring_t brief(std::csize_t leftDirsNum, std::csize_t rightDirsNum) const xWARN_UNUSED_RV;
         ///< get short path (hide dirs as dots)
@@ -120,7 +120,7 @@ xPUBLIC_STATIC:
         ///< name validation
 
     static
-    std::tstring_t briefName(std::ctstring_t &fileName, std::csize_t &maxSize) xWARN_UNUSED_RV;
+    std::tstring_t briefName(std::ctstring_t &fileName, std::csize_t maxSize) xWARN_UNUSED_RV;
         ///< get short name
 
     static

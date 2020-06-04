@@ -186,8 +186,6 @@ Path::setDir(
     std::ctstring_t &a_dirPath
 )
 {
-    // dirPath
-
     std::tstring_t sRv(filePath());
 
     std::tstring_t dirStr = Path(sRv).dir();
@@ -204,8 +202,6 @@ Path::setFileName(
     std::ctstring_t &a_fullName
 )
 {
-    // fullName
-
     std::tstring_t sRv(filePath());
 
     std::tstring_t fullName = Path(sRv).fileName();
@@ -222,8 +218,6 @@ Path::setFileBaseName(
     std::ctstring_t &a_name
 )
 {
-    // name
-
     std::tstring_t sRv(filePath());
 
     std::tstring_t name = Path(sRv).fileBaseName();
@@ -313,8 +307,8 @@ Path::isNameValid(
     // check: empty name
     if ( sRv.empty() ) {
         xCHECK_RET(a_fileNameValid == nullptr, false);
-
         a_fileNameValid->clear();
+
         return true;
     }
 
@@ -339,7 +333,7 @@ Path::isCaseSensitive() const
 bool_t
 Path::isAbsolute() const
 {
-    xCHECK_RET(filePath().empty(),                         false);
+    xCHECK_RET(filePath().empty(),                       false);
     xCHECK_RET(filePath().at(0) == Const::slash().at(0), true);
 
     return _isAbsolute_impl();
@@ -354,12 +348,7 @@ Path::toWin(
 
     std::tstring_t sRv;
 
-    if (a_isSlashAtEnd) {
-        sRv = slashAppend();
-    } else {
-        sRv = slashRemove();
-    }
-
+	sRv = a_isSlashAtEnd ? slashAppend() : slashRemove();
     sRv = String::replaceAll(sRv, Const::unixSlash(), Const::winSlash());
 
     return sRv;
@@ -374,12 +363,7 @@ Path::toUnix(
 
     std::tstring_t sRv;
 
-    if (a_isSlashAtEnd) {
-        sRv = slashAppend();
-    } else {
-        sRv = slashRemove();
-    }
-
+    sRv = a_isSlashAtEnd ? slashAppend() : slashRemove();
     sRv = String::replaceAll(sRv, Const::winSlash(), Const::unixSlash());
 
     return sRv;
@@ -394,12 +378,7 @@ Path::toNative(
 
     std::tstring_t sRv;
 
-    if (a_isSlashAtEnd) {
-        sRv = slashAppend();
-    } else {
-        sRv = slashRemove();
-    }
-
+    sRv = a_isSlashAtEnd ? slashAppend() : slashRemove();
     _toNative_impl(&sRv);
 
     return sRv;
@@ -418,7 +397,7 @@ Path::absolute() const
 std::tstring_t
 Path::briefName(
     std::ctstring_t &a_fileName,
-    std::csize_t    &a_maxSize
+    std::csize_t     a_maxSize
 )
 {
     xTEST_EQ(a_fileName.empty(), false);
@@ -449,7 +428,7 @@ Path::briefName(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::brief(
-    std::csize_t &a_maxSize
+    std::csize_t a_maxSize
 ) const
 {
     xTEST_DIFF(a_maxSize, std::size_t(0));
@@ -463,11 +442,11 @@ Path::brief(
             size_t         *a_num
         )
         {
-            size_t index = 0;
+            size_t index {};
 
             for ( ; ; ) {
                 std::csize_t pos = a_str->find_first_of(Const::winSlash() + Const::unixSlash());
-                xCHECK_DO(pos == std::tstring_t::npos,    break);
+                xCHECK_DO(pos == std::tstring_t::npos, break);
 
                 a_str->erase(0, pos + Const::slash().size());
 
@@ -483,7 +462,7 @@ Path::brief(
 
     std::tstring_t sRv  = filePath();
     std::tstring_t path = filePath();
-    size_t         num  = 0;
+    size_t         num  {};
 
     _Functor::slashesMake(&path, &num);
 
