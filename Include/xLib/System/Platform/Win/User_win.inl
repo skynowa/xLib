@@ -99,9 +99,9 @@ User::_name_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
-User::_userId_impl() const
+User::_id_impl() const
 {
-    // TODO: [skynowa] User::userId
+    // TODO: [skynowa] User::id
 
     xNOT_IMPLEMENTED;
 

@@ -40,9 +40,9 @@ Test_User::unit()
         xTEST_EQ(m_sRv.empty(), false);
     }
 
-    xTEST_CASE("userId")
+    xTEST_CASE("id")
     {
-        m_uiRv = user.userId();
+        m_uiRv = user.id();
         xTEST_DIFF(m_uiRv, 0U);
     }
 
