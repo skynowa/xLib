@@ -72,7 +72,7 @@ Finder::_moveNext_impl()
     int_t iRv = 0;
 
     for ( ; ; ) {
-        dirent *entryRv = nullptr;
+        dirent *entryRv {};
 
         iRv = ::readdir_r(_entry.handle.get(), &_entry.data, &entryRv);
         xTEST_EQ(iRv, 0);

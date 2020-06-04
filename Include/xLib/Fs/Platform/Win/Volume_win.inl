@@ -28,7 +28,7 @@ Volume::_fileSystem_impl() const
 {
     std::tstring_t sRv;
 
-    tchar_t fileSystemName[MAX_PATH + 1] = {0};
+    tchar_t fileSystemName[MAX_PATH + 1] {};
 
     NativeError::reset();
 
@@ -46,7 +46,7 @@ Volume::_label_impl() const
 {
     std::tstring_t sRv;
 
-    tchar_t volumeName[MAX_PATH + 1] = {0};
+    tchar_t volumeName[MAX_PATH + 1] {};
 
     NativeError::reset();
 
@@ -71,7 +71,7 @@ Volume::_isValid_impl() const
 bool_t
 Volume::_isReady_impl() const
 {
-    bool_t         bRv           = false;
+    bool_t         bRv           {};
     std::tstring_t volumeDirPath = Path( path() ).slashAppend();
     std::tstring_t oldDirPath;
 
@@ -98,8 +98,7 @@ Volume::_mount_impl(
 ) const
 {
     // TODO: [skynowa] Volume::mount - is it correct?
-    NETRESOURCE netResource = {0};
-
+    NETRESOURCE netResource {};
     netResource.dwScope       = RESOURCE_GLOBALNET;
     netResource.dwType        = RESOURCETYPE_DISK;
     netResource.dwDisplayType = RESOURCEDISPLAYTYPE_GENERIC;
@@ -120,7 +119,7 @@ Volume::_unMount_impl(
 {
     // TODO: [skynowa] Volume::unMount() - is it correct?
     DWORD dwRv = ::WNetCancelConnection2(path().c_str(), CONNECT_UPDATE_PROFILE, a_isForce);
-    xTEST_EQ(dwRv, static_cast<DWORD>( NO_ERROR ));
+    xTEST_EQ(dwRv, static_cast<DWORD>(NO_ERROR));
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -140,9 +139,9 @@ Volume::_space_impl(
     ulonglong_t*    &a_freeBytes         ///< free space
 )
 {
-    ULARGE_INTEGER available = {{0}};
-    ULARGE_INTEGER total     = {{0}};
-    ULARGE_INTEGER free      = {{0}};
+    ULARGE_INTEGER available {};
+    ULARGE_INTEGER total     {};
+    ULARGE_INTEGER free      {};
 
     BOOL blRv = ::GetDiskFreeSpaceEx(a_dirPath.c_str(), &available, &total, &free);
     xTEST_DIFF(blRv, FALSE);
@@ -161,7 +160,7 @@ Volume::_paths_impl(
     std::vec_tstring_t vsRv;
 
     std::tstring_t sRv;
-    DWORD          dwRv = 0UL;
+    DWORD          dwRv {};
 
     dwRv = ::GetLogicalDriveStrings(0UL, nullptr);
     xTEST_DIFF(dwRv, 0UL);

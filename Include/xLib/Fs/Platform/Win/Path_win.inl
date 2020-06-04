@@ -229,7 +229,8 @@ Path::_isNameValid_impl(
     * for example, NUL.txt is not recommended.
     */
     {
-        std::ctstring_t reservedNames[] = {
+        std::ctstring_t reservedNames[]
+		{
             xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),  xT("CLOCK$"),
             xT("COM0"), xT("COM1"), xT("COM2"), xT("COM3"), xT("COM4"),
             xT("COM5"), xT("COM6"), xT("COM7"), xT("COM8"), xT("COM9"),

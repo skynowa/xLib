@@ -58,7 +58,7 @@ Path::_fileExt_impl(
 bool_t
 Path::_isCaseSensitive_impl() const
 {
-	return ::pathconf(_filePath.c_str(), _PC_CASE_SENSITIVE) ? true : false;
+	return static_cast<bool_t>( ::pathconf(_filePath.c_str(), _PC_CASE_SENSITIVE) );
 }
 //-------------------------------------------------------------------------------------------------
 
