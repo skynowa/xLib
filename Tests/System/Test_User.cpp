@@ -39,26 +39,26 @@ Test_User::unit()
     xTEST_CASE("loginName")
     {
         m_sRv = user.loginName();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("name")
     {
         m_sRv = user.name();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("homeDir")
     {
         m_sRv = user.homeDir();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
         xTEST_EQ(Dir(m_sRv).isExists(), true);
     }
 
     xTEST_CASE("shellPath")
     {
         m_sRv = user.shellPath();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
         xTEST_EQ(File::isExists(m_sRv), true);
     }
 

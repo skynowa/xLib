@@ -48,7 +48,7 @@ Test_Type::unit()
         std::tstring_t sObject;
 
         m_sRv = Type::nameDemangle(sObject);
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("nameRaw")

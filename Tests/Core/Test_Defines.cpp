@@ -307,7 +307,7 @@ Test_Defines::unit()
     xTEST_CASE("xSOURCE_AT")
     {
         m_sRv = xSOURCE_AT;
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("xDATE")

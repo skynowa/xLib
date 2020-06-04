@@ -57,7 +57,7 @@ Test_SystemInfo::unit()
     xTEST_CASE("distro")
     {
         m_sRv = SystemInfo().distro();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("osArch")
@@ -177,7 +177,7 @@ Test_SystemInfo::unit()
     xTEST_CASE("glibcVersion")
     {
         m_sRv = SystemInfo().glibcVersion();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
 
         // Trace() << xTRACE_VAR(m_sRv);
     }
@@ -187,7 +187,7 @@ Test_SystemInfo::unit()
     xTEST_CASE("libPthreadVersion")
     {
         m_sRv = SystemInfo().libPthreadVersion();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
 
         // Trace() << xTRACE_VAR(m_sRv);
     }
