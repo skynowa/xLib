@@ -18,7 +18,6 @@ Test_Volume::unit()
 {
     xTEST_CASE("type")
     {
-
         std::ctstring_t volumePath =
 		#if xENV_WIN
 			xT("C:");
@@ -33,9 +32,8 @@ Test_Volume::unit()
     xTEST_CASE("fileSystem")
     {
         std::vec_tstring_t volumePaths;
-
         Volume::paths(&volumePaths);
-        xTEST_EQ(false, volumePaths.empty());
+        xTEST(!volumePaths.empty());
 
         for (auto &it : volumePaths) {
             m_sRv = Volume(it).fileSystem();
@@ -46,7 +44,6 @@ Test_Volume::unit()
     xTEST_CASE("label")
     {
         std::vec_tstring_t volumePaths;
-
         Volume::paths(&volumePaths);
 
         for (auto &it : volumePaths) {
@@ -60,7 +57,6 @@ Test_Volume::unit()
         // true
         {
             std::vec_tstring_t volumePaths;
-
             Volume::paths(&volumePaths);
 
             for (auto &it : volumePaths) {
@@ -136,7 +132,6 @@ Test_Volume::unit()
     {
         // true
         {
-            // TEST: Volume::isEmpty()
         #if   xENV_WIN
             std::ctstring_t volumePathWithSlash    = xT("B:\\");
             std::ctstring_t volumePathWithoutSlash = xT("B:");
