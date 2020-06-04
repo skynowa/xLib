@@ -96,7 +96,7 @@ public:
     std::tstring_t slashRemove() const xWARN_UNUSED_RV;
         ///< remove slash
 
-    // static
+xPUBLIC_STATIC:
     static
     std::tstring_t exe() xWARN_UNUSED_RV;
         ///< get full path to exe
