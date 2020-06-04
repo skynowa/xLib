@@ -213,12 +213,11 @@ Test_Volume::unit()
         volumePaths.push_back( User().homeDir() );
 
         for (auto &it : volumePaths) {
+            // xCHECK_DO(!Volume(it).isReady(), continue);
+
             ulonglong_t total     {};
             ulonglong_t available {};
             ulonglong_t free      {};
-
-            // xCHECK_DO(!Volume(it).isReady(), continue);
-
             Volume::space(it, &total, &available, &free);
             xTEST_DIFF(total, 0ULL);
             xTEST_DIFF(available, 0ULL);
@@ -226,12 +225,11 @@ Test_Volume::unit()
         }
 
         for (auto &it : volumePaths) {
+            // xCHECK_DO(!Volume(it).isReady(), continue);
+
             ulonglong_t total     {};
             ulonglong_t available {};
             ulonglong_t free      {};
-
-            // xCHECK_DO(!Volume(it).isReady(), continue);
-
             Volume::space(it, nullptr, nullptr, nullptr);
             xTEST_EQ(total, 0ULL);
             xTEST_EQ(available, 0ULL);
@@ -239,12 +237,11 @@ Test_Volume::unit()
         }
 
         for (auto &it : volumePaths) {
+            // xCHECK_DO(!Volume(it).isReady(), continue);
+
             ulonglong_t total     {};
             ulonglong_t available {};
             ulonglong_t free      {};
-
-            // xCHECK_DO(!Volume(it).isReady(), continue);
-
             Volume::space(it, &total, &available, &free);
             xTEST_DIFF(total, 0ULL);
             xTEST_DIFF(available, 0ULL);
@@ -257,7 +254,6 @@ Test_Volume::unit()
             ulonglong_t total     {};
             ulonglong_t available {};
             ulonglong_t free      {};
-
             Volume::space(Const::strEmpty(), &total, &available, &free);
             xTEST_DIFF(total, 0ULL);
             xTEST_DIFF(available, 0ULL);
@@ -273,7 +269,6 @@ Test_Volume::unit()
     xTEST_CASE("paths")
     {
         std::vec_tstring_t volumePaths;
-
         Volume::paths(&volumePaths);
         xTEST(!volumePaths.empty());
         // Cout() << xTRACE_VAR(volumePaths);
