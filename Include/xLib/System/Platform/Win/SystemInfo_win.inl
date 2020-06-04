@@ -138,9 +138,9 @@ SystemInfo::_osArch_impl()
     BOOL is64BitOs      = FALSE;
     BOOL isWow64Process = ::IsWow64Process(::GetCurrentProcess(), &is64BitOs);
 
-    oaRv = (isFuncExist && isWow64Process && is64BitOs) ? OsArch::oa64bit : OsArch::oa32bit;
+    oaRv = (isFuncExist && isWow64Process && is64BitOs) ? OsArch::bit64 : OsArch::bit32;
 #elif xARCH_BITS_64
-    oaRv = OsArch::oa64bit;
+    oaRv = OsArch::bit64;
 #else
     // 64-bit Windows does not support Win16
     oaRv = OsArch::Unknown;
