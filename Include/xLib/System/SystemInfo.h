@@ -17,35 +17,35 @@ public:
     enum class OsType
         /// OS type
     {
-        otUnknown,
+        Unknown,
         // windows family
-        otWindows3,
-        otWindows95,
-        otWindows98,
-        otWindowsNT,
-        otWindows2000,
-        otWindowsXP,
-        otWindowsXPProx64Edition,
-        otWindowsServer2003,
-        otWindowsHomeServer,
-        otWindowsServer2003R2,
-        otWindowsVista,
-        otWindowsServer2008,
-        otWindowsServer2008R2,
-        otWindows7,
+        Windows3,
+        Windows95,
+        Windows98,
+        WindowsNT,
+        Windows2000,
+        WindowsXP,
+        WindowsXPProx64Edition,
+        WindowsServer2003,
+        WindowsHomeServer,
+        WindowsServer2003R2,
+        WindowsVista,
+        WindowsServer2008,
+        WindowsServer2008R2,
+        Windows7,
         // Linux  family
-        otLinux,
+        Linux,
         // BSD family
-        otFreeBSD,
+        FreeBSD,
         // Apple family
-        otMac
+        Mac
     };
     xUSING_CONST(OsType);
 
     enum class OsArch
         /// OS architecture
     {
-        oaUnknown,
+        Unknown,
         oa32bit,
         oa64bit
     };

@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, system)
 SystemInfo::OsType
 SystemInfo::_os_impl()
 {
-    OsType otRv = OsType::otUnknown;
+    OsType otRv = OsType::Unknown;
 
     OSVERSIONINFO info = {0};
     info.dwOSVersionInfoSize = sizeof(info);
@@ -25,31 +25,31 @@ SystemInfo::_os_impl()
 
     switch (info.dwPlatformId) {
     case VER_PLATFORM_WIN32s:
-        otRv = otWindows3;
+        otRv = Windows3;
         break;
     case VER_PLATFORM_WIN32_WINDOWS:
-        xCHECK_DO(info.dwMinorVersion == 0UL,  otRv = OsType::otWindows95; break);
-        xCHECK_DO(info.dwMinorVersion == 10UL, otRv = OsType::otWindows98; break);
-        xCHECK_DO(info.dwMinorVersion == 90UL, otRv = OsType::otWindows98; break);
+        xCHECK_DO(info.dwMinorVersion == 0UL,  otRv = OsType::Windows95; break);
+        xCHECK_DO(info.dwMinorVersion == 10UL, otRv = OsType::Windows98; break);
+        xCHECK_DO(info.dwMinorVersion == 90UL, otRv = OsType::Windows98; break);
         break;
     case VER_PLATFORM_WIN32_NT:
-        xCHECK_DO(info.dwMajorVersion <= 4UL,                               otRv = OsType::otWindowsNT;              break);
-        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 0UL, otRv = OsType::otWindows2000;            break);
-        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 1UL, otRv = OsType::otWindowsXP;              break);
-        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 2UL, otRv = OsType::otWindowsXPProx64Edition; break);
-        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 2UL, otRv = OsType::otWindowsServer2003;      break);
-        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 2UL, otRv = OsType::otWindowsHomeServer;      break);
-        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 2UL, otRv = OsType::otWindowsServer2003R2;    break);
-        xCHECK_DO(info.dwMajorVersion == 6UL && info.dwMinorVersion == 0UL, otRv = OsType::otWindowsVista;           break);
-        xCHECK_DO(info.dwMajorVersion == 6UL && info.dwMinorVersion == 0UL, otRv = OsType::otWindowsServer2008;      break);
-        xCHECK_DO(info.dwMajorVersion == 6UL && info.dwMinorVersion == 1UL, otRv = OsType::otWindowsServer2008R2;    break);
-        xCHECK_DO(info.dwMajorVersion == 6UL && info.dwMinorVersion == 1UL, otRv = OsType::otWindows7;               break);
+        xCHECK_DO(info.dwMajorVersion <= 4UL,                               otRv = OsType::WindowsNT;              break);
+        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 0UL, otRv = OsType::Windows2000;            break);
+        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 1UL, otRv = OsType::WindowsXP;              break);
+        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 2UL, otRv = OsType::WindowsXPProx64Edition; break);
+        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 2UL, otRv = OsType::WindowsServer2003;      break);
+        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 2UL, otRv = OsType::WindowsHomeServer;      break);
+        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 2UL, otRv = OsType::WindowsServer2003R2;    break);
+        xCHECK_DO(info.dwMajorVersion == 6UL && info.dwMinorVersion == 0UL, otRv = OsType::WindowsVista;           break);
+        xCHECK_DO(info.dwMajorVersion == 6UL && info.dwMinorVersion == 0UL, otRv = OsType::WindowsServer2008;      break);
+        xCHECK_DO(info.dwMajorVersion == 6UL && info.dwMinorVersion == 1UL, otRv = OsType::WindowsServer2008R2;    break);
+        xCHECK_DO(info.dwMajorVersion == 6UL && info.dwMinorVersion == 1UL, otRv = OsType::Windows7;               break);
 
         // for unknown windows/newest windows version
-        otRv = OsType::otUnknown;
+        otRv = OsType::Unknown;
         break;
     default:
-        otRv = OsType::otUnknown;
+        otRv = OsType::Unknown;
         break;
     }
 
@@ -63,48 +63,48 @@ SystemInfo::_formatOs_impl()
 {
     std::tstring_t sRv;
 
-    OsType type = (_osType == OsType::otUnknown) ? os() : _osType;
+    OsType type = (_osType == OsType::Unknown) ? os() : _osType;
     switch (type) {
-    case OsType::otWindows3:
+    case OsType::Windows3:
         sRv = xT("Windows 3.1");
         break;
-    case OsType::otWindows95:
+    case OsType::Windows95:
         sRv = xT("Windows 95");
         break;
-    case OsType::otWindows98:
+    case OsType::Windows98:
         sRv = xT("Windows 98");
         break;
-    case OsType::otWindowsNT:
+    case OsType::WindowsNT:
         sRv = xT("Windows NT 4.0");
         break;
-    case OsType::otWindows2000:
+    case OsType::Windows2000:
         sRv = xT("Windows 2000");
         break;
-    case OsType::otWindowsXP:
+    case OsType::WindowsXP:
         sRv = xT("Windows XP");
         break;
-    case OsType::otWindowsXPProx64Edition:
+    case OsType::WindowsXPProx64Edition:
         sRv = xT("Windows XP Pro x64 Edition");
         break;
-    case OsType::otWindowsServer2003:
+    case OsType::WindowsServer2003:
         sRv = xT("Windows Server 2003");
         break;
-    case OsType::otWindowsHomeServer:
+    case OsType::WindowsHomeServer:
         sRv = xT("Windows Home Server");
         break;
-    case OsType::otWindowsServer2003R2:
+    case OsType::WindowsServer2003R2:
         sRv = xT("Windows Server 2003 R2");
         break;
-    case OsType::otWindowsVista:
+    case OsType::WindowsVista:
         sRv = xT("Windows Vista");
         break;
-    case OsType::otWindowsServer2008:
+    case OsType::WindowsServer2008:
         sRv = xT("Windows Server 2008");
         break;
-    case OsType::otWindowsServer2008R2:
+    case OsType::WindowsServer2008R2:
         sRv = xT("Windows Server 2008 R2");
         break;
-    case OsType::otWindows7:
+    case OsType::Windows7:
         sRv = xT("Windows 7");
         break;
     default:
@@ -124,7 +124,7 @@ SystemInfo::_distro_impl() const
 SystemInfo::OsArch
 SystemInfo::_osArch_impl()
 {
-    OsArch oaRv = oaUnknown;
+    OsArch oaRv = Unknown;
 
 #if   xARCH_BITS_32
     BOOL isFuncExist = FALSE;
@@ -143,7 +143,7 @@ SystemInfo::_osArch_impl()
     oaRv = OsArch::oa64bit;
 #else
     // 64-bit Windows does not support Win16
-    oaRv = OsArch::oaUnknown;
+    oaRv = OsArch::Unknown;
 #endif
 
     _osArch = oaRv;

@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, system)
 SystemInfo::OsType
 SystemInfo::_os_impl()
 {
-    OsType otRv = OsType::otUnknown;
+    OsType otRv = OsType::Unknown;
 
     utsname info {};
 
@@ -23,16 +23,16 @@ SystemInfo::_os_impl()
     xTEST_DIFF(iRv, - 1);
 
     if      (StringCI::compare(xA2T(info.sysname), xT("Linux"))) {
-        otRv = OsType::otLinux;
+        otRv = OsType::Linux;
     }
     else if (StringCI::compare(xA2T(info.sysname), xT("FreeBSD"))) {
-        otRv = OsType::otFreeBSD;
+        otRv = OsType::FreeBSD;
     }
     else if (StringCI::compare(xA2T(info.sysname), xT("Darwin"))) {
-        otRv = OsType::otMac;
+        otRv = OsType::Mac;
     }
     else {
-        otRv = OsType::otUnknown;
+        otRv = OsType::Unknown;
     }
 
     _osType = otRv;
@@ -59,7 +59,7 @@ SystemInfo::_formatOs_impl() const
 SystemInfo::OsArch
 SystemInfo::_osArch_impl()
 {
-    OsArch oaRv = OsArch::oaUnknown;
+    OsArch oaRv = OsArch::Unknown;
 
     std::tstring_t infoMachine;
     {
@@ -98,7 +98,7 @@ SystemInfo::_osArch_impl()
 
     // unknown
     else {
-        oaRv = OsArch::oaUnknown;
+        oaRv = OsArch::Unknown;
     }
 
     _osArch = oaRv;
