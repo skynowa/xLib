@@ -168,9 +168,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC ${XLIB_DEFINITIONS}")
 set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS})
 
 if     (MSVC)
-
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid ole32 mpr dbghelp)
 elseif (MINGW)
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ws2_32 netapi32 psapi uuid ole32 mpr dbghelp)
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid ole32 mpr dbghelp)
 elseif (CMAKE_COMPILER_IS_CLANGXX)
     add_compile_options(-stdlib=libc++ -lc++abi)
 
