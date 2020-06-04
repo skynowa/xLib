@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, system)
 uint_t
 User::_id_impl() const
 {
-    // TODO: [skynowa] User::id
+    // TODO: [skynowa] User::id - GetTokenInformation::TokenUser
 
     xNOT_IMPLEMENTED;
 
@@ -25,7 +25,7 @@ User::_id_impl() const
 uint_t
 User::_groupId_impl() const
 {
-    // TODO: [skynowa] User::groupId
+    // TODO: [skynowa] User::groupId - GetTokenInformation::TokenGroups
 
     xNOT_IMPLEMENTED;
 
