@@ -60,9 +60,10 @@ User::_loginName_impl() const
 
     // try API
     {
-    	// TODO: [skynowa] User::loginName() - LOGIN_NAME_MAX
-        char buff[xUSER_NAME_MAX + 1] = {0};
-        int_t iRv = ::getlogin_r(buff, xARRAY_SIZE(buff));
+        constexpr int_t buffSize       {xUSER_NAME_MAX + 1};
+        char            buff[buffSize] {};
+
+        int_t iRv = ::getlogin_r(buff, buffSize);
         if (iRv == 0) {
             sRv.assign(buff);
             return sRv;
