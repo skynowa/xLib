@@ -27,7 +27,7 @@ MsgBox::ModalResult
 MsgBox::show(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
-    cType            a_type    /* = tpOk */
+    cType            a_type    /* = Ok */
 ) const
 {
     // TODO: [skynowa] MsgBox - fix unused warnings

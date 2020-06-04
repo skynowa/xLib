@@ -16,11 +16,11 @@ MsgBox::ExModalResult
 MsgBox::_show_impl(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
-    cType            a_type    /* = tpOk */
+    cType            a_type    /* = Ok */
 ) const
 {
-    ExModalResult mrRv      = mrUnknown;
-    UINT          type_impl = tpUnknown;
+    ExModalResult mrRv      = Unknown;
+    UINT          type_impl = Unknown;
     int_t         iRv       = - 1;
 
     type_impl = internal::enums::types.toImpl(a_type);

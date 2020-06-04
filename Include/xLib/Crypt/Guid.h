@@ -16,8 +16,8 @@ class Guid
 public:
     enum class Type
     {
-        tpUnknown     = 0,
-        tpRandomBased = 1
+        Unknown     = 0,
+        RandomBased = 1
     };
     xUSING_CONST(Type);
 

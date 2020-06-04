@@ -38,7 +38,7 @@ Test_MsgBox::unit()
 	#endif
 
 		MsgBox msgBox;
-        MsgBox::ModalResult mrRes = msgBox.show(text, title, MsgBox::tpOk);
+        MsgBox::ModalResult mrRes = msgBox.show(text, title, MsgBox::Ok);
         xUNUSED(mrRes);
     #else
         Trace() << xT("[skip]");

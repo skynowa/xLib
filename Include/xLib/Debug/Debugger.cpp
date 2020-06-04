@@ -149,16 +149,16 @@ Debugger::_msgboxPlain(
 
     MsgBox msgBox;
     MsgBox::ModalResult mrRv = msgBox.show(a_report.toString(), xT("xLib"),
-    	MsgBox::Type::tpAbortRetryIgnore);
+    	MsgBox::Type::AbortRetryIgnore);
     switch (mrRv) {
-    case MsgBox::ModalResult::mrAbort:
+    case MsgBox::ModalResult::Abort:
         (void_t)::exit(EXIT_FAILURE);
         break;
     default:
-    case MsgBox::ModalResult::mrIgnore:
+    case MsgBox::ModalResult::Ignore:
         xNA;
         break;
-    case MsgBox::ModalResult::mrRetry:
+    case MsgBox::ModalResult::Retry:
         if ( isActive() ) {
             breakPoint();
         } else {
