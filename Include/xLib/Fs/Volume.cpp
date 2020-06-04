@@ -51,7 +51,7 @@ Volume::Volume(
 ) :
     _path(a_volumePath)
 {
-    xTEST_EQ(path().empty(), false);
+    xTEST(!path().empty());
 }
 //-------------------------------------------------------------------------------------------------
 Volume::Type
@@ -63,7 +63,7 @@ Volume::type() const
 std::ctstring_t &
 Volume::path() const
 {
-    xTEST_EQ(_path.empty(), false);
+    xTEST(!_path.empty());
 
     return _path;
 }
@@ -158,14 +158,8 @@ Volume::space(
     xTEST_NA(a_totalBytes);
     xTEST_NA(a_freeBytes);
 
-    std::tstring_t dirPath;
-
-    if (a_dirPath.empty()) {
-        // use root directory of the current volume
-        dirPath = Path::exeDir();
-    } else {
-        dirPath = a_dirPath;
-    }
+	// empty dir - use root directory of the current volume
+    std::ctstring_t dirPath = a_dirPath.empty() ? Path::exeDir() : a_dirPath;
 
     bool_t bRv = Dir(dirPath).isExists();
     xTEST_EQ(bRv, true);
