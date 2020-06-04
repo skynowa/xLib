@@ -28,7 +28,7 @@ Test_Finder::unit()
             dirs.push_back( rootDirPath + Const::slash() + xT("BBB") );
             dirs.push_back( rootDirPath + Const::slash() + xT("CCC") );
 
-            for (auto &it_dir : dirs) {
+            for (const auto &it_dir : dirs) {
                 Dir(it_dir).pathCreate();
             }
 
@@ -56,7 +56,7 @@ Test_Finder::unit()
                                Const::slash() + xT("BBB") +
                                Const::slash() + xT("File_4.log") );
 
-            for (auto &it_file : files) {
+            for (const auto &it_file : files) {
                 File::clear(it_file);
             }
 
@@ -81,7 +81,7 @@ Test_Finder::unit()
             {xT("*.log"),      1}
         };
 
-        for (auto &it_data : data) {
+        for (const auto &it_data : data) {
             std::vec_tstring_t entries;
             std::ctstring_t    filter = it_data.test;
             Finder             finder(rootDirPath, filter);
@@ -146,7 +146,7 @@ Test_Finder::unit()
                 {xT("*.log"),      1}
             };
 
-            for (auto &it_data : data) {
+            for (const auto &it_data : data) {
                 m_vsRv.clear();
 
                 Finder::files(rootDirPath, it_data.test, false, &m_vsRv);
@@ -172,7 +172,7 @@ Test_Finder::unit()
                 {xT("*.log"),      3}
             };
 
-            for (auto &it_data : data) {
+            for (const auto &it_data : data) {
                 m_vsRv.clear();
 
                 Finder::files(rootDirPath, it_data.test, true, &m_vsRv);
@@ -207,7 +207,7 @@ Test_Finder::unit()
 		#endif
 		};
 
-		for (auto &it_data : data) {
+		for (const auto &it_data : data) {
 			m_sRv = Finder::file(it_data.dirPaths, it_data.fileName, it_data.isRecursively);
 			// Cout() << xTRACE_VAR(m_sRv);
 			xTEST_EQ(m_sRv, it_data.expect);

@@ -397,7 +397,7 @@ String::quoted(
 
     sRv = a_delimiter;
 
-    for (auto &it : a_str) {
+    for (const auto &it : a_str) {
         if (it == a_delimiter ||
             it == a_escape)
         {

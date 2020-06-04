@@ -94,7 +94,7 @@ Test_MySql::unit()
                                      xT("' , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _'")}
         };
 
-		for (auto &it_data : data) {
+		for (const auto &it_data : data) {
 			m_sRv = mysqlConn.escapeString(it_data.test);
 			xTEST_EQ(m_sRv, it_data.expect);
 

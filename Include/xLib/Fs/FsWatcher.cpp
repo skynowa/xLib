@@ -57,7 +57,7 @@ FsWatcher::openFiles(
 	close();
 
     // _filePaths
-    for (auto &it_filePath : a_filePaths) {
+    for (const auto &it_filePath : a_filePaths) {
         File file;
         file.create(it_filePath, File::OpenMode::Read);
 
@@ -93,7 +93,7 @@ FsWatcher::openDirs(
 
 	close();
 
-    for (auto &it_dirPath : a_dirPaths) {
+    for (const auto &it_dirPath : a_dirPaths) {
         std::vec_tstring_t filePaths;
         Finder::files(it_dirPath, _shellFilter, true, &filePaths);
         std::tcout << "[FsWatcher] Open dir: " << it_dirPath << ", " << filePaths.size() << std::endl;
@@ -127,7 +127,7 @@ FsWatcher::close()
 {
     _close_impl();
 
-	for (auto &it_fileHandle : _fileHandles) {
+	for (const auto &it_fileHandle : _fileHandles) {
 		HandleNativeInvalid handle;
 		handle = it_fileHandle;
 

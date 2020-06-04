@@ -66,7 +66,7 @@ PrivatBankApi::getExchangeRatesArchive(
 				{is_xml ? "" : "json", ""}
 			};
 
-			for (auto &[param, value] : request) {
+			for (const auto &[param, value] : request) {
 				if ( param.empty() ) {
 					continue;
 				}
@@ -111,7 +111,7 @@ PrivatBankApi::getExchangeRatesArchive(
 	out_datas->clear();
 	out_datas->reserve(a_dates.size());
 
-	for (auto &it_date : a_dates) {
+	for (const auto &it_date : a_dates) {
 		exchange_rate_t out_data;
 		getExchangeRatesArchive(it_date, &out_data);
 

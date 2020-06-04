@@ -464,7 +464,7 @@ CgiCookies::operator [] (
     std::ctstring_t &a_cookieName
 )
 {
-    for (auto &it : items) {
+    for (const auto &it : items) {
         xCHECK_DO(!StringCI::compare(a_cookieName, it->value()), continue);
 
         return it->value();
@@ -480,7 +480,7 @@ CgiCookies::dump() const
 
     sRv.append(xT("[CgiCookies dump]\n\n"));
 
-    for (auto &it : items) {
+    for (const auto &it : items) {
         std::tstring_t itemN = Format::str(
                 xT("Name: {}\n")
                 xT("Value: {}\n")
@@ -521,7 +521,7 @@ CgiCookies::_construct()
 
     String::split(rawCookies, Const::semicolon(), &vsRawCookies);
 
-    for (auto &it : vsRawCookies) {
+    for (const auto &it : vsRawCookies) {
         CookiePv0 *pckItem = new(std::nothrow) CookiePv0(it);
         xTEST_PTR(pckItem);
 

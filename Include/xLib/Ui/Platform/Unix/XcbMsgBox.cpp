@@ -153,7 +153,7 @@ XcbMsgBox::_setText(
     const int16_t left = left_default;
     int16_t       top  = top_default;
 
-    for (auto &it : a_text) {
+    for (const auto &it : a_text) {
         _setTextLine(left, top, it);
 
         top += lineIndent;

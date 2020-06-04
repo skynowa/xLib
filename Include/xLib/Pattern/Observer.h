@@ -53,7 +53,7 @@ public:
         ///< dettach object
     void_t updateAll(cint_t &a_type, const T &a_message)
     {
-        for (auto &it : _observers) {
+        for (const auto &it : _observers) {
             it->update(a_type, a_message);
         }
     }

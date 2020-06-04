@@ -465,11 +465,11 @@ XmlNode::findNodes(
 {
 	a_values.clear();
 
-	for (auto &it_xpath : a_xpaths) {
+	for (const auto &it_xpath : a_xpaths) {
 		std::vector<XmlNode> values;
 		nodes(it_xpath, values);
 
-		for (auto &it_value : values) {
+		for (const auto &it_value : values) {
 			a_values.emplace_back(it_value);
 		}
 	}
@@ -550,7 +550,7 @@ XmlNode::texts(
 	std::vector<XmlNode> values;
 	nodes(a_xpath, values);
 
-	for (auto &it_value : values) {
+	for (const auto &it_value : values) {
 		a_values.emplace_back( it_value.text() );
 	}
 }

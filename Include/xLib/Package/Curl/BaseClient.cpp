@@ -267,7 +267,7 @@ BaseClient::setOptionsDefault(
 			// SEE: also set in HttpClient::request()
 		}
 
-		for (auto &[param, value] : a_dataIn->addHeaders) {
+		for (const auto &[param, value] : a_dataIn->addHeaders) {
 			std::ctstring_t &value_ = param + xT(": ") + value;
 
 			a_headers = ::curl_slist_append(a_headers, value_.c_str());

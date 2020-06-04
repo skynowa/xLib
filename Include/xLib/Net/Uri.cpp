@@ -305,7 +305,7 @@ Uri::encodeComponent(
 
     std::tstring_t sRv;
 
-    for (auto &it : a_uri) {
+    for (const auto &it : a_uri) {
         tchar_t c = it;
 
         if (

@@ -80,7 +80,7 @@ Signal::connect(
 		action.sa_flags = SA_RESTART | SA_SIGINFO;
 	}
 
-    for (auto &it : a_signalNums) {
+    for (const auto &it : a_signalNums) {
         switch (it) {
         case SIGKILL:
 			Trace() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
@@ -154,7 +154,7 @@ Signal::connectInfo(
 			iRv = ::sigemptyset(&blockMask);
 			xTEST_DIFF(iRv, - 1);
 
-			for (auto &it : a_signalNums) {
+			for (const auto &it : a_signalNums) {
 				if (it == SIGKILL || it == SIGSTOP) {
 					continue;
 				}
@@ -169,7 +169,7 @@ Signal::connectInfo(
 		action.sa_flags     = SA_RESTART | SA_SIGINFO;
 	}
 
-    for (auto &it : a_signalNums) {
+    for (const auto &it : a_signalNums) {
         switch (it) {
         case SIGKILL:
 			Trace() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),

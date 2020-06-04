@@ -35,7 +35,7 @@ Test_Volume::unit()
         Volume::paths(&volumePaths);
         xTEST(!volumePaths.empty());
 
-        for (auto &it : volumePaths) {
+        for (const auto &it : volumePaths) {
             m_sRv = Volume(it).fileSystem();
             xTEST(!m_sRv.empty());
         }
@@ -46,7 +46,7 @@ Test_Volume::unit()
         std::vec_tstring_t volumePaths;
         Volume::paths(&volumePaths);
 
-        for (auto &it : volumePaths) {
+        for (const auto &it : volumePaths) {
             m_sRv = Volume(it).label();
             xTEST_NA(m_sRv);
         }
@@ -59,7 +59,7 @@ Test_Volume::unit()
             std::vec_tstring_t volumePaths;
             Volume::paths(&volumePaths);
 
-            for (auto &it : volumePaths) {
+            for (const auto &it : volumePaths) {
                 m_bRv = Volume(it).isValid();
                 xTEST(m_bRv);
             }
@@ -186,7 +186,7 @@ Test_Volume::unit()
         std::vec_tstring_t volumes;
         volumes.push_back( User().homeDir() );
 
-        for (auto &it : volumes) {
+        for (const auto &it : volumes) {
             const Data2<ulonglong_t, bool_t> data[]
 			{
                 {0ULL, true},
@@ -212,7 +212,7 @@ Test_Volume::unit()
         std::vec_tstring_t volumePaths;
         volumePaths.push_back( User().homeDir() );
 
-        for (auto &it : volumePaths) {
+        for (const auto &it : volumePaths) {
             // xCHECK_DO(!Volume(it).isReady(), continue);
 
             ulonglong_t total     {};
@@ -224,7 +224,7 @@ Test_Volume::unit()
             xTEST_DIFF(free, 0ULL);
         }
 
-        for (auto &it : volumePaths) {
+        for (const auto &it : volumePaths) {
             // xCHECK_DO(!Volume(it).isReady(), continue);
 
             ulonglong_t total     {};
@@ -236,7 +236,7 @@ Test_Volume::unit()
             xTEST_EQ(free, 0ULL);
         }
 
-        for (auto &it : volumePaths) {
+        for (const auto &it : volumePaths) {
             // xCHECK_DO(!Volume(it).isReady(), continue);
 
             ulonglong_t total     {};

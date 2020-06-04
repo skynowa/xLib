@@ -202,7 +202,7 @@ Finder::files(
         // files in root dir and each subdir
         files(a_rootDirPath, a_shellFilter, false, a_filePaths);
 
-        for (auto &it : dirPaths) {
+        for (const auto &it : dirPaths) {
             files(it, a_shellFilter, false, a_filePaths);
         }
     }

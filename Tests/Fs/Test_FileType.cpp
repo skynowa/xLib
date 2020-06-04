@@ -160,7 +160,7 @@ Test_FileType::unit()
 			{xT("."),               false}
 		};
 
-		for (auto &it_data : datas) {
+		for (const auto &it_data : datas) {
 			m_bRv = FileType(it_data.test).isExecutable();
 			xTEST_EQ(m_bRv, it_data.expect);
 		}

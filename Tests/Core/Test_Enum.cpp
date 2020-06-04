@@ -68,7 +68,7 @@ Test_Enum::unit()
         const EnumArray<TestType, enumSize> enums;
 
         std::stringstream ss;
-        for (auto &it_enum : enums) {
+        for (const auto &it_enum : enums) {
             ss << it_enum;
         }
         xTEST_EQ(ss.str(), std::tstring_t(xT("01234")));

@@ -60,7 +60,7 @@ Test_Double::unit()
           {84.71,  84.71,  true}
         };
 
-        for (auto &it_data : data) {
+        for (const auto &it_data : data) {
           ddouble_t f(it_data.test1);
 
           m_bRv = (f == it_data.test2);
@@ -85,7 +85,7 @@ Test_Double::unit()
             {-10.6, -11.0, 0.0}
         };
 
-        for (auto &it_data : data) {
+        for (const auto &it_data : data) {
             cbool_t bRv = (bool_t)it_data[2];
             m_bRv = ddouble_t::isEqual(it_data[0], it_data[1]);
             xTEST_EQ(m_bRv, bRv);

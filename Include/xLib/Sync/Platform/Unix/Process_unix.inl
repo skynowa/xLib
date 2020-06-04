@@ -77,7 +77,7 @@ Process::_create_impl(
 			std::vector<char *> cmds;
 			{
 				cmds.push_back( const_cast<char *>(xT2A(a_filePath).c_str()) );
-				for (auto &it_param : a_params) {
+				for (const auto &it_param : a_params) {
 					cmds.push_back( const_cast<char *>(xT2A(it_param).c_str()) );
 				}
 				cmds.push_back(nullptr);
@@ -85,7 +85,7 @@ Process::_create_impl(
 
 			std::vector<char *> envs;
 			{
-				for (auto &[var, value] : a_envs) {
+				for (const auto &[var, value] : a_envs) {
 					std::ctstring_t &envVarValue = var + Const::equal() + value;
 					envs.push_back( const_cast<char *>(xT2A(envVarValue).c_str()) );
 				}

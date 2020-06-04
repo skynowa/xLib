@@ -99,7 +99,7 @@ ThreadPool<T>::groupResume()
     {
         AutoMutex mutex(&_s_mutex);
 
-        for (auto &it : _tasks) {
+        for (const auto &it : _tasks) {
             xCHECK_DO(!it->isRunning(), _s_log.write(xT("Not running")); continue);
 
             it->resume();
@@ -126,7 +126,7 @@ ThreadPool<T>::groupPause()
     {
         AutoMutex mutex(&_s_mutex);
 
-        for (auto &it : _tasks) {
+        for (const auto &it : _tasks) {
             xCHECK_DO(!it->isRunning(), _s_log.write(xT("Not running")); continue);
 
             it->pause();
@@ -155,7 +155,7 @@ ThreadPool<T>::groupExit(
     {
         AutoMutex mutex(&_s_mutex);
 
-        for (auto &it : _tasks)    {
+        for (const auto &it : _tasks)    {
             xCHECK_DO(!it->isRunning(), _s_log.write(xT("ThreadPool: not running"));
                 continue);
 
@@ -179,7 +179,7 @@ ThreadPool<T>::groupKill(
     {
         AutoMutex mutex(&_s_mutex);
 
-        for (auto &it : _tasks)    {
+        for (const auto &it : _tasks)    {
             xCHECK_DO(!it->isRunning(), _s_log.write(xT("Not running")); continue);
 
             it->kill(a_timeoutMsec);
@@ -204,7 +204,7 @@ ThreadPool<T>::groupWait(
     {
         AutoMutex mutex(&_s_mutex);
 
-        for (auto &it : _tasks)    {
+        for (const auto &it : _tasks)    {
             xCHECK_DO(!it->isRunning(), _s_log.write(xT("Not running")); continue);
 
             it->wait(a_timeoutMsec);
