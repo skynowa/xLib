@@ -16,16 +16,19 @@ xTEST_UNIT(Test_Volume)
 bool_t
 Test_Volume::unit()
 {
-#if xENV_WIN
     xTEST_CASE("type")
     {
 
-        std::ctstring_t volumePath = xT("C:");
+        std::ctstring_t volumePath =
+		#if xENV_WIN
+			xT("C:");
+		#else
+			xT("/");
+		#endif
 
         Volume::Type dtRes = Volume(volumePath).type();
-        xTEST_EQ(Volume::Type::Fixed, dtRes);
+        xTEST_EQ((int)Volume::Type::Fixed, (int)dtRes);
     }
-#endif
 
     xTEST_CASE("fileSystem")
     {

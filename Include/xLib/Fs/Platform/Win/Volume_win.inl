@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 Volume::Type
-Volume::type() const
+Volume::_type_impl() const
 {
     std::ctstring_t rootPath = Path( path() ).slashAppend();
 
