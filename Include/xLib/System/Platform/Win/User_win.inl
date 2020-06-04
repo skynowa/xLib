@@ -84,7 +84,6 @@ User::_loginName_impl() const
 		}
 	}
 
-
     return {};
 }
 //-------------------------------------------------------------------------------------------------
@@ -93,8 +92,8 @@ User::_name_impl() const
 {
     std::tstring_t sRv;
 
-    DWORD   buffSize                 = xUSER_NAME_MAX;
-    tchar_t buff[xUSER_NAME_MAX + 1] = {0};
+    constexpr DWORD buffSize                 {xUSER_NAME_MAX};
+    tchar_t         buff[xUSER_NAME_MAX + 1] {};
 
     BOOL blRv = ::GetUserName(&buff[0], &buffSize);
     xTEST_DIFF(blRv, FALSE);
@@ -109,7 +108,7 @@ User::_homeDir_impl() const
 {
     std::tstring_t sRv;
 
-    tchar_t buff[MAX_PATH + 1] = {0};
+    tchar_t buff[MAX_PATH + 1] {};
 
     HRESULT hrRv = SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0UL, &buff[0]);
     xTEST_EQ(S_OK == hrRv, true);
@@ -124,12 +123,12 @@ User::_shellPath_impl() const
 {
     std::tstring_t sRv;
 
-    LPITEMIDLIST idList = {0};
+    LPITEMIDLIST idList {};
 
     HRESULT hrRv = ::SHGetSpecialFolderLocation(nullptr, CSIDL_WINDOWS, &idList);
     xTEST_EQ(hrRv, S_OK);
 
-    tchar_t buff[MAX_PATH + 1] = {0};
+    tchar_t buff[MAX_PATH + 1] {};
 
     BOOL blRv = ::SHGetPathFromIDList(idList, buff);
     xTEST_DIFF(blRv, FALSE);
