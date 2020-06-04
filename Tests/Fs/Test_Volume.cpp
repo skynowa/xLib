@@ -39,9 +39,7 @@ Test_Volume::unit()
 
         for (auto &it : volumePaths) {
             m_sRv = Volume(it).fileSystem();
-            xUNUSED(m_sRv);
-
-            // Trace() << xTRACE_VAR(m_sRv);
+            xTEST(!m_sRv.empty());
         }
     }
 
@@ -54,8 +52,6 @@ Test_Volume::unit()
         for (auto &it : volumePaths) {
             m_sRv = Volume(it).label();
             xTEST_NA(m_sRv);
-
-            // Trace() << xTRACE_VAR(m_sRv);
         }
     }
 
@@ -286,7 +282,8 @@ Test_Volume::unit()
         std::vec_tstring_t volumePaths;
 
         Volume::paths(&volumePaths);
-        xTEST_EQ(false, volumePaths.empty());
+        xTEST(!volumePaths.empty());
+        // Cout() << xTRACE_VAR(volumePaths);
     }
 
     return true;
