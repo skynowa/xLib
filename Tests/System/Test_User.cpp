@@ -33,7 +33,7 @@ Test_User::unit()
     xTEST_CASE("isAdmin")
     {
         m_bRv = user.isAdmin();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("loginName")
