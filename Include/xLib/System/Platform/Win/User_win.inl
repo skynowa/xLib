@@ -170,7 +170,7 @@ struct HeapDeleter
     }
 };
 using heap_unique_ptr = std::unique_ptr<LPVOID, HeapDeleter>;
-//-------------------------------------------------------------------------------------------------
+
 struct HandleDeleter
 {
 	using pointer = HANDLE;
@@ -183,6 +183,52 @@ struct HandleDeleter
 using handle_unique_ptr = std::unique_ptr<HANDLE, HandleDeleter>;
 
 } // namespace
+//-------------------------------------------------------------------------------------------------
+// https://stackoverflow.com/questions/1594746/win32-equivalent-of-getuid
+uint_t
+User::_getuid() const
+{
+    HANDLE process = ::GetCurrentProcess();
+    handle_unique_ptr processPtr(process);
+
+    HANDLE token {};
+    BOOL openToken = ::OpenProcessToken(process, TOKEN_READ | TOKEN_QUERY_SOURCE, &token);
+    if (!openToken) {
+        return -1;
+    }
+
+    handle_unique_ptr tokenPtr(token);
+
+    return _getUID(token);
+}
+//-------------------------------------------------------------------------------------------------
+uint_t
+User::_geteuid() const
+{
+    HANDLE process = ::GetCurrentProcess();
+    HANDLE thread  = ::GetCurrentThread();
+
+    HANDLE token {};
+    BOOL openToken = ::OpenThreadToken(thread, TOKEN_READ | TOKEN_QUERY_SOURCE, FALSE, &token);
+    if (!openToken &&
+		::GetLastError() == ERROR_NO_TOKEN)
+	{
+        openToken = ::OpenThreadToken(thread, TOKEN_READ | TOKEN_QUERY_SOURCE, TRUE, &token);
+        if (!openToken &&
+			::GetLastError() == ERROR_NO_TOKEN)
+		{
+            openToken = ::OpenProcessToken(process, TOKEN_READ | TOKEN_QUERY_SOURCE, &token);
+        }
+    }
+
+    if (!openToken) {
+        return -1;
+    }
+
+    handle_unique_ptr tokenPtr(token);
+
+    return _getUID(token);
+}
 //-------------------------------------------------------------------------------------------------
 BOOL
 User::_getUserSID(
@@ -215,7 +261,7 @@ User::_getUserSID(
         return FALSE;
     }
 
-    PTOKEN_USER pTokenUser = (PTOKEN_USER)data.get();
+    PTOKEN_USER pTokenUser = reinterpret_cast<PTOKEN_USER>( data.get() );
     DWORD       sidLength  = ::GetLengthSid(pTokenUser->User.Sid);
 
     heap_unique_ptr sidPtr( ::HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sidLength) );
@@ -271,51 +317,6 @@ User::_getUID(
     ::LocalFree(stringSid);
 
     return ret;
-}
-//-------------------------------------------------------------------------------------------------
-uint_t
-User::_getuid() const
-{
-    HANDLE process = ::GetCurrentProcess();
-    handle_unique_ptr processPtr(process);
-
-    HANDLE token {};
-    BOOL openToken = ::OpenProcessToken(process, TOKEN_READ|TOKEN_QUERY_SOURCE, &token);
-    if (!openToken) {
-        return -1;
-    }
-
-    handle_unique_ptr tokenPtr(token);
-
-    return _getUID(token);
-}
-//-------------------------------------------------------------------------------------------------
-uint_t
-User::_geteuid() const
-{
-    HANDLE process = ::GetCurrentProcess();
-    HANDLE thread  = ::GetCurrentThread();
-
-    HANDLE token {};
-    BOOL openToken = ::OpenThreadToken(thread, TOKEN_READ|TOKEN_QUERY_SOURCE, FALSE, &token);
-    if (!openToken &&
-		::GetLastError() == ERROR_NO_TOKEN)
-	{
-        openToken = ::OpenThreadToken(thread, TOKEN_READ|TOKEN_QUERY_SOURCE, TRUE, &token);
-        if (!openToken &&
-			::GetLastError() == ERROR_NO_TOKEN)
-		{
-            openToken = ::OpenProcessToken(process, TOKEN_READ|TOKEN_QUERY_SOURCE, &token);
-        }
-    }
-
-    if (!openToken) {
-        return -1;
-    }
-
-    handle_unique_ptr tokenPtr(token);
-
-    return _getUID(token);
 }
 //-------------------------------------------------------------------------------------------------
 #if 0
