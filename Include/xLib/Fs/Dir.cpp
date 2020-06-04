@@ -68,7 +68,7 @@ Dir::isEmpty(
 {
     xTEST_EQ(a_shellFilter.empty(), false);
 
-    bool_t bRv = true;
+    bool_t bRv {true};
 
     Finder finder(dirPath(), a_shellFilter);
 
@@ -120,7 +120,7 @@ Dir::pathCreate() const
      String::split( Path(dirPath()).toNative(false), Const::slash(), &pathParts );
 
     // create dirs by steps
-    for (auto &it : pathParts) {
+    for (const auto &it : pathParts) {
         buildPath.append(it).append(Const::slash());
 
         Dir(buildPath).create();
