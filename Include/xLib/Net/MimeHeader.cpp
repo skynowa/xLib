@@ -126,7 +126,7 @@ MimeHeader::field(
     std::pair<std::mmap_tstring_t::const_iterator, std::mmap_tstring_t::const_iterator>
         prEqualRange = _header.equal_range(a_name);
 
-    for (const auto it = prEqualRange.first; it != prEqualRange.second; ++ it) {
+    for (auto it = prEqualRange.first; it != prEqualRange.second; ++ it) {
         sRv = it->second;
     }
 
