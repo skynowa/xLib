@@ -23,8 +23,8 @@ Volume::_fileSystem_impl() const
 
     for ( ; ; ) {
         mntent mnt {};
-        cint_t buffLen       = 4096 + 1;
-        char   buff[buffLen] = {0};
+        constexpr int_t buffLen       {4096 + 1};
+        char            buff[buffLen] {};
 
         const mntent *mountPoint = ::getmntent_r(file, &mnt, buff, buffLen);
         xCHECK_DO(mountPoint == nullptr, break);
