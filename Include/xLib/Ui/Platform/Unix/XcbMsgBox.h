@@ -26,16 +26,16 @@ public:
     enum class Type
         ///< windows type
     {
-        tpUnknown,
-        tpOk
+        Unknown,
+        Ok
     };
     xUSING_CONST(Type);
 
     enum class ModalResult
         /// modal result
     {
-        mrUnknown,
-        mrOk
+        Unknown,
+        Ok
     };
     xUSING_CONST(ModalResult);
 

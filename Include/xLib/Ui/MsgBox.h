@@ -17,37 +17,37 @@ public:
     enum class Type
         ///< windows type
     {
-        tpUnknown,
-        tpOk,
-        tpOkCancel,
-        tpYesNo,
-        tpRetryCancel,
-        tpYesNoCancel,
-        tpAbortRetryIgnore,
-        tpCancelTryContinue
+        Unknown,
+        Ok,
+        OkCancel,
+        YesNo,
+        RetryCancel,
+        YesNoCancel,
+        AbortRetryIgnore,
+        CancelTryContinue
     };
     xUSING_CONST(Type);
 
     enum class ModalResult
         /// modal result
     {
-        mrUnknown,
-        mrOk,
-        mrYes,
-        mrNo,
-        mrAbort,
-        mrCancel,
-        mrContinue,
-        mrIgnore,
-        mrRetry,
-        mrTryAgain
+        Unknown,
+        Ok,
+        Yes,
+        No,
+        Abort,
+        Cancel,
+        Continue,
+        Ignore,
+        Retry,
+        TryAgain
     };
     xUSING_CONST(ModalResult);
 
                   MsgBox() = default;
     virtual      ~MsgBox() = default;
 
-    ModalResult show(std::ctstring_t &text, std::ctstring_t &title, cType type = Type::tpOk) const
+    ModalResult show(std::ctstring_t &text, std::ctstring_t &title, cType type = Type::Ok) const
         xWARN_UNUSED_RV;
         ///< message box with custom text, custom title, custom type
 
@@ -56,7 +56,7 @@ private:
 
 xPLATFORM_IMPL:
     ModalResult _show_impl(std::ctstring_t &text, std::ctstring_t &title,
-        cType type = Type::tpOk) const xWARN_UNUSED_RV;
+        cType type = Type::Ok) const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xl, ui)

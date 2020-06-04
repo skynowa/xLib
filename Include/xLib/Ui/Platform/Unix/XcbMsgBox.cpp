@@ -369,7 +369,7 @@ XcbMsgBox::_execute(
     } // switch
 
 l_endFor:
-    return XcbMsgBox::ModalResult::mrOk;
+    return XcbMsgBox::ModalResult::Ok;
 }
 //-------------------------------------------------------------------------------------------------
 

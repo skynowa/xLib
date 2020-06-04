@@ -16,10 +16,10 @@ MsgBox::ModalResult
 MsgBox::_show_impl(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
-    cType            a_type    /* = tpOk */
+    cType            a_type    /* = Ok */
 ) const
 {
-    ModalResult mrRv = ModalResult::mrAbort;
+    ModalResult mrRv = ModalResult::Abort;
 
     NSString *btnDefault = nil;
     NSString *btnAlt     = nil;
@@ -27,32 +27,32 @@ MsgBox::_show_impl(
 
     switch(a_type) {
     default:
-    case ModalResult::tpOk:
+    case ModalResult::Ok:
         btnDefault = @"Ok";
         break;
-    case ModalResult::tpOkCancel:
+    case ModalResult::OkCancel:
         btnDefault = @"Ok";
         btnAlt     = @"Cancel";
         break;
-    case ModalResult::ModalResult::tpYesNo:
+    case ModalResult::ModalResult::YesNo:
         btnDefault = @"Yes";
         btnAlt     = @"No";
         break;
-    case ModalResult::tpRetryCancel:
+    case ModalResult::RetryCancel:
         btnDefault = @"Retry";
         btnAlt     = @"Cancel";
         break;
-    case ModalResult::tpYesNoCancel:
+    case ModalResult::YesNoCancel:
         btnDefault = @"Yes";
         btnAlt     = @"No";
         btnOther   = @"Cancel";
         break;
-    case ModalResult::tpAbortRetryIgnore:
+    case ModalResult::AbortRetryIgnore:
         btnDefault = @"Abort";
         btnAlt     = @"Retry";
         btnOther   = @"Ignore";
         break;
-    case ModalResult::tpCancelTryContinue:
+    case ModalResult::CancelTryContinue:
         btnDefault = @"Cancel";
         btnAlt     = @"Try Again";
         btnOther   = @"Continue";
@@ -73,53 +73,53 @@ MsgBox::_show_impl(
     // Convert the NSAlert return values into my MB_* return values.
     if (iRv == NSAlertDefaultReturn) {
         switch (a_type) {
-        case ModalResult::tpOk:
-        case ModalResult::tpOkCancel:
-            mrRv = mrOk;
+        case ModalResult::Ok:
+        case ModalResult::OkCancel:
+            mrRv = Ok;
             break;
-        case ModalResult::tpYesNo:
-        case ModalResult::tpYesNoCancel:
-            mrRv = mrYes;
+        case ModalResult::YesNo:
+        case ModalResult::YesNoCancel:
+            mrRv = Yes;
             break;
-        case ModalResult::tpRetryCancel:
-            mrRv = mrRetry;
+        case ModalResult::RetryCancel:
+            mrRv = Retry;
             break;
-        case ModalResult::tpAbortRetryIgnore:
-            mrRv = mrAbort;
+        case ModalResult::AbortRetryIgnore:
+            mrRv = Abort;
             break;
-        case ModalResult::tpCancelTryContinue:
-            mrRv = mrCancel;
+        case ModalResult::CancelTryContinue:
+            mrRv = Cancel;
             break;
         }
     }
     else if (iRv == NSAlertAlternateReturn) {
         switch(a_type) {
-        case ModalResult::tpOkCancel:
-        case ModalResult::tpRetryCancel:
-            mrRv = mrCancel;
+        case ModalResult::OkCancel:
+        case ModalResult::RetryCancel:
+            mrRv = Cancel;
             break;
-        case ModalResult::tpYesNo:
-        case ModalResult::tpYesNoCancel:
-            mrRv = mrNo;
+        case ModalResult::YesNo:
+        case ModalResult::YesNoCancel:
+            mrRv = No;
             break;
-        case ModalResult::tpAbortRetryIgnore:
-            mrRv = mrRetry;
+        case ModalResult::AbortRetryIgnore:
+            mrRv = Retry;
             break;
-        case ModalResult::tpCancelTryContinue:
-            mrRv = mrTryAgain;
+        case ModalResult::CancelTryContinue:
+            mrRv = TryAgain;
             break;
         }
     }
     else if (iRv == NSAlertOtherReturn) {
         switch(a_type) {
-        case ModalResult::tpYesNoCancel:
-            mrRv = mrCancel;
+        case ModalResult::YesNoCancel:
+            mrRv = Cancel;
             break;
-        case ModalResult::tpAbortRetryIgnore:
-            mrRv = mrIgnore;
+        case ModalResult::AbortRetryIgnore:
+            mrRv = Ignore;
             break;
-        case ModalResult::tpCancelTryContinue:
-            mrRv = mrContinue;
+        case ModalResult::CancelTryContinue:
+            mrRv = Continue;
             break;
         }
     }
