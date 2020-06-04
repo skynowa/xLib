@@ -170,10 +170,7 @@ User::_passwd(
     xTEST_NA(a_pw_dir);
     xTEST_NA(a_pw_shell);
 
-    struct passwd *pwRv = nullptr;
-
-    const uid_t id = ::getuid();
-    xTEST_NA(id);
+    struct passwd *pwRv {};
 
 #if cmHAVE_GETPWUID_R
     long_t buffSize = - 1L;
@@ -190,10 +187,10 @@ User::_passwd(
     std::string   buff;
     buff.resize( static_cast<std::size_t>(buffSize) );
 
-    int_t iRv = ::getpwuid_r(id, &pwBuff, &buff.at(0), buff.size(), &pwRv);
+    int_t iRv = ::getpwuid_r(id(), &pwBuff, &buff.at(0), buff.size(), &pwRv);
     xTEST_EQ(iRv, 0);
 #else
-    pwRv = ::getpwuid(id);
+    pwRv = ::getpwuid( id() );
 #endif
 
     xTEST_PTR(pwRv);
