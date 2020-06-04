@@ -46,17 +46,17 @@ public:
         /// OS architecture
     {
         Unknown,
-        oa32bit,
-        oa64bit
+        bit32,
+        bit64
     };
     xUSING_CONST(OsArch);
 
     enum class CpuVendor
         /// CPU type
     {
-        cvUnknown,
-        cvIntel,
-        cvAmd
+        Unknown,
+        Intel,
+        Amd
     };
     xUSING_CONST(CpuVendor);
 

@@ -104,7 +104,7 @@ Test_SystemInfo::unit()
     xTEST_CASE("cpuVendor")
     {
         SystemInfo::CpuVendor cvType = SystemInfo().cpuVendor();
-        xTEST_EQ(true, SystemInfo::CpuVendor::cvIntel == cvType || SystemInfo::CpuVendor::cvAmd == cvType);
+        xTEST_EQ(true, SystemInfo::CpuVendor::Intel == cvType || SystemInfo::CpuVendor::Amd == cvType);
     }
 
     xTEST_CASE("cpuModel")
