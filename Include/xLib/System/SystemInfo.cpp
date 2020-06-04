@@ -69,7 +69,7 @@ SystemInfo::formatOsArch()
 {
     std::tstring_t sRv;
 
-    OsArch arch = (_osArch == OsArch::oaUnknown) ? osArch() : _osArch;
+    OsArch arch = (_osArch == OsArch::Unknown) ? osArch() : _osArch;
     switch (arch) {
     case OsArch::oa32bit:
         sRv = xT("32-bit");
@@ -77,7 +77,7 @@ SystemInfo::formatOsArch()
     case OsArch::oa64bit:
         sRv = xT("64-bit");
         break;
-    case OsArch::oaUnknown:
+    case OsArch::Unknown:
         sRv = Const::strUnknown();
         break;
     default:
