@@ -556,6 +556,12 @@ Path::slashAppend() const
 std::tstring_t
 Path::slashRemove() const
 {
+#if xENV_UNIX
+	if (_filePath == Const::unixSlash()) {
+		return _filePath;
+	}
+#endif
+
     return String::trimRightChars(filePath(), Const::slash());
 }
 //-------------------------------------------------------------------------------------------------
