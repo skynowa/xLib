@@ -51,10 +51,8 @@ public:
     std::tstring_t ext() const xWARN_UNUSED_RV;
         ///< get extension
 
-#if xENV_WIN
-    std::tstring_t setDrive(std::ctstring_t &drivePath) xWARN_UNUSED_RV;
-        ///< set drive
-#endif
+    std::tstring_t setVolume(std::ctstring_t &volumePath) const;
+        ///< set volume
     std::tstring_t setDir(std::ctstring_t &dirPath) xWARN_UNUSED_RV;
         ///< set dir
     std::tstring_t setFileName(std::ctstring_t &fullName) xWARN_UNUSED_RV;
