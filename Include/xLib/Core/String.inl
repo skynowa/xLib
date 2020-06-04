@@ -253,7 +253,7 @@ String::split(
     std::vec_tstring_t lines;
     split(a_str, a_sepLine, &lines);
 
-	for (auto &it_line : lines) {
+	for (const auto &it_line : lines) {
 		xCHECK_DO(it_line.empty(), continue);
 
 		std::csize_t pos = it_line.find(a_sepKeyValue);

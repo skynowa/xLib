@@ -109,7 +109,7 @@ FormatT<StreamT>::_testFmt(
 	std::size_t specifierOpen  {};
 	std::size_t specifierClose {};
 	{
-		for (auto &it_fmt : a_fmt) {
+		for (const auto &it_fmt : a_fmt) {
 			switch (it_fmt) {
 			case _specifier[0]:
 				++ specifierOpen;

@@ -270,7 +270,7 @@ Path::procValue(
 
     proc(a_procPath, &procFile);
 
-    for (auto &it : procFile) {
+    for (const auto &it : procFile) {
         std::csize_t pos = StringCI::find(it, a_key);
         xCHECK_DO(pos == std::tstring_t::npos, continue);
 

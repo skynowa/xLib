@@ -79,7 +79,7 @@ Manager::run()
                 Path::exe(), _data.allLoops, _data.unitLoops, _data.caseLoops, _units.size()));
 
     for (std::size_t i = 0; i < _data.allLoops; ++ i) {
-        for (auto &it : _units) {
+        for (const auto &it : _units) {
             xCHECK_DO(_data.isUseTracing, Trace() << xT("Manager: run unit ") << it->getData().name);
 
             bool_t bRv = it->run();

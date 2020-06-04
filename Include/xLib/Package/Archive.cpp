@@ -253,7 +253,7 @@ Archive::dirUncompress(
 		return false;
 	}
 
-	for (auto &it_archive_file : archive_files) {
+	for (const auto &it_archive_file : archive_files) {
 		bRv = fileUncompress(a_type, it_archive_file, a_destDirPath, a_isRemoveSourceFiles,
 					a_isAutoDetectType);
 		if (!bRv) {

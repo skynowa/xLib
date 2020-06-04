@@ -63,7 +63,7 @@ FsWatcher::_close_impl()
 
 	// _watchFds
 	{
-		for (auto &itWatchFd : _watchFds) {
+		for (const auto &itWatchFd : _watchFds) {
 			iRv = ::inotify_rm_watch(_inotifyFd.get(), itWatchFd.first);
 			xTEST_DIFF(iRv, -1);
 		}

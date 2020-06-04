@@ -223,7 +223,7 @@ Console::msgBox(
     	std::vec_tstring_t text;
 		String::split(a_text, Const::nl(), &text);
 
-		for (auto &it : text) {
+		for (const auto &it : text) {
 			multiText += _msgBoxLine(it, width) + Const::nl();
 		}
     }

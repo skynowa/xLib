@@ -99,7 +99,7 @@ StackTrace::_format(
 
     // get elements max sizes
     for (size_t i = 0; i < ::elementsNum; ++ i) {
-        for (auto &it : a_stack) {
+        for (const auto &it : a_stack) {
             std::csize_t current = it.at(i).size();
             xCHECK_DO(static_cast<int_t>(current) > maxs[i], maxs[i] = static_cast<int_t>(current));
         }

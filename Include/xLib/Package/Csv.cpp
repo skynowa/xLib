@@ -124,7 +124,7 @@ CsvWriter::saveFile(
 	}
 
 	// a_rows
-	for (auto &it_row : a_rows)
+	for (const auto &it_row : a_rows)
 	{
 		std::ctstring_t &row = String::join(it_row, _data.delimiter);
 
@@ -149,7 +149,7 @@ CsvWriter::saveString(
 	}
 
 	// a_rows
-	for (auto &it_row : a_rows)
+	for (const auto &it_row : a_rows)
 	{
 		std::ctstring_t &row = String::join(it_row, _data.delimiter);
 

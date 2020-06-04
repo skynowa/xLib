@@ -22,7 +22,7 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        for (auto &it : vidIds) {
+        for (const auto &it : vidIds) {
             ProcessInfo info;
             info.setProcessId(/* it */ Process::currentId());
 
@@ -39,7 +39,7 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        for (auto &it : vidIds) {
+        for (const auto &it : vidIds) {
             ProcessInfo info;
             info.setProcessId(/* it */ Process::currentId());
 
@@ -57,7 +57,7 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        for (auto &it : vidIds) {
+        for (const auto &it : vidIds) {
             ProcessInfo info;
             info.setProcessId(/* it */ Process::currentId());
 
@@ -75,7 +75,7 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        for (auto &it : vidIds) {
+        for (const auto &it : vidIds) {
             ProcessInfo info;
             info.setProcessId(/* it */ Process::currentId());
 
@@ -91,7 +91,7 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        for (auto &it : vidIds) {
+        for (const auto &it : vidIds) {
             ProcessInfo info;
             info.setProcessId(/* it */ Process::currentId());
 
@@ -106,7 +106,7 @@ Test_ProcessInfo::unit()
 
         Process::ids(&vidIds);
 
-        for (auto &it : vidIds) {
+        for (const auto &it : vidIds) {
         #if   xENV_WIN
             xCHECK_DO(0 == it, continue);
             xCHECK_DO(344 == it, continue);

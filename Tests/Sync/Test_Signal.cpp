@@ -56,7 +56,7 @@ Test_Signal::unit()
         signalNums.push_back(SIGCLD);
 	#endif
 
-        for (auto &it : signalNums) {
+        for (const auto &it : signalNums) {
             m_sRv = Signal::decription(it);
             // std::cout << xTRACE_VAR2(it, m_sRv) << std::endl;
             xTEST_EQ(m_sRv.empty(), false);

@@ -550,7 +550,7 @@ Test_String::unit()
             {xT("TEST_\"STRING\"_1"), xT("\"TEST_\\\"STRING\\\"_1\"")}
         };
 
-        for (auto &it_data : data) {
+        for (const auto &it_data : data) {
             std::tstring_t str1 = String::quoted(it_data[0], xT('\"'), xT('\\'));
             std::tstring_t str2 = it_data[1];
             xTEST_EQ(str1, str2);
