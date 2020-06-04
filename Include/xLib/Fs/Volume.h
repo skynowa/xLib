@@ -89,13 +89,12 @@ xPLATFORM_IMPL:
     void_t          _mount_impl(std::ctstring_t &destPath) const;
     void_t          _unMount_impl(cbool_t &isForce) const;
 
-    // static
+xPRIVATE_STATIC:
     static
-    void_t          _space_impl(std::ctstring_t &dirPath, ulonglong_t* &totalBytes,
-                        ulonglong_t* &availableBytes, ulonglong_t* &freeBytes);
+    void_t _space_impl(std::ctstring_t &dirPath, ulonglong_t* &totalBytes,
+				ulonglong_t* &availableBytes, ulonglong_t* &freeBytes);
     static
-    void_t          _paths_impl(std::vec_tstring_t *volumePaths);
-
+    void_t _paths_impl(std::vec_tstring_t *volumePaths);
 };
 
 xNAMESPACE_END2(xl, fs)

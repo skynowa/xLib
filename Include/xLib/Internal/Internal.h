@@ -16,6 +16,8 @@ xNAMESPACE_BEGIN2(xl, internal)
 ///@{
 #define xPUBLIC_STATIC public
     ///< for visual convenience
+#define xPRIVATE_STATIC private
+    ///< for visual convenience
 #define xPLATFORM_IMPL private
     ///< platform implementation code
 ///@}
