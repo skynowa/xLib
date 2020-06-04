@@ -15,6 +15,26 @@ xNAMESPACE_BEGIN2(xl, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+uint_t
+User::_id_impl() const
+{
+    uid_t uiRv;
+
+    _passwd(nullptr, nullptr, &uiRv, nullptr, nullptr, nullptr);
+
+    return static_cast<uint_t>(uiRv);
+}
+//-------------------------------------------------------------------------------------------------
+uint_t
+User::_groupId_impl() const
+{
+    gid_t uiRv;
+
+    _passwd(nullptr, nullptr, nullptr, &uiRv, nullptr, nullptr);
+
+    return static_cast<uint_t>(uiRv);
+}
+//-------------------------------------------------------------------------------------------------
 bool_t
 User::_isAdmin_impl() const
 {
@@ -84,26 +104,6 @@ User::_name_impl() const
     _passwd(&sRv, nullptr, nullptr, nullptr, nullptr, nullptr);
 
     return xA2T(sRv);
-}
-//-------------------------------------------------------------------------------------------------
-uint_t
-User::_id_impl() const
-{
-    uid_t uiRv;
-
-    _passwd(nullptr, nullptr, &uiRv, nullptr, nullptr, nullptr);
-
-    return static_cast<uint_t>(uiRv);
-}
-//-------------------------------------------------------------------------------------------------
-uint_t
-User::_groupId_impl() const
-{
-    gid_t uiRv;
-
-    _passwd(nullptr, nullptr, nullptr, &uiRv, nullptr, nullptr);
-
-    return static_cast<uint_t>(uiRv);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t

@@ -17,16 +17,16 @@ public:
                    User() = default;
     virtual       ~User() = default;
 
+    uint_t         id() const;
+        ///< ID
+    uint_t         groupId() const;
+        ///< group ID
     bool_t         isAdmin() const xWARN_UNUSED_RV;
         ///< is current user an admin
     std::tstring_t loginName() const xWARN_UNUSED_RV;
         ///< login name
     std::tstring_t name() const xWARN_UNUSED_RV;
         ///< get the name of the user associated with the current thread
-    uint_t         id() const;
-        ///< ID
-    uint_t         groupId() const;
-        ///< group ID
     std::tstring_t homeDir() const;
         ///< get home directory
     std::tstring_t shellPath() const;
@@ -41,11 +41,11 @@ private:
     xNO_COPY_ASSIGN(User)
 
 xPLATFORM_IMPL:
+    uint_t         _id_impl() const xWARN_UNUSED_RV;
+    uint_t         _groupId_impl() const xWARN_UNUSED_RV;
     bool_t         _isAdmin_impl() const xWARN_UNUSED_RV;
     std::tstring_t _loginName_impl() const xWARN_UNUSED_RV;
     std::tstring_t _name_impl() const xWARN_UNUSED_RV;
-    uint_t         _id_impl() const xWARN_UNUSED_RV;
-    uint_t         _groupId_impl() const xWARN_UNUSED_RV;
     std::tstring_t _homeDir_impl() const xWARN_UNUSED_RV;
     std::tstring_t _shellPath_impl() const xWARN_UNUSED_RV;
 };
