@@ -17,6 +17,8 @@ public:
                    User() = default;
     virtual       ~User() = default;
 
+    xNO_COPY_ASSIGN(User)
+
     uint_t         id() const;
         ///< ID
     uint_t         groupId() const;
@@ -31,15 +33,6 @@ public:
         ///< get home directory
     std::tstring_t shellPath() const;
 
-private:
-#if xENV_UNIX
-    void_t _passwd(std::string *pw_name, std::string *pw_passwd, uid_t *pw_uid, gid_t *pw_gid,
-				std::string *pw_dir, std::string *pw_shell) const;
-        ///< get password file entry
-#endif
-
-    xNO_COPY_ASSIGN(User)
-
 xPLATFORM_IMPL:
     uint_t         _id_impl() const xWARN_UNUSED_RV;
     uint_t         _groupId_impl() const xWARN_UNUSED_RV;
@@ -48,6 +41,15 @@ xPLATFORM_IMPL:
     std::tstring_t _name_impl() const xWARN_UNUSED_RV;
     std::tstring_t _homeDir_impl() const xWARN_UNUSED_RV;
     std::tstring_t _shellPath_impl() const xWARN_UNUSED_RV;
+
+private:
+#if   xENV_WIN
+
+#elif xENV_UNIX
+    void_t _passwd(std::string *pw_name, std::string *pw_passwd, uid_t *pw_uid, gid_t *pw_gid,
+				std::string *pw_dir, std::string *pw_shell) const;
+        ///< get password file entry
+#endif
 };
 
 xNAMESPACE_END2(xl, system)
