@@ -15,6 +15,14 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+Path::_volume_impl() const
+{
+    xCHECK_RET(_filePath.empty(), std::tstring_t());
+
+    return std::tstring_t(1, _filePath[0]);
+}
+//-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
 #if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
