@@ -23,7 +23,7 @@ Test_HttpClient::unit()
 	xTEST_CASE("version")
 	{
 		m_sRv = version.version();
-		xTEST_EQ(m_sRv.empty(), false);
+		xTEST(!m_sRv.empty());
 
 		// std::tcout << (OStream() << xTRACE_VAR(m_sRv)).str() << std::endl;
 	}
@@ -31,20 +31,20 @@ Test_HttpClient::unit()
 	xTEST_CASE("info")
 	{
 		m_sRv = version.info(CURLVERSION_FOURTH);
-		xTEST_EQ(m_sRv.empty(), false);
+		xTEST(!m_sRv.empty());
 
 		// std::tcout << (OStream() << xTRACE_VAR(m_sRv)).str() << std::endl;
 
 		for (CURLversion v = CURLVERSION_FIRST; v < CURLVERSION_LAST; ++ v) {
 			m_sRv = version.info(v);
-			xTEST_EQ(m_sRv.empty(), false);
+			xTEST(!m_sRv.empty());
 		}
 	}
 
 	xTEST_CASE("infoCurrent")
 	{
 		m_sRv = version.infoCurrent();
-		xTEST_EQ(m_sRv.empty(), false);
+		xTEST(!m_sRv.empty());
 
 		// std::tcout << (OStream() << xTRACE_VAR(m_sRv)).str() << std::endl;
 	}

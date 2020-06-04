@@ -59,7 +59,7 @@ Test_Signal::unit()
         for (const auto &it : signalNums) {
             m_sRv = Signal::decription(it);
             // std::cout << xTRACE_VAR2(it, m_sRv) << std::endl;
-            xTEST_EQ(m_sRv.empty(), false);
+            xTEST(!m_sRv.empty());
         }
     }
 

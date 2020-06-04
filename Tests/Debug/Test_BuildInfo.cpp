@@ -39,7 +39,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.datetime();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("langStandart")
@@ -47,7 +47,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.langStandart();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("osEnvironment")
@@ -55,7 +55,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.osEnvironment();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("os")
@@ -63,7 +63,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.os();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("arch")
@@ -71,7 +71,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.arch();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("bitsArch")
@@ -79,7 +79,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.bitsArch();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("compiler")
@@ -87,7 +87,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.compiler();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
 
@@ -96,7 +96,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.compilerFlags();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("libs")
@@ -104,7 +104,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.libs();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("isUnicodeEncoding")
@@ -124,7 +124,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.stdLibC();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("stdLibCpp")
@@ -132,7 +132,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.stdLibCpp();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("qt")
@@ -140,7 +140,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.qt();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("xlibVersion")
@@ -148,7 +148,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.xlibVersion();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("xlibBinaryType")
@@ -164,7 +164,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.xlibBuildType();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("cmake")
@@ -172,7 +172,7 @@ Test_BuildInfo::unit()
         BuildInfo info;
 
         m_sRv = info.cmake();
-        xTEST_EQ(m_sRv.empty(), false);
+        xTEST(!m_sRv.empty());
     }
 
     return true;

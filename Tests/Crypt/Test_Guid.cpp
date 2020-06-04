@@ -26,7 +26,7 @@ Test_Guid::unit()
             Guid guid;
 
             m_sRv = guid.create(data[i]);
-            xTEST_EQ(m_sRv.empty(), false);
+            xTEST(!m_sRv.empty());
         }
     }
 
