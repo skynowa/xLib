@@ -24,6 +24,12 @@ Test_User::unit()
         xTEST_DIFF(m_uiRv, 0U);
     }
 
+    xTEST_CASE("effectiveId")
+    {
+        m_uiRv = user.effectiveId();
+        xTEST_DIFF(m_uiRv, 0U);
+    }
+
     xTEST_CASE("groupId")
     {
         m_uiRv = user.groupId();
