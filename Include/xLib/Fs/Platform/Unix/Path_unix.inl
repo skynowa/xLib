@@ -26,9 +26,7 @@ Path::_volume_impl() const
 xNAMESPACE_ANONYM_BEGIN
 
 #if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
-
 static void_t function() {}
-
 #endif
 
 xNAMESPACE_ANONYM_END
