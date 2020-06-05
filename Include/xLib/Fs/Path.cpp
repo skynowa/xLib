@@ -139,7 +139,7 @@ Path::fileBaseName() const
 std::tstring_t
 Path::ext() const
 {
-    std::csize_t dotPos   = filePath().rfind(Const::dot(),   filePath().size());
+    std::csize_t dotPos = filePath().rfind(Const::dot(), filePath().size());
     xCHECK_RET(dotPos == std::tstring_t::npos, std::tstring_t());
 
     std::csize_t slashPos = filePath().rfind(Const::slash(), filePath().size());
@@ -267,7 +267,7 @@ Path::setExt(
 std::tstring_t
 Path::removeExt()
 {
-    std::csize_t dotPos = filePath().rfind(Const::dot());
+    std::csize_t dotPos = filePath().rfind( Const::dot() );
 
     return filePath().substr(0, dotPos);
 }
@@ -306,7 +306,7 @@ Path::isValid(
 
     // name
     {
-        std::ctstring_t fileName = Path(a_filePath).fileName();
+        std::ctstring_t &fileName = Path(a_filePath).fileName();
 
         xCHECK_RET(!isNameValid(fileName, a_filePathValid), false);
     }
