@@ -160,14 +160,14 @@ Path::_absolute_impl() const
 size_t
 Path::_maxSize_impl()
 {
-    size_t uiRv = 0;
+    size_t uiRv {};
 
 #if defined(PATH_MAX)
     uiRv = PATH_MAX;
 #else
-    culong_t savedError  = 0UL;
-    long_t   liRv        = - 1L;
-    ulong_t  nativeError = 0UL;
+    culong_t savedError  {};
+    long_t   liRv        {};
+    ulong_t  nativeError {};
 
     NativeError::set(savedError);
 
@@ -182,7 +182,7 @@ Path::_maxSize_impl()
         uiRv = defaultSize;
     } else {
         // relative root
-        uiRv = static_cast<size_t>( liRv + 1 );
+        uiRv = static_cast<size_t>(liRv + 1);
     }
 #endif
 
@@ -193,20 +193,20 @@ Path::_maxSize_impl()
 size_t
 Path::_nameMaxSize_impl()
 {
-    size_t uiRv = 0;
+    size_t uiRv {};
 
 #if defined(NAME_MAX)
     uiRv = NAME_MAX;
 #else
-    culong_t savedError  = 0UL;
-    long_t   liRv        = - 1L;
-    ulong_t  nativeError = 0UL;
+    culong_t savedError  {};
+    long_t   liRv        {};
+    ulong_t  nativeError {};
 
     NativeError::set(savedError);
 
     liRv        = ::pathconf("/", _PC_NAME_MAX);
     nativeError = NativeError::get();
-    xTEST_EQ(liRv == - 1L && savedError != 0UL, true);
+    xTEST(liRv == - 1L && savedError != 0UL);
 
     if (liRv == - 1L && savedError == nativeError) {
         // system does not have a limit for the requested resource
@@ -214,7 +214,7 @@ Path::_nameMaxSize_impl()
 
         uiRv = defaultSize;
     } else {
-        uiRv = static_cast<size_t>( liRv );
+        uiRv = static_cast<size_t>(liRv);
     }
 #endif
 
@@ -230,7 +230,7 @@ Path::proc(
 {
     // check for existence "/proc" directory
     {
-        bool_t bRv = false;
+        bool_t bRv {};
 
         Dir proc(xT("/proc"));
 
@@ -244,15 +244,14 @@ Path::proc(
     std::vec_tstring_t vsRv;
 
     std::tifstream_t ifs( xT2A(a_procPath).c_str() );
-    xTEST_EQ(!! ifs, true);
-    xTEST_EQ(ifs.fail(), false);
-    xTEST_EQ(ifs.good(), true);
-    xTEST_EQ(ifs.is_open(), true);
-    xTEST_EQ(ifs.eof(), false);
+    xTEST(!! ifs);
+    xTEST(!ifs.fail());
+    xTEST(ifs.good());
+    xTEST(ifs.is_open());
+    xTEST(!ifs.eof());
 
     for ( ; !ifs.eof(); ) {
         std::tstring_t line;
-
         std::getline(ifs, line);
         xCHECK_DO(line.empty(), continue);
 
