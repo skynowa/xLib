@@ -39,11 +39,12 @@ Path::_exe_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
+namespace
+{
 
 extern "C" IMAGE_DOS_HEADER __ImageBase;
 
-xNAMESPACE_ANONYM_END
+}
 
 /* static */
 std::tstring_t
@@ -229,6 +230,7 @@ Path::_isNameValid_impl(
             xCHECK_RET(a_fileNameValid == nullptr, false);
 
             a_fileNameValid->clear();
+
             return true;
         }
 
@@ -272,7 +274,7 @@ Path::_absolute_impl() const
 {
     std::tstring_t sRv;
 
-    DWORD          dwRv = 0UL;
+    DWORD          dwRv {};
     std::tstring_t buff;
 
     dwRv = ::GetFullPathName(&filePath().at(0), 0, nullptr, nullptr);
@@ -295,12 +297,12 @@ Path::_absolute_impl() const
 size_t
 Path::_maxSize_impl()
 {
-    size_t uiRv = 0;
+    size_t uiRv {};
 
 #if defined(MAX_PATH)
     uiRv = MAX_PATH;
 #else
-    std::csize_t defaultSize = 260;
+    std::csize_t defaultSize {260};
 
     uiRv = defaultSize;
 #endif
@@ -312,12 +314,12 @@ Path::_maxSize_impl()
 size_t
 Path::_nameMaxSize_impl()
 {
-    size_t uiRv = 0;
+    size_t uiRv {};
 
 #if defined(FILENAME_MAX)
     uiRv = FILENAME_MAX;
 #else
-    std::csize_t defaultSize = 260;
+    std::csize_t defaultSize {260};
 
     uiRv = defaultSize;
 #endif
