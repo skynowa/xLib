@@ -597,12 +597,12 @@ File::chmod(
     xTEST_NA(a_mode);
 
 #if   xENV_WIN
-    const auto mode = static_cast<int_t>(a_mode);
+    using _mode_t = int_t;
 #elif xENV_UNIX
-    const auto mode = static_cast<mode_t>(a_mode);
+    using _mode_t = mode_t;
 #endif
 
-    int_t iRv = xTCHMOD(a_filePath.c_str(), mode);
+    int_t iRv = xTCHMOD(a_filePath.c_str(), static_cast<_mode_t>(a_mode));
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
