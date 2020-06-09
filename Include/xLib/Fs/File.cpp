@@ -597,9 +597,9 @@ File::chmod(
     xTEST_NA(a_mode);
 
 #if   xENV_WIN
-    using _mode_t = int_t;
+    using _mode_t = cint_t;
 #elif xENV_UNIX
-    using _mode_t = mode_t;
+    using _mode_t = const mode_t;
 #endif
 
     int_t iRv = xTCHMOD(a_filePath.c_str(), static_cast<_mode_t>(a_mode));
