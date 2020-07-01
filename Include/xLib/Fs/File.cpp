@@ -1214,56 +1214,31 @@ File::_openMode(
 {
     xTEST_NA(a_mode);
 
-    std::tstring_t sRv;
+    static constexpr std::map<OpenMode, std::tstring_t> modes
+    {
+		// text modes
+		{OpenMode::Read,               xT("r")},
+		{OpenMode::Write,              xT("w")},
+		{OpenMode::Append,             xT("a")},
+		{OpenMode::OpenReadWrite,      xT("r+")},
+		{OpenMode::CreateReadWrite,    xT("w+")},
+		{OpenMode::OpenReadAppend,     xT("a+")},
 
-    switch (a_mode) {
-    // text modes
-    case OpenMode::Read:
-        sRv = xT("r");
-        break;
-    case OpenMode::Write:
-        sRv = xT("w");
-        break;
-    case OpenMode::Append:
-        sRv = xT("a");
-        break;
-    case OpenMode::OpenReadWrite:
-        sRv = xT("r+");
-        break;
-    case OpenMode::CreateReadWrite:
-        sRv = xT("w+");
-        break;
-    case OpenMode::OpenReadAppend:
-        sRv = xT("a+");
-        break;
+		// binary modes
+		{OpenMode::BinRead,            xT("rb")},
+		{OpenMode::BinWrite,           xT("wb")},
+		{OpenMode::BinAppend,          xT("ab")},
+		{OpenMode::BinOpenReadWrite,   xT("rb+")},
+		{OpenMode::BinCreateReadWrite, xT("wb+")},
+		{OpenMode::BinOpenReadAppend,  xT("ab+")},
 
-    // binary modes
-    case OpenMode::BinRead:
-        sRv = xT("rb");
-        break;
-    case OpenMode::BinWrite:
-        sRv = xT("wb");
-        break;
-    case OpenMode::BinAppend:
-        sRv = xT("ab");
-        break;
-    case OpenMode::BinOpenReadWrite:
-        sRv = xT("rb+");
-        break;
-    case OpenMode::BinCreateReadWrite:
-        sRv = xT("wb+");
-        break;
-    case OpenMode::BinOpenReadAppend:
-        sRv = xT("ab+");
-        break;
+		{OpenMode::Unknown,            xT("r")}
+    };
 
-    case OpenMode::Unknown:
-    default:
-        sRv = xT("r");
-        break;
-    }
+    auto it = modes.find(a_mode);
+    xCHECK_RET(it == modes.cend(), std::tstring_t());
 
-    return sRv;
+    return it->second;
 }
 //-------------------------------------------------------------------------------------------------
 
