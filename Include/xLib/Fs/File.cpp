@@ -1214,8 +1214,60 @@ File::_openMode(
 {
     xTEST_NA(a_mode);
 
-    static constexpr std::map<OpenMode, std::tstring_t> modes
-    {
+#if 1
+	std::tstring_t sRv;
+
+	switch (a_mode) {
+	// text modes
+	case OpenMode::Read:
+		sRv = xT("r");
+		break;
+	case OpenMode::Write:
+		sRv = xT("w");
+		break;
+	case OpenMode::Append:
+		sRv = xT("a");
+		break;
+	case OpenMode::OpenReadWrite:
+		sRv = xT("r+");
+		break;
+	case OpenMode::CreateReadWrite:
+		sRv = xT("w+");
+		break;
+	case OpenMode::OpenReadAppend:
+		sRv = xT("a+");
+		break;
+
+	// binary modes
+	case OpenMode::BinRead:
+		sRv = xT("rb");
+		break;
+	case OpenMode::BinWrite:
+		sRv = xT("wb");
+		break;
+	case OpenMode::BinAppend:
+		sRv = xT("ab");
+		break;
+	case OpenMode::BinOpenReadWrite:
+		sRv = xT("rb+");
+		break;
+	case OpenMode::BinCreateReadWrite:
+		sRv = xT("wb+");
+		break;
+	case OpenMode::BinOpenReadAppend:
+		sRv = xT("ab+");
+		break;
+
+	case OpenMode::Unknown:
+	default:
+		sRv = xT("r");
+		break;
+	}
+
+	return sRv;
+#else
+	static constexpr std::map<OpenMode, std::tstring_t> modes
+	{
 		// text modes
 		{OpenMode::Read,               xT("r")},
 		{OpenMode::Write,              xT("w")},
@@ -1233,12 +1285,13 @@ File::_openMode(
 		{OpenMode::BinOpenReadAppend,  xT("ab+")},
 
 		{OpenMode::Unknown,            xT("r")}
-    };
+	};
 
-    auto it = modes.find(a_mode);
-    xCHECK_RET(it == modes.cend(), std::tstring_t());
+	auto it = modes.find(a_mode);
+	xCHECK_RET(it == modes.cend(), std::tstring_t());
 
-    return it->second;
+	return it->second;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
