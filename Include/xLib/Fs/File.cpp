@@ -1214,7 +1214,7 @@ File::_openMode(
 {
     xTEST_NA(a_mode);
 
-#if 1
+#if 0
 	std::tstring_t sRv;
 
 	switch (a_mode) {
@@ -1266,7 +1266,7 @@ File::_openMode(
 
 	return sRv;
 #else
-	static constexpr std::map<OpenMode, std::tstring_t> modes
+	static const std::map<OpenMode, std::tstring_t> modes
 	{
 		// text modes
 		{OpenMode::Read,               xT("r")},
