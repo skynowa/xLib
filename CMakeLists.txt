@@ -57,6 +57,7 @@ set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 #--------------------------------------------------------------------------------------------------
 # modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_ROOT}/Modules/CMakeLib")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_ROOT}/Modules/CMakeLib/Functions")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_ROOT}/Modules/CMakeLib/StaticAnalisis")
 list(APPEND CMAKE_MODULE_PATH "${XLIB_LOCATION}/CMake")
 
