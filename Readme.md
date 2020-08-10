@@ -10,8 +10,8 @@ Skype:   skynowa777
 
 - platforms:
 
-    - Windows: (XP >)
-    - Unix: Linux, Android, BSD, Apple (OSX)
+  - Windows: (XP >)
+  - Unix: Linux, Android, BSD, Apple (OSX)
 
 - architecture: 32-bit (x86) and 64-bit (x86-64, IA64, and AMD64)
 - compilers: MinGW, MSVC, GCC, Clang
@@ -22,3 +22,7 @@ Skype:   skynowa777
 - https://bitbucket.org/skynowa/xlib/src/master/
 - https://github.com/skynowa/xLib
 - https://sourceforge.net/projects/x-lib/
+
+## Dependecies
+
+https://bitbucket.org/skynowa/cmakelib (https://github.com/skynowa/CMakeLib)
