@@ -70,7 +70,7 @@ include(StaticAnalisis/PvsStudio)
 
 set(JOBS_NUM 0)
 jobs_num(JOBS_NUM)
-# message(FATAL_ERROR "JOBS_NUM: ${JOBS_NUM}")
+# message("JOBS_NUM: ${JOBS_NUM}")
 #--------------------------------------------------------------------------------------------------
 # includes, libs
 set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
