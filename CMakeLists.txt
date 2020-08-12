@@ -68,8 +68,8 @@ include(StaticAnalisis/ClangTidy)
 include(StaticAnalisis/CppCheck)
 include(StaticAnalisis/PvsStudio)
 
-set(JOBS_NUM 0)
-jobs_num(JOBS_NUM)
+set(JOBS_NUM 4)
+# jobs_num(JOBS_NUM)
 # message("JOBS_NUM: ${JOBS_NUM}")
 #--------------------------------------------------------------------------------------------------
 # includes, libs
