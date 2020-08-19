@@ -37,16 +37,6 @@ public:
     };
     xUSING_CONST(OpenMode);
 
-#if xENV_WIN
-    enum TranslationMode
-        /// translation mode
-    {
-        Text   = O_TEXT,
-        Binary = O_BINARY
-    };
-    xUSING_CONST(TranslationMode);
-#endif
-
     enum class AccessMode
         /// access mode
     {
@@ -179,11 +169,6 @@ public:
         ///< get current position in stream
     void_t         setVBuff(char *buff, cBufferingMode mode, std::csize_t size) const;
         ///< change stream buffering
-
-#if xENV_WIN
-    void_t         setMode(cTranslationMode mode) const;
-        ///< sets the file translation mode
-#endif
 
     longlong_t     size() const xWARN_UNUSED_RV;
         ///< get file size

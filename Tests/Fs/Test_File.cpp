@@ -433,34 +433,6 @@ Test_File::unit()
         file.setVBuff(&buffRead.at(0), File::BufferingMode::Full, buffRead.size() * 2);
     }
 
-    xTEST_CASE("setMode")
-    {
-        File file;
-
-        file.create(filePath, File::OpenMode::CreateReadWrite);
-
-    #if   xENV_WIN
-        file.setMode(File::Binary);
-        xTEST_EQ(m_bRv, true);
-    #elif xENV_UNIX
-        // TEST: File::setMode()
-    #endif
-    }
-
-    xTEST_CASE("setMode")
-    {
-        File file;
-
-        file.create(filePath, File::OpenMode::CreateReadWrite);
-
-    #if   xENV_WIN
-        file.setMode(File::Text);
-    #elif xENV_UNIX
-        // TEST: File::setMode()
-    #endif
-    }
-
-
     /*******************************************************************************
     *    Error-handling:
     *
