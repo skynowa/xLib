@@ -874,7 +874,7 @@ File::lines(
     std::locale::global(std::locale());
 
     ulonglong_t      ullRv {};
-    std::tifstream_t ifs(xT2A(a_filePath).c_str(), std::ios::in);
+    std::tifstream_t ifs(xT2A(a_filePath), std::ios::in);
 
     xCHECK_RET(!ifs || ifs.fail() || !ifs.good() || !ifs.is_open() || ifs.eof(), 0LL);
 
@@ -1037,7 +1037,7 @@ File::textRead(
 
     std::locale::global( std::locale() );
 
-    std::tifstream_t ifs(xT2A(a_filePath).c_str());
+    std::tifstream_t ifs(xT2A(a_filePath));
     xTEST_EQ(!! ifs,        true);
     xTEST_EQ(ifs.fail(),    false);
     xTEST_EQ(ifs.good(),    true);

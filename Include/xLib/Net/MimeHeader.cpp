@@ -202,7 +202,7 @@ MimeHeader::loadFromFile(
 
     //-------------------------------------
     // (\r\n\r\n)
-    std::tifstream_t ifsStream( xT2A(a_rawMessageFilePath).c_str() );
+    std::tifstream_t ifsStream( xT2A(a_rawMessageFilePath) );
     xTEST_EQ(!!ifsStream, true);
     xTEST_EQ(ifsStream.fail(), false);
     xTEST_EQ(ifsStream.good(), true);
