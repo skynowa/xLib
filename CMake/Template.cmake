@@ -12,10 +12,10 @@ unset(cmXLIB_TEMPLATE_SUBDIR         CACHE)
 unset(cmXLIB_TEMPLATE_NS             CACHE)
 unset(cmXLIB_TEMPLATE_PLATFORM_FILES CACHE)
 
-set(cmXLIB_TEMPLATE                "Pipe")  # TODO: set manually
-set(cmXLIB_TEMPLATE_COMMENTS       "Pipe is a section of shared memory that processes use for communication") # TODO: set manually
-set(cmXLIB_TEMPLATE_SUBDIR         "Sync")       # TODO: set manually
-set(cmXLIB_TEMPLATE_NS             "sync")       # TODO: set manually
+set(cmXLIB_TEMPLATE                "FileInfo")  # TODO: set manually
+set(cmXLIB_TEMPLATE_COMMENTS       "File information") # TODO: set manually
+set(cmXLIB_TEMPLATE_SUBDIR         "Fs")       # TODO: set manually
+set(cmXLIB_TEMPLATE_NS             "fs")       # TODO: set manually
 set(cmXLIB_TEMPLATE_PLATFORM_FILES ON)
 
 if (NOT cmXLIB_TEMPLATE OR
