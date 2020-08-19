@@ -55,7 +55,7 @@ public:
     // TODO: fromPrintable
 
 private:
-    xNO_INSTANCE(Enum)
+    xNO_DEFAULT_CONSTRUCT(Enum)
     xNO_COPY_ASSIGN(Enum)
 };
 

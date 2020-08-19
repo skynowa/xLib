@@ -16,7 +16,7 @@ class DateTimeValidator
 	///< DateTime validator
 {
 public:
-	xNO_INSTANCE(DateTimeValidator);
+	xNO_DEFAULT_CONSTRUCT(DateTimeValidator);
 
 	static
 	bool_t year(cint_t &year) xWARN_UNUSED_RV;

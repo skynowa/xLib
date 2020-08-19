@@ -21,7 +21,7 @@ public:
     static
     std::tstring_t str(std::ctstring_view_t fmt, const ArgsT &...args);
 
-    xNO_INSTANCE(FormatT)
+    xNO_DEFAULT_CONSTRUCT(FormatT)
     xNO_COPY_ASSIGN(FormatT)
 
 private:

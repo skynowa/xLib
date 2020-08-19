@@ -69,7 +69,7 @@ public:
         ///< is address IP v6
 
 private:
-    xNO_INSTANCE(DnsClient)
+    xNO_DEFAULT_CONSTRUCT(DnsClient)
     xNO_COPY_ASSIGN(DnsClient)
 };
 

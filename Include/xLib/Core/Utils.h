@@ -95,7 +95,7 @@ public:
         ///< decrement enumerator
 
 private:
-    xNO_INSTANCE(Utils)
+    xNO_DEFAULT_CONSTRUCT(Utils)
     xNO_COPY_ASSIGN(Utils)
 };
 
