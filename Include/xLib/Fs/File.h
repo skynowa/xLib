@@ -206,7 +206,7 @@ public:
     void_t         close();
         ///< close
 
-    // static
+xPUBLIC_STATIC:
     static
     bool_t         isFile(std::ctstring_t &filePath) xWARN_UNUSED_RV;
         ///< check for file
@@ -248,6 +248,8 @@ public:
     void_t         copy(std::ctstring_t &filePathFrom, std::ctstring_t &filePathTo,
                        cbool_t &isFailIfExists) /* throw(Exception) */;
         ///< copy
+
+    // info
     static
     longlong_t     size(std::ctstring_t &filePath) xWARN_UNUSED_RV;
         ///< get size
