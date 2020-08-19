@@ -45,7 +45,7 @@ public:
         ///< expands strings by separator "%"
 
 private:
-    xNO_INSTANCE(Environment)
+    xNO_DEFAULT_CONSTRUCT(Environment)
     xNO_COPY_ASSIGN(Environment)
 
 xPLATFORM_IMPL:

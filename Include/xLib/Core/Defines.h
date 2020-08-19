@@ -705,9 +705,6 @@
     xNO_ASSIGN(className) \
     xNO_MOVE_ASSIGN(className)
     ///< disallow copy, move, assign, move assign
-#define xNO_INSTANCE(className) \
-    className() = delete;
-    ///< disallow make instance
 #define xNO_HEAP \
     private: \
         void_t* operator new    (size_t) throw() { return nullptr; } \

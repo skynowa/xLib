@@ -52,7 +52,7 @@ private:
     static
     void_t _format(StreamT &os, const T &value);
 
-    xNO_INSTANCE(FormatT_v1)
+    xNO_DEFAULT_CONSTRUCT(FormatT_v1)
     xNO_COPY_ASSIGN(FormatT_v1)
 };
 

@@ -57,7 +57,7 @@ public:
         ///< remove item from std::vector
 
 private:
-    xNO_INSTANCE(Algos)
+    xNO_DEFAULT_CONSTRUCT(Algos)
     xNO_COPY_ASSIGN(Algos)
 };
 

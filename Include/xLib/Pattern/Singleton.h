@@ -24,7 +24,7 @@ public:
     }
 
 private:
-    xNO_INSTANCE(Singleton)
+    xNO_DEFAULT_CONSTRUCT(Singleton)
     xNO_COPY_ASSIGN(Singleton)
 };
 

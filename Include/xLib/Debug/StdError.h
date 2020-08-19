@@ -38,7 +38,7 @@ private:
     int_t          _stdCodeSuccess() xWARN_UNUSED_RV;
         ///< native success code
 
-    xNO_INSTANCE(StdError)
+    xNO_DEFAULT_CONSTRUCT(StdError)
     xNO_COPY_ASSIGN(StdError)
 
 xPLATFORM_IMPL:

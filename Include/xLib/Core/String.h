@@ -212,7 +212,7 @@ public:
         ///< is repeated
 
 private:
-    xNO_INSTANCE(String)
+    xNO_DEFAULT_CONSTRUCT(String)
     xNO_COPY_ASSIGN(String)
 
 xPLATFORM_IMPL:
