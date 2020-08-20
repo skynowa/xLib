@@ -515,6 +515,8 @@ File::remove()
 {
     xTEST(!_filePath.empty());
 
+    close();
+
     FileInfo info(_filePath);
     xCHECK_DO(!info.isExists(), return);
 
@@ -639,6 +641,8 @@ File::unlink()
 {
     xTEST(!_filePath.empty());
 
+    close();
+
     int_t iRv = xTUNLINK(_filePath.c_str());
     xTEST_DIFF(iRv, - 1);
 }
@@ -651,6 +655,8 @@ File::rename(
     xTEST(!_filePath.empty());
     xTEST(!a_filePathNew.empty());
 
+    // TODO: [skynowa] close();
+
     int_t iRv = xTRENAME(_filePath.c_str(), a_filePathNew.c_str());
     xTEST_DIFF(iRv, - 1);
 }
@@ -662,6 +668,8 @@ File::move(
 {
     xTEST(!_filePath.empty());
     xTEST(!a_dirPath.empty());
+
+    // TODO: [skynowa] close();
 
     rename(Path(a_dirPath).slashAppend() + Path(_filePath).fileName());
 }
