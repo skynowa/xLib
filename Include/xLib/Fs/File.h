@@ -166,7 +166,8 @@ public:
         ///< renaming
     void_t         move(std::ctstring_t &dirPath);
         ///< move
-    void_t         copy(std::ctstring_t &filePathTo, cbool_t isFailIfExists) /* throw(Exception) */;
+    void_t         copy(std::ctstring_t &filePathTo, cbool_t isFailIfExists) const
+                        /* throw(Exception) */;
         ///< copy
 
 xPUBLIC_STATIC:
