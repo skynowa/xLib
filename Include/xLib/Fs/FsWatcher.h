@@ -46,12 +46,14 @@ public:
 	};
 	xUSING_CONST(Event);
 
-                   // TODO: [skynowa] int events=wxFSW_EVENT_ALL
-                   // TODO: [skynowa] followSymLinks
-                   // TODO: [skynowa] followSymLinksOutOfScope
-                   // TODO: [skynowa] Dir/file events
-                   FsWatcher(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter);
-    virtual       ~FsWatcher();
+///@name ctors, dtor
+///@{
+			 FsWatcher(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter);
+	virtual ~FsWatcher();
+
+	xNO_DEFAULT_CONSTRUCT(FsWatcher)
+	xNO_COPY_ASSIGN(FsWatcher)
+///@}
 
     bool_t         openFiles(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);
     bool_t         openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &cmds);
@@ -61,8 +63,6 @@ public:
     virtual void_t onEvent(std::ctstring_t &fsName, cEvent event) = 0;
 
 private:
-    xNO_COPY_ASSIGN(FsWatcher)
-
     std::cvec_tstring_t _dirPathsDisabled;
     std::ctstring_t     _shellFilter;
     std::vec_tstring_t  _filePaths;
@@ -92,4 +92,9 @@ xPLATFORM_IMPL:
 };
 
 xNAMESPACE_END2(xl, fs)
+//-------------------------------------------------------------------------------------------------
+// TODO: [skynowa] int events=wxFSW_EVENT_ALL
+// TODO: [skynowa] followSymLinks
+// TODO: [skynowa] followSymLinksOutOfScope
+// TODO: [skynowa] Dir/file events
 //-------------------------------------------------------------------------------------------------

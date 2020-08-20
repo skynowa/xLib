@@ -15,12 +15,14 @@ class Config
     /// config file
 {
 public:
-                      Config();
-        ///< exe-file path
-    explicit          Config(std::ctstring_t &filePath);
-        ///< file path
-    virtual          ~Config();
-        ///< destructor
+///@name ctors, dtor
+///@{
+			  Config();
+	explicit  Config(std::ctstring_t &filePath);
+	virtual  ~Config();
+
+	xNO_COPY_ASSIGN(Config)
+///@}
 
 ///@name Creations
 ///@{
@@ -67,8 +69,6 @@ private:
 
     std::tstring_t     _filePath;   ///< file path to file
     std::map_tstring_t _config;     ///< std::map of keys and values
-
-    xNO_COPY_ASSIGN(Config)
 };
 
 xNAMESPACE_END2(xl, fs)

@@ -15,8 +15,14 @@ class Dir
     /// directory
 {
 public:
-    explicit          Dir(std::ctstring_t &dirPath);
-    virtual          ~Dir() = default;
+///@name ctors, dtor
+///@{
+	explicit  Dir(std::ctstring_t &dirPath);
+	virtual  ~Dir() = default;
+
+	xNO_DEFAULT_CONSTRUCT(Dir)
+	xNO_COPY_ASSIGN(Dir)
+///@}
 
     std::ctstring_t & dirPath() const;
         ///< directory path
@@ -61,8 +67,6 @@ public:
 
 private:
     std::ctstring_t   _dirPath;
-
-    xNO_COPY_ASSIGN(Dir)
 
 xPLATFORM_IMPL:
     bool_t            _isRoot_impl() const;

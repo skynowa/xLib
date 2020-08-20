@@ -25,8 +25,14 @@ public:
     };
     xUSING_CONST(Period);
 
-    explicit  Backup(cPeriod period);
-    virtual  ~Backup() = default;
+///@name ctors, dtor
+///@{
+	explicit  Backup(cPeriod period);
+	virtual  ~Backup() = default;
+
+	xNO_DEFAULT_CONSTRUCT(Backup)
+	xNO_COPY_ASSIGN(Backup)
+///@}
 
     void_t    fileExec(std::ctstring_t &filePath, std::ctstring_t &destDirPath,
                   std::tstring_t *destFilePath) const /* throw(Exception) */;
@@ -34,8 +40,6 @@ public:
 
 private:
     cPeriod   _period {};  ///< backup period
-
-    xNO_COPY_ASSIGN(Backup)
 };
 
 xNAMESPACE_END2(xl, fs)
