@@ -35,95 +35,95 @@ public:
     explicit       Path(std::ctstring_t &filePath);
     virtual       ~Path() = default;
 
-    std::ctstring_t & filePath() const xWARN_UNUSED_RV;
+    std::ctstring_t & filePath() const;
         ///< file path
 
     std::tstring_t volume() const;
         ///< get drive
-    std::tstring_t dir() const xWARN_UNUSED_RV;
+    std::tstring_t dir() const;
         ///< get dir path, without a trailing backslash '\'
-    std::tstring_t dirName() const xWARN_UNUSED_RV;
+    std::tstring_t dirName() const;
         ///< get dir name
-    std::tstring_t fileName() const xWARN_UNUSED_RV;
+    std::tstring_t fileName() const;
         ///< get name.extension
-    std::tstring_t fileBaseName() const xWARN_UNUSED_RV;
+    std::tstring_t fileBaseName() const;
         ///< get name without extension
-    std::tstring_t ext() const xWARN_UNUSED_RV;
+    std::tstring_t ext() const;
         ///< get extension
 
     std::tstring_t setVolume(std::ctstring_t &volumePath) const;
         ///< set volume
-    std::tstring_t setDir(std::ctstring_t &dirPath) xWARN_UNUSED_RV;
+    std::tstring_t setDir(std::ctstring_t &dirPath);
         ///< set dir
-    std::tstring_t setFileName(std::ctstring_t &fullName) xWARN_UNUSED_RV;
+    std::tstring_t setFileName(std::ctstring_t &fullName);
         ///< set full name
-    std::tstring_t setFileBaseName(std::ctstring_t &name) xWARN_UNUSED_RV;
+    std::tstring_t setFileBaseName(std::ctstring_t &name);
         ///< set name
-    std::tstring_t setExt(std::ctstring_t &ext) xWARN_UNUSED_RV;
+    std::tstring_t setExt(std::ctstring_t &ext);
         ///< set extension
 
-    std::tstring_t removeExt() xWARN_UNUSED_RV;
+    std::tstring_t removeExt();
         ///< remove extension
-    std::tstring_t removeExtIf(std::ctstring_t &ext) xWARN_UNUSED_RV;
+    std::tstring_t removeExtIf(std::ctstring_t &ext);
         ///< remove extension if it equal some string
 
-	bool_t         isCaseSensitive() const xWARN_UNUSED_RV;
+	bool_t         isCaseSensitive() const;
 		///< get case sensitivity
-    bool_t         isAbsolute() const xWARN_UNUSED_RV;
+    bool_t         isAbsolute() const;
         ///< is absolute
 
-    std::tstring_t toWin(cbool_t &isSlashAtEnd) const xWARN_UNUSED_RV;
+    std::tstring_t toWin(cbool_t &isSlashAtEnd) const;
         ///< convert slashes to Windows style
-    std::tstring_t toUnix(cbool_t &isSlashAtEnd) const xWARN_UNUSED_RV;
+    std::tstring_t toUnix(cbool_t &isSlashAtEnd) const;
         ///< convert slashes to Nix style
-    std::tstring_t toNative(cbool_t &isSlashAtEnd) const xWARN_UNUSED_RV;
+    std::tstring_t toNative(cbool_t &isSlashAtEnd) const;
         ///< convert slashes to native style
-    std::tstring_t absolute() const xWARN_UNUSED_RV;
+    std::tstring_t absolute() const;
         ///< get absolute path
-    std::tstring_t brief(std::csize_t maxSize) const xWARN_UNUSED_RV;
+    std::tstring_t brief(std::csize_t maxSize) const;
         ///< get short path
-    std::tstring_t brief(std::csize_t leftDirsNum, std::csize_t rightDirsNum) const xWARN_UNUSED_RV;
+    std::tstring_t brief(std::csize_t leftDirsNum, std::csize_t rightDirsNum) const;
         ///< get short path (hide dirs as dots)
-    std::tstring_t homeAsBrief() const xWARN_UNUSED_RV;
+    std::tstring_t homeAsBrief() const;
 		///< replace home dir with "~"
 
-    std::tstring_t slashAppend() const xWARN_UNUSED_RV;
+    std::tstring_t slashAppend() const;
         ///< append slash
-    std::tstring_t slashRemove() const xWARN_UNUSED_RV;
+    std::tstring_t slashRemove() const;
         ///< remove slash
 
 xPUBLIC_STATIC:
     static
-    std::tstring_t exe() xWARN_UNUSED_RV;
+    std::tstring_t exe();
         ///< get full path to exe
     static
-    std::tstring_t exeDir() xWARN_UNUSED_RV;
+    std::tstring_t exeDir();
         ///< get dir path to exe
     static
-    std::tstring_t dll() xWARN_UNUSED_RV;
+    std::tstring_t dll();
         ///< get full path to dll
     static
-    std::tstring_t fileExt(cFileExt fileExt) xWARN_UNUSED_RV;
+    std::tstring_t fileExt(cFileExt fileExt);
         ///< get standard extension
 
     static
     bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid = nullptr)
-                      xWARN_UNUSED_RV;
+                     ;
         ///< path validation
     static
     bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid = nullptr)
-                      xWARN_UNUSED_RV;
+                     ;
         ///< name validation
 
     static
-    std::tstring_t briefName(std::ctstring_t &fileName, std::csize_t maxSize) xWARN_UNUSED_RV;
+    std::tstring_t briefName(std::ctstring_t &fileName, std::csize_t maxSize);
         ///< get short name
 
     static
-    size_t         maxSize() xWARN_UNUSED_RV;
+    size_t         maxSize();
         ///< get max path length in symbols
     static
-    size_t         nameMaxSize() xWARN_UNUSED_RV;
+    size_t         nameMaxSize();
         ///< get max name length in symbols
 
 #if xENV_UNIX
@@ -131,7 +131,7 @@ xPUBLIC_STATIC:
     void_t         proc(std::ctstring_t &procPath, std::vec_tstring_t *fileLines);
         ///< get file lines from UNIX proc file
     static
-    std::tstring_t procValue(std::ctstring_t &procPath, std::ctstring_t &key) xWARN_UNUSED_RV;
+    std::tstring_t procValue(std::ctstring_t &procPath, std::ctstring_t &key);
         ///< get value by data from UNIX proc file
 #endif
 
@@ -143,23 +143,23 @@ private:
 xPLATFORM_IMPL:
     std::tstring_t _volume_impl() const;
     void_t         _toNative_impl(std::tstring_t *filePath) const;
-    bool_t         _isCaseSensitive_impl() const xWARN_UNUSED_RV;
-    bool_t         _isAbsolute_impl() const xWARN_UNUSED_RV;
-    std::tstring_t _absolute_impl() const xWARN_UNUSED_RV;
+    bool_t         _isCaseSensitive_impl() const;
+    bool_t         _isAbsolute_impl() const;
+    std::tstring_t _absolute_impl() const;
 
     static
-    std::tstring_t _exe_impl() xWARN_UNUSED_RV;
+    std::tstring_t _exe_impl();
     static
-    std::tstring_t _dll_impl() xWARN_UNUSED_RV;
+    std::tstring_t _dll_impl();
     static
-    std::tstring_t _fileExt_impl(cFileExt fileExt) xWARN_UNUSED_RV;
+    std::tstring_t _fileExt_impl(cFileExt fileExt);
     static
     bool_t         _isNameValid_impl(std::ctstring_t &fileName,
-                      std::tstring_t *fileNameValid = nullptr) xWARN_UNUSED_RV;
+                      std::tstring_t *fileNameValid = nullptr);
     static
-    size_t         _maxSize_impl() xWARN_UNUSED_RV;
+    size_t         _maxSize_impl();
     static
-    size_t         _nameMaxSize_impl() xWARN_UNUSED_RV;
+    size_t         _nameMaxSize_impl();
 };
 
 xNAMESPACE_END2(xl, fs)

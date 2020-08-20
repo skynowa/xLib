@@ -125,16 +125,16 @@ protected:
     std::tstringstream_t _os;
 
     static
-    std::ctstring_t & _bracketOpen() xWARN_UNUSED_RV;
+    std::ctstring_t & _bracketOpen();
         ///< open bracket
     static
-    std::ctstring_t & _bracketClose() xWARN_UNUSED_RV;
+    std::ctstring_t & _bracketClose();
         ///< close bracket
     static
-    std::ctstring_t & _delimiter() xWARN_UNUSED_RV;
+    std::ctstring_t & _delimiter();
         ///< _delimiter
     static
-    tchar_t           _unprintableChar() xWARN_UNUSED_RV;
+    tchar_t           _unprintableChar();
         ///< unprintable char
 
     template<typename T>
@@ -162,7 +162,7 @@ protected:
     void_t _printFloat(const T value);
 
     template<typename T>
-    std::tstring_t _unprintableChar(const T value) xWARN_UNUSED_RV;
+    std::tstring_t _unprintableChar(const T value);
 
 	// std::tuple
 	template<typename T, std::csize_t N>

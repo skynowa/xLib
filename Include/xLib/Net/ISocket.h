@@ -242,11 +242,11 @@ public:
 
     void_t         create(cAddressFamily family, cType type, cProtocol protocol);
         ///< creates a socket that is bound to a specific transport service provider
-    HandleSocket  &handle() xWARN_UNUSED_RV;
+    HandleSocket  &handle();
         ///< get handle
-    bool_t         isReadable() const xWARN_UNUSED_RV;
+    bool_t         isReadable() const;
         ///< checking for readability
-    bool_t         isWritable() const xWARN_UNUSED_RV;
+    bool_t         isWritable() const;
         ///< checking for writability
     void_t         assign(csocket_t &handle);
         ///< assign to another handle
@@ -261,21 +261,21 @@ public:
 
     // void_t *, std::tstring_t, std::ustring_t
 
-    ssize_t        send(cptr_ctchar_t buff, std::csize_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
+    ssize_t        send(cptr_ctchar_t buff, std::csize_t &buffSize, cint_t &flags);
         ///< send data
     void_t         sendAll(std::ctstring_t &buff, cint_t &flags);
         ///< send data by blocks
 
-    ssize_t        receive(tchar_t *buff,  std::csize_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
+    ssize_t        receive(tchar_t *buff,  std::csize_t &buffSize, cint_t &flags);
         ///< receive data
-    std::tstring_t recvAll(cint_t &flags) xWARN_UNUSED_RV;
+    std::tstring_t recvAll(cint_t &flags);
         ///< receive data
-    std::tstring_t recvAll(cint_t &flags, std::ctstring_t &delimiter) xWARN_UNUSED_RV;
+    std::tstring_t recvAll(cint_t &flags, std::ctstring_t &delimiter);
         ///< receive data to delimiter, includes it
 
-    int_t          sendBytes(char *buff, ssize_t &messageLength) xWARN_UNUSED_RV;
+    int_t          sendBytes(char *buff, ssize_t &messageLength);
         ///< send bytes
-    int_t          receiveBytes(char *buff, ssize_t &stillToReceive) xWARN_UNUSED_RV;
+    int_t          receiveBytes(char *buff, ssize_t &stillToReceive);
         ///< receive bytes
 
 
@@ -297,11 +297,11 @@ public:
     ////getsockopt
     static
     int_t          select(int_t nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
-                       timeval *timeout) xWARN_UNUSED_RV;
+                       timeval *timeout);
         ///< determines the status of one or more sockets, waiting if necessary,
         ///< to perform synchronous I/O
     static
-    int_t          nativeError() xWARN_UNUSED_RV;
+    int_t          nativeError();
         ///< get error status for the last operation that failed
 
 protected:
@@ -315,13 +315,13 @@ protected:
 xPLATFORM_IMPL:
     void_t         _close_impl();
     ssize_t        _send_impl(cptr_ctchar_t buff, std::csize_t &buffSize, cint_t &flags)
-                       xWARN_UNUSED_RV;
+                      ;
     ssize_t        _receive_impl(cptr_ctchar_t buff,  std::csize_t &buffSize, cint_t &flags)
-                       xWARN_UNUSED_RV;
+                      ;
     void_t         _peerName_impl(std::tstring_t *peerAddr, ushort_t *peerPort);
     void_t         _socketName_impl(std::tstring_t *socketAddr, ushort_t *socketPort);
     static
-    int_t          _nativeError_impl() xWARN_UNUSED_RV;
+    int_t          _nativeError_impl();
 };
 
 xNAMESPACE_END2(xl, net)

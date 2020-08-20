@@ -77,12 +77,12 @@ public:
     xUSING_CONST(Attribute);
 
     std::tstring_t setAttributes(cForeground foreground, cBackground background,
-                       cint_t attributes) const xWARN_UNUSED_RV;
+                       cint_t attributes) const;
         ///< set text color
-    std::tstring_t setAttributesDef() const xWARN_UNUSED_RV;
+    std::tstring_t setAttributesDef() const;
         ///< reset text color to default
     std::tstring_t setAttributesText(cForeground foreground, cBackground background,
-                       cint_t attributes, std::ctstring_t &str) const xWARN_UNUSED_RV;
+                       cint_t attributes, std::ctstring_t &str) const;
         ///< set text color, text, reset text color to default
 
     /*******************************************************************************
@@ -90,7 +90,7 @@ public:
     *
     *******************************************************************************/
 
-    std::tstring_t read() const xWARN_UNUSED_RV;
+    std::tstring_t read() const;
         ///< read
     void_t         write(std::ctstring_t &str) const;
         ///< write
@@ -99,10 +99,10 @@ public:
     void_t         writeErrLine(std::ctstring_t &str) const;
         ///< write error message
     void_t         write(cForeground foreground, cBackground background, cint_t attributes,
-                       std::ctstring_t &str) const xWARN_UNUSED_RV;
+                       std::ctstring_t &str) const;
         ///< write with colors
     void_t         writeLine(cForeground foreground, cBackground background, cint_t attributes,
-                       std::ctstring_t &str) const xWARN_UNUSED_RV;
+                       std::ctstring_t &str) const;
         ///< write with colors
     void_t         writeNl() const;
     	///< write new line (NL)
@@ -126,7 +126,7 @@ public:
     xUSING_CONST(ModalResult);
 
     ModalResult    msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type) const
-                       xWARN_UNUSED_RV;
+                      ;
         ///< show console message dialog
     void_t         prompt(std::ctstring_t &prompt, cbool_t &isVisible, std::tstring_t *answer)
                        const;
@@ -135,7 +135,7 @@ public:
     void_t         setTitle(std::ctstring_t &title) const;
         ///< set title string
 #if xENV_WIN
-    std::tstring_t title() const xWARN_UNUSED_RV;
+    std::tstring_t title() const;
         ///< get title string
     void_t         centerWindow() const;
         ///< align to center
@@ -153,9 +153,9 @@ private:
     HandleNativeInvalid _stdOut;            ///< standard output handle
     WORD                _attributesDef {};  ///< default console attributes
 
-    HWND  _wndHandle() xWARN_UNUSED_RV;
+    HWND  _wndHandle();
         ///< get console window handle
-    HMENU _menuHandle(cbool_t &isRevert) xWARN_UNUSED_RV;
+    HMENU _menuHandle(cbool_t &isRevert);
         ///< get console menu handle
 #endif
 
@@ -185,9 +185,9 @@ xPLATFORM_IMPL:
     void_t         _construct_impl();
     void_t         _destruct_impl();
     std::tstring_t _setAttributes_impl(cForeground foreground, cBackground background,
-    					cint_t attributes) const xWARN_UNUSED_RV;
-    std::tstring_t _setAttributesDef_impl() const xWARN_UNUSED_RV;
-    std::tstring_t _read_impl() const xWARN_UNUSED_RV;
+    					cint_t attributes) const;
+    std::tstring_t _setAttributesDef_impl() const;
+    std::tstring_t _read_impl() const;
     void_t         _write_impl(std::ctstring_t &str) const;
     void_t         _clear_impl() const;
     void_t         _setTitle_impl(std::ctstring_t &title) const;

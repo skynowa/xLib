@@ -15,17 +15,17 @@ class Environment
 {
 public:
     static
-    bool_t         isExists(std::ctstring_t &varName) xWARN_UNUSED_RV;
+    bool_t         isExists(std::ctstring_t &varName);
         ///< check for existence
     static
-    bool_t         isVarValid(std::ctstring_t &varName) xWARN_UNUSED_RV;
+    bool_t         isVarValid(std::ctstring_t &varName);
         ///< is valid environment variable name
     static
-    bool_t         isValueValid(std::ctstring_t &varValue) xWARN_UNUSED_RV;
+    bool_t         isValueValid(std::ctstring_t &varValue);
         ///< is valid environment variable value
 
     static
-    std::tstring_t var(std::ctstring_t &varName) xWARN_UNUSED_RV;
+    std::tstring_t var(std::ctstring_t &varName);
         ///< get value by name
     static
     void_t         setVar(std::ctstring_t &varName, std::ctstring_t &value);
@@ -41,7 +41,7 @@ public:
     void_t         values(std::vec_tstring_t *values);
         ///< get all values
     static
-    std::tstring_t expandStrings(std::ctstring_t &var) xWARN_UNUSED_RV;
+    std::tstring_t expandStrings(std::ctstring_t &var);
         ///< expands strings by separator "%"
 
 private:
@@ -50,9 +50,9 @@ private:
 
 xPLATFORM_IMPL:
     static
-    bool_t         _isExists_impl(std::ctstring_t &varName) xWARN_UNUSED_RV;
+    bool_t         _isExists_impl(std::ctstring_t &varName);
     static
-    std::tstring_t _var_impl(std::ctstring_t &varName) xWARN_UNUSED_RV;
+    std::tstring_t _var_impl(std::ctstring_t &varName);
     static
     void_t         _setVar_impl(std::ctstring_t &varName, std::ctstring_t &value);
     static
@@ -60,7 +60,7 @@ xPLATFORM_IMPL:
     static
     void_t         _values_impl(std::vec_tstring_t *values);
     static
-    std::tstring_t _expandStrings_impl(std::ctstring_t &var) xWARN_UNUSED_RV;
+    std::tstring_t _expandStrings_impl(std::ctstring_t &var);
 };
 
 xNAMESPACE_END2(xl, system)

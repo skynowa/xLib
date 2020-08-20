@@ -17,12 +17,12 @@ public:
                    Crc32() = default;
     virtual       ~Crc32() = default;
 
-    ulong_t        calc(uchar_t *buff, culong_t &buffSize) xWARN_UNUSED_RV;
+    ulong_t        calc(uchar_t *buff, culong_t &buffSize);
         ///< calculate
-    ulong_t        calcFile(std::ctstring_t &filePath) xWARN_UNUSED_RV;
+    ulong_t        calcFile(std::ctstring_t &filePath);
         ///< calculate
 
-    std::tstring_t formatHex() const xWARN_UNUSED_RV;
+    std::tstring_t formatHex() const;
         ///< format Crc32 like "0AADDEA0"
 
 private:

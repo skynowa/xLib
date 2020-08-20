@@ -24,7 +24,7 @@ public:
                    Guid() = default;
     virtual       ~Guid() = default;
 
-    std::tstring_t create(cType type) const xWARN_UNUSED_RV;
+    std::tstring_t create(cType type) const;
         ///< generate GUID
 
     xNO_COPY_ASSIGN(Guid)

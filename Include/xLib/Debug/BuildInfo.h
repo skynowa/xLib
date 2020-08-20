@@ -17,41 +17,41 @@ public:
                    BuildInfo() = default;
     virtual       ~BuildInfo() = default;
 
-    bool_t         isRelease() const xWARN_UNUSED_RV;
+    bool_t         isRelease() const;
         ///< is debug build (is NDEBUG macros is don't set)
-    std::tstring_t datetime() const xWARN_UNUSED_RV;
+    std::tstring_t datetime() const;
         ///< date time
-    std::tstring_t langStandart() const xWARN_UNUSED_RV;
+    std::tstring_t langStandart() const;
         ///< C/C++ language standart
-    std::tstring_t osEnvironment() const xWARN_UNUSED_RV;
+    std::tstring_t osEnvironment() const;
         ///< OS environment
-    std::tstring_t os() const xWARN_UNUSED_RV;
+    std::tstring_t os() const;
         ///< OS name
-    std::tstring_t arch() const xWARN_UNUSED_RV;
+    std::tstring_t arch() const;
         ///< architecture
-    std::tstring_t bitsArch() const xWARN_UNUSED_RV;
+    std::tstring_t bitsArch() const;
         ///< bits architecture
-    std::tstring_t compiler() const xWARN_UNUSED_RV;
+    std::tstring_t compiler() const;
         ///< compilier
-    std::tstring_t compilerFlags() const xWARN_UNUSED_RV;
+    std::tstring_t compilerFlags() const;
         ///< compilier flags
-    std::tstring_t libs() const xWARN_UNUSED_RV;
+    std::tstring_t libs() const;
         ///< linked libraries
-    bool_t         isUnicodeEncoding() const xWARN_UNUSED_RV;
+    bool_t         isUnicodeEncoding() const;
         ///< is Unicode character-encoding
-    std::tstring_t stdLibC() const xWARN_UNUSED_RV;
+    std::tstring_t stdLibC() const;
         ///< C standart library
-    std::tstring_t stdLibCpp() const xWARN_UNUSED_RV;
+    std::tstring_t stdLibCpp() const;
         ///< C++ standart library
-    std::tstring_t qt() const xWARN_UNUSED_RV;
+    std::tstring_t qt() const;
         ///< Qt library
-    std::tstring_t xlibVersion() const xWARN_UNUSED_RV;
+    std::tstring_t xlibVersion() const;
         ///< xLib library
-    std::tstring_t xlibBinaryType() const xWARN_UNUSED_RV;
+    std::tstring_t xlibBinaryType() const;
         ///< binary type
-    std::tstring_t xlibBuildType() const xWARN_UNUSED_RV;
+    std::tstring_t xlibBuildType() const;
         ///< build type
-    std::tstring_t cmake() const xWARN_UNUSED_RV;
+    std::tstring_t cmake() const;
         ///< cmake
 
 private:

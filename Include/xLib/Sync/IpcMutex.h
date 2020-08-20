@@ -24,7 +24,7 @@ public:
                      IpcMutex() = default;
     virtual         ~IpcMutex() = default;
 
-    const handle_t & handle() const xWARN_UNUSED_RV;
+    const handle_t & handle() const;
         ///< get handle
     void_t           create(std::ctstring_t &name);
         ///< create

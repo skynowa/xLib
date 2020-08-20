@@ -119,21 +119,21 @@ public:
         ///< open
     void_t         reopen(std::ctstring_t &filePath, cOpenMode mode);
         ///< reopen with different file or mode
-    HandleStdFile &get() xWARN_UNUSED_RV;
+    HandleStdFile &get();
         ///< get handle
-    int_t          getNative() const xWARN_UNUSED_RV;
+    int_t          getNative() const;
         ///< get native file descriptor associated with a stream
-    std::tstring_t path() const xWARN_UNUSED_RV;
+    std::tstring_t path() const;
         ///< get file path
     void_t         attach(const HandleStdFile &handle, std::ctstring_t &filePath);
         ///< attach to stream
-    HandleStdFile &detach() xWARN_UNUSED_RV;
+    HandleStdFile &detach();
         ///< detach from stream
 
     // read, write
-    size_t         read(void_t *buff, std::csize_t count) const xWARN_UNUSED_RV;
+    size_t         read(void_t *buff, std::csize_t count) const;
         ///< read block of data
-    size_t         write(cptr_cvoid_t, std::csize_t count) const xWARN_UNUSED_RV;
+    size_t         write(cptr_cvoid_t, std::csize_t count) const;
         ///< write block of data
     void_t         read(std::ustring_t *buff) const;
         ///< read to std::ustring_t
@@ -141,15 +141,15 @@ public:
         ///< write from std::ustring_t
     void_t         read(std::tstring_t *buff) const;
         ///< read to std::tstring_t
-    int_t          write(cptr_ctchar_t format, ...) const xWARN_UNUSED_RV;
+    int_t          write(cptr_ctchar_t format, ...) const;
         ///< write formatted output to stream
-    int_t          writeV(cptr_ctchar_t format, va_list arg) const xWARN_UNUSED_RV;
+    int_t          writeV(cptr_ctchar_t format, va_list arg) const;
         ///< write formatted variable argument list to stream
     void_t         readLine(std::tstring_t *str, std::csize_t maxCount) const;
         ///< read string to newline or to the end of file
     void_t         writeLine(std::ctstring_t &str) const;
         ///< write string and end of line
-    tchar_t        readChar() const xWARN_UNUSED_RV;
+    tchar_t        readChar() const;
         ///< get character
     void_t         writeChar(ctchar_t &ch) const;
         ///< write character
@@ -165,22 +165,22 @@ public:
         ///< locks or unlocks bytes of a file
     void_t         setPosition(clong_t &offset, cPointerPosition &pos) const;
         ///< set stream position indicator
-    long_t         position() const xWARN_UNUSED_RV;
+    long_t         position() const;
         ///< get current position in stream
     void_t         setVBuff(char *buff, cBufferingMode mode, std::csize_t size) const;
         ///< change stream buffering
 
-    longlong_t     size() const xWARN_UNUSED_RV;
+    longlong_t     size() const;
         ///< get file size
     void_t         resize(clonglong_t &size) const;
         ///< changes the file size
 
     // error handling
-    bool_t         isEmpty() const xWARN_UNUSED_RV;
+    bool_t         isEmpty() const;
         ///< is empty
-    bool_t         isEof() const xWARN_UNUSED_RV;
+    bool_t         isEof() const;
         ///< check end of file indicator
-    bool_t         isError() const xWARN_UNUSED_RV;
+    bool_t         isError() const;
         ///< check error indicator
     void_t         errorClear() const;
         ///< clear error indicators
@@ -193,13 +193,13 @@ public:
 
 xPUBLIC_STATIC:
     static
-    bool_t         isFile(std::ctstring_t &filePath) xWARN_UNUSED_RV;
+    bool_t         isFile(std::ctstring_t &filePath);
         ///< check for file
     static
-    bool_t         isExists(std::ctstring_t &filePath) xWARN_UNUSED_RV;
+    bool_t         isExists(std::ctstring_t &filePath);
         ///< check for existence
     static
-    std::tstring_t isExistsEx(std::ctstring_t &filePath) xWARN_UNUSED_RV;
+    std::tstring_t isExistsEx(std::ctstring_t &filePath);
         ///< check for existence, if exists - generate new file name (file path), which not exists
     static
     void_t         access(std::ctstring_t &filePath, cAccessMode mode);
@@ -236,10 +236,10 @@ xPUBLIC_STATIC:
 
     // info
     static
-    longlong_t     size(std::ctstring_t &filePath) xWARN_UNUSED_RV;
+    longlong_t     size(std::ctstring_t &filePath);
         ///< get size
     static
-    ulonglong_t    lines(std::ctstring_t &filePath) xWARN_UNUSED_RV;
+    ulonglong_t    lines(std::ctstring_t &filePath);
         ///< get number of lines
     static
     void_t         time(std::ctstring_t &filePath, time_t *create, time_t *access, time_t *modified);
@@ -288,13 +288,13 @@ private:
     cbool_t        _isUseBuffering {}; ///< is use buffering
 
     static
-    int_t          _nativeHandle(std::FILE *file) xWARN_UNUSED_RV;
+    int_t          _nativeHandle(std::FILE *file);
         ///< gets the file descriptor associated with a stream
     static
-    std::FILE*     _stdHandle(int_t fileHandle, cOpenMode mode) xWARN_UNUSED_RV;
+    std::FILE*     _stdHandle(int_t fileHandle, cOpenMode mode);
         ///< get stream by handle
     static
-    std::tstring_t _openMode(cOpenMode mode) xWARN_UNUSED_RV;
+    std::tstring_t _openMode(cOpenMode mode);
         ///< get open mode as string, by default use "r"
 
     xNO_COPY_ASSIGN(File)
@@ -303,7 +303,7 @@ private:
 
 xPLATFORM_IMPL:
     static
-    bool_t _isFile_impl(const FileType &type) xWARN_UNUSED_RV;
+    bool_t _isFile_impl(const FileType &type);
     static
     void_t _time_impl(std::ctstring_t &filePath, time_t *create, time_t *access, time_t *modified);
     static

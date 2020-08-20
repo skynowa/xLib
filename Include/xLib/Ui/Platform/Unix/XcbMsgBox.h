@@ -42,7 +42,7 @@ public:
                    XcbMsgBox();
     virtual       ~XcbMsgBox();
 
-    ModalResult    show(std::ctstring_t &text, std::ctstring_t &title, cType type) xWARN_UNUSED_RV;
+    ModalResult    show(std::ctstring_t &text, std::ctstring_t &title, cType type);
 		///< message box with custom text, custom title, custom type
 
 private:
@@ -64,7 +64,7 @@ private:
 		///< execute
 
 private:
-    xcb_gcontext_t _fontGContext(std::ctstring_t &fontName) xWARN_UNUSED_RV;
+    xcb_gcontext_t _fontGContext(std::ctstring_t &fontName);
 		///< get font gcontext
     void_t         _resize(const uint32_t &width, const uint32_t &height);
         ///< resize

@@ -23,13 +23,13 @@ public:
                    Dll() = default;
     virtual       ~Dll() = default;
 
-    HandleDll     &get() xWARN_UNUSED_RV;
+    HandleDll     &get();
         ///< get handle
     void_t         load(std::ctstring_t &dllPath);
         ///< load
-    bool_t         isProcExists(std::ctstring_t &procName) const xWARN_UNUSED_RV;
+    bool_t         isProcExists(std::ctstring_t &procName) const;
         ///< is function exists
-    proc_address_t procAddress(std::ctstring_t &procName) const xWARN_UNUSED_RV;
+    proc_address_t procAddress(std::ctstring_t &procName) const;
         ///< get address of an exported function or variable
     void_t         close();
         ///< close
@@ -42,9 +42,9 @@ private:
 xPLATFORM_IMPL:
     void_t         _load_impl(std::ctstring_t &dllPath);
         ///< load
-    bool_t         _isProcExists_impl(std::ctstring_t &procName) const xWARN_UNUSED_RV;
+    bool_t         _isProcExists_impl(std::ctstring_t &procName) const;
         ///< is function exists
-    proc_address_t _procAddress_impl(std::ctstring_t &procName) const xWARN_UNUSED_RV;
+    proc_address_t _procAddress_impl(std::ctstring_t &procName) const;
         ///< get address of an exported function or variable
 };
 

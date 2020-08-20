@@ -17,7 +17,7 @@ public:
                   Locale() = default;
    virtual       ~Locale() = default;
 
-   std::tstring_t current() const xWARN_UNUSED_RV;
+   std::tstring_t current() const;
           ///< get current
    void_t         setCurrent(std::ctstring_t &locale) const;
              ///< set current
@@ -28,7 +28,7 @@ private:
     xNO_COPY_ASSIGN(Locale)
 
 xPLATFORM_IMPL:
-    std::tstring_t _current_impl() const xWARN_UNUSED_RV;
+    std::tstring_t _current_impl() const;
 };
 
 xNAMESPACE_END2(xl, core)

@@ -42,7 +42,7 @@ public:
         ///< clear key
 
     static
-    size_t   keySizeMax() xWARN_UNUSED_RV;
+    size_t   keySizeMax();
         ///< get maximum key size
 
     // cfb64

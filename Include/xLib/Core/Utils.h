@@ -31,7 +31,7 @@ public:
 
     template<typename T, std::csize_t arraySize>
     static
-    constexpr size_t arraySizeT(const T (&)[arraySize]) xWARN_UNUSED_RV;
+    constexpr size_t arraySizeT(const T (&)[arraySize]);
         ///< get array size
 
     static
@@ -55,12 +55,12 @@ public:
 
     template<typename T>
     static
-    const T & maxT(const T &value1 , const T &value2) xWARN_UNUSED_RV;
+    const T & maxT(const T &value1 , const T &value2);
         ///< get max value
 
     template<typename T>
     static
-    const T & minT(const T &value1 , const T &value2) xWARN_UNUSED_RV;
+    const T & minT(const T &value1 , const T &value2);
         ///< get min value
 
     template<typename T>
@@ -70,28 +70,28 @@ public:
 
     template<typename ToT, class FromT>
     static
-    ToT       reinterpretCastT(const FromT &ptr) xWARN_UNUSED_RV;
+    ToT       reinterpretCastT(const FromT &ptr);
         ///< allows any pointer to be converted into any other pointer type
 
     template<typename T>
     static
-    T         roundIntT(cdouble_t &value) xWARN_UNUSED_RV;
+    T         roundIntT(cdouble_t &value);
         ///< round double value to long_t
 
     template<typename T>
     static
-    T         intSafeDiv(const T &value1, const T &value2) xWARN_UNUSED_RV;
+    T         intSafeDiv(const T &value1, const T &value2);
         ///< safe division
 
     template<typename T>
     static
-    T         enumIncT(const T &value) xWARN_UNUSED_RV;
+    T         enumIncT(const T &value);
         ///< increment enumerator
 
     // TODO: [skynowa] enumIncT - depreciated
     template<typename T>
     static
-    T         enumDecT(const T &value) xWARN_UNUSED_RV;
+    T         enumDecT(const T &value);
         ///< decrement enumerator
 
 private:

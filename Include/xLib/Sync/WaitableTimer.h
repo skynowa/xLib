@@ -20,7 +20,7 @@ public:
              WaitableTimer() = default;
     virtual ~WaitableTimer() = default;
 
-    HANDLE   handle() const xWARN_UNUSED_RV;
+    HANDLE   handle() const;
     void_t   create(cbool_t &isManualReset, std::ctstring_t &name/* = nullptr*/,
                  const LPSECURITY_ATTRIBUTES attrs/* = nullptr*/);
     void_t   open(std::ctstring_t &name, culong_t &access = TIMER_ALL_ACCESS,

@@ -17,11 +17,11 @@ public:
              ThreadStorage();
     virtual ~ThreadStorage();
 
-    bool_t   isValid() const xWARN_UNUSED_RV;
+    bool_t   isValid() const;
         ///< is valid
-    bool_t   isSet() const xWARN_UNUSED_RV;
+    bool_t   isSet() const;
         ///< is set value
-    void_t  *value() const xWARN_UNUSED_RV;
+    void_t  *value() const;
         ///< get the value
     void_t   setValue(void_t **value) const;
         ///< set value
@@ -46,9 +46,9 @@ xPLATFORM_IMPL:
     index_t  _indexInvalid_impl() const;
     void_t   _construct_impl();
     void_t   _destruct_impl();
-    bool_t   _isValid_impl() const xWARN_UNUSED_RV;
-    bool_t   _isSet_impl() const xWARN_UNUSED_RV;
-    void_t  *_value_impl() const xWARN_UNUSED_RV;
+    bool_t   _isValid_impl() const;
+    bool_t   _isSet_impl() const;
+    void_t  *_value_impl() const;
     void_t   _setValue_impl(void_t **value) const;
 };
 

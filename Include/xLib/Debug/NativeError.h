@@ -15,10 +15,10 @@ class NativeError
 {
 public:
     static
-    bool_t         isSuccess() xWARN_UNUSED_RV;
+    bool_t         isSuccess();
         ///< is error code success
     static
-    ulong_t        get() xWARN_UNUSED_RV;
+    ulong_t        get();
         ///< get the calling thread's last-error code value
     static
     void_t         set(culong_t &code);
@@ -27,15 +27,15 @@ public:
     void_t         reset();
         ///< set last error code to success value (0)
     static
-    std::tstring_t format() xWARN_UNUSED_RV;
+    std::tstring_t format();
         ///< get as string
     static
-    std::tstring_t format(culong_t &code) xWARN_UNUSED_RV;
+    std::tstring_t format(culong_t &code);
         ///< get last error as string
 
 private:
     static
-    ulong_t        _nativeCodeSuccess() xWARN_UNUSED_RV;
+    ulong_t        _nativeCodeSuccess();
         ///< native success code
 
     xNO_DEFAULT_CONSTRUCT(NativeError)
@@ -43,15 +43,15 @@ private:
 
 xPLATFORM_IMPL:
     static
-    bool_t         _isSuccess_impl() xWARN_UNUSED_RV;
+    bool_t         _isSuccess_impl();
     static
-    ulong_t        _get_impl() xWARN_UNUSED_RV;
+    ulong_t        _get_impl();
     static
     void_t         _set_impl(culong_t &code);
     static
-    std::tstring_t _format_impl(culong_t &a_code) xWARN_UNUSED_RV;
+    std::tstring_t _format_impl(culong_t &a_code);
     static
-    ulong_t        _nativeCodeSuccess_impl() xWARN_UNUSED_RV;
+    ulong_t        _nativeCodeSuccess_impl();
 };
 
 xNAMESPACE_END2(xl, debug)

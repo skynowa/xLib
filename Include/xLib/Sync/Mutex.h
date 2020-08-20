@@ -23,13 +23,13 @@ public:
                      Mutex() = default;
     virtual         ~Mutex();
 
-    const handle_t & handle() const xWARN_UNUSED_RV;
+    const handle_t & handle() const;
         ///< get handle
     void_t           create();
         ///< create
     void_t           lock();
         ///< lock
-    bool_t           tryLock() xWARN_UNUSED_RV;
+    bool_t           tryLock();
         ///< try lock
     void_t           unlock();
         ///< unlock
@@ -43,7 +43,7 @@ xPLATFORM_IMPL:
     void_t           _destruc_impl();
     void_t           _create_impl();
     void_t           _lock_impl();
-    bool_t           _tryLock_impl() xWARN_UNUSED_RV;
+    bool_t           _tryLock_impl();
     void_t           _unlock_impl();
 
 };

@@ -22,12 +22,12 @@ public:
                 MySqlRecordset(MySqlConnection &connection, cbool_t isUseResult);
     virtual    ~MySqlRecordset() = default;
 
-    HandleMySqlResult &get() xWARN_UNUSED_RV;
+    HandleMySqlResult &get();
         ///< get handle
 
-    uint_t      fieldsNum() const xWARN_UNUSED_RV;
+    uint_t      fieldsNum() const;
         ///< number of columns in a result set
-    std::size_t rowsNum() const xWARN_UNUSED_RV;
+    std::size_t rowsNum() const;
         ///< number of rows in the result set
     void_t      fetchField(MYSQL_FIELD *field) const;
         ///< The MYSQL_FIELD structure for the current column

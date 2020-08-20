@@ -50,18 +50,18 @@ public:
     void_t         groupKill(culong_t &timeoutMsec);
     void_t         groupWait(culong_t &timeoutMsec);
 
-    std::size_t    maxTasks() const xWARN_UNUSED_RV;
+    std::size_t    maxTasks() const;
     void_t         setMaxTasks(std::csize_t &num);
 
-    std::size_t    numTasks() const xWARN_UNUSED_RV;
+    std::size_t    numTasks() const;
     void_t         setNumTasks(std::csize_t &num);
 
     bool_t         isEmpty() const;
     bool_t         isFull() const;
-    std::size_t    size() const xWARN_UNUSED_RV;
+    std::size_t    size() const;
 
 protected:
-    virtual uint_t onRun(void_t *param) override xWARN_UNUSED_RV;
+    virtual uint_t onRun(void_t *param) override;
 
 private:
     uint_t         _stackSize {};

@@ -42,32 +42,32 @@ public:
     Handle &    operator = (const Handle &handle);
 
     static
-    T           null() xWARN_UNUSED_RV;
+    T           null();
         ///< get
     static
-    std::size_t openMax() xWARN_UNUSED_RV;
+    std::size_t openMax();
 		///< maximum open handles
 
-    T           get() const xWARN_UNUSED_RV;
+    T           get() const;
         ///< get
     void_t      set(const T &handle);
         ///< set
-    T           clone() const xWARN_UNUSED_RV;
+    T           clone() const;
         ///< duplicate handle
     void_t      setCloseOnExec(cbool_t flag);
 		///< duplicate file descriptors from sub-processes
 
-    bool_t      isValid() const xWARN_UNUSED_RV;
+    bool_t      isValid() const;
         ///< is valid
     void_t      attach(const T &handle);
         ///< attach
-    T           detach() xWARN_UNUSED_RV;
+    T           detach();
         ///< detach
     void_t      close();
         ///< close
 
 #if xENV_WIN
-    ulong_t     info() const xWARN_UNUSED_RV;
+    ulong_t     info() const;
         ///< get certain properties of an object handle
     void_t      setInfo(culong_t &mask, culong_t &flags);
         ///< set information

@@ -18,9 +18,9 @@ public:
     virtual                ~Condition();
 
 #if !xENV_WIN
-    const pthread_mutex_t & mutex() const xWARN_UNUSED_RV;
+    const pthread_mutex_t & mutex() const;
         ///< get mutex handle
-    const pthread_cond_t &  handle() const xWARN_UNUSED_RV;
+    const pthread_cond_t &  handle() const;
         ///< get handle
 #endif
 
