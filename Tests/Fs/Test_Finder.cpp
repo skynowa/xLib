@@ -57,7 +57,9 @@ Test_Finder::unit()
                                Const::slash() + xT("File_4.log") );
 
             for (const auto &it_file : files) {
-                File::clear(it_file);
+				File file;
+				file.create(it_file, File::OpenMode::Write);
+				file.clear();
             }
 
             xTEST_EQ(size_t(12), files.size());
@@ -96,7 +98,7 @@ Test_Finder::unit()
                 // set filter for files
                 xCHECK_DO(static_cast<int_t>(FileType::Type::Directory) & finder.fileTypes(),
                 	continue);
-                xTEST_EQ(File::isExists( finder.entryPath() ), true);
+                xTEST(FileInfo(finder.entryPath()).isExists());
 
                 entries.push_back(finder.entryName());
             }

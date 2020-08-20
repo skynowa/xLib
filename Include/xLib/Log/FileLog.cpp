@@ -16,6 +16,7 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/File.h>
+#include <xLib/Fs/FileInfo.h>
 #include <xLib/Sync/AutoIpcMutex.h>
 
 
@@ -135,13 +136,17 @@ FileLog::write(
 void_t
 FileLog::clear() const
 {
-    File::clear( filePath() );
+    File file;
+    file.create(filePath(), File::OpenMode::Write);
+    file.clear();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 FileLog::remove() const
 {
-    File::remove( filePath() );
+    File file;
+    file.create(filePath(), File::OpenMode::Write);
+    file.remove();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -155,13 +160,13 @@ FileLog::remove() const
 void_t
 FileLog::_removeIfFull() const
 {
-    bool_t bRv = File::isExists( filePath() );
+    bool_t bRv = FileInfo( filePath() ).isExists();
     xCHECK_DO(!bRv, return);
 
     // remove log, if full
-    xCHECK_DO(File::size( filePath() ) < static_cast<longlong_t>(_fileSizeMaxBytes), return);
+    xCHECK_DO(FileInfo(filePath()).size() < static_cast<longlong_t>(_fileSizeMaxBytes), return);
 
-    File::remove( filePath() );
+    remove();
 }
 //-------------------------------------------------------------------------------------------------
 

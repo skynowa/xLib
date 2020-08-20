@@ -20,7 +20,11 @@ Test_Profiler::unit()
     {
         std::ctstring_t filePath = getData().tempDirPath + Const::slash() + xT("ProfilerLog.log");
 
-        File::clear(filePath);
+		{
+			File file;
+			file.create(filePath, File::OpenMode::Write);
+			file.clear();
+		}
 
         Profiler profiler;
         profiler.setLogPath(filePath);

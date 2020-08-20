@@ -11,6 +11,7 @@
 #include <xLib/Core/FormatC.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/File.h>
+#include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dll.h>
 #include <xLib/Fs/Finder.h>
 #include <xLib/Sync/Thread.h>
@@ -69,7 +70,7 @@ Process::create(
     xTEST_NA(out_stdOut);
     xTEST_NA(out_stdError);
 
-	xCHECK_DO(!File::isExists(a_filePath),
+	xCHECK_DO(!FileInfo(a_filePath).isExists(),
 		Cout() << xTRACE_VAR(a_filePath) << xT(" not exists"); return);
 	xCHECK_DO(!FileType(a_filePath).isExecutable(),
 		Cout() << xTRACE_VAR(a_filePath) << xT(" not executable"); return);

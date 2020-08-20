@@ -18,14 +18,15 @@ Test_FileTemp::unit()
 {
     xTEST_CASE("all")
     {
-        FileTemp fileTemp(true);
-        File     fileJobber;
+        File fileJobber(false);
 
-        fileTemp.create(Path::exe(), getData().tempDirPath + Const::slash() + xT("Temp"), &fileJobber);
-        xTEST_EQ(fileJobber.isEmpty(), true);
+        FileTemp fileTemp(true);
+        fileTemp.create(Path::exe(), getData().tempDirPath, &fileJobber);
+        xTEST(FileInfo(fileJobber).isEmpty());
 
         fileJobber.writeLine(xT("qwertyuiop"));
-        xTEST_EQ(fileJobber.isEmpty(), false);
+        fileJobber.flush();
+        xTEST(!FileInfo(fileJobber).isEmpty());
 
         fileJobber.clear();
         fileJobber.close();

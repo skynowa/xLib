@@ -45,7 +45,6 @@ FileType::_clear_impl() const
     xNA
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 bool_t
 FileType::_isExecutable_impl() const
 {

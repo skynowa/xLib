@@ -21,13 +21,23 @@ Test_FileType::unit()
 
     // prepare
     {
-        File::remove(filePath);
+        // cleanup
+		{
+			FileInfo info(filePath);
+			if ( info.isExists() ) {
+				info.chmod(FileInfo::PermissionMode::Write);
+			}
 
-        File F;
-        F.create(filePath, File::OpenMode::CreateReadWrite);
-        F.close();
+			File file;
+			file.create(filePath, File::OpenMode::Write);
+			file.remove();
+		}
 
-        m_bRv = File::isExists(filePath);
+        File file;
+        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.close();
+
+        m_bRv = FileInfo(filePath).isExists();
         xTEST(m_bRv);
     }
 
@@ -145,6 +155,15 @@ Test_FileType::unit()
         xTEST_EQ((ulong_t)FileType::Type::RegularFile, (ulong_t)faRv);
     }
 
+    xTEST_CASE("isFile")
+    {
+        m_bRv = FileType(filePath).isFile();
+        xTEST(m_bRv);
+
+        m_bRv = FileType(getData().tempDirPath).isFile();
+        xTEST(!m_bRv);
+    }
+
 	xTEST_CASE("isExecutable")
 	{
 		const Data2<std::tstring_t, bool_t> datas[]
@@ -164,6 +183,15 @@ Test_FileType::unit()
 			m_bRv = FileType(it_data.test).isExecutable();
 			xTEST_EQ(m_bRv, it_data.expect);
 		}
+	}
+
+	// cleanup
+	{
+		FileInfo(filePath).chmod(FileInfo::PermissionMode::Write);
+
+		File file;
+		file.create(filePath, File::OpenMode::Write);
+		file.remove();
 	}
 
     return true;

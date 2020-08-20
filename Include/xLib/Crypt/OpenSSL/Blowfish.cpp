@@ -10,6 +10,7 @@
 
 #include <xLib/Core/Utils.h>
 #include <xLib/Fs/File.h>
+#include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Crypt/Crc32.h>
 #include <xLib/Debug/NativeError.h>
@@ -76,13 +77,13 @@ Blowfish::setFileKey(
     std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
 
     std::ustring_t fileKey;
 
     File file;
     file.create(a_filePath, File::OpenMode::BinRead);
-    xTEST_EQ(file.isEmpty(), false);
+    xTEST(!FileInfo(file).isEmpty());
     xTEST_LESS_EQ(file.size(), static_cast<longlong_t>( keySizeMax() ));
 
     file.read(&fileKey);

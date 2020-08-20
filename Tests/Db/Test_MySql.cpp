@@ -135,8 +135,6 @@ Test_MySql::unit()
         mysqlConn.reconnect();
     }
 
-return 1;
-
     xTEST_CASE("MySqlConnection::ping")
     {
         int_t errorCode;

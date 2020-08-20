@@ -19,7 +19,7 @@ Test_Path::unit()
     xTEST_CASE("exe")
     {
         m_sRv = Path::exe();
-        xTEST_EQ(true, File::isExists(m_sRv));
+        xTEST(FileInfo(m_sRv).isExists());
     }
 
     xTEST_CASE("exeDir")
@@ -32,7 +32,7 @@ Test_Path::unit()
     {
         m_sRv = Path::dll();
     #if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
-        xTEST(File::isExists(m_sRv));
+        xTEST(FileInfo(m_sRv).isExists());
     #else
         xTEST_NA(m_sRv);
     #endif

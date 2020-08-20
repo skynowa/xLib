@@ -114,7 +114,9 @@ CsvWriter::saveFile(
     std::ctstring_t &a_filePath
 )
 {
-	File::clear(a_filePath);
+    File file;
+    file.create(a_filePath, File::OpenMode::Write);
+    file.clear();
 
 	// a_header
 	{

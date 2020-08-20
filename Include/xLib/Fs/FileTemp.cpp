@@ -48,7 +48,9 @@ FileTemp::~FileTemp()
     }
 
     if (_isAutoDelete && !_filePath.empty()) {
-        File::remove(_filePath);
+        File file;
+        file.create(_filePath, File::OpenMode::Write);
+        file.remove();
     }
 }
 //-------------------------------------------------------------------------------------------------

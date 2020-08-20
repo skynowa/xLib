@@ -216,7 +216,9 @@ Archive::fileUncompress(
 		if (type == Type::Gz) {
 			// n/a
 		} else {
-			File::remove(a_sourceFilePath);
+			File file;
+			file.create(a_sourceFilePath, File::OpenMode::Write);
+			file.remove();
 		}
 	}
 

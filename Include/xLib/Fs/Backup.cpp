@@ -12,6 +12,7 @@
 #include <xLib/Debug/Exception.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/File.h>
+#include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/Volume.h>
 
@@ -54,7 +55,7 @@ Backup::fileExec(
     {
         a_destFilePath->clear();
 
-        bRv = File::isExists(a_filePath);
+        bRv = FileInfo(a_filePath).isExists();
         xCHECK_DO(!bRv, xTHROW_REPORT(errorDestFileNotExists));
 
         Dir dest(a_destDirPath);
@@ -97,28 +98,30 @@ Backup::fileExec(
 
     // check for existence source file
     {
-        bRv = File::isExists(backupFilePath);
+        bRv = FileInfo(backupFilePath).isExists();
         xCHECK_DO(bRv, *a_destFilePath = backupFilePath; return);
     }
 
     // check for enough space
     {
         Volume volume(a_destDirPath);
-        bRv = volume.isSpaceAvailable( static_cast<culonglong_t>( File::size(a_filePath) ));
+        bRv = volume.isSpaceAvailable( static_cast<culonglong_t>( FileInfo(a_filePath).size() ));
         xCHECK_DO(!bRv, xTHROW_REPORT(errorNotEnoughFreeSpace));
     }
 
     // copy
     {
-        File::copy(a_filePath, backupFilePath, true);
+        File file;
+        file.create(a_filePath, File::OpenMode::Read);
+        file.copy(backupFilePath, true);
     }
 
     // check for a valid backup
     {
-        bRv = File::isExists(backupFilePath);
+        bRv = FileInfo(backupFilePath).isExists();
         xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
 
-        bRv = (File::size(a_filePath) == File::size(backupFilePath));
+        bRv = (FileInfo(a_filePath).size() == FileInfo(backupFilePath).size());
         xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
 
         bRv = (Crc32().calcFile(a_filePath) == Crc32().calcFile(backupFilePath));

@@ -133,12 +133,40 @@ FileType::clear() const
     _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
+bool_t
+FileType::isFile() const
+{
+    xTEST_NA(_filePath);
+
+    xCHECK_RET(get() == static_cast<FileType::types_t>(FileType::Type::Unknown), false);
+
+    bool_t bRv {};
+
+#if   xENV_WIN
+    bRv = isExists(FileType::Type::Directory);
+    xCHECK_RET(bRv, false);
+
+    bRv = isExists(FileType::Type::Device);
+    xCHECK_RET(bRv, false);
+
+    bRv = isExists(FileType::Type::ReparsePoint);
+    xCHECK_RET(bRv, false);
+
+    bRv = isExists(FileType::Type::Offline);
+    xCHECK_RET(bRv, false);
+#elif xENV_UNIX
+    bRv = isExists(FileType::Type::RegularFile);
+    xCHECK_RET(!bRv, false);
+#endif
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
 bool_t
 FileType::isExecutable() const
 {
     xTEST(!filePath().empty());
-	xCHECK_RET(!File::isFile(filePath()), false);
+	xCHECK_RET(!isFile(), false);
 
     return _isExecutable_impl();
 }

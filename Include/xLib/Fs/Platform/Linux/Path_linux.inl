@@ -20,7 +20,7 @@ Path::_exe_impl()
 
     std::ctstring_t procFile = Format::str(xT("/proc/{}/exe"), ::getpid());
 
-    bool_t bRv = File::isExists(procFile);
+    bool_t bRv = FileInfo(procFile).isExists();
     xCHECK_RET(!bRv, std::tstring_t());
 
     ssize_t readed = - 1;
