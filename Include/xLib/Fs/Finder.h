@@ -16,8 +16,14 @@ class Finder
     ///< filesystem finder
 {
 public:
-                      Finder(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter);
-    virtual          ~Finder();
+///@name ctors, dtor
+///@{
+			 Finder(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter);
+	virtual ~Finder();
+
+	xNO_DEFAULT_CONSTRUCT(Finder)
+	xNO_COPY_ASSIGN(Finder)
+///@}
 
     std::ctstring_t & rootDirPath() const;
         ///< root directory path
@@ -65,8 +71,6 @@ private:
 
     bool_t            _moveFirst();
         ///< move first entry
-
-    xNO_COPY_ASSIGN(Finder)
 
 xPLATFORM_IMPL:
     std::tstring_t    _entryName_impl() const;

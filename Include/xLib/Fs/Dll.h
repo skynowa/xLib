@@ -20,8 +20,14 @@ public:
 #elif xENV_UNIX
     using proc_address_t = void_t *;
 #endif
-                   Dll() = default;
-    virtual       ~Dll() = default;
+
+///@name ctors, dtor
+///@{
+			 Dll() = default;
+	virtual ~Dll() = default;
+
+	xNO_COPY_ASSIGN(Dll)
+///@}
 
     HandleDll     &get();
         ///< get handle
@@ -36,8 +42,6 @@ public:
 
 private:
     HandleDll      _handle;   ///< dll module handle
-
-    xNO_COPY_ASSIGN(Dll)
 
 xPLATFORM_IMPL:
     void_t         _load_impl(std::ctstring_t &dllPath);
