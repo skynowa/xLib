@@ -19,7 +19,7 @@ ProcessInfo::_exeName_impl() const
 
     std::ctstring_t procFile = Format::str(xT("/proc/{}/exe"), _id);
 
-    bool_t bRv = File::isExists(procFile);
+    bool_t bRv = FileInfo(procFile).isExists();
     xCHECK_RET(!bRv, std::tstring_t());
 
     ssize_t readed {- 1};

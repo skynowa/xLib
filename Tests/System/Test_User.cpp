@@ -65,7 +65,7 @@ Test_User::unit()
     {
         m_sRv = user.shellPath();
         xTEST(!m_sRv.empty());
-        xTEST_EQ(File::isExists(m_sRv), true);
+        xTEST_EQ(FileInfo(m_sRv).isExists(), true);
     }
 
     return true;

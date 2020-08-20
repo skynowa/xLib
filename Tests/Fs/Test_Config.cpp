@@ -39,7 +39,11 @@ Test_Config::unit()
         Config config;
     }
 
-    File::remove(filePath);
+	{
+		File file;
+		file.create(filePath, File::OpenMode::Write);
+		file.remove();
+	}
 
     Config config(filePath);
 
@@ -248,13 +252,13 @@ Test_Config::unit()
     xTEST_CASE("clear")
     {
         config.clear();
-        xTEST_EQ(File::size( config.path() ), 0LL);
+        xTEST_EQ(FileInfo( config.path() ).size(), 0LL);
     }
 
     xTEST_CASE("remove")
     {
         config.remove();
-        xTEST(!File::isExists( config.path() ));
+        xTEST(!FileInfo( config.path() ).isExists());
     }
 
     return true;

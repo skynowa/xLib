@@ -164,7 +164,9 @@ Dir::copy(
 
         Dir( Path(filePathTo).dir() ).pathCreate();
 
-        File::copy(*it, filePathTo, a_failIfExists);
+        File file;
+        file.create(*it, File::OpenMode::Read);
+        file.copy(filePathTo, a_failIfExists);
     }
 
     // TODO: [skynowa] rollback copy
@@ -241,7 +243,9 @@ Dir::pathClear() const
         Finder::files(dirPath(), Const::maskAll(), true, &filePaths);
 
         xFOR_EACH_R(std::vec_tstring_t, it, filePaths) {
-            File::remove(*it);
+            File file;
+            file.create(*it, File::OpenMode::Write);
+            file.remove();
         }
     }
 

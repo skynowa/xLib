@@ -35,7 +35,7 @@ Test_Archive::unit()
 		{
 			m_bRv = Archive::fileCompress(type, filePath, zipFilePath, false);
 			xTEST(m_bRv);
-			xTEST(File::isExists(zipFilePath));
+			xTEST(FileInfo(zipFilePath).isExists());
 		}
 
 		xTEST_CASE("fileUncompress")
@@ -44,14 +44,16 @@ Test_Archive::unit()
 
 			m_bRv = Archive::fileUncompress(type, zipFilePath, destDirPath, true, false);
 			xTEST(m_bRv);
-			xTEST(File::isExists(filePath));
+			xTEST(FileInfo(filePath).isExists());
 
 			std::tstring_t _fileContent;
 			File::textRead(filePath, &_fileContent);
 			xTEST_EQ(_fileContent, fileContent);
 		}
 
-		File::remove(filePath);
+		File file;
+		file.create(filePath, File::OpenMode::Write);
+		file.remove();
 	}
 
 	// dirs
@@ -72,12 +74,12 @@ Test_Archive::unit()
 
 		xTEST_CASE("dirUncompress")
 		{
-			std::ctstring_t destDirPath = getData().tempDirPath + Const::slash() + "ArchiveNew";
+			std::ctstring_t destDirPathNew = getData().tempDirPath + Const::slash() + "ArchiveNew";
 
-			m_bRv = Archive::dirUncompress(type, sourceDirPath, "*.zip", destDirPath, false, false);
+			m_bRv = Archive::dirUncompress(type, sourceDirPath, "*.zip", destDirPathNew, false, false);
 			xTEST(m_bRv);
 
-			std::ctstring_t txtfilePath = destDirPath + Const::slash() + xT("Archive.txt");
+			std::ctstring_t txtfilePath = destDirPathNew + Const::slash() + xT("Archive.txt");
 
 			std::tstring_t _fileContent;
 			File::textRead(txtfilePath, &_fileContent);

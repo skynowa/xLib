@@ -32,8 +32,16 @@ public:
     };
     xUSING_CONST(FileExt);
 
-    explicit       Path(std::ctstring_t &filePath);
-    virtual       ~Path() = default;
+///@name ctors, dtor
+///@{
+	explicit       Path(std::ctstring_t &filePath);
+	virtual       ~Path() = default;
+
+	xNO_DEFAULT_CONSTRUCT(Path)
+	xNO_COPY_ASSIGN(Path)
+///@}
+
+    // TODO: [skynowa] get objects
 
     std::ctstring_t & filePath() const;
         ///< file path
@@ -53,18 +61,18 @@ public:
 
     std::tstring_t setVolume(std::ctstring_t &volumePath) const;
         ///< set volume
-    std::tstring_t setDir(std::ctstring_t &dirPath);
+    std::tstring_t setDir(std::ctstring_t &dirPath) const;
         ///< set dir
-    std::tstring_t setFileName(std::ctstring_t &fullName);
+    std::tstring_t setFileName(std::ctstring_t &fullName) const;
         ///< set full name
-    std::tstring_t setFileBaseName(std::ctstring_t &name);
+    std::tstring_t setFileBaseName(std::ctstring_t &name) const;
         ///< set name
-    std::tstring_t setExt(std::ctstring_t &ext);
+    std::tstring_t setExt(std::ctstring_t &ext) const;
         ///< set extension
 
-    std::tstring_t removeExt();
+    std::tstring_t removeExt() const;
         ///< remove extension
-    std::tstring_t removeExtIf(std::ctstring_t &ext);
+    std::tstring_t removeExtIf(std::ctstring_t &ext) const;
         ///< remove extension if it equal some string
 
 	bool_t         isCaseSensitive() const;
@@ -107,12 +115,10 @@ xPUBLIC_STATIC:
         ///< get standard extension
 
     static
-    bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid = nullptr)
-                     ;
+    bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid = nullptr);
         ///< path validation
     static
-    bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid = nullptr)
-                     ;
+    bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid = nullptr);
         ///< name validation
 
     static
@@ -138,8 +144,6 @@ xPUBLIC_STATIC:
 private:
     std::tstring_t _filePath;
 
-    xNO_COPY_ASSIGN(Path)
-
 xPLATFORM_IMPL:
     std::tstring_t _volume_impl() const;
     void_t         _toNative_impl(std::tstring_t *filePath) const;
@@ -163,4 +167,6 @@ xPLATFORM_IMPL:
 };
 
 xNAMESPACE_END2(xl, fs)
+//-------------------------------------------------------------------------------------------------
+// TODO: [skynowa] group methods
 //-------------------------------------------------------------------------------------------------

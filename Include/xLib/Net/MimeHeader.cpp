@@ -10,7 +10,6 @@
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Locale.h>
 #include <xLib/Crypt/Guid.h>
-#include <xLib/Fs/File.h>
 #include <xLib/System/SystemInfo.h>
 
 
@@ -149,7 +148,6 @@ MimeHeader::loadFromFile(
     // TODO: [skynowa] MimeHeader::loadFromFile(()
 
     xTEST_EQ(filePath.empty(), false);
-    xTEST_EQ( File::isExists(filePath), true);
 
     std::tstring_t sUknownEmail("Uknown@Uknown.Uknown"); xUNUSED(sUknownEmail);
     std::tstring_t sLine("");
@@ -192,7 +190,6 @@ MimeHeader::loadFromFile(
 )
 {
     xTEST_EQ(a_rawMessageFilePath.empty(), false);
-    xTEST_EQ(File::isExists(a_rawMessageFilePath), true);
 
     std::tstring_t sRawHeader;
     std::tstring_t sLine;

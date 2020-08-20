@@ -60,8 +60,14 @@ public:
     };
     xUSING_CONST(Type);
 
-    explicit          FileType(std::ctstring_t &filePath);
-    virtual          ~FileType() = default;
+///@name ctors, dtor
+///@{
+	explicit FileType(std::ctstring_t &filePath);
+	virtual ~FileType() = default;
+
+	xNO_DEFAULT_CONSTRUCT(FileType)
+	xNO_COPY_ASSIGN(FileType)
+///@}
 
     std::ctstring_t & filePath() const;
         ///< file path
@@ -81,13 +87,13 @@ public:
     void_t            clear() const;
         ///< clear (set normal attributes, only for Windows)
 
+    bool_t            isFile() const;
+        ///< check for file
     bool_t            isExecutable() const;
         ///< is executable
 
 private:
     std::ctstring_t _filePath;
-
-    xNO_COPY_ASSIGN(FileType)
 
 xPLATFORM_IMPL:
     types_t _get_impl() const;

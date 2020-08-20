@@ -11,6 +11,7 @@
 #include <xLib/Core/Utils.h>
 #include <xLib/System/ProcessInfo.h>
 #include <xLib/Fs/File.h>
+#include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Sync/Process.h>
 #include <xLib/Log/Trace.h>
@@ -76,7 +77,7 @@ std::tstring_t
 Path::exe()
 {
     std::ctstring_t sRv( _exe_impl() );
-    xTEST_EQ(File::isExists(sRv), true);
+    xTEST_EQ(FileInfo(sRv).isExists(), true);
 
     return sRv;
 }
@@ -206,7 +207,7 @@ Path::setVolume(
 std::tstring_t
 Path::setDir(
     std::ctstring_t &a_dirPath
-)
+) const
 {
     std::tstring_t sRv(filePath());
 
@@ -222,7 +223,7 @@ Path::setDir(
 std::tstring_t
 Path::setFileName(
     std::ctstring_t &a_fullName
-)
+) const
 {
     std::tstring_t sRv(filePath());
 
@@ -238,7 +239,7 @@ Path::setFileName(
 std::tstring_t
 Path::setFileBaseName(
     std::ctstring_t &a_name
-)
+) const
 {
     std::tstring_t sRv(filePath());
 
@@ -254,7 +255,7 @@ Path::setFileBaseName(
 std::tstring_t
 Path::setExt(
     std::ctstring_t &a_ext
-)
+) const
 {
     xTEST_NA(a_ext);
 
@@ -265,7 +266,7 @@ Path::setExt(
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Path::removeExt()
+Path::removeExt() const
 {
     std::csize_t dotPos = filePath().rfind( Const::dot() );
 
@@ -275,7 +276,7 @@ Path::removeExt()
 std::tstring_t
 Path::removeExtIf(
     std::ctstring_t &a_ext
-)
+) const
 {
     std::csize_t extPos = filePath().rfind(Const::dot() + a_ext);
     xCHECK_RET(extPos == std::tstring_t::npos, filePath());

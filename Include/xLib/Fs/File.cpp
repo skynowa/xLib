@@ -14,15 +14,10 @@
 #include <xLib/Debug/Exception.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
+#include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/FileType.h>
 #include <xLib/Crypt/Random.h>
 #include <xLib/Sync/Thread.h>
-
-#if   xENV_WIN
-    #include "Platform/Win/File_win.inl"
-#elif xENV_UNIX
-    #include "Platform/Unix/File_unix.inl"
-#endif
 
 
 xNAMESPACE_BEGIN2(xl, fs)
@@ -34,7 +29,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 File::File(
-    cbool_t a_isUseBuffering /*  = true */
+    cbool_t a_isUseBuffering /* = true */
 ) :
     _isUseBuffering(a_isUseBuffering)
 {
@@ -61,7 +56,7 @@ File::create(
     cOpenMode        a_mode
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
     xTEST_NA(a_mode);
 
     // create dir
@@ -90,7 +85,7 @@ File::reopen(
     cOpenMode        a_mode
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
     xTEST_NA(a_mode);
 
     // create dir
@@ -122,7 +117,7 @@ File::get()
 int_t
 File::getNative() const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle.isValid());
 
     return _nativeHandle( _handle.get() );
 }
@@ -130,8 +125,8 @@ File::getNative() const
 std::tstring_t
 File::path() const
 {
-    xTEST_EQ(_filePath.empty(),   false);
-    xTEST_EQ(isExists(_filePath), true);
+    xTEST(!_filePath.empty());
+    xTEST(FileInfo(_filePath).isExists());
 
     return _filePath;
 }
@@ -142,7 +137,7 @@ File::attach(
     std::ctstring_t     &a_filePath
 )
 {
-    xTEST_EQ(a_handle.isValid(), true);
+    xTEST(a_handle.isValid());
     xTEST_NA(a_filePath);
 
     close();
@@ -510,141 +505,34 @@ File::close()
 
 
 /**************************************************************************************************
-*    public, static
+*    public, actions
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
-bool_t
-File::isFile(
-    std::ctstring_t &a_filePath
-)
-{
-    xTEST_NA(a_filePath);
-
-    FileType type(a_filePath);
-    xCHECK_RET(type.get() == static_cast<FileType::types_t>(FileType::Type::Unknown), false);
-
-    return _isFile_impl(type);
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-bool_t
-File::isExists(
-    std::ctstring_t &a_filePath
-)
-{
-    xTEST_NA(a_filePath);
-
-    xCHECK_RET(!isFile(a_filePath), false);
-
-    int_t iRv = xTACCESS(a_filePath.c_str(), static_cast<int_t>(AccessMode::Existence));
-    xCHECK_RET(iRv == - 1 && StdError::get() == ENOENT, false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-File::isExistsEx(
-    std::ctstring_t &a_filePath
-)
-{
-    xTEST_EQ(a_filePath.empty(), false);
-
-    std::tstring_t sRv;
-
-    Path path(a_filePath);
-
-    std::tstring_t fileDir  = path.dir();
-    std::tstring_t fileName = path.fileBaseName();
-    std::tstring_t fileExt  = path.ext();
-
-    xCHECK_DO(!fileExt.empty(), fileExt.insert(0, Const::dot()));
-
-    for (ulong_t existsIndex = 1; ; ++ existsIndex) {
-        sRv = Format::str(xT("{}{}{} ({}){}"), fileDir, Const::slash(), fileName, existsIndex,
-            fileExt);
-        xCHECK_DO(!isExists(sRv), break);
-    }
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
 void_t
-File::access(
-    std::ctstring_t &a_filePath,
-    cAccessMode      a_mode
-)
+File::remove()
 {
-    xTEST_EQ(a_filePath.empty(), false);
-    xTEST_NA(a_mode);
+    xTEST(!_filePath.empty());
 
-    int_t iRv = xTACCESS(a_filePath.c_str(), static_cast<int_t>(a_mode));
+    FileInfo info(_filePath);
+    xCHECK_DO(!info.isExists(), return);
+
+    // TODO: [skynowa] maybe not work ?
+    info.chmod(FileInfo::PermissionMode::Write);
+
+    int_t iRv = xTREMOVE(_filePath.c_str());
     xTEST_DIFF(iRv, - 1);
+    xTEST(!info.isExists());
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-File::chmod(
-    std::ctstring_t &a_filePath,
-    cPermissionMode  a_mode
-)
-{
-    xTEST_EQ(a_filePath.empty(), false);
-    xTEST_NA(a_mode);
-
-#if   xENV_WIN
-    using _mode_t = cint_t;
-#elif xENV_UNIX
-    using _mode_t = const mode_t;
-#endif
-
-    int_t iRv = xTCHMOD(a_filePath.c_str(), static_cast<_mode_t>(a_mode));
-    xTEST_DIFF(iRv, - 1);
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-File::clear(
-    std::ctstring_t &a_filePath
-)
-{
-    xTEST_EQ(a_filePath.empty(), false);
-
-    File file;
-    file.create(a_filePath, OpenMode::Write);
-    file.clear();
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-File::remove(
-    std::ctstring_t &a_filePath
-)
-{
-    xTEST_EQ(a_filePath.empty(), false);
-
-    xCHECK_DO(!isExists(a_filePath), return);
-
-    chmod(a_filePath, PermissionMode::Write);
-
-    int_t iRv = xTREMOVE(a_filePath.c_str());
-    xTEST_DIFF(iRv, - 1);
-    xTEST_EQ(isExists(a_filePath), false);
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
 void_t
 File::tryRemove(
-    std::ctstring_t &a_filePath,
-    std::csize_t     a_attempts,
-    culong_t         a_timeoutMsec
+    std::csize_t a_attempts,
+    culong_t     a_timeoutMsec
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!_filePath.empty());
     xTEST_GR(a_attempts, size_t(0U));
     xTEST_NA(a_timeoutMsec);
 
@@ -653,8 +541,8 @@ File::tryRemove(
 
     for (size_t i = 0; i < attemptsReal; ++ i) {
         xTRY {
-            remove(a_filePath);
-            xCHECK_DO(!isExists(a_filePath), break);
+            remove();
+            xCHECK_DO(!FileInfo(_filePath).isExists(), break);
         }
         xCATCH_ALL
 
@@ -662,146 +550,130 @@ File::tryRemove(
     }
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
 File::wipe(
-    std::ctstring_t &a_filePath,
-    std::csize_t     a_passes
+    std::csize_t a_passes
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!_filePath.empty());
     xTEST_NA(a_passes);
 
-    xCHECK_DO(!isExists(a_filePath), return);
+    FileInfo info(_filePath);
+    xCHECK_DO(!info.isExists(), return);
 
+	// attributes - reset
+	{
+		FileType(_filePath).clear();
+	}
+
+	// content - reset
+	clonglong_t fileSize = size();
+	if (fileSize > 0LL) {
+		// fill by 0x55, 0xAA, random char
+		for (size_t p {}; p < a_passes; ++ p) {
+			cuchar_t rand  { NativeRandom().nextChar<uchar_t>() };
+			cuchar_t char1 {0x55};
+			cuchar_t char2 {0xAA};
+
+			// rand
+			{
+				setPosition(0L, PointerPosition::Begin);
+
+				for (longlong_t i {}; i < fileSize; ++ i) {
+					std::csize_t uiRv = std::fwrite(&rand, 1, sizeof(rand), get().get());
+					xTEST_EQ(uiRv, sizeof(rand));
+				}
+			}
+
+			// char1
+			{
+				setPosition(0L, PointerPosition::Begin);
+
+				for (longlong_t i {}; i < fileSize; ++ i) {
+					std::csize_t uiRv = std::fwrite(&char1, 1, sizeof(char1), get().get());
+					xTEST_EQ(uiRv, sizeof(char1));
+				}
+			}
+
+			// char2
+			{
+				setPosition(0L, PointerPosition::Begin);
+
+				for (longlong_t i {}; i < fileSize; ++ i) {
+					std::csize_t uiRv = std::fwrite(&char2, 1, sizeof(char2), get().get());
+					xTEST_EQ(uiRv, sizeof(char2));
+				}
+			}
+		} // if (size > 0LL)
+
+		// truncate
+		flush();
+		clear();
+	} // if (fileSize)
+
+    // file time - reset
     {
-        // set normal file attributes
-        FileType(a_filePath).clear();
+        const time_t create   {};
+        const time_t access   {};
+        const time_t modified {};
 
-        // open
-        File file;
-        file.create(a_filePath, OpenMode::BinWrite);
-
-        clonglong_t size = file.size();
-        if (size > 0LL) {
-            // fill by 0x55, 0xAA, random char
-            for (size_t p = 0; p < a_passes; ++ p) {
-                cuchar_t rand  = NativeRandom().nextChar<uchar_t>();
-                cuchar_t char1 = 0x55;
-                cuchar_t char2 = 0xAA;
-
-                // rand
-                {
-                    file.setPosition(0L, PointerPosition::Begin);
-
-                    for (longlong_t i = 0LL; i < size; ++ i) {
-                        size_t uiRv = std::fwrite(&rand, 1, sizeof(rand), file.get().get());
-                        xTEST_EQ(uiRv, sizeof(rand));
-                    }
-                }
-
-                // char1
-                {
-                    file.setPosition(0L, PointerPosition::Begin);
-
-                    for (longlong_t i = 0LL; i < size; ++ i) {
-                        size_t uiRv = std::fwrite(&char1, 1, sizeof(char1), file.get().get());
-                        xTEST_EQ(uiRv, sizeof(char1));
-                    }
-                }
-
-                // char2
-                {
-                    file.setPosition(0L, PointerPosition::Begin);
-
-                    for (longlong_t i = 0LL; i < size; ++ i) {
-                        size_t uiRv = std::fwrite(&char2, 1, sizeof(char2), file.get().get());
-                        xTEST_EQ(uiRv, sizeof(char2));
-                    }
-                }
-            } // if (size > 0LL)
-
-            // truncate
-            file.flush();
-            file.resize(0L);
-        }
+        info.setTime(create, access, modified);
     }
 
-    // reset file time
-    {
-        constexpr time_t create   {};
-        constexpr time_t access   {};
-        constexpr time_t modified {};
-
-        setTime(a_filePath, create, access, modified);
-    }
-
-    // random file name
+    // file name - randomize
     std::tstring_t randFilePath;
     {
-        std::tstring_t randFileName;
-
-        randFileName = String::cast( DateTime().current().toMsec() );
+        std::tstring_t randFileName = String::cast( DateTime().current().toMsec() );
         std::random_shuffle(randFileName.begin(), randFileName.end());
 
-        randFilePath = Path(a_filePath).dir() + Const::slash() + randFileName;
+        randFilePath = Path(_filePath).dir() + Const::slash() + randFileName;
 
-        rename(a_filePath, randFilePath);
+        rename(randFilePath);
     }
 
-    // delete
-    remove(randFilePath);
+	remove();
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
-File::unlink(
-    std::ctstring_t &a_filePath
-)
+File::unlink()
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!_filePath.empty());
 
-    int_t iRv = xTUNLINK(a_filePath.c_str());
+    int_t iRv = xTUNLINK(_filePath.c_str());
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
 File::rename(
-    std::ctstring_t &a_filePathOld,
     std::ctstring_t &a_filePathNew
 )
 {
-    xTEST_EQ(a_filePathOld.empty(), false);
-    xTEST_EQ(a_filePathNew.empty(), false);
+    xTEST(!_filePath.empty());
+    xTEST(!a_filePathNew.empty());
 
-    int_t iRv = xTRENAME(a_filePathOld.c_str(), a_filePathNew.c_str());
+    int_t iRv = xTRENAME(_filePath.c_str(), a_filePathNew.c_str());
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
 File::move(
-    std::ctstring_t &a_filePath,
     std::ctstring_t &a_dirPath
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
-    xTEST_EQ(a_dirPath.empty(), false);
+    xTEST(!_filePath.empty());
+    xTEST(!a_dirPath.empty());
 
-    rename(a_filePath, Path(a_dirPath).slashAppend() + Path(a_filePath).fileName());
+    rename(Path(a_dirPath).slashAppend() + Path(_filePath).fileName());
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
 File::copy(
-    std::ctstring_t &a_filePathFrom,
     std::ctstring_t &a_filePathTo,
-    cbool_t         &a_isFailIfExists
+    cbool_t          a_isFailIfExists
 ) /* throw(Exception) */
 {
-    xTEST_EQ(a_filePathFrom.empty(), false);
-    xTEST_EQ(a_filePathTo.empty(), false);
+    xTEST(!_filePath.empty());
+    xTEST(!a_filePathTo.empty());
     xTEST_NA(a_isFailIfExists);
 
     bool_t isCopyOk {true};
@@ -811,18 +683,18 @@ File::copy(
     std::ctstring_t errorCopyFail       = xT("File - Copy fail");
     std::ctstring_t errorFilesDiffrent  = xT("File - Files are diffrent");
 
-    xCHECK_DO(a_isFailIfExists && isExists(a_filePathTo), xTHROW_REPORT(errorDestFileExists));
+    xCHECK_DO(a_isFailIfExists && FileInfo(a_filePathTo).isExists(),
+        xTHROW_REPORT(errorDestFileExists));
 
     // copy
+	File fileFrom;
+	File fileTo;
     {
         // open files
-        File fileFrom;
-        fileFrom.create(a_filePathFrom, OpenMode::BinRead);
-
-        File fileTo;
+        fileFrom.create(_filePath, OpenMode::BinRead);
         fileTo.create(a_filePathTo, OpenMode::BinWrite);
 
-        if ( !fileFrom.isEmpty() ) {
+        if ( !FileInfo(fileFrom).isEmpty() ) {
             // copy files
             constexpr std::size_t buffSize       {1024};
             uchar_t               buff[buffSize] {};
@@ -835,89 +707,28 @@ File::copy(
                 xCHECK_DO(readed != written, isCopyOk = false; break);
             }
         }
+
+        fileTo.flush();
     }
 
-    // checks
-    {
-        xCHECK_DO(!isCopyOk, remove(a_filePathTo); xTHROW_REPORT(errorCopyFail));
-        xCHECK_DO(size(a_filePathFrom) != size(a_filePathTo), remove(a_filePathTo);
-            xTHROW_REPORT(errorFilesDiffrent));
-    }
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-longlong_t
-File::size(
-    std::ctstring_t &a_filePath
-)
-{
-    xTEST_EQ(a_filePath.empty(),   false);
-    xTEST_EQ(isExists(a_filePath), true);
+	// checks
+	{
+		if (!isCopyOk) {
+			File file;
+			file.create(a_filePathTo, File::OpenMode::Write);
+			file.remove();
 
-    File file;
-    file.create(a_filePath, OpenMode::Read);
-    longlong_t liRv = file.size();
-    xTEST_GR_EQ(liRv, 0LL);
+			xTHROW_REPORT(errorCopyFail);
+		}
 
-    return liRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-ulonglong_t
-File::lines(
-    std::ctstring_t &a_filePath
-)
-{
-    xTEST_EQ(a_filePath.empty(),   false);
-    xTEST_EQ(isExists(a_filePath), true);
+		if (FileInfo(fileFrom).size() != FileInfo(fileTo).size()) {
+			File file;
+			file.create(a_filePathTo, File::OpenMode::Write);
+			file.remove();
 
-    std::locale::global(std::locale());
-
-    ulonglong_t      ullRv {};
-    std::tifstream_t ifs(xT2A(a_filePath), std::ios::in);
-
-    xCHECK_RET(!ifs || ifs.fail() || !ifs.good() || !ifs.is_open() || ifs.eof(), 0LL);
-
-    tchar_t chChar {};
-    for (ullRv = 0LL; ifs.get(chChar); ) {
-        xCHECK_DO(chChar == xT('\n'), ++ ullRv);
-    }
-
-    return ullRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-File::time(
-    std::ctstring_t &a_filePath,
-    time_t          *a_create,
-    time_t          *a_access,
-    time_t          *a_modified
-)
-{
-    xTEST_EQ(a_filePath.empty(), false);
-    xTEST_NA(a_create);
-    xTEST_NA(a_access);
-    xTEST_NA(a_modified);
-
-    _time_impl(a_filePath, a_create, a_access, a_modified);
-}
-//-------------------------------------------------------------------------------------------------
-/*static */
-void_t
-File::setTime(
-    std::ctstring_t &a_filePath,
-    const time_t    &a_create,
-    const time_t    &a_access,
-    const time_t    &a_modified
-)
-{
-    xTEST_EQ(a_filePath.empty(), false);
-    xTEST_NA(a_create);
-    xTEST_NA(a_access);
-    xTEST_NA(a_modified);
-
-    _setTime_impl(a_filePath, a_create, a_access, a_modified);
+			xTHROW_REPORT(errorFilesDiffrent);
+		}
+	}
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -935,7 +746,7 @@ File::textRead(
     std::tstring_t  *a_content
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
     xTEST_PTR(a_content);
 
     std::tstring_t sRv;
@@ -944,7 +755,7 @@ File::textRead(
     file.create(a_filePath, OpenMode::BinRead);
 
     clonglong_t fileSize = file.size();
-    xTEST_DIFF(fileSize, static_cast<longlong_t>( PointerPosition::Error ));
+    xTEST_DIFF(fileSize, static_cast<longlong_t>(PointerPosition::Error));
 
     xCHECK_DO(fileSize == 0LL, a_content->clear(); return);
 
@@ -965,7 +776,7 @@ File::textWrite(
     cOpenMode        a_mode
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
     xTEST_NA(a_content);
     xTEST(a_mode != OpenMode::Unknown);
 
@@ -974,7 +785,7 @@ File::textWrite(
 
     xCHECK_DO(a_content.empty(), return);
 
-    size_t writeLen = file.write((void_t *)&a_content.at(0), a_content.size());
+    std::csize_t writeLen = file.write((void_t *)&a_content.at(0), a_content.size());
     xTEST_EQ(writeLen, a_content.size());
 }
 //-------------------------------------------------------------------------------------------------
@@ -985,15 +796,14 @@ File::textRead(
     std::vec_tstring_t *a_content
 )
 {
-    xTEST_EQ(a_filePath.empty(),   false);
-    xTEST_EQ(isExists(a_filePath), true);
+    xTEST(!a_filePath.empty());
+    xTEST(FileInfo(a_filePath).isExists());
     xTEST_PTR(a_content);
 
-    std::vec_tstring_t vsRv;
-    std::tstring_t     content;
-
+    std::tstring_t content;
     textRead(a_filePath, &content);
 
+    std::vec_tstring_t vsRv;
     String::split(content, Const::nl(), &vsRv);
 
     // out
@@ -1008,10 +818,9 @@ File::textWrite(
     cOpenMode            a_mode
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
     xTEST_NA(a_content);
-    // TODO: [skynowa] StdStreamV2
-    ///-- xTEST_DIFF(a_mode, Unknown);
+    xTEST(a_mode != OpenMode::Unknown);
 
     std::tstring_t content;
 
@@ -1028,21 +837,21 @@ File::textRead(
     std::map_tstring_t *a_content
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
-    xTEST_EQ(isExists(a_filePath), true);
+    xTEST(!a_filePath.empty());
+    xTEST(FileInfo(a_filePath).isExists());
     xTEST_PTR(a_content);
 
     // if file empty
-    xCHECK_DO(size(a_filePath) == 0L, a_content->clear(); return);
+    xCHECK_DO(FileInfo(a_filePath).size() == 0L, a_content->clear(); return);
 
     std::locale::global( std::locale() );
 
     std::tifstream_t ifs(xT2A(a_filePath));
-    xTEST_EQ(!! ifs,        true);
-    xTEST_EQ(ifs.fail(),    false);
-    xTEST_EQ(ifs.good(),    true);
-    xTEST_EQ(ifs.is_open(), true);
-    xTEST_EQ(ifs.eof(),     false);
+    xTEST(!! ifs);
+    xTEST(!ifs.fail());
+    xTEST(ifs.good());
+    xTEST(ifs.is_open());
+    xTEST(!ifs.eof());
 
     std::map_tstring_t msRv;
     std::tstring_t     line;
@@ -1096,11 +905,10 @@ File::textWrite(
     cOpenMode            a_mode
 )
 {
-    xTEST_EQ(a_filePath.empty(),  false);
-    xTEST_EQ(a_separator.empty(), false);
+    xTEST(!a_filePath.empty());
+    xTEST(!a_separator.empty());
     xTEST_NA(a_content);
-    // TODO: [skynowa] StdStreamV2
-    ///-- xTEST_DIFF(a_mode, Unknown);
+    xTEST(a_mode != OpenMode::Unknown);
 
     File file;
     file.create(a_filePath, a_mode);
@@ -1127,22 +935,21 @@ File::binRead(
     std::ustring_t  *a_content
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
     xTEST_PTR(a_content);
 
-    File           file;
     std::ustring_t usRv;
 
+    File file;
     file.create(a_filePath, OpenMode::BinRead);
 
-    longlong_t fileSize = file.size();
+    clonglong_t fileSize = file.size();
     xTEST_DIFF(fileSize, static_cast<longlong_t>( PointerPosition::Error ));
-
     xCHECK_DO(fileSize == 0LL, a_content->clear(); return);
 
-    usRv.resize( static_cast<size_t>( fileSize ) );
+    usRv.resize( static_cast<size_t>(fileSize) );
 
-    size_t readLen = file.read((void_t *)&usRv.at(0), usRv.size());
+    std::csize_t readLen = file.read((void_t *)&usRv.at(0), usRv.size());
     xTEST_EQ(readLen, usRv.size());
 
     // out
@@ -1156,7 +963,7 @@ File::binWrite(
     std::custring_t &a_content
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
     xTEST_NA(a_content);
 
     File file;

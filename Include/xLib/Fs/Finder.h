@@ -27,6 +27,7 @@ public:
         ///< entry name
     std::tstring_t    entryPath() const;
         ///< entry path
+    // TODO: [skynowa] fileTypes - use FileType class
     FileType::types_t fileTypes() const;
         ///< file attributes
 

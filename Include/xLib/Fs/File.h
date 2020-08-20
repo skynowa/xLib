@@ -11,8 +11,6 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, fs)
 
-class FileType;
-
 class File
     /// file
 {
@@ -36,16 +34,6 @@ public:
         BinOpenReadAppend   ///< "ab+"
     };
     xUSING_CONST(OpenMode);
-
-    enum class AccessMode
-        /// access mode
-    {
-        Existence = 0,
-        Write     = 2,
-        Read      = 4,
-        ReadWrite = 6
-    };
-    xUSING_CONST(AccessMode);
 
     enum class PointerPosition
         /// pointer position
@@ -81,38 +69,14 @@ public:
     };
     xUSING_CONST(LockingMode);
 
-    enum class PermissionMode
-        /// permission mode
-    {
-    #if xENV_WIN
-        Read             = _S_IREAD,
-        Write            = _S_IWRITE,
-        ReadWrite        = (_S_IREAD | _S_IWRITE)
-    #else
-        Read             = S_IRUSR,
-        Write            = S_IWUSR,
-        ReadWrite        = (S_IRUSR | S_IWUSR),
+///@name ctors, dtor
+///@{
+    explicit File(cbool_t isUseBuffering = true);
+    virtual ~File();
 
-        SetUserId        = S_ISUID,
-        SetGroupId       = S_ISGID,
-        StickyBit        = S_ISVTX,
-
-        ExecSearch       = S_IXUSR,
-
-        GroupRead        = S_IRGRP,
-        GroupWrite       = S_IWGRP,
-        GroupExecSearch  = S_IXGRP,
-
-        OthersRead       = S_IROTH,
-        OthersWrite      = S_IWOTH,
-        OthersExecSearch = S_IXOTH
-    #endif
-    };
-    xUSING_CONST(PermissionMode);
-
-    // constructors, destructor
-    explicit       File(cbool_t isUseBuffering = true);
-    virtual       ~File();
+    /// xNO_DEFAULT_CONSTRUCT(File)
+    xNO_COPY_ASSIGN(File)
+///@}
 
     // open, get
     void_t         create(std::ctstring_t &filePath, cOpenMode mode);
@@ -158,8 +122,6 @@ public:
     void_t         clear() const;
         ///< clear
 
-    // times
-
     // other
     void_t         locking(cLockingMode mode, clong_t &bytes);
         ///< locks or unlocks bytes of a file
@@ -191,64 +153,23 @@ public:
     void_t         close();
         ///< close
 
-xPUBLIC_STATIC:
-    static
-    bool_t         isFile(std::ctstring_t &filePath);
-        ///< check for file
-    static
-    bool_t         isExists(std::ctstring_t &filePath);
-        ///< check for existence
-    static
-    std::tstring_t isExistsEx(std::ctstring_t &filePath);
-        ///< check for existence, if exists - generate new file name (file path), which not exists
-    static
-    void_t         access(std::ctstring_t &filePath, cAccessMode mode);
-        ///< determine file-access permission
-    static
-    void_t         chmod(std::ctstring_t &filePath, cPermissionMode mode);
-        ///< change the file-permission settings
-
-    static
-    void_t         clear(std::ctstring_t &filePath);
-        ///< clear content
-    static
-    void_t         remove(std::ctstring_t &filePath);
+    // actions
+    void_t         remove();
         ///< deleting
-    static
-    void_t         tryRemove(std::ctstring_t &filePath, std::csize_t attempts, culong_t timeoutMsec);
+    void_t         tryRemove(std::csize_t attempts, culong_t timeoutMsec);
         ///< try deleting, max 100 attempts
-    static
-    void_t         wipe(std::ctstring_t &filePath, std::csize_t passes);
+    void_t         wipe(std::csize_t passes);
         ///< wipe
-    static
-    void_t         unlink(std::ctstring_t &filePath);
+    void_t         unlink();
         ///< deleting
-    static
-    void_t         rename(std::ctstring_t &filePathOld,  std::ctstring_t &filePathNew);
+    void_t         rename(std::ctstring_t &filePathNew);
         ///< renaming
-    static
-    void_t         move(std::ctstring_t &filePath, std::ctstring_t &dirPath);
+    void_t         move(std::ctstring_t &dirPath);
         ///< move
-    static
-    void_t         copy(std::ctstring_t &filePathFrom, std::ctstring_t &filePathTo,
-                       cbool_t &isFailIfExists) /* throw(Exception) */;
+    void_t         copy(std::ctstring_t &filePathTo, cbool_t isFailIfExists) /* throw(Exception) */;
         ///< copy
 
-    // info
-    static
-    longlong_t     size(std::ctstring_t &filePath);
-        ///< get size
-    static
-    ulonglong_t    lines(std::ctstring_t &filePath);
-        ///< get number of lines
-    static
-    void_t         time(std::ctstring_t &filePath, time_t *create, time_t *access, time_t *modified);
-        ///< get time
-    static
-    void_t         setTime(std::ctstring_t &filePath, const time_t &create, const time_t &access,
-                       const time_t &modified);
-        ///< set time
-
+xPUBLIC_STATIC:
     // text
     static
     void_t         textRead(std::ctstring_t &filePath, std::tstring_t *content);
@@ -297,19 +218,18 @@ private:
     std::tstring_t _openMode(cOpenMode mode);
         ///< get open mode as string, by default use "r"
 
-    xNO_COPY_ASSIGN(File)
-
-    friend class   FileTemp;  ///< temporary file
-
-xPLATFORM_IMPL:
-    static
-    bool_t _isFile_impl(const FileType &type);
-    static
-    void_t _time_impl(std::ctstring_t &filePath, time_t *create, time_t *access, time_t *modified);
-    static
-    void_t _setTime_impl(std::ctstring_t &filePath, const time_t &create, const time_t &access,
-				const time_t &modified);
+    friend class FileTemp;  ///< temporary file
 };
 
 xNAMESPACE_END2(xl, fs)
+//-------------------------------------------------------------------------------------------------
+// TODO: [skynowa] a_isUseBuffering - in create
+// TODO: [skynowa] get objects (Path, FileInfo)
+// TODO: [skynowa] actions methods - big in using
+// TODO: [skynowa] _filePath invariants - rm for constmembers
+// TODO: [skynowa] static methods - as utils class
+
+// TODO: [skynowa] - xNO ...
+// xNO_DEFAULT_CONSTRUCT(Path)
+// xNO_COPY_ASSIGN(Path)
 //-------------------------------------------------------------------------------------------------

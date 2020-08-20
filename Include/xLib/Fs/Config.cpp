@@ -10,6 +10,7 @@
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/File.h>
+#include <xLib/Fs/FileInfo.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
 
@@ -76,7 +77,7 @@ Config::get()
 void_t
 Config::read()
 {
-    if ( !File::isExists(path()) ) {
+    if ( !FileInfo(path()).isExists() ) {
 		return;
     }
 
@@ -107,14 +108,19 @@ void_t
 Config::clear()
 {
 	_config.clear();
-    File::clear(path());
+
+    File file;
+    file.create(path(), File::OpenMode::Write);
+    file.clear();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Config::remove()
 {
     // file
-    File::remove( path() );
+    File file;
+    file.create(path(), File::OpenMode::Write);
+    file.remove();
 
     // std::map_tstring_t
     _config.clear();
