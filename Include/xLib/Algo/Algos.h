@@ -14,6 +14,9 @@ class Algos
     ///< Algorithms
 {
 public:
+	xNO_DEFAULT_CONSTRUCT(Algos)
+	xNO_COPY_ASSIGN(Algos)
+
     template<typename ContT, typename ValueT>
     static
     bool_t isContains(const ContT &cont, const ValueT &value);
@@ -55,10 +58,6 @@ public:
     static
     void_t vectorRemove(std::vector<T> &vec, const T &item);
         ///< remove item from std::vector
-
-private:
-    xNO_DEFAULT_CONSTRUCT(Algos)
-    xNO_COPY_ASSIGN(Algos)
 };
 
 xNAMESPACE_END2(xl, core)
