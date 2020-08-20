@@ -21,44 +21,44 @@ public:
     void_t            init(std::ctstring_t &rawCookie);
         ///< parsing raw cookie string
 
-    std::ctstring_t & name() const xWARN_UNUSED_RV;
+    std::ctstring_t & name() const;
         ///< get name
     void_t            setName(std::ctstring_t &name);
         ///< set name
 
-    std::ctstring_t & value() const xWARN_UNUSED_RV;
+    std::ctstring_t & value() const;
         ///< get value
     void_t            setValue(std::ctstring_t &value);
         ///< set value
 
-    std::ctstring_t & domain() const xWARN_UNUSED_RV;
+    std::ctstring_t & domain() const;
         ///< get domain
     void_t            setDomain(std::ctstring_t &domain);
         ///< set domain
 
-    std::ctstring_t & path() const xWARN_UNUSED_RV;
+    std::ctstring_t & path() const;
         ///< get path
     void_t            setPath(std::ctstring_t &path);
         ///< set path
 
-    std::ctstring_t & expires() const xWARN_UNUSED_RV;
+    std::ctstring_t & expires() const;
         ///< get expire
     void_t            setExpires(std::ctstring_t &expires);
         ///< set expire
 
-    bool_t            secure() const xWARN_UNUSED_RV;
+    bool_t            secure() const;
         ///< get secure
     void_t            setSecure(cbool_t &flag);
         ///< set secure
 
-    bool_t            httpOnly() const xWARN_UNUSED_RV;
+    bool_t            httpOnly() const;
         ///< get http only
     void_t            setHttpOnly(cbool_t &flag);
         ///< set http only
 
-    std::tstring_t    toString() const xWARN_UNUSED_RV;
+    std::tstring_t    toString() const;
         ///< convert to string
-    std::tstring_t    dump() const xWARN_UNUSED_RV;
+    std::tstring_t    dump() const;
         ///< get dump
     void_t            clear();
         ///< clear

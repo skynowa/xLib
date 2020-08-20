@@ -27,8 +27,8 @@ public:
 	explicit       XmlDoc(std::ctstring_t &charset);
 	virtual       ~XmlDoc();
 
-    int_t          lastError() const override xWARN_UNUSED_RV;
-    std::tstring_t lastErrorStr() const override xWARN_UNUSED_RV;
+    int_t          lastError() const override;
+    std::tstring_t lastErrorStr() const override;
 
 	void           registerNss(std::cmap_tstring_t &nss);
 	void           parse(cptr_ctchar_t buff, cint_t size);

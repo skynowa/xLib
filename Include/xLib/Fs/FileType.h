@@ -63,12 +63,12 @@ public:
     explicit          FileType(std::ctstring_t &filePath);
     virtual          ~FileType() = default;
 
-    std::ctstring_t & filePath() const xWARN_UNUSED_RV;
+    std::ctstring_t & filePath() const;
         ///< file path
 
-    bool_t            isExists(cType value) const xWARN_UNUSED_RV;
+    bool_t            isExists(cType value) const;
         ///< is exists
-    types_t           get() const xWARN_UNUSED_RV;
+    types_t           get() const;
         ///< get
     void_t            set(ctypes_t values) const;
         ///< set
@@ -90,7 +90,7 @@ private:
     xNO_COPY_ASSIGN(FileType)
 
 xPLATFORM_IMPL:
-    types_t _get_impl() const xWARN_UNUSED_RV;
+    types_t _get_impl() const;
     void_t  _set_impl(ctypes_t values) const;
     void_t  _clear_impl() const;
 

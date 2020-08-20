@@ -17,14 +17,14 @@ public:
                 Base64() = default;
     virtual    ~Base64() = default;
 
-    std::string encode(cuchar_t *bytes, std::csize_t &size) xWARN_UNUSED_RV;
+    std::string encode(cuchar_t *bytes, std::csize_t &size);
         ///< encoding
-    std::string encode(std::cstring_t &str) xWARN_UNUSED_RV;
+    std::string encode(std::cstring_t &str);
         ///< encoding
-    std::string decode(std::cstring_t &str) xWARN_UNUSED_RV;
+    std::string decode(std::cstring_t &str);
         ///< decoding
 private:
-    bool_t      _isValid(cuchar_t &ch) xWARN_UNUSED_RV;
+    bool_t      _isValid(cuchar_t &ch);
         ///< check char for validness
 
     xNO_COPY_ASSIGN(Base64)

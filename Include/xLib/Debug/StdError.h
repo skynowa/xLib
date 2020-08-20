@@ -15,10 +15,10 @@ class StdError
 {
 public:
     static
-    bool_t         isSuccess() xWARN_UNUSED_RV;
+    bool_t         isSuccess();
         ///< is error code success
     static
-    int_t          get() xWARN_UNUSED_RV;
+    int_t          get();
         ///< get the calling thread's last-error code value
     static
     void_t         set(cint_t &code);
@@ -27,15 +27,15 @@ public:
     void_t         reset();
         ///< set last error code to 0
     static
-    std::tstring_t format() xWARN_UNUSED_RV;
+    std::tstring_t format();
         ///< get as string
     static
-    std::tstring_t format(cint_t &code) xWARN_UNUSED_RV;
+    std::tstring_t format(cint_t &code);
         ///< get last error as string
 
 private:
     static
-    int_t          _stdCodeSuccess() xWARN_UNUSED_RV;
+    int_t          _stdCodeSuccess();
         ///< native success code
 
     xNO_DEFAULT_CONSTRUCT(StdError)
@@ -43,7 +43,7 @@ private:
 
 xPLATFORM_IMPL:
     static
-    std::tstring_t _format_impl(cint_t &code) xWARN_UNUSED_RV;
+    std::tstring_t _format_impl(cint_t &code);
 };
 
 xNAMESPACE_END2(xl, debug)

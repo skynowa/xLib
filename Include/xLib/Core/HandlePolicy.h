@@ -42,10 +42,10 @@ struct HandlePolicy;
     template<typename T> \
     struct HandlePolicy<T, type> \
     { \
-        static T           null() xWARN_UNUSED_RV; \
-        static std::size_t openMax() xWARN_UNUSED_RV; \
-        static T           clone(const T &a_handle) xWARN_UNUSED_RV; \
-        static bool_t      isValid(const T &a_handle) xWARN_UNUSED_RV; \
+        static T           null(); \
+        static std::size_t openMax(); \
+        static T           clone(const T &a_handle); \
+        static bool_t      isValid(const T &a_handle); \
         static void_t      close(T &a_handle); \
     \
     xPLATFORM_IMPL: \

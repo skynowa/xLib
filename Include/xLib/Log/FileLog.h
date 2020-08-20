@@ -33,7 +33,7 @@ public:
 
     void_t         setFilePath(std::ctstring_t &filePath);
         ///< set log path
-    std::tstring_t filePath() const xWARN_UNUSED_RV;
+    std::tstring_t filePath() const;
         ///< get log path
 
     template<typename T>

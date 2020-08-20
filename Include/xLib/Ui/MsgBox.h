@@ -48,7 +48,7 @@ public:
     virtual      ~MsgBox() = default;
 
     ModalResult show(std::ctstring_t &text, std::ctstring_t &title, cType type = Type::Ok) const
-        xWARN_UNUSED_RV;
+       ;
         ///< message box with custom text, custom title, custom type
 
 private:
@@ -56,7 +56,7 @@ private:
 
 xPLATFORM_IMPL:
     ModalResult _show_impl(std::ctstring_t &text, std::ctstring_t &title,
-        cType type = Type::Ok) const xWARN_UNUSED_RV;
+        cType type = Type::Ok) const;
 };
 
 xNAMESPACE_END2(xl, ui)

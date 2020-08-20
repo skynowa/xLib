@@ -17,7 +17,7 @@ public:
                       Exception() = default;
     virtual          ~Exception() = default;
 
-    std::ctstring_t & what() const xWARN_UNUSED_RV;
+    std::ctstring_t & what() const;
         ///< get message
     template<typename T>
     Exception &       operator << (const T &msgT);

@@ -17,8 +17,8 @@ class FormatC
 public:
 	xNO_DEFAULT_CONSTRUCT(FormatC);
 
-    static std::tstring_t str(cptr_ctchar_t format, ...) xWARN_UNUSED_RV;
-    static std::tstring_t strV(cptr_ctchar_t format, va_list args) xWARN_UNUSED_RV;
+    static std::tstring_t str(cptr_ctchar_t format, ...);
+    static std::tstring_t strV(cptr_ctchar_t format, va_list args);
 };
 
 xNAMESPACE_END2(xl, core)

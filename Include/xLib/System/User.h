@@ -27,25 +27,25 @@ public:
         ///< a non-privileged user to access files that can only be accessed by root
     uint_t         groupId() const;
         ///< group ID
-    bool_t         isAdmin() const xWARN_UNUSED_RV;
+    bool_t         isAdmin() const;
         ///< is current user an admin
-    std::tstring_t loginName() const xWARN_UNUSED_RV;
+    std::tstring_t loginName() const;
         ///< login name
-    std::tstring_t name() const xWARN_UNUSED_RV;
+    std::tstring_t name() const;
         ///< get the name of the user associated with the current thread
     std::tstring_t homeDir() const;
         ///< get home directory
     std::tstring_t shellPath() const;
 
 xPLATFORM_IMPL:
-    uint_t         _id_impl() const xWARN_UNUSED_RV;
-    uint_t         _effectiveId_impl() const xWARN_UNUSED_RV;
-    uint_t         _groupId_impl() const xWARN_UNUSED_RV;
-    bool_t         _isAdmin_impl() const xWARN_UNUSED_RV;
-    std::tstring_t _loginName_impl() const xWARN_UNUSED_RV;
-    std::tstring_t _name_impl() const xWARN_UNUSED_RV;
-    std::tstring_t _homeDir_impl() const xWARN_UNUSED_RV;
-    std::tstring_t _shellPath_impl() const xWARN_UNUSED_RV;
+    uint_t         _id_impl() const;
+    uint_t         _effectiveId_impl() const;
+    uint_t         _groupId_impl() const;
+    bool_t         _isAdmin_impl() const;
+    std::tstring_t _loginName_impl() const;
+    std::tstring_t _name_impl() const;
+    std::tstring_t _homeDir_impl() const;
+    std::tstring_t _shellPath_impl() const;
 
 private:
 #if   xENV_WIN

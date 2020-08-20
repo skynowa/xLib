@@ -22,7 +22,7 @@ public:
         ///< sleep
     void_t   wakeUp();
         ///< wake up
-    bool_t   isSleeping() const xWARN_UNUSED_RV;
+    bool_t   isSleeping() const;
         ///< check for sleeping
 
 private:

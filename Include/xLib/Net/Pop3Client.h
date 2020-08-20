@@ -57,9 +57,9 @@ private:
 
     void_t            _command(std::ctstring_t &command, std::ctstring_t &replyDelimiter,
                           std::tstring_t *reply);
-    bool_t            _isError(std::ctstring_t &text) xWARN_UNUSED_RV;
-    std::size_t       _mailsSum(std::ctstring_t &serverAnswer) xWARN_UNUSED_RV;
-    std::size_t       _mailsSize(std::ctstring_t &serverAnswer) xWARN_UNUSED_RV;
+    bool_t            _isError(std::ctstring_t &text);
+    std::size_t       _mailsSum(std::ctstring_t &serverAnswer);
+    std::size_t       _mailsSize(std::ctstring_t &serverAnswer);
 
     xNO_COPY_ASSIGN(Pop3Client)
 };

@@ -32,7 +32,7 @@ public:
         ///< set timeout
 
     static
-    bool_t   isServerAlive(std::ctstring_t &ip, cushort_t &port) xWARN_UNUSED_RV;
+    bool_t   isServerAlive(std::ctstring_t &ip, cushort_t &port);
         ///< is sever socket available
 
 protected:

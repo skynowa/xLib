@@ -96,22 +96,22 @@ class Type
 public:
     template<typename T>
     static
-    std::tstring_t nameDemangle(const T &objT) xWARN_UNUSED_RV;
+    std::tstring_t nameDemangle(const T &objT);
         ///< get name
 
     template<typename T>
     static
-    std::tstring_t name(const T &objT) xWARN_UNUSED_RV;
+    std::tstring_t name(const T &objT);
         ///< get name
 
     template<typename T>
     static
-    std::tstring_t nameRaw(const T &objT) xWARN_UNUSED_RV;
+    std::tstring_t nameRaw(const T &objT);
         ///< get raw name
 
     template<typename T1, class T2>
     static
-    bool_t         isEqual(const T1 &obj1T, const T2 &obj2T) xWARN_UNUSED_RV;
+    bool_t         isEqual(const T1 &obj1T, const T2 &obj2T);
         ///< is equals
 
 private:

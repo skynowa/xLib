@@ -24,11 +24,11 @@ public:
 
 ///@name Creations
 ///@{
-    std::ctstring_t & path() const xWARN_UNUSED_RV;
+    std::ctstring_t & path() const;
         ///< get file path
     void_t            setPath(std::ctstring_t &filePath);
         ///< set file path
-    std::map_tstring_t & get() xWARN_UNUSED_RV;
+    std::map_tstring_t & get();
         ///< get inner local_storage_t, may be used with bFlush
 
     void_t            read();
@@ -45,7 +45,7 @@ public:
 
 ///@name Key's actions
 ///@{
-    bool_t            keyIsExists(std::ctstring_t &key) const xWARN_UNUSED_RV;
+    bool_t            keyIsExists(std::ctstring_t &key) const;
         ///< is exists
     void_t            keyClear(std::ctstring_t &key);
         ///< clear value

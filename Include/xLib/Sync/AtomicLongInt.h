@@ -49,7 +49,7 @@ public:
     AtomicLongInt & operator ++ (cint_t value);
     AtomicLongInt & operator -- (cint_t value);
 
-    long_t          value() const xWARN_UNUSED_RV;
+    long_t          value() const;
 
 private:
     volatile long_t _value {};
@@ -63,7 +63,7 @@ xPLATFORM_IMPL:
     AtomicLongInt & _assign_impl(clong_t &right);
     AtomicLongInt & _inc_impl(cint_t value);
     AtomicLongInt & _decr_impl(cint_t value);
-    long_t          _value_impl() const xWARN_UNUSED_RV;
+    long_t          _value_impl() const;
 };
 
 xNAMESPACE_END2(xl, sync)

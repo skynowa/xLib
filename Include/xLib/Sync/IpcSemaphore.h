@@ -26,7 +26,7 @@ public:
 
     long_t           valueMax() const;
         ///< maximum value
-    const handle_t & handle() const xWARN_UNUSED_RV;
+    const handle_t & handle() const;
         ///< get handle
     void_t           create(clong_t &initialValue, std::ctstring_t &name);
         ///< create
@@ -36,14 +36,14 @@ public:
         ///< release
     void_t           wait(culong_t &timeoutMsec) const;
         ///< wait
-    long_t           value() const xWARN_UNUSED_RV;
+    long_t           value() const;
         ///< get value
 
 private:
     handle_t         _handle {};
     std::tstring_t   _name;
 
-    bool_t           _isValid() const xWARN_UNUSED_RV;
+    bool_t           _isValid() const;
 
     xNO_COPY_ASSIGN(IpcSemaphore)
 
@@ -55,8 +55,8 @@ xPLATFORM_IMPL:
     void_t           _open_impl(std::ctstring_t &name);
     void_t           _post_impl() const;
     void_t           _wait_impl(culong_t &timeoutMsec) const;
-    long_t           _value_impl() const xWARN_UNUSED_RV;
-    bool_t           _isValid_impl() const xWARN_UNUSED_RV;
+    long_t           _value_impl() const;
+    bool_t           _isValid_impl() const;
 };
 
 xNAMESPACE_END2(xl, sync)

@@ -21,14 +21,14 @@ public:
 
     void_t         setLogPath(std::ctstring_t &logPath);
         ///< set log path
-    std::tstring_t logPath() const xWARN_UNUSED_RV;
+    std::tstring_t logPath() const;
         ///< get log path
 
     void_t         start();
         ///< start measurement
-    size_t         stop(cptr_ctchar_t comment, ...) xWARN_UNUSED_RV;
+    size_t         stop(cptr_ctchar_t comment, ...);
         ///< stop measurement
-    size_t         restart(cptr_ctchar_t comment, ...) xWARN_UNUSED_RV;
+    size_t         restart(cptr_ctchar_t comment, ...);
         ///< stop, start measurement
 
 private:

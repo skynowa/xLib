@@ -56,16 +56,16 @@ public:
         ///< get service by port
 
     static
-    bool_t   isOnLan(cuint_t &ip) xWARN_UNUSED_RV;
+    bool_t   isOnLan(cuint_t &ip);
         ///< return true if IP is on this LAN
     static
-    bool_t   isBroadcast(cuint_t &ip) xWARN_UNUSED_RV;
+    bool_t   isBroadcast(cuint_t &ip);
         ///< return true if IP is a (directed) IP-broadcast address
     static
-    bool_t   isAddressIpv4(std::ctstring_t &ip) xWARN_UNUSED_RV;
+    bool_t   isAddressIpv4(std::ctstring_t &ip);
         ///< is address IP v4
     static
-    bool_t   isAddressIpv6(std::ctstring_t &ip) xWARN_UNUSED_RV;
+    bool_t   isAddressIpv6(std::ctstring_t &ip);
         ///< is address IP v6
 
 private:

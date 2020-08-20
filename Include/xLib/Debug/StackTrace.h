@@ -26,7 +26,7 @@ public:
     explicit       StackTrace(cStackTraceData &data = cStackTraceData());
     virtual       ~StackTrace() = default;
 
-    std::tstring_t toString() xWARN_UNUSED_RV;
+    std::tstring_t toString();
         ///< get stack trace with format output
 
 private:

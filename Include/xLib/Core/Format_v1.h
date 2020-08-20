@@ -45,7 +45,7 @@ public:
 
 private:
     static
-    std::ctstring_t & _specifier() xWARN_UNUSED_RV;
+    std::ctstring_t & _specifier();
         ///< specifier
 
     template<typename T>

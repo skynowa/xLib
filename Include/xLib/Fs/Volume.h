@@ -41,25 +41,25 @@ public:
 
     xNO_COPY_ASSIGN(Volume)
 
-    std::ctstring_t & path() const xWARN_UNUSED_RV;
+    std::ctstring_t & path() const;
         ///< path
     Type            type() const;
         ///< type
-    std::tstring_t  fileSystem() const xWARN_UNUSED_RV;
+    std::tstring_t  fileSystem() const;
         ///< filesystem type
-    std::tstring_t  label() const xWARN_UNUSED_RV;
+    std::tstring_t  label() const;
         ///< get label
-    bool_t          isValid() const xWARN_UNUSED_RV;
+    bool_t          isValid() const;
         ///< is valid path
-    bool_t          isReady() const xWARN_UNUSED_RV;
+    bool_t          isReady() const;
         ///< is ready
-    bool_t          isEmpty() const xWARN_UNUSED_RV;
+    bool_t          isEmpty() const;
         ///< is empty
     void_t          mount(std::ctstring_t &destPath) const;
         ///< mount
     void_t          unMount(cbool_t &isForce) const;
         ///< unmount
-    bool_t          isSpaceAvailable(culonglong_t needBytes) const xWARN_UNUSED_RV;
+    bool_t          isSpaceAvailable(culonglong_t needBytes) const;
         ///< is enough space
 
 xPUBLIC_STATIC:
@@ -80,10 +80,10 @@ private:
 
 xPLATFORM_IMPL:
 	Type            _type_impl() const;
-    std::tstring_t  _fileSystem_impl() const xWARN_UNUSED_RV;
-    std::tstring_t  _label_impl() const xWARN_UNUSED_RV;
-    bool_t          _isValid_impl() const xWARN_UNUSED_RV;
-    bool_t          _isReady_impl() const xWARN_UNUSED_RV;
+    std::tstring_t  _fileSystem_impl() const;
+    std::tstring_t  _label_impl() const;
+    bool_t          _isValid_impl() const;
+    bool_t          _isReady_impl() const;
     void_t          _mount_impl(std::ctstring_t &destPath) const;
     void_t          _unMount_impl(cbool_t &isForce) const;
 

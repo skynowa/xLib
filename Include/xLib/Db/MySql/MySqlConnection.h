@@ -53,14 +53,14 @@ public:
 
     xNO_COPY_ASSIGN(MySqlConnection)
 
-    HandleMySqlConn &get() xWARN_UNUSED_RV;
+    HandleMySqlConn &get();
         ///< get handle
 
     void_t         connect(cMySqlConnectionData &data);
         ///< attempts to establish a connection to a MySql database engine running on host
     void_t         reconnect();
         ///< reconnect to DB
-    bool_t         ping(int_t *errorCode = nullptr) const xWARN_UNUSED_RV;
+    bool_t         ping(int_t *errorCode = nullptr) const;
         ///< checks whether the connection to the server is working
 
 	std::tstring_t escapeString(std::ctstring_t &sqlValue, cbool_t isQuoted = true) const
@@ -79,20 +79,20 @@ public:
         ///< commits the current transaction
     void_t         rollback();
         ///< rolls back the current transaction
-    uint_t         fieldCount() const xWARN_UNUSED_RV;
+    uint_t         fieldCount() const;
         ///< number of columns in a result set
     void_t         close();
         ///< closes a previously opened connection
 
     // errors
-    uint_t         lastError() const override xWARN_UNUSED_RV;
+    uint_t         lastError() const override;
         ///< error code for the most recently invoked API function that can succeed or fail
-    std::tstring_t lastErrorStr() const override xWARN_UNUSED_RV;
+    std::tstring_t lastErrorStr() const override;
         ///< error message for the most recently invoked API function that failed
 
 xPUBLIC_STATIC:
 	static
-	bool_t isDbExists(cMySqlConnectionData &data) xWARN_UNUSED_RV;
+	bool_t isDbExists(cMySqlConnectionData &data);
 		///< check connection
 	static
 	void_t dbCreate(cMySqlConnectionData &data);

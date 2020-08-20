@@ -71,13 +71,13 @@ public:
         ///< wait
 
     // flags
-    bool_t          isCreated() const xWARN_UNUSED_RV;
+    bool_t          isCreated() const;
         ///< is created
-    bool_t          isRunning() const xWARN_UNUSED_RV;
+    bool_t          isRunning() const;
         ///< is running
-    bool_t          isPaused() xWARN_UNUSED_RV;
+    bool_t          isPaused();
         ///< is paused
-    bool_t          isExited() xWARN_UNUSED_RV;
+    bool_t          isExited();
         ///< is exited (is set flag "exit")
 
 #if xENV_WIN
@@ -89,7 +89,7 @@ public:
     void_t          postThreadMessage(uint_t msg, uint_t param1, long_t param2) const;
         ///< post message from thread to thread
     bool_t          tryPostThreadMessage(uint_t msg, uint_t param1, long_t param2,
-                        ulong_t attempsNum, ulong_t attempTimeoutMsec) const xWARN_UNUSED_RV;
+                        ulong_t attempsNum, ulong_t attempTimeoutMsec) const;
         ///< try post message from thread to thread
     void_t          messageWaitQueue(uint_t msg, uint_t *param1, long_t *param2) const;
         ///< waiting for message with params from other thread
@@ -101,15 +101,15 @@ public:
     // priority
     void_t          setPriority(const Priority priority) const;
         ///< set priority (under Linux must use admin privilege)
-    Priority        priority() const xWARN_UNUSED_RV;
+    Priority        priority() const;
         ///< get priority
-    std::tstring_t  priorityString() const xWARN_UNUSED_RV;
+    std::tstring_t  priorityString() const;
         ///< get priority as string
     void_t          priorityUp() const;
         ///< increase priority on one level
     void_t          priorityDown() const;
         ///< decrease priority on one level
-    bool_t          isPriorityBoost() const xWARN_UNUSED_RV;
+    bool_t          isPriorityBoost() const;
         ///< get priority boost control state
     void_t          setPriorityBoost(cbool_t &isEnabled) const;
         ///< disables/enables the ability of the system to temporarily boost the priority of a thread
@@ -119,38 +119,38 @@ public:
         ///< set processor affinity
     void_t          setCpuIdeal(culong_t &idealCpu) const;
         ///< sets preferred processor for a thread
-    ulong_t         cpuIdeal() const xWARN_UNUSED_RV;
+    ulong_t         cpuIdeal() const;
         ///< get current ideal processor without changing it
     static
-    ulong_t         cpuCount() xWARN_UNUSED_RV;
+    ulong_t         cpuCount();
         ///< get CPU count on machine
 
     // other
-    handle_t        handle() const xWARN_UNUSED_RV;
+    handle_t        handle() const;
         ///< get handle
-    id_t            id() const xWARN_UNUSED_RV;
+    id_t            id() const;
         ///< get ID
-    bool_t          isCurrent() const xWARN_UNUSED_RV;
+    bool_t          isCurrent() const;
         ///< is current
-    ulong_t         exitStatus() const xWARN_UNUSED_RV;
+    ulong_t         exitStatus() const;
         ///< get termination status
     void_t          setDebugName(std::ctstring_t &name) const;
         ///< set name your threads in the debugger thread list
 
     // static
     static
-    handle_t        open(culong_t &access, cbool_t &isInheritHandle, culong_t &id) xWARN_UNUSED_RV;
+    handle_t        open(culong_t &access, cbool_t &isInheritHandle, culong_t &id);
         ///< opens an existing thread object
 
     // current thread
     static
-    bool_t          isCurrent(const Thread::id_t &id) xWARN_UNUSED_RV;
+    bool_t          isCurrent(const Thread::id_t &id);
         ///< is current id
     static
-    id_t            currentId() xWARN_UNUSED_RV;
+    id_t            currentId();
         ///< get the thread identifier of the calling thread
     static
-    handle_t        currentHandle() xWARN_UNUSED_RV;
+    handle_t        currentHandle();
         ///< get pseudo handle for the calling thread
     static
     void_t          currentYield();
@@ -162,10 +162,10 @@ public:
 protected:
     // events
     // BUG: Thread::onRun() - must pure virtual
-    virtual uint_t  onRun(void_t *param) /* = 0 */ xWARN_UNUSED_RV;
+    virtual uint_t  onRun(void_t *param) /* = 0 */;
         ///< work thread function, must be override
 
-    bool_t          isTimeToExit() xWARN_UNUSED_RV;
+    bool_t          isTimeToExit();
         ///< is need to exit from work thread function
 
 private:
@@ -210,9 +210,9 @@ private:
     Event  _eventExit {true,  false};   ///< exit event
 
     static
-    exit_status_t xSTDCALL _s_jobEntry(void_t *param) xWARN_UNUSED_RV;
+    exit_status_t xSTDCALL _s_jobEntry(void_t *param);
         ///< callback
-    bool_t          _waitResumption() xWARN_UNUSED_RV;
+    bool_t          _waitResumption();
         ///< waiting for reset pause
     void_t          _clear(cuint_t &a_exitStatus);
         ///< clear class data
@@ -231,29 +231,29 @@ xPLATFORM_IMPL:
     void_t          _create_impl(cuint_t &stackSizeBytes);
     void_t          _kill_impl(culong_t &timeoutMsec);
     void_t          _wait_impl(culong_t &timeoutMsec) const;
-    bool_t          _isCreated_impl() const xWARN_UNUSED_RV;
-    bool_t          _isRunning_impl() const xWARN_UNUSED_RV;
-    bool_t          _isPaused_impl() xWARN_UNUSED_RV;
-    bool_t          _isExited_impl() xWARN_UNUSED_RV;
+    bool_t          _isCreated_impl() const;
+    bool_t          _isRunning_impl() const;
+    bool_t          _isPaused_impl();
+    bool_t          _isExited_impl();
     void_t          _setPriority_impl(const Priority priority) const;
-    Priority        _priority_impl() const xWARN_UNUSED_RV;
-    bool_t          _isPriorityBoost_impl() const xWARN_UNUSED_RV;
+    Priority        _priority_impl() const;
+    bool_t          _isPriorityBoost_impl() const;
     void_t          _setPriorityBoost_impl(cbool_t &isEnabled) const;
     void_t          _setCpuAffinity_impl(cint_t &procNum) const;
     void_t          _setCpuIdeal_impl(culong_t &idealCpu) const;
-    ulong_t         _cpuIdeal_impl() const xWARN_UNUSED_RV;
-    handle_t        _handle_impl() const xWARN_UNUSED_RV;
-    ulong_t         _exitStatus_impl() const xWARN_UNUSED_RV;
+    ulong_t         _cpuIdeal_impl() const;
+    handle_t        _handle_impl() const;
+    ulong_t         _exitStatus_impl() const;
     void_t          _setDebugName_impl(std::ctstring_t &name) const;
 
     static
-    handle_t        _open_impl(culong_t &access, cbool_t &isInheritHandle, culong_t &id) xWARN_UNUSED_RV;
+    handle_t        _open_impl(culong_t &access, cbool_t &isInheritHandle, culong_t &id);
     static
-    bool_t          _isCurrent_impl(const Thread::id_t &id) xWARN_UNUSED_RV;
+    bool_t          _isCurrent_impl(const Thread::id_t &id);
     static
-    id_t            _currentId_impl() xWARN_UNUSED_RV;
+    id_t            _currentId_impl();
     static
-    handle_t        _currentHandle_impl() xWARN_UNUSED_RV;
+    handle_t        _currentHandle_impl();
     static
     void_t          _currentYield_impl();
     static
