@@ -33,8 +33,8 @@ Test_FileInfo::unit()
 
     xTEST_CASE("isEmpty")
     {
-        File file(false);
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        File file;
+        file.create(filePath, File::OpenMode::CreateReadWrite, false);
 
         m_bRv = FileInfo(file).isEmpty();
         xTEST(m_bRv);
@@ -70,8 +70,8 @@ Test_FileInfo::unit()
     xTEST_CASE("time, setTime")
     {
         {
-            File file(false);
-            file.create(filePath, File::OpenMode::CreateReadWrite);
+            File file;
+            file.create(filePath, File::OpenMode::CreateReadWrite, false);
         }
 
         const time_t create   {1319714265};
