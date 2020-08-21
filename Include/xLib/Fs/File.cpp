@@ -28,12 +28,8 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-File::File(
-    cbool_t a_isUseBuffering /* = true */
-) :
-    _isUseBuffering(a_isUseBuffering)
+File::File()
 {
-    xTEST_NA(a_isUseBuffering);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -53,7 +49,8 @@ File::~File()
 void_t
 File::create(
     std::ctstring_t &a_filePath,
-    cOpenMode        a_mode
+    cOpenMode        a_mode,
+    cbool_t          a_isBuffering /* = true */
 )
 {
     xTEST(!a_filePath.empty());
@@ -72,7 +69,7 @@ File::create(
     }
 
     // buffering
-    if (_isUseBuffering) {
+    if (a_isBuffering) {
         setVBuff(nullptr, BufferingMode::Full, BUFSIZ);
     } else {
         setVBuff(nullptr, BufferingMode::No,   0);
@@ -82,7 +79,8 @@ File::create(
 void_t
 File::reopen(
     std::ctstring_t &a_filePath,
-    cOpenMode        a_mode
+    cOpenMode        a_mode,
+    cbool_t          a_isBuffering /* = true */
 )
 {
     xTEST(!a_filePath.empty());
@@ -101,7 +99,7 @@ File::reopen(
     }
 
     // buffering
-    if (_isUseBuffering) {
+    if (a_isBuffering) {
         setVBuff(nullptr, BufferingMode::Full, BUFSIZ);
     } else {
         setVBuff(nullptr, BufferingMode::No,   0);
