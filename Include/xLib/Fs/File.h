@@ -74,7 +74,6 @@ public:
     explicit File();
     virtual ~File();
 
-    /// xNO_DEFAULT_CONSTRUCT(File)
     xNO_COPY_ASSIGN(File)
 ///@}
 
