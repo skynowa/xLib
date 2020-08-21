@@ -223,7 +223,6 @@ private:
 
 xNAMESPACE_END2(xl, fs)
 //-------------------------------------------------------------------------------------------------
-// TODO: [skynowa] a_isUseBuffering - in create
 // TODO: [skynowa] get objects (Path, FileInfo)
 // TODO: [skynowa] actions methods - big in using
 // TODO: [skynowa] _filePath invariants - rm for constmembers
