@@ -170,6 +170,7 @@ public:
                         /* throw(Exception) */;
         ///< copy
 
+
 xPUBLIC_STATIC:
     // text
     static

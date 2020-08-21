@@ -1,7 +1,7 @@
 #!/bin/bash
-##
-## Auto build project
-##
+#
+# Auto build project
+#
 
 
 APP_NAME="[AUTO_BUILD]"

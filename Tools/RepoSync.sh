@@ -6,5 +6,7 @@
 
 cd ..
 
-git push --tags https://skynowa@github.com/skynowa/xLib.git master:master
+## git push --tags https://skynowa@github.com/skynowa/xLib.git master:master
+git push --tags git@github.com:skynowa/xLib.git master:master
+
 # git push --tags https://skynowa@git.code.sf.net/p/x-lib/code master:master
