@@ -71,17 +71,16 @@ public:
 
 ///@name ctors, dtor
 ///@{
-    explicit File(cbool_t isUseBuffering = true);
+    explicit File();
     virtual ~File();
 
-    /// xNO_DEFAULT_CONSTRUCT(File)
     xNO_COPY_ASSIGN(File)
 ///@}
 
     // open, get
-    void_t         create(std::ctstring_t &filePath, cOpenMode mode);
+    void_t         create(std::ctstring_t &filePath, cOpenMode mode, cbool_t isBuffering = true);
         ///< open
-    void_t         reopen(std::ctstring_t &filePath, cOpenMode mode);
+    void_t         reopen(std::ctstring_t &filePath, cOpenMode mode, cbool_t isBuffering = true);
         ///< reopen with different file or mode
     HandleStdFile &get();
         ///< get handle
@@ -207,7 +206,6 @@ xPUBLIC_STATIC:
 private:
     HandleStdFile  _handle;            ///< file handle
     std::tstring_t _filePath;          ///< file path
-    cbool_t        _isUseBuffering {}; ///< is use buffering
 
     static
     int_t          _nativeHandle(std::FILE *file);
@@ -224,7 +222,6 @@ private:
 
 xNAMESPACE_END2(xl, fs)
 //-------------------------------------------------------------------------------------------------
-// TODO: [skynowa] a_isUseBuffering - in create
 // TODO: [skynowa] get objects (Path, FileInfo)
 // TODO: [skynowa] actions methods - big in using
 // TODO: [skynowa] _filePath invariants - rm for constmembers

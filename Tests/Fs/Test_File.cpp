@@ -514,8 +514,8 @@ Test_File::unit1()
 		std::ctstring_t sFilePathTo   = sFilePathFrom + xT("_addition_to_name.txt");
 
 		{
-			File file(false);
-			file.create(sFilePathFrom, File::OpenMode::BinCreateReadWrite);
+			File file;
+			file.create(sFilePathFrom, File::OpenMode::BinCreateReadWrite, false);
 			file.resize(1024 * 5);
 		}
 
