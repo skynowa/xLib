@@ -143,7 +143,7 @@ public:
         ///< check end of file indicator
     bool_t         isError() const;
         ///< check error indicator
-    void_t         errorClear() const;
+    void_t         clearError() const;
         ///< clear error indicators
 
     // closing

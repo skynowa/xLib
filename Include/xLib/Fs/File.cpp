@@ -474,7 +474,7 @@ File::isError() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::errorClear() const
+File::clearError() const
 {
     (void_t)std::clearerr( _handle.get() );
 }
@@ -499,7 +499,7 @@ File::close()
 {
     xCHECK_DO(!_handle.isValid(), return);
 
-    errorClear();
+    clearError();
 
     _handle.close();
 }

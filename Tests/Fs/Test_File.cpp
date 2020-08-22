@@ -424,11 +424,11 @@ Test_File::unit()
         xTEST_EQ(m_bRv, false);
     }
 
-    xTEST_CASE("errorClear")
+    xTEST_CASE("clearError")
     {
         File file;
         file.create(filePath, File::OpenMode::CreateReadWrite);
-        file.errorClear();
+        file.clearError();
     }
 
     /*******************************************************************************
