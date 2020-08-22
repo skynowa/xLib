@@ -45,14 +45,12 @@ Path::Path(
 ) :
     _filePath(a_filePath)
 {
-    xTEST_EQ(_filePath.empty(), false);
+    xTEST(!_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 std::ctstring_t &
 Path::filePath() const
 {
-    xTEST_EQ(_filePath.empty(), false);
-
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
@@ -196,7 +194,7 @@ Path::setVolume(
     std::tstring_t sRv(filePath());
 
     std::tstring_t driveStr = Path(sRv).volume();
-    xTEST_EQ(driveStr.empty(), false);
+    xTEST(!driveStr.empty());
 
     std::csize_t pos = sRv.find(driveStr);
     xTEST_DIFF(pos, std::tstring_t::npos);
@@ -212,7 +210,7 @@ Path::setDir(
     std::tstring_t sRv(filePath());
 
     std::tstring_t dirStr = Path(sRv).dir();
-    xTEST_EQ(dirStr.empty(), false);
+    xTEST(!dirStr.empty());
 
     std::csize_t pos = sRv.find(dirStr);
     xTEST_DIFF(pos, std::tstring_t::npos);
@@ -228,7 +226,7 @@ Path::setFileName(
     std::tstring_t sRv(filePath());
 
     std::tstring_t fullName = Path(sRv).fileName();
-    xTEST_EQ(fullName.empty(), false);
+    xTEST(!fullName.empty());
 
     std::csize_t pos = sRv.rfind(fullName);
     xTEST_DIFF(pos, std::tstring_t::npos);
@@ -244,7 +242,7 @@ Path::setFileBaseName(
     std::tstring_t sRv(filePath());
 
     std::tstring_t name = Path(sRv).fileBaseName();
-    xTEST_EQ(name.empty(), false);
+    xTEST(!name.empty());
 
     std::csize_t pos = sRv.rfind(name);
     xTEST_DIFF(pos, std::tstring_t::npos);
@@ -411,7 +409,7 @@ std::tstring_t
 Path::absolute() const
 {
     std::ctstring_t sRv( _absolute_impl() );
-    xTEST_EQ(Path(sRv).isAbsolute(), true);
+    xTEST(Path(sRv).isAbsolute());
 
     return sRv;
 }
@@ -481,7 +479,6 @@ Path::brief(
             *a_num = index;
         }
     };
-
 
     std::tstring_t sRv  = filePath();
     std::tstring_t path = filePath();
