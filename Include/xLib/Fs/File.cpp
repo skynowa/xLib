@@ -201,7 +201,7 @@ File::read(
     xTEST_PTR(a_buff);
 
     clonglong_t fileSize = size();
-    xTEST_DIFF(static_cast<longlong_t>( PointerPosition::Error ), fileSize);
+    xTEST_DIFF(fileSize, static_cast<longlong_t>( PointerPosition::Error ));
 
     a_buff->clear();
     a_buff->resize( static_cast<size_t>(fileSize) );
