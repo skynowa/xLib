@@ -122,9 +122,9 @@ public:
         ///< clear
 
     // other
-    void_t         locking(cLockingMode mode, clong_t &bytes);
+    void_t         locking(cLockingMode mode, clong_t bytes);
         ///< locks or unlocks bytes of a file
-    void_t         setPosition(clong_t &offset, cPointerPosition &pos) const;
+    void_t         setPosition(clong_t offset, cPointerPosition pos) const;
         ///< set stream position indicator
     long_t         position() const;
         ///< get current position in stream
@@ -133,7 +133,7 @@ public:
 
     longlong_t     size() const;
         ///< get file size
-    void_t         resize(clonglong_t &size) const;
+    void_t         resize(clonglong_t size) const;
         ///< changes the file size
 
     // error handling

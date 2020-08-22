@@ -361,7 +361,7 @@ File::clear() const
 void_t
 File::locking(
     cLockingMode a_mode,
-    clong_t     &a_bytes
+    clong_t      a_bytes
 )
 {
     xTEST_NA(a_mode);
@@ -379,8 +379,8 @@ File::locking(
 //-------------------------------------------------------------------------------------------------
 void_t
 File::setPosition(
-    clong_t          &a_offset,
-    cPointerPosition &a_pos
+    clong_t          a_offset,
+    cPointerPosition a_pos
 ) const
 {
     xTEST_NA(a_offset);
@@ -428,7 +428,7 @@ File::size() const
 //-------------------------------------------------------------------------------------------------
 void_t
 File::resize(
-    clonglong_t &a_size
+    clonglong_t a_size
 ) const
 {
     xTEST_NA(a_size);
