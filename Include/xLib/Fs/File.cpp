@@ -165,6 +165,21 @@ File::detach()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+void_t
+File::setVBuff(
+    char          *a_buff,
+    cBufferingMode a_mode,
+    std::csize_t   a_size
+) const
+{
+    xTEST_NA(a_buff);
+    xTEST_NA(a_mode);
+    xTEST_NA(a_size);
+
+    int_t iRv = std::setvbuf(_handle.get(), a_buff, static_cast<int>(a_mode), a_size);
+    xTEST_DIFF(iRv, - 1);
+}
+//-------------------------------------------------------------------------------------------------
 size_t
 File::read(
     void_t       *a_buff,
@@ -397,21 +412,6 @@ File::position() const
     xTEST_DIFF(liRv, - 1L);
 
     return liRv;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-File::setVBuff(
-    char          *a_buff,
-    cBufferingMode a_mode,
-    std::csize_t   a_size
-) const
-{
-    xTEST_NA(a_buff);
-    xTEST_NA(a_mode);
-    xTEST_NA(a_size);
-
-    int_t iRv = std::setvbuf(_handle.get(), a_buff, static_cast<int>(a_mode), a_size);
-    xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 longlong_t
