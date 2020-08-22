@@ -121,7 +121,7 @@ public:
     void_t         ungetChar(ctchar_t &ch) const;
         ///< unget character from stream
     void_t         clear() const;
-        ///< clear
+        ///< clear content
 
     // other
     void_t         locking(cLockingMode mode, clong_t bytes);
