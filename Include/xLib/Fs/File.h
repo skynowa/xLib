@@ -94,6 +94,8 @@ public:
         ///< detach from stream
 
     // read, write
+    void_t         setVBuff(char *buff, cBufferingMode mode, std::csize_t size) const;
+        ///< change stream buffering
     size_t         read(void_t *buff, std::csize_t count) const;
         ///< read block of data
     size_t         write(cptr_cvoid_t, std::csize_t count) const;
@@ -128,8 +130,6 @@ public:
         ///< set stream position indicator
     long_t         position() const;
         ///< get current position in stream
-    void_t         setVBuff(char *buff, cBufferingMode mode, std::csize_t size) const;
-        ///< change stream buffering
 
     longlong_t     size() const;
         ///< get file size
