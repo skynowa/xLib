@@ -5,7 +5,7 @@ AlignEscapedNewlinesLeft: true
 BinPackArguments: false
 BinPackParameters: false
 BreakConstructorInitializersBeforeComma: true
-Cpp11BracedListStyle: true
+Cpp17BracedListStyle: true
 NamespaceIndentation: All
 PointerAlignment: Left
 Standard:        Cpp17
