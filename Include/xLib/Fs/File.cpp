@@ -616,13 +616,7 @@ File::wipe(
 	} // if (fileSize)
 
     // file time - reset
-    {
-        const time_t create   {};
-        const time_t access   {};
-        const time_t modified {};
-
-        info.setTime(create, access, modified);
-    }
+    info.resetTime();
 
     // file name - randomize
     std::tstring_t randFilePath;
