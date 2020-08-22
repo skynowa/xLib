@@ -368,9 +368,9 @@ File::locking(
     xTEST_NA(a_bytes);
 
 #if   xENV_WIN
-    clong_t     bytes = a_bytes;
+    clong_t    bytes = a_bytes;
 #elif xENV_UNIX
-    const off_t bytes = static_cast<off_t>(a_bytes);
+    const auto bytes = static_cast<off_t>(a_bytes);
 #endif
 
     int_t iRv = xLOCKING(_nativeHandle(_handle.get()), static_cast<int>(a_mode), bytes);
@@ -436,7 +436,7 @@ File::resize(
 #if   xENV_WIN
     clonglong_t _size = a_size;
 #elif xENV_UNIX
-    const off_t _size = static_cast<off_t>(a_size);
+    const auto  _size = static_cast<off_t>(a_size);
 #endif
 
     int_t iRv = xCHSIZE(_nativeHandle( _handle.get() ), _size);
