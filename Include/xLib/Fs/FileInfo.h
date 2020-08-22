@@ -78,6 +78,8 @@ public:
         ///< get time
     void_t         setTime(const time_t create, const time_t access, const time_t modified) const;
         ///< set time
+    void_t         resetTime() const;
+        ///< reset time
 
     bool_t         isExists() const;
         ///< check for existence
