@@ -16,6 +16,7 @@ Docs/html/
 # files
 Include/xLib/Config.h
 CMakeLists.txt.user
+cmake-build-*
 .project
 xLib.pc
 
