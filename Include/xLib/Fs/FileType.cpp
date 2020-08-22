@@ -43,8 +43,6 @@ FileType::FileType(
 std::ctstring_t &
 FileType::filePath() const
 {
-    xTEST(!_filePath.empty());
-
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
@@ -53,7 +51,6 @@ FileType::isExists(
     cType a_value
 ) const
 {
-    xTEST(!filePath().empty());
     xTEST_NA(a_value);
 
     xCHECK_RET(a_value == static_cast<Type>(get() & static_cast<FileType::types_t>(a_value)), true);
@@ -64,8 +61,6 @@ FileType::isExists(
 FileType::types_t
 FileType::get() const
 {
-    xTEST(!filePath().empty());
-
     return _get_impl();
 }
 //-------------------------------------------------------------------------------------------------
@@ -74,7 +69,6 @@ FileType::set(
     ctypes_t a_values
 ) const
 {
-    xTEST(!filePath().empty());
     xTEST_NA(a_values);
 
     _set_impl(a_values);
@@ -85,7 +79,6 @@ FileType::add(
     cType a_value
 ) const
 {
-    xTEST(!filePath().empty());
     xTEST_NA(a_value);
 
     modify(static_cast<Type>(0), a_value);
@@ -96,7 +89,6 @@ FileType::remove(
     cType a_value
 ) const
 {
-    xTEST(!filePath().empty());
     xTEST_NA(a_value);
 
     modify(a_value, static_cast<Type>(0));
@@ -108,7 +100,6 @@ FileType::modify(
     cType a_valueAdd
 ) const
 {
-    xTEST(!filePath().empty());
     xTEST_NA(a_valueRemove);
     xTEST_NA(a_valueAdd);
 
@@ -128,16 +119,12 @@ FileType::modify(
 void_t
 FileType::clear() const
 {
-    xTEST(!filePath().empty());
-
     _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
 FileType::isFile() const
 {
-    xTEST_NA(_filePath);
-
     xCHECK_RET(get() == static_cast<FileType::types_t>(FileType::Type::Unknown), false);
 
     bool_t bRv {};
@@ -165,7 +152,6 @@ FileType::isFile() const
 bool_t
 FileType::isExecutable() const
 {
-    xTEST(!filePath().empty());
 	xCHECK_RET(!isFile(), false);
 
     return _isExecutable_impl();
