@@ -55,6 +55,7 @@ File::create(
 {
     xTEST(!a_filePath.empty());
     xTEST_NA(a_mode);
+    xTEST_NA(a_isBuffering);
 
     // create dir
     Dir( Path(a_filePath).dir() ).pathCreate();
@@ -85,6 +86,7 @@ File::reopen(
 {
     xTEST(!a_filePath.empty());
     xTEST_NA(a_mode);
+	xTEST_NA(a_isBuffering);
 
     // create dir
     Dir( Path(a_filePath).dir() ).pathCreate();
