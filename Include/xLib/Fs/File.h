@@ -222,7 +222,6 @@ private:
 
 xNAMESPACE_END2(xl, fs)
 //-------------------------------------------------------------------------------------------------
-// TODO: [skynowa] _filePath invariants - rm for constmembers
 // TODO: [skynowa] get objects (Path, FileInfo)
 // TODO: [skynowa] actions methods - big in using
 // TODO: [skynowa] static methods - as utils class
