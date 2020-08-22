@@ -63,8 +63,6 @@ Volume::type() const
 std::ctstring_t &
 Volume::path() const
 {
-    xTEST(!_path.empty());
-
     return _path;
 }
 //-------------------------------------------------------------------------------------------------
@@ -106,7 +104,7 @@ Volume::mount(
     std::ctstring_t &a_destPath    ///< destination path
 ) const
 {
-    xTEST_EQ(a_destPath.empty(), false);
+    xTEST(!a_destPath.empty());
 
     _mount_impl(a_destPath);
 }
