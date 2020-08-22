@@ -35,14 +35,12 @@ Dir::Dir(
 ) :
     _dirPath(a_dirPath)
 {
-    xTEST_EQ(a_dirPath.empty(), false);
+    xTEST(!a_dirPath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 std::ctstring_t &
 Dir::dirPath() const
 {
-    xTEST_EQ(_dirPath.empty(), false);
-
     return _dirPath;
 }
 //-------------------------------------------------------------------------------------------------
@@ -66,7 +64,7 @@ Dir::isEmpty(
     std::ctstring_t &a_shellFilter /* = Const::maskAll() */
 ) const
 {
-    xTEST_EQ(a_shellFilter.empty(), false);
+    xTEST(!a_shellFilter.empty());
 
     bool_t bRv {true};
 
@@ -117,7 +115,7 @@ Dir::pathCreate() const
     std::tstring_t     buildPath;
 
     // split dirPath into parts
-     String::split( Path(dirPath()).toNative(false), Const::slash(), &pathParts );
+    String::split( Path(dirPath()).toNative(false), Const::slash(), &pathParts );
 
     // create dirs by steps
     for (const auto &it : pathParts) {
@@ -135,8 +133,8 @@ Dir::copy(
     cbool_t         &a_failIfExists
 ) const
 {
-    xTEST_EQ(isExists(), true);
-    xTEST_EQ(a_dirPathTo.empty(), false);
+    xTEST(isExists());
+    xTEST(!a_dirPathTo.empty());
     xTEST_NA(a_failIfExists);
 
     // sets attribute "normal"
@@ -178,8 +176,8 @@ Dir::move(
     cbool_t         &a_failIfExists
 ) const
 {
-    xTEST_EQ(isExists(), true);
-    xTEST_EQ(a_dirPathTo.empty(), false);
+    xTEST(isExists());
+    xTEST(!a_dirPathTo.empty());
     xTEST_NA(a_failIfExists);
 
     Dir dir(dirPath());
@@ -223,13 +221,13 @@ Dir::tryRemove(
         Thread::currentSleep(a_timeoutMsec);
     }
 
-    xTEST_EQ(isExists(), false);
+    xTEST(!isExists());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Dir::pathClear() const
 {
-    xTEST_EQ(isExists(), true);
+    xTEST(isExists());
 
     // checks
     bool_t bRv = isEmpty(Const::maskAll());
@@ -261,7 +259,7 @@ Dir::pathClear() const
         }
     }
 
-    xTEST_EQ(isEmpty(), true);
+    xTEST(isEmpty());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -273,7 +271,7 @@ Dir::pathDelete() const
     pathClear();
     remove();
 
-    xTEST_EQ(isExists(), false);
+    xTEST(!isExists());
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -307,7 +305,7 @@ Dir::temp()
     std::tstring_t sRv;
 
     sRv = _temp_impl();
-    xTEST_EQ(Dir(sRv).isExists(), true);
+    xTEST(Dir(sRv).isExists());
 
     return sRv;
 }
