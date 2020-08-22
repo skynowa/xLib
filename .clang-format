@@ -8,7 +8,6 @@ BreakConstructorInitializersBeforeComma: true
 Cpp11BracedListStyle: true
 NamespaceIndentation: All
 PointerAlignment: Left
-Standard:        Cpp11
+Standard:        Cpp17
 ConstructorInitializerIndentWidth: 0
 KeepEmptyLinesAtTheStartOfBlocks: false
-
