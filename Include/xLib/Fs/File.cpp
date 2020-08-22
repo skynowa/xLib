@@ -541,7 +541,7 @@ File::tryRemove(
     xTEST_NA(a_timeoutMsec);
 
     std::csize_t attemptsMax  {100};  // MAGIC_NUMBER: attemptsMax
-    std::csize_t attemptsReal {attemptsMax < a_attempts ? attemptsMax : a_attempts};
+    std::csize_t attemptsReal = std::min(a_attempts, attemptsMax);
 
     for (size_t i = 0; i < attemptsReal; ++ i) {
         xTRY {
