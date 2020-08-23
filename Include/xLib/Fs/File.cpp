@@ -766,27 +766,6 @@ File::textRead(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-File::textWrite(
-    std::ctstring_t &a_filePath,
-    std::ctstring_t &a_content,
-    cOpenMode        a_mode
-)
-{
-    xTEST(!a_filePath.empty());
-    xTEST_NA(a_content);
-    xTEST_NA(a_mode);
-
-    File file;
-    file.create(a_filePath, a_mode);
-
-    xCHECK_DO(a_content.empty(), return);
-
-    std::csize_t writeLen = file.write((void_t *)&a_content.at(0), a_content.size());
-    xTEST_EQ(writeLen, a_content.size());
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-void_t
 File::textRead(
     std::ctstring_t    &a_filePath,
     std::vec_tstring_t *a_content
@@ -804,25 +783,6 @@ File::textRead(
 
     // out
     a_content->swap(vsRv);
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-File::textWrite(
-    std::ctstring_t     &a_filePath,
-    std::cvec_tstring_t &a_content,
-    cOpenMode            a_mode
-)
-{
-    xTEST(!a_filePath.empty());
-    xTEST_NA(a_content);
-    xTEST_NA(a_mode);
-
-    std::tstring_t content;
-
-    content = String::join(a_content, Const::nl());
-
-    textWrite(a_filePath, content, a_mode);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -890,6 +850,46 @@ File::textRead(
     // out
     content.swap(msRv);
 #endif
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+File::textWrite(
+    std::ctstring_t &a_filePath,
+    std::ctstring_t &a_content,
+    cOpenMode        a_mode
+)
+{
+    xTEST(!a_filePath.empty());
+    xTEST_NA(a_content);
+    xTEST_NA(a_mode);
+
+    File file;
+    file.create(a_filePath, a_mode);
+
+    xCHECK_DO(a_content.empty(), return);
+
+    std::csize_t writeLen = file.write((void_t *)&a_content.at(0), a_content.size());
+    xTEST_EQ(writeLen, a_content.size());
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+File::textWrite(
+    std::ctstring_t     &a_filePath,
+    std::cvec_tstring_t &a_content,
+    cOpenMode            a_mode
+)
+{
+    xTEST(!a_filePath.empty());
+    xTEST_NA(a_content);
+    xTEST_NA(a_mode);
+
+    std::tstring_t content;
+
+    content = String::join(a_content, Const::nl());
+
+    textWrite(a_filePath, content, a_mode);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
