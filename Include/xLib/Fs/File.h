@@ -97,7 +97,7 @@ public:
         ///< detach from stream
 
     // read, write
-    void_t         setVBuff(char *buff, cBufferingMode mode, std::csize_t size) const;
+    void_t         setVBuff(cBufferingMode mode, char *buff, std::csize_t size) const;
         ///< change stream buffering
     size_t         read(void_t *buff, std::csize_t count) const;
         ///< read block of data

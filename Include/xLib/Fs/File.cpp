@@ -159,13 +159,13 @@ File::detach()
 //-------------------------------------------------------------------------------------------------
 void_t
 File::setVBuff(
-    char          *a_buff,
     cBufferingMode a_mode,
+    char          *a_buff,
     std::csize_t   a_size
 ) const
 {
-    xTEST_NA(a_buff);
     xTEST_NA(a_mode);
+    xTEST_NA(a_buff);
     xTEST_NA(a_size);
 
     int_t iRv = std::setvbuf(_handle.get(), a_buff, static_cast<int>(a_mode), a_size);
@@ -1049,9 +1049,9 @@ File::_setVBuffDefault(
 ) const
 {
     if (a_isBuffering) {
-        setVBuff(nullptr, BufferingMode::Full, BUFSIZ);
+        setVBuff(BufferingMode::Full, nullptr, BUFSIZ);
     } else {
-        setVBuff(nullptr, BufferingMode::No,   0);
+        setVBuff(BufferingMode::No,   nullptr, 0);
     }
 }
 //-------------------------------------------------------------------------------------------------
