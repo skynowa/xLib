@@ -210,7 +210,7 @@ File::read(
     xTEST_PTR(a_buff);
 
     clonglong_t fileSize = size();
-    xTEST_DIFF(fileSize, static_cast<longlong_t>( PointerPosition::Error ));
+    xTEST_DIFF(fileSize, static_cast<longlong_t>(PointerPosition::Error));
 
     a_buff->clear();
     a_buff->resize( static_cast<size_t>(fileSize) );
@@ -241,7 +241,7 @@ File::read(
     xTEST_PTR(a_buff);
 
     clonglong_t fileSize = size();
-    xTEST_DIFF(static_cast<longlong_t>( PointerPosition::Error ), fileSize);
+    xTEST_DIFF(static_cast<longlong_t>(PointerPosition::Error), fileSize);
 
     a_buff->clear();
     a_buff->resize( static_cast<size_t>( fileSize) );
@@ -940,7 +940,7 @@ File::binRead(
     file.create(a_filePath, OpenMode::BinReadOnly);
 
     clonglong_t fileSize = file.size();
-    xTEST_DIFF(fileSize, static_cast<longlong_t>( PointerPosition::Error ));
+    xTEST_DIFF(fileSize, static_cast<longlong_t>(PointerPosition::Error));
     xCHECK_DO(fileSize == 0LL, a_content->clear(); return);
 
     usRv.resize( static_cast<size_t>(fileSize) );
