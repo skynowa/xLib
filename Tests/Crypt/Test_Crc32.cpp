@@ -23,7 +23,7 @@ Test_Crc32::unit()
         File file;
 
         file.create(filePath, File::OpenMode::CreateReadWrite);
-        file.resize(1337LL);
+        file.setSize(1337LL);
     }
 
     xTEST_CASE("calcFile, calc, formatHex")

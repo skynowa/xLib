@@ -133,7 +133,7 @@ public:
 
     longlong_t     size() const;
         ///< get file size
-    void_t         resize(clonglong_t size) const;
+    void_t         setSize(clonglong_t bytes) const;
         ///< changes the file size
 
     // error handling

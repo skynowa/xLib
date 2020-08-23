@@ -362,7 +362,7 @@ File::ungetChar(
 void_t
 File::clear() const
 {
-    resize(0L);
+    setSize(0L);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -427,21 +427,21 @@ File::size() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::resize(
-    clonglong_t a_size
+File::setSize(
+    clonglong_t a_bytes
 ) const
 {
-    xTEST_NA(a_size);
+    xTEST_NA(a_bytes);
 
 #if   xENV_WIN
-    clonglong_t _size = a_size;
+    clonglong_t _bytes = a_bytes;
 #elif xENV_UNIX
-    const auto  _size = static_cast<off_t>(a_size);
+    const auto  _bytes = static_cast<off_t>(a_bytes);
 #endif
 
-    int_t iRv = xCHSIZE(_nativeHandle( _handle.get() ), _size);
+    int_t iRv = xCHSIZE(_nativeHandle( _handle.get() ), _bytes);
     xTEST_EQ(iRv, 0);
-    xTEST_EQ(a_size, size());
+    xTEST_EQ(size(), a_bytes);
 }
 //-------------------------------------------------------------------------------------------------
 

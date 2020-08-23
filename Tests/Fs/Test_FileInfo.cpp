@@ -25,7 +25,7 @@ Test_FileInfo::unit()
 
         File file;
         file.create(filePath, File::OpenMode::CreateReadWrite);
-        file.resize(newSize);
+        file.setSize(newSize);
 
         longlong_t llSize = file.size();
         xTEST_EQ(newSize, llSize);
