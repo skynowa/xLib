@@ -21,7 +21,7 @@
     #endif
 #endif
 
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/Finder.h>
 #include <xLib/Sync/Thread.h>
 
@@ -58,8 +58,8 @@ FsWatcher::openFiles(
 
     // _filePaths
     for (const auto &it_filePath : a_filePaths) {
-        File file;
-        file.create(it_filePath, File::OpenMode::ReadOnly);
+        FileIO file;
+        file.create(it_filePath, FileIO::OpenMode::ReadOnly);
 
         if ( !file.get().isValid() ) {
             std::tcout << "[FsWatcher] Can't open: " << it_filePath << std::endl;

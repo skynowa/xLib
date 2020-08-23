@@ -11,7 +11,7 @@
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Debug/Exception.h>
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/FileType.h>
 #include <xLib/Fs/Path.h>
 
@@ -47,7 +47,7 @@ FileInfo::FileInfo(
 //-------------------------------------------------------------------------------------------------
 // TODO: [skynowa] review / rm
 FileInfo::FileInfo(
-	const File &a_file
+	const FileIO &a_file
 ) :
 	FileInfo( a_file.path() )
 {
@@ -61,8 +61,8 @@ FileInfo::~FileInfo()
 longlong_t
 FileInfo::size() const
 {
-    File file;
-    file.create(_filePath, File::OpenMode::ReadOnly);
+    FileIO file;
+    file.create(_filePath, FileIO::OpenMode::ReadOnly);
 
     clonglong_t llRv = file.size();
     xTEST_GR_EQ(llRv, 0LL);

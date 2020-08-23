@@ -9,7 +9,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
@@ -81,7 +81,7 @@ Config::read()
 		return;
     }
 
-    File::textRead(path(), _separator, &_config);
+    FileIO::textRead(path(), _separator, &_config);
     _config.erase(Const::strEmpty());
 }
 //-------------------------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ Config::save() const
 {
 	xCHECK_DO(_config.empty(), return);
 
-    File::textWrite(path(), _separator, _config, File::OpenMode::Write);
+    FileIO::textWrite(path(), _separator, _config, FileIO::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -109,8 +109,8 @@ Config::clear()
 {
 	_config.clear();
 
-    File file;
-    file.create(path(), File::OpenMode::Write);
+    FileIO file;
+    file.create(path(), FileIO::OpenMode::Write);
     file.clear();
 }
 //-------------------------------------------------------------------------------------------------
@@ -118,8 +118,8 @@ void_t
 Config::remove()
 {
     // file
-    File file;
-    file.create(path(), File::OpenMode::Write);
+    FileIO file;
+    file.create(path(), FileIO::OpenMode::Write);
     file.remove();
 
     // std::map_tstring_t

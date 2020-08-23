@@ -68,7 +68,7 @@ SystemInfo::_distro_impl() const
         case _OsType::Os:
             {
                 std::map_tstring_t values;
-                File::textRead(it.filePath, xT("="), &values);
+                FileIO::textRead(it.filePath, xT("="), &values);
 
                 if ( !values.empty() ) {
                     sRv = values["NAME"];
@@ -97,7 +97,7 @@ SystemInfo::_distro_impl() const
                 sRv = it.name;
 
                 std::vec_tstring_t values;
-                File::textRead(it.filePath, &values);
+                FileIO::textRead(it.filePath, &values);
 
                 if ( !values.empty() ) {
                     sRv += xT(" ") + values[0];
@@ -107,7 +107,7 @@ SystemInfo::_distro_impl() const
         default:
             {
                 std::vec_tstring_t values;
-                File::textRead(it.filePath, &values);
+                FileIO::textRead(it.filePath, &values);
 
                 if ( !values.empty() ) {
                     sRv = values[0];

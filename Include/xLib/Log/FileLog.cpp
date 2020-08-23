@@ -15,7 +15,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Sync/AutoIpcMutex.h>
 
@@ -126,8 +126,8 @@ FileLog::write(
 
     // write
     {
-        File file;
-        file.create(filePath(), File::OpenMode::Append, false);
+        FileIO file;
+        file.create(filePath(), FileIO::OpenMode::Append, false);
         int_t iRv = file.write(xT("[%s] %s\n"), time.c_str(), msg.c_str());
         xTEST_DIFF(iRv, - 1);
     }
@@ -136,16 +136,16 @@ FileLog::write(
 void_t
 FileLog::clear() const
 {
-    File file;
-    file.create(filePath(), File::OpenMode::Write);
+    FileIO file;
+    file.create(filePath(), FileIO::OpenMode::Write);
     file.clear();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 FileLog::remove() const
 {
-    File file;
-    file.create(filePath(), File::OpenMode::Write);
+    FileIO file;
+    file.create(filePath(), FileIO::OpenMode::Write);
     file.remove();
 }
 //-------------------------------------------------------------------------------------------------

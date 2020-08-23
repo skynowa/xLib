@@ -7,7 +7,7 @@
 #include "Pop3Client.h"
 
 #include <xLib/Core/String.h>
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileIO.h>
 #include <xLib/Net/MimeHeader.h>
 #include <xLib/Net/MimeBody.h>
 #include <xLib/Debug/NativeError.h>
@@ -314,7 +314,7 @@ Pop3Client::retriveRaw(
 
     //-------------------------------------
     //��������� ���� �� ����
-	File::textWrite(a_dirPath + xT("\\") + a_fileName, _sRv, File::OpenMode::Write);
+	FileIO::textWrite(a_dirPath + xT("\\") + a_fileName, _sRv, FileIO::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -365,12 +365,12 @@ Pop3Client::retriveRawAndBackup(
 
     //-------------------------------------
     if (!a_dirPath.empty()) {
-        File::textWrite(a_dirPath + xT("\\") + a_fileName, _sRv, File::OpenMode::Write);
+        FileIO::textWrite(a_dirPath + xT("\\") + a_fileName, _sRv, FileIO::OpenMode::Write);
     }
 
     //-------------------------------------
     if (!a_backupDirPath.empty()) {
-        File::textWrite(a_backupDirPath + xT("\\") + a_fileName, _sRv, File::OpenMode::Write);
+        FileIO::textWrite(a_backupDirPath + xT("\\") + a_fileName, _sRv, FileIO::OpenMode::Write);
     }
 }
 //-------------------------------------------------------------------------------------------------
