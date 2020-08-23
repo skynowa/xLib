@@ -219,6 +219,8 @@ private:
     static
     std::tstring_t _openMode(cOpenMode mode);
         ///< get open mode as string, by default use "r"
+	void_t         _setVBuffDefault(cbool_t isBuffering) const;
+		///< change stream buffering with deafault buffer size
 
     friend class FileTemp;  ///< temporary file
 };

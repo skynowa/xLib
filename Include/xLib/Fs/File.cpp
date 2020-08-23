@@ -70,11 +70,7 @@ File::create(
     }
 
     // buffering
-    if (a_isBuffering) {
-        setVBuff(nullptr, BufferingMode::Full, BUFSIZ);
-    } else {
-        setVBuff(nullptr, BufferingMode::No,   0);
-    }
+    _setVBuffDefault(a_isBuffering);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -101,11 +97,7 @@ File::reopen(
     }
 
     // buffering
-    if (a_isBuffering) {
-        setVBuff(nullptr, BufferingMode::Full, BUFSIZ);
-    } else {
-        setVBuff(nullptr, BufferingMode::No,   0);
-    }
+    _setVBuffDefault(a_isBuffering);
 }
 //-------------------------------------------------------------------------------------------------
 HandleStdFile &
@@ -1049,6 +1041,18 @@ File::_openMode(
 	xCHECK_RET(it == modes.cend(), std::tstring_t());
 
 	return it->second;
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+File::_setVBuffDefault(
+	cbool_t a_isBuffering
+) const
+{
+    if (a_isBuffering) {
+        setVBuff(nullptr, BufferingMode::Full, BUFSIZ);
+    } else {
+        setVBuff(nullptr, BufferingMode::No,   0);
+    }
 }
 //-------------------------------------------------------------------------------------------------
 
