@@ -314,16 +314,7 @@ Pop3Client::retriveRaw(
 
     //-------------------------------------
     //��������� ���� �� ����
-#if 1
-	File file;
-	file.create(a_dirPath + xT("\\") + a_fileName, File::OpenMode::BinWrite);
-
-	size_t writeSize = file.write((cptr_cvoid_t)&_sRv[0], _sRv.size());
-	//???
-	xUNUSED(writeSize);
-#else
 	File::textWrite(a_dirPath + xT("\\") + a_fileName, _sRv, File::OpenMode::Write);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -374,20 +365,12 @@ Pop3Client::retriveRawAndBackup(
 
     //-------------------------------------
     if (!a_dirPath.empty()) {
-        File original;
-        original.create(a_dirPath + xT("\\") + a_fileName, File::OpenMode::BinWrite);
-
-        size_t originalWriteSize = original.write((cptr_cvoid_t)&_sRv[0], _sRv.size());
-        xTEST_DIFF(size_t(0), originalWriteSize);
+        File::textWrite(a_dirPath + xT("\\") + a_fileName, _sRv, File::OpenMode::Write);
     }
 
     //-------------------------------------
     if (!a_backupDirPath.empty()) {
-        File backup;
-        backup.create(a_backupDirPath + xT("\\") + a_fileName, File::OpenMode::BinWrite);
-
-        size_t backupWriteSize = backup.write((cptr_cvoid_t)&_sRv[0], _sRv.size());
-        xTEST_DIFF(backupWriteSize, size_t(0));
+        File::textWrite(a_backupDirPath + xT("\\") + a_fileName, _sRv, File::OpenMode::Write);
     }
 }
 //-------------------------------------------------------------------------------------------------

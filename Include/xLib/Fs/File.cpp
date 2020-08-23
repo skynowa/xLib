@@ -964,14 +964,15 @@ File::binRead(
 void_t
 File::binWrite(
     std::ctstring_t &a_filePath,
-    std::custring_t &a_content
+    std::custring_t &a_content,
+    cOpenMode        a_mode
 )
 {
     xTEST(!a_filePath.empty());
     xTEST_NA(a_content);
 
     File file;
-    file.create(a_filePath, OpenMode::BinWrite);
+    file.create(a_filePath, a_mode);
 
     xCHECK_DO(a_content.empty(), return);
 
