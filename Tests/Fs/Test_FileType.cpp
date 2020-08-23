@@ -28,13 +28,13 @@ Test_FileType::unit()
 				info.chmod(FileInfo::PermissionMode::Write);
 			}
 
-			File file;
-			file.create(filePath, File::OpenMode::Write);
+			FileIO file;
+			file.create(filePath, FileIO::OpenMode::Write);
 			file.remove();
 		}
 
-        File file;
-        file.create(filePath, File::OpenMode::ReadWrite);
+        FileIO file;
+        file.create(filePath, FileIO::OpenMode::ReadWrite);
         file.close();
 
         m_bRv = FileInfo(filePath).isExists();
@@ -189,8 +189,8 @@ Test_FileType::unit()
 	{
 		FileInfo(filePath).chmod(FileInfo::PermissionMode::Write);
 
-		File file;
-		file.create(filePath, File::OpenMode::Write);
+		FileIO file;
+		file.create(filePath, FileIO::OpenMode::Write);
 		file.remove();
 	}
 

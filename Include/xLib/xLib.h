@@ -77,7 +77,7 @@
 // Fs
 #include <xLib/Fs/FileType.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/FileTemp.h>
 #include <xLib/Fs/Dir.h>
