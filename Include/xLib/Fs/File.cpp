@@ -1048,11 +1048,10 @@ File::_setVBuffDefault(
 	cbool_t a_isBuffering
 ) const
 {
-    if (a_isBuffering) {
-        setVBuff(BufferingMode::Full, nullptr, BUFSIZ);
-    } else {
-        setVBuff(BufferingMode::No,   nullptr, 0);
-    }
+    const BufferingMode mode     = a_isBuffering ? BufferingMode::Full : BufferingMode::No;
+    std::csize_t        buffSize = a_isBuffering ? BUFSIZ              : 0;
+
+    setVBuff(mode, nullptr, buffSize);
 }
 //-------------------------------------------------------------------------------------------------
 
