@@ -21,8 +21,8 @@ Test_AutoProfiler::unit()
         std::ctstring_t filePath = getData().tempDirPath + Const::slash() + xT("AutoProfilerLog.log");
 
 		{
-			File file;
-			file.create(filePath, File::OpenMode::Write);
+			FileIO file;
+			file.create(filePath, FileIO::OpenMode::Write);
 			file.clear();
 		}
 

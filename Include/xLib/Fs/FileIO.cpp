@@ -1,10 +1,10 @@
 /**
- * \file  File.inl
- * \brief file
+ * \file  FileIO.cpp
+ * \brief File input/output
  */
 
 
-#include "File.h"
+#include "FileIO.h"
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
@@ -28,12 +28,12 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-File::File()
+FileIO::FileIO()
 {
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-File::~File()
+FileIO::~FileIO()
 {
     close();
 }
@@ -47,7 +47,7 @@ File::~File()
 
 //-------------------------------------------------------------------------------------------------
 void_t
-File::create(
+FileIO::create(
     std::ctstring_t &a_filePath,
     cOpenMode        a_mode,
     cbool_t          a_isBuffering /* = true */
@@ -74,7 +74,7 @@ File::create(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::reopen(
+FileIO::reopen(
     std::ctstring_t &a_filePath,
     cOpenMode        a_mode,
     cbool_t          a_isBuffering /* = true */
@@ -101,13 +101,13 @@ File::reopen(
 }
 //-------------------------------------------------------------------------------------------------
 HandleStdFile &
-File::get()
+FileIO::get()
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
 int_t
-File::getNative() const
+FileIO::getNative() const
 {
     xTEST(_handle.isValid());
 
@@ -115,7 +115,7 @@ File::getNative() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-File::path() const
+FileIO::path() const
 {
     xTEST(!_filePath.empty());
     xTEST(FileInfo(_filePath).isExists());
@@ -124,7 +124,7 @@ File::path() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::attach(
+FileIO::attach(
     const HandleStdFile &a_handle,
     std::ctstring_t     &a_filePath
 )
@@ -139,7 +139,7 @@ File::attach(
 }
 //-------------------------------------------------------------------------------------------------
 HandleStdFile &
-File::detach()
+FileIO::detach()
 {
     HandleStdFile &handle = _handle;
 
@@ -158,7 +158,7 @@ File::detach()
 
 //-------------------------------------------------------------------------------------------------
 void_t
-File::setVBuff(
+FileIO::setVBuff(
     cBufferingMode a_mode,
     char          *a_buff,
     std::csize_t   a_size
@@ -173,7 +173,7 @@ File::setVBuff(
 }
 //-------------------------------------------------------------------------------------------------
 size_t
-File::read(
+FileIO::read(
     void_t       *a_buff,
     std::csize_t  a_count
 ) const
@@ -188,7 +188,7 @@ File::read(
 }
 //-------------------------------------------------------------------------------------------------
 size_t
-File::write(
+FileIO::write(
     cptr_cvoid_t a_buff,
     std::csize_t a_count
 ) const
@@ -203,7 +203,7 @@ File::write(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::read(
+FileIO::read(
     std::ustring_t *a_buff
 ) const
 {
@@ -222,7 +222,7 @@ File::read(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::write(
+FileIO::write(
     std::custring_t &a_buff
 ) const
 {
@@ -234,7 +234,7 @@ File::write(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::read(
+FileIO::read(
     std::tstring_t *a_buff
 ) const
 {
@@ -253,7 +253,7 @@ File::read(
 }
 //-------------------------------------------------------------------------------------------------
 int_t
-File::write(
+FileIO::write(
     cptr_ctchar_t a_format, ...
 ) const
 {
@@ -271,7 +271,7 @@ File::write(
 }
 //-------------------------------------------------------------------------------------------------
 int_t
-File::writeV(
+FileIO::writeV(
     cptr_ctchar_t a_format,
     va_list       a_args
 ) const
@@ -286,7 +286,7 @@ File::writeV(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::readLine(
+FileIO::readLine(
     std::tstring_t *a_str,
     std::csize_t    a_maxCount
 ) const
@@ -308,7 +308,7 @@ File::readLine(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::writeLine(
+FileIO::writeLine(
     std::ctstring_t &a_str
 ) const
 {
@@ -319,7 +319,7 @@ File::writeLine(
 }
 //-------------------------------------------------------------------------------------------------
 tchar_t
-File::readChar() const
+FileIO::readChar() const
 {
     twint_t iRv = xTFGETC(_handle.get());
     xTEST_DIFF(iRv, xTEOF);
@@ -328,7 +328,7 @@ File::readChar() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::writeChar(
+FileIO::writeChar(
     ctchar_t &a_ch
 ) const
 {
@@ -340,7 +340,7 @@ File::writeChar(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::ungetChar(
+FileIO::ungetChar(
     ctchar_t &a_ch
 ) const
 {
@@ -352,7 +352,7 @@ File::ungetChar(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::clear() const
+FileIO::clear() const
 {
     setSize(0L);
 }
@@ -366,7 +366,7 @@ File::clear() const
 
 //-------------------------------------------------------------------------------------------------
 void_t
-File::locking(
+FileIO::locking(
     cLockingMode a_mode,
     clong_t      a_bytes
 )
@@ -385,7 +385,7 @@ File::locking(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::setPosition(
+FileIO::setPosition(
     clong_t          a_offset,
     cPointerPosition a_pos
 ) const
@@ -398,7 +398,7 @@ File::setPosition(
 }
 //-------------------------------------------------------------------------------------------------
 long_t
-File::position() const
+FileIO::position() const
 {
     long_t liRv = std::ftell(_handle.get());
     xTEST_DIFF(liRv, - 1L);
@@ -407,7 +407,7 @@ File::position() const
 }
 //-------------------------------------------------------------------------------------------------
 longlong_t
-File::size() const
+FileIO::size() const
 {
     clong_t currStreamPos = position();
     setPosition(0, PointerPosition::End);
@@ -419,7 +419,7 @@ File::size() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::setSize(
+FileIO::setSize(
     clonglong_t a_bytes
 ) const
 {
@@ -445,7 +445,7 @@ File::setSize(
 
 //-------------------------------------------------------------------------------------------------
 bool_t
-File::isEmpty() const
+FileIO::isEmpty() const
 {
     clonglong_t fileSize = size();
     xTEST_DIFF(fileSize, - 1LL);
@@ -454,19 +454,19 @@ File::isEmpty() const
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-File::isEof() const
+FileIO::isEof() const
 {
     return static_cast<bool_t>( std::feof(_handle.get()) );
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-File::isError() const
+FileIO::isError() const
 {
     return static_cast<bool_t>( std::ferror(_handle.get()) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::clearError() const
+FileIO::clearError() const
 {
     (void_t)std::clearerr( _handle.get() );
 }
@@ -480,14 +480,14 @@ File::clearError() const
 
 //-------------------------------------------------------------------------------------------------
 void_t
-File::flush() const
+FileIO::flush() const
 {
     twint_t iRv = std::fflush( _handle.get() );
     xTEST_DIFF(iRv, xTEOF);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::close()
+FileIO::close()
 {
     xCHECK_DO(!_handle.isValid(), return);
 
@@ -505,7 +505,7 @@ File::close()
 
 //-------------------------------------------------------------------------------------------------
 void_t
-File::remove()
+FileIO::remove()
 {
     xTEST(!_filePath.empty());
 
@@ -523,7 +523,7 @@ File::remove()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::tryRemove(
+FileIO::tryRemove(
     std::csize_t a_attempts,
     culong_t     a_timeoutMsec
 )
@@ -547,7 +547,7 @@ File::tryRemove(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::wipe(
+FileIO::wipe(
     std::csize_t a_passes
 )
 {
@@ -625,7 +625,7 @@ File::wipe(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::unlink()
+FileIO::unlink()
 {
     xTEST(!_filePath.empty());
 
@@ -636,7 +636,7 @@ File::unlink()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::rename(
+FileIO::rename(
     std::ctstring_t &a_filePathNew
 )
 {
@@ -650,7 +650,7 @@ File::rename(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::move(
+FileIO::move(
     std::ctstring_t &a_dirPath
 )
 {
@@ -663,7 +663,7 @@ File::move(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::copy(
+FileIO::copy(
     std::ctstring_t &a_filePathTo,
     cbool_t          a_isFailIfExists
 ) const /* throw(Exception) */
@@ -683,8 +683,8 @@ File::copy(
         xTHROW_REPORT(errorDestFileExists));
 
     // copy
-	File fileFrom;
-	File fileTo;
+	FileIO fileFrom;
+	FileIO fileTo;
     {
         // open files
         fileFrom.create(_filePath, OpenMode::BinReadOnly);
@@ -710,16 +710,16 @@ File::copy(
 	// checks
 	{
 		if (!isCopyOk) {
-			File file;
-			file.create(a_filePathTo, File::OpenMode::Write);
+			FileIO file;
+			file.create(a_filePathTo, FileIO::OpenMode::Write);
 			file.remove();
 
 			xTHROW_REPORT(errorCopyFail);
 		}
 
 		if (FileInfo(fileFrom).size() != FileInfo(fileTo).size()) {
-			File file;
-			file.create(a_filePathTo, File::OpenMode::Write);
+			FileIO file;
+			file.create(a_filePathTo, FileIO::OpenMode::Write);
 			file.remove();
 
 			xTHROW_REPORT(errorFilesDiffrent);
@@ -737,7 +737,7 @@ File::copy(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-File::textRead(
+FileIO::textRead(
     std::ctstring_t &a_filePath,
     std::tstring_t  *a_content
 )
@@ -747,7 +747,7 @@ File::textRead(
 
     std::tstring_t sRv;
 
-    File file;
+    FileIO file;
     file.create(a_filePath, OpenMode::BinReadOnly);
 
     clonglong_t fileSize = file.size();
@@ -766,7 +766,7 @@ File::textRead(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-File::textRead(
+FileIO::textRead(
     std::ctstring_t    &a_filePath,
     std::vec_tstring_t *a_content
 )
@@ -787,7 +787,7 @@ File::textRead(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-File::textRead(
+FileIO::textRead(
     std::ctstring_t    &a_filePath,
     std::ctstring_t    &a_separator,
     std::map_tstring_t *a_content
@@ -854,7 +854,7 @@ File::textRead(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-File::textWrite(
+FileIO::textWrite(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_content,
     cOpenMode        a_mode
@@ -864,7 +864,7 @@ File::textWrite(
     xTEST_NA(a_content);
     xTEST_NA(a_mode);
 
-    File file;
+    FileIO file;
     file.create(a_filePath, a_mode);
 
     xCHECK_DO(a_content.empty(), return);
@@ -875,7 +875,7 @@ File::textWrite(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-File::textWrite(
+FileIO::textWrite(
     std::ctstring_t     &a_filePath,
     std::cvec_tstring_t &a_content,
     cOpenMode            a_mode
@@ -894,7 +894,7 @@ File::textWrite(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-File::textWrite(
+FileIO::textWrite(
     std::ctstring_t     &a_filePath,
     std::ctstring_t     &a_separator,
     std::cmap_tstring_t &a_content,
@@ -906,7 +906,7 @@ File::textWrite(
     xTEST_NA(a_content);
     xTEST_NA(a_mode);
 
-    File file;
+    FileIO file;
     file.create(a_filePath, a_mode);
 
     xCHECK_DO(a_content.empty(), return);
@@ -926,7 +926,7 @@ File::textWrite(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-File::binRead(
+FileIO::binRead(
     std::ctstring_t &a_filePath,
     std::ustring_t  *a_content
 )
@@ -936,7 +936,7 @@ File::binRead(
 
     std::ustring_t usRv;
 
-    File file;
+    FileIO file;
     file.create(a_filePath, OpenMode::BinReadOnly);
 
     clonglong_t fileSize = file.size();
@@ -954,7 +954,7 @@ File::binRead(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-File::binWrite(
+FileIO::binWrite(
     std::ctstring_t &a_filePath,
     std::custring_t &a_content,
     cOpenMode        a_mode
@@ -963,7 +963,7 @@ File::binWrite(
     xTEST(!a_filePath.empty());
     xTEST_NA(a_content);
 
-    File file;
+    FileIO file;
     file.create(a_filePath, a_mode);
 
     xCHECK_DO(a_content.empty(), return);
@@ -982,7 +982,7 @@ File::binWrite(
 //-------------------------------------------------------------------------------------------------
 /* static */
 int_t
-File::_nativeHandle(
+FileIO::_nativeHandle(
     std::FILE *a_file
 )
 {
@@ -996,7 +996,7 @@ File::_nativeHandle(
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::FILE *
-File::_stdHandle(
+FileIO::_stdHandle(
     int_t     a_fileHandle,
     cOpenMode a_mode
 )
@@ -1012,7 +1012,7 @@ File::_stdHandle(
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-File::_openMode(
+FileIO::_openMode(
     cOpenMode a_mode
 )
 {
@@ -1046,7 +1046,7 @@ File::_openMode(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-File::_setVBuffDefault(
+FileIO::_setVBuffDefault(
 	cbool_t a_isBuffering
 ) const
 {
