@@ -95,39 +95,22 @@ File::wipe(
 
 		clonglong_t fileSize = file.size();
 		if (fileSize > 0LL) {
-			// fill by 0x55, 0xAA, random char
 			for (size_t p {}; p < a_passes; ++ p) {
-				// char: rand
+				auto writer = [&](cuchar_t a_byte) -> void
 				{
 					file.setPosition(0L, FileIO::PointerPosition::Begin);
 
 					for (longlong_t i {}; i < fileSize; ++ i) {
-						cuchar_t ch { NativeRandom().nextChar<uchar_t>() };
-						std::csize_t uiRv = std::fwrite(&ch, 1, sizeof(ch), file.get().get());
-						xTEST_EQ(uiRv, sizeof(ch));
+						std::csize_t uiRv = std::fwrite(&a_byte, 1, sizeof(a_byte), file.get().get());
+						xTEST_EQ(uiRv, sizeof(a_byte));
 					}
-				}
+				};
 
-				// char: 0x55
-				{
-					file.setPosition(0L, FileIO::PointerPosition::Begin);
+				// fill by 0x55 (01010101), 0xAA (10101010), random char
+				cuchar_t bytes[] {0x55, 0xAA, NativeRandom().nextChar<uchar_t>()};
 
-					for (longlong_t i {}; i < fileSize; ++ i) {
-						cuchar_t ch {0x55};
-						std::csize_t uiRv = std::fwrite(&ch, 1, sizeof(ch), file.get().get());
-						xTEST_EQ(uiRv, sizeof(ch));
-					}
-				}
-
-				// char: 0xAA
-				{
-					file.setPosition(0L, FileIO::PointerPosition::Begin);
-
-					for (longlong_t i {}; i < fileSize; ++ i) {
-						cuchar_t ch {0xAA};
-						std::csize_t uiRv = std::fwrite(&ch, 1, sizeof(ch), file.get().get());
-						xTEST_EQ(uiRv, sizeof(ch));
-					}
+				for (const auto &it_byte : bytes) {
+					writer(it_byte);
 				}
 			} // if (size > 0LL)
 
