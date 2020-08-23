@@ -1020,7 +1020,7 @@ File::_openMode(
 
 	static const std::map<OpenMode, std::tstring_t> modes
 	{
-		// text modes
+		// Text
 		{OpenMode::Read,               xT("r")},
 		{OpenMode::Write,              xT("w")},
 		{OpenMode::Append,             xT("a")},
@@ -1028,7 +1028,7 @@ File::_openMode(
 		{OpenMode::CreateReadWrite,    xT("w+")},
 		{OpenMode::OpenReadAppend,     xT("a+")},
 
-		// binary modes
+		// Binary
 		{OpenMode::BinRead,            xT("rb")},
 		{OpenMode::BinWrite,           xT("wb")},
 		{OpenMode::BinAppend,          xT("ab")},
