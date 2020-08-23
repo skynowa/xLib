@@ -613,11 +613,10 @@ CgiFormData::_construct()
         xTEST_EQ(_maxData <= postSize, false);
 
         //read, parse data
-        File         file;
         std::tstring_t buff;
 
+        File          file;
         HandleStdFile stdIn(stdin);
-
         file.attach(stdIn, xT(""));
 
         buff.resize(postSize);
