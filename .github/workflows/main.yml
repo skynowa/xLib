@@ -20,9 +20,9 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    steps:
-      - name: Installs
-        run: cd ./Tools && ./install_cppcheck.sh && ./install_libs.sh
+  steps:
+    - name: Installs
+      run: cd ./Tools && ./install_cppcheck.sh && ./install_libs.sh
 
     - name: configure
       run: cd ./Build && ./eclipse.sh
