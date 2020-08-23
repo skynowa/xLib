@@ -70,10 +70,10 @@ Test_Blowfish::unit()
 
         {
             File fileIn;
-            fileIn.create(filePlain, File::OpenMode::BinRead);
+            fileIn.create(filePlain, File::OpenMode::BinReadOnly);
 
             File fileOut;
-            fileOut.create(fileDecrypted, File::OpenMode::BinRead);
+            fileOut.create(fileDecrypted, File::OpenMode::BinReadOnly);
 
             xTEST_EQ(fileIn.size(), fileOut.size());
             xTEST_EQ(Crc32().calcFile(filePlain), Crc32().calcFile(fileDecrypted));

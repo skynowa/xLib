@@ -687,7 +687,7 @@ File::copy(
 	File fileTo;
     {
         // open files
-        fileFrom.create(_filePath, OpenMode::BinRead);
+        fileFrom.create(_filePath, OpenMode::BinReadOnly);
         fileTo.create(a_filePathTo, OpenMode::BinWrite);
 
         if ( !FileInfo(fileFrom).isEmpty() ) {
@@ -748,7 +748,7 @@ File::textRead(
     std::tstring_t sRv;
 
     File file;
-    file.create(a_filePath, OpenMode::BinRead);
+    file.create(a_filePath, OpenMode::BinReadOnly);
 
     clonglong_t fileSize = file.size();
     xTEST_DIFF(fileSize, static_cast<longlong_t>(PointerPosition::Error));
@@ -937,7 +937,7 @@ File::binRead(
     std::ustring_t usRv;
 
     File file;
-    file.create(a_filePath, OpenMode::BinRead);
+    file.create(a_filePath, OpenMode::BinReadOnly);
 
     clonglong_t fileSize = file.size();
     xTEST_DIFF(fileSize, static_cast<longlong_t>( PointerPosition::Error ));
@@ -1021,20 +1021,22 @@ File::_openMode(
 	static const std::map<OpenMode, std::tstring_t> modes
 	{
 		// Text
-		{OpenMode::Read,               xT("r")},
-		{OpenMode::Write,              xT("w")},
-		{OpenMode::Append,             xT("a")},
-		{OpenMode::OpenReadWrite,      xT("r+")},
-		{OpenMode::CreateReadWrite,    xT("w+")},
-		{OpenMode::OpenReadAppend,     xT("a+")},
+		{OpenMode::ReadOnly,         xT("r")},
+		{OpenMode::Write,            xT("w")},
+		{OpenMode::Append,           xT("a")},
+
+		{OpenMode::ReadWriteOnly,    xT("r+")},
+		{OpenMode::ReadWrite,        xT("w+")},
+		{OpenMode::ReadAppend,       xT("a+")},
 
 		// Binary
-		{OpenMode::BinRead,            xT("rb")},
-		{OpenMode::BinWrite,           xT("wb")},
-		{OpenMode::BinAppend,          xT("ab")},
-		{OpenMode::BinOpenReadWrite,   xT("rb+")},
-		{OpenMode::BinCreateReadWrite, xT("wb+")},
-		{OpenMode::BinOpenReadAppend,  xT("ab+")}
+		{OpenMode::BinReadOnly,      xT("rb")},
+		{OpenMode::BinWrite,         xT("wb")},
+		{OpenMode::BinAppend,        xT("ab")},
+
+		{OpenMode::BinReadWriteOnly, xT("rb+")},
+		{OpenMode::BinReadWrite,     xT("wb+")},
+		{OpenMode::BinReadAppend,    xT("ab+")}
 	};
 
 	auto it = modes.find(a_mode);

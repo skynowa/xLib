@@ -163,7 +163,7 @@ Dir::copy(
         Dir( Path(filePathTo).dir() ).pathCreate();
 
         File file;
-        file.create(*it, File::OpenMode::Read);
+        file.create(*it, File::OpenMode::ReadOnly);
         file.copy(filePathTo, a_failIfExists);
     }
 
