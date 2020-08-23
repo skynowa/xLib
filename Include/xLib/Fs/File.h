@@ -178,19 +178,20 @@ xPUBLIC_STATIC:
     void_t         textRead(std::ctstring_t &filePath, std::tstring_t *content);
         ///< read to std::tstring_t
     static
-    void_t         textWrite(std::ctstring_t &filePath, std::ctstring_t &content, cOpenMode mode);
-        ///< write std::tstring_t
-    static
     void_t         textRead(std::ctstring_t &filePath, std::vec_tstring_t *content);
         ///< read to std::vector
-    static
-    void_t         textWrite(std::ctstring_t &filePath, std::cvec_tstring_t &content,
-                        cOpenMode mode);
-        ///< write std::vector
     // TODO: std::map_tstring_t -> std::multimap
     static
     void_t         textRead(std::ctstring_t &filePath, std::ctstring_t &separator,
                        std::map_tstring_t *content);
+
+    static
+    void_t         textWrite(std::ctstring_t &filePath, std::ctstring_t &content, cOpenMode mode);
+        ///< write std::tstring_t
+    static
+    void_t         textWrite(std::ctstring_t &filePath, std::cvec_tstring_t &content,
+                        cOpenMode mode);
+        ///< write std::vector
         ///< read text to std::map
     // TODO: std::map_tstring_t -> std::multimap
     static
