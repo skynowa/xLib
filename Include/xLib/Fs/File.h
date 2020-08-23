@@ -57,5 +57,4 @@ private:
 
 xNAMESPACE_END2(xl, fs)
 //-------------------------------------------------------------------------------------------------
-// TODO: [skynowa] actions methods - big in using
 // TODO: std::map_tstring_t -> std::multimap
