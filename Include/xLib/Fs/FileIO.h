@@ -177,8 +177,6 @@ private:
 xNAMESPACE_END2(xl, fs)
 //-------------------------------------------------------------------------------------------------
 // TODO: [skynowa] get objects (Path, FileInfo)
-// TODO: [skynowa] actions methods - big in using
-// TODO: [skynowa] static methods - as utils class
 
 // TODO: [skynowa] - xNO ...
 // xNO_DEFAULT_CONSTRUCT(Path)
