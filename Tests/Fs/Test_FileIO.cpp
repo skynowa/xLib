@@ -605,7 +605,7 @@ Test_FileIO::unit1()
 				file.locking(FileIO::LockingMode::Lock, 10);
 
 				{
-					File lockedFile;
+					FileIO lockedFile;
 					lockedFile.create(tryfilePath, FileIO::OpenMode::Write);
 					lockedFile.tryRemove(10, 2000);
 				}
