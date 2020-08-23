@@ -19,16 +19,21 @@ public:
         /// open mode
     {
         Unknown,            ///< unknown
+
+        // Text
         Read,               ///< "r"
         Write,              ///< "w"
         Append,             ///< "a"
+
         OpenReadWrite,      ///< "r+"
         CreateReadWrite,    ///< "w+"
         OpenReadAppend,     ///< "a+"
 
+		// Binary
         BinRead,            ///< "rb"
         BinWrite,           ///< "wb"
         BinAppend,          ///< "ab"
+
         BinOpenReadWrite,   ///< "rb+"
         BinCreateReadWrite, ///< "wb+"
         BinOpenReadAppend   ///< "ab+"
