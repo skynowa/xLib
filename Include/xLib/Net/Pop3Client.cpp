@@ -314,12 +314,16 @@ Pop3Client::retriveRaw(
 
     //-------------------------------------
     //��������� ���� �� ����
-    File file;
-    file.create(a_dirPath + xT("\\") + a_fileName, File::OpenMode::BinWrite);
+#if 1
+	File file;
+	file.create(a_dirPath + xT("\\") + a_fileName, File::OpenMode::BinWrite);
 
-    size_t writeSize = file.write((cptr_cvoid_t)&_sRv[0], _sRv.size());
-    //???
-    xUNUSED(writeSize);
+	size_t writeSize = file.write((cptr_cvoid_t)&_sRv[0], _sRv.size());
+	//???
+	xUNUSED(writeSize);
+#else
+	File::textWrite(a_dirPath + xT("\\") + a_fileName, _sRv, File::OpenMode::Write);
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 void_t
