@@ -82,7 +82,7 @@ Blowfish::setFileKey(
     std::ustring_t fileKey;
 
     File file;
-    file.create(a_filePath, File::OpenMode::BinRead);
+    file.create(a_filePath, File::OpenMode::BinReadOnly);
     xTEST(!FileInfo(file).isEmpty());
     xTEST_LESS_EQ(file.size(), static_cast<longlong_t>( keySizeMax() ));
 
@@ -169,7 +169,7 @@ Blowfish::encryptFileCfb64(
     std::ustring_t in;
     {
         File fileIn;
-        fileIn.create(a_filePathIn, File::OpenMode::BinRead);
+        fileIn.create(a_filePathIn, File::OpenMode::BinReadOnly);
         fileIn.read(&in);
     }
 
@@ -178,7 +178,7 @@ Blowfish::encryptFileCfb64(
 
     {
         File fileOut;
-        fileOut.create(a_filePathOut, File::OpenMode::BinCreateReadWrite);
+        fileOut.create(a_filePathOut, File::OpenMode::BinReadWrite);
         fileOut.write(out);
     }
 }

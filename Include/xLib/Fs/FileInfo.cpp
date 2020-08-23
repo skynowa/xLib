@@ -62,7 +62,7 @@ longlong_t
 FileInfo::size() const
 {
     File file;
-    file.create(_filePath, File::OpenMode::Read);
+    file.create(_filePath, File::OpenMode::ReadOnly);
 
     clonglong_t llRv = file.size();
     xTEST_GR_EQ(llRv, 0LL);

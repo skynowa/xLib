@@ -82,9 +82,9 @@ Test_File::unit()
 
         for (size_t i = 0; i < 10; ++ i) {
             File file;
-            file.create(filePath, File::OpenMode::CreateReadWrite);
+            file.create(filePath, File::OpenMode::ReadWrite);
             file.close();
-            file.create(filePath, File::OpenMode::CreateReadWrite);
+            file.create(filePath, File::OpenMode::ReadWrite);
             file.close();
         }
     }
@@ -94,17 +94,17 @@ Test_File::unit()
         File file;
 
         for (size_t i = 0; i < 1; ++ i) {
-            file.create(filePath, File::OpenMode::CreateReadWrite);
+            file.create(filePath, File::OpenMode::ReadWrite);
         }
     }
 
     xTEST_CASE("reopen")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
 
         for (size_t i = 0; i < 7; ++ i) {
-            file.reopen(filePath, File::OpenMode::OpenReadWrite);
+            file.reopen(filePath, File::OpenMode::ReadWriteOnly);
         }
     }
 
@@ -132,7 +132,7 @@ Test_File::unit()
     xTEST_CASE("get")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
 
         FILE *stdFile = file.get().get();
         xTEST_PTR(stdFile);
@@ -141,7 +141,7 @@ Test_File::unit()
     xTEST_CASE("path")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         xTEST_EQ(file.path(), filePath);
     }
 
@@ -159,7 +159,7 @@ Test_File::unit()
         // write
         {
             File file;
-            file.create(filePath, File::OpenMode::BinCreateReadWrite);
+            file.create(filePath, File::OpenMode::BinReadWrite);
             m_stRv = file.write((cptr_cvoid_t)&buffWrite.at(0), buffWrite.size() * sizeof(std::tstring_t::value_type));
             xUNUSED(m_stRv);
         }
@@ -167,7 +167,7 @@ Test_File::unit()
         // read
         {
             File file;
-            file.create(filePath, File::OpenMode::BinRead);
+            file.create(filePath, File::OpenMode::BinReadOnly);
             m_stRv = file.read(&buffRead.at(0), buffRead.size() * sizeof(std::tstring_t::value_type));
             xUNUSED(m_stRv);
         }
@@ -192,7 +192,7 @@ Test_File::unit()
         // read
         {
             File file;
-            file.create(filePath, File::OpenMode::BinRead);
+            file.create(filePath, File::OpenMode::BinReadOnly);
             file.read(&text1);
         }
 
@@ -210,7 +210,7 @@ Test_File::unit()
         // read
         {
             File file;
-            file.create(filePath, File::OpenMode::BinRead);
+            file.create(filePath, File::OpenMode::BinReadOnly);
             file.read(&text2);
 
             xTEST_EQ(text1.size(), text2.size());
@@ -233,7 +233,7 @@ Test_File::unit()
         // readLine
         {
             File file;
-            file.create(filePath, File::OpenMode::Read);
+            file.create(filePath, File::OpenMode::ReadOnly);
             file.readLine(&buffRead, 1024);
         }
 
@@ -246,7 +246,7 @@ Test_File::unit()
         ctchar_t ch = xT('W');
 
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         file.writeChar(ch);
         file.setPosition(0, File::PointerPosition::Begin);
 
@@ -263,7 +263,7 @@ Test_File::unit()
     xTEST_CASE("clear")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         file.clear();
     }
 
@@ -279,7 +279,7 @@ Test_File::unit()
 
         {
             File file;
-            file.create(filePath, File::OpenMode::CreateReadWrite);
+            file.create(filePath, File::OpenMode::ReadWrite);
 
             int_t iRv = file.write(testContent.c_str());
             xTEST_EQ(testContent.size(), size_t(iRv));
@@ -289,7 +289,7 @@ Test_File::unit()
 
         {
             File file;
-            file.create(filePath, File::OpenMode::Read);
+            file.create(filePath, File::OpenMode::ReadOnly);
             file.read(&content);
         }
 
@@ -301,7 +301,7 @@ Test_File::unit()
         std::ctstring_t content = xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467lsecfgsjk drbf");
 
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
 
         int_t iRv = file.write(xT("%s"), content.c_str());
         xTEST_EQ(content.size(), size_t(iRv));
@@ -325,7 +325,7 @@ Test_File::unit()
         };
 
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         Writer::doV(file, xT("%s"), xT("zzz"));
     }
 
@@ -337,7 +337,7 @@ Test_File::unit()
     xTEST_CASE("locking")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         file.setSize(1024);
         file.locking(File::LockingMode::Lock, 10);
         file.locking(File::LockingMode::Unlock, 10);
@@ -346,7 +346,7 @@ Test_File::unit()
     xTEST_CASE("setPosition, position")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         file.setPosition(0, File::PointerPosition::Begin);
 
         long_t liRv = file.position();
@@ -358,7 +358,7 @@ Test_File::unit()
 		clonglong_t newSize = 1024LL;
 
 		File file;
-		file.create(filePath, File::OpenMode::CreateReadWrite);
+		file.create(filePath, File::OpenMode::ReadWrite);
 		file.setSize(newSize);
 
 		clonglong_t llSize = file.size();
@@ -368,7 +368,7 @@ Test_File::unit()
     xTEST_CASE("resize")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         file.setSize(0);
     }
 
@@ -377,7 +377,7 @@ Test_File::unit()
         std::string buffRead;  buffRead.resize(BUFSIZ);
 
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         file.setVBuff(File::BufferingMode::Full, &buffRead.at(0), buffRead.size() * 2);
     }
 
@@ -389,7 +389,7 @@ Test_File::unit()
     xTEST_CASE("isEmpty")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
 
         m_bRv = file.isEmpty();
         xTEST_EQ(m_bRv, true);
@@ -409,7 +409,7 @@ Test_File::unit()
     xTEST_CASE("isEof")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
 
         m_bRv = file.isEof();
         xTEST_EQ(m_bRv, false);
@@ -418,7 +418,7 @@ Test_File::unit()
     xTEST_CASE("isError")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
 
         m_bRv = file.isError();
         xTEST_EQ(m_bRv, false);
@@ -427,7 +427,7 @@ Test_File::unit()
     xTEST_CASE("clearError")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         file.clearError();
     }
 
@@ -439,7 +439,7 @@ Test_File::unit()
     xTEST_CASE("flush")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         file.flush();
 
         m_bRv = file.get().isValid();
@@ -449,7 +449,7 @@ Test_File::unit()
     xTEST_CASE("close")
     {
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         file.close();
 
         m_bRv = file.get().isValid();
@@ -515,7 +515,7 @@ Test_File::unit1()
 
 		{
 			File file;
-			file.create(sFilePathFrom, File::OpenMode::BinCreateReadWrite, false);
+			file.create(sFilePathFrom, File::OpenMode::BinReadWrite, false);
 			file.setSize(1024 * 5);
 		}
 
@@ -600,7 +600,7 @@ Test_File::unit1()
 		for (size_t i = 0; i < 20; ++ i) {
 			if (i < 10) {
 				File file;
-				file.create(tryfilePath, File::OpenMode::CreateReadWrite);
+				file.create(tryfilePath, File::OpenMode::ReadWrite);
 				file.setSize(1024);
 				file.locking(File::LockingMode::Lock, 10);
 
@@ -623,7 +623,7 @@ Test_File::unit1()
 	{
 		{
 			File file;
-			file.create(filePath, File::OpenMode::BinCreateReadWrite);
+			file.create(filePath, File::OpenMode::BinReadWrite);
 			m_iRv = file.write(xT("0123456789"));
 			xTEST_DIFF(- 1, m_iRv);
 		}
@@ -647,7 +647,7 @@ Test_File::unit1()
 
 		{
 			File file;
-			file.create(filePath, File::OpenMode::CreateReadWrite);
+			file.create(filePath, File::OpenMode::ReadWrite);
 
 			for (size_t i = 0; i < 7; ++ i) {
 				file.writeLine(xT("asducfgnoawifgumoaeriuatgmoi"));
@@ -671,7 +671,7 @@ Test_File::unit1()
 
 		{
 			File file;
-			file.create(filePath, File::OpenMode::CreateReadWrite);
+			file.create(filePath, File::OpenMode::ReadWrite);
 		}
 
 		File::textRead(filePath, &content);
@@ -691,7 +691,7 @@ Test_File::unit1()
 
 		{
 			File file;
-			file.create(filePath, File::OpenMode::CreateReadWrite);
+			file.create(filePath, File::OpenMode::ReadWrite);
 
 			for (size_t i = 0; i < 10; ++ i) {
 				file.writeLine(xT("asducfgnoawifgumoaeriuatgmoi"));
@@ -715,7 +715,7 @@ Test_File::unit1()
 
 		{
 			File file;
-			file.create(filePath, File::OpenMode::CreateReadWrite);
+			file.create(filePath, File::OpenMode::ReadWrite);
 		}
 
 		File::textRead(filePath, &content);
@@ -736,7 +736,7 @@ Test_File::unit1()
 
 		{
 			File file;
-			file.create(filePath, File::OpenMode::CreateReadWrite);
+			file.create(filePath, File::OpenMode::ReadWrite);
 
 			for (size_t i = 0; i < 10; ++ i) {
 				file.writeLine(xT("asducfgnoawifg") + separator + xT("umoaeriuatgmoi"));
@@ -762,7 +762,7 @@ Test_File::unit1()
 		{
 			File file;
 
-			file.create(filePath, File::OpenMode::CreateReadWrite);
+			file.create(filePath, File::OpenMode::ReadWrite);
 		}
 
 		File::textRead(filePath, separator, &content);
@@ -782,7 +782,7 @@ Test_File::unit1()
 
 		{
 			File file;
-			file.create(filePath, File::OpenMode::BinCreateReadWrite);
+			file.create(filePath, File::OpenMode::BinReadWrite);
 
 			m_iRv = file.write(xT("0123456789"));
 			xTEST_LESS(0, m_iRv);
@@ -808,7 +808,7 @@ Test_File::unit1()
 
 		{
 			File file;
-			file.create(filePath, File::OpenMode::BinCreateReadWrite);
+			file.create(filePath, File::OpenMode::BinReadWrite);
 		}
 
 		File::binWrite(filePath, content, File::OpenMode::BinWrite);
@@ -831,7 +831,7 @@ Test_File::unitPrivate()
     xTEST_CASE("_nativeHandle")
     {
         File file;
-        file.create(filePath, File::OpenMode::Read);
+        file.create(filePath, File::OpenMode::ReadOnly);
 
         m_iRv = File::_nativeHandle( file.get() );
         xTEST_DIFF(m_iRv, - 1);
@@ -842,7 +842,7 @@ Test_File::unitPrivate()
         // TEST: File::_stdHandle
 
     #if xTODO
-        const File::OpenMode mode = File::OpenMode::OpenReadWrite;
+        const File::OpenMode mode = File::OpenMode::ReadWriteOnly;
 
         File file;
         file.create(filePath, mode, true);
@@ -859,19 +859,19 @@ Test_File::unitPrivate()
     {
         std::vector< std::pair<File::OpenMode, std::tstring_t>> data;
 
-        data.push_back( std::make_pair(File::OpenMode::Read,               xT("r")) );
-        data.push_back( std::make_pair(File::OpenMode::Write,              xT("w")) );
-        data.push_back( std::make_pair(File::OpenMode::Append,             xT("a")) );
-        data.push_back( std::make_pair(File::OpenMode::OpenReadWrite,      xT("r+")) );
-        data.push_back( std::make_pair(File::OpenMode::CreateReadWrite,    xT("w+")) );
-        data.push_back( std::make_pair(File::OpenMode::OpenReadAppend,     xT("a+")) );
+        data.push_back( std::make_pair(File::OpenMode::ReadOnly,         xT("r")) );
+        data.push_back( std::make_pair(File::OpenMode::Write,            xT("w")) );
+        data.push_back( std::make_pair(File::OpenMode::Append,           xT("a")) );
+        data.push_back( std::make_pair(File::OpenMode::ReadWriteOnly,    xT("r+")) );
+        data.push_back( std::make_pair(File::OpenMode::ReadWrite,        xT("w+")) );
+        data.push_back( std::make_pair(File::OpenMode::ReadAppend,       xT("a+")) );
 
-        data.push_back( std::make_pair(File::OpenMode::BinRead,            xT("rb")) );
-        data.push_back( std::make_pair(File::OpenMode::BinWrite,           xT("wb")) );
-        data.push_back( std::make_pair(File::OpenMode::BinAppend,          xT("ab")) );
-        data.push_back( std::make_pair(File::OpenMode::BinOpenReadWrite,   xT("rb+")) );
-        data.push_back( std::make_pair(File::OpenMode::BinCreateReadWrite, xT("wb+")) );
-        data.push_back( std::make_pair(File::OpenMode::BinOpenReadAppend,  xT("ab+")) );
+        data.push_back( std::make_pair(File::OpenMode::BinReadOnly,      xT("rb")) );
+        data.push_back( std::make_pair(File::OpenMode::BinWrite,         xT("wb")) );
+        data.push_back( std::make_pair(File::OpenMode::BinAppend,        xT("ab")) );
+        data.push_back( std::make_pair(File::OpenMode::BinReadWriteOnly, xT("rb+")) );
+        data.push_back( std::make_pair(File::OpenMode::BinReadWrite,     xT("wb+")) );
+        data.push_back( std::make_pair(File::OpenMode::BinReadAppend,    xT("ab+")) );
 
         for (size_t i = 0; i < data.size(); ++ i) {
             File::OpenMode omRes = data.at(i).first;

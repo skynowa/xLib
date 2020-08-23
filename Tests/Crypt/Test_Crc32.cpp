@@ -22,7 +22,7 @@ Test_Crc32::unit()
     {
         File file;
 
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         file.setSize(1337LL);
     }
 
