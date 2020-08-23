@@ -374,7 +374,7 @@ Test_File::unit()
 
     xTEST_CASE("setVBuff")
     {
-        std::string buffRead;  buffRead.resize(1024);
+        std::string buffRead;  buffRead.resize(BUFSIZ);
 
         File file;
         file.create(filePath, File::OpenMode::CreateReadWrite);
