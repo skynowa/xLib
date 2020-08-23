@@ -150,7 +150,7 @@ Handle<T, valueT>::setCloseOnExec(
 )
 {
    /**
-	* Dealing with Duplicate File Descriptors from Sub-Processes
+	* Dealing with Duplicate file Descriptors from Sub-Processes
 	*
 	* https://oroboro.com/file-handle-leaks-server/
 	*

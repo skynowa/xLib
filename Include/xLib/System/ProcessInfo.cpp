@@ -10,7 +10,6 @@
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Fs/File.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/Dll.h>
