@@ -338,7 +338,7 @@ Test_File::unit()
     {
         File file;
         file.create(filePath, File::OpenMode::CreateReadWrite);
-        file.resize(1024);
+        file.setSize(1024);
         file.locking(File::LockingMode::Lock, 10);
         file.locking(File::LockingMode::Unlock, 10);
     }
@@ -359,7 +359,7 @@ Test_File::unit()
 
 		File file;
 		file.create(filePath, File::OpenMode::CreateReadWrite);
-		file.resize(newSize);
+		file.setSize(newSize);
 
 		clonglong_t llSize = file.size();
 		xTEST_EQ(newSize, llSize);
@@ -369,7 +369,7 @@ Test_File::unit()
     {
         File file;
         file.create(filePath, File::OpenMode::CreateReadWrite);
-        file.resize(0);
+        file.setSize(0);
     }
 
     xTEST_CASE("setVBuff")
@@ -516,7 +516,7 @@ Test_File::unit1()
 		{
 			File file;
 			file.create(sFilePathFrom, File::OpenMode::BinCreateReadWrite, false);
-			file.resize(1024 * 5);
+			file.setSize(1024 * 5);
 		}
 
 		{
@@ -601,7 +601,7 @@ Test_File::unit1()
 			if (i < 10) {
 				File file;
 				file.create(tryfilePath, File::OpenMode::CreateReadWrite);
-				file.resize(1024);
+				file.setSize(1024);
 				file.locking(File::LockingMode::Lock, 10);
 
 				{
@@ -787,7 +787,7 @@ Test_File::unit1()
 			m_iRv = file.write(xT("0123456789"));
 			xTEST_LESS(0, m_iRv);
 
-			file.resize(1024 * 5);
+			file.setSize(1024 * 5);
 
 			m_iRv = file.write(xT("0123456789"));
 			xTEST_LESS(0, m_iRv);

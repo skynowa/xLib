@@ -27,7 +27,7 @@ Test_Backup::unit()
             File F;
 
             F.create(filePath, File::OpenMode::BinCreateReadWrite);
-            F.resize(100L);
+            F.setSize(100L);
 
         #if 0
             Tracer() << xTRACE_VAR(DateTime::current().format(xT("%Y-%m-%d_%H"), xT("")));
