@@ -18,8 +18,6 @@ public:
     enum class OpenMode
         /// open mode
     {
-        Unknown,            ///< unknown
-
         // Text
         Read,               ///< "r" (no file - error)
         Write,              ///< "w" (no file - create)
