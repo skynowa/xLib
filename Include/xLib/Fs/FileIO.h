@@ -155,58 +155,6 @@ public:
     void_t         close();
         ///< close
 
-    // actions
-    void_t         remove();
-        ///< deleting
-    void_t         tryRemove(std::csize_t attempts, culong_t timeoutMsec);
-        ///< try deleting, max 100 attempts
-    void_t         wipe(std::csize_t passes);
-        ///< wipe
-    void_t         unlink();
-        ///< deleting
-    void_t         rename(std::ctstring_t &filePathNew);
-        ///< renaming
-    void_t         move(std::ctstring_t &dirPath);
-        ///< move
-    void_t         copy(std::ctstring_t &filePathTo, cbool_t isFailIfExists) const
-                        /* throw(Exception) */;
-        ///< copy
-
-xPUBLIC_STATIC:
-    // text
-    static
-    void_t         textRead(std::ctstring_t &filePath, std::tstring_t *content);
-        ///< read to std::tstring_t
-    static
-    void_t         textRead(std::ctstring_t &filePath, std::vec_tstring_t *content);
-        ///< read to std::vector
-    // TODO: std::map_tstring_t -> std::multimap
-    static
-    void_t         textRead(std::ctstring_t &filePath, std::ctstring_t &separator,
-                       std::map_tstring_t *content);
-
-    static
-    void_t         textWrite(std::ctstring_t &filePath, std::ctstring_t &content, cOpenMode mode);
-        ///< write std::tstring_t
-    static
-    void_t         textWrite(std::ctstring_t &filePath, std::cvec_tstring_t &content,
-                        cOpenMode mode);
-        ///< write std::vector
-        ///< read text to std::map
-    // TODO: std::map_tstring_t -> std::multimap
-    static
-    void_t         textWrite(std::ctstring_t &filePath, std::ctstring_t &separator,
-                       std::cmap_tstring_t &content, cOpenMode mode);
-        ///< write text from std::map
-
-    // binary
-    static
-    void_t         binRead(std::ctstring_t &filePath, std::ustring_t *content);
-        ///< read binary data
-    static
-    void_t         binWrite(std::ctstring_t &filePath, std::custring_t &content, cOpenMode mode);
-        ///< write binary data
-
 private:
     HandleStdFile  _handle;            ///< file handle
     std::tstring_t _filePath;          ///< file path

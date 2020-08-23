@@ -12,6 +12,7 @@
 #include <xLib/Debug/Exception.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/FileIO.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/Volume.h>
@@ -111,8 +112,7 @@ Backup::fileExec(
 
     // copy
     {
-        FileIO file;
-        file.create(a_filePath, FileIO::OpenMode::ReadOnly);
+        File file(a_filePath);
         file.copy(backupFilePath, true);
     }
 

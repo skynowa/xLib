@@ -40,9 +40,7 @@ Test_Config::unit()
     }
 
 	{
-		FileIO file;
-		file.create(filePath, FileIO::OpenMode::Write);
-		file.remove();
+		File(filePath).remove();
 	}
 
     Config config(filePath);

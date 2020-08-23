@@ -12,8 +12,8 @@ unset(cmXLIB_TEMPLATE_SUBDIR         CACHE)
 unset(cmXLIB_TEMPLATE_NS             CACHE)
 unset(cmXLIB_TEMPLATE_PLATFORM_FILES CACHE)
 
-set(cmXLIB_TEMPLATE                "FileInfo")  # TODO: set manually
-set(cmXLIB_TEMPLATE_COMMENTS       "File information") # TODO: set manually
+set(cmXLIB_TEMPLATE                "File") # TODO: set manually
+set(cmXLIB_TEMPLATE_COMMENTS       "File") # TODO: set manually
 set(cmXLIB_TEMPLATE_SUBDIR         "Fs")       # TODO: set manually
 set(cmXLIB_TEMPLATE_NS             "fs")       # TODO: set manually
 set(cmXLIB_TEMPLATE_PLATFORM_FILES ON)

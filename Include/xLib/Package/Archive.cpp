@@ -7,7 +7,7 @@
 #include "Archive.h"
 
 #include <xLib/Fs/Path.h>
-#include <xLib/Fs/FileIO.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/Finder.h>
 #include <xLib/Sync/Process.h>
@@ -216,9 +216,7 @@ Archive::fileUncompress(
 		if (type == Type::Gz) {
 			// n/a
 		} else {
-			FileIO file;
-			file.create(a_sourceFilePath, FileIO::OpenMode::Write);
-			file.remove();
+			File(a_sourceFilePath).remove();
 		}
 	}
 

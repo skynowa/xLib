@@ -16,7 +16,7 @@
 #include <xLib/Log/Trace.h>
 #include <xLib/Crypt/Base64.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Fs/FileIO.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Net/DnsClient.h>
 
 
@@ -197,7 +197,7 @@ SmtpClient::sendRaw
     //-------------------------------------
     std::tstring_t text;
 
-    FileIO::textRead(a_filePath, &text);
+    File(a_filePath).textRead(&text);
 
     //-------------------------------------
     //[DataText\r\n.\r\n]
