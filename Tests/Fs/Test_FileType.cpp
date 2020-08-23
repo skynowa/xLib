@@ -28,9 +28,7 @@ Test_FileType::unit()
 				info.chmod(FileInfo::PermissionMode::Write);
 			}
 
-			FileIO file;
-			file.create(filePath, FileIO::OpenMode::Write);
-			file.remove();
+			File(filePath).remove();
 		}
 
         FileIO file;
@@ -189,9 +187,7 @@ Test_FileType::unit()
 	{
 		FileInfo(filePath).chmod(FileInfo::PermissionMode::Write);
 
-		FileIO file;
-		file.create(filePath, FileIO::OpenMode::Write);
-		file.remove();
+		File(filePath).remove();
 	}
 
     return true;

@@ -10,6 +10,7 @@
 #include <xLib/Debug/Exception.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/FileIO.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Fs/FileType.h>
 #include <xLib/System/Environment.h>
 #include <xLib/Fs/Finder.h>
@@ -162,9 +163,7 @@ Dir::copy(
 
         Dir( Path(filePathTo).dir() ).pathCreate();
 
-        FileIO file;
-        file.create(*it, FileIO::OpenMode::ReadOnly);
-        file.copy(filePathTo, a_failIfExists);
+        File(*it).copy(filePathTo, a_failIfExists);
     }
 
     // TODO: [skynowa] rollback copy
@@ -241,9 +240,7 @@ Dir::pathClear() const
         Finder::files(dirPath(), Const::maskAll(), true, &filePaths);
 
         xFOR_EACH_R(std::vec_tstring_t, it, filePaths) {
-            FileIO file;
-            file.create(*it, FileIO::OpenMode::Write);
-            file.remove();
+            File(*it).remove();
         }
     }
 

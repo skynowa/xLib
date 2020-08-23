@@ -16,6 +16,7 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/FileIO.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Sync/AutoIpcMutex.h>
 
@@ -144,9 +145,7 @@ FileLog::clear() const
 void_t
 FileLog::remove() const
 {
-    FileIO file;
-    file.create(filePath(), FileIO::OpenMode::Write);
-    file.remove();
+    File(filePath()).remove();
 }
 //-------------------------------------------------------------------------------------------------
 

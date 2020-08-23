@@ -12,7 +12,7 @@
 #include <xLib/Core/Utils.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dll.h>
-#include <xLib/Fs/FileIO.h>
+#include <xLib/Fs/File.h>
 #include <xLib/System/Environment.h>
 
 #if   xENV_WIN
