@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: Installs
-      run: cd Tools && ./install_cppcheck.sh && ./install_libs.sh
+      run: cd ./Tools && ./install_cppcheck.sh && ./install_libs.sh
 
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
