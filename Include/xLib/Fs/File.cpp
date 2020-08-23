@@ -89,52 +89,53 @@ File::wipe(
 	}
 
 	// content - reset
-	FileIO file;
-	file.create(_filePath, FileIO::OpenMode::BinReadWrite, false);
+	{
+		FileIO file;
+		file.create(_filePath, FileIO::OpenMode::BinReadWrite, false);
 
-	clonglong_t fileSize = file.size();
-	if (fileSize > 0LL) {
-		// fill by 0x55, 0xAA, random char
-		for (size_t p {}; p < a_passes; ++ p) {
-			cuchar_t rand  { NativeRandom().nextChar<uchar_t>() };
-			cuchar_t char1 {0x55};
-			cuchar_t char2 {0xAA};
+		clonglong_t fileSize = file.size();
+		if (fileSize > 0LL) {
+			// fill by 0x55, 0xAA, random char
+			for (size_t p {}; p < a_passes; ++ p) {
+				cuchar_t rand  { NativeRandom().nextChar<uchar_t>() };
+				cuchar_t char1 {0x55};
+				cuchar_t char2 {0xAA};
 
-			// rand
-			{
-				file.setPosition(0L, FileIO::PointerPosition::Begin);
+				// rand
+				{
+					file.setPosition(0L, FileIO::PointerPosition::Begin);
 
-				for (longlong_t i {}; i < fileSize; ++ i) {
-					std::csize_t uiRv = std::fwrite(&rand, 1, sizeof(rand), file.get().get());
-					xTEST_EQ(uiRv, sizeof(rand));
+					for (longlong_t i {}; i < fileSize; ++ i) {
+						std::csize_t uiRv = std::fwrite(&rand, 1, sizeof(rand), file.get().get());
+						xTEST_EQ(uiRv, sizeof(rand));
+					}
 				}
-			}
 
-			// char1
-			{
-				file.setPosition(0L, FileIO::PointerPosition::Begin);
+				// char1
+				{
+					file.setPosition(0L, FileIO::PointerPosition::Begin);
 
-				for (longlong_t i {}; i < fileSize; ++ i) {
-					std::csize_t uiRv = std::fwrite(&char1, 1, sizeof(char1), file.get().get());
-					xTEST_EQ(uiRv, sizeof(char1));
+					for (longlong_t i {}; i < fileSize; ++ i) {
+						std::csize_t uiRv = std::fwrite(&char1, 1, sizeof(char1), file.get().get());
+						xTEST_EQ(uiRv, sizeof(char1));
+					}
 				}
-			}
 
-			// char2
-			{
-				file.setPosition(0L, FileIO::PointerPosition::Begin);
+				// char2
+				{
+					file.setPosition(0L, FileIO::PointerPosition::Begin);
 
-				for (longlong_t i {}; i < fileSize; ++ i) {
-					std::csize_t uiRv = std::fwrite(&char2, 1, sizeof(char2), file.get().get());
-					xTEST_EQ(uiRv, sizeof(char2));
+					for (longlong_t i {}; i < fileSize; ++ i) {
+						std::csize_t uiRv = std::fwrite(&char2, 1, sizeof(char2), file.get().get());
+						xTEST_EQ(uiRv, sizeof(char2));
+					}
 				}
-			}
-		} // if (size > 0LL)
+			} // if (size > 0LL)
 
-		// truncate
-		file.flush();
-		file.clear();
-	} // if (fileSize)
+			// truncate
+			file.clear();
+		} // if (fileSize)
+	}
 
     // file time - reset
     info.resetTime();
