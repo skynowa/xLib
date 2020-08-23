@@ -40,7 +40,7 @@ FileType::_clear_impl() const
 //-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
-File::_isExecutable_impl() const
+FileType::_isExecutable_impl() const
 {
 	DWORD binaryType {-1};
 	BOOL blRv = ::GetBinaryType(filePath().c_str(), &binaryType);
