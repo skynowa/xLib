@@ -9,7 +9,7 @@
 #if cmOPENSSL_CRYPTO_FOUND
 
 #include <xLib/Core/Utils.h>
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Crypt/Crc32.h>
@@ -81,8 +81,8 @@ Blowfish::setFileKey(
 
     std::ustring_t fileKey;
 
-    File file;
-    file.create(a_filePath, File::OpenMode::BinReadOnly);
+    FileIO file;
+    file.create(a_filePath, FileIO::OpenMode::BinReadOnly);
     xTEST(!FileInfo(file).isEmpty());
     xTEST_LESS_EQ(file.size(), static_cast<longlong_t>( keySizeMax() ));
 
@@ -168,8 +168,8 @@ Blowfish::encryptFileCfb64(
 
     std::ustring_t in;
     {
-        File fileIn;
-        fileIn.create(a_filePathIn, File::OpenMode::BinReadOnly);
+        FileIO fileIn;
+        fileIn.create(a_filePathIn, FileIO::OpenMode::BinReadOnly);
         fileIn.read(&in);
     }
 
@@ -177,8 +177,8 @@ Blowfish::encryptFileCfb64(
     encryptCfb64(in, &out, a_mode);
 
     {
-        File fileOut;
-        fileOut.create(a_filePathOut, File::OpenMode::BinReadWrite);
+        FileIO fileOut;
+        fileOut.create(a_filePathOut, FileIO::OpenMode::BinReadWrite);
         fileOut.write(out);
     }
 }

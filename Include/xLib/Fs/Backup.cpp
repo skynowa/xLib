@@ -11,7 +11,7 @@
 #include <xLib/Crypt/Crc32.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/Volume.h>
@@ -111,8 +111,8 @@ Backup::fileExec(
 
     // copy
     {
-        File file;
-        file.create(a_filePath, File::OpenMode::ReadOnly);
+        FileIO file;
+        file.create(a_filePath, FileIO::OpenMode::ReadOnly);
         file.copy(backupFilePath, true);
     }
 

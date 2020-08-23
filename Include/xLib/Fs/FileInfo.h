@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xl, fs)
 
 class Path;
-class File;
+class FileIO;
 
 class FileInfo
     /// File information
@@ -60,7 +60,7 @@ public:
 ///@{
     explicit FileInfo(std::ctstring_t &filePath);
     explicit FileInfo(const Path &path);
-    explicit FileInfo(const File &file);
+    explicit FileInfo(const FileIO &file);
 
     virtual ~FileInfo();
 

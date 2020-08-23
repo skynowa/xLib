@@ -31,7 +31,7 @@ Test_Cgi::unit()
                     xT("</body>")
                     xT("</html>");
 
-            File::textWrite(csFilePath, sFileContent);
+            FileIO::textWrite(csFilePath, sFileContent);
             Cgi::pageShow(csFilePath);
         #endif
     }

@@ -14,7 +14,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Log/Trace.h>
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
 
@@ -48,8 +48,8 @@ FileTemp::~FileTemp()
     }
 
     if (_isAutoDelete && !_filePath.empty()) {
-        File file;
-        file.create(_filePath, File::OpenMode::Write);
+        FileIO file;
+        file.create(_filePath, FileIO::OpenMode::Write);
         file.remove();
     }
 }
@@ -58,7 +58,7 @@ void_t
 FileTemp::create(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_dirPath,
-    File            *a_file
+    FileIO            *a_file
 )
 {
     xTEST_EQ(a_filePath.empty(), false);

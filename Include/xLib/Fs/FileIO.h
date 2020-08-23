@@ -1,6 +1,6 @@
 /**
- * \file  File.h
- * \brief file
+ * \file  FileIO.h
+ * \brief File input/output
  */
 
 
@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, fs)
 
-class File
+class FileIO
     /// file
 {
 public:
@@ -74,10 +74,10 @@ public:
 
 ///@name ctors, dtor
 ///@{
-    explicit File();
-    virtual ~File();
+    explicit FileIO();
+    virtual ~FileIO();
 
-    xNO_COPY_ASSIGN(File)
+    xNO_COPY_ASSIGN(FileIO)
 ///@}
 
     // open, get

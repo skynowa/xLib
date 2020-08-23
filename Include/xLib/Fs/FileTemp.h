@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, fs)
 
-class File;
+class FileIO;
 
 class FileTemp
     /// temporary file
@@ -26,12 +26,12 @@ public:
 	xNO_COPY_ASSIGN(FileTemp)
 ///@}
 
-    void_t   create(std::ctstring_t &filePath, std::ctstring_t &dirPath, File *file);
+    void_t   create(std::ctstring_t &filePath, std::ctstring_t &dirPath, FileIO *file);
         ///< create temporary file, open it
 
 private:
     cbool_t         _isAutoDelete {};  ///< auto delete flag
-    File           *_file {};          ///< temporary file
+    FileIO           *_file {};          ///< temporary file
     std::tstring_t  _filePath;         ///< temporary file path
 
 xPLATFORM_IMPL:

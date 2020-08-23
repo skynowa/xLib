@@ -20,7 +20,7 @@ FileTemp::_create_impl(
     int_t file = xTMKSTEMP(&_filePath.at(0));
     xTEST_DIFF(file, - 1);
 
-    a_stdFile = xTFDOPEN(file, File::_openMode(File::OpenMode::BinReadWrite).c_str());
+    a_stdFile = xTFDOPEN(file, FileIO::_openMode(FileIO::OpenMode::BinReadWrite).c_str());
     xTEST_EQ(a_stdFile.isValid(), true);
 }
 //-------------------------------------------------------------------------------------------------

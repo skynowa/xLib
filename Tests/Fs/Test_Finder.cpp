@@ -57,8 +57,8 @@ Test_Finder::unit()
                                Const::slash() + xT("File_4.log") );
 
             for (const auto &it_file : files) {
-				File file;
-				file.create(it_file, File::OpenMode::Write);
+				FileIO file;
+				file.create(it_file, FileIO::OpenMode::Write);
 				file.clear();
             }
 

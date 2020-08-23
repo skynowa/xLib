@@ -9,7 +9,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/FileType.h>
 #include <xLib/System/Environment.h>
 #include <xLib/Fs/Finder.h>
@@ -162,8 +162,8 @@ Dir::copy(
 
         Dir( Path(filePathTo).dir() ).pathCreate();
 
-        File file;
-        file.create(*it, File::OpenMode::ReadOnly);
+        FileIO file;
+        file.create(*it, FileIO::OpenMode::ReadOnly);
         file.copy(filePathTo, a_failIfExists);
     }
 
@@ -241,8 +241,8 @@ Dir::pathClear() const
         Finder::files(dirPath(), Const::maskAll(), true, &filePaths);
 
         xFOR_EACH_R(std::vec_tstring_t, it, filePaths) {
-            File file;
-            file.create(*it, File::OpenMode::Write);
+            FileIO file;
+            file.create(*it, FileIO::OpenMode::Write);
             file.remove();
         }
     }
