@@ -782,7 +782,7 @@ File::textWrite(
 {
     xTEST(!a_filePath.empty());
     xTEST_NA(a_content);
-    xTEST(a_mode != OpenMode::Unknown);
+    xTEST_NA(a_mode);
 
     File file;
     file.create(a_filePath, a_mode);
@@ -824,7 +824,7 @@ File::textWrite(
 {
     xTEST(!a_filePath.empty());
     xTEST_NA(a_content);
-    xTEST(a_mode != OpenMode::Unknown);
+    xTEST_NA(a_mode);
 
     std::tstring_t content;
 
@@ -912,7 +912,7 @@ File::textWrite(
     xTEST(!a_filePath.empty());
     xTEST(!a_separator.empty());
     xTEST_NA(a_content);
-    xTEST(a_mode != OpenMode::Unknown);
+    xTEST_NA(a_mode);
 
     File file;
     file.create(a_filePath, a_mode);
@@ -1069,11 +1069,6 @@ File::_openMode(
 	case OpenMode::BinOpenReadAppend:
 		sRv = xT("ab+");
 		break;
-
-	case OpenMode::Unknown:
-	default:
-		sRv = xT("r");
-		break;
 	}
 
 	return sRv;
@@ -1094,9 +1089,7 @@ File::_openMode(
 		{OpenMode::BinAppend,          xT("ab")},
 		{OpenMode::BinOpenReadWrite,   xT("rb+")},
 		{OpenMode::BinCreateReadWrite, xT("wb+")},
-		{OpenMode::BinOpenReadAppend,  xT("ab+")},
-
-		{OpenMode::Unknown,            xT("r")}
+		{OpenMode::BinOpenReadAppend,  xT("ab+")}
 	};
 
 	auto it = modes.find(a_mode);
