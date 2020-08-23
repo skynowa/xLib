@@ -89,7 +89,7 @@ File::wipe(
 	}
 
 	// content - reset
-	{
+	if ( !info.isEmpty() ) {
 		FileIO file;
 		file.create(_filePath, FileIO::OpenMode::BinReadWrite);
 
