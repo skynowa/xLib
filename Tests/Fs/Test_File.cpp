@@ -793,7 +793,7 @@ Test_File::unit1()
 			xTEST_LESS(0, m_iRv);
 		}
 
-		File::binWrite(filePath, content);
+		File::binWrite(filePath, content, File::OpenMode::BinWrite);
 
 		std::ustring_t str;
 		File::binRead(filePath, &str);
@@ -811,7 +811,7 @@ Test_File::unit1()
 			file.create(filePath, File::OpenMode::BinCreateReadWrite);
 		}
 
-		File::binWrite(filePath, content);
+		File::binWrite(filePath, content, File::OpenMode::BinWrite);
 
 		std::ustring_t str;
 		File::binRead(filePath, &str);

@@ -200,7 +200,7 @@ xPUBLIC_STATIC:
     void_t         binRead(std::ctstring_t &filePath, std::ustring_t *content);
         ///< read binary data
     static
-    void_t         binWrite(std::ctstring_t &filePath, std::custring_t &content);
+    void_t         binWrite(std::ctstring_t &filePath, std::custring_t &content, cOpenMode mode);
         ///< write binary data
 
 private:
