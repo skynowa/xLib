@@ -19,22 +19,22 @@ public:
         /// open mode
     {
         // Text
-        Read,               ///< "r" (no file - error)
-        Write,              ///< "w" (no file - create)
-        Append,             ///< "a" (no file - create)
+        ReadOnly,         ///< "r" (no file - error)
+        Write,            ///< "w" (no file - create)
+        Append,           ///< "a" (no file - create)
 
-        OpenReadWrite,      ///< "r+" (no file - error)
-        CreateReadWrite,    ///< "w+" (no file - create)
-        OpenReadAppend,     ///< "a+" (no file - create)
+        ReadWriteOnly,    ///< "r+" (no file - error)
+        ReadWrite,        ///< "w+" (no file - create)
+        ReadAppend,       ///< "a+" (no file - create)
 
 		// Binary
-        BinRead,            ///< "rb" (no file - error)
-        BinWrite,           ///< "wb" (no file - create)
-        BinAppend,          ///< "ab" (no file - create)
+        BinReadOnly,      ///< "rb" (no file - error)
+        BinWrite,         ///< "wb" (no file - create)
+        BinAppend,        ///< "ab" (no file - create)
 
-        BinOpenReadWrite,   ///< "rb+" (no file - error)
-        BinCreateReadWrite, ///< "wb+" (no file - create)
-        BinOpenReadAppend   ///< "ab+" (no file - create)
+        BinReadWriteOnly, ///< "rb+" (no file - error)
+        BinReadWrite,     ///< "wb+" (no file - create)
+        BinReadAppend     ///< "ab+" (no file - create)
     };
     xUSING_CONST(OpenMode);
 

@@ -112,7 +112,7 @@ Backup::fileExec(
     // copy
     {
         File file;
-        file.create(a_filePath, File::OpenMode::Read);
+        file.create(a_filePath, File::OpenMode::ReadOnly);
         file.copy(backupFilePath, true);
     }
 
