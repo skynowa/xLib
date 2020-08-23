@@ -91,7 +91,7 @@ File::wipe(
 	// content - reset
 	{
 		FileIO file;
-		file.create(_filePath, FileIO::OpenMode::BinReadWrite, false);
+		file.create(_filePath, FileIO::OpenMode::BinReadWrite);
 
 		clonglong_t fileSize = file.size();
 		if (fileSize > 0LL) {
@@ -104,6 +104,8 @@ File::wipe(
 						std::csize_t uiRv = std::fwrite(&a_byte, 1, sizeof(a_byte), file.get().get());
 						xTEST_EQ(uiRv, sizeof(a_byte));
 					}
+
+					file.flush();
 				};
 
 				// fill by 0x55 (01010101), 0xAA (10101010), random char
@@ -112,7 +114,7 @@ File::wipe(
 				for (const auto &it_byte : bytes) {
 					writer(it_byte);
 				}
-			} // if (size > 0LL)
+			} // for (p)
 
 			// truncate
 			file.clear();
