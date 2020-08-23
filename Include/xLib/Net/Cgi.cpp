@@ -13,6 +13,7 @@
 #include <xLib/Core/Format.h>
 #include <xLib/System/Environment.h>
 #include <xLib/Fs/FileIO.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Net/CookiePv0.h>
 #include <xLib/Net/CookiePv1.h>
 
@@ -77,7 +78,7 @@ Cgi::pageShow(
 {
     std::tstring_t fileContent;
 
-    FileIO::textRead(a_filePath, &fileContent);
+    File(a_filePath).textRead(&fileContent);
 
     std::tcout << fileContent << std::endl;
 }

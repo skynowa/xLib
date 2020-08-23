@@ -60,7 +60,7 @@ Test_Blowfish::unit()
 
         // prepare
         {
-            FileIO::textWrite(filePlain, xT("text_text"), FileIO::OpenMode::Write);
+            File(filePlain).textWrite(xT("text_text"), FileIO::OpenMode::Write);
         }
 
         // test

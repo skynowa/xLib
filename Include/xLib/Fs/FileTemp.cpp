@@ -15,6 +15,7 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Fs/FileIO.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
 
@@ -48,9 +49,7 @@ FileTemp::~FileTemp()
     }
 
     if (_isAutoDelete && !_filePath.empty()) {
-        FileIO file;
-        file.create(_filePath, FileIO::OpenMode::Write);
-        file.remove();
+        File(_filePath).remove();
     }
 }
 //-------------------------------------------------------------------------------------------------
