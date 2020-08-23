@@ -312,7 +312,7 @@ Test_FileIO::unit()
         struct Writer
         {
             static void_t
-            doV(const File &file, cptr_ctchar_t format, ...)
+            doV(const FileIO &file, cptr_ctchar_t format, ...)
             {
                 va_list args;
                 xVA_START(args, format);
