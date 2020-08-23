@@ -17,16 +17,15 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-  steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      - name: Installs
+        run: cd ./Tools && ./install_cppcheck.sh && ./install_libs.sh
 
-    - name: Installs
-      run: cd ./Tools && ./install_cppcheck.sh && ./install_libs.sh
+      - name: configure
+        run: cd ./Build && ./eclipse.sh
 
-    - name: configure
-      run: cd ./Build && ./eclipse.sh
-
-    - name: Build
-      run: ./build.sh
+      - name: Build
+        run: ./build.sh
