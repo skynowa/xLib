@@ -378,7 +378,7 @@ Test_File::unit()
 
         File file;
         file.create(filePath, File::OpenMode::CreateReadWrite);
-        file.setVBuff(&buffRead.at(0), File::BufferingMode::Full, buffRead.size() * 2);
+        file.setVBuff(File::BufferingMode::Full, &buffRead.at(0), buffRead.size() * 2);
     }
 
     /*******************************************************************************
