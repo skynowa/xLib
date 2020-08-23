@@ -21,22 +21,22 @@ public:
         Unknown,            ///< unknown
 
         // Text
-        Read,               ///< "r"
-        Write,              ///< "w"
-        Append,             ///< "a"
+        Read,               ///< "r" (no file - error)
+        Write,              ///< "w" (no file - create)
+        Append,             ///< "a" (no file - create)
 
-        OpenReadWrite,      ///< "r+"
-        CreateReadWrite,    ///< "w+"
-        OpenReadAppend,     ///< "a+"
+        OpenReadWrite,      ///< "r+" (no file - error)
+        CreateReadWrite,    ///< "w+" (no file - create)
+        OpenReadAppend,     ///< "a+" (no file - create)
 
 		// Binary
-        BinRead,            ///< "rb"
-        BinWrite,           ///< "wb"
-        BinAppend,          ///< "ab"
+        BinRead,            ///< "rb" (no file - error)
+        BinWrite,           ///< "wb" (no file - create)
+        BinAppend,          ///< "ab" (no file - create)
 
-        BinOpenReadWrite,   ///< "rb+"
-        BinCreateReadWrite, ///< "wb+"
-        BinOpenReadAppend   ///< "ab+"
+        BinOpenReadWrite,   ///< "rb+" (no file - error)
+        BinCreateReadWrite, ///< "wb+" (no file - create)
+        BinOpenReadAppend   ///< "ab+" (no file - create)
     };
     xUSING_CONST(OpenMode);
 
