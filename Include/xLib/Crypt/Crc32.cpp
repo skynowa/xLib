@@ -7,7 +7,7 @@
 #include "Crc32.h"
 
 #include <xLib/Core/FormatC.h>
-#include <xLib/Fs/FileIO.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StdError.h>
 #include <xLib/Debug/StackTrace.h>
@@ -136,7 +136,7 @@ Crc32::calcFile(
 
     std::ustring_t file;
 
-    FileIO::binRead(a_filePath, &file);
+    File(a_filePath).binRead(&file);
     xCHECK_RET(file.empty(), 0UL);
 
     _crc32 = calc(&file.at(0), static_cast<culong_t>( file.size() ));
