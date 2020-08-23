@@ -97,37 +97,36 @@ File::wipe(
 		if (fileSize > 0LL) {
 			// fill by 0x55, 0xAA, random char
 			for (size_t p {}; p < a_passes; ++ p) {
-				cuchar_t rand  { NativeRandom().nextChar<uchar_t>() };
-				cuchar_t char1 {0x55};
-				cuchar_t char2 {0xAA};
-
-				// rand
+				// char: rand
 				{
 					file.setPosition(0L, FileIO::PointerPosition::Begin);
 
 					for (longlong_t i {}; i < fileSize; ++ i) {
-						std::csize_t uiRv = std::fwrite(&rand, 1, sizeof(rand), file.get().get());
-						xTEST_EQ(uiRv, sizeof(rand));
+						cuchar_t ch { NativeRandom().nextChar<uchar_t>() };
+						std::csize_t uiRv = std::fwrite(&ch, 1, sizeof(ch), file.get().get());
+						xTEST_EQ(uiRv, sizeof(ch));
 					}
 				}
 
-				// char1
+				// char: 0x55
 				{
 					file.setPosition(0L, FileIO::PointerPosition::Begin);
 
 					for (longlong_t i {}; i < fileSize; ++ i) {
-						std::csize_t uiRv = std::fwrite(&char1, 1, sizeof(char1), file.get().get());
-						xTEST_EQ(uiRv, sizeof(char1));
+						cuchar_t ch {0x55};
+						std::csize_t uiRv = std::fwrite(&ch, 1, sizeof(ch), file.get().get());
+						xTEST_EQ(uiRv, sizeof(ch));
 					}
 				}
 
-				// char2
+				// char: 0xAA
 				{
 					file.setPosition(0L, FileIO::PointerPosition::Begin);
 
 					for (longlong_t i {}; i < fileSize; ++ i) {
-						std::csize_t uiRv = std::fwrite(&char2, 1, sizeof(char2), file.get().get());
-						xTEST_EQ(uiRv, sizeof(char2));
+						cuchar_t ch {0xAA};
+						std::csize_t uiRv = std::fwrite(&ch, 1, sizeof(ch), file.get().get());
+						xTEST_EQ(uiRv, sizeof(ch));
 					}
 				}
 			} // if (size > 0LL)
@@ -230,13 +229,11 @@ File::copy(
 	{
 		if (!isCopyOk) {
 			remove();
-
 			xTHROW_REPORT(errorCopyFail);
 		}
 
 		if (FileInfo(fileFrom).size() != FileInfo(fileTo).size()) {
 			remove();
-
 			xTHROW_REPORT(errorFilesDiffrent);
 		}
 	}
@@ -264,7 +261,6 @@ File::textRead(
 
     clonglong_t fileSize = file.size();
     xTEST_DIFF(fileSize, static_cast<longlong_t>(FileIO::PointerPosition::Error));
-
     xCHECK_DO(fileSize == 0LL, a_content->clear(); return);
 
     sRv.resize( static_cast<size_t>(fileSize) );
@@ -339,7 +335,7 @@ File::textRead(
     a_content->swap(msRv);
 
 #if xTODO
-    bool_t             bRv = false;
+    bool_t             bRv {};
     std::map_tstring_t msRv;
     std::vec_tstring_t vsRv;
 
@@ -385,10 +381,7 @@ File::textWrite(
     xTEST_NA(a_content);
     xTEST_NA(a_mode);
 
-    std::tstring_t content;
-
-    content = String::join(a_content, Const::nl());
-
+    std::ctstring_t &content = String::join(a_content, Const::nl());
     textWrite(content, a_mode);
 }
 //-------------------------------------------------------------------------------------------------
@@ -429,8 +422,6 @@ File::binRead(
 {
     xTEST_PTR(a_content);
 
-    std::ustring_t usRv;
-
     FileIO file;
     file.create(_filePath, FileIO::OpenMode::BinReadOnly);
 
@@ -438,6 +429,7 @@ File::binRead(
     xTEST_DIFF(fileSize, static_cast<longlong_t>(FileIO::PointerPosition::Error));
     xCHECK_DO(fileSize == 0LL, a_content->clear(); return);
 
+    std::ustring_t usRv;
     usRv.resize( static_cast<size_t>(fileSize) );
 
     std::csize_t readLen = file.read((void_t *)&usRv.at(0), usRv.size());
@@ -460,7 +452,7 @@ File::binWrite(
 
     xCHECK_DO(a_content.empty(), return);
 
-    size_t writeLen = file.write((void_t *)&a_content.at(0), a_content.size());
+    std::csize_t writeLen = file.write((void_t *)&a_content.at(0), a_content.size());
     xTEST_EQ(writeLen, a_content.size());
 }
 //-------------------------------------------------------------------------------------------------
