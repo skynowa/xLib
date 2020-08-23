@@ -34,7 +34,7 @@ Test_FileType::unit()
 		}
 
         File file;
-        file.create(filePath, File::OpenMode::CreateReadWrite);
+        file.create(filePath, File::OpenMode::ReadWrite);
         file.close();
 
         m_bRv = FileInfo(filePath).isExists();
