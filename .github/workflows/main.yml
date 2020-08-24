@@ -25,7 +25,7 @@ jobs:
         run: cd ./Tools && ./install_libs.sh
 
       - name: Install - Static Analysis
-        run: cd ./Tools && ./install_cppcheck.sh && ./install_clang.sh && ./install_pvs_studio.sh
+        run: cd ./Tools && ./install_cppcheck.sh && ./install_clang_tidy.sh && ./install_pvs_studio.sh
 
       - name: Checkout - CMakeLib
         uses: actions/checkout@v2
