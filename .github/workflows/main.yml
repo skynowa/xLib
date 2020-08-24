@@ -34,7 +34,7 @@ jobs:
           path: CMakeLib
 
       - name: TRACE
-        run: file /usr/lib/llvm-6.0/bin/clang-tidy
+        run: locate clang-tidy
 
       - name: Install - CMakeLib
         run: cd ./CMakeLib && ./install.sh
