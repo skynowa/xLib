@@ -15,7 +15,7 @@
 namespace
 {
 
-struct SlistDeleter
+struct CutlSlistDeleter
 {
 	void operator() (struct curl_slist *a_list) const
 	{
@@ -26,7 +26,7 @@ struct SlistDeleter
 		::curl_slist_free_all(a_list); a_list = nullptr;
 	}
 };
-using slist_unique_ptr_t = std::unique_ptr<struct curl_slist, SlistDeleter>;
+using slist_unique_ptr_t = std::unique_ptr<struct curl_slist, CutlSlistDeleter>;
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
