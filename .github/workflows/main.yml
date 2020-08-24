@@ -18,8 +18,8 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - name: Upgrade
-        run: sudo apt update && sudo apt upgrade
+      # - name: Upgrade
+        # run: sudo apt update && sudo apt upgrade
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
