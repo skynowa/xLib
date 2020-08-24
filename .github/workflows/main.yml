@@ -43,4 +43,4 @@ jobs:
         run: cd ./Build && ./eclipse.sh
 
       - name: Build - xLib
-        run: ./build.sh
+        run: cd ./Build && ./build.sh
