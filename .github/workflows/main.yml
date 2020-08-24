@@ -24,8 +24,15 @@ jobs:
       - name: Installs
         run: cd ./Tools && ./install_cppcheck.sh && ./install_libs.sh
 
-      - name: CMakeLib
-        run: git clone git@github.com:skynowa/CMakeLib.git && cd ./CMakeLib && ./install.sh
+
+      - name: Checkout CMakeLib
+        uses: actions/checkout@v2
+        with:
+          repository: skynowa/CMakeLib
+          path: CMakeLib
+
+      # - name: CMakeLib
+        # run: git clone git@github.com:skynowa/CMakeLib.git && cd ./CMakeLib && ./install.sh
 
       - name: configure
         run: cd ./Build && ./eclipse.sh
