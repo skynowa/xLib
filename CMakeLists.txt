@@ -224,9 +224,9 @@ else()
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
-target_clang_tidy(${JOBS_NUM} "${XLIB_INCLUDES}" "${XLIB_SOURCES}")
-target_cpp_check(${JOBS_NUM} ${XLIB_LOCATION})
-target_pvs_studio(${JOBS_NUM})
+### target_clang_tidy(${JOBS_NUM} "${XLIB_INCLUDES}" "${XLIB_SOURCES}")
+### target_cpp_check(${JOBS_NUM} ${XLIB_LOCATION})
+### target_pvs_studio(${JOBS_NUM})
 
 if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
