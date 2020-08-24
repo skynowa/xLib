@@ -17,7 +17,7 @@ namespace
 
 struct SlistDeleter
 {
-	void operator() (struct curl_slist *&a_list) const
+	void operator() (struct curl_slist *a_list) const
 	{
 		if (a_list == nullptr) {
 			return;
