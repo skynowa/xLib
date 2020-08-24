@@ -33,6 +33,9 @@ jobs:
           repository: skynowa/CMakeLib
           path: CMakeLib
 
+      - name: TRACE
+        run: whereis clang-tidy
+
       - name: Install - CMakeLib
         run: cd ./CMakeLib && ./install.sh
 
