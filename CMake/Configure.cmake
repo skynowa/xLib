@@ -65,7 +65,7 @@ find_package(PvsStudio QUIET)   # REQUIRED
 find_package(PkgConfig QUIET)   # REQUIRED
 
 ## libs
-find_package(CMakeLib QUIET REQUIRED)
+### find_package(CMakeLib QUIET REQUIRED)
 find_package(GitRevision QUIET REQUIRED)
 find_package(OS QUIET REQUIRED)
 find_package(Threads QUIET REQUIRED)
