@@ -30,6 +30,8 @@ jobs:
         with:
           repository: skynowa/CMakeLib
           path: CMakeLib
+
+      - name: CMakeLib
         run: cd ./CMakeLib && ./install.sh
 
       - name: configure
