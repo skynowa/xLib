@@ -1,3 +1,4 @@
 sudo apt-get install \
 	llvm \
-	clang
+	clang \
+	clang-tidy
