@@ -30,9 +30,7 @@ jobs:
         with:
           repository: skynowa/CMakeLib
           path: CMakeLib
-
-      # - name: CMakeLib
-        # run: git clone git@github.com:skynowa/CMakeLib.git && cd ./CMakeLib && ./install.sh
+        run: cd ./CMakeLib && ./install.sh
 
       - name: configure
         run: cd ./Build && ./eclipse.sh
