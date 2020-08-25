@@ -45,3 +45,32 @@ jobs:
 
       - name: Build - xLib
         run: cd ./Build && ./build.sh
+
+  build_windows:
+    # The type of runner that the job will run on
+    runs-on: windows-2019
+
+    steps:
+      # - name: Upgrade
+        # run: sudo apt update && sudo apt upgrade
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # - name: Install - Static Analysis
+        # run: cd ./Tools && ./install_cppcheck.sh && ./install_clang_tidy.sh && ./install_pvs_studio.sh
+
+      - name: Checkout - CMakeLib
+        uses: actions/checkout@v2
+        with:
+          repository: skynowa/CMakeLib
+          path: CMakeLib
+
+      - name: Install - CMakeLib
+        run: cd ./CMakeLib && ./install.sh
+
+      - name: Configure - xLib
+        run: cd ./Build && ./eclipse.sh
+
+      - name: Build - xLib
+        run: cd ./Build && ./build.sh
