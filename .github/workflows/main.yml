@@ -1,4 +1,8 @@
-# This is a basic workflow to help you get started with Actions
+#--------------------------------------------------------------------------------------------------
+# \file  main.yml
+# \brief
+#--------------------------------------------------------------------------------------------------
+
 
 name: CI
 
@@ -12,9 +16,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build_linux:
-    # The type of runner that the job will run on
     runs-on: ubuntu-20.04
     # runs-on: windows-2019
 
@@ -47,7 +49,7 @@ jobs:
         run: cd ./Build && ./build.sh
 
   build_windows:
-    # The type of runner that the job will run on
+    if: false # always skip job
     runs-on: windows-2019
 
     steps:
