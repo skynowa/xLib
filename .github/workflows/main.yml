@@ -21,9 +21,6 @@ jobs:
     # runs-on: windows-2019
 
     steps:
-      # - name: Upgrade
-        # run: sudo apt update && sudo apt upgrade
-
       - uses: actions/checkout@v2
 
       - name: Install - Libs
