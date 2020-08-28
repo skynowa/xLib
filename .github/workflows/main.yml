@@ -43,3 +43,6 @@ jobs:
 
       - name: Build - xLib
         run: cd ./Build && ./build.sh
+
+notifications:
+  email: true
