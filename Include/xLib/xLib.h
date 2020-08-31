@@ -112,7 +112,6 @@
 #include <xLib/Net/MimeMessage.h>
 #include <xLib/Net/Pop3Client.h>
 #include <xLib/Net/SmtpClient.h>
-#include <xLib/Net/Cgi.h>
 
 // Pattern
 #include <xLib/Pattern/Raii.h>
