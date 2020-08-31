@@ -105,8 +105,6 @@
 #include <xLib/Net/TcpClient.h>
 #include <xLib/Net/TcpServer.h>
 #include <xLib/Net/DnsClient.h>
-#include <xLib/Net/CookiePv0.h>
-#include <xLib/Net/CookiePv1.h>
 #include <xLib/Net/MimeHeader.h>
 #include <xLib/Net/MimeBody.h>
 #include <xLib/Net/MimeMessage.h>
