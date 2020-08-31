@@ -114,10 +114,8 @@ Manager::_construct(
 
     // checks
     {
-    #if xENV_UNIX
         User user;
         xCHECK_MSG_DO(user.isAdmin(), xT("Manager: can't run as root"), return);
-    #endif
     }
 
     // parse params
