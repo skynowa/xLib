@@ -1,6 +1,6 @@
 # xLib - C++ cross-platform library
 
-![CI](https://github.com/skynowa/xLib/workflows/CI/badge.svg)
+![CI](https://github.com/skynowa/xLib/workflows/CI/badge.svg?event=deployment)
 
 Authors: skynowa
 
