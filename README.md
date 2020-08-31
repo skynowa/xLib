@@ -1,5 +1,7 @@
 # xLib - C++ cross-platform library
 
+![CI](https://github.com/skynowa/xLib/workflows/CI/badge.svg)
+
 Authors: skynowa
 
 E-mail:  skynowa@gmail.com
@@ -26,14 +28,3 @@ Skype:   skynowa777
 ## Dependecies
 
 https://bitbucket.org/skynowa/cmakelib (https://github.com/skynowa/CMakeLib)
-
-
-
-
-
-
-
-
-
-
-
