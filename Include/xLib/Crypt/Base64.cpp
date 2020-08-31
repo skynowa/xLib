@@ -38,10 +38,10 @@ Base64::encode(
 {
     std::string sRv;
     std::size_t inSize        = a_size;
-    int         i             = 0;
-    int         j             = 0;
-    uchar_t     charArray3[3] = {0};
-    uchar_t     charArray4[4] = {0};
+    int         i             {};
+    int         j             {};
+    uchar_t     charArray3[3] {};
+    uchar_t     charArray4[4] {};
 
     while (inSize --) {
         charArray3[i ++] = *(a_bytes ++);
