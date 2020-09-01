@@ -18,23 +18,25 @@ jobs:
     # runs-on: windows-2019
 
     steps:
-      - uses: actions/checkout@v2
-      - name: <Libs> Install
+      - name: xLib - checkout
+        - uses: actions/checkout@v2
+
+      - name: Libs - install
         run: cd ./Tools && ./install_libs.sh
       # - name: Install - Static Analysis
         # run: cd ./Tools && ./install_cppcheck.sh && ./install_clang_tidy.sh && ./install_pvs_studio.sh
 
-      - name: CMakeLib-Checkout
+      - name: CMakeLib - checkout
         uses: actions/checkout@v2
         with:
           repository: skynowa/CMakeLib
           path: CMakeLib
 
-      - name: CMakeLib-Install
+      - name: CMakeLib - install
         run: cd ./CMakeLib && ./install.sh
 
-      - name: xLib-Configure
+      - name: xLib - configure
         run: cd ./Build && ./makefile.sh
 
-      - name: xLib-Build
+      - name: xLib - build
         run: cd ./Build && ./build.sh
