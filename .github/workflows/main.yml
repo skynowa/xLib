@@ -39,7 +39,7 @@ jobs:
         run: cd ./CMakeLib && ./install.sh
 
       - name: Configure - xLib
-        run: cd ./Build && ./eclipse.sh
+        run: cd ./Build && ./makefile.sh
 
       - name: Build - xLib
         run: cd ./Build && ./build.sh
