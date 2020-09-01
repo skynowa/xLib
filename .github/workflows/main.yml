@@ -21,18 +21,25 @@ jobs:
       - name: xLib - checkout
         uses: actions/checkout@v2
 
+      # xLib-data
       - name: xLib-data - checkout
         uses: actions/checkout@v2
         with:
           repository: skynowa/xLib-data
           path: xLib-data
 
+      - name: xLib-data - install
+          run: cd ./xLib-data/Libs/ubuntu-20.04 && ./install.sh
+
+      # Libs
       - name: Libs - install
         run: cd ./Tools && ./install_libs.sh
 
+      # Static Analysis
       # - name: Install - Static Analysis
       #   run: cd ./Tools && ./install_cppcheck.sh && ./install_clang_tidy.sh && ./install_pvs_studio.sh
 
+      # CMakeLib
       - name: CMakeLib - checkout
         uses: actions/checkout@v2
         with:
@@ -42,6 +49,7 @@ jobs:
       - name: CMakeLib - install
         run: cd ./CMakeLib && ./install.sh
 
+      # xLib
       - name: xLib - configure
         run: cd ./Build && ./eclipse.sh
 
@@ -50,3 +58,7 @@ jobs:
 
       # - name: xLib - tests
       #   run: cd ./Build && ./tests.sh
+
+
+  # build_windows:
+  #   runs-on: windows-2019
