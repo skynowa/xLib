@@ -68,7 +68,6 @@ include(Functions/JobsNum)
 ### include(StaticAnalisis/CppCheck)
 ### include(StaticAnalisis/PvsStudio)
 
-set(JOBS_NUM 4)
 jobs_num(JOBS_NUM)
 message("JOBS_NUM: ${JOBS_NUM}")
 #--------------------------------------------------------------------------------------------------
