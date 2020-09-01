@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: [Libs] Install
+      - name: Libs-Install
         run: cd ./Tools && ./install_libs.sh
       # - name: Install - Static Analysis
         # run: cd ./Tools && ./install_cppcheck.sh && ./install_clang_tidy.sh && ./install_pvs_studio.sh
