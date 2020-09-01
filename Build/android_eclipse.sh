@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-#
-# \file  android_makefile.sh
-# \brief build project
-#
 
 
 # vars

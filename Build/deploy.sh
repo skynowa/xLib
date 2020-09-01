@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-#
-# \file  eclipse.sh
-# \brief build project
-#
 
 
 ./build.sh

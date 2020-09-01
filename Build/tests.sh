@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-#
-# \file  tests.sh
-# \brief test project
-#
 
 
 # vars
