@@ -284,10 +284,10 @@ configure_file(
     ${XLIB_LOCATION}/Include/xLib/Config.h)
 #--------------------------------------------------------------------------------------------------
 # pkg-config
-set(PKG_CONFIG_REQUIRES     "")
-set(PKG_CONFIG_LIBDIR       "\${prefix}/lib")
-set(PKG_CONFIG_INCLUDEDIR   "\${prefix}/include/lib${PROJECT_NAME}")
-set(PKG_CONFIG_LIBS         "-L\${libdir} -l${PROJECT_NAME}")
+set(PKG_CONFIG_REQUIRES   "")
+set(PKG_CONFIG_LIBDIR     "\${prefix}/lib")
+set(PKG_CONFIG_INCLUDEDIR "\${prefix}/include/lib${PROJECT_NAME}")
+set(PKG_CONFIG_LIBS       "-L\${libdir} -l${PROJECT_NAME}")
 
 # PKG_CONFIG_LIBS_PRIVATE
 set(PKG_CONFIG_LIBS_PRIVATE "")
