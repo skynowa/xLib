@@ -40,3 +40,6 @@ jobs:
 
       - name: xLib - build
         run: cd ./Build && ./build.sh
+
+      - name: xLib - tests
+        run: cd ./Build && ./tests.sh
