@@ -6,7 +6,7 @@
 
 
 # vars
-DIR_BUILD="../../xLib_makefile"
+DIR_BUILD="../../xLib_eclipse"
 JOBS_NUM=$(nproc --all)
 
 echo "Jobs: $JOBS_NUM"
