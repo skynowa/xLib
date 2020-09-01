@@ -1,6 +1,8 @@
 # xLib - C++ cross-platform library
 
-![CI](https://github.com/skynowa/xLib/workflows/CI/badge.svg?event=deployment)
+[//]: ![CI](https://github.com/skynowa/xLib/workflows/CI/badge.svg?event=deployment)
+
+[//]: https://shields.io/category/build
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
 
 Authors: skynowa
