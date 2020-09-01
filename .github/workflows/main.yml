@@ -21,6 +21,12 @@ jobs:
       - name: xLib - checkout
         uses: actions/checkout@v2
 
+      - name: xLib-data - checkout
+        uses: actions/checkout@v2
+        with:
+          repository: skynowa/xLib-data
+          path: xLib-data
+
       - name: Libs - install
         run: cd ./Tools && ./install_libs.sh
 

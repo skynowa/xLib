@@ -8,7 +8,6 @@ sudo apt-get install \
 	# libcurl4-gnutls-dev
 
 # libcurl
-TEMP_DEB="$(mktemp)" &&
-wget -O "$TEMP_DEB" 'http://security.ubuntu.com/ubuntu/pool/main/c/curl/libcurl4-openssl-dev_7.68.0-1ubuntu2.2_amd64.deb' &&
-sudo dpkg -i "$TEMP_DEB"
-rm -f "$TEMP_DEB"
+cd ../../xLib-data/Libs/ubuntu-20.04
+
+sudo dpkg -i libcurl4-openssl-dev_7.68.0-1ubuntu2.2_amd64.deb
