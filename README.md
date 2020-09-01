@@ -28,3 +28,4 @@ Skype:   skynowa777
 ## Dependecies
 
 https://bitbucket.org/skynowa/cmakelib (https://github.com/skynowa/CMakeLib)
+
