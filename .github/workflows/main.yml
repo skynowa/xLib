@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: xLib - checkout
-        - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: Libs - install
         run: cd ./Tools && ./install_libs.sh
