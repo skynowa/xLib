@@ -24,17 +24,17 @@ jobs:
       # - name: Install - Static Analysis
         # run: cd ./Tools && ./install_cppcheck.sh && ./install_clang_tidy.sh && ./install_pvs_studio.sh
 
-      - name: [CMakeLib] Checkout
+      - name: CMakeLib-Checkout
         uses: actions/checkout@v2
         with:
           repository: skynowa/CMakeLib
           path: CMakeLib
 
-      - name: [CMakeLib] Install
+      - name: CMakeLib-Install
         run: cd ./CMakeLib && ./install.sh
 
-      - name: [xLib] Configure
+      - name: xLib-Configure
         run: cd ./Build && ./makefile.sh
 
-      - name: [xLib] Build
+      - name: xLib-Build
         run: cd ./Build && ./build.sh
