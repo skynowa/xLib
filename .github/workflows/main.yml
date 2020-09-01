@@ -6,15 +6,12 @@
 
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build_linux:
     runs-on: ubuntu-20.04
@@ -23,23 +20,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install - Libs
+      - name: [Libs] Install
         run: cd ./Tools && ./install_libs.sh
 
       # - name: Install - Static Analysis
         # run: cd ./Tools && ./install_cppcheck.sh && ./install_clang_tidy.sh && ./install_pvs_studio.sh
 
-      - name: Checkout - CMakeLib
+      - name: [CMakeLib] Checkout
         uses: actions/checkout@v2
         with:
           repository: skynowa/CMakeLib
           path: CMakeLib
 
-      - name: Install - CMakeLib
+      - name: [CMakeLib] Install
         run: cd ./CMakeLib && ./install.sh
 
-      - name: Configure - xLib
+      - name: [xLib] Configure
         run: cd ./Build && ./makefile.sh
 
-      - name: Build - xLib
+      - name: [xLib] Build
         run: cd ./Build && ./build.sh
