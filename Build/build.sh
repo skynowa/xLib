@@ -7,7 +7,9 @@
 
 # vars
 DIR_BUILD="../../xLib_makefile"
+JOBS_NUM=$(nproc)
+
+echo "Jobs: $JOBS_NUM"
 
 cd $DIR_BUILD
-
-cmake --build . -- -j16
+cmake --build . -- -j$JOBS_NUM
