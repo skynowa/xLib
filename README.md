@@ -1,6 +1,7 @@
 # xLib - C++ cross-platform library
 
 ![CI](https://github.com/skynowa/xLib/workflows/CI/badge.svg?event=deployment)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
 
 Authors: skynowa
 
@@ -28,7 +29,3 @@ Skype:   skynowa777
 ## Dependecies
 
 https://bitbucket.org/skynowa/cmakelib (https://github.com/skynowa/CMakeLib)
-
-
-
-
