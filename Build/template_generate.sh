@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-#
-# \file  generate_template.sh
-# \brief generate template
-#
 
 
 # vars
@@ -13,4 +9,3 @@ mkdir -p $DIR_BUILD
 cd $DIR_BUILD
 
 make template
-
