@@ -21,14 +21,6 @@
     #include "Platform/Win/Random_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/Random_unix.inl"
-
-    #if   xENV_LINUX
-
-    #elif xENV_BSD
-
-    #elif xENV_APPLE
-
-    #endif
 #endif
 
 
@@ -48,7 +40,7 @@ ISeedPolicy::ISeedPolicy()
 uint_t
 ISeedPolicy::_seedTimeBased() const
 {
-    timeval tv = {0, 0};
+    timeval tv {};
     int_t iRv = ::gettimeofday(&tv, nullptr);
     xTEST_DIFF(iRv, - 1);
 
