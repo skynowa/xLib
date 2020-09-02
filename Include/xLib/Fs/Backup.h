@@ -27,19 +27,19 @@ public:
 
 ///@name ctors, dtor
 ///@{
-	explicit  Backup(cPeriod period);
+	explicit  Backup(std::ctstring_t &filePath, cPeriod period);
 	virtual  ~Backup() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Backup)
 	xNO_COPY_ASSIGN(Backup)
 ///@}
 
-    void_t    fileExec(std::ctstring_t &filePath, std::ctstring_t &destDirPath,
-                  std::tstring_t *destFilePath) const /* throw(Exception) */;
+    void_t fileExec(std::ctstring_t &destDirPath, std::tstring_t *destFilePath) const /* throw(Exception) */;
         ///< execute file backup
 
 private:
-    cPeriod   _period {};  ///< backup period
+	std::ctstring_t _filePath;
+    cPeriod         _period {};  ///< backup period
 };
 
 xNAMESPACE_END2(xl, fs)
