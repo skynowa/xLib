@@ -10,6 +10,7 @@
 
 #include <xLib/Core/Utils.h>
 #include <xLib/Fs/FileIO.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Crypt/Crc32.h>
@@ -80,13 +81,15 @@ Blowfish::setFileKey(
     xTEST(!a_filePath.empty());
 
     std::ustring_t fileKey;
+	{
+		File file(a_filePath);
+		file.binRead(&fileKey);
 
-    FileIO file(a_filePath);
-    file.open(FileIO::OpenMode::BinReadOnly);
-    xTEST(!FileInfo(file).isEmpty());
-    xTEST_LESS_EQ(file.size(), static_cast<longlong_t>( keySizeMax() ));
+		FileInfo fileInfo(a_filePath);
+		xTEST(!fileInfo.isEmpty());
+		xTEST_LESS_EQ(fileInfo.size(), static_cast<longlong_t>( keySizeMax() ));
+	}
 
-    file.read(&fileKey);
     setKey(fileKey);
 
     // for security
@@ -167,20 +170,12 @@ Blowfish::encryptFileCfb64(
     xTEST_EQ(a_filePathOut.empty(), false);
 
     std::ustring_t in;
-    {
-        FileIO fileIn(a_filePathIn);
-        fileIn.open(FileIO::OpenMode::BinReadOnly);
-        fileIn.read(&in);
-    }
+    File(a_filePathIn).binRead(&in);
 
     std::ustring_t out;
     encryptCfb64(in, &out, a_mode);
 
-    {
-        FileIO fileOut(a_filePathOut);
-        fileOut.open(FileIO::OpenMode::BinReadWrite);
-        fileOut.write(out);
-    }
+    File(a_filePathOut).binWrite(out, FileIO::OpenMode::BinReadWrite);
 }
 //-------------------------------------------------------------------------------------------------
 
