@@ -14,8 +14,10 @@ class xNO_VTABLE ISeedPolicy
     /// seed policy interface
 {
 public:
-                   ISeedPolicy();
-    virtual       ~ISeedPolicy() = default;
+             ISeedPolicy();
+    virtual ~ISeedPolicy() = default;
+
+    xNO_COPY_ASSIGN(ISeedPolicy)
 
     virtual long_t next() = 0;
         ///< next value
@@ -28,10 +30,8 @@ protected:
     uint_t _seed {}; ///< current seed
 
 private:
-    uint_t         _seedTimeBased() const;
+    uint_t _seedTimeBased() const;
         ///< get time based seed
-
-    xNO_COPY_ASSIGN(ISeedPolicy)
 };
 //-------------------------------------------------------------------------------------------------
 class StdSeedPolicy :
@@ -39,15 +39,15 @@ class StdSeedPolicy :
     /// std seed policy
 {
 public:
-                   StdSeedPolicy();
-    virtual       ~StdSeedPolicy() = default;
+             StdSeedPolicy();
+    virtual ~StdSeedPolicy() = default;
 
     virtual long_t next() override;
         ///< get integer in the range between 0 and RAND_MAX
 
 xPLATFORM_IMPL:
-    void_t         _construct_impl();
-    long_t         _next_impl();
+    void_t _construct_impl();
+    long_t _next_impl();
 };
 //-------------------------------------------------------------------------------------------------
 class NativeSeedPolicy :
@@ -55,8 +55,8 @@ class NativeSeedPolicy :
     /// native seed policy
 {
 public:
-                   NativeSeedPolicy();
-    virtual       ~NativeSeedPolicy();
+             NativeSeedPolicy();
+    virtual ~NativeSeedPolicy();
 
     virtual long_t next() override;
         ///< get long integer in the range between 0 and RAND_MAX
@@ -71,9 +71,9 @@ private:
 #endif
 
 xPLATFORM_IMPL:
-    void_t         _construct_impl();
-    void_t         _destruct_impl();
-    long_t         _next_impl();
+    void_t _construct_impl();
+    void_t _destruct_impl();
+    long_t _next_impl();
 };
 //-------------------------------------------------------------------------------------------------
 template<typename RandomValueT, class SeedPolicyT>
@@ -81,19 +81,19 @@ class Random
     /// random
 {
 public:
-               Random();
-    virtual   ~Random() = default;
+             Random();
+    virtual ~Random() = default;
 
-    bool_t     nextBool();
+    bool_t nextBool();
         ///< get bool_t value
     template<typename T>
-    T          nextChar();
+    T      nextChar();
         ///< get character value between min and max
     template<typename T>
-    T          nextInt(const T &min, const T &max);
+    T      nextInt(const T &min, const T &max);
         ///< get integer value between min and max
     template<typename T>
-    T          nextFloat(const T &min, const T &max);
+    T      nextFloat(const T &min, const T &max);
        ///< get float value between min and max
 
 private:
