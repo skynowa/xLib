@@ -89,7 +89,7 @@ Thread::_isCreated_impl() const
 bool_t
 Thread::_isRunning_impl() const
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     bool_t bCond1 = (_handle != 0UL);
     bool_t bCond2 = (_id > 0);

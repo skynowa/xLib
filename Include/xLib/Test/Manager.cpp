@@ -110,7 +110,7 @@ Manager::_construct(
     cptr_ctchar_t  a_args[]
 )
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     // checks
     {

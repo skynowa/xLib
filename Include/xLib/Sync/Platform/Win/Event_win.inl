@@ -71,7 +71,7 @@ Event::_wait_impl(
 bool_t
 Event::_isSignaled_impl() const
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     DWORD dwRv = ::WaitForSingleObject(handle().get(), 0UL);
     // n/a

@@ -93,7 +93,7 @@ template<typename T>
 bool_t
 HandlePolicy<T, HandlePolicyType::hvNativeInvalid>::_isValid_impl(const T &a_handle)
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     // created but not initialised
     bool_t cond1 = (a_handle != reinterpret_cast<T>(0xCDCDCDCD));
