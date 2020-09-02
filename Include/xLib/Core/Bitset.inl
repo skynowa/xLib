@@ -22,7 +22,7 @@ Bitset<T>::Bitset(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 Bitset<T>::Bitset(
-    const T &a_values
+    const T a_values
 ) :
     _flags(a_values)
 {
@@ -47,7 +47,7 @@ Bitset<T>::operator [] (
     const std::size_t a_index
 )
 {
-	/// TODO:
+	// IMPL: operator []
 
     return *this;
 }
@@ -62,7 +62,7 @@ Bitset<T>::get() const
 template<typename T>
 void_t
 Bitset<T>::set(
-    const T &a_values
+    const T a_values
 )
 {
     _flags = a_values;
@@ -87,7 +87,7 @@ Bitset<T>::test(
 template<typename T>
 bool_t
 Bitset<T>::isSetBit(
-    const T &a_value
+    const T a_value
 ) const
 {
     return (_flags & a_value) == a_value;
@@ -96,7 +96,7 @@ Bitset<T>::isSetBit(
 template<typename T>
 bool_t
 Bitset<T>::isSetAnyBit(
-    const T &a_value
+    const T a_value
 ) const
 {
     return (_flags & a_value) != 0;
@@ -105,7 +105,7 @@ Bitset<T>::isSetAnyBit(
 template<typename T>
 void_t
 Bitset<T>::setBit(
-    const T &a_value
+    const T a_value
 )
 {
     _flags |= a_value;
@@ -114,7 +114,7 @@ Bitset<T>::setBit(
 template<typename T>
 void_t
 Bitset<T>::unsetBit(
-    const T &a_value
+    const T a_value
 )
 {
     _flags &= ~a_value;
@@ -123,7 +123,7 @@ Bitset<T>::unsetBit(
 template<typename T>
 void_t
 Bitset<T>::flipBit(
-    const T &a_value
+    const T a_value
 )
 {
     _flags ^= a_value;
