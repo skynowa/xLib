@@ -21,13 +21,16 @@ public:
     };
     xUSING_CONST(Type);
 
-                   Guid() = default;
-    virtual       ~Guid() = default;
+///@name ctors, dtor
+///@{
+			 Guid() = default;
+	virtual ~Guid() = default;
 
-    std::tstring_t create(cType type) const;
-        ///< generate GUID
+	xNO_COPY_ASSIGN(Guid)
 
-    xNO_COPY_ASSIGN(Guid)
+	std::tstring_t create(cType type) const;
+		///< generate GUID
+///@}
 
 xPLATFORM_IMPL:
     std::tstring_t _randomBased_impl() const;

@@ -29,9 +29,8 @@ public:
     std::string decode(std::cstring_t &str);
         ///< decoding
 private:
-    bool_t      _isValid(cuchar_t &ch);
+    bool_t _isValid(cuchar_t &ch);
         ///< check char for validness
-
 };
 
 xNAMESPACE_END2(xl, crypt)
