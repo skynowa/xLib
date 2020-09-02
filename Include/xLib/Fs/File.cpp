@@ -213,12 +213,12 @@ File::copy(
 	// checks
 	{
 		if (!isCopyOk) {
-			remove();
+			File(a_filePathTo).remove();
 			xTHROW_REPORT(errorCopyFail);
 		}
 
 		if (FileInfo(fileFrom).size() != FileInfo(fileTo).size()) {
-			remove();
+			File(a_filePathTo).remove();
 			xTHROW_REPORT(errorFilesDiffrent);
 		}
 	}
