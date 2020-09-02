@@ -26,7 +26,6 @@ public:
 	virtual ~Bitset() = default;
 ///@}
 
-
     Bitset & operator = (const Bitset &values);
 	T &      operator [] (const std::size_t index);
 
@@ -59,11 +58,10 @@ public:
         ///< print object to stream
 
 private:
-    T        _flags {};
+    T _flags {};
 };
 
 xNAMESPACE_END2(xl, core)
-
 //-------------------------------------------------------------------------------------------------
 #include "Bitset.inl"
 //-------------------------------------------------------------------------------------------------
