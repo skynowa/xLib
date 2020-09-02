@@ -102,7 +102,7 @@ Finder::fileTypes() const
 bool_t
 Finder::moveNext()
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     if (_isMoveFirst) {
         bRv = _moveFirst();

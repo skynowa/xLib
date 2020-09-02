@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 void_t
 Mutex::_destruc_impl()
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     try {
         (void_t)::DeleteCriticalSection(&_handle);
@@ -31,7 +31,7 @@ Mutex::_destruc_impl()
 void_t
 Mutex::_create_impl()
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     try {
         (void_t)::InitializeCriticalSection(&_handle);
@@ -47,7 +47,7 @@ Mutex::_create_impl()
 void_t
 Mutex::_lock_impl()
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     try {
         (void_t)::EnterCriticalSection(&_handle);
@@ -72,7 +72,7 @@ Mutex::_tryLock_impl()
 void_t
 Mutex::_unlock_impl()
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     try {
         (void_t)::LeaveCriticalSection(&_handle);

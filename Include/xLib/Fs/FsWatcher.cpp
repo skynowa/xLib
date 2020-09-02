@@ -89,7 +89,7 @@ FsWatcher::openDirs(
     std::cmap_tstring_t &a_cmds
 )
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
 	close();
 

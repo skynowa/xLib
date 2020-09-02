@@ -87,7 +87,7 @@ Thread::_isCreated_impl() const
 bool_t
 Thread::_isRunning_impl() const
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     DWORD dwRv = 0UL;
     (void_t)::GetExitCodeThread(_handle.get(), &dwRv);

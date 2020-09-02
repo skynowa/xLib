@@ -55,7 +55,7 @@ Unit::run()
     _createTempDir(xT("Temp"));
 
     for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
-        bool_t bRv = false;
+        bool_t bRv {};
 
         try {
             bRv = unit();

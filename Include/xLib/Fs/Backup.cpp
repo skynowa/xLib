@@ -50,7 +50,7 @@ Backup::fileExec(
     std::ctstring_t errorCopyingFail        = xT("Backup - Copying fail");
     std::ctstring_t errorUnknown            = xT("Backup - Unknown error");
 
-    bool_t bRv = false;
+    bool_t bRv {};
 
     // prepare
     {

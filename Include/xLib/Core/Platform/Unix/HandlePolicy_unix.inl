@@ -46,7 +46,7 @@ template<typename T>
 bool_t
 HandlePolicy<T, HandlePolicyType::hvNative>::_isValid_impl(const T &a_handle)
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     // compare with error handle value
     bool_t cond1 = (a_handle != null());
@@ -94,7 +94,7 @@ template<typename T>
 bool_t
 HandlePolicy<T, HandlePolicyType::hvNativeInvalid>::_isValid_impl(const T &a_handle)
 {
-    bool_t bRv = false;
+    bool_t bRv {};
 
     // compare with error handle value
     bool_t cond1 = (a_handle != null());

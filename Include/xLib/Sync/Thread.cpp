@@ -619,7 +619,7 @@ Thread::isTimeToExit()
 {
     // n/a
 
-    bool_t bRv = false;
+    bool_t bRv {};
 
     // exit
     bRv = isExited();
