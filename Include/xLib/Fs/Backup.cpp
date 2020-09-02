@@ -41,7 +41,7 @@ Backup::fileExec(
     std::tstring_t  *a_destFilePath
 ) const /* throw(Exception) */
 {
-    xTEST_EQ(a_destDirPath.empty(), false);
+    xTEST(!a_destDirPath.empty());
     xTEST_PTR(a_destFilePath);
 
     // errors
