@@ -28,7 +28,6 @@ xNAMESPACE_BEGIN2(xl, crypt)
 //-------------------------------------------------------------------------------------------------
 Blowfish::Blowfish()
 {
-    clearKey();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -153,8 +152,8 @@ Blowfish::encryptCfb64(
 
     a_out->resize( a_in.size() );
 
-    int_t num {};  // this integer must be initialized to zero when ivec is initialized
-
+    // this integer must be initialized to zero when ivec is initialized
+    int_t num {};
     encryptCfb64(&a_in.at(0), &a_out->at(0), static_cast<long_t>( a_in.size() ), &num, a_mode);
     xTEST_LESS(- 1, num);
 }
