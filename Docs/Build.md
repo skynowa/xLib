@@ -34,24 +34,7 @@ cd [build_directory]
 sudo make install (Unix, Apple)
 ```
 
-## Usage
-
-- n/a
-
 ## Test
-
-Compilers:
-
-- MS Visual Studio
-- CodeGear
-- MinGW
-- Clang
-
-OSs:
-
-- Windows
-- FreeBSD
-- Mac OSX
 
 MySQL:
 
