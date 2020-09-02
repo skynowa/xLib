@@ -175,40 +175,41 @@ File::copy(
     xTEST(!a_filePathTo.empty());
     xTEST_NA(a_isFailIfExists);
 
-    bool_t isCopyOk {true};
+#if 1
+	bool_t isCopyOk {true};
 
-    // errors
-    std::ctstring_t errorDestFileExists = xT("File - Destination file is exists");
-    std::ctstring_t errorCopyFail       = xT("File - Copy fail");
-    std::ctstring_t errorFilesDiffrent  = xT("File - Files are diffrent");
+	// errors
+	std::ctstring_t errorDestFileExists = xT("File - Destination file is exists");
+	std::ctstring_t errorCopyFail       = xT("File - Copy fail");
+	std::ctstring_t errorFilesDiffrent  = xT("File - Files are diffrent");
 
-    xCHECK_DO(a_isFailIfExists && FileInfo(a_filePathTo).isExists(),
-        xTHROW_REPORT(errorDestFileExists));
+	xCHECK_DO(a_isFailIfExists && FileInfo(a_filePathTo).isExists(),
+		xTHROW_REPORT(errorDestFileExists));
 
-    // copy
+	// copy
 	FileIO fileFrom;
 	FileIO fileTo;
-    {
-        // open files
-        fileFrom.create(_filePath, FileIO::OpenMode::BinReadOnly);
-        fileTo.create(a_filePathTo, FileIO::OpenMode::BinWrite);
+	{
+		// open files
+		fileFrom.create(_filePath, FileIO::OpenMode::BinReadOnly);
+		fileTo.create(a_filePathTo, FileIO::OpenMode::BinWrite);
 
-        if ( !FileInfo(fileFrom).isEmpty() ) {
-            // copy files
-            constexpr std::size_t buffSize       {1024};
-            uchar_t               buff[buffSize] {};
+		if ( !FileInfo(fileFrom).isEmpty() ) {
+			// copy files
+			constexpr std::size_t buffSize       {1024};
+			uchar_t               buff[buffSize] {};
 
-            for ( ; ; ) {
-                std::csize_t readed  = fileFrom.read(buff, buffSize);
-                xCHECK_DO(0 >= readed, break);
+			for ( ; ; ) {
+				std::csize_t readed  = fileFrom.read(buff, buffSize);
+				xCHECK_DO(0 >= readed, break);
 
-                std::csize_t written = fileTo.write(buff, readed);
-                xCHECK_DO(readed != written, isCopyOk = false; break);
-            }
-        }
+				std::csize_t written = fileTo.write(buff, readed);
+				xCHECK_DO(readed != written, isCopyOk = false; break);
+			}
+		}
 
-        fileTo.flush();
-    }
+		fileTo.flush();
+	}
 
 	// checks
 	{
@@ -222,6 +223,12 @@ File::copy(
 			xTHROW_REPORT(errorFilesDiffrent);
 		}
 	}
+#else
+    std::tifstream_t fileFrom(_filePath, std::ios::binary);
+    std::tofstream_t fileTo(a_filePathTo, std::ios::binary);
+
+    fileTo << fileFrom.rdbuf();
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
