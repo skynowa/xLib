@@ -1,4 +1,7 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/skynowa/xlib) ![GitHub last commit](https://img.shields.io/github/last-commit/skynowa/xlib)
+![GitHub issues](https://img.shields.io/github/issues-raw/skynowa/xlib) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/skynowa/xlib)
+![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/skynowa/xlib) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/skynowa/xlib)
 
 # xLib - C++ cross-platform library
 
