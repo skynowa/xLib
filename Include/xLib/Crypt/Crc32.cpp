@@ -132,7 +132,7 @@ Crc32::calcFile(
     std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
 
     std::ustring_t file;
 
@@ -148,7 +148,7 @@ std::tstring_t
 Crc32::formatHex() const
 {
     std::tstring_t sRv;
-    std::csize_t   crc32Size = 8;
+    std::csize_t   crc32Size {8};
 
     // Sample: 0AADDEA0
     sRv = FormatC::str(xT("%X"), _crc32);
