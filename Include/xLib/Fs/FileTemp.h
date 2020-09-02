@@ -30,7 +30,7 @@ public:
         ///< create temporary file, open it
 
 private:
-    std::tstring_t  _filePath;         ///< temporary file path
+    std::tstring_t  _filePath;         ///< temporary file path (not constant)
     cbool_t         _isAutoDelete {};  ///< auto delete flag
     FileIO         *_file {};          ///< temporary file
 
