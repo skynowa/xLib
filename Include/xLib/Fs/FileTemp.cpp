@@ -35,7 +35,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 FileTemp::FileTemp(
-    cbool_t &a_isAutoDelete
+    cbool_t a_isAutoDelete
 ) :
     _isAutoDelete(a_isAutoDelete)
 {
@@ -57,7 +57,7 @@ void_t
 FileTemp::create(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_dirPath,
-    FileIO            *a_file
+    FileIO          *a_file
 )
 {
     xTEST_EQ(a_filePath.empty(), false);
