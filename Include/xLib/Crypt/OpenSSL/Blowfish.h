@@ -27,8 +27,13 @@ public:
     };
     xUSING_CONST(CryptMode);
 
-             Blowfish();
-    virtual ~Blowfish();
+///@name ctors, dtor
+///@{
+			 Blowfish();
+	virtual ~Blowfish();
+
+	xNO_COPY_ASSIGN(Blowfish)
+///@}
 
     void_t   setKey(uchar_t *key, cint_t &keySize);
         ///< set key
@@ -57,8 +62,6 @@ public:
 private:
     BF_KEY  _key {};            ///< crypt key
     uchar_t _ivec[BF_BLOCK] {}; ///< ivec
-
-    xNO_COPY_ASSIGN(Blowfish)
 };
 
 xNAMESPACE_END2(xl, crypt)
