@@ -26,7 +26,7 @@ Skype:   skynowa777
 
 ## Repositories
 
-- https://bitbucket.org/skynowa/xlib/src/master/
+- https://bitbucket.org/skynowa/xlib
 - https://github.com/skynowa/xLib
 - https://sourceforge.net/projects/x-lib/
 
