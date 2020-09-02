@@ -308,20 +308,6 @@
     #define xCOMPILER_MS_VER_STR \
         xVER_FULL_STR(xCOMPILER_MS_VER_MAJOR, xCOMPILER_MS_VER_MINOR, xCOMPILER_MS_VER_MINOR)
     ///@}
-#elif defined(__BORLANDC__) || defined(__CODEGEARC__)
-    #define xCOMPILER_CODEGEAR 1
-        ///< compiler Borland C++, Code Gear
-
-    ///@name Compiler version
-    ///@{
-    #define xCOMPILER_CODEGEAR_VER_MAJOR __CODEGEARC__
-    #define xCOMPILER_CODEGEAR_VER_MINOR 0
-    #define xCOMPILER_CODEGEAR_VER_PATCH 0
-    #define xCOMPILER_CODEGEAR_VER \
-        xVER_FULL(xCOMPILER_CODEGEAR_VER_MAJOR, xCOMPILER_CODEGEAR_VER_MINOR, xCOMPILER_CODEGEAR_VER_MINOR)
-    #define xCOMPILER_CODEGEAR_VER_STR \
-        xVER_FULL_STR(xCOMPILER_CODEGEAR_VER_MAJOR, xCOMPILER_CODEGEAR_VER_MINOR, xCOMPILER_CODEGEAR_VER_MINOR)
-    ///@}
 #elif defined(__clang__)
     // xCOMPILER_CLANG also __GNUC__
     #define xCOMPILER_CLANG 1

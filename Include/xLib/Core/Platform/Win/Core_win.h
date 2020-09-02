@@ -30,6 +30,4 @@
 #elif xCOMPILER_MS
     #include <winternl.h>
     #include <intrin.h>
-#elif xCOMPILER_CODEGEAR
-    #include <dir.h>
 #endif

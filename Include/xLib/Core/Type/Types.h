@@ -76,8 +76,6 @@ xNAMESPACE_BEGIN(xl)
 #if   xENV_WIN
     #if   xCOMPILER_MINGW
         using addrinfo_t = addrinfo;
-    #elif xCOMPILER_CODEGEAR
-        using addrinfo_t = addrinfo;
     #else
         using addrinfo_t = ADDRINFOT;
     #endif

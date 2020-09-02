@@ -242,9 +242,6 @@ SystemInfo::_cpuVendor_impl() const
 
     value = std::string(man);
     xTEST_EQ(value.empty(), false);
-#elif xCOMPILER_CODEGEAR
-    // TODO: [skynowa] SystemInfo::cpuVendor()
-    value = std::tstring_t();
 #endif
 
     return value;
@@ -290,8 +287,6 @@ SystemInfo::_cpuModel_impl() const
     } else {
         sRv = Format::str(xT("{}"), man);
     }
-#elif xCOMPILER_CODEGEAR
-    sRv = std::tstring_t();
 #endif
 
     return sRv;

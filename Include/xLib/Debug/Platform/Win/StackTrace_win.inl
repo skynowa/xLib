@@ -6,7 +6,7 @@
 
 #if   xCOMPILER_MINGW
     // TODO: [skynowa] StackTrace - includes
-#elif xCOMPILER_MS || xCOMPILER_CODEGEAR
+#elif xCOMPILER_MS
     #ifdef xUNICODE
         #define DBGHELP_TRANSLATE_TCHAR 1
     #endif
@@ -35,7 +35,7 @@ StackTrace::_get_impl(
 
 #if   xCOMPILER_MINGW
     // TODO: [skynowa] StackTrace::_get()
-#elif xCOMPILER_MS || xCOMPILER_CODEGEAR
+#elif xCOMPILER_MS
     void_t      *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
     SYMBOL_INFO *symbol                             = nullptr;
     HANDLE       process                            = nullptr;

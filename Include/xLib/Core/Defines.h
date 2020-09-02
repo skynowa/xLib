@@ -73,9 +73,6 @@
 #elif xCOMPILER_MS
     #define xFORCE_INLINE \
         __forceinline
-#elif xCOMPILER_CODEGEAR
-    #define xFORCE_INLINE \
-        inline
 #elif xCOMPILER_GNUC
     #define xFORCE_INLINE \
         __attribute__((__always_inline__)) inline
@@ -92,9 +89,6 @@
 #elif xCOMPILER_MS
     #define xNO_INLINE \
         __declspec(noinline)
-#elif xCOMPILER_CODEGEAR
-    #define xNO_INLINE \
-        xNOT_AVAILABLE
 #elif xCOMPILER_GNUC
     #define xNO_INLINE \
         __attribute__ ((noinline))
@@ -119,9 +113,6 @@
     #define xWARN_UNUSED_RV \
         __attribute__((warn_unused_result))
 #elif xCOMPILER_MS
-    #define xWARN_UNUSED_RV \
-        xNOT_AVAILABLE
-#elif xCOMPILER_CODEGEAR
     #define xWARN_UNUSED_RV \
         xNOT_AVAILABLE
 #elif xCOMPILER_GNUC
@@ -216,9 +207,6 @@
 #if   (xCOMPILER_MINGW || xCOMPILER_MS)
     #define xUNUSED(arg) \
     ( static_cast<void>( arg ) )
-#elif xCOMPILER_CODEGEAR
-    #define xUNUSED(arg) \
-    ( static_cast<void>( arg ) )
 #elif xCOMPILER_GNUC
     #define xUNUSED(arg) \
     { static_cast<void>( true ? (arg) : (arg) ); }
@@ -292,9 +280,6 @@
 #if   xCOMPILER_MS
     #define xFUNCTION \
         xT(__FUNCTION__)
-#elif xCOMPILER_CODEGEAR
-    #define xFUNCTION \
-        xT(__FUNC__)
 #elif xCOMPILER_GNUC || xCOMPILER_MINGW
     #define xFUNCTION \
         xA2T(__PRETTY_FUNCTION__)

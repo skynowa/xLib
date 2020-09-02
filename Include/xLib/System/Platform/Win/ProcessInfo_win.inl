@@ -103,7 +103,7 @@ ProcessInfo::_commandLine_impl(
         }
     }
 
-#if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
+#if xCOMPILER_MINGW
     // using NTSTATUS = __success(return >= 0) LONG;
     using NTSTATUS = LONG ;
 

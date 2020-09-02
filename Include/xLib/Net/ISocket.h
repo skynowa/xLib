@@ -57,7 +57,7 @@ public:
         afNetbios     = AF_NETBIOS,
         afInet6       = AF_INET6,
         afIrdA        = AF_IRDA
-        #if !xCOMPILER_MINGW && !xCOMPILER_CODEGEAR
+        #if !xCOMPILER_MINGW
             ,
             afBluetooth   = AF_BTH
         #endif
@@ -126,9 +126,7 @@ public:
         //// ptRfcomm      = BTHPROTO_RFCOMM,
         ptTcp         = IPPROTO_TCP,
         ptUdp         = IPPROTO_UDP,
-        #if !xCOMPILER_CODEGEAR
         ptIcmpv6      = IPPROTO_ICMPV6,
-        #endif
         //// ptRm          = IPPROTO_RM
     #elif xENV_UNIX
         #if xOS_FREEBSD
