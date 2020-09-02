@@ -23,14 +23,17 @@ public:
 
 ///@name ctors, dtor
 ///@{
-			 Guid() = default;
+			 Guid(cType type);
 	virtual ~Guid() = default;
 
 	xNO_COPY_ASSIGN(Guid)
-
-	std::tstring_t create(cType type) const;
-		///< generate GUID
 ///@}
+
+	std::tstring_t get() const;
+		///< generate GUID
+
+private:
+	cType _type;
 
 xPLATFORM_IMPL:
     std::tstring_t _randomBased_impl() const;

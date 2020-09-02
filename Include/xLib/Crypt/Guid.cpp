@@ -20,14 +20,6 @@
     #include "Platform/Win/Guid_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/Guid_unix.inl"
-
-    #if   xENV_LINUX
-
-    #elif xENV_BSD
-
-    #elif xENV_APPLE
-
-    #endif
 #endif
 
 
@@ -39,15 +31,19 @@ xNAMESPACE_BEGIN2(xl, crypt)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
+Guid::Guid(
+	cType type
+) :
+	_type(type)
+{
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
-Guid::create(
-    cType a_type
-) const
+Guid::get() const
 {
     std::tstring_t sRv;
 
-    switch (a_type) {
+    switch (_type) {
     case Type::RandomBased:
         sRv = _randomBased_impl();
         break;
