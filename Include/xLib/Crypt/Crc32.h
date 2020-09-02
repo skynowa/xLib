@@ -14,8 +14,13 @@ class Crc32
     /// Crc32
 {
 public:
-                   Crc32() = default;
-    virtual       ~Crc32() = default;
+///@name ctors, dtor
+///@{
+			 Crc32() = default;
+	virtual ~Crc32() = default;
+
+	xNO_COPY_ASSIGN(Crc32)
+///@}
 
     ulong_t        calc(uchar_t *buff, culong_t &buffSize);
         ///< calculate
@@ -27,8 +32,6 @@ public:
 
 private:
     ulong_t _crc32 {};
-
-    xNO_COPY_ASSIGN(Crc32)
 };
 
 xNAMESPACE_END2(xl, crypt)
