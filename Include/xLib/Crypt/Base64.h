@@ -14,8 +14,13 @@ class Base64
     /// Base64
 {
 public:
-                Base64() = default;
-    virtual    ~Base64() = default;
+///@name ctors, dtor
+///@{
+			 Base64() = default;
+	virtual ~Base64() = default;
+
+	xNO_COPY_ASSIGN(Base64)
+///@}
 
     std::string encode(cuchar_t *bytes, std::csize_t &size);
         ///< encoding
@@ -27,7 +32,6 @@ private:
     bool_t      _isValid(cuchar_t &ch);
         ///< check char for validness
 
-    xNO_COPY_ASSIGN(Base64)
 };
 
 xNAMESPACE_END2(xl, crypt)
