@@ -6,7 +6,7 @@
 
 ![GitHub issues](https://img.shields.io/github/issues-raw/skynowa/xlib) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/skynowa/xlib)
 
-![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/skynowa/xlib) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/skynowa/xlib)
+![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/skynowa/xlib) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/skynowa/xlib?color=green)
 
 Authors: skynowa
 
