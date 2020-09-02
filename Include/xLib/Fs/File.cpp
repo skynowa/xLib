@@ -187,27 +187,22 @@ File::copy(
 		xTHROW_REPORT(errorDestFileExists));
 
 	// copy
-	FileIO fileFrom(_filePath);
-	FileIO fileTo(a_filePathTo);
 	{
-		// open files
+		FileIO fileFrom(_filePath);
 		fileFrom.open(FileIO::OpenMode::BinReadOnly);
+
+		FileIO fileTo(a_filePathTo);
 		fileTo.open(FileIO::OpenMode::BinWrite);
 
-		if ( !FileInfo(fileFrom).isEmpty() ) {
-			// copy files
-			constexpr std::size_t buffSize       {1024};
-			uchar_t               buff[buffSize] {};
+		constexpr std::size_t buffSize       {1024};
+		uchar_t               buff[buffSize] {};
 
-			for ( ; !fileFrom.isEof(); ) {
-				std::csize_t readed  = fileFrom.read(buff, buffSize);
-				xCHECK_DO(0 >= readed, break);
+		for ( ; !fileFrom.isEof(); ) {
+			std::csize_t readed  = fileFrom.read(buff, buffSize);
+			xCHECK_DO(0 >= readed, break);
 
-				std::csize_t written = fileTo.write(buff, readed);
-				xCHECK_DO(readed != written, isCopyOk = false; break);
-			}
-
-			fileTo.flush();
+			std::csize_t written = fileTo.write(buff, readed);
+			xCHECK_DO(readed != written, isCopyOk = false; break);
 		}
 	}
 
@@ -218,7 +213,7 @@ File::copy(
 			xTHROW_REPORT(errorCopyFail);
 		}
 
-		if (FileInfo(fileFrom).size() != FileInfo(fileTo).size()) {
+		if (FileInfo(_filePath).size() != FileInfo(a_filePathTo).size()) {
 			File(a_filePathTo).remove();
 			xTHROW_REPORT(errorFilesDiffrent);
 		}
