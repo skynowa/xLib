@@ -30,8 +30,6 @@ public:
     Bitset & operator = (const Bitset &values);
 	T &      operator [] (const std::size_t index);
 
-    // TODO: https://gcc.gnu.org/onlinedocs/cpp/C_002b_002b-Named-Operators.html#C_002b_002b-Named-Operators
-    // TODO: https://github.com/oliora/bitmask
     T &      get() const;
         ///< get all bits
     void_t   set(const T values);
@@ -68,3 +66,7 @@ xNAMESPACE_END2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 #include "Bitset.inl"
+//-------------------------------------------------------------------------------------------------
+// TODO: https://gcc.gnu.org/onlinedocs/cpp/C_002b_002b-Named-Operators.html#C_002b_002b-Named-Operators
+// TODO: https://github.com/oliora/bitmask
+//-------------------------------------------------------------------------------------------------
