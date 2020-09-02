@@ -69,31 +69,6 @@ FileIO::open(
     _setVBuffDefault(a_isBuffering);
 }
 //-------------------------------------------------------------------------------------------------
-void_t
-FileIO::reopen(
-    cOpenMode a_mode,
-    cbool_t   a_isBuffering /* = true */
-)
-{
-    xTEST(!_filePath.empty());
-    xTEST_NA(a_mode);
-	xTEST_NA(a_isBuffering);
-
-    // create dir
-    Dir( Path(_filePath).dir() ).pathCreate();
-
-    // create, reopen file
-    {
-        std::FILE *file = xTFREOPEN(_filePath.c_str(), _openMode(a_mode).c_str(), _handle.get());
-        xTEST_PTR(file);
-
-        _handle = file;
-    }
-
-    // buffering
-    _setVBuffDefault(a_isBuffering);
-}
-//-------------------------------------------------------------------------------------------------
 HandleStdFile &
 FileIO::get()
 {

@@ -94,16 +94,6 @@ Test_FileIO::unit()
         }
     }
 
-    xTEST_CASE("reopen")
-    {
-        FileIO file(filePath);
-        file.open(FileIO::OpenMode::ReadWrite);
-
-        for (size_t i = 0; i < 7; ++ i) {
-            file.reopen(FileIO::OpenMode::ReadWriteOnly);
-        }
-    }
-
     // TDOO: test
     xTEST_CASE("attach")
     {
