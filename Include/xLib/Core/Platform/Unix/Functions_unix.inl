@@ -145,22 +145,6 @@ fdopenW(
     return nullptr;
 }
 //-------------------------------------------------------------------------------------------------
-FILE *
-freopenW(
-    const wchar_t *a_path,
-    const wchar_t *a_mode,
-    FILE          *a_stream
-)
-{
-    xUNUSED(a_path);
-    xUNUSED(a_mode);
-    xUNUSED(a_stream);
-
-    // TODO: [skynowa] freopenW - not impl
-
-    return nullptr;
-}
-//-------------------------------------------------------------------------------------------------
 int
 accessW(
     const wchar_t *a_pathname,

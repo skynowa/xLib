@@ -22,7 +22,6 @@
     #define xTSETLOCALE   ::_wsetlocale
     #define xTFOPEN       std::_wfopen
     #define xTFDOPEN      ::_wfdopen
-    #define xTFREOPEN     std::_wfreopen
     #define xTACCESS      ::_waccess
     #define xTSYSTEM      std::_wsystem
 #elif xENV_UNIX
@@ -30,7 +29,6 @@
     #define xTVSNPRINTF   ::vswprintf
     #define xTFOPEN       xl::core::fopenW
     #define xTFDOPEN      xl::core::fdopenW
-    #define xTFREOPEN     xl::core::freopenW
     #define xTSETLOCALE   xl::core::setlocaleW
     #define xTACCESS      xl::core::accessW
     #define xTSYSTEM      xl::core::systemW

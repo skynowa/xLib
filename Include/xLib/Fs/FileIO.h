@@ -83,8 +83,6 @@ public:
     // open, get
     void_t         open(cOpenMode mode, cbool_t isBuffering = true);
         ///< open
-    void_t         reopen(cOpenMode mode, cbool_t isBuffering = true);
-        ///< reopen with different file or mode
     HandleStdFile &get();
         ///< get handle
     int_t          getNative() const;

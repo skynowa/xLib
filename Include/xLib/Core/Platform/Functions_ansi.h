@@ -18,7 +18,6 @@
     #define xTLOCALE      std::locale
     #define xTSETLOCALE   std::setlocale
     #define xTFOPEN       std::fopen
-    #define xTFREOPEN     std::freopen
     #define xTFDOPEN      ::fdopen
     #define xTVSNPRINTF   ::vsnprintf
     #define xTPERROR      std::perror
