@@ -27,20 +27,20 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 Backup::Backup(
-    cPeriod a_period
+	std::ctstring_t &a_filePath,
+    cPeriod          a_period
 ) :
-    _period(a_period)
+    _filePath(a_filePath),
+    _period  (a_period)
 {
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Backup::fileExec(
-    std::ctstring_t &a_filePath,
     std::ctstring_t &a_destDirPath,
     std::tstring_t  *a_destFilePath
 ) const /* throw(Exception) */
 {
-    xTEST_EQ(a_filePath.empty(), false);
     xTEST_EQ(a_destDirPath.empty(), false);
     xTEST_PTR(a_destFilePath);
 
@@ -56,7 +56,7 @@ Backup::fileExec(
     {
         a_destFilePath->clear();
 
-        bRv = FileInfo(a_filePath).isExists();
+        bRv = FileInfo(_filePath).isExists();
         xCHECK_DO(!bRv, xTHROW_REPORT(errorDestFileNotExists));
 
         Dir dest(a_destDirPath);
@@ -94,7 +94,7 @@ Backup::fileExec(
 
     // format file full name
     std::ctstring_t backupFilePath = Path(a_destDirPath).slashAppend() +
-        Path(a_filePath).fileName() + xT("_[") + dateTimeStamp + xT("].") +
+        Path(_filePath).fileName() + xT("_[") + dateTimeStamp + xT("].") +
         Path::fileExt(Path::FileExt::Backup);
 
     // check for existence source file
@@ -106,13 +106,13 @@ Backup::fileExec(
     // check for enough space
     {
         Volume volume(a_destDirPath);
-        bRv = volume.isSpaceAvailable( static_cast<culonglong_t>( FileInfo(a_filePath).size() ));
+        bRv = volume.isSpaceAvailable( static_cast<culonglong_t>( FileInfo(_filePath).size() ));
         xCHECK_DO(!bRv, xTHROW_REPORT(errorNotEnoughFreeSpace));
     }
 
     // copy
     {
-        File file(a_filePath);
+        File file(_filePath);
         file.copy(backupFilePath, true);
     }
 
@@ -121,10 +121,10 @@ Backup::fileExec(
         bRv = FileInfo(backupFilePath).isExists();
         xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
 
-        bRv = (FileInfo(a_filePath).size() == FileInfo(backupFilePath).size());
+        bRv = (FileInfo(_filePath).size() == FileInfo(backupFilePath).size());
         xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
 
-        bRv = (Crc32().calcFile(a_filePath) == Crc32().calcFile(backupFilePath));
+        bRv = (Crc32().calcFile(_filePath) == Crc32().calcFile(backupFilePath));
         xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
     }
 

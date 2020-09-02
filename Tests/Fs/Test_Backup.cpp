@@ -19,7 +19,6 @@ Test_Backup::unit()
     std::ctstring_t filePath  = getData().tempDirPath + Const::slash() + xT("test.txt");
     std::ctstring_t backupDir = getData().tempDirPath + Const::slash() + xT("Backup_dir");
 
-
     xTEST_CASE("fileExec")
     {
         // prepare
@@ -47,12 +46,12 @@ Test_Backup::unit()
 
         for (size_t p = 0; p < xARRAY_SIZE(periods); ++ p) {
             for (size_t i = 0; i < 10; ++ i) {
-                Backup backuper(periods[p]);
+                Backup backuper(filePath, periods[p]);
 
                 xTRY {
                     std::tstring_t backupFilePath;
 
-                    backuper.fileExec(filePath, backupDir, &backupFilePath);
+                    backuper.fileExec(backupDir, &backupFilePath);
                 }
                 xCATCH_ALL
             }
