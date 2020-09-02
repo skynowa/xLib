@@ -28,7 +28,7 @@ Com::Com(
     xTEST_NA(a_concurrencyModel);
 
     HRESULT hrRv = ::CoInitializeEx(nullptr, a_concurrencyModel);
-    xTEST_EQ(SUCCEEDED(hrRv), true);
+    xTEST(SUCCEEDED(hrRv));
 }
 //-------------------------------------------------------------------------------------------------
 Com::~Com()

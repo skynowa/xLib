@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xl, core)
 
 class ScopeExit
-	///< Scope exit
+	/// Scope exit
 {
 public:
 	explicit
