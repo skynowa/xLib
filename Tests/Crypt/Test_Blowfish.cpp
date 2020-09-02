@@ -69,11 +69,11 @@ Test_Blowfish::unit()
         blowfish.encryptFileCfb64(fileEncrypted, fileDecrypted, Blowfish::CryptMode::cmDecrypt);
 
         {
-            FileIO fileIn;
-            fileIn.create(filePlain, FileIO::OpenMode::BinReadOnly);
+            FileIO fileIn(filePlain);
+            fileIn.create(FileIO::OpenMode::BinReadOnly);
 
-            FileIO fileOut;
-            fileOut.create(fileDecrypted, FileIO::OpenMode::BinReadOnly);
+            FileIO fileOut(fileDecrypted);
+            fileOut.create(FileIO::OpenMode::BinReadOnly);
 
             xTEST_EQ(fileIn.size(), fileOut.size());
             xTEST_EQ(Crc32().calcFile(filePlain), Crc32().calcFile(fileDecrypted));

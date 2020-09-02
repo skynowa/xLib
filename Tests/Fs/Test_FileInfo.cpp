@@ -23,8 +23,8 @@ Test_FileInfo::unit()
     {
         clonglong_t newSize {1024LL};
 
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         file.setSize(newSize);
 
         longlong_t llSize = file.size();
@@ -33,8 +33,8 @@ Test_FileInfo::unit()
 
     xTEST_CASE("isEmpty")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite, false);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite, false);
 
         m_bRv = FileInfo(file).isEmpty();
         xTEST(m_bRv);
@@ -55,8 +55,8 @@ Test_FileInfo::unit()
     {
         culonglong_t cullLinesNum {17};
         {
-            FileIO file;
-            file.create(filePath, FileIO::OpenMode::ReadWrite);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::ReadWrite);
 
             for (size_t i = 0; i < cullLinesNum; ++ i) {
                 file.writeLine( String::cast(i) );
@@ -70,8 +70,8 @@ Test_FileInfo::unit()
     xTEST_CASE("time, setTime")
     {
         {
-            FileIO file;
-            file.create(filePath, FileIO::OpenMode::ReadWrite, false);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::ReadWrite, false);
         }
 
         const time_t create   {1319714265};

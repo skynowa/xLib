@@ -90,8 +90,8 @@ File::wipe(
 
 	// content - reset
 	if ( !info.isEmpty() ) {
-		FileIO file;
-		file.create(_filePath, FileIO::OpenMode::BinReadWrite);
+		FileIO file(_filePath);
+		file.create(FileIO::OpenMode::BinReadWrite);
 
 		clonglong_t fileSize = file.size();
 		if (fileSize > 0LL) {
@@ -187,12 +187,12 @@ File::copy(
 		xTHROW_REPORT(errorDestFileExists));
 
 	// copy
-	FileIO fileFrom;
-	FileIO fileTo;
+	FileIO fileFrom(_filePath);
+	FileIO fileTo(a_filePathTo);
 	{
 		// open files
-		fileFrom.create(_filePath, FileIO::OpenMode::BinReadOnly);
-		fileTo.create(a_filePathTo, FileIO::OpenMode::BinWrite);
+		fileFrom.create(FileIO::OpenMode::BinReadOnly);
+		fileTo.create(FileIO::OpenMode::BinWrite);
 
 		if ( !FileInfo(fileFrom).isEmpty() ) {
 			// copy files
@@ -248,8 +248,8 @@ File::textRead(
 
     std::tstring_t sRv;
 
-    FileIO file;
-    file.create(_filePath, FileIO::OpenMode::BinReadOnly);
+    FileIO file(_filePath);
+    file.create(FileIO::OpenMode::BinReadOnly);
 
     clonglong_t fileSize = file.size();
     xTEST_DIFF(fileSize, static_cast<longlong_t>(FileIO::PointerPosition::Error));
@@ -355,8 +355,8 @@ File::textWrite(
     xTEST_NA(a_content);
     xTEST_NA(a_mode);
 
-    FileIO file;
-    file.create(_filePath, a_mode);
+    FileIO file(_filePath);
+    file.create(a_mode);
 
     xCHECK_DO(a_content.empty(), return);
 
@@ -389,8 +389,8 @@ File::textWrite(
     xTEST_NA(a_content);
     xTEST_NA(a_mode);
 
-    FileIO file;
-    file.create(_filePath, a_mode);
+    FileIO file(_filePath);
+    file.create(a_mode);
 
     xCHECK_DO(a_content.empty(), return);
 
@@ -414,8 +414,8 @@ File::binRead(
 {
     xTEST_PTR(a_content);
 
-    FileIO file;
-    file.create(_filePath, FileIO::OpenMode::BinReadOnly);
+    FileIO file(_filePath);
+    file.create(FileIO::OpenMode::BinReadOnly);
 
     clonglong_t fileSize = file.size();
     xTEST_DIFF(fileSize, static_cast<longlong_t>(FileIO::PointerPosition::Error));
@@ -439,8 +439,8 @@ File::binWrite(
 {
     xTEST_NA(a_content);
 
-    FileIO file;
-    file.create(_filePath, a_mode);
+    FileIO file(_filePath);
+    file.create(a_mode);
 
     xCHECK_DO(a_content.empty(), return);
 

@@ -23,7 +23,10 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-FileIO::FileIO()
+FileIO::FileIO(
+	std::ctstring_t &a_filePath
+) :
+	_filePath(a_filePath)
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -43,25 +46,23 @@ FileIO::~FileIO()
 //-------------------------------------------------------------------------------------------------
 void_t
 FileIO::create(
-    std::ctstring_t &a_filePath,
-    cOpenMode        a_mode,
-    cbool_t          a_isBuffering /* = true */
+    cOpenMode a_mode,
+    cbool_t   a_isBuffering /* = true */
 )
 {
-    xTEST(!a_filePath.empty());
+    xTEST(!_filePath.empty());
     xTEST_NA(a_mode);
     xTEST_NA(a_isBuffering);
 
     // create dir
-    Dir( Path(a_filePath).dir() ).pathCreate();
+    Dir( Path(_filePath).dir() ).pathCreate();
 
     // create, open file
     {
-        std::FILE *file = xTFOPEN(a_filePath.c_str(), _openMode(a_mode).c_str());
+        std::FILE *file = xTFOPEN(_filePath.c_str(), _openMode(a_mode).c_str());
         xTEST_PTR(file);
 
-        _handle   = file;
-        _filePath = a_filePath;
+        _handle = file;
     }
 
     // buffering
@@ -70,25 +71,23 @@ FileIO::create(
 //-------------------------------------------------------------------------------------------------
 void_t
 FileIO::reopen(
-    std::ctstring_t &a_filePath,
-    cOpenMode        a_mode,
-    cbool_t          a_isBuffering /* = true */
+    cOpenMode a_mode,
+    cbool_t   a_isBuffering /* = true */
 )
 {
-    xTEST(!a_filePath.empty());
+    xTEST(!_filePath.empty());
     xTEST_NA(a_mode);
 	xTEST_NA(a_isBuffering);
 
     // create dir
-    Dir( Path(a_filePath).dir() ).pathCreate();
+    Dir( Path(_filePath).dir() ).pathCreate();
 
     // create, reopen file
     {
-        std::FILE *file = xTFREOPEN(a_filePath.c_str(), _openMode(a_mode).c_str(), _handle.get());
+        std::FILE *file = xTFREOPEN(_filePath.c_str(), _openMode(a_mode).c_str(), _handle.get());
         xTEST_PTR(file);
 
-        _handle   = file;
-        _filePath = a_filePath;
+        _handle = file;
     }
 
     // buffering

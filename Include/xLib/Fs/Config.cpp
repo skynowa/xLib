@@ -110,8 +110,8 @@ Config::clear()
 {
 	_config.clear();
 
-    FileIO file;
-    file.create(path(), FileIO::OpenMode::Write);
+    FileIO file(path());
+    file.create(FileIO::OpenMode::Write);
     file.clear();
 }
 //-------------------------------------------------------------------------------------------------

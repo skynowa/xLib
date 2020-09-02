@@ -74,16 +74,16 @@ public:
 
 ///@name ctors, dtor
 ///@{
-    explicit FileIO();
+    explicit FileIO(std::ctstring_t &filePath);
     virtual ~FileIO();
 
     xNO_COPY_ASSIGN(FileIO)
 ///@}
 
     // open, get
-    void_t         create(std::ctstring_t &filePath, cOpenMode mode, cbool_t isBuffering = true);
+    void_t         create(cOpenMode mode, cbool_t isBuffering = true);
         ///< open
-    void_t         reopen(std::ctstring_t &filePath, cOpenMode mode, cbool_t isBuffering = true);
+    void_t         reopen(cOpenMode mode, cbool_t isBuffering = true);
         ///< reopen with different file or mode
     HandleStdFile &get();
         ///< get handle
@@ -156,8 +156,8 @@ public:
         ///< close
 
 private:
-    HandleStdFile  _handle;            ///< file handle
-    std::tstring_t _filePath;          ///< file path
+    HandleStdFile  _handle;   ///< file handle
+    std::tstring_t _filePath; ///< file path
 
     static
     int_t          _nativeHandle(std::FILE *file);
@@ -176,6 +176,7 @@ private:
 
 xNAMESPACE_END2(xl, fs)
 //-------------------------------------------------------------------------------------------------
+// TODO: [skynowa] _filePath - make as const
 // TODO: [skynowa] get objects (Path, FileInfo)
 
 // TODO: [skynowa] - xNO ...

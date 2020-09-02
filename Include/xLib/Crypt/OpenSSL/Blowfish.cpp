@@ -81,8 +81,8 @@ Blowfish::setFileKey(
 
     std::ustring_t fileKey;
 
-    FileIO file;
-    file.create(a_filePath, FileIO::OpenMode::BinReadOnly);
+    FileIO file(a_filePath);
+    file.create(FileIO::OpenMode::BinReadOnly);
     xTEST(!FileInfo(file).isEmpty());
     xTEST_LESS_EQ(file.size(), static_cast<longlong_t>( keySizeMax() ));
 
@@ -150,7 +150,7 @@ Blowfish::encryptCfb64(
 
     a_out->resize( a_in.size() );
 
-    int_t num = 0;  // this integer must be initialized to zero when ivec is initialized
+    int_t num {};  // this integer must be initialized to zero when ivec is initialized
 
     encryptCfb64(&a_in.at(0), &a_out->at(0), static_cast<long_t>( a_in.size() ), &num, a_mode);
     xTEST_LESS(- 1, num);
@@ -168,8 +168,8 @@ Blowfish::encryptFileCfb64(
 
     std::ustring_t in;
     {
-        FileIO fileIn;
-        fileIn.create(a_filePathIn, FileIO::OpenMode::BinReadOnly);
+        FileIO fileIn(a_filePathIn);
+        fileIn.create(FileIO::OpenMode::BinReadOnly);
         fileIn.read(&in);
     }
 
@@ -177,8 +177,8 @@ Blowfish::encryptFileCfb64(
     encryptCfb64(in, &out, a_mode);
 
     {
-        FileIO fileOut;
-        fileOut.create(a_filePathOut, FileIO::OpenMode::BinReadWrite);
+        FileIO fileOut(a_filePathOut);
+        fileOut.create(FileIO::OpenMode::BinReadWrite);
         fileOut.write(out);
     }
 }

@@ -24,10 +24,9 @@ Test_Backup::unit()
     {
         // prepare
         {
-            FileIO F;
-
-            F.create(filePath, FileIO::OpenMode::BinReadWrite);
-            F.setSize(100L);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::BinReadWrite);
+            file.setSize(100L);
 
         #if 0
             Tracer() << xTRACE_VAR(DateTime::current().format(xT("%Y-%m-%d_%H"), xT("")));
@@ -37,7 +36,8 @@ Test_Backup::unit()
         #endif
         }
 
-        Backup::cPeriod periods[] = {
+        Backup::cPeriod periods[]
+		{
             // Backup::Period::bpUnknown,
             Backup::Period::bpHourly,
             Backup::Period::bpDaily,
