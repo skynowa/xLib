@@ -72,7 +72,7 @@ FileTemp::create(
 
     HandleStdFile stdFile;
     _create_impl(stdFile);
-    xTEST_EQ(stdFile.isValid(), true);
+    xTEST(stdFile.isValid());
 
     // out
     a_file->attach(stdFile, _filePath);
