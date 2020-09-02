@@ -14,10 +14,13 @@ class xNO_VTABLE ISeedPolicy
     /// seed policy interface
 {
 public:
-             ISeedPolicy();
-    virtual ~ISeedPolicy() = default;
+///@name ctors, dtor
+///@{
+			 ISeedPolicy();
+	virtual ~ISeedPolicy() = default;
 
-    xNO_COPY_ASSIGN(ISeedPolicy)
+	xNO_COPY_ASSIGN(ISeedPolicy)
+///@}
 
     virtual long_t next() = 0;
         ///< next value
