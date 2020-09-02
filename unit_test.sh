@@ -12,4 +12,8 @@ fi
 
 cd ../xLib_eclipse
 
-make Test_$UNIT_TEST_NAME && ./Tests/Test_$UNIT_TEST_NAME
+if [[ "$UNIT_TEST_NAME" == "all" ]]; then
+	make all && ctest
+else
+	make Test_$UNIT_TEST_NAME && ./Tests/Test_$UNIT_TEST_NAME
+fi
