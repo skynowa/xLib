@@ -199,16 +199,16 @@ File::copy(
 			constexpr std::size_t buffSize       {1024};
 			uchar_t               buff[buffSize] {};
 
-			for ( ; ; ) {
+			for ( ; !fileFrom.isEof(); ) {
 				std::csize_t readed  = fileFrom.read(buff, buffSize);
 				xCHECK_DO(0 >= readed, break);
 
 				std::csize_t written = fileTo.write(buff, readed);
 				xCHECK_DO(readed != written, isCopyOk = false; break);
 			}
-		}
 
-		fileTo.flush();
+			fileTo.flush();
+		}
 	}
 
 	// checks
