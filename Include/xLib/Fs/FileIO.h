@@ -81,7 +81,7 @@ public:
 ///@}
 
     // open, get
-    void_t         create(cOpenMode mode, cbool_t isBuffering = true);
+    void_t         open(cOpenMode mode, cbool_t isBuffering = true);
         ///< open
     void_t         reopen(cOpenMode mode, cbool_t isBuffering = true);
         ///< reopen with different file or mode

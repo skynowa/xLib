@@ -45,7 +45,7 @@ FileIO::~FileIO()
 
 //-------------------------------------------------------------------------------------------------
 void_t
-FileIO::create(
+FileIO::open(
     cOpenMode a_mode,
     cbool_t   a_isBuffering /* = true */
 )

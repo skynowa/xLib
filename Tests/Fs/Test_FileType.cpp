@@ -32,7 +32,7 @@ Test_FileType::unit()
 		}
 
         FileIO file(filePath);
-        file.create(FileIO::OpenMode::ReadWrite);
+        file.open(FileIO::OpenMode::ReadWrite);
         file.close();
 
         m_bRv = FileInfo(filePath).isExists();

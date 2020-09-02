@@ -22,7 +22,7 @@ Test_AutoProfiler::unit()
 
 		{
 			FileIO file(filePath);
-			file.create(FileIO::OpenMode::Write);
+			file.open(FileIO::OpenMode::Write);
 			file.clear();
 		}
 

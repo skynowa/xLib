@@ -111,7 +111,7 @@ Config::clear()
 	_config.clear();
 
     FileIO file(path());
-    file.create(FileIO::OpenMode::Write);
+    file.open(FileIO::OpenMode::Write);
     file.clear();
 }
 //-------------------------------------------------------------------------------------------------
