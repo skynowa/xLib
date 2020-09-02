@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN2(xl, core)
 
 //-------------------------------------------------------------------------------------------------
 Com::Com(
-    const COINIT &a_concurrencyModel
+    const COINIT a_concurrencyModel
 )
 {
     xTEST_NA(a_concurrencyModel);

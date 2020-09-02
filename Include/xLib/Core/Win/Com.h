@@ -16,11 +16,13 @@ class Com
     /// Component Object Model (COM)
 {
 public:
-    explicit  Com(const COINIT &concurrencyModel);
-    virtual  ~Com();
+///@name ctors, dtor
+///@{
+	explicit  Com(const COINIT concurrencyModel);
+	virtual  ~Com();
 
-private:
-    xNO_COPY_ASSIGN(Com)
+	xNO_COPY_ASSIGN(Com)
+///@}
 };
 
 xNAMESPACE_END2(xl, core)
