@@ -35,10 +35,13 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 FileTemp::FileTemp(
-    cbool_t a_isAutoDelete
+	std::ctstring_t &a_filePath,
+    cbool_t          a_isAutoDelete
 ) :
+    _filePath    (a_filePath),
     _isAutoDelete(a_isAutoDelete)
 {
+    xTEST(!a_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -55,12 +58,10 @@ FileTemp::~FileTemp()
 //-------------------------------------------------------------------------------------------------
 void_t
 FileTemp::create(
-    std::ctstring_t &a_filePath,
     std::ctstring_t &a_dirPath,
     FileIO          *a_file
 )
 {
-    xTEST(!a_filePath.empty());
     xTEST(!a_dirPath.empty());
     xTEST_PTR(a_file);
     xTEST(!a_file->get().isValid());
@@ -68,7 +69,7 @@ FileTemp::create(
     std::ctstring_t fileNameTemplate = xT("XXXXXX");
 
     Dir(a_dirPath).pathCreate();
-    _filePath = Path(a_dirPath).slashAppend() + Path(a_filePath).fileName() + fileNameTemplate;
+    _filePath = Path(a_dirPath).slashAppend() + Path(_filePath).fileName() + fileNameTemplate;
 
     HandleStdFile stdFile;
     _create_impl(stdFile);
