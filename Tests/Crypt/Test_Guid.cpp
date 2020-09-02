@@ -16,16 +16,16 @@ xTEST_UNIT(Test_Guid)
 bool_t
 Test_Guid::unit()
 {
-    xTEST_CASE("create")
+    xTEST_CASE("get")
     {
-        Guid::cType data[] = {
+        Guid::cType data[]
+        {
             Guid::Type::RandomBased
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Guid guid;
-
-            m_sRv = guid.create(data[i]);
+            Guid guid(data[i]);
+            m_sRv = guid.get();
             xTEST(!m_sRv.empty());
         }
     }

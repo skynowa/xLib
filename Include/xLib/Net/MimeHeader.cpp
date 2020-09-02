@@ -236,7 +236,7 @@ MimeHeader::generateMessageID()
 {
     std::tstring_t sRv;
 
-    sRv = Format::str(xT("{}@{}"), Guid().create(Guid::Type::RandomBased), SystemInfo().hostName());
+    sRv = Format::str(xT("{}@{}"), Guid(Guid::Type::RandomBased).get(), SystemInfo().hostName());
     xTEST_EQ(sRv.empty(), false);
 
     return sRv;
