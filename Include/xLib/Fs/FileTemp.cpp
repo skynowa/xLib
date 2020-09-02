@@ -66,7 +66,12 @@ FileTemp::create(
     xTEST_PTR(a_file);
     xTEST(!a_file->get().isValid());
 
-    // The last six characters of template must be XXXXXX
+   /**
+    * The last six characters of template must be XXXXXX and
+    * these are replaced with a string that makes the filename unique.
+    * Since it will be modified, template must not be a string constant,
+    * but should be declared as a character array
+    */
     std::ctstring_t fileNameTemplate = xT("XXXXXX");
 
     Dir(a_dirPath).pathCreate();
