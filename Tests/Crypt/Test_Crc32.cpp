@@ -20,9 +20,8 @@ Test_Crc32::unit()
 
     // Prepare
     {
-        FileIO file;
-
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         file.setSize(1337LL);
     }
 

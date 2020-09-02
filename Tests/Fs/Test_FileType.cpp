@@ -31,8 +31,8 @@ Test_FileType::unit()
 			File(filePath).remove();
 		}
 
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         file.close();
 
         m_bRv = FileInfo(filePath).isExists();
@@ -42,7 +42,6 @@ Test_FileType::unit()
     xTEST_CASE("set, get")
     {
         FileType type(filePath);
-
         type.set( static_cast<FileType::types_t>(value) );
 
         FileType::ctypes_t faRes = type.get();
@@ -52,7 +51,6 @@ Test_FileType::unit()
     xTEST_CASE("add")
     {
         FileType type(filePath);
-
         type.clear();
         type.add(value);
 
@@ -146,7 +144,6 @@ Test_FileType::unit()
     xTEST_CASE("clear")
     {
         FileType type(filePath);
-
         type.clear();
 
         FileType::ctypes_t faRv = type.get();

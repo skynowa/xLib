@@ -18,7 +18,7 @@ Test_FileTemp::unit()
 {
     xTEST_CASE("all")
     {
-        FileIO fileJobber;
+        FileIO fileJobber(Path::exe());
 
         FileTemp fileTemp(true);
         fileTemp.create(Path::exe(), getData().tempDirPath, &fileJobber);

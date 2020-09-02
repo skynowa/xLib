@@ -59,8 +59,8 @@ Test_File::unit()
 		std::ctstring_t sFilePathTo   = sFilePathFrom + xT("_addition_to_name.txt");
 
 		{
-			FileIO file;
-			file.create(sFilePathFrom, FileIO::OpenMode::BinReadWrite, false);
+			FileIO file(sFilePathFrom);
+			file.create(FileIO::OpenMode::BinReadWrite, false);
 			file.setSize(1024 * 5);
 		}
 
@@ -116,8 +116,8 @@ Test_File::unit()
 
 		for (size_t i = 0; i < 20; ++ i) {
 			if (i < 10) {
-				FileIO file;
-				file.create(tryfilePath, FileIO::OpenMode::ReadWrite);
+				FileIO file(tryfilePath);
+				file.create(FileIO::OpenMode::ReadWrite);
 				file.setSize(1024);
 				file.locking(FileIO::LockingMode::Lock, 10);
 
@@ -159,8 +159,8 @@ Test_File::unit()
 		std::tstring_t content;
 
 		{
-			FileIO file;
-			file.create(filePath, FileIO::OpenMode::ReadWrite);
+			FileIO file(filePath);
+			file.create(FileIO::OpenMode::ReadWrite);
 
 			for (size_t i = 0; i < 7; ++ i) {
 				file.writeLine(xT("asducfgnoawifgumoaeriuatgmoi"));
@@ -183,8 +183,8 @@ Test_File::unit()
 		std::tstring_t content;
 
 		{
-			FileIO file;
-			file.create(filePath, FileIO::OpenMode::ReadWrite);
+			FileIO file(filePath);
+			file.create(FileIO::OpenMode::ReadWrite);
 		}
 
 		File(filePath).textRead( &content);
@@ -203,8 +203,8 @@ Test_File::unit()
 		std::vec_tstring_t content;
 
 		{
-			FileIO file;
-			file.create(filePath, FileIO::OpenMode::ReadWrite);
+			FileIO file(filePath);
+			file.create(FileIO::OpenMode::ReadWrite);
 
 			for (size_t i = 0; i < 10; ++ i) {
 				file.writeLine(xT("asducfgnoawifgumoaeriuatgmoi"));
@@ -227,8 +227,8 @@ Test_File::unit()
 		std::vec_tstring_t content;
 
 		{
-			FileIO file;
-			file.create(filePath, FileIO::OpenMode::ReadWrite);
+			FileIO file(filePath);
+			file.create(FileIO::OpenMode::ReadWrite);
 		}
 
 		File(filePath).textRead( &content);
@@ -248,8 +248,8 @@ Test_File::unit()
 		std::ctstring_t    separator = Const::equal();
 
 		{
-			FileIO file;
-			file.create(filePath, FileIO::OpenMode::ReadWrite);
+			FileIO file(filePath);
+			file.create(FileIO::OpenMode::ReadWrite);
 
 			for (size_t i = 0; i < 10; ++ i) {
 				file.writeLine(xT("asducfgnoawifg") + separator + xT("umoaeriuatgmoi"));
@@ -273,9 +273,8 @@ Test_File::unit()
 		std::ctstring_t    separator = Const::equal();
 
 		{
-			FileIO file;
-
-			file.create(filePath, FileIO::OpenMode::ReadWrite);
+			FileIO file(filePath);
+			file.create(FileIO::OpenMode::ReadWrite);
 		}
 
 		File(filePath).textRead( separator, &content);
@@ -294,8 +293,8 @@ Test_File::unit()
 		std::ustring_t content;   content.resize(1024 * 5);
 
 		{
-			FileIO file;
-			file.create(filePath, FileIO::OpenMode::BinReadWrite);
+			FileIO file(filePath);
+			file.create(FileIO::OpenMode::BinReadWrite);
 
 			m_iRv = file.write(xT("0123456789"));
 			xTEST_LESS(0, m_iRv);
@@ -320,8 +319,8 @@ Test_File::unit()
 		std::ustring_t content;
 
 		{
-			FileIO file;
-			file.create(filePath, FileIO::OpenMode::BinReadWrite);
+			FileIO file(filePath);
+			file.create(FileIO::OpenMode::BinReadWrite);
 		}
 
 		File(filePath).binWrite(content, FileIO::OpenMode::BinWrite);

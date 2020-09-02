@@ -77,30 +77,30 @@ Test_FileIO::unit()
         }
 
         for (size_t i = 0; i < 10; ++ i) {
-            FileIO file;
-            file.create(filePath, FileIO::OpenMode::ReadWrite);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::ReadWrite);
             file.close();
-            file.create(filePath, FileIO::OpenMode::ReadWrite);
+            file.create(FileIO::OpenMode::ReadWrite);
             file.close();
         }
     }
 
     xTEST_CASE("create")
     {
-        FileIO file;
+        FileIO file(filePath);
 
         for (size_t i = 0; i < 1; ++ i) {
-            file.create(filePath, FileIO::OpenMode::ReadWrite);
+            file.create(FileIO::OpenMode::ReadWrite);
         }
     }
 
     xTEST_CASE("reopen")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
 
         for (size_t i = 0; i < 7; ++ i) {
-            file.reopen(filePath, FileIO::OpenMode::ReadWriteOnly);
+            file.reopen(FileIO::OpenMode::ReadWriteOnly);
         }
     }
 
@@ -127,8 +127,8 @@ Test_FileIO::unit()
 
     xTEST_CASE("get")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
 
         FILE *stdFile = file.get().get();
         xTEST_PTR(stdFile);
@@ -136,8 +136,8 @@ Test_FileIO::unit()
 
     xTEST_CASE("path")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         xTEST_EQ(file.path(), filePath);
     }
 
@@ -154,16 +154,16 @@ Test_FileIO::unit()
 
         // write
         {
-            FileIO file;
-            file.create(filePath, FileIO::OpenMode::BinReadWrite);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::BinReadWrite);
             m_stRv = file.write((cptr_cvoid_t)&buffWrite.at(0), buffWrite.size() * sizeof(std::tstring_t::value_type));
             xUNUSED(m_stRv);
         }
 
         // read
         {
-            FileIO file;
-            file.create(filePath, FileIO::OpenMode::BinReadOnly);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::BinReadOnly);
             m_stRv = file.read(&buffRead.at(0), buffRead.size() * sizeof(std::tstring_t::value_type));
             xUNUSED(m_stRv);
         }
@@ -180,15 +180,15 @@ Test_FileIO::unit()
 
         // write
         {
-            FileIO file;
-            file.create(filePath, FileIO::OpenMode::BinWrite);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::BinWrite);
             file.write(content);
         }
 
         // read
         {
-            FileIO file;
-            file.create(filePath, FileIO::OpenMode::BinReadOnly);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::BinReadOnly);
             file.read(&text1);
         }
 
@@ -196,8 +196,8 @@ Test_FileIO::unit()
         {
             std::ctstring_t dataNewPath = getData().tempDirPath + Const::slash() + xT("DataNew.dat");
 
-            FileIO file;
-            file.create(dataNewPath, FileIO::OpenMode::BinWrite);
+            FileIO file(dataNewPath);
+            file.create(FileIO::OpenMode::BinWrite);
             file.write(text1);
 
             File(dataNewPath).remove();
@@ -205,8 +205,8 @@ Test_FileIO::unit()
 
         // read
         {
-            FileIO file;
-            file.create(filePath, FileIO::OpenMode::BinReadOnly);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::BinReadOnly);
             file.read(&text2);
 
             xTEST_EQ(text1.size(), text2.size());
@@ -221,15 +221,15 @@ Test_FileIO::unit()
 
         // writeLine
         {
-            FileIO file;
-            file.create(filePath, FileIO::OpenMode::Write);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::Write);
             file.writeLine(buffWrite);
         }
 
         // readLine
         {
-            FileIO file;
-            file.create(filePath, FileIO::OpenMode::ReadOnly);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::ReadOnly);
             file.readLine(&buffRead, 1024);
         }
 
@@ -241,8 +241,8 @@ Test_FileIO::unit()
     {
         ctchar_t ch = xT('W');
 
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         file.writeChar(ch);
         file.setPosition(0, FileIO::PointerPosition::Begin);
 
@@ -258,8 +258,8 @@ Test_FileIO::unit()
 
     xTEST_CASE("clear")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         file.clear();
     }
 
@@ -275,8 +275,8 @@ Test_FileIO::unit()
             xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
 
         {
-            FileIO file;
-            file.create(filePath, FileIO::OpenMode::ReadWrite);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::ReadWrite);
 
             int_t iRv = file.write(testContent.c_str());
             xTEST_EQ(testContent.size(), size_t(iRv));
@@ -285,8 +285,8 @@ Test_FileIO::unit()
         std::tstring_t content;
 
         {
-            FileIO file;
-            file.create(filePath, FileIO::OpenMode::ReadOnly);
+            FileIO file(filePath);
+            file.create(FileIO::OpenMode::ReadOnly);
             file.read(&content);
         }
 
@@ -297,8 +297,8 @@ Test_FileIO::unit()
     {
         std::ctstring_t content = xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467lsecfgsjk drbf");
 
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
 
         int_t iRv = file.write(xT("%s"), content.c_str());
         xTEST_EQ(content.size(), size_t(iRv));
@@ -321,8 +321,8 @@ Test_FileIO::unit()
             };
         };
 
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         Writer::doV(file, xT("%s"), xT("zzz"));
     }
 
@@ -333,8 +333,8 @@ Test_FileIO::unit()
 
     xTEST_CASE("locking")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         file.setSize(1024);
         file.locking(FileIO::LockingMode::Lock, 10);
         file.locking(FileIO::LockingMode::Unlock, 10);
@@ -342,8 +342,8 @@ Test_FileIO::unit()
 
     xTEST_CASE("setPosition, position")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         file.setPosition(0, FileIO::PointerPosition::Begin);
 
         long_t liRv = file.position();
@@ -354,8 +354,8 @@ Test_FileIO::unit()
 	{
 		clonglong_t newSize = 1024LL;
 
-		FileIO file;
-		file.create(filePath, FileIO::OpenMode::ReadWrite);
+		FileIO file(filePath);
+		file.create(FileIO::OpenMode::ReadWrite);
 		file.setSize(newSize);
 
 		clonglong_t llSize = file.size();
@@ -364,8 +364,8 @@ Test_FileIO::unit()
 
     xTEST_CASE("resize")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         file.setSize(0);
     }
 
@@ -373,8 +373,8 @@ Test_FileIO::unit()
     {
         std::string buffRead;  buffRead.resize(BUFSIZ);
 
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         file.setVBuff(FileIO::BufferingMode::Full, &buffRead.at(0), buffRead.size() * 2);
     }
 
@@ -385,8 +385,8 @@ Test_FileIO::unit()
 
     xTEST_CASE("isEmpty")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
 
         m_bRv = file.isEmpty();
         xTEST_EQ(m_bRv, true);
@@ -405,8 +405,8 @@ Test_FileIO::unit()
 
     xTEST_CASE("isEof")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
 
         m_bRv = file.isEof();
         xTEST_EQ(m_bRv, false);
@@ -414,8 +414,8 @@ Test_FileIO::unit()
 
     xTEST_CASE("isError")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
 
         m_bRv = file.isError();
         xTEST_EQ(m_bRv, false);
@@ -423,8 +423,8 @@ Test_FileIO::unit()
 
     xTEST_CASE("clearError")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         file.clearError();
     }
 
@@ -435,8 +435,8 @@ Test_FileIO::unit()
 
     xTEST_CASE("flush")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         file.flush();
 
         m_bRv = file.get().isValid();
@@ -445,8 +445,8 @@ Test_FileIO::unit()
 
     xTEST_CASE("close")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadWrite);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadWrite);
         file.close();
 
         m_bRv = file.get().isValid();
@@ -475,8 +475,8 @@ Test_FileIO::unitPrivate()
 
     xTEST_CASE("_nativeHandle")
     {
-        FileIO file;
-        file.create(filePath, FileIO::OpenMode::ReadOnly);
+        FileIO file(filePath);
+        file.create(FileIO::OpenMode::ReadOnly);
 
         m_iRv = FileIO::_nativeHandle( file.get() );
         xTEST_DIFF(m_iRv, - 1);
@@ -487,10 +487,10 @@ Test_FileIO::unitPrivate()
         // TEST: FileIO::_stdHandle
 
     #if xTODO
-        const FileIO::OpenMode mode = FileIO::OpenMode::ReadWriteOnly;
+        FileIO::cOpenMode mode = FileIO::OpenMode::ReadWriteOnly;
 
-        FileIO file;
-        file.create(filePath, mode, true);
+        FileIO file(filePath);
+        file.create(mode, true);
 
         int_t nativeFile = FileIO::_nativeHandle(file.get());
         xTEST_DIFF((int_t)FileIO::etError, nativeFile);
@@ -520,7 +520,7 @@ Test_FileIO::unitPrivate()
 
         for (size_t i = 0; i < data.size(); ++ i) {
             FileIO::OpenMode omRes = data.at(i).first;
-            std::tstring_t sRv   = data.at(i).second;
+            std::tstring_t   sRv   = data.at(i).second;
 
             m_sRv = FileIO::_openMode(omRes);
             xTEST_EQ(sRv, m_sRv);
