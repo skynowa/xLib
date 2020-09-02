@@ -91,7 +91,7 @@ File::wipe(
 	// content - reset
 	if ( !info.isEmpty() ) {
 		FileIO file(_filePath);
-		file.create(FileIO::OpenMode::BinReadWrite);
+		file.open(FileIO::OpenMode::BinReadWrite);
 
 		clonglong_t fileSize = file.size();
 		if (fileSize > 0LL) {
@@ -191,8 +191,8 @@ File::copy(
 	FileIO fileTo(a_filePathTo);
 	{
 		// open files
-		fileFrom.create(FileIO::OpenMode::BinReadOnly);
-		fileTo.create(FileIO::OpenMode::BinWrite);
+		fileFrom.open(FileIO::OpenMode::BinReadOnly);
+		fileTo.open(FileIO::OpenMode::BinWrite);
 
 		if ( !FileInfo(fileFrom).isEmpty() ) {
 			// copy files
@@ -249,7 +249,7 @@ File::textRead(
     std::tstring_t sRv;
 
     FileIO file(_filePath);
-    file.create(FileIO::OpenMode::BinReadOnly);
+    file.open(FileIO::OpenMode::BinReadOnly);
 
     clonglong_t fileSize = file.size();
     xTEST_DIFF(fileSize, static_cast<longlong_t>(FileIO::PointerPosition::Error));
@@ -356,7 +356,7 @@ File::textWrite(
     xTEST_NA(a_mode);
 
     FileIO file(_filePath);
-    file.create(a_mode);
+    file.open(a_mode);
 
     xCHECK_DO(a_content.empty(), return);
 
@@ -390,7 +390,7 @@ File::textWrite(
     xTEST_NA(a_mode);
 
     FileIO file(_filePath);
-    file.create(a_mode);
+    file.open(a_mode);
 
     xCHECK_DO(a_content.empty(), return);
 
@@ -415,7 +415,7 @@ File::binRead(
     xTEST_PTR(a_content);
 
     FileIO file(_filePath);
-    file.create(FileIO::OpenMode::BinReadOnly);
+    file.open(FileIO::OpenMode::BinReadOnly);
 
     clonglong_t fileSize = file.size();
     xTEST_DIFF(fileSize, static_cast<longlong_t>(FileIO::PointerPosition::Error));
@@ -440,7 +440,7 @@ File::binWrite(
     xTEST_NA(a_content);
 
     FileIO file(_filePath);
-    file.create(a_mode);
+    file.open(a_mode);
 
     xCHECK_DO(a_content.empty(), return);
 

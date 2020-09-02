@@ -128,7 +128,7 @@ FileLog::write(
     // write
     {
         FileIO file(filePath());
-        file.create(FileIO::OpenMode::Append, false);
+        file.open(FileIO::OpenMode::Append, false);
         int_t iRv = file.write(xT("[%s] %s\n"), time.c_str(), msg.c_str());
         xTEST_DIFF(iRv, - 1);
     }
@@ -138,7 +138,7 @@ void_t
 FileLog::clear() const
 {
     FileIO file(filePath());
-    file.create(FileIO::OpenMode::Write);
+    file.open(FileIO::OpenMode::Write);
     file.clear();
 }
 //-------------------------------------------------------------------------------------------------

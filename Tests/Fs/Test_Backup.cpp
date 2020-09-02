@@ -25,7 +25,7 @@ Test_Backup::unit()
         // prepare
         {
             FileIO file(filePath);
-            file.create(FileIO::OpenMode::BinReadWrite);
+            file.open(FileIO::OpenMode::BinReadWrite);
             file.setSize(100L);
 
         #if 0

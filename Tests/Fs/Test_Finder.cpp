@@ -58,7 +58,7 @@ Test_Finder::unit()
 
             for (const auto &it_file : files) {
 				FileIO file(it_file);
-				file.create(FileIO::OpenMode::Write);
+				file.open(FileIO::OpenMode::Write);
 				file.clear();
             }
 

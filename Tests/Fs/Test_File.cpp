@@ -60,7 +60,7 @@ Test_File::unit()
 
 		{
 			FileIO file(sFilePathFrom);
-			file.create(FileIO::OpenMode::BinReadWrite, false);
+			file.open(FileIO::OpenMode::BinReadWrite, false);
 			file.setSize(1024 * 5);
 		}
 
@@ -117,7 +117,7 @@ Test_File::unit()
 		for (size_t i = 0; i < 20; ++ i) {
 			if (i < 10) {
 				FileIO file(tryfilePath);
-				file.create(FileIO::OpenMode::ReadWrite);
+				file.open(FileIO::OpenMode::ReadWrite);
 				file.setSize(1024);
 				file.locking(FileIO::LockingMode::Lock, 10);
 
@@ -160,7 +160,7 @@ Test_File::unit()
 
 		{
 			FileIO file(filePath);
-			file.create(FileIO::OpenMode::ReadWrite);
+			file.open(FileIO::OpenMode::ReadWrite);
 
 			for (size_t i = 0; i < 7; ++ i) {
 				file.writeLine(xT("asducfgnoawifgumoaeriuatgmoi"));
@@ -184,7 +184,7 @@ Test_File::unit()
 
 		{
 			FileIO file(filePath);
-			file.create(FileIO::OpenMode::ReadWrite);
+			file.open(FileIO::OpenMode::ReadWrite);
 		}
 
 		File(filePath).textRead( &content);
@@ -204,7 +204,7 @@ Test_File::unit()
 
 		{
 			FileIO file(filePath);
-			file.create(FileIO::OpenMode::ReadWrite);
+			file.open(FileIO::OpenMode::ReadWrite);
 
 			for (size_t i = 0; i < 10; ++ i) {
 				file.writeLine(xT("asducfgnoawifgumoaeriuatgmoi"));
@@ -228,7 +228,7 @@ Test_File::unit()
 
 		{
 			FileIO file(filePath);
-			file.create(FileIO::OpenMode::ReadWrite);
+			file.open(FileIO::OpenMode::ReadWrite);
 		}
 
 		File(filePath).textRead( &content);
@@ -249,7 +249,7 @@ Test_File::unit()
 
 		{
 			FileIO file(filePath);
-			file.create(FileIO::OpenMode::ReadWrite);
+			file.open(FileIO::OpenMode::ReadWrite);
 
 			for (size_t i = 0; i < 10; ++ i) {
 				file.writeLine(xT("asducfgnoawifg") + separator + xT("umoaeriuatgmoi"));
@@ -274,7 +274,7 @@ Test_File::unit()
 
 		{
 			FileIO file(filePath);
-			file.create(FileIO::OpenMode::ReadWrite);
+			file.open(FileIO::OpenMode::ReadWrite);
 		}
 
 		File(filePath).textRead( separator, &content);
@@ -294,7 +294,7 @@ Test_File::unit()
 
 		{
 			FileIO file(filePath);
-			file.create(FileIO::OpenMode::BinReadWrite);
+			file.open(FileIO::OpenMode::BinReadWrite);
 
 			m_iRv = file.write(xT("0123456789"));
 			xTEST_LESS(0, m_iRv);
@@ -320,7 +320,7 @@ Test_File::unit()
 
 		{
 			FileIO file(filePath);
-			file.create(FileIO::OpenMode::BinReadWrite);
+			file.open(FileIO::OpenMode::BinReadWrite);
 		}
 
 		File(filePath).binWrite(content, FileIO::OpenMode::BinWrite);
