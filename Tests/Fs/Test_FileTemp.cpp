@@ -18,18 +18,20 @@ Test_FileTemp::unit()
 {
     xTEST_CASE("all")
     {
-        FileIO fileJobber(Path::exe());
+        std::ctstring_t filePath = Path::exe();
 
-        FileTemp fileTemp(Path::exe(), true);
-        fileTemp.create(getData().tempDirPath, &fileJobber);
-        xTEST(FileInfo(fileJobber).isEmpty());
+    	FileIO fileWorker(filePath);
 
-        fileJobber.writeLine(xT("qwertyuiop"));
-        fileJobber.flush();
-        xTEST(!FileInfo(fileJobber).isEmpty());
+        FileTemp fileTemp(filePath, true);
+        fileTemp.create(getData().tempDirPath, &fileWorker);
+        xTEST(FileInfo(fileWorker).isEmpty());
 
-        fileJobber.clear();
-        fileJobber.close();
+        fileWorker.writeLine(xT("qwertyuiop"));
+        fileWorker.flush();
+        xTEST(!FileInfo(fileWorker).isEmpty());
+
+        fileWorker.clear();
+        fileWorker.close();
     }
 
     return true;
