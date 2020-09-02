@@ -259,7 +259,7 @@ Process::_currentParentId_impl()
 {
     id_t ulRv;
 
-    #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
+    #if xCOMPILER_MINGW
         // using NTSTATUS = __success(return >= 0) LONG;
         using NTSTATUS = LONG;
 

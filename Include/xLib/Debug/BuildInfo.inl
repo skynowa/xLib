@@ -251,9 +251,6 @@ BuildInfo::compiler() const
 #elif xCOMPILER_MS
     compilerName    = xT("MSVC");
     compilerVersion = xCOMPILER_MS_VER_STR;
-#elif xCOMPILER_CODEGEAR
-    compilerName    = xT("CodeGear");
-    compilerVersion = xCOMPILER_CODEGEAR_VER_STR;
 #elif xCOMPILER_CLANG
     compilerName    = xT("CLang");
     compilerVersion = xCOMPILER_CLANG_VER_STR;

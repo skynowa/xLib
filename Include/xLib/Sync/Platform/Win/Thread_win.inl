@@ -380,7 +380,7 @@ Thread::_setDebugName_impl(
     std::ctstring_t &a_name
 ) const
 {
-#if xCOMPILER_MS || xCOMPILER_CODEGEAR
+#if xCOMPILER_MS
     const DWORD msVcException = 0x406D1388;
 
 #pragma pack(push, 8)

@@ -38,8 +38,6 @@
     #define xTMKSTEMP     ::_mktemp
 #elif xCOMPILER_MS
     #define xTMKSTEMP     ::_tmktemp_s
-#elif xCOMPILER_CODEGEAR
-    #define xTMKSTEMP     ::_mktemp
 #elif xCOMPILER_GNUC
     #define xTMKSTEMP     ::mkstemp
 #else
@@ -62,8 +60,6 @@
     #define xTSTAT_STRUCT struct stat
 #elif xCOMPILER_MS
     #define xTSTAT_STRUCT struct _tstat64
-#elif xCOMPILER_CODEGEAR
-    #define xTSTAT_STRUCT struct _stat
 #elif xCOMPILER_GNUC
     #define xTSTAT_STRUCT struct stat
 #else
@@ -75,8 +71,6 @@
     #define xTSTAT        ::stat
 #elif xCOMPILER_MS
     #define xTSTAT        ::_tstat64
-#elif xCOMPILER_CODEGEAR
-    #define xTSTAT        ::_tstat
 #elif xCOMPILER_GNUC
     #define xTSTAT        ::lstat
 #else
@@ -90,8 +84,6 @@
     #define xSTRERROR     ::_tcserror_s
 #elif xCOMPILER_GNUC
     #define xSTRERROR     ::strerror_r
-#elif xCOMPILER_CODEGEAR
-    #define xSTRERROR     ::_tcserror
 #else
     #define xSTRERROR     std::strerror
 #endif

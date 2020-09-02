@@ -18,8 +18,6 @@
     #define xLOCKING            ::_locking
 #elif xCOMPILER_MS
     #define xLOCKING            ::_locking
-#elif xCOMPILER_CODEGEAR
-    #define xLOCKING            ::locking
 #elif xCOMPILER_GNUC
     #define xLOCKING            ::lockf
 #else
@@ -31,8 +29,6 @@
     #define xCHSIZE             ::chsize
 #elif xCOMPILER_MS
     #define xCHSIZE             ::_chsize_s
-#elif xCOMPILER_CODEGEAR
-    #define xCHSIZE             ::chsize
 #elif xCOMPILER_GNUC
     #define xCHSIZE             ::ftruncate
 #else
@@ -51,8 +47,6 @@
     #define xGETADDRINFO        ::getaddrinfo
 #elif xCOMPILER_MS
     #define xGETADDRINFO        ::GetAddrInfo
-#elif xCOMPILER_CODEGEAR
-    #define xGETADDRINFO        ::GetAddrInfo
 #elif xCOMPILER_GNUC
     #if xUNICODE
         #define xGETADDRINFO    xl::core::getaddrinfoW
@@ -67,8 +61,6 @@
 #if   xCOMPILER_MINGW
     #define xGETNAMEINFO        ::getnameinfo
 #elif xCOMPILER_MS
-    #define xGETNAMEINFO        ::GetNameInfo
-#elif xCOMPILER_CODEGEAR
     #define xGETNAMEINFO        ::GetNameInfo
 #elif xCOMPILER_GNUC
     #if xUNICODE

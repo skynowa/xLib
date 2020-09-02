@@ -25,7 +25,7 @@ StdError::_format_impl(
     xCHECK_RET(error == nullptr, sRv.append(xT("[Cann't format error message]")));
 
     sRv.append(error);
-#elif xCOMPILER_MS || xCOMPILER_CODEGEAR
+#elif xCOMPILER_MS
     tchar_t buff[64 + 1] = {0};
 
     errno_t error = xSTRERROR(buff, xARRAY_SIZE(buff), a_code);

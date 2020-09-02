@@ -17,7 +17,7 @@ FileTemp::_create_impl(
     HandleStdFile &a_stdFile
 )
 {
-#if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
+#if xCOMPILER_MINGW
     _filePath.resize(_filePath.size() + 1);
 
     cptr_ctchar_t file = xTMKSTEMP(&_filePath.at(0));

@@ -52,8 +52,6 @@
     #define xTMKSTEMP     ::_wmktemp
 #elif xCOMPILER_MS
     #define xTMKSTEMP     ::_tmktemp_s
-#elif xCOMPILER_CODEGEAR
-    #define xTMKSTEMP     ::_wmktemp
 #elif xCOMPILER_GNUC
     #define xTMKSTEMP     xl::core::mkstempW
 #else
@@ -80,8 +78,6 @@
     #define xTCHMOD       ::_wchmod
 #elif xCOMPILER_MS
     #define xTCHMOD       ::_wchmod
-#elif xCOMPILER_CODEGEAR
-    #define xTCHMOD       ::_wchmod
 #elif xCOMPILER_CLANG
     #define xTCHMOD       xl::core::chmodW
 #elif xCOMPILER_GNUC
@@ -95,8 +91,6 @@
     #define xTSTAT_STRUCT struct stat
 #elif xCOMPILER_MS
     #define xTSTAT_STRUCT struct _tstat64
-#elif xCOMPILER_CODEGEAR
-    #define xTSTAT_STRUCT struct _stat
 #elif xCOMPILER_GNUC
     #define xTSTAT_STRUCT struct stat
 #else
@@ -108,8 +102,6 @@
     #define xTSTAT        ::_wstat
 #elif xCOMPILER_MS
     #define xTSTAT        ::_tstat64
-#elif xCOMPILER_CODEGEAR
-    #define xTSTAT        ::_tstat
 #elif xCOMPILER_GNUC
     #define xTSTAT        xl::core::statW
 #else
@@ -123,8 +115,6 @@
     #define xSTRERROR     ::_tcserror_s
 #elif xCOMPILER_GNUC
     #define xSTRERROR     ::strerror_r
-#elif xCOMPILER_CODEGEAR
-    #define xSTRERROR     ::_tcserror
 #else
     #define xSTRERROR     ::_wstrerror
 #endif
