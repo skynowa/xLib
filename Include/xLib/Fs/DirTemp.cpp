@@ -6,10 +6,21 @@
 
 #include "DirTemp.h"
 
+#include <xLib/Test/Test.h>
+#include <xLib/Debug/Debug.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/StdError.h>
+#include <xLib/Debug/StackTrace.h>
+#include <xLib/Debug/ErrorReport.h>
+#include <xLib/Debug/Debugger.h>
+#include <xLib/Log/Trace.h>
+#include <xLib/Fs/Path.h>
+#include <xLib/Fs/Dir.h>
+
 #if   xENV_WIN
     #include "Platform/Win/DirTemp_win.inl"
 #elif xENV_UNIX
-    // #include "Platform/Unix/DirTemp_unix.inl"
+    #include "Platform/Unix/DirTemp_unix.inl"
 #endif
 
 
@@ -21,7 +32,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-DirTemp::FileTemp(
+DirTemp::DirTemp(
 	std::ctstring_t &a_dirPath,
     cbool_t          a_isAutoDelete
 ) :
@@ -32,7 +43,7 @@ DirTemp::FileTemp(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-DirTemp::~FileTemp()
+DirTemp::~DirTemp()
 {
     if (_isAutoDelete && !_dirPath.empty()) {
         Dir(_dirPath).remove();

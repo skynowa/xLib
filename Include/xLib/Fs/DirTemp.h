@@ -27,7 +27,7 @@ public:
         ///< create temporary file, open it
 
 private:
-    std::tstring_t  _filePath;         ///< temporary file path (not constant)
+    std::tstring_t  _dirPath;          ///< temporary dir path (not constant)
     cbool_t         _isAutoDelete {};  ///< auto delete flag
 
 xPLATFORM_IMPL:
