@@ -10,14 +10,6 @@
     #include "Platform/Win/DirTemp_win.inl"
 #elif xENV_UNIX
     // #include "Platform/Unix/DirTemp_unix.inl"
-
-    #if   xENV_LINUX
-        // #include "Platform/Linux/DirTemp_linux.inl"
-    #elif xENV_BSD
-        // #include "Platform/Bsd/DirTemp_bsd.inl"
-    #elif xENV_APPLE
-        // #include "Platform/Apple/DirTemp_apple.inl"
-    #endif
 #endif
 
 
@@ -29,14 +21,38 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-DirTemp::DirTemp()
+DirTemp::FileTemp(
+	std::ctstring_t &a_dirPath,
+    cbool_t          a_isAutoDelete
+) :
+    _dirPath     (a_dirPath),
+    _isAutoDelete(a_isAutoDelete)
 {
-    _construct_impl();
+    xTEST(!a_dirPath.empty());
 }
 //-------------------------------------------------------------------------------------------------
-DirTemp::~DirTemp()
+/* virtual */
+DirTemp::~FileTemp()
 {
-    _destruct_impl();
+    if (_isAutoDelete && !_dirPath.empty()) {
+        Dir(_dirPath).remove();
+    }
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+DirTemp::create()
+{
+   /**
+    * The last six characters of template must be XXXXXX and
+    * these are replaced with a string that makes the filename unique.
+    * Since it will be modified, template must not be a string constant,
+    * but should be declared as a character array
+    */
+    std::ctstring_t fileNameTemplate = xT("XXXXXX");
+
+    _dirPath = Path(_dirPath).slashAppend() + Path(_dirPath).fileName() + fileNameTemplate;
+
+    Dir(_dirPath).pathCreate();
 }
 //-------------------------------------------------------------------------------------------------
 
