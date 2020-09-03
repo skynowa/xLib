@@ -42,6 +42,7 @@ Test_IpcSemaphore::unit()
         IpcSemaphore semaphore;
 		{
 			semaphore.create(4, xT("sema_name"));
+			xTEST_PTR(semaphore.handle());
 
 		#if   xENV_WIN
 			uintptr_t puiRv = ::_beginthreadex(nullptr, 0, &Worker::exec, &semaphore, 0, nullptr);
