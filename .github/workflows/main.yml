@@ -23,6 +23,9 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
+      - name: Info
+        run: ./SystemInfoEx.sh && ./DevInfo.sh && exit 1
+
       - name: xLib - Vheckout
         uses: actions/checkout@v2
 
