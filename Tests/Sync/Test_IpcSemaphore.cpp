@@ -30,7 +30,9 @@ Test_IpcSemaphore::unit()
 			auto *sem = static_cast<IpcSemaphore *>(param);
 			xTEST_PTR(sem);
 
-			sem->wait(xTIMEOUT_INFINITE);
+			for (int_t i = 0; i < 50; i ++) {
+				sem->wait(xTIMEOUT_INFINITE);
+			}
 
 			return 0;
 		}
