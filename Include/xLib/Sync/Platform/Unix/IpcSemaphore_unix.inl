@@ -118,26 +118,21 @@ IpcSemaphore::_wait_impl(
         timespecAddMsec(static_cast<long_t>(a_timeoutMsec), &tmsTimeout);
     }
 
-#if 0
-    while ((iRv = ::sem_timedwait(_handle, &tmsTimeout)) == - 1 && (errno == EINTR)) {
-
-        continue;
-    }
-#else
+    // wait
     int_t _nativeError {};
+	{
+	    for ( ; ; ) {
+			iRv = ::sem_timedwait(_handle, &tmsTimeout);
+			_nativeError = errno;
 
-    for ( ; ; ) {
-        iRv = ::sem_timedwait(_handle, &tmsTimeout);
-        _nativeError = errno;
+			if (iRv == - 1 && _nativeError == EINTR) {
+				// Restart if interrupted by handler
+				continue;
+			}
 
-        if (iRv == - 1 && _nativeError == EINTR) {
-            // Restart if interrupted by handler
-            continue;
-        }
-
-        break;
-    }
-#endif
+			break;
+		}
+	}
 
     if (iRv == - 1) {
         if (ETIMEDOUT == _nativeError) {
