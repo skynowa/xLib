@@ -12,6 +12,13 @@ using namespace xl;
 xTEST_CLASS(Test_IpcSemaphore)
 xTEST_UNIT(Test_IpcSemaphore)
 //-------------------------------------------------------------------------------------------------
+namespace
+{
+
+std::size_t valuesNum {50};
+
+}
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
 Test_IpcSemaphore::unit()
@@ -30,7 +37,7 @@ Test_IpcSemaphore::unit()
 			auto *sem = static_cast<IpcSemaphore *>(param);
 			xTEST_PTR(sem);
 
-			for (int_t i = 0; i < 50; i ++) {
+			for (size_t i = 0; i < ::valuesNum; i ++) {
 				sem->wait(xTIMEOUT_INFINITE);
 			}
 
@@ -59,7 +66,7 @@ Test_IpcSemaphore::unit()
 
     xTEST_CASE("post")
     {
-        for (size_t i = 0; i < 50; ++ i) {
+        for (size_t i = 0; i < ::valuesNum; ++ i) {
             Thread::currentSleep(1);
 
             for (int_t x = 0; x < 2; x ++) {
