@@ -82,6 +82,7 @@
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/FileTemp.h>
 #include <xLib/Fs/Dir.h>
+#include <xLib/Fs/DirTemp.h>
 #include <xLib/Fs/Volume.h>
 #include <xLib/Fs/Dll.h>
 #include <xLib/Fs/Finder.h>

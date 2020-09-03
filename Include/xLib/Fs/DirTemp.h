@@ -14,13 +14,16 @@ class DirTemp
     /// DirTemp
 {
 public:
-             DirTemp();
-        ///< constructor
-    virtual ~DirTemp();
-        ///< destructor
+///@name ctors, dtor
+///@{
+			 DirTemp();
+	virtual ~DirTemp();
+
+	xNO_COPY_ASSIGN(DirTemp)
+///@}
 
 private:
-    xNO_COPY_ASSIGN(DirTemp)
+
 
 xPLATFORM_IMPL:
     void_t _construct_impl();
