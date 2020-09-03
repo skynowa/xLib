@@ -13,7 +13,7 @@ fi
 cd ../xLib_eclipse
 
 if [[ "$UNIT_TEST_NAME" == "all" ]]; then
-	make all && ctest
+    make all -j$(($(nproc) * 2)) && ctest
 else
-	make Test_$UNIT_TEST_NAME && ./Tests/Test_$UNIT_TEST_NAME
+    make Test_$UNIT_TEST_NAME && ./Tests/Test_$UNIT_TEST_NAME
 fi
