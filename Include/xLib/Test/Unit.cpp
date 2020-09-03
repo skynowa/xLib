@@ -6,6 +6,7 @@
 
 #include "Unit.h"
 
+#include <xLib/Core/ScopeExit.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
@@ -31,7 +32,6 @@ Unit::Unit()
 /* virtual */
 Unit::~Unit() /* = 0 */
 {
-    /// Dir( _data.tempDirPath ).pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
 UnitData &
@@ -57,6 +57,7 @@ Unit::run()
     bool_t isPassed {true};
 
     _createTempDir();
+	ScopeExit onExit( [&]() { _deleteTempDir(); });
 
     for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
         bool_t bRv {};
@@ -127,6 +128,12 @@ Unit::_createTempDir()
 		_data.name);
 
     Dir(_data.tempDirPath).pathCreate();
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Unit::_deleteTempDir()
+{
+	Dir( _data.tempDirPath ).pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
 
