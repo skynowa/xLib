@@ -12,8 +12,8 @@ unset(cmXLIB_TEMPLATE_SUBDIR         CACHE)
 unset(cmXLIB_TEMPLATE_NS             CACHE)
 unset(cmXLIB_TEMPLATE_PLATFORM_FILES CACHE)
 
-set(cmXLIB_TEMPLATE                "File") # TODO: set manually
-set(cmXLIB_TEMPLATE_COMMENTS       "File") # TODO: set manually
+set(cmXLIB_TEMPLATE                "DirTemp") # TODO: set manually
+set(cmXLIB_TEMPLATE_COMMENTS       "DirTemp") # TODO: set manually
 set(cmXLIB_TEMPLATE_SUBDIR         "Fs")       # TODO: set manually
 set(cmXLIB_TEMPLATE_NS             "fs")       # TODO: set manually
 set(cmXLIB_TEMPLATE_PLATFORM_FILES ON)
@@ -27,6 +27,8 @@ if (NOT cmXLIB_TEMPLATE OR
 endif()
 #--------------------------------------------------------------------------------------------------.
 # Configure
+message("Create: ${cmXLIB_TEMPLATE}")
+
 configure_file(
     ${XLIB_TEMPLATES}/[Class].h.in
     ${XLIB_LOCATION}/Include/xLib/${cmXLIB_TEMPLATE_SUBDIR}/${cmXLIB_TEMPLATE}.h)
