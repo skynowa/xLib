@@ -49,7 +49,9 @@ Test_IpcSemaphore::unit()
 
     xTEST_CASE("create")
     {
-		semaphore.create(4, xT("sema_name"));
+        std::ctstring_t name = Format::str(xT("{}_sema_name"), getData().name);
+
+		semaphore.create(4, name);
 		xTEST_PTR(semaphore.handle());
 
 	#if   xENV_WIN
