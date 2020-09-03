@@ -120,7 +120,7 @@ IpcSemaphore::_wait_impl(
 
 #if 0
     while ((iRv = ::sem_timedwait(_handle, &tmsTimeout)) == - 1 && (errno == EINTR)) {
-        // Restart if interrupted by handler
+
         continue;
     }
 #else
@@ -129,7 +129,11 @@ IpcSemaphore::_wait_impl(
     for ( ; ; ) {
         iRv = ::sem_timedwait(_handle, &tmsTimeout);
         _nativeError = errno;
-        xCHECK_DO(iRv == - 1 && _nativeError == EINTR, continue);
+
+        if (iRv == - 1 && _nativeError == EINTR) {
+            // Restart if interrupted by handler
+            continue;
+        }
 
         break;
     }
