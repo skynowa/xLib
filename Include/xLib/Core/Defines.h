@@ -82,22 +82,6 @@
 #endif
     ///< keyword "inline"
 //-------------------------------------------------------------------------------------------------
-// xNO_INLINE
-#if   xCOMPILER_MINGW
-    #define xNO_INLINE \
-        __attribute__ ((noinline))
-#elif xCOMPILER_MS
-    #define xNO_INLINE \
-        __declspec(noinline)
-#elif xCOMPILER_GNUC
-    #define xNO_INLINE \
-        __attribute__ ((noinline))
-#else
-    #define xNO_INLINE \
-        xNOT_AVAILABLE
-#endif
-    ///< keyword "no inline"
-//-------------------------------------------------------------------------------------------------
 // xSTDCALL
 #if   xENV_WIN
     #define xSTDCALL \
