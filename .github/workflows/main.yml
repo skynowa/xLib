@@ -34,7 +34,7 @@ jobs:
           path: xLib-data
 
       - name: Info
-        run: ./SystemInfoEx.sh && ./DevInfo.sh && exit 1
+        run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
 
       - name: xLib-data - Install
         run: cd ./xLib-data/Libs/ubuntu-20.04 && ./install.sh
