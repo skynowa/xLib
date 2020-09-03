@@ -20,7 +20,8 @@ Test_TcpClient::unit()
     ISocket::cType          type          = ISocket::Type::tpStream;
     ISocket::cProtocol      ptProtocol    = ISocket::Protocol::ptIp;
 
-	std::ctstring_t         hostName      = xT("localhost");
+	/// std::ctstring_t         hostName      = xT("localhost");
+	std::ctstring_t         hostName      = xT("www.google.com");
 	std::tstring_t          ip            = xT("127.0.0.1");
     cushort_t               port          {80};
 
