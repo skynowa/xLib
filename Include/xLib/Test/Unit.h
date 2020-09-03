@@ -60,25 +60,28 @@ public:
 #endif
 ///@}
 
-                        Unit() = default;
-    virtual            ~Unit() = 0;
+///@name ctors, dtor
+///@{
+			 Unit() = default;
+	virtual ~Unit() = 0;
 
-    UnitData           &getData();
+	xNO_COPY_ASSIGN(Unit)
+///@}
+
+    UnitData      &getData();
         ///< get data
-    void_t              setData(cUnitData &data);
+    void_t         setData(cUnitData &data);
         ///< set data
-    bool_t              run();
+    bool_t         run();
         ///< run cases
-    virtual bool_t      unit() = 0;
+    virtual bool_t unit() = 0;
         ///< unit
 
 private:
-    UnitData            _data;
+    UnitData _data;
 
-    void_t              _createTempDir(std::ctstring_t &dirName);
+    void_t _createTempDir(std::ctstring_t &dirName);
         ///< create temp dir
-
-    xNO_COPY_ASSIGN(Unit)
 };
 
 xNAMESPACE_END2(xl, test)
