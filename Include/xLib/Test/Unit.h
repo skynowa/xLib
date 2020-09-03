@@ -72,14 +72,12 @@ public:
         ///< get data
     void_t         setData(cUnitData &data);
         ///< set data
+	bool_t         isGithubCI() const;
+       ///< check Github CI
     bool_t         run();
         ///< run cases
     virtual bool_t unit() = 0;
         ///< unit
-
-xPUBLIC_STATIC:
-	static
-	bool_t isHostGithub();
 
 private:
     UnitData _data;
