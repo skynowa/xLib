@@ -85,7 +85,13 @@ ThreadPool<T>::groupCreate(
 
     //-------------------------------------
     //
-    create(false, 0U, nullptr);
+	{
+	    cbool_t  isPaused       {false};
+		cuint_t  stackSizeBytes {0};
+		void_t  *param          {};
+
+		create(isPaused, stackSizeBytes, param);
+	}
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -369,13 +375,15 @@ template<typename T>
 uint_t
 ThreadPool<T>::onRun(
     void_t *a_param
-)
+) /* override */
 {
-    xUNUSED(a_param);
+    xTEST_PTR(a_param);
+
+    xTRACE_FUNC
 
     // TODO: [skynowa] ThreadPool - a_param
 
-    uint_t uiRes = 0U;
+    uint_t uiRes {};
 
     //-------------------------------------
     //
@@ -383,7 +391,7 @@ ThreadPool<T>::onRun(
 
     //-------------------------------------
     //
-    xTEST_EQ(_tasks.empty(), true);
+    xTEST(_tasks.empty());
     _tasks.clear();
 
     for ( ; ; ) {
@@ -404,7 +412,6 @@ ThreadPool<T>::onRun(
         //-------------------------------------
         // .
         _taskAdd(nullptr);                       //_semaphore.bWait(INFINITE);
-        xTEST_EQ(bRv, true);                //continue ???
 
         ++ _currTask;
 
