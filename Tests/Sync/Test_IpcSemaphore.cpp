@@ -18,14 +18,14 @@ Test_IpcSemaphore::unit()
 {
     xTEST_CASE("IpcSemaphore")
     {
-        struct _Functor
+        struct Worker
         {
         #if   xENV_WIN
             static uint_t   xSTDCALL
         #elif xENV_UNIX
             static void_t * xSTDCALL
         #endif
-            worker(void_t *param)
+            exec(void_t *param)
             {
                 auto *sem = static_cast<IpcSemaphore *>(param);
                 xTEST_PTR(sem);
@@ -44,7 +44,7 @@ Test_IpcSemaphore::unit()
 			semaphore.create(4, xT("sema_name"));
 
 		#if   xENV_WIN
-			uintptr_t puiRv = ::_beginthreadex(nullptr, 0, &_Functor::worker, &semaphore, 0, nullptr);
+			uintptr_t puiRv = ::_beginthreadex(nullptr, 0, &Worker::exec, &semaphore, 0, nullptr);
 			#if xARCH_BITS_32
 				xTEST_DIFF(puiRv, uintptr_t());
 			#else
@@ -52,7 +52,7 @@ Test_IpcSemaphore::unit()
 			#endif
 		#elif xENV_UNIX
 			pthread_t id {};
-			int_t iRv = ::pthread_create(&id, nullptr, &_Functor::worker, &semaphore);
+			int_t iRv = ::pthread_create(&id, nullptr, &Worker::exec, &semaphore);
 			xTEST_EQ(iRv, 0);
 		#endif
 		}
