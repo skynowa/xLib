@@ -16,16 +16,16 @@ xTEST_UNIT(Test_TcpClient)
 bool_t
 Test_TcpClient::unit()
 {
-    ISocket::AddressFamily addressFamily = ISocket::AddressFamily::afInet;
-    ISocket::Type          type          = ISocket::Type::tpStream;
-    ISocket::Protocol      ptProtocol    = ISocket::Protocol::ptIp;
+    ISocket::cAddressFamily addressFamily = ISocket::AddressFamily::afInet;
+    ISocket::cType          type          = ISocket::Type::tpStream;
+    ISocket::cProtocol      ptProtocol    = ISocket::Protocol::ptIp;
 
-	std::ctstring_t         hostName     = xT("localhost");
-	std::tstring_t          ip           = xT("127.0.0.1");
-    ushort_t                port         = 80;
+	std::ctstring_t         hostName      = xT("localhost");
+	std::tstring_t          ip            = xT("127.0.0.1");
+    cushort_t               port          {80};
 
-    std::tstring_t          sendBuff     = xT("TEST_STRING");
-    char                    recvBuff[32] = {0};
+    std::ctstring_t         sendBuff      = xT("TEST_STRING");
+    char                    recvBuff[32]  {};
 
 	xTEST_CASE("SocketInit")
 	{
@@ -69,7 +69,7 @@ Test_TcpClient::unit()
 	xTEST_CASE("peerName")
     {
         std::tstring_t _ip;
-        ushort_t       _port = 0;
+        ushort_t       _port {};
 
         tcpClient.peerName(&_ip, &_port);
     }
@@ -77,7 +77,7 @@ Test_TcpClient::unit()
 	xTEST_CASE("socketName")
     {
         std::tstring_t _ip;
-        ushort_t       _port = 0;
+        ushort_t       _port {};
 
         tcpClient.socketName(&_ip, &_port);
     }
