@@ -16,10 +16,13 @@ class PoolThread :
     public Thread
 {
 public:
-    std::size_t    index;
+    std::size_t    index {};
 
     explicit       PoolThread(cbool_t &isAutoDelete);
     virtual       ~PoolThread();
+
+    xNO_DEFAULT_CONSTRUCT(PoolThread);
+    xNO_COPY_ASSIGN(PoolThread);
 
 protected:
     virtual uint_t onRun(void_t *param) override;
@@ -28,13 +31,12 @@ protected:
 PoolThread::PoolThread(
     cbool_t &a_isAutoDelete
 ) :
-    Thread(a_isAutoDelete),
-    index (0U)
+    Thread(a_isAutoDelete)
 {
 }
 //-------------------------------------------------------------------------------------------------
-PoolThread::~PoolThread() {
-
+PoolThread::~PoolThread()
+{
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
@@ -46,13 +48,13 @@ PoolThread::onRun(
 
     Trace() << xT("\n\tPoolThread: start #") << tag();
 
-    uint_t uiRes = 0;
+    uint_t uiRes {};
 
     // bIsCurrent
     bool_t bRv = Thread::isCurrent();
-    xTEST_EQ(bRv, true);
+    xTEST(bRv);
 
-    for (std::size_t i = 0; i < 10; ++ i) {
+    for (std::size_t i {}; i < 10; ++ i) {
         // interrupt point
         bRv = isTimeToExit();
         xCHECK_DO(bRv, Trace() << xT("\tPoolThread: break") << tag());
@@ -71,26 +73,23 @@ PoolThread::onRun(
 
     return uiRes;
 }
-//--------------------------------------------------------------------------
-
 //-------------------------------------------------------------------------------------------------
 /*virtual*/
 bool_t
 Test_ThreadPool::unit()
 {
-    cbool_t isPaused          = true;
-    cbool_t isAutoDelete      = true;
-    cbool_t isGroupPaused     = true;
-    cbool_t isGroupAutoDelete = true;
+    cbool_t isPaused          {true};
+    cbool_t isAutoDelete      {true};
+    cbool_t isGroupPaused     {true};
+    cbool_t isGroupAutoDelete {true};
 
-    ThreadPool<PoolThread> *pool = new ThreadPool<PoolThread>(isPaused, isAutoDelete,
-    	isGroupPaused, isGroupAutoDelete);
+    auto *pool = new ThreadPool<PoolThread>(isPaused, isAutoDelete, isGroupPaused, isGroupAutoDelete);
 
     {
-        cuint_t  stackSize       = 0UL;
-        void_t  *param           = nullptr;
-        cuint_t  tasksNum        = 5;
-        cuint_t  runningTasksMax = 10U;
+        cuint_t  stackSize       {};
+        void_t  *param           {};
+        cuint_t  tasksNum        {5};
+        cuint_t  runningTasksMax {10};
 
         pool->groupCreate(stackSize, nullptr, param, tasksNum, runningTasksMax);
     }
