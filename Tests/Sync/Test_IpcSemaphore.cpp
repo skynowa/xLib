@@ -47,11 +47,7 @@ Test_IpcSemaphore::unit()
 
 	#if   xENV_WIN
 		uintptr_t puiRv = ::_beginthreadex(nullptr, 0, &Worker::exec, &semaphore, 0, nullptr);
-		#if xARCH_BITS_32
-			xTEST_DIFF(puiRv, uintptr_t());
-		#else
-			xTEST_PTR(puiRv);
-		#endif
+		xTEST_PTR(puiRv);
 	#elif xENV_UNIX
 		pthread_t id {};
 		int_t iRv = ::pthread_create(&id, nullptr, &Worker::exec, &semaphore);
