@@ -122,6 +122,8 @@ IpcSemaphore::_wait_impl(
     int_t _nativeError {};
 	{
 	    for ( ; ; ) {
+	    	NativeError::reset();
+
 			iRv = ::sem_timedwait(_handle, &ts);
 			_nativeError = errno;
 

@@ -14,6 +14,9 @@ class NativeError
     /// system last error
 {
 public:
+	xNO_DEFAULT_CONSTRUCT(NativeError)
+	xNO_COPY_ASSIGN(NativeError)
+
     static
     bool_t         isSuccess();
         ///< is error code success
@@ -37,9 +40,6 @@ private:
     static
     ulong_t        _nativeCodeSuccess();
         ///< native success code
-
-    xNO_DEFAULT_CONSTRUCT(NativeError)
-    xNO_COPY_ASSIGN(NativeError)
 
 xPLATFORM_IMPL:
     static
