@@ -66,22 +66,6 @@
 #endif
     ///< disable class virtual table (only: Windows)
 //-------------------------------------------------------------------------------------------------
-// xFORCE_INLINE
-#if   xCOMPILER_MINGW
-    #define xFORCE_INLINE \
-        __attribute__((__always_inline__)) inline
-#elif xCOMPILER_MS
-    #define xFORCE_INLINE \
-        __forceinline
-#elif xCOMPILER_GNUC
-    #define xFORCE_INLINE \
-        __attribute__((__always_inline__)) inline
-#else
-    #define xFORCE_INLINE \
-        inline
-#endif
-    ///< keyword "inline"
-//-------------------------------------------------------------------------------------------------
 // xSTDCALL
 #if   xENV_WIN
     #define xSTDCALL \
