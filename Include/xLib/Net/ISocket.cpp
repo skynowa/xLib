@@ -42,11 +42,11 @@ ISocket::create(
     cProtocol      a_protocol
 )
 {
-    xTEST_EQ(_handle.isValid(), false);
+    xTEST(!_handle.isValid());
 
     _handle = ::socket(static_cast<int_t>(a_family), static_cast<int_t>(a_type),
     	static_cast<int_t>(a_protocol));
-    xTEST_DIFF(_handle.isValid(), true);
+    xTEST(_handle.isValid());
 
     _family = static_cast<sa_family_t>(a_family);
 }
@@ -123,7 +123,7 @@ ISocket::send(
 {
     // TODO: [skynowa] ISocket::send() - LINUX: ssize_t send(int_t sockfd, cptr_cvoid_t buf, size_t len, int_t flags);
 
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle.isValid());
     xTEST_PTR(a_buff);
     /////xTEST_LESS(0, ::lstrlen(buff));
 
@@ -136,8 +136,8 @@ ISocket::sendAll(
     cint_t          &a_flags
 )
 {
-    xTEST_EQ(_handle.isValid(), true);
-    xTEST_EQ(a_buff.empty(), false);
+    xTEST(_handle.isValid());
+    xTEST(!a_buff.empty());
     xTEST_LESS(size_t(0U), a_buff.size());
 
     size_t currPos  = 0;
@@ -177,7 +177,7 @@ ISocket::receive(
     cint_t       &a_flags
 )
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle.isValid());
     xTEST_PTR(a_buff);
     xTEST_DIFF(a_buffSize, (size_t)0);
 
