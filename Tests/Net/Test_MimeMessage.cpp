@@ -17,10 +17,12 @@ bool_t
 Test_MimeMessage::unit()
 {
 #if cmOPENSSL_CRYPTO_FOUND
-    {
-        // FIX: temp disable
-        return true;
-    }
+	{
+		// TODO: Test_MimeMessage - fix tests
+		xTRACE_NOT_IMPLEMENTED
+
+		return true;
+	}
 
     Pop3Client objPop3;
 

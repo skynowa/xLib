@@ -15,9 +15,9 @@ xTEST_UNIT(Test_Condition)
 #if xENV_UNIX
 
 std::csize_t    threadsNum   = 3;
-std::csize_t    counterMax   = 12;
+std::csize_t    counterMax   = 4;
 size_t          counter      = 0;
-size_t          jobLoops     = 10;
+size_t          jobLoops     = 3;
 
 pthread_mutex_t mtMutex      = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t  cndCondition = PTHREAD_COND_INITIALIZER;
@@ -107,7 +107,7 @@ job(
 
         // do some "work" so threads can alternate on mutex lock
         {
-           ::sleep(1);
+           /// ::sleep(1);
         }
     }
 
