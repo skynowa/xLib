@@ -16,7 +16,7 @@ xTEST_UNIT(Test_MySql)
 bool_t
 Test_MySql::unit()
 {
-	// TODO: Test_MySql - setup environment for tests
+	// TODO: Test_MySql - setup environment for tests (Mocks)
 	return true;
 
 #if cmMYSQL_FOUND
