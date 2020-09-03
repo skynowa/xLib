@@ -88,16 +88,25 @@ PoolThread::onRun(
 bool_t
 Test_ThreadPool::unit()
 {
-    cbool_t isPaused          {true};
-    cbool_t isAutoDelete      {true};
-    cbool_t isGroupPaused     {true};
-    cbool_t isGroupAutoDelete {true};
+    cbool_t      isPaused          {true};
+    cbool_t      isAutoDelete      {true};
+    cbool_t      isGroupPaused     {true};
+    cbool_t      isGroupAutoDelete {true};
+    std::csize_t tasks_num         {3};
 
-    ThreadPool<PoolThread> *pool = {};
+    ThreadPool<PoolThread> *pool {};
 
 	xTEST_CASE("ctor")
 	{
     	pool = new ThreadPool<PoolThread>(isPaused, isAutoDelete, isGroupPaused, isGroupAutoDelete);
+	}
+
+    xTEST_CASE("numTasks/setNumTasks")
+	{
+		pool->setNumTasks(tasks_num);
+
+		m_stRv = pool->numTasks();
+		xTEST_EQ(m_stRv, tasks_num);
 	}
 
     xTEST_CASE("groupCreate")
@@ -133,19 +142,6 @@ Test_ThreadPool::unit()
     xTEST_CASE("groupWait")
 	{
 	    pool->groupWait(500UL);
-	}
-
-    xTEST_CASE("maxTasks/setMaxTasks")
-	{
-		m_stRv = pool->maxTasks();
-		xUNUSED(m_stRv);
-
-		pool->setMaxTasks(10);
-
-	    m_stRv = pool->numTasks();
-		xUNUSED(m_stRv);
-
-	    pool->setNumTasks(10);
 	}
 
     return true;
