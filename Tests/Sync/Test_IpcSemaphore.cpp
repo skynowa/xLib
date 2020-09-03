@@ -16,49 +16,49 @@ xTEST_UNIT(Test_IpcSemaphore)
 bool_t
 Test_IpcSemaphore::unit()
 {
-    xTEST_CASE("IpcSemaphore")
-    {
-        struct Worker
-        {
-        #if   xENV_WIN
-            static uint_t   xSTDCALL
-        #elif xENV_UNIX
-            static void_t * xSTDCALL
-        #endif
-            exec(void_t *param)
-            {
-                auto *sem = static_cast<IpcSemaphore *>(param);
-                xTEST_PTR(sem);
-
-                for (int_t i = 0; i < 50; i ++) {
-                    sem->wait(xTIMEOUT_INFINITE);
-                }
-
-                return 0;
-            }
-        };
-
-        // create
-        IpcSemaphore semaphore;
+	struct Worker
+	{
+	#if   xENV_WIN
+		static uint_t   xSTDCALL
+	#elif xENV_UNIX
+		static void_t * xSTDCALL
+	#endif
+		exec(void_t *param)
 		{
-			semaphore.create(4, xT("sema_name"));
-			xTEST_PTR(semaphore.handle());
+			auto *sem = static_cast<IpcSemaphore *>(param);
+			xTEST_PTR(sem);
 
-		#if   xENV_WIN
-			uintptr_t puiRv = ::_beginthreadex(nullptr, 0, &Worker::exec, &semaphore, 0, nullptr);
-			#if xARCH_BITS_32
-				xTEST_DIFF(puiRv, uintptr_t());
-			#else
-				xTEST_PTR(puiRv);
-			#endif
-		#elif xENV_UNIX
-			pthread_t id {};
-			int_t iRv = ::pthread_create(&id, nullptr, &Worker::exec, &semaphore);
-			xTEST_EQ(iRv, 0);
-		#endif
+			for (int_t i = 0; i < 50; i ++) {
+				sem->wait(xTIMEOUT_INFINITE);
+			}
+
+			return 0;
 		}
+	};
 
-        // post
+	IpcSemaphore semaphore;
+
+    xTEST_CASE("create")
+    {
+		semaphore.create(4, xT("sema_name"));
+		xTEST_PTR(semaphore.handle());
+
+	#if   xENV_WIN
+		uintptr_t puiRv = ::_beginthreadex(nullptr, 0, &Worker::exec, &semaphore, 0, nullptr);
+		#if xARCH_BITS_32
+			xTEST_DIFF(puiRv, uintptr_t());
+		#else
+			xTEST_PTR(puiRv);
+		#endif
+	#elif xENV_UNIX
+		pthread_t id {};
+		int_t iRv = ::pthread_create(&id, nullptr, &Worker::exec, &semaphore);
+		xTEST_EQ(iRv, 0);
+	#endif
+    }
+
+    xTEST_CASE("post")
+    {
         for (size_t i = 0; i < 50; ++ i) {
             Thread::currentSleep(1);
 
