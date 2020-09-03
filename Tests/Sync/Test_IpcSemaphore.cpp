@@ -19,10 +19,12 @@ Test_IpcSemaphore::unit()
 	struct Worker
 	{
 	#if   xENV_WIN
-		static uint_t   xSTDCALL
+		using rv_exec_t = uint_t;
 	#elif xENV_UNIX
-		static void_t * xSTDCALL
+		using rv_exec_t = void_t *;
 	#endif
+
+		static rv_exec_t xSTDCALL
 		exec(void_t *param)
 		{
 			auto *sem = static_cast<IpcSemaphore *>(param);
