@@ -98,8 +98,12 @@ public:
 bool_t
 Test_FsWatcher::unit()
 {
-	// TODO: Test_FsWatcher - fix tests
-	return true;
+	{
+		// TODO: Test_FsWatcher - fix tests
+		xTRACE_NOT_IMPLEMENTED
+
+		return true;
+	}
 
 	struct Cmd
 	{

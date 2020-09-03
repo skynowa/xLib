@@ -135,6 +135,15 @@
             << xT("\t::: ") << sourceInfo.data().funcName << xT(": ") << xTRACE_VAR(v) << xT(" :::"); \
     }
     ///< trace function variable (use Trace)
+#define xTRACE_NOT_IMPLEMENTED \
+    { \
+        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        xl::debug::SourceInfo      sourceInfo(data); \
+        \
+        xl::log::Trace() \
+            << xT("\t::: ") << sourceInfo.data().funcName << xT(": Not implemented :::"); \
+    }
+    ///< trace not implemented message
 #define xNOT_IMPLEMENTED \
     { xTEST_FAIL_MSG(xT("Not implemented")); }
     ///< show not implemented message

@@ -40,7 +40,6 @@ PoolThread::PoolThread(
 ) :
     Thread(a_isAutoDelete)
 {
-	::exit(1);
 }
 //-------------------------------------------------------------------------------------------------
 PoolThread::~PoolThread()
@@ -88,6 +87,11 @@ PoolThread::onRun(
 bool_t
 Test_ThreadPool::unit()
 {
+	{
+		// TODO: Test_ThreadPool - fix tests
+		xTRACE_NOT_IMPLEMENTED
+	}
+
     cbool_t      isPaused          {true};
     cbool_t      isAutoDelete      {true};
     cbool_t      isGroupPaused     {true};
