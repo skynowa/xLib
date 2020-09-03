@@ -20,8 +20,7 @@ Test_TcpClient::unit()
     ISocket::cType          type          = ISocket::Type::tpStream;
     ISocket::cProtocol      ptProtocol    = ISocket::Protocol::ptIp;
 
-	/// std::ctstring_t         hostName      = xT("localhost");
-	std::ctstring_t         hostName      = xT("www.google.com");
+	std::ctstring_t         hostName      = xT("localhost");
 	std::tstring_t          ip            = xT("127.0.0.1");
     cushort_t               port          {80};
 
@@ -43,7 +42,7 @@ Test_TcpClient::unit()
 	xTEST_CASE("isServerAlive")
 	{
 		if ( isHostGithub() ) {
-			// TEST: Githab CI
+			// TEST: Github CI
 		} else {
 			m_bRv = TcpClient::isServerAlive(ip, port);
 			xTEST(m_bRv);
@@ -57,7 +56,7 @@ Test_TcpClient::unit()
 	xTEST_CASE("connect")
 	{
 		if ( isHostGithub() ) {
-			// TEST: Githab CI
+			// TEST: Github CI
 		} else {
 			tcpClient.connect(ip, port);
 		}
