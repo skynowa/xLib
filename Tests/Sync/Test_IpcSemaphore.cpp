@@ -27,11 +27,11 @@ Test_IpcSemaphore::unit()
         #endif
             worker(void_t *param)
             {
-                auto *semaphore = static_cast<IpcSemaphore *>(param);
-                xTEST_PTR(semaphore);
+                auto *sem = static_cast<IpcSemaphore *>(param);
+                xTEST_PTR(sem);
 
                 for (int_t i = 0; i < 50; i ++) {
-                    semaphore->wait(xTIMEOUT_INFINITE);
+                	sem->wait(xTIMEOUT_INFINITE);
                 }
 
                 return 0;
