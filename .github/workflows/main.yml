@@ -57,7 +57,7 @@ jobs:
         run: cd ./Build && ./build.sh
 
       - name: xLib - Unit Tests (optional)
-        run: ./unit_tests.sh Path
+        run: ./unit_tests.sh Test_Format
 
       - name: xLib - Tests
         run: cd ./Build && ./tests.sh
