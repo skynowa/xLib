@@ -23,14 +23,14 @@ xNAMESPACE_BEGIN2(xl, internal)
 class CrashCallback
 {
 public:
-    xNO_INLINE
+
     CrashCallback()
     {
     }
 
     xNO_COPY_ASSIGN(CrashCallback)
 
-    xNO_INLINE static void_t
+    static void_t
     onSignals(int_t a_signal)
     {
         xTRACE_FUNC;
@@ -39,7 +39,7 @@ public:
         Application::exitFailure();
     }
 
-    xNO_INLINE static void_t
+    static void_t
     onInfo(int_t a_signal, siginfo_t *a_info, void_t *a_context)
     {
         xTEST_EQ(a_signal, a_info->si_signo);
@@ -67,19 +67,19 @@ public:
         Application::exitFailure();
     }
 
-    xNO_INLINE static void_t
+    static void_t
     onExit()
     {
         xTRACE_FUNC;
     }
 
-    xNO_INLINE static void_t
+    static void_t
     onTerminate()
     {
         xTRACE_FUNC;
     }
 
-    xNO_INLINE static void_t
+    static void_t
     onUnexpected()
     {
         xTRACE_FUNC;
