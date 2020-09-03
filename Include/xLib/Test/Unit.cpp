@@ -31,7 +31,7 @@ Unit::Unit()
 /* virtual */
 Unit::~Unit() /* = 0 */
 {
-    Dir( _data.tempDirPath ).pathDelete();
+    /// Dir( _data.tempDirPath ).pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
 UnitData &
@@ -56,7 +56,7 @@ Unit::run()
 {
     bool_t isPassed {true};
 
-    _createTempDir(xT("Temp"));
+    _createTempDir();
 
     for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
         bool_t bRv {};
@@ -119,19 +119,14 @@ Unit::unit() /* = 0 */
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Unit::_createTempDir(
-    std::ctstring_t &a_dirName
-)
+Unit::_createTempDir()
 {
-    xTEST_NA(a_dirName);
+	_data.tempDirPath = Format::str(xT("{}{}{}_tmp"),
+		Path::exeDir(),
+		Const::slash(),
+		_data.name);
 
-    if (a_dirName.empty()) {
-        _data.tempDirPath = Dir::temp();
-    } else {
-    	_data.tempDirPath = Path::exeDir() + Const::slash() + a_dirName;
-
-        Dir(_data.tempDirPath).pathCreate();
-    }
+    Dir(_data.tempDirPath).pathCreate();
 }
 //-------------------------------------------------------------------------------------------------
 

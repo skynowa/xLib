@@ -80,7 +80,7 @@ public:
 private:
     UnitData _data;
 
-    void_t _createTempDir(std::ctstring_t &dirName);
+    void_t _createTempDir();
         ///< create temp dir
 };
 
