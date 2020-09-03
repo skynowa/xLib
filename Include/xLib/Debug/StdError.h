@@ -14,6 +14,9 @@ class StdError
     /// standard C library last error
 {
 public:
+	xNO_DEFAULT_CONSTRUCT(StdError)
+	xNO_COPY_ASSIGN(StdError)
+
     static
     bool_t         isSuccess();
         ///< is error code success
@@ -37,9 +40,6 @@ private:
     static
     int_t          _stdCodeSuccess();
         ///< native success code
-
-    xNO_DEFAULT_CONSTRUCT(StdError)
-    xNO_COPY_ASSIGN(StdError)
 
 xPLATFORM_IMPL:
     static
