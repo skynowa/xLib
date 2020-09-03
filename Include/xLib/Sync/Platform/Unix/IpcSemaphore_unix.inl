@@ -129,8 +129,9 @@ IpcSemaphore::_wait_impl(
     for ( ; ; ) {
         iRv = ::sem_timedwait(_handle, &tmsTimeout);
         _nativeError = errno;
+        xCHECK_DO(iRv == - 1 && _nativeError == EINTR, continue);
 
-        xCHECK_DO(! (iRv == - 1 && _nativeError == EINTR), break);
+        break;
     }
 #endif
 
