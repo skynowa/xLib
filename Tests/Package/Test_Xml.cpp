@@ -21,7 +21,8 @@ Test_Xml::unit()
 
     xTEST_CASE("1.xml")
     {
-        std::ctstring_t filePath = "/home/skynowa/Projects/xLib/Tests/Package/Xml/1.xml";
+        std::ctstring_t filePath = "../../xLib/Tests/Package/Xml/1.xml";
+		xTEST(FileInfo(filePath).isExists());
 
         XmlDoc doc("UTF-8");
         doc.parseFile(filePath);
