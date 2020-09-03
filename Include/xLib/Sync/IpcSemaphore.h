@@ -33,13 +33,13 @@ public:
         ///< maximum value
     const handle_t & handle() const;
         ///< get handle
-    void_t           create(clong_t &initialValue, std::ctstring_t &name);
+    void_t           create(clong_t initialValue, std::ctstring_t &name);
         ///< create
     void_t           open(std::ctstring_t &name);
         ///< open
     void_t           post() const;
         ///< release
-    void_t           wait(culong_t &timeoutMsec) const;
+    void_t           wait(culong_t timeoutMsec) const;
         ///< wait
     long_t           value() const;
         ///< get value
@@ -54,10 +54,10 @@ xPLATFORM_IMPL:
     void_t           _construct_impl();
     void_t           _destruct_impl();
     long_t           _valueMax_impl() const;
-    void_t           _create_impl(clong_t &initialValue, std::ctstring_t &name);
+    void_t           _create_impl(clong_t initialValue, std::ctstring_t &name);
     void_t           _open_impl(std::ctstring_t &name);
     void_t           _post_impl() const;
-    void_t           _wait_impl(culong_t &timeoutMsec) const;
+    void_t           _wait_impl(culong_t timeoutMsec) const;
     long_t           _value_impl() const;
     bool_t           _isValid_impl() const;
 };

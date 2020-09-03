@@ -34,7 +34,7 @@ IpcSemaphore::_valueMax_impl() const
 //-------------------------------------------------------------------------------------------------
 void_t
 IpcSemaphore::_create_impl(
-    clong_t         &a_initialValue,
+    clong_t          a_initialValue,
     std::ctstring_t &a_name
 )
 {
@@ -90,7 +90,7 @@ IpcSemaphore::_post_impl() const
 //-------------------------------------------------------------------------------------------------
 void_t
 IpcSemaphore::_wait_impl(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 ) const
 {
     DWORD dwRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);

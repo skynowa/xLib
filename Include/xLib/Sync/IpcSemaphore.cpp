@@ -34,14 +34,14 @@ xNAMESPACE_BEGIN2(xl, sync)
 //-------------------------------------------------------------------------------------------------
 IpcSemaphore::IpcSemaphore()
 {
-    xTEST_EQ(_isValid(), false);
+    xTEST(!_isValid());
 
     _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 IpcSemaphore::~IpcSemaphore()
 {
-    xTEST_EQ(_isValid(), true);
+    xTEST(_isValid());
 
     _destruct_impl();
 }
@@ -55,20 +55,20 @@ IpcSemaphore::valueMax() const
 const IpcSemaphore::handle_t &
 IpcSemaphore::handle() const
 {
-    xTEST_EQ(_isValid(), true);
+    xTEST(_isValid());
 
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 IpcSemaphore::create(
-    clong_t         &a_initialValue,
+    clong_t          a_initialValue,
     std::ctstring_t &a_name
 )
 {
-    xTEST_EQ(_isValid(), false);
+    xTEST(!_isValid());
     xTEST_GR(Path::maxSize(), a_name.size());
-    xTEST_EQ(0L <= a_initialValue && a_initialValue <= valueMax(), true);
+    xTEST(0L <= a_initialValue && a_initialValue <= valueMax());
 
     _create_impl(a_initialValue, a_name);
 }
@@ -78,8 +78,8 @@ IpcSemaphore::open(
     std::ctstring_t &a_name
 )
 {
-    xTEST_EQ(_isValid(), true);
-    //name    - n/a
+    xTEST(_isValid());
+    xTEST_NA(a_name);
 
     _open_impl(a_name);
 }
@@ -94,10 +94,10 @@ IpcSemaphore::post() const
 //-------------------------------------------------------------------------------------------------
 void_t
 IpcSemaphore::wait(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 ) const
 {
-    xTEST_EQ(_isValid(), true);
+    xTEST(_isValid());
     xTEST_NA(a_timeoutMsec);
 
     _wait_impl(a_timeoutMsec);
@@ -106,7 +106,7 @@ IpcSemaphore::wait(
 long_t
 IpcSemaphore::value() const
 {
-    xTEST_EQ(_isValid(), true);
+    xTEST(_isValid());
 
     return _value_impl();
 }
