@@ -65,7 +65,7 @@ jobs:
       #   run: cd ./Build && ./build.sh
 
       - name: xLib - Unit Tests (optional)
-        run: ./unit_tests.sh TcpClient
+        run: ./unit_tests.sh IpcSemaphore
 
       - name: xLib - Tests
         run: cd ./Build && ./tests.sh
