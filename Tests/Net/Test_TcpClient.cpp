@@ -20,15 +20,9 @@ Test_TcpClient::unit()
     ISocket::Type          type          = ISocket::Type::tpStream;
     ISocket::Protocol      ptProtocol    = ISocket::Protocol::ptIp;
 
-#if 1
-	std::ctstring_t         hostName      = xT("skynowa-pc");
+	std::ctstring_t         hostName      = xT("localhost");
 	std::tstring_t          ip            = xT("127.0.0.1");
     ushort_t                port          = 80;
-#else
-	std::ctstring_t         hostName      = xT("jail.skynowa");
-	std::tstring_t          ip            = xT("192.168.12.206");
-    ushort_t                port          = 22;
-#endif
 
     std::tstring_t          sendBuff      = xT("TEST_STRING");
     char                    recvBuff[32]  = {0};
