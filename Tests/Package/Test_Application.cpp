@@ -121,7 +121,7 @@ public:
     {
         Failer().bug();
 
-        return ExitCode::Failure;
+        return ExitCode::Success;
     }
 
 private:
@@ -134,7 +134,7 @@ Test_Application::unit()
 {
     xTEST_CASE("args")
     {
-        UserApplication application(xT("[app_name]_guid"), xT(""));
+        UserApplication application(xT("Test_Application_guid"), xT(""));
 
         std::vec_tstring_t args1;
         application.args(false, &args1);
@@ -152,13 +152,13 @@ Test_Application::unit()
 
     xTEST_CASE("dirsCreate")
     {
-        UserApplication application(xT("[app_name]_guid"), xT(""));
+        UserApplication application(xT("Test_Application_guid"), xT(""));
         application.dirsCreate();
     }
 
     xTEST_CASE("selfCheck")
     {
-        UserApplication application(xT("[app_name]_guid"), xT(""));
+        UserApplication application(xT("Test_Application_guid"), xT(""));
         m_bRv = application.selfCheck();
         xTEST(m_bRv);
     }
@@ -218,8 +218,8 @@ Test_Application::unit()
 
     xTEST_CASE("connect")
     {
-        UserApplication userApp(xT("[app_name]_guid"), xT(""));
-        userApp.run();
+		UserApplication userApp(xT("Test_Application_guid"), xT(""));
+		userApp.run();
     }
 
     return true;
