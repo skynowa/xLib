@@ -14,13 +14,16 @@ class ${cmXLIB_TEMPLATE}
     /// ${cmXLIB_TEMPLATE_COMMENTS}
 {
 public:
+///@name ctors, dtor
+///@{
              ${cmXLIB_TEMPLATE}();
-        ///< constructor
     virtual ~${cmXLIB_TEMPLATE}();
-        ///< destructor
+
+    xNO_COPY_ASSIGN(${cmXLIB_TEMPLATE})
+///@}
 
 private:
-    xNO_COPY_ASSIGN(${cmXLIB_TEMPLATE})
+
 
 xPLATFORM_IMPL:
     void_t _construct_impl();
