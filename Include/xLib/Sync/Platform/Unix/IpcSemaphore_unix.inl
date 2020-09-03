@@ -34,7 +34,7 @@ IpcSemaphore::_destruct_impl()
 long_t
 IpcSemaphore::_valueMax_impl() const
 {
-    long_t liRv = 0;
+    long_t liRv {};
 
 #if   defined(SEM_VALUE_MAX)
     liRv = SEM_VALUE_MAX;
@@ -59,8 +59,7 @@ IpcSemaphore::_create_impl(
     const mode_t    modeDefault = S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH;
 
     handle_t hRv = ::sem_open(xT2A(unixName).c_str(), O_CREAT | O_RDWR, modeDefault, a_initialValue);
-    // TODO: [skynowa] StdStreamV2
-    ///-- xTEST_DIFF(hRv, static_cast<handle_t>( SEM_FAILED ));
+    xTEST(hRv != static_cast<handle_t>(SEM_FAILED));
 
     _handle = hRv;
     _name   = unixName;
@@ -75,8 +74,7 @@ IpcSemaphore::_open_impl(
     const mode_t    modeDefault = S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH;
 
     handle_t hRv = ::sem_open(xT2A(unixName).c_str(), O_RDWR, modeDefault, 0U);
-    // TODO: [skynowa] StdStreamV2
-    ///-- xTEST_DIFF(hRv, static_cast<handle_t>( SEM_FAILED ));
+    xTEST(hRv != static_cast<handle_t>(SEM_FAILED));
 
     _handle = hRv;
     _name   = unixName;
@@ -94,38 +92,30 @@ IpcSemaphore::_wait_impl(
     culong_t &a_timeoutMsec
 ) const
 {
-    struct _Functor
-    {
-        static void_t
-        timespecAddMsec(
-            timespec *a_ts,
-            long      a_ms
-        )
-        {
-            long_t sec = 0L;
-
-            sec  = a_ms / 1000;
-            a_ms = a_ms - sec * 1000;
-
-            // perform the addition
-            a_ts->tv_nsec += a_ms * 1000000;
-
-            // adjust the time
-            a_ts->tv_sec += a_ts->tv_nsec / 1000000000 + sec;
-            a_ts->tv_nsec = a_ts->tv_nsec % 1000000000;
-        }
-    };
-
-
-    int_t    iRv        = - 1;
-    timespec tmsTimeout = {0, 0};
+    int_t    iRv        {- 1};
+    timespec tmsTimeout {};
 
     // add msec to timespec
     {
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
         xTEST_DIFF(iRv, - 1);
 
-        (void_t)_Functor::timespecAddMsec(&tmsTimeout, static_cast<long>(a_timeoutMsec));
+		auto timespecAddMsec = [&] (timespec *a_ts, long_t a_ms) -> void_t
+		{
+			long_t sec {};
+
+			sec  = a_ms / 1000;
+			a_ms = a_ms - sec * 1000;
+
+			// perform the addition
+			a_ts->tv_nsec += a_ms * 1000000;
+
+			// adjust the time
+			a_ts->tv_sec += a_ts->tv_nsec / 1000000000 + sec;
+			a_ts->tv_nsec = a_ts->tv_nsec % 1000000000;
+		};
+
+        timespecAddMsec(&tmsTimeout, static_cast<long_t>(a_timeoutMsec));
     }
 
 #if 0
@@ -137,7 +127,7 @@ IpcSemaphore::_wait_impl(
     int_t _nativeError = 0;
 
     for ( ; ; ) {
-        iRv       = ::sem_timedwait(_handle, &tmsTimeout);
+        iRv = ::sem_timedwait(_handle, &tmsTimeout);
         _nativeError = errno;
 
         xCHECK_DO(! (iRv == - 1 && _nativeError == EINTR), break);
