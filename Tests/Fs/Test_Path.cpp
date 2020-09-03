@@ -985,16 +985,16 @@ Test_Path::unit()
     xTEST_CASE("homeAsBrief")
     {
 	#if   xENV_WIN
-		std::ctstring_t filePath = xT("C:\Users\skynowa\test");
+		std::ctstring_t filePath = Format::str(xT("C:\Users\{}\test"), User().name()));
 	#elif xENV_UNIX
-		std::ctstring_t filePath = xT("/home/skynowa/Soft/eclipse/workspace/xLib.test/Debug");
+		std::ctstring_t filePath = Format::str(xT("/home/{}/tmp"), User().name());
 	#endif
 
 		m_sRv = Path(filePath).homeAsBrief();
 	#if   xENV_WIN
 		xTEST_EQ(std::tstring_t(xT("~\test")), m_sRv);
 	#elif xENV_UNIX
-		xTEST_EQ(std::tstring_t(xT("~/Soft/eclipse/workspace/xLib.test/Debug")), m_sRv);
+		xTEST_EQ(std::tstring_t(xT("~/tmp")), m_sRv);
 	#endif
     }
 
