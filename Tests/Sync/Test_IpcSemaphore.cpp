@@ -31,7 +31,7 @@ Test_IpcSemaphore::unit()
                 xTEST_PTR(sem);
 
                 for (int_t i = 0; i < 50; i ++) {
-                	sem->wait(xTIMEOUT_INFINITE);
+                    sem->wait(xTIMEOUT_INFINITE);
                 }
 
                 return 0;
@@ -40,24 +40,27 @@ Test_IpcSemaphore::unit()
 
         // create
         IpcSemaphore semaphore;
-        semaphore.create(4, xT("sema_name"));
+		{
+			semaphore.create(4, xT("sema_name"));
 
-    #if   xENV_WIN
-        uintptr_t puiRv = ::_beginthreadex(nullptr, 0U, &_Functor::worker, &semaphore, 0U, nullptr);
-        #if xARCH_BITS_32
-            xTEST_DIFF(puiRv, uintptr_t(0));
-        #else
-            xTEST_PTR(puiRv);
-        #endif
-    #elif xENV_UNIX
-        pthread_t id {};
-        int_t iRv = ::pthread_create(&id, nullptr, &_Functor::worker, &semaphore);
-        xTEST_EQ(iRv, 0);
-    #endif
+		#if   xENV_WIN
+			uintptr_t puiRv = ::_beginthreadex(nullptr, 0, &_Functor::worker, &semaphore, 0, nullptr);
+			#if xARCH_BITS_32
+				xTEST_DIFF(puiRv, uintptr_t());
+			#else
+				xTEST_PTR(puiRv);
+			#endif
+		#elif xENV_UNIX
+			pthread_t id {};
+			int_t iRv = ::pthread_create(&id, nullptr, &_Functor::worker, &semaphore);
+			xTEST_EQ(iRv, 0);
+		#endif
+		}
 
         // post
         for (size_t i = 0; i < 50; ++ i) {
             Thread::currentSleep(1);
+
             for (int_t x = 0; x < 2; x ++) {
                 semaphore.post();
             }
