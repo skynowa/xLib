@@ -58,10 +58,6 @@ use mysql
 SHOW TABLES;
 ```
 
-## CI Badges
-
-- https://shields.io/category/build
-
 ## Known issues
 
 - n/a
