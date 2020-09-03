@@ -229,9 +229,13 @@ public:
     };
     xUSING_CONST(Options);
 
-                   ISocket() = default;
-    virtual       ~ISocket() = 0;
+///@name ctors, dtor
+///@{
+			 ISocket() = default;
+	virtual ~ISocket() = 0;
 
+	xNO_COPY_ASSIGN(ISocket)
+///@}
 
     /*******************************************************************************
     *
@@ -307,8 +311,6 @@ protected:
     sa_family_t    _family {};      ///< family
     std::tstring_t _ip;             ///< IP
     ushort_t       _port {};        ///< port
-
-    xNO_COPY_ASSIGN(ISocket)
 
 xPLATFORM_IMPL:
     void_t         _close_impl();
