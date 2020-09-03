@@ -15,6 +15,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
+#include <xLib/System/Environment.h>
 
 
 xNAMESPACE_BEGIN2(xl, test)
@@ -117,6 +118,13 @@ Unit::unit() /* = 0 */
     */
 
     return true;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+Unit::isHostGithub()
+{
+	return Environment::isExists(xT("GITHUB_WORKSPACE"));
 }
 //-------------------------------------------------------------------------------------------------
 void_t
