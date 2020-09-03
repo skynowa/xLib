@@ -42,17 +42,25 @@ Test_TcpClient::unit()
 
 	xTEST_CASE("isServerAlive")
 	{
-		m_bRv = TcpClient::isServerAlive(ip, port);
-		xTEST(m_bRv);
+		if ( isHostGithub() ) {
+			// TEST: Githab CI
+		} else {
+			m_bRv = TcpClient::isServerAlive(ip, port);
+			xTEST(m_bRv);
 
-		std::tstring_t ipFromDns;
-		DnsClient::hostAddrByName(hostName, &ipFromDns);
-		xTEST_EQ(ip, ipFromDns);
+			std::tstring_t ipFromDns;
+			DnsClient::hostAddrByName(hostName, &ipFromDns);
+			xTEST_EQ(ip, ipFromDns);
+		}
 	}
 
 	xTEST_CASE("connect")
 	{
-		tcpClient.connect(ip, port);
+		if ( isHostGithub() ) {
+			// TEST: Githab CI
+		} else {
+			tcpClient.connect(ip, port);
+		}
 	}
 
 	xTEST_CASE("isReadable")

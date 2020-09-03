@@ -77,6 +77,10 @@ public:
     virtual bool_t unit() = 0;
         ///< unit
 
+xPUBLIC_STATIC:
+	static
+	bool_t isHostGithub();
+
 private:
     UnitData _data;
 
