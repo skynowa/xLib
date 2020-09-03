@@ -67,7 +67,7 @@ IpcSemaphore::create(
 )
 {
     xTEST(!_isValid());
-    xTEST_GR(Path::maxSize(), a_name.size());
+    xTEST_LESS_EQ(a_name.size(), Path::maxSize());
     xTEST(0L <= a_initialValue && a_initialValue <= valueMax());
 
     _create_impl(a_initialValue, a_name);
