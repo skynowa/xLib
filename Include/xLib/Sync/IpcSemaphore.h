@@ -21,8 +21,13 @@ public:
     using handle_t = sem_t *;
 #endif
 
-                     IpcSemaphore();
-    virtual         ~IpcSemaphore();
+///@name ctors, dtor
+///@{
+			 IpcSemaphore();
+	virtual ~IpcSemaphore();
+
+	xNO_COPY_ASSIGN(IpcSemaphore)
+///@}
 
     long_t           valueMax() const;
         ///< maximum value
@@ -44,8 +49,6 @@ private:
     std::tstring_t   _name;
 
     bool_t           _isValid() const;
-
-    xNO_COPY_ASSIGN(IpcSemaphore)
 
 xPLATFORM_IMPL:
     void_t           _construct_impl();
