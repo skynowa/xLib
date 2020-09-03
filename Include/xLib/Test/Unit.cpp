@@ -45,16 +45,16 @@ Unit::setData(
     cUnitData &a_data
 )
 {
+    _data.name        = a_data.name;
     _data.unitLoops   = a_data.unitLoops;
     _data.caseLoops   = a_data.caseLoops;
     _data.tempDirPath = a_data.tempDirPath;
-    _data.name        = a_data.name;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
 Unit::run()
 {
-    bool_t isPassed = true;
+    bool_t isPassed {true};
 
     _createTempDir(xT("Temp"));
 
@@ -100,7 +100,7 @@ Unit::unit() /* = 0 */
     * \code
     * xTEST_CASE("CaseName")
     * {
-    *     std::ctstring_t testData[][2] =
+    *     std::ctstring_t testData[][2]
     *     {
     *         {xT("TEST_STRING_1"), xT("MUST_BE_1")},
     *         {xT("TEST_STRING_2"), xT("MUST_BE_2")},

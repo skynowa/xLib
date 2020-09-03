@@ -17,10 +17,10 @@ xNAMESPACE_BEGIN2(xl, test)
 struct UnitData
     /// testing data
 {
+    std::tstring_t name;            ///< name
     std::size_t    unitLoops {1};   ///< unit loops
     std::size_t    caseLoops {1};   ///< case loops
     std::tstring_t tempDirPath;     ///< temp dir path
-    std::tstring_t name;            ///< name
 };
 xUSING_CONST(UnitData);
 
