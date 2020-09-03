@@ -28,6 +28,8 @@ public:
     {
     }
 
+    xNO_COPY_ASSIGN(CrashCallback)
+
     xNO_INLINE static void_t
     onSignals(int_t a_signal)
     {
@@ -82,9 +84,6 @@ public:
     {
         xTRACE_FUNC;
     }
-
-private:
-    xNO_COPY_ASSIGN(CrashCallback)
 };
 
 xNAMESPACE_END2(xl, internal)
