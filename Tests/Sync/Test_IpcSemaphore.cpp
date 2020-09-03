@@ -53,6 +53,8 @@ Test_IpcSemaphore::unit()
 		int_t iRv = ::pthread_create(&id, nullptr, &Worker::exec, &semaphore);
 		xTEST_EQ(iRv, 0);
 	#endif
+
+		Thread::currentSleep(50);
     }
 
     xTEST_CASE("post")
