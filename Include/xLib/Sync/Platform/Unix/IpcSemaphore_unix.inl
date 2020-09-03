@@ -92,10 +92,10 @@ IpcSemaphore::_wait_impl(
     culong_t a_timeoutMsec
 ) const
 {
-    int_t    iRv {- 1};
-    timespec ts  {};
+    int_t iRv {- 1};
 
     // add msec to timespec
+    timespec ts {};
     {
         iRv = ::clock_gettime(CLOCK_REALTIME, &ts);
         xTEST_DIFF(iRv, - 1);
