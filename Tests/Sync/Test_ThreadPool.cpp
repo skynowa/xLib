@@ -97,7 +97,7 @@ Test_ThreadPool::unit()
     pool->groupResume();
     pool->groupPause();
     pool->groupExit(500UL);
-    pool->groupKill(500UL);
+    /// pool->groupKill(500UL);
     pool->groupWait(500UL);
 
     m_stRv = pool->maxTasks();
