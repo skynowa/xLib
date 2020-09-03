@@ -25,7 +25,7 @@ Test_Path::unit()
     xTEST_CASE("exeDir")
     {
         m_sRv = Path::exeDir();
-        xTEST_EQ(true, Dir(m_sRv).isExists());
+        xTEST(Dir(m_sRv).isExists());
     }
 
     xTEST_CASE("dll")
@@ -426,29 +426,26 @@ Test_Path::unit()
 
     xTEST_CASE("removeExtIf")
     {
-        // TEST: Path::removeExtIf()
+	#if   xENV_WIN
+		const data2_tstring_t data[] = {
+			{xT("C:\\Test.111\\Test.txt"),                           xT("C:\\Test.111\\Test")},
+			{xT("C:\\Test"),                                         xT("C:\\Test")},
+			{xT("Test.txt"),                                         xT("Test")},
+			{xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("D:\\My projects\\Borland C++\\pLaunchProject")}
+		};
+	#elif xENV_UNIX
+		const data2_tstring_t data[] = {
+			{xT("/home/Test.111/Test.txt"),                          xT("/home/Test.111/Test")},
+			{xT("/home/Test"),                                       xT("/home/Test")},
+			{xT("Test.txt"),                                         xT("Test")},
+			{xT("/home/My projects/Borland C++/pLaunchProject.exe"), xT("/home/My projects/Borland C++/pLaunchProject.exe")}
+		};
+	#endif
 
-        //#if   xENV_WIN
-        //    const data2_tstring_t data[] = {
-        //        {xT("C:\\Test.111\\Test.txt"),                           xT("C:\\Test.111\\Test")},
-        //        {xT("C:\\Test"),                                         xT("C:\\Test")},
-        //        {xT("Test.txt"),                                         xT("Test")},
-        //        {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("D:\\My projects\\Borland C++\\pLaunchProject")}
-        //    };
-        //#elif xENV_UNIX
-        //    const data2_tstring_t data[] = {
-        //        {xT("/home/Test.111/Test.txt"),                          xT("/home/Test.111/Test")},
-        //        {xT("/home/Test"),                                       xT("/home/Test")},
-        //        {xT("Test.txt"),                                         xT("Test")},
-        //        {xT("/home/My projects/Borland C++/pLaunchProject.exe"), xT("/home/My projects/Borland C++/pLaunchProject")}
-        //    };
-        //#endif
-
-        //for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-        //    std::tstring_t str1 = Path::removeExtIf(data[i][0]);
-        //    std::tstring_t str2 = data[i][1];
-        //    xTEST_EQ(str1, str2);
-        //}
+        for (const auto &it_data : data) {
+            std::tstring_t str = Path(it_data.test).removeExtIf(xT("txt"));
+            xTEST_EQ(str, it_data.expect);
+        }
     }
 
     xTEST_CASE("isValid")
@@ -695,7 +692,8 @@ Test_Path::unit()
                 {xT(".aux.txt"),     xT("")},
                 {xT("auxx.aux.txt"), xT("auxx.aux.txt")},
                 {xT("nullptr"),         xT("nullptr")},
-                {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), xT("ValidTestName")},
+                {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"),
+                	xT("ValidTestName")},
             };
         #elif xENV_UNIX
             {
@@ -704,7 +702,8 @@ Test_Path::unit()
                 {xT("/opt/test/"), xT("opttest")},
                 {xT("////////"),   xT("")},
                 {xT("\\\\\\\\\\"), xT("\\\\\\\\\\")},
-                {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), xT("?V|||:*?\"<>|||a:l:*?\"<>|:*?\"<>|:*?\"<>|\\i?dT*e:*?\"<>|stN:*?\"<>|ame")},
+                {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"),
+                	xT("?V|||:*?\"<>|||a:l:*?\"<>|:*?\"<>|:*?\"<>|\\i?dT*e:*?\"<>|stN:*?\"<>|ame")},
             };
         #endif
 
