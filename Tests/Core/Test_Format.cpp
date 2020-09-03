@@ -622,7 +622,9 @@ Test_Format::unit()
         value.insert(2);
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{2, 0, 1, 1}")));
+        xTEST_DIFF(m_sRv.find("0"), std::tstring_t::npos);
+        xTEST_DIFF(m_sRv.find("1"), std::tstring_t::npos);
+        xTEST_DIFF(m_sRv.find("2"), std::tstring_t::npos);
     }
 
     xTEST_CASE("std::tuple")
