@@ -596,7 +596,9 @@ Test_Format::unit()
         value.insert(p3);
 
         m_sRv = Format::str(xT("{}"), value);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("{{0, aa}\n{1, bbb}\n{1, bbb}}")));
+		xTEST_DIFF(m_sRv.find("{0, aa}"),  std::tstring_t::npos);
+		xTEST_DIFF(m_sRv.find("{1, bbb}"), std::tstring_t::npos);
+		xTEST_DIFF(m_sRv.find("{1, bbb}"), std::tstring_t::npos);
     }
 
     xTEST_CASE("std::unordered_set")
