@@ -61,8 +61,8 @@ jobs:
       - name: xLib - Configure
         run: cd ./Build && ./eclipse.sh
 
-      - name: xLib - Build
-        run: cd ./Build && ./build.sh
+      # - name: xLib - Build
+      #   run: cd ./Build && ./build.sh
 
       - name: xLib - Unit Tests (optional)
         run: ./unit_tests.sh TcpClient
