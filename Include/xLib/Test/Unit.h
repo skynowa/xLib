@@ -62,7 +62,7 @@ public:
 
 ///@name ctors, dtor
 ///@{
-			 Unit() = default;
+			 Unit();
 	virtual ~Unit() = 0;
 
 	xNO_COPY_ASSIGN(Unit)
