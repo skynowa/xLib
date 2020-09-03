@@ -118,6 +118,20 @@ IpcSemaphore::_wait_impl(
         timespecAddMsec(static_cast<long_t>(a_timeoutMsec), &tmsTimeout);
     }
 
+#if 0
+	while ((s = sem_timedwait(&full, &ts)) == -1 && errno == EINTR)
+				   continue;       /* Restart if interrupted by handler */
+	/* Check what happened */
+	if (s == -1)
+	{
+		if (errno == ETIMEDOUT)
+			printf("sem_timedwait() timed out\n");
+		else
+			perror("sem_timedwait");
+	} else
+			printf("sem_timedwait() succeeded\n");
+#endif
+
     // wait
     int_t _nativeError {};
 	{
@@ -135,12 +149,13 @@ IpcSemaphore::_wait_impl(
 	}
 
     if (iRv == - 1) {
-        if (ETIMEDOUT == _nativeError) {
-            // timeout
-            xTEST_FAIL;
+        if (_nativeError == ETIMEDOUT) {
+            xTEST(false && "Timed out");
         } else {
-            xTEST_FAIL;
+            xTEST(false && "Error");
         }
+
+        return;
     }
 }
 //-------------------------------------------------------------------------------------------------
