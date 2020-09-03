@@ -326,7 +326,7 @@ Test_Format::unit()
     {
         Data2<const char *, std::tstring_t> data[] =
         {
-            {"bbb",                   xT("bbb")},
+            {"bbb",                 xT("bbb")},
             {(const char *)nullptr, xT("null")}
         };
 
@@ -386,7 +386,7 @@ Test_Format::unit()
         {
             std::ustring_t value;
             value.push_back('z');
-            value.push_back( static_cast<uchar_t>('\xa0'));
+            value.push_back( static_cast<uchar_t>('\xa0') );
             value.push_back('\t');
             value.push_back('\n');
             value.push_back('\v');
