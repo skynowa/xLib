@@ -23,9 +23,6 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-      - name: Info
-        run: ./SystemInfoEx.sh && ./DevInfo.sh && exit 1
-
       - name: xLib - Vheckout
         uses: actions/checkout@v2
 
@@ -35,6 +32,9 @@ jobs:
         with:
           repository: skynowa/xLib-data
           path: xLib-data
+
+      - name: Info
+        run: ./SystemInfoEx.sh && ./DevInfo.sh && exit 1
 
       - name: xLib-data - Install
         run: cd ./xLib-data/Libs/ubuntu-20.04 && ./install.sh
