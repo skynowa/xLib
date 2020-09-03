@@ -16,10 +16,12 @@ xTEST_UNIT(Test_TcpServer)
 bool_t
 Test_TcpServer::unit()
 {
-    {
-        // FIX: temp disable
-        return true;
-    }
+	{
+		// TODO: Test_TcpServer - fix tests
+		xTRACE_NOT_IMPLEMENTED
+
+		return true;
+	}
 
     ISocket::AddressFamily afAf       = ISocket::AddressFamily::afInet;
     ISocket::Type          tpType     = ISocket::Type::tpStream;
