@@ -29,7 +29,7 @@ private:
         ///< unhandled exception: calls terminate handler
 };
 //-------------------------------------------------------------------------------------------------
-xNO_INLINE int_t
+int_t
 Failer::bug_DivideByZero()
 {
 	int a = 1;
@@ -38,7 +38,7 @@ Failer::bug_DivideByZero()
 	return a / b;
 }
 //-------------------------------------------------------------------------------------------------
-xNO_INLINE int_t
+int_t
 Failer::bug_CauseSegfault()
 {
 	int * p = (int*)0x12345678;
@@ -47,10 +47,10 @@ Failer::bug_CauseSegfault()
 	return *p;
 }
 //-------------------------------------------------------------------------------------------------
-xNO_INLINE bool_t
+bool_t
 bug_StackOverflow();
 
-xNO_INLINE bool_t
+bool_t
 Failer::bug_StackOverflow()
 {
 #if xTEMP_DISABLED
@@ -63,7 +63,7 @@ Failer::bug_StackOverflow()
 	return true;
 }
 //-------------------------------------------------------------------------------------------------
-xNO_INLINE int_t
+int_t
 Failer::bug_InfiniteLoop()
 {
 	int_t i = 0;
@@ -75,14 +75,14 @@ Failer::bug_InfiniteLoop()
 	return i;
 }
 //-------------------------------------------------------------------------------------------------
-xNO_INLINE bool_t
+bool_t
 Failer::bug_IllegalInstruction()
 {
 	// I couldn't find an easy way to cause this one, so I'm cheating
 	return raise(SIGILL);
 }
 //-------------------------------------------------------------------------------------------------
-xNO_INLINE bool_t
+bool_t
 Failer::bug_UnhandledException()
 {
 	std::vector<std::size_t> vecRv;
@@ -91,7 +91,7 @@ Failer::bug_UnhandledException()
 	return !vecRv.empty();
 }
 //-------------------------------------------------------------------------------------------------
-xNO_INLINE void_t
+void_t
 Failer::bug()
 {
 	//// ::: set BUG here :::
@@ -110,22 +110,21 @@ class UserApplication :
     /// user application
 {
 public:
-	xNO_INLINE
 	UserApplication(std::ctstring_t &a_appGuid, std::ctstring_t &a_locale) :
 		Application(a_appGuid, a_locale)
 	{
 	}
 
-    xNO_INLINE virtual ExitCode
+    xNO_COPY_ASSIGN(UserApplication)
+
+    virtual ExitCode
     onRun() override
     {
-        Failer().bug();
+    	// TODO: Failer - fix for test
+        /// Failer().bug();
 
         return ExitCode::Success;
     }
-
-private:
-    xNO_COPY_ASSIGN(UserApplication)
 };
 //-------------------------------------------------------------------------------------------------
 /* virtual */
