@@ -68,6 +68,10 @@ Test_IpcSemaphore::unit()
         }
     }
 
+    xTEST_CASE("dtor")
+    {
+    }
+
 	Thread::currentSleep(10);
 
     return true;
