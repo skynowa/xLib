@@ -90,22 +90,30 @@ Test_TcpClient::unit()
 
 	xTEST_CASE("send")
 	{
-		for (size_t i {}; i < 3; ++ i) {
-			std::tstring_t text;
-			text.resize(256);
+		// TEST: send
+		if (false) {
+			for (size_t i {}; i < 3; ++ i) {
+				std::tstring_t text;
+				text.resize(256);
 
-			/// std::tcout << xT("> Input text: ");
-			std::tcin.getline(&text[0], static_cast<std::streamsize>( text.size() ));
+				std::tcout << xT("> Input text: ");
+				std::tcin.getline(&text[0], static_cast<std::streamsize>( text.size() ));
 
-			m_sstRv = tcpClient.send(text.c_str(), text.size(), 0);
-			xTEST_DIFF(m_sstRv, (ssize_t)xSOCKET_ERROR);
+				m_sstRv = tcpClient.send(text.c_str(), text.size(), 0);
+				xTEST_DIFF(m_sstRv, (ssize_t)xSOCKET_ERROR);
+			}
 		}
 	}
 
 	xTEST_CASE("receive")
 	{
-		m_sstRv = tcpClient.receive(&recvBuff[0], xARRAY_SIZE(recvBuff), 0);
-		xTEST_DIFF(m_sstRv, (ssize_t)xSOCKET_ERROR)
+		// TEST: receive
+		if (false) {
+			m_sstRv = tcpClient.receive(&recvBuff[0], xARRAY_SIZE(recvBuff), 0);
+			xTEST_DIFF(m_sstRv, (ssize_t)xSOCKET_ERROR);
+
+			Cout() << xTRACE_VAR(recvBuff);
+		}
 	}
 
 	xTEST_CASE("close")
