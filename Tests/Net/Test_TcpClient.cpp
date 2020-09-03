@@ -41,7 +41,7 @@ Test_TcpClient::unit()
 
 	xTEST_CASE("isServerAlive")
 	{
-		if ( isHostGithub() ) {
+		if ( isGithubCI() ) {
 			// TEST: Github CI
 		} else {
 			m_bRv = TcpClient::isServerAlive(ip, port);
@@ -55,7 +55,7 @@ Test_TcpClient::unit()
 
 	xTEST_CASE("connect")
 	{
-		if ( isHostGithub() ) {
+		if ( isGithubCI() ) {
 			// TEST: Github CI
 		} else {
 			tcpClient.connect(ip, port);
@@ -76,22 +76,22 @@ Test_TcpClient::unit()
 
 	xTEST_CASE("peerName")
     {
-        std::tstring_t _ip;
-        ushort_t       _port {};
-
-        tcpClient.peerName(&_ip, &_port);
-    }
-
-	xTEST_CASE("socketName")
-    {
-		if ( isHostGithub() ) {
+		if ( isGithubCI() ) {
 			// TEST: Github CI
 		} else {
 			std::tstring_t _ip;
 			ushort_t       _port {};
 
-			tcpClient.socketName(&_ip, &_port);
+			tcpClient.peerName(&_ip, &_port);
 		}
+    }
+
+	xTEST_CASE("socketName")
+    {
+		std::tstring_t _ip;
+		ushort_t       _port {};
+
+		tcpClient.socketName(&_ip, &_port);
     }
 
 	xTEST_CASE("isReadable")
