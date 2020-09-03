@@ -92,12 +92,12 @@ IpcSemaphore::_wait_impl(
     culong_t &a_timeoutMsec
 ) const
 {
-    int_t    iRv        {- 1};
-    timespec tmsTimeout {};
+    int_t    iRv       {- 1};
+    timespec tsTimeout {};
 
     // add msec to timespec
     {
-        iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
+        iRv = ::clock_gettime(CLOCK_REALTIME, &tsTimeout);
         xTEST_DIFF(iRv, - 1);
 
 		auto timespecAddMsec = [] (long_t a_ms, timespec *a_ts) -> void_t
@@ -115,7 +115,7 @@ IpcSemaphore::_wait_impl(
 			a_ts->tv_nsec = a_ts->tv_nsec % 1000000000;
 		};
 
-        timespecAddMsec(static_cast<long_t>(a_timeoutMsec), &tmsTimeout);
+        timespecAddMsec(static_cast<long_t>(a_timeoutMsec), &tsTimeout);
     }
 
 #if 0
@@ -136,7 +136,7 @@ IpcSemaphore::_wait_impl(
     int_t _nativeError {};
 	{
 	    for ( ; ; ) {
-			iRv = ::sem_timedwait(_handle, &tmsTimeout);
+			iRv = ::sem_timedwait(_handle, &tsTimeout);
 			_nativeError = errno;
 
 			if (iRv == - 1 && _nativeError == EINTR) {
