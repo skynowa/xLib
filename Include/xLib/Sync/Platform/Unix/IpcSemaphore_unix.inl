@@ -100,7 +100,7 @@ IpcSemaphore::_wait_impl(
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
         xTEST_DIFF(iRv, - 1);
 
-		auto timespecAddMsec = [] (timespec *a_ts, long_t a_ms) -> void_t
+		auto timespecAddMsec = [] (long_t a_ms, timespec *a_ts) -> void_t
 		{
 			long_t sec {};
 
@@ -115,7 +115,7 @@ IpcSemaphore::_wait_impl(
 			a_ts->tv_nsec = a_ts->tv_nsec % 1000000000;
 		};
 
-        timespecAddMsec(&tmsTimeout, static_cast<long_t>(a_timeoutMsec));
+        timespecAddMsec(static_cast<long_t>(a_timeoutMsec), &tmsTimeout);
     }
 
 #if 0
