@@ -64,9 +64,9 @@ Test_IpcSemaphore::unit()
                 semaphore.post();
             }
         }
-
-        Thread::currentSleep(5000);
     }
+
+	Thread::currentSleep(10);
 
     return true;
 }
