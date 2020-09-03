@@ -20,7 +20,7 @@ Test_TcpClient::unit()
     ISocket::Type          type          = ISocket::Type::tpStream;
     ISocket::Protocol      ptProtocol    = ISocket::Protocol::ptIp;
 
-#if 0
+#if 1
 	std::ctstring_t         hostName      = xT("skynowa-pc");
 	std::tstring_t          ip            = xT("127.0.0.1");
     ushort_t                port          = 80;
