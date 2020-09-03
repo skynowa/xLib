@@ -36,32 +36,37 @@ class ThreadPool :
 public:
     using func_ptr_t = void_t (T::*)(void_t *);
 
-    // construct? destruct
-                   ThreadPool(cbool_t &isPaused, cbool_t &isAutoDelete, cbool_t &isGroupPaused,
-                       cbool_t &isGroupAutoDelete);
-    virtual       ~ThreadPool();
+///@name ctors, dtor
+///@{
+			 ThreadPool(cbool_t &isPaused, cbool_t &isAutoDelete, cbool_t &isGroupPaused,
+				cbool_t &isGroupAutoDelete);
+	virtual ~ThreadPool();
+
+    xNO_COPY_ASSIGN(ThreadPool)
+///@}
+
 
     // groups
-    void_t         groupCreate(cuint_t &stackSize, const func_ptr_t funcPtr, void_t *param,
-                       std::csize_t &numTasks, std::csize_t &maxRunningTasks);
-    void_t         groupResume();
-    void_t         groupPause();
-    void_t         groupExit(culong_t &timeoutMsec);
-    void_t         groupKill(culong_t &timeoutMsec);
-    void_t         groupWait(culong_t &timeoutMsec);
+    void_t      groupCreate(cuint_t &stackSize, const func_ptr_t funcPtr, void_t *param,
+    				std::csize_t &numTasks, std::csize_t &maxRunningTasks);
+    void_t      groupResume();
+    void_t      groupPause();
+    void_t      groupExit(culong_t &timeoutMsec);
+    void_t      groupKill(culong_t &timeoutMsec);
+    void_t      groupWait(culong_t &timeoutMsec);
 
-    std::size_t    maxTasks() const;
-    void_t         setMaxTasks(std::csize_t &num);
+    std::size_t maxTasks() const;
+    void_t      setMaxTasks(std::csize_t &num);
 
-    std::size_t    numTasks() const;
-    void_t         setNumTasks(std::csize_t &num);
+    std::size_t numTasks() const;
+    void_t      setNumTasks(std::csize_t &num);
 
-    bool_t         isEmpty() const;
-    bool_t         isFull() const;
-    std::size_t    size() const;
+    bool_t      isEmpty() const;
+    bool_t      isFull() const;
+    std::size_t size() const;
 
 protected:
-    virtual uint_t onRun(void_t *param) override;
+    uint_t      onRun(void_t *param) override;
 
 private:
     uint_t         _stackSize {};
@@ -88,9 +93,7 @@ private:
     void_t         _onEnterTask(Thread *sender);
     void_t         _onExitTask(Thread *sender);
 
-    // WatchDog
-
-    xNO_COPY_ASSIGN(ThreadPool)
+    // TODO: WatchDog
 };
 
 xNAMESPACE_END2(xl, sync)

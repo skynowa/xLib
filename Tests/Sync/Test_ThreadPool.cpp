@@ -12,27 +12,35 @@ using namespace xl;
 xTEST_CLASS(Test_ThreadPool)
 xTEST_UNIT(Test_ThreadPool)
 //-------------------------------------------------------------------------------------------------
+namespace
+{
+
+std::ctstring_t thread_param = xT("param1");
+
+}
+//-------------------------------------------------------------------------------------------------
 class PoolThread :
     public Thread
 {
 public:
-    std::size_t    index {};
+    std::size_t index {};
 
-    explicit       PoolThread(cbool_t &isAutoDelete);
-    virtual       ~PoolThread();
+    explicit  PoolThread(cbool_t isAutoDelete);
+    virtual  ~PoolThread();
 
     xNO_DEFAULT_CONSTRUCT(PoolThread);
     xNO_COPY_ASSIGN(PoolThread);
 
 protected:
-    virtual uint_t onRun(void_t *param) override;
+    uint_t onRun(void_t *param) override;
 };
 //-------------------------------------------------------------------------------------------------
 PoolThread::PoolThread(
-    cbool_t &a_isAutoDelete
+    cbool_t a_isAutoDelete
 ) :
     Thread(a_isAutoDelete)
 {
+	::exit(1);
 }
 //-------------------------------------------------------------------------------------------------
 PoolThread::~PoolThread()
@@ -42,11 +50,14 @@ PoolThread::~PoolThread()
 uint_t
 PoolThread::onRun(
     void_t *a_param
-)
+) /* override */
 {
-    xUNUSED(a_param);
+    xTEST_PTR(a_param);
 
-    Trace() << xT("\n\tPoolThread: start #") << tag();
+    const auto param = *(static_cast<std::tstring_t *>(a_param));
+    xTEST_EQ(param, ::thread_param);
+
+    Trace() << Format::str(xT("\n\tPoolThread: start #{}, param: {}"), tag(), param);
 
     uint_t uiRes {};
 
@@ -74,7 +85,6 @@ PoolThread::onRun(
     return uiRes;
 }
 //-------------------------------------------------------------------------------------------------
-/*virtual*/
 bool_t
 Test_ThreadPool::unit()
 {
@@ -83,32 +93,60 @@ Test_ThreadPool::unit()
     cbool_t isGroupPaused     {true};
     cbool_t isGroupAutoDelete {true};
 
-    auto *pool = new ThreadPool<PoolThread>(isPaused, isAutoDelete, isGroupPaused, isGroupAutoDelete);
+    ThreadPool<PoolThread> *pool = {};
 
+	xTEST_CASE("ctor")
+	{
+    	pool = new ThreadPool<PoolThread>(isPaused, isAutoDelete, isGroupPaused, isGroupAutoDelete);
+	}
+
+    xTEST_CASE("groupCreate")
     {
-        cuint_t  stackSize       {};
-        void_t  *param           {};
-        cuint_t  tasksNum        {5};
-        cuint_t  runningTasksMax {10};
+        cuint_t        stackSize       {};
+        std::tstring_t param           = ::thread_param;
+        cuint_t        tasksNum        {5};
+        cuint_t        runningTasksMax {10};
 
-        pool->groupCreate(stackSize, nullptr, param, tasksNum, runningTasksMax);
+        pool->groupCreate(stackSize, nullptr, static_cast<void_t *>(&param), tasksNum, runningTasksMax);
     }
 
-    pool->groupResume();
-    pool->groupPause();
-    pool->groupExit(500UL);
-    /// pool->groupKill(500UL);
-    pool->groupWait(500UL);
+    xTEST_CASE("groupResume")
+	{
+	    pool->groupResume();
+	}
 
-    m_stRv = pool->maxTasks();
-    xUNUSED(m_stRv);
+    xTEST_CASE("groupPause")
+	{
+	    pool->groupPause();
+	}
 
-    pool->setMaxTasks(10);
+    xTEST_CASE("groupExit")
+	{
+	    pool->groupExit(500UL);
+	}
 
-    m_stRv = pool->numTasks();
-    xUNUSED(m_stRv);
+    xTEST_CASE("groupKill")
+	{
+	    /// pool->groupKill(500UL);
+	}
 
-    pool->setNumTasks(10);
+    xTEST_CASE("groupWait")
+	{
+	    pool->groupWait(500UL);
+	}
+
+    xTEST_CASE("maxTasks/setMaxTasks")
+	{
+		m_stRv = pool->maxTasks();
+		xUNUSED(m_stRv);
+
+		pool->setMaxTasks(10);
+
+	    m_stRv = pool->numTasks();
+		xUNUSED(m_stRv);
+
+	    pool->setNumTasks(10);
+	}
 
     return true;
 }
