@@ -20,12 +20,12 @@ Test_TcpClient::unit()
     ISocket::Type          type          = ISocket::Type::tpStream;
     ISocket::Protocol      ptProtocol    = ISocket::Protocol::ptIp;
 
-	std::ctstring_t         hostName      = xT("localhost");
-	std::tstring_t          ip            = xT("127.0.0.1");
-    ushort_t                port          = 80;
+	std::ctstring_t         hostName     = xT("localhost");
+	std::tstring_t          ip           = xT("127.0.0.1");
+    ushort_t                port         = 80;
 
-    std::tstring_t          sendBuff      = xT("TEST_STRING");
-    char                    recvBuff[32]  = {0};
+    std::tstring_t          sendBuff     = xT("TEST_STRING");
+    char                    recvBuff[32] = {0};
 
 	xTEST_CASE("SocketInit")
 	{
@@ -90,12 +90,11 @@ Test_TcpClient::unit()
 
 	xTEST_CASE("send")
 	{
-		for ( ; ; ) {
+		for (size_t i {}; i < 3; ++ i) {
 			std::tstring_t text;
-
 			text.resize(256);
 
-			std::tcout << xT("> Input text: ");
+			/// std::tcout << xT("> Input text: ");
 			std::tcin.getline(&text[0], static_cast<std::streamsize>( text.size() ));
 
 			m_sstRv = tcpClient.send(text.c_str(), text.size(), 0);
