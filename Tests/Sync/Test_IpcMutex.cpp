@@ -16,44 +16,37 @@ xTEST_UNIT(Test_IpcMutex)
 bool_t
 Test_IpcMutex::unit()
 {
-    std::ctstring_t csName = xT("mutex_name_a");
-
+    std::ctstring_t name = Format::str(xT("{}-MutexName"), getData().name);
 
     xTEST_CASE("handle")
     {
-        IpcMutex mtMutex;
-
+        IpcMutex mutex;
         IpcMutex::handle_t hRv;
-
-        hRv = mtMutex.handle();
-        xUNUSED(hRv);
-        ////xTEST_EQ(false, hRv.bIsValid());
+        hRv = mutex.handle();
+        xTEST(hRv == nullptr);
     }
 
     xTEST_CASE("create")
     {
-        IpcMutex mtMutex;
-
-        mtMutex.create(csName);
+        IpcMutex mutex;
+        mutex.create(name);
     }
 
     xTEST_CASE("open")
     {
-        IpcMutex mtMutex;
-
-        mtMutex.create(csName);
-        mtMutex.open(csName);
+        IpcMutex mutex;
+        mutex.create(name);
+        mutex.open(name);
     }
 
-    xTEST_CASE("lock unlock")
+    xTEST_CASE("lock / unlock")
     {
-        culong_t culTimeout = 1000UL;
+        culong_t timeoutMsec {1000UL};
 
-        IpcMutex mtMutex;
-
-        mtMutex.create(csName);
-        mtMutex.lock(culTimeout);
-        mtMutex.unlock();
+        IpcMutex mutex;
+        mutex.create(name);
+        mutex.lock(timeoutMsec);
+        mutex.unlock();
     }
 
     return true;
