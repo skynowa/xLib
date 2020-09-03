@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN2(xl, sync)
 
 //-------------------------------------------------------------------------------------------------
 AutoIpcMutex::AutoIpcMutex(
-    IpcMutex      &a_mutex,
+    IpcMutex        &a_mutex,
     std::ctstring_t &a_name
 ) :
     _mutex(a_mutex)

@@ -16,13 +16,16 @@ class AutoIpcMutex
     /// auto mutex
 {
 public:
-                AutoIpcMutex(IpcMutex &mutex, std::ctstring_t &name);
-    virtual    ~AutoIpcMutex();
+///@name ctors, dtor
+///@{
+			 AutoIpcMutex(IpcMutex &mutex, std::ctstring_t &name);
+	virtual ~AutoIpcMutex();
+
+	xNO_COPY_ASSIGN(AutoIpcMutex)
+///@}
 
 private:
     IpcMutex &_mutex;
-
-    xNO_COPY_ASSIGN(AutoIpcMutex)
 };
 
 xNAMESPACE_END2(xl, sync)
