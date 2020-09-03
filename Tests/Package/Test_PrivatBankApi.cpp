@@ -18,7 +18,7 @@ bool_t
 Test_PrivatBankApi::unit()
 {
 	// TEST: [skynowa] Test_PrivatBankApi
-	return false;
+	return true;
 
 	xTEST_CASE("getExchangeRatesArchive")
 	{
