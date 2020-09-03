@@ -16,16 +16,16 @@ xTEST_UNIT(Test_AutoMutex)
 bool_t
 Test_AutoMutex::unit()
 {
-    xTEST_CASE("AutoMutex")
+    xTEST_CASE("ctor")
     {
-        size_t  uiCounter = 0;
-        Mutex mtMutex;
+        size_t counter {};
+        Mutex  mutex;
 
         {
-            AutoMutex amtAutoMutex(&mtMutex);
+            AutoMutex autoMutex(&mutex);
 
             for (size_t i = 0; i < 10; ++ i) {
-                ++ uiCounter;
+                ++ counter;
             }
         }
     }
