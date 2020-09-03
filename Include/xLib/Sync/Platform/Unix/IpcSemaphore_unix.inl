@@ -133,13 +133,13 @@ IpcSemaphore::_wait_impl(
 #endif
 
     // wait
-    int_t _nativeError {};
+    int_t nativeError {};
 	{
 	    for ( ; ; ) {
 			iRv = ::sem_timedwait(_handle, &tsTimeout);
-			_nativeError = errno;
+			nativeError = errno;
 
-			if (iRv == - 1 && _nativeError == EINTR) {
+			if (iRv == - 1 && nativeError == EINTR) {
 				Cout() << xT("Restart if interrupted by handler");
 				continue;
 			}
@@ -149,7 +149,7 @@ IpcSemaphore::_wait_impl(
 	}
 
     if (iRv == - 1) {
-        if (_nativeError == ETIMEDOUT) {
+        if (nativeError == ETIMEDOUT) {
             xTEST(false && "Timed out");
         } else {
             xTEST(false && "Error");
