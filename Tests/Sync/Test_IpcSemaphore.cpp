@@ -69,7 +69,7 @@ Test_IpcSemaphore::unit()
             }
         }
 
-        // m_bRv = Thread::currentSleep(3000);
+        Thread::currentSleep(10);
     }
 
     return true;
