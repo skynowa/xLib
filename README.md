@@ -8,12 +8,6 @@
 
 ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/skynowa/xlib?color=red) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/skynowa/xlib?color=green)
 
-Authors: skynowa
-
-E-mail:  skynowa@gmail.com
-
-Skype:   skynowa777
-
 ## Features
 
 - language: C++ 17
