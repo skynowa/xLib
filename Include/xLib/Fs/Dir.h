@@ -29,8 +29,7 @@ public:
 
     bool_t            isExists() const;
         ///< check for existence
-    bool_t            isEmpty(std::ctstring_t &shellFilter = Const::maskAll()) const
-                         ;
+    bool_t            isEmpty(std::ctstring_t &shellFilter = Const::maskAll()) const;
         ///< is empty
     bool_t            isRoot() const;
         ///< is root
