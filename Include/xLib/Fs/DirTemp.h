@@ -1,6 +1,6 @@
 /**
  * \file  DirTemp.h
- * \brief DirTemp
+ * \brief Temporary directory
  */
 
 
@@ -24,7 +24,7 @@ public:
 ///@}
 
     void_t create();
-        ///< create temporary file, open it
+        ///< create temporary dir
 
 private:
     std::tstring_t  _dirPath;          ///< temporary dir path (not constant)

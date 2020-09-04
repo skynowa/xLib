@@ -1,6 +1,6 @@
 /**
  * \file  DirTemp.cpp
- * \brief DirTemp
+ * \brief Temporary directory
  */
 
 
@@ -41,7 +41,7 @@ DirTemp::DirTemp(
 DirTemp::~DirTemp()
 {
     if (_isAutoDelete && !_dirPath.empty()) {
-        Dir(_dirPath).remove();
+        Dir(_dirPath).pathDelete();
     }
 }
 //-------------------------------------------------------------------------------------------------
