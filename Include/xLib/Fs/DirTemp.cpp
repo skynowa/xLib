@@ -54,9 +54,9 @@ DirTemp::create()
     * Since it will be modified, template must not be a string constant,
     * but should be declared as a character array
     */
-    std::ctstring_t fileNameTemplate = Guid(Guid::Type::RandomBased).get();
+    std::ctstring_t dirNameTemplate = Guid(Guid::Type::RandomBased).get();
 
-    _dirPath = Path(_dirPath).slashAppend() + fileNameTemplate;
+    _dirPath = Path(_dirPath).slashAppend() + dirNameTemplate;
 
     Dir(_dirPath).pathCreate();
 }
