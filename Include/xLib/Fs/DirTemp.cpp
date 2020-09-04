@@ -16,12 +16,7 @@
 #include <xLib/Log/Trace.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
-
-#if   xENV_WIN
-    #include "Platform/Win/DirTemp_win.inl"
-#elif xENV_UNIX
-    #include "Platform/Unix/DirTemp_unix.inl"
-#endif
+#include <xLib/Crypt/Guid.h>
 
 
 xNAMESPACE_BEGIN2(xl, fs)
@@ -59,9 +54,9 @@ DirTemp::create()
     * Since it will be modified, template must not be a string constant,
     * but should be declared as a character array
     */
-    std::ctstring_t fileNameTemplate = xT("XXXXXX");
+    std::ctstring_t fileNameTemplate = Guid(Guid::Type::RandomBased).get();
 
-    _dirPath = Path(_dirPath).slashAppend() + Path(_dirPath).fileName() + fileNameTemplate;
+    _dirPath = Path(_dirPath).slashAppend() + fileNameTemplate;
 
     Dir(_dirPath).pathCreate();
 }

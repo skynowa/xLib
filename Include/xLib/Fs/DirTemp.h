@@ -29,10 +29,6 @@ public:
 private:
     std::tstring_t  _dirPath;          ///< temporary dir path (not constant)
     cbool_t         _isAutoDelete {};  ///< auto delete flag
-
-xPLATFORM_IMPL:
-    void_t _construct_impl();
-    void_t _destruct_impl();
 };
 
 xNAMESPACE_END2(xl, fs)
