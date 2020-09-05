@@ -32,6 +32,7 @@ DirTemp::DirTemp(
     cbool_t          a_isAutoDelete
 ) :
     _dirPath     (a_dirPath),
+    /// _dirPath     (a_dirPath + xT("_") + Guid(Guid::Type::RandomBased).get()),
     _isAutoDelete(a_isAutoDelete)
 {
     xTEST(!a_dirPath.empty());
@@ -40,7 +41,7 @@ DirTemp::DirTemp(
 /* virtual */
 DirTemp::~DirTemp()
 {
-    if (_isAutoDelete && !_dirPath.empty()) {
+    if (_isAutoDelete) {
         Dir(_dirPath).pathDelete();
     }
 }
@@ -48,16 +49,6 @@ DirTemp::~DirTemp()
 void_t
 DirTemp::create()
 {
-   /**
-    * The last six characters of template must be XXXXXX and
-    * these are replaced with a string that makes the filename unique.
-    * Since it will be modified, template must not be a string constant,
-    * but should be declared as a character array
-    */
-    std::ctstring_t dirNameTemplate = Guid(Guid::Type::RandomBased).get();
-
-    _dirPath = Path(_dirPath).slashAppend() + dirNameTemplate;
-
     Dir(_dirPath).pathCreate();
 }
 //-------------------------------------------------------------------------------------------------

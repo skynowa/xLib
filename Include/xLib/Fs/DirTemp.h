@@ -27,8 +27,8 @@ public:
         ///< create temporary dir
 
 private:
-    std::tstring_t _dirPath;          ///< temporary dir path (not constant)
-    cbool_t        _isAutoDelete {};  ///< auto delete flag
+    std::ctstring_t _dirPath;         ///< temporary dir path (not constant)
+    cbool_t         _isAutoDelete {}; ///< auto delete flag
 };
 
 xNAMESPACE_END2(xl, fs)

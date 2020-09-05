@@ -10,6 +10,7 @@
 #include <xLib/Debug/Exception.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
+#include <xLib/Fs/DirTemp.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/SourceInfo.h>
 #include <xLib/Debug/ErrorReport.h>
@@ -63,8 +64,9 @@ Unit::run()
 {
     bool_t isPassed {true};
 
-    _createTempDir();
-	ScopeExit onExit( [&]() { _deleteTempDir(); });
+    cbool_t isAutoDelete {false};
+	DirTemp dirTemp( Path::exeDir() + Const::slash() + _data.name, isAutoDelete);
+	dirTemp.create();
 
     for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
         bool_t bRv {};
@@ -124,23 +126,6 @@ Unit::unit() /* = 0 */
     */
 
     return true;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Unit::_createTempDir()
-{
-	_data.tempDirPath = Format::str(xT("{}{}{}_tmp"),
-		Path::exeDir(),
-		Const::slash(),
-		_data.name);
-
-    Dir(_data.tempDirPath).pathCreate();
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Unit::_deleteTempDir()
-{
-	Dir( _data.tempDirPath ).pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
 

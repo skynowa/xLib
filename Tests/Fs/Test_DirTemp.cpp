@@ -17,9 +17,10 @@ xTEST_UNIT(Test_DirTemp)
 bool_t
 Test_DirTemp::unit()
 {
-    xTEST_CASE("[TEST_CASE_1]")
+    xTEST_CASE("DirTemp")
     {
-
+		DirTemp dirTemp( Path::exeDir() + Const::slash() + getData().name, false);
+		dirTemp.create();
     }
 
     return true;

@@ -81,11 +81,6 @@ public:
 
 private:
     UnitData _data;
-
-    void_t _createTempDir();
-        ///< create temp dir
-    void_t _deleteTempDir();
-        ///< delete temp dir
 };
 
 xNAMESPACE_END2(xl, test)
