@@ -28,13 +28,18 @@ class Manager
     /// manager
 {
 public:
-             Manager(cint_t &argsNum, cptr_ctchar_t args[]);
-    explicit Manager(cManagerData &data = cManagerData());
-    virtual ~Manager();
+///@name ctors, dtor
+///@{
+			 Manager(cint_t argsNum, cptr_ctchar_t args[]);
+	explicit Manager(cManagerData &data = cManagerData());
+	virtual ~Manager();
 
-    void_t   add(Unit *unit);
+	xNO_COPY_ASSIGN(Manager)
+///@}
+
+    void_t add(Unit *unit);
         ///< add unit
-    bool_t   run();
+    bool_t run();
         ///< run all units
 
 private:
@@ -44,9 +49,8 @@ private:
     units_t     _units {};          ///< units
     bool_t      _isConstructed {};  ///< is object constructed
 
-    void_t   _construct(cint_t &a_argsNum, cptr_ctchar_t a_args[]);
+    void_t _construct(cint_t argsNum, cptr_ctchar_t args[]);
 
-    xNO_COPY_ASSIGN(Manager)
 };
 
 xNAMESPACE_END2(xl, test)
