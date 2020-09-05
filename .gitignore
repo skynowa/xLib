@@ -19,7 +19,6 @@ CMakeLists.txt.user
 cmake-build-*
 .project
 xLib.pc
-auto-build.sh
 
 # PVS-Studio
 *.PVS-Studio.cfg
