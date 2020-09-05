@@ -28,33 +28,33 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 DirTemp::DirTemp(
-	std::ctstring_t &a_dirPath,
-    cbool_t          a_isAutoDelete
+	std::ctstring_t &a_dirPathPrefix,
+	cbool_t          a_isAutoDelete
 ) :
-    _dirPath     (a_dirPath + xT("_") + Guid(Guid::Type::RandomBased).get()),
-    _isAutoDelete(a_isAutoDelete)
+	_dirPath     (a_dirPathPrefix + xT("_") + Guid(Guid::Type::RandomBased).get()),
+	_isAutoDelete(a_isAutoDelete)
 {
-    xTEST(!a_dirPath.empty());
+	xTEST(!a_dirPathPrefix.empty());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 DirTemp::~DirTemp()
 {
-    if (_isAutoDelete) {
-        Dir(_dirPath).pathDelete();
-    }
+	if (_isAutoDelete) {
+		Dir(_dirPath).pathDelete();
+	}
 }
 //-------------------------------------------------------------------------------------------------
 std::ctstring_t &
 DirTemp::path() const
 {
-    return _dirPath;
+	return _dirPath;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 DirTemp::create() const
 {
-    Dir(_dirPath).pathCreate();
+	Dir(_dirPath).pathCreate();
 }
 //-------------------------------------------------------------------------------------------------
 

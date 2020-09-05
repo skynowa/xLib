@@ -11,12 +11,12 @@
 xNAMESPACE_BEGIN2(xl, fs)
 
 class DirTemp
-    /// Temporary directory
+	/// Temporary directory
 {
 public:
 ///@name ctors, dtor
 ///@{
-	explicit DirTemp(std::ctstring_t &dirPath, cbool_t isAutoDelete);
+	explicit DirTemp(std::ctstring_t &dirPathPrefix, cbool_t isAutoDelete);
 	virtual ~DirTemp();
 
 	xNO_DEFAULT_CONSTRUCT(DirTemp)
@@ -24,13 +24,13 @@ public:
 ///@}
 
 	std::ctstring_t &path() const;
-		///< dir path
-    void_t           create() const;
-        ///< create temporary dir
+		///< dir path (with unique postfix)
+	void_t           create() const;
+		///< create temporary dir
 
 private:
-    std::ctstring_t _dirPath;         ///< temporary dir path (not constant)
-    cbool_t         _isAutoDelete {}; ///< auto delete flag
+	std::ctstring_t _dirPath;         ///< temporary dir path (not constant)
+	cbool_t         _isAutoDelete {}; ///< auto delete flag
 };
 
 xNAMESPACE_END2(xl, fs)

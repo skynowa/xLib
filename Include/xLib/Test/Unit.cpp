@@ -64,8 +64,9 @@ Unit::run()
 {
     bool_t isPassed {true};
 
+	// temp dir
     cbool_t isAutoDelete {true};
-	DirTemp dirTemp( Path::exeDir() + Const::slash() + _data.name, isAutoDelete);
+	DirTemp dirTemp(Path::exeDir() + Const::slash() + _data.name, isAutoDelete);
 	dirTemp.create();
 
 	_data.tempDirPath = dirTemp.path();
