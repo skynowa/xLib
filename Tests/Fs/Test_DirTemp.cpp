@@ -19,7 +19,7 @@ Test_DirTemp::unit()
 {
     xTEST_CASE("DirTemp")
     {
-		cbool_t isAutoDelete {false};
+		cbool_t isAutoDelete {true};
 		DirTemp dirTemp( Path::exeDir() + Const::slash() + getData().name, isAutoDelete);
 		dirTemp.create();
     }

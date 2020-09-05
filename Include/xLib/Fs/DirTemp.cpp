@@ -31,8 +31,7 @@ DirTemp::DirTemp(
 	std::ctstring_t &a_dirPath,
     cbool_t          a_isAutoDelete
 ) :
-    _dirPath     (a_dirPath),
-    /// _dirPath     (a_dirPath + xT("_") + Guid(Guid::Type::RandomBased).get()),
+    _dirPath     (a_dirPath + xT("_") + Guid(Guid::Type::RandomBased).get()),
     _isAutoDelete(a_isAutoDelete)
 {
     xTEST(!a_dirPath.empty());
