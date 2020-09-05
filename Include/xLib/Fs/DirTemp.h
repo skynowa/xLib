@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN2(xl, fs)
 
 class DirTemp
-    /// DirTemp
+    /// Temporary directory
 {
 public:
 ///@name ctors, dtor
