@@ -19,7 +19,7 @@ class FileTemp
 public:
 ///@name ctors, dtor
 ///@{
-	explicit FileTemp(std::ctstring_t &filePath, cbool_t isAutoDelete);
+	explicit FileTemp(std::ctstring_t &filePathPrefix, cbool_t isAutoDelete);
 	virtual ~FileTemp();
 
 	xNO_DEFAULT_CONSTRUCT(FileTemp)
