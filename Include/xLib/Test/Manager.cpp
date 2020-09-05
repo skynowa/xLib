@@ -26,8 +26,8 @@ xNAMESPACE_BEGIN2(xl, test)
 
 //-------------------------------------------------------------------------------------------------
 Manager::Manager(
-    cint_t        &a_argsNum,
-    cptr_ctchar_t  a_args[]
+    cint_t        a_argsNum,
+    cptr_ctchar_t a_args[]
 )
 {
     _construct(a_argsNum, a_args);
@@ -106,8 +106,8 @@ Manager::run()
 //-------------------------------------------------------------------------------------------------
 void_t
 Manager::_construct(
-    cint_t        &a_argsNum,
-    cptr_ctchar_t  a_args[]
+    cint_t        a_argsNum,
+    cptr_ctchar_t a_args[]
 )
 {
     bool_t bRv {};
@@ -124,7 +124,7 @@ Manager::_construct(
     } else {
         std::vec_tstring_t args;
         ProcessInfo::commandLine(a_argsNum, a_args, &args);
-        xTEST_EQ(a_argsNum, (int_t)args.size());
+        xTEST_EQ((std::size_t)a_argsNum, args.size());
 
         switch ( args.size() ) {
         case 1:
