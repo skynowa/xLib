@@ -23,6 +23,8 @@ public:
 	xNO_COPY_ASSIGN(DirTemp)
 ///@}
 
+	std::ctstring_t path() const;
+		///<
     void_t create();
         ///< create temporary dir
 
