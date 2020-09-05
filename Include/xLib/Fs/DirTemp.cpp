@@ -45,14 +45,14 @@ DirTemp::~DirTemp()
     }
 }
 //-------------------------------------------------------------------------------------------------
-std::ctstring_t
+std::ctstring_t &
 DirTemp::path() const
 {
     return _dirPath;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-DirTemp::create()
+DirTemp::create() const
 {
     Dir(_dirPath).pathCreate();
 }
