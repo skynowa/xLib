@@ -51,7 +51,7 @@ FileTemp::~FileTemp()
         _file->close();
     }
 
-    if (_isAutoDelete && !_filePath.empty()) {
+    if (_isAutoDelete) {
         File(_filePath).remove();
     }
 }
