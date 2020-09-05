@@ -35,13 +35,13 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 FileTemp::FileTemp(
-	std::ctstring_t &a_filePath,
+	std::ctstring_t &a_filePathPrefix,
     cbool_t          a_isAutoDelete
 ) :
-    _filePath    (a_filePath),
+    _filePath    (a_filePathPrefix),
     _isAutoDelete(a_isAutoDelete)
 {
-    xTEST(!a_filePath.empty());
+    xTEST(!a_filePathPrefix.empty());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
