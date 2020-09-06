@@ -39,10 +39,6 @@ jobs:
           repository: skynowa/xLib-data
           path: ${{ github.workspace }}/xLib-data
 
-      - name: Info
-      #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
-        run: echo "github.workspace - ${{ github.workspace }}" && echo "PWD - $PWD" && ls -la
-
       - name: xLib-data - Install
         run: cd ${{ github.workspace }}/xLib-data/Libs/ubuntu-20.04 && ./install.sh
 
@@ -64,7 +60,11 @@ jobs:
       - name: CMakeLib - Install
         run: cd ${{ github.workspace }}/CMakeLib && ./install.sh
 
-      # xLib
+      - name: Info
+      #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
+        run: echo "github.workspace - ${{ github.workspace }}" && echo "PWD - $PWD" && ls -la
+
+        # xLib
       - name: xLib - Configure
         run: cd ${{ github.workspace }}/xLib/Build && ./eclipse.sh
 
