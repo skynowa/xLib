@@ -28,10 +28,6 @@ jobs:
           repository: skynowa/xLib
           path: ${{ github.workspace }}/xLib
 
-      # Apps
-      # - name: Apps - Install
-      #   run: cd ./Tools && ./install_apps.sh
-
       # xLib-data
       - name: xLib-data - Vheckout
         uses: actions/checkout@v2
