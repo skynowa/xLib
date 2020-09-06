@@ -22,6 +22,10 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
+      # Apps
+      - name: Apps - Install
+        run: cd ./Tools && ./install_apps.sh
+
       - name: xLib - Vheckout
         uses: actions/checkout@v2
 
@@ -38,10 +42,6 @@ jobs:
 
       - name: xLib-data - Install
         run: cd ./xLib-data/Libs/ubuntu-20.04 && ./install.sh
-
-      # Apps
-      - name: Apps - Install
-        run: cd ./Tools && ./install_apps.sh
 
       # Libs
       - name: Libs - Install
