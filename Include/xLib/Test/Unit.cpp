@@ -72,7 +72,7 @@ Unit::run()
     dirTemp.create();
 
 	_data.tempDirPath = dirTemp.dir().dirPath();
-	_data.testDirPath = cmXLIB_DATA_DIR "/Tests";
+	_data.testDirPath = cmXLIB_DATA_DIR xT("/Tests");
 
     for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
         bool_t bRv {};
