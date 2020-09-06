@@ -41,7 +41,7 @@ jobs:
 
       # Libs
       - name: Libs - Install
-        run: cd ./Tools && ./install_libs.sh
+        run: cd ./Tools && ./install_apps.sh && ./install_libs.sh
 
       # Static Analysis
       # - name: Install - Static Analysis
