@@ -85,7 +85,7 @@ String::castW(
 std::string
 String::castA(
     std::cwstring_t &a_str,     ///< source string
-    cuint_t         &a_codePage ///< code page
+    cuint_t          a_codePage ///< code page
 )
 {
     xTEST_NA(a_str);
@@ -98,7 +98,7 @@ String::castA(
 std::wstring
 String::castW(
     std::cstring_t &a_str,      ///< source string
-    cuint_t        &a_codePage  ///< code page
+    cuint_t         a_codePage  ///< code page
 )
 {
     xTEST_NA(a_str);
@@ -175,8 +175,8 @@ String::castW(
 std::string
 String::castCodePage(
     std::cstring_t &a_str,              ///< source string
-    cuint_t        &a_codePageSource,   ///< source code page
-    cuint_t        &a_codePageDest      ///< destination code page
+    cuint_t         a_codePageSource,   ///< source code page
+    cuint_t         a_codePageDest      ///< destination code page
 )
 {
     xTEST_NA(a_str);
@@ -211,7 +211,7 @@ String::castFromOem(
 /* static */
 std::tstring_t
 String::castBool(
-    cbool_t &a_value   ///< source string
+    cbool_t a_value   ///< source string
 )
 {
     xTEST_NA(a_value);
@@ -259,7 +259,7 @@ String::toUpperCase(
 std::tstring_t
 String::toLowerCase(
     std::ctstring_t &a_str,     ///< source string
-    std::csize_t    &a_length   ///< string size
+    std::csize_t     a_length   ///< string size
 )
 {
     xTEST_NA(a_str);
@@ -277,7 +277,7 @@ String::toLowerCase(
 std::tstring_t
 String::toUpperCase(
     std::ctstring_t &a_str,     ///< source string
-    std::csize_t    &a_length   ///< string size
+    std::csize_t     a_length   ///< string size
 )
 {
     xTEST_NA(a_str);
@@ -593,8 +593,8 @@ String::rcut(
 std::tstring_t
 String::cut(
     std::ctstring_t &a_str,                                  ///< source string
-    std::csize_t    &a_posBegin,                             ///< begin position
-    std::csize_t    &a_posEnd   /* = std::tstring_t::npos */ ///< end position
+    std::csize_t     a_posBegin,                             ///< begin position
+    std::csize_t     a_posEnd   /* = std::tstring_t::npos */ ///< end position
 )
 {
     xTEST_NA(a_str);
@@ -619,7 +619,7 @@ String::cut(
 std::tstring_t
 String::minimize(
     std::ctstring_t &a_str,         ///< source string
-    std::csize_t    &a_maxLength    ///< string maximum size
+    std::csize_t     a_maxLength    ///< string maximum size
 )
 {
     xTEST_NA(a_str);
@@ -730,7 +730,7 @@ String::formatPercentage(
 void_t *
 String::memoryZeroSecure(
     void_t       *a_buff,       ///< buffer
-    std::csize_t &a_buffSize    ///< buffer size (bytes)
+    std::csize_t  a_buffSize    ///< buffer size (bytes)
 )
 {
     xTEST_NA(a_buff);
@@ -796,7 +796,7 @@ StringCI::find(
     xCHECK_RET(a_target.empty(),                                 0U);
 
     std::tstring_t::const_iterator cit = std::search(
-        a_str.begin() + static_cast< ::ssize_t >(a_pos), a_str.end(),
+        a_str.begin() + static_cast<::ssize_t>(a_pos), a_str.end(),
         a_target.begin(), a_target.end(), CompareCI(a_locale));
     xCHECK_RET(cit != a_str.end(), static_cast<std::size_t >(cit - a_str.begin()));
 

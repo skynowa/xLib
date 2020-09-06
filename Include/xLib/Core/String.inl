@@ -146,7 +146,7 @@ template<typename T>
 std::tstring_t
 String::cast(
     const T &a_value,   ///< source value
-    cint_t  &a_base     ///< valid values: 8, 10, 16
+    cint_t   a_base     ///< valid values: 8, 10, 16
 )
 {
     xTEST_NA(a_value);
@@ -204,7 +204,7 @@ template<typename T>
 T
 String::cast(
     std::ctstring_t &a_str, ///< source string
-    cint_t          &a_base ///< valid values: 8, 10, 16
+    cint_t           a_base ///< valid values: 8, 10, 16
 )
 {
     xTEST_NA(a_str);

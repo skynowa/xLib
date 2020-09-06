@@ -361,7 +361,7 @@ Path::isAbsolute() const
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::toWin(
-    cbool_t &a_isSlashAtEnd
+    cbool_t a_isSlashAtEnd
 ) const
 {
     xTEST_NA(a_isSlashAtEnd);
@@ -376,7 +376,7 @@ Path::toWin(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::toUnix(
-    cbool_t &a_isSlashAtEnd
+    cbool_t a_isSlashAtEnd
 )  const
 {
     xTEST_NA(a_isSlashAtEnd);
@@ -391,7 +391,7 @@ Path::toUnix(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::toNative(
-    cbool_t &a_isSlashAtEnd
+    cbool_t a_isSlashAtEnd
 ) const
 {
     xTEST_NA(a_isSlashAtEnd);

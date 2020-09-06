@@ -38,7 +38,7 @@ public:
         ///< convert type to std::tstring_t
     template<typename T>
     static
-    std::tstring_t cast(const T &value, cint_t &base);
+    std::tstring_t cast(const T &value, cint_t base);
         ///< convert type to std::tstring_t by base (8, 10, 16)
     template<typename T>
     static
@@ -46,7 +46,7 @@ public:
         ///< convert std::tstring_t to type
     template<typename T>
     static
-    T              cast(std::ctstring_t &str, cint_t &base);
+    T              cast(std::ctstring_t &str, cint_t base);
         ///< convert std::tstring_t by base (8, 10, 16) to type
 
     static
@@ -57,10 +57,10 @@ public:
         ///< std::string in std::wstring
 
     static
-    std::string    castA(std::cwstring_t &str, cuint_t &codePage);
+    std::string    castA(std::cwstring_t &str, cuint_t codePage);
         ///< std::wstring in std::string
     static
-    std::wstring   castW(std::cstring_t &str, cuint_t &codePage);
+    std::wstring   castW(std::cstring_t &str, cuint_t codePage);
         ///< std::string in std::wstring
 
     static
@@ -71,7 +71,7 @@ public:
         ///< std::string in std::wstring
 
     static
-    std::string    castCodePage(std::cstring_t &str, cuint_t &codePageSource, cuint_t &codePageDest);
+    std::string    castCodePage(std::cstring_t &str, cuint_t codePageSource, cuint_t codePageDest);
         ///< convert codepage
 
     static
@@ -82,7 +82,7 @@ public:
         ///< convert oem to char
 
     static
-    std::tstring_t castBool(cbool_t &value);
+    std::tstring_t castBool(cbool_t value);
         ///< bool_t to std::tstring_t
     static
     bool_t         castBool(std::ctstring_t &str);
@@ -95,10 +95,10 @@ public:
     std::tstring_t toUpperCase(std::ctstring_t &str);
         ///< convert to uppercase
     static
-    std::tstring_t toLowerCase(std::ctstring_t &str, std::csize_t &length);
+    std::tstring_t toLowerCase(std::ctstring_t &str, std::csize_t length);
         ///< convert to low case
     static
-    std::tstring_t toUpperCase(std::ctstring_t &str, std::csize_t &length);
+    std::tstring_t toUpperCase(std::ctstring_t &str, std::csize_t length);
         ///< convert to uppercase
 
     /*******************************************************************************
@@ -166,11 +166,11 @@ public:
     std::tstring_t rcut(std::ctstring_t &str, std::ctstring_t &sepLeft, std::ctstring_t &sepRight);
         ///< cut using strings
     static
-    std::tstring_t cut(std::ctstring_t &str, std::csize_t &posBegin,
-                       std::csize_t &posEnd = std::tstring_t::npos);
+    std::tstring_t cut(std::ctstring_t &str, std::csize_t posBegin,
+                       std::csize_t posEnd = std::tstring_t::npos);
         ///< cut using string positions
     static
-    std::tstring_t minimize(std::ctstring_t &str, std::csize_t &maxLength);
+    std::tstring_t minimize(std::ctstring_t &str, std::csize_t maxLength);
         ///< minimize
 
     /*******************************************************************************
@@ -191,7 +191,7 @@ public:
     *******************************************************************************/
 
     static
-    void_t *       memoryZeroSecure(void_t *buff, std::csize_t &buffSize);
+    void_t *       memoryZeroSecure(void_t *buff, std::csize_t buffSize);
         ///< secure zero memory
 
     /*******************************************************************************
@@ -205,17 +205,17 @@ public:
 
 xPLATFORM_IMPL:
     static
-    std::string    _castA_impl(std::cwstring_t &str, cuint_t &codePage);
+    std::string    _castA_impl(std::cwstring_t &str, cuint_t codePage);
     static
-    std::wstring   _castW_impl(std::cstring_t &str, cuint_t &codePage);
+    std::wstring   _castW_impl(std::cstring_t &str, cuint_t codePage);
     static
     std::string    _castToOem_impl(std::ctstring_t &str);
     static
     std::tstring_t _castFromOem_impl(std::cstring_t &str);
     static
-    std::tstring_t _toLowerCase_impl(std::ctstring_t &str, std::csize_t &length);
+    std::tstring_t _toLowerCase_impl(std::ctstring_t &str, std::csize_t length);
     static
-    std::tstring_t _toUpperCase_impl(std::ctstring_t &str, std::csize_t &length);
+    std::tstring_t _toUpperCase_impl(std::ctstring_t &str, std::csize_t length);
 };
 
 xNAMESPACE_END2(xl, core)

@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN2(xl, core)
 std::string
 String::_castA_impl(
     std::cwstring_t &a_str,     ///< source string
-    cuint_t         &a_codePage ///< code page
+    cuint_t          a_codePage ///< code page
 )
 {
     std::string asRv;
@@ -36,7 +36,7 @@ String::_castA_impl(
 std::wstring
 String::_castW_impl(
     std::cstring_t &a_str,      ///< source string
-    cuint_t        &a_codePage  ///< code page
+    cuint_t         a_codePage  ///< code page
 )
 {
     xTEST_NA(a_str);
@@ -91,7 +91,7 @@ String::_castFromOem_impl(
 std::tstring_t
 String::_toLowerCase_impl(
     std::ctstring_t &a_str,     ///< source string
-    std::csize_t    &a_length   ///< string size
+    std::csize_t     a_length   ///< string size
 )
 {
     std::tstring_t sRv(a_str);
@@ -106,7 +106,7 @@ String::_toLowerCase_impl(
 std::tstring_t
 String::_toUpperCase_impl(
     std::ctstring_t &a_str,     ///< source string
-    std::csize_t    &a_length   ///< string size
+    std::csize_t     a_length   ///< string size
 )
 {
     std::tstring_t sRv(a_str);
