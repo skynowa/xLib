@@ -6,7 +6,6 @@
 
 #include "Unit.h"
 
-#include <xLib/Config.h>
 #include <xLib/Core/ScopeExit.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Fs/Path.h>
