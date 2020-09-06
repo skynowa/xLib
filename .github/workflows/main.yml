@@ -39,9 +39,13 @@ jobs:
       - name: xLib-data - Install
         run: cd ./xLib-data/Libs/ubuntu-20.04 && ./install.sh
 
+      # Apps
+      - name: Apps - Install
+        run: cd ./Tools && ./install_apps.sh
+
       # Libs
       - name: Libs - Install
-        run: cd ./Tools && ./install_apps.sh && ./install_libs.sh
+        run: cd ./Tools && ./install_libs.sh
 
       # Static Analysis
       # - name: Install - Static Analysis
