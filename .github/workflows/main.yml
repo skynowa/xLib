@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: skynowa/xLib
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/xLib
 
       # Apps
       # - name: Apps - Install
@@ -41,14 +41,14 @@ jobs:
 
       - name: Info
       #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
-        run: echo "github.workspace - ${{ github.workspace }}" && echo "PWD - $PWD" && ls -la
+        run: echo "github.workspace - ${{ github.workspace }}" && echo "PWD - $PWD" && cd xLib && ls -la
 
       - name: xLib-data - Install
         run: cd ${{ github.workspace }}/xLib-data/Libs/ubuntu-20.04 && ./install.sh
 
       # Libs
       - name: Libs - Install
-        run: cd ${{ github.workspace }}/Tools && ./install_libs.sh
+        run: cd ${{ github.workspace }}/xLib/Tools && ./install_libs.sh
 
       # Static Analysis
       # - name: Install - Static Analysis
@@ -66,16 +66,16 @@ jobs:
 
       # xLib
       - name: xLib - Configure
-        run: cd ${{ github.workspace }}/Build && ./eclipse.sh
+        run: cd ${{ github.workspace }}/xLib/Build && ./eclipse.sh
 
       - name: xLib - Build
-        run: cd ${{ github.workspace }}/Build && ./build.sh
+        run: cd ${{ github.workspace }}/xLib/Build && ./build.sh
 
       # - name: xLib - Unit Tests (optional)
       #   run: ./unit_tests.sh IpcSemaphore
 
       - name: xLib - Tests
-        run: cd ${{ github.workspace }}/Build && ./tests.sh
+        run: cd ${{ github.workspace }}/xLib/Build && ./tests.sh
 
 
   # build_windows:
