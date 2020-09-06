@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: skynowa/xLib-data
-          path: ${{ github.workspace }}/xLib-data
+          path: ${{ github.workspace }}/../xLib-data
 
       - name: Info
       #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
@@ -59,7 +59,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: skynowa/CMakeLib
-          path: ${{ github.workspace }}/CMakeLib
+          path: ${{ github.workspace }}/../CMakeLib
 
       - name: CMakeLib - Install
         run: cd ${{ github.workspace }}/CMakeLib && ./install.sh
