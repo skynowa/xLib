@@ -16,6 +16,12 @@ class String
     /// strings utils
 {
 public:
+///@name ctors, dtor
+///@{
+	xNO_DEFAULT_CONSTRUCT(String)
+	xNO_COPY_ASSIGN(String)
+///@}
+
     /*******************************************************************************
     *   converters
     *
@@ -58,17 +64,14 @@ public:
         ///< std::string in std::wstring
 
     static
-    std::string    castA(std::cwstring_t &str, const std::locale &locale)
-                      ;
+    std::string    castA(std::cwstring_t &str, const std::locale &locale);
         ///< std::wstring in std::string
     static
-    std::wstring   castW(std::cstring_t  &str, const std::locale &locale)
-                      ;
+    std::wstring   castW(std::cstring_t  &str, const std::locale &locale);
         ///< std::string in std::wstring
 
     static
-    std::string    castCodePage(std::cstring_t &str, cuint_t &codePageSource, cuint_t &codePageDest)
-                      ;
+    std::string    castCodePage(std::cstring_t &str, cuint_t &codePageSource, cuint_t &codePageDest);
         ///< convert codepage
 
     static
@@ -92,12 +95,10 @@ public:
     std::tstring_t toUpperCase(std::ctstring_t &str);
         ///< convert to uppercase
     static
-    std::tstring_t toLowerCase(std::ctstring_t &str, std::csize_t &length)
-                             ;
+    std::tstring_t toLowerCase(std::ctstring_t &str, std::csize_t &length);
         ///< convert to low case
     static
-    std::tstring_t toUpperCase(std::ctstring_t &str, std::csize_t &length)
-                             ;
+    std::tstring_t toUpperCase(std::ctstring_t &str, std::csize_t &length);
         ///< convert to uppercase
 
     /*******************************************************************************
@@ -106,16 +107,13 @@ public:
     *******************************************************************************/
 
     static
-    std::tstring_t trimLeftChars(std::ctstring_t &str, std::ctstring_t &chars)
-                      ;
+    std::tstring_t trimLeftChars(std::ctstring_t &str, std::ctstring_t &chars);
         ///< trim left chars
     static
-    std::tstring_t trimRightChars(std::ctstring_t &str, std::ctstring_t &chars)
-                      ;
+    std::tstring_t trimRightChars(std::ctstring_t &str, std::ctstring_t &chars);
         ///< trim left chars
     static
-    std::tstring_t trimChars(std::ctstring_t &str, std::ctstring_t &chars)
-                      ;
+    std::tstring_t trimChars(std::ctstring_t &str, std::ctstring_t &chars);
         ///< trim left, right chars
     static
     std::tstring_t trimSpace(std::ctstring_t &str);
@@ -133,12 +131,10 @@ public:
                        std::ctstring_t &strNew);
         ///< replace all strings
     static
-    std::tstring_t replaceAll(std::ctstring_t &str, ctchar_t &charOld, ctchar_t &charNew)
-                      ;
+    std::tstring_t replaceAll(std::ctstring_t &str, ctchar_t &charOld, ctchar_t &charNew);
         ///< replace all chars
     static
-    std::tstring_t removeAll(std::ctstring_t &str, std::ctstring_t &removeStr)
-                      ;
+    std::tstring_t removeAll(std::ctstring_t &str, std::ctstring_t &removeStr);
         ///< remove all strings
 
 	// split
@@ -160,17 +156,14 @@ public:
         ///< join with string separator
     template<typename T>
     static
-    std::tstring_t join(const T &map, std::ctstring_t &sepLine, std::ctstring_t &sepKeyValue)
-                       ;
+    std::tstring_t join(const T &map, std::ctstring_t &sepLine, std::ctstring_t &sepKeyValue);
         ///< join with string separator
 
     static
-    std::tstring_t cut(std::ctstring_t &str, std::ctstring_t &sepLeft, std::ctstring_t &sepRight)
-                      ;
+    std::tstring_t cut(std::ctstring_t &str, std::ctstring_t &sepLeft, std::ctstring_t &sepRight);
         ///< cut using strings
     static
-    std::tstring_t rcut(std::ctstring_t &str, std::ctstring_t &sepLeft, std::ctstring_t &sepRight)
-                      ;
+    std::tstring_t rcut(std::ctstring_t &str, std::ctstring_t &sepLeft, std::ctstring_t &sepRight);
         ///< cut using strings
     static
     std::tstring_t cut(std::ctstring_t &str, std::csize_t &posBegin,
@@ -189,8 +182,7 @@ public:
     std::tstring_t formatBytes(culonglong_t &bytes);
         ///< format bytes (like Bit(s), Byte(s), MB, GB, TB)
     static
-    std::tstring_t formatPercentage(culonglong_t &maxValue, culonglong_t &currentValue)
-                      ;
+    std::tstring_t formatPercentage(culonglong_t &maxValue, culonglong_t &currentValue);
         ///< formatting percentage
 
     /*******************************************************************************
@@ -210,10 +202,6 @@ public:
     static
     bool_t         isRepeated(std::ctstring_t &str);
         ///< is repeated
-
-private:
-    xNO_DEFAULT_CONSTRUCT(String)
-    xNO_COPY_ASSIGN(String)
 
 xPLATFORM_IMPL:
     static
@@ -238,6 +226,12 @@ class StringCI
     /// strings utils (case insensitive)
 {
 public:
+///@name ctors, dtor
+///@{
+	xNO_DEFAULT_CONSTRUCT(StringCI)
+	xNO_COPY_ASSIGN(StringCI)
+///@}
+
     /*******************************************************************************
     *   search, compare
     *
@@ -255,12 +249,6 @@ public:
     bool_t      compare(std::ctstring_t &str1, std::ctstring_t &str2,
                     const xTLOCALE &locale = xTLOCALE());
         ///< no case compare
-
-private:
-                StringCI();
-               ~StringCI();
-
-    xNO_COPY_ASSIGN(StringCI)
 
 xPLATFORM_IMPL:
     static
