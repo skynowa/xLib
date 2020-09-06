@@ -45,7 +45,7 @@ FileTemp::FileTemp(
 	std::ctstring_t &a_dirPath,
     cbool_t          a_isAutoDelete
 ) :
-    _filePath    (Path(a_dirPath).slashAppend() + Path(_filePath).fileName() + xT("XXXXXX")),
+    _filePath    (Path(a_dirPath).slashAppend() + Path(a_filePathPrefix).fileName() + xT("XXXXXX")),
     _isAutoDelete(a_isAutoDelete)
 {
     xTEST(!a_filePathPrefix.empty());
