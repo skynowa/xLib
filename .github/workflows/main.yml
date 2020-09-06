@@ -62,7 +62,7 @@ jobs:
 
       - name: Info
       #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
-        run: echo "github.workspace - ${{ github.workspace }}" && echo "PWD - $PWD" && ls -la
+        run: echo "github.workspace - ${{ github.workspace }}" && ls -la
 
       - name: xLib - Build
         run: cd ${{ github.workspace }}/xLib/Build && ./build.sh
