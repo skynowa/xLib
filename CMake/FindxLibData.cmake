@@ -22,7 +22,7 @@ find_path(cmXLIB_DATA_DIR
         "xLib-data"
     PATHS
         "${XLIB_LOCATION}/.."
-		"/home/runner/work"
+		"/home/runner/work/xLib/xLib"
     PATH_SUFFIXES
         "")
 
