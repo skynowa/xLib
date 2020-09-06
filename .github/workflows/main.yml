@@ -24,11 +24,13 @@ jobs:
           access_token: ${{ github.token }}
 
       - name: xLib - Vheckout
+        run: echo "PWD - $PWD"
         uses: actions/checkout@v2
 
       # xLib-data
       - name: xLib-data - Vheckout
         uses: actions/checkout@v2
+        run: echo "PWD - $PWD"
         with:
           repository: skynowa/xLib-data
           path: xLib-data
@@ -49,6 +51,7 @@ jobs:
 
       # CMakeLib
       - name: CMakeLib - checkout
+        run: echo "PWD - $PWD"
         uses: actions/checkout@v2
         with:
           repository: skynowa/CMakeLib
