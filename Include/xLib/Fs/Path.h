@@ -80,11 +80,11 @@ public:
     bool_t         isAbsolute() const;
         ///< is absolute
 
-    std::tstring_t toWin(cbool_t &isSlashAtEnd) const;
+    std::tstring_t toWin(cbool_t isSlashAtEnd) const;
         ///< convert slashes to Windows style
-    std::tstring_t toUnix(cbool_t &isSlashAtEnd) const;
+    std::tstring_t toUnix(cbool_t isSlashAtEnd) const;
         ///< convert slashes to Nix style
-    std::tstring_t toNative(cbool_t &isSlashAtEnd) const;
+    std::tstring_t toNative(cbool_t isSlashAtEnd) const;
         ///< convert slashes to native style
     std::tstring_t absolute() const;
         ///< get absolute path

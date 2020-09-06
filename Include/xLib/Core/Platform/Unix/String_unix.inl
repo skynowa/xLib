@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN2(xl, core)
 std::string
 String::_castA_impl(
     std::cwstring_t &a_str,     ///< source string
-    cuint_t         &a_codePage ///< code page
+    cuint_t          a_codePage ///< code page
 )
 {
     std::string asRv;
@@ -34,7 +34,7 @@ String::_castA_impl(
 std::wstring
 String::_castW_impl(
     std::cstring_t &a_str,      ///< source string
-    cuint_t        &a_codePage  ///< code page
+    cuint_t         a_codePage  ///< code page
 )
 {
     std::wstring wsRv;
@@ -84,12 +84,12 @@ String::_castFromOem_impl(
 std::tstring_t
 String::_toLowerCase_impl(
     std::ctstring_t &a_str,     ///< source string
-    std::csize_t    &a_length   ///< string size
+    std::csize_t     a_length   ///< string size
 )
 {
     std::tstring_t sRv(a_str);
 
-    std::transform(sRv.begin(), sRv.begin() +  static_cast< ::ssize_t >(a_length), sRv.begin(), ToLower( xTLOCALE() ));
+    std::transform(sRv.begin(), sRv.begin() +  static_cast<::ssize_t>(a_length), sRv.begin(), ToLower( xTLOCALE() ));
 
     return sRv;
 }
@@ -98,12 +98,12 @@ String::_toLowerCase_impl(
 std::tstring_t
 String::_toUpperCase_impl(
     std::ctstring_t &a_str,     ///< source string
-    std::csize_t    &a_length   ///< string size
+    std::csize_t     a_length   ///< string size
 )
 {
     std::tstring_t sRv(a_str);
 
-    std::transform(sRv.begin(), sRv.begin() + static_cast< ::ssize_t >(a_length), sRv.begin(), ToUpper( xTLOCALE() ));
+    std::transform(sRv.begin(), sRv.begin() + static_cast<::ssize_t>(a_length), sRv.begin(), ToUpper( xTLOCALE() ));
 
     return sRv;
 }
