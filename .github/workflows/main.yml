@@ -15,7 +15,6 @@ on:
 jobs:
   build_linux:
     runs-on: ubuntu-20.04
-    # runs-on: windows-2019
 
     steps:
       - name: Cancel Previous Runs
@@ -24,19 +23,18 @@ jobs:
           access_token: ${{ github.token }}
 
       - name: xLib - Vheckout
-        run: echo "PWD - $PWD"
         uses: actions/checkout@v2
 
       # xLib-data
       - name: xLib-data - Vheckout
         uses: actions/checkout@v2
-        run: echo "PWD - $PWD"
         with:
           repository: skynowa/xLib-data
           path: xLib-data
 
-      # - name: Info
+      - name: Info
       #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
+        run: echo "PWD - $PWD"
 
       - name: xLib-data - Install
         run: cd ./xLib-data/Libs/ubuntu-20.04 && ./install.sh
@@ -51,7 +49,6 @@ jobs:
 
       # CMakeLib
       - name: CMakeLib - checkout
-        run: echo "PWD - $PWD"
         uses: actions/checkout@v2
         with:
           repository: skynowa/CMakeLib
