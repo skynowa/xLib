@@ -1,1 +1,1 @@
-../xLib/Build/auto-build.sh
+./Build/auto-build.sh
