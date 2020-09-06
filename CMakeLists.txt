@@ -350,6 +350,22 @@ unset(CMAKE_TOOLCHAIN_FILE)
 # tests
 if (cmOPTION_BUILD_TESTS)
     enable_testing()
-    add_subdirectory(${XLIB_LOCATION}/Tests)
+
+    add_subdirectory(${XLIB_LOCATION}/Tests/Core)
+    add_subdirectory(${XLIB_LOCATION}/Tests/Interface)
+    add_subdirectory(${XLIB_LOCATION}/Tests/Pattern)
+    add_subdirectory(${XLIB_LOCATION}/Tests/Algo)
+    add_subdirectory(${XLIB_LOCATION}/Tests/Crypt)
+    add_subdirectory(${XLIB_LOCATION}/Tests/System)
+    add_subdirectory(${XLIB_LOCATION}/Tests/Test)
+    add_subdirectory(${XLIB_LOCATION}/Tests/Log)
+    add_subdirectory(${XLIB_LOCATION}/Tests/Debug)
+    add_subdirectory(${XLIB_LOCATION}/Tests/Fs)
+    add_subdirectory(${XLIB_LOCATION}/Tests/Net)
+    add_subdirectory(${XLIB_LOCATION}/Tests/Sync)
+    add_subdirectory(${XLIB_LOCATION}/Tests/Db)
+    add_subdirectory(${XLIB_LOCATION}/Tests/Ui)
+
+    add_subdirectory(${XLIB_LOCATION}/Tests/Package)
 endif()
 #--------------------------------------------------------------------------------------------------
