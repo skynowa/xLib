@@ -21,6 +21,7 @@ struct UnitData
     std::size_t    unitLoops {1};   ///< unit loops
     std::size_t    caseLoops {1};   ///< case loops
     std::tstring_t tempDirPath;     ///< temp dir path
+    std::tstring_t testDirPath;     ///< test dir path
 };
 xUSING_CONST(UnitData);
 
