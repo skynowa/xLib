@@ -22,8 +22,8 @@ Test_FileTemp::unit()
 
     	FileIO fileWorker(filePath);
 
-        FileTemp fileTemp(filePath, true);
-        fileTemp.create(getData().tempDirPath, &fileWorker);
+        FileTemp fileTemp(filePath, getData().tempDirPath, true);
+        fileTemp.create(&fileWorker);
         xTEST(FileInfo(fileWorker).isEmpty());
 
         fileWorker.writeLine(xT("qwertyuiop"));

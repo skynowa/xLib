@@ -34,11 +34,18 @@ xNAMESPACE_BEGIN2(xl, fs)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+/**
+ * The last six characters of template must be XXXXXX and
+ * these are replaced with a string that makes the filename unique.
+ * Since it will be modified, template must not be a string constant,
+ * but should be declared as a character array
+ */
 FileTemp::FileTemp(
 	std::ctstring_t &a_filePathPrefix,
+	std::ctstring_t &a_dirPath,
     cbool_t          a_isAutoDelete
 ) :
-    _filePath    (a_filePathPrefix),
+    _filePath    (Path(a_dirPath).slashAppend() + Path(_filePath).fileName() + xT("XXXXXX")),
     _isAutoDelete(a_isAutoDelete)
 {
     xTEST(!a_filePathPrefix.empty());
@@ -58,24 +65,13 @@ FileTemp::~FileTemp()
 //-------------------------------------------------------------------------------------------------
 void_t
 FileTemp::create(
-    std::ctstring_t &a_dirPath,
-    FileIO          *a_file
+    FileIO *a_file
 )
 {
-    xTEST(!a_dirPath.empty());
     xTEST_PTR(a_file);
     xTEST(!a_file->get().isValid());
 
-   /**
-    * The last six characters of template must be XXXXXX and
-    * these are replaced with a string that makes the filename unique.
-    * Since it will be modified, template must not be a string constant,
-    * but should be declared as a character array
-    */
-    std::ctstring_t fileNameTemplate = xT("XXXXXX");
-
-    Dir(a_dirPath).pathCreate();
-    _filePath = Path(a_dirPath).slashAppend() + Path(_filePath).fileName() + fileNameTemplate;
+    Dir( Path(_filePath).dir() ).pathCreate();
 
     HandleStdFile stdFile;
     _create_impl(stdFile);
