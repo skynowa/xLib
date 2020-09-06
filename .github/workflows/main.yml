@@ -22,12 +22,12 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
+      - name: xLib - Vheckout
+        uses: actions/checkout@v2
+
       # Apps
       - name: Apps - Install
         run: cd ./Tools && ./install_apps.sh
-
-      - name: xLib - Vheckout
-        uses: actions/checkout@v2
 
       # xLib-data
       - name: xLib-data - Vheckout
