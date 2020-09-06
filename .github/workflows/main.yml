@@ -38,7 +38,7 @@ jobs:
 
       - name: Info
       #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
-        run: echo "PWD - $PWD" && cd xLib && ls -la
+        run: echo "PWD - $PWD" && ls -la
 
       - name: xLib-data - Install
         run: cd ./xLib-data/Libs/ubuntu-20.04 && ./install.sh
