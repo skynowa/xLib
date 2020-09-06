@@ -255,7 +255,7 @@ Test_Path::unit()
 			{xT("D:\\Test.config"),               xT("A:"),    xT("A:\\Test.config")},
 			////{xT("TEST_STRING_3.f"),               xT("B:"),    xT("")}
 		#else
-			{xT("/home/skynowa"),                 xT("/"),     xT("/home/skynowa")},
+			{xT("/home/guest"),                 xT("/"),     xT("/home/guest")},
 		#endif
 		};
 
