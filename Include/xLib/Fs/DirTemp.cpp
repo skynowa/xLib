@@ -15,7 +15,6 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Fs/Dir.h>
 #include <xLib/Crypt/Guid.h>
 
 
@@ -31,7 +30,7 @@ DirTemp::DirTemp(
 	std::ctstring_t &a_dirPathPrefix,
 	cbool_t          a_isAutoDelete
 ) :
-	_dirPath     (a_dirPathPrefix + xT("_") + Guid(Guid::Type::RandomBased).get()),
+	_dir         (a_dirPathPrefix + xT("_") + Guid(Guid::Type::RandomBased).get()),
 	_isAutoDelete(a_isAutoDelete)
 {
 	xTEST(!a_dirPathPrefix.empty());
@@ -41,20 +40,20 @@ DirTemp::DirTemp(
 DirTemp::~DirTemp()
 {
 	if (_isAutoDelete) {
-		Dir(_dirPath).pathDelete();
+		_dir.pathDelete();
 	}
 }
 //-------------------------------------------------------------------------------------------------
-std::ctstring_t &
-DirTemp::path() const
+const Dir &
+DirTemp::dir() const
 {
-	return _dirPath;
+	return _dir;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 DirTemp::create() const
 {
-	Dir(_dirPath).pathCreate();
+	_dir.pathCreate();
 }
 //-------------------------------------------------------------------------------------------------
 

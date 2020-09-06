@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Fs/Dir.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, fs)
 
@@ -23,14 +24,14 @@ public:
 	xNO_COPY_ASSIGN(DirTemp)
 ///@}
 
-	std::ctstring_t &path() const;
+	const Dir &dir() const;
 		///< dir path (with unique postfix)
-	void_t           create() const;
+	void_t     create() const;
 		///< create temporary dir
 
 private:
-	std::ctstring_t _dirPath;         ///< temporary dir path (not constant)
-	cbool_t         _isAutoDelete {}; ///< auto delete flag
+	Dir     _dir;             ///< temporary dir path (not constant)
+	cbool_t _isAutoDelete {}; ///< auto delete flag
 };
 
 xNAMESPACE_END2(xl, fs)

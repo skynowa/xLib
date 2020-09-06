@@ -69,7 +69,7 @@ Unit::run()
     DirTemp dirTemp(Path::exeDir() + Const::slash() + _data.name, isAutoDelete);
     dirTemp.create();
 
-	_data.tempDirPath = dirTemp.path();
+	_data.tempDirPath = dirTemp.dir().dirPath();
 
     for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
         bool_t bRv {};
