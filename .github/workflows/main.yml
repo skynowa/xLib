@@ -25,7 +25,7 @@ jobs:
       - name: xLib - Vheckout
         uses: actions/checkout@v2
         with:
-          repository: skynowa/xLib-data
+          repository: skynowa/xLib
           path: ${env:GITHUB_WORKSPACE}/xLib
 
       # Apps
