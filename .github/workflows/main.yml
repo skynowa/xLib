@@ -60,13 +60,13 @@ jobs:
       - name: CMakeLib - Install
         run: cd ${{ github.workspace }}/CMakeLib && ./install.sh
 
-      - name: Info
-      #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
-        run: echo "github.workspace - ${{ github.workspace }}" && echo "PWD - $PWD" && ls -la
-
         # xLib
       - name: xLib - Configure
         run: cd ${{ github.workspace }}/xLib/Build && ./eclipse.sh
+
+      - name: Info
+      #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
+        run: echo "github.workspace - ${{ github.workspace }}" && echo "PWD - $PWD" && ls -la
 
       - name: xLib - Build
         run: cd ${{ github.workspace }}/xLib/Build && ./build.sh
