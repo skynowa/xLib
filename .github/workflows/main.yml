@@ -89,7 +89,7 @@ jobs:
           # Read file contents as body:
           # body: file://README.md
           to: skynowa@gmail.com
-          from: Github CI # <user@example.com>
+          from: Github CI - xLib # <user@example.com>
           # Optional content type (defaults to text/plain):
           content_type: text/html
           # Optional attachments:
