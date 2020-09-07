@@ -317,7 +317,7 @@
         unitData.unitLoops   = 1; \
         unitData.caseLoops   = 1; \
         unitData.tempDirPath = {}; \
-        unitData.testDirPath = {}; \
+        unitData.testDirPath = cmXLIB_DATA_DIR xT("/Tests"); \
         \
         unitClassName unit; \
         unit.setData(unitData); \
