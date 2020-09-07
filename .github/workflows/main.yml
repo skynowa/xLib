@@ -79,10 +79,10 @@ jobs:
         if: ${{ success() }}
         uses: dawidd6/action-send-mail@v2.2.1
         with:
-          server_address: ${{secrets.ADDRESS}}
+          server_address: ${{secrets.EMAIL_SERVER}}
           server_port: 465
-          username: ${{secrets.USERNAME}}
-          password: ${{secrets.PASSWORD}}
+          username: ${{secrets.EMAIL_USER}}
+          password: ${{secrets.EMAIL_PASSWORD}}
           subject: ${{github.repository}}  - Build OK
           body: Build job of ${{github.repository}} completed successfully!
           to: ${{github.event.pusher.email}}
