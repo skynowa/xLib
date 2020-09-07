@@ -316,6 +316,7 @@
         unitData.unitLoops   = 1; \
         unitData.caseLoops   = 1; \
         unitData.tempDirPath = {}; \
+        unitData.testDirPath = {}; \
         unitData.name        = xLEX_TO_STR(unitClassName); \
         \
         unitClassName unit; \
