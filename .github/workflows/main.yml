@@ -66,29 +66,14 @@ jobs:
       #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
 
-      # - name: xLib - Build
-      #   run: cd ${{github.workspace}}/xLib/Build && ./build.sh
+      - name: xLib - Build
+        run: cd ${{github.workspace}}/xLib/Build && ./build.sh
 
       # - name: xLib - Unit Tests (optional)
       #   run: ./unit_tests.sh IpcSemaphore
 
-      # - name: xLib - Tests
-      #   run: cd ${{github.workspace}}/xLib/Build && ./tests.sh
-
-      # - name: Status
-      #   if: ${{ success() }}
-      #   uses: dawidd6/action-send-mail@v2.2.1
-      #   with:
-      #     server_address: ${{secrets.EMAIL_SERVER}}
-      #     server_port: 465
-      #     username: ${{secrets.EMAIL_USER}}
-      #     password: ${{secrets.EMAIL_PASSWORD}}
-      #     subject: ${{github.repository}}  - Build OK
-      #     body: Build job of ${{github.repository}} completed successfully!
-      #     to: ${{secrets.EMAIL}}   # ${{github.event.pusher.email}}
-      #     from: Github CI # <user@example.com>
-      #     content_type: text/markdown
-      #     attachments:
+      - name: xLib - Tests
+        run: cd ${{github.workspace}}/xLib/Build && ./tests.sh
 
   # build_windows:
   #   runs-on: windows-2019
