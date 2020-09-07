@@ -75,6 +75,9 @@ jobs:
       - name: xLib - Tests
         run: cd ${{github.workspace}}/xLib/Build && ./tests.sh
 
+      - name: Status
+        if: ${{ success() }}
+        run: echo "OK"
 
   # build_windows:
   #   runs-on: windows-2019
