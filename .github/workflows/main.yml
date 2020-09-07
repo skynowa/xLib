@@ -87,7 +87,7 @@ jobs:
           # Literal body:
           body: Build job of ${{github.repository}} completed successfully!
           # Read file contents as body:
-          body: file://README.md
+          # body: file://README.md
           to: skynowa@gmail.com
           from: Github CI # <user@example.com>
           # Optional content type (defaults to text/plain):
