@@ -118,22 +118,17 @@ Test_FsWatcher::unit()
 
     static std::cmap_tstring_t dbCmds
     {
-		#include "cmds_suppliers.db"
+		/// #include cmXLIB_DATA_DIR "/Tests/Fs/cmds_suppliers.db"
     };
 
     std::vec_tstring_t dbWatchDirPaths
-#if 0
 	{
-		#include "fs_watcher_dirs_suppliers.db"
+		/// #include cmXLIB_DATA_DIR "/Tests/Fs/fs_watcher_dirs_suppliers.db"
 	};
-#else
-	;
-	dbWatchDirPaths.push_back("/home/skynowa/Projects/xLib/Include/xLib/Fs");
-#endif
 
     static std::cvec_tstring_t dbWatchDirPathsDisabled
     {
-        #include "fs_watcher_dirs_disabled_suppliers.db"
+        /// #include cmXLIB_DATA_DIR "/Tests/Fs/fs_watcher_dirs_disabled_suppliers.db"
     };
 
     xTEST_CASE("ctors")
