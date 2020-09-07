@@ -1,6 +1,8 @@
 #--------------------------------------------------------------------------------------------------
 # \file  main.yml
 # \brief
+#
+# https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
 #--------------------------------------------------------------------------------------------------
 
 
@@ -20,27 +22,27 @@ jobs:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.5.0
         with:
-          access_token: ${{ github.token }}
+          access_token: ${{github.token}}
 
       - name: xLib - Vheckout
         uses: actions/checkout@v2
+        with:
+          repository: skynowa/xLib
+          path: ${{github.workspace}}/xLib
 
       # xLib-data
       - name: xLib-data - Vheckout
         uses: actions/checkout@v2
         with:
           repository: skynowa/xLib-data
-          path: xLib-data
-
-      # - name: Info
-      #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
+          path: ${{github.workspace}}/xLib-data
 
       - name: xLib-data - Install
-        run: cd ./xLib-data/Libs/ubuntu-20.04 && ./install.sh
+        run: cd ${{github.workspace}}/xLib-data/Libs/ubuntu-20.04 && ./install.sh
 
       # Libs
       - name: Libs - Install
-        run: cd ./Tools && ./install_libs.sh
+        run: cd ${{github.workspace}}/xLib/Tools && ./install_libs.sh
 
       # Static Analysis
       # - name: Install - Static Analysis
@@ -51,24 +53,27 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: skynowa/CMakeLib
-          path: CMakeLib
+          path: ${{github.workspace}}/CMakeLib
 
       - name: CMakeLib - Install
-        run: cd ./CMakeLib && ./install.sh
+        run: cd ${{github.workspace}}/CMakeLib && ./install.sh
 
-      # xLib
+        # xLib
       - name: xLib - Configure
-        run: cd ./Build && ./eclipse.sh
+        run: cd ${{github.workspace}}/xLib/Build && ./eclipse.sh
+
+      - name: Info
+      #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
+        run: echo "github.workspace - ${{github.workspace}}" && ls -la
 
       - name: xLib - Build
-        run: cd ./Build && ./build.sh
+        run: cd ${{github.workspace}}/xLib/Build && ./build.sh
 
       # - name: xLib - Unit Tests (optional)
       #   run: ./unit_tests.sh IpcSemaphore
 
       - name: xLib - Tests
-        run: cd ./Build && ./tests.sh
-
+        run: cd ${{github.workspace}}/xLib/Build && ./tests.sh
 
   # build_windows:
   #   runs-on: windows-2019

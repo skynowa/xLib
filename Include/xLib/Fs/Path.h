@@ -1,6 +1,8 @@
 /**
  * \file  Path.h
  * \brief file system path
+ *
+ * https://github.com/Quintus/pathie-cpp/blob/master/src/path.cpp
  */
 
 
@@ -169,4 +171,5 @@ xPLATFORM_IMPL:
 xNAMESPACE_END2(xl, fs)
 //-------------------------------------------------------------------------------------------------
 // TODO: [skynowa] group methods
+// TODO: [skynowa] .get() -> .str()
 //-------------------------------------------------------------------------------------------------

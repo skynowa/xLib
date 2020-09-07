@@ -1,5 +1,5 @@
 /**
- * \file  Unit.inl
+ * \file  Unit.cpp
  * \brief testing
  */
 
@@ -51,6 +51,7 @@ Unit::setData(
     _data.unitLoops   = a_data.unitLoops;
     _data.caseLoops   = a_data.caseLoops;
     _data.tempDirPath = a_data.tempDirPath;
+    _data.testDirPath = a_data.testDirPath;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -70,6 +71,7 @@ Unit::run()
     dirTemp.create();
 
 	_data.tempDirPath = dirTemp.dir().dirPath();
+	_data.testDirPath = cmXLIB_DATA_DIR xT("/Tests");
 
     for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
         bool_t bRv {};
