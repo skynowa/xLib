@@ -136,7 +136,7 @@ Test_FsWatcher::unit()
         #include "fs_watcher_dirs_disabled_suppliers.db"
     };
 
-    xTEST_CASE("FsWatcher::FsWatcher")
+    xTEST_CASE("ctors")
     {
         for ( ; ; ) {
             AutoBuilder builder(dbWatchDirPathsDisabled, xT("*.inl"));
