@@ -85,7 +85,7 @@ jobs:
           password: ${{secrets.EMAIL_PASSWORD}}
           subject: ${{github.repository}}  - Build OK
           body: Build job of ${{github.repository}} completed successfully!
-          to: ${{github.event.pusher.email}}
+          to: ${{secrets.EMAIL}}   # ${{github.event.pusher.email}}
           from: Github CI # <user@example.com>
           content_type: text/markdown
           attachments:
