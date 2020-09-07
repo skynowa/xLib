@@ -15,7 +15,6 @@ on:
 jobs:
   build_linux:
     runs-on: ubuntu-20.04
-    # runs-on: windows-2019
 
     steps:
       - name: Cancel Previous Runs
