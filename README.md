@@ -19,10 +19,10 @@
       - Apple (OSX)
 
 - compilers: 
-      - GCC   ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
-      - Clang
-      - MSVC
-      - MinGW
+    - GCC   ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
+    - Clang
+    - MSVC
+    - MinGW
 
 ## Repositories
 
