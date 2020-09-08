@@ -50,8 +50,8 @@ Unit::setData(
     _data.name        = a_data.name;
     _data.unitLoops   = a_data.unitLoops;
     _data.caseLoops   = a_data.caseLoops;
-    _data.tempDirPath = a_data.tempDirPath;
     _data.testDirPath = a_data.testDirPath;
+    _data.tempDirPath = a_data.tempDirPath;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
