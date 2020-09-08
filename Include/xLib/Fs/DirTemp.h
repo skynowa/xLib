@@ -17,7 +17,7 @@ class DirTemp
 public:
 ///@name ctors, dtor
 ///@{
-	explicit DirTemp(std::ctstring_t &dirPathPrefix, cbool_t isAutoDelete);
+	explicit DirTemp(std::ctstring_t &dirPath, cbool_t isAutoDelete);
 	virtual ~DirTemp();
 
 	xNO_DEFAULT_CONSTRUCT(DirTemp)
