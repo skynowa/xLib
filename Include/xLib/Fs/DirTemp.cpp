@@ -27,13 +27,13 @@ xNAMESPACE_BEGIN2(xl, fs)
 
 //-------------------------------------------------------------------------------------------------
 DirTemp::DirTemp(
-	std::ctstring_t &a_dirPathPrefix,
+	std::ctstring_t &a_dirPath,
 	cbool_t          a_isAutoDelete
 ) :
-	_dir         (a_dirPathPrefix + xT("_") + Guid(Guid::Type::RandomBased).get()),
+	_dir         (a_dirPath + xT("_") + Guid(Guid::Type::RandomBased).get()),
 	_isAutoDelete(a_isAutoDelete)
 {
-	xTEST(!a_dirPathPrefix.empty());
+	xTEST(!a_dirPath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
