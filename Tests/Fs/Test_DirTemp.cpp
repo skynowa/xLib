@@ -19,8 +19,11 @@ Test_DirTemp::unit()
 {
     xTEST_CASE("DirTemp")
     {
-		cbool_t isAutoDelete {true};
-		DirTemp dirTemp( Path::exeDir() + Const::slash() + getData().name, isAutoDelete);
+		std::tstring_t dirPath = Path::exeDir() + Const::slash() + getData().name;
+		cbool_t        isRandomPostfix {true};
+		cbool_t        isAutoDelete    {true};
+
+		DirTemp dirTemp(dirPath, isRandomPostfix, isAutoDelete);
 		dirTemp.create();
     }
 
