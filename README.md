@@ -14,11 +14,15 @@
   - Windows: (XP >)
   - Unix: 
       - Ubuntu 20.04 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
-      - Android      ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib_android/CI)
-      - BSD          ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib_bsd/CI)
-      - Apple (OSX)  ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib_Apple/CI)
+      - Android
+      - BSD
+      - Apple (OSX)
 
-- compilers: GCC, Clang, MSVC, MinGW
+- compilers: 
+      - GCC   ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
+      - Clang
+      - MSVC
+      - MinGW
 
 ## Repositories
 
