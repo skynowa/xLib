@@ -75,22 +75,31 @@ Unit::run()
 
 	// run unit
     bool_t isPassed {true};
+    bool_t bRv {};
 
     for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
         try {
-            cbool_t bRv = unit();
+            bRv = unit();
             xCHECK_DO(!bRv, isPassed = false);
         }
         catch (const Exception &a_xlibException) {
             xTEST_FAIL_MSG(_data.name + xT(": ") + a_xlibException.what());
+
+            bRv = false;
         }
         catch (const std::exception &a_stdException) {
-            std::string asMsg = a_stdException.what();
-            xTEST_FAIL_MSG(_data.name + xT(": ") + xA2T(asMsg));
+            std::cstring_t msg = a_stdException.what();
+            xTEST_FAIL_MSG(_data.name + xT(": ") + xA2T(msg));
+
+            bRv = false;
         }
         catch (...) {
             xTEST_FAIL_MSG(_data.name + xT(": Unknown error"));
+
+            bRv = false;
         }
+
+        xCHECK_DO(!bRv, isPassed = false);
     } // for (_data.unitLoops)
 
     return isPassed;
