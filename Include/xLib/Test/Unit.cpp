@@ -68,8 +68,9 @@ Unit::run()
 	// temp dir
     std::ctstring_t tempDirPath = Path::exeDir() + Const::slash() + _data.name;
 
-    cbool_t isAutoDelete {true};
-    DirTemp dirTemp(tempDirPath, isAutoDelete);
+    cbool_t isRandomPostfix {true};
+    cbool_t isAutoDelete    {true};
+    DirTemp dirTemp(tempDirPath, isRandomPostfix, isAutoDelete);
     dirTemp.create();
 
 	_data.tempDirPath = dirTemp.dir().dirPath();

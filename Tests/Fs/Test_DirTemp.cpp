@@ -19,12 +19,32 @@ Test_DirTemp::unit()
 {
     xTEST_CASE("DirTemp")
     {
-		std::tstring_t dirPath = Path::exeDir() + Const::slash() + getData().name;
-		cbool_t        isRandomPostfix {true};
-		cbool_t        isAutoDelete    {true};
+		struct Data
+		{
+			std::tstring_t dirPath;
+			bool_t         isRandomPostfix {};
+			bool_t         isAutoDelete {};
+			std::tstring_t expect;
+		};
 
-		DirTemp dirTemp(dirPath, isRandomPostfix, isAutoDelete);
-		dirTemp.create();
+		const std::vector<Data> data
+		{
+			{Path::exeDir() + "/bbb", true,  true, Path::exeDir() + "/bbb"},
+			{Path::exeDir() + "/aaa", false, true, Path::exeDir() + "/aaa"}
+		};
+
+		for (auto &[dirPath, isRandomPostfix, isAutoDelete, expect] : data) {
+			DirTemp dirTemp(dirPath, isRandomPostfix, isAutoDelete);
+			dirTemp.create();
+
+			m_sRv = dirTemp.dir().dirPath();
+			if (isRandomPostfix) {
+				xTEST_GR(m_sRv.size(), expect.size() + 1);
+				xTEST_EQ(m_sRv.at(dirPath.size()), xT('_'));
+			} else {
+				xTEST_EQ(m_sRv, expect);
+			}
+		}
     }
 
     return true;
