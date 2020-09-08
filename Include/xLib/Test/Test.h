@@ -300,8 +300,8 @@
 		public Unit \
 	{ \
 	public: \
-					   className() {} \
-		virtual bool_t unit() override; \
+			   className() {} \
+		bool_t unit() override; \
 	};
 
 #define xTEST_UNIT(unitClassName) \
