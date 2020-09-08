@@ -96,8 +96,6 @@ Unit::run()
 
         if (!bRv) {
             isPassed = false;
-        } else {
-
         }
     } // for (_data.unitLoops)
 
