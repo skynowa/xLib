@@ -63,8 +63,6 @@ Unit::isGithubCI() const
 bool_t
 Unit::run()
 {
-    bool_t isPassed {true};
-
 	// temp dir
     std::ctstring_t tempDirPath = Path::exeDir() + Const::slash() + _data.name;
 
@@ -76,6 +74,8 @@ Unit::run()
 	_data.tempDirPath = dirTemp.dir().dirPath();
 
 	// run unit
+    bool_t isPassed {true};
+
     for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
         try {
             cbool_t bRv = unit();
