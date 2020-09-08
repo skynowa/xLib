@@ -66,8 +66,10 @@ Unit::run()
     bool_t isPassed {true};
 
 	// temp dir
+    std::ctstring_t tempDirPath = Path::exeDir() + Const::slash() + _data.name;
+
     cbool_t isAutoDelete {true};
-    DirTemp dirTemp(Path::exeDir() + Const::slash() + _data.name, isAutoDelete);
+    DirTemp dirTemp(tempDirPath, isAutoDelete);
     dirTemp.create();
 
 	_data.tempDirPath = dirTemp.dir().dirPath();
