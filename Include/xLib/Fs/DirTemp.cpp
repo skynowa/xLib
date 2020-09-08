@@ -28,9 +28,11 @@ xNAMESPACE_BEGIN2(xl, fs)
 //-------------------------------------------------------------------------------------------------
 DirTemp::DirTemp(
 	std::ctstring_t &a_dirPath,
+	cbool_t          a_isRandomPostfix,
 	cbool_t          a_isAutoDelete
 ) :
-	_dir         (a_dirPath + xT("_") + Guid(Guid::Type::RandomBased).get()),
+	_dir         (a_dirPath +
+		(a_isRandomPostfix ? (xT("_") + Guid(Guid::Type::RandomBased).get()) : xT(""))),
 	_isAutoDelete(a_isAutoDelete)
 {
 	xTEST(!a_dirPath.empty());
