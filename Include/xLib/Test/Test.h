@@ -316,8 +316,8 @@
         unitData.name        = xLEX_TO_STR(unitClassName); \
         unitData.unitLoops   = 1; \
         unitData.caseLoops   = 1; \
-        unitData.tempDirPath = {}; \
         unitData.testDirPath = cmXLIB_DATA_DIR xT("/Tests"); \
+        unitData.tempDirPath = {}; \
         \
         unitClassName unit; \
         unit.setData(unitData); \
