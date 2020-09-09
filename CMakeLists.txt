@@ -146,18 +146,6 @@ include(CxxFlags)
 # include(CMakeVariables)
 #--------------------------------------------------------------------------------------------------
 # definitions
-if     (OPTION_CPP_98)
-    set(CMAKE_CXX_STANDARD 98)
-elseif (OPTION_CPP_11)
-    set(CMAKE_CXX_STANDARD 11)
-elseif (OPTION_CPP_14)
-    set(CMAKE_CXX_STANDARD 14)
-elseif (OPTION_CPP_17)
-    set(CMAKE_CXX_STANDARD 17)
-else()
-    message(FATAL_ERROR "CMAKE_CXX_STANDARD: ${CMAKE_CXX_STANDARD} - unknown")
-endif()
-
 if (OPTION_UNICODE)
     add_definitions(-DUNICODE=1)
     add_definitions(-D_UNICODE=1)
