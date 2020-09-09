@@ -11,15 +11,17 @@ if [[ -z "$UNIT_TEST_NAME" ]]; then
 fi
 
 # vars
-DIR_BUILD="../../xLib_eclipse"
+DIR_BUILD="../xLib_eclipse"
 JOBS_NUM=$(($(nproc) * 2))
 
 echo "Jobs: $JOBS_NUM"
 
-cd ../xLib_eclipse
+cd $DIR_BUILD
 
 if [[ "$UNIT_TEST_NAME" == "all" ]]; then
-    make all -j$JOBS_NUM && ctest -j$JOBS_NUM
+	cmake --build . -- -j$JOBS_NUM
+	ctest -j$JOBS_NUM
 else
-    make Test_$UNIT_TEST_NAME && ./Tests/Test_$UNIT_TEST_NAME
+	cmake --build . --target "Test_${UNIT_TEST_NAME}" -- -j$JOBS_NUM
+	ctest -R "^Test_${UNIT_TEST_NAME}$"
 fi
