@@ -171,6 +171,7 @@ xPLATFORM_IMPL:
 xNAMESPACE_END2(xl, fs)
 //-------------------------------------------------------------------------------------------------
 // TODO: group methods
-// TODO: .get() -> .str()
+// TODO: return std::string -> .str()
+// TODO: return Object - if possible
 // TODO: FileNameGuid ???
 //-------------------------------------------------------------------------------------------------
