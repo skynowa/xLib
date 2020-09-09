@@ -5,6 +5,8 @@
 
 
 #--------------------------------------------------------------------------------------------------
+set(CMAKE_CXX_STANDARD 17)
+#--------------------------------------------------------------------------------------------------
 # options
 get_directory_property(IS_PARENT_SCOPE PARENT_DIRECTORY)
 
@@ -17,10 +19,6 @@ if (IS_PARENT_SCOPE)
     set(CMAKE_CONFIGURATION_TYPES      "Debug;Release;RelWithDebInfo" STRING "" PARENT_SCOPE)
     set(CMAKE_BUILD_TYPE               "RelWithDebInfo" PARENT_SCOPE)
 
-    set(OPTION_CPP_98                  0 PARENT_SCOPE)
-    set(OPTION_CPP_11                  0 PARENT_SCOPE)
-    set(OPTION_CPP_14                  0 PARENT_SCOPE)
-    set(OPTION_CPP_17                  1 PARENT_SCOPE)
     set(OPTION_UNICODE                 0 PARENT_SCOPE)
     set(cmOPTION_DEBUG_MODE_MSGBOX     0 PARENT_SCOPE)
     set(cmOPTION_DEBUG_MODE_STDOUT     1 PARENT_SCOPE)
@@ -45,10 +43,6 @@ else()
         # RelWithDebInfo (CMAKE_C_FLAGS_RELWITHDEBINFO or CMAKE_CXX_FLAGS_RELWITHDEBINFO
         # MinSizeRel     (CMAKE_C_FLAGS_MINSIZEREL or CMAKE_CXX_FLAGS_MINSIZEREL)
 
-    set(OPTION_CPP_98                  0)
-    set(OPTION_CPP_11                  0)
-    set(OPTION_CPP_14                  0)
-    set(OPTION_CPP_17                  1)
     set(OPTION_UNICODE                 0)
     set(cmOPTION_DEBUG_MODE_MSGBOX     0)
     set(cmOPTION_DEBUG_MODE_STDOUT     1)
@@ -78,10 +72,7 @@ message(STATUS "cmOPTION_BUILD_TESTS           : ${cmOPTION_BUILD_TESTS}")
 message("")
 message(STATUS "Complier                       : ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 message(STATUS "CMAKE_BUILD_TYPE               : ${CMAKE_BUILD_TYPE}")
-message(STATUS "OPTION_CPP_98                  : ${OPTION_CPP_98}")
-message(STATUS "OPTION_CPP_11                  : ${OPTION_CPP_11}")
-message(STATUS "OPTION_CPP_14                  : ${OPTION_CPP_14}")
-message(STATUS "OPTION_CPP_17                  : ${OPTION_CPP_17}")
+message(STATUS "CMAKE_CXX_STANDARD             : ${CMAKE_CXX_STANDARD}")
 message(STATUS "OPTION_UNICODE                 : ${OPTION_UNICODE}")
 message(STATUS "cmOPTION_DEBUG_MODE_MSGBOX     : ${cmOPTION_DEBUG_MODE_MSGBOX}")
 message(STATUS "cmOPTION_DEBUG_MODE_STDOUT     : ${cmOPTION_DEBUG_MODE_STDOUT}")
