@@ -23,8 +23,8 @@ Test_Guid::unit()
             Guid::Type::RandomBased
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Guid guid(data[i]);
+        for (auto &it_data : data) {
+            Guid guid(it_data);
             m_sRv = guid.str();
             xTEST(!m_sRv.empty());
         }
