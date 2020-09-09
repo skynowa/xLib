@@ -85,7 +85,6 @@ Backup::fileExec(
             dateTimeStamp = DateTime::current().format(xT("%Y-%m"), xT(""));
             break;
         case Period::bpUnknown:
-        default:
             xTEST_FAIL;
             return;
             break;
