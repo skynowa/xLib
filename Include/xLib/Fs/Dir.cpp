@@ -40,7 +40,7 @@ Dir::Dir(
 }
 //-------------------------------------------------------------------------------------------------
 std::ctstring_t &
-Dir::dirPath() const
+Dir::str() const
 {
     return _dirPath;
 }
@@ -48,9 +48,9 @@ Dir::dirPath() const
 bool_t
 Dir::isExists() const
 {
-    xCHECK_RET(dirPath().empty(), false);
+    xCHECK_RET(_dirPath.empty(), false);
 
-    FileType type(dirPath());
+    FileType type(_dirPath);
 
     xCHECK_RET(type.get() == static_cast<FileType::types_t>(FileType::Type::Unknown), false);
 
@@ -69,7 +69,7 @@ Dir::isEmpty(
 
     bool_t bRv {true};
 
-    Finder finder(dirPath(), a_shellFilter);
+    Finder finder(_dirPath, a_shellFilter);
 
     for ( ; ; ) {
         xCHECK_DO(!finder.moveNext(), break);
@@ -93,7 +93,7 @@ Dir::isRoot() const
 bool_t
 Dir::isDir() const
 {
-    bool_t bRv = FileType( dirPath() ).isExists(FileType::Type::Directory);
+    bool_t bRv = FileType( _dirPath ).isExists(FileType::Type::Directory);
     xCHECK_RET(!bRv, false);
 
     return true;
@@ -116,7 +116,7 @@ Dir::pathCreate() const
     std::tstring_t     buildPath;
 
     // split dirPath into parts
-    String::split( Path(dirPath()).toNative(false), Const::slash(), &pathParts );
+    String::split( Path(_dirPath).toNative(false), Const::slash(), &pathParts );
 
     // create dirs by steps
     for (const auto &it : pathParts) {
@@ -144,22 +144,22 @@ Dir::copy(
         FileType(a_dirPathTo).clear();
     }
 
-    FileType(dirPath()).clear();
+    FileType(_dirPath).clear();
 
     // get lists of files
     std::vec_tstring_t filePaths;
 
     filePaths.clear();
-    Finder::files(dirPath(), Const::maskAll(), true, &filePaths);
+    Finder::files(_dirPath, Const::maskAll(), true, &filePaths);
 
     // copy
     xFOR_EACH_R_CONST(std::vec_tstring_t, it, filePaths) {
         std::tstring_t filePathTo = *it;
 
-        size_t posBegin = filePathTo.find(dirPath());
+        size_t posBegin = filePathTo.find(_dirPath);
         xTEST_DIFF(posBegin, std::tstring_t::npos);
 
-        filePathTo.replace(posBegin, posBegin + dirPath().size(), a_dirPathTo);
+        filePathTo.replace(posBegin, posBegin + _dirPath.size(), a_dirPathTo);
 
         Dir( Path(filePathTo).dir() ).pathCreate();
 
@@ -179,7 +179,7 @@ Dir::move(
     xTEST(!a_dirPathTo.empty());
     xTEST_NA(a_failIfExists);
 
-    Dir dir(dirPath());
+    Dir dir(_dirPath);
 
     dir.copy(a_dirPathTo, a_failIfExists);
     dir.pathDelete();
@@ -191,7 +191,7 @@ Dir::remove() const
     bool_t bRv = isExists();
     xCHECK_DO(!bRv, return);
 
-    FileType(dirPath()).clear();
+    FileType(_dirPath).clear();
 
     _remove_impl();
     xTEST_EQ(isExists(), false);
@@ -212,7 +212,7 @@ Dir::tryRemove(
         bool_t bRv = isExists();
         xCHECK_DO(!bRv, break);
 
-        FileType(dirPath()).clear();
+        FileType(_dirPath).clear();
 
         bRv = _tryRemove_impl();
         xCHECK_DO(bRv, break);
@@ -237,7 +237,7 @@ Dir::pathClear() const
         std::vec_tstring_t filePaths;
 
         filePaths.clear();
-        Finder::files(dirPath(), Const::maskAll(), true, &filePaths);
+        Finder::files(_dirPath, Const::maskAll(), true, &filePaths);
 
         xFOR_EACH_R(std::vec_tstring_t, it, filePaths) {
             File(*it).remove();
@@ -249,7 +249,7 @@ Dir::pathClear() const
         std::vec_tstring_t dirPaths;
 
         dirPaths.clear();
-        Finder::dirs(dirPath(), Const::maskAll(), true, &dirPaths);
+        Finder::dirs(_dirPath, Const::maskAll(), true, &dirPaths);
 
         xFOR_EACH_R(std::vec_tstring_t, it, dirPaths) {
             Dir(*it).remove();

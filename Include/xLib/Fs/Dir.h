@@ -24,7 +24,7 @@ public:
 	xNO_COPY_ASSIGN(Dir)
 ///@}
 
-    std::ctstring_t & dirPath() const;
+    std::ctstring_t & str() const;
         ///< directory path
 
     bool_t            isExists() const;
