@@ -45,7 +45,7 @@ public:
 
     // TODO: [skynowa] get objects
 
-    std::ctstring_t & filePath() const;
+    std::ctstring_t & str() const;
         ///< file path
 
     std::tstring_t volume() const;

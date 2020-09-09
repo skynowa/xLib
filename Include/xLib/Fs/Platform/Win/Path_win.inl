@@ -15,11 +15,11 @@ xNAMESPACE_BEGIN2(xl, fs)
 std::tstring_t
 Path::_volume_impl() const
 {
-    std::csize_t driveDelimPos = filePath().find(Const::colon());
+    std::csize_t driveDelimPos = _filePath.find(Const::colon());
     xTEST_DIFF(driveDelimPos, std::tstring_t::npos);
     xTEST_EQ(driveDelimPos, size_t(1));
 
-    return filePath().substr(0, driveDelimPos + Const::colon().size());
+    return _filePath.substr(0, driveDelimPos + Const::colon().size());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -255,8 +255,8 @@ Path::_isCaseSensitive_impl() const
 bool_t
 Path::_isAbsolute_impl() const
 {
-    xCHECK_RET(filePath().size() == 1, false);
-    xCHECK_RET(CharT::isAlpha(filePath().at(0)) && Const::colon().at(0) == filePath().at(1), true);
+    xCHECK_RET(_filePath.size() == 1, false);
+    xCHECK_RET(CharT::isAlpha(_filePath.at(0)) && Const::colon().at(0) == _filePath.at(1), true);
 
     return false;
 }
@@ -277,12 +277,12 @@ Path::_absolute_impl() const
     DWORD          dwRv {};
     std::tstring_t buff;
 
-    dwRv = ::GetFullPathName(&filePath().at(0), 0, nullptr, nullptr);
+    dwRv = ::GetFullPathName(&_filePath.at(0), 0, nullptr, nullptr);
     xTEST_DIFF(dwRv, 0UL);
 
     buff.resize(dwRv);
 
-    dwRv = ::GetFullPathName(&filePath().at(0), static_cast<DWORD>( buff.size() ), &buff.at(0),
+    dwRv = ::GetFullPathName(&_filePath.at(0), static_cast<DWORD>( buff.size() ), &buff.at(0),
         nullptr);
     xTEST_DIFF(dwRv, 0UL);
 

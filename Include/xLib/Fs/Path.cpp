@@ -48,7 +48,7 @@ Path::Path(
 }
 //-------------------------------------------------------------------------------------------------
 std::ctstring_t &
-Path::filePath() const
+Path::str() const
 {
     return _filePath;
 }
@@ -96,55 +96,55 @@ Path::exeDir()
 std::tstring_t
 Path::dir() const
 {
-    std::csize_t slashPos = filePath().rfind(Const::slash(), filePath().size());
+    std::csize_t slashPos = _filePath.rfind(Const::slash(), _filePath.size());
     xCHECK_RET(slashPos == std::tstring_t::npos, std::tstring_t());
 
-    return filePath().substr(0, slashPos);
+    return _filePath.substr(0, slashPos);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::dirName() const
 {
-    std::csize_t slashPos2 = filePath().rfind(Const::slash());
+    std::csize_t slashPos2 = _filePath.rfind(Const::slash());
     xCHECK_RET(slashPos2 == std::tstring_t::npos, std::tstring_t());
 
-    std::csize_t slashPos1 = filePath().rfind(Const::slash(), slashPos2 - 1);
+    std::csize_t slashPos1 = _filePath.rfind(Const::slash(), slashPos2 - 1);
     if (slashPos1 == std::tstring_t::npos) {
-        return filePath().substr(0, slashPos2);
+        return _filePath.substr(0, slashPos2);
     } else {
-        return filePath().substr(slashPos1 + 1, slashPos2 - slashPos1 - 1);
+        return _filePath.substr(slashPos1 + 1, slashPos2 - slashPos1 - 1);
     }
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::fileName() const
 {
-    std::csize_t slashPos = filePath().rfind(Const::slash(), filePath().size());
-    xCHECK_RET(slashPos == std::tstring_t::npos, filePath());
+    std::csize_t slashPos = _filePath.rfind(Const::slash(), _filePath.size());
+    xCHECK_RET(slashPos == std::tstring_t::npos, _filePath);
 
-    return filePath().substr(slashPos + Const::slash().size());
+    return _filePath.substr(slashPos + Const::slash().size());
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::fileBaseName() const
 {
-    std::csize_t slashPos = filePath().rfind(Const::slash(), filePath().size());
-    std::csize_t dotPos   = filePath().rfind(Const::dot(),   filePath().size());
+    std::csize_t slashPos = _filePath.rfind(Const::slash(), _filePath.size());
+    std::csize_t dotPos   = _filePath.rfind(Const::dot(),   _filePath.size());
 
-    return String::cut(filePath(), slashPos + Const::slash().size(), dotPos);
+    return String::cut(_filePath, slashPos + Const::slash().size(), dotPos);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::ext() const
 {
-    std::csize_t dotPos = filePath().rfind(Const::dot(), filePath().size());
+    std::csize_t dotPos = _filePath.rfind(Const::dot(), _filePath.size());
     xCHECK_RET(dotPos == std::tstring_t::npos, std::tstring_t());
 
-    std::csize_t slashPos = filePath().rfind(Const::slash(), filePath().size());
+    std::csize_t slashPos = _filePath.rfind(Const::slash(), _filePath.size());
     // if dot after slash - extension not exists
     xCHECK_RET(dotPos < slashPos && slashPos != std::tstring_t::npos, std::tstring_t());
 
-    return filePath().substr(dotPos + Const::dot().size());
+    return _filePath.substr(dotPos + Const::dot().size());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -190,7 +190,7 @@ Path::setVolume(
     std::ctstring_t &a_volumePath
 ) const
 {
-    std::tstring_t sRv(filePath());
+    std::tstring_t sRv(_filePath);
 
     std::tstring_t driveStr = Path(sRv).volume();
     xTEST(!driveStr.empty());
@@ -206,7 +206,7 @@ Path::setDir(
     std::ctstring_t &a_dirPath
 ) const
 {
-    std::tstring_t sRv(filePath());
+    std::tstring_t sRv(_filePath);
 
     std::tstring_t dirStr = Path(sRv).dir();
     xTEST(!dirStr.empty());
@@ -222,7 +222,7 @@ Path::setFileName(
     std::ctstring_t &a_fullName
 ) const
 {
-    std::tstring_t sRv(filePath());
+    std::tstring_t sRv(_filePath);
 
     std::tstring_t fullName = Path(sRv).fileName();
     xTEST(!fullName.empty());
@@ -238,7 +238,7 @@ Path::setFileBaseName(
     std::ctstring_t &a_name
 ) const
 {
-    std::tstring_t sRv(filePath());
+    std::tstring_t sRv(_filePath);
 
     std::tstring_t name = Path(sRv).fileBaseName();
     xTEST(!name.empty());
@@ -265,9 +265,9 @@ Path::setExt(
 std::tstring_t
 Path::removeExt() const
 {
-    std::csize_t dotPos = filePath().rfind( Const::dot() );
+    std::csize_t dotPos = _filePath.rfind( Const::dot() );
 
-    return filePath().substr(0, dotPos);
+    return _filePath.substr(0, dotPos);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -275,13 +275,13 @@ Path::removeExtIf(
     std::ctstring_t &a_ext
 ) const
 {
-    std::csize_t extPos = filePath().rfind(Const::dot() + a_ext);
-    xCHECK_RET(extPos == std::tstring_t::npos, filePath());
+    std::csize_t extPos = _filePath.rfind(Const::dot() + a_ext);
+    xCHECK_RET(extPos == std::tstring_t::npos, _filePath);
 
-    std::csize_t dotPos = filePath().rfind(Const::dot());
+    std::csize_t dotPos = _filePath.rfind(Const::dot());
     xTEST_DIFF(dotPos, std::tstring_t::npos);
 
-    return filePath().substr(0, dotPos);
+    return _filePath.substr(0, dotPos);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -345,7 +345,7 @@ Path::isNameValid(
 bool_t
 Path::isCaseSensitive() const
 {
-    xCHECK_RET(filePath().empty(), false);
+    xCHECK_RET(_filePath.empty(), false);
 
     return _isCaseSensitive_impl();
 }
@@ -353,8 +353,8 @@ Path::isCaseSensitive() const
 bool_t
 Path::isAbsolute() const
 {
-    xCHECK_RET(filePath().empty(),                       false);
-    xCHECK_RET(filePath().at(0) == Const::slash().at(0), true);
+    xCHECK_RET(_filePath.empty(),                       false);
+    xCHECK_RET(_filePath.at(0) == Const::slash().at(0), true);
 
     return _isAbsolute_impl();
 }
@@ -479,8 +479,8 @@ Path::brief(
         }
     };
 
-    std::tstring_t sRv  = filePath();
-    std::tstring_t path = filePath();
+    std::tstring_t sRv  = _filePath;
+    std::tstring_t path = _filePath;
     size_t         num  {};
 
     _Functor::slashesMake(&path, &num);
@@ -514,12 +514,12 @@ Path::brief(
 ) const
 {
 	std::vec_tstring_t values;
-	String::split(filePath(), Const::slash(), &values);
+	String::split(_filePath, Const::slash(), &values);
 
 	std::csize_t showDirsNum  = a_leftDirsNum + a_rightDirsNum;
 	if (showDirsNum >= values.size()) {
 		// n/a dots - return full path
-		return filePath();
+		return _filePath;
 	}
 
 	std::csize_t hideDirsNum = values.size() - showDirsNum;
@@ -542,13 +542,13 @@ Path::brief(
 std::tstring_t
 Path::homeAsBrief() const
 {
-	return String::replaceAll(filePath(), User().homeDir(), xT("~"));
+	return String::replaceAll(_filePath, User().homeDir(), xT("~"));
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::slashAppend() const
 {
-    return String::trimRightChars(filePath(), Const::slash()).append(Const::slash());
+    return String::trimRightChars(_filePath, Const::slash()).append(Const::slash());
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -560,7 +560,7 @@ Path::slashRemove() const
 	}
 #endif
 
-    return String::trimRightChars(filePath(), Const::slash());
+    return String::trimRightChars(_filePath, Const::slash());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
