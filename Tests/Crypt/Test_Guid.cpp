@@ -16,7 +16,7 @@ xTEST_UNIT(Test_Guid)
 bool_t
 Test_Guid::unit()
 {
-    xTEST_CASE("get")
+    xTEST_CASE("str")
     {
         Guid::cType data[]
         {
@@ -25,7 +25,7 @@ Test_Guid::unit()
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
             Guid guid(data[i]);
-            m_sRv = guid.get();
+            m_sRv = guid.str();
             xTEST(!m_sRv.empty());
         }
     }
