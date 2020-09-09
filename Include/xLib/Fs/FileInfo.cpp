@@ -41,7 +41,7 @@ FileInfo::FileInfo(
 FileInfo::FileInfo(
 	const Path &a_path
 ) :
-	FileInfo( a_path.filePath() )
+	FileInfo( a_path.str() )
 {
 }
 //-------------------------------------------------------------------------------------------------

@@ -148,7 +148,7 @@ Path::_absolute_impl() const
     std::string buff;
     buff.resize(xPATH_MAX);
 
-    const char *pszRv = ::realpath(xT2A(filePath()).c_str(), &buff.at(0));
+    const char *pszRv = ::realpath(xT2A(_filePath).c_str(), &buff.at(0));
     xTEST_PTR(pszRv);
 
     asRv.assign(pszRv);
