@@ -29,7 +29,7 @@ public:
 	xNO_COPY_ASSIGN(Guid)
 ///@}
 
-	std::tstring_t get() const;
+	std::tstring_t str() const;
 		///< generate GUID
 
 private:

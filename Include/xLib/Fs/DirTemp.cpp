@@ -32,7 +32,7 @@ DirTemp::DirTemp(
 	cbool_t          a_isAutoDelete
 ) :
 	_dir         (a_dirPath +
-		(a_isRandomPostfix ? (xT("_") + Guid(Guid::Type::RandomBased).get()) : xT(""))),
+		(a_isRandomPostfix ? (xT("_") + Guid(Guid::Type::RandomBased).str()) : xT(""))),
 	_isAutoDelete(a_isAutoDelete)
 {
 	xTEST(!a_dirPath.empty());
