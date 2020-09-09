@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN2(xl, fs)
 bool_t
 Dir::_isRoot_impl() const
 {
-    xCHECK_RET(dirPath() != Const::slash(), false);
+    xCHECK_RET(_dirPath != Const::slash(), false);
 
     return true;
 }
@@ -23,21 +23,21 @@ Dir::_isRoot_impl() const
 void_t
 Dir::_create_impl() const
 {
-    int_t iRv = ::mkdir(xT2A(dirPath()).c_str(), ACCESSPERMS);
+    int_t iRv = ::mkdir(xT2A(_dirPath).c_str(), ACCESSPERMS);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Dir::_remove_impl() const
 {
-    int_t iRv = ::rmdir(xT2A(dirPath()).c_str());
+    int_t iRv = ::rmdir(xT2A(_dirPath).c_str());
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
 Dir::_tryRemove_impl() const
 {
-    int_t iRv = ::rmdir(xT2A(dirPath()).c_str());
+    int_t iRv = ::rmdir(xT2A(_dirPath).c_str());
     xCHECK_RET(iRv == - 1, false);
 
     return true;

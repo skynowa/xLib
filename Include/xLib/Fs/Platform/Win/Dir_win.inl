@@ -15,12 +15,12 @@ xNAMESPACE_BEGIN2(xl, fs)
 bool_t
 Dir::_isRoot_impl() const
 {
-    xCHECK_RET(3 != dirPath().size(), false);
+    xCHECK_RET(3 != _dirPath.size(), false);
 
-    bool_t bRv1 = CharT::isAlpha(dirPath().at(0));
-    bool_t bRv2 = (dirPath().at(1) == Const::colon().at(0));
-    bool_t bRv3 = (dirPath().at(2) == Const::winSlash().at(0) ||
-                   dirPath().at(2) == Const::unixSlash().at(0));
+    bool_t bRv1 = CharT::isAlpha(_dirPath.at(0));
+    bool_t bRv2 = (_dirPath.at(1) == Const::colon().at(0));
+    bool_t bRv3 = (_dirPath.at(2) == Const::winSlash().at(0) ||
+                   _dirPath.at(2) == Const::unixSlash().at(0));
 
     xCHECK_RET(!bRv1 || !bRv2 || !bRv3, false);
 
@@ -30,21 +30,21 @@ Dir::_isRoot_impl() const
 void_t
 Dir::_create_impl() const
 {
-    BOOL blRv = ::CreateDirectory(dirPath().c_str(), nullptr);
+    BOOL blRv = ::CreateDirectory(_dirPath.c_str(), nullptr);
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Dir::_remove_impl() const
 {
-    BOOL blRv = ::RemoveDirectory(dirPath().c_str());
+    BOOL blRv = ::RemoveDirectory(_dirPath.c_str());
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
 Dir::_tryRemove_impl() const
 {
-    BOOL blRv = ::RemoveDirectory(dirPath().c_str());
+    BOOL blRv = ::RemoveDirectory(_dirPath.c_str());
     xCHECK_RET(blRv == FALSE, false);
 
     return true;

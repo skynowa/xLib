@@ -71,7 +71,7 @@ Unit::run()
     DirTemp dirTemp(tempDirPath, isRandomPostfix, isAutoDelete);
     dirTemp.create();
 
-	_data.tempDirPath = dirTemp.dir().dirPath();
+	_data.tempDirPath = dirTemp.dir().str();
 
 	// run unit
     bool_t isPassed {true};
