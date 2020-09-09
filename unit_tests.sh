@@ -23,5 +23,5 @@ if [[ "$UNIT_TEST_NAME" == "all" ]]; then
 	ctest -j$JOBS_NUM
 else
 	cmake --build . --target "Test_${UNIT_TEST_NAME}" -- -j$JOBS_NUM
-	ctest -R "^Test_${UNIT_TEST_NAME}$"
+	ctest -R "^Test_${UNIT_TEST_NAME}$" -j$JOBS_NUM
 fi
