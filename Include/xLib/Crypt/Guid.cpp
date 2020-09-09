@@ -48,7 +48,6 @@ Guid::str() const
         sRv = _randomBased_impl();
         break;
     case Type::Unknown:
-    default:
         xTEST_FAIL;
         break;
     }
