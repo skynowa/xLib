@@ -170,6 +170,7 @@ xPLATFORM_IMPL:
 
 xNAMESPACE_END2(xl, fs)
 //-------------------------------------------------------------------------------------------------
+// TODO: usr/bin ... pathes
 // TODO: group methods
 // TODO: return std::string -> .str()
 // TODO: return Object - if possible
