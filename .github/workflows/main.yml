@@ -45,7 +45,7 @@ jobs:
         run: cd ${{github.workspace}}/xLib/Tools && ./install_libs.sh
 
       # Static Analysis
-      - name: Install - Static Analysis
+      - name: Static Analysis - Install
         run: |
           cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
           ./install_cppcheck.sh &&
@@ -79,6 +79,12 @@ jobs:
 
       - name: xLib - Tests
         run: cd ${{github.workspace}}/xLib/Build && ./tests.sh
+
+      # Static Analysis
+      - name: Static Analysis - run
+        run: |
+          cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
+          ./run_cppcheck.sh
 
   # build_windows:
   #   runs-on: windows-2019
