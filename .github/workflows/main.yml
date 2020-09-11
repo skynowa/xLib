@@ -84,7 +84,7 @@ jobs:
       - name: Static Analysis - run
         run: |
           cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
-          ./run_cppcheck.sh   &&
+          # ./run_cppcheck.sh   &&
           ./run_clang_tidy.sh &&
           ./run_pvs_studio.sh
 
