@@ -8,3 +8,5 @@ sudo apt-get install \
 	# libcurl4-openssl-dev
 	# libcurl4-nss-dev
 	# libcurl4-gnutls-dev
+
+pip install pygments
