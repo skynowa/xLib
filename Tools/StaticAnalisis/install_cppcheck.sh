@@ -1,1 +1,1 @@
-sudo apt-get install cppcheck
+sudo snap install cppcheck

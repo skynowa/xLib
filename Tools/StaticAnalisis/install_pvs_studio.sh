@@ -1,3 +1,12 @@
+#!/usr/bin/env bash
+#
+# \file  install_pvs_studio.sh
+# \brief PVS-Studio
+#
+# https://www.viva64.com/en/m/0039/
+#
+
+
 wget -q -O - http://files.viva64.com/etc/pubkey.txt | \
   sudo apt-key add -
 
