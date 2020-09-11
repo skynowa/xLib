@@ -86,7 +86,7 @@ jobs:
           cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
           ./run_cppcheck.sh   &&
           ./run_clang_tidy.sh &&
-          ./run_pvs_studio.sh
+          ./run_pvs_studio.sh || 0
 
   # build_windows:
   #   runs-on: windows-2019
