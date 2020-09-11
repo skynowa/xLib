@@ -48,7 +48,7 @@ jobs:
       - name: Static Analysis - Install
         run: |
           cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
-          ./install_cppcheck.sh &&
+          ./install_cppcheck.sh   &&
           ./install_clang_tidy.sh &&
           ./install_pvs_studio.sh &&
           ./install_configs.sh ${{github.workspace}}/xLib-data/Configs/StaticAnalisis
@@ -84,7 +84,9 @@ jobs:
       - name: Static Analysis - run
         run: |
           cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
-          ./run_cppcheck.sh
+          ./run_cppcheck.sh   &&
+          ./run_clang_tidy.sh &&
+          ./run_pvs_studio.sh
 
   # build_windows:
   #   runs-on: windows-2019
