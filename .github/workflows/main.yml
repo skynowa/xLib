@@ -46,7 +46,12 @@ jobs:
 
       # Static Analysis
       - name: Install - Static Analysis
-        run: cd ${{github.workspace}}/xLib/Tools/StaticAnalisis && ./install_cppcheck.sh && ./install_clang_tidy.sh && ./install_pvs_studio.sh && ./install_configs.sh ${{github.workspace}}/xLib-data/Configs/StaticAnalisis
+        run: |
+          cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
+          ./install_cppcheck.sh &&
+          ./install_clang_tidy.sh &&
+          ./install_pvs_studio.sh &&
+          ./install_configs.sh ${{github.workspace}}/xLib-data/Configs/StaticAnalisis
 
       # CMakeLib
       - name: CMakeLib - checkout
