@@ -52,12 +52,12 @@ list(APPEND CMAKE_MODULE_PATH "${XLIB_LOCATION}/CMake")
 include(${XLIB_LOCATION}/Config.cmake)
 include(Configure)
 include(Functions/JobsNum)
-### include(StaticAnalisis/ClangTidy)
-### include(StaticAnalisis/CppCheck)
-### include(StaticAnalisis/PvsStudio)
+include(StaticAnalisis/ClangTidy)
+include(StaticAnalisis/CppCheck)
+include(StaticAnalisis/PvsStudio)
 
-# jobs_num(JOBS_NUM)
-# message("JOBS_NUM: ${JOBS_NUM}")
+jobs_num(JOBS_NUM)
+message("JOBS_NUM: ${JOBS_NUM}")
 #--------------------------------------------------------------------------------------------------
 # includes, libs
 set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
