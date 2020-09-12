@@ -53,7 +53,7 @@ public:
     void_t            pathDelete() const;
         ///< deletion dir find all content of it
 
-    // static
+xPUBLIC_STATIC:
     static
     std::tstring_t    current();
         ///< get current
