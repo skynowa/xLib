@@ -129,7 +129,6 @@ set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
 #--------------------------------------------------------------------------------------------------
 # flags
 include(CxxFlags)
-# include(CMakeVariables)
 #--------------------------------------------------------------------------------------------------
 # definitions
 if (OPTION_UNICODE)
