@@ -20,7 +20,7 @@ File::_createSymlink_impl(
 	BOOL bRv {};
 
 	DWORD flags {};
-	bRv = ::CreateSymbolicLinkW(_filePath.c_str(), a_filePathTo.c_str(), flags);
+	bRv = ::CreateSymbolicLink(_filePath.c_str(), a_filePathTo.c_str(), flags);
 	xTEST_DIFF(bRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------

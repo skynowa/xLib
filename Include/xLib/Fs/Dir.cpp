@@ -186,6 +186,14 @@ Dir::move(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
+Dir::createSymlink(
+	std::ctstring_t &a_dirPathTo
+) const
+{
+	_createSymlink_impl(a_dirPathTo);
+}
+//-------------------------------------------------------------------------------------------------
+void_t
 Dir::remove() const
 {
     bool_t bRv = isExists();

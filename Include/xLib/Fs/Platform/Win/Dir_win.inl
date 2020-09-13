@@ -35,6 +35,18 @@ Dir::_create_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
+Dir::_createSymlink_impl(
+	std::ctstring_t &a_dirPathTo
+) const
+{
+	BOOL bRv {};
+
+	DWORD flags {SYMBOLIC_LINK_FLAG_DIRECTORY};
+	bRv = ::CreateSymbolicLink(_dirPath.c_str(), a_dirPathTo.c_str(), flags);
+	xTEST_DIFF(bRv, FALSE);
+}
+//-------------------------------------------------------------------------------------------------
+void_t
 Dir::_remove_impl() const
 {
     BOOL blRv = ::RemoveDirectory(_dirPath.c_str());

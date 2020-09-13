@@ -95,6 +95,11 @@ Test_File::unit()
 		}
 	}
 
+	xTEST_CASE("createSymlink")
+	{
+		// TEST: createSymlink
+	}
+
 	xTEST_CASE("unlink")
 	{
 	#if xTEMP_DISABLED

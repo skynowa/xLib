@@ -43,6 +43,8 @@ public:
         ///< copy
     void_t            move(std::ctstring_t &dirPathTo, cbool_t &failIfExists) const;
         ///< move
+    void_t            createSymlink(std::ctstring_t &dirPathTo) const;
+        ///< create symlink
 
     void_t            remove() const;
         ///< deletion dir which empty
@@ -70,6 +72,7 @@ private:
 xPLATFORM_IMPL:
     bool_t            _isRoot_impl() const;
     void_t            _create_impl() const;
+    void_t            _createSymlink_impl(std::ctstring_t &dirPathTo) const;
     void_t            _remove_impl() const;
     bool_t            _tryRemove_impl() const;
 

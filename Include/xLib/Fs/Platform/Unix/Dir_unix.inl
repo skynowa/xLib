@@ -28,6 +28,17 @@ Dir::_create_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
+Dir::_createSymlink_impl(
+	std::ctstring_t &a_dirPathTo
+) const
+{
+	int_t iRv {};
+
+	iRv = ::symlink(_dirPath.c_str(), a_dirPathTo.c_str());
+	xTEST_EQ(iRv, 0);
+}
+//-------------------------------------------------------------------------------------------------
+void_t
 Dir::_remove_impl() const
 {
     int_t iRv = ::rmdir(xT2A(_dirPath).c_str());
