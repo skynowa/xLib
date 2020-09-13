@@ -12,10 +12,10 @@ unset(cmXLIB_TEMPLATE_SUBDIR         CACHE)
 unset(cmXLIB_TEMPLATE_NS             CACHE)
 unset(cmXLIB_TEMPLATE_PLATFORM_FILES CACHE)
 
-set(cmXLIB_TEMPLATE                "DirTemp") # TODO: set manually
-set(cmXLIB_TEMPLATE_COMMENTS       "DirTemp") # TODO: set manually
-set(cmXLIB_TEMPLATE_SUBDIR         "Fs")       # TODO: set manually
-set(cmXLIB_TEMPLATE_NS             "fs")       # TODO: set manually
+set(cmXLIB_TEMPLATE                "GitClient") # TODO: set manually
+set(cmXLIB_TEMPLATE_COMMENTS       "GIT client") # TODO: set manually
+set(cmXLIB_TEMPLATE_SUBDIR         "Package")       # TODO: set manually
+set(cmXLIB_TEMPLATE_NS             "package")       # TODO: set manually
 set(cmXLIB_TEMPLATE_PLATFORM_FILES ON)
 
 if (NOT cmXLIB_TEMPLATE OR
