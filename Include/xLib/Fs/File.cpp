@@ -16,6 +16,12 @@
 #include <xLib/Crypt/Random.h>
 #include <xLib/Sync/Thread.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/File_win.inl"
+#elif xENV_UNIX
+    #include "Platform/Unix/File_unix.inl"
+#endif
+
 
 xNAMESPACE_BEGIN2(xl, fs)
 
@@ -224,6 +230,14 @@ File::copy(
 
     fileTo << fileFrom.rdbuf();
 #endif
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+File::createSymlink(
+	std::ctstring_t &a_filePathTo
+) const
+{
+	_createSymlink_impl(a_filePathTo);
 }
 //-------------------------------------------------------------------------------------------------
 

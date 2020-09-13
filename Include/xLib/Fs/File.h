@@ -33,6 +33,7 @@ public:
     void_t rename(std::ctstring_t &filePathNew) const;
     void_t move(std::ctstring_t &dirPath) const;
     void_t copy(std::ctstring_t &filePathTo, cbool_t isFailIfExists) const /* throw(Exception) */;
+    void_t createSymlink(std::ctstring_t &filePathTo) const;
 ///@}
 
 ///@name text
@@ -53,6 +54,9 @@ public:
 
 private:
 	std::ctstring_t _filePath;
+
+xPLATFORM_IMPL:
+	void_t _createSymlink_impl(std::ctstring_t &filePathTo) const;
 };
 
 xNAMESPACE_END2(xl, fs)
