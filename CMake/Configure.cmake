@@ -57,6 +57,7 @@ include(CheckCSourceCompiles)
 include(CheckCXXSourceCompiles)
 #--------------------------------------------------------------------------------------------------
 # find packages
+find_package(CMakeLib  REQUIRED) # at 1-st
 
 ## programs
 find_package(CppCheck  REQUIRED)
@@ -65,7 +66,6 @@ find_package(PvsStudio REQUIRED)
 find_package(PkgConfig REQUIRED)
 
 ## libs
-find_package(CMakeLib REQUIRED)
 find_package(xLibData REQUIRED)
 find_package(GitRevision QUIET REQUIRED)
 find_package(OS QUIET REQUIRED)
