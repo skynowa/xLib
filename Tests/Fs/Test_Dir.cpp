@@ -211,6 +211,11 @@ Test_Dir::unit()
         Dir(csDirDest).remove();
     }
 
+	xTEST_CASE("createSymlink")
+	{
+		// TEST: createSymlink
+	}
+
     xTEST_CASE("pathClear")
     {
         Dir(csDirPath).pathClear();
