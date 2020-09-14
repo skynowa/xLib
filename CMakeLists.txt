@@ -56,7 +56,6 @@ include(StaticAnalisis/CppCheck)
 include(StaticAnalisis/PvsStudio)
 
 jobs_num(JOBS_NUM)
-message("JOBS_NUM: ${JOBS_NUM}")
 #--------------------------------------------------------------------------------------------------
 # includes, libs
 set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
@@ -180,20 +179,20 @@ set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS})
 set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES})
 #--------------------------------------------------------------------------------------------------
 # trace
-if (NOT cmXLIB_FOUND AND XLIB_FIND_REQUIRED)
-    message(FATAL_ERROR "cmXLIB_FOUND: ${cmXLIB_FOUND}")
-else()
-    message(STATUS "cmXLIB_FOUND: ${cmXLIB_FOUND}")
-    message("    XLIB_LOCATION:         ${XLIB_LOCATION}")
-    message("    XLIB_DEFINITIONS:      ${XLIB_DEFINITIONS}")
-    message("    cmXLIB_COMPILER_FLAGS: ${cmXLIB_COMPILER_FLAGS}")
-    message("    XLIB_INCLUDES:         ${XLIB_INCLUDES}")
-    message("    XLIB_LIBRARIES:        ${XLIB_LIBRARIES}")
-    # message("    XLIB_SOURCES:          ${XLIB_SOURCES}")
+message(STATUS "cmXLIB_FOUND: ${cmXLIB_FOUND}")
+message("   XLIB_LOCATION:         ${XLIB_LOCATION}")
+message("   XLIB_DEFINITIONS:      ${XLIB_DEFINITIONS}")
+message("   cmXLIB_COMPILER_FLAGS: ${cmXLIB_COMPILER_FLAGS}")
+message("   XLIB_INCLUDES:         ${XLIB_INCLUDES}")
+message("   XLIB_LIBRARIES:        ${XLIB_LIBRARIES}")
+# message("   XLIB_SOURCES:          ${XLIB_SOURCES}")
 
-    message(STATUS "CMAKE_THREAD_LIBS:      ${CMAKE_THREAD_LIBS}")
-    message(STATUS "CMAKE_DL_LIBS:          ${CMAKE_DL_LIBS}")
-    message(STATUS "CMAKE_EXE_LINKER_FLAGS: ${CMAKE_EXE_LINKER_FLAGS}")
+message(STATUS "CMAKE_THREAD_LIBS:      ${CMAKE_THREAD_LIBS}")
+message(STATUS "CMAKE_DL_LIBS:          ${CMAKE_DL_LIBS}")
+message(STATUS "CMAKE_EXE_LINKER_FLAGS: ${CMAKE_EXE_LINKER_FLAGS}")
+
+if (NOT cmXLIB_FOUND AND XLIB_FIND_REQUIRED)
+    message(FATAL_ERROR "Not found")
 endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
