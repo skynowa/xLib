@@ -163,9 +163,9 @@ if (OS_ANDROID)
 endif()
 
 if (NOT (XLIB_INCLUDES AND XLIB_LIBRARIES))
-    set(cmXLIB_FOUND          0)
+    set(cmXLIB_FOUND 0)
 else()
-    set(cmXLIB_FOUND          1)
+    set(cmXLIB_FOUND 1)
 endif()
 #--------------------------------------------------------------------------------------------------
 # vars
