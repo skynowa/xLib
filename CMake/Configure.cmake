@@ -82,9 +82,9 @@ if (OPENSSL_FOUND)
 endif()
 
 if (ENV_UNIX)
-   find_package(ExecInfo QUIET)    # TODO: REQUIRED - add
-   find_package(XCB QUIET)         # TODO: REQUIRED - add
-   find_package(Addr2Line QUIET REQUIRED)
+    find_package(ExecInfo)    # TODO: REQUIRED - add
+    find_package(XCB       REQUIRED)
+    find_package(Addr2Line REQUIRED)
 
     # cmGNU_GET_LIBC_FOUND
     CHECK_FUNCTION_EXISTS(gnu_get_libc_version _xGNU_GET_LIBC_VERSION)
