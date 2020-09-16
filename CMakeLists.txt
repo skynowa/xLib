@@ -251,42 +251,6 @@ configure_file(
     ${XLIB_LOCATION}/Include/xLib/Config.h.in
     ${XLIB_LOCATION}/Include/xLib/Config.h)
 #--------------------------------------------------------------------------------------------------
-# pkg-config
-# Get all libs: 'pkg-config --libs --static xLib'
-set(PKG_CONFIG_REQUIRES   "")
-set(PKG_CONFIG_LIBDIR     "\${prefix}/lib")
-set(PKG_CONFIG_INCLUDEDIR "\${prefix}/include/${PROJECT_NAME}")
-set(PKG_CONFIG_LIBS       "-L\${libdir} -l${PROJECT_NAME}_static")
-
-# PKG_CONFIG_LIBS_PRIVATE
-set(PKG_CONFIG_LIBS_PRIVATE "")
-string(REPLACE ";" " " PKG_CONFIG_LIBS_PRIVATE "${XLIB_LIBRARIES}")
-message(STATUS "PKG_CONFIG_LIBS_PRIVATE     : ${PKG_CONFIG_LIBS_PRIVATE}")
-
-# PKG_CONFIG_INCLUDE_DIRS
-set(PKG_CONFIG_INCLUDE_DIRS)
-get_directory_property(PKG_CONFIG_INCLUDE_DIRS DIRECTORY ${CMAKE_SOURCE_DIR} INCLUDE_DIRECTORIES)
-string(REPLACE ";" " -I" PKG_CONFIG_INCLUDE_DIRS ";${PKG_CONFIG_INCLUDE_DIRS}")
-message(STATUS "PKG_CONFIG_INCLUDE_DIRS     : ${PKG_CONFIG_INCLUDE_DIRS}")
-
-# PKG_CONFIG_DEFINITIONS
-get_directory_property(PKG_CONFIG_DEFINITIONS DIRECTORY ${CMAKE_SOURCE_DIR} COMPILE_DEFINITIONS)
-string(REPLACE ";" " -D" PKG_CONFIG_DEFINITIONS ";${PKG_CONFIG_DEFINITIONS}")
-message(STATUS "PKG_CONFIG_DEFINITIONS     : ${PKG_CONFIG_DEFINITIONS}")
-
-set(PKG_CONFIG_CFLAGS "-I\${includedir} ${PKG_CONFIG_INCLUDE_DIRS} ${PKG_CONFIG_DEFINITIONS}")
-
-configure_file(
-    ${XLIB_LOCATION}/pkg-config.pc.in
-    ${XLIB_LOCATION}/${PROJECT_NAME}.pc)
-#--------------------------------------------------------------------------------------------------
-# install
-install(
-    FILES
-        ${XLIB_LOCATION}/${PROJECT_NAME}.pc
-    DESTINATION
-        lib/pkgconfig)
-
 install(
     DIRECTORY
         ${XLIB_LOCATION}/Include/xLib/
