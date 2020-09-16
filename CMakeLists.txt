@@ -59,7 +59,7 @@ jobs_num(JOBS_NUM)
 #--------------------------------------------------------------------------------------------------
 # includes, libs
 set(XLIB_INCLUDES ${XLIB_INCLUDES} ${XLIB_LOCATION}/Include)
-file(GLOB_RECURSE XLIB_HEADERS ${XLIB_LOCATION}/Include/ *.h)
+file(GLOB_RECURSE XLIB_HEADERS ${XLIB_LOCATION}/Include/*.h) # unused
 file(GLOB_RECURSE XLIB_SOURCES ${XLIB_LOCATION}/Include/*.cpp)
 
 if (OPENSSL_FOUND)
