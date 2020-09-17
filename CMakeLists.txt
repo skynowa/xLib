@@ -261,7 +261,7 @@ install(
         PATTERN "*.h.in"   EXCLUDE
         PATTERN ".gitkeep" EXCLUDE)
 #--------------------------------------------------------------------------------------------------
-# uninstall
+# TODO: uninstall - fix
 add_custom_target(uninstall
     COMMAND
         ${CMAKE_COMMAND}
