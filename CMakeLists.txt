@@ -257,7 +257,8 @@ install(
     DESTINATION
         ${XLIB_INSTALL_PATH}
     FILES_MATCHING
-        PATTERN "*" PATTERN "*.h.in" EXCLUDE)
+        PATTERN "*"
+        PATTERN "*.h.in" EXCLUDE)
 #--------------------------------------------------------------------------------------------------
 # uninstall
 add_custom_target(uninstall
