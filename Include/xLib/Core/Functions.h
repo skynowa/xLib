@@ -15,61 +15,61 @@
 
 // xLOCKING
 #if   xCOMPILER_MINGW
-    #define xLOCKING            ::_locking
+    #define xLOCKING ::_locking
 #elif xCOMPILER_MS
-    #define xLOCKING            ::_locking
+    #define xLOCKING ::_locking
 #elif xCOMPILER_GNUC
-    #define xLOCKING            ::lockf
+    #define xLOCKING ::lockf
 #else
-    #define xLOCKING            ::locking
+    #define xLOCKING ::locking
 #endif
 
 // xCHSIZE
 #if   xCOMPILER_MINGW
-    #define xCHSIZE             ::chsize
+    #define xCHSIZE ::chsize
 #elif xCOMPILER_MS
-    #define xCHSIZE             ::_chsize_s
+    #define xCHSIZE ::_chsize_s
 #elif xCOMPILER_GNUC
-    #define xCHSIZE             ::ftruncate
+    #define xCHSIZE ::ftruncate
 #else
-    #define xCHSIZE             ::chsize
+    #define xCHSIZE ::chsize
 #endif
 
 // xIOCTLSOCKET
 #if   xENV_WIN
-    #define xIOCTLSOCKET        ::ioctlsocket
+    #define xIOCTLSOCKET ::ioctlsocket
 #elif xENV_UNIX
-    #define xIOCTLSOCKET        ::ioctl
+    #define xIOCTLSOCKET ::ioctl
 #endif
 
 // xGETADDRINFO
 #if   xCOMPILER_MINGW
-    #define xGETADDRINFO        ::getaddrinfo
+    #define xGETADDRINFO     ::getaddrinfo
 #elif xCOMPILER_MS
-    #define xGETADDRINFO        ::GetAddrInfo
+    #define xGETADDRINFO     ::GetAddrInfo
 #elif xCOMPILER_GNUC
     #if xUNICODE
-        #define xGETADDRINFO    xl::core::getaddrinfoW
+        #define xGETADDRINFO xl::core::getaddrinfoW
     #else
-        #define xGETADDRINFO    ::getaddrinfo
+        #define xGETADDRINFO ::getaddrinfo
     #endif
 #else
-    #define xGETADDRINFO        ::getaddrinfo
+    #define xGETADDRINFO     ::getaddrinfo
 #endif
 
 // xGETNAMEINFO
 #if   xCOMPILER_MINGW
-    #define xGETNAMEINFO        ::getnameinfo
+    #define xGETNAMEINFO     ::getnameinfo
 #elif xCOMPILER_MS
-    #define xGETNAMEINFO        ::GetNameInfo
+    #define xGETNAMEINFO     ::GetNameInfo
 #elif xCOMPILER_GNUC
     #if xUNICODE
-        #define xGETNAMEINFO    xl::core::getnameinfoW
+        #define xGETNAMEINFO xl::core::getnameinfoW
     #else
-        #define xGETNAMEINFO    ::getnameinfo
+        #define xGETNAMEINFO ::getnameinfo
     #endif
 #else
-    #define xGETNAMEINFO        ::getnameinfo
+    #define xGETNAMEINFO     ::getnameinfo
 #endif
 
 // xSTATVFS (struct and function)
@@ -80,14 +80,14 @@
 
     #if   xENV_LINUX
         #if   xOS_ANDROID
-            #define xSTATVFS    ::statfs
+            #define xSTATVFS ::statfs
         #elif xOS_LINUX
-            #define xSTATVFS    ::statfs64
+            #define xSTATVFS ::statfs64
         #endif
     #elif xENV_BSD
-        #define xSTATVFS        ::statvfs
+        #define xSTATVFS     ::statvfs
     #elif xENV_APPLE
-        #define xSTATVFS        ::statfs64
+        #define xSTATVFS     ::statfs64
     #endif
 #endif
     ///< filesystem statfs (struct and function)
