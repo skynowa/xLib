@@ -266,7 +266,7 @@ add_custom_target(uninstall
     COMMAND
         ${CMAKE_COMMAND}
         -DXLIB_INSTALL_PATH="${XLIB_INSTALL_PATH}"
-        -P ${XLIB_LOCATION}/CMake/Uninstall.cmake
+        -P Uninstall.cmake
     COMMENT
         "Uninstall...")
 #--------------------------------------------------------------------------------------------------
