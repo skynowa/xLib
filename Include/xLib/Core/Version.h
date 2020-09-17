@@ -27,7 +27,7 @@
 
 #define xLIB_AUTHOR         xT("Skynowa")
     ///< xLib author
-#define xLIB_HOME_PAGE      xT("https://bitbucket.org/skynowa/xlib")
+#define xLIB_HOME_PAGE      xT("https://github.com/skynowa/xlib")
     ///< xLib home page
 #define xLIB_EMAIL          xT("skynowa@gmail.com")
     ///< xLib email

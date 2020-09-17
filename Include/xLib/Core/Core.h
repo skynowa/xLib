@@ -15,7 +15,7 @@
  *          skype:   skynowa777 \n
  *          jabber:  skynowa@jabber.ru \n
  *          ICQ:     627713628 \n
- *          web:     https://bitbucket.org/skynowa/xlib
+ *          web:     https://github.com/skynowa/xLib
  *
  * \date    2008 - 2016
  *
