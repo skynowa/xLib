@@ -24,7 +24,7 @@ project(
     VERSION      1.0.0.0
 )
 
-set(XLIB_PROJECT_URL "https://bitbucket.org/skynowa/xlib/")
+set(XLIB_PROJECT_URL "https://github.com/skynowa/xLib/")
 #--------------------------------------------------------------------------------------------------
 # vars
 unset(cmXLIB_FOUND          CACHE)
