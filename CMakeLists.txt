@@ -258,7 +258,8 @@ install(
         ${XLIB_INSTALL_PATH}
     FILES_MATCHING
         PATTERN "*"
-        PATTERN "*.h.in" EXCLUDE)
+        PATTERN "*.h.in"   EXCLUDE
+        PATTERN ".gitkeep" EXCLUDE)
 #--------------------------------------------------------------------------------------------------
 # uninstall
 add_custom_target(uninstall
