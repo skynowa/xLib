@@ -10,9 +10,8 @@
     #include "Platform/Functions_unicode.h"
 #else
     #include "Platform/Functions_ansi.h"
-#endif // xUNICODE
-
-
+#endif
+//-------------------------------------------------------------------------------------------------
 // xLOCKING
 #if   xCOMPILER_MINGW
     #define xLOCKING ::_locking
@@ -105,3 +104,4 @@
 #elif xENV_UNIX
 	#define xFILENO ::fileno
 #endif
+//-------------------------------------------------------------------------------------------------
