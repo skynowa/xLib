@@ -1,6 +1,6 @@
 /**
  * \file   Guid.h
- * \brief  GUID (globally unique identifier)
+ * \brief  GUID (globally unique identifier), Version 4 UUID
  */
 
 
@@ -14,30 +14,16 @@ class Guid
     /// GUID (globally unique identifier)
 {
 public:
-    enum class Type
-    {
-        Unknown     = 0,
-        RandomBased = 1
-    };
-    xUSING_CONST(Type);
-
 ///@name ctors, dtor
 ///@{
-			 Guid(cType type);
+			 Guid() = default;
 	virtual ~Guid() = default;
 
 	xNO_COPY_ASSIGN(Guid)
 ///@}
 
 	std::tstring_t str() const;
-		///< generate GUID
-
-private:
-	cType _type;
-
-xPLATFORM_IMPL:
-    std::tstring_t _randomBased_impl() const;
-        ///< random based GUID
+		///< generate
 };
 
 xNAMESPACE_END2(xl, crypt)
