@@ -23,7 +23,7 @@ public:
 ///@}
 
 	std::tstring_t str() const;
-		///< generate
+		///< generate GUID string
 };
 
 xNAMESPACE_END2(xl, crypt)
