@@ -15,7 +15,7 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Crypt/Guid.h>
+#include <xLib/Crypt/OpenSSL/Guid.h>
 
 
 xNAMESPACE_BEGIN2(xl, fs)
@@ -31,8 +31,7 @@ DirTemp::DirTemp(
 	cbool_t          a_isRandomPostfix,
 	cbool_t          a_isAutoDelete
 ) :
-	_dir         (a_dirPath +
-		(a_isRandomPostfix ? (xT("_") + Guid(Guid::Type::RandomBased).str()) : xT(""))),
+	_dir         (a_dirPath + (a_isRandomPostfix ? (xT("_") + Guid().str()) : xT(""))),
 	_isAutoDelete(a_isAutoDelete)
 {
 	xTEST(!a_dirPath.empty());

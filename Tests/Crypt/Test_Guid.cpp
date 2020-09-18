@@ -18,16 +18,12 @@ Test_Guid::unit()
 {
     xTEST_CASE("str")
     {
-        Guid::cType data[]
-        {
-            Guid::Type::RandomBased
-        };
+		Guid guid;
+		m_sRv = guid.str();
+		xTEST(!m_sRv.empty());
 
-        for (auto &it_data : data) {
-            Guid guid(it_data);
-            m_sRv = guid.str();
-            xTEST(!m_sRv.empty());
-        }
+		Cout() << xTRACE_VAR(guid.str());
+		Cout() << xTRACE_VAR(guid.str());
     }
 
     return true;
