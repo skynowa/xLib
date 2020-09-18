@@ -1,6 +1,9 @@
 /**
  * \file   Guid.h
  * \brief  GUID (globally unique identifier), Version 4 UUID
+ *
+ * Refer Section 4.2 of RFC-4122
+ * https://tools.ietf.org/html/rfc4122#section-4.2
  */
 
 
