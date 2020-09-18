@@ -21,9 +21,6 @@ Test_Guid::unit()
 		Guid guid;
 		m_sRv = guid.str();
 		xTEST(!m_sRv.empty());
-
-		Cout() << xTRACE_VAR(guid.str());
-		Cout() << xTRACE_VAR(guid.str());
     }
 
     return true;
