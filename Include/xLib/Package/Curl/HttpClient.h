@@ -10,7 +10,8 @@
 
 #include <xLib/Package/Curl/BaseClient.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN3(xl, package, curl)
+namespace xl::package::curl
+{
 
 class HttpClient :
 	public BaseClient
@@ -58,5 +59,5 @@ private:
     xNO_COPY_ASSIGN(HttpClient)
 };
 
-xNAMESPACE_END3(xl, package, curl)
+} // namespace
 //-------------------------------------------------------------------------------------------------

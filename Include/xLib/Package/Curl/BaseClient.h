@@ -12,7 +12,8 @@
 #include <xLib/Package/Curl/Client.h>
 #include <xLib/Interface/IData.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN3(xl, package, curl)
+namespace xl::package::curl
+{
 
 struct DataIn :
 	public interface::IDataPrint

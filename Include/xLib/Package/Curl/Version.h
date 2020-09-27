@@ -15,7 +15,8 @@
 #include <curl/easy.h>
 #include "Types.h"
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN3(xl, package, curl)
+namespace xl::package::curl
+{
 
 class Version
     /// Client version
@@ -33,5 +34,5 @@ private:
     xNO_COPY_ASSIGN(Version)
 };
 
-xNAMESPACE_END3(xl, package, curl)
+} // namespace
 //-------------------------------------------------------------------------------------------------
