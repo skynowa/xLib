@@ -482,12 +482,6 @@
     for (it_t::const_reverse_iterator it((cont).rbegin()); it != (cont).rend(); ++ it)
     ///< iterate STL container (using it_t::const_reverse_iterator)
 ///@}
-
-///@name xFOR_ARRAY
-///@{
-#define xFOR_ARRAY(i, cont) \
-    for (size_t i = 0; i < Utils::arraySizeT(cont); ++ i)
-///@}
 //-------------------------------------------------------------------------------------------------
 ///@name xTHROW_REPORT, xTRY, xCATCH_ALL
 ///@{
