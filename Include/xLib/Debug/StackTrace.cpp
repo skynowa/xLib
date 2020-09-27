@@ -13,25 +13,20 @@
 #include <xLib/Fs/Path.h>
 #include <xLib/Log/Trace.h>
 
-xNAMESPACE_ANONYM_BEGIN
+//-------------------------------------------------------------------------------------------------
+namespace
+{
 
 std::csize_t elementsNum = 5;
     ///< number of elements
 
-xNAMESPACE_ANONYM_END
+}
+//-------------------------------------------------------------------------------------------------
 
 #if   xENV_WIN
     #include "Platform/Win/StackTrace_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/StackTrace_unix.inl"
-
-    #if   xENV_LINUX
-        // #include "Platform/Linux/StackTrace_linux.inl"
-    #elif xENV_BSD
-        // #include "Platform/Bsd/StackTrace_bsd.inl"
-    #elif xENV_APPLE
-        // #include "Platform/Unix/StackTrace_apple.inl"
-    #endif
 #endif
 
 
