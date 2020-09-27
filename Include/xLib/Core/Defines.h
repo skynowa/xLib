@@ -479,7 +479,7 @@
     ///< iterate STL container (using it_t::reverse_iterator)
 
 #define xFOR_EACH_R_CONST(it_t, it, cont) \
-    for (it_t::const_reverse_iterator it((cont).rbegin()); it != (cont).rend(); ++ it)
+    for (it_t::const_reverse_iterator it((cont).crbegin()); it != (cont).crend(); ++ it)
     ///< iterate STL container (using it_t::const_reverse_iterator)
 ///@}
 //-------------------------------------------------------------------------------------------------
@@ -487,8 +487,8 @@
 ///@{
 #define xTHROW_REPORT(msg) \
     { \
-        culong_t         nativeError    = NativeError::get(); \
-        SourceInfoData   sourceInfoData = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        culong_t         nativeError    { NativeError::get() }; \
+        SourceInfoData   sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
         SourceInfo       sourceInfo(sourceInfoData); \
         std::ctstring_t &stackTrace     = StackTrace().toString(); \
         \
@@ -506,7 +506,7 @@
     }                                        \
     catch (const std::exception &a_ex) {     \
         std::string msg = a_ex.what();       \
-        xTEST_FAIL_MSG(xA2T(msg));          \
+        xTEST_FAIL_MSG(xA2T(msg));           \
     }                                        \
     catch (...) {                            \
         xTEST_FAIL_MSG(xT("unknown error")); \
