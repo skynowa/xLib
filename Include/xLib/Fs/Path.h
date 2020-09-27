@@ -176,18 +176,30 @@ xPLATFORM_IMPL:
 // TODO: return std::string -> .str()
 // TODO: FileNameGuid ???
 
-// TODO: return Object - if possible
 /**
- Path path( Path(Path::exe() );
- path.brief(::reportWidthMax) ).toUnix(false);
+	TODO: return Object - if possible
+
+	std::tstring_t sRv;
+	std::tstring_t exePath = Path::exe();
 
 
- Path path( Path::exe() );
- path.brief(::reportWidthMax).toUnix(false).str();
+	// Sample OLD 1
+	sRv = Path( Path(exePath).brief(::reportWidthMax) ).toUnix(false);
 
- Path( Path::exe() )
- 	.brief(::reportWidthMax)
- 	.toUnix(false)
- 	.str();
+	// Sample OLD 2
+	std::tstring_t str = Path(exePath).brief(::reportWidthMax);
+	Path path(str);
+	sRv = path.toUnix(false);
+
+
+	// Sample NEW 1
+	Path path(exePath);
+	sRv = path.brief(::reportWidthMax).toUnix(false).str();
+
+	// Sample NEW 2
+	sRv = Path( exePath )
+		.brief(::reportWidthMax)
+		.toUnix(false)
+		.str();
 */
 //-------------------------------------------------------------------------------------------------
