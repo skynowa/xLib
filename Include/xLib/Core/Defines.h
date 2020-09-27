@@ -210,16 +210,6 @@
     ///< incrementing by 1 every time it is used in a compiland
 ///@}
 //-------------------------------------------------------------------------------------------------
-///@name Function params
-///@{
-#define xIN
-    ///< incoming param
-#define xOUT
-    ///< out coming param
-#define xIN_OUT
-    ///< incoming and out coming param
-///@}
-//-------------------------------------------------------------------------------------------------
 ///@name Variable arguments
 ///@{
 #if defined(va_start)
