@@ -184,8 +184,8 @@ Test_Format::unit()
         };
 
        for (const auto i : data) {
-            m_sRv = Format::str(xT("{}"), data[i].test);
-            xTEST_EQ(m_sRv, data[i].expect);
+            m_sRv = Format::str(xT("{}"), i.test);
+            xTEST_EQ(m_sRv, i.expect);
         }
     }
 
@@ -303,8 +303,8 @@ Test_Format::unit()
         };
 
        for (const auto i : data) {
-            m_sRv = Format::str(xT("{}"), data[i].test);
-            xTEST_EQ(m_sRv, data[i].expect);
+            m_sRv = Format::str(xT("{}"), i.test);
+            xTEST_EQ(m_sRv, i.expect);
         }
     }
 
@@ -317,8 +317,8 @@ Test_Format::unit()
         };
 
        for (const auto i : data) {
-            m_sRv = Format::str(xT("{}"), data[i].test);
-            xTEST_EQ(m_sRv, data[i].expect);
+            m_sRv = Format::str(xT("{}"), i.test);
+            xTEST_EQ(m_sRv, i.expect);
         }
     }
 
@@ -331,8 +331,8 @@ Test_Format::unit()
         };
 
        for (const auto i : data) {
-            m_sRv = Format::str(xT("{}"), data[i].test);
-            xTEST_EQ(m_sRv, data[i].expect);
+            m_sRv = Format::str(xT("{}"), i.test);
+            xTEST_EQ(m_sRv, i.expect);
         }
     }
 
@@ -345,8 +345,8 @@ Test_Format::unit()
         };
 
        for (const auto i : data) {
-            m_sRv = Format::str(xT("{}"), data[i].test);
-            xTEST_EQ(m_sRv, data[i].expect);
+            m_sRv = Format::str(xT("{}"), i.test);
+            xTEST_EQ(m_sRv, i.expect);
         }
     }
 
@@ -361,8 +361,8 @@ Test_Format::unit()
         };
 
        for (const auto i : data) {
-            m_sRv = Format::str(xT("{}"), data[i].test);
-            xTEST_EQ(m_sRv, data[i].expect);
+            m_sRv = Format::str(xT("{}"), i.test);
+            xTEST_EQ(m_sRv, i.expect);
         }
     }
 
