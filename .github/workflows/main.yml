@@ -45,13 +45,13 @@ jobs:
         run: cd ${{github.workspace}}/xLib/Tools && ./install_libs.sh
 
       # Static Analysis
-      # - name: Static Analysis - Install
-      #   run: |
-      #     cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
-      #     ./install_cppcheck.sh   &&
-      #     ./install_clang_tidy.sh &&
-      #     ./install_pvs_studio.sh &&
-      #     ./install_configs.sh ${{github.workspace}}/xLib-data/Configs/StaticAnalisis
+      ## - name: Static Analysis - Install
+      ##   run: |
+      ##     cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
+      ##     ./install_cppcheck.sh   &&
+      ##     ./install_clang_tidy.sh &&
+      ##     ./install_pvs_studio.sh &&
+      ##     ./install_configs.sh ${{github.workspace}}/xLib-data/Configs/StaticAnalisis
 
       # CMakeLib
       - name: CMakeLib - checkout
@@ -81,12 +81,12 @@ jobs:
         run: cd ${{github.workspace}}/xLib/Build && ./tests.sh
 
       # Static Analysis
-      # - name: Static Analysis - run
-      #   run: |
-      #     cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
-      #     ./run_cppcheck.sh   &&
-      #     ./run_clang_tidy.sh &&
-      #     ./run_pvs_studio.sh || 0
+      ## - name: Static Analysis - run
+      ##   run: |
+      ##     cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
+      ##     ./run_cppcheck.sh   &&
+      ##     ./run_clang_tidy.sh &&
+      ##     ./run_pvs_studio.sh || 0
 
   # build_windows:
   #   runs-on: windows-2019
