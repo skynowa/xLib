@@ -93,13 +93,6 @@
 //-------------------------------------------------------------------------------------------------
 ///@name namespace
 ///@{
-#define xNAMESPACE_ANONYM_BEGIN \
-    namespace {
-    ///< begin anonymous namespace
-#define xNAMESPACE_ANONYM_END \
-    }
-    ///< end anonymous namespace
-
 #define xNAMESPACE_BEGIN(n1) \
     namespace n1 {
     ///< begin namespace

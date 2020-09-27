@@ -23,14 +23,15 @@ Path::_volume_impl() const
     return std::tstring_t(1, _filePath[0]);
 }
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
+namespace
+{
 
 #if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
 static void_t function() {}
 #endif
 
-xNAMESPACE_ANONYM_END
-
+}
+//-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Path::_dll_impl()
