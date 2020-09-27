@@ -66,5 +66,5 @@ private:
     xNO_COPY_ASSIGN(Observer)
 };
 
-xNAMESPACE_END2(xl, patterns)
+} // namespace
 //-------------------------------------------------------------------------------------------------
