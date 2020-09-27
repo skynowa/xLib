@@ -17,11 +17,13 @@
 #include <xLib/Sync/Thread.h>
 
 
-xNAMESPACE_ANONYM_BEGIN
+namespace
+{
 
 std::csize_t reportWidthMax = 100 - 17;   // MAGIC: reportWidthMax
 
-xNAMESPACE_ANONYM_END
+}
+
 
 xNAMESPACE_BEGIN2(xl, debug)
 
