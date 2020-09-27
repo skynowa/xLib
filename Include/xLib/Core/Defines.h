@@ -474,10 +474,6 @@
 //-------------------------------------------------------------------------------------------------
 ///@name xFOR_EACH
 ///@{
-#define xFOR_EACH_CONST(it_t, it, cont) \
-    for (it_t::const_iterator         it((cont).begin());  it != (cont).end();  ++ it)
-    ///< iterate STL container (using it_t::const_iterator)
-
 #define xFOR_EACH_R(it_t, it, cont) \
     for (it_t::reverse_iterator       it((cont).rbegin()); it != (cont).rend(); ++ it)
     ///< iterate STL container (using it_t::reverse_iterator)
