@@ -22,15 +22,6 @@
 #endif
 ///@}
 //-------------------------------------------------------------------------------------------------
-// cmOPTION_TEST_PRIVATE
-#if cmOPTION_TEST_PRIVATE
-    #define private \
-        public
-    #define protected \
-        public
-#endif
-    ///< for testing private class data
-//-------------------------------------------------------------------------------------------------
 ///@name xDECL, xDECL_TEMPL
 ///@{
 #if xENV_WIN && cmOPTION_PROJECT_LIB_SHARE

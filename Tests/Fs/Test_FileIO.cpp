@@ -16,9 +16,6 @@ public:
            Test_FileIO() {}
 
     bool_t unit() override;
-
-private:
-    bool_t unitPrivate();
 };
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_FileIO)
@@ -442,81 +439,6 @@ Test_FileIO::unit()
         m_bRv = file.get().isValid();
         xTEST_EQ(m_bRv, false);
     }
-
-    m_bRv = unitPrivate();
-    xCHECK_RET(!m_bRv, false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/*******************************************************************************
-*    private
-*
-*******************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-bool_t
-Test_FileIO::unitPrivate()
-{
-#if cmOPTION_TEST_PRIVATE
-    std::ctstring_t filePath = getData().tempDirPath + Const::slash() + xT("Test.txt");
-
-    xTEST_CASE("_nativeHandle")
-    {
-        FileIO file(filePath);
-        file.open(FileIO::OpenMode::ReadOnly);
-
-        m_iRv = FileIO::_nativeHandle( file.get() );
-        xTEST_DIFF(m_iRv, - 1);
-    }
-
-    xTEST_CASE("_stdHandle")
-    {
-        // TEST: FileIO::_stdHandle
-
-    #if xTODO
-        FileIO::cOpenMode mode = FileIO::OpenMode::ReadWriteOnly;
-
-        FileIO file(filePath);
-        file.open(mode, true);
-
-        int_t nativeFile = FileIO::_nativeHandle(file.get());
-        xTEST_DIFF((int_t)FileIO::etError, nativeFile);
-
-        FILE *stdFile = FileIO::_stdHandle(nativeFile, mode);
-        xTEST_PTR(stdFile);
-    #endif
-    }
-
-    xTEST_CASE("_openMode")
-    {
-        std::vector< std::pair<FileIO::OpenMode, std::tstring_t>> data;
-
-        data.push_back( std::make_pair(FileIO::OpenMode::ReadOnly,         xT("r")) );
-        data.push_back( std::make_pair(FileIO::OpenMode::Write,            xT("w")) );
-        data.push_back( std::make_pair(FileIO::OpenMode::Append,           xT("a")) );
-        data.push_back( std::make_pair(FileIO::OpenMode::ReadWriteOnly,    xT("r+")) );
-        data.push_back( std::make_pair(FileIO::OpenMode::ReadWrite,        xT("w+")) );
-        data.push_back( std::make_pair(FileIO::OpenMode::ReadAppend,       xT("a+")) );
-
-        data.push_back( std::make_pair(FileIO::OpenMode::BinReadOnly,      xT("rb")) );
-        data.push_back( std::make_pair(FileIO::OpenMode::BinWrite,         xT("wb")) );
-        data.push_back( std::make_pair(FileIO::OpenMode::BinAppend,        xT("ab")) );
-        data.push_back( std::make_pair(FileIO::OpenMode::BinReadWriteOnly, xT("rb+")) );
-        data.push_back( std::make_pair(FileIO::OpenMode::BinReadWrite,     xT("wb+")) );
-        data.push_back( std::make_pair(FileIO::OpenMode::BinReadAppend,    xT("ab+")) );
-
-        for (size_t i = 0; i < data.size(); ++ i) {
-            FileIO::OpenMode omRes = data.at(i).first;
-            std::tstring_t   sRv   = data.at(i).second;
-
-            m_sRv = FileIO::_openMode(omRes);
-            xTEST_EQ(sRv, m_sRv);
-        }
-    }
-#endif
 
     return true;
 }
