@@ -285,14 +285,9 @@
     ;
     ///< at this point debug code for variables is not applicable
 
-#if cmOPTION_TEST_TRACING
-    #define xTEST_CASE(caseName) \
-        Trace() << xT("\tCase: ") << xT(caseName); \
-        for (size_t caseLoops = 0; caseLoops < getData().caseLoops; ++ caseLoops)
-#else
-    #define xTEST_CASE(caseName) \
-        for (size_t caseLoops = 0; caseLoops < getData().caseLoops; ++ caseLoops)
-#endif
+#define xTEST_CASE(caseName) \
+	Trace() << xT("\tCase: ") << xT(caseName); \
+	for (size_t caseLoops = 0; caseLoops < getData().caseLoops; ++ caseLoops)
     ///< test case
 
 #define xTEST_CLASS(className) \
