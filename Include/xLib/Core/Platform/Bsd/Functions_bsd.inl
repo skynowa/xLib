@@ -18,7 +18,7 @@ namespace std
  */
 
 std::clock_t
-clock() /* xWARN_UNUSED_RV */
+clock()
 {
     rusage ruUsage {};
 

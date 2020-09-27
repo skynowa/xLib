@@ -14,7 +14,7 @@ lockf(
     int   a_fd,
     int   a_cmd,
     off_t a_len_unused
-) /* xWARN_UNUSED_RV */
+)
 {
     xUNUSED(a_len_unused);
 
