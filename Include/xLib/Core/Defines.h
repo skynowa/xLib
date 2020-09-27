@@ -193,43 +193,19 @@
     ///< source information
 
 // xDATE
-#if defined(__DATE__)
-    #define xDATE \
-        xT(__DATE__)
-#else
-    #define xDATE \
-        xUNKNOWN_CSTRING
-#endif
+#define xDATE \
+    xT(__DATE__)
     ///< build source date stamp
-
-// xTIME
-#if defined(__TIME__)
-    #define xTIME \
-        xT(__TIME__)
-#else
-    #define xTIME \
-        xUNKNOWN_CSTRING
-#endif
+#define xTIME \
+    xT(__TIME__)
     ///< build source time stamp
 
-// xDATETIME
-#if defined(xDATE) && defined(xTIME)
-    #define xDATETIME \
-        xDATE xT(" ") xTIME
-#else
-    #define xDATETIME \
-        xUNKNOWN_CSTRING
-#endif
+#define xDATETIME \
+    xDATE xT(" ") xTIME
     ///< build source date time stamp
 
-// xCOUNTER
-#if defined(__COUNTER__)
-    #define xCOUNTER \
-        __COUNTER__
-#else
-    #define xCOUNTER \
-        0
-#endif
+#define xCOUNTER \
+    __COUNTER__
     ///< Expands to an integer starting with 0 and
     ///< incrementing by 1 every time it is used in a compiland
 ///@}
