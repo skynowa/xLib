@@ -104,8 +104,8 @@ StackTrace::_format(
     // formatting
     std::size_t lineNumber = 0;
 
-    xFOR_EACH_CONST(std::vector<std::vec_tstring_t>, it, a_stack) {
-        if (it != a_stack.begin()) {
+    for (const auto &it : a_stack) {
+        if (it != a_stack.cbegin()) {
             ++ lineNumber;
         }
 

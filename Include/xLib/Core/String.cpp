@@ -520,7 +520,7 @@ String::join(
 
     std::tstring_t sRv;
 
-    xFOR_EACH_CONST(std::vec_tstring_t, it, a_vec) {
+    for (const auto &it : a_vec) {
         sRv.append(*it);
 
         xCHECK_DO(it < a_vec.end() - 1, sRv.append(a_sep));
