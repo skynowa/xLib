@@ -23,7 +23,6 @@ set(cmOPTION_PROJECT_LIB_MODULE    0)
 set(cmOPTION_BUILD_TESTS           1)
 
 # CMAKE_CONFIGURATION_TYPES:
-#
 # - None
 # - Debug
 # - Release
