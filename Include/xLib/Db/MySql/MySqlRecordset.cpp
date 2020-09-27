@@ -8,7 +8,8 @@
 
 #include <xLib/Db/MySql/MySqlConnection.h>
 
-xNAMESPACE_BEGIN2(xl, db)
+namespace xl::db
+{
 
 /**************************************************************************************************
 *    public
@@ -171,4 +172,4 @@ MySqlRecordset::_fetchLengths(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, db)
+} // namespace

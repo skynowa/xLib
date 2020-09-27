@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 struct StackTraceData
     /// StackTrace data
@@ -47,5 +48,5 @@ xPLATFORM_IMPL:
 #endif
 };
 
-xNAMESPACE_END2(xl, debug)
+} // namespace
 //-------------------------------------------------------------------------------------------------

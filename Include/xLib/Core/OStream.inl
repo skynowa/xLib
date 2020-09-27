@@ -11,7 +11,8 @@
 #include <xLib/Algo/Algos.h>
 
 
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 /**************************************************************************************************
 *   public
@@ -487,4 +488,4 @@ struct OStream::TuplePrint<T, 1>
 };
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, core)
+} // namespace

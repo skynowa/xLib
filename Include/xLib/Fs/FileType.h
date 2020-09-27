@@ -11,7 +11,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 class FileType
     /// file attribute
@@ -103,7 +104,7 @@ xPLATFORM_IMPL:
     bool_t  _isExecutable_impl() const;
 };
 
-xNAMESPACE_END2(xl, fs)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 /**
  * TODO:

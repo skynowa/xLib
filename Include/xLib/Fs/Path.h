@@ -10,7 +10,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 class Path
     /// file system path
@@ -168,7 +169,7 @@ xPLATFORM_IMPL:
     size_t         _nameMaxSize_impl();
 };
 
-xNAMESPACE_END2(xl, fs)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 // TODO: usr/bin ... pathes
 // TODO: group methods

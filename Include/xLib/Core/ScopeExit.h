@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 class ScopeExit
 	/// Scope exit
@@ -29,5 +30,5 @@ private:
 	std::function<void()> _functor;
 };
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------

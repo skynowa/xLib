@@ -18,7 +18,8 @@
 #include <xLib/System/User.h>
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, internal)
+namespace xl::package
+{
 
 class CrashCallback
 {
@@ -86,7 +87,7 @@ public:
     }
 };
 
-xNAMESPACE_END2(xl, internal)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 
 
@@ -111,7 +112,8 @@ std::ctstring_t langDirName   = xT("Lang");
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 ApplicationInfo Application::_info;
 Donate          Application::_donate;
@@ -448,4 +450,4 @@ Application::onRun()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, package)
+} // namespace

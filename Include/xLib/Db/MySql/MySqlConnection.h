@@ -14,7 +14,8 @@
 #include <xLib/Core/Handle.h>
 #include <xLib/Interface/ILastError.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, db)
+namespace xl::db
+{
 
 struct MySqlConnectionData
     /// MySqlConnection data
@@ -111,7 +112,7 @@ private:
         ///< set extra connect options and affect behavior
 };
 
-xNAMESPACE_END2(xl, db)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 
 #if xTODO

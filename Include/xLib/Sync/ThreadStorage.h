@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
 class ThreadStorage
     /// thread local storage
@@ -52,5 +53,5 @@ xPLATFORM_IMPL:
     void_t   _setValue_impl(void_t **value) const;
 };
 
-xNAMESPACE_END2(xl, sync)
+} // namespace
 //-------------------------------------------------------------------------------------------------

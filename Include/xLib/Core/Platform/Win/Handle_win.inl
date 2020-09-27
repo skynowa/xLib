@@ -13,7 +13,8 @@
 #include <xLib/Debug/StackTrace.h>
 
 
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
@@ -59,4 +60,4 @@ Handle<T, valueT>::setInfo(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, core)
+} // namespace

@@ -12,7 +12,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Package/IRestClient.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 class PrivatBankApi
 	/// PrivaBank API
@@ -41,5 +42,5 @@ private:
 	xNO_COPY_ASSIGN(PrivatBankApi)
 };
 
-xNAMESPACE_END2(xl, package)
+} // namespace
 //-------------------------------------------------------------------------------------------------

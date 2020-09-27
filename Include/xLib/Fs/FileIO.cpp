@@ -15,7 +15,8 @@
 #include <xLib/Fs/FileType.h>
 
 
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 /**************************************************************************************************
 *    public: constructors, destructor
@@ -550,4 +551,4 @@ FileIO::_setVBuffDefault(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, fs)
+} // namespace

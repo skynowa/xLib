@@ -9,7 +9,8 @@
 #include <xLib/Net/ISocket.h>
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, net)
+namespace xl::net
+{
 
 class TcpServer :
     public ISocket
@@ -32,7 +33,7 @@ protected:
     xNO_COPY_ASSIGN(TcpServer)
 };
 
-xNAMESPACE_END2(xl, net)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 
 /*

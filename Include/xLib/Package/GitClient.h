@@ -8,7 +8,8 @@
 
 #include <xLib/xLib.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 class GitClient
     /// GIT client
@@ -44,5 +45,5 @@ private:
 		///< path to binary file
 };
 
-xNAMESPACE_END2(xl, package)
+} // namespace
 //-------------------------------------------------------------------------------------------------

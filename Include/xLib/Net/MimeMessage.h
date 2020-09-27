@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, net)
+namespace xl::net
+{
 
 class MimeHeader;
 class MimeBody;
@@ -30,5 +31,5 @@ private:
     xNO_COPY_ASSIGN(MimeMessage)
 };
 
-xNAMESPACE_END2(xl, net)
+} // namespace
 //-------------------------------------------------------------------------------------------------

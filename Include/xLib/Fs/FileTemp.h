@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 class FileIO;
 
@@ -39,5 +40,5 @@ xPLATFORM_IMPL:
     void_t _create_impl(HandleStdFile &stdFile);
 };
 
-xNAMESPACE_END2(xl, fs)
+} // namespace
 //-------------------------------------------------------------------------------------------------

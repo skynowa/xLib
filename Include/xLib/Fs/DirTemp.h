@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Fs/Dir.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 class DirTemp
 	/// Temporary directory
@@ -34,5 +35,5 @@ private:
 	cbool_t _isAutoDelete {}; ///< auto delete flag
 };
 
-xNAMESPACE_END2(xl, fs)
+} // namespace
 //-------------------------------------------------------------------------------------------------

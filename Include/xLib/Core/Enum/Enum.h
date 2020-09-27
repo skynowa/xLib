@@ -16,7 +16,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/OStream.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 class Enum
     /// Enumeration
@@ -59,7 +60,7 @@ private:
     xNO_COPY_ASSIGN(Enum)
 };
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "Enum.inl"
 //-------------------------------------------------------------------------------------------------

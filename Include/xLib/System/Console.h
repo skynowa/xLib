@@ -11,7 +11,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, system)
+namespace xl::system
+{
 
 class Console
     /// Shell console
@@ -194,7 +195,7 @@ xPLATFORM_IMPL:
     void_t         _setStdinEcho_impl(cbool_t &isEnable) const;
 };
 
-xNAMESPACE_END2(xl, system)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 /**
  * TODO: Console

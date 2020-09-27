@@ -16,13 +16,15 @@
 ////#include <boost\bind.hpp>
 ////#include <functional>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, log)
+namespace xl::log
+{
 
 class Trace;
 
-xNAMESPACE_END2(xl, log)
+} // namespace
 
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
 class Mutex;
 class AutoMutex;
@@ -96,6 +98,6 @@ private:
     // TODO: WatchDog
 };
 
-xNAMESPACE_END2(xl, sync)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "ThreadPool.inl"

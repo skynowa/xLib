@@ -10,7 +10,8 @@
 #include <xLib/Net/TcpClient.h>
 #include <libssh2.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 struct Ssh2ClientData
 {
@@ -76,5 +77,5 @@ private:
     void_t         _convertStdToHtml(std::tstring_t *std);
 };
 
-xNAMESPACE_END2(xl, package)
+} // namespace
 //-------------------------------------------------------------------------------------------------

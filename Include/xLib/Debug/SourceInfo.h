@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 struct SourceInfoData
     /// SourceInfo data
@@ -40,5 +41,5 @@ private:
     xNO_COPY_ASSIGN(SourceInfo)
 };
 
-xNAMESPACE_END2(xl, debug)
+} // namespace
 //-------------------------------------------------------------------------------------------------

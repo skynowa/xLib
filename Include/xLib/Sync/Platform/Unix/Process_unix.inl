@@ -6,7 +6,8 @@
 
 #include <xLib/Sync/Pipe.h>
 
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
 /**************************************************************************************************
 *    public
@@ -420,4 +421,4 @@ Process::_currentExit_impl(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, sync)
+} // namespace

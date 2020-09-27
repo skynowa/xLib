@@ -9,7 +9,8 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, interface)
+namespace xl::interface
+{
 
 template <typename ErrorT>
 class xNO_VTABLE ILastError
@@ -27,5 +28,5 @@ protected:
 	std::tstring_t _lastErrorStr;
 };
 
-xNAMESPACE_END2(xl, interface)
+} // namespace
 //-------------------------------------------------------------------------------------------------

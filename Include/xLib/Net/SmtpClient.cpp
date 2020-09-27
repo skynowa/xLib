@@ -20,7 +20,8 @@
 #include <xLib/Net/DnsClient.h>
 
 
-xNAMESPACE_BEGIN2(xl, net)
+namespace xl::net
+{
 
 /**************************************************************************************************
 *    Public methods
@@ -321,4 +322,4 @@ SmtpClient::_isError(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, net)
+} // namespace

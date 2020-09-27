@@ -14,7 +14,8 @@
 #include <xLib/Core/OStream.h>
 
 
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 /**************************************************************************************************
 *   public
@@ -147,4 +148,4 @@ FormatT<StreamT>::_testFmt(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, core)
+} // namespace

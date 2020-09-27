@@ -8,7 +8,8 @@
 
 #include <curl/curl.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 xUSING_CONST(CURLversion);
 xUSING_CONST(CURLcode);
@@ -39,5 +40,5 @@ enum class ProxyType
 };
 xUSING_CONST(ProxyType);
 
-xNAMESPACE_END2(xl, package)
+} // namespace
 //-------------------------------------------------------------------------------------------------

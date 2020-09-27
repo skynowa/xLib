@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, net)
+namespace xl::net
+{
 
 class MimeBody
     /// MIME body (RFC 822)
@@ -23,5 +24,5 @@ private:
     xNO_COPY_ASSIGN(MimeBody)
 };
 
-xNAMESPACE_END2(xl, net)
+} // namespace
 //-------------------------------------------------------------------------------------------------

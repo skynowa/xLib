@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Sync/Event.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
 class Sleeper
     /// sleeper
@@ -31,5 +32,5 @@ private:
     xNO_COPY_ASSIGN(Sleeper)
 };
 
-xNAMESPACE_END2(xl, sync)
+} // namespace
 //-------------------------------------------------------------------------------------------------

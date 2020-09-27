@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 
 
-xNAMESPACE_BEGIN2(xl, internal)
+namespace xl::internal
+{
 
 //-------------------------------------------------------------------------------------------------
 ///@name Macroses
@@ -59,4 +60,4 @@ struct Types
 ///@}
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, internal)
+} // namespace

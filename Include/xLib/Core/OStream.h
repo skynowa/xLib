@@ -10,7 +10,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Double.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 class OStream
     ///< print string
@@ -208,7 +209,7 @@ public:
         ///< print std::endl
 };
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "OStream.inl"
 //-------------------------------------------------------------------------------------------------

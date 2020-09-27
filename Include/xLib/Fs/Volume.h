@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 class Volume
     /// volume
@@ -99,5 +100,5 @@ xPRIVATE_STATIC:
     void_t _paths_impl(std::vec_tstring_t *volumePaths);
 };
 
-xNAMESPACE_END2(xl, fs)
+} // namespace
 //-------------------------------------------------------------------------------------------------

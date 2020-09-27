@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Net/TcpClient.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, net)
+namespace xl::net
+{
 
 class MimeHeader;
 class MimeBody;
@@ -47,7 +48,7 @@ private:
     xNO_COPY_ASSIGN(SmtpClient)
 };
 
-xNAMESPACE_END2(xl, net)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 
 /*

@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 class Exception
     /// exception
@@ -27,6 +28,6 @@ private:
         ///< message
 };
 
-xNAMESPACE_END2(xl, debug)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "Exception.inl"

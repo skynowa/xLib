@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
 class Semaphore
     /// semaphore
@@ -21,5 +22,5 @@ private:
     xNO_COPY_ASSIGN(Semaphore)
 };
 
-xNAMESPACE_END2(xl, sync)
+} // namespace
 //-------------------------------------------------------------------------------------------------

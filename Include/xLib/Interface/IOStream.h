@@ -9,7 +9,8 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, interface)
+namespace xl::interface
+{
 
 template <typename StreamT>
 class xNO_VTABLE IOStream
@@ -27,7 +28,7 @@ public:
 	}
 };
 
-xNAMESPACE_END2(xl, interface)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 /**
  * Print any object which has a member:

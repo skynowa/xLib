@@ -10,7 +10,8 @@
 #include "FileLog.h"
 #include "SystemLog.h"
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, log)
+namespace xl::log
+{
 
 template<class T>
 class AutoLog
@@ -42,5 +43,5 @@ using AutoTrace     = AutoLog<Trace>;
 using AutoFileLog   = AutoLog<FileLog>;
 using AutoSystemLog = AutoLog<SystemLog>;
 
-xNAMESPACE_END2(xl, log)
+} // namespace
 //-------------------------------------------------------------------------------------------------

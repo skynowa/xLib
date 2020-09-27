@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Net/ISocket.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, net)
+namespace xl::net
+{
 
 class DnsClient
     /// DNS client
@@ -73,5 +74,5 @@ private:
     xNO_COPY_ASSIGN(DnsClient)
 };
 
-xNAMESPACE_END2(xl, net)
+} // namespace
 //-------------------------------------------------------------------------------------------------

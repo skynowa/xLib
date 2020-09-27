@@ -18,7 +18,8 @@
 #include <xLib/Net/MimeBody.h>
 
 
-xNAMESPACE_BEGIN2(xl, net)
+namespace xl::net
+{
 
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -56,4 +57,4 @@ MimeMessage::saveToRawFile(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, net)
+} // namespace

@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 class Path;
 class FileIO;
@@ -98,5 +99,5 @@ xPLATFORM_IMPL:
 	void_t _setTime_impl(const time_t create, const time_t access, const time_t modified) const;
 };
 
-xNAMESPACE_END2(xl, fs)
+} // namespace
 //-------------------------------------------------------------------------------------------------

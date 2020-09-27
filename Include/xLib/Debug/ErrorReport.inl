@@ -7,7 +7,8 @@
 #include <xLib/Core/Format.h>
 
 
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -45,4 +46,4 @@ ErrorReport::ErrorReport(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, debug)
+} // namespace

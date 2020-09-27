@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 template<typename T>
 class Double
@@ -53,7 +54,7 @@ using dfloat_t      = Double<float>;
 using ddouble_t     = Double<double>;
 using dlongdouble_t = Double<long double>;
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "Double.inl"
 

@@ -11,7 +11,8 @@
 #include <xLib/Log/FileLog.h>
 #include <xLib/Package/Curl/HttpClient.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 class IRestClient
     /// REST API client
@@ -37,5 +38,5 @@ private:
     xNO_COPY_ASSIGN(IRestClient)
 };
 
-xNAMESPACE_END2(xl, package)
+} // namespace
 //-------------------------------------------------------------------------------------------------

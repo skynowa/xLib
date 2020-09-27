@@ -6,6 +6,7 @@
 
 #include "MimeBody.h"
 
-xNAMESPACE_BEGIN2(xl, net)
+namespace xl::net
+{
 
-xNAMESPACE_END2(xl, net)
+} // namespace

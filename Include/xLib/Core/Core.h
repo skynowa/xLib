@@ -51,6 +51,7 @@ namespace db {}
 namespace debug {}
 namespace fs {}
 namespace interface {}
+namespace algos {};
 namespace ui {}
 namespace log {}
 namespace net {}
@@ -66,6 +67,7 @@ using namespace db;
 using namespace debug;
 using namespace fs;
 using namespace interface;
+using namespace algos;
 using namespace ui;
 using namespace log;
 using namespace net;

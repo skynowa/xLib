@@ -14,7 +14,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 enum class HandlePolicyType
     /// error handle type
@@ -121,7 +122,7 @@ using HandleCurl          = Handle<CURL *,            HandlePolicyType::hvCurl>;
 using HandleFindDir       = Handle<find_dir_handle_t, HandlePolicyType::hvFindDir>;
 using HandleSocket        = Handle<socket_t,          HandlePolicyType::hvSocket>;
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "HandlePolicy.inl"
 

@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
 class Mutex;
 
@@ -25,5 +26,5 @@ private:
     xNO_COPY_ASSIGN(AutoMutex)
 };
 
-xNAMESPACE_END2(xl, sync)
+} // namespace
 //-------------------------------------------------------------------------------------------------

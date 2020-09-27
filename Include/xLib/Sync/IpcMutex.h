@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
 class IpcMutex
     /// mutex
@@ -48,7 +49,7 @@ xPLATFORM_IMPL:
     void_t           _unlock_impl() const;
 };
 
-xNAMESPACE_END2(xl, sync)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 // TODO: IpcSemaphore_unix -> IpcMutex_unix.inl - re copy paste
 //-------------------------------------------------------------------------------------------------

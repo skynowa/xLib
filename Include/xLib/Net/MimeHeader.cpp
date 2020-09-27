@@ -13,7 +13,8 @@
 #include <xLib/System/SystemInfo.h>
 
 
-xNAMESPACE_BEGIN2(xl, net)
+namespace xl::net
+{
 
 //-------------------------------------------------------------------------------------------------
 MimeHeader::MimeHeader() :
@@ -243,4 +244,4 @@ MimeHeader::generateMessageID()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, net)
+} // namespace

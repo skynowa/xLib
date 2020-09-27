@@ -11,7 +11,8 @@
 #include <xLib/Core/HandlePolicy.h>
 #include <xLib/Interface/ISync.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
 class Pipe :
 	public ISync<HandleNative>
@@ -65,5 +66,5 @@ xPLATFORM_IMPL:
     void_t  _close_impl(cCloseMode mode);
 };
 
-xNAMESPACE_END2(xl, sync)
+} // namespace
 //-------------------------------------------------------------------------------------------------

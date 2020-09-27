@@ -13,7 +13,8 @@
 #include <xLib/Debug/StackTrace.h>
 
 
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 
 /**************************************************************************************************
@@ -234,4 +235,4 @@ HandlePolicy<T, HandlePolicyType::hvSocket>::_close_impl(T &a_handle)
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, core)
+} // namespace

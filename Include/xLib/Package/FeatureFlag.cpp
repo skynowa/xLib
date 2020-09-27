@@ -7,7 +7,8 @@
 #include "FeatureFlag.h"
 
 
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 /**************************************************************************************************
 *   public
@@ -47,4 +48,4 @@ FeatureFlag::alert() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, package)
+} // namespace

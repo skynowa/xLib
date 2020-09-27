@@ -9,7 +9,8 @@
 #include <xLib/Net/ISocket.h>
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, net)
+namespace xl::net
+{
 
 class TcpClient :
     public ISocket
@@ -44,7 +45,7 @@ xPLATFORM_IMPL:
     void_t   _setNonBlockingMode_impl(cbool_t &flag) const;
 };
 
-xNAMESPACE_END2(xl, net)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 
 /**

@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 template<typename T>
 T &operator ++ (T &value);
@@ -16,7 +17,7 @@ T &operator ++ (T &value);
 template<typename T>
 T &operator -- (T &value);
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 
 #include "Operators.inl"

@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
 class IpcSemaphore
     /// semaphore (interprocess)
@@ -62,7 +63,7 @@ xPLATFORM_IMPL:
     bool_t           _isValid_impl() const;
 };
 
-xNAMESPACE_END2(xl, sync)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 
 /*

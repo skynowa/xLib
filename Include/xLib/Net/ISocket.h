@@ -40,7 +40,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, net)
+namespace xl::net
+{
 
 class ISocket
     /// socket
@@ -324,7 +325,7 @@ xPLATFORM_IMPL:
     int_t          _nativeError_impl();
 };
 
-xNAMESPACE_END2(xl, net)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 
 #if xTODO

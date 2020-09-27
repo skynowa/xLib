@@ -4,6 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
-xNAMESPACE_END2(xl, debug)
+} // namespace

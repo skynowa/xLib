@@ -10,7 +10,8 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Test/Test.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, test)
+namespace xl::test
+{
 
 struct ManagerData
     /// manager data
@@ -53,5 +54,5 @@ private:
 
 };
 
-xNAMESPACE_END2(xl, test)
+} // namespace
 //-------------------------------------------------------------------------------------------------

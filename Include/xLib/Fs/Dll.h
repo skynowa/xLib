@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 class Dll
     /// dynamic linking loader
@@ -52,5 +53,5 @@ xPLATFORM_IMPL:
         ///< get address of an exported function or variable
 };
 
-xNAMESPACE_END2(xl, fs)
+} // namespace
 //-------------------------------------------------------------------------------------------------

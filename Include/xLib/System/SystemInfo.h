@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, system)
+namespace xl::system
+{
 
 class SystemInfo
     /// system information
@@ -152,7 +153,7 @@ xPLATFORM_IMPL:
     ulong_t        _pageSize_impl() const;
 };
 
-xNAMESPACE_END2(xl, system)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 
 // https://github.com/joyent/node/blob/master/src/platform_linux.cc

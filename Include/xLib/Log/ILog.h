@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, log)
+namespace xl::log
+{
 
 class xNO_VTABLE ILog
     /// logging interface
@@ -54,5 +55,5 @@ private:
     xNO_COPY_ASSIGN(ILog)
 };
 
-xNAMESPACE_END2(xl, log)
+} // namespace
 //-------------------------------------------------------------------------------------------------

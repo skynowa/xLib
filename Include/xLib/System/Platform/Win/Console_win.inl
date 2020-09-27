@@ -9,7 +9,8 @@
 #include <xLib/Sync/Thread.h>
 
 
-xNAMESPACE_BEGIN2(xl, system)
+namespace xl::system
+{
 
 /**************************************************************************************************
 *    public
@@ -502,4 +503,4 @@ Console::_setStdinEcho_impl(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, system)
+} // namespace

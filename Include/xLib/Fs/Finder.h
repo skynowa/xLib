@@ -10,7 +10,8 @@
 #include <xLib/Core/Handle.h>
 #include <xLib/Fs/FileType.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 class Finder
     ///< filesystem finder
@@ -81,5 +82,5 @@ xPLATFORM_IMPL:
     bool_t            _moveFirst_impl();
 };
 
-xNAMESPACE_END2(xl, fs)
+} // namespace
 //-------------------------------------------------------------------------------------------------

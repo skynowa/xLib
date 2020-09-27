@@ -11,7 +11,8 @@
 #include <xLib/Package/Curl/HttpClient.h>
 
 
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 /**************************************************************************************************
 *   public
@@ -285,4 +286,4 @@ Translate::_languageCode(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, package)
+} // namespace

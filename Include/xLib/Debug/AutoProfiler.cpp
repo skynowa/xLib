@@ -9,7 +9,8 @@
 #include <xLib/Core/FormatC.h>
 
 
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 /**************************************************************************************************
 *    public
@@ -41,4 +42,4 @@ AutoProfiler::~AutoProfiler()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, debug)
+} // namespace

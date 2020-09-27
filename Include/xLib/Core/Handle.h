@@ -7,7 +7,8 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 namespace debug
 {
@@ -19,13 +20,14 @@ class Debugger;
 
 }
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 #include <xLib/Interface/IHandle.h>
 #include <xLib/Core/HandlePolicy.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 template<typename T, HandlePolicyType valueT>
 class Handle :
@@ -82,7 +84,7 @@ xPLATFORM_IMPL:
     void_t      _setCloseOnExec_impl(cbool_t flag);
 };
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "Handle.inl"
 

@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Debug/Profiler.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 class AutoProfiler
     /// auto profiling code
@@ -25,5 +26,5 @@ private:
     xNO_COPY_ASSIGN(AutoProfiler)
 };
 
-xNAMESPACE_END2(xl, debug)
+} // namespace
 //-------------------------------------------------------------------------------------------------

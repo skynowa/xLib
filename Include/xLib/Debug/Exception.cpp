@@ -9,7 +9,8 @@
 #include <xLib/Core/String.h>
 
 
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 /*******************************************************************************
 *    public
@@ -24,4 +25,4 @@ Exception::what() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, debug)
+} // namespace

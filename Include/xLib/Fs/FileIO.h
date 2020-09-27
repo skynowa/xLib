@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 class FileIO
     /// file
@@ -172,7 +173,7 @@ private:
     friend class FileTemp;  ///< temporary file
 };
 
-xNAMESPACE_END2(xl, fs)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 // TODO: [skynowa] _filePath - make as const
 // TODO: [skynowa] get objects (Path, FileInfo)
