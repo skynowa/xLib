@@ -9,7 +9,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, patterns)
+namespace xl::patterns
+{
 
 template<typename T>
 class xNO_VTABLE IObserver
