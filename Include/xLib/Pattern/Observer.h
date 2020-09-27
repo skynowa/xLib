@@ -45,7 +45,7 @@ public:
         ///< attach object
     void_t detach(IObserver<T> *a_observer)
     {
-        xFOR_EACH(typename std::vector<IObserver<T> *>, it, _observers) {
+        for (auto &it : _observers) {
             if (*it == a_observer) {
                 _observers.erase(it);
             }
