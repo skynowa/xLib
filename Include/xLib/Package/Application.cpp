@@ -96,7 +96,8 @@ xNAMESPACE_END2(xl, internal)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
+namespace
+{
 
 xl::cbool_t     isDevel       = false;
 
@@ -107,7 +108,7 @@ std::ctstring_t dbDirName     = xT("Db");
 std::ctstring_t tempDirName   = xT("Temp");
 std::ctstring_t langDirName   = xT("Lang");
 
-xNAMESPACE_ANONYM_END
+}
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_BEGIN2(xl, package)

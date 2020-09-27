@@ -24,14 +24,15 @@ xNAMESPACE_BEGIN2(xl, package)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
+namespace
+{
 
 cint_t         blockSize      = 1024;
 cint_t         blockSizeMin   = 1;
 std::tstring_t userPassword;
 clong_t        waitTimeoutSec = 10;
 
-xNAMESPACE_ANONYM_END
+}
 //-------------------------------------------------------------------------------------------------
 Ssh2Client::Ssh2Client(
     cSsh2ClientData &a_data

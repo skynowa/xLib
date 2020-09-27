@@ -12,8 +12,9 @@
 #include <xLib/Fs/Finder.h>
 #include <xLib/Sync/Process.h>
 
-
-xNAMESPACE_ANONYM_BEGIN
+//-------------------------------------------------------------------------------------------------
+namespace
+{
 
 // TODO: use CMake
 std::ctstring_t zipPath    = xT("/usr/bin/zip");
@@ -25,8 +26,8 @@ std::ctstring_t unrarPath  = xT("/usr/bin/unrar");
 std::ctstring_t gunzipPath = xT("/usr/bin/gunzip");
 
 std::ctstring_t chmodPath  = xT("chmod");
-
-xNAMESPACE_ANONYM_END
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_BEGIN2(xl, package)
 

@@ -276,7 +276,8 @@ Signal::isValid(
 	return (::sigaction(a_signalNum, nullptr, nullptr) == 0);
 }
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
+namespace
+{
 
 struct _SignalInfo
 {
@@ -286,8 +287,8 @@ struct _SignalInfo
 	cptr_ctchar_t description;	///<
 };
 
-xNAMESPACE_ANONYM_END
-
+}
+//-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Signal::infoDescription(

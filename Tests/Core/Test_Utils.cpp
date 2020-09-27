@@ -12,7 +12,8 @@ using namespace xl;
 xTEST_CLASS(Test_Utils)
 xTEST_UNIT(Test_Utils)
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
+namespace
+{
 
 enum EData {
     datOne,
@@ -20,7 +21,7 @@ enum EData {
     datTree
 };
 
-xNAMESPACE_ANONYM_END
+}
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t

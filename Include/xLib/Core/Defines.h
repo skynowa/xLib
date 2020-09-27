@@ -107,15 +107,6 @@
 #define xNAMESPACE_END2(n1, n2) \
     }}
     ///< end namespaces
-
-#define xNAMESPACE_BEGIN3(n1, n2, n3) \
-    namespace n1 { \
-    namespace n2 { \
-    namespace n3 {
-    ///< begin namespaces
-#define xNAMESPACE_END3(n1, n2, n3) \
-    }}}
-    ///< end namespaces
 ///@}
 //-----------------------------------------------------------------------------------------------
 ///@name usings
