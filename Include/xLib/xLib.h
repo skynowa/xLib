@@ -32,7 +32,6 @@
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/OStream.h>
 #include <xLib/Core/FormatC.h>
-#include <xLib/Core/Format_v1.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Functors.h>
