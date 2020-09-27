@@ -18,7 +18,8 @@
 #include <xLib/Package/Curl/BaseClient.h>
 
 
-xNAMESPACE_BEGIN3(xl, package, curl)
+namespace xl::package::curl
+{
 
 /**************************************************************************************************
 *   public
