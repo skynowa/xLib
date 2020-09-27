@@ -4,14 +4,17 @@
 set -ex
 
 # vars
-DIR_XLIB="../xLib"
-DIR_BUILD="../../xLib_makefile"
+PROJECT_NAME="xLib"
+DIR_PROJECT="../${PROJECT_NAME}"
+DIR_BUILD="../../${PROJECT_NAME}_makefile"
+ECLIPSE_VERSION="4.17" # 2020-09
 
-
-# build
+# prepare
 mkdir -p $DIR_BUILD
 cd $DIR_BUILD
 
+# build
 cmake \
 	-G"Unix Makefiles" \
-	$DIR_XLIB
+	-D_ECLIPSE_VERSION=${ECLIPSE_VERSION} \
+	$DIR_PROJECT

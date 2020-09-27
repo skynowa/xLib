@@ -2,7 +2,8 @@
 
 
 # vars
-DIR_BUILD="../../xLib_eclipse"
+PROJECT_NAME="xLib"
+DIR_BUILD="../../${PROJECT_NAME}_eclipse"
 JOBS_NUM=$(($(nproc) * 2))
 
 echo "Jobs: $JOBS_NUM"
