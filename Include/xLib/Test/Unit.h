@@ -12,7 +12,8 @@
 #include <xLib/Test/Test.h>
 #include <xLib/Test/Data.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, test)
+namespace xl::test
+{
 
 struct UnitData
     /// testing data
@@ -84,5 +85,5 @@ private:
     UnitData _data;
 };
 
-xNAMESPACE_END2(xl, test)
+} // namespace
 //-------------------------------------------------------------------------------------------------

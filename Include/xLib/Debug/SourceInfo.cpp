@@ -9,7 +9,8 @@
 #include <xLib/Core/Format.h>
 
 
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 /**************************************************************************************************
 *   public
@@ -44,4 +45,4 @@ SourceInfo::at() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, debug)
+} // namespace

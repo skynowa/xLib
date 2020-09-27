@@ -10,7 +10,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/OStream.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 template<typename StreamT>
 class FormatT
@@ -41,6 +42,6 @@ private:
 using FormatStd = FormatT<std::tstringstream_t>;
 using Format    = FormatT<xl::core::OStream>;
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "Format.inl"

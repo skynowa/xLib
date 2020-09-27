@@ -9,7 +9,8 @@
 #include <xLib/Sync/IpcMutex.h>
 
 
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
 /**************************************************************************************************
 *    public
@@ -33,4 +34,4 @@ AutoIpcMutex::~AutoIpcMutex()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, sync)
+} // namespace

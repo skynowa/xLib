@@ -30,7 +30,8 @@ std::csize_t elementsNum = 5;
 #endif
 
 
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 /**************************************************************************************************
 *   public
@@ -142,4 +143,4 @@ StackTrace::_format(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, debug)
+} // namespace

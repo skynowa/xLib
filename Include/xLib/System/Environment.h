@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, system)
+namespace xl::system
+{
 
 class Environment
     /// system environment variables
@@ -63,5 +64,5 @@ xPLATFORM_IMPL:
     std::tstring_t _expandStrings_impl(std::ctstring_t &var);
 };
 
-xNAMESPACE_END2(xl, system)
+} // namespace
 //-------------------------------------------------------------------------------------------------

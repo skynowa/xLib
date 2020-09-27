@@ -4,6 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
-xNAMESPACE_END2(xl, sync)
+} // namespace

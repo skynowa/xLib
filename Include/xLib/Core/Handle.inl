@@ -14,7 +14,8 @@
 #include <xLib/Log/Trace.h>
 
 
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 /*******************************************************************************
 *    public
@@ -217,4 +218,4 @@ Handle<T, valueT>::close()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, core)
+} // namespace

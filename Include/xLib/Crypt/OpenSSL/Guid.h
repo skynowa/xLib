@@ -11,7 +11,8 @@
 
 #include <xLib/Core/Core.h>
 //---------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, crypt)
+namespace xl::crypt
+{
 
 class Guid
     /// GUID (globally unique identifier)
@@ -29,5 +30,5 @@ public:
 		///< generate GUID string
 };
 
-xNAMESPACE_END2(xl, crypt)
+} // namespace
 //---------------------------------------------------------------------------

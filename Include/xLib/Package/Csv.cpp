@@ -10,7 +10,8 @@
 #include <xLib/Fs/File.h>
 
 
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 /**************************************************************************************************
 *   CsvReader - public
@@ -156,4 +157,4 @@ CsvWriter::saveString(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, package)
+} // namespace

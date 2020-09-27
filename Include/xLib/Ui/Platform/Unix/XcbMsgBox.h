@@ -15,7 +15,8 @@
 //-------------------------------------------------------------------------------------------------
 #define xLIB_XCB_MSGBOX_DEBUG 0
 
-xNAMESPACE_BEGIN2(xl, ui)
+namespace xl::ui
+{
 
 class XcbMsgBox
     ///< XCB message box
@@ -74,6 +75,6 @@ private:
         ///< trace names of modifiers present in mask
 };
 
-xNAMESPACE_END2(xl, ui)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #endif // cmXCB_FOUND

@@ -24,7 +24,8 @@ std::csize_t reportWidthMax = 100 - 17;   // MAGIC: reportWidthMax
 
 }
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 //-------------------------------------------------------------------------------------------------
 ErrorReport::ErrorReport(
     culong_t          a_nativeError,
@@ -133,4 +134,4 @@ ErrorReport::_initPlain()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, debug)
+} // namespace

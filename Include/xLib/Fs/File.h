@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Fs/FileIO.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 class File
     /// File
@@ -59,7 +60,7 @@ xPLATFORM_IMPL:
 	void_t _createSymlink_impl(std::ctstring_t &filePathTo) const;
 };
 
-xNAMESPACE_END2(xl, fs)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 // TODO: std::map_tstring_t -> std::multimap
 // TODO: use text/bin methods vs FileIO

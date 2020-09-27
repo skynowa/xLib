@@ -7,7 +7,8 @@
 #include "GitClient.h"
 
 
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 /**************************************************************************************************
 *   public
@@ -340,4 +341,4 @@ GitClient::_gitPath() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, package)
+} // namespace

@@ -11,7 +11,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, db)
+namespace xl::db
+{
 
 class MySqlConnection;
 
@@ -52,5 +53,5 @@ private:
     xNO_COPY_ASSIGN(MySqlRecordset)
 };
 
-xNAMESPACE_END2(xl, db)
+} // namespace
 //-------------------------------------------------------------------------------------------------

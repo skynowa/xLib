@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::algos
+{
 
 class Algos
     ///< Algorithms
@@ -60,6 +61,6 @@ public:
         ///< remove item from std::vector
 };
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "Algos.inl"

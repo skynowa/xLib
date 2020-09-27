@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 class NativeError
     /// system last error
@@ -54,5 +55,5 @@ xPLATFORM_IMPL:
     ulong_t        _nativeCodeSuccess_impl();
 };
 
-xNAMESPACE_END2(xl, debug)
+} // namespace
 //-------------------------------------------------------------------------------------------------

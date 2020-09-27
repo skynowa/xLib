@@ -7,7 +7,8 @@
 #include "IRestClient.h"
 
 
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 /**************************************************************************************************
 *   public
@@ -24,4 +25,4 @@ IRestClient::~IRestClient()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, package)
+} // namespace

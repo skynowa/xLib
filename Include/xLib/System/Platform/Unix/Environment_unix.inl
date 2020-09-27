@@ -6,7 +6,8 @@
 
 extern char **environ;  // from <env.h>
 
-xNAMESPACE_BEGIN2(xl, system)
+namespace xl::system
+{
 
 /**************************************************************************************************
 *    public
@@ -129,4 +130,4 @@ Environment::_expandStrings_impl(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, system)
+} // namespace

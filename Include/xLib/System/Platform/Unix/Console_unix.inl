@@ -9,7 +9,8 @@
 #include <xLib/Sync/Thread.h>
 
 
-xNAMESPACE_BEGIN2(xl, system)
+namespace xl::system
+{
 
 /**************************************************************************************************
 *    public
@@ -274,4 +275,4 @@ Console::_escapeValue(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, system)
+} // namespace

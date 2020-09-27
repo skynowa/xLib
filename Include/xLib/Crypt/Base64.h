@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, crypt)
+namespace xl::crypt
+{
 
 class Base64
     /// Base64
@@ -33,7 +34,7 @@ private:
         ///< check char for validness
 };
 
-xNAMESPACE_END2(xl, crypt)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 /**
  * TODO: OpenSSL - https://gist.github.com/kvelakur/a3ac17ebf5614547ded9

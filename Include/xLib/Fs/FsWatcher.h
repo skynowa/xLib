@@ -13,7 +13,8 @@
 	#include <sys/inotify.h>
 #endif
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 class FsWatcher
     ///< File system watcher
@@ -91,7 +92,7 @@ xPLATFORM_IMPL:
     void_t _close_impl();
 };
 
-xNAMESPACE_END2(xl, fs)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 // TODO: [skynowa] int events=wxFSW_EVENT_ALL
 // TODO: [skynowa] followSymLinks

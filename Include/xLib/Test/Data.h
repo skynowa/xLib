@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, test)
+namespace xl::test
+{
 //-------------------------------------------------------------------------------------------------
 ///@name  data (use 1 value)
 ///@{
@@ -97,4 +98,4 @@ using data3_tstring_t   = Data3<std::tstring_t, std::tstring_t, std::tstring_t>;
 using data3_ustring_t   = Data3<std::tstring_t, std::tstring_t, std::ustring_t>;
 ///@}
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_END2(xl, test)
+} // namespace

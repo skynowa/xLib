@@ -9,7 +9,8 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 class FormatC
     ///< format string in C style
@@ -21,5 +22,5 @@ public:
     static std::tstring_t strV(cptr_ctchar_t format, va_list args);
 };
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------

@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Debug/SourceInfo.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 class SourceInfo;
 
@@ -87,6 +88,6 @@ private:
     xNO_COPY_ASSIGN(ErrorReport)
 };
 
-xNAMESPACE_END2(xl, debug)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "ErrorReport.inl"

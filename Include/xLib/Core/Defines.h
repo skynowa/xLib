@@ -91,17 +91,6 @@
 #endif
     ///< give a warning if the return value of function was not used
 //-------------------------------------------------------------------------------------------------
-///@name namespace
-///@{
-#define xNAMESPACE_BEGIN2(n1, n2) \
-    namespace n1 { \
-    namespace n2 {
-    ///< begin namespaces
-#define xNAMESPACE_END2(n1, n2) \
-    }}
-    ///< end namespaces
-///@}
-//-----------------------------------------------------------------------------------------------
 ///@name usings
 ///@{
 #define xUSING_CONST(t) \

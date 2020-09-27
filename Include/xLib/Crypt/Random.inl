@@ -4,7 +4,8 @@
  */
 
 
-xNAMESPACE_BEGIN2(xl, crypt)
+namespace xl::crypt
+{
 
 /**************************************************************************************************
 *    public
@@ -63,4 +64,4 @@ Random<RandomValueT, SeedPolicyT>::nextFloat(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, crypt)
+} // namespace

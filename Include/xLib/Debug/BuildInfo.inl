@@ -15,7 +15,8 @@
 #include <xLib/Debug/Debugger.h>
 
 
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 /**************************************************************************************************
 *   public
@@ -447,4 +448,4 @@ BuildInfo::cmake() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, debug)
+} // namespace

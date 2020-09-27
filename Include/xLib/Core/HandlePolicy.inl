@@ -13,7 +13,8 @@
 #include <xLib/Debug/StackTrace.h>
 
 
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 /**************************************************************************************************
 *    public - HandlePolicy Std
@@ -232,4 +233,4 @@ HandlePolicy<T, HandlePolicyType::hvXXXXXXXXXX>::_close_impl(T &a_handle)
 
 #endif
 
-xNAMESPACE_END2(xl, core)
+} // namespace

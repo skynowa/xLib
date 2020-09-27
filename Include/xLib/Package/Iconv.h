@@ -10,7 +10,8 @@
 
 #include <iconv.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 class Iconv
     /// Perform character set conversion
@@ -37,5 +38,5 @@ private:
 	void     _checkError() const;
 };
 
-xNAMESPACE_END2(xl, package)
+} // namespace
 //-------------------------------------------------------------------------------------------------

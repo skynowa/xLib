@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 class Utils
     /// help utils
@@ -148,6 +149,6 @@ dir_unique_ptr_t  autoDir(std::ctstring_t &dirPath);
 dll_unique_ptr_t  autoDll(std::ctstring_t &dllPath, cint_t flags);
 ///@}
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "Utils.inl"

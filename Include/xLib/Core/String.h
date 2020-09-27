@@ -10,7 +10,8 @@
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 class String
     /// strings utils
@@ -218,9 +219,10 @@ xPLATFORM_IMPL:
     std::tstring_t _toUpperCase_impl(std::ctstring_t &str, std::csize_t length);
 };
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 class StringCI
     /// strings utils (case insensitive)
@@ -256,6 +258,6 @@ xPLATFORM_IMPL:
                     const xTLOCALE &locale = xTLOCALE());
 };
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "String.inl"

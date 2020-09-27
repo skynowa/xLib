@@ -11,7 +11,8 @@
 #include <xLib/Package/Xml.h>
 
 
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 /**************************************************************************************************
 *   public
@@ -170,4 +171,4 @@ PrivatBankApi::_parseExchangeRatesArchive(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, package)
+} // namespace

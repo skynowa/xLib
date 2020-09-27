@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
 class AtomicLongInt
     /// atomic operations with long_t
@@ -66,5 +67,5 @@ xPLATFORM_IMPL:
     long_t          _value_impl() const;
 };
 
-xNAMESPACE_END2(xl, sync)
+} // namespace
 //-------------------------------------------------------------------------------------------------

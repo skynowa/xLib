@@ -10,7 +10,8 @@
 #include <xLib/Core/Handle.h>
 #include <xLib/Sync/Event.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, sync)
+namespace xl::sync
+{
 
 class Thread
     /// thread
@@ -264,5 +265,5 @@ xPLATFORM_IMPL:
     int_t           _priorityMax_impl();
 };
 
-xNAMESPACE_END2(xl, sync)
+} // namespace
 //-------------------------------------------------------------------------------------------------

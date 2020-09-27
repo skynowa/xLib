@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Sync/Process.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, system)
+namespace xl::system
+{
 
 class ProcessInfo
     /// process information
@@ -57,5 +58,5 @@ xPLATFORM_IMPL:
     long_t         _commandLineArgsMax_impl();
 };
 
-xNAMESPACE_END2(xl, system)
+} // namespace
 //-------------------------------------------------------------------------------------------------

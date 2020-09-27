@@ -10,7 +10,8 @@
 //-------------------------------------------------------------------------------------------------
 #if xENV_WIN
 
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 class Com
     /// Component Object Model (COM)
@@ -25,7 +26,7 @@ public:
 ///@}
 };
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 
 #endif
 //-------------------------------------------------------------------------------------------------

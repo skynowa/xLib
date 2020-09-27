@@ -12,7 +12,8 @@
 
 #include <openssl/blowfish.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, crypt)
+namespace xl::crypt
+{
 
 class Blowfish
     /// blowfish
@@ -64,7 +65,7 @@ private:
     uchar_t _ivec[BF_BLOCK] {}; ///< ivec
 };
 
-xNAMESPACE_END2(xl, crypt)
+} // namespace
 
 #endif // cmOPENSSL_CRYPTO_FOUND
 //-------------------------------------------------------------------------------------------------

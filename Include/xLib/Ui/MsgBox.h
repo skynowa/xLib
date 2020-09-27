@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, ui)
+namespace xl::ui
+{
 
 class MsgBox
     /// message box
@@ -59,5 +60,5 @@ xPLATFORM_IMPL:
         cType type = Type::Ok) const;
 };
 
-xNAMESPACE_END2(xl, ui)
+} // namespace
 //-------------------------------------------------------------------------------------------------

@@ -14,7 +14,8 @@
 #include <xLib/Db/MySql/MySqlRecordset.h>
 
 
-xNAMESPACE_BEGIN2(xl, db)
+namespace xl::db
+{
 
 /**************************************************************************************************
 *    public
@@ -372,4 +373,4 @@ MySqlConnection::_setOptions(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, db)
+} // namespace

@@ -18,7 +18,8 @@
     #include "Platform/Unix/Console_unix.inl"
 #endif
 
-xNAMESPACE_BEGIN2(xl, system)
+namespace xl::system
+{
 
 /**************************************************************************************************
 *    public
@@ -408,4 +409,4 @@ Console::_setStdinEcho(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, system)
+} // namespace

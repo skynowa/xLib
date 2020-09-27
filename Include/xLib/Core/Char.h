@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, core)
+namespace xl::core
+{
 
 template<typename T>
 class Char
@@ -74,6 +75,6 @@ xUSING_CONST(CharU);
 using CharT = Char<tchar_t>;
 xUSING_CONST(CharT);
 
-xNAMESPACE_END2(xl, core)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "Char.inl"

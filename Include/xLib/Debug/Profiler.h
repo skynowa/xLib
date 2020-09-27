@@ -10,7 +10,8 @@
 #include <xLib/Log/FileLog.h>
 #include <xLib/Core/DateTime.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 class Profiler
     /// code profiling
@@ -45,7 +46,7 @@ private:
     xNO_COPY_ASSIGN(Profiler)
 };
 
-xNAMESPACE_END2(xl, debug)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 
 // http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html

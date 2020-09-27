@@ -18,7 +18,8 @@
 #include <xLib/Debug/Debugger.h>
 
 
-xNAMESPACE_BEGIN2(xl, ui)
+namespace xl::ui
+{
 
 /**************************************************************************************************
 *   public
@@ -484,6 +485,6 @@ XcbMsgBox::_modifiersStr(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, ui)
+} // namespace
 
 #endif // cmXCB_FOUND

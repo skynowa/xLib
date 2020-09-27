@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, net)
+namespace xl::net
+{
 
 class SocketInit
     /// initiates use of the Winsock DLL by a process
@@ -26,5 +27,5 @@ xPLATFORM_IMPL:
     void_t   _destruct_impl() const;
 };
 
-xNAMESPACE_END2(xl, net)
+} // namespace
 //-------------------------------------------------------------------------------------------------

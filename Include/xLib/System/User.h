@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, system)
+namespace xl::system
+{
 
 class User
     ///< user info
@@ -61,5 +62,5 @@ private:
 #endif
 };
 
-xNAMESPACE_END2(xl, system)
+} // namespace
 //-------------------------------------------------------------------------------------------------

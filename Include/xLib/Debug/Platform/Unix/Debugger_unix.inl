@@ -15,7 +15,8 @@
 #endif
 
 
-xNAMESPACE_BEGIN2(xl, debug)
+namespace xl::debug
+{
 
 /**************************************************************************************************
 *    public static
@@ -74,4 +75,4 @@ Debugger::_breakPoint_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, debug)
+} // namespace

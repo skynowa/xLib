@@ -16,7 +16,8 @@
 #include <xLib/Debug/ErrorReport.h>
 
 
-xNAMESPACE_BEGIN2(xl, fs)
+namespace xl::fs
+{
 
 /**************************************************************************************************
 *    public: creation
@@ -162,4 +163,4 @@ Config::keyDelete(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, fs)
+} // namespace

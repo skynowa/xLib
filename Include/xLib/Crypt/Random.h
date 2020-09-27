@@ -8,7 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, crypt)
+namespace xl::crypt
+{
 
 class xNO_VTABLE ISeedPolicy
     /// seed policy interface
@@ -109,7 +110,7 @@ private:
 using StdRandom    = Random<int_t,  StdSeedPolicy>;
 using NativeRandom = Random<long_t, NativeSeedPolicy>;
 
-xNAMESPACE_END2(xl, crypt)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "Random.inl"
 //-------------------------------------------------------------------------------------------------

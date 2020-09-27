@@ -9,7 +9,8 @@
 #include <xLib/Core/String.h>
 #include <xLib/System/ProcessInfo.h>
 
-xNAMESPACE_BEGIN2(xl, system)
+namespace xl::system
+{
 
 /**************************************************************************************************
 *   public
@@ -75,4 +76,4 @@ CmdOptions::parse(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END2(xl, system)
+} // namespace

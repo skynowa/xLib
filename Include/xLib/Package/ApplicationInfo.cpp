@@ -9,7 +9,8 @@
 #include <xLib/Core/Format.h>
 
 
-xNAMESPACE_BEGIN2(xl, package)
+namespace xl::package
+{
 
 /**************************************************************************************************
 *   public
@@ -31,4 +32,4 @@ ApplicationInfo::versionFull() const
 *
 **************************************************************************************************/
 
-xNAMESPACE_END2(xl, package)
+} // namespace

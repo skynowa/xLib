@@ -9,7 +9,8 @@
 #include <xLib/Core/Core.h>
 #include "ILog.h"
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN2(xl, log)
+namespace xl::log
+{
 
 class SystemLog :
     public ILog
@@ -39,6 +40,6 @@ xPLATFORM_IMPL:
     void_t         _write_impl(cLevel level, std::ctstring_t &msg) const;
 };
 
-xNAMESPACE_END2(xl, log)
+} // namespace
 //-------------------------------------------------------------------------------------------------
 #include "SystemLog.inl"
