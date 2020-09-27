@@ -174,6 +174,20 @@ xPLATFORM_IMPL:
 // TODO: usr/bin ... pathes
 // TODO: group methods
 // TODO: return std::string -> .str()
-// TODO: return Object - if possible
 // TODO: FileNameGuid ???
+
+// TODO: return Object - if possible
+/**
+ Path path( Path(Path::exe() );
+ path.brief(::reportWidthMax) ).toUnix(false);
+
+
+ Path path( Path::exe() );
+ path.brief(::reportWidthMax).toUnix(false).str();
+
+ Path( Path::exe() )
+ 	.brief(::reportWidthMax)
+ 	.toUnix(false)
+ 	.str();
+*/
 //-------------------------------------------------------------------------------------------------
