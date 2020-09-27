@@ -7,7 +7,8 @@
 #include <xLib/Core/Utils.h>
 
 
-xNAMESPACE_BEGIN(std)
+namespace std
+{
 
 //-------------------------------------------------------------------------------------------------
 /**
@@ -36,5 +37,4 @@ clock() /* xWARN_UNUSED_RV */
 #define xSTD_CLOCK  ::clock
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(std)
-
+} // namespace
