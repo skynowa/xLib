@@ -39,9 +39,6 @@ ErrorReport::ErrorReport(
     case Type::rtException:
         _initPlain();
         break;
-    default:
-        _report = xUNKNOWN_CSTRING;
-        break;
     }
 }
 //-------------------------------------------------------------------------------------------------
