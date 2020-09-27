@@ -378,7 +378,7 @@ OStream::_printContainer(
 )
 {
 	_printContainerTitle(a_value);
-    _printRange(a_value.begin(), a_value.end());
+    _printRange(a_value.cbegin(), a_value.cend());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -388,7 +388,7 @@ OStream::_printMap(
 )
 {
 	_printContainerTitle(a_value);
-    _printRangeMap(a_value.begin(), a_value.end());
+    _printRangeMap(a_value.cbegin(), a_value.cend());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>

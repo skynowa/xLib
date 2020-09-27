@@ -159,11 +159,11 @@ String::castW(
     xCHECK_RET(a_str.empty(),                                                    std::wstring());
     xCHECK_RET(!std::has_facet<std::ctype<std::wstring::value_type> >(a_locale), std::wstring());
 
-    std::wstring                swRv(a_str.size(), std::wstring::value_type());
+    std::wstring swRv(a_str.size(), std::wstring::value_type());
 
-    std::string::const_iterator itBegin   = a_str.begin();
-    std::string::const_iterator itEnd     = a_str.end();
-    std::wstring::iterator      itToBegin = swRv.begin();
+    auto itBegin   = a_str.cbegin();
+    auto itEnd     = a_str.cend();
+    auto itToBegin = swRv.begin();
 
     for ( ; itBegin != itEnd; ++ itBegin, ++ itToBegin) {
         *itToBegin = std::use_facet< std::ctype<wchar_t> >( a_locale ).widen(*itBegin);
@@ -797,10 +797,10 @@ StringCI::find(
     xCHECK_RET(a_str.empty() && a_target.empty() && a_pos == 0U, 0U);
     xCHECK_RET(a_target.empty(),                                 0U);
 
-    std::tstring_t::const_iterator cit = std::search(
-        a_str.begin() + static_cast<::ssize_t>(a_pos), a_str.end(),
-        a_target.begin(), a_target.end(), CompareCI(a_locale));
-    xCHECK_RET(cit != a_str.end(), static_cast<std::size_t >(cit - a_str.begin()));
+    auto cit = std::search(
+        a_str.cbegin() + static_cast<::ssize_t>(a_pos), a_str.cend(),
+        a_target.cbegin(), a_target.cend(), CompareCI(a_locale));
+    xCHECK_RET(cit != a_str.cend(), static_cast<std::size_t >(cit - a_str.cbegin()));
 
     return std::tstring_t::npos;
 }

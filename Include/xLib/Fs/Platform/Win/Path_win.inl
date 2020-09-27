@@ -118,8 +118,8 @@ Path::_isNameValid_impl(
     * as the first character of a name. For example, ".temp".
     */
     {
-        ctchar_t begin = *sRv.begin();
-        ctchar_t end   = *sRv.back();
+        ctchar_t begin = *sRv.cbegin();
+        ctchar_t end   = *sRv.cback();
 
         if (a_fileNameValid == nullptr) {
             // space
@@ -182,18 +182,18 @@ Path::_isNameValid_impl(
     {
         std::tstring_t::const_iterator cit;
 
-        cit = std::find_if(sRv.begin(), sRv.end(), CharT::isControl);
-        if (cit != sRv.end()) {
+        cit = std::find_if(sRv.cbegin(), sRv.cend(), CharT::isControl);
+        if (cit != sRv.cend()) {
             xCHECK_RET(a_fileNameValid == nullptr, false);
 
             for ( ; ; ) {
                 std::tstring_t::iterator itNewEnd;
 
                 itNewEnd = std::remove_if(sRv.begin(), sRv.end(), CharT::isControl);
-                sRv.erase(itNewEnd, sRv.end());
+                sRv.erase(itNewEnd, sRv.cend());
 
-                cit = std::find_if(sRv.begin(), sRv.end(), CharT::isControl);
-                xCHECK_DO(cit == sRv.end(), break);
+                cit = std::find_if(sRv.cbegin(), sRv.cend(), CharT::isControl);
+                xCHECK_DO(cit == sRv.cend(), break);
             }
 
             if ( sRv.empty() ) {

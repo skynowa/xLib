@@ -130,7 +130,7 @@ StringCI::_compare_impl(
     const xTLOCALE   &a_locale /* = xTLOCALE() */ ///< locale
 )
 {
-    bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(), CompareCI(a_locale));
+    bool_t bRv = std::equal(a_str1.cbegin(), a_str1.cend(), a_str2.cbegin(), CompareCI(a_locale));
     xCHECK_RET(!bRv, false);
 
     return true;

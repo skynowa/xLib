@@ -231,7 +231,7 @@ ISocket::recvAll(
         xCHECK_DO(iRv == xSOCKET_ERROR, break);
         xCHECK_DO(iRv == 0,             break);
 
-        sRv.append(in.begin(), in.begin() + iRv);
+        sRv.append(in.cbegin(), in.cbegin() + iRv);
 
         // if delimiter was find - break
         size_t delimiterPos = sRv.find(a_delimiter); // TODO: [skynowa] ISocket::recvAll() - from unicode ???

@@ -96,10 +96,10 @@
 #endif
 
 #define xT2U(t) \
-    std::ustring_t( (t).begin(),  (t).begin()  + (t).size()  )
+    std::ustring_t( (t).cbegin(),  (t).cbegin()  + (t).size()  )
     ///< convert std::tstring_t to std::ustring_t
 #define xU2T(u) \
-    std::tstring_t( (u).begin(), (u).begin() + (u).size() )
+    std::tstring_t( (u).cbegin(), (u).cbegin() + (u).size() )
     ///< convert std::ustring_t to std::tstring_t
 ///@}
 //-------------------------------------------------------------------------------------------------

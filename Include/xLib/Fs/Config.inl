@@ -19,7 +19,7 @@ Config::value(
     xTEST_NA(a_defaultValue);
 
     const auto it = _config.find(a_key);
-    if (it == _config.end()) {
+    if (it == _config.cend()) {
     	return a_defaultValue;
     }
 

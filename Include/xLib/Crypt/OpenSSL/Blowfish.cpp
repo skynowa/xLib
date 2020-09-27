@@ -70,7 +70,7 @@ Blowfish::setKey(
     xTEST_EQ(a_key.empty(), false);
     xTEST_GR_EQ(keySizeMax(), a_key.size() * sizeof(std::tstring_t::value_type));
 
-    setKey(std::ustring_t(a_key.begin(), a_key.end()));
+    setKey(std::ustring_t(a_key.cbegin(), a_key.cend()));
 }
 //-------------------------------------------------------------------------------------------------
 void_t

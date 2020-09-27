@@ -294,7 +294,7 @@ Archive::_detectType(
 	std::ctstring_t fileExt = Path(sourceFilePath).ext();
 
 	auto it = types.find(fileExt);
-	xCHECK_RET(it == types.end(), Type::Unknown);
+	xCHECK_RET(it == types.cend(), Type::Unknown);
 
 	return it->second;
 }

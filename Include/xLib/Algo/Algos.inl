@@ -24,7 +24,7 @@ Algos::isContains(
     const ValueT &a_value   ///< search value
 )
 {
-    return std::find(a_cont.begin(), a_cont.end(), a_value) != a_cont.end();
+    return std::find(a_cont.cbegin(), a_cont.cend(), a_value) != a_cont.cend();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename ContT, typename UnaryPredicateT>
@@ -36,9 +36,9 @@ Algos::findIfAll(
     UnaryPredicateT  a_pred  ///< predicate
 )
 {
-    for (typename ContT::const_iterator it = std::find_if(a_cont.begin(), a_cont.end(), a_pred);
-        it != a_cont.end();
-        it = std::find_if(++ it, a_cont.end(), a_pred))
+    for (typename ContT::const_iterator it = std::find_if(a_cont.cbegin(), a_cont.cend(), a_pred);
+        it != a_cont.cend();
+        it = std::find_if(++ it, a_cont.cend(), a_pred))
     {
         a_out.push_back(*it);
     }
@@ -78,11 +78,8 @@ Algos::deleteAll(
     ContT &a_cont
 )
 {
-    typename ContT::const_iterator it    = a_cont.begin();
-    typename ContT::const_iterator itEnd = a_cont.end();
-
-    for ( ; it != itEnd; ++ it) {
-        Utils::ptrDeleteT(*it);
+    for (const auto &it : a_cont) {
+        Utils::ptrDeleteT(it);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -104,7 +101,7 @@ Algos::isUniqueAll(
     const ContT &a_cont
 )
 {
-    return isUnique(a_cont.begin(), a_cont.end());
+    return isUnique(a_cont.cbegin(), a_cont.cend());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -115,7 +112,7 @@ Algos::vectorRemove(
     const T        &a_value
 )
 {
-    a_vec.erase(std::remove(a_vec.begin(), a_vec.end(), a_value), a_vec.end());
+    a_vec.erase(std::remove(a_vec.cbegin(), a_vec.cend(), a_value), a_vec.cend());
 }
 //-------------------------------------------------------------------------------------------------
 

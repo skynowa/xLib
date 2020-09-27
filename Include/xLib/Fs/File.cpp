@@ -344,7 +344,7 @@ File::textRead(
     bRv = textRead(filePath, &vsRv);
     xTEST_EQ(bRv, true);
 
-    for (const auto it = vsRv.begin(); it != vsRv.end(); ++ it) {
+    for (const auto it = vsRv.cbegin(); it != vsRv.cend(); ++ it) {
         std::vec_tstring_t lines;
         String::split(vsRv.at(0), separator, &lines);
 

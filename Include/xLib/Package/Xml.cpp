@@ -325,7 +325,7 @@ XmlDoc::_onError(
 		};
 
 		auto it = levels.find(a_error->level);
-		if (it != levels.end()) {
+		if (it != levels.cend()) {
 			level = it->second;
 		} else {
 			level = xT("Unknown");
@@ -484,7 +484,7 @@ XmlNode::node(
     std::vector<XmlNode> _nodes;
     nodes(a_xpath, _nodes);
 
-    a_value = *_nodes.begin();
+    a_value = *_nodes.cbegin();
 }
 //-------------------------------------------------------------------------------------------------
 void

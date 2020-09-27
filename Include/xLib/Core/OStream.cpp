@@ -277,7 +277,7 @@ OStream::operator << (
 #if xANSI
     _os << a_value;
 #else
-    _os << std::wstring(a_value.begin(), a_value.end());
+    _os << std::wstring(a_value.cbegin(), a_value.cend());
 #endif
 
     return *this;
@@ -288,7 +288,7 @@ OStream::operator << (
     const std::ustring_t &a_value   ///< value
 )
 {
-    _printString(a_value.begin(), a_value.end());
+    _printString(a_value.cbegin(), a_value.cend());
 
     return *this;
 }
