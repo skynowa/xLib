@@ -139,7 +139,7 @@ Config::keyIsExists(
     std::ctstring_t &a_key
 ) const
 {
-    return (_config.find(a_key) != _config.end());
+    return (_config.find(a_key) != _config.cend());
 }
 //-------------------------------------------------------------------------------------------------
 void_t

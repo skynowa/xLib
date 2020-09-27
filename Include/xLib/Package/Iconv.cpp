@@ -87,7 +87,7 @@ Iconv::convert(
 	std::tstring_t sRV;
 
 	// copy the string to a buffer as iconv function requires a non-const char pointer
-	std::vec_tchar_t buffIn(a_input.begin(), a_input.end());
+	std::vec_tchar_t buffIn(a_input.cbegin(), a_input.cend());
 
 	tchar_t *srcPtr  = &buffIn[0];
 	size_t   srcSize = a_input.size();

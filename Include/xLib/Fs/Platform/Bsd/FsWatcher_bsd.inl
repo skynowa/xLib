@@ -140,7 +140,7 @@ return;
             {
                 subProjectName = modulePath;
                 subProjectName.resize(subProjectName.size() - 1);
-                std::transform(subProjectName.begin(), subProjectName.end(),
+                std::transform(subProjectName.cbegin(), subProjectName.cend(),
                         subProjectName.begin(), ::toupper);
             }
 

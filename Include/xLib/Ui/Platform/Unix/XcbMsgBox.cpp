@@ -195,7 +195,7 @@ XcbMsgBox::_autoResize(
                 width = width * fontWidth + left_default * 2;
             }
         } else {
-            std::csize_t widthMax = std::max_element(a_text.begin(), a_text.end(), MaxElementComp())->size();
+            std::csize_t widthMax = std::max_element(a_text.cbegin(), a_text.cend(), MaxElementComp())->size();
 
             if (a_title.size() > widthMax) {
                 width = static_cast<uint32_t>( a_title.size() ) + title_padding * 2;

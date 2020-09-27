@@ -167,7 +167,7 @@ Application::args(
     info.commandLine(a_args);
 
     if (a_withoutFirstArg) {
-        a_args->erase(a_args->begin(), a_args->begin() + 1);
+        a_args->erase(a_args->cbegin(), a_args->cbegin() + 1);
     }
 }
 //-------------------------------------------------------------------------------------------------

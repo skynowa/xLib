@@ -28,7 +28,7 @@ EnumArray<T, N>::isValid(
 	const ::ssize_t a_value
 ) const
 {
-	return std::find(this->begin(), this->end(), static_cast<T>(a_value)) != this->end();
+	return std::find(this->cbegin(), this->cend(), static_cast<T>(a_value)) != this->cend();
 }
 //-------------------------------------------------------------------------------------------------
 

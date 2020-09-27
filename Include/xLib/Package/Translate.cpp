@@ -278,7 +278,7 @@ Translate::_languageCode(
 	};
 
 	auto it = langToCodes.find(a_lang);
-	if (it == langToCodes.end()) {
+	if (it == langToCodes.cend()) {
 		return {};
 	}
 

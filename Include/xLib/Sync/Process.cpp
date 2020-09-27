@@ -204,8 +204,8 @@ Process::isRunning(
 
     ids(&_ids);
 
-    std::vector<id_t>::iterator it = std::find(_ids.begin(), _ids.end(), a_id);
-    xCHECK_RET(it == _ids.end(), false);
+    auto it = std::find(_ids.cbegin(), _ids.cend(), a_id);
+    xCHECK_RET(it == _ids.cend(), false);
 
     return true;
 }
