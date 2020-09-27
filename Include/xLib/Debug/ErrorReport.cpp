@@ -16,16 +16,15 @@
 #include <xLib/Fs/Path.h>
 #include <xLib/Sync/Thread.h>
 
-
+//-------------------------------------------------------------------------------------------------
 namespace
 {
 
 std::csize_t reportWidthMax = 100 - 17;   // MAGIC: reportWidthMax
 
 }
-
+//-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xl, debug)
-
 //-------------------------------------------------------------------------------------------------
 ErrorReport::ErrorReport(
     culong_t          a_nativeError,
