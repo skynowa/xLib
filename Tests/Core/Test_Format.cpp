@@ -183,7 +183,7 @@ Test_Format::unit()
             {L'聞', xT("?")}
         };
 
-        xFOR_ARRAY(i, data) {
+       for (const auto i : data) {
             m_sRv = Format::str(xT("{}"), data[i].test);
             xTEST_EQ(m_sRv, data[i].expect);
         }
@@ -302,7 +302,7 @@ Test_Format::unit()
             {(cptr_cvoid_t)nullptr,      xT("null")}
         };
 
-        xFOR_ARRAY(i, data) {
+       for (const auto i : data) {
             m_sRv = Format::str(xT("{}"), data[i].test);
             xTEST_EQ(m_sRv, data[i].expect);
         }
@@ -316,7 +316,7 @@ Test_Format::unit()
             {0,   xT("0")}
         };
 
-        xFOR_ARRAY(i, data) {
+       for (const auto i : data) {
             m_sRv = Format::str(xT("{}"), data[i].test);
             xTEST_EQ(m_sRv, data[i].expect);
         }
@@ -330,7 +330,7 @@ Test_Format::unit()
             {(const char *)nullptr, xT("null")}
         };
 
-        xFOR_ARRAY(i, data) {
+       for (const auto i : data) {
             m_sRv = Format::str(xT("{}"), data[i].test);
             xTEST_EQ(m_sRv, data[i].expect);
         }
@@ -344,7 +344,7 @@ Test_Format::unit()
             {(cptr_cwchar_t)nullptr, xT("null")}
         };
 
-        xFOR_ARRAY(i, data) {
+       for (const auto i : data) {
             m_sRv = Format::str(xT("{}"), data[i].test);
             xTEST_EQ(m_sRv, data[i].expect);
         }
@@ -360,7 +360,7 @@ Test_Format::unit()
             {L"聞",       xT("?")}
         };
 
-        xFOR_ARRAY(i, data) {
+       for (const auto i : data) {
             m_sRv = Format::str(xT("{}"), data[i].test);
             xTEST_EQ(m_sRv, data[i].expect);
         }

@@ -371,7 +371,7 @@ Signal::infoDescription(
 	#endif
 	};
 
-	xFOR_ARRAY(i, signalInfos) {
+	for (const auto i : signalInfos) {
 		const _SignalInfo &signalInfo = signalInfos[i];
 
 		xCHECK_DO(signalInfo.num  != a_info.si_signo, continue);
@@ -392,7 +392,7 @@ Signal::infoDescription(
 	}
 
 	// _KERNEL
-	xFOR_ARRAY(i, signalInfos) {
+	for (const auto i : signalInfos) {
 		const _SignalInfo &signalInfo = signalInfos[i];
 
 		xCHECK_DO(signalInfo.num  != _KERNEL,        continue);
