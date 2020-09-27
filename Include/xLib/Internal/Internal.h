@@ -24,7 +24,8 @@ xNAMESPACE_BEGIN2(xl, internal)
 //-------------------------------------------------------------------------------------------------
 ///@name Enum internals
 ///@{
-xNAMESPACE_BEGIN(enums)
+namespace enums
+{
 
 template<typename crossT, typename implT>
 struct Type
@@ -54,7 +55,7 @@ struct Types
         ///< crossplatform value to implementation (native)
 };
 
-xNAMESPACE_END(enums)
+} // namespace
 ///@}
 //-------------------------------------------------------------------------------------------------
 

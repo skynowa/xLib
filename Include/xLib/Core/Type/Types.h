@@ -7,8 +7,9 @@
 #pragma once
 
 #include <xLib/Core/SysDefines.h>
-
-xNAMESPACE_BEGIN(xl)
+//-------------------------------------------------------------------------------------------------
+namespace xl
+{
 
     using void_t = void;
     xUSING_CONST(void_t);
@@ -162,9 +163,11 @@ xNAMESPACE_BEGIN(xl)
 	#endif
 #endif
 
-xNAMESPACE_END(xl)
+} // namespace
+//-------------------------------------------------------------------------------------------------
+namespace std
+{
 
-xNAMESPACE_BEGIN(std)
     // std::size_t
 #if xOS_WIN
     using ::ssize_t = SSIZE_T;
@@ -264,4 +267,5 @@ xNAMESPACE_BEGIN(std)
     #endif
     }
 
-xNAMESPACE_END(std)
+} // namespace
+//-------------------------------------------------------------------------------------------------
