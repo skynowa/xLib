@@ -1,34 +1,22 @@
 #!/usr/bin/env bash
 #
 # \file  eclipse.sh
-# \brief build project
+# \brief CMake configure project
 #
 
 
 # vars
-DIR_XLIB="../xLib"
-DIR_BUILD="../../xLib_eclipse"
+PROJECT_NAME="xLib"
+DIR_PROJECT="../${PROJECT_NAME}"
+DIR_BUILD="../../${PROJECT_NAME}_eclipse"
+ECLIPSE_VERSION="4.17" # 2020-09
 
-
-# build
-
-# Eclipse versions:
-#   - 3.2 Callisto
-#   - 3.3 Europa
-#   - 3.4 Ganymede
-#   - 3.5 Galileo
-#   - 3.6 Helios
-#   - 3.7 Indigo
-#   - 4.2 Juno
-#   - 4.3 Kepler
-#   - 4.4 Luna
-#   - 4.5 Mars
-
+# prepare
 mkdir -p $DIR_BUILD
 cd $DIR_BUILD
 
+# build
 cmake \
 	-G"Eclipse CDT4 - Unix Makefiles" \
-	-D_ECLIPSE_VERSION=4.3 \
-	-DCMAKE_ECLIPSE_GENERATE_SOURCE_PROJECT=TRUE \
-	$DIR_XLIB
+	-D_ECLIPSE_VERSION=${ECLIPSE_VERSION} \
+	$DIR_PROJECT
