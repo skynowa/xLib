@@ -64,8 +64,7 @@ public:
     bool_t         ping(int_t *errorCode = nullptr) const;
         ///< checks whether the connection to the server is working
 
-	std::tstring_t escapeString(std::ctstring_t &sqlValue, cbool_t isQuoted = true) const
-						xWARN_UNUSED_RV;
+	std::tstring_t escapeString(std::ctstring_t &sqlValue, cbool_t isQuoted = true) const;
 		///< creates a legal SQL string for use in an SQL statement:
 		///<
 		///< Double quotes turn into: \"

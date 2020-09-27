@@ -16,7 +16,7 @@ class Singleton
     /// singleton
 {
 public:
-    static T &get() xWARN_UNUSED_RV
+    static T &get()
         ///< get object instance
     {
         static T object;

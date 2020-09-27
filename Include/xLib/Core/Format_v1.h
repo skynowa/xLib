@@ -21,7 +21,7 @@ public:
 #define xFORMAT_STR_DECLARE(n) \
     template<xVA_TYPES_##n> \
     static \
-    std::tstring_t str(std::ctstring_t &format, xVA_VARS_##n) xWARN_UNUSED_RV
+    std::tstring_t str(std::ctstring_t &format, xVA_VARS_##n)
 
     xFORMAT_STR_DECLARE(1);
     xFORMAT_STR_DECLARE(2);
