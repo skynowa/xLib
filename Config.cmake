@@ -12,7 +12,7 @@ set(CMAKE_VERBOSE_MAKEFILE        OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED   ON)
 set(CMAKE_CXX_EXTENSIONS          OFF)
 set(CMAKE_REQUIRED_QUIET          ON)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)   # PVS-Studio, CppCheck, Clang-tidy
+## set(CMAKE_EXPORT_COMPILE_COMMANDS ON)   # PVS-Studio, CppCheck, Clang-tidy
 
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
