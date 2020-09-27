@@ -33,13 +33,6 @@
 #cmakedefine cmOPTION_DEBUG_MODE_NO 1
     ///< debug mode "no debugging"
 ///@}
-
-///@name tests
-///@{
-#cmakedefine cmOPTION_TEST_PRIVATE 1
-    ///< for tests private data
-///@}
-
 //-------------------------------------------------------------------------------------------------
 #cmakedefine CMAKE_BUILD_TYPE xT("@CMAKE_BUILD_TYPE@")
 
