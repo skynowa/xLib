@@ -76,21 +76,6 @@
 #endif
     ///< calling convention
 //-------------------------------------------------------------------------------------------------
-// xWARN_UNUSED_RV
-#if   xCOMPILER_MINGW
-    #define xWARN_UNUSED_RV \
-        __attribute__((warn_unused_result))
-#elif xCOMPILER_MS
-    #define xWARN_UNUSED_RV \
-        xNOT_AVAILABLE
-#elif xCOMPILER_GNUC
-    #define xWARN_UNUSED_RV \
-        __attribute__((warn_unused_result))
-#else
-
-#endif
-    ///< give a warning if the return value of function was not used
-//-------------------------------------------------------------------------------------------------
 ///@name usings
 ///@{
 #define xUSING_CONST(t) \
