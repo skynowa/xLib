@@ -40,7 +40,9 @@ xNAMESPACE_BEGIN2(xl, core)
 *
 **************************************************************************************************/
 
-xNAMESPACE_ANONYM_BEGIN
+//-------------------------------------------------------------------------------------------------
+namespace
+{
 
 cint_t yearMin     = 0;
 cint_t yearMax     = 9999;
@@ -69,8 +71,7 @@ cint_t microsecMax = 999;
 cint_t weekDayMin  = 0;
 cint_t weekDayMax  = 6;
 
-xNAMESPACE_ANONYM_END
-
+} // namespace
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::year(

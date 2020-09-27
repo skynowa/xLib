@@ -16,11 +16,14 @@
 #include <xLib/Log/Trace.h>
 
 
-xNAMESPACE_ANONYM_BEGIN
+//-------------------------------------------------------------------------------------------------
+namespace
+{
 
 std::cstring_t base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-xNAMESPACE_ANONYM_END
+}
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_BEGIN2(xl, crypt)
 
