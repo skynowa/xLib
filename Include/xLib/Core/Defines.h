@@ -93,13 +93,6 @@
 //-------------------------------------------------------------------------------------------------
 ///@name namespace
 ///@{
-#define xNAMESPACE_BEGIN(n1) \
-    namespace n1 {
-    ///< begin namespace
-#define xNAMESPACE_END(n1) \
-    }
-    ///< end namespace
-
 #define xNAMESPACE_BEGIN2(n1, n2) \
     namespace n1 { \
     namespace n2 {
