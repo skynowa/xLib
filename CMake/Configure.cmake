@@ -57,24 +57,24 @@ include(CheckCSourceCompiles)
 include(CheckCXXSourceCompiles)
 #--------------------------------------------------------------------------------------------------
 # find packages
-find_package(CMakeLib  REQUIRED) # at 1-st
+find_package(CMakeLib REQUIRED) # at 1-st
 
 ## Static analysis
-find_package(CppCheck)  ## REQUIRED
-find_package(ClangTidy) ## REQUIRED
-find_package(PvsStudio) ## REQUIRED
+## find_package(CppCheck  REQUIRED)
+## find_package(ClangTidy REQUIRED)
+## find_package(PvsStudio REQUIRED)
 
 ## libs
-find_package(xLibData REQUIRED)
+find_package(xLibData    QUIET REQUIRED)
 find_package(GitRevision QUIET REQUIRED)
-find_package(OS QUIET REQUIRED)
-find_package(Threads QUIET REQUIRED)
-find_package(OpenSSL QUIET REQUIRED)
-find_package(MySQL QUIET REQUIRED)
-find_package(Ssh2 QUIET REQUIRED)
-find_package(CURL QUIET)
-find_package(LibXml2 QUIET REQUIRED)
-find_package(Iconv QUIET REQUIRED)
+find_package(OS          QUIET REQUIRED)
+find_package(Threads     QUIET REQUIRED)
+find_package(OpenSSL     QUIET REQUIRED)
+find_package(MySQL       QUIET REQUIRED)
+find_package(Ssh2        QUIET REQUIRED)
+find_package(CURL        QUIET)
+find_package(LibXml2     QUIET REQUIRED)
+find_package(Iconv       QUIET REQUIRED)
 
 if (OPENSSL_FOUND)
     check_library_exists(crypto BF_cfb64_encrypt "" cmOPENSSL_CRYPTO_FOUND)
