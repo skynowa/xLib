@@ -12,7 +12,8 @@ using namespace xl;
 xTEST_CLASS(Test_Raii)
 xTEST_UNIT(Test_Raii)
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
+namespace
+{
 
 class A
 {
@@ -39,7 +40,7 @@ private:
     std::tstring_t  _clearValue;
 };
 
-xNAMESPACE_ANONYM_END
+} // namespace
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t

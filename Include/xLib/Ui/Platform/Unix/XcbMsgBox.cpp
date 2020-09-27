@@ -26,7 +26,8 @@ xNAMESPACE_BEGIN2(xl, ui)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
+namespace
+{
 
 const int16_t  title_padding  = 8;
 const int16_t  left_default   = 32;
@@ -36,7 +37,7 @@ const uint32_t height_default = 150;
 const int16_t  border_width   = 10;
 const int16_t  lineIndent     = 24;
 
-xNAMESPACE_ANONYM_END
+}
 //-------------------------------------------------------------------------------------------------
 XcbMsgBox::XcbMsgBox()
 {

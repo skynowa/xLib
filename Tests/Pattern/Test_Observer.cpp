@@ -12,7 +12,8 @@ using namespace xl;
 xTEST_CLASS(Test_Observer)
 xTEST_UNIT(Test_Observer)
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
+namespace
+{
 
 int_t          type_all = 0;
 std::tstring_t message_all;
@@ -47,7 +48,7 @@ public:
     }
 };
 
-xNAMESPACE_ANONYM_END
+} // namespace
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
