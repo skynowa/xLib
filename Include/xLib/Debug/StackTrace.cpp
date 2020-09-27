@@ -104,7 +104,7 @@ StackTrace::_format(
     // formatting
     std::size_t lineNumber {};
 
-    for (auto it = a_stack.cbegin(); it != a_stack.cend();  ++ it) {
+    for (auto it = a_stack.cbegin(); it != a_stack.cend(); ++ it) {
         if (it != a_stack.cbegin()) {
             ++ lineNumber;
         }

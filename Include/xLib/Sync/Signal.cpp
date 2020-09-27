@@ -371,17 +371,15 @@ Signal::infoDescription(
 	#endif
 	};
 
-	for (const auto i : signalInfos) {
-		const _SignalInfo &signalInfo = signalInfos[i];
-
-		xCHECK_DO(signalInfo.num  != a_info.si_signo, continue);
-		xCHECK_DO(signalInfo.code != a_info.si_code,  continue);
+	for (const auto &it_signalInfo : signalInfos) {
+		xCHECK_DO(it_signalInfo.num  != a_info.si_signo, continue);
+		xCHECK_DO(it_signalInfo.code != a_info.si_code,  continue);
 
 		sRv = Format::str(xT("{}\n{} ({}) - {}\n{}"),
-				decription(signalInfo.num),
-				signalInfo.codeStr,
-				signalInfo.code,
-				signalInfo.description,
+				decription(it_signalInfo.num),
+				it_signalInfo.codeStr,
+				it_signalInfo.code,
+				it_signalInfo.description,
 				NativeError::format( static_cast<ulong_t>(a_info.si_errno)) );
 
 		break;
@@ -392,17 +390,15 @@ Signal::infoDescription(
 	}
 
 	// _KERNEL
-	for (const auto i : signalInfos) {
-		const _SignalInfo &signalInfo = signalInfos[i];
-
-		xCHECK_DO(signalInfo.num  != _KERNEL,        continue);
-		xCHECK_DO(signalInfo.code != a_info.si_code, continue);
+	for (const auto &it_signalInfo : signalInfos) {
+		xCHECK_DO(it_signalInfo.num  != _KERNEL,        continue);
+		xCHECK_DO(it_signalInfo.code != a_info.si_code, continue);
 
 		sRv = Format::str(xT("{}\n{} ({}) - {}\n{}"),
-				decription(signalInfo.num),
-				signalInfo.codeStr,
-				signalInfo.code,
-				signalInfo.description,
+				decription(it_signalInfo.num),
+				it_signalInfo.codeStr,
+				it_signalInfo.code,
+				it_signalInfo.description,
 				NativeError::format( static_cast<ulong_t>(a_info.si_errno)) );
 
 		break;
