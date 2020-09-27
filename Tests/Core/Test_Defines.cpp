@@ -334,32 +334,6 @@ Test_Defines::unit()
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xIN, xOUT, xIN_OUT")
-    {
-        struct Test
-        {
-            std::tstring_t execute(
-                xIN     cint_t       &a_iVal,
-                xOUT    std::csize_t &a_uiVal,
-                xIN_OUT tchar_t      *a_piVal)
-            {
-                std::tstringstream_t sstStream;
-
-                sstStream << xT("a_iVal=")  << a_iVal
-                          << xT("a_uiVal=") << a_uiVal
-                          << xT("a_piVal=") << a_piVal;
-
-                return sstStream.str();
-            }
-        };
-
-        Test    data;
-        tchar_t buff[10 + 1] = {0};
-
-        m_sRv = data.execute(10, 15U, buff);
-        xTEST_EQ(false, m_sRv.empty());
-    }
-
     xTEST_CASE("xVA_...")
     {
         std::ctstring_t csVal = xT("aaa");
