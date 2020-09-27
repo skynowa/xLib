@@ -161,29 +161,14 @@
 //-------------------------------------------------------------------------------------------------
 ///@name Build in macros
 ///@{
-// xFILE
-#if defined(__FILE__)
-    #define xFILE \
-        xT(__FILE__)
-#else
-    #define xFILE \
-        xUNKNOWN_CSTRING
-#endif
+#define xFILE \
+	xT(__FILE__)
     ///< source file path
-
-// xBASE_FILE
 #define xBASE_FILE \
     ((std::strrchr(xFILE, '/') == nullptr) ? xFILE : std::strrchr(xFILE, '/') + 1)
     ///< file basename
-
-// xLINE
-#if defined(__LINE__)
-    #define xLINE \
-        __LINE__
-#else
-    #define xLINE \
-        0
-#endif
+#define xLINE \
+	__LINE__
     ///< source code line number
 
 // xFUNCTION
