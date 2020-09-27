@@ -154,10 +154,10 @@ String::castW(
 {
     xTEST_NA(a_str);
     xTEST_NA(a_locale);
-    STD_VERIFY(std::has_facet<std::ctype<std::wstring::value_type> >(a_locale));
+    STD_VERIFY(std::has_facet<std::ctype<std::wstring::value_type>>(a_locale));
 
-    xCHECK_RET(a_str.empty(),                                                    std::wstring());
-    xCHECK_RET(!std::has_facet<std::ctype<std::wstring::value_type> >(a_locale), std::wstring());
+    xCHECK_RET(a_str.empty(),                                                   std::wstring());
+    xCHECK_RET(!std::has_facet<std::ctype<std::wstring::value_type>>(a_locale), std::wstring());
 
     std::wstring swRv(a_str.size(), std::wstring::value_type());
 
@@ -166,7 +166,7 @@ String::castW(
     auto itToBegin = swRv.begin();
 
     for ( ; itBegin != itEnd; ++ itBegin, ++ itToBegin) {
-        *itToBegin = std::use_facet< std::ctype<wchar_t> >( a_locale ).widen(*itBegin);
+        *itToBegin = std::use_facet<std::ctype<wchar_t>>( a_locale ).widen(*itBegin);
     }
 
     return swRv;
