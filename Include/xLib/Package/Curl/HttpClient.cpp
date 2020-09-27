@@ -31,7 +31,8 @@ using slist_unique_ptr_t = std::unique_ptr<struct curl_slist, CutlSlistDeleter>;
 } // namespace
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_BEGIN3(xl, package, curl)
+namespace xl::package::curl
+{
 
 /**************************************************************************************************
 *   public
