@@ -29,16 +29,22 @@ public:
     };
     xUSING_CONST(Type);
 
-                   ErrorReport(culong_t &nativeError, const SourceInfo &sourceInfo,
-                       std::ctstring_t &stackTrace, std::ctstring_t &comment);
+///@name ctors, dtor
+///@{
+             ErrorReport(culong_t nativeError, const SourceInfo &sourceInfo,
+                 std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< for Exception
-                   template<typename T>
-                   ErrorReport(cType type, std::ctstring_t &var1, std::ctstring_t &var2,
-                       const T &var1ValueT, const T &var2ValueT, std::ctstring_t &exprSign,
-                       culong_t &nativeError, const SourceInfo &sourceInfo,
-                       std::ctstring_t &stackTrace, std::ctstring_t &comment);
+             template<typename T>
+             ErrorReport(cType type, std::ctstring_t &var1, std::ctstring_t &var2,
+                 const T &var1ValueT, const T &var2ValueT, std::ctstring_t &exprSign,
+                 culong_t nativeError, const SourceInfo &sourceInfo, std::ctstring_t &stackTrace,
+                 std::ctstring_t &comment);
         ///< for Debugger
-    virtual       ~ErrorReport() = default;
+    virtual ~ErrorReport() = default;
+
+	xNO_DEFAULT_CONSTRUCT(ErrorReport)
+	/// xNO_COPY_ASSIGN(ErrorReport)
+///@}
 
     Type           type() const;
         ///< report type
