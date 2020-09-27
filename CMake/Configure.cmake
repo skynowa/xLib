@@ -59,10 +59,10 @@ include(CheckCXXSourceCompiles)
 # find packages
 find_package(CMakeLib  REQUIRED) # at 1-st
 
-## programs
-find_package(CppCheck  REQUIRED)
-find_package(ClangTidy REQUIRED)
-find_package(PvsStudio REQUIRED)
+## Static analysis
+find_package(CppCheck)  # REQUIRED
+find_package(ClangTidy) # REQUIRED
+find_package(PvsStudio) # REQUIRED
 
 ## libs
 find_package(xLibData REQUIRED)
