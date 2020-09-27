@@ -133,5 +133,5 @@ private:
     xNO_COPY_ASSIGN(BaseClient)
 };
 
-xNAMESPACE_END3(xl, package, curl)
+} // namespace
 //-------------------------------------------------------------------------------------------------
