@@ -38,8 +38,6 @@
 ///@{
 #cmakedefine cmOPTION_TEST_PRIVATE 1
     ///< for tests private data
-#cmakedefine cmOPTION_TEST_TRACING 1
-    ///< use tracing in tests
 ///@}
 
 //-------------------------------------------------------------------------------------------------
