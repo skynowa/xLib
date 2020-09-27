@@ -27,7 +27,7 @@ xNAMESPACE_BEGIN2(xl, debug)
 
 //-------------------------------------------------------------------------------------------------
 ErrorReport::ErrorReport(
-    culong_t         &a_nativeError,
+    culong_t          a_nativeError,
     const SourceInfo &a_sourceInfo,
     std::ctstring_t  &a_stackTrace,
     std::ctstring_t  &a_comment
