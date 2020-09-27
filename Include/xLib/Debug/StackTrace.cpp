@@ -75,7 +75,7 @@ StackTrace::_format(
     std::tstring_t                  *a_stackStr   ///< [out] stack as formatted string
 ) const
 {
-    xCHECK_DO(a_stack.empty(),         return);
+    xCHECK_DO(a_stack.empty(),       return);
     xCHECK_DO(a_stackStr == nullptr, return);
 
     std::tstring_t     sRv;
@@ -102,9 +102,9 @@ StackTrace::_format(
     }
 
     // formatting
-    std::size_t lineNumber = 0;
+    std::size_t lineNumber {};
 
-    for (const auto &it : a_stack) {
+    for (auto it = a_stack.cbegin(); it != a_stack.cend();  ++ it) {
         if (it != a_stack.cbegin()) {
             ++ lineNumber;
         }
