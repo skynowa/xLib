@@ -29,5 +29,5 @@ private:
     xNO_COPY_ASSIGN(Singleton)
 };
 
-xNAMESPACE_END2(xl, patterns)
+} // namespace
 //-------------------------------------------------------------------------------------------------
