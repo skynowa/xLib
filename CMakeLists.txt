@@ -51,9 +51,9 @@ include(Configure)
 
 # functions, targets
 include(Functions/JobsNum)
-include(StaticAnalisis/ClangTidy)
-include(StaticAnalisis/CppCheck)
-include(StaticAnalisis/PvsStudio)
+## include(StaticAnalisis/ClangTidy)
+## include(StaticAnalisis/CppCheck)
+## include(StaticAnalisis/PvsStudio)
 
 jobs_num(JOBS_NUM)
 #--------------------------------------------------------------------------------------------------
