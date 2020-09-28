@@ -22,6 +22,11 @@ set(cmOPTION_PROJECT_LIB_SHARE     0)
 set(cmOPTION_PROJECT_LIB_MODULE    0)
 set(cmOPTION_BUILD_TESTS           1)
 
+
+cmake_host_system_information(RESULT cmHOST_NAME QUERY HOSTNAME)
+message(STATUS "cmHOST_NAME : ${cmHOST_NAME}")
+
+
 # CMAKE_CONFIGURATION_TYPES:
 # - None
 # - Debug
