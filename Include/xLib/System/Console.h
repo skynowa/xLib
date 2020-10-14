@@ -18,16 +18,26 @@ class Console
     /// Shell console
 {
 public:
-             Console();
-    virtual ~Console();
+///@name ctors, dtor
+///@{
+			 Console();
+	virtual ~Console();
+
+	xNO_COPY_ASSIGN(Console)
+///@}
 
     /*******************************************************************************
     *   Attributes
     *
     *******************************************************************************/
 
-    void setColorSupport(cbool_t flag);
-        ///< force set color support (for PS1, etc)
+///@name options
+///@{
+	void setColorSupport(cbool_t flag);
+		///< force set color support (for PS1, etc)
+	void setEscapeValues(cbool_t flag);
+		///< escaping values (UNIX only)
+///@}
 
     enum class Foreground
         /// foreground (text) color
@@ -126,8 +136,7 @@ public:
     };
     xUSING_CONST(ModalResult);
 
-    ModalResult    msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type) const
-                      ;
+    ModalResult    msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type) const;
         ///< show console message dialog
     void_t         prompt(std::ctstring_t &prompt, cbool_t &isVisible, std::tstring_t *answer)
                        const;
@@ -162,6 +171,8 @@ private:
 
     bool_t _isColorSupport {};
 		///< Say whether a given stream should be colorized or not
+	bool_t _isEscapeValues {};
+		///< escaping values
     FILE  *_getStdStream(std::ctostream_t &stream) const;
 		///< Since C++ hasn't a true way to extract stream handler from the a given `std::ostream`
     bool_t _isColorized(std::tostream_t &stream = std::cout) const;
@@ -175,12 +186,8 @@ private:
 	void_t         _setStdinEcho(cbool_t &isEnable) const;
 		///< set stdin echo on/off
 
-#if xENV_UNIX
 	std::tstring_t _escapeValue(std::ctstring_t &value) const;
 		///< escape by "\[...\]"
-#endif
-
-    xNO_COPY_ASSIGN(Console)
 
 xPLATFORM_IMPL:
     void_t         _construct_impl();
