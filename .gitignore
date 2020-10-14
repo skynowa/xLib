@@ -18,6 +18,7 @@ Include/xLib/Config.h
 CMakeLists.txt.user
 cmake-build-*
 .project
+xAnalyzer
 
 # PVS-Studio
 *.PVS-Studio.cfg
