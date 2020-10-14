@@ -39,6 +39,9 @@ public:
 		///< get number commits ahead behind
 	std::size_t    stashesNum() const;
 		///< get stashes number
+	void_t         modifiedFiles(std::cvec_tstring_t &filterFileExts,
+						std::vec_tstring_t *filePathes) const;
+		///< get modified files
 
 private:
 	std::tstring_t _gitPath() const;
