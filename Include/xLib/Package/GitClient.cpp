@@ -335,6 +335,74 @@ GitClient::modifiedFiles(
 	} // for (values)
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+GitClient::getGitModifiedFilesLineFilter() const
+{
+#if 0
+def getGitModifiedFilesLineFilter(self):
+	"" Get current GIT modified lines line filter (JSON) ""
+
+	# strip the smallest prefix containing P slashes
+	p      = 1
+	iregex = r'.*\.(h|hh|hpp|inl|cc|cpp|cxx)'
+
+	cmd = "git diff -U0 HEAD".split()
+
+	out = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+
+	## result = stderr.strip().decode("utf8")
+	# print("stderr: ", result)
+
+	# extract changed lines for each file
+	filename      = None
+	lines_by_file = {}
+
+	for it_line in iter(out.stdout.readline, ''):
+		line = it_line.decode("utf-8")
+		if (not line):
+			break
+
+		match = re.search('^\+\+\+\ \"?(.*?/){%s}([^ \t\n\"]*)' % p, line)
+		if (match):
+			filename = match.group(2)
+
+		if (filename == None):
+			continue
+
+		if (not re.match('^%s$' % iregex, filename, re.IGNORECASE)):
+			continue
+
+		# print("C++ filename: ", filename)
+
+		match = re.search('^@@.*\+(\d+)(,(\d+))?', line)
+		if (match):
+			start_line = int(match.group(1))
+			line_count = 1
+
+			if (match.group(3)):
+				line_count = int(match.group(3))
+
+			if (line_count == 0):
+				continue
+
+			end_line = start_line + line_count - 1;
+			lines_by_file.setdefault(filename, []).append([start_line, end_line])
+	# for (out.stdout)
+
+	if (len(lines_by_file) == 0):
+		print("No diffs")
+		sys.exit(0)
+
+	line_filter_json = json.dumps(
+		[{"name" : name, "lines" : lines_by_file[name]} for name in lines_by_file],
+		separators = (',', ':'))
+
+	return line_filter_json
+#else
+
+#endif
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
