@@ -297,6 +297,67 @@ GitClient::stashesNum() const
 	return values.size();
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+GitClient::modifiedFiles(
+	std::cvec_tstring_t &a_filterFileExts,	///<
+	std::vec_tstring_t  *out_filePathes		///< [out]
+) const
+{
+	xCHECK_DO(out_filePathes == nullptr, return);
+
+	out_filePathes->clear();
+
+	bool_t bRv {};
+
+#if 0
+def getGitModifiedFiles(self):
+	"" Get current GIT modified files ""
+
+	result = ""
+
+	cmd_commit_diff = "git diff --name-only --cached --diff-filter=ACM".split()
+	/// cmd_master_diff = "git diff --name-only master".split()
+
+	cmd = cmd_commit_diff
+
+	out = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+	stdout,stderr = out.communicate()
+
+	items = stdout.strip().decode("utf8").split("\n")
+
+	for it_item in items:
+		base,ext = os.path.splitext(it_item)
+		if (ext in options.CPP_MASK):
+			result += it_item.strip() + " "
+
+	return result
+#else
+	/// xCHECK_RET(!isGitDir(), 0);
+
+	std::cvec_tstring_t params {"diff", "--name-only", "--cached", "--diff-filter=ACM"};
+	std::tstring_t      stdOut;
+	std::tstring_t      stdError;
+
+	Process::execute(_gitPath(), params, {}, xTIMEOUT_INFINITE, &stdOut, &stdError);
+
+	std::vec_tstring_t values;
+	String::split(String::trimSpace(stdOut), Const::nl(), &values);
+
+	for (const auto &it_value : values) {
+		std::ctstring_t &filePath = String::trimSpace(it_value);
+
+		{
+			std::ctstring_t &fileExt = Path(filePath).ext();
+
+			bRv = Algos::isContains(a_filterFileExts, fileExt);
+			xCHECK_DO(!bRv, continue);
+		}
+
+		out_filePathes->push_back(filePath);
+	} // for (values)
+#endif
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
