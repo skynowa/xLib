@@ -47,9 +47,19 @@ Console::~Console()
 
 //-------------------------------------------------------------------------------------------------
 void
-Console::setColorSupport(cbool_t a_flag)
+Console::setColorSupport(
+	cbool_t a_flag
+)
 {
 	_isColorSupport = a_flag;
+}
+//-------------------------------------------------------------------------------------------------
+void
+Console::setEscapeValues(
+	cbool_t a_flag
+)
+{
+	_isEscapeValues = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -406,6 +416,20 @@ Console::_setStdinEcho(
 ) const
 {
     _setStdinEcho_impl(a_isEnable);
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Console::_escapeValue(
+	std::ctstring_t &a_value
+) const
+{
+#if xENV_UNIX
+	xCHECK_RET(!_isEscapeValues, a_value);
+
+	return xT("\\[") + a_value + xT("\\]");
+#else
+	return a_value;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
