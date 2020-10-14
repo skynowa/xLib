@@ -151,12 +151,18 @@
 #include <xLib/Test/Test.h>
 
 // Package
+#include <xLib/Package/Application.h>
+#include <xLib/Package/ApplicationInfo.h>
+#include <xLib/Package/Donate.h>
+#include <xLib/Package/IRestClient.h>
+#include <xLib/Package/FeatureFlag.h>
 #include <xLib/Package/Archive.h>
 #include <xLib/Package/Iconv.h>
 #include <xLib/Package/Csv.h>
 #include <xLib/Package/Ssh2Client.h>
-#include <xLib/Package/Donate.h>
-#include <xLib/Package/IRestClient.h>
+#include <xLib/Package/Xml.h>
+#include <xLib/Package/Translate.h>
+#include <xLib/Package/GitClient.h>
 #include <xLib/Package/PrivatBankApi.h>
 
 #include <xLib/Package/Curl/Types.h>
@@ -164,8 +170,3 @@
 #include <xLib/Package/Curl/Client.h>
 #include <xLib/Package/Curl/BaseClient.h>
 #include <xLib/Package/Curl/HttpClient.h>
-
-#include <xLib/Package/Xml.h>
-#include <xLib/Package/Application.h>
-#include <xLib/Package/ApplicationInfo.h>
-#include <xLib/Package/Translate.h>
