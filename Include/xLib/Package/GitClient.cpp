@@ -319,6 +319,7 @@ GitClient::modifiedFiles(
 
 	std::vec_tstring_t values;
 	String::split(String::trimSpace(stdOut), Const::nl(), &values);
+	xCHECK_DO(values.empty(), return);
 
 	for (const auto &it_value : values) {
 		std::ctstring_t &filePath = String::trimSpace(it_value);
