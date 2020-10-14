@@ -303,42 +303,19 @@ GitClient::modifiedFiles(
 	std::vec_tstring_t  *out_filePathes		///< [out]
 ) const
 {
+	/// xCHECK_RET(!isGitDir(), 0);
 	xCHECK_DO(out_filePathes == nullptr, return);
 
 	out_filePathes->clear();
 
 	bool_t bRv {};
 
-#if 0
-def getGitModifiedFiles(self):
-	"" Get current GIT modified files ""
-
-	result = ""
-
-	cmd_commit_diff = "git diff --name-only --cached --diff-filter=ACM".split()
-	/// cmd_master_diff = "git diff --name-only master".split()
-
-	cmd = cmd_commit_diff
-
-	out = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-	stdout,stderr = out.communicate()
-
-	items = stdout.strip().decode("utf8").split("\n")
-
-	for it_item in items:
-		base,ext = os.path.splitext(it_item)
-		if (ext in options.CPP_MASK):
-			result += it_item.strip() + " "
-
-	return result
-#else
-	/// xCHECK_RET(!isGitDir(), 0);
-
-	std::cvec_tstring_t params {"diff", "--name-only", "--cached", "--diff-filter=ACM"};
+	std::cvec_tstring_t params_commit_diff {"diff", "--name-only", "--cached", "--diff-filter=ACM"};
+	/// std::cvec_tstring_t params_master_diff {"diff", "--name-only", "master"};
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath(), params, {}, xTIMEOUT_INFINITE, &stdOut, &stdError);
+	Process::execute(_gitPath(), params_commit_diff, {}, xTIMEOUT_INFINITE, &stdOut, &stdError);
 
 	std::vec_tstring_t values;
 	String::split(String::trimSpace(stdOut), Const::nl(), &values);
@@ -355,7 +332,6 @@ def getGitModifiedFiles(self):
 
 		out_filePathes->push_back(filePath);
 	} // for (values)
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 
