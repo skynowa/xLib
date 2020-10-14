@@ -42,7 +42,7 @@ public:
 	void_t         modifiedFiles(std::cvec_tstring_t &filterFileExts,
 						std::vec_tstring_t *filePathes) const;
 		///< get modified files
-	void_t         getGitModifiedFilesLineFilter() const;
+	void_t         getModifiedFilesLineFilter() const;
 		///< get modified lines line filter (JSON)
 
 private:

@@ -336,7 +336,7 @@ GitClient::modifiedFiles(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-GitClient::getGitModifiedFilesLineFilter() const
+GitClient::getModifiedFilesLineFilter() const
 {
 #if 0
 def getGitModifiedFilesLineFilter(self):
