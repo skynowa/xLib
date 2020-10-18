@@ -16,8 +16,8 @@ class xNO_VTABLE IDataValid
     /// Data interface
 {
 public:
-                   IDataValid() = default;
-    virtual       ~IDataValid() = default;
+             IDataValid() = default;
+    virtual ~IDataValid() = default;
 
     virtual bool_t isValid() const = 0;
         ///< check validness
@@ -27,8 +27,8 @@ class xNO_VTABLE IDataClear
     /// Data interface
 {
 public:
-                   IDataClear() = default;
-    virtual       ~IDataClear() = default;
+             IDataClear() = default;
+    virtual ~IDataClear() = default;
 
     virtual void_t clear() = 0;
         ///< clear data
@@ -39,8 +39,8 @@ class xNO_VTABLE IDataPrint
     /// std::tostream_t, core::OStream
 {
 public:
-                   IDataPrint() = default;
-    virtual       ~IDataPrint() = default;
+             IDataPrint() = default;
+    virtual ~IDataPrint() = default;
 
 	friend core::OStream & operator << (core::OStream &os, const IDataPrint &data);
 
@@ -56,8 +56,8 @@ class xNO_VTABLE IData :
     /// Data interface
 {
 public:
-                   IData() = default;
-    virtual       ~IData() = default;
+             IData() = default;
+    virtual ~IData() = default;
 };
 //-------------------------------------------------------------------------------------------------
 
