@@ -316,6 +316,10 @@ GitClient::modifiedFiles(
 	std::tstring_t      stdError;
 
 	Process::execute(_gitPath(), params_commit_diff, {}, xTIMEOUT_INFINITE, &stdOut, &stdError);
+#if 1
+	Cout() << xTRACE_VAR(stdOut);
+	Cout() << xTRACE_VAR(stdError);
+#endif
 
 	std::vec_tstring_t values;
 	String::split(String::trimSpace(stdOut), Const::nl(), &values);
