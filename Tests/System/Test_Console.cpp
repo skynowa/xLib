@@ -31,7 +31,7 @@ Test_Console::unit()
 
 		console.write( console.setAttributes(foreground, background, attributes) );
 		console.write(text);
-		console.writeLine( console.setAttributesDef() );
+		console.writeLine( console.clearAttributes() );
 
 		console.writeLine(foreground, background, attributes, text);
     }

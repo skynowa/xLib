@@ -90,7 +90,7 @@ public:
     std::tstring_t setAttributes(cForeground foreground, cBackground background,
                        cint_t attributes) const;
         ///< set text color
-    std::tstring_t setAttributesDef() const;
+    std::tstring_t clearAttributes() const;
         ///< reset text color to default
     std::tstring_t setAttributesText(cForeground foreground, cBackground background,
                        cint_t attributes, std::ctstring_t &str) const;
@@ -194,7 +194,7 @@ xPLATFORM_IMPL:
     void_t         _destruct_impl();
     std::tstring_t _setAttributes_impl(cForeground foreground, cBackground background,
     					cint_t attributes) const;
-    std::tstring_t _setAttributesDef_impl() const;
+    std::tstring_t _clearAttributes_impl() const;
     std::tstring_t _read_impl() const;
     void_t         _write_impl(std::ctstring_t &str) const;
     void_t         _clear_impl() const;

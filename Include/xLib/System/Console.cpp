@@ -75,11 +75,11 @@ Console::setAttributes(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::setAttributesDef() const
+Console::clearAttributes() const
 {
 	xCHECK_RET(!_isColorSupport, xT(""));
 
-    return _setAttributesDef_impl();
+    return _clearAttributes_impl();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -93,7 +93,7 @@ Console::setAttributesText(
 	return
 		setAttributes(a_foreground, a_background, a_attributes) +
 		a_str +
-		setAttributesDef();
+		clearAttributes();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -153,7 +153,7 @@ Console::write(
 
 	write( setAttributes(a_foreground, a_background, a_attributes) );
 	write(a_str);
-	write( setAttributesDef() );
+	write( clearAttributes() );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
