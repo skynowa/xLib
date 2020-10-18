@@ -21,9 +21,6 @@ public:
 
     virtual bool_t isValid() const = 0;
         ///< check validness
-
-private:
-    xNO_COPY_ASSIGN(IDataValid)
 };
 //-------------------------------------------------------------------------------------------------
 class xNO_VTABLE IDataClear
@@ -35,9 +32,6 @@ public:
 
     virtual void_t clear() = 0;
         ///< clear data
-
-private:
-    xNO_COPY_ASSIGN(IDataClear)
 };
 //-------------------------------------------------------------------------------------------------
 class xNO_VTABLE IDataPrint
@@ -53,9 +47,6 @@ public:
 protected:
     virtual void_t print(core::OStream &os) const = 0;
         ///< print data
-
-private:
-    xNO_COPY_ASSIGN(IDataPrint)
 };
 //-------------------------------------------------------------------------------------------------
 class xNO_VTABLE IData :
@@ -67,9 +58,6 @@ class xNO_VTABLE IData :
 public:
                    IData() = default;
     virtual       ~IData() = default;
-
-private:
-    xNO_COPY_ASSIGN(IData)
 };
 //-------------------------------------------------------------------------------------------------
 
