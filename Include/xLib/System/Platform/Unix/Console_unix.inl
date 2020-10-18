@@ -188,7 +188,7 @@ Console::_setAttributes_impl(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::_setAttributesDef_impl() const
+Console::_clearAttributes_impl() const
 {
 	return _escapeValue(xT("\e[0;0m"));
 }

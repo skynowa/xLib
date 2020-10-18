@@ -223,7 +223,7 @@ Console::_setAttributes_impl(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::_setAttributesDef_impl() const
+Console::_clearAttributes_impl() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
     xTEST_EQ(_stdIn.isValid(), true);
