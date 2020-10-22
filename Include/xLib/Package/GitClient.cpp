@@ -310,13 +310,13 @@ GitClient::modifiedFiles(
 
 	bool_t bRv {};
 
-	std::cvec_tstring_t params_commit_diff {"diff", "--name-only", "--cached", "--diff-filter=ACM"};
-	/// std::cvec_tstring_t params_master_diff {"diff", "--name-only", "master"};
+	/// std::cvec_tstring_t params_commit_diff {"diff", "--name-only", "--cached", "--diff-filter=ACM"};
+	std::cvec_tstring_t params_master_diff {"diff", "--name-only", "master"};
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath(), params_commit_diff, {}, xTIMEOUT_INFINITE, &stdOut, &stdError);
-#if 1
+	Process::execute(_gitPath(), params_master_diff, {}, xTIMEOUT_INFINITE, &stdOut, &stdError);
+#if 0
 	Cout() << xTRACE_VAR(stdOut);
 	Cout() << xTRACE_VAR(stdError);
 #endif
