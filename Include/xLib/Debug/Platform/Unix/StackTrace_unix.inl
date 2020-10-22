@@ -31,7 +31,7 @@ StackTrace::_get_impl(
     std::ctstring_t                 dataNotFound = xT("[???]");
 
 #if cmEXECINFO_FOUND
-    void_t *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
+    void_t *stackBuff[xSTACK_TRACE_FRAMES_MAX] {};
 
     int_t framesNum = ::backtrace(stackBuff, xSTACK_TRACE_FRAMES_MAX);
     xCHECK_DO(framesNum <= 0, return);
@@ -56,11 +56,14 @@ StackTrace::_get_impl(
             byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(nullptr));
             functionName = (symbols[i] == nullptr) ? dataNotFound : xA2T(symbols[i]);
         } else {
-            const char *symbolName = nullptr;
-            int_t       status     = - 1;
+            const char *symbolName {};
+            int_t       status     {- 1};
 
-            char *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, nullptr, nullptr, &status);
-            if (demangleName != nullptr && status == 0) {
+            cptr_ctchar_t *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, nullptr, nullptr,
+                &status);
+            if (demangleName != nullptr &&
+                status == 0)
+            {
                 symbolName = demangleName;
             } else {
                 symbolName = dlinfo.dli_sname;
@@ -68,13 +71,13 @@ StackTrace::_get_impl(
 
             std::tstring_t _filePath;
             std::tstring_t _functionName;
-            ulong_t        _sourceLine = 0U;
+            ulong_t        _sourceLine {};
 
             _addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
             xUNUSED(_functionName);
 
             modulePath   = (dlinfo.dli_fname == nullptr) ? dataNotFound : xA2T(dlinfo.dli_fname);
-            filePath     = _filePath.empty()               ? dataNotFound : _filePath;
+            filePath     = _filePath.empty()             ? dataNotFound : _filePath;
             fileLine     = String::cast(_sourceLine);
             byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
             functionName = (symbolName == nullptr) ? dataNotFound : xA2T(symbolName);
@@ -93,7 +96,9 @@ StackTrace::_get_impl(
             std::csize_t pos1 = functionName.find(xT("("));
             std::csize_t pos2 = functionName.find(xT(")"));
 
-            if (pos1 != std::tstring_t::npos && pos2 != std::tstring_t::npos) {
+            if (pos1 != std::tstring_t::npos &&
+                pos2 != std::tstring_t::npos)
+            {
                 STD_VERIFY(pos1 < pos2);
 
                 functionName = functionName.substr(0, pos1 + 1) + functionName.substr(pos2);
@@ -158,7 +163,7 @@ StackTrace::_addr2Line(
 
     // get function name
     {
-        tchar_t buff[1024 + 1] = {0};
+        tchar_t buff[1024 + 1] {};
 
         cptr_ctchar_t functionName = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
         STD_VERIFY(functionName != nullptr);
@@ -168,7 +173,7 @@ StackTrace::_addr2Line(
 
     // get file and line
     {
-        tchar_t buff[1024 + 1] = {0};
+        tchar_t buff[1024 + 1] {};
 
         cptr_ctchar_t fileAndLine = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
         STD_VERIFY(fileAndLine != nullptr);
