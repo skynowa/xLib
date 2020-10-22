@@ -24,10 +24,15 @@ class StackTrace
     /// stack trace
 {
 public:
-    explicit       StackTrace(cStackTraceData &data = cStackTraceData());
-    virtual       ~StackTrace() = default;
+///@name ctors, dtor
+///@{
+	explicit  StackTrace(cStackTraceData &data = cStackTraceData());
+	virtual  ~StackTrace() = default;
 
-    std::tstring_t toString();
+    xNO_COPY_ASSIGN(StackTrace)
+///@}
+
+    std::tstring_t toString() const;
         ///< get stack trace with format output
 
 private:
@@ -35,8 +40,6 @@ private:
 
     void_t _format(std::vector<std::vec_tstring_t> &stack, std::tstring_t *stackStr) const;
         ///< format stack trace
-
-    xNO_COPY_ASSIGN(StackTrace)
 
 xPLATFORM_IMPL:
     void_t _get_impl(std::vector<std::vec_tstring_t> *stack) const;

@@ -47,7 +47,7 @@ StackTrace::StackTrace(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-StackTrace::toString()
+StackTrace::toString() const
 {
     std::tstring_t                  sRv;
     std::vector<std::vec_tstring_t> stack;
@@ -83,12 +83,14 @@ StackTrace::_format(
 
     // add header
     {
-        std::vec_tstring_t stackHeader;
-        stackHeader.push_back(xT("Module"));
-        stackHeader.push_back(xT("File"));
-        stackHeader.push_back(xT("Line"));
-        stackHeader.push_back(xT("Offset"));
-        stackHeader.push_back(xT("Function"));
+        std::cvec_tstring_t stackHeader
+        {
+			xT("Module"),
+			xT("File"),
+			xT("Line"),
+			xT("Offset"),
+			xT("Function")
+        };
 
         a_stack.insert(a_stack.cbegin(), stackHeader);
     }
