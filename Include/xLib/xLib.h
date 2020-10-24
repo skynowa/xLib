@@ -125,7 +125,6 @@
 #include <xLib/Sync/IpcMutex.h>
 #include <xLib/Sync/IpcSemaphore.h>
 #include <xLib/Sync/Mutex.h>
-#include <xLib/Sync/Semaphore.h>
 #include <xLib/Sync/Pipe.h>
 #include <xLib/Sync/Sleeper.h>
 #include <xLib/Sync/Thread.h>
