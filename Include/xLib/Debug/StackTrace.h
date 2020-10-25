@@ -48,7 +48,6 @@ xPLATFORM_IMPL:
 		#if (xOS_WIN_VER <= xOS_WIN_S03)
 		   /**
 			* MSDN: Windows Server 2003 and Windows XP
-			*
 			* The sum of the FramesToSkip and FramesToCapture parameters must be less than 63
 			*/
 			{62UL};

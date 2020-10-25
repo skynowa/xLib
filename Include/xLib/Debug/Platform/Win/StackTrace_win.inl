@@ -37,9 +37,9 @@ StackTrace::_get_impl(
 #if   xCOMPILER_MINGW
     // TODO: [skynowa] StackTrace::_get()
 #elif xCOMPILER_MS
-    void_t      *stackBuff[xSTACK_TRACE_FRAMES_MAX] {};
-    SYMBOL_INFO *symbol                             {};
-    HANDLE       process                            {};
+    void_t      *stackBuff[xSTACK_TRACE_FRAMES_MAX + 1] {};
+    SYMBOL_INFO *symbol                                 {};
+    HANDLE       process                                {};
 
     process = ::GetCurrentProcess();
 
