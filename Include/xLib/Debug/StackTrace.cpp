@@ -22,7 +22,7 @@
 namespace
 {
 
-std::csize_t elementsNum {5};
+std::csize_t columnsNum {5};
 
 }
 
@@ -75,7 +75,7 @@ StackTrace::_format(
     xCHECK_DO(a_stackStr == nullptr, return);
 
     std::tstring_t     sRv;
-    std::vector<int_t> maxs(::elementsNum, 0);
+    std::vector<int_t> maxs(::columnsNum, 0);
 
     // add header
     {
@@ -92,7 +92,7 @@ StackTrace::_format(
     }
 
     // get elements max sizes
-    for (size_t i = 0; i < ::elementsNum; ++ i) {
+    for (size_t i = 0; i < ::columnsNum; ++ i) {
         for (const auto &it : a_stack) {
             std::csize_t current = it.at(i).size();
             xCHECK_DO(static_cast<int_t>(current) > maxs[i], maxs[i] = static_cast<int_t>(current));
