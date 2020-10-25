@@ -19,6 +19,7 @@ CMakeLists.txt.user
 cmake-build-*
 .project
 xAnalyzer
+auto-build.sh
 
 # PVS-Studio
 *.PVS-Studio.cfg
