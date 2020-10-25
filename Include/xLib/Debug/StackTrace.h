@@ -14,10 +14,9 @@ namespace xl::debug
 struct StackTraceData
     /// StackTrace data
 {
-    cint_t       skipFramesNum       {0};
-    cbool_t      isWrapFilePaths     {true};
-    cbool_t      isFuncParamsDisable {true};
-    std::csize_t elementsNum         {10};
+    cint_t  skipFramesNum       {0};
+    cbool_t isWrapFilePaths     {true};
+    cbool_t isFuncParamsDisable {true};
 };
 xUSING_CONST(StackTraceData);
 
