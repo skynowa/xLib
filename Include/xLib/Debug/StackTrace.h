@@ -56,7 +56,7 @@ xPLATFORM_IMPL:
 			{USHRT_MAX};
 		#endif
 	#elif xENV_UNIX
-		{256};
+		{255};
 			///< custom define, this should be enough
 	#endif
 		///< maximum frames for stack trace

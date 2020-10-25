@@ -31,7 +31,7 @@ StackTrace::_get_impl(
     std::ctstring_t                 dataNotFound = xT("[???]");
 
 #if cmEXECINFO_FOUND
-    void_t *stackBuff[xSTACK_TRACE_FRAMES_MAX] {};
+    void_t *stackBuff[xSTACK_TRACE_FRAMES_MAX + 1] {};
 
     int_t framesNum = ::backtrace(stackBuff, xSTACK_TRACE_FRAMES_MAX);
     xCHECK_DO(framesNum <= 0, return);
