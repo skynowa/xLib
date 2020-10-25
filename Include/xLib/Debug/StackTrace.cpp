@@ -1,5 +1,5 @@
 /**
- * \file   StackTrace.h
+ * \file   StackTrace.cpp
  * \brief  stackrace of the caller function
  */
 
