@@ -59,8 +59,7 @@ StackTrace::_get_impl(
             const char *symbolName {};
             int_t       status     {};
 
-            char *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, nullptr, nullptr,
-                &status);
+            char *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, nullptr, nullptr, &status);
             if (demangleName != nullptr &&
                 status == 0)
             {
