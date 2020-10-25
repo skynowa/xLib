@@ -49,7 +49,7 @@
 #include <functional>
 #include <iomanip>
 #include <ios>
-#include <iosfwd>
+#include <iosfwd>	// TODO: use only <iosfwd>
 #include <iostream>
 #include <istream>
 #include <iterator>
