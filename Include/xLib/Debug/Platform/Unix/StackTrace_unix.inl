@@ -36,7 +36,7 @@ StackTrace::_get_impl(
     int_t framesNum = ::backtrace(stackBuff, xSTACK_TRACE_FRAMES_MAX);
     xCHECK_DO(framesNum <= 0, return);
 
-    const char **symbols = ::backtrace_symbols(stackBuff, framesNum);
+    char **symbols = ::backtrace_symbols(stackBuff, framesNum);
     xCHECK_DO(symbols == nullptr, return);
 
     for (int_t i = _data.skipFramesNum; i < framesNum; ++ i) {
@@ -59,7 +59,7 @@ StackTrace::_get_impl(
             const char *symbolName {};
             int_t       status     {};
 
-            cptr_ctchar_t *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, nullptr, nullptr,
+            char *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, nullptr, nullptr,
                 &status);
             if (demangleName != nullptr &&
                 status == 0)
