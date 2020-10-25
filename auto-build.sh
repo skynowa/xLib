@@ -1,1 +1,0 @@
-/home/skynowa/Projects/Scripts/Shell/auto-build.sh
