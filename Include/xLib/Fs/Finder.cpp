@@ -18,6 +18,7 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Fs/Path.h>
+#include <xLib/System/Environment.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Finder_win.inl"
@@ -229,6 +230,29 @@ Finder::file(
 	return {};
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Finder::fileInEnvPath(
+	std::ctstring_t &a_shellFilter,
+    cbool_t          a_isRecursively
+)
+{
+	std::ctstring_t &varSep =
+	#if   xENV_WIN
+		Const::semicolon();
+	#elif xENV_UNIX
+		Const::colon();
+	#endif
+
+	std::vec_tstring_t rootDirPaths;
+	String::split(Environment::varPath(), varSep, &rootDirPaths);
+
+	Algos::isUniqueAll(rootDirPaths);
+
+	return file(rootDirPaths, a_shellFilter, a_isRecursively);
+}
+//-------------------------------------------------------------------------------------------------
+
 
 /**************************************************************************************************
 *   private

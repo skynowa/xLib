@@ -56,6 +56,9 @@ xPUBLIC_STATIC:
 	std::tstring_t file(std::cvec_tstring_t &rootDirPaths, std::ctstring_t &shellFilter,
                           cbool_t isRecursively);
         ///< search file in directories (by priority)
+    static
+	std::tstring_t fileInEnvPath(std::ctstring_t &shellFilter, cbool_t isRecursively);
+        ///< search file in directories from environment variable $PATH
 
 private:
     struct _Entry
