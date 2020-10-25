@@ -42,6 +42,24 @@ private:
         ///< format stack trace
 
 xPLATFORM_IMPL:
+	// xSTACK_TRACE_FRAMES_MAX
+	#if   xENV_WIN
+		#if (xOS_WIN_VER <= xOS_WIN_S03)
+		   /**
+			* MSDN: Windows Server 2003 and Windows XP:
+			*       The sum of the FramesToSkip and FramesToCapture
+			*       parameters must be less than 63
+			*/
+			static constexpr auto xSTACK_TRACE_FRAMES_MAX {62UL};
+		#else
+			static constexpr auto xSTACK_TRACE_FRAMES_MAX {USHRT_MAX};
+		#endif
+	#elif xENV_UNIX
+		static constexpr auto xSTACK_TRACE_FRAMES_MAX {256};
+			///< custom define, this should be enough
+	#endif
+		///< maximum frames for stack trace
+
     void_t _get_impl(std::vector<std::vec_tstring_t> *stack) const;
 
 #if xENV_UNIX
