@@ -72,16 +72,17 @@ find_package(Threads     QUIET REQUIRED)
 find_package(OpenSSL     QUIET REQUIRED)
 find_package(MySQL       QUIET REQUIRED)
 find_package(Ssh2        QUIET REQUIRED)
-find_package(CURL        QUIET)
+find_package(CURL        QUIET REQUIRED)
 find_package(LibXml2     QUIET REQUIRED)
 find_package(Iconv       QUIET REQUIRED)
+find_package(Event2      QUIET REQUIRED)
 
 if (OPENSSL_FOUND)
     check_library_exists(crypto BF_cfb64_encrypt "" cmOPENSSL_CRYPTO_FOUND)
 endif()
 
 if (ENV_UNIX)
-    find_package(ExecInfo)    # TODO: REQUIRED - add
+    find_package(ExecInfo  REQUIRED)
     find_package(XCB       REQUIRED)
     find_package(Addr2Line REQUIRED)
 
