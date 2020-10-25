@@ -36,7 +36,7 @@ StackTrace::_get_impl(
     int_t framesNum = ::backtrace(stackBuff, xSTACK_TRACE_FRAMES_MAX);
     xCHECK_DO(framesNum <= 0, return);
 
-    char **symbols = ::backtrace_symbols(stackBuff, framesNum);
+    const char **symbols = ::backtrace_symbols(stackBuff, framesNum);
     xCHECK_DO(symbols == nullptr, return);
 
     for (int_t i = _data.skipFramesNum; i < framesNum; ++ i) {
@@ -57,7 +57,7 @@ StackTrace::_get_impl(
             functionName = (symbols[i] == nullptr) ? dataNotFound : xA2T(symbols[i]);
         } else {
             const char *symbolName {};
-            int_t       status     {- 1};
+            int_t       status     {};
 
             cptr_ctchar_t *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, nullptr, nullptr,
                 &status);
