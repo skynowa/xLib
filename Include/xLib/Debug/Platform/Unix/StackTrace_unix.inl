@@ -118,7 +118,7 @@ StackTrace::_get_impl(
 
             stack.push_back(stackLine);
         }
-    } // for
+    } // for (framesNum)
 #else
     xBUILD_IMPL("StackTrace::_get()");
 #endif // cmEXECINFO_FOUND
