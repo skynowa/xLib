@@ -17,7 +17,7 @@ struct StackTraceData
     cint_t       skipFramesNum       {0};
     cbool_t      isWrapFilePaths     {true};
     cbool_t      isFuncParamsDisable {true};
-    std::csize_t elementsNum         {5};
+    std::csize_t elementsNum         {10};
 };
 xUSING_CONST(StackTraceData);
 
