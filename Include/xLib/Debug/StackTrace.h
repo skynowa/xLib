@@ -42,8 +42,7 @@ private:
         ///< format stack trace
 
 xPLATFORM_IMPL:
-	// xSTACK_TRACE_FRAMES_MAX
-	static constexpr auto xSTACK_TRACE_FRAMES_MAX
+	static constexpr auto _frames_max
 	#if   xENV_WIN
 		#if (xOS_WIN_VER <= xOS_WIN_S03)
 		   /**
