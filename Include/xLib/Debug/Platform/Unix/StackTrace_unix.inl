@@ -107,12 +107,14 @@ StackTrace::_get_impl(
 
         // out
         {
-            std::vec_tstring_t stackLine;
-            stackLine.push_back(modulePath);
-            stackLine.push_back(filePath);
-            stackLine.push_back(fileLine);
-            stackLine.push_back(byteOffset);
-            stackLine.push_back(functionName);
+            std::cvec_tstring_t stackLine
+			{
+				modulePath,
+				filePath,
+				fileLine,
+				byteOffset,
+				functionName
+			};
 
             stack.push_back(stackLine);
         }
