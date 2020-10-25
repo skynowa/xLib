@@ -52,12 +52,6 @@ Test_Limits::unit()
         xTEST_GR(m_stRv, size_t(0));
     }
 
-    xTEST_CASE("xFRAMES_MAX_")
-    {
-        m_ulRv = xSTACK_TRACE_FRAMES_MAX;
-        xTEST_GR(m_ulRv, 0UL);
-    }
-
     xTEST_CASE("xPAGE_SIZE_")
     {
         #if xENV_UNIX
