@@ -45,6 +45,12 @@ public:
     std::tstring_t expandStrings(std::ctstring_t &var);
         ///< expands strings by separator "%"
 
+// tools
+public:
+    static
+    std::tstring_t varPath();
+        ///< get PATH value
+
 private:
     xNO_DEFAULT_CONSTRUCT(Environment)
     xNO_COPY_ASSIGN(Environment)
