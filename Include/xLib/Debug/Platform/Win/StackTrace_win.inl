@@ -1,6 +1,6 @@
 /**
- * \file   StackTrace.h
- * \brief  stackrace of the caller function
+ * \file  StackTrace_win.inl
+ * \brief stackrace of the caller function
  */
 
 
