@@ -37,9 +37,9 @@ StackTrace::_get_impl(
 #if   xCOMPILER_MINGW
     // TODO: [skynowa] StackTrace::_get()
 #elif xCOMPILER_MS
-    void_t      *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
-    SYMBOL_INFO *symbol                             = nullptr;
-    HANDLE       process                            = nullptr;
+    void_t      *stackBuff[xSTACK_TRACE_FRAMES_MAX] {};
+    SYMBOL_INFO *symbol                             {};
+    HANDLE       process                            {};
 
     process = ::GetCurrentProcess();
 
@@ -63,7 +63,7 @@ StackTrace::_get_impl(
 
         // modulePath
         {
-            IMAGEHLP_MODULE64 miModuleInfo = {0};
+            IMAGEHLP_MODULE64 miModuleInfo {};
             miModuleInfo.SizeOfStruct = sizeof(IMAGEHLP_MODULE64);
 
             blRv = ::SymGetModuleInfo64(process, reinterpret_cast<DWORD64>( stackBuff[i] ),
@@ -77,8 +77,8 @@ StackTrace::_get_impl(
 
         // filePath, fileLine
         {
-            DWORD           displacement = 0UL;
-            IMAGEHLP_LINE64 imagehlpLine = {0};
+            DWORD           displacement {};
+            IMAGEHLP_LINE64 imagehlpLine {};
             imagehlpLine.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
 
             blRv = ::SymGetLineFromAddr64(process, reinterpret_cast<DWORD64>( stackBuff[i] ),
