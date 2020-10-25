@@ -13,16 +13,6 @@
 #include <xLib/Fs/Path.h>
 #include <xLib/Log/Trace.h>
 
-//-------------------------------------------------------------------------------------------------
-namespace
-{
-
-std::csize_t elementsNum = 5;
-    ///< number of elements
-
-}
-//-------------------------------------------------------------------------------------------------
-
 #if   xENV_WIN
     #include "Platform/Win/StackTrace_win.inl"
 #elif xENV_UNIX
@@ -79,7 +69,7 @@ StackTrace::_format(
     xCHECK_DO(a_stackStr == nullptr, return);
 
     std::tstring_t     sRv;
-    std::vector<int_t> maxs(::elementsNum, 0);
+    std::vector<int_t> maxs(_data.elementsNum, 0);
 
     // add header
     {
@@ -96,7 +86,7 @@ StackTrace::_format(
     }
 
     // get elements max sizes
-    for (size_t i = 0; i < ::elementsNum; ++ i) {
+    for (size_t i = 0; i < _data.elementsNum; ++ i) {
         for (const auto &it : a_stack) {
             std::csize_t current = it.at(i).size();
             xCHECK_DO(static_cast<int_t>(current) > maxs[i], maxs[i] = static_cast<int_t>(current));
