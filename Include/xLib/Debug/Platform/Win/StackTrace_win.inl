@@ -37,16 +37,16 @@ StackTrace::_get_impl(
 #if   xCOMPILER_MINGW
     // TODO: [skynowa] StackTrace::_get()
 #elif xCOMPILER_MS
-    void_t      *stackBuff[xSTACK_TRACE_FRAMES_MAX + 1] {};
-    SYMBOL_INFO *symbol                                 {};
-    HANDLE       process                                {};
+    void_t      *stackBuff[_frames_max + 1] {};
+    SYMBOL_INFO *symbol                     {};
+    HANDLE       process                    {};
 
     process = ::GetCurrentProcess();
 
     BOOL blRv = ::SymInitialize(process, nullptr, TRUE);
     xCHECK_DO(blRv == FALSE, return);
 
-    ushort_t framesNum = ::CaptureStackBackTrace(0UL, xSTACK_TRACE_FRAMES_MAX, stackBuff, nullptr);
+    ushort_t framesNum = ::CaptureStackBackTrace(0UL, _frames_max, stackBuff, nullptr);
     xCHECK_DO(framesNum == 0U, return);
 
     symbol = new (std::nothrow) SYMBOL_INFO[sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t)];
