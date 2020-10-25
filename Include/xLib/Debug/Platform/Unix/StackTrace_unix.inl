@@ -31,9 +31,9 @@ StackTrace::_get_impl(
     std::ctstring_t                 dataNotFound = xT("[???]");
 
 #if cmEXECINFO_FOUND
-    void_t *stackBuff[_frames_max + 1] {};
+    void_t *stackBuff[_framesMax + 1] {};
 
-    int_t framesNum = ::backtrace(stackBuff, _frames_max);
+    int_t framesNum = ::backtrace(stackBuff, _framesMax);
     xCHECK_DO(framesNum <= 0, return);
 
     char **symbols = ::backtrace_symbols(stackBuff, framesNum);
