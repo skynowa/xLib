@@ -84,26 +84,6 @@
 #endif
     ///< maximum permissible string length of an environmental variable
 //-------------------------------------------------------------------------------------------------
-// xSTACK_TRACE_FRAMES_MAX
-#if   xENV_WIN
-    #if (xOS_WIN_VER <= xOS_WIN_S03)
-       /**
-        * MSDN: Windows Server 2003 and Windows XP:
-        *       The sum of the FramesToSkip and FramesToCapture
-        *       parameters must be less than 63
-        */
-        #define xSTACK_TRACE_FRAMES_MAX \
-            ( 62UL )
-    #else
-        #define xSTACK_TRACE_FRAMES_MAX \
-            ( USHRT_MAX )
-    #endif
-#elif xENV_UNIX
-    #define xSTACK_TRACE_FRAMES_MAX \
-        ( 256 )     // custom define, this should be enough
-#endif
-    ///< maximum frames for stack trace
-//-------------------------------------------------------------------------------------------------
 // xPAGE_SIZE
 #if   xENV_WIN
     xNA
