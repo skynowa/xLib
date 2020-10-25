@@ -3,7 +3,6 @@
 # \brief Find xLib
 #
 # XLIB_LOCATION         - root diractory [in]
-# cmXLIB_FOUND          - found or not
 # XLIB_DEFINITIONS      - definitions
 # cmXLIB_COMPILER_FLAGS - compiler flags
 # XLIB_INCLUDES         - include pathes
@@ -21,13 +20,11 @@ cmake_minimum_required(VERSION 3.5.0)
 project(
     xLib
     DESCRIPTION "xLib library"
-    VERSION      1.0.0.0
-)
+    VERSION      1.0.0.0)
 
 set(XLIB_PROJECT_URL "https://github.com/skynowa/xLib/")
 #--------------------------------------------------------------------------------------------------
 # vars
-unset(cmXLIB_FOUND          CACHE)
 unset(XLIB_DEFINITIONS      CACHE)
 unset(cmXLIB_COMPILER_FLAGS CACHE)
 unset(XLIB_INCLUDES         CACHE)
@@ -153,12 +150,6 @@ if (OS_ANDROID)
 
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} gnustl_static m z log)
 endif()
-
-if (NOT XLIB_INCLUDES AND XLIB_LIBRARIES)
-    set(cmXLIB_FOUND 0)
-else()
-    set(cmXLIB_FOUND 1)
-endif()
 #--------------------------------------------------------------------------------------------------
 # vars
 set(cmCMAKE_VERSION       ${CMAKE_VERSION})
@@ -166,21 +157,16 @@ set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS})
 set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES})
 #--------------------------------------------------------------------------------------------------
 # trace
-message(STATUS "cmXLIB_FOUND: ${cmXLIB_FOUND}")
-message("   XLIB_LOCATION:         ${XLIB_LOCATION}")
-message("   XLIB_DEFINITIONS:      ${XLIB_DEFINITIONS}")
-message("   cmXLIB_COMPILER_FLAGS: ${cmXLIB_COMPILER_FLAGS}")
-message("   XLIB_INCLUDES:         ${XLIB_INCLUDES}")
-message("   XLIB_LIBRARIES:        ${XLIB_LIBRARIES}")
-# message("   XLIB_SOURCES:          ${XLIB_SOURCES}")
+message(STATUS "XLIB_LOCATION:         ${XLIB_LOCATION}")
+message(STATUS "XLIB_DEFINITIONS:      ${XLIB_DEFINITIONS}")
+message(STATUS "cmXLIB_COMPILER_FLAGS: ${cmXLIB_COMPILER_FLAGS}")
+message(STATUS "XLIB_INCLUDES:         ${XLIB_INCLUDES}")
+message(STATUS "XLIB_LIBRARIES:        ${XLIB_LIBRARIES}")
+# message(STATUS "XLIB_SOURCES:          ${XLIB_SOURCES}")
 
 message(STATUS "CMAKE_THREAD_LIBS:      ${CMAKE_THREAD_LIBS}")
 message(STATUS "CMAKE_DL_LIBS:          ${CMAKE_DL_LIBS}")
 message(STATUS "CMAKE_EXE_LINKER_FLAGS: ${CMAKE_EXE_LINKER_FLAGS}")
-
-if (NOT cmXLIB_FOUND AND XLIB_FIND_REQUIRED)
-    message(FATAL_ERROR "Not found")
-endif()
 #--------------------------------------------------------------------------------------------------
 # targets, install
 if (cmOPTION_PROJECT_LIB_STATIC)
@@ -189,8 +175,6 @@ if (cmOPTION_PROJECT_LIB_STATIC)
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "lib")
-
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_STATIC})
 endif()
 
 if (cmOPTION_PROJECT_LIB_SHARE)
@@ -199,8 +183,6 @@ if (cmOPTION_PROJECT_LIB_SHARE)
     add_library(${PROJECT_LIB_SHARE} SHARED ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_LIB_SHARE} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_SHARE} DESTINATION "lib")
-
-    ## set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_SHARE})
 endif()
 
 if (cmOPTION_PROJECT_LIB_MODULE)
@@ -209,18 +191,7 @@ if (cmOPTION_PROJECT_LIB_MODULE)
     add_library(${PROJECT_LIB_MODULE} MODULE ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_LIB_MODULE} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_MODULE} DESTINATION "lib")
-
-    ## set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${PROJECT_LIB_MODULE})
 endif()
-
-set(cmXLIB_FOUND          ${cmXLIB_FOUND})
-set(XLIB_DEFINITIONS      ${XLIB_DEFINITIONS})
-set(cmXLIB_COMPILER_FLAGS ${cmXLIB_COMPILER_FLAGS})
-set(XLIB_INCLUDES         ${XLIB_INCLUDES})
-set(XLIB_SOURCES          ${XLIB_SOURCES})
-set(XLIB_LIBRARIES        ${XLIB_LIBRARIES})
-set(XLIB_LOCATION         ${XLIB_LOCATION})
-set(XLIB_TEMPLATES        ${XLIB_TEMPLATES})
 #--------------------------------------------------------------------------------------------------
 # config
 configure_file(
