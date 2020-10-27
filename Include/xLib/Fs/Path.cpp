@@ -195,7 +195,7 @@ Path::fileDotExt(
 	std::ctstring_t &exeExt = fileExt(a_fileExt);
 	xCHECK_RET(exeExt.empty(), std::tstring_t());
 
-	return xT(".") + exeExt;
+	return Const::dot() + exeExt;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
