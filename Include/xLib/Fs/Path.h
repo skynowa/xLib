@@ -37,8 +37,8 @@ public:
 
 ///@name ctors, dtor
 ///@{
-	explicit       Path(std::ctstring_t &filePath);
-	virtual       ~Path() = default;
+	explicit  Path(std::ctstring_t &filePath);
+	virtual  ~Path() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Path)
 	xNO_COPY_ASSIGN(Path)
@@ -116,6 +116,9 @@ xPUBLIC_STATIC:
     static
     std::tstring_t fileExt(cFileExt fileExt);
         ///< get standard extension
+    static
+    std::tstring_t fileDotExt(cFileExt fileExt);
+        ///< get standard extension with dot (if needed, for "exe" - n/n)
 
     static
     bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid = nullptr);

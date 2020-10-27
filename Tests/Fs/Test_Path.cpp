@@ -244,6 +244,19 @@ Test_Path::unit()
         xTEST_EQ(std::tstring_t(xT("txt")), m_sRv);
     }
 
+    xTEST_CASE("fileDotExt")
+    {
+        m_sRv = Path::fileDotExt(Path::FileExt::Exe);
+        #if   xENV_WIN
+            xTEST_EQ(m_sRv, std::tstring_t(xT(".exe")));
+        #elif xENV_UNIX
+            xTEST_EQ(m_sRv, std::tstring_t(xT("")));
+        #endif
+
+        m_sRv = Path::fileExt(Path::FileExt::Text);
+        xTEST_EQ(m_sRv, std::tstring_t(xT(".txt")));
+    }
+
     xTEST_CASE("setVolume")
     {
 		std::ctstring_t data[][3]
