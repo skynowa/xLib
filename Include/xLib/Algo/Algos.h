@@ -18,6 +18,8 @@ public:
 	xNO_DEFAULT_CONSTRUCT(Algos)
 	xNO_COPY_ASSIGN(Algos)
 
+///@name Common
+///@{
     template<typename ContT, typename ValueT>
     static
     bool_t isContains(const ContT &cont, const ValueT &value);
@@ -55,10 +57,27 @@ public:
     static
     bool_t isUniqueAll(const ContT &cont);
         ///< determining if sorted container has all unique elements
-    template<typename T>
-    static
-    void_t vectorRemove(std::vector<T> &vec, const T &item);
-        ///< remove item from std::vector
+///@}
+
+///@name std::vector
+///@{
+	template<typename T>
+	static
+	void_t vectorUnique(std::vector<T> &cont);
+		///< unique std::vector
+	template<typename T>
+	static
+	void_t vectorRemove(std::vector<T> &vec, const T &item);
+		///< remove item from std::vector
+///@}
+
+///@name std::list
+///@{
+	template<typename T>
+	static
+	void_t listUnique(std::list<T> &cont);
+		///< unique std::list
+///@}
 };
 
 } // namespace
