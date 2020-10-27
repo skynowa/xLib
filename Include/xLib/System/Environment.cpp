@@ -18,14 +18,6 @@
     #include "Platform/Win/Environment_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/Environment_unix.inl"
-
-    #if   xENV_LINUX
-        // #include "Platform/Linux/Environment_linux.inl"
-    #elif xENV_BSD
-        // #include "Platform/Bsd/Environment_bsd.inl"
-    #elif xENV_APPLE
-        // #include "Platform/Unix/Environment_apple.inl"
-    #endif
 #endif
 
 
