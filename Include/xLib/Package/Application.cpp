@@ -303,9 +303,9 @@ std::tstring_t
 Application::configPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
-    std::ctstring_t ext      = Path::fileExt(Path::FileExt::Config);
+    std::ctstring_t ext      = Path::fileDotExt(Path::FileExt::Config);
 
-    return Format::str(xT("{}/{}.{}"), configDirPath(), basename, ext);
+    return Format::str(xT("{}/{}{}"), configDirPath(), basename, ext);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -313,9 +313,9 @@ std::tstring_t
 Application::logPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
-    std::ctstring_t ext      = Path::fileExt(Path::FileExt::Log);
+    std::ctstring_t ext      = Path::fileDotExt(Path::FileExt::Log);
 
-    return Format::str(xT("{}/{}.{}"), logDirPath(), basename, ext);
+    return Format::str(xT("{}/{}{}"), logDirPath(), basename, ext);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -323,9 +323,9 @@ std::tstring_t
 Application::dbPath()
 {
     std::ctstring_t basename = Path( filePath() ).fileBaseName();
-    std::ctstring_t ext      = Path::fileExt(Path::FileExt::Db);
+    std::ctstring_t ext      = Path::fileDotExt(Path::FileExt::Db);
 
-    return Format::str(xT("{}/{}.{}"), dbDirPath(), basename, ext);
+    return Format::str(xT("{}/{}{}"), dbDirPath(), basename, ext);
 }
 //-------------------------------------------------------------------------------------------------
 
