@@ -48,7 +48,7 @@ public:
 // tools
 public:
     static
-    std::tstring_t varPath();
+    void_t         varPath(std::vec_tstring_t *dirPaths);
         ///< get PATH value
 
 private:

@@ -161,9 +161,13 @@ Environment::expandStrings(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-std::tstring_t
-Environment::varPath()
+void_t
+Environment::varPath(
+	std::vec_tstring_t *out_dirPaths
+)
 {
+    xTEST_PTR(out_dirPaths);
+
 	std::ctstring_t varName =
 	#if   xENV_WIN
 		xT("Path");
@@ -171,7 +175,16 @@ Environment::varPath()
 		xT("PATH");
 	#endif
 
-    return var(varName);
+	std::ctstring_t &varSep =
+	#if   xENV_WIN
+		Const::semicolon();
+	#elif xENV_UNIX
+		Const::colon();
+	#endif
+
+	String::split(var(varName), varSep, out_dirPaths);
+
+	Algos::vectorUnique(*out_dirPaths);
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -237,19 +237,10 @@ Finder::fileInEnvPath(
     cbool_t          a_isRecursively
 )
 {
-	std::ctstring_t &varSep =
-	#if   xENV_WIN
-		Const::semicolon();
-	#elif xENV_UNIX
-		Const::colon();
-	#endif
+	std::vec_tstring_t dirPaths;
+	Environment::varPath(&dirPaths);
 
-	std::vec_tstring_t rootDirPaths;
-	String::split(Environment::varPath(), varSep, &rootDirPaths);
-
-	Algos::isUniqueAll(rootDirPaths);
-
-	return file(rootDirPaths, a_shellFilter, a_isRecursively);
+	return file(dirPaths, a_shellFilter, a_isRecursively);
 }
 //-------------------------------------------------------------------------------------------------
 
