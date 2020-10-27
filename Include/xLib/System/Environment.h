@@ -15,8 +15,11 @@ class Environment
     /// system environment variables
 {
 public:
-    xNO_DEFAULT_CONSTRUCT(Environment)
-    xNO_COPY_ASSIGN(Environment)
+///@name ctors, dtor
+///@{
+	xNO_DEFAULT_CONSTRUCT(Environment)
+	xNO_COPY_ASSIGN(Environment)
+///@}
 
     static
     bool_t         isExists(std::ctstring_t &varName);
