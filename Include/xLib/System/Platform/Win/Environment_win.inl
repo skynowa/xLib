@@ -108,21 +108,21 @@ Environment::_values_impl(
 /* static */
 std::tstring_t
 Environment::_expandStrings_impl(
-    std::ctstring_t &a_var
+    std::ctstring_t &a_varName
 )
 {
     std::tstring_t sRv;
 
     sRv.resize(xPATH_MAX);
 
-    DWORD length = ::ExpandEnvironmentStrings(a_var.c_str(), &sRv.at(0),
+    DWORD length = ::ExpandEnvironmentStrings(a_varName.c_str(), &sRv.at(0),
         static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(length, 0UL);
 
     sRv.resize(length);
 
     if (sRv.size() < length) {
-        length = ::ExpandEnvironmentStrings(a_var.c_str(), &sRv.at(0),
+        length = ::ExpandEnvironmentStrings(a_varName.c_str(), &sRv.at(0),
             static_cast<DWORD>( sRv.size() ));
         xTEST_DIFF(length, 0UL);
     }
