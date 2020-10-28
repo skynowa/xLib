@@ -24,12 +24,6 @@ public:
     static
     bool_t         isExists(std::ctstring_t &varName);
         ///< check for existence
-    static
-    bool_t         isVarValid(std::ctstring_t &varName);
-        ///< is valid environment variable name
-    static
-    bool_t         isValueValid(std::ctstring_t &varValue);
-        ///< is valid environment variable value
 
     static
     std::tstring_t var(std::ctstring_t &varName);
@@ -50,6 +44,14 @@ public:
     static
     std::tstring_t expandStrings(std::ctstring_t &var);
         ///< expands strings by separator "%"
+
+protected:
+    static
+    bool_t         isVarValid(std::ctstring_t &varName);
+        ///< is valid environment variable name
+    static
+    bool_t         isValueValid(std::ctstring_t &varValue);
+        ///< is valid environment variable value
 
 xPUBLIC_STATIC:
     static

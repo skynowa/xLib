@@ -44,33 +44,6 @@ Environment::isExists(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-bool_t
-Environment::isVarValid(
-    std::ctstring_t &a_varName
-)
-{
-    xTEST_NA(a_varName);
-
-    xCHECK_RET(a_varName.empty(),                                   false);
-    xCHECK_RET(a_varName.find(Const::equal()) != std::string::npos, false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-bool_t
-Environment::isValueValid(
-    std::ctstring_t &a_varValue
-)
-{
-    xTEST_NA(a_varValue);
-
-    xCHECK_RET(a_varValue.size() >= xENV_MAX, false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
 std::tstring_t
 Environment::var(
     std::ctstring_t &a_varName
@@ -180,5 +153,39 @@ Environment::varPath(
 }
 //-------------------------------------------------------------------------------------------------
 
+
+/**************************************************************************************************
+*   protected
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+Environment::isVarValid(
+    std::ctstring_t &a_varName
+)
+{
+    xTEST_NA(a_varName);
+
+    xCHECK_RET(a_varName.empty(),                                     false);
+    xCHECK_RET(a_varName.find(Const::equal()) != std::tstring_t::npos, false);
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+Environment::isValueValid(
+    std::ctstring_t &a_varValue
+)
+{
+    xTEST_NA(a_varValue);
+
+    xCHECK_RET(a_varValue.size() >= xENV_MAX, false);
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
