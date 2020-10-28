@@ -18,7 +18,7 @@ public:
 ///@name ctors, dtor
 ///@{
 	explicit Environment(std::ctstring_t &varName);
-	        ~Environment() = default;
+	virtual ~Environment() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Environment)
 	xNO_COPY_ASSIGN(Environment)
