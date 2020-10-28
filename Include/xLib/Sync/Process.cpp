@@ -292,7 +292,7 @@ Process::execute(
     proc.create(a_filePath, a_params, a_envs, out_stdOut, out_stdError);
     xCHECK_DO(!proc.isValid(), return);
 
-    Process::WaitStatus wrRes = proc.wait(a_waitTimeoutMsec);
+    Process::cWaitStatus wrRes = proc.wait(a_waitTimeoutMsec);
     xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Ok);
     xTEST_DIFF((int)wrRes, (int)Process::WaitStatus::Abandoned);
 }
