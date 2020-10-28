@@ -51,8 +51,7 @@ public:
     std::tstring_t expandStrings(std::ctstring_t &var);
         ///< expands strings by separator "%"
 
-// tools
-public:
+xPUBLIC_STATIC:
     static
     void_t         varPath(std::vec_tstring_t *dirPaths);
         ///< get PATH value
