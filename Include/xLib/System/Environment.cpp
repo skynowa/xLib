@@ -109,12 +109,12 @@ Environment::values(
 /* static */
 std::tstring_t
 Environment::expandStrings(
-    std::ctstring_t &a_var
+    std::ctstring_t &a_varName
 )
 {
-    xTEST_EQ(a_var.empty(), false);
+    xTEST_EQ(a_varName.empty(), false);
 
-    return _expandStrings_impl(a_var);
+    return _expandStrings_impl(a_varName);
 }
 //-------------------------------------------------------------------------------------------------
 

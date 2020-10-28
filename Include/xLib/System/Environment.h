@@ -42,7 +42,7 @@ public:
     void_t         values(std::vec_tstring_t *values);
         ///< get all values
     static
-    std::tstring_t expandStrings(std::ctstring_t &var);
+    std::tstring_t expandStrings(std::ctstring_t &varName);
         ///< expands strings by separator "%"
 
 protected:
@@ -70,7 +70,7 @@ xPLATFORM_IMPL:
     static
     void_t         _values_impl(std::vec_tstring_t *values);
     static
-    std::tstring_t _expandStrings_impl(std::ctstring_t &var);
+    std::tstring_t _expandStrings_impl(std::ctstring_t &varName);
 };
 
 } // namespace
