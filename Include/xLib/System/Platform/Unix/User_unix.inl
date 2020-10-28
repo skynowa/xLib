@@ -83,10 +83,12 @@ User::_loginName_impl() const
 		const std::array envVars{xT("LOGNAME"), xT("USER")};
 
 		for (const auto &it_envVar : envVars) {
-			bool_t bRv = Environment::isExists(it_envVar);
+			Environment env(it_envVar);
+
+			bool_t bRv = env.isExists();
 			xCHECK_DO(!bRv, continue);
 
-			sRv = Environment::var(it_envVar);
+			sRv = env.var();
 
 			return sRv;
 		}
@@ -129,7 +131,7 @@ User::_homeDir_impl() const
     xCHECK_RET(!asRv.empty(), xA2T(asRv));
 
     // try to get from system environment
-    sRv = Environment::var(xT("HOME"));
+    sRv = Environment(xT("HOME")).var();
     xTEST_EQ(sRv.empty(), false);
 
     return sRv;

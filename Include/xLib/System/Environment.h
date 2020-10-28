@@ -17,56 +17,62 @@ class Environment
 public:
 ///@name ctors, dtor
 ///@{
+	explicit Environment(std::ctstring_t &varName);
+	        ~Environment() = default;
+
 	xNO_DEFAULT_CONSTRUCT(Environment)
 	xNO_COPY_ASSIGN(Environment)
 ///@}
 
-    static
-    bool_t         isExists(std::ctstring_t &varName);
+    bool_t         isExists() const;
         ///< check for existence
-
-    static
-    std::tstring_t var(std::ctstring_t &varName);
+    std::tstring_t var() const;
         ///< get value by name
-    static
-    void_t         setVar(std::ctstring_t &varName, std::ctstring_t &value);
+    void_t         setVar(std::ctstring_t &value) const;
         ///< set or change value by name
+    void_t         deleteVar() const;
+        ///< delete var
+
+xPUBLIC_STATIC:
     static
     void_t         setVars(const std::set<std::pair_tstring_t> &vars);
         ///< set or change values
-    static
-    void_t         deleteVar(std::ctstring_t &varName);
-        ///< delete var
-
     static
     void_t         values(std::vec_tstring_t *values);
         ///< get all values
     static
     std::tstring_t expandStrings(std::ctstring_t &varName);
         ///< expands strings by separator "%"
-
-protected:
-    static
-    bool_t         isVarValid(std::ctstring_t &varName);
-        ///< is valid environment variable name
-    static
-    bool_t         isValueValid(std::ctstring_t &varValue);
-        ///< is valid environment variable value
-
-xPUBLIC_STATIC:
     static
     void_t         varPath(std::vec_tstring_t *dirPaths);
         ///< get PATH value
 
+private:
+    static constexpr std::size_t _envMax
+    #if   xENV_WIN
+        #if   xCOMPILER_MS
+            {_MAX_ENV};
+        #else
+            {32767}; // custom define
+        #endif
+    #elif xENV_UNIX
+        {32767}; // custom define
+    #endif
+        ///< maximum permissible string length of an environmental variable
+
+    std::ctstring_t _varName;
+
+    bool_t         _isVarValid() const;
+        ///< is valid environment variable name
+    bool_t         _isValueValid(std::ctstring_t &varValue) const;
+        ///< is valid environment variable value
+
 xPLATFORM_IMPL:
-    static
-    bool_t         _isExists_impl(std::ctstring_t &varName);
-    static
-    std::tstring_t _var_impl(std::ctstring_t &varName);
-    static
-    void_t         _setVar_impl(std::ctstring_t &varName, std::ctstring_t &value);
-    static
-    void_t         _deleteVar_impl(std::ctstring_t &varName);
+    bool_t         _isExists_impl() const;
+    std::tstring_t _var_impl() const;
+    void_t         _setVar_impl(std::ctstring_t &value) const;
+    void_t         _deleteVar_impl() const;
+
     static
     void_t         _values_impl(std::vec_tstring_t *values);
     static

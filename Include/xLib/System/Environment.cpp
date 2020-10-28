@@ -30,44 +30,55 @@ namespace xl::system
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
+Environment::Environment(
+	std::ctstring_t &a_varName
+) :
+	_varName{a_varName}
+{
+    xTEST(_isVarValid());
+}
+//-------------------------------------------------------------------------------------------------
 bool_t
-Environment::isExists(
-    std::ctstring_t &a_varName
-)
+Environment::isExists() const
 {
-    xTEST_NA(a_varName);
+    xCHECK_RET(_varName.empty(), false);
 
-    xCHECK_RET(a_varName.empty(), false);
-
-    return _isExists_impl(a_varName);
+    return _isExists_impl();
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 std::tstring_t
-Environment::var(
-    std::ctstring_t &a_varName
-)
+Environment::var() const
 {
-    xTEST_NA(a_varName);
+    xCHECK_RET(!isExists(), std::tstring_t());
 
-    xCHECK_RET(!isExists(a_varName), std::tstring_t());
-
-    return _var_impl(a_varName);
+    return _var_impl();
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
 Environment::setVar(
-    std::ctstring_t &a_varName,
     std::ctstring_t &a_value
-)
+) const
 {
-    xTEST_EQ(isVarValid(a_varName), true);
-    xTEST_EQ(isVarValid(a_value), true);
+    xTEST_EQ(_isValueValid(a_value), true);
 
-    _setVar_impl(a_varName, a_value);
+    _setVar_impl(a_value);
 }
+//-------------------------------------------------------------------------------------------------
+void_t
+Environment::deleteVar() const
+{
+    xCHECK_DO(!isExists(), return);
+
+    _deleteVar_impl();
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   public / tools
+*
+**************************************************************************************************/
+
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
@@ -76,21 +87,9 @@ Environment::setVars(
 )
 {
 	for (const auto &[name, value] : a_vars) {
-		setVar(name, value);
+		Environment env(name);
+		env.setVar(value);
 	}
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-Environment::deleteVar(
-    std::ctstring_t &a_varName
-)
-{
-    xTEST_NA(a_varName);
-
-    xCHECK_DO(!isExists(a_varName), return);
-
-    _deleteVar_impl(a_varName);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -112,18 +111,8 @@ Environment::expandStrings(
     std::ctstring_t &a_varName
 )
 {
-    xTEST_EQ(a_varName.empty(), false);
-
     return _expandStrings_impl(a_varName);
 }
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*   public / tools
-*
-**************************************************************************************************/
-
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
@@ -147,7 +136,9 @@ Environment::varPath(
 		Const::colon();
 	#endif
 
-	String::split(var(varName), varSep, out_dirPaths);
+	Environment env(varName);
+
+	String::split(env.var(), varSep, out_dirPaths);
 
 	Algos::vectorUnique(*out_dirPaths);
 }
@@ -160,29 +151,21 @@ Environment::varPath(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
 bool_t
-Environment::isVarValid(
-    std::ctstring_t &a_varName
-)
+Environment::_isVarValid() const
 {
-    xTEST_NA(a_varName);
-
-    xCHECK_RET(a_varName.empty(),                                     false);
-    xCHECK_RET(a_varName.find(Const::equal()) != std::tstring_t::npos, false);
+    xCHECK_RET(_varName.empty(),                                      false);
+    xCHECK_RET(_varName.find(Const::equal()) != std::tstring_t::npos, false);
 
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 bool_t
-Environment::isValueValid(
+Environment::_isValueValid(
     std::ctstring_t &a_varValue
-)
+) const
 {
-    xTEST_NA(a_varValue);
-
-    xCHECK_RET(a_varValue.size() >= xENV_MAX, false);
+    xCHECK_RET(a_varValue.size() >= _envMax, false);
 
     return true;
 }

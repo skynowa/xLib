@@ -97,9 +97,11 @@ Dir::_temp_impl()
 
     std::ctstring_t envDirTemp = xT("TMPDIR");
 
-    bool_t bRv = Environment::isExists(envDirTemp);
+    Environment env(envDirTemp);
+
+    bool_t bRv = env.isExists();
     if (bRv) {
-        sRv = Environment::var(envDirTemp);
+        sRv = env.var();
     } else {
         sRv = xDIR_TEMP;
     }
