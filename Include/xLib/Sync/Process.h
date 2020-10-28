@@ -52,6 +52,7 @@ public:
         Timeout   = 2
     #endif
     };
+    xUSING_CONST(WaitStatus);
 
 ///@name ctors, dtor
 ///@{
