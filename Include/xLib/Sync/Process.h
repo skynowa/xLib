@@ -53,8 +53,13 @@ public:
     #endif
     };
 
-               Process();
-    virtual   ~Process();
+///@name ctors, dtor
+///@{
+			 Process();
+	virtual ~Process();
+
+	xNO_COPY_ASSIGN(Process)
+///@}
 
     void_t     create(std::ctstring_t &filePath, std::cvec_tstring_t &params,
                    const std::set<std::pair_tstring_t> &envs, std::tstring_t *stdOut,
@@ -135,8 +140,6 @@ private:
     id_t     _pid {};
 
     uint_t _exitStatus {};    ///< exit code
-
-    xNO_COPY_ASSIGN(Process)
 
 xPLATFORM_IMPL:
     void_t     _destruct_impl();
