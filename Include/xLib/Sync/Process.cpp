@@ -201,13 +201,9 @@ Process::isRunning(
 )
 {
     std::vector<id_t> _ids;
-
     ids(&_ids);
 
-    auto it = std::find(_ids.cbegin(), _ids.cend(), a_id);
-    xCHECK_RET(it == _ids.cend(), false);
-
-    return true;
+    return Algos::isContains(_ids, a_id);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
