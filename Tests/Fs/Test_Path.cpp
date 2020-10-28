@@ -253,7 +253,7 @@ Test_Path::unit()
             xTEST_EQ(m_sRv, std::tstring_t(xT("")));
         #endif
 
-        m_sRv = Path::fileExt(Path::FileExt::Text);
+        m_sRv = Path::fileDotExt(Path::FileExt::Text);
         xTEST_EQ(m_sRv, std::tstring_t(xT(".txt")));
     }
 

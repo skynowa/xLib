@@ -15,28 +15,22 @@ namespace xl::system
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
 bool_t
-Environment::_isExists_impl(
-    std::ctstring_t &a_varName
-)
+Environment::_isExists_impl() const
 {
-    const char *pcszRv = ::getenv(xT2A(a_varName).c_str());
+    const char *pcszRv = ::getenv(xT2A(_varName).c_str());
     xTEST_NA(pcszRv);
     xCHECK_RET(pcszRv == nullptr, false);
 
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 std::tstring_t
-Environment::_var_impl(
-    std::ctstring_t &a_varName
-)
+Environment::_var_impl() const
 {
     std::tstring_t sRv;
 
-    const char *pcszRv = ::getenv(xT2A(a_varName).c_str());
+    const char *pcszRv = ::getenv(xT2A(_varName).c_str());
     xTEST_PTR(pcszRv);
 
     sRv.assign(xA2T(pcszRv));
@@ -44,28 +38,23 @@ Environment::_var_impl(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
 Environment::_setVar_impl(
-    std::ctstring_t &a_varName,
     std::ctstring_t &a_value
-)
+) const
 {
-    int_t iRv = ::setenv(xT2A(a_varName).c_str(), xT2A(a_value).c_str(), true);
+    int_t iRv = ::setenv(xT2A(_varName).c_str(), xT2A(a_value).c_str(), true);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
-Environment::_deleteVar_impl(
-    std::ctstring_t &a_varName
-)
+Environment::_deleteVar_impl() const
 {
 #if   xENV_LINUX
-    int_t iRv = ::unsetenv(xT2A(a_varName).c_str());
+    int_t iRv = ::unsetenv(xT2A(_varName).c_str());
     xTEST_DIFF(iRv, - 1);
 #elif xENV_BSD
-    (void_t)::unsetenv(xT2A(a_varName).c_str());
+    (void_t)::unsetenv(xT2A(_varName).c_str());
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -118,9 +107,7 @@ Environment::_expandStrings_impl(
         envVar = String::trimChars(rawEnvVar, sep);
 
         // expand var to temp string
-        std::tstring_t expandedEnvVar;
-
-        expandedEnvVar = var(envVar);
+        std::ctstring_t &expandedEnvVar = Environment(envVar).var();
 
         // replace envVar(%var%) by expandedEnvVar
         sRv.replace(startSepPos, rawEnvVar.size(), expandedEnvVar);

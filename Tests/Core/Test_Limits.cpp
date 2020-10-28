@@ -46,12 +46,6 @@ Test_Limits::unit()
         xTEST_GR(m_stRv, size_t(0));
     }
 
-    xTEST_CASE("xENV_MAX_")
-    {
-        m_stRv = xENV_MAX;
-        xTEST_GR(m_stRv, size_t(0));
-    }
-
     xTEST_CASE("xPAGE_SIZE_")
     {
         #if xENV_UNIX

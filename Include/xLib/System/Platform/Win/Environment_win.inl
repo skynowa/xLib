@@ -13,16 +13,13 @@ namespace xl::system
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
 bool_t
-Environment::_isExists_impl(
-    std::ctstring_t &a_varName
-)
+Environment::_isExists_impl() const
 {
     std::tstring_t sRv;
     sRv.resize(xPATH_MAX);
 
-    DWORD length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0),
+    DWORD length = ::GetEnvironmentVariable(_varName.c_str(), &sRv.at(0),
         static_cast<DWORD>( sRv.size() ));
     xTEST_NA(length);
 
@@ -31,24 +28,21 @@ Environment::_isExists_impl(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 std::tstring_t
-Environment::_var_impl(
-    std::ctstring_t &a_varName
-)
+Environment::_var_impl() const
 {
     std::tstring_t sRv;
 
     sRv.resize(xPATH_MAX);
 
-    DWORD length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0),
+    DWORD length = ::GetEnvironmentVariable(_varName.c_str(), &sRv.at(0),
         static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(length, 0UL);
 
     sRv.resize(length);
 
     if (sRv.size() < length) {
-        length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0),
+        length = ::GetEnvironmentVariable(_varName.c_str(), &sRv.at(0),
             static_cast<DWORD>( sRv.size() ));
         xTEST_DIFF(length, 0UL);
     }
@@ -56,24 +50,19 @@ Environment::_var_impl(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
 Environment::_setVar_impl(
-    std::ctstring_t &a_varName,
     std::ctstring_t &a_value
-)
+) const
 {
-    BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), a_value.c_str());
+    BOOL blRv = ::SetEnvironmentVariable(_varName.c_str(), a_value.c_str());
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
-Environment::_deleteVar_impl(
-    std::ctstring_t &a_varName
-)
+Environment::_deleteVar_impl() const
 {
-    BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), nullptr);
+    BOOL blRv = ::SetEnvironmentVariable(_varName.c_str(), nullptr);
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------

@@ -69,21 +69,6 @@
 #endif
     ///< maximum length of a utility's input line, either from standard input or from a file
 //-------------------------------------------------------------------------------------------------
-// xENV_MAX
-#if   xENV_WIN
-    #if   xCOMPILER_MS
-        #define xENV_MAX \
-            ( _MAX_ENV )
-    #else
-        #define xENV_MAX \
-            ( 32767 ) // custom define
-    #endif
-#elif xENV_UNIX
-    #define xENV_MAX \
-        ( 32767 ) // custom define
-#endif
-    ///< maximum permissible string length of an environmental variable
-//-------------------------------------------------------------------------------------------------
 // xPAGE_SIZE
 #if   xENV_WIN
     xNA

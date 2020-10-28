@@ -26,7 +26,8 @@ Test_Environment::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            Environment::setVar(sData[i][0], sData[i][1]);
+            Environment env(sData[i][0]);
+            env.setVar(sData[i][1]);
         }
     }
 
@@ -66,67 +67,9 @@ Test_Environment::unit()
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            bool_t bStr1 = Environment::isExists(sData[i][0]);
-            xTEST_EQ(String::castBool(sData[i][1]), bStr1);
-        }
-    }
+        	Environment env(sData[i][0]);
 
-    xTEST_CASE("isVarValid")
-    {
-    #if   xENV_WIN
-        std::ctstring_t sData[][2] = {
-            {xT("ENV_TEST_1"), xT("true")},
-            {xT("ENV_TEST_2"), xT("true")},
-            {xT("ENV_TEST_3"), xT("true")},
-            {xT("ENV_TEST_4"), xT("true")},
-            {xT("OS="),        xT("false")},
-            {xT("XX=XL"),      xT("false")},
-            {xT("=windir"),    xT("false")},
-            {xT(""),           xT("false")}
-        };
-    #elif xENV_UNIX
-        std::ctstring_t sData[][2] = {
-            {xT("OS="),        xT("false")},
-            {xT("XX=XL"),      xT("false")},
-            {xT("=windir"),    xT("false")},
-            {xT("ENV_TEST_1"), xT("true")},
-            {xT("ENV_TEST_2"), xT("true")},
-            {xT("ENV_TEST_3"), xT("true")},
-            {xT("ENV_TEST_4"), xT("true")},
-        };
-    #endif
-
-        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            bool_t bStr1 = Environment::isVarValid(sData[i][0]);
-            xTEST_EQ(String::castBool(sData[i][1]), bStr1);
-        }
-    }
-
-    xTEST_CASE("isValueValid")
-    {
-    #if   xENV_WIN
-        std::ctstring_t sData[][2] = {
-            {xT("ENV_TEST_1"), xT("true")},
-            {xT("ENV_TEST_2"), xT("true")},
-            {xT("ENV_TEST_3"), xT("true")},
-            {xT("ENV_TEST_4"), xT("true")},
-            {xT("OS"),         xT("true")},
-            {xT("XXXL"),       xT("true")},
-            {xT("windir"),     xT("true")},
-            {xT(""),           xT("true")}
-        };
-    #elif xENV_UNIX
-        std::ctstring_t sData[][2] = {
-            {xT("ENV_TEST_1"), xT("true")},
-            {xT("ENV_TEST_2"), xT("true")},
-            {xT("ENV_TEST_3"), xT("true")},
-            {xT("ENV_TEST_4"), xT("true")},
-            {xT(""),           xT("true")}
-        };
-    #endif
-
-        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            bool_t bStr1 = Environment::isValueValid(sData[i][0]);
+            bool_t bStr1 = env.isExists();
             xTEST_EQ(String::castBool(sData[i][1]), bStr1);
         }
     }
@@ -150,7 +93,9 @@ Test_Environment::unit()
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring_t sStr1 = Environment::var(sData[i][0]);
+            Environment env(sData[i][0]);
+
+            std::tstring_t sStr1 = env.var();
             std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
@@ -195,7 +140,8 @@ Test_Environment::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            Environment::deleteVar(sData[i][0]);
+            Environment env(sData[i][0]);
+            env.deleteVar();
         }
     }
 

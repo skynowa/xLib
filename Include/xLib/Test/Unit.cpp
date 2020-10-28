@@ -58,7 +58,7 @@ Unit::setData(
 bool_t
 Unit::isGithubCI() const
 {
-	return Environment::isExists(xT("GITHUB_WORKSPACE"));
+	return Environment(xT("GITHUB_WORKSPACE")).isExists();
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
