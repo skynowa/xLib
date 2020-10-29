@@ -649,7 +649,7 @@ Test_DateTime::unit()
     {
         std::ctstring_t days[7][2] = {
             { xT("Monday"),     xT("Mon") },
-            { xT("Tuesday"),    xT("Tue"} ),
+            { xT("Tuesday"),    xT("Tue") },
             { xT("Wednesday"),  xT("Wed") },
             { xT("Thursday"),   xT("Thu") },
             { xT("Friday"),     xT("Fri") },

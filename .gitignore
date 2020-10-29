@@ -25,3 +25,8 @@ auto-build.sh
 *.PVS-Studio.cfg
 *.i
 *.i.pvslock
+
+# KDevelop
+.kdev4/xLib.kdev4
+xLib.kdev4
+
