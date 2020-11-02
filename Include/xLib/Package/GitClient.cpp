@@ -311,7 +311,8 @@ GitClient::modifiedFiles(
 	bool_t bRv {};
 
 	/// std::cvec_tstring_t params_commit_diff {"diff", "--name-only", "--cached", "--diff-filter=ACM"};
-	std::cvec_tstring_t params_master_diff {"diff", "--name-only", "master"};
+	/// std::cvec_tstring_t params_master_diff {"diff", "--name-only", "master"};
+	std::cvec_tstring_t params_master_diff {"diff", "--name-only", "--line-prefix=" + Dir::current() + "/", "master"};
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
@@ -330,6 +331,10 @@ GitClient::modifiedFiles(
 
 		{
 			std::ctstring_t &fileExt = Path(filePath).ext();
+			/// TODO: test - rm
+		#if 1
+			xTEST(fileExt.size() >= 1 && fileExt.size() <= 3);
+		#endif
 
 			bRv = Algos::isContains(a_filterFileExts, fileExt);
 			xCHECK_DO(!bRv, continue);
