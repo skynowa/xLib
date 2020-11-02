@@ -125,7 +125,7 @@ StackTrace::_format(
             << std::setw(0)       << std::right << lineNumberStr << xT(" ")
             << std::setw(maxs[0]) << std::left  << it->at(0)     << xT("  ")
             << std::setw(maxs[1]) << std::left  << it->at(1)     << xT("  ")
-            << std::setw(maxs[2]) << std::right << it->at(2)     << xT("  ")
+            << std::setw(maxs[2]) << std::left  << it->at(2)     << xT("  ")
             << std::setw(maxs[3]) << std::left  << it->at(3)     << xT("  ")
             << std::setw(maxs[4]) << std::left  << it->at(4);
 
