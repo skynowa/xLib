@@ -119,11 +119,21 @@ Process::_create_impl(
 			}
 
 		#if 1
-			const auto cmd = cmds.empty() ? nullptr : cmds.data();
-			const auto env = envs.empty() ? nullptr : envs.data();
+			char *const *cmd = cmds.empty() ? nullptr : cmds.data();
+			xTEST_PTR(cmd);
+			char *const *env = envs.empty() ? nullptr : envs.data();
 
-			Cout() << xTRACE_VAR_2(cmds, *cmd);
-			Cout() << xTRACE_VAR_2(envs, *env);
+			/// TODO: logs - rm
+			///
+			///// std::cout << std::endl;
+			/// std::cout << xTRACE_VAR(cmds) << std::endl;
+			///// std::cout << std::endl;
+			///// for (size_t i = 0; cmd[i] != nullptr; ++ i) {
+			///// 	std::cout << std::string(cmd[i]) << "    ";
+			///// }
+			///// std::cout << std::endl;
+			/// std::cout << xTRACE_VAR_2(envs, *env) << std::endl;
+			///// std::cout << std::endl;
 
 			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmd, env);
 			xTEST_DIFF(status, - 1);
