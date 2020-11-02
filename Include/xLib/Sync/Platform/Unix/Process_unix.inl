@@ -119,7 +119,10 @@ Process::_create_impl(
 			}
 
 		#if 1
-			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmds.data(), envs.data());
+			char *const *argv = cmds.empty() ? nullptr : cmds.data();
+			char *const *envp = envs.empty() ? nullptr : envs.data();
+
+			cint_t status = ::execve(xT2A(a_filePath).c_str(), argv, envp);
 			xTEST_DIFF(status, - 1);
 		#else
 			cint_t status = 0;
