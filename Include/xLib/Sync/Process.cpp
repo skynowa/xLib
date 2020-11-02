@@ -70,6 +70,24 @@ Process::create(
     xTEST_NA(out_stdOut);
     xTEST_NA(out_stdError);
 
+	{
+	#if 0
+		out_stdError = 10;
+
+		int i = 10;
+		memset(i, i, 0);
+		memset(0, i, 0);
+		std::fclose(*i);
+		std::cout < (i / 0) << std::endl;
+
+		char *c = new char[10];
+		std::cout < *c << std::endl;
+
+		c = nullptr;
+		std::cout < *c << std::endl;
+	#endif
+	}
+
 	xCHECK_DO(!FileInfo(a_filePath).isExists(),
 		Cout() << xTRACE_VAR(a_filePath) << xT(" not exists"); return);
 	xCHECK_DO(!FileType(a_filePath).isExecutable(),
