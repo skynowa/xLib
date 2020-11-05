@@ -130,7 +130,7 @@ Test_Environment::unit()
         }
     }
 
-    xTEST_CASE("deleteVar")
+    xTEST_CASE("removeVar")
     {
         std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
@@ -141,7 +141,7 @@ Test_Environment::unit()
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             Environment env(sData[i][0]);
-            env.deleteVar();
+            env.removeVar();
         }
     }
 

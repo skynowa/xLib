@@ -60,7 +60,7 @@ Environment::_setVar_impl(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::_deleteVar_impl() const
+Environment::_removeVar_impl() const
 {
     BOOL blRv = ::SetEnvironmentVariable(_varName.c_str(), nullptr);
     xTEST_DIFF(blRv, FALSE);

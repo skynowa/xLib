@@ -48,7 +48,7 @@ Environment::_setVar_impl(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::_deleteVar_impl() const
+Environment::_removeVar_impl() const
 {
 #if   xENV_LINUX
     int_t iRv = ::unsetenv(xT2A(_varName).c_str());

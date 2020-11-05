@@ -65,11 +65,11 @@ Environment::setVar(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::deleteVar() const
+Environment::removeVar() const
 {
     xCHECK_DO(!isExists(), return);
 
-    _deleteVar_impl();
+    _removeVar_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
