@@ -78,15 +78,15 @@ Environment::_values_impl(
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-Environment::_expandStrings_impl(
-    std::ctstring_t &a_varName
+Environment::_expandVars_impl(
+    std::ctstring_t &a_strWithVars
 )
 {
     std::tstring_t sRv;
 
     std::ctstring_t sep = xT("%");
 
-    sRv = a_varName;
+    sRv = a_strWithVars;
 
     for ( ; ; ) {
         // find from left two first chars '%'

@@ -94,7 +94,7 @@ ProcessInfo::_commandLine_impl(
         const Process::id_t ntoskrnlId {4UL};  // MAGIC: ntoskrnlId
 
         if (_id == ntoskrnlId) {
-            sRv = Environment::expandStrings(xT("%SystemRoot%\\System32\\ntoskrnl.exe"));
+            sRv = Environment::expandVars(xT("%SystemRoot%\\System32\\ntoskrnl.exe"));
             String::split(sRv, Const::space(), &args);
 
             // out
