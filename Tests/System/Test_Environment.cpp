@@ -107,7 +107,7 @@ Test_Environment::unit()
         xTEST_EQ(false, m_vsRv.empty());
     }
 
-    xTEST_CASE("expandStrings")
+    xTEST_CASE("expandVars")
     {
     #if   xENV_WIN
         std::ctstring_t sData[][2] = {
@@ -124,7 +124,7 @@ Test_Environment::unit()
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring_t sStr1 = Environment::expandStrings(sData[i][0]);
+            std::tstring_t sStr1 = Environment::expandVars(sData[i][0]);
             std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(true, StringCI::compare(sStr1, sStr2));
         }

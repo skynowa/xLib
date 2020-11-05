@@ -107,11 +107,11 @@ Environment::values(
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-Environment::expandStrings(
-    std::ctstring_t &a_varName
+Environment::expandVars(
+    std::ctstring_t &a_strWithVars
 )
 {
-    return _expandStrings_impl(a_varName);
+    return _expandVars_impl(a_strWithVars);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

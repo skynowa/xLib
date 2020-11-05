@@ -41,7 +41,7 @@ xPUBLIC_STATIC:
     void_t         values(std::vec_tstring_t *values);
         ///< get all values
     static
-    std::tstring_t expandStrings(std::ctstring_t &varName);
+    std::tstring_t expandVars(std::ctstring_t &strWithVars);
         ///< expands strings by separator "%"
     static
     void_t         varPath(std::vec_tstring_t *dirPaths);
@@ -76,7 +76,7 @@ xPLATFORM_IMPL:
     static
     void_t         _values_impl(std::vec_tstring_t *values);
     static
-    std::tstring_t _expandStrings_impl(std::ctstring_t &varName);
+    std::tstring_t _expandVars_impl(std::ctstring_t &strWithVars);
 };
 
 } // namespace
