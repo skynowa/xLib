@@ -30,7 +30,7 @@ public:
         ///< get value by name
     void_t         setVar(std::ctstring_t &value) const;
         ///< set or change value by name
-    void_t         deleteVar() const;
+    void_t         removeVar() const;
         ///< delete var
 
 xPUBLIC_STATIC:
@@ -71,7 +71,7 @@ xPLATFORM_IMPL:
     bool_t         _isExists_impl() const;
     std::tstring_t _var_impl() const;
     void_t         _setVar_impl(std::ctstring_t &value) const;
-    void_t         _deleteVar_impl() const;
+    void_t         _removeVar_impl() const;
 
     static
     void_t         _values_impl(std::vec_tstring_t *values);
