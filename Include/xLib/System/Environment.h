@@ -62,9 +62,9 @@ private:
 
     std::ctstring_t _varName;
 
-    bool_t         _isVarValid() const;
+    bool_t _isVarValid() const;
         ///< is valid environment variable name
-    bool_t         _isValueValid(std::ctstring_t &varValue) const;
+    bool_t _isValueValid(std::ctstring_t &varValue) const;
         ///< is valid environment variable value
 
 xPLATFORM_IMPL:
