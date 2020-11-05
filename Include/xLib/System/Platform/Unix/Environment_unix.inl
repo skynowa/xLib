@@ -82,29 +82,23 @@ Environment::_expandVars_impl(
     std::ctstring_t &a_strWithVars
 )
 {
-    std::tstring_t sRv;
+    std::tstring_t sRv = a_strWithVars;
 
     std::ctstring_t sep = xT("%");
-
-    sRv = a_strWithVars;
 
     for ( ; ; ) {
         // find from left two first chars '%'
         std::csize_t startSepPos = sRv.find(sep);
         xCHECK_DO(startSepPos == std::tstring_t::npos, break);
 
-        std::csize_t stopSepPos  = sRv.find(sep, startSepPos + sep.size());
+        std::csize_t stopSepPos = sRv.find(sep, startSepPos + sep.size());
         xCHECK_DO(stopSepPos == std::tstring_t::npos, break);
 
         // copy %var% to temp string
-        std::tstring_t rawEnvVar; // %var%
-
-        rawEnvVar = String::cut(sRv, startSepPos, stopSepPos + sep.size());
+        std::tstring_t rawEnvVar = String::cut(sRv, startSepPos, stopSepPos + sep.size());
         xTEST_EQ(rawEnvVar.empty(), false);
 
-        std::tstring_t envVar;    // var
-
-        envVar = String::trimChars(rawEnvVar, sep);
+        std::tstring_t envVar = String::trimChars(rawEnvVar, sep);
 
         // expand var to temp string
         std::ctstring_t &expandedEnvVar = Environment(envVar).var();
