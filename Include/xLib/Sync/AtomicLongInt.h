@@ -15,42 +15,48 @@ class AtomicLongInt
     /// atomic operations with long_t
 {
 public:
-                    AtomicLongInt() = default;
-                    AtomicLongInt(const AtomicLongInt &value);
+///@name ctors, dtor
+///@{
+			 AtomicLongInt() = default;
+			 AtomicLongInt(const AtomicLongInt &value);
 
-    virtual        ~AtomicLongInt() = default;
+	virtual ~AtomicLongInt() = default;
+///@}
 
-    AtomicLongInt & operator += (const AtomicLongInt &value);
-    AtomicLongInt & operator += (clong_t &right);
+///@name operators
+///@{
+	AtomicLongInt & operator += (const AtomicLongInt &value);
+	AtomicLongInt & operator += (clong_t &right);
 
-    AtomicLongInt & operator -= (const AtomicLongInt &value);
-    AtomicLongInt & operator -= (clong_t &right);
+	AtomicLongInt & operator -= (const AtomicLongInt &value);
+	AtomicLongInt & operator -= (clong_t &right);
 
-    AtomicLongInt & operator = (const AtomicLongInt &value);
-    AtomicLongInt & operator = (clong_t &right);
+	AtomicLongInt & operator = (const AtomicLongInt &value);
+	AtomicLongInt & operator = (clong_t &right);
 
-    bool_t          operator == (const AtomicLongInt &value) const;
-    bool_t          operator == (clong_t &right) const;
+	bool_t          operator == (const AtomicLongInt &value) const;
+	bool_t          operator == (clong_t &right) const;
 
-    bool_t          operator != (const AtomicLongInt &value) const;
-    bool_t          operator != (clong_t &right) const;
+	bool_t          operator != (const AtomicLongInt &value) const;
+	bool_t          operator != (clong_t &right) const;
 
-    bool_t          operator < (clong_t &value) const;
-    bool_t          operator < (const AtomicLongInt &value) const;
+	bool_t          operator < (clong_t &value) const;
+	bool_t          operator < (const AtomicLongInt &value) const;
 
-    bool_t          operator <= (clong_t &value) const;
-    bool_t          operator <= (const AtomicLongInt &value) const;
+	bool_t          operator <= (clong_t &value) const;
+	bool_t          operator <= (const AtomicLongInt &value) const;
 
-    bool_t          operator > (clong_t &value) const;
-    bool_t          operator > (const AtomicLongInt &value) const;
+	bool_t          operator > (clong_t &value) const;
+	bool_t          operator > (const AtomicLongInt &value) const;
 
-    bool_t          operator >= (clong_t &value) const;
-    bool_t          operator >= (const AtomicLongInt &value) const;
+	bool_t          operator >= (clong_t &value) const;
+	bool_t          operator >= (const AtomicLongInt &value) const;
 
-    AtomicLongInt & operator ++ (cint_t value);
-    AtomicLongInt & operator -- (cint_t value);
+	AtomicLongInt & operator ++ (cint_t value);
+	AtomicLongInt & operator -- (cint_t value);
+///@}
 
-    long_t          value() const;
+    long_t value() const;
 
 private:
     volatile long_t _value {};

@@ -17,10 +17,13 @@ class OStream
     ///< print string
 {
 public:
-                   OStream() = default;
-    virtual       ~OStream() = default;
+///@name ctors, dtor
+///@{
+				   OStream() = default;
+	virtual       ~OStream() = default;
 
-    xNO_COPY_ASSIGN(OStream)
+	xNO_COPY_ASSIGN(OStream)
+///@}
 
     std::tstring_t str() const;
     void_t         str(std::ctstring_t &value);
@@ -178,13 +181,16 @@ class Cout :
     /// print std::cout
 {
 public:
-    Cout() = default;
+///@name ctors, dtor
+///@{
+	Cout() = default;
    ~Cout() override
-    {
-        std::tcout << std::endl;
-    }
+	{
+		std::tcout << std::endl;
+	}
 
-    xNO_COPY_ASSIGN(Cout)
+	xNO_COPY_ASSIGN(Cout)
+///@}
 
 	template<typename T>
 	Cout & operator << (const T a_value)

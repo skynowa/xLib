@@ -20,8 +20,13 @@ public:
     using on_exit_t = void_t (*)();
         ///< exit handler type
 
-             Signal() = default;
-    virtual ~Signal() = default;
+///@name ctors, dtor
+///@{
+			 Signal() = default;
+	virtual ~Signal() = default;
+
+	xNO_COPY_ASSIGN(Signal)
+///@}
 
     std::sig_atomic_t state() const;
         ///< get state flag
@@ -56,8 +61,6 @@ public:
         ///< string describing signal code
 
 private:
-    xNO_COPY_ASSIGN(Signal)
-
     volatile
     std::sig_atomic_t _state {};
         ///< Integral type of an object that can be accessed as an atomic entity,

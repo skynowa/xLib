@@ -17,15 +17,22 @@ class xNO_VTABLE IOStream
 	/// ostream interface
 {
 public:
-                     IOStream() = default;
-    virtual         ~IOStream() = default;
+///@name ctors, dtor
+///@{
+			 IOStream() = default;
+	virtual ~IOStream() = default;
+///@}
 
 	virtual StreamT &print(StreamT& os) const = 0;
 		///< print
+
+///@name operators
+///@{
 	friend StreamT& operator << (StreamT &a_os, const IOStream &a_ios)
 	{
 		return a_ios.print(a_os);
 	}
+///@}
 };
 
 } // namespace

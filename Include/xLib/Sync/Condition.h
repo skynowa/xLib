@@ -15,8 +15,13 @@ class Condition
     /// condition variable
 {
 public:
-                            Condition() = default;
-    virtual                ~Condition();
+///@name ctors, dtor
+///@{
+			 Condition() = default;
+	virtual ~Condition();
+
+	xNO_COPY_ASSIGN(Condition)
+///@}
 
 #if !xENV_WIN
     const pthread_mutex_t & mutex() const;
@@ -36,18 +41,16 @@ public:
 
 private:
 #if !xENV_WIN
-    pthread_mutex_t         _mutex {};
-    pthread_cond_t          _handle {};
+    pthread_mutex_t _mutex {};
+    pthread_cond_t  _handle {};
 #endif
 
-    xNO_COPY_ASSIGN(Condition)
-
 xPLATFORM_IMPL:
-    void_t                  _destruct_impl();
-    void_t                  _create_impl();
-    void_t                  _wait_impl(culong_t &timeoutMs);
-    void_t                  _signal_impl();
-    void_t                  _broadcast_impl();
+    void_t _destruct_impl();
+    void_t _create_impl();
+    void_t _wait_impl(culong_t &timeoutMs);
+    void_t _signal_impl();
+    void_t _broadcast_impl();
 };
 
 } // namespace

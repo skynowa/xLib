@@ -23,6 +23,12 @@ class Enum
     /// Enumeration
 {
 public:
+///@name ctors, dtor
+///@{
+	xNO_DEFAULT_CONSTRUCT(Enum)
+	xNO_COPY_ASSIGN(Enum)
+///@}
+
     template<typename T>
     static
     std::tstring_t str(const T &value);
@@ -54,10 +60,6 @@ public:
 
     // TODO: toPrintable
     // TODO: fromPrintable
-
-private:
-    xNO_DEFAULT_CONSTRUCT(Enum)
-    xNO_COPY_ASSIGN(Enum)
 };
 
 } // namespace

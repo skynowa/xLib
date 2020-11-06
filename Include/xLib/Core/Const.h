@@ -15,6 +15,12 @@ class Const
     /// constants
 {
 public:
+///@name ctors, dtor
+///@{
+	xNO_DEFAULT_CONSTRUCT(Const)
+	xNO_COPY_ASSIGN(Const)
+///@}
+
     // strEmpty
     static
     std::cstring_t &  strEmptyA();
@@ -311,12 +317,6 @@ public:
     static
     std::ctstring_t & strUnknown();
         ///< unknown string value (ansi or unicode)
-
-private:
-                      Const();
-    virtual          ~Const();
-
-    xNO_COPY_ASSIGN(Const)
 };
 
 } // namespace

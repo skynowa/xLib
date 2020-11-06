@@ -16,7 +16,11 @@ class FormatC
     ///< format string in C style
 {
 public:
+///@name ctors, dtor
+///@{
 	xNO_DEFAULT_CONSTRUCT(FormatC);
+	xNO_COPY_ASSIGN(FormatC);
+///@}
 
     static std::tstring_t str(cptr_ctchar_t format, ...);
     static std::tstring_t strV(cptr_ctchar_t format, va_list args);

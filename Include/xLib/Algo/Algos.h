@@ -15,8 +15,11 @@ class Algos
     ///< Algorithms
 {
 public:
+///@name ctors, dtor
+///@{
 	xNO_DEFAULT_CONSTRUCT(Algos)
 	xNO_COPY_ASSIGN(Algos)
+///@}
 
 ///@name Common
 ///@{

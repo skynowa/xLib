@@ -36,9 +36,14 @@ public:
 	#endif
     };
 
+///@name ctors, dtor
+///@{
+			 Event(cbool_t &isAutoReset, cbool_t &isSignaled);
+	virtual ~Event();
 
-                     Event(cbool_t &isAutoReset, cbool_t &isSignaled);
-    virtual         ~Event();
+	xNO_DEFAULT_CONSTRUCT(Event)
+	xNO_COPY_ASSIGN(Event)
+///@}
 
     const handle_t & handle() const;
         ///< get handle
@@ -65,8 +70,6 @@ private:
 
     cbool_t          _isAutoReset {};   ///< auto-reset flag
     cbool_t          _initState {};     ///< initial state
-
-    xNO_COPY_ASSIGN(Event)
 
 xPLATFORM_IMPL:
     void_t           _dectruct_impl();

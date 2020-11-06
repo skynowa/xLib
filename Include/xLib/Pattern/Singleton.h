@@ -16,6 +16,12 @@ class Singleton
     /// singleton
 {
 public:
+///@name ctors, dtor
+///@{
+	xNO_DEFAULT_CONSTRUCT(Singleton)
+	xNO_COPY_ASSIGN(Singleton)
+///@}
+
     static T &get()
         ///< get object instance
     {
@@ -23,10 +29,6 @@ public:
 
         return object;
     }
-
-private:
-    xNO_DEFAULT_CONSTRUCT(Singleton)
-    xNO_COPY_ASSIGN(Singleton)
 };
 
 } // namespace

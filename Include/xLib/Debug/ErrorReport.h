@@ -44,7 +44,7 @@ public:
     virtual ~ErrorReport() = default;
 
 	xNO_DEFAULT_CONSTRUCT(ErrorReport)
-	/// xNO_COPY_ASSIGN(ErrorReport)
+    xNO_COPY_ASSIGN(ErrorReport)
 ///@}
 
     Type           type() const;
@@ -77,15 +77,13 @@ private:
     // comment
     std::tstring_t _comment;          ///< comment
 
-    void_t         _construct(cType type, const SourceInfo &sourceInfo,
-                       std::ctstring_t &var1, std::ctstring_t &var2, std::ctstring_t &var1Value,
-                       std::ctstring_t &var2Value, std::ctstring_t &exprSign, culong_t &nativeError,
-                       std::ctstring_t &stackTrace, std::ctstring_t &comment);
+    void_t _construct(cType type, const SourceInfo &sourceInfo,
+                std::ctstring_t &var1, std::ctstring_t &var2, std::ctstring_t &var1Value,
+                std::ctstring_t &var2Value, std::ctstring_t &exprSign, culong_t &nativeError,
+                std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< initiate class members
-    void_t         _initPlain();
+    void_t _initPlain();
         ///< initiate plain report
-
-    xNO_COPY_ASSIGN(ErrorReport)
 };
 
 } // namespace

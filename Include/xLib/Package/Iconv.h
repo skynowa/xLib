@@ -17,25 +17,28 @@ class Iconv
     /// Perform character set conversion
 {
 public:
-             Iconv(std::ctstring_t &charsetIn, std::ctstring_t &charsetOut,
-                 std::csize_t buffSize = 1024, cbool_t isSkipErrors = false,
-                 cbool_t isForceEncoding = false);
-    virtual ~Iconv();
+///@name ctors, dtor
+///@{
+			 Iconv(std::ctstring_t &charsetIn, std::ctstring_t &charsetOut,
+				std::csize_t buffSize = 1024, cbool_t isSkipErrors = false,
+				cbool_t isForceEncoding = false);
+	virtual ~Iconv();
 
-    void     convert(std::ctstring_t &input, std::tstring_t *output) const;
+    xNO_DEFAULT_CONSTRUCT(Iconv);
+    xNO_COPY_ASSIGN(Iconv)
+///@}
+
+    void convert(std::ctstring_t &input, std::tstring_t *output) const;
     	///< convert string
 
 private:
-    xNO_DEFAULT_CONSTRUCT(Iconv);
-    xNO_COPY_ASSIGN(Iconv)
-
 	std::csize_t _buffSize {};
 	cbool_t      _isSkipErrors {};
     cbool_t      _isSkipEncoding {};
 
 	iconv_t      _iconv {};
 
-	void     _checkError() const;
+	void_t _checkError() const;
 };
 
 } // namespace

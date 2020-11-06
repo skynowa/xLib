@@ -113,14 +113,31 @@ xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvFindDir,       xFIND_DIR_HANDLE_
 xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvSocket,        xSOCKET_HANDLE_INVALID);
 
 using HandleNative        = Handle<native_handle_t,   HandlePolicyType::hvNative>;
+xUSING_CONST(HandleNative);
+
 using HandleNativeInvalid = Handle<native_handle_t,   HandlePolicyType::hvNativeInvalid>;
+xUSING_CONST(HandleNativeInvalid);
+
 using HandleDll           = Handle<dll_handle_t,      HandlePolicyType::hvDll>;
+xUSING_CONST(HandleDll);
+
 using HandleStdFile       = Handle<FILE *,            HandlePolicyType::hvStdFile>;
+xUSING_CONST(HandleStdFile);
+
 using HandleMySqlConn     = Handle<MYSQL *,           HandlePolicyType::hvMySqlConn>;
+xUSING_CONST(HandleMySqlConn);
+
 using HandleMySqlResult   = Handle<MYSQL_RES *,       HandlePolicyType::hvMySqlResult>;
+xUSING_CONST(HandleMySqlResult);
+
 using HandleCurl          = Handle<CURL *,            HandlePolicyType::hvCurl>;
+xUSING_CONST(HandleCurl);
+
 using HandleFindDir       = Handle<find_dir_handle_t, HandlePolicyType::hvFindDir>;
+xUSING_CONST(HandleFindDir);
+
 using HandleSocket        = Handle<socket_t,          HandlePolicyType::hvSocket>;
+xUSING_CONST(HandleSocket);
 //-------------------------------------------------------------------------------------------------
 } // namespace
 //-------------------------------------------------------------------------------------------------

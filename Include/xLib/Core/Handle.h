@@ -35,13 +35,19 @@ class Handle :
     /// handle
 {
 public:
-                Handle();
-    explicit    Handle(const T &handle);
-    explicit    Handle(const Handle &handle);
-    virtual    ~Handle();
+///@name ctors, dtor
+///@{
+				Handle();
+	explicit    Handle(const T &handle);
+	explicit    Handle(const Handle &handle);
+	virtual    ~Handle();
+///@}
 
-    Handle &    operator = (const T &handle);
-    Handle &    operator = (const Handle &handle);
+///@name operators
+///@{
+	Handle &    operator = (const T &handle);
+	Handle &    operator = (const Handle &handle);
+///@}
 
     static
     T           null();

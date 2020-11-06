@@ -19,10 +19,13 @@ class PrivatBankApi
 	/// PrivaBank API
 {
 public:
+///@name ctors, dtor
+///@{
 			 PrivatBankApi();
-		///< constructor
 	virtual ~PrivatBankApi();
-		///< destructor
+
+	xNO_COPY_ASSIGN(PrivatBankApi)
+///@}
 
 	using exchange_rate_t  = std::map<std::tstring_t, std::map<std::tstring_t, std::map_tstring_t>>;
 	using exchange_rates_t = std::vector<exchange_rate_t>;
@@ -38,8 +41,6 @@ private:
 	void_t _parseExchangeRatesArchive(std::ctstring_t &date, std::ctstring_t &response,
 				exchange_rate_t *data) const;
 		///< parse response
-
-	xNO_COPY_ASSIGN(PrivatBankApi)
 };
 
 } // namespace

@@ -15,10 +15,13 @@ class User
     ///< user info
 {
 public:
-                   User() = default;
-    virtual       ~User() = default;
+///@name ctors, dtor
+///@{
+			 User() = default;
+	virtual ~User() = default;
 
-    xNO_COPY_ASSIGN(User)
+	xNO_COPY_ASSIGN(User)
+///@}
 
     uint_t         id() const;
         ///< It is account of owner of this process. It defines which files that this process

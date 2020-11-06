@@ -15,8 +15,11 @@ class StdError
     /// standard C library last error
 {
 public:
+///@name ctors, dtor
+///@{
 	xNO_DEFAULT_CONSTRUCT(StdError)
 	xNO_COPY_ASSIGN(StdError)
+///@}
 
     static
     bool_t         isSuccess();
@@ -39,7 +42,7 @@ public:
 
 private:
     static
-    int_t          _stdCodeSuccess();
+    int_t _stdCodeSuccess();
         ///< native success code
 
 xPLATFORM_IMPL:

@@ -16,8 +16,13 @@ class FeatureFlag
     /// Feature flag / toggle
 {
 public:
-             FeatureFlag() = default;
-    virtual ~FeatureFlag() = default;
+///@name ctors, dtor
+///@{
+			 FeatureFlag() = default;
+	virtual ~FeatureFlag() = default;
+
+	xNO_COPY_ASSIGN(FeatureFlag)
+///@}
 
 	xPROPERTY(std::tstring_t, name, Name);
 	xPROPERTY(std::tstring_t, description, Description);
@@ -36,8 +41,6 @@ public:
 private:
 	DateTime _start; ///<
 	DateTime _stop;  ///<
-
-    xNO_COPY_ASSIGN(FeatureFlag)
 };
 
 } // namespace

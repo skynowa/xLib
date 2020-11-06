@@ -17,8 +17,13 @@ class TcpServer :
     /// server socket
 {
 public:
-             TcpServer() = default;
-    virtual ~TcpServer() = default;
+///@name ctors, dtor
+///@{
+			 TcpServer() = default;
+	virtual ~TcpServer() = default;
+
+    xNO_COPY_ASSIGN(TcpServer)
+///@}
 
     void_t   bind(cushort_t &port) const;
         ///< associates a local address with a socket
@@ -28,9 +33,7 @@ public:
         ///< permits an incoming connection attempt on a socket
 
 protected:
-    timeval  _timeout {};  ///< timeout
-
-    xNO_COPY_ASSIGN(TcpServer)
+    timeval _timeout {};  ///< timeout
 };
 
 } // namespace

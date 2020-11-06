@@ -16,31 +16,34 @@ class Raii
     ///< RAII
 {
 public:
-    explicit Raii(T &a_object) :
-        _object(a_object)
-    {
-    }
+///@name ctors, dtor
+///@{
+	explicit Raii(T &a_object) :
+		_object(a_object)
+	{
+	}
 
    ~Raii()
-    {
-        (_object.*MemberT)();
-    }
+	{
+		(_object.*MemberT)();
+	}
 
-    T& get()
+    xNO_COPY_ASSIGN(Raii)
+///@}
+
+    T &get()
     {
         return _object;
     }
         ///< get object
-    const T& get() const
+    const T &get() const
     {
         return _object;
     }
         ///< get object
 
 private:
-    T& _object;
-
-    xNO_COPY_ASSIGN(Raii)
+    T &_object;
 };
 
 } // namespace

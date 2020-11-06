@@ -25,8 +25,13 @@ class SourceInfo
     ///< Source info
 {
 public:
-    explicit          SourceInfo(cSourceInfoData &data);
-    virtual          ~SourceInfo() = default;
+///@name ctors, dtor
+///@{
+	explicit  SourceInfo(cSourceInfoData &data);
+	virtual  ~SourceInfo() = default;
+
+	xNO_COPY_ASSIGN(SourceInfo)
+///@}
 
     cSourceInfoData & data() const;
         ///< data
@@ -36,9 +41,7 @@ public:
         ///< format as file and line
 
 private:
-    cSourceInfoData   _data; ///< data
-
-    xNO_COPY_ASSIGN(SourceInfo)
+    cSourceInfoData _data; ///< data
 };
 
 } // namespace

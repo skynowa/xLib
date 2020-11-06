@@ -72,7 +72,7 @@ Iconv::~Iconv()
 	Utils::freeT(_iconv, ::iconv_close, ::iconvError);
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 Iconv::convert(
 	std::ctstring_t &a_input,	///<
 	std::tstring_t  *a_output	///< [out]

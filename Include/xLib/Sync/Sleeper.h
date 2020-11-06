@@ -16,20 +16,23 @@ class Sleeper
     /// sleeper
 {
 public:
-             Sleeper();
-    virtual ~Sleeper() = default;
+///@name ctors, dtor
+///@{
+			 Sleeper();
+	virtual ~Sleeper() = default;
 
-    void_t   sleep(culong_t &timeoutMsec);
+	xNO_COPY_ASSIGN(Sleeper)
+///@}
+
+    void_t sleep(culong_t &timeoutMsec);
         ///< sleep
-    void_t   wakeUp();
+    void_t wakeUp();
         ///< wake up
-    bool_t   isSleeping() const;
+    bool_t isSleeping() const;
         ///< check for sleeping
 
 private:
-    Event  _event;    ///< event object
-
-    xNO_COPY_ASSIGN(Sleeper)
+    Event _event;    ///< event object
 };
 
 } // namespace

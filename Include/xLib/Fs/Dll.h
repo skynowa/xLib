@@ -42,7 +42,7 @@ public:
         ///< close
 
 private:
-    HandleDll      _handle;   ///< dll module handle
+    HandleDll _handle;   ///< dll module handle
 
 xPLATFORM_IMPL:
     void_t         _load_impl(std::ctstring_t &dllPath);

@@ -25,8 +25,14 @@ class XmlDoc :
 	public xl::interface::ILastError<int_t>
 {
 public:
-	explicit       XmlDoc(std::ctstring_t &charset);
-	virtual       ~XmlDoc();
+///@name ctors, dtor
+///@{
+	explicit  XmlDoc(std::ctstring_t &charset);
+	virtual  ~XmlDoc();
+
+	xNO_DEFAULT_CONSTRUCT(XmlDoc);
+	xNO_COPY_ASSIGN(XmlDoc);
+///@}
 
     int_t          lastError() const override;
     std::tstring_t lastErrorStr() const override;
@@ -45,21 +51,18 @@ public:
 	bool_t         isValidLight(std::ctstring_t &str);
 		///< quick check string if XML document
 
-	xNO_DEFAULT_CONSTRUCT(XmlDoc);
-	xNO_COPY_ASSIGN(XmlDoc);
-
 protected:
-	xmlDocPtr      _doc {};
-	Iconv          _iconv;
+	xmlDocPtr          _doc {};
+	Iconv              _iconv;
 	std::map_tstring_t _nss;
 
-	void           _registerNss(xmlXPathContextPtr ctx) const;
-	void           _stringNoNs(std::tstring_t *str) const;
-	void           _close();
+	void _registerNss(xmlXPathContextPtr ctx) const;
+	void _stringNoNs(std::tstring_t *str) const;
+	void _close();
 
 private:
 	static
-	void           _onError(void *ctx, xmlErrorPtr error);
+	void _onError(void *ctx, xmlErrorPtr error);
 
 	friend class XmlNode;
 };
@@ -67,12 +70,18 @@ private:
 class XmlNode
 {
 public:
-                   XmlNode() = default;
-				   XmlNode(XmlDoc *xmlDoc, xmlNodePtr node);
-				   XmlNode(const XmlNode &xmlNode);
-	virtual       ~XmlNode() = default;
+///@name ctors, dtor
+///@{
+			 XmlNode() = default;
+			 XmlNode(XmlDoc *xmlDoc, xmlNodePtr node);
+			 XmlNode(const XmlNode &xmlNode);
+	virtual ~XmlNode() = default;
+///@}
 
-    XmlNode       &operator = (const XmlNode &xmlNode);
+///@name operators
+///@{
+	XmlNode &operator = (const XmlNode &xmlNode);
+///@}
 
 	std::tstring_t name() const;
 	std::tstring_t text() const;

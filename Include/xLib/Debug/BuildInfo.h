@@ -15,8 +15,13 @@ class BuildInfo
     ///< build information
 {
 public:
-                   BuildInfo() = default;
-    virtual       ~BuildInfo() = default;
+///@name ctors, dtor
+///@{
+			 BuildInfo() = default;
+	virtual ~BuildInfo() = default;
+
+	xNO_COPY_ASSIGN(BuildInfo)
+///@}
 
     bool_t         isRelease() const;
         ///< is debug build (is NDEBUG macros is don't set)
@@ -54,9 +59,6 @@ public:
         ///< build type
     std::tstring_t cmake() const;
         ///< cmake
-
-private:
-    xNO_COPY_ASSIGN(BuildInfo)
 };
 
 } // namespace

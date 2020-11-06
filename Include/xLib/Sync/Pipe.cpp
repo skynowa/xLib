@@ -31,19 +31,19 @@ Pipe::~Pipe()
 	close();
 }
 //-------------------------------------------------------------------------------------------------
-const HandleNative &
+cHandleNative &
 Pipe::handle() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-const int_t &
+cint_t &
 Pipe::handleRead() const
 {
     return _handles[FdIndex::Read];
 }
 //-------------------------------------------------------------------------------------------------
-const int_t &
+cint_t &
 Pipe::handleWrite() const
 {
     return _handles[FdIndex::Write];

@@ -15,8 +15,13 @@ class ThreadStorage
     /// thread local storage
 {
 public:
-             ThreadStorage();
-    virtual ~ThreadStorage();
+///@name ctors, dtor
+///@{
+			 ThreadStorage();
+	virtual ~ThreadStorage();
+
+	xNO_COPY_ASSIGN(ThreadStorage)
+///@}
 
     bool_t   isValid() const;
         ///< is valid
@@ -40,8 +45,6 @@ private:
     index_t _index {static_cast<index_t>( - 1 )};
 #endif
         ///< thread storage index
-
-    xNO_COPY_ASSIGN(ThreadStorage)
 
 xPLATFORM_IMPL:
     index_t  _indexInvalid_impl() const;

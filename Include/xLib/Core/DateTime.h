@@ -17,7 +17,11 @@ class DateTimeValidator
 	///< DateTime validator
 {
 public:
+///@name ctors, dtor
+///@{
 	xNO_DEFAULT_CONSTRUCT(DateTimeValidator);
+	xNO_COPY_ASSIGN(DateTimeValidator);
+///@}
 
 	static
 	bool_t year(cint_t &year);
@@ -55,15 +59,17 @@ class DateTime
     /// date, time
 {
 public:
-    // constructors, destructor
-                    DateTime();
-                    DateTime(const DateTime &datetime);
-    explicit        DateTime(culonglong_t &msec);
-                    DateTime(cint_t &hour, cint_t &minute, cint_t &second, cint_t &msec);
-                    DateTime(cint_t &year, cint_t &month, cint_t &day);
-                    DateTime(cint_t &year, cint_t &month, cint_t &day, cint_t &hour,
-                        cint_t &minute, cint_t &second, cint_t &msec);
-    virtual        ~DateTime() {}
+///@name ctors, dtor
+///@{
+			 DateTime();
+	explicit DateTime(const DateTime &datetime);
+	explicit DateTime(culonglong_t &msec);
+			 DateTime(cint_t &hour, cint_t &minute, cint_t &second, cint_t &msec);
+			 DateTime(cint_t &year, cint_t &month, cint_t &day);
+			 DateTime(cint_t &year, cint_t &month, cint_t &day, cint_t &hour, cint_t &minute,
+				cint_t &second, cint_t &msec);
+	virtual ~DateTime() {}
+///@}
 
     // comparison operators
     bool_t          operator == (const DateTime &datetime) const;
@@ -107,8 +113,7 @@ public:
 #endif
 
     // formatting
-    std::tstring_t  format(std::ctstring_t &format, std::ctstring_t &formatMsec = xT(".%03d")) const
-                      ;
+    std::tstring_t  format(std::ctstring_t &format, std::ctstring_t &formatMsec = xT(".%03d")) const;
         ///< formatting
 
 xPUBLIC_STATIC:

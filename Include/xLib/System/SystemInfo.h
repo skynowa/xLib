@@ -61,8 +61,13 @@ public:
     };
     xUSING_CONST(CpuVendor);
 
-                   SystemInfo() = default;
-    virtual       ~SystemInfo() = default;
+///@name ctors, dtor
+///@{
+			 SystemInfo() = default;
+	virtual ~SystemInfo() = default;
+
+	xNO_COPY_ASSIGN(SystemInfo)
+///@}
 
     // OS
     OsType         os();
@@ -120,10 +125,8 @@ public:
 #endif
 
 private:
-    OsType         _osType {};
-    OsArch         _osArch {};
-
-    xNO_COPY_ASSIGN(SystemInfo)
+    OsType _osType {};
+    OsArch _osArch {};
 
 xPLATFORM_IMPL:
     // OS

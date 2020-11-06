@@ -15,8 +15,13 @@ class Locale
     /// locale
 {
 public:
-                  Locale() = default;
-   virtual       ~Locale() = default;
+///@name ctors, dtor
+///@{
+			Locale() = default;
+   virtual ~Locale() = default;
+
+   xNO_COPY_ASSIGN(Locale)
+///@}
 
    std::tstring_t current() const;
           ///< get current
@@ -24,9 +29,6 @@ public:
              ///< set current
    void_t         setDefault() const;
              ///< set default
-
-private:
-    xNO_COPY_ASSIGN(Locale)
 
 xPLATFORM_IMPL:
     std::tstring_t _current_impl() const;

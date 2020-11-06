@@ -21,8 +21,13 @@ class Pop3Client
     /// POP3 (RFC 2821)
 {
 public:
-                      Pop3Client() = default;
-                     ~Pop3Client();
+///@name ctors, dtor
+///@{
+	Pop3Client() = default;
+ 	~Pop3Client();
+
+ 	xNO_COPY_ASSIGN(Pop3Client)
+///@}
 
     void_t            create(std::ctstring_t &user, std::ctstring_t &password,
                           std::ctstring_t &server, ushort_t port);
@@ -61,8 +66,6 @@ private:
     bool_t            _isError(std::ctstring_t &text);
     std::size_t       _mailsSum(std::ctstring_t &serverAnswer);
     std::size_t       _mailsSize(std::ctstring_t &serverAnswer);
-
-    xNO_COPY_ASSIGN(Pop3Client)
 };
 
 } // namespace

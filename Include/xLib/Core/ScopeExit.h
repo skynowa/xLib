@@ -15,6 +15,8 @@ class ScopeExit
 	/// Scope exit
 {
 public:
+///@name ctors, dtor
+///@{
 	explicit
 	ScopeExit(std::function<void()> a_functor) :
 		_functor(a_functor)
@@ -25,6 +27,7 @@ public:
 	{
 		_functor();
 	}
+///@}
 
 private:
 	std::function<void()> _functor;

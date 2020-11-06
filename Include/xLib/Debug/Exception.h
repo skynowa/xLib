@@ -15,16 +15,25 @@ class Exception
     /// exception
 {
 public:
-                      Exception() = default;
-    virtual          ~Exception() = default;
+///@name ctors, dtor
+///@{
+			 Exception() = default;
+	virtual ~Exception() = default;
+
+	// TODO: xNO_COPY_ASSIGN(Exception);
+///@}
+
+///@name operators
+///@{
+	template<typename T>
+	Exception & operator << (const T &msgT);
+///@}
 
     std::ctstring_t & what() const;
         ///< get message
-    template<typename T>
-    Exception &       operator << (const T &msgT);
 
 private:
-    std::tstring_t    _msgT;
+    std::tstring_t _msgT;
         ///< message
 };
 

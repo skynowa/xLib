@@ -17,8 +17,13 @@ class TcpClient :
     /// client socket
 {
 public:
-             TcpClient();
-    virtual ~TcpClient() = default;
+///@name ctors, dtor
+///@{
+			 TcpClient();
+	virtual ~TcpClient() = default;
+
+	xNO_COPY_ASSIGN(TcpClient)
+///@}
 
     void_t   connect(std::ctstring_t &ip, cushort_t &port) const;
         ///< connecting
@@ -38,8 +43,6 @@ public:
 
 protected:
     timeval  _timeout {};    ///< timeout
-
-    xNO_COPY_ASSIGN(TcpClient)
 
 xPLATFORM_IMPL:
     void_t   _setNonBlockingMode_impl(cbool_t &flag) const;

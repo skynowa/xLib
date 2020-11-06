@@ -22,8 +22,13 @@ public:
     using handle_t = sem_t *;
 #endif
 
-                     IpcMutex() = default;
-    virtual         ~IpcMutex() = default;
+///@name ctors, dtor
+///@{
+			 IpcMutex() = default;
+	virtual ~IpcMutex() = default;
+
+	xNO_COPY_ASSIGN(IpcMutex)
+///@}
 
     const handle_t & handle() const;
         ///< get handle
@@ -37,16 +42,14 @@ public:
         ///< lock
 
 private:
-    handle_t         _handle {};    ///< mutex native handle
-    std::tstring_t   _name;         ///< mutex name
-
-    xNO_COPY_ASSIGN(IpcMutex)
+    handle_t       _handle {};    ///< mutex native handle
+    std::tstring_t _name;         ///< mutex name
 
 xPLATFORM_IMPL:
-    void_t           _create_impl(std::ctstring_t &name);
-    void_t           _open_impl(std::ctstring_t &name);
-    void_t           _lock_impl(culong_t &timeoutMsec) const;
-    void_t           _unlock_impl() const;
+    void_t _create_impl(std::ctstring_t &name);
+    void_t _open_impl(std::ctstring_t &name);
+    void_t _lock_impl(culong_t &timeoutMsec) const;
+    void_t _unlock_impl() const;
 };
 
 } // namespace

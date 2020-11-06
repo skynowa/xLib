@@ -15,8 +15,13 @@ class MimeHeader
     /// MIME header (RFC 822)
 {
 public:
-                        MimeHeader();
-    virtual            ~MimeHeader() = default;
+///@name ctors, dtor
+///@{
+			 MimeHeader();
+	virtual ~MimeHeader() = default;
+
+	xNO_COPY_ASSIGN(MimeHeader)
+///@}
 
     void_t              parse(std::ctstring_t &rawHeader);
     std::tstring_t      field(std::ctstring_t &name);
@@ -52,8 +57,6 @@ private:
     // Content-Transfer-Encoding:
     // Date:
     // Message-ID:
-
-    xNO_COPY_ASSIGN(MimeHeader)
 };
 
 } // namespace

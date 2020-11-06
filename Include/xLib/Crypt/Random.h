@@ -43,8 +43,13 @@ class StdSeedPolicy :
     /// std seed policy
 {
 public:
-             StdSeedPolicy();
-    virtual ~StdSeedPolicy() = default;
+///@name ctors, dtor
+///@{
+			 StdSeedPolicy();
+	virtual ~StdSeedPolicy() = default;
+
+	xNO_COPY_ASSIGN(StdSeedPolicy)
+///@}
 
     virtual long_t next() override;
         ///< get integer in the range between 0 and RAND_MAX
@@ -59,8 +64,13 @@ class NativeSeedPolicy :
     /// native seed policy
 {
 public:
-             NativeSeedPolicy();
-    virtual ~NativeSeedPolicy();
+///@name ctors, dtor
+///@{
+			 NativeSeedPolicy();
+	virtual ~NativeSeedPolicy();
+
+	xNO_COPY_ASSIGN(NativeSeedPolicy)
+///@}
 
     virtual long_t next() override;
         ///< get long integer in the range between 0 and RAND_MAX
@@ -85,8 +95,13 @@ class Random
     /// random
 {
 public:
-             Random();
-    virtual ~Random() = default;
+///@name operators
+///@{
+			 Random();
+	virtual ~Random() = default;
+
+    xNO_COPY_ASSIGN(Random)
+///@}
 
     bool_t nextBool();
         ///< get bool_t value
@@ -103,8 +118,6 @@ public:
 private:
     const RandomValueT _randMax;
     SeedPolicyT _policy;
-
-    xNO_COPY_ASSIGN(Random)
 };
 
 using StdRandom    = Random<int_t,  StdSeedPolicy>;

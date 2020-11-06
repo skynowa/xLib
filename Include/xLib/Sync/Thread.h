@@ -49,9 +49,14 @@ public:
     using id_t     = pthread_t;	///< ID
 #endif
 
-    explicit        Thread(cbool_t &isAutoDelete);
-    // BUG: Thread:: ~Thread() - must pure virtual
-    virtual        ~Thread() /* = 0*/;
+///@name ctors, dtor
+///@{
+	explicit  Thread(cbool_t &isAutoDelete);
+	// BUG: Thread:: ~Thread() - must pure virtual
+	virtual  ~Thread() /* = 0*/;
+
+	xNO_COPY_ASSIGN(Thread)
+///@}
 
     // actions
     void_t          setTag(culong_t &tag);
@@ -213,56 +218,54 @@ private:
     static
     exit_status_t xSTDCALL _s_jobEntry(void_t *param);
         ///< callback
-    bool_t          _waitResumption();
+    bool_t _waitResumption();
         ///< waiting for reset pause
-    void_t          _clear(cuint_t &a_exitStatus);
+    void_t _clear(cuint_t &a_exitStatus);
         ///< clear class data
 
     // static
     static
-    int_t           _priorityMin();
+    int_t _priorityMin();
         ///<
     static
-    int_t           _priorityMax();
+    int_t _priorityMax();
         ///<
-
-    xNO_COPY_ASSIGN(Thread)
 
 xPLATFORM_IMPL:
-    void_t          _create_impl(cuint_t &stackSizeBytes);
-    void_t          _kill_impl(culong_t &timeoutMsec);
-    void_t          _wait_impl(culong_t &timeoutMsec) const;
-    bool_t          _isCreated_impl() const;
-    bool_t          _isRunning_impl() const;
-    bool_t          _isPaused_impl();
-    bool_t          _isExited_impl();
-    void_t          _setPriority_impl(const Priority priority) const;
-    Priority        _priority_impl() const;
-    bool_t          _isPriorityBoost_impl() const;
-    void_t          _setPriorityBoost_impl(cbool_t &isEnabled) const;
-    void_t          _setCpuAffinity_impl(cint_t &procNum) const;
-    void_t          _setCpuIdeal_impl(culong_t &idealCpu) const;
-    ulong_t         _cpuIdeal_impl() const;
-    handle_t        _handle_impl() const;
-    ulong_t         _exitStatus_impl() const;
-    void_t          _setDebugName_impl(std::ctstring_t &name) const;
+    void_t   _create_impl(cuint_t &stackSizeBytes);
+    void_t   _kill_impl(culong_t &timeoutMsec);
+    void_t   _wait_impl(culong_t &timeoutMsec) const;
+    bool_t   _isCreated_impl() const;
+    bool_t   _isRunning_impl() const;
+    bool_t   _isPaused_impl();
+    bool_t   _isExited_impl();
+    void_t   _setPriority_impl(const Priority priority) const;
+    Priority _priority_impl() const;
+    bool_t   _isPriorityBoost_impl() const;
+    void_t   _setPriorityBoost_impl(cbool_t &isEnabled) const;
+    void_t   _setCpuAffinity_impl(cint_t &procNum) const;
+    void_t   _setCpuIdeal_impl(culong_t &idealCpu) const;
+    ulong_t  _cpuIdeal_impl() const;
+    handle_t _handle_impl() const;
+    ulong_t  _exitStatus_impl() const;
+    void_t   _setDebugName_impl(std::ctstring_t &name) const;
 
     static
-    handle_t        _open_impl(culong_t &access, cbool_t &isInheritHandle, culong_t &id);
+    handle_t _open_impl(culong_t &access, cbool_t &isInheritHandle, culong_t &id);
     static
-    bool_t          _isCurrent_impl(const Thread::id_t &id);
+    bool_t   _isCurrent_impl(const Thread::id_t &id);
     static
-    id_t            _currentId_impl();
+    id_t     _currentId_impl();
     static
-    handle_t        _currentHandle_impl();
+    handle_t _currentHandle_impl();
     static
-    void_t          _currentYield_impl();
+    void_t   _currentYield_impl();
     static
-    void_t          _currentSleep_impl(culong_t &timeoutMsec);
+    void_t   _currentSleep_impl(culong_t &timeoutMsec);
     static
-    int_t           _priorityMin_impl();
+    int_t    _priorityMin_impl();
     static
-    int_t           _priorityMax_impl();
+    int_t    _priorityMax_impl();
 };
 
 } // namespace
