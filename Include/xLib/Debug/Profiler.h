@@ -49,7 +49,7 @@ private:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 
-// http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
+// TODO: http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
 
 #if xTODO
     #ifndef SYSTEM_H_INCLUDED
@@ -57,31 +57,31 @@ private:
 
     double time_in_seconds();
 
-
     // system_posix.inl:
     #include <sys/time.h>
 
-    double time_in_seconds() {
+    double time_in_seconds()
+    {
         timeval tp;
         gettimeofday(&tp,0);
         return tp.tv_sec+.000001*tp.tv_usec;
     }
 
-
     // system_standard.inl:
     #include <ctime>
 
-    double time_in_seconds() {
-      return std::clock()/(double)CLOCKS_PER_SEC;
+    double time_in_seconds()
+    {
+        return std::clock()/(double)CLOCKS_PER_SEC;
     }
-
 
     #include <time.h>
 
-    double time_in_seconds() {
-      timespec tp;
-      clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &tp);
-      return tp.tv_sec + .000000001 * tp.tv_nsec;
+    double time_in_seconds()
+    {
+        timespec tp;
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &tp);
+        return tp.tv_sec + .000000001 * tp.tv_nsec;
     }
 
     #endif
