@@ -40,8 +40,14 @@ public:
     };
     xUSING_CONST(ExitCode);
 
-                   Application(std::ctstring_t &appGuid, std::ctstring_t &locale);
-    virtual       ~Application() = default;
+///@name ctors, dtor
+///@{
+			 Application(std::ctstring_t &appGuid, std::ctstring_t &locale);
+	virtual ~Application() = default;
+
+	xNO_DEFAULT_CONSTRUCT(Application)
+	xNO_COPY_ASSIGN(Application)
+///@}
 
     void_t         setDevel(cbool_t flag);
         ///< set devel
@@ -133,8 +139,6 @@ xPUBLIC_STATIC:
 protected:
     bool_t          _isDevel {};
     std::ctstring_t _appGuid;
-
-    xNO_COPY_ASSIGN(Application)
 };
 
 } // namespace

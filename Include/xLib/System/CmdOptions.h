@@ -41,10 +41,13 @@ class CmdOptions
     ///< Command-line options parser
 {
 public:
-             CmdOptions() = default;
-    virtual ~CmdOptions() = default;
+///@name ctors, dtor
+///@{
+			 CmdOptions() = default;
+	virtual ~CmdOptions() = default;
 
-    xNO_COPY_ASSIGN(CmdOptions)
+	xNO_COPY_ASSIGN(CmdOptions)
+///@}
 
     void_t   parse(cint_t argsNum, cptr_ctchar_t argv[], const std::vector<CmdOptionsUsage> &usage);
         ///< parse cmd options (to std::map)

@@ -19,8 +19,13 @@ class SmtpClient
     /// SMTP (RFC 2821)
 {
 public:
-                   SmtpClient() = default;
-                  ~SmtpClient();
+///@name ctors, dtor
+///@{
+	SmtpClient() = default;
+	~SmtpClient();
+
+	xNO_COPY_ASSIGN(SmtpClient)
+///@}
 
     void_t         create(std::ctstring_t &user, std::ctstring_t &password,
                        std::ctstring_t &server, cushort_t &port);
@@ -44,8 +49,6 @@ private:
     void_t         _command(std::ctstring_t &command, std::ctstring_t &replyDelimiter,
                        std::tstring_t &reply);
     bool_t         _isError(std::ctstring_t &text);
-
-    xNO_COPY_ASSIGN(SmtpClient)
 };
 
 } // namespace

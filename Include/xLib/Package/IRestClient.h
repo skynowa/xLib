@@ -18,8 +18,13 @@ class IRestClient
     /// REST API client
 {
 public:
-             IRestClient();
-    virtual ~IRestClient();
+///@name ctors, dtor
+///@{
+			 IRestClient();
+	virtual ~IRestClient();
+
+	xNO_COPY_ASSIGN(IRestClient)
+///@}
 
 protected:
 	std::size_t        _version {};
@@ -33,9 +38,6 @@ protected:
 	/// TODO: Json/Xml/Csv
 	/// TODO: MailClient / SlackClient
 	/// TODO: ErrorReport
-
-private:
-    xNO_COPY_ASSIGN(IRestClient)
 };
 
 } // namespace

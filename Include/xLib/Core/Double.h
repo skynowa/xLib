@@ -16,14 +16,19 @@ class Double
     ///< Double's operations
 {
 public:
-             Double();
-             Double(const Double &value);
-             Double(const T &value);
-             Double(Double &&value);
-    virtual ~Double();
+///@name ctors, dtor
+///@{
+			 Double();
+			 Double(const Double &value);
+			 Double(const T &value);
+			 Double(Double &&value);
+	virtual ~Double();
+///@}
 
-    Double & operator = (const Double &value);
-    Double & operator = (Double &&value);
+///@name operators
+///@{
+	Double & operator = (const Double &value);
+	Double & operator = (Double &&value);
 
 	bool_t   operator <  (const Double &value) const;
 	bool_t   operator >  (const Double &value) const;
@@ -31,6 +36,7 @@ public:
 	bool_t   operator >= (const Double &value) const;
 	bool_t   operator == (const Double &value) const;
 	bool_t   operator != (const Double &value) const;
+///@}
 
 	// methods
 	const T &get() const;

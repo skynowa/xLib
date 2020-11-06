@@ -16,8 +16,13 @@ class Char
     /// character
 {
 public:
-    explicit        Char(const T &ch, const xTLOCALE &locale = xTLOCALE());
-    virtual        ~Char() {}
+///@name ctors, dtor
+///@{
+	explicit  Char(const T &ch, const xTLOCALE &locale = xTLOCALE());
+	virtual  ~Char() {}
+
+	xNO_COPY_ASSIGN(Char)
+///@}
 
     T               character() const;
         ///< get character
@@ -59,8 +64,6 @@ public:
 private:
     const T         _ch {};
     const xTLOCALE &_locale;
-
-    xNO_COPY_ASSIGN(Char)
 };
 
 using CharA = Char<char>;

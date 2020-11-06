@@ -17,12 +17,18 @@ class SystemLog :
     /// logging to system event log
 {
 public:
-                   SystemLog();
-    explicit       SystemLog(std::ctstring_t &logName);
-    virtual       ~SystemLog();
+///@name ctors, dtor
+///@{
+			  SystemLog();
+	explicit  SystemLog(std::ctstring_t &logName);
+	virtual  ~SystemLog();
+///@}
 
-    template<typename T>
-    SystemLog &    operator << (const T &valueT);
+///@name operators
+///@{
+	template<typename T>
+	SystemLog &    operator << (const T &valueT);
+///@}
 
     virtual void_t write(cptr_ctchar_t format, ...) const override;
         ///< write to log

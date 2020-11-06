@@ -21,8 +21,13 @@ public:
     using handle_t = pthread_mutex_t;
 #endif
 
-                     Mutex() = default;
-    virtual         ~Mutex();
+///@name ctors, dtor
+///@{
+			 Mutex() = default;
+	virtual ~Mutex();
+
+	xNO_COPY_ASSIGN(Mutex)
+///@}
 
     const handle_t & handle() const;
         ///< get handle
@@ -36,16 +41,14 @@ public:
         ///< unlock
 
 private:
-    handle_t         _handle {};   ///< mutex native handle
-
-    xNO_COPY_ASSIGN(Mutex)
+    handle_t _handle {};   ///< mutex native handle
 
 xPLATFORM_IMPL:
-    void_t           _destruc_impl();
-    void_t           _create_impl();
-    void_t           _lock_impl();
-    bool_t           _tryLock_impl();
-    void_t           _unlock_impl();
+    void_t _destruc_impl();
+    void_t _create_impl();
+    void_t _lock_impl();
+    bool_t _tryLock_impl();
+    void_t _unlock_impl();
 
 };
 //-------------------------------------------------------------------------------------------------

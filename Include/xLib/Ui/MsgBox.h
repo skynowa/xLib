@@ -45,19 +45,19 @@ public:
     };
     xUSING_CONST(ModalResult);
 
-                  MsgBox() = default;
-    virtual      ~MsgBox() = default;
+///@name ctors, dtor
+///@{
+			 MsgBox() = default;
+	virtual ~MsgBox() = default;
 
-    ModalResult show(std::ctstring_t &text, std::ctstring_t &title, cType type = Type::Ok) const
-       ;
+    xNO_COPY_ASSIGN(MsgBox)
+///@}
+
+    ModalResult show(std::ctstring_t &text, std::ctstring_t &title, cType type = Type::Ok) const;
         ///< message box with custom text, custom title, custom type
 
-private:
-    xNO_COPY_ASSIGN(MsgBox)
-
 xPLATFORM_IMPL:
-    ModalResult _show_impl(std::ctstring_t &text, std::ctstring_t &title,
-        cType type = Type::Ok) const;
+    ModalResult _show_impl(std::ctstring_t &text, std::ctstring_t &title, cType type = Type::Ok) const;
 };
 
 } // namespace

@@ -18,8 +18,13 @@ class MimeMessage
     /// MIME message (RFC 822)
 {
 public:
-                   MimeMessage() = default;
-    virtual       ~MimeMessage() = default;
+///@name ctors, dtor
+///@{
+			 MimeMessage() = default;
+	virtual ~MimeMessage() = default;
+
+	xNO_COPY_ASSIGN(MimeMessage)
+///@}
 
     void_t         parse(std::ctstring_t &rawMessage, MimeHeader &header, MimeBody &body);
     void_t         loadFromRawFile(std::ctstring_t &filePath);
@@ -27,8 +32,6 @@ public:
 
 private:
     std::tstring_t _rawMessage;
-
-    xNO_COPY_ASSIGN(MimeMessage)
 };
 
 } // namespace

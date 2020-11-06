@@ -19,20 +19,25 @@ class Pipe :
     /// Pipe is a section of shared memory that processes use for communication
 {
 public:
-             Pipe();
-    virtual ~Pipe();
+///@name ctors, dtor
+///@{
+			 Pipe();
+	virtual ~Pipe();
 
-    const HandleNative & handle() const override;
-    const int_t & handleRead() const;
-    const int_t & handleWrite() const;
+	xNO_COPY_ASSIGN(Pipe)
+///@}
 
-    void_t   create() override;
+    cHandleNative & handle() const override;
+	cint_t        & handleRead() const;
+	cint_t        & handleWrite() const;
 
-    std::tstring_t readAll() const;
+    void_t          create() override;
 
-    void_t   close() override;
-    void_t   closeRead();
-    void_t   closeWrite();
+    std::tstring_t  readAll() const;
+
+    void_t          close() override;
+    void_t          closeRead();
+    void_t          closeWrite();
 
 private:
     HandleNative _handle {};    ///< native handle
@@ -48,8 +53,6 @@ private:
 
 	std::vector<int_t> _handles;	///< native handles
 #endif
-
-    xNO_COPY_ASSIGN(Pipe)
 
 xPLATFORM_IMPL:
     void_t _create_impl();

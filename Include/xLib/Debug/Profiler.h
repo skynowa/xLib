@@ -17,8 +17,13 @@ class Profiler
     /// code profiling
 {
 public:
-    explicit       Profiler();
-    virtual       ~Profiler();
+///@name ctors, dtor
+///@{
+             Profiler();
+	virtual ~Profiler();
+
+	xNO_COPY_ASSIGN(Profiler)
+///@}
 
     void_t         setLogPath(std::ctstring_t &logPath);
         ///< set log path
@@ -33,17 +38,15 @@ public:
         ///< stop, start measurement
 
 private:
-    bool_t         _isStarted {};  ///< is started
-    FileLog        _log {FileLog::LogSizes::lsDefaultMb};   ///< file log
+    bool_t       _isStarted {};  ///< is started
+    FileLog      _log {FileLog::LogSizes::lsDefaultMb};   ///< file log
 
-    std::clock_t   _start {};      ///< start value
-    std::clock_t   _stop {};       ///< stop value
-    std::clock_t   _duration {};   ///< duration value
+    std::clock_t _start {};      ///< start value
+    std::clock_t _stop {};       ///< stop value
+    std::clock_t _duration {};   ///< duration value
 
-    void_t         _reset();
+    void_t _reset();
         ///< reset all data
-
-    xNO_COPY_ASSIGN(Profiler)
 };
 
 } // namespace

@@ -78,6 +78,7 @@ public:
     explicit FileIO(std::ctstring_t &filePath);
     virtual ~FileIO();
 
+    xNO_DEFAULT_CONSTRUCT(FileIO)
     xNO_COPY_ASSIGN(FileIO)
 ///@}
 

@@ -17,8 +17,11 @@ class xNO_VTABLE ISync
     /// handle interface
 {
 public:
-             ISync() = default;
-    virtual ~ISync() = default;
+///@name ctors, dtor
+///@{
+			 ISync() = default;
+	virtual ~ISync() = default;
+///@}
 
     virtual const T & handle() const = 0;
         ///< get handle

@@ -16,6 +16,12 @@ class DnsClient
     /// DNS client
 {
 public:
+///@name ctors, dtor
+///@{
+	xNO_DEFAULT_CONSTRUCT(DnsClient)
+	xNO_COPY_ASSIGN(DnsClient)
+///@}
+
     static
     void_t   hostAddrByName(std::ctstring_t &hostName, std::tstring_t *hostAddr);
         ///< get host address by name
@@ -68,10 +74,6 @@ public:
     static
     bool_t   isAddressIpv6(std::ctstring_t &ip);
         ///< is address IP v6
-
-private:
-    xNO_DEFAULT_CONSTRUCT(DnsClient)
-    xNO_COPY_ASSIGN(DnsClient)
 };
 
 } // namespace

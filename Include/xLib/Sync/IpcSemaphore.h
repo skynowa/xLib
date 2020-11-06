@@ -46,21 +46,21 @@ public:
         ///< get value
 
 private:
-    handle_t         _handle {};
-    std::tstring_t   _name;
+    handle_t       _handle {};
+    std::tstring_t _name;
 
-    bool_t           _isValid() const;
+    bool_t _isValid() const;
 
 xPLATFORM_IMPL:
-    void_t           _construct_impl();
-    void_t           _destruct_impl();
-    long_t           _valueMax_impl() const;
-    void_t           _create_impl(clong_t initialValue, std::ctstring_t &name);
-    void_t           _open_impl(std::ctstring_t &name);
-    void_t           _post_impl() const;
-    void_t           _wait_impl(culong_t timeoutMsec) const;
-    long_t           _value_impl() const;
-    bool_t           _isValid_impl() const;
+    void_t _construct_impl();
+    void_t _destruct_impl();
+    long_t _valueMax_impl() const;
+    void_t _create_impl(clong_t initialValue, std::ctstring_t &name);
+    void_t _open_impl(std::ctstring_t &name);
+    void_t _post_impl() const;
+    void_t _wait_impl(culong_t timeoutMsec) const;
+    long_t _value_impl() const;
+    bool_t _isValid_impl() const;
 };
 
 } // namespace

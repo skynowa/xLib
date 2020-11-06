@@ -17,10 +17,13 @@ class xNO_VTABLE IObserver
     /// observer interface
 {
 public:
-                    IObserver() {}
-    virtual        ~IObserver() {}
+///@name ctors, dtor
+///@{
+			 IObserver() {}
+	virtual ~IObserver() {}
+///@}
 
-    virtual void_t  update(cint_t &type, const T &message) = 0;
+    virtual void_t  update(cint_t type, const T &message) = 0;
 };
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -28,15 +31,13 @@ class Observer
     /// observer
 {
 public:
-    Observer()
-    {
-    }
+///@name ctors, dtor
+///@{
+			 Observer() = default;
+	virtual ~Observer() = default;
 
-    virtual ~Observer()
-    {
-        _observers.clear();
-    }
-
+	xNO_COPY_ASSIGN(Observer)
+///@}
 
     void_t attach(IObserver<T> *a_observer)
     {
@@ -52,7 +53,7 @@ public:
         }
     }
         ///< dettach object
-    void_t updateAll(cint_t &a_type, const T &a_message)
+    void_t updateAll(cint_t a_type, const T &a_message)
     {
         for (const auto &it : _observers) {
             it->update(a_type, a_message);
@@ -62,8 +63,6 @@ public:
 
 private:
     std::vector<IObserver<T> *> _observers;    ///< objects container
-
-    xNO_COPY_ASSIGN(Observer)
 };
 
 } // namespace

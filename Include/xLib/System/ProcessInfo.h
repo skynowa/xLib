@@ -16,8 +16,13 @@ class ProcessInfo
     /// process information
 {
 public:
-                   ProcessInfo() = default;
-    virtual       ~ProcessInfo() = default;
+///@name ctors, dtor
+///@{
+			 ProcessInfo() = default;
+	virtual ~ProcessInfo() = default;
+
+	xNO_COPY_ASSIGN(ProcessInfo)
+///@}
 
     void_t         setProcessId(const Process::id_t &a_id);
         ///< set target process ID
@@ -44,8 +49,6 @@ public:
 private:
     Process::id_t _id {};  ///< target process ID
 
-    xNO_COPY_ASSIGN(ProcessInfo)
-
 xPLATFORM_IMPL:
     ulong_t        _cpuUsage_impl() const;
     ulong_t        _ramUsage_impl() const;
@@ -55,7 +58,7 @@ xPLATFORM_IMPL:
     void_t         _commandLine_impl(std::vec_tstring_t *args) const;
 
     static
-    long_t         _commandLineArgsMax_impl();
+    long_t _commandLineArgsMax_impl();
 };
 
 } // namespace

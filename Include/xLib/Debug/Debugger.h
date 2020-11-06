@@ -17,8 +17,13 @@ class Debugger
     /// debugger
 {
 public:
-                   Debugger() = default;
-    virtual       ~Debugger() = default;
+///@name ctors, dtor
+///@{
+			 Debugger() = default;
+	virtual ~Debugger() = default;
+
+	xNO_COPY_ASSIGN(Debugger)
+///@}
 
     bool_t         isEnabled() const;
         ///< is debugging enabled
@@ -49,8 +54,6 @@ private:
         ///< show plain report in std::cout
     void_t         _loggingPlain(const ErrorReport &report) const;
         ///< log plain report to file
-
-    xNO_COPY_ASSIGN(Debugger)
 
 xPLATFORM_IMPL:
     bool_t         _isActive_impl() const;

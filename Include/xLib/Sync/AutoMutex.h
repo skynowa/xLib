@@ -17,13 +17,16 @@ class AutoMutex
     /// auto critical section
 {
 public:
-    explicit AutoMutex(Mutex *mutex);
-    virtual ~AutoMutex();
+///@name ctors, dtor
+///@{
+	explicit AutoMutex(Mutex *mutex);
+	virtual ~AutoMutex();
+
+	xNO_COPY_ASSIGN(AutoMutex)
+///@}
 
 private:
     Mutex *_mutex {};    ///< mutex
-
-    xNO_COPY_ASSIGN(AutoMutex)
 };
 
 } // namespace

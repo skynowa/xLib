@@ -18,12 +18,15 @@ class FormatT
     ///< format string
 {
 public:
+///@name ctors, dtor
+///@{
+	xNO_DEFAULT_CONSTRUCT(FormatT)
+	xNO_COPY_ASSIGN(FormatT)
+///@}
+
     template<typename ...ArgsT>
     static
     std::tstring_t str(std::ctstring_view_t fmt, const ArgsT &...args);
-
-    xNO_DEFAULT_CONSTRUCT(FormatT)
-    xNO_COPY_ASSIGN(FormatT)
 
 private:
 	static constexpr bool_t              _isTest {true};		///< test formatted string

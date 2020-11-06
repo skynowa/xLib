@@ -27,6 +27,12 @@ public:
 	};
 	xUSING_CONST(Type);
 
+///@name ctors, dtor
+///@{
+	xNO_DEFAULT_CONSTRUCT(Archive)
+	xNO_COPY_ASSIGN(Archive)
+///@}
+
 	static
 	bool_t fileCompress(const Type type, std::ctstring_t &sourceFilePath,
 				std::ctstring_t &destFilePath, cbool_t isRemoveSourceFile);
@@ -47,9 +53,6 @@ public:
 		///< uncompress dir
 
 private:
-    xNO_DEFAULT_CONSTRUCT(Archive)
-    xNO_COPY_ASSIGN(Archive)
-
     static
     Type  	_detectType(std::ctstring_t &sourceFilePath);
     	///< auto detect archive type by file extention

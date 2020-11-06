@@ -15,13 +15,16 @@ class MimeBody
     /// MIME body (RFC 822)
 {
 public:
-            MimeBody() = default;
+///@name ctors, dtor
+///@{
+			MimeBody() = default;
    virtual ~MimeBody() = default;
+
+   xNO_COPY_ASSIGN(MimeBody)
+///@}
 
 private:
     std::mmap_tstring_t _body;
-
-    xNO_COPY_ASSIGN(MimeBody)
 };
 
 } // namespace

@@ -19,8 +19,13 @@ class Translate :
     /// Translate text (by Google API)
 {
 public:
-             Translate();
-    virtual ~Translate() = default;
+///@name ctors, dtor
+///@{
+			 Translate();
+	virtual ~Translate() = default;
+
+	xNO_COPY_ASSIGN(Translate)
+///@}
 
     enum class Language
         ///< detected language
@@ -45,8 +50,6 @@ private:
         ///< parse response
     std::tstring_t _languageCode(cLanguage lang) const;
         ///< converter
-
-    xNO_COPY_ASSIGN(Translate)
 };
 
 } // namespace

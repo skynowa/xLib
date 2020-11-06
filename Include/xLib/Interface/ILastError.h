@@ -17,8 +17,11 @@ class xNO_VTABLE ILastError
     /// last error interface
 {
 public:
-                           ILastError() = default;
-    virtual               ~ILastError() = default;
+///@name ctors, dtor
+///@{
+			 ILastError() = default;
+	virtual ~ILastError() = default;
+///@}
 
     virtual ErrorT         lastError() const = 0;
     virtual std::tstring_t lastErrorStr() const = 0;
