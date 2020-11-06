@@ -23,10 +23,10 @@ class Observer1 :
     public IObserver<T>
 {
 public:
-                    Observer1() {}
-    virtual        ~Observer1() {}
+             Observer1() {}
+    virtual ~Observer1() {}
 
-    virtual void_t  update(cint_t &a_type, const T &a_message)
+    virtual void_t update(cint_t &a_type, const T &a_message)
     {
         ::type_all    += a_type;
         ::message_all += a_message;
@@ -38,10 +38,10 @@ class Observer2 :
     public IObserver<T>
 {
 public:
-                    Observer2() {}
-    virtual        ~Observer2() {}
+             Observer2() {}
+    virtual ~Observer2() {}
 
-    virtual void_t  update(cint_t &a_type, const T &a_message)
+    virtual void_t update(cint_t &a_type, const T &a_message)
     {
         ::type_all    += a_type;
         ::message_all += a_message;

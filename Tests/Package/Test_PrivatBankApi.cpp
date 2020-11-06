@@ -39,14 +39,14 @@ Test_PrivatBankApi::unit()
 
 	xTEST_CASE("getExchangeRatesArchive")
 	{
-		DateTime dateNow = DateTime().current();
+		const DateTime &dateNow = DateTime().current();
 
 		std::vec_tstring_t dates;
 		{
 			dates.push_back( dateNow.format(xT("%d.%m.%Y"), xT("")) );
 
 			for (size_t i = 1; i <= 7; ++ i) {
-				DateTime date = dateNow - DateTime(1000 * 60 * 60 * 24 * i);
+				const DateTime &date = dateNow - DateTime(1000 * 60 * 60 * 24 * i);
 
 				dates.push_back( date.format(xT("%d.%m.%Y"), xT("")) );
 			}

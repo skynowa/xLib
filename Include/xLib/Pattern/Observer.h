@@ -23,7 +23,7 @@ public:
 	virtual ~IObserver() {}
 ///@}
 
-    virtual void_t  update(cint_t type, const T &message) = 0;
+    virtual void_t update(cint_t &type, const T &message) = 0;
 };
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -33,8 +33,14 @@ class Observer
 public:
 ///@name ctors, dtor
 ///@{
-			 Observer() = default;
-	virtual ~Observer() = default;
+	Observer()
+	{
+	}
+
+	virtual ~Observer()
+	{
+		_observers.clear();
+	}
 
 	xNO_COPY_ASSIGN(Observer)
 ///@}
@@ -53,7 +59,7 @@ public:
         }
     }
         ///< dettach object
-    void_t updateAll(cint_t a_type, const T &a_message)
+    void_t updateAll(cint_t &a_type, const T &a_message)
     {
         for (const auto &it : _observers) {
             it->update(a_type, a_message);
