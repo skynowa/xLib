@@ -42,7 +42,7 @@ public:
         ///< tracing to debugger, std::cout
 
 xPLATFORM_IMPL:
-    void_t         _write_impl(std::ctstring_t &msg) const;
+    void_t _write_impl(std::ctstring_t &msg) const;
 };
 
 } // namespace
