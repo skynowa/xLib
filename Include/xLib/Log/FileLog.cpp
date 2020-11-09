@@ -33,7 +33,7 @@ namespace xl::log
 FileLog::FileLog() :
     _fileSizeMaxBytes( static_cast<std::size_t>(LogSizes::lsDefaultMb) )
 {
-    xTEST_EQ(_filePath.empty(), true);
+    xTEST(_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 FileLog::FileLog(
@@ -41,7 +41,7 @@ FileLog::FileLog(
 ) :
     _fileSizeMaxBytes( static_cast<std::size_t>(a_fileSizeMaxBytes) )
 {
-    xTEST_EQ(_filePath.empty(), true);
+    xTEST(_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 FileLog::FileLog(
@@ -49,7 +49,7 @@ FileLog::FileLog(
 ) :
     _fileSizeMaxBytes(a_fileSizeMaxBytes)
 {
-    xTEST_EQ(_filePath.empty(), true);
+    xTEST(_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -63,7 +63,7 @@ FileLog::setFilePath(
     std::ctstring_t &a_filePath ///< full path or name
 )
 {
-    xTEST_EQ(a_filePath.empty(), false);
+    xTEST(!a_filePath.empty());
 
     if (a_filePath.find( Const::slash() ) == std::tstring_t::npos) {
         _filePath = Path( Path::exe() ).dir() + Const::slash() + a_filePath;
@@ -84,9 +84,9 @@ FileLog::write(
     cptr_ctchar_t a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),          return);
+    xCHECK_DO(!isEnabled(),        return);
     xCHECK_DO(a_format == nullptr, return);
-    xCHECK_DO(filePath().empty(),    return);
+    xCHECK_DO(filePath().empty(),  return);
 
     std::tstring_t msg;
 
