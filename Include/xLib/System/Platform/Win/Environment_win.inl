@@ -68,7 +68,7 @@ Environment::_removeVar_impl() const
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Environment::_values_impl(
+Environment::_vars_impl(
     std::vec_tstring_t *a_values
 )
 {

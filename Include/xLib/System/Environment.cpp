@@ -94,7 +94,7 @@ Environment::setVars(
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
-Environment::values(
+Environment::vars(
     std::vec_tstring_t *a_values
 )
 {
@@ -102,7 +102,7 @@ Environment::values(
 
     xCHECK_DO(a_values != nullptr, a_values->clear());
 
-    _values_impl(a_values);
+    _vars_impl(a_values);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
