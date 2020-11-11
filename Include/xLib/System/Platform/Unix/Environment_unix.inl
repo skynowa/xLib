@@ -68,7 +68,7 @@ Environment::_values_impl(
 
     xTEST_PTR(::environ);
 
-    for (size_t i = 0; 0 != ::environ[i]; ++ i) {
+    for (size_t i = 0; ::environ[i] != 0; ++ i) {
         args.push_back( xA2T(::environ[i]) );
     }
 
