@@ -30,7 +30,7 @@ namespace xl::system
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-constexpr std::size_t Environment::_envMax
+std::csize_t Environment::_envMax
 	#if   xENV_WIN
 		#if   xCOMPILER_MS
 			{_MAX_ENV};
