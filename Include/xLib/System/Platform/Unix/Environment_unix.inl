@@ -95,10 +95,10 @@ Environment::_expandVars_impl(
         xCHECK_DO(stopSepPos == std::tstring_t::npos, break);
 
         // copy %var% to temp string
-        std::tstring_t rawEnvVar = String::cut(sRv, startSepPos, stopSepPos + sep.size());
+        std::ctstring_t &rawEnvVar = String::cut(sRv, startSepPos, stopSepPos + sep.size());
         xTEST_EQ(rawEnvVar.empty(), false);
 
-        std::tstring_t envVar = String::trimChars(rawEnvVar, sep);
+        std::ctstring_t &envVar = String::trimChars(rawEnvVar, sep);
 
         // expand var to temp string
         std::ctstring_t &expandedEnvVar = Environment(envVar).var();
