@@ -62,6 +62,8 @@ private:
 
     std::ctstring_t _varName;
 
+	std::tstring_t  _separator() const;
+		///< var / value separator
     bool_t _isVarValid() const;
         ///< is valid environment variable name
     bool_t _isValueValid(std::ctstring_t &varValue) const;
