@@ -94,32 +94,5 @@ Environment::_vars_impl(
     a_values->swap(args);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-Environment::_expandVars_impl(
-    std::ctstring_t &a_strWithVars	///< ("%systemroot%\\system32\\cmd.exe")
-)
-{
-    std::tstring_t sRv;
-
-    sRv.resize(xPATH_MAX);
-
-    DWORD length = ::ExpandEnvironmentStrings(a_strWithVars.c_str(), &sRv.at(0),
-        static_cast<DWORD>( sRv.size() ));
-    xTEST_DIFF(length, 0UL);
-
-    sRv.resize(length);
-
-    if (sRv.size() < length) {
-        length = ::ExpandEnvironmentStrings(a_strWithVars.c_str(), &sRv.at(0),
-            static_cast<DWORD>( sRv.size() ));
-        xTEST_DIFF(length, 0UL);
-    }
-
-    sRv.resize(length - 1);   // remove '\0'
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
 
 } // namespace
