@@ -75,8 +75,6 @@ xPLATFORM_IMPL:
 
     static
     void_t         _vars_impl(std::vec_tstring_t *values);
-    static
-    std::tstring_t _expandVars_impl(std::ctstring_t &strWithVars);
 };
 
 } // namespace

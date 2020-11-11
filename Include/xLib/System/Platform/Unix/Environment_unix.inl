@@ -76,39 +76,5 @@ Environment::_vars_impl(
     a_values->swap(args);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-Environment::_expandVars_impl(
-    std::ctstring_t &a_strWithVars
-)
-{
-    std::tstring_t sRv = a_strWithVars;
-
-    std::ctstring_t sep = xT("%");
-
-    for ( ; ; ) {
-        // find from left two first chars '%'
-        std::csize_t startSepPos = sRv.find(sep);
-        xCHECK_DO(startSepPos == std::tstring_t::npos, break);
-
-        std::csize_t stopSepPos = sRv.find(sep, startSepPos + sep.size());
-        xCHECK_DO(stopSepPos == std::tstring_t::npos, break);
-
-        // copy %var% to temp string
-        std::ctstring_t &rawEnvVar = String::cut(sRv, startSepPos, stopSepPos + sep.size());
-        xTEST_EQ(rawEnvVar.empty(), false);
-
-        std::ctstring_t &envVar = String::trimChars(rawEnvVar, sep);
-
-        // expand var to temp string
-        std::ctstring_t &expandedEnvVar = Environment(envVar).var();
-
-        // replace envVar(%var%) by expandedEnvVar
-        sRv.replace(startSepPos, rawEnvVar.size(), expandedEnvVar);
-    }
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
 
 } // namespace
