@@ -48,16 +48,7 @@ xPUBLIC_STATIC:
         ///< get PATH value
 
 private:
-    static constexpr std::size_t _envMax
-    #if   xENV_WIN
-        #if   xCOMPILER_MS
-            {_MAX_ENV};
-        #else
-            {32767}; // custom define
-        #endif
-    #elif xENV_UNIX
-        {32767}; // custom define
-    #endif
+    static std::csize_t    _envMax;
         ///< maximum permissible string length of an environmental variable
 	static std::ctstring_t _separator;
 		///< var / value separator
