@@ -30,6 +30,13 @@ namespace xl::system
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+std::ctstring_t Environment::_separator =
+#if   xENV_WIN
+	Const::semicolon();
+#elif xENV_UNIX
+	Const::colon();
+#endif
+//-------------------------------------------------------------------------------------------------
 Environment::Environment(
 	std::ctstring_t &a_varName
 ) :
@@ -158,7 +165,7 @@ Environment::varPath(
 
 	Environment env(varName);
 
-	String::split(env.var(), env._separator(), out_dirPaths);
+	String::split(env.var(), _separator, out_dirPaths);
 
 	Algos::vectorUnique(*out_dirPaths);
 }
@@ -170,16 +177,6 @@ Environment::varPath(
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Environment::_separator() const
-{
-#if   xENV_WIN
-	return Const::semicolon();
-#elif xENV_UNIX
-	return Const::colon();
-#endif
-}
 //-------------------------------------------------------------------------------------------------
 bool_t
 Environment::_isVarValid() const
