@@ -166,7 +166,6 @@ Environment::varPath(
 	Environment env(varName);
 
 	String::split(env.var(), _separator, out_dirPaths);
-
 	Algos::vectorUnique(*out_dirPaths);
 }
 //-------------------------------------------------------------------------------------------------
