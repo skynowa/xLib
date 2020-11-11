@@ -141,6 +141,7 @@ Environment::expandVars(
 
     std::tstring_t sRv = a_strWithVars;
 
+	// TODO: [unix] "$" as separator: $VAR, ${VAR}
     std::ctstring_t sep = xT("%");
 
     for ( ; ; ) {
