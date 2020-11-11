@@ -38,7 +38,7 @@ xPUBLIC_STATIC:
     void_t         setVars(const std::set<std::pair_tstring_t> &vars);
         ///< set or change values
     static
-    void_t         values(std::vec_tstring_t *values);
+    void_t         vars(std::vec_tstring_t *values);
         ///< get all values
     static
     std::tstring_t expandVars(std::ctstring_t &strWithVars);
@@ -74,7 +74,7 @@ xPLATFORM_IMPL:
     void_t         _removeVar_impl() const;
 
     static
-    void_t         _values_impl(std::vec_tstring_t *values);
+    void_t         _vars_impl(std::vec_tstring_t *values);
     static
     std::tstring_t _expandVars_impl(std::ctstring_t &strWithVars);
 };

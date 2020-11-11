@@ -101,9 +101,9 @@ Test_Environment::unit()
         }
     }
 
-    xTEST_CASE("values")
+    xTEST_CASE("vars")
     {
-        Environment::values(&m_vsRv);
+        Environment::vars(&m_vsRv);
         xTEST_EQ(false, m_vsRv.empty());
     }
 
