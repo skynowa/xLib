@@ -65,7 +65,6 @@
 #include <xLib/Debug/SourceInfo.h>
 #include <xLib/Debug/BuildInfo.h>
 #include <xLib/Debug/NativeError.h>
-#include <xLib/Debug/StdError.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>

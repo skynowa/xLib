@@ -138,7 +138,7 @@ FileInfo::isExists() const
     xCHECK_RET(!FileType(_filePath).isFile(), false);
 
     int_t iRv = xTACCESS(_filePath.c_str(), static_cast<int_t>(AccessMode::Existence));
-    xCHECK_RET(iRv == - 1 && StdError::get() == ENOENT, false);
+    xCHECK_RET(iRv == - 1 && NativeError::get() == ENOENT, false);
 
     return true;
 }

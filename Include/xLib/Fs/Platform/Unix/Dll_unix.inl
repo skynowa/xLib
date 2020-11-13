@@ -19,7 +19,7 @@ Dll::_load_impl(
 )
 {
     _handle = ::dlopen(xT2A(a_dllPath).c_str(), RTLD_LAZY | RTLD_GLOBAL);
-    xTEST_EQ_MSG(_handle.isValid(), true, StdError::format());
+    xTEST_EQ_MSG(_handle.isValid(), true, NativeError::format());
 }
 //-------------------------------------------------------------------------------------------------
 bool_t

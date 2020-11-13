@@ -6,7 +6,6 @@
 
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/NativeError.h>
-#include <xLib/Debug/StdError.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
