@@ -66,9 +66,9 @@ Environment::_vars_impl(
     std::vec_tstring_t *a_values
 )
 {
-    std::vec_tstring_t args;
-
     xTEST_PTR(::environ);
+
+    std::vec_tstring_t args;
 
     for (size_t i = 0; ::environ[i] != 0; ++ i) {
         args.push_back( xA2T(::environ[i]) );
