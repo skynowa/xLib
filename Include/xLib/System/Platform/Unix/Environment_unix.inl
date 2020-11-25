@@ -43,7 +43,9 @@ Environment::_setVar_impl(
     std::ctstring_t &a_value
 ) const
 {
-    int_t iRv = ::setenv(xT2A(_varName).c_str(), xT2A(a_value).c_str(), true);
+    cint_t isReplaced {1};
+
+    int_t iRv = ::setenv(xT2A(_varName).c_str(), xT2A(a_value).c_str(), isReplaced);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
