@@ -362,7 +362,7 @@ DateTime::operator = (
 //-------------------------------------------------------------------------------------------------
 DateTime &
 DateTime::operator = (
-    culonglong_t &a_msec
+    culonglong_t a_msec
 )
 {
     set(a_msec);

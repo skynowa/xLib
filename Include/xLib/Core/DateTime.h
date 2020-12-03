@@ -82,7 +82,7 @@ public:
 
     // assignment operators
     DateTime       &operator =  (const DateTime &datetime);
-    DateTime       &operator =  (culonglong_t &msec);
+    DateTime       &operator =  (culonglong_t msec);
 
     DateTime        operator +  (const DateTime &datetime) const;
     DateTime        operator -  (const DateTime &datetime) const;
