@@ -67,7 +67,7 @@ cint_t weekDayMax  = 6;
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::year(
-    cint_t &a_year
+    cint_t a_year
 )
 {
     return (a_year >= yearMin && a_year <= yearMax);
@@ -75,7 +75,7 @@ DateTimeValidator::year(
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::month(
-    cint_t &a_month
+    cint_t a_month
 )
 {
     return (a_month >= monthMin && a_month <= monthMax);
@@ -83,7 +83,7 @@ DateTimeValidator::month(
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::day(
-    cint_t &a_day
+    cint_t a_day
 )
 {
     return (a_day >= dayMin && a_day <= dayMax);
@@ -91,7 +91,7 @@ DateTimeValidator::day(
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::hour(
-    cint_t &a_hour
+    cint_t a_hour
 )
 {
     return (a_hour >= hourMin && a_hour <= hourMax);
@@ -99,7 +99,7 @@ DateTimeValidator::hour(
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::minute(
-    cint_t &a_minute
+    cint_t a_minute
 )
 {
     return (a_minute >= minuteMin && a_minute <= minuteMax);
@@ -107,7 +107,7 @@ DateTimeValidator::minute(
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::second(
-    cint_t &a_second
+    cint_t a_second
 )
 {
     return (a_second >= secondMin && a_second <= secondMax);
@@ -115,7 +115,7 @@ DateTimeValidator::second(
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::msec(
-    cint_t &a_msec
+    cint_t a_msec
 )
 {
     return (a_msec >= msecMin && a_msec <= msecMax);
@@ -123,7 +123,7 @@ DateTimeValidator::msec(
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::weekDay(
-    cint_t &a_weekDay
+    cint_t a_weekDay
 )
 {
     return (a_weekDay >= weekDayMin && a_weekDay <= weekDayMax);
@@ -131,9 +131,9 @@ DateTimeValidator::weekDay(
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::date(
-    cint_t &a_year,
-    cint_t &a_month,
-    cint_t &a_day
+    cint_t a_year,
+    cint_t a_month,
+    cint_t a_day
 )
 {
     return (year(a_year) && month(a_month) && day(a_day));
@@ -141,10 +141,10 @@ DateTimeValidator::date(
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::time(
-    cint_t &a_hour,
-    cint_t &a_minute,
-    cint_t &a_second,
-    cint_t &a_msec
+    cint_t a_hour,
+    cint_t a_minute,
+    cint_t a_second,
+    cint_t a_msec
 )
 {
     return (hour(a_hour) && minute(a_minute) && second(a_second) && msec(a_msec));
@@ -152,13 +152,13 @@ DateTimeValidator::time(
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::datetime(
-    cint_t &a_year,
-    cint_t &a_month,
-    cint_t &a_day,
-    cint_t &a_hour,
-    cint_t &a_minute,
-    cint_t &a_second,
-    cint_t &a_msec
+    cint_t a_year,
+    cint_t a_month,
+    cint_t a_day,
+    cint_t a_hour,
+    cint_t a_minute,
+    cint_t a_second,
+    cint_t a_msec
 )
 {
     xUNUSED(a_day);
@@ -177,13 +177,13 @@ DateTimeValidator::datetime(
 //-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::dateOrTime(
-    cint_t &a_year,
-    cint_t &a_month,
-    cint_t &a_day,
-    cint_t &a_hour,
-    cint_t &a_minute,
-    cint_t &a_second,
-    cint_t &a_msec
+    cint_t a_year,
+    cint_t a_month,
+    cint_t a_day,
+    cint_t a_hour,
+    cint_t a_minute,
+    cint_t a_second,
+    cint_t a_msec
 )
 {
     return (date(a_year, a_month, a_day) || time(a_hour, a_minute, a_second, a_msec));
