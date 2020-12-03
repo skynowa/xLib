@@ -11,6 +11,7 @@
 namespace xl::core
 {
 
+//-------------------------------------------------------------------------------------------------
 class DateTime;
 
 class DateTimeValidator
@@ -52,9 +53,9 @@ public:
 	bool_t datetime(const DateTime &datetime);
 	static
 	bool_t dateOrTime(cint_t year, cint_t month, cint_t day, cint_t hour, cint_t minute,
-			   cint_t second, cint_t msec);
+				cint_t second, cint_t msec);
 };
-
+//-------------------------------------------------------------------------------------------------
 class DateTime
     /// date, time
 {
