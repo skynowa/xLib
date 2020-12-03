@@ -469,7 +469,7 @@ DateTime::toMsec() const
 //-------------------------------------------------------------------------------------------------
 void_t
 DateTime::set(
-    culonglong_t &a_msec
+    culonglong_t a_msec
 )
 {
     xTESTS_NA;
@@ -504,13 +504,13 @@ DateTime::set(
 //-------------------------------------------------------------------------------------------------
 void_t
 DateTime::set(
-    cint_t &a_year,
-    cint_t &a_month,
-    cint_t &a_day,
-    cint_t &a_hour,
-    cint_t &a_minute,
-    cint_t &a_second,
-    cint_t &a_msec
+    cint_t a_year,
+    cint_t a_month,
+    cint_t a_day,
+    cint_t a_hour,
+    cint_t a_minute,
+    cint_t a_second,
+    cint_t a_msec
 )
 {
     xTESTS_NA;
