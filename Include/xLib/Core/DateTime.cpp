@@ -21,14 +21,6 @@
     #include "Platform/Win/DateTime_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/DateTime_unix.inl"
-
-    #if   xENV_LINUX
-
-    #elif xENV_BSD
-
-    #elif xENV_APPLE
-
-    #endif
 #endif
 
 
