@@ -141,9 +141,6 @@ xPUBLIC_STATIC:
 
     // other
     static
-    std::tstring_t  zodiacSign(cint_t month, cint_t day);
-        ///< sign of the zodiac by date
-    static
     std::tstring_t  monthStr(cint_t month, cbool_t isShortName);
         ///< get month string
     static
