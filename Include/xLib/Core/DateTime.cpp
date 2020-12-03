@@ -198,14 +198,14 @@ DateTimeValidator::dateOrTime(
 
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime() :
-    _year    (yearMin),
-    _month   (monthMin),
-    _day     (0),
-    _hour    (hourMin),
-    _minute  (minuteMin),
-    _second  (secondMin),
-    _msec    (msecMin),
-    _thisMSec(0ULL)
+    _year    {yearMin},
+    _month   {monthMin},
+    _day     {},
+    _hour    {hourMin},
+    _minute  {minuteMin},
+    _second  {secondMin},
+    _msec    {msecMin},
+    _thisMSec{}
 {
 }
 //-------------------------------------------------------------------------------------------------

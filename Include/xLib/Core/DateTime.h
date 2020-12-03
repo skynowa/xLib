@@ -157,15 +157,15 @@ xPUBLIC_STATIC:
         ///< get week day number by string
 
 private:
-    int_t       _year;    ///< years since (1900)
-    int_t       _month;   ///< months since January (0-11)
-    int_t       _day;     ///< day of the month (1-31)
-    int_t       _hour;    ///< hours since midnight (0-23)
-    int_t       _minute;  ///< minutes after the hour (0-59)
-    int_t       _second;  ///< seconds after the minute (0-60*)
-    int_t       _msec;    ///< milliseconds (0-999)
+    int_t       _year {};    ///< years since (1900)
+    int_t       _month {};   ///< months since January (0-11)
+    int_t       _day {};     ///< day of the month (1-31)
+    int_t       _hour {};    ///< hours since midnight (0-23)
+    int_t       _minute {};  ///< minutes after the hour (0-59)
+    int_t       _second {};  ///< seconds after the minute (0-60*)
+    int_t       _msec {};    ///< milliseconds (0-999)
 
-    ulonglong_t _thisMSec;///< datetime in milliseconds
+    ulonglong_t _thisMSec {};///< datetime in milliseconds
 
     ulonglong_t _toMsec() const;
         ///< convert to milliseconds
