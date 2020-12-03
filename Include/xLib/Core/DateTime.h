@@ -97,10 +97,10 @@ public:
         ///< get datetime data
     int_t           dayOfWeek() const;
         ///< get day of week, days since Sunday 0-6
-    void_t          set(culonglong_t &msec);
+    void_t          set(culonglong_t msec);
         ///< set DateTime by milliseconds
-    void_t          set(cint_t &year, cint_t &month, cint_t &day,
-                        cint_t &hour, cint_t &minute, cint_t &second, cint_t &msec);
+    void_t          set(cint_t year, cint_t month, cint_t day,
+                        cint_t hour, cint_t minute, cint_t second, cint_t msec);
         ///< set DateTime by datetime data
 
     // converting
