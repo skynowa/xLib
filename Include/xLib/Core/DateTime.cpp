@@ -223,7 +223,7 @@ DateTime::DateTime(
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
-    culonglong_t &a_msec
+    culonglong_t a_msec
 ) :
     DateTime()
 {
@@ -231,10 +231,10 @@ DateTime::DateTime(
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
-    cint_t &a_hour,
-    cint_t &a_minute,
-    cint_t &a_second,
-    cint_t &a_msec
+    cint_t a_hour,
+    cint_t a_minute,
+    cint_t a_second,
+    cint_t a_msec
 ) :
     DateTime()
 {
@@ -244,9 +244,9 @@ DateTime::DateTime(
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
-    cint_t &a_year,
-    cint_t &a_month,
-    cint_t &a_day
+    cint_t a_year,
+    cint_t a_month,
+    cint_t a_day
 ) :
     DateTime()
 {
@@ -256,13 +256,13 @@ DateTime::DateTime(
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
-    cint_t &a_year,
-    cint_t &a_month,
-    cint_t &a_day,
-    cint_t &a_hour,
-    cint_t &a_minute,
-    cint_t &a_second,
-    cint_t &a_msec
+    cint_t a_year,
+    cint_t a_month,
+    cint_t a_day,
+    cint_t a_hour,
+    cint_t a_minute,
+    cint_t a_second,
+    cint_t a_msec
 ) :
     DateTime()
 {

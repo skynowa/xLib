@@ -64,11 +64,11 @@ public:
 ///@{
 			 DateTime();
 	explicit DateTime(const DateTime &datetime);
-	explicit DateTime(culonglong_t &msec);
-			 DateTime(cint_t &hour, cint_t &minute, cint_t &second, cint_t &msec);
-			 DateTime(cint_t &year, cint_t &month, cint_t &day);
-			 DateTime(cint_t &year, cint_t &month, cint_t &day, cint_t &hour, cint_t &minute,
-				cint_t &second, cint_t &msec);
+	explicit DateTime(culonglong_t msec);
+			 DateTime(cint_t hour, cint_t minute, cint_t second, cint_t msec);
+			 DateTime(cint_t year, cint_t month, cint_t day);
+			 DateTime(cint_t year, cint_t month, cint_t day, cint_t hour, cint_t minute,
+				 cint_t second, cint_t msec);
 	virtual ~DateTime() {}
 ///@}
 
