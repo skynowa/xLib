@@ -453,7 +453,7 @@ DateTime::dayOfWeek() const
     timeInfo.tm_mday = _day;
 
     time_t time = std::mktime(&timeInfo);
-    xTEST_DIFF(static_cast<time_t>( - 1 ), time);
+    xTEST_DIFF(static_cast<time_t>(- 1), time);
 
     iRv = timeInfo.tm_wday;
 
@@ -541,7 +541,7 @@ DateTime::_toMsec() const
 {
     xTESTS_NA;
 
-    ulonglong_t ullRv = 0ULL;
+    ulonglong_t ullRv {};
 
     ullRv += xYEAR(_year);    // TODO: [skynowa] DateTime::_toMsec() - days in month 30 or 31 ???
     ullRv += xMONTH(_month);
@@ -573,7 +573,7 @@ DateTime::format(
     xTEST_NA(a_formatMsec);
 
     std::tstring_t sRv;
-    tchar_t        buff[80 + 1] = {};
+    tchar_t        buff[80 + 1] {};
 
     std::tm time {};
     time.tm_year = _year  - 1900;
@@ -613,8 +613,8 @@ DateTime::current()
 /* static */
 int_t
 DateTime::daysInMonth(
-    cint_t &a_year,
-    cint_t &a_month
+    cint_t a_year,
+    cint_t a_month
 )
 {
     xCHECK_RET(a_month == 2 && isLeapYear(a_year), 29);
@@ -630,7 +630,7 @@ DateTime::daysInMonth(
 /* static */
 bool_t
 DateTime::isLeapYear(
-    cint_t &a_year
+    cint_t a_year
 )
 {
     return ((a_year % 4) == 0 && ((a_year % 100) != 0 || (a_year % 400) == 0));
@@ -647,8 +647,8 @@ DateTime::isLeapYear(
 /* static */
 std::tstring_t
 DateTime::zodiacSign(
-    cint_t &a_month,
-    cint_t &a_day
+    cint_t a_month,
+    cint_t a_day
 )
 {
     xTEST_NA(a_month);
@@ -734,8 +734,8 @@ DateTime::zodiacSign(
 /* static */
 std::tstring_t
 DateTime::monthStr(
-    cint_t  &a_month,
-    cbool_t &a_isShortName
+    cint_t  a_month,
+    cbool_t a_isShortName
 )
 {
     xTEST(DateTimeValidator::month(a_month));
@@ -789,8 +789,8 @@ DateTime::monthStr(
 /* static */
 int_t
 DateTime::monthNum(
-    std::ctstring_t &a_month,
-    cbool_t         &a_isShortName
+    std::ctstring_t a_month,
+    cbool_t         a_isShortName
 )
 {
     xTEST_NA(a_month);
@@ -844,8 +844,8 @@ DateTime::monthNum(
 /* static */
 std::tstring_t
 DateTime::weekDayStr(
-    cint_t  &a_week_day,
-    cbool_t &a_isShortName
+    cint_t  a_week_day,
+    cbool_t a_isShortName
 )
 {
     xTEST(DateTimeValidator::weekDay(a_week_day));
@@ -890,7 +890,7 @@ DateTime::weekDayStr(
 int_t
 DateTime::weekDayNum(
     std::ctstring_t &a_week_day,
-    cbool_t         &a_isShortName
+    cbool_t          a_isShortName
 )
 {
     xTEST_NA(a_week_day);

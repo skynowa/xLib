@@ -122,10 +122,10 @@ xPUBLIC_STATIC:
     DateTime        current();
         ///< get current datetime
     static
-    int_t           daysInMonth(cint_t &year, cint_t &month);
+    int_t           daysInMonth(cint_t year, cint_t month);
         ///< get number days in month
     static
-    bool_t          isLeapYear(cint_t &year);
+    bool_t          isLeapYear(cint_t year);
         ///< is leap year
 #if xENV_WIN
     static
@@ -141,19 +141,19 @@ xPUBLIC_STATIC:
 
     // other
     static
-    std::tstring_t  zodiacSign(cint_t &month, cint_t &day);
+    std::tstring_t  zodiacSign(cint_t month, cint_t day);
         ///< sign of the zodiac by date
     static
-    std::tstring_t  monthStr(cint_t &month, cbool_t &isShortName);
+    std::tstring_t  monthStr(cint_t month, cbool_t isShortName);
         ///< get month string
     static
-    int_t           monthNum(std::ctstring_t &month, cbool_t &isShortName);
+    int_t           monthNum(std::ctstring_t &month, cbool_t isShortName);
         ///< get month number by string
     static
-    std::tstring_t  weekDayStr(cint_t &week_day, cbool_t &isShortName);
+    std::tstring_t  weekDayStr(cint_t week_day, cbool_t isShortName);
         ///< get week day string (days since Sunday)
     static
-    int_t           weekDayNum(std::ctstring_t &week_day, cbool_t &isShortName);
+    int_t           weekDayNum(std::ctstring_t week_day, cbool_t isShortName);
         ///< get week day number by string
 
 private:
