@@ -214,9 +214,9 @@ DateTime::DateTime(
 ) :
     DateTime()
 {
-    xTEST_EQ(DateTimeValidator::date(a_datetime._year, a_datetime._month, a_datetime._day) &&
+    xTEST(DateTimeValidator::date(a_datetime._year, a_datetime._month, a_datetime._day) &&
         DateTimeValidator::time(a_datetime._hour, a_datetime._minute, a_datetime._second,
-        a_datetime._msec), true);
+        a_datetime._msec));
 
     set(a_datetime._year, a_datetime._month,  a_datetime._day,
         a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec);
@@ -238,7 +238,7 @@ DateTime::DateTime(
 ) :
     DateTime()
 {
-    xTEST_EQ(DateTimeValidator::time(a_hour, a_minute, a_second, a_msec), true);
+    xTEST(DateTimeValidator::time(a_hour, a_minute, a_second, a_msec));
 
     set(0, 0, 0, a_hour, a_minute, a_second, a_msec);
 }
@@ -250,7 +250,7 @@ DateTime::DateTime(
 ) :
     DateTime()
 {
-    xTEST_EQ(DateTimeValidator::date(a_year, a_month, a_day), true);
+    xTEST(DateTimeValidator::date(a_year, a_month, a_day));
 
     set(a_year, a_month, a_day, 0, 0, 0, 0);
 }
@@ -266,8 +266,8 @@ DateTime::DateTime(
 ) :
     DateTime()
 {
-    xTEST_EQ(DateTimeValidator::date(a_year, a_month, a_day) &&
-        DateTimeValidator::time(a_hour, a_minute, a_second, a_msec), true);
+    xTEST(DateTimeValidator::date(a_year, a_month, a_day) &&
+        DateTimeValidator::time(a_hour, a_minute, a_second, a_msec));
 
     set(a_year, a_month, a_day, a_hour, a_minute, a_second, a_msec);
 }
@@ -443,7 +443,7 @@ DateTime::get(
 int_t
 DateTime::dayOfWeek() const
 {
-    xTEST_EQ(DateTimeValidator::datetime(*this), true);
+    xTEST(DateTimeValidator::datetime(*this));
 
     int_t   iRv {};
     std::tm timeInfo {};
@@ -569,7 +569,7 @@ DateTime::format(
 ) const
 {
     xTESTS_NA;
-    xTEST_EQ(a_format.empty(), false);
+    xTEST(!a_format.empty());
     xTEST_NA(a_formatMsec);
 
     std::tstring_t sRv;
@@ -738,7 +738,7 @@ DateTime::monthStr(
     cbool_t &a_isShortName
 )
 {
-    xTEST_EQ(DateTimeValidator::month(a_month), true);
+    xTEST(DateTimeValidator::month(a_month));
     xTEST_NA(a_isShortName);
 
     std::tstring_t sRv;
@@ -848,7 +848,7 @@ DateTime::weekDayStr(
     cbool_t &a_isShortName
 )
 {
-    xTEST_EQ(DateTimeValidator::weekDay(a_week_day), true);
+    xTEST(DateTimeValidator::weekDay(a_week_day));
     xTEST_NA(a_isShortName);
 
     // days since Sunday (0-6)
