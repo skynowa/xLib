@@ -133,28 +133,28 @@ Test_DateTime::unit()
         xTEST_EQ(std::tstring_t(xT("14-01-2010 17:00:55.666")), m_sRv);
     }
 
-    xTEST_CASE("DateTime(culonglong_t &)")
+    xTEST_CASE("DateTime(culonglong_t)")
     {
         DateTime datetime(1000 * 60 * 60);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
         xTEST_EQ(std::tstring_t(xT("00-00-0 01:00:00.000")), m_sRv);
     }
 
-    xTEST_CASE("DateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &)")
+    xTEST_CASE("DateTime(cushort_t, cushort_t, cushort_t, cushort_t)")
     {
         DateTime datetime(12, 20, 37, 555);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
         xTEST_EQ(std::tstring_t(xT("00-00-0 12:20:37.555")), m_sRv);
     }
 
-    xTEST_CASE("DateTime(cushort_t &, cushort_t &, cushort_t &)")
+    xTEST_CASE("DateTime(cushort_t, cushort_t, cushort_t)")
     {
         DateTime datetime(2010, 7, 8);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
         xTEST_EQ(std::tstring_t(xT("08-07-2010 00:00:00.000")), m_sRv);
     }
 
-    xTEST_CASE("DateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &)")
+    xTEST_CASE("DateTime(cushort_t, cushort_t, cushort_t, cushort_t, cushort_t, cushort_t, cushort_t)")
     {
         DateTime datetime(2010, 8, 18, 14, 0, 5, 777);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
