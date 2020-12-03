@@ -153,7 +153,7 @@ xPUBLIC_STATIC:
     std::tstring_t  weekDayStr(cint_t week_day, cbool_t isShortName);
         ///< get week day string (days since Sunday)
     static
-    int_t           weekDayNum(std::ctstring_t week_day, cbool_t isShortName);
+    int_t           weekDayNum(std::ctstring_t &week_day, cbool_t isShortName);
         ///< get week day number by string
 
 private:

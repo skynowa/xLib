@@ -197,16 +197,9 @@ DateTimeValidator::dateOrTime(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-DateTime::DateTime() :
-    _year    {yearMin},
-    _month   {monthMin},
-    _day     {},
-    _hour    {hourMin},
-    _minute  {minuteMin},
-    _second  {secondMin},
-    _msec    {msecMin},
-    _thisMSec{}
+DateTime::DateTime()
 {
+    set(yearMin, monthMin, 0, hourMin, minuteMin, secondMin, msecMin);
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
@@ -789,8 +782,8 @@ DateTime::monthStr(
 /* static */
 int_t
 DateTime::monthNum(
-    std::ctstring_t a_month,
-    cbool_t         a_isShortName
+    std::ctstring_t &a_month,
+    cbool_t          a_isShortName
 )
 {
     xTEST_NA(a_month);
