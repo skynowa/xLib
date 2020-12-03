@@ -175,7 +175,6 @@ private:
     friend std::tostream_t& operator << (std::tostream_t &os, const DateTime &dateTime);
 
 xPLATFORM_IMPL:
-    // static
     static
     DateTime _current_impl();
 };
