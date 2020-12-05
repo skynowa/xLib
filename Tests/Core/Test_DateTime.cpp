@@ -36,7 +36,7 @@ Test_DateTime::unit()
             cushort_t valid[][7] =
             {
                 // year, month, day, hour, minute, second, msec
-                {2011, 0,  1,  0,  0,  0,  0},
+                {2011, 1,  1,  0,  0,  0,  0},
                 {1978, 7,  21, 4,  55, 45, 13},
                 {1956, 1,  10, 13, 59, 59, 998},
                 {2011, 2,  1,  12, 45, 5,  1},
@@ -118,7 +118,7 @@ Test_DateTime::unit()
         DateTime datetime;
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
 
-        xTEST_EQ(std::tstring_t(xT("00-00-0 00:00:00.000")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("00-01-0 00:00:00.000")), m_sRv);
     }
 
     xTEST_CASE("DateTime(const DateTime &)")
@@ -249,11 +249,11 @@ Test_DateTime::unit()
 
         datetime = DateTime() + DateTime(1000 * 60 * 60);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(std::tstring_t(xT("00-00-0 01:00:00.000")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("00-01-0 01:00:00.000")), m_sRv);
 
         datetime = datetime - DateTime(1000 * 60 * 60 / 2);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(std::tstring_t(xT("00-00-0 00:30:00.000")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("00-01-0 00:30:00.000")), m_sRv);
     }
 
     xTEST_CASE("operator +=")
@@ -483,57 +483,79 @@ Test_DateTime::unit()
 
     xTEST_CASE("monthStr")
     {
-        // isShortName = false
-        m_sRv = DateTime::monthStr(0, false);
-        xTEST_EQ(std::tstring_t(xT("January")), m_sRv);
-        m_sRv = DateTime::monthStr(1, false);
-        xTEST_EQ(std::tstring_t(xT("February")), m_sRv);
-        m_sRv = DateTime::monthStr(2, false);
-        xTEST_EQ(std::tstring_t(xT("March")), m_sRv);
-        m_sRv = DateTime::monthStr(3, false);
-        xTEST_EQ(std::tstring_t(xT("April")), m_sRv);
-        m_sRv = DateTime::monthStr(4, false);
-        xTEST_EQ(std::tstring_t(xT("May")), m_sRv);
-        m_sRv = DateTime::monthStr(5, false);
-        xTEST_EQ(std::tstring_t(xT("June")), m_sRv);
-        m_sRv = DateTime::monthStr(6, false);
-        xTEST_EQ(std::tstring_t(xT("July")), m_sRv);
-        m_sRv = DateTime::monthStr(7, false);
-        xTEST_EQ(std::tstring_t(xT("August")), m_sRv);
-        m_sRv = DateTime::monthStr(8, false);
-        xTEST_EQ(std::tstring_t(xT("September")), m_sRv);
-        m_sRv = DateTime::monthStr(9, false);
-        xTEST_EQ(std::tstring_t(xT("October")), m_sRv);
-        m_sRv = DateTime::monthStr(10, false);
-        xTEST_EQ(std::tstring_t(xT("November")), m_sRv);
-        m_sRv = DateTime::monthStr(11, false);
-        xTEST_EQ(std::tstring_t(xT("December")), m_sRv);
+		// isShortName = false
+		m_sRv = DateTime::monthStr(1, false);
+		xTEST_EQ(std::tstring_t(xT("January")), m_sRv);
 
-        // isShortName = true
-        m_sRv = DateTime::monthStr(0, true);
-        xTEST_EQ(std::tstring_t(xT("Jan")), m_sRv);
-        m_sRv = DateTime::monthStr(1, true);
-        xTEST_EQ(std::tstring_t(xT("Feb")), m_sRv);
-        m_sRv = DateTime::monthStr(2, true);
-        xTEST_EQ(std::tstring_t(xT("Mar")), m_sRv);
-        m_sRv = DateTime::monthStr(3, true);
-        xTEST_EQ(std::tstring_t(xT("Apr")), m_sRv);
-        m_sRv = DateTime::monthStr(4, true);
-        xTEST_EQ(std::tstring_t(xT("May")), m_sRv);
-        m_sRv = DateTime::monthStr(5, true);
-        xTEST_EQ(std::tstring_t(xT("Jun")), m_sRv);
-        m_sRv = DateTime::monthStr(6, true);
-        xTEST_EQ(std::tstring_t(xT("Jul")), m_sRv);
-        m_sRv = DateTime::monthStr(7, true);
-        xTEST_EQ(std::tstring_t(xT("Aug")), m_sRv);
-        m_sRv = DateTime::monthStr(8, true);
-        xTEST_EQ(std::tstring_t(xT("Sep")), m_sRv);
-        m_sRv = DateTime::monthStr(9, true);
-        xTEST_EQ(std::tstring_t(xT("Oct")), m_sRv);
-        m_sRv = DateTime::monthStr(10, true);
-        xTEST_EQ(std::tstring_t(xT("Nov")), m_sRv);
-        m_sRv = DateTime::monthStr(11, true);
-        xTEST_EQ(std::tstring_t(xT("Dec")), m_sRv);
+		m_sRv = DateTime::monthStr(2, false);
+		xTEST_EQ(std::tstring_t(xT("February")), m_sRv);
+
+		m_sRv = DateTime::monthStr(3, false);
+		xTEST_EQ(std::tstring_t(xT("March")), m_sRv);
+
+		m_sRv = DateTime::monthStr(4, false);
+		xTEST_EQ(std::tstring_t(xT("April")), m_sRv);
+
+		m_sRv = DateTime::monthStr(5, false);
+		xTEST_EQ(std::tstring_t(xT("May")), m_sRv);
+
+		m_sRv = DateTime::monthStr(6, false);
+		xTEST_EQ(std::tstring_t(xT("June")), m_sRv);
+
+		m_sRv = DateTime::monthStr(7, false);
+		xTEST_EQ(std::tstring_t(xT("July")), m_sRv);
+
+		m_sRv = DateTime::monthStr(8, false);
+		xTEST_EQ(std::tstring_t(xT("August")), m_sRv);
+
+		m_sRv = DateTime::monthStr(9, false);
+		xTEST_EQ(std::tstring_t(xT("September")), m_sRv);
+
+		m_sRv = DateTime::monthStr(10, false);
+		xTEST_EQ(std::tstring_t(xT("October")), m_sRv);
+
+		m_sRv = DateTime::monthStr(11, false);
+		xTEST_EQ(std::tstring_t(xT("November")), m_sRv);
+
+		m_sRv = DateTime::monthStr(12, false);
+		xTEST_EQ(std::tstring_t(xT("December")), m_sRv);
+
+		// isShortName = true
+		m_sRv = DateTime::monthStr(1, true);
+		xTEST_EQ(std::tstring_t(xT("Jan")), m_sRv);
+
+		m_sRv = DateTime::monthStr(2, true);
+		xTEST_EQ(std::tstring_t(xT("Feb")), m_sRv);
+
+		m_sRv = DateTime::monthStr(3, true);
+		xTEST_EQ(std::tstring_t(xT("Mar")), m_sRv);
+
+		m_sRv = DateTime::monthStr(4, true);
+		xTEST_EQ(std::tstring_t(xT("Apr")), m_sRv);
+
+		m_sRv = DateTime::monthStr(5, true);
+		xTEST_EQ(std::tstring_t(xT("May")), m_sRv);
+
+		m_sRv = DateTime::monthStr(6, true);
+		xTEST_EQ(std::tstring_t(xT("Jun")), m_sRv);
+
+		m_sRv = DateTime::monthStr(7, true);
+		xTEST_EQ(std::tstring_t(xT("Jul")), m_sRv);
+
+		m_sRv = DateTime::monthStr(8, true);
+		xTEST_EQ(std::tstring_t(xT("Aug")), m_sRv);
+
+		m_sRv = DateTime::monthStr(9, true);
+		xTEST_EQ(std::tstring_t(xT("Sep")), m_sRv);
+
+		m_sRv = DateTime::monthStr(10, true);
+		xTEST_EQ(std::tstring_t(xT("Oct")), m_sRv);
+
+		m_sRv = DateTime::monthStr(11, true);
+		xTEST_EQ(std::tstring_t(xT("Nov")), m_sRv);
+
+		m_sRv = DateTime::monthStr(12, true);
+		xTEST_EQ(std::tstring_t(xT("Dec")), m_sRv);
     }
 
     xTEST_CASE("monthNum")

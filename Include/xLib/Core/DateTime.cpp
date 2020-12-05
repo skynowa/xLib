@@ -39,8 +39,8 @@ namespace
 cint_t yearMin     = 0;
 cint_t yearMax     = 9999;
 
-cint_t monthMin    = 0;
-cint_t monthMax    = 12; // TODO: 12 -> 11
+cint_t monthMin    = 1;
+cint_t monthMax    = 12;
 
 cint_t dayMin      = 1;
 cint_t dayMax      = 31;
@@ -650,7 +650,7 @@ DateTime::monthStr(
     std::tstring_t sRv;
 
     if (!a_isShortName) {
-        // months numbering: 0-11
+        // months numbering: 1-12
         const std::array<std::tstring_t, monthMax + 1> longMonths =
         {{
             xT("January"),
@@ -667,9 +667,9 @@ DateTime::monthStr(
             xT("December")
         }};
 
-        sRv = longMonths[ static_cast<std::size_t>(a_month) ];
+        sRv = longMonths[static_cast<std::size_t>(a_month) - 1];
     } else {
-        // months numbering: 0-11
+        // months numbering: 1-12
         const std::array<std::tstring_t, monthMax + 1> shortMonths =
         {{
             xT("Jan"),
@@ -686,7 +686,7 @@ DateTime::monthStr(
             xT("Dec")
         }};
 
-        sRv = shortMonths[ static_cast<std::size_t>(a_month) ];
+        sRv = shortMonths[static_cast<std::size_t>(a_month) - 1];
     }
 
     return sRv;
