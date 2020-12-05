@@ -131,7 +131,7 @@ Process::_create_impl(
 
 			/// TODO: logs - rm
 			{
-			#if 1
+			#if 0
 				std::ctstring_t filePath = Dir::current() + xT("/execve.log");
 
 				FileLog log(FileLog::LogSizes::lsDefaultMb);
