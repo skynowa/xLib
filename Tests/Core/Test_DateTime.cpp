@@ -58,7 +58,7 @@ Test_DateTime::unit()
                 cint_t msec   = valid[i][6];
 
                 m_bRv = DateTimeValidator::datetime(year, month, day, hour, minute, second, msec);
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -103,7 +103,7 @@ Test_DateTime::unit()
                 // Trace() << xTRACE_VAR_8(i, year, month, day, hour, minute, second, msec);
 
                 m_bRv = DateTimeValidator::datetime(year, month, day, hour, minute, second, msec);
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -179,7 +179,7 @@ Test_DateTime::unit()
         DateTime datetime2;
 
         m_bRv = (datetime1 == datetime2);
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("operator !=")
@@ -188,7 +188,7 @@ Test_DateTime::unit()
         DateTime datetime2;
 
         m_bRv = (datetime1 != datetime2);
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("operator <")
@@ -197,7 +197,7 @@ Test_DateTime::unit()
         DateTime datetime2;
 
         m_bRv = (datetime1 < datetime2);
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("operator <=")
@@ -206,7 +206,7 @@ Test_DateTime::unit()
         DateTime datetime2;
 
         m_bRv = (datetime1 <= datetime2);
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("operator >")
@@ -215,7 +215,7 @@ Test_DateTime::unit()
         DateTime datetime2;
 
         m_bRv = (datetime1 > datetime2);
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("operator >=")
@@ -224,7 +224,7 @@ Test_DateTime::unit()
         DateTime datetime2;
 
         m_bRv = (datetime1 >= datetime2);
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
     }
 
 
@@ -427,7 +427,7 @@ Test_DateTime::unit()
 
             for (size_t i = 0; i < xARRAY_SIZE(valid); ++ i) {
                 m_bRv = DateTime::isLeapYear(valid[i]);
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -439,7 +439,7 @@ Test_DateTime::unit()
 
             for (size_t i = 0; i < xARRAY_SIZE(nonValid); ++ i) {
                 m_bRv = DateTime::isLeapYear(nonValid[i]);
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
