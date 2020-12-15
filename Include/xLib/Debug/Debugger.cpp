@@ -108,20 +108,20 @@ Debugger::reportMake(
     culong_t nativeError = NativeError::get();
 
     switch (a_report.type()) {
-    case ErrorReport::Type::rtMsgbox:
+    case ErrorReport::Type::Msgbox:
         _msgboxPlain(a_report);
         break;
-    case ErrorReport::Type::rtStdout:
+    case ErrorReport::Type::Stdout:
         _stdoutPlain(a_report);
         break;
-    case ErrorReport::Type::rtLog:
+    case ErrorReport::Type::Log:
         _loggingPlain(a_report);
         break;
-    case ErrorReport::Type::rtStdoutLog:
+    case ErrorReport::Type::StdoutLog:
         _stdoutPlain(a_report);
         _loggingPlain(a_report);
         break;
-    case ErrorReport::Type::rtException:
+    case ErrorReport::Type::Exception:
         throw Exception() << a_report.toString();
         break;
     default:

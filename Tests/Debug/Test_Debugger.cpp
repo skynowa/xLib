@@ -83,14 +83,15 @@ Test_Debugger::unit()
 
     xTEST_CASE("reportMake")
     {
-        const ErrorReport::Type type[] = {
-            ErrorReport::Type::rtMsgbox,
-            ErrorReport::Type::rtStdout,
-            ErrorReport::Type::rtLog
+        const ErrorReport::Type type[]
+        {
+            ErrorReport::Type::Msgbox,
+            ErrorReport::Type::Stdout,
+            ErrorReport::Type::Log
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(type); ++ i) {
-            ulong_t        nativeError = NativeError::get();
+            ulong_t        nativeError    = NativeError::get();
             SourceInfoData sourceInfoData = {xFILE, xLINE, xFUNCTION, xCOUNTER};
             SourceInfo     sourceInfo(sourceInfoData);
 

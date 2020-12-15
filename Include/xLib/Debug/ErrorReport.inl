@@ -32,11 +32,11 @@ ErrorReport::ErrorReport(
         a_nativeError, a_stackTrace, a_comment);
 
     switch (a_type) {
-    case Type::rtMsgbox:
-    case Type::rtStdout:
-    case Type::rtLog:
-    case Type::rtStdoutLog:
-    case Type::rtException:
+    case Type::Msgbox:
+    case Type::Stdout:
+    case Type::Log:
+    case Type::StdoutLog:
+    case Type::Exception:
         _initPlain();
         break;
     }
