@@ -34,7 +34,7 @@ ErrorReport::ErrorReport(
     std::ctstring_t  &a_comment
 )
 {
-    _construct(Type::rtStdout, a_sourceInfo, xT(""), xT(""), xT(""), xT(""), xT(""), a_nativeError,
+    _construct(Type::Stdout, a_sourceInfo, xT(""), xT(""), xT(""), xT(""), xT(""), a_nativeError,
         a_stackTrace, a_comment);
     _initPlain();
 }

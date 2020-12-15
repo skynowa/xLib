@@ -21,12 +21,12 @@ public:
     enum class Type
         /// type
     {
-        rtUnknown,  ///< unknown
-        rtMsgbox,   ///< as message box
-        rtStdout,   ///< to std::cout
-        rtLog,      ///< to log
-        rtStdoutLog,///< to std::cout and log
-        rtException ///< to exception
+        Unknown,  ///< unknown
+        Msgbox,   ///< as message box
+        Stdout,   ///< to std::cout
+        Log,      ///< to log
+        StdoutLog,///< to std::cout and log
+        Exception ///< to exception
     };
     xUSING_CONST(Type);
 
@@ -53,7 +53,7 @@ public:
         ///< report message
 
 private:
-    Type           _type {Type::rtUnknown}; ///< report type
+    Type           _type {Type::Unknown}; ///< report type
     std::tstring_t _report;           ///< report message
 
     // exe
