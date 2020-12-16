@@ -54,7 +54,7 @@ Blowfish::setKey(
     std::custring_t &a_key
 )
 {
-    xTEST_EQ(a_key.empty(), false);
+    xTEST(!a_key.empty());
     xTEST_GR_EQ(keySizeMax(), a_key.size());
 
     setKey(const_cast<uchar_t *>( a_key.data() ), static_cast<int_t>( a_key.size() ));
@@ -65,7 +65,7 @@ Blowfish::setKey(
     std::ctstring_t &a_key
 )
 {
-    xTEST_EQ(a_key.empty(), false);
+    xTEST(!a_key.empty());
     xTEST_GR_EQ(keySizeMax(), a_key.size() * sizeof(std::tstring_t::value_type));
 
     setKey(std::ustring_t(a_key.cbegin(), a_key.cend()));
@@ -107,8 +107,14 @@ Blowfish::keySizeMax()
 {
     static_assert(CHAR_BIT == 8, "test: CHAR_BIT");
 
-    // max key size 448 bit = 56 byte
-    return 448 / CHAR_BIT;
+   /**
+	* Blowfish max key size
+	*
+	* OpenSSL     - 256 bits (32 bytes)
+	* Algorithm’s - 448 bits (56 bytes)
+	*/
+
+    return 32 * CHAR_BIT / CHAR_BIT;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -130,7 +136,7 @@ Blowfish::encryptCfb64(
 {
     xTEST_PTR(a_in);
     xTEST_PTR(a_out);
-    xTEST_LESS(- 1L, a_inSize);
+    xTEST_GR_EQ(a_inSize, 0L);
     xTEST_PTR(a_num);
 
     Utils::arrayZeroT(_ivec);
@@ -146,7 +152,7 @@ Blowfish::encryptCfb64(
     cMode            a_mode
 )
 {
-    xTEST_EQ(a_in.empty(), false);
+    xTEST(!a_in.empty());
     xTEST_PTR(a_out);
 
     a_out->resize( a_in.size() );
@@ -164,8 +170,8 @@ Blowfish::encryptFileCfb64(
     cMode            a_mode
 )
 {
-    xTEST_EQ(a_filePathIn.empty(), false);
-    xTEST_EQ(a_filePathOut.empty(), false);
+    xTEST(!a_filePathIn.empty());
+    xTEST(!a_filePathOut.empty());
 
     std::ustring_t in;
     File(a_filePathIn).binRead(&in);
