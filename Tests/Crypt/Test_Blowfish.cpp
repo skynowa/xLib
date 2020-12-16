@@ -16,8 +16,6 @@ xTEST_UNIT(Test_Blowfish)
 bool_t
 Test_Blowfish::unit()
 {
-#if cmOPENSSL_CRYPTO_FOUND
-
     xTEST_CASE("encryptCfb64")
     {
         std::ustring_t plain[] = {
@@ -79,8 +77,6 @@ Test_Blowfish::unit()
             xTEST_EQ(Crc32().calcFile(filePlain), Crc32().calcFile(fileDecrypted));
         }
     }
-
-#endif // cmOPENSSL_CRYPTO_FOUND
 
     return true;
 }
