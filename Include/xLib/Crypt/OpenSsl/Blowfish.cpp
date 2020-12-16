@@ -179,7 +179,7 @@ Blowfish::encryptFileCfb64(
  * https://www.oreilly.com/library/view/secure-programming-cookbook/0596003943/ch05s18.html
  *
  * OpenSSL     - 256 bits (32 bytes)
- * Algorithm’s - 448 bits (56 bytes)
+ * Algorithm's - 448 bits (56 bytes)
  */
 constexpr size_t
 Blowfish::_keySizeMax() const
