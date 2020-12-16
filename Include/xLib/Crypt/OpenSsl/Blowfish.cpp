@@ -173,19 +173,18 @@ Blowfish::encryptFileCfb64(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+/**
+ * Blowfish max key size
+ *
+ * https://www.oreilly.com/library/view/secure-programming-cookbook/0596003943/ch05s18.html
+ *
+ * OpenSSL     - 256 bits (32 bytes)
+ * Algorithm’s - 448 bits (56 bytes)
+ */
 constexpr size_t
 Blowfish::_keySizeMax() const
 {
     static_assert(CHAR_BIT == 8, "test: CHAR_BIT");
-
-   /**
-	* Blowfish max key size
-	*
-	* https://www.oreilly.com/library/view/secure-programming-cookbook/0596003943/ch05s18.html
-	*
-	* OpenSSL     - 256 bits (32 bytes)
-	* Algorithm’s - 448 bits (56 bytes)
-	*/
 
     return 32 * CHAR_BIT / CHAR_BIT;
 }
