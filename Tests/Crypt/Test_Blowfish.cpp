@@ -39,8 +39,8 @@ Test_Blowfish::unit()
             std::ustring_t decrypted;
 
             blowfish.setKey(key);
-            blowfish.encryptCfb64(plain[i], &encrypted, Blowfish::CryptMode::cmEncrypt);
-            blowfish.encryptCfb64(encrypted, &decrypted, Blowfish::CryptMode::cmDecrypt);
+            blowfish.encryptCfb64(plain[i], &encrypted, Blowfish::Mode::Encrypt);
+            blowfish.encryptCfb64(encrypted, &decrypted, Blowfish::Mode::Decrypt);
 
             xTEST_EQ(plain[i], decrypted);
             xTEST_EQ(Crc32().calc(&(plain[i]).at(0), plain[i].size()),
@@ -63,8 +63,8 @@ Test_Blowfish::unit()
 
         // test
         blowfish.setKey(key);
-        blowfish.encryptFileCfb64(filePlain, fileEncrypted, Blowfish::CryptMode::cmEncrypt);
-        blowfish.encryptFileCfb64(fileEncrypted, fileDecrypted, Blowfish::CryptMode::cmDecrypt);
+        blowfish.encryptFileCfb64(filePlain, fileEncrypted, Blowfish::Mode::Encrypt);
+        blowfish.encryptFileCfb64(fileEncrypted, fileDecrypted, Blowfish::Mode::Decrypt);
 
         {
             FileIO fileIn(filePlain);

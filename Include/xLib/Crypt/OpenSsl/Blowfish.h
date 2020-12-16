@@ -8,8 +8,6 @@
 
 #include <xLib/Core/Core.h>
 
-#if cmOPENSSL_CRYPTO_FOUND
-
 #include <openssl/blowfish.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::crypt
@@ -19,14 +17,14 @@ class Blowfish
     /// blowfish
 {
 public:
-    enum class CryptMode
+    enum class Mode
         /// crypt mode
     {
-        cmUnknown = - 1,
-        cmEncrypt = BF_ENCRYPT,
-        cmDecrypt = BF_DECRYPT
+        Unknown = - 1,
+        Encrypt = BF_ENCRYPT,
+        Decrypt = BF_DECRYPT
     };
-    xUSING_CONST(CryptMode);
+    xUSING_CONST(Mode);
 
 ///@name ctors, dtor
 ///@{
@@ -52,12 +50,11 @@ public:
         ///< get maximum key size
 
     // cfb64
-    void_t   encryptCfb64(cuchar_t *in, uchar_t *out, clong_t &inSize, int_t *num, cCryptMode mode);
+    void_t   encryptCfb64(cuchar_t *in, uchar_t *out, clong_t &inSize, int_t *num, cMode mode);
         ///< encrypt buffer
-    void_t   encryptCfb64(std::custring_t &in, std::ustring_t *out, cCryptMode mode);
+    void_t   encryptCfb64(std::custring_t &in, std::ustring_t *out, cMode mode);
         ///< encrypt std::ustring_t
-    void_t   encryptFileCfb64(std::ctstring_t &filePathIn, std::ctstring_t &filePathOut,
-                cCryptMode mode);
+    void_t   encryptFileCfb64(std::ctstring_t &filePathIn, std::ctstring_t &filePathOut, cMode mode);
         ///< encrypt file
 
 private:
@@ -66,17 +63,17 @@ private:
 };
 
 } // namespace
-
-#endif // cmOPENSSL_CRYPTO_FOUND
 //-------------------------------------------------------------------------------------------------
 
-/*
-void_t  BF_set_key      (BF_KEY *key, int_t len, unsigned char *data);
-void_t  BF_ecb_encrypt  (unsigned char *in, unsigned char *out, BF_KEY *key, int_t enc);
-void_t  BF_encrypt      (BF_LONG *data, BF_KEY *key);
-void_t  BF_decrypt      (BF_LONG *data, BF_KEY *key);
-void_t  BF_cbc_encrypt  (unsigned char *in, unsigned char *out, long_t length, BF_KEY *ks,       unsigned char *iv,             int_t enc);
-void_t  BF_cfb64_encrypt(unsigned char *in, unsigned char *out, long_t length, BF_KEY *schedule, unsigned char *ivec, int_t *num, int_t enc);
-void_t  BF_ofb64_encrypt(unsigned char *in, unsigned char *out, long_t length, BF_KEY *schedule, unsigned char *ivec, int_t *num);
-char *BF_options      (void_t);
-*/
+/**
+ * TODO:
+ *
+ * void_t  BF_set_key      (BF_KEY *key, int_t len, unsigned char *data);
+ * void_t  BF_ecb_encrypt  (unsigned char *in, unsigned char *out, BF_KEY *key, int_t enc);
+ * void_t  BF_encrypt      (BF_LONG *data, BF_KEY *key);
+ * void_t  BF_decrypt      (BF_LONG *data, BF_KEY *key);
+ * void_t  BF_cbc_encrypt  (unsigned char *in, unsigned char *out, long_t length, BF_KEY *ks,       unsigned char *iv,             int_t enc);
+ * void_t  BF_cfb64_encrypt(unsigned char *in, unsigned char *out, long_t length, BF_KEY *schedule, unsigned char *ivec, int_t *num, int_t enc);
+ * void_t  BF_ofb64_encrypt(unsigned char *in, unsigned char *out, long_t length, BF_KEY *schedule, unsigned char *ivec, int_t *num);
+ * char *BF_options      (void_t);
+ */

@@ -6,8 +6,6 @@
 
 #include "Blowfish.h"
 
-#if cmOPENSSL_CRYPTO_FOUND
-
 #include <xLib/Core/Utils.h>
 #include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/File.h>
@@ -123,11 +121,11 @@ Blowfish::keySizeMax()
 //-------------------------------------------------------------------------------------------------
 void_t
 Blowfish::encryptCfb64(
-    cuchar_t  *a_in,
-    uchar_t   *a_out,
-    clong_t   &a_inSize,
-    int_t     *a_num,
-    cCryptMode a_mode
+    cuchar_t *a_in,
+    uchar_t  *a_out,
+    clong_t  &a_inSize,
+    int_t    *a_num,
+    cMode     a_mode
 )
 {
     xTEST_PTR(a_in);
@@ -145,7 +143,7 @@ void_t
 Blowfish::encryptCfb64(
     std::custring_t &a_in,
     std::ustring_t  *a_out,
-    cCryptMode       a_mode
+    cMode            a_mode
 )
 {
     xTEST_EQ(a_in.empty(), false);
@@ -163,7 +161,7 @@ void_t
 Blowfish::encryptFileCfb64(
     std::ctstring_t &a_filePathIn,
     std::ctstring_t &a_filePathOut,
-    cCryptMode       a_mode
+    cMode            a_mode
 )
 {
     xTEST_EQ(a_filePathIn.empty(), false);
@@ -180,5 +178,3 @@ Blowfish::encryptFileCfb64(
 //-------------------------------------------------------------------------------------------------
 
 } // namespace
-
-#endif // cmOPENSSL_CRYPTO_FOUND
