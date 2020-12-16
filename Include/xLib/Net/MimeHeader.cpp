@@ -9,7 +9,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Locale.h>
-#include <xLib/Crypt/OpenSSL/Guid.h>
+#include <xLib/Crypt/OpenSsl/Guid.h>
 #include <xLib/System/SystemInfo.h>
 
 
