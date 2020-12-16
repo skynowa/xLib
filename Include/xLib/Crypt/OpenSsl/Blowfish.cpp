@@ -97,7 +97,9 @@ Blowfish::setFileKey(
 void_t
 Blowfish::clearKey()
 {
+    Utils::memoryZero(&_key, sizeof(_key));
     _key = {};
+
     Utils::arrayZeroT(_ivec);
 }
 //-------------------------------------------------------------------------------------------------
