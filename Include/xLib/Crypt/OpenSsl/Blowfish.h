@@ -42,8 +42,6 @@ public:
         ///< set key
     void_t   setFileKey(std::ctstring_t &filePath);
         ///< set key as file
-    void_t   clearKey();
-        ///< clear key
 
     // cfb64
     void_t   encryptCfb64(cuchar_t *in, uchar_t *out, clong_t &inSize, int_t *num, cMode mode);
@@ -59,6 +57,8 @@ private:
 
     constexpr size_t _keySizeMax() const;
         ///< get maximum key size
+    void_t           _clearKey();
+        ///< clear key (for security)
 };
 
 } // namespace
