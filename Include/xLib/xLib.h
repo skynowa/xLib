@@ -49,8 +49,8 @@
 #include <xLib/Algo/Algos.h>
 
 // Crypt
-#include <xLib/Crypt/OpenSSL/Blowfish.h>
-#include <xLib/Crypt/OpenSSL/Guid.h>
+#include <xLib/Crypt/OpenSsl/Blowfish.h>
+#include <xLib/Crypt/OpenSsl/Guid.h>
 #include <xLib/Crypt/Base64.h>
 #include <xLib/Crypt/Crc32.h>
 #include <xLib/Crypt/Random.h>
