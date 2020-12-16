@@ -184,7 +184,7 @@ Blowfish::encryptFileCfb64(
 constexpr size_t
 Blowfish::_keySizeMax() const
 {
-    static_assert(CHAR_BIT == 8, "test: CHAR_BIT");
+    static_assert(CHAR_BIT == 8);
 
     return 32 * CHAR_BIT / CHAR_BIT;
 }
