@@ -45,10 +45,6 @@ public:
     void_t   clearKey();
         ///< clear key
 
-    static
-    size_t   keySizeMax();
-        ///< get maximum key size
-
     // cfb64
     void_t   encryptCfb64(cuchar_t *in, uchar_t *out, clong_t &inSize, int_t *num, cMode mode);
         ///< encrypt buffer
@@ -60,6 +56,9 @@ public:
 private:
     BF_KEY  _key {};            ///< crypt key
     uchar_t _ivec[BF_BLOCK] {}; ///< ivec
+
+    constexpr size_t _keySizeMax() const;
+        ///< get maximum key size
 };
 
 } // namespace
