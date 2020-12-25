@@ -172,15 +172,11 @@ xPLATFORM_IMPL:
 	std::tstring_t sRv;
 	std::tstring_t exePath = Path::exe();
 
-
-	// Sample OLD 1
+	// Sample OLD
 	sRv = Path( Path(exePath).brief(::reportWidthMax) ).toUnix(false);
 
-	// Sample OLD 2
-	std::tstring_t str = Path(exePath).brief(::reportWidthMax);
 	Path path(str);
 	sRv = path.toUnix(false);
-
 
 	// Sample NEW 1
 	Path path(exePath);
