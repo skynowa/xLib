@@ -170,17 +170,16 @@ xPLATFORM_IMPL:
 	TODO: return Object - if possible
 
 	std::tstring_t sRv;
-	std::tstring_t exePath = Path::exe();
 
 	// Sample OLD
-	sRv = Path( Path(exePath).brief(::reportWidthMax) ).toUnix(false);
+	sRv = Path( PathExe().brief(::reportWidthMax) ).toUnix(false);
 
 	// Sample NEW 1
-	Path path(exePath);
+	PathExe path();
 	sRv = path.brief(::reportWidthMax).toUnix(false).str();
 
 	// Sample NEW 2
-	sRv = Path( exePath )
+	sRv = PathExe()
 		.brief(::reportWidthMax)
 		.toUnix(false)
 		.str();
