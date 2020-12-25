@@ -23,6 +23,10 @@ public:
 
 	xNO_COPY_ASSIGN(PathExe)
 ///@}
+
+xPLATFORM_IMPL:
+	static
+	std::tstring_t _exe_impl();
 };
 
 } // namespace

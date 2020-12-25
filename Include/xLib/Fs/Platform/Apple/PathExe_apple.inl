@@ -15,7 +15,7 @@ namespace xl::fs
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-Path::_exe_impl()
+PathExe::_exe_impl()
 {
     std::tstring_t sRv;
 

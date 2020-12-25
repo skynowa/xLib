@@ -15,7 +15,7 @@ namespace xl::fs
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-Path::_exe_impl()
+PathExe::_exe_impl()
 {
     // REVIEW: QueryFullProcessImageName on xOS_WIN_VER > xOS_WIN_S03
 
