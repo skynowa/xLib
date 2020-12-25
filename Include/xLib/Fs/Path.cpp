@@ -60,38 +60,11 @@ Path::volume() const
     return _volume_impl();
 }
 //-------------------------------------------------------------------------------------------------
-/**
-* FAQ:
-*
-* http://www.cplusplus.com/forum/general/11104/
-* http://stackoverflow.com/questions/1023306/finding-current-executables-path-without-proc-self-exe
-* http://libsylph.sourceforge.net/wiki/Full_path_to_binary
-* http://h21007.www2.hp.com/portal/site/dspp/menuitem.863c3e4cbcdc3f3515b49c108973a801?
-*     ciid=88086d6e1de021106d6e1de02110275d6e10RCRD
-*/
-
-/* static */
-std::tstring_t
-Path::exe()
-{
-    std::ctstring_t sRv( _exe_impl() );
-    xTEST_EQ(FileInfo(sRv).isExists(), true);
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Path::dll()
 {
     return _dll_impl();
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-Path::exeDir()
-{
-    return Path(exe()).dir();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t

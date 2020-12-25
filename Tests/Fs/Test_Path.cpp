@@ -16,18 +16,6 @@ xTEST_UNIT(Test_Path)
 bool_t
 Test_Path::unit()
 {
-    xTEST_CASE("exe")
-    {
-        m_sRv = Path::exe();
-        xTEST(FileInfo(m_sRv).isExists());
-    }
-
-    xTEST_CASE("exeDir")
-    {
-        m_sRv = Path::exeDir();
-        xTEST(Dir(m_sRv).isExists());
-    }
-
     xTEST_CASE("dll")
     {
         m_sRv = Path::dll();
@@ -733,7 +721,7 @@ Test_Path::unit()
 
     xTEST_CASE("isCaseSensitive")
     {
-        m_bRv = Path( Path::exe() ).isCaseSensitive();
+        m_bRv = PathExe().isCaseSensitive();
 
 	#if   xENV_WIN
 		xTEST_EQ(m_bRv, false);

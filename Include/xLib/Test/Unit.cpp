@@ -8,7 +8,7 @@
 
 #include <xLib/Core/ScopeExit.h>
 #include <xLib/Debug/Exception.h>
-#include <xLib/Fs/Path.h>
+#include <xLib/Fs/PathExe.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/DirTemp.h>
 #include <xLib/Debug/NativeError.h>
@@ -65,7 +65,7 @@ bool_t
 Unit::run()
 {
 	// temp dir
-    std::ctstring_t tempDirPath = Path::exeDir() + Const::slash() + _data.name;
+    std::ctstring_t tempDirPath = PathExe().dir() + Const::slash() + _data.name;
 
     cbool_t isRandomPostfix {true};
     cbool_t isAutoDelete    {true};

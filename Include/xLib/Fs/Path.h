@@ -105,12 +105,6 @@ public:
 
 xPUBLIC_STATIC:
     static
-    std::tstring_t exe();
-        ///< get full path to exe
-    static
-    std::tstring_t exeDir();
-        ///< get dir path to exe
-    static
     std::tstring_t dll();
         ///< get full path to dll
     static

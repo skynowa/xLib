@@ -16,7 +16,7 @@ xTEST_UNIT(Test_Config)
 bool_t
 Test_Config::unit()
 {
-    std::ctstring_t filePath = Path( Path::exe() ).setExt(xT("cfg") );
+    std::ctstring_t filePath = PathExe().setExt(xT("cfg") );
 
     std::ctstring_t key1     = xT("a");
     std::ctstring_t value1   = xT("1");

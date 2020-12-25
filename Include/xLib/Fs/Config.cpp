@@ -8,13 +8,13 @@
 
 #include <xLib/Core/String.h>
 #include <xLib/Fs/Path.h>
+#include <xLib/Fs/PathExe.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/File.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
-
 
 namespace xl::fs
 {
@@ -26,7 +26,7 @@ namespace xl::fs
 
 //-------------------------------------------------------------------------------------------------
 Config::Config() :
-	Config( Path::exe() )
+	Config( PathExe().str() )
 {
 }
 //-------------------------------------------------------------------------------------------------

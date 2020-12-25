@@ -13,7 +13,7 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
-#include <xLib/Fs/Path.h>
+#include <xLib/Fs/PathExe.h>
 #include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/File.h>
 #include <xLib/Fs/FileInfo.h>
@@ -65,7 +65,7 @@ FileLog::setFilePath(
     xTEST(!a_filePath.empty());
 
     if (a_filePath.find( Const::slash() ) == std::tstring_t::npos) {
-        _filePath = Path( Path::exe() ).dir() + Const::slash() + a_filePath;
+        _filePath = PathExe().dir() + Const::slash() + a_filePath;
     } else {
         _filePath = a_filePath;
     }
