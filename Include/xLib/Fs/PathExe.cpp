@@ -15,8 +15,6 @@
 #if   xENV_WIN
     #include "Platform/Win/PathExe_win.inl"
 #elif xENV_UNIX
-    #include "Platform/Unix/PathExe_unix.inl"
-
     #if   xENV_LINUX
         #include "Platform/Linux/PathExe_linux.inl"
     #elif xENV_BSD
