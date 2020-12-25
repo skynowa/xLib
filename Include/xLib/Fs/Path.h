@@ -149,8 +149,6 @@ xPLATFORM_IMPL:
     std::tstring_t _absolute_impl() const;
 
     static
-    std::tstring_t _dll_impl();
-    static
     std::tstring_t _fileExt_impl(cFileExt fileExt);
     static
     bool_t         _isNameValid_impl(std::ctstring_t &fileName,
