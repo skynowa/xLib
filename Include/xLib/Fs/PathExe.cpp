@@ -12,16 +12,11 @@
 
 #include "PathExe.h"
 
-#include <xLib/Core/String.h>
-#include <xLib/Core/Format.h>
-#include <xLib/Core/Utils.h>
-#include <xLib/System/ProcessInfo.h>
 #include <xLib/Fs/FileInfo.h>
-#include <xLib/Fs/Dir.h>
-#include <xLib/Sync/Process.h>
-#include <xLib/Log/Trace.h>
-#include <xLib/System/User.h>
-
+#include <xLib/Test/Test.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/SourceInfo.h>
+#include <xLib/Debug/ErrorReport.h>
 
 #if   xENV_WIN
     #include "Platform/Win/PathExe_win.inl"
