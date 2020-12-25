@@ -175,9 +175,6 @@ xPLATFORM_IMPL:
 	// Sample OLD
 	sRv = Path( Path(exePath).brief(::reportWidthMax) ).toUnix(false);
 
-	Path path(str);
-	sRv = path.toUnix(false);
-
 	// Sample NEW 1
 	Path path(exePath);
 	sRv = path.brief(::reportWidthMax).toUnix(false).str();
