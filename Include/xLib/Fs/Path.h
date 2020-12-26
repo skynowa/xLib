@@ -171,7 +171,8 @@ xPLATFORM_IMPL:
 	std::tstring_t sRv;
 
 	// Sample OLD
-	sRv = Path( PathExe().brief(::reportWidthMax) ).toUnix(false);
+	sRv = Path( PathExe().brief(::reportWidthMax) )
+		.toUnix(false);
 
 	// Sample NEW
 	sRv = PathExe()
