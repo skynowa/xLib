@@ -45,7 +45,8 @@ Path::Path(
 ) :
     _filePath(a_filePath)
 {
-    xTEST(!_filePath.empty());
+	// TODO: PathDll - test
+    /// xTEST(!_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 std::ctstring_t &
