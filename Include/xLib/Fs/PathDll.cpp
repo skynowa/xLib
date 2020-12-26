@@ -31,7 +31,9 @@ namespace xl::fs
 PathDll::PathDll() :
 	Path( _dll_impl() )
 {
+#if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
 	xTEST(FileInfo( str() ).isExists());
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
