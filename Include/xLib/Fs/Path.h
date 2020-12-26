@@ -44,8 +44,6 @@ public:
 	xNO_COPY_ASSIGN(Path)
 ///@}
 
-    // TODO: [skynowa] get objects
-
     std::ctstring_t & str() const;
         ///< file path
 
@@ -161,9 +159,10 @@ xPLATFORM_IMPL:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
+// TODO: [skynowa] get objects
+// TODO: return std::string -> .str()
 // TODO: usr/bin ... pathes
 // TODO: group methods
-// TODO: return std::string -> .str()
 // TODO: FileNameGuid ???
 
 /**
