@@ -19,7 +19,7 @@ namespace xl::internal
     ///< for visual convenience
 #define xPRIVATE_STATIC private
     ///< for visual convenience
-#define xPLATFORM_IMPL protected
+#define xPLATFORM_IMPL private
     ///< platform implementation code
 ///@}
 //-------------------------------------------------------------------------------------------------
