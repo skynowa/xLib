@@ -23,7 +23,7 @@ set(cmOPTION_BUILD_TESTS           1)
 # Local host - No tests
 cmake_host_system_information(RESULT cmHOST_NAME QUERY HOSTNAME)
 if (${cmHOST_NAME} STREQUAL "skynowa-pc")
-	set(cmOPTION_BUILD_TESTS 2)
+	set(cmOPTION_BUILD_TESTS 0)
 endif()
 
 # CMAKE_CONFIGURATION_TYPES:
