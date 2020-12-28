@@ -393,39 +393,6 @@ Path::absolute() const
     return Path(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-Path::briefName(
-    std::ctstring_t &a_fileName,
-    std::csize_t     a_maxSize
-)
-{
-    xTEST_EQ(a_fileName.empty(), false);
-    xTEST_LESS(size_t(0), a_maxSize);
-
-    std::tstring_t sRv;
-
-    std::tstring_t tildaDotExt;
-
-    if ( Path(a_fileName).ext().empty() ) {
-        tildaDotExt = xT("~");
-    } else {
-        tildaDotExt = xT("~") + Const::dot() + Path(a_fileName).ext();
-    }
-
-    if (a_fileName.size() > a_maxSize) {
-        if (a_maxSize < tildaDotExt.size()) {
-            sRv = a_fileName.substr(0, a_maxSize);
-        } else {
-            sRv = a_fileName.substr(0, a_maxSize - tildaDotExt.size()) + tildaDotExt;
-        }
-    } else {
-        sRv = a_fileName;
-    }
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
 Path
 Path::brief(
     std::csize_t a_maxSize
@@ -515,6 +482,42 @@ Path::brief(
 	}
 
 	return Path( String::join(values, Const::slash()) );
+}
+//-------------------------------------------------------------------------------------------------
+Path
+Path::briefName(
+    std::csize_t a_maxSize
+)
+{
+	xTEST_LESS(size_t(0), a_maxSize);
+
+	std::tstring_t tildaDotExt;
+	{
+		std::ctstring_t &_ext = ext();
+
+		if ( _ext.empty() ) {
+			tildaDotExt = xT("~");
+		} else {
+			tildaDotExt = xT("~") + Const::dot() + _ext;
+		}
+	}
+
+	std::tstring_t sRv;
+	{
+		std::ctstring_t &_fileName = fileName();
+
+		if (_fileName.size() > a_maxSize) {
+			if (a_maxSize < tildaDotExt.size()) {
+				sRv = _fileName.substr(0, a_maxSize);
+			} else {
+				sRv = _fileName.substr(0, a_maxSize - tildaDotExt.size()) + tildaDotExt;
+			}
+		} else {
+			sRv = _fileName;
+		}
+	}
+
+	return Path(sRv);
 }
 //-------------------------------------------------------------------------------------------------
 Path

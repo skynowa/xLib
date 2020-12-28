@@ -866,19 +866,19 @@ Test_Path::unit()
     {
         const data2_tstring_t data[]
 		{
-            {xT("Name"),                   xT("Name")},
-            {xT("full name"),              xT("ful~")},
-            {xT("file name with ext"),     xT("fil~")},
-            {xT("comment"),                xT("com~")},
+            {xT("/val/log/Name"),                   xT("Name")},
+            {xT("/val/log/full name"),              xT("ful~")},
+            {xT("/val/log/file name with ext"),     xT("fil~")},
+            {xT("/val/log/comment"),                xT("com~")},
 
-            {xT("Name.exe"),               xT("Name")},
-            {xT("full name.txt"),          xT("full")},
-            {xT("file name with ext.doc"), xT("file")},
-            {xT("comment.pdfx"),           xT("comm")}
+            {xT("/val/log/Name.exe"),               xT("Name")},
+            {xT("/val/log/full name.txt"),          xT("full")},
+            {xT("/val/log/file name with ext.doc"), xT("file")},
+            {xT("/val/log/comment.pdfx"),           xT("comm")}
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = Path::briefName(data[i].test, 4);
+            std::tstring_t str1 = Path(data[i].test).briefName(4).str();
             std::tstring_t str2 = data[i].expect;
             xTEST_EQ(str1, str2);
         }

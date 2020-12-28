@@ -92,6 +92,8 @@ public:
         ///< get short path
     Path brief(std::csize_t leftDirsNum, std::csize_t rightDirsNum) const;
         ///< get short path (hide dirs as dots)
+    Path briefName(std::csize_t maxSize);
+        ///< get short name
     Path homeAsBrief() const;
 		///< replace home dir with "~"
 
@@ -114,10 +116,6 @@ xPUBLIC_STATIC:
     static
     bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid = nullptr);
         ///< name validation
-
-    static
-    std::tstring_t briefName(std::ctstring_t &fileName, std::csize_t maxSize);
-        ///< get short name
 
     static
     size_t         maxSize();
