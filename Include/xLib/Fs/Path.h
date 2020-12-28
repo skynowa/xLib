@@ -60,6 +60,7 @@ public:
     std::tstring_t ext() const;
         ///< get extension
 
+    //< TODO: return Path()
     std::tstring_t setVolume(std::ctstring_t &volumePath) const;
         ///< set volume
     std::tstring_t setDir(std::ctstring_t &dirPath) const;
@@ -70,6 +71,7 @@ public:
         ///< set name
     std::tstring_t setExt(std::ctstring_t &ext) const;
         ///< set extension
+    //< TODO: return Path()
 
     std::tstring_t removeExt() const; // TODO: return Path()
         ///< remove extension
