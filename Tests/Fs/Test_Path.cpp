@@ -1115,8 +1115,6 @@ Test_Path::unit()
 		ss << Path(filePath);
 
 		xTEST_EQ(ss.str(), filePath);
-
-		std::tcout << xTRACE_VAR(ss.str()) << std::endl;
     }
 
     return true;
