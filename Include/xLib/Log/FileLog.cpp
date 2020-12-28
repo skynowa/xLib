@@ -63,6 +63,7 @@ FileLog::setFilePath(
 )
 {
     xTEST(!a_filePath.empty());
+    xTEST(Path::isValid(a_filePath, nullptr));
 
     if (a_filePath.find( Const::slash() ) == std::tstring_t::npos) {
         _filePath = PathExe().dir() + Const::slash() + a_filePath;

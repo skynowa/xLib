@@ -111,10 +111,10 @@ xPUBLIC_STATIC:
         ///< get standard extension with dot (if needed, for "exe" - n/n)
 
     static
-    bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid = nullptr);
+    bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid);
         ///< path validation
     static
-    bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid = nullptr);
+    bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid);
         ///< name validation
 
     static
