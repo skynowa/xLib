@@ -91,7 +91,7 @@ Dir::_setCurrent_impl(
     std::ctstring_t &a_dirPath
 )
 {
-    std::tstring_t dirPath = Path(a_dirPath).slashAppend();
+    std::tstring_t dirPath = Path(a_dirPath).slashAppend().str();
 
     BOOL blRv = ::SetCurrentDirectory(dirPath.c_str());
     xTEST_DIFF(blRv, FALSE);

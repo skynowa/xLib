@@ -213,7 +213,7 @@ Debugger::_loggingPlain(
     std::tstring_t filePath;
 
     if ( logPath().empty() ) {
-        filePath = PathExe().setExt(xT("debug"));
+        filePath = PathExe().setExt(xT("debug")).str();
     } else {
         filePath = logPath();
     }

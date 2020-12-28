@@ -42,7 +42,7 @@ Config::Config(
     xTEST(_filePath.empty());
     xTEST(!a_filePath.empty());
 
-    setPath( Path(a_filePath).setExt(_fileExt) );
+    setPath( Path(a_filePath).setExt(_fileExt).str() );
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */

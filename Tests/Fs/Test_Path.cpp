@@ -251,11 +251,11 @@ Test_Path::unit()
 		};
 
 		for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-			std::tstring_t str1 = Path(data[i][0]).setVolume(data[i][1]);
-			std::tstring_t str2 = Path(data[i][2]).setVolume(data[i][1]);
+			std::tstring_t str1 = Path(data[i][0]).setVolume(data[i][1]).str();
+			std::tstring_t str2 = Path(data[i][2]).setVolume(data[i][1]).str();
 			xTEST_EQ(str1, str2);
 
-			std::tstring_t str3 = Path(data[i][0]).setVolume(data[i][1]);
+			std::tstring_t str3 = Path(data[i][0]).setVolume(data[i][1]).str();
 			std::tstring_t str4 = data[i][2];
 			xTEST_EQ(str3, str4);
 		}
@@ -288,7 +288,7 @@ Test_Path::unit()
 	#endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str3 = Path(data[i].test1).setDir(data[i].test2);
+            std::tstring_t str3 = Path(data[i].test1).setDir(data[i].test2).str();
             std::tstring_t str4 = data[i].expect;
             xTEST_EQ(str3, str4);
         }
@@ -318,11 +318,11 @@ Test_Path::unit()
 	#endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = Path(data[i][0]).setFileName(data[i][1]);
-            std::tstring_t str2 = Path(data[i][2]).setFileName(data[i][1]);
+            std::tstring_t str1 = Path(data[i][0]).setFileName(data[i][1]).str();
+            std::tstring_t str2 = Path(data[i][2]).setFileName(data[i][1]).str();
             xTEST_EQ(str1, str2);
 
-            std::tstring_t str3 = Path(data[i][0]).setFileName(data[i][1]);
+            std::tstring_t str3 = Path(data[i][0]).setFileName(data[i][1]).str();
             std::tstring_t str4 = data[i][2];
             xTEST_EQ(str3, str4);
         }
@@ -355,11 +355,11 @@ Test_Path::unit()
 	#endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = Path(data[i][0]).setFileBaseName(data[i][1]);
-            std::tstring_t str2 = Path(data[i][2]).setFileBaseName(data[i][1]);
+            std::tstring_t str1 = Path(data[i][0]).setFileBaseName(data[i][1]).str();
+            std::tstring_t str2 = Path(data[i][2]).setFileBaseName(data[i][1]).str();
             xTEST_EQ(str1, str2);
 
-            std::tstring_t str3 = Path(data[i][0]).setFileBaseName(data[i][1]);
+            std::tstring_t str3 = Path(data[i][0]).setFileBaseName(data[i][1]).str();
             std::tstring_t str4 = data[i][2];
             xTEST_EQ(str3, str4);
         }
@@ -379,11 +379,11 @@ Test_Path::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = Path(data[i][0]).setExt(data[i][1]);
-            std::tstring_t str2 = Path(data[i][2]).setExt(data[i][1]);
+            std::tstring_t str1 = Path(data[i][0]).setExt(data[i][1]).str();
+            std::tstring_t str2 = Path(data[i][2]).setExt(data[i][1]).str();
             xTEST_EQ(str1, str2);
 
-            std::tstring_t str3 = Path(data[i][0]).setExt(data[i][1]);
+            std::tstring_t str3 = Path(data[i][0]).setExt(data[i][1]).str();
             std::tstring_t str4 = data[i][2];
             xTEST_EQ(str3, str4);
         }
@@ -784,16 +784,16 @@ Test_Path::unit()
         std::ctstring_t unixPath = xT("C:/TestDir");
         std::ctstring_t winPath  = xT("C:\\TestDir");
 
-        m_sRv = Path(unixPath).toWin(false);
+        m_sRv = Path(unixPath).toWin(false).str();
         xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
 
-        m_sRv = Path(unixPath).toWin(true);
+        m_sRv = Path(unixPath).toWin(true).str();
         xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir\\")));
 
-        m_sRv = Path(winPath).toWin(true);
+        m_sRv = Path(winPath).toWin(true).str();
         xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir\\")));
 
-        m_sRv = Path(winPath).toWin(false);
+        m_sRv = Path(winPath).toWin(false).str();
         xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
     }
 
@@ -802,16 +802,16 @@ Test_Path::unit()
         std::ctstring_t unixPath = xT("/home/user/Soft/TestDir");
         std::ctstring_t winPath  = xT("\\home\\user\\Soft\\TestDir");
 
-        m_sRv = Path(unixPath).toUnix(false);
+        m_sRv = Path(unixPath).toUnix(false).str();
         xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
 
-        m_sRv = Path(unixPath).toUnix(true);
+        m_sRv = Path(unixPath).toUnix(true).str();
         xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
-        m_sRv = Path(winPath).toUnix(true);
+        m_sRv = Path(winPath).toUnix(true).str();
         xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
-        m_sRv = Path(winPath).toUnix(false);
+        m_sRv = Path(winPath).toUnix(false).str();
         xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
     }
 
@@ -821,31 +821,31 @@ Test_Path::unit()
 		std::ctstring_t unixPath = xT("C:/TestDir");
 		std::ctstring_t winPath  = xT("C:\\TestDir");
 
-		m_sRv = Path(winPath).toNative(false);
+		m_sRv = Path(winPath).toNative(false).str();
 		xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
 
-		m_sRv = Path(winPath).toNative(true);
+		m_sRv = Path(winPath).toNative(true).str();
 		xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir\\")));
 
-		m_sRv = Path(winPath).toNative(true);
+		m_sRv = Path(winPath).toNative(true).str();
 		xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir\\")));
 
-		m_sRv = Path(winPath).toNative(false);
+		m_sRv = Path(winPath).toNative(false).str();
 		xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
 	#elif xENV_UNIX
 		std::ctstring_t unixPath = xT("/home/user/Soft/TestDir");
 		std::ctstring_t winPath  = xT("\\home\\user\\Soft\\TestDir");
 
-		m_sRv = Path(winPath).toNative(false);
+		m_sRv = Path(winPath).toNative(false).str();
 		xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
 
-		m_sRv = Path(winPath).toNative(true);
+		m_sRv = Path(winPath).toNative(true).str();
 		xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
-		m_sRv = Path(winPath).toNative(true);
+		m_sRv = Path(winPath).toNative(true).str();
 		xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
-		m_sRv = Path(winPath).toNative(false);
+		m_sRv = Path(winPath).toNative(false).str();
 		xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
 	#endif
     }
@@ -858,7 +858,7 @@ Test_Path::unit()
         info.setProcessId(Process::currentId());
         info.commandLine(&args);
 
-        m_sRv = Path(args.at(0)).absolute();
+        m_sRv = Path(args.at(0)).absolute().str();
         xTEST_EQ(false, m_sRv.empty());
     }
 
@@ -893,7 +893,7 @@ Test_Path::unit()
 			std::tstring_t filePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
 		#endif
 
-		m_sRv = Path(filePath).brief(4);
+		m_sRv = Path(filePath).brief(4).str();
 		#if   xENV_WIN
 			xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRv);
 		#elif xENV_UNIX
@@ -908,7 +908,7 @@ Test_Path::unit()
 			std::tstring_t filePath = xT("/home/filename");
 		#endif
 
-		m_sRv = Path(filePath).brief(200);
+		m_sRv = Path(filePath).brief(200).str();
 		#if   xENV_WIN
 			xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRv);
 		#elif xENV_UNIX
@@ -923,7 +923,7 @@ Test_Path::unit()
 			std::tstring_t filePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
 		#endif
 
-		m_sRv = Path(filePath).brief(15);
+		m_sRv = Path(filePath).brief(15).str();
 		#if   xENV_WIN
 			xTEST_EQ(std::tstring_t(xT("D:\\...\\vSpeedButton_LoadDrives.cpp")), m_sRv);
 		#elif xENV_UNIX
@@ -934,7 +934,7 @@ Test_Path::unit()
         {
             std::tstring_t filePath = xT("D:/xVCL\\Include/xVCL\\Units/Ui/Tools/LoadDrives.cpp");
 
-            m_sRv = Path(filePath).brief(15);
+            m_sRv = Path(filePath).brief(15).str();
 		#if   xENV_WIN
 			xTEST_EQ(std::tstring_t(xT("D:\\...\\LoadDrives.cpp")), m_sRv);
 		#elif xENV_UNIX
@@ -967,7 +967,7 @@ Test_Path::unit()
 		};
 
 		for (const auto &it_data : data) {
-			m_sRv = Path(it_data.filePath).brief(it_data.leftDirsNum, it_data.rightDirsNum);
+			m_sRv = Path(it_data.filePath).brief(it_data.leftDirsNum, it_data.rightDirsNum).str();
 			// Cout() << xTRACE_VAR_2(m_sRv, it_data.expect) << "<<<";
 			xTEST_EQ(m_sRv, it_data.expect);
 		}
@@ -981,7 +981,7 @@ Test_Path::unit()
 		std::ctstring_t filePath = Format::str(xT("/home/{}/tmp"), User().name());
 	#endif
 
-		m_sRv = Path(filePath).homeAsBrief();
+		m_sRv = Path(filePath).homeAsBrief().str();
 	#if   xENV_WIN
 		xTEST_EQ(std::tstring_t(xT("~\test")), m_sRv);
 	#elif xENV_UNIX
@@ -1011,11 +1011,11 @@ Test_Path::unit()
 	#endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = Path(data[i].test).slashAppend();
-            std::tstring_t str2 = Path(data[i].expect).slashAppend();
+            std::tstring_t str1 = Path(data[i].test).slashAppend().str();
+            std::tstring_t str2 = Path(data[i].expect).slashAppend().str();
             xTEST_EQ(str1, str2);
 
-            std::tstring_t str3 = Path(data[i].test).slashAppend();
+            std::tstring_t str3 = Path(data[i].test).slashAppend().str();
             std::tstring_t str4 = data[i].expect;
             xTEST_EQ(str3, str4);
         }
@@ -1043,11 +1043,11 @@ Test_Path::unit()
 	#endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = Path(data[i].test).slashRemove();
-            std::tstring_t str2 = Path(data[i].expect).slashRemove();
+            std::tstring_t str1 = Path(data[i].test).slashRemove().str();
+            std::tstring_t str2 = Path(data[i].expect).slashRemove().str();
             xTEST_EQ(str1, str2);
 
-            std::tstring_t str3 = Path(data[i].test).slashRemove();
+            std::tstring_t str3 = Path(data[i].test).slashRemove().str();
             std::tstring_t str4 = data[i].expect;
             xTEST_EQ(str3, str4);
         }
