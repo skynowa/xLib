@@ -17,24 +17,6 @@ class Path
     /// file system path
 {
 public:
-    enum class FileExt
-        /// file extension
-    {
-        Exe,    ///< execute module
-        Dll,    ///< dynamically linked shared library
-        Lib,    ///< static library
-        Obj,    ///< object file
-        Shell,  ///< shell script file
-        Config, ///< config file
-        Log,    ///< log file
-        Db,     ///< database file
-        Dat,    ///< data file
-        Backup, ///< backup file
-        Temp,   ///< temprary file
-        Text    ///< text file
-    };
-    xUSING_CONST(FileExt);
-
 ///@name ctors, dtor
 ///@{
 	explicit  Path(std::ctstring_t &filePath);
@@ -105,6 +87,24 @@ public:
         ///< remove slash
 
 xPUBLIC_STATIC:
+	enum class FileExt
+		/// file extension
+	{
+		Exe,    ///< execute module
+		Dll,    ///< dynamically linked shared library
+		Lib,    ///< static library
+		Obj,    ///< object file
+		Shell,  ///< shell script file
+		Config, ///< config file
+		Log,    ///< log file
+		Db,     ///< database file
+		Dat,    ///< data file
+		Backup, ///< backup file
+		Temp,   ///< temprary file
+		Text    ///< text file
+	};
+	xUSING_CONST(FileExt);
+
     static
     std::tstring_t fileExt(cFileExt fileExt);
         ///< get standard extension
