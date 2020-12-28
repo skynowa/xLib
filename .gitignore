@@ -30,3 +30,6 @@ auto-build.sh
 .kdev4/xLib.kdev4
 xLib.kdev4
 
+# clangd
+.cache/
+
