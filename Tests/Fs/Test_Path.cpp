@@ -1107,6 +1107,18 @@ Test_Path::unit()
 	#endif
     }
 
+    xTEST_CASE("operator <<")
+    {
+    	std::ctstring_t filePath = xT("/var/log/test.log");
+
+		std::tstringstream_t ss;
+		ss << Path(filePath);
+
+		xTEST_EQ(ss.str(), filePath);
+
+		std::tcout << xTRACE_VAR(ss.str()) << std::endl;
+    }
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
