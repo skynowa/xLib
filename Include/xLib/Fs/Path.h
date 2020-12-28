@@ -162,20 +162,4 @@ xPLATFORM_IMPL:
 // TODO: group methods
 // TODO: FileNameGuid ???
 // TODO: Path::operator <<
-
-/**
-	TODO: return Object - if possible
-
-	std::tstring_t sRv;
-
-	// Sample OLD
-	sRv = Path( PathExe().brief(::reportWidthMax) )
-		.toUnix(false);
-
-	// Sample NEW
-	sRv = PathExe()
-		.brief(::reportWidthMax)
-		.toUnix(false)
-		.str();
-*/
 //-------------------------------------------------------------------------------------------------
