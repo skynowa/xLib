@@ -71,9 +71,9 @@ public:
     std::tstring_t setExt(std::ctstring_t &ext) const;
         ///< set extension
 
-    std::tstring_t removeExt() const;
+    std::tstring_t removeExt() const; // TODO: return Path()
         ///< remove extension
-    std::tstring_t removeExtIf(std::ctstring_t &ext) const;
+    std::tstring_t removeExtIf(std::ctstring_t &ext) const; // TODO: return Path()
         ///< remove extension if it equal some string
 
 	bool_t         isCaseSensitive() const;
@@ -81,6 +81,7 @@ public:
     bool_t         isAbsolute() const;
         ///< is absolute
 
+    //< TODO: return Path()
     std::tstring_t toWin(cbool_t isSlashAtEnd) const;
         ///< convert slashes to Windows style
     std::tstring_t toUnix(cbool_t isSlashAtEnd) const;
@@ -100,6 +101,7 @@ public:
         ///< append slash
     std::tstring_t slashRemove() const;
         ///< remove slash
+    //> TODO: return Path()
 
 xPUBLIC_STATIC:
     static
