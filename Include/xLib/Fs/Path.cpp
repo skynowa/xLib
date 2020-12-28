@@ -489,7 +489,7 @@ Path::briefName(
     std::csize_t a_maxSize
 )
 {
-	xTEST_GR_EQ(a_maxSize, size_t(0));
+	xTEST_DIFF(a_maxSize, size_t(0));
 
 	std::tstring_t tildaDotExt;
 	{
