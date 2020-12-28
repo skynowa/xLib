@@ -165,7 +165,7 @@ Path::fileDotExt(
 	return Const::dot() + exeExt;
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::setVolume(
     std::ctstring_t &a_volumePath
 ) const
@@ -178,10 +178,10 @@ Path::setVolume(
     std::csize_t pos = sRv.find(driveStr);
     xTEST_DIFF(pos, std::tstring_t::npos);
 
-    return sRv.replace(pos, driveStr.size(), a_volumePath);
+    return Path( sRv.replace(pos, driveStr.size(), a_volumePath) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::setDir(
     std::ctstring_t &a_dirPath
 ) const
@@ -194,10 +194,10 @@ Path::setDir(
     std::csize_t pos = sRv.find(dirStr);
     xTEST_DIFF(pos, std::tstring_t::npos);
 
-    return sRv.replace(pos, dirStr.size(), Path(a_dirPath).slashRemove());
+    return Path( sRv.replace(pos, dirStr.size(), Path(a_dirPath).slashRemove().str()) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::setFileName(
     std::ctstring_t &a_fullName
 ) const
@@ -210,10 +210,10 @@ Path::setFileName(
     std::csize_t pos = sRv.rfind(fullName);
     xTEST_DIFF(pos, std::tstring_t::npos);
 
-    return sRv.replace(pos, fullName.size(), a_fullName);
+    return Path( sRv.replace(pos, fullName.size(), a_fullName) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::setFileBaseName(
     std::ctstring_t &a_name
 ) const
@@ -226,42 +226,42 @@ Path::setFileBaseName(
     std::csize_t pos = sRv.rfind(name);
     xTEST_DIFF(pos, std::tstring_t::npos);
 
-    return sRv.replace(pos, name.size(), a_name);
+    return Path( sRv.replace(pos, name.size(), a_name) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::setExt(
     std::ctstring_t &a_ext
 ) const
 {
     xTEST_NA(a_ext);
 
-    return removeExt() + Const::dot() + a_ext;
+    return Path(removeExt().str() + Const::dot() + a_ext);
 }
 //-------------------------------------------------------------------------------------------------
 
 
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::removeExt() const
 {
     std::csize_t dotPos = _filePath.rfind( Const::dot() );
 
-    return _filePath.substr(0, dotPos);
+    return Path( _filePath.substr(0, dotPos) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::removeExtIf(
     std::ctstring_t &a_ext
 ) const
 {
     std::csize_t extPos = _filePath.rfind(Const::dot() + a_ext);
-    xCHECK_RET(extPos == std::tstring_t::npos, _filePath);
+    xCHECK_RET(extPos == std::tstring_t::npos, Path(_filePath));
 
     std::csize_t dotPos = _filePath.rfind(Const::dot());
     xTEST_DIFF(dotPos, std::tstring_t::npos);
 
-    return _filePath.substr(0, dotPos);
+    return Path( _filePath.substr(0, dotPos) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -339,7 +339,7 @@ Path::isAbsolute() const
     return _isAbsolute_impl();
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::toWin(
     cbool_t a_isSlashAtEnd
 ) const
@@ -348,13 +348,13 @@ Path::toWin(
 
     std::tstring_t sRv;
 
-	sRv = a_isSlashAtEnd ? slashAppend() : slashRemove();
+	sRv = a_isSlashAtEnd ? slashAppend().str() : slashRemove().str();
     sRv = String::replaceAll(sRv, Const::unixSlash(), Const::winSlash());
 
-    return sRv;
+    return Path(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::toUnix(
     cbool_t a_isSlashAtEnd
 )  const
@@ -363,13 +363,13 @@ Path::toUnix(
 
     std::tstring_t sRv;
 
-    sRv = a_isSlashAtEnd ? slashAppend() : slashRemove();
+    sRv = a_isSlashAtEnd ? slashAppend().str() : slashRemove().str();
     sRv = String::replaceAll(sRv, Const::winSlash(), Const::unixSlash());
 
-    return sRv;
+    return Path(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::toNative(
     cbool_t a_isSlashAtEnd
 ) const
@@ -378,19 +378,19 @@ Path::toNative(
 
     std::tstring_t sRv;
 
-    sRv = a_isSlashAtEnd ? slashAppend() : slashRemove();
+    sRv = a_isSlashAtEnd ? slashAppend().str() : slashRemove().str();
     _toNative_impl(&sRv);
 
-    return sRv;
+    return Path(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::absolute() const
 {
     std::ctstring_t sRv( _absolute_impl() );
     xTEST(Path(sRv).isAbsolute());
 
-    return sRv;
+    return Path(sRv);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -426,7 +426,7 @@ Path::briefName(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::brief(
     std::csize_t a_maxSize
 ) const
@@ -482,12 +482,10 @@ Path::brief(
         -- num;
     }
 
-    sRv = Path(sRv).toNative(false);
-
-    return sRv;
+    return Path(sRv).toNative(false);
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::brief(
 	std::csize_t a_leftDirsNum,	///<
 	std::csize_t a_rightDirsNum	///<
@@ -499,7 +497,7 @@ Path::brief(
 	std::csize_t showDirsNum  = a_leftDirsNum + a_rightDirsNum;
 	if (showDirsNum >= values.size()) {
 		// n/a dots - return full path
-		return _filePath;
+		return Path(_filePath);
 	}
 
 	std::csize_t hideDirsNum = values.size() - showDirsNum;
@@ -516,31 +514,31 @@ Path::brief(
 		values.at(a_leftDirsNum) = dots;
 	}
 
-	return String::join(values, Const::slash());
+	return Path( String::join(values, Const::slash()) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::homeAsBrief() const
 {
-	return String::replaceAll(_filePath, User().homeDir(), xT("~"));
+	return Path( String::replaceAll(_filePath, User().homeDir(), xT("~")) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::slashAppend() const
 {
-    return String::trimRightChars(_filePath, Const::slash()).append(Const::slash());
+    return Path( String::trimRightChars(_filePath, Const::slash()).append(Const::slash()) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::slashRemove() const
 {
 #if xENV_UNIX
 	if (_filePath == Const::unixSlash()) {
-		return _filePath;
+		return Path(_filePath);
 	}
 #endif
 
-    return String::trimRightChars(_filePath, Const::slash());
+    return Path( String::trimRightChars(_filePath, Const::slash()) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

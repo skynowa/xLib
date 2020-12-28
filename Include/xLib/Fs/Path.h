@@ -60,46 +60,50 @@ public:
     std::tstring_t ext() const;
         ///< get extension
 
-    std::tstring_t setVolume(std::ctstring_t &volumePath) const;
+    //< TODO: return Path()
+    Path setVolume(std::ctstring_t &volumePath) const;
         ///< set volume
-    std::tstring_t setDir(std::ctstring_t &dirPath) const;
+    Path setDir(std::ctstring_t &dirPath) const;
         ///< set dir
-    std::tstring_t setFileName(std::ctstring_t &fullName) const;
+    Path setFileName(std::ctstring_t &fullName) const;
         ///< set full name
-    std::tstring_t setFileBaseName(std::ctstring_t &name) const;
+    Path setFileBaseName(std::ctstring_t &name) const;
         ///< set name
-    std::tstring_t setExt(std::ctstring_t &ext) const;
+    Path setExt(std::ctstring_t &ext) const;
         ///< set extension
 
-    std::tstring_t removeExt() const;
+    Path removeExt() const;
         ///< remove extension
-    std::tstring_t removeExtIf(std::ctstring_t &ext) const;
+    Path removeExtIf(std::ctstring_t &ext) const;
         ///< remove extension if it equal some string
+    //< TODO: return Path()
 
 	bool_t         isCaseSensitive() const;
 		///< get case sensitivity
     bool_t         isAbsolute() const;
         ///< is absolute
 
-    std::tstring_t toWin(cbool_t isSlashAtEnd) const;
+    //< TODO: return Path()
+    Path toWin(cbool_t isSlashAtEnd) const;
         ///< convert slashes to Windows style
-    std::tstring_t toUnix(cbool_t isSlashAtEnd) const;
+    Path toUnix(cbool_t isSlashAtEnd) const;
         ///< convert slashes to Nix style
-    std::tstring_t toNative(cbool_t isSlashAtEnd) const;
+    Path toNative(cbool_t isSlashAtEnd) const;
         ///< convert slashes to native style
-    std::tstring_t absolute() const;
+    Path absolute() const;
         ///< get absolute path
-    std::tstring_t brief(std::csize_t maxSize) const;
+    Path brief(std::csize_t maxSize) const;
         ///< get short path
-    std::tstring_t brief(std::csize_t leftDirsNum, std::csize_t rightDirsNum) const;
+    Path brief(std::csize_t leftDirsNum, std::csize_t rightDirsNum) const;
         ///< get short path (hide dirs as dots)
-    std::tstring_t homeAsBrief() const;
+    Path homeAsBrief() const;
 		///< replace home dir with "~"
 
-    std::tstring_t slashAppend() const;
+    Path slashAppend() const;
         ///< append slash
-    std::tstring_t slashRemove() const;
+    Path slashRemove() const;
         ///< remove slash
+    //> TODO: return Path()
 
 xPUBLIC_STATIC:
     static
@@ -164,6 +168,9 @@ xPLATFORM_IMPL:
 // TODO: usr/bin ... pathes
 // TODO: group methods
 // TODO: FileNameGuid ???
+// TODO: Dir::pathCreate() - as Path::split()
+// TODO: Tests - review
+// TODO: Path::operator <<
 
 /**
 	TODO: return Object - if possible

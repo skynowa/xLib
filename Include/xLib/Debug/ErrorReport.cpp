@@ -75,7 +75,7 @@ ErrorReport::_construct(
 {
     _type             = a_type;
 
-    _program          = Path( PathExe().brief(::reportWidthMax) ).toUnix(false);
+    _program          = PathExe().brief(::reportWidthMax).toUnix(false).str();
 #if   xENV_WIN
     _processId        = ::GetCurrentProcessId();
 #elif xENV_UNIX
@@ -83,7 +83,7 @@ ErrorReport::_construct(
 #endif
     _threadId         = (ulong_t)Thread::currentId();
 
-    _sourceFilePath   = Path( Path(a_sourceInfo.data().filePath).brief(::reportWidthMax) ).toUnix(false);
+    _sourceFilePath   = Path(a_sourceInfo.data().filePath).brief(::reportWidthMax).toUnix(false).str();
     _sourceLineNum    = a_sourceInfo.data().lineNum;
     _sourceFuncName   = a_sourceInfo.data().funcName;
     _sourceExpr       = Format::str(xT("{} {} {}"), a_var1, a_exprSign, a_var2);
