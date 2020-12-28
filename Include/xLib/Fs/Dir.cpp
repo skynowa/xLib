@@ -113,13 +113,13 @@ Dir::create() const
 void_t
 Dir::pathCreate() const
 {
-    std::vec_tstring_t pathParts;
-    std::tstring_t     buildPath;
-
     // split dirPath into parts
+    std::vec_tstring_t pathParts;
     Path(_dirPath).toNative(false).split(&pathParts);
 
     // create dirs by steps
+    std::tstring_t buildPath;
+
     for (const auto &it : pathParts) {
         buildPath.append(it).append(Const::slash());
 
