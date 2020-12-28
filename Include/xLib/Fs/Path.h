@@ -44,6 +44,11 @@ public:
 	xNO_COPY_ASSIGN(Path)
 ///@}
 
+	bool_t         isCaseSensitive() const;
+		///< get case sensitivity
+    bool_t         isAbsolute() const;
+        ///< is absolute
+
     std::ctstring_t & str() const;
         ///< file path
 
@@ -60,7 +65,6 @@ public:
     std::tstring_t ext() const;
         ///< get extension
 
-    //< TODO: return Path()
     Path setVolume(std::ctstring_t &volumePath) const;
         ///< set volume
     Path setDir(std::ctstring_t &dirPath) const;
@@ -71,19 +75,11 @@ public:
         ///< set name
     Path setExt(std::ctstring_t &ext) const;
         ///< set extension
-
     Path removeExt() const;
         ///< remove extension
     Path removeExtIf(std::ctstring_t &ext) const;
         ///< remove extension if it equal some string
-    //< TODO: return Path()
 
-	bool_t         isCaseSensitive() const;
-		///< get case sensitivity
-    bool_t         isAbsolute() const;
-        ///< is absolute
-
-    //< TODO: return Path()
     Path toWin(cbool_t isSlashAtEnd) const;
         ///< convert slashes to Windows style
     Path toUnix(cbool_t isSlashAtEnd) const;
@@ -103,7 +99,6 @@ public:
         ///< append slash
     Path slashRemove() const;
         ///< remove slash
-    //> TODO: return Path()
 
 xPUBLIC_STATIC:
     static

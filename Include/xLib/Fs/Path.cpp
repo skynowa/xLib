@@ -49,6 +49,23 @@ Path::Path(
     /// xTEST(!_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
+bool_t
+Path::isCaseSensitive() const
+{
+    xCHECK_RET(_filePath.empty(), false);
+
+    return _isCaseSensitive_impl();
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Path::isAbsolute() const
+{
+    xCHECK_RET(_filePath.empty(),                       false);
+    xCHECK_RET(_filePath.at(0) == Const::slash().at(0), true);
+
+    return _isAbsolute_impl();
+}
+//-------------------------------------------------------------------------------------------------
 std::ctstring_t &
 Path::str() const
 {
@@ -320,23 +337,6 @@ Path::isNameValid(
     }
 
     return _isNameValid_impl(sRv, a_fileNameValid);
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-Path::isCaseSensitive() const
-{
-    xCHECK_RET(_filePath.empty(), false);
-
-    return _isCaseSensitive_impl();
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-Path::isAbsolute() const
-{
-    xCHECK_RET(_filePath.empty(),                       false);
-    xCHECK_RET(_filePath.at(0) == Const::slash().at(0), true);
-
-    return _isAbsolute_impl();
 }
 //-------------------------------------------------------------------------------------------------
 Path
