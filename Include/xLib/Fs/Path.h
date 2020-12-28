@@ -158,7 +158,6 @@ xPLATFORM_IMPL:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-// TODO: [skynowa] get objects
 // TODO: usr/bin ... pathes
 // TODO: group methods
 // TODO: FileNameGuid ???
