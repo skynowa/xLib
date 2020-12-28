@@ -597,7 +597,7 @@ Test_Path::unit()
             #endif
 
                 for (size_t i = 0; i < Utils::arraySizeT(data); ++ i) {
-                    bool_t bRv1 = Path::isNameValid(data[i].test);
+                    bool_t bRv1 = Path::isNameValid(data[i].test, nullptr);
                     bool_t bRv2 = data[i].expect;
                     xTEST_EQ(bRv1, bRv2);
                 }
@@ -610,7 +610,7 @@ Test_Path::unit()
                 data.push_back('\0');
                 data.push_back('y');
 
-                m_bRv = Path::isNameValid(data);
+                m_bRv = Path::isNameValid(data, nullptr);
                 xTEST(!m_bRv);
         	#endif
             }

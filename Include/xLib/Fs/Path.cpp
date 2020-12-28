@@ -1,5 +1,5 @@
 /**
- * \file  Path.inl
+ * \file  Path.cpp
  * \brief file system path
  */
 
@@ -286,8 +286,8 @@ Path::removeExtIf(
 /* static */
 bool_t
 Path::isValid(
-    std::ctstring_t &a_filePath,                    ///< file, directory path
-    std::tstring_t  *a_filePathValid /* = nullptr */   ///< [out] normalized path
+    std::ctstring_t &a_filePath,        ///< file, directory path
+    std::tstring_t  *a_filePathValid    ///< [out] normalized path
 )
 {
     xTEST_NA(a_filePath);
@@ -314,8 +314,8 @@ Path::isValid(
 /* static */
 bool_t
 Path::isNameValid(
-    std::ctstring_t &a_fileName,                    ///< file, directory name
-    std::tstring_t  *a_fileNameValid /* = nullptr */   ///< [out] normalized name
+    std::ctstring_t &a_fileName,        ///< file, directory name
+    std::tstring_t  *a_fileNameValid    ///< [out] normalized name
 )
 {
     xTEST_NA(a_fileName);
