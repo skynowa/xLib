@@ -45,7 +45,7 @@ xPUBLIC_STATIC:
         ///< expands strings by separator "%"
     static
     void_t         varPath(std::vec_tstring_t *dirPaths);
-        ///< get PATH value
+        ///< get PATH value (/usr/bin ... pathes)
 
 private:
     static std::csize_t    _envMax;
