@@ -64,6 +64,8 @@ public:
         ///< get name without extension
     std::tstring_t ext() const;
         ///< get extension
+    void_t         split(std::vec_tstring_t *values) const;
+        ///< split into parts by slashes
 
     Path setVolume(std::ctstring_t &volumePath) const;
         ///< set volume
@@ -160,7 +162,6 @@ xPLATFORM_IMPL:
 // TODO: usr/bin ... pathes
 // TODO: group methods
 // TODO: FileNameGuid ???
-// TODO: Dir::pathCreate() - as Path::split()
 // TODO: Path::operator <<
 
 /**

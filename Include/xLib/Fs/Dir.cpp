@@ -117,7 +117,7 @@ Dir::pathCreate() const
     std::tstring_t     buildPath;
 
     // split dirPath into parts
-    String::split( Path(_dirPath).toNative(false).str(), Const::slash(), &pathParts );
+    Path(_dirPath).toNative(false).split(&pathParts);
 
     // create dirs by steps
     for (const auto &it : pathParts) {
