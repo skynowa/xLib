@@ -236,32 +236,32 @@ Path::setExt(
 {
     xTEST_NA(a_ext);
 
-    return removeExt() + Const::dot() + a_ext;
+    return removeExt().str() + Const::dot() + a_ext;
 }
 //-------------------------------------------------------------------------------------------------
 
 
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::removeExt() const
 {
     std::csize_t dotPos = _filePath.rfind( Const::dot() );
 
-    return _filePath.substr(0, dotPos);
+    return Path( _filePath.substr(0, dotPos) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::removeExtIf(
     std::ctstring_t &a_ext
 ) const
 {
     std::csize_t extPos = _filePath.rfind(Const::dot() + a_ext);
-    xCHECK_RET(extPos == std::tstring_t::npos, _filePath);
+    xCHECK_RET(extPos == std::tstring_t::npos, Path(_filePath));
 
     std::csize_t dotPos = _filePath.rfind(Const::dot());
     xTEST_DIFF(dotPos, std::tstring_t::npos);
 
-    return _filePath.substr(0, dotPos);
+    return Path( _filePath.substr(0, dotPos) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

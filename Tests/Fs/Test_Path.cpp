@@ -409,7 +409,7 @@ Test_Path::unit()
 	#endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = Path(data[i].test).removeExt();
+            std::tstring_t str1 = Path(data[i].test).removeExt().str();
             std::tstring_t str2 = data[i].expect;
             xTEST_EQ(str1, str2);
         }
@@ -434,7 +434,7 @@ Test_Path::unit()
 	#endif
 
         for (const auto &it_data : data) {
-            std::tstring_t str = Path(it_data.test).removeExtIf(xT("txt"));
+            std::tstring_t str = Path(it_data.test).removeExtIf(xT("txt")).str();
             xTEST_EQ(str, it_data.expect);
         }
     }

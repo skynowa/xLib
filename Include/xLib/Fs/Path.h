@@ -73,9 +73,9 @@ public:
         ///< set extension
     //< TODO: return Path()
 
-    std::tstring_t removeExt() const; // TODO: return Path()
+    Path removeExt() const; // TODO: return Path()
         ///< remove extension
-    std::tstring_t removeExtIf(std::ctstring_t &ext) const; // TODO: return Path()
+    Path removeExtIf(std::ctstring_t &ext) const; // TODO: return Path()
         ///< remove extension if it equal some string
 
 	bool_t         isCaseSensitive() const;
