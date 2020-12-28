@@ -583,7 +583,7 @@ Test_Path::unit()
                 data.push_back('y');
 
                 m_bRv = Path::isNameValid(data);
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
         	#endif
             }
         }
@@ -701,7 +701,7 @@ Test_Path::unit()
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
                 std::tstring_t str;
                 m_bRv = Path::isNameValid(data[i].test, &str);
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
                 xTEST_EQ(str,   data[i].expect);
 
                 // TODO: [skynowa] Tests - Path::isNameValid()
@@ -714,14 +714,14 @@ Test_Path::unit()
         m_bRv = PathExe().isCaseSensitive();
 
 	#if   xENV_WIN
-		xTEST_EQ(m_bRv, false);
+		xTEST(!m_bRv);
 	#elif xENV_UNIX
 		#if   xENV_LINUX
-			xTEST_EQ(m_bRv, true);
+			xTEST(m_bRv);
 		#elif xENV_BSD
-			xTEST_EQ(m_bRv, true);
+			xTEST(m_bRv);
 		#elif xENV_APPLE
-			xTEST_EQ(m_bRv, true);
+			xTEST(m_bRv);
 		#endif
 	#endif
     }
@@ -747,7 +747,7 @@ Test_Path::unit()
 
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
                 m_bRv = Path(data[i]).isAbsolute();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -774,7 +774,7 @@ Test_Path::unit()
 
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
                 m_bRv = Path(data[i]).isAbsolute();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -859,7 +859,7 @@ Test_Path::unit()
         info.commandLine(&args);
 
         m_sRv = Path(args.at(0)).absolute().str();
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("briefName")
