@@ -44,6 +44,11 @@ public:
 	xNO_COPY_ASSIGN(Path)
 ///@}
 
+	bool_t         isCaseSensitive() const;
+		///< get case sensitivity
+    bool_t         isAbsolute() const;
+        ///< is absolute
+
     std::ctstring_t & str() const;
         ///< file path
 
@@ -60,7 +65,6 @@ public:
     std::tstring_t ext() const;
         ///< get extension
 
-    //< TODO: return Path()
     Path setVolume(std::ctstring_t &volumePath) const;
         ///< set volume
     Path setDir(std::ctstring_t &dirPath) const;
@@ -71,19 +75,12 @@ public:
         ///< set name
     Path setExt(std::ctstring_t &ext) const;
         ///< set extension
-
     Path removeExt() const;
         ///< remove extension
     Path removeExtIf(std::ctstring_t &ext) const;
         ///< remove extension if it equal some string
     //< TODO: return Path()
 
-	bool_t         isCaseSensitive() const;
-		///< get case sensitivity
-    bool_t         isAbsolute() const;
-        ///< is absolute
-
-    //< TODO: return Path()
     Path toWin(cbool_t isSlashAtEnd) const;
         ///< convert slashes to Windows style
     Path toUnix(cbool_t isSlashAtEnd) const;
@@ -96,6 +93,8 @@ public:
         ///< get short path
     Path brief(std::csize_t leftDirsNum, std::csize_t rightDirsNum) const;
         ///< get short path (hide dirs as dots)
+    Path briefName(std::csize_t maxSize) const;
+        ///< get short name
     Path homeAsBrief() const;
 		///< replace home dir with "~"
 
@@ -119,10 +118,6 @@ xPUBLIC_STATIC:
     static
     bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid = nullptr);
         ///< name validation
-
-    static
-    std::tstring_t briefName(std::ctstring_t &fileName, std::csize_t maxSize);
-        ///< get short name
 
     static
     size_t         maxSize();
@@ -164,12 +159,10 @@ xPLATFORM_IMPL:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 // TODO: [skynowa] get objects
-// TODO: return std::string -> .str()
 // TODO: usr/bin ... pathes
 // TODO: group methods
 // TODO: FileNameGuid ???
 // TODO: Dir::pathCreate() - as Path::split()
-// TODO: Tests - review
 // TODO: Path::operator <<
 
 /**

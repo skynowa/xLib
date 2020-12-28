@@ -49,6 +49,23 @@ Path::Path(
     /// xTEST(!_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
+bool_t
+Path::isCaseSensitive() const
+{
+    xCHECK_RET(_filePath.empty(), false);
+
+    return _isCaseSensitive_impl();
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Path::isAbsolute() const
+{
+    xCHECK_RET(_filePath.empty(),                       false);
+    xCHECK_RET(_filePath.at(0) == Const::slash().at(0), true);
+
+    return _isAbsolute_impl();
+}
+//-------------------------------------------------------------------------------------------------
 std::ctstring_t &
 Path::str() const
 {
@@ -322,23 +339,6 @@ Path::isNameValid(
     return _isNameValid_impl(sRv, a_fileNameValid);
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
-Path::isCaseSensitive() const
-{
-    xCHECK_RET(_filePath.empty(), false);
-
-    return _isCaseSensitive_impl();
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-Path::isAbsolute() const
-{
-    xCHECK_RET(_filePath.empty(),                       false);
-    xCHECK_RET(_filePath.at(0) == Const::slash().at(0), true);
-
-    return _isAbsolute_impl();
-}
-//-------------------------------------------------------------------------------------------------
 Path
 Path::toWin(
     cbool_t a_isSlashAtEnd
@@ -391,39 +391,6 @@ Path::absolute() const
     xTEST(Path(sRv).isAbsolute());
 
     return Path(sRv);
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-Path::briefName(
-    std::ctstring_t &a_fileName,
-    std::csize_t     a_maxSize
-)
-{
-    xTEST_EQ(a_fileName.empty(), false);
-    xTEST_LESS(size_t(0), a_maxSize);
-
-    std::tstring_t sRv;
-
-    std::tstring_t tildaDotExt;
-
-    if ( Path(a_fileName).ext().empty() ) {
-        tildaDotExt = xT("~");
-    } else {
-        tildaDotExt = xT("~") + Const::dot() + Path(a_fileName).ext();
-    }
-
-    if (a_fileName.size() > a_maxSize) {
-        if (a_maxSize < tildaDotExt.size()) {
-            sRv = a_fileName.substr(0, a_maxSize);
-        } else {
-            sRv = a_fileName.substr(0, a_maxSize - tildaDotExt.size()) + tildaDotExt;
-        }
-    } else {
-        sRv = a_fileName;
-    }
-
-    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 Path
@@ -515,6 +482,42 @@ Path::brief(
 	}
 
 	return Path( String::join(values, Const::slash()) );
+}
+//-------------------------------------------------------------------------------------------------
+Path
+Path::briefName(
+    std::csize_t a_maxSize
+) const
+{
+	xTEST_DIFF(a_maxSize, size_t(0));
+
+	std::tstring_t tildaDotExt;
+	{
+		std::ctstring_t &_ext = ext();
+
+		if ( _ext.empty() ) {
+			tildaDotExt = xT("~");
+		} else {
+			tildaDotExt = xT("~") + Const::dot() + _ext;
+		}
+	}
+
+	std::tstring_t sRv;
+	{
+		std::ctstring_t &_fileName = fileName();
+
+		if (_fileName.size() > a_maxSize) {
+			if (a_maxSize < tildaDotExt.size()) {
+				sRv = _fileName.substr(0, a_maxSize);
+			} else {
+				sRv = _fileName.substr(0, a_maxSize - tildaDotExt.size()) + tildaDotExt;
+			}
+		} else {
+			sRv = _fileName;
+		}
+	}
+
+	return Path(sRv);
 }
 //-------------------------------------------------------------------------------------------------
 Path

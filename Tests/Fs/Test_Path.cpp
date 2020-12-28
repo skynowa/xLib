@@ -583,7 +583,7 @@ Test_Path::unit()
                 data.push_back('y');
 
                 m_bRv = Path::isNameValid(data);
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
         	#endif
             }
         }
@@ -701,7 +701,7 @@ Test_Path::unit()
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
                 std::tstring_t str;
                 m_bRv = Path::isNameValid(data[i].test, &str);
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
                 xTEST_EQ(str,   data[i].expect);
 
                 // TODO: [skynowa] Tests - Path::isNameValid()
@@ -714,14 +714,14 @@ Test_Path::unit()
         m_bRv = PathExe().isCaseSensitive();
 
 	#if   xENV_WIN
-		xTEST_EQ(m_bRv, false);
+		xTEST(!m_bRv);
 	#elif xENV_UNIX
 		#if   xENV_LINUX
-			xTEST_EQ(m_bRv, true);
+			xTEST(m_bRv);
 		#elif xENV_BSD
-			xTEST_EQ(m_bRv, true);
+			xTEST(m_bRv);
 		#elif xENV_APPLE
-			xTEST_EQ(m_bRv, true);
+			xTEST(m_bRv);
 		#endif
 	#endif
     }
@@ -747,7 +747,7 @@ Test_Path::unit()
 
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
                 m_bRv = Path(data[i]).isAbsolute();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -774,7 +774,7 @@ Test_Path::unit()
 
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
                 m_bRv = Path(data[i]).isAbsolute();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -859,26 +859,26 @@ Test_Path::unit()
         info.commandLine(&args);
 
         m_sRv = Path(args.at(0)).absolute().str();
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("briefName")
     {
         const data2_tstring_t data[]
 		{
-            {xT("Name"),                   xT("Name")},
-            {xT("full name"),              xT("ful~")},
-            {xT("file name with ext"),     xT("fil~")},
-            {xT("comment"),                xT("com~")},
+            {xT("/val/log/Name"),                   xT("Name")},
+            {xT("/val/log/full name"),              xT("ful~")},
+            {xT("/val/log/file name with ext"),     xT("fil~")},
+            {xT("/val/log/comment"),                xT("com~")},
 
-            {xT("Name.exe"),               xT("Name")},
-            {xT("full name.txt"),          xT("full")},
-            {xT("file name with ext.doc"), xT("file")},
-            {xT("comment.pdfx"),           xT("comm")}
+            {xT("/val/log/Name.exe"),               xT("Name")},
+            {xT("/val/log/full name.txt"),          xT("full")},
+            {xT("/val/log/file name with ext.doc"), xT("file")},
+            {xT("/val/log/comment.pdfx"),           xT("comm")}
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = Path::briefName(data[i].test, 4);
+            std::tstring_t str1 = Path(data[i].test).briefName(4).str();
             std::tstring_t str2 = data[i].expect;
             xTEST_EQ(str1, str2);
         }
