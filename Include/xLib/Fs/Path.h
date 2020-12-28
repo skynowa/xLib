@@ -164,12 +164,10 @@ xPLATFORM_IMPL:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 // TODO: [skynowa] get objects
-// TODO: return std::string -> .str()
 // TODO: usr/bin ... pathes
 // TODO: group methods
 // TODO: FileNameGuid ???
 // TODO: Dir::pathCreate() - as Path::split()
-// TODO: Tests - review
 // TODO: Path::operator <<
 
 /**
