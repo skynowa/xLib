@@ -44,7 +44,10 @@ public:
 	xNO_COPY_ASSIGN(Path)
 ///@}
 
-    // TODO: [skynowa] get objects
+	bool_t         isCaseSensitive() const;
+		///< get case sensitivity
+    bool_t         isAbsolute() const;
+        ///< is absolute
 
     std::ctstring_t & str() const;
         ///< file path
@@ -62,57 +65,46 @@ public:
     std::tstring_t ext() const;
         ///< get extension
 
-    std::tstring_t setVolume(std::ctstring_t &volumePath) const;
+    Path setVolume(std::ctstring_t &volumePath) const;
         ///< set volume
-    std::tstring_t setDir(std::ctstring_t &dirPath) const;
+    Path setDir(std::ctstring_t &dirPath) const;
         ///< set dir
-    std::tstring_t setFileName(std::ctstring_t &fullName) const;
+    Path setFileName(std::ctstring_t &fullName) const;
         ///< set full name
-    std::tstring_t setFileBaseName(std::ctstring_t &name) const;
+    Path setFileBaseName(std::ctstring_t &name) const;
         ///< set name
-    std::tstring_t setExt(std::ctstring_t &ext) const;
+    Path setExt(std::ctstring_t &ext) const;
         ///< set extension
-
-    std::tstring_t removeExt() const;
+    Path removeExt() const;
         ///< remove extension
-    std::tstring_t removeExtIf(std::ctstring_t &ext) const;
+    Path removeExtIf(std::ctstring_t &ext) const;
         ///< remove extension if it equal some string
+    //< TODO: return Path()
 
-	bool_t         isCaseSensitive() const;
-		///< get case sensitivity
-    bool_t         isAbsolute() const;
-        ///< is absolute
-
-    std::tstring_t toWin(cbool_t isSlashAtEnd) const;
+    Path toWin(cbool_t isSlashAtEnd) const;
         ///< convert slashes to Windows style
-    std::tstring_t toUnix(cbool_t isSlashAtEnd) const;
+    Path toUnix(cbool_t isSlashAtEnd) const;
         ///< convert slashes to Nix style
-    std::tstring_t toNative(cbool_t isSlashAtEnd) const;
+    Path toNative(cbool_t isSlashAtEnd) const;
         ///< convert slashes to native style
-    std::tstring_t absolute() const;
+    Path absolute() const;
         ///< get absolute path
-    std::tstring_t brief(std::csize_t maxSize) const;
+    Path brief(std::csize_t maxSize) const;
         ///< get short path
-    std::tstring_t brief(std::csize_t leftDirsNum, std::csize_t rightDirsNum) const;
+    Path brief(std::csize_t leftDirsNum, std::csize_t rightDirsNum) const;
         ///< get short path (hide dirs as dots)
-    std::tstring_t homeAsBrief() const;
+    Path briefName(std::csize_t maxSize) const;
+        ///< get short name
+    Path homeAsBrief() const;
 		///< replace home dir with "~"
 
-    std::tstring_t slashAppend() const;
+    Path slashAppend() const;
         ///< append slash
-    std::tstring_t slashRemove() const;
+    Path slashRemove() const;
         ///< remove slash
+    //> TODO: return Path()
 
 xPUBLIC_STATIC:
-    static
-    std::tstring_t exe();
-        ///< get full path to exe
-    static
-    std::tstring_t exeDir();
-        ///< get dir path to exe
-    static
-    std::tstring_t dll();
-        ///< get full path to dll
     static
     std::tstring_t fileExt(cFileExt fileExt);
         ///< get standard extension
@@ -126,10 +118,6 @@ xPUBLIC_STATIC:
     static
     bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid = nullptr);
         ///< name validation
-
-    static
-    std::tstring_t briefName(std::ctstring_t &fileName, std::csize_t maxSize);
-        ///< get short name
 
     static
     size_t         maxSize();
@@ -158,10 +146,6 @@ xPLATFORM_IMPL:
     std::tstring_t _absolute_impl() const;
 
     static
-    std::tstring_t _exe_impl();
-    static
-    std::tstring_t _dll_impl();
-    static
     std::tstring_t _fileExt_impl(cFileExt fileExt);
     static
     bool_t         _isNameValid_impl(std::ctstring_t &fileName,
@@ -174,33 +158,24 @@ xPLATFORM_IMPL:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
+// TODO: [skynowa] get objects
 // TODO: usr/bin ... pathes
 // TODO: group methods
-// TODO: return std::string -> .str()
 // TODO: FileNameGuid ???
+// TODO: Dir::pathCreate() - as Path::split()
+// TODO: Path::operator <<
 
 /**
 	TODO: return Object - if possible
 
 	std::tstring_t sRv;
-	std::tstring_t exePath = Path::exe();
 
+	// Sample OLD
+	sRv = Path( PathExe().brief(::reportWidthMax) )
+		.toUnix(false);
 
-	// Sample OLD 1
-	sRv = Path( Path(exePath).brief(::reportWidthMax) ).toUnix(false);
-
-	// Sample OLD 2
-	std::tstring_t str = Path(exePath).brief(::reportWidthMax);
-	Path path(str);
-	sRv = path.toUnix(false);
-
-
-	// Sample NEW 1
-	Path path(exePath);
-	sRv = path.brief(::reportWidthMax).toUnix(false).str();
-
-	// Sample NEW 2
-	sRv = Path( exePath )
+	// Sample NEW
+	sRv = PathExe()
 		.brief(::reportWidthMax)
 		.toUnix(false)
 		.str();

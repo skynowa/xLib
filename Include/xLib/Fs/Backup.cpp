@@ -93,7 +93,7 @@ Backup::fileExec(
     }
 
     // format file full name
-    std::ctstring_t backupFilePath = Path(a_destDirPath).slashAppend() +
+    std::ctstring_t backupFilePath = Path(a_destDirPath).slashAppend().str() +
         Path(_filePath).fileName() + xT("_[") + dateTimeStamp + xT("]") +
         Path::fileDotExt(Path::FileExt::Backup);
 

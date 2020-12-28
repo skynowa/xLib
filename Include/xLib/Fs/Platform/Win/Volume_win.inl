@@ -73,7 +73,7 @@ bool_t
 Volume::_isReady_impl() const
 {
     bool_t         bRv           {};
-    std::tstring_t volumeDirPath = Path( path() ).slashAppend();
+    std::tstring_t volumeDirPath = Path( path() ).slashAppend().str();
     std::tstring_t oldDirPath;
 
     UINT oldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT |

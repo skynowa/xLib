@@ -45,7 +45,25 @@ Path::Path(
 ) :
     _filePath(a_filePath)
 {
-    xTEST(!_filePath.empty());
+	// TODO: PathDll - test
+    /// xTEST(!_filePath.empty());
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Path::isCaseSensitive() const
+{
+    xCHECK_RET(_filePath.empty(), false);
+
+    return _isCaseSensitive_impl();
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Path::isAbsolute() const
+{
+    xCHECK_RET(_filePath.empty(),                       false);
+    xCHECK_RET(_filePath.at(0) == Const::slash().at(0), true);
+
+    return _isAbsolute_impl();
 }
 //-------------------------------------------------------------------------------------------------
 std::ctstring_t &
@@ -58,40 +76,6 @@ std::tstring_t
 Path::volume() const
 {
     return _volume_impl();
-}
-//-------------------------------------------------------------------------------------------------
-/**
-* FAQ:
-*
-* http://www.cplusplus.com/forum/general/11104/
-* http://stackoverflow.com/questions/1023306/finding-current-executables-path-without-proc-self-exe
-* http://libsylph.sourceforge.net/wiki/Full_path_to_binary
-* http://h21007.www2.hp.com/portal/site/dspp/menuitem.863c3e4cbcdc3f3515b49c108973a801?
-*     ciid=88086d6e1de021106d6e1de02110275d6e10RCRD
-*/
-
-/* static */
-std::tstring_t
-Path::exe()
-{
-    std::ctstring_t sRv( _exe_impl() );
-    xTEST_EQ(FileInfo(sRv).isExists(), true);
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-Path::dll()
-{
-    return _dll_impl();
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-Path::exeDir()
-{
-    return Path(exe()).dir();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -198,7 +182,7 @@ Path::fileDotExt(
 	return Const::dot() + exeExt;
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::setVolume(
     std::ctstring_t &a_volumePath
 ) const
@@ -211,10 +195,10 @@ Path::setVolume(
     std::csize_t pos = sRv.find(driveStr);
     xTEST_DIFF(pos, std::tstring_t::npos);
 
-    return sRv.replace(pos, driveStr.size(), a_volumePath);
+    return Path( sRv.replace(pos, driveStr.size(), a_volumePath) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::setDir(
     std::ctstring_t &a_dirPath
 ) const
@@ -227,10 +211,10 @@ Path::setDir(
     std::csize_t pos = sRv.find(dirStr);
     xTEST_DIFF(pos, std::tstring_t::npos);
 
-    return sRv.replace(pos, dirStr.size(), Path(a_dirPath).slashRemove());
+    return Path( sRv.replace(pos, dirStr.size(), Path(a_dirPath).slashRemove().str()) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::setFileName(
     std::ctstring_t &a_fullName
 ) const
@@ -243,10 +227,10 @@ Path::setFileName(
     std::csize_t pos = sRv.rfind(fullName);
     xTEST_DIFF(pos, std::tstring_t::npos);
 
-    return sRv.replace(pos, fullName.size(), a_fullName);
+    return Path( sRv.replace(pos, fullName.size(), a_fullName) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::setFileBaseName(
     std::ctstring_t &a_name
 ) const
@@ -259,42 +243,42 @@ Path::setFileBaseName(
     std::csize_t pos = sRv.rfind(name);
     xTEST_DIFF(pos, std::tstring_t::npos);
 
-    return sRv.replace(pos, name.size(), a_name);
+    return Path( sRv.replace(pos, name.size(), a_name) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::setExt(
     std::ctstring_t &a_ext
 ) const
 {
     xTEST_NA(a_ext);
 
-    return removeExt() + Const::dot() + a_ext;
+    return Path(removeExt().str() + Const::dot() + a_ext);
 }
 //-------------------------------------------------------------------------------------------------
 
 
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::removeExt() const
 {
     std::csize_t dotPos = _filePath.rfind( Const::dot() );
 
-    return _filePath.substr(0, dotPos);
+    return Path( _filePath.substr(0, dotPos) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::removeExtIf(
     std::ctstring_t &a_ext
 ) const
 {
     std::csize_t extPos = _filePath.rfind(Const::dot() + a_ext);
-    xCHECK_RET(extPos == std::tstring_t::npos, _filePath);
+    xCHECK_RET(extPos == std::tstring_t::npos, Path(_filePath));
 
     std::csize_t dotPos = _filePath.rfind(Const::dot());
     xTEST_DIFF(dotPos, std::tstring_t::npos);
 
-    return _filePath.substr(0, dotPos);
+    return Path( _filePath.substr(0, dotPos) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -355,24 +339,7 @@ Path::isNameValid(
     return _isNameValid_impl(sRv, a_fileNameValid);
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
-Path::isCaseSensitive() const
-{
-    xCHECK_RET(_filePath.empty(), false);
-
-    return _isCaseSensitive_impl();
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-Path::isAbsolute() const
-{
-    xCHECK_RET(_filePath.empty(),                       false);
-    xCHECK_RET(_filePath.at(0) == Const::slash().at(0), true);
-
-    return _isAbsolute_impl();
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::toWin(
     cbool_t a_isSlashAtEnd
 ) const
@@ -381,13 +348,13 @@ Path::toWin(
 
     std::tstring_t sRv;
 
-	sRv = a_isSlashAtEnd ? slashAppend() : slashRemove();
+	sRv = a_isSlashAtEnd ? slashAppend().str() : slashRemove().str();
     sRv = String::replaceAll(sRv, Const::unixSlash(), Const::winSlash());
 
-    return sRv;
+    return Path(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::toUnix(
     cbool_t a_isSlashAtEnd
 )  const
@@ -396,13 +363,13 @@ Path::toUnix(
 
     std::tstring_t sRv;
 
-    sRv = a_isSlashAtEnd ? slashAppend() : slashRemove();
+    sRv = a_isSlashAtEnd ? slashAppend().str() : slashRemove().str();
     sRv = String::replaceAll(sRv, Const::winSlash(), Const::unixSlash());
 
-    return sRv;
+    return Path(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::toNative(
     cbool_t a_isSlashAtEnd
 ) const
@@ -411,55 +378,22 @@ Path::toNative(
 
     std::tstring_t sRv;
 
-    sRv = a_isSlashAtEnd ? slashAppend() : slashRemove();
+    sRv = a_isSlashAtEnd ? slashAppend().str() : slashRemove().str();
     _toNative_impl(&sRv);
 
-    return sRv;
+    return Path(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::absolute() const
 {
     std::ctstring_t sRv( _absolute_impl() );
     xTEST(Path(sRv).isAbsolute());
 
-    return sRv;
+    return Path(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-Path::briefName(
-    std::ctstring_t &a_fileName,
-    std::csize_t     a_maxSize
-)
-{
-    xTEST_EQ(a_fileName.empty(), false);
-    xTEST_LESS(size_t(0), a_maxSize);
-
-    std::tstring_t sRv;
-
-    std::tstring_t tildaDotExt;
-
-    if ( Path(a_fileName).ext().empty() ) {
-        tildaDotExt = xT("~");
-    } else {
-        tildaDotExt = xT("~") + Const::dot() + Path(a_fileName).ext();
-    }
-
-    if (a_fileName.size() > a_maxSize) {
-        if (a_maxSize < tildaDotExt.size()) {
-            sRv = a_fileName.substr(0, a_maxSize);
-        } else {
-            sRv = a_fileName.substr(0, a_maxSize - tildaDotExt.size()) + tildaDotExt;
-        }
-    } else {
-        sRv = a_fileName;
-    }
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::brief(
     std::csize_t a_maxSize
 ) const
@@ -515,12 +449,10 @@ Path::brief(
         -- num;
     }
 
-    sRv = Path(sRv).toNative(false);
-
-    return sRv;
+    return Path(sRv).toNative(false);
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::brief(
 	std::csize_t a_leftDirsNum,	///<
 	std::csize_t a_rightDirsNum	///<
@@ -532,7 +464,7 @@ Path::brief(
 	std::csize_t showDirsNum  = a_leftDirsNum + a_rightDirsNum;
 	if (showDirsNum >= values.size()) {
 		// n/a dots - return full path
-		return _filePath;
+		return Path(_filePath);
 	}
 
 	std::csize_t hideDirsNum = values.size() - showDirsNum;
@@ -549,31 +481,67 @@ Path::brief(
 		values.at(a_leftDirsNum) = dots;
 	}
 
-	return String::join(values, Const::slash());
+	return Path( String::join(values, Const::slash()) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
+Path::briefName(
+    std::csize_t a_maxSize
+) const
+{
+	xTEST_DIFF(a_maxSize, size_t(0));
+
+	std::tstring_t tildaDotExt;
+	{
+		std::ctstring_t &_ext = ext();
+
+		if ( _ext.empty() ) {
+			tildaDotExt = xT("~");
+		} else {
+			tildaDotExt = xT("~") + Const::dot() + _ext;
+		}
+	}
+
+	std::tstring_t sRv;
+	{
+		std::ctstring_t &_fileName = fileName();
+
+		if (_fileName.size() > a_maxSize) {
+			if (a_maxSize < tildaDotExt.size()) {
+				sRv = _fileName.substr(0, a_maxSize);
+			} else {
+				sRv = _fileName.substr(0, a_maxSize - tildaDotExt.size()) + tildaDotExt;
+			}
+		} else {
+			sRv = _fileName;
+		}
+	}
+
+	return Path(sRv);
+}
+//-------------------------------------------------------------------------------------------------
+Path
 Path::homeAsBrief() const
 {
-	return String::replaceAll(_filePath, User().homeDir(), xT("~"));
+	return Path( String::replaceAll(_filePath, User().homeDir(), xT("~")) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::slashAppend() const
 {
-    return String::trimRightChars(_filePath, Const::slash()).append(Const::slash());
+    return Path( String::trimRightChars(_filePath, Const::slash()).append(Const::slash()) );
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+Path
 Path::slashRemove() const
 {
 #if xENV_UNIX
 	if (_filePath == Const::unixSlash()) {
-		return _filePath;
+		return Path(_filePath);
 	}
 #endif
 
-    return String::trimRightChars(_filePath, Const::slash());
+    return Path( String::trimRightChars(_filePath, Const::slash()) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

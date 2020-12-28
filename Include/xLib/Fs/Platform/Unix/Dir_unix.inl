@@ -83,7 +83,7 @@ Dir::_setCurrent_impl(
     std::ctstring_t &a_dirPath
 )
 {
-    std::tstring_t dirPath = Path(a_dirPath).slashAppend();
+    std::tstring_t dirPath = Path(a_dirPath).slashAppend().str();
 
     int_t iRv = ::chdir(xT2A(dirPath).c_str());
     xTEST_DIFF(iRv, - 1);
