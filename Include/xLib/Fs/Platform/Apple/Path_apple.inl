@@ -45,11 +45,5 @@ Path::_fileExt_impl(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
-Path::_isCaseSensitive_impl() const
-{
-	return static_cast<bool_t>( ::pathconf(_filePath.c_str(), _PC_CASE_SENSITIVE) );
-}
-//-------------------------------------------------------------------------------------------------
 
 } // namespace

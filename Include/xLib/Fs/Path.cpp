@@ -50,14 +50,6 @@ Path::Path(
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Path::isCaseSensitive() const
-{
-    xCHECK_RET(_filePath.empty(), false);
-
-    return _isCaseSensitive_impl();
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
 Path::isAbsolute() const
 {
     xCHECK_RET(_filePath.empty(),                       false);

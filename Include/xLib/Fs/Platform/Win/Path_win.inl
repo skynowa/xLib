@@ -229,14 +229,6 @@ Path::_isNameValid_impl(
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Path::_isCaseSensitive_impl() const
-{
-	xUNUSED(_filePath);
-
-    return false;
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
 Path::_isAbsolute_impl() const
 {
     xCHECK_RET(_filePath.size() == 1, false);

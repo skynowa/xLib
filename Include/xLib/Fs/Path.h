@@ -26,8 +26,6 @@ public:
 	xNO_COPY_ASSIGN(Path)
 ///@}
 
-	bool_t         isCaseSensitive() const;
-		///< get case sensitivity
     bool_t         isAbsolute() const;
         ///< is absolute
 
@@ -141,7 +139,6 @@ private:
 xPLATFORM_IMPL:
     std::tstring_t _volume_impl() const;
     void_t         _toNative_impl(std::tstring_t *filePath) const;
-    bool_t         _isCaseSensitive_impl() const;
     bool_t         _isAbsolute_impl() const;
     std::tstring_t _absolute_impl() const;
 

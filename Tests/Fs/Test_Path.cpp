@@ -737,23 +737,6 @@ Test_Path::unit()
         }
     }
 
-    xTEST_CASE("isCaseSensitive")
-    {
-        m_bRv = PathExe().isCaseSensitive();
-
-	#if   xENV_WIN
-		xTEST(!m_bRv);
-	#elif xENV_UNIX
-		#if   xENV_LINUX
-			xTEST(m_bRv);
-		#elif xENV_BSD
-			xTEST(m_bRv);
-		#elif xENV_APPLE
-			xTEST(m_bRv);
-		#endif
-	#endif
-    }
-
     xTEST_CASE("isAbsolute")
     {
         // true
