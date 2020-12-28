@@ -132,6 +132,16 @@ Path::ext() const
     return _filePath.substr(dotPos + Const::dot().size());
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+Path::split(
+	std::vec_tstring_t *out_values
+) const
+{
+	xTEST_PTR(out_values);
+
+	String::split(_filePath, Const::slash(), out_values);
+}
+//-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Path::fileExt(
@@ -459,7 +469,7 @@ Path::brief(
 ) const
 {
 	std::vec_tstring_t values;
-	String::split(_filePath, Const::slash(), &values);
+	split(&values);
 
 	std::csize_t showDirsNum  = a_leftDirsNum + a_rightDirsNum;
 	if (showDirsNum >= values.size()) {

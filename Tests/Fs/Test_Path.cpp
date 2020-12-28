@@ -163,6 +163,34 @@ Test_Path::unit()
         }
     }
 
+    xTEST_CASE("split")
+    {
+        using _data3_bool_t = Data3<std::tstring_t, std::size_t, std::tstring_t>;
+
+		const _data3_bool_t data[]
+		{
+			{xT("/home/Test111/Test.txt"),                           1, xT("home")},
+			{xT("/home/Test"),                                       2, xT("Test")},
+			{xT("Test.txt"),                                         0, xT("Test.txt")},
+			{xT("/home/My projects/Borland C++/pLaunchProject.exe"), 4, xT("pLaunchProject.exe")},
+			{xT(""),                                                 0, xT("")}
+		};
+
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            std::vec_tstring_t values;
+            Path(data[i].test1).split(&values);
+
+            if ( data[i].test1.empty() ) {
+                xTEST(values.empty());
+                continue;
+            }
+
+            std::tstring_t str1 = values[ data[i].test2 ];
+            std::tstring_t str2 = data[i].expect;
+            xTEST_EQ(str1, str2);
+        }
+    }
+
     xTEST_CASE("fileExt")
     {
         m_sRv = Path::fileExt(Path::FileExt::Exe);
