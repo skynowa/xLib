@@ -156,9 +156,10 @@ xPLATFORM_IMPL:
     size_t         _nameMaxSize_impl();
 };
 
+std::tostream_t & operator<<(std::tostream_t &stream, const Path &path);
+
 } // namespace
 //-------------------------------------------------------------------------------------------------
 // TODO: usr/bin ... pathes
 // TODO: FileNameGuid ???
-// TODO: Path::operator <<
 //-------------------------------------------------------------------------------------------------

@@ -568,5 +568,13 @@ Path::nameMaxSize()
     return _nameMaxSize_impl();
 }
 //-------------------------------------------------------------------------------------------------
+std::tostream_t &
+operator << (
+	std::tostream_t &out_stream,
+	const Path      &a_path)
+{
+  return out_stream << a_path.str();
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
