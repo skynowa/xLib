@@ -12,7 +12,7 @@
 #include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Log/FileLog.h>
-#include <xLib/Fs/Path.h>
+#include <xLib/Fs/PathExe.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/System/ProcessInfo.h>
 #include <xLib/System/User.h>
@@ -295,7 +295,7 @@ Application::buildInfo()
 std::tstring_t
 Application::filePath()
 {
-    return Path::exe();
+    return PathExe().str();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -343,7 +343,7 @@ Application::dirPath()
 #if xOS_ANDROID
     return Dir::current();
 #else
-    return Path::exeDir();
+    return PathExe().dir();
 #endif
 }
 //-------------------------------------------------------------------------------------------------

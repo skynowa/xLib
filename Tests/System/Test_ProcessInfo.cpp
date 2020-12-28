@@ -80,8 +80,8 @@ Test_ProcessInfo::unit()
             info.setProcessId(/* it */ Process::currentId());
 
             m_sRv = info.exeName();
-            xTEST_EQ(true,  FileInfo(m_sRv).isExists());
-            xTEST_EQ(m_sRv, Path::exe());
+            xTEST(FileInfo(m_sRv).isExists());
+            xTEST_EQ(m_sRv, PathExe().str());
         }
     }
 

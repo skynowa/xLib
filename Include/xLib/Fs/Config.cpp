@@ -8,6 +8,7 @@
 
 #include <xLib/Core/String.h>
 #include <xLib/Fs/Path.h>
+#include <xLib/Fs/PathExe.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/File.h>
@@ -26,7 +27,7 @@ namespace xl::fs
 
 //-------------------------------------------------------------------------------------------------
 Config::Config() :
-	Config( Path::exe() )
+	Config( PathExe().str() )
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Config::Config(
     xTEST(_filePath.empty());
     xTEST(!a_filePath.empty());
 
-    setPath( Path(a_filePath).setExt(_fileExt) );
+    setPath( Path(a_filePath).setExt(_fileExt).str() );
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */

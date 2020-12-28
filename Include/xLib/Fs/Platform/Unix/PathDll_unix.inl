@@ -4,6 +4,9 @@
  */
 
 
+#include <xLib/Core/Const.h>
+
+
 namespace xl::fs
 {
 
@@ -13,44 +16,34 @@ namespace xl::fs
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+namespace
+{
+
+#if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
+static void_t function() {}
+#endif
+
+}
+//-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-Path::_fileExt_impl(
-    cFileExt a_fileExt
-)
+PathDll::_dll_impl()
 {
     std::tstring_t sRv;
 
-    switch (a_fileExt) {
-    case FileExt::Exe:
-        sRv = xT("");
-        break;
-    case FileExt::Dll:
-        sRv = xT("so");
-        break;
-    case FileExt::Lib:
-        sRv = xT("a");
-        break;
-    case FileExt::Obj:
-        sRv = xT("o");
-        break;
-    case FileExt::Shell:
-        sRv = xT("sh");
-        break;
-    default:
-        sRv = xT("");
-        break;
-    }
+#if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
+    Dl_info  diInfo {};
+    void_t (*procAddress)() = function;
+
+    int_t iRv = ::dladdr(&procAddress, &diInfo);
+    xTEST_DIFF(iRv, 0);
+
+    sRv = Path(diInfo.dli_fname).absolute();
+#else
+    sRv = Const::strEmpty();
+#endif
 
     return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-Path::_isCaseSensitive_impl() const
-{
-	xUNUSED(_filePath);
-
-    return true;
 }
 //-------------------------------------------------------------------------------------------------
 

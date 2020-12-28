@@ -170,7 +170,7 @@ File::move(
 {
     xTEST(!a_dirPath.empty());
 
-    rename(Path(a_dirPath).slashAppend() + Path(_filePath).fileName());
+    rename(Path(a_dirPath).slashAppend().str() + Path(_filePath).fileName());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
