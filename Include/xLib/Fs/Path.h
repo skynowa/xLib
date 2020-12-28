@@ -156,7 +156,7 @@ xPLATFORM_IMPL:
     size_t         _nameMaxSize_impl();
 };
 
-std::tostream_t & operator<<(std::tostream_t &stream, const Path &path);
+std::tostream_t & operator << (std::tostream_t &stream, const Path &path);
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
