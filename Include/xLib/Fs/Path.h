@@ -92,7 +92,7 @@ public:
         ///< get short path
     Path brief(std::csize_t leftDirsNum, std::csize_t rightDirsNum) const;
         ///< get short path (hide dirs as dots)
-    Path briefName(std::csize_t maxSize);
+    Path briefName(std::csize_t maxSize) const;
         ///< get short name
     Path homeAsBrief() const;
 		///< replace home dir with "~"

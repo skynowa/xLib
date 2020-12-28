@@ -487,7 +487,7 @@ Path::brief(
 Path
 Path::briefName(
     std::csize_t a_maxSize
-)
+) const
 {
 	xTEST_DIFF(a_maxSize, size_t(0));
 
