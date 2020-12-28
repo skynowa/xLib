@@ -79,7 +79,6 @@ public:
         ///< remove extension
     Path removeExtIf(std::ctstring_t &ext) const;
         ///< remove extension if it equal some string
-    //< TODO: return Path()
 
     Path toWin(cbool_t isSlashAtEnd) const;
         ///< convert slashes to Windows style
@@ -102,7 +101,6 @@ public:
         ///< append slash
     Path slashRemove() const;
         ///< remove slash
-    //> TODO: return Path()
 
 xPUBLIC_STATIC:
     static
