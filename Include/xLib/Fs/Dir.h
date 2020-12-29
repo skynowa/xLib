@@ -8,11 +8,13 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Const.h>
+#include <xLib/Interface/IPrint.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
 
-class Dir
+class Dir :
+	public IPrint<std::tostream_t>
     /// directory
 {
 public:
@@ -26,6 +28,11 @@ public:
 
 	static Dir current();
 	static Dir temp();
+///@}
+
+///@name interfaces
+///@{
+	void_t print(std::tostream_t &stream) const override;
 ///@}
 
     std::ctstring_t & str() const;
@@ -82,8 +89,6 @@ xPLATFORM_IMPL:
     void_t            _remove_impl() const;
     bool_t            _tryRemove_impl() const;
 };
-
-std::tostream_t & operator << (std::tostream_t &stream, const Dir &dir);
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
