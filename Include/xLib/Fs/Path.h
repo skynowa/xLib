@@ -9,11 +9,13 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/IPrint.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
 
-class Path
+class Path :
+	public IPrint<std::tostream_t>
     /// file system path
 {
 public:
@@ -27,6 +29,11 @@ public:
 
 	static Path exe();
 	static Path dll();
+///@}
+
+///@name interfaces
+///@{
+	void_t print(std::tostream_t &stream) const override;
 ///@}
 
     bool_t         isAbsolute() const;
@@ -159,8 +166,6 @@ xPLATFORM_IMPL:
     static
     size_t         _nameMaxSize_impl();
 };
-
-std::tostream_t & operator << (std::tostream_t &stream, const Path &path);
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
