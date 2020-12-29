@@ -59,7 +59,7 @@ public:
 
     void_t            remove() const;
         ///< deletion dir which empty
-    void_t            tryRemove(std::csize_t &attempts, culong_t &timeoutMsec) const;
+    void_t            tryRemove(std::csize_t attempts, culong_t timeoutMsec) const;
         ///< try deleting, max 100 attempts
     void_t            pathClear() const;
         ///< deletion all content of dir

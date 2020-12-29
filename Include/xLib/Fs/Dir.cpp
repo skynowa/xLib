@@ -252,11 +252,11 @@ Dir::remove() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Dir::tryRemove(
-    std::csize_t &a_attempts,
-    culong_t     &a_timeoutMsec
+    std::csize_t a_attempts,
+    culong_t     a_timeoutMsec
 ) const
 {
-    xTEST_LESS(size_t(0U), a_attempts);
+    xTEST_DIFF(a_attempts, size_t(0U));
 
     std::csize_t maxAttempts  = 100;  // MAGIC_NUMBER: maxAttempts
     std::csize_t realAttempts = (maxAttempts < a_attempts) ? maxAttempts : a_attempts;
