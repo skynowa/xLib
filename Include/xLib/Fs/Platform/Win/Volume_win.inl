@@ -80,7 +80,7 @@ Volume::_isReady_impl() const
         SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
     xTEST_NA(oldErrorMode);
 
-    oldDirPath = Dir::current().path();
+    oldDirPath = Dir::current().str();
     xTEST_NA(oldDirPath);
 
     bRv = !!::SetCurrentDirectory(volumeDirPath.c_str());

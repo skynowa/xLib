@@ -50,7 +50,7 @@ Volume::_isReady_impl() const
     std::tstring_t volumeDirPath = Path( path() ).slashAppend().str();
     std::tstring_t dirPathOld;
 
-    dirPathOld = Dir::current().path();
+    dirPathOld = Dir::current().str();
     xTEST_NA(dirPathOld);
 
     int_t iRv = ::chdir(xT2A(volumeDirPath).c_str());
