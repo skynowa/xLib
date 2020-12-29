@@ -93,20 +93,11 @@ Dir::_setCurrent_impl(
 std::tstring_t
 Dir::_temp_impl()
 {
-    std::tstring_t sRv;
-
     std::ctstring_t envDirTemp = xT("TMPDIR");
 
     Environment env(envDirTemp);
 
-    bool_t bRv = env.isExists();
-    if (bRv) {
-        sRv = env.var();
-    } else {
-        sRv = xDIR_TEMP;
-    }
-
-    return sRv;
+    return env.isExists() ? env.var() : xDIR_TEMP;
 }
 //-------------------------------------------------------------------------------------------------
 
