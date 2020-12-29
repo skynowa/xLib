@@ -81,7 +81,7 @@ Test_ProcessInfo::unit()
 
             m_sRv = info.exeName();
             xTEST(FileInfo(m_sRv).isExists());
-            xTEST_EQ(m_sRv, PathExe().str());
+            xTEST_EQ(m_sRv, Path::exe().str());
         }
     }
 

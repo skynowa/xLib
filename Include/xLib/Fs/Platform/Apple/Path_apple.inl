@@ -15,6 +15,17 @@ namespace xl::fs
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
+Path::_exe_impl()
+{
+	std::tstring_t sRv;
+
+	// TODO: [skynowa] Path::_exe_impl()
+
+	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
 Path::_fileExt_impl(
     cFileExt a_fileExt
 )

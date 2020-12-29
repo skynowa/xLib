@@ -16,6 +16,22 @@ xTEST_UNIT(Test_Path)
 bool_t
 Test_Path::unit()
 {
+    xTEST_CASE("exe")
+    {
+        m_sRv = Path::exe().str();
+        xTEST(FileInfo(m_sRv).isExists());
+    }
+
+    xTEST_CASE("dll")
+    {
+        m_sRv = Path::dll().str();
+    #if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
+        xTEST(FileInfo(m_sRv).isExists());
+    #else
+        xTEST_NA(m_sRv);
+    #endif
+    }
+
     xTEST_CASE("volume")
     {
 	#if   xENV_WIN

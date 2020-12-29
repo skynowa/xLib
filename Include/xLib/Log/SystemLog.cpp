@@ -11,7 +11,7 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
-#include <xLib/Fs/PathExe.h>
+#include <xLib/Fs/Path.h>
 #include "Platform/SystemLog_internal.inl"
 
 #if   xENV_WIN
@@ -44,7 +44,7 @@ namespace xl::log
 //-------------------------------------------------------------------------------------------------
 SystemLog::SystemLog()
 {
-    _construct_impl( PathExe().fileBaseName() );
+    _construct_impl( Path::exe().fileBaseName() );
 }
 //-------------------------------------------------------------------------------------------------
 SystemLog::SystemLog(

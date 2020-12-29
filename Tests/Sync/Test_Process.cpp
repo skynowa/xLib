@@ -113,7 +113,7 @@ Test_Process::unit()
 
     xTEST_CASE("idByName")
     {
-        std::ctstring_t procName = PathExe().fileName();
+        std::ctstring_t procName = Path::exe().fileName();
 
         Process::id_t id = Process::idByName(procName);
         xTEST_DIFF(static_cast<ulong_t>(id), 0UL);
