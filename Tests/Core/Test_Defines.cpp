@@ -283,7 +283,7 @@ Test_Defines::unit()
     xTEST_CASE("xFILE")
     {
         m_sRv = xFILE;
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("xBASE_FILE")
@@ -301,7 +301,7 @@ Test_Defines::unit()
     xTEST_CASE("xFUNCTION")
     {
         m_sRv = xFUNCTION;
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("xSOURCE_AT")
@@ -313,25 +313,25 @@ Test_Defines::unit()
     xTEST_CASE("xDATE")
     {
         m_sRv = xDATE;
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("xTIME")
     {
         m_sRv = xTIME;
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("xDATETIME")
     {
         m_sRv = xDATETIME;
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("xCOUNTER")
     {
         m_sRv = String::cast(xCOUNTER);
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("xVA_...")
@@ -382,7 +382,7 @@ Test_Defines::unit()
     xTEST_CASE("xDIR_TEMP")
     {
         m_sRv = xDIR_TEMP;
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("xNATIVE_HANDLE_...")

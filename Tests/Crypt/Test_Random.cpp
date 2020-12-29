@@ -56,7 +56,7 @@ Test_Random::unit()
             clong_t max = data[i][1];
 
             m_liRv = random.nextInt(min, max);
-            xTEST_EQ(true, m_liRv >= min && m_liRv <= max);
+            xTEST(m_liRv >= min && m_liRv <= max);
         }
     }
 
@@ -80,7 +80,7 @@ Test_Random::unit()
                 cfloat_t max = data[i][1];
 
                 m_fRv = random.nextFloat(min, max);
-                xTEST_EQ(true, m_fRv >= min && m_fRv <= max);
+                xTEST(m_fRv >= min && m_fRv <= max);
             }
         }
 
@@ -102,7 +102,7 @@ Test_Random::unit()
                 cdouble_t max = data[i][1];
 
                 m_dRv = random.nextFloat(min, max);
-                xTEST_EQ(true, m_dRv >= min && m_dRv <= max);
+                xTEST(m_dRv >= min && m_dRv <= max);
             }
         }
     }

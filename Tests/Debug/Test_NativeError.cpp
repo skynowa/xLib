@@ -26,11 +26,11 @@ Test_NativeError::unit()
     {
         NativeError::reset();
         m_bRv = NativeError::isSuccess();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         NativeError::set(10UL);
         m_bRv = NativeError::isSuccess();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("get")
@@ -44,7 +44,7 @@ Test_NativeError::unit()
     {
         m_sRv = NativeError::format();
         xTEST_EQ(0UL,   NativeError::get());
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("set")
@@ -95,7 +95,7 @@ Test_NativeError::unit()
             culong_t culLasError = caulData[i];
 
             m_sRv = NativeError::format(culLasError);
-            xTEST_EQ(false, m_sRv.empty());
+            xTEST(!m_sRv.empty());
         }
     }
 

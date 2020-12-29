@@ -105,7 +105,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("qqqq-wwww [1000]")));
 
         m_sRv = FormatC::str(xT("qqqq-wwww [%f]"), 1000.0);
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
 
         m_sRv = FormatC::str(xT("qqqq-wwww [%s]"), xT("1000"));
         xTEST_EQ(m_sRv, std::tstring_t(xT("qqqq-wwww [1000]")));
@@ -129,7 +129,7 @@ Test_Format::unit()
         xTEST_EQ(m_sRv, std::tstring_t(xT("Some different radixes: 100 64 144 0x64 0144")));
 
         m_sRv = FormatC::str(xT("floats: %4.2f %+.0e %E"), 3.1416, 3.1416, 3.1416);
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
 
         m_sRv = FormatC::str(xT("Width trick: %*d"), 5, 10);
         xTEST_EQ(m_sRv, std::tstring_t(xT("Width trick:    10")));

@@ -25,7 +25,7 @@ Test_String::unit()
     {
         // bool_t
         m_bRv = String::castTo<bool_t>("0");
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
 
         // tchar_t
         m_chRv = String::castTo<tchar_t>("d");
@@ -271,7 +271,7 @@ Test_String::unit()
 
                 sUtf8 = String::castCodePage(csAnsiStr[i], CP_ACP,  CP_UTF8);
                 sAnsi = String::castCodePage(sUtf8,        CP_UTF8, CP_ACP);
-                xTEST_EQ(true, csAnsiStr[i] == sAnsi);
+                xTEST(csAnsiStr[i] == sAnsi);
 
 
                 //1251(WIN)  <-> 20866(KOI-8r)
@@ -280,7 +280,7 @@ Test_String::unit()
 
                 sKoiStr = String::castCodePage(csAnsiStr[i], 1251,  20866);
                 sWinStr = String::castCodePage(sKoiStr,      20866, 1251);
-                xTEST_EQ(true, csAnsiStr[i] == sWinStr);
+                xTEST(csAnsiStr[i] == sWinStr);
             #elif xENV_UNIX
                 // TODO: [skynowa] TETST - String::castCodePage()
                 // xNOT_IMPLEMENTED_RET(RET_VALUE);
@@ -294,7 +294,7 @@ Test_String::unit()
 
         #if   xENV_WIN
             sRv = String::castToOem(xT("Boss, hello? "));
-            xTEST_EQ(true, std::string("Boss, hello? ") == sRv);
+            xTEST(std::string("Boss, hello? ") == sRv);
         #elif xENV_UNIX
             // TEST: String::castToOem()
         #endif
@@ -306,7 +306,7 @@ Test_String::unit()
 
         #if   xENV_WIN
             sRv = String::castFromOem(("1111, hdbhjgjk hkl, jl.,kh."));
-            xTEST_EQ(true, std::tstring_t(xT("1111, hdbhjgjk hkl, jl.,kh.")) == sRv);
+            xTEST(std::tstring_t(xT("1111, hdbhjgjk hkl, jl.,kh.")) == sRv);
         #elif xENV_UNIX
             // TODO: [skynowa] String::castFromOem()
         #endif
@@ -324,28 +324,28 @@ Test_String::unit()
     xTEST_CASE("castBool")
     {
         m_bRv = String::castBool( std::tstring_t(xT("true")) );
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         m_bRv = String::castBool( std::tstring_t(xT("trUe")) );
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         m_bRv = String::castBool( std::tstring_t(xT("true")) );
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         m_bRv = String::castBool( std::tstring_t(xT("false")) );
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
 
         m_bRv = String::castBool( std::tstring_t(xT("FAlse")) );
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
 
         m_bRv = String::castBool( std::tstring_t(xT("false")) );
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
 
         m_bRv = String::castBool( std::tstring_t(xT(" true ")) );
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
 
         m_bRv = String::castBool( std::tstring_t(xT("qwertyuiop[]")) );
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("toLowerCase")
@@ -987,7 +987,7 @@ Test_String::unit()
                 xTEST_PTR(m_pvRv);
 
                 for (size_t x = 0; x < xARRAY_SIZE(aszBuff[i]); ++ x) {
-                    xTEST_EQ(true, 0 == aszBuff[i][x]);
+                    xTEST(0 == aszBuff[i][x]);
                 }
             }
         }
@@ -1014,7 +1014,7 @@ Test_String::unit()
             xTEST_PTR(m_pvRv);
 
             for (size_t i = 0; i < xARRAY_SIZE(ucBuff); ++ i) {
-                xTEST_EQ(true, 0 == ucBuff[i]);
+                xTEST(0 == ucBuff[i]);
             }
         }
     }
@@ -1028,16 +1028,16 @@ Test_String::unit()
     xTEST_CASE("isRepeated")
     {
         m_bRv = String::isRepeated(xT("yyyyyyyyyyyy"));
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         m_bRv = String::isRepeated(xT("111111111111"));
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         m_bRv = String::isRepeated(xT("uuuuuiuuuuuuuuuuuu"));
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
 
         m_bRv = String::isRepeated(xT("000000000111111111"));
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
 

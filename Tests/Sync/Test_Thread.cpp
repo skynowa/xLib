@@ -73,7 +73,7 @@ CWorkThread::onRun(
 
     // isCurrent
     bRv = Thread::isCurrent();
-    xTEST_EQ(true, bRv);
+    xTEST(bRv);
 
     for (size_t i = 0; i < 10; ++ i) {
         // interrupt point
@@ -133,16 +133,16 @@ Test_Thread::unit()
     xTEST_CASE("flags")
     {
         m_bRv = pthT->isCreated();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         m_bRv = pthT->isRunning();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         m_bRv = pthT->isPaused();
         xTEST_DIFF(m_bRv, false /* cbIsPaused */);
 
         m_bRv = pthT->isExited();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("messages")
@@ -198,7 +198,7 @@ Test_Thread::unit()
     {
         #if   xENV_WIN
             m_bRv = pthT->isPriorityBoost();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         #elif xENV_UNIX
 
         #endif
@@ -210,12 +210,12 @@ Test_Thread::unit()
             pthT->setPriorityBoost(false);
 
             m_bRv = pthT->isPriorityBoost();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
 
             pthT->setPriorityBoost(true);
 
             m_bRv = pthT->isPriorityBoost();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         #elif xENV_UNIX
 
         #endif
@@ -237,7 +237,7 @@ Test_Thread::unit()
             pthT->setCpuIdeal(0);
 
             m_ulRv = pthT->cpuIdeal();
-            xTEST_EQ(true, SystemInfo().numOfCpus() > m_ulRv);
+            xTEST(SystemInfo().numOfCpus() > m_ulRv);
         #elif xENV_UNIX
 
         #endif
@@ -267,7 +267,7 @@ Test_Thread::unit()
     xTEST_CASE("isCurrent")
     {
         m_bRv = pthT->isCurrent();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("exitStatus")
@@ -304,24 +304,24 @@ Test_Thread::unit()
         pthT->resume();
 
         m_bRv = pthT->isPaused();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("vPause")
     {
         #if 1
             m_bRv = pthT->isPaused();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
 
             pthT->pause();
 
             m_bRv = pthT->isPaused();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
 
             pthT->resume();
 
             m_bRv = pthT->isPaused();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
         #endif
     }
 
@@ -330,7 +330,7 @@ Test_Thread::unit()
         // TEST: Thread::exit()
         #if xTODO
             m_bRv = pthT->exit(xTIMEOUT_INFINITE);
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         #endif
     }
 

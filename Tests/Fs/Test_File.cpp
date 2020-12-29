@@ -223,7 +223,7 @@ Test_File::unit()
 		File(filePath).textRead( &vec);
 
 		xTEST_EQ(content.size(), vec.size());
-		xTEST_EQ(true, content == vec);
+		xTEST(content == vec);
 	}
 
 	xTEST_CASE("textRead, textWrite")
@@ -243,7 +243,7 @@ Test_File::unit()
 		File(filePath).textRead( &vec);
 
 		xTEST_EQ(content.size(), vec.size());
-		xTEST_EQ(true, content == vec);
+		xTEST(content == vec);
 	}
 
 	xTEST_CASE("textRead, textWrite")
@@ -268,7 +268,7 @@ Test_File::unit()
 		File(filePath).textRead( separator, &msStr);
 
 		xTEST_EQ(content.size(), msStr.size());
-		xTEST_EQ(true, content == msStr);
+		xTEST(content == msStr);
 	}
 
 	xTEST_CASE("textRead, textWrite")
@@ -289,7 +289,7 @@ Test_File::unit()
 		File(filePath).textRead( separator, &msStr);
 
 		xTEST_EQ(content.size(), msStr.size());
-		xTEST_EQ(true, content == msStr);
+		xTEST(content == msStr);
 	}
 
 	xTEST_CASE("binRead, binWrite")
@@ -333,7 +333,7 @@ Test_File::unit()
 		std::ustring_t str;
 		File(filePath).binRead( &str);
 
-		xTEST_EQ(true, content == str);
+		xTEST(content == str);
 	}
 
     return true;

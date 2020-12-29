@@ -22,15 +22,15 @@ Test_BuildInfo::unit()
 
         m_bRv = info.isRelease();
         #if defined(NDEBUG)
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         #else
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
         #endif
 
         #if xBUILD_DEBUG
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
         #else
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         #endif
     }
 
@@ -113,9 +113,9 @@ Test_BuildInfo::unit()
 
         m_bRv = info.isUnicodeEncoding();
         #if xUNICODE
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         #else
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
         #endif
     }
 

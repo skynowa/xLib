@@ -38,7 +38,7 @@ Test_SystemInfo::unit()
                 otType == SystemInfo::OsType::WindowsServer2008R2 ||
                 otType == SystemInfo::OsType::Windows7;
 
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         #elif xENV_UNIX
             #if xOS_FREEBSD
                 xTEST_EQ((int)SystemInfo::OsType::FreeBSD, (int)otType);
@@ -51,7 +51,7 @@ Test_SystemInfo::unit()
     xTEST_CASE("formatOs")
     {
         m_sRv = SystemInfo().formatOs();
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("distro")
@@ -71,13 +71,13 @@ Test_SystemInfo::unit()
     xTEST_CASE("formatOsArch")
     {
         m_sRv = SystemInfo().formatOsArch();
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("hostName")
     {
         m_sRv = SystemInfo().hostName();
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
         #if xTEST_IGNORE
             xTRACEV(xT("\tSystemInfo::hostName(): %s"), m_sRv.c_str());
         #endif
@@ -98,19 +98,19 @@ Test_SystemInfo::unit()
         #if xTEST_IGNORE
             xTRACEV(xT("\tSystemInfo::currentCpuNum: %lu"), m_ulRv);
         #endif
-        xTEST_EQ(true, SystemInfo().numOfCpus() > m_ulRv);
+        xTEST(SystemInfo().numOfCpus() > m_ulRv);
     }
 
     xTEST_CASE("cpuVendor")
     {
         SystemInfo::CpuVendor cvType = SystemInfo().cpuVendor();
-        xTEST_EQ(true, SystemInfo::CpuVendor::Intel == cvType || SystemInfo::CpuVendor::Amd == cvType);
+        xTEST(SystemInfo::CpuVendor::Intel == cvType || SystemInfo::CpuVendor::Amd == cvType);
     }
 
     xTEST_CASE("cpuModel")
     {
         m_sRv = SystemInfo().cpuModel();
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
 
         #if xTEST_IGNORE
             xTRACEV(xT("\tcpuModel: %s"), m_sRv.c_str());

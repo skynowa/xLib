@@ -19,13 +19,13 @@ Test_Handle::unit()
     xTEST_CASE("Handle")
     {
         HandleNative objNullHandle;
-        xTEST_EQ(false, objNullHandle.isValid());
+        xTEST(!objNullHandle.isValid());
 
         HandleNativeInvalid objInvalidHandle;
-        xTEST_EQ(false, objInvalidHandle.isValid());
+        xTEST(!objInvalidHandle.isValid());
 
         HandleStdFile objStdHandle;
-        xTEST_EQ(false, objStdHandle.isValid());
+        xTEST(!objStdHandle.isValid());
     }
 
     xTEST_CASE("Handle(const HANDLE &chHandle)")
@@ -33,25 +33,25 @@ Test_Handle::unit()
         HandleNative handle( Process::currentHandle() );
 
         m_bRv = handle.isValid();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         m_hRv = handle.detach();
-        xTEST_EQ(false, handle.isValid());
+        xTEST(!handle.isValid());
     }
 
     xTEST_CASE("Handle(const Handle &chHandle)")
     {
         HandleNative hHandle1;
-        xTEST_EQ(false, hHandle1.isValid());
+        xTEST(!hHandle1.isValid());
 
         HandleNative hHandle2( hHandle1 );
-        xTEST_EQ(false, hHandle2.isValid());
+        xTEST(!hHandle2.isValid());
 
         m_hRv = hHandle1.detach();
-        xTEST_EQ(false, hHandle1.isValid());
+        xTEST(!hHandle1.isValid());
 
         m_hRv = hHandle2.detach();
-        xTEST_EQ(false, hHandle2.isValid());
+        xTEST(!hHandle2.isValid());
     }
 
     xTEST_CASE("operator = (const native_handle_t &chHandle)")
@@ -61,20 +61,20 @@ Test_Handle::unit()
         handle = Process::currentHandle();
 
         m_hRv = handle.detach();
-        xTEST_EQ(false, handle.isValid());
+        xTEST(!handle.isValid());
     }
 
     xTEST_CASE("operator = (const Handle &chHandle)")
     {
         HandleNative hHandle1;
-        xTEST_EQ(false, hHandle1.isValid());
+        xTEST(!hHandle1.isValid());
 
         HandleNative hHandle2;
-        xTEST_EQ(false, hHandle2.isValid());
+        xTEST(!hHandle2.isValid());
 
         hHandle1 = hHandle2;
-        xTEST_EQ(false, hHandle1.isValid());
-        xTEST_EQ(false, hHandle2.isValid());
+        xTEST(!hHandle1.isValid());
+        xTEST(!hHandle2.isValid());
     }
 
     xTEST_CASE("get set")
@@ -82,12 +82,12 @@ Test_Handle::unit()
         HandleNative handle;
 
         m_hRv = handle.get();
-        xTEST_EQ(false, handle.isValid());
+        xTEST(!handle.isValid());
 
         handle.set(native_handle_t());
 
         m_hRv = handle.get();
-        xTEST_EQ(true, native_handle_t() == m_hRv);
+        xTEST(native_handle_t() == m_hRv);
 
         handle.set(Process::currentHandle());
 
@@ -95,7 +95,7 @@ Test_Handle::unit()
         xTEST_EQ(Process::currentHandle(), m_hRv);
 
         m_hRv = handle.detach();
-        xTEST_EQ(false, handle.isValid());
+        xTEST(!handle.isValid());
     }
 
     xTEST_CASE("clone")
@@ -103,7 +103,7 @@ Test_Handle::unit()
         HandleNative handle;
 
         m_hRv = handle.clone();
-        xTEST_EQ(false, handle.isValid());
+        xTEST(!handle.isValid());
     }
 
     xTEST_CASE("isValid")
@@ -111,12 +111,12 @@ Test_Handle::unit()
         HandleNative handle;
 
         m_bRv = handle.isValid();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
 
         handle.set(Process::currentHandle());
 
         m_hRv = handle.detach();
-        xTEST_EQ(false, handle.isValid());
+        xTEST(!handle.isValid());
     }
 
     xTEST_CASE("attach")
@@ -131,7 +131,7 @@ Test_Handle::unit()
         HandleNative handle;
 
         m_hRv = handle.detach();
-        xTEST_EQ(false, handle.isValid());
+        xTEST(!handle.isValid());
     }
 
     xTEST_CASE("close")
@@ -141,7 +141,7 @@ Test_Handle::unit()
         handle.close();
 
         m_bRv = handle.isValid();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("setInfo")
@@ -152,7 +152,7 @@ Test_Handle::unit()
         HandleNative handle;
 
         handle = Process::currentHandle();
-        xTEST_EQ(true, handle.isValid());
+        xTEST(handle.isValid());
 
         handle.setInfo(HANDLE_FLAG_INHERIT, 0);
 
@@ -171,7 +171,7 @@ Test_Handle::unit()
         HandleNative handle;
 
         handle = Process::currentHandle();
-        xTEST_EQ(true, handle.isValid());
+        xTEST(handle.isValid());
 
         handle.setInfo(HANDLE_FLAG_PROTECT_FROM_CLOSE, 0);
 

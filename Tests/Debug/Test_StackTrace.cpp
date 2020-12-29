@@ -21,7 +21,7 @@ Test_StackTrace::unit()
         StackTrace stStack;
 
         m_sRv = stStack.toString();
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("toString")

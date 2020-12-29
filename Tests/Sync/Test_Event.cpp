@@ -23,7 +23,7 @@ Test_Event::unit()
         objEvent.create();
 
         #if   xENV_WIN
-            xTEST_EQ(true, objEvent.handle().isValid())
+            xTEST(objEvent.handle().isValid())
         #elif xENV_UNIX
             // TEST: Test_Event() - hRv
         #endif
@@ -37,7 +37,7 @@ Test_Event::unit()
             objEvent.create();
 
             m_bRv = objEvent.isSignaled();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         }
 
         {
@@ -46,7 +46,7 @@ Test_Event::unit()
             objEvent.create();
 
             m_bRv = objEvent.isSignaled();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
         }
     }
 
@@ -63,14 +63,14 @@ Test_Event::unit()
             objEvent.reset();
 
             m_bRv = objEvent.isSignaled();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
         }
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             objEvent.set();
 
             m_bRv = objEvent.isSignaled();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         }
     }
 
@@ -87,14 +87,14 @@ Test_Event::unit()
             objEvent.set();
 
             m_bRv = objEvent.isSignaled();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         }
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             objEvent.reset();
 
             m_bRv = objEvent.isSignaled();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
         }
     }
 
@@ -135,7 +135,7 @@ Test_Event::unit()
             xTEST_EQ((int)Event::ObjectState::osTimeout, (int)osRes);
 
             m_bRv = objEvent.isSignaled();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
         }
 
         {
@@ -153,7 +153,7 @@ Test_Event::unit()
             xTEST_EQ((int)Event::ObjectState::osTimeout, (int)osRes);
 
             m_bRv = objEvent.isSignaled();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
         }
 
         {
@@ -171,7 +171,7 @@ Test_Event::unit()
             xTEST_EQ((int)Event::ObjectState::osSignaled, (int)osRes);
 
             m_bRv = objEvent.isSignaled();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         }
     }
 
