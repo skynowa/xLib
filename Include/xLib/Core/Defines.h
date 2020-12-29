@@ -292,26 +292,6 @@
     ///< qualifiers
 ///@}
 //-------------------------------------------------------------------------------------------------
-// xDIR_TEMP temporary directory
-#if   xENV_WIN
-    #if defined(P_tmpdir)
-        #define xDIR_TEMP \
-            xT(P_tmpdir)
-    #else
-        #define xDIR_TEMP \
-            xT("C:\\Temp")  // custom define
-    #endif
-#elif xENV_UNIX
-    #if defined(P_tmpdir)
-        #define xDIR_TEMP \
-            xT(P_tmpdir)
-    #else
-        #define xDIR_TEMP \
-            xT("/tmp")      // custom define
-    #endif
-#endif
-    ///< temporary directory
-//-------------------------------------------------------------------------------------------------
 ///@name xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
 ///@{
 #if   xENV_WIN

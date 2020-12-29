@@ -76,6 +76,9 @@ private:
 
 xPLATFORM_IMPL:
     // static
+	static
+	std::ctstring_t   _dirTmp();
+		///< temporary directory path
     static
     std::tstring_t    _current_impl();
     static
