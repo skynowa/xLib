@@ -55,7 +55,7 @@ Test_Dir::unit()
 
     xTEST_CASE("setCurrent")
     {
-        m_sRv = Dir::current().path();
+        m_sRv = Dir::current().str();
         xTEST_EQ(false, m_sRv.empty());
 
         Dir::setCurrent( getData().tempDirPath );
@@ -64,13 +64,13 @@ Test_Dir::unit()
 
     xTEST_CASE("current")
     {
-        std::tstring_t sRv = Dir::current().path();
+        std::tstring_t sRv = Dir::current().str();
         xTEST_EQ(m_sRv, sRv);
     }
 
     xTEST_CASE("temp")
     {
-        m_sRv = Dir::temp().path();
+        m_sRv = Dir::temp().str();
         #if xTEST_IGNORE
             xTRACEV(xT("\tDir::sGetTemp(): %s"), m_sRv.c_str());
         #endif

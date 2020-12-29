@@ -313,7 +313,7 @@ GitClient::modifiedFiles(
 	/// std::cvec_tstring_t params_commit_diff {"diff", "--name-only", "--cached", "--diff-filter=ACM"};
 	/// std::cvec_tstring_t params_master_diff {"diff", "--name-only", "master"};
 	std::cvec_tstring_t params_master_diff {"diff", "--name-only",
-		"--line-prefix=" + Dir::current().path() + "/", "master"};
+		"--line-prefix=" + Dir::current().str() + "/", "master"};
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 

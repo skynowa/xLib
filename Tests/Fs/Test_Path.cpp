@@ -40,7 +40,7 @@ Test_Path::unit()
 		m_sRv = Path(filePath).volume();
 		xTEST_EQ(m_sRv, std::tstring_t(xT("C:")));
 	#elif xENV_UNIX
-		std::ctstring_t filePath = Dir::temp().path();
+		std::ctstring_t filePath = Dir::temp().str();
 
 		m_sRv = Path(filePath).volume();
 		xTEST_EQ(m_sRv, std::tstring_t(xT("/")));

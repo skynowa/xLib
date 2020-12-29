@@ -28,7 +28,7 @@ public:
 	static Dir temp();
 ///@}
 
-    std::ctstring_t & path() const;
+    std::ctstring_t & str() const;
         ///< directory path
 
     bool_t            isExists() const;

@@ -37,7 +37,7 @@ Test_DirTemp::unit()
 			DirTemp dirTemp(dirPath, isRandomPostfix, isAutoDelete);
 			dirTemp.create();
 
-			m_sRv = dirTemp.dir().path();
+			m_sRv = dirTemp.dir().str();
 			if (isRandomPostfix) {
 				xTEST_GR(m_sRv.size(), expect.size() + 1);
 				xTEST_EQ(m_sRv.at(dirPath.size()), xT('_'));
