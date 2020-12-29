@@ -379,12 +379,6 @@ Test_Defines::unit()
         }
     }
 
-    xTEST_CASE("xDIR_TEMP")
-    {
-        m_sRv = xDIR_TEMP;
-        xTEST(!m_sRv.empty());
-    }
-
     xTEST_CASE("xNATIVE_HANDLE_...")
     {
        native_handle_t nhNull    = xNATIVE_HANDLE_NULL;
