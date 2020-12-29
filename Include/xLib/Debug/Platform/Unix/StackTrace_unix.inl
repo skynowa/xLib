@@ -4,7 +4,7 @@
  */
 
 
-#include <xLib/Fs/PathExe.h>
+#include <xLib/Fs/Path.h>
 
 #if cmEXECINFO_FOUND
     #include <execinfo.h> // lib: -lexecinfo (FreeBSD)
@@ -156,7 +156,7 @@ StackTrace::_addr2Line(
     */
 
     std::ctstring_t cmdLine = Format::str(
-        xT("{} -e {} -f -C {}"), cmADDR2LINE_FILE_PATH, PathExe().str(), a_symbolAddress);
+        xT("{} -e {} -f -C {}"), cmADDR2LINE_FILE_PATH, Path::exe().str(), a_symbolAddress);
 
     // TODO: [skynowa] [apple]
     //// sprintf(addr2line_cmd,"atos -o %.256s %p", program_name, addr);

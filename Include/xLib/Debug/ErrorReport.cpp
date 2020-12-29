@@ -13,7 +13,7 @@
 #include <xLib/System/Console.h>
 #include <xLib/Debug/BuildInfo.h>
 #include <xLib/Debug/Exception.h>
-#include <xLib/Fs/PathExe.h>
+#include <xLib/Fs/Path.h>
 #include <xLib/Sync/Thread.h>
 
 //-------------------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ ErrorReport::_construct(
 {
     _type             = a_type;
 
-    _program          = PathExe().brief(::reportWidthMax).toUnix(false).str();
+    _program          = Path::exe().brief(::reportWidthMax).toUnix(false).str();
 #if   xENV_WIN
     _processId        = ::GetCurrentProcessId();
 #elif xENV_UNIX

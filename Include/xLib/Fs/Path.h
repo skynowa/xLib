@@ -24,6 +24,9 @@ public:
 
 	xNO_DEFAULT_CONSTRUCT(Path)
 	xNO_COPY_ASSIGN(Path)
+
+	static Path exe();
+	static Path dll();
 ///@}
 
     bool_t         isAbsolute() const;
@@ -137,6 +140,8 @@ private:
     std::ctstring_t _filePath;
 
 xPLATFORM_IMPL:
+	static
+	std::tstring_t _exe_impl();
     std::tstring_t _volume_impl() const;
     void_t         _toNative_impl(std::tstring_t *filePath) const;
     bool_t         _isAbsolute_impl() const;

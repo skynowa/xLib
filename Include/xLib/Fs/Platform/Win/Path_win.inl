@@ -13,6 +13,47 @@ namespace xl::fs
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Path::_exe_impl()
+{
+	// REVIEW: QueryFullProcessImageName on xOS_WIN_VER > xOS_WIN_S03
+
+	std::tstring_t sRv;
+	sRv.resize(xPATH_MAX);
+
+	DWORD stored = ::GetModuleFileName(nullptr, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+	xTEST_DIFF(stored, 0UL);
+
+	sRv.resize(stored);
+
+	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+namespace
+{
+
+extern "C" IMAGE_DOS_HEADER __ImageBase;
+
+}
+
+/* static */
+std::tstring_t
+Path::_dll_impl()
+{
+    std::tstring_t sRv;
+    sRv.resize(xPATH_MAX);
+
+    HMODULE procAddress = reinterpret_cast<HMODULE>( &__ImageBase );
+
+    DWORD stored = ::GetModuleFileName(procAddress, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    xTEST_DIFF(stored, 0UL);
+
+    sRv.resize(stored);
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::_volume_impl() const
 {

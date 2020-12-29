@@ -16,7 +16,6 @@
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/String.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Fs/PathExe.h>
 #include <xLib/Fs/Dir.h>
 
 #if   xENV_WIN
@@ -158,7 +157,7 @@ Volume::space(
     xTEST_NA(a_freeBytes);
 
 	// empty dir - use root directory of the current volume
-    std::ctstring_t dirPath = a_dirPath.empty() ? PathExe().dir() : a_dirPath;
+    std::ctstring_t dirPath = a_dirPath.empty() ? Path::exe().dir() : a_dirPath;
 
     bool_t bRv = Dir(dirPath).isExists();
     xTEST_EQ(bRv, true);

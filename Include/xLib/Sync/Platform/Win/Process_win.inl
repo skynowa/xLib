@@ -109,7 +109,7 @@ Process::_kill_impl(
 std::tstring_t
 Process::_name_impl() const
 {
-    std::ctstring_t sRv = PathExe().fileBaseName();
+    std::ctstring_t sRv = Path::exe().fileBaseName();
 
     return sRv;
 }

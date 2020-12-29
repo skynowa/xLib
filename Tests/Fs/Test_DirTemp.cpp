@@ -29,8 +29,8 @@ Test_DirTemp::unit()
 
 		const std::vector<Data> data
 		{
-			{PathExe().dir() + "/bbb", true,  true, PathExe().dir() + "/bbb"},
-			{PathExe().dir() + "/aaa", false, true, PathExe().dir() + "/aaa"}
+			{Path::exe().dir() + "/bbb", true,  true, Path::exe().dir() + "/bbb"},
+			{Path::exe().dir() + "/aaa", false, true, Path::exe().dir() + "/aaa"}
 		};
 
 		for (auto &[dirPath, isRandomPostfix, isAutoDelete, expect] : data) {

@@ -15,7 +15,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>
-#include <xLib/Fs/PathExe.h>
+#include <xLib/Fs/Path.h>
 #include <xLib/Ui/MsgBox.h>
 #include <xLib/System/Environment.h>
 
@@ -213,7 +213,7 @@ Debugger::_loggingPlain(
     std::tstring_t filePath;
 
     if ( logPath().empty() ) {
-        filePath = PathExe().setExt(xT("debug")).str();
+        filePath = Path::exe().setExt(xT("debug")).str();
     } else {
         filePath = logPath();
     }

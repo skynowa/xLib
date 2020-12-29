@@ -10,7 +10,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Functors.h>
 #include <xLib/Core/Format.h>
-#include <xLib/Fs/PathExe.h>
+#include <xLib/Fs/Path.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/System/ProcessInfo.h>
 #include <xLib/System/User.h>
@@ -77,7 +77,7 @@ Manager::run()
                 xT("Manager: start all...\n")
                 xT("Manager: module path: {}\n")
                 xT("Manager: all loops: {}, unit loops: {}, case loops: {}, unit number: {}"),
-				PathExe().str(), _data.allLoops, _data.unitLoops, _data.caseLoops, _units.size()));
+				Path::exe().str(), _data.allLoops, _data.unitLoops, _data.caseLoops, _units.size()));
 
     for (std::size_t i = 0; i < _data.allLoops; ++ i) {
         for (const auto &it : _units) {

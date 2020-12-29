@@ -18,7 +18,7 @@ Test_FileTemp::unit()
 {
     xTEST_CASE("all")
     {
-        std::ctstring_t filePath = PathExe().str();
+        std::ctstring_t filePath = Path::exe().str();
 
     	FileIO fileWorker(filePath);
 
