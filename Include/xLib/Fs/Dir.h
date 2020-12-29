@@ -83,5 +83,7 @@ xPLATFORM_IMPL:
     bool_t            _tryRemove_impl() const;
 };
 
+std::tostream_t & operator << (std::tostream_t &stream, const Dir &dir);
+
 } // namespace
 //-------------------------------------------------------------------------------------------------

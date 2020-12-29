@@ -325,5 +325,14 @@ Dir::setCurrent(
     _setCurrent_impl(a_dirPath);
 }
 //-------------------------------------------------------------------------------------------------
+std::tostream_t &
+operator << (
+	std::tostream_t &out_stream,
+	const Dir       &a_dir
+)
+{
+  return out_stream << a_dir.str();
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
