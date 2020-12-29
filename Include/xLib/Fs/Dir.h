@@ -23,6 +23,9 @@ public:
 
 	xNO_DEFAULT_CONSTRUCT(Dir)
 	xNO_COPY_ASSIGN(Dir)
+
+	static Dir current();
+	static Dir temp();
 ///@}
 
     std::ctstring_t & path() const;
@@ -58,14 +61,8 @@ public:
 
 xPUBLIC_STATIC:
     static
-    std::tstring_t    current();
-        ///< get current
-    static
     void_t            setCurrent(std::ctstring_t &dirPath);
         ///< set current
-    static
-    std::tstring_t    temp();
-        ///< get path to system var %Temp%
 
 private:
     std::ctstring_t   _dirPath;

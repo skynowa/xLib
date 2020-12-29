@@ -341,7 +341,7 @@ std::tstring_t
 Application::dirPath()
 {
 #if xOS_ANDROID
-    return Dir::current();
+    return Dir::current().path();
 #else
     return Path::exe().dir();
 #endif

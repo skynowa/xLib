@@ -53,6 +53,30 @@ Test_Dir::unit()
     *
     *******************************************************************************/
 
+    xTEST_CASE("setCurrent")
+    {
+        m_sRv = Dir::current().path();
+        xTEST_EQ(false, m_sRv.empty());
+
+        Dir::setCurrent( getData().tempDirPath );
+        Dir::setCurrent(m_sRv);
+    }
+
+    xTEST_CASE("current")
+    {
+        std::tstring_t sRv = Dir::current().path();
+        xTEST_EQ(m_sRv, sRv);
+    }
+
+    xTEST_CASE("temp")
+    {
+        m_sRv = Dir::temp().path();
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tDir::sGetTemp(): %s"), m_sRv.c_str());
+        #endif
+        xTEST_EQ(false, m_sRv.empty());
+    }
+
     xTEST_CASE("create")
     {
         Dir(csDirPath2).create();
@@ -127,30 +151,6 @@ Test_Dir::unit()
             bool_t bRes2 = String::castBool(sTestData[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
-    }
-
-    xTEST_CASE("setCurrent")
-    {
-        m_sRv = Dir::current();
-        xTEST_EQ(false, m_sRv.empty());
-
-        Dir::setCurrent( getData().tempDirPath );
-        Dir::setCurrent(m_sRv);
-    }
-
-    xTEST_CASE("current")
-    {
-        std::tstring_t sRv = Dir::current();
-        xTEST_EQ(m_sRv, sRv);
-    }
-
-    xTEST_CASE("temp")
-    {
-        m_sRv = Dir::temp();
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tDir::sGetTemp(): %s"), m_sRv.c_str());
-        #endif
-        xTEST_EQ(false, m_sRv.empty());
     }
 
     xTEST_CASE("pathCreate")
