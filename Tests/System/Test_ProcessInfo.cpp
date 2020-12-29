@@ -117,7 +117,7 @@ Test_ProcessInfo::unit()
             info.setProcessId(/* it */ Process::currentId());
 
             info.commandLine(&m_vsRv);
-            xTEST_EQ(false, m_vsRv.empty());
+            xTEST(!m_vsRv.empty());
 
             #if xTEST_IGNORE
                 Tracer() << m_sRv;

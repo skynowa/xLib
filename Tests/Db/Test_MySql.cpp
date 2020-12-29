@@ -71,7 +71,7 @@ Test_MySql::unit()
     xTEST_CASE("MySqlConnection::isValid")
     {
         m_bRv = mysqlConn.get().isValid();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("MySqlConnection::isDbExists,dbCreate,dbDrop")
@@ -134,7 +134,7 @@ Test_MySql::unit()
         }
 
         m_bRv = MySqlConnection::isDbExists(mysqlData);
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("MySqlConnection::reconnect")
@@ -146,7 +146,7 @@ Test_MySql::unit()
     {
         int_t errorCode;
         m_bRv = mysqlConn.ping(&errorCode);
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
         xTEST_DIFF(errorCode, 0);
     }
 
@@ -163,7 +163,7 @@ Test_MySql::unit()
             xT("       `f_age`   SMALLINT(6) NOT NULL")
             xT("   )"),
             tableName.c_str());
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         // insert records
         mysqlConn.query(
@@ -201,7 +201,7 @@ Test_MySql::unit()
     xTEST_CASE("MySqlConnection::lastErrorStr")
     {
         m_sRv = mysqlConn.lastErrorStr();
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
 
@@ -221,7 +221,7 @@ Test_MySql::unit()
     xTEST_CASE("MySqlRecordset::isValid")
     {
         m_bRv = mysqlRecord.get().isValid();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("MySqlRecordset::fieldsNum")
@@ -297,7 +297,7 @@ Test_MySql::unit()
         mysqlConn.query(xT("DROP DATABASE IF EXISTS `%s`"), mysqlData.db.c_str());
 
         m_bRv = MySqlConnection::isDbExists(mysqlData);
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("MySqlRecordset::close")

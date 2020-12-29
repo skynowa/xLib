@@ -43,18 +43,18 @@ Test_Dll::unit()
             Dll dll;
 
             m_bRv = dll.get().isValid();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
 
             // load
             dll.load(data[i].test);
 
             // isLoaded
             m_bRv = dll.get().isValid();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
 
             // isProcExists
             m_bRv = dll.isProcExists(data[i].expect);
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
 
             // procAddress
         #if   xENV_WIN
@@ -81,7 +81,7 @@ Test_Dll::unit()
 
             // isLoaded
             m_bRv = dll.get().isValid();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
         } //for
     }
 

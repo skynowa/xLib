@@ -24,7 +24,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataTrue.size(); ++ i) {
                 m_bRv = CharT(dataTrue.at(i)).isAlphaNum();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -34,7 +34,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isAlphaNum();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -47,7 +47,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataTrue.size(); ++ i) {
                 m_bRv = CharT(dataTrue.at(i)).isAlpha();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -57,7 +57,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isAlpha();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -70,7 +70,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataTrue.size(); ++ i) {
                 m_bRv = CharT(dataTrue.at(i)).isControl();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -80,7 +80,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isControl();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -93,7 +93,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataTrue.size(); ++ i) {
                 m_bRv = CharT(dataTrue.at(i)).isDigitDec();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -103,7 +103,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isDigitDec();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -116,7 +116,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataTrue.size(); ++ i) {
                 m_bRv = CharT(dataTrue.at(i)).isDigitHex();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -126,7 +126,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isDigitHex();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -139,7 +139,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataTrue.size(); ++ i) {
                 m_bRv = CharT(dataTrue.at(i)).isGraph();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -149,7 +149,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isGraph();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -162,7 +162,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataTrue.size(); ++ i) {
                 m_bRv = CharT(dataTrue.at(i)).isPrint();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -173,7 +173,7 @@ Test_Char::unit()
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isPrint();
                 // TEST: CharT::isPrint()
-                // xTEST_EQ(m_bRv, false);
+                // xTEST(!m_bRv);
             }
         }
     }
@@ -186,7 +186,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataTrue.size(); ++ i) {
                 m_bRv = CharT(dataTrue.at(i)).isPunct();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -196,7 +196,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isPunct();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -209,7 +209,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataTrue.size(); ++ i) {
                 m_bRv = CharT(dataTrue.at(i)).isSpace();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -219,7 +219,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isSpace();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -232,7 +232,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataTrue.size(); ++ i) {
                 m_bRv = CharT(dataTrue.at(i)).isLower();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -242,7 +242,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isLower();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -255,7 +255,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataTrue.size(); ++ i) {
                 m_bRv = CharT(dataTrue.at(i)).isUpper();
-                xTEST_EQ(m_bRv, true);
+                xTEST(m_bRv);
             }
         }
 
@@ -265,7 +265,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isUpper();
-                xTEST_EQ(m_bRv, false);
+                xTEST(!m_bRv);
             }
         }
     }

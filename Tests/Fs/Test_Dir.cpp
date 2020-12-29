@@ -56,7 +56,7 @@ Test_Dir::unit()
     xTEST_CASE("setCurrent")
     {
         m_sRv = Dir::current().str();
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
 
         Dir::setCurrent( getData().tempDirPath );
         Dir::setCurrent(m_sRv);
@@ -65,7 +65,7 @@ Test_Dir::unit()
     xTEST_CASE("current")
     {
         std::tstring_t sRv = Dir::current().str();
-        xTEST_EQ(m_sRv, sRv);
+        xTEST_EQ(sRv, m_sRv);
     }
 
     xTEST_CASE("temp")
@@ -74,7 +74,7 @@ Test_Dir::unit()
         #if xTEST_IGNORE
             xTRACEV(xT("\tDir::sGetTemp(): %s"), m_sRv.c_str());
         #endif
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("create")
@@ -85,37 +85,37 @@ Test_Dir::unit()
     xTEST_CASE("isDir")
     {
         m_bRv = Dir(csDirPath2).isDir();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("isExists")
     {
         m_bRv = Dir(csDirPath).isExists();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         m_bRv = Dir(xT("b:")).isExists();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
 
         m_bRv = Dir(xT("sdfasdf:")).isExists();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
 
         m_bRv = Dir(xT("C:\\WINDOWS\\NOTEPAD.EXE")).isExists();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
 
         m_bRv = Dir(xT("C:\\pagefile.sys")).isExists();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("isEmpty")
     {
         m_bRv = Dir(csDirPath).isEmpty(Const::maskAll());
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
 
         m_bRv = Dir(csDirPath2).isEmpty(Const::maskAll());
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         m_bRv = Dir(getData().tempDirPath).isEmpty(Const::maskAll());
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("isRoot")
@@ -160,8 +160,7 @@ Test_Dir::unit()
 
     xTEST_CASE("copy")
     {
-        //-------------------------------------
-        //prepare for csTempScanDirPath (create dirs)
+        // prepare for csTempScanDirPath (create dirs)
         std::ctstring_t csDirSource = getData().tempDirPath + Const::slash() + xT("DirSource");
         std::ctstring_t csDirDest   = getData().tempDirPath + Const::slash() + xT("DirDest");
 
@@ -178,8 +177,7 @@ Test_Dir::unit()
 
         Dir(csDirDest).pathDelete();
 
-        //-------------------------------------
-        // vCopy
+        // copy
         Dir(csDirSource).copy(csDirDest, true);
         Dir(csDirDest).remove();
         Dir(csDirSource).copy(csDirDest, false);
@@ -189,7 +187,6 @@ Test_Dir::unit()
 
     xTEST_CASE("move")
     {
-        //-------------------------------------
         // prepare for csTempScanDirPath (create dirs)
         std::ctstring_t csDirSource = getData().tempDirPath + Const::slash() + xT("Source");
         std::ctstring_t csDirDest   = getData().tempDirPath + Const::slash() + xT("Dest");
@@ -205,8 +202,7 @@ Test_Dir::unit()
             Dir(sDirPaths[i]).pathCreate();
         }
 
-        //-------------------------------------
-        //bMove
+        // move
         Dir(csDirSource).move(csDirDest, true);
         Dir(csDirDest).remove();
     }

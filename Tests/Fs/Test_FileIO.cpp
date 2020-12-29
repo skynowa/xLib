@@ -103,7 +103,7 @@ Test_FileIO::unit()
         file.attach(handle, filePath);
 
         m_bRv = file.isValid();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         HandleStdFile stdFile;
         stdFile = file.detach();
@@ -197,7 +197,7 @@ Test_FileIO::unit()
             file.read(&text2);
 
             xTEST_EQ(text1.size(), text2.size());
-            xTEST_EQ(true, text1 == text2);
+            xTEST(text1 == text2);
         }
     }
 
@@ -376,18 +376,18 @@ Test_FileIO::unit()
         file.open(FileIO::OpenMode::ReadWrite);
 
         m_bRv = file.isEmpty();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
 
         m_iRv = file.write(xT("%s"), xT("xxasdfascefaweo4i57y2390450c1mxr,-1345rt3458854hbvx"));
         xTEST_LESS(0, m_iRv);
 
         m_bRv = file.isEmpty();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
 
         file.clear();
 
         m_bRv = file.isEmpty();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("isEof")
@@ -396,7 +396,7 @@ Test_FileIO::unit()
         file.open(FileIO::OpenMode::ReadWrite);
 
         m_bRv = file.isEof();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("isError")
@@ -405,7 +405,7 @@ Test_FileIO::unit()
         file.open(FileIO::OpenMode::ReadWrite);
 
         m_bRv = file.isError();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     xTEST_CASE("clearError")
@@ -427,7 +427,7 @@ Test_FileIO::unit()
         file.flush();
 
         m_bRv = file.get().isValid();
-        xTEST_EQ(m_bRv, true);
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("close")
@@ -437,7 +437,7 @@ Test_FileIO::unit()
         file.close();
 
         m_bRv = file.get().isValid();
-        xTEST_EQ(m_bRv, false);
+        xTEST(!m_bRv);
     }
 
     return true;

@@ -28,25 +28,25 @@ Test_ThreadStorage::unit()
             ThreadStorage tls;
 
             m_bRv = tls.isValid();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
 
             m_bRv = tls.isSet();
-            xTEST_EQ(m_bRv, false);
+            xTEST(!m_bRv);
 
             tls.setValue(reinterpret_cast<void_t **>(&pulValue));
 
             m_bRv = tls.isSet();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
 
             ulong_t *pulRes = static_cast<ulong_t *>( tls.value() );
             xTEST_PTR(pulRes);
             xTEST_EQ(culData, ulong_t(*pulRes));
 
             m_bRv = tls.isSet();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
 
             m_bRv = tls.isValid();
-            xTEST_EQ(m_bRv, true);
+            xTEST(m_bRv);
 
             delete pulRes;
         }

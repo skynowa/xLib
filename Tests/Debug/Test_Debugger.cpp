@@ -68,7 +68,7 @@ Test_Debugger::unit()
         Debugger debugger;
 
         m_sRv = debugger.logPath();
-        xTEST_EQ(true, m_sRv.empty());
+        xTEST(m_sRv.empty());
 
         debugger.setLogPath(filePath);
 
@@ -78,7 +78,7 @@ Test_Debugger::unit()
         debugger.setLogPath(xT(""));
 
         m_sRv = debugger.logPath();
-        xTEST_EQ(true, m_sRv.empty());
+        xTEST(m_sRv.empty());
     }
 
     xTEST_CASE("reportMake")

@@ -19,7 +19,7 @@ Test_Locale::unit()
     xTEST_CASE("current")
     {
         m_sRv = core::Locale().current();
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("setCurrent")

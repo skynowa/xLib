@@ -59,7 +59,7 @@ Test_FileLog::unit()
     xTEST_CASE("remove")
     {
         log.remove();
-        xTEST_EQ(false, FileInfo(log.filePath()).isExists() );
+        xTEST(!FileInfo(log.filePath()).isExists() );
     }
 
     return true;

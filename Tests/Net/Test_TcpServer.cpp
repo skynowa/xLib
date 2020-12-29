@@ -59,7 +59,7 @@ Test_TcpServer::unit()
     objListenSocket.close();
 
     m_iRv = TcpServer::nativeError();
-    //// xTEST_EQ(m_bRv, true);
+    //// xTEST(m_bRv);
 
     return true;
 }

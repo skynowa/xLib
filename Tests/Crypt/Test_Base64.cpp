@@ -41,7 +41,7 @@ Test_Base64::unit()
 
             std::string encoded = base64.encode(source);
             std::string decoded = base64.decode(encoded);
-            xTEST_EQ(true, source == decoded);
+            xTEST(source == decoded);
         }
     }
 
@@ -61,10 +61,10 @@ Test_Base64::unit()
             Base64 base64;
 
             std::string encoded = base64.encode(data[i].test);
-            xTEST_EQ(true, data[i].expect == encoded);
+            xTEST(data[i].expect == encoded);
 
             std::string decoded = base64.decode(encoded);
-            xTEST_EQ(true, data[i].test == decoded);
+            xTEST(data[i].test == decoded);
         }
     }
 

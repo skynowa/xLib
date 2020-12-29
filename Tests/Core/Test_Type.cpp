@@ -56,7 +56,7 @@ Test_Type::unit()
         std::tstring_t sObject;
 
         m_sRv = Type::nameRaw(sObject);
-        xTEST_EQ(false, m_sRv.empty())
+        xTEST(!m_sRv.empty())
     }
 
     xTEST_CASE("isEqual")
@@ -66,7 +66,7 @@ Test_Type::unit()
 			std::wstring wsObject2;
 
 			m_bRv = Type::isEqual(sObject1, wsObject2);
-			xTEST_EQ(m_bRv, false);
+			xTEST(!m_bRv);
 		}
 
 		{
@@ -74,7 +74,7 @@ Test_Type::unit()
 			std::tstring_t sObject2;
 
 			m_bRv = Type::isEqual(sObject1, sObject2);
-			xTEST_EQ(m_bRv, true);
+			xTEST(m_bRv);
 		}
     }
 

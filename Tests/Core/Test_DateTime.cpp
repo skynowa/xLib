@@ -396,7 +396,7 @@ Test_DateTime::unit()
             }
             stop = DateTime::current();
 
-            xTEST_EQ(true, stop >= start);
+            xTEST(stop >= start);
         }
     }
 

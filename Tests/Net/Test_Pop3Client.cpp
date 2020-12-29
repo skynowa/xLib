@@ -86,12 +86,12 @@ Test_Pop3Client::unit()
     //-------------------------------------
     //bList
     ////m_bRv = objPop3.list(veculList);
-    ////xTEST_EQ(m_bRv, true);
+    ////xTEST(m_bRv);
 
     //-------------------------------------
     //bListAt
     ////m_bRv = objPop3.listAt(ulIndex);
-    ////xTEST_EQ(m_bRv, true);
+    ////xTEST(m_bRv);
 
     //-------------------------------------
     //bNoop
@@ -118,14 +118,14 @@ Test_Pop3Client::unit()
         ////MimeHeader objHeader;
 
         ////m_bRv = objPop3.top(uiNum, 0, /*ref*/sRawHeader);
-        ////xTEST_EQ(m_bRv, true);
+        ////xTEST(m_bRv);
         /////*LOG*/printf("bTop %i\n", i);
 
         ////m_bRv = objHeader.parse(sRawHeader);
-        ////xTEST_EQ(m_bRv, true);
+        ////xTEST(m_bRv);
 
         ////m_sRv = objHeader.field(xT("Message-Id"));
-        ////xTEST_EQ(false, m_sRv.empty());
+        ////xTEST(!m_sRv.empty());
 
 
         //////-------------------------------------
@@ -133,7 +133,7 @@ Test_Pop3Client::unit()
         ////////MimeBody objBody;
 
         //////m_bRv = m_Body.parse(sRawMessage);
-        //////xTEST_EQ(m_bRv, true);
+        //////xTEST(m_bRv);
     }
 
     //-------------------------------------
