@@ -68,12 +68,6 @@ private:
     std::ctstring_t   _dirPath;
 
 xPLATFORM_IMPL:
-    bool_t            _isRoot_impl() const;
-    void_t            _create_impl() const;
-    void_t            _createSymlink_impl(std::ctstring_t &dirPathTo) const;
-    void_t            _remove_impl() const;
-    bool_t            _tryRemove_impl() const;
-
     // static
     static
     std::tstring_t    _current_impl();
@@ -81,6 +75,12 @@ xPLATFORM_IMPL:
     void_t            _setCurrent_impl(std::ctstring_t &dirPath);
     static
     std::tstring_t    _temp_impl();
+
+    bool_t            _isRoot_impl() const;
+    void_t            _create_impl() const;
+    void_t            _createSymlink_impl(std::ctstring_t &dirPathTo) const;
+    void_t            _remove_impl() const;
+    bool_t            _tryRemove_impl() const;
 };
 
 } // namespace
