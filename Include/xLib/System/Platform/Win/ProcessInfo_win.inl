@@ -50,7 +50,7 @@ std::tstring_t
 ProcessInfo::_exeName_impl() const
 {
     std::tstring_t sRv;
-    sRv.resize(xPATH_MAX);
+    sRv.resize( maxSize() );
 
     Process::handle_t handle = Process::handleById(_id);
 

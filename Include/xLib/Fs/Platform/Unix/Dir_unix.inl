@@ -66,10 +66,12 @@ Dir::_tryRemove_impl() const
 std::tstring_t
 Dir::_current_impl()
 {
-    std::string asRv;
-    std::string buff(xPATH_MAX + 1, 0);
+	std::csize_t _maxSize = maxSize();
 
-    const char *pszRv = ::getcwd(&buff[0], xPATH_MAX);
+    std::string asRv;
+    std::string buff(_maxSize + 1, 0);
+
+    const char *pszRv = ::getcwd(&buff[0], _maxSize);
     xTEST_PTR(pszRv);
     xTEST_EQ(pszRv, buff.c_str());
 

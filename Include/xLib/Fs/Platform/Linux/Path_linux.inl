@@ -25,7 +25,7 @@ Path::_exe_impl()
 	xCHECK_RET(!bRv, std::tstring_t());
 
 	ssize_t readed = - 1;
-	asRv.resize(xPATH_MAX);
+	asRv.resize( maxSize() );
 
 	for ( ; ; ) {
 		readed = ::readlink(xT2A(procFile).c_str(), &asRv.at(0), asRv.size() *

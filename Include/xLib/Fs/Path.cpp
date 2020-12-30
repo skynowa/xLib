@@ -343,7 +343,7 @@ Path::isValid(
     xCHECK_RET(a_filePath.empty(), false);
 
     // check for size
-    xCHECK_RET(a_filePath.size() > xPATH_MAX, false);
+    xCHECK_RET(a_filePath.size() > maxSize(), false);
 
     // TODO: [skynowa] Path::isValid() - more checks
 

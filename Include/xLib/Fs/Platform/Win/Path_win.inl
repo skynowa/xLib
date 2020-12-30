@@ -20,7 +20,7 @@ Path::_exe_impl()
 	// REVIEW: QueryFullProcessImageName on xOS_WIN_VER > xOS_WIN_S03
 
 	std::tstring_t sRv;
-	sRv.resize(xPATH_MAX);
+	sRv.resize( maxSize() );
 
 	DWORD stored = ::GetModuleFileName(nullptr, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
 	xTEST_DIFF(stored, 0UL);
@@ -42,7 +42,7 @@ std::tstring_t
 Path::_dll_impl()
 {
     std::tstring_t sRv;
-    sRv.resize(xPATH_MAX);
+    sRv.resize( maxSize() );
 
     HMODULE procAddress = reinterpret_cast<HMODULE>( &__ImageBase );
 
@@ -76,7 +76,7 @@ std::tstring_t
 Path::_dll_impl()
 {
     std::tstring_t sRv;
-    sRv.resize(xPATH_MAX);
+    sRv.resize( maxSize() );
 
     HMODULE procAddress = reinterpret_cast<HMODULE>( &__ImageBase );
 
