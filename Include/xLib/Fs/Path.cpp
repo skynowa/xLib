@@ -378,10 +378,11 @@ Path::isNameValid(
     }
 
     // check: name size
-    if (sRv.size() > xNAME_MAX) {
+    std::csize_t _nameMaxSize = nameMaxSize();
+    if (sRv.size() > _nameMaxSize) {
         xCHECK_RET(a_fileNameValid == nullptr, false);
 
-        sRv.resize(xNAME_MAX);
+        sRv.resize(_nameMaxSize);
     }
 
     return _isNameValid_impl(sRv, a_fileNameValid);
