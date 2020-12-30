@@ -47,7 +47,7 @@ IpcMutex::create(
 #if   xENV_WIN
     // name
 #elif xENV_UNIX
-    xTEST_GR(xNAME_MAX - 4, a_name.size());
+    xTEST_GR(Path::nameMaxSize() - 4, a_name.size());
 #endif
 
     _create_impl(a_name);

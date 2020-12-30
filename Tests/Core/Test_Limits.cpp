@@ -34,12 +34,6 @@ Test_Limits::unit()
         xTEST_GR(m_stRv, size_t(0));
     }
 
-    xTEST_CASE("xNAME_MAX_")
-    {
-        m_stRv = xNAME_MAX;
-        xTEST_GR(m_stRv, size_t(0));
-    }
-
     xTEST_CASE("xLINE_MAX_")
     {
         m_stRv = xLINE_MAX;

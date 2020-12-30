@@ -47,11 +47,6 @@
     ( Path::maxSize() )
     ///< max path length
 //-------------------------------------------------------------------------------------------------
-// xNAME_MAX
-#define xNAME_MAX \
-    ( Path::nameMaxSize() )
-    ///< max file name length
-//-------------------------------------------------------------------------------------------------
 // xLINE_MAX
 #if   xENV_WIN
     #define xLINE_MAX \

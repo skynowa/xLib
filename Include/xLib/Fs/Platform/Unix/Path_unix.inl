@@ -188,6 +188,8 @@ Path::_maxSize_impl()
     }
 #endif
 
+    xTEST_DIFF(uiRv, std::size_t(0));
+
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
@@ -219,6 +221,8 @@ Path::_nameMaxSize_impl()
         uiRv = static_cast<size_t>(liRv);
     }
 #endif
+
+    xTEST_DIFF(uiRv, std::size_t(0));
 
     return uiRv;
 }
