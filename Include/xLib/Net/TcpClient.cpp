@@ -71,7 +71,7 @@ TcpClient::ioctl(
 //-------------------------------------------------------------------------------------------------
 void_t
 TcpClient::setNonBlockingMode(
-    cbool_t &a_flag
+    cbool_t a_flag
 ) const
 {
     _setNonBlockingMode_impl(a_flag);

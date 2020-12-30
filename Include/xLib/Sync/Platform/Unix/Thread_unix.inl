@@ -175,7 +175,7 @@ Thread::_isPriorityBoost_impl() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_setPriorityBoost_impl(
-    cbool_t &a_isEnabled
+    cbool_t a_isEnabled
 ) const
 {
     xUNUSED(a_isEnabled);
@@ -279,7 +279,7 @@ Thread::_setDebugName_impl(
 Thread::handle_t
 Thread::_open_impl(
     culong_t &a_access,
-    cbool_t  &a_isInheritHandle,
+    cbool_t   a_isInheritHandle,
     culong_t &a_id
 )
 {

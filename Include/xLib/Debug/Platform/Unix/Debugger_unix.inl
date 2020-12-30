@@ -26,7 +26,7 @@ namespace xl::debug
 //-------------------------------------------------------------------------------------------------
 void_t
 Debugger::_coreDumpsEnable_impl(
-    cbool_t &a_flag,
+    cbool_t a_flag,
     bool_t  *a_isEnable
 )
 {

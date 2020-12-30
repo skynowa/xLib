@@ -15,7 +15,7 @@ namespace xl::net
 //-------------------------------------------------------------------------------------------------
 void_t
 TcpClient::_setNonBlockingMode_impl(
-    cbool_t &a_flag
+    cbool_t a_flag
 ) const
 {
     int_t flags = - 1;

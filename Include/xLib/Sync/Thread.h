@@ -51,7 +51,7 @@ public:
 
 ///@name ctors, dtor
 ///@{
-	explicit  Thread(cbool_t &isAutoDelete);
+	explicit  Thread(cbool_t isAutoDelete);
 	// BUG: Thread:: ~Thread() - must pure virtual
 	virtual  ~Thread() /* = 0*/;
 
@@ -63,7 +63,7 @@ public:
         ///< set data tag
     ulong_t         tag() const;
         ///< get data tag
-    void_t          create(cbool_t &isPaused, cuint_t &stackSizeBytes, void_t *param);
+    void_t          create(cbool_t isPaused, cuint_t &stackSizeBytes, void_t *param);
         ///< start
     void_t          resume();
         ///< resume
@@ -117,7 +117,7 @@ public:
         ///< decrease priority on one level
     bool_t          isPriorityBoost() const;
         ///< get priority boost control state
-    void_t          setPriorityBoost(cbool_t &isEnabled) const;
+    void_t          setPriorityBoost(cbool_t isEnabled) const;
         ///< disables/enables the ability of the system to temporarily boost the priority of a thread
 
     // CPU
@@ -145,7 +145,7 @@ public:
 
     // static
     static
-    handle_t        open(culong_t &access, cbool_t &isInheritHandle, culong_t &id);
+    handle_t        open(culong_t &access, cbool_t isInheritHandle, culong_t &id);
         ///< opens an existing thread object
 
     // current thread
@@ -242,7 +242,7 @@ xPLATFORM_IMPL:
     void_t   _setPriority_impl(const Priority priority) const;
     Priority _priority_impl() const;
     bool_t   _isPriorityBoost_impl() const;
-    void_t   _setPriorityBoost_impl(cbool_t &isEnabled) const;
+    void_t   _setPriorityBoost_impl(cbool_t isEnabled) const;
     void_t   _setCpuAffinity_impl(cint_t &procNum) const;
     void_t   _setCpuIdeal_impl(culong_t &idealCpu) const;
     ulong_t  _cpuIdeal_impl() const;
@@ -251,7 +251,7 @@ xPLATFORM_IMPL:
     void_t   _setDebugName_impl(std::ctstring_t &name) const;
 
     static
-    handle_t _open_impl(culong_t &access, cbool_t &isInheritHandle, culong_t &id);
+    handle_t _open_impl(culong_t &access, cbool_t isInheritHandle, culong_t &id);
     static
     bool_t   _isCurrent_impl(const Thread::id_t &id);
     static

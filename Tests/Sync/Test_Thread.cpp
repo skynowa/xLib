@@ -35,7 +35,7 @@ class CWorkThread :
     public:
         size_t         m_uiIndex;
 
-        explicit       CWorkThread(cbool_t &cbAutoDelete);
+        explicit       CWorkThread(cbool_t cbAutoDelete);
         virtual       ~CWorkThread();
 
     protected:
@@ -46,7 +46,7 @@ class CWorkThread :
 
 //-------------------------------------------------------------------------------------------------
 CWorkThread::CWorkThread(
-    cbool_t &cbAutoDelete
+    cbool_t cbAutoDelete
 ) :
     Thread   (cbAutoDelete),
     m_uiIndex(0U)

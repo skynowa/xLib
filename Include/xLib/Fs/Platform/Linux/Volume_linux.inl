@@ -77,7 +77,7 @@ Volume::_mount_impl(
 //-------------------------------------------------------------------------------------------------
 void_t
 Volume::_unMount_impl(
-    cbool_t &a_isForce     ///< force unmount even if busy
+    cbool_t a_isForce     ///< force unmount even if busy
 ) const
 {
 	cint_t mntDetach =

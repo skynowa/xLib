@@ -40,7 +40,7 @@ public:
 	xNO_COPY_ASSIGN(ILog)
 ///@}
 
-    void_t         setEnabled(cbool_t &flag);
+    void_t         setEnabled(cbool_t flag);
         ///< set enabled
     bool_t         isEnabled() const;
         ///< set enabled

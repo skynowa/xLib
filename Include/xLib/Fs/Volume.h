@@ -62,7 +62,7 @@ public:
         ///< is empty
     void_t          mount(std::ctstring_t &destPath) const;
         ///< mount
-    void_t          unMount(cbool_t &isForce) const;
+    void_t          unMount(cbool_t isForce) const;
         ///< unmount
     bool_t          isSpaceAvailable(culonglong_t needBytes) const;
         ///< is enough space
@@ -90,7 +90,7 @@ xPLATFORM_IMPL:
     bool_t          _isValid_impl() const;
     bool_t          _isReady_impl() const;
     void_t          _mount_impl(std::ctstring_t &destPath) const;
-    void_t          _unMount_impl(cbool_t &isForce) const;
+    void_t          _unMount_impl(cbool_t isForce) const;
 
 xPRIVATE_STATIC:
     static

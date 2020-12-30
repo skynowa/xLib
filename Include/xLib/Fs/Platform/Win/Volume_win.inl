@@ -115,7 +115,7 @@ Volume::_mount_impl(
 //-------------------------------------------------------------------------------------------------
 void_t
 Volume::_unMount_impl(
-    cbool_t &a_isForce     ///< force unmount even if busy
+    cbool_t a_isForce     ///< force unmount even if busy
 ) const
 {
     // TODO: [skynowa] Volume::unMount() - is it correct?

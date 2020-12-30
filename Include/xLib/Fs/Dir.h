@@ -50,9 +50,9 @@ public:
         ///< create
     void_t            pathCreate() const;
         ///< creation of all directories that not exists in path
-    void_t            copy(std::ctstring_t &dirPathTo, cbool_t &failIfExists) const;
+    void_t            copy(std::ctstring_t &dirPathTo, cbool_t failIfExists) const;
         ///< copy
-    void_t            move(std::ctstring_t &dirPathTo, cbool_t &failIfExists) const;
+    void_t            move(std::ctstring_t &dirPathTo, cbool_t failIfExists) const;
         ///< move
     void_t            createSymlink(std::ctstring_t &dirPathTo) const;
         ///< create symlink

@@ -286,7 +286,7 @@ Thread::_isPriorityBoost_impl() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_setPriorityBoost_impl(
-    cbool_t &a_isEnabled
+    cbool_t a_isEnabled
 ) const
 {
     xTEST_EQ(_handle.isValid(), true);

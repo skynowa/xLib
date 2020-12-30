@@ -32,8 +32,8 @@ namespace xl::sync
 
 //-------------------------------------------------------------------------------------------------
 Event::Event(
-    cbool_t &a_isAutoReset,    ///< is auto reset
-    cbool_t &a_isSignaled      ///< is signaled (false - wait, lock)
+    cbool_t a_isAutoReset,    ///< is auto reset
+    cbool_t a_isSignaled      ///< is signaled (false - wait, lock)
 ) :
 #if   xENV_WIN
     // n/a

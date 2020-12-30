@@ -30,7 +30,7 @@ public:
 
     void_t   ioctl(clong_t &command, ulong_t *args) const;
         ///< controls the i/o mode
-    void_t   setNonBlockingMode(cbool_t &flag) const;
+    void_t   setNonBlockingMode(cbool_t flag) const;
         ///< set nonblocking mode
     void_t   timeout(long_t *seconds, long_t *microsec) const;
         ///< get timeout
@@ -45,7 +45,7 @@ protected:
     timeval  _timeout {};    ///< timeout
 
 xPLATFORM_IMPL:
-    void_t   _setNonBlockingMode_impl(cbool_t &flag) const;
+    void_t   _setNonBlockingMode_impl(cbool_t flag) const;
 };
 
 } // namespace

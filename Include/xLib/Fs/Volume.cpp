@@ -111,7 +111,7 @@ Volume::mount(
 //-------------------------------------------------------------------------------------------------
 void_t
 Volume::unMount(
-    cbool_t &a_isForce     ///< force unmount even if busy
+    cbool_t a_isForce     ///< force unmount even if busy
 ) const
 {
     xTEST_NA(a_isForce);
