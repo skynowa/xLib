@@ -75,11 +75,13 @@ std::tstring_t
 Dir::_current_impl()
 {
     std::tstring_t sRv;
-    std::tstring_t buff(xPATH_MAX + 1, 0);
 
-    DWORD ulRv = ::GetCurrentDirectory(static_cast<DWORD>( xPATH_MAX ), &buff[0]);
+	std::csize_t   _maxSize = maxSize();
+    std::tstring_t buff(_maxSize + 1, 0);
+
+    DWORD ulRv = ::GetCurrentDirectory(static_cast<DWORD>(_maxSize), &buff[0]);
     xTEST_DIFF(ulRv, 0UL);
-    xTEST_LESS(ulRv, static_cast<ulong_t>( xPATH_MAX ));
+    xTEST_LESS(ulRv, static_cast<ulong_t>(_maxSize));
 
     sRv.assign(buff, 0, ulRv);
 
@@ -103,11 +105,12 @@ Dir::_temp_impl()
 {
     std::tstring_t sRv;
 
-    std::tstring_t buff(xPATH_MAX + 1, 0);
+    std::csize_t   _maxSize = maxSize();
+    std::tstring_t buff(_maxSize + 1, 0);
 
-    DWORD ulRv = ::GetTempPath(static_cast<DWORD>( xPATH_MAX ), &buff[0]);
+    DWORD ulRv = ::GetTempPath(static_cast<DWORD>(_maxSize), &buff[0]);
     xTEST_DIFF(ulRv, 0UL);
-    xTEST_LESS(ulRv, static_cast<ulong_t>( xPATH_MAX ));
+    xTEST_LESS(ulRv, static_cast<ulong_t>(_maxSize));
 
     sRv.assign(buff, 0, ulRv);
 
