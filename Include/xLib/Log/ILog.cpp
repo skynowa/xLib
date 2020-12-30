@@ -23,7 +23,7 @@ ILog::~ILog()
 //-------------------------------------------------------------------------------------------------
 void_t
 ILog::setEnabled(
-    cbool_t &a_flag
+    cbool_t a_flag
 )
 {
     _isEnable = a_flag;

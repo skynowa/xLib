@@ -40,8 +40,8 @@ public:
 
 ///@name ctors, dtor
 ///@{
-			 ThreadPool(cbool_t &isPaused, cbool_t &isAutoDelete, cbool_t &isGroupPaused,
-				cbool_t &isGroupAutoDelete);
+			 ThreadPool(cbool_t isPaused, cbool_t isAutoDelete, cbool_t isGroupPaused,
+				cbool_t isGroupAutoDelete);
 	virtual ~ThreadPool();
 
     xNO_COPY_ASSIGN(ThreadPool)

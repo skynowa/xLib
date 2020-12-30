@@ -278,7 +278,7 @@ Console::msgBox(
 void_t
 Console::prompt(
     std::ctstring_t &a_prompt,		///< input text
-    cbool_t         &a_isVisible,	///< is input text visible
+    cbool_t          a_isVisible,	///< is input text visible
     std::tstring_t  *a_answer		///< [out] answer
 ) const
 {
@@ -412,7 +412,7 @@ Console::_msgBoxLine(
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::_setStdinEcho(
-	cbool_t &a_isEnable
+	cbool_t a_isEnable
 ) const
 {
     _setStdinEcho_impl(a_isEnable);

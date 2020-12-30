@@ -15,7 +15,7 @@ namespace xl::net
 //-------------------------------------------------------------------------------------------------
 void_t
 TcpClient::_setNonBlockingMode_impl(
-    cbool_t &a_flag
+    cbool_t a_flag
 ) const
 {
     ulong_t nonBlockingMode = static_cast<ulong_t>(a_flag);

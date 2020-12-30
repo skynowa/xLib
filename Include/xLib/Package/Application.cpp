@@ -158,7 +158,7 @@ Application::isDevel() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Application::args(
-    cbool_t            &a_withoutFirstArg,  ///< erase first argument
+    cbool_t             a_withoutFirstArg,  ///< erase first argument
     std::vec_tstring_t *a_args              ///< [out] command line arguments
 ) const
 {

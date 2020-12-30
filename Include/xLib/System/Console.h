@@ -138,7 +138,7 @@ public:
 
     ModalResult    msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type) const;
         ///< show console message dialog
-    void_t         prompt(std::ctstring_t &prompt, cbool_t &isVisible, std::tstring_t *answer)
+    void_t         prompt(std::ctstring_t &prompt, cbool_t isVisible, std::tstring_t *answer)
                        const;
         ///< show console prompt dialog
 
@@ -151,7 +151,7 @@ public:
         ///< align to center
     void_t         setFullScreen() const;
         ///< set full screen
-    void_t         enableClose(cbool_t &flag);
+    void_t         enableClose(cbool_t flag);
         ///< enable close button
 #endif
 
@@ -165,7 +165,7 @@ private:
 
     HWND  _wndHandle();
         ///< get console window handle
-    HMENU _menuHandle(cbool_t &isRevert);
+    HMENU _menuHandle(cbool_t isRevert);
         ///< get console menu handle
 #endif
 
@@ -183,7 +183,7 @@ private:
 
 	std::tstring_t _msgBoxLine(std::ctstring_t &text, std::csize_t &width) const;
 		///< build MsgBox text line
-	void_t         _setStdinEcho(cbool_t &isEnable) const;
+	void_t         _setStdinEcho(cbool_t isEnable) const;
 		///< set stdin echo on/off
 
 	std::tstring_t _escapeValue(std::ctstring_t &value) const;
@@ -199,7 +199,7 @@ xPLATFORM_IMPL:
     void_t         _write_impl(std::ctstring_t &str) const;
     void_t         _clear_impl() const;
     void_t         _setTitle_impl(std::ctstring_t &title) const;
-    void_t         _setStdinEcho_impl(cbool_t &isEnable) const;
+    void_t         _setStdinEcho_impl(cbool_t isEnable) const;
 };
 
 } // namespace

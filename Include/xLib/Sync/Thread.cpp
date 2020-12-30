@@ -37,7 +37,7 @@ namespace xl::sync
 
 //-------------------------------------------------------------------------------------------------
 Thread::Thread(
-    cbool_t &a_isAutoDelete
+    cbool_t a_isAutoDelete
 ) :
     _isAutoDelete(a_isAutoDelete)
 {
@@ -84,7 +84,7 @@ Thread::tag() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::create(
-    cbool_t &a_isPaused,
+    cbool_t a_isPaused,
     cuint_t &a_stackSizeBytes,
     void_t  *a_param
 )
@@ -389,7 +389,7 @@ Thread::isPriorityBoost() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::setPriorityBoost(
-    cbool_t &a_isEnabled
+    cbool_t a_isEnabled
 ) const
 {
     _setPriorityBoost_impl(a_isEnabled);
@@ -512,7 +512,7 @@ Thread::setDebugName(
 Thread::handle_t
 Thread::open(
     culong_t &a_access,
-    cbool_t  &a_isInheritHandle,
+    cbool_t   a_isInheritHandle,
     culong_t &a_id
 )
 {

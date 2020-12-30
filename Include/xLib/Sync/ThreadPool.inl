@@ -27,10 +27,10 @@ Trace  ThreadPool<T>::_s_log;
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 ThreadPool<T>::ThreadPool(
-    cbool_t &a_isPaused,
-    cbool_t &a_isAutoDelete,
-    cbool_t &a_isGroupPaused,
-    cbool_t &a_isGroupAutoDelete
+    cbool_t a_isPaused,
+    cbool_t a_isAutoDelete,
+    cbool_t a_isGroupPaused,
+    cbool_t a_isGroupAutoDelete
 ) :
     Thread            (a_isAutoDelete),
     _isGroupPaused    (a_isGroupPaused),

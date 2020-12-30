@@ -51,7 +51,7 @@ Debugger::isEnabled() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Debugger::setEnabled(
-    cbool_t &a_flag
+    cbool_t a_flag
 )
 {
     _isEnabled = a_flag;
@@ -65,7 +65,7 @@ Debugger::isActive() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Debugger::coreDumpsEnable(
-    cbool_t &a_flag
+    cbool_t a_flag
 )
 {
     xTEST_NA(a_flag);

@@ -55,7 +55,7 @@ public:
         ///< is devel
 
     // actions
-    void_t         args(cbool_t &withoutFirstArg, std::vec_tstring_t *args) const;
+    void_t         args(cbool_t withoutFirstArg, std::vec_tstring_t *args) const;
         ///< command line arguments
     const Signal  &signal() const;
         ///< signal

@@ -176,7 +176,7 @@ Dir::pathCreate() const
 void_t
 Dir::copy(
     std::ctstring_t &a_dirPathTo,
-    cbool_t         &a_failIfExists
+    cbool_t          a_failIfExists
 ) const
 {
     xTEST(isExists());
@@ -217,7 +217,7 @@ Dir::copy(
 void_t
 Dir::move(
     std::ctstring_t &a_dirPathTo,
-    cbool_t         &a_failIfExists
+    cbool_t          a_failIfExists
 ) const
 {
     xTEST(isExists());

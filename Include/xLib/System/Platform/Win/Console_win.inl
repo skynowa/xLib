@@ -403,7 +403,7 @@ Console::setFullScreen() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::enableClose(
-    cbool_t &a_flag
+    cbool_t a_flag
 )
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
@@ -469,7 +469,7 @@ Console::_wndHandle()
 //-------------------------------------------------------------------------------------------------
 HMENU
 Console::_menuHandle(
-    cbool_t &a_isRevert
+    cbool_t a_isRevert
 )
 {
     _menu = ::GetSystemMenu(_wnd, a_isRevert);
@@ -485,7 +485,7 @@ Console::_menuHandle(
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::_setStdinEcho_impl(
-    cbool_t &a_isEnable
+    cbool_t a_isEnable
 ) const
 {
     DWORD mode {};

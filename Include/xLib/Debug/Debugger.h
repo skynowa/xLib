@@ -27,11 +27,11 @@ public:
 
     bool_t         isEnabled() const;
         ///< is debugging enabled
-    void_t         setEnabled(cbool_t &flag);
+    void_t         setEnabled(cbool_t flag);
         ///< set debugging mode on/off
     bool_t         isActive() const;
         ///< is OS debugger presents
-    void_t         coreDumpsEnable(cbool_t &flag);
+    void_t         coreDumpsEnable(cbool_t flag);
         ///< core dumps
     void_t         breakPoint() const;
         ///< attach to OS debugger
@@ -57,7 +57,7 @@ private:
 
 xPLATFORM_IMPL:
     bool_t         _isActive_impl() const;
-    void_t         _coreDumpsEnable_impl(cbool_t &flag, bool_t *isEnable);
+    void_t         _coreDumpsEnable_impl(cbool_t flag, bool_t *isEnable);
     void_t         _breakPoint_impl() const;
 };
 

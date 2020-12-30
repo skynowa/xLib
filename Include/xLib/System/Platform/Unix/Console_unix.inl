@@ -248,7 +248,7 @@ Console::_setTitle_impl(
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::_setStdinEcho_impl(
-    cbool_t &a_isEnable
+    cbool_t a_isEnable
 ) const
 {
     struct termios tty {};

@@ -38,7 +38,7 @@ public:
 
 ///@name ctors, dtor
 ///@{
-			 Event(cbool_t &isAutoReset, cbool_t &isSignaled);
+			 Event(cbool_t isAutoReset, cbool_t isSignaled);
 	virtual ~Event();
 
 	xNO_DEFAULT_CONSTRUCT(Event)
