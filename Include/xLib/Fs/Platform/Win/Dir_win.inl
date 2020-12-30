@@ -76,7 +76,7 @@ Dir::_current_impl()
 {
     std::tstring_t sRv;
 
-	std::csize_t   _maxSize = maxSize();
+	std::csize_t   _maxSize = Path::maxSize();
     std::tstring_t buff(_maxSize + 1, 0);
 
     DWORD ulRv = ::GetCurrentDirectory(static_cast<DWORD>(_maxSize), &buff[0]);
@@ -105,7 +105,7 @@ Dir::_temp_impl()
 {
     std::tstring_t sRv;
 
-    std::csize_t   _maxSize = maxSize();
+    std::csize_t   _maxSize = Path::maxSize();
     std::tstring_t buff(_maxSize + 1, 0);
 
     DWORD ulRv = ::GetTempPath(static_cast<DWORD>(_maxSize), &buff[0]);

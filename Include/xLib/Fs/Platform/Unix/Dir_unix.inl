@@ -66,7 +66,7 @@ Dir::_tryRemove_impl() const
 std::tstring_t
 Dir::_current_impl()
 {
-	std::csize_t _maxSize = maxSize();
+	std::csize_t _maxSize = Path::maxSize();
 
     std::string asRv;
     std::string buff(_maxSize + 1, 0);
