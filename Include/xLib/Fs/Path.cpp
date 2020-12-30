@@ -597,14 +597,20 @@ Path::slashRemove() const
 size_t
 Path::maxSize()
 {
-    return _maxSize_impl();
+    std::csize_t uiRv = _maxSize_impl();
+    xTEST_DIFF(uiRv, std::size_t(0));
+
+    return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 size_t
 Path::nameMaxSize()
 {
-    return _nameMaxSize_impl();
+    std::csize_t uiRv = _nameMaxSize_impl();
+    xTEST_DIFF(uiRv, std::size_t(0));
+
+    return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
 

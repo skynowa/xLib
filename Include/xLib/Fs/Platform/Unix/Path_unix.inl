@@ -162,7 +162,7 @@ Path::_absolute_impl() const
 size_t
 Path::_maxSize_impl()
 {
-    size_t uiRv {};
+	std::size_t uiRv {};
 
 #if defined(PATH_MAX)
     uiRv = PATH_MAX;
@@ -188,8 +188,6 @@ Path::_maxSize_impl()
     }
 #endif
 
-    xTEST_DIFF(uiRv, std::size_t(0));
-
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
@@ -197,7 +195,7 @@ Path::_maxSize_impl()
 size_t
 Path::_nameMaxSize_impl()
 {
-    size_t uiRv {};
+	std::size_t uiRv {};
 
 #if defined(NAME_MAX)
     uiRv = NAME_MAX;
@@ -221,8 +219,6 @@ Path::_nameMaxSize_impl()
         uiRv = static_cast<size_t>(liRv);
     }
 #endif
-
-    xTEST_DIFF(uiRv, std::size_t(0));
 
     return uiRv;
 }
