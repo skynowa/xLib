@@ -90,7 +90,7 @@ public:
         ///< get the NetBIOS name of the local computer
 
     // CPU
-    ulong_t        numOfCpus() const;
+    ulong_t        cpusNum() const;
         ///< get num of CPUs
     ulong_t        currentCpuNum() const;
         ///< get the number of the processor the current thread was running on during
@@ -140,7 +140,7 @@ xPLATFORM_IMPL:
     std::tstring_t _desktopName_impl() const;
 
     // CPU
-    ulong_t        _numOfCpus_impl() const;
+    ulong_t        _cpusNum_impl() const;
     ulong_t        _currentCpuNum_impl() const;
     std::tstring_t _cpuVendor_impl() const;
     std::tstring_t _cpuModel_impl() const;

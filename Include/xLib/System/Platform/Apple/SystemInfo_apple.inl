@@ -20,11 +20,11 @@ SystemInfo::_distro_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-SystemInfo::_numOfCpus_impl() const
+SystemInfo::_cpusNum_impl() const
 {
     ulong_t ulRv = 0UL;
 
-    // TODO: [skynowa] SystemInfo::_numOfCpus_impl()
+    // TODO: [skynowa] SystemInfo::_cpusNum_impl()
     xNOT_IMPLEMENTED
 
     return ulRv;
