@@ -158,5 +158,10 @@ xPLATFORM_IMPL:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
+/**
+ * TODO: https://github.com/joyent/node/blob/master/src/platform_linux.cc
+ * TODO: Thread(s) per core:  1 (lscpu)
+ * TODO: Core(s) per socket:  4 (lscpu)
+ * TODO: Socket(s):           1 (lscpu)
+ */
 
-// https://github.com/joyent/node/blob/master/src/platform_linux.cc
