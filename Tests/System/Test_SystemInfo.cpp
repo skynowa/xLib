@@ -86,10 +86,7 @@ Test_SystemInfo::unit()
     xTEST_CASE("cpusNum")
     {
         m_ulRv = SystemInfo().cpusNum();
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::cpusNum: %lu"), m_ulRv);
-        #endif
-        xTEST_LESS(0UL, m_ulRv);
+        xTEST_GR(m_ulRv, 0UL);
     }
 
     xTEST_CASE("currentCpuNum")
