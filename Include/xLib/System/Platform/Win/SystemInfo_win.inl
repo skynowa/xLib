@@ -194,7 +194,7 @@ SystemInfo::_hostName_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-SystemInfo::_numOfCpus_impl() const
+SystemInfo::_cpusNum_impl() const
 {
     SYSTEM_INFO sysInfo = {{0}};
 

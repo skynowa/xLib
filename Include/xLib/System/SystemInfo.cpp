@@ -102,9 +102,9 @@ SystemInfo::hostName() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-SystemInfo::numOfCpus() const
+SystemInfo::cpusNum() const
 {
-    return _numOfCpus_impl();
+    return _cpusNum_impl();
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t

@@ -20,7 +20,7 @@ SystemInfo::_distro_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-SystemInfo::_numOfCpus_impl() const
+SystemInfo::_cpusNum_impl() const
 {
     ulong_t ulRv {};
 

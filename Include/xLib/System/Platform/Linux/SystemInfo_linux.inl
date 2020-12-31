@@ -124,7 +124,7 @@ SystemInfo::_distro_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-SystemInfo::_numOfCpus_impl() const
+SystemInfo::_cpusNum_impl() const
 {
     long_t liRv = ::sysconf(_SC_NPROCESSORS_ONLN);
     xTEST_DIFF(liRv, - 1L);

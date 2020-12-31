@@ -83,11 +83,11 @@ Test_SystemInfo::unit()
         #endif
     }
 
-    xTEST_CASE("numOfCpus")
+    xTEST_CASE("cpusNum")
     {
-        m_ulRv = SystemInfo().numOfCpus();
+        m_ulRv = SystemInfo().cpusNum();
         #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::numOfCpus: %lu"), m_ulRv);
+            xTRACEV(xT("\tSystemInfo::cpusNum: %lu"), m_ulRv);
         #endif
         xTEST_LESS(0UL, m_ulRv);
     }
@@ -98,7 +98,7 @@ Test_SystemInfo::unit()
         #if xTEST_IGNORE
             xTRACEV(xT("\tSystemInfo::currentCpuNum: %lu"), m_ulRv);
         #endif
-        xTEST(SystemInfo().numOfCpus() > m_ulRv);
+        xTEST(SystemInfo().cpusNum() > m_ulRv);
     }
 
     xTEST_CASE("cpuVendor")
