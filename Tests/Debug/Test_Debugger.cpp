@@ -91,15 +91,16 @@ Test_Debugger::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(type); ++ i) {
-            ulong_t        nativeError    = NativeError::get();
-            SourceInfoData sourceInfoData = {xFILE, xLINE, xFUNCTION, xCOUNTER};
-            SourceInfo     sourceInfo(sourceInfoData);
+            ulong_t         nativeError    { NativeError::get() {;
+            SourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER};
+            SourceInfo      sourceInfo(sourceInfoData);
+            std::ctstring  &stackTrace     = StackTrace().str();
 
-            ulong_t val1 = 10UL;
-            ulong_t val2 = 20UL;
+            culong_t val1 {10};
+            culong_t val2 {20};
 
-            ErrorReport report(type[i], xT("val1"), xT("val2"), val1, val2, xT("=="), nativeError,
-                sourceInfo, StackTrace().toString(), xT(""));
+            ErrorReport report(type[i], xLEX_TO_STR(val1), xLEX_TO_STR(val2), val1, val2,
+                xT("=="), nativeError, sourceInfo, , xT(""));
 
             Debugger debugger;
             debugger.setEnabled(false);

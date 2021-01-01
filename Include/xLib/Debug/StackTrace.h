@@ -32,7 +32,7 @@ public:
     xNO_COPY_ASSIGN(StackTrace)
 ///@}
 
-    std::tstring_t toString() const;
+    std::tstring_t str() const;
         ///< get stack trace with format output
 
 private:

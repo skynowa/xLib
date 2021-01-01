@@ -122,7 +122,7 @@ Debugger::reportMake(
         _loggingPlain(a_report);
         break;
     case ErrorReport::Type::Exception:
-        throw Exception() << a_report.toString();
+        throw Exception() << a_report.str();
         break;
     default:
         _stdoutPlain(a_report);
@@ -149,7 +149,7 @@ Debugger::_msgboxPlain(
     xCHECK_DO(!isEnabled(), return);
 
     MsgBox msgBox;
-    MsgBox::ModalResult mrRv = msgBox.show(a_report.toString(), xT("xLib"),
+    MsgBox::ModalResult mrRv = msgBox.show(a_report.str(), xT("xLib"),
     	MsgBox::Type::AbortRetryIgnore);
     switch (mrRv) {
     case MsgBox::ModalResult::Abort:
@@ -180,7 +180,7 @@ Debugger::_stdoutPlain(
     xCHECK_DO(!isEnabled(), return);
 
     Console console;
-    Console::ModalResult mrRv = console.msgBox(a_report.toString(), xT("xLib"), 0);
+    Console::ModalResult mrRv = console.msgBox(a_report.str(), xT("xLib"), 0);
     switch (mrRv) {
     case Console::ModalResult::Abort:
         (void_t)::exit(EXIT_FAILURE);
@@ -229,7 +229,7 @@ Debugger::_loggingPlain(
             xT(" xLib\n")
             xT("{}\n")
             xT("####################################################################################################\n"),
-            a_report.toString()
+            a_report.str()
         );
 
         ofs << msg;

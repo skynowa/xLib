@@ -43,7 +43,7 @@ StackTrace::StackTrace(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-StackTrace::toString() const
+StackTrace::str() const
 {
     std::tstring_t                  sRv;
     std::vector<std::vec_tstring_t> stack;

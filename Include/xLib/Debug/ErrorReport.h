@@ -49,7 +49,7 @@ public:
 
     Type           type() const;
         ///< report type
-    std::ctstring_t & toString() const;
+    std::ctstring_t & str() const;
         ///< report message
 
 private:

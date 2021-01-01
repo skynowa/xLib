@@ -21,7 +21,7 @@ Test_ErrorReport::unit()
         ulong_t          nativeError    { NativeError::get() };
         SourceInfoData   sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER};
         SourceInfo       sourceInfo(sourceInfoData);
-        std::ctstring_t &stackTrace     = StackTrace().toString();
+        std::ctstring_t &stackTrace     = StackTrace().str();
 
         culong_t val1 {10};
         culong_t val2 {20};
