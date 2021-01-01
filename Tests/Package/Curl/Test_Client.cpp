@@ -8,10 +8,8 @@
 
 
 //-------------------------------------------------------------------------------------------------
-using namespace xl;
-using namespace curl;
+using namespace xl::curl;
 
-xTEST_CLASS(Test_Client)
 xTEST_UNIT(Test_Client)
 //-------------------------------------------------------------------------------------------------
 /* virtual */

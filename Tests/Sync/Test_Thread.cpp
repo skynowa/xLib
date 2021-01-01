@@ -7,53 +7,25 @@
 #include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
-using namespace xl;
-
-class Test_Thread :
-    public Unit
-{
-public:
-                   Test_Thread() {}
-
-    virtual bool_t unit() override;
-
-private:
-    bool_t         unit1();
-};
-
 xTEST_UNIT(Test_Thread)
 //-------------------------------------------------------------------------------------------------
-
-/*******************************************************************************
-*    CWorkThread
-*
-*******************************************************************************/
-
 class CWorkThread :
     public Thread
 {
-    public:
-        size_t         m_uiIndex;
+public:
+	size_t index {};
 
-        explicit       CWorkThread(cbool_t cbAutoDelete);
-        virtual       ~CWorkThread();
+	explicit  CWorkThread(cbool_t cbAutoDelete);
+	virtual  ~CWorkThread() = default;
 
-    protected:
-        virtual uint_t onRun(void_t *pData) override;
+protected:
+	uint_t onRun(void_t *pData) override;
 };
 //-------------------------------------------------------------------------------------------------
-
-
-//-------------------------------------------------------------------------------------------------
 CWorkThread::CWorkThread(
-    cbool_t cbAutoDelete
+    cbool_t a_AutoDelete
 ) :
-    Thread   (cbAutoDelete),
-    m_uiIndex(0U)
-{
-}
-//-------------------------------------------------------------------------------------------------
-CWorkThread::~CWorkThread()
+    Thread(a_AutoDelete)
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -365,17 +337,6 @@ Test_Thread::unit()
         Utils::ptrDeleteT(pthT);
     }
 
-    m_bRv = unit1();
-    if (!m_bRv) {
-        return false;
-    }
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-Test_Thread::unit1()
-{
     xTEST_CASE("isCurrent")
     {
         Thread::id_t aulData[5][2] = {{0}};
