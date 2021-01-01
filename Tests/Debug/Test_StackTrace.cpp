@@ -18,9 +18,9 @@ Test_StackTrace::unit()
 {
     xTEST_CASE("str")
     {
-        StackTrace stStack;
+        StackTrace stack;
 
-        m_sRv = stStack.str();
+        m_sRv = stack.str();
         xTEST(!m_sRv.empty());
     }
 
