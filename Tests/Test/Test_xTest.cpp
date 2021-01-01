@@ -42,8 +42,9 @@ Test_xTest::unit()
         xTEST_GR_EQ_MSG(2UL, 1UL, msg);
         xTEST_GR_EQ_MSG(2UL, 2UL, msg);
 
-        xTEST_PTR(123);
-        xTEST_PTR_MSG(61466, msg);
+        auto *msgPtr = &msg;
+        xTEST_PTR(msgPtr);
+        xTEST_PTR_MSG(msgPtr, msg);
 
         xTEST_PTR_FAIL(nullptr);
         xTEST_PTR_FAIL_MSG(nullptr, msg);
