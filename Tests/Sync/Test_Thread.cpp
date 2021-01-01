@@ -226,7 +226,9 @@ Test_Thread::unit()
 
     xTEST_CASE("setCpuAffinity")
     {
-        for (ulong_t i = 0; i < SystemInfo().cpusNum(); ++ i) {
+        culong_t cpusNum = SystemInfo().cpusNum();
+
+        for (ulong_t i = 0; i < cpusNum; ++ i) {
             pthT->setCpuAffinity(static_cast<int_t>(i));
         }
     }
