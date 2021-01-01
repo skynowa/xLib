@@ -16,19 +16,12 @@ xTEST_UNIT(Test_StackTrace)
 bool_t
 Test_StackTrace::unit()
 {
-    xTEST_CASE("toString")
+    xTEST_CASE("str")
     {
         StackTrace stStack;
 
-        m_sRv = stStack.toString();
+        m_sRv = stStack.str();
         xTEST(!m_sRv.empty());
-    }
-
-    xTEST_CASE("toString")
-    {
-        #if xTEST_IGNORE
-            xTEST_FAIL;
-        #endif
     }
 
     return true;

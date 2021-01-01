@@ -73,7 +73,7 @@ using dlongdouble_t = Double<long double>;
  * 			IFormattable
  * TODO: delimiter
  * DONE: operators <,>,==,<=,=>
- * TODO: toString()
+ * TODO: str()
  * TODO: isInfinite()
  *
  * TODO: C library

@@ -404,11 +404,11 @@
         culong_t         nativeError    { NativeError::get() }; \
         SourceInfoData   sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
         SourceInfo       sourceInfo(sourceInfoData); \
-        std::ctstring_t &stackTrace     = StackTrace().toString(); \
+        std::ctstring_t &stackTrace     = StackTrace().str(); \
         \
         ErrorReport report(nativeError, sourceInfo, stackTrace, msg); \
         \
-        throw Exception() << report.toString(); \
+        throw Exception() << report.str(); \
     }
     ///< like throw
 #define xTRY \

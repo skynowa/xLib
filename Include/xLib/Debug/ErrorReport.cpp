@@ -46,7 +46,7 @@ ErrorReport::type() const
 }
 //-------------------------------------------------------------------------------------------------
 std::ctstring_t &
-ErrorReport::toString() const
+ErrorReport::str() const
 {
     return _report;
 }

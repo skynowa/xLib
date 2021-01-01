@@ -59,11 +59,11 @@ public:
             xT("Signal:\n{}\n\n")
             xT("StackTrace:\n{}"),
             Signal::infoDescription(*a_info),
-            StackTrace().toString());
+            StackTrace().str());
 
         log.write(xT("%s\n"), msg.c_str());
 
-        std::tcout << StackTrace().toString() << std::endl;
+        std::tcout << StackTrace().str() << std::endl;
 
         Application::exitFailure();
     }
