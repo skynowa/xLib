@@ -16,7 +16,7 @@ xTEST_UNIT(Test_ErrorReport)
 bool_t
 Test_ErrorReport::unit()
 {
-    xTEST_CASE("ErrorReport")
+    xTEST_CASE("ctor")
     {
         ulong_t          nativeError    { NativeError::get() };
         SourceInfoData   sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER};
