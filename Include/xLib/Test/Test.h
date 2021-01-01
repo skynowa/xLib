@@ -7,6 +7,19 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
+// _xREPORT_TYPE
+#if   cmOPTION_DEBUG_MODE_STDOUT
+    #define _xREPORT_TYPE ErrorReport::Type::Stdout
+#elif cmOPTION_DEBUG_MODE_MSGBOX
+    #define _xREPORT_TYPE ErrorReport::Type::Msgbox
+#elif cmOPTION_DEBUG_MODE_LOG
+    #define _xREPORT_TYPE ErrorReport::Type::Log
+#elif cmOPTION_DEBUG_MODE_STDOUT_LOG
+    #define _xREPORT_TYPE ErrorReport::Type::StdoutLog
+#elif cmOPTION_DEBUG_MODE_EXCEPTION
+    #define _xREPORT_TYPE ErrorReport::Type::Exception
+#endif
+//-------------------------------------------------------------------------------------------------
 #define xTEST_EQ_MSG_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) == (val2)) ) { \
         culong_t        nativeError    = NativeError::get(); \
@@ -99,19 +112,6 @@
             nativeError, sourceInfo, StackTrace().toString(), (msg)); \
         Debugger().reportMake(report); \
     }
-
-// _xREPORT_TYPE
-#if   cmOPTION_DEBUG_MODE_STDOUT
-    #define _xREPORT_TYPE ErrorReport::Type::Stdout
-#elif cmOPTION_DEBUG_MODE_MSGBOX
-    #define _xREPORT_TYPE ErrorReport::Type::Msgbox
-#elif cmOPTION_DEBUG_MODE_LOG
-    #define _xREPORT_TYPE ErrorReport::Type::Log
-#elif cmOPTION_DEBUG_MODE_STDOUT_LOG
-    #define _xREPORT_TYPE ErrorReport::Type::StdoutLog
-#elif cmOPTION_DEBUG_MODE_EXCEPTION
-    #define _xREPORT_TYPE ErrorReport::Type::Exception
-#endif
 
 #if defined(_xREPORT_TYPE)
     #define xTEST_EQ(val1, val2) \
