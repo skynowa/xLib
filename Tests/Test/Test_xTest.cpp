@@ -42,7 +42,8 @@ Test_xTest::unit()
         xTEST_GR_EQ_MSG(2UL, 1UL, msg);
         xTEST_GR_EQ_MSG(2UL, 2UL, msg);
 
-        auto *msgPtr = &msg;
+        // auto *msgPtr = &msg;
+        std::ctstring_t *msgPtr {};
         xTEST_PTR(msgPtr);
         xTEST_PTR_MSG(msgPtr, msg);
 
