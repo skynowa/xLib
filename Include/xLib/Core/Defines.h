@@ -108,9 +108,9 @@
 #define xARRAY_SIZE(a) \
     ( sizeof(a) / sizeof((a)[0]) )
     ///< get array size
-#define xSWITCH_CASE_RETURN_STRINGISED(x) \
-    case x: return #x
-    ///< help for switch
+#define xSWITCH_CASE_RETURN_STR(x) \
+    case (x): return (#x)
+    ///< help for switch (not for `enum class`)
 ///@}
 //-------------------------------------------------------------------------------------------------
 // xUNUSED

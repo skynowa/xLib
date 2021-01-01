@@ -29,25 +29,23 @@ Test_Defines::unit()
         {
             #define xDEF_A
 
-
             #if defined(xDEF_A)
 
             #else
                 xTEST_FAIL;
             #endif
 
-            //#if xDEF_A                      // compile error: #if with no expression
+            // #if xDEF_A                      // compile error: #if with no expression
             //
-            //#endif
+            // #endif
 
-            //#if defined(xDEF_A) && xDEF_A   // compile error: operator '&&' has no right operand
+            // #if defined(xDEF_A) && xDEF_A   // compile error: operator '&&' has no right operand
             //
-            //#endif
+            // #endif
         }
 
         {
             #define xDEF_B -1
-
 
             #if defined(xDEF_B) && xDEF_B
 
@@ -59,7 +57,6 @@ Test_Defines::unit()
         {
             #define xDEF_C 0
 
-
             #if defined(xDEF_C) && xDEF_C
                 xTEST_FAIL;
             #else
@@ -69,7 +66,6 @@ Test_Defines::unit()
 
         {
             #define xDEF_D 1
-
 
             #if defined(xDEF_D) && xDEF_D
 
@@ -81,7 +77,6 @@ Test_Defines::unit()
         {
             #define xDEF_E 2
 
-
             #if defined(xDEF_E) && xDEF_E
 
             #else
@@ -91,7 +86,6 @@ Test_Defines::unit()
 
         {
             #define xDEF_F zzz
-
 
             #if defined(xDEF_F) && xDEF_F
                 xTEST_FAIL;
@@ -103,10 +97,10 @@ Test_Defines::unit()
 
     xTEST_CASE("xLEX_TO_STR")
     {
-        long_t value = - 1;
+        long_t value {- 1};
 
         m_sRv = xLEX_TO_STR(value);
-        xTEST_EQ(std::tstring_t(xT("value")), m_sRv);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("value")));
 
         xUNUSED(value);
     }
@@ -116,7 +110,7 @@ Test_Defines::unit()
         std::tstring_t value;
 
         xLEX_CAT_2(va, lue) = xT("XLIB_VAL");
-        xTEST_EQ(std::tstring_t(xT("XLIB_VAL")), value);
+        xTEST_EQ(value, std::tstring_t(xT("XLIB_VAL")));
 
         value.clear();
     }
@@ -126,30 +120,24 @@ Test_Defines::unit()
         std::ctstring_t value(xT("xxx"));
 
         m_sRv = xTEXT("xxx");
-        xTEST_EQ(value, m_sRv);
+        xTEST_EQ(m_sRv, value);
 
         m_sRv = xT("xxx");
-        xTEST_EQ(value, m_sRv);
+        xTEST_EQ(m_sRv, value);
     }
 
     xTEST_CASE("xNO_VTABLE")
     {
     #if   xENV_WIN
-        culong_t valueBase    = 1;
-        culong_t valueDerived = 2;
+        culong_t valueBase    {1};
+        culong_t valueDerived {2};
 
-        class Base
-        {
+        class Base {
         public:
-            ulong_t value;
+            ulong_t value {};
 
-            Base() :
-                value(0UL)
-            {
-            }
-            virtual ~Base()
-            {
-            }
+            Base() = default;
+            virtual ~Base() = default;
 
             virtual void_t func()
             {
@@ -184,12 +172,6 @@ Test_Defines::unit()
     #endif
     }
 
-    xTEST_CASE("nullptr")
-    {
-       void_t *ptr = nullptr;
-       xUNUSED(ptr);
-    }
-
     xTEST_CASE("xT2U")
     {
 
@@ -215,7 +197,7 @@ Test_Defines::unit()
 
     }
 
-    xTEST_CASE("xSWITCH_CASE_RETURN_STRINGISED")
+    xTEST_CASE("xSWITCH_CASE_RETURN_STR")
     {
         enum SwitchType
         {
@@ -225,21 +207,22 @@ Test_Defines::unit()
             xLIBSSH2_ERROR_INVALID_MAC,
             xLIBSSH2_ERROR_KEX_FAILURE
         };
+        xUSING_CONST(SwitchType);
 
         struct Local
         {
             static
-            std::tstring_t foo(SwitchType a_type)
+            std::tstring_t foo(cSwitchType a_type)
             {
                 switch (a_type) {
-                xSWITCH_CASE_RETURN_STRINGISED(xLIBSSH2_ERROR_SOCKET_NONE);
-                xSWITCH_CASE_RETURN_STRINGISED(xLIBSSH2_ERROR_BANNER_RECV);
-                xSWITCH_CASE_RETURN_STRINGISED(xLIBSSH2_ERROR_BANNER_SEND);
-                xSWITCH_CASE_RETURN_STRINGISED(xLIBSSH2_ERROR_INVALID_MAC);
-                xSWITCH_CASE_RETURN_STRINGISED(xLIBSSH2_ERROR_KEX_FAILURE);
-                default:
-                    break;
+                xSWITCH_CASE_RETURN_STR(xLIBSSH2_ERROR_SOCKET_NONE);
+                xSWITCH_CASE_RETURN_STR(xLIBSSH2_ERROR_BANNER_RECV);
+                xSWITCH_CASE_RETURN_STR(xLIBSSH2_ERROR_BANNER_SEND);
+                xSWITCH_CASE_RETURN_STR(xLIBSSH2_ERROR_INVALID_MAC);
+                xSWITCH_CASE_RETURN_STR(xLIBSSH2_ERROR_KEX_FAILURE);
                 }
+
+                return {};
             }
         };
 
@@ -252,8 +235,7 @@ Test_Defines::unit()
 
     xTEST_CASE("xUNUSED")
     {
-        size_t value = 0U;
-
+        size_t value {};
         xUNUSED(value);
     }
 
@@ -269,7 +251,7 @@ Test_Defines::unit()
         xTEST_EQ(1, xREVIEW);
         xTEST_EQ(0, xCOMMENT);
 
-        std::size_t var = 0;
+        std::size_t var {};
         xTEST_NA(var);
         xTESTS_NA;
         xNA;
@@ -337,7 +319,7 @@ Test_Defines::unit()
     xTEST_CASE("xVA_...")
     {
         std::ctstring_t csVal = xT("aaa");
-        cint_t          ciVal = 100;
+        cint_t          ciVal {100};
 
         // Format::str use var args
         m_sRv = FormatC::str(xT("%s, %d"), csVal.c_str(), ciVal);
@@ -348,18 +330,18 @@ Test_Defines::unit()
     {
         // xPR_SIZET
         {
-            std::csize_t value = 2356567U;
+            std::csize_t value {2356567};
 
             m_sRv = FormatC::str(xT("%")xPR_SIZET, value);
-            xTEST_EQ(String::cast(value), m_sRv);
+            xTEST_EQ(m_sRv, String::cast(value));
         }
 
         // xPR_I64d
         {
-            clonglong_t value = 36745723LL;
+            clonglong_t value {36745723};
 
             m_sRv = FormatC::str(xT("%")xPR_I64d, value);
-            xTEST_EQ(String::cast(value), m_sRv);
+            xTEST_EQ(m_sRv, String::cast(value));
         }
 
         // xPR_I64u
@@ -367,24 +349,24 @@ Test_Defines::unit()
             culonglong_t value = 4767834ULL;
 
             m_sRv = FormatC::str(xT("%")xPR_I64u, value);
-            xTEST_EQ(String::cast(value), m_sRv);
+            xTEST_EQ(m_sRv, String::cast(value));
         }
 
         // xPR_I64x
         {
-            clonglong_t value = 57830LL;
+            clonglong_t value {57830};
 
             m_sRv = FormatC::str(xT("%")xPR_I64x, value);
-            xTEST_EQ(String::toLowerCase( String::cast(value, 16) ), m_sRv);
+            xTEST_EQ(m_sRv, String::toLowerCase( String::cast(value, 16) ));
         }
     }
 
     xTEST_CASE("xNATIVE_HANDLE_...")
     {
-       native_handle_t nhNull    = xNATIVE_HANDLE_NULL;
+       native_handle_t nhNull {xNATIVE_HANDLE_NULL};
        xUNUSED(nhNull);
 
-       native_handle_t nhInvalid = xNATIVE_HANDLE_INVALID;
+       native_handle_t nhInvalid {xNATIVE_HANDLE_INVALID};
        xUNUSED(nhInvalid);
     }
 
