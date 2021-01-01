@@ -209,16 +209,18 @@
 	for (size_t caseLoops = 0; caseLoops < getData().caseLoops; ++ caseLoops)
     ///< test case
 
-#define xTEST_CLASS(className) \
-	class className : \
+#define xTEST_UNIT(unitClassName) \
+	using namespace xl; \
+	\
+	class unitClassName : \
 		public Unit \
 	{ \
 	public: \
-			   className() {} \
+			   unitClassName() = default; \
+			  ~unitClassName() = default; \
 		bool_t unit() override; \
-	};
-
-#define xTEST_UNIT(unitClassName) \
+	}; \
+	\
     int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[]) \
     { \
         xUNUSED(a_argsNum); \
