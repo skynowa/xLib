@@ -46,8 +46,9 @@ Test_xTest::unit()
         xTEST_PTR(msgPtr);
         xTEST_PTR_MSG(msgPtr, msg);
 
-        xTEST_PTR_FAIL(nullptr);
-        xTEST_PTR_FAIL_MSG(nullptr, msg);
+        std::ctstring_t *nullPtr {};
+        xTEST_PTR_FAIL(nullPtr);
+        xTEST_PTR_FAIL_MSG(nullPtr, msg);
 
     #if xTEST_IGNORE
         xTEST_FAIL;
