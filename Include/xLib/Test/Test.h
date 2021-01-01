@@ -81,170 +81,128 @@
         Debugger().reportMake(report); \
     }
 
-#if defined(_xREPORT_TYPE)
-    #define xTEST_EQ(val1, val2) \
-        xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, val1, val2, xT(""))
-    #define xTEST_EQ_MSG(val1, val2, msg) \
-        xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, val1, val2, msg)
+#define xTEST_EQ(val1, val2) \
+	xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, val1, val2, xT(""))
+#define xTEST_EQ_MSG(val1, val2, msg) \
+	xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, val1, val2, msg)
 
-    #define xTEST_DIFF(val1, val2) \
-        xTEST_DIFF_MSG_IMPL    (_xREPORT_TYPE, val1, val2, xT(""))
-    #define xTEST_DIFF_MSG(val1, val2, msg) \
-        xTEST_DIFF_MSG_IMPL    (_xREPORT_TYPE, val1, val2, msg)
+#define xTEST_DIFF(val1, val2) \
+	xTEST_DIFF_MSG_IMPL    (_xREPORT_TYPE, val1, val2, xT(""))
+#define xTEST_DIFF_MSG(val1, val2, msg) \
+	xTEST_DIFF_MSG_IMPL    (_xREPORT_TYPE, val1, val2, msg)
 
-    #define xTEST_LESS(val1, val2) \
-        xTEST_LESS_MSG_IMPL    (_xREPORT_TYPE, val1, val2, xT(""))
-    #define xTEST_LESS_MSG(val1, val2, msg) \
-        xTEST_LESS_MSG_IMPL    (_xREPORT_TYPE, val1, val2, msg)
+#define xTEST_LESS(val1, val2) \
+	xTEST_LESS_MSG_IMPL    (_xREPORT_TYPE, val1, val2, xT(""))
+#define xTEST_LESS_MSG(val1, val2, msg) \
+	xTEST_LESS_MSG_IMPL    (_xREPORT_TYPE, val1, val2, msg)
 
-    #define xTEST_GR(val1, val2) \
-        xTEST_GR_MSG_IMPL      (_xREPORT_TYPE, val1, val2, xT(""))
-    #define xTEST_GR_MSG(val1, val2, msg) \
-        xTEST_GR_MSG_IMPL      (_xREPORT_TYPE, val1, val2, msg)
+#define xTEST_GR(val1, val2) \
+	xTEST_GR_MSG_IMPL      (_xREPORT_TYPE, val1, val2, xT(""))
+#define xTEST_GR_MSG(val1, val2, msg) \
+	xTEST_GR_MSG_IMPL      (_xREPORT_TYPE, val1, val2, msg)
 
-    #define xTEST_LESS_EQ(val1, val2) \
-        xTEST_LESS_EQ_MSG_IMPL (_xREPORT_TYPE, val1, val2, xT(""))
-    #define xTEST_LESS_EQ_MSG(val1, val2, msg) \
-        xTEST_LESS_EQ_MSG_IMPL (_xREPORT_TYPE, val1, val2, msg)
+#define xTEST_LESS_EQ(val1, val2) \
+	xTEST_LESS_EQ_MSG_IMPL (_xREPORT_TYPE, val1, val2, xT(""))
+#define xTEST_LESS_EQ_MSG(val1, val2, msg) \
+	xTEST_LESS_EQ_MSG_IMPL (_xREPORT_TYPE, val1, val2, msg)
 
-    #define xTEST_GR_EQ(val1, val2) \
-        xTEST_GR_EQ_MSG_IMPL   (_xREPORT_TYPE, val1, val2, xT(""))
-    #define xTEST_GR_EQ_MSG(val1, val2, msg) \
-        xTEST_GR_EQ_MSG_IMPL   (_xREPORT_TYPE, val1, val2, msg)
+#define xTEST_GR_EQ(val1, val2) \
+	xTEST_GR_EQ_MSG_IMPL   (_xREPORT_TYPE, val1, val2, xT(""))
+#define xTEST_GR_EQ_MSG(val1, val2, msg) \
+	xTEST_GR_EQ_MSG_IMPL   (_xREPORT_TYPE, val1, val2, msg)
 
-    #define xTEST_PTR(ptr) \
-        xTEST_PTR_MSG_IMPL     (_xREPORT_TYPE, ptr, xT(""))
-    #define xTEST_PTR_MSG(ptr, msg) \
-        xTEST_PTR_MSG_IMPL     (_xREPORT_TYPE, ptr, msg)
+#define xTEST_PTR(ptr) \
+	xTEST_PTR_MSG_IMPL     (_xREPORT_TYPE, ptr, xT(""))
+#define xTEST_PTR_MSG(ptr, msg) \
+	xTEST_PTR_MSG_IMPL     (_xREPORT_TYPE, ptr, msg)
 
-    #define xTEST_PTR_FAIL(ptr) \
-        xTEST_PTR_FAIL_MSG_IMPL(_xREPORT_TYPE, ptr, xT(""))
-    #define xTEST_PTR_FAIL_MSG(ptr, msg) \
-        xTEST_PTR_FAIL_MSG_IMPL(_xREPORT_TYPE, ptr, msg)
+#define xTEST_PTR_FAIL(ptr) \
+	xTEST_PTR_FAIL_MSG_IMPL(_xREPORT_TYPE, ptr, xT(""))
+#define xTEST_PTR_FAIL_MSG(ptr, msg) \
+	xTEST_PTR_FAIL_MSG_IMPL(_xREPORT_TYPE, ptr, msg)
 
-    #define xTEST_FAIL \
-        xTEST_FAIL_MSG_IMPL    (_xREPORT_TYPE, xT(""))
-    #define xTEST_FAIL_MSG(msg) \
-        xTEST_FAIL_MSG_IMPL    (_xREPORT_TYPE, msg)
+#define xTEST_FAIL \
+	xTEST_FAIL_MSG_IMPL    (_xREPORT_TYPE, xT(""))
+#define xTEST_FAIL_MSG(msg) \
+	xTEST_FAIL_MSG_IMPL    (_xREPORT_TYPE, msg)
 
-    #define xTEST(expr) \
-        xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, true, expr, xT(""))
-    #define xTEST_MSG(expr, msg) \
-        xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, true, expr, msg)
+#define xTEST(expr) \
+	xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, true, expr, xT(""))
+#define xTEST_MSG(expr, msg) \
+	xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, true, expr, msg)
 
-    #define xTEST_THROW(expr, exception_t)          \
-        {                                           \
-            bool_t isExpected = false;              \
-            try {                                   \
-                expr;                               \
-            }                                       \
-            catch (const exception_t &) {           \
-                isExpected = true;                  \
-            }                                       \
-            catch (...) {                           \
-            }                                       \
-            xTEST_EQ(isExpected, true);             \
-        }
-    #define xTEST_THROW_MSG(expr, exception_t, msg) \
-        {                                           \
-            bool_t isExpected = false;              \
-            try {                                   \
-                expr;                               \
-            }                                       \
-            catch (const exception_t &) {           \
-                isExpected = true;                  \
-            }                                       \
-            catch (...) {                           \
-            }                                       \
-            xTEST_EQ_MSG(isExpected, true, msg);    \
-        }
+#define xTEST_THROW(expr, exception_t)          \
+	{                                           \
+		bool_t isExpected = false;              \
+		try {                                   \
+			expr;                               \
+		}                                       \
+		catch (const exception_t &) {           \
+			isExpected = true;                  \
+		}                                       \
+		catch (...) {                           \
+		}                                       \
+		xTEST_EQ(isExpected, true);             \
+	}
+#define xTEST_THROW_MSG(expr, exception_t, msg) \
+	{                                           \
+		bool_t isExpected = false;              \
+		try {                                   \
+			expr;                               \
+		}                                       \
+		catch (const exception_t &) {           \
+			isExpected = true;                  \
+		}                                       \
+		catch (...) {                           \
+		}                                       \
+		xTEST_EQ_MSG(isExpected, true, msg);    \
+	}
 
-    #define xTEST_THROW_ALL(expr)                   \
-        {                                           \
-            bool_t isExpected = false;              \
-            try {                                   \
-                expr;                               \
-            }                                       \
-            catch (...) {                           \
-                isExpected = true;                  \
-            }                                       \
-            xTEST_EQ(isExpected, true);             \
-        }
-    #define xTEST_THROW_ALL_MSG(expr, msg)          \
-        {                                           \
-            bool_t isExpected = false;              \
-            try {                                   \
-                expr;                               \
-            }                                       \
-            catch (...) {                           \
-                isExpected = true;                  \
-            }                                       \
-            xTEST_EQ_MSG(isExpected, true, msg);    \
-        }
+#define xTEST_THROW_ALL(expr)                   \
+	{                                           \
+		bool_t isExpected = false;              \
+		try {                                   \
+			expr;                               \
+		}                                       \
+		catch (...) {                           \
+			isExpected = true;                  \
+		}                                       \
+		xTEST_EQ(isExpected, true);             \
+	}
+#define xTEST_THROW_ALL_MSG(expr, msg)          \
+	{                                           \
+		bool_t isExpected = false;              \
+		try {                                   \
+			expr;                               \
+		}                                       \
+		catch (...) {                           \
+			isExpected = true;                  \
+		}                                       \
+		xTEST_EQ_MSG(isExpected, true, msg);    \
+	}
 
-    #define xTEST_THROW_NO(expr)                    \
-        {                                           \
-            bool_t isExpected = true;               \
-            try {                                   \
-                expr;                               \
-            }                                       \
-            catch (...) {                           \
-                isExpected = false;                 \
-            }                                       \
-            xTEST_EQ(isExpected, true);             \
-        }
-    #define xTEST_THROW_NO_MSG(expr, msg)           \
-        {                                           \
-            bool_t isExpected = true;               \
-            try {                                   \
-                expr;                               \
-            }                                       \
-            catch (...) {                           \
-                isExpected = false;                 \
-            }                                       \
-            xTEST_EQ_MSG(isExpected, true, msg);    \
-        }
-#else
-    // just empty macros
-    #define xTEST_EQ(val1, val2)
-    #define xTEST_EQ_MSG(val1, val2, msg)
-
-    #define xTEST_DIFF(val1, val2)
-    #define xTEST_DIFF_MSG(val1, val2, msg)
-
-    #define xTEST_LESS(val1, val2)
-    #define xTEST_LESS_MSG(val1, val2, msg)
-
-    #define xTEST_GR(val1, val2)
-    #define xTEST_GR_MSG(val1, val2, msg)
-
-    #define xTEST_LESS_EQ(val1, val2)
-    #define xTEST_LESS_EQ_MSG(val1, val2, msg)
-
-    #define xTEST_GR_EQ(val1, val2)
-    #define xTEST_GR_EQ_MSG(val1, val2, msg)
-
-    #define xTEST_PTR(ptr)
-    #define xTEST_PTR_MSG(ptr, msg)
-
-    #define xTEST_PTR_FAIL(ptr)
-    #define xTEST_PTR_FAIL_MSG(ptr, msg)
-
-    #define xTEST_FAIL
-    #define xTEST_FAIL_MSG(msg)
-
-    #define xTEST(expr)
-    #define xTEST_MSG(expr, msg)
-
-    #define xTEST_THROW(expr, exception_t)
-    #define xTEST_THROW_MSG(expr, exception_t, msg)
-
-    #define xTEST_THROW_ALL(expr)
-    #define xTEST_THROW_ALL_MSG(expr, msg)
-
-    #define xTEST_THROW_NO(expr)
-    #define xTEST_THROW_NO_MSG(expr, msg)
-#endif
+#define xTEST_THROW_NO(expr)                    \
+	{                                           \
+		bool_t isExpected = true;               \
+		try {                                   \
+			expr;                               \
+		}                                       \
+		catch (...) {                           \
+			isExpected = false;                 \
+		}                                       \
+		xTEST_EQ(isExpected, true);             \
+	}
+#define xTEST_THROW_NO_MSG(expr, msg)           \
+	{                                           \
+		bool_t isExpected = true;               \
+		try {                                   \
+			expr;                               \
+		}                                       \
+		catch (...) {                           \
+			isExpected = false;                 \
+		}                                       \
+		xTEST_EQ_MSG(isExpected, true, msg);    \
+	}
 
 #define xTEST_NA(var) \
     xUNUSED(var)
