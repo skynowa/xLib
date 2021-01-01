@@ -46,7 +46,7 @@
     xTEST_EQ_MSG_PRIVATE(>=, reportType, val1, val2, msg)
 
 #define xTEST_PTR_MSG_IMPL(reportType, ptr, msg) \
-    if ( intptr_t(ptr) == intptr_t(nullptr) ) { \
+    if (intptr_t(ptr) == intptr_t(nullptr)) { \
         culong_t         nativeError    { NativeError::get() }; \
         cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
         SourceInfo       sourceInfo(sourceInfoData); \
@@ -58,7 +58,7 @@
     }
 
 #define xTEST_PTR_FAIL_MSG_IMPL(reportType, ptr, msg) \
-    if ( intptr_t(ptr) != intptr_t(nullptr) ) { \
+    if (intptr_t(ptr) != intptr_t(nullptr)) { \
         culong_t         nativeError    { NativeError::get() }; \
         cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
         SourceInfo       sourceInfo(sourceInfoData); \
@@ -70,7 +70,7 @@
     }
 
 #define xTEST_FAIL_MSG_IMPL(reportType, msg) \
-    if ( true ) { \
+    if (true) { \
         culong_t         nativeError    { NativeError::get() }; \
         cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
         SourceInfo       sourceInfo(sourceInfoData); \
