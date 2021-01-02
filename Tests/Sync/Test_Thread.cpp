@@ -37,7 +37,7 @@ CWorkThread::onRun(
     xUNUSED(pvData);
 
     #if xTEST_IGNORE
-        xTRACEV(xT("\n\tCWorkThread: start #%lu"), m_ulTag);
+        xTRACEV(xT("\n\tCWorkThread: start #%lu"), index);
     #endif
 
     uint_t uiRes = 0;
@@ -67,7 +67,7 @@ CWorkThread::onRun(
     }
 
     #if xTEST_IGNORE
-        xTRACEV(xT("\tCWorkThread: end #%lu\n"), m_ulTag);
+        xTRACEV(xT("\tCWorkThread: end #%lu\n"), index);
     #endif
 
     return uiRes;
