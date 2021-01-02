@@ -70,8 +70,7 @@ Debugger::coreDumpsEnable(
 {
     xTEST_NA(a_flag);
 
-    bool_t isEnable = false;
-
+    bool_t isEnable {};
     _coreDumpsEnable_impl(a_flag, &isEnable);
 
     xCHECK_DO(!isEnable, Trace() << xT("xLib: Debugger::coreDumpsEnable() - n/a"));
@@ -107,7 +106,7 @@ Debugger::reportMake(
     // never corrupt last error value
     culong_t nativeError = NativeError::get();
 
-    switch (a_report.type()) {
+    switch ( a_report.type() ) {
     case ErrorReport::Type::Msgbox:
         _msgboxPlain(a_report);
         break;
