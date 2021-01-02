@@ -149,7 +149,7 @@ Debugger::_msgboxPlain(
     xCHECK_DO(!isEnabled(), return);
 
     MsgBox msgBox;
-    MsgBox::ModalResult mrRv = msgBox.show(a_report.str(), xT("xLib"),
+    MsgBox::cModalResult mrRv = msgBox.show(a_report.str(), xT("xLib"),
     	MsgBox::Type::AbortRetryIgnore);
     switch (mrRv) {
     case MsgBox::ModalResult::Abort:
@@ -163,7 +163,7 @@ Debugger::_msgboxPlain(
         if ( isActive() ) {
             breakPoint();
         } else {
-            MsgBox::ModalResult nrRv = MsgBox().show(xT("Debugger is not present.\n"
+            MsgBox::cModalResult nrRv = MsgBox().show(xT("Debugger is not present.\n"
                 "The application will be terminated."), xT("xLib"));
             xUNUSED(nrRv);
             (void_t)::exit(EXIT_FAILURE);
