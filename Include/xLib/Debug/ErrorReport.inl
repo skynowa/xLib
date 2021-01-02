@@ -39,6 +39,8 @@ ErrorReport::ErrorReport(
     case Type::Exception:
         _initPlain();
         break;
+    case Type::Unknown:
+        break;
     }
 }
 //-------------------------------------------------------------------------------------------------
