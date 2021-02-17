@@ -16,7 +16,7 @@ namespace xl::package
 
 class Translate :
 	public IRestClient
-    /// Translate text (by Google API)
+    /// Translate text (by Google API, mobile version)
 {
 public:
     enum class Language
