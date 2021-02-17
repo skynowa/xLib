@@ -20,14 +20,6 @@ namespace xl::package
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-const std::map<Translate::Language, std::tstring_t> Translate::_langToCodes
-{
-	{Language::Unknown, xT("")},
-	{Language::Auto,    xT("auto")},
-	{Language::En,      xT("en")},
-	{Language::Ru,      xT("ru")}
-};
-//-------------------------------------------------------------------------------------------------
 void_t
 Translate::langsDetect(
     std::ctstring_t     &a_text,
@@ -265,6 +257,14 @@ Translate::execute(
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+const std::map<Translate::Language, std::tstring_t> Translate::_langToCodes
+{
+	{Language::Unknown, xT("")},
+	{Language::Auto,    xT("auto")},
+	{Language::En,      xT("en")},
+	{Language::Ru,      xT("ru")}
+};
 //-------------------------------------------------------------------------------------------------
 void_t
 Translate::_responseParse(
