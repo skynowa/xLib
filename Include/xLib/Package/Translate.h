@@ -48,7 +48,7 @@ private:
     void_t _responseParse(const curl::DataOut &dataOut, std::tstring_t *textToBrief,
     			std::tstring_t *textToDetail, std::tstring_t *textToRaw) const;
         ///< parse response
-    std::tstring_t _languageCode(cLanguage lang) const;
+    std::tstring_t _langCode(cLanguage lang) const;
         ///< converter
 };
 

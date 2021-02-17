@@ -155,9 +155,9 @@ Translate::execute(
 		{
 			const std::map_tstring_t request
 			{
-				{"h1", _languageCode(a_langFrom)},
-				{"sl", _languageCode(a_langFrom)},
-				{"tl", _languageCode(a_langTo)},
+				{"h1", _langCode(a_langFrom)},
+				{"sl", _langCode(a_langFrom)},
+				{"tl", _langCode(a_langTo)},
 				{"ie", "UTF-8"},
 				{"q",  a_textFrom}
 			};
@@ -265,7 +265,7 @@ Translate::_responseParse(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Translate::_languageCode(
+Translate::_langCode(
 	cLanguage a_lang
 ) const
 {
