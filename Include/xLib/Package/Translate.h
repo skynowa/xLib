@@ -21,7 +21,7 @@ class Translate :
 public:
 ///@name ctors, dtor
 ///@{
-			 Translate();
+			 Translate() = default;
 	virtual ~Translate() = default;
 
 	xNO_COPY_ASSIGN(Translate)
