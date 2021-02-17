@@ -20,11 +20,6 @@ namespace xl::package
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Translate::Translate() :
-	IRestClient()
-{
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 Translate::langsDetect(
     std::ctstring_t     &a_text,
@@ -33,8 +28,8 @@ Translate::langsDetect(
 ) const
 {
     xTEST(!a_text.empty());
-    xTEST(out_langFrom != nullptr);
-    xTEST(out_langTo != nullptr);
+    xTEST_PTR(out_langFrom);
+    xTEST_PTR(out_langTo);
 
     std::ctstring_t lettersEn = xT("abcdefghijklmnopqrstuvwxyz");
     std::ctstring_t lettersRu = xT("абвгдеёжзийклмнопрстуфхцчшщъыьэюя");
@@ -201,7 +196,7 @@ Translate::execute(
 	xTEST(!dataOut.headers.empty());
 	xTEST(!dataOut.body.empty());
 
-#if 1
+#if 0
 	Cout()
 		<< xTRACE_VAR(baseDataIn.request)   << std::endl
 		<< xT("\n")
