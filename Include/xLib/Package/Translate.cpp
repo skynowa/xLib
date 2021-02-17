@@ -258,7 +258,7 @@ Translate::_responseParse(
 	// parse body
 	{
 		// [out]
-		*out_textToBrief = String::cut(body, "<div dir=\"ltr\" class=\"t0\">", "</div>");
+		*out_textToBrief = String::cut(body, "<div class=\"result-container\">", "</div>");
 		xTEST(!out_textToBrief->empty());
 
 		// [out]
