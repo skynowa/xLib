@@ -240,19 +240,14 @@ Translate::_responseParse(
     {
 
 		isDictionaryText = (body.find("Dictionary:") != std::tstring_t::npos);
-		// TODO: rm
+		// TODO: isDictionaryText - rm
 		xTEST(!isDictionaryText);
 	}
 
 	// proccess body
 	if (isDictionaryText) {
-	#if 0
-		response.replace("Dictionary:", "\n");
-		response.replace("<br>", "\n");
-	#else
 		body = String::replaceAll(body, "Dictionary:", "\n");
 		body = String::replaceAll(body, "<br>",        "\n");
-	#endif
 	}
 
 	// parse body
