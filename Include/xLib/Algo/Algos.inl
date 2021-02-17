@@ -176,7 +176,7 @@ Algos::mapFindByValue(
 		return (a_it.second == a_value);
 	};
 
-	auto it = std::find_if(a_cont.begin(), a_cont.end(), pred);
+	auto it = std::find_if(a_cont.cbegin(), a_cont.cend(), pred);
 	if (it != a_cont.end()) {
 		return it->first;
 	}
