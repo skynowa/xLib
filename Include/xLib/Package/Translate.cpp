@@ -151,6 +151,16 @@ Translate::execute(
 		baseDataIn.acceptLanguage = "en-us,en";
 		baseDataIn.acceptCharset  = "UTF-8";
 
+		// TODO: curl::HttpClient::Request::Post
+	#if 0
+		std::map_tstring_t headers
+		{
+			{"content-type", "application/x-www-form-urlencoded"}
+		};
+
+		baseDataIn.addHeaders = headers;
+	#endif
+
 		// baseDataIn.request
 		{
 			const std::map_tstring_t request
@@ -171,10 +181,13 @@ Translate::execute(
 		}
 	}
 
+	// TODO: curl::HttpClient::Request::Post
 	curl::DataOut dataOut;
-	bRv = http.request(curl::HttpClient::Request::Post, baseDataIn, &dataOut);
+	bRv = http.request(curl::HttpClient::Request::Get, baseDataIn, &dataOut);
 	xTEST(bRv);
 	if ( !http.isSuccess(dataOut) ) {
+		// Cout() << xTRACE_VAR(dataOut.body);
+
 		*out_textToBrief  = xT("Error: ") + std::to_string(dataOut.responseCode);
 		*out_textToDetail = xT("Error: ") + std::to_string(dataOut.responseCode);
 
@@ -188,7 +201,7 @@ Translate::execute(
 	xTEST(!dataOut.headers.empty());
 	xTEST(!dataOut.body.empty());
 
-#if 0
+#if 1
 	Cout()
 		<< xTRACE_VAR(baseDataIn.request)   << std::endl
 		<< xT("\n")
