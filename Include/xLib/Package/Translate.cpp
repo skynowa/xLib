@@ -168,8 +168,7 @@ Translate::execute(
 			};
 
 			for (const auto &[param, value] : request) {
-				baseDataIn.request += param + "=" + http.escape(value);
-				baseDataIn.request += "&";
+				baseDataIn.request += param + "=" + http.escape(value) + "&";
 			}
 
 			baseDataIn.request = String::trimRightChars(baseDataIn.request, "&");
