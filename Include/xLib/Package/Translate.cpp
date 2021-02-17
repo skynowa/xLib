@@ -277,7 +277,7 @@ Translate::_langCode(
 	cLanguage a_lang
 ) const
 {
-	const std::map<Language, std::tstring_t> langToCodes
+	static const std::map<Language, std::tstring_t> langToCodes
 	{
 		{Language::Unknown, xT("")},
 		{Language::Auto,    xT("auto")},
