@@ -81,6 +81,14 @@ public:
 	void_t listUnique(std::list<T> &cont);
 		///< unique std::list
 ///@}
+
+///@name std::map
+///@{
+	template<typename T1, typename T2>
+	static
+	T1 mapFindByValue(const std::map<T1, T2> &cont, const T2 &value);
+		///< find find key by value
+///@}
 };
 
 } // namespace
