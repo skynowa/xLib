@@ -19,14 +19,6 @@ class Translate :
     /// Translate text (by Google API)
 {
 public:
-///@name ctors, dtor
-///@{
-			 Translate() = default;
-	virtual ~Translate() = default;
-
-	xNO_COPY_ASSIGN(Translate)
-///@}
-
     enum class Language
         ///< detected language
     {
@@ -36,6 +28,14 @@ public:
         Ru      = 3
     };
     xUSING_CONST(Language);
+
+///@name ctors, dtor
+///@{
+			 Translate() = default;
+	virtual ~Translate() = default;
+
+	xNO_COPY_ASSIGN(Translate)
+///@}
 
     void_t langsDetect(std::ctstring_t &text, Language *langFrom, Language *langTo) const;
         ///< detect languages
