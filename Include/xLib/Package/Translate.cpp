@@ -26,7 +26,7 @@ Translate::Translate() :
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Translate::languagesDetect(
+Translate::langsDetect(
     std::ctstring_t     &a_text,
     Translate::Language *out_langFrom,
     Translate::Language *out_langTo

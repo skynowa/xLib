@@ -37,7 +37,7 @@ public:
     };
     xUSING_CONST(Language);
 
-    void_t languagesDetect(std::ctstring_t &text, Language *langFrom, Language *langTo) const;
+    void_t langsDetect(std::ctstring_t &text, Language *langFrom, Language *langTo) const;
         ///< detect languages
     void_t execute(std::ctstring_t &textFrom, cLanguage langFrom, cLanguage langTo,
 				std::tstring_t *textToBrief, std::tstring_t *textToDetail,
