@@ -18,8 +18,13 @@ class HttpClient :
     /// HTTP client
 {
 public:
-             HttpClient() = default;
-    virtual ~HttpClient() = default;
+///@name ctors, dtor
+///@{
+			 HttpClient() = default;
+	virtual ~HttpClient() = default;
+
+	xNO_COPY_ASSIGN(HttpClient)
+///@}
 
 	enum class Request
 	{
@@ -54,9 +59,6 @@ public:
 		///<
     bool_t isSuccess(cDataOut &dataOut) const;
 		///<
-
-private:
-    xNO_COPY_ASSIGN(HttpClient)
 };
 
 } // namespace
