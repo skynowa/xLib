@@ -18,14 +18,6 @@ class HttpClient :
     /// HTTP client
 {
 public:
-///@name ctors, dtor
-///@{
-			 HttpClient() = default;
-	virtual ~HttpClient() = default;
-
-	xNO_COPY_ASSIGN(HttpClient)
-///@}
-
 	enum class Request
 	{
 		Unknown = 0,
@@ -40,9 +32,6 @@ public:
 	};
 	xUSING_CONST(Request);
 
-    bool_t request(cRequest type, DataIn &dataIn, DataOut *dataOut);
-		///<
-
 	enum class HttpCode
 		/// HTTP response code
 	{
@@ -55,10 +44,20 @@ public:
 	};
 	xUSING_CONST(HttpCode);
 
+///@name ctors, dtor
+///@{
+			 HttpClient() = default;
+	virtual ~HttpClient() = default;
+
+	xNO_COPY_ASSIGN(HttpClient)
+///@}
+
+    bool_t request(cRequest type, DataIn &dataIn, DataOut *dataOut);
+		///< send request
 	HttpCode httpCode(cDataOut &dataOut) const;
-		///<
+		///< get HTTP state code
     bool_t isSuccess(cDataOut &dataOut) const;
-		///<
+		///< is HTTP state code OK
 };
 
 } // namespace
