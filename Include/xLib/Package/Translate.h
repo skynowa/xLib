@@ -52,8 +52,8 @@ public:
 private:
     static const std::map<Translate::Language, std::tstring_t> _langToCodes;
 
-    void_t _responseParse(const curl::DataOut &dataOut, std::tstring_t *textToBrief,
-    			std::tstring_t *textToDetail, std::tstring_t *textToRaw) const;
+    void_t         _responseParse(const curl::DataOut &dataOut, std::tstring_t *textToBrief,
+						std::tstring_t *textToDetail, std::tstring_t *textToRaw) const;
         ///< parse response
     std::tstring_t _langCode(cLanguage lang) const;
         ///< converter
