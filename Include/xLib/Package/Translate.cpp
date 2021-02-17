@@ -117,8 +117,8 @@ Translate::langsDetect(
 		return;
 	}
 
-    Language langFrom {};
-    Language langTo {};
+	Language langFrom {};
+	Language langTo {};
 	langsDetect(a_text, &langFrom, &langTo);
 
 	// [out]
