@@ -20,6 +20,14 @@ namespace xl::package
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+const std::map<Translate::Language, std::tstring_t> Translate::_langToCodes
+{
+	{Language::Unknown, xT("")},
+	{Language::Auto,    xT("auto")},
+	{Language::En,      xT("en")},
+	{Language::Ru,      xT("ru")}
+};
+//-------------------------------------------------------------------------------------------------
 void_t
 Translate::langsDetect(
     std::ctstring_t     &a_text,
@@ -236,6 +244,20 @@ Translate::execute(
      _responseParse(dataOut, out_textToBrief, out_textToDetail, out_textToRaw);
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+Translate::execute(
+    std::ctstring_t &a_textFrom,		///< source text
+	std::ctstring_t &a_langFrom,		///< source text language
+	std::ctstring_t &a_langTo,			///< target text language
+    std::tstring_t  *out_textToBrief,	///< [out] target brief translate
+    std::tstring_t  *out_textToDetail,	///< [out] target detail translate
+    std::tstring_t  *out_textToRaw		///< [out] target raw translate (HTML) (maybe nullptr)
+) const
+{
+	execute(a_textFrom, _codeLang(a_langFrom), _codeLang(a_langTo),
+		out_textToBrief, out_textToDetail, out_textToRaw);
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
@@ -295,20 +317,20 @@ Translate::_langCode(
 	cLanguage a_lang
 ) const
 {
-	static const std::map<Language, std::tstring_t> langToCodes
-	{
-		{Language::Unknown, xT("")},
-		{Language::Auto,    xT("auto")},
-		{Language::En,      xT("en")},
-		{Language::Ru,      xT("ru")}
-	};
-
-	auto it = langToCodes.find(a_lang);
-	if (it == langToCodes.cend()) {
+	auto it = _langToCodes.find(a_lang);
+	if (it == _langToCodes.cend()) {
 		return {};
 	}
 
 	return it->second;
+}
+//-------------------------------------------------------------------------------------------------
+Translate::Language
+Translate::_codeLang(
+	std::ctstring_t &a_code
+) const
+{
+	return Algos::mapFindByValue(_langToCodes, a_code);
 }
 //-------------------------------------------------------------------------------------------------
 
