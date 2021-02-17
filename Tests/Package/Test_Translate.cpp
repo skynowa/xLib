@@ -18,28 +18,33 @@ Test_Translate::unit()
     {
 		Translate translate;
 
-		std::ctstring_t textFrom {xT("UTF-8 is now well-supported and the overwhelmingly "
-			"preferred character encoding")};
-
-		Translate::Language langFrom {};
-		Translate::Language langTo {};
+		std::ctstring_t textFroms[]
 		{
-			translate.langsDetect(textFrom, &langFrom, &langTo);
-			xTEST_EQ((int_t)langFrom, (int_t)Translate::Language::En);
-			xTEST_EQ((int_t)langTo,   (int_t)Translate::Language::Ru);
-		}
+			xT("UTF-8 is now well-supported and the overwhelmingly preferred character encoding"),
+			xT("Language")
+		};
 
-		std::tstring_t textToBrief;
-		std::tstring_t textToDetail;
-		std::tstring_t textToRaw;
-		translate.execute(textFrom, langFrom, langTo, &textToBrief, &textToDetail, &textToRaw);
-		xTEST(!textToBrief.empty());
-		xTEST(!textToDetail.empty());
-		xTEST(!textToRaw.empty());
+		for (const auto &it_textFrom : textFroms) {
+			Translate::Language langFrom {};
+			Translate::Language langTo {};
+			{
+				translate.langsDetect(it_textFrom, &langFrom, &langTo);
+				xTEST_EQ((int_t)langFrom, (int_t)Translate::Language::En);
+				xTEST_EQ((int_t)langTo,   (int_t)Translate::Language::Ru);
+			}
 
-		Trace() << xTRACE_VAR(textToBrief);
-		Trace() << xTRACE_VAR(textToDetail);
-		// Trace() << xTRACE_VAR(textToRaw);
+			std::tstring_t textToBrief;
+			std::tstring_t textToDetail;
+			std::tstring_t textToRaw;
+			translate.execute(it_textFrom, langFrom, langTo, &textToBrief, &textToDetail, &textToRaw);
+			xTEST(!textToBrief.empty());
+			xTEST(!textToDetail.empty());
+			xTEST(!textToRaw.empty());
+
+			Trace() << xTRACE_VAR(textToBrief);
+			Trace() << xTRACE_VAR(textToDetail);
+			// Trace() << xTRACE_VAR(textToRaw);
+		} // for (textFroms)
     }
 
     return true;
