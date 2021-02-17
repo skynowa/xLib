@@ -103,6 +103,30 @@ Translate::langsDetect(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
+Translate::langsDetect(
+    std::ctstring_t &a_text,
+	std::tstring_t  *out_langFrom,
+	std::tstring_t  *out_langTo
+) const
+{
+	if (out_langFrom == nullptr) {
+		return;
+	}
+
+	if (out_langTo == nullptr) {
+		return;
+	}
+
+    Language langFrom {};
+    Language langTo {};
+	langsDetect(a_text, &langFrom, &langTo);
+
+	// [out]
+	*out_langFrom = _langCode(langFrom);
+	*out_langTo   = _langCode(langTo);
+}
+//-------------------------------------------------------------------------------------------------
+void_t
 Translate::execute(
     std::ctstring_t &a_textFrom,		///< source text
     cLanguage        a_langFrom,		///< source text language
