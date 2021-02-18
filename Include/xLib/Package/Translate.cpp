@@ -86,8 +86,9 @@ Translate::langsDetect(
         }
     }
     else if (isUnknown) {
-        *out_langFrom = Translate::Language::Unknown;
-        *out_langTo   = Translate::Language::Unknown;
+        // TODO: defaults for isUnknown
+        *out_langFrom = Translate::Language::En;
+        *out_langTo   = Translate::Language::Ru;
 
         // Trace() << "Langs: unknown-unknown\n";
     }
