@@ -137,7 +137,7 @@ Translate::execute(
 ) const
 {
     xTEST(!a_textFrom.empty());
-    xTEST_DIFF((int_t)a_langFrom, (int_t)Language::Unknown);
+    xTEST_NA(a_langFrom);
     xTEST_DIFF((int_t)a_langTo, (int_t)Language::Unknown);
     xTEST_PTR(out_textToBrief);
     xTEST_PTR(out_textToDetail);
@@ -182,10 +182,13 @@ Translate::execute(
 
 		// baseDataIn.request
 		{
+			std::ctstring_t sl = (a_langFrom == Language::Unknown) ?
+				xT("auto") : _langCode(a_langFrom);
+
 			const std::map_tstring_t request
 			{
 				{"h1", _langCode(a_langFrom)},
-				{"sl", _langCode(a_langFrom)},
+				{"sl", sl},
 				{"tl", _langCode(a_langTo)},
 				{"ie", "UTF-8"},
 				{"q",  a_textFrom}
