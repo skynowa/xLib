@@ -33,13 +33,14 @@ public:
 	xNO_COPY_ASSIGN(Enum)
 ///@}
 
+    T              get() const;
     std::tstring_t str() const;
     ::ssize_t      value() const;
     std::tstring_t name() const;
 
     // operators
-    T              inc() const;
-    T              dec() const;
+    Enum<T>        inc() const;
+    Enum<T>        dec() const;
 	template<typename StreamT>
 	void_t         print(StreamT &os) const;
 

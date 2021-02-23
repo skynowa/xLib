@@ -52,12 +52,12 @@ Test_Enum::unit()
 
     xTEST_CASE("inc/dec")
     {
-        TestType eRv {};
+        TestType eRv {0};
 
-        eRv = Enum(eRv).inc();
+        eRv = Enum(eRv).inc().get();
         xTEST_EQ((int)eRv, (int)TestType::First);
 
-        eRv = Enum(eRv).dec();
+        eRv = Enum(eRv).dec().get();
         xTEST_EQ((int)eRv, (int)TestType::Unknown);
     }
 

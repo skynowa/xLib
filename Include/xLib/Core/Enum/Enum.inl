@@ -22,7 +22,6 @@ Enum<T>::Enum(
 ) :
 	_value{a_value}
 {
-	/// std::cout << xFUNCTION << ": " << (int)_value << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -32,7 +31,13 @@ Enum<T>::Enum(
 ) :
 	_value{ String::castTo<T>(a_value) }
 {
-	/// std::cout << xFUNCTION << ": " << (int)_value << std::endl;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline T
+Enum<T>::get() const
+{
+	return _value;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -76,17 +81,17 @@ Enum<T>::name() const
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline T
+inline Enum<T>
 Enum<T>::inc() const
 {
-    return static_cast<T>( static_cast<::ssize_t>(_value) + 1 );
+    return Enum(static_cast<T>( static_cast<::ssize_t>(_value) + 1 ));
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline T
+inline Enum<T>
 Enum<T>::dec() const
 {
-    return static_cast<T>( static_cast<::ssize_t>(_value) - 1 );
+    return Enum(static_cast<T>( static_cast<::ssize_t>(_value) - 1 ));
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
