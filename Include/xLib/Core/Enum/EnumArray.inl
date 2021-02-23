@@ -48,7 +48,7 @@ operator << (
 		const auto &it_value = a_values[i];
 
 		/// a_os << xl::core::Enum::name(it_value);
-		a_os << xl::core::Enum::value(it_value);
+		a_os << xl::core::Enum(it_value).value();
 
 		if (i < (a_values.size() - 1)) {
 			a_os << xT(",");

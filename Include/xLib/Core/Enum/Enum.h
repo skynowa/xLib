@@ -19,47 +19,41 @@
 namespace xl::core
 {
 
+template<typename T>
 class Enum
     /// Enumeration
 {
 public:
 ///@name ctors, dtor
 ///@{
+	Enum(const T &value);
+   ~Enum() = default;
+
 	xNO_DEFAULT_CONSTRUCT(Enum)
 	xNO_COPY_ASSIGN(Enum)
 ///@}
 
-    template<typename T>
-    static
-    std::tstring_t str(const T &value);
+    std::tstring_t str() const;
 
-    template<typename T>
-    static
-    ::ssize_t      value(const T &value);
+    ::ssize_t      value() const;
 
-    template<typename T>
-    static
-    T              cast(std::ctstring_t &value);
+    T              cast(std::ctstring_t &value) const;
 
-    template<typename T>
-    static
-    std::tstring_t name(const T &value);
+    std::tstring_t name() const;
 
     // operators
-    template<typename T>
-    static
-    T              inc(const T &value);
+    T              inc() const;
 
-    template<typename T>
-    static
-    T              dec(const T &value);
+    T              dec() const;
 
-    template<typename StreamT, typename T>
-    static
-    void_t         print(StreamT &os, const T &value);
+	template<typename StreamT>
+	void_t         print(StreamT &os) const;
 
     // TODO: toPrintable
     // TODO: fromPrintable
+
+private:
+    const T &_value {};
 };
 
 } // namespace

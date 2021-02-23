@@ -15,32 +15,34 @@ namespace xl::core
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
+template<typename T>
+inline
+Enum<T>::Enum(
+	const T &a_value
+) :
+	_value{a_value}
+{
+}
+//-------------------------------------------------------------------------------------------------
 template<typename T>
 inline std::tstring_t
-Enum::str(
-	const T &a_value
-)
+Enum<T>::str() const
 {
-	return std::to_tstring( static_cast<::ssize_t>(a_value) );
+	return std::to_tstring( static_cast<::ssize_t>(_value) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 template<typename T>
 inline ::ssize_t
-Enum::value(
-	const T &a_value
-)
+Enum<T>::value() const
 {
-	return static_cast<::ssize_t>(a_value);
+	return static_cast<::ssize_t>(_value);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 template<typename T>
 inline T
-Enum::cast(
+Enum<T>::cast(
 	std::ctstring_t &a_value
-)
+) const
 {
 #if 0
 	return static_cast<T>( std::strtoll(a_value.c_str(), nullptr, 10) );
@@ -49,18 +51,15 @@ Enum::cast(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 template<typename T>
 inline std::tstring_t
-Enum::name(
-	const T &a_value
-)
+Enum<T>::name() const
 {
 	// TODO: [skynowa] Enum::name()
 
 	std::tstring_t sRv;
 
-	switch (a_value) {
+	switch (_value) {
 	case T::First:
 		sRv = xT("First");
 		break;
@@ -78,35 +77,28 @@ Enum::name(
 	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 template<typename T>
 inline T
-Enum::inc(
-    const T &a_value
-)
+Enum<T>::inc() const
 {
-    return static_cast<T>( static_cast<::ssize_t>(a_value) + 1 );
+    return static_cast<T>( static_cast<::ssize_t>(_value) + 1 );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 template<typename T>
 inline T
-Enum::dec(
-    const T &a_value
-)
+Enum<T>::dec() const
 {
-    return static_cast<T>( static_cast<::ssize_t>(a_value) - 1 );
+    return static_cast<T>( static_cast<::ssize_t>(_value) - 1 );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
-template<typename StreamT, typename T>
+template<typename T>
+template<typename StreamT>
 void_t
-Enum::print(
-	StreamT &a_os,
-	const T &a_value
-)
+Enum<T>::print(
+	StreamT &a_os
+) const
 {
-	a_os << value(a_value);
+	a_os << value(_value);
 }
 //-------------------------------------------------------------------------------------------------
 
