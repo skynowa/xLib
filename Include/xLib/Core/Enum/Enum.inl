@@ -18,10 +18,21 @@ namespace xl::core
 template<typename T>
 inline
 Enum<T>::Enum(
-	const T &a_value
+	const T a_value
 ) :
 	_value{a_value}
 {
+	/// std::cout << xFUNCTION << ": " << (int)_value << std::endl;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline
+Enum<T>::Enum(
+	std::tstring_t a_value
+) :
+	_value{ String::castTo<T>(a_value) }
+{
+	/// std::cout << xFUNCTION << ": " << (int)_value << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -36,19 +47,6 @@ inline ::ssize_t
 Enum<T>::value() const
 {
 	return static_cast<::ssize_t>(_value);
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-inline T
-Enum<T>::cast(
-	std::ctstring_t &a_value
-) const
-{
-#if 0
-	return static_cast<T>( std::strtoll(a_value.c_str(), nullptr, 10) );
-#else
-	return String::castTo<T>(a_value);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>

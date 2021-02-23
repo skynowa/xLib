@@ -23,27 +23,30 @@ enum class TestType
 bool_t
 Test_Enum::unit()
 {
+    xTEST_CASE("ctor")
+    {
+        std::ctstring_t str(xT("2"));
+
+        Enum<TestType> e(str);
+        m_sRv = e.str();
+        xTEST_EQ(m_sRv, str);
+    }
+
     xTEST_CASE("str")
     {
-        m_sRv = Enum::str(TestType::First);
+        m_sRv = Enum(TestType::First).str();
         xTEST_EQ(m_sRv, std::tstring_t(xT("1")));
     }
 
     xTEST_CASE("value")
     {
-        m_ullRv = Enum::value(TestType::Last);
+        m_ullRv = Enum(TestType::Last).value();
         xTEST_EQ(m_ullRv, 4ULL);
-    }
-
-    xTEST_CASE("cast")
-    {
-        auto arv = Enum::cast<TestType>(xT("2"));
-        xTEST_EQ((int)arv, (int)TestType::Second);
     }
 
     xTEST_CASE("name")
     {
-        m_sRv = Enum::name(TestType::Third);
+        m_sRv = Enum(TestType::Third).name();
         xTEST_EQ(m_sRv, std::tstring_t(xT("Third")));
     }
 
@@ -51,10 +54,10 @@ Test_Enum::unit()
     {
         TestType eRv {};
 
-        eRv = Enum::inc(eRv);
+        eRv = Enum(eRv).inc();
         xTEST_EQ((int)eRv, (int)TestType::First);
 
-        eRv = Enum::dec(eRv);
+        eRv = Enum(eRv).dec();
         xTEST_EQ((int)eRv, (int)TestType::Unknown);
     }
 
@@ -70,13 +73,13 @@ Test_Enum::unit()
         }
         xTEST_EQ(ss.str(), std::tstring_t(xT("01234")));
     #else
-        // std::tcout << TestType::First << std::endl;
-        // OStream() << TestType::First << std::endl;
+        /// std::tcout << TestType::First << std::endl;
+        /// OStream() << TestType::First << std::endl;
 
-        Enum::print(std::cout, TestType::First); std::cout << std::endl;
+        /// Enum(TestType::First).print(std::cout); std::cout << std::endl;
 
-        Cout xCout;
-        Enum::print(xCout, TestType::Second); Cout() << std::endl;
+        /// Cout xCout;
+        /// Enum(TestType::Second).print(xCout); Cout() << std::endl;
     #endif
     }
 

@@ -26,26 +26,20 @@ class Enum
 public:
 ///@name ctors, dtor
 ///@{
-	Enum(const T &value);
+	Enum(const T value);
+	Enum(std::tstring_t a_value);
    ~Enum() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Enum)
 	xNO_COPY_ASSIGN(Enum)
 ///@}
 
     std::tstring_t str() const;
-
     ::ssize_t      value() const;
-
-    T              cast(std::ctstring_t &value) const;
-
     std::tstring_t name() const;
 
     // operators
     T              inc() const;
-
     T              dec() const;
-
 	template<typename StreamT>
 	void_t         print(StreamT &os) const;
 
@@ -53,7 +47,7 @@ public:
     // TODO: fromPrintable
 
 private:
-    const T &_value {};
+    const T _value {};
 };
 
 } // namespace
