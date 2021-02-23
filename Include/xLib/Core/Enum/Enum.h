@@ -55,11 +55,17 @@ private:
 //-------------------------------------------------------------------------------------------------
 #include "Enum.inl"
 //-------------------------------------------------------------------------------------------------
-// template<typename T>
-// std::tostream_t &
-// operator << (std::tostream_t &os, const typename Enum<T>::value_type &value);
-
-// template<typename T>
-// xl::core::OStream &
-// operator << (OStream &os, const T value);
+/**
+ * TODO:
+ *
+ * - begin(), end()
+ *
+ * - template<typename T>
+ *   std::tostream_t &
+ *   operator << (std::tostream_t &os, const typename Enum<T>::value_type &value);
+ *
+ * - template<typename T>
+ *   xl::core::OStream &
+ *   operator << (OStream &os, const T value);
+ */
 //-------------------------------------------------------------------------------------------------
