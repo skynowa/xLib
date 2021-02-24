@@ -192,6 +192,7 @@ Translate::execute(
 			*
 			* sl - source language code (auto for autodetection)
 			* tl - translation language
+			* hl - host language
 			* q  - source text / word
 			* ie - input encoding (a guess)
 			* oe - output encoding (a guess)
@@ -227,7 +228,6 @@ Translate::execute(
 
 			const std::map_tstring_t request
 			{
-				{xT("client"), xT("gtx")},
 				{xT("sl"), sourceLang},
 				{xT("tl"), targetLang},
 				{xT("hl"), hostLang},
