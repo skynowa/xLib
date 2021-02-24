@@ -166,10 +166,10 @@ Translate::execute(
 		*/
 
 		baseDataIn.url            = xT("https://translate.google.com/m");
-		baseDataIn.accept         = "text/html";
-		baseDataIn.acceptEncoding = "gzip, deflate";
-		baseDataIn.acceptLanguage = "en-us,en";
-		baseDataIn.acceptCharset  = "UTF-8";
+		baseDataIn.accept         = xT("text/html");
+		baseDataIn.acceptEncoding = xT("gzip, deflate");
+		baseDataIn.acceptLanguage = xT("en-us,en");
+		baseDataIn.acceptCharset  = xT("UTF-8");
 
 		// TODO: curl::HttpClient::Request::Post
 	#if 0
@@ -183,35 +183,38 @@ Translate::execute(
 
 		// baseDataIn.request
 		{
-			std::ctstring_t  sourceLang  = (a_langFrom == Language::Unknown) ?
+			std::ctstring_t  sourceLang   = (a_langFrom == Language::Unknown) ?
 				xT("auto") : _langCode(a_langFrom);
-			std::ctstring_t  targetLang  = _langCode(a_langTo);
-			std::ctstring_t &hostLang    = xT("en");
+			std::ctstring_t  targetLang   = _langCode(a_langTo);
+			std::ctstring_t &hostLang     = xT("en");
 
 			std::csize_t     querySizeMax = 2048;
 			std::ctstring_t &query        = a_textFrom;
 
-			std::ctstring_t  encodingIn  = xT("UTF-8");
-			std::ctstring_t  encodingOut = xT("UTF-8");
+			std::ctstring_t  encodingIn   = xT("UTF-8");
+			std::ctstring_t  encodingOut  = xT("UTF-8");
 
 			xCHECK_DO(query.size() > querySizeMax,
-				Cout() << "Warning: " << xTRACE_VAR_2(querySizeMax, query.size()));
+				Cout() << xT("Warning: ") << xTRACE_VAR_2(querySizeMax, query.size()));
 
 			const std::map_tstring_t request
 			{
-				{"sl", sourceLang},
-				{"tl", targetLang},
-				{"hl", hostLang},
-				{"ie", encodingIn},
-				{"oe", encodingOut},
-				{"q",  query}
+				{xT("client"), xT("gtx")},
+				{xT("sl"), sourceLang},
+				{xT("tl"), targetLang},
+				{xT("hl"), hostLang},
+				{xT("ie"), encodingIn},
+				{xT("oe"), encodingOut},
+				{xT("q"),  query}
 			};
 
+			Cout() << xTRACE_VAR(request) << "\n";
+
 			for (const auto &[param, value] : request) {
-				baseDataIn.request += param + "=" + http.escape(value) + "&";
+				baseDataIn.request += param + xT("=") + http.escape(value) + xT("&");
 			}
 
-			baseDataIn.request = String::trimRightChars(baseDataIn.request, "&");
+			baseDataIn.request = String::trimRightChars(baseDataIn.request, xT("&"));
 		}
 	}
 
