@@ -87,8 +87,8 @@ Translate::langsDetect(
     }
     else if (isUnknown) {
         // TODO: defaults for isUnknown
-        *out_langFrom = Translate::Language::En;
-        *out_langTo   = Translate::Language::Ru;
+        *out_langFrom = Translate::Language::Unknown;
+        *out_langTo   = Translate::Language::Unknown;
 
         // Trace() << "Langs: unknown-unknown\n";
     }
@@ -139,7 +139,7 @@ Translate::execute(
 {
     xTEST(!a_textFrom.empty());
     xTEST_NA(a_langFrom);
-    xTEST_DIFF((int_t)a_langTo, (int_t)Language::Unknown);
+    xTEST_NA(a_langTo);
     xTEST_PTR(out_textToBrief);
     xTEST_PTR(out_textToDetail);
     xTEST_NA(out_textToRaw);
