@@ -183,27 +183,27 @@ Translate::execute(
 
 		// baseDataIn.request
 		{
-			std::ctstring_t  source_lang  = (a_langFrom == Language::Unknown) ?
+			std::ctstring_t  sourceLang  = (a_langFrom == Language::Unknown) ?
 				xT("auto") : _langCode(a_langFrom);
-			std::ctstring_t  target_lang  = _langCode(a_langTo);
-			std::ctstring_t &host_lang    = xT("en");
+			std::ctstring_t  targetLang  = _langCode(a_langTo);
+			std::ctstring_t &hostLang    = xT("en");
 
 			std::csize_t     querySizeMax = 2048;
 			std::ctstring_t &query        = a_textFrom;
 
-			std::ctstring_t  encoding_in  = xT("UTF-8");
-			std::ctstring_t  encoding_out = xT("UTF-8");
+			std::ctstring_t  encodingIn  = xT("UTF-8");
+			std::ctstring_t  encodingOut = xT("UTF-8");
 
 			xCHECK_DO(query.size() > querySizeMax,
 				Cout() << "Warning: " << xTRACE_VAR_2(querySizeMax, query.size()));
 
 			const std::map_tstring_t request
 			{
-				{"sl", source_lang},
-				{"tl", target_lang},
-				{"hl", host_lang},
-				{"ie", encoding_in},
-				{"oe", encoding_out},
+				{"sl", sourceLang},
+				{"tl", targetLang},
+				{"hl", hostLang},
+				{"ie", encodingIn},
+				{"oe", encodingOut},
 				{"q",  query}
 			};
 
