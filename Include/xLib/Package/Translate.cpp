@@ -150,6 +150,8 @@ Translate::execute(
 
 	curl::DataIn baseDataIn;
 	{
+		std::ctstring_t encoding = xT("UTF-8");
+
 	   /**
 		* HTTP POST request:
 		*
@@ -169,7 +171,7 @@ Translate::execute(
 		baseDataIn.accept         = xT("text/html");
 		baseDataIn.acceptEncoding = xT("gzip, deflate");
 		baseDataIn.acceptLanguage = xT("en-us,en");
-		baseDataIn.acceptCharset  = xT("UTF-8");
+		baseDataIn.acceptCharset  = encoding;
 
 		// TODO: curl::HttpClient::Request::Post
 	#if 0
@@ -191,8 +193,8 @@ Translate::execute(
 			std::csize_t     querySizeMax = 2048;
 			std::ctstring_t &query        = a_textFrom;
 
-			std::ctstring_t  encodingIn   = xT("UTF-8");
-			std::ctstring_t  encodingOut  = xT("UTF-8");
+			std::ctstring_t  encodingIn   = encoding;
+			std::ctstring_t  encodingOut  = encoding;
 
 			xCHECK_DO(query.size() > querySizeMax,
 				Cout() << xT("Warning: ") << xTRACE_VAR_2(querySizeMax, query.size()));
