@@ -215,7 +215,7 @@ Translate::execute(
 			std::ctstring_t  sourceLang   = (a_langFrom == Language::Unknown) ?
 				xT("auto") : _langCode(a_langFrom);
 			std::ctstring_t  targetLang   = _langCode(a_langTo);
-			std::ctstring_t &hostLang     = xT("en");
+			std::ctstring_t  hostLang     = xT("en");
 
 			std::csize_t     querySizeMax = 2048;
 			std::ctstring_t &query        = a_textFrom;
@@ -236,7 +236,7 @@ Translate::execute(
 				{xT("q"),  query}
 			};
 
-			Cout() << xTRACE_VAR(request) << "\n";
+			// Cout() << xTRACE_VAR(request) << "\n";
 
 			for (const auto &[param, value] : request) {
 				baseDataIn.request += param + xT("=") + http.escape(value) + xT("&");
