@@ -27,11 +27,9 @@ Test_Translate::unit()
 
 			Translate::Language langFrom {};
 			Translate::Language langTo {};
-			{
-				translate.langsDetect(it_data.test, &langFrom, &langTo);
-				xTEST_EQ((int_t)langFrom, (int_t)Translate::Language::En);
-				xTEST_EQ((int_t)langTo,   (int_t)Translate::Language::Ru);
-			}
+			translate.langsDetect(it_data.test, &langFrom, &langTo);
+			xTEST_EQ((int_t)langFrom, (int_t)Translate::Language::En);
+			xTEST_EQ((int_t)langTo,   (int_t)Translate::Language::Ru);
 
 			std::tstring_t textToBrief;
 			std::tstring_t textToDetail;
