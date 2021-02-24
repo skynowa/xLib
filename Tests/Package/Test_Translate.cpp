@@ -43,7 +43,7 @@ Test_Translate::unit()
 
 			// Trace() << xTRACE_VAR(textToBrief);
 			// Trace() << xTRACE_VAR(textToDetail);
-			// Trace() << xTRACE_VAR(textToRaw);
+			Trace() << xTRACE_VAR(textToRaw);
 		} // for (datas)
 	}
 
