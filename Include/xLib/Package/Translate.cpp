@@ -144,31 +144,6 @@ Translate::execute(
     xTEST_PTR(out_textToDetail);
     xTEST_NA(out_textToRaw);
 
-   /**
-    * Google Translate query params
-    *
-    * https://stackoverflow.com/questions/26714426/what-is-the-meaning-of-google-translate-query-params
-	*
-	* sl - source language code (auto for autodetection)
-	* tl - translation language
-	* q  - source text / word
-	* ie - input encoding (a guess)
-	* oe - output encoding (a guess)
-	* dt - may be included more than once and specifies what to return in the reply.
-	*
-	* Here are some values for dt. If the value is set, the following data will be returned:
-	*
-	* t  - translation of source text
-	* at - alternate translations
-	* rm - transcription / transliteration of source and translated texts
-	* bd - dictionary, in case source text is one word (you get translations with articles, reverse translations, etc.)
-	* md - definitions of source text, if it's one word
-	* ss - synonyms of source text, if it's one word
-	* ex - examples
-	* rw - See also list
-	* dj - Json response with names. (dj=1)
-	*/
-
     bool_t bRv {};
 
 	curl::HttpClient http;
@@ -187,7 +162,7 @@ Translate::execute(
 		*     <input type="hidden" name="tl" value="ru"/>
 		*     <input type="hidden" name="ie" value="UTF-8"/>
 		*     <input type="hidden" name="prev" value="_m"/>
-		*     <input type="text"   name="q" style="width:65%" maxlength="2048" value=""/><br>
+		*     <input type="text"   name="q" style="width:65%" maxlength="2048" value="волк"/><br>
 		*     <input type="submit" value="Перевести"/>
 		* </form>
 		*/
@@ -210,6 +185,32 @@ Translate::execute(
 
 		// baseDataIn.request
 		{
+		   /**
+			* Google Translate query params
+			*
+			* https://stackoverflow.com/questions/26714426/what-is-the-meaning-of-google-translate-query-params
+			*
+			* sl - source language code (auto for autodetection)
+			* tl - translation language
+			* q  - source text / word
+			* ie - input encoding (a guess)
+			* oe - output encoding (a guess)
+			* dt - may be included more than once and specifies what to return in the reply
+			*
+			* Here are some values for dt. If the value is set, the following data will be returned:
+			*
+			* t  - translation of source text
+			* at - alternate translations
+			* rm - transcription / transliteration of source and translated texts
+			* bd - dictionary, in case source text is one word (you get translations with articles,
+			*      reverse translations, etc.)
+			* md - definitions of source text, if it's one word
+			* ss - synonyms of source text, if it's one word
+			* ex - examples
+			* rw - See also list
+			* dj - Json response with names (dj=1)
+			*/
+
 			std::ctstring_t  sourceLang   = (a_langFrom == Language::Unknown) ?
 				xT("auto") : _langCode(a_langFrom);
 			std::ctstring_t  targetLang   = _langCode(a_langTo);
