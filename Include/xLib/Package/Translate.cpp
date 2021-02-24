@@ -183,9 +183,9 @@ Translate::execute(
 
 		// baseDataIn.request
 		{
-			std::ctstring_t &h_lang      = _langCode(a_langFrom);
 			std::ctstring_t &source_lang = (a_langFrom == Language::Unknown) ?
 				xT("auto") : _langCode(a_langFrom);
+			std::ctstring_t &h_lang      = source_lang;
 			std::ctstring_t &target_lang = _langCode(a_langTo);
 			std::ctstring_t &query       = a_textFrom;
 
