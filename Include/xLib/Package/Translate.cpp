@@ -87,8 +87,8 @@ Translate::langsDetect(
     }
     else if (isUnknown) {
         // TODO: defaults for isUnknown
-        *out_langFrom = Translate::Language::Unknown;
-        *out_langTo   = Translate::Language::Unknown;
+        *out_langFrom = Translate::Language::Auto;
+        *out_langTo   = Translate::Language::Auto;
 
         // Trace() << "Langs: unknown-unknown\n";
     }
