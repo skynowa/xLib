@@ -87,8 +87,8 @@ Translate::langsDetect(
     }
     else if (isUnknown) {
         // TODO: defaults for isUnknown
-        *out_langFrom = Translate::Language::En;
-        *out_langTo   = Translate::Language::Ru;
+        *out_langFrom = Translate::Language::Auto;
+        *out_langTo   = Translate::Language::Auto;
 
         // Trace() << "Langs: unknown-unknown\n";
     }
@@ -139,7 +139,7 @@ Translate::execute(
 {
     xTEST(!a_textFrom.empty());
     xTEST_NA(a_langFrom);
-    xTEST_DIFF((int_t)a_langTo, (int_t)Language::Unknown);
+    xTEST_NA(a_langTo);
     xTEST_PTR(out_textToBrief);
     xTEST_PTR(out_textToDetail);
     xTEST_NA(out_textToRaw);
@@ -150,6 +150,8 @@ Translate::execute(
 
 	curl::DataIn baseDataIn;
 	{
+		std::ctstring_t encoding = xT("UTF-8");
+
 	   /**
 		* HTTP POST request:
 		*
@@ -160,16 +162,16 @@ Translate::execute(
 		*     <input type="hidden" name="tl" value="ru"/>
 		*     <input type="hidden" name="ie" value="UTF-8"/>
 		*     <input type="hidden" name="prev" value="_m"/>
-		*     <input type="text"   name="q" style="width:65%" maxlength="2048" value=""/><br>
+		*     <input type="text"   name="q" style="width:65%" maxlength="2048" value="волк"/><br>
 		*     <input type="submit" value="Перевести"/>
 		* </form>
 		*/
 
 		baseDataIn.url            = xT("https://translate.google.com/m");
-		baseDataIn.accept         = "text/html";
-		baseDataIn.acceptEncoding = "gzip, deflate";
-		baseDataIn.acceptLanguage = "en-us,en";
-		baseDataIn.acceptCharset  = "UTF-8";
+		baseDataIn.accept         = xT("text/html");
+		baseDataIn.acceptEncoding = xT("gzip, deflate");
+		baseDataIn.acceptLanguage = xT("en-us,en");
+		baseDataIn.acceptCharset  = encoding;
 
 		// TODO: curl::HttpClient::Request::Post
 	#if 0
@@ -183,23 +185,64 @@ Translate::execute(
 
 		// baseDataIn.request
 		{
-			std::ctstring_t sl = (a_langFrom == Language::Unknown) ?
+		   /**
+			* Google Translate query params
+			*
+			* https://stackoverflow.com/questions/26714426/what-is-the-meaning-of-google-translate-query-params
+			*
+			* sl - source language code (auto for autodetection)
+			* tl - translation language
+			* hl - host language
+			* q  - source text / word
+			* ie - input encoding (a guess)
+			* oe - output encoding (a guess)
+			* dt - may be included more than once and specifies what to return in the reply
+			*
+			* Here are some values for dt. If the value is set, the following data will be returned:
+			*
+			* t  - translation of source text
+			* at - alternate translations
+			* rm - transcription / transliteration of source and translated texts
+			* bd - dictionary, in case source text is one word (you get translations with articles,
+			*      reverse translations, etc.)
+			* md - definitions of source text, if it's one word
+			* ss - synonyms of source text, if it's one word
+			* ex - examples
+			* rw - See also list
+			* dj - Json response with names (dj=1)
+			*/
+
+			std::ctstring_t  sourceLang   = (a_langFrom == Language::Unknown) ?
 				xT("auto") : _langCode(a_langFrom);
+			std::ctstring_t  targetLang   = _langCode(a_langTo);
+			std::ctstring_t  hostLang     = xT("en");
+
+			std::csize_t     querySizeMax = 2048;
+			std::ctstring_t &query        = a_textFrom;
+
+			std::ctstring_t  encodingIn   = encoding;
+			std::ctstring_t  encodingOut  = encoding;
+
+			xCHECK_DO(query.size() > querySizeMax,
+				Cout() << xT("Warning: ") << xTRACE_VAR_2(querySizeMax, query.size()));
 
 			const std::map_tstring_t request
 			{
-				{"h1", _langCode(a_langFrom)},
-				{"sl", sl},
-				{"tl", _langCode(a_langTo)},
-				{"ie", "UTF-8"},
-				{"q",  a_textFrom}
+				{xT("sl"), sourceLang},
+				{xT("tl"), targetLang},
+				{xT("hl"), hostLang},
+				{xT("ie"), encodingIn},
+				{xT("oe"), encodingOut},
+				{xT("q"),  query}
 			};
 
+			// Cout() << xTRACE_VAR(request) << "\n";
+
 			for (const auto &[param, value] : request) {
-				baseDataIn.request += param + "=" + http.escape(value) + "&";
+				baseDataIn.request += param + xT("=") + http.escape(value) + xT("&");
 			}
 
-			baseDataIn.request = String::trimRightChars(baseDataIn.request, "&");
+			baseDataIn.request = String::trimRightChars(baseDataIn.request, xT("&"));
 		}
 	}
 
