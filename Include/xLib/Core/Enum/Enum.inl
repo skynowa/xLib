@@ -94,14 +94,16 @@ Enum<T>::dec() const
     return Enum(static_cast<T>( static_cast<::ssize_t>(_value) - 1 ));
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 template<typename T>
 template<typename StreamT>
 void_t
 Enum<T>::print(
-	StreamT &a_os
-) const
+	StreamT  &out_os,
+	const T   a_value
+)
 {
-	a_os << value(_value);
+	out_os << a_value;
 }
 //-------------------------------------------------------------------------------------------------
 

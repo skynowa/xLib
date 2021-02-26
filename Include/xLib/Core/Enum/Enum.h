@@ -41,8 +41,10 @@ public:
     // operators
     Enum<T>        inc() const;
     Enum<T>        dec() const;
-	template<typename StreamT>
-	void_t         print(StreamT &os) const;
+
+    template<typename StreamT>
+    static
+    void_t         print(StreamT &os, const T value);
 
     // TODO: toPrintable
     // TODO: fromPrintable
