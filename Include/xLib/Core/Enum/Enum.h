@@ -42,9 +42,11 @@ public:
     Enum<T>        inc() const;
     Enum<T>        dec() const;
 
-    template<typename StreamT>
-    static
-    void_t         print(StreamT &os, const T value);
+#if 0
+	template<typename StreamT>
+	static
+	void_t         print(StreamT &os, const T value);
+#endif
 
     // TODO: toPrintable
     // TODO: fromPrintable
