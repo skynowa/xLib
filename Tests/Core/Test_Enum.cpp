@@ -73,7 +73,12 @@ Test_Enum::unit()
         }
         xTEST_EQ(ss.str(), std::tstring_t(xT("01234")));
     #else
-        /// std::tcout << TestType::First << std::endl;
+        Enum<TestType> first(TestType::First);
+
+        std::tcout << first << std::endl;
+
+//        std::tcout << TestType::First << std::endl;
+
         /// OStream() << TestType::First << std::endl;
 
         /// Enum(TestType::First).print(std::cout); std::cout << std::endl;

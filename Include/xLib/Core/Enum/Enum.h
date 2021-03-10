@@ -47,6 +47,16 @@ public:
 
 private:
     const T _value {};
+
+	template<typename V>
+	friend
+	std::tostream_t &
+	operator << (std::tostream_t &os, const xl::core::Enum<V> &value);
+
+//	template<typename V>
+//	friend
+//	std::tostream_t &
+//	operator << (std::tostream_t &os, const typename xl::core::Enum<V>::value_type value);
 };
 
 } // namespace
