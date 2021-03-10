@@ -27,7 +27,6 @@
 #include <xLib/Core/Bitset.h>
 #include <xLib/Core/Enum/Enum.h>
 #include <xLib/Core/Enum/EnumArray.h>
-#include <xLib/Core/Enum/Operators.h>
 #include <xLib/Core/Handle.h>
 #include <xLib/Core/Locale.h>
 #include <xLib/Core/OStream.h>

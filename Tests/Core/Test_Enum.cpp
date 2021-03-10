@@ -83,33 +83,6 @@ Test_Enum::unit()
     #endif
     }
 
-    /**************************************************************************************************
-    *   Operators
-    *
-    **************************************************************************************************/
-
-    enum class Type
-    {
-        Zero  = 0,
-        One   = 1,
-        Two   = 2,
-        Three = 3
-    };
-
-    xTEST_CASE("Operators::operator ++")
-    {
-        Type t {Type::Zero};
-        ++ t;
-        xTEST_EQ((int_t)t, (int_t)Type::One);
-    }
-
-    xTEST_CASE("Operators::operator --")
-    {
-        Type t {Type::Three};
-        -- t;
-        xTEST_EQ((int_t)t, (int_t)Type::Two);
-    }
-
     return true;
 }
 //-------------------------------------------------------------------------------------------------

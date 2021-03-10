@@ -22,38 +22,25 @@ Test_HttpClient::unit()
 	{
 		m_sRv = version.version();
 		xTEST(!m_sRv.empty());
-
-		// std::tcout << (OStream() << xTRACE_VAR(m_sRv)).str() << std::endl;
 	}
 
 	xTEST_CASE("info")
 	{
-		m_sRv = version.info(CURLVERSION_FOURTH);
+		m_sRv = version.info(CURLVERSION_FIRST);
 		xTEST(!m_sRv.empty());
-
-		// std::tcout << (OStream() << xTRACE_VAR(m_sRv)).str() << std::endl;
-
-		for (CURLversion v = CURLVERSION_FIRST; v < CURLVERSION_LAST; ++ v) {
-			m_sRv = version.info(v);
-			xTEST(!m_sRv.empty());
-		}
 	}
 
 	xTEST_CASE("infoCurrent")
 	{
 		m_sRv = version.infoCurrent();
 		xTEST(!m_sRv.empty());
-
-		// std::tcout << (OStream() << xTRACE_VAR(m_sRv)).str() << std::endl;
 	}
 
 	xTEST_CASE("protocols")
 	{
 		std::vec_tstring_t protos;
 		version.protocols(&protos);
-		xTEST_EQ(protos.empty(), false)
-
-		// std::tcout << (OStream() << xTRACE_VAR(protos)).str() << std::endl;
+		xTEST(!protos.empty())
 	}
 
 	return true;
