@@ -89,6 +89,10 @@ Test_Enum::unit()
 
         std::tcout << first << std::endl;
 
+	#if 0
+		std::tcout << Enum<TestType>::value_type() << std::endl;
+	#endif
+
         /// std::tcout << Enum<TestType>(TestType::First).get() << std::endl;
         /// operator << (std::tcout, TestType::First);
 
