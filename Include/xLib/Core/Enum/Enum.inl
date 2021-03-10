@@ -105,8 +105,8 @@ Enum<T>::dec() const
 template<typename V>
 inline std::tostream_t &
 operator << (
-	std::tostream_t         &out_os,
-	const xl::core::Enum<V> &a_value
+	std::tostream_t &out_os,
+	const Enum<V>   &a_value
 )
 {
 	out_os << a_value.name() << ": " << a_value.value();
@@ -118,7 +118,7 @@ operator << (
 
 template<typename V>
 inline std::tostream_t &
-operator << (std::tostream_t &out_os, const typename xl::core::Enum<V>::value_type a_value)
+operator << (std::tostream_t &out_os, const typename Enum<V>::value_type a_value)
 {
 	out_os << static_cast<::ssize_t>(a_value);
 
