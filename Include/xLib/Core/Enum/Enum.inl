@@ -104,46 +104,28 @@ Enum<T>::dec() const
 //-------------------------------------------------------------------------------------------------
 template<typename V>
 inline std::tostream_t &
-operator << (std::tostream_t &out_os, const xl::core::Enum<V> &a_value)
+operator << (
+	std::tostream_t         &out_os,
+	const xl::core::Enum<V> &a_value
+)
 {
-	out_os << a_value.value();
+	out_os << a_value.name() << ": " << a_value.value();
 
 	return out_os;
 }
 //-------------------------------------------------------------------------------------------------
-//template<typename V>
-//inline std::tostream_t &
-//operator << (std::tostream_t &out_os, const typename xl::core::Enum<V>::value_type a_value)
-//{
-//	out_os << static_cast<::ssize_t>(a_value);
-//
-//	return out_os;
-//}
-//-------------------------------------------------------------------------------------------------
-//template<typename V>
-//inline std::tostream_t &
-//operator << (
-//	std::tostream_t           &a_os,
-//	const Enum<V>::value_type &a_value
-//)
-//{
-//	a_os << static_cast<::ssize_t>(a_value);
-//
-//	return a_os;
-//};
+#if 0
 
-//-------------------------------------------------------------------------------------------------
-// template<typename T>
-// inline std::tostream_t &
-// operator << (
-// 	std::tostream_t                    &a_os,
-// 	const typename Enum<T>::value_type &a_value
-// )
-// {
-//     a_os << static_cast<::ssize_t>(a_value);
+template<typename V>
+inline std::tostream_t &
+operator << (std::tostream_t &out_os, const typename xl::core::Enum<V>::value_type a_value)
+{
+	out_os << static_cast<::ssize_t>(a_value);
 
-//     return a_os;
-// }
+	return out_os;
+}
+
+#endif
 //-------------------------------------------------------------------------------------------------
 // template<typename T>
 // inline OStream &

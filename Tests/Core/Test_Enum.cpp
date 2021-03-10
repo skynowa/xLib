@@ -18,6 +18,18 @@ enum class TestType
 	Third   = 3,
 	Last    = Third + 1
 };
+
+#if 0
+
+std::tostream_t &
+operator << (std::tostream_t &out_os, const TestType a_value)
+{
+	out_os << static_cast<::ssize_t>(a_value);
+
+	return out_os;
+}
+
+#endif
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
@@ -77,7 +89,10 @@ Test_Enum::unit()
 
         std::tcout << first << std::endl;
 
-//        std::tcout << TestType::First << std::endl;
+        /// std::tcout << Enum<TestType>(TestType::First).get() << std::endl;
+        /// operator << (std::tcout, TestType::First);
+
+        /// std::tcout << TestType::First << std::endl;
 
         /// OStream() << TestType::First << std::endl;
 

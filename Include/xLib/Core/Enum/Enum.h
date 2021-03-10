@@ -24,6 +24,8 @@ class Enum
     /// Enumeration
 {
 public:
+	using value_type = T;
+
 ///@name ctors, dtor
 ///@{
 	Enum(const T value);
@@ -53,10 +55,12 @@ private:
 	std::tostream_t &
 	operator << (std::tostream_t &os, const xl::core::Enum<V> &value);
 
-//	template<typename V>
-//	friend
-//	std::tostream_t &
-//	operator << (std::tostream_t &os, const typename xl::core::Enum<V>::value_type value);
+#if 0
+	template<typename V>
+	friend
+	std::tostream_t &
+	operator << (std::tostream_t &os, const typename xl::core::Enum<V>::value_type value);
+#endif
 };
 
 } // namespace
