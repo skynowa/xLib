@@ -27,7 +27,7 @@ public:
 ///@name ctors, dtor
 ///@{
 	Enum(const T value);
-	Enum(std::tstring_t a_value);
+	Enum(std::tstring_t value);
    ~Enum() = default;
 
 	xNO_COPY_ASSIGN(Enum)
