@@ -1,38 +1,26 @@
 # Roadmap
 
-## A collapsible section with markdown 1
-
 <details>
-  <summary>Click to expand!</summary>
+
+  <summary>A collapsible section with markdown 1</summary>
 
   * With some
   * Sub bullets
   * With some
 
-* <summary>Sub bullets</summary>
+  * <details>Sub bullets
 
-	* With some
-	* Sub bullets
-	* With some
+    * With some ![alt text](test.png "Title") 35%
+    * Sub bullets ![alt text](test.png "Title") 25%
+    * With some ![alt text](test.png "Title") 45%
 
-      - code
-		```js
-		console.log('also code');
-		```
-</details>
+      - <details>code
 
-## A collapsible section with markdown 2
+        ```js
+        console.log('also code');
+        ```
 
-<details>
-
-	### A collapsible section with markdown
-	<details>
-
-		# A collapsible section with markdown
-		<details>
-			xxxxxxxxxxxx
-		</details>
-
-	</details>
-
+        ![alt text](test.png "Title") 100%
+      </details>
+  </details>
 </details>
