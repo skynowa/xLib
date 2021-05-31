@@ -21,7 +21,7 @@ namespace xl::package
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Translate::langsDetect(
+Translate::_langsDetect(
     std::ctstring_t     &a_text,
     Translate::Language *out_langFrom,
     Translate::Language *out_langTo
@@ -104,47 +104,23 @@ Translate::langsDetect(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Translate::langsDetect(
-    std::ctstring_t &a_text,
-	std::tstring_t  *out_langFrom,
-	std::tstring_t  *out_langTo
-) const
-{
-	if (out_langFrom == nullptr) {
-		return;
-	}
-
-	if (out_langTo == nullptr) {
-		return;
-	}
-
-	Language langFrom {};
-	Language langTo {};
-	langsDetect(a_text, &langFrom, &langTo);
-
-	// [out]
-	*out_langFrom = _langCode(langFrom);
-	*out_langTo   = _langCode(langTo);
-}
-//-------------------------------------------------------------------------------------------------
-void_t
 Translate::execute(
     std::ctstring_t &a_textFrom,		///< source text
-    cLanguage        a_langFrom,		///< source text language
-    cLanguage        a_langTo,			///< target text language
     std::tstring_t  *out_textToBrief,	///< [out] target brief translate
     std::tstring_t  *out_textToDetail,	///< [out] target detail translate
     std::tstring_t  *out_textToRaw		///< [out] target raw translate (HTML) (maybe nullptr)
 )
 {
     xTEST(!a_textFrom.empty());
-    xTEST_NA(a_langFrom);
-    xTEST_NA(a_langTo);
     xTEST_PTR(out_textToBrief);
     xTEST_PTR(out_textToDetail);
     xTEST_NA(out_textToRaw);
 
     bool_t bRv {};
+
+    Language langFrom {};
+    Language langTo {};
+	_langsDetect(a_textFrom, &langFrom, &langTo);
 
 	curl::DataIn baseDataIn;
 	{
@@ -210,9 +186,9 @@ Translate::execute(
 			* dj - Json response with names (dj=1)
 			*/
 
-			std::ctstring_t  sourceLang   = (a_langFrom == Language::Unknown) ?
-				xT("auto") : _langCode(a_langFrom);
-			std::ctstring_t  targetLang   = _langCode(a_langTo);
+			std::ctstring_t  sourceLang   = (langFrom == Language::Unknown) ?
+				xT("auto") : _langCode(langFrom);
+			std::ctstring_t  targetLang   = _langCode(langTo);
 			std::ctstring_t  hostLang     = xT("en");
 
 			std::csize_t     querySizeMax = 2048;
@@ -279,20 +255,6 @@ Translate::execute(
 #endif
 
      _responseParse(dataOut, out_textToBrief, out_textToDetail, out_textToRaw);
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Translate::execute(
-    std::ctstring_t &a_textFrom,		///< source text
-	std::ctstring_t &a_langFrom,		///< source text language
-	std::ctstring_t &a_langTo,			///< target text language
-    std::tstring_t  *out_textToBrief,	///< [out] target brief translate
-    std::tstring_t  *out_textToDetail,	///< [out] target detail translate
-    std::tstring_t  *out_textToRaw		///< [out] target raw translate (HTML) (maybe nullptr)
-)
-{
-	execute(a_textFrom, _codeLang(a_langFrom), _codeLang(a_langTo),
-		out_textToBrief, out_textToDetail, out_textToRaw);
 }
 //-------------------------------------------------------------------------------------------------
 
