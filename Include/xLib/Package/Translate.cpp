@@ -21,89 +21,6 @@ namespace xl::package
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Translate::_langsDetect(
-    std::ctstring_t     &a_text,
-    Translate::Language *out_langFrom,
-    Translate::Language *out_langTo
-) const
-{
-    xTEST(!a_text.empty());
-    xTEST_PTR(out_langFrom);
-    xTEST_PTR(out_langTo);
-
-    std::ctstring_t lettersEn = xT("abcdefghijklmnopqrstuvwxyz");
-    std::ctstring_t lettersRu = xT("абвгдеёжзийклмнопрстуфхцчшщъыьэюя");
-
-    std::size_t countEn {};
-    std::size_t countRu {};
-	{
-	    for (int i = 0; i < a_text.size(); ++ i) {
-			core::CharT letter( a_text.at(i)/*.toLower()*/ );
-			xCHECK_DO(!letter.isAlpha(), continue);
-
-			xCHECK_DO(lettersEn.find(letter.character()) != std::tstring_t::npos, ++ countEn);
-			xCHECK_DO(lettersRu.find(letter.character()) != std::tstring_t::npos, ++ countRu);
-		}
-	}
-
-    cbool_t isEn      = (countEn != 0 && countRu == 0);
-    cbool_t isRu      = (countEn == 0 && countRu != 0);
-    cbool_t isMixed   = (countEn != 0 && countRu != 0);
-    cbool_t isUnknown = (countEn == 0 && countRu == 0);
-
-    if      (isEn) {
-        *out_langFrom = Translate::Language::En;
-        *out_langTo   = Translate::Language::Ru;
-
-        // Trace() << "Langs: en-ru\n";
-    }
-    else if (isRu) {
-        *out_langFrom = Translate::Language::Ru;
-        *out_langTo   = Translate::Language::En;
-
-        // Trace() << "Langs: ru-en\n";
-    }
-    else if (isMixed) {
-        // Trace() << "Langs: mixed-mixed\n";
-
-        cbool_t isPreferEn = (countEn >= countRu);
-        cbool_t isPreferRu = (countRu >  countEn);
-
-        if      (isPreferEn) {
-            *out_langFrom = Translate::Language::En;
-            *out_langTo   = Translate::Language::Ru;
-
-            // Trace() << "Langs (prefer): en-ru\n";
-        }
-        else if (isPreferRu) {
-            *out_langFrom = Translate::Language::Ru;
-            *out_langTo   = Translate::Language::En;
-
-            // Trace() << "Langs (prefer): ru-en\n";
-        }
-        else {
-            xTEST(false);
-        }
-    }
-    else if (isUnknown) {
-        // TODO: defaults for isUnknown
-        *out_langFrom = Translate::Language::Auto;
-        *out_langTo   = Translate::Language::Auto;
-
-        // Trace() << "Langs: unknown-unknown\n";
-    }
-    else {
-        *out_langFrom = Translate::Language::Unknown;
-        *out_langTo   = Translate::Language::Unknown;
-
-        Trace() << xTRACE_VAR(countEn);
-        Trace() << xTRACE_VAR(countRu);
-
-        xTEST(false);
-    }
-}
-//-------------------------------------------------------------------------------------------------
-void_t
 Translate::execute(
     std::ctstring_t &a_textFrom,		///< source text
     std::tstring_t  *out_textToBrief,	///< [out] target brief translate
@@ -272,6 +189,89 @@ const std::map<Translate::Language, std::tstring_t> Translate::_langToCodes
 	{Language::En,      xT("en")},
 	{Language::Ru,      xT("ru")}
 };
+//-------------------------------------------------------------------------------------------------
+void_t
+Translate::_langsDetect(
+    std::ctstring_t     &a_text,
+    Translate::Language *out_langFrom,
+    Translate::Language *out_langTo
+) const
+{
+    xTEST(!a_text.empty());
+    xTEST_PTR(out_langFrom);
+    xTEST_PTR(out_langTo);
+
+    std::ctstring_t lettersEn = xT("abcdefghijklmnopqrstuvwxyz");
+    std::ctstring_t lettersRu = xT("абвгдеёжзийклмнопрстуфхцчшщъыьэюя");
+
+    std::size_t countEn {};
+    std::size_t countRu {};
+	{
+	    for (int i = 0; i < a_text.size(); ++ i) {
+			core::CharT letter( a_text.at(i)/*.toLower()*/ );
+			xCHECK_DO(!letter.isAlpha(), continue);
+
+			xCHECK_DO(lettersEn.find(letter.character()) != std::tstring_t::npos, ++ countEn);
+			xCHECK_DO(lettersRu.find(letter.character()) != std::tstring_t::npos, ++ countRu);
+		}
+	}
+
+    cbool_t isEn      = (countEn != 0 && countRu == 0);
+    cbool_t isRu      = (countEn == 0 && countRu != 0);
+    cbool_t isMixed   = (countEn != 0 && countRu != 0);
+    cbool_t isUnknown = (countEn == 0 && countRu == 0);
+
+    if      (isEn) {
+        *out_langFrom = Translate::Language::En;
+        *out_langTo   = Translate::Language::Ru;
+
+        // Trace() << "Langs: en-ru\n";
+    }
+    else if (isRu) {
+        *out_langFrom = Translate::Language::Ru;
+        *out_langTo   = Translate::Language::En;
+
+        // Trace() << "Langs: ru-en\n";
+    }
+    else if (isMixed) {
+        // Trace() << "Langs: mixed-mixed\n";
+
+        cbool_t isPreferEn = (countEn >= countRu);
+        cbool_t isPreferRu = (countRu >  countEn);
+
+        if      (isPreferEn) {
+            *out_langFrom = Translate::Language::En;
+            *out_langTo   = Translate::Language::Ru;
+
+            // Trace() << "Langs (prefer): en-ru\n";
+        }
+        else if (isPreferRu) {
+            *out_langFrom = Translate::Language::Ru;
+            *out_langTo   = Translate::Language::En;
+
+            // Trace() << "Langs (prefer): ru-en\n";
+        }
+        else {
+            xTEST(false);
+        }
+    }
+    else if (isUnknown) {
+        // TODO: defaults for isUnknown
+        *out_langFrom = Translate::Language::Auto;
+        *out_langTo   = Translate::Language::Auto;
+
+        // Trace() << "Langs: unknown-unknown\n";
+    }
+    else {
+        *out_langFrom = Translate::Language::Unknown;
+        *out_langTo   = Translate::Language::Unknown;
+
+        Trace() << xTRACE_VAR(countEn);
+        Trace() << xTRACE_VAR(countRu);
+
+        xTEST(false);
+    }
+}
 //-------------------------------------------------------------------------------------------------
 void_t
 Translate::_responseParse(
