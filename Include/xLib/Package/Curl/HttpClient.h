@@ -52,11 +52,11 @@ public:
 	xNO_COPY_ASSIGN(HttpClient)
 ///@}
 
-    bool_t request(cRequest type, DataIn &dataIn, DataOut *dataOut);
+    bool_t   request(cRequest type, DataIn &dataIn, DataOut *dataOut);
 		///< send request
 	HttpCode httpCode(cDataOut &dataOut) const;
 		///< get HTTP state code
-    bool_t isSuccess(cDataOut &dataOut) const;
+    bool_t   isSuccess(cDataOut &dataOut) const;
 		///< is HTTP state code OK
 };
 
