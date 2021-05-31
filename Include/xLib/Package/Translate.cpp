@@ -21,7 +21,177 @@ namespace xl::package
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Translate::langsDetect(
+Translate::execute(
+    std::ctstring_t &a_textFrom,		///< source text
+    std::tstring_t  *out_textToBrief,	///< [out] target brief translate
+    std::tstring_t  *out_textToDetail,	///< [out] target detail translate
+    std::tstring_t  *out_textToRaw		///< [out] target raw translate (HTML) (maybe nullptr)
+)
+{
+    xTEST(!a_textFrom.empty());
+    xTEST_PTR(out_textToBrief);
+    xTEST_PTR(out_textToDetail);
+    xTEST_NA(out_textToRaw);
+
+    bool_t bRv {};
+
+    Language langFrom {};
+    Language langTo {};
+	_langsDetect(a_textFrom, &langFrom, &langTo);
+
+	curl::DataIn baseDataIn;
+	{
+		std::ctstring_t encoding = xT("UTF-8");
+
+	   /**
+		* HTTP POST request:
+		*
+		* <form action="/m" class="">
+		*     ...
+		*     <input type="hidden" name="hl" value="ru"/>
+		*     <input type="hidden" name="sl" value="auto"/>
+		*     <input type="hidden" name="tl" value="ru"/>
+		*     <input type="hidden" name="ie" value="UTF-8"/>
+		*     <input type="hidden" name="prev" value="_m"/>
+		*     <input type="text"   name="q" style="width:65%" maxlength="2048" value="волк"/><br>
+		*     <input type="submit" value="Перевести"/>
+		* </form>
+		*/
+
+		baseDataIn.url            = xT("https://translate.google.com/m");
+		baseDataIn.accept         = xT("text/html");
+		baseDataIn.acceptEncoding = xT("gzip, deflate");
+		baseDataIn.acceptLanguage = xT("en-us,en");
+		baseDataIn.acceptCharset  = encoding;
+
+		// TODO: curl::HttpClient::Request::Post
+	#if 0
+		std::map_tstring_t headers
+		{
+			{"content-type", "application/x-www-form-urlencoded"}
+		};
+
+		baseDataIn.addHeaders = headers;
+	#endif
+
+		// baseDataIn.request
+		{
+		   /**
+			* Google Translate query params
+			*
+			* https://stackoverflow.com/questions/26714426/what-is-the-meaning-of-google-translate-query-params
+			*
+			* sl - source language code (auto for autodetection)
+			* tl - translation language
+			* hl - host language
+			* q  - source text / word
+			* ie - input encoding (a guess)
+			* oe - output encoding (a guess)
+			* dt - may be included more than once and specifies what to return in the reply
+			*
+			* Here are some values for dt. If the value is set, the following data will be returned:
+			*
+			* t  - translation of source text
+			* at - alternate translations
+			* rm - transcription / transliteration of source and translated texts
+			* bd - dictionary, in case source text is one word (you get translations with articles,
+			*      reverse translations, etc.)
+			* md - definitions of source text, if it's one word
+			* ss - synonyms of source text, if it's one word
+			* ex - examples
+			* rw - See also list
+			* dj - Json response with names (dj=1)
+			*/
+
+			std::ctstring_t  sourceLang   = (langFrom == Language::Unknown) ?
+				xT("auto") : _langCode(langFrom);
+			std::ctstring_t  targetLang   = _langCode(langTo);
+			std::ctstring_t  hostLang     = xT("en");
+
+			std::csize_t     querySizeMax = 2048;
+			std::ctstring_t &query        = a_textFrom;
+
+			std::ctstring_t  encodingIn   = encoding;
+			std::ctstring_t  encodingOut  = encoding;
+
+			xCHECK_DO(query.size() > querySizeMax,
+				Cout() << xT("Warning: ") << xTRACE_VAR_2(querySizeMax, query.size()));
+
+			const std::map_tstring_t request
+			{
+				{xT("sl"), sourceLang},
+				{xT("tl"), targetLang},
+				{xT("hl"), hostLang},
+				{xT("ie"), encodingIn},
+				{xT("oe"), encodingOut},
+				{xT("q"),  query}
+			};
+
+			// Cout() << xTRACE_VAR(request) << "\n";
+
+			for (const auto &[param, value] : request) {
+				baseDataIn.request += param + xT("=") + _http.escape(value) + xT("&");
+			}
+
+			baseDataIn.request = String::trimRightChars(baseDataIn.request, xT("&"));
+		}
+	}
+
+	// TODO: curl::HttpClient::Request::Post
+	curl::DataOut dataOut;
+	bRv = _http.request(curl::HttpClient::Request::Get, baseDataIn, &dataOut);
+	xTEST(bRv);
+	if ( !_http.isSuccess(dataOut) ) {
+		// Cout() << xTRACE_VAR(dataOut.body);
+
+		*out_textToBrief  = xT("Error: ") + std::to_string(dataOut.responseCode);
+		*out_textToDetail = xT("Error: ") + std::to_string(dataOut.responseCode);
+
+		if (out_textToRaw != nullptr) {
+			*out_textToRaw = xT("Error: ") + std::to_string(dataOut.responseCode);
+		}
+
+		return;
+	}
+
+	xTEST(!dataOut.headers.empty());
+	xTEST(!dataOut.body.empty());
+
+#if 0
+	Cout()
+		<< xTRACE_VAR(baseDataIn.request)   << std::endl
+		<< xT("\n")
+		<< xTRACE_VAR(dataOut.contentType)  << std::endl
+		<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
+		<< xTRACE_VAR(dataOut.responseCode) << std::endl
+		<< xTRACE_VAR(dataOut.totalTimeSec) << std::endl
+		<< xT("\n")
+		<< xTRACE_VAR(dataOut.headers)      << std::endl
+		<< xTRACE_VAR(dataOut.body.size())  << std::endl
+		<< xTRACE_VAR(dataOut.body)         << std::endl;
+#endif
+
+     _responseParse(dataOut, out_textToBrief, out_textToDetail, out_textToRaw);
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+const std::map<Translate::Language, std::tstring_t> Translate::_langToCodes
+{
+	{Language::Unknown, xT("")},
+	{Language::Auto,    xT("auto")},
+	{Language::En,      xT("en")},
+	{Language::Ru,      xT("ru")}
+};
+//-------------------------------------------------------------------------------------------------
+void_t
+Translate::_langsDetect(
     std::ctstring_t     &a_text,
     Translate::Language *out_langFrom,
     Translate::Language *out_langTo
@@ -102,216 +272,6 @@ Translate::langsDetect(
         xTEST(false);
     }
 }
-//-------------------------------------------------------------------------------------------------
-void_t
-Translate::langsDetect(
-    std::ctstring_t &a_text,
-	std::tstring_t  *out_langFrom,
-	std::tstring_t  *out_langTo
-) const
-{
-	if (out_langFrom == nullptr) {
-		return;
-	}
-
-	if (out_langTo == nullptr) {
-		return;
-	}
-
-	Language langFrom {};
-	Language langTo {};
-	langsDetect(a_text, &langFrom, &langTo);
-
-	// [out]
-	*out_langFrom = _langCode(langFrom);
-	*out_langTo   = _langCode(langTo);
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Translate::execute(
-    std::ctstring_t &a_textFrom,		///< source text
-    cLanguage        a_langFrom,		///< source text language
-    cLanguage        a_langTo,			///< target text language
-    std::tstring_t  *out_textToBrief,	///< [out] target brief translate
-    std::tstring_t  *out_textToDetail,	///< [out] target detail translate
-    std::tstring_t  *out_textToRaw		///< [out] target raw translate (HTML) (maybe nullptr)
-) const
-{
-    xTEST(!a_textFrom.empty());
-    xTEST_NA(a_langFrom);
-    xTEST_NA(a_langTo);
-    xTEST_PTR(out_textToBrief);
-    xTEST_PTR(out_textToDetail);
-    xTEST_NA(out_textToRaw);
-
-    bool_t bRv {};
-
-	curl::HttpClient http;
-
-	curl::DataIn baseDataIn;
-	{
-		std::ctstring_t encoding = xT("UTF-8");
-
-	   /**
-		* HTTP POST request:
-		*
-		* <form action="/m" class="">
-		*     ...
-		*     <input type="hidden" name="hl" value="ru"/>
-		*     <input type="hidden" name="sl" value="auto"/>
-		*     <input type="hidden" name="tl" value="ru"/>
-		*     <input type="hidden" name="ie" value="UTF-8"/>
-		*     <input type="hidden" name="prev" value="_m"/>
-		*     <input type="text"   name="q" style="width:65%" maxlength="2048" value="волк"/><br>
-		*     <input type="submit" value="Перевести"/>
-		* </form>
-		*/
-
-		baseDataIn.url            = xT("https://translate.google.com/m");
-		baseDataIn.accept         = xT("text/html");
-		baseDataIn.acceptEncoding = xT("gzip, deflate");
-		baseDataIn.acceptLanguage = xT("en-us,en");
-		baseDataIn.acceptCharset  = encoding;
-
-		// TODO: curl::HttpClient::Request::Post
-	#if 0
-		std::map_tstring_t headers
-		{
-			{"content-type", "application/x-www-form-urlencoded"}
-		};
-
-		baseDataIn.addHeaders = headers;
-	#endif
-
-		// baseDataIn.request
-		{
-		   /**
-			* Google Translate query params
-			*
-			* https://stackoverflow.com/questions/26714426/what-is-the-meaning-of-google-translate-query-params
-			*
-			* sl - source language code (auto for autodetection)
-			* tl - translation language
-			* hl - host language
-			* q  - source text / word
-			* ie - input encoding (a guess)
-			* oe - output encoding (a guess)
-			* dt - may be included more than once and specifies what to return in the reply
-			*
-			* Here are some values for dt. If the value is set, the following data will be returned:
-			*
-			* t  - translation of source text
-			* at - alternate translations
-			* rm - transcription / transliteration of source and translated texts
-			* bd - dictionary, in case source text is one word (you get translations with articles,
-			*      reverse translations, etc.)
-			* md - definitions of source text, if it's one word
-			* ss - synonyms of source text, if it's one word
-			* ex - examples
-			* rw - See also list
-			* dj - Json response with names (dj=1)
-			*/
-
-			std::ctstring_t  sourceLang   = (a_langFrom == Language::Unknown) ?
-				xT("auto") : _langCode(a_langFrom);
-			std::ctstring_t  targetLang   = _langCode(a_langTo);
-			std::ctstring_t  hostLang     = xT("en");
-
-			std::csize_t     querySizeMax = 2048;
-			std::ctstring_t &query        = a_textFrom;
-
-			std::ctstring_t  encodingIn   = encoding;
-			std::ctstring_t  encodingOut  = encoding;
-
-			xCHECK_DO(query.size() > querySizeMax,
-				Cout() << xT("Warning: ") << xTRACE_VAR_2(querySizeMax, query.size()));
-
-			const std::map_tstring_t request
-			{
-				{xT("sl"), sourceLang},
-				{xT("tl"), targetLang},
-				{xT("hl"), hostLang},
-				{xT("ie"), encodingIn},
-				{xT("oe"), encodingOut},
-				{xT("q"),  query}
-			};
-
-			// Cout() << xTRACE_VAR(request) << "\n";
-
-			for (const auto &[param, value] : request) {
-				baseDataIn.request += param + xT("=") + http.escape(value) + xT("&");
-			}
-
-			baseDataIn.request = String::trimRightChars(baseDataIn.request, xT("&"));
-		}
-	}
-
-	// TODO: curl::HttpClient::Request::Post
-	curl::DataOut dataOut;
-	bRv = http.request(curl::HttpClient::Request::Get, baseDataIn, &dataOut);
-	xTEST(bRv);
-	if ( !http.isSuccess(dataOut) ) {
-		// Cout() << xTRACE_VAR(dataOut.body);
-
-		*out_textToBrief  = xT("Error: ") + std::to_string(dataOut.responseCode);
-		*out_textToDetail = xT("Error: ") + std::to_string(dataOut.responseCode);
-
-		if (out_textToRaw != nullptr) {
-			*out_textToRaw = xT("Error: ") + std::to_string(dataOut.responseCode);
-		}
-
-		return;
-	}
-
-	xTEST(!dataOut.headers.empty());
-	xTEST(!dataOut.body.empty());
-
-#if 0
-	Cout()
-		<< xTRACE_VAR(baseDataIn.request)   << std::endl
-		<< xT("\n")
-		<< xTRACE_VAR(dataOut.contentType)  << std::endl
-		<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
-		<< xTRACE_VAR(dataOut.responseCode) << std::endl
-		<< xTRACE_VAR(dataOut.totalTimeSec) << std::endl
-		<< xT("\n")
-		<< xTRACE_VAR(dataOut.headers)      << std::endl
-		<< xTRACE_VAR(dataOut.body.size())  << std::endl
-		<< xTRACE_VAR(dataOut.body)         << std::endl;
-#endif
-
-     _responseParse(dataOut, out_textToBrief, out_textToDetail, out_textToRaw);
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Translate::execute(
-    std::ctstring_t &a_textFrom,		///< source text
-	std::ctstring_t &a_langFrom,		///< source text language
-	std::ctstring_t &a_langTo,			///< target text language
-    std::tstring_t  *out_textToBrief,	///< [out] target brief translate
-    std::tstring_t  *out_textToDetail,	///< [out] target detail translate
-    std::tstring_t  *out_textToRaw		///< [out] target raw translate (HTML) (maybe nullptr)
-) const
-{
-	execute(a_textFrom, _codeLang(a_langFrom), _codeLang(a_langTo),
-		out_textToBrief, out_textToDetail, out_textToRaw);
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*   private
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-const std::map<Translate::Language, std::tstring_t> Translate::_langToCodes
-{
-	{Language::Unknown, xT("")},
-	{Language::Auto,    xT("auto")},
-	{Language::En,      xT("en")},
-	{Language::Ru,      xT("ru")}
-};
 //-------------------------------------------------------------------------------------------------
 void_t
 Translate::_responseParse(

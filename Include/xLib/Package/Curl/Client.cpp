@@ -94,7 +94,7 @@ Client::send(
 std::tstring_t
 Client::escape(
     std::ctstring_t &a_str
-)
+) const
 {
     std::tstring_t sRv;
 
@@ -114,7 +114,7 @@ Client::escape(
 std::tstring_t
 Client::unescape(
     std::ctstring_t &a_str
-)
+) const
 {
     std::tstring_t sRv;
 
