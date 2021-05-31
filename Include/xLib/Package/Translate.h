@@ -19,16 +19,6 @@ class Translate :
     /// Translate text (by Google API, mobile version)
 {
 public:
-    enum class Language
-        ///< detected language
-    {
-        Unknown = 0,
-        Auto    = 1,	// TODO: Auto
-        En      = 2,
-        Ru      = 3
-    };
-    xUSING_CONST(Language);
-
 ///@name ctors, dtor
 ///@{
 			 Translate() = default;
@@ -42,6 +32,16 @@ public:
         ///< translate text
 
 private:
+    enum class Language
+        ///< detected language
+    {
+        Unknown = 0,
+        Auto    = 1,	// TODO: Auto
+        En      = 2,
+        Ru      = 3
+    };
+    xUSING_CONST(Language);
+
     static const std::map<Translate::Language, std::tstring_t> _langToCodes;
 
     void_t        _langsDetect(std::ctstring_t &text, Language *langFrom, Language *langTo) const;
