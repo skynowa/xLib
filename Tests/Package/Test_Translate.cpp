@@ -25,16 +25,11 @@ Test_Translate::unit()
 		for (const auto &it_data : datas) {
 			Translate translate;
 
-			Translate::Language langFrom {};
-			Translate::Language langTo {};
-			translate.langsDetect(it_data.test, &langFrom, &langTo);
-			xTEST_EQ((int_t)langFrom, (int_t)Translate::Language::En);
-			xTEST_EQ((int_t)langTo,   (int_t)Translate::Language::Ru);
-
 			std::tstring_t textToBrief;
 			std::tstring_t textToDetail;
 			std::tstring_t textToRaw;
-			translate.execute(it_data.test, langFrom, langTo, &textToBrief, &textToDetail, &textToRaw);
+
+			translate.execute(it_data.test, &textToBrief, &textToDetail, &textToRaw);
 			xTEST_EQ(textToBrief, it_data.expect);
 			xTEST_EQ(textToDetail, std::tstring_t(xT("n/a")));
 			xTEST(!textToRaw.empty());
