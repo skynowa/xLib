@@ -39,8 +39,8 @@ public:
     void_t         receive(void_t *buff, std::csize_t buffSize, std::size_t *n);
     void_t         send(cvoid_t *buff, std::csize_t buffSize, std::size_t *n);
 
-    std::tstring_t escape(std::ctstring_t &str);
-    std::tstring_t unescape(std::ctstring_t &str);
+    std::tstring_t escape(std::ctstring_t &str) const;
+    std::tstring_t unescape(std::ctstring_t &str) const;
 
     static
     std::tstring_t escapeUrl(std::ctstring_t &str);

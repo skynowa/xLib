@@ -43,10 +43,10 @@ public:
         ///< detect languages
     void_t execute(std::ctstring_t &textFrom, cLanguage langFrom, cLanguage langTo,
 				std::tstring_t *textToBrief, std::tstring_t *textToDetail,
-				std::tstring_t *textToRaw) const;
+				std::tstring_t *textToRaw);
     void_t execute(std::ctstring_t &textFrom, std::ctstring_t &langFrom, std::ctstring_t &langTo,
 				std::tstring_t *textToBrief, std::tstring_t *textToDetail,
-				std::tstring_t *textToRaw) const;
+				std::tstring_t *textToRaw);
         ///< translate text
 
 private:
