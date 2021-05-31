@@ -20,8 +20,8 @@ class IRestClient
 public:
 ///@name ctors, dtor
 ///@{
-			 IRestClient();
-	virtual ~IRestClient();
+			 IRestClient() = default;
+	virtual ~IRestClient() = 0;
 
 	xNO_COPY_ASSIGN(IRestClient)
 ///@}

@@ -135,7 +135,7 @@ Translate::execute(
     std::tstring_t  *out_textToBrief,	///< [out] target brief translate
     std::tstring_t  *out_textToDetail,	///< [out] target detail translate
     std::tstring_t  *out_textToRaw		///< [out] target raw translate (HTML) (maybe nullptr)
-) const
+)
 {
     xTEST(!a_textFrom.empty());
     xTEST_NA(a_langFrom);
@@ -145,8 +145,6 @@ Translate::execute(
     xTEST_NA(out_textToRaw);
 
     bool_t bRv {};
-
-	curl::HttpClient http;
 
 	curl::DataIn baseDataIn;
 	{
@@ -239,7 +237,7 @@ Translate::execute(
 			// Cout() << xTRACE_VAR(request) << "\n";
 
 			for (const auto &[param, value] : request) {
-				baseDataIn.request += param + xT("=") + http.escape(value) + xT("&");
+				baseDataIn.request += param + xT("=") + _http.escape(value) + xT("&");
 			}
 
 			baseDataIn.request = String::trimRightChars(baseDataIn.request, xT("&"));
@@ -248,9 +246,9 @@ Translate::execute(
 
 	// TODO: curl::HttpClient::Request::Post
 	curl::DataOut dataOut;
-	bRv = http.request(curl::HttpClient::Request::Get, baseDataIn, &dataOut);
+	bRv = _http.request(curl::HttpClient::Request::Get, baseDataIn, &dataOut);
 	xTEST(bRv);
-	if ( !http.isSuccess(dataOut) ) {
+	if ( !_http.isSuccess(dataOut) ) {
 		// Cout() << xTRACE_VAR(dataOut.body);
 
 		*out_textToBrief  = xT("Error: ") + std::to_string(dataOut.responseCode);
@@ -291,7 +289,7 @@ Translate::execute(
     std::tstring_t  *out_textToBrief,	///< [out] target brief translate
     std::tstring_t  *out_textToDetail,	///< [out] target detail translate
     std::tstring_t  *out_textToRaw		///< [out] target raw translate (HTML) (maybe nullptr)
-) const
+)
 {
 	execute(a_textFrom, _codeLang(a_langFrom), _codeLang(a_langTo),
 		out_textToBrief, out_textToDetail, out_textToRaw);
