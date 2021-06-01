@@ -25,19 +25,19 @@ Translate::execute(
     std::ctstring_t &a_textFrom,		///< source text
     std::tstring_t  *out_textToBrief,	///< [out] target brief translate
     std::tstring_t  *out_textToDetail,	///< [out] target detail translate
-    std::tstring_t  *out_textToRaw		///< [out] target raw translate (HTML) (maybe nullptr)
+    std::tstring_t  *out_textToRaw,		///< [out] target raw translate (HTML) (maybe nullptr)
+    std::tstring_t  *out_langFrom,		///< [out] from language ISO code
+    std::tstring_t  *out_langTo			///< [out] to language ISO code
 )
 {
     xTEST(!a_textFrom.empty());
     xTEST_PTR(out_textToBrief);
     xTEST_PTR(out_textToDetail);
     xTEST_NA(out_textToRaw);
+    xTEST_PTR(out_langFrom);
+    xTEST_PTR(out_langTo);
 
     bool_t bRv {};
-
-    Language langFrom {};
-    Language langTo {};
-	_langsDetect(a_textFrom, &langFrom, &langTo);
 
 	curl::DataIn baseDataIn;
 	{
@@ -103,6 +103,10 @@ Translate::execute(
 			* dj - Json response with names (dj=1)
 			*/
 
+			Language langFrom {};
+			Language langTo {};
+			_langsDetect(a_textFrom, &langFrom, &langTo);
+
 			std::ctstring_t  sourceLang   = (langFrom == Language::Unknown) ?
 				xT("auto") : _langCode(langFrom);
 			std::ctstring_t  targetLang   = _langCode(langTo);
@@ -134,6 +138,10 @@ Translate::execute(
 			}
 
 			baseDataIn.request = String::trimRightChars(baseDataIn.request, xT("&"));
+
+			// [out]
+			*out_langFrom = sourceLang;
+			*out_langTo   = targetLang;
 		}
 	}
 
