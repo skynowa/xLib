@@ -152,11 +152,11 @@ Translate::execute(
 	if ( !_http.isSuccess(dataOut) ) {
 		// Cout() << xTRACE_VAR(dataOut.body);
 
-		*out_textToBrief  = xT("Error: ") + std::to_string(dataOut.responseCode);
-		*out_textToDetail = xT("Error: ") + std::to_string(dataOut.responseCode);
+		*out_textToBrief  = Format::str(xT("Error: {}"), dataOut.responseCode);
+		*out_textToDetail = Format::str(xT("Error: {}"), dataOut.responseCode);
 
 		if (out_textToRaw != nullptr) {
-			*out_textToRaw = xT("Error: ") + std::to_string(dataOut.responseCode);
+			*out_textToRaw = Format::str(xT("Error: {}"), dataOut.responseCode);
 		}
 
 		return;
