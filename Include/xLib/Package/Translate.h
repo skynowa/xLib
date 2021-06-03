@@ -52,8 +52,6 @@ private:
         ///< parse response
     std::tstring_t _langCode(cLanguage lang) const;
         ///< converter
-    Language       _codeLang(std::ctstring_t &code) const;
-        ///< converter
 };
 
 } // namespace
