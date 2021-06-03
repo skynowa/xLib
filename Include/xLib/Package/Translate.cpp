@@ -190,14 +190,6 @@ Translate::execute(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-const std::map<Translate::Language, std::tstring_t> Translate::_langToCodes
-{
-	{Language::Unknown, xT("")},
-	{Language::Auto,    xT("auto")},
-	{Language::En,      xT("en")},
-	{Language::Ru,      xT("ru")}
-};
-//-------------------------------------------------------------------------------------------------
 void_t
 Translate::_langsDetect(
     std::ctstring_t     &a_text,
@@ -332,8 +324,16 @@ Translate::_langCode(
 	cLanguage a_lang
 ) const
 {
-	auto it = _langToCodes.find(a_lang);
-	if (it == _langToCodes.cend()) {
+	static const std::map<Translate::Language, std::tstring_t> langToCodes
+	{
+		{Language::Unknown, xT("")},
+		{Language::Auto,    xT("auto")},
+		{Language::En,      xT("en")},
+		{Language::Ru,      xT("ru")}
+	};
+
+	auto it = langToCodes.find(a_lang);
+	if (it == langToCodes.cend()) {
 		return {};
 	}
 

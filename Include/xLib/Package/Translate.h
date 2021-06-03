@@ -43,8 +43,6 @@ private:
     };
     xUSING_CONST(Language);
 
-    static const std::map<Translate::Language, std::tstring_t> _langToCodes;
-
     void_t         _langsDetect(std::ctstring_t &text, Language *langFrom, Language *langTo) const;
         ///< detect languages
     void_t         _responseParse(const curl::DataOut &dataOut, std::tstring_t *textToBrief,
