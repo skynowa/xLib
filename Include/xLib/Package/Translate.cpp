@@ -131,7 +131,7 @@ Translate::execute(
 				{xT("q"),  query}
 			};
 
-			// Cout() << xTRACE_VAR(request) << "\n";
+			// Cout() << xTRACE_VAR(request);
 
 			for (const auto &[param, value] : request) {
 				baseDataIn.request += param + xT("=") + _http.escape(value) + xT("&");
@@ -233,16 +233,16 @@ Translate::_langsDetect(
         *out_langFrom = Translate::Language::En;
         *out_langTo   = Translate::Language::Ru;
 
-        // Trace() << "Langs: en-ru\n";
+        // Cout() << "Langs: en-ru";
     }
     else if (isRu) {
         *out_langFrom = Translate::Language::Ru;
         *out_langTo   = Translate::Language::En;
 
-        // Trace() << "Langs: ru-en\n";
+        // Cout() << "Langs: ru-en";
     }
     else if (isMixed) {
-        // Trace() << "Langs: mixed-mixed\n";
+        // Cout() << "Langs: mixed-mixed";
 
         cbool_t isPreferEn = (countEn >= countRu);
         cbool_t isPreferRu = (countRu >  countEn);
@@ -251,13 +251,13 @@ Translate::_langsDetect(
             *out_langFrom = Translate::Language::En;
             *out_langTo   = Translate::Language::Ru;
 
-            // Trace() << "Langs (prefer): en-ru\n";
+            // Cout() << "Langs (prefer): en-ru";
         }
         else if (isPreferRu) {
             *out_langFrom = Translate::Language::Ru;
             *out_langTo   = Translate::Language::En;
 
-            // Trace() << "Langs (prefer): ru-en\n";
+            // Cout() << "Langs (prefer): ru-en";
         }
         else {
             xTEST(false);
@@ -268,14 +268,14 @@ Translate::_langsDetect(
         *out_langFrom = Translate::Language::Auto;
         *out_langTo   = Translate::Language::Auto;
 
-        // Trace() << "Langs: unknown-unknown\n";
+        // Cout() << "Langs: unknown-unknown";
     }
     else {
         *out_langFrom = Translate::Language::Unknown;
         *out_langTo   = Translate::Language::Unknown;
 
-        Trace() << xTRACE_VAR(countEn);
-        Trace() << xTRACE_VAR(countRu);
+        Cout() << xTRACE_VAR(countEn);
+        Cout() << xTRACE_VAR(countRu);
 
         xTEST(false);
     }
