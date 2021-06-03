@@ -340,13 +340,5 @@ Translate::_langCode(
 	return it->second;
 }
 //-------------------------------------------------------------------------------------------------
-Translate::Language
-Translate::_codeLang(
-	std::ctstring_t &a_code
-) const
-{
-	return Algos::mapFindByValue(_langToCodes, a_code);
-}
-//-------------------------------------------------------------------------------------------------
 
 } // namespace
