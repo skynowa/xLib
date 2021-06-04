@@ -185,7 +185,7 @@ Test_Volume::unit()
     xTEST_CASE("isSpaceAvailable")
     {
         std::vec_tstring_t volumes;
-        volumes.push_back( User().homeDir() );
+        volumes.push_back( Path::homeDir().str() );
 
         for (const auto &it : volumes) {
             const Data2<ulonglong_t, bool_t> data[]
@@ -211,7 +211,7 @@ Test_Volume::unit()
     xTEST_CASE("space")
     {
         std::vec_tstring_t volumePaths;
-        volumePaths.push_back( User().homeDir() );
+        volumePaths.push_back( Path::homeDir().str() );
 
         for (const auto &it : volumePaths) {
             // xCHECK_DO(!Volume(it).isReady(), continue);
