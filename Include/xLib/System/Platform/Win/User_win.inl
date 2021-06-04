@@ -106,43 +106,6 @@ User::_name_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
-User::_homeDir_impl() const
-{
-    std::tstring_t sRv;
-
-    tchar_t buff[MAX_PATH + 1] {};
-
-    HRESULT hrRv = SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0UL, &buff[0]);
-    xTEST_EQ(S_OK == hrRv, true);
-
-    sRv.assign(buff);
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-User::_shellPath_impl() const
-{
-    std::tstring_t sRv;
-
-    LPITEMIDLIST idList {};
-
-    HRESULT hrRv = ::SHGetSpecialFolderLocation(nullptr, CSIDL_WINDOWS, &idList);
-    xTEST_EQ(hrRv, S_OK);
-
-    tchar_t buff[MAX_PATH + 1] {};
-
-    BOOL blRv = ::SHGetPathFromIDList(idList, buff);
-    xTEST_DIFF(blRv, FALSE);
-
-    sRv.append(buff);
-    sRv.append(Const::slash());
-    sRv.append(xT("explorer.exe"));
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************

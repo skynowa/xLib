@@ -29,6 +29,8 @@ public:
 
 	static Path exe();
 	static Path dll();
+	static Path homeDir();
+	static Path shellPath();
 ///@}
 
 ///@name interfaces
@@ -151,6 +153,11 @@ xPLATFORM_IMPL:
 	std::tstring_t _exe_impl();
 	static
 	std::tstring_t _dll_impl();
+    static
+    std::tstring_t _homeDir_impl();
+    static
+    std::tstring_t _shellPath_impl();
+
     std::tstring_t _volume_impl() const;
     void_t         _toNative_impl(std::tstring_t *filePath) const;
     bool_t         _isAbsolute_impl() const;

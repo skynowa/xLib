@@ -886,6 +886,21 @@ Test_Path::unit()
         xTEST(!m_sRv.empty());
     }
 
+
+    xTEST_CASE("homeDir")
+    {
+        m_sRv = Path::homeDir().str();
+        xTEST(!m_sRv.empty());
+        xTEST_EQ(Dir(m_sRv).isExists(), true);
+    }
+
+    xTEST_CASE("shellPath")
+    {
+        m_sRv = Path::shellPath().str();
+        xTEST(!m_sRv.empty());
+        xTEST_EQ(FileInfo(m_sRv).isExists(), true);
+    }
+
     xTEST_CASE("briefName")
     {
         const data2_tstring_t data[]
