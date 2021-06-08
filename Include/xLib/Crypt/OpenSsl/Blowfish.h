@@ -44,11 +44,11 @@ public:
         ///< set key as file
 
     // cfb64
-    void_t   encryptCfb64(cuchar_t *in, uchar_t *out, clong_t &inSize, int_t *num, cMode mode);
+    void_t   encryptCfb64(cMode mode, cuchar_t *in, uchar_t *out, clong_t &inSize, int_t *num);
         ///< encrypt buffer
-    void_t   encryptCfb64(std::custring_t &in, std::ustring_t *out, cMode mode);
+    void_t   encryptCfb64(cMode mode, std::custring_t &in, std::ustring_t *out);
         ///< encrypt std::ustring_t
-    void_t   encryptFileCfb64(std::ctstring_t &filePathIn, std::ctstring_t &filePathOut, cMode mode);
+    void_t   encryptFileCfb64(cMode mode, std::ctstring_t &filePathIn, std::ctstring_t &filePathOut);
         ///< encrypt file
 
 private:
