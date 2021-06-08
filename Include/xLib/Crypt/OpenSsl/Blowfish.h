@@ -1,6 +1,6 @@
 /**
  * \file  Blowfish.h
- * \brief blowfish (openssl)
+ * \brief OpenSSL - blowfish
  */
 
 

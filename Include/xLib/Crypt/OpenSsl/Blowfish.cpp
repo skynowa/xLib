@@ -1,6 +1,6 @@
 /**
- * \file  Blowfish.inl
- * \brief blowfish (openssl)
+ * \file  Blowfish.cpp
+ * \brief OpenSSL - blowfish
  */
 
 
