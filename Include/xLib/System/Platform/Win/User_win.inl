@@ -278,21 +278,3 @@ User::_getUID(
 //-------------------------------------------------------------------------------------------------
 
 } // namespace
-
-#if 0
-
-int main()
-{
-	uint_t uid  = _getuid();
-	uint_t euid = _geteuid();
-
-	std::cout
-		<< "uid: "  << std::setbase(10) << uid  << std::endl
-		<< "euid: " << std::setbase(10) << euid << std::endl
-		<< std::endl;
-
-	return EXIT_SUCCESS;
-}
-
-#endif
-//-------------------------------------------------------------------------------------------------
