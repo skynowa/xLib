@@ -110,6 +110,7 @@ Blowfish::encryptCfb64(
     int_t    *a_num
 )
 {
+    xTEST(a_mode == Blowfish::Mode::Encrypt || a_mode == Blowfish::Mode::Decrypt);
     xTEST_PTR(a_in);
     xTEST_PTR(a_out);
     xTEST_GR_EQ(a_inSize, 0L);
