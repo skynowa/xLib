@@ -75,14 +75,18 @@ Path::dll()
 Path
 Path::homeDir()
 {
-    return Path(_homeDir_impl());
+	std::ctstring_t &path = _homeDir_impl();
+
+    return Path(path);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 Path
 Path::shellPath()
 {
-    return Path(_shellPath_impl());
+	std::ctstring_t &path = _shellPath_impl();
+
+    return Path(path);
 }
 //-------------------------------------------------------------------------------------------------
 
