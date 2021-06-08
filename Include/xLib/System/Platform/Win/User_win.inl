@@ -1,6 +1,6 @@
 /**
  * \file  User_win.inl
- * \brief [CLASS_COMMENTS]
+ * \brief
  */
 
 
