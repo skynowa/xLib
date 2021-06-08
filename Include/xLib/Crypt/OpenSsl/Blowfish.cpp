@@ -103,11 +103,11 @@ Blowfish::setFileKey(
 //-------------------------------------------------------------------------------------------------
 void_t
 Blowfish::encryptCfb64(
+    cMode     a_mode,
     cuchar_t *a_in,
     uchar_t  *a_out,
     clong_t  &a_inSize,
-    int_t    *a_num,
-    cMode     a_mode
+    int_t    *a_num
 )
 {
     xTEST_PTR(a_in);
@@ -118,14 +118,14 @@ Blowfish::encryptCfb64(
     Utils::arrayZeroT(_ivec);
 
     (void_t)::BF_cfb64_encrypt(a_in, a_out, a_inSize, &_key, _ivec, a_num,
-    	static_cast<int_t>(a_mode));
+        static_cast<int_t>(a_mode));
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Blowfish::encryptCfb64(
+    cMode            a_mode,
     std::custring_t &a_in,
-    std::ustring_t  *a_out,
-    cMode            a_mode
+    std::ustring_t  *a_out
 )
 {
     xTEST(!a_in.empty());
@@ -135,15 +135,15 @@ Blowfish::encryptCfb64(
 
     // this integer must be initialized to zero when ivec is initialized
     int_t num {};
-    encryptCfb64(&a_in.at(0), &a_out->at(0), static_cast<long_t>( a_in.size() ), &num, a_mode);
+    encryptCfb64(a_mode, &a_in.at(0), &a_out->at(0), static_cast<long_t>( a_in.size() ), &num);
     xTEST_LESS(- 1, num);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Blowfish::encryptFileCfb64(
+    cMode            a_mode,
     std::ctstring_t &a_filePathIn,
-    std::ctstring_t &a_filePathOut,
-    cMode            a_mode
+    std::ctstring_t &a_filePathOut
 )
 {
     xTEST(!a_filePathIn.empty());
@@ -153,7 +153,7 @@ Blowfish::encryptFileCfb64(
     File(a_filePathIn).binRead(&in);
 
     std::ustring_t out;
-    encryptCfb64(in, &out, a_mode);
+    encryptCfb64(a_mode, in, &out);
 
     File(a_filePathOut).binWrite(out, FileIO::OpenMode::BinReadWrite);
 }
