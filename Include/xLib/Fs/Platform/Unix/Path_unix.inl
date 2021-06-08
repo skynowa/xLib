@@ -50,8 +50,6 @@ Path::_dll_impl()
 std::tstring_t
 Path::_homeDir_impl()
 {
-    std::tstring_t sRv;
-
    /*
     * MAN: user's home directory
     *
@@ -71,8 +69,8 @@ Path::_homeDir_impl()
     xCHECK_RET(!asRv.empty(), xA2T(asRv));
 
     // try to get from system environment
-    sRv = Environment(xT("HOME")).var();
-    xTEST_EQ(sRv.empty(), false);
+    std::ctstring_t sRv = Environment(xT("HOME")).var();
+    xTEST(!sRv.empty());
 
     return sRv;
 }
