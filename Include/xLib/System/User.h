@@ -59,7 +59,7 @@ private:
 				std::string *pw_dir, std::string *pw_shell) const;
         ///< get password file entry
 
-    friend class xl::fs::Path; // Path::_passwd()
+    friend class xl::fs::Path; // for _passwd()
 #endif
 };
 
