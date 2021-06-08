@@ -1,6 +1,6 @@
 /**
  * \file  User_unix.inl
- * \brief user info
+ * \brief
  */
 
 
