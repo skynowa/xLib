@@ -36,24 +36,17 @@ public:
 
 ///@name set key
 ///@{
-	void_t   setKey(uchar_t *key, cint_t &keySize);
-		///< set key
-	void_t   setKey(std::custring_t &key);
-		///< set key
-	void_t   setKey(std::ctstring_t &key);
-		///< set key
-	void_t   setFileKey(std::ctstring_t &filePath);
-		///< set key as file
+	void_t setKey(uchar_t *key, cint_t &keySize);
+	void_t setKey(std::custring_t &key);
+	void_t setKey(std::ctstring_t &key);
+	void_t setFileKey(std::ctstring_t &filePath);
 ///@}
 
 ///@name ecrypt with cfb64
 ///@{
-	void_t   encryptCfb64(cMode mode, cuchar_t *in, uchar_t *out, clong_t &inSize, int_t *num);
-		///< encrypt buffer
-	void_t   encryptCfb64(cMode mode, std::custring_t &in, std::ustring_t *out);
-		///< encrypt std::ustring_t
-	void_t   encryptFileCfb64(cMode mode, std::ctstring_t &filePathIn, std::ctstring_t &filePathOut);
-		///< encrypt file
+	void_t encryptCfb64(cMode mode, cuchar_t *in, uchar_t *out, clong_t &inSize, int_t *num);
+	void_t encryptCfb64(cMode mode, std::custring_t &in, std::ustring_t *out);
+	void_t encryptFileCfb64(cMode mode, std::ctstring_t &filePathIn, std::ctstring_t &filePathOut);
 ///@}
 
 private:
