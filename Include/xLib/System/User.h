@@ -58,9 +58,9 @@ private:
     void_t _passwd(std::string *pw_name, std::string *pw_passwd, uid_t *pw_uid, gid_t *pw_gid,
 				std::string *pw_dir, std::string *pw_shell) const;
         ///< get password file entry
-#endif
 
     friend class xl::fs::Path; // Path::_passwd()
+#endif
 };
 
 } // namespace
