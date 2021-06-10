@@ -151,7 +151,7 @@ Dir::create() const
     xCHECK_DO(bRv, return);
 
     _create_impl();
-    xTEST_EQ(isExists(), true);
+    xTEST(isExists());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -170,7 +170,7 @@ Dir::pathCreate() const
         Dir(buildPath).create();
     }
 
-    xTEST_EQ(isExists(), true);
+    xTEST(isExists());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -247,7 +247,7 @@ Dir::remove() const
     FileType(_dirPath).clear();
 
     _remove_impl();
-    xTEST_EQ(isExists(), false);
+    xTEST(!isExists());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
