@@ -95,6 +95,12 @@ public:
     T         enumDecT(const T &value);
         ///< decrement enumerator
 
+#if xENV_UNIX
+    static
+    std::tstring_t readSymLink(std::ctstring_t &procFile);
+        ///< read symlink content
+#endif
+
 private:
     xNO_DEFAULT_CONSTRUCT(Utils)
     xNO_COPY_ASSIGN(Utils)
@@ -152,3 +158,9 @@ dll_unique_ptr_t  autoDll(std::ctstring_t &dllPath, cint_t flags);
 } // namespace
 //-------------------------------------------------------------------------------------------------
 #include "Utils.inl"
+
+/**
+ * TODO:
+ *
+ * assert - rm
+ */
