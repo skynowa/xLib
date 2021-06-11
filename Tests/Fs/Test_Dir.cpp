@@ -79,12 +79,6 @@ Test_Dir::unit()
         Dir(csDirPath2).create();
     }
 
-    xTEST_CASE("isDir")
-    {
-        m_bRv = Dir(csDirPath2).isDir();
-        xTEST(m_bRv);
-    }
-
     xTEST_CASE("isExists")
     {
         m_bRv = Dir(csDirPath).isExists();

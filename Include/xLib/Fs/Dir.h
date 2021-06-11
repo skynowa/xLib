@@ -44,8 +44,6 @@ public:
         ///< is empty
     bool_t isRoot() const;
         ///< is root
-    bool_t isDir() const;
-        ///< is dir
     void_t create() const;
         ///< create
     void_t pathCreate() const;
