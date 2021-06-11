@@ -15,6 +15,12 @@ class Utils
     /// help utils
 {
 public:
+///@name ctors, dtor
+///@{
+	xNO_DEFAULT_CONSTRUCT(Utils)
+	xNO_COPY_ASSIGN(Utils)
+///@}
+
     template<typename T>
     static
     void_t    ptrDeleteT(T * &ptr);
@@ -100,12 +106,8 @@ public:
     std::tstring_t readSymLink(std::ctstring_t &procFile);
         ///< read symlink content
 #endif
-
-private:
-    xNO_DEFAULT_CONSTRUCT(Utils)
-    xNO_COPY_ASSIGN(Utils)
 };
-
+//-------------------------------------------------------------------------------------------------
 template<typename T>
 class ConstCast
     ///< make constant variable
@@ -125,7 +127,7 @@ public:
 private:
     const T &_value;
 };
-
+//-------------------------------------------------------------------------------------------------
 // TEST: implicitCast
 template<typename To, typename From>
 inline To
@@ -134,6 +136,8 @@ implicitCast(const From &a_from)
     return a_from;
 }
 	///< https://www.boost.org/doc/libs/1_64_0/boost/implicit_cast.hpp
+//-------------------------------------------------------------------------------------------------
+
 
 /**************************************************************************************************
 * Auto functions
