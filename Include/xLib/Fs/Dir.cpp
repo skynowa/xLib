@@ -147,15 +147,6 @@ Dir::isRoot() const
     return _isRoot_impl();
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
-Dir::isDir() const
-{
-    bool_t bRv = FileType( _dirPath ).isExists(FileType::Type::Directory);
-    xCHECK_RET(!bRv, false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 Dir::create() const
 {

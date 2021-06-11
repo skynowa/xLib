@@ -149,11 +149,23 @@ FileType::isFile() const
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
+FileType::isDir() const
+{
+    return isExists(FileType::Type::Directory);
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
 FileType::isExecutable() const
 {
 	xCHECK_RET(!isFile(), false);
 
     return _isExecutable_impl();
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+FileType::isDevice() const
+{
+    return isExists(FileType::Type::Device);
 }
 //-------------------------------------------------------------------------------------------------
 
