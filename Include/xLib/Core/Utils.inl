@@ -74,7 +74,7 @@ Utils::arraySizeT(
 void_t
 Utils::memoryZero(
     void_t       *a_ptr,
-    std::csize_t &a_sizeBytes
+    std::csize_t  a_sizeBytes
 )
 {
     xCHECK_DO(a_ptr == nullptr, return);
@@ -171,7 +171,7 @@ template<typename T>
 /* static */ inline
 T
 Utils::roundIntT(
-    cdouble_t &a_value
+    cdouble_t a_value
 )
 {
     assert(a_value >= static_cast<cdouble_t>( (std::numeric_limits<T>::min)() ) - 0.5);

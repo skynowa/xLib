@@ -42,7 +42,7 @@ public:
         ///< get array size
 
     static
-    void_t    memoryZero(void_t *ptr, std::csize_t &sizeBytes);
+    void_t    memoryZero(void_t *ptr, std::csize_t sizeBytes);
         ///< zero memory
 
     template<typename T, std::csize_t arraySize>
@@ -82,7 +82,7 @@ public:
 
     template<typename T>
     static
-    T         roundIntT(cdouble_t &value);
+    T         roundIntT(cdouble_t value);
         ///< round double value to long_t
 
     template<typename T>
