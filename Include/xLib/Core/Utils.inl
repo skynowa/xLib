@@ -1,6 +1,6 @@
 /**
  * \file  Utils.inl
- * \brief functions like macros
+ * \brief Utils functions
  */
 
 

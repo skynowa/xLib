@@ -1,6 +1,6 @@
 /**
  * \file  Utils.h
- * \brief functions like macros
+ * \brief Utils functions
  */
 
 
