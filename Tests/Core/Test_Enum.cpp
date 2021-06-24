@@ -18,18 +18,6 @@ enum class TestType
 	Third   = 3,
 	Last    = Third + 1
 };
-
-#if 0
-
-std::tostream_t &
-operator << (std::tostream_t &out_os, const TestType a_value)
-{
-	out_os << static_cast<::ssize_t>(a_value);
-
-	return out_os;
-}
-
-#endif
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
@@ -75,28 +63,20 @@ Test_Enum::unit()
 
     xTEST_CASE("operator <<")
     {
-    #if 0
-        const size_t enumSize = 5;
-        const EnumArray<TestType, enumSize> enums;
-
-        std::stringstream ss;
-        for (const auto &it_enum : enums) {
-            ss << it_enum;
-        }
-        xTEST_EQ(ss.str(), std::tstring_t(xT("01234")));
-    #else
         Enum<TestType> first(TestType::First);
 
-        std::tcout << first << std::endl;
+        std::tstringstream_t ss;
+        ss << first;
+        std::tcout << xPRINT_VAR(ss.str()) << std::endl;
 
-	#if 0
-		std::tcout << Enum<TestType>::value_type() << std::endl;
-	#endif
+        xTEST_EQ(ss.str(), std::tstring_t(xT("First: 1")));
 
         /// std::tcout << Enum<TestType>(TestType::First).get() << std::endl;
         /// operator << (std::tcout, TestType::First);
 
-        /// std::tcout << TestType::First << std::endl;
+	#if 0
+		std::tcout << TestType::First << std::endl;
+	#endif
 
         /// OStream() << TestType::First << std::endl;
 
@@ -104,7 +84,6 @@ Test_Enum::unit()
 
         /// Cout xCout;
         /// Enum(TestType::Second).print(xCout); Cout() << std::endl;
-    #endif
     }
 
     return true;
