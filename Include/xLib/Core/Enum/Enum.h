@@ -19,58 +19,58 @@
 namespace xl::core
 {
 
+template<typename T>
 class Enum
     /// Enumeration
 {
 public:
+	using value_type = T;
+
 ///@name ctors, dtor
 ///@{
-	xNO_DEFAULT_CONSTRUCT(Enum)
+	explicit Enum(const T value);
+	explicit Enum(std::tstring_t value);
+   ~Enum() = default;
+
 	xNO_COPY_ASSIGN(Enum)
 ///@}
 
-    template<typename T>
-    static
-    std::tstring_t str(const T &value);
-
-    template<typename T>
-    static
-    ::ssize_t      value(const T &value);
-
-    template<typename T>
-    static
-    T              cast(std::ctstring_t &value);
-
-    template<typename T>
-    static
-    std::tstring_t name(const T &value);
+    T              get() const;
+    std::tstring_t str() const;
+    ::ssize_t      value() const;
+    std::tstring_t name() const;
 
     // operators
-    template<typename T>
-    static
-    T              inc(const T &value);
-
-    template<typename T>
-    static
-    T              dec(const T &value);
-
-    template<typename StreamT, typename T>
-    static
-    void_t         print(StreamT &os, const T &value);
+    Enum<T>        inc() const;
+    Enum<T>        dec() const;
 
     // TODO: toPrintable
     // TODO: fromPrintable
+
+private:
+    const T _value {};
+
+	template<typename EnumT>
+	friend
+	std::tostream_t &
+	operator << (std::tostream_t &os, const Enum<EnumT> &value);
 };
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
 #include "Enum.inl"
 //-------------------------------------------------------------------------------------------------
-// template<typename T>
-// std::tostream_t &
-// operator << (std::tostream_t &os, const typename Enum<T>::value_type &value);
-
-// template<typename T>
-// xl::core::OStream &
-// operator << (OStream &os, const T value);
+/**
+ * TODO:
+ *
+ * - begin(), end()
+ *
+ * - template<typename T>
+ *   std::tostream_t &
+ *   operator << (std::tostream_t &os, const typename Enum<T>::value_type &value);
+ *
+ * - template<typename T>
+ *   xl::core::OStream &
+ *   operator << (OStream &os, const T value);
+ */
 //-------------------------------------------------------------------------------------------------
