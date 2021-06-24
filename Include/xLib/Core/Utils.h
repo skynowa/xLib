@@ -1,6 +1,6 @@
 /**
  * \file  Utils.h
- * \brief functions like macros
+ * \brief Utils functions
  */
 
 
@@ -15,6 +15,12 @@ class Utils
     /// help utils
 {
 public:
+///@name ctors, dtor
+///@{
+	xNO_DEFAULT_CONSTRUCT(Utils)
+	xNO_COPY_ASSIGN(Utils)
+///@}
+
     template<typename T>
     static
     void_t    ptrDeleteT(T * &ptr);
@@ -36,7 +42,7 @@ public:
         ///< get array size
 
     static
-    void_t    memoryZero(void_t *ptr, std::csize_t &sizeBytes);
+    void_t    memoryZero(void_t *ptr, std::csize_t sizeBytes);
         ///< zero memory
 
     template<typename T, std::csize_t arraySize>
@@ -76,7 +82,7 @@ public:
 
     template<typename T>
     static
-    T         roundIntT(cdouble_t &value);
+    T         roundIntT(cdouble_t value);
         ///< round double value to long_t
 
     template<typename T>
@@ -95,11 +101,13 @@ public:
     T         enumDecT(const T &value);
         ///< decrement enumerator
 
-private:
-    xNO_DEFAULT_CONSTRUCT(Utils)
-    xNO_COPY_ASSIGN(Utils)
+#if xENV_UNIX
+    static
+    std::tstring_t readSymLink(std::ctstring_t &procFile);
+        ///< read symlink content
+#endif
 };
-
+//-------------------------------------------------------------------------------------------------
 template<typename T>
 class ConstCast
     ///< make constant variable
@@ -117,9 +125,9 @@ public:
     }
 
 private:
-    const T &_value;
+    const T _value;
 };
-
+//-------------------------------------------------------------------------------------------------
 // TEST: implicitCast
 template<typename To, typename From>
 inline To
@@ -128,6 +136,8 @@ implicitCast(const From &a_from)
     return a_from;
 }
 	///< https://www.boost.org/doc/libs/1_64_0/boost/implicit_cast.hpp
+//-------------------------------------------------------------------------------------------------
+
 
 /**************************************************************************************************
 * Auto functions
@@ -152,3 +162,9 @@ dll_unique_ptr_t  autoDll(std::ctstring_t &dllPath, cint_t flags);
 } // namespace
 //-------------------------------------------------------------------------------------------------
 #include "Utils.inl"
+
+/**
+ * TODO:
+ *
+ * assert - rm
+ */

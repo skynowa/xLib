@@ -71,6 +71,24 @@ Path::dll()
 	return Path(dllPath);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+Path
+Path::homeDir()
+{
+	std::ctstring_t &path = _homeDir_impl();
+
+    return Path(path);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+Path
+Path::shellPath()
+{
+	std::ctstring_t &path = _shellPath_impl();
+
+    return Path(path);
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
@@ -572,7 +590,7 @@ Path::briefName(
 Path
 Path::homeAsBrief() const
 {
-	return Path( String::replaceAll(_filePath, User().homeDir(), xT("~")) );
+	return Path( String::replaceAll(_filePath, homeDir().str(), xT("~")) );
 }
 //-------------------------------------------------------------------------------------------------
 Path

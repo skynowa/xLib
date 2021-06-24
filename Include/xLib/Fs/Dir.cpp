@@ -99,6 +99,18 @@ Dir::isExists() const
 
     xCHECK_RET(type.get() == static_cast<FileType::types_t>(FileType::Type::Unknown), false);
 
+#if xENV_UNIX
+	if (type.get() == static_cast<FileType::types_t>(FileType::Type::SymbolicLink)) {
+		std::ctstring_t &symLinkPathTo = Utils::readSymLink(_dirPath);
+
+		FileType symLinktype(symLinkPathTo);
+		bool_t bRv = symLinktype.isExists(FileType::Type::Directory);
+		xCHECK_RET(!bRv, false);
+
+		return true;
+	}
+#endif
+
     bool_t bRv = type.isExists(FileType::Type::Directory);
     xCHECK_RET(!bRv, false);
 
@@ -135,15 +147,6 @@ Dir::isRoot() const
     return _isRoot_impl();
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
-Dir::isDir() const
-{
-    bool_t bRv = FileType( _dirPath ).isExists(FileType::Type::Directory);
-    xCHECK_RET(!bRv, false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 Dir::create() const
 {
@@ -151,7 +154,7 @@ Dir::create() const
     xCHECK_DO(bRv, return);
 
     _create_impl();
-    xTEST_EQ(isExists(), true);
+    xTEST(isExists());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -170,7 +173,7 @@ Dir::pathCreate() const
         Dir(buildPath).create();
     }
 
-    xTEST_EQ(isExists(), true);
+    xTEST(isExists());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -247,7 +250,7 @@ Dir::remove() const
     FileType(_dirPath).clear();
 
     _remove_impl();
-    xTEST_EQ(isExists(), false);
+    xTEST(!isExists());
 }
 //-------------------------------------------------------------------------------------------------
 void_t

@@ -25,19 +25,19 @@ Translate::execute(
     std::ctstring_t &a_textFrom,		///< source text
     std::tstring_t  *out_textToBrief,	///< [out] target brief translate
     std::tstring_t  *out_textToDetail,	///< [out] target detail translate
-    std::tstring_t  *out_textToRaw		///< [out] target raw translate (HTML) (maybe nullptr)
+    std::tstring_t  *out_textToRaw,		///< [out] target raw translate (HTML) (maybe nullptr)
+    std::tstring_t  *out_langFrom,		///< [out] from language ISO code
+    std::tstring_t  *out_langTo			///< [out] to language ISO code
 )
 {
     xTEST(!a_textFrom.empty());
     xTEST_PTR(out_textToBrief);
     xTEST_PTR(out_textToDetail);
     xTEST_NA(out_textToRaw);
+    xTEST_PTR(out_langFrom);
+    xTEST_PTR(out_langTo);
 
     bool_t bRv {};
-
-    Language langFrom {};
-    Language langTo {};
-	_langsDetect(a_textFrom, &langFrom, &langTo);
 
 	curl::DataIn baseDataIn;
 	{
@@ -103,6 +103,10 @@ Translate::execute(
 			* dj - Json response with names (dj=1)
 			*/
 
+			Language langFrom {};
+			Language langTo {};
+			_langsDetect(a_textFrom, &langFrom, &langTo);
+
 			std::ctstring_t  sourceLang   = (langFrom == Language::Unknown) ?
 				xT("auto") : _langCode(langFrom);
 			std::ctstring_t  targetLang   = _langCode(langTo);
@@ -127,13 +131,17 @@ Translate::execute(
 				{xT("q"),  query}
 			};
 
-			// Cout() << xTRACE_VAR(request) << "\n";
+			// Cout() << xTRACE_VAR(request);
 
 			for (const auto &[param, value] : request) {
 				baseDataIn.request += param + xT("=") + _http.escape(value) + xT("&");
 			}
 
 			baseDataIn.request = String::trimRightChars(baseDataIn.request, xT("&"));
+
+			// [out]
+			*out_langFrom = sourceLang;
+			*out_langTo   = targetLang;
 		}
 	}
 
@@ -144,11 +152,11 @@ Translate::execute(
 	if ( !_http.isSuccess(dataOut) ) {
 		// Cout() << xTRACE_VAR(dataOut.body);
 
-		*out_textToBrief  = xT("Error: ") + std::to_string(dataOut.responseCode);
-		*out_textToDetail = xT("Error: ") + std::to_string(dataOut.responseCode);
+		*out_textToBrief  = Format::str(xT("Error: {}"), dataOut.responseCode);
+		*out_textToDetail = Format::str(xT("Error: {}"), dataOut.responseCode);
 
 		if (out_textToRaw != nullptr) {
-			*out_textToRaw = xT("Error: ") + std::to_string(dataOut.responseCode);
+			*out_textToRaw = Format::str(xT("Error: {}"), dataOut.responseCode);
 		}
 
 		return;
@@ -181,14 +189,6 @@ Translate::execute(
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-const std::map<Translate::Language, std::tstring_t> Translate::_langToCodes
-{
-	{Language::Unknown, xT("")},
-	{Language::Auto,    xT("auto")},
-	{Language::En,      xT("en")},
-	{Language::Ru,      xT("ru")}
-};
 //-------------------------------------------------------------------------------------------------
 void_t
 Translate::_langsDetect(
@@ -225,16 +225,16 @@ Translate::_langsDetect(
         *out_langFrom = Translate::Language::En;
         *out_langTo   = Translate::Language::Ru;
 
-        // Trace() << "Langs: en-ru\n";
+        // Cout() << "Langs: en-ru";
     }
     else if (isRu) {
         *out_langFrom = Translate::Language::Ru;
         *out_langTo   = Translate::Language::En;
 
-        // Trace() << "Langs: ru-en\n";
+        // Cout() << "Langs: ru-en";
     }
     else if (isMixed) {
-        // Trace() << "Langs: mixed-mixed\n";
+        // Cout() << "Langs: mixed-mixed";
 
         cbool_t isPreferEn = (countEn >= countRu);
         cbool_t isPreferRu = (countRu >  countEn);
@@ -243,13 +243,13 @@ Translate::_langsDetect(
             *out_langFrom = Translate::Language::En;
             *out_langTo   = Translate::Language::Ru;
 
-            // Trace() << "Langs (prefer): en-ru\n";
+            // Cout() << "Langs (prefer): en-ru";
         }
         else if (isPreferRu) {
             *out_langFrom = Translate::Language::Ru;
             *out_langTo   = Translate::Language::En;
 
-            // Trace() << "Langs (prefer): ru-en\n";
+            // Cout() << "Langs (prefer): ru-en";
         }
         else {
             xTEST(false);
@@ -260,14 +260,14 @@ Translate::_langsDetect(
         *out_langFrom = Translate::Language::Auto;
         *out_langTo   = Translate::Language::Auto;
 
-        // Trace() << "Langs: unknown-unknown\n";
+        // Cout() << "Langs: unknown-unknown";
     }
     else {
         *out_langFrom = Translate::Language::Unknown;
         *out_langTo   = Translate::Language::Unknown;
 
-        Trace() << xTRACE_VAR(countEn);
-        Trace() << xTRACE_VAR(countRu);
+        Cout() << xTRACE_VAR(countEn);
+        Cout() << xTRACE_VAR(countRu);
 
         xTEST(false);
     }
@@ -324,20 +324,20 @@ Translate::_langCode(
 	cLanguage a_lang
 ) const
 {
-	auto it = _langToCodes.find(a_lang);
-	if (it == _langToCodes.cend()) {
+	static const std::map<Translate::Language, std::tstring_t> langToCodes
+	{
+		{Language::Unknown, xT("")},
+		{Language::Auto,    xT("auto")},
+		{Language::En,      xT("en")},
+		{Language::Ru,      xT("ru")}
+	};
+
+	auto it = langToCodes.find(a_lang);
+	if (it == langToCodes.cend()) {
 		return {};
 	}
 
 	return it->second;
-}
-//-------------------------------------------------------------------------------------------------
-Translate::Language
-Translate::_codeLang(
-	std::ctstring_t &a_code
-) const
-{
-	return Algos::mapFindByValue(_langToCodes, a_code);
 }
 //-------------------------------------------------------------------------------------------------
 

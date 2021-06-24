@@ -90,8 +90,12 @@ public:
 
     bool_t            isFile() const;
         ///< check for file
+    bool_t            isDir() const;
+        ///< check for dir
     bool_t            isExecutable() const;
         ///< is executable
+    bool_t            isDevice() const;
+        ///< is device
 
 private:
     std::ctstring_t _filePath;

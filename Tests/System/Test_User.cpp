@@ -51,20 +51,6 @@ Test_User::unit()
         xTEST(!m_sRv.empty());
     }
 
-    xTEST_CASE("homeDir")
-    {
-        m_sRv = user.homeDir();
-        xTEST(!m_sRv.empty());
-        xTEST_EQ(Dir(m_sRv).isExists(), true);
-    }
-
-    xTEST_CASE("shellPath")
-    {
-        m_sRv = user.shellPath();
-        xTEST(!m_sRv.empty());
-        xTEST_EQ(FileInfo(m_sRv).isExists(), true);
-    }
-
     return true;
 }
 //-------------------------------------------------------------------------------------------------

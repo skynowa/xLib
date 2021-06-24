@@ -54,6 +54,45 @@ Path::_dll_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Path::_homeDir_impl()
+{
+    std::tstring_t sRv;
+
+    tchar_t buff[MAX_PATH + 1] {};
+
+    HRESULT hrRv = SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0UL, &buff[0]);
+    xTEST_EQ(S_OK == hrRv, true);
+
+    sRv.assign(buff);
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Path::_shellPath_impl()
+{
+    std::tstring_t sRv;
+
+    LPITEMIDLIST idList {};
+
+    HRESULT hrRv = ::SHGetSpecialFolderLocation(nullptr, CSIDL_WINDOWS, &idList);
+    xTEST_EQ(hrRv, S_OK);
+
+    tchar_t buff[MAX_PATH + 1] {};
+
+    BOOL blRv = ::SHGetPathFromIDList(idList, buff);
+    xTEST_DIFF(blRv, FALSE);
+
+    sRv.append(buff);
+    sRv.append(Const::slash());
+    sRv.append(xT("explorer.exe"));
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::_volume_impl() const
 {
