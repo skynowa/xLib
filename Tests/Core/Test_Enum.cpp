@@ -63,27 +63,11 @@ Test_Enum::unit()
 
     xTEST_CASE("operator <<")
     {
-        Enum<TestType> first(TestType::First);
+        const Enum<TestType> first(TestType::First);
 
         std::tstringstream_t ss;
         ss << first;
-        std::tcout << xPRINT_VAR(ss.str()) << std::endl;
-
         xTEST_EQ(ss.str(), std::tstring_t(xT("First: 1")));
-
-        /// std::tcout << Enum<TestType>(TestType::First).get() << std::endl;
-        /// operator << (std::tcout, TestType::First);
-
-	#if 0
-		std::tcout << TestType::First << std::endl;
-	#endif
-
-        /// OStream() << TestType::First << std::endl;
-
-        /// Enum(TestType::First).print(std::cout); std::cout << std::endl;
-
-        /// Cout xCout;
-        /// Enum(TestType::Second).print(xCout); Cout() << std::endl;
     }
 
     return true;
