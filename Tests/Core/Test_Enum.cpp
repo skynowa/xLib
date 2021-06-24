@@ -23,88 +23,51 @@ enum class TestType
 bool_t
 Test_Enum::unit()
 {
+    xTEST_CASE("ctor")
+    {
+        std::ctstring_t str(xT("2"));
+
+        Enum<TestType> e(str);
+        m_sRv = e.str();
+        xTEST_EQ(m_sRv, str);
+    }
+
     xTEST_CASE("str")
     {
-        m_sRv = Enum::str(TestType::First);
+        m_sRv = Enum(TestType::First).str();
         xTEST_EQ(m_sRv, std::tstring_t(xT("1")));
     }
 
     xTEST_CASE("value")
     {
-        m_ullRv = Enum::value(TestType::Last);
+        m_ullRv = Enum(TestType::Last).value();
         xTEST_EQ(m_ullRv, 4ULL);
-    }
-
-    xTEST_CASE("cast")
-    {
-        auto arv = Enum::cast<TestType>(xT("2"));
-        xTEST_EQ((int)arv, (int)TestType::Second);
     }
 
     xTEST_CASE("name")
     {
-        m_sRv = Enum::name(TestType::Third);
+        m_sRv = Enum(TestType::Third).name();
         xTEST_EQ(m_sRv, std::tstring_t(xT("Third")));
     }
 
     xTEST_CASE("inc/dec")
     {
-        TestType eRv {};
+        TestType eRv {0};
 
-        eRv = Enum::inc(eRv);
+        eRv = Enum(eRv).inc().get();
         xTEST_EQ((int)eRv, (int)TestType::First);
 
-        eRv = Enum::dec(eRv);
+        eRv = Enum(eRv).dec().get();
         xTEST_EQ((int)eRv, (int)TestType::Unknown);
     }
 
     xTEST_CASE("operator <<")
     {
-    #if 0
-        const size_t enumSize = 5;
-        const EnumArray<TestType, enumSize> enums;
+        const Enum<TestType> first(TestType::First);
 
-        std::stringstream ss;
-        for (const auto &it_enum : enums) {
-            ss << it_enum;
-        }
-        xTEST_EQ(ss.str(), std::tstring_t(xT("01234")));
-    #else
-        // std::tcout << TestType::First << std::endl;
-        // OStream() << TestType::First << std::endl;
-
-        Enum::print(std::cout, TestType::First); std::cout << std::endl;
-
-        Cout xCout;
-        Enum::print(xCout, TestType::Second); Cout() << std::endl;
-    #endif
-    }
-
-    /**************************************************************************************************
-    *   Operators
-    *
-    **************************************************************************************************/
-
-    enum class Type
-    {
-        Zero  = 0,
-        One   = 1,
-        Two   = 2,
-        Three = 3
-    };
-
-    xTEST_CASE("Operators::operator ++")
-    {
-        Type t {Type::Zero};
-        ++ t;
-        xTEST_EQ((int_t)t, (int_t)Type::One);
-    }
-
-    xTEST_CASE("Operators::operator --")
-    {
-        Type t {Type::Three};
-        -- t;
-        xTEST_EQ((int_t)t, (int_t)Type::Two);
+        std::tstringstream_t ss;
+        ss << first;
+        xTEST_EQ(ss.str(), std::tstring_t(xT("First: 1")));
     }
 
     return true;
