@@ -27,6 +27,13 @@ public:
 	xNO_DEFAULT_CONSTRUCT(Path)
 	xNO_COPY_ASSIGN(Path)
 
+   /**
+	* Standard paths
+	*
+	* https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum
+	*
+	* [TODO] desktop, documents, downloads, trashPath, ...
+	*/
 	static Path exe();
 	static Path dll();
 	static Path homeDir();
