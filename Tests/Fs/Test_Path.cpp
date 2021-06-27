@@ -46,8 +46,13 @@ Test_Path::unit()
     xTEST_CASE("trashDir")
     {
         m_sRv = Path::trashDir().str();
-        xTEST(!m_sRv.empty());
-        xTEST(Dir(m_sRv).isExists());
+
+		if ( isGithubCI() ) {
+			xTEST(m_sRv.empty());
+		} else {
+			xTEST(!m_sRv.empty());
+			xTEST(Dir(m_sRv).isExists());
+		}
     }
 
 
