@@ -95,29 +95,31 @@ Path::_trash_impl()
 {
 	std::tstring_t sRv;
 
-	std::vec_tstring_t paths;
-
-	// env XDG_DATA_HOME
 	{
-		std::ctstring_t &xdgDataHome = Environment(xT("XDG_DATA_HOME")).var();
-		if ( !xdgDataHome.empty() ) {
-			paths.emplace_back(xdgDataHome + xT("/Trash"));
+		std::vec_tstring_t paths;
+
+		// env XDG_DATA_HOME
+		{
+			std::ctstring_t &xdgDataHome = Environment(xT("XDG_DATA_HOME")).var();
+			if ( !xdgDataHome.empty() ) {
+				paths.emplace_back(xdgDataHome + xT("/Trash"));
+			}
 		}
-	}
 
-	// Home dirs
-	{
-		std::ctstring_t &home = homeDir().str();
+		// Home dirs
+		{
+			std::ctstring_t &home = homeDir().str();
 
-		paths.emplace_back(home + xT("/.local/share/Trash"));
-		paths.emplace_back(home + xT("/.trash"));
-	}
+			paths.emplace_back(home + xT("/.local/share/Trash"));
+			paths.emplace_back(home + xT("/.trash"));
+		}
 
-	// detect
-	for (const auto &it_path : paths) {
-		if ( Dir(it_path).isExists() ) {
-			sRv = it_path;
-			break;
+		// detect
+		for (const auto &it_path : paths) {
+			if ( Dir(it_path).isExists() ) {
+				sRv = it_path;
+				break;
+			}
 		}
 	}
 
