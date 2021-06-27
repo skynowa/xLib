@@ -14,6 +14,7 @@ bool_t
 Test_FileType::unit()
 {
     std::ctstring_t filePath = getData().tempDirPath + Const::slash() + xT("Test.txt");
+    std::ctstring_t dirPath  = getData().tempDirPath;
     const auto      value    = FileType::Type::RegularFile;
 
     // prepare
@@ -99,8 +100,6 @@ Test_FileType::unit()
 
         // dir
         {
-            std::ctstring_t dirPath = getData().tempDirPath;
-
             FileType type(dirPath);
 
             m_bRv = type.isExists(FileType::Type::Directory);
@@ -154,6 +153,13 @@ Test_FileType::unit()
 
         m_bRv = FileType(getData().tempDirPath).isFile();
         xTEST(!m_bRv);
+    }
+
+
+    xTEST_CASE("isDir")
+    {
+        m_bRv = FileType(dirPath).isDir();
+        xTEST(m_bRv);
     }
 
 	xTEST_CASE("isExecutable")

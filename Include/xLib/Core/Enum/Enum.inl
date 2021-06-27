@@ -102,30 +102,17 @@ Enum<T>::dec() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename V>
+template<typename EnumT>
 inline std::tostream_t &
 operator << (
-	std::tostream_t &out_os,
-	const Enum<V>   &a_value
+	std::tostream_t   &out_os,
+	const Enum<EnumT> &a_value
 )
 {
 	out_os << a_value.name() << ": " << a_value.value();
 
 	return out_os;
 }
-//-------------------------------------------------------------------------------------------------
-#if 0
-
-template<typename V>
-inline std::tostream_t &
-operator << (std::tostream_t &out_os, const typename Enum<V>::value_type a_value)
-{
-	out_os << static_cast<::ssize_t>(a_value);
-
-	return out_os;
-}
-
-#endif
 //-------------------------------------------------------------------------------------------------
 // template<typename T>
 // inline OStream &

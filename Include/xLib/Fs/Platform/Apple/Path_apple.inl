@@ -26,6 +26,17 @@ Path::_exe_impl()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
+Path::_trashDir_impl()
+{
+    std::tstring_t sRv;
+
+    // TODO:
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
 Path::_fileExt_impl(
     cFileExt a_fileExt
 )

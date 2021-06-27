@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Fs/Path.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::system
 {
@@ -37,9 +38,6 @@ public:
         ///< login name
     std::tstring_t name() const;
         ///< get the name of the user associated with the current thread
-    std::tstring_t homeDir() const;
-        ///< get home directory
-    std::tstring_t shellPath() const;
 
 xPLATFORM_IMPL:
     uint_t         _id_impl() const;
@@ -48,8 +46,6 @@ xPLATFORM_IMPL:
     bool_t         _isAdmin_impl() const;
     std::tstring_t _loginName_impl() const;
     std::tstring_t _name_impl() const;
-    std::tstring_t _homeDir_impl() const;
-    std::tstring_t _shellPath_impl() const;
 
 private:
 #if   xENV_WIN
@@ -62,6 +58,8 @@ private:
     void_t _passwd(std::string *pw_name, std::string *pw_passwd, uid_t *pw_uid, gid_t *pw_gid,
 				std::string *pw_dir, std::string *pw_shell) const;
         ///< get password file entry
+
+    friend class xl::fs::Path; // for _passwd()
 #endif
 };
 

@@ -5,7 +5,7 @@
 
 
 #include <xLib/Core/Const.h>
-
+#include <xLib/System/Environment.h>
 
 namespace xl::fs
 {
@@ -42,6 +42,106 @@ Path::_dll_impl()
 #else
 	sRv = Const::strEmpty();
 #endif
+
+	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Path::_shell_impl()
+{
+    std::string sRv;
+
+    User()._passwd(nullptr, nullptr, nullptr, nullptr, nullptr, &sRv);
+
+    return xA2T(sRv);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Path::_homeDir_impl()
+{
+   /*
+    * MAN: user's home directory
+    *
+    * Login programs use the value of this field to initialize
+    * the HOME environment variable for the login shell.
+    * An application that wants to determine its user's home directory
+    * should inspect the value of HOME (rather than the value getpwuid(getuid())->pw_dir)
+    * since this allows the user to modify their notion of "the home directory"
+    * during a login session. To determine the (initial) home directory of another user,
+    * it is necessary to use getpwnam("username")->pw_dir or similar.
+    */
+
+    // try to get from API
+    std::string asRv;
+
+    User()._passwd(nullptr, nullptr, nullptr, nullptr, &asRv, nullptr);
+    xCHECK_RET(!asRv.empty(), xA2T(asRv));
+
+    // try to get from system environment
+    std::ctstring_t sRv = Environment(xT("HOME")).var();
+    xTEST(!sRv.empty());
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/**
+ * https://stackoverflow.com/questions/17964439/move-files-to-trash-recycle-bin-in-qt
+ */
+/* static */
+std::tstring_t
+Path::_trashDir_impl()
+{
+	std::tstring_t sRv;
+
+	{
+		std::vec_tstring_t paths;
+
+		// env XDG_DATA_HOME
+		{
+			std::ctstring_t &xdgDataHome = Environment(xT("XDG_DATA_HOME")).var();
+			if ( !xdgDataHome.empty() ) {
+				paths.emplace_back(xdgDataHome + xT("/Trash"));
+			}
+		}
+
+		// Home dirs
+		{
+			std::ctstring_t &home = homeDir().str();
+
+			paths.emplace_back(home + xT("/.local/share/Trash"));
+			paths.emplace_back(home + xT("/.trash"));
+		}
+
+		// detect
+		for (const auto &it_path : paths) {
+			if ( Dir(it_path).isExists() ) {
+				sRv = it_path;
+				break;
+			}
+		}
+	}
+
+	// checks
+	{
+		if ( sRv.empty() ) {
+			xTEST(false && "Can't detect trash folder");
+			return {};
+		}
+
+		std::ctstring_t &pathInfo = sRv + xT("/info");
+		if ( !Dir(pathInfo).isExists() ) {
+			xTEST(false && "Trash doesnt looks like FreeDesktop.org Trash specification");
+			return {};
+		}
+
+		std::ctstring_t &pathFiles = sRv + xT("/files");
+		if ( !Dir(pathFiles).isExists() ) {
+			xTEST(false && "Trash doesnt looks like FreeDesktop.org Trash specification");
+			return {};
+		}
+	}
 
 	return sRv;
 }

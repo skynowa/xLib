@@ -1,6 +1,6 @@
 /**
  * \file  User_unix.inl
- * \brief user info
+ * \brief
  */
 
 
@@ -103,46 +103,6 @@ User::_name_impl() const
     std::string sRv;
 
     _passwd(&sRv, nullptr, nullptr, nullptr, nullptr, nullptr);
-
-    return xA2T(sRv);
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-User::_homeDir_impl() const
-{
-    std::tstring_t sRv;
-
-   /*
-    * MAN: user's home directory
-    *
-    * Login programs use the value of this field to initialize
-    * the HOME environment variable for the login shell.
-    * An application that wants to determine its user's home directory
-    * should inspect the value of HOME (rather than the value getpwuid(getuid())->pw_dir)
-    * since this allows the user to modify their notion of "the home directory"
-    * during a login session. To determine the (initial) home directory of another user,
-    * it is necessary to use getpwnam("username")->pw_dir or similar.
-    */
-
-    // try to get from API
-    std::string asRv;
-
-    _passwd(nullptr, nullptr, nullptr, nullptr, &asRv, nullptr);
-    xCHECK_RET(!asRv.empty(), xA2T(asRv));
-
-    // try to get from system environment
-    sRv = Environment(xT("HOME")).var();
-    xTEST_EQ(sRv.empty(), false);
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-User::_shellPath_impl() const
-{
-    std::string sRv;
-
-    _passwd(nullptr, nullptr, nullptr, nullptr, nullptr, &sRv);
 
     return xA2T(sRv);
 }

@@ -28,8 +28,8 @@ public:
 
 ///@name ctors, dtor
 ///@{
-	Enum(const T value);
-	Enum(std::tstring_t value);
+	explicit Enum(const T value);
+	explicit Enum(std::tstring_t value);
    ~Enum() = default;
 
 	xNO_COPY_ASSIGN(Enum)
@@ -50,17 +50,10 @@ public:
 private:
     const T _value {};
 
-	template<typename V>
+	template<typename EnumT>
 	friend
 	std::tostream_t &
-	operator << (std::tostream_t &os, const Enum<V> &value);
-
-#if 0
-	template<typename V>
-	friend
-	std::tostream_t &
-	operator << (std::tostream_t &os, const typename Enum<V>::value_type value);
-#endif
+	operator << (std::tostream_t &os, const Enum<EnumT> &value);
 };
 
 } // namespace

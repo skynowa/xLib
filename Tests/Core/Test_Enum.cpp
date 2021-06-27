@@ -75,36 +75,11 @@ Test_Enum::unit()
 
     xTEST_CASE("operator <<")
     {
-    #if 0
-        const size_t enumSize = 5;
-        const EnumArray<TestType, enumSize> enums;
+        const Enum<TestType> first(TestType::First);
 
-        std::stringstream ss;
-        for (const auto &it_enum : enums) {
-            ss << it_enum;
-        }
-        xTEST_EQ(ss.str(), std::tstring_t(xT("01234")));
-    #else
-        Enum<TestType> first(TestType::First);
-
-        std::tcout << first << std::endl;
-
-	#if 0
-		std::tcout << Enum<TestType>::value_type() << std::endl;
-	#endif
-
-        /// std::tcout << Enum<TestType>(TestType::First).get() << std::endl;
-        /// operator << (std::tcout, TestType::First);
-
-        /// std::tcout << TestType::First << std::endl;
-
-        /// OStream() << TestType::First << std::endl;
-
-        /// Enum(TestType::First).print(std::cout); std::cout << std::endl;
-
-        /// Cout xCout;
-        /// Enum(TestType::Second).print(xCout); Cout() << std::endl;
-    #endif
+        std::tstringstream_t ss;
+        ss << first;
+        xTEST_EQ(ss.str(), std::tstring_t(xT("First: 1")));
     }
 
     return true;
