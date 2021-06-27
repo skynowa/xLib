@@ -73,18 +73,32 @@ Path::dll()
 //-------------------------------------------------------------------------------------------------
 /* static */
 Path
-Path::homeDir()
+Path::shell()
 {
-	std::ctstring_t &path = _homeDir_impl();
+    std::ctstring_t &path = _shell_impl();
 
     return Path(path);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 Path
-Path::shellPath()
+Path::homeDir()
 {
-	std::ctstring_t &path = _shellPath_impl();
+    std::ctstring_t &path = _homeDir_impl();
+
+    return Path(path);
+}
+//-------------------------------------------------------------------------------------------------
+/**
+ * https://github.com/KDE/kio/blob/master/src/ioslaves/trash/trashimpl.h
+ * https://bugreports.qt.io/browse/QTBUG-47703?page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel&showAll=true
+ * https://specifications.freedesktop.org/trash-spec/trashspec-1.0.html
+ */
+/* static */
+Path
+Path::trashDir()
+{
+    std::ctstring_t &path = _trashDir_impl();
 
     return Path(path);
 }

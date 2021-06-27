@@ -29,6 +29,28 @@ Test_Path::unit()
     #endif
     }
 
+    xTEST_CASE("shell")
+    {
+        m_sRv = Path::shell().str();
+        xTEST(!m_sRv.empty());
+        xTEST(FileInfo(m_sRv).isExists());
+    }
+
+    xTEST_CASE("homeDir")
+    {
+        m_sRv = Path::homeDir().str();
+        xTEST(!m_sRv.empty());
+        xTEST(Dir(m_sRv).isExists());
+    }
+
+    xTEST_CASE("trashDir")
+    {
+        m_sRv = Path::trashDir().str();
+        xTEST(!m_sRv.empty());
+        xTEST(Dir(m_sRv).isExists());
+    }
+
+
     xTEST_CASE("volume")
     {
 	#if   xENV_WIN
@@ -884,21 +906,6 @@ Test_Path::unit()
 
         m_sRv = Path(args.at(0)).absolute().str();
         xTEST(!m_sRv.empty());
-    }
-
-
-    xTEST_CASE("homeDir")
-    {
-        m_sRv = Path::homeDir().str();
-        xTEST(!m_sRv.empty());
-        xTEST_EQ(Dir(m_sRv).isExists(), true);
-    }
-
-    xTEST_CASE("shellPath")
-    {
-        m_sRv = Path::shellPath().str();
-        xTEST(!m_sRv.empty());
-        xTEST_EQ(FileInfo(m_sRv).isExists(), true);
     }
 
     xTEST_CASE("briefName")
