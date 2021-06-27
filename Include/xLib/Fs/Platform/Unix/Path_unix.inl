@@ -93,49 +93,56 @@ Path::_shellPath_impl()
 std::tstring_t
 Path::_trashPath_impl()
 {
-    std::tstring_t sRv;
+	std::tstring_t sRv;
 
-    std::tstring_t TrashPath;
-    std::tstring_t TrashPathInfo;
-    std::tstring_t TrashPathFiles;
+	std::vec_tstring_t paths;
 
-	std::list<std::tstring_t> paths;
-
-	const char *xdg_data_home = getenv( "XDG_DATA_HOME" );
-	if (xdg_data_home) {
-		paths.emplace_back(std::tstring_t(xdg_data_home) + "/Trash");
-	}
-
-	std::tstring_t home = homeDir().str();
-
-	paths.emplace_back(home + "/.local/share/Trash");
-	paths.emplace_back(home + "/.trash");
-
-	for (const auto &path : paths) {
-		if ( TrashPath.empty() ) {
-			continue;
-		}
-
-		Dir dir( path );
-		if( dir.isExists() ){
-			TrashPath = path;
-		}
-	}
-
-	if ( TrashPath.empty() ) {
-		/// throw Exception( "Cant detect trash folder" );
-	}
-
-	TrashPathInfo  = TrashPath + "/info";
-	TrashPathFiles = TrashPath + "/files";
-
-	if (!Dir( TrashPathInfo ).isExists() ||
-		!Dir( TrashPathFiles ).isExists())
+	// XDG_DATA_HOME
 	{
-		/// throw Exception( "Trash doesnt looks like FreeDesktop.org Trash specification" );
+		std::ctstring_t &xdgDataHome = Environment(xT("XDG_DATA_HOME")).var();
+		if ( !xdgDataHome.empty() ) {
+			paths.emplace_back(xdgDataHome + xT("/Trash"));
+		}
 	}
 
-    return sRv;
+	// /.local, ..
+	{
+		std::ctstring_t &home = homeDir().str();
+
+		paths.emplace_back(home + xT("/.local/share/Trash"));
+		paths.emplace_back(home + xT("/.trash"));
+
+		for (const auto &it_path : paths) {
+			if ( sRv.empty() ) {
+				if ( Dir(it_path).isExists() ) {
+					sRv = it_path;
+					break;
+				}
+			}
+		}
+	}
+
+	// checks
+	{
+		if ( sRv.empty() ) {
+			xTEST(false && "Can't detect trash folder");
+			return {};
+		}
+
+		std::ctstring_t &pathInfo = sRv + xT("/info");
+		if ( !Dir(pathInfo).isExists() ) {
+			xTEST(false && "Trash doesnt looks like FreeDesktop.org Trash specification");
+			return {};
+		}
+
+		std::ctstring_t &pathFiles = sRv + xT("/files");
+		if ( !Dir(pathFiles).isExists() ) {
+			xTEST(false && "Trash doesnt looks like FreeDesktop.org Trash specification");
+			return {};
+		}
+	}
+
+	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
