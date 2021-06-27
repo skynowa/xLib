@@ -48,6 +48,17 @@ Path::_dll_impl()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
+Path::_shell_impl()
+{
+    std::string sRv;
+
+    User()._passwd(nullptr, nullptr, nullptr, nullptr, nullptr, &sRv);
+
+    return xA2T(sRv);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
 Path::_homeDir_impl()
 {
    /*
@@ -75,23 +86,12 @@ Path::_homeDir_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-Path::_shell_impl()
-{
-    std::string sRv;
-
-    User()._passwd(nullptr, nullptr, nullptr, nullptr, nullptr, &sRv);
-
-    return xA2T(sRv);
-}
-//-------------------------------------------------------------------------------------------------
 /**
  * https://stackoverflow.com/questions/17964439/move-files-to-trash-recycle-bin-in-qt
  */
 /* static */
 std::tstring_t
-Path::_trash_impl()
+Path::_trashDir_impl()
 {
 	std::tstring_t sRv;
 

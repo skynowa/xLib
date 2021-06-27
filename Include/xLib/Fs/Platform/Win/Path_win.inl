@@ -56,22 +56,6 @@ Path::_dll_impl()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-Path::_homeDir_impl()
-{
-    std::tstring_t sRv;
-
-    tchar_t buff[MAX_PATH + 1] {};
-
-    HRESULT hrRv = SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0UL, &buff[0]);
-    xTEST_EQ(S_OK == hrRv, true);
-
-    sRv.assign(buff);
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
 Path::_shell_impl()
 {
     std::tstring_t sRv;
@@ -95,7 +79,23 @@ Path::_shell_impl()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-Path::_trash_impl()
+Path::_homeDir_impl()
+{
+    std::tstring_t sRv;
+
+    tchar_t buff[MAX_PATH + 1] {};
+
+    HRESULT hrRv = SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0UL, &buff[0]);
+    xTEST_EQ(S_OK == hrRv, true);
+
+    sRv.assign(buff);
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Path::_trashDir_impl()
 {
     std::tstring_t sRv;
 

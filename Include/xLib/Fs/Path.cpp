@@ -73,18 +73,18 @@ Path::dll()
 //-------------------------------------------------------------------------------------------------
 /* static */
 Path
-Path::homeDir()
+Path::shell()
 {
-	std::ctstring_t &path = _homeDir_impl();
+	std::ctstring_t &path = _shell_impl();
 
     return Path(path);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 Path
-Path::shell()
+Path::homeDir()
 {
-	std::ctstring_t &path = _shell_impl();
+	std::ctstring_t &path = _homeDir_impl();
 
     return Path(path);
 }
@@ -96,9 +96,9 @@ Path::shell()
  */
 /* static */
 Path
-Path::trash()
+Path::trashDir()
 {
-	std::ctstring_t &path = _trash_impl();
+	std::ctstring_t &path = _trashDir_impl();
 
 	return Path(path);
 }

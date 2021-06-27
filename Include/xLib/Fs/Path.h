@@ -35,11 +35,15 @@ public:
 	*
 	* [TODO] desktop, documents, downloads, ...
 	*/
+
+	// files
 	static Path exe();
 	static Path dll();
-	static Path homeDir();	///< dir
 	static Path shell();
-	static Path trash();	///< dir
+
+	// dirs
+	static Path homeDir();
+	static Path trashDir();
 ///@}
 
 ///@name interfaces
@@ -158,16 +162,19 @@ private:
     std::ctstring_t _filePath;
 
 xPLATFORM_IMPL:
+	// files
 	static
 	std::tstring_t _exe_impl();
 	static
 	std::tstring_t _dll_impl();
     static
+    std::tstring_t _shell_impl();
+
+    // dirs
+    static
     std::tstring_t _homeDir_impl();
     static
-    std::tstring_t _shell_impl();
-    static
-    std::tstring_t _trash_impl();
+    std::tstring_t _trashDir_impl();
 
     std::tstring_t _volume_impl() const;
     void_t         _toNative_impl(std::tstring_t *filePath) const;
