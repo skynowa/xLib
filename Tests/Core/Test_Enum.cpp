@@ -18,18 +18,6 @@ enum class TestType
 	Third   = 3,
 	Last    = Third + 1
 };
-
-#if 0
-
-std::tostream_t &
-operator << (std::tostream_t &out_os, const TestType a_value)
-{
-	out_os << static_cast<::ssize_t>(a_value);
-
-	return out_os;
-}
-
-#endif
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
