@@ -98,7 +98,7 @@ Path::trashPath()
 {
 	std::ctstring_t &path = _trashPath_impl();
 
-    return Path(path);
+	return Path(path);
 }
 //-------------------------------------------------------------------------------------------------
 

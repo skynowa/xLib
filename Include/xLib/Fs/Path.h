@@ -165,6 +165,8 @@ xPLATFORM_IMPL:
     std::tstring_t _homeDir_impl();
     static
     std::tstring_t _shellPath_impl();
+    static
+    std::tstring_t _trashPath_impl();
 
     std::tstring_t _volume_impl() const;
     void_t         _toNative_impl(std::tstring_t *filePath) const;

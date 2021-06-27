@@ -90,11 +90,11 @@ Path::_shellPath_impl()
 std::tstring_t
 Path::_trashPath_impl()
 {
-    std::string sRv;
+    std::tstring_t sRv;
 
     // TODO:
 
-    return xA2T(sRv);
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
