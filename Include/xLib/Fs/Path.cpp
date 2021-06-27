@@ -166,9 +166,9 @@ Path::dirName() const
     std::csize_t slashPos1 = _filePath.rfind(Const::slash(), slashPos2 - 1);
     if (slashPos1 == std::tstring_t::npos) {
         return _filePath.substr(0, slashPos2);
-    } else {
-        return _filePath.substr(slashPos1 + 1, slashPos2 - slashPos1 - 1);
     }
+
+    return _filePath.substr(slashPos1 + 1, slashPos2 - slashPos1 - 1);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
