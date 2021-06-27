@@ -61,12 +61,10 @@ Path::_shell_impl()
     std::tstring_t sRv;
 
     LPITEMIDLIST idList {};
-
     HRESULT hrRv = ::SHGetSpecialFolderLocation(nullptr, CSIDL_WINDOWS, &idList);
     xTEST_EQ(hrRv, S_OK);
 
     tchar_t buff[MAX_PATH + 1] {};
-
     BOOL blRv = ::SHGetPathFromIDList(idList, buff);
     xTEST_DIFF(blRv, FALSE);
 
