@@ -48,6 +48,17 @@ Path::_dll_impl()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
+Path::_shell_impl()
+{
+    std::string sRv;
+
+    User()._passwd(nullptr, nullptr, nullptr, nullptr, nullptr, &sRv);
+
+    return xA2T(sRv);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
 Path::_homeDir_impl()
 {
    /*
@@ -75,15 +86,64 @@ Path::_homeDir_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * https://stackoverflow.com/questions/17964439/move-files-to-trash-recycle-bin-in-qt
+ */
 /* static */
 std::tstring_t
-Path::_shellPath_impl()
+Path::_trashDir_impl()
 {
-    std::string sRv;
+	std::tstring_t sRv;
 
-    User()._passwd(nullptr, nullptr, nullptr, nullptr, nullptr, &sRv);
+	{
+		std::vec_tstring_t paths;
 
-    return xA2T(sRv);
+		// env XDG_DATA_HOME
+		{
+			std::ctstring_t &xdgDataHome = Environment(xT("XDG_DATA_HOME")).var();
+			if ( !xdgDataHome.empty() ) {
+				paths.emplace_back(xdgDataHome + xT("/Trash"));
+			}
+		}
+
+		// Home dirs
+		{
+			std::ctstring_t &home = homeDir().str();
+
+			paths.emplace_back(home + xT("/.local/share/Trash"));
+			paths.emplace_back(home + xT("/.trash"));
+		}
+
+		// detect
+		for (const auto &it_path : paths) {
+			if ( Dir(it_path).isExists() ) {
+				sRv = it_path;
+				break;
+			}
+		}
+	}
+
+	// checks
+	{
+		if ( sRv.empty() ) {
+			xTEST(false && "Can't detect trash folder");
+			return {};
+		}
+
+		std::ctstring_t &pathInfo = sRv + xT("/info");
+		if ( !Dir(pathInfo).isExists() ) {
+			xTEST(false && "Trash doesnt looks like FreeDesktop.org Trash specification");
+			return {};
+		}
+
+		std::ctstring_t &pathFiles = sRv + xT("/files");
+		if ( !Dir(pathFiles).isExists() ) {
+			xTEST(false && "Trash doesnt looks like FreeDesktop.org Trash specification");
+			return {};
+		}
+	}
+
+	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t

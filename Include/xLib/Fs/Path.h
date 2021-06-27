@@ -27,10 +27,23 @@ public:
 	xNO_DEFAULT_CONSTRUCT(Path)
 	xNO_COPY_ASSIGN(Path)
 
+   /**
+	* Standard paths
+	*
+	* https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum
+	* https://docs.microsoft.com/en-us/previous-versions/windows/embedded/aa453706(v%3Dmsdn.10)
+	*
+	* [TODO] desktop, documents, downloads, ...
+	*/
+
+	// files
 	static Path exe();
 	static Path dll();
+	static Path shell();
+
+	// dirs
 	static Path homeDir();
-	static Path shellPath();
+	static Path trashDir();
 ///@}
 
 ///@name interfaces
@@ -149,14 +162,19 @@ private:
     std::ctstring_t _filePath;
 
 xPLATFORM_IMPL:
+	// files
 	static
 	std::tstring_t _exe_impl();
 	static
 	std::tstring_t _dll_impl();
     static
+    std::tstring_t _shell_impl();
+
+    // dirs
+    static
     std::tstring_t _homeDir_impl();
     static
-    std::tstring_t _shellPath_impl();
+    std::tstring_t _trashDir_impl();
 
     std::tstring_t _volume_impl() const;
     void_t         _toNative_impl(std::tstring_t *filePath) const;

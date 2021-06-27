@@ -56,6 +56,27 @@ Path::_dll_impl()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
+Path::_shell_impl()
+{
+    std::tstring_t sRv;
+
+    LPITEMIDLIST idList {};
+    HRESULT hrRv = ::SHGetSpecialFolderLocation(nullptr, CSIDL_WINDOWS, &idList);
+    xTEST_EQ(hrRv, S_OK);
+
+    tchar_t buff[MAX_PATH + 1] {};
+    BOOL blRv = ::SHGetPathFromIDList(idList, buff);
+    xTEST_DIFF(blRv, FALSE);
+
+    sRv.append(buff);
+    sRv.append(Const::slash());
+    sRv.append(xT("explorer.exe"));
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
 Path::_homeDir_impl()
 {
     std::tstring_t sRv;
@@ -72,23 +93,19 @@ Path::_homeDir_impl()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-Path::_shellPath_impl()
+Path::_trashDir_impl()
 {
     std::tstring_t sRv;
 
     LPITEMIDLIST idList {};
-
-    HRESULT hrRv = ::SHGetSpecialFolderLocation(nullptr, CSIDL_WINDOWS, &idList);
+    HRESULT hrRv = ::SHGetSpecialFolderLocation(nullptr, CSIDL_BITBUCKET, &idList);
     xTEST_EQ(hrRv, S_OK);
 
     tchar_t buff[MAX_PATH + 1] {};
-
     BOOL blRv = ::SHGetPathFromIDList(idList, buff);
     xTEST_DIFF(blRv, FALSE);
 
-    sRv.append(buff);
-    sRv.append(Const::slash());
-    sRv.append(xT("explorer.exe"));
+    sRv = buff;
 
     return sRv;
 }
