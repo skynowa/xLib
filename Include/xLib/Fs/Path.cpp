@@ -90,7 +90,9 @@ Path::shellPath()
 }
 //-------------------------------------------------------------------------------------------------
 /**
+ * https://github.com/KDE/kio/blob/master/src/ioslaves/trash/trashimpl.h
  * https://bugreports.qt.io/browse/QTBUG-47703?page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel&showAll=true
+ * https://specifications.freedesktop.org/trash-spec/trashspec-1.0.html
  */
 /* static */
 Path
