@@ -86,6 +86,17 @@ Path::_shellPath_impl()
     return xA2T(sRv);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Path::_trashPath_impl()
+{
+    std::string sRv;
+
+    // TODO:
+
+    return xA2T(sRv);
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::_volume_impl() const
 {

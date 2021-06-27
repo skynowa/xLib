@@ -93,6 +93,17 @@ Path::_shellPath_impl()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Path::_trashPath_impl()
+{
+    std::tstring_t sRv;
+
+    // TODO:
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
 Path::_volume_impl() const
 {

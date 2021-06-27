@@ -38,6 +38,7 @@ public:
 	static Path dll();
 	static Path homeDir();
 	static Path shellPath();
+	static Path trashPath();
 ///@}
 
 ///@name interfaces

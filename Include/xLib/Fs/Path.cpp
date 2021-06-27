@@ -89,6 +89,18 @@ Path::shellPath()
     return Path(path);
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * https://bugreports.qt.io/browse/QTBUG-47703?page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel&showAll=true
+ */
+/* static */
+Path
+Path::trashPath()
+{
+	std::ctstring_t &path = _trashPath_impl();
+
+    return Path(path);
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
