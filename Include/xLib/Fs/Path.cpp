@@ -75,7 +75,7 @@ Path::dll()
 Path
 Path::shell()
 {
-	std::ctstring_t &path = _shell_impl();
+    std::ctstring_t &path = _shell_impl();
 
     return Path(path);
 }
@@ -84,7 +84,7 @@ Path::shell()
 Path
 Path::homeDir()
 {
-	std::ctstring_t &path = _homeDir_impl();
+    std::ctstring_t &path = _homeDir_impl();
 
     return Path(path);
 }
@@ -98,9 +98,9 @@ Path::homeDir()
 Path
 Path::trashDir()
 {
-	std::ctstring_t &path = _trashDir_impl();
+    std::ctstring_t &path = _trashDir_impl();
 
-	return Path(path);
+    return Path(path);
 }
 //-------------------------------------------------------------------------------------------------
 
