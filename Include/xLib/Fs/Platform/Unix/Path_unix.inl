@@ -97,7 +97,7 @@ Path::_trashPath_impl()
 
 	std::vec_tstring_t paths;
 
-	// XDG_DATA_HOME
+	// env XDG_DATA_HOME
 	{
 		std::ctstring_t &xdgDataHome = Environment(xT("XDG_DATA_HOME")).var();
 		if ( !xdgDataHome.empty() ) {
@@ -105,20 +105,19 @@ Path::_trashPath_impl()
 		}
 	}
 
-	// /.local, ..
+	// Home dirs
 	{
 		std::ctstring_t &home = homeDir().str();
 
 		paths.emplace_back(home + xT("/.local/share/Trash"));
 		paths.emplace_back(home + xT("/.trash"));
+	}
 
-		for (const auto &it_path : paths) {
-			if ( sRv.empty() ) {
-				if ( Dir(it_path).isExists() ) {
-					sRv = it_path;
-					break;
-				}
-			}
+	// detect
+	for (const auto &it_path : paths) {
+		if ( Dir(it_path).isExists() ) {
+			sRv = it_path;
+			break;
 		}
 	}
 

@@ -901,6 +901,14 @@ Test_Path::unit()
         xTEST_EQ(FileInfo(m_sRv).isExists(), true);
     }
 
+    xTEST_CASE("trashPath")
+    {
+        m_sRv = Path::trashPath().str();
+        Cout() << xTRACE_VAR(m_sRv);
+        xTEST(!m_sRv.empty());
+        xTEST_EQ(Dir(m_sRv).isExists(), true);
+    }
+
     xTEST_CASE("briefName")
     {
         const data2_tstring_t data[]
