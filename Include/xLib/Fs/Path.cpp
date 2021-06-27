@@ -82,9 +82,9 @@ Path::homeDir()
 //-------------------------------------------------------------------------------------------------
 /* static */
 Path
-Path::shellPath()
+Path::shell()
 {
-	std::ctstring_t &path = _shellPath_impl();
+	std::ctstring_t &path = _shell_impl();
 
     return Path(path);
 }
@@ -96,9 +96,9 @@ Path::shellPath()
  */
 /* static */
 Path
-Path::trashPath()
+Path::trash()
 {
-	std::ctstring_t &path = _trashPath_impl();
+	std::ctstring_t &path = _trash_impl();
 
 	return Path(path);
 }

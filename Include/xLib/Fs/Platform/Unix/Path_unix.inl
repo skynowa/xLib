@@ -77,7 +77,7 @@ Path::_homeDir_impl()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-Path::_shellPath_impl()
+Path::_shell_impl()
 {
     std::string sRv;
 
@@ -91,7 +91,7 @@ Path::_shellPath_impl()
  */
 /* static */
 std::tstring_t
-Path::_trashPath_impl()
+Path::_trash_impl()
 {
 	std::tstring_t sRv;
 

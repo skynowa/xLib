@@ -36,16 +36,16 @@ Test_Path::unit()
         xTEST_EQ(Dir(m_sRv).isExists(), true);
     }
 
-    xTEST_CASE("shellPath")
+    xTEST_CASE("shell")
     {
-        m_sRv = Path::shellPath().str();
+        m_sRv = Path::shell().str();
         xTEST(!m_sRv.empty());
         xTEST_EQ(FileInfo(m_sRv).isExists(), true);
     }
 
-    xTEST_CASE("trashPath")
+    xTEST_CASE("trash")
     {
-        m_sRv = Path::trashPath().str();
+        m_sRv = Path::trash().str();
         xTEST(!m_sRv.empty());
         xTEST_EQ(Dir(m_sRv).isExists(), true);
     }

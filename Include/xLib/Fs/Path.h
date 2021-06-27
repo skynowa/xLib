@@ -33,13 +33,13 @@ public:
 	* https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum
 	* https://docs.microsoft.com/en-us/previous-versions/windows/embedded/aa453706(v%3Dmsdn.10)
 	*
-	* [TODO] desktop, documents, downloads, trashPath, ...
+	* [TODO] desktop, documents, downloads, ...
 	*/
 	static Path exe();
 	static Path dll();
-	static Path homeDir();
-	static Path shellPath();
-	static Path trashPath();
+	static Path homeDir();	///< dir
+	static Path shell();
+	static Path trash();	///< dir
 ///@}
 
 ///@name interfaces
@@ -165,9 +165,9 @@ xPLATFORM_IMPL:
     static
     std::tstring_t _homeDir_impl();
     static
-    std::tstring_t _shellPath_impl();
+    std::tstring_t _shell_impl();
     static
-    std::tstring_t _trashPath_impl();
+    std::tstring_t _trash_impl();
 
     std::tstring_t _volume_impl() const;
     void_t         _toNative_impl(std::tstring_t *filePath) const;
