@@ -99,7 +99,15 @@ Path::_trashPath_impl()
 {
     std::tstring_t sRv;
 
-    // TODO:
+    LPITEMIDLIST idList {};
+    HRESULT hrRv = ::SHGetSpecialFolderLocation(nullptr, CSIDL_BITBUCKET, &idList);
+    xTEST_EQ(hrRv, S_OK);
+
+    tchar_t buff[MAX_PATH + 1] {};
+    BOOL blRv = ::SHGetPathFromIDList(idList, buff);
+    xTEST_DIFF(blRv, FALSE);
+
+    sRv = buff;
 
     return sRv;
 }

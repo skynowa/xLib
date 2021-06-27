@@ -86,13 +86,54 @@ Path::_shellPath_impl()
     return xA2T(sRv);
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * https://stackoverflow.com/questions/17964439/move-files-to-trash-recycle-bin-in-qt
+ */
 /* static */
 std::tstring_t
 Path::_trashPath_impl()
 {
     std::tstring_t sRv;
 
-    // TODO:
+    std::tstring_t TrashPath;
+    std::tstring_t TrashPathInfo;
+    std::tstring_t TrashPathFiles;
+
+	std::list<std::tstring_t> paths;
+
+	const char *xdg_data_home = getenv( "XDG_DATA_HOME" );
+	if (xdg_data_home) {
+		paths.emplace_back(std::tstring_t(xdg_data_home) + "/Trash");
+	}
+
+	std::tstring_t home = homeDir().str();
+
+	paths.emplace_back(home + "/.local/share/Trash");
+	paths.emplace_back(home + "/.trash");
+
+	for (const auto &path : paths) {
+		if ( TrashPath.empty() ) {
+			continue;
+		}
+
+		Dir dir( path );
+		if( dir.isExists() ){
+			TrashPath = path;
+		}
+	}
+
+	if ( TrashPath.empty() ) {
+		/// throw Exception( "Cant detect trash folder" );
+	}
+
+	TrashPathInfo  = TrashPath + "/info";
+	TrashPathFiles = TrashPath + "/files";
+
+	if (!Dir( TrashPathInfo ).isExists() ||
+		!Dir( TrashPathFiles ).isExists())
+	{
+		/// throw Exception( "Trash doesnt looks like FreeDesktop.org Trash specification" );
+	}
 
     return sRv;
 }
