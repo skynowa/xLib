@@ -39,16 +39,16 @@ Test_Trace::unit()
     xTEST_CASE("write(...)")
     {
     #if xTEST_IGNORE
-        Trace().write(ILog::Level::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvUnknown),  12345);
-        Trace().write(ILog::Level::lvEmerg,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvEmerg),    12345);
-        Trace().write(ILog::Level::lvAlert,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvAlert),    12345);
-        Trace().write(ILog::Level::lvCritical, xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvCritical), 12345);
-        Trace().write(ILog::Level::lvError,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvError),    12345);
-        Trace().write(ILog::Level::lvWarning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvWarning),  12345);
-        Trace().write(ILog::Level::lvNotice,   xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvNotice),   12345);
-        Trace().write(ILog::Level::lvInfo,     xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvInfo),     12345);
-        Trace().write(ILog::Level::lvDebug,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvDebug),    12345);
-        Trace().write(ILog::Level::lvPlain,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvPlain),    12345);
+        Trace().write(ILog::Level::Unknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Unknown),  12345);
+        Trace().write(ILog::Level::Emerg,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Emerg),    12345);
+        Trace().write(ILog::Level::Alert,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Alert),    12345);
+        Trace().write(ILog::Level::Critical, xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
+        Trace().write(ILog::Level::Error,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Error),    12345);
+        Trace().write(ILog::Level::Warning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Warning),  12345);
+        Trace().write(ILog::Level::Notice,   xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Notice),   12345);
+        Trace().write(ILog::Level::Info,     xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Info),     12345);
+        Trace().write(ILog::Level::Debug,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Debug),    12345);
+        Trace().write(ILog::Level::Plain,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Plain),    12345);
     #endif
     }
 
@@ -60,11 +60,12 @@ Test_Trace::unit()
         double         aData  = 4.4;
         cptr_ctchar_t  szData = xT("data2");
 
-        Trace() << xT("\t")
-                   << xTRACE_VAR(sData)
-                   << xTRACE_VAR(ulData)
-                   << xTRACE_VAR(aData)
-                   << xTRACE_VAR(szData);
+        Trace()
+			<< xT("\t")
+			<< xTRACE_VAR(sData)
+			<< xTRACE_VAR(ulData)
+			<< xTRACE_VAR(aData)
+			<< xTRACE_VAR(szData);
     #endif
     }
 

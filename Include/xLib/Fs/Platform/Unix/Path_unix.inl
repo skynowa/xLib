@@ -126,7 +126,7 @@ Path::_trashDir_impl()
 	// checks
 	{
 		if ( sRv.empty() ) {
-			/// xTEST(false && "Can't detect trash folder");
+			Trace().write(Trace::Level::Warning, xT("%s - Can't detect"), xFUNCTION);
 			return {};
 		}
 
