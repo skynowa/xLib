@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Trace)
 bool_t
 Test_Trace::unit()
 {
-    cbool_t isEnabled = true;
+    cbool_t isEnabled {true};
 
     xTEST_CASE("AutoTrace")
     {

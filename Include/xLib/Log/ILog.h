@@ -19,16 +19,16 @@ public:
     enum class Level
         /// log level
     {
-        lvUnknown = - 1,
-        lvEmerg,
-        lvAlert,
-        lvCritical,
-        lvError,
-        lvWarning,
-        lvNotice,
-        lvInfo,
-        lvDebug,
-        lvPlain
+        Unknown = - 1,
+        Emerg,
+        Alert,
+        Critical,
+        Error,
+        Warning,
+        Notice,
+        Info,
+        Debug,
+        Plain
     };
     xUSING_CONST(Level);
 

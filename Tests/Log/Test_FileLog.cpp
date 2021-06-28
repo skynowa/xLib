@@ -35,16 +35,16 @@ Test_FileLog::unit()
 
     xTEST_CASE("write(...)")
     {
-        log.write(ILog::Level::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvUnknown),  12345);
-        log.write(ILog::Level::lvEmerg,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvEmerg),    12345);
-        log.write(ILog::Level::lvAlert,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvAlert),    12345);
-        log.write(ILog::Level::lvCritical, xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvCritical), 12345);
-        log.write(ILog::Level::lvError,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvError),    12345);
-        log.write(ILog::Level::lvWarning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvWarning),  12345);
-        log.write(ILog::Level::lvNotice,   xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvNotice),   12345);
-        log.write(ILog::Level::lvInfo,     xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvInfo),     12345);
-        log.write(ILog::Level::lvDebug,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvDebug),    12345);
-        log.write(ILog::Level::lvPlain,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::lvPlain),    12345);
+        log.write(ILog::Level::Unknown,  xT("\t%s, %d"), xLEX_TO_STR(ILog::L::::Unknown),    12345);
+        log.write(ILog::Level::Emerg,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Emerg),    12345);
+        log.write(ILog::Level::Alert,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Alert),    12345);
+        log.write(ILog::Level::Critical, xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
+        log.write(ILog::Level::Error,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Error),    12345);
+        log.write(ILog::Level::Warning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Warning),  12345);
+        log.write(ILog::Level::Notice,   xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Notice),   12345);
+        log.write(ILog::Level::Info,     xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Info),     12345);
+        log.write(ILog::Level::Debug,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Debug),    12345);
+        log.write(ILog::Level::Plain,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Plain),    12345);
     }
 
     xTEST_CASE("clear")
@@ -56,7 +56,7 @@ Test_FileLog::unit()
     xTEST_CASE("remove")
     {
         log.remove();
-        xTEST(!FileInfo(log.filePath()).isExists() );
+        xTEST(!FileInfo(log.filePath()).isExists());
     }
 
     return true;

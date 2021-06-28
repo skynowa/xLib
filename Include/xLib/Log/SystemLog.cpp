@@ -78,7 +78,7 @@ SystemLog::write(
     msg = FormatC::strV(a_format, args);
     xVA_END(args);
 
-    write(Level::lvPlain, xT("%s"), msg.c_str());
+    write(Level::Plain, xT("%s"), msg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -91,9 +91,9 @@ SystemLog::write(
     xCHECK_DO(!isEnabled(), return);
     xTEST_PTR(a_format);
 
-    Level level = Level::lvUnknown;
+    Level level = Level::Unknown;
     {
-        xCHECK_DO(a_level == Level::lvPlain, level = Level::lvInfo);
+        xCHECK_DO(a_level == Level::Plain, level = Level::Info);
     }
 
     std::tstring_t msg;
