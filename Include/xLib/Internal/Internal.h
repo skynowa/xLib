@@ -23,7 +23,7 @@ namespace xl::internal
     ///< platform implementation code
 ///@}
 //-------------------------------------------------------------------------------------------------
-///@name Enum internals
+///@name Enums
 ///@{
 namespace enums
 {
@@ -48,7 +48,8 @@ class Types
     ///< convert implementation (native) <-> crossplatform values
 {
 public:
-    const Type<CrossT, ImplT> values[SizeT]; ///< crossplatform to implementation (native) values
+    const Type<CrossT, ImplT> values[SizeT];
+        ///< crossplatform to implementation (native) values
 
     CrossT
     toCross(std::cssize_t a_value) const
