@@ -1,6 +1,6 @@
 /**
-+ * \file   SystemLog.inl
- * \brief  logging to system log
+ * \file  SystemLog.inl
+ * \brief logging to system log
  */
 
 
@@ -41,9 +41,6 @@ SystemLog::_write_impl(
     cint_t level_impl = internal::enums::levels.toCross(a_level);
 
     (void_t)::syslog(level_impl, xT("%s"), a_msg.c_str());
-
-
-    int_t iRv = ::__android_log_write(level_impl, const char *tag, a_msg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 
