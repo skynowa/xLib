@@ -94,7 +94,7 @@ FileLog::write(
     msg = FormatC::strV(a_format, args);
     xVA_END(args);
 
-    write(Level::Plain, xT("%s"), msg.c_str());
+    write(Level::Trace, xT("%s"), msg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -120,7 +120,7 @@ FileLog::write(
         msg = FormatC::strV(a_format, args);
         xVA_END(args);
 
-        if (a_level != Level::Plain) {
+        if (a_level != Level::Trace) {
             msg = _levelString(a_level) + xT(": ") + msg;
         }
     }

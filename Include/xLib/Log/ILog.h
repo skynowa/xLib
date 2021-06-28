@@ -16,21 +16,18 @@ class xNO_VTABLE ILog
     /// TODO: https://oopscenities.net/2011/04/30/c-the-curiously-recurring-template-pattern/#more-21
 {
 public:
-    enum class Level
+	enum class Level
         /// log level
-    {
-        Unknown = - 1,
-        Emerg,
-        Alert,
-        Critical,
-        Error,
-        Warning,
-        Notice,
-        Info,
-        Debug,
-        Plain
-    };
-    xUSING_CONST(Level);
+	{
+		Off     = 0,
+		Trace   = 1,
+		Debug   = 2,
+		Info    = 3,
+		Warning = 4,
+		Error   = 5,
+		Fatal   = 6
+	};
+	xUSING_CONST(Level);
 
 ///@name ctors, dtor
 ///@{
