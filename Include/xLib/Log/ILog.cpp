@@ -59,7 +59,7 @@ ILog::_levelString(
         break;
     case Level::Debug:
         sRv = xT("Debug");
-    break;
+        break;
     case Level::Info:
         sRv = xT("Info");
         break;
@@ -68,7 +68,7 @@ ILog::_levelString(
         break;
     case Level::Error:
         sRv = xT("Error");
-    break;
+        break;
     case Level::Fatal:
         sRv = xT("Fatal");
         break;
