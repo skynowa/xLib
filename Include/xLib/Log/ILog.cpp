@@ -51,35 +51,26 @@ ILog::_levelString(
     std::tstring_t sRv;
 
     switch (a_level) {
-    case Level::Emerg:
-        sRv = xT("Emerg");
+    case Level::Off:
+        sRv = xT("Off");
         break;
-    case Level::Alert:
-        sRv = xT("Alert");
+    case Level::Trace:
+        sRv = xT("Trace");
         break;
-    case Level::Critical:
-        sRv = xT("Critical");
-    break;
-    case Level::Error:
-        sRv = xT("Error");
-        break;
-    case Level::Warning:
-        sRv = xT("Warning");
-        break;
-    case Level::Notice:
-        sRv = xT("Notice");
+    case Level::Debug:
+        sRv = xT("Debug");
     break;
     case Level::Info:
         sRv = xT("Info");
         break;
-    case Level::Debug:
-        sRv = xT("Debug");
+    case Level::Warning:
+        sRv = xT("Warning");
         break;
-    case Level::Plain:
-        sRv = xT("");
-        break;
-    case Level::Unknown:
-        sRv = xT("Unknown");
+    case Level::Error:
+        sRv = xT("Error");
+    break;
+    case Level::Fatal:
+        sRv = xT("Fatal");
         break;
     }
 
