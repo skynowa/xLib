@@ -17,7 +17,7 @@ namespace xl::internal::enums
 
 //-------------------------------------------------------------------------------------------------
 static
-constexpr Types<ILog::Level, ::ssize_t, 7> levels
+constexpr Types<ILog::Level, ::ssize_t, 7U> levels
 {{
 #if   xENV_WIN
     {ILog::Level::Off,     -1},

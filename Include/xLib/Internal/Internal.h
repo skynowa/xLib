@@ -28,35 +28,38 @@ namespace xl::internal
 namespace enums
 {
 
-template<typename crossT, typename implT>
+template<
+	typename CrossT,
+	typename ImplT
+	>
 struct Type
     ///< enum values
 {
-    crossT cross;  ///< crossplatform value
-    implT  impl;   ///< implementation (native) value
+	const CrossT cross;  ///< crossplatform value
+	const ImplT  impl;   ///< implementation (native) value
 };
 
 template<
-	typename     crossT,
-	typename     implT,
-	std::csize_t sizeT
+	typename     CrossT,
+	typename     ImplT,
+	std::csize_t SizeT
 	>
 class Types
     ///< convert implementation (native) <-> crossplatform values
 {
 public:
-    const Type<crossT, implT> values[sizeT]; ///< crossplatform to implementation (native) values
+    const Type<CrossT, ImplT> values[SizeT]; ///< crossplatform to implementation (native) values
 
-    crossT
+    CrossT
     toCross(std::cssize_t a_value) const
     {
-        return static_cast<crossT>( this->values[a_value].cross );
+        return static_cast<CrossT>( this->values[a_value].cross );
     }
         ///< implementation (native) value to crossplatform
-    implT
+    ImplT
     toImpl(std::cssize_t a_value) const
     {
-        return static_cast<implT>( this->values[a_value].impl );
+        return static_cast<ImplT>( this->values[a_value].impl );
     }
         ///< crossplatform value to implementation (native)
 };
