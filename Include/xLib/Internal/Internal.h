@@ -48,6 +48,7 @@ class Types
     ///< convert implementation (native) <-> crossplatform values
 {
 public:
+	// TOOD: array -> map
     const Type<CrossT, ImplT> values[SizeT];
         ///< crossplatform to implementation (native) values
 
