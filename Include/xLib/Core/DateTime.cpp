@@ -11,6 +11,7 @@
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Units.h>
 #include <xLib/Core/FormatC.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>

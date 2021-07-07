@@ -32,14 +32,8 @@ public:
 
 ///@name ctors, dtor
 ///@{
-             ErrorReport(culong_t nativeError, const SourceInfo &sourceInfo,
-                 std::ctstring_t &stackTrace, std::ctstring_t &comment);
-        ///< for Exception
-             template<typename T>
-             ErrorReport(cType type, std::ctstring_t &var1, std::ctstring_t &var2,
-                 const T &var1ValueT, const T &var2ValueT, std::ctstring_t &exprSign,
-                 culong_t nativeError, const SourceInfo &sourceInfo, std::ctstring_t &stackTrace,
-                 std::ctstring_t &comment);
+    ErrorReport(cType type, culong_t nativeError, const SourceInfo &sourceInfo,
+                    std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< for Debugger
     virtual ~ErrorReport() = default;
 
@@ -77,9 +71,7 @@ private:
     // comment
     std::tstring_t _comment;          ///< comment
 
-    void_t _construct(cType type, const SourceInfo &sourceInfo,
-                std::ctstring_t &var1, std::ctstring_t &var2, std::ctstring_t &var1Value,
-                std::ctstring_t &var2Value, std::ctstring_t &exprSign, culong_t &nativeError,
+    void_t _construct(cType type, const SourceInfo &sourceInfo, culong_t &nativeError,
                 std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< initiate class members
     void_t _initPlain();
@@ -87,7 +79,5 @@ private:
 };
 
 } // namespace
-//-------------------------------------------------------------------------------------------------
-#include "ErrorReport.inl"
 //-------------------------------------------------------------------------------------------------
 // TODO: https://abseil.io/docs/cpp/guides/status

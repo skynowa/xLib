@@ -8,6 +8,7 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {

@@ -7,6 +7,7 @@
 #include "Crc32.h"
 
 #include <xLib/Core/FormatC.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Fs/File.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StackTrace.h>

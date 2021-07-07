@@ -6,6 +6,7 @@
 
 #include "User.h"
 
+#include <xLib/Core/Format.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/System/Environment.h>
 #include <xLib/Debug/NativeError.h>

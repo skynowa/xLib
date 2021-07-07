@@ -8,6 +8,7 @@
 
 #include <xLib/Core/Functions.h>
 #include <xLib/Core/Utils.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/NativeError.h>

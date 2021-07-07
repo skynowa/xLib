@@ -89,7 +89,7 @@
 //-------------------------------------------------------------------------------------------------
 #define xTRACE_POINT \
     { \
-        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {})}; \
         xl::debug::SourceInfo      sourceInfo(data); \
         \
         xl::log::Trace() \
@@ -99,7 +99,7 @@
     ///< trace point (use Trace)
 #define xTRACE_FUNC \
     { \
-        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
         xl::debug::SourceInfo      sourceInfo(data); \
         \
         xl::log::Trace() \
@@ -108,7 +108,7 @@
     ///< trace function (use Trace)
 #define xTRACE_FUNC_VAR(v) \
     { \
-        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
         xl::debug::SourceInfo      sourceInfo(data); \
         \
         xl::log::Trace() \
@@ -117,7 +117,7 @@
     ///< trace function variable (use Trace)
 #define xTRACE_NOT_IMPLEMENTED \
     { \
-        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
         xl::debug::SourceInfo      sourceInfo(data); \
         \
         xl::log::Trace() \
