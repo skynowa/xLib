@@ -6,8 +6,10 @@
 
 #include "Guid.h"
 
+#include <xLib/Core/Format.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Core/FormatC.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>

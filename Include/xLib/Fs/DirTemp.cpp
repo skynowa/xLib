@@ -6,6 +6,7 @@
 
 #include "DirTemp.h"
 
+#include <xLib/Core/Format.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/NativeError.h>

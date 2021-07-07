@@ -406,7 +406,7 @@
         SourceInfo       sourceInfo(sourceInfoData); \
         std::ctstring_t &stackTrace     = StackTrace().str(); \
         \
-        ErrorReport report(nativeError, sourceInfo, stackTrace, msg); \
+        ErrorReport report(ErrorReport::Type::Stdout, nativeError, sourceInfo, stackTrace, msg); \
         \
         throw Exception() << report.str(); \
     }
