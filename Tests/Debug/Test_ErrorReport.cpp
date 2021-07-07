@@ -16,7 +16,7 @@ Test_ErrorReport::unit()
     xTEST_CASE("ctor")
     {
         ulong_t          nativeError    { NativeError::get() };
-        SourceInfoData   sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER};
+        SourceInfoData   sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}};
         SourceInfo       sourceInfo(sourceInfoData);
         std::ctstring_t &stackTrace     = StackTrace().str();
 

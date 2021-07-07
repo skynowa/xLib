@@ -89,7 +89,7 @@ Test_Debugger::unit()
 
         for (size_t i = 0; i < xARRAY_SIZE(type); ++ i) {
             ulong_t          nativeError    { NativeError::get() };
-            SourceInfoData   sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER};
+            SourceInfoData   sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}};
             SourceInfo       sourceInfo(sourceInfoData);
             std::ctstring_t &stackTrace     = StackTrace().str();
 
