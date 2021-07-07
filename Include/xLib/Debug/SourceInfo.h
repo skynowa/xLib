@@ -19,12 +19,14 @@ struct SourceInfoData
     std::ctstring_t funcName; ///< function name
     culong_t        counter;  ///< counter
 
-    // TODO: expression
-    std::ctstring_t exprVar1;   ///<
-    std::ctstring_t exprVar2;   ///<
-    std::ctstring_t exprValue1; ///<
-    std::ctstring_t exprValue2; ///<
-    std::ctstring_t exprOp;     ///<
+///@name Expression
+///@{
+	std::ctstring_t exprVar1;   ///< variable #1 name
+	std::ctstring_t exprVar2;   ///< variable #2 name
+	std::ctstring_t exprValue1; ///< variable #1 value
+	std::ctstring_t exprValue2; ///< variable #2 value
+	std::ctstring_t exprOp;     ///< compare operator
+///@}
 };
 xUSING_CONST(SourceInfoData);
 
