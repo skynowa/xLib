@@ -402,7 +402,7 @@
 #define xTHROW_REPORT(msg) \
     { \
         culong_t         nativeError    { NativeError::get() }; \
-        SourceInfoData   sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
+        cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
         SourceInfo       sourceInfo(sourceInfoData); \
         std::ctstring_t &stackTrace     = StackTrace().str(); \
         \

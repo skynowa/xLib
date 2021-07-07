@@ -19,7 +19,7 @@ Test_ErrorReport::unit()
         culong_t val2 {20};
 
         ulong_t          nativeError    { NativeError::get() };
-        SourceInfoData   sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER,
+        cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER,
             xLEX_TO_STR(val1), xLEX_TO_STR(val), std::to_string(val1), std::to_string(val2), xT("==")};
         SourceInfo       sourceInfo(sourceInfoData);
         std::ctstring_t &stackTrace     = StackTrace().str();
