@@ -34,14 +34,18 @@ SourceInfo::data() const
 std::tstring_t
 SourceInfo::format() const
 {
-    return Format::str(xT("#{} in {}:{}, func: {}"), _data.counter, _data.filePath, _data.lineNum,
-    	_data.funcName);
+    return Format::str(xT("#{} in {}, func: {}"),
+                _data.counter,
+                at(),
+                _data.funcName);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 SourceInfo::at() const
 {
-    return Format::str(xT("{}:{}"), _data.filePath, _data.lineNum);
+    return Format::str(xT("{}:{}"),
+                _data.filePath,
+                _data.lineNum);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
