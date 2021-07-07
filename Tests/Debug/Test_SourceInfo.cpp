@@ -41,6 +41,7 @@ Test_SourceInfo::unit()
 			Trace() << xTRACE_VAR(sourceInfo.format());
 			Trace() << xTRACE_VAR(sourceInfo.at());
 			Trace() << xTRACE_VAR(sourceInfo.expr());
+			Trace() << xTRACE_VAR(sourceInfo.exprValues());
 		}
     }
 
