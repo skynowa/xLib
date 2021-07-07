@@ -69,6 +69,7 @@ private:
  *   - pid
  *   - tid
  *   - SourceInfo
+ *   - BuildInfo
  *   - NativeError
  *   - StackTrace
  *   - infoAdd
