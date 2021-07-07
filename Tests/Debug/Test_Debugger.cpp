@@ -13,8 +13,6 @@ xTEST_UNIT(Test_Debugger)
 bool_t
 Test_Debugger::unit()
 {
-	xTEST(false);
-
     xTEST_CASE("isEnabled, setEnabled")
     {
         cbool_t cbTrue  = true;
