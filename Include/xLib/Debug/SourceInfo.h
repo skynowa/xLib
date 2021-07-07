@@ -18,6 +18,7 @@ struct SourceInfoData
     culong_t        lineNum;  ///< line number
     std::ctstring_t funcName; ///< function name
     culong_t        counter;  ///< counter
+    // TODO: expression
 };
 xUSING_CONST(SourceInfoData);
 

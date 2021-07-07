@@ -61,6 +61,19 @@ private:
 /**
  * TODO
  *
- * - Message
+ * - class LogMsg:
+ *
+ *   - Date
+ *   - Level
+ *   - module path
+ *   - pid
+ *   - tid
+ *   - SourceInfo
+ *   - NativeError
+ *   - StackTrace
+ *   - infoAdd
+ *
  * - Setter proxy class
+ * - operator <<
+ * - write as trace(), debug(), info(), ...
  */
