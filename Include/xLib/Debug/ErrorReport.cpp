@@ -28,26 +28,26 @@ namespace xl::debug
 {
 //-------------------------------------------------------------------------------------------------
 ErrorReport::ErrorReport(
-	cType             a_type,
-	culong_t          a_nativeError,
-	const SourceInfo &a_sourceInfo,
-	std::ctstring_t  &a_stackTrace,
-	std::ctstring_t  &a_comment
+    cType             a_type,
+    culong_t          a_nativeError,
+    const SourceInfo &a_sourceInfo,
+    std::ctstring_t  &a_stackTrace,
+    std::ctstring_t  &a_comment
 )
 {
-	_construct(a_type, a_sourceInfo, a_nativeError, a_stackTrace, a_comment);
+    _construct(a_type, a_sourceInfo, a_nativeError, a_stackTrace, a_comment);
 
-	switch (a_type) {
-	case Type::Msgbox:
-	case Type::Stdout:
-	case Type::Log:
-	case Type::StdoutLog:
-	case Type::Exception:
-		_initPlain();
-		break;
-	case Type::Unknown:
-		break;
-	}
+    switch (a_type) {
+    case Type::Msgbox:
+    case Type::Stdout:
+    case Type::Log:
+    case Type::StdoutLog:
+    case Type::Exception:
+    	_initPlain();
+    	break;
+    case Type::Unknown:
+    	break;
+    }
 }
 //-------------------------------------------------------------------------------------------------
 ErrorReport::Type
