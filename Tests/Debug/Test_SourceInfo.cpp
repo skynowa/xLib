@@ -21,7 +21,7 @@ Test_SourceInfo::unit()
         cSourceInfoData sourceInfoData
         {
             xFILE, xLINE, xFUNCTION, xCOUNTER,
-            xLEX_TO_STR(var1), xLEX_TO_STR(var2), std::to_string(var1), std::to_string(var2)
+            xLEX_TO_STR(var1), xLEX_TO_STR(var2), std::to_string(var1), std::to_string(var2), xT("<")
         };
 
         SourceInfo sourceInfo(sourceInfoData);
@@ -30,8 +30,14 @@ Test_SourceInfo::unit()
         xTEST(!sourceInfo.data().funcName.empty());
         xTEST_GR(sourceInfo.data().counter, 0UL);
         xTEST(!sourceInfo.format().empty());
+        xTEST(!sourceInfo.at().empty());
+        xTEST_EQ(sourceInfo.expr(), std::tstring_t(xT("var1 (100) < var2 (200)")));
 
-        Trace() << sourceInfo.format();
+		if (0) {
+			Trace() << xTRACE_VAR(sourceInfo.format());
+			Trace() << xTRACE_VAR(sourceInfo.at());
+			Trace() << xTRACE_VAR(sourceInfo.expr());
+		}
     }
 
     return true;

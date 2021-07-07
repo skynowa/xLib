@@ -44,5 +44,14 @@ SourceInfo::at() const
     return Format::str(xT("{}:{}"), _data.filePath, _data.lineNum);
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+SourceInfo::expr() const
+{
+    return Format::str(xT("{} ({}) {} {} ({})"),
+        _data.exprVar1, _data.exprValue1,
+        _data.exprOp,
+        _data.exprVar2, _data.exprValue2);
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace

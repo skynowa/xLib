@@ -46,6 +46,8 @@ public:
         ///< format data
     std::tstring_t    at() const;
         ///< format as file and line
+    std::tstring_t    expr() const;
+        ///< format as expression
 
 private:
     cSourceInfoData _data; ///< data
