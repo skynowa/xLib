@@ -39,6 +39,7 @@ public:
     std::tstring_t str() const;
     ::ssize_t      value() const;
     std::tstring_t name() const;
+        ///< TODO: gen enum strs
 
     // operators
     Enum<T>        inc() const;
