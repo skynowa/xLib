@@ -79,6 +79,8 @@ ErrorReport::_construct(
     std::ctstring_t  &a_comment
 )
 {
+	const auto &data = a_sourceInfo.data();
+
     _type             = a_type;
 
     _program          = Path::exe().brief(::reportWidthMax).toUnix(false).str();
@@ -89,11 +91,11 @@ ErrorReport::_construct(
 #endif
     _threadId         = (ulong_t)Thread::currentId();
 
-    _sourceFilePath   = Path(a_sourceInfo.data().filePath).brief(::reportWidthMax).toUnix(false).str();
-    _sourceLineNum    = a_sourceInfo.data().lineNum;
-    _sourceFuncName   = a_sourceInfo.data().funcName;
-    _sourceExpr       = Format::str(xT("{} {} {}"), a_sourceInfo.data().exprVar1, a_sourceInfo.data().exprOp, a_sourceInfo.data().exprVar2);
-    _sourceExprValues = Format::str(xT("{} {} {}"), a_sourceInfo.data().exprValue1, a_sourceInfo.data().exprOp, a_sourceInfo.data().exprValue2);
+    _sourceFilePath   = Path(data.filePath).brief(::reportWidthMax).toUnix(false).str();
+    _sourceLineNum    = data.lineNum;
+    _sourceFuncName   = data.funcName;
+    _sourceExpr       = Format::str(xT("{} {} {}"), data.exprVar1, data.exprOp, data.exprVar2);
+    _sourceExprValues = Format::str(xT("{} {} {}"), data.exprValue1, data.exprOp, data.exprValue2);
 
     _nativeError      = a_nativeError;
     _nativeErrorStr   = NativeError::format(a_nativeError);
