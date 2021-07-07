@@ -12,7 +12,7 @@ namespace xl::package
 {
 
 struct DonateData
-    /// SourceInfo data
+    /// Donate data
 {
     std::tstring_t payPal;
     std::tstring_t webMoney;
