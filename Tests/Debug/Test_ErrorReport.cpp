@@ -24,7 +24,7 @@ Test_ErrorReport::unit()
         SourceInfo       sourceInfo(sourceInfoData);
         std::ctstring_t &stackTrace     = StackTrace().str();
 
-        ErrorReport eport(ErrorReport::Type::Msgbox, nativeError, sourceInfo, stackTrace, xT(""));
+        ErrorReport report(ErrorReport::Type::Msgbox, nativeError, sourceInfo, stackTrace, xT(""));
     }
 
     return true;
