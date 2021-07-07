@@ -16,6 +16,7 @@ enum class TestType
 	First   = 1,
 	Second  = 2,
 	Third   = 3,
+	Fourth  = 4,
 	Last    = Third + 1
 };
 //-------------------------------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Test_Enum::unit()
     {
         std::ctstring_t str(xT("2"));
 
-        Enum<TestType> e(str);
+        const Enum<TestType> e(str);
         m_sRv = e.str();
         xTEST_EQ(m_sRv, str);
     }
@@ -48,6 +49,14 @@ Test_Enum::unit()
     {
         m_sRv = Enum(TestType::Third).name();
         xTEST_EQ(m_sRv, std::tstring_t(xT("Third")));
+
+        // TEST: name
+		if (0) {
+			const auto value {TestType::Fourth};
+
+			m_sRv = Enum<TestType>(value).name();
+			xTEST_EQ(m_sRv, std::tstring_t(xT("Fourth")));
+		}
     }
 
     xTEST_CASE("inc/dec")
