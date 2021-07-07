@@ -6,7 +6,6 @@
 
 #include "Guid.h"
 
-#include <xLib/Core/Format.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
