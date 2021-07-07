@@ -402,11 +402,11 @@
 #define xTHROW_REPORT(msg) \
     { \
         culong_t         nativeError    { NativeError::get() }; \
-        SourceInfoData   sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
         SourceInfo       sourceInfo(sourceInfoData); \
         std::ctstring_t &stackTrace     = StackTrace().str(); \
         \
-        ErrorReport report(nativeError, sourceInfo, stackTrace, msg); \
+        ErrorReport report(ErrorReport::Type::Stdout, nativeError, sourceInfo, stackTrace, msg); \
         \
         throw Exception() << report.str(); \
     }

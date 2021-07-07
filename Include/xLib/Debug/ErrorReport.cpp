@@ -28,15 +28,26 @@ namespace xl::debug
 {
 //-------------------------------------------------------------------------------------------------
 ErrorReport::ErrorReport(
+    cType             a_type,
     culong_t          a_nativeError,
     const SourceInfo &a_sourceInfo,
     std::ctstring_t  &a_stackTrace,
     std::ctstring_t  &a_comment
 )
 {
-    _construct(Type::Stdout, a_sourceInfo, xT(""), xT(""), xT(""), xT(""), xT(""), a_nativeError,
-        a_stackTrace, a_comment);
-    _initPlain();
+    _construct(a_type, a_sourceInfo, a_nativeError, a_stackTrace, a_comment);
+
+    switch (a_type) {
+    case Type::Msgbox:
+    case Type::Stdout:
+    case Type::Log:
+    case Type::StdoutLog:
+    case Type::Exception:
+    	_initPlain();
+    	break;
+    case Type::Unknown:
+    	break;
+    }
 }
 //-------------------------------------------------------------------------------------------------
 ErrorReport::Type
@@ -63,16 +74,13 @@ void_t
 ErrorReport::_construct(
     cType             a_type,
     const SourceInfo &a_sourceInfo,
-    std::ctstring_t  &a_var1,
-    std::ctstring_t  &a_var2,
-    std::ctstring_t  &a_var1Value,
-    std::ctstring_t  &a_var2Value,
-    std::ctstring_t  &a_exprSign,
     culong_t         &a_nativeError,
     std::ctstring_t  &a_stackTrace,
     std::ctstring_t  &a_comment
 )
 {
+	const auto &data = a_sourceInfo.data();
+
     _type             = a_type;
 
     _program          = Path::exe().brief(::reportWidthMax).toUnix(false).str();
@@ -83,11 +91,11 @@ ErrorReport::_construct(
 #endif
     _threadId         = (ulong_t)Thread::currentId();
 
-    _sourceFilePath   = Path(a_sourceInfo.data().filePath).brief(::reportWidthMax).toUnix(false).str();
-    _sourceLineNum    = a_sourceInfo.data().lineNum;
-    _sourceFuncName   = a_sourceInfo.data().funcName;
-    _sourceExpr       = Format::str(xT("{} {} {}"), a_var1, a_exprSign, a_var2);
-    _sourceExprValues = Format::str(xT("{} {} {}"), a_var1Value, a_exprSign, a_var2Value);
+    _sourceFilePath   = Path(data.filePath).brief(::reportWidthMax).toUnix(false).str();
+    _sourceLineNum    = data.lineNum;
+    _sourceFuncName   = data.funcName;
+    _sourceExpr       = a_sourceInfo.expr();
+    _sourceExprValues = a_sourceInfo.exprValues();
 
     _nativeError      = a_nativeError;
     _nativeErrorStr   = NativeError::format(a_nativeError);

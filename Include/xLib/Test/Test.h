@@ -23,24 +23,24 @@
 #define xTEST_EQ_MSG_PRIVATE(op, reportType, val1, val2, msg) \
 	if ( !((val1) op (val2)) ) { \
 		culong_t         nativeError    { NativeError::get() }; \
-		cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+		cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER, \
+			xT(#val1), xT(#val2), Format::str(xT("{}"), val1), Format::str(xT("{}"), val2), xLEX_TO_STR(op)}; \
 		SourceInfo       sourceInfo(sourceInfoData); \
 		std::ctstring_t &stackTrace     = StackTrace().str(); \
 		\
-		ErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xLEX_TO_STR(op), \
-			nativeError, sourceInfo, stackTrace, (msg)); \
+		ErrorReport report(reportType, nativeError, sourceInfo, stackTrace, (msg)); \
 		Debugger().reportMake(report); \
 	}
 
 #define xTEST_PTR_MSG_PRIVATE(op, reportType, ptr, msg) \
     if ( !(intptr_t(ptr) op intptr_t(nullptr)) ) { \
         culong_t         nativeError    { NativeError::get() }; \
-        cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER, \
+            xT(#ptr), xLEX_TO_STR(nullptr), Format::str(xT("{}"), int64_t(intptr_t(ptr))), xT(nullptr), xLEX_TO_STR(op)}; \
         SourceInfo       sourceInfo(sourceInfoData); \
         std::ctstring_t &stackTrace     = StackTrace().str(); \
         \
-        ErrorReport report(reportType, xT(#ptr), xLEX_TO_STR(nullptr), intptr_t(ptr), \
-            intptr_t(nullptr), xLEX_TO_STR(op), nativeError, sourceInfo, stackTrace, (msg)); \
+        ErrorReport report(reportType, nativeError, sourceInfo, stackTrace, (msg)); \
         Debugger().reportMake(report); \
     }
 
@@ -65,12 +65,12 @@
 #define xTEST_FAIL_MSG_IMPL(reportType, msg) \
     if (true) { \
         culong_t         nativeError    { NativeError::get() }; \
-        cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER}; \
+        cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER, \
+            xLEX_TO_STR(false), {}, {}, {}, {}}; \
         SourceInfo       sourceInfo(sourceInfoData); \
         std::ctstring_t &stackTrace     = StackTrace().str(); \
         \
-        ErrorReport report(reportType, xLEX_TO_STR(false), xT(""), xT(""), xT(""), xT(""), \
-            nativeError, sourceInfo, stackTrace, (msg)); \
+        ErrorReport report(reportType, nativeError, sourceInfo, stackTrace, (msg)); \
         Debugger().reportMake(report); \
     }
 

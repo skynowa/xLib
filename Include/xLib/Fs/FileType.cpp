@@ -6,6 +6,7 @@
 
 #include "FileType.h"
 
+#include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>

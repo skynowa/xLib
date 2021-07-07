@@ -13,6 +13,7 @@
 #include <curl/curl.h>
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/Format.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
