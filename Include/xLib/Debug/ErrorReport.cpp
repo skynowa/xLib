@@ -94,8 +94,8 @@ ErrorReport::_construct(
     _sourceFilePath   = Path(data.filePath).brief(::reportWidthMax).toUnix(false).str();
     _sourceLineNum    = data.lineNum;
     _sourceFuncName   = data.funcName;
-    _sourceExpr       = Format::str(xT("{} {} {}"), data.exprVar1, data.exprOp, data.exprVar2);
-    _sourceExprValues = Format::str(xT("{} {} {}"), data.exprValue1, data.exprOp, data.exprValue2);
+    _sourceExpr       = a_sourceInfo.expr();
+    _sourceExprValues = a_sourceInfo.exprValues();
 
     _nativeError      = a_nativeError;
     _nativeErrorStr   = NativeError::format(a_nativeError);

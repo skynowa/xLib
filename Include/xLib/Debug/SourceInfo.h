@@ -50,6 +50,8 @@ public:
         ///< format as file and line
     std::tstring_t    expr() const;
         ///< format as expression
+    std::tstring_t    exprValues() const;
+        ///< format as expression
 
 private:
     cSourceInfoData _data; ///< data
