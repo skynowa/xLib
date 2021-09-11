@@ -61,7 +61,7 @@ struct DataIn :
 		///< similar to Accept, but restricts the set of natural languages that are preferred
 	std::tstring_t acceptCharset;
 		///< indicate what character sets are acceptable
-	std::tstring_t user_agent;
+	std::tstring_t userAgent;
 		///<
 
 	bool_t         isFollowLocation {true};
