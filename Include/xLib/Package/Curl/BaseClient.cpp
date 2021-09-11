@@ -48,7 +48,7 @@ DataIn::print(
 		<< xTRACE_VAR(acceptEncoding)    << xT("\n")
 		<< xTRACE_VAR(acceptLanguage)    << xT("\n")
 		<< xTRACE_VAR(acceptCharset)     << xT("\n")
-		<< xTRACE_VAR(user_agent)        << xT("\n")
+		<< xTRACE_VAR(userAgent)         << xT("\n")
 		<< xTRACE_VAR(isFollowLocation)  << xT("\n")
 		<< xTRACE_VAR(maxRedirects)      << xT("\n")
 		<< xTRACE_VAR(isCacheControl)    << xT("\n")
@@ -286,8 +286,8 @@ BaseClient::setOptionsDefault(
 		setOption(CURLOPT_ACCEPT_ENCODING, a_dataIn->acceptEncoding.c_str());
 	}
 
-	if ( !a_dataIn->user_agent.empty() ) {
-		setOption(CURLOPT_USERAGENT, a_dataIn->user_agent.c_str());
+	if ( !a_dataIn->userAgent.empty() ) {
+		setOption(CURLOPT_USERAGENT, a_dataIn->userAgent.c_str());
 	}
 
 	// curl_easy_setopt(curl, CURLOPT_AUTOREFERER, 1);
