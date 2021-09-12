@@ -243,14 +243,14 @@ Client::onReadData(
 	void_t         *a_buff,			///< [out]
 	std::size_t     a_size,
 	std::size_t     a_items,
-	std::tstring_t *a_userData
+	std::tstring_t *out_userData
 )
 {
 	// TODO: incorrect impl
 #if 0
 	std::csize_t buffSize = a_items * a_size;
 
-	auto *buff = static_cast<const Buffer *>(a_userData);
+	auto *buff = static_cast<const Buffer *>(out_userData);
 
 	return buff->get(static_cast<char *>(a_buff), buffSize);
 #else
