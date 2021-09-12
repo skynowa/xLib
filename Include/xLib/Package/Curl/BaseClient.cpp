@@ -122,10 +122,10 @@ BaseClient::setProtocols(
 //-------------------------------------------------------------------------------------------------
 void_t
 BaseClient::setOptionsDefault(
-	DataIn         *a_dataIn,		///< [in,out]
-	curl_slist     *a_headers,		///< [in,out]
-	std::tstring_t *out_buffHeader,	///< [out]
-	std::tstring_t *out_buffData	///< [out]
+	DataIn         *a_dataIn,			///< [in,out]
+	curl_slist     *a_headers,			///< [in,out]
+	std::tstring_t *out_buffHeader,		///< [out]
+	std::tstring_t *out_buffData		///< [out]
 )
 {
 	xTEST(_handle.isValid());
