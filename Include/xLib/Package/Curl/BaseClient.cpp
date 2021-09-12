@@ -130,7 +130,7 @@ BaseClient::setOptionsDefault(
 {
 	xTEST(_handle.isValid());
 	xTEST_PTR(a_dataIn);
-	xTEST_PTR_FAIL(a_headers);
+	xTEST_PTR(a_headers);
 	xTEST_PTR(out_buffHeader);
 	xTEST_PTR(out_buffData);
 
