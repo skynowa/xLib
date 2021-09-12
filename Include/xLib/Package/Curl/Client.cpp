@@ -57,7 +57,7 @@ void_t
 Client::perform()
 {
     cCURLcode iRv = ::curl_easy_perform( _handle.get() );
-    xTEST_EQ(iRv, CURLE_OK);
+    xTEST_EQ_MSG(iRv, CURLE_OK, Format::str(xT("perform: {}"), strError(iRv)));
 }
 //-------------------------------------------------------------------------------------------------
 void_t
