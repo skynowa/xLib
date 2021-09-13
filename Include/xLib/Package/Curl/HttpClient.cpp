@@ -156,19 +156,19 @@ HttpClient::httpCode(
 {
 	HttpCode hcRv {};
 
-	if      (a_dataOut.responseCode >= 100 && a_dataOut.responseCode <= 199) {
+	if      ( Algos::isInBounds(a_dataOut.responseCode, 100, 199) ) {
 		hcRv = HttpCode::Info;
 	}
-	else if (a_dataOut.responseCode >= 200 && a_dataOut.responseCode <= 299) {
+	else if ( Algos::isInBounds(a_dataOut.responseCode, 200, 299) ) {
 		hcRv = HttpCode::Success;
 	}
-	else if (a_dataOut.responseCode >= 300 && a_dataOut.responseCode <= 399) {
+	else if ( Algos::isInBounds(a_dataOut.responseCode, 300, 399) ) {
 		hcRv = HttpCode::Redirection;
 	}
-	else if (a_dataOut.responseCode >= 400 && a_dataOut.responseCode <= 499) {
+	else if ( Algos::isInBounds(a_dataOut.responseCode, 400, 499) ) {
 		hcRv = HttpCode::ClientError;
 	}
-	else if (a_dataOut.responseCode >= 500 && a_dataOut.responseCode <= 599) {
+	else if ( Algos::isInBounds(a_dataOut.responseCode, 500, 599) ) {
 		hcRv = HttpCode::ServerError;
 	}
 	else {
