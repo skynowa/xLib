@@ -22,8 +22,13 @@ class Client
     /// Client (interface)
 {
 public:
-    explicit       Client();
-    virtual       ~Client();
+///@name Ctors, dtor
+///@{
+	explicit       Client();
+	virtual       ~Client();
+
+	xNO_COPY_ASSIGN(Client)
+///@}
 
     // handle
     HandleCurl &   get();
@@ -53,20 +58,28 @@ public:
 	static
     std::tstring_t strError(cCURLcode code);
 
-    // callbacks
+///@name Callbacks
+///@{
 	static
-	std::size_t    onWriteHeader(void_t *buff, std::size_t size, std::size_t items, std::tstring_t *userData);
+	std::size_t onWriteHeader(void_t *buff, std::csize_t size, std::csize_t items, std::tstring_t *userData);
 	static
-	std::size_t    onWriteData(void_t *buff, std::size_t size, std::size_t items, std::tstring_t *userData);
+	std::size_t onWriteData(void_t *buff, std::csize_t size, std::csize_t items, std::tstring_t *userData);
 	static
-	std::size_t    onReadData(void_t *buff, std::size_t size, std::size_t items, std::tstring_t *userData);
+	std::size_t onReadData(void_t *buff, std::csize_t size, std::csize_t items, std::ctstring_t *userData);
 	static
-	int            onDebug(CURL *curl, curl_infotype type, char *buf, std::size_t len, void_t *useData);
+	int         onDebug(CURL *curl, curl_infotype type, char *buf, std::csize_t len, void_t *useData);
+///@}
 
     HandleCurl _handle;
 
-private:
-    xNO_COPY_ASSIGN(Client)
+protected:
+    struct UploadStatus
+    {
+        std::tstring_t buffUpload;
+        size_t         readBytes;
+    };
+
+    UploadStatus _uploadStatus {};
 };
 
 } // namespace

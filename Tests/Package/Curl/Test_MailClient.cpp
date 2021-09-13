@@ -1,6 +1,6 @@
 /**
- * \file   Test_HttpClient.cpp
- * \brief  test HttpClient
+ * \file  Test_MailClient.cpp
+ * \brief test MailClient
  */
 
 
@@ -10,25 +10,34 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xl::curl;
 
-xTEST_UNIT(Test_HttpClient)
+xTEST_UNIT(Test_MailClient)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_HttpClient::unit()
+Test_MailClient::unit()
 {
-    xTEST_CASE("request (Get)")
-    {
+	if ( isGithubCI() ) {
+		Cout() << "Skip";
+		return true;
+	}
+
+	xTEST_CASE("request")
+	{
 		DataIn dataIn;
-		dataIn.url     = xT("https://example.com/");
-		dataIn.request = xT("");
+		dataIn.url     = xT("smtp://smtp.gmail.com:587");
+		dataIn.request =
+			"The body of the message starts here.\r\n"
+			"\r\n"
+			"It could be a lot of lines, could be MIME encoded, whatever.\r\n"
+			"Check RFC5322.";
 
 		DataOut dataOut;
 
-		HttpClient http;
-		m_bRv = http.request(HttpClient::Request::Get, dataIn, &dataOut);
+		MailClient mail;
+		m_bRv = mail.request(dataIn, &dataOut);
 		xTEST(m_bRv);
 		xTEST(!dataOut.headers.empty());
-		xTEST(!dataOut.body.empty());
+		xTEST(dataOut.body.empty());
 
 		if (0) {
 			Cout()

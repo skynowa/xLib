@@ -122,30 +122,38 @@ BaseClient::setProtocols(
 //-------------------------------------------------------------------------------------------------
 void_t
 BaseClient::setOptionsDefault(
-	DataIn         *a_dataIn,			///< [in,out]
-	curl_slist     *a_headers,			///< [in,out]
-	std::tstring_t *out_buffHeader,		///< [out]
-	std::tstring_t *out_buffData		///< [out]
+	DataIn          *a_dataIn,			///< [in,out]
+	std::ctstring_t &a_buffUpload,		///<
+	std::tstring_t  *out_buffHeader,	///< [out]
+	std::tstring_t  *out_buffData		///< [out]
 )
 {
 	xTEST(_handle.isValid());
 	xTEST_PTR(a_dataIn);
-	xTEST_PTR(a_headers);
+	xTEST_NA(a_buffUpload);
 	xTEST_PTR(out_buffHeader);
 	xTEST_PTR(out_buffData);
 
-	a_headers = nullptr;
 	out_buffHeader->clear();
 	out_buffData->clear();
 
 	setOption(CURLOPT_URL, a_dataIn->url.c_str());
 
+	// Download data
 	{
 		setOption(CURLOPT_WRITEHEADER,    out_buffHeader);
 		setOption(CURLOPT_HEADERFUNCTION, onWriteHeader);
 
 		setOption(CURLOPT_WRITEDATA,      out_buffData);
 		setOption(CURLOPT_WRITEFUNCTION,  onWriteData);
+	}
+
+	// Upload data
+	{
+		_uploadStatus.buffUpload = a_buffUpload;
+
+		setOption(CURLOPT_READDATA,     &_uploadStatus);
+		setOption(CURLOPT_READFUNCTION,  onReadData);
 	}
 
 	setOption(CURLOPT_HEADER, static_cast<long_t>(a_dataIn->isUseHeader));
@@ -241,41 +249,49 @@ BaseClient::setOptionsDefault(
 
 	// CURLOPT_HTTPHEADER
 	{
-		if ( !a_dataIn->accept.empty() ) {
-			std::ctstring_t &value = xT("Accept: ") + a_dataIn->accept;
+		// _headers
+		{
+			curl_slist *headers {};
 
-			a_headers = ::curl_slist_append(a_headers, value.c_str());
-		}
+			if ( !a_dataIn->accept.empty() ) {
+				std::ctstring_t &value = xT("Accept: ") + a_dataIn->accept;
 
-		if ( !a_dataIn->acceptLanguage.empty() ) {
-			std::ctstring_t &value = xT("Accept-Language: ") + a_dataIn->acceptLanguage;
+				headers = ::curl_slist_append(headers, value.c_str());
+			}
 
-			a_headers = ::curl_slist_append(a_headers, value.c_str());
-		}
+			if ( !a_dataIn->acceptLanguage.empty() ) {
+				std::ctstring_t &value = xT("Accept-Language: ") + a_dataIn->acceptLanguage;
 
-		if ( !a_dataIn->acceptCharset.empty() ) {
-			std::ctstring_t &value = xT("Accept-Charset: ") + a_dataIn->acceptCharset;
+				headers = ::curl_slist_append(headers, value.c_str());
+			}
 
-			a_headers = ::curl_slist_append(a_headers, value.c_str());
-		}
+			if ( !a_dataIn->acceptCharset.empty() ) {
+				std::ctstring_t &value = xT("Accept-Charset: ") + a_dataIn->acceptCharset;
 
-		if (a_dataIn->isCacheControl) {
-			// use cache
-		} else {
-			// no cache
-			a_headers = ::curl_slist_append(a_headers, xT("Cache-Control: no-cache"));
+				headers = ::curl_slist_append(headers, value.c_str());
+			}
 
-			// SEE: also set in HttpClient::request()
-		}
+			if (a_dataIn->isCacheControl) {
+				// use cache
+			} else {
+				// no cache
+				headers = ::curl_slist_append(headers, xT("Cache-Control: no-cache"));
 
-		for (const auto &[param, value] : a_dataIn->addHeaders) {
-			std::ctstring_t &value_ = param + xT(": ") + value;
+				// SEE: also set in HttpClient::request()
+			}
 
-			a_headers = ::curl_slist_append(a_headers, value_.c_str());
+			for (const auto &[param, value] : a_dataIn->addHeaders) {
+				std::ctstring_t &value_ = param + xT(": ") + value;
+
+				headers = ::curl_slist_append(headers, value_.c_str());
+			}
+
+			// [out]
+			_headers.reset(headers);
 		}
 
 		// set list
-		setOption(CURLOPT_HTTPHEADER, a_headers);
+		setOption(CURLOPT_HTTPHEADER, _headers.get());
 	}
 
 	if ( !a_dataIn->referer.empty() ) {
