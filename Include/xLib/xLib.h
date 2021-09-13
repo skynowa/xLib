@@ -103,11 +103,6 @@
 #include <xLib/Net/TcpClient.h>
 #include <xLib/Net/TcpServer.h>
 #include <xLib/Net/DnsClient.h>
-#include <xLib/Net/MimeHeader.h>
-#include <xLib/Net/MimeBody.h>
-#include <xLib/Net/MimeMessage.h>
-#include <xLib/Net/Pop3Client.h>
-#include <xLib/Net/SmtpClient.h>
 
 // Pattern
 #include <xLib/Pattern/Raii.h>
