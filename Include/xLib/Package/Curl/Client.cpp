@@ -201,8 +201,8 @@ Client::strError(
 std::size_t
 Client::onWriteHeader(
 	void_t         *a_buff,
-	std::size_t     a_size,
-	std::size_t     a_items,
+	std::csize_t    a_size,
+	std::csize_t    a_items,
 	std::tstring_t *out_userData
 )
 {
@@ -221,8 +221,8 @@ Client::onWriteHeader(
 std::size_t
 Client::onWriteData(
 	void_t         *a_buff,
-	std::size_t     a_size,
-	std::size_t     a_items,
+	std::csize_t    a_size,
+	std::csize_t    a_items,
 	std::tstring_t *out_userData
 )
 {
@@ -240,33 +240,45 @@ Client::onWriteData(
 /* static */
 std::size_t
 Client::onReadData(
-	void_t         *a_buff,			///< [out]
-	std::size_t     a_size,
-	std::size_t     a_items,
-	std::tstring_t *out_userData
+	void_t          *out_buff,	///< [out]
+	std::csize_t     a_size,	///<
+	std::csize_t     a_items,	///<
+	std::ctstring_t *a_userData	///< [in,out]
 )
 {
-	// TODO: incorrect impl
-#if 0
-	std::csize_t buffSize = a_items * a_size;
+	xTEST_PTR(out_buff);
+	xTEST_DIFF(a_size, std::size_t{0});
+	xTEST_DIFF(a_items, std::size_t{0});
+	xTEST_PTR(a_userData);
 
-	auto *buff = static_cast<const Buffer *>(out_userData);
+	auto *uploadStatus = (struct UploadStatus *)a_userData;
+	xTEST_PTR(uploadStatus);
 
-	return buff->get(static_cast<char *>(a_buff), buffSize);
-#else
-	xNOT_IMPLEMENTED;
+	std::ctstring_t buff = uploadStatus->buffUpload.substr(uploadStatus->readBytes);
+	if ( buff.empty() ) {
+		return 0;
+	}
 
-	return 0;
-#endif
+	std::csize_t buffSizeMax = a_size * a_items;
+	std::size_t  buffSize    = buff.size();
+	if (buffSizeMax < buffSize) {
+		buffSize = buffSizeMax;
+	}
+
+	std::memcpy(out_buff, buff.data(), buffSize);
+
+	uploadStatus->readBytes += buffSize;
+
+	return buffSize;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 int
 Client::onDebug(
-	CURL          *a_curl,
-	curl_infotype  a_type,
-	char          *a_buf,
-	std::size_t    a_len,
+	CURL          *a_curl,		///<
+	curl_infotype  a_type,		///<
+	char          *a_buf,		///<
+	std::csize_t   a_len,		///<
 	void_t        *out_useData	///< as DataIn::DebugData
 )
 {

@@ -9,28 +9,7 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/DateTime.h>
-
-
 //-------------------------------------------------------------------------------------------------
-namespace
-{
-
-struct CutlSlistDeleter
-{
-	void operator() (struct curl_slist *a_list) const
-	{
-		if (a_list == nullptr) {
-			return;
-		}
-
-		::curl_slist_free_all(a_list); a_list = nullptr;
-	}
-};
-using slist_unique_ptr_t = std::unique_ptr<struct curl_slist, CutlSlistDeleter>;
-
-} // namespace
-//-------------------------------------------------------------------------------------------------
-
 namespace xl::package::curl
 {
 
@@ -150,21 +129,14 @@ HttpClient::request(
 		break;
 	}
 
-	slist_unique_ptr_t headersIn;
-	std::tstring_t     buffHeaderOut;
-	std::tstring_t     buffDataOut;
-	BaseClient::setOptionsDefault(&a_dataIn, headersIn.get(), &buffHeaderOut, &buffDataOut);
+	std::tstring_t buffDataUpload;
+	std::tstring_t buffHeaderOut;
+	std::tstring_t buffDataOut;
+	BaseClient::setOptionsDefault(&a_dataIn, buffDataUpload, &buffHeaderOut, &buffDataOut);
 
-	/* CURLcode st = */ perform();
-#if 0
-	Cout()
-		<< "buffHeaderOut: [" << buffHeaderOut << "]\n"
-		<< "buffDataOut: ["   << buffDataOut <<   "]";
-#endif
+	perform();
 
 	BaseClient::getInfos(out_dataOut);
-
-	/// _error = st;
 
 	// [out]
 	String::split(buffHeaderOut, Const::crNl(), xT(": "), &out_dataOut->headers);

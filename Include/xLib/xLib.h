@@ -166,3 +166,4 @@
 #include <xLib/Package/Curl/Client.h>
 #include <xLib/Package/Curl/BaseClient.h>
 #include <xLib/Package/Curl/HttpClient.h>
+#include <xLib/Package/Curl/MailClient.h>
