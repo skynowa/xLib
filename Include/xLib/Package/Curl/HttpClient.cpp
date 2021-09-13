@@ -72,7 +72,7 @@ HttpClient::request(
 			*/
 
 			setOption(CURLOPT_POST,          1L);
-			setOption(CURLOPT_POSTFIELDS,    a_dataIn.request.c_str());
+			setOption(CURLOPT_POSTFIELDS,    a_dataIn.request.data());
 			setOption(CURLOPT_POSTFIELDSIZE, a_dataIn.request.size());
 		}
 		break;
