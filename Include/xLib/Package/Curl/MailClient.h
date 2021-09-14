@@ -38,6 +38,17 @@ public:
 
 private:
     slist_unique_ptr_t _recipients;
+
+    std::ctstring_t _url      = "smtp://smtp.gmail.com:587";
+    std::ctstring_t _caPath   = "/home/skynowa/.config/kdeconnect/certificate.pem";
+
+    std::ctstring_t _userName = "<skynowa@gmail.com>";
+    std::ctstring_t _password = "****";	// TODO: set password for test
+
+    std::ctstring_t _from     = "<skynowa@gmail.com>";
+	std::ctstring_t _to       = "<skynowa@fabrica.net.ua>";
+	std::ctstring_t _cc       = "<skynowa@gmail.com>";
+	std::ctstring_t _subject  = "SMTP example message";
 };
 
 } // namespace
