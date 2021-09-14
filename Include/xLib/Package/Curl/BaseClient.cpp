@@ -123,14 +123,14 @@ BaseClient::setProtocols(
 void_t
 BaseClient::setOptionsDefault(
 	DataIn          *a_dataIn,			///< [in,out]
-	std::ctstring_t &a_buffUpload,		///<
+	std::ctstring_t &a_buffRead,		///<
 	std::tstring_t  *out_buffHeader,	///< [out]
 	std::tstring_t  *out_buffData		///< [out]
 )
 {
 	xTEST(_handle.isValid());
 	xTEST_PTR(a_dataIn);
-	xTEST_NA(a_buffUpload);
+	xTEST_NA(a_buffRead);
 	xTEST_PTR(out_buffHeader);
 	xTEST_PTR(out_buffData);
 
@@ -150,9 +150,9 @@ BaseClient::setOptionsDefault(
 
 	// Upload data
 	{
-		_uploadStatus.buffUpload = a_buffUpload;
+		_readData.buff = a_buffRead;
 
-		setOption(CURLOPT_READDATA,     &_uploadStatus);
+		setOption(CURLOPT_READDATA,     &_readData);
 		setOption(CURLOPT_READFUNCTION,  onReadData);
 	}
 
