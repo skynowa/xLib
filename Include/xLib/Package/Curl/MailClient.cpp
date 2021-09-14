@@ -34,9 +34,7 @@ MailClient::request(
      * instead of the normal SMTP port (25). Port 587 is commonly used for
      * secure mail submission (see RFC4403), but you should use whatever
      * matches your server configuration. */
-	if (0) {
-		setOption(CURLOPT_URL, _url.c_str());
-	}
+	setOption(CURLOPT_URL, _url.c_str());
 
     /* In this example, we'll start with a plain text connection, and upgrade
      * to Transport Layer Security (TLS) using the STARTTLS command. Be careful
@@ -99,9 +97,7 @@ MailClient::request(
 			"From: "    + _from + Const::crNl() +
 			"Subject: " + _subject;
 
-		std::ctstring_t &body = a_dataIn.request;
-
-		mimeMsg = headers + Const::crNl() + body + Const::crNl();
+		mimeMsg = headers + Const::crNl() + _body + Const::crNl();
 	}
 
 	std::tstring_t buffRead(mimeMsg);
