@@ -129,10 +129,10 @@ HttpClient::request(
 		break;
 	}
 
-	std::tstring_t buffDataUpload;
+	std::tstring_t buffRead;
 	std::tstring_t buffHeaderOut;
 	std::tstring_t buffDataOut;
-	BaseClient::setOptionsDefault(&a_dataIn, buffDataUpload, &buffHeaderOut, &buffDataOut);
+	BaseClient::setOptionsDefault(&a_dataIn, buffRead, &buffHeaderOut, &buffDataOut);
 
 	perform();
 

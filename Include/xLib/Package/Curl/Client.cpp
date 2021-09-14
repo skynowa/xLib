@@ -251,10 +251,10 @@ Client::onReadData(
 	xTEST_DIFF(a_items, std::size_t{0});
 	xTEST_PTR(a_userData);
 
-	auto *uploadStatus = (struct UploadStatus *)a_userData;
-	xTEST_PTR(uploadStatus);
+	auto *readData = (struct ReadData *)a_userData;
+	xTEST_PTR(readData);
 
-	std::ctstring_t buff = uploadStatus->buffUpload.substr(uploadStatus->readBytes);
+	std::ctstring_t buff = readData->buff.substr(readData->bytes);
 	if ( buff.empty() ) {
 		return 0;
 	}
@@ -267,7 +267,7 @@ Client::onReadData(
 
 	std::memcpy(out_buff, buff.data(), buffSize);
 
-	uploadStatus->readBytes += buffSize;
+	readData->bytes += buffSize;
 
 	return buffSize;
 }

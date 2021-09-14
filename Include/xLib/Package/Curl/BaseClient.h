@@ -123,7 +123,7 @@ protected:
 
     void_t   setProtocols(clong_t bitMask);
 		///< set allowed protocols
-    void_t   setOptionsDefault(DataIn *dataIn, std::ctstring_t &buffUpload,
+    void_t   setOptionsDefault(DataIn *dataIn, std::ctstring_t &buffRead,
 				std::tstring_t *buffHeader, std::tstring_t *buffData);
         ///< set options in
     void_t   getInfos(DataOut *dataOut);

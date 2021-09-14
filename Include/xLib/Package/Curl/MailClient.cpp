@@ -109,10 +109,10 @@ MailClient::request(
 		mimeMsg = headers + Const::crNl() + body + Const::crNl();
 	}
 
-	std::tstring_t buffUpload(mimeMsg);
+	std::tstring_t buffRead(mimeMsg);
 	std::tstring_t buffHeaderOut;
 	std::tstring_t buffDataOut;
-	BaseClient::setOptionsDefault(&a_dataIn, buffUpload, &buffHeaderOut, &buffDataOut);
+	BaseClient::setOptionsDefault(&a_dataIn, buffRead, &buffHeaderOut, &buffDataOut);
 
 	perform();
 

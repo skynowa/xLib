@@ -73,13 +73,13 @@ public:
     HandleCurl _handle;
 
 protected:
-    struct UploadStatus
+    struct ReadData
     {
-        std::tstring_t buffUpload;
-        size_t         readBytes;
+        std::tstring_t buff;
+        size_t         bytes;
     };
 
-    UploadStatus _uploadStatus {};
+    ReadData _readData;
 };
 
 } // namespace
