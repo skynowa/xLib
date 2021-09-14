@@ -24,8 +24,8 @@ class Client
 public:
 ///@name Ctors, dtor
 ///@{
-	explicit       Client();
-	virtual       ~Client();
+	explicit  Client();
+	virtual  ~Client();
 
 	xNO_COPY_ASSIGN(Client)
 ///@}
@@ -70,9 +70,9 @@ public:
 	int         onDebug(CURL *curl, curl_infotype type, char *buf, std::csize_t len, void_t *useData);
 ///@}
 
+protected:
     HandleCurl _handle;
 
-protected:
     struct ReadData
     {
         std::tstring_t buff;
