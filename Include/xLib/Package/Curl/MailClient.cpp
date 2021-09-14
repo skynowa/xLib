@@ -35,10 +35,6 @@ MailClient::request(
 	out_dataOut->headers.clear();
 	out_dataOut->body.clear();
 
-    /* Set username and password */
-    setOption(CURLOPT_USERNAME, "skynowa@gmail.com");
-    setOption(CURLOPT_PASSWORD, "");	// TODO: set password for test
-
     /* This is the URL for your mailserver. Note the use of port 587 here,
      * instead of the normal SMTP port (25). Port 587 is commonly used for
      * secure mail submission (see RFC4403), but you should use whatever
@@ -68,6 +64,10 @@ MailClient::request(
 	if (0) {
 		setOption(CURLOPT_CAINFO, "/home/skynowa/.config/kdeconnect/certificate.pem");
 	}
+
+    /* Set username and password */
+    setOption(CURLOPT_USERNAME, "skynowa@gmail.com");
+    setOption(CURLOPT_PASSWORD, "");	// TODO: set password for test
 
     /* Note that this option isn't strictly required, omitting it will result
      * in libcurl sending the MAIL FROM command with empty sender data. All
