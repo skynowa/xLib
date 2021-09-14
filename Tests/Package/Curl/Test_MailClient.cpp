@@ -54,7 +54,24 @@ Test_MailClient::unit()
 				<< xTRACE_VAR(dataOut.body)         << std::endl;
 		}
 	#else
+		std::ctstring_t url      = "smtp://smtp.gmail.com:587";
+		std::ctstring_t caPath   = "/home/skynowa/.config/kdeconnect/certificate.pem";
 
+		std::ctstring_t userName = "<skynowa@gmail.com>";
+		std::ctstring_t password = "";	// TODO: set password for test
+
+		std::ctstring_t from     = "<skynowa@gmail.com>";
+		std::ctstring_t to       = "<skynowa@fabrica.net.ua>";
+		std::ctstring_t cc       = "<skynowa@gmail.com>";
+		std::ctstring_t subject  = "SMTP example message";
+		std::ctstring_t body     =
+			"The body of the message starts here.\r\n"
+			"\r\n"
+			"It could be a lot of lines, could be MIME encoded, whatever.\r\n"
+			"Check RFC5322.";
+
+		MailClient mail(url, caPath, userName, password, from, to, cc, subject, body);
+		mail.send();
 	#endif
     }
 

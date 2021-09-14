@@ -27,26 +27,26 @@ class MailClient :
 public:
 ///@name ctors, dtor
 ///@{
-             MailClient() = default;
+			 MailClient(std::ctstring_t &url, std::ctstring_t &caPath, std::ctstring_t &userName,
+				std::ctstring_t &password, std::ctstring_t &from, std::ctstring_t &to,
+				std::ctstring_t &cc, std::ctstring_t &subject,std::ctstring_t &body);
     virtual ~MailClient() = default;
 
     xNO_COPY_ASSIGN(MailClient)
 ///@}
 
-    bool_t request(DataIn &dataIn, DataOut *dataOut);
+    void_t send();
         ///< send request
 
 private:
-    std::ctstring_t _url      = "smtp://smtp.gmail.com:587";
-    std::ctstring_t _caPath   = "/home/skynowa/.config/kdeconnect/certificate.pem";
-
-    std::ctstring_t _userName = "<skynowa@gmail.com>";
-    std::ctstring_t _password = "****";	// TODO: set password for test
-
-    std::ctstring_t _from     = "<skynowa@gmail.com>";
-	std::ctstring_t _to       = "<skynowa@fabrica.net.ua>";
-	std::ctstring_t _cc       = "<skynowa@gmail.com>";
-	std::ctstring_t _subject  = "SMTP example message";
+    std::ctstring_t _url;
+    std::ctstring_t _caPath;
+    std::ctstring_t _userName;
+    std::ctstring_t _password;
+    std::ctstring_t _from;
+	std::ctstring_t _to;
+	std::ctstring_t _cc;
+	std::ctstring_t _subject;
 	std::ctstring_t _body;
 
 private:

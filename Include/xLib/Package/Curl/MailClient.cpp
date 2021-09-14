@@ -19,17 +19,32 @@ namespace xl::package::curl
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-bool_t
-MailClient::request(
-	DataIn   &a_dataIn,		///< [in,out]
-	DataOut  *out_dataOut	///< [out]
-)
+MailClient::MailClient(
+	std::ctstring_t &a_url,
+	std::ctstring_t &a_caPath,
+	std::ctstring_t &a_userName,
+	std::ctstring_t &a_password,
+	std::ctstring_t &a_from,
+	std::ctstring_t &a_to,
+	std::ctstring_t &a_cc,
+	std::ctstring_t &a_subject,
+	std::ctstring_t &a_body
+) :
+	_url     {a_url},
+	_caPath  {a_caPath},
+	_userName{a_userName},
+	_password{a_password},
+	_from    {a_from},
+	_to      {a_to},
+	_cc      {a_cc},
+	_subject {a_subject},
+	_body    {a_body}
 {
-	xTEST_PTR(out_dataOut);
-
-	out_dataOut->headers.clear();
-	out_dataOut->body.clear();
-
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+MailClient::send()
+{
     /* This is the URL for your mailserver. Note the use of port 587 here,
      * instead of the normal SMTP port (25). Port 587 is commonly used for
      * secure mail submission (see RFC4403), but you should use whatever
@@ -100,20 +115,63 @@ MailClient::request(
 		mimeMsg = headers + Const::crNl() + _body + Const::crNl();
 	}
 
+#if 1
+	// TODO: rm
+	DataIn dataIn;
+	dataIn.url     = _url;
+	dataIn.request = _body;
+
+	// TODO: rm
+	DataOut dataOut;
+
 	std::tstring_t buffRead(mimeMsg);
 	std::tstring_t buffHeaderOut;
 	std::tstring_t buffDataOut;
-	BaseClient::setOptionsDefault(&a_dataIn, buffRead, &buffHeaderOut, &buffDataOut);
+	BaseClient::setOptionsDefault(&dataIn, buffRead, &buffHeaderOut, &buffDataOut);
 
 	perform();
 
-	BaseClient::getInfos(out_dataOut);
+	BaseClient::getInfos(&dataOut);
 
 	// [out]
-	out_dataOut->headers = {{"", buffHeaderOut}};
-	out_dataOut->body    = buffDataOut;
+	dataOut.headers = {{"", buffHeaderOut}};
+	dataOut.body    = buffDataOut;
 
-	return true;
+	if (1) {
+		Cout()
+			<< xTRACE_VAR(dataIn.request)       << std::endl
+			<< xT("\n")
+			<< xTRACE_VAR(dataOut.contentType)  << std::endl
+			<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
+			<< xTRACE_VAR(dataOut.responseCode) << std::endl
+			<< xTRACE_VAR(dataOut.totalTimeSec) << std::endl
+			<< xT("\n")
+			<< xTRACE_VAR(dataOut.headers)      << std::endl
+			<< xTRACE_VAR(dataOut.body.size())  << std::endl
+			<< xTRACE_VAR(dataOut.body)         << std::endl;
+	}
+#else
+	// Download data
+	std::tstring_t out_buffHeader;
+	std::tstring_t out_buffData;
+	{
+		setOption(CURLOPT_WRITEHEADER,    &out_buffHeader);
+		setOption(CURLOPT_HEADERFUNCTION, onWriteHeader);
+
+		setOption(CURLOPT_WRITEDATA,      &out_buffData);
+		setOption(CURLOPT_WRITEFUNCTION,  onWriteData);
+	}
+
+	// Upload data
+	{
+		_readData.buff = mimeMsg;
+
+		setOption(CURLOPT_READDATA,     &_readData);
+		setOption(CURLOPT_READFUNCTION,  onReadData);
+	}
+
+	perform();
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
