@@ -56,10 +56,8 @@ Test_MailClient::unit()
 	#else
 		std::ctstring_t url      = "smtp://smtp.gmail.com:587";
 		std::ctstring_t caPath   = "/home/skynowa/.config/kdeconnect/certificate.pem";
-
 		std::ctstring_t userName = "<skynowa@gmail.com>";
 		std::ctstring_t password = "";	// TODO: set password for test
-
 		std::ctstring_t from     = "<skynowa@gmail.com>";
 		std::ctstring_t to       = "<skynowa@fabrica.net.ua>";
 		std::ctstring_t cc       = "<skynowa@gmail.com>";
