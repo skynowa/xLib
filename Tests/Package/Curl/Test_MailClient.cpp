@@ -23,6 +23,7 @@ Test_MailClient::unit()
 
 	xTEST_CASE("request")
 	{
+	#if 0
 		DataIn dataIn;
 		dataIn.url     = xT("smtp://smtp.gmail.com:587");
 		dataIn.request =
@@ -52,6 +53,9 @@ Test_MailClient::unit()
 				<< xTRACE_VAR(dataOut.body.size())  << std::endl
 				<< xTRACE_VAR(dataOut.body)         << std::endl;
 		}
+	#else
+
+	#endif
     }
 
     return true;
