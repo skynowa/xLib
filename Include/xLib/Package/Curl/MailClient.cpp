@@ -19,11 +19,6 @@ namespace xl::package::curl
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-#define FROM_MAIL    "<skynowa@gmail.com>"
-#define TO_MAIL      "<skynowa@fabrica.net.ua>"
-#define CC_MAIL      "<skynowa@gmail.com>"
-#define MAIL_SUBJECT "SMTP example message"
-//-------------------------------------------------------------------------------------------------
 bool_t
 MailClient::request(
 	DataIn   &a_dataIn,		///< [in,out]
@@ -40,7 +35,7 @@ MailClient::request(
      * secure mail submission (see RFC4403), but you should use whatever
      * matches your server configuration. */
 	if (0) {
-		setOption(CURLOPT_URL, "smtp://smtp.gmail.com:587");
+		setOption(CURLOPT_URL, _url.c_str());
 	}
 
     /* In this example, we'll start with a plain text connection, and upgrade
@@ -62,12 +57,12 @@ MailClient::request(
      * libcurl using CURLOPT_CAINFO and/or CURLOPT_CAPATH. See docs/SSLCERTS
      * for more information. */
 	if (0) {
-		setOption(CURLOPT_CAINFO, "/home/skynowa/.config/kdeconnect/certificate.pem");
+		setOption(CURLOPT_CAINFO, _caPath.c_str());
 	}
 
     /* Set username and password */
-    setOption(CURLOPT_USERNAME, "skynowa@gmail.com");
-    setOption(CURLOPT_PASSWORD, "");	// TODO: set password for test
+    setOption(CURLOPT_USERNAME, _userName.c_str());
+    setOption(CURLOPT_PASSWORD, _password.c_str());
 
     /* Note that this option isn't strictly required, omitting it will result
      * in libcurl sending the MAIL FROM command with empty sender data. All
@@ -76,7 +71,7 @@ MailClient::request(
      * they could cause an endless loop. See RFC 5321 Section 4.5.5 for more
      * details.
      */
-    setOption(CURLOPT_MAIL_FROM, FROM_MAIL);
+    setOption(CURLOPT_MAIL_FROM, _from.c_str());
 
     // _recipients
 	{
@@ -87,8 +82,8 @@ MailClient::request(
 
 		struct curl_slist *recipients {};
 
-		recipients = ::curl_slist_append(recipients, TO_MAIL);
-		recipients = ::curl_slist_append(recipients, CC_MAIL);
+		recipients = ::curl_slist_append(recipients, _to.c_str());
+		recipients = ::curl_slist_append(recipients, _cc.c_str());
 
 		// [out]
 		_recipients.reset(recipients);
@@ -100,9 +95,9 @@ MailClient::request(
 	std::tstring_t mimeMsg;
 	{
 		std::ctstring_t headers =
-			"To: "      TO_MAIL   + Const::crNl() +
-			"From: "    FROM_MAIL + Const::crNl() +
-			"Subject: " MAIL_SUBJECT;
+			"To: "      + _to   + Const::crNl() +
+			"From: "    + _from + Const::crNl() +
+			"Subject: " + _subject;
 
 		std::ctstring_t &body = a_dataIn.request;
 
