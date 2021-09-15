@@ -67,7 +67,8 @@ public:
 	static
 	std::size_t onReadData(void_t *buff, std::csize_t size, std::csize_t items, void_t *userData);
 	static
-	int         onDebug(CURL *curl, curl_infotype type, char *buf, std::csize_t len, void_t *useData);
+	int         onDebug(CURL *curl, const curl_infotype type, char *buff, std::csize_t size,
+					void_t *useData);
 ///@}
 
 protected:
