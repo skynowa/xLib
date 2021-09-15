@@ -118,6 +118,8 @@ MailClient::send()
 	setOption(CURLOPT_MAIL_RCPT, _recipients.get());
 	setOption(CURLOPT_UPLOAD, 1L);
 
+	setOption(CURLOPT_VERBOSE, static_cast<long_t>(1));
+
 	std::tstring_t mimeMsg;
 	{
 		std::ctstring_t headers =
@@ -125,9 +127,15 @@ MailClient::send()
 			"From: "    + _from    + Const::crNl() +
 			"Subject: " + _subject + Const::crNl();
 
-		mimeMsg = headers + Const::crNl() + _body + Const::crNl();
+		mimeMsg =
+			headers + Const::crNl() +
+			_body   + Const::crNl();
 
-		Cout() << xTRACE_VAR(mimeMsg);
+		Cout()
+			<< "mimeMsg:\n"
+			<< "--------------------------------------------------\n"
+			<< mimeMsg
+			<< "--------------------------------------------------\n";
 	}
 
 #if 0

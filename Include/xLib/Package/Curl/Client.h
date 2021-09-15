@@ -80,7 +80,7 @@ protected:
         size_t         bytes;
     };
 
-    ReadData _readData;
+    ReadData _readData {};
 
     struct CurlSlistDeleter
     {
