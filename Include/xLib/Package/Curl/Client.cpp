@@ -103,10 +103,7 @@ Client::escape(
 
     sRv.assign(pszRv);
 
-    if (pszRv != nullptr) {
-        ::curl_free(pszRv);
-        pszRv = nullptr;
-    }
+    Utils::freeT(pszRv, ::curl_free, nullptr);
 
     return sRv;
 }
@@ -125,10 +122,7 @@ Client::unescape(
 
     sRv.assign(pszRv, static_cast<std::size_t>(size_out));
 
-    if (pszRv != nullptr) {
-        ::curl_free(pszRv);
-        pszRv = nullptr;
-    }
+    Utils::freeT(pszRv, ::curl_free, nullptr);
 
     return sRv;
 }
@@ -146,10 +140,7 @@ Client::escapeUrl(
 
     sRv.assign(pszRv);
 
-    if (pszRv != nullptr) {
-        ::curl_free(pszRv);
-        pszRv = nullptr;
-    }
+    Utils::freeT(pszRv, ::curl_free, nullptr);
 
     return sRv;
 }
@@ -167,10 +158,7 @@ Client::unescapeUrl(
 
     sRv.assign(pszRv);
 
-    if (pszRv != nullptr) {
-        ::curl_free(pszRv);
-        pszRv = nullptr;
-    }
+    Utils::freeT(pszRv, ::curl_free, nullptr);
 
     return sRv;
 }
