@@ -148,42 +148,6 @@ SmtpClient::request()
 		<< mimeMsg
 		<< "--------------------------------------------------\n";
 
-#if 0
-	// TODO: rm
-	DataIn dataIn;
-	dataIn.url     = _url;
-	dataIn.request = _body;
-
-	// TODO: rm
-	DataOut dataOut;
-
-	std::tstring_t buffRead(mimeMsg);
-	std::tstring_t buffHeaderOut;
-	std::tstring_t buffDataOut;
-	BaseClient::setOptionsDefault(&dataIn, buffRead, &buffHeaderOut, &buffDataOut);
-
-	perform();
-
-	BaseClient::getInfos(&dataOut);
-
-	// [out]
-	dataOut.headers = {{"", buffHeaderOut}};
-	dataOut.body    = buffDataOut;
-
-	if (1) {
-		Cout()
-			<< xTRACE_VAR(dataIn.request)       << std::endl
-			<< xT("\n")
-			<< xTRACE_VAR(dataOut.contentType)  << std::endl
-			<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
-			<< xTRACE_VAR(dataOut.responseCode) << std::endl
-			<< xTRACE_VAR(dataOut.totalTimeSec) << std::endl
-			<< xT("\n")
-			<< xTRACE_VAR(dataOut.headers)      << std::endl
-			<< xTRACE_VAR(dataOut.body.size())  << std::endl
-			<< xTRACE_VAR(dataOut.body)         << std::endl;
-	}
-#else
 	// Upload data
 	{
 		_readData.buff = mimeMsg;
@@ -198,7 +162,6 @@ SmtpClient::request()
 	info(CURLINFO_RESPONSE_CODE, &responseCode);
 
 	Cout() << xTRACE_VAR(responseCode);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 
