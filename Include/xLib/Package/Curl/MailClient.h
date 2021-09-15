@@ -22,7 +22,9 @@ namespace xl::package::curl
 {
 
 class MailClient :
-    public BaseClient, IRestClient
+    public
+		curl::Client,
+		xl::package::IRestClient
     /// Mail client
 {
 public:
