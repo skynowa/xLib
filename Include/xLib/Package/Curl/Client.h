@@ -61,11 +61,11 @@ public:
 ///@name Callbacks
 ///@{
 	static
-	std::size_t onWriteHeader(void_t *buff, std::csize_t size, std::csize_t items, std::tstring_t *userData);
+	std::size_t onWriteHeader(void_t *buff, std::csize_t size, std::csize_t items, void_t *userData);
 	static
-	std::size_t onWriteData(void_t *buff, std::csize_t size, std::csize_t items, std::tstring_t *userData);
+	std::size_t onWriteData(void_t *buff, std::csize_t size, std::csize_t items, void_t *userData);
 	static
-	std::size_t onReadData(void_t *buff, std::csize_t size, std::csize_t items, std::ctstring_t *userData);
+	std::size_t onReadData(void_t *buff, std::csize_t size, std::csize_t items, void_t *userData);
 	static
 	int         onDebug(CURL *curl, curl_infotype type, char *buf, std::csize_t len, void_t *useData);
 ///@}
