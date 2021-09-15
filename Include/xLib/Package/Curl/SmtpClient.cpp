@@ -46,14 +46,14 @@ SmtpClient::request()
 {
 #if 0
 	Cout()
-		<< xTRACE_VAR(_url) << "\n"
-		<< xTRACE_VAR(_caPath) << "\n"
+		<< xTRACE_VAR(_url)      << "\n"
+		<< xTRACE_VAR(_caPath)   << "\n"
 		<< xTRACE_VAR(_userName) << "\n"
 		<< xTRACE_VAR(_password) << "\n"
-		<< xTRACE_VAR(_from) << "\n"
-		<< xTRACE_VAR(_to) << "\n"
-		<< xTRACE_VAR(_cc) << "\n"
-		<< xTRACE_VAR(_subject) << "\n"
+		<< xTRACE_VAR(_from)     << "\n"
+		<< xTRACE_VAR(_to)       << "\n"
+		<< xTRACE_VAR(_cc)       << "\n"
+		<< xTRACE_VAR(_subject)  << "\n"
 		<< xTRACE_VAR(_body);
 #endif
 
@@ -82,6 +82,7 @@ SmtpClient::request()
 	* CURLOPT_SSL_VERIFYPEER and CURLOPT_SSL_VERIFYHOST options to 0 (false).
 	*   curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
 	*   curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+	*
 	* That is, in general, a bad idea. It is still better than sending your
 	* authentication details in plain text though.  Instead, you should get
 	* the issuer certificate (or the host certificate if the certificate is
@@ -89,7 +90,9 @@ SmtpClient::request()
 	* libcurl using CURLOPT_CAINFO and/or CURLOPT_CAPATH. See docs/SSLCERTS
 	* for more information.
 	*/
-	setOption(CURLOPT_CAINFO, _caPath.c_str());
+	if ( !_caPath.empty() ) {
+		setOption(CURLOPT_CAINFO, _caPath.c_str());
+	}
 
    /**
 	* Set username and password
@@ -125,26 +128,25 @@ SmtpClient::request()
 
 	setOption(CURLOPT_MAIL_RCPT, _recipients.get());
 	setOption(CURLOPT_UPLOAD, 1L);
-
 	setOption(CURLOPT_VERBOSE, static_cast<long_t>(1));
 
-	std::tstring_t mimeMsg;
-	{
-		std::ctstring_t headers =
-			"To: "      + _to      + Const::crNl() +
-			"From: "    + _from    + Const::crNl() +
-			"Subject: " + _subject + Const::crNl();
+	std::ctstring_t mimeMsg = Format::str(
+		"To: {}\r\n"
+		"From: {}\r\n"
+		"Subject: {}\r\n"
+		"\r\n"
+		"{}\r\n"
+		"\r\n",
+		_to,
+		_from,
+		_subject,
+		_body);
 
-		mimeMsg =
-			headers + Const::crNl() +
-			_body   + Const::crNl();
-
-		Cout()
-			<< "mimeMsg:\n"
-			<< "--------------------------------------------------\n"
-			<< mimeMsg
-			<< "--------------------------------------------------\n";
-	}
+	Cout()
+		<< "mimeMsg:\n"
+		<< "--------------------------------------------------\n"
+		<< mimeMsg
+		<< "--------------------------------------------------\n";
 
 #if 0
 	// TODO: rm
