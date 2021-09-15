@@ -200,10 +200,10 @@ Client::strError(
 /* static */
 std::size_t
 Client::onWriteHeader(
-	void_t         *a_buff,
-	std::csize_t    a_size,
-	std::csize_t    a_items,
-	std::tstring_t *out_userData
+	void_t       *a_buff,
+	std::csize_t  a_size,
+	std::csize_t  a_items,
+	void_t       *out_userData
 )
 {
 	xTEST_PTR(a_buff);
@@ -211,8 +211,11 @@ Client::onWriteHeader(
 	xTEST_DIFF(a_items, std::size_t{0});
 	xTEST_PTR(out_userData);
 
+	auto *data = static_cast<std::tstring_t *>(out_userData);
+	xTEST_PTR(data);
+
 	std::csize_t buffSize = a_items * a_size;
-    out_userData->append(static_cast<char *>(a_buff), buffSize);
+	data->append(static_cast<char *>(a_buff), buffSize);
 
     return buffSize;
 }
@@ -220,19 +223,22 @@ Client::onWriteHeader(
 /* static */
 std::size_t
 Client::onWriteData(
-	void_t         *a_buff,
-	std::csize_t    a_size,
-	std::csize_t    a_items,
-	std::tstring_t *out_userData
+	void_t       *a_buff,
+	std::csize_t  a_size,
+	std::csize_t  a_items,
+	void_t       *out_userData
 )
 {
 	xTEST_PTR(a_buff);
-	xTEST_DIFF(a_size, std::size_t{0});
+	xTEST_DIFF(a_size,  std::size_t{0});
 	xTEST_DIFF(a_items, std::size_t{0});
 	xTEST_PTR(out_userData);
 
+	auto *data = static_cast<std::tstring_t *>(out_userData);
+	xTEST_PTR(data);
+
 	std::csize_t buffSize = a_items * a_size;
-    out_userData->append(static_cast<char *>(a_buff), buffSize);
+	data->append(static_cast<char *>(a_buff), buffSize);
 
 	return buffSize;
 }
@@ -240,21 +246,21 @@ Client::onWriteData(
 /* static */
 std::size_t
 Client::onReadData(
-	void_t          *out_buff,	///< [out]
-	std::csize_t     a_size,	///<
-	std::csize_t     a_items,	///<
-	std::ctstring_t *a_userData	///< [in,out]
+	void_t       *out_buff,		///< [out]
+	std::csize_t  a_size,		///<
+	std::csize_t  a_items,		///<
+	void_t       *a_userData	///< [in,out]
 )
 {
 	xTEST_PTR(out_buff);
-	xTEST_DIFF(a_size, std::size_t{0});
+	xTEST_DIFF(a_size,  std::size_t{0});
 	xTEST_DIFF(a_items, std::size_t{0});
 	xTEST_PTR(a_userData);
 
-	auto *readData = (struct ReadData *)a_userData;
-	xTEST_PTR(readData);
+	auto *data = static_cast<struct ReadData *>(a_userData);
+	xTEST_PTR(data);
 
-	std::ctstring_t buff = readData->buff.substr(readData->bytes);
+	std::ctstring_t buff = data->buff.substr(data->bytes);
 	if ( buff.empty() ) {
 		return 0;
 	}
@@ -267,7 +273,7 @@ Client::onReadData(
 
 	std::memcpy(out_buff, buff.data(), buffSize);
 
-	readData->bytes += buffSize;
+	data->bytes += buffSize;
 
 	return buffSize;
 }
