@@ -281,11 +281,11 @@ Client::onReadData(
 /* static */
 int
 Client::onDebug(
-	CURL          *a_curl,		///<
-	curl_infotype  a_type,		///<
-	char          *a_buf,		///<
-	std::csize_t   a_len,		///<
-	void_t        *out_useData	///< as DataIn::DebugData
+	CURL                *a_curl,		///<
+	const curl_infotype  a_type,		///<
+	char                *a_buff,		///<
+	std::csize_t         a_size,		///<
+	void_t              *out_useData	///< as DataIn::DebugData
 )
 {
 	xUNUSED(a_curl);
@@ -301,28 +301,27 @@ Client::onDebug(
 
 	switch (a_type) {
 	case CURLINFO_TEXT:
-		data->text.assign(a_buf, a_len);
+		data->text.assign(a_buff, a_size);
 		break;
 	case CURLINFO_HEADER_IN:
-		data->headerIn.assign(a_buf, a_len);
+		data->headerIn.assign(a_buff, a_size);
 		break;
 	case CURLINFO_HEADER_OUT:
-		data->headerOut.assign(a_buf, a_len);
+		data->headerOut.assign(a_buff, a_size);
 		break;
 	case CURLINFO_DATA_IN:
-		data->dataIn.assign(a_buf, a_len);
+		data->dataIn.assign(a_buff, a_size);
 		break;
 	case CURLINFO_DATA_OUT:
-		data->dataOut.assign(a_buf, a_len);
+		data->dataOut.assign(a_buff, a_size);
 		break;
 	case CURLINFO_SSL_DATA_IN:
-		data->sslDataIn.assign(a_buf, a_len);
+		data->sslDataIn.assign(a_buff, a_size);
 		break;
 	case CURLINFO_SSL_DATA_OUT:
-		data->sslDataOut.assign(a_buf, a_len);
+		data->sslDataOut.assign(a_buff, a_size);
 		break;
 	case CURLINFO_END:
-	default:
 		xTEST(false);
 		break;
 	}
