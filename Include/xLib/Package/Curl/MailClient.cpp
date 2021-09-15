@@ -174,19 +174,6 @@ MailClient::send()
 			<< xTRACE_VAR(dataOut.body)         << std::endl;
 	}
 #else
-	#if 0
-		// Download data
-		std::tstring_t out_buffHeader;
-		std::tstring_t out_buffData;
-		{
-			setOption(CURLOPT_WRITEHEADER,    &out_buffHeader);
-			setOption(CURLOPT_HEADERFUNCTION, onWriteHeader);
-
-			setOption(CURLOPT_WRITEDATA,      &out_buffData);
-			setOption(CURLOPT_WRITEFUNCTION,  onWriteData);
-		}
-	#endif
-
 	// Upload data
 	{
 		_readData.buff = mimeMsg;
