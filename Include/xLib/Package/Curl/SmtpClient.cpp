@@ -42,7 +42,7 @@ SmtpClient::SmtpClient(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-SmtpClient::send()
+SmtpClient::request()
 {
 #if 0
 	Cout()
