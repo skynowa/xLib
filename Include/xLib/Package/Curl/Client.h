@@ -87,7 +87,6 @@ protected:
         void operator() (struct curl_slist *out_list) const
         {
             xCHECK_DO(out_list == nullptr, return);
-
             ::curl_slist_free_all(out_list); out_list = nullptr;
         }
     };
