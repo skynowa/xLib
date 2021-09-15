@@ -1,10 +1,10 @@
 /**
- * \file  BaseClient.cpp
+ * \file  HttpImpl.cpp
  * \brief CURL client
  */
 
 
-#include <xLib/Package/Curl/BaseClient.h>
+#include <xLib/Package/Curl/HttpImpl.h>
 
 namespace xl::package::curl
 {
@@ -108,12 +108,12 @@ DataOut::print(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-BaseClient::~BaseClient()
+HttpImpl::~HttpImpl()
 {
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-BaseClient::setProtocols(
+HttpImpl::setProtocols(
 	clong_t a_bitMask	///< bitmask of CURLPROTO_* defines (CURLPROTO_HTTP, ..., CURLPROTO_ALL)
 )
 {
@@ -121,7 +121,7 @@ BaseClient::setProtocols(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-BaseClient::setOptionsDefault(
+HttpImpl::setOptionsDefault(
 	DataIn          *a_dataIn,			///< [in,out]
 	std::ctstring_t &a_buffRead,		///<
 	std::tstring_t  *out_buffHeader,	///< [out]
@@ -319,7 +319,7 @@ BaseClient::setOptionsDefault(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-BaseClient::getInfos(
+HttpImpl::getInfos(
 	DataOut *out_dataOut	///< [out]
 )
 {

@@ -15,7 +15,7 @@
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Test/Test.h>
-#include <xLib/Package/Curl/BaseClient.h>
+#include <xLib/Package/Curl/HttpImpl.h>
 
 
 namespace xl::package::curl
