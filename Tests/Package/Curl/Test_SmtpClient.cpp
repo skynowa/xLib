@@ -55,7 +55,7 @@ Test_SmtpClient::unit()
 		}
 	#else
 		std::ctstring_t url      = "smtp://smtp.gmail.com:587";
-		std::ctstring_t caPath   = "/etc/ssl/certs/ca-certificates.crt";
+		std::ctstring_t caPath   = "";
 		std::ctstring_t userName = "skynowa@gmail.com";
 		std::ctstring_t password = "";	// TODO: set password for test
 		std::ctstring_t from     = "skynowa@gmail.com";
@@ -67,8 +67,8 @@ Test_SmtpClient::unit()
 		SmtpClient smpt(url, caPath, userName, password, from, to, cc, subject, body);
 		smpt.request();
 	#endif
-    }
+	}
 
-    return true;
+	return true;
 }
 //-------------------------------------------------------------------------------------------------
