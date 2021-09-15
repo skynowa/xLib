@@ -132,11 +132,11 @@ HttpClient::request(
 	std::tstring_t buffRead;
 	std::tstring_t buffHeaderOut;
 	std::tstring_t buffDataOut;
-	BaseClient::setOptionsDefault(&a_dataIn, buffRead, &buffHeaderOut, &buffDataOut);
+	HttpImpl::setOptionsDefault(&a_dataIn, buffRead, &buffHeaderOut, &buffDataOut);
 
 	perform();
 
-	BaseClient::getInfos(out_dataOut);
+	HttpImpl::getInfos(out_dataOut);
 
 	// [out]
 	String::split(buffHeaderOut, Const::crNl(), xT(": "), &out_dataOut->headers);

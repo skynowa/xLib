@@ -159,6 +159,6 @@
 #include <xLib/Package/Curl/Types.h>
 #include <xLib/Package/Curl/Version.h>
 #include <xLib/Package/Curl/Client.h>
-#include <xLib/Package/Curl/BaseClient.h>
+#include <xLib/Package/Curl/HttpImpl.h>
 #include <xLib/Package/Curl/HttpClient.h>
 #include <xLib/Package/Curl/MailClient.h>

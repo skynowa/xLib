@@ -8,13 +8,13 @@
 
 #pragma once
 
-#include <xLib/Package/Curl/BaseClient.h>
+#include <xLib/Package/Curl/HttpImpl.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::package::curl
 {
 
 class HttpClient :
-	public BaseClient
+	public HttpImpl
     /// HTTP client
 {
 public:

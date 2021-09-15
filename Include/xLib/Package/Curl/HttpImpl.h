@@ -1,5 +1,5 @@
 /**
- * \file  BaseClient.h
+ * \file  HttpImpl.h
  * \brief CURL client
  *
  * https://curl.haxx.se/libcurl/c/example.html
@@ -113,13 +113,13 @@ protected:
 };
 xUSING_CONST(DataOut);
 //-------------------------------------------------------------------------------------------------
-class BaseClient :
+class HttpImpl :
 	public Client
     /// Base client (proxy)
 {
 protected:
-             BaseClient() = default;
-    virtual ~BaseClient() = 0;
+             HttpImpl() = default;
+    virtual ~HttpImpl() = 0;
 
     void_t   setProtocols(clong_t bitMask);
 		///< set allowed protocols
@@ -130,7 +130,7 @@ protected:
         ///< get options out
 
 private:
-    xNO_COPY_ASSIGN(BaseClient)
+    xNO_COPY_ASSIGN(HttpImpl)
 };
 
 } // namespace
