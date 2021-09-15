@@ -290,6 +290,14 @@ Client::onDebug(
 {
 	xUNUSED(a_curl);
 
+	if (a_buff == nullptr) {
+		return CURLE_OK;
+	}
+
+	if (a_size == 0) {
+		return CURLE_OK;
+	}
+
 	if (out_useData == nullptr) {
 		return CURLE_OK;
 	}
@@ -299,27 +307,29 @@ Client::onDebug(
 		return CURLE_OK;
 	}
 
+	std::ctstring_t buff(a_buff, a_size);
+
 	switch (a_type) {
 	case CURLINFO_TEXT:
-		data->text.assign(a_buff, a_size);
+		data->text = buff;
 		break;
 	case CURLINFO_HEADER_IN:
-		data->headerIn.assign(a_buff, a_size);
+		data->headerIn = buff;
 		break;
 	case CURLINFO_HEADER_OUT:
-		data->headerOut.assign(a_buff, a_size);
+		data->headerOut = buff;
 		break;
 	case CURLINFO_DATA_IN:
-		data->dataIn.assign(a_buff, a_size);
+		data->dataIn = buff;
 		break;
 	case CURLINFO_DATA_OUT:
-		data->dataOut.assign(a_buff, a_size);
+		data->dataOut = buff;
 		break;
 	case CURLINFO_SSL_DATA_IN:
-		data->sslDataIn.assign(a_buff, a_size);
+		data->sslDataIn = buff;
 		break;
 	case CURLINFO_SSL_DATA_OUT:
-		data->sslDataOut.assign(a_buff, a_size);
+		data->sslDataOut = buff;
 		break;
 	case CURLINFO_END:
 		xTEST(false);
