@@ -2,6 +2,8 @@
  * \file   Client.h
  * \brief  CURL client
  *
+ * https://curl.se/libcurl/c/CURLOPT_PROTOCOLS.html
+ *
  * https://curl.haxx.se/libcurl/c/allfuncs.html
  * https://curl.haxx.se/libcurl/c/example.html
  */

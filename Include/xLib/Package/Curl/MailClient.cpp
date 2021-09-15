@@ -58,6 +58,8 @@ MailClient::send()
 		<< xTRACE_VAR(_body);
 #endif
 
+	setOption(CURLOPT_PROTOCOLS, CURLPROTO_SMTP);
+
     /* This is the URL for your mailserver. Note the use of port 587 here,
      * instead of the normal SMTP port (25). Port 587 is commonly used for
      * secure mail submission (see RFC4403), but you should use whatever
