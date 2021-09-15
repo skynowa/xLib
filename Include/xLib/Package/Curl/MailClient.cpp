@@ -45,6 +45,17 @@ MailClient::MailClient(
 void_t
 MailClient::send()
 {
+	Cout()
+		<< xTRACE_VAR(_url) << "\n"
+		<< xTRACE_VAR(_caPath) << "\n"
+		<< xTRACE_VAR(_userName) << "\n"
+		<< xTRACE_VAR(_password) << "\n"
+		<< xTRACE_VAR(_from) << "\n"
+		<< xTRACE_VAR(_to) << "\n"
+		<< xTRACE_VAR(_cc) << "\n"
+		<< xTRACE_VAR(_subject) << "\n"
+		<< xTRACE_VAR(_body);
+
     /* This is the URL for your mailserver. Note the use of port 587 here,
      * instead of the normal SMTP port (25). Port 587 is commonly used for
      * secure mail submission (see RFC4403), but you should use whatever

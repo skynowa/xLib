@@ -61,7 +61,7 @@ Test_MailClient::unit()
 		std::ctstring_t from     = "<skynowa@gmail.com>";
 		std::ctstring_t to       = "<skynowa@fabrica.net.ua>";
 		std::ctstring_t cc       = "<skynowa@gmail.com>";
-		std::ctstring_t subject  = "SMTP example message";
+		std::ctstring_t subject  = "xlib::curl::MailClient";
 		std::ctstring_t body     =
 			"The body of the message starts here.\r\n"
 			"\r\n"

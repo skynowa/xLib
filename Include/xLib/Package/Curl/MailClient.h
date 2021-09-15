@@ -15,13 +15,14 @@
 
 #pragma once
 
+#include <xLib/Package/IRestClient.h>
 #include <xLib/Package/Curl/BaseClient.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::package::curl
 {
 
 class MailClient :
-    public BaseClient
+    public BaseClient, IRestClient
     /// Mail client
 {
 public:
