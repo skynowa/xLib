@@ -45,6 +45,7 @@ MailClient::MailClient(
 void_t
 MailClient::send()
 {
+#if 0
 	Cout()
 		<< xTRACE_VAR(_url) << "\n"
 		<< xTRACE_VAR(_caPath) << "\n"
@@ -55,6 +56,7 @@ MailClient::send()
 		<< xTRACE_VAR(_cc) << "\n"
 		<< xTRACE_VAR(_subject) << "\n"
 		<< xTRACE_VAR(_body);
+#endif
 
     /* This is the URL for your mailserver. Note the use of port 587 here,
      * instead of the normal SMTP port (25). Port 587 is commonly used for
@@ -119,11 +121,13 @@ MailClient::send()
 	std::tstring_t mimeMsg;
 	{
 		std::ctstring_t headers =
-			"To: "      + _to   + Const::crNl() +
-			"From: "    + _from + Const::crNl() +
-			"Subject: " + _subject;
+			"To: "      + _to      + Const::crNl() +
+			"From: "    + _from    + Const::crNl() +
+			"Subject: " + _subject + Const::crNl();
 
 		mimeMsg = headers + Const::crNl() + _body + Const::crNl();
+
+		Cout() << xTRACE_VAR(mimeMsg);
 	}
 
 #if 0
