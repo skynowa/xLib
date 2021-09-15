@@ -183,6 +183,11 @@ MailClient::send()
 	}
 
 	perform();
+
+	int_t responseCode {};
+	info(CURLINFO_RESPONSE_CODE, &responseCode);
+
+	Cout() << xTRACE_VAR(responseCode);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
