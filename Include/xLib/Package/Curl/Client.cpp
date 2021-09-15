@@ -188,14 +188,14 @@ Client::strError(
 /* static */
 std::size_t
 Client::onWriteHeader(
-	void_t       *a_buff,
-	std::csize_t  a_size,
-	std::csize_t  a_items,
-	void_t       *out_userData
+	void_t       *a_buff,		///<
+	std::csize_t  a_size,		///<
+	std::csize_t  a_items,		///<
+	void_t       *out_userData	///< [in,out]
 )
 {
 	xTEST_PTR(a_buff);
-	xTEST_DIFF(a_size, std::size_t{0});
+	xTEST_DIFF(a_size,  std::size_t{0});
 	xTEST_DIFF(a_items, std::size_t{0});
 	xTEST_PTR(out_userData);
 
@@ -211,10 +211,10 @@ Client::onWriteHeader(
 /* static */
 std::size_t
 Client::onWriteData(
-	void_t       *a_buff,
-	std::csize_t  a_size,
-	std::csize_t  a_items,
-	void_t       *out_userData
+	void_t       *a_buff,		///<
+	std::csize_t  a_size,		///<
+	std::csize_t  a_items,		///<
+	void_t       *out_userData	///< [in,out]
 )
 {
 	xTEST_PTR(a_buff);
@@ -237,15 +237,15 @@ Client::onReadData(
 	void_t       *out_buff,		///< [out]
 	std::csize_t  a_size,		///<
 	std::csize_t  a_items,		///<
-	void_t       *a_userData	///< [in,out]
+	void_t       *out_userData	///< [in,out]
 )
 {
 	xTEST_PTR(out_buff);
 	xTEST_DIFF(a_size,  std::size_t{0});
 	xTEST_DIFF(a_items, std::size_t{0});
-	xTEST_PTR(a_userData);
+	xTEST_PTR(out_userData);
 
-	auto *data = static_cast<struct ReadData *>(a_userData);
+	auto *data = static_cast<struct ReadData *>(out_userData);
 	xTEST_PTR(data);
 
 	std::ctstring_t buff = data->buff.substr(data->bytes);
@@ -273,7 +273,7 @@ Client::onDebug(
 	const curl_infotype  a_type,		///<
 	char                *a_buff,		///<
 	std::csize_t         a_size,		///<
-	void_t              *out_useData	///< as DataIn::DebugData
+	void_t              *out_useData	///< [out] as DataIn::DebugData
 )
 {
 	xUNUSED(a_curl);
