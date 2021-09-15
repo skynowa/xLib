@@ -38,7 +38,7 @@ public:
     xNO_COPY_ASSIGN(SmtpClient)
 ///@}
 
-    void_t send();
+    void_t request();
         ///< send request
 
 private:

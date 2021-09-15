@@ -64,8 +64,8 @@ Test_SmtpClient::unit()
 		std::ctstring_t subject  = "xlib::curl::SmtpClient";
 		std::ctstring_t body     = "Test";
 
-		SmtpClient mail(url, caPath, userName, password, from, to, cc, subject, body);
-		mail.send();
+		SmtpClient smpt(url, caPath, userName, password, from, to, cc, subject, body);
+		smpt.request();
 	#endif
     }
 

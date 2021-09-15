@@ -123,7 +123,6 @@ HttpClient::request(
 		}
 		break;
 	case Request::Unknown:
-	default:
 		xTEST(false);
 		return false;
 		break;
