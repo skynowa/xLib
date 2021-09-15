@@ -161,4 +161,4 @@
 #include <xLib/Package/Curl/Client.h>
 #include <xLib/Package/Curl/HttpImpl.h>
 #include <xLib/Package/Curl/HttpClient.h>
-#include <xLib/Package/Curl/MailClient.h>
+#include <xLib/Package/Curl/SmtpClient.h>
