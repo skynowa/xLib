@@ -1,6 +1,6 @@
 /**
- * \file  Test_MailClient.cpp
- * \brief test MailClient
+ * \file  Test_SmtpClient.cpp
+ * \brief test SmtpClient
  */
 
 
@@ -10,11 +10,11 @@
 //-------------------------------------------------------------------------------------------------
 using namespace xl::curl;
 
-xTEST_UNIT(Test_MailClient)
+xTEST_UNIT(Test_SmtpClient)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_MailClient::unit()
+Test_SmtpClient::unit()
 {
 	if ( isGithubCI() ) {
 		Cout() << "Skip";
@@ -34,8 +34,8 @@ Test_MailClient::unit()
 
 		DataOut dataOut;
 
-		MailClient mail;
-		m_bRv = mail.request(dataIn, &dataOut);
+		SmtpClient smtp;
+		m_bRv = smtp.request(dataIn, &dataOut);
 		xTEST(m_bRv);
 		xTEST(!dataOut.headers.empty());
 		xTEST(dataOut.body.empty());
@@ -61,10 +61,10 @@ Test_MailClient::unit()
 		std::ctstring_t from     = "skynowa@gmail.com";
 		std::ctstring_t to       = "skynowa@fabrica.net.ua";
 		std::ctstring_t cc       = "skynowa@gmail.com";
-		std::ctstring_t subject  = "xlib::curl::MailClient";
+		std::ctstring_t subject  = "xlib::curl::SmtpClient";
 		std::ctstring_t body     = "Test";
 
-		MailClient mail(url, caPath, userName, password, from, to, cc, subject, body);
+		SmtpClient mail(url, caPath, userName, password, from, to, cc, subject, body);
 		mail.send();
 	#endif
     }

@@ -1,5 +1,5 @@
 /**
- * \file  MailClient.h
+ * \file  SmtpClient.h
  * \brief Mail client
  *
  * https://github.com/curl/curl/blob/master/docs/examples/smtp-tls.c
@@ -21,7 +21,7 @@
 namespace xl::package::curl
 {
 
-class MailClient :
+class SmtpClient :
     public
 		curl::Client,
 		xl::package::IRestClient
@@ -30,12 +30,12 @@ class MailClient :
 public:
 ///@name ctors, dtor
 ///@{
-			 MailClient(std::ctstring_t &url, std::ctstring_t &caPath, std::ctstring_t &userName,
+			 SmtpClient(std::ctstring_t &url, std::ctstring_t &caPath, std::ctstring_t &userName,
 				std::ctstring_t &password, std::ctstring_t &from, std::ctstring_t &to,
 				std::ctstring_t &cc, std::ctstring_t &subject,std::ctstring_t &body);
-    virtual ~MailClient() = default;
+    virtual ~SmtpClient() = default;
 
-    xNO_COPY_ASSIGN(MailClient)
+    xNO_COPY_ASSIGN(SmtpClient)
 ///@}
 
     void_t send();

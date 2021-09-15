@@ -1,14 +1,13 @@
 /**
- * \file  MailClient.cpp
+ * \file  SmtpClient.cpp
  * \brief Mail client
  */
 
 
-#include "MailClient.h"
-
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/DateTime.h>
+#include <xLib/Package/Curl/SmtpClient.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::package::curl
 {
@@ -19,7 +18,7 @@ namespace xl::package::curl
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-MailClient::MailClient(
+SmtpClient::SmtpClient(
 	std::ctstring_t &a_url,
 	std::ctstring_t &a_caPath,
 	std::ctstring_t &a_userName,
@@ -43,7 +42,7 @@ MailClient::MailClient(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MailClient::send()
+SmtpClient::send()
 {
 #if 0
 	Cout()
