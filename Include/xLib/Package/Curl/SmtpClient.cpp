@@ -161,8 +161,7 @@ SmtpClient::request()
 
 	int_t responseCode {};
 	info(CURLINFO_RESPONSE_CODE, &responseCode);
-
-	Cout() << xTRACE_VAR(responseCode);
+	xTEST(Algos::isInBounds(responseCode, 200, 299));
 }
 //-------------------------------------------------------------------------------------------------
 
