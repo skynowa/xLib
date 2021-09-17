@@ -58,32 +58,10 @@ DataIn::print(
 		<< xTRACE_VAR(maxRedirects)      << xT("\n")
 		<< xTRACE_VAR(isCacheControl)    << xT("\n")
 		<< xTRACE_VAR(isDebugHeader)     << xT("\n")
-		<< xTRACE_VAR(request)           << xT("\n")
-		<< xTRACE_VAR(debugData);
+		<< xTRACE_VAR(request);
 }
 //-------------------------------------------------------------------------------------------------
 
-
-/**************************************************************************************************
-*   DebugData public
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-void_t
-DataIn::DebugData::print(
-	core::OStream &a_os
-) const
-{
-	a_os
-		<< xTRACE_VAR(text)      << xT("\n")
-		<< xTRACE_VAR(headerIn)  << xT("\n")
-		<< xTRACE_VAR(headerOut) << xT("\n")
-		<< xTRACE_VAR(dataOut)   << xT("\n")
-		<< xTRACE_VAR(sslDataIn) << xT("\n")
-		<< xTRACE_VAR(sslDataOut);
-}
-//-------------------------------------------------------------------------------------------------
 
 /**************************************************************************************************
 *   DataOut public
@@ -476,13 +454,6 @@ HttpClient::setOptionsDefault(
 	// curl_easy_setopt(curl, CURLOPT_AUTOREFERER, 1);
 	setOption(CURLOPT_FOLLOWLOCATION, static_cast<long_t>(a_dataIn->isFollowLocation));
 	setOption(CURLOPT_MAXREDIRS,      a_dataIn->maxRedirects);
-
-	// CURLOPT_DEBUG...
-	if (a_dataIn->isDebugHeader) {
-		setOption(CURLOPT_VERBOSE,        1L);
-		setOption(CURLOPT_DEBUGFUNCTION,  onDebug);
-		setOption(CURLOPT_DEBUGDATA,     &a_dataIn->debugData);
-	}
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -519,10 +490,6 @@ HttpClient::getInfos(
 
 		out_dataOut->totalTimeSec = totalTimeSec;
 	}
-
-	/// if (data.isDebugHeader) {
-	/// 	// data.debugData - with data
-	/// }
 }
 //-------------------------------------------------------------------------------------------------
 
