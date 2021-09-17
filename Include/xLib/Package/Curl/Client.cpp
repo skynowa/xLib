@@ -158,6 +158,17 @@ Client::unescape(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+Client::strError() const
+{
+    const char *pszRv = ::curl_easy_strerror(_lastError);
+    if (pszRv == nullptr) {
+        return Const::strUnknown();
+    }
+
+    return pszRv;
+}
+//-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Client::escapeUrl(
@@ -192,17 +203,6 @@ Client::unescapeUrl(
     Utils::freeT(pszRv, ::curl_free, nullptr);
 
     return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Client::strError() const
-{
-    const char *pszRv = ::curl_easy_strerror(_lastError);
-    if (pszRv == nullptr) {
-        return Const::strUnknown();
-    }
-
-    return pszRv;
 }
 //-------------------------------------------------------------------------------------------------
 

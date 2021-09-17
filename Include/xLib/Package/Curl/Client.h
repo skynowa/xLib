@@ -66,6 +66,9 @@ public:
     std::tstring_t escape(std::ctstring_t &str) const;
     std::tstring_t unescape(std::ctstring_t &str) const;
 
+    std::tstring_t strError() const;
+
+xPUBLIC_STATIC:
     static
     std::tstring_t escapeUrl(std::ctstring_t &str);
     static
@@ -73,8 +76,6 @@ public:
 
     /// struct curl_slist *curl_slist_append(struct curl_slist *,  const char *);
     /// void_t               curl_slist_free_all(struct curl_slist *);
-
-    std::tstring_t strError() const;
 
 ///@name Callbacks
 ///@{
