@@ -88,7 +88,7 @@ void_t
 Client::perform()
 {
     _lastError = ::curl_easy_perform( _handle.get() );
-    xTEST_EQ_MSG(_lastError, CURLE_OK, Format::str(xT("perform: {}"), strError()));
+    xTEST_MSG(_isLastErrorOk(), Format::str(xT("perform: {}"), strError()));
 }
 //-------------------------------------------------------------------------------------------------
 void_t
