@@ -52,8 +52,8 @@ Client::Client(
 ) :
 	_isDebug{a_isDebug}
 {
-	cCURLcode iRv = ::curl_global_init(CURL_GLOBAL_ALL);
-	xTEST_EQ(iRv, CURLE_OK);
+	_lastError = ::curl_global_init(CURL_GLOBAL_ALL);
+	xTEST_EQ(_lastError, CURLE_OK);
 
     _handle = ::curl_easy_init();
     xTEST_EQ(_handle.isValid(), true);
@@ -87,8 +87,8 @@ Client::reset()
 void_t
 Client::perform()
 {
-    cCURLcode iRv = ::curl_easy_perform( _handle.get() );
-    xTEST_EQ_MSG(iRv, CURLE_OK, Format::str(xT("perform: {}"), strError(iRv)));
+    _lastError = ::curl_easy_perform( _handle.get() );
+    xTEST_EQ_MSG(_lastError, CURLE_OK, Format::str(xT("perform: {}"), strError(iRv)));
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -96,8 +96,8 @@ Client::pause(
     cint_t a_bitMask
 )
 {
-    cCURLcode iRv = ::curl_easy_pause(_handle.get(), a_bitMask);
-    xTEST_EQ(iRv, CURLE_OK);
+    _lastError = ::curl_easy_pause(_handle.get(), a_bitMask);
+    xTEST_EQ(_lastError, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -107,8 +107,8 @@ Client::receive(
     std::size_t  *a_n
 )
 {
-    cCURLcode iRv = ::curl_easy_recv(_handle.get(), a_buff, a_buffSize, a_n);
-    xTEST_EQ(iRv, CURLE_OK);
+    _lastError = ::curl_easy_recv(_handle.get(), a_buff, a_buffSize, a_n);
+    xTEST_EQ(_lastError, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -118,8 +118,8 @@ Client::send(
     std::size_t  *a_n
 )
 {
-    cCURLcode iRv = ::curl_easy_send(_handle.get(), a_buff, a_buffSize, a_n);
-    xTEST_EQ(iRv, CURLE_OK);
+    _lastError = ::curl_easy_send(_handle.get(), a_buff, a_buffSize, a_n);
+    xTEST_EQ(_lastError, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
