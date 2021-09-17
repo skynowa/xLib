@@ -239,7 +239,9 @@ HttpClient::httpCode(
 	};
 
 	for (const auto &[it_range, it_code] : httpCodes) {
-		if ( Algos::isInBounds(a_dataOut.responseCode, it_range.first, it_range.second) ) {
+		const auto &[it_low, it_high] = it_range;
+
+		if ( Algos::isInBounds(a_dataOut.responseCode, it_low, it_high) ) {
 			return it_code;
 		}
 	}
