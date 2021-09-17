@@ -38,7 +38,6 @@ DataIn::print(
 		<< xTRACE_VAR(addCookie)         << xT("\n")
 		<< xTRACE_VAR(encodingParam)     << xT("\n")
 		<< xTRACE_VAR(ciphers)           << xT("\n")
-		<< xTRACE_VAR(errorStr)          << xT("\n")
 		<< xTRACE_VAR(timeoutSec)        << xT("\n")
 		<< xTRACE_VAR(timeoutMs)         << xT("\n")
 		<< xTRACE_VAR(continueTimeoutMs) << xT("\n")
@@ -343,8 +342,6 @@ HttpClient::setOptionsDefault(
 	if ( !a_dataIn->ciphers.empty() ) {
 		setOption(CURLOPT_SSL_CIPHER_LIST, a_dataIn->ciphers.c_str());
 	}
-
-	setOption(CURLOPT_ERRORBUFFER, a_dataIn->errorStr);
 
 	// FTP
 	{

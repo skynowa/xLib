@@ -34,8 +34,6 @@ struct DataIn :
 	std::tstring_t encodingParam;
 	std::tstring_t ciphers;
 
-	tchar_t        errorStr[1024 + 1] {};
-
 	int_t          timeoutSec {};
 	int_t          timeoutMs {};
 	int_t          continueTimeoutMs {};
