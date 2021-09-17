@@ -34,7 +34,6 @@ DataIn::print(
 		<< xTRACE_VAR(sslCert)           << xT("\n")
 		<< xTRACE_VAR(sslCertPass)       << xT("\n")
 		<< xTRACE_VAR((int)httpVersion)  << xT("\n")
-		<< xTRACE_VAR(isVerbose)         << xT("\n")
 		<< xTRACE_VAR(cookieFile)        << xT("\n")
 		<< xTRACE_VAR(addCookie)         << xT("\n")
 		<< xTRACE_VAR(encodingParam)     << xT("\n")
@@ -90,6 +89,13 @@ DataOut::print(
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+HttpClient::HttpClient(
+	cbool_t a_isDebug
+) :
+	Client(a_isDebug)
+{
+}
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::request(
@@ -316,8 +322,6 @@ HttpClient::setOptionsDefault(
 	}
 
 	setOption(CURLOPT_HTTP_VERSION, a_dataIn->httpVersion);
-
-	setOption(CURLOPT_VERBOSE, static_cast<long_t>(a_dataIn->isVerbose));
 
 	// CURLOPT_COOKIE...
 	{

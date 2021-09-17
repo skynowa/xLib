@@ -28,8 +28,6 @@ struct DataIn :
 
 	HttpVersion    httpVersion {HttpVersion::Default};
 
-	bool_t         isVerbose {true};
-
 	std::tstring_t cookieFile;
 	std::tstring_t addCookie;
 
@@ -127,7 +125,7 @@ public:
 
 ///@name ctors, dtor
 ///@{
-			 HttpClient() = default;
+	explicit HttpClient(cbool_t isDebug);
 	virtual ~HttpClient() = default;
 
 	xNO_COPY_ASSIGN(HttpClient)

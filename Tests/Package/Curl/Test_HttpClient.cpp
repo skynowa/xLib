@@ -18,13 +18,15 @@ Test_HttpClient::unit()
 {
     xTEST_CASE("request (Get)")
     {
+		cbool_t isDebug {false};
+
 		DataIn dataIn;
 		dataIn.url     = xT("https://example.com/");
 		dataIn.request = xT("");
 
 		DataOut dataOut;
 
-		HttpClient http;
+		HttpClient http(isDebug);
 		m_bRv = http.request(HttpClient::Request::Get, dataIn, &dataOut);
 		xTEST(m_bRv);
 		xTEST(!dataOut.headers.empty());

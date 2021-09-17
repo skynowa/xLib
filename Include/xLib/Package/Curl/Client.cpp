@@ -47,7 +47,10 @@ DebugData::print(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Client::Client()
+Client::Client(
+	cbool_t a_isDebug
+) :
+	_isDebug{a_isDebug}
 {
 	cCURLcode iRv = ::curl_global_init(CURL_GLOBAL_ALL);
 	xTEST_EQ(iRv, CURLE_OK);
@@ -55,13 +58,10 @@ Client::Client()
     _handle = ::curl_easy_init();
     xTEST_EQ(_handle.isValid(), true);
 
-
-
-	// CURLOPT_DEBUG...
-	if (true) {
+	if (_isDebug) {
 		setOption(CURLOPT_VERBOSE,        1L);
 		setOption(CURLOPT_DEBUGFUNCTION,  onDebug);
-		setOption(CURLOPT_DEBUGDATA,     &debugData);
+		setOption(CURLOPT_DEBUGDATA,     &_debugData);
 	}
 }
 //-------------------------------------------------------------------------------------------------

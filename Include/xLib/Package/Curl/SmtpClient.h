@@ -15,7 +15,6 @@
 
 #pragma once
 
-#include <xLib/Package/IRestClient.h>
 #include <xLib/Package/Curl/Client.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::package::curl
@@ -23,16 +22,16 @@ namespace xl::package::curl
 
 class SmtpClient :
     public
-		curl::Client,
-		xl::package::IRestClient
+		curl::Client
     /// Mail client
 {
 public:
 ///@name ctors, dtor
 ///@{
-			 SmtpClient(std::ctstring_t &url, std::ctstring_t &caPath, std::ctstring_t &userName,
-				std::ctstring_t &password, std::ctstring_t &from, std::ctstring_t &to,
-				std::ctstring_t &cc, std::ctstring_t &subject,std::ctstring_t &body);
+			 SmtpClient(cbool_t isDebug, std::ctstring_t &url, std::ctstring_t &caPath,
+				std::ctstring_t &userName, std::ctstring_t &password, std::ctstring_t &from,
+				std::ctstring_t &to, std::ctstring_t &cc, std::ctstring_t &subject,
+				std::ctstring_t &body);
     virtual ~SmtpClient() = default;
 
     xNO_COPY_ASSIGN(SmtpClient)
