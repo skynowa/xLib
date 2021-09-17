@@ -60,8 +60,8 @@ public:
     template<typename T>
     void_t         info(cCURLINFO info, const T &value);
 
-    void_t         receive(void_t *buff, std::csize_t buffSize, std::size_t *n);
-    void_t         send(cvoid_t *buff, std::csize_t buffSize, std::size_t *n);
+    void_t         receive(void_t *buff, std::csize_t buffSize, std::size_t *items);
+    void_t         send(cvoid_t *buff, std::csize_t buffSize, std::size_t *items);
 
     std::tstring_t escape(std::ctstring_t &str) const;
     std::tstring_t unescape(std::ctstring_t &str) const;

@@ -104,10 +104,10 @@ void_t
 Client::receive(
     void_t       *a_buff,
     std::csize_t  a_buffSize,
-    std::size_t  *a_n
+    std::size_t  *a_items
 )
 {
-    _lastError = ::curl_easy_recv(_handle.get(), a_buff, a_buffSize, a_n);
+    _lastError = ::curl_easy_recv(_handle.get(), a_buff, a_buffSize, a_items);
     xTEST_EQ(_lastError, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
@@ -115,10 +115,10 @@ void_t
 Client::send(
     cvoid_t      *a_buff,
     std::csize_t  a_buffSize,
-    std::size_t  *a_n
+    std::size_t  *a_items
 )
 {
-    _lastError = ::curl_easy_send(_handle.get(), a_buff, a_buffSize, a_n);
+    _lastError = ::curl_easy_send(_handle.get(), a_buff, a_buffSize, a_items);
     xTEST_EQ(_lastError, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
