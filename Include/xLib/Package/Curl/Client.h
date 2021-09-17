@@ -78,10 +78,13 @@ xPUBLIC_STATIC:
 ///@{
 	static
 	std::size_t onWriteHeader(void_t *buff, std::csize_t size, std::csize_t items, void_t *userData);
+		///<
 	static
 	std::size_t onWriteData(void_t *buff, std::csize_t size, std::csize_t items, void_t *userData);
+		///<
 	static
 	std::size_t onReadData(void_t *buff, std::csize_t size, std::csize_t items, void_t *userData);
+		///<
 ///@}
 
 protected:
@@ -122,6 +125,7 @@ private:
 
 	static
 	int _onDebug(CURL *curl, const curl_infotype type, char *buff, std::csize_t size, void_t *useData);
+		///<
 ///@}
 };
 
