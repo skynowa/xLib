@@ -46,7 +46,7 @@ struct DataIn :
 	std::map_tstring_t addHeaders;
 
 	std::tstring_t referer;
-		///<
+		///< referer
 	std::tstring_t accept;
 		///< specify certain media types which are acceptable
 	std::tstring_t acceptEncoding;
@@ -62,8 +62,6 @@ struct DataIn :
 	int_t          maxRedirects {50};
 	bool_t         isCacheControl {false}; // Impl for GET requests
 		///< false - no cache, force to reset cache
-
-	bool_t         isDebugHeader {true};
 
 	std::tstring_t request;
 

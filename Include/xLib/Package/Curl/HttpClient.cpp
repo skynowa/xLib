@@ -55,7 +55,6 @@ DataIn::print(
 		<< xTRACE_VAR(isFollowLocation)  << xT("\n")
 		<< xTRACE_VAR(maxRedirects)      << xT("\n")
 		<< xTRACE_VAR(isCacheControl)    << xT("\n")
-		<< xTRACE_VAR(isDebugHeader)     << xT("\n")
 		<< xTRACE_VAR(request);
 }
 //-------------------------------------------------------------------------------------------------
