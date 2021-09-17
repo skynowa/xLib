@@ -118,7 +118,7 @@ Client::send(
     std::size_t  *a_n
 )
 {
-    CURLcode iRv = ::curl_easy_send(_handle.get(), a_buff, a_buffSize, a_n);
+    cCURLcode iRv = ::curl_easy_send(_handle.get(), a_buff, a_buffSize, a_n);
     xTEST_EQ(iRv, CURLE_OK);
 }
 //-------------------------------------------------------------------------------------------------
