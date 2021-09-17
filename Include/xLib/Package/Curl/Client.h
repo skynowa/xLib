@@ -91,6 +91,8 @@ protected:
 	const bool _isDebug {};
 	CURLcode   _lastError {CURLE_OK};
 
+	bool _isLastErrorOk() const;
+
     HandleCurl _handle;
 
     struct ReadData

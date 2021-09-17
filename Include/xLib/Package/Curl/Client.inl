@@ -21,7 +21,7 @@ Client::setOption(
 )
 {
 	_lastError = ::curl_easy_setopt(_handle.get(), a_option, a_value);
-	xTEST_EQ_MSG(_lastError, CURLE_OK, Format::str(xT("Option: {} - {}"), a_option, strError()));
+	xTEST_MSG(_isLastErrorOk(), Format::str(xT("Option: {} - {}"), a_option, strError()));
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -32,7 +32,7 @@ Client::info(
 )
 {
 	_lastError = ::curl_easy_getinfo(_handle.get(), a_info, a_value);
-    xTEST_EQ_MSG(_lastError, CURLE_OK, Format::str(xT("Info: {} - {}"), a_info, strError()));
+    xTEST_MSG(_isLastErrorOk(), Format::str(xT("Info: {} - {}"), a_info, strError()));
 }
 //-------------------------------------------------------------------------------------------------
 
