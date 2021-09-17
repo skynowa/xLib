@@ -113,6 +113,8 @@ protected:
     slist_unique_ptr_t _headers;
 
 private:
+    tchar_t _errorStr[1024 + 1] {};
+
 ///@name Callbacks
 ///@{
 	DebugData _debugData;
