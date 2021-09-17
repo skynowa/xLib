@@ -166,7 +166,7 @@ Client::strError() const
         return Const::strUnknown();
     }
 
-    return pszRv;
+    return Format::str(xT("{} - {}"), _lastError, pszRv);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
