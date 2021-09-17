@@ -74,9 +74,6 @@ xPUBLIC_STATIC:
     static
     std::tstring_t unescapeUrl(std::ctstring_t &str);
 
-    /// struct curl_slist *curl_slist_append(struct curl_slist *,  const char *);
-    /// void_t               curl_slist_free_all(struct curl_slist *);
-
 ///@name Callbacks
 ///@{
 	static
@@ -148,4 +145,7 @@ private:
  * curl_easy_setopt
  * curl_easy_strerror
  * curl_easy_unescape
+ *
+ * struct curl_slist *curl_slist_append(struct curl_slist *,  const char *);
+ * void_t             curl_slist_free_all(struct curl_slist *);
  */
