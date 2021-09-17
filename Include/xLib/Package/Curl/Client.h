@@ -113,11 +113,12 @@ protected:
     slist_unique_ptr_t _headers;
 
 private:
-    tchar_t _errorStr[CURL_ERROR_SIZE + 1] {};
+    static constexpr std::size_t _errorBuffSize {CURL_ERROR_SIZE};
+    tchar_t                      _errorBuff[_errorBuffSize + 1] {};
 
 ///@name Callbacks
 ///@{
-	DebugData _debugData;
+	DebugData _debugData {};
 
 	static
 	int _onDebug(CURL *curl, const curl_infotype type, char *buff, std::csize_t size, void_t *useData);

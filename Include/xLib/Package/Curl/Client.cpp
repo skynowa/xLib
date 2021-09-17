@@ -58,7 +58,7 @@ Client::Client(
     _handle = ::curl_easy_init();
     xTEST_EQ(_handle.isValid(), true);
 
-	setOption(CURLOPT_ERRORBUFFER, _errorStr);
+	setOption(CURLOPT_ERRORBUFFER, &_errorBuff[0]);
 
 	if (_isDebug) {
 		setOption(CURLOPT_VERBOSE,        1L);
