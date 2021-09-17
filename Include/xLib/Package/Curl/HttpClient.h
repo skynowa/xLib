@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include <xLib/Interface/IData.h>
 #include <xLib/Package/Curl/Client.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::package::curl
@@ -71,24 +70,6 @@ struct DataIn :
 	bool_t         isDebugHeader {true};
 
 	std::tstring_t request;
-
-	struct DebugData :
-		public interface::IDataPrint
-		/// debug data
-	{
-		std::tstring_t text;
-		std::tstring_t headerIn;
-		std::tstring_t headerOut;
-		std::tstring_t dataIn;
-		std::tstring_t dataOut;
-		std::tstring_t sslDataIn;
-		std::tstring_t sslDataOut;
-
-	protected:
-		void_t print(core::OStream &os) const override;
-	};
-
-	DebugData      debugData;
 
 protected:
 	void_t print(core::OStream &os) const override;

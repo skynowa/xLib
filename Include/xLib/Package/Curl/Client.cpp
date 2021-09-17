@@ -21,6 +21,27 @@ namespace xl::package::curl
 {
 
 /**************************************************************************************************
+*   DebugData public
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+void_t
+DebugData::print(
+	core::OStream &a_os
+) const
+{
+	a_os
+		<< xTRACE_VAR(text)      << xT("\n")
+		<< xTRACE_VAR(headerIn)  << xT("\n")
+		<< xTRACE_VAR(headerOut) << xT("\n")
+		<< xTRACE_VAR(dataOut)   << xT("\n")
+		<< xTRACE_VAR(sslDataIn) << xT("\n")
+		<< xTRACE_VAR(sslDataOut);
+}
+//-------------------------------------------------------------------------------------------------
+
+/**************************************************************************************************
 *   public
 *
 **************************************************************************************************/
@@ -33,6 +54,15 @@ Client::Client()
 
     _handle = ::curl_easy_init();
     xTEST_EQ(_handle.isValid(), true);
+
+
+
+	// CURLOPT_DEBUG...
+	if (true) {
+		setOption(CURLOPT_VERBOSE,        1L);
+		setOption(CURLOPT_DEBUGFUNCTION,  onDebug);
+		setOption(CURLOPT_DEBUGDATA,     &debugData);
+	}
 }
 //-------------------------------------------------------------------------------------------------
 Client::~Client()
@@ -289,10 +319,7 @@ Client::onDebug(
 		return CURLE_OK;
 	}
 
-#if 1
-
-#else
-	auto *data = static_cast<DataIn::DebugData *>(out_useData);
+	auto *data = static_cast<DebugData *>(out_useData);
 	if (data == nullptr) {
 		return CURLE_OK;
 	}
@@ -325,7 +352,6 @@ Client::onDebug(
 		xTEST(false);
 		break;
 	}
-#endif
 
 	return CURLE_OK;
 }

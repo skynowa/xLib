@@ -13,6 +13,7 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
+#include <xLib/Interface/IData.h>
 #include <curl/curl.h>
 #include <curl/easy.h>
 #include "Types.h"
@@ -20,6 +21,22 @@
 namespace xl::package::curl
 {
 
+struct DebugData :
+	public interface::IDataPrint
+	/// debug data
+{
+	std::tstring_t text;
+	std::tstring_t headerIn;
+	std::tstring_t headerOut;
+	std::tstring_t dataIn;
+	std::tstring_t dataOut;
+	std::tstring_t sslDataIn;
+	std::tstring_t sslDataOut;
+
+protected:
+	void_t print(core::OStream &os) const override;
+};
+//-------------------------------------------------------------------------------------------------
 class Client
     /// Client (interface)
 {
@@ -72,6 +89,8 @@ public:
 	int         onDebug(CURL *curl, const curl_infotype type, char *buff, std::csize_t size,
 					void_t *useData);
 ///@}
+
+	DebugData debugData;
 
 protected:
     HandleCurl _handle;
