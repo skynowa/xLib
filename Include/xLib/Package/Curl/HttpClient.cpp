@@ -229,30 +229,22 @@ HttpClient::httpCode(
 	cDataOut &a_dataOut
 ) const
 {
-	HttpCode hcRv {};
+	static const std::map<std::pair<int, int>, HttpCode> httpCodes
+	{
+		{{100, 199}, HttpCode::Info       },
+		{{200, 299}, HttpCode::Success    },
+		{{300, 399}, HttpCode::Redirection},
+		{{400, 499}, HttpCode::ClientError},
+		{{500, 599}, HttpCode::ServerError}
+	};
 
-	cint_t code = a_dataOut.responseCode;
-
-	if      ( Algos::isInBounds(code, 100, 199) ) {
-		hcRv = HttpCode::Info;
-	}
-	else if ( Algos::isInBounds(code, 200, 299) ) {
-		hcRv = HttpCode::Success;
-	}
-	else if ( Algos::isInBounds(code, 300, 399) ) {
-		hcRv = HttpCode::Redirection;
-	}
-	else if ( Algos::isInBounds(code, 400, 499) ) {
-		hcRv = HttpCode::ClientError;
-	}
-	else if ( Algos::isInBounds(code, 500, 599) ) {
-		hcRv = HttpCode::ServerError;
-	}
-	else {
-		hcRv = HttpCode::Unknown;
+	for (const auto &[it_range, it_code] : httpCodes) {
+		if ( Algos::isInBounds(a_dataOut.responseCode, it_range.first, it_range.second) ) {
+			return it_code;
+		}
 	}
 
-	return hcRv;
+	return HttpCode::Unknown;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
