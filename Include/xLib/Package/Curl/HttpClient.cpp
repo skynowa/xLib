@@ -231,19 +231,21 @@ HttpClient::httpCode(
 {
 	HttpCode hcRv {};
 
-	if      ( Algos::isInBounds(a_dataOut.responseCode, 100, 199) ) {
+	cint_t code = a_dataOut.responseCode;
+
+	if      ( Algos::isInBounds(code, 100, 199) ) {
 		hcRv = HttpCode::Info;
 	}
-	else if ( Algos::isInBounds(a_dataOut.responseCode, 200, 299) ) {
+	else if ( Algos::isInBounds(code, 200, 299) ) {
 		hcRv = HttpCode::Success;
 	}
-	else if ( Algos::isInBounds(a_dataOut.responseCode, 300, 399) ) {
+	else if ( Algos::isInBounds(code, 300, 399) ) {
 		hcRv = HttpCode::Redirection;
 	}
-	else if ( Algos::isInBounds(a_dataOut.responseCode, 400, 499) ) {
+	else if ( Algos::isInBounds(code, 400, 499) ) {
 		hcRv = HttpCode::ClientError;
 	}
-	else if ( Algos::isInBounds(a_dataOut.responseCode, 500, 599) ) {
+	else if ( Algos::isInBounds(code, 500, 599) ) {
 		hcRv = HttpCode::ServerError;
 	}
 	else {
