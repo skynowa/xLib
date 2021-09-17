@@ -15,7 +15,6 @@
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Test/Test.h>
-#include <xLib/Package/Curl/HttpImpl.h>
 
 
 namespace xl::package::curl
@@ -290,6 +289,9 @@ Client::onDebug(
 		return CURLE_OK;
 	}
 
+#if 1
+
+#else
 	auto *data = static_cast<DataIn::DebugData *>(out_useData);
 	if (data == nullptr) {
 		return CURLE_OK;
@@ -323,6 +325,7 @@ Client::onDebug(
 		xTEST(false);
 		break;
 	}
+#endif
 
 	return CURLE_OK;
 }
