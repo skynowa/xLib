@@ -88,7 +88,7 @@ void_t
 Client::perform()
 {
     _lastError = ::curl_easy_perform( _handle.get() );
-    xTEST_EQ_MSG(_lastError, CURLE_OK, Format::str(xT("perform: {}"), strError(iRv)));
+    xTEST_EQ_MSG(_lastError, CURLE_OK, Format::str(xT("perform: {}"), strError()));
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -194,13 +194,10 @@ Client::unescapeUrl(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 std::tstring_t
-Client::strError(
-   cCURLcode a_code
-)
+Client::strError() const
 {
-    const char *pszRv = ::curl_easy_strerror(a_code);
+    const char *pszRv = ::curl_easy_strerror(_lastError);
     if (pszRv == nullptr) {
         return Const::strUnknown();
     }
