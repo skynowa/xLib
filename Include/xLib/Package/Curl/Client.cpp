@@ -60,7 +60,7 @@ Client::Client(
 
 	if (_isDebug) {
 		setOption(CURLOPT_VERBOSE,        1L);
-		setOption(CURLOPT_DEBUGFUNCTION,  onDebug);
+		setOption(CURLOPT_DEBUGFUNCTION,  _onDebug);
 		setOption(CURLOPT_DEBUGDATA,     &_debugData);
 	}
 }
@@ -297,7 +297,7 @@ Client::onReadData(
 //-------------------------------------------------------------------------------------------------
 /* static */
 int
-Client::onDebug(
+Client::_onDebug(
 	CURL                *a_curl,		///<
 	const curl_infotype  a_type,		///<
 	char                *a_buff,		///<
