@@ -56,7 +56,7 @@ Client::Client(
 	xTEST(_isLastErrorOk());
 
     _handle = ::curl_easy_init();
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle.isValid());
 
 	setOption(CURLOPT_ERRORBUFFER, &_errorBuff[0]);
 
@@ -146,7 +146,7 @@ Client::unescape(
 {
     std::tstring_t sRv;
 
-    int size_out = 0;
+    int size_out {};
     char *pszRv = ::curl_easy_unescape(_handle.get(), a_str.c_str(),
         static_cast<int>( a_str.size() ), &size_out);
     xTEST_PTR(pszRv);
