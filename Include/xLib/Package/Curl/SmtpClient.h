@@ -15,8 +15,8 @@
 
 #pragma once
 
-#include <xLib/Package/Curl/HttpImpl.h>
 #include <xLib/Package/IRestClient.h>
+#include <xLib/Package/Curl/Client.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::package::curl
 {
