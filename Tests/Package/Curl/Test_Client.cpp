@@ -20,8 +20,6 @@ Test_Client::unit()
 
 	Client curl(isDebug);
 
-	CURL *curlHandle = curl.get().get();
-
     xTEST_CASE("setOption")
 	{
 		std::ctstring_t url = xT("http://www.cplusplus.com/reference/");
@@ -31,16 +29,16 @@ Test_Client::unit()
 
 		// header
 		std::tstring_t buffHeader;
-		::curl_easy_setopt(curlHandle, CURLOPT_WRITEHEADER, &buffHeader);
-		::curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, Client::onWriteHeader);
+		curl.setOption(CURLOPT_WRITEHEADER,    &buffHeader);
+		curl.setOption(CURLOPT_HEADERFUNCTION, Client::onWriteHeader);
 
 		// body
 		std::tstring_t dataBuff;
-		::curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &dataBuff);
-		::curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, Client::onWriteData);
+		curl.setOption(CURLOPT_WRITEDATA,     &dataBuff);
+		curl.setOption(CURLOPT_WRITEFUNCTION, Client::onWriteData);
 
-		::curl_easy_setopt(curlHandle, CURLOPT_POST, 0L);
-		::curl_easy_setopt(curlHandle, CURLOPT_NOBODY, 0L);
+		curl.setOption(CURLOPT_POST,   0L);
+		curl.setOption(CURLOPT_NOBODY, 0L);
 
 		curl.perform();
 
