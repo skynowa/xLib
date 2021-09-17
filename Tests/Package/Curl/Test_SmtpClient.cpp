@@ -23,6 +23,7 @@ Test_SmtpClient::unit()
 
 	xTEST_CASE("request")
 	{
+		cbool_t         isDebug  = false;
 		std::ctstring_t url      = "smtp://smtp.gmail.com:587";
 		std::ctstring_t caPath   = "";
 		std::ctstring_t userName = "skynowa@gmail.com";
@@ -33,7 +34,7 @@ Test_SmtpClient::unit()
 		std::ctstring_t subject  = "xlib::curl::SmtpClient";
 		std::ctstring_t body     = "Test";
 
-		SmtpClient smpt(url, caPath, userName, password, from, to, cc, subject, body);
+		SmtpClient smpt(isDebug, url, caPath, userName, password, from, to, cc, subject, body);
 		smpt.request();
 	}
 

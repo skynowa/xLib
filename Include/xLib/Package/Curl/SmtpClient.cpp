@@ -19,6 +19,7 @@ namespace xl::package::curl
 
 //-------------------------------------------------------------------------------------------------
 SmtpClient::SmtpClient(
+	cbool_t          a_isDebug,
 	std::ctstring_t &a_url,
 	std::ctstring_t &a_caPath,
 	std::ctstring_t &a_userName,
@@ -29,6 +30,7 @@ SmtpClient::SmtpClient(
 	std::ctstring_t &a_subject,
 	std::ctstring_t &a_body
 ) :
+	Client   (a_isDebug),
 	_url     {a_url},
 	_caPath  {a_caPath},
 	_userName{a_userName},
@@ -128,7 +130,6 @@ SmtpClient::request()
 
 	setOption(CURLOPT_MAIL_RCPT, _recipients.get());
 	setOption(CURLOPT_UPLOAD, 1L);
-	setOption(CURLOPT_VERBOSE, static_cast<long_t>(1));
 
 	std::ctstring_t mimeMsg = Format::str(
 		"To: {}\r\n"

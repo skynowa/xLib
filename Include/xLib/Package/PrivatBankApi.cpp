@@ -41,7 +41,9 @@ PrivatBankApi::getExchangeRatesArchive(
 
 	bool_t bRv {};
 
-	curl::HttpClient http;
+	cbool_t isDebug {false};
+
+	curl::HttpClient http(isDebug);
 
 	curl::DataIn dataIn;
 	{

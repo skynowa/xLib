@@ -16,7 +16,9 @@ xTEST_UNIT(Test_Client)
 bool_t
 Test_Client::unit()
 {
-	Client curl;
+	cbool_t isDebug {false};
+
+	Client curl(isDebug);
 
 	CURL *curlHandle = curl.get().get();
 

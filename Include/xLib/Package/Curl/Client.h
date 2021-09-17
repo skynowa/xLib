@@ -43,7 +43,7 @@ class Client
 public:
 ///@name Ctors, dtor
 ///@{
-	explicit  Client();
+	explicit  Client(cbool_t isDebug);
 	virtual  ~Client();
 
 	xNO_COPY_ASSIGN(Client)
@@ -90,9 +90,9 @@ public:
 					void_t *useData);
 ///@}
 
-	DebugData debugData;
-
 protected:
+	const bool _isDebug {};
+
     HandleCurl _handle;
 
     struct ReadData
@@ -114,6 +114,7 @@ protected:
     using slist_unique_ptr_t = std::unique_ptr<struct curl_slist, CurlSlistDeleter>;
 
     slist_unique_ptr_t _headers;
+	DebugData          _debugData;
 };
 
 } // namespace

@@ -32,7 +32,7 @@ protected:
 	fs::Config         _config;
 	log::FileLog       _log;
 	std::tstring_t     _dirTmp;
-	curl::HttpClient   _http;
+	curl::HttpClient   _http {false};
 	/// TODO: DbClient
 	/// TODO: IRequest / IResponse
 	/// TODO: Json/Xml/Csv
