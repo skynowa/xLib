@@ -89,6 +89,7 @@ public:
 
 protected:
 	const bool _isDebug {};
+	CURLcode   _lastError {CURLE_OK};
 
     HandleCurl _handle;
 
