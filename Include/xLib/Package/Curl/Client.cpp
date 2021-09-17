@@ -307,17 +307,9 @@ Client::onDebug(
 {
 	xUNUSED(a_curl);
 
-	if (a_buff == nullptr) {
-		return CURLE_OK;
-	}
-
-	if (a_size == 0) {
-		return CURLE_OK;
-	}
-
-	if (out_useData == nullptr) {
-		return CURLE_OK;
-	}
+	xCHECK_RET(a_buff == nullptr,      CURLE_OK);
+	xCHECK_RET(a_size == 0,            CURLE_OK);
+	xCHECK_RET(out_useData == nullptr, CURLE_OK);
 
 	auto *data = static_cast<DebugData *>(out_useData);
 	if (data == nullptr) {
