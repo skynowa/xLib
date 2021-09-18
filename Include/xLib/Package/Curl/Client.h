@@ -115,8 +115,8 @@ protected:
 	bool_t _isLastErrorOk() const;
 
 private:
-    static constexpr std::size_t _errorBuffSize {CURL_ERROR_SIZE};
-    tchar_t                      _errorBuff[_errorBuffSize + 1] {};
+    static std::csize_t _errorBuffSize {CURL_ERROR_SIZE};
+    tchar_t             _errorBuff[_errorBuffSize + 1] {};
 
 ///@name Callbacks
 ///@{
