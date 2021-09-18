@@ -16,11 +16,15 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
     strategy:
       fail-fast: false
       matrix:
         config:
+        - {
+            os: ubuntu-20.04
+          }
         - {
             name: "Windows Latest MSVC (C++17)",
             os: windows-latest,
