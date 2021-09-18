@@ -103,14 +103,16 @@ protected:
 
     ReadData _readData {};
 
+///@name Types
+///@{
 	std::function<void_t(curl_slist *)> _slistDeleter =
 		[] (curl_slist *out_list) -> void_t
 		{
 			Utils::freeT(out_list, ::curl_slist_free_all, nullptr);
 		};
-	using slist_deleter_t = decltype(_slistDeleter);
-
+	using slist_deleter_t    = decltype(_slistDeleter);
 	using slist_unique_ptr_t = std::unique_ptr<struct curl_slist, slist_deleter_t>;
+///@}
 
 	slist_unique_ptr_t _headers;
 
