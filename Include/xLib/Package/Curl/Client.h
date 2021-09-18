@@ -96,13 +96,24 @@ protected:
 		std::size_t    bytes;
 	};
 
+#if 0
 	std::function<void_t(curl_slist *)> _slistDeleter =
 		[] (curl_slist *out_list) -> void_t
 		{
 			Utils::freeT(out_list, ::curl_slist_free_all, nullptr);
 		};
 	using slist_deleter_t    = decltype(_slistDeleter);
-	using slist_unique_ptr_t = std::unique_ptr<struct curl_slist, slist_deleter_t>;
+	using slist_unique_ptr_t = std::unique_ptr<curl_slist, slist_deleter_t>;
+#else
+	struct SlistDeleter
+	{
+		void_t operator() (curl_slist *out_list) const
+		{
+			Utils::freeT(out_list, ::curl_slist_free_all, nullptr);
+		}
+	};
+	using slist_unique_ptr_t = std::unique_ptr<curl_slist, SlistDeleter>;
+#endif
 ///@}
 ///
 	cbool_t            _isDebug {};
