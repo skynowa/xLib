@@ -33,8 +33,7 @@ jobs:
             name: "Ubuntu Latest GCC (C++17)",
             os: ubuntu-latest,
             build_type: "Debug",
-            cc: "gcc",
-            cxx: "g++",
+            compiler: "g++",
             generators: "Ninja"
           }
         - {
