@@ -23,7 +23,19 @@ jobs:
       matrix:
         config:
         - {
-            os: ubuntu-20.04
+            name: "ubuntu-20.04",
+            os: ubuntu-20.04,
+            build_type: "Debug",
+            cc: "gcc",
+            cxx: "g++"
+          }
+        - {
+            name: "Ubuntu Latest GCC (C++17)",
+            os: ubuntu-latest,
+            build_type: "Debug",
+            cc: "gcc",
+            cxx: "g++",
+            generators: "Ninja"
           }
         - {
             name: "Windows Latest MSVC (C++17)",
@@ -33,14 +45,6 @@ jobs:
             cxx: "cl",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
             generators: "Visual Studio 16 2019"
-          }
-        - {
-            name: "Ubuntu Latest GCC (C++17)",
-            os: ubuntu-latest,
-            build_type: "Debug",
-            cc: "gcc",
-            cxx: "g++",
-            generators: "Ninja"
           }
 
     steps:
