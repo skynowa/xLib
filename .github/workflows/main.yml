@@ -15,8 +15,11 @@ on:
     branches: [master]
 
 jobs:
-  build_linux:
-    runs-on: ubuntu-20.04
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04]
 
     steps:
       - name: Cancel Previous Runs
