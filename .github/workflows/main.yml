@@ -54,6 +54,11 @@ jobs:
           repository: skynowa/xLib
           path: ${{github.workspace}}/xLib
 
+      - name: Print env
+        run: |
+          echo github.event.action: ${{ github.event.action }}
+          echo github.event_name: ${{ github.event_name }}
+
       # xLib-data
       - name: xLib-data - Vheckout
         uses: actions/checkout@v2
