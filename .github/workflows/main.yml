@@ -22,9 +22,6 @@ jobs:
       matrix:
         config:
         - {
-            os: ubuntu-20.04
-          }
-        - {
             name: "Windows Latest MSVC (C++17)",
             os: windows-latest,
             build_type: "Debug",
