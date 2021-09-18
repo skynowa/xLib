@@ -22,19 +22,27 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - {
-            name: "ubuntu-20.04",
-            os: ubuntu-20.04,
-            build_type: "Debug",
-            cc: "gcc",
-            cxx: "g++"
-          }
+        # - {
+        #     name: "ubuntu-20.04",
+        #     os: ubuntu-20.04,
+        #     build_type: "Debug",
+        #     cc: "gcc",
+        #     cxx: "g++"
+        #   }
         - {
             name: "Ubuntu Latest GCC (C++17)",
             os: ubuntu-latest,
             build_type: "Debug",
             cc: "gcc",
             cxx: "g++",
+            generators: "Ninja"
+          }
+        - {
+            name: "Ubuntu Latest Clang (C++17)",
+            os: ubuntu-latest,
+            build_type: "Debug",
+            cc: "clang",
+            cxx: "clang",
             generators: "Ninja"
           }
         - {
