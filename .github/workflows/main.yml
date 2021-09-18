@@ -18,8 +18,29 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-20.04]
+        config:
+        - {
+            os: ubuntu-20.04
+          }
+        - {
+            name: "Windows Latest MSVC (C++17)",
+            os: windows-latest,
+            build_type: "Debug",
+            cc: "cl",
+            cxx: "cl",
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+            generators: "Visual Studio 16 2019"
+          }
+        - {
+            name: "Ubuntu Latest GCC (C++17)",
+            os: ubuntu-latest,
+            build_type: "Debug",
+            cc: "gcc",
+            cxx: "g++",
+            generators: "Ninja"
+          }
 
     steps:
       - name: Cancel Previous Runs
