@@ -11,6 +11,7 @@
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/DirTemp.h>
+#include <xLib/Fs/Config.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/SourceInfo.h>
 #include <xLib/Debug/ErrorReport.h>
@@ -59,6 +60,25 @@ bool_t
 Unit::isGithubCI() const
 {
 	return Environment(xT("GITHUB_WORKSPACE")).isExists();
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Unit::cfg(
+	std::map_tstring_t *out_values
+) const
+{
+	xCHECK_DO(out_values == nullptr, return);
+
+	std::ctstring_t cfgPath = Path::homeDir().str() + xT("/xlib.cfg");
+
+	Config cfg(cfgPath);
+	cfg.read();
+
+	auto &values = cfg.get();
+	xTEST(!values.empty());
+
+	// [out]
+	*out_values = values;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t

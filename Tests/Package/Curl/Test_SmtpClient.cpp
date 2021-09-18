@@ -23,11 +23,14 @@ Test_SmtpClient::unit()
 
 	xTEST_CASE("request")
 	{
+		std::map_tstring_t creds;
+		cfg(&creds);
+
 		cbool_t         isDebug  = true;
 		std::ctstring_t url      = "smtp://smtp.gmail.com:587";
 		std::ctstring_t caPath   = "";
-		std::ctstring_t userName = "skynowa@gmail.com";
-		std::ctstring_t password = "";	// TODO: set password for test
+		std::ctstring_t userName = creds[xT("EmailUser")];
+		std::ctstring_t password = creds[xT("EmailPassword")];
 		std::ctstring_t from     = "skynowa@gmail.com";
 		std::ctstring_t to       = "skynowa@fabrica.net.ua";
 		std::ctstring_t cc       = "skynowa@gmail.com";
