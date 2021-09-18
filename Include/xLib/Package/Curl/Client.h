@@ -118,8 +118,8 @@ protected:
 ///
 	cbool_t            _isDebug {};
 	CURLcode           _lastError {CURLE_OK};
-    HandleCurl         _handle;
-    ReadData           _readData {};
+	HandleCurl         _handle;
+	ReadData           _readData {};
 	slist_unique_ptr_t _headers;
 
 	bool_t _isLastErrorOk() const;
@@ -133,8 +133,9 @@ private:
 	DebugData _debugData {};
 
 	static
-	int _onDebug(CURL *curl, const curl_infotype type, char *buff, std::csize_t size, void_t *useData);
-		///<
+	int _onDebugData(CURL *curl, const curl_infotype type, char *buff, std::csize_t size,
+			void_t *userData);
+		///< debug data
 ///@}
 };
 

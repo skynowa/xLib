@@ -62,7 +62,7 @@ Client::Client(
 
 	if (_isDebug) {
 		setOption(CURLOPT_VERBOSE,        1L);
-		setOption(CURLOPT_DEBUGFUNCTION,  _onDebug);
+		setOption(CURLOPT_DEBUGFUNCTION,  _onDebugData);
 		setOption(CURLOPT_DEBUGDATA,     &_debugData);
 	}
 }
@@ -318,21 +318,21 @@ Client::_isLastErrorOk() const
 //-------------------------------------------------------------------------------------------------
 /* static */
 int
-Client::_onDebug(
+Client::_onDebugData(
 	CURL                *a_curl,		///<
 	const curl_infotype  a_type,		///<
 	char                *a_buff,		///<
 	std::csize_t         a_size,		///<
-	void_t              *out_useData	///< [out] as DataIn::DebugData
+	void_t              *out_userData	///< [out] as DataIn::DebugData
 )
 {
 	xUNUSED(a_curl);
 
-	xCHECK_RET(a_buff == nullptr,      CURLE_OK);
-	xCHECK_RET(a_size == 0,            CURLE_OK);
-	xCHECK_RET(out_useData == nullptr, CURLE_OK);
+	xCHECK_RET(a_buff == nullptr,       CURLE_OK);
+	xCHECK_RET(a_size == 0,             CURLE_OK);
+	xCHECK_RET(out_userData == nullptr, CURLE_OK);
 
-	auto *data = static_cast<DebugData *>(out_useData);
+	auto *data = static_cast<DebugData *>(out_userData);
 	if (data == nullptr) {
 		return CURLE_OK;
 	}
