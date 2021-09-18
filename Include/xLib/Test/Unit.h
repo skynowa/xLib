@@ -76,6 +76,8 @@ public:
         ///< set data
 	bool_t         isGithubCI() const;
        ///< check Github CI
+    void_t         cfg(std::map_tstring_t *values) const;
+        ///< config with test data/credentials
     bool_t         run();
         ///< run cases
     virtual bool_t unit() = 0;
