@@ -97,12 +97,12 @@ jobs:
       - name: CMakeLib - Install
         run: cd ${{github.workspace}}/CMakeLib && ./install.sh
 
-        # xLib
+      # xLib
       - name: xLib - Configure
         run: cd ${{github.workspace}}/xLib/Build && ./eclipse.sh
 
       - name: Info
-      #  run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
+        # run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
 
       - name: xLib - Build
