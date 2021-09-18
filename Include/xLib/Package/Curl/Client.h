@@ -103,17 +103,16 @@ protected:
 
     ReadData _readData {};
 
-    struct CurlSlistDeleter
-    {
-        void operator() (struct curl_slist *out_list) const
-        {
-            xCHECK_DO(out_list == nullptr, return);
-            ::curl_slist_free_all(out_list); out_list = nullptr;
-        }
-    };
-    using slist_unique_ptr_t = std::unique_ptr<struct curl_slist, CurlSlistDeleter>;
+	std::function<void_t(curl_slist *)> _slistDeleter =
+		[] (curl_slist *out_list) -> void_t
+		{
+			Utils::freeT(out_list, ::curl_slist_free_all, nullptr);
+		};
+	using slist_deleter_t = decltype(_slistDeleter);
 
-    slist_unique_ptr_t _headers;
+	using slist_unique_ptr_t = std::unique_ptr<struct curl_slist, slist_deleter_t>;
+
+	slist_unique_ptr_t _headers;
 
 private:
     static constexpr std::size_t _errorBuffSize {CURL_ERROR_SIZE};
