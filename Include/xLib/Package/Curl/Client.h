@@ -88,23 +88,14 @@ xPUBLIC_STATIC:
 ///@}
 
 protected:
-	const bool _isDebug {};
-	CURLcode   _lastError {CURLE_OK};
-
-	bool _isLastErrorOk() const;
-
-    HandleCurl _handle;
-
-    struct ReadData
-    {
-        std::tstring_t buff;
-        size_t         bytes;
-    };
-
-    ReadData _readData {};
-
 ///@name Types
 ///@{
+	struct ReadData
+	{
+		std::tstring_t buff;
+		std::size_t    bytes;
+	};
+
 	std::function<void_t(curl_slist *)> _slistDeleter =
 		[] (curl_slist *out_list) -> void_t
 		{
@@ -113,8 +104,14 @@ protected:
 	using slist_deleter_t    = decltype(_slistDeleter);
 	using slist_unique_ptr_t = std::unique_ptr<struct curl_slist, slist_deleter_t>;
 ///@}
-
+///
+	cbool_t            _isDebug {};
+	CURLcode           _lastError {CURLE_OK};
+    HandleCurl         _handle;
+    ReadData           _readData {};
 	slist_unique_ptr_t _headers;
+
+	bool_t _isLastErrorOk() const;
 
 private:
     static constexpr std::size_t _errorBuffSize {CURL_ERROR_SIZE};
