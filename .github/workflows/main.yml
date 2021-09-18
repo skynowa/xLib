@@ -42,7 +42,7 @@ jobs:
             os: ubuntu-latest,
             build_type: "Debug",
             cc: "clang",
-            cxx: "clang",
+            cxx: "clang++",
             generators: "Ninja"
           }
         - {
