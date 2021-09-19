@@ -24,8 +24,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
 	sudo pip install pygments
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	brew install \
-		openssl && brew unlink openssl && brew link openssl --force
+	export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+	export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 elif [[ "$OSTYPE" == "cygwin" ]]; then
 	echo ""
 elif [[ "$OSTYPE" == "msys" ]]; then
