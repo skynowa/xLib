@@ -55,22 +55,22 @@ jobs:
           }
 
     steps:
+      ##############################################################################################
+      # Cancel
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.5.0
         with:
           access_token: ${{github.token}}
 
-      - name: xLib - Vheckout
-        uses: actions/checkout@v2
-        with:
-          repository: skynowa/xLib
-          path: ${{github.workspace}}/xLib
-
+      ##############################################################################################
+      # Trace
       - name: Print env
         run: |
           echo github.event.action: ${{ github.event.action }}
           echo github.event_name: ${{ github.event_name }}
 
+      ##############################################################################################
+      # Compilers
       - name: Install dependencies on ubuntu - Clang
         if: startsWith(matrix.config.cxx, 'clang++')
         run: |
@@ -80,20 +80,20 @@ jobs:
             clang-tidy-10 \
             clang-tools-10
 
+      ##############################################################################################
       # xLib-data
-      - name: xLib-data - Vheckout
+      - name: xLib-data - Checkout
         uses: actions/checkout@v2
         with:
           repository: skynowa/xLib-data
           path: ${{github.workspace}}/xLib-data
 
-      - name: xLib-data - Install
-        run: cd ${{github.workspace}}/xLib-data/Libs/ubuntu-20.04 && ./install.sh
-
+      ##############################################################################################
       # Libs
       - name: Libs - Install
         run: cd ${{github.workspace}}/xLib/Tools && ./install_libs.sh
 
+      ##############################################################################################
       # Static Analysis
       ## - name: Static Analysis - Install
       ##   run: |
@@ -103,8 +103,9 @@ jobs:
       ##     ./install_pvs_studio.sh &&
       ##     ./install_configs.sh ${{github.workspace}}/xLib-data/Configs/StaticAnalisis
 
+      ##############################################################################################
       # CMakeLib
-      - name: CMakeLib - checkout
+      - name: CMakeLib - Checkout
         uses: actions/checkout@v2
         with:
           repository: skynowa/CMakeLib
@@ -113,11 +114,19 @@ jobs:
       - name: CMakeLib - Install
         run: cd ${{github.workspace}}/CMakeLib && ./install.sh
 
+      ##############################################################################################
       # xLib
+      # Checkout
+      - name: xLib - Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: skynowa/xLib
+          path: ${{github.workspace}}/xLib
+
       - name: xLib - Configure
         run: cd ${{github.workspace}}/xLib/Build && ./eclipse.sh
 
-      - name: Info
+      - name: xLib - Trace
         # run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
 
@@ -130,6 +139,7 @@ jobs:
       - name: xLib - Tests
         run: cd ${{github.workspace}}/xLib/Build && ./tests.sh
 
+      ##############################################################################################
       # Static Analysis
       ## - name: Static Analysis - run
       ##   run: |
@@ -137,6 +147,3 @@ jobs:
       ##     ./run_cppcheck.sh   &&
       ##     ./run_clang_tidy.sh &&
       ##     ./run_pvs_studio.sh || 0
-
-  # build_windows:
-  #   runs-on: windows-2019
