@@ -30,7 +30,7 @@ jobs:
         #     cxx: "g++"
         #   }
         - {
-            name: "Ubuntu Latest GCC (C++17)",
+            name: "Ubuntu Latest GCC",
             os: ubuntu-latest,
             build_type: "Debug",
             cc: "gcc",
@@ -38,7 +38,7 @@ jobs:
             generators: "Ninja"
           }
         # - {
-        #     name: "Ubuntu Latest Clang (C++17)",
+        #     name: "Ubuntu Latest Clang",
         #     os: ubuntu-latest,
         #     build_type: "Debug",
         #     cc: "clang",
@@ -46,7 +46,7 @@ jobs:
         #     generators: "Ninja"
         #   }
         # - {
-        #     name: "Windows Latest MSVC (C++17)",
+        #     name: "Windows Latest MSVC",
         #     os: windows-latest,
         #     build_type: "Debug",
         #     cc: "cl",
@@ -55,7 +55,7 @@ jobs:
         #     generators: "Visual Studio 16 2019"
         #   }
         - {
-            name: "macOS Latest Clang", artifact: "macOS.tar.xz",
+            name: "macOS Latest Clang",
             os: macos-latest,
             build_type: "Release",
             cc: "clang",
