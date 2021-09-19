@@ -37,22 +37,27 @@ jobs:
             cxx: "g++",
             generators: "Ninja"
           }
+        # - {
+        #     name: "Ubuntu Latest Clang (C++17)",
+        #     os: ubuntu-latest,
+        #     build_type: "Debug",
+        #     cc: "clang",
+        #     cxx: "clang++",
+        #     generators: "Ninja"
+        #   }
+        # - {
+        #     name: "Windows Latest MSVC (C++17)",
+        #     os: windows-latest,
+        #     build_type: "Debug",
+        #     cc: "cl",
+        #     cxx: "cl",
+        #     environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+        #     generators: "Visual Studio 16 2019"
+        #   }
         - {
-            name: "Ubuntu Latest Clang (C++17)",
-            os: ubuntu-latest,
-            build_type: "Debug",
-            cc: "clang",
-            cxx: "clang++",
-            generators: "Ninja"
-          }
-        - {
-            name: "Windows Latest MSVC (C++17)",
-            os: windows-latest,
-            build_type: "Debug",
-            cc: "cl",
-            cxx: "cl",
-            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
-            generators: "Visual Studio 16 2019"
+            name: "macOS Latest Clang", artifact: "macOS.tar.xz",
+            os: macos-latest,
+            build_type: "Release", cc: "clang", cxx: "clang++"
           }
 
     steps:
