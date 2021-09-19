@@ -24,6 +24,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
 	sudo pip install pygments
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+	# libssl
+	# https://qastack.ru/superuser/1089390/how-to-install-libssl-dev-libffi-dev-on-mac-os
 	export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 	export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 elif [[ "$OSTYPE" == "cygwin" ]]; then
