@@ -131,6 +131,10 @@ jobs:
 
       - name: xLib - Build
         run: cd ${{github.workspace}}/xLib/Build && ./build.sh
+        shell: bash
+        env:
+          CC:  clang
+          CXX: clang++
 
       # - name: xLib - Unit Tests (optional)
       #   run: ./unit_tests.sh IpcSemaphore
