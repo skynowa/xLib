@@ -3,6 +3,7 @@
 # https://stackoverflow.com/questions/394230/how-to-detect-the-os-from-a-bash-script
 #
 
+echo "OSTYPE: ${OSTYPE}"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	sudo rm -rf /var/lib/apt/lists/*
@@ -23,17 +24,16 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
 	sudo pip install pygments
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	# Mac OSX
 	sudo brew install \
 		openssl
 elif [[ "$OSTYPE" == "cygwin" ]]; then
-	# POSIX compatibility layer and Linux environment emulation for Windows
+	echo ""
 elif [[ "$OSTYPE" == "msys" ]]; then
-	# Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
+	echo ""
 elif [[ "$OSTYPE" == "win32" ]]; then
-	# I'm not sure this can happen.
+	echo ""
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
-	# ...
+	echo ""
 else
-	# Unknown
+	echo ""
 fi
