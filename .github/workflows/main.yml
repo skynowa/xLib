@@ -37,8 +37,8 @@ jobs:
             generators: "Ninja"
           }
         - {
-            name: "ubuntu-18.04-clang-9",
-            os: ubuntu-18.04-clang-9,
+            name: "Ubuntu Latest Clang (C++17)",
+            os: ubuntu-latest,
             build_type: "Debug",
             cc: "clang",
             cxx: "clang++",
@@ -71,14 +71,14 @@ jobs:
 
       ##############################################################################################
       # Compilers
-      # - name: Install dependencies on ubuntu - Clang
-      #   if: startsWith(matrix.config.cxx, 'clang++')
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install \
-      #       clang++-10 \
-      #       clang-tidy-10 \
-      #       clang-tools-10
+      - name: Install dependencies on ubuntu - Clang
+        if: startsWith(matrix.config.cxx, 'clang++')
+        run: |
+          sudo apt-get update
+          sudo apt-get install \
+            clang++-10 \
+            clang-tidy-10 \
+            clang-tools-10
 
       ##############################################################################################
       # xLib-data
