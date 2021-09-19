@@ -24,7 +24,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
 	sudo pip install pygments
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	sudo brew install \
+	brew install \
 		openssl
 elif [[ "$OSTYPE" == "cygwin" ]]; then
 	echo ""
