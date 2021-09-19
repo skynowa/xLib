@@ -37,8 +37,8 @@ jobs:
             generators: "Ninja"
           }
         - {
-            name: "ubuntu-20.04-clang-10",
-            os: ubuntu-20.04-clang-10,
+            name: ubuntu-18.04-clang-9",
+            os: ubuntu-18.04-clang-9,
             build_type: "Debug",
             cc: "clang",
             cxx: "clang++",
