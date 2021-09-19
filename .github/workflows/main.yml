@@ -37,7 +37,7 @@ jobs:
             generators: "Ninja"
           }
         - {
-            name: ubuntu-18.04-clang-9",
+            name: "ubuntu-18.04-clang-9",
             os: ubuntu-18.04-clang-9,
             build_type: "Debug",
             cc: "clang",
