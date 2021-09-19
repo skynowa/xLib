@@ -37,7 +37,7 @@ jobs:
             generators: "Ninja"
           }
         - {
-            name: "Ubuntu Latest Clang (C++17)",
+            name: "ubuntu-20.04-clang-10",
             os: ubuntu-latest,
             build_type: "Debug",
             cc: "clang",
@@ -71,14 +71,14 @@ jobs:
 
       ##############################################################################################
       # Compilers
-      - name: Install dependencies on ubuntu - Clang
-        if: startsWith(matrix.config.cxx, 'clang++')
-        run: |
-          sudo apt-get update
-          sudo apt-get install \
-            clang++-10 \
-            clang-tidy-10 \
-            clang-tools-10
+      # - name: Install dependencies on ubuntu - Clang
+      #   if: startsWith(matrix.config.cxx, 'clang++')
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install \
+      #       clang++-10 \
+      #       clang-tidy-10 \
+      #       clang-tools-10
 
       ##############################################################################################
       # xLib-data
