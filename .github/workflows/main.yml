@@ -89,11 +89,6 @@ jobs:
           path: ${{github.workspace}}/xLib-data
 
       ##############################################################################################
-      # Libs
-      - name: Libs - Install
-        run: cd ${{github.workspace}}/xLib/Tools && ./install_libs.sh
-
-      ##############################################################################################
       # Static Analysis
       ## - name: Static Analysis - Install
       ##   run: |
@@ -122,6 +117,10 @@ jobs:
         with:
           repository: skynowa/xLib
           path: ${{github.workspace}}/xLib
+
+      # Libs
+      - name: Libs - Install
+        run: cd ${{github.workspace}}/xLib/Tools && ./install_libs.sh
 
       - name: xLib - Configure
         run: cd ${{github.workspace}}/xLib/Build && ./eclipse.sh
