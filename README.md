@@ -20,7 +20,7 @@
 
 - compilers:
     - GCC   ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
-    - Clang
+    - Clang ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
     - MSVC
     - MinGW
 
