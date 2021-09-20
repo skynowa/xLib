@@ -13,28 +13,19 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	sudo rm -rf /var/lib/apt/lists/*
 
 	sudo apt-get update
+	sudo apt-get install -y --no-install-recommends \
+		libx11-xcb-dev \
+		libssl-dev \
+		libssh2-1-dev \
+		default-libmysqlclient-dev \
+		\
+		libcurl4-openssl-dev
+		# libcurl4-nss-dev
+		# libcurl4-gnutls-dev
 
 	if [[ "${IS_COMPILER_CLANG}" == "1" ]]; then
 		sudo apt-get install -y --no-install-recommends \
-			libc++-dev \
-			libx11-xcb-dev \
-			libssl-dev \
-			libssh2-1-dev \
-			default-libmysqlclient-dev \
-			\
-			libcurl4-openssl-dev
-			# libcurl4-nss-dev
-			# libcurl4-gnutls-dev
-	else
-		sudo apt-get install -y --no-install-recommends \
-			libx11-xcb-dev \
-			libssl-dev \
-			libssh2-1-dev \
-			default-libmysqlclient-dev \
-			\
-			libcurl4-openssl-dev
-			# libcurl4-nss-dev
-			# libcurl4-gnutls-dev
+			libc++-dev
 	fi
 
 	sudo apt-get clean
