@@ -130,7 +130,7 @@ jobs:
         run: cd ${{github.workspace}}/xLib/Build && ./build.sh
 
       - name: xLib - Unit Tests (optional)
-        run: cd ${{github.workspace}}/xLib/unit_tests.sh ProcessInfo
+        run: ${{github.workspace}}/xLib/unit_tests.sh ProcessInfo
 
       - name: xLib - Tests
         run: cd ${{github.workspace}}/xLib/Build && ./tests.sh
