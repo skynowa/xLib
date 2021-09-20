@@ -29,7 +29,7 @@ public:
 ///@}
 
     Bitset & operator = (const Bitset &values);
-	T &      operator [] (const std::size_t index);
+	T &      operator [] (std::csize_t index);
 
     T &      get() const;
         ///< get all bits
@@ -38,7 +38,7 @@ public:
     void_t   clear();
         ///< reset all bits
 
-    bool_t   test(const std::size_t index) const;
+    bool_t   test(std::csize_t index) const;
         ///< check bit at position is set
     bool_t   isSetBit(const T value) const;
         ///< flag is set
