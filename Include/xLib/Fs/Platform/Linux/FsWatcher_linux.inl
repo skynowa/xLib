@@ -25,7 +25,7 @@ FsWatcher::_watch_impl()
 	xTEST_EQ(_inotifyFd.isValid(), true);
 
 	// add a watch for all events
-	for (int i = 0; i < _filePaths.size(); ++ i) {
+	for (std::size_t i = 0; i < _filePaths.size(); ++ i) {
 		std::tstring_t &itFilePath = _filePaths[i];
 
 		int watchFd = ::inotify_add_watch(_inotifyFd.get(), itFilePath.c_str(), IN_ALL_EVENTS /*| IN_ONESHOT*/);
