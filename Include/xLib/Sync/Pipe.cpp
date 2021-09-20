@@ -76,7 +76,7 @@ Pipe::readAll() const
 		}
 
 		// [out]
-		sRv.append(buff, readSize);
+		sRv.append(buff, static_cast<std::size_t>(readSize));
 	} // for
 
 	return sRv;
