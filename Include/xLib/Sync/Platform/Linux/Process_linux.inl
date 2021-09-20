@@ -87,10 +87,10 @@ Process::_ids_impl(
         int_t pid = 0;
         {
             std::tstring_t dirName = Path(it).fileName();
-            Cout() << xTRACE_VAR(__LINE__);
+            Cout() << xTRACE_VAR(dirName);
 
             pid = String::cast<int_t>( dirName.c_str() );
-            Cout() << xTRACE_VAR(__LINE__);
+            Cout() << xTRACE_VAR(pid);
 
             xCHECK_DO(0 >= pid, continue);
 
