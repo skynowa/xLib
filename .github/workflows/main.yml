@@ -72,17 +72,6 @@ jobs:
           echo github.event_name:   ${{ github.event_name }}
 
       ##############################################################################################
-      # Compilers
-      # - name: Install dependencies on ubuntu - Clang
-      #   if: startsWith(matrix.config.cxx, 'clang++')
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install \
-      #       clang++-10 \
-      #       clang-tidy-10 \
-      #       clang-tools-10
-
-      ##############################################################################################
       # xLib-data
       - name: xLib-data - Checkout
         uses: actions/checkout@v2

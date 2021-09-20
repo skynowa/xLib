@@ -4,6 +4,8 @@
  */
 
 
+#include "Enum.h"
+
 namespace xl::core
 {
 
