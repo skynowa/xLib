@@ -71,24 +71,38 @@ Process::_ids_impl(
     std::vector<Process::id_t> *a_ids
 )
 {
+	Cout() << xTRACE_VAR(__LINE__);
+
     std::vector<id_t> vidRv;
 
     std::vec_tstring_t dirPaths;
 
+    xTEST(Dir("/proc").isExists());
+
     Finder::dirs(xT("/proc"), Const::maskAll(), false, &dirPaths);
+    Cout() << xTRACE_VAR(__LINE__);
 
     // skip non-numeric entries
     for (const auto &it : dirPaths) {
         int_t pid = 0;
         {
             std::tstring_t dirName = Path(it).fileName();
+            Cout() << xTRACE_VAR(__LINE__);
 
             pid = String::cast<int_t>( dirName.c_str() );
+            Cout() << xTRACE_VAR(__LINE__);
+
             xCHECK_DO(0 >= pid, continue);
+
+
         }
+
+        Cout() << xTRACE_VAR(__LINE__);
 
         vidRv.push_back( static_cast<id_t>( pid ));
     }
+
+    Cout() << xTRACE_VAR(__LINE__);
 
     // out
     a_ids->swap(vidRv);
