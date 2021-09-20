@@ -8,6 +8,9 @@ echo "OSTYPE: ${OSTYPE}"
 
 COMPILER=""
 
+c++ -v 2>&1
+${CXX} -v 2>&1
+
 IS_COMPILER_CLANG=`c++ -v 2>&1 | grep -c "clang version"`
 
 echo "IS_COMPILER_CLANG: ${IS_COMPILER_CLANG}"
