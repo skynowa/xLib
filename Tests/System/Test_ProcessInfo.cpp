@@ -80,7 +80,7 @@ Test_ProcessInfo::unit()
             info.setProcessId(/* it */ Process::currentId());
 
             m_ulRv = info.parentId();
-            // xTEST_DIFF(0UL, m_ulRv);
+            xTEST_DIFF(m_ulRv, 0UL);
         }
     }
 
@@ -91,8 +91,8 @@ Test_ProcessInfo::unit()
 
         for (const auto &it : ids) {
         #if   xENV_WIN
-            xCHECK_DO(0 == it, continue);
-            xCHECK_DO(344 == it, continue);
+            xCHECK_DO(it == 0 ,  continue);
+            xCHECK_DO(it == 344, continue);
         #elif xENV_UNIX
 
         #endif
@@ -108,7 +108,7 @@ Test_ProcessInfo::unit()
     xTEST_CASE("commandLineArgsMax")
     {
         m_liRv = ProcessInfo::commandLineArgsMax();
-        xTEST_LESS(0L, m_liRv);
+        xTEST_GR(m_liRv, 0L);
     }
 
     xTEST_CASE("commandLine")
