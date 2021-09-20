@@ -85,7 +85,6 @@ Process::_ids_impl(
 	};
 
     std::vec_tstring_t dirPaths;
-
     Finder::dirs(xT("/proc"), Const::maskAll(), false, &dirPaths);
 
     // skip non-numeric entries
@@ -93,13 +92,9 @@ Process::_ids_impl(
         int_t pid {};
         {
             std::ctstring_t dirName = Path(it).fileName();
-            Cout() << xTRACE_VAR_2(it, dirName);
-
             xCHECK_DO(!isNumber(dirName), continue);
 
             pid = String::cast<int_t>( dirName.c_str() );
-            Cout() << xTRACE_VAR(pid);
-
             xCHECK_DO(pid <= 0, continue);
         }
 
