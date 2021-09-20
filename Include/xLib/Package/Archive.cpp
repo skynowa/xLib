@@ -226,10 +226,10 @@ Archive::fileUncompress(
 	if (type == Type::Zip &&
 		!Dir(a_destDirPath).isExists())
 	{
-		std::ctstring_t     binPath = chmodPath;
-		std::cvec_tstring_t params  = {xT("-R"), xT("0777"), a_destDirPath};
+		std::ctstring_t     binPathFixed = chmodPath;
+		std::cvec_tstring_t paramsFixed  = {xT("-R"), xT("0777"), a_destDirPath};
 
-		Process::execute(binPath, params, {}, xTIMEOUT_INFINITE, nullptr, nullptr);
+		Process::execute(binPathFixed, paramsFixed, {}, xTIMEOUT_INFINITE, nullptr, nullptr);
 	}
 
 	return true;
