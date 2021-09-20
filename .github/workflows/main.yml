@@ -22,20 +22,21 @@ jobs:
       fail-fast: false
       matrix:
         config:
+        # - {
+        #     name: "Ubuntu-20.04 (GCC)",
+        #     os: ubuntu-20.04,
+        #     build_type: "Debug",
+        #     cc: "gcc",
+        #     cxx: "g++"
+        #   }
         - {
-            name: "Ubuntu-20.04 (GCC)",
+            name: "Ubuntu-20.04 (Clang)",
             os: ubuntu-20.04,
             build_type: "Debug",
-            cc: "gcc",
-            cxx: "g++"
+            compiler: "clang++",
+            cc: "clang",
+            cxx: "clang++"
           }
-        # - {
-        #     name: "Ubuntu Latest Clang",
-        #     os: ubuntu-latest,
-        #     build_type: "Debug",
-        #     cc: "clang",
-        #     cxx: "clang++"
-        #   }
         # - {
         #     name: "Windows Latest MSVC",
         #     os: windows-latest,
@@ -65,18 +66,18 @@ jobs:
       - name: Print env
         run: |
           echo github.event.action: ${{ github.event.action }}
-          echo github.event_name: ${{ github.event_name }}
+          echo github.event_name:   ${{ github.event_name }}
 
       ##############################################################################################
       # Compilers
-      # - name: Install dependencies on ubuntu - Clang
-      #   if: startsWith(matrix.config.cxx, 'clang++')
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install \
-      #       clang++-10 \
-      #       clang-tidy-10 \
-      #       clang-tools-10
+      - name: Install dependencies on ubuntu - Clang
+        if: startsWith(matrix.config.cxx, 'clang++')
+        run: |
+          sudo apt-get update
+          sudo apt-get install \
+            clang++-10 \
+            clang-tidy-10 \
+            clang-tools-10
 
       ##############################################################################################
       # xLib-data
@@ -115,6 +116,14 @@ jobs:
         with:
           repository: skynowa/xLib
           path: ${{github.workspace}}/xLib
+
+      # Env
+      - name: set-compiler-env
+        run: |
+          if [ "${{ matrix.compiler }}" != "" ]; then
+            echo "CXX=${{ matrix.compiler }}" >> $GITHUB_ENV
+          fi
+        shell: bash
 
       # Libs
       - name: Libs - Install
