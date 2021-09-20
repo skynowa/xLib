@@ -91,12 +91,12 @@ Test_Config::unit()
 
     xTEST_CASE("keyIsExists")
     {
-    	auto &content = config.get();
-        xTEST(content.empty());
+    	auto &values = config.get();
+        xTEST(values.empty());
 
-        content[key1] = value1;
-        content[key2] = value2;
-        content[key3] = value3;
+        values[key1] = value1;
+        values[key2] = value2;
+        values[key3] = value3;
 
         config.save();
 
