@@ -5,12 +5,23 @@
 
 echo "OSTYPE: ${OSTYPE}"
 
+
+COMPILER=""
+
+if [[ ${CXX} -v 2>&1 | grep -c "clang version" != "" ]]
+	COMPILER = clang
+else
+	COMPILER = gcc
+fi
+
+echo "COMPILER: ${COMPILER}"
+
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	sudo rm -rf /var/lib/apt/lists/*
 
 	sudo apt-get update
 	sudo apt-get install -y --no-install-recommends \
-		libc++-dev \ # Clang
+		libc++-dev \
 		libx11-xcb-dev \
 		libssl-dev \
 		libssh2-1-dev \
