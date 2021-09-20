@@ -18,11 +18,21 @@ Test_ProcessInfo::unit()
         std::vector<Process::id_t> ids;
         Process::ids(&ids);
 
+        Cout() << xTRACE_VAR(ids.size());
+
         for (const auto &it : ids) {
+        	Cout() << xTRACE_VAR(Process::currentId());
+
             ProcessInfo info;
+            Cout() << xTRACE_VAR(__LINE__);
+
             info.setProcessId(/* it */ Process::currentId());
 
+            Cout() << xTRACE_VAR(__LINE__);
+
             m_ulRv = info.cpuUsage();
+            Cout() << xTRACE_VAR(m_ulRv);
+
 			Cout() << xT("\tProcessInfo::cpuUsage(): ") << m_ulRv;
         }
     }
@@ -32,7 +42,11 @@ Test_ProcessInfo::unit()
         std::vector<Process::id_t> ids;
         Process::ids(&ids);
 
+        Cout() << xTRACE_VAR(ids.size());
+
         for (const auto &it : ids) {
+        	Cout() << xTRACE_VAR(Process::currentId());
+
             ProcessInfo info;
             info.setProcessId(/* it */ Process::currentId());
 
