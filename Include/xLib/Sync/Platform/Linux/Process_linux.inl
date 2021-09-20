@@ -84,6 +84,8 @@ Process::_ids_impl(
 
     // skip non-numeric entries
     for (const auto &it : dirPaths) {
+    	Cout() << xTRACE_VAR(it);
+
         int_t pid = 0;
         {
             std::tstring_t dirName = Path(it).fileName();
