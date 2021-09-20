@@ -14,7 +14,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
 	sudo apt-get update
 
-	if [[ "${IS_COMPILER_CLANG}" == "0" ]]; then
+	if [[ "${IS_COMPILER_CLANG}" == "1" ]]; then
+		sudo apt-get install -y --no-install-recommends \
+			libc++-dev \
+			libcurl4-openssl-dev
+	else
 		sudo apt-get install -y --no-install-recommends \
 			libx11-xcb-dev \
 			libssl-dev \
@@ -24,9 +28,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 			libcurl4-openssl-dev
 			# libcurl4-nss-dev
 			# libcurl4-gnutls-dev
-	else
-		sudo apt-get install -y --no-install-recommends \
-			libc++-dev
 	fi
 
 	sudo apt-get clean
