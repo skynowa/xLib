@@ -42,7 +42,7 @@ Test_Enum::unit()
     xTEST_CASE("value")
     {
     	m_sstRv = Enum(TestType::Last).value();
-        xTEST_EQ(aRv, ::ssize_t{4});
+        xTEST_EQ(m_sstRv, ::ssize_t{4});
     }
 
     xTEST_CASE("name")
