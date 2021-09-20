@@ -12,13 +12,13 @@
 - platforms:
 
   - Windows: (XP >)
-  - Unix: 
+  - Unix:
       - Ubuntu 20.04 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
       - Android
       - BSD
       - Apple (OSX)
 
-- compilers: 
+- compilers:
     - GCC   ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
     - Clang
     - MSVC
@@ -34,7 +34,3 @@
 
 - https://github.com/skynowa/CMakeLib
 - https://github.com/skynowa/xLib-data
-
-
-
-
