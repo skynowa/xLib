@@ -26,6 +26,7 @@ jobs:
         #     name: "Ubuntu-20.04 (GCC)",
         #     os: ubuntu-20.04,
         #     build_type: "Debug",
+        #     compiler: "g++",
         #     cc: "gcc",
         #     cxx: "g++"
         #   }
@@ -41,6 +42,7 @@ jobs:
         #     name: "Windows Latest MSVC",
         #     os: windows-latest,
         #     build_type: "Debug",
+        #     compiler: "cl",
         #     cc: "cl",
         #     cxx: "cl",
         #     environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
@@ -49,6 +51,7 @@ jobs:
         #     name: "macOS Latest Clang",
         #     os: macos-latest,
         #     build_type: "Debug",
+        #     compiler: "clang++",
         #     cc: "clang",
         #     cxx: "clang++"
         #   }
@@ -120,9 +123,7 @@ jobs:
       # Env
       - name: set-compiler-env
         run: |
-          if [ "${{ matrix.config.compiler }}" != "" ]; then
-            echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
-          fi
+          echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
         shell: bash
 
       # Libs
