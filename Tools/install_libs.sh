@@ -10,6 +10,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
 	sudo apt-get update
 	sudo apt-get install -y --no-install-recommends \
+		libc++-dev \ # Clang
 		libx11-xcb-dev \
 		libssl-dev \
 		libssh2-1-dev \
