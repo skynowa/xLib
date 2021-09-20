@@ -71,16 +71,22 @@ Process::_ids_impl(
     std::vector<Process::id_t> *a_ids
 )
 {
-	Cout() << xTRACE_VAR(__LINE__);
-
     std::vector<id_t> vidRv;
+
+    auto isNumber = [](std::ctstring_t &a_str) -> bool
+    {
+        return
+			!a_str.empty() &&
+			std::find_if(a_str.cbegin(), a_str.cend(),
+				[](const unsigned char c)
+				{
+					return !std::isdigit(c);
+				}) == a_str.cend();
+	};
 
     std::vec_tstring_t dirPaths;
 
-    xTEST(Dir("/proc").isExists());
-
     Finder::dirs(xT("/proc"), Const::maskAll(), false, &dirPaths);
-    Cout() << xTRACE_VAR(__LINE__);
 
     // skip non-numeric entries
     for (const auto &it : dirPaths) {
@@ -91,20 +97,16 @@ Process::_ids_impl(
             std::tstring_t dirName = Path(it).fileName();
             Cout() << xTRACE_VAR(dirName);
 
+			xCHECK_DO(!isNumber(dirName), continue);
+
             pid = String::cast<int_t>( dirName.c_str() );
             Cout() << xTRACE_VAR(pid);
 
             xCHECK_DO(0 >= pid, continue);
-
-
         }
-
-        Cout() << xTRACE_VAR(__LINE__);
 
         vidRv.push_back( static_cast<id_t>( pid ));
     }
-
-    Cout() << xTRACE_VAR(__LINE__);
 
     // out
     a_ids->swap(vidRv);
