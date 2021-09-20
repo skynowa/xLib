@@ -17,6 +17,7 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Fs/Path.h>
+#include <xLib/Fs/Dir.h>
 #include <xLib/System/Environment.h>
 
 #if   xENV_WIN
@@ -149,6 +150,10 @@ Finder::dirs(
     xTEST_EQ(a_shellFilter.empty(), false);
     xTEST_NA(a_isRecursively);
     xTEST_PTR(a_dirPaths);
+
+    if ( !Dir(a_rootDirPath).isExists() ) {
+    	return;
+    }
 
     for (Finder finder(a_rootDirPath, a_shellFilter); finder.moveNext(); ) {
         xCHECK_DO(finder.entryName() == Const::dot(),  continue);
