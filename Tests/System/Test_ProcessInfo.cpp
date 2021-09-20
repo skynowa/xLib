@@ -15,11 +15,10 @@ Test_ProcessInfo::unit()
 {
     xTEST_CASE("cpuUsage")
     {
-        std::vector<Process::id_t> vidIds;
+        std::vector<Process::id_t> ids;
+        Process::ids(&ids);
 
-        Process::ids(&vidIds);
-
-        for (const auto &it : vidIds) {
+        for (const auto &it : ids) {
             ProcessInfo info;
             info.setProcessId(/* it */ Process::currentId());
 
@@ -30,11 +29,10 @@ Test_ProcessInfo::unit()
 
     xTEST_CASE("ramUsage")
     {
-        std::vector<Process::id_t> vidIds;
+        std::vector<Process::id_t> ids;
+        Process::ids(&ids);
 
-        Process::ids(&vidIds);
-
-        for (const auto &it : vidIds) {
+        for (const auto &it : ids) {
             ProcessInfo info;
             info.setProcessId(/* it */ Process::currentId());
 
@@ -45,30 +43,24 @@ Test_ProcessInfo::unit()
 
     xTEST_CASE("ioBytes")
     {
-    #if 0
-        std::vector<Process::id_t> vidIds;
+        std::vector<Process::id_t> ids;
+        Process::ids(&ids);
 
-        Process::ids(&vidIds);
-
-        for (const auto &it : vidIds) {
+        for (const auto &it : ids) {
             ProcessInfo info;
             info.setProcessId(/* it */ Process::currentId());
 
             m_ulRv = info.ioBytes();
-            #if xTEST_IGNORE
-                Tracer() << xT("\tProcessInfo::ioBytes(): ") << m_ulRv;
-            #endif
+            Cout() << xT("\tProcessInfo::ioBytes(): ") << m_ulRv;
         }
-    #endif
     }
 
     xTEST_CASE("exeName")
     {
-        std::vector<Process::id_t> vidIds;
+        std::vector<Process::id_t> ids;
+        Process::ids(&ids);
 
-        Process::ids(&vidIds);
-
-        for (const auto &it : vidIds) {
+        for (const auto &it : ids) {
             ProcessInfo info;
             info.setProcessId(/* it */ Process::currentId());
 
@@ -80,11 +72,10 @@ Test_ProcessInfo::unit()
 
     xTEST_CASE("parentId")
     {
-        std::vector<Process::id_t> vidIds;
+        std::vector<Process::id_t> ids;
+        Process::ids(&ids);
 
-        Process::ids(&vidIds);
-
-        for (const auto &it : vidIds) {
+        for (const auto &it : ids) {
             ProcessInfo info;
             info.setProcessId(/* it */ Process::currentId());
 
@@ -95,11 +86,10 @@ Test_ProcessInfo::unit()
 
     xTEST_CASE("commandLine")
     {
-        std::vector<Process::id_t> vidIds;
+        std::vector<Process::id_t> ids;
+        Process::ids(&ids);
 
-        Process::ids(&vidIds);
-
-        for (const auto &it : vidIds) {
+        for (const auto &it : ids) {
         #if   xENV_WIN
             xCHECK_DO(0 == it, continue);
             xCHECK_DO(344 == it, continue);
@@ -111,10 +101,7 @@ Test_ProcessInfo::unit()
 
             info.commandLine(&m_vsRv);
             xTEST(!m_vsRv.empty());
-
-            #if xTEST_IGNORE
-                Tracer() << m_sRv;
-            #endif
+            Cout() << m_vsRv;
         }
     }
 
@@ -122,7 +109,6 @@ Test_ProcessInfo::unit()
     {
         m_liRv = ProcessInfo::commandLineArgsMax();
         xTEST_LESS(0L, m_liRv);
-        //xTRACEV(xT("\ProcessInfo::commandLineArgsMax() = %li"), m_liRv);
     }
 
     xTEST_CASE("commandLine")
