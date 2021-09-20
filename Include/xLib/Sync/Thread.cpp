@@ -290,6 +290,8 @@ Thread::priorityString() const
         return xT("Highest");
     case Priority::tpTimeCritical:
         return xT("Time critical");
+    case Priority::tpError:
+        return xT("<Error>");
     }
 
     return xT("N/A");
