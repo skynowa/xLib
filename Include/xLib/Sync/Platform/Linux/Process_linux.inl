@@ -73,12 +73,12 @@ Process::_ids_impl(
 {
     std::vector<id_t> vidRv;
 
-    auto isNumber = [](std::ctstring_t &a_str) -> bool
-    {
-        return
+	auto isNumber = [](std::ctstring_t &a_str) -> bool
+	{
+		return
 			!a_str.empty() &&
 			std::find_if(a_str.cbegin(), a_str.cend(),
-				[](const unsigned char c)
+				[](cuchar_t c)
 				{
 					return !std::isdigit(c);
 				}) == a_str.cend();
@@ -90,12 +90,10 @@ Process::_ids_impl(
 
     // skip non-numeric entries
     for (const auto &it : dirPaths) {
-    	Cout() << xTRACE_VAR(it);
-
-        int_t pid = 0;
+        int_t pid {};
         {
-            std::tstring_t dirName = Path(it).fileName();
-            Cout() << xTRACE_VAR(dirName);
+            std::ctstring_t dirName = Path(it).fileName();
+            Cout() << xTRACE_VAR_2(it, dirName);
 
 			xCHECK_DO(!isNumber(dirName), continue);
 
