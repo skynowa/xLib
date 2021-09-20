@@ -552,8 +552,8 @@ Path::brief(
 
 	// rm hide dirs
 	{
-		const auto it_cbegin = values.cbegin() + a_leftDirsNum;
-		values.erase(it_cbegin, it_cbegin + hideDirsNum - 1 /* dots */);
+		const auto it_cbegin = values.cbegin() + static_cast<ptrdiff_t>(a_leftDirsNum);
+		values.erase(it_cbegin, it_cbegin + static_cast<ptrdiff_t>(hideDirsNum - 1 /* dots */));
 	}
 
 	// set dot(s) == hide dirs number
