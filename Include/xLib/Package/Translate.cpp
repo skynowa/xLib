@@ -207,7 +207,7 @@ Translate::_langsDetect(
     std::size_t countEn {};
     std::size_t countRu {};
 	{
-	    for (int i = 0; i < a_text.size(); ++ i) {
+	    for (std::size_t i = 0; i < a_text.size(); ++ i) {
 			core::CharT letter( a_text.at(i)/*.toLower()*/ );
 			xCHECK_DO(!letter.isAlpha(), continue);
 
