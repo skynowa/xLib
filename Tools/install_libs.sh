@@ -5,16 +5,7 @@
 
 echo "OSTYPE: ${OSTYPE}"
 
-
-COMPILER=""
-
-echo "::: c++ :::"
-c++ -v 2>&1
-
-echo "::: CXX :::"
-${CXX} -v 2>&1
-
-IS_COMPILER_CLANG=`c++ -v 2>&1 | grep -c "clang version"`
+IS_COMPILER_CLANG=`${CXX} -v 2>&1 | grep -c "clang version"`
 
 echo "IS_COMPILER_CLANG: ${IS_COMPILER_CLANG}"
 
