@@ -243,7 +243,7 @@ Process::_wait_impl(
 
 			Cout() << "wait() - error";
 
-			_exitStatus = static_Cast<uint_t>( NativeError::get() );
+			_exitStatus = static_cast<uint_t>( NativeError::get() );
 			waitStatus  = WaitStatus::Failed;
 		}
 		else if (iRv == 0) {
@@ -282,7 +282,7 @@ Process::_wait_impl(
 			else {
 				Cout() << "Child - did not exit successfully";
 
-				_exitStatus = NativeError::get();
+				_exitStatus = static_cast<uint_t>( NativeError::get() );
 				waitStatus  = WaitStatus::Abandoned;
 			}
 		}
