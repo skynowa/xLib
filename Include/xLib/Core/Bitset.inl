@@ -147,7 +147,7 @@ Bitset<T>::print(
 {
 	 a_os << xT("xlib::Bitset (size = ") << size() << "):" << std::endl;
 
-	for (std::size_t i = size(); i >= 0; -- i) {
+	for (::ssize_t i = static_cast<::ssize_t>(size()); i >= 0; -- i) {
 		if ( test(i) )
 			a_os << xT("1");
 		else
