@@ -95,12 +95,12 @@ Process::_ids_impl(
             std::ctstring_t dirName = Path(it).fileName();
             Cout() << xTRACE_VAR_2(it, dirName);
 
-			xCHECK_DO(!isNumber(dirName), continue);
+            xCHECK_DO(!isNumber(dirName), continue);
 
             pid = String::cast<int_t>( dirName.c_str() );
             Cout() << xTRACE_VAR(pid);
 
-            xCHECK_DO(0 >= pid, continue);
+            xCHECK_DO(pid <= 0, continue);
         }
 
         vidRv.push_back( static_cast<id_t>( pid ));
