@@ -8,28 +8,29 @@ echo "OSTYPE: ${OSTYPE}"
 
 COMPILER=""
 
-if [[ ${CXX} -v 2>&1 | grep -c "clang version" != "" ]]
-	COMPILER = clang
-else
-	COMPILER = gcc
-fi
+IS_COMPILER_CLANG=`c++ -v 2>&1 | grep -c "clang version"`
 
-echo "COMPILER: ${COMPILER}"
+echo "IS_COMPILER_CLANG: ${IS_COMPILER_CLANG}"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	sudo rm -rf /var/lib/apt/lists/*
 
 	sudo apt-get update
-	sudo apt-get install -y --no-install-recommends \
-		libc++-dev \
-		libx11-xcb-dev \
-		libssl-dev \
-		libssh2-1-dev \
-		default-libmysqlclient-dev \
-		\
-		libcurl4-openssl-dev
-		# libcurl4-nss-dev
-		# libcurl4-gnutls-dev
+
+	if [[ "${IS_COMPILER_CLANG}" == "0" ]]; then
+		sudo apt-get install -y --no-install-recommends \
+			libx11-xcb-dev \
+			libssl-dev \
+			libssh2-1-dev \
+			default-libmysqlclient-dev \
+			\
+			libcurl4-openssl-dev
+			# libcurl4-nss-dev
+			# libcurl4-gnutls-dev
+	else
+		sudo apt-get install -y --no-install-recommends \
+			libc++-dev
+	fi
 
 	sudo apt-get clean
 	sudo rm -rf /var/lib/apt/lists/*
