@@ -110,7 +110,7 @@ jobs:
           path: ${{github.workspace}}/xLib
 
       # Env
-      - name: set-compiler-env
+      - name: Compiler Env
         run: |
           echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
         shell: bash

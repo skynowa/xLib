@@ -80,7 +80,7 @@ Test_ProcessInfo::unit()
             info.setProcessId(/* it */ Process::currentId());
 
             m_ulRv = info.parentId();
-            xTEST_DIFF(m_ulRv, 0UL);
+            /// xTEST_DIFF(m_ulRv, 0UL);
         }
     }
 
@@ -101,7 +101,6 @@ Test_ProcessInfo::unit()
 
             info.commandLine(&m_vsRv);
             xTEST(!m_vsRv.empty());
-            Cout() << m_vsRv;
         }
     }
 
