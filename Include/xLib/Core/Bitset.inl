@@ -45,7 +45,7 @@ Bitset<T>::operator = (
 template<typename T>
 T &
 Bitset<T>::operator [] (
-    const std::size_t a_index
+    std::csize_t a_index
 )
 {
 	// IMPL: operator []
@@ -79,7 +79,7 @@ Bitset<T>::clear()
 template<typename T>
 bool_t
 Bitset<T>::test(
-	const std::size_t a_index
+	std::csize_t a_index
 ) const
 {
     return _flags & (static_cast<T>(1) << a_index);
@@ -148,7 +148,7 @@ Bitset<T>::print(
 	 a_os << xT("xlib::Bitset (size = ") << size() << "):" << std::endl;
 
 	for (::ssize_t i = static_cast<::ssize_t>(size()); i >= 0; -- i) {
-		if ( test(i) )
+		if ( test( static_cast<std::size_t>(i) ) )
 			a_os << xT("1");
 		else
 			a_os << xT("0");
