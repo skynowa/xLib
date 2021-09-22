@@ -123,7 +123,10 @@ jobs:
       - name: Libs - Install
         run: cd ${{github.workspace}}/xLib/Tools && ./install_libs.sh
 
-      - name: Libs - Install (Win)
+      - name: (Win) openssl - Install
+        run: conan install openssl/1.1.1d@
+
+      - name: (Win) libssh2 - Install
         run: conan install openssl/1.1.1d@
         run: conan install libssh2/1.10.0@
 
