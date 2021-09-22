@@ -125,6 +125,7 @@ jobs:
 
       - name: Libs - Install (Win)
         run: conan install openssl/1.1.1d@
+        run: conan install libssh2/1.10.0@
 
       - name: xLib - Configure
         run: cd ${{github.workspace}}/xLib/Build && ./eclipse.sh
