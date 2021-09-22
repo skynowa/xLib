@@ -127,7 +127,6 @@ jobs:
         run: conan install openssl/1.1.1d@
 
       - name: (Win) libssh2 - Install
-        run: conan install openssl/1.1.1d@
         run: conan install libssh2/1.10.0@
 
       - name: xLib - Configure
