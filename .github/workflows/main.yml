@@ -99,6 +99,7 @@ jobs:
 
       - name: CMakeLib - Install
         run: cd ${{github.workspace}}/CMakeLib && ./install.sh
+        shell: bash
 
       ##############################################################################################
       # xLib
