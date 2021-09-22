@@ -22,31 +22,31 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - {
-            name: "Ubuntu-20.04 (GCC)",
-            os: ubuntu-20.04,
-            build_type: "Debug",
-            compiler: "g++",
-            cc: "gcc",
-            cxx: "g++"
-          }
-        - {
-            name: "Ubuntu-20.04 (Clang)",
-            os: ubuntu-20.04,
-            build_type: "Debug",
-            compiler: "clang++",
-            cc: "clang",
-            cxx: "clang++"
-          }
         # - {
-        #     name: "Windows Latest MSVC",
-        #     os: windows-latest,
+        #     name: "Ubuntu-20.04 (GCC)",
+        #     os: ubuntu-20.04,
         #     build_type: "Debug",
-        #     compiler: "cl",
-        #     cc: "cl",
-        #     cxx: "cl",
-        #     environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+        #     compiler: "g++",
+        #     cc: "gcc",
+        #     cxx: "g++"
         #   }
+        # - {
+        #     name: "Ubuntu-20.04 (Clang)",
+        #     os: ubuntu-20.04,
+        #     build_type: "Debug",
+        #     compiler: "clang++",
+        #     cc: "clang",
+        #     cxx: "clang++"
+        #   }
+        - {
+            name: "Windows Latest MSVC",
+            os: windows-latest,
+            build_type: "Debug",
+            compiler: "cl",
+            cc: "cl",
+            cxx: "cl",
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+          }
         # - {
         #     name: "macOS Latest Clang",
         #     os: macos-latest,
@@ -66,10 +66,10 @@ jobs:
 
       ##############################################################################################
       # Trace
-      - name: Print env
-        run: |
-          echo github.event.action: ${{ github.event.action }}
-          echo github.event_name:   ${{ github.event_name }}
+      # - name: Print env
+      #   run: |
+      #     echo github.event.action: ${{ github.event.action }}
+      #     echo github.event_name:   ${{ github.event_name }}
 
       ##############################################################################################
       # xLib-data
@@ -124,7 +124,7 @@ jobs:
 
       - name: xLib - Trace
         # run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
-        run: echo "github.workspace - ${{github.workspace}}" && ls -la
+        run: echo "github.workspace - ${{github.workspace}}" && ls # -la
 
       - name: xLib - Build
         run: cd ${{github.workspace}}/xLib/Build && ./build.sh
