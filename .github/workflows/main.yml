@@ -110,10 +110,10 @@ jobs:
           path: ${{github.workspace}}/xLib
 
       # Env
-      - name: Compiler Env
-        run: |
-          echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
-        shell: bash
+      # - name: Compiler Env
+      #   run: |
+      #     echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
+      #   shell: bash
 
       - name: Conan install
         run: |
