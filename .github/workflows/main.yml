@@ -140,7 +140,8 @@ jobs:
 
       - name: xLib - Trace
         # run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
-        run: echo "github.workspace - ${{github.workspace}}" && ls # -la
+        run: echo "github.workspace - ${{github.workspace}}" && ls -la
+        shell: bash
 
       - name: xLib - Build
         run: cd ${{github.workspace}}/xLib/Build && ./build.sh
