@@ -115,6 +115,10 @@ jobs:
           echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
         shell: bash
 
+      - name: Conan install
+        run: |
+          pip install conan
+
       # Libs
       - name: Libs - Install
         run: cd ${{github.workspace}}/xLib/Tools && ./install_libs.sh
