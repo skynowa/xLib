@@ -123,6 +123,9 @@ jobs:
       - name: Libs - Install
         run: cd ${{github.workspace}}/xLib/Tools && ./install_libs.sh
 
+      - name: Libs - Install (Win)
+        run: conan install openssl
+
       - name: xLib - Configure
         run: cd ${{github.workspace}}/xLib/Build && ./eclipse.sh
 
