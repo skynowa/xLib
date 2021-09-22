@@ -129,6 +129,9 @@ jobs:
       - name: (Win) libssh2 - Install
         run: conan install libssh2/1.10.0@
 
+      - name: (Win) libssh2 - Install
+        run: conan install libmysqlclient/8.0.25@
+
       - name: xLib - Configure
         run: cd ${{github.workspace}}/xLib/Build && ./eclipse.sh
 
