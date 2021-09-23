@@ -174,7 +174,7 @@ namespace std
 
     // std::size_t
 #if xOS_WIN
-    using ::ssize_t = SSIZE_T;
+    using ssize_t = SSIZE_T;
     xUSING_CONST(ssize_t);
 #endif
 
