@@ -68,9 +68,10 @@ jobs:
       # Trace
       - name: Print env
         run: |
-          echo github.event.action: ${{ github.event.action }}
-          echo github.event_name:   ${{ github.event_name }}
-          echo github.workspace:    ${{ github.workspace }}
+          echo "github.event.action: ${{ github.event.action }}"
+          echo "github.event_name:   ${{ github.event_name }}"
+          echo "github.workspace:    ${{ github.workspace }}"
+        shell: bash
 
       ##############################################################################################
       # xLib-data
