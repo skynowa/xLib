@@ -44,7 +44,7 @@ DateTime::unixToFile(
 )
 {
     xTEST_NA(a_unixTime);
-    xTEST_PTR(a_fileTime);
+    xTEST_PTR(out_fileTime);
 
     // Note that LONGLONG is a 64-bit value
     longlong_t llRv {};
