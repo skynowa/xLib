@@ -247,6 +247,8 @@ autoFile(
 	return makeUnique<file_unique_ptr_t>(std::fopen(xT2A(a_filePath).c_str(), a_flags), std::fclose);
 }
 //-------------------------------------------------------------------------------------------------
+#if xENV_UNIX
+
 inline dir_unique_ptr_t
 autoDir(
 	std::ctstring_t &a_dirPath
@@ -254,6 +256,8 @@ autoDir(
 {
 	return makeUnique<dir_unique_ptr_t>(::opendir(xT2A(a_dirPath).c_str()), ::closedir);
 }
+
+#endif
 //-------------------------------------------------------------------------------------------------
 inline dll_unique_ptr_t
 autoDll(
