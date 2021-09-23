@@ -23,14 +23,14 @@ public:
 	xNO_COPY_ASSIGN(Base64)
 ///@}
 
-    std::string encode(cuchar_t *bytes, std::csize_t &size);
+    std::string encode(cuchar_t *bytes, std::csize_t size);
         ///< encoding
     std::string encode(std::cstring_t &str);
         ///< encoding
     std::string decode(std::cstring_t &str);
         ///< decoding
 private:
-    bool_t _isValid(cuchar_t &ch);
+    bool_t _isValid(cuchar_t  ch);
         ///< check char for validness
 };
 
