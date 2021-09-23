@@ -34,7 +34,7 @@ namespace xl::core
 ///@name In milliseconds
 ///@{
 #define xMSEC(x) \
-    ( static_cast<culonglong_t>(x) )
+    ( static_cast<ulonglong_t>(x) )
 #define xSECOND(x) \
     ( xMSEC(x) * 1000ULL )
 #define xMINUTE(x) \
