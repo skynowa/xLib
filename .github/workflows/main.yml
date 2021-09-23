@@ -130,9 +130,10 @@ jobs:
         shell: bash
 
       ##
-      # - name: Trace
-      #   run: cat "C:/Program Files/CMake/share/cmake-3.21/Modules/FindCURL.cmake"
-      #   shell: bash
+      - name: Trace
+        # run: cat "C:/Program Files/CMake/share/cmake-3.21/Modules/FindCURL.cmake"
+        run: ls -la C:/mysql/include
+        shell: bash
 
       - name: xLib - Configure
         run: cd "${{github.workspace}}/xLib/Build" && ./eclipse.sh
