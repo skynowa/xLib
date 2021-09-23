@@ -256,8 +256,6 @@ autoDir(
 {
 	return makeUnique<dir_unique_ptr_t>(::opendir(xT2A(a_dirPath).c_str()), ::closedir);
 }
-
-#endif
 //-------------------------------------------------------------------------------------------------
 inline dll_unique_ptr_t
 autoDll(
@@ -267,6 +265,8 @@ autoDll(
 {
 	return makeUnique<dll_unique_ptr_t>(::dlopen(xT2A(a_dllPath).c_str(), a_flags), ::dlclose);
 }
+
+#endif
 //-------------------------------------------------------------------------------------------------
 
 } // namespace
