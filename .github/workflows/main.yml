@@ -145,7 +145,7 @@ jobs:
       #   shell: bash
 
       - name: (Win) libmysqlclient - Install
-        run: conan install . --install-folder "${CMAKE_BINARY_DIR}"
+        run: conan install "${{github.workspace}}/xLib"
         shell: bash
 
       ##
