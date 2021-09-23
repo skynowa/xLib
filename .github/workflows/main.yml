@@ -158,7 +158,7 @@ jobs:
         shell: bash
 
       # - name: xLib - Unit Tests (optional)
-      #   run: ${{github.workspace}}/xLib_eclipse/Tests/System/Test_ProcessInfo
+      #   run: "${{github.workspace}}/xLib_eclipse/Tests/System/Test_ProcessInfo"
 
       - name: xLib - Tests
         run: cd "${{github.workspace}}/xLib/Build" && ./tests.sh
