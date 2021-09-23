@@ -129,7 +129,7 @@ jobs:
       #   shell: bash
 
       - name: (Win) openssl - Install
-        run: conan install openssl/1.1.1d@
+        run: conan install openssl/1.1.1l@
         shell: bash
 
       - name: (Win) libssh2 - Install
