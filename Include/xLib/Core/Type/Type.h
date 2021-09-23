@@ -35,7 +35,7 @@ public:
 	{ \
 	public: \
 		static \
-		constexpr const auto get() \
+		constexpr auto get() \
 		{ \
 			return #type; \
 		} \
