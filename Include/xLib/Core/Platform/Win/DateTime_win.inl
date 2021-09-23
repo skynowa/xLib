@@ -49,8 +49,8 @@ DateTime::unixToFile(
     longlong_t llRv {};
 
     llRv = Int32x32To64(a_unixTime, 10000000) + 116444736000000000;
-    a_fileTime->dwLowDateTime  = static_cast<ulong_t>( llRv );
-    a_fileTime->dwHighDateTime = llRv >> 32;
+    a_fileTime->dwLowDateTime  = static_cast<ulong_t>(llRv);
+    a_fileTime->dwHighDateTime = static_cast<ulong_t>(llRv) >> 32;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
