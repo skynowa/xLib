@@ -46,11 +46,9 @@ DateTime::unixToFile(
     xTEST_NA(a_unixTime);
     xTEST_PTR(out_fileTime);
 
-    // Note that LONGLONG is a 64-bit value
-    longlong_t llRv {};
-
     // This algorithm was found in MSDN
-    llRv = Int32x32To64(a_unixTime, 10000000) + 116444736000000000;
+    // Note that LONGLONG is a 64-bit value
+    clonglong_t llRv = Int32x32To64(a_unixTime, 10000000) + 116444736000000000;
 
     // [out]
     out_fileTime->dwLowDateTime  = static_cast<DWORD>(llRv);
@@ -65,15 +63,15 @@ DateTime::fileToUnix(
 {
     // TEST: DateTime::fileToUnix()
 
-    const __int64 nanosecsBetweenEpochs = 116444736000000000LL;
+    const __int64 betweenEpochsNSec = 116444736000000000LL;
 
     __int64 llRv {};
 
-    llRv = (static_cast<__int64>( a_fileTime.dwHighDateTime ) << 32) + a_fileTime.dwLowDateTime;
-    llRv -= nanosecsBetweenEpochs;
+    llRv = (static_cast<__int64>(a_fileTime.dwHighDateTime) << 32) + a_fileTime.dwLowDateTime;
+    llRv -= betweenEpochsNSec;
     llRv /= 10000000;
 
-    return static_cast<time_t>( llRv );
+    return static_cast<time_t>(llRv);
 }
 //-------------------------------------------------------------------------------------------------
 
