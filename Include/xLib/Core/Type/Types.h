@@ -7,6 +7,10 @@
 #pragma once
 
 #include <xLib/Core/SysDefines.h>
+
+#if xOS_WIN
+	#include <BaseTsd.h>	// SSIZE_T
+#endif
 //-------------------------------------------------------------------------------------------------
 namespace xl
 {
