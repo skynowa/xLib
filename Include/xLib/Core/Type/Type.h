@@ -35,7 +35,7 @@ public:
 	{ \
 	public: \
 		static \
-		constexpr const tchar_t * get() \
+		constexpr const auto get() \
 		{ \
 			return #type; \
 		} \
