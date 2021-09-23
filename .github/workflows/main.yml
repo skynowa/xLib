@@ -124,41 +124,21 @@ jobs:
         shell: bash
 
       # Libs
-      # - name: Libs - Install
-      #   run: cd "${{github.workspace}}/xLib/Tools" && ./install_libs.sh
-      #   shell: bash
-
-      # - name: (Win) openssl - Install
-      #   run: conan install openssl/1.1.1l@
-      #   shell: bash
-
-      # - name: (Win) libssh2 - Install
-      #   run: conan install libssh2/1.10.0@
-      #   shell: bash
-
-      # - name: (Win) libcurl - Install
-      #   run: conan install libcurl/7.79.0@
-      #   shell: bash
-
-      # - name: (Win) libmysqlclient - Install
-      #   run: conan install libmysqlclient/8.0.25@
-      #   shell: bash
-
-      - name: (Win) libmysqlclient - Install
+      - name: Libs - Install
         run: conan install "${{github.workspace}}/xLib"
+        # run: cd "${{github.workspace}}/xLib/Tools" && ./install_libs.sh
         shell: bash
 
       ##
-      - name: Trace
-        run: cat "C:/Program Files/CMake/share/cmake-3.21/Modules/FindCURL.cmake"
-        shell: bash
+      # - name: Trace
+      #   run: cat "C:/Program Files/CMake/share/cmake-3.21/Modules/FindCURL.cmake"
+      #   shell: bash
 
       - name: xLib - Configure
         run: cd "${{github.workspace}}/xLib/Build" && ./eclipse.sh
         shell: bash
 
       - name: xLib - Trace
-        # run: ./SystemInfoEx.sh && ./DevInfo.sh && env && exit 1
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
         shell: bash
 
