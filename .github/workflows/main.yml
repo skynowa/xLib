@@ -145,7 +145,7 @@ jobs:
         shell: bash
 
       - name: xLib - Configure
-        run: "cd ${{github.workspace}}/xLib/Build" && ./eclipse.sh
+        run: cd "${{github.workspace}}/xLib/Build" && ./eclipse.sh
         shell: bash
 
       - name: xLib - Trace
