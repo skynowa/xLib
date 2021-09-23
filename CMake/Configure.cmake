@@ -65,7 +65,7 @@ find_package(Threads     QUIET REQUIRED)
 find_package(OpenSSL     QUIET REQUIRED)
 find_package(MySQL       QUIET REQUIRED)
 find_package(Ssh2        QUIET REQUIRED)
-find_package(CURL        QUIET REQUIRED)
+find_package(CURL        QUIET )    # REQUIRED
 find_package(LibXml2     QUIET REQUIRED)
 find_package(Iconv       QUIET REQUIRED)
 find_package(Event2      QUIET REQUIRED)
