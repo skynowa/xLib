@@ -100,7 +100,7 @@ jobs:
           path: ${{github.workspace}}/CMakeLib
 
       - name: CMakeLib - Install
-        run: cd ${{github.workspace}}/CMakeLib && ./install.sh
+        run: cd "${{github.workspace}}/CMakeLib" && ./install.sh
         shell: bash
 
       ##############################################################################################
