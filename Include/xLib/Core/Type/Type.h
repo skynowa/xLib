@@ -22,7 +22,7 @@ class TypeName
 {
 public:
 	static
-	constexpr cptr_ctchar_t get()
+	constexpr auto get()
 	{
 		/// static_assert(false, "You are missing a DECL_TYPE_NAME");
 		return xT("Unknown");
