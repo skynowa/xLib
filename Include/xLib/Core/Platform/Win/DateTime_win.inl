@@ -20,7 +20,7 @@ DateTime::_current_impl()
     SYSTEMTIME dateTime {};
 
     (void_t)::GetLocalTime(&dateTime);
-    xTEST_EQ(Validator::datetime(dateTime.wYear, dateTime.wMonth, dateTime.wDay,
+    xTEST_EQ(DateTimeValidator::datetime(dateTime.wYear, dateTime.wMonth, dateTime.wDay,
         dateTime.wHour, dateTime.wMinute, dateTime.wSecond, dateTime.wMilliseconds), true);
 
     return DateTime(dateTime.wYear, dateTime.wMonth, dateTime.wDay,
