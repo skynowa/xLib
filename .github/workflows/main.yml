@@ -125,7 +125,7 @@ jobs:
 
       # Libs
       # - name: Libs - Install
-      #   run: cd ${{github.workspace}}/xLib/Tools && ./install_libs.sh
+      #   run: cd "${{github.workspace}}/xLib/Tools" && ./install_libs.sh
       #   shell: bash
 
       - name: (Win) openssl - Install
@@ -145,7 +145,7 @@ jobs:
         shell: bash
 
       - name: xLib - Configure
-        run: cd ${{github.workspace}}/xLib/Build && ./eclipse.sh
+        run: "cd ${{github.workspace}}/xLib/Build" && ./eclipse.sh
         shell: bash
 
       - name: xLib - Trace
@@ -154,21 +154,21 @@ jobs:
         shell: bash
 
       - name: xLib - Build
-        run: cd ${{github.workspace}}/xLib/Build && ./build.sh
+        run: cd "${{github.workspace}}/xLib/Build" && ./build.sh
         shell: bash
 
       # - name: xLib - Unit Tests (optional)
       #   run: ${{github.workspace}}/xLib_eclipse/Tests/System/Test_ProcessInfo
 
       - name: xLib - Tests
-        run: cd ${{github.workspace}}/xLib/Build && ./tests.sh
+        run: cd "${{github.workspace}}/xLib/Build" && ./tests.sh
         shell: bash
 
       ##############################################################################################
       # Static Analysis
       ## - name: Static Analysis - run
       ##   run: |
-      ##     cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
+      ##     cd "${{github.workspace}}/xLib/Tools/StaticAnalisis" &&
       ##     ./run_cppcheck.sh   &&
       ##     ./run_clang_tidy.sh &&
       ##     ./run_pvs_studio.sh || 0
