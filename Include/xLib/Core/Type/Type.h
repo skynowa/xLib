@@ -35,7 +35,7 @@ public:
 	{ \
 	public: \
 		static \
-		constexpr cptr_ctchar_t get() \
+		constexpr tchar_t * get() \
 		{ \
 			return #type; \
 		} \
