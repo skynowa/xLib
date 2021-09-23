@@ -132,7 +132,7 @@ xPUBLIC_STATIC:
     longlong_t      fileToInt64(const FILETIME &fileTime);
         ///< convert FILETIME to longlong_t
     static
-    void_t          unixToFile(const time_t &unixTime, FILETIME *fileTime);
+    void_t          unixToFile(const time_t unixTime, FILETIME *fileTime);
         ///< convert UNIX time_t to Win32 FILETIME
     static
     time_t          fileToUnix(const FILETIME &fileTime);
