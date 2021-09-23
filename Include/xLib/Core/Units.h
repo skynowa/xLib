@@ -14,7 +14,7 @@ namespace xl::core
 ///@name In bytes
 ///@{
 #define xBYTES(x) \
-    ( static_cast<culonglong_t>(x) )
+    ( static_cast<ulonglong_t>(x) )
 #define xKB(x) \
     ( xBYTES(x) << 10 )
 #define xMB(x) \
