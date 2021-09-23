@@ -17,7 +17,7 @@ namespace xl::core
 DateTime
 DateTime::_current_impl()
 {
-    SYSTEMTIME dateTime = {0};
+    SYSTEMTIME dateTime {};
 
     (void_t)::GetLocalTime(&dateTime);
     xTEST_EQ(Validator::datetime(dateTime.wYear, dateTime.wMonth, dateTime.wDay,
@@ -46,7 +46,7 @@ DateTime::unixToFile(
     xTEST_NA(a_unixTime);
     xTEST_PTR(a_fileTime);
 
-    longlong_t llRv = 0LL;
+    longlong_t llRv {};
 
     llRv = Int32x32To64(a_unixTime, 10000000) + 116444736000000000;
     a_fileTime->dwLowDateTime  = static_cast<ulong_t>( llRv );
@@ -63,7 +63,7 @@ DateTime::fileToUnix(
 
     const __int64 nanosecsBetweenEpochs = 116444736000000000LL;
 
-    __int64 llRv = 0LL;
+    __int64 llRv {};
 
     llRv = (static_cast<__int64>( a_fileTime.dwHighDateTime ) << 32) + a_fileTime.dwLowDateTime;
     llRv -= nanosecsBetweenEpochs;
