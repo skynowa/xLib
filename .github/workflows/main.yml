@@ -131,7 +131,8 @@ jobs:
 
       ##
       - name: Trace
-        run: cat "C:/Program Files/CMake/share/cmake-3.21/Modules/FindCURL.cmake"
+        # run: cat "C:/Program Files/CMake/share/cmake-3.21/Modules/FindCURL.cmake"
+        run: locate locate curl.h
         shell: bash
 
       - name: xLib - Configure
