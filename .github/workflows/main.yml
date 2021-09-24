@@ -131,8 +131,11 @@ jobs:
 
       ##
       - name: Trace-1
-        run: echo "github.workspace - ${{github.workspace}}" && ls -la && \
-          cat FindCURL.cmake
+        run: echo "github.workspace - ${{github.workspace}}" && ls -la
+        shell: bash
+
+      - name: Trace-1
+        run: cat FindCURL.cmake
         shell: bash
 
       - name: Trace
