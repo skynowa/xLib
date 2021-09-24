@@ -5,7 +5,7 @@ libcurl/7.79.0
 libmysqlclient/8.0.25
 
 [generators]
-cmake
+cmake_paths
 
 [options]
 libcurl:with_ssl=openssl
