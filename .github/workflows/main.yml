@@ -68,6 +68,7 @@ jobs:
       # Trace
       - name: Environment
         run: |
+          echo "runner.name:         ${{ runner.name }}"
           echo "runner.os:           ${{ runner.os }}"
           echo "github.repository:   ${{ github.repository }}"
           echo "github.ref:          ${{ github.ref }}"
