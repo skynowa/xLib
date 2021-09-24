@@ -68,9 +68,13 @@ jobs:
       # Trace
       - name: Print env
         run: |
+          echo "runner.os:           ${{ runner.os }}"
+          echo "github.repository:   ${{ github.repository }}"
+          echo "github.ref:          ${{ github.ref }}"
+          echo "github.workspace:    ${{ github.workspace }}"
+          echo ""
           echo "github.event.action: ${{ github.event.action }}"
           echo "github.event_name:   ${{ github.event_name }}"
-          echo "github.workspace:    ${{ github.workspace }}"
         shell: bash
 
       ##############################################################################################
