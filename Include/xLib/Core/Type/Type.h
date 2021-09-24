@@ -95,6 +95,14 @@ class Type
     /// type info
 {
 public:
+///@name ctors, dtor
+///@{
+			 Type() = delete;
+	virtual ~Type() = delete;
+
+	xNO_COPY_ASSIGN(Type)
+///@}
+
     template<typename T>
     static
     std::tstring_t nameDemangle(const T &objT);
@@ -114,12 +122,6 @@ public:
     static
     bool_t         isEqual(const T1 &obj1T, const T2 &obj2T);
         ///< is equals
-
-private:
-                   Type();
-    virtual       ~Type();
-
-    xNO_COPY_ASSIGN(Type)
 };
 
 } // namespace
