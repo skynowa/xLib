@@ -6,11 +6,10 @@
 
 #pragma once
 
-// TODO: [Win] include - fix
 #if   xENV_UNIX
     #include <sys/socket.h>
 #elif xENV_WIN
-	#include <winsock2.h>
+    #include <winsock2.h>
 #endif
 //-------------------------------------------------------------------------------------------------
 // xHOST_NAME_MAX
