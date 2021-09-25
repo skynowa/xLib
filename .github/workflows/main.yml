@@ -76,6 +76,8 @@ jobs:
           echo ""
           echo "github.event.action: ${{ github.event.action }}"
           echo "github.event_name:   ${{ github.event_name }}"
+          echo ""
+          echo "GITHUB_ENV:          ${GITHUB_ENV}"
         shell: bash
 
       ##############################################################################################

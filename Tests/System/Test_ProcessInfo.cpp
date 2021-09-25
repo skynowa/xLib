@@ -13,6 +13,8 @@ xTEST_UNIT(Test_ProcessInfo)
 bool_t
 Test_ProcessInfo::unit()
 {
+	// TEST: Test_ProcessInfo
+
     xTEST_CASE("cpuUsage")
     {
         std::vector<Process::id_t> ids;
