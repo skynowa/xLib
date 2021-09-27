@@ -17,7 +17,6 @@ unset(cmGIT_REVISION_FOUND CACHE)
 unset(cmGIT_REVISION_BRANCH CACHE)
 unset(cmGIT_REVISION_HASH CACHE)
 unset(cmCOMPILER_FLAGS CACHE)
-unset(cmOPENSSL_CRYPTO_FOUND CACHE)
 unset(cmCS_GNU_LIBPTHREAD_VERSION_FOUND CACHE)
 unset(cmGNU_GET_LIBC_FOUND CACHE)
 
@@ -50,7 +49,6 @@ include(CheckFunctionExists)
 include(CheckIncludeFile)
 include(CheckIncludeFileCXX)
 include(CheckIncludeFiles)
-include(CheckLibraryExists)
 include(CheckSymbolExists)
 include(CheckTypeSize)
 include(CheckCSourceCompiles)
@@ -62,21 +60,13 @@ find_package(xLibData    QUIET REQUIRED)
 find_package(GitRevision QUIET REQUIRED)
 find_package(OS          QUIET REQUIRED)
 find_package(Threads     QUIET REQUIRED)
-
-find_package(OpenSSL     REQUIRED COMPONENTS Crypto SSL)
-find_dependency(OpenSSL REQUIRED COMPONENTS Crypto)
-find_dependency(OpenSSL REQUIRED COMPONENTS SSL)
-
+find_package(OpenSSL COMPONENTS Crypto SSL REQUIRED)
 find_package(MySQL       QUIET REQUIRED)
 find_package(Ssh2        QUIET REQUIRED)
 # find_package(CURL        QUIET REQUIRED)
 find_package(LibXml2     QUIET REQUIRED)
 find_package(Iconv       QUIET REQUIRED)
 find_package(Event2      QUIET REQUIRED)
-
-if (OPENSSL_FOUND)
-    check_library_exists(crypto BF_cfb64_encrypt "" cmOPENSSL_CRYPTO_FOUND)
-endif()
 
 if (ENV_UNIX)
     find_package(ExecInfo  REQUIRED)
@@ -99,7 +89,7 @@ if (ENV_UNIX)
 endif()
 #--------------------------------------------------------------------------------------------------
 # configure
-if (ENV_WIN)
+if     (ENV_WIN)
     # TODO: windows part
 elseif (ENV_UNIX)
     # Headers
