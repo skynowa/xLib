@@ -62,7 +62,11 @@ find_package(xLibData    QUIET REQUIRED)
 find_package(GitRevision QUIET REQUIRED)
 find_package(OS          QUIET REQUIRED)
 find_package(Threads     QUIET REQUIRED)
+
 find_package(OpenSSL     REQUIRED COMPONENTS Crypto SSL)
+find_dependency(OpenSSL REQUIRED COMPONENTS Crypto)
+find_dependency(OpenSSL REQUIRED COMPONENTS SSL)
+
 find_package(MySQL       QUIET REQUIRED)
 find_package(Ssh2        QUIET REQUIRED)
 # find_package(CURL        QUIET REQUIRED)
