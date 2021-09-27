@@ -73,16 +73,6 @@ jobs:
           path: ${{github.workspace}}/xLib-data
 
       ##############################################################################################
-      # Static Analysis
-      ## - name: Static Analysis - Install
-      ##   run: |
-      ##     cd ${{github.workspace}}/xLib/Tools/StaticAnalisis &&
-      ##     ./install_cppcheck.sh   &&
-      ##     ./install_clang_tidy.sh &&
-      ##     ./install_pvs_studio.sh &&
-      ##     ./install_configs.sh ${{github.workspace}}/xLib-data/Configs/StaticAnalisis
-
-      ##############################################################################################
       # CMakeLib
       - name: CMakeLib - Checkout
         uses: actions/checkout@v2
@@ -134,10 +124,6 @@ jobs:
       #   run: locate curl.h
       #   shell: bash
 
-      - name: xLib - Trace-Curl
-        run: ls -la "C:/Users/runneradmin/.conan/data/libcurl/7.79.0/_/_/package/8f024c1f1c603ad0762d5cdb497d134bf493464e/include/curl"
-        shell: bash
-
       - name: xLib - Configure
         run: cd "${{github.workspace}}/xLib/Build" && ./eclipse.sh
         shell: bash
@@ -152,13 +138,3 @@ jobs:
       - name: xLib - Tests
         run: cd "${{github.workspace}}/xLib/Build" && ./tests.sh
         shell: bash
-
-
-      ##############################################################################################
-      # Static Analysis
-      ## - name: Static Analysis - run
-      ##   run: |
-      ##     cd "${{github.workspace}}/xLib/Tools/StaticAnalisis" &&
-      ##     ./run_cppcheck.sh   &&
-      ##     ./run_clang_tidy.sh &&
-      ##     ./run_pvs_studio.sh || 0
