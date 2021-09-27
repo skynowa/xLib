@@ -65,22 +65,6 @@ jobs:
           access_token: ${{github.token}}
 
       ##############################################################################################
-      # Trace
-      - name: Environment
-        run: |
-          echo "runner.name:         ${{ runner.name }}"
-          echo "runner.os:           ${{ runner.os }}"
-          echo "github.repository:   ${{ github.repository }}"
-          echo "github.ref:          ${{ github.ref }}"
-          echo "github.workspace:    ${{ github.workspace }}"
-          echo ""
-          echo "github.event.action: ${{ github.event.action }}"
-          echo "github.event_name:   ${{ github.event_name }}"
-          echo ""
-          echo "GITHUB_ENV:          ${GITHUB_ENV}"
-        shell: bash
-
-      ##############################################################################################
       # xLib-data
       - name: xLib-data - Checkout
         uses: actions/checkout@v2
@@ -120,10 +104,10 @@ jobs:
           path: ${{github.workspace}}/xLib
 
       # Env
-      # - name: Compiler Env
-      #   run: |
-      #     echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
-      #   shell: bash
+      - name: Compiler Env
+        run: |
+          echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
+        shell: bash
 
       - name: Conan install
         run: |
