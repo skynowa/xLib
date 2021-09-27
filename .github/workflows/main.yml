@@ -150,12 +150,12 @@ jobs:
       #   run: locate curl.h
       #   shell: bash
 
-      - name: xLib - Configure
-        run: cd "${{github.workspace}}/xLib/Build" && ./eclipse.sh
-        shell: bash
-
       - name: xLib - Trace-Curl
         run: find C:/ -name 'curl.h'
+        shell: bash
+
+      - name: xLib - Configure
+        run: cd "${{github.workspace}}/xLib/Build" && ./eclipse.sh
         shell: bash
 
       - name: xLib - Build
