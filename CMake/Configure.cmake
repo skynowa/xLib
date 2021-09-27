@@ -55,8 +55,6 @@ include(CheckSymbolExists)
 include(CheckTypeSize)
 include(CheckCSourceCompiles)
 include(CheckCXXSourceCompiles)
-
-include(../../FindCURL.cmake)
 #--------------------------------------------------------------------------------------------------
 # find packages
 find_package(CMakeLib    QUIET REQUIRED) # at 1-st
