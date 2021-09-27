@@ -23,9 +23,8 @@ echo "[Build...]"
 
 mkdir curl-${CURL_VERSION}_build
 cd curl-${CURL_VERSION}_build
-cmake ../curl-${CURL_VERSION}
+cmake --build . -- -j4
 
 echo ""
 echo "[Install...]"
-make install
-make clean
+cmake --build . --target install
