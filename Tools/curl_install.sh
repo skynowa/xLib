@@ -6,6 +6,8 @@
 
 set -ex
 
+# export CC="cl"
+# export CXX="cl"
 # export CC="gcc"
 # export CXX="g++"
 # export CC="clang-11"
