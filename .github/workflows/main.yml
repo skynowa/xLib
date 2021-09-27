@@ -42,9 +42,9 @@ jobs:
             name: "Windows-2019 (MSVC)",
             os: windows-2019,
             build_type: "Debug",
-            compiler: "g++",
-            cc: "gcc",
-            cxx: "g++",
+            # compiler: "g++",
+            # cc: "gcc",
+            # cxx: "g++",
             # environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
           }
         # - {
