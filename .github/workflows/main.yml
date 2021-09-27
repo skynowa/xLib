@@ -64,6 +64,10 @@ jobs:
         with:
           access_token: ${{github.token}}
 
+      - name: Trace-1
+        run: cat "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+        shell: bash
+
       ##############################################################################################
       # xLib-data
       - name: xLib-data - Checkout
@@ -114,10 +118,6 @@ jobs:
       - name: Trace-1
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
         shell: bash
-
-      # - name: Trace-1
-      #   run: cat FindCURL.cmake
-      #   shell: bash
 
       # - name: Trace
       #   # run: cat "C:/Program Files/CMake/share/cmake-3.21/Modules/FindCURL.cmake"
