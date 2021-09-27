@@ -39,13 +39,13 @@ jobs:
         #     cxx: "clang++"
         #   }
         - {
-            name: "Windows-2019 (MSVC)",
-            os: windows-2019,
+            name: "Windows-2016 (MSVC)",
+            os: windows-2016,
             build_type: "Debug",
             compiler: "cl",
             cc: "cl",
             cxx: "cl",
-            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2016/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
           }
         # - {
         #     name: "macOS Latest Clang",
@@ -65,7 +65,7 @@ jobs:
           access_token: ${{github.token}}
 
       - name: Trace-1
-        run: cat "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+        run: cat "C:/Program Files (x86)/Microsoft Visual Studio/2016/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
         shell: bash
 
       ##############################################################################################
