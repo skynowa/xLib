@@ -5,6 +5,6 @@ libcurl/7.79.0
 libmysqlclient/8.0.25
 
 [generators]
-cmake_find_package
+# cmake_find_package
 
 [options]
