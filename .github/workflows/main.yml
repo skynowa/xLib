@@ -141,9 +141,9 @@ jobs:
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
         shell: bash
 
-      - name: Trace-1
-        run: cat FindCURL.cmake
-        shell: bash
+      # - name: Trace-1
+      #   run: cat FindCURL.cmake
+      #   shell: bash
 
       # - name: Trace
       #   # run: cat "C:/Program Files/CMake/share/cmake-3.21/Modules/FindCURL.cmake"
