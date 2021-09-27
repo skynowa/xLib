@@ -6,5 +6,6 @@ libmysqlclient/8.0.25
 
 [generators]
 # cmake_find_package
+cmake
 
 [options]
