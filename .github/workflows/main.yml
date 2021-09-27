@@ -109,9 +109,9 @@ jobs:
         shell: bash
 
       # Libs (CURL)
-      # - name: Libs (CURL) - Install
-      #   run: conan install "${{github.workspace}}/xLib" --build=missing
-      #   shell: bash
+      - name: Libs (CURL) - Install
+        run: cd "${{github.workspace}}/xLib/Tools" && ./curl_install.sh
+        shell: bash
 
       # Libs
       - name: Libs - Install
