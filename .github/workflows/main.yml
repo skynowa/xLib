@@ -154,8 +154,8 @@ jobs:
         run: cd "${{github.workspace}}/xLib/Build" && ./eclipse.sh
         shell: bash
 
-      - name: xLib - Trace
-        run: echo "github.workspace - ${{github.workspace}}" && ls -la
+      - name: xLib - Trace-Curl
+        run: find C:/ -name 'curl.h'
         shell: bash
 
       - name: xLib - Build
