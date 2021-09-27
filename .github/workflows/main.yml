@@ -151,7 +151,7 @@ jobs:
       #   shell: bash
 
       - name: xLib - Trace-Curl
-        run: find C:/ -name 'curl.h'
+        run: ls -la "C:/Users/runneradmin/.conan/data/libcurl/7.79.0/_/_/package/8f024c1f1c603ad0762d5cdb497d134bf493464e/include"
         shell: bash
 
       - name: xLib - Configure
