@@ -4,6 +4,7 @@
 # Install AMP C++
 #
 
+set -ex
 
 CURL_VERSION="7.79.1"
 CURL_ARCHIVE="curl.tar.gz"
@@ -23,6 +24,7 @@ echo "[Build...]"
 
 mkdir curl-${CURL_VERSION}_build
 cd curl-${CURL_VERSION}_build
+cmake ../curl-${CURL_VERSION}_build
 cmake --build . -- -j4
 
 echo ""
