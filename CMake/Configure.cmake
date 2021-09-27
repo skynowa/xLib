@@ -55,6 +55,8 @@ include(CheckSymbolExists)
 include(CheckTypeSize)
 include(CheckCSourceCompiles)
 include(CheckCXXSourceCompiles)
+
+include(../../FindCURL.cmake)
 #--------------------------------------------------------------------------------------------------
 # find packages
 find_package(CMakeLib    QUIET REQUIRED) # at 1-st
@@ -65,7 +67,6 @@ find_package(Threads     QUIET REQUIRED)
 find_package(OpenSSL     QUIET REQUIRED)
 find_package(MySQL       QUIET REQUIRED)
 find_package(Ssh2        QUIET REQUIRED)
-set(CURL_NO_CURL_CMAKE NO)
 find_package(CURL        QUIET REQUIRED)
 find_package(LibXml2     QUIET REQUIRED)
 find_package(Iconv       QUIET REQUIRED)

@@ -15,7 +15,6 @@ set(CMAKE_REQUIRED_QUIET          ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 	# "clangd.arguments": ['-compile-commands-dir="../xLib_eclipse"' ]
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
-set(CURL_NO_CURL_CMAKE            ON)
 #--------------------------------------------------------------------------------------------------
 # options
 set(cmOPTION_PROJECT_LIB_STATIC    1)
