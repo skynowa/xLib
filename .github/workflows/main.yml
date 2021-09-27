@@ -64,6 +64,8 @@ jobs:
         with:
           access_token: ${{github.token}}
 
+      - uses: ilammy/msvc-dev-cmd@v1.4.1
+
       ##############################################################################################
       # xLib-data
       - name: xLib-data - Checkout
