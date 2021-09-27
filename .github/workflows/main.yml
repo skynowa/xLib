@@ -46,15 +46,15 @@ jobs:
         #     cc: "gcc",
         #     cxx: "g++"
         #   }
-        # - {
-        #     name: "Windows-2019 (MSVC)",
-        #     os: windows-2019,
-        #     build_type: "Debug",
-        #     compiler: "cl",
-        #     cc: "cl",
-        #     cxx: "cl",
-        #     environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
-        #   }
+        - {
+            name: "Windows-2019 (MSVC)",
+            os: windows-2019,
+            build_type: "Debug",
+            compiler: "cl",
+            cc: "cl",
+            cxx: "cl",
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+          }
         # - {
         #     name: "macOS Latest Clang",
         #     os: macos-latest,
