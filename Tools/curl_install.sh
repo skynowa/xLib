@@ -27,5 +27,5 @@ cmake ../curl-${CURL_VERSION}
 
 echo ""
 echo "[Install...]"
-sudo make install
+make install
 make clean
