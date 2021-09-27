@@ -1,5 +1,5 @@
 [requires]
-openssl
+openssl/1.1.1l
 libssh2/1.10.0
 libcurl/7.79.0
 libmysqlclient/8.0.25

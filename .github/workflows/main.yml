@@ -45,7 +45,7 @@ jobs:
             compiler: "cl",
             cc: "cl",
             cxx: "cl",
-            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+            # environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
           }
         # - {
         #     name: "macOS Latest Clang",
@@ -64,9 +64,9 @@ jobs:
         with:
           access_token: ${{github.token}}
 
-      - name: Trace-1
-        run: cat "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
-        shell: bash
+      # - name: Trace-1
+      #   run: cat "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+      #   shell: bash
 
       ##############################################################################################
       # xLib-data
@@ -98,19 +98,24 @@ jobs:
           path: ${{github.workspace}}/xLib
 
       # Env
-      - name: Compiler Env
-        run: |
-          echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
-        shell: bash
+      # - name: Compiler Env
+      #   run: |
+      #     echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
+      #   shell: bash
 
       - name: Conan install
         run: |
           pip install conan
         shell: bash
 
+      # Libs (CURL)
+      # - name: Libs (CURL) - Install
+      #   run: conan install "${{github.workspace}}/xLib" --build=missing
+      #   shell: bash
+
       # Libs
       - name: Libs - Install
-        run: conan install "${{github.workspace}}/xLib"
+        run: conan install "${{github.workspace}}/xLib" --build=missing
         # run: cd "${{github.workspace}}/xLib/Tools" && ./install_libs.sh
         shell: bash
 
