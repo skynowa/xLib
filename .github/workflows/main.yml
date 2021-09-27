@@ -64,9 +64,9 @@ jobs:
         with:
           access_token: ${{github.token}}
 
-      - name: Trace-1
-        run: cat "C:/Program Files (x86)/Microsoft Visual Studio/2016/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
-        shell: bash
+      # - name: Trace-1
+      #   run: cat "C:/Program Files (x86)/Microsoft Visual Studio/2016/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+      #   shell: bash
 
       ##############################################################################################
       # xLib-data
