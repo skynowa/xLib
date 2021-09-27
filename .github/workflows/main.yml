@@ -72,6 +72,12 @@ jobs:
         with:
           access_token: ${{github.token}}
 
+      # Env
+      - name: Compiler Env
+        run: |
+          echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
+        shell: bash
+
       # - name: Trace-1
       #   run: cat "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
       #   shell: bash
@@ -104,12 +110,6 @@ jobs:
         with:
           repository: skynowa/xLib
           path: ${{github.workspace}}/xLib
-
-      # Env
-      - name: Compiler Env
-        run: |
-          echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
-        shell: bash
 
       - name: Conan install
         run: |

@@ -6,6 +6,11 @@
 
 set -ex
 
+export CC="gcc"
+export CXX="g++"
+# export CC="clang-11"
+# export CXX="clang++-11"
+
 CURL_VERSION="7.79.1"
 CURL_ARCHIVE="curl.tar.gz"
 
