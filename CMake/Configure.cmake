@@ -58,7 +58,7 @@ include(CheckCXXSourceCompiles)
 
 # System
 find_package(Threads     QUIET REQUIRED)
-find_package(OpenSSL COMPONENTS Crypto SSL REQUIRED)
+find_package(OpenSSL COMPONENTS Crypto SSL QUIET REQUIRED)
 find_package(CURL        REQUIRED)
 find_package(LibXml2     QUIET REQUIRED)
 
@@ -73,6 +73,7 @@ find_package(Iconv       QUIET REQUIRED)
 find_package(Event2      QUIET REQUIRED)
 
 if (ENV_UNIX)
+    # Custom (CMakeLib)
     find_package(ExecInfo  REQUIRED)
     find_package(XCB       REQUIRED)
     find_package(Addr2Line REQUIRED)
