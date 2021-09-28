@@ -55,16 +55,20 @@ include(CheckCSourceCompiles)
 include(CheckCXXSourceCompiles)
 #--------------------------------------------------------------------------------------------------
 # find packages
-find_package(CMakeLib    QUIET REQUIRED) # at 1-st
-find_package(xLibData    QUIET REQUIRED)
-find_package(GitRevision QUIET REQUIRED)
-find_package(OS          QUIET REQUIRED)
+
+# System
 find_package(Threads     QUIET REQUIRED)
 find_package(OpenSSL COMPONENTS Crypto SSL REQUIRED)
-find_package(MySQL       QUIET REQUIRED)
-find_package(Ssh2        QUIET REQUIRED)
 find_package(CURL        REQUIRED)
 find_package(LibXml2     QUIET REQUIRED)
+
+# Custom (CMakeLib)
+find_package(CMakeLib    QUIET REQUIRED) # at 1-st
+find_package(OS          QUIET REQUIRED)
+find_package(xLibData    QUIET REQUIRED)
+find_package(GitRevision QUIET REQUIRED)
+find_package(MySQL       QUIET REQUIRED)
+find_package(Ssh2        QUIET REQUIRED)
 find_package(Iconv       QUIET REQUIRED)
 find_package(Event2      QUIET REQUIRED)
 
