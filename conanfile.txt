@@ -4,7 +4,8 @@ libssh2/1.10.0
 libcurl/7.79.0
 libmysqlclient/8.0.25
 
-# [generators]
+[generators]
+cmake_paths
 # cmake_find_package
 # cmake
 
