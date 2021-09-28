@@ -139,7 +139,7 @@ jobs:
       ##
       - name: Trace-1
         run: echo "github.workspace - ${{github.workspace}}" && ls -la \
-          echo cat conan_paths.cmake
+          cat conan_paths.cmake
         shell: bash
 
       # - name: Trace
