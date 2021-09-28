@@ -47,7 +47,7 @@ set(cmOPTION_DEBUG_MODE_NO         0)
 set(cmOPTION_BUILD_MSG             0)
 set(cmOPTION_TEST_PRIVATE          0)
 
-message("")
+message("-------------------------------------------------")
 message("CMake")
 message(STATUS "CMAKE_VERSION                  : ${CMAKE_VERSION}")
 message(STATUS "CMAKE_GENERATOR                : ${CMAKE_GENERATOR}")
@@ -75,5 +75,5 @@ message(STATUS "cmOPTION_DEBUG_MODE_EXCEPTION  : ${cmOPTION_DEBUG_MODE_EXCEPTION
 message(STATUS "cmOPTION_DEBUG_MODE_NO         : ${cmOPTION_DEBUG_MODE_NO}")
 message(STATUS "cmOPTION_BUILD_MSG             : ${cmOPTION_BUILD_MSG}")
 message(STATUS "cmOPTION_TEST_PRIVATE          : ${cmOPTION_TEST_PRIVATE}")
-message("")
+message("-------------------------------------------------")
 #--------------------------------------------------------------------------------------------------
