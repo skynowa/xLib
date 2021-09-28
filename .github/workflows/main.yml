@@ -136,6 +136,11 @@ jobs:
         # run: cd "${{github.workspace}}/xLib/Tools" && ./install_libs.sh
         shell: bash
 
+      # Libs
+      - name: Libs (libx11-xcb-dev) - Install
+        run: sudo apt-get install -y --no-install-recommends libx11-xcb-dev
+        shell: bash
+
       ##
       - name: Trace-1
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
