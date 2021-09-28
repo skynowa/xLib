@@ -82,6 +82,16 @@ jobs:
           echo "CXX=${{ matrix.config.cxx }}" >> $GITHUB_ENV
         shell: bash
 
+      - name: Conan install
+        run: |
+          pip install conan
+        shell: bash
+
+      - name: Conan remote
+        run: |
+          conan remote add bintray https://api.bintray.com/conan/bincrafters/public-conan
+        shell: bash
+
       # - name: Trace-1
       #   run: cat "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
       #   shell: bash
@@ -114,12 +124,6 @@ jobs:
         with:
           repository: skynowa/xLib
           path: ${{github.workspace}}/xLib
-
-      - name: Conan install
-        run: |
-          pip install conan
-          conan remote add bintray https://api.bintray.com/conan/bincrafters/public-conan
-        shell: bash
 
       # Libs (CURL)
       # - name: Libs (CURL) - Install
