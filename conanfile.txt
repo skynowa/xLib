@@ -1,5 +1,5 @@
 [requires]
-openssl/1.1.1l
+# openssl/1.1.1l
 # openssl/3.0.0
 libssh2/1.10.0
 libcurl/7.79.0
