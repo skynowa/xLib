@@ -9,3 +9,4 @@ libmysqlclient/8.0.25
 cmake
 
 [options]
+libcurl:with_ssl=schannel
