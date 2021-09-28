@@ -87,6 +87,11 @@ jobs:
           pip install conan
         shell: bash
 
+      - name: Conan profile
+        run: |
+          conan profile update settings.compiler.libcxx=libstdc++11 default
+        shell: bash
+
       # - name: Trace-1
       #   run: cat "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
       #   shell: bash
