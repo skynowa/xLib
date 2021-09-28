@@ -44,7 +44,11 @@ set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 list(APPEND CMAKE_MODULE_PATH "${XLIB_LOCATION}/CMake")
 
 include(${XLIB_LOCATION}/Config.cmake)
-include(${XLIB_LOCATION}/../conan_paths.cmake)
+
+if (EXISTS "${XLIB_LOCATION}/../conan_paths.cmake")
+    include(${XLIB_LOCATION}/../conan_paths.cmake)
+endif()
+
 include(Configure)
 #--------------------------------------------------------------------------------------------------
 # includes, libs
