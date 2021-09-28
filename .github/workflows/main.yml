@@ -76,7 +76,8 @@ jobs:
       # Env
       - name: Compiler Env
         run: |
-          echo "CXX=${{ matrix.config.compiler }}" >> $GITHUB_ENV
+          echo "CC=${{ matrix.config.cc }}"   >> $GITHUB_ENV
+          echo "CXX=${{ matrix.config.cxx }}" >> $GITHUB_ENV
         shell: bash
 
       # - name: Trace-1
