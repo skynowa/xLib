@@ -1,15 +1,10 @@
 [requires]
-# openssl/1.1.1l
+openssl/1.1.1d
 # openssl/3.0.0
-# libssh2/1.10.0
+libssh2/1.10.0
 # libcurl/7.79.0
-# libcurl/7.58.0
-# libmysqlclient/8.0.25
-
-openssl
-libssh2
-libcurl
-libmysqlclient
+libcurl/7.58.0
+libmysqlclient/8.0.25
 
 [generators]
 cmake_paths
