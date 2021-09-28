@@ -116,6 +116,7 @@ jobs:
       - name: Conan install
         run: |
           pip install conan
+          conan remote add bintray https://api.bintray.com/conan/bincrafters/public-conan
         shell: bash
 
       # Libs (CURL)
