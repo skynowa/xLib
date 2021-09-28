@@ -150,9 +150,9 @@ jobs:
         run: cat conan_paths.cmake
         shell: bash
 
-      - name: Trace-3
-        run: ls -la "/home/runner/.conan/data/libcurl/7.79.0/_/_/package/d66c87f35a2a176e10af56a7f32a51d6e7b43e26"
-        shell: bash
+      # - name: Trace-3
+      #   run: ls -la "/home/runner/.conan/data/libcurl/7.79.0/_/_/package/d66c87f35a2a176e10af56a7f32a51d6e7b43e26"
+      #   shell: bash
 
       # - name: Trace
       #   # run: cat "C:/Program Files/CMake/share/cmake-3.21/Modules/FindCURL.cmake"
