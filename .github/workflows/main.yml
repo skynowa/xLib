@@ -89,7 +89,7 @@ jobs:
 
       - name: Conan remote
         run: |
-          conan remote add conancenter https://center.conan.io
+          conan remote add conancenter https://conan.bintray.com
         shell: bash
 
       # - name: Trace-1
