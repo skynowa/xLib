@@ -87,11 +87,6 @@ jobs:
           pip install conan
         shell: bash
 
-      - name: Conan remote
-        run: |
-          conan remote add conancenter https://conan.bintray.com
-        shell: bash
-
       # - name: Trace-1
       #   run: cat "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
       #   shell: bash
