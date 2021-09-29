@@ -30,14 +30,14 @@ jobs:
             cc: "gcc",
             cxx: "g++"
           }
-        # - {
-        #     name: "Ubuntu-20.04 (Clang)",
-        #     os: ubuntu-20.04,
-        #     build_type: "Debug",
-        #     compiler: "clang++",
-        #     cc: "clang",
-        #     cxx: "clang++"
-        #   }
+        - {
+            name: "Ubuntu-20.04 (Clang)",
+            os: ubuntu-20.04,
+            build_type: "Debug",
+            compiler: "clang++",
+            cc: "clang",
+            cxx: "clang++"
+          }
 
         # - {
         #     name: "Windows-2019 (GCC)",
