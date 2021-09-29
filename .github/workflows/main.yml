@@ -142,11 +142,11 @@ jobs:
         shell: bash
 
       ##
-      - name: Trace-1
+      - name: Trace - github.workspace
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
         shell: bash
 
-      - name: Trace-2
+      - name: Trace - conan_paths.cmake
         run: cat conan_paths.cmake
         shell: bash
 
