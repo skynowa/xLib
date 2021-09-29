@@ -191,7 +191,7 @@ if (cmOPTION_PROJECT_LIB_STATIC)
     message("    PROJECT_LIB_STATIC: ${PROJECT_LIB_STATIC}")
 
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_STATIC} LINK_PUBLIC ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "lib")
 endif()
 
