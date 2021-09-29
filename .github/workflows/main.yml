@@ -130,11 +130,12 @@ jobs:
         run: sudo apt-get install -y --no-install-recommends libx11-xcb-dev
         shell: bash
 
-      ##
+      # Trace
       - name: Trace - github.workspace
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
         shell: bash
 
+      # Trace
       - name: Trace - conan_paths.cmake
         run: cat conan_paths.cmake
         shell: bash
