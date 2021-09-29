@@ -122,7 +122,7 @@ jobs:
 
       # Libs
       - name: Libs - Install
-        run: conan install "${{github.workspace}}/xLib"
+        run: conan install "${{github.workspace}}/xLib" --build=missing
         shell: bash
 
       # Libs
