@@ -9,8 +9,8 @@ include(CTest)
 #--------------------------------------------------------------------------------------------------
 find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
 
-set(CTEST_MEMORYCHECK_COMMAND_OPTIONS, "--trace-children=yes --leak-check=full")
-set(MEMORYCHECK_SUPPRESSIONS_FILE "${XLIB_LOCATION}/valgrind_suppress.txt")
+set(CTEST_MEMORYCHECK_COMMAND_OPTIONS "--trace-children=yes --leak-check=full")
+set(MEMORYCHECK_SUPPRESSIONS_FILE     "${XLIB_LOCATION}/valgrind_suppress.txt")
 #--------------------------------------------------------------------------------------------------
 message("   XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
 
