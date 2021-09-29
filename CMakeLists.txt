@@ -140,7 +140,7 @@ elseif (MINGW)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid ole32 mpr dbghelp)
 elseif (CMAKE_COMPILER_IS_CLANGXX)
     # -stdlib=libc++ or -stdlib=libstdc++ will probably work
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} -stdlib=libstdc++ -lc++abi pthread rt m z)
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} -stdlib=libstdc++ c++abi pthread rt m z)
 elseif (CMAKE_COMPILER_IS_GNUCXX)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} pthread rt m z)
 else()
