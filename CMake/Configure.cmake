@@ -59,8 +59,7 @@ include(CheckCXXSourceCompiles)
 # System
 find_package(Threads     QUIET REQUIRED)
 find_package(OpenSSL     QUIET REQUIRED)
-# find_package(OpenSSL COMPONENTS SSL Crypto QUIET REQUIRED)
-find_package(CURL        REQUIRED)
+find_package(CURL        QUIET REQUIRED)
 find_package(LibXml2     QUIET REQUIRED)
 
 # Custom (CMakeLib)
@@ -75,9 +74,9 @@ find_package(Event2      QUIET REQUIRED)
 
 if (ENV_UNIX)
     # Custom (CMakeLib)
-    find_package(ExecInfo  REQUIRED)
-    find_package(XCB       REQUIRED)
-    find_package(Addr2Line REQUIRED)
+    find_package(ExecInfo  QUIET REQUIRED)
+    find_package(XCB       QUIET REQUIRED)
+    find_package(Addr2Line QUIET REQUIRED)
 
     # cmGNU_GET_LIBC_FOUND
     CHECK_FUNCTION_EXISTS(gnu_get_libc_version _xGNU_GET_LIBC_VERSION)
