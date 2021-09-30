@@ -23,6 +23,10 @@
     #include "Platform/Unix/Random_unix.inl"
 #endif
 
+#if xENV_WIN
+    #include "Platform/Win/Functions_win.inl"
+#endif
+
 
 namespace xl::crypt
 {
