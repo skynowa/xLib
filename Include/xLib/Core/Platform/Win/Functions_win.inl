@@ -4,6 +4,8 @@
  */
 
 
+#include <xLib/Core/Functions.h>
+
 namespace xl::core
 {
 
