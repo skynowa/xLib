@@ -6,13 +6,14 @@
 
 #pragma once
 
+#include <xLib/Core/Core.h>
+
 #if xENV_WIN
 	#include <mysql.h>
 #else
 	#include <mysql/mysql.h>
 #endif
 
-#include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::db
