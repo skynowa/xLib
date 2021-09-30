@@ -11,13 +11,12 @@ cmake_paths
 # cmake
 
 [options]
-# libcurl:with_ssl=schannel
-libcurl:with_ssl=openssl
-libcurl:with_crypto_auth=True
-
 # libcurl - Possible options are
 # ['shared', 'fPIC', 'with_ssl', 'with_ldap', 'with_libssh2', 'with_libidn', 'with_librtmp', 'with_libpsl', 'with_largemaxwritesize', 'with_nghttp2', 'with_zlib', 'with_brotli', 'with_zstd', 'with_c_ares', 'with_proxy', 'with_rtsp', 'with_crypto_auth', 'with_ntlm', 'with_ntlm_wb']
 
 # valid 'options.with_ssl':
 # Possible values are
 # ['False', 'darwinssl', 'openssl', 'schannel', 'wolfssl']
+
+libcurl:with_ssl=openssl
+libcurl:with_crypto_auth=True
