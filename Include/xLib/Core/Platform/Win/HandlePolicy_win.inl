@@ -117,7 +117,7 @@ HandlePolicy<T, HandlePolicyType::hvNativeInvalid>::_isValid_impl(const T &a_han
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-HandlePolicy<T, hvNativeInvalid>::_close_impl(T a_handle)
+HandlePolicy<T, HandlePolicyType::hvNativeInvalid>::_close_impl(T a_handle)
 {
     BOOL blRes = ::CloseHandle(a_handle);
     xTEST_DIFF(blRes, FALSE);
