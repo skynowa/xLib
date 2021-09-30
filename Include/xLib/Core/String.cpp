@@ -12,6 +12,7 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
+#include <xLib/Core/Type/Types.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/NativeError.h>
