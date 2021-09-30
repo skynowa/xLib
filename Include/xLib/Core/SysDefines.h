@@ -407,7 +407,17 @@
             xVER_FULL_STR(xSTD_LIBC_GNUSTDC_VER_MAJOR, xSTD_LIBC_GNUSTDC_VER_MINOR, xSTD_LIBC_GNUSTDC_VER_PATCH)
             ///< GNU libstdc++
     #else
-        #warning xLib: unknown standard C library
+		#if defined(_MSC_VER)
+			// Force standard C library
+			#define xSTD_LIBC_MSVCRT           1
+			#define xSTD_LIBC_MSVCRT_VER_MAJOR 0
+			#define xSTD_LIBC_MSVCRT_VER_MINOR 0
+			#define xSTD_LIBC_MSVCRT_VER_PATCH 0
+			#define xSTD_LIBC_MSVCRT_VER       1
+			#define xSTD_LIBC_MSVCRT_VER_STR   "1"
+		#else
+			#warning xLib: unknown standard C library
+		#endif
     #endif
 #elif xENV_UNIX
     #if   defined(__GNU_LIBRARY__) || defined(__GLIBC__)
