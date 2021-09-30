@@ -9,4 +9,4 @@ JOBS_NUM=$(($(nproc) * 2))
 echo "Jobs: $JOBS_NUM"
 
 cd $DIR_BUILD
-cmake --build . --parallel ${JOBS_NUM}
+cmake --build . ## --parallel ${JOBS_NUM}
