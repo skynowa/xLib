@@ -134,10 +134,10 @@ if (OPTION_UNICODE)
     add_definitions(-D_UNICODE=1)
 endif()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC ${XLIB_DEFINITIONS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS} /MP")
 
 if (NOT MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfatal-errors")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wfatal-errors")
 endif()
 #--------------------------------------------------------------------------------------------------
 # libraries
@@ -166,7 +166,7 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # vars
 set(cmCMAKE_VERSION       ${CMAKE_VERSION})
-set(cmXLIB_COMPILER_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_STATIC_LINKER_FLAGS}")
+set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS})
 set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES})
 #--------------------------------------------------------------------------------------------------
 # trace
