@@ -3,6 +3,7 @@ openssl/1.1.1l
 libssh2/1.10.0
 libcurl/7.79.0
 libxml2/2.9.12
+libevent/2.1.12
 libmysqlclient/8.0.25
 
 [generators]
