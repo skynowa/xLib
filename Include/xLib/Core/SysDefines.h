@@ -31,7 +31,7 @@
 //-------------------------------------------------------------------------------------------------
 ///@name C language standard
 ///@{
-#if (__STDC_VERSION__ >= 201703L)
+#if   (__STDC_VERSION__ >= 201703L)
     #define xLANG_C17 1
         ///< C17
 #elif (__STDC_VERSION__ >= 201402L)
@@ -56,7 +56,7 @@
     #define xLANG_C89 1
         ///< ANSI X3.159-1989
 #else
-	#pragma message(__STDC_VERSION__)
+	#pragma message("__STDC_VERSION__:" __STDC_VERSION__)
 
 	#error xLib: unsupported C language standard
 #endif
