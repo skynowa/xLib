@@ -15,7 +15,7 @@ struct timezone
     int_t tz_dsttime;
 };
 
-int
+uint_t
 gettimeofday(
     timeval  *a_tv, ///< minutes W of Greenwich
     timezone *a_tz  ///< type of dst correction
