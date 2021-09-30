@@ -152,7 +152,7 @@ jobs:
 
       # Trace
       - name: Trace - __STDC_VERSION__
-        run: cc -dM -E -x c  /dev/null | grep -F __STDC_VERSION__
+        run: "{{matrix.config.cc}} -dM -E -x c  /dev/null | grep -F __STDC_VERSION__"
         shell: bash
 
       # - name: Trace-3
