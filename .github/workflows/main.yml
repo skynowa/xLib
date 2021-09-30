@@ -89,8 +89,8 @@ jobs:
 
       - name: Conan - Setup
         run: |
-          $CC="${{ matrix.config.cc }}"
-          $CXX="${{ matrix.config.cxx }}"
+          CC="${{ matrix.config.cc }}"
+          CXX="${{ matrix.config.cxx }}"
 
           conan profile new default --detect --force
           ${{ matrix.config.conan_profile_update }}
