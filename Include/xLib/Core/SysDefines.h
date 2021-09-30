@@ -56,13 +56,7 @@
     #define xLANG_C89 1
         ///< ANSI X3.159-1989
 #else
-	#define XSTR(x) STR(x)
-	#define STR(x) #x
-
-
-	#pragma message("__STDC_VERSION__:" XSTR(__STDC_VERSION__))
-
-	#error xLib: unsupported C language standard
+	#error xLib: unsupported C language standard __STDC_VERSION__
 #endif
 ///@}
 //-------------------------------------------------------------------------------------------------
