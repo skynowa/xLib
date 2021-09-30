@@ -1,6 +1,6 @@
 /**
  * \file  IOStream.h
- * \brief ostream interface
+ * \brief ostream interface_
  */
 
 
@@ -9,12 +9,12 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::interface
+namespace xl::interface_
 {
 
 template <typename StreamT>
 class xNO_VTABLE IOStream
-	/// ostream interface
+	/// ostream interface_
 {
 public:
 ///@name ctors, dtor

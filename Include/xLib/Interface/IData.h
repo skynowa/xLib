@@ -9,12 +9,12 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/OStream.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::interface
+namespace xl::interface_
 {
 
 //-------------------------------------------------------------------------------------------------
 class xNO_VTABLE IDataValid
-    /// Data interface
+    /// Data interface_
 {
 public:
 ///@name ctors, dtor
@@ -28,7 +28,7 @@ public:
 };
 //-------------------------------------------------------------------------------------------------
 class xNO_VTABLE IDataClear
-    /// Data interface
+    /// Data interface_
 {
 public:
 ///@name ctors, dtor
@@ -42,7 +42,7 @@ public:
 };
 //-------------------------------------------------------------------------------------------------
 class xNO_VTABLE IDataPrint
-    /// Data interface
+    /// Data interface_
     /// std::tostream_t, core::OStream
 {
 public:
@@ -63,7 +63,7 @@ class xNO_VTABLE IData :
 	public IDataValid,
 	public IDataClear,
 	public IDataPrint
-    /// Data interface
+    /// Data interface_
 {
 public:
 ///@name ctors, dtor

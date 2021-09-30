@@ -1,6 +1,6 @@
 /**
  * \file  ILog.h
- * \brief logging interface
+ * \brief logging interface_
  */
 
 
@@ -12,7 +12,7 @@ namespace xl::log
 {
 
 class xNO_VTABLE ILog
-    /// logging interface
+    /// logging interface_
     /// TODO: https://oopscenities.net/2011/04/30/c-the-curiously-recurring-template-pattern/#more-21
 {
 public:

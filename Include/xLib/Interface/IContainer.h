@@ -8,12 +8,12 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::interface
+namespace xl::interface_
 {
 
 template<typename T>
 class xNO_VTABLE IContainer
-	/// Container interface
+	/// Container interface_
 {
 public:
 	// types

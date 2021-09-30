@@ -1,6 +1,6 @@
 /**
  * \file  ISync.h
- * \brief Sync interface
+ * \brief Sync interface_
  */
 
 
@@ -9,12 +9,12 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::interface
+namespace xl::interface_
 {
 
 template<typename T>
 class xNO_VTABLE ISync
-    /// handle interface
+    /// handle interface_
 {
 public:
 ///@name ctors, dtor

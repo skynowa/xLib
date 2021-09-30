@@ -193,7 +193,7 @@ Path::_isNameValid_impl(
    /**
     * MSDN: Do not end a file or directory name with a space or a period.
     * Although the underlying file system may support such names,
-    * the Windows shell and user interface does not.
+    * the Windows shell and user interface_ does not.
     * However, it is acceptable to specify a period
     * as the first character of a name. For example, ".temp".
     */

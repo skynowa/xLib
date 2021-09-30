@@ -14,7 +14,7 @@ namespace xl::package::curl
 {
 
 struct DataIn :
-	public interface::IDataPrint
+	public interface_::IDataPrint
 	/// Incoming data
 {
 	std::tstring_t url;
@@ -71,7 +71,7 @@ protected:
 xUSING_CONST(DataIn);
 //-------------------------------------------------------------------------------------------------
 struct DataOut :
-	public interface::IDataPrint
+	public interface_::IDataPrint
 	/// Outcoming data
 {
 	std::tstring_t      contentType;

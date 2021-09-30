@@ -52,7 +52,7 @@ struct MySqlConnectionData
 xUSING_CONST(MySqlConnectionData);
 
 class MySqlConnection :
-	public xl::interface::ILastError<uint_t>
+	public xl::interface_::ILastError<uint_t>
     /// MySql connection
 {
 public:
