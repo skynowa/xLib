@@ -8,7 +8,10 @@
 
 #include <winsock2.h>
 #include <ws2tcpip.h>
+
+#define NOMINMAX 1
 #include <windows.h>
+
 #include <tchar.h>
 #include <windowsx.h>
 #include <winuser.h>
