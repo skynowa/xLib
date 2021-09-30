@@ -135,28 +135,28 @@ HandlePolicy<T, HandlePolicyType::hvNativeInvalid>::_close_impl(T &a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 std::size_t
-HandlePolicy<T, hvDll>::_openMax_impl()
+HandlePolicy<T, HandlePolicyType::hvDll>::_openMax_impl()
 {
     return HandlePolicy<native_handle_t, hvNative>::openMax();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, hvDll>::_clone_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvDll>::_clone_impl(const T &a_handle)
 {
     return a_handle;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, hvDll>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvDll>::_isValid_impl(const T &a_handle)
 {
     return (a_handle != null());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-HandlePolicy<T, hvDll>::_close_impl(T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvDll>::_close_impl(T &a_handle)
 {
     BOOL blRv = ::FreeLibrary( a_handle.get() );
     xTEST_DIFF(blRv, FALSE);
@@ -174,28 +174,28 @@ HandlePolicy<T, hvDll>::_close_impl(T &a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 std::size_t
-HandlePolicy<T, hvFindDir>::_openMax_impl()
+HandlePolicy<T, HandlePolicyType::hvFindDir>::_openMax_impl()
 {
     return HandlePolicy<native_handle_t, hvNative>::openMax();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, hvFindDir>::_clone_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvFindDir>::_clone_impl(const T &a_handle)
 {
     return a_handle;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, hvFindDir>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvFindDir>::_isValid_impl(const T &a_handle)
 {
     return (a_handle != null());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-HandlePolicy<T, hvFindDir>::_close_impl(T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvFindDir>::_close_impl(T &a_handle)
 {
     BOOL blRv = ::FindClose(a_handle);
     xTEST_DIFF(blRv, FALSE);
@@ -213,28 +213,28 @@ HandlePolicy<T, hvFindDir>::_close_impl(T &a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 std::size_t
-HandlePolicy<T, hvSocket>::_openMax_impl()
+HandlePolicy<T, HandlePolicyType::hvSocket>::_openMax_impl()
 {
     return HandlePolicy<native_handle_t, hvNative>::openMax();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, hvSocket>::_clone_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvSocket>::_clone_impl(const T &a_handle)
 {
     return a_handle;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, hvSocket>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvSocket>::_isValid_impl(const T &a_handle)
 {
     return (a_handle >= 0);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 void_t
-HandlePolicy<T, hvSocket>::_close_impl(T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvSocket>::_close_impl(T &a_handle)
 {
     int_t iRv = shutdown(a_handle, SD_BOTH);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
