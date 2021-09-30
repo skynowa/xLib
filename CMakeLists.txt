@@ -188,7 +188,7 @@ if (cmOPTION_PROJECT_LIB_STATIC)
     message("    PROJECT_LIB_STATIC: ${PROJECT_LIB_STATIC}")
 
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES} ${CMAKE_EXE_LINKER_FLAGS})
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "lib")
 endif()
 
@@ -196,7 +196,7 @@ if (cmOPTION_PROJECT_LIB_SHARE)
     set(PROJECT_LIB_SHARE ${PROJECT_NAME}_shared)
 
     add_library(${PROJECT_LIB_SHARE} SHARED ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_SHARE} ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_SHARE} ${XLIB_LIBRARIES} ${CMAKE_EXE_LINKER_FLAGS})
     install(TARGETS ${PROJECT_LIB_SHARE} DESTINATION "lib")
 endif()
 
@@ -204,7 +204,7 @@ if (cmOPTION_PROJECT_LIB_MODULE)
     set(PROJECT_LIB_MODULE ${PROJECT_NAME}_module)
 
     add_library(${PROJECT_LIB_MODULE} MODULE ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_MODULE} ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_MODULE} ${XLIB_LIBRARIES} ${CMAKE_EXE_LINKER_FLAGS})
     install(TARGETS ${PROJECT_LIB_MODULE} DESTINATION "lib")
 endif()
 #--------------------------------------------------------------------------------------------------
