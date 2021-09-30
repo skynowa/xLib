@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <xLib/Core/Core.h>
+
 #if xENV_WIN
 	#include <mysql.h>
 	#include <errmsg.h>
@@ -16,7 +18,6 @@
 	#include <mysql/mysqld_error.h>
 #endif
 
-#include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
 #include <xLib/Interface/ILastError.h>
 //-------------------------------------------------------------------------------------------------
