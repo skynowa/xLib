@@ -12,7 +12,6 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
-#include <xLib/Core/Type/Types.h>
 #include <xLib/Test/Test.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/NativeError.h>
@@ -799,7 +798,7 @@ StringCI::find(
     xCHECK_RET(a_target.empty(),                                 0U);
 
     auto cit = std::search(
-        a_str.cbegin() + static_cast<::ssize_t>(a_pos), a_str.cend(),
+        a_str.cbegin() + static_cast<std::ssize_t>(a_pos), a_str.cend(),
         a_target.cbegin(), a_target.cend(), CompareCI(a_locale));
     xCHECK_RET(cit != a_str.cend(), static_cast<std::size_t >(cit - a_str.cbegin()));
 
