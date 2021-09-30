@@ -135,6 +135,10 @@ if (OPTION_UNICODE)
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC ${XLIB_DEFINITIONS}")
+
+if (NOT MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfatal-errors")
+endif()
 #--------------------------------------------------------------------------------------------------
 # libraries
 set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS})
@@ -162,7 +166,7 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # vars
 set(cmCMAKE_VERSION       ${CMAKE_VERSION})
-set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS} -Wfatal-errors)
+set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS})
 set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES})
 #--------------------------------------------------------------------------------------------------
 # trace
