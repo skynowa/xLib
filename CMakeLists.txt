@@ -166,7 +166,7 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # vars
 set(cmCMAKE_VERSION       ${CMAKE_VERSION})
-set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS} ${CMAKE_STATIC_LINKER_FLAGS})
+set(cmXLIB_COMPILER_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_STATIC_LINKER_FLAGS}")
 set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES})
 #--------------------------------------------------------------------------------------------------
 # trace
