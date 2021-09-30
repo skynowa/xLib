@@ -40,7 +40,7 @@ jobs:
         #   }
 
         # - {
-        #     name: "Windows-2019 (GCC)",
+        #     name: "Windows-2019 (MinGW)",
         #     os: windows-2019,
         #     build_type: "Debug",
         #     compiler: "g++",
@@ -55,7 +55,7 @@ jobs:
             # compiler: "cl",
             cc: "cl",
             cxx: "cl",
-            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
           }
 
         # - {
@@ -127,6 +127,7 @@ jobs:
 
       # Libs
       - name: Libs (libx11-xcb-dev) - Install
+        if: matrix.config.cxx != 'cl'
         run: sudo apt-get install -y --no-install-recommends libx11-xcb-dev
         shell: bash
 
