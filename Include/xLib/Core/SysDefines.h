@@ -31,7 +31,10 @@
 //-------------------------------------------------------------------------------------------------
 ///@name C language standard
 ///@{
-#if   (__STDC_VERSION__ >= 201703L)
+#if   (__STDC_VERSION__ >= 202002L)
+    #define xLANG_C20 1
+        ///< C20
+#elif (__STDC_VERSION__ >= 201703L)
     #define xLANG_C17 1
         ///< C17
 #elif (__STDC_VERSION__ >= 201402L)
@@ -62,7 +65,11 @@
 //-------------------------------------------------------------------------------------------------
 ///@name C++ language standard
 ///@{
-#if (__cplusplus >= 201703L)
+#if   (__cplusplus >= 202002L)
+	// TODO: [skynowa] xLANG_CPP20 (Android)
+	#define xLANG_CPP20 1
+		///< ISO/IEC 14882:2020
+#elif (__cplusplus >= 201703L)
 	// TODO: [skynowa] xLANG_CPP17 (Android)
 	#define xLANG_CPP17 1
 		///< ISO/IEC 14882:2011
