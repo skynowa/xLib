@@ -56,6 +56,8 @@
     #define xLANG_C89 1
         ///< ANSI X3.159-1989
 #else
+	#pragma message(__STDC_VERSION__)
+
 	#error xLib: unsupported C language standard
 #endif
 ///@}
