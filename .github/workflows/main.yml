@@ -89,6 +89,9 @@ jobs:
 
       - name: Conan - Setup
         run: |
+          $env:CC="${{ matrix.config.cc }}"
+          $env:CXX="${{ matrix.config.cxx }}"
+
           conan profile new default --detect --force
           ${{ matrix.config.conan_profile_update }}
         shell: bash
