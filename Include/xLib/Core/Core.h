@@ -50,7 +50,7 @@ namespace crypt {}
 namespace db {}
 namespace debug {}
 namespace fs {}
-namespace interface {}
+namespace interface_ {}
 namespace algos {};
 namespace ui {}
 namespace log {}
@@ -66,7 +66,7 @@ using namespace crypt;
 using namespace db;
 using namespace debug;
 using namespace fs;
-using namespace interface;
+using namespace interface_;
 using namespace algos;
 using namespace ui;
 using namespace log;
