@@ -1,6 +1,6 @@
 /**
  * \file  IHandle.h
- * \brief handle interface
+ * \brief handle interface_
  */
 
 
@@ -9,12 +9,12 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::interface
+namespace xl::interface_
 {
 
 template<typename T>
 class xNO_VTABLE IHandle
-    /// handle interface
+    /// handle interface_
 {
 public:
 ///@name operators

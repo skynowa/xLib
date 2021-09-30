@@ -22,7 +22,7 @@ namespace xl::package
 class XmlNode;
 
 class XmlDoc :
-	public xl::interface::ILastError<int_t>
+	public xl::interface_::ILastError<int_t>
 {
 public:
 ///@name ctors, dtor
