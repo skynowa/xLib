@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# \file  msvc_2016.sh
+# \file  msvc_2019.sh
 # \brief CMake configure project
 #
 

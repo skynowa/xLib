@@ -161,7 +161,7 @@ jobs:
 
       - name: xLib - Configure
         # run: cd "${{github.workspace}}/xLib/Build" && ./eclipse.sh
-        run: cd "${{github.workspace}}/xLib/Build" && ./msvc_2016.sh
+        run: cd "${{github.workspace}}/xLib/Build" && ./msvc_2019.sh
         shell: bash
 
       - name: xLib - Build
