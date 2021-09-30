@@ -24,7 +24,7 @@
 #endif
 
 #if xENV_WIN
-    #include "Platform/Win/Functions_win.inl"
+    #include <xLib/Core/Platform/Win/Functions_win.inl>
 #endif
 
 
