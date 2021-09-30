@@ -134,9 +134,11 @@ if (OPTION_UNICODE)
     add_definitions(-D_UNICODE=1)
 endif()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS} /MP")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 
-if (NOT MSVC)
+if (MSVC)
+    set(CMAKE_EXE_LINKER_FLAGS_STRING "${CMAKE_EXE_LINKER_FLAGS}")
+else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wfatal-errors")
 endif()
 #--------------------------------------------------------------------------------------------------
