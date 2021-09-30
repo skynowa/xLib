@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# \file  eclipse.sh
+# \file  msvc_2016.sh
 # \brief CMake configure project
 #
 
