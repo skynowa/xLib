@@ -59,8 +59,8 @@
     #define xLANG_C89 1
         ///< ANSI X3.159-1989
 #else
-	// TODO: review
 	#if defined(_MSC_VER)
+		// Force lang standart
 		#define xLANG_C17 1
 	#else
 		#error xLib: unsupported C language standard
