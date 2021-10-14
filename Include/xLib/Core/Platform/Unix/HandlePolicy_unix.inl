@@ -172,7 +172,7 @@ HandlePolicy<T, HandlePolicyType::hvFindDir>::_openMax_impl()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, HandlePolicyType::hvFindDir>::_clone_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvFindDir>::_clone_impl(const T a_handle)
 {
     return a_handle;
 }
@@ -211,14 +211,14 @@ HandlePolicy<T, HandlePolicyType::hvSocket>::_openMax_impl()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, HandlePolicyType::hvSocket>::_clone_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvSocket>::_clone_impl(const T a_handle)
 {
     return a_handle;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, HandlePolicyType::hvSocket>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvSocket>::_isValid_impl(const T a_handle)
 {
     return (a_handle >= 0);
 }
