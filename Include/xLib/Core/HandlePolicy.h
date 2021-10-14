@@ -52,14 +52,14 @@ struct HandlePolicy;
     { \
         static T           null(); \
         static std::size_t openMax(); \
-        static T           clone(const T &handle); \
-        static bool_t      isValid(const T &handle); \
+        static T           clone(const T handle); \
+        static bool_t      isValid(const T handle); \
         static void_t      close(T &a_handle); \
     \
     xPLATFORM_IMPL: \
         static std::size_t _openMax_impl(); \
-        static T           _clone_impl(const T &handle); \
-        static bool_t      _isValid_impl(const T &handle); \
+        static T           _clone_impl(const T handle); \
+        static bool_t      _isValid_impl(const T handle); \
         static void_t      _close_impl(T &handle); \
     }
 
@@ -80,14 +80,14 @@ struct HandlePolicy;
     \
     template<typename T> \
     T \
-    HandlePolicy<T, type>::clone(const T &a_handle) \
+    HandlePolicy<T, type>::clone(const T a_handle) \
     { \
         return _clone_impl(a_handle); \
     } \
     \
     template<typename T> \
     bool_t \
-    HandlePolicy<T, type>::isValid(const T &a_handle) \
+    HandlePolicy<T, type>::isValid(const T a_handle) \
     { \
         return _isValid_impl(a_handle); \
     } \
