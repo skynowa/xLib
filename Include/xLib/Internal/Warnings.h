@@ -6,6 +6,8 @@
 
 #pragma once
 
+// TODO: warnings - rm
+
 #if   xCOMPILER_MINGW
     // off
 #elif xCOMPILER_MS
