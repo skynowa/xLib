@@ -22,7 +22,7 @@ public:
     using handle_t = pthread_cond_t;   ///< handle
 #endif
 
-    enum class ObjectState
+    enum class ObjectState : ulong_t
         /// current object state
     {
 	#if   xENV_WIN
