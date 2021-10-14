@@ -42,7 +42,7 @@ HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T a_handle)
 #endif
     native_handle_t nativeHandle = HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::clone((T)handle);
 
-    return (T)( xTFDOPEN((T)nativeHandle, xT("r+")) );  // TODO: [skynowa] clone - open mode
+    return (T)( xTFDOPEN((int_t)nativeHandle, xT("r+")) );  // TODO: [skynowa] clone - open mode
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
