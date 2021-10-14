@@ -40,7 +40,7 @@ HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T a_handle)
 	Reason: cannot convert from 'xl::int_t' to 'const T'
 	Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
 #endif
-    native_handle_t nativeHandle = HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::clone(reinterpret_cast<const T>(handle));
+    native_handle_t nativeHandle = HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::clone(reinterpret_cast<T>(handle));
 
     return static_cast<T>( xTFDOPEN(nativeHandle, xT("r+")) );  // TODO: [skynowa] clone - open mode
 }
