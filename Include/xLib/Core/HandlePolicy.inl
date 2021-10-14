@@ -35,6 +35,11 @@ HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T &a_handle)
     int_t handle = /*::*/fileno(a_handle);
     xTEST_DIFF(handle, - 1);
 
+#if 0
+	error C2664: 'T xl::core::HandlePolicy<T,xl::core::HandlePolicyType::hvNative>::clone(const T &)': cannot convert argument 1 from 'xl::int_t' to 'const T &'
+	Reason: cannot convert from 'xl::int_t' to 'const T'
+	Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
+#endif
     native_handle_t nativeHandle = HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::clone(handle);
 
     return static_cast<T>( xTFDOPEN(nativeHandle, xT("r+")) );  // TODO: [skynowa] clone - open mode
