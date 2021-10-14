@@ -17,7 +17,7 @@ class Event
 {
 public:
 #if   xENV_WIN
-    using handle_t = Handle;           ///< handle
+    using handle_t = HANDLE;           ///< handle
 #elif xENV_UNIX
     using handle_t = pthread_cond_t;   ///< handle
 #endif
