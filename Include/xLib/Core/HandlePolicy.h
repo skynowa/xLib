@@ -52,8 +52,8 @@ struct HandlePolicy;
     { \
         static T           null(); \
         static std::size_t openMax(); \
-        static T           clone(const T &a_handle); \
-        static bool_t      isValid(const T &a_handle); \
+        static T           clone(const T &handle); \
+        static bool_t      isValid(const T &handle); \
         static void_t      close(T &a_handle); \
     \
     xPLATFORM_IMPL: \
@@ -99,6 +99,10 @@ struct HandlePolicy;
         _close_impl(a_handle); \
     }
 //-------------------------------------------------------------------------------------------------
+#if 0
+	see declaration of 'xl::core::HandlePolicy<xl::native_handle_t,xl::core::HandlePolicyType::hvNative>::clone'
+#endif
+
 xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNative);
 xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNativeInvalid);
 xHANDLE_POLICY_FACTORY(HandlePolicyType::hvDll);
