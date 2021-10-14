@@ -33,7 +33,7 @@ HandlePolicy<T, HandlePolicyType::hvNative>::_openMax_impl()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, HandlePolicyType::hvNative>::_clone_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvNative>::_clone_impl(const T a_handle)
 {
     T hRv = null();
 
@@ -46,7 +46,7 @@ HandlePolicy<T, HandlePolicyType::hvNative>::_clone_impl(const T &a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, HandlePolicyType::hvNative>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvNative>::_isValid_impl(const T a_handle)
 {
     return (a_handle != null());
 }

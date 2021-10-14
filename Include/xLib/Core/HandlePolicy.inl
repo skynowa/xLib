@@ -30,7 +30,7 @@ HandlePolicy<T, HandlePolicyType::hvStdFile>::_openMax_impl()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T a_handle)
 {
     int_t handle = /*::*/fileno(a_handle);
     xTEST_DIFF(handle, - 1);
@@ -40,16 +40,14 @@ HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T &a_handle)
 	Reason: cannot convert from 'xl::int_t' to 'const T'
 	Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
 #endif
-    native_handle_t nativeHandle;
-
-	HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::clone(handle);
+    native_handle_t nativeHandle = HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::clone(handle);
 
     return static_cast<T>( xTFDOPEN(nativeHandle, xT("r+")) );  // TODO: [skynowa] clone - open mode
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, HandlePolicyType::hvStdFile>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvStdFile>::_isValid_impl(const T a_handle)
 {
     return (a_handle != null());
 }
@@ -95,14 +93,14 @@ HandlePolicy<T, HandlePolicyType::hvMySqlConn>::_openMax_impl()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, HandlePolicyType::hvMySqlConn>::_clone_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvMySqlConn>::_clone_impl(const T a_handle)
 {
     return a_handle;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, HandlePolicyType::hvMySqlConn>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvMySqlConn>::_isValid_impl(const T a_handle)
 {
     return (a_handle != null());
 }
@@ -135,14 +133,14 @@ HandlePolicy<T, HandlePolicyType::hvMySqlResult>::_openMax_impl()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, HandlePolicyType::hvMySqlResult>::_clone_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvMySqlResult>::_clone_impl(const T a_handle)
 {
     return a_handle;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, HandlePolicyType::hvMySqlResult>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvMySqlResult>::_isValid_impl(const T a_handle)
 {
     return (a_handle != null());
 }
@@ -173,14 +171,14 @@ HandlePolicy<T, HandlePolicyType::hvCurl>::_openMax_impl()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, HandlePolicyType::hvCurl>::_clone_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvCurl>::_clone_impl(const T a_handle)
 {
     return ::curl_easy_duphandle(a_handle);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, HandlePolicyType::hvCurl>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvCurl>::_isValid_impl(const T a_handle)
 {
     return (a_handle != null());
 }
@@ -215,14 +213,14 @@ HandlePolicy<T, HandlePolicyType::hvXXXXXXXXXX>::_openMax_impl()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, HandlePolicyType::hvXXXXXXXXXX>::_clone_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvXXXXXXXXXX>::_clone_impl(const T a_handle)
 {
     return a_handle;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-HandlePolicy<T, HandlePolicyType::hvXXXXXXXXXX>::_isValid_impl(const T &a_handle)
+HandlePolicy<T, HandlePolicyType::hvXXXXXXXXXX>::_isValid_impl(const T a_handle)
 {
     return (a_handle != null());
 }
