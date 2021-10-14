@@ -17,7 +17,7 @@ class IpcSemaphore
 {
 public:
 #if   xENV_WIN
-    using handle_t = Handle;
+    using handle_t = HANDLE;
 #elif xENV_UNIX
     using handle_t = sem_t *;
 #endif
