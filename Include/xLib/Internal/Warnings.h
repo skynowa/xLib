@@ -17,6 +17,7 @@
     #pragma warning(disable: 4101) // 'e' : unreferenced local variable
 	#pragma warning(disable: 4312) // 'type cast': conversion from 'xl::int_t' to 'T' of greater size
 	#pragma warning(disable: 4311) // 'type cast': pointer truncation from 'xl::native_handle_t' to 'xl::int_t'
+	#pragma warning(disable: 4302) // 'type cast': truncation from 'xl::native_handle_t' to 'xl::int_t'
 #elif xCOMPILER_CLANG
     // off
 #elif xCOMPILER_GNUC
