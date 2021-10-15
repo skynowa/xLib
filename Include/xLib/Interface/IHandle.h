@@ -14,7 +14,7 @@ namespace xl::interface_
 
 template<typename T>
 class xNO_VTABLE IHandle
-    /// handle interface_
+    /// handle interface
 {
 public:
 ///@name operators
