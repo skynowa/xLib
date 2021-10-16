@@ -126,6 +126,13 @@ namespace xl
     xUSING_CONST(socket_length_t);
         ///< socket address length
 
+    // sa_family_t
+#if xENV_WIN
+    using sa_family_t = u_short;
+#endif
+    xUSING_CONST(sa_family_t);
+        ///< protocol's address family
+
     // find_dir_handle_t
 #if   xENV_WIN
     using find_dir_handle_t = HANDLE;

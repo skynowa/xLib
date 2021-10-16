@@ -153,7 +153,7 @@ ISocket::sendAll(
     }
 
     for ( ; ; ) {        /* uiLeftSize > 0 */
-        ssize_t iRv = send(&a_buff.at(0) + currPos, buffOutSize, a_flags);
+        std::ssize_t iRv = send(&a_buff.at(0) + currPos, buffOutSize, a_flags);
         xCHECK_DO(iRv == xSOCKET_ERROR, break);
         xCHECK_DO(iRv == 0,             break);
 
@@ -205,7 +205,7 @@ ISocket::recvAll(
         xCHECK_DO(arg == 0,       break);
         xCHECK_DO(buffSize < arg, arg = buffSize);
 
-        ssize_t uiRv = ::recv(_handle.get(), (char *)&buff[0], arg, 0);
+        std::ssize_t uiRv = ::recv(_handle.get(), (char *)&buff[0], arg, 0);
         xCHECK_DO(uiRv <= 0, break);
 
         sRv.append(buff, static_cast<std::size_t>(uiRv));
@@ -226,7 +226,7 @@ ISocket::recvAll(
 
     // read from socket by blocks, write to string
     for ( ; ; ) {
-        ssize_t iRv = receive(&in.at(0), inSize, a_flags);
+        std::ssize_t iRv = receive(&in.at(0), inSize, a_flags);
         xCHECK_DO(iRv == xSOCKET_ERROR, break);
         xCHECK_DO(iRv == 0,             break);
 
@@ -248,9 +248,9 @@ ISocket::sendBytes(
 {
     // TODO: [skynowa] ISocket::sendBytes()
 
-    int_t   iRv           = 0;
-    timeval sendTimeout   = {0, 0};
-    ssize_t messageLength = a_messageLength;
+    int_t   iRv                = 0;
+    timeval sendTimeout        = {0, 0};
+    std::ssize_t messageLength = a_messageLength;
 
     // setting the timeout
     sendTimeout.tv_sec  = 0;
@@ -270,7 +270,7 @@ ISocket::sendBytes(
         xCHECK_RET(iRv < 0, nativeError());
 
         // send a few bytes
-        ssize_t sendStatus = ::send(_handle.get(), a_buff, static_cast<std::size_t>(messageLength), 0);
+        std::ssize_t sendStatus = ::send(_handle.get(), a_buff, static_cast<std::size_t>(messageLength), 0);
 
         // An error occurred when sending data
         xCHECK_RET(sendStatus < 0, nativeError());
@@ -289,9 +289,9 @@ ISocket::receiveBytes(
     std::ssize_t &a_stillToReceive
 )
 {
-    int_t   iRv            = 0;
-    timeval receiveTimeout = {0, 0};
-    ssize_t stillToReceive = a_stillToReceive;
+    int_t   iRv                 = 0;
+    timeval receiveTimeout      = {0, 0};
+    std::ssize_t stillToReceive = a_stillToReceive;
 
     // Setting the timeout
     receiveTimeout.tv_sec  = 0;
@@ -311,7 +311,7 @@ ISocket::receiveBytes(
         xCHECK_RET(iRv < 0, nativeError());
 
         // receive a few bytes
-        ssize_t receiveStatus = ::recv(_handle.get(), a_buff, static_cast<std::size_t>(stillToReceive), 0);
+        std::ssize_t receiveStatus = ::recv(_handle.get(), a_buff, static_cast<std::size_t>(stillToReceive), 0);
 
         // An error occurred when the function recv ()
         xCHECK_RET(receiveStatus < 0, nativeError());

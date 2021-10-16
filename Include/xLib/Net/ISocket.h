@@ -264,12 +264,12 @@ public:
 
     // void_t *, std::tstring_t, std::ustring_t
 
-    ssize_t        send(cptr_ctchar_t buff, std::csize_t &buffSize, cint_t &flags);
+    std::ssize_t   send(cptr_ctchar_t buff, std::csize_t &buffSize, cint_t &flags);
         ///< send data
     void_t         sendAll(std::ctstring_t &buff, cint_t &flags);
         ///< send data by blocks
 
-    ssize_t        receive(tchar_t *buff,  std::csize_t &buffSize, cint_t &flags);
+    std::ssize_t   receive(tchar_t *buff,  std::csize_t &buffSize, cint_t &flags);
         ///< receive data
     std::tstring_t recvAll(cint_t &flags);
         ///< receive data
@@ -315,12 +315,11 @@ protected:
 
 xPLATFORM_IMPL:
     void_t         _close_impl();
-    ssize_t        _send_impl(cptr_ctchar_t buff, std::csize_t &buffSize, cint_t &flags)
-                      ;
-    ssize_t        _receive_impl(cptr_ctchar_t buff,  std::csize_t &buffSize, cint_t &flags)
-                      ;
+    std::ssize_t   _send_impl(cptr_ctchar_t buff, std::csize_t &buffSize, cint_t &flags);
+    std::ssize_t   _receive_impl(cptr_ctchar_t buff, std::csize_t &buffSize, cint_t &flags);
     void_t         _peerName_impl(std::tstring_t *peerAddr, ushort_t *peerPort);
     void_t         _socketName_impl(std::tstring_t *socketAddr, ushort_t *socketPort);
+
     static
     int_t          _nativeError_impl();
 };
