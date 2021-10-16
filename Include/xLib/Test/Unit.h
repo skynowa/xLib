@@ -40,8 +40,8 @@ public:
     short_t             m_siRv {};
     ushort_t            m_usiRv {};
     uint_t              m_uiRv {};
-    size_t              m_stRv {};
-    ssize_t             m_sstRv {};
+    std::size_t         m_stRv {};
+    std::ssize_t        m_sstRv {};
     long_t              m_liRv {};
     ulong_t             m_ulRv {};
     longlong_t          m_llRv {};
