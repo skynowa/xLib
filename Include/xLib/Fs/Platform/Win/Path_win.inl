@@ -241,9 +241,7 @@ Path::_isNameValid_impl(
             return Char(a_ch).isControl();
         };
 
-        std::tstring_t::const_iterator cit;
-
-        cit = std::find_if(sRv.cbegin(), sRv.cend(), isControl);
+        auto cit = std::find_if(sRv.cbegin(), sRv.cend(), isControl);
         if (cit != sRv.cend()) {
             xCHECK_RET(a_fileNameValid == nullptr, false);
 
@@ -262,7 +260,6 @@ Path::_isNameValid_impl(
                 return true;
             }
         }
-
     }
 
    /**
