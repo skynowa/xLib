@@ -64,9 +64,8 @@ User::_loginName_impl() const
         constexpr int_t buffSize       {xUSER_NAME_MAX + 1};
         char            buff[buffSize] {};
 
-        int_t iRv = ::getlogin_r(buff, buffSize);
-        if (iRv == 0) {
-            sRv.assign(buff);
+        sRv = _name_impl();
+        if ( !sRv.empty() ) {
             return sRv;
         }
     }
@@ -95,8 +94,8 @@ User::_name_impl() const
 {
     std::tstring_t sRv;
 
-    constexpr DWORD buffSize                 {xUSER_NAME_MAX};
-    tchar_t         buff[xUSER_NAME_MAX + 1] {};
+    DWORD   buffSize                 {xUSER_NAME_MAX};
+    tchar_t buff[xUSER_NAME_MAX + 1] {};
 
     BOOL blRv = ::GetUserName(&buff[0], &buffSize);
     xTEST_DIFF(blRv, FALSE);

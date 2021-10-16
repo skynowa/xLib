@@ -26,6 +26,7 @@
 #include <BaseTsd.h>    // SIZE_T, SSIZE_T
 #include <Wincrypt.h>
 #include <shlobj.h>
+#include <sddl.h>   // ConvertSidToStringSidW()
 
 #if   xCOMPILER_MINGW
     #include <winternl.h>
