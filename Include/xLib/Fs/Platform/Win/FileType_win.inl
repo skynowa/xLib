@@ -16,9 +16,7 @@ namespace xl::fs
 FileType::types_t
 FileType::_get_impl() const
 {
-    types_t ftRv = Type::Invalid;
-
-    ftRv = ::GetFileAttributes(filePath().c_str());
+    types_t ftRv = ::GetFileAttributes(filePath().c_str());
     xTEST_NA(ftRv);
 
     return ftRv;
@@ -36,14 +34,14 @@ FileType::_set_impl(
 void_t
 FileType::_clear_impl() const
 {
-    set(Normal);
+    set( static_cast<ctypes_t>(Type::RegularFile) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
 FileType::_isExecutable_impl() const
 {
-	DWORD binaryType {-1};
+	DWORD binaryType {};
 	BOOL blRv = ::GetBinaryType(filePath().c_str(), &binaryType);
 	xUNUSED(binaryType);
 	if (blRv == FALSE) {

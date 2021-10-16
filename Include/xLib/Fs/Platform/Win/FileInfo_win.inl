@@ -28,7 +28,7 @@ FileInfo::_time_impl(
     HandleNativeInvalid file;
 
     file = ::CreateFile(_filePath.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING,
-        FileType::Normal, nullptr);
+        FileType::RegularFile, nullptr);
     xTEST_EQ(file.get().isValid(), true);
 
     BOOL blRv = ::GetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
