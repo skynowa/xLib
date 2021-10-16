@@ -19,7 +19,7 @@ class EnumArray :
 public:
            EnumArray<T, N>(const std::array<T, N> &values);
 
-    bool_t isValid(const ::ssize_t value) const;
+    bool_t isValid(const std::ssize_t value) const;
 };
 
 } // namespace
