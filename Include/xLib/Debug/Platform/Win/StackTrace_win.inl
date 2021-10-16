@@ -54,7 +54,7 @@ StackTrace::_get_impl(
     symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
     symbol->MaxNameLen   = 255UL;
 
-    for (ushort_t i = _data._skipFramesNum; i < framesNum; ++ i) {
+    for (ushort_t i = _data.skipFramesNum; i < framesNum; ++ i) {
         std::tstring_t modulePath;
         std::tstring_t filePath;
         std::tstring_t fileLine;
@@ -100,19 +100,19 @@ StackTrace::_get_impl(
                 byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(nullptr));
                 functionName = dataNotFound;
             } else {
-                byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(symbol->Address));
+                byteOffset   = Format::str(xT("{}"), reinterpret_cast<void_t *>(symbol->Address));
                 functionName = std::tstring_t(symbol->Name);
             }
         }
 
         // swap file paths
-        if (_isWrapFilePaths) {
+        if (_data.isWrapFilePaths) {
             modulePath = Path(modulePath).fileName();
             filePath   = Path(filePath).fileName();
         }
 
         // disable function params
-        if (_isFuncParamsDisable) {
+        if (_data.isFuncParamsDisable) {
             std::csize_t pos1 = functionName.find(xT("("));
             std::csize_t pos2 = functionName.find(xT(")"));
 
@@ -138,7 +138,7 @@ StackTrace::_get_impl(
         }
     } // for (framesNum)
 
-    xARRAY_DELETE(symbol);
+    delete[] symbol;    // TODO: delete - review
 
     (void_t)::SymCleanup(process); process = nullptr;
 #endif
