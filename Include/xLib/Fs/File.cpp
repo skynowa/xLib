@@ -67,7 +67,7 @@ File::tryRemove(
     xTEST_NA(a_timeoutMsec);
 
     std::csize_t attemptsMax  {100};  // MAGIC_NUMBER: attemptsMax
-    std::csize_t attemptsReal = std::min(a_attempts, attemptsMax);
+    std::csize_t attemptsReal = (std::min)(a_attempts, attemptsMax);
 
     for (size_t i = 0; i < attemptsReal; ++ i) {
         xTRY {
@@ -135,7 +135,11 @@ File::wipe(
     std::tstring_t randFilePath;
     {
         std::tstring_t randFileName = String::cast( DateTime().current().toMsec() );
-        std::random_shuffle(randFileName.begin(), randFileName.end());
+
+        std::random_device randDevice;
+        std::mt19937       gen( randDevice() );
+
+        std::shuffle(randFileName.begin(), randFileName.end(), gen);
 
         randFilePath = Path(_filePath).dir() + Const::slash() + randFileName;
 
