@@ -15,7 +15,11 @@ class Signal
     ///< signal
 {
 public:
-    using on_info_t = void_t (*) (int_t sig, siginfo_t *siginfo, void_t *context);
+#if   xENV_WIN
+    using on_info_t = void_t(*) (int_t sig);
+#elif xENV_UNIX
+    using on_info_t = void_t(*) (int_t sig, siginfo_t* siginfo, void_t* context);
+#endif
         ///< signal info handler type
     using on_exit_t = void_t (*)();
         ///< exit handler type

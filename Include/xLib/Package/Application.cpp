@@ -40,7 +40,32 @@ public:
         Application::exitFailure();
     }
 
+#if xENV_WIN
     // TODO: [win] https://stackoverflow.com/questions/32389905/sigaction-and-porting-linux-code-to-windows
+    static void_t
+    onInfo(int_t a_signal)
+    {
+        xTRACE_FUNC;
+
+        Trace() << Signal::decription(0) << "\n";
+
+        FileLog log(FileLog::LogSizes::lsDefaultMb);
+        log.setFilePath(xT("crash.log"));
+
+        std::ctstring_t msg = Format::str(
+            xT("Crash info:\n\n")
+            xT("Signal:\n{}\n\n")
+            xT("StackTrace:\n{}"),
+            a_signal,
+            StackTrace().str());
+
+        log.write(xT("%s\n"), msg.c_str());
+
+        std::tcout << StackTrace().str() << std::endl;
+
+        Application::exitFailure();
+    }
+#elif xENV_UNIX
     static void_t
     onInfo(int_t a_signal, siginfo_t *a_info, void_t *a_context)
     {
@@ -68,6 +93,7 @@ public:
 
         Application::exitFailure();
     }
+#endif
 
     static void_t
     onExit()
