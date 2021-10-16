@@ -49,11 +49,11 @@ xPLATFORM_IMPL:
 
 private:
 #if   xENV_WIN
-    uid_t _getuid() const;
-    uid_t _geteuid() const;
-
-    BOOL  _getUserSID(HANDLE token, PSID *sid) const;
-    uid_t _getUID(HANDLE token) const;
+     uint_t _getuid() const;
+     uint_t _geteuid() const;
+ 
+     BOOL   _getUserSID(HANDLE token, PSID *sid) const;
+     uint_t _getUID(HANDLE token) const;
 #elif xENV_UNIX
     void_t _passwd(std::string *pw_name, std::string *pw_passwd, uid_t *pw_uid, gid_t *pw_gid,
 				std::string *pw_dir, std::string *pw_shell) const;
