@@ -16,7 +16,7 @@ namespace xl::fs
 Volume::Type
 Volume::_type_impl() const
 {
-    std::ctstring_t rootPath = Path( path() ).slashAppend();
+    std::ctstring_t rootPath = Path( path() ).slashAppend().str();
 
     UINT uiRv = ::GetDriveType( rootPath.c_str() );
     xTEST_NA(uiRv);
@@ -33,7 +33,7 @@ Volume::_fileSystem_impl() const
 
     NativeError::reset();
 
-    BOOL blRv = ::GetVolumeInformation(Path( path() ).slashAppend().c_str(), nullptr, 0UL, nullptr,
+    BOOL blRv = ::GetVolumeInformation(Path( path() ).slashAppend().str(), nullptr, 0UL, nullptr,
         nullptr, nullptr, &fileSystemName[0], static_cast<DWORD>( xARRAY_SIZE(fileSystemName) ));
     xTEST_DIFF(blRv != FALSE && NativeError::isSuccess(), false);
 
@@ -51,7 +51,7 @@ Volume::_label_impl() const
 
     NativeError::reset();
 
-    BOOL blRv = ::GetVolumeInformation(Path( path() ).slashAppend().c_str(), &volumeName[0],
+    BOOL blRv = ::GetVolumeInformation(Path( path() ).slashAppend().str(), &volumeName[0],
         static_cast<DWORD>( xARRAY_SIZE(volumeName) ), nullptr, nullptr, nullptr, nullptr, 0UL);
     xTEST_DIFF(blRv != FALSE && NativeError::isSuccess(), false);
 
