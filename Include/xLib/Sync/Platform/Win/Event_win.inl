@@ -28,30 +28,30 @@ Event::_handle_impl() const
 void_t
 Event::_create_impl()
 {
-    xTEST_EQ(_event.isValid(), false);
+    xTEST_EQ(_event, xNATIVE_HANDLE_NULL);
 
     HANDLE hRv = ::CreateEvent(nullptr, ! _isAutoReset, _initState, nullptr);
     xTEST_DIFF(hRv, static_cast<HANDLE>(nullptr));
 
-    _event.set(hRv);
+    _event = hRv;
     // n/a
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Event::_set_impl()
 {
-    xTEST_EQ(_event.isValid(), true);
+    xTEST_DIFF(_event, xNATIVE_HANDLE_NULL);
 
-    BOOL blRv = ::SetEvent(handle().get());
+    BOOL blRv = ::SetEvent(_event);
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Event::_reset_impl()
 {
-    xTEST_EQ(_event.isValid(), true);
+    xTEST_DIFF(_event, xNATIVE_HANDLE_NULL);
 
-    BOOL blRv = ::ResetEvent(handle().get());
+    BOOL blRv = ::ResetEvent(_event);
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
@@ -60,11 +60,11 @@ Event::_wait_impl(
     culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
-    ObjectState osRv = osFailed;
+    xTEST_DIFF(_event, xNATIVE_HANDLE_NULL);
 
-    xTEST_EQ(_event.isValid(), true);
+    ObjectState osRv = ObjectState::osFailed;
 
-    osRv = static_cast<ObjectState>( ::WaitForSingleObject(handle().get(), a_timeoutMs) );
+    osRv = static_cast<ObjectState>( ::WaitForSingleObject(_event, a_timeoutMs) );
 
     return osRv;
 }
@@ -74,10 +74,10 @@ Event::_isSignaled_impl() const
 {
     bool_t bRv {};
 
-    DWORD dwRv = ::WaitForSingleObject(handle().get(), 0UL);
+    DWORD dwRv = ::WaitForSingleObject(_event, 0UL);
     // n/a
 
-    bRv = (_event.isValid() && dwRv == osSignaled);
+    bRv = (_event != xNATIVE_HANDLE_NULL && dwRv == static_cast<DWORD>(ObjectState::osSignaled));
 
     return bRv;
 }
