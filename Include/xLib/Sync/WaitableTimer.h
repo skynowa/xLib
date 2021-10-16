@@ -37,7 +37,7 @@ public:
     void_t   wait(culong_t &timeoutMsec) const;
 
 private:
-    Handle _handle {};
+    HandleNative _handle;
 
 xPLATFORM_IMPL:
 
