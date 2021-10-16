@@ -120,30 +120,6 @@ Path::_volume_impl() const
     return _filePath.substr(0, driveDelimPos + Const::colon().size());
 }
 //-------------------------------------------------------------------------------------------------
-namespace
-{
-
-extern "C" IMAGE_DOS_HEADER __ImageBase;
-
-}
-
-/* static */
-std::tstring_t
-Path::_dll_impl()
-{
-    std::tstring_t sRv;
-    sRv.resize( maxSize() );
-
-    HMODULE procAddress = reinterpret_cast<HMODULE>( &__ImageBase );
-
-    DWORD stored = ::GetModuleFileName(procAddress, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
-    xTEST_DIFF(stored, 0UL);
-
-    sRv.resize(stored);
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Path::_fileExt_impl(
@@ -198,8 +174,8 @@ Path::_isNameValid_impl(
     * as the first character of a name. For example, ".temp".
     */
     {
-        ctchar_t begin = *sRv.cbegin();
-        ctchar_t end   = *sRv.cback();
+        ctchar_t begin = sRv.front();
+        ctchar_t end   = sRv.back();
 
         if (a_fileNameValid == nullptr) {
             // space
@@ -236,7 +212,7 @@ Path::_isNameValid_impl(
     {
         std::ctstring_t exceptedChars = xT("<>:\"/\\|?*");
 
-        std::csize_t pos = sRv.find_first_of(exceptedChars);
+        std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
             xCHECK_RET(a_fileNameValid == nullptr, false);
 
@@ -262,17 +238,17 @@ Path::_isNameValid_impl(
     {
         std::tstring_t::const_iterator cit;
 
-        cit = std::find_if(sRv.cbegin(), sRv.cend(), CharT::isControl);
+        cit = std::find_if(sRv.cbegin(), sRv.cend(), Char::isControl);
         if (cit != sRv.cend()) {
             xCHECK_RET(a_fileNameValid == nullptr, false);
 
             for ( ; ; ) {
                 std::tstring_t::iterator itNewEnd;
 
-                itNewEnd = std::remove_if(sRv.begin(), sRv.end(), CharT::isControl);
+                itNewEnd = std::remove_if(sRv.begin(), sRv.end(), Char::isControl);
                 sRv.erase(itNewEnd, sRv.cend());
 
-                cit = std::find_if(sRv.cbegin(), sRv.cend(), CharT::isControl);
+                cit = std::find_if(sRv.cbegin(), sRv.cend(), Char::isControl);
                 xCHECK_DO(cit == sRv.cend(), break);
             }
 
@@ -302,7 +278,7 @@ Path::_isNameValid_impl(
             xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"), xT("LPT9")
         };
 
-        std::ctstring_t baseFileName = Path(sRv).removeExt();
+        std::ctstring_t baseFileName = Path(sRv).removeExt().str();
 
         for (size_t i = 0; i < xARRAY_SIZE(reservedNames); ++ i) {
             bool_t bRv = StringCI::compare(baseFileName, reservedNames[i]);
@@ -329,7 +305,7 @@ bool_t
 Path::_isAbsolute_impl() const
 {
     xCHECK_RET(_filePath.size() == 1, false);
-    xCHECK_RET(CharT::isAlpha(_filePath.at(0)) && Const::colon().at(0) == _filePath.at(1), true);
+    xCHECK_RET(Char(_filePath.at(0)).isAlpha() && Const::colon().at(0) == _filePath.at(1), true);
 
     return false;
 }
