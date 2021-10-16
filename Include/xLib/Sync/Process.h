@@ -37,7 +37,7 @@ public:
     using id_t     = pid_t;  ///< ID
 #endif
 
-    enum class WaitStatus
+    enum class WaitStatus : ulong_t
         /// wait status
     {
     #if   xENV_WIN
