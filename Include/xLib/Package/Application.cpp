@@ -40,6 +40,7 @@ public:
         Application::exitFailure();
     }
 
+    // TODO: [win] https://stackoverflow.com/questions/32389905/sigaction-and-porting-linux-code-to-windows
     static void_t
     onInfo(int_t a_signal, siginfo_t *a_info, void_t *a_context)
     {
