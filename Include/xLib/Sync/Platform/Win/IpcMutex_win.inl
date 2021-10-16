@@ -31,8 +31,8 @@ IpcMutex::_create_impl(
     HANDLE hRv = ::CreateMutex(nullptr, FALSE, winName);
     xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
 
-    _handle.set(hRv);
-    _name = a_name;
+    _handle = hRv;
+    _name   = a_name;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -53,8 +53,8 @@ IpcMutex::_open_impl(
     HANDLE hRv = ::OpenMutex(MUTEX_ALL_ACCESS, FALSE, winName);
     xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
 
-    _handle.set(hRv);
-    _name = a_name;
+    _handle = hRv;
+    _name   = a_name;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -62,7 +62,7 @@ IpcMutex::_lock_impl(
     culong_t &a_timeoutMsec
 ) const
 {
-    DWORD dwRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
+    DWORD dwRv = ::WaitForSingleObject(_handle, a_timeoutMsec);
     xTEST_EQ(dwRv, WAIT_OBJECT_0);
     xTEST_DIFF(dwRv, WAIT_ABANDONED);
 }
@@ -70,7 +70,7 @@ IpcMutex::_lock_impl(
 void_t
 IpcMutex::_unlock_impl() const
 {
-    BOOL blRv = ::ReleaseMutex(_handle.get());
+    BOOL blRv = ::ReleaseMutex(_handle);
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
