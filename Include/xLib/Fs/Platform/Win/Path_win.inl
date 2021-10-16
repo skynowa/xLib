@@ -236,19 +236,24 @@ Path::_isNameValid_impl(
     * control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
     */
     {
+        auto isControl = [](ctchar_t a_ch) -> bool
+        {
+            return Char(a_ch).isControl();
+        };
+
         std::tstring_t::const_iterator cit;
 
-        cit = std::find_if(sRv.cbegin(), sRv.cend(), Char::isControl);
+        cit = std::find_if(sRv.cbegin(), sRv.cend(), isControl);
         if (cit != sRv.cend()) {
             xCHECK_RET(a_fileNameValid == nullptr, false);
 
             for ( ; ; ) {
                 std::tstring_t::iterator itNewEnd;
 
-                itNewEnd = std::remove_if(sRv.begin(), sRv.end(), Char::isControl);
+                itNewEnd = std::remove_if(sRv.begin(), sRv.end(), isControl);
                 sRv.erase(itNewEnd, sRv.cend());
 
-                cit = std::find_if(sRv.cbegin(), sRv.cend(), Char::isControl);
+                cit = std::find_if(sRv.cbegin(), sRv.cend(), isControl);
                 xCHECK_DO(cit == sRv.cend(), break);
             }
 
