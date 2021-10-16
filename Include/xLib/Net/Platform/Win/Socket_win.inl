@@ -18,25 +18,25 @@ namespace xl::net
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-ssize_t
+std::ssize_t
 ISocket::_send_impl(
-    cptr_ctchar_t *a_buff,
+    cptr_ctchar_t  a_buff,
     std::csize_t  &a_buffSize,
     cint_t        &a_flags
 )
 {
-    ssize_t iRv = ::send(_handle.get(), (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
+    std::ssize_t iRv = ::send(_handle.get(), (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_EQ(iRv != xSOCKET_ERROR && ISocket::nativeError() != WSAEWOULDBLOCK, true);
-    xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
+    xTEST_GR_EQ(std::ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
 
     return iRv / sizeof(tchar_t);
 }
 //-------------------------------------------------------------------------------------------------
 std::ssize_t
 ISocket::_receive_impl(
-    tchar_t      *a_buff,
-    std::csize_t &a_buffSize,
-    cint_t       &a_flags
+    cptr_ctchar_t  a_buff,
+    std::csize_t  &a_buffSize,
+    cint_t        &a_flags
 )
 {
     int_t iRv = ::recv(_handle.get(), (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
