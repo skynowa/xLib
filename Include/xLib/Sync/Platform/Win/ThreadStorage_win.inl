@@ -14,7 +14,7 @@ namespace xl::sync
 
 //-------------------------------------------------------------------------------------------------
 ThreadStorage::index_t
-ThreadStorage::_indexInvalid_impl() const;
+ThreadStorage::_indexInvalid_impl() const
 {
     return TLS_OUT_OF_INDEXES;
 }
@@ -54,7 +54,7 @@ ThreadStorage::_value_impl() const
 //-------------------------------------------------------------------------------------------------
 void_t
 ThreadStorage::_setValue_impl(
-    void_t* &a_value
+    void_t **a_value
 ) const
 {
     BOOL blRv = ::TlsSetValue(_index, a_value);
