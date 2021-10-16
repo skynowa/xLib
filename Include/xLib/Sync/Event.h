@@ -61,7 +61,7 @@ public:
 
 private:
 #if   xENV_WIN
-    Handle           _event;            ///< event
+    HandleNative     _event;            ///< event
 #elif xENV_UNIX
     pthread_mutex_t  _mutex {};         ///< mutex
     handle_t         _cond {};          ///< condition variable
