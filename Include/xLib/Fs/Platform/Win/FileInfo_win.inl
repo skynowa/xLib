@@ -28,7 +28,7 @@ FileInfo::_time_impl(
     HandleNativeInvalid file;
 
     file = ::CreateFile(_filePath.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING,
-        FileType::RegularFile, nullptr);
+        static_cast<DWORD>(FileType::Type::RegularFile), nullptr);
     xTEST_EQ(file.get().isValid(), true);
 
     BOOL blRv = ::GetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
@@ -59,7 +59,7 @@ FileInfo::_setTime_impl(
     HandleNativeInvalid file;
 
     file = ::CreateFile(_filePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, nullptr, OPEN_EXISTING,
-        FileType::Normal, nullptr);
+        static_cast<DWORD>(FileType::Type::RegularFile), nullptr);
     xTEST(file.get().isValid());
 
     BOOL blRv = ::SetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
