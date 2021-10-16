@@ -101,12 +101,13 @@ IpcSemaphore::_wait_impl(
 long_t
 IpcSemaphore::_value_impl() const
 {
-    const LONG postValue = 0L;
+    const LONG countRelease {};
+    LONG       countPrev {};
 
-    BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, &liRv);
+    BOOL blRv = ::ReleaseSemaphore(_handle.get(), countRelease, &countPrev);
     xTEST_DIFF(blRv, FALSE);
 
-    return liRv;
+    return countPrev;
 }
 //-------------------------------------------------------------------------------------------------
 
