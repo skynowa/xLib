@@ -32,7 +32,7 @@ ISocket::_send_impl(
     return iRv / sizeof(tchar_t);
 }
 //-------------------------------------------------------------------------------------------------
-ssize_t
+std::ssize_t
 ISocket::_receive_impl(
     tchar_t      *a_buff,
     std::csize_t &a_buffSize,

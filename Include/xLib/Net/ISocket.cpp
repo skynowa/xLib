@@ -114,7 +114,7 @@ ISocket::close()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-ssize_t
+std::ssize_t
 ISocket::send(
     cptr_ctchar_t  a_buff,
     std::csize_t  &a_buffSize,
@@ -170,7 +170,7 @@ ISocket::sendAll(
     }
 }
 //-------------------------------------------------------------------------------------------------
-ssize_t
+std::ssize_t
 ISocket::receive(
     tchar_t      *a_buff,
     std::csize_t &a_buffSize,
@@ -242,8 +242,8 @@ ISocket::recvAll(
 //-------------------------------------------------------------------------------------------------
 int_t
 ISocket::sendBytes(
-    char    *a_buff,
-    ssize_t &a_messageLength
+    char         *a_buff,
+    std::ssize_t &a_messageLength
 )
 {
     // TODO: [skynowa] ISocket::sendBytes()
@@ -285,8 +285,8 @@ ISocket::sendBytes(
 //-------------------------------------------------------------------------------------------------
 int_t
 ISocket::receiveBytes(
-    char    *a_buff,
-    ssize_t &a_stillToReceive
+    char         *a_buff,
+    std::ssize_t &a_stillToReceive
 )
 {
     int_t   iRv            = 0;

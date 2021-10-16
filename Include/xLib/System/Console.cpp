@@ -395,7 +395,7 @@ Console::_msgBoxLine(
 
 	std::tstring_t line = paddingLeft + a_text;
 
-	::ssize_t delta = static_cast< ::ssize_t >(a_width - line.size());
+    std::ssize_t delta = static_cast<std::ssize_t>(a_width - line.size());
 	if (delta < 0) {
 		line.resize(a_width - padingRight.size() - dot3.size());	// set padding
 		line += dot3;
