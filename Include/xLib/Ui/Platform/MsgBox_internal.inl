@@ -16,7 +16,7 @@ namespace xl::internal::enums
 {
 
 //-------------------------------------------------------------------------------------------------
-static Types<MsgBox::ModalResult, ssize_t, 10> modalResults =
+static Types<MsgBox::ModalResult, std::ssize_t, 10> modalResults =
 {{
 #if   xENV_WIN
     {MsgBox::ModalResult::Unknown,  - 1},
@@ -54,7 +54,7 @@ static Types<MsgBox::ModalResult, ssize_t, 10> modalResults =
 #endif
 }};
 //-------------------------------------------------------------------------------------------------
-static Types<MsgBox::Type, ssize_t, 8> types =
+static Types<MsgBox::Type, std::ssize_t, 8> types =
 {{
 #if   xENV_WIN
     {MsgBox::Type::Unknown,           - 1},

@@ -276,9 +276,9 @@ public:
     std::tstring_t recvAll(cint_t &flags, std::ctstring_t &delimiter);
         ///< receive data to delimiter, includes it
 
-    int_t          sendBytes(char *buff, ssize_t &messageLength);
+    int_t          sendBytes(char *buff, std::ssize_t &messageLength);
         ///< send bytes
-    int_t          receiveBytes(char *buff, ssize_t &stillToReceive);
+    int_t          receiveBytes(char *buff, std::ssize_t &stillToReceive);
         ///< receive bytes
 
 

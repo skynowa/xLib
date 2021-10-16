@@ -48,7 +48,7 @@ Enum<T>::str() const
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline ::ssize_t
+inline std::ssize_t
 Enum<T>::value() const
 {
 	return static_cast<::ssize_t>(_value);

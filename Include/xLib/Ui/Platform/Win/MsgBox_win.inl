@@ -13,18 +13,18 @@ namespace xl::ui
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-MsgBox::ExModalResult
+MsgBox::ModalResult
 MsgBox::_show_impl(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
     cType            a_type    /* = Ok */
 ) const
 {
-    ExModalResult mrRv      = Unknown;
-    UINT          type_impl = Unknown;
-    int_t         iRv       = - 1;
+    ModalResult mrRv      { ModalResult::Unknown };
+    UINT        type_impl {};
+    int_t       iRv       { -1 };
 
-    type_impl = internal::enums::types.toImpl(a_type);
+    type_impl = internal::enums::types.toImpl( static_cast<std::ssize_t>(a_type) );
     iRv       = ::MessageBox(nullptr, a_text.c_str(), a_title.c_str(), type_impl);
     mrRv      = internal::enums::modalResults.toCross(iRv);
 

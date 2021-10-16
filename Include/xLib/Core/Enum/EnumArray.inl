@@ -27,7 +27,7 @@ EnumArray<T, N>::EnumArray(
 template<typename T, const std::size_t N>
 bool_t
 EnumArray<T, N>::isValid(
-	const ::ssize_t a_value
+	const std::ssize_t a_value
 ) const
 {
 	return std::find(this->cbegin(), this->cend(), static_cast<T>(a_value)) != this->cend();
