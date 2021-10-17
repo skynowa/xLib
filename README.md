@@ -1,5 +1,7 @@
 # xLib - C++ cross-platform library
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
+
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/skynowa/xlib) ![GitHub last commit](https://img.shields.io/github/last-commit/skynowa/xlib)
 
 ![GitHub issues](https://img.shields.io/github/issues-raw/skynowa/xlib?color=red) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/skynowa/xlib?color=green)
@@ -13,13 +15,13 @@
 
   - Windows: (XP >)
   - Unix:
-      - Ubuntu 20.04 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI/Ubuntu-20.04 (GCC))
+      - Ubuntu 20.04
       - BSD
       - Apple (OSX)
 
 - compilers:
-    - GCC   ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
-    - Clang ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
+    - GCC
+    - Clang
     - MSVC
     - MinGW
 
