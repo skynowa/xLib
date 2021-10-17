@@ -58,7 +58,7 @@ HandlePolicy<T, HandlePolicyType::hvNative>::_close_impl(T &a_handle)
     BOOL blRes = ::CloseHandle(a_handle);
     xTEST_DIFF(blRes, FALSE);
 
-    *a_handle = null();
+    a_handle = null();
 }
 //-------------------------------------------------------------------------------------------------
 
