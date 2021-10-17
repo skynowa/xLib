@@ -122,7 +122,7 @@ HandlePolicy<T, HandlePolicyType::hvNativeInvalid>::_close_impl(T &a_handle)
     BOOL blRes = ::CloseHandle(a_handle);
     xTEST_DIFF(blRes, FALSE);
 
-    *a_handle = null();
+    a_handle = null();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -158,7 +158,7 @@ template<typename T>
 void_t
 HandlePolicy<T, HandlePolicyType::hvDll>::_close_impl(T &a_handle)
 {
-    BOOL blRv = ::FreeLibrary( a_handle.get() );
+    BOOL blRv = ::FreeLibrary(a_handle);
     xTEST_DIFF(blRv, FALSE);
 
     a_handle = null();
