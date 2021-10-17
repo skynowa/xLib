@@ -8,6 +8,8 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
+#if xENV_UNIX
+
 namespace xl::sync
 {
 
@@ -77,6 +79,8 @@ xPLATFORM_IMPL:
 };
 
 } // namespace
+
+#endif
 //-------------------------------------------------------------------------------------------------
 
 // TODO: [win] https://stackoverflow.com/questions/32389905/sigaction-and-porting-linux-code-to-windows
