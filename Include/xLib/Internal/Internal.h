@@ -49,17 +49,19 @@ class Types
 {
 public:
 	// TOOD: array -> map
-    const Type<CrossT, ImplT> values[SizeT];
+    static const Type<CrossT, ImplT> values[SizeT];
         ///< crossplatform to implementation (native) values
 
+    static
     CrossT
-    toCross(std::cssize_t a_value) const
+    toCross(std::cssize_t a_value)
     {
         return static_cast<CrossT>( this->values[a_value].cross );
     }
         ///< implementation (native) value to crossplatform
+    static
     ImplT
-    toImpl(std::cssize_t a_value) const
+    toImpl(std::cssize_t a_value)
     {
         return static_cast<ImplT>( this->values[a_value].impl );
     }
