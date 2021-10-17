@@ -10,8 +10,8 @@
 
 ## Features
 
-- language: C++ 17
-- platforms:
+- Language: C++ 17
+- Platforms:
 
   - Windows: (XP >)
   - Unix:
@@ -19,7 +19,7 @@
       - BSD
       - Apple (OSX)
 
-- compilers:
+- Compilers:
     - GCC
     - Clang
     - MSVC
