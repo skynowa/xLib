@@ -72,7 +72,7 @@ public:
     // OS
     OsType         os();
         ///< get information about the current OS
-    std::tstring_t formatOs() const;
+    std::tstring_t formatOs() ;
         ///< format OS type
     std::tstring_t distro() const;
         ///< distributive info
@@ -131,7 +131,7 @@ private:
 xPLATFORM_IMPL:
     // OS
     OsType         _os_impl();
-    std::tstring_t _formatOs_impl() const;
+    std::tstring_t _formatOs_impl();
     std::tstring_t _distro_impl() const;
     OsArch         _osArch_impl();
     std::tstring_t _hostName_impl() const;
