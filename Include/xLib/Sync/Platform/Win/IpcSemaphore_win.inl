@@ -85,7 +85,7 @@ IpcSemaphore::_post_impl() const
 {
    const LONG postValue = 1L;
 
-   BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, nullptr);
+   BOOL blRv = ::ReleaseSemaphore(_handle, postValue, nullptr);
    xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
@@ -94,7 +94,7 @@ IpcSemaphore::_wait_impl(
     culong_t a_timeoutMsec
 ) const
 {
-    DWORD dwRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
+    DWORD dwRv = ::WaitForSingleObject(_handle, a_timeoutMsec);
     xTEST_EQ(dwRv, WAIT_OBJECT_0);
 }
 //-------------------------------------------------------------------------------------------------
@@ -104,7 +104,7 @@ IpcSemaphore::_value_impl() const
     const LONG countRelease {};
     LONG       countPrev {};
 
-    BOOL blRv = ::ReleaseSemaphore(_handle.get(), countRelease, &countPrev);
+    BOOL blRv = ::ReleaseSemaphore(_handle, countRelease, &countPrev);
     xTEST_DIFF(blRv, FALSE);
 
     return countPrev;
@@ -121,7 +121,7 @@ IpcSemaphore::_value_impl() const
 bool_t
 IpcSemaphore::_isValid_impl() const
 {
-    return _handle.isValid();
+    return _handle != xNATIVE_HANDLE_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 
