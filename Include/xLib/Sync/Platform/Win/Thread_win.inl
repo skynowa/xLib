@@ -266,7 +266,7 @@ Thread::Priority
 Thread::_priority_impl() const
 {
     Thread::Priority tpRv = static_cast<Priority>( ::GetThreadPriority(_handle) );
-    xTEST_DIFF(static_cast<int_t>(tpRv), static_cast<int_t>(Priority::tpError);
+    xTEST_DIFF(static_cast<int_t>(tpRv), static_cast<int_t>(Priority::tpError));
 
     return tpRv;
 }
