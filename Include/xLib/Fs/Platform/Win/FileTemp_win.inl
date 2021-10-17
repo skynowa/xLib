@@ -32,7 +32,7 @@ FileTemp::_create_impl(
     errno_t error = xTMKSTEMP(&_filePath.at(0), _filePath.size() + 1);
     xTEST_EQ(0, error);
 
-    a_stdFile = xTFOPEN(_filePath.c_str(), FileIO::_openMode(FileIO::BinReadWrite).c_str());
+    a_stdFile = xTFOPEN(_filePath.c_str(), FileIO::_openMode(FileIO::OpenMode::BinReadWrite).c_str());
     xTEST_EQ(a_stdFile.isValid(), true);
 #endif
 }
