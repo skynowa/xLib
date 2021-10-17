@@ -35,7 +35,7 @@ public:
     onSignals(int_t a_signal)
     {
         xTRACE_FUNC;
-        Trace() << Signal::decription(a_signal) << "\n";
+        // Trace() << Signal::decription(a_signal) << "\n";
 
         Application::exitFailure();
     }
@@ -47,7 +47,7 @@ public:
     {
         xTRACE_FUNC;
 
-        Trace() << Signal::decription(0) << "\n";
+        // Trace() << Signal::decription(0) << "\n";
 
         FileLog log(FileLog::LogSizes::lsDefaultMb);
         log.setFilePath(xT("crash.log"));
@@ -293,6 +293,8 @@ Application::abort()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+#if xENV_UNIX
+
 const Signal &
 Application::signal() const
 {
@@ -300,6 +302,8 @@ Application::signal() const
 
     return signal;
 }
+
+#endif
 //-------------------------------------------------------------------------------------------------
 /* static */
 const BuildInfo &
@@ -432,6 +436,7 @@ Application::run()
 
     ExitCode iRv {};
 
+#if xENV_UNIX
 #if 0
 	signal().connectInfoAll(internal::CrashCallback::onInfo);
 #endif
@@ -444,6 +449,7 @@ Application::run()
     signal().connectExit(nullptr);
     signal().connectTerminate(nullptr);
     signal().connectUnexpected(nullptr);
+#endif
 #endif
 
     if (opt_useException) {

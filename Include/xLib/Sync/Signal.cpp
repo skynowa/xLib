@@ -7,7 +7,7 @@
 #include "Signal.h"
 
 #if   xENV_WIN
-    #include "Platform/Win/Signal_win.inl"
+    /// #include "Platform/Win/Signal_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/Signal_unix.inl"
 
@@ -29,6 +29,7 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
 
+#if xENV_UNIX
 
 namespace xl::sync
 {
@@ -418,3 +419,5 @@ Signal::decription(
 //-------------------------------------------------------------------------------------------------
 
 } // namespace
+
+#endif

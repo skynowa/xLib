@@ -57,8 +57,10 @@ public:
     // actions
     void_t         args(cbool_t withoutFirstArg, std::vec_tstring_t *args) const;
         ///< command line arguments
+#if xENV_UNIX
     const Signal  &signal() const;
         ///< signal
+#endif
     bool_t         isRunAsAdmin() const;
         ///< check for running as admin
     bool_t         isRunnig() const;
