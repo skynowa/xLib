@@ -181,7 +181,8 @@ Process::_idByName_impl(
 {
     id_t ulRv;
 
-    Handle       snapshot;
+    HandleNativeInvalid snapshot;
+
     PROCESSENTRY32 processEntry = {0};
     processEntry.dwSize = sizeof(PROCESSENTRY32);
 
