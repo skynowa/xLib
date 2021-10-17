@@ -46,10 +46,10 @@ public:
         Abandoned = WAIT_ABANDONED,	// 0x00000080L (Not Ok)
         Timeout   = WAIT_TIMEOUT    // 0x00000102L
     #elif xENV_UNIX
-        Failed    = - 1,
-        Ok        = 0,
-        Abandoned = 1,
-        Timeout   = 2
+        Failed    = 0,
+        Ok        = 1,
+        Abandoned = 2,
+        Timeout   = 3
     #endif
     };
     xUSING_CONST(WaitStatus);

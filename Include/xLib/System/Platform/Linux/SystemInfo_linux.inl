@@ -14,7 +14,7 @@ namespace xl::system
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-SystemInfo::_distro_impl() const
+SystemInfo::_distro_impl()
 {
     std::tstring_t sRv;
 
