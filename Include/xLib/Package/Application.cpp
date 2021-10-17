@@ -41,7 +41,7 @@ public:
     }
 
 #if xENV_WIN
-    // TODO: [win] https://stackoverflow.com/questions/32389905/sigaction-and-porting-linux-code-to-windows
+
     static void_t
     onInfo(int_t a_signal)
     {
