@@ -62,7 +62,7 @@ Pipe::readAll() const
 
 	constexpr std::size_t buffSize {1024 * 10};
 
-	for (ssize_t readSize = 1; readSize > 0; ) {
+	for (std::ssize_t readSize = 1; readSize > 0; ) {
 		// Cout() << "ParentOk - Start read: " << a_pipeRead;
 
 		char buff[buffSize + 1] {};
