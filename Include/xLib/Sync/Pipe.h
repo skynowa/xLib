@@ -65,8 +65,8 @@ xPLATFORM_IMPL:
 	};
     xUSING_CONST(CloseMode);
 
-    ssize_t _read_impl(cint_t handleRead, void_t *buff, const size_t buffSize) const;
-    void_t  _close_impl(cCloseMode mode);
+    std::ssize_t _read_impl(cint_t handleRead, void_t *buff, std::csize_t buffSize) const;
+    void_t       _close_impl(cCloseMode mode);
 };
 
 } // namespace
