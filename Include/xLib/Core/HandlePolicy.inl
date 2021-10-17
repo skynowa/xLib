@@ -28,33 +28,12 @@ HandlePolicy<T, HandlePolicyType::hvStdFile>::_openMax_impl()
     return HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::openMax();
 }
 //-------------------------------------------------------------------------------------------------
+// TODO: _clone_impl - Win code -> Unix
 template<typename T>
 T
 HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T a_handle)
 {
-#if   0
-    HANDLE nativeHandleDup{};
-
-    HANDLE nativeHandle{}
-    {
-        int_t handle = ::_fileno(a_handle);
-        xTEST_DIFF(handle, -1);
-
-        nativeHandle  = reinterpret_cast<HANDLE>( _get_osfhandle(handle) );
-    }
-
-    DWORD  access    {0};
-    BOOL   isInherit {FALSE};
-    DWORD  options   {DUPLICATE_SAME_ACCESS};
-
-    BOOL blRv = ::DuplicateHandle(
-        ::GetCurrentProcess(), nativeHandle,
-        ::GetCurrentProcess(), &nativeHandleDup,
-        access, isInherit, options);
-    xTEST_DIFF(blRv, FALSE);
-
-    return nativeHandleDup;
-#elif xENV_WIN
+#if xENV_WIN
     int_t handleDup{};
 
     int_t handle = ::fileno(a_handle);
