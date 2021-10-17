@@ -28,7 +28,8 @@ jobs:
             build_type: "Debug",
             compiler: "g++",
             cc: "gcc",
-            cxx: "g++"
+            cxx: "g++",
+            build_script: "./eclipse.sh"
           }
         - {
             name: "Ubuntu-20.04 (Clang)",
@@ -36,7 +37,8 @@ jobs:
             build_type: "Debug",
             compiler: "clang++",
             cc: "clang",
-            cxx: "clang++"
+            cxx: "clang++",
+            build_script: "./eclipse.sh"
           }
 
         # - {
@@ -45,7 +47,8 @@ jobs:
         #     build_type: "Debug",
         #     compiler: "g++",
         #     cc: "gcc",
-        #     cxx: "g++"
+        #     cxx: "g++",
+        #     build_script: ""
         #   }
 
         - {
@@ -55,7 +58,8 @@ jobs:
             cc: "cl",
             cxx: "cl",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
-            conan_profile_update: 'conan profile update settings.compiler="Visual Studio" default; conan profile update settings.compiler.version=16 default'
+            conan_profile_update: 'conan profile update settings.compiler="Visual Studio" default; conan profile update settings.compiler.version=16 default',
+            build_script: "./msvc_2019.sh"
           }
 
         # - {
@@ -151,8 +155,7 @@ jobs:
         shell: bash
 
       - name: xLib - Configure
-        # run: cd "${{github.workspace}}/xLib/Build" && ./eclipse.sh
-        run: cd "${{github.workspace}}/xLib/Build" && ./msvc_2019.sh
+        run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.build_script }}
         shell: bash
 
       - name: xLib - Build
