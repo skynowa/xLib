@@ -10,6 +10,7 @@
 
 #if   xCOMPILER_MINGW
     // off
+    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #elif xCOMPILER_MS
     // off
     #pragma warning(disable: 4996) // function or variable may be unsafe (deprecated)
