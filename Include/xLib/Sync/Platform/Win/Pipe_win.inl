@@ -23,7 +23,7 @@ Pipe::_read_impl(
 	cint_t        a_handleRead,	///<
 	void_t       *out_buff,		///< [out]
 	std::csize_t  a_buffSize	///<
-)
+) const
 {
 	return -1;
 }
@@ -31,7 +31,7 @@ Pipe::_read_impl(
 void_t
 Pipe::_close_impl(
 	cCloseMode a_mode
-) const
+)
 {
 }
 //-------------------------------------------------------------------------------------------------

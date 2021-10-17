@@ -43,7 +43,14 @@ private:
     HandleNative _handle {};    ///< native handle
 
 #if   xENV_WIN
-	// TODO:
+	// TODO: native handles
+    enum FdIndex : std::size_t
+    {
+        Read  = 0,
+        Write = 1
+    };
+
+	std::vector<int_t> _handles;	///< native handles
 #elif xENV_UNIX
 	enum FdIndex : std::size_t
 	{
