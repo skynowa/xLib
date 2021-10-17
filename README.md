@@ -13,8 +13,7 @@
 
   - Windows: (XP >)
   - Unix:
-      - Ubuntu 20.04 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
-      - Android
+      - Ubuntu 20.04 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI/Ubuntu-20.04 (GCC))
       - BSD
       - Apple (OSX)
 
@@ -34,4 +33,3 @@
 
 - https://github.com/skynowa/CMakeLib
 - https://github.com/skynowa/xLib-data
-
