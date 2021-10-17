@@ -59,14 +59,14 @@ jobs:
         #     cxx: "g++",
         #     build_script: "./eclipse.sh"
         #   }
-        - {
-            name: "MacOS-10.15 (Clang)",
-            os: macos-10.15,
-            build_type: "Debug",
-            cc: "clang",
-            cxx: "clang++",
-            build_script: "./eclipse.sh"
-          }
+        # - {
+        #     name: "MacOS-10.15 (Clang)",
+        #     os: macos-10.15,
+        #     build_type: "Debug",
+        #     cc: "clang",
+        #     cxx: "clang++",
+        #     build_script: "./eclipse.sh"
+        #   }
 
     steps:
       ##############################################################################################
