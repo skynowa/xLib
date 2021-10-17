@@ -202,18 +202,18 @@ Console::_setAttributes_impl(
         const WORD attributeReverse   = - 1; xUNUSED(attributeReverse);   // not supported
         const WORD attributeHidden    = - 1; xUNUSED(attributeHidden);    // not supported
 
-        attrs |= foregroundColor;
-        attrs |= backgroundColor;
+        attrs |= static_cast<WORD>(foregroundColor);
+        attrs |= static_cast<WORD>(backgroundColor);
 
         Bitset bits(a_attributes);
 
-        xCHECK_DO(bits.isSetBit(Attribute::AllOff),    attrs |= attributeAllOff);
-        xCHECK_DO(bits.isSetBit(Attribute::Bold),      attrs |= attributeBold);
-        xCHECK_DO(bits.isSetBit(Attribute::Dim),       /* attrs |= attributeDim */);       // IMPL: dim
-        xCHECK_DO(bits.isSetBit(Attribute::Underline), /* attrs |= attributeUnderline */); // not supported
-        xCHECK_DO(bits.isSetBit(Attribute::Blink),     /* attrs |= attributeBlink */);     // not supported
-        xCHECK_DO(bits.isSetBit(Attribute::Reverse),   /* attrs |= attributeReverse */);   // not supported
-        xCHECK_DO(bits.isSetBit(Attribute::Hidden),    /* attrs |= attributeHidden */);    // not supported
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::AllOff)),    attrs |= static_cast<WORD>(attributeAllOff));
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::Bold)),      attrs |= static_cast<WORD>(attributeBold));
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::Dim)),       /* attrs |= static_cast<WORD>(attributeDim) */);       // IMPL: dim
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::Underline)), /* attrs |= static_cast<WORD>(attributeUnderline) */); // not supported
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::Blink)),     /* attrs |= static_cast<WORD>(attributeBlink) */);     // not supported
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::Reverse)),   /* attrs |= static_cast<WORD>(attributeReverse) */);   // not supported
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::Hidden)),    /* attrs |= static_cast<WORD>(attributeHidden) */);    // not supported
     }
 
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), attrs);
@@ -489,7 +489,7 @@ Console::_setStdinEcho_impl(
 ) const
 {
     DWORD mode {};
-    BOOL blRv = ::GetConsoleMode(_stdIn, &mode);
+    BOOL blRv = ::GetConsoleMode(_stdIn.get(), &mode);
     xTEST_DIFF(blRv, FALSE);
 
     if (a_isEnable) {
@@ -498,7 +498,7 @@ Console::_setStdinEcho_impl(
         mode &= ~ENABLE_ECHO_INPUT;
     }
 
-    blRv = ::SetConsoleMode(_stdIn, mode);
+    blRv = ::SetConsoleMode(_stdIn.get(), mode);
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
