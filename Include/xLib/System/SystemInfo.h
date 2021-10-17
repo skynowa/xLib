@@ -132,7 +132,7 @@ xPLATFORM_IMPL:
     // OS
     OsType         _os_impl();
     std::tstring_t _formatOs_impl();
-    std::tstring_t _distro_impl() ;
+    std::tstring_t _distro_impl();
     OsArch         _osArch_impl();
     std::tstring_t _hostName_impl() const;
 
