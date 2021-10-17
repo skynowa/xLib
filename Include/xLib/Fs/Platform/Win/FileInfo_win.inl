@@ -29,7 +29,7 @@ FileInfo::_time_impl(
 
     file = ::CreateFile(_filePath.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING,
         static_cast<DWORD>(FileType::Type::RegularFile), nullptr);
-    xTEST_EQ(file.get().isValid(), true);
+    xTEST(file.isValid());
 
     BOOL blRv = ::GetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
     xTEST_DIFF(blRv, FALSE);
@@ -60,7 +60,7 @@ FileInfo::_setTime_impl(
 
     file = ::CreateFile(_filePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, nullptr, OPEN_EXISTING,
         static_cast<DWORD>(FileType::Type::RegularFile), nullptr);
-    xTEST(file.get().isValid());
+    xTEST(file.isValid());
 
     BOOL blRv = ::SetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
     xTEST_DIFF(blRv, FALSE);
