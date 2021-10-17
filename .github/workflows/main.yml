@@ -82,7 +82,7 @@ jobs:
 
       - name: Conan install
         run: |
-          pip install --user conan
+          pip install conan
         shell: bash
 
       - name: Conan - Setup
