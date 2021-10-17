@@ -42,7 +42,7 @@ SystemInfo::_os_impl()
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-SystemInfo::_formatOs_impl() const
+SystemInfo::_formatOs_impl()
 {
     std::tstring_t sRv;
 
