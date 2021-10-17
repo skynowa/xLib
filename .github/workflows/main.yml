@@ -41,15 +41,15 @@ jobs:
         #     build_script: "./eclipse.sh"
         #   }
 
-        - {
-            name: "Windows-2019 (MinGW)",
-            os: windows-2019,
-            build_type: "Debug",
-            compiler: "g++",
-            cc: "gcc",
-            cxx: "g++",
-            build_script: ""
-          }
+        # - {
+        #     name: "Windows-2019 (MinGW)",
+        #     os: windows-2019,
+        #     build_type: "Debug",
+        #     compiler: "g++",
+        #     cc: "gcc",
+        #     cxx: "g++",
+        #     build_script: ""
+        #   }
 
         # - {
         #     name: "Windows-2019 (MSVC)",
@@ -62,14 +62,14 @@ jobs:
         #     build_script: "./msvc_2019.sh"
         #   }
 
-        # - {
-        #     name: "macOS Latest Clang",
-        #     os: macos-latest,
-        #     build_type: "Debug",
-        #     compiler: "clang++",
-        #     cc: "clang",
-        #     cxx: "clang++"
-        #   }
+        - {
+            name: "macOS Latest Clang",
+            os: macos-latest,
+            build_type: "Debug",
+            compiler: "clang++",
+            cc: "clang",
+            cxx: "clang++"
+          }
 
     steps:
       ##############################################################################################
