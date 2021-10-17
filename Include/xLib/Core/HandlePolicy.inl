@@ -28,12 +28,10 @@ HandlePolicy<T, HandlePolicyType::hvStdFile>::_openMax_impl()
     return HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::openMax();
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: _clone_impl - Win code -> Unix
 template<typename T>
 T
 HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T a_handle)
 {
-#if xENV_WIN
     int_t handleDup{};
 
     int_t handle = ::fileno(a_handle);
@@ -43,14 +41,6 @@ HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T a_handle)
     xTEST_GR(iRv, 0);
 
     return static_cast<T>(xTFDOPEN(handleDup, xT("r+")));  // TODO: [skynowa] clone - open mode
-#elif xENV_UNIX
-    int_t handle = /*::*/fileno(a_handle);
-    xTEST_DIFF(handle, -1);
-
-    native_handle_t nativeHandle = HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::clone(handle);
-
-    return static_cast<T>( xTFDOPEN(nativeHandle, xT("r+")) );  // TODO: [skynowa] clone - open mode
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
