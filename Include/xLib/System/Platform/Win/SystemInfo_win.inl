@@ -26,7 +26,7 @@ SystemInfo::_os_impl()
 
     switch (info.dwPlatformId) {
     case VER_PLATFORM_WIN32s:
-        otRv = Windows3;
+        otRv = OsType::Windows3;
         break;
     case VER_PLATFORM_WIN32_WINDOWS:
         xCHECK_DO(info.dwMinorVersion == 0UL,  otRv = OsType::Windows95; break);
@@ -64,7 +64,7 @@ SystemInfo::_formatOs_impl()
 {
     std::tstring_t sRv;
 
-    OsType type = (_osType == OsType::Unknown) ? os() : _osType;
+    cOsType type = (_osType == OsType::Unknown) ? os() : _osType;
     switch (type) {
     case OsType::Windows3:
         sRv = xT("Windows 3.1");
@@ -125,7 +125,7 @@ SystemInfo::_distro_impl() const
 SystemInfo::OsArch
 SystemInfo::_osArch_impl()
 {
-    OsArch oaRv = Unknown;
+    OsArch oaRv = OsArch::Unknown;
 
 #if   xARCH_BITS_32
     BOOL isFuncExist = FALSE;
