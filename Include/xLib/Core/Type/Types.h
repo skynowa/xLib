@@ -180,9 +180,10 @@ namespace std
 {
 
     // std::size_t
-#if xOS_WIN
+#if   xENV_WIN
     using ssize_t = SSIZE_T;
-    xUSING_CONST(ssize_t);
+#elif xENV_UNIX
+    using ssize_t = ::ssize_t;
 #endif
 
     xUSING_CONST(size_t);
