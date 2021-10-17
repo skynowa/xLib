@@ -50,7 +50,7 @@ std::tstring_t
 ProcessInfo::_exeName_impl() const
 {
     std::tstring_t sRv;
-    sRv.resize( maxSize() );
+    sRv.resize( Path::maxSize());
 
     Process::handle_t handle = Process::handleById(_id);
 
@@ -98,7 +98,7 @@ ProcessInfo::_commandLine_impl(
             String::split(sRv, Const::space(), &args);
 
             // out
-            a_args->swap(args);
+            out_args->swap(args);
 
             return;
         }
@@ -132,7 +132,7 @@ ProcessInfo::_commandLine_impl(
             dll.load(xT("ntdll.dll"));
 
             bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
-            xTEST_EQ(Rv, true);
+            xTEST(bRv);
 
             func_t func = (func_t)dll.procAddress(xT("NtQueryInformationProcess"));
             xTEST_PTR(func);
@@ -159,7 +159,7 @@ ProcessInfo::_commandLine_impl(
     };
 
 
-    Handle processHandle;
+    HandleNative processHandle;
 
     processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE,
         static_cast<DWORD>( _id ));
