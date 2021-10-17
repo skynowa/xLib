@@ -18,11 +18,11 @@ Pipe::_create_impl()
 {
 }
 //-------------------------------------------------------------------------------------------------
-ssize_t
+std::ssize_t
 Pipe::_read_impl(
 	cint_t        a_handleRead,	///<
 	void_t       *out_buff,		///< [out]
-	const size_t  a_buffSize	///<
+	std::csize_t  a_buffSize	///<
 )
 {
 	return -1;
