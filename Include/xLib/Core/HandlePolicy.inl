@@ -32,9 +32,38 @@ template<typename T>
 T
 HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T a_handle)
 {
-#if   xENV_WIN
-    // TODO: _clone_impl
-    return {};
+#if   0
+    HANDLE nativeHandleDup{};
+
+    HANDLE nativeHandle{}
+    {
+        int_t handle = ::_fileno(a_handle);
+        xTEST_DIFF(handle, -1);
+
+        nativeHandle  = reinterpret_cast<HANDLE>( _get_osfhandle(handle) );
+    }
+
+    DWORD  access    {0};
+    BOOL   isInherit {FALSE};
+    DWORD  options   {DUPLICATE_SAME_ACCESS};
+
+    BOOL blRv = ::DuplicateHandle(
+        ::GetCurrentProcess(), nativeHandle,
+        ::GetCurrentProcess(), &nativeHandleDup,
+        access, isInherit, options);
+    xTEST_DIFF(blRv, FALSE);
+
+    return nativeHandleDup;
+#elif xENV_WIN
+    int_t handleDup{};
+
+    int_t handle = ::fileno(a_handle);
+    xTEST_DIFF(handle, -1);
+
+    int_t iRv = ::dup2(handle, handleDup);
+    xTEST_GR(iRv, 0);
+
+    return static_cast<T>(xTFDOPEN(handleDup, xT("r+")));  // TODO: [skynowa] clone - open mode
 #elif xENV_UNIX
     int_t handle = /*::*/fileno(a_handle);
     xTEST_DIFF(handle, -1);
