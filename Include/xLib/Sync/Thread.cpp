@@ -90,7 +90,7 @@ Thread::create(
 )
 {
 #if   xENV_WIN
-    xTEST_EQ(_handle.isValid(), false);
+    xTEST_EQ(_handle != xNATIVE_HANDLE_NULL, false);
 #elif xENV_UNIX
 
 #endif
@@ -132,7 +132,7 @@ void_t
 Thread::resume()
 {
 #if   xENV_WIN
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 #elif xENV_UNIX
 
 #endif
@@ -150,7 +150,7 @@ void_t
 Thread::pause()
 {
 #if   xENV_WIN
-    xTEST_EQ_MSG(true, _handle.isValid(), String::cast(_handle.get()));
+    xTEST_MSG(_handle != xNATIVE_HANDLE_NULL, String::cast(_handle));
 #elif xENV_UNIX
 
 #endif
@@ -168,7 +168,7 @@ void_t
 Thread::exit()
 {
 #if   xENV_WIN
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 #elif xENV_UNIX
 
 #endif
@@ -261,7 +261,7 @@ Thread::Priority
 Thread::priority() const
 {
 #if   xENV_WIN
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 #elif xENV_UNIX
 
 #endif
@@ -301,7 +301,7 @@ void_t
 Thread::priorityUp() const
 {
 #if   xENV_WIN
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 #elif xENV_UNIX
 
 #endif
@@ -344,7 +344,7 @@ void_t
 Thread::priorityDown() const
 {
 #if   xENV_WIN
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 #elif xENV_UNIX
 
 #endif
@@ -425,7 +425,7 @@ ulong_t
 Thread::cpuIdeal() const
 {
 #if   xENV_WIN
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 #elif xENV_UNIX
 
 #endif
@@ -463,7 +463,7 @@ Thread::id_t
 Thread::id() const
 {
 #if   xENV_WIN
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 #elif xENV_UNIX
 
 #endif
@@ -735,8 +735,9 @@ Thread::_clear(
 {
     _tag        = 0UL;
 
-#if   xENV_WIN
-    _handle.close();
+#if   xENV_WIN1
+    ::CloseHandle(_handle);
+    _handle = xNATIVE_HANDLE_NULL;
 #elif xENV_UNIX
     _handle     = 0UL;
 #endif
