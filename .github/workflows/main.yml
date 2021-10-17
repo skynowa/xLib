@@ -3,6 +3,7 @@
 # \brief
 #
 # https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
+# https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
 #--------------------------------------------------------------------------------------------------
 
 
@@ -56,14 +57,14 @@ jobs:
         #     cxx: "g++",
         #     build_script: "./eclipse.sh"
         #   }
-        # - {
-        #     name: "macOS Latest Clang",
-        #     os: macos-latest,
-        #     build_type: "Debug",
-        #     cc: "clang",
-        #     cxx: "clang++",
-        #     build_script: "./eclipse.sh"
-        #   }
+        - {
+            name: "MacOS-10.15 (Clang)",
+            os: macos-10.15,
+            build_type: "Debug",
+            cc: "clang",
+            cxx: "clang++",
+            build_script: "./eclipse.sh"
+          }
 
     steps:
       ##############################################################################################
