@@ -86,7 +86,7 @@ jobs:
 
       - name: Conan install
         run: |
-          pip install conan
+          pip install --user conan
         shell: bash
 
       - name: Conan - Setup
