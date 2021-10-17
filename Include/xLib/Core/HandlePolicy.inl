@@ -32,12 +32,17 @@ template<typename T>
 T
 HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T a_handle)
 {
+#if   xENV_WIN
+    // TODO: _clone_impl
+    return {};
+#elif xENV_UNIX
     int_t handle = /*::*/fileno(a_handle);
-    xTEST_DIFF(handle, - 1);
+    xTEST_DIFF(handle, -1);
 
     native_handle_t nativeHandle = HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::clone(handle);
 
     return static_cast<T>( xTFDOPEN(nativeHandle, xT("r+")) );  // TODO: [skynowa] clone - open mode
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
