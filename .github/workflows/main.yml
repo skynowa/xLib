@@ -26,7 +26,6 @@ jobs:
         #     name: "Ubuntu-20.04 (GCC)",
         #     os: ubuntu-20.04,
         #     build_type: "Debug",
-        #     compiler: "g++",
         #     cc: "gcc",
         #     cxx: "g++",
         #     build_script: "./eclipse.sh"
@@ -36,7 +35,6 @@ jobs:
         #     name: "Ubuntu-20.04 (Clang)",
         #     os: ubuntu-20.04,
         #     build_type: "Debug",
-        #     compiler: "clang++",
         #     cc: "clang",
         #     cxx: "clang++",
         #     build_script: "./eclipse.sh"
@@ -57,7 +55,6 @@ jobs:
         #     name: "Windows-2019 (MinGW)",
         #     os: windows-2019,
         #     build_type: "Debug",
-        #     compiler: "g++",
         #     cc: "gcc",
         #     cxx: "g++",
         #     build_script: ""
@@ -67,7 +64,6 @@ jobs:
             name: "macOS Latest Clang",
             os: macos-latest,
             build_type: "Debug",
-            compiler: "clang++",
             cc: "clang",
             cxx: "clang++",
             build_script: "./eclipse.sh"
