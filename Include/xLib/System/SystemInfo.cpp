@@ -52,7 +52,7 @@ SystemInfo::formatOs()
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-SystemInfo::distro() const
+SystemInfo::distro()
 {
     return _distro_impl();
 }

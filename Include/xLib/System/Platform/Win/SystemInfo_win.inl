@@ -117,7 +117,7 @@ SystemInfo::_formatOs_impl()
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-SystemInfo::_distro_impl() const
+SystemInfo::_distro_impl()
 {
     return formatOs();
 }
