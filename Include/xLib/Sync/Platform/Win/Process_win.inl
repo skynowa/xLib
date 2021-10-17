@@ -43,7 +43,7 @@ Process::_create_impl(
 	{
 		for (const auto &[name, value]  : a_envs) {
 			std::ctstring_t &envVarValue = name + Const::equal() + value;
-			envs.push_back( const_cast<tchar_t *>(envVarValue).c_str() );
+			envs.push_back( const_cast<tchar_t *>(envVarValue.c_str()) );
 		}
 		envs.push_back(nullptr);
 	}
@@ -67,7 +67,7 @@ Process::_wait_impl(
     culong_t &a_timeoutMsec
 )
 {
-    WaitStatus waitStatus = Failed;
+    WaitStatus waitStatus = WaitStatus::Failed;
 
     DWORD dwRv = ::WaitForSingleObject(_handle, a_timeoutMsec);
     xTEST_EQ(dwRv, WAIT_OBJECT_0);
@@ -214,7 +214,8 @@ Process::_ids_impl(
 {
     std::vector<id_t> vidRv;
 
-    Handle       snapshot;
+    HandleNativeInvalid snapshot;
+
     PROCESSENTRY32 processEntry = {0};
     processEntry.dwSize = sizeof(PROCESSENTRY32);
 
