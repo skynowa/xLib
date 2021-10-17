@@ -76,8 +76,8 @@ IpcSemaphore::_open_impl(
     HANDLE hRv = ::OpenSemaphore(SEMAPHORE_ALL_ACCESS, FALSE, winName);
     xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
 
-    _handle.set(hRv);
-    _name = a_name;
+    _handle = hRv;
+    _name   = a_name;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
