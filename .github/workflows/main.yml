@@ -31,6 +31,7 @@ jobs:
         #     cxx: "g++",
         #     build_script: "./eclipse.sh"
         #   }
+
         # - {
         #     name: "Ubuntu-20.04 (Clang)",
         #     os: ubuntu-20.04,
@@ -39,16 +40,6 @@ jobs:
         #     cc: "clang",
         #     cxx: "clang++",
         #     build_script: "./eclipse.sh"
-        #   }
-
-        # - {
-        #     name: "Windows-2019 (MinGW)",
-        #     os: windows-2019,
-        #     build_type: "Debug",
-        #     compiler: "g++",
-        #     cc: "gcc",
-        #     cxx: "g++",
-        #     build_script: ""
         #   }
 
         # - {
@@ -62,13 +53,24 @@ jobs:
         #     build_script: "./msvc_2019.sh"
         #   }
 
+        # - {
+        #     name: "Windows-2019 (MinGW)",
+        #     os: windows-2019,
+        #     build_type: "Debug",
+        #     compiler: "g++",
+        #     cc: "gcc",
+        #     cxx: "g++",
+        #     build_script: ""
+        #   }
+
         - {
             name: "macOS Latest Clang",
             os: macos-latest,
             build_type: "Debug",
             compiler: "clang++",
             cc: "clang",
-            cxx: "clang++"
+            cxx: "clang++",
+            build_script: "./eclipse.sh"
           }
 
     steps:
