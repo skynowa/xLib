@@ -192,12 +192,7 @@ private:
     // thread data
     volatile ulong_t _tag {};          ///< data tag
 
-#if   xENV_WIN
-    Handle          _handle;           ///< native handle
-#elif xENV_UNIX
     handle_t        _handle {};        ///< native handle
-#endif
-
     id_t            _id {};            ///< ID
     uint_t          _exitStatus {};    ///< exit code
     void_t         *_param {};         ///< param for job function

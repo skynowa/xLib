@@ -26,8 +26,8 @@ Thread::_create_impl(
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
     xTEST_LESS(0UL, id);
 
-    _handle.set(hRv);
-    xTEST_EQ(_handle.isValid(), true);
+    _handle = hRv;
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 
     _id = id;
 }
@@ -37,12 +37,12 @@ Thread::_kill_impl(
     culong_t &a_timeoutMsec
 )
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
     xTEST_NA(a_timeoutMsec);
 
     _exitStatus = 0U;
 
-    BOOL blRv = ::TerminateThread(_handle.get(), _exitStatus);
+    BOOL blRv = ::TerminateThread(_handle, _exitStatus);
     xTEST_DIFF(blRv, FALSE);
 
     for ( ; ; ) {
@@ -58,14 +58,14 @@ Thread::_wait_impl(
     culong_t &a_timeoutMsec
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
     xTEST_NA(a_timeoutMsec);
 
     // flags
     xTEST_DIFF(currentId(), _id);
     xCHECK_DO(currentId() == _id, return);
 
-    DWORD dwRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
+    DWORD dwRv = ::WaitForSingleObject(_handle, a_timeoutMsec);
     xTEST_EQ(WAIT_OBJECT_0, dwRv);
 }
 //-------------------------------------------------------------------------------------------------
@@ -80,7 +80,7 @@ Thread::_wait_impl(
 bool_t
 Thread::_isCreated_impl() const
 {
-    bool_t bRv = _state.isCreated && _handle.isValid();
+    bool_t bRv = _state.isCreated && (_handle != xNATIVE_HANDLE_NULL);
 
     return bRv;
 }
@@ -91,12 +91,12 @@ Thread::_isRunning_impl() const
     bool_t bRv {};
 
     DWORD dwRv = 0UL;
-    (void_t)::GetExitCodeThread(_handle.get(), &dwRv);
+    (void_t)::GetExitCodeThread(_handle, &dwRv);
 
-    bool_t bCond1 = _handle.isValid();
+    bool_t bCond1 = (_handle != xNATIVE_HANDLE_NULL);
     bool_t bCond2 = _id > 0UL;
     bool_t bCond3 = _state.isRunning;
-    bool_t bCond4 = (::WaitForSingleObject(_handle.get(), 0UL) != WAIT_OBJECT_0);
+    bool_t bCond4 = (::WaitForSingleObject(_handle, 0UL) != WAIT_OBJECT_0);
     bool_t bCond5 = (dwRv == STILL_ACTIVE);
 
     bRv = bCond1 && bCond2 && bCond3 && bCond4 && bCond5;
@@ -107,7 +107,7 @@ Thread::_isRunning_impl() const
 bool_t
 Thread::_isPaused_impl()
 {
-    bool_t bRv = !_eventPause.isSignaled() && _handle.isValid();
+    bool_t bRv = !_eventPause.isSignaled() && (_handle != xNATIVE_HANDLE_NULL);
 
     return bRv;
 }
@@ -115,7 +115,7 @@ Thread::_isPaused_impl()
 bool_t
 Thread::_isExited_impl()
 {
-    bool_t bRv = _eventExit.isSignaled() && _handle.isValid();
+    bool_t bRv = _eventExit.isSignaled() && (_handle != xNATIVE_HANDLE_NULL);
 
     return bRv;
 }
@@ -136,7 +136,7 @@ Thread::postMessage(
     long_t a_param2
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST((_handle != xNATIVE_HANDLE_NULL));
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, a_wnd);
     xTEST_DIFF(FALSE, ::IsWindow(a_wnd));
 
@@ -153,7 +153,7 @@ Thread::sendMessage(
     long_t a_param2
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, a_wnd);
     xTEST_DIFF(FALSE, ::IsWindow(a_wnd));
 
@@ -169,7 +169,7 @@ Thread::postThreadMessage(
     long_t a_param2
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 
     BOOL blRv = ::PostThreadMessage(id(), a_msg, static_cast<WPARAM>( a_param1 ),
         static_cast<LPARAM>( a_param2 ));
@@ -185,7 +185,7 @@ Thread::tryPostThreadMessage(
     ulong_t a_attempTimeoutMsec
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 
     for (ulong_t i = 0UL; i < a_attempsNum; ++ i) {
         BOOL blRv = ::PostThreadMessage(id(), a_msg, static_cast<WPARAM>( a_param1 ),
@@ -205,7 +205,7 @@ Thread::messageWaitQueue(
     long_t *a_param2
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
     xTEST_LESS(0U, a_msg);
 
     std::vector<uint_t> msgs;
@@ -222,7 +222,7 @@ Thread::messageWaitQueue(
     long_t                    *a_param2
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
     xTEST_EQ(a_msgs.empty(), false);
 
     BOOL blRv = FALSE;
@@ -256,17 +256,17 @@ Thread::_setPriority_impl(
     const Priority a_priority
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 
-    BOOL blRv = ::SetThreadPriority(_handle.get(), a_priority);
+    BOOL blRv = ::SetThreadPriority(_handle, static_cast<int_t>(a_priority));
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
 Thread::Priority
 Thread::_priority_impl() const
 {
-    Thread::Priority tpRv = static_cast<Priority>( ::GetThreadPriority(_handle.get()) );
-    xTEST_DIFF(tpError, tpRv);
+    Thread::Priority tpRv = static_cast<Priority>( ::GetThreadPriority(_handle) );
+    xTEST_DIFF(tpRv, Priority::tpError);
 
     return tpRv;
 }
@@ -274,11 +274,11 @@ Thread::_priority_impl() const
 bool_t
 Thread::_isPriorityBoost_impl() const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 
     BOOL isDisablePriorityBoost = TRUE;
 
-    BOOL blRv = ::GetThreadPriorityBoost(_handle.get(), &isDisablePriorityBoost);
+    BOOL blRv = ::GetThreadPriorityBoost(_handle, &isDisablePriorityBoost);
     xTEST_DIFF(blRv, FALSE);
 
     return ! isDisablePriorityBoost;
@@ -289,9 +289,9 @@ Thread::_setPriorityBoost_impl(
     cbool_t a_isEnabled
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 
-    BOOL blRv = ::SetThreadPriorityBoost(_handle.get(), ! a_isEnabled);
+    BOOL blRv = ::SetThreadPriorityBoost(_handle, ! a_isEnabled);
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
@@ -308,7 +308,7 @@ Thread::_setCpuAffinity_impl(
     cint_t &a_procNum
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 
 #if xARCH_BITS_32
     DWORD_PTR mask = 1UL  << a_procNum;
@@ -316,7 +316,7 @@ Thread::_setCpuAffinity_impl(
     DWORD_PTR mask = 1i64 << a_procNum;
 #endif
 
-    DWORD_PTR pdwRv = ::SetThreadAffinityMask(_handle.get(), mask);
+    DWORD_PTR pdwRv = ::SetThreadAffinityMask(_handle, mask);
 #if xARCH_BITS_32
     xTEST_DIFF(0UL, pdwRv);
 #else
@@ -331,16 +331,16 @@ Thread::_setCpuIdeal_impl(
     culong_t &a_idealCpu    ///< value is zero-based
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 
-    DWORD dwRv = ::SetThreadIdealProcessor(_handle.get(), a_idealCpu);
+    DWORD dwRv = ::SetThreadIdealProcessor(_handle, a_idealCpu);
     xTEST_DIFF((DWORD) - 1, dwRv);
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
 Thread::_cpuIdeal_impl() const
 {
-    ulong_t ulRv = ::SetThreadIdealProcessor(_handle.get(), MAXIMUM_PROCESSORS);
+    ulong_t ulRv = ::SetThreadIdealProcessor(_handle, MAXIMUM_PROCESSORS);
     xTEST_DIFF((ulong_t) - 1, ulRv);
 
     return ulRv;
@@ -357,19 +357,19 @@ Thread::_cpuIdeal_impl() const
 Thread::handle_t
 Thread::_handle_impl() const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 
-    return _handle.get();
+    return _handle;
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
 Thread::_exitStatus_impl() const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle != xNATIVE_HANDLE_NULL);
 
     ulong_t ulRv = 0UL;
 
-    BOOL blRv = ::GetExitCodeThread(_handle.get(), &ulRv);
+    BOOL blRv = ::GetExitCodeThread(_handle, &ulRv);
     xTEST_DIFF(blRv, FALSE);
 
     return ulRv;
@@ -432,7 +432,7 @@ Thread::_setDebugName_impl(
 Thread::handle_t
 Thread::_open_impl(
     culong_t &a_access,
-    cbool_t  &a_isInheritHandle,
+    cbool_t   a_isInheritHandle,
     culong_t &a_id
 )
 {
