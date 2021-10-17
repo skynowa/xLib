@@ -54,8 +54,8 @@ IpcSemaphore::_create_impl(
     xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
     xTEST_DIFF(nativeError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
 
-    _handle.set(hRv);
-    _name = a_name;
+    _handle = hRv;
+    _name   = a_name;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
