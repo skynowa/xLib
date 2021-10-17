@@ -30,7 +30,6 @@ jobs:
             cxx: "g++",
             build_script: "./eclipse.sh"
           }
-
         - {
             name: "Ubuntu-20.04 (Clang)",
             os: ubuntu-20.04,
@@ -39,7 +38,6 @@ jobs:
             cxx: "clang++",
             build_script: "./eclipse.sh"
           }
-
         - {
             name: "Windows-2019 (MSVC)",
             os: windows-2019,
@@ -50,16 +48,14 @@ jobs:
             conan_profile_update: 'conan profile update settings.compiler="Visual Studio" default; conan profile update settings.compiler.version=16 default',
             build_script: "./msvc_2019.sh"
           }
-
         # - {
         #     name: "Windows-2019 (MinGW)",
         #     os: windows-2019,
         #     build_type: "Debug",
         #     cc: "gcc",
         #     cxx: "g++",
-        #     build_script: ""
+        #     build_script: "./eclipse.sh"
         #   }
-
         # - {
         #     name: "macOS Latest Clang",
         #     os: macos-latest,
