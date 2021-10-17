@@ -78,3 +78,5 @@ xPLATFORM_IMPL:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
+
+// TODO: [win] https://stackoverflow.com/questions/32389905/sigaction-and-porting-linux-code-to-windows
