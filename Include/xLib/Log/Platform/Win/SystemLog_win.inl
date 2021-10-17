@@ -42,10 +42,11 @@ SystemLog::_write_impl(
 {
     xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
 
-    WORD    level_impl = internal::enums::toCross(a_level);
+    WORD    level_impl = internal::enums::Types<Level, WORD, 7>::toImpl(
+                            static_cast<std::cssize_t>(a_level));
     LPCTSTR strings    = a_msg.c_str();
 
-    BOOL bRv = ::ReportEvent(_handle, level, 0, 0UL, nullptr, 1, 0UL, &strings, nullptr);
+    BOOL bRv = ::ReportEvent(_handle, level_impl, 0, 0UL, nullptr, 1, 0UL, &strings, nullptr);
     xTEST_DIFF(bRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------

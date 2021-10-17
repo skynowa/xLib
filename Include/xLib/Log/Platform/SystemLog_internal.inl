@@ -17,8 +17,8 @@ namespace xl::internal::enums
 
 //-------------------------------------------------------------------------------------------------
 static
-constexpr Types<ILog::Level, std::ssize_t, 7U> levels
-{{
+const Types<ILog::Level, std::ssize_t, 7> levels[]
+{
 #if   xENV_WIN
     {ILog::Level::Off,     -1},
     {ILog::Level::Trace,   EVENTLOG_SUCCESS},
@@ -36,7 +36,7 @@ constexpr Types<ILog::Level, std::ssize_t, 7U> levels
     {ILog::Level::Error,   5},
     {ILog::Level::Fatal,   6}
 #endif
-}};
+};
 //-------------------------------------------------------------------------------------------------
 
 } // namespace
