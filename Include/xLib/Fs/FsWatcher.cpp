@@ -129,10 +129,13 @@ FsWatcher::close()
     _close_impl();
 
 	for (const auto &it_fileHandle : _fileHandles) {
+        // TODO: Close handles
+    #if 0
 		HandleNativeInvalid handle;
 		handle = it_fileHandle;
 
 		handle.close();
+    #endif
 	}
 
     _fileHandles.clear();

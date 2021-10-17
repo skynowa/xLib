@@ -64,11 +64,11 @@ public:
     virtual void_t onEvent(std::ctstring_t &fsName, cEvent event) = 0;
 
 private:
-    std::cvec_tstring_t          _dirPathsDisabled;
-    std::ctstring_t              _shellFilter;
-    std::vec_tstring_t           _filePaths;
-    std::vector<native_handle_t> _fileHandles;
-    std::map_tstring_t           _cmds;
+    std::cvec_tstring_t _dirPathsDisabled;
+    std::ctstring_t     _shellFilter;
+    std::vec_tstring_t  _filePaths;
+    std::vector<int_t>  _fileHandles;
+    std::map_tstring_t  _cmds;
 
 xPLATFORM_IMPL:
 
