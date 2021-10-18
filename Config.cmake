@@ -20,7 +20,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(cmOPTION_PROJECT_LIB_STATIC    1)
 set(cmOPTION_PROJECT_LIB_SHARE     0)
 set(cmOPTION_PROJECT_LIB_MODULE    0)
-set(cmOPTION_BUILD_TESTS           0)
+set(cmOPTION_BUILD_TESTS           1)
 
 # Local host - No tests
 cmake_host_system_information(RESULT cmHOST_NAME QUERY HOSTNAME)
