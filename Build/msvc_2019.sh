@@ -16,4 +16,4 @@ mkdir -p $DIR_BUILD
 cd $DIR_BUILD
 
 # build
-cmake $GENERATOR $DIR_PROJECT
+cmake -G${GENERATOR} ${DIR_PROJECT}
