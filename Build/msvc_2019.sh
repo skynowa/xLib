@@ -12,8 +12,8 @@ DIR_BUILD="../../${PROJECT_NAME}_build"
 GENERATOR="Visual Studio 16 2019"
 
 # prepare
-mkdir -p $DIR_BUILD
-cd $DIR_BUILD
+mkdir -p ${DIR_BUILD}
+cd ${DIR_BUILD}
 
 # build
 cmake \
