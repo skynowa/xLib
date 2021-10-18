@@ -8,7 +8,7 @@
 # vars
 PROJECT_NAME="xLib"
 DIR_PROJECT="../${PROJECT_NAME}"
-DIR_BUILD="../../${PROJECT_NAME}_msvc2019"
+DIR_BUILD="../../${PROJECT_NAME}_build"
 GENERATOR="Visual Studio 16 2019 -A x64" # -A Win32
 
 # prepare
