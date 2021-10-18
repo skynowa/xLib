@@ -9,7 +9,7 @@
 PROJECT_NAME="xLib"
 DIR_PROJECT="../${PROJECT_NAME}"
 DIR_BUILD="../../${PROJECT_NAME}_build"
-GENERATOR="Visual Studio 16 2019 -A x64" # -A Win32
+GENERATOR="Visual Studio 16 2019 -A x64"
 
 # prepare
 mkdir -p $DIR_BUILD
