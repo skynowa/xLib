@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
+#
+# \file  makefile.sh
+# \brief CMake configure project
+#
 
-
-set -ex
 
 # vars
 PROJECT_NAME="xLib"
