@@ -18,8 +18,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #--------------------------------------------------------------------------------------------------
 # options
 set(cmOPTION_PROJECT_LIB_STATIC    1)
-set(cmOPTION_PROJECT_LIB_SHARE     1)
-set(cmOPTION_PROJECT_LIB_MODULE    1)
+set(cmOPTION_PROJECT_LIB_SHARE     0) # TODO: build - fix
+set(cmOPTION_PROJECT_LIB_MODULE    0) # TODO: build - fix
 set(cmOPTION_BUILD_TESTS           1)
 
 # Local host - No tests
