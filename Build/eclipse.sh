@@ -18,6 +18,6 @@ cd $DIR_BUILD
 
 # build
 cmake \
-	-G${GENERATOR} \
+	-G"${GENERATOR}" \
 	-D_ECLIPSE_VERSION=${ECLIPSE_VERSION} \
 	$DIR_PROJECT
