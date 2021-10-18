@@ -20,6 +20,7 @@
     #define _xREPORT_TYPE ErrorReport::Type::Exception
 #endif
 //-------------------------------------------------------------------------------------------------
+// TODO: xTEST_PTR - nullptr, fix
 #define xTEST_EQ_MSG_PRIVATE(op, reportType, val1, val2, msg) \
 	if ( !((val1) op (val2)) ) { \
 		culong_t         nativeError    { NativeError::get() }; \

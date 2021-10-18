@@ -38,7 +38,7 @@ HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T a_handle)
     xTEST_DIFF(handle, -1);
 
     int_t iRv = ::dup2(handle, handleDup);
-    xTEST_GR(iRv, 0);
+    xTEST_DIFF(iRv, -1);
 
     return static_cast<T>(xTFDOPEN(handleDup, xT("r+")));  // TODO: [skynowa] clone - open mode
 }
