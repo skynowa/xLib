@@ -17,10 +17,17 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
 # options
-set(cmOPTION_PROJECT_LIB_STATIC    1)
-set(cmOPTION_PROJECT_LIB_SHARE     0) # TODO: build - fix
-set(cmOPTION_PROJECT_LIB_MODULE    0) # TODO: build - fix
-set(cmOPTION_BUILD_TESTS           1)
+set(cmOPTION_PROJECT_LIB_STATIC 1)
+set(cmOPTION_PROJECT_LIB_SHARE  0) # TODO: build - fix
+set(cmOPTION_PROJECT_LIB_MODULE 0) # TODO: build - fix
+
+set(CMAKE_EXE_LINKER_FLAGS      machine:X64)
+set(CMAKE_SHARED_LINKER_FLAGS   machine:X64)
+set(CMAKE_STATIC_LINKER_FLAGS   machine:X64)
+set(CMAKE_MODULE_LINKER_FLAGS   machine:X64)
+
+# Tests
+set(cmOPTION_BUILD_TESTS 1)
 
 # Local host - No tests
 cmake_host_system_information(RESULT cmHOST_NAME QUERY HOSTNAME)
