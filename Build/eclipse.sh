@@ -13,8 +13,8 @@ ECLIPSE_VERSION="4.17" # 2020-09
 GENERATOR="Eclipse CDT4 - Unix Makefiles"
 
 # prepare
-mkdir -p $DIR_BUILD
-cd $DIR_BUILD
+mkdir -p ${DIR_BUILD}
+cd ${DIR_BUILD}
 
 # build
 cmake \
