@@ -17,6 +17,5 @@ cd $DIR_BUILD
 # build
 cmake \
 	-G"${GENERATOR}" \
-	-A x64 \
 	-D_ECLIPSE_VERSION=${ECLIPSE_VERSION} \
 	$DIR_PROJECT
