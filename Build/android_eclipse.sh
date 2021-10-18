@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#
+# \file  android_eclipse.sh
+# \brief CMake configure project
+#
 
 
 # vars
@@ -12,6 +16,7 @@ GENERATOR="Eclipse CDT4 - Unix Makefiles"
 mkdir -p ${DIR_BUILD}
 cd ${DIR_BUILD}
 
+# build
 cmake \
 	-G"${GENERATOR}" \
 	-D_ECLIPSE_VERSION=${ECLIPSE_VERSION} \
