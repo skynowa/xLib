@@ -447,7 +447,7 @@ Test_DateTime::unit()
         const FILETIME time = {100, 200};
 
         m_ullRv = DateTime::fileToInt64(time);
-        xTEST_EQ( , m_ullRv);
+        xTEST_EQ(m_ullRv, 0);   // TODO: test - fix
     #endif
     }
 
