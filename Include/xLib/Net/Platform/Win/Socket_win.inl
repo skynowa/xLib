@@ -1,6 +1,8 @@
 /**
  * \file  ISocket.inl
  * \brief blocking socket
+ *
+ * https://docs.microsoft.com/en-us/windows/win32/winsock/porting-socket-applications-to-winsock
  */
 
 

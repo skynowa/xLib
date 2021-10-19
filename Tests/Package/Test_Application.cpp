@@ -83,7 +83,9 @@ bool_t
 Failer::bug_UnhandledException()
 {
 	std::vector<std::size_t> vecRv;
-	vecRv.at(10);
+
+	ctchar_t ch = vecRv.at(10);
+	xUNUSED(ch);
 
 	return !vecRv.empty();
 }
