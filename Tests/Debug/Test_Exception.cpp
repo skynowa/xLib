@@ -70,7 +70,8 @@ Test_Exception::unit()
         try {
             std::tstring_t sStr;
 
-            sStr.at(0);
+            ctchar_t ch = sStr.at(0);
+            xUNUSED(ch);
         }
         catch (const std::exception &e) {
             xUNUSED(e);
