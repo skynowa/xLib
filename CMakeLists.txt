@@ -187,8 +187,6 @@ message(STATUS "CMAKE_DL_LIBS:             ${CMAKE_DL_LIBS}")
 if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
 
-    message("    PROJECT_LIB_STATIC: ${PROJECT_LIB_STATIC}")
-
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "lib")
