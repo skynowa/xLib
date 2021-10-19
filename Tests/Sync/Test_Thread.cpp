@@ -137,13 +137,13 @@ Test_Thread::unit()
         #if   xENV_WIN
             pthT->setPriority(ctpPriority);
 
-            m_iRv = pthT->priority();
-            xTEST_EQ((int_t)ctpPriority, (int_t)m_iRv);
+            const Thread::Priority tpRv = pthT->priority();
+            xTEST_EQ((longlong_t)tpRv, (longlong_t)ctpPriority);
         #elif xENV_UNIX
             pthT->setPriority(ctpPriority);
 
             const Thread::Priority _ctpPriority = pthT->priority();
-            //TODO: xTEST_EQ(_ctpPriority, m_iRv);
+            // TODO: xTEST_EQ((longlong_t)tpRv, (longlong_t)ctpPriority);
         #endif
     }
 
@@ -229,13 +229,13 @@ Test_Thread::unit()
     xTEST_CASE("handle")
     {
         Thread::handle_t hRv = pthT->handle();
-        xTEST_DIFF(0UL, (ulong_t)hRv);
+        xTEST_DIFF(0UL, (ulonglong_t)hRv);
     }
 
     xTEST_CASE("id")
     {
         Thread::id_t idRes = pthT->id();
-        xTEST_DIFF(0UL, (ulong_t)idRes);
+        xTEST_DIFF(0UL, (ulonglong_t)idRes);
     }
 
     xTEST_CASE("isCurrent")
@@ -374,7 +374,7 @@ Test_Thread::unit()
     xTEST_CASE("handle")
     {
         Thread::handle_t hRv = Thread::currentHandle();
-        xTEST_DIFF(0UL, (ulong_t)hRv);
+        xTEST_DIFF(0ULL, (ulonglong_t)hRv);
     }
 
     xTEST_CASE("id")
@@ -386,7 +386,7 @@ Test_Thread::unit()
     xTEST_CASE("handle")
     {
         Thread::handle_t hRv = Thread::currentHandle();
-        xTEST_LESS((ulong_t)0, (ulong_t)hRv);
+        xTEST_LESS(0ULL, (ulonglong_t)hRv);
     }
 
     xTEST_CASE("yield")
