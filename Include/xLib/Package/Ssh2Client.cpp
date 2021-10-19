@@ -461,6 +461,7 @@ Ssh2Client::_convertStdToHtml(
 {
     *a_std = String::replaceAll(*a_std, xT("\n"), xT("<br />"));
 
+#if xENV_UNIX
     // http://misc.flogisoft.com/bash/tip_colors_and_formatting
     // http://ascii-table.com/ansi-escape-sequences.php
     std::map_tstring_t colorsCodes;
@@ -533,7 +534,6 @@ Ssh2Client::_convertStdToHtml(
 
     for (const auto &[code, name] : colorsCodes) {
         std::tstring_t htmlTag;
-    #if 0
         {
             if (code == xT("\e[0m")) {
                 htmlTag = xT("</font>");
@@ -541,10 +541,12 @@ Ssh2Client::_convertStdToHtml(
                 htmlTag = xT("<font color=\"") + name + xT("\">");
             }
         }
-    #endif
 
         *a_std = String::replaceAll(*a_std, code, htmlTag);
     }
+#else
+    // TODO: [win] _convertStdToHtml
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
