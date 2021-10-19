@@ -14,6 +14,7 @@
 #elif xCOMPILER_MS
     // off
     #pragma warning(disable: 4996) // function or variable may be unsafe (deprecated)
+    #pragma warning(disable: 4099) // linking object as if no debug info
 #elif xCOMPILER_CLANG
     // off
 #elif xCOMPILER_GNUC
