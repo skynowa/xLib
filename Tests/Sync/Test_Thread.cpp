@@ -93,8 +93,9 @@ Test_Thread::unit()
     pthT->setTag(0);
     ////pthT->vOnExit2  = vOnExitHandle;
 
-    size_t uiParam = 1000;
-    pthT->create(cbIsPaused, 0U, &uiParam);
+    cuint_t stackSizeBytes {16384 * 2};
+    size_t  uiParam        {1000};
+    pthT->create(cbIsPaused, stackSizeBytes, &uiParam);
 
     xTEST_CASE("create")
     {

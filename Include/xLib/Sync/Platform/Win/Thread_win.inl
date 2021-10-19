@@ -42,7 +42,17 @@ Thread::_kill_impl(
 
     _exitStatus = 0U;
 
+#if xCOMPILER_MS
+    #pragma warning (push)
+    #pragma warning (disable: 6258)
+#endif
+
     BOOL blRv = ::TerminateThread(_handle, _exitStatus);
+
+#if xCOMPILER_MS
+    #pragma warning (pop)
+#endif
+
     xTEST_DIFF(blRv, FALSE);
 
     for ( ; ; ) {
