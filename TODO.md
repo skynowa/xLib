@@ -25,3 +25,7 @@ PathImpl
 PathStatic
 PathDetail
 ```
+
+## Sync
+
+TODO: [win] Sync - close handle
