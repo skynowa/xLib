@@ -6,20 +6,12 @@
 
 #pragma once
 
-// TODO: warnings - rm
-
 #if   xCOMPILER_MINGW
-    // off
     #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #elif xCOMPILER_MS
-    // off
     #pragma warning(disable: 4996) // function or variable may be unsafe (deprecated)
-    #pragma warning(disable: 4099) // linking object as if no debug info
 #elif xCOMPILER_CLANG
-    // off
+	// n/a
 #elif xCOMPILER_GNUC
-    // off
     #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#else
-    #error Unknown complier
 #endif

@@ -137,7 +137,8 @@ endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 
 if (MSVC)
-    # n/a
+    # https://docs.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-warning-lnk4099?redirectedfrom=MSDN&view=msvc-160
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Z7")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wfatal-errors")
 endif()
