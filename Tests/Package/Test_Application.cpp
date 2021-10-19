@@ -84,8 +84,8 @@ Failer::bug_UnhandledException()
 {
 	std::vector<std::size_t> vecRv;
 
-	ctchar_t ch = vecRv.at(10);
-	xUNUSED(ch);
+	const auto &value = vecRv.at(10);
+	xUNUSED(value);
 
 	return !vecRv.empty();
 }
