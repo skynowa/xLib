@@ -83,7 +83,7 @@ Test_FileInfo::unit()
 
         FileInfo(filePath).time(&tmCreate, &tmAccess, &tmModified);
     #if   xENV_WIN
-        xTEST_EQ(open, tmCreate);
+        xTEST_EQ(create, tmCreate);
     #elif xENV_UNIX
         xUNUSED(tmCreate);
     #endif
