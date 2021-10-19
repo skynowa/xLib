@@ -11,7 +11,7 @@ if [[ -z "$UNIT_TEST_NAME" ]]; then
 fi
 
 # vars
-DIR_BUILD="../../xLib_eclipse"
+DIR_BUILD="../../xLib_build"
 JOBS_NUM=$(($(nproc) * 2))
 
 echo "Jobs: $JOBS_NUM"
