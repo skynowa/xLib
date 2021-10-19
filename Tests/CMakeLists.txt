@@ -25,7 +25,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     if (MSVC)
         # set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/Z7 /NODEFAULTLIB:library")
-        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:library")
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB")
 
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
