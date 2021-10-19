@@ -1029,7 +1029,7 @@ Test_Path::unit()
     xTEST_CASE("homeAsBrief")
     {
 	#if   xENV_WIN
-		std::ctstring_t filePath = Format::str(xT("C:\Users\{}\test"), User().name());
+		std::ctstring_t filePath = Format::str(xT("C:\\Users\\{}\\test"), User().name());
 	#elif xENV_UNIX
 		std::ctstring_t filePath = Format::str(xT("/home/{}/tmp"), User().name());
 	#endif
