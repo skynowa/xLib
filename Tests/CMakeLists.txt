@@ -7,6 +7,10 @@
 #--------------------------------------------------------------------------------------------------
 include(CTest)
 #--------------------------------------------------------------------------------------------------
+if (EXISTS "${XLIB_LOCATION}/../conan_paths.cmake")
+    include(${XLIB_LOCATION}/../conan_paths.cmake)
+endif()
+#--------------------------------------------------------------------------------------------------
 find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
 
 set(CTEST_MEMORYCHECK_COMMAND_OPTIONS "--trace-children=yes --leak-check=full")
