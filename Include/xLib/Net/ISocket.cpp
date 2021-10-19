@@ -270,7 +270,13 @@ ISocket::sendBytes(
         xCHECK_RET(iRv < 0, nativeError());
 
         // send a few bytes
-        std::ssize_t sendStatus = ::send(_handle.get(), a_buff, static_cast<std::size_t>(messageLength), 0);
+    #if   xENV_WIN
+        const auto buffSize = static_cast<int_t>(messageLength);
+    #elif xENV_UNIX
+        const auto buffSize = static_cast<std::size_t>(messageLength);
+    #endif
+
+        std::ssize_t sendStatus = ::send(_handle.get(), a_buff, buffSize, 0);
 
         // An error occurred when sending data
         xCHECK_RET(sendStatus < 0, nativeError());
@@ -311,7 +317,13 @@ ISocket::receiveBytes(
         xCHECK_RET(iRv < 0, nativeError());
 
         // receive a few bytes
-        std::ssize_t receiveStatus = ::recv(_handle.get(), a_buff, static_cast<std::size_t>(stillToReceive), 0);
+    #if   xENV_WIN
+        const auto buffSize = static_cast<int_t>(stillToReceive);
+    #elif xENV_UNIX
+        const auto buffSize = static_cast<std::size_t>(stillToReceive);
+    #endif
+
+        std::ssize_t receiveStatus = ::recv(_handle.get(), a_buff, buffSize, 0);
 
         // An error occurred when the function recv ()
         xCHECK_RET(receiveStatus < 0, nativeError());
