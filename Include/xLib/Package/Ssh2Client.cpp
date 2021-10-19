@@ -88,7 +88,8 @@ Ssh2Client::connect()
     _session = ::libssh2_session_init();
     xTEST_PTR(_session);
 
-    while ((iRv = ::libssh2_session_startup(_session, _tcpClient.handle().get())) == LIBSSH2_ERROR_EAGAIN) {
+    // \see [Win] UINT_PTR - _wait()
+    while ((iRv = ::libssh2_session_startup(_session, static_cast<int_t>( _tcpClient.handle().get() ))) == LIBSSH2_ERROR_EAGAIN) {
         _wait(waitTimeoutSec);
     }
     xTEST_EQ(iRv, 0);
@@ -411,17 +412,27 @@ Ssh2Client::_wait(
     // now make sure we wait in the correct direction
     cint_t directions = ::libssh2_session_block_directions(_session);
 
-    fd_set *readfd = nullptr;
+    fd_set *readfd {};
     if (directions & LIBSSH2_SESSION_BLOCK_INBOUND) {
         readfd = &fd;
     }
 
-    fd_set *writefd = nullptr;
+    fd_set *writefd {};
     if (directions & LIBSSH2_SESSION_BLOCK_OUTBOUND) {
         writefd = &fd;
     }
 
-    iRv = ::select(_tcpClient.handle().get() + 1, readfd, writefd, nullptr, &timeout);
+   /**
+    * [Win] UINT_PTR - is not a pointer, it's a simple unsigned integer
+    *
+    * https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-tsts/f959534d-51f2-4103-8fb5-812620efe49b
+    *
+    * BUT it's big enough to hold a pointer.
+    * In other words, it's safe to cast a pointer to UINT_PTR or INT_PTR and back to a pointer.
+    * On the other hand, it's not safe to cast a pointer to a normal unsigned int, or int.
+    */
+
+    iRv = ::select(static_cast<int_t>(_tcpClient.handle().get() + 1), readfd, writefd, nullptr, &timeout);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
