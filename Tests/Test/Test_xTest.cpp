@@ -63,6 +63,11 @@ Test_xTest::unit()
     {
         std::ctstring_t msg = xT("Simple message");
 
+    #if xCOMPILER_MS
+        #pragma warning (push)
+        #pragma warning (disable: 4834) // discarding return value of function with 'nodiscard' attribute
+    #endif
+
         xTEST_THROW(msg.at(msg.size() + 10), std::exception);
         xTEST_THROW_MSG(msg.at(msg.size() + 10), std::exception, msg);
 
@@ -71,6 +76,10 @@ Test_xTest::unit()
 
         xTEST_THROW_NO(msg.at(0));
         xTEST_THROW_NO_MSG(msg.at(0), msg);
+
+    #if xCOMPILER_MS
+        #pragma warning (pop)
+    #endif
     }
 
     xTEST_CASE("xTEST_NA")
