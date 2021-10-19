@@ -27,7 +27,13 @@ ISocket::_send_impl(
     cint_t        &a_flags
 )
 {
-    std::ssize_t iRv = ::send(_handle.get(), (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
+#if   xENV_WIN
+    const auto   buffSize = static_cast<int_t>(a_buffSize * sizeof(tchar_t));
+#elif xENV_UNIX
+    std::csize_t buffSize = a_buffSize * sizeof(tchar_t);
+#endif
+
+    std::ssize_t iRv = ::send(_handle.get(), (LPCSTR)a_buff, buffSize, a_flags);
     xTEST_EQ(iRv != xSOCKET_ERROR && ISocket::nativeError() != WSAEWOULDBLOCK, true);
     xTEST_GR_EQ(std::ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
 
@@ -41,7 +47,13 @@ ISocket::_receive_impl(
     cint_t        &a_flags
 )
 {
-    int_t iRv = ::recv(_handle.get(), (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
+#if   xENV_WIN
+    const auto   buffSize = static_cast<int_t>(a_buffSize * sizeof(tchar_t));
+#elif xENV_UNIX
+    std::csize_t buffSize = a_buffSize * sizeof(tchar_t);
+#endif
+
+    int_t iRv = ::recv(_handle.get(), (LPSTR)a_buff, buffSize, a_flags);
     xTEST_EQ(iRv != xSOCKET_ERROR && ISocket::nativeError() != WSAEWOULDBLOCK, true);
     xTEST_DIFF(iRv, 0);  // gracefully closed
     xTEST_GR_EQ(int_t(a_buffSize * sizeof(tchar_t)), iRv);
