@@ -23,7 +23,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     endif()
 
     add_executable(${TEST_NAME} ${IT_SOURCE})
-    target_link_options(${TEST_NAME} ${CMAKE_CXX_FLAGS})
+    target_link_options(${TEST_NAME} PUBLIC ${CMAKE_CXX_FLAGS})
     target_link_libraries(${TEST_NAME} ${PROJECT_NAME}_static)
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
 endforeach()
