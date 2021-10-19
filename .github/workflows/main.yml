@@ -133,7 +133,7 @@ jobs:
 
       # Libs
       - name: Libs - Install
-        run: conan install "${{github.workspace}}/xLib" --build=missing
+        run: conan install "${{github.workspace}}/xLib" --build=missing -s build_type=Debug
         shell: bash
 
       # Libs
