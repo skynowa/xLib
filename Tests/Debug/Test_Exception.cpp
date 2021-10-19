@@ -56,6 +56,8 @@ Test_Exception::unit()
             throw Exception() << xT("Exception_test_exception");
         }
         catch (const Exception &e) {
+            xUNUSED(e);
+
             //xTRACEV( xT("std::what: %s"), e.what().c_str() );
         }
         catch (...) {
@@ -71,6 +73,8 @@ Test_Exception::unit()
             sStr.at(0);
         }
         catch (const std::exception &e) {
+            xUNUSED(e);
+
             //xTRACEV( xT("std::what: %s"), e.what() );
         }
         catch (...) {
