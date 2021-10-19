@@ -13,6 +13,9 @@ xTEST_UNIT(Test_Signal)
 bool_t
 Test_Signal::unit()
 {
+#if   xENV_WIN
+    // TODO: [Win] Signal tests
+#elif xENV_UNIX
     xTEST_CASE("decription")
     {
         std::vector<int_t> signalNums;
@@ -59,6 +62,7 @@ Test_Signal::unit()
             xTEST(!m_sRv.empty());
         }
     }
+#endif
 
     return true;
 }
