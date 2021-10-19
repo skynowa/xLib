@@ -50,8 +50,8 @@ Test_TcpServer::unit()
 
     objClientSocket.close();
 
-    m_iRv = objListenSocket.send(sSendBuff.c_str(), sSendBuff.size(), 0);
-    xTEST_DIFF(m_iRv, xSOCKET_ERROR)
+    m_sstRv = objListenSocket.send(sSendBuff.c_str(), sSendBuff.size(), 0);
+    xTEST_DIFF(m_sstRv, xSOCKET_ERROR)
 
     objListenSocket.close();
 
