@@ -40,6 +40,7 @@ DnsClient::hostAddrByName(
 
     hostent *host = ::gethostbyname( xT2A(a_hostName).c_str() );
     xTEST_PTR(host);
+    xCHECK_DO(host == nullptr, return);
 
     struct in_addr **addrList = reinterpret_cast<struct in_addr **>(host->h_addr_list);
 
@@ -108,6 +109,8 @@ DnsClient::hostNameByAddr(
 		}
     	break;
     }
+
+    xCHECK_DO(host == nullptr, return);
 
     *a_hostName = xA2T(host->h_name);
 }
@@ -212,6 +215,7 @@ DnsClient::protocolByName(
 
     protoent/*PROTOENT*/ *info = ::getprotobyname( xT2A(a_protocolName).c_str() );
     xTEST_PTR(info);
+    xCHECK_DO(info == nullptr, return);
 
     // a_name
     if (a_name != nullptr) {
@@ -247,6 +251,7 @@ DnsClient::protocolByNumber(
 
     protoent/*PROTOENT*/ *info = ::getprotobynumber(a_number);
     xTEST_PTR(info);
+    xCHECK_DO(info == nullptr, return);
 
     // a_name
     if (a_name != nullptr) {
@@ -286,6 +291,7 @@ DnsClient::serviceByName(
 
     servent *info = ::getservbyname(xT2A(a_serviceName).c_str(), xT2A(a_protocolName).c_str());
     xTEST_PTR(info);
+    xCHECK_DO(info == nullptr, return);
 
     // name
     if (a_name != nullptr) {
@@ -330,6 +336,7 @@ DnsClient::serviceByPort(
 
     servent *info = ::getservbyport(a_port, xT2A(a_protocolName).c_str());
     xTEST_PTR(info);
+    xCHECK_DO(info == nullptr, return);
 
     // name
     if (a_name != nullptr) {
