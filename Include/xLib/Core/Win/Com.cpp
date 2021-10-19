@@ -4,9 +4,18 @@
  */
 
 
+#include "Com.h"
+
 #if xENV_WIN
 
-#include "Com.h"
+#include <xLib/Core/Const.h>
+#include <xLib/Core/Utils.h>
+#include <xLib/Core/String.h>
+#include <xLib/Core/Format.h>
+#include <xLib/Log/Trace.h>
+#include <xLib/Debug/NativeError.h>
+#include <xLib/Debug/ErrorReport.h>
+#include <xLib/Test/Test.h>
 
 #if xCOMPILER_MINGW
     // lib: -lole32
