@@ -1,6 +1,8 @@
 /**
  * \file   Signal.h
  * \brief  signal
+ *
+ * https://habr.com/ru/post/141206/
  */
 
 
