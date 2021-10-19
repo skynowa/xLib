@@ -24,14 +24,14 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     add_executable(${TEST_NAME} ${IT_SOURCE})
 
     if (MSVC)
-        # set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/Z7")
+        set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/Z7")
         # set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /Z7")
         # set_target_properties(${TEST_NAME} PROPERTIES COMPILE_FLAGS "/Z7")
 
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
 
-    target_link_libraries(${TEST_NAME} LINK_PUBLIC ${PROJECT_NAME}_static ${cmXLIB_LIBRARIES})
+    target_link_libraries(${TEST_NAME} LINK_PUBLIC ${PROJECT_NAME}_static ${XLIB_LIBRARIES})
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
 endforeach()
 #--------------------------------------------------------------------------------------------------
