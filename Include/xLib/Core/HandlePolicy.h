@@ -99,10 +99,6 @@ struct HandlePolicy;
         _close_impl(a_handle); \
     }
 //-------------------------------------------------------------------------------------------------
-#if 0
-	see declaration of 'xl::core::HandlePolicy<xl::native_handle_t,xl::core::HandlePolicyType::hvNative>::clone'
-#endif
-
 xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNative);
 xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNativeInvalid);
 xHANDLE_POLICY_FACTORY(HandlePolicyType::hvDll);
