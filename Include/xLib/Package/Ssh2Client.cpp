@@ -213,6 +213,9 @@ Ssh2Client::channelReadLine(
     xTEST_PTR(a_stdOut);
     xTEST_PTR(a_stdErr);
 
+    xCHECK_RET(a_stdOut == nullptr, false);
+    xCHECK_RET(a_stdErr == nullptr, false);
+
     std::tstring_t stdOut;
     bool_t         isStdOutChannelEof = false;
     _channelStdStreamReadLine(true, &stdOut, &isStdOutChannelEof);
