@@ -43,8 +43,8 @@ Test_Blowfish::unit()
 
             xTEST_EQ(plain[i], decrypted);
 
-            const auto v1 = Crc32().calc(&plain[i].at(0), plain[i].size());
-            const auto v2 = Crc32().calc(&decrypted.at(0), decrypted.size());
+            const auto v1 = Crc32().calc(&plain[i].at(0),  static_cast<ulong_t>(plain[i].size()));
+            const auto v2 = Crc32().calc(&decrypted.at(0), static_cast<ulong_t>(decrypted.size()));
             xTEST_EQ(v1, v2);
         }
     }
