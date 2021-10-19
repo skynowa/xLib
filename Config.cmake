@@ -52,8 +52,8 @@ endif()
 # - Release
 # - RelWithDebInfo
 # - MinSizeRel
-set(CMAKE_CONFIGURATION_TYPES      "Debug;Release;RelWithDebInfo" STRING "")
-set(CMAKE_BUILD_TYPE               "RelWithDebInfo")
+set(CMAKE_CONFIGURATION_TYPES      "Debug" STRING "") # "Debug;Release;RelWithDebInfo"
+set(CMAKE_BUILD_TYPE               "Debug")	# "RelWithDebInfo"
 
 set(OPTION_UNICODE                 0)
 set(cmOPTION_DEBUG_MODE_MSGBOX     0)
