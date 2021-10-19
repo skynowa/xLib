@@ -110,7 +110,7 @@ namespace xl
 
     // socket_t
 #if   xENV_WIN
-    using socket_t = SOCKET;
+    using socket_t = SOCKET;    // UINT_PTR - not a pointer !!!
 #elif xENV_UNIX
     using socket_t = int;
 #endif
