@@ -125,7 +125,13 @@ DnsClient::localHostName(
 
     std::string asRv(xHOST_NAME_MAX, '0');
 
-    int_t iRv = ::gethostname(&asRv.at(0), asRv.size() * sizeof(std::string::value_type));
+#if   xENV_WIN
+    const auto   hostNameSize = static_cast<int_t>(asRv.size() * sizeof(std::string::value_type));
+#elif xENV_UNIX
+    std::csize_t hostNameSize = asRv.size() * sizeof(std::string::value_type);
+#endif
+
+    int_t iRv = ::gethostname(&asRv.at(0), hostNameSize);
     xTEST_EQ(iRv, 0);
 
     asRv.assign(asRv.c_str());    // trim '0' from end
