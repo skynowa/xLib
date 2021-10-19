@@ -10,6 +10,7 @@
     #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #elif xCOMPILER_MS
     #pragma warning(disable: 4996) // function or variable may be unsafe (deprecated)
+	#pragma comment(linker, "/ignore:4099")
 #elif xCOMPILER_CLANG
 	// n/a
 #elif xCOMPILER_GNUC
