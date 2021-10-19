@@ -176,8 +176,13 @@ Test_Format::unit()
         Data2<wchar_t, std::tstring_t> data[] =
         {
             {L'\n', xT("<LF>")},
-            {L'a',  xT("a")},
+            {L'a',  xT("a")}
+        #if xENV_WIN
+        #if xUNICODE
+            ,
             {L'聞', xT("?")}
+        #endif
+        #endif
         };
 
        for (const auto &i : data) {
