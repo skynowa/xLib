@@ -36,9 +36,6 @@ Path::_dll_impl()
 	void_t (*procAddress)() = function;
 
 	int_t iRv = ::dladdr(&procAddress, &diInfo);
-	Cout() << xTRACE_VAR(iRv);
-
-	// TODO: dladdr - return 0
 	if (iRv == 0) {
 		sRv = Const::strEmpty();
 	} else {
