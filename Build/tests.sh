@@ -10,4 +10,4 @@ JOBS_NUM=$(($(nproc) * 2))
 echo "Jobs: $JOBS_NUM"
 
 cd $DIR_BUILD
-ctest -j$JOBS_NUM --output-on-failure
+ctest -C Debug -j$JOBS_NUM --output-on-failure
