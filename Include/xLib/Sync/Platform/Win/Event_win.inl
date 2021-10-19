@@ -31,7 +31,7 @@ Event::_create_impl()
     xTEST_EQ(_event, xNATIVE_HANDLE_NULL);
 
     HANDLE hRv = ::CreateEvent(nullptr, ! _isAutoReset, _initState, nullptr);
-    xTEST_DIFF(hRv, static_cast<HANDLE>(nullptr));
+    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
 
     _event = hRv;
     // n/a
