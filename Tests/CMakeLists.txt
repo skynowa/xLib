@@ -27,6 +27,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         # set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/Z7 /NODEFAULTLIB:library")
         # set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB")
 
+        # https://docs.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-warning-lnk4099?redirectedfrom=MSDN&view=msvc-160
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
 
