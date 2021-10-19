@@ -96,17 +96,17 @@ HandlePolicy<T, HandlePolicyType::hvNativeInvalid>::_isValid_impl(const T a_hand
     bool_t bRv {};
 
     // created but not initialised
-    bool_t cond1 = (a_handle != reinterpret_cast<T>(0xCDCDCDCD));
+    bool_t cond1 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xCDCDCDCD) ));
     // uninitialized locals in VC6 when you compile w/ /GZ
-    bool_t cond2 = (a_handle != reinterpret_cast<T>(0xCCCCCCCC));
+    bool_t cond2 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xCCCCCCCC) ));
     // indicate an uninitialized variable
-    bool_t cond3 = (a_handle != reinterpret_cast<T>(0xBAADF00D));
+    bool_t cond3 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xBAADF00D) ));
     // no man's land (normally outside of a process)
-    bool_t cond4 = (a_handle != reinterpret_cast<T>(0xFDFDFDFD));
+    bool_t cond4 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xFDFDFDFD) ));
     // freed memory set by NT's heap manager
-    bool_t cond5 = (a_handle != reinterpret_cast<T>(0xFEEEFEEE));
+    bool_t cond5 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xFEEEFEEE) ));
     // deleted
-    bool_t cond6 = (a_handle != reinterpret_cast<T>(0xDDDDDDDD));
+    bool_t cond6 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xDDDDDDDD) ));
     // compare with error handle value
     bool_t cond7 = (a_handle != null());
 
