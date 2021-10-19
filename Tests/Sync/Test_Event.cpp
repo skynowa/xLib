@@ -16,11 +16,10 @@ Test_Event::unit()
     xTEST_CASE("handle")
     {
         Event objEvent(true, true);
-
         objEvent.create();
 
         #if   xENV_WIN
-            xTEST(objEvent.handle().isValid())
+            xTEST_DIFF(objEvent.handle(), xNATIVE_HANDLE_NULL);
         #elif xENV_UNIX
             // TEST: Test_Event() - hRv
         #endif
