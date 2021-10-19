@@ -26,22 +26,22 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - {
-            name: "Ubuntu-20.04 (GCC)",
-            os: ubuntu-20.04,
-            build_type: "Debug",
-            cc: "gcc",
-            cxx: "g++",
-            build_script: "./eclipse.sh"
-          }
-        - {
-            name: "Ubuntu-20.04 (Clang)",
-            os: ubuntu-20.04,
-            build_type: "Debug",
-            cc: "clang",
-            cxx: "clang++",
-            build_script: "./eclipse.sh"
-          }
+        # - {
+        #     name: "Ubuntu-20.04 (GCC)",
+        #     os: ubuntu-20.04,
+        #     build_type: "Debug",
+        #     cc: "gcc",
+        #     cxx: "g++",
+        #     build_script: "./eclipse.sh"
+        #   }
+        # - {
+        #     name: "Ubuntu-20.04 (Clang)",
+        #     os: ubuntu-20.04,
+        #     build_type: "Debug",
+        #     cc: "clang",
+        #     cxx: "clang++",
+        #     build_script: "./eclipse.sh"
+        #   }
         - {
             name: "Windows-2019 (MSVC)",
             os: windows-2019,
