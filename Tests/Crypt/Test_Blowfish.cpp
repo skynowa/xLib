@@ -42,8 +42,10 @@ Test_Blowfish::unit()
             blowfish.encryptCfb64(Blowfish::Mode::Decrypt, encrypted, &decrypted);
 
             xTEST_EQ(plain[i], decrypted);
-            xTEST_EQ(Crc32().calc(&(plain[i]).at(0), plain[i].size()),
-                Crc32().calc(&decrypted.at(0), decrypted.size()));
+
+            const auto v1 = Crc32().calc(&plain[i].at(0), plain[i].size());
+            const auto v2 = Crc32().calc(&decrypted.at(0), decrypted.size());
+            xTEST_EQ(v1, v2);
         }
     }
 
