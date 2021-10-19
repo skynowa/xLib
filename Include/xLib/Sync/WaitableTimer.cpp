@@ -4,9 +4,9 @@
  */
 
 
-#if xENV_WIN
-
 #include "WaitableTimer.h"
+
+#if xENV_WIN
 
 #if   xENV_WIN
     #include "Platform/Win/WaitableTimer_win.inl"
@@ -41,7 +41,7 @@ WaitableTimer::handle() const
 //-------------------------------------------------------------------------------------------------
 void_t
 WaitableTimer::create(
-    cbool_t                     &a_bManualReset,
+    cbool_t                      a_bManualReset,
     std::ctstring_t             &a_name,
     const LPSECURITY_ATTRIBUTES  a_attrs
 )
@@ -58,7 +58,7 @@ void_t
 WaitableTimer::open(
     std::ctstring_t &a_name,
     culong_t        &a_access,
-    cbool_t         &a_isInheritHandle
+    cbool_t          a_isInheritHandle
 )
 {
     xTEST_EQ(_handle.isValid(), true);
@@ -93,7 +93,7 @@ WaitableTimer::set(
     clong_t          &a_period,
     PTIMERAPCROUTINE  a_routine,
     LPVOID            a_routineArgs,
-    cbool_t          &a_isResume
+    cbool_t           a_isResume
 ) const
 {
     xTEST_EQ(_handle.isValid(), true);
