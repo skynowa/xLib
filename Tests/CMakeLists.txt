@@ -20,7 +20,10 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     add_executable(${TEST_NAME} ${IT_SOURCE})
 
     if (MSVC)
-        set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/Z7")
+        # set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/Z7")
+        SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /Z7")
+
+        # set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
 
     target_link_libraries(${TEST_NAME} ${PROJECT_NAME}_static)
