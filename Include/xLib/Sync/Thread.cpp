@@ -659,7 +659,7 @@ Thread::_s_jobEntry(
 
     Thread *self = static_cast<Thread *>( a_param );
     xTEST_PTR(self);
-    xCHECK_RET(self == nullptr, 1); // 1 - as error
+    xCHECK_RET(self == nullptr, exit_status_t{}); // 0 - as error
 
     // handle must be valid
     currentSleep(waitVaildHandleTimeoutMsec);
