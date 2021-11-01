@@ -147,11 +147,12 @@ implicitCast(const From &a_from)
 ///@name type aliases
 ///@{
 //-------------------------------------------------------------------------------------------------
-using file_unique_ptr_t = std::unique_ptr<std::FILE, int 	(*)(std::FILE *)>;
+using file_unique_ptr_t = std::unique_ptr<std::FILE, int (*)(std::FILE *)>;
 
 #if xENV_UNIX
 using dll_unique_ptr_t  = std::unique_ptr<void,      int (*)(void *)>;
 using dir_unique_ptr_t  = std::unique_ptr<::DIR,     int (*)(::DIR *)>;
+using pipe_unique_ptr_t = std::unique_ptr<std::FILE, int (*)(std::FILE *)>;
 #endif
 //-------------------------------------------------------------------------------------------------
 template<class HandleT, class FunctorT, class DeleterT>
@@ -160,6 +161,7 @@ HandleT makeUnique(FunctorT functor, DeleterT deleter);
 file_unique_ptr_t autoFile(std::ctstring_t &filePath, cptr_cchar flags);
 
 #if xENV_UNIX
+pipe_unique_ptr_t autoPipe(std::ctstring_t &cmdLine, cptr_cchar flags);
 dll_unique_ptr_t  autoDll(std::ctstring_t &dllPath, cint_t flags);
 dir_unique_ptr_t  autoDir(std::ctstring_t &dirPath);
 #endif

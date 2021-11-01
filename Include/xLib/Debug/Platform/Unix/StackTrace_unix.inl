@@ -163,13 +163,13 @@ StackTrace::_addr2Line(
     // TODO: [skynowa] [apple]
     //// sprintf(addr2line_cmd,"atos -o %.256s %p", program_name, addr);
 
-    FILE *file = ::popen(xT2A(cmdLine).c_str(), "r");
-    STD_VERIFY(file != nullptr);
+	auto pipe = autoPipe(cmdLine, "r");
+	xTEST_PTR(pipe.get());
 
     // get function name
     {
         tchar_t buff[buffSize + 1] {};
-        cptr_ctchar_t functionName = xTFGETS(buff, buffSize, file);
+        cptr_ctchar_t functionName = xTFGETS(buff, buffSize, pipe.get());
         STD_VERIFY(functionName != nullptr);
 
         out_functionName->assign(functionName);
@@ -178,7 +178,7 @@ StackTrace::_addr2Line(
     // get file and line
     {
         tchar_t buff[buffSize + 1] {};
-        cptr_ctchar_t fileAndLine = xTFGETS(buff, buffSize, file);
+        cptr_ctchar_t fileAndLine = xTFGETS(buff, buffSize, pipe.get());
         STD_VERIFY(fileAndLine != nullptr);
 
        /**
@@ -191,14 +191,11 @@ StackTrace::_addr2Line(
         STD_VERIFY(line.size() == 2U);
 
         // out
-        STD_VERIFY(std::feof(file) == 0);
+        STD_VERIFY(std::feof(pipe.get()) == 0);
 
         *out_filePath   = line.at(0);
         *out_sourceLine = String::cast<ulong_t>( line.at(1) );
     }
-
-    int_t iRv = ::pclose(file);   file = nullptr;
-    STD_VERIFY(iRv != - 1);
 #else
     xUNUSED(a_symbolAddress);
 

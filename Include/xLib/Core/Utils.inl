@@ -249,6 +249,15 @@ autoFile(
 //-------------------------------------------------------------------------------------------------
 #if xENV_UNIX
 
+//-------------------------------------------------------------------------------------------------
+inline pipe_unique_ptr_t
+autoPipe(
+	std::ctstring_t &a_cmdLine,
+	cptr_cchar       a_flags
+)
+{
+	return makeUnique<pipe_unique_ptr_t>(::popen(xT2A(a_cmdLine).c_str(), a_flags), ::pclose);
+}
 inline dir_unique_ptr_t
 autoDir(
 	std::ctstring_t &a_dirPath
