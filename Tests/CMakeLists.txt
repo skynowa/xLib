@@ -19,7 +19,9 @@ set(MEMORYCHECK_SUPPRESSIONS_FILE     "${XLIB_LOCATION}/valgrind_suppress.txt")
 file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
 foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
-    message(STATUS "\n>>>>> PROJECT_NAME: ${PROJECT_NAME}")
+    message(STATUS "")
+    message(STATUS ">>>>> PROJECT_NAME: ${PROJECT_NAME}")
+    message(STATUS ">>>>> PROJECT_LIB_STATIC: ${PROJECT_LIB_STATIC}")
 
     get_filename_component(TEST_NAME ${IT_SOURCE} NAME_WE)
     message(STATUS ">>>>> TEST_NAME: ${TEST_NAME}")
@@ -40,7 +42,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     endif()
 
     target_link_libraries(${TEST_NAME}
-        ${PROJECT_NAME}_static
+        ${PROJECT_LIB_STATIC}
         ${XLIB_LIBRARIES}
         ${LIBXML2_LIBRARIES})
 
