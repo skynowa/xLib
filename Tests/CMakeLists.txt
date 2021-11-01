@@ -19,6 +19,8 @@ set(MEMORYCHECK_SUPPRESSIONS_FILE     "${XLIB_LOCATION}/valgrind_suppress.txt")
 file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
 foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
+    message(STATUS "\n>>>>> PROJECT_NAME: ${PROJECT_NAME}")
+
     get_filename_component(TEST_NAME ${IT_SOURCE} NAME_WE)
     message(STATUS ">>>>> TEST_NAME: ${TEST_NAME}")
 
