@@ -132,9 +132,9 @@ StackTrace::_get_impl(
 void_t
 StackTrace::_addr2Line(
     cptr_cvoid_t    a_symbolAddress,
-    std::tstring_t *a_filePath,
-    std::tstring_t *a_functionName,
-    ulong_t        *a_sourceLine
+    std::tstring_t *out_filePath,
+    std::tstring_t *out_functionName,
+    ulong_t        *out_sourceLine
 )
 {
 #if cmADDR2LINE_FOUND
@@ -172,7 +172,7 @@ StackTrace::_addr2Line(
         cptr_ctchar_t functionName = xTFGETS(buff, buffSize, file);
         STD_VERIFY(functionName != nullptr);
 
-        a_functionName->assign(functionName);
+        out_functionName->assign(functionName);
     }
 
     // get file and line
@@ -193,8 +193,8 @@ StackTrace::_addr2Line(
         // out
         STD_VERIFY(std::feof(file) == 0);
 
-        *a_filePath   = line.at(0);
-        *a_sourceLine = String::cast<ulong_t>( line.at(1) );
+        *out_filePath   = line.at(0);
+        *out_sourceLine = String::cast<ulong_t>( line.at(1) );
     }
 
     int_t iRv = ::pclose(file);   file = nullptr;
@@ -202,9 +202,9 @@ StackTrace::_addr2Line(
 #else
     xUNUSED(a_symbolAddress);
 
-    *a_filePath     = Const::strUnknown();
-    *a_functionName = Const::strUnknown();
-    *a_sourceLine   = 0UL;
+    *out_filePath     = Const::strUnknown();
+    *out_functionName = Const::strUnknown();
+    *out_sourceLine   = 0;
 #endif
 }
 //-------------------------------------------------------------------------------------------------
