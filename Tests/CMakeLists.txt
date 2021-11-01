@@ -37,7 +37,10 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
 
-    target_link_libraries(${TEST_NAME} ${PROJECT_NAME}_static ${XLIB_LIBRARIES} ${LIBXML2_LIBRARIES})
+    target_link_libraries(${TEST_NAME}
+        ${PROJECT_NAME}_static
+        ${XLIB_LIBRARIES}
+        ${LIBXML2_LIBRARIES})
 
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
 endforeach()
