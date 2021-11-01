@@ -155,6 +155,8 @@ StackTrace::_addr2Line(
     * -v --version           Display the program's version
     */
 
+    constexpr int_t buffSize {1024};
+
     std::ctstring_t cmdLine = Format::str(
         xT("{} -e {} -f -C {}"), cmADDR2LINE_FILE_PATH, Path::exe().str(), a_symbolAddress);
 
@@ -166,9 +168,8 @@ StackTrace::_addr2Line(
 
     // get function name
     {
-        tchar_t buff[1024 + 1] {};
-
-        cptr_ctchar_t functionName = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
+        tchar_t buff[buffSize + 1] {};
+        cptr_ctchar_t functionName = xTFGETS(buff, buffSize, file);
         STD_VERIFY(functionName != nullptr);
 
         a_functionName->assign(functionName);
@@ -176,9 +177,8 @@ StackTrace::_addr2Line(
 
     // get file and line
     {
-        tchar_t buff[1024 + 1] {};
-
-        cptr_ctchar_t fileAndLine = xTFGETS(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
+        tchar_t buff[buffSize + 1] {};
+        cptr_ctchar_t fileAndLine = xTFGETS(buff, buffSize, file);
         STD_VERIFY(fileAndLine != nullptr);
 
        /**
@@ -187,7 +187,6 @@ StackTrace::_addr2Line(
         *   - ??:0
         */
         std::vec_tstring_t line;
-
         String::split(fileAndLine, xT(":"), &line);
         STD_VERIFY(line.size() == 2U);
 
