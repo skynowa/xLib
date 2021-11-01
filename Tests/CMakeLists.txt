@@ -42,10 +42,10 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     endif()
 
     target_link_libraries(${TEST_NAME}
-        ${PROJECT_LIB_STATIC}
-        ${XLIB_LIBRARIES}
-        ${LIBXML2_LIBRARIES})
+        "${PROJECT_LIB_STATIC}"
+        "${XLIB_LIBRARIES}"
+        "${LIBXML2_LIBRARIES}")
 
-    add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+    add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
 endforeach()
 #--------------------------------------------------------------------------------------------------
