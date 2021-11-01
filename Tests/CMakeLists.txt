@@ -37,6 +37,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     endif()
 
     target_link_libraries(${TEST_NAME}.exe ${PROJECT_NAME}_static ${XLIB_LIBRARIES} ${LIBXML2_LIBRARIES})
-    add_test(${TEST_NAME} ${TEST_NAME})
+    add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
 endforeach()
 #--------------------------------------------------------------------------------------------------
