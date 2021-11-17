@@ -31,34 +31,34 @@ public:
         ///< get locale
 
     bool_t          isAlphaNum() const;
-        ///< Check if ch is alphanumeric
+        ///< Check is alphanumeric
     bool_t          isAlpha() const;
-        ///< Check if ch is alphabetic
+        ///< Check is alphabetic
     bool_t          isControl() const;
-        ///< Check if ch is a control ch
+        ///< Check is a control ch
     bool_t          isDigitDec() const;
-        ///< Check if ch is decimal digit
+        ///< Check is decimal digit
     bool_t          isDigitHex() const;
-        ///< Check if ch is hexadecimal digit
+        ///< Check is hexadecimal digit
 
     bool_t          isGraph() const;
-        ///< Check if ch has graphical representation
+        ///< Check has graphical representation
     bool_t          isPrint() const;
-        ///< Check if ch is printable
+        ///< Check is printable
     bool_t          isPunct() const;
-        ///< Check if ch is a punctuation ch
+        ///< Check is a punctuation
     bool_t          isSpace() const;
-        ///< Check if ch is a white-space
+        ///< Check is a white-space
 
     bool_t          isLower() const;
-        ///< Check if ch is lowercase letter
+        ///< Check is lowercase letter
     bool_t          isUpper() const;
-        ///< Check if ch is uppercase letter
+        ///< Check is uppercase letter
 
     T               toLower() const;
-        ///< Convert uppercase letter to lowercase
+        ///< Convert to lowercase
     T               toUpper() const;
-        ///< Convert lowercase letter to uppercase
+        ///< Convert to uppercase
     std::tstring_t  symbol();
         ///< char as symbol
 
