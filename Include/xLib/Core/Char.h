@@ -18,7 +18,8 @@ class Char
 public:
 ///@name ctors, dtor
 ///@{
-	explicit  Char(const T &ch, const xTLOCALE &locale = xTLOCALE());
+	explicit  Char(const T ch);
+              Char(const T ch, const xTLOCALE &locale);
 	virtual  ~Char() {}
 
 	xNO_COPY_ASSIGN(Char)
@@ -62,7 +63,7 @@ public:
         ///< char as symbol
 
 private:
-    const T         _ch {};
+    const T         _char {};
     const xTLOCALE &_locale;
 };
 

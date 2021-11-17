@@ -19,10 +19,20 @@ namespace xl::core
 template<typename T>
 inline
 Char<T>::Char(
-    const T        &a_ch,
-    const xTLOCALE &a_locale /*  = std::locale() */
+    const T a_ch
 ) :
-    _ch    (a_ch),
+    _char  (a_ch),
+    _locale( xTLOCALE() )
+{
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline
+Char<T>::Char(
+    const T         a_ch,
+    const xTLOCALE &a_locale
+) :
+    _char  (a_ch),
     _locale(a_locale)
 {
 }
@@ -31,7 +41,7 @@ template<typename T>
 inline T
 Char<T>::character() const
 {
-    return _ch;
+    return _char;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -45,91 +55,91 @@ template<typename T>
 inline bool_t
 Char<T>::isAlphaNum() const
 {
-    return static_cast<bool_t>( xTISALNUM_L(_ch, _locale) );
+    return static_cast<bool_t>( xTISALNUM_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Char<T>::isAlpha() const
 {
-    return static_cast<bool_t>( xTISALPHA_L(_ch, _locale) );
+    return static_cast<bool_t>( xTISALPHA_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Char<T>::isControl() const
 {
-    return static_cast<bool_t>( xTISCNTRL_L(_ch, _locale) );
+    return static_cast<bool_t>( xTISCNTRL_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Char<T>::isDigitDec() const
 {
-    return static_cast<bool_t>( xTISDIGIT_L(_ch, _locale) );
+    return static_cast<bool_t>( xTISDIGIT_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Char<T>::isDigitHex() const
 {
-    return static_cast<bool_t>( xTISXDIGIT_L(_ch, _locale) );
+    return static_cast<bool_t>( xTISXDIGIT_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Char<T>::isGraph() const
 {
-    return static_cast<bool_t>( xTISGRAPH_L(_ch, _locale) );
+    return static_cast<bool_t>( xTISGRAPH_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Char<T>::isPrint() const
 {
-    return static_cast<bool_t>( xTISPRINT_L(_ch, _locale) );
+    return static_cast<bool_t>( xTISPRINT_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Char<T>::isPunct() const
 {
-    return static_cast<bool_t>( xTISPUNCT_L(_ch, _locale) );
+    return static_cast<bool_t>( xTISPUNCT_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Char<T>::isSpace() const
 {
-    return static_cast<bool_t>( xTISSPACE_L(_ch, _locale) );
+    return static_cast<bool_t>( xTISSPACE_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Char<T>::isLower() const
 {
-    return static_cast<bool_t>( xTISLOWER_L(_ch, _locale) );
+    return static_cast<bool_t>( xTISLOWER_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
 Char<T>::isUpper() const
 {
-    return static_cast<bool_t>( xTISUPPER_L(_ch, _locale) );
+    return static_cast<bool_t>( xTISUPPER_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline T
 Char<T>::toLower() const
 {
-    return xTTOLOWER_L(_ch, _locale);
+    return xTTOLOWER_L(_char, _locale);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline T
 Char<T>::toUpper() const
 {
-    return xTTOUPPER_L(_ch, _locale);
+    return xTTOUPPER_L(_char, _locale);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -137,7 +147,7 @@ template<typename T>
 inline std::tstring_t
 Char<T>::symbol()
 {
-    if (_ch > 0 && _ch < 32) {
+    if (_char > 0 && _char < 32) {
         struct CharData
         {
             int_t          decCode;
@@ -181,10 +191,10 @@ Char<T>::symbol()
             {31, xT("US"),  xT("&#031;")},    // Unit Separator
         };
 
-        return data[_ch].symbol;
+        return data[_char].symbol;
     }
 
-    return std::tstring_t(1,  static_cast<tchar_t>(_ch) );
+    return std::tstring_t(1,  static_cast<tchar_t>(_char) );
 }
 //-------------------------------------------------------------------------------------------------
 
