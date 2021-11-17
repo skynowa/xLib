@@ -20,8 +20,9 @@ public:
 ///@{
 	explicit  Char(const T ch);
               Char(const T ch, const xTLOCALE &locale);
-	virtual  ~Char() {}
+	virtual  ~Char() = default;
 
+	xNO_DEFAULT_CONSTRUCT(Char)
 	xNO_COPY_ASSIGN(Char)
 ///@}
 
