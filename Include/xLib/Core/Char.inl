@@ -142,7 +142,6 @@ Char<T>::toUpper() const
     return xTTOUPPER_L(_char, _locale);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 template<typename T>
 inline std::tstring_t
 Char<T>::symbol()

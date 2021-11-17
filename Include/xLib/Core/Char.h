@@ -64,7 +64,7 @@ public:
 
 private:
     const T         _char {};
-    const xTLOCALE &_locale;
+    const xTLOCALE  _locale;
 };
 
 using CharA = Char<char>;
