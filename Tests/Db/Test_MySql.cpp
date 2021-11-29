@@ -57,6 +57,7 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
+    MySqlDatabase   db(mysqlData);
     MySqlConnection mysqlConn;
 
     xTEST_CASE("MySqlConnection::get")
@@ -71,15 +72,13 @@ Test_MySql::unit()
         xTEST(m_bRv);
     }
 
-    xTEST_CASE("MySqlConnection::isDbExists,dbCreate,dbDrop")
+    xTEST_CASE("MySqlDatabase::isExists,create,drop")
     {
-		cbool_t isExists = MySqlConnection::isDbExists(mysqlData);
-		if (isExists) {
-			MySqlConnection::dbDrop(mysqlData);
-			MySqlConnection::dbCreate(mysqlData);
-		} else {
-			MySqlConnection::dbCreate(mysqlData);
+		if ( db.isExists() ) {
+			db.drop();
 		}
+
+		db.create();
     }
 
     xTEST_CASE("MySqlConnection::escapeString")
@@ -108,19 +107,20 @@ Test_MySql::unit()
 
     xTEST_CASE("MySqlConnection::connect")
     {
-        cbool_t isDbExists = MySqlConnection::isDbExists(mysqlData);
-        if ( !isDbExists ) {
-            MySqlConnectionData mysqlDataDefault;
-            mysqlDataDefault.host         = mysqlData.host;
-            mysqlDataDefault.user         = mysqlData.user;
-            mysqlDataDefault.password     = mysqlData.password;
-            mysqlDataDefault.db           = {};  // create Db
-            mysqlDataDefault.port         = mysqlData.port;
-            mysqlDataDefault.unixSocket   = mysqlData.unixSocket;
-            mysqlDataDefault.charset      = mysqlData.charset;
-            mysqlDataDefault.isAutoCommit = mysqlData.isAutoCommit;
-            mysqlDataDefault.isCompress   = mysqlData.isCompress;
-            mysqlDataDefault.options      = mysqlData.options;
+        if ( !db.isExists() ) {
+            cMySqlConnectionData mysqlDataDefault
+            {
+                .host         = mysqlData.host,
+                .user         = mysqlData.user,
+                .password     = mysqlData.password,
+                .db           = {},  // create Db
+                .port         = mysqlData.port,
+                .unixSocket   = mysqlData.unixSocket,
+                .charset      = mysqlData.charset,
+                .isAutoCommit = mysqlData.isAutoCommit,
+                .isCompress   = mysqlData.isCompress,
+                .options      = mysqlData.options
+			};
 
             mysqlConn.connect(mysqlDataDefault);
             mysqlConn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"),
@@ -130,7 +130,7 @@ Test_MySql::unit()
             mysqlConn.connect(mysqlData);
         }
 
-        m_bRv = MySqlConnection::isDbExists(mysqlData);
+        m_bRv = db.isExists();
         xTEST(m_bRv);
     }
 
@@ -287,7 +287,7 @@ Test_MySql::unit()
         mysqlConn.query(xT("DROP TABLE IF EXISTS `%s`"),    tableName.c_str());
         mysqlConn.query(xT("DROP DATABASE IF EXISTS `%s`"), mysqlData.db.c_str());
 
-        m_bRv = MySqlConnection::isDbExists(mysqlData);
+        m_bRv = db.isExists();
         xTEST(!m_bRv);
     }
 
