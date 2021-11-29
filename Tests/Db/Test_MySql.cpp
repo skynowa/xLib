@@ -21,16 +21,18 @@ Test_MySql::unit()
 	}
 
 #if cmMYSQL_FOUND
-    MySqlConnectionData mysqlData;
-    mysqlData.host         = xT("127.0.0.1");	// xT("localhost");
-    mysqlData.user         = xT("root");
-    mysqlData.password     = xT("root");
-    mysqlData.db           = xT("db_test");
-    mysqlData.port         = 3306;	// 0;
-    mysqlData.unixSocket   = xT("");
-    mysqlData.charset      = xT("utf8");
-    mysqlData.isAutoCommit = true;
-    mysqlData.isCompress   = true;
+    MySqlConnectionData mysqlData
+	{
+		.host         = xT("127.0.0.1"),	// xT("localhost");
+		.user         = xT("root"),
+		.password     = xT("root"),
+		.db           = xT("db_test"),
+		.port         = 3306,	// 0
+		.unixSocket   = xT(""),
+		.charset      = xT("utf8"),
+		.isAutoCommit = true,
+		.isCompress   = true
+	};
 
 	std::map<mysql_option, cptr_cvoid_t> options;
 	{
