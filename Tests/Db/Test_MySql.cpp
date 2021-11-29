@@ -49,7 +49,7 @@ Test_MySql::unit()
 
 	mysqlData.options = options;
 
-    std::ctstring_t tableName = xT("t_main");
+    std::ctstring_t tableName = xT("Main");
 
 
     /*******************************************************************************
@@ -176,9 +176,9 @@ Test_MySql::unit()
 
         // select all records
     #if 0
-        mysqlConn.query(xT("SELECT * FROM `t_main`"));
+        mysqlConn.query(xT("SELECT * FROM %s"), tableName.c_str());
     #else
-        mysqlConn.query(xT("CHECK TABLE `t_main`"));
+        mysqlConn.query(xT("CHECK TABLE %s"), tableName.c_str());
     #endif
     }
 
