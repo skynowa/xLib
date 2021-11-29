@@ -62,7 +62,7 @@ Test_MySql::unit()
     xTEST_CASE("MySqlConnection::get")
     {
         HandleMySqlConn &handle = mysqlConn.get();
-        xTEST_EQ(handle.isValid(), true);
+        xTEST(handle.isValid());
     }
 
     xTEST_CASE("MySqlConnection::isValid")
@@ -192,7 +192,7 @@ Test_MySql::unit()
     xTEST_CASE("MySqlConnection::lastError")
     {
         m_uiRv = mysqlConn.lastError();
-        xTEST_EQ(0U, m_uiRv);
+        xTEST_EQ(m_uiRv, 0U);
     }
 
     xTEST_CASE("MySqlConnection::lastErrorStr")
@@ -212,7 +212,7 @@ Test_MySql::unit()
     xTEST_CASE("MySqlRecordset::get")
     {
         HandleMySqlResult &handle = mysqlRecord.get();
-        xTEST_EQ(handle.isValid(), true);
+        xTEST(handle.isValid());
     }
 
     xTEST_CASE("MySqlRecordset::isValid")
@@ -242,13 +242,12 @@ Test_MySql::unit()
 
     xTEST_CASE("MySqlRecordset::fetchFieldDirect")
     {
-        uint_t      fieldNumber = 0;
+        uint_t      fieldNumber {};
         MYSQL_FIELD field;
 
         mysqlRecord.fetchFieldDirect(fieldNumber, &field);
     }
 
-    //bFetchFields
     xTEST_CASE("MySqlRecordset::fetchFields")
     {
         MYSQL_FIELD field;
