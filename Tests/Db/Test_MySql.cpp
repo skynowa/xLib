@@ -141,7 +141,7 @@ Test_MySql::unit()
 
     xTEST_CASE("MySqlConnection::ping")
     {
-        int_t errorCode;
+        int_t errorCode {};
         m_bRv = mysqlConn.ping(&errorCode);
         xTEST(!m_bRv);
         xTEST_DIFF(errorCode, 0);
@@ -185,8 +185,7 @@ Test_MySql::unit()
     xTEST_CASE("MySqlConnection::fieldCount")
     {
         m_uiRv = mysqlConn.fieldCount();
-        //xTRACE("uiFieldsNum: %i", m_uiRv);
-        //TODO: xTEST_EQ(3U, m_uiRv);
+        xTEST_EQ(m_uiRv, 3U);
     }
 
     xTEST_CASE("MySqlConnection::lastError")
@@ -200,7 +199,6 @@ Test_MySql::unit()
         m_sRv = mysqlConn.lastErrorStr();
         xTEST(!m_sRv.empty());
     }
-
 
     /*******************************************************************************
     *    MySqlRecordset
@@ -259,19 +257,19 @@ Test_MySql::unit()
     {
         // TEST: Mysql::fetchRow()
 
-        //MYSQL_ROW mrRow;
+        //MYSQL_ROW row;
 
-        //mysqlRecord.vFetchRow(&mrRow);
+        //mysqlRecord.fetchRow(&row);
     }
 
     xTEST_CASE("MySqlRecordset::fetchLengths")
     {
         // TEST: Mysql::fetchLengths()
 
-        //ulong_t *pulFieldLengths = nullptr;
+        //ulong_t *fieldLengths {};
 
-        //mysqlRecord.vFetchLengths(&pulFieldLengths);
-        //xTEST_PTR(pulFieldLengths);
+        //mysqlRecord.fetchLengths(&fieldLengths);
+        //xTEST_PTR(fieldLengths);
     }
 
     xTEST_CASE("MySqlRecordset::fetchRow")
