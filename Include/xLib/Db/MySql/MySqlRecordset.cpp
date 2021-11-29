@@ -59,55 +59,55 @@ MySqlRecordset::rowsNum() const
 //-------------------------------------------------------------------------------------------------
 void_t
 MySqlRecordset::fetchField(
-    MYSQL_FIELD *a_field	///< metadata: information about a field
+    MYSQL_FIELD *out_field	///< metadata: information about a field
 ) const
 {
     xTEST(_result.isValid());
-    xTEST_PTR(a_field);
+    xTEST_PTR(out_field);
 
-    a_field = ::mysql_fetch_field( _result.get() );
-    xTEST_PTR_MSG(a_field, _conn->lastErrorStr());
+    out_field = ::mysql_fetch_field( _result.get() );
+    xTEST_PTR_MSG(out_field, _conn->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 MySqlRecordset::fetchFieldDirect(
-    cuint_t     &a_fieldNumber,
-    MYSQL_FIELD *a_field
+    cuint_t      a_fieldNumber,
+    MYSQL_FIELD *out_field
 ) const
 {
     xTEST(_result.isValid());
     xTEST_NA(a_fieldNumber);
-    xTEST_PTR(a_field);
+    xTEST_PTR(out_field);
 
-    a_field = ::mysql_fetch_field_direct(_result.get(), a_fieldNumber);
-    xTEST_PTR_MSG(a_field, _conn->lastErrorStr());
+    out_field = ::mysql_fetch_field_direct(_result.get(), a_fieldNumber);
+    xTEST_PTR_MSG(out_field, _conn->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 MySqlRecordset::fetchFields(
-    MYSQL_FIELD *a_field
+    MYSQL_FIELD *out_field
 ) const
 {
     xTEST(_result.isValid());
-    xTEST_PTR(a_field);
+    xTEST_PTR(out_field);
 
-    a_field = ::mysql_fetch_fields(_result.get());
-    xTEST_PTR_MSG(a_field, _conn->lastErrorStr());
+    out_field = ::mysql_fetch_fields(_result.get());
+    xTEST_PTR_MSG(out_field, _conn->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 MySqlRecordset::fetchRow(
-    std::vec_tstring_t *a_row
+    std::vec_tstring_t *out_row
 ) const
 {
     xTEST(_result.isValid());
-    xTEST_PTR(a_row);
+    xTEST_PTR(out_row);
 
     uint_t     fieldsNum    {};
     MYSQL_ROW  row          {};
     ulong_t   *fieldLengths {};
 
-    a_row->clear();
+    out_row->clear();
 
     // TODO: [skynowa] MySqlRecordset::fetchRow()
 #if xTODO
@@ -134,7 +134,7 @@ MySqlRecordset::fetchRow(
             field = xA2T(asField);
         }
 
-        a_row->push_back(field);
+        out_row->push_back(field);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -148,27 +148,27 @@ MySqlRecordset::fetchRow(
 //-------------------------------------------------------------------------------------------------
 void_t
 MySqlRecordset::_fetchRow(
-    MYSQL_ROW *a_row	///< one row of data
+    MYSQL_ROW *out_row	///< one row of data
 ) const
 {
     xTEST(_result.isValid());
-    xTEST_PTR(a_row);
+    xTEST_PTR(out_row);
 
-    *a_row = ::mysql_fetch_row(_result.get());
-    xTEST_NA(a_row);
-    xTEST_PTR(*a_row);
+    *out_row = ::mysql_fetch_row(_result.get());
+    xTEST_NA(out_row);
+    xTEST_PTR(*out_row);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 MySqlRecordset::_fetchLengths(
-    ulong_t **a_fieldLengths
+    ulong_t **out_fieldLengths
 ) const
 {
     xTEST(_result.isValid());
-    xTEST_PTR_FAIL(*a_fieldLengths);
+    xTEST_PTR_FAIL(*out_fieldLengths);
 
-    *a_fieldLengths = ::mysql_fetch_lengths(_result.get());
-    xTEST_PTR_MSG(*a_fieldLengths, _conn->lastErrorStr());
+    *out_fieldLengths = ::mysql_fetch_lengths(_result.get());
+    xTEST_PTR_MSG(*out_fieldLengths, _conn->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 
