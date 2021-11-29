@@ -23,8 +23,8 @@ MySqlRecordset::MySqlRecordset(
 ) :
     _conn(&a_connection)
 {
-    xTEST_EQ(_result.isValid(), false);
-    xTEST_EQ(_conn->get().isValid(), true);
+    xTEST_EQ(!_result.isValid());
+    xTEST_EQ(_conn->get().isValid());
 
     if (a_isUseResult) {
         _result = ::mysql_use_result  ( _conn->get().get() );
