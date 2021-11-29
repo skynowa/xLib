@@ -101,7 +101,7 @@ MySqlConnection::reconnect()
 {
     close();
 
-    xTEST_EQ(_conn.isValid(), false);
+    xTEST(!_conn.isValid());
 
     _conn = ::mysql_init(nullptr);
     xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
@@ -372,8 +372,8 @@ MySqlConnection::_setOptions(
 	const std::map<mysql_option, cptr_cvoid_t> &a_options
 ) const
 {
-	for (const auto &[name, value] : a_options) {
-		_setOption(name, value);
+	for (const auto &[it_name, it_value] : a_options) {
+		_setOption(it_name, it_value);
 	}
 }
 //-------------------------------------------------------------------------------------------------
