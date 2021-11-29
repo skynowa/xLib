@@ -27,9 +27,17 @@ MySqlRecordset::MySqlRecordset(
     xTEST(_conn->get().isValid());
 
     if (a_isUseResult) {
+       /**
+        * Initiates the retrieval but doesn't actually get any of the rows
+        *
+        * \See mysql_fetch_row
+        */
         _result = ::mysql_use_result  ( _conn->get().get() );
         xTEST_EQ_MSG(_result.isValid(), true, _conn->lastErrorStr());
     } else {
+        /**
+         * Retrieves all the rows immediately
+         */
         _result = ::mysql_store_result( _conn->get().get() );
         xTEST_EQ_MSG(_result.isValid(), true, _conn->lastErrorStr());
     }
