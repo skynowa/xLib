@@ -9,5 +9,6 @@
 
 #pragma once
 
+#include <xLib/Db/MySql/MySqlDatabase.h>
 #include <xLib/Db/MySql/MySqlConnection.h>
 #include <xLib/Db/MySql/MySqlRecordset.h>

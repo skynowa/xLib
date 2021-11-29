@@ -100,17 +100,6 @@ public:
     std::tstring_t lastErrorStr() const override;
         ///< error message for the most recently invoked API function that failed
 
-xPUBLIC_STATIC:
-	static
-	bool_t isDbExists(cMySqlConnectionData &data);
-		///< check connection
-	static
-	void_t dbCreate(cMySqlConnectionData &data);
-		///< create DB
-	static
-	void_t dbDrop(cMySqlConnectionData &data);
-		///< drop DB
-
 private:
 	MySqlConnectionData _data; ///< MySqlConnection data
     HandleMySqlConn     _conn; ///< handler for one database connection
