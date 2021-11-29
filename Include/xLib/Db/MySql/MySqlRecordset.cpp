@@ -50,7 +50,7 @@ MySqlRecordset::get()
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
-MySqlRecordset::fieldsNum() const
+MySqlRecordset::fields() const
 {
     xTEST(_result.isValid());
 
@@ -58,7 +58,7 @@ MySqlRecordset::fieldsNum() const
 }
 //-------------------------------------------------------------------------------------------------
 std::size_t
-MySqlRecordset::rowsNum() const
+MySqlRecordset::rows() const
 {
     xTEST(_result.isValid());
 
@@ -120,7 +120,7 @@ MySqlRecordset::fetchRow(
     // TODO: [skynowa] MySqlRecordset::fetchRow()
 #if xTODO
     //--uint_t   fieldsNum   = mysql_num_fields   (_result.get());
-    uint_t     fieldsNum  = _conn->ufieldCount();
+    uint_t     fields  = _conn->ufieldCount();
     MYSQL_ROW  prow       = mysql_fetch_row    (_result.get()); // array of strings
     ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: [skynowa] MySqlRecordset::fetchRow() - may be 64-bit bug
 #endif

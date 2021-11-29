@@ -221,18 +221,16 @@ Test_MySql::unit()
         xTEST(m_bRv);
     }
 
-    xTEST_CASE("MySqlRecordset::fieldsNum")
+    xTEST_CASE("MySqlRecordset::fields")
     {
-        m_uiRv = mysqlRecord.fieldsNum();
-        //xTRACE("uiFieldsNum: %i", m_uiRv);
-        //TODO: xTEST_EQ(3U, m_uiRv);
+        m_uiRv = mysqlRecord.fields();
+        xTEST_EQ(m_uiRv, 3U);
     }
 
-    xTEST_CASE("MySqlRecordset::rowsNum")
+    xTEST_CASE("MySqlRecordset::rows")
     {
-    	std::size_t ullRv = mysqlRecord.rowsNum(); xUNUSED(ullRv);
-        //xTRACE("ullRowsNum: %lli", ullRv);
-        //TODO: xTEST_LESS(0ULL, ullRv);
+    	std::size_t ullRv = mysqlRecord.rows();
+        xTEST_DIFF(ullRv, 0ULL);
     }
 
     xTEST_CASE("MySqlRecordset::fetchField")
@@ -279,12 +277,11 @@ Test_MySql::unit()
 
     xTEST_CASE("MySqlRecordset::fetchRow")
     {
-        std::vec_tstring_t row;
-
-        for (std::size_t i = 0; i < mysqlRecord.rowsNum(); ++ i) {
+        for (std::size_t i = 0; i < mysqlRecord.rows(); ++ i) {
+        	std::vec_tstring_t row;
             mysqlRecord.fetchRow(&row);
 
-            //std::tcout << xT("Row ") << i << xT(": ") << row << std::endl;
+            // Cout() << xTRACE_VAR(row);
         }
     }
 
