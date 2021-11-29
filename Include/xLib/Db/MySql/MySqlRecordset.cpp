@@ -118,6 +118,7 @@ MySqlRecordset::fetchRow(
 #endif
 
     fieldsNum = _conn->fieldCount();
+
     _fetchRow(&row);
     _fetchLengths(&fieldLengths);
     xTEST_PTR(fieldLengths);
@@ -126,9 +127,7 @@ MySqlRecordset::fetchRow(
     for (uint_t i = 0; i < fieldsNum; ++ i) {
         std::tstring_t field;
 
-        if (row[i] == nullptr) {
-            field.clear();
-        } else {
+        if (row[i] != nullptr) {
             std::string asField(row[i], fieldLengths[i]);
 
             field = xA2T(asField);
