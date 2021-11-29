@@ -56,10 +56,13 @@ class MySqlConnection :
     /// MySql connection
 {
 public:
-                   MySqlConnection();
-    virtual       ~MySqlConnection() = default;
+///@name ctors, dtor
+///@{
+			 MySqlConnection();
+	virtual ~MySqlConnection();
 
-    xNO_COPY_ASSIGN(MySqlConnection)
+	xNO_COPY_ASSIGN(MySqlConnection)
+///@}
 
     HandleMySqlConn &get();
         ///< get handle

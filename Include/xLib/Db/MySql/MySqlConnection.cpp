@@ -31,6 +31,11 @@ MySqlConnection::MySqlConnection()
     xTEST_MSG(_conn.isValid(), lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
+MySqlConnection::~MySqlConnection()
+{
+    close();
+}
+//-------------------------------------------------------------------------------------------------
 HandleMySqlConn &
 MySqlConnection::get()
 {
