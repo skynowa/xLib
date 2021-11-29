@@ -293,7 +293,7 @@ MySqlConnection::isDbExists(
 
         bRv = rec.get().isValid();
         xTEST(bRv);
-        xTEST_EQ(rec.rowsNum(), std::size_t(1));
+        xTEST_EQ(rec.rows(), std::size_t(1));
 
         std::vec_tstring_t row;
         rec.fetchRow(&row);

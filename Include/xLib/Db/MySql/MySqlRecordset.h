@@ -25,15 +25,18 @@ class MySqlRecordset
     /// MySql recordset
 {
 public:
-                MySqlRecordset(MySqlConnection &connection, cbool_t isUseResult);
-    virtual    ~MySqlRecordset() = default;
+///@name ctors, dtor
+///@{
+             MySqlRecordset(MySqlConnection &connection, cbool_t isUseResult);
+	virtual ~MySqlRecordset() = default;
+///@}
 
     HandleMySqlResult &get();
         ///< get handle
 
-    uint_t      fieldsNum() const;
+    uint_t      fields() const;
         ///< number of columns in a result set
-    std::size_t rowsNum() const;
+    std::size_t rows() const;
         ///< number of rows in the result set
     void_t      fetchField(MYSQL_FIELD *field) const;
         ///< The MYSQL_FIELD structure for the current column
