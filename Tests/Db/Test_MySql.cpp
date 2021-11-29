@@ -21,13 +21,13 @@ Test_MySql::unit()
 	}
 
 #if cmMYSQL_FOUND
-	std::map<mysql_option, cptr_cvoid_t> options;
+	std::map<mysql_option, cptr_cvoid_t> mysqlOptions;
 	{
 		const unsigned int connectTimeout {60};
 		const bool         isReconnect    {true};
 		const char         initCommand[]  {"SET autocommit=1"};
 
-		options =
+		mysqlOptions =
 		{
 			{MYSQL_OPT_COMPRESS,        0 /* not used */},
 			{MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
@@ -47,7 +47,7 @@ Test_MySql::unit()
 		.charset      = xT("utf8"),
 		.isAutoCommit = true,
 		.isCompress   = true,
-		.options      = options
+		.options      = mysqlOptions
 	};
 
     std::ctstring_t tableName = xT("Main");
