@@ -1,6 +1,9 @@
 /**
  * \file  MySql.h
  * \brief MySql client
+ *
+ * https://dev.mysql.com/doc/c-api/5.7/en/
+ * https://dev.mysql.com/doc/c-api/5.7/en/c-api-basic-function-reference.html
  */
 
 
