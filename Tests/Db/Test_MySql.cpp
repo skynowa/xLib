@@ -21,19 +21,6 @@ Test_MySql::unit()
 	}
 
 #if cmMYSQL_FOUND
-    MySqlConnectionData mysqlData
-	{
-		.host         = xT("127.0.0.1"),	// xT("localhost");
-		.user         = xT("root"),
-		.password     = xT("root"),
-		.db           = xT("db_test"),
-		.port         = 3306,	// 0
-		.unixSocket   = xT(""),
-		.charset      = xT("utf8"),
-		.isAutoCommit = true,
-		.isCompress   = true
-	};
-
 	std::map<mysql_option, cptr_cvoid_t> options;
 	{
 		const unsigned int connectTimeout {60};
@@ -49,10 +36,21 @@ Test_MySql::unit()
 		};
 	}
 
-	mysqlData.options = options;
+    cMySqlConnectionData mysqlData
+	{
+		.host         = xT("127.0.0.1"),	// xT("localhost");
+		.user         = xT("root"),
+		.password     = xT("root"),
+		.db           = xT("db_test"),
+		.port         = 3306,	// 0
+		.unixSocket   = xT(""),
+		.charset      = xT("utf8"),
+		.isAutoCommit = true,
+		.isCompress   = true,
+		.options      = options
+	};
 
     std::ctstring_t tableName = xT("Main");
-
 
     /*******************************************************************************
     *    MySqlConnection
