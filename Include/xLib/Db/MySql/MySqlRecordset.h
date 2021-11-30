@@ -1,6 +1,11 @@
 /**
  * \file  MySqlRecordset.h
  * \brief MySql client
+ *
+ * \see mysqlpp
+ * - https://tangentsoft.com/mysqlpp/file?name=examples/simple1.cpp
+ * - https://tangentsoft.com/mysqlpp/file?name=examples/simple2.cpp
+ * - https://tangentsoft.com/mysqlpp/file?name=examples/simple3.cpp
  */
 
 
