@@ -24,10 +24,9 @@
  * - Options
  * - Db
  * - Connection
- * - Recordset
  * - Query
- * - UseQueryResult
- * - StoreQueryResult
+ * - UseResult
+ * - StoreResult
  * - Row
  * - Exception
  */
