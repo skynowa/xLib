@@ -20,6 +20,7 @@
 /**
  * TODO:
  *
+ * - Options
  * - Db
  * - Connection
  * - Recordset
