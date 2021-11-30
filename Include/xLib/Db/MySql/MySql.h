@@ -6,6 +6,7 @@
  * https://dev.mysql.com/doc/c-api/5.7/en/c-api-basic-function-reference.html
  *
  * \see MySQL libraries:
+ * - https://github.com/mysql/mysql-connector-cpp
  * - https://tangentsoft.com/mysqlpp/
  * - https://libtabula.org/
  */
