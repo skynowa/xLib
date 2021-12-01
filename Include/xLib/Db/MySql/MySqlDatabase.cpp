@@ -11,10 +11,11 @@
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 
+#include <xLib/Db/MySql/MySqlConnection.h>
 #include <xLib/Db/MySql/MySqlRecordset.h>
 
 
-namespace xl::db
+namespace xl::db::mysql
 {
 
 /**************************************************************************************************
@@ -24,7 +25,7 @@ namespace xl::db
 
 //-------------------------------------------------------------------------------------------------
 MySqlDatabase::MySqlDatabase(
-	cMySqlConnectionData &a_data
+	cOptions &a_data
 ) :
 	_data{a_data}
 {
@@ -35,7 +36,7 @@ MySqlDatabase::isExists()
 {
     bool_t bRv {};
 
-    MySqlConnectionData data = _data;
+    Options data = _data;
     data.db = {};
 
     MySqlConnection conn;
@@ -72,7 +73,7 @@ MySqlDatabase::create()
 {
 	std::ctstring_t db = _data.db;
 
-	MySqlConnectionData data = _data;
+	Options data = _data;
 	data.db = {};
 
 	MySqlConnection conn;
@@ -83,7 +84,7 @@ MySqlDatabase::create()
 void_t
 MySqlDatabase::drop()
 {
-	MySqlConnectionData data = _data;
+	Options data = _data;
 	data.db = {};
 
 	MySqlConnection conn;

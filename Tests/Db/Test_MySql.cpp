@@ -36,7 +36,7 @@ Test_MySql::unit()
 		};
 	}
 
-    cMySqlConnectionData mysqlData
+	mysql::cOptions mysqlData
 	{
 		.host         = xT("127.0.0.1"),	// xT("localhost");
 		.user         = xT("root"),
@@ -57,8 +57,8 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-    MySqlDatabase   db(mysqlData);
-    MySqlConnection mysqlConn;
+    mysql::MySqlDatabase   db(mysqlData);
+    mysql::MySqlConnection mysqlConn;
 
     xTEST_CASE("MySqlConnection::get")
     {
@@ -108,7 +108,7 @@ Test_MySql::unit()
     xTEST_CASE("MySqlConnection::connect")
     {
         if ( !db.isExists() ) {
-            cMySqlConnectionData mysqlDataDefault
+        	mysql::cOptions mysqlDataDefault
             {
                 .host         = mysqlData.host,
                 .user         = mysqlData.user,
@@ -205,7 +205,7 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-    MySqlRecordset mysqlRecord(mysqlConn, false);
+    mysql::MySqlRecordset mysqlRecord(mysqlConn, false);
 
     xTEST_CASE("MySqlRecordset::get")
     {

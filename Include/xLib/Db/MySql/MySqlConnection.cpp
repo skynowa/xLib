@@ -14,7 +14,7 @@
 #include <xLib/Db/MySql/MySqlRecordset.h>
 
 
-namespace xl::db
+namespace xl::db::mysql
 {
 
 /**************************************************************************************************
@@ -44,7 +44,7 @@ MySqlConnection::get()
 //-------------------------------------------------------------------------------------------------
 void_t
 MySqlConnection::connect(
-    cMySqlConnectionData &a_data
+	cOptions &a_data
 )
 {
     xTEST(_conn.isValid());

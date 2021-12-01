@@ -19,9 +19,9 @@
 #endif
 
 #include <xLib/Core/Handle.h>
-#include <xLib/Db/MySql/MySqlConnection.h>
+#include <xLib/Db/MySql/Options.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::db
+namespace xl::db::mysql
 {
 
 class MySqlDatabase
@@ -30,7 +30,7 @@ class MySqlDatabase
 public:
 ///@name ctors, dtor
 ///@{
-			 MySqlDatabase(cMySqlConnectionData &data);
+			 MySqlDatabase(cOptions &data);
 	virtual ~MySqlDatabase() = default;
 
 	xNO_COPY_ASSIGN(MySqlDatabase)
@@ -44,7 +44,7 @@ public:
 		///< drop DB
 
 private:
-	cMySqlConnectionData _data; ///< MySqlDatabase data
+	cOptions _data; ///< MySqlDatabase data
 };
 
 } // namespace

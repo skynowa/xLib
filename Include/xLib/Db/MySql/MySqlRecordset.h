@@ -21,7 +21,7 @@
 
 #include <xLib/Core/Handle.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::db
+namespace xl::db::mysql
 {
 
 class MySqlConnection;
