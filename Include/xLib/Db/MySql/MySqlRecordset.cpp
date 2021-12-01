@@ -8,7 +8,7 @@
 
 #include <xLib/Db/MySql/MySqlConnection.h>
 
-namespace xl::db
+namespace xl::db::mysql
 {
 
 /**************************************************************************************************
