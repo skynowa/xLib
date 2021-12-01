@@ -1,6 +1,6 @@
 /**
  * \file  IHandle.h
- * \brief handle interface_
+ * \brief handle interface
  */
 
 
@@ -9,7 +9,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::interface_
+namespace xl::interface
 {
 
 template<typename T>

@@ -25,7 +25,7 @@ struct CsvData
 xUSING_CONST(CsvData);
 
 class ICsv
-    /// CSV interface_
+    /// CSV interface
 {
 public:
     using row_t = std::vec_tstring_t;

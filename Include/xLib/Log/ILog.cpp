@@ -1,6 +1,6 @@
 /**
  * \file  ILog.h
- * \brief logging interface_
+ * \brief logging interface
  */
 
 
