@@ -11,15 +11,7 @@
 
 #pragma once
 
-#include <xLib/Core/Core.h>
-
-#if xENV_WIN
-	#include <mysql.h>
-#else
-	#include <mysql/mysql.h>
-#endif
-
-#include <xLib/Core/Handle.h>
+#include <xLib/Db/MySql/Common.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::db::mysql
 {

@@ -6,18 +6,7 @@
 
 #pragma once
 
-#include <xLib/Core/Core.h>
-
-#if xENV_WIN
-	#include <mysql.h>
-	#include <errmsg.h>
-	#include <mysqld_error.h>
-#else
-	#include <mysql/mysql.h>
-	#include <mysql/errmsg.h>
-	#include <mysql/mysqld_error.h>
-#endif
-
+#include <xLib/Db/MySql/Common.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::db::mysql
 {
