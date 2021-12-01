@@ -1,5 +1,5 @@
 /**
- * \file  MySqlConnection.h
+ * \file  Connection.h
  * \brief MySql client
  */
 
@@ -25,17 +25,17 @@
 namespace xl::db::mysql
 {
 
-class MySqlConnection :
+class Connection :
 	public xl::interface::ILastError<uint_t>
     /// MySql connection
 {
 public:
 ///@name ctors, dtor
 ///@{
-			 MySqlConnection();
-	virtual ~MySqlConnection();
+			 Connection();
+	virtual ~Connection();
 
-	xNO_COPY_ASSIGN(MySqlConnection)
+	xNO_COPY_ASSIGN(Connection)
 ///@}
 
     HandleMySqlConn &get();
@@ -75,7 +75,7 @@ public:
         ///< error message for the most recently invoked API function that failed
 
 private:
-    Options         _data; ///< MySqlConnection data
+    Options         _data; ///< Connection data
     HandleMySqlConn _conn; ///< handler for one database connection
 
     void_t _setOption(const mysql_option &option, cptr_cvoid_t arg) const;

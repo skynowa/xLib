@@ -57,7 +57,7 @@
 
 // Db
 #if cmMYSQL_FOUND
-    #include <xLib/Db/MySql/MySql.h>
+    #include <xLib/Db/MySql/Common.h>
 #endif
 
 // Debug

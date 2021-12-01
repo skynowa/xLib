@@ -1,17 +1,17 @@
 /**
- * \file  MySqlConnection.cpp
+ * \file  Connection.cpp
  * \brief MySql client
  */
 
 
-#include "MySqlConnection.h"
+#include "Connection.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 
-#include <xLib/Db/MySql/MySqlRecordset.h>
+#include <xLib/Db/MySql/Recordset.h>
 
 
 namespace xl::db::mysql
@@ -23,7 +23,7 @@ namespace xl::db::mysql
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-MySqlConnection::MySqlConnection()
+Connection::Connection()
 {
     xTEST(!_conn.isValid());
 
@@ -31,19 +31,19 @@ MySqlConnection::MySqlConnection()
     xTEST_MSG(_conn.isValid(), lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
-MySqlConnection::~MySqlConnection()
+Connection::~Connection()
 {
     close();
 }
 //-------------------------------------------------------------------------------------------------
 HandleMySqlConn &
-MySqlConnection::get()
+Connection::get()
 {
     return _conn;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlConnection::connect(
+Connection::connect(
 	cOptions &a_data
 )
 {
@@ -97,7 +97,7 @@ MySqlConnection::connect(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlConnection::reconnect()
+Connection::reconnect()
 {
     close();
 
@@ -110,7 +110,7 @@ MySqlConnection::reconnect()
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-MySqlConnection::ping(
+Connection::ping(
     int_t *out_errorCode    /* = nullptr */
 ) const
 {
@@ -126,7 +126,7 @@ MySqlConnection::ping(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-MySqlConnection::escapeString(
+Connection::escapeString(
 	std::ctstring_t &a_sqlValue,				///< SQL string value
 	cbool_t          a_isQuoted /* = true */	///< is quote SQL string value
 ) const
@@ -166,7 +166,7 @@ MySqlConnection::escapeString(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlConnection::query(
+Connection::query(
     cptr_ctchar_t a_sqlFormat, ...
 ) const
 {
@@ -188,7 +188,7 @@ MySqlConnection::query(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlConnection::setAutoCommit(
+Connection::setAutoCommit(
 	cbool_t a_flag	///< flag (if mode is true, off if mode is false)
 ) const
 {
@@ -197,21 +197,21 @@ MySqlConnection::setAutoCommit(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlConnection::commit()
+Connection::commit()
 {
 	bool_t bRv = ::mysql_commit(_conn.get());
 	xTEST_MSG(bRv, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlConnection::rollback()
+Connection::rollback()
 {
 	bool_t bRv = ::mysql_rollback(_conn.get());
 	xTEST_MSG(bRv, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
-MySqlConnection::fieldCount() const
+Connection::fieldCount() const
 {
     xTEST(_conn.isValid());
 
@@ -219,7 +219,7 @@ MySqlConnection::fieldCount() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlConnection::close()
+Connection::close()
 {
     xTEST_NA(_conn);
 
@@ -235,7 +235,7 @@ MySqlConnection::close()
 
 //-------------------------------------------------------------------------------------------------
 uint_t
-MySqlConnection::lastError() const
+Connection::lastError() const
 {
     xTEST(_conn.isValid());
 
@@ -243,7 +243,7 @@ MySqlConnection::lastError() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-MySqlConnection::lastErrorStr() const
+Connection::lastErrorStr() const
 {
     xTEST(_conn.isValid());
 
@@ -272,7 +272,7 @@ MySqlConnection::lastErrorStr() const
 //-------------------------------------------------------------------------------------------------
 // https://dev.mysql.com/doc/refman/8.0/en/mysql-get-option.html
 void_t
-MySqlConnection::_setOption(
+Connection::_setOption(
     const mysql_option &a_option,
     cptr_cvoid_t        a_arg
 ) const
@@ -290,7 +290,7 @@ MySqlConnection::_setOption(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlConnection::_setOptions(
+Connection::_setOptions(
 	const std::map<mysql_option, cptr_cvoid_t> &a_options
 ) const
 {

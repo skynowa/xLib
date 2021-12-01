@@ -1,5 +1,5 @@
 /**
- * \file  MySqlDatabase.h
+ * \file  Db.h
  * \brief MySql DB
  */
 
@@ -24,16 +24,16 @@
 namespace xl::db::mysql
 {
 
-class MySqlDatabase
+class Db
     /// MySql DB
 {
 public:
 ///@name ctors, dtor
 ///@{
-			 MySqlDatabase(cOptions &data);
-	virtual ~MySqlDatabase() = default;
+			 Db(cOptions &data);
+	virtual ~Db() = default;
 
-	xNO_COPY_ASSIGN(MySqlDatabase)
+	xNO_COPY_ASSIGN(Db)
 ///@}
 
 	bool_t isExists();
@@ -44,7 +44,7 @@ public:
 		///< drop DB
 
 private:
-	cOptions _data; ///< MySqlDatabase data
+	cOptions _data; ///< Db data
 };
 
 } // namespace

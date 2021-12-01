@@ -36,7 +36,7 @@ Test_MySql::unit()
 		};
 	}
 
-	mysql::cOptions mysqlData
+	mysql::cOptions options
 	{
 		.host         = xT("127.0.0.1"),	// xT("localhost");
 		.user         = xT("root"),
@@ -53,26 +53,26 @@ Test_MySql::unit()
     std::ctstring_t tableName = xT("Main");
 
     /*******************************************************************************
-    *    MySqlConnection
+    *    Connection
     *
     *******************************************************************************/
 
-    mysql::MySqlDatabase   db(mysqlData);
-    mysql::MySqlConnection mysqlConn;
+    mysql::Db         db(options);
+    mysql::Connection mysqlConn;
 
-    xTEST_CASE("MySqlConnection::get")
+    xTEST_CASE("Connection::get")
     {
         HandleMySqlConn &handle = mysqlConn.get();
         xTEST(handle.isValid());
     }
 
-    xTEST_CASE("MySqlConnection::isValid")
+    xTEST_CASE("Connection::isValid")
     {
         m_bRv = mysqlConn.get().isValid();
         xTEST(m_bRv);
     }
 
-    xTEST_CASE("MySqlDatabase::isExists,create,drop")
+    xTEST_CASE("Database::isExists,create,drop")
     {
 		if ( db.isExists() ) {
 			db.drop();
@@ -81,7 +81,7 @@ Test_MySql::unit()
 		db.create();
     }
 
-    xTEST_CASE("MySqlConnection::escapeString")
+    xTEST_CASE("Connection::escapeString")
     {
         const std::vector<data2_tstring_t> data
         {
@@ -105,41 +105,41 @@ Test_MySql::unit()
 		}
     }
 
-    xTEST_CASE("MySqlConnection::connect")
+    xTEST_CASE("Connection::connect")
     {
         if ( !db.isExists() ) {
-        	mysql::cOptions mysqlDataDefault
+        	mysql::cOptions optionsDefault
             {
-                .host         = mysqlData.host,
-                .user         = mysqlData.user,
-                .password     = mysqlData.password,
+                .host         = options.host,
+                .user         = options.user,
+                .password     = options.password,
                 .db           = {},  // create Db
-                .port         = mysqlData.port,
-                .unixSocket   = mysqlData.unixSocket,
-                .charset      = mysqlData.charset,
-                .isAutoCommit = mysqlData.isAutoCommit,
-                .isCompress   = mysqlData.isCompress,
-                .options      = mysqlData.options
+                .port         = options.port,
+                .unixSocket   = options.unixSocket,
+                .charset      = options.charset,
+                .isAutoCommit = options.isAutoCommit,
+                .isCompress   = options.isCompress,
+                .options      = options.options
 			};
 
-            mysqlConn.connect(mysqlDataDefault);
+            mysqlConn.connect(optionsDefault);
             mysqlConn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"),
-                mysqlData.db.c_str());
+                options.db.c_str());
         } else {
             // connect to Db
-            mysqlConn.connect(mysqlData);
+            mysqlConn.connect(options);
         }
 
         m_bRv = db.isExists();
         xTEST(m_bRv);
     }
 
-    xTEST_CASE("MySqlConnection::reconnect")
+    xTEST_CASE("Connection::reconnect")
     {
         mysqlConn.reconnect();
     }
 
-    xTEST_CASE("MySqlConnection::ping")
+    xTEST_CASE("Connection::ping")
     {
         int_t errorCode {};
         m_bRv = mysqlConn.ping(&errorCode);
@@ -147,9 +147,9 @@ Test_MySql::unit()
         xTEST_DIFF(errorCode, 0);
     }
 
-    xTEST_CASE("MySqlConnection::query")
+    xTEST_CASE("Connection::query")
     {
-        mysqlConn.connect(mysqlData);
+        mysqlConn.connect(options);
 
         // create table
         mysqlConn.query(
@@ -182,63 +182,63 @@ Test_MySql::unit()
     #endif
     }
 
-    xTEST_CASE("MySqlConnection::fieldCount")
+    xTEST_CASE("Connection::fieldCount")
     {
         m_uiRv = mysqlConn.fieldCount();
         xTEST_EQ(m_uiRv, 3U);
     }
 
-    xTEST_CASE("MySqlConnection::lastError")
+    xTEST_CASE("Connection::lastError")
     {
         m_uiRv = mysqlConn.lastError();
         xTEST_EQ(m_uiRv, 0U);
     }
 
-    xTEST_CASE("MySqlConnection::lastErrorStr")
+    xTEST_CASE("Connection::lastErrorStr")
     {
         m_sRv = mysqlConn.lastErrorStr();
         xTEST(!m_sRv.empty());
     }
 
     /*******************************************************************************
-    *    MySqlRecordset
+    *    Recordset
     *
     *******************************************************************************/
 
-    mysql::MySqlRecordset mysqlRecord(mysqlConn, false);
+    mysql::Recordset mysqlRecord(mysqlConn, false);
 
-    xTEST_CASE("MySqlRecordset::get")
+    xTEST_CASE("Recordset::get")
     {
         HandleMySqlResult &handle = mysqlRecord.get();
         xTEST(handle.isValid());
     }
 
-    xTEST_CASE("MySqlRecordset::isValid")
+    xTEST_CASE("Recordset::isValid")
     {
         m_bRv = mysqlRecord.get().isValid();
         xTEST(m_bRv);
     }
 
-    xTEST_CASE("MySqlRecordset::fields")
+    xTEST_CASE("Recordset::fields")
     {
         m_uiRv = mysqlRecord.fields();
         xTEST_EQ(m_uiRv, 3U);
     }
 
-    xTEST_CASE("MySqlRecordset::rows")
+    xTEST_CASE("Recordset::rows")
     {
     	std::size_t ullRv = mysqlRecord.rows();
         xTEST_DIFF(ullRv, 0ULL);
     }
 
-    xTEST_CASE("MySqlRecordset::fetchField")
+    xTEST_CASE("Recordset::fetchField")
     {
         MYSQL_FIELD field;
 
         mysqlRecord.fetchField(&field);
     }
 
-    xTEST_CASE("MySqlRecordset::fetchFieldDirect")
+    xTEST_CASE("Recordset::fetchFieldDirect")
     {
         uint_t      fieldNumber {};
         MYSQL_FIELD field;
@@ -246,14 +246,14 @@ Test_MySql::unit()
         mysqlRecord.fetchFieldDirect(fieldNumber, &field);
     }
 
-    xTEST_CASE("MySqlRecordset::fetchFields")
+    xTEST_CASE("Recordset::fetchFields")
     {
         MYSQL_FIELD field;
 
         mysqlRecord.fetchFields(&field);
     }
 
-    xTEST_CASE("MySqlRecordset::fetchRow")
+    xTEST_CASE("Recordset::fetchRow")
     {
         // TEST: Mysql::fetchRow()
 
@@ -262,7 +262,7 @@ Test_MySql::unit()
         //mysqlRecord.fetchRow(&row);
     }
 
-    xTEST_CASE("MySqlRecordset::fetchLengths")
+    xTEST_CASE("Recordset::fetchLengths")
     {
         // TEST: Mysql::fetchLengths()
 
@@ -272,7 +272,7 @@ Test_MySql::unit()
         //xTEST_PTR(fieldLengths);
     }
 
-    xTEST_CASE("MySqlRecordset::fetchRow")
+    xTEST_CASE("Recordset::fetchRow")
     {
         for (std::size_t i = 0; i < mysqlRecord.rows(); ++ i) {
         	std::vec_tstring_t row;
@@ -285,13 +285,13 @@ Test_MySql::unit()
     // drop DB, cleaning
     {
         mysqlConn.query(xT("DROP TABLE IF EXISTS `%s`"),    tableName.c_str());
-        mysqlConn.query(xT("DROP DATABASE IF EXISTS `%s`"), mysqlData.db.c_str());
+        mysqlConn.query(xT("DROP DATABASE IF EXISTS `%s`"), options.db.c_str());
 
         m_bRv = db.isExists();
         xTEST(!m_bRv);
     }
 
-    xTEST_CASE("MySqlRecordset::close")
+    xTEST_CASE("Recordset::close")
     {
         mysqlConn.close();
     }
