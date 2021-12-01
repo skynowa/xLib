@@ -1,5 +1,5 @@
 /**
- * \file  MySqlRecordset.h
+ * \file  Recordset.h
  * \brief MySql client
  *
  * \see mysqlpp
@@ -24,16 +24,16 @@
 namespace xl::db::mysql
 {
 
-class MySqlConnection;
+class Connection;
 
-class MySqlRecordset
+class Recordset
     /// MySql recordset
 {
 public:
 ///@name ctors, dtor
 ///@{
-             MySqlRecordset(MySqlConnection &connection, cbool_t isUseResult);
-	virtual ~MySqlRecordset() = default;
+             Recordset(Connection &connection, cbool_t isUseResult);
+	virtual ~Recordset() = default;
 ///@}
 
     HandleMySqlResult &get();
@@ -53,9 +53,9 @@ public:
         ///< fetching row
 
 private:
-    MySqlConnection  *_conn {};
+    Connection        *_conn {};
         ///< pointer to connection object
-    HandleMySqlResult _result;
+    HandleMySqlResult  _result;
         ///< result of a query that returns row
 
     void_t _fetchLengths(ulong_t **fieldLengths) const;
@@ -63,7 +63,7 @@ private:
     void_t _fetchRow(MYSQL_ROW *row) const;
         ///< A MYSQL_ROW structure for the next row
 
-    xNO_COPY_ASSIGN(MySqlRecordset)
+    xNO_COPY_ASSIGN(Recordset)
 };
 
 } // namespace

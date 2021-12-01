@@ -1,5 +1,5 @@
 /**
- * \file  MySql.h
+ * \file  Common.h
  * \brief MySql client
  *
  * https://dev.mysql.com/doc/c-api/5.7/en/
@@ -15,9 +15,9 @@
 #pragma once
 
 #include <xLib/Db/MySql/Options.h>
-#include <xLib/Db/MySql/MySqlDatabase.h>
-#include <xLib/Db/MySql/MySqlConnection.h>
-#include <xLib/Db/MySql/MySqlRecordset.h>
+#include <xLib/Db/MySql/Db.h>
+#include <xLib/Db/MySql/Connection.h>
+#include <xLib/Db/MySql/Recordset.h>
 //-------------------------------------------------------------------------------------------------
 /**
  * TODO:

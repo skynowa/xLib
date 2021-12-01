@@ -1,18 +1,18 @@
 /**
- * \file  MySqlDatabase.cpp
+ * \file  Db.cpp
  * \brief MySql DB
  */
 
 
-#include "MySqlDatabase.h"
+#include "Db.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 
-#include <xLib/Db/MySql/MySqlConnection.h>
-#include <xLib/Db/MySql/MySqlRecordset.h>
+#include <xLib/Db/MySql/Connection.h>
+#include <xLib/Db/MySql/Recordset.h>
 
 
 namespace xl::db::mysql
@@ -24,7 +24,7 @@ namespace xl::db::mysql
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-MySqlDatabase::MySqlDatabase(
+Db::Db(
 	cOptions &a_data
 ) :
 	_data{a_data}
@@ -32,14 +32,14 @@ MySqlDatabase::MySqlDatabase(
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-MySqlDatabase::isExists()
+Db::isExists()
 {
     bool_t bRv {};
 
     Options data = _data;
     data.db = {};
 
-    MySqlConnection conn;
+    Connection conn;
     {
         bRv = conn.get().isValid();
         xCHECK_RET(!bRv, false);
@@ -52,7 +52,7 @@ MySqlDatabase::isExists()
     }
 
     {
-        MySqlRecordset rec(conn, false);
+        Recordset rec(conn, false);
 
         bRv = rec.get().isValid();
         xTEST(bRv);
@@ -69,25 +69,25 @@ MySqlDatabase::isExists()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlDatabase::create()
+Db::create()
 {
 	std::ctstring_t db = _data.db;
 
 	Options data = _data;
 	data.db = {};
 
-	MySqlConnection conn;
+	Connection conn;
 	conn.connect(data);
 	conn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), db.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlDatabase::drop()
+Db::drop()
 {
 	Options data = _data;
 	data.db = {};
 
-	MySqlConnection conn;
+	Connection conn;
 	conn.connect(data);
 	conn.query(xT("DROP DATABASE IF EXISTS `%s`"), _data.db.c_str());
 }

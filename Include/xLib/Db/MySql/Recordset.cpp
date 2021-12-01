@@ -1,12 +1,13 @@
 /**
- * \file  MySqlRecordset.cpp
+ * \file  Recordset.cpp
  * \brief MySql client
  */
 
 
-#include "MySqlRecordset.h"
+#include "Recordset.h"
 
-#include <xLib/Db/MySql/MySqlConnection.h>
+#include <xLib/Db/MySql/Connection.h>
+
 
 namespace xl::db::mysql
 {
@@ -17,9 +18,9 @@ namespace xl::db::mysql
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-MySqlRecordset::MySqlRecordset(
-    MySqlConnection &a_connection,  ///< connection
-    cbool_t          a_isUseResult  ///< use result or store result
+Recordset::Recordset(
+    Connection &a_connection,  ///< connection
+    cbool_t     a_isUseResult  ///< use result or store result
 ) :
     _conn(&a_connection)
 {
@@ -44,13 +45,13 @@ MySqlRecordset::MySqlRecordset(
 }
 //-------------------------------------------------------------------------------------------------
 HandleMySqlResult &
-MySqlRecordset::get()
+Recordset::get()
 {
     return _result;
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
-MySqlRecordset::fields() const
+Recordset::fields() const
 {
     xTEST(_result.isValid());
 
@@ -58,7 +59,7 @@ MySqlRecordset::fields() const
 }
 //-------------------------------------------------------------------------------------------------
 std::size_t
-MySqlRecordset::rows() const
+Recordset::rows() const
 {
     xTEST(_result.isValid());
 
@@ -66,7 +67,7 @@ MySqlRecordset::rows() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlRecordset::fetchField(
+Recordset::fetchField(
     MYSQL_FIELD *out_field	///< metadata: information about a field
 ) const
 {
@@ -78,7 +79,7 @@ MySqlRecordset::fetchField(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlRecordset::fetchFieldDirect(
+Recordset::fetchFieldDirect(
     cuint_t      a_fieldNumber,
     MYSQL_FIELD *out_field
 ) const
@@ -92,7 +93,7 @@ MySqlRecordset::fetchFieldDirect(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlRecordset::fetchFields(
+Recordset::fetchFields(
     MYSQL_FIELD *out_field
 ) const
 {
@@ -104,7 +105,7 @@ MySqlRecordset::fetchFields(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlRecordset::fetchRow(
+Recordset::fetchRow(
     std::vec_tstring_t *out_row
 ) const
 {
@@ -117,12 +118,12 @@ MySqlRecordset::fetchRow(
 
     out_row->clear();
 
-    // TODO: [skynowa] MySqlRecordset::fetchRow()
+    // TODO: [skynowa] Recordset::fetchRow()
 #if xTODO
     //--uint_t   fieldsNum   = mysql_num_fields   (_result.get());
     uint_t     fields  = _conn->ufieldCount();
     MYSQL_ROW  prow       = mysql_fetch_row    (_result.get()); // array of strings
-    ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: [skynowa] MySqlRecordset::fetchRow() - may be 64-bit bug
+    ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: [skynowa] Recordset::fetchRow() - may be 64-bit bug
 #endif
 
     fieldsNum = _conn->fieldCount();
@@ -154,7 +155,7 @@ MySqlRecordset::fetchRow(
 
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlRecordset::_fetchRow(
+Recordset::_fetchRow(
     MYSQL_ROW *out_row	///< one row of data
 ) const
 {
@@ -167,7 +168,7 @@ MySqlRecordset::_fetchRow(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-MySqlRecordset::_fetchLengths(
+Recordset::_fetchLengths(
     ulong_t **out_fieldLengths
 ) const
 {
