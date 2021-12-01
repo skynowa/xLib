@@ -22,9 +22,9 @@
 /**
  * TODO:
  *
- * - Options
- * - Db
- * - Connection
+ * + Options
+ * + Db
+ * + Connection
  * - Query
  * - UseResult
  * - StoreResult
