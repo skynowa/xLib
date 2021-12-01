@@ -22,7 +22,7 @@ namespace xl::package::curl
 {
 
 struct DebugData :
-	public interface_::IDataPrint
+	public interface::IDataPrint
 	/// debug data
 {
 	std::tstring_t text;
@@ -38,7 +38,7 @@ protected:
 };
 //-------------------------------------------------------------------------------------------------
 class Client
-    /// Client (interface_)
+    /// Client (interface)
 {
 public:
 ///@name Ctors, dtor

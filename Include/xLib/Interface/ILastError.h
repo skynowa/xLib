@@ -1,6 +1,6 @@
 /**
  * \file  ILastError.h
- * \brief last error interface_
+ * \brief last error interface
  */
 
 
@@ -9,12 +9,12 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::interface_
+namespace xl::interface
 {
 
 template <typename ErrorT>
 class xNO_VTABLE ILastError
-    /// last error interface_
+    /// last error interface
 {
 public:
 ///@name ctors, dtor

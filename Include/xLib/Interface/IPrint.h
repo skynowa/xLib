@@ -1,6 +1,6 @@
 /**
  * \file  IPrint.h
- * \brief Printable interface_
+ * \brief Printable interface
  */
 
 
@@ -9,12 +9,12 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::interface_
+namespace xl::interface
 {
 
 template <typename StreamT>
 class xNO_VTABLE IPrint
-    /// Printable interface_
+    /// Printable interface
 {
 public:
 ///@name ctors, dtor

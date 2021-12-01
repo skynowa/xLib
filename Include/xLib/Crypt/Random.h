@@ -12,7 +12,7 @@ namespace xl::crypt
 {
 
 class xNO_VTABLE ISeedPolicy
-    /// seed policy interface_
+    /// seed policy interface
 {
 public:
 ///@name ctors, dtor
