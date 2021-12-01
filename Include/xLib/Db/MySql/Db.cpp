@@ -25,9 +25,9 @@ namespace xl::db::mysql
 
 //-------------------------------------------------------------------------------------------------
 Db::Db(
-	cOptions &a_data
+	cOptions &a_options
 ) :
-	_data{a_data}
+	_options{a_options}
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -36,19 +36,19 @@ Db::isExists()
 {
     bool_t bRv {};
 
-    Options data = _data;
-    data.db = {};
+    Options options = _options;
+    options.db = {};
 
     Connection conn;
     {
         bRv = conn.get().isValid();
         xCHECK_RET(!bRv, false);
 
-        conn.connect(data);
+        conn.connect(options);
         conn.query(
             xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
                "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
-               data.db.c_str());
+			   options.db.c_str());
     }
 
     {
@@ -71,25 +71,25 @@ Db::isExists()
 void_t
 Db::create()
 {
-	std::ctstring_t db = _data.db;
+	std::ctstring_t db = _options.db;
 
-	Options data = _data;
-	data.db = {};
+	Options options = _options;
+	options.db = {};
 
 	Connection conn;
-	conn.connect(data);
+	conn.connect(options);
 	conn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), db.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Db::drop()
 {
-	Options data = _data;
-	data.db = {};
+	Options options = _options;
+	options.db = {};
 
 	Connection conn;
-	conn.connect(data);
-	conn.query(xT("DROP DATABASE IF EXISTS `%s`"), _data.db.c_str());
+	conn.connect(options);
+	conn.query(xT("DROP DATABASE IF EXISTS `%s`"), _options.db.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 

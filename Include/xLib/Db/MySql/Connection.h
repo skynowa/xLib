@@ -41,7 +41,7 @@ public:
     HandleMySqlConn &get();
         ///< get handle
 
-    void_t         connect(cOptions &data);
+    void_t         connect(cOptions &options);
         ///< attempts to establish a connection to a MySql database engine running on host
     void_t         reconnect();
         ///< reconnect to DB
@@ -75,7 +75,7 @@ public:
         ///< error message for the most recently invoked API function that failed
 
 private:
-    Options         _data; ///< Connection data
+    Options         _options; ///< Connection data
     HandleMySqlConn _conn; ///< handler for one database connection
 
     void_t _setOption(const mysql_option &option, cptr_cvoid_t arg) const;

@@ -44,35 +44,35 @@ Connection::get()
 //-------------------------------------------------------------------------------------------------
 void_t
 Connection::connect(
-	cOptions &a_data
+	cOptions &a_options
 )
 {
     xTEST(_conn.isValid());
-    xTEST_NA(a_data);
+    xTEST_NA(a_options);
 
 	const char *db {};
 	{
-		if ( !a_data.db.empty() ) {
-			db = xT2A(a_data.db).c_str();
+		if ( !a_options.db.empty() ) {
+			db = xT2A(a_options.db).c_str();
 		}
 	}
 
 	const char *unixSocket {};
 	{
-		if ( !a_data.unixSocket.empty() ) {
-			unixSocket = xT2A(a_data.unixSocket).c_str();
+		if ( !a_options.unixSocket.empty() ) {
+			unixSocket = xT2A(a_options.unixSocket).c_str();
 		}
 	}
 
 	ulong_t clientFlag {};
 	{
-		if (a_data.isCompress) {
+		if (a_options.isCompress) {
 			clientFlag |= CLIENT_COMPRESS;
 		}
 	}
 
 	{
-		_setOptions(a_data.options);
+		_setOptions(a_options.options);
 
 		constexpr int connect_timeout_sec = 5;
 		constexpr int read_timeout_sec    = connect_timeout_sec * 10;
@@ -83,17 +83,17 @@ Connection::connect(
 		::mysql_options(_conn.get(), MYSQL_OPT_WRITE_TIMEOUT,   &write_timeout_sec);
 	}
 
-    MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(a_data.host).c_str(),
-    	xT2A(a_data.user).c_str(), xT2A(a_data.password).c_str(), db, a_data.port, unixSocket,
-		clientFlag);
+    MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(a_options.host).c_str(),
+    	xT2A(a_options.user).c_str(), xT2A(a_options.password).c_str(), db, a_options.port,
+		unixSocket, clientFlag);
     xTEST_PTR_MSG(conn, lastErrorStr());
     xTEST_EQ(_conn.get(), conn);
 
-	int_t iRv = ::mysql_set_character_set(_conn.get(), a_data.charset.c_str());
+	int_t iRv = ::mysql_set_character_set(_conn.get(), a_options.charset.c_str());
 	xTEST_EQ_MSG(iRv, 0, lastErrorStr());
 
     // setAutoCommit() must be called AFTER connect()
-    /// setAutoCommit(a_data.isAutoCommit);
+    /// setAutoCommit(a_options.isAutoCommit);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -106,7 +106,7 @@ Connection::reconnect()
     _conn = ::mysql_init(nullptr);
     xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
 
-    connect(_data);
+    connect(_options);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t

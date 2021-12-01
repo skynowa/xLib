@@ -30,7 +30,7 @@ class Db
 public:
 ///@name ctors, dtor
 ///@{
-			 Db(cOptions &data);
+			 Db(cOptions &options);
 	virtual ~Db() = default;
 
 	xNO_COPY_ASSIGN(Db)
@@ -44,7 +44,7 @@ public:
 		///< drop DB
 
 private:
-	cOptions _data; ///< Db data
+	cOptions _options; ///< Db data
 };
 
 } // namespace
