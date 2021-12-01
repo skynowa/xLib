@@ -7,6 +7,8 @@
  * because all of the operators are implemented in terms of compare().
  *
  * Declares the ICompare<T> mixin
+ *
+ * \see https://tangentsoft.com/mysqlpp/file?name=lib/comparable.h
  */
 
 
@@ -23,58 +25,39 @@ class xNO_VTABLE ICompare
 	/// Comparable interface
 {
 public:
-	/// \brief Returns true if "other" is equal to this object
-	bool operator == (const T &other) const
-	{
-		return !compare(other);
-	}
+///@name ctors, dtor
+///@{
+			 ICompare() = default;
+	virtual ~ICompare() = default;
+///@}
 
-	/// \brief Returns true if "other" is not equal to this object
-	bool operator != (const T &other) const
-	{
-		return compare(other);
-	}
-
-	/// \brief Returns true if "other" is less than this object
-	bool operator < (const T &other) const
-	{
-		return compare(other) < 0;
-	}
-
-	/// \brief Returns true if "other" is less than or equal to this object
-	bool operator <= (const T &other) const
-	{
-		return compare(other) <= 0;
-	}
-
-	/// \brief Returns true if "other" is greater than this object
-	bool operator > (const T &other) const
-	{
-		return compare(other) > 0;
-	}
-
-	/// \brief Returns true if "other" is greater than or equal to this object
-	bool operator >= (const T &other) const
-	{
-		return compare(other) >= 0;
-	}
+	bool_t operator == (const T &value) const;
+		///< Returns true if "value" is equal to this object
+	bool_t operator != (const T &value) const;
+		///< Returns true if "value" is not equal to this object
+	bool_t operator < (const T &value) const;
+		///< Returns true if "value" is less than this object
+	bool_t operator <= (const T &value) const;
+		///< Returns true if "value" is less than or equal to this object
+	bool_t operator > (const T &value) const;
+		///< Returns true if "value" is greater than this object
+	bool_t operator >= (const T &value) const;
+		///< Returns true if "value" is greater than or equal to this object
 
 protected:
-	/// \brief Destroy object
-	///
-	/// This class has nothing to destroy, but declaring the dtor
-	/// virtual placates some compilers set to high warning levels.
-	/// Protecting it ensures you can't delete subclasses through base
-	/// class pointers, which makes no sense because this class isn't
-	/// made for polymorphism.  It's just a mixin.
-	virtual ~ICompare() { }
-
-	/// \brief Compare this object to another of the same type
-	///
-	/// Returns < 0 if this object is "before" the other, 0 of they are
-	/// equal, and > 0 if this object is "after" the other.
-	virtual int compare(const T& other) const = 0;
+	virtual int_t compare(const T &value) const = 0;
+		///< Compare this object to another of the same type
+		///< Returns < 0 if this object is "before" the value, 0 of they are
+		///< equal, and > 0 if this object is "after" the value.
 };
 
 } // namespace
+//-------------------------------------------------------------------------------------------------
+#include "ICompare.inl"
+//-------------------------------------------------------------------------------------------------
+/**
+ * TODO:
+ *
+ * - tests
+ */
 //-------------------------------------------------------------------------------------------------
