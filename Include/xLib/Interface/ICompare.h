@@ -47,8 +47,11 @@ public:
 protected:
 	virtual int_t compare(const T &value) const = 0;
 		///< Compare this object to another of the same type
-		///< Returns < 0 if this object is "before" the value, 0 of they are
-		///< equal, and > 0 if this object is "after" the value.
+		///<
+		///< \return
+		///< "< 0" - if this object is "before" the value
+		///< "0"   - of they are equal
+		///< "> 0" - if this object is "after" the value
 };
 
 } // namespace
