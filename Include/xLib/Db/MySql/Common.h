@@ -44,10 +44,11 @@
  * 	- mysql_select_db()
  *
  * + Connection
- * - Query
- * - UseResult
- * - StoreResult
+ * - Query / RealQuery
+ * - UseResult / StoreResult
  * - Row
+ * - Field
  * - Exception
+ * - Error
  */
 //-------------------------------------------------------------------------------------------------
