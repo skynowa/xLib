@@ -58,11 +58,11 @@ Test_MySql::unit()
     *******************************************************************************/
 
     mysql::Db         db(options);
-    mysql::Connection mysqlConn;
+    mysql::Connection mysqlConn(options);
 
     xTEST_CASE("Connection::get")
     {
-        HandleMySqlConn &handle = mysqlConn.get();
+        cHandleMySqlConn &handle = mysqlConn.get();
         xTEST(handle.isValid());
     }
 
@@ -105,29 +105,31 @@ Test_MySql::unit()
 		}
     }
 
+	mysql::cOptions optionsDefault
+    {
+        .host         = options.host,
+        .user         = options.user,
+        .password     = options.password,
+        .db           = {},  // create Db
+        .port         = options.port,
+        .unixSocket   = options.unixSocket,
+        .charset      = options.charset,
+        .isAutoCommit = options.isAutoCommit,
+        .isCompress   = options.isCompress,
+        .options      = options.options
+	};
+
+    mysql::Connection mysqlConn2(options);
+
     xTEST_CASE("Connection::connect")
     {
         if ( !db.isExists() ) {
-        	mysql::cOptions optionsDefault
-            {
-                .host         = options.host,
-                .user         = options.user,
-                .password     = options.password,
-                .db           = {},  // create Db
-                .port         = options.port,
-                .unixSocket   = options.unixSocket,
-                .charset      = options.charset,
-                .isAutoCommit = options.isAutoCommit,
-                .isCompress   = options.isCompress,
-                .options      = options.options
-			};
-
-            mysqlConn.connect(optionsDefault);
-            mysqlConn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"),
+            mysqlConn2.connect();
+            mysqlConn2.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"),
                 options.db.c_str());
         } else {
             // connect to Db
-            mysqlConn.connect(options);
+            mysqlConn2.connect();
         }
 
         m_bRv = db.isExists();
@@ -136,23 +138,23 @@ Test_MySql::unit()
 
     xTEST_CASE("Connection::reconnect")
     {
-        mysqlConn.reconnect();
+        mysqlConn2.reconnect();
     }
 
     xTEST_CASE("Connection::ping")
     {
         int_t errorCode {};
-        m_bRv = mysqlConn.ping(&errorCode);
+        m_bRv = mysqlConn2.ping(&errorCode);
         xTEST(!m_bRv);
         xTEST_DIFF(errorCode, 0);
     }
 
     xTEST_CASE("Connection::query")
     {
-        mysqlConn.connect(options);
+        mysqlConn2.connect();
 
         // create table
-        mysqlConn.query(
+        mysqlConn2.query(
             xT("CREATE TABLE IF NOT EXISTS ")
             xT("   `%s` (")
             xT("       `f_id`    int_t(11)   NOT NULL AUTO_INCREMENT,")
@@ -163,7 +165,7 @@ Test_MySql::unit()
         xTEST(m_bRv);
 
         // insert records
-        mysqlConn.query(
+        mysqlConn2.query(
             xT("INSERT INTO")
             xT("    `%s` (`f_name`, `f_age`)")
             xT("VALUES")
@@ -176,28 +178,16 @@ Test_MySql::unit()
 
         // select all records
     #if 0
-        mysqlConn.query(xT("SELECT * FROM %s"), tableName.c_str());
+        mysqlConn2.query(xT("SELECT * FROM %s"), tableName.c_str());
     #else
-        mysqlConn.query(xT("CHECK TABLE %s"), tableName.c_str());
+        mysqlConn2.query(xT("CHECK TABLE %s"), tableName.c_str());
     #endif
     }
 
     xTEST_CASE("Connection::fieldCount")
     {
-        m_uiRv = mysqlConn.fieldCount();
+        m_uiRv = mysqlConn2.fieldCount();
         xTEST_EQ(m_uiRv, 3U);
-    }
-
-    xTEST_CASE("Connection::lastError")
-    {
-        m_uiRv = mysqlConn.lastError();
-        xTEST_EQ(m_uiRv, 0U);
-    }
-
-    xTEST_CASE("Connection::lastErrorStr")
-    {
-        m_sRv = mysqlConn.lastErrorStr();
-        xTEST(!m_sRv.empty());
     }
 
     /*******************************************************************************
@@ -205,7 +195,7 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-    mysql::Recordset mysqlRecord(mysqlConn, false);
+    mysql::Recordset mysqlRecord(mysqlConn2, false);
 
     xTEST_CASE("Recordset::get")
     {
@@ -284,8 +274,8 @@ Test_MySql::unit()
 
     // drop DB, cleaning
     {
-        mysqlConn.query(xT("DROP TABLE IF EXISTS `%s`"),    tableName.c_str());
-        mysqlConn.query(xT("DROP DATABASE IF EXISTS `%s`"), options.db.c_str());
+        mysqlConn2.query(xT("DROP TABLE IF EXISTS `%s`"),    tableName.c_str());
+        mysqlConn2.query(xT("DROP DATABASE IF EXISTS `%s`"), options.db.c_str());
 
         m_bRv = db.isExists();
         xTEST(!m_bRv);
@@ -293,7 +283,7 @@ Test_MySql::unit()
 
     xTEST_CASE("Recordset::close")
     {
-        mysqlConn.close();
+        mysqlConn2.close();
     }
 #else
     Trace() << xT("[skip]");

@@ -39,12 +39,12 @@ Db::isExists()
     Options options = _options;
     options.db = {};
 
-    Connection conn;
+    Connection conn(options);
     {
         bRv = conn.get().isValid();
         xCHECK_RET(!bRv, false);
 
-        conn.connect(options);
+        conn.connect();
         conn.query(
             xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
                "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
@@ -76,8 +76,8 @@ Db::create()
 	Options options = _options;
 	options.db = {};
 
-	Connection conn;
-	conn.connect(options);
+	Connection conn(options);
+	conn.connect();
 	conn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), db.c_str());
 }
 //-------------------------------------------------------------------------------------------------
@@ -87,8 +87,8 @@ Db::drop()
 	Options options = _options;
 	options.db = {};
 
-	Connection conn;
-	conn.connect(options);
+	Connection conn(options);
+	conn.connect();
 	conn.query(xT("DROP DATABASE IF EXISTS `%s`"), _options.db.c_str());
 }
 //-------------------------------------------------------------------------------------------------

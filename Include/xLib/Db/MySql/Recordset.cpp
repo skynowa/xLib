@@ -6,6 +6,7 @@
 
 #include "Recordset.h"
 
+#include <xLib/Db/MySql/Error.h>
 #include <xLib/Db/MySql/Connection.h>
 
 
@@ -34,13 +35,13 @@ Recordset::Recordset(
         * \See mysql_fetch_row
         */
         _result = ::mysql_use_result  ( _conn->get().get() );
-        xTEST_EQ_MSG(_result.isValid(), true, _conn->lastErrorStr());
+        xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).lastErrorStr());
     } else {
         /**
          * Retrieves all the rows immediately
          */
         _result = ::mysql_store_result( _conn->get().get() );
-        xTEST_EQ_MSG(_result.isValid(), true, _conn->lastErrorStr());
+        xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).lastErrorStr());
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -75,7 +76,7 @@ Recordset::fetchField(
     xTEST_PTR(out_field);
 
     out_field = ::mysql_fetch_field( _result.get() );
-    xTEST_PTR_MSG(out_field, _conn->lastErrorStr());
+    xTEST_PTR_MSG(out_field, Error(*_conn).lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -89,7 +90,7 @@ Recordset::fetchFieldDirect(
     xTEST_PTR(out_field);
 
     out_field = ::mysql_fetch_field_direct(_result.get(), a_fieldNumber);
-    xTEST_PTR_MSG(out_field, _conn->lastErrorStr());
+    xTEST_PTR_MSG(out_field, Error(*_conn).lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -101,7 +102,7 @@ Recordset::fetchFields(
     xTEST_PTR(out_field);
 
     out_field = ::mysql_fetch_fields(_result.get());
-    xTEST_PTR_MSG(out_field, _conn->lastErrorStr());
+    xTEST_PTR_MSG(out_field, Error(*_conn).lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -176,7 +177,7 @@ Recordset::_fetchLengths(
     xTEST_PTR_FAIL(*out_fieldLengths);
 
     *out_fieldLengths = ::mysql_fetch_lengths(_result.get());
-    xTEST_PTR_MSG(*out_fieldLengths, _conn->lastErrorStr());
+    xTEST_PTR_MSG(*out_fieldLengths, Error(*_conn).lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 

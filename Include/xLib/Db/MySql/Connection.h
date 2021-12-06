@@ -11,23 +11,22 @@
 namespace xl::db::mysql
 {
 
-class Connection :
-	public xl::interface::ILastError<uint_t>
+class Connection
     /// MySql connection
 {
 public:
 ///@name ctors, dtor
 ///@{
-			 Connection();
+			 Connection(cOptions &options);
 	virtual ~Connection();
 
 	xNO_COPY_ASSIGN(Connection)
 ///@}
 
-    HandleMySqlConn &get();
+    cHandleMySqlConn &get() const;
         ///< get handle
 
-    void_t         connect(cOptions &options);
+    void_t         connect();
         ///< attempts to establish a connection to a MySql database engine running on host
     void_t         reconnect();
         ///< reconnect to DB
@@ -54,14 +53,8 @@ public:
     void_t         close();
         ///< closes a previously opened connection
 
-    // errors
-    uint_t         lastError() const override;
-        ///< error code for the most recently invoked API function that can succeed or fail
-    std::tstring_t lastErrorStr() const override;
-        ///< error message for the most recently invoked API function that failed
-
 private:
-    Options         _options; ///< Connection data
+    cOptions        _options; ///< Connection data
     HandleMySqlConn _conn; ///< handler for one database connection
 
     void_t _setOption(const mysql_option &option, cptr_cvoid_t arg) const;
