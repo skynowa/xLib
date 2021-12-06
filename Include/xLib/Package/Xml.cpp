@@ -53,16 +53,16 @@ XmlDoc::~XmlDoc()
 }
 //-------------------------------------------------------------------------------------------------
 int_t
-XmlDoc::lastError() const
+XmlDoc::code() const
 {
-	return _lastError;
+	return _code;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlDoc::lastErrorStr() const
+XmlDoc::str() const
 {
-	cint_t          error     = lastError();
-	// TODO: XmlDoc::lastErrorStr - get error description
+	cint_t          error     = code();
+	// TODO: XmlDoc::str - get error description
     std::ctstring_t errorDesc = (error == XML_ERR_OK) ? xT("Success") : xT("");
 
     return Format::str(xT("{} - \"{}\""), error, errorDesc);
@@ -378,7 +378,7 @@ XmlDoc::_onError(
 		}
 	}
 
-	std::ctstring_t errorDesc = Format::str(
+	std::ctstring_t str = Format::str(
 		xT("LibXML2 ver:    {}\n")
 		xT("domain:         {}\n")
 		xT("code:           {}\n")
@@ -396,10 +396,10 @@ XmlDoc::_onError(
 
 	// [out]
 	{
-		xmlDoc->_lastError    = code;
-		xmlDoc->_lastErrorStr = errorDesc;
+		xmlDoc->_code = code;
+		xmlDoc->_str  = str;
 
-		std::tcout << errorDesc << std::endl;
+		std::tcout << str << std::endl;
 	}
 }
 //-------------------------------------------------------------------------------------------------

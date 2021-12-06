@@ -23,12 +23,12 @@ public:
 	virtual ~ILastError() = default;
 ///@}
 
-    virtual ErrorT         lastError() const = 0;
-    virtual std::tstring_t lastErrorStr() const = 0;
+    virtual ErrorT         code() const = 0;
+    virtual std::tstring_t str() const = 0;
 
 protected:
-	ErrorT         _lastError {};
-	std::tstring_t _lastErrorStr;
+	ErrorT         _code {};
+	std::tstring_t _str;
 };
 
 } // namespace

@@ -31,7 +31,7 @@ Error::Error(
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
-Error::lastError() const
+Error::code() const
 {
     xTEST(_conn.get().isValid());
 
@@ -39,20 +39,20 @@ Error::lastError() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Error::lastErrorStr() const
+Error::str() const
 {
     xTEST(_conn.get().isValid());
 
     std::tstring_t sRv;
 
-    cuint_t    code = lastError();
-    cptr_cchar str  = ::mysql_error(_conn.get().get());
+    cuint_t    code_ = code();
+    cptr_cchar str   = ::mysql_error(_conn.get().get());
     xTEST_PTR(str);
 
-    if (code == 0) {
-        sRv = Format::str(xT("{} - \"{}\""), code, xT("Success"));
+    if (code_ == 0) {
+        sRv = Format::str(xT("{} - \"{}\""), code_, xT("Success"));
     } else {
-        sRv = Format::str(xT("{} - \"{}\""), code, str);
+        sRv = Format::str(xT("{} - \"{}\""), code_, str);
     }
 
     return sRv;

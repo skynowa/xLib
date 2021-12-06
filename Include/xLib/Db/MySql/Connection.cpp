@@ -30,7 +30,7 @@ Connection::Connection(
     xTEST_NA(a_options);
 
     _conn = ::mysql_init(nullptr);
-    xTEST_MSG(_conn.isValid(), Error(*this).lastErrorStr());
+    xTEST_MSG(_conn.isValid(), Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
 Connection::~Connection()
@@ -85,11 +85,11 @@ Connection::connect()
     MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(_options.host).c_str(),
         xT2A(_options.user).c_str(), xT2A(_options.password).c_str(), db, _options.port,
 		unixSocket, clientFlag);
-    xTEST_PTR_MSG(conn, Error(*this).lastErrorStr());
+    xTEST_PTR_MSG(conn, Error(*this).str());
     xTEST_EQ(_conn.get(), conn);
 
 	int_t iRv = ::mysql_set_character_set(_conn.get(), _options.charset.c_str());
-	xTEST_EQ_MSG(iRv, 0, Error(*this).lastErrorStr());
+	xTEST_EQ_MSG(iRv, 0, Error(*this).str());
 
     // setAutoCommit() must be called AFTER connect()
     /// setAutoCommit(a_options.isAutoCommit);
@@ -103,7 +103,7 @@ Connection::reconnect()
     xTEST(!_conn.isValid());
 
     _conn = ::mysql_init(nullptr);
-    xTEST_EQ_MSG(_conn.isValid(), true, Error(*this).lastErrorStr());
+    xTEST_EQ_MSG(_conn.isValid(), true, Error(*this).str());
 
     connect();
 }
@@ -147,7 +147,7 @@ Connection::escapeString(
 
 	culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get(), &sRv[0],
 		a_sqlValue.data(), static_cast<ulong_t>(a_sqlValue.size()), Const::sqmA()[0]);
-	xTEST_GR_MSG(quotedSize, 0UL, Error(*this).lastErrorStr());
+	xTEST_GR_MSG(quotedSize, 0UL, Error(*this).str());
 
 	sRv.resize(quotedSize * sizeof(std::tstring_t::value_type));
 
@@ -183,7 +183,7 @@ Connection::query(
 
     int_t iRv = ::mysql_real_query(_conn.get(), asSqlQuery.data(),
         static_cast<ulong_t>( asSqlQuery.size() ));
-    xTEST_EQ_MSG(iRv, 0, Error(*this).lastErrorStr());
+    xTEST_EQ_MSG(iRv, 0, Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -192,21 +192,21 @@ Connection::setAutoCommit(
 ) const
 {
 	bool_t bRv = ::mysql_autocommit(_conn.get(), a_flag);
-	xTEST_MSG(bRv, Error(*this).lastErrorStr());
+	xTEST_MSG(bRv, Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Connection::commit()
 {
 	bool_t bRv = ::mysql_commit(_conn.get());
-	xTEST_MSG(bRv, Error(*this).lastErrorStr());
+	xTEST_MSG(bRv, Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Connection::rollback()
 {
 	bool_t bRv = ::mysql_rollback(_conn.get());
-	xTEST_MSG(bRv, Error(*this).lastErrorStr());
+	xTEST_MSG(bRv, Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
@@ -249,7 +249,7 @@ Connection::_setOption(
 #else
     int_t iRv = ::mysql_options(_conn.get(), a_option, a_arg);
 #endif
-    xTEST_EQ_MSG(iRv, 0, Error(*this).lastErrorStr());
+    xTEST_EQ_MSG(iRv, 0, Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
