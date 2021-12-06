@@ -73,13 +73,18 @@ Connection::connect()
 	{
 		_setOptions(_options.options);
 
-		constexpr int connect_timeout_sec = 5;
-		constexpr int read_timeout_sec    = connect_timeout_sec * 10;
-		constexpr int write_timeout_sec   = connect_timeout_sec * 10;
+		constexpr int_t connect_timeout_sec {5};
+		constexpr int_t read_timeout_sec    {connect_timeout_sec * 10};
+		constexpr int_t write_timeout_sec   {connect_timeout_sec * 10};
 
-		_setOption(MYSQL_OPT_CONNECT_TIMEOUT, &connect_timeout_sec);
-		_setOption(MYSQL_OPT_READ_TIMEOUT,    &read_timeout_sec);
-		_setOption(MYSQL_OPT_WRITE_TIMEOUT,   &write_timeout_sec);
+		const std::map<mysql_option, cptr_cvoid_t> &options
+		{
+			{MYSQL_OPT_CONNECT_TIMEOUT, &connect_timeout_sec},
+			{MYSQL_OPT_READ_TIMEOUT,    &read_timeout_sec},
+			{MYSQL_OPT_WRITE_TIMEOUT,   &write_timeout_sec}
+		};
+
+		_setOptions(options);
 	}
 
     MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(_options.host).c_str(),
