@@ -77,9 +77,9 @@ Connection::connect()
 		constexpr int read_timeout_sec    = connect_timeout_sec * 10;
 		constexpr int write_timeout_sec   = connect_timeout_sec * 10;
 
-		::mysql_options(_conn.get(), MYSQL_OPT_CONNECT_TIMEOUT, &connect_timeout_sec);
-		::mysql_options(_conn.get(), MYSQL_OPT_READ_TIMEOUT,    &read_timeout_sec);
-		::mysql_options(_conn.get(), MYSQL_OPT_WRITE_TIMEOUT,   &write_timeout_sec);
+		_setOption(MYSQL_OPT_CONNECT_TIMEOUT, &connect_timeout_sec);
+		_setOption(MYSQL_OPT_READ_TIMEOUT,    &read_timeout_sec);
+		_setOption(MYSQL_OPT_WRITE_TIMEOUT,   &write_timeout_sec);
 	}
 
     MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(_options.host).c_str(),
