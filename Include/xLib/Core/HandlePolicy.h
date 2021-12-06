@@ -63,6 +63,7 @@ struct HandlePolicy;
         static void_t      _close_impl(T &handle); \
     }
 
+// TODO: isValid - add const
 #define xHANDLE_POLICY_FACTORY_IMPL(type, null_value) \
     template<typename T> \
     T \
