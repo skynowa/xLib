@@ -57,7 +57,7 @@ private:
     cOptions        _options; ///< Connection data
     HandleMySqlConn _conn; ///< handler for one database connection
 
-    void_t _setOption(const mysql_option &option, cptr_cvoid_t arg) const;
+    void_t _setOption(const mysql_option option, cptr_cvoid_t arg) const;
         ///< set extra connect options and affect behavior
     void_t _setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
         ///< set extra connect options and affect behavior
