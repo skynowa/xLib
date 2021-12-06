@@ -34,8 +34,8 @@ public:
 	xNO_COPY_ASSIGN(XmlDoc);
 ///@}
 
-    int_t          lastError() const override;
-    std::tstring_t lastErrorStr() const override;
+    int_t          code() const override;
+    std::tstring_t str() const override;
 
 	void           registerNss(std::cmap_tstring_t &nss);
 	void           parse(cptr_ctchar_t buff, cint_t size);

@@ -119,7 +119,7 @@ Test_Xml::unit()
         } // for (results)
     }
 
-    xTEST_CASE("lastError, lastErrorStr")
+    xTEST_CASE("code, str")
     {
 	#if xTEST_IGNORE
 		std::ctstring_t filePath = getData().testDirPath + "/Package/Xml/bad.xml";
