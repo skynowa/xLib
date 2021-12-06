@@ -86,7 +86,7 @@ Connection::connect()
 		}
 	}
 
-	// optione- set/rewrite
+	// options - set/rewrite
 	_setOptions(_options.options);
 
     MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(_options.host).c_str(),
