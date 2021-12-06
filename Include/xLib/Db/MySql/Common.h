@@ -28,6 +28,7 @@
 	#include <mysql/mysqld_error.h>
 #endif
 
+#include <xLib/Db/MySql/Error.h>
 #include <xLib/Db/MySql/Options.h>
 #include <xLib/Db/MySql/Db.h>
 #include <xLib/Db/MySql/Connection.h>

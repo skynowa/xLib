@@ -11,8 +11,6 @@
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 
-#include <xLib/Db/MySql/Recordset.h>
-
 
 namespace xl::db::mysql
 {
@@ -23,12 +21,16 @@ namespace xl::db::mysql
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Connection::Connection()
+Connection::Connection(
+	cOptions &a_options
+) :
+	_options{a_options}
 {
     xTEST(!_conn.isValid());
+    xTEST_NA(a_options);
 
     _conn = ::mysql_init(nullptr);
-    xTEST_MSG(_conn.isValid(), lastErrorStr());
+    xTEST_MSG(_conn.isValid(), Error(*this).lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 Connection::~Connection()
@@ -36,43 +38,40 @@ Connection::~Connection()
     close();
 }
 //-------------------------------------------------------------------------------------------------
-HandleMySqlConn &
-Connection::get()
+cHandleMySqlConn &
+Connection::get() const
 {
     return _conn;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Connection::connect(
-	cOptions &a_options
-)
+Connection::connect()
 {
     xTEST(_conn.isValid());
-    xTEST_NA(a_options);
 
 	const char *db {};
 	{
-		if ( !a_options.db.empty() ) {
-			db = xT2A(a_options.db).c_str();
+		if ( !_options.db.empty() ) {
+			db = xT2A(_options.db).c_str();
 		}
 	}
 
 	const char *unixSocket {};
 	{
-		if ( !a_options.unixSocket.empty() ) {
-			unixSocket = xT2A(a_options.unixSocket).c_str();
+		if ( !_options.unixSocket.empty() ) {
+			unixSocket = xT2A(_options.unixSocket).c_str();
 		}
 	}
 
 	ulong_t clientFlag {};
 	{
-		if (a_options.isCompress) {
+		if (_options.isCompress) {
 			clientFlag |= CLIENT_COMPRESS;
 		}
 	}
 
 	{
-		_setOptions(a_options.options);
+		_setOptions(_options.options);
 
 		constexpr int connect_timeout_sec = 5;
 		constexpr int read_timeout_sec    = connect_timeout_sec * 10;
@@ -83,14 +82,14 @@ Connection::connect(
 		::mysql_options(_conn.get(), MYSQL_OPT_WRITE_TIMEOUT,   &write_timeout_sec);
 	}
 
-    MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(a_options.host).c_str(),
-    	xT2A(a_options.user).c_str(), xT2A(a_options.password).c_str(), db, a_options.port,
+    MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(_options.host).c_str(),
+        xT2A(_options.user).c_str(), xT2A(_options.password).c_str(), db, _options.port,
 		unixSocket, clientFlag);
-    xTEST_PTR_MSG(conn, lastErrorStr());
+    xTEST_PTR_MSG(conn, Error(*this).lastErrorStr());
     xTEST_EQ(_conn.get(), conn);
 
-	int_t iRv = ::mysql_set_character_set(_conn.get(), a_options.charset.c_str());
-	xTEST_EQ_MSG(iRv, 0, lastErrorStr());
+	int_t iRv = ::mysql_set_character_set(_conn.get(), _options.charset.c_str());
+	xTEST_EQ_MSG(iRv, 0, Error(*this).lastErrorStr());
 
     // setAutoCommit() must be called AFTER connect()
     /// setAutoCommit(a_options.isAutoCommit);
@@ -104,9 +103,9 @@ Connection::reconnect()
     xTEST(!_conn.isValid());
 
     _conn = ::mysql_init(nullptr);
-    xTEST_EQ_MSG(_conn.isValid(), true, lastErrorStr());
+    xTEST_EQ_MSG(_conn.isValid(), true, Error(*this).lastErrorStr());
 
-    connect(_options);
+    connect();
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -148,7 +147,7 @@ Connection::escapeString(
 
 	culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get(), &sRv[0],
 		a_sqlValue.data(), static_cast<ulong_t>(a_sqlValue.size()), Const::sqmA()[0]);
-	xTEST_GR_MSG(quotedSize, 0UL, lastErrorStr());
+	xTEST_GR_MSG(quotedSize, 0UL, Error(*this).lastErrorStr());
 
 	sRv.resize(quotedSize * sizeof(std::tstring_t::value_type));
 
@@ -184,7 +183,7 @@ Connection::query(
 
     int_t iRv = ::mysql_real_query(_conn.get(), asSqlQuery.data(),
         static_cast<ulong_t>( asSqlQuery.size() ));
-    xTEST_EQ_MSG(iRv, 0, lastErrorStr());
+    xTEST_EQ_MSG(iRv, 0, Error(*this).lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -193,21 +192,21 @@ Connection::setAutoCommit(
 ) const
 {
 	bool_t bRv = ::mysql_autocommit(_conn.get(), a_flag);
-	xTEST_MSG(bRv, lastErrorStr());
+	xTEST_MSG(bRv, Error(*this).lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Connection::commit()
 {
 	bool_t bRv = ::mysql_commit(_conn.get());
-	xTEST_MSG(bRv, lastErrorStr());
+	xTEST_MSG(bRv, Error(*this).lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Connection::rollback()
 {
 	bool_t bRv = ::mysql_rollback(_conn.get());
-	xTEST_MSG(bRv, lastErrorStr());
+	xTEST_MSG(bRv, Error(*this).lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
@@ -224,42 +223,6 @@ Connection::close()
     xTEST_NA(_conn);
 
     _conn.close();
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*    errors
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-uint_t
-Connection::lastError() const
-{
-    xTEST(_conn.isValid());
-
-    return ::mysql_errno( _conn.get() );
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Connection::lastErrorStr() const
-{
-    xTEST(_conn.isValid());
-
-    std::tstring_t sRv;
-
-    cuint_t    _lastError = lastError();
-    cptr_cchar error      = ::mysql_error( _conn.get() );
-    xTEST_PTR(error);
-
-    if (_lastError == 0U) {
-        sRv = Format::str(xT("{} - \"{}\""), _lastError, xT("Success"));
-    } else {
-        sRv = Format::str(xT("{} - \"{}\""), _lastError, error);
-    }
-
-    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -286,7 +249,7 @@ Connection::_setOption(
 #else
     int_t iRv = ::mysql_options(_conn.get(), a_option, a_arg);
 #endif
-    xTEST_EQ_MSG(iRv, 0, lastErrorStr());
+    xTEST_EQ_MSG(iRv, 0, Error(*this).lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
