@@ -14,6 +14,12 @@ namespace xl::db::mysql
 class Options
 {
 public:
+///@name ctors, dtor
+///@{
+	Options() = default;
+   ~Options() = default;
+///@}
+
     std::tstring_t host;
         ///< host name or an IP address. If host is empty or the string "localhost",
         ///< a connection to the local host is assumed
