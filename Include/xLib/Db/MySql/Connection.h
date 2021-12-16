@@ -33,7 +33,7 @@ public:
     bool_t         ping(int_t *errorCode = nullptr) const;
         ///< checks whether the connection to the server is working
 
-	std::tstring_t escapeString(std::ctstring_t &sqlValue, cbool_t isQuoted) const;
+	std::tstring_t escapeString(std::ctstring_t &sqlValue) const;
 		///< creates a legal SQL string for use in an SQL statement:
 		///<
 		///< Double quotes turn into: \"
