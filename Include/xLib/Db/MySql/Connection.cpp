@@ -138,7 +138,7 @@ Connection::ping(
  * a string quoted within double quotation marks is interpreted as an identifier.
  */
 std::tstring_t
-Connection::escapeString(
+Connection::escape(
 	std::ctstring_t &a_sqlValue	///< SQL string value
 ) const
 {

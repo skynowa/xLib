@@ -81,7 +81,7 @@ Test_MySql::unit()
 		db.create();
     }
 
-    xTEST_CASE("Connection::escapeString")
+    xTEST_CASE("Connection::escape")
     {
         const std::vector<data2_tstring_t> data
         {
@@ -98,7 +98,7 @@ Test_MySql::unit()
         };
 
 		for (const auto &it_data : data) {
-			m_sRv = mysqlConn.escapeString(it_data.test);
+			m_sRv = mysqlConn.escape(it_data.test);
 			xTEST_EQ(m_sRv, it_data.expect);
 
 			std::cout << xTRACE_VAR(m_sRv) << std::endl;
