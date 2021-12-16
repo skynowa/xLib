@@ -133,8 +133,8 @@ Connection::ping(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Connection::escapeString(
-	std::ctstring_t &a_sqlValue,				///< SQL string value
-	cbool_t          a_isQuoted /* = true */	///< is quote SQL string value
+	std::ctstring_t &a_sqlValue,	///< SQL string value
+	cbool_t          a_isQuoted		///< is quote SQL string value
 ) const
 {
 	if ( a_sqlValue.empty() ) {
