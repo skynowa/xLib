@@ -98,8 +98,7 @@ Connection::connect()
 	int_t iRv = ::mysql_set_character_set(_conn.get(), _options.charset.c_str());
 	xTEST_EQ_MSG(iRv, 0, Error(*this).str());
 
-    // setAutoCommit() must be called AFTER connect()
-    /// setAutoCommit(a_options.isAutoCommit);
+    _setAutoCommit();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -129,15 +128,6 @@ Connection::ping(
     }
 
     return true;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Connection::setAutoCommit(
-	cbool_t a_flag	///< flag (if mode is true, off if mode is false)
-) const
-{
-	bool_t bRv = ::mysql_autocommit(_conn.get(), a_flag);
-	xTEST_MSG(bRv, Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -205,6 +195,16 @@ Connection::_setOptions(
 	for (const auto &[it_name, it_value] : a_options) {
 		_setOption(it_name, it_value);
 	}
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Connection::_setAutoCommit() const
+{
+	const char autoMode = static_cast<my_bool>(_options.isAutoCommit);
+		///< flag (if mode is true, off if mode is false)
+
+	bool_t bRv = ::mysql_autocommit(_conn.get(), autoMode);
+	xTEST_MSG(bRv, Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
 
