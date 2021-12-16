@@ -33,15 +33,6 @@ public:
     bool_t         ping(int_t *errorCode = nullptr) const;
         ///< checks whether the connection to the server is working
 
-	std::tstring_t escape(std::ctstring_t &sqlValue) const;
-		///< creates a legal SQL string for use in an SQL statement:
-		///<
-		///< Double quotes turn into: \"
-		///< single quotes turn into: \'
-		///< Single slashes turn into: \\ (double slashes)
-		///< Note unescaped: spaces, |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _, etc
-    void_t         query(cptr_ctchar_t sqlFormat, ...) const;
-        ///< executes the SQL statement
     void_t         setAutoCommit(cbool_t flag) const;
         ///< sets autocommit mode on (setAutoCommit() must be called AFTER connect())
     void_t         commit();

@@ -32,6 +32,7 @@
 #include <xLib/Db/MySql/Options.h>
 #include <xLib/Db/MySql/Db.h>
 #include <xLib/Db/MySql/Connection.h>
+#include <xLib/Db/MySql/Query.h>
 #include <xLib/Db/MySql/Recordset.h>
 //-------------------------------------------------------------------------------------------------
 /**

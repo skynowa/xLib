@@ -45,8 +45,9 @@ Db::isExists()
         xCHECK_RET(!bRv, false);
 
         conn.connect();
-        conn.query(
-            xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
+
+        Query query(conn);
+        query.exec(xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
                "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
 			   options.db.c_str());
     }
@@ -78,7 +79,9 @@ Db::create()
 
 	Connection conn(options);
 	conn.connect();
-	conn.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), db.c_str());
+
+	Query query(conn);
+	query.exec(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), db.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -89,7 +92,9 @@ Db::drop()
 
 	Connection conn(options);
 	conn.connect();
-	conn.query(xT("DROP DATABASE IF EXISTS `%s`"), _options.db.c_str());
+
+	Query query(conn);
+	query.exec(xT("DROP DATABASE IF EXISTS `%s`"), _options.db.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 
