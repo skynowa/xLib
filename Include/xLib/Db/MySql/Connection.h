@@ -33,8 +33,6 @@ public:
     bool_t         ping(int_t *errorCode = nullptr) const;
         ///< checks whether the connection to the server is working
 
-    void_t         setAutoCommit(cbool_t flag) const;
-        ///< sets autocommit mode on (setAutoCommit() must be called AFTER connect())
     void_t         commit();
         ///< commits the current transaction
     void_t         rollback();
@@ -52,6 +50,9 @@ private:
         ///< set extra connect options and affect behavior
     void_t _setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
         ///< set extra connect options and affect behavior
+    void_t _setAutoCommit() const;
+        ///< sets autocommit mode on
+        ///< \note: Must be called AFTER connect()
 };
 
 } // namespace
