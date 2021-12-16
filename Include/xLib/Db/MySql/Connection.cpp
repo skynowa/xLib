@@ -131,10 +131,15 @@ Connection::ping(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * If the ANSI_QUOTES SQL mode is enabled:
+ *
+ * string literals can be quoted only within single quotation marks because
+ * a string quoted within double quotation marks is interpreted as an identifier.
+ */
 std::tstring_t
 Connection::escapeString(
-	std::ctstring_t &a_sqlValue,	///< SQL string value
-	cbool_t          a_isQuoted		///< is quote SQL string value
+	std::ctstring_t &a_sqlValue	///< SQL string value
 ) const
 {
 	if ( a_sqlValue.empty() ) {
@@ -157,16 +162,6 @@ Connection::escapeString(
 	xTEST_GR_MSG(quotedSize, 0UL, Error(*this).str());
 
 	sRv.resize(quotedSize * sizeof(std::tstring_t::value_type));
-
-	if (a_isQuoted) {
-	   /**
-		* If the ANSI_QUOTES SQL mode is enabled:
-		*
-		* string literals can be quoted only within single quotation marks because
-		* a string quoted within double quotation marks is interpreted as an identifier.
-		*/
-		sRv = Const::sqm() + sRv + Const::sqm();
-	}
 
 	return sRv;
 }
