@@ -13,6 +13,8 @@ xTEST_UNIT(Test_MySql)
 bool_t
 Test_MySql::unit()
 {
+	using namespace mysql;
+
 	{
 		// TODO: Test_MySql - setup environment for tests (Mocks)
 		xTRACE_NOT_IMPLEMENTED
@@ -36,7 +38,7 @@ Test_MySql::unit()
 		};
 	}
 
-	mysql::cOptions options
+	cOptions options
 	{
 		.host         = xT("127.0.0.1"),	// xT("localhost");
 		.user         = xT("root"),
@@ -57,8 +59,8 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-    mysql::Db         db(options);
-    mysql::Connection mysqlConn(options);
+    Db         db(options);
+    Connection mysqlConn(options);
 
     xTEST_CASE("Connection::get")
     {
@@ -81,7 +83,7 @@ Test_MySql::unit()
 		db.create();
     }
 
-    xTEST_CASE("Connection::escape")
+    xTEST_CASE("Query::escape")
     {
         const std::vector<data2_tstring_t> data
         {
@@ -98,14 +100,16 @@ Test_MySql::unit()
         };
 
 		for (const auto &it_data : data) {
-			m_sRv = mysqlConn.escape(it_data.test);
+			Query query(mysqlConn);
+
+			m_sRv = query.escape(it_data.test);
 			xTEST_EQ(m_sRv, it_data.expect);
 
 			std::cout << xTRACE_VAR(m_sRv) << std::endl;
 		}
     }
 
-	mysql::cOptions optionsDefault
+	cOptions optionsDefault
     {
         .host         = options.host,
         .user         = options.user,
@@ -119,13 +123,15 @@ Test_MySql::unit()
         .options      = options.options
 	};
 
-    mysql::Connection mysqlConn2(options);
+    Connection mysqlConn2(options);
 
     xTEST_CASE("Connection::connect")
     {
         if ( !db.isExists() ) {
             mysqlConn2.connect();
-            mysqlConn2.query(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"),
+
+            Query query(mysqlConn2);
+            query.exec(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"),
                 options.db.c_str());
         } else {
             // connect to Db
@@ -149,12 +155,13 @@ Test_MySql::unit()
         xTEST_DIFF(errorCode, 0);
     }
 
-    xTEST_CASE("Connection::query")
+    xTEST_CASE("Query::exec")
     {
         mysqlConn2.connect();
 
         // create table
-        mysqlConn2.query(
+        Query query(mysqlConn2);
+        query.exec(
             xT("CREATE TABLE IF NOT EXISTS ")
             xT("   `%s` (")
             xT("       `f_id`    int_t(11)   NOT NULL AUTO_INCREMENT,")
@@ -165,7 +172,7 @@ Test_MySql::unit()
         xTEST(m_bRv);
 
         // insert records
-        mysqlConn2.query(
+        query.exec(
             xT("INSERT INTO")
             xT("    `%s` (`f_name`, `f_age`)")
             xT("VALUES")
@@ -178,9 +185,9 @@ Test_MySql::unit()
 
         // select all records
     #if 0
-        mysqlConn2.query(xT("SELECT * FROM %s"), tableName.c_str());
+        query.exec(xT("SELECT * FROM %s"), tableName.c_str());
     #else
-        mysqlConn2.query(xT("CHECK TABLE %s"), tableName.c_str());
+        query.exec(xT("CHECK TABLE %s"), tableName.c_str());
     #endif
     }
 
@@ -195,7 +202,7 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-    mysql::Recordset mysqlRecord(mysqlConn2, false);
+    Recordset mysqlRecord(mysqlConn2, false);
 
     xTEST_CASE("Recordset::get")
     {
@@ -274,8 +281,10 @@ Test_MySql::unit()
 
     // drop DB, cleaning
     {
-        mysqlConn2.query(xT("DROP TABLE IF EXISTS `%s`"),    tableName.c_str());
-        mysqlConn2.query(xT("DROP DATABASE IF EXISTS `%s`"), options.db.c_str());
+        Query query(mysqlConn2);
+
+        query.exec(xT("DROP TABLE IF EXISTS `%s`"),    tableName.c_str());
+        query.exec(xT("DROP DATABASE IF EXISTS `%s`"), options.db.c_str());
 
         m_bRv = db.isExists();
         xTEST(!m_bRv);
