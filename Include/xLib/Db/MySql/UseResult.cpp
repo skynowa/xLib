@@ -20,26 +20,26 @@ namespace xl::db::mysql
 //-------------------------------------------------------------------------------------------------
 UseResult::UseResult(
     Connection &a_connection,  ///< connection
-    cbool_t     a_isUseResult  ///< use result or store result
+    cbool_t     a_isStore      ///< store result or use result
 ) :
     _conn(&a_connection)
 {
     xTEST(!_result.isValid());
     xTEST(_conn->get().isValid());
 
-    if (a_isUseResult) {
-       /**
-        * Initiates the retrieval but doesn't actually get any of the rows
-        *
-        * \See mysql_fetch_row
-        */
-        _result = ::mysql_use_result  ( _conn->get().get() );
-        xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).str());
-    } else {
+    if (a_isStore) {
         /**
-         * Retrieves all the rows immediately
+         * Retrieves all the rows immediately (small result)
          */
         _result = ::mysql_store_result( _conn->get().get() );
+        xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).str());
+    } else {
+       /**
+        * Initiates the retrieval but doesn't actually get any of the rows (very big result)
+        *
+        * \see mysql_fetch_row
+        */
+        _result = ::mysql_use_result  ( _conn->get().get() );
         xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).str());
     }
 }

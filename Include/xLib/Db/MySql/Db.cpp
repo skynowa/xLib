@@ -53,7 +53,7 @@ Db::isExists()
     }
 
     {
-        UseResult rec(conn, false);
+        UseResult rec(conn, true);
 
         bRv = rec.get().isValid();
         xTEST(bRv);
