@@ -12,7 +12,7 @@
 #include <xLib/Core/Format.h>
 
 #include <xLib/Db/MySql/Connection.h>
-#include <xLib/Db/MySql/Recordset.h>
+#include <xLib/Db/MySql/UseResult.h>
 
 
 namespace xl::db::mysql
@@ -53,7 +53,7 @@ Db::isExists()
     }
 
     {
-        Recordset rec(conn, false);
+        UseResult rec(conn, false);
 
         bRv = rec.get().isValid();
         xTEST(bRv);

@@ -192,88 +192,88 @@ Test_MySql::unit()
     }
 
     /*******************************************************************************
-    *    Recordset
+    *    UseResult
     *
     *******************************************************************************/
 
-    Recordset record(conn2, false);
+    UseResult result(conn2, false);
 
-    xTEST_CASE("Recordset::get")
+    xTEST_CASE("UseResult::get")
     {
-        HandleMySqlResult &handle = record.get();
+        HandleMySqlResult &handle = result.get();
         xTEST(handle.isValid());
     }
 
-    xTEST_CASE("Recordset::isValid")
+    xTEST_CASE("UseResult::isValid")
     {
-        m_bRv = record.get().isValid();
+        m_bRv = result.get().isValid();
         xTEST(m_bRv);
     }
 
-    xTEST_CASE("Recordset::fields")
+    xTEST_CASE("UseResult::fields")
     {
-        m_uiRv = record.fields();
+        m_uiRv = result.fields();
         xTEST_EQ(m_uiRv, 3U);
     }
 
-    xTEST_CASE("Recordset::fieldCount")
+    xTEST_CASE("UseResult::fieldCount")
     {
-        m_uiRv = record.fieldCount();
+        m_uiRv = result.fieldCount();
         xTEST_EQ(m_uiRv, 3U);
     }
 
-    xTEST_CASE("Recordset::rows")
+    xTEST_CASE("UseResult::rows")
     {
-    	std::size_t ullRv = record.rows();
+    	std::size_t ullRv = result.rows();
         xTEST_DIFF(ullRv, 0ULL);
     }
 
-    xTEST_CASE("Recordset::fetchField")
+    xTEST_CASE("UseResult::fetchField")
     {
         MYSQL_FIELD field;
 
-        record.fetchField(&field);
+        result.fetchField(&field);
     }
 
-    xTEST_CASE("Recordset::fetchFieldDirect")
+    xTEST_CASE("UseResult::fetchFieldDirect")
     {
         uint_t      fieldNumber {};
         MYSQL_FIELD field;
 
-        record.fetchFieldDirect(fieldNumber, &field);
+        result.fetchFieldDirect(fieldNumber, &field);
     }
 
-    xTEST_CASE("Recordset::fetchFields")
+    xTEST_CASE("UseResult::fetchFields")
     {
         MYSQL_FIELD field;
 
-        record.fetchFields(&field);
+        result.fetchFields(&field);
     }
 
-    xTEST_CASE("Recordset::fetchRow")
+    xTEST_CASE("UseResult::fetchRow")
     {
         // TEST: Mysql::fetchRow()
 
         //MYSQL_ROW row;
 
-        //record.fetchRow(&row);
+        //result.fetchRow(&row);
     }
 
-    xTEST_CASE("Recordset::fetchLengths")
+    xTEST_CASE("UseResult::fetchLengths")
     {
         // TEST: Mysql::fetchLengths()
 
         //ulong_t *fieldLengths {};
 
-        //record.fetchLengths(&fieldLengths);
+        //result.fetchLengths(&fieldLengths);
         //xTEST_PTR(fieldLengths);
     }
 
-    xTEST_CASE("Recordset::fetchRow")
+    xTEST_CASE("UseResult::fetchRow")
     {
-        for (std::size_t i = 0; i < record.rows(); ++ i) {
+        for (std::size_t i = 0; i < result.rows(); ++ i) {
         	std::vec_tstring_t row;
-            record.fetchRow(&row);
+            result.fetchRow(&row);
 
             // Cout() << xTRACE_VAR(row);
         }
@@ -290,7 +290,7 @@ Test_MySql::unit()
         xTEST(!m_bRv);
     }
 
-    xTEST_CASE("Recordset::close")
+    xTEST_CASE("UseResult::close")
     {
         conn2.close();
     }
