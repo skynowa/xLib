@@ -85,11 +85,12 @@ private:
 #if xTODO
 	::mysql_library_init()
 
+	// Connection
 	{
-		::mysql_init();
-		::mysql_options();
+		MYSQL *conn = ::mysql_init();
 
-		MYSQL *conn = ::mysql_real_connect();
+		::mysql_options(conn);
+		::mysql_real_connect(conn);
 
 		// Query
 		{
