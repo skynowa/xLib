@@ -64,24 +64,6 @@ private:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-
-#if xTODO
-    MYSQL_ROW row;
-    unsigned long_t *lengths;
-    unsigned int_t num_fields;
-    unsigned int_t i;
-
-    row = mysql_fetch_row(result);
-    if (row) {
-        num_fields = mysql_num_fields(result);
-        lengths    = mysql_fetch_lengths(result);
-
-        for (i = 0; i < num_fields; ++ i) {
-             printf("Column %u is %lu bytes in length.\n",         i, lengths[i]);
-        }
-    }
-#endif
-
 #if xTODO
 	::mysql_library_init()
 
@@ -121,7 +103,7 @@ private:
 			}
 		}
 
-		::mysql_close()
+		::mysql_close(conn);
 	}
 
     ::mysql_library_end()
