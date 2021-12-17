@@ -50,7 +50,7 @@ Connection::connect()
 		constexpr int_t readTimeoutSec    {connectTimeoutSec * 10};
 		constexpr int_t writeTimeoutSec   {connectTimeoutSec * 10};
 
-		const std::map<mysql_option, cptr_cvoid_t> &options
+		static const std::map<mysql_option, cptr_cvoid_t> &options
 		{
 			{MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeoutSec},
 			{MYSQL_OPT_READ_TIMEOUT,    &readTimeoutSec},
