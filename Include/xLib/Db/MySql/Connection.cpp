@@ -116,11 +116,11 @@ Connection::ping(
 {
 	xTEST_PTR(out_errorCode);
 
+	Utils::ptrAssignT(out_errorCode, 0);
+
     int_t iRv = ::mysql_ping( _conn.get() );
-
-    Utils::ptrAssignT(out_errorCode, iRv);
-
     if (iRv != 0) {
+        Utils::ptrAssignT(out_errorCode, iRv);
         return false;
     }
 
