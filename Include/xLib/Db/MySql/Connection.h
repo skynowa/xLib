@@ -26,21 +26,27 @@ public:
     cHandleMySqlConn &get() const;
         ///< get handle
 
-    void_t         connect();
-        ///< attempts to establish a connection to a MySql database engine running on host
-    void_t         reconnect();
-        ///< reconnect to DB
-    bool_t         ping(int_t *errorCode = nullptr) const;
-        ///< checks whether the connection to the server is working
-
-    void_t         commit();
-        ///< commits the current transaction
-    void_t         rollback();
-        ///< rolls back the current transaction
-    uint_t         fieldCount() const;
-        ///< number of columns in a result set
-    void_t         close();
+///@name Connection
+///@{
+	void_t connect();
+		///< attempts to establish a connection to a MySql database engine running on host
+	void_t reconnect();
+		///< reconnect to DB
+	bool_t ping(int_t *errorCode = nullptr) const;
+		///< checks whether the connection to the server is working
+    void_t close();
         ///< closes a previously opened connection
+///@}
+
+///@name Commit
+///@{
+	void_t commit();
+		///< commits the current transaction
+	void_t rollback();
+		///< rolls back the current transaction
+	uint_t fieldCount() const;
+		///< number of columns in a result set
+///@}
 
 private:
     cOptions        _options; ///< Connection data
