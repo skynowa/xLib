@@ -83,45 +83,47 @@ private:
 #endif
 
 #if xTODO
-    mysql_library_init()
+	::mysql_library_init()
 
-    {
-        mysql_init()
-        mysql_options()
+	{
+		::mysql_init();
+		::mysql_options();
 
-        mysql_real_connect()
-        {
-            // mysql_query()
-            mysql_real_query()
+		MYSQL *conn = ::mysql_real_connect();
 
-            //Recordset
-            {
-                mysql_use_result()
-                mysql_store_result()
+		// Query
+		{
+			::mysql_real_query(conn) / ::mysql_query(conn);
 
-                {
-                    mysql_num_fields()
-                    mysql_num_rows()
+			// Result
+			{
+				MYSQL_RES *result = ::mysql_use_result(conn) / ::mysql_store_result(conn);
 
-                    mysql_fetch_row    (pMySqlRes); // row
-                    mysql_fetch_lengths(result);    // row length
-                }
+				// Rows
+				{
+					uint_t rows = ::mysql_num_rows(result);
 
-                mysql_free_result()
-            }
-        }
+					MYSQL_ROW row;
 
-        mysql_close()
-    }
+					while ((row = ::mysql_fetch_row(result)) != nullptr) {
+						uint_t    fields  = ::mysql_num_fields(result);
+						ulong_t **lengths = ::mysql_fetch_lengths(result);	// row lengths
 
-    mysql_library_end()
-#endif
+						for (uint_t i = 0; i < fields; ++ i) {
+							printf("Row %s\n", row[0]);
+							printf("Column %u is %lu bytes in length.\n", i, lengths[i]);
+						}
+					}
+				}
 
-#if 0
-	MYSQL_ROW row;
+				::mysql_free_result(result);
+			}
+		}
 
-	while ((row = mysql_fetch_row(res)) != nullptr)
-		printf("%s\n", row[0]);
+		::mysql_close()
+	}
+
+    ::mysql_library_end()
 #endif
 
 #if 0
