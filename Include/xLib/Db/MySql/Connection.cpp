@@ -60,7 +60,7 @@ Connection::connect()
 		_setOptions(options);
 	}
 
-	// options - set/rewrite
+	// options - rewrite
 	_setOptions(_options.options);
 
 	cchar    *db         = _options.db.empty() ?         nullptr : xT2A(_options.db).c_str();
