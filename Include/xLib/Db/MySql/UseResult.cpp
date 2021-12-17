@@ -36,8 +36,6 @@ UseResult::UseResult(
     } else {
        /**
         * Initiates the retrieval but doesn't actually get any of the rows (very big result)
-        *
-        * \see mysql_fetch_row
         */
         _result = ::mysql_use_result( _conn->get().get() );
         xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).str());
