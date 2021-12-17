@@ -60,26 +60,9 @@ Connection::connect()
 		_setOptions(options);
 	}
 
-	const char *db {};
-	{
-		if ( !_options.db.empty() ) {
-			db = xT2A(_options.db).c_str();
-		}
-	}
-
-	const char *unixSocket {};
-	{
-		if ( !_options.unixSocket.empty() ) {
-			unixSocket = xT2A(_options.unixSocket).c_str();
-		}
-	}
-
-	ulong_t clientFlag {};
-	{
-		if (_options.isCompress) {
-			clientFlag |= CLIENT_COMPRESS;
-		}
-	}
+	cchar    *db         = _options.db.empty() ?         nullptr : xT2A(_options.db).c_str();
+	cchar    *unixSocket = _options.unixSocket.empty() ? nullptr : xT2A(_options.unixSocket).c_str();
+	culong_t  clientFlag = !_options.isCompress ?        0       : CLIENT_COMPRESS;	// bit mask
 
 	// options - set/rewrite
 	_setOptions(_options.options);
