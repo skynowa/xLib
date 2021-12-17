@@ -108,7 +108,7 @@ UseResult::fetchFields(
     xTEST(_result.isValid());
     xTEST_PTR(out_field);
 
-    out_field = ::mysql_fetch_fields(_result.get());
+    out_field = ::mysql_fetch_fields( _result.get() );
     xTEST_PTR_MSG(out_field, Error(*_conn).str());
 }
 //-------------------------------------------------------------------------------------------------
