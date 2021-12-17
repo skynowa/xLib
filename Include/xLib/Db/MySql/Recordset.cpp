@@ -121,10 +121,6 @@ Recordset::fetchRow(
     xTEST(_result.isValid());
     xTEST_PTR(out_row);
 
-    uint_t     fieldsNum    {};
-    MYSQL_ROW  row          {};
-    ulong_t   *fieldLengths {};
-
     out_row->clear();
 
     // TODO: [skynowa] Recordset::fetchRow()
@@ -135,9 +131,12 @@ Recordset::fetchRow(
     ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: [skynowa] Recordset::fetchRow() - may be 64-bit bug
 #endif
 
-    fieldsNum = fieldCount();
+    cuint_t fieldsNum = fieldCount();
 
+    MYSQL_ROW row {};
     _fetchRow(&row);
+
+    ulong_t *fieldLengths {};
     _fetchLengths(&fieldLengths);
     xTEST_PTR(fieldLengths);
 
