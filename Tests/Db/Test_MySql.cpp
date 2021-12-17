@@ -196,7 +196,7 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-    UseResult result(conn2, false);
+    UseResult result(conn2, true);
 
     xTEST_CASE("UseResult::get")
     {

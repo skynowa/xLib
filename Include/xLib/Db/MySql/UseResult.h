@@ -24,8 +24,10 @@ class UseResult
 public:
 ///@name ctors, dtor
 ///@{
-             UseResult(Connection &connection, cbool_t isUseResult);
+             UseResult(Connection &connection, cbool_t isStore);
 	virtual ~UseResult() = default;
+
+    xNO_COPY_ASSIGN(UseResult)
 ///@}
 
     HandleMySqlResult &get();
@@ -56,8 +58,6 @@ private:
         ///< An array of unsigned long_t integers representing the size of each column
     void_t _fetchRow(MYSQL_ROW *row) const;
         ///< A MYSQL_ROW structure for the next row
-
-    xNO_COPY_ASSIGN(UseResult)
 };
 
 } // namespace
