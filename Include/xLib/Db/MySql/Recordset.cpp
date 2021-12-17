@@ -115,7 +115,7 @@ Recordset::fetchFields(
 //-------------------------------------------------------------------------------------------------
 void_t
 Recordset::fetchRow(
-    std::vec_tstring_t *out_row
+    std::vec_tstring_t *out_row	///< [out]
 ) const
 {
     xTEST(_result.isValid());
@@ -164,7 +164,7 @@ Recordset::fetchRow(
 //-------------------------------------------------------------------------------------------------
 void_t
 Recordset::_fetchRow(
-    MYSQL_ROW *out_row	///< one row of data
+    MYSQL_ROW *out_row	///< [out] one row of data
 ) const
 {
     xTEST(_result.isValid());
@@ -177,7 +177,7 @@ Recordset::_fetchRow(
 //-------------------------------------------------------------------------------------------------
 void_t
 Recordset::_fetchLengths(
-    ulong_t **out_fieldLengths
+    ulong_t **out_fieldLengths	///< [out]
 ) const
 {
     xTEST(_result.isValid());
