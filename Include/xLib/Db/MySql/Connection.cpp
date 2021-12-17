@@ -60,12 +60,12 @@ Connection::connect()
 		_setOptions(options);
 	}
 
+	// options - set/rewrite
+	_setOptions(_options.options);
+
 	cchar    *db         = _options.db.empty() ?         nullptr : xT2A(_options.db).c_str();
 	cchar    *unixSocket = _options.unixSocket.empty() ? nullptr : xT2A(_options.unixSocket).c_str();
 	culong_t  clientFlag = !_options.isCompress ?        0       : CLIENT_COMPRESS;	// bit mask
-
-	// options - set/rewrite
-	_setOptions(_options.options);
 
     MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(_options.host).c_str(),
         xT2A(_options.user).c_str(), xT2A(_options.password).c_str(), db, _options.port,
