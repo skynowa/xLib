@@ -30,6 +30,8 @@ UseResult::UseResult(
     if (a_isStore) {
         /**
          * Retrieves all the rows immediately (small result)
+         *
+         * \see https://dev.mysql.com/doc/c-api/8.0/en/null-mysql-store-result.html
          */
         _result = ::mysql_store_result( _conn->get().get() );
         xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).str());
@@ -61,6 +63,9 @@ UseResult::fields() const
     return ::mysql_num_fields( _result.get() );
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * \example https://dev.mysql.com/doc/c-api/8.0/en/mysql-field-count.html
+ */
 uint_t
 UseResult::fieldCount() const
 {
