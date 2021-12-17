@@ -25,7 +25,7 @@ public:
 ///@name ctors, dtor
 ///@{
              UseResult(Connection &connection, cbool_t isStore);
-	virtual ~UseResult() = default;
+	virtual ~UseResult();
 
     xNO_COPY_ASSIGN(UseResult)
 ///@}
