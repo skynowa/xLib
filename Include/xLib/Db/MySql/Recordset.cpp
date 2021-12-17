@@ -59,6 +59,14 @@ Recordset::fields() const
     return ::mysql_num_fields( _result.get() );
 }
 //-------------------------------------------------------------------------------------------------
+uint_t
+Recordset::fieldCount() const
+{
+    xTEST(_conn->get().isValid());
+
+    return ::mysql_field_count( _conn->get().get() );
+}
+//-------------------------------------------------------------------------------------------------
 std::size_t
 Recordset::rows() const
 {
@@ -127,7 +135,7 @@ Recordset::fetchRow(
     ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: [skynowa] Recordset::fetchRow() - may be 64-bit bug
 #endif
 
-    fieldsNum = _conn->fieldCount();
+    fieldsNum = fieldCount();
 
     _fetchRow(&row);
     _fetchLengths(&fieldLengths);
