@@ -72,12 +72,11 @@ private:
     unsigned int_t i;
 
     row = mysql_fetch_row(result);
-    if (row)
-    {
+    if (row) {
         num_fields = mysql_num_fields(result);
-        lengths = mysql_fetch_lengths(result);
-        for(i = 0; i < num_fields; i++)
-        {
+        lengths    = mysql_fetch_lengths(result);
+
+        for (i = 0; i < num_fields; ++ i) {
              printf("Column %u is %lu bytes in length.\n",         i, lengths[i]);
         }
     }
@@ -85,13 +84,14 @@ private:
 
 #if xTODO
     mysql_library_init()
+
     {
         mysql_init()
         mysql_options()
 
         mysql_real_connect()
         {
-            //mysql_query()
+            // mysql_query()
             mysql_real_query()
 
             //Recordset
@@ -103,8 +103,8 @@ private:
                     mysql_num_fields()
                     mysql_num_rows()
 
-                    mysql_fetch_row    (pMySqlRes); //row
-                    mysql_fetch_lengths(result);    //row length
+                    mysql_fetch_row    (pMySqlRes); // row
+                    mysql_fetch_lengths(result);    // row length
                 }
 
                 mysql_free_result()
@@ -113,13 +113,16 @@ private:
 
         mysql_close()
     }
+
     mysql_library_end()
 #endif
 
 #if 0
 	<?php
-	function mysql_current_db() {
+	function mysql_current_db()
+    {
 		$r = mysql_query("SELECT DATABASE()") or die(mysql_error());
+
 		return mysql_result($r,0);
 	}
 	?>
