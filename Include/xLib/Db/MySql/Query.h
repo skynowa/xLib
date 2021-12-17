@@ -18,7 +18,7 @@ public:
 ///@name ctors, dtor
 ///@{
 			 Query(const Connection &conn);
-	virtual ~Query();
+	virtual ~Query() = default;
 
 	xNO_COPY_ASSIGN(Query)
 ///@}
