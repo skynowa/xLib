@@ -111,9 +111,11 @@ Connection::reconnect()
 //-------------------------------------------------------------------------------------------------
 bool_t
 Connection::ping(
-    int_t *out_errorCode    /* = nullptr */
+    int_t *out_errorCode	///< [out] error code
 ) const
 {
+	xTEST_PTR(out_errorCode);
+
     int_t iRv = ::mysql_ping( _conn.get() );
 
     Utils::ptrAssignT(out_errorCode, iRv);

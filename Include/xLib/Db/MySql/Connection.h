@@ -32,7 +32,7 @@ public:
 		///< attempts to establish a connection to a MySql database engine running on host
 	void_t reconnect();
 		///< reconnect to DB
-	bool_t ping(int_t *errorCode = nullptr) const;
+	bool_t ping(int_t *errorCode) const;
 		///< checks whether the connection to the server is working
     void_t close();
         ///< closes a previously opened connection
@@ -52,13 +52,16 @@ private:
     cOptions        _options; ///< Connection data
     HandleMySqlConn _conn; ///< handler for one database connection
 
-    void_t _setOption(const mysql_option option, cptr_cvoid_t arg) const;
-        ///< set extra connect options and affect behavior
-    void_t _setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
-        ///< set extra connect options and affect behavior
-    void_t _setAutoCommit() const;
-        ///< sets autocommit mode on
-        ///< \note: Must be called AFTER connect()
+///@name Options
+///@{
+	void_t _setOption(const mysql_option option, cptr_cvoid_t arg) const;
+		///< set extra connect options and affect behavior
+	void_t _setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
+		///< set extra connect options and affect behavior
+	void_t _setAutoCommit() const;
+		///< sets autocommit mode on
+		///< \note: Must be called AFTER connect()
+///@}
 };
 
 } // namespace
