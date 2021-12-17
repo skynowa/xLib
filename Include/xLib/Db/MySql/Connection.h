@@ -82,18 +82,18 @@ private:
 			{
 				MYSQL_RES *result = ::mysql_use_result(conn) / ::mysql_store_result(conn);
 
+				uint_t    rows    = ::mysql_num_rows(result);
+				uint_t    fields  = ::mysql_num_fields(result);
+				ulong_t **lengths = ::mysql_fetch_lengths(result);	// row lengths
+
 				// Rows
 				{
-					uint_t rows = ::mysql_num_rows(result);
-
 					MYSQL_ROW row;
 
 					while ((row = ::mysql_fetch_row(result)) != nullptr) {
-						uint_t    fields  = ::mysql_num_fields(result);
-						ulong_t **lengths = ::mysql_fetch_lengths(result);	// row lengths
+						printf("Row %s: ", row[0]);
 
 						for (uint_t i = 0; i < fields; ++ i) {
-							printf("Row %s\n", row[0]);
 							printf("Column %u is %lu bytes in length.\n", i, lengths[i]);
 						}
 					}
