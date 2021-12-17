@@ -118,6 +118,13 @@ private:
 #endif
 
 #if 0
+	MYSQL_ROW row;
+
+	while ((row = mysql_fetch_row(res)) != nullptr)
+		printf("%s\n", row[0]);
+#endif
+
+#if 0
 	<?php
 	function mysql_current_db()
     {
