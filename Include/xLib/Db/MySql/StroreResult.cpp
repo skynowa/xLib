@@ -1,10 +1,10 @@
 /**
- * \file  UseResult.cpp
+ * \file  StoreResult.cpp
  * \brief MySql client
  */
 
 
-#include <xLib/Db/MySql/UseResult.h>
+#include <xLib/Db/MySql/StoreUseResult.h>
 
 
 namespace xl::db::mysql
@@ -16,7 +16,7 @@ namespace xl::db::mysql
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-UseResult::UseResult(
+StoreResult::StoreResult(
     Connection &a_connection,  ///< connection
     cbool_t     a_isStore      ///< store / use result
 ) :
@@ -43,19 +43,19 @@ UseResult::UseResult(
     }
 }
 //-------------------------------------------------------------------------------------------------
-UseResult::~UseResult()
+StoreResult::~StoreResult()
 {
 	(void_t)::mysql_free_result( _result.get() );
 }
 //-------------------------------------------------------------------------------------------------
 HandleMySqlResult &
-UseResult::get()
+StoreResult::get()
 {
     return _result;
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
-UseResult::fields() const
+StoreResult::fields() const
 {
     xTEST(_result.isValid());
 
@@ -66,7 +66,7 @@ UseResult::fields() const
  * \example https://dev.mysql.com/doc/c-api/8.0/en/mysql-field-count.html
  */
 uint_t
-UseResult::fieldCount() const
+StoreResult::fieldCount() const
 {
     xTEST(_conn->get().isValid());
 
@@ -74,7 +74,7 @@ UseResult::fieldCount() const
 }
 //-------------------------------------------------------------------------------------------------
 std::size_t
-UseResult::rows() const
+StoreResult::rows() const
 {
     xTEST(_result.isValid());
 
@@ -82,7 +82,7 @@ UseResult::rows() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-UseResult::fetchField(
+StoreResult::fetchField(
     MYSQL_FIELD *out_field	///< metadata: information about a field
 ) const
 {
@@ -94,7 +94,7 @@ UseResult::fetchField(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-UseResult::fetchFieldDirect(
+StoreResult::fetchFieldDirect(
     cuint_t      a_fieldNumber,
     MYSQL_FIELD *out_field
 ) const
@@ -108,7 +108,7 @@ UseResult::fetchFieldDirect(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-UseResult::fetchFields(
+StoreResult::fetchFields(
     MYSQL_FIELD *out_field
 ) const
 {
@@ -120,7 +120,7 @@ UseResult::fetchFields(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-UseResult::fetchRow(
+StoreResult::fetchRow(
     std::vec_tstring_t *out_row	///< [out]
 ) const
 {
@@ -129,12 +129,12 @@ UseResult::fetchRow(
 
     out_row->clear();
 
-    // TODO: [skynowa] UseResult::fetchRow()
+    // TODO: [skynowa] StoreResult::fetchRow()
 #if xTODO
     //--uint_t   fieldsNum   = mysql_num_fields   (_result.get());
     uint_t     fields  = _conn->ufieldCount();
     MYSQL_ROW  prow       = mysql_fetch_row    (_result.get()); // array of strings
-    ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: [skynowa] UseResult::fetchRow() - may be 64-bit bug
+    ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: [skynowa] StoreResult::fetchRow() - may be 64-bit bug
 #endif
 
     cuint_t fieldsNum = fieldCount();
@@ -169,7 +169,7 @@ UseResult::fetchRow(
 
 //-------------------------------------------------------------------------------------------------
 void_t
-UseResult::_fetchRow(
+StoreResult::_fetchRow(
     MYSQL_ROW *out_row	///< [out] one row of data
 ) const
 {
@@ -182,7 +182,7 @@ UseResult::_fetchRow(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-UseResult::_fetchLengths(
+StoreResult::_fetchLengths(
     ulong_t **out_fieldLengths	///< [out]
 ) const
 {
