@@ -1,5 +1,5 @@
 /**
- * \file  Recordset.h
+ * \file  UseResult.h
  * \brief MySql client
  *
  * \see mysqlpp
@@ -18,14 +18,14 @@ namespace xl::db::mysql
 
 class Connection;
 
-class Recordset
+class UseResult
     /// MySql recordset
 {
 public:
 ///@name ctors, dtor
 ///@{
-             Recordset(Connection &connection, cbool_t isUseResult);
-	virtual ~Recordset() = default;
+             UseResult(Connection &connection, cbool_t isUseResult);
+	virtual ~UseResult() = default;
 ///@}
 
     HandleMySqlResult &get();
@@ -57,7 +57,7 @@ private:
     void_t _fetchRow(MYSQL_ROW *row) const;
         ///< A MYSQL_ROW structure for the next row
 
-    xNO_COPY_ASSIGN(Recordset)
+    xNO_COPY_ASSIGN(UseResult)
 };
 
 } // namespace

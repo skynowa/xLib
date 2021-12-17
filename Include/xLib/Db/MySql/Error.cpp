@@ -11,9 +11,6 @@
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 
-#include <xLib/Db/MySql/Recordset.h>
-
-
 namespace xl::db::mysql
 {
 
