@@ -44,8 +44,6 @@ public:
 		///< commits the current transaction
 	void_t rollback();
 		///< rolls back the current transaction
-	uint_t fieldCount() const;
-		///< number of columns in a result set
 ///@}
 
 private:

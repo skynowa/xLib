@@ -191,12 +191,6 @@ Test_MySql::unit()
     #endif
     }
 
-    xTEST_CASE("Connection::fieldCount")
-    {
-        m_uiRv = mysqlConn2.fieldCount();
-        xTEST_EQ(m_uiRv, 3U);
-    }
-
     /*******************************************************************************
     *    Recordset
     *
@@ -219,6 +213,12 @@ Test_MySql::unit()
     xTEST_CASE("Recordset::fields")
     {
         m_uiRv = mysqlRecord.fields();
+        xTEST_EQ(m_uiRv, 3U);
+    }
+
+    xTEST_CASE("Recordset::fieldCount")
+    {
+        m_uiRv = mysqlRecord.fieldCount();
         xTEST_EQ(m_uiRv, 3U);
     }
 
