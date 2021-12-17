@@ -20,7 +20,7 @@ namespace xl::db::mysql
 //-------------------------------------------------------------------------------------------------
 UseResult::UseResult(
     Connection &a_connection,  ///< connection
-    cbool_t     a_isStore      ///< store result or use result
+    cbool_t     a_isStore      ///< store / use result
 ) :
     _conn(&a_connection)
 {
@@ -39,9 +39,14 @@ UseResult::UseResult(
         *
         * \see mysql_fetch_row
         */
-        _result = ::mysql_use_result  ( _conn->get().get() );
+        _result = ::mysql_use_result( _conn->get().get() );
         xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).str());
     }
+}
+//-------------------------------------------------------------------------------------------------
+UseResult::~UseResult()
+{
+	(void_t)::mysql_free_result( _result.get() );
 }
 //-------------------------------------------------------------------------------------------------
 HandleMySqlResult &
