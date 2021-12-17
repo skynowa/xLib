@@ -33,11 +33,6 @@ Connection::Connection(
     xTEST_MSG(_conn.isValid(), Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
-Connection::~Connection()
-{
-    close();
-}
-//-------------------------------------------------------------------------------------------------
 cHandleMySqlConn &
 Connection::get() const
 {

@@ -18,7 +18,7 @@ public:
 ///@name ctors, dtor
 ///@{
 			 Connection(cOptions &options);
-	virtual ~Connection();
+	virtual ~Connection() = default;
 
 	xNO_COPY_ASSIGN(Connection)
 ///@}
