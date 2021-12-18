@@ -121,10 +121,10 @@ IResult::fetchRow(
     out_row->clear();
 
     MYSQL_ROW  row          = _fetchRow();
-    cuint_t    fields       = fields();
+    cuint_t    fields_      = fields();
     culong_t  *fieldLengths = _fetchLengths();
 
-    for (uint_t i = 0; i < fields; ++ i) {
+    for (uint_t i = 0; i < fields_; ++ i) {
         std::tstring_t field;
 
         if (row[i] != nullptr) {
