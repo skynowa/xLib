@@ -140,6 +140,9 @@ IResult::fetchRow(
     culong_t     *fieldLengths = _fetchLengths();
 
     MYSQL_ROW row = _fetchRow();
+    if (row == nullptr) {
+        return;
+    }
 
 	for (std::size_t i = 0; i < fieldsNum; ++ i) {
 		std::tstring_t field;
@@ -165,28 +168,11 @@ IResult::fetchRows(
 
     out_rows->clear();
 
-    std::csize_t  fieldsNum    = fields();
-    culong_t     *fieldLengths = _fetchLengths();
+	std::vec_tstring_t row;
 
-	for (MYSQL_ROW row = _fetchRow(); row != nullptr; row = _fetchRow()) {
-		std::vec_tstring_t fields;
-
-		for (std::size_t i = 0; i < fieldsNum; ++ i) {
-			std::tstring_t field;
-
-			if (row[i] != nullptr) {
-				std::string asField(row[i], fieldLengths[i]);
-
-				field = xA2T(asField);
-			}
-
-			// [out]
-			fields.push_back(field);
-		}
-
-		// [out]
-		out_rows->push_back(fields);
-	} // for ( ; ; )
+	for (fetchRow(&row); !row.empty(); fetchRow(&row)) {
+		out_rows->push_back(row);
+	}
 }
 //-------------------------------------------------------------------------------------------------
 
