@@ -219,12 +219,6 @@ Test_MySql::unit()
         xTEST_EQ(m_uiRv, 3U);
     }
 
-    xTEST_CASE("UseResult::fieldCount")
-    {
-        m_uiRv = result.fieldCount();
-        xTEST_EQ(m_uiRv, 3U);
-    }
-
     xTEST_CASE("UseResult::rows")
     {
     	std::size_t ullRv = result.rows();
