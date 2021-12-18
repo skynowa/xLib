@@ -127,6 +127,35 @@ IResult::fetchFields(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
+IResult::fetchRow(
+	std::vec_tstring_t *out_row	///< [out]
+) const
+{
+    xTEST(_result.isValid());
+    xTEST_PTR(out_row);
+
+    out_row->clear();
+
+    std::csize_t  fieldsNum    = fields();
+    culong_t     *fieldLengths = _fetchLengths();
+
+    MYSQL_ROW row = _fetchRow();
+
+	for (std::size_t i = 0; i < fieldsNum; ++ i) {
+		std::tstring_t field;
+
+		if (row[i] != nullptr) {
+			std::string asField(row[i], fieldLengths[i]);
+
+			field = xA2T(asField);
+		}
+
+		// [out]
+		out_row->push_back(field);
+	}
+}
+//-------------------------------------------------------------------------------------------------
+void_t
 IResult::fetchRows(
 	std::vector<std::vec_tstring_t> *out_rows	///< [out]
 ) const
