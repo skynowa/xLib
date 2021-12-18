@@ -35,8 +35,8 @@ public:
 
     std::size_t fields() const;
         ///< number of columns in a result set / connection
-    std::size_t rows() const;
-        ///< number of rows in the result set
+    uint64_t    rows() const;
+        ///< number of rows in the result set / connection
     void_t      fetchField(MYSQL_FIELD *field) const;
         ///< The MYSQL_FIELD structure for the current column
     void_t      fetchFieldDirect(cuint_t fieldNumber, MYSQL_FIELD *field) const;
