@@ -64,12 +64,22 @@ IResult::fields() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-std::size_t
+uint64_t
 IResult::rows() const
 {
-    xTEST(_result.isValid());
+    xTEST_NA(_result);
+    xTEST_NA(_conn);
 
-    return ::mysql_num_rows( _result.get() );
+    uint64_t ullRv {};
+
+	if     ( _result.isValid() ) {
+		ullRv = ::mysql_num_rows( _result.get() );
+	}
+	else if (_conn->get().isValid() ) {
+		ullRv = ::mysql_affected_rows( _conn->get().get() );
+	}
+
+    return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
 void_t

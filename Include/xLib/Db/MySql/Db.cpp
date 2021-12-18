@@ -55,7 +55,7 @@ Db::isExists()
 
         bRv = result.get().isValid();
         xTEST(bRv);
-        xTEST_EQ(result.rows(), std::size_t(1));
+        xTEST_EQ(result.rows(), uint64_t(1));
 
         std::vec_tstring_t row;
         result.fetchRow(&row);
