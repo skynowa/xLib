@@ -119,9 +119,9 @@ IResult::fetchRow(
     ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: [skynowa] IResult::fetchRow() - may be 64-bit bug
 #endif
 
-    cuint_t   fieldsNum    = fieldCount();
-    MYSQL_ROW row          = _fetchRow();
-    ulong_t  *fieldLengths = _fetchLengths();
+    cuint_t    fieldsNum    = fieldCount();
+    MYSQL_ROW  row          = _fetchRow();
+    culong_t  *fieldLengths = _fetchLengths();
 
     // [out]
     for (uint_t i = 0; i < fieldsNum; ++ i) {
@@ -156,7 +156,7 @@ IResult::_fetchRow() const
     return row;
 }
 //-------------------------------------------------------------------------------------------------
-ulong_t *
+culong_t *
 IResult::_fetchLengths() const
 {
     xTEST(_result.isValid());

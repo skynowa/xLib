@@ -56,7 +56,7 @@ protected:
 
     MYSQL_ROW  _fetchRow() const;
         ///< A MYSQL_ROW structure for the next row
-    ulong_t *  _fetchLengths() const;
+    culong_t * _fetchLengths() const;
         ///< An array of unsigned long_t integers representing the size of each column
 };
 
