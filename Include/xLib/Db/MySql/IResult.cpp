@@ -111,20 +111,12 @@ IResult::fetchRow(
 
     out_row->clear();
 
-    // TODO: [skynowa] IResult::fetchRow()
-#if xTODO
-    //--uint_t   fieldsNum   = mysql_num_fields   (_result.get());
-    uint_t     fields  = _conn->ufieldCount();
-    MYSQL_ROW  prow       = mysql_fetch_row    (_result.get()); // array of strings
-    ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: [skynowa] IResult::fetchRow() - may be 64-bit bug
-#endif
-
-    cuint_t    fieldsNum    = fieldCount();
     MYSQL_ROW  row          = _fetchRow();
+    cuint_t    fields       = fieldCount();	// TODO: fields() ???
     culong_t  *fieldLengths = _fetchLengths();
 
     // [out]
-    for (uint_t i = 0; i < fieldsNum; ++ i) {
+    for (uint_t i = 0; i < fields; ++ i) {
         std::tstring_t field;
 
         if (row[i] != nullptr) {
