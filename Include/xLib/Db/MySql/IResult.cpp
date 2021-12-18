@@ -64,6 +64,11 @@ IResult::fields() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * mysql_num_rows() is intended for use with statements that return a result set, such as SELECT.
+ * For statements such as INSERT, UPDATE, or DELETE, the number of affected rows can be obtained
+ * with mysql_affected_rows().
+ */
 uint64_t
 IResult::rows() const
 {
