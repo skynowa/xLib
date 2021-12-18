@@ -119,14 +119,9 @@ IResult::fetchRow(
     ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: [skynowa] IResult::fetchRow() - may be 64-bit bug
 #endif
 
-    cuint_t fieldsNum = fieldCount();
-
-    MYSQL_ROW row {};
-    _fetchRow(&row);
-
-    ulong_t *fieldLengths {};
-    _fetchLengths(&fieldLengths);
-    xTEST_PTR(fieldLengths);
+    cuint_t   fieldsNum    = fieldCount();
+    MYSQL_ROW row          = _fetchRow();
+    ulong_t  *fieldLengths = _fetchLengths();
 
     // [out]
     for (uint_t i = 0; i < fieldsNum; ++ i) {
@@ -150,29 +145,26 @@ IResult::fetchRow(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-void_t
-IResult::_fetchRow(
-    MYSQL_ROW *out_row	///< [out] one row of data
-) const
+MYSQL_ROW
+IResult::_fetchRow() const
 {
     xTEST(_result.isValid());
-    xTEST_PTR(out_row);
 
-    *out_row = ::mysql_fetch_row(_result.get());
-    xTEST_NA(out_row);
-    xTEST_PTR(*out_row);
+    MYSQL_ROW row = ::mysql_fetch_row(_result.get());
+    xTEST_NA(row);
+
+    return row;
 }
 //-------------------------------------------------------------------------------------------------
-void_t
-IResult::_fetchLengths(
-    ulong_t **out_fieldLengths	///< [out]
-) const
+ulong_t *
+IResult::_fetchLengths() const
 {
     xTEST(_result.isValid());
-    xTEST_PTR_FAIL(*out_fieldLengths);
 
-    *out_fieldLengths = ::mysql_fetch_lengths(_result.get());
-    xTEST_PTR_MSG(*out_fieldLengths, Error(*_conn).str());
+    ulong_t *fieldLengths = ::mysql_fetch_lengths(_result.get());
+    xTEST_PTR_MSG(fieldLengths, Error(*_conn).str());
+
+    return fieldLengths;
 }
 //-------------------------------------------------------------------------------------------------
 
