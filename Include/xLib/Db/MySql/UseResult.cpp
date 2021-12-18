@@ -25,7 +25,7 @@ UseResult::UseResult(
 	* Initiates the retrieval but doesn't actually get any of the rows (very big result)
 	*/
 	_result = ::mysql_use_result( _conn->get().get() );
-	xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).str());
+	xTEST_MSG(_result.isValid(), Error(*_conn).str());
 }
 //-------------------------------------------------------------------------------------------------
 

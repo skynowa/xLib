@@ -28,7 +28,7 @@ StoreResult::StoreResult(
 	*      https://dev.mysql.com/doc/c-api/8.0/en/mysql-field-count.html
 	*/
 	_result = ::mysql_store_result( _conn->get().get() );
-	xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).str());
+	xTEST_MSG(_result.isValid(), Error(*_conn).str());
 }
 //-------------------------------------------------------------------------------------------------
 
