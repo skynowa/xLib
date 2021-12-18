@@ -136,7 +136,7 @@ IResult::fetchRows(
 
     out_rows->clear();
 
-    std::csize_t  fields_      = fields();
+    std::csize_t  fieldsNum    = fields();
     culong_t     *fieldLengths = _fetchLengths();
 
     MYSQL_ROW row;
@@ -144,7 +144,7 @@ IResult::fetchRows(
 	while ((row = _fetchRow()) != nullptr) {
 		std::vec_tstring_t fields;
 
-		for (uint_t i = 0; i < fields_; ++ i) {
+		for (std::size_t i = 0; i < fieldsNum; ++ i) {
 			std::tstring_t field;
 
 			if (row[i] != nullptr) {
