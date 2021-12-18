@@ -115,7 +115,6 @@ IResult::fetchRow(
     cuint_t    fields       = fieldCount();	// TODO: fields() ???
     culong_t  *fieldLengths = _fetchLengths();
 
-    // [out]
     for (uint_t i = 0; i < fields; ++ i) {
         std::tstring_t field;
 
@@ -125,6 +124,7 @@ IResult::fetchRow(
             field = xA2T(asField);
         }
 
+        // [out]
         out_row->push_back(field);
     }
 }
