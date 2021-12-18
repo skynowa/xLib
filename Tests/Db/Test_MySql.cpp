@@ -257,19 +257,15 @@ Test_MySql::unit()
     {
         // TEST: Mysql::fetchRow()
 
-        //MYSQL_ROW row;
-
-        //result.fetchRow(&row);
+        // MYSQL_ROW row = result.fetchRow(&row);
     }
 
     xTEST_CASE("UseResult::fetchLengths")
     {
         // TEST: Mysql::fetchLengths()
 
-        //ulong_t *fieldLengths {};
-
-        //result.fetchLengths(&fieldLengths);
-        //xTEST_PTR(fieldLengths);
+        // ulong_t *fieldLengths = result.fetchLengths();
+        // xTEST_PTR(fieldLengths);
     }
 
     xTEST_CASE("UseResult::fetchRow")
