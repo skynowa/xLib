@@ -151,11 +151,7 @@ Connection::_setOption(
     xTEST_NA(a_option);
     xTEST_NA(a_arg);
 
-#if MYSQL_VERSION_ID < 50154
-    int_t iRv = ::mysql_options(_conn.get(), a_option, static_cast<cptr_ctchar_t>(a_arg));
-#else
     int_t iRv = ::mysql_options(_conn.get(), a_option, a_arg);
-#endif
     xTEST_EQ_MSG(iRv, 0, Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
