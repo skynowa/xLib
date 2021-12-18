@@ -36,23 +36,32 @@ IResult::get()
     return _result;
 }
 //-------------------------------------------------------------------------------------------------
-uint_t
-IResult::fields() const
-{
-    xTEST(_result.isValid());
-
-    return ::mysql_num_fields( _result.get() );
-}
-//-------------------------------------------------------------------------------------------------
 /**
+ * Get the number of columns either from a pointer to a result set or to a connection handler.
+ * You would use the connection handler if mysql_store_result() or mysql_use_result() returned NULL
+ * (and thus you have no result set pointer). In this case, you can call mysql_field_count()
+ * to determine whether mysql_store_result() should have produced a nonempty result.
+ * This enables the client program to take proper action without knowing whether the query
+ * was a SELECT (or SELECT-like) statement. The example shown here illustrates how this may be done.
+ *
  * \example https://dev.mysql.com/doc/c-api/8.0/en/mysql-field-count.html
  */
 uint_t
-IResult::fieldCount() const
+IResult::fields() const
 {
-    xTEST(_conn->get().isValid());
+    xTEST_NA(_result);
+    xTEST_NA(_conn);
 
-    return ::mysql_field_count( _conn->get().get() );
+    uint_t uiRv {};
+
+	if     ( _result.isValid() ) {
+		uiRv = ::mysql_num_fields( _result.get() );
+	}
+	else if (_conn->get().isValid() ) {
+		uiRv = ::mysql_field_count( _conn->get().get() );
+	}
+
+    return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
 std::size_t
@@ -112,7 +121,7 @@ IResult::fetchRow(
     out_row->clear();
 
     MYSQL_ROW  row          = _fetchRow();
-    cuint_t    fields       = fieldCount();	// TODO: fields() ???
+    cuint_t    fields       = fields();
     culong_t  *fieldLengths = _fetchLengths();
 
     for (uint_t i = 0; i < fields; ++ i) {

@@ -34,9 +34,7 @@ public:
         ///< get handle
 
     uint_t      fields() const;
-        ///< number of columns in a result set
-	uint_t      fieldCount() const;
-		///< number of columns for the most recent query on the connection
+        ///< number of columns in a result set / connection
     std::size_t rows() const;
         ///< number of rows in the result set
     void_t      fetchField(MYSQL_FIELD *field) const;
