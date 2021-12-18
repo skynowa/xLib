@@ -54,7 +54,7 @@ IResult::fields() const
 
     std::size_t uiRv {};
 
-	if     ( _result.isValid() ) {
+	if      ( _result.isValid() ) {
 		uiRv = ::mysql_num_fields( _result.get() );
 	}
 	else if (_conn->get().isValid() ) {
@@ -72,10 +72,10 @@ IResult::rows() const
 
     uint64_t ullRv {};
 
-	if     ( _result.isValid() ) {
+	if      ( _result.isValid() ) {
 		ullRv = ::mysql_num_rows( _result.get() );
 	}
-	else if (_conn->get().isValid() ) {
+	else if ( _conn->get().isValid() ) {
 		ullRv = ::mysql_affected_rows( _conn->get().get() );
 	}
 
