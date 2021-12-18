@@ -46,13 +46,13 @@ IResult::get()
  *
  * \example https://dev.mysql.com/doc/c-api/8.0/en/mysql-field-count.html
  */
-uint_t
+std::size_t
 IResult::fields() const
 {
     xTEST_NA(_result);
     xTEST_NA(_conn);
 
-    uint_t uiRv {};
+    std::size_t uiRv {};
 
 	if     ( _result.isValid() ) {
 		uiRv = ::mysql_num_fields( _result.get() );
@@ -120,9 +120,9 @@ IResult::fetchRow(
 
     out_row->clear();
 
-    MYSQL_ROW  row          = _fetchRow();
-    cuint_t    fields_      = fields();
-    culong_t  *fieldLengths = _fetchLengths();
+    MYSQL_ROW     row          = _fetchRow();
+    std::csize_t  fields_      = fields();
+    culong_t     *fieldLengths = _fetchLengths();
 
     for (uint_t i = 0; i < fields_; ++ i) {
         std::tstring_t field;
