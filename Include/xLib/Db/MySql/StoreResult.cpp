@@ -1,10 +1,10 @@
 /**
- * \file  UseResult.cpp
+ * \file  StoreResult.cpp
  * \brief MySql client
  */
 
 
-#include <xLib/Db/MySql/UseResult.h>
+#include <xLib/Db/MySql/StoreResult.h>
 
 
 namespace xl::db::mysql
@@ -16,15 +16,18 @@ namespace xl::db::mysql
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-UseResult::UseResult(
-    Connection &a_connection    ///< connection
+StoreResult::StoreResult(
+    Connection &a_connection	///< connection
 ) :
     IResult(a_connection)
 {
    /**
-	* Initiates the retrieval but doesn't actually get any of the rows (very big result)
+	* Retrieves all the rows immediately (small result)
+	*
+	* \see https://dev.mysql.com/doc/c-api/8.0/en/null-mysql-store-result.html
+	*      https://dev.mysql.com/doc/c-api/8.0/en/mysql-field-count.html
 	*/
-	_result = ::mysql_use_result( _conn->get().get() );
+	_result = ::mysql_store_result( _conn->get().get() );
 	xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).str());
 }
 //-------------------------------------------------------------------------------------------------

@@ -11,9 +11,7 @@
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 
-#include <xLib/Db/MySql/Connection.h>
-#include <xLib/Db/MySql/UseResult.h>
-
+#include <xLib/Db/MySql/StoreResult.h>
 
 namespace xl::db::mysql
 {
@@ -53,14 +51,14 @@ Db::isExists()
     }
 
     {
-        UseResult rec(conn, true);
+        StoreResult result(conn);
 
-        bRv = rec.get().isValid();
+        bRv = result.get().isValid();
         xTEST(bRv);
-        xTEST_EQ(rec.rows(), std::size_t(1));
+        xTEST_EQ(result.rows(), std::size_t(1));
 
         std::vec_tstring_t row;
-        rec.fetchRow(&row);
+        result.fetchRow(&row);
         xTEST_EQ(row.size(), static_cast<size_t>(1));
         xCHECK_RET(StringCI::compare(xT("false"), row[0]), false);
         xTEST_EQ(StringCI::compare(xT("true"), row[0]), true);

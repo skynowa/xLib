@@ -33,9 +33,9 @@
 #include <xLib/Db/MySql/Db.h>
 #include <xLib/Db/MySql/Connection.h>
 #include <xLib/Db/MySql/Query.h>
-/// #include <xLib/Db/MySql/IResult.h>
-#include <xLib/Db/MySql/StoreResult.h>
-#include <xLib/Db/MySql/UseResult.h>
+#include <xLib/Db/MySql/IResult.h>
+//#include <xLib/Db/MySql/StoreResult.h>
+//#include <xLib/Db/MySql/UseResult.h>
 //-------------------------------------------------------------------------------------------------
 /**
  * TODO:
@@ -48,8 +48,8 @@
  * 	- mysql_select_db()
  *
  * + Connection
- * - Query / RealQuery
- * - UseResult / StoreResult
+ * + Query / RealQuery
+ * + UseResult / StoreResult
  * - Row
  * - Field
  * - Exception

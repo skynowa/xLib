@@ -1,10 +1,10 @@
 /**
- * \file  StoreResult.cpp
+ * \file  IResult.cpp
  * \brief MySql client
  */
 
 
-#include <xLib/Db/MySql/StoreUseResult.h>
+#include <xLib/Db/MySql/IResult.h>
 
 
 namespace xl::db::mysql
@@ -16,46 +16,28 @@ namespace xl::db::mysql
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-StoreResult::StoreResult(
-    Connection &a_connection,  ///< connection
-    cbool_t     a_isStore      ///< store / use result
+IResult::IResult(
+    Connection &a_connection    ///< connection
 ) :
     _conn(&a_connection)
 {
     xTEST(!_result.isValid());
     xTEST(_conn->get().isValid());
-
-    if (a_isStore) {
-        /**
-         * Retrieves all the rows immediately (small result)
-         *
-         * \see https://dev.mysql.com/doc/c-api/8.0/en/null-mysql-store-result.html
-         *      https://dev.mysql.com/doc/c-api/8.0/en/mysql-field-count.html
-         */
-        _result = ::mysql_store_result( _conn->get().get() );
-        xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).str());
-    } else {
-       /**
-        * Initiates the retrieval but doesn't actually get any of the rows (very big result)
-        */
-        _result = ::mysql_use_result( _conn->get().get() );
-        xTEST_EQ_MSG(_result.isValid(), true, Error(*_conn).str());
-    }
 }
 //-------------------------------------------------------------------------------------------------
-StoreResult::~StoreResult()
+IResult::~IResult()
 {
 	(void_t)::mysql_free_result( _result.get() );
 }
 //-------------------------------------------------------------------------------------------------
 HandleMySqlResult &
-StoreResult::get()
+IResult::get()
 {
     return _result;
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
-StoreResult::fields() const
+IResult::fields() const
 {
     xTEST(_result.isValid());
 
@@ -66,7 +48,7 @@ StoreResult::fields() const
  * \example https://dev.mysql.com/doc/c-api/8.0/en/mysql-field-count.html
  */
 uint_t
-StoreResult::fieldCount() const
+IResult::fieldCount() const
 {
     xTEST(_conn->get().isValid());
 
@@ -74,7 +56,7 @@ StoreResult::fieldCount() const
 }
 //-------------------------------------------------------------------------------------------------
 std::size_t
-StoreResult::rows() const
+IResult::rows() const
 {
     xTEST(_result.isValid());
 
@@ -82,7 +64,7 @@ StoreResult::rows() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-StoreResult::fetchField(
+IResult::fetchField(
     MYSQL_FIELD *out_field	///< metadata: information about a field
 ) const
 {
@@ -94,7 +76,7 @@ StoreResult::fetchField(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-StoreResult::fetchFieldDirect(
+IResult::fetchFieldDirect(
     cuint_t      a_fieldNumber,
     MYSQL_FIELD *out_field
 ) const
@@ -108,7 +90,7 @@ StoreResult::fetchFieldDirect(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-StoreResult::fetchFields(
+IResult::fetchFields(
     MYSQL_FIELD *out_field
 ) const
 {
@@ -120,7 +102,7 @@ StoreResult::fetchFields(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-StoreResult::fetchRow(
+IResult::fetchRow(
     std::vec_tstring_t *out_row	///< [out]
 ) const
 {
@@ -129,12 +111,12 @@ StoreResult::fetchRow(
 
     out_row->clear();
 
-    // TODO: [skynowa] StoreResult::fetchRow()
+    // TODO: [skynowa] IResult::fetchRow()
 #if xTODO
     //--uint_t   fieldsNum   = mysql_num_fields   (_result.get());
     uint_t     fields  = _conn->ufieldCount();
     MYSQL_ROW  prow       = mysql_fetch_row    (_result.get()); // array of strings
-    ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: [skynowa] StoreResult::fetchRow() - may be 64-bit bug
+    ulong_t   *rowLengths = mysql_fetch_lengths(_result.get()); // TODO: [skynowa] IResult::fetchRow() - may be 64-bit bug
 #endif
 
     cuint_t fieldsNum = fieldCount();
@@ -169,7 +151,7 @@ StoreResult::fetchRow(
 
 //-------------------------------------------------------------------------------------------------
 void_t
-StoreResult::_fetchRow(
+IResult::_fetchRow(
     MYSQL_ROW *out_row	///< [out] one row of data
 ) const
 {
@@ -182,7 +164,7 @@ StoreResult::_fetchRow(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-StoreResult::_fetchLengths(
+IResult::_fetchLengths(
     ulong_t **out_fieldLengths	///< [out]
 ) const
 {
