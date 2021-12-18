@@ -6,6 +6,9 @@
 
 #include <xLib/xLib.h>
 
+#include <xLib/Db/MySql/StoreResult.h>
+#include <xLib/Db/MySql/UseResult.h>
+
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_MySql)
 //-------------------------------------------------------------------------------------------------
@@ -196,7 +199,7 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-    UseResult result(conn2, true);
+    StoreResult result(conn2);
 
     xTEST_CASE("UseResult::get")
     {
