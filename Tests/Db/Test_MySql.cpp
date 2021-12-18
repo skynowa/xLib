@@ -247,13 +247,6 @@ Test_MySql::unit()
         result.fetchFields(&field);
     }
 
-    xTEST_CASE("UseResult::fetchRow")
-    {
-        // TEST: Mysql::fetchRow()
-
-        // MYSQL_ROW row = result.fetchRow(&row);
-    }
-
     xTEST_CASE("UseResult::fetchLengths")
     {
         // TEST: Mysql::fetchLengths()
@@ -262,14 +255,10 @@ Test_MySql::unit()
         // xTEST_PTR(fieldLengths);
     }
 
-    xTEST_CASE("UseResult::fetchRow")
+    xTEST_CASE("UseResult::fetchRows")
     {
-        for (std::size_t i = 0; i < result.rows(); ++ i) {
-        	std::vec_tstring_t row;
-            result.fetchRow(&row);
-
-            // Cout() << xTRACE_VAR(row);
-        }
+		std::vector<std::vec_tstring_t> rows;
+		result.fetchRows(&rows);
     }
 
     // drop DB, cleaning

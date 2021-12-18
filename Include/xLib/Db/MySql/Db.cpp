@@ -57,11 +57,11 @@ Db::isExists()
         xTEST(bRv);
         xTEST_EQ(result.rows(), uint64_t(1));
 
-        std::vec_tstring_t row;
-        result.fetchRow(&row);
-        xTEST_EQ(row.size(), static_cast<size_t>(1));
-        xCHECK_RET(StringCI::compare(xT("false"), row[0]), false);
-        xTEST_EQ(StringCI::compare(xT("true"), row[0]), true);
+        std::vector<std::vec_tstring_t> rows;
+        result.fetchRows(&rows);
+        xTEST_EQ(rows.size(), static_cast<size_t>(1));
+        xCHECK_RET(StringCI::compare(xT("false"), rows[0][0]), false);
+        xTEST_EQ(StringCI::compare(xT("true"), rows[0][0]), true);
     }
 
     return true;
