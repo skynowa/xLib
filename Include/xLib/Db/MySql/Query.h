@@ -32,6 +32,8 @@ public:
 		///< Note unescaped: spaces, |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _, etc
     void_t         exec(cptr_ctchar_t sqlFormat, ...) const;
         ///< executes the SQL statement
+    void_t         exec(std::ctstring_t &sql) const;
+        ///< executes the SQL statement
 
 private:
     const Connection &_conn; ///< DB connection
