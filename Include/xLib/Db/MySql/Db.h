@@ -23,11 +23,11 @@ public:
 	xNO_COPY_ASSIGN(Db)
 ///@}
 
-	bool_t isExists();
+	bool_t isExists() const;
 		///< check connection
-	void_t create();
+	void_t create() const;
 		///< create DB
-	void_t drop();
+	void_t drop() const;
 		///< drop DB
 
 private:
