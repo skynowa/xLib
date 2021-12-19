@@ -140,7 +140,9 @@ Connection::rollback()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-// https://dev.mysql.com/doc/refman/8.0/en/mysql-get-option.html
+/**
+ * \see https://dev.mysql.com/doc/refman/8.0/en/mysql-get-option.html
+ */
 void_t
 Connection::_setOption(
     const mysql_option a_option,
