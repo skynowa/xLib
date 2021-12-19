@@ -139,22 +139,22 @@ IResult::fetchRow(
     std::csize_t  fieldsNum    = fields();
     culong_t     *fieldLengths = _fetchLengths();
 
-    MYSQL_ROW row = _fetchRow();
+    const MYSQL_ROW row = _fetchRow();
     if (row == nullptr) {
+        Cout() << xTRACE_VAR(row) << " - return";
         return;
     }
 
+    Cout() << xTRACE_VAR_3(fieldsNum, fieldLengths, row[0]);
+
 	for (std::size_t i = 0; i < fieldsNum; ++ i) {
-		std::tstring_t field;
+		const auto it_row          = (row[i] == nullptr) ?       xT("NULL") :          row[i];
+		const auto it_fieldLengths = (fieldLengths == nullptr) ? std::strlen(it_row) : fieldLengths[i];
 
-		if (row[i] != nullptr) {
-			std::string asField(row[i], fieldLengths[i]);
-
-			field = xA2T(asField);
-		}
+		std::cstring_t asField(it_row, it_fieldLengths);
 
 		// [out]
-		out_row->push_back(field);
+		out_row->push_back( xA2T(asField) );
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -199,8 +199,21 @@ IResult::_fetchLengths() const
 {
     xTEST(_result.isValid());
 
-    ulong_t *fieldLengths = ::mysql_fetch_lengths(_result.get());
-    xTEST_PTR_MSG(fieldLengths, Error(*_conn).str());
+   /**
+    * \return nullptr - length for empty columns and for columns containing NULL values
+    */
+    culong_t *fieldLengths = ::mysql_fetch_lengths(_result.get());
+
+    const Error error(*_conn);
+    if (fieldLengths == nullptr &&
+        error.isOk())
+    {
+    	Cout() << xT("[test] ") << xFUNCTION << xT(":  n/a");
+
+        xTEST_NA(fieldLengths);
+    } else {
+        xTEST_PTR_MSG(fieldLengths, error.str());
+    }
 
     return fieldLengths;
 }
