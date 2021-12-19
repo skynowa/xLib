@@ -71,10 +71,10 @@ Query::exec(
 {
     xTEST(_conn.get().isValid());
 
-    std::cstring_t &asSqlQuery = xT2A(a_sql);
+    std::cstring_t &asSql = xT2A(a_sql);
 
-    int_t iRv = ::mysql_real_query(_conn.get().get(), asSqlQuery.data(),
-        static_cast<ulong_t>( asSqlQuery.size() ));
+    int_t iRv = ::mysql_real_query(_conn.get().get(), asSql.data(),
+        static_cast<ulong_t>( asSql.size() ));
     xTEST_EQ_MSG(iRv, 0, Error(_conn).str());
 }
 //-------------------------------------------------------------------------------------------------
