@@ -76,7 +76,7 @@ Connection::connect()
 	int_t iRv = ::mysql_set_character_set(_conn.get(), _options.charset.c_str());
 	xTEST_EQ_MSG(iRv, 0, Error(*this).str());
 
-    _setAutoCommit();
+    /// _setAutoCommit();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
