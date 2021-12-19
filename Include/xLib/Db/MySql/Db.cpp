@@ -41,12 +41,10 @@ Db::isExists() const
 
         conn.connect();
 
-        std::tstring_t sql = Format::str(
-            xT("SELECT count(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '{}'"),
-			_options.db);
-
         Query query(conn);
-        query.exec(sql);
+        query.exec( Format::str(
+            xT("SELECT count(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '{}'"),
+			_options.db) );
     }
 
     {
