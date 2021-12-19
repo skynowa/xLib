@@ -26,11 +26,9 @@ Connection::Connection(
 ) :
 	_options{a_options}
 {
-    xTEST(!_conn.isValid());
     xTEST_NA(a_options);
 
-    _conn = ::mysql_init(nullptr);
-    xTEST_MSG(_conn.isValid(), Error(*this).str());
+    _init();
 }
 //-------------------------------------------------------------------------------------------------
 cHandleMySqlConn &
@@ -83,12 +81,7 @@ void_t
 Connection::reconnect()
 {
     close();
-
-    xTEST(!_conn.isValid());
-
-    _conn = ::mysql_init(nullptr);
-    xTEST_EQ_MSG(_conn.isValid(), true, Error(*this).str());
-
+    _init();
     connect();
 }
 //-------------------------------------------------------------------------------------------------
@@ -139,6 +132,15 @@ Connection::rollback()
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+void_t
+Connection::_init()
+{
+    xTEST(!_conn.isValid());
+
+    _conn = ::mysql_init(nullptr);
+    xTEST_MSG(_conn.isValid(), Error(*this).str());
+}
 //-------------------------------------------------------------------------------------------------
 /**
  * \see https://dev.mysql.com/doc/refman/8.0/en/mysql-get-option.html

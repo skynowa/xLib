@@ -50,6 +50,9 @@ private:
     cOptions        _options; ///< Connection data
     HandleMySqlConn _conn; ///< handler for one database connection
 
+    void_t _init();
+		///<
+
 ///@name Options
 ///@{
 	void_t _setOption(const mysql_option option, cptr_cvoid_t arg) const;
