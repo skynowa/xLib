@@ -51,7 +51,7 @@ private:
     HandleMySqlConn _conn; ///< handler for one database connection
 
     void_t _init();
-		///<
+		///< initiation
 
 ///@name Options
 ///@{
