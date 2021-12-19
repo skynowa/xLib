@@ -15,13 +15,6 @@ namespace xl::interface
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 bool_t
-ILastError<T>::isOk() const
-{
-	return (code() == 0);
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-bool_t
 ILastError<T>::isError() const
 {
 	return !isOk();

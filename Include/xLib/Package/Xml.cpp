@@ -58,12 +58,18 @@ XmlDoc::code() const
 	return _code;
 }
 //-------------------------------------------------------------------------------------------------
+bool_t
+XmlDoc::isOk() const
+{
+    return (code() == XML_ERR_OK);
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
 XmlDoc::str() const
 {
 	cint_t          error     = code();
 	// TODO: XmlDoc::str - get error description
-    std::ctstring_t errorDesc = (error == XML_ERR_OK) ? xT("Success") : xT("");
+    std::ctstring_t errorDesc = isOk() ? xT("Success") : xT("");
 
     return Format::str(xT("{} - \"{}\""), error, errorDesc);
 }
