@@ -24,7 +24,13 @@ public:
 ///@}
 
     virtual ErrorT         code() const = 0;
+        ///<
+    virtual bool_t         isOk() const;
+        ///<
+    virtual bool_t         isError() const;
+        ///<
     virtual std::tstring_t str() const = 0;
+		///<
 
 protected:
 	ErrorT         _code {};
@@ -32,4 +38,6 @@ protected:
 };
 
 } // namespace
+//-------------------------------------------------------------------------------------------------
+#include "ILastError.inl"
 //-------------------------------------------------------------------------------------------------
