@@ -34,19 +34,17 @@ Test_MySql::unit()
 		};
 	}
 
-	cOptions options
-	{
-		.host         = xT("mysql-api-master.office.fabrica.net.ua"),
-		.user         = xT("triptake"),
-		.password     = xT("inae4Ees"),
-		.db           = xT("triptake"),
-		.port         = 3306,
-		.unixSocket   = xT(""),
-		.charset      = xT("utf8"),
-		.isAutoCommit = true,
-		.isCompress   = true,
-		.options      = mysqlOptions
-	};
+	Options options;
+	options.host         = xT("mysql-api-master.office.fabrica.net.ua");
+	options.user         = xT("triptake");
+	options.password     = xT("inae4Ees");
+	options.db           = xT("triptake");
+	options.port         = 3306;
+	options.unixSocket   = xT("");
+	options.charset      = xT("utf8");
+	options.isAutoCommit = true;
+	options.isCompress   = true;
+	options.options      = mysqlOptions;
 
     std::ctstring_t tableName = xT("ARecErrors");
 
