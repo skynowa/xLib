@@ -86,17 +86,17 @@ Query::exec(
 	xTEST(_conn.get().isValid());
 	xTEST_PTR(a_sqlFormat);
 
-	std::tstring_t sqlQuery;
+	std::tstring_t sql;
 	{
 		va_list args;
 		xVA_START(args, a_sqlFormat);
 
-		sqlQuery = FormatC::strV(a_sqlFormat, args);
+		sql = FormatC::strV(a_sqlFormat, args);
 
 		xVA_END(args);
 	}
 
-	exec(sqlQuery);
+	exec(sql);
 }
 //-------------------------------------------------------------------------------------------------
 
