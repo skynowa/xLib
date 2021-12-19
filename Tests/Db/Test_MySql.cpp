@@ -57,10 +57,8 @@ Test_MySql::unit()
 		Connection conn(options);
 		conn.connect();
 
-		std::ctstring_t sql = Format::str("SELECT count(*) FROM {}", tableName);
-
 		Query query(conn);
-		query.exec(sql);
+		query.exec( Format::str("SELECT count(*) FROM {}", tableName) );
 
 		StoreResult result(conn);
 
