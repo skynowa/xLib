@@ -72,7 +72,8 @@ Test_MySql::unit()
 
     xTEST_CASE("Database::isExists")
     {
-    	Cout() << db.isExists();
+        m_bRv = db.isExists();
+        xTEST(m_bRv);
     }
 
     xTEST_CASE("Connection::connect")
