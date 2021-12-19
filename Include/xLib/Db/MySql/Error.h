@@ -21,6 +21,7 @@ public:
 ///@name ctors, dtor
 ///@{
 			 Error(const Connection &conn);
+			 Error(const Connection &conn, std::ctstring_t &sql);
 	virtual ~Error() = default;
 
 	xNO_COPY_ASSIGN(Error)
@@ -35,7 +36,8 @@ public:
         ///< error message for the most recently invoked API function that failed
 
 private:
-    const Connection &_conn; ///< handler for one database connection
+    const Connection &_conn;   ///< handler for one database connection
+    std::ctstring_t   _sql;    ///< SQL - extra message
 };
 
 } // namespace

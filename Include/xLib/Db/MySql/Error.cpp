@@ -27,6 +27,15 @@ Error::Error(
 {
 }
 //-------------------------------------------------------------------------------------------------
+Error::Error(
+	const Connection &a_conn,
+	std::ctstring_t  &a_sql
+) :
+	_conn{a_conn},
+	_sql {a_sql}
+{
+}
+//-------------------------------------------------------------------------------------------------
 uint_t
 Error::code() const
 {
@@ -52,10 +61,10 @@ Error::str() const
     cptr_cchar str   = ::mysql_error(_conn.get().get());
     xTEST_PTR(str);
 
-    if (code_ == 0) {
+    if ( isOk() ) {
         sRv = Format::str(xT("{} - \"{}\""), code_, xT("Success"));
     } else {
-        sRv = Format::str(xT("{} - \"{}\""), code_, str);
+        sRv = Format::str(xT("{} - \"{}\", SQL: \"{}\""), code_, str, _sql);
     }
 
     return sRv;
