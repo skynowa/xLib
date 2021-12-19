@@ -21,7 +21,7 @@ public:
 ///@name ctors, dtor
 ///@{
 			 Error(const Connection &conn);
-	virtual ~Error();
+	virtual ~Error() = default;
 
 	xNO_COPY_ASSIGN(Error)
 ///@}
