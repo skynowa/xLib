@@ -86,5 +86,19 @@ Query::exec(
     xTEST_EQ_MSG(iRv, 0, Error(_conn).str());
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+Query::exec(
+	std::ctstring_t &a_sql
+) const
+{
+    xTEST(_conn.get().isValid());
+
+    std::cstring_t &asSqlQuery = xT2A(a_sql);
+
+    int_t iRv = ::mysql_real_query(_conn.get().get(), asSqlQuery.data(),
+        static_cast<ulong_t>( asSqlQuery.size() ));
+    xTEST_EQ_MSG(iRv, 0, Error(_conn).str());
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
