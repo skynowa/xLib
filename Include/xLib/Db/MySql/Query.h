@@ -30,9 +30,9 @@ public:
 		///< single quotes turn into: \'
 		///< Single slashes turn into: \\ (double slashes)
 		///< Note unescaped: spaces, |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _, etc
-    void_t         exec(cptr_ctchar_t sqlFormat, ...) const;
-        ///< executes the SQL statement
     void_t         exec(std::ctstring_t &sql) const;
+        ///< executes the SQL statement
+    void_t         exec(cptr_ctchar_t sqlFormat, ...) const;
         ///< executes the SQL statement
 
 private:

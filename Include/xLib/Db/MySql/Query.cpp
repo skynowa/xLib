@@ -66,28 +66,6 @@ Query::escape(
 //-------------------------------------------------------------------------------------------------
 void_t
 Query::exec(
-    cptr_ctchar_t a_sqlFormat, ...
-) const
-{
-    xTEST(_conn.get().isValid());
-    xTEST_PTR(a_sqlFormat);
-
-    std::tstring_t sqlQuery;
-    va_list        args;
-
-    xVA_START(args, a_sqlFormat);
-    sqlQuery = FormatC::strV(a_sqlFormat, args);
-    xVA_END(args);
-
-    std::cstring_t asSqlQuery = xT2A(sqlQuery);
-
-    int_t iRv = ::mysql_real_query(_conn.get().get(), asSqlQuery.data(),
-        static_cast<ulong_t>( asSqlQuery.size() ));
-    xTEST_EQ_MSG(iRv, 0, Error(_conn).str());
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Query::exec(
 	std::ctstring_t &a_sql
 ) const
 {
@@ -98,6 +76,27 @@ Query::exec(
     int_t iRv = ::mysql_real_query(_conn.get().get(), asSqlQuery.data(),
         static_cast<ulong_t>( asSqlQuery.size() ));
     xTEST_EQ_MSG(iRv, 0, Error(_conn).str());
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Query::exec(
+    cptr_ctchar_t a_sqlFormat, ...
+) const
+{
+	xTEST(_conn.get().isValid());
+	xTEST_PTR(a_sqlFormat);
+
+	std::tstring_t sqlQuery;
+	{
+		va_list args;
+		xVA_START(args, a_sqlFormat);
+
+		sqlQuery = FormatC::strV(a_sqlFormat, args);
+
+		xVA_END(args);
+	}
+
+	exec(sqlQuery);
 }
 //-------------------------------------------------------------------------------------------------
 
