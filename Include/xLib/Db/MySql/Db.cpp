@@ -35,32 +35,24 @@ Db::isExists() const
     bool_t bRv {};
 
     Connection conn(_options);
-    {
-        bRv = conn.get().isValid();
-        xCHECK_RET(!bRv, false);
+	bRv = conn.get().isValid();
+	xCHECK_RET(!bRv, false);
 
-        conn.connect();
+	conn.connect();
 
-        Query query(conn);
-        query.exec( Format::str(
-            xT("SELECT count(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '{}'"),
-			_options.db) );
-    }
+	Query query(conn);
+	query.exec( Format::str(
+		xT("SELECT count(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '{}'"),
+		_options.db) );
 
-    {
-        StoreResult result(conn);
+	StoreResult result(conn);
 
-        bRv = result.get().isValid();
-        xTEST(bRv);
-        xTEST_EQ(result.rows(), uint64_t(1));
+	std::vector<std::vec_tstring_t> rows;
+	result.fetchRows(&rows);
+	xTEST_EQ(rows.size(), static_cast<size_t>(1));
+	xCHECK_RET(rows[0][0] == xT("0"), false);
 
-        std::vector<std::vec_tstring_t> rows;
-        result.fetchRows(&rows);
-        xTEST_EQ(rows.size(), static_cast<size_t>(1));
-        xCHECK_RET(rows[0][0] == xT("0"), false);
-
-        xTEST_EQ(rows[0][0], "1");
-    }
+	xTEST_EQ(rows[0][0], "1");
 
     return true;
 }
