@@ -69,7 +69,9 @@ Db::create() const
 	conn.connect();
 
 	Query query(conn);
-	query.exec( Format::str(xT("CREATE DATABASE IF NOT EXISTS `{}` CHARACTER SET utf8"), db) );
+	query.exec( Format::str(xT("CREATE DATABASE IF NOT EXISTS `{}` CHARACTER SET {}"),
+		db,
+		options.charset) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -82,7 +84,8 @@ Db::drop() const
 	conn.connect();
 
 	Query query(conn);
-	query.exec( Format::str(xT("DROP DATABASE IF EXISTS `{}`"), _options.db) );
+	query.exec( Format::str(xT("DROP DATABASE IF EXISTS `{}`"),
+		_options.db) );
 }
 //-------------------------------------------------------------------------------------------------
 
