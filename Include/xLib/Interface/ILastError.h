@@ -25,9 +25,9 @@ public:
 
     virtual ErrorT         code() const = 0;
         ///<
-    virtual bool_t         isOk() const;
+    virtual bool_t         isOk() const = 0;
         ///<
-    virtual bool_t         isError() const;
+    bool_t                 isError() const;
         ///<
     virtual std::tstring_t str() const = 0;
 		///<

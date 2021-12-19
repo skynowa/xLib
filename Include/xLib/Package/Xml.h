@@ -35,6 +35,7 @@ public:
 ///@}
 
     int_t          code() const override;
+    bool_t         isOk() const override;
     std::tstring_t str() const override;
 
 	void           registerNss(std::cmap_tstring_t &nss);
