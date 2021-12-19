@@ -55,6 +55,34 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
+	if (0) {
+		Connection conn(options);
+		conn.connect();
+
+		std::ctstring_t sql = Format::str("SELECT count(*) FROM {}", tableName);
+
+		Query query(conn);
+		query.exec(sql);
+
+		StoreResult result(conn);
+
+		m_bRv = result.get().isValid();
+		xTEST(m_bRv);
+
+		std::vector<std::vec_tstring_t> rows;
+		result.fetchRows(&rows);
+		xTEST_EQ(rows.size(), std::size_t(1));
+
+		Cout() << xTRACE_VAR(rows);
+
+		return true;
+	}
+
+    /*******************************************************************************
+    *    Connection
+    *
+    *******************************************************************************/
+
     Db         db(options);
     Connection conn(options);
 
