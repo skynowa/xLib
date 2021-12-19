@@ -121,9 +121,9 @@
 	xTEST_FAIL_MSG_IMPL    (_xREPORT_TYPE, msg)
 
 #define xTEST(expr) \
-	xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, true, expr, xT(""))
+	xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, expr, true, xT(""))
 #define xTEST_MSG(expr, msg) \
-	xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, true, expr, msg)
+	xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, expr, true, msg)
 
 #define xTEST_THROW(expr, exception_t)          \
 	{                                           \
