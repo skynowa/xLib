@@ -29,6 +29,9 @@ Db::Db(
 {
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * \see https://stackoverflow.com/questions/275314/mysql-row-and-row0-to-string-type
+ */
 bool_t
 Db::isExists() const
 {
