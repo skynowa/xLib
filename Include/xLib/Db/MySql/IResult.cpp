@@ -145,7 +145,7 @@ IResult::fetchRow(
         return;
     }
 
-    Cout() << xTRACE_VAR_3(fieldsNum, fieldLengths, row[0]);
+    Cout() << xTRACE_VAR_4(rows(), fieldsNum, fieldLengths, row[0]);
 
 	for (std::size_t i = 0; i < fieldsNum; ++ i) {
 		const auto it_row          = (row[i] == nullptr) ?       xT("NULL") :          row[i];
