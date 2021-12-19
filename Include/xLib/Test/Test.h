@@ -29,7 +29,7 @@
 			Format::str(xT("{}"), val1), Format::str(xT("{}"), val2), \
 			xLEX_TO_STR(op)}; \
 		SourceInfo       sourceInfo(sourceInfoData); \
-		std::ctstring_t &stackTrace     = StackTrace().str(); \
+		std::ctstring_t &stackTrace = StackTrace().str(); \
 		\
 		ErrorReport report(reportType, nativeError, sourceInfo, stackTrace, (msg)); \
 		Debugger().reportMake(report); \
@@ -43,7 +43,7 @@
             Format::str(xT("{}"), int64_t(intptr_t(ptr))), xT("nullptr"), \
             xLEX_TO_STR(op)}; \
         SourceInfo       sourceInfo(sourceInfoData); \
-        std::ctstring_t &stackTrace     = StackTrace().str(); \
+        std::ctstring_t &stackTrace = StackTrace().str(); \
         \
         ErrorReport report(reportType, nativeError, sourceInfo, stackTrace, (msg)); \
         Debugger().reportMake(report); \
