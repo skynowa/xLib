@@ -55,7 +55,7 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-	if (0) {
+	if (1) {
 		Connection conn(options);
 		conn.connect();
 
@@ -74,8 +74,6 @@ Test_MySql::unit()
 		xTEST_EQ(rows.size(), std::size_t(1));
 
 		Cout() << xTRACE_VAR(rows);
-
-		return true;
 	}
 
     /*******************************************************************************
@@ -83,47 +81,49 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-    Db         db(options);
-    Connection conn(options);
+	if (1) {
+		Db         db(options);
+		Connection conn(options);
 
-    xTEST_CASE("Connection::get")
-    {
-        cHandleMySqlConn &handle = conn.get();
-        xTEST(handle.isValid());
-    }
+		xTEST_CASE("Connection::get")
+		{
+			cHandleMySqlConn &handle = conn.get();
+			xTEST(handle.isValid());
+		}
 
-    xTEST_CASE("Connection::isValid")
-    {
-        m_bRv = conn.get().isValid();
-        xTEST(m_bRv);
-    }
+		xTEST_CASE("Connection::isValid")
+		{
+			m_bRv = conn.get().isValid();
+			xTEST(m_bRv);
+		}
 
-    xTEST_CASE("Database::isExists")
-    {
-        m_bRv = db.isExists();
-        xTEST(m_bRv);
-    }
+		xTEST_CASE("Database::isExists")
+		{
+			m_bRv = db.isExists();
+			xTEST(m_bRv);
+		}
 
-    xTEST_CASE("Connection::connect")
-    {
-        conn.connect();
+		xTEST_CASE("Connection::connect")
+		{
+			conn.connect();
 
-        m_bRv = db.isExists();
-        xTEST(m_bRv);
-    }
+			m_bRv = db.isExists();
+			xTEST(m_bRv);
+		}
 
-    xTEST_CASE("Connection::reconnect")
-    {
-        conn.reconnect();
-    }
+		xTEST_CASE("Connection::reconnect")
+		{
+			conn.reconnect();
+		}
 
-    xTEST_CASE("Connection::ping")
-    {
-        int_t errorCode {};
-        m_bRv = conn.ping(&errorCode);
-        xTEST(!m_bRv);
-        xTEST_DIFF(errorCode, 0);
-    }
+		xTEST_CASE("Connection::ping")
+		{
+			int_t errorCode {};
+			m_bRv = conn.ping(&errorCode);
+			xTEST(!m_bRv);
+			xTEST_DIFF(errorCode, 0);
+		}
+	}
 
 #endif
 
