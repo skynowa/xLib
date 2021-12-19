@@ -75,7 +75,7 @@ Query::exec(
 
     int_t iRv = ::mysql_real_query(_conn.get().get(), asSql.data(),
         static_cast<ulong_t>( asSql.size() ));
-    xTEST_EQ_MSG(iRv, 0, Error(_conn).str());
+    xTEST_EQ_MSG(iRv, 0, Error(_conn, a_sql).str());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
