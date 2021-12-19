@@ -37,7 +37,7 @@
     if ( !(intptr_t(ptr) op reinterpret_cast<intptr_t>(nullptr)) ) { \
         culong_t         nativeError    { NativeError::get() }; \
         cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER, \
-            xT(#ptr), xLEX_TO_STR(nullptr), Format::str(xT("{}"), int64_t(intptr_t(ptr))), xT(nullptr), xLEX_TO_STR(op)}; \
+            xT(#ptr), xLEX_TO_STR(nullptr), Format::str(xT("{}"), int64_t(intptr_t(ptr))), nullptr, xLEX_TO_STR(op)}; \
         SourceInfo       sourceInfo(sourceInfoData); \
         std::ctstring_t &stackTrace     = StackTrace().str(); \
         \
