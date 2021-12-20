@@ -1,5 +1,7 @@
 # xLib - C++ cross-platform library
 
+![GitHub Watchers](https://img.shields.io/github/watchers/skynowa/xLib)
+
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/skynowa/xlib) ![GitHub last commit](https://img.shields.io/github/last-commit/skynowa/xlib)
