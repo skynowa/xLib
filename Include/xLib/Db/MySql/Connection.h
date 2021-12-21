@@ -38,6 +38,8 @@ public:
 		///< checks whether the connection to the server is working
     void_t close();
         ///< closes a previously opened connection
+    void_t kill(const uint64_t pid);
+        ///< Asks the server to kill the thread specified by pid.
 ///@}
 
 ///@name Commit
