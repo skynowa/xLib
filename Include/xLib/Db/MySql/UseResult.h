@@ -12,6 +12,7 @@
 #pragma once
 
 #include <xLib/Db/MySql/Common.h>
+#include <xLib/Db/MySql/IResult.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::db::mysql
 {
