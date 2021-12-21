@@ -146,10 +146,10 @@ IResult::fetchRow(
     // Cout() << xTRACE_VAR_4(rows(), fieldsNum, fieldLengths, row[0]);
 
 	for (std::size_t i = 0; i < fieldsNum; ++ i) {
-		cptr_cchar   it_row          = (row[i] == nullptr) ? nullStr.c_str() : row[i];
+		cptr_cchar   it_field        = (row[i] == nullptr) ? nullStr.c_str() : row[i];
 		std::csize_t it_fieldLengths = fieldLengths[i];
 
-		std::cstring_t asField(it_row, it_fieldLengths);
+		std::cstring_t asField(it_field, it_fieldLengths);
 
 		// [out]
 		out_row->push_back( xA2T(asField) );

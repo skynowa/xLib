@@ -49,6 +49,7 @@ std::ctstring_t nullStr {xT("NULL")};
 /**
  * TODO:
  *
+ * - Info
  * + Options
  * + Db
  * 	- mysql_create_db()
