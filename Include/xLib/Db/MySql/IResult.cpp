@@ -148,8 +148,8 @@ IResult::fetchRow(
     Cout() << xTRACE_VAR_4(rows(), fieldsNum, fieldLengths, row[0]);
 
 	for (std::size_t i = 0; i < fieldsNum; ++ i) {
-		const auto it_row          = (row[i] == nullptr) ?       xT("NULL") :          row[i];
-		const auto it_fieldLengths = (fieldLengths == nullptr) ? std::strlen(it_row) : fieldLengths[i];
+		cptr_cchar   it_row          = (row[i] == nullptr) ?       nullStr.c_str()     : row[i];
+		std::csize_t it_fieldLengths = (fieldLengths == nullptr) ? std::strlen(it_row) : fieldLengths[i];
 
 		std::cstring_t asField(it_row, it_fieldLengths);
 
