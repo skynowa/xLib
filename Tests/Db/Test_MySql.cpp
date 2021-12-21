@@ -19,21 +19,6 @@ Test_MySql::unit()
 	using namespace mysql;
 
 #if cmMYSQL_FOUND
-	std::map<mysql_option, cptr_cvoid_t> mysqlOptions;
-	{
-		const unsigned int connectTimeout {60};
-		const bool         isReconnect    {true};
-		const char         initCommand[]  {"SET autocommit=1"};
-
-		mysqlOptions =
-		{
-			{MYSQL_OPT_COMPRESS,        0 /* not used */},
-			{MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
-			{MYSQL_OPT_RECONNECT,       &isReconnect},
-			{MYSQL_INIT_COMMAND,        &initCommand}
-		};
-	}
-
 	Options options;
 	options.host         = xT("mysql-api-master.office.fabrica.net.ua");
 	options.user         = xT("triptake");
@@ -44,7 +29,18 @@ Test_MySql::unit()
 	options.charset      = xT("utf8mb4");
 	options.isAutoCommit = true;
 	options.isCompress   = true;
-	options.options      = mysqlOptions;
+
+	const unsigned int connectTimeout {60};
+	const bool         isReconnect    {true};
+	const char         initCommand[]  {"SET autocommit=1"};
+
+	options.options =
+		{
+			{MYSQL_OPT_COMPRESS,        0 /* not used */},
+			{MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
+			{MYSQL_OPT_RECONNECT,       &isReconnect},
+			{MYSQL_INIT_COMMAND,        &initCommand}
+		};
 
     std::ctstring_t tableName = xT("ARecErrors");
 
