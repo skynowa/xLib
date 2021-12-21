@@ -138,7 +138,7 @@ Test_MySql::unit()
 			xTEST_EQ(std::stoull(rows[0][0]), std::size_t(34));
 		}
 
-		xTEST_CASE("escape")
+		xTEST_CASE("escapeQuoted")
 		{
 			const std::vector<data2_tstring_t> data
 			{
@@ -157,7 +157,7 @@ Test_MySql::unit()
 			for (const auto &[it_test, it_expect] : data) {
 				Query query(conn);
 
-				m_sRv = query.escapeQuoted(it_test, Const::sqm());
+				m_sRv = query.escapeQuotedSqm(it_test);
 				xTEST_EQ(m_sRv, it_expect);
 			}
 		}
