@@ -23,18 +23,25 @@ public:
 	xNO_COPY_ASSIGN(Query)
 ///@}
 
-    void_t         exec(std::ctstring_t &sql) const;
-        ///< executes the SQL statement
-    void_t         exec(cptr_ctchar_t sqlFormat, ...) const;
-        ///< executes the SQL statement
+///@name Executes the SQL statement
+///@{
+	void_t exec(std::ctstring_t &sql) const;
+	void_t exec(cptr_ctchar_t sqlFormat, ...) const;
+///@}
 
+///@name Escape with quote
+///@{
 	std::tstring_t escapeQuoted(std::ctstring_t &sqlValue, std::ctstring_t &forQuote) const;
-		///< creates a legal SQL string for use in an SQL statement as qouted:
-		///<
-		///< Double quotes turn into: \"
-		///< single quotes turn into: \'
-		///< Single slashes turn into: \\ (double slashes)
-		///< Note unescaped: spaces, |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _, etc
+		///< Creates a legal SQL string for use in an SQL statement as qouted:
+		///< - Double quotes turn into: \"
+		///< - single quotes turn into: \'
+		///< - Single slashes turn into: \\ (double slashes)
+		///< - Note unescaped: spaces, |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _, etc
+
+	std::tstring_t escapeQuotedSqm(std::ctstring_t &sqlValue) const;
+	std::tstring_t escapeQuotedDqm(std::ctstring_t &sqlValue) const;
+	std::tstring_t escapeQuotedGa(std::ctstring_t &sqlValue) const;
+///@}
 
 private:
     const Connection &_conn; ///< DB connection

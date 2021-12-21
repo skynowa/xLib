@@ -84,19 +84,18 @@ Query::escapeQuoted(
 		return (a_forQuote + a_forQuote);
 	}
 
+	if (a_sqlValue == nullStr) {
+	   /**
+		* If the argument is NULL:
+		*
+		* the return value is the word “NULL” without enclosing single quotation marks
+		*/
+		return a_sqlValue;
+	}
+
 	// escape
+	std::tstring_t sRv(a_sqlValue.size() * 2 + 1, xT('\0'));
 	{
-		if (a_sqlValue == nullStr) {
-		   /**
-			* If the argument is NULL:
-			*
-			* the return value is the word “NULL” without enclosing single quotation marks
-			*/
-			return a_sqlValue;
-		}
-
-		std::tstring_t sRv(a_sqlValue.size() * 2 + 1, xT('\0'));
-
 		culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get().get(), &sRv[0],
 			a_sqlValue.data(), static_cast<ulong_t>(a_sqlValue.size()), xT2A(a_forQuote)[0]);
 		xTEST_GR_MSG(quotedSize, 0UL, Error(_conn).str());
@@ -110,6 +109,30 @@ Query::escapeQuoted(
 	}
 
 	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Query::escapeQuotedSqm(
+	std::ctstring_t &a_sqlValue	///< SQL string value
+) const
+{
+	return escapeQuoted(a_sqlValue, Const::sqm());
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Query::escapeQuotedDqm(
+	std::ctstring_t &a_sqlValue	///< SQL string value
+) const
+{
+	return escapeQuoted(a_sqlValue, Const::dqm());
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Query::escapeQuotedGa(
+	std::ctstring_t &a_sqlValue	///< SQL string value
+) const
+{
+	return escapeQuoted(a_sqlValue, Const::ga());
 }
 //-------------------------------------------------------------------------------------------------
 
