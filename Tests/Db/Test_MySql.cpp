@@ -12,6 +12,39 @@
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_MySql)
 //-------------------------------------------------------------------------------------------------
+class FabricaOptions :
+	public mysql::Options
+{
+public:
+			 FabricaOptions() ;
+	virtual ~FabricaOptions() = default;
+};
+//-------------------------------------------------------------------------------------------------
+FabricaOptions::FabricaOptions()
+{
+	host         = xT("mysql-api-master.office.fabrica.net.ua");
+	user         = xT("triptake");
+	password     = xT("inae4Ees");
+	db           = xT("triptake");
+	port         = 3306;
+	unixSocket   = xT("");
+	charset      = xT("utf8mb4");
+	isAutoCommit = true;
+	isCompress   = true;
+
+	const unsigned int connectTimeout {60};
+	const bool         isReconnect    {true};
+	const char         initCommand[]  {"SET autocommit=1"};
+
+	options =
+		{
+			{MYSQL_OPT_COMPRESS,        0 /* not used */},
+			{MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
+			{MYSQL_OPT_RECONNECT,       &isReconnect},
+			{MYSQL_INIT_COMMAND,        &initCommand}
+		};
+}
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
 Test_MySql::unit()
@@ -19,28 +52,7 @@ Test_MySql::unit()
 	using namespace mysql;
 
 #if cmMYSQL_FOUND
-	Options options;
-	options.host         = xT("mysql-api-master.office.fabrica.net.ua");
-	options.user         = xT("triptake");
-	options.password     = xT("inae4Ees");
-	options.db           = xT("triptake");
-	options.port         = 3306;
-	options.unixSocket   = xT("");
-	options.charset      = xT("utf8mb4");
-	options.isAutoCommit = true;
-	options.isCompress   = true;
-
-	const unsigned int connectTimeout {60};
-	const bool         isReconnect    {true};
-	const char         initCommand[]  {"SET autocommit=1"};
-
-	options.options =
-		{
-			{MYSQL_OPT_COMPRESS,        0 /* not used */},
-			{MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
-			{MYSQL_OPT_RECONNECT,       &isReconnect},
-			{MYSQL_INIT_COMMAND,        &initCommand}
-		};
+	FabricaOptions options;
 
     std::ctstring_t tableName = xT("ARecErrors");
 
