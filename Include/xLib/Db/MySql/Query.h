@@ -28,7 +28,7 @@ public:
     void_t         exec(cptr_ctchar_t sqlFormat, ...) const;
         ///< executes the SQL statement
 
-	std::tstring_t escapeQuoted(std::ctstring_t &sqlValue, std::ctstring_t &quote) const;
+	std::tstring_t escapeQuoted(std::ctstring_t &sqlValue, std::ctstring_t &forQuote) const;
 		///< creates a legal SQL string for use in an SQL statement as qouted:
 		///<
 		///< Double quotes turn into: \"
