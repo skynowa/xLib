@@ -82,7 +82,7 @@ IResult::rows() const
 	}
 	else if ( _conn->get().isValid() ) {
 		ullRv = ::mysql_affected_rows( _conn->get().get() );
-		xTEST_DIFF(ullRv, static_cast<uint64_t>(-1));
+		xTEST_DIFF(ullRv, MYSQL_COUNT_ERROR);
 	}
 
     return ullRv;
