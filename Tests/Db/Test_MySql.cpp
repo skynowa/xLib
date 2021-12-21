@@ -21,6 +21,11 @@ public:
 			xT("triptake"), 3306, {}, xT("utf8mb4"), true, true, {})
 	{
 	}
+
+	bool_t isFabrica() const
+	{
+		return true;
+	}
 };
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -37,40 +42,69 @@ Test_MySql::unit()
 	Connection     conn(options);
 
 	/*******************************************************************************
-	*    Connection
+	*    Db
 	*
 	*******************************************************************************/
 
-	xTEST_CASE("Connection::get")
-	{
-		cHandleMySqlConn &handle = conn.get();
-		xTEST(handle.isValid());
-	}
+	xTEST_GROUP("Db");
 
-	xTEST_CASE("Connection::isValid")
-	{
-		m_bRv = conn.get().isValid();
-		xTEST(m_bRv);
-	}
-
-	xTEST_CASE("Database::isExists")
+	xTEST_CASE("isExists")
 	{
 		m_bRv = db.isExists();
 		xTEST(m_bRv);
 	}
 
-	xTEST_CASE("Connection::connect")
+	xTEST_CASE("create")
+	{
+		if (options.isFabrica()) {
+			// n/a
+		} else {
+			m_bRv = db.create();
+			xTEST(m_bRv);
+		}
+	}
+
+	xTEST_CASE("drop")
+	{
+		if (options.isFabrica()) {
+			// n/a
+		} else {
+			m_bRv = db.drop();
+			xTEST(m_bRv);
+		}
+	}
+
+	/*******************************************************************************
+	*    Connection
+	*
+	*******************************************************************************/
+
+	xTEST_GROUP("Connection");
+
+	xTEST_CASE("get")
+	{
+		cHandleMySqlConn &handle = conn.get();
+		xTEST(handle.isValid());
+	}
+
+	xTEST_CASE("isValid")
+	{
+		m_bRv = conn.get().isValid();
+		xTEST(m_bRv);
+	}
+
+	xTEST_CASE("connect")
 	{
 		conn.connect();
 		xTEST(db.isExists());
 	}
 
-	xTEST_CASE("Connection::reconnect")
+	xTEST_CASE("reconnect")
 	{
 		conn.reconnect();
 	}
 
-	xTEST_CASE("Connection::ping")
+	xTEST_CASE("ping")
 	{
 		int_t errorCode {};
 		m_bRv = conn.ping(&errorCode);
@@ -79,11 +113,13 @@ Test_MySql::unit()
 	}
 
     /*******************************************************************************
-    *    Connection
+    *    Query
     *
     *******************************************************************************/
 
-	xTEST_CASE("Query::exec")
+	xTEST_GROUP("Query");
+
+	xTEST_CASE("exec")
 	{
 		Query query(conn);
 		query.exec( Format::str("SELECT count(*) FROM {}", tableName) );
