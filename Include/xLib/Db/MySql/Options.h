@@ -21,7 +21,8 @@ public:
 ///@}
 
     std::tstring_t host;
-        ///< host name or an IP address. If host is empty or the string "localhost",
+        ///< host name or an IP address.
+        ///< If host is empty (NULL or the empty string "") or the string "localhost",
         ///< a connection to the local host is assumed
     std::tstring_t user;
         ///< MySQL login ID. If user is empty string, the current user is assumed
