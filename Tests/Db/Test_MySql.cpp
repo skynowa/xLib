@@ -59,8 +59,8 @@ Test_MySql::unit()
 		if (options.isFabrica()) {
 			// n/a
 		} else {
-			m_bRv = db.create();
-			xTEST(m_bRv);
+			/// m_bRv = db.create();
+			/// xTEST(m_bRv);
 		}
 	}
 
@@ -69,8 +69,8 @@ Test_MySql::unit()
 		if (options.isFabrica()) {
 			// n/a
 		} else {
-			m_bRv = db.drop();
-			xTEST(m_bRv);
+			/// m_bRv = db.drop();
+			/// xTEST(m_bRv);
 		}
 	}
 
