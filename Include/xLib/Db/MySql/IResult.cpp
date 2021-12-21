@@ -140,7 +140,6 @@ IResult::fetchRow(
 
     const MYSQL_ROW row = _fetchRow();
     if (row == nullptr) {
-        Cout() << xTRACE_VAR(row) << " - return";
         return;
     }
 
