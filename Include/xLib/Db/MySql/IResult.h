@@ -16,8 +16,6 @@
 namespace xl::db::mysql
 {
 
-class Connection;
-
 class IResult
     /// MySql recordset
 {
