@@ -69,6 +69,8 @@ Query::exec(
  *
  * string literals can be quoted only within single quotation marks because
  * a string quoted within double quotation marks is interpreted as an identifier.
+ *
+ * \see https://dev.mysql.com/doc/c-api/8.0/en/mysql-real-escape-string-quote.html
  */
 std::tstring_t
 Query::escapeQuoted(
