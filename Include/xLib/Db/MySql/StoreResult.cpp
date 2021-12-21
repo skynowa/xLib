@@ -1,6 +1,6 @@
 /**
  * \file  StoreResult.cpp
- * \brief MySql client
+ * \brief
  */
 
 

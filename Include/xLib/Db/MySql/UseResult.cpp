@@ -1,6 +1,6 @@
 /**
  * \file  UseResult.cpp
- * \brief MySql client
+ * \brief
  */
 
 
