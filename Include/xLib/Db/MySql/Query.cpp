@@ -73,36 +73,41 @@ Query::exec(
 std::tstring_t
 Query::escapeQuoted(
 	std::ctstring_t &a_sqlValue,	///< SQL string value
-	std::ctstring_t &a_quote		///< str (char) in which the escaped string is to be placed
+	std::ctstring_t &a_forQuote		///< str (char) in which the escaped string is to be placed
 									///< \note (maybe an empty)
 ) const
 {
 	xTESTS_NA(a_sqlValue);
-	xTESTS_NA(a_quote);
+	xTESTS_NA(a_forQuote);
 
 	if ( a_sqlValue.empty() ) {
-		return (a_quote + a_quote);
+		return (a_forQuote + a_forQuote);
 	}
 
-	if (a_sqlValue == nullStr) {
-	   /**
-		* If the argument is NULL:
-		*
-		* the return value is the word “NULL” without enclosing single quotation marks
-		*/
-		return a_sqlValue;
+	// escape
+	{
+		if (a_sqlValue == nullStr) {
+		   /**
+			* If the argument is NULL:
+			*
+			* the return value is the word “NULL” without enclosing single quotation marks
+			*/
+			return a_sqlValue;
+		}
+
+		std::tstring_t sRv(a_sqlValue.size() * 2 + 1, xT('\0'));
+
+		culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get().get(), &sRv[0],
+			a_sqlValue.data(), static_cast<ulong_t>(a_sqlValue.size()), xT2A(a_forQuote)[0]);
+		xTEST_GR_MSG(quotedSize, 0UL, Error(_conn).str());
+
+		sRv.resize(quotedSize * sizeof(std::tstring_t::value_type));
 	}
-
-	std::tstring_t sRv(a_sqlValue.size() * 2 + 1, xT('\0'));
-
-	culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get().get(), &sRv[0],
-		a_sqlValue.data(), static_cast<ulong_t>(a_sqlValue.size()), xT2A(a_quote)[0]);
-	xTEST_GR_MSG(quotedSize, 0UL, Error(_conn).str());
-
-	sRv.resize(quotedSize * sizeof(std::tstring_t::value_type));
 
 	// quoted
-	sRv = a_quote + sRv + a_quote;
+	{
+		sRv = a_forQuote + sRv + a_forQuote;
+	}
 
 	return sRv;
 }
