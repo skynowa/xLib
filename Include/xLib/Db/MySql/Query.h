@@ -36,7 +36,7 @@ public:
 		///< - Double quotes turn into: \"
 		///< - single quotes turn into: \'
 		///< - Single slashes turn into: \\ (double slashes)
-		///< - Note unescaped: spaces, |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _, etc
+		///< - Unescaped: spaces, |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _, etc
 
 	std::tstring_t escapeQuotedSqm(std::ctstring_t &sqlValue) const;
 	std::tstring_t escapeQuotedDqm(std::ctstring_t &sqlValue) const;
