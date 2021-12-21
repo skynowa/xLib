@@ -30,32 +30,52 @@ Test_MySql::unit()
 	using namespace mysql;
 
 #if cmMYSQL_FOUND
-	FabricaOptions options;
-
     std::ctstring_t tableName = xT("ARecErrors");
 
-    /*******************************************************************************
-    *    Connection
-    *
-    *******************************************************************************/
+	FabricaOptions options;
+	Db             db(options);
+	Connection     conn(options);
 
-	if (1) {
-		Connection conn(options);
-		conn.connect();
+	/*******************************************************************************
+	*    Connection
+	*
+	*******************************************************************************/
 
-		Query query(conn);
-		query.exec( Format::str("SELECT count(*) FROM {}", tableName) );
+	xTEST_CASE("Connection::get")
+	{
+		cHandleMySqlConn &handle = conn.get();
+		xTEST(handle.isValid());
+	}
 
-		StoreResult result(conn);
-
-		m_bRv = result.get().isValid();
+	xTEST_CASE("Connection::isValid")
+	{
+		m_bRv = conn.get().isValid();
 		xTEST(m_bRv);
+	}
 
-		rows_t rows;
-		result.fetchRows(&rows);
-		xTEST_EQ(rows.size(), std::size_t(1));
+	xTEST_CASE("Database::isExists")
+	{
+		m_bRv = db.isExists();
+		xTEST(m_bRv);
+	}
 
-		Cout() << xTRACE_VAR(rows);
+	xTEST_CASE("Connection::connect")
+	{
+		conn.connect();
+		xTEST(db.isExists());
+	}
+
+	xTEST_CASE("Connection::reconnect")
+	{
+		conn.reconnect();
+	}
+
+	xTEST_CASE("Connection::ping")
+	{
+		int_t errorCode {};
+		m_bRv = conn.ping(&errorCode);
+		xTEST(m_bRv);
+		xTEST_EQ(errorCode, 0);
 	}
 
     /*******************************************************************************
@@ -63,48 +83,18 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-	if (1) {
-		Db         db(options);
-		Connection conn(options);
+	xTEST_CASE("Query::exec")
+	{
+		Query query(conn);
+		query.exec( Format::str("SELECT count(*) FROM {}", tableName) );
 
-		xTEST_CASE("Connection::get")
-		{
-			cHandleMySqlConn &handle = conn.get();
-			xTEST(handle.isValid());
-		}
+		StoreResult result(conn);
+		xTEST(result.get().isValid());
 
-		xTEST_CASE("Connection::isValid")
-		{
-			m_bRv = conn.get().isValid();
-			xTEST(m_bRv);
-		}
-
-		xTEST_CASE("Database::isExists")
-		{
-			m_bRv = db.isExists();
-			xTEST(m_bRv);
-		}
-
-		xTEST_CASE("Connection::connect")
-		{
-			conn.connect();
-
-			m_bRv = db.isExists();
-			xTEST(m_bRv);
-		}
-
-		xTEST_CASE("Connection::reconnect")
-		{
-			conn.reconnect();
-		}
-
-		xTEST_CASE("Connection::ping")
-		{
-			int_t errorCode {};
-			m_bRv = conn.ping(&errorCode);
-			xTEST(m_bRv);
-			xTEST_EQ(errorCode, 0);
-		}
+		rows_t rows;
+		result.fetchRows(&rows);
+		xTEST_EQ(rows.size(), std::size_t(1));
+		xTEST_EQ(std::stoull(rows[0][0]), std::size_t(34));
 	}
 #endif
 
