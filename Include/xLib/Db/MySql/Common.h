@@ -33,7 +33,7 @@
 #include <xLib/Db/MySql/Options.h>
 #include <xLib/Db/MySql/Connection.h>
 #include <xLib/Db/MySql/Query.h>
-#include <xLib/Db/MySql/IResult.h>
+// #include <xLib/Db/MySql/IResult.h>
 // #include <xLib/Db/MySql/StoreResult.h>
 // #include <xLib/Db/MySql/UseResult.h>
 #include <xLib/Db/MySql/Db.h>
