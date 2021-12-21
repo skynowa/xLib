@@ -41,7 +41,7 @@ Test_MySql::unit()
 	options.db           = xT("triptake");
 	options.port         = 3306;
 	options.unixSocket   = xT("");
-	options.charset      = xT("utf8");
+	options.charset      = xT("utf8mb4");
 	options.isAutoCommit = true;
 	options.isCompress   = true;
 	options.options      = mysqlOptions;
