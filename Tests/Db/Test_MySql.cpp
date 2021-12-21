@@ -49,6 +49,24 @@ Test_MySql::unit()
 	{
 		xTEST_GROUP("Db");
 
+
+		xTEST_CASE("show")
+		{
+			std::vec_tstring_t dbNames;
+
+			db.show(xT("%a%"), &dbNames);
+			// Cout() << xTRACE_VAR(dbNames);
+			xTEST(!dbNames.empty());
+
+			db.show(xT("%XXXXXXXXXXx%"), &dbNames);
+			// Cout() << xTRACE_VAR(dbNames);
+			xTEST(dbNames.empty());
+
+			db.show(&dbNames);
+			// Cout() << xTRACE_VAR(dbNames);
+			xTEST(!dbNames.empty());
+		}
+
 		xTEST_CASE("isExists")
 		{
 			m_bRv = db.isExists();

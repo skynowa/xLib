@@ -30,6 +30,53 @@ Db::Db(
 {
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+Db::show(
+	std::ctstring_t    &a_wildcard,	///< simple regular expression (SQL LIKE)
+	std::vec_tstring_t *out_dbNames	///< [out]
+) const
+{
+	xTESTS_NA(a_wildcard);
+	xTEST_PTR(out_dbNames);
+
+	out_dbNames->clear();
+
+    bool_t bRv {};
+
+    Connection conn(_options);
+	bRv = conn.get().isValid();
+	xCHECK_DO(!bRv, return);
+
+	conn.connect();
+
+	std::ctstring_t &sql = a_wildcard.empty() ?
+		xT("SHOW DATABASES") :
+		Format::str(xT("SHOW DATABASES LIKE '{}'"), a_wildcard);
+
+	Query query(conn);
+	query.exec(sql);
+
+	StoreResult result(conn);
+
+	rows_t rows;
+	result.fetchRows(&rows);
+
+	// [out]
+	for (const auto &it_row : rows) {
+		out_dbNames->push_back(it_row[0]);
+	}
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Db::show(
+	std::vec_tstring_t *out_dbNames	///< [out]
+) const
+{
+	std::ctstring_t wildcard;
+
+	return show(wildcard, out_dbNames);
+}
+//-------------------------------------------------------------------------------------------------
 /**
  * \see https://stackoverflow.com/questions/275314/mysql-row-and-row0-to-string-type
  */

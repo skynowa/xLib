@@ -23,6 +23,10 @@ public:
 	xNO_COPY_ASSIGN(Db)
 ///@}
 
+	void_t show(std::ctstring_t &wildcard, std::vec_tstring_t *dbNames) const;
+		///< list DB names
+	void_t show(std::vec_tstring_t *dbNames) const;
+		///< list DB names
 	bool_t isExists() const;
 		///< check connection
 	void_t create() const;
