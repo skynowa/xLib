@@ -207,7 +207,7 @@ IResult::_fetchLengths() const
     if (fieldLengths == nullptr &&
         error.isOk())
     {
-    	Cout() << xT("[test] ") << xFUNCTION << xT(":  n/a");
+        Cout() << "\t\t" << xT("[test] IResult::_fetchLengths() - n/a");
 
         xTEST_NA(fieldLengths);
     } else {
