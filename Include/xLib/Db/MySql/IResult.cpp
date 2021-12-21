@@ -135,19 +135,19 @@ IResult::fetchRow(
 
     out_row->clear();
 
-    std::csize_t  fieldsNum    = fields();
-    culong_t     *fieldLengths = _fetchLengths();
-
     const MYSQL_ROW row = _fetchRow();
     if (row == nullptr) {
         return;
     }
 
-    Cout() << xTRACE_VAR_4(rows(), fieldsNum, fieldLengths, row[0]);
+    std::csize_t  fieldsNum    = fields();
+    culong_t     *fieldLengths = _fetchLengths();
+
+    // Cout() << xTRACE_VAR_4(rows(), fieldsNum, fieldLengths, row[0]);
 
 	for (std::size_t i = 0; i < fieldsNum; ++ i) {
-		cptr_cchar   it_row          = (row[i] == nullptr) ?       nullStr.c_str()     : row[i];
-		std::csize_t it_fieldLengths = (fieldLengths == nullptr) ? std::strlen(it_row) : fieldLengths[i];
+		cptr_cchar   it_row          = (row[i] == nullptr) ? nullStr.c_str() : row[i];
+		std::csize_t it_fieldLengths = fieldLengths[i];
 
 		std::cstring_t asField(it_row, it_fieldLengths);
 
@@ -210,17 +210,7 @@ IResult::_fetchLengths() const
     * \see how to distinguish these two cases, see the description for mysql_fetch_row().
     */
     culong_t *fieldLengths = ::mysql_fetch_lengths(_result.get());
-
-    const Error error(*_conn);
-    if (fieldLengths == nullptr &&
-        error.isOk())
-    {
-        Cout() << "\t\t" << xT("[test] IResult::_fetchLengths() - n/a");
-
-        xTEST_NA(fieldLengths);
-    } else {
-        xTEST_PTR_MSG(fieldLengths, error.str());
-    }
+	xTEST_PTR_MSG(fieldLengths, Error(*_conn).str());
 
     return fieldLengths;
 }
