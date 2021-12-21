@@ -65,7 +65,7 @@ Test_MySql::unit()
 		m_bRv = result.get().isValid();
 		xTEST(m_bRv);
 
-		std::vector<std::vec_tstring_t> rows;
+		rows_t rows;
 		result.fetchRows(&rows);
 		xTEST_EQ(rows.size(), std::size_t(1));
 
