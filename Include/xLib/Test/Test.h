@@ -221,6 +221,7 @@
 #define xTEST_GROUP(groupName) \
 	Trace() << xT("\n\t[") << xT(groupName) << xT("]")
 	///< test group of cases
+
 #define xTEST_CASE(caseName) \
 	Trace() << xT("\tCase: ") << xT(caseName); \
 	for (size_t caseLoops = 0; caseLoops < getData().caseLoops; ++ caseLoops)
