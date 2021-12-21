@@ -137,6 +137,30 @@ Test_MySql::unit()
 			xTEST_EQ(rows.size(), std::size_t(1));
 			xTEST_EQ(std::stoull(rows[0][0]), std::size_t(34));
 		}
+
+		xTEST_CASE("escape")
+		{
+			const std::vector<data2_tstring_t> data
+			{
+				{xT(""),                 xT("''")},
+				{xT("NULL"),             xT("NULL")},
+				{xT("value"),            xT("'value'")},
+				{xT("\"value\""),        xT("'\\\"value\\\"'")},
+				{xT("'value'"),          xT("'\\\'value\\\''")},
+				{xT("\\value\\"),        xT("'\\\\value\\\\'")},
+				{xT(" value xxx"),       xT("' value xxx'")},
+				{{xT("value\0\r\n"), 8}, {xT("'value\\0\\r\\n'"), 13}},
+				{xT(" , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _"),
+										 xT("' , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _'")}
+			};
+
+			for (const auto &[it_test, it_expect] : data) {
+				Query query(conn);
+
+				m_sRv = query.escapeQuoted(it_test, Const::sqm());
+				xTEST_EQ(m_sRv, it_expect);
+			}
+		}
 	}
 #endif
 
