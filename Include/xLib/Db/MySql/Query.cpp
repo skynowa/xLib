@@ -75,15 +75,14 @@ Query::exec(
 std::tstring_t
 Query::escapeQuoted(
 	std::ctstring_t &a_sqlValue,	///< SQL string value
-	std::ctstring_t &a_forQuote		///< str (char) in which the escaped string is to be placed
-									///< \note (maybe an empty)
+	std::ctstring_t &a_quote		///< Quote str (char)
 ) const
 {
 	xTESTS_NA(a_sqlValue);
-	xTESTS_NA(a_forQuote);
+	xTEST(!a_quote.empty());
 
 	if ( a_sqlValue.empty() ) {
-		return (a_forQuote + a_forQuote);
+		return (a_quote + a_quote);
 	}
 
 	if (a_sqlValue == nullStr) {
@@ -98,8 +97,11 @@ Query::escapeQuoted(
 	// escape
 	std::tstring_t sRv(a_sqlValue.size() * 2 + 1, xT('\0'));
 	{
+		cchar forQuote {xT2A(a_quote)[0]};
+			///< String (char) in which the escaped string is to be placed
+
 		culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get().get(), &sRv[0],
-			a_sqlValue.data(), static_cast<ulong_t>(a_sqlValue.size()), xT2A(a_forQuote)[0]);
+			a_sqlValue.data(), static_cast<ulong_t>(a_sqlValue.size()), forQuote);
 		xTEST_GR_MSG(quotedSize, 0UL, Error(_conn).str());
 
 		sRv.resize(quotedSize * sizeof(std::tstring_t::value_type));
@@ -107,7 +109,7 @@ Query::escapeQuoted(
 
 	// quoted
 	{
-		sRv = a_forQuote + sRv + a_forQuote;
+		sRv = a_quote + sRv + a_quote;
 	}
 
 	return sRv;
