@@ -68,13 +68,17 @@ Connection::connect()
     MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(_options.host).c_str(),
         xT2A(_options.user).c_str(), xT2A(_options.password).c_str(), db, _options.port,
 		unixSocket, clientFlag);
-    xTEST_PTR_MSG(conn, Error(*this).str());
+    if (conn == nullptr) {
+        xTEST_MSG(false, Error(*this).str());
+        return;
+    }
+
     xTEST_EQ(_conn.get(), conn);
 
 	int_t iRv = ::mysql_set_character_set(_conn.get(), _options.charset.c_str());
 	xTEST_EQ_MSG(iRv, 0, Error(*this).str());
 
-    /// _setAutoCommit();
+    /// TODO: _setAutoCommit();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -143,6 +147,10 @@ Connection::_init()
 }
 //-------------------------------------------------------------------------------------------------
 /**
+ * By using mysql_options() the MySQL client library reads the [client] and [your_prog_name]
+ * sections in the my.cnf file. This enables you to add options to the [your_prog_name] section to
+ * ensure that your program works, even if someone has set up MySQL in some nonstandard way.
+ *
  * \see https://dev.mysql.com/doc/refman/8.0/en/mysql-get-option.html
  */
 void_t
