@@ -182,6 +182,12 @@ IResult::fetchRows(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+/**
+ * \return
+ *
+ * - mysql_store_result() - returns NULL if there are no more rows to retrieve
+ * - mysql_use_result()   - returns NULL if there are no more rows to retrieve or an error occurred
+ */
 MYSQL_ROW
 IResult::_fetchRow() const
 {
