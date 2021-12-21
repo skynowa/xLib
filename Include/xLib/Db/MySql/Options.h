@@ -28,7 +28,7 @@ public:
     std::tstring_t password;
         ///< password
     std::tstring_t db;
-        ///< DB name.
+        ///< DB name
     uint_t         port {};
         ///< If port is not 0, the value is used as the port number for the TCP/IP connection
     std::tstring_t unixSocket;
@@ -42,7 +42,6 @@ public:
     std::map<mysql_option, cptr_cvoid_t> options;
         ///< extra options
 };
-xUSING_CONST(Options);
 
 } // namespace
 //-------------------------------------------------------------------------------------------------

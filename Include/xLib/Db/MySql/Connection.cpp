@@ -22,7 +22,7 @@ namespace xl::db::mysql
 
 //-------------------------------------------------------------------------------------------------
 Connection::Connection(
-	cOptions &a_options
+	const Options &a_options
 ) :
 	_options{a_options}
 {
