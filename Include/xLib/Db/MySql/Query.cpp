@@ -71,12 +71,17 @@ Query::exec(
  * a string quoted within double quotation marks is interpreted as an identifier.
  */
 std::tstring_t
-Query::escape(
-	std::ctstring_t &a_sqlValue	///< SQL string value
+Query::escapeQuoted(
+	std::ctstring_t &a_sqlValue,	///< SQL string value
+	std::ctstring_t &a_quote		///< str (char) in which the escaped string is to be placed
+									///< \note (maybe an empty)
 ) const
 {
+	xTESTS_NA(a_sqlValue);
+	xTESTS_NA(a_quote);
+
 	if ( a_sqlValue.empty() ) {
-		return Const::sqm() + Const::sqm();
+		return (a_quote + a_quote);
 	}
 
 	if (a_sqlValue == nullStr) {
@@ -91,10 +96,13 @@ Query::escape(
 	std::tstring_t sRv(a_sqlValue.size() * 2 + 1, xT('\0'));
 
 	culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get().get(), &sRv[0],
-		a_sqlValue.data(), static_cast<ulong_t>(a_sqlValue.size()), Const::sqmA()[0]);
+		a_sqlValue.data(), static_cast<ulong_t>(a_sqlValue.size()), xT2A(a_quote)[0]);
 	xTEST_GR_MSG(quotedSize, 0UL, Error(_conn).str());
 
 	sRv.resize(quotedSize * sizeof(std::tstring_t::value_type));
+
+	// quoted
+	sRv = a_quote + sRv + a_quote;
 
 	return sRv;
 }
