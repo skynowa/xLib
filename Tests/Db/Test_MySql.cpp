@@ -102,11 +102,10 @@ Test_MySql::unit()
 		{
 			int_t errorCode {};
 			m_bRv = conn.ping(&errorCode);
-			xTEST(!m_bRv);
-			xTEST_DIFF(errorCode, 0);
+			xTEST(m_bRv);
+			xTEST_EQ(errorCode, 0);
 		}
 	}
-
 #endif
 
     return true;
