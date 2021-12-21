@@ -46,31 +46,33 @@ Test_MySql::unit()
 	*
 	*******************************************************************************/
 
-	xTEST_GROUP("Db");
-
-	xTEST_CASE("isExists")
 	{
-		m_bRv = db.isExists();
-		xTEST(m_bRv);
-	}
+		xTEST_GROUP("Db");
 
-	xTEST_CASE("create")
-	{
-		if (options.isFabrica()) {
-			// n/a
-		} else {
-			/// m_bRv = db.create();
-			/// xTEST(m_bRv);
+		xTEST_CASE("isExists")
+		{
+			m_bRv = db.isExists();
+			xTEST(m_bRv);
 		}
-	}
 
-	xTEST_CASE("drop")
-	{
-		if (options.isFabrica()) {
-			// n/a
-		} else {
-			/// m_bRv = db.drop();
-			/// xTEST(m_bRv);
+		xTEST_CASE("create")
+		{
+			if (options.isFabrica()) {
+				// n/a
+			} else {
+				/// m_bRv = db.create();
+				/// xTEST(m_bRv);
+			}
+		}
+
+		xTEST_CASE("drop")
+		{
+			if (options.isFabrica()) {
+				// n/a
+			} else {
+				/// m_bRv = db.drop();
+				/// xTEST(m_bRv);
+			}
 		}
 	}
 
@@ -79,37 +81,39 @@ Test_MySql::unit()
 	*
 	*******************************************************************************/
 
-	xTEST_GROUP("Connection");
-
-	xTEST_CASE("get")
 	{
-		cHandleMySqlConn &handle = conn.get();
-		xTEST(handle.isValid());
-	}
+		xTEST_GROUP("Connection");
 
-	xTEST_CASE("isValid")
-	{
-		m_bRv = conn.get().isValid();
-		xTEST(m_bRv);
-	}
+		xTEST_CASE("get")
+		{
+			cHandleMySqlConn &handle = conn.get();
+			xTEST(handle.isValid());
+		}
 
-	xTEST_CASE("connect")
-	{
-		conn.connect();
-		xTEST(db.isExists());
-	}
+		xTEST_CASE("isValid")
+		{
+			m_bRv = conn.get().isValid();
+			xTEST(m_bRv);
+		}
 
-	xTEST_CASE("reconnect")
-	{
-		conn.reconnect();
-	}
+		xTEST_CASE("connect")
+		{
+			conn.connect();
+			xTEST(db.isExists());
+		}
 
-	xTEST_CASE("ping")
-	{
-		int_t errorCode {};
-		m_bRv = conn.ping(&errorCode);
-		xTEST(m_bRv);
-		xTEST_EQ(errorCode, 0);
+		xTEST_CASE("reconnect")
+		{
+			conn.reconnect();
+		}
+
+		xTEST_CASE("ping")
+		{
+			int_t errorCode {};
+			m_bRv = conn.ping(&errorCode);
+			xTEST(m_bRv);
+			xTEST_EQ(errorCode, 0);
+		}
 	}
 
     /*******************************************************************************
@@ -117,20 +121,22 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
-	xTEST_GROUP("Query");
-
-	xTEST_CASE("exec")
 	{
-		Query query(conn);
-		query.exec( Format::str("SELECT count(*) FROM {}", tableName) );
+		xTEST_GROUP("Query");
 
-		StoreResult result(conn);
-		xTEST(result.get().isValid());
+		xTEST_CASE("exec")
+		{
+			Query query(conn);
+			query.exec( Format::str("SELECT count(*) FROM {}", tableName) );
 
-		rows_t rows;
-		result.fetchRows(&rows);
-		xTEST_EQ(rows.size(), std::size_t(1));
-		xTEST_EQ(std::stoull(rows[0][0]), std::size_t(34));
+			StoreResult result(conn);
+			xTEST(result.get().isValid());
+
+			rows_t rows;
+			result.fetchRows(&rows);
+			xTEST_EQ(rows.size(), std::size_t(1));
+			xTEST_EQ(std::stoull(rows[0][0]), std::size_t(34));
+		}
 	}
 #endif
 
