@@ -200,6 +200,9 @@ IResult::_fetchLengths() const
 
    /**
     * \return nullptr - length for empty columns and for columns containing NULL values
+    *
+    * The length for empty columns and for columns containing NULL values is zero.
+    * \see how to distinguish these two cases, see the description for mysql_fetch_row().
     */
     culong_t *fieldLengths = ::mysql_fetch_lengths(_result.get());
 
