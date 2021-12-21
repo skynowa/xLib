@@ -11,6 +11,8 @@
 namespace xl::db::mysql
 {
 
+class Options;
+
 class Connection
     /// MySql connection
 {
@@ -47,8 +49,8 @@ public:
 ///@}
 
 private:
-    const Options   _options; ///< Connection data
-    HandleMySqlConn _conn; ///< handler for one database connection
+    const Options   &_options; ///< Connection data
+    HandleMySqlConn  _conn; ///< handler for one database connection
 
     void_t _init();
 		///< initiation

@@ -31,7 +31,7 @@ public:
 		///< drop DB
 
 private:
-	const Options _options; ///< Db data
+	const Options &_options; ///< Db data
 };
 
 } // namespace
