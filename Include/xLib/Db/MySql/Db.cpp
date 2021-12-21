@@ -10,6 +10,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
+#include <xLib/System/User.h>
 
 #include <xLib/Db/MySql/StoreResult.h>
 
@@ -63,6 +64,14 @@ Db::isExists() const
 void_t
 Db::create() const
 {
+   /**
+	* \warning Only admin rights
+	*/
+	if ( !User().isAdmin() ) {
+		xTEST_FAIL_MSG(xT("Only admin rights. Stop"));
+		return;
+	}
+
 	std::ctstring_t db = _options.db;
 
 	Options options = _options;
@@ -80,6 +89,14 @@ Db::create() const
 void_t
 Db::drop() const
 {
+   /**
+	* \warning Only admin rights
+	*/
+	if ( !User().isAdmin() ) {
+		xTEST_FAIL_MSG(xT("Only admin rights. Stop"));
+		return;
+	}
+
 	Options options = _options;
 	options.db = {};
 
