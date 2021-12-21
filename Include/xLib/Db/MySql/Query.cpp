@@ -79,7 +79,7 @@ Query::escape(
 		return Const::sqm() + Const::sqm();
 	}
 
-	if (a_sqlValue == xT("NULL")) {
+	if (a_sqlValue == nullStr) {
 	   /**
 		* If the argument is NULL:
 		*
