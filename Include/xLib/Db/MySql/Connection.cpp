@@ -116,6 +116,17 @@ Connection::close()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
+Connection::kill(
+	const uint64_t a_pid
+)
+{
+    xTEST_GR(a_pid, 0UL);
+
+    int_t iRv = ::mysql_kill(_conn.get(), a_pid);
+    xTEST_EQ_MSG(iRv, 0, Error(*this).str());
+}
+//-------------------------------------------------------------------------------------------------
+void_t
 Connection::commit()
 {
 	bool_t bRv = ::mysql_commit(_conn.get());
