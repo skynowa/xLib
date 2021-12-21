@@ -16,24 +16,12 @@ class FabricaOptions :
 	public mysql::Options
 {
 public:
-			 FabricaOptions() ;
-	virtual ~FabricaOptions() = default;
+	FabricaOptions() :
+		mysql::Options(xT("mysql-api-master.office.fabrica.net.ua"), xT("triptake"), xT("inae4Ees"),
+			xT("triptake"), 3306, {}, xT("utf8mb4"), true, true, {})
+	{
+	}
 };
-//-------------------------------------------------------------------------------------------------
-FabricaOptions::FabricaOptions() :
-	mysql::Options(
-		xT("mysql-api-master.office.fabrica.net.ua"),
-		xT("triptake"),
-		xT("inae4Ees"),
-		xT("triptake"),
-		3306,
-		{},
-		xT("utf8mb4"),
-		true,
-		true,
-		{})
-{
-}
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
