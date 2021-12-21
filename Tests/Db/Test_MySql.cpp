@@ -20,29 +20,19 @@ public:
 	virtual ~FabricaOptions() = default;
 };
 //-------------------------------------------------------------------------------------------------
-FabricaOptions::FabricaOptions()
+FabricaOptions::FabricaOptions() :
+	mysql::Options(
+		xT("mysql-api-master.office.fabrica.net.ua"),
+		xT("triptake"),
+		xT("inae4Ees"),
+		xT("triptake"),
+		3306,
+		{},
+		xT("utf8mb4"),
+		true,
+		true,
+		{})
 {
-	host         = xT("mysql-api-master.office.fabrica.net.ua");
-	user         = xT("triptake");
-	password     = xT("inae4Ees");
-	db           = xT("triptake");
-	port         = 3306;
-	unixSocket   = xT("");
-	charset      = xT("utf8mb4");
-	isAutoCommit = true;
-	isCompress   = true;
-
-	const unsigned int connectTimeout {60};
-	const bool         isReconnect    {true};
-	const char         initCommand[]  {"SET autocommit=1"};
-
-	options =
-		{
-			{MYSQL_OPT_COMPRESS,        0 /* not used */},
-			{MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeout},
-			{MYSQL_OPT_RECONNECT,       &isReconnect},
-			{MYSQL_INIT_COMMAND,        &initCommand}
-		};
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
