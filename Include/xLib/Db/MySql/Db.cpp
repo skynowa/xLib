@@ -23,7 +23,7 @@ namespace xl::db::mysql
 
 //-------------------------------------------------------------------------------------------------
 Db::Db(
-	cOptions &a_options
+	const Options &a_options
 ) :
 	_options{a_options}
 {

@@ -17,7 +17,7 @@ class Connection
 public:
 ///@name ctors, dtor
 ///@{
-			 Connection(cOptions &options);
+			 Connection(const Options &options);
 	virtual ~Connection() = default;
 
 	xNO_COPY_ASSIGN(Connection)
@@ -47,7 +47,7 @@ public:
 ///@}
 
 private:
-    cOptions        _options; ///< Connection data
+    const Options   _options; ///< Connection data
     HandleMySqlConn _conn; ///< handler for one database connection
 
     void_t _init();
