@@ -1,6 +1,6 @@
 /**
  * \file  IResult.cpp
- * \brief MySql client
+ * \brief
  */
 
 

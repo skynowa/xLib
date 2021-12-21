@@ -1,6 +1,6 @@
 /**
  * \file  Connection.cpp
- * \brief MySql client
+ * \brief Database connection
  */
 
 

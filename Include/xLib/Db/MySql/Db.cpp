@@ -1,6 +1,6 @@
 /**
  * \file  Db.cpp
- * \brief MySql DB
+ * \brief Database
  */
 
 

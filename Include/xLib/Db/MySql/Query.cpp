@@ -1,6 +1,6 @@
 /**
  * \file  Query.cpp
- * \brief MySql query
+ * \brief SQL query
  */
 
 
