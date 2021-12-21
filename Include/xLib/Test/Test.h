@@ -219,7 +219,7 @@
     ///< at this point debug code for variables is not applicable
 
 #define xTEST_GROUP(groupName) \
-	Trace() << xT("\n\t[ ") << xT(groupName) << xT(" ]: ")
+	Trace() << xT("\n\t[") << xT(groupName) << xT("]")
 	///< test group of cases
 #define xTEST_CASE(caseName) \
 	Trace() << xT("\tCase: ") << xT(caseName); \
