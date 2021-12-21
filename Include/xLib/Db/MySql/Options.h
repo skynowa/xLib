@@ -16,8 +16,8 @@ class Options
 public:
 ///@name ctors, dtor
 ///@{
-	Options() = default;
-   ~Options() = default;
+             Options() = default;
+    virtual ~Options() = default;
 ///@}
 
     std::tstring_t host;
