@@ -52,11 +52,6 @@ std::ctstring_t nullStr {xT("NULL")};
  * - Info
  * + Options
  * + Db
- * 	- mysql_create_db()
- * 	- mysql_drop_db()
- * 	- mysql_list_dbs()
- * 	- mysql_select_db()
- *
  * + Connection
  * + Query / RealQuery
  * + UseResult / StoreResult
