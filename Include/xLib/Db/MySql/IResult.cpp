@@ -128,7 +128,7 @@ IResult::fetchFields(
 //-------------------------------------------------------------------------------------------------
 void_t
 IResult::fetchRow(
-	std::vec_tstring_t *out_row	///< [out]
+	row_t *out_row	///< [out]
 ) const
 {
     xTEST(_result.isValid());
@@ -160,7 +160,7 @@ IResult::fetchRow(
 //-------------------------------------------------------------------------------------------------
 void_t
 IResult::fetchRows(
-	std::vector<std::vec_tstring_t> *out_rows	///< [out]
+	rows_t *out_rows	///< [out]
 ) const
 {
     xTEST(_result.isValid());

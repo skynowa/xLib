@@ -50,7 +50,7 @@ Db::isExists() const
 
 	StoreResult result(conn);
 
-	std::vector<std::vec_tstring_t> rows;
+	rows_t rows;
 	result.fetchRows(&rows);
 	xTEST_EQ(rows.size(), static_cast<size_t>(1));
 	xCHECK_RET(rows[0][0] == xT("0"), false);

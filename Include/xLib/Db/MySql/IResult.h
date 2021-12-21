@@ -46,9 +46,9 @@ public:
 		///< The MYSQL_FIELD structure for the specified column
 	void_t      fetchFields(MYSQL_FIELD *field) const;
 		///< An array of MYSQL_FIELD structures for all columns of a result set
-	void_t      fetchRow(std::vec_tstring_t *row) const;
+	void_t      fetchRow(row_t *row) const;
 		///< fetching row
-	void_t      fetchRows(std::vector<std::vec_tstring_t> *rows) const;
+	void_t      fetchRows(rows_t *rows) const;
 		///< fetching rows
 ///@}
 
