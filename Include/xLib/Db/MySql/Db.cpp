@@ -12,7 +12,7 @@
 #include <xLib/Core/Format.h>
 #include <xLib/System/User.h>
 
-#include <xLib/Db/MySql/StoreResult.h>
+#include <xLib/Db/MySql/Result.h>
 
 namespace xl::db::mysql
 {
@@ -53,19 +53,13 @@ Db::show(
 	}
 
 	// Query
-	{
-		Query query(conn);
-
-		std::ctstring_t &sql = a_wildcard.empty() ?
-			xT("SHOW DATABASES") :
-			Format::str(xT("SHOW DATABASES LIKE {}"), query.escapeQuotedSqm(a_wildcard));
-
-		query.exec(sql);
-	}
+	std::ctstring_t &sql = a_wildcard.empty() ?
+		xT("SHOW DATABASES") :
+		Format::str(xT("SHOW DATABASES LIKE '{}'"), a_wildcard);
 
 	// Result
 	{
-		StoreResult result(conn);
+		StoreResult result = conn.query(sql).store();
 
 		rows_t rows;
 		result.fetchRows(&rows);
@@ -101,12 +95,11 @@ Db::isExists() const
 
 	conn.connect();
 
-	Query query(conn);
-	query.exec( Format::str(
+	std::ctstring_t sql = Format::str(
 		xT("SELECT count(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '{}'"),
-		_options.db) );
+		_options.db);
 
-	StoreResult result(conn);
+	StoreResult result = conn.query(sql).store();
 
 	rows_t rows;
 	result.fetchRows(&rows);
@@ -137,10 +130,12 @@ Db::create() const
 	Connection conn(options);
 	conn.connect();
 
-	Query query(conn);
-	query.exec( Format::str(xT("CREATE DATABASE IF NOT EXISTS `{}` CHARACTER SET {}"),
+	std::ctstring_t sql = Format::str(xT("CREATE DATABASE IF NOT EXISTS `{}` CHARACTER SET {}"),
 		db,
-		options.charset) );
+		options.charset);
+
+	Query query = conn.query(sql);
+	query.exec();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -160,9 +155,11 @@ Db::drop() const
 	Connection conn(options);
 	conn.connect();
 
-	Query query(conn);
-	query.exec( Format::str(xT("DROP DATABASE IF EXISTS `{}`"),
-		_options.db) );
+	std::ctstring_t sql = Format::str(xT("DROP DATABASE IF EXISTS `{}`"),
+		_options.db);
+
+	Query query = conn.query(sql);
+	query.exec();
 }
 //-------------------------------------------------------------------------------------------------
 

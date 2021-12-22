@@ -16,6 +16,8 @@
 namespace xl::db::mysql
 {
 
+class Connection;
+
 class IResult
     /// MySql recordset
 {
@@ -61,6 +63,72 @@ protected:
         ///< A MYSQL_ROW structure for the next row
     culong_t * _fetchLengths() const;
         ///< An array of unsigned long_t integers representing the size of each column
+};
+
+} // namespace
+//-------------------------------------------------------------------------------------------------
+/**
+ * \file  StoreResult.h
+ * \brief MySql client
+ *
+ * \see mysqlpp
+ * - https://tangentsoft.com/mysqlpp/file?name=examples/simple1.cpp
+ * - https://tangentsoft.com/mysqlpp/file?name=examples/simple2.cpp
+ * - https://tangentsoft.com/mysqlpp/file?name=examples/simple3.cpp
+ */
+//-------------------------------------------------------------------------------------------------
+namespace xl::db::mysql
+{
+
+class StoreResult :
+	public IResult
+    /// MySql recordset
+{
+public:
+///@name ctors, dtor
+///@{
+	explicit  StoreResult(Connection &connection);
+	virtual  ~StoreResult() = default;
+
+	xNO_DEFAULT_CONSTRUCT(StoreResult)
+    xNO_COPY_ASSIGN(StoreResult)
+///@}
+
+private:
+
+};
+
+} // namespace
+//-------------------------------------------------------------------------------------------------
+/**
+ * \file  UseResult.h
+ * \brief MySql client
+ *
+ * \see mysqlpp
+ * - https://tangentsoft.com/mysqlpp/file?name=examples/simple1.cpp
+ * - https://tangentsoft.com/mysqlpp/file?name=examples/simple2.cpp
+ * - https://tangentsoft.com/mysqlpp/file?name=examples/simple3.cpp
+ */
+//-------------------------------------------------------------------------------------------------
+namespace xl::db::mysql
+{
+
+class UseResult :
+	public IResult
+    /// MySql recordset
+{
+public:
+///@name ctors, dtor
+///@{
+	explicit  UseResult(Connection &connection);
+	virtual  ~UseResult() = default;
+
+	xNO_DEFAULT_CONSTRUCT(UseResult)
+	xNO_COPY_ASSIGN(UseResult)
+///@}
+
+private:
+
 };
 
 } // namespace
