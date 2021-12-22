@@ -87,11 +87,11 @@ private:
  *
  * 	// Query
  * 	{
- * 		::mysql_real_query(conn) / ::mysql_query(conn);
+ * 		::mysql_real_query(conn);
  *
  * 		// Result
  * 		{
- * 			MYSQL_RES *result = ::mysql_use_result(conn) / ::mysql_store_result(conn);
+ * 			MYSQL_RES *result = ::mysql_store_result(conn) / ::mysql_use_result(conn);
  *
  * 			uint_t    rows    = ::mysql_num_rows(result);
  * 			uint_t    fields  = ::mysql_num_fields(result);
@@ -102,13 +102,23 @@ private:
  * 				MYSQL_ROW row;
  *
  * 				while ((row = ::mysql_fetch_row(result)) != nullptr) {
- * 					printf("Row %s: ", row[0]);
+ * 					printf("Field %s: ", row[0]);
  *
  * 					for (uint_t i = 0; i < fields; ++ i) {
  * 						printf("Column %u is %lu bytes in length.\n", i, lengths[i]);
  * 					}
+ *
+ *					MYSQL_FIELD *field {};
+ *					std::size_t  index {};
+ *
+ *					while ((field = ::mysql_fetch_field(result)) != nullptr) {
+ *						std::string key(field->name);
+ *						std::string value(row[index ++]);
+ *
+ *						data.push_back( {key, value} );
+ *					}
  * 				}
- * 			}
+ * 			} // Rows
  *
  * 			::mysql_free_result(result);
  * 		}
