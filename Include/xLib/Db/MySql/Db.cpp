@@ -43,28 +43,37 @@ Db::show(
 
     bool_t bRv {};
 
+    // Connection
     Connection conn(_options);
-	bRv = conn.get().isValid();
-	xCHECK_DO(!bRv, return);
+	{
+		bRv = conn.get().isValid();
+		xCHECK_DO(!bRv, return);
 
-	conn.connect();
+		conn.connect();
+	}
 
-	Query query(conn);
+	// Query
+	{
+		Query query(conn);
 
-	std::ctstring_t &sql = a_wildcard.empty() ?
-		xT("SHOW DATABASES") :
-		Format::str(xT("SHOW DATABASES LIKE {}"), query.escapeQuotedSqm(a_wildcard));
+		std::ctstring_t &sql = a_wildcard.empty() ?
+			xT("SHOW DATABASES") :
+			Format::str(xT("SHOW DATABASES LIKE {}"), query.escapeQuotedSqm(a_wildcard));
 
-	query.exec(sql);
+		query.exec(sql);
+	}
 
-	StoreResult result(conn);
+	// Result
+	{
+		StoreResult result(conn);
 
-	rows_t rows;
-	result.fetchRows(&rows);
+		rows_t rows;
+		result.fetchRows(&rows);
 
-	// [out]
-	for (const auto &it_row : rows) {
-		out_dbNames->push_back(it_row[0]);
+		// [out]
+		for (const auto &it_row : rows) {
+			out_dbNames->push_back(it_row[0]);
+		}
 	}
 }
 //-------------------------------------------------------------------------------------------------
