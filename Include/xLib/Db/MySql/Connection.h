@@ -73,47 +73,52 @@ private:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-#if xTODO
-	::mysql_library_init()
-
-	// Connection
-	{
-		MYSQL *conn = ::mysql_init();
-
-		::mysql_options(conn);
-		::mysql_real_connect(conn);
-
-		// Query
-		{
-			::mysql_real_query(conn) / ::mysql_query(conn);
-
-			// Result
-			{
-				MYSQL_RES *result = ::mysql_use_result(conn) / ::mysql_store_result(conn);
-
-				uint_t    rows    = ::mysql_num_rows(result);
-				uint_t    fields  = ::mysql_num_fields(result);
-				ulong_t **lengths = ::mysql_fetch_lengths(result);	// row lengths
-
-				// Rows
-				{
-					MYSQL_ROW row;
-
-					while ((row = ::mysql_fetch_row(result)) != nullptr) {
-						printf("Row %s: ", row[0]);
-
-						for (uint_t i = 0; i < fields; ++ i) {
-							printf("Column %u is %lu bytes in length.\n", i, lengths[i]);
-						}
-					}
-				}
-
-				::mysql_free_result(result);
-			}
-		}
-
-		::mysql_close(conn);
-	}
-
-    ::mysql_library_end()
-#endif
+/**
+ *  \code{.c++}
+ *
+ * ::mysql_library_init()
+ *
+ * // Connection
+ * {
+ * 	MYSQL *conn = ::mysql_init();
+ *
+ * 	::mysql_options(conn);
+ * 	::mysql_real_connect(conn);
+ *
+ * 	// Query
+ * 	{
+ * 		::mysql_real_query(conn) / ::mysql_query(conn);
+ *
+ * 		// Result
+ * 		{
+ * 			MYSQL_RES *result = ::mysql_use_result(conn) / ::mysql_store_result(conn);
+ *
+ * 			uint_t    rows    = ::mysql_num_rows(result);
+ * 			uint_t    fields  = ::mysql_num_fields(result);
+ * 			ulong_t **lengths = ::mysql_fetch_lengths(result);	// row lengths
+ *
+ * 			// Rows
+ * 			{
+ * 				MYSQL_ROW row;
+ *
+ * 				while ((row = ::mysql_fetch_row(result)) != nullptr) {
+ * 					printf("Row %s: ", row[0]);
+ *
+ * 					for (uint_t i = 0; i < fields; ++ i) {
+ * 						printf("Column %u is %lu bytes in length.\n", i, lengths[i]);
+ * 					}
+ * 				}
+ * 			}
+ *
+ * 			::mysql_free_result(result);
+ * 		}
+ * 	}
+ *
+ * 	::mysql_close(conn);
+ * }
+ *
+ * ::mysql_library_end();
+ *
+ * \endcode
+ */
+//-------------------------------------------------------------------------------------------------
