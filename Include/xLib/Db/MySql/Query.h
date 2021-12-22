@@ -37,15 +37,14 @@ public:
 	UseResult   use();
 ///@}
 
-///@name Escape with quote
+///\name  Escape with quote
+///\brief Creates a legal SQL string for use in an SQL statement as qouted:
+/// - Double quotes turn into: \"
+/// - single quotes turn into: \'
+/// - Single slashes turn into: \\ (double slashes)
+/// - Unescaped: spaces, |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _, etc
 ///@{
 	std::tstring_t escapeQuoted(std::ctstring_t &sqlValue, std::ctstring_t &forQuote) const;
-		///< Creates a legal SQL string for use in an SQL statement as qouted:
-		///< - Double quotes turn into: \"
-		///< - single quotes turn into: \'
-		///< - Single slashes turn into: \\ (double slashes)
-		///< - Unescaped: spaces, |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _, etc
-
 	std::tstring_t escapeQuotedSqm(std::ctstring_t &sqlValue) const;
 	std::tstring_t escapeQuotedDqm(std::ctstring_t &sqlValue) const;
 	std::tstring_t escapeQuotedGa(std::ctstring_t &sqlValue) const;
