@@ -10,6 +10,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
+#include <xLib/Db/MySql/Result.h>
 
 
 namespace xl::db::mysql
@@ -22,46 +23,41 @@ namespace xl::db::mysql
 
 //-------------------------------------------------------------------------------------------------
 Query::Query(
-	const Connection &a_conn
+	const Connection &a_conn,
+	std::ctstring_t  &a_sql
 ) :
-	_conn{a_conn}
+	_conn{a_conn},
+	_sql {a_sql}
 {
     xTEST(_conn.get().isValid());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Query::exec(
-	std::ctstring_t &a_sql
-) const
+Query::exec() const
 {
     xTEST(_conn.get().isValid());
 
-    std::cstring_t &asSql = xT2A(a_sql);
+    std::cstring_t &asSql = xT2A(_sql);
 
     int_t iRv = ::mysql_real_query(_conn.get().get(), asSql.data(),
         static_cast<ulong_t>( asSql.size() ));
-    xTEST_EQ_MSG(iRv, 0, Error(_conn, a_sql).str());
+    xTEST_EQ_MSG(iRv, 0, Error(_conn, _sql).str());
 }
 //-------------------------------------------------------------------------------------------------
-void_t
-Query::exec(
-    cptr_ctchar_t a_sqlFormat, ...
-) const
+StoreResult
+Query::store()
 {
-	xTEST(_conn.get().isValid());
-	xTEST_PTR(a_sqlFormat);
+	exec();
 
-	std::tstring_t sql;
-	{
-		va_list args;
-		xVA_START(args, a_sqlFormat);
+	return StoreResult( const_cast<Connection &>(_conn) );
+}
+//-------------------------------------------------------------------------------------------------
+UseResult
+Query::use()
+{
+	exec();
 
-		sql = FormatC::strV(a_sqlFormat, args);
-
-		xVA_END(args);
-	}
-
-	return exec(sql);
+	return UseResult( const_cast<Connection &>(_conn) );
 }
 //-------------------------------------------------------------------------------------------------
 /**

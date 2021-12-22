@@ -7,9 +7,14 @@
 #pragma once
 
 #include <xLib/Db/MySql/Common.h>
+#include <xLib/Db/MySql/Result.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::db::mysql
 {
+
+class Connection;
+class StoreResult;
+class UseResult;
 
 class Query
     /// MySql query
@@ -17,7 +22,7 @@ class Query
 public:
 ///@name ctors, dtor
 ///@{
-			 Query(const Connection &conn);
+			 Query(const Connection &conn, std::ctstring_t &sql);
 	virtual ~Query() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Query)
@@ -26,8 +31,10 @@ public:
 
 ///@name Executes the SQL statement
 ///@{
-	void_t exec(std::ctstring_t &sql) const;
-	void_t exec(cptr_ctchar_t sqlFormat, ...) const;
+	void_t exec() const;
+
+	StoreResult store();
+	UseResult   use();
 ///@}
 
 ///@name Escape with quote
@@ -45,7 +52,8 @@ public:
 ///@}
 
 private:
-    const Connection &_conn; ///< DB connection
+    const Connection &_conn;	///< DB connection
+    std::ctstring_t   _sql;		///<
 };
 
 } // namespace

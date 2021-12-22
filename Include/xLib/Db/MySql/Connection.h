@@ -7,11 +7,13 @@
 #pragma once
 
 #include <xLib/Db/MySql/Common.h>
+#include <xLib/Db/MySql/Query.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::db::mysql
 {
 
 class Options;
+class Query;
 
 class Connection
     /// MySql connection
@@ -51,6 +53,8 @@ public:
 		///< commits the current transaction
 	void_t rollback();
 		///< rolls back the current transaction
+	Query  query(std::ctstring_t &sql) const;
+		///< get Query object
 ///@}
 
 private:
