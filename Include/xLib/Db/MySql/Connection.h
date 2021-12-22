@@ -34,7 +34,7 @@ public:
 		///< attempts to establish a connection to a MySql database engine running on host
 	void_t reconnect();
 		///< reconnect to DB
-	bool_t ping(int_t *errorCode) const;
+	bool_t ping() const;
 		///< checks whether the connection to the server is working
 	void_t selectDb(std::ctstring_t &dbName) const;
 		///< Causes the DB specified by dbName to become the default (current) DB on the connection

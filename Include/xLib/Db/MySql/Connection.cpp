@@ -90,21 +90,12 @@ Connection::reconnect()
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Connection::ping(
-    int_t *out_errorCode	///< [out] error code
-) const
+Connection::ping() const
 {
-	xTEST_PTR(out_errorCode);
-
-	Utils::ptrAssignT(out_errorCode, 0);
-
     int_t iRv = ::mysql_ping( _conn.get() );
-    if (iRv != 0) {
-        Utils::ptrAssignT(out_errorCode, iRv);
-        return false;
-    }
+    xTEST_EQ(iRv, 0);
 
-    return true;
+    return (iRv == 0);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
