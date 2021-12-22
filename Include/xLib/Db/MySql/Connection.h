@@ -117,14 +117,3 @@ private:
 
     ::mysql_library_end()
 #endif
-
-#if 0
-	<?php
-	function mysql_current_db()
-    {
-		$r = mysql_query("SELECT DATABASE()") or die(mysql_error());
-
-		return mysql_result($r,0);
-	}
-	?>
-#endif
