@@ -127,10 +127,8 @@ Test_MySql::unit()
 
 		xTEST_CASE("ping")
 		{
-			int_t errorCode {};
-			m_bRv = conn.ping(&errorCode);
+			m_bRv = conn.ping();
 			xTEST(m_bRv);
-			xTEST_EQ(errorCode, 0);
 		}
 	}
 
