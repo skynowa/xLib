@@ -24,6 +24,7 @@ public:
 			 Error(const Connection &conn, std::ctstring_t &sql);
 	virtual ~Error() = default;
 
+	xNO_DEFAULT_CONSTRUCT(Error)
 	xNO_COPY_ASSIGN(Error)
 ///@}
 

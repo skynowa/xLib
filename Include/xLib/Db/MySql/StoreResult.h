@@ -27,6 +27,7 @@ public:
 	explicit  StoreResult(Connection &connection);
 	virtual  ~StoreResult() = default;
 
+	xNO_DEFAULT_CONSTRUCT(StoreResult)
     xNO_COPY_ASSIGN(StoreResult)
 ///@}
 
