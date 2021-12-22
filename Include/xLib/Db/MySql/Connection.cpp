@@ -108,6 +108,15 @@ Connection::ping(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
+Connection::selectDb(
+	std::ctstring_t &a_dbName	///< DB name
+) const
+{
+	int_t iRv = ::mysql_select_db(_conn.get(), xT2A(a_dbName).c_str());
+	xTEST_EQ_MSG(iRv, 0, Error(*this).str());
+}
+//-------------------------------------------------------------------------------------------------
+void_t
 Connection::close()
 {
     xTEST_NA(_conn);
