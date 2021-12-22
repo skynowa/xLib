@@ -53,7 +53,7 @@ std::ctstring_t nullStr {xT("NULL")};
  * + Options
  * + Db
  * + Connection
- * + Query / RealQuery
+ * + Query (RealQuery)
  * + UseResult / StoreResult
  * - Row
  * - Field
