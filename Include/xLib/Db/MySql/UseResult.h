@@ -27,7 +27,8 @@ public:
 	explicit  UseResult(Connection &connection);
 	virtual  ~UseResult() = default;
 
-    xNO_COPY_ASSIGN(UseResult)
+	xNO_DEFAULT_CONSTRUCT(UseResult)
+	xNO_COPY_ASSIGN(UseResult)
 ///@}
 
 private:

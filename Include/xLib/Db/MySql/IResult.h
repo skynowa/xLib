@@ -25,6 +25,7 @@ public:
     explicit  IResult(Connection &connection);
 	virtual  ~IResult() = 0;
 
+	xNO_DEFAULT_CONSTRUCT(IResult)
     xNO_COPY_ASSIGN(IResult)
 ///@}
 

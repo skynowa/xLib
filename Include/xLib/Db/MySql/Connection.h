@@ -22,6 +22,7 @@ public:
 			 Connection(const Options &options);
 	virtual ~Connection() = default;
 
+	xNO_DEFAULT_CONSTRUCT(Connection)
 	xNO_COPY_ASSIGN(Connection)
 ///@}
 

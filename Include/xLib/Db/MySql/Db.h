@@ -20,6 +20,7 @@ public:
 			 Db(const Options &options);
 	virtual ~Db() = default;
 
+	xNO_DEFAULT_CONSTRUCT(Db)
 	xNO_COPY_ASSIGN(Db)
 ///@}
 

@@ -20,6 +20,7 @@ public:
 			 Query(const Connection &conn);
 	virtual ~Query() = default;
 
+	xNO_DEFAULT_CONSTRUCT(Query)
 	xNO_COPY_ASSIGN(Query)
 ///@}
 
