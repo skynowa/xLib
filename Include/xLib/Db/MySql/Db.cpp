@@ -49,11 +49,12 @@ Db::show(
 
 	conn.connect();
 
+	Query query(conn);
+
 	std::ctstring_t &sql = a_wildcard.empty() ?
 		xT("SHOW DATABASES") :
-		Format::str(xT("SHOW DATABASES LIKE '{}'"), a_wildcard);
+		Format::str(xT("SHOW DATABASES LIKE {}"), query.escapeQuotedSqm(a_wildcard));
 
-	Query query(conn);
 	query.exec(sql);
 
 	StoreResult result(conn);
