@@ -36,6 +36,8 @@ public:
 		///< reconnect to DB
 	bool_t ping(int_t *errorCode) const;
 		///< checks whether the connection to the server is working
+	void_t selectDb(std::ctstring_t &dbName) const;
+		///< Causes the DB specified by dbName to become the default (current) DB on the connection
     void_t close();
         ///< closes a previously opened connection
     void_t kill(const uint64_t pid);
