@@ -35,8 +35,6 @@ Test_MySql::unit()
 	using namespace mysql;
 
 #if cmMYSQL_FOUND
-    std::ctstring_t tableName = xT("ARecErrors");
-
 	FabricaOptions options;
 	Db             db(options);
 	Connection     conn(options);
@@ -48,7 +46,6 @@ Test_MySql::unit()
 
 	{
 		xTEST_GROUP("Db");
-
 
 		xTEST_CASE("show")
 		{
@@ -139,6 +136,8 @@ Test_MySql::unit()
 
 	{
 		xTEST_GROUP("Query");
+
+		std::ctstring_t tableName = xT("ARecErrors");
 
 		xTEST_CASE("exec")
 		{
