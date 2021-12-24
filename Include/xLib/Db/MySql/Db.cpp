@@ -134,8 +134,7 @@ Db::create() const
 		db,
 		options.charset);
 
-	Query query = conn.query(sql);
-	query.exec();
+	conn.query(sql).exec();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -158,8 +157,7 @@ Db::drop() const
 	std::ctstring_t sql = Format::str(xT("DROP DATABASE IF EXISTS `{}`"),
 		_options.db);
 
-	Query query = conn.query(sql);
-	query.exec();
+	conn.query(sql).exec();
 }
 //-------------------------------------------------------------------------------------------------
 
