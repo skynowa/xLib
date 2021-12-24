@@ -10,6 +10,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
+#include <xLib/Fs/FileInfo.h>
 
 
 namespace xl::db::mysql
@@ -31,6 +32,16 @@ Connection::Connection(
     _init();
 }
 //-------------------------------------------------------------------------------------------------
+Connection::Connection(
+	std::ctstring_t &a_optionsFile
+) :
+	_optionsFile{a_optionsFile}
+{
+    xTEST(FileInfo(a_optionsFile).isExists());
+
+    _init();
+}
+//-------------------------------------------------------------------------------------------------
 cHandleMySqlConn &
 Connection::get() const
 {
@@ -47,45 +58,13 @@ Connection::setAutoCommit(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Connection::connect()
+Connection::connect() const
 {
-    xTEST(_conn.isValid());
-
-	// options - default
-	{
-		constexpr int_t connectTimeoutSec {5};
-		constexpr int_t readTimeoutSec    {connectTimeoutSec * 10};
-		constexpr int_t writeTimeoutSec   {connectTimeoutSec * 10};
-
-		static const std::map<mysql_option, cptr_cvoid_t> &options
-		{
-			{MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeoutSec},
-			{MYSQL_OPT_READ_TIMEOUT,    &readTimeoutSec},
-			{MYSQL_OPT_WRITE_TIMEOUT,   &writeTimeoutSec}
-		};
-
-		_setOptions(options);
+	if ( !_optionsFile.empty() ) {
+		_connectByOptionsFile();
+	} else {
+		_connectByOptions();
 	}
-
-	// options - rewrite
-	_setOptions(_options.options);
-
-	cchar    *db         = _options.db.empty() ?         nullptr : xT2A(_options.db).c_str();
-	cchar    *unixSocket = _options.unixSocket.empty() ? nullptr : xT2A(_options.unixSocket).c_str();
-	culong_t  clientFlag = !_options.isCompress ?        0       : CLIENT_COMPRESS;	// bit mask
-
-    MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(_options.host).c_str(),
-        xT2A(_options.user).c_str(), xT2A(_options.password).c_str(), db, _options.port,
-		unixSocket, clientFlag);
-    if (conn == nullptr) {
-        xTEST_MSG(false, Error(*this).str());
-        return;
-    }
-
-    xTEST_EQ(_conn.get(), conn);
-
-	int_t iRv = ::mysql_set_character_set(_conn.get(), _options.charset.c_str());
-	xTEST_EQ_MSG(iRv, 0, Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -201,6 +180,76 @@ Connection::_setOptions(
 	for (const auto &[it_name, it_value] : a_options) {
 		_setOption(it_name, it_value);
 	}
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Connection::_connectByOptions() const
+{
+    xTEST(_conn.isValid());
+
+	// options - default
+	{
+		constexpr int_t connectTimeoutSec {5};
+		constexpr int_t readTimeoutSec    {connectTimeoutSec * 10};
+		constexpr int_t writeTimeoutSec   {connectTimeoutSec * 10};
+
+		static const std::map<mysql_option, cptr_cvoid_t> &options
+		{
+			{MYSQL_OPT_CONNECT_TIMEOUT, &connectTimeoutSec},
+			{MYSQL_OPT_READ_TIMEOUT,    &readTimeoutSec},
+			{MYSQL_OPT_WRITE_TIMEOUT,   &writeTimeoutSec}
+		};
+
+		_setOptions(options);
+	}
+
+	// options - rewrite
+	_setOptions(_options.options);
+
+	cchar_t  *db         = _options.db.empty() ?         nullptr : xT2A(_options.db).c_str();
+	cchar_t  *unixSocket = _options.unixSocket.empty() ? nullptr : xT2A(_options.unixSocket).c_str();
+	culong_t  clientFlag = !_options.isCompress ?        0       : CLIENT_COMPRESS;	// bit mask
+
+    MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(_options.host).c_str(),
+        xT2A(_options.user).c_str(), xT2A(_options.password).c_str(), db, _options.port,
+		unixSocket, clientFlag);
+    if (conn == nullptr) {
+        xTEST_MSG(false, Error(*this).str());
+        return;
+    }
+
+    xTEST_EQ(_conn.get(), conn);
+
+	int_t iRv = ::mysql_set_character_set(_conn.get(), _options.charset.c_str());
+	xTEST_EQ_MSG(iRv, 0, Error(*this).str());
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Connection::_connectByOptionsFile() const
+{
+    xTEST(_conn.isValid());
+
+	_setOption(MYSQL_READ_DEFAULT_FILE, const_cast<char *>(xT2A(_optionsFile).c_str()));
+
+	cchar_t  *host {};
+	cchar_t  *user {};
+	cchar_t  *password {};
+	cchar_t  *db {};
+	cuint_t   port {};
+	cchar_t  *unixSocket {};
+	culong_t  clientFlag {CLIENT_COMPRESS};	// bit mask
+
+    MYSQL *conn = ::mysql_real_connect(_conn.get(), host, user, password, db, port, unixSocket,
+        clientFlag);
+    if (conn == nullptr) {
+        xTEST_MSG(false, Error(*this).str());
+        return;
+    }
+
+    xTEST_EQ(_conn.get(), conn);
+
+	int_t iRv = ::mysql_set_character_set(_conn.get(), _options.charset.c_str());
+	xTEST_EQ_MSG(iRv, 0, Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
 

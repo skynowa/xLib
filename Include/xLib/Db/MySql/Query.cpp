@@ -108,7 +108,7 @@ EscapeQuoted::forQuote(
 	// escape
 	std::tstring_t sRv(_sqlValue.size() * 2 + 1, xT('\0'));
 	{
-		cchar forQuote {xT2A(a_quote)[0]};
+		cchar_t forQuote {xT2A(a_quote)[0]};
 			///< String (char) in which the escaped string is to be placed
 
 		culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get().get(), &sRv[0],
