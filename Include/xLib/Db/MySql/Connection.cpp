@@ -199,10 +199,7 @@ Connection::_setOptions(
 void_t
 Connection::_setAutoCommit() const
 {
-	const char autoMode = static_cast<my_bool>(_options.isAutoCommit);
-		///< flag (if mode is true, off if mode is false)
-
-	bool_t bRv = ::mysql_autocommit(_conn.get(), autoMode);
+	bool_t bRv = ::mysql_autocommit(_conn.get(), _options.isAutoCommit);
 	xTEST_MSG(bRv, Error(*this).str());
 }
 //-------------------------------------------------------------------------------------------------
