@@ -84,16 +84,9 @@ Db::show(
 bool_t
 Db::isExists() const
 {
-    bool_t bRv {};
-
     // Connection
     Connection conn(_options);
-	{
-		bRv = conn.get().isValid();
-		xCHECK_RET(!bRv, false);
-
-		conn.connect();
-	}
+	conn.connect();
 
 	// Query
 	std::ctstring_t sql = Format::str(
@@ -115,12 +108,12 @@ Db::isExists() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * \warning Only admin rights
+ */
 void_t
 Db::create() const
 {
-   /**
-	* \warning Only admin rights
-	*/
 	if ( !User().isAdmin() ) {
 		xTEST_FAIL_MSG(xT("Only admin rights. Stop"));
 		return;
@@ -143,12 +136,12 @@ Db::create() const
 	conn.query(sql).exec();
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * \warning Only admin rights
+ */
 void_t
 Db::drop() const
 {
-   /**
-	* \warning Only admin rights
-	*/
 	if ( !User().isAdmin() ) {
 		xTEST_FAIL_MSG(xT("Only admin rights. Stop"));
 		return;
