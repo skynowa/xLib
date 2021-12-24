@@ -36,23 +36,34 @@ public:
 	UseResult   use() const;
 ///\}
 
-///\name  Escape with quote
-///\brief Creates a legal SQL string for use in an SQL statement as qouted:
-/// - Double quotes turn into: \"
-/// - single quotes turn into: \'
-/// - Single slashes turn into: \\ (double slashes)
-/// - Unescaped: spaces, |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _, etc
-///\{
-	std::tstring_t escapeQuoted(std::ctstring_t &sqlValue, std::ctstring_t &forQuote) const;
-	std::tstring_t escapeQuotedSqm(std::ctstring_t &sqlValue) const;
-	std::tstring_t escapeQuotedDqm(std::ctstring_t &sqlValue) const;
-	std::tstring_t escapeQuotedGa(std::ctstring_t &sqlValue) const;
-///\}
-
 private:
     const Connection &_conn;	///< DB connection
     std::ctstring_t   _sql;		///< SQL query
 };
+//-------------------------------------------------------------------------------------------------
+class EscapeQuoted
+	/// Escape with quote (Brief Creates a legal SQL string for use in an SQL statement as qouted)
+{
+public:
+///\name ctors, dtor
+///\{
+			 EscapeQuoted(const Connection &conn, std::ctstring_t &sqlValue);
+	virtual ~EscapeQuoted() = default;
+
+	xNO_DEFAULT_CONSTRUCT(EscapeQuoted)
+	xNO_COPY_ASSIGN(EscapeQuoted)
+///\}
+
+	std::tstring_t forQuote(std::ctstring_t &forQuote) const;
+	std::tstring_t forSqm() const;
+	std::tstring_t forDqm() const;
+	std::tstring_t forGa() const;
+
+private:
+    const Connection &_conn;		///< DB connection
+    std::ctstring_t   _sqlValue;	///< SQL query value
+};
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
