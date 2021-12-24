@@ -96,8 +96,8 @@ Db::isExists() const
 	conn.connect();
 
 	std::ctstring_t sql = Format::str(
-		xT("SELECT count(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '{}'"),
-		_options.db);
+		xT("SELECT count(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = {}"),
+		EscapeQuoted(conn, _options.db).forSqm());
 
 	StoreResult result = conn.query(sql).store();
 
@@ -132,7 +132,7 @@ Db::create() const
 
 	std::ctstring_t sql = Format::str(xT("CREATE DATABASE IF NOT EXISTS `{}` CHARACTER SET {}"),
 		db,
-		options.charset);
+		EscapeQuoted(conn, _options.charset).forSqm());
 
 	conn.query(sql).exec();
 }
@@ -155,7 +155,7 @@ Db::drop() const
 	conn.connect();
 
 	std::ctstring_t sql = Format::str(xT("DROP DATABASE IF EXISTS `{}`"),
-		_options.db);
+		EscapeQuoted(conn, _options.db).forSqm());
 
 	conn.query(sql).exec();
 }
