@@ -43,7 +43,7 @@ public:
 		///< Causes the DB specified by dbName to become the default (current) DB on the connection
     void_t close();
         ///< closes a previously opened connection
-    void_t kill(const uint64_t pid);
+    void_t kill(std::cuint64_t pid);
         ///< Asks the server to kill the thread specified by pid.
 ///@}
 

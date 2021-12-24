@@ -14,7 +14,6 @@
 //-------------------------------------------------------------------------------------------------
 namespace xl
 {
-
     using void_t = void;
     xUSING_CONST(void_t);
 
@@ -178,6 +177,24 @@ namespace xl
 //-------------------------------------------------------------------------------------------------
 namespace std
 {
+///\name Fixed width integer types
+///\see  https://en.cppreference.com/w/cpp/types/integer
+///@{
+	xUSING_CONST(int8_t);
+	xUSING_CONST(uint8_t);
+
+	xUSING_CONST(int16_t);
+	xUSING_CONST(uint16_t);
+
+	xUSING_CONST(int32_t);
+	xUSING_CONST(uint32_t);
+
+	xUSING_CONST(int64_t);
+	xUSING_CONST(uint64_t);
+
+	xUSING_CONST(intptr_t);
+	xUSING_CONST(uintptr_t);
+///@}
 
     // std::size_t
 #if   xENV_WIN
