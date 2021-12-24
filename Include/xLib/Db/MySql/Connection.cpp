@@ -206,13 +206,16 @@ Connection::_connectByOptions() const
 	// options - rewrite
 	_setOptions(_options.options);
 
+	cchar_t  *host       = xT2A(_options.host).c_str();
+	cchar_t  *user       = xT2A(_options.user).c_str();
+	cchar_t  *password   = xT2A(_options.password).c_str();
 	cchar_t  *db         = _options.db.empty() ?         nullptr : xT2A(_options.db).c_str();
+	cuint_t   port       = _options.port;
 	cchar_t  *unixSocket = _options.unixSocket.empty() ? nullptr : xT2A(_options.unixSocket).c_str();
 	culong_t  clientFlag = !_options.isCompress ?        0       : CLIENT_COMPRESS;	// bit mask
 
-    MYSQL *conn = ::mysql_real_connect(_conn.get(), xT2A(_options.host).c_str(),
-        xT2A(_options.user).c_str(), xT2A(_options.password).c_str(), db, _options.port,
-		unixSocket, clientFlag);
+    MYSQL *conn = ::mysql_real_connect(_conn.get(), host, user, password, db, port, unixSocket,
+        clientFlag);
     if (conn == nullptr) {
         xTEST_MSG(false, Error(*this).str());
         return;

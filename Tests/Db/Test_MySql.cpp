@@ -68,7 +68,7 @@ Test_MySql::unit()
 		xTEST_CASE("create")
 		{
 			if (options.isFabrica()) {
-				// n/a
+				Cout() << xT("n/a");
 			} else {
 				/// db.create();
 				/// xTEST(db.isExists());
@@ -78,7 +78,7 @@ Test_MySql::unit()
 		xTEST_CASE("drop")
 		{
 			if (options.isFabrica()) {
-				// n/a
+				Cout() << xT("n/a");
 			} else {
 				/// db.drop();
 				/// xTEST(!db.isExists());
