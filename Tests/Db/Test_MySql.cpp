@@ -14,7 +14,7 @@ class FabricaOptions :
 public:
 	FabricaOptions() :
 		mysql::Options(xT("mysql-api-master.office.fabrica.net.ua"), xT("triptake"), xT("inae4Ees"),
-			xT("triptake"), 3306, {}, xT("utf8mb4"), true, true, {})
+			xT("triptake"), 3306, {}, xT("utf8mb4"), true, {})
 	{
 	}
 
