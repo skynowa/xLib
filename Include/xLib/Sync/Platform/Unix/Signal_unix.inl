@@ -27,7 +27,7 @@ Signal::_decription_impl(
     * FAQ: ::psignal, ::sys_siglist
     */
 
-    cptr_cchar pcszRv = ::strsignal(a_signalNum);
+	cptr_cchar_t pcszRv = ::strsignal(a_signalNum);
     if (pcszRv == nullptr) {
         return Const::strUnknown();
     }

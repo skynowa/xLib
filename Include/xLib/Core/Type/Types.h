@@ -20,8 +20,8 @@ namespace xl
     using bool_t = bool;
     xUSING_CONST(bool_t);
 
-    xUSING_CONST(char);
-    xUSING_CONST(wchar_t);
+    using char_t = char;
+    xUSING_CONST(char_t);
 
     // tchar_t
 #if xUNICODE
@@ -161,7 +161,7 @@ namespace xl
 
 	// Pointers
 	xUSING_PTR_CONST(void_t);
-	xUSING_PTR_CONST(char);
+	xUSING_PTR_CONST(char_t);
 	xUSING_PTR_CONST(wchar_t);
 	xUSING_PTR_CONST(tchar_t);
 	xUSING_PTR_CONST(uchar_t);

@@ -158,10 +158,10 @@ using pipe_unique_ptr_t = std::unique_ptr<std::FILE, int (*)(std::FILE *)>;
 template<class HandleT, class FunctorT, class DeleterT>
 HandleT makeUnique(FunctorT functor, DeleterT deleter);
 //-------------------------------------------------------------------------------------------------
-file_unique_ptr_t autoFile(std::ctstring_t &filePath, cptr_cchar flags);
+file_unique_ptr_t autoFile(std::ctstring_t &filePath, cptr_cchar_t flags);
 
 #if xENV_UNIX
-pipe_unique_ptr_t autoPipe(std::ctstring_t &cmdLine, cptr_cchar flags);
+pipe_unique_ptr_t autoPipe(std::ctstring_t &cmdLine, cptr_cchar_t flags);
 dll_unique_ptr_t  autoDll(std::ctstring_t &dllPath, cint_t flags);
 dir_unique_ptr_t  autoDir(std::ctstring_t &dirPath);
 #endif
