@@ -32,11 +32,11 @@ Db::Db(
 //-------------------------------------------------------------------------------------------------
 void_t
 Db::show(
-	std::ctstring_t    &a_wildcard,	///< simple regular expression (SQL LIKE)
+	std::ctstring_t    &a_sqlLike,	///< simple regular expression (SQL LIKE)
 	std::vec_tstring_t *out_dbNames	///< [out]
 ) const
 {
-	xTESTS_NA(a_wildcard);
+	xTESTS_NA(a_sqlLike);
 	xTEST_PTR(out_dbNames);
 
 	out_dbNames->clear();
@@ -53,9 +53,9 @@ Db::show(
 	}
 
 	// Query
-	std::ctstring_t &sql = a_wildcard.empty() ?
+	std::ctstring_t &sql = a_sqlLike.empty() ?
 		xT("SHOW DATABASES") :
-		Format::str(xT("SHOW DATABASES LIKE '{}'"), a_wildcard);
+		Format::str(xT("SHOW DATABASES LIKE '{}'"), a_sqlLike);
 
 	// Result
 	{

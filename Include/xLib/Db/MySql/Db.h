@@ -24,7 +24,7 @@ public:
 	xNO_COPY_ASSIGN(Db)
 ///\}
 
-	void_t show(std::ctstring_t &wildcard, std::vec_tstring_t *dbNames) const;
+	void_t show(std::ctstring_t &sqlLike, std::vec_tstring_t *dbNames) const;
 		///< list DB names
 	void_t show(std::vec_tstring_t *dbNames) const;
 		///< list DB names
