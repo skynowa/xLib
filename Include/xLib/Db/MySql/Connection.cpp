@@ -232,6 +232,7 @@ Connection::_connectByOptionsFile() const
 {
     xTEST(_conn.isValid());
 
+    // options - from file
 	_setOption(MYSQL_READ_DEFAULT_FILE, const_cast<char *>(xT2A(_optionsFile).c_str()));
 
 	cchar_t  *host {};
