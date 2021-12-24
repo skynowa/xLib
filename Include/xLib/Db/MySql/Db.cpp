@@ -51,7 +51,7 @@ Db::show(
 	// Query
 	std::ctstring_t &sql = a_sqlLike.empty() ?
 		xT("SHOW DATABASES") :
-		Format::str(xT("SHOW DATABASES LIKE '{}'"), a_sqlLike);
+		Format::str(xT("SHOW DATABASES LIKE {}"), EscapeQuoted(conn, a_sqlLike).forSqm());
 
 	// Result
 	{
@@ -126,7 +126,7 @@ Db::create() const
 	Connection conn(options);
 	conn.connect();
 
-	std::ctstring_t sql = Format::str(xT("CREATE DATABASE IF NOT EXISTS `{}` CHARACTER SET {}"),
+	std::ctstring_t sql = Format::str(xT("CREATE DATABASE IF NOT EXISTS {} CHARACTER SET {}"),
 		db,
 		EscapeQuoted(conn, _options.charset).forSqm());
 
