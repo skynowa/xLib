@@ -27,8 +27,8 @@ template<typename ...ArgsT>
 /* static */
 inline std::tstring_t
 FormatT<StreamT>::str(
-	std::ctstring_view_t  a_fmt,
-	const ArgsT          &...a_args
+	std::ctstring_view_t  a_fmt,		///< format string
+	const ArgsT          &...a_args		///< argument
 )
 {
 	constexpr std::size_t argsSize {sizeof...(ArgsT)};
@@ -101,11 +101,13 @@ template<typename StreamT>
 /* static */
 inline bool_t
 FormatT<StreamT>::_testFmt(
-	std::ctstring_view_t a_fmt,
-	std::csize_t         a_argsSize,
-	std::csize_t         a_specifiersFound
+	std::ctstring_view_t a_fmt,				///< format string
+	std::csize_t         a_argsSize,		///< arguments size
+	std::csize_t         a_specifiersFound	///< number of found specifiers
 )
 {
+	static_assert(_specifier.size() == 2, xT("Bad _specifier"));
+
 	std::size_t specifierOpen  {};
 	std::size_t specifierClose {};
 	{

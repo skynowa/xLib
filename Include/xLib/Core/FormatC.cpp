@@ -52,7 +52,7 @@ FormatC::strV(
 
     xCHECK_RET(a_format == nullptr, std::tstring_t());
 
-    std::size_t buffSize = 0;
+    std::size_t buffSize {};
     {
         va_list args;
         xVA_COPY(args, a_args);
