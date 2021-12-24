@@ -49,9 +49,10 @@ Db::show(
 	}
 
 	// Query
-	std::ctstring_t &sql = a_sqlLike.empty() ?
-		xT("SHOW DATABASES") :
-		Format::str(xT("SHOW DATABASES LIKE {}"), EscapeQuoted(conn, a_sqlLike).forSqm());
+	std::tstring_t sql = xT("SHOW DATABASES");
+	if ( !a_sqlLike.empty() ) {
+		sql += Format::str(xT(" LIKE {}"), EscapeQuoted(conn, a_sqlLike).forSqm());
+	}
 
 	// Result
 	{
