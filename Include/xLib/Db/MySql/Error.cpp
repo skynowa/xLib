@@ -57,8 +57,8 @@ Error::str() const
 
     std::tstring_t sRv;
 
-    cuint_t    code_ = code();
-    cptr_cchar str   = ::mysql_error(_conn.get().get());
+    cuint_t      code_ = code();
+    cptr_cchar_t str   = ::mysql_error(_conn.get().get());
     xTEST_PTR(str);
 
     if ( isOk() ) {

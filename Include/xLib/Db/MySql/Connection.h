@@ -7,11 +7,11 @@
 #pragma once
 
 #include <xLib/Db/MySql/Common.h>
+#include <xLib/Db/MySql/Options.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::db::mysql
 {
 
-class Options;
 class Query;
 
 class Connection
@@ -20,7 +20,10 @@ class Connection
 public:
 ///\name ctors, dtor
 ///\{
-			 Connection(const Options &options);
+	explicit Connection(const Options &options);
+		///< Read options from Options struct
+	explicit Connection(std::ctstring_t &optionsFile);
+		///< Read options from the named option file instead of from my.cnf
 	virtual ~Connection() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Connection)
@@ -32,7 +35,7 @@ public:
 
 ///\name Connection
 ///\{
-	void_t connect();
+	void_t connect() const;
 		///< attempts to establish a connection to a MySql database engine running on host
 	void_t reconnect();
 		///< reconnect to DB
@@ -60,8 +63,9 @@ public:
 ///\}
 
 private:
-    const Options   &_options; ///< Connection data
-    HandleMySqlConn  _conn; ///< handler for one database connection
+    const Options   _options;		///< Connection data
+    std::ctstring_t _optionsFile;	///< Connection data from file my.cnf
+    HandleMySqlConn _conn;			///< handler for one database connection
 
     void_t _init();
 		///< initiation
@@ -72,6 +76,12 @@ private:
 		///< set extra connect options and affect behavior
 	void_t _setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
 		///< set extra connect options and affect behavior
+///\}
+
+///\name Connection
+///\{
+	void_t _connectByOptions() const;
+	void_t _connectByOptionsFile() const;
 ///\}
 };
 
