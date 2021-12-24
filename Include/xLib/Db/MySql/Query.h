@@ -31,10 +31,9 @@ public:
 
 ///@name Executes the SQL statement
 ///@{
-	void_t exec() const;
-
-	StoreResult store();
-	UseResult   use();
+	void_t      exec() const;
+	StoreResult store() const;
+	UseResult   use() const;
 ///@}
 
 ///\name  Escape with quote
