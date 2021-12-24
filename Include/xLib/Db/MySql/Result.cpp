@@ -68,13 +68,13 @@ IResult::fields() const
  * For statements such as INSERT, UPDATE, or DELETE, the number of affected rows can be obtained
  * with mysql_affected_rows().
  */
-uint64_t
+std::uint64_t
 IResult::rows() const
 {
     xTEST_NA(_result);
     xTEST_NA(_conn);
 
-    uint64_t ullRv {};
+    std::uint64_t ullRv {};
 
 	if      ( _result.isValid() ) {
 		ullRv = ::mysql_num_rows( _result.get() );

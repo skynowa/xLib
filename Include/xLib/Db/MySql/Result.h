@@ -34,9 +34,9 @@ public:
     HandleMySqlResult &get();
         ///< get handle
 
-    std::size_t fields() const;
+    std::size_t   fields() const;
         ///< number of columns in a result set / connection
-    uint64_t    rows() const;
+    std::uint64_t rows() const;
         ///< number of rows in the result set / connection
 
 ///\name Fetch
