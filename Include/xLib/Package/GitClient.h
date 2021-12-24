@@ -15,13 +15,13 @@ class GitClient
     /// GIT client
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
              GitClient();
     virtual ~GitClient();
 
     xNO_COPY_ASSIGN(GitClient)
-///@}
+///\}
 
 	bool           isGitDir() const;
 		///< check Git directory

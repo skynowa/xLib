@@ -105,8 +105,8 @@
         ( 65535 )
     ///< socket maximum port number
 //-------------------------------------------------------------------------------------------------
-///@name Custom defines
-///@{
+///\name Custom defines
+///\{
 #define xCUSTOM_SEMAPHORE_VALUE_MAX_WIN \
     (LONG_MAX)
     ///< semaphore maximum value (tested on Win7 x64)
@@ -124,5 +124,5 @@
         ( static_cast<std::size_t>(16) )
 #endif
     ///< thread name max length
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------

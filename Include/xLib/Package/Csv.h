@@ -40,13 +40,13 @@ class CsvReader :
     /// CSV reader
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  CsvReader(cCsvData &data);
 	virtual  ~CsvReader() = default;
 
 	xNO_COPY_ASSIGN(CsvReader)
-///@}
+///\}
 
     bool_t         loadFile(std::ctstring_t &filePath);
     bool_t         loadString(std::ctstring_t &rawString);
@@ -70,13 +70,13 @@ class CsvWriter :
     /// CSV writer
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  CsvWriter(cCsvData &data);
 	virtual  ~CsvWriter() = delete;
 
     xNO_COPY_ASSIGN(CsvWriter)
-///@}
+///\}
 
     void_t     saveFile(crow_t &header, crows_t &rows, std::ctstring_t &filePath);
     void_t     saveString(crow_t &header, crows_t &rows, std::tstring_t *rawString);

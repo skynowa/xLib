@@ -15,14 +15,14 @@ class Environment
     /// system environment variables
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit Environment(std::ctstring_t &varName);
 	virtual ~Environment() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Environment)
 	xNO_COPY_ASSIGN(Environment)
-///@}
+///\}
 
     bool_t         isExists() const;
         ///< check for existence

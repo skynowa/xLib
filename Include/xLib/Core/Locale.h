@@ -15,13 +15,13 @@ class Locale
     /// locale
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			Locale() = default;
    virtual ~Locale() = default;
 
    xNO_COPY_ASSIGN(Locale)
-///@}
+///\}
 
    std::tstring_t current() const;
           ///< get current

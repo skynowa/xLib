@@ -9,8 +9,8 @@
 #include <xLib/Core/Defines.h>
 
 //-------------------------------------------------------------------------------------------------
-///@name compile time build info messages
-///@{
+///\name compile time build info messages
+///\{
 #define xBUILD_MESSAGE(msg) xBUILD_MSG("MESSAGE", msg)
 #define xBUILD_INFO(msg)    xBUILD_MSG("INFO",    msg)
 #define xBUILD_WARNING(msg) xBUILD_MSG("WARNING", msg)
@@ -26,10 +26,10 @@
 #define xBUILD_HACK(msg)    xBUILD_MSG("HACK",    msg)
 #define xBUILD_CUSTOM(msg)  xBUILD_MSG("CUSTOM",  msg)
 #define xBUILD_MAGIC(msg)   xBUILD_MSG("MAGIC",   msg)
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name check condition
-///@{
+///\name check condition
+///\{
 #define xCHECK_RET(expr, return_expr) \
     { if (expr) { return (return_expr); } }
     ///< check expression and return value
@@ -51,10 +51,10 @@
 #define xCHECKS_NA \
     ;
     ///< at this point check code for variables is not applicable
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Trace variables (variable with value)
-///@{
+///\name Trace variables (variable with value)
+///\{
 #define xTRACE_VAR(v1) \
 	#v1 xT(": ") << (v1)
 #define xTRACE_VAR_2(v1, v2) \
@@ -85,7 +85,7 @@
 	xT("Invalid ") << xTRACE_VAR(v)
 #define xTRACE_PTR(p) \
 	#p xT(": ") << xT("{") << p << xT(", ") << (p ? *p : 0) << xT("}")
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
 #define xTRACE_POINT \
     { \

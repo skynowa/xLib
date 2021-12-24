@@ -19,8 +19,8 @@ class Path :
     /// file system path
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  Path(std::ctstring_t &filePath);
 	virtual  ~Path() = default;
 
@@ -44,12 +44,12 @@ public:
 	// dirs
 	static Path homeDir();
 	static Path trashDir();
-///@}
+///\}
 
-///@name interfaces
-///@{
+///\name interfaces
+///\{
 	void_t print(std::tostream_t &stream) const override;
-///@}
+///\}
 
     bool_t         isAbsolute() const;
         ///< is absolute

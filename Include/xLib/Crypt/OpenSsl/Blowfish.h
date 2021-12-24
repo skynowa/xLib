@@ -26,28 +26,28 @@ public:
     };
     xUSING_CONST(Mode);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Blowfish();
 	virtual ~Blowfish();
 
 	xNO_COPY_ASSIGN(Blowfish)
-///@}
+///\}
 
-///@name set key
-///@{
+///\name set key
+///\{
 	void_t setKey(uchar_t *key, cint_t &keySize);
 	void_t setKey(std::custring_t &key);
 	void_t setKey(std::ctstring_t &key);
 	void_t setFileKey(std::ctstring_t &filePath);
-///@}
+///\}
 
-///@name ecrypt with cfb64
-///@{
+///\name ecrypt with cfb64
+///\{
 	void_t encryptCfb64(cMode mode, cuchar_t *in, uchar_t *out, clong_t &inSize, int_t *num);
 	void_t encryptCfb64(cMode mode, std::custring_t &in, std::ustring_t *out);
 	void_t encryptFileCfb64(cMode mode, std::ctstring_t &filePathIn, std::ctstring_t &filePathOut);
-///@}
+///\}
 
 private:
     BF_KEY  _key {};            ///< crypt key

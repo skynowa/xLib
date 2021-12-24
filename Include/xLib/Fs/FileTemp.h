@@ -18,15 +18,15 @@ class FileTemp
     /// temporary file
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit FileTemp(std::ctstring_t &filePathPrefix, std::ctstring_t &dirPath,
 				cbool_t isAutoDelete);
 	virtual ~FileTemp();
 
 	xNO_DEFAULT_CONSTRUCT(FileTemp)
 	xNO_COPY_ASSIGN(FileTemp)
-///@}
+///\}
 
     void_t create(FileIO *file);
         ///< create temporary file, open it

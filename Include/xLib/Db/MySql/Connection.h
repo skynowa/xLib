@@ -19,20 +19,20 @@ class Connection
     /// MySql connection
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Connection(const Options &options);
 	virtual ~Connection() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Connection)
 	xNO_COPY_ASSIGN(Connection)
-///@}
+///\}
 
     cHandleMySqlConn &get() const;
         ///< get handle
 
-///@name Connection
-///@{
+///\name Connection
+///\{
 	void_t connect();
 		///< attempts to establish a connection to a MySql database engine running on host
 	void_t reconnect();
@@ -45,17 +45,17 @@ public:
         ///< closes a previously opened connection
     void_t kill(std::cuint64_t pid);
         ///< Asks the server to kill the thread specified by pid.
-///@}
+///\}
 
-///@name Commit
-///@{
+///\name Commit
+///\{
 	void_t commit();
 		///< commits the current transaction
 	void_t rollback();
 		///< rolls back the current transaction
 	Query  query(std::ctstring_t &sql) const;
 		///< get Query object
-///@}
+///\}
 
 private:
     const Options   &_options; ///< Connection data
@@ -64,8 +64,8 @@ private:
     void_t _init();
 		///< initiation
 
-///@name Options
-///@{
+///\name Options
+///\{
 	void_t _setOption(const mysql_option option, cptr_cvoid_t arg) const;
 		///< set extra connect options and affect behavior
 	void_t _setOptions(const std::map<mysql_option, cptr_cvoid_t> &options) const;
@@ -73,7 +73,7 @@ private:
 	void_t _setAutoCommit() const;
 		///< sets autocommit mode on
 		///< \note: Must be called AFTER connect()
-///@}
+///\}
 };
 
 } // namespace

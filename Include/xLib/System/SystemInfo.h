@@ -61,13 +61,13 @@ public:
     };
     xUSING_CONST(CpuVendor);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 SystemInfo() = default;
 	virtual ~SystemInfo() = default;
 
 	xNO_COPY_ASSIGN(SystemInfo)
-///@}
+///\}
 
     // OS
     OsType         os();

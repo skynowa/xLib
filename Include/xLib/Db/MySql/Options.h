@@ -14,18 +14,18 @@ namespace xl::db::mysql
 class Options
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
             Options();
             Options(std::ctstring_t &host, std::ctstring_t &user, std::ctstring_t &password,
                 std::ctstring_t &db, cuint_t port, std::ctstring_t &unixSocket,
                 std::ctstring_t &charset, cbool_t isAutoCommit, cbool_t isCompress,
                 const std::map<mysql_option, cptr_cvoid_t> &options);
     virtual ~Options() = default;
-///@}
+///\}
 
-///@name Config data (options)
-///@{
+///\name Config data (options)
+///\{
 	std::tstring_t host;
 		///< host name or an IP address.
 		///< If host is empty (NULL or the empty string "") or the string "localhost",
@@ -48,7 +48,7 @@ public:
 		///< Use compression in the client/server protocol
 	std::map<mysql_option, cptr_cvoid_t> options;
 		///< extra options
-///@}
+///\}
 };
 
 } // namespace

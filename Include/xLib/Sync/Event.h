@@ -36,14 +36,14 @@ public:
 	#endif
     };
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Event(cbool_t isAutoReset, cbool_t isSignaled);
 	virtual ~Event();
 
 	xNO_DEFAULT_CONSTRUCT(Event)
 	xNO_COPY_ASSIGN(Event)
-///@}
+///\}
 
     const handle_t & handle() const;
         ///< get handle

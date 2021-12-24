@@ -19,13 +19,13 @@ class Translate :
     /// Translate text (by Google API, mobile version)
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Translate() = default;
 	virtual ~Translate() = default;
 
 	xNO_COPY_ASSIGN(Translate)
-///@}
+///\}
 
     void_t execute(std::ctstring_t &textFrom, std::tstring_t *textToBrief,
 				std::tstring_t *textToDetail, std::tstring_t *textToRaw,

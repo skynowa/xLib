@@ -95,13 +95,13 @@ class Type
     /// type info
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Type() = delete;
 	virtual ~Type() = delete;
 
 	xNO_COPY_ASSIGN(Type)
-///@}
+///\}
 
     template<typename T>
     static

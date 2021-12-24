@@ -34,11 +34,11 @@ public:
     std::tstring_t vendorJabber;
     std::tstring_t vendorIcq;
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 ApplicationInfo() = default;
 	virtual ~ApplicationInfo() = default;
-///@}
+///\}
 ///
     std::tstring_t versionFull() const;
 };

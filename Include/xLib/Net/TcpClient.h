@@ -17,13 +17,13 @@ class TcpClient :
     /// client socket
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 TcpClient();
 	virtual ~TcpClient() = default;
 
 	xNO_COPY_ASSIGN(TcpClient)
-///@}
+///\}
 
     void_t   connect(std::ctstring_t &ip, cushort_t &port) const;
         ///< connecting

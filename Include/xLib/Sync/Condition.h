@@ -15,13 +15,13 @@ class Condition
     /// condition variable
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Condition() = default;
 	virtual ~Condition();
 
 	xNO_COPY_ASSIGN(Condition)
-///@}
+///\}
 
 #if !xENV_WIN
     const pthread_mutex_t & mutex() const;

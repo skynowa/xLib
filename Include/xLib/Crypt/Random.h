@@ -15,13 +15,13 @@ class xNO_VTABLE ISeedPolicy
     /// seed policy interface
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 ISeedPolicy();
 	virtual ~ISeedPolicy() = default;
 
 	xNO_COPY_ASSIGN(ISeedPolicy)
-///@}
+///\}
 
     virtual long_t next() = 0;
         ///< next value
@@ -43,13 +43,13 @@ class StdSeedPolicy :
     /// std seed policy
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 StdSeedPolicy();
 	virtual ~StdSeedPolicy() = default;
 
 	xNO_COPY_ASSIGN(StdSeedPolicy)
-///@}
+///\}
 
     virtual long_t next() override;
         ///< get integer in the range between 0 and RAND_MAX
@@ -64,13 +64,13 @@ class NativeSeedPolicy :
     /// native seed policy
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 NativeSeedPolicy();
 	virtual ~NativeSeedPolicy();
 
 	xNO_COPY_ASSIGN(NativeSeedPolicy)
-///@}
+///\}
 
     virtual long_t next() override;
         ///< get long integer in the range between 0 and RAND_MAX
@@ -95,13 +95,13 @@ class Random
     /// random
 {
 public:
-///@name operators
-///@{
+///\name operators
+///\{
 			 Random();
 	virtual ~Random() = default;
 
     xNO_COPY_ASSIGN(Random)
-///@}
+///\}
 
     bool_t nextBool();
         ///< get bool_t value

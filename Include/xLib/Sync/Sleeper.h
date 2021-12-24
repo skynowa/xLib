@@ -16,13 +16,13 @@ class Sleeper
     /// sleeper
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Sleeper();
 	virtual ~Sleeper() = default;
 
 	xNO_COPY_ASSIGN(Sleeper)
-///@}
+///\}
 
     void_t sleep(culong_t &timeoutMsec);
         ///< sleep

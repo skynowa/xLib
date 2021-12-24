@@ -16,8 +16,8 @@ class Raii
     ///< RAII
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit Raii(T &a_object) :
 		_object(a_object)
 	{
@@ -29,7 +29,7 @@ public:
 	}
 
     xNO_COPY_ASSIGN(Raii)
-///@}
+///\}
 
     T &get()
     {

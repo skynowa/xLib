@@ -12,8 +12,8 @@
 #include <cstdlib> // compilers
 #include <climits> // standard C libraries, <features.h>
 //-------------------------------------------------------------------------------------------------
-///@name Utils
-///@{
+///\name Utils
+///\{
 #define xVER_FULL(major, minor, patch) \
     (major * 10000 + minor * 100 + patch)
     ///< version builder
@@ -27,10 +27,10 @@
     #define xLINUX_KERNEL_VER KERNEL_VERSION
 #endif
     ///< get Linux kernel version
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name C language standard
-///@{
+///\name C language standard
+///\{
 #if   (__STDC_VERSION__ >= 202002L)
     #define xLANG_C20 1
         ///< C20
@@ -66,10 +66,10 @@
 		#error xLib: unsupported C language standard
 	#endif
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name C++ language standard
-///@{
+///\name C++ language standard
+///\{
 #if   (__cplusplus >= 202002L)
 	// TODO: [skynowa] xLANG_CPP20 (Android)
 	#define xLANG_CPP20 1
@@ -95,10 +95,10 @@
 #else
 	#error xLib: unsupported C++ language standard
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name OS environment
-///@{
+///\name OS environment
+///\{
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || \
         defined(__WINDOWS__)
     #define xENV_WIN 1
@@ -123,10 +123,10 @@
 #else
     #error xLib: unsupported OS environment
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name OS family
-///@{
+///\name OS family
+///\{
 #if   xENV_WIN
     #define xOS_WIN 1
         ///< OS Windows
@@ -159,10 +159,10 @@
 #if !xOS_ANDROID
     #define xTODO_ANDROID 1
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name OS version
-///@{
+///\name OS version
+///\{
 #define xOS_WIN_VER     WINVER
     ///< Windows version
 #define xOS_WIN_NT4     0x0400
@@ -186,10 +186,10 @@
 
 #define xOS_FREEBSD_VER __FreeBSD__
     ///< FreeBSD version
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name OS architecture
-///@{
+///\name OS architecture
+///\{
 #if   defined(__alpha__) || defined(__alpha) || defined(_M_ALPHA)
     #define xARCH_ALPHA 1
         ///< architecture Alpha
@@ -264,10 +264,10 @@
 #else
     #error xLib: unsupported architecture
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name OS bits architecture
-///@{
+///\name OS bits architecture
+///\{
 #if   defined(xARCH_ARM) || defined(xARCH_BLACKFIN) || defined(xARCH_INTEL_X86) || \
         defined(xARCH_MOTOROLA_68K) || defined(xARCH_SUPERH)
     #define xARCH_BITS_32 1
@@ -280,16 +280,16 @@
 #else
     #error xLib: unsupported bits architecture
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Compiler types
-///@{
+///\name Compiler types
+///\{
 #if   defined(__MINGW32__) || defined(__MINGW64__)
     #define xCOMPILER_MINGW 1
         ///< compiler MinGW
 
-    ///@name Compiler version
-    ///@{
+    ///\name Compiler version
+    ///\{
     #define xCOMPILER_MINGW32_VER_MAJOR __MINGW32_MAJOR_VERSION
     #define xCOMPILER_MINGW32_VER_MINOR __MINGW32_MINOR_VERSION
     #define xCOMPILER_MINGW32_VER_PATCH 0
@@ -305,13 +305,13 @@
         xVER_FULL(xCOMPILER_MINGW64_VER_MAJOR, xCOMPILER_MINGW64_VER_MINOR, xCOMPILER_MINGW64_VER_PATCH)
     #define xCOMPILER_MINGW64_VER_STR \
         xVER_FULL_STR(xCOMPILER_MINGW64_VER_MAJOR, xCOMPILER_MINGW64_VER_MINOR, xCOMPILER_MINGW64_VER_PATCH)
-    ///@}
+    ///\}
 #elif defined(_MSC_VER) || defined(_MSC_FULL_VER) || defined(_MSC_BUILD)
     #define xCOMPILER_MS 1
         ///< compiler Microsoft Visual C++
 
-    ///@name Compiler version
-    ///@{
+    ///\name Compiler version
+    ///\{
     #define xCOMPILER_MS_VER_MAJOR _MSC_VER
     #define xCOMPILER_MS_VER_MINOR 0
     #define xCOMPILER_MS_VER_PATCH 0
@@ -319,15 +319,15 @@
         xVER_FULL(xCOMPILER_MS_VER_MAJOR, xCOMPILER_MS_VER_MINOR, xCOMPILER_MS_VER_MINOR)
     #define xCOMPILER_MS_VER_STR \
         xVER_FULL_STR(xCOMPILER_MS_VER_MAJOR, xCOMPILER_MS_VER_MINOR, xCOMPILER_MS_VER_MINOR)
-    ///@}
+    ///\}
 #elif defined(__clang__)
     // xCOMPILER_CLANG also __GNUC__
     #define xCOMPILER_CLANG 1
     #define xCOMPILER_GNUC 1
         ///< compiler Clang
 
-    ///@name Compiler version
-    ///@{
+    ///\name Compiler version
+    ///\{
     #define xCOMPILER_CLANG_VER_MAJOR __clang_major__
     #define xCOMPILER_CLANG_VER_MINOR __clang_minor__
     #define xCOMPILER_CLANG_VER_PATCH __clang_patchlevel__
@@ -335,13 +335,13 @@
         xVER_FULL(xCOMPILER_CLANG_VER_MAJOR, xCOMPILER_CLANG_VER_MINOR, xCOMPILER_CLANG_VER_PATCH)
     #define xCOMPILER_CLANG_VER_STR \
         xVER_FULL_STR(xCOMPILER_CLANG_VER_MAJOR, xCOMPILER_CLANG_VER_MINOR, xCOMPILER_CLANG_VER_PATCH)
-    ///@}
+    ///\}
 #elif defined(__GNUC__)
     #define xCOMPILER_GNUC 1
         ///< compiler GNU C/C++
 
-    ///@name Compiler version
-    ///@{
+    ///\name Compiler version
+    ///\{
     #define xCOMPILER_GNUC_VER_MAJOR __GNUC__
     #define xCOMPILER_GNUC_VER_MINOR __GNUC_MINOR__
     #define xCOMPILER_GNUC_VER_PATCH __GNUC_PATCHLEVEL__
@@ -349,11 +349,11 @@
         xVER_FULL(xCOMPILER_GNUC_VER_MAJOR, xCOMPILER_GNUC_VER_MINOR, xCOMPILER_GNUC_VER_PATCH)
     #define xCOMPILER_GNUC_VER_STR \
         xVER_FULL_STR(xCOMPILER_GNUC_VER_MAJOR, xCOMPILER_GNUC_VER_MINOR, xCOMPILER_GNUC_VER_PATCH)
-    ///@}
+    ///\}
 #else
     #error xLib: unsupported compiler
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
 #define xCOMPILER_FLAGS \
 	cmXLIB_COMPILER_FLAGS
@@ -362,8 +362,8 @@
 	cmXLIB_LIBRARIES
 	///< xLib linked linraries
 //-------------------------------------------------------------------------------------------------
-///@name Standard C libraries
-///@{
+///\name Standard C libraries
+///\{
 #if   xENV_WIN
     #if xCOMPILER_MINGW
         #include <bits/c++config.h>
@@ -484,10 +484,10 @@
         /// #pragma message "xLib: unknown standard C library"
     #endif
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Standard C++ libraries
-///@{
+///\name Standard C++ libraries
+///\{
 #if   xENV_WIN
     #if   defined(__MSVCRT__)
         #define xSTD_LIBCPP_MSVCRT           1
@@ -555,10 +555,10 @@
         #pragma message "xLib: unknown standard C++ library"
     #endif
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Unicode, ansi
-///@{
+///\name Unicode, ansi
+///\{
 #if defined(UNICODE) || defined(_UNICODE)
     #define xUNICODE 1
         ///< unicode
@@ -566,10 +566,10 @@
     #define xANSI 1
         ///< ansi
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Debug, release build
-///@{
+///\name Debug, release build
+///\{
 #if defined(NDEBUG) || defined(_NDEBUG)
     #define xBUILD_RELEASE 1
         ///< release build
@@ -577,10 +577,10 @@
     #define xBUILD_DEBUG 1
         ///< debug build
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Detect third-party libraries
-///@{
+///\name Detect third-party libraries
+///\{
 #if defined(BOOST_VERSION)
     #define xLIB_BOOST 1
         ///< Boost library
@@ -590,6 +590,6 @@
     #define xLIB_QT 1
         ///< Qt library
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Internal/Warnings.h>

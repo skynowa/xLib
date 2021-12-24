@@ -16,13 +16,13 @@ class FeatureFlag
     /// Feature flag / toggle
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 FeatureFlag() = default;
 	virtual ~FeatureFlag() = default;
 
 	xNO_COPY_ASSIGN(FeatureFlag)
-///@}
+///\}
 
 	xPROPERTY(std::tstring_t, name, Name);
 	xPROPERTY(std::tstring_t, description, Description);

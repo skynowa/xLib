@@ -25,14 +25,14 @@ class Donate
     /// Donate money
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			  Donate() = default;
 	explicit  Donate(cDonateData &data);
 	virtual  ~Donate() = default;
 
     // TODO: xNO_COPY_ASSIGN(Donate)
-///@}
+///\}
 
     xPROPERTY(DonateData, data, Data);
 };

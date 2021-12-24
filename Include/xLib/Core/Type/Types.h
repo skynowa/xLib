@@ -179,7 +179,7 @@ namespace std
 {
 ///\name Fixed width integer types
 ///\see  https://en.cppreference.com/w/cpp/types/integer
-///@{
+///\{
 	xUSING_CONST(int8_t);
 	xUSING_CONST(uint8_t);
 
@@ -194,7 +194,7 @@ namespace std
 
 	xUSING_CONST(intptr_t);
 	xUSING_CONST(uintptr_t);
-///@}
+///\}
 
     // std::size_t
 #if   xENV_WIN

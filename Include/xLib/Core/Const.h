@@ -23,11 +23,11 @@ class Const
     /// Constants
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	xNO_DEFAULT_CONSTRUCT(Const)
 	xNO_COPY_ASSIGN(Const)
-///@}
+///\}
 
 	// strEmpty (empty string)
 	static std::cstring_t &  strEmptyA();

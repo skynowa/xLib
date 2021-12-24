@@ -25,11 +25,11 @@ class xNO_VTABLE ICompare
 	/// Comparable interface
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 ICompare() = default;
 	virtual ~ICompare() = default;
-///@}
+///\}
 
 	bool_t operator == (const T &value) const;
 		///< Returns true if "value" is equal to this object

@@ -15,13 +15,13 @@ class BuildInfo
     ///< build information
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 BuildInfo() = default;
 	virtual ~BuildInfo() = default;
 
 	xNO_COPY_ASSIGN(BuildInfo)
-///@}
+///\}
 
     bool_t         isRelease() const;
         ///< is debug build (is NDEBUG macros is don't set)

@@ -15,16 +15,16 @@ class AtomicLongInt
     /// atomic operations with long_t
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 AtomicLongInt() = default;
 			 AtomicLongInt(const AtomicLongInt &value);
 
 	virtual ~AtomicLongInt() = default;
-///@}
+///\}
 
-///@name operators
-///@{
+///\name operators
+///\{
 	AtomicLongInt & operator += (const AtomicLongInt &value);
 	AtomicLongInt & operator += (clong_t &right);
 
@@ -54,7 +54,7 @@ public:
 
 	AtomicLongInt & operator ++ (cint_t value);
 	AtomicLongInt & operator -- (cint_t value);
-///@}
+///\}
 
     long_t value() const;
 

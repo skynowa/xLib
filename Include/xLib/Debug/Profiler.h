@@ -17,13 +17,13 @@ class Profiler
     /// code profiling
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
              Profiler();
 	virtual ~Profiler();
 
 	xNO_COPY_ASSIGN(Profiler)
-///@}
+///\}
 
     void_t         setLogPath(std::ctstring_t &logPath);
         ///< set log path

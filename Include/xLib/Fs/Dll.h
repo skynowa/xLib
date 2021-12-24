@@ -22,13 +22,13 @@ public:
     using proc_address_t = void_t *;
 #endif
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Dll() = default;
 	virtual ~Dll() = default;
 
 	xNO_COPY_ASSIGN(Dll)
-///@}
+///\}
 
     HandleDll     &get();
         ///< get handle

@@ -17,11 +17,11 @@ class xNO_VTABLE ILastError
     /// last error interface
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 ILastError() = default;
 	virtual ~ILastError() = default;
-///@}
+///\}
 
     virtual ErrorT         code() const = 0;
         ///<

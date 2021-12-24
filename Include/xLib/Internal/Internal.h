@@ -13,18 +13,18 @@ namespace xl::internal
 {
 
 //-------------------------------------------------------------------------------------------------
-///@name Macroses
-///@{
+///\name Macroses
+///\{
 #define xPUBLIC_STATIC public
     ///< for visual convenience
 #define xPRIVATE_STATIC private
     ///< for visual convenience
 #define xPLATFORM_IMPL private
     ///< platform implementation code
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Enums
-///@{
+///\name Enums
+///\{
 namespace enums
 {
 
@@ -67,7 +67,7 @@ public:
 };
 
 } // namespace
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
 
 } // namespace

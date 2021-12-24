@@ -11,8 +11,8 @@
 namespace xl::core
 {
 
-///@name In bytes
-///@{
+///\name In bytes
+///\{
 #define xBYTES(x) \
     ( static_cast<ulonglong_t>(x) )
 #define xKB(x) \
@@ -29,10 +29,10 @@ namespace xl::core
     ( xBYTES(x) << 60 )
 #define xZB(x) \
     ( xBYTES(x) << 70 )
-///@}
+///\}
 
-///@name In milliseconds
-///@{
+///\name In milliseconds
+///\{
 #define xMSEC(x) \
     ( static_cast<ulonglong_t>(x) )
 #define xSECOND(x) \
@@ -47,7 +47,7 @@ namespace xl::core
     ( xMSEC(x) * 1000ULL * 60 * 60 * 24 * 30 )
 #define xYEAR(x) \
     ( xMSEC(x) * 1000ULL * 60 * 60 * 24 * 30 * 12 )
-///@}
+///\}
 
 } // namespace
 //-------------------------------------------------------------------------------------------------

@@ -119,13 +119,13 @@ public:
 	};
 	xUSING_CONST(HttpCode);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit HttpClient(cbool_t isDebug);
 	virtual ~HttpClient() = default;
 
 	xNO_COPY_ASSIGN(HttpClient)
-///@}
+///\}
 
     bool_t   request(cRequest type, DataIn &dataIn, DataOut *dataOut);
 		///< send request

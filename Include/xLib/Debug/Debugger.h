@@ -17,13 +17,13 @@ class Debugger
     /// debugger
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Debugger() = default;
 	virtual ~Debugger() = default;
 
 	xNO_COPY_ASSIGN(Debugger)
-///@}
+///\}
 
     bool_t         isEnabled() const;
         ///< is debugging enabled

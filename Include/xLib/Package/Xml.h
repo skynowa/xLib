@@ -25,14 +25,14 @@ class XmlDoc :
 	public xl::interface::ILastError<int_t>
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  XmlDoc(std::ctstring_t &charset);
 	virtual  ~XmlDoc();
 
 	xNO_DEFAULT_CONSTRUCT(XmlDoc);
 	xNO_COPY_ASSIGN(XmlDoc);
-///@}
+///\}
 
     int_t          code() const override;
     bool_t         isOk() const override;
@@ -71,18 +71,18 @@ private:
 class XmlNode
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 XmlNode() = default;
 			 XmlNode(XmlDoc *xmlDoc, xmlNodePtr node);
 			 XmlNode(const XmlNode &xmlNode);
 	virtual ~XmlNode() = default;
-///@}
+///\}
 
-///@name operators
-///@{
+///\name operators
+///\{
 	XmlNode &operator = (const XmlNode &xmlNode);
-///@}
+///\}
 
 	std::tstring_t name() const;
 	std::tstring_t text() const;

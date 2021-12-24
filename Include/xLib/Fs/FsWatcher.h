@@ -47,14 +47,14 @@ public:
 	};
 	xUSING_CONST(Event);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 FsWatcher(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter);
 	virtual ~FsWatcher();
 
 	xNO_DEFAULT_CONSTRUCT(FsWatcher)
 	xNO_COPY_ASSIGN(FsWatcher)
-///@}
+///\}
 
     bool_t         openFiles(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);
     bool_t         openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &cmds);

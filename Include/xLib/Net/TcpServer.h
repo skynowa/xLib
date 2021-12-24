@@ -17,13 +17,13 @@ class TcpServer :
     /// server socket
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 TcpServer() = default;
 	virtual ~TcpServer() = default;
 
     xNO_COPY_ASSIGN(TcpServer)
-///@}
+///\}
 
     void_t   bind(cushort_t &port) const;
         ///< associates a local address with a socket

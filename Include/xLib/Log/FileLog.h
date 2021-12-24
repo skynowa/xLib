@@ -27,19 +27,19 @@ public:
     };
     xUSING_CONST(LogSizes);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			  FileLog();
 	explicit  FileLog(cLogSizes fileSizeMaxBytes);
 	explicit  FileLog(std::csize_t fileSizeMaxBytes);
 	virtual  ~FileLog();
-///@}
+///\}
 
-///@name operators
-///@{
+///\name operators
+///\{
 	template<typename T>
 	FileLog &      operator << (const T &valueT);
-///@}
+///\}
 
     void_t         setFilePath(std::ctstring_t &filePath);
         ///< set log path

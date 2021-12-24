@@ -15,14 +15,14 @@ class Db
     /// MySql DB
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Db(const Options &options);
 	virtual ~Db() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Db)
 	xNO_COPY_ASSIGN(Db)
-///@}
+///\}
 
 	void_t show(std::ctstring_t &wildcard, std::vec_tstring_t *dbNames) const;
 		///< list DB names

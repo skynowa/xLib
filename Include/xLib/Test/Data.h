@@ -11,8 +11,8 @@
 namespace xl::test
 {
 //-------------------------------------------------------------------------------------------------
-///@name  data (use 1 value)
-///@{
+///\name  data (use 1 value)
+///\{
 template<typename T1>
 struct Data1
     /// test data
@@ -37,10 +37,10 @@ using data1_float_t     =  Data1<float_t>;
 using data1_double_t    =  Data1<double>;
 using data1_tstring_t   =  Data1<std::tstring_t>;
 using data1_ustring_t   =  Data1<std::ustring_t>;
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name  data (use 2 values)
-///@{
+///\name  data (use 2 values)
+///\{
 template<typename T1, class T2>
 struct Data2
     /// test data
@@ -66,10 +66,10 @@ using data2_float_t     = Data2<std::tstring_t, float_t>;
 using data2_double_t    = Data2<std::tstring_t, double>;
 using data2_tstring_t   = Data2<std::tstring_t, std::tstring_t>;
 using data2_ustring_t   = Data2<std::tstring_t, std::ustring_t>;
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name  data (use 3 values)
-///@{
+///\name  data (use 3 values)
+///\{
 template<typename T1, class T2, class T3>
 struct Data3
     /// test data
@@ -96,6 +96,6 @@ using data3_float_t     = Data3<std::tstring_t, std::tstring_t, float_t>;
 using data3_double_t    = Data3<std::tstring_t, std::tstring_t, double>;
 using data3_tstring_t   = Data3<std::tstring_t, std::tstring_t, std::tstring_t>;
 using data3_ustring_t   = Data3<std::tstring_t, std::tstring_t, std::ustring_t>;
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
 } // namespace

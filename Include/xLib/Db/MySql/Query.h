@@ -20,21 +20,21 @@ class Query
     /// MySql query
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Query(const Connection &conn, std::ctstring_t &sql);
 	virtual ~Query() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Query)
 	xNO_COPY_ASSIGN(Query)
-///@}
+///\}
 
-///@name Executes the SQL statement
-///@{
+///\name Executes the SQL statement
+///\{
 	void_t      exec() const;
 	StoreResult store() const;
 	UseResult   use() const;
-///@}
+///\}
 
 ///\name  Escape with quote
 ///\brief Creates a legal SQL string for use in an SQL statement as qouted:
@@ -42,12 +42,12 @@ public:
 /// - single quotes turn into: \'
 /// - Single slashes turn into: \\ (double slashes)
 /// - Unescaped: spaces, |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _, etc
-///@{
+///\{
 	std::tstring_t escapeQuoted(std::ctstring_t &sqlValue, std::ctstring_t &forQuote) const;
 	std::tstring_t escapeQuotedSqm(std::ctstring_t &sqlValue) const;
 	std::tstring_t escapeQuotedDqm(std::ctstring_t &sqlValue) const;
 	std::tstring_t escapeQuotedGa(std::ctstring_t &sqlValue) const;
-///@}
+///\}
 
 private:
     const Connection &_conn;	///< DB connection

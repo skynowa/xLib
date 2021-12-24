@@ -57,8 +57,8 @@ public:
     };
     xUSING_CONST(PermissionMode);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
     explicit FileInfo(std::ctstring_t &filePath);
     explicit FileInfo(const Path &path);
     explicit FileInfo(const FileIO &file);
@@ -67,7 +67,7 @@ public:
 
     xNO_DEFAULT_CONSTRUCT(FileInfo)
     xNO_COPY_ASSIGN(FileInfo)
-///@}
+///\}
 
     longlong_t     size() const;
         ///< get size

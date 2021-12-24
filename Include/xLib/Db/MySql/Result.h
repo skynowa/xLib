@@ -22,14 +22,14 @@ class IResult
     /// MySql recordset
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
     explicit  IResult(Connection &connection);
 	virtual  ~IResult() = 0;
 
 	xNO_DEFAULT_CONSTRUCT(IResult)
     xNO_COPY_ASSIGN(IResult)
-///@}
+///\}
 
     HandleMySqlResult &get();
         ///< get handle
@@ -39,8 +39,8 @@ public:
     uint64_t    rows() const;
         ///< number of rows in the result set / connection
 
-///@name Fetch
-///@{
+///\name Fetch
+///\{
 	void_t      fetchField(MYSQL_FIELD *field) const;
 		///< The MYSQL_FIELD structure for the current column
 	void_t      fetchFieldDirect(cuint_t fieldNumber, MYSQL_FIELD *field) const;
@@ -51,7 +51,7 @@ public:
 		///< fetching row
 	void_t      fetchRows(rows_t *rows) const;
 		///< fetching rows
-///@}
+///\}
 
 protected:
     Connection        *_conn {};
@@ -85,14 +85,14 @@ class StoreResult :
     /// MySql recordset
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  StoreResult(Connection &connection);
 	virtual  ~StoreResult() = default;
 
 	xNO_DEFAULT_CONSTRUCT(StoreResult)
     xNO_COPY_ASSIGN(StoreResult)
-///@}
+///\}
 
 private:
 
@@ -118,14 +118,14 @@ class UseResult :
     /// MySql recordset
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  UseResult(Connection &connection);
 	virtual  ~UseResult() = default;
 
 	xNO_DEFAULT_CONSTRUCT(UseResult)
 	xNO_COPY_ASSIGN(UseResult)
-///@}
+///\}
 
 private:
 

@@ -38,14 +38,14 @@ class ThreadPool :
 public:
     using func_ptr_t = void_t (T::*)(void_t *);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 ThreadPool(cbool_t isPaused, cbool_t isAutoDelete, cbool_t isGroupPaused,
 				cbool_t isGroupAutoDelete);
 	virtual ~ThreadPool();
 
     xNO_COPY_ASSIGN(ThreadPool)
-///@}
+///\}
 
 
     // groups

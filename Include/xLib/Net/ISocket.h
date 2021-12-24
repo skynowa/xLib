@@ -230,13 +230,13 @@ public:
     };
     xUSING_CONST(Options);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 ISocket() = default;
 	virtual ~ISocket() = 0;
 
 	xNO_COPY_ASSIGN(ISocket)
-///@}
+///\}
 
     /*******************************************************************************
     *

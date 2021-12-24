@@ -17,13 +17,13 @@ class AutoIpcMutex
     /// auto mutex
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 AutoIpcMutex(IpcMutex &mutex, std::ctstring_t &name);
 	virtual ~AutoIpcMutex();
 
 	xNO_COPY_ASSIGN(AutoIpcMutex)
-///@}
+///\}
 
 private:
     IpcMutex &_mutex;

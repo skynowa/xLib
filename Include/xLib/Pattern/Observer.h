@@ -17,11 +17,11 @@ class xNO_VTABLE IObserver
     /// observer interface
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 IObserver() {}
 	virtual ~IObserver() {}
-///@}
+///\}
 
     virtual void_t update(cint_t &type, const T &message) = 0;
 };
@@ -31,8 +31,8 @@ class Observer
     /// observer
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	Observer()
 	{
 	}
@@ -43,7 +43,7 @@ public:
 	}
 
 	xNO_COPY_ASSIGN(Observer)
-///@}
+///\}
 
     void_t attach(IObserver<T> *a_observer)
     {

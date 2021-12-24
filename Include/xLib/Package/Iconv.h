@@ -17,8 +17,8 @@ class Iconv
     /// Perform character set conversion
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Iconv(std::ctstring_t &charsetIn, std::ctstring_t &charsetOut,
 				std::csize_t buffSize = 1024, cbool_t isSkipErrors = false,
 				cbool_t isForceEncoding = false);
@@ -26,7 +26,7 @@ public:
 
     xNO_DEFAULT_CONSTRUCT(Iconv);
     xNO_COPY_ASSIGN(Iconv)
-///@}
+///\}
 
     void convert(std::ctstring_t &input, std::tstring_t *output) const;
     	///< convert string

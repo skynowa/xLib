@@ -7,8 +7,8 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-///@name Lexeme utils
-///@{
+///\name Lexeme utils
+///\{
 #define xLEX_TO_STR(a) \
     xT(#a)
     ///< lexeme to string
@@ -44,7 +44,7 @@
 #define xLEX_CAT_10(xVA_VALUES_10) \
     xLEX_CAT_2(xLEX_CAT_8(xVA_VALUES_9), v10)
     ///< concatenate 9 strings
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
 #define xSINGLE_ARG(...) \
     __VA_ARGS__
