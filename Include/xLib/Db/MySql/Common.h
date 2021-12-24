@@ -33,7 +33,7 @@
 #include <xLib/Db/MySql/Options.h>
 #include <xLib/Db/MySql/Connection.h>
 #include <xLib/Db/MySql/Query.h>
-// #include <xLib/Db/MySql/IResult.h>
+#include <xLib/Db/MySql/Result.h>
 #include <xLib/Db/MySql/Db.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::db::mysql

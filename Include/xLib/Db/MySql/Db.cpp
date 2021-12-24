@@ -12,7 +12,6 @@
 #include <xLib/Core/Format.h>
 #include <xLib/System/User.h>
 
-#include <xLib/Db/MySql/Result.h>
 
 namespace xl::db::mysql
 {
