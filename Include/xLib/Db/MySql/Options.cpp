@@ -43,7 +43,6 @@ Options::Options() :
 	port        {3306},
 	unixSocket  {},
 	charset     {xT("utf8mb4")},
-	isAutoCommit{true},
 	isCompress  {true},
 	options     {::optionsDefault}
 {
@@ -57,7 +56,6 @@ Options::Options(
 	cuint_t          a_port,
 	std::ctstring_t &a_unixSocket,
 	std::ctstring_t &a_charset,
-	cbool_t          a_isAutoCommit,
 	cbool_t          a_isCompress,
 	const std::map<mysql_option, cptr_cvoid_t> &a_options
 ) :
@@ -68,7 +66,6 @@ Options::Options(
 	port        {a_port},
 	unixSocket  {a_unixSocket},
 	charset     {a_charset},
-	isAutoCommit{a_isAutoCommit},
 	isCompress  {a_isCompress},
 	options     {a_options}
 {

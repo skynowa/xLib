@@ -19,7 +19,7 @@ public:
             Options();
             Options(std::ctstring_t &host, std::ctstring_t &user, std::ctstring_t &password,
                 std::ctstring_t &db, cuint_t port, std::ctstring_t &unixSocket,
-                std::ctstring_t &charset, cbool_t isAutoCommit, cbool_t isCompress,
+                std::ctstring_t &charset, cbool_t isCompress,
                 const std::map<mysql_option, cptr_cvoid_t> &options);
     virtual ~Options() = default;
 ///\}
@@ -42,8 +42,6 @@ public:
 		///< If unix_socket is not empty, the string specifies the socket or named pipe to use
 	std::tstring_t charset;
 		///< specifies character name
-	bool_t         isAutoCommit {};
-		///< sets autocommit mode on
 	bool_t         isCompress {};
 		///< Use compression in the client/server protocol
 	std::map<mysql_option, cptr_cvoid_t> options;
