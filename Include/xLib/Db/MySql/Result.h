@@ -64,25 +64,10 @@ protected:
     culong_t * _fetchLengths() const;
         ///< An array of unsigned long_t integers representing the size of each column
 };
-
-} // namespace
 //-------------------------------------------------------------------------------------------------
-/**
- * \file  StoreResult.h
- * \brief MySql client
- *
- * \see mysqlpp
- * - https://tangentsoft.com/mysqlpp/file?name=examples/simple1.cpp
- * - https://tangentsoft.com/mysqlpp/file?name=examples/simple2.cpp
- * - https://tangentsoft.com/mysqlpp/file?name=examples/simple3.cpp
- */
-//-------------------------------------------------------------------------------------------------
-namespace xl::db::mysql
-{
-
 class StoreResult :
 	public IResult
-    /// MySql recordset
+	/// Recordset
 {
 public:
 ///\name ctors, dtor
@@ -93,29 +78,11 @@ public:
 	xNO_DEFAULT_CONSTRUCT(StoreResult)
     xNO_COPY_ASSIGN(StoreResult)
 ///\}
-
-private:
-
 };
-
-} // namespace
 //-------------------------------------------------------------------------------------------------
-/**
- * \file  UseResult.h
- * \brief MySql client
- *
- * \see mysqlpp
- * - https://tangentsoft.com/mysqlpp/file?name=examples/simple1.cpp
- * - https://tangentsoft.com/mysqlpp/file?name=examples/simple2.cpp
- * - https://tangentsoft.com/mysqlpp/file?name=examples/simple3.cpp
- */
-//-------------------------------------------------------------------------------------------------
-namespace xl::db::mysql
-{
-
 class UseResult :
 	public IResult
-    /// MySql recordset
+	/// Recordset
 {
 public:
 ///\name ctors, dtor
@@ -126,10 +93,7 @@ public:
 	xNO_DEFAULT_CONSTRUCT(UseResult)
 	xNO_COPY_ASSIGN(UseResult)
 ///\}
-
-private:
-
 };
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
-//-------------------------------------------------------------------------------------------------
