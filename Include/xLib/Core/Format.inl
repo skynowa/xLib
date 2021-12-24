@@ -108,35 +108,39 @@ FormatT<StreamT>::_testFmt(
 {
 	static_assert(_specifier.size() == 2, xT("Bad _specifier"));
 
-	std::size_t specifierOpen  {};
-	std::size_t specifierClose {};
+	std::size_t specifierOpenNum  {};
+	std::size_t specifierCloseNum {};
 	{
-		for (const auto &it_fmt : a_fmt) {
+		constexpr auto specifierOpen  = _specifier[0];
+		constexpr auto specifierClose = _specifier[1];
+
+		for (const auto it_fmt : a_fmt) {
 			switch (it_fmt) {
-			case _specifier[0]:
-				++ specifierOpen;
+			case specifierOpen:
+				++ specifierOpenNum;
 				break;
-			case _specifier[1]:
-				++ specifierClose;
+			case specifierClose:
+				++ specifierCloseNum;
 				break;
 			default:
+				xNA;
 				break;
 			}
 		} // for (a_fmt)
 	}
 
-	if (specifierOpen != specifierClose) {
-		xTEST_MSG(false, xT("specifierOpen != specifierClose"));
+	if (specifierOpenNum != specifierCloseNum) {
+		xTEST_MSG(false, xT("specifierOpenNum != specifierCloseNum"));
 		return false;
 	}
 
-	if (specifierOpen < a_argsSize) {
-		xTEST_MSG(false, xT("specifierOpen < a_argsSize"));
+	if (specifierOpenNum < a_argsSize) {
+		xTEST_MSG(false, xT("specifierOpenNum < a_argsSize"));
 		return false;
 	}
 
-	if (specifierOpen > a_argsSize) {
-		xTEST_MSG(false, xT("specifierOpen > a_argsSize"));
+	if (specifierOpenNum > a_argsSize) {
+		xTEST_MSG(false, xT("specifierOpenNum > a_argsSize"));
 		return false;
 	}
 
