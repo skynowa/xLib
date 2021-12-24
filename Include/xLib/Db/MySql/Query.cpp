@@ -10,7 +10,6 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
-#include <xLib/Db/MySql/Result.h>
 
 
 namespace xl::db::mysql
