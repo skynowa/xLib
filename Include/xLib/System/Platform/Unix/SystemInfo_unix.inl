@@ -198,7 +198,7 @@ SystemInfo::glibcVersion() const
     std::tstring_t version;
     {
     #if cmGNU_GET_LIBC_FOUND
-        cchar *libc_version = ::gnu_get_libc_version();
+        cchar_t *libc_version = ::gnu_get_libc_version();
         if (libc_version == nullptr) {
             version = Const::strUnknown();
         } else {
@@ -213,7 +213,7 @@ SystemInfo::glibcVersion() const
     std::tstring_t release;
     {
     #if cmGNU_GET_LIBC_FOUND
-        cchar *libc_release = ::gnu_get_libc_release();
+        cchar_t *libc_release = ::gnu_get_libc_release();
         if (libc_release == nullptr) {
             release = Const::strUnknown();
         } else {

@@ -241,7 +241,7 @@ makeUnique(FunctorT a_functor, DeleterT a_deleter)
 inline file_unique_ptr_t
 autoFile(
 	std::ctstring_t &a_filePath,
-	cptr_cchar       a_flags
+	cptr_cchar_t     a_flags
 )
 {
 	return makeUnique<file_unique_ptr_t>(std::fopen(xT2A(a_filePath).c_str(), a_flags), std::fclose);
@@ -253,7 +253,7 @@ autoFile(
 inline pipe_unique_ptr_t
 autoPipe(
 	std::ctstring_t &a_cmdLine,
-	cptr_cchar       a_flags
+	cptr_cchar_t     a_flags
 )
 {
 	return makeUnique<pipe_unique_ptr_t>(::popen(xT2A(a_cmdLine).c_str(), a_flags), ::pclose);
