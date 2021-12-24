@@ -32,6 +32,7 @@ private:
 	static constexpr bool_t              _isTest {true};		///< test formatted string
     static constexpr std::tstring_view_t _specifier {xT("{}")};	///<
         ///< specifier
+
 	template<typename T>
 	static
 	void_t _format(std::ctstring_view_t fmt, const T &arg, std::tstring_t &rv,
