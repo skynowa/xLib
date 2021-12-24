@@ -24,7 +24,7 @@ class IResult
 public:
 ///\name ctors, dtor
 ///\{
-    explicit  IResult(Connection &connection);
+    explicit  IResult(const Connection &connection);
 	virtual  ~IResult() = 0;
 
 	xNO_DEFAULT_CONSTRUCT(IResult)
@@ -54,7 +54,7 @@ public:
 ///\}
 
 protected:
-    Connection        *_conn {};
+	const Connection  *_conn {};
         ///< pointer to connection object
     HandleMySqlResult  _result;
         ///< result of a query that returns row
@@ -87,7 +87,7 @@ class StoreResult :
 public:
 ///\name ctors, dtor
 ///\{
-	explicit  StoreResult(Connection &connection);
+	explicit  StoreResult(const Connection &connection);
 	virtual  ~StoreResult() = default;
 
 	xNO_DEFAULT_CONSTRUCT(StoreResult)
@@ -120,7 +120,7 @@ class UseResult :
 public:
 ///\name ctors, dtor
 ///\{
-	explicit  UseResult(Connection &connection);
+	explicit  UseResult(const Connection &connection);
 	virtual  ~UseResult() = default;
 
 	xNO_DEFAULT_CONSTRUCT(UseResult)

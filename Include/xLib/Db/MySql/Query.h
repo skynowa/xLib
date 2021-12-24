@@ -51,7 +51,7 @@ public:
 
 private:
     const Connection &_conn;	///< DB connection
-    std::ctstring_t   _sql;		///<
+    std::ctstring_t   _sql;		///< SQL query
 };
 
 } // namespace
