@@ -60,6 +60,24 @@ Query::use() const
 	return UseResult( const_cast<Connection &>(_conn) );
 }
 //-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*    public
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+EscapeQuoted::EscapeQuoted(
+	const Connection &a_conn,		///<
+	std::ctstring_t  &a_sqlValue	///< SQL string value
+) :
+	_conn    {a_conn},
+	_sqlValue{a_sqlValue}
+{
+    xTEST(_conn.get().isValid());
+}
+//-------------------------------------------------------------------------------------------------
 /**
  * If the ANSI_QUOTES SQL mode is enabled:
  *
@@ -69,35 +87,33 @@ Query::use() const
  * \see https://dev.mysql.com/doc/c-api/8.0/en/mysql-real-escape-string-quote.html
  */
 std::tstring_t
-Query::escapeQuoted(
-	std::ctstring_t &a_sqlValue,	///< SQL string value
-	std::ctstring_t &a_quote		///< Quote str (char)
+EscapeQuoted::forQuote(
+	std::ctstring_t &a_quote	///< Quote str (char)
 ) const
 {
-	xTESTS_NA(a_sqlValue);
 	xTEST(!a_quote.empty());
 
-	if ( a_sqlValue.empty() ) {
+	if ( _sqlValue.empty() ) {
 		return (a_quote + a_quote);
 	}
 
-	if (a_sqlValue == nullStr) {
+	if (_sqlValue == nullStr) {
 	   /**
 		* If the argument is NULL:
 		*
 		* the return value is the word “NULL” without enclosing single quotation marks
 		*/
-		return a_sqlValue;
+		return _sqlValue;
 	}
 
 	// escape
-	std::tstring_t sRv(a_sqlValue.size() * 2 + 1, xT('\0'));
+	std::tstring_t sRv(_sqlValue.size() * 2 + 1, xT('\0'));
 	{
 		cchar forQuote {xT2A(a_quote)[0]};
 			///< String (char) in which the escaped string is to be placed
 
 		culong_t quotedSize = ::mysql_real_escape_string_quote(_conn.get().get(), &sRv[0],
-			a_sqlValue.data(), static_cast<ulong_t>(a_sqlValue.size()), forQuote);
+			_sqlValue.data(), static_cast<ulong_t>(_sqlValue.size()), forQuote);
 		xTEST_GR_MSG(quotedSize, 0UL, Error(_conn).str());
 
 		sRv.resize(quotedSize * sizeof(std::tstring_t::value_type));
@@ -112,27 +128,21 @@ Query::escapeQuoted(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Query::escapeQuotedSqm(
-	std::ctstring_t &a_sqlValue	///< SQL string value
-) const
+EscapeQuoted::forSqm() const
 {
-	return escapeQuoted(a_sqlValue, Const::sqm());
+	return forQuote(Const::sqm());
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Query::escapeQuotedDqm(
-	std::ctstring_t &a_sqlValue	///< SQL string value
-) const
+EscapeQuoted::forDqm() const
 {
-	return escapeQuoted(a_sqlValue, Const::dqm());
+	return forQuote(Const::dqm());
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Query::escapeQuotedGa(
-	std::ctstring_t &a_sqlValue	///< SQL string value
-) const
+EscapeQuoted::forGa() const
 {
-	return escapeQuoted(a_sqlValue, Const::ga());
+	return forQuote(Const::ga());
 }
 //-------------------------------------------------------------------------------------------------
 

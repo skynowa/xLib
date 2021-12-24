@@ -148,31 +148,29 @@ Test_MySql::unit()
 			xTEST_EQ(rows.size(), std::size_t(1));
 			xTEST_EQ(std::stoull(rows[0][0]), std::size_t(34));
 		}
+	}
 
-		xTEST_CASE("escapeQuoted")
+	xTEST_CASE("EscapeQuoted")
+	{
+		const std::vector<data2_tstring_t> data
 		{
-			std::ctstring_t sql = Format::str("SELECT count(*) FROM {}", tableName);
+			{xT(""),                 xT("''")},
+			{xT("NULL"),             xT("NULL")},
+			{xT("value"),            xT("'value'")},
+			{xT("\"value\""),        xT("'\\\"value\\\"'")},
+			{xT("'value'"),          xT("'\\\'value\\\''")},
+			{xT("\\value\\"),        xT("'\\\\value\\\\'")},
+			{xT(" value xxx"),       xT("' value xxx'")},
+			{{xT("value\0\r\n"), 8}, {xT("'value\\0\\r\\n'"), 13}},
+			{xT(" , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _"),
+									 xT("' , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _'")}
+		};
 
-			const std::vector<data2_tstring_t> data
-			{
-				{xT(""),                 xT("''")},
-				{xT("NULL"),             xT("NULL")},
-				{xT("value"),            xT("'value'")},
-				{xT("\"value\""),        xT("'\\\"value\\\"'")},
-				{xT("'value'"),          xT("'\\\'value\\\''")},
-				{xT("\\value\\"),        xT("'\\\\value\\\\'")},
-				{xT(" value xxx"),       xT("' value xxx'")},
-				{{xT("value\0\r\n"), 8}, {xT("'value\\0\\r\\n'"), 13}},
-				{xT(" , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _"),
-										 xT("' , |, ?, <, >, {, }, :, ~, @, !, (,), `, #, %,,,;, &, - and _'")}
-			};
+		for (const auto &[it_test, it_expect] : data) {
+			EscapeQuoted escapeQuoted(conn, it_test);
 
-			for (const auto &[it_test, it_expect] : data) {
-				Query query(conn, sql);
-
-				m_sRv = query.escapeQuotedSqm(it_test);
-				xTEST_EQ(m_sRv, it_expect);
-			}
+			m_sRv = escapeQuoted.forSqm();
+			xTEST_EQ(m_sRv, it_expect);
 		}
 	}
 #endif
