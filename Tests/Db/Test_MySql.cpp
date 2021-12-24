@@ -135,7 +135,7 @@ Test_MySql::unit()
 	{
 		std::ctstring_t tableName = xT("ARecErrors");
 
-		xTEST_CASE("exec")
+		xTEST_CASE("store")
 		{
 			std::ctstring_t sql = Format::str("SELECT count(*) FROM {}", tableName);
 
@@ -151,7 +151,8 @@ Test_MySql::unit()
 
 		xTEST_CASE("escapeQuoted")
 		{
-		#if 0
+			std::ctstring_t sql = Format::str("SELECT count(*) FROM {}", tableName);
+
 			const std::vector<data2_tstring_t> data
 			{
 				{xT(""),                 xT("''")},
@@ -167,12 +168,11 @@ Test_MySql::unit()
 			};
 
 			for (const auto &[it_test, it_expect] : data) {
-				Query query(conn);
+				Query query(conn, sql);
 
 				m_sRv = query.escapeQuotedSqm(it_test);
 				xTEST_EQ(m_sRv, it_expect);
 			}
-		#endif
 		}
 	}
 #endif
