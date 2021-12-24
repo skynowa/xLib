@@ -43,9 +43,8 @@ Test_MySql::unit()
 	*
 	*******************************************************************************/
 
+	xTEST_GROUP("Db");
 	{
-		xTEST_GROUP("Db");
-
 		xTEST_CASE("show")
 		{
 			std::vec_tstring_t dbNames;
@@ -95,9 +94,8 @@ Test_MySql::unit()
 	*
 	*******************************************************************************/
 
+	xTEST_GROUP("Connection");
 	{
-		xTEST_GROUP("Connection");
-
 		xTEST_CASE("get")
 		{
 			cHandleMySqlConn &handle = conn.get();
@@ -133,9 +131,8 @@ Test_MySql::unit()
     *
     *******************************************************************************/
 
+	xTEST_GROUP("Query");
 	{
-		xTEST_GROUP("Query");
-
 		std::ctstring_t tableName = xT("ARecErrors");
 
 		xTEST_CASE("exec")
