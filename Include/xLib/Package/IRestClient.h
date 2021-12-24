@@ -18,13 +18,13 @@ class IRestClient
     /// REST API client
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 IRestClient() = default;
 	virtual ~IRestClient() = 0;
 
 	xNO_COPY_ASSIGN(IRestClient)
-///@}
+///\}
 
 protected:
 	std::size_t        _version {};

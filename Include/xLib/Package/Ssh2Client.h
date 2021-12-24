@@ -43,14 +43,14 @@ public:
     };
     xUSING_CONST(UserAuth);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  Ssh2Client(cSsh2ClientData &data);
 	virtual  ~Ssh2Client();
 
 	xNO_DEFAULT_CONSTRUCT(Ssh2Client)
 	xNO_COPY_ASSIGN(Ssh2Client)
-///@}
+///\}
 
     bool_t         isAlive();
     bool_t         connect();

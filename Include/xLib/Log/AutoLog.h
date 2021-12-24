@@ -18,8 +18,8 @@ class AutoLog
     /// Auto log
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	AutoLog(std::ctstring_t &a_str, cbool_t a_isEnable = true) :
 		_str     (a_str),
 		_isEnable(a_isEnable)
@@ -34,7 +34,7 @@ public:
 	}
 
     xNO_COPY_ASSIGN(AutoLog)
-///@}
+///\}
 
 private:
     std::ctstring_t _str;

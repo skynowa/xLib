@@ -17,11 +17,11 @@ class String
     /// strings utils
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	xNO_DEFAULT_CONSTRUCT(String)
 	xNO_COPY_ASSIGN(String)
-///@}
+///\}
 
     /*******************************************************************************
     *   converters
@@ -228,11 +228,11 @@ class StringCI
     /// strings utils (case insensitive)
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	xNO_DEFAULT_CONSTRUCT(StringCI)
 	xNO_COPY_ASSIGN(StringCI)
-///@}
+///\}
 
     /*******************************************************************************
     *   search, compare

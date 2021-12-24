@@ -16,13 +16,13 @@ class ProcessInfo
     /// process information
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 ProcessInfo() = default;
 	virtual ~ProcessInfo() = default;
 
 	xNO_COPY_ASSIGN(ProcessInfo)
-///@}
+///\}
 
     void_t         setProcessId(const Process::id_t &a_id);
         ///< set target process ID

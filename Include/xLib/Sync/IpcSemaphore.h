@@ -22,13 +22,13 @@ public:
     using handle_t = sem_t *;
 #endif
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 IpcSemaphore();
 	virtual ~IpcSemaphore();
 
 	xNO_COPY_ASSIGN(IpcSemaphore)
-///@}
+///\}
 
     long_t           valueMax() const;
         ///< maximum value

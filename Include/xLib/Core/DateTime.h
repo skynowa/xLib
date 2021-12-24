@@ -18,11 +18,11 @@ class DateTimeValidator
 	///< DateTime validator
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	xNO_DEFAULT_CONSTRUCT(DateTimeValidator);
 	xNO_COPY_ASSIGN(DateTimeValidator);
-///@}
+///\}
 
 	static
 	bool_t year(cint_t year);
@@ -60,8 +60,8 @@ class DateTime
     /// date, time
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 DateTime();
 	explicit DateTime(const DateTime &datetime);
 	explicit DateTime(culonglong_t msec);
@@ -70,7 +70,7 @@ public:
 			 DateTime(cint_t year, cint_t month, cint_t day, cint_t hour, cint_t minute,
 				 cint_t second, cint_t msec);
 	virtual ~DateTime() {}
-///@}
+///\}
 
     // comparison operators
     bool_t          operator == (const DateTime &datetime) const;

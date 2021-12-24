@@ -29,13 +29,13 @@ public:
 	};
 	xUSING_CONST(Level);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 ILog() = default;
 	virtual ~ILog() = 0;
 
 	xNO_COPY_ASSIGN(ILog)
-///@}
+///\}
 
     void_t         setEnabled(cbool_t flag);
         ///< set enabled

@@ -74,14 +74,14 @@ public:
     };
     xUSING_CONST(LockingMode);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
     explicit FileIO(std::ctstring_t &filePath);
     virtual ~FileIO();
 
     xNO_DEFAULT_CONSTRUCT(FileIO)
     xNO_COPY_ASSIGN(FileIO)
-///@}
+///\}
 
     // open, get
     void_t         open(cOpenMode mode, cbool_t isBuffering = true);

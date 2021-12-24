@@ -27,11 +27,11 @@ public:
 	};
 	xUSING_CONST(Type);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	xNO_DEFAULT_CONSTRUCT(Archive)
 	xNO_COPY_ASSIGN(Archive)
-///@}
+///\}
 
 	static
 	bool_t fileCompress(const Type type, std::ctstring_t &sourceFilePath,

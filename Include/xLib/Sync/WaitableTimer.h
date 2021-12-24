@@ -18,13 +18,13 @@ class WaitableTimer
     /// waitable timer
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 WaitableTimer() = default;
 	virtual ~WaitableTimer() = default;
 
 	xNO_COPY_ASSIGN(WaitableTimer)
-///@}
+///\}
 
     HANDLE   handle() const;
     void_t   create(cbool_t isManualReset, std::ctstring_t &name/* = nullptr*/,

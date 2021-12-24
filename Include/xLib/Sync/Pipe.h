@@ -19,13 +19,13 @@ class Pipe :
     /// Pipe is a section of shared memory that processes use for communication
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Pipe();
 	virtual ~Pipe();
 
 	xNO_COPY_ASSIGN(Pipe)
-///@}
+///\}
 
     cHandleNative & handle() const override;
 	cint_t        & handleRead() const;

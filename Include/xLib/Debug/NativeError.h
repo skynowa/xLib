@@ -15,11 +15,11 @@ class NativeError
     /// system last error
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	xNO_DEFAULT_CONSTRUCT(NativeError)
 	xNO_COPY_ASSIGN(NativeError)
-///@}
+///\}
 
     static
     bool_t         isSuccess();

@@ -20,13 +20,13 @@ class Bitset
     /// bit flags
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Bitset() = default;
 	explicit Bitset(const Bitset &values);
 	explicit Bitset(const T values);
 	virtual ~Bitset() = default;
-///@}
+///\}
 
     Bitset & operator = (const Bitset &values);
 	T &      operator [] (std::csize_t index);

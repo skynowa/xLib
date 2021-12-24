@@ -15,13 +15,13 @@ class ThreadStorage
     /// thread local storage
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 ThreadStorage();
 	virtual ~ThreadStorage();
 
 	xNO_COPY_ASSIGN(ThreadStorage)
-///@}
+///\}
 
     bool_t   isValid() const;
         ///< is valid

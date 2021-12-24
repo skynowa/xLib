@@ -17,17 +17,17 @@ class Config
     /// config file
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			  Config();
 	explicit  Config(std::ctstring_t &filePath);
 	virtual  ~Config();
 
 	xNO_COPY_ASSIGN(Config)
-///@}
+///\}
 
-///@name Creations
-///@{
+///\name Creations
+///\{
     std::ctstring_t & path() const;
         ///< get file path
     void_t            setPath(std::ctstring_t &filePath);
@@ -45,25 +45,25 @@ public:
         ///< clear content
     void_t            remove();
         ///< delete
-///@}
+///\}
 
-///@name Key's actions
-///@{
+///\name Key's actions
+///\{
     bool_t            keyIsExists(std::ctstring_t &key) const;
         ///< is exists
     void_t            keyClear(std::ctstring_t &key);
         ///< clear value
     void_t            keyDelete(std::ctstring_t &key);
         ///< delete key and value
-///@}
+///\}
 
-///@name Get/set values
-///@{
+///\name Get/set values
+///\{
     template<typename T>
     T                 value(std::ctstring_t &key, const T defaultValue);
     template<typename T>
     void_t            setValue(std::ctstring_t &key, const T value);
-///@}
+///\}
 
 private:
     std::ctstring_t    _separator;  ///< separator between key and value

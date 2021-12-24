@@ -15,11 +15,11 @@ class Utils
     /// help utils
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	xNO_DEFAULT_CONSTRUCT(Utils)
 	xNO_COPY_ASSIGN(Utils)
-///@}
+///\}
 
     template<typename T>
     static
@@ -144,8 +144,8 @@ implicitCast(const From &a_from)
 *
 **************************************************************************************************/
 
-///@name type aliases
-///@{
+///\name type aliases
+///\{
 //-------------------------------------------------------------------------------------------------
 using file_unique_ptr_t = std::unique_ptr<std::FILE, int (*)(std::FILE *)>;
 
@@ -165,7 +165,7 @@ pipe_unique_ptr_t autoPipe(std::ctstring_t &cmdLine, cptr_cchar flags);
 dll_unique_ptr_t  autoDll(std::ctstring_t &dllPath, cint_t flags);
 dir_unique_ptr_t  autoDir(std::ctstring_t &dirPath);
 #endif
-///@}
+///\}
 
 } // namespace
 //-------------------------------------------------------------------------------------------------

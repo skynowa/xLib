@@ -40,14 +40,14 @@ public:
     };
     xUSING_CONST(ExitCode);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Application(std::ctstring_t &appGuid, std::ctstring_t &locale);
 	virtual ~Application() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Application)
 	xNO_COPY_ASSIGN(Application)
-///@}
+///\}
 
     void_t         setDevel(cbool_t flag);
         ///< set devel

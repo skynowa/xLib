@@ -26,8 +26,8 @@ class SmtpClient :
     /// Mail client
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 SmtpClient(cbool_t isDebug, std::ctstring_t &url, std::ctstring_t &caPath,
 				std::ctstring_t &userName, std::ctstring_t &password, std::ctstring_t &from,
 				std::ctstring_t &to, std::ctstring_t &cc, std::ctstring_t &subject,
@@ -35,7 +35,7 @@ public:
     virtual ~SmtpClient() = default;
 
     xNO_COPY_ASSIGN(SmtpClient)
-///@}
+///\}
 
     void_t request();
         ///< send request

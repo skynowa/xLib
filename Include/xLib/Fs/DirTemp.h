@@ -16,14 +16,14 @@ class DirTemp
 	/// Temporary directory
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit DirTemp(std::ctstring_t &dirPath, cbool_t isRandomPostfix, cbool_t isAutoDelete);
 	virtual ~DirTemp();
 
 	xNO_DEFAULT_CONSTRUCT(DirTemp)
 	xNO_COPY_ASSIGN(DirTemp)
-///@}
+///\}
 
 	const Dir &dir() const;
 		///< dir path (with unique postfix)

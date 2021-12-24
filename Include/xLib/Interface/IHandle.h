@@ -17,11 +17,11 @@ class xNO_VTABLE IHandle
     /// handle interface
 {
 public:
-///@name operators
-///@{
+///\name operators
+///\{
 			 IHandle() = default;
 	virtual ~IHandle() = default;
-///@}
+///\}
 
     virtual T      get() const = 0;
         ///< get

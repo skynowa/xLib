@@ -15,13 +15,13 @@ class Base64
     /// Base64
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Base64() = default;
 	virtual ~Base64() = default;
 
 	xNO_COPY_ASSIGN(Base64)
-///@}
+///\}
 
     std::string encode(cuchar_t *bytes, std::csize_t size);
         ///< encoding

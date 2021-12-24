@@ -15,14 +15,14 @@ class Algos
     ///< Algorithms
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	xNO_DEFAULT_CONSTRUCT(Algos)
 	xNO_COPY_ASSIGN(Algos)
-///@}
+///\}
 
-///@name Common
-///@{
+///\name Common
+///\{
     template<typename ContT, typename ValueT>
     static
     bool_t isContains(const ContT &cont, const ValueT &value);
@@ -60,10 +60,10 @@ public:
     static
     bool_t isUniqueAll(const ContT &cont);
         ///< determining if sorted container has all unique elements
-///@}
+///\}
 
-///@name std::vector
-///@{
+///\name std::vector
+///\{
 	template<typename T>
 	static
 	void_t vectorUnique(std::vector<T> &cont);
@@ -72,23 +72,23 @@ public:
 	static
 	void_t vectorRemove(std::vector<T> &vec, const T &item);
 		///< remove item from std::vector
-///@}
+///\}
 
-///@name std::list
-///@{
+///\name std::list
+///\{
 	template<typename T>
 	static
 	void_t listUnique(std::list<T> &cont);
 		///< unique std::list
-///@}
+///\}
 
-///@name std::map
-///@{
+///\name std::map
+///\{
 	template<typename T1, typename T2>
 	static
 	T1 mapFindByValue(const std::map<T1, T2> &cont, const T2 &value);
 		///< find find key by value
-///@}
+///\}
 };
 
 } // namespace

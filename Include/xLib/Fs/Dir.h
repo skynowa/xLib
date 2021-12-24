@@ -18,8 +18,8 @@ class Dir :
     /// directory
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  Dir(std::ctstring_t &dirPath);
 	virtual  ~Dir() = default;
 
@@ -28,12 +28,12 @@ public:
 
 	static Dir current();
 	static Dir temp();
-///@}
+///\}
 
-///@name interfaces
-///@{
+///\name interfaces
+///\{
 	void_t print(std::tostream_t &stream) const override;
-///@}
+///\}
 
     std::ctstring_t & str() const;
         ///< directory path

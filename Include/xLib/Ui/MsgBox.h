@@ -45,13 +45,13 @@ public:
     };
     xUSING_CONST(ModalResult);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 MsgBox() = default;
 	virtual ~MsgBox() = default;
 
     xNO_COPY_ASSIGN(MsgBox)
-///@}
+///\}
 
     ModalResult show(std::ctstring_t &text, std::ctstring_t &title, cType type = Type::Ok) const;
         ///< message box with custom text, custom title, custom type

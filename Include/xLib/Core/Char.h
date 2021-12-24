@@ -16,15 +16,15 @@ class Char
     /// character
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  Char(const T ch);
               Char(const T ch, const xTLOCALE &locale);
 	virtual  ~Char() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Char)
 	xNO_COPY_ASSIGN(Char)
-///@}
+///\}
 
     T               character() const;
         ///< get character

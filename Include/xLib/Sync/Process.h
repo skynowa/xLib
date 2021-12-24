@@ -54,13 +54,13 @@ public:
     };
     xUSING_CONST(WaitStatus);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Process();
 	virtual ~Process();
 
 	xNO_COPY_ASSIGN(Process)
-///@}
+///\}
 
     void_t     create(std::ctstring_t &filePath, std::cvec_tstring_t &params,
                    const std::set<std::pair_tstring_t> &envs, std::tstring_t *stdOut,

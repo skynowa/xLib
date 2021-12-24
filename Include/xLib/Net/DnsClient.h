@@ -16,11 +16,11 @@ class DnsClient
     /// DNS client
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	xNO_DEFAULT_CONSTRUCT(DnsClient)
 	xNO_COPY_ASSIGN(DnsClient)
-///@}
+///\}
 
     static
     void_t   hostAddrByName(std::ctstring_t &hostName, std::tstring_t *hostAddr);

@@ -22,13 +22,13 @@ public:
     using handle_t = sem_t *;
 #endif
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 IpcMutex() = default;
 	virtual ~IpcMutex() = default;
 
 	xNO_COPY_ASSIGN(IpcMutex)
-///@}
+///\}
 
     const handle_t & handle() const;
         ///< get handle

@@ -24,13 +24,13 @@ class StackTrace
     /// stack trace
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  StackTrace(cStackTraceData &data = cStackTraceData());
 	virtual  ~StackTrace() = default;
 
     xNO_COPY_ASSIGN(StackTrace)
-///@}
+///\}
 
     std::tstring_t str() const;
         ///< get stack trace with format output

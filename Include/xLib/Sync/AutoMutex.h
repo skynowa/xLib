@@ -17,13 +17,13 @@ class AutoMutex
     /// auto critical section
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit AutoMutex(Mutex *mutex);
 	virtual ~AutoMutex();
 
 	xNO_COPY_ASSIGN(AutoMutex)
-///@}
+///\}
 
 private:
     Mutex *_mutex {};    ///< mutex

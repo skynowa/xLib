@@ -41,13 +41,13 @@ class Client
     /// Client (interface)
 {
 public:
-///@name Ctors, dtor
-///@{
+///\name Ctors, dtor
+///\{
 	explicit  Client(cbool_t isDebug);
 	virtual  ~Client();
 
 	xNO_COPY_ASSIGN(Client)
-///@}
+///\}
 
     // handle
     HandleCurl &   get();
@@ -74,8 +74,8 @@ xPUBLIC_STATIC:
     static
     std::tstring_t unescapeUrl(std::ctstring_t &str);
 
-///@name Callbacks
-///@{
+///\name Callbacks
+///\{
 	static
 	std::size_t onWriteHeader(void_t *buff, std::csize_t size, std::csize_t items, void_t *userData);
 		///<
@@ -85,11 +85,11 @@ xPUBLIC_STATIC:
 	static
 	std::size_t onReadData(void_t *buff, std::csize_t size, std::csize_t items, void_t *userData);
 		///<
-///@}
+///\}
 
 protected:
-///@name Types
-///@{
+///\name Types
+///\{
 	struct ReadData
 	{
 		std::tstring_t buff;
@@ -104,7 +104,7 @@ protected:
 		}
 	};
 	using slist_unique_ptr_t = std::unique_ptr<curl_slist, SlistDeleter>;
-///@}
+///\}
 ///
 	cbool_t            _isDebug {};
 	CURLcode           _lastError {CURLE_OK};
@@ -118,15 +118,15 @@ private:
     static std::csize_t _errorBuffSize {CURL_ERROR_SIZE};
     tchar_t             _errorBuff[_errorBuffSize + 1] {};
 
-///@name Callbacks
-///@{
+///\name Callbacks
+///\{
 	DebugData _debugData {};
 
 	static
 	int _onDebugData(CURL *curl, const curl_infotype type, char *buff, std::csize_t size,
 			void_t *userData);
 		///< debug data
-///@}
+///\}
 };
 
 } // namespace

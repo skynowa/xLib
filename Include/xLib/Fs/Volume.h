@@ -37,14 +37,14 @@ public:
     #endif
     };
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  Volume(std::ctstring_t &path);
 	virtual  ~Volume() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Volume)
 	xNO_COPY_ASSIGN(Volume)
-///@}
+///\}
 
     std::ctstring_t & path() const;
         ///< path

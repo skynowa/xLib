@@ -7,8 +7,8 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-///@name xTEXT, xT (Ansi, Unicode string)
-///@{
+///\name xTEXT, xT (Ansi, Unicode string)
+///\{
 #if xUNICODE
     #define xTEXT(x) \
         L##x
@@ -20,10 +20,10 @@
     #define xT(x) \
         xTEXT(x)
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name xDECL, xDECL_TEMPL
-///@{
+///\name xDECL, xDECL_TEMPL
+///\{
 #if xENV_WIN && cmOPTION_PROJECT_LIB_SHARE
     #if xAPI_EXPORTS
         #define xDECL \
@@ -45,7 +45,7 @@
     #define xDECL_TEMPL
         ///< export, import DLL information
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
 // xNO_VTABLE
 #if   xENV_WIN
@@ -72,18 +72,18 @@
 #endif
     ///< calling convention
 //-------------------------------------------------------------------------------------------------
-///@name usings
-///@{
+///\name usings
+///\{
 #define xUSING_CONST(t) \
     using c##t = const t
     ///< using const types
 #define xUSING_PTR_CONST(t) \
     using cptr_##c##t = const t * const
     ///< using const types
-///@}
+///\}
 //-----------------------------------------------------------------------------------------------
-///@name Converters
-///@{
+///\name Converters
+///\{
 #if xUNICODE
     #define xA2T(a) \
         ( String::castW(a) )
@@ -106,17 +106,17 @@
 #define xU2T(u) \
     std::tstring_t( (u).cbegin(), (u).cbegin() + (u).size() )
     ///< convert std::ustring_t to std::tstring_t
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Utils
-///@{
+///\name Utils
+///\{
 #define xARRAY_SIZE(a) \
     ( sizeof(a) / sizeof((a)[0]) )
     ///< get array size
 #define xSWITCH_CASE_RETURN_STR(x) \
     case (x): return (#x)
     ///< help for switch (not for `enum class`)
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
 // xUNUSED
 #if   (xCOMPILER_MINGW || xCOMPILER_MS)
@@ -136,8 +136,8 @@
     xT("[unknown]")
     ///< C string as unknown value
 //-------------------------------------------------------------------------------------------------
-///@name Temporary enable/disable code
-///@{
+///\name Temporary enable/disable code
+///\{
 #define xTEMP_ENABLED  1
     ///< temporary code enabled
 #define xTEMP_DISABLED 0
@@ -162,10 +162,10 @@
     ///< code not implemented
 #define xNOT_AVAILABLE // n/a
     ///< code not available
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Build in macros
-///@{
+///\name Build in macros
+///\{
 #define xFILE \
 	xT(__FILE__)
     ///< source file path
@@ -213,10 +213,10 @@
     __COUNTER__
     ///< Expands to an integer starting with 0 and
     ///< incrementing by 1 every time it is used in a compiland
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Variable arguments
-///@{
+///\name Variable arguments
+///\{
 #if defined(va_start)
     #define xVA_START(val, fmt) \
         ( va_start(val, fmt) )
@@ -241,10 +241,10 @@
 #endif
     ///< Each invocation of xVA_START() must be matched by a corresponding invocation of xVA_END()
     ///< in the same function
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Formattong qualifiers
-///@{
+///\name Formattong qualifiers
+///\{
 #if   xENV_WIN
     #ifdef xARCH_BITS_32
         #define xPR_SIZET xT("u")
@@ -295,10 +295,10 @@
     #endif
 #endif
     ///< qualifiers
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
-///@{
+///\name xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
+///\{
 #if   xENV_WIN
     #define xNATIVE_HANDLE_NULL \
         ( static_cast<native_handle_t>( nullptr ) )
@@ -314,10 +314,10 @@
         ( static_cast<native_handle_t>( - 1 ) )
         ///< native handle value "invalid"
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name xFIND_DIR_HANDLE_NULL
-///@{
+///\name xFIND_DIR_HANDLE_NULL
+///\{
 #if   xENV_WIN
     #define xFIND_DIR_HANDLE_NULL \
         ( static_cast<find_dir_handle_t>( INVALID_HANDLE_VALUE ) )
@@ -327,10 +327,10 @@
         ( static_cast<find_dir_handle_t>( nullptr ) )
         ///< find directory handle
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name xSOCKET_ERROR, xSOCKET_HANDLE_INVALID
-///@{
+///\name xSOCKET_ERROR, xSOCKET_HANDLE_INVALID
+///\{
 #if xENV_WIN
     #define xSOCKET_ERROR \
         ( SOCKET_ERROR )
@@ -346,7 +346,7 @@
         ( static_cast<socket_t>( - 1 ) )
         ///< socket native handle value "null"
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
 // xWND_NATIVE_HANDLE_NULL
 #if xENV_WIN
@@ -356,8 +356,8 @@
 #endif
 
 //-------------------------------------------------------------------------------------------------
-///@name Generic test for success on any status value (for Windows XP)
-///@{
+///\name Generic test for success on any status value (for Windows XP)
+///\{
 #if xENV_WIN
     #ifndef NT_SUCCESS
         #define NT_SUCCESS(Status) \
@@ -383,7 +383,7 @@
             ///< generic test for success on any status value
     #endif
 #endif
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
 #if xENV_WIN
     #define xHOTKEY(modifier, key) \
@@ -391,8 +391,8 @@
         ///< hot key
 #endif
 //-------------------------------------------------------------------------------------------------
-///@name xFOR_EACH
-///@{
+///\name xFOR_EACH
+///\{
 #define xFOR_EACH_R(it_t, it, cont) \
     for (it_t::reverse_iterator       it((cont).rbegin()); it != (cont).rend(); ++ it)
     ///< iterate STL container (using it_t::reverse_iterator)
@@ -400,10 +400,10 @@
 #define xFOR_EACH_R_CONST(it_t, it, cont) \
     for (it_t::const_reverse_iterator it((cont).crbegin()); it != (cont).crend(); ++ it)
     ///< iterate STL container (using it_t::const_reverse_iterator)
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name xTHROW_REPORT, xTRY, xCATCH_ALL
-///@{
+///\name xTHROW_REPORT, xTRY, xCATCH_ALL
+///\{
 #define xTHROW_REPORT(msg) \
     { \
         culong_t         nativeError    { NativeError::get() }; \
@@ -431,10 +431,10 @@
         xTEST_FAIL_MSG(xT("unknown error")); \
     }
     ///< catch Exception, std::exception and all other exceptions
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Class disallows
-///@{
+///\name Class disallows
+///\{
 #define xNO_DEFAULT_CONSTRUCT(className) \
     className() = delete;
 	///< disallow default constructor
@@ -466,10 +466,10 @@
         void_t* operator new []    (size_t) throw() { return nullptr; } \
         void_t  operator delete [] (void_t*)        { ; }
     ///< disallow array on heap
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Class properties
-///@{
+///\name Class properties
+///\{
 // TEST: Defines - xPROPERTY, add tests
 #define xPROPERTY(type, name, Name) \
     public:\
@@ -501,5 +501,5 @@
     private: \
         static type _##name
     ///< property with read, write (static)
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------

@@ -17,13 +17,13 @@ class Com
     /// Component Object Model (COM)
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  Com(const COINIT concurrencyModel);
 	virtual  ~Com();
 
 	xNO_COPY_ASSIGN(Com)
-///@}
+///\}
 };
 
 } // namespace

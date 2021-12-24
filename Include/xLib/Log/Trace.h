@@ -24,17 +24,17 @@ class Trace :
     /// tracing
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Trace() = default;
 	virtual ~Trace();
-///@}
+///\}
 
-///@name operators
-///@{
+///\name operators
+///\{
 	template<typename T>
 	Trace &  operator << (const T &valueT);
-///@}
+///\}
 
     void_t write(cptr_ctchar_t format, ...) const override;
         ///< tracing to debugger, std::cout

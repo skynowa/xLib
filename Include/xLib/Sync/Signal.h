@@ -28,13 +28,13 @@ public:
     using on_exit_t = void_t (*)();
         ///< exit handler type
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Signal() = default;
 	virtual ~Signal() = default;
 
 	xNO_COPY_ASSIGN(Signal)
-///@}
+///\}
 
     std::sig_atomic_t state() const;
         ///< get state flag

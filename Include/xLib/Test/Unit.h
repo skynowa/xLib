@@ -30,8 +30,8 @@ class Unit
     /// testing
 {
 public:
-///@name For global use
-///@{
+///\name For global use
+///\{
     void_t *            m_pvRv {};
     tchar_t             m_chRv {};
     uchar_t             m_ucRv {};
@@ -60,15 +60,15 @@ public:
 #if xENV_WIN
     HWND                m_hwndRv {};
 #endif
-///@}
+///\}
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Unit();
 	virtual ~Unit() = 0;
 
 	xNO_COPY_ASSIGN(Unit)
-///@}
+///\}
 
     UnitData      &getData();
         ///< get data

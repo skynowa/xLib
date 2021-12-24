@@ -18,11 +18,11 @@ class FormatT
     ///< format string
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	xNO_DEFAULT_CONSTRUCT(FormatT)
 	xNO_COPY_ASSIGN(FormatT)
-///@}
+///\}
 
     template<typename ...ArgsT>
     static

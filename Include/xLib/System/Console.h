@@ -20,26 +20,26 @@ class Console
     /// Shell console
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Console();
 	virtual ~Console();
 
 	xNO_COPY_ASSIGN(Console)
-///@}
+///\}
 
     /*******************************************************************************
     *   Attributes
     *
     *******************************************************************************/
 
-///@name options
-///@{
+///\name options
+///\{
 	void setColorSupport(cbool_t flag);
 		///< force set color support (for PS1, etc)
 	void setEscapeValues(cbool_t flag);
 		///< escaping values (UNIX only)
-///@}
+///\}
 
     enum class Foreground
         /// foreground (text) color

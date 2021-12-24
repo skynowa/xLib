@@ -26,14 +26,14 @@ public:
     };
     xUSING_CONST(Period);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  Backup(std::ctstring_t &filePath, cPeriod period);
 	virtual  ~Backup() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Backup)
 	xNO_COPY_ASSIGN(Backup)
-///@}
+///\}
 
     void_t fileExec(std::ctstring_t &destDirPath, std::tstring_t *destFilePath) const /* throw(Exception) */;
         ///< execute file backup

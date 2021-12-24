@@ -15,13 +15,13 @@ class Crc32
     /// Crc32
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Crc32() = default;
 	virtual ~Crc32() = default;
 
 	xNO_COPY_ASSIGN(Crc32)
-///@}
+///\}
 
     ulong_t        calc(uchar_t *buff, culong_t &buffSize);
         ///< calculate

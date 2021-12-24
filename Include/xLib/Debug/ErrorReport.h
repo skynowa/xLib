@@ -30,8 +30,8 @@ public:
     };
     xUSING_CONST(Type);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
     ErrorReport(cType type, culong_t nativeError, const SourceInfo &sourceInfo,
                     std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< for Debugger
@@ -39,7 +39,7 @@ public:
 
 	xNO_DEFAULT_CONSTRUCT(ErrorReport)
     xNO_COPY_ASSIGN(ErrorReport)
-///@}
+///\}
 
     Type           type() const;
         ///< report type

@@ -21,13 +21,13 @@ public:
     using handle_t = pthread_mutex_t;
 #endif
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Mutex() = default;
 	virtual ~Mutex();
 
 	xNO_COPY_ASSIGN(Mutex)
-///@}
+///\}
 
     const handle_t & handle() const;
         ///< get handle

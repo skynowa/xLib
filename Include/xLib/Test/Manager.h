@@ -29,14 +29,14 @@ class Manager
     /// manager
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Manager(cint_t argsNum, cptr_ctchar_t args[]);
 	explicit Manager(cManagerData &data = cManagerData());
 	virtual ~Manager();
 
 	xNO_COPY_ASSIGN(Manager)
-///@}
+///\}
 
     void_t add(Unit *unit);
         ///< add unit

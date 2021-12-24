@@ -60,14 +60,14 @@ public:
     };
     xUSING_CONST(Type);
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit FileType(std::ctstring_t &filePath);
 	virtual ~FileType() = default;
 
 	xNO_DEFAULT_CONSTRUCT(FileType)
 	xNO_COPY_ASSIGN(FileType)
-///@}
+///\}
 
     std::ctstring_t & filePath() const;
         ///< file path

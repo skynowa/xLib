@@ -49,14 +49,14 @@ public:
     using id_t     = pthread_t;	///< ID
 #endif
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit  Thread(cbool_t isAutoDelete);
 	// BUG: Thread:: ~Thread() - must pure virtual
 	virtual  ~Thread() /* = 0*/;
 
 	xNO_COPY_ASSIGN(Thread)
-///@}
+///\}
 
     // actions
     void_t          setTag(culong_t &tag);

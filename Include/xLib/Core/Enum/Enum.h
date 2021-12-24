@@ -26,14 +26,14 @@ class Enum
 public:
 	using value_type = T;
 
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 	explicit Enum(const T value);
 	explicit Enum(std::tstring_t value);
    ~Enum() = default;
 
 	xNO_COPY_ASSIGN(Enum)
-///@}
+///\}
 
     T              get() const;
     std::tstring_t str() const;

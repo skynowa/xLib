@@ -17,14 +17,14 @@ class Finder
     ///< filesystem finder
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
 			 Finder(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter);
 	virtual ~Finder();
 
 	xNO_DEFAULT_CONSTRUCT(Finder)
 	xNO_COPY_ASSIGN(Finder)
-///@}
+///\}
 
     std::ctstring_t & rootDirPath() const;
         ///< root directory path
