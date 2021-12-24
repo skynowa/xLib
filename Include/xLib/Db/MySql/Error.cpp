@@ -6,9 +6,6 @@
 
 #include "Error.h"
 
-#include <xLib/Core/Const.h>
-#include <xLib/Core/String.h>
-#include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 
 namespace xl::db::mysql
