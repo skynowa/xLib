@@ -16,7 +16,6 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
-#include <xLib/Interface/ILastError.h>
 
 #if xENV_WIN
 	#include <mysql.h>
