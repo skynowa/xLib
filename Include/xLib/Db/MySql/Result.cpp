@@ -17,7 +17,7 @@ namespace xl::db::mysql
 
 //-------------------------------------------------------------------------------------------------
 IResult::IResult(
-    Connection &a_connection    ///< connection
+	const Connection &a_connection    ///< connection
 ) :
     _conn(&a_connection)
 {
@@ -228,7 +228,7 @@ namespace xl::db::mysql
 
 //-------------------------------------------------------------------------------------------------
 StoreResult::StoreResult(
-    Connection &a_connection	///< connection
+	const Connection &a_connection	///< connection
 ) :
     IResult(a_connection)
 {
@@ -261,7 +261,7 @@ namespace xl::db::mysql
 
 //-------------------------------------------------------------------------------------------------
 UseResult::UseResult(
-    Connection &a_connection    ///< connection
+	const Connection &a_connection    ///< connection
 ) :
     IResult(a_connection)
 {
