@@ -41,12 +41,7 @@ Db::show(
 
     // Connection
     Connection conn(_options);
-	{
-		bRv = conn.get().isValid();
-		xCHECK_DO(!bRv, return);
-
-		conn.connect();
-	}
+	conn.connect();
 
 	// Query
 	std::tstring_t sql = xT("SHOW DATABASES");
@@ -63,7 +58,11 @@ Db::show(
 
 		// [out]
 		for (const auto &it_row : rows) {
-			out_dbNames->push_back(it_row[0]);
+			xTEST_EQ(it_row.size(), static_cast<std::size_t>(1));
+
+			const auto &value = it_row.begin()->second;
+
+			out_dbNames->emplace_back(value);
 		}
 	}
 }
@@ -90,7 +89,7 @@ Db::isExists() const
 
 	// Query
 	std::ctstring_t sql = Format::str(
-		xT("SELECT count(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = {}"),
+		xT("SELECT count(*) as dbCount FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = {}"),
 		EscapeQuoted(conn, _options.db).forSqm());
 
 	// Result
@@ -99,10 +98,11 @@ Db::isExists() const
 
 		rows_t rows;
 		result.fetchRows(&rows);
-		xTEST_EQ(rows.size(), static_cast<size_t>(1));
-		xCHECK_RET(rows[0][0] == xT("0"), false);
 
-		xTEST_EQ(rows[0][0], "1");
+		xTEST_EQ(rows.size(), static_cast<size_t>(1));
+		xCHECK_RET(rows[0]["dbCount"] == xT("0"), false);
+
+		xTEST_EQ(rows[0]["dbCount"], "1");
 	}
 
     return true;

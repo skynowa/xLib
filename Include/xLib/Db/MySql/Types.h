@@ -11,8 +11,8 @@
 namespace xl::db::mysql
 {
 
-using row_t  = std::vec_tstring_t;
-using rows_t = std::vector<std::vec_tstring_t>;
+using row_t  = std::map_tstring_t;
+using rows_t = std::vector<row_t>;
 
 } // namespace
 //-------------------------------------------------------------------------------------------------

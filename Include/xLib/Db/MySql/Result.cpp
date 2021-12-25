@@ -87,16 +87,15 @@ IResult::rows() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-void_t
-IResult::fetchField(
-    MYSQL_FIELD *out_field	///< metadata: information about a field
-) const
+MYSQL_FIELD *
+IResult::fetchField() const
 {
     xTEST(_result.isValid());
-    xTEST_PTR(out_field);
 
-    out_field = ::mysql_fetch_field( _result.get() );
-    xTEST_PTR_MSG(out_field, Error(*_conn).str());
+    MYSQL_FIELD *field = ::mysql_fetch_field( _result.get() );
+    xTEST_NA(field);
+
+    return field;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -113,16 +112,15 @@ IResult::fetchFieldDirect(
     xTEST_PTR_MSG(out_field, Error(*_conn).str());
 }
 //-------------------------------------------------------------------------------------------------
-void_t
-IResult::fetchFields(
-    MYSQL_FIELD *out_field
-) const
+MYSQL_FIELD *
+IResult::fetchFields() const
 {
     xTEST(_result.isValid());
-    xTEST_PTR(out_field);
 
-    out_field = ::mysql_fetch_fields( _result.get() );
-    xTEST_PTR_MSG(out_field, Error(*_conn).str());
+    MYSQL_FIELD *field = ::mysql_fetch_fields( _result.get() );
+    xTEST_NA(field);
+
+    return field;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -141,18 +139,24 @@ IResult::fetchRow(
     }
 
     std::csize_t  fieldsNum    = fields();
+    MYSQL_FIELD  *fields       = fetchFields();
     culong_t     *fieldLengths = _fetchLengths();
 
-    // Cout() << xTRACE_VAR_4(rows(), fieldsNum, fieldLengths, row[0]);
-
 	for (std::size_t i = 0; i < fieldsNum; ++ i) {
-		cptr_cchar_t it_field        = (row[i] == nullptr) ? nullStr.c_str() : row[i];
-		std::csize_t it_fieldLengths = fieldLengths[i];
+		std::ctstring_t &it_key = fields[i].name;
 
-		std::cstring_t asField(it_field, it_fieldLengths);
+		std::tstring_t it_value;
+		{
+			cptr_cchar_t it_field     = (row[i] == nullptr) ? nullStr.c_str() : row[i];
+			std::csize_t it_fieldSize = fieldLengths[i];
+
+			std::cstring_t asField(it_field, it_fieldSize);
+
+			it_value = xA2T(asField);
+		}
 
 		// [out]
-		out_row->push_back( xA2T(asField) );
+		out_row->insert( {it_key, it_value} );
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -166,10 +170,10 @@ IResult::fetchRows(
 
     out_rows->clear();
 
-	std::vec_tstring_t row;
+    row_t row;
 
 	for (fetchRow(&row); !row.empty(); fetchRow(&row)) {
-		out_rows->push_back(row);
+		out_rows->emplace_back(row);
 	}
 }
 //-------------------------------------------------------------------------------------------------
