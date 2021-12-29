@@ -138,12 +138,25 @@ Test_MySql::unit()
 
 			StoreResult result = conn.query(sql).store();
 
-			xTEST(result.get().isValid());
-
 			rows_t rows;
 			result.fetchRows(&rows);
 			xTEST_EQ(rows.size(), std::size_t(1));
 			xTEST_EQ(std::stoull(rows[0].begin()->second), std::size_t(34));
+		}
+
+		xTEST_CASE("store")
+		{
+			std::ctstring_t sql = Format::str("SELECT * FROM {}", tableName);
+
+			StoreResult result = conn.query(sql).store();
+
+			rows_t rows;
+			result.fetchRows(&rows);
+
+			for (const auto &it_row : rows) {
+				Cout() << xTRACE_VAR(it_row);
+			}
+
 		}
 	}
 
