@@ -46,8 +46,8 @@ template<typename T, HandlePolicyType valueT>
 struct HandlePolicy;
     /// handle error
 //-------------------------------------------------------------------------------------------------
-///@name Factory
-///@{
+///\name Factory
+///\{
 #define xHANDLE_POLICY_FACTORY(type) \
 	template<typename T> \
 	struct HandlePolicy<T, type> \
@@ -101,10 +101,10 @@ struct HandlePolicy;
 	{ \
 		_close_impl(a_handle); \
 	}
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
-///@name Impl
-///@{
+///\name Impl
+///\{
 xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNative);
 xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNativeInvalid);
 xHANDLE_POLICY_FACTORY(HandlePolicyType::hvDll);
@@ -124,10 +124,10 @@ xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvMySqlResult,   nullptr);
 xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvCurl,          nullptr);
 xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvFindDir,       xFIND_DIR_HANDLE_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvSocket,        xSOCKET_HANDLE_INVALID);
-///@}
+///\}
 
-///@name Aliases
-///@{
+///\name Aliases
+///\{
 using HandleNative        = Handle<native_handle_t,   HandlePolicyType::hvNative>;
 xUSING_CONST(HandleNative);
 
@@ -154,7 +154,7 @@ xUSING_CONST(HandleFindDir);
 
 using HandleSocket        = Handle<socket_t,          HandlePolicyType::hvSocket>;
 xUSING_CONST(HandleSocket);
-///@}
+///\}
 //-------------------------------------------------------------------------------------------------
 } // namespace
 //-------------------------------------------------------------------------------------------------
