@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef Handle_H
+#define Handle_H
+
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
@@ -97,3 +100,6 @@ xPLATFORM_IMPL:
 #if xENV_WIN
     #include "Platform/Win/Handle_win.inl"
 #endif
+
+#endif
+
