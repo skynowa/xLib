@@ -64,27 +64,27 @@ namespace system {}
 namespace test {}
 namespace package {}
 
+} // namespace xl
+
 #if 1
 
-using namespace core;
-using namespace crypt;
-using namespace db;
-using namespace debug;
-using namespace fs;
-using namespace interface;
-using namespace algos;
-using namespace ui;
-using namespace log;
-using namespace net;
-using namespace patterns;
-using namespace sync;
-using namespace system;
-using namespace test;
-using namespace package;
+using namespace xl::core;
+using namespace xl::crypt;
+using namespace xl::db;
+using namespace xl::debug;
+using namespace xl::fs;
+using namespace xl::interface;
+using namespace xl::algos;
+using namespace xl::ui;
+using namespace xl::log;
+using namespace xl::net;
+using namespace xl::patterns;
+using namespace xl::sync;
+using namespace xl::system;
+using namespace xl::test;
+using namespace xl::package;
 
 #endif
-
-} // namespace xl
 
 #include <xLib/Core/Preprocessor.h>
 #include <xLib/Core/Defines.h>
