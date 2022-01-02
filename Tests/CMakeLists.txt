@@ -26,6 +26,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     get_filename_component(TEST_NAME ${IT_SOURCE} NAME_WE)
     message(STATUS ">>>>> TEST_NAME: ${TEST_NAME}")
 
+    # TODO: temp test
     if (NOT "${TEST_NAME}" MATCHES "Test_Xml")
         continue()
     endif()
