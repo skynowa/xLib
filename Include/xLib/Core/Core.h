@@ -61,6 +61,8 @@ namespace system {}
 namespace test {}
 namespace package {}
 
+#if 1
+
 using namespace core;
 using namespace crypt;
 using namespace db;
@@ -76,6 +78,8 @@ using namespace sync;
 using namespace system;
 using namespace test;
 using namespace package;
+
+#endif
 
 } // namespace xl
 
