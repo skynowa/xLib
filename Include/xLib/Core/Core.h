@@ -46,12 +46,12 @@
 namespace xl
 {
 
+namespace interface {}
 namespace core {}
 namespace crypt {}
 namespace db {}
 namespace debug {}
 namespace fs {}
-namespace interface {}
 namespace algos {};
 namespace ui {}
 namespace log {}
@@ -64,12 +64,12 @@ namespace package {}
 
 } // namespace xl
 
+using namespace xl::interface;
 using namespace xl::core;
 using namespace xl::crypt;
 using namespace xl::db;
 using namespace xl::debug;
 using namespace xl::fs;
-using namespace xl::interface;
 using namespace xl::algos;
 using namespace xl::ui;
 using namespace xl::log;
