@@ -92,6 +92,11 @@ xPLATFORM_IMPL:
 //-------------------------------------------------------------------------------------------------
 ///\name Aliases
 ///\{
+using file_t      = FILE *;
+using mysql_t     = MYSQL *;
+using mysql_res_t = MYSQL_RES *;
+using curl_t      = CURL *;
+
 using HandleNative        = Handle<native_handle_t,   HandlePolicyType::hvNative>;
 xUSING_CONST(HandleNative);
 
@@ -101,16 +106,16 @@ xUSING_CONST(HandleNativeInvalid);
 using HandleDll           = Handle<dll_handle_t,      HandlePolicyType::hvDll>;
 xUSING_CONST(HandleDll);
 
-using HandleStdFile       = Handle<FILE *,            HandlePolicyType::hvStdFile>;
+using HandleStdFile       = Handle<file_t,            HandlePolicyType::hvStdFile>;
 xUSING_CONST(HandleStdFile);
 
-using HandleMySqlConn     = Handle<MYSQL *,           HandlePolicyType::hvMySqlConn>;
+using HandleMySqlConn     = Handle<mysql_t,           HandlePolicyType::hvMySqlConn>;
 xUSING_CONST(HandleMySqlConn);
 
-using HandleMySqlResult   = Handle<MYSQL_RES *,       HandlePolicyType::hvMySqlResult>;
+using HandleMySqlResult   = Handle<mysql_res_t,       HandlePolicyType::hvMySqlResult>;
 xUSING_CONST(HandleMySqlResult);
 
-using HandleCurl          = Handle<CURL *,            HandlePolicyType::hvCurl>;
+using HandleCurl          = Handle<curl_t,            HandlePolicyType::hvCurl>;
 xUSING_CONST(HandleCurl);
 
 using HandleFindDir       = Handle<find_dir_handle_t, HandlePolicyType::hvFindDir>;
