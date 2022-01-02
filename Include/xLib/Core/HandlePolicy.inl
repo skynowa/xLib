@@ -16,7 +16,7 @@ namespace xl::core
 {
 
 /**************************************************************************************************
-*    public - HandlePolicy Std
+*    private - HandlePolicy Std
 *
 **************************************************************************************************/
 
@@ -63,7 +63,7 @@ HandlePolicy<T, HandlePolicyType::hvStdFile>::_close_impl(T &a_handle)
 
 
 /**************************************************************************************************
-*    public - HandlePolicy hvMySqlConn
+*    private - HandlePolicy hvMySqlConn
 *
 **************************************************************************************************/
 
@@ -115,7 +115,7 @@ HandlePolicy<T, HandlePolicyType::hvMySqlConn>::_close_impl(T &a_handle)
 
 
 /**************************************************************************************************
-*    public - HandlePolicy hvMySqlResult
+*    private - HandlePolicy hvMySqlResult
 *
 **************************************************************************************************/
 
@@ -155,7 +155,7 @@ HandlePolicy<T, HandlePolicyType::hvMySqlResult>::_close_impl(T &a_handle)
 
 
 /**************************************************************************************************
-*    public - HandlePolicy hvCurl
+*    private - HandlePolicy hvCurl
 *
 **************************************************************************************************/
 
@@ -190,49 +190,5 @@ HandlePolicy<T, HandlePolicyType::hvCurl>::_close_impl(T &a_handle)
     a_handle = null();
 }
 //-------------------------------------------------------------------------------------------------
-
-
-#if 0
-
-/**************************************************************************************************
-*    public - HandlePolicy hvXXXXXXXXXX
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-std::size_t
-HandlePolicy<T, HandlePolicyType::hvXXXXXXXXXX>::_openMax_impl()
-{
-	// TODO: [skynowa] _openMax_impl
-
-    return 0;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-T
-HandlePolicy<T, HandlePolicyType::hvXXXXXXXXXX>::_clone_impl(const T a_handle)
-{
-    return a_handle;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-bool_t
-HandlePolicy<T, HandlePolicyType::hvXXXXXXXXXX>::_isValid_impl(const T a_handle)
-{
-    return (a_handle != null());
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-void_t
-HandlePolicy<T, HandlePolicyType::hvXXXXXXXXXX>::_close_impl(T &a_handle)
-{
-    // (void_t)::mysql_free_result(a_handle);
-
-    a_handle = null();
-}
-//-------------------------------------------------------------------------------------------------
-
-#endif
 
 } // namespace
