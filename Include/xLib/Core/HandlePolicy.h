@@ -53,9 +53,36 @@ struct HandlePolicy
 	T
 	null()
 	{
-		T null_value{};
-
-		return null_value;
+		if      constexpr (type == HandlePolicyType::hvNative) {
+			return xNATIVE_HANDLE_NULL;
+		}
+		else if constexpr (type == HandlePolicyType::hvNativeInvalid) {
+			return xNATIVE_HANDLE_INVALID;
+		}
+		else if constexpr (type == HandlePolicyType::hvDll) {
+			return nullptr;
+		}
+		else if constexpr (type == HandlePolicyType::hvStdFile) {
+			return nullptr;
+		}
+		else if constexpr (type == HandlePolicyType::hvMySqlConn) {
+			return nullptr;
+		}
+		else if constexpr (type == HandlePolicyType::hvMySqlResult) {
+			return nullptr;
+		}
+		else if constexpr (type == HandlePolicyType::hvCurl) {
+			return nullptr;
+		}
+		else if constexpr (type == HandlePolicyType::hvFindDir) {
+			return xFIND_DIR_HANDLE_NULL;
+		}
+		else if constexpr (type == HandlePolicyType::hvSocket) {
+			return xSOCKET_HANDLE_INVALID;
+		}
+		else {
+			/// static_assert(false);
+		}
 	}
 
 	static
@@ -94,31 +121,6 @@ xPLATFORM_IMPL:
 };
 ///\}
 //-------------------------------------------------------------------------------------------------
-///\name Impl
-///\{
-#if 0
-	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNative,        xNATIVE_HANDLE_NULL);
-	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNativeInvalid, xNATIVE_HANDLE_INVALID);
-	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvDll,           nullptr);
-	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvStdFile,       nullptr);
-	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvMySqlConn,     nullptr);
-	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvMySqlResult,   nullptr);
-	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvCurl,          nullptr);
-	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvFindDir,       xFIND_DIR_HANDLE_NULL);
-	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvSocket,        xSOCKET_HANDLE_INVALID);
-#else
-//	struct HandlePolicy<HandlePolicyType::hvNative,        xNATIVE_HANDLE_NULL>;
-//	struct HandlePolicy<HandlePolicyType::hvNativeInvalid, xNATIVE_HANDLE_INVALID>;
-//	struct HandlePolicy<HandlePolicyType::hvDll,           nullptr>;
-//	struct HandlePolicy<HandlePolicyType::hvStdFile,       nullptr>;
-//	struct HandlePolicy<HandlePolicyType::hvMySqlConn,     nullptr>;
-//	struct HandlePolicy<HandlePolicyType::hvMySqlResult,   nullptr>;
-//	struct HandlePolicy<HandlePolicyType::hvCurl,          nullptr>;
-//	struct HandlePolicy<HandlePolicyType::hvFindDir,       xFIND_DIR_HANDLE_NULL>;
-//	struct HandlePolicy<HandlePolicyType::hvSocket,        xSOCKET_HANDLE_INVALID>;
-#endif
-///\}
-
 ///\name Aliases
 ///\{
 using HandleNative        = Handle<native_handle_t,   HandlePolicyType::hvNative>;

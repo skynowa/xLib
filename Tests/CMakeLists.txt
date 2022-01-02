@@ -26,9 +26,9 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     get_filename_component(TEST_NAME ${IT_SOURCE} NAME_WE)
     message(STATUS ">>>>> TEST_NAME: ${TEST_NAME}")
 
-    if (NOT "${TEST_NAME}" MATCHES "Test_Xml")
-        continue()
-    endif()
+    # if (NOT "${TEST_NAME}" MATCHES "Test_Xml")
+    #     continue()
+    # endif()
 
     find_package(LibXml2 REQUIRED)
     message(STATUS ">>>>> LIBXML2_LIBRARIES: ${LIBXML2_LIBRARIES}")
