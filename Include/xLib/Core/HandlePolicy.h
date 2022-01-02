@@ -51,8 +51,9 @@ struct HandlePolicy;
 // TODO: isValid - add const
 #define xHANDLE_POLICY_FACTORY(type, null_value) \
 	template<typename T> \
-	struct HandlePolicy<T, type> \
+	class HandlePolicy<T, type> \
 	{ \
+	public: \
 		static \
 		T \
 		null() \
