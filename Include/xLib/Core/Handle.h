@@ -85,12 +85,23 @@ public:
 private:
     using handle_policy_t = HandlePolicy<T, valueT>;
 
-    T           _handle {};    ///< handle
+    T _handle {};    ///< handle
 
 xPLATFORM_IMPL:
-    void_t      _setCloseOnExec_impl(cbool_t flag);
+    void_t _setCloseOnExec_impl(cbool_t flag);
 };
+
+} // namespace
 //-------------------------------------------------------------------------------------------------
+#include "Handle.inl"
+
+#if xENV_WIN
+    #include "Platform/Win/Handle_win.inl"
+#endif
+//-------------------------------------------------------------------------------------------------
+namespace xl::core
+{
+
 ///\name Aliases
 ///\{
 using file_t      = FILE *;
@@ -125,12 +136,6 @@ xUSING_CONST(HandleFindDir);
 using HandleSocket        = Handle<socket_t,          HandlePolicyType::hvSocket>;
 xUSING_CONST(HandleSocket);
 ///\}
-//-------------------------------------------------------------------------------------------------
+
 } // namespace
 //-------------------------------------------------------------------------------------------------
-#include "Handle.inl"
-
-#if xENV_WIN
-    #include "Platform/Win/Handle_win.inl"
-#endif
-
