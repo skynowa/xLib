@@ -15,7 +15,6 @@
 namespace xl::core
 {
 
-
 /**************************************************************************************************
 *    public - HandleNative
 *
@@ -26,13 +25,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, HandlePolicyType::hvNative>::_openMax_impl()
 {
-    rlimit limit {};
-
-    int_t iRv = ::getrlimit(RLIMIT_NOFILE, &limit);
-    xTEST_EQ(iRv, 0);
-    xTEST_GR(static_cast<std::size_t>(limit.rlim_cur), 0UL);
-
-    return static_cast<std::size_t>( limit.rlim_cur );
+    return HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::openMax();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
