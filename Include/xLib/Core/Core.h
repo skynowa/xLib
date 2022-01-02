@@ -25,6 +25,9 @@
 
 #pragma once
 
+#ifndef Core_H
+#define Core_H
+
 // config
 #include <xLib/Core/SysDefines.h>
 #include <xLib/Config.h>
@@ -109,3 +112,5 @@ using namespace package;
 #include <xLib/Core/Type/Types.h>
 #include <xLib/Internal/Internal.h>    // internal
 #include <xLib/Core/Functions.h>
+
+#endif
