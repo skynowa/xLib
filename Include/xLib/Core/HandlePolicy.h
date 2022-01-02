@@ -46,60 +46,65 @@ template<typename T, HandlePolicyType valueT>
 struct HandlePolicy;
     /// handle error
 //-------------------------------------------------------------------------------------------------
+///@name Factory
+///@{
 #define xHANDLE_POLICY_FACTORY(type) \
-    template<typename T> \
-    struct HandlePolicy<T, type> \
-    { \
-        static T           null(); \
-        static std::size_t openMax(); \
-        static T           clone(const T handle); \
-        static bool_t      isValid(const T handle); \
-        static void_t      close(T &a_handle); \
-    \
-    xPLATFORM_IMPL: \
-        static std::size_t _openMax_impl(); \
-        static T           _clone_impl(const T handle); \
-        static bool_t      _isValid_impl(const T handle); \
-        static void_t      _close_impl(T &handle); \
-    }
+	template<typename T> \
+	struct HandlePolicy<T, type> \
+	{ \
+		static T           null(); \
+		static std::size_t openMax(); \
+		static T           clone(const T handle); \
+		static bool_t      isValid(const T handle); \
+		static void_t      close(T &a_handle); \
+	\
+	xPLATFORM_IMPL: \
+		static std::size_t _openMax_impl(); \
+		static T           _clone_impl(const T handle); \
+		static bool_t      _isValid_impl(const T handle); \
+		static void_t      _close_impl(T &handle); \
+	}
 
 // TODO: isValid - add const
 #define xHANDLE_POLICY_FACTORY_IMPL(type, null_value) \
-    template<typename T> \
-    T \
-    HandlePolicy<T, type>::null() \
-    { \
-        return null_value; \
-    } \
-    \
-    template<typename T> \
-    std::size_t \
-    HandlePolicy<T, type>::openMax() \
-    { \
-        return _openMax_impl(); \
-    } \
-    \
-    template<typename T> \
-    T \
-    HandlePolicy<T, type>::clone(const T a_handle) \
-    { \
-        return _clone_impl(a_handle); \
-    } \
-    \
-    template<typename T> \
-    bool_t \
-    HandlePolicy<T, type>::isValid(const T a_handle) \
-    { \
-        return _isValid_impl(a_handle); \
-    } \
-    \
-    template<typename T> \
-    void_t \
-    HandlePolicy<T, type>::close(T &a_handle) \
-    { \
-        _close_impl(a_handle); \
-    }
+	template<typename T> \
+	T \
+	HandlePolicy<T, type>::null() \
+	{ \
+		return null_value; \
+	} \
+	\
+	template<typename T> \
+	std::size_t \
+	HandlePolicy<T, type>::openMax() \
+	{ \
+		return _openMax_impl(); \
+	} \
+	\
+	template<typename T> \
+	T \
+	HandlePolicy<T, type>::clone(const T a_handle) \
+	{ \
+		return _clone_impl(a_handle); \
+	} \
+	\
+	template<typename T> \
+	bool_t \
+	HandlePolicy<T, type>::isValid(const T a_handle) \
+	{ \
+		return _isValid_impl(a_handle); \
+	} \
+	\
+	template<typename T> \
+	void_t \
+	HandlePolicy<T, type>::close(T &a_handle) \
+	{ \
+		_close_impl(a_handle); \
+	}
+///@}
 //-------------------------------------------------------------------------------------------------
+///@name Impl
+///@{
 xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNative);
 xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNativeInvalid);
 xHANDLE_POLICY_FACTORY(HandlePolicyType::hvDll);
@@ -119,7 +124,10 @@ xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvMySqlResult,   nullptr);
 xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvCurl,          nullptr);
 xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvFindDir,       xFIND_DIR_HANDLE_NULL);
 xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvSocket,        xSOCKET_HANDLE_INVALID);
+///@}
 
+///@name Aliases
+///@{
 using HandleNative        = Handle<native_handle_t,   HandlePolicyType::hvNative>;
 xUSING_CONST(HandleNative);
 
@@ -146,6 +154,7 @@ xUSING_CONST(HandleFindDir);
 
 using HandleSocket        = Handle<socket_t,          HandlePolicyType::hvSocket>;
 xUSING_CONST(HandleSocket);
+///@}
 //-------------------------------------------------------------------------------------------------
 } // namespace
 //-------------------------------------------------------------------------------------------------
