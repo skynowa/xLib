@@ -41,72 +41,82 @@ enum class HandlePolicyType
 template<typename T, HandlePolicyType valueT>
 class Handle;
     /// handle
-
-template<typename T, HandlePolicyType valueT>
-struct HandlePolicy;
-    /// handle error
 //-------------------------------------------------------------------------------------------------
 ///\name Factory
 ///\{
 // TODO: isValid - add const
-#define xHANDLE_POLICY_FACTORY(type, null_value) \
-	template<typename T> \
-	struct HandlePolicy<T, type> \
-	{ \
-		static \
-		T \
-		null() \
-		{ \
-			return null_value; \
-		} \
-		\
-		static \
-		std::size_t \
-		openMax() \
-		{ \
-			return _openMax_impl(); \
-		} \
-		\
-		static \
-		T \
-		clone(const T a_handle) \
-		{ \
-			return _clone_impl(a_handle); \
-		} \
-		\
-		static \
-		bool_t \
-		isValid(const T a_handle) \
-		{ \
-			return _isValid_impl(a_handle); \
-		} \
-		\
-		static \
-		void \
-		close(T &a_handle) \
-		{ \
-			_close_impl(a_handle); \
-		} \
-	\
-	xPLATFORM_IMPL: \
-		static std::size_t _openMax_impl(); \
-		static T           _clone_impl(const T handle); \
-		static bool_t      _isValid_impl(const T handle); \
-		static void_t      _close_impl(T &handle); \
+/// #define xHANDLE_POLICY_FACTORY(type, null_value)
+template<typename T, HandlePolicyType type>
+struct HandlePolicy
+{
+	static
+	T
+	null()
+	{
+		T null_value{};
+
+		return null_value;
 	}
+
+	static
+	std::size_t
+	openMax()
+	{
+		return _openMax_impl();
+	}
+
+	static
+	T
+	clone(const T a_handle)
+	{
+		return _clone_impl(a_handle);
+	}
+
+	static
+	bool_t
+	isValid(const T a_handle)
+	{
+		return _isValid_impl(a_handle);
+	}
+
+	static
+	void
+	close(T &a_handle)
+	{
+		_close_impl(a_handle);
+	}
+
+xPLATFORM_IMPL:
+	static std::size_t _openMax_impl();
+	static T           _clone_impl(const T handle);
+	static bool_t      _isValid_impl(const T handle);
+	static void_t      _close_impl(T &handle);
+};
 ///\}
 //-------------------------------------------------------------------------------------------------
 ///\name Impl
 ///\{
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNative,        xNATIVE_HANDLE_NULL);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNativeInvalid, xNATIVE_HANDLE_INVALID);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvDll,           nullptr);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvStdFile,       nullptr);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvMySqlConn,     nullptr);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvMySqlResult,   nullptr);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvCurl,          nullptr);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvFindDir,       xFIND_DIR_HANDLE_NULL);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvSocket,        xSOCKET_HANDLE_INVALID);
+#if 0
+	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNative,        xNATIVE_HANDLE_NULL);
+	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNativeInvalid, xNATIVE_HANDLE_INVALID);
+	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvDll,           nullptr);
+	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvStdFile,       nullptr);
+	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvMySqlConn,     nullptr);
+	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvMySqlResult,   nullptr);
+	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvCurl,          nullptr);
+	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvFindDir,       xFIND_DIR_HANDLE_NULL);
+	xHANDLE_POLICY_FACTORY(HandlePolicyType::hvSocket,        xSOCKET_HANDLE_INVALID);
+#else
+//	struct HandlePolicy<HandlePolicyType::hvNative,        xNATIVE_HANDLE_NULL>;
+//	struct HandlePolicy<HandlePolicyType::hvNativeInvalid, xNATIVE_HANDLE_INVALID>;
+//	struct HandlePolicy<HandlePolicyType::hvDll,           nullptr>;
+//	struct HandlePolicy<HandlePolicyType::hvStdFile,       nullptr>;
+//	struct HandlePolicy<HandlePolicyType::hvMySqlConn,     nullptr>;
+//	struct HandlePolicy<HandlePolicyType::hvMySqlResult,   nullptr>;
+//	struct HandlePolicy<HandlePolicyType::hvCurl,          nullptr>;
+//	struct HandlePolicy<HandlePolicyType::hvFindDir,       xFIND_DIR_HANDLE_NULL>;
+//	struct HandlePolicy<HandlePolicyType::hvSocket,        xSOCKET_HANDLE_INVALID>;
+#endif
 ///\}
 
 ///\name Aliases
