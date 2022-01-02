@@ -7,7 +7,9 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Core/Core.h>
+///#include <xLib/Core/Core.h>
+#include <xLib/Core/Defines.h>
+#include <xLib/Core/Type/Types.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::interface
 {
