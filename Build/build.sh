@@ -4,7 +4,8 @@
 # vars
 PROJECT_NAME="xLib"
 DIR_BUILD="../../${PROJECT_NAME}_build"
-JOBS_NUM=$(($(nproc) * 2))
+# JOBS_NUM=$(($(nproc) * 2))
+JOBS_NUM=1
 
 echo "Jobs: $JOBS_NUM"
 
