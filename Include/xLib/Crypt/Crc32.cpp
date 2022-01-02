@@ -27,7 +27,7 @@ namespace xl::crypt
 ulong_t
 Crc32::calc(
     uchar_t  *a_buff,
-    culong_t &a_buffSize
+    culong_t  a_buffSize
 )
 {
     xTEST_PTR(a_buff);
