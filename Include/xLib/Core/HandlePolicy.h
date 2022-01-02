@@ -82,7 +82,7 @@ struct HandlePolicy;
 		} \
 		\
 		static \
-		void_t \
+		void \
 		close(T &a_handle) \
 		{ \
 			_close_impl(a_handle); \
