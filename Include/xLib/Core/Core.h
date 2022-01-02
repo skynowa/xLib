@@ -25,9 +25,7 @@
 
 #pragma once
 
-#ifndef Core_H
-#define Core_H
-
+//-------------------------------------------------------------------------------------------------
 // config
 #include <xLib/Core/SysDefines.h>
 #include <xLib/Config.h>
@@ -66,8 +64,6 @@ namespace package {}
 
 } // namespace xl
 
-#if 1
-
 using namespace xl::core;
 using namespace xl::crypt;
 using namespace xl::db;
@@ -83,8 +79,6 @@ using namespace xl::sync;
 using namespace xl::system;
 using namespace xl::test;
 using namespace xl::package;
-
-#endif
 
 #include <xLib/Core/Preprocessor.h>
 #include <xLib/Core/Defines.h>
@@ -112,5 +106,4 @@ using namespace xl::package;
 #include <xLib/Core/Type/Types.h>
 #include <xLib/Internal/Internal.h>    // internal
 #include <xLib/Core/Functions.h>
-
-#endif
+//-------------------------------------------------------------------------------------------------
