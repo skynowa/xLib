@@ -23,7 +23,7 @@ public:
 	xNO_COPY_ASSIGN(Crc32)
 ///\}
 
-    ulong_t        calc(uchar_t *buff, culong_t &buffSize);
+    ulong_t        calc(uchar_t *buff, culong_t buffSize);
         ///< calculate
     ulong_t        calcFile(std::ctstring_t &filePath);
         ///< calculate
