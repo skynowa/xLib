@@ -29,7 +29,13 @@ HandlePolicy<T, type>::_openMax_impl()
 					   type == HandlePolicyType::hvDll ||
 					   type == HandlePolicyType::hvStdFile)
 	{
-		return HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::openMax();
+		rlimit limit {};
+
+		int_t iRv = ::getrlimit(RLIMIT_NOFILE, &limit);
+		xTEST_EQ(iRv, 0);
+		xTEST_GR(static_cast<std::size_t>(limit.rlim_cur), 0UL);
+
+		return static_cast<std::size_t>( limit.rlim_cur );
 	}
 	else if constexpr (type == HandlePolicyType::hvMySqlConn) {
 		// TODO: [skynowa] _openMax_impl
