@@ -56,22 +56,22 @@ public:
     std::size_t openMax();
 		///< maximum open handles
 
-    T           get() const;
+    T           get() const override;
         ///< get
-    void_t      set(const T &handle);
+    void_t      set(const T &handle) override;
         ///< set
-    T           clone() const;
+    T           clone() const override;
         ///< duplicate handle
     void_t      setCloseOnExec(cbool_t flag);
 		///< duplicate file descriptors from sub-processes
 
-    bool_t      isValid() const;
+    bool_t      isValid() const override;
         ///< is valid
-    void_t      attach(const T &handle);
+    void_t      attach(const T &handle) override;
         ///< attach
-    T           detach();
+    T           detach() override;
         ///< detach
-    void_t      close();
+    void_t      close() override;
         ///< close
 
 #if xENV_WIN
