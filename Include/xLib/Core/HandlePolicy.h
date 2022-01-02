@@ -48,15 +48,45 @@ struct HandlePolicy;
 //-------------------------------------------------------------------------------------------------
 ///\name Factory
 ///\{
-#define xHANDLE_POLICY_FACTORY(type) \
+// TODO: isValid - add const
+#define xHANDLE_POLICY_FACTORY(type, null_value) \
 	template<typename T> \
 	struct HandlePolicy<T, type> \
 	{ \
-		static T           null(); \
-		static std::size_t openMax(); \
-		static T           clone(const T handle); \
-		static bool_t      isValid(const T handle); \
-		static void_t      close(T &a_handle); \
+		static \
+		T \
+		null() \
+		{ \
+			return null_value; \
+		} \
+		\
+		static \
+		std::size_t \
+		openMax() \
+		{ \
+			return _openMax_impl(); \
+		} \
+		\
+		static \
+		T \
+		clone(const T a_handle) \
+		{ \
+			return _clone_impl(a_handle); \
+		} \
+		\
+		static \
+		bool_t \
+		isValid(const T a_handle) \
+		{ \
+			return _isValid_impl(a_handle); \
+		} \
+		\
+		static \
+		void_t \
+		close(T &a_handle) \
+		{ \
+			_close_impl(a_handle); \
+		} \
 	\
 	xPLATFORM_IMPL: \
 		static std::size_t _openMax_impl(); \
@@ -64,66 +94,19 @@ struct HandlePolicy;
 		static bool_t      _isValid_impl(const T handle); \
 		static void_t      _close_impl(T &handle); \
 	}
-
-// TODO: isValid - add const
-#define xHANDLE_POLICY_FACTORY_IMPL(type, null_value) \
-	template<typename T> \
-	T \
-	HandlePolicy<T, type>::null() \
-	{ \
-		return null_value; \
-	} \
-	\
-	template<typename T> \
-	std::size_t \
-	HandlePolicy<T, type>::openMax() \
-	{ \
-		return _openMax_impl(); \
-	} \
-	\
-	template<typename T> \
-	T \
-	HandlePolicy<T, type>::clone(const T a_handle) \
-	{ \
-		return _clone_impl(a_handle); \
-	} \
-	\
-	template<typename T> \
-	bool_t \
-	HandlePolicy<T, type>::isValid(const T a_handle) \
-	{ \
-		return _isValid_impl(a_handle); \
-	} \
-	\
-	template<typename T> \
-	void_t \
-	HandlePolicy<T, type>::close(T &a_handle) \
-	{ \
-		_close_impl(a_handle); \
-	}
 ///\}
 //-------------------------------------------------------------------------------------------------
 ///\name Impl
 ///\{
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNative);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNativeInvalid);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvDll);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvStdFile);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvMySqlConn);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvMySqlResult);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvCurl);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvFindDir);
-xHANDLE_POLICY_FACTORY(HandlePolicyType::hvSocket);
-
-xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvNative,        xNATIVE_HANDLE_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvNativeInvalid, xNATIVE_HANDLE_INVALID);
-xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvDll,           nullptr);
-xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvStdFile,       nullptr);
-xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvMySqlConn,     nullptr);
-xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvMySqlResult,   nullptr);
-xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvCurl,          nullptr);
-xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvFindDir,       xFIND_DIR_HANDLE_NULL);
-xHANDLE_POLICY_FACTORY_IMPL(HandlePolicyType::hvSocket,        xSOCKET_HANDLE_INVALID);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNative,        xNATIVE_HANDLE_NULL);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvNativeInvalid, xNATIVE_HANDLE_INVALID);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvDll,           nullptr);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvStdFile,       nullptr);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvMySqlConn,     nullptr);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvMySqlResult,   nullptr);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvCurl,          nullptr);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvFindDir,       xFIND_DIR_HANDLE_NULL);
+xHANDLE_POLICY_FACTORY(HandlePolicyType::hvSocket,        xSOCKET_HANDLE_INVALID);
 ///\}
 
 ///\name Aliases
