@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef HandlePolicy_H
+#define HandlePolicy_H
+
 #if xENV_WIN
 	#include <mysql.h>
 	#include <errmsg.h>
@@ -157,3 +160,6 @@ xUSING_CONST(HandleSocket);
     #include "Platform/Unix/HandlePolicy_unix.inl"
 #endif
 //-------------------------------------------------------------------------------------------------
+
+#endif
+
