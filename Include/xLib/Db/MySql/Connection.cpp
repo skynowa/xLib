@@ -104,6 +104,7 @@ Connection::kill(
 {
     xTEST_GR(a_pid, 0UL);
 
+    // warning C4244: 'argument': conversion from 'std::cuint64_t' to 'unsigned long', possible loss of data
     int_t iRv = ::mysql_kill(_conn.get(), a_pid);
     xTEST_EQ_MSG(iRv, 0, Error(*this).str());
 }
