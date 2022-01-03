@@ -20,11 +20,11 @@ file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
 foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     message(STATUS "")
-    message(STATUS ">>>>> PROJECT_NAME: ${PROJECT_NAME}")
-    message(STATUS ">>>>> PROJECT_LIB_STATIC: ${PROJECT_LIB_STATIC}")
+    # message(STATUS ">>>>> PROJECT_NAME: ${PROJECT_NAME}")
+    # message(STATUS ">>>>> PROJECT_LIB_STATIC: ${PROJECT_LIB_STATIC}")
 
     get_filename_component(TEST_NAME ${IT_SOURCE} NAME_WE)
-    message(STATUS ">>>>> TEST_NAME: ${TEST_NAME}")
+    # message(STATUS ">>>>> TEST_NAME: ${TEST_NAME}")
 
     # TODO: temp test
     if (NOT "${TEST_NAME}" MATCHES "Test_Xml")

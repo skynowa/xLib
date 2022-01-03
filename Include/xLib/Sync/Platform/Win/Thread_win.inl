@@ -336,7 +336,7 @@ Thread::_setCpuAffinity_impl(
     * error C2446: '!=': no conversion from 'nullptr' to 'DWORD_PTR'
     * message: A native nullptr can only be converted to bool or, using reinterpret_cast, to an integral type
     */
-    xTEST(pdwRv != nullptr);
+    xTEST(!static_cast<bool_t>(pdwRv));
 #endif
 
     xTEST_EQ(ERROR_INVALID_PARAMETER != pdwRv, true);
