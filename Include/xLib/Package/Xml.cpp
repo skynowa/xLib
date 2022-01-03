@@ -18,7 +18,7 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Test/Test.h>
 
-#pragma comment(lib, "libxml2_a")
+#pragma comment(lib, "libxml2")
 //-------------------------------------------------------------------------------------------------
 namespace
 {
