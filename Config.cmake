@@ -22,23 +22,23 @@ set(cmOPTION_PROJECT_LIB_SHARE  0) # TODO: build - fix
 set(cmOPTION_PROJECT_LIB_MODULE 0) # TODO: build - fix
 set(cmOPTION_BUILD_TESTS        1)
 
-if (MSVC)
-	if (cmOPTION_PROJECT_LIB_STATIC)
-		set(CMAKE_STATIC_LINKER_FLAGS_STRING machine:X64)
-	endif()
+# if (MSVC)
+# 	if (cmOPTION_PROJECT_LIB_STATIC)
+# 		set(CMAKE_STATIC_LINKER_FLAGS_STRING machine:X64)
+# 	endif()
 
-	if (cmOPTION_PROJECT_LIB_SHARE)
-		set(CMAKE_SHARED_LINKER_FLAGS_STRING machine:X64)
-	endif()
+# 	if (cmOPTION_PROJECT_LIB_SHARE)
+# 		set(CMAKE_SHARED_LINKER_FLAGS_STRING machine:X64)
+# 	endif()
 
-	if (cmOPTION_PROJECT_LIB_MODULE)
-		set(CMAKE_MODULE_LINKER_FLAGS_STRING machine:X64)
-	endif()
+# 	if (cmOPTION_PROJECT_LIB_MODULE)
+# 		set(CMAKE_MODULE_LINKER_FLAGS_STRING machine:X64)
+# 	endif()
 
-	if (cmOPTION_BUILD_TESTS)
-		set(CMAKE_EXE_LINKER_FLAGS_STRING machine:X64)
-	endif()
-endif()
+# 	if (cmOPTION_BUILD_TESTS)
+# 		set(CMAKE_EXE_LINKER_FLAGS_STRING machine:X64)
+# 	endif()
+# endif()
 
 # Local host - No tests
 cmake_host_system_information(RESULT cmHOST_NAME QUERY HOSTNAME)
