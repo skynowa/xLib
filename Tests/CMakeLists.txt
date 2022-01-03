@@ -44,6 +44,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     message(STATUS ">>>>> XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
 
     add_executable(${TEST_NAME} ${IT_SOURCE})
+    target_include_directories(${TEST_NAME} PUBLIC ${CONAN_LIBXML2_ROOT}/lib)
     target_link_libraries(${TEST_NAME} ${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
 
     if (MSVC)
