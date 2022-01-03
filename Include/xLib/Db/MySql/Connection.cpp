@@ -99,14 +99,11 @@ Connection::close()
 //-------------------------------------------------------------------------------------------------
 void_t
 Connection::kill(
-	std::cuint64_t a_pid
+	culong_t a_pid
 )
 {
     xTEST_GR(a_pid, 0UL);
 
-    /// static_assert( std::is_same_v<std::uint64_t, unsigned long> );
-
-    // warning C4244: 'argument': conversion from 'std::cuint64_t' to 'unsigned long', possible loss of data
     int_t iRv = ::mysql_kill(_conn.get(), a_pid);
     xTEST_EQ_MSG(iRv, 0, Error(*this).str());
 }
