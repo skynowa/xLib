@@ -9,13 +9,13 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Interface/IPrint.h>
+#include <xLib/Interface/IPrinter.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
 
 class Path :
-	public IPrint<std::tostream_t>
+	public IPrinter<std::tostream_t>
     /// file system path
 {
 public:

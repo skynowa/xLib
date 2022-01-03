@@ -8,13 +8,13 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Const.h>
-#include <xLib/Interface/IPrint.h>
+#include <xLib/Interface/IPrinter.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
 
 class Dir :
-	public IPrint<std::tostream_t>
+	public IPrinter<std::tostream_t>
     /// directory
 {
 public:
