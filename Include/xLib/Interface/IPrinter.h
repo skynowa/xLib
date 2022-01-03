@@ -1,5 +1,5 @@
 /**
- * \file  IPrint.h
+ * \file  IPrinter.h
  * \brief Printable
  */
 
@@ -13,14 +13,14 @@ namespace xl::interface_
 {
 
 template <typename StreamT>
-class xNO_VTABLE IPrint
+class xNO_VTABLE IPrinter
     /// Printable
 {
 public:
 ///\name ctors, dtor
 ///\{
-			 IPrint() = default;
-	virtual ~IPrint() = default;
+			 IPrinter() = default;
+	virtual ~IPrinter() = default;
 ///\}
 
     virtual void_t print(StreamT &) const = 0;
