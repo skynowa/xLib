@@ -37,7 +37,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     message(STATUS ">>>>> XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
 
     add_executable(${TEST_NAME} ${IT_SOURCE})
-    target_link_libraries(${TEST_NAME} "${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES} ${LIBXML2_LIBRARIES}")
+    target_link_libraries(${TEST_NAME} ${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES} ${LIBXML2_LIBRARIES})
 
     if (MSVC)
         # set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/Z7 /NODEFAULTLIB:library")
