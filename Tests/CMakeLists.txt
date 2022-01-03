@@ -37,6 +37,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     add_executable(${TEST_NAME} ${IT_SOURCE})
     message(STATUS ">>>>> IT_SOURCE: ${IT_SOURCE}")
 
+    message(STATUS ">>>>> XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
+
     if (MSVC)
         # set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/Z7 /NODEFAULTLIB:library")
         # set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB")
