@@ -18,6 +18,8 @@ set(MEMORYCHECK_SUPPRESSIONS_FILE     "${XLIB_LOCATION}/valgrind_suppress.txt")
 #--------------------------------------------------------------------------------------------------
 file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
+message(STATUS "")
+
 foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     # message(STATUS "")
     # message(STATUS ">>>>> PROJECT_NAME: ${PROJECT_NAME}")
@@ -30,6 +32,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     if (NOT "${TEST_NAME}" MATCHES "Test_Xml")
         continue()
     endif()
+
+    message(STATUS ">>>>> TEST_NAME: ${TEST_NAME}")
 
     find_package(LibXml2 REQUIRED)
     message(STATUS ">>>>> LIBXML2_LIBRARIES: ${LIBXML2_LIBRARIES}")
@@ -48,11 +52,11 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
 
+    add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
+
     target_link_libraries(${TEST_NAME}
         "${PROJECT_LIB_STATIC}"
         "${XLIB_LIBRARIES}"
         "${LIBXML2_LIBRARIES}")
-
-    add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
 endforeach()
 #--------------------------------------------------------------------------------------------------
