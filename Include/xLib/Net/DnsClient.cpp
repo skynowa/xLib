@@ -373,7 +373,7 @@ DnsClient::isOnLan(
     cuint_t &a_ip
 )
 {
-    cuint_t localIp = INADDR_ANY;  // IP of local interface (network order)
+    cuint_t localIp = INADDR_ANY;  // IP of local interfaCe (network order)
     cuint_t netMask = INADDR_NONE; // net mask for IP (network order)
 
     return (((ntohl(a_ip) ^ ntohl(localIp)) & ntohl(netMask)) == 0UL);
