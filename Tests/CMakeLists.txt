@@ -18,30 +18,25 @@ set(MEMORYCHECK_SUPPRESSIONS_FILE     "${XLIB_LOCATION}/valgrind_suppress.txt")
 #--------------------------------------------------------------------------------------------------
 file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
-message(STATUS "")
-
 foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
-    # message(STATUS "")
-    # message(STATUS ">>>>> PROJECT_NAME: ${PROJECT_NAME}")
-    # message(STATUS ">>>>> PROJECT_LIB_STATIC: ${PROJECT_LIB_STATIC}")
-
     get_filename_component(TEST_NAME ${IT_SOURCE} NAME_WE)
-    # message(STATUS ">>>>> TEST_NAME: ${TEST_NAME}")
 
     # TODO: temp test
     if (NOT "${TEST_NAME}" MATCHES "Test_Xml")
         continue()
     endif()
 
-    message(STATUS ">>>>> TEST_NAME: ${TEST_NAME}")
-
     find_package(LibXml2 REQUIRED)
+
+    message(STATUS "")
+    message(STATUS ">>>>> PROJECT_NAME: ${PROJECT_NAME}")
+    message(STATUS ">>>>> PROJECT_LIB_STATIC: ${PROJECT_LIB_STATIC}")
+    message(STATUS ">>>>> TEST_NAME: ${TEST_NAME}")
     message(STATUS ">>>>> LIBXML2_LIBRARIES: ${LIBXML2_LIBRARIES}")
+    message(STATUS ">>>>> IT_SOURCE: ${IT_SOURCE}")
+    message(STATUS ">>>>> XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
 
     add_executable(${TEST_NAME} ${IT_SOURCE})
-    message(STATUS ">>>>> IT_SOURCE: ${IT_SOURCE}")
-
-    message(STATUS ">>>>> XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
 
     if (MSVC)
         # set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/Z7 /NODEFAULTLIB:library")
@@ -52,11 +47,11 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
 
-    add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
-
     target_link_libraries(${TEST_NAME}
         ${PROJECT_LIB_STATIC}
         ${XLIB_LIBRARIES}
         ${LIBXML2_LIBRARIES})
+
+    add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
 endforeach()
 #--------------------------------------------------------------------------------------------------
