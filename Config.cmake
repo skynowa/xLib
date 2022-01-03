@@ -23,6 +23,8 @@ set(cmOPTION_PROJECT_LIB_MODULE 0) # TODO: build - fix
 set(cmOPTION_BUILD_TESTS        1)
 
 if (MSVC)
+	set(CMAKE_GENERATOR_PLATFORM x64)	# x86
+
 	# if (cmOPTION_PROJECT_LIB_STATIC)
 	# 	set(CMAKE_STATIC_LINKER_FLAGS_STRING machine:X64)
 	# endif()
@@ -35,9 +37,9 @@ if (MSVC)
 	# 	set(CMAKE_MODULE_LINKER_FLAGS_STRING machine:X64)
 	# endif()
 
-	if (cmOPTION_BUILD_TESTS)
-		set(CMAKE_EXE_LINKER_FLAGS_STRING machine:X64)
-	endif()
+	# if (cmOPTION_BUILD_TESTS)
+	# 	set(CMAKE_EXE_LINKER_FLAGS_STRING machine:X64)
+	# endif()
 endif()
 
 # Local host - No tests
