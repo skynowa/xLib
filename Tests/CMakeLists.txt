@@ -6,9 +6,16 @@
 
 #--------------------------------------------------------------------------------------------------
 include(CTest)
+
+message(STATUS "")
+message(STATUS ">>>>> CTest <<<<<<")
 #--------------------------------------------------------------------------------------------------
 if (EXISTS "${XLIB_LOCATION}/../conan_paths.cmake")
+    message(STATUS ">>>>> conan_paths: TRUE")
+
     include(${XLIB_LOCATION}/../conan_paths.cmake)
+else()
+    message(STATUS ">>>>> conan_paths: FALSE")
 endif()
 #--------------------------------------------------------------------------------------------------
 find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
