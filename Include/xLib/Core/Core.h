@@ -46,7 +46,7 @@
 namespace xl
 {
 
-namespace interface {}
+namespace interface_ {}
 namespace core {}
 namespace crypt {}
 namespace db {}
@@ -64,7 +64,7 @@ namespace package {}
 
 } // namespace xl
 
-using namespace xl::interface;
+using namespace xl::interface_;
 using namespace xl::core;
 using namespace xl::crypt;
 using namespace xl::db;

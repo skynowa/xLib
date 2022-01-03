@@ -1,6 +1,6 @@
 /**
  * \file  ICompare.h
- * \brief Comparable interface. Mix-in that gives its subclass a full set of comparison operators.
+ * \brief Comparable. Mix-in that gives its subclass a full set of comparison operators.
  *
  * Simply by inheriting publically from this and implementing
  * compare(), the subclass gains a full set of comparison operators,
@@ -17,12 +17,12 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::interface
+namespace xl::interface_
 {
 
 template <typename T>
 class xNO_VTABLE ICompare
-	/// Comparable interface
+	/// Comparable
 {
 public:
 ///\name ctors, dtor
