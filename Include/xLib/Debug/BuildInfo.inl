@@ -413,7 +413,7 @@ BuildInfo::xlibBinaryType() const
 #elif cmOPTION_PROJECT_LIB_MODULE
     sRv = xT("Dynamic link library");
 #else
-    #error xLib: unknown project type
+    xBUILD_ERROR("cmOPTION_PROJECT_[...] - Unknown project type")
 
     sRv = xUNKNOWN_CSTRING;
 #endif
