@@ -58,9 +58,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         # set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/MTd /NODEFAULTLIB /Z7")
         set(CMAKE_EXE_LINKER_FLAGS "/MTd")
         set(CMAKE_EXE_LINKER_FLAGS "/NODEFAULTLIB:MSVCRT")
-        set(CMAKE_EXE_LINKER_FLAGS "/Z7")
 
-        # https://docs.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-warning-lnk4099?redirectedfrom=MSDN&view=msvc-160
+        # https://docs.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-warning-lnk4099
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4098")
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
