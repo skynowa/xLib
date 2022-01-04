@@ -48,8 +48,17 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     target_link_libraries(${TEST_NAME} ${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES})
 
     if (MSVC)
-        # set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/Z7 /NODEFAULTLIB:library")
-        # set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB")
+        # There are 4 versions of the CRT link libraries present in vclib:
+        #
+        # libcmt.lib:  static CRT link library for a release build (/MT)
+        # libcmtd.lib: static CRT link library for a debug build (/MTd)
+        # msvcrt.lib:  import library for the release DLL version of the CRT (/MD)
+        # msvcrtd.lib: import library for the debug DLL version of the CRT (/MDd)
+
+        # set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/MTd /NODEFAULTLIB /Z7")
+        set(CMAKE_EXE_LINKER_FLAGS "/MTd")
+        set(CMAKE_EXE_LINKER_FLAGS "/NODEFAULTLIB:MSVCRT")
+        set(CMAKE_EXE_LINKER_FLAGS "/Z7")
 
         # https://docs.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-warning-lnk4099?redirectedfrom=MSDN&view=msvc-160
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4098")
