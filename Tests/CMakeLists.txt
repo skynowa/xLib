@@ -71,8 +71,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     add_executable(${TEST_NAME} ${IT_SOURCE})
 
-    # target_link_libraries(${TEST_NAME} PUBLIC ${XLIB_LIBRARIES} ${LIBXML2_LIBRARIES} ${PROJECT_LIB_STATIC})
-    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_LIB_STATIC} libxml2_a1)
+    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_LIB_STATIC} ${XLIB_LIBRARIES} ${LIBXML2_LIBRARIES})
 
     if (MSVC)
         if ("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
