@@ -13,7 +13,7 @@ set(CMAKE_COLOR_MAKEFILE          ON)
 set(CMAKE_VERBOSE_MAKEFILE        OFF)
 set(CMAKE_REQUIRED_QUIET          ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-	# "clangd.arguments": ['-compile-commands-dir="../xLib_eclipse"' ]
+	# "clangd.arguments": ['-compile-commands-dir="../xLib_build"' ]
 # message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
 #--------------------------------------------------------------------------------------------------
 # options
@@ -48,14 +48,18 @@ if (${cmHOST_NAME} STREQUAL "skynowa-pc")
 	set(cmOPTION_BUILD_TESTS 1)
 endif()
 
+#
 # CMAKE_CONFIGURATION_TYPES:
 # - None
 # - Debug
 # - Release
 # - RelWithDebInfo
 # - MinSizeRel
-set(CMAKE_CONFIGURATION_TYPES      "Debug" STRING "") # "Debug;Release;RelWithDebInfo"
-set(CMAKE_BUILD_TYPE               "Debug")	# "RelWithDebInfo"
+#
+# Sample: "Debug;Release;RelWithDebInfo"
+#
+set(CMAKE_CONFIGURATION_TYPES      "Release" STRING "")
+set(CMAKE_BUILD_TYPE               "Release")
 
 set(OPTION_UNICODE                 0)
 set(cmOPTION_DEBUG_MODE_MSGBOX     0)
