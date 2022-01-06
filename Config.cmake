@@ -38,7 +38,8 @@ if (MSVC)
 
 	if (cmOPTION_BUILD_TESTS)
 		# set(CMAKE_EXE_LINKER_FLAGS_STRING machine:X64)
-		set(CMAKE_EXE_LINKER_FLAGS "-Wl,-z,-rpath-link"  CACHE STRING "executable linker flags")
+		# set(CMAKE_EXE_LINKER_FLAGS "-Wl,-z,-rpath-link"  CACHE STRING "executable linker flags")
+		set(CMAKE_EXE_LINKER_FLAGS "/NODEFAULTLIB:MSVCRT")
 	endif()
 endif()
 
