@@ -29,7 +29,7 @@ jobs:
         # - {
         #     name: "Ubuntu-20.04 (GCC)",
         #     os: ubuntu-20.04,
-        #     build_type: "Debug",
+        #     build_type: "Release",
         #     cc: "gcc",
         #     cxx: "g++",
         #     build_script: "./eclipse.sh"
@@ -37,7 +37,7 @@ jobs:
         # - {
         #     name: "Ubuntu-20.04 (Clang)",
         #     os: ubuntu-20.04,
-        #     build_type: "Debug",
+        #     build_type: "Release",
         #     cc: "clang",
         #     cxx: "clang++",
         #     build_script: "./eclipse.sh"
@@ -46,7 +46,7 @@ jobs:
         - {
             name: "Windows-2019 (MSVC)",
             os: windows-2019,
-            build_type: "Debug",
+            build_type: "Release",
             cc: "cl",
             cxx: "cl",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
@@ -56,7 +56,7 @@ jobs:
         # - {
         #     name: "Windows-2022 (MSVC)",
         #     os: windows-2022,
-        #     build_type: "Debug",
+        #     build_type: "Release",
         #     cc: "cl",
         #     cxx: "cl",
         #     environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
@@ -67,7 +67,7 @@ jobs:
         # - {
         #     name: "Windows-2019 (MinGW)",
         #     os: windows-2019,
-        #     build_type: "Debug",
+        #     build_type: "Release",
         #     cc: "gcc",
         #     cxx: "g++",
         #     build_script: "./eclipse.sh"
@@ -75,7 +75,7 @@ jobs:
         # - {
         #     name: "MacOS-10.15 (Clang)",
         #     os: macos-10.15,
-        #     build_type: "Debug",
+        #     build_type: "Release",
         #     cc: "clang",
         #     cxx: "clang++",
         #     build_script: "./eclipse.sh"
@@ -145,7 +145,7 @@ jobs:
 
       # Libs
       - name: Libs - Install
-        run: conan install "${{github.workspace}}/xLib" --build=missing -s build_type=Debug
+        run: conan install "${{github.workspace}}/xLib" --build=missing -s build_type=Release
         shell: bash
 
       # Libs
