@@ -37,7 +37,8 @@ if (MSVC)
 	# endif()
 
 	if (cmOPTION_BUILD_TESTS)
-		set(CMAKE_EXE_LINKER_FLAGS_STRING machine:X64)
+		# set(CMAKE_EXE_LINKER_FLAGS_STRING machine:X64)
+		set(CMAKE_EXE_LINKER_FLAGS "-Wl,-z,-rpath-link"  CACHE STRING "executable linker flags")
 	endif()
 endif()
 
