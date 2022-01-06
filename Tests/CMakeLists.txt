@@ -74,7 +74,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_LIB_STATIC} "${XLIB_LIBRARIES}" ${LIBXML2_LIBRARIES})
 
     if (MSVC)
-        if ("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+        if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
             # There are 4 versions of the CRT link libraries present in vclib:
             #
             # libcmt.lib:  static CRT link library for a release build (/MT)
