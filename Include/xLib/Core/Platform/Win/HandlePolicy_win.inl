@@ -137,7 +137,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, HandlePolicyType::hvDll>::_openMax_impl()
 {
-    return HandlePolicy<native_handle_t, hvNative>::openMax();
+    return HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::openMax();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -176,7 +176,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, HandlePolicyType::hvFindDir>::_openMax_impl()
 {
-    return HandlePolicy<native_handle_t, hvNative>::openMax();
+    return HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::openMax();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -215,7 +215,7 @@ template<typename T>
 std::size_t
 HandlePolicy<T, HandlePolicyType::hvSocket>::_openMax_impl()
 {
-    return HandlePolicy<native_handle_t, hvNative>::openMax();
+    return HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::openMax();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
