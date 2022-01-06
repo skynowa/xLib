@@ -20,5 +20,5 @@ cd ${DIR_BUILD}
 # build
 cmake \
 	-G"${GENERATOR}" \
-	-A Win32 \	# x64;Win32
+	-A x64 \	# x64;Win32
 	${DIR_PROJECT}

@@ -1,3 +1,7 @@
+[settings]
+arch=x64
+build_type=Release
+
 [requires]
 openssl/1.1.1l
 libssh2/1.10.0
