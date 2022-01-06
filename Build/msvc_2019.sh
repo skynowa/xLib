@@ -3,6 +3,8 @@
 # \file  msvc_2019.sh
 # \brief CMake configure project
 #
+# https://cmake.org/cmake/help/git-stage/generator/Visual%20Studio%2016%202019.html
+#
 
 
 # vars
