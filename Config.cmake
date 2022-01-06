@@ -58,7 +58,7 @@ endif()
 #
 # Sample: "Debug;Release;RelWithDebInfo"
 #
-set(CMAKE_CONFIGURATION_TYPES      "Release" STRING "")
+## set(CMAKE_CONFIGURATION_TYPES      "Release" STRING "")
 set(CMAKE_BUILD_TYPE               "Release")
 
 set(OPTION_UNICODE                 0)
