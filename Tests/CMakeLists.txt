@@ -35,7 +35,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         continue()
     endif()
 
-    find_package(LibXml2 REQUIRED)
+    #- find_package(LibXml2 REQUIRED)
 
     # [Debug]
     if (1)
@@ -51,7 +51,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "LIBXML2_LIBRARIES: ${LIBXML2_LIBRARIES}")
         message(STATUS "")
         message(STATUS "::::: xLib :::::")
-        message(STATUS "XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
+        message(STATUS "cmXLIB_LIBRARIES: ${cmXLIB_LIBRARIES}")
         message(STATUS "")
     endif()
 
@@ -80,10 +80,12 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         target_link_libraries(${TEST_NAME}
             ${LIBXML2_LIBRARIES}
             ${PROJECT_LIB_STATIC}
-            ${XLIB_LIBRARIES})
+            ${cmXLIB_LIBRARIES})
     else()
         target_link_libraries(${TEST_NAME}
-            "D:\\a\\xLib\\xLib\\xLib_build\\Debug\\xLib_static.lib")  # D:\a\xLib\xLib\xLib_build\Debug\xLib_static.lib
+            ${cmXLIB_LIBRARIES}  # D:\a\xLib\xLib\xLib_build\Debug\xLib_static.lib
+            ${PROJECT_LIB_STATIC}
+        )
     endif()
 
     if (MSVC)
