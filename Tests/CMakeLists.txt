@@ -74,7 +74,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_LIB_STATIC} "${XLIB_LIBRARIES}" ${LIBXML2_LIBRARIES})
 
     if (MSVC)
-        if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
+        ## if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
             # There are 4 versions of the CRT link libraries present in vclib:
             #
             # libcmt.lib:  static CRT link library for a release build (/MT)
@@ -90,7 +90,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
             # https://docs.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-warning-lnk4099
             set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4098")
             set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
-        endif()
+        ## endif()
     endif()
 
     add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
