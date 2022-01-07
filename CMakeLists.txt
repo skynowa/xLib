@@ -125,8 +125,8 @@ endif()
 set(XLIB_INSTALL_DIR  include/xLib)
 set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
 #--------------------------------------------------------------------------------------------------
-# flags
-include(CxxFlags)
+# TOOD: flags
+## include(CxxFlags)
 #--------------------------------------------------------------------------------------------------
 # definitions
 if (OPTION_UNICODE)
