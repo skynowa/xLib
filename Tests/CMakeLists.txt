@@ -72,10 +72,16 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     add_executable(${TEST_NAME} ${IT_SOURCE})
 
     link_directories(${TEST_NAME} ${CONAN_LIBXML2_ROOT}/lib)
-    target_link_libraries(${TEST_NAME}
-        ${LIBXML2_LIBRARIES}
-        ${PROJECT_LIB_STATIC}
-        ${XLIB_LIBRARIES})
+
+    if (1)
+        target_link_libraries(${TEST_NAME}
+            ${LIBXML2_LIBRARIES}
+            ${PROJECT_LIB_STATIC}
+            ${XLIB_LIBRARIES})
+    else()
+        target_link_libraries(${TEST_NAME}
+            libxml2)
+    endif()
 
     if (MSVC)
         ## if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
