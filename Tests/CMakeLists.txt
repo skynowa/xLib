@@ -62,20 +62,18 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${LIBXML2_LIBRARIES})
 
     if (MSVC)
-        ## if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
-            # There are 4 versions of the CRT link libraries present in vclib:
-            #
-            # libcmt.lib:  static CRT link library for a release build (/MT)
-            # libcmtd.lib: static CRT link library for a debug build (/MTd)
-            # msvcrt.lib:  import library for the release DLL version of the CRT (/MD)
-            # msvcrtd.lib: import library for the debug DLL version of the CRT (/MDd)
-            set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:MSVCRT")
+        # There are 4 versions of the CRT link libraries present in vclib:
+        #
+        # libcmt.lib:  static CRT link library for a release build (/MT)
+        # libcmtd.lib: static CRT link library for a debug build (/MTd)
+        # msvcrt.lib:  import library for the release DLL version of the CRT (/MD)
+        # msvcrtd.lib: import library for the debug DLL version of the CRT (/MDd)
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:MSVCRT")
 
-            # For CMAKE_CONFIGURATION_TYPES=Debug:
-            # https://docs.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-warning-lnk4099
-            ## set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4098")
-            set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
-        ## endif()
+        # For CMAKE_CONFIGURATION_TYPES=Debug:
+        # https://docs.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-warning-lnk4099
+        ## set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4098")
+        set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
 
     add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
