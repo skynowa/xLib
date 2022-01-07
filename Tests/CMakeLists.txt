@@ -35,8 +35,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         continue()
     endif()
 
-    #- find_package(LibXml2 REQUIRED)
-
     # [Debug]
     if (1)
         message(STATUS "")
@@ -44,7 +42,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "PROJECT_NAME: ${PROJECT_NAME}")
         message(STATUS "PROJECT_LIB_STATIC: ${PROJECT_LIB_STATIC}")
         message(STATUS "TEST_NAME: ${TEST_NAME}")
-        message(STATUS "IT_SOURCE: ${IT_SOURCE}")
         message(STATUS "")
         message(STATUS "::::: LIBXML2 :::::")
         message(STATUS "LIBXML2_INCLUDE_DIRS: ${LIBXML2_INCLUDE_DIRS}")
@@ -55,38 +52,14 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "")
     endif()
 
-    # [Debug]
-    if (0)
-        # add_executable(xmlTest.exe xmlTest.cpp)
-        #
-        # target_compile_definitions(xmlTest.exe PUBLIC ${LIBXML2_DEFINITIONS})
-        # target_include_directories(xmlTest.exe PUBLIC ${LIBXML2_INCLUDE_DIRS})
-        # target_link_libraries(xmlTest.exe ${LIBXML2_LIBRARIES})
-
-        link_directories(${TEST_NAME} ${CONAN_LIBXML2_ROOT}/lib)
-
-        # target_link_libraries(${PROJECT_LIB_STATIC} ${LIBXML2_LIBRARIES})
-        # target_link_libraries(${PROJECT_LIB_STATIC} ${CONAN_LIBXML2_ROOT}/lib)
-    endif()
-
-
     link_directories(${CONAN_LIBXML2_ROOT}/lib)
 
     add_executable(${TEST_NAME} ${IT_SOURCE})
 
-    link_directories(${TEST_NAME} ${CONAN_LIBXML2_ROOT}/lib)
-
-    if (0)
-        target_link_libraries(${TEST_NAME}
-            ${LIBXML2_LIBRARIES}
-            ${PROJECT_LIB_STATIC}
-            ${cmXLIB_LIBRARIES})
-    else()
-        target_link_libraries(${TEST_NAME}
-            ${cmXLIB_LIBRARIES}  # D:\a\xLib\xLib\xLib_build\Debug\xLib_static.lib
-            ${PROJECT_LIB_STATIC}
-        )
-    endif()
+    target_link_libraries(${TEST_NAME}
+        ${PROJECT_LIB_STATIC}
+        ${cmXLIB_LIBRARIES}
+        ${LIBXML2_LIBRARIES})
 
     if (MSVC)
         ## if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
