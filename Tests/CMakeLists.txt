@@ -69,6 +69,9 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         # target_link_libraries(${PROJECT_LIB_STATIC} ${CONAN_LIBXML2_ROOT}/lib)
     endif()
 
+
+    link_directories(${CONAN_LIBXML2_ROOT}/lib)
+
     add_executable(${TEST_NAME} ${IT_SOURCE})
 
     link_directories(${TEST_NAME} ${CONAN_LIBXML2_ROOT}/lib)
@@ -80,7 +83,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
             ${XLIB_LIBRARIES})
     else()
         target_link_libraries(${TEST_NAME}
-            ${LIBXML2_LIBRARIES})
+            "${LIBXML2_LIBRARIES}")
     endif()
 
     if (MSVC)
