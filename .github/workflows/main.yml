@@ -150,7 +150,7 @@ jobs:
         run: >-
             conan install "${{github.workspace}}/xLib"
             --build=missing
-            -s compiler.runtime=MTd
+            -s compiler.runtime=MD
             -s arch=${{ matrix.config.arch }}
             -s arch_build=${{ matrix.config.arch }}
             -s build_type=${{ matrix.config.build_type }}
