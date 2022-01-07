@@ -52,10 +52,9 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "")
     endif()
 
-    link_directories(${CONAN_LIBXML2_ROOT}/lib)
-
     add_executable(${TEST_NAME} ${IT_SOURCE})
 
+    link_directories(${CONAN_LIBXML2_ROOT}/lib)
     target_link_libraries(${TEST_NAME}
         ${PROJECT_LIB_STATIC}
         ${XLIB_LIBRARIES}
