@@ -115,8 +115,6 @@ namespace
 
 struct HeapDeleter
 {
-    using pointer = LPVOID;
-
     void operator () (LPVOID p)
     {
         ::HeapFree(::GetProcessHeap(), 0, p);
@@ -126,8 +124,6 @@ using heap_unique_ptr = std::unique_ptr<LPVOID, HeapDeleter>;
 
 struct HandleDeleter
 {
-	using pointer = HANDLE;
-
     void operator () (HANDLE p)
     {
         ::CloseHandle(p);

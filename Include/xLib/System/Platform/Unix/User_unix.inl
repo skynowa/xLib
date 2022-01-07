@@ -19,8 +19,7 @@ namespace xl::system
 uint_t
 User::_id_impl() const
 {
-    uid_t uiRv;
-
+    uid_t uiRv {};
     _passwd(nullptr, nullptr, &uiRv, nullptr, nullptr, nullptr);
 
     return static_cast<uint_t>(uiRv);
@@ -35,8 +34,7 @@ User::_effectiveId_impl() const
 uint_t
 User::_groupId_impl() const
 {
-    gid_t uiRv;
-
+    gid_t uiRv {};
     _passwd(nullptr, nullptr, nullptr, &uiRv, nullptr, nullptr);
 
     return static_cast<uint_t>(uiRv);
@@ -45,7 +43,7 @@ User::_groupId_impl() const
 bool_t
 User::_isAdmin_impl() const
 {
-    const uid_t rootId {0};
+    constexpr uid_t rootId {0};
 
     xCHECK_RET(id()        != rootId, false);
     xCHECK_RET(::geteuid() != rootId, false);
@@ -139,7 +137,7 @@ User::_passwd(
     struct passwd *pwRv {};
 
 #if cmHAVE_GETPWUID_R
-    long_t buffSize = - 1L;
+    long_t buffSize {- 1L};
     {
         buffSize = ::sysconf(_SC_GETPW_R_SIZE_MAX);
         if (buffSize == - 1L) {
