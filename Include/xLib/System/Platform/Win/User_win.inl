@@ -38,7 +38,7 @@ User::_groupId_impl() const
 bool_t
 User::_isAdmin_impl() const
 {
-    SID_IDENTIFIER_AUTHORITY ntAuthority { SECURITY_NT_AUTHORITY };
+    SID_IDENTIFIER_AUTHORITY ntAuthority {SECURITY_NT_AUTHORITY};
     PSID                     adminGroup  {};
     BOOL blRv = ::AllocateAndInitializeSid(&ntAuthority, 2, SECURITY_BUILTIN_DOMAIN_RID,
         DOMAIN_ALIAS_RID_ADMINS, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, &adminGroup);
@@ -117,7 +117,7 @@ struct HeapDeleter
 {
     using pointer = LPVOID;
 
-    void operator ( )(LPVOID p)
+    void operator () (LPVOID p)
     {
         ::HeapFree(::GetProcessHeap(), 0, p);
     }
