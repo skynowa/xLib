@@ -76,7 +76,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     link_directories(${TEST_NAME} ${CONAN_LIBXML2_ROOT}/lib)
 
-    if (1)
+    if (0)
         target_link_libraries(${TEST_NAME}
             ${LIBXML2_LIBRARIES}
             ${PROJECT_LIB_STATIC}
