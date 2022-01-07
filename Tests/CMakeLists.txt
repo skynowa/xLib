@@ -85,7 +85,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
             set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /permissive-")
 
             link_directories(${TEST_NAME} ${CONAN_LIBXML2_ROOT}/lib)
-            set(CMAKE_CXX_STANDARD_LIBRARIES libxml2_a.lib)
+            set(CMAKE_CXX_STANDARD_LIBRARIES libxml2_a)
 
             set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:MSVCRT")
 
