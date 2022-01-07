@@ -147,7 +147,7 @@ jobs:
 
       # Libs
       - name: Libs - Install
-        run: conan install "${{github.workspace}}/xLib" --build=missing -s arch=${{ matrix.config.arch }} -s build_type=${{ matrix.config.build_type }}
+        run: conan install "${{github.workspace}}/xLib" --build=missing -s compiler.runtime=MT -s arch=${{ matrix.config.arch }} -s build_type=${{ matrix.config.build_type }}
         shell: bash
 
       # Libs
