@@ -142,7 +142,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 
 if (MSVC)
     # TODO: /W4 - add
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /permissive- /MP8")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /permissive-")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wfatal-errors")
 endif()
