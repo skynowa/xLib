@@ -83,7 +83,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
             ${XLIB_LIBRARIES})
     else()
         target_link_libraries(${TEST_NAME}
-        "D:\a\xLib\xLib\xLib_build\Debug\xLib_static.lib")  # D:\a\xLib\xLib\xLib_build\Debug\xLib_static.lib
+            "D:\\a\\xLib\\xLib\\xLib_build\\Debug\\xLib_static.lib")  # D:\a\xLib\xLib\xLib_build\Debug\xLib_static.lib
     endif()
 
     if (MSVC)
