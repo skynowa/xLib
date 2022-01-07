@@ -147,10 +147,12 @@ jobs:
 
       # Libs
       - name: Libs - Install
-        run: conan install "${{github.workspace}}/xLib" \
-          --build=missing \
-          -s arch=${{ matrix.config.arch }} \
-          -s build_type=${{ matrix.config.build_type }}
+        run: >-
+            conan install "${{github.workspace}}/xLib"
+            --build=missing
+            -s arch=${{ matrix.config.arch }}
+            -s arch_build=${{ matrix.config.arch }}
+            -s build_type=${{ matrix.config.build_type }}
         shell: bash
 
       # Libs
