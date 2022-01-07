@@ -80,7 +80,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
             ${XLIB_LIBRARIES})
     else()
         target_link_libraries(${TEST_NAME}
-            LibXml2::LibXml2)
+            ${LIBXML2_LIBRARIES})
     endif()
 
     if (MSVC)
