@@ -145,9 +145,11 @@ Bitset<T>::print(
 	StreamT &a_os
 ) const
 {
-	 a_os << xT("xlib::Bitset (size = ") << this->size() << xT("):") << std::endl;
+	a_os << xT("xlib::Bitset (size = ") << this->size() << xT("):") << std::endl;
 
-	for (::ssize_t i = static_cast<::ssize_t>(this->size()); i >= 0; -- i) {
+	const auto size_ = static_cast<::ssize_t>(this->size());
+
+	for (::ssize_t i = size_; i >= 0; -- i) {
 		if ( test( static_cast<std::size_t>(i) ) )
 			a_os << xT("1");
 		else
