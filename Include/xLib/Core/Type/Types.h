@@ -8,7 +8,7 @@
 
 #include <xLib/Core/SysDefines.h>
 
-#if xOS_WIN
+#if xENV_WIN
 	#include <BaseTsd.h>	// SSIZE_T
 #endif
 //-------------------------------------------------------------------------------------------------
