@@ -71,7 +71,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     add_executable(${TEST_NAME} ${IT_SOURCE})
 
-    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_LIB_STATIC} "${XLIB_LIBRARIES}" ${LIBXML2_LIBRARIES})
+    target_link_libraries(${TEST_NAME} ${PROJECT_LIB_STATIC} "${XLIB_LIBRARIES}" ${LIBXML2_LIBRARIES})
 
     if (MSVC)
         ## if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
@@ -81,9 +81,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
             # libcmtd.lib: static CRT link library for a debug build (/MTd)
             # msvcrt.lib:  import library for the release DLL version of the CRT (/MD)
             # msvcrtd.lib: import library for the debug DLL version of the CRT (/MDd)
-            set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS}         /permissive-")
-            set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /permissive-")
-
             link_directories(${TEST_NAME} ${CONAN_LIBXML2_ROOT}/lib)
             set(CMAKE_CXX_STANDARD_LIBRARIES libxml2_a)
 
