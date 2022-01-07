@@ -196,7 +196,7 @@ namespace std
 	xUSING_CONST(uintptr_t);
 ///\}
 
-    // std::size_t
+    // std::size_t / std::ssize_t
 #if   xENV_WIN
     using ssize_t = SSIZE_T;
 #elif xENV_UNIX
