@@ -38,7 +38,6 @@ if (MSVC)
 
 	if (cmOPTION_BUILD_TESTS)
 		# set(CMAKE_EXE_LINKER_FLAGS_STRING machine:X64)
-		# set(CMAKE_EXE_LINKER_FLAGS "-Wl,-z,-rpath-link"  CACHE STRING "executable linker flags")
 		# set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:MSVCRT")
 	endif()
 endif()
@@ -59,7 +58,7 @@ endif()
 #
 # Sample: "Debug;Release;RelWithDebInfo"
 #
-## set(CMAKE_CONFIGURATION_TYPES      "Release" STRING "")
+# TODO: set(CMAKE_CONFIGURATION_TYPES      "Release" STRING "")
 set(CMAKE_BUILD_TYPE               "Release")
 
 set(OPTION_UNICODE                 0)

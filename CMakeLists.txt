@@ -4,14 +4,13 @@
 #
 # XLIB_LOCATION         - root diractory [in]
 # XLIB_DEFINITIONS      - definitions
-# cmXLIB_COMPILER_FLAGS - compiler flags
 # XLIB_INCLUDES         - include pathes
 # XLIB_SOURCES          - source pathes
 # XLIB_LIBRARIES        - libraries list
 #
-# cmCMAKE_VERSION
-# cmXLIB_COMPILER_FLAGS
-# cmXLIB_LIBRARIES
+# cmCMAKE_VERSION       - CMake version
+# cmXLIB_COMPILER_FLAGS - compiler flags
+# cmXLIB_LIBRARIES      - libraries list
 #--------------------------------------------------------------------------------------------------
 
 

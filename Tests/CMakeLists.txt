@@ -48,7 +48,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "LIBXML2_LIBRARIES: ${LIBXML2_LIBRARIES}")
         message(STATUS "")
         message(STATUS "::::: xLib :::::")
-        message(STATUS "cmXLIB_LIBRARIES: ${cmXLIB_LIBRARIES}")
+        message(STATUS "XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
         message(STATUS "")
     endif()
 
@@ -58,7 +58,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     target_link_libraries(${TEST_NAME}
         ${PROJECT_LIB_STATIC}
-        ${cmXLIB_LIBRARIES}
+        ${XLIB_LIBRARIES}
         ${LIBXML2_LIBRARIES})
 
     if (MSVC)
