@@ -34,6 +34,10 @@ Process::_create_impl(
     std::tstring_t                      *out_stdError ///< [out] std::cerr (maybe as nullptr)
 )
 {
+	// TODO: out_stdOut, out_stdError - impl
+	xUNUSED(out_stdOut);
+	xUNUSED(out_stdError);
+
 	std::ctstring_t params = String::join(a_params, xT(" "));
 
     STARTUPINFO         startupInfo = {0};  startupInfo.cb = sizeof(startupInfo);
@@ -120,6 +124,8 @@ Process::_setName_impl(
 ) const
 {
     // TODO: Process::_setName_impl()
+	xUNUSED(a_name);
+
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
