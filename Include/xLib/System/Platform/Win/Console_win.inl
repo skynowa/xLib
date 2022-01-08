@@ -22,17 +22,16 @@ void_t
 Console::_construct_impl()
 {
     _stdIn = ::GetStdHandle(STD_INPUT_HANDLE);
-    xTEST_EQ(_stdIn.isValid(), true);
+    xTEST(_stdIn.isValid());
     xTEST_DIFF(_stdIn.get(), xNATIVE_HANDLE_NULL);
 
     _stdOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
-    xTEST_EQ(_stdOut.isValid(), true);
+    xTEST(_stdOut.isValid());
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _stdOut.get());
 
     // _attributesDef
     {
         CONSOLE_SCREEN_BUFFER_INFO info {};
-
         BOOL blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &info);
         xTEST_DIFF(blRv, FALSE);
 
@@ -60,8 +59,8 @@ Console::_setAttributes_impl(
 ) const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
+    xTEST(_stdIn.isValid());
+    xTEST(_stdOut.isValid());
 
     Foreground foregroundColor {};
     {
@@ -84,16 +83,16 @@ Console::_setAttributes_impl(
         * #define COLOR_LTWHITE   F
         */
 
-        const WORD foregroundColorDefault = 0;
-        const WORD foregroundColorBlack   = 0;
-        const WORD foregroundColorRed     = FOREGROUND_RED;
-        const WORD foregroundColorBlue    = FOREGROUND_BLUE;
-        const WORD foregroundColorGreen   = FOREGROUND_GREEN;
-        const WORD foregroundColorCyan    = FOREGROUND_GREEN | FOREGROUND_BLUE;
-        const WORD foregroundColorMagenta = FOREGROUND_RED | FOREGROUND_BLUE;
-        const WORD foregroundColorYellow  = FOREGROUND_RED | FOREGROUND_GREEN;
-        const WORD foregroundColorWhite   = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
-        const WORD foregroundColorGray    = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
+        const WORD foregroundColorDefault {};
+        const WORD foregroundColorBlack   {};
+        const WORD foregroundColorRed     {FOREGROUND_RED};
+        const WORD foregroundColorBlue    {FOREGROUND_BLUE};
+        const WORD foregroundColorGreen   {FOREGROUND_GREEN};
+        const WORD foregroundColorCyan    {FOREGROUND_GREEN | FOREGROUND_BLUE};
+        const WORD foregroundColorMagenta {FOREGROUND_RED | FOREGROUND_BLUE};
+        const WORD foregroundColorYellow  {FOREGROUND_RED | FOREGROUND_GREEN};
+        const WORD foregroundColorWhite   {FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE};
+        const WORD foregroundColorGray    {FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE};
 
         int_t iRv {};
 
@@ -139,16 +138,16 @@ Console::_setAttributes_impl(
 
     Background backgroundColor {};
     {
-        const WORD backgroundColorDefault = 0;
-        const WORD backgroundColorBlack   = 0;
-        const WORD backgroundColorRed     = BACKGROUND_RED;
-        const WORD backgroundColorBlue    = BACKGROUND_BLUE;
-        const WORD backgroundColorGreen   = BACKGROUND_GREEN;
-        const WORD backgroundColorCyan    = BACKGROUND_GREEN | BACKGROUND_BLUE;
-        const WORD backgroundColorMagenta = BACKGROUND_RED | BACKGROUND_BLUE;
-        const WORD backgroundColorYellow  = BACKGROUND_RED | BACKGROUND_GREEN;
-        const WORD backgroundColorWhite   = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
-        const WORD backgroundColorGray    = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
+        const WORD backgroundColorDefault {};
+        const WORD backgroundColorBlack   {};
+        const WORD backgroundColorRed     {BACKGROUND_RED};
+        const WORD backgroundColorBlue    {BACKGROUND_BLUE};
+        const WORD backgroundColorGreen   {BACKGROUND_GREEN};
+        const WORD backgroundColorCyan    {BACKGROUND_GREEN | BACKGROUND_BLUE};
+        const WORD backgroundColorMagenta {BACKGROUND_RED | BACKGROUND_BLUE};
+        const WORD backgroundColorYellow  {BACKGROUND_RED | BACKGROUND_GREEN};
+        const WORD backgroundColorWhite   {BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE};
+        const WORD backgroundColorGray    {BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE};
 
         int_t iRv {};
 
@@ -194,13 +193,13 @@ Console::_setAttributes_impl(
 
     WORD attrs {};
     {
-        const WORD attributeAllOff    = 0;
-        const WORD attributeBold      = FOREGROUND_INTENSITY;
-        const WORD attributeDim       = - 1; // IMPL: dim
-        const WORD attributeUnderline = - 1; xUNUSED(attributeUnderline); // not supported
-        const WORD attributeBlink     = - 1; xUNUSED(attributeBlink);     // not supported
-        const WORD attributeReverse   = - 1; xUNUSED(attributeReverse);   // not supported
-        const WORD attributeHidden    = - 1; xUNUSED(attributeHidden);    // not supported
+        const WORD attributeAllOff    {};
+        const WORD attributeBold      {FOREGROUND_INTENSITY};
+        const WORD attributeDim       {}; // IMPL: dim
+        const WORD attributeUnderline {}; xUNUSED(attributeUnderline); // not supported
+        const WORD attributeBlink     {}; xUNUSED(attributeBlink);     // not supported
+        const WORD attributeReverse   {}; xUNUSED(attributeReverse);   // not supported
+        const WORD attributeHidden    {}; xUNUSED(attributeHidden);    // not supported
 
         attrs |= static_cast<WORD>(foregroundColor);
         attrs |= static_cast<WORD>(backgroundColor);
@@ -226,8 +225,8 @@ std::tstring_t
 Console::_clearAttributes_impl() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
+    xTEST(_stdIn.isValid());
+    xTEST(_stdOut.isValid());
 
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), _attributesDef);
     xTEST_DIFF(blRv, FALSE);
@@ -239,8 +238,8 @@ std::tstring_t
 Console::_read_impl() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
+    xTEST(_stdIn.isValid());
+    xTEST(_stdOut.isValid());
 
     std::tstring_t sRv;
 
@@ -262,11 +261,10 @@ Console::_write_impl(
 ) const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
+    xTEST(_stdIn.isValid());
+    xTEST(_stdOut.isValid());
 
     DWORD written {};
-
     BOOL blRv = ::WriteConsole(_stdOut.get(), &a_str.at(0), static_cast<DWORD>( a_str.size() ),
         &written, nullptr);
     xTEST_DIFF(blRv, FALSE);
@@ -279,8 +277,8 @@ void_t
 Console::_clear_impl() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
+    xTEST(_stdIn.isValid());
+    xTEST(_stdOut.isValid());
 
     COORD                      coordScreen  {}; // here's where we'll home the cursor
     DWORD                      charsWritten {};
@@ -318,8 +316,8 @@ Console::_setTitle_impl(
 ) const
 {
     xTEST_NA(_wnd);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
+    xTEST(_stdIn.isValid());
+    xTEST(_stdOut.isValid());
 
     BOOL blRv = ::SetConsoleTitle( a_title.c_str() );
     xTEST_DIFF(blRv, FALSE);
@@ -329,8 +327,8 @@ std::tstring_t
 Console::title() const
 {
     xTEST_NA(_wnd);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
+    xTEST(_stdIn.isValid());
+    xTEST(_stdOut.isValid());
 
     std::tstring_t sRv;
 
@@ -350,8 +348,8 @@ void_t
 Console::centerWindow() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
+    xTEST(_stdIn.isValid());
+    xTEST(_stdOut.isValid());
 
     BOOL blRv {};
 
@@ -377,8 +375,8 @@ void_t
 Console::setFullScreen() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
+    xTEST(_stdIn.isValid());
+    xTEST(_stdOut.isValid());
 
     COORD coord = ::GetLargestConsoleWindowSize(_stdOut.get());
     xTEST_EQ(coord.X != 0 && coord.Y != 0, true);
@@ -407,8 +405,8 @@ Console::enableClose(
 )
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST_EQ(_stdIn.isValid(), true);
-    xTEST_EQ(_stdOut.isValid(), true);
+    xTEST(_stdIn.isValid());
+    xTEST(_stdOut.isValid());
 
     _menu = _menuHandle(false);
     xTEST_EQ(_menu != nullptr, true);

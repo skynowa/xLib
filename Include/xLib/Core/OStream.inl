@@ -299,6 +299,8 @@ OStream::_printContainerTitle(
 )
 {
     // TODO: std::forward_list - max_size()
+	xUNUSED(a_value);
+
     /// _os << TypeName<T>::get() << xT(" (size=") /*<< a_value.size()*/ << xT("):") << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
