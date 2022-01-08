@@ -45,16 +45,15 @@ DnsClient::hostAddrByName(
     auto addrList = reinterpret_cast<struct in_addr **>(host->h_addr_list);
 
     for (std::size_t i = 0; addrList[i] != nullptr; ++ i) {
-        sRv = ::inet_ntoa(*addrList[i]);
-
-        break;
+        sRv = Format::str(xT("{} "), ::inet_ntoa(*addrList[i]));
     }
 
+    sRv = String::trimSpace(sRv);
     xTEST(!sRv.empty());
 
     if (host->h_name != nullptr) {
         std::cstring_t hostName = host->h_name;
-        xTEST_EQ(hostName.empty(), false);
+        xTEST(!hostName.empty());
     }
 
     *out_hostAddr = sRv;
@@ -71,13 +70,12 @@ DnsClient::hostNameByAddr(
     xTEST(!a_hostAddr.empty());
     xTEST_PTR(out_hostName);
 
-    hostent *host = nullptr;
+    hostent *host {};
 
     switch (a_family) {
     case ISocket::AddressFamily::afInet:
 		{
 			in_addr iaAddr {};
-
 			iaAddr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
 			xTEST_DIFF(iaAddr.s_addr, INADDR_NONE);
 
@@ -91,11 +89,10 @@ DnsClient::hostNameByAddr(
 		{
 		#if xTODO
 			IN6_ADDR iaAddr6 {};
-
 			iRv = ::inet_pton(afInet6, a_casHostAddr.c_str(), &iaAddr6);
 			xTEST_DIFF(iRv, 0);
 
-			out_hostName = ::gethostbyaddr(reinterpret_cast<char *>( &iaAddr6 ), 16,
+			*out_hostName = ::gethostbyaddr(reinterpret_cast<char *>( &iaAddr6 ), 16,
 				static_cast<std::size_t>(ISocket::AddressFamily::afInet6));
 			xTEST_PTR(host);
 		#endif
