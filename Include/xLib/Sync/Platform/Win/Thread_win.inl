@@ -238,7 +238,7 @@ Thread::messageWaitQueue(
     BOOL blRv {FALSE};
     MSG  msg  {};
 
-    while ( (blRv = ::GetMessage(&msg, nullptr, 0, 0 )) ) {
+    while ((blRv = ::GetMessage(&msg, nullptr, 0, 0 )) == true) {
         xTEST_DIFF(blRv, - 1);
 
         for (size_t i = 0; i < a_msgs.size(); ++ i) {
