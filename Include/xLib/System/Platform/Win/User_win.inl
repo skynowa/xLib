@@ -91,8 +91,8 @@ User::_name_impl() const
 {
     std::tstring_t sRv;
 
-    constexpr DWORD buffSize             {xUSER_NAME_MAX + 1};
-    tchar_t         buff[xUSER_NAME_MAX] {};
+    DWORD   buffSize             {xUSER_NAME_MAX + 1};
+    tchar_t buff[xUSER_NAME_MAX] {};
 
     BOOL blRv = ::GetUserName(&buff[0], &buffSize);
     xTEST_DIFF(blRv, FALSE);
