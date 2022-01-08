@@ -2,7 +2,6 @@
 openssl/1.1.1l
 libssh2/1.10.0
 libcurl/7.79.0
-; libxml2/2.9.12
 libxml2/2.9.9@bincrafters/stable
 libevent/2.1.12
 libmysqlclient/8.0.25
@@ -22,3 +21,5 @@ cmake_paths
 
 ; libcurl:with_ssl=openssl
 ; libcurl:with_crypto_auth=True
+
+; libxml2/2.9.12
