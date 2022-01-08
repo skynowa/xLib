@@ -39,6 +39,9 @@ CmdOptions::parse(
 {
 	xCHECK_DO(a_args.empty(), return);
 
+	// TODO: a_usage - impl
+	xUNUSED(a_usage);
+
 	// a_args: {host-name=0, date=0, time=1, test, =}
 	// Cout() << xTRACE_VAR(a_args);
 

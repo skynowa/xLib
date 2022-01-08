@@ -33,6 +33,8 @@ Condition::_wait_impl(
 )
 {
     // TODO: [skynowa] Condition::_wait_impl()
+	xUNUSED(a_timeoutMs);
+
     xNOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
