@@ -34,6 +34,8 @@ public:
     static void_t
     onSignals(int_t a_signal)
     {
+        xUNUSED(a_signal);
+
         xTRACE_FUNC;
         // Trace() << Signal::decription(a_signal) << "\n";
 

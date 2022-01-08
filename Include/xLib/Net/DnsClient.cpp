@@ -53,7 +53,7 @@ DnsClient::hostAddrByName(
     xTEST_EQ(sRv.empty(), false);
 
     if (host->h_name != nullptr) {
-        const std::string hostName = host->h_name;
+        std::cstring_t hostName = host->h_name;
         xTEST_EQ(hostName.empty(), false);
     }
 

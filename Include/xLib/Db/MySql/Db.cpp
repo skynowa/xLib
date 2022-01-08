@@ -37,8 +37,6 @@ Db::show(
 
 	out_dbNames->clear();
 
-    bool_t bRv {};
-
     // Connection
     Connection conn(_options);
 	conn.connect();
