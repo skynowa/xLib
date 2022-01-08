@@ -90,7 +90,7 @@ Blowfish::setFileKey(
     setKey(fileKey);
 
     // for security
-    std::fill(fileKey.begin(), fileKey.end(), 0);
+    std::fill(fileKey.begin(), fileKey.end(), uchar_t{});
 }
 //-------------------------------------------------------------------------------------------------
 
