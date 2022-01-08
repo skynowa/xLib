@@ -54,17 +54,6 @@ jobs:
             conan_profile_update: 'conan profile update settings.compiler="Visual Studio" default; conan profile update settings.compiler.version=16 default',
             build_script: "./msvc_2019.sh"
           }
-        # - {
-        #     name: "Windows-2022 (MSVC)",
-        #     os: windows-2022,
-        #     build_type: "Release",
-        #     arch: "x86_64",
-        #     cc: "cl",
-        #     cxx: "cl",
-        #     environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
-        #     conan_profile_update: 'conan profile update settings.compiler="Visual Studio" default; conan profile update settings.compiler.version=17 default',
-        #     build_script: "./msvc_2022.sh"
-        #   }
 
         # - {
         #     name: "Windows-2019 (MinGW)",
