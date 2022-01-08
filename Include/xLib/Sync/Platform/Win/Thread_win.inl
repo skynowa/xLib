@@ -235,18 +235,18 @@ Thread::messageWaitQueue(
     xTEST(_handle != xNATIVE_HANDLE_NULL);
     xTEST_EQ(a_msgs.empty(), false);
 
-    BOOL blRv = FALSE;
-    MSG  msg  = {0};
+    BOOL blRv {FALSE};
+    MSG  msg  {};
 
-    while ((blRv = ::GetMessage(&msg, nullptr, 0, 0 ))) {
+    while ( (blRv = ::GetMessage(&msg, nullptr, 0, 0 )) ) {
         xTEST_DIFF(blRv, - 1);
 
         for (size_t i = 0; i < a_msgs.size(); ++ i) {
             xCHECK_DO(a_msgs.at(i) != msg.message, continue);
 
-            Utils::ptrAssignT(a_msg,    msg.message                      );
-            Utils::ptrAssignT(a_param1, static_cast<uint_t>( msg.wParam ));
-            Utils::ptrAssignT(a_param2, static_cast<long_t>( msg.lParam ));
+            Utils::ptrAssignT(a_msg,    msg.message                    );
+            Utils::ptrAssignT(a_param1, static_cast<uint_t>(msg.wParam));
+            Utils::ptrAssignT(a_param2, static_cast<long_t>(msg.lParam));
 
             break;
         }
