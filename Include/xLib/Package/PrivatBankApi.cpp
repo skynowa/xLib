@@ -162,6 +162,8 @@ PrivatBankApi::_parseExchangeRatesArchive(
 
 	for (const auto &it_exchangeRate : exchangeRates) {
 		const std::tstring_t &currencyBase = it_exchangeRate.attribute("baseCurrency");	// UAH
+		xUNUSED(currencyBase);
+
 		const std::tstring_t &currency     = it_exchangeRate.attribute("currency");		// AUD
 
 		// out
