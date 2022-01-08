@@ -99,8 +99,6 @@ jobs:
 
           conan profile new default --detect --force
           ${{ matrix.config.conan_profile_update }}
-
-          conan remote add bincrafters "https://api.bintray.com/conan/bincrafters/public-conan"
         shell: bash
 
       # - name: Trace-1
