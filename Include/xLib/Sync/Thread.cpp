@@ -665,8 +665,7 @@ Thread::_s_jobEntry(
     currentSleep(waitVaildHandleTimeoutMsec);
 
     Event::ObjectState osRv = self->_eventStarter->wait(notInfiniteTimeoutMsec);
-    // TODO: [skynowa] StdStreamV2
-    ///-- xTEST_EQ(Event::osSignaled, osRv);
+    xTEST(osRv == Event::ObjectState::osSignaled);
 
     Utils::ptrDeleteT(self->_eventStarter);
 
