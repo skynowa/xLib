@@ -42,7 +42,7 @@ DnsClient::hostAddrByName(
     xTEST_PTR(host);
     xCHECK_DO(host == nullptr, return);
 
-    struct in_addr **addrList = reinterpret_cast<struct in_addr **>(host->h_addr_list);
+    auto addrList = reinterpret_cast<struct in_addr **>(host->h_addr_list);
 
     for (std::size_t i = 0; addrList[i] != nullptr; ++ i) {
         sRv = ::inet_ntoa(*addrList[i]);
