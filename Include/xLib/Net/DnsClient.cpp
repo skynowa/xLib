@@ -33,7 +33,7 @@ DnsClient::hostAddrByName(
     std::tstring_t  *out_hostAddr
 )
 {
-    xTEST_EQ(a_hostName.empty(), false);
+    xTEST(!a_hostName.empty());
     xTEST_PTR(out_hostAddr);
 
     std::tstring_t sRv;
@@ -68,7 +68,7 @@ DnsClient::hostNameByAddr(
     std::tstring_t               *out_hostName
 )
 {
-    xTEST_EQ(a_hostAddr.empty(), false);
+    xTEST(!a_hostAddr.empty());
     xTEST_PTR(out_hostName);
 
     hostent *host = nullptr;
@@ -150,7 +150,7 @@ DnsClient::nameInfo(
 )
 {
     xTEST_NA(a_family);
-    xTEST_EQ(a_hostAddr.empty(), false);
+    xTEST(!a_hostAddr.empty());
     xTEST_GR(a_hostPort, static_cast<ushort_t>(0));
 	xTEST_NA(out_name);
 	xTEST_NA(out_port);
@@ -192,8 +192,8 @@ DnsClient::hostAddrInfo(
     addrinfo_t      **out_addrInfo
 )
 {
-    xTEST_EQ(a_hostName.empty(), false);
-    xTEST_EQ(a_port.empty(), false);
+    xTEST(!a_hostName.empty());
+    xTEST(!a_port.empty());
     xTEST_NA(out_hints);
     xTEST_PTR(out_addrInfo);
 
@@ -214,7 +214,7 @@ DnsClient::protocolByName(
     int_t              *out_number
 )
 {
-    xTEST_EQ(a_protocolName.empty(), false);
+    xTEST(!a_protocolName.empty());
     xTEST_NA(a_name);
     xTEST_NA(out_aliases);
     xTEST_NA(out_number);
@@ -288,8 +288,8 @@ DnsClient::serviceByName(
     std::tstring_t     *a_protocolName_rv
 )
 {
-    xTEST_EQ(a_serviceName.empty(), false);
-    xTEST_EQ(a_protocolName.empty(), false);
+    xTEST(!a_serviceName.empty());
+    xTEST(!a_protocolName.empty());
     xTEST_NA(a_name);
     xTEST_NA(a_aliases);
     xTEST_NA(a_port);
@@ -334,7 +334,7 @@ DnsClient::serviceByPort(
 )
 {
     xTEST_GR(a_port, static_cast<ushort_t>(0));
-    xTEST_EQ(a_protocolName.empty(), false);
+    xTEST(!a_protocolName.empty());
     xTEST_NA(a_name);
     xTEST_NA(a_aliases);
     xTEST_NA(a_port_rv);
