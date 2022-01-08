@@ -1,6 +1,6 @@
 #--------------------------------------------------------------------------------------------------
-# \file  FindxLib.cmake
-# \brief Find xLib
+# \file  CMakeLists.txt
+# \brief Build xLib
 #
 # XLIB_LOCATION         - root diractory [in]
 # XLIB_DEFINITIONS      - definitions
@@ -125,7 +125,7 @@ set(XLIB_INSTALL_DIR  include/xLib)
 set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
 #--------------------------------------------------------------------------------------------------
 # TOOD: flags
-## include(CxxFlags)
+include(CxxFlags)
 #--------------------------------------------------------------------------------------------------
 # definitions
 if (OPTION_UNICODE)
@@ -140,10 +140,9 @@ endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 
 if (MSVC)
-    # TODO: /W4 - add
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /permissive- /W4")
+    # n/a
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wfatal-errors")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 endif()
 #--------------------------------------------------------------------------------------------------
 # libraries
