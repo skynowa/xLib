@@ -25,6 +25,11 @@ Pipe::_read_impl(
 	std::csize_t  a_buffSize	///<
 ) const
 {
+	// TODO: _read_impl - impl
+	xUNUSED(a_handleRead);
+	xUNUSED(out_buff);
+	xUNUSED(a_buffSize);
+
 	return -1;
 }
 //-------------------------------------------------------------------------------------------------
