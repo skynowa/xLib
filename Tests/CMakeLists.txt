@@ -71,7 +71,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
         # For CMAKE_CONFIGURATION_TYPES=Debug:
         # https://docs.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-warning-lnk4099
-        ## set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4098")
+        set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4098")
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
 
