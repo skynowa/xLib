@@ -95,7 +95,7 @@ FormatT<StreamT>::_format(
 
 		out_posPrev = pos + _specifier.size();
 	}
-};
+}
 //-------------------------------------------------------------------------------------------------
 template<typename StreamT>
 /* static */
