@@ -67,7 +67,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         # libcmtd.lib: static CRT link library for a debug build (/MTd)
         # msvcrt.lib:  import library for the release DLL version of the CRT (/MD)
         # msvcrtd.lib: import library for the debug DLL version of the CRT (/MDd)
-        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:MSVCRT")
+        # set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:MSVCRT")
 
         # For CMAKE_CONFIGURATION_TYPES=Debug:
         # https://docs.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-warning-lnk4099
