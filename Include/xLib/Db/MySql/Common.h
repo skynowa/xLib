@@ -9,6 +9,8 @@
  * - https://github.com/mysql/mysql-connector-cpp
  * - https://tangentsoft.com/mysqlpp/
  * - https://libtabula.org/
+ *
+ * - https://github.com/Kmykhail/SqlWrapper/blob/master/wrapper/SqlWrapper.h
  */
 
 
