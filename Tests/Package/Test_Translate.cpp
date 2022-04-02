@@ -31,7 +31,7 @@ Test_Translate::unit()
 			std::tstring_t langFrom;
 			std::tstring_t langTo;
 
-			translate.execute(it_data.test, &textToBrief, &textToDetail, &textToRaw,
+			translate.run(it_data.test, &textToBrief, &textToDetail, &textToRaw,
 				&langFrom, &langTo);
 			xTEST_EQ(textToBrief, it_data.expect);
 			xTEST_EQ(textToDetail, std::tstring_t(xT("n/a")));

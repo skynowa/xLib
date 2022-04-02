@@ -21,7 +21,7 @@ namespace xl::package
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Translate::execute(
+Translate::run(
     std::ctstring_t &a_textFrom,		///< source text
     std::tstring_t  *out_textToBrief,	///< [out] target brief translate
     std::tstring_t  *out_textToDetail,	///< [out] target detail translate
