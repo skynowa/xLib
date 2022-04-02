@@ -39,7 +39,7 @@ Translate::execute(
 
     bool_t bRv {};
 
-	curl::DataIn baseDataIn;
+	curl::DataIn dataIn;
 	{
 		std::ctstring_t encoding = xT("UTF-8");
 
@@ -58,11 +58,11 @@ Translate::execute(
 		* </form>
 		*/
 
-		baseDataIn.url            = xT("https://translate.google.com/m");
-		baseDataIn.accept         = xT("text/html");
-		baseDataIn.acceptEncoding = xT("gzip, deflate");
-		baseDataIn.acceptLanguage = xT("en-us,en");
-		baseDataIn.acceptCharset  = encoding;
+		dataIn.url            = xT("https://translate.google.com/m");
+		dataIn.accept         = xT("text/html");
+		dataIn.acceptEncoding = xT("gzip, deflate");
+		dataIn.acceptLanguage = xT("en-us,en");
+		dataIn.acceptCharset  = encoding;
 
 		// TODO: curl::HttpClient::Request::Post
 	#if 0
@@ -71,10 +71,10 @@ Translate::execute(
 			{"content-type", "application/x-www-form-urlencoded"}
 		};
 
-		baseDataIn.addHeaders = headers;
+		dataIn.addHeaders = headers;
 	#endif
 
-		// baseDataIn.request
+		// dataIn.request
 		{
 		   /**
 			* Google Translate query params
@@ -134,10 +134,10 @@ Translate::execute(
 			// Cout() << xTRACE_VAR(request);
 
 			for (const auto &[param, value] : request) {
-				baseDataIn.request += param + xT("=") + _http.escape(value) + xT("&");
+				dataIn.request += param + xT("=") + _http.escape(value) + xT("&");
 			}
 
-			baseDataIn.request = String::trimRightChars(baseDataIn.request, xT("&"));
+			dataIn.request = String::trimRightChars(dataIn.request, xT("&"));
 
 			// [out]
 			*out_langFrom = sourceLang;
@@ -147,7 +147,7 @@ Translate::execute(
 
 	// TODO: curl::HttpClient::Request::Post
 	curl::DataOut dataOut;
-	bRv = _http.request(curl::HttpClient::Request::Get, baseDataIn, &dataOut);
+	bRv = _http.request(curl::HttpClient::Request::Get, dataIn, &dataOut);
 	xTEST(bRv);
 	if ( !_http.isSuccess(dataOut) ) {
 		// Cout() << xTRACE_VAR(dataOut.body);
@@ -167,7 +167,7 @@ Translate::execute(
 
 #if 0
 	Cout()
-		<< xTRACE_VAR(baseDataIn.request)   << std::endl
+		<< xTRACE_VAR(dataIn.request)   << std::endl
 		<< xT("\n")
 		<< xTRACE_VAR(dataOut.contentType)  << std::endl
 		<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
