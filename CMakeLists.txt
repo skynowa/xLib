@@ -257,9 +257,9 @@ add_custom_target(template
 unset(CMAKE_TOOLCHAIN_FILE)
 #--------------------------------------------------------------------------------------------------
 # tests
-# if (cmOPTION_BUILD_TESTS)
-#     enable_testing()
+if (cmOPTION_BUILD_TESTS)
+    enable_testing()
 
-#     add_subdirectory(${XLIB_LOCATION}/Tests)
-# endif()
+    add_subdirectory(${XLIB_LOCATION}/Tests)
+endif()
 #--------------------------------------------------------------------------------------------------
