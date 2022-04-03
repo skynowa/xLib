@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
 
-./build.sh
-
 # vars
-DIR_BUILD="../../xLib_build"
+PROJECT_NAME="xLib"
+DIR_BUILD="../../${PROJECT_NAME}_build"
 JOBS_NUM=$(($(nproc) * 2))
 
 echo "Jobs: $JOBS_NUM"
