@@ -170,7 +170,7 @@ jobs:
         shell: bash
 
       - name: xLib - Build
-        run: cd "${{github.workspace}}/xLib/Build" && ./deploy.sh
+        run: cd "${{github.workspace}}/xLib/Build" && ./build.sh && ./deploy.sh
         shell: bash
 
       # - name: xLib - Unit Tests (optional)
