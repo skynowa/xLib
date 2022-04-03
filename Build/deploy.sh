@@ -3,4 +3,4 @@
 
 ./build.sh
 
-sudo cmake --build . --target install
+cmake --build . --target install
