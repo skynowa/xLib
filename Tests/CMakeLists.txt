@@ -56,9 +56,9 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     link_directories(${CONAN_LIBXML2_ROOT}/lib)
     target_link_libraries(${TEST_NAME}
-        ${PROJECT_LIB_STATIC}
         ${XLIB_LIBRARIES}
-        ${LIBXML2_LIBRARIES})
+        ${LIBXML2_LIBRARIES}
+        ${PROJECT_LIB_STATIC})
 
     if (MSVC)
         # There are 4 versions of the CRT link libraries present in vclib:
