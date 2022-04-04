@@ -11,12 +11,12 @@ project(
     DESCRIPTION "xLib library tests"
     VERSION      1.0.0.0)
 #--------------------------------------------------------------------------------------------------
+include(../Config.cmake)
+#--------------------------------------------------------------------------------------------------
 # tests
-if (cmOPTION_BUILD_TESTS)
-    enable_testing()
+enable_testing()
 
-    # add_subdirectory(${XLIB_LOCATION}/Tests)
-endif()
+# add_subdirectory(${XLIB_LOCATION}/Tests)
 #--------------------------------------------------------------------------------------------------
 # modules
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR})
@@ -26,10 +26,15 @@ set(CMAKE_MAJOR_MINOR_VERSION "${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}")
 set(CMAKE_DATA_DIR_DEFAULT    "/usr/share/cmake-${CMAKE_MAJOR_MINOR_VERSION}/Modules")
 set(CMAKE_MODULE_PATH
     "${CMAKE_DATA_DIR_DEFAULT}/CMakeLib;"
-    "${CMAKE_DATA_DIR_DEFAULT}/CMakeLib/Qt;"
     "${CMAKE_MODULE_PATH}")
 #--------------------------------------------------------------------------------------------------
 find_package(xLib QUIET REQUIRED)
+#--------------------------------------------------------------------------------------------------
+# includes
+include_directories(${cmXLIB_INCLUDES})
+include_directories(${XLIB_INCLUDES})
+
+message(STATUS "cmXLIB_INCLUDES: ${cmXLIB_INCLUDES}")
 #--------------------------------------------------------------------------------------------------
 find_package(LibXml2     QUIET REQUIRED)
 
@@ -38,14 +43,6 @@ if (LIBXML2_FOUND)
     set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   ${LIBXML2_LIBRARIES})
     set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} ${LIBXML2_DEFINITIONS})
 endif()
-#--------------------------------------------------------------------------------------------------
-# includes
-include(../Config.cmake)
-
-include_directories(${cmXLIB_INCLUDES})
-include_directories(${XLIB_INCLUDES})
-
-message(STATUS "cmXLIB_INCLUDES: ${cmXLIB_INCLUDES}")
 #--------------------------------------------------------------------------------------------------
 message(STATUS "")
 message(STATUS "::::: CTest :::::")
