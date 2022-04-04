@@ -85,10 +85,10 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "")
     endif()
 
+    add_executable(${TEST_NAME} ${IT_SOURCE})
+
     # includes
     target_include_directories(${TEST_NAME} PUBLIC ${cmXLIB_INCLUDES} ${XLIB_INCLUDES})
-
-    add_executable(${TEST_NAME} ${IT_SOURCE})
 
     link_directories(${CONAN_LIBXML2_ROOT}/lib)
     target_link_libraries(${TEST_NAME}
