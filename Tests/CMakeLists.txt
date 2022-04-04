@@ -27,6 +27,18 @@ set(CMAKE_MODULE_PATH
     "${CMAKE_DATA_DIR_DEFAULT}/CMakeLib;"
     "${CMAKE_MODULE_PATH}")
 #--------------------------------------------------------------------------------------------------
+message(STATUS "::::: Conan :::::")
+
+set(XLIB_TESTS_LOCATION ${CMAKE_SOURCE_DIR})
+
+if (EXISTS "${XLIB_TESTS_LOCATION}/../../conan_paths.cmake")
+    message(STATUS "conan_paths: TRUE")
+
+    include(${XLIB_TESTS_LOCATION}/../../conan_paths.cmake)
+else()
+    message(STATUS "conan_paths: FALSE")
+endif()
+#--------------------------------------------------------------------------------------------------
 find_package(xLib    QUIET REQUIRED)
 find_package(LibXml2 QUIET REQUIRED)
 
@@ -44,18 +56,6 @@ message(STATUS "")
 message(STATUS "::::: CTest :::::")
 
 include(CTest)
-#--------------------------------------------------------------------------------------------------
-message(STATUS "::::: Conan :::::")
-
-set(XLIB_LOCATION ../${CMAKE_SOURCE_DIR})
-
-if (EXISTS "${XLIB_LOCATION}/../conan_paths.cmake")
-    message(STATUS "conan_paths: TRUE")
-
-    include(${XLIB_LOCATION}/../conan_paths.cmake)
-else()
-    message(STATUS "conan_paths: FALSE")
-endif()
 #--------------------------------------------------------------------------------------------------
 file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
