@@ -30,6 +30,8 @@ set(CMAKE_MODULE_PATH
 message(STATUS "::::: Conan :::::")
 
 set(XLIB_TESTS_LOCATION ${CMAKE_SOURCE_DIR})
+message(STATUS "XLIB_TESTS_LOCATION: ${XLIB_TESTS_LOCATION}")
+message(STATUS "conan_paths:         ${XLIB_TESTS_LOCATION}/../../conan_paths.cmake")
 
 if (EXISTS "${XLIB_TESTS_LOCATION}/../../conan_paths.cmake")
     message(STATUS "conan_paths: TRUE")
