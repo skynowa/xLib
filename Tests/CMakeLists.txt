@@ -47,6 +47,8 @@ include(CTest)
 #--------------------------------------------------------------------------------------------------
 message(STATUS "::::: Conan :::::")
 
+set(XLIB_LOCATION ../${CMAKE_SOURCE_DIR})
+
 if (EXISTS "${XLIB_LOCATION}/../conan_paths.cmake")
     message(STATUS "conan_paths: TRUE")
 
