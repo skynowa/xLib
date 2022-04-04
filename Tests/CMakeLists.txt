@@ -50,10 +50,6 @@ if (LIBXML2_FOUND)
     set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} ${LIBXML2_DEFINITIONS})
 endif()
 #--------------------------------------------------------------------------------------------------
-# includes
-include_directories(${cmXLIB_INCLUDES})
-include_directories(${XLIB_INCLUDES})
-#--------------------------------------------------------------------------------------------------
 message(STATUS "")
 message(STATUS "::::: CTest :::::")
 
@@ -88,6 +84,9 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "XLIB_LIBRARIES:   ${XLIB_LIBRARIES}")
         message(STATUS "")
     endif()
+
+    # includes
+    target_include_directories(${TEST_NAME} PUBLIC ${cmXLIB_INCLUDES} ${XLIB_INCLUDES})
 
     add_executable(${TEST_NAME} ${IT_SOURCE})
 
