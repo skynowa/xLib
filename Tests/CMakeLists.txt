@@ -59,11 +59,6 @@ else()
     message(STATUS "conan_paths: FALSE")
 endif()
 #--------------------------------------------------------------------------------------------------
-find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
-
-set(CTEST_MEMORYCHECK_COMMAND_OPTIONS "--trace-children=yes --leak-check=full")
-set(MEMORYCHECK_SUPPRESSIONS_FILE     "${XLIB_LOCATION}/valgrind_suppress.txt")
-#--------------------------------------------------------------------------------------------------
 file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
 foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
