@@ -94,6 +94,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     link_directories(${CONAN_LIBXML2_ROOT}/lib)
     target_link_libraries(${TEST_NAME}
         ${XLIB_LIBRARIES}
+        ${cmXLIB_LIBRARIES}
         ${LIBXML2_LIBRARIES}
         ${PROJECT_LIB_STATIC})
 
