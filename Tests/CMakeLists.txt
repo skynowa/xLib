@@ -33,8 +33,6 @@ find_package(xLib QUIET REQUIRED)
 # includes
 include_directories(${cmXLIB_INCLUDES})
 include_directories(${XLIB_INCLUDES})
-
-message(STATUS "cmXLIB_INCLUDES: ${cmXLIB_INCLUDES}")
 #--------------------------------------------------------------------------------------------------
 find_package(LibXml2     QUIET REQUIRED)
 
@@ -84,6 +82,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "::::: xLib :::::")
         message(STATUS "cmXLIB_INCLUDES:  ${cmXLIB_INCLUDES}")
         message(STATUS "cmXLIB_LIBRARIES: ${cmXLIB_LIBRARIES}")
+        message(STATUS "XLIB_INCLUDES:    ${XLIB_INCLUDES}")
+        message(STATUS "XLIB_LIBRARIES:   ${XLIB_LIBRARIES}")
         message(STATUS "")
     endif()
 
