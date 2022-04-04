@@ -26,19 +26,18 @@ set(CMAKE_MODULE_PATH
     "${CMAKE_DATA_DIR_DEFAULT}/CMakeLib;"
     "${CMAKE_MODULE_PATH}")
 #--------------------------------------------------------------------------------------------------
-find_package(xLib QUIET REQUIRED)
-#--------------------------------------------------------------------------------------------------
-# includes
-include_directories(${cmXLIB_INCLUDES})
-include_directories(${XLIB_INCLUDES})
-#--------------------------------------------------------------------------------------------------
-find_package(LibXml2     QUIET REQUIRED)
+find_package(xLib    QUIET REQUIRED)
+find_package(LibXml2 QUIET REQUIRED)
 
 if (LIBXML2_FOUND)
     set(XLIB_INCLUDES    ${XLIB_INCLUDES}    ${LIBXML2_INCLUDE_DIRS})
     set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   ${LIBXML2_LIBRARIES})
     set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} ${LIBXML2_DEFINITIONS})
 endif()
+#--------------------------------------------------------------------------------------------------
+# includes
+include_directories(${cmXLIB_INCLUDES})
+include_directories(${XLIB_INCLUDES})
 #--------------------------------------------------------------------------------------------------
 message(STATUS "")
 message(STATUS "::::: CTest :::::")

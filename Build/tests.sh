@@ -5,10 +5,9 @@
 PROJECT_NAME="xLib"
 DIR_PROJECT="../${PROJECT_NAME}/Tests"
 DIR_BUILD="../../${PROJECT_NAME}_tests"
-ECLIPSE_VERSION="4.17" # 2020-09
 GENERATOR="Eclipse CDT4 - Unix Makefiles"
+ECLIPSE_VERSION="4.17" # 2020-09
 
-DIR_BUILD="../../${PROJECT_NAME}_tests"
 JOBS_NUM=$(($(nproc) * 2))
 
 echo "Jobs: $JOBS_NUM"
