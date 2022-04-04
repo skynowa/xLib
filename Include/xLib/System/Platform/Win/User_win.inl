@@ -252,7 +252,7 @@ User::_getUID(
         return static_cast<uint_t>(-1);	// TODO: uint_t cast
     }
 
-    heap_unique_ptr sidPtr((LPVOID)(sid));
+    heap_unique_ptr sidPtr((LPVOID)sid);
 
 	LPWSTR stringSid {};
     BOOL convertSid = ::ConvertSidToStringSidW(sid, &stringSid);
