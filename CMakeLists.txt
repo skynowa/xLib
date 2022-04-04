@@ -121,7 +121,8 @@ if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
     set(CMAKE_COMPILER_IS_CLANGXX 1)
 endif()
 
-set(XLIB_INSTALL_DIR  include/xLib)
+### set(XLIB_INSTALL_DIR  include/xLib)
+set(XLIB_INSTALL_DIR  include)
 set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
 #--------------------------------------------------------------------------------------------------
 # TOOD: flags
