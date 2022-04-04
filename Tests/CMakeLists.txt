@@ -11,12 +11,10 @@ project(
     DESCRIPTION "xLib library tests"
     VERSION      1.0.0.0)
 #--------------------------------------------------------------------------------------------------
-include(../Config.cmake)
+include(Config.cmake)
 #--------------------------------------------------------------------------------------------------
 # tests
 enable_testing()
-
-# add_subdirectory(${XLIB_LOCATION}/Tests)
 #--------------------------------------------------------------------------------------------------
 # modules
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR})
