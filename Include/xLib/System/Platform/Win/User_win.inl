@@ -189,9 +189,9 @@ User::_getUserSID(
 	PSID   *out_sid	///< [out]
 ) const
 {
-    if (token == nullptr ||
-		token == INVALID_HANDLE_VALUE ||
-		sid   == nullptr)
+    if (token   == nullptr ||
+        token   == INVALID_HANDLE_VALUE ||
+        out_sid == nullptr)
     {
         SetLastError(ERROR_INVALID_PARAMETER);
         return FALSE;
