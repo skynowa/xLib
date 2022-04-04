@@ -256,10 +256,3 @@ add_custom_target(template
 # fix warning "Manually-specified variables were not used by the project"
 unset(CMAKE_TOOLCHAIN_FILE)
 #--------------------------------------------------------------------------------------------------
-# tests
-if (cmOPTION_BUILD_TESTS)
-    enable_testing()
-
-    add_subdirectory(${XLIB_LOCATION}/Tests)
-endif()
-#--------------------------------------------------------------------------------------------------
