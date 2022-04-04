@@ -125,8 +125,7 @@ endif()
 # - UNIX    /usr/local
 # - Windows c:/Program Files/${PROJECT_NAME}
 
-### set(XLIB_INSTALL_DIR  include/xLib)
-set(XLIB_INSTALL_DIR  "include")
+set(XLIB_INSTALL_DIR  include/xLib)
 set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
 #--------------------------------------------------------------------------------------------------
 # TOOD: flags
