@@ -4,7 +4,12 @@
 #--------------------------------------------------------------------------------------------------
 
 
+cmake_minimum_required(VERSION 3.5.0)
 
+project(
+    xLib_tests
+    DESCRIPTION "xLib library tests"
+    VERSION      1.0.0.0)
 #--------------------------------------------------------------------------------------------------
 # tests
 if (cmOPTION_BUILD_TESTS)
@@ -12,6 +17,35 @@ if (cmOPTION_BUILD_TESTS)
 
     # add_subdirectory(${XLIB_LOCATION}/Tests)
 endif()
+#--------------------------------------------------------------------------------------------------
+# modules
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR})
+
+# CMakeLib - CMAKE_MODULE_PATH
+set(CMAKE_MAJOR_MINOR_VERSION "${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}")
+set(CMAKE_DATA_DIR_DEFAULT    "/usr/share/cmake-${CMAKE_MAJOR_MINOR_VERSION}/Modules")
+set(CMAKE_MODULE_PATH
+    "${CMAKE_DATA_DIR_DEFAULT}/CMakeLib;"
+    "${CMAKE_DATA_DIR_DEFAULT}/CMakeLib/Qt;"
+    "${CMAKE_MODULE_PATH}")
+#--------------------------------------------------------------------------------------------------
+find_package(xLib QUIET REQUIRED)
+#--------------------------------------------------------------------------------------------------
+find_package(LibXml2     QUIET REQUIRED)
+
+if (LIBXML2_FOUND)
+    set(XLIB_INCLUDES    ${XLIB_INCLUDES}    ${LIBXML2_INCLUDE_DIRS})
+    set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   ${LIBXML2_LIBRARIES})
+    set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} ${LIBXML2_DEFINITIONS})
+endif()
+#--------------------------------------------------------------------------------------------------
+# includes
+include(../Config.cmake)
+
+include_directories(${cmXLIB_INCLUDES})
+include_directories(${XLIB_INCLUDES})
+
+message(STATUS "cmXLIB_INCLUDES: ${cmXLIB_INCLUDES}")
 #--------------------------------------------------------------------------------------------------
 message(STATUS "")
 message(STATUS "::::: CTest :::::")
@@ -56,7 +90,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "LIBXML2_LIBRARIES: ${LIBXML2_LIBRARIES}")
         message(STATUS "")
         message(STATUS "::::: xLib :::::")
-        message(STATUS "XLIB_LIBRARIES: ${XLIB_LIBRARIES}")
+        message(STATUS "cmXLIB_INCLUDES:  ${cmXLIB_INCLUDES}")
+        message(STATUS "cmXLIB_LIBRARIES: ${cmXLIB_LIBRARIES}")
         message(STATUS "")
     endif()
 
@@ -64,7 +99,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     link_directories(${CONAN_LIBXML2_ROOT}/lib)
     target_link_libraries(${TEST_NAME}
-        ${XLIB_LIBRARIES}
+        ${cmXLIB_LIBRARIES}
         ${LIBXML2_LIBRARIES}
         ${PROJECT_LIB_STATIC})
 
