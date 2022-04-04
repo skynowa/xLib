@@ -146,8 +146,8 @@ User::_getuid() const
 
     HANDLE token {};
     BOOL openToken = ::OpenProcessToken(process, TOKEN_READ | TOKEN_QUERY_SOURCE, &token);
-    if (!openToken) {
-        return -1;
+    if (openToken == FALSE) {
+        return static_cast<uint_t>(-1);	// TODO: uint_t cast
     }
 
     handle_unique_ptr tokenPtr(token);
@@ -163,19 +163,19 @@ User::_geteuid() const
 
     HANDLE token {};
     BOOL openToken = ::OpenThreadToken(thread, TOKEN_READ | TOKEN_QUERY_SOURCE, FALSE, &token);
-    if (!openToken &&
-		::GetLastError() == ERROR_NO_TOKEN)
+    if (openToken == FALSE &&
+        ::GetLastError() == ERROR_NO_TOKEN)
 	{
         openToken = ::OpenThreadToken(thread, TOKEN_READ | TOKEN_QUERY_SOURCE, TRUE, &token);
-        if (!openToken &&
+        if (openToken == FALSE &&
 			::GetLastError() == ERROR_NO_TOKEN)
 		{
             openToken = ::OpenProcessToken(process, TOKEN_READ | TOKEN_QUERY_SOURCE, &token);
         }
     }
 
-    if (!openToken) {
-        return -1;
+    if (openToken == FALSE) {
+        return static_cast<uint_t>(-1);	// TODO: uint_t cast
     }
 
     handle_unique_ptr tokenPtr(token);
@@ -210,7 +210,7 @@ User::_getUserSID(
 
     BOOL getTokenInfo = ::GetTokenInformation(token, TokenUser, data.get(), tokenInformationLength,
 		&tokenInformationLength);
-    if (! getTokenInfo) {
+    if (getTokenInfo == FALSE) {
         return FALSE;
     }
 
@@ -225,7 +225,7 @@ User::_getUserSID(
     }
 
     BOOL copySid = ::CopySid(sidLength, sidL, pTokenUser->User.Sid);
-    if (!copySid) {
+    if (copySid == FALSE) {
         return FALSE;
     }
 
@@ -248,21 +248,24 @@ User::_getUID(
 {
     PSID sid {};
     BOOL getSID = _getUserSID(token, &sid);
-    if (!getSID || !sid) {
-        return -1;
+    if (getSID == FALSE || sid == FALSE) {
+        return static_cast<uint_t>(-1);	// TODO: uint_t cast
     }
 
     heap_unique_ptr sidPtr((LPVOID)(sid));
 
 	LPWSTR stringSid {};
     BOOL convertSid = ::ConvertSidToStringSidW(sid, &stringSid);
-    if (!convertSid) {
-        return -1;
+    if (convertSid == FALSE) {
+        return static_cast<uint_t>(-1);	// TODO: uint_t cast
     }
 
-    uint_t ret = -1;
+    uint_t ret = static_cast<uint_t>(-1);	// TODO: uint_t cast
+
     LPCWSTR p = ::wcsrchr(stringSid, L'-');
-    if (p && ::iswdigit(p[1])) {
+    if (p != nullptr &&
+        ::iswdigit(p[1]))
+    {
         ++ p;
         ret = ::_wtoi(p);
     }
