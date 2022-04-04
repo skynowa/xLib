@@ -26,6 +26,8 @@ set(CMAKE_DATA_DIR_DEFAULT    "C:/Program Files/CMake/share/cmake-${CMAKE_MAJOR_
 set(CMAKE_MODULE_PATH
     "${CMAKE_DATA_DIR_DEFAULT}/CMakeLib;"
     "${CMAKE_MODULE_PATH}")
+
+list(APPEND CMAKE_MODULE_PATH "../CMake")
 #--------------------------------------------------------------------------------------------------
 message(STATUS "::::: Conan :::::")
 
@@ -41,14 +43,9 @@ else()
     message(STATUS "conan_paths: FALSE")
 endif()
 #--------------------------------------------------------------------------------------------------
-find_package(xLib    QUIET REQUIRED)
-find_package(LibXml2 QUIET REQUIRED)
+find_package(xLib QUIET REQUIRED)
 
-if (LIBXML2_FOUND)
-    set(XLIB_INCLUDES    ${XLIB_INCLUDES}    ${LIBXML2_INCLUDE_DIRS})
-    set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   ${LIBXML2_LIBRARIES})
-    set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} ${LIBXML2_DEFINITIONS})
-endif()
+include(Configure)
 #--------------------------------------------------------------------------------------------------
 message(STATUS "")
 message(STATUS "::::: CTest :::::")
