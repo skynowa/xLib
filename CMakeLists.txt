@@ -235,12 +235,12 @@ install(
         PATTERN "*.h.in"   EXCLUDE
         PATTERN ".gitkeep" EXCLUDE)
 #--------------------------------------------------------------------------------------------------
-# TODO: uninstall - fix
+# uninstall
 add_custom_target(uninstall
     COMMAND
         ${CMAKE_COMMAND}
         -DXLIB_INSTALL_PATH="${XLIB_INSTALL_PATH}"
-        -P Uninstall.cmake
+        -P ${CMAKE_LIB_INCLUDES}/CMakeLib/Uninstall.cmake
     COMMENT
         "Uninstall...")
 #--------------------------------------------------------------------------------------------------
