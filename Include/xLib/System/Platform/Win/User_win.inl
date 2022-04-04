@@ -185,8 +185,8 @@ User::_geteuid() const
 //-------------------------------------------------------------------------------------------------
 BOOL
 User::_getUserSID(
-	HANDLE  token,
-	PSID   *sid
+	HANDLE  token,	///<
+	PSID   *out_sid	///< [out]
 ) const
 {
     if (token == nullptr ||
@@ -234,7 +234,7 @@ User::_getUserSID(
     }
 
 	// [out]
-    *sid = sidL;
+    *out_sid = sidL;
 
     sidPtr.release();
 
