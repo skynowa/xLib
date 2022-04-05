@@ -8,8 +8,7 @@ cmake_minimum_required(VERSION 3.5.0)
 #--------------------------------------------------------------------------------------------------
 project(
     xLib_tests
-    DESCRIPTION  "xLib library tests"
-    HOMEPAGE_URL "https://github.com/skynowa/xLib")
+    DESCRIPTION  "xLib library tests")
 #--------------------------------------------------------------------------------------------------
 include(../Config.cmake)
 
