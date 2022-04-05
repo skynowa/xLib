@@ -18,8 +18,7 @@ cmake_minimum_required(VERSION 3.5.0)
 #--------------------------------------------------------------------------------------------------
 project(
     xLib
-    DESCRIPTION  "xLib library"
-    HOMEPAGE_URL "https://github.com/skynowa/xLib")
+    DESCRIPTION  "xLib library")
 #--------------------------------------------------------------------------------------------------
 # vars
 unset(XLIB_DEFINITIONS      CACHE)
@@ -31,10 +30,7 @@ unset(XLIB_LIBRARIES        CACHE)
 unset(XLIB_LOCATION         CACHE)
 unset(XLIB_TEMPLATES        CACHE)
 
-if (NOT XLIB_LOCATION)
-    set(XLIB_LOCATION ${CMAKE_SOURCE_DIR})
-endif()
-
+set(XLIB_LOCATION  ${CMAKE_SOURCE_DIR})
 set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 #--------------------------------------------------------------------------------------------------
 # modules
