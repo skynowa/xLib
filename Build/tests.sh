@@ -5,7 +5,7 @@
 PROJECT_NAME="xLib"
 DIR_PROJECT="../${PROJECT_NAME}/Tests"
 DIR_BUILD="../../${PROJECT_NAME}_tests"
-# GENERATOR="Eclipse CDT4 - Unix Makefiles"
+### GENERATOR="Eclipse CDT4 - Unix Makefiles"
 GENERATOR="Visual Studio 16 2019"
 ECLIPSE_VERSION="4.17" # 2020-09
 
@@ -17,7 +17,7 @@ echo "Jobs: $JOBS_NUM"
 mkdir -p ${DIR_BUILD}
 cd ${DIR_BUILD}
 
-# Configure
+### Configure
 # cmake \
 # 	-G"${GENERATOR}" \
 # 	-D_ECLIPSE_VERSION=${ECLIPSE_VERSION} \
@@ -28,7 +28,7 @@ cmake \
 	${DIR_PROJECT}
 
 # Build
-cmake --build . # -- -j${JOBS_NUM}
+cmake --build . ### -- -j${JOBS_NUM}
 
 # Run
 ctest -C Debug -j${JOBS_NUM} --output-on-failure
