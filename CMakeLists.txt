@@ -116,8 +116,8 @@ if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
 endif()
 
 # CMAKE_INSTALL_PREFIX
-# - UNIX    /usr/local
-# - Windows c:/Program Files/${PROJECT_NAME}
+# - UNIX    "/usr/local"
+# - Windows "c:/Program Files/${PROJECT_NAME}"
 
 set(XLIB_INSTALL_DIR  include/xLib)
 set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
