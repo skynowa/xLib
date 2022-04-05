@@ -1,6 +1,6 @@
 #--------------------------------------------------------------------------------------------------
 # \file  CMakeLists.txt
-# \brief Build xLib
+# \brief xLib build
 #
 # XLIB_LOCATION         - root diractory [in]
 # XLIB_DEFINITIONS      - definitions
