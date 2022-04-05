@@ -154,7 +154,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${cmXLIB_LIBRARIES}
         ${LIBXML2_LIBRARIES})
 
-    if (MSVC)
+    ### if (MSVC)
+    if (0)
         # There are 4 versions of the CRT link libraries present in vclib:
         #
         # libcmt.lib:  static CRT link library for a release build (/MT)
