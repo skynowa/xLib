@@ -177,9 +177,6 @@ jobs:
         run: cd "${{github.workspace}}/xLib/Build" && ./deploy.sh
         shell: bash
 
-      # - name: xLib - Unit Tests (optional)
-      #   run: "${{github.workspace}}/xLib_build/Tests/System/Test_ProcessInfo"
-
       - name: xLib - Tests
         run: cd "${{github.workspace}}/xLib/Build" && ./tests.sh
         shell: bash
