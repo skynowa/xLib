@@ -5,13 +5,18 @@
 
 
 cmake_minimum_required(VERSION 3.5.0)
-
+#--------------------------------------------------------------------------------------------------
 project(
     xLib_tests
     DESCRIPTION "xLib library tests"
     VERSION      1.0.0.0)
 #--------------------------------------------------------------------------------------------------
 include(../Config.cmake)
+
+if (NOT cmOPTION_BUILD_TESTS)
+    message(STATUS "Tests - skip")
+    return()
+endif()
 #--------------------------------------------------------------------------------------------------
 # tests
 enable_testing()
