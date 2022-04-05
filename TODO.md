@@ -3,10 +3,13 @@
 ## CMake
 
 [ ] Split tests
+[ ] Full build/run tests
 [ ] Crossplatform
 [ ] Review
-[ ] "cm" prefix ?
-[ ] xLibData review
+[ ] "cm" prefix - review
+[ ] xLibData - review
+[ ] Common code (xLib + Tests) - review
+[ ] Projects names - review
 
 ## Path
 
