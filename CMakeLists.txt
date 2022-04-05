@@ -192,13 +192,6 @@ if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
 
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
-
-    set_target_properties(${PROJECT_LIB_STATIC} PROPERTIES
-        IMPORTED_LOCATION             "C:/Projects/xLib_build/Release/xLib_static.dll"
-        IMPORTED_IMPLIB               "C:/Projects/xLib_build/Release/xLib_static.lib"
-        # INTERFACE_INCLUDE_DIRECTORIES "C:/Projects/xLib/Include"
-    )
-
     target_link_libraries(${PROJECT_LIB_STATIC} PUBLIC ${XLIB_LIBRARIES})
 
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "lib")
