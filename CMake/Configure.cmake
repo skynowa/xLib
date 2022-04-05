@@ -66,7 +66,7 @@ find_package(LibXml2     QUIET REQUIRED)
 # Custom (CMakeLib)
 find_package(CMakeLib    QUIET REQUIRED) # at 1-st
 find_package(OS          QUIET REQUIRED)
-### find_package(xLibData    QUIET REQUIRED)
+find_package(xLibData    QUIET REQUIRED)
 find_package(GitRevision QUIET REQUIRED)
 find_package(MySQL       QUIET REQUIRED)
 find_package(Ssh2        QUIET REQUIRED)
