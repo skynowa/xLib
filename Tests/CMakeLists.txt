@@ -45,7 +45,7 @@ endif()
 #--------------------------------------------------------------------------------------------------
 find_package(xLib QUIET REQUIRED)
 
-include(Configure)
+include(../CMake/Configure)
 
 
 if (CURL_FOUND)
