@@ -1,5 +1,13 @@
 # TODOs
 
+## CMake
+
+[ ] Split tests
+[ ] Crossplatform
+[ ] Review
+[ ] "cm" prefix ?
+[ ] xLibData review
+
 ## Path
 
 ```bash
