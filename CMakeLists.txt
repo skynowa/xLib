@@ -18,10 +18,8 @@ cmake_minimum_required(VERSION 3.5.0)
 #--------------------------------------------------------------------------------------------------
 project(
     xLib
-    DESCRIPTION "xLib library"
-    VERSION      1.0.0.0)
-
-set(XLIB_PROJECT_URL "https://github.com/skynowa/xLib/")
+    DESCRIPTION  "xLib library"
+    HOMEPAGE_URL "https://github.com/skynowa/xLib")
 #--------------------------------------------------------------------------------------------------
 # vars
 unset(XLIB_DEFINITIONS      CACHE)
