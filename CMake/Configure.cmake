@@ -145,7 +145,9 @@ elseif (ENV_UNIX)
 endif()
 #--------------------------------------------------------------------------------------------------
 # config
-configure_file(
-    ${XLIB_LOCATION}/Include/xLib/Config.h.in
-    ${XLIB_LOCATION}/Include/xLib/Config.h)
+set(CONFIG_PATH "${XLIB_LOCATION}/Include/xLib/Config.h")
+
+if (EXISTS "${CONFIG_PATH}.in")
+    configure_file(${CONFIG_PATH}.in ${CONFIG_PATH})
+endif()
 #--------------------------------------------------------------------------------------------------
