@@ -130,7 +130,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "")
         message(STATUS "::::: Project :::::")
         message(STATUS "PROJECT_NAME: ${PROJECT_NAME}")
-        message(STATUS "PROJECT_LIB_STATIC: ${PROJECT_LIB_STATIC}")
         message(STATUS "TEST_NAME: ${TEST_NAME}")
         message(STATUS "")
         message(STATUS "::::: LIBXML2 :::::")
@@ -154,8 +153,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     target_link_libraries(${TEST_NAME}
         ${XLIB_LIBRARIES}
         ${cmXLIB_LIBRARIES}
-        ${LIBXML2_LIBRARIES}
-        ${PROJECT_LIB_STATIC})
+        ${LIBXML2_LIBRARIES})
 
     if (MSVC)
         # There are 4 versions of the CRT link libraries present in vclib:
