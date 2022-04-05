@@ -28,7 +28,7 @@ cmake \
 	${DIR_PROJECT}
 
 # Build
-cmake --build . --config Debug ### -- -j${JOBS_NUM}
+cmake --build . --config Release ### -- -j${JOBS_NUM}
 
 # Run
 ctest -C Debug -j${JOBS_NUM} --output-on-failure
