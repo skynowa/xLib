@@ -7,6 +7,7 @@ DIR_PROJECT="../${PROJECT_NAME}/Tests"
 DIR_BUILD="../../${PROJECT_NAME}_tests"
 ### GENERATOR="Eclipse CDT4 - Unix Makefiles"
 GENERATOR="Visual Studio 16 2019"
+ARCH=Win32	### x64
 ECLIPSE_VERSION="4.17" # 2020-09
 
 JOBS_NUM=$(($(nproc) * 2))
@@ -24,7 +25,7 @@ cd ${DIR_BUILD}
 # 	$DIR_PROJECT
 cmake \
 	-G"${GENERATOR}" \
-	-A x64 \
+	-A ${ARCH} \
 	${DIR_PROJECT}
 
 # Build
