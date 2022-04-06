@@ -131,10 +131,6 @@ if (OPTION_UNICODE)
     add_definitions(-D_UNICODE=1)
 endif()
 
-if (MSVC)
-   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D_WIN64=1") ### _WIN32=1
-endif()
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 
 if (MSVC)
