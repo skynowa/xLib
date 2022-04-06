@@ -131,6 +131,8 @@ if (OPTION_UNICODE)
     add_definitions(-D_UNICODE=1)
 endif()
 
+message(STATUS ">>> CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 
 if (MSVC)
