@@ -89,9 +89,9 @@
         #include <SDKDDKVer.h>
     #endif
 
-    #if !defined(WIN32_LEAN_AND_MEAN)
-        #define WIN32_LEAN_AND_MEAN 1
-    #endif
+    /// #if !defined(WIN32_LEAN_AND_MEAN)
+    ///    #define WIN32_LEAN_AND_MEAN 1
+    /// #endif
         ///< exclude APIs such as Cryptography, DDE, RPC, Shell, Windows Sockets
     #if !defined(STRICT)
         #undef  NO_STRICT
@@ -105,12 +105,12 @@
     #define _CRT_SECURE_NO_DEPRECATE 1
         ///< don't complain about all the deprecated functions
 
-    #if xCOMPILER_MS
-        #if !defined(VC_EXTRALEAN)
-            #define VC_EXTRALEAN 1
-        #endif
-            ///< exclude rarely-used stuff from Windows headers
-    #endif
+    /// #if xCOMPILER_MS
+    ///     #if !defined(VC_EXTRALEAN)
+    ///         #define VC_EXTRALEAN 1
+    ///     #endif
+    ///         ///< exclude rarely-used stuff from Windows headers
+    /// #endif
 #elif xENV_UNIX
     #if !defined(_GNU_SOURCE)
         #define _GNU_SOURCE 1
