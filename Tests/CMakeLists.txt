@@ -139,14 +139,10 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "XLIB_INCLUDES:    ${XLIB_INCLUDES}")
         message(STATUS "cmXLIB_INCLUDES:  ${cmXLIB_INCLUDES}")
         message(STATUS "")
-        message(STATUS "XLIB_LIBRARIES:       ${XLIB_LIBRARIES}")
-        message(STATUS "cmXLIB_LIBRARIES:     ${cmXLIB_LIBRARIES}")
-        message(STATUS "cmXLIB_SYS_LIBRARIES: ${cmXLIB_SYS_LIBRARIES}")
+        message(STATUS "XLIB_LIBRARIES:   ${XLIB_LIBRARIES}")
+        message(STATUS "cmXLIB_LIBRARIES: ${cmXLIB_LIBRARIES}")
         message(STATUS "")
     endif()
-
-
-    target_link_libraries(${cmXLIB_LIBRARIES} PRIVATE ${cmXLIB_SYS_LIBRARIES})
 
     add_executable(${TEST_NAME} ${IT_SOURCE})
     target_include_directories(${TEST_NAME} ${XLIB_INCLUDES} ${cmXLIB_INCLUDES})
