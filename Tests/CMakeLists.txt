@@ -144,7 +144,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "")
     endif()
 
-    target_include_directories(${cmXLIB_LIBRARIES} ${cmXLIB_EXTRA_LIBRARIES})
+    target_link_libraries(${cmXLIB_LIBRARIES} PRIVATE ${cmXLIB_EXTRA_LIBRARIES})
 
     add_executable(${TEST_NAME} ${IT_SOURCE})
     target_include_directories(${TEST_NAME} ${XLIB_INCLUDES} ${cmXLIB_INCLUDES})
