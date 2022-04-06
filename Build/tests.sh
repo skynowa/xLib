@@ -7,7 +7,7 @@ DIR_PROJECT="../${PROJECT_NAME}/Tests"
 DIR_BUILD="../../${PROJECT_NAME}_tests"
 ### GENERATOR="Eclipse CDT4 - Unix Makefiles"
 GENERATOR="Visual Studio 16 2019"
-ARCH=Win32	### x64
+ARCH=x64	### Win32
 ECLIPSE_VERSION="4.17" # 2020-09
 
 JOBS_NUM=$(($(nproc) * 2))
