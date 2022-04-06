@@ -146,6 +146,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     # includes
     target_include_directories(${TEST_NAME} PUBLIC ${cmXLIB_INCLUDES} ${XLIB_INCLUDES})
 
+    add_executable(${TEST_NAME} ${IT_SOURCE})
+
     ## link_directories(${CONAN_LIBXML2_ROOT}/lib)
 
     target_link_libraries(${TEST_NAME}
@@ -168,7 +170,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
 
-    add_executable(${TEST_NAME} ${IT_SOURCE})
 
     add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
 endforeach()
