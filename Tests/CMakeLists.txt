@@ -162,7 +162,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     endif()
 
     target_include_directories(${TEST_NAME} PUBLIC ${XLIB_INCLUDES} ${cmXLIB_INCLUDES})
-    target_link_libraries(${TEST_NAME} ${XLIB_LIBRARIES} ${cmXLIB_LIBRARIES} ${LIBXML2_LIBRARIES} libxml2)
+    target_link_libraries(${TEST_NAME} PRIVATE ${XLIB_LIBRARIES} ${cmXLIB_LIBRARIES} ${LIBXML2_LIBRARIES} LibXml2::LibXml2)
 
     add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
 endforeach()
