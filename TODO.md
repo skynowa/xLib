@@ -13,6 +13,7 @@
 [ ] Projects names - review
 [ ] System / Conan includes
 [ ] Doc - impl
+[ ] Config.h.in
 
 ## Path
 
