@@ -144,8 +144,10 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "")
     endif()
 
+    target_include_directories(${cmXLIB_LIBRARIES} ${cmXLIB_EXTRA_LIBRARIES})
+
     add_executable(${TEST_NAME} ${IT_SOURCE})
-    target_include_directories(${TEST_NAME} PUBLIC ${XLIB_INCLUDES} ${cmXLIB_INCLUDES})
+    target_include_directories(${TEST_NAME} ${XLIB_INCLUDES} ${cmXLIB_INCLUDES})
     target_link_libraries(${TEST_NAME} PRIVATE ${XLIB_LIBRARIES} ${cmXLIB_LIBRARIES} LibXml2::LibXml2) # ${LIBXML2_LIBRARIES}
 
     if (MSVC)
