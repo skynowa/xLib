@@ -20,6 +20,6 @@ cd ${DIR_BUILD}
 
 # build
 cmake \
-	-G"${GENERATOR}" \
+	-G "${GENERATOR}" \
 	-A ${ARCH} \
 	${DIR_PROJECT}
