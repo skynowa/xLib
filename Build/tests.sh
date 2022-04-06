@@ -24,7 +24,7 @@ cd ${DIR_BUILD}
 # 	-D_ECLIPSE_VERSION=${ECLIPSE_VERSION} \
 # 	$DIR_PROJECT
 cmake \
-	-G"${GENERATOR}" \
+	-G "${GENERATOR}" \
 	-A ${ARCH} \
 	${DIR_PROJECT}
 
