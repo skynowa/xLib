@@ -7,6 +7,9 @@
 # https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge
 # https://github.com/sdras/awesome-actions#github-tools-and-management
 # https://github.com/marketplace
+#
+# Win:
+# - https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-170
 #--------------------------------------------------------------------------------------------------
 
 
@@ -47,11 +50,11 @@ jobs:
             name: "Windows-2019 (MSVC)",
             os: windows-2019,
             build_type: "Release",
-            arch: "x86_64",
+            arch: "x86",  ### "x86_64"
             cc: "cl",
             cxx: "cl",
             environment_script:
-                "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+                "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars32.bat", ### vcvars64.bat
             conan_profile_update:
                 "conan profile update settings.compiler='Visual Studio' default;
                  conan profile update settings.compiler.version=16 default",
@@ -103,10 +106,6 @@ jobs:
           conan profile new default --detect --force
           ${{ matrix.config.conan_profile_update }}
         shell: bash
-
-      # - name: Trace-1
-      #   run: cat "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
-      #   shell: bash
 
       ##############################################################################################
       # xLib-data
