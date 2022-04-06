@@ -145,6 +145,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "")
     endif()
 
+
     target_link_libraries(${cmXLIB_LIBRARIES} PRIVATE ${cmXLIB_SYS_LIBRARIES})
 
     add_executable(${TEST_NAME} ${IT_SOURCE})
