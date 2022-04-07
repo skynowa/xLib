@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 3.5.0)
 #--------------------------------------------------------------------------------------------------
 project(
     xLib_tests
-    DESCRIPTION  "xLib library tests")
+    DESCRIPTION "xLib library tests")
 #--------------------------------------------------------------------------------------------------
 message(STATUS "\n::::: Config :::::")
 
@@ -21,12 +21,6 @@ endif()
 #--------------------------------------------------------------------------------------------------
 # Modules
 message(STATUS "\n::::: Modules :::::")
-
-if     (WIN32)
-    set(CMAKE_DATA_DIR_ROOT "/usr")
-elseif (UNIX)
-    set(CMAKE_DATA_DIR_ROOT "C:/Program Files/CMake")
-endif()
 
 set(CMAKE_MODULE_PATH
     ${CMAKE_MODULE_PATH}
@@ -41,8 +35,6 @@ message(STATUS "XLIB_TESTS_LOCATION: ${XLIB_TESTS_LOCATION}")
 message(STATUS "conan_paths:         ${XLIB_TESTS_LOCATION}/../../conan_paths.cmake")
 
 if (EXISTS "${XLIB_TESTS_LOCATION}/../../conan_paths.cmake")
-    message(STATUS "conan_paths: TRUE")
-
     include(${XLIB_TESTS_LOCATION}/../../conan_paths.cmake)
 else()
     message(FATAL_ERROR "conan_paths: FALSE")
