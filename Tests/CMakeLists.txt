@@ -144,10 +144,18 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "")
     endif()
 
-    target_include_directories(${TEST_NAME} ${XLIB_INCLUDES} ${cmXLIB_INCLUDES})
+    add_executable(${TEST_NAME}
+        ${IT_SOURCE})
 
-    add_executable(${TEST_NAME} ${IT_SOURCE})
-    target_link_libraries(${TEST_NAME} PRIVATE ${XLIB_LIBRARIES} ${cmXLIB_LIBRARIES} LibXml2::LibXml2) # ${LIBXML2_LIBRARIES}
+    target_include_directories(${TEST_NAME}
+        ${XLIB_INCLUDES}
+        ${cmXLIB_INCLUDES})
+
+    target_link_libraries(${TEST_NAME} PRIVATE
+        ${XLIB_LIBRARIES}
+        ${cmXLIB_LIBRARIES}
+        # ${LIBXML2_LIBRARIES}
+        LibXml2::LibXml2)
 
     if (MSVC)
         # There are 4 versions of the CRT link libraries present in vclib:
