@@ -123,10 +123,7 @@ set(XLIB_INSTALL_DIR  include/xLib)
 set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
 #--------------------------------------------------------------------------------------------------
 # TOOD: flags
-
-message(STATUS "[0] >>> CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 string(REPLACE "/DWIN32" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-message(STATUS "[1] >>> CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 
 include(CxxFlags)
 #--------------------------------------------------------------------------------------------------
@@ -135,8 +132,6 @@ if (OPTION_UNICODE)
     add_definitions(-DUNICODE=1)
     add_definitions(-D_UNICODE=1)
 endif()
-
-message(STATUS "[2] >>> CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
 
