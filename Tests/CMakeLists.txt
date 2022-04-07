@@ -151,11 +151,11 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     add_executable(${TEST_NAME}
         ${IT_SOURCE})
 
-    target_include_directories(${TEST_NAME} PUBLIC
+    target_include_directories(${TEST_NAME}
         ${cmXLIB_INCLUDES}
         ${XLIB_INCLUDES})
 
-    target_link_libraries(${TEST_NAME} PUBLIC
+    target_link_libraries(${TEST_NAME}
         ${cmXLIB_LIBRARIES}
         ${cmXLIB_SYS_LIBRARIES}
         ${XLIB_LIBRARIES}   # ${cmXLIB_EXTRA_LIBRARIES}
