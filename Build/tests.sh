@@ -32,4 +32,4 @@ cmake \
 cmake --build . ### -- -j${JOBS_NUM}
 
 # Run
-ctest -C Debug -j${JOBS_NUM} --output-on-failure
+### ctest -C Debug -j${JOBS_NUM} --output-on-failure

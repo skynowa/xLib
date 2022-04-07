@@ -109,7 +109,7 @@ endif()
 #--------------------------------------------------------------------------------------------------
 message(STATUS "\n::::: CTest :::::")
 
-include(CTest)
+### include(CTest)
 #--------------------------------------------------------------------------------------------------
 file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
@@ -184,7 +184,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     message(STATUS "::::: add_test... :::::")
 
-    enable_testing()
-    add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
+    ### enable_testing()
+    ### add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
 endforeach()
 #--------------------------------------------------------------------------------------------------
