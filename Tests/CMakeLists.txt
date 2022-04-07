@@ -28,10 +28,8 @@ elseif (UNIX)
     set(CMAKE_DATA_DIR_ROOT "C:/Program Files/CMake")
 endif()
 
-set(CMAKE_VER              "${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}")
-set(CMAKE_DATA_DIR_DEFAULT "${CMAKE_DATA_DIR_ROOT}/share/cmake-${CMAKE_VER}/Modules")
 set(CMAKE_MODULE_PATH
-    "${CMAKE_DATA_DIR_DEFAULT}/CMakeLib;"
+    "${CMAKE_ROOT}/Modules/CMakeLib;"
     "../CMake;"
     "${CMAKE_SOURCE_DIR}")
 #--------------------------------------------------------------------------------------------------
