@@ -10,6 +10,8 @@ project(
     xLib_tests
     DESCRIPTION  "xLib library tests")
 #--------------------------------------------------------------------------------------------------
+message(STATUS "\n::::: Config :::::")
+
 include(../Config.cmake)
 
 if (NOT cmOPTION_BUILD_TESTS)
@@ -18,11 +20,13 @@ if (NOT cmOPTION_BUILD_TESTS)
 endif()
 #--------------------------------------------------------------------------------------------------
 # Modules
+message(STATUS "\n::::: Modules :::::")
+
 if     (WIN32)
     set(CMAKE_DATA_DIR_ROOT "/usr")
 elseif (UNIX)
     set(CMAKE_DATA_DIR_ROOT "C:/Program Files/CMake")
-else()
+endif()
 
 set(CMAKE_VER              "${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}")
 set(CMAKE_DATA_DIR_DEFAULT "${CMAKE_DATA_DIR_ROOT}/share/cmake-${CMAKE_VER}/Modules")
@@ -31,7 +35,7 @@ set(CMAKE_MODULE_PATH
     "../CMake;"
     "${CMAKE_SOURCE_DIR}")
 #--------------------------------------------------------------------------------------------------
-message(STATUS "::::: Conan :::::")
+message(STATUS "\n::::: Conan :::::")
 
 set(XLIB_TESTS_LOCATION ${CMAKE_SOURCE_DIR})
 message(STATUS "XLIB_TESTS_LOCATION: ${XLIB_TESTS_LOCATION}")
@@ -45,6 +49,8 @@ else()
     message(STATUS "conan_paths: FALSE")
 endif()
 #--------------------------------------------------------------------------------------------------
+message(STATUS "\n::::: Configure :::::")
+
 find_package(xLib QUIET REQUIRED)
 
 include(../CMake/Configure)
@@ -106,8 +112,7 @@ if (ENV_UNIX)
     endif()
 endif()
 #--------------------------------------------------------------------------------------------------
-message(STATUS "")
-message(STATUS "::::: CTest :::::")
+message(STATUS "\n::::: CTest :::::")
 
 include(CTest)
 enable_testing()
@@ -123,6 +128,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     endif()
 
     # [Debug]
+    message(STATUS "\n::::: Unit test :::::")
+
     if (1)
         message(STATUS "")
         message(STATUS "::::: Project :::::")
