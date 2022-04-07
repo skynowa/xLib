@@ -29,9 +29,10 @@ elseif (UNIX)
 endif()
 
 set(CMAKE_MODULE_PATH
-    "${CMAKE_ROOT}/Modules/CMakeLib;"
-    "../CMake;"
-    "${CMAKE_SOURCE_DIR}")
+    ${CMAKE_MODULE_PATH}
+    ${CMAKE_ROOT}/Modules/CMakeLib
+    ../CMake
+    ${CMAKE_SOURCE_DIR})
 #--------------------------------------------------------------------------------------------------
 message(STATUS "\n::::: Conan :::::")
 
