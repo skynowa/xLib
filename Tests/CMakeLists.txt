@@ -25,7 +25,7 @@ message(STATUS "\n::::: Modules :::::")
 set(CMAKE_MODULE_PATH
     ${CMAKE_MODULE_PATH}
     ${CMAKE_ROOT}/Modules/CMakeLib
-    ../CMake
+    # ../CMake
     ${CMAKE_SOURCE_DIR})
 #--------------------------------------------------------------------------------------------------
 message(STATUS "\n::::: Conan :::::")
@@ -128,6 +128,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "TEST_NAME: ${TEST_NAME}")
         message(STATUS "")
         message(STATUS "::::: LIBXML2 :::::")
+        message(STATUS "LIBXML2_FOUND:        ${LIBXML2_FOUND}")
         message(STATUS "LIBXML2_INCLUDE_DIRS: ${LIBXML2_INCLUDE_DIRS}")
         message(STATUS "LIBXML2_LIBRARIES:    ${LIBXML2_LIBRARIES}")
         message(STATUS "")
