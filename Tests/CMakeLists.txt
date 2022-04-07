@@ -156,8 +156,9 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     target_include_directories(${TEST_NAME} PUBLIC ${XLIB_INCLUDES} ${cmXLIB_INCLUDES})
 
     target_link_libraries(${TEST_NAME} PUBLIC
-        ${XLIB_LIBRARIES}
+        ${XLIB_LIBRARIES}   # ${cmXLIB_EXTRA_LIBRARIES}
         ${cmXLIB_LIBRARIES}
+        ${cmXLIB_SYS_LIBRARIES}
         # ${LIBXML2_LIBRARIES}
         LibXml2::LibXml2)
 
