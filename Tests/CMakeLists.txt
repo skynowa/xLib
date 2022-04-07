@@ -177,7 +177,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${cmXLIB_LIBRARIES}
         ${cmXLIB_SYS_LIBRARIES}
         ${XLIB_LIBRARIES}   # TODO: ${cmXLIB_EXTRA_LIBRARIES}
-        ${LIBXML2_LIBRARIES} LibXml2::LibXml2 libxml2)
+        ${LIBXML2_LIBRARIES} LibXml2::LibXml2)
 
     ### enable_testing()
     ### add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
