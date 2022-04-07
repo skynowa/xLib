@@ -17,21 +17,19 @@ if (NOT cmOPTION_BUILD_TESTS)
     return()
 endif()
 #--------------------------------------------------------------------------------------------------
-# tests
-enable_testing()
-#--------------------------------------------------------------------------------------------------
-# modules
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR})
+# Modules
+if     (WIN32)
+    set(CMAKE_DATA_DIR_ROOT "/usr")
+elseif (UNIX)
+    set(CMAKE_DATA_DIR_ROOT "C:/Program Files/CMake")
+else()
 
-# CMakeLib - CMAKE_MODULE_PATH
-set(CMAKE_MAJOR_MINOR_VERSION "${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}")
-### set(CMAKE_DATA_DIR_DEFAULT    "/usr/share/cmake-${CMAKE_MAJOR_MINOR_VERSION}/Modules")
-set(CMAKE_DATA_DIR_DEFAULT    "C:/Program Files/CMake/share/cmake-${CMAKE_MAJOR_MINOR_VERSION}/Modules")
+set(CMAKE_VER              "${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}")
+set(CMAKE_DATA_DIR_DEFAULT "${CMAKE_DATA_DIR_ROOT}/share/cmake-${CMAKE_VER}/Modules")
 set(CMAKE_MODULE_PATH
     "${CMAKE_DATA_DIR_DEFAULT}/CMakeLib;"
-    "${CMAKE_MODULE_PATH}")
-
-list(APPEND CMAKE_MODULE_PATH "../CMake")
+    "../CMake;"
+    "${CMAKE_SOURCE_DIR}")
 #--------------------------------------------------------------------------------------------------
 message(STATUS "::::: Conan :::::")
 
@@ -50,7 +48,6 @@ endif()
 find_package(xLib QUIET REQUIRED)
 
 include(../CMake/Configure)
-
 
 if (CURL_FOUND)
     set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${CURL_INCLUDE_DIRS})
@@ -113,6 +110,7 @@ message(STATUS "")
 message(STATUS "::::: CTest :::::")
 
 include(CTest)
+enable_testing()
 #--------------------------------------------------------------------------------------------------
 file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
