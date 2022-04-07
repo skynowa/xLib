@@ -7,8 +7,8 @@
 #include <xLib/xLib.h>
 
 
-#pragma comment(lib, "xLib_static.lib")
-#pragma comment(lib, "libxml2")
+//#pragma comment(lib, "xLib_static.lib")
+//#pragma comment(lib, "libxml2")
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Xml)
 //-------------------------------------------------------------------------------------------------
