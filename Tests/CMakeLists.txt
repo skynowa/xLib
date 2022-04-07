@@ -147,6 +147,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "")
     endif()
 
+    message(STATUS "IT_SOURCE: ${IT_SOURCE}")
+
     add_executable(${TEST_NAME}
         ${IT_SOURCE})
 
