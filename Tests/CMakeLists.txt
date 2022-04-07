@@ -150,9 +150,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     target_link_libraries(${TEST_NAME}
         ${cmXLIB_LIBRARIES}
         ${cmXLIB_SYS_LIBRARIES}
-        ${XLIB_LIBRARIES}   # ${cmXLIB_EXTRA_LIBRARIES}
-        # ${LIBXML2_LIBRARIES}
-        LibXml2::LibXml2)
+        ${XLIB_LIBRARIES}   # TODO: ${cmXLIB_EXTRA_LIBRARIES}
+        ${LIBXML2_LIBRARIES} LibXml2::LibXml2)
 
     if (MSVC)
         # There are 4 versions of the CRT link libraries present in vclib:
