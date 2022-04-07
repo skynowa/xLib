@@ -2,9 +2,9 @@
 
 
 # vars
-PROJECT_NAME="xLib"
-DIR_PROJECT="../${PROJECT_NAME}/Tests"
-DIR_BUILD="../../${PROJECT_NAME}_tests"
+PROJECT_NAME="xLib_tests"
+DIR_PROJECT="../xLib/Tests"
+DIR_BUILD="../../${PROJECT_NAME}_build"
 ### GENERATOR="Eclipse CDT4 - Unix Makefiles"
 GENERATOR="Visual Studio 16 2019"
 ARCH=x64 # Win32
