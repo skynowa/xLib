@@ -148,8 +148,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "")
     endif()
 
-    message(STATUS "::::: add_executable... :::::")
-
     add_executable(${TEST_NAME}
         ${IT_SOURCE})
 
@@ -168,13 +166,9 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
 
-    message(STATUS "::::: target_include_directories... :::::")
-
     target_include_directories(${TEST_NAME} PUBLIC
         ${cmXLIB_INCLUDES}
         ${XLIB_INCLUDES})
-
-    message(STATUS "::::: target_link_libraries... :::::")
 
     # TODO:
     link_directories(${CONAN_LIBXML2_ROOT}/lib)
@@ -184,8 +178,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${cmXLIB_SYS_LIBRARIES}
         ${XLIB_LIBRARIES}   # TODO: ${cmXLIB_EXTRA_LIBRARIES}
         ${LIBXML2_LIBRARIES} LibXml2::LibXml2 libxml2)
-
-    message(STATUS "::::: add_test... :::::")
 
     ### enable_testing()
     ### add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
