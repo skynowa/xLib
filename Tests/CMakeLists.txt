@@ -46,7 +46,7 @@ if (EXISTS "${XLIB_TESTS_LOCATION}/../../conan_paths.cmake")
 
     include(${XLIB_TESTS_LOCATION}/../../conan_paths.cmake)
 else()
-    message(STATUS "conan_paths: FALSE")
+    message(FATAL_ERROR "conan_paths: FALSE")
 endif()
 #--------------------------------------------------------------------------------------------------
 message(STATUS "\n::::: Configure :::::")
