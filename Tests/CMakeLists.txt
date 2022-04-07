@@ -112,8 +112,8 @@ endif()
 #--------------------------------------------------------------------------------------------------
 message(STATUS "\n::::: CTest :::::")
 
-include(CTest)
 enable_testing()
+include(CTest)
 #--------------------------------------------------------------------------------------------------
 file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
@@ -152,9 +152,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     add_executable(${TEST_NAME}
         ${IT_SOURCE})
 
-    target_include_directories(${TEST_NAME}
-        ${XLIB_INCLUDES}
-        ${cmXLIB_INCLUDES})
+    target_include_directories(${TEST_NAME} "${XLIB_INCLUDES};${cmXLIB_INCLUDES}")
 
     target_link_libraries(${TEST_NAME} PRIVATE
         ${XLIB_LIBRARIES}
