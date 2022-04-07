@@ -5,6 +5,7 @@
 
 
 #--------------------------------------------------------------------------------------------------
+# options (system)
 set(PROJECT_TYPE                  CXX)
 set(CMAKE_CXX_STANDARD            17)
 set(CMAKE_CXX_STANDARD_REQUIRED   ON)
@@ -13,8 +14,17 @@ set(CMAKE_COLOR_MAKEFILE          ON)
 set(CMAKE_VERBOSE_MAKEFILE        OFF)
 set(CMAKE_REQUIRED_QUIET          ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-	# "clangd.arguments": ['-compile-commands-dir="../xLib_build"' ]
-# message("CMAKE_CXX_COMPILE_FEATURES: ${CMAKE_CXX_COMPILE_FEATURES}")
+
+# CMAKE_CONFIGURATION_TYPES:
+# - None
+# - Debug
+# - Release
+# - RelWithDebInfo
+# - MinSizeRel
+#
+# Sample: "Debug;Release;RelWithDebInfo"
+#
+set(CMAKE_BUILD_TYPE              "Release")
 #--------------------------------------------------------------------------------------------------
 # options
 set(cmOPTION_PROJECT_LIB_STATIC 1)
@@ -28,18 +38,6 @@ if (${cmHOST_NAME} STREQUAL "skynowa-pc")
 	set(cmOPTION_BUILD_TESTS 1)
 endif()
 
-#
-# CMAKE_CONFIGURATION_TYPES:
-# - None
-# - Debug
-# - Release
-# - RelWithDebInfo
-# - MinSizeRel
-#
-# Sample: "Debug;Release;RelWithDebInfo"
-#
-set(CMAKE_BUILD_TYPE               "Release")
-
 set(OPTION_UNICODE                 0)
 set(cmOPTION_DEBUG_MODE_MSGBOX     0)
 set(cmOPTION_DEBUG_MODE_STDOUT     1)
@@ -48,7 +46,8 @@ set(cmOPTION_DEBUG_MODE_STDOUT_LOG 0)
 set(cmOPTION_DEBUG_MODE_EXCEPTION  0)
 set(cmOPTION_DEBUG_MODE_NO         0)
 set(cmOPTION_BUILD_MSG             0)
-
+#--------------------------------------------------------------------------------------------------
+# Trace
 message("-------------------------------------------------")
 message("CMake")
 message(STATUS "CMAKE_VERSION                  : ${CMAKE_VERSION}")
@@ -62,6 +61,7 @@ message(STATUS "CMAKE_BUILD_TYPE               : ${CMAKE_BUILD_TYPE}")
 message(STATUS "CMAKE_ROOT                     : ${CMAKE_ROOT}")
 message(STATUS "CMAKE_INSTALL_PREFIX           : ${CMAKE_INSTALL_PREFIX}")
 message(STATUS "CMAKE_SOURCE_DIR               : ${CMAKE_SOURCE_DIR}")
+message(STATUS "CMAKE_CXX_COMPILE_FEATURES     : ${CMAKE_CXX_COMPILE_FEATURES}")
 message("")
 message("Options")
 message(STATUS "cmOPTION_PROJECT_LIB_STATIC    : ${cmOPTION_PROJECT_LIB_STATIC}")
