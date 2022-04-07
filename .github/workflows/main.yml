@@ -159,6 +159,11 @@ jobs:
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
         shell: bash
 
+      # Trace (xLib_build)
+      - name: Trace - github.workspace
+        run: echo "github.workspace - ${{github.workspace}}" && cd ./xLib_build && ls -la
+        shell: bash
+
       # Trace
       - name: Trace - conan_paths.cmake
         run: cat conan_paths.cmake
