@@ -143,7 +143,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     add_executable(${TEST_NAME}
         ${IT_SOURCE})
 
-    target_include_directories(${TEST_NAME}
+    target_include_directories(${TEST_NAME} PUBLIC
         ${cmXLIB_INCLUDES}
         ${XLIB_INCLUDES})
 
@@ -162,7 +162,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         set_target_properties(${TEST_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
     endif()
 
-    target_link_libraries(${TEST_NAME}
+    target_link_libraries(${TEST_NAME} PUBLIC
         ${cmXLIB_LIBRARIES}
         ${cmXLIB_SYS_LIBRARIES}
         ${XLIB_LIBRARIES}   # TODO: ${cmXLIB_EXTRA_LIBRARIES}
