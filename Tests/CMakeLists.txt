@@ -176,6 +176,9 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     message(STATUS "::::: target_link_libraries... :::::")
 
+    # TODO:
+    link_directories(${CONAN_LIBXML2_ROOT}/lib)
+
     target_link_libraries(${TEST_NAME} PUBLIC
         ${cmXLIB_LIBRARIES}
         ${cmXLIB_SYS_LIBRARIES}
