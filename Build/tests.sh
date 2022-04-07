@@ -26,10 +26,11 @@ cd ${DIR_BUILD}
 cmake \
 	-G "${GENERATOR}" \
 	-A ${ARCH} \
+	-DCMAKE_BUILD_TYPE=Release \
 	${DIR_PROJECT}
 
 # Build
-cmake --build . ### -- -j${JOBS_NUM}
+cmake --build . -DCMAKE_BUILD_TYPE=Release ### -- -j${JOBS_NUM}
 
 # Run
 ### ctest -C Debug -j${JOBS_NUM} --output-on-failure
