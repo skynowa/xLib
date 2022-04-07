@@ -174,8 +174,13 @@ jobs:
 
 
       # Trace (xLib_build)
-      - name: Trace - github.workspace
+      - name: Trace - xLib_build
         run: cd "${{github.workspace}}/xLib_build" && ls -la
+        shell: bash
+
+      # Trace (xLib_build)
+      - name: Trace - xLib_build/Debug
+        run: cd "${{github.workspace}}/xLib_build/Debug" && ls -la
         shell: bash
 
       - name: xLib - Deploy
