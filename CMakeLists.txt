@@ -38,8 +38,11 @@ list(APPEND CMAKE_MODULE_PATH "${XLIB_LOCATION}/CMake")
 
 include(${XLIB_LOCATION}/Config.cmake)
 
-if (EXISTS "${XLIB_LOCATION}/../conan_paths.cmake")
-    include(${XLIB_LOCATION}/../conan_paths.cmake)
+# CONAN_PATHS
+set(CONAN_PATHS "${XLIB_LOCATION}/../conan_paths.cmake")
+
+if (EXISTS ${CONAN_PATHS})
+    include(${CONAN_PATHS})
 endif()
 
 include(Configure)
