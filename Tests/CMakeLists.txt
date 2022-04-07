@@ -140,11 +140,11 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "LIBXML2_LIBRARIES:    ${LIBXML2_LIBRARIES}")
         message(STATUS "")
         message(STATUS "::::: xLib :::::")
-        message(STATUS "XLIB_INCLUDES:    ${XLIB_INCLUDES}")
         message(STATUS "cmXLIB_INCLUDES:  ${cmXLIB_INCLUDES}")
+        message(STATUS "XLIB_INCLUDES:    ${XLIB_INCLUDES}")
         message(STATUS "")
-        message(STATUS "XLIB_LIBRARIES:   ${XLIB_LIBRARIES}")
         message(STATUS "cmXLIB_LIBRARIES: ${cmXLIB_LIBRARIES}")
+        message(STATUS "XLIB_LIBRARIES:   ${XLIB_LIBRARIES}")
         message(STATUS "")
     endif()
 
@@ -153,12 +153,14 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     add_executable(${TEST_NAME}
         ${IT_SOURCE})
 
-    target_include_directories(${TEST_NAME} PUBLIC ${XLIB_INCLUDES} ${cmXLIB_INCLUDES})
+    target_include_directories(${TEST_NAME} PUBLIC
+        ${cmXLIB_INCLUDES}
+        ${XLIB_INCLUDES})
 
     target_link_libraries(${TEST_NAME} PUBLIC
-        ${XLIB_LIBRARIES}   # ${cmXLIB_EXTRA_LIBRARIES}
         ${cmXLIB_LIBRARIES}
         ${cmXLIB_SYS_LIBRARIES}
+        ${XLIB_LIBRARIES}   # ${cmXLIB_EXTRA_LIBRARIES}
         # ${LIBXML2_LIBRARIES}
         LibXml2::LibXml2)
 
