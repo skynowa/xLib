@@ -151,7 +151,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     add_executable(${TEST_NAME}
         ${IT_SOURCE})
 
-    if (MSVC)
+    if (0)
+    # if (MSVC)
         # There are 4 versions of the CRT link libraries present in vclib:
         #
         # libcmt.lib:  static CRT link library for a release build (/MT)
