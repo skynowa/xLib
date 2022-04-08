@@ -24,7 +24,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #
 # Sample: "Debug;Release;RelWithDebInfo"
 #
-set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the build type")
+# NOTE: set from cmd-line only
+# set(CMAKE_BUILD_TYPE Release)
 #--------------------------------------------------------------------------------------------------
 # options
 set(cmOPTION_PROJECT_LIB_STATIC 1)
