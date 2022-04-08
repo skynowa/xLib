@@ -6,8 +6,15 @@
 
 #include <xLib/xLib.h>
 
+#if 1
+int main(int a_argsNum, char *a_args[])
+{
+	std::cout << __FUNCTION__ << std::endl;
 
-#pragma comment(lib, "xLib_static.lib")
+	return EXIT_SUCCESS;
+}
+#else
+//#pragma comment(lib, "xLib_static.lib")
 //#pragma comment(lib, "libxml2")
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Xml)
@@ -182,3 +189,4 @@ Test_Xml::unit()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
+#endif
