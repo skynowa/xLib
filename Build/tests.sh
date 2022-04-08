@@ -27,6 +27,7 @@ cmake \
 	-G "${GENERATOR}" \
 	-A ${ARCH} \
 	-DCMAKE_BUILD_TYPE=Release \
+	--config Release \
 	${DIR_PROJECT}
 
 # Build
