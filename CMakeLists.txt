@@ -126,8 +126,6 @@ set(XLIB_INSTALL_DIR  include/xLib)
 set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
 #--------------------------------------------------------------------------------------------------
 # TOOD: flags
-string(REPLACE "/DWIN32" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-
 include(CxxFlags)
 #--------------------------------------------------------------------------------------------------
 # definitions
