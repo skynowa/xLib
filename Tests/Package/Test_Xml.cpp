@@ -9,6 +9,9 @@
 #if 1
 int main(int a_argsNum, char *a_args[])
 {
+	auto doc = ::xmlParseFile("");
+	xUNUSED(doc);
+
 	std::cout << __FUNCTION__ << std::endl;
 
 	return EXIT_SUCCESS;
