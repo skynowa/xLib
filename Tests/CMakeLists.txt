@@ -158,7 +158,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     # TODO:
     link_directories(${CONAN_LIBXML2_ROOT}/lib)
 
-    target_link_libraries(${TEST_NAME} PUBLIC
+    target_link_libraries(${TEST_NAME} LINK_PUBLIC
         ${cmXLIB_LIBRARIES}
         ${cmXLIB_SYS_LIBRARIES}
         ${XLIB_LIBRARIES}   # TODO: ${cmXLIB_EXTRA_LIBRARIES}
