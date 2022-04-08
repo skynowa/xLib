@@ -161,8 +161,9 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     target_link_libraries(${TEST_NAME} LINK_PUBLIC
         ${cmXLIB_LIBRARIES}
         ${cmXLIB_SYS_LIBRARIES}
-        ${XLIB_LIBRARIES}   # TODO: ${cmXLIB_EXTRA_LIBRARIES}
-        ${LIBXML2_LIBRARIES} LibXml2::LibXml2)
+        xml2 # ${LIBXML2_LIBRARIES} LibXml2::LibXml2
+        # ${XLIB_LIBRARIES}   # TODO: ${cmXLIB_EXTRA_LIBRARIES}
+    )
 
     ### enable_testing()
     ### add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
