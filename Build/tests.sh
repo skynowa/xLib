@@ -30,7 +30,7 @@ cmake \
 	${DIR_PROJECT}
 
 # Build
-cmake --build . --target ALL_BUILD --config Release --verbose ### -- -j${JOBS_NUM}
+cmake --build . --target ALL_BUILD --config Release ### -- -j${JOBS_NUM}
 
 # Run
 ### ctest -C Debug -j${JOBS_NUM} --output-on-failure
