@@ -7,6 +7,9 @@
 #include <xLib/xLib.h>
 
 #if 1
+
+#pragma comment(lib, "libxml2_a")
+
 int main(int a_argsNum, char *a_args[])
 {
 	auto doc = ::xmlParseFile("");
