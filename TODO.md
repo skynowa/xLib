@@ -2,6 +2,7 @@
 
 ## CMake
 
+[ ] LibEvent - rm
 [ ] Split tests
 [ ] Full build/run tests
 [ ] Crossplatform
