@@ -8,7 +8,8 @@
 
 #if 1
 
-#pragma comment(lib, "libxml2_a")
+/// #pragma comment(lib, "libxml2_a")
+#pragma comment(lib, "libxml2")
 
 int main(int a_argsNum, char *a_args[])
 {
