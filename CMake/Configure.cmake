@@ -70,7 +70,6 @@ find_package(GitRevision QUIET REQUIRED)
 find_package(MySQL       QUIET REQUIRED)
 find_package(Ssh2        QUIET REQUIRED)
 find_package(Iconv       QUIET REQUIRED)
-find_package(Event2      QUIET REQUIRED)
 
 if (ENV_UNIX)
     # Custom (CMakeLib)
