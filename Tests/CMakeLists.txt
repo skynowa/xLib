@@ -148,17 +148,17 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "")
     endif()
 
+    # TODO:
+    link_directories(
+        "${CONAN_LIBXML2_ROOT}/lib"
+        "C:/Program Files/xLib/lib")
+
     add_executable(${TEST_NAME}
         ${IT_SOURCE})
 
     target_include_directories(${TEST_NAME} PUBLIC
         ${cmXLIB_INCLUDES}
         ${XLIB_INCLUDES})
-
-    # TODO:
-    link_directories(
-        "${CONAN_LIBXML2_ROOT}/lib"
-        "C:/Program Files/xLib/lib")
 
     # -- Installing: C:/Program Files/xLib/lib/xLib_static.lib
     # -- Installing: C:/Program Files/xLib/lib/libcurl.lib
