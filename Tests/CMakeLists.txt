@@ -160,8 +160,18 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         "${CONAN_LIBXML2_ROOT}/lib"
         "C:/Program Files/xLib/lib")
 
+    # -- Installing: C:/Program Files/xLib/lib/xLib_static.lib
+    # -- Installing: C:/Program Files/xLib/lib/libcurl.lib
+    # -- Installing: C:/Program Files/xLib/lib/libssl.lib
+    # -- Installing: C:/Program Files/xLib/lib/libcrypto.lib
+    # -- Installing: C:/Program Files/xLib/lib/mysqlclient.lib
+    # -- Installing: C:/Program Files/xLib/lib/libssh2.lib
+    # -- Installing: C:/Program Files/xLib/lib/libxml2_a.lib
+    # -- Installing: C:/Program Files/xLib/lib/iconv.lib
+
     target_link_libraries(${TEST_NAME} PUBLIC
         ${cmXLIB_LIBRARIES} # "C:/Program Files/xLib/lib/xLib_static.lib" # xLib_static
+        "C:/Program Files/xLib/lib/libxml2_a.lib"
         ${LIBXML2_LIBRARIES}
             #-- libxml2 (libxml2.lib)
             #++ LibXml2::LibXml2
