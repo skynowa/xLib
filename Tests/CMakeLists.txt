@@ -163,7 +163,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     target_link_libraries(${TEST_NAME} LINK_PUBLIC
         ${cmXLIB_LIBRARIES} # "C:/Program Files/xLib/lib/xLib_static.lib" # xLib_static
         ${LIBXML2_LIBRARIES}
-            libxml2
+            libxml2_a
+            #-- libxml2
             #++ LibXml2::LibXml2 #
             #-- xml2_a
             #-- xml2_a.lib
