@@ -138,17 +138,17 @@ else()
 endif()
 #--------------------------------------------------------------------------------------------------
 # libraries
-set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS})
+set(XLIB_SYS_LIBRARIES ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS})
 
 if     (MSVC)
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid ole32 mpr dbghelp crypt32)
+    set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid ole32 mpr dbghelp crypt32)
 elseif (MINGW)
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid ole32 mpr dbghelp crypt32)
+    set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid ole32 mpr dbghelp crypt32)
 elseif (CMAKE_COMPILER_IS_CLANGXX)
     # -stdlib=libc++ or -stdlib=libstdc++ will probably work
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} -stdlib=libstdc++ c++abi pthread rt m z)
+    set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} -stdlib=libstdc++ c++abi pthread rt m z)
 elseif (CMAKE_COMPILER_IS_GNUCXX)
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} pthread rt m z)
+    set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} pthread rt m z)
 else()
     message(FATAL_ERROR "xLib: unknown compiler")
 endif()
@@ -164,7 +164,7 @@ endif()
 # vars
 set(cmCMAKE_VERSION       ${CMAKE_VERSION})
 set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS})
-set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES})
+set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES})    # TODO:
 #--------------------------------------------------------------------------------------------------
 # trace
 message(STATUS "XLIB_LOCATION:             ${XLIB_LOCATION}")
@@ -172,6 +172,7 @@ message(STATUS "XLIB_DEFINITIONS:          ${XLIB_DEFINITIONS}")
 message(STATUS "cmXLIB_COMPILER_FLAGS:     ${cmXLIB_COMPILER_FLAGS}")
 message(STATUS "XLIB_INCLUDES:             ${XLIB_INCLUDES}")
 message(STATUS "XLIB_LIBRARIES:            ${XLIB_LIBRARIES}")
+message(STATUS "XLIB_SYS_LIBRARIES:        ${XLIB_SYS_LIBRARIES}")
 # message(STATUS "XLIB_SOURCES:              ${XLIB_SOURCES}")
 
 message(STATUS "CMAKE_THREAD_LIBS:         ${CMAKE_THREAD_LIBS}")
@@ -182,17 +183,17 @@ if (cmOPTION_PROJECT_LIB_STATIC)
     set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
 
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_STATIC} LINK_PUBLIC ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_STATIC} LINK_PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
 
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "lib")
-    install(FILES   ${XLIB_LIBRARIES}     DESTINATION lib)
+    install(FILES   ${XLIB_LIBRARIES}     DESTINATION lib)  # TODO: xxx
 endif()
 
 if (cmOPTION_PROJECT_LIB_SHARE)
     set(PROJECT_LIB_SHARE ${PROJECT_NAME}_shared)
 
     add_library(${PROJECT_LIB_SHARE} SHARED ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_SHARE} PUBLIC ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_SHARE} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
 
     install(TARGETS ${PROJECT_LIB_SHARE} DESTINATION "lib")
 endif()
@@ -201,7 +202,7 @@ if (cmOPTION_PROJECT_LIB_MODULE)
     set(PROJECT_LIB_MODULE ${PROJECT_NAME}_module)
 
     add_library(${PROJECT_LIB_MODULE} MODULE ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_MODULE} PUBLIC ${XLIB_LIBRARIES})
+    target_link_libraries(${PROJECT_LIB_MODULE} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
 
     install(TARGETS ${PROJECT_LIB_MODULE} DESTINATION "lib")
 endif()
