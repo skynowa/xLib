@@ -53,8 +53,7 @@ jobs:
             arch: "x86_64",  ### "x86"
             cc: "cl",
             cxx: "cl",
-            environment_script:
-                "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat", ### vcvars32.bat
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat", ### vcvars32.bat
             build_script: "./msvc_2019.sh"
           }
 
