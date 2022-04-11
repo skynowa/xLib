@@ -164,8 +164,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${cmXLIB_LIBRARIES} # "C:/Program Files/xLib/lib/xLib_static.lib" # xLib_static
         ${LIBXML2_LIBRARIES}
             libxml2_a
-            #-- libxml2
-            #++ LibXml2::LibXml2 #
+            #-- libxml2 (libxml2.lib)
+            #++ LibXml2::LibXml2
             #-- xml2_a
             #-- xml2_a.lib
             #-- libxml2_a
