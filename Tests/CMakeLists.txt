@@ -107,7 +107,7 @@ if (ENV_UNIX)
     endif()
 endif()
 #--------------------------------------------------------------------------------------------------
-message(STATUS "\n::::: CTest :::::")
+### message(STATUS "\n::::: CTest :::::")
 
 ### include(CTest)
 #--------------------------------------------------------------------------------------------------
@@ -150,8 +150,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     # TODO:
     link_directories(
-        "${CONAN_LIBXML2_ROOT}/lib"
-        "C:/Program Files/xLib/lib")
+        "${CONAN_LIBXML2_ROOT}\lib"
+        "C:\Program Files\xLib\lib")
 
     add_executable(${TEST_NAME}
         ${IT_SOURCE})
@@ -171,7 +171,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     target_link_libraries(${TEST_NAME} PUBLIC
         ${cmXLIB_LIBRARIES} # "C:/Program Files/xLib/lib/xLib_static.lib" # xLib_static
-        "C:/Program Files/xLib/lib/libxml2_a.lib"
+        "C:\Program Files\xLib\lib\libxml2_a.lib"
         ${LIBXML2_LIBRARIES}
             #-- libxml2 (libxml2.lib)
             #++ LibXml2::LibXml2
