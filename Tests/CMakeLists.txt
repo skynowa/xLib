@@ -160,7 +160,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         "${CONAN_LIBXML2_ROOT}/lib"
         "C:/Program Files/xLib/lib")
 
-    target_link_libraries(${TEST_NAME} LINK_PUBLIC
+    target_link_libraries(${TEST_NAME} PUBLIC
         ${cmXLIB_LIBRARIES} # "C:/Program Files/xLib/lib/xLib_static.lib" # xLib_static
         ${LIBXML2_LIBRARIES}
             #-- libxml2 (libxml2.lib)
