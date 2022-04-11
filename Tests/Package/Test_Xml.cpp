@@ -14,6 +14,8 @@
 
 int main(int a_argsNum, char *a_args[])
 {
+	LIBXML_TEST_VERSION
+
 	auto doc = ::xmlParseFile("");
 	xUNUSED(doc);
 
