@@ -159,15 +159,15 @@ jobs:
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
         shell: bash
 
-      # Trace (conaninfo.txt)
-      - name: Trace - conaninfo.txt
-        run: cat conaninfo.txt
-        shell: bash
+      # # Trace (conaninfo.txt)
+      # - name: Trace - conaninfo.txt
+      #   run: cat conaninfo.txt
+      #   shell: bash
 
-      # Trace (conanbuildinfo.txt)
-      - name: Trace - conanbuildinfo.txt
-        run: cat conanbuildinfo.txt
-        shell: bash
+      # # Trace (conanbuildinfo.txt)
+      # - name: Trace - conanbuildinfo.txt
+      #   run: cat conanbuildinfo.txt
+      #   shell: bash
 
       # Trace
       - name: Trace - conan_paths.cmake
