@@ -100,7 +100,6 @@ jobs:
           CXX="${{ matrix.config.cxx }}"
 
           conan profile new default --detect --force
-          ${{ matrix.config.conan_profile_update }}
         shell: bash
 
       ##############################################################################################
