@@ -167,7 +167,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
             #++ LibXml2::LibXml2
             #-- xml2_a
             #-- xml2_a.lib
-            #-- libxml2_a
+            #-- libxml2_a (libxml2_a.lib)
             #-- libxml2_a.lib
 
         # ${XLIB_LIBRARIES}   # TODO: ${cmXLIB_EXTRA_LIBRARIES}
