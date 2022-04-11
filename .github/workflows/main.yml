@@ -55,9 +55,6 @@ jobs:
             cxx: "cl",
             environment_script:
                 "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat", ### vcvars32.bat
-            conan_profile_update:
-                "conan profile update settings.compiler='Visual Studio' default;
-                 conan profile update settings.compiler.version=16 default",
             build_script: "./msvc_2019.sh"
           }
 
@@ -141,6 +138,8 @@ jobs:
         run: >-
             conan install "${{github.workspace}}/xLib"
             --build=missing
+            -s compiler="Visual Studio"
+            -s compiler.version=16
             -s compiler.runtime=MD
             -s compiler.cppstd=17
             -s arch=${{ matrix.config.arch }}
