@@ -205,3 +205,8 @@ jobs:
       - name: Trace - xLib_build
         run: cd "${{github.workspace}}/xLib_tests_build" && ls -la
         shell: bash
+
+      # Trace (xLib_tests_build / Release)
+      - name: Trace - xLib_build
+        run: cd "${{github.workspace}}/xLib_tests_build/Release" && ls -la
+        shell: bash
