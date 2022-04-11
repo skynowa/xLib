@@ -132,7 +132,6 @@ jobs:
           path: ${{github.workspace}}/xLib
 
       # Libs
-      # -s compiler.runtime=MT
       - name: Libs - Install
         run: >-
             conan install "${{github.workspace}}/xLib"
@@ -140,6 +139,7 @@ jobs:
             -s compiler="Visual Studio"
             -s compiler.version=16
             -s compiler.cppstd=17
+            -s compiler.runtime=MT
             -s arch=${{ matrix.config.arch }}
             -s arch_build=${{ matrix.config.arch }}
             -s build_type=${{ matrix.config.build_type }}
