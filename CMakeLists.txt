@@ -189,6 +189,7 @@ if (cmOPTION_PROJECT_LIB_STATIC)
 
     install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "lib")
     install(FILES   ${XLIB_LIBRARIES}     DESTINATION lib)  # TODO: xxx
+    install(FILES   ${XLIB_LIBRARIES}     DESTINATION "D:/a/xLib/xLib/xLib_tests_build")  # TODO: xxx
 endif()
 
 if (cmOPTION_PROJECT_LIB_SHARE)
