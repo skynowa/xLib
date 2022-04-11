@@ -6,6 +6,7 @@
 # XLIB_DEFINITIONS      - definitions
 # XLIB_INCLUDES         - include pathes
 # XLIB_SOURCES          - source pathes
+# XLIB_SYS_LIBRARIES    - system libraries
 # XLIB_LIBRARIES        - libraries list
 #
 # cmCMAKE_VERSION       - CMake version
@@ -25,6 +26,7 @@ unset(XLIB_DEFINITIONS      CACHE)
 unset(cmXLIB_COMPILER_FLAGS CACHE)
 unset(XLIB_INCLUDES         CACHE)
 unset(XLIB_SOURCES          CACHE)
+unset(XLIB_SYS_LIBRARIES    CACHE)
 unset(XLIB_LIBRARIES        CACHE)
 
 unset(XLIB_LOCATION         CACHE)
@@ -137,7 +139,7 @@ else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 endif()
 #--------------------------------------------------------------------------------------------------
-# libraries
+# XLIB_SYS_LIBRARIES - System libraries
 set(XLIB_SYS_LIBRARIES ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS})
 
 if     (MSVC)
@@ -156,9 +158,9 @@ endif()
 if (OS_ANDROID)
     unset(XLIB_DEFINITIONS      CACHE)
     unset(cmXLIB_COMPILER_FLAGS CACHE)
-    unset(XLIB_LIBRARIES        CACHE)
+    unset(XLIB_SYS_LIBRARIES    CACHE)
 
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} gnustl_static m z log)
+    set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} gnustl_static m z log)
 endif()
 #--------------------------------------------------------------------------------------------------
 # vars
