@@ -16,6 +16,7 @@
 [ ] Doc - impl
 [ ] Config.h.in
 [ ] Bash - detect OS
+[ ] Tests - XLIB_DEFINITIONS
 
 ## Path
 
