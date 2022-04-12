@@ -2,6 +2,8 @@
 #
 
 
+set -ex
+
 # vars
 PROJECT_NAME="xLib"
 DIR_BUILD="../../${PROJECT_NAME}_build"
