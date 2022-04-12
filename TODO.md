@@ -15,6 +15,7 @@
 [ ] System / Conan includes
 [ ] Doc - impl
 [ ] Config.h.in
+[ ] Bash - detect OS
 
 ## Path
 
