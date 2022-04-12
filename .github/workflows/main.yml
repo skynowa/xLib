@@ -86,8 +86,8 @@ jobs:
         with:
           access_token: ${{github.token}}
 
-      # Env
-      - name: Compiler Env
+      # GITHUB_ENV
+      - name: GITHUB_ENV
         run: |
           echo "OS: $(uname -s)"
           echo ""
@@ -137,8 +137,8 @@ jobs:
           repository: skynowa/xLib
           path: ${{github.workspace}}/xLib
 
-      # Libs
-      - name: Libs - Install
+      # Libs (Extra)
+      - name: Libs (Extra) - Install
         run: >-
             conan install "${{github.workspace}}/xLib"
             --build=missing
@@ -150,13 +150,13 @@ jobs:
             -s build_type=${{ matrix.config.build_type }}
         shell: bash
 
-      # Libs
+      # Libs (libx11-xcb-dev)
       - name: Libs (libx11-xcb-dev) - Install
         if: matrix.config.cxx != 'cl'
         run: sudo apt-get install -y --no-install-recommends libx11-xcb-dev
         shell: bash
 
-      # Trace
+      # Trace (github.workspace)
       - name: Trace - github.workspace
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
         shell: bash
@@ -171,19 +171,20 @@ jobs:
       #   run: cat conanbuildinfo.txt
       #   shell: bash
 
-      # Trace
+      # Trace (conan_paths.cmake)
       - name: Trace - conan_paths.cmake
         run: cat conan_paths.cmake
         shell: bash
 
+      # xLib (Configure)
       - name: xLib - Configure
         run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.build_script }}
         shell: bash
 
+      # xLib (Build)
       - name: xLib - Build
         run: cd "${{github.workspace}}/xLib/Build" && ./build.sh
         shell: bash
-
 
       # Trace (xLib_build)
       - name: Trace - xLib_build
@@ -195,14 +196,17 @@ jobs:
         run: cd "${{github.workspace}}/xLib_build/Release" && ls -la
         shell: bash
 
+      # xLib (Deploy)
       - name: xLib - Deploy
         run: cd "${{github.workspace}}/xLib/Build" && ./deploy.sh
         shell: bash
 
+      # xLib - Tests (Configure)
       - name: xLib - Tests (Configure)
         run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.tests_script }}
         shell: bash
 
+      # xLib - Tests
       - name: xLib - Tests
         run: cd "${{github.workspace}}/xLib/Build" && ./tests.sh
         shell: bash
