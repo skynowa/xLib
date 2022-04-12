@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-set -ex
+# set -ex
 
 # vars
 PROJECT_NAME="xLib_tests"
