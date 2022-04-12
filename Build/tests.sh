@@ -16,13 +16,13 @@ cd ${DIR_BUILD}
 
 ### Configure
 # cmake \
-# 	-G"${GENERATOR}" \
+# 	-G "${GENERATOR}" \
 # 	-D_ECLIPSE_VERSION=${ECLIPSE_VERSION} \
 # 	$DIR_PROJECT
 cmake \
 	-G "${GENERATOR}" \
 	-A ${ARCH} \
-	-DCMAKE_BUILD_TYPE=Release \
+	-D CMAKE_BUILD_TYPE=Release \
 	${DIR_PROJECT}
 
 # Build

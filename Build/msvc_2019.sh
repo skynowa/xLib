@@ -22,5 +22,5 @@ cd ${DIR_BUILD}
 cmake \
 	-G "${GENERATOR}" \
 	-A ${ARCH} \
-	-DCMAKE_BUILD_TYPE=Release \
+	-D CMAKE_BUILD_TYPE=Release \
 	${DIR_PROJECT}
