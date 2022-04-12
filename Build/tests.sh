@@ -5,6 +5,7 @@
 PROJECT_NAME="xLib_tests"
 DIR_PROJECT="../xLib/Tests"
 DIR_BUILD="../../${PROJECT_NAME}_build"
+
 ### GENERATOR="Eclipse CDT4 - Unix Makefiles"
 ### ECLIPSE_VERSION="4.17" # 2020-09
 GENERATOR="Visual Studio 16 2019"
