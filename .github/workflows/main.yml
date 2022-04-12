@@ -136,8 +136,8 @@ jobs:
       - name: Libs (Extra) - Install
         run: >-
             conan install "${{github.workspace}}/xLib"
-            --build=missing
             --profile "${{github.workspace}}/xLib/conan_profile.txt"
+            --build=missing
         shell: bash
 
       # Libs (libx11-xcb-dev)
