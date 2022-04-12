@@ -424,7 +424,7 @@ BuildInfo::xlibBinaryType() const
 inline std::tstring_t
 BuildInfo::xlibBuildType() const
 {
-    return CMAKE_BUILD_TYPE;
+    return cmCMAKE_BUILD_TYPE;
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t

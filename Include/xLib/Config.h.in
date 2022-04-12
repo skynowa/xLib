@@ -34,7 +34,7 @@
     ///< debug mode "no debugging"
 ///@}
 //-------------------------------------------------------------------------------------------------
-#cmakedefine CMAKE_BUILD_TYPE xT("@CMAKE_BUILD_TYPE@")
+#cmakedefine cmCMAKE_BUILD_TYPE xT("@cmCMAKE_BUILD_TYPE@")
 
 ///@name Git information
 ///@{
