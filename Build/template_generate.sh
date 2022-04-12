@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#
+# \file  template_generate.sh
+# \brief Generate class template(s)
+#
 
 
 # vars
