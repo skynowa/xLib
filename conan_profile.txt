@@ -2,7 +2,7 @@
 arch=x86_64
 arch_build=x86_64
 build_type=Release
-compiler.cppstd=17
+cppstd=17
 
 # Win
 compiler="Visual Studio"
