@@ -21,3 +21,5 @@ cmake_paths
 
 ; libcurl:with_ssl=openssl
 ; libcurl:with_crypto_auth=True
+
+[imports]

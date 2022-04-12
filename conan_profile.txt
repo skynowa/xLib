@@ -10,6 +10,4 @@ compiler.version=16
 
 [env]
 
-[imports]
-
 [tool_requires]
