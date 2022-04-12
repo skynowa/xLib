@@ -10,10 +10,6 @@ DIR_BUILD="../../${PROJECT_NAME}_build"
 GENERATOR="Visual Studio 16 2019"
 ARCH=x64 # Win32
 
-JOBS_NUM=$(($(nproc) * 2))
-
-echo "Jobs: $JOBS_NUM"
-
 # prepare
 mkdir -p ${DIR_BUILD}
 cd ${DIR_BUILD}
@@ -30,7 +26,7 @@ cmake \
 	${DIR_PROJECT}
 
 # Build
-cmake --build . --target ALL_BUILD --config Release --verbose ### -- -j${JOBS_NUM}
+cmake --build . --target ALL_BUILD --config Release --verbose
 
 # Run
-### ctest -C Debug -j${JOBS_NUM} --output-on-failure
+### ctest -C Debug --output-on-failure
