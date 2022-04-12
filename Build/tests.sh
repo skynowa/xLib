@@ -18,7 +18,7 @@ cd ${DIR_BUILD}
 # cmake \
 # 	-G "${GENERATOR}" \
 # 	-D_ECLIPSE_VERSION=${ECLIPSE_VERSION} \
-# 	$DIR_PROJECT
+# 	${DIR_PROJECT}
 cmake \
 	-G "${GENERATOR}" \
 	-A ${ARCH} \
