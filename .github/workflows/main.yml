@@ -100,6 +100,8 @@ jobs:
           CC="${{ matrix.config.cc }}"
           CXX="${{ matrix.config.cxx }}"
 
+          conan --version
+
           conan profile new default --detect --force
           conan profile list
           conan profile show default
@@ -138,7 +140,7 @@ jobs:
       - name: Libs (Extra) - Install
         run: >-
             conan install "${{github.workspace}}/xLib"
-            --profile "${{github.workspace}}/xLib/conan_profile.txt"
+            --profile "${{github.workspace}}/xLib/conan_profile_win.txt"
             --build=missing
         shell: bash
 
