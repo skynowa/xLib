@@ -5,8 +5,8 @@ build_type=Release
 cppstd=17
 
 # Win
-os=Windows
-os_build=Windows
+os=platform.system()
+os_build=platform.system()
 compiler="Visual Studio"
 compiler.version=16
 
