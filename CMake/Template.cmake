@@ -12,8 +12,8 @@ unset(cmXLIB_TEMPLATE_SUBDIR         CACHE)
 unset(cmXLIB_TEMPLATE_NS             CACHE)
 unset(cmXLIB_TEMPLATE_PLATFORM_FILES CACHE)
 
-set(cmXLIB_TEMPLATE                "GitClient") # TODO: set manually
-set(cmXLIB_TEMPLATE_COMMENTS       "GIT client") # TODO: set manually
+set(cmXLIB_TEMPLATE                "SvnClient") # TODO: set manually
+set(cmXLIB_TEMPLATE_COMMENTS       "SVN client") # TODO: set manually
 set(cmXLIB_TEMPLATE_SUBDIR         "Package")       # TODO: set manually
 set(cmXLIB_TEMPLATE_NS             "package")       # TODO: set manually
 set(cmXLIB_TEMPLATE_PLATFORM_FILES ON)
