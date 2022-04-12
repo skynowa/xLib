@@ -14,5 +14,16 @@ mkdir -p ${DIR_BUILD}
 cd ${DIR_BUILD}
 
 # build
-cmake --build . --target ALL_BUILD --config Release --parallel ${JOBS_NUM}
-# cmake --build . --target xLib_static --config Release -- -j${JOBS_NUM}
+UNAME=$(uname)
+
+if   [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]] ; then
+	echo "OS: Windows"
+	cmake --build . --target ALL_BUILD --config Release --parallel ${JOBS_NUM}
+
+elif [ "$UNAME" == "Linux" ] ; then
+	echo "OS: Linux"
+	cmake --build . --target xLib_static --config Release -- -j${JOBS_NUM}
+elif [ "$UNAME" == "Darwin" ] ; then
+	echo "OS: Darwin"
+	cmake --build . --target xLib_static --config Release -- -j${JOBS_NUM}
+fi
