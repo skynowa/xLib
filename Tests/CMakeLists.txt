@@ -39,7 +39,7 @@ set(CONAN_PATHS "${XLIB_TESTS_LOCATION}/../../conan_paths.cmake")
 if (EXISTS ${CONAN_PATHS})
     include(${CONAN_PATHS})
 else()
-    message(FATAL_ERROR "CONAN_PATHS: ${CONAN_PATHS} - not exists")
+    message(WARNING "CONAN_PATHS: ${CONAN_PATHS} - not exists")
 endif()
 
 message(STATUS "CONAN_PATHS: ${CONAN_PATHS}")
