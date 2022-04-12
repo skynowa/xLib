@@ -1,15 +1,9 @@
 #!/usr/bin/env bash
-#
-# \file  gen_msvc_2019.sh
-# \brief CMake generate project
-#
-# https://cmake.org/cmake/help/git-stage/generator/Visual%20Studio%2016%202019.html
-#
 
 
 # vars
-PROJECT_NAME="xLib"
-DIR_PROJECT="../${PROJECT_NAME}"
+PROJECT_NAME="xLib_tests"
+DIR_PROJECT="../xLib/Tests"
 DIR_BUILD="../../${PROJECT_NAME}_build"
 
 GENERATOR="Visual Studio 16 2019"
@@ -19,7 +13,7 @@ ARCH=x64 # Win32
 mkdir -p ${DIR_BUILD}
 cd ${DIR_BUILD}
 
-# build
+# generate
 cmake \
 	-G "${GENERATOR}" \
 	-A ${ARCH} \
