@@ -148,6 +148,15 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "")
     endif()
 
+    if (MSVC)
+        # n/a
+        add_definitions(
+            /Zc:char- # Treat char as built-in type
+        )
+    else()
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+    endif()
+
     # TODO:
     link_directories(
         "${CONAN_LIBXML2_ROOT}\\lib"
