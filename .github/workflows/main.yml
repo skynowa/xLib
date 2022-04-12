@@ -36,6 +36,7 @@ jobs:
         #     cc: "gcc",
         #     cxx: "g++",
         #     build_script: "./gen_eclipse.sh"
+        #     tests_script: "./gen_tests_eclipse.sh"
         #   }
         # - {
         #     name: "Ubuntu-20.04 (Clang)",
@@ -44,6 +45,7 @@ jobs:
         #     cc: "clang",
         #     cxx: "clang++",
         #     build_script: "./gen_eclipse.sh"
+        #     tests_script: "./gen_tests_eclipse.sh"
         #   }
 
         - {
@@ -54,7 +56,8 @@ jobs:
             cc: "cl",
             cxx: "cl",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat", ### vcvars32.bat
-            build_script: "./gen_msvc_2019.sh"
+            build_script: "./gen_msvc2019.sh",
+            tests_script: "./gen_tests_msvc2019.sh"
           }
 
         # - {
@@ -72,6 +75,7 @@ jobs:
         #     cc: "clang",
         #     cxx: "clang++",
         #     build_script: "./gen_eclipse.sh"
+        #     tests_script: "./gen_tests_eclipse.sh"
         #   }
 
     steps:
@@ -193,6 +197,10 @@ jobs:
 
       - name: xLib - Deploy
         run: cd "${{github.workspace}}/xLib/Build" && ./deploy.sh
+        shell: bash
+
+      - name: xLib - Tests (Configure)
+        run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.tests_script }}
         shell: bash
 
       - name: xLib - Tests
