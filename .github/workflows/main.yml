@@ -136,8 +136,7 @@ jobs:
         run: >-
             conan install "${{github.workspace}}/xLib"
             --build=missing
-            -s compiler="Visual Studio"
-            -s compiler.version=16
+            --profile "${{github.workspace}}/xLib/conan_profile.txt"
         shell: bash
 
       # Libs (libx11-xcb-dev)

@@ -1,11 +1,3 @@
-[settings]
-arch=x86_64
-arch_build=x86_64
-build_type=Release
-compiler.cppstd=17
-
-[env]
-
 [requires]
 zlib/1.2.12
 openssl/1.1.1l
@@ -29,7 +21,3 @@ cmake_paths
 
 ; libcurl:with_ssl=openssl
 ; libcurl:with_crypto_auth=True
-
-[imports]
-
-[tool_requires]
