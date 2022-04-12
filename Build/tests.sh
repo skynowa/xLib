@@ -26,6 +26,10 @@ cmake \
 	${DIR_PROJECT}
 
 # Build
+JOBS_NUM=$(($(nproc) * 2))
+
+echo "Jobs: $JOBS_NUM"
+
 cmake --build . --target ALL_BUILD --config Release --verbose
 
 # Run
