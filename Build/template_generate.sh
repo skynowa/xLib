@@ -6,10 +6,13 @@
 
 
 # vars
-DIR_XLIB="../xLib"
-DIR_BUILD="../../xLib_build"
+PROJECT_NAME="xLib"
+DIR_PROJECT="../${PROJECT_NAME}"
+DIR_BUILD="../../${PROJECT_NAME}_build"
 
-mkdir -p $DIR_BUILD
-cd $DIR_BUILD
+# prepare
+mkdir -p ${DIR_BUILD}
+cd ${DIR_BUILD}
 
+# build
 cmake --build . --target template
