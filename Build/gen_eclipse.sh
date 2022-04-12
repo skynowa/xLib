@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# \file  eclipse.sh
-# \brief CMake configure project
+# \file  gen_eclipse.sh
+# \brief CMake generate project
 #
 
 
