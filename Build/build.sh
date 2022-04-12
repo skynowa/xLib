@@ -9,5 +9,9 @@ JOBS_NUM=$(($(nproc) * 2))
 
 echo "Jobs: $JOBS_NUM"
 
-cd $DIR_BUILD
+# prepare
+mkdir -p ${DIR_BUILD}
+cd ${DIR_BUILD}
+
+# build
 cmake --build . --target ALL_BUILD --config Release --parallel ${JOBS_NUM}
