@@ -64,6 +64,7 @@ message(STATUS "Complier                       : ${CMAKE_CXX_COMPILER_ID} ${CMAK
 message(STATUS "CMAKE_CXX_STANDARD             : ${CMAKE_CXX_STANDARD}")
 message(STATUS "CMAKE_CONFIGURATION_TYPES      : ${CMAKE_CONFIGURATION_TYPES}")
 message(STATUS "cmCMAKE_BUILD_TYPE             : ${cmCMAKE_BUILD_TYPE}")
+message(STATUS "CMAKE_BUILD_PARALLEL_LEVEL     : ${CMAKE_BUILD_PARALLEL_LEVEL}")
 message(STATUS "CMAKE_ROOT                     : ${CMAKE_ROOT}")
 message(STATUS "CMAKE_INSTALL_PREFIX           : ${CMAKE_INSTALL_PREFIX}")
 message(STATUS "CMAKE_SOURCE_DIR               : ${CMAKE_SOURCE_DIR}")
