@@ -6,6 +6,8 @@ libcurl/7.79.0
 libxml2/2.9.13
 libmysqlclient/8.0.25
 
+[tool_requires]
+
 [generators]
 cmake_paths
 # cmake_find_package
@@ -21,3 +23,5 @@ cmake_paths
 
 ; libcurl:with_ssl=openssl
 ; libcurl:with_crypto_auth=True
+
+[imports]
