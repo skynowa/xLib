@@ -8,4 +8,4 @@ DIR_BUILD="../../xLib_build"
 mkdir -p $DIR_BUILD
 cd $DIR_BUILD
 
-make template
+cmake --build . --target template
