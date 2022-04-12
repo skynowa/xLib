@@ -23,9 +23,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # - MinSizeRel
 #
 # Sample: "Debug;Release;RelWithDebInfo"
+# FAQ: https://stackoverflow.com/a/59724462/911398
 #
-# NOTE: set from cmd-line only
-# set(CMAKE_BUILD_TYPE Release)
+if (NOT CMAKE_BUILD_TYPE)
+	set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Release - default build type" FORCE)
+endif()
+
+set(cmCMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE})
 #--------------------------------------------------------------------------------------------------
 # options
 set(cmOPTION_PROJECT_LIB_STATIC 1)
@@ -59,7 +63,7 @@ message(STATUS "CMAKE_SYSTEM_PREFIX_PATH       : ${CMAKE_SYSTEM_PREFIX_PATH}")
 message(STATUS "Complier                       : ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 message(STATUS "CMAKE_CXX_STANDARD             : ${CMAKE_CXX_STANDARD}")
 message(STATUS "CMAKE_CONFIGURATION_TYPES      : ${CMAKE_CONFIGURATION_TYPES}")
-message(STATUS "CMAKE_BUILD_TYPE               : ${CMAKE_BUILD_TYPE}")
+message(STATUS "cmCMAKE_BUILD_TYPE             : ${cmCMAKE_BUILD_TYPE}")
 message(STATUS "CMAKE_ROOT                     : ${CMAKE_ROOT}")
 message(STATUS "CMAKE_INSTALL_PREFIX           : ${CMAKE_INSTALL_PREFIX}")
 message(STATUS "CMAKE_SOURCE_DIR               : ${CMAKE_SOURCE_DIR}")
