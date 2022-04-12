@@ -32,8 +32,6 @@ jobs:
         # - {
         #     name: "Ubuntu-20.04 (GCC)",
         #     os: ubuntu-20.04,
-        #     build_type: "Release",
-        #     arch: "x86_64",
         #     cc: "gcc",
         #     cxx: "g++",
         #     gen_script: "./gen_eclipse.sh"
@@ -42,8 +40,6 @@ jobs:
         # - {
         #     name: "Ubuntu-20.04 (Clang)",
         #     os: ubuntu-20.04,
-        #     build_type: "Release",
-        #     arch: "x86_64",
         #     cc: "clang",
         #     cxx: "clang++",
         #     gen_script: "./gen_eclipse.sh"
@@ -53,8 +49,6 @@ jobs:
         - {
             name: "Windows-2019 (MSVC)",
             os: windows-2019,
-            build_type: "Release",
-            arch: "x86_64",  ### "x86"
             cc: "cl",
             cxx: "cl",
             gen_script: "./gen_msvc2019.sh",
@@ -65,8 +59,6 @@ jobs:
         # - {
         #     name: "Windows-2019 (MinGW)",
         #     os: windows-2019,
-        #     build_type: "Release",
-        #     arch: "x86_64",
         #     cc: "gcc",
         #     cxx: "g++",
         #     gen_script: "./gen_eclipse.sh"
@@ -74,8 +66,6 @@ jobs:
         # - {
         #     name: "MacOS-10.15 (Clang)",
         #     os: macos-10.15,
-        #     build_type: "Release",
-        #     arch: "x86_64",
         #     cc: "clang",
         #     cxx: "clang++",
         #     gen_script: "./gen_eclipse.sh"
@@ -148,10 +138,6 @@ jobs:
             --build=missing
             -s compiler="Visual Studio"
             -s compiler.version=16
-            -s compiler.cppstd=17
-            -s arch=${{ matrix.config.arch }}
-            -s arch_build=${{ matrix.config.arch }}
-            -s build_type=${{ matrix.config.build_type }}
         shell: bash
 
       # Libs (libx11-xcb-dev)
