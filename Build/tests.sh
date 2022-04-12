@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 
+set -ex
+
 # vars
 PROJECT_NAME="xLib_tests"
 DIR_PROJECT="../xLib/Tests"
