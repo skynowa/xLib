@@ -54,6 +54,7 @@ set(cmOPTION_BUILD_MSG             0)
 #--------------------------------------------------------------------------------------------------
 # Trace
 message("-------------------------------------------------")
+message(STATUS "PROJECT_NAME                   : ${PROJECT_NAME}")
 message("CMake")
 message(STATUS "CMAKE_VERSION                  : ${CMAKE_VERSION}")
 message(STATUS "CMAKE_GENERATOR                : ${CMAKE_GENERATOR}")
