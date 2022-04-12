@@ -33,19 +33,21 @@ jobs:
         #     name: "Ubuntu-20.04 (GCC)",
         #     os: ubuntu-20.04,
         #     build_type: "Release",
+        #     arch: "x86_64",
         #     cc: "gcc",
         #     cxx: "g++",
         #     gen_script: "./gen_eclipse.sh"
-        #     tests_script: "./gen_tests_eclipse.sh"
+        #     gen_tests_script: "./gen_tests_eclipse.sh"
         #   }
         # - {
         #     name: "Ubuntu-20.04 (Clang)",
         #     os: ubuntu-20.04,
         #     build_type: "Release",
+        #     arch: "x86_64",
         #     cc: "clang",
         #     cxx: "clang++",
         #     gen_script: "./gen_eclipse.sh"
-        #     tests_script: "./gen_tests_eclipse.sh"
+        #     gen_tests_script: "./gen_tests_eclipse.sh"
         #   }
 
         - {
@@ -55,15 +57,16 @@ jobs:
             arch: "x86_64",  ### "x86"
             cc: "cl",
             cxx: "cl",
-            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat", ### vcvars32.bat
             gen_script: "./gen_msvc2019.sh",
-            tests_script: "./gen_tests_msvc2019.sh"
+            gen_tests_script: "./gen_tests_msvc2019.sh",
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat" ### vcvars32.bat
           }
 
         # - {
         #     name: "Windows-2019 (MinGW)",
         #     os: windows-2019,
         #     build_type: "Release",
+        #     arch: "x86_64",
         #     cc: "gcc",
         #     cxx: "g++",
         #     gen_script: "./gen_eclipse.sh"
@@ -72,10 +75,11 @@ jobs:
         #     name: "MacOS-10.15 (Clang)",
         #     os: macos-10.15,
         #     build_type: "Release",
+        #     arch: "x86_64",
         #     cc: "clang",
         #     cxx: "clang++",
         #     gen_script: "./gen_eclipse.sh"
-        #     tests_script: "./gen_tests_eclipse.sh"
+        #     gen_tests_script: "./gen_tests_eclipse.sh"
         #   }
 
     steps:
@@ -203,7 +207,7 @@ jobs:
 
       # xLib - Tests (Generate)
       - name: xLib - Tests (Generate)
-        run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.tests_script }}
+        run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.gen_tests_script }}
         shell: bash
 
       # xLib - Tests
