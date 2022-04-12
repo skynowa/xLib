@@ -35,7 +35,7 @@ jobs:
         #     build_type: "Release",
         #     cc: "gcc",
         #     cxx: "g++",
-        #     build_script: "./gen_eclipse.sh"
+        #     gen_script: "./gen_eclipse.sh"
         #     tests_script: "./gen_tests_eclipse.sh"
         #   }
         # - {
@@ -44,7 +44,7 @@ jobs:
         #     build_type: "Release",
         #     cc: "clang",
         #     cxx: "clang++",
-        #     build_script: "./gen_eclipse.sh"
+        #     gen_script: "./gen_eclipse.sh"
         #     tests_script: "./gen_tests_eclipse.sh"
         #   }
 
@@ -56,7 +56,7 @@ jobs:
             cc: "cl",
             cxx: "cl",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat", ### vcvars32.bat
-            build_script: "./gen_msvc2019.sh",
+            gen_script: "./gen_msvc2019.sh",
             tests_script: "./gen_tests_msvc2019.sh"
           }
 
@@ -66,7 +66,7 @@ jobs:
         #     build_type: "Release",
         #     cc: "gcc",
         #     cxx: "g++",
-        #     build_script: "./gen_eclipse.sh"
+        #     gen_script: "./gen_eclipse.sh"
         #   }
         # - {
         #     name: "MacOS-10.15 (Clang)",
@@ -74,7 +74,7 @@ jobs:
         #     build_type: "Release",
         #     cc: "clang",
         #     cxx: "clang++",
-        #     build_script: "./gen_eclipse.sh"
+        #     gen_script: "./gen_eclipse.sh"
         #     tests_script: "./gen_tests_eclipse.sh"
         #   }
 
@@ -176,9 +176,9 @@ jobs:
         run: cat conan_paths.cmake
         shell: bash
 
-      # xLib (Configure)
-      - name: xLib - Configure
-        run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.build_script }}
+      # xLib (Generate)
+      - name: xLib - Generate
+        run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.gen_script }}
         shell: bash
 
       # xLib (Build)
@@ -201,8 +201,8 @@ jobs:
         run: cd "${{github.workspace}}/xLib/Build" && ./deploy.sh
         shell: bash
 
-      # xLib - Tests (Configure)
-      - name: xLib - Tests (Configure)
+      # xLib - Tests (Generate)
+      - name: xLib - Tests (Generate)
         run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.tests_script }}
         shell: bash
 
