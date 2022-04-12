@@ -35,7 +35,7 @@ jobs:
         #     build_type: "Release",
         #     cc: "gcc",
         #     cxx: "g++",
-        #     build_script: "./eclipse.sh"
+        #     build_script: "./gen_eclipse.sh"
         #   }
         # - {
         #     name: "Ubuntu-20.04 (Clang)",
@@ -43,7 +43,7 @@ jobs:
         #     build_type: "Release",
         #     cc: "clang",
         #     cxx: "clang++",
-        #     build_script: "./eclipse.sh"
+        #     build_script: "./gen_eclipse.sh"
         #   }
 
         - {
@@ -54,7 +54,7 @@ jobs:
             cc: "cl",
             cxx: "cl",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat", ### vcvars32.bat
-            build_script: "./msvc_2019.sh"
+            build_script: "./gen_msvc_2019.sh"
           }
 
         # - {
@@ -63,7 +63,7 @@ jobs:
         #     build_type: "Release",
         #     cc: "gcc",
         #     cxx: "g++",
-        #     build_script: "./eclipse.sh"
+        #     build_script: "./gen_eclipse.sh"
         #   }
         # - {
         #     name: "MacOS-10.15 (Clang)",
@@ -71,7 +71,7 @@ jobs:
         #     build_type: "Release",
         #     cc: "clang",
         #     cxx: "clang++",
-        #     build_script: "./eclipse.sh"
+        #     build_script: "./gen_eclipse.sh"
         #   }
 
     steps:

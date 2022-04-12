@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# \file  msvc_2019.sh
-# \brief CMake configure project
+# \file  gen_msvc_2019.sh
+# \brief CMake generate project
 #
 # https://cmake.org/cmake/help/git-stage/generator/Visual%20Studio%2016%202019.html
 #
