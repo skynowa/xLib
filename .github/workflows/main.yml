@@ -84,8 +84,7 @@ jobs:
       - name: GITHUB_ENV
         run: |
           echo "OS: $(uname -s)"
-          echo "CMake version:    $(cmake --version)"
-          echo "CMake generators: $(cmake -G)"
+          echo "CMake version: $(cmake --version)"
           echo ""
           echo "CC=${{ matrix.config.cc }}"   >> $GITHUB_ENV
           echo "CXX=${{ matrix.config.cxx }}" >> $GITHUB_ENV
@@ -95,6 +94,7 @@ jobs:
         run: |
           pip install conan
           pip install conan --upgrade
+          pip install ninja
         shell: bash
 
       - name: Conan - Setup
