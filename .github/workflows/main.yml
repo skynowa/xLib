@@ -149,7 +149,7 @@ jobs:
 
       # Libs (libx11-xcb-dev)
       - name: Libs (libx11-xcb-dev) - Install
-        if: matrix.config.cxx != 'cl'
+        if: matrix.config.cxx != 'cl.exe'
         run: sudo apt-get install -y --no-install-recommends libx11-xcb-dev
         shell: bash
 
