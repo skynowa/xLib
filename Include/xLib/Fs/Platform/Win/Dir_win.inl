@@ -42,6 +42,10 @@ Dir::_createSymlink_impl(
 {
 	BOOL bRv {};
 
+#if !defined(SYMBOLIC_LINK_FLAG_DIRECTORY)
+	#define SYMBOLIC_LINK_FLAG_DIRECTORY (0x1)
+#endif
+
 	DWORD flags {SYMBOLIC_LINK_FLAG_DIRECTORY};
 	bRv = ::CreateSymbolicLink(_dirPath.c_str(), a_dirPathTo.c_str(), flags);
 	xTEST_DIFF(bRv, FALSE);
