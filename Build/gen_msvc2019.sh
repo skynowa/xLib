@@ -21,7 +21,7 @@ cd ${DIR_BUILD}
 
 # generate
 cmake \
-	-G Ninja \
+	-G Ninja -D CMAKE_USE_TOOLCHAIN="MSVC" \
 	-D CMAKE_BUILD_TYPE=Release \
 	${DIR_PROJECT}
 
