@@ -42,15 +42,17 @@ Dir::_createSymlink_impl(
 {
 	BOOL bRv {};
 
-#if !defined(SYMBOLIC_LINK_FLAG_DIRECTORY)
-	#define SYMBOLIC_LINK_FLAG_DIRECTORY (0x1)
+#if 0
+	#if !defined(SYMBOLIC_LINK_FLAG_DIRECTORY)
+		#define SYMBOLIC_LINK_FLAG_DIRECTORY (0x1)
 
-	WINBASEAPI BOOLEAN APIENTRY CreateSymbolicLinkA(LPCSTR  lpSymlinkFileName,
-									LPCSTR  lpTargetFileName, DWORD dwFlags);
-	WINBASEAPI BOOLEAN APIENTRY CreateSymbolicLinkW(LPCWSTR lpSymlinkFileName,
-									LPCWSTR lpTargetFileName, DWORD dwFlags);
+		WINBASEAPI BOOLEAN APIENTRY CreateSymbolicLinkA(LPCSTR  lpSymlinkFileName,
+										LPCSTR  lpTargetFileName, DWORD dwFlags);
+		WINBASEAPI BOOLEAN APIENTRY CreateSymbolicLinkW(LPCWSTR lpSymlinkFileName,
+										LPCWSTR lpTargetFileName, DWORD dwFlags);
 
-	#define CreateSymbolicLink __MINGW_NAME_AW(CreateSymbolicLink)
+		#define CreateSymbolicLink __MINGW_NAME_AW(CreateSymbolicLink)
+	#endif
 #endif
 
 	DWORD flags {SYMBOLIC_LINK_FLAG_DIRECTORY};
