@@ -88,6 +88,8 @@ jobs:
           echo ""
           echo "CC=${{ matrix.config.cc }}"   >> $GITHUB_ENV
           echo "CXX=${{ matrix.config.cxx }}" >> $GITHUB_ENV
+
+          ${{ matrix.config.environment_script }}
         shell: bash
 
       - name: Conan install
