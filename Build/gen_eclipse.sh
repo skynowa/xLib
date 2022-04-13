@@ -20,4 +20,5 @@ cd ${DIR_BUILD}
 # generate
 cmake \
 	-G "${GENERATOR}" -D CMAKE_ECLIPSE_VERSION=${ECLIPSE_VERSION} \
+	-D CMAKE_BUILD_TYPE=Release \
 	${DIR_PROJECT}
