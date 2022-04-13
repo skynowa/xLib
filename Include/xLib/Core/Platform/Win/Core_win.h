@@ -10,6 +10,7 @@
 #include <ws2tcpip.h>
 
 #define NOMINMAX 1
+#include <winbase.h>
 #include <windows.h>
 
 #include <tchar.h>
