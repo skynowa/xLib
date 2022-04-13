@@ -28,7 +28,7 @@ cmd.exe /V /C @ "${VCVARS_BAT}"
 
 # generate
 cmake \
-	-G Ninja -D CMAKE_USE_TOOLCHAIN="MSVC" \
+	-G Ninja \
 	-D CMAKE_BUILD_TYPE=Release \
 	${DIR_PROJECT}
 
