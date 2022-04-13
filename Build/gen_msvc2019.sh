@@ -19,6 +19,12 @@ ARCH=x64 # Win32
 mkdir -p ${DIR_BUILD}
 cd ${DIR_BUILD}
 
+# [Win]
+VS_INSTALL_DIR="C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise"
+VCVARS_BAT="${VS_INSTALL_DIR}/VC/Auxiliary/Build/vcvars64.bat"
+
+cmd.exe /V /C @ "${VCVARS_BAT}" "&&" "$@"
+
 # generate
 cmake \
 	-G Ninja -D CMAKE_USE_TOOLCHAIN="MSVC" \
