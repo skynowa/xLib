@@ -84,6 +84,7 @@ jobs:
       - name: GITHUB_ENV
         run: |
           echo "OS: $(uname -s)"
+          echo "CMake version:    $(cmake --version)"
           echo "CMake generators: $(cmake -G)"
           echo ""
           echo "CC=${{ matrix.config.cc }}"   >> $GITHUB_ENV
