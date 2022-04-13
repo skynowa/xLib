@@ -29,8 +29,8 @@ FileInfo::_time_impl(
     xTEST_DIFF(iRv, - 1);
 
     // create - n/a
-    Utils::ptrAssignT(a_access,   static_cast<const time_t &>( info.st_atime ));
-    Utils::ptrAssignT(a_modified, static_cast<const time_t &>( info.st_mtime ));
+    Utils::ptrAssignT(a_access,   static_cast<time_t &>( info.st_atime ));
+    Utils::ptrAssignT(a_modified, static_cast<time_t &>( info.st_mtime ));
 }
 //-------------------------------------------------------------------------------------------------
 /*static */
