@@ -49,8 +49,8 @@ jobs:
         - {
             name: "Windows-2019 (MSVC)",
             os: windows-2019,
-            cc: "cl.exe",
-            cxx: "cl.exe",
+            cc: "cl",
+            cxx: "cl",
             gen_script: "./gen_msvc2019.sh",
             gen_tests_script: "./gen_tests_msvc2019.sh",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat" ### vcvars32.bat
@@ -149,7 +149,7 @@ jobs:
 
       # Libs (libx11-xcb-dev)
       - name: Libs (libx11-xcb-dev) - Install
-        if: matrix.config.cxx != 'cl.exe'
+        if: matrix.config.cxx != 'cl'
         run: sudo apt-get install -y --no-install-recommends libx11-xcb-dev
         shell: bash
 
