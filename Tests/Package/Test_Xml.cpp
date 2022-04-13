@@ -8,10 +8,6 @@
 
 #if 1
 
-#pragma comment(lib, "libxml2_a")
-//--* #pragma comment(lib, "libxml2")
-//-- #pragma comment(lib, "xml2")
-
 int main(int a_argsNum, char *a_args[])
 {
 	LIBXML_TEST_VERSION
@@ -24,8 +20,6 @@ int main(int a_argsNum, char *a_args[])
 	return EXIT_SUCCESS;
 }
 #else
-//#pragma comment(lib, "xLib_static.lib")
-//#pragma comment(lib, "libxml2")
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Xml)
 //-------------------------------------------------------------------------------------------------
