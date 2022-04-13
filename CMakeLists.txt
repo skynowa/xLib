@@ -166,7 +166,7 @@ endif()
 # vars
 set(cmCMAKE_VERSION       ${CMAKE_VERSION})
 set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS})
-set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES})    # TODO:
+set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES}) # TODO:
 #--------------------------------------------------------------------------------------------------
 # trace
 message(STATUS "XLIB_LOCATION:             ${XLIB_LOCATION}")
