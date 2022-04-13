@@ -83,7 +83,7 @@ jobs:
       # GITHUB_ENV
       - name: GITHUB_ENV
         run: |
-          echo "GITHUB_ENV: cat $GITHUB_ENV"
+          echo "GITHUB_ENV: `cat $GITHUB_ENV`"
           echo "OS: $(uname -s)"
           echo "CMake version: $(cmake --version)"
           echo ""
