@@ -32,7 +32,7 @@ Db::show(
 	std::vec_tstring_t *out_dbNames	///< [out]
 ) const
 {
-	xTESTS_NA(a_sqlLike);
+	xTEST_NA(a_sqlLike);
 	xTEST_PTR(out_dbNames);
 
 	out_dbNames->clear();
