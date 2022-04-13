@@ -138,7 +138,7 @@ Crc32::calcFile(
     File(a_filePath).binRead(&file);
     xCHECK_RET(file.empty(), 0UL);
 
-    _crc32 = calc(&file.at(0), static_cast<culong_t>( file.size() ));
+    _crc32 = calc(&file.at(0), static_cast<ulong_t>( file.size() ));
 
     return _crc32;
 }

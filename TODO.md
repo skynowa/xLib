@@ -17,6 +17,7 @@
 [ ] Config.h.in
 [ ] Bash - detect OS
 [ ] Tests - XLIB_DEFINITIONS
+[ ] Win - Ninja build
 
 ## Path
 

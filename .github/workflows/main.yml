@@ -92,9 +92,10 @@ jobs:
 
       - name: Conan install
         run: |
+          pip install ninja
+
           pip install conan
           pip install conan --upgrade
-          pip install ninja
         shell: bash
 
       - name: Conan - Setup
