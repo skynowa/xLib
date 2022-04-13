@@ -27,9 +27,9 @@ gettimeofday(
     ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000ULL;
 #endif
 
-    FILETIME     time     = {0};
-    ulonglong_t  ullRv    = 0ULL;
-    static int_t s_tzFlag = 0;
+    FILETIME     time     {};
+    ulonglong_t  ullRv    {};
+    static int_t s_tzFlag {};
 
     if (a_tv != nullptr) {
         (void_t)::GetSystemTimeAsFileTime(&time);
