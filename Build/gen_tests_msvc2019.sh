@@ -15,8 +15,6 @@ cd ${DIR_BUILD}
 
 # generate
 cmake \
-	-G Ninja \
+	-G "${GENERATOR}" -A ${ARCH} \
 	-D CMAKE_BUILD_TYPE=Release \
 	${DIR_PROJECT}
-
-# -G "${GENERATOR}" -A ${ARCH} \

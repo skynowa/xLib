@@ -19,17 +19,8 @@ ARCH=x64 # Win32
 mkdir -p ${DIR_BUILD}
 cd ${DIR_BUILD}
 
-# [Win]
-VCVARS_BAT="C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
-
-cmd.exe --version
-
-cmd.exe /V /C @ "${VCVARS_BAT}"
-
 # generate
 cmake \
-	-G Ninja \
+	-G "${GENERATOR}" -A ${ARCH} \
 	-D CMAKE_BUILD_TYPE=Release \
 	${DIR_PROJECT}
-
-#-G "${GENERATOR}" -A ${ARCH} \
