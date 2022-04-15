@@ -2,9 +2,9 @@
 
 ## CMake
 
-[ ] xLib_static -> xLib
+[+] xLib_static -> xLib
 [ ] LibEvent - rm
-[ ] Split tests
+[+] Split tests
 [ ] Full build/run tests
 [ ] Crossplatform
 [ ] Archs
@@ -19,7 +19,7 @@
 [ ] Bash - detect OS
 [ ] Tests - XLIB_DEFINITIONS
 [ ] Win - Ninja build
-[ ] CACHE vars - rm
+[ ] CMake CACHE vars - rm
 
 ## Path
 
