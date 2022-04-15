@@ -83,8 +83,7 @@ jobs:
       # GITHUB_ENV
       - name: GITHUB_ENV
         run: |
-          echo "ENVs: $(printenv)"
-          echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+          # echo "ENVs: $(printenv)"
           echo "GITHUB_ENV: `cat $GITHUB_ENV`"
           echo "OS: $(uname -s)"
           echo "CMake version: $(cmake --version)"
@@ -137,7 +136,7 @@ jobs:
       - name: xLib - Checkout
         uses: actions/checkout@v2
         with:
-          repository:  skynowa/xLib
+          repository:  ${GITHUB_REPOSITORY} # skynowa/xLib
           path:        ${{github.workspace}}/xLib
           fetch-depth: 1
 
