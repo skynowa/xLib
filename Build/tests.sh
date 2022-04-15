@@ -35,4 +35,4 @@ fi
 
 
 echo ""
-objdump -f "D:/a/xLib/xLib/xLib_tests_build/Release/Test_Xml.obj"
+objdump -f "Test_Xml.obj"
