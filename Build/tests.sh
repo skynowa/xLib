@@ -39,6 +39,9 @@ ls -ls "D:/a/xLib/xLib/xLib_tests_build"
 echo -e "\nRelease"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/Release"
 
+echo -e "\nTest_Xml.dir"
+ls -ls "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir"
+
 echo -e "\nCMakeFiles"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/CMakeFiles"
 
