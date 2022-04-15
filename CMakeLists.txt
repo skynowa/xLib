@@ -26,16 +26,7 @@ project(xLib DESCRIPTION "xLib library")
 # vars
 #--------------------------------------------------------------------------------------------------
 
-unset(XLIB_DEFINITIONS      CACHE)
-unset(cmXLIB_COMPILER_FLAGS CACHE)
-unset(XLIB_INCLUDES         CACHE)
-unset(XLIB_SOURCES          CACHE)
-unset(XLIB_SYS_LIBRARIES    CACHE)
-unset(XLIB_LIBRARIES        CACHE)
-
-unset(XLIB_LOCATION         CACHE)
-unset(XLIB_TEMPLATES        CACHE)
-
+#--------------------------------------------------------------------------------------------------
 set(XLIB_LOCATION  ${CMAKE_SOURCE_DIR})
 set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 #--------------------------------------------------------------------------------------------------
@@ -179,10 +170,6 @@ else()
 endif()
 
 if (OS_ANDROID)
-    unset(XLIB_DEFINITIONS      CACHE)
-    unset(cmXLIB_COMPILER_FLAGS CACHE)
-    unset(XLIB_SYS_LIBRARIES    CACHE)
-
     set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} gnustl_static m z log)
 endif()
 #--------------------------------------------------------------------------------------------------

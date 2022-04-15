@@ -5,45 +5,6 @@
 
 
 #--------------------------------------------------------------------------------------------------
-# unset cache
-
-# libs
-unset(cmMYSQL_FOUND CACHE)
-unset(cmEXECINFO_FOUND CACHE)
-unset(cmXCB_FOUND CACHE)
-unset(cmADDR2LINE_FOUND CACHE)
-unset(cmADDR2LINE_FILE_PATH  CACHE)
-unset(cmGIT_REVISION_FOUND CACHE)
-unset(cmGIT_REVISION_BRANCH CACHE)
-unset(cmGIT_REVISION_HASH CACHE)
-unset(cmCOMPILER_FLAGS CACHE)
-unset(cmCS_GNU_LIBPTHREAD_VERSION_FOUND CACHE)
-unset(cmGNU_GET_LIBC_FOUND CACHE)
-
-# haves
-unset(cmHAVE_FEATURES_H CACHE)
-unset(cmHAVE_PR_SET_DUMPABLE CACHE)
-unset(cmHAVE_RLIMIT_CORE CACHE)
-unset(cmHAVE_PT_DENY_ATTACH CACHE)
-unset(cmHAVE_SCHED_GETCPU CACHE)
-unset(cmHAVE_GETCPU CACHE)
-unset(cmHAVE_GETLOGIN_R CACHE)
-unset(cmHAVE_SCHED_SETAFFINITY CACHE)
-unset(cmHAVE_GETSID CACHE)
-unset(cmHAVE_GETPWUID_R CACHE)
-unset(cmHAVE_SETMNTENT CACHE)
-unset(cmHAVE_GETMNTENT_R CACHE)
-unset(cmHAVE_ENDMNTENT CACHE)
-unset(cmHAVE_RAND_R CACHE)
-unset(cmHAVE_SRANDOM_R CACHE)
-unset(cmHAVE_RANDOM_R CACHE)
-
-# internal
-unset(_xGNU_GET_LIBC_VERSION CACHE)
-unset(_xGNU_GET_LIBC_RELEASE CACHE)
-unset(_xCONFSTR CACHE)
-unset(_xCS_GNU_LIBPTHREAD_VERSION CACHE)
-#--------------------------------------------------------------------------------------------------
 # includes
 include(CheckFunctionExists)
 include(CheckIncludeFile)
