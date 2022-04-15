@@ -39,17 +39,17 @@ ls -ls "D:/a/xLib/xLib/xLib_tests_build"
 echo -e "\nRelease"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/Release"
 
-echo -e "\nTest_Xml.dir"
-ls -ls "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir"
+echo -e "\nTest_Xml.dir/Release"
+ls -ls "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir/Release"
 
 echo -e "\nCMakeFiles"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/CMakeFiles"
 
-echo -e "\nx64"
-ls -ls "D:/a/xLib/xLib/xLib_tests_build/x64"
+echo -e "\nx64/Release"
+ls -ls "D:/a/xLib/xLib/xLib_tests_build/x64/Release"
 
 echo -e "\nCMakeError.log"
-ls -ls "cat D:/a/xLib/xLib/xLib_tests_build/CMakeFiles/CMakeError.log"
+cat "D:/a/xLib/xLib/xLib_tests_build/CMakeFiles/CMakeError.log"
 
 echo -e "\nlocate"
 locate Test_Xml.obj
