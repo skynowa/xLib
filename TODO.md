@@ -2,6 +2,7 @@
 
 ## CMake
 
+[ ] xLib_static -> xLib
 [ ] LibEvent - rm
 [ ] Split tests
 [ ] Full build/run tests
