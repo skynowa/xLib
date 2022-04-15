@@ -113,7 +113,7 @@ jobs:
       ##############################################################################################
       # xLib-data
       - name: xLib-data - Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: skynowa/xLib-data
           path: ${{github.workspace}}/xLib-data
@@ -121,7 +121,7 @@ jobs:
       ##############################################################################################
       # CMakeLib
       - name: CMakeLib - Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: skynowa/CMakeLib
           path: ${{github.workspace}}/CMakeLib
@@ -134,7 +134,7 @@ jobs:
       # xLib
       # Checkout
       - name: xLib - Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository:  ${GITHUB_REPOSITORY} # skynowa/xLib
           path:        ${{github.workspace}}/xLib
