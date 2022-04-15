@@ -20,6 +20,8 @@
 [ ] Tests - XLIB_DEFINITIONS
 [ ] Win - Ninja build
 [ ] CMake CACHE vars - rm
+[ ] main.yml - trace.sh
+[ ] CMake: set -> option
 
 ## Path
 
