@@ -4,11 +4,10 @@
 #--------------------------------------------------------------------------------------------------
 
 
-cmake_minimum_required(VERSION 3.5.0)
 #--------------------------------------------------------------------------------------------------
-project(
-    xLib_tests
-    DESCRIPTION "xLib library tests")
+cmake_minimum_required(VERSION 3.5.0)
+
+project(xLib_tests DESCRIPTION "xLib library tests")
 #--------------------------------------------------------------------------------------------------
 message(STATUS "\n::::: Config :::::")
 
