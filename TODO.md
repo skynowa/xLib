@@ -19,6 +19,7 @@
 [ ] Bash - detect OS
 [ ] Tests - XLIB_DEFINITIONS
 [ ] Win - Ninja build
+[ ] CACHE vars - rm
 
 ## Path
 
