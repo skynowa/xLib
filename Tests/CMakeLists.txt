@@ -152,18 +152,12 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     add_executable(${TEST_NAME}
         ${IT_SOURCE})
 
+    target_compile_definitions(${TEST_NAME} PUBLIC
+        ${XLIB_DEFINITIONS})
+
     target_include_directories(${TEST_NAME} PUBLIC
         ${cmXLIB_INCLUDES}
         ${XLIB_INCLUDES})
-
-    # -- Installing: C:/Program Files/xLib/lib/xLib.lib
-    # -- Installing: C:/Program Files/xLib/lib/libcurl.lib
-    # -- Installing: C:/Program Files/xLib/lib/libssl.lib
-    # -- Installing: C:/Program Files/xLib/lib/libcrypto.lib
-    # -- Installing: C:/Program Files/xLib/lib/mysqlclient.lib
-    # -- Installing: C:/Program Files/xLib/lib/libssh2.lib
-    # -- Installing: C:/Program Files/xLib/lib/libxml2_a.lib
-    # -- Installing: C:/Program Files/xLib/lib/iconv.lib
 
     target_link_libraries(${TEST_NAME} PUBLIC
         ${cmXLIB_SYS_LIBRARIES}
