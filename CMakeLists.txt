@@ -181,37 +181,17 @@ message(STATUS "CMAKE_THREAD_LIBS:         ${CMAKE_THREAD_LIBS}")
 message(STATUS "CMAKE_DL_LIBS:             ${CMAKE_DL_LIBS}")
 #--------------------------------------------------------------------------------------------------
 # targets, install
-if (cmOPTION_PROJECT_LIB_STATIC)
-    set(PROJECT_LIB_STATIC ${PROJECT_NAME})
+set(PROJECT_LIB_STATIC ${PROJECT_NAME})
 
-    add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_STATIC} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
+add_library(${PROJECT_LIB_STATIC} ${cmOPTION_PROJECT_LIB_TYPE} ${XLIB_SOURCES})
+target_link_libraries(${PROJECT_LIB_STATIC} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
 
-    install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "lib")
-    install(FILES   ${XLIB_LIBRARIES}     DESTINATION lib)  # TODO: xxx
-    install(FILES   ${XLIB_LIBRARIES}     DESTINATION "D:/a/xLib/xLib/xLib_tests_build")  # TODO: xxx
+install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "lib")
+install(FILES   ${XLIB_LIBRARIES}     DESTINATION lib)  # TODO: xxx
+install(FILES   ${XLIB_LIBRARIES}     DESTINATION "D:/a/xLib/xLib/xLib_tests_build")  # TODO: xxx
 
-    # D:/a/xLib/xLib/xLib_tests_build/Release/Test_Xml.exe
-    install(FILES   ${XLIB_LIBRARIES}     DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Release")  # TODO: xxx
-endif()
-
-if (cmOPTION_PROJECT_LIB_SHARE)
-    set(PROJECT_LIB_SHARE ${PROJECT_NAME})
-
-    add_library(${PROJECT_LIB_SHARE} SHARED ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_SHARE} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
-
-    install(TARGETS ${PROJECT_LIB_SHARE} DESTINATION "lib")
-endif()
-
-if (cmOPTION_PROJECT_LIB_MODULE)
-    set(PROJECT_LIB_MODULE ${PROJECT_NAME})
-
-    add_library(${PROJECT_LIB_MODULE} MODULE ${XLIB_SOURCES})
-    target_link_libraries(${PROJECT_LIB_MODULE} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
-
-    install(TARGETS ${PROJECT_LIB_MODULE} DESTINATION "lib")
-endif()
+# D:/a/xLib/xLib/xLib_tests_build/Release/Test_Xml.exe
+install(FILES   ${XLIB_LIBRARIES}     DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Release")  # TODO: xxx
 #--------------------------------------------------------------------------------------------------
 # config
 configure_file(

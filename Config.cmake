@@ -32,10 +32,13 @@ endif()
 set(cmCMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE})
 #--------------------------------------------------------------------------------------------------
 # options
-set(cmOPTION_PROJECT_LIB_STATIC 1)
-set(cmOPTION_PROJECT_LIB_SHARE  0) # TODO: build - fix
-set(cmOPTION_PROJECT_LIB_MODULE 0) # TODO: build - fix
-set(cmOPTION_BUILD_TESTS        1)
+
+# cmOPTION_PROJECT_LIB_TYPE:
+# - STATIC
+# - SHARED
+# - MODULE
+set(cmOPTION_PROJECT_LIB STATIC)
+set(cmOPTION_BUILD_TESTS 1)
 
 # Local host - No tests
 cmake_host_system_information(RESULT cmHOST_NAME QUERY HOSTNAME)
@@ -74,9 +77,7 @@ message(STATUS "CMAKE_SOURCE_DIR               : ${CMAKE_SOURCE_DIR}")
 # message(STATUS "CMAKE_CXX_COMPILE_FEATURES     : ${CMAKE_CXX_COMPILE_FEATURES}")
 message("")
 message("Options")
-message(STATUS "cmOPTION_PROJECT_LIB_STATIC    : ${cmOPTION_PROJECT_LIB_STATIC}")
-message(STATUS "cmOPTION_PROJECT_LIB_SHARE     : ${cmOPTION_PROJECT_LIB_SHARE}")
-message(STATUS "cmOPTION_PROJECT_LIB_MODULE    : ${cmOPTION_PROJECT_LIB_MODULE}")
+message(STATUS "cmOPTION_PROJECT_LIB_TYPE      : ${cmOPTION_PROJECT_LIB_TYPE}")
 message(STATUS "cmOPTION_BUILD_TESTS           : ${cmOPTION_BUILD_TESTS}")
 message("")
 message(STATUS "OPTION_UNICODE                 : ${OPTION_UNICODE}")
