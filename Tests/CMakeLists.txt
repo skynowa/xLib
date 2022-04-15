@@ -119,7 +119,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     # TODO: temp test
     if (NOT "${TEST_NAME}" MATCHES "Test_Xml")
-        ### continue()
+        continue()
     endif()
 
     # [Debug]
