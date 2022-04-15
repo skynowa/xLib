@@ -46,7 +46,7 @@ echo -e "\nx64"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/x64"
 
 echo -e "\nCMakeError.log"
-ls -ls "cat D:/a/xLib/xLib/xLib_tests_build/CMakeError.log"
+ls -ls "cat D:/a/xLib/xLib/xLib_tests_build/CMakeFiles/CMakeError.log"
 
 echo -e "\nlocate"
 locate Test_Xml.obj
