@@ -4,12 +4,6 @@ arch_build=x86_64
 build_type=Release
 cppstd=17
 
-# Win
-os=Windows
-os_build=Windows
-compiler="Visual Studio"
-compiler.version=16
-
 [env]
 
 [tool_requires]
