@@ -406,7 +406,7 @@ BuildInfo::xlibBinaryType() const
 {
 	std::tstring_t sRv = xUNKNOWN_CSTRING;
 
-	std::ctstring_t type = cmOPTION_PROJECT_LIB_TYPE;
+	constexpr std::tstring_view_t type {cmOPTION_PROJECT_LIB_TYPE};
 	if      (type == xT("STATIC")) {
 		sRv = xT("Static library");
 	}
