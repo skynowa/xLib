@@ -34,9 +34,9 @@ fi
 ### ctest -C Debug --output-on-failure
 
 #--------------------------------------------------------------------------------------------------
-echo ""
-file "C:/Program Files/xLib/lib/xLib.lib"
-file "C:/Program Files/xLib/lib/libxml2_a.lib"
+# echo ""
+# file "C:/Program Files/xLib/lib/xLib.lib"
+# file "C:/Program Files/xLib/lib/libxml2_a.lib"
 # file "C:/Program Files/xLib/lib/libssl.lib"
 # file "C:/Program Files/xLib/lib/libcrypto.lib"
 # file "C:/Program Files/xLib/lib/libcurl.lib"
@@ -44,9 +44,9 @@ file "C:/Program Files/xLib/lib/libxml2_a.lib"
 # file "C:/Program Files/xLib/lib/libssh2.lib"
 # file "C:/Program Files/xLib/lib/iconv.lib"
 
-echo ""
-objdump -f "C:/Program Files/xLib/lib/xLib.lib"
-objdump -f "C:/Program Files/xLib/lib/libxml2_a.lib"
+# echo ""
+# objdump -f "C:/Program Files/xLib/lib/xLib.lib"
+# objdump -f "C:/Program Files/xLib/lib/libxml2_a.lib"
 # objdump -f "C:/Program Files/xLib/lib/libssl.lib"
 # objdump -f "C:/Program Files/xLib/lib/libcrypto.lib"
 # objdump -f "C:/Program Files/xLib/lib/libcurl.lib"
