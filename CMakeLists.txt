@@ -106,9 +106,6 @@ if (ENV_UNIX)
     endif()
 endif()
 #--------------------------------------------------------------------------------------------------
-# target
-add_library(${PROJECT_NAME} ${cmOPTION_PROJECT_LIB_TYPE})
-#--------------------------------------------------------------------------------------------------
 # vars
 if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
     set(CMAKE_COMPILER_IS_CLANGCC 1)
@@ -154,7 +151,7 @@ if (OS_ANDROID)
     set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} gnustl_static m z log)
 endif()
 #--------------------------------------------------------------------------------------------------
-# vars
+# vars (sources)
 set(cmCMAKE_VERSION       ${CMAKE_VERSION})
 set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS})
 set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES}) # TODO:
@@ -171,18 +168,20 @@ message(STATUS "XLIB_SYS_LIBRARIES:        ${XLIB_SYS_LIBRARIES}")
 message(STATUS "CMAKE_THREAD_LIBS:         ${CMAKE_THREAD_LIBS}")
 message(STATUS "CMAKE_DL_LIBS:             ${CMAKE_DL_LIBS}")
 #--------------------------------------------------------------------------------------------------
-# targets, install
+# targets
+add_library               (${PROJECT_NAME} ${cmOPTION_PROJECT_LIB_TYPE})
 target_compile_definitions(${PROJECT_NAME} PUBLIC ${XLIB_DEFINITIONS})
 target_include_directories(${PROJECT_NAME} PUBLIC ${XLIB_INCLUDES})
 target_sources            (${PROJECT_NAME} PUBLIC ${XLIB_SOURCES})
 target_link_libraries     (${PROJECT_NAME} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
-
+#--------------------------------------------------------------------------------------------------
+# install
 install(TARGETS ${PROJECT_NAME}   DESTINATION "lib")
 install(FILES   ${XLIB_LIBRARIES} DESTINATION lib)  # TODO: xxx
 install(FILES   ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build")  # TODO: xxx
 
 # D:/a/xLib/xLib/xLib_tests_build/Release/Test_Xml.exe
-install(FILES   ${XLIB_LIBRARIES}     DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Release")  # TODO: xxx
+install(FILES   ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Release")  # TODO: xxx
 #--------------------------------------------------------------------------------------------------
 # config
 configure_file(
