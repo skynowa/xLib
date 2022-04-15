@@ -180,7 +180,7 @@ target_link_libraries     (${PROJECT_NAME} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_L
 #--------------------------------------------------------------------------------------------------
 # install
 install(TARGETS ${PROJECT_NAME}   DESTINATION "lib")
-install(FILES   ${XLIB_LIBRARIES} DESTINATION lib)  # TODO: xxx
+install(FILES   ${XLIB_LIBRARIES} DESTINATION "lib")  # TODO: xxx
 install(FILES   ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build")  # TODO: xxx
 
 # D:/a/xLib/xLib/xLib_tests_build/Release/Test_Xml.exe
