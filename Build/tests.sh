@@ -20,7 +20,7 @@ UNAME=$(uname)
 
 if   [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]] ; then
 	echo "OS: Windows"
-	cmake --build . --target ALL_BUILD --config Release --parallel ${JOBS_NUM} --verbose
+	cmake --build . --target ALL_BUILD --config Release --parallel ${JOBS_NUM} # --verbose
 elif [ "$UNAME" == "Linux" ] ; then
 	echo "OS: Linux"
 	# cmake --build . --target xLib_tests --config Release -- -j${JOBS_NUM}
