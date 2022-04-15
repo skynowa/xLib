@@ -2,6 +2,10 @@
 # \file  main.yml
 # \brief
 #
+# https://gist.github.com/NickNaso/ff50ecd38becbadafb1c40a5f2a49c87
+# https://gist.github.com/NickNaso/0d478f1481686d5bcc868cac06620a60
+# https://github.com/jkalias/functional_vector/blob/main/.github/workflows/cmake.ymlы
+#
 # https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
 # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
 # https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge
