@@ -181,14 +181,12 @@ message(STATUS "CMAKE_THREAD_LIBS:         ${CMAKE_THREAD_LIBS}")
 message(STATUS "CMAKE_DL_LIBS:             ${CMAKE_DL_LIBS}")
 #--------------------------------------------------------------------------------------------------
 # targets, install
-set(PROJECT_LIB_STATIC ${PROJECT_NAME})
+add_library(${PROJECT_NAME} ${cmOPTION_PROJECT_LIB_TYPE} ${XLIB_SOURCES})
+target_link_libraries(${PROJECT_NAME} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
 
-add_library(${PROJECT_LIB_STATIC} ${cmOPTION_PROJECT_LIB_TYPE} ${XLIB_SOURCES})
-target_link_libraries(${PROJECT_LIB_STATIC} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
-
-install(TARGETS ${PROJECT_LIB_STATIC} DESTINATION "lib")
-install(FILES   ${XLIB_LIBRARIES}     DESTINATION lib)  # TODO: xxx
-install(FILES   ${XLIB_LIBRARIES}     DESTINATION "D:/a/xLib/xLib/xLib_tests_build")  # TODO: xxx
+install(TARGETS ${PROJECT_NAME}   DESTINATION "lib")
+install(FILES   ${XLIB_LIBRARIES} DESTINATION lib)  # TODO: xxx
+install(FILES   ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build")  # TODO: xxx
 
 # D:/a/xLib/xLib/xLib_tests_build/Release/Test_Xml.exe
 install(FILES   ${XLIB_LIBRARIES}     DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Release")  # TODO: xxx
