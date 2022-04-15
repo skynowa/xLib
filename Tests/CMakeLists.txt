@@ -161,7 +161,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${cmXLIB_INCLUDES}
         ${XLIB_INCLUDES})
 
-    # -- Installing: C:/Program Files/xLib/lib/xLib_static.lib
+    # -- Installing: C:/Program Files/xLib/lib/xLib.lib
     # -- Installing: C:/Program Files/xLib/lib/libcurl.lib
     # -- Installing: C:/Program Files/xLib/lib/libssl.lib
     # -- Installing: C:/Program Files/xLib/lib/libcrypto.lib
@@ -171,7 +171,10 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     # -- Installing: C:/Program Files/xLib/lib/iconv.lib
 
     target_link_libraries(${TEST_NAME} PUBLIC
-        ${cmXLIB_LIBRARIES} # "C:/Program Files/xLib/lib/xLib_static.lib" # xLib_static
+        ${cmXLIB_SYS_LIBRARIES}
+        ${cmXLIB_EXTRA_LIBRARIES}
+        ${cmXLIB_LIBRARIES} # "C:/Program Files/xLib/lib/xLib.lib" # xLib
+
         ${LIBXML2_LIBRARIES}
             #++ "C:\\Program Files\\xLib\\lib\\libxml2_a.lib"
             #-- libxml2 (libxml2.lib)
@@ -181,8 +184,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
             #-- libxml2_a (libxml2_a.lib)
             #-- libxml2_a.lib
 
-        ${XLIB_LIBRARIES}   # TODO: ${cmXLIB_EXTRA_LIBRARIES}
-        ${cmXLIB_SYS_LIBRARIES}
+        # ${XLIB_LIBRARIES}
     )
 
     ### add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
