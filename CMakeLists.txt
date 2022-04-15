@@ -48,7 +48,7 @@ set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 #--------------------------------------------------------------------------------------------------
 list(APPEND CMAKE_MODULE_PATH "${XLIB_LOCATION}/CMake")
 
-include(${XLIB_LOCATION}/Config.cmake)
+include(Config.cmake)
 
 # CONAN_PATHS
 set(CONAN_PATHS "${XLIB_LOCATION}/../conan_paths.cmake")
