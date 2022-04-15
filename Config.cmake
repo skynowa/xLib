@@ -32,12 +32,7 @@ endif()
 set(cmCMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE})
 #--------------------------------------------------------------------------------------------------
 # options
-
-# cmOPTION_PROJECT_LIB_TYPE:
-# - STATIC
-# - SHARED
-# - MODULE
-set(cmOPTION_PROJECT_LIB_TYPE STATIC)
+set(cmOPTION_PROJECT_LIB_TYPE STATIC)	# STATIC/SHARED/MODULE
 set(cmOPTION_BUILD_TESTS      1)
 
 # Local host - No tests
