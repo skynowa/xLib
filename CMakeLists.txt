@@ -182,7 +182,7 @@ message(STATUS "CMAKE_DL_LIBS:             ${CMAKE_DL_LIBS}")
 #--------------------------------------------------------------------------------------------------
 # targets, install
 if (cmOPTION_PROJECT_LIB_STATIC)
-    set(PROJECT_LIB_STATIC ${PROJECT_NAME}_static)
+    set(PROJECT_LIB_STATIC ${PROJECT_NAME})
 
     add_library(${PROJECT_LIB_STATIC} STATIC ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_LIB_STATIC} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
@@ -196,7 +196,7 @@ if (cmOPTION_PROJECT_LIB_STATIC)
 endif()
 
 if (cmOPTION_PROJECT_LIB_SHARE)
-    set(PROJECT_LIB_SHARE ${PROJECT_NAME}_shared)
+    set(PROJECT_LIB_SHARE ${PROJECT_NAME})
 
     add_library(${PROJECT_LIB_SHARE} SHARED ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_LIB_SHARE} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
@@ -205,7 +205,7 @@ if (cmOPTION_PROJECT_LIB_SHARE)
 endif()
 
 if (cmOPTION_PROJECT_LIB_MODULE)
-    set(PROJECT_LIB_MODULE ${PROJECT_NAME}_module)
+    set(PROJECT_LIB_MODULE ${PROJECT_NAME})
 
     add_library(${PROJECT_LIB_MODULE} MODULE ${XLIB_SOURCES})
     target_link_libraries(${PROJECT_LIB_MODULE} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
