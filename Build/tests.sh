@@ -33,11 +33,17 @@ fi
 # Run
 ### ctest -C Debug --output-on-failure
 
-echo ""
+echo "xLib_tests_build"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build"
 
-echo ""
+echo "Release"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/Release"
+
+echo "CMakeFiles"
+ls -ls "D:/a/xLib/xLib/xLib_tests_build/CMakeFiles"
+
+echo "x64"
+ls -ls "D:/a/xLib/xLib/xLib_tests_build/x64"
 
 echo ""
 objdump -f "Test_Xml.obj"
