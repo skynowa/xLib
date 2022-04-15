@@ -123,13 +123,13 @@ public:
     bool_t connect(DataIn &dataIn, DataOut *dataOut);
     bool_t options(DataIn &dataIn, DataOut *dataOut);
     bool_t trace(DataIn &dataIn, DataOut *dataOut);
-
 ///\}
 
+///\name HTTP result
+///\{
 	HttpCode httpCode(cDataOut &dataOut) const;
-		///< get HTTP state code
-    bool_t   isSuccess(cDataOut &dataOut) const;
-		///< is HTTP state code OK
+	bool_t   isSuccess(cDataOut &dataOut) const;
+///\}
 
 protected:
     void_t   setOptionsDefault(DataIn *dataIn, std::ctstring_t &buffRead,
