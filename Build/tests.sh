@@ -51,8 +51,5 @@ ls -ls "D:/a/xLib/xLib/xLib_tests_build/x64/Release"
 echo -e "\nCMakeError.log"
 cat "D:/a/xLib/xLib/xLib_tests_build/CMakeFiles/CMakeError.log"
 
-echo -e "\nlocate"
-locate Test_Xml.obj
-
 echo -e "\n"
-objdump -f "Test_Xml.obj"
+objdump -f "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir/Release/Test_Xml.obj"
