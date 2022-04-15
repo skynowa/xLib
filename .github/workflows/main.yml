@@ -136,7 +136,7 @@ jobs:
       - name: xLib - Checkout
         uses: actions/checkout@v3
         with:
-          repository:  ${GITHUB_REPOSITORY} # skynowa/xLib
+          repository:  ${{github.repository}} # skynowa/xLib
           path:        ${{github.workspace}}/xLib
           fetch-depth: 1
 
