@@ -100,8 +100,8 @@ if (ENV_UNIX)
     endif()
 
     if (OS_ANDROID)
-        # set(ANDROID_NDK "/opt/Libs/Android/NDK")
-        # set(XLIB_INCLUDES ${XLIB_INCLUDES} "${ANDROID_NDK}/platforms/android-9/arch-arm/usr/include")
+        # set(ANDROID_NDK    "/opt/Libs/Android/NDK")
+        # set(XLIB_INCLUDES  ${XLIB_INCLUDES} "${ANDROID_NDK}/platforms/android-9/arch-arm/usr/include")
         # set(XLIB_LIBRARIES ${XLIB_LIBRARIES})
     endif()
 endif()
@@ -167,6 +167,11 @@ message(STATUS "XLIB_SYS_LIBRARIES:        ${XLIB_SYS_LIBRARIES}")
 
 message(STATUS "CMAKE_THREAD_LIBS:         ${CMAKE_THREAD_LIBS}")
 message(STATUS "CMAKE_DL_LIBS:             ${CMAKE_DL_LIBS}")
+#--------------------------------------------------------------------------------------------------
+
+
+
+
 #--------------------------------------------------------------------------------------------------
 # targets
 add_library               (${PROJECT_NAME} ${cmOPTION_PROJECT_LIB_TYPE})
