@@ -33,17 +33,20 @@ fi
 # Run
 ### ctest -C Debug --output-on-failure
 
-echo "xLib_tests_build"
+echo -e "\nxLib_tests_build"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build"
 
-echo "Release"
+echo -e "\nRelease"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/Release"
 
-echo "CMakeFiles"
+echo -e "\nCMakeFiles"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/CMakeFiles"
 
-echo "x64"
+echo -e "\nx64"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/x64"
 
-echo ""
+echo -e "\nlocate"
+locate Test_Xml.obj
+
+echo -e "\n"
 objdump -f "Test_Xml.obj"
