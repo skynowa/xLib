@@ -147,7 +147,7 @@ Translate::run(
 
 	// TODO: curl::HttpClient::Request::Post
 	curl::DataOut dataOut;
-	bRv = _http.request(curl::HttpClient::Request::Get, dataIn, &dataOut);
+	bRv = _http.get(dataIn, &dataOut);
 	xTEST(bRv);
 	if ( !_http.isSuccess(dataOut) ) {
 		// Cout() << xTRACE_VAR(dataOut.body);

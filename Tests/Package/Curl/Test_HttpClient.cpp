@@ -27,7 +27,7 @@ Test_HttpClient::unit()
 		DataOut dataOut;
 
 		HttpClient http(isDebug);
-		m_bRv = http.request(HttpClient::Request::Get, dataIn, &dataOut);
+		m_bRv = http.get(dataIn, &dataOut);
 		xTEST(m_bRv);
 		xTEST(!dataOut.headers.empty());
 		xTEST(!dataOut.body.empty());

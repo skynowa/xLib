@@ -83,7 +83,7 @@ PrivatBankApi::getExchangeRatesArchive(
 	}
 
 	curl::DataOut dataOut;
-	bRv = http.request(curl::HttpClient::Request::Get, dataIn, &dataOut);
+	bRv = http.get(dataIn, &dataOut);
 	xTEST(bRv);
 	if ( !http.isSuccess(dataOut) ) {
 		core::OStream()

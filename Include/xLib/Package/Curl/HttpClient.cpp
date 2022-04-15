@@ -96,128 +96,75 @@ HttpClient::HttpClient(
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-HttpClient::request(
-	cRequest  a_type,		///<
-	DataIn   &a_dataIn,		///< [in,out]
-	DataOut  *out_dataOut	///< [out]
+HttpClient::get(
+	DataIn  &a_dataIn,		///< [in,out]
+	DataOut *out_dataOut	///< [out]
 )
 {
-	xTEST_DIFF((int)a_type, (int)Request::Unknown);
-	xTEST_PTR(out_dataOut);
-
-	out_dataOut->headers.clear();
-	out_dataOut->body.clear();
-
-	setOption(CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS);
-
-	switch (a_type) {
-	case Request::Get:
-		{
-		   /**
-			* Retrieve information from the given server using a given URI.
-			* Requests using GET should only retrieve data and should have no other effect
-			* on the data
-			*/
-
-			a_dataIn.url += xT("?") + a_dataIn.request;
-
-			if (!a_dataIn.isCacheControl) {
-				std::ctstring_t sessId = std::to_string( DateTime().current().toMsec() );
-
-				a_dataIn.url += "&SessId=" + escape(sessId);
-			}
-
-			setOption(CURLOPT_POST,   0L);
-			setOption(CURLOPT_NOBODY, 0L);
-		}
-		break;
-	case Request::Head:
-		{
-		   /**
-			* Same as GET, but transfers the status line and header section only
-			*/
-
-			setOption(CURLOPT_NOBODY, 1L);
-		}
-		break;
-	case Request::Post:
-		{
-		   /**
-			* Send data to the server, for example, customer information, file upload, etc.
-			* using HTML forms
-			*/
-
-			setOption(CURLOPT_POST,          1L);
-			setOption(CURLOPT_POSTFIELDS,    a_dataIn.request.data());
-			setOption(CURLOPT_POSTFIELDSIZE, a_dataIn.request.size());
-		}
-		break;
-	case Request::Put:
-		{
-		   /**
-			* Replaces all current representations of the target resource with uploaded content
-			*/
-
-			// TODO: Request::Put
-			setOption(CURLOPT_UPLOAD, 1L);
-		}
-		break;
-	case Request::Delete:
-		{
-		   /**
-			* Removes all current representations of the target resource given by a URI
-			*/
-
-			setOption(CURLOPT_CUSTOMREQUEST, xT("DELETE"));
-		}
-		break;
-	case Request::Connect:
-		{
-		   /**
-			* Establishes a tunnel to the server identified by a given URI
-			*/
-
-			// TODO: Request::Connect
-		}
-		break;
-	case Request::Options:
-		{
-		   /**
-			* Describes the communication options for the target resource
-			*/
-
-			// TODO: Request::Options
-		}
-		break;
-	case Request::Trace:
-		{
-		   /**
-			* Performs a message loop-back test along the path to the target resource
-			*/
-
-			// TODO: Request::Trace
-		}
-		break;
-	case Request::Unknown:
-		xTEST(false);
-		return false;
-		break;
-	}
-
-	std::tstring_t buffRead;
-	std::tstring_t buffHeaderOut;
-	std::tstring_t buffDataOut;
-	setOptionsDefault(&a_dataIn, buffRead, &buffHeaderOut, &buffDataOut);
-
-	perform();
-
-	getInfos(out_dataOut);
-
-	// [out]
-	String::split(buffHeaderOut, Const::crNl(), xT(": "), &out_dataOut->headers);
-	out_dataOut->body = buffDataOut;
-
-	return true;
+	return _request(Request::Get, a_dataIn, out_dataOut);
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+HttpClient::head(
+	DataIn  &a_dataIn,		///< [in,out]
+	DataOut *out_dataOut	///< [out]
+)
+{
+	return _request(Request::Head, a_dataIn, out_dataOut);
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+HttpClient::post(
+	DataIn  &a_dataIn,		///< [in,out]
+	DataOut *out_dataOut	///< [out]
+)
+{
+	return _request(Request::Post, a_dataIn, out_dataOut);
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+HttpClient::put(
+	DataIn  &a_dataIn,		///< [in,out]
+	DataOut *out_dataOut	///< [out]
+)
+{
+	return _request(Request::Put, a_dataIn, out_dataOut);
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+HttpClient::del(
+	DataIn  &a_dataIn,		///< [in,out]
+	DataOut *out_dataOut	///< [out]
+)
+{
+	return _request(Request::Delete, a_dataIn, out_dataOut);
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+HttpClient::connect(
+	DataIn  &a_dataIn,		///< [in,out]
+	DataOut *out_dataOut	///< [out]
+)
+{
+	return _request(Request::Connect, a_dataIn, out_dataOut);
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+HttpClient::options(
+	DataIn  &a_dataIn,		///< [in,out]
+	DataOut *out_dataOut	///< [out]
+)
+{
+	return _request(Request::Options, a_dataIn, out_dataOut);
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+HttpClient::trace(
+	DataIn  &a_dataIn,		///< [in,out]
+	DataOut *out_dataOut	///< [out]
+)
+{
+	return _request(Request::Trace, a_dataIn, out_dataOut);
 }
 //-------------------------------------------------------------------------------------------------
 /**
@@ -486,6 +433,139 @@ HttpClient::getInfos(
 
 		out_dataOut->totalTimeSec = totalTimeSec;
 	}
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+bool_t
+HttpClient::_request(
+	cRequest  a_type,		///<
+	DataIn   &a_dataIn,		///< [in,out]
+	DataOut  *out_dataOut	///< [out]
+)
+{
+	xTEST_DIFF((int)a_type, (int)Request::Unknown);
+	xTEST_PTR(out_dataOut);
+
+	out_dataOut->headers.clear();
+	out_dataOut->body.clear();
+
+	setOption(CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS);
+
+	switch (a_type) {
+	case Request::Get:
+		{
+		   /**
+			* Retrieve information from the given server using a given URI.
+			* Requests using GET should only retrieve data and should have no other effect
+			* on the data
+			*/
+
+			a_dataIn.url += xT("?") + a_dataIn.request;
+
+			if (!a_dataIn.isCacheControl) {
+				std::ctstring_t sessId = std::to_string( DateTime().current().toMsec() );
+
+				a_dataIn.url += "&SessId=" + escape(sessId);
+			}
+
+			setOption(CURLOPT_POST,   0L);
+			setOption(CURLOPT_NOBODY, 0L);
+		}
+		break;
+	case Request::Head:
+		{
+		   /**
+			* Same as GET, but transfers the status line and header section only
+			*/
+
+			setOption(CURLOPT_NOBODY, 1L);
+		}
+		break;
+	case Request::Post:
+		{
+		   /**
+			* Send data to the server, for example, customer information, file upload, etc.
+			* using HTML forms
+			*/
+
+			setOption(CURLOPT_POST,          1L);
+			setOption(CURLOPT_POSTFIELDS,    a_dataIn.request.data());
+			setOption(CURLOPT_POSTFIELDSIZE, a_dataIn.request.size());
+		}
+		break;
+	case Request::Put:
+		{
+		   /**
+			* Replaces all current representations of the target resource with uploaded content
+			*/
+
+			// TODO: Request::Put
+			setOption(CURLOPT_UPLOAD, 1L);
+		}
+		break;
+	case Request::Delete:
+		{
+		   /**
+			* Removes all current representations of the target resource given by a URI
+			*/
+
+			setOption(CURLOPT_CUSTOMREQUEST, xT("DELETE"));
+		}
+		break;
+	case Request::Connect:
+		{
+		   /**
+			* Establishes a tunnel to the server identified by a given URI
+			*/
+
+			// TODO: Request::Connect
+		}
+		break;
+	case Request::Options:
+		{
+		   /**
+			* Describes the communication options for the target resource
+			*/
+
+			// TODO: Request::Options
+		}
+		break;
+	case Request::Trace:
+		{
+		   /**
+			* Performs a message loop-back test along the path to the target resource
+			*/
+
+			// TODO: Request::Trace
+		}
+		break;
+	case Request::Unknown:
+		xTEST(false);
+		return false;
+		break;
+	}
+
+	std::tstring_t buffRead;
+	std::tstring_t buffHeaderOut;
+	std::tstring_t buffDataOut;
+	setOptionsDefault(&a_dataIn, buffRead, &buffHeaderOut, &buffDataOut);
+
+	perform();
+
+	getInfos(out_dataOut);
+
+	// [out]
+	String::split(buffHeaderOut, Const::crNl(), xT(": "), &out_dataOut->headers);
+	out_dataOut->body = buffDataOut;
+
+	return true;
 }
 //-------------------------------------------------------------------------------------------------
 

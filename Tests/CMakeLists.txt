@@ -110,6 +110,7 @@ endif()
 ### message(STATUS "\n::::: CTest :::::")
 
 ### include(CTest)
+### enable_testing()
 #--------------------------------------------------------------------------------------------------
 file(GLOB_RECURSE XLIB_TESTS_SOURCES *.cpp)
 
@@ -118,7 +119,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     # TODO: temp test
     if (NOT "${TEST_NAME}" MATCHES "Test_Xml")
-        continue()
+        ### continue()
     endif()
 
     # [Debug]
@@ -184,7 +185,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${cmXLIB_SYS_LIBRARIES}
     )
 
-    ### enable_testing()
     ### add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
 endforeach()
 #--------------------------------------------------------------------------------------------------
