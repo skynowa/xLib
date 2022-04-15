@@ -54,24 +54,24 @@ objdump -f "C:/Program Files/xLib/lib/libxml2_a.lib"
 # objdump -f "C:/Program Files/xLib/lib/libssh2.lib"
 # objdump -f "C:/Program Files/xLib/lib/iconv.lib"
 #--------------------------------------------------------------------------------------------------
-echo -e "\nxLib_tests_build"
+echo -e "\n:::::::::: xLib_tests_build ::::::::::"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build"
 
-echo -e "\nRelease"
+echo -e "\n:::::::::: Release ::::::::::"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/Release"
 
-echo -e "\nTest_Xml.dir/Release"
+echo -e "\n:::::::::: Test_Xml.dir/Release ::::::::::"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir/Release"
 
-echo -e "\nCMakeFiles"
+echo -e "\n:::::::::: CMakeFiles ::::::::::"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/CMakeFiles"
 
-echo -e "\nx64/Release"
+echo -e "\n:::::::::: x64/Release ::::::::::"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/x64/Release"
 
-echo -e "\nCMakeError.log"
+echo -e "\n:::::::::: CMakeError.log ::::::::::"
 cat "D:/a/xLib/xLib/xLib_tests_build/CMakeFiles/CMakeError.log"
 
-echo -e "\n"
+echo -e "\n:::::::::: objdump Test_Xml.obj  ::::::::::"
 objdump -f "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir/Release/Test_Xml.obj"
 #--------------------------------------------------------------------------------------------------
