@@ -404,21 +404,20 @@ BuildInfo::xlibVersion() const
 inline std::tstring_t
 BuildInfo::xlibBinaryType() const
 {
-    std::tstring_t sRv;
+	std::tstring_t sRv = xUNKNOWN_CSTRING;
 
-#if   cmOPTION_PROJECT_LIB_STATIC
-    sRv = xT("Static library");
-#elif cmOPTION_PROJECT_LIB_SHARE
-    sRv = xT("Share library");
-#elif cmOPTION_PROJECT_LIB_MODULE
-    sRv = xT("Dynamic link library");
-#else
-    xBUILD_ERROR("cmOPTION_PROJECT_[...] - Unknown project type")
+	std::ctstring_t type = cmOPTION_PROJECT_LIB_TYPE;
+	if      (type == xT("STATIC")) {
+		sRv = xT("Static library");
+	}
+	else if (type == xT("SHARED")) {
+		sRv = xT("Share library");
+	}
+	else if (type == xT("MODULE")) {
+		sRv = xT("Dynamic link library");
+	}
 
-    sRv = xUNKNOWN_CSTRING;
-#endif
-
-    return sRv;
+	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
