@@ -116,7 +116,7 @@ endif()
 
 # CMAKE_INSTALL_PREFIX
 # - UNIX    "/usr/local"
-# - Windows "c:/Program Files/${PROJECT_NAME}"
+# - Windows "C:/Program Files/${PROJECT_NAME}"
 
 set(XLIB_INSTALL_DIR  include/xLib)
 set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
@@ -130,7 +130,7 @@ if (OPTION_UNICODE)
 endif()
 #--------------------------------------------------------------------------------------------------
 # XLIB_SYS_LIBRARIES - System libraries
-set(XLIB_SYS_LIBRARIES ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS})
+set(XLIB_SYS_LIBRARIES ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
 
 if     (MSVC)
     set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid ole32 mpr dbghelp crypt32)
@@ -159,16 +159,12 @@ set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS})
 set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES}) # TODO:
 #--------------------------------------------------------------------------------------------------
 # trace
-message(STATUS "XLIB_LOCATION:             ${XLIB_LOCATION}")
-message(STATUS "XLIB_DEFINITIONS:          ${XLIB_DEFINITIONS}")
-message(STATUS "cmXLIB_COMPILER_FLAGS:     ${cmXLIB_COMPILER_FLAGS}")
-message(STATUS "XLIB_INCLUDES:             ${XLIB_INCLUDES}")
-message(STATUS "XLIB_LIBRARIES:            ${XLIB_LIBRARIES}")
-message(STATUS "XLIB_SYS_LIBRARIES:        ${XLIB_SYS_LIBRARIES}")
-# message(STATUS "XLIB_SOURCES:              ${XLIB_SOURCES}")
-
-message(STATUS "CMAKE_THREAD_LIBS:         ${CMAKE_THREAD_LIBS}")
-message(STATUS "CMAKE_DL_LIBS:             ${CMAKE_DL_LIBS}")
+message(STATUS "XLIB_LOCATION:         ${XLIB_LOCATION}")
+message(STATUS "XLIB_DEFINITIONS:      ${XLIB_DEFINITIONS}")
+message(STATUS "cmXLIB_COMPILER_FLAGS: ${cmXLIB_COMPILER_FLAGS}")
+message(STATUS "XLIB_INCLUDES:         ${XLIB_INCLUDES}")
+message(STATUS "XLIB_LIBRARIES:        ${XLIB_LIBRARIES}")
+message(STATUS "XLIB_SYS_LIBRARIES:    ${XLIB_SYS_LIBRARIES}")
 #--------------------------------------------------------------------------------------------------
 
 
