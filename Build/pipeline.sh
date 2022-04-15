@@ -2,6 +2,8 @@
 #
 
 
+set -ex
+
 ./gen_eclipse.sh
 ./build.sh
 
