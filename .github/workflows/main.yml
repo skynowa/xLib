@@ -39,7 +39,8 @@ jobs:
         #     cc: "gcc",
         #     cxx: "g++",
         #     gen_script: "./gen_eclipse.sh"
-        #     gen_tests_script: "./gen_tests_eclipse.sh"
+        #     gen_tests_script: "./gen_tests_eclipse.sh",
+        #     conan_profile: "conan_profile_linux.txt"
         #   }
         # - {
         #     name: "Ubuntu-20.04 (Clang)",
@@ -47,7 +48,8 @@ jobs:
         #     cc: "clang",
         #     cxx: "clang++",
         #     gen_script: "./gen_eclipse.sh"
-        #     gen_tests_script: "./gen_tests_eclipse.sh"
+        #     gen_tests_script: "./gen_tests_eclipse.sh",
+        #     conan_profile: ""
         #   }
 
         - {
@@ -57,7 +59,8 @@ jobs:
             cxx: "cl",
             gen_script: "./gen_msvc2019.sh",
             gen_tests_script: "./gen_tests_msvc2019.sh",
-            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat" ### vcvars32.bat
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat", ### vcvars32.bat
+            conan_profile: "conan_profile_win.txt"
           }
 
         # - {
@@ -65,7 +68,8 @@ jobs:
         #     os: windows-2019,
         #     cc: "gcc",
         #     cxx: "g++",
-        #     gen_script: "./gen_eclipse.sh"
+        #     gen_script: "./gen_eclipse.sh",
+        #     conan_profile: ""
         #   }
         # - {
         #     name: "MacOS-10.15 (Clang)",
@@ -73,7 +77,8 @@ jobs:
         #     cc: "clang",
         #     cxx: "clang++",
         #     gen_script: "./gen_eclipse.sh"
-        #     gen_tests_script: "./gen_tests_eclipse.sh"
+        #     gen_tests_script: "./gen_tests_eclipse.sh",
+        #     conan_profile: ""
         #   }
 
     steps:
@@ -148,7 +153,7 @@ jobs:
       - name: Libs (Extra) - Install
         run: >-
             conan install "${{github.workspace}}/xLib"
-            --profile "${{github.workspace}}/xLib/conan_profile_win.txt"
+            --profile "${{github.workspace}}/xLib/${{ matrix.config.conan_profile }}"
             --build=missing
         shell: bash
 
