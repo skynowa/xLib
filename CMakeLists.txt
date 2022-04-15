@@ -179,18 +179,16 @@ target_sources            (${PROJECT_NAME} PUBLIC ${XLIB_SOURCES})
 target_link_libraries     (${PROJECT_NAME} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
 #--------------------------------------------------------------------------------------------------
 # install
+
+# Lib
 install(TARGETS ${PROJECT_NAME}   DESTINATION "lib")
 install(FILES   ${XLIB_LIBRARIES} DESTINATION "lib")  # TODO: xxx
 install(FILES   ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build")  # TODO: xxx
 
 # D:/a/xLib/xLib/xLib_tests_build/Release/Test_Xml.exe
 install(FILES   ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Release")  # TODO: xxx
-#--------------------------------------------------------------------------------------------------
-# config
-configure_file(
-    ${XLIB_LOCATION}/Include/xLib/Config.h.in
-    ${XLIB_LOCATION}/Include/xLib/Config.h)
-#--------------------------------------------------------------------------------------------------
+
+# Sources
 install(
     DIRECTORY
         ${XLIB_LOCATION}/Include/xLib/
@@ -218,6 +216,11 @@ add_custom_target(template
         -P ${XLIB_LOCATION}/CMake/Template.cmake
     COMMENT
         "Template...")
+#--------------------------------------------------------------------------------------------------
+# config
+configure_file(
+    ${XLIB_LOCATION}/Include/xLib/Config.h.in
+    ${XLIB_LOCATION}/Include/xLib/Config.h)
 #--------------------------------------------------------------------------------------------------
 # fix warning "Manually-specified variables were not used by the project"
 unset(CMAKE_TOOLCHAIN_FILE)
