@@ -33,6 +33,27 @@ fi
 # Run
 ### ctest -C Debug --output-on-failure
 
+#--------------------------------------------------------------------------------------------------
+echo ""
+file "C:/Program Files/xLib/lib/xLib.lib"
+file "C:/Program Files/xLib/lib/libxml2_a.lib"
+# file "C:/Program Files/xLib/lib/libssl.lib"
+# file "C:/Program Files/xLib/lib/libcrypto.lib"
+# file "C:/Program Files/xLib/lib/libcurl.lib"
+# file "C:/Program Files/xLib/lib/mysqlclient.lib"
+# file "C:/Program Files/xLib/lib/libssh2.lib"
+# file "C:/Program Files/xLib/lib/iconv.lib"
+
+echo ""
+objdump -f "C:/Program Files/xLib/lib/xLib.lib"
+objdump -f "C:/Program Files/xLib/lib/libxml2_a.lib"
+# objdump -f "C:/Program Files/xLib/lib/libssl.lib"
+# objdump -f "C:/Program Files/xLib/lib/libcrypto.lib"
+# objdump -f "C:/Program Files/xLib/lib/libcurl.lib"
+# objdump -f "C:/Program Files/xLib/lib/mysqlclient.lib"
+# objdump -f "C:/Program Files/xLib/lib/libssh2.lib"
+# objdump -f "C:/Program Files/xLib/lib/iconv.lib"
+#--------------------------------------------------------------------------------------------------
 echo -e "\nxLib_tests_build"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build"
 
@@ -53,3 +74,4 @@ cat "D:/a/xLib/xLib/xLib_tests_build/CMakeFiles/CMakeError.log"
 
 echo -e "\n"
 objdump -f "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir/Release/Test_Xml.obj"
+#--------------------------------------------------------------------------------------------------

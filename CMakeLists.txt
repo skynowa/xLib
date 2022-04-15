@@ -228,6 +228,7 @@ if (WIN32)
 
     install(FILES ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build")
     install(FILES ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Release")
+    install(FILES ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir/Release")
 endif()
 
 # Sources
