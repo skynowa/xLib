@@ -203,6 +203,10 @@ jobs:
         run: cd "${{github.workspace}}/xLib_build/Release" && ls -la
         shell: bash
 
+      - name: Trace - xLib_build/Release (2)
+        run: cd "${{github.workspace}}/xLib_build/Release" && file ./xLib.lib
+        shell: bash
+
       # xLib (Deploy)
       - name: xLib - Deploy
         run: cd "${{github.workspace}}/xLib/Build" && ./deploy.sh
