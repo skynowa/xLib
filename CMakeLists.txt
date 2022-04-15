@@ -106,8 +106,8 @@ if (ENV_UNIX)
     endif()
 endif()
 #--------------------------------------------------------------------------------------------------
-# includes
-include_directories(${XLIB_INCLUDES})
+# target
+add_library(${PROJECT_NAME} ${cmOPTION_PROJECT_LIB_TYPE})
 #--------------------------------------------------------------------------------------------------
 # vars
 if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
@@ -127,16 +127,7 @@ include(CxxFlags)
 #--------------------------------------------------------------------------------------------------
 # definitions
 if (OPTION_UNICODE)
-    add_definitions(-DUNICODE=1)
-    add_definitions(-D_UNICODE=1)
-endif()
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XLIB_DEFINITIONS}")
-
-if (MSVC)
-    # n/a
-else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+    set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} -DUNICODE=1 -D_UNICODE=1)
 endif()
 #--------------------------------------------------------------------------------------------------
 # XLIB_SYS_LIBRARIES - System libraries
@@ -181,8 +172,10 @@ message(STATUS "CMAKE_THREAD_LIBS:         ${CMAKE_THREAD_LIBS}")
 message(STATUS "CMAKE_DL_LIBS:             ${CMAKE_DL_LIBS}")
 #--------------------------------------------------------------------------------------------------
 # targets, install
-add_library(${PROJECT_NAME} ${cmOPTION_PROJECT_LIB_TYPE} ${XLIB_SOURCES})
-target_link_libraries(${PROJECT_NAME} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
+target_compile_definitions(${PROJECT_NAME} PUBLIC ${XLIB_DEFINITIONS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${XLIB_INCLUDES})
+target_sources            (${PROJECT_NAME} PUBLIC ${XLIB_SOURCES})
+target_link_libraries     (${PROJECT_NAME} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
 
 install(TARGETS ${PROJECT_NAME}   DESTINATION "lib")
 install(FILES   ${XLIB_LIBRARIES} DESTINATION lib)  # TODO: xxx
