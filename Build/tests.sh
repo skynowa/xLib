@@ -32,3 +32,7 @@ fi
 
 # Run
 ### ctest -C Debug --output-on-failure
+
+
+echo ""
+objdump -f "D:/a/xLib/xLib/xLib_tests_build/Release/Test_Xml.exe"
