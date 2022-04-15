@@ -50,24 +50,15 @@ find_package(xLib QUIET REQUIRED)
 
 include(../CMake/Configure)
 
-if (CURL_FOUND)
-    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${CURL_INCLUDE_DIRS})
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CURL_LIBRARIES})
-endif()
-
+# System
 if (OPENSSL_FOUND)
     set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${OPENSSL_INCLUDE_DIR})
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${OPENSSL_LIBRARIES})
 endif()
 
-if (cmMYSQL_FOUND)
-    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${cmMYSQL_INCLUDES})
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmMYSQL_LIBRARIES})
-endif()
-
-if (cmSSH2_FOUND)
-    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${cmSSH2_INCLUDES})
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmSSH2_LIBRARIES})
+if (CURL_FOUND)
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${CURL_INCLUDE_DIRS})
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CURL_LIBRARIES})
 endif()
 
 if (LIBXML2_FOUND)
@@ -76,9 +67,15 @@ if (LIBXML2_FOUND)
     set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} ${LIBXML2_DEFINITIONS})
 endif()
 
-if (cmEVENT2_FOUND)
-    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${cmEVENT2_INCLUDES})
-    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmEVENT2_LIBRARIES})
+# CMakeLib
+if (cmMYSQL_FOUND)
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${cmMYSQL_INCLUDES})
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmMYSQL_LIBRARIES})
+endif()
+
+if (cmSSH2_FOUND)
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${cmSSH2_INCLUDES})
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmSSH2_LIBRARIES})
 endif()
 
 if (cmICONV_FOUND)
@@ -101,8 +98,8 @@ if (ENV_UNIX)
     endif()
 
     if (OS_ANDROID)
-        # set(ANDROID_NDK "/opt/Libs/Android/NDK")
-        # set(XLIB_INCLUDES ${XLIB_INCLUDES} "${ANDROID_NDK}/platforms/android-9/arch-arm/usr/include")
+        # set(ANDROID_NDK    "/opt/Libs/Android/NDK")
+        # set(XLIB_INCLUDES  ${XLIB_INCLUDES} "${ANDROID_NDK}/platforms/android-9/arch-arm/usr/include")
         # set(XLIB_LIBRARIES ${XLIB_LIBRARIES})
     endif()
 endif()
