@@ -17,6 +17,8 @@ if (NOT cmOPTION_BUILD_TESTS)
     message(STATUS "Tests - skip")
     return()
 endif()
+
+unset(cmOPTION_PROJECT_LIB_TYPE)
 #--------------------------------------------------------------------------------------------------
 # Modules
 message(STATUS "\n::::: Modules :::::")
