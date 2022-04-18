@@ -52,10 +52,10 @@ else()
     message(WARNING "CONAN_PATHS: ${CONAN_PATHS} - not exists")
 endif()
 
-message(STATUS "CONAN_PATHS: ${CONAN_PATHS}")
+# message(STATUS "CONAN_PATHS: ${CONAN_PATHS}")
 
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup()
+# include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+# conan_basic_setup()
 message(STATUS "CONAN_LIBS: ${CONAN_LIBS}")
 #--------------------------------------------------------------------------------------------------
 message(STATUS "\n::::: Configure :::::")
