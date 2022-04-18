@@ -41,6 +41,9 @@ else()
 endif()
 
 message(STATUS "CONAN_PATHS: ${CONAN_PATHS}")
+
+conan_basic_setup()
+message(STATUS "CONAN_LIBS: ${CONAN_LIBS}")
 #--------------------------------------------------------------------------------------------------
 message(STATUS "\n::::: Configure :::::")
 
