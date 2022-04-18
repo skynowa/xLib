@@ -168,20 +168,15 @@ jobs:
         run: echo "github.workspace - ${{github.workspace}}" && ls -la
         shell: bash
 
-      # # Trace (conaninfo.txt)
-      # - name: Trace - conaninfo.txt
-      #   run: cat conaninfo.txt
-      #   shell: bash
+      # Trace (conanbuildinfo.cmake)
+      - name: Trace - conanbuildinfo.cmake
+        run: cat conanbuildinfo.cmake
+        shell: bash
 
-      # # Trace (conanbuildinfo.txt)
-      # - name: Trace - conanbuildinfo.txt
-      #   run: cat conanbuildinfo.txt
-      #   shell: bash
-
-      #-- Trace (conan_paths.cmake)
-      # - name: Trace - conan_paths.cmake
-      #   run: cat conan_paths.cmake
-      #   shell: bash
+      # Trace (conan_paths.cmake)
+      - name: Trace - conan_paths.cmake
+        run: cat conan_paths.cmake
+        shell: bash
 
       # xLib (Generate)
       - name: xLib - Generate
@@ -222,8 +217,3 @@ jobs:
       - name: Trace - xLib_tests_build
         run: cd "${{github.workspace}}/xLib_tests_build" && ls -la
         shell: bash
-
-      #-- Trace (xLib_tests_build / Release)
-      # - name: Trace - xLib_build / Release
-      #   run: cd "${{github.workspace}}/xLib_tests_build/Release" && ls -la
-      #   shell: bash
