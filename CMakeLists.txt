@@ -41,7 +41,7 @@ list(APPEND CMAKE_MODULE_PATH "${XLIB_LOCATION}/CMake")
 
 include(Config.cmake)
 
-#-- CONAN_PATHS
+# CONAN_PATHS
 set(CONAN_PATHS "${XLIB_LOCATION}/../conan_paths.cmake")
 
 if (EXISTS ${CONAN_PATHS})
@@ -221,15 +221,6 @@ target_link_libraries     (${PROJECT_NAME} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_L
 # Lib
 install(TARGETS ${PROJECT_NAME}   DESTINATION "lib")
 install(FILES   ${XLIB_LIBRARIES} DESTINATION "lib")  # TODO: xxx
-
-# TODO: review
-if (WIN32)
-    # D:/a/xLib/xLib/xLib_tests_build/Release/Test_Xml.exe
-
-    #-- install(FILES ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build")
-    #-- install(FILES ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Release")
-    #-- install(FILES ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir/Release")
-endif()
 
 # Sources
 install(
