@@ -193,6 +193,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         # ${XLIB_LIBRARIES}
     )
 
-    ### add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
+    add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
 endforeach()
 #--------------------------------------------------------------------------------------------------
