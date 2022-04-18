@@ -57,7 +57,7 @@ ctest -C Debug --output-on-failure
 echo -e "\n:::::::::: xLib_tests_build ::::::::::"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build"
 
-echo -e "\n:::::::::: Release / Bin ::::::::::"
+echo -e "\n:::::::::: xLib_tests_build / Bin ::::::::::"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/bin"
 
 # echo -e "\n:::::::::: CMakeError.log ::::::::::"
