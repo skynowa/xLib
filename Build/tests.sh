@@ -60,6 +60,9 @@ ls -ls "D:/a/xLib/xLib/xLib_tests_build"
 echo -e "\n:::::::::: Release ::::::::::"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/Release"
 
+echo -e "\n:::::::::: Release / Bin ::::::::::"
+ls -ls "D:/a/xLib/xLib/xLib_tests_build/Release/Bin"
+
 echo -e "\n:::::::::: Test_Xml.dir/Release ::::::::::"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir/Release"
 
