@@ -226,9 +226,9 @@ install(FILES   ${XLIB_LIBRARIES} DESTINATION "lib")  # TODO: xxx
 if (WIN32)
     # D:/a/xLib/xLib/xLib_tests_build/Release/Test_Xml.exe
 
-    install(FILES ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build")
-    install(FILES ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Release")
-    install(FILES ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir/Release")
+    # install(FILES ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build")
+    # install(FILES ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Release")
+    # install(FILES ${XLIB_LIBRARIES} DESTINATION "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir/Release")
 endif()
 
 # Sources
