@@ -135,7 +135,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     # endif()
 
     # [Debug]
-    message(STATUS "\n::::: Unit test :::::")
+    # message(STATUS "\n::::: Unit test :::::")
 
     if (0)
         message(STATUS "")
@@ -160,11 +160,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         message(STATUS "XLIB_LIBRARIES:   ${XLIB_LIBRARIES}")
         message(STATUS "")
     endif()
-
-    # TODO:
-    link_directories(
-        "${CONAN_LIBXML2_ROOT}\\lib"
-        "C:\\Program Files\\xLib\\lib")
 
     add_executable(${TEST_NAME}
         ${IT_SOURCE})
