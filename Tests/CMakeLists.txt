@@ -42,6 +42,7 @@ endif()
 
 message(STATUS "CONAN_PATHS: ${CONAN_PATHS}")
 
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 message(STATUS "CONAN_LIBS: ${CONAN_LIBS}")
 #--------------------------------------------------------------------------------------------------
@@ -163,6 +164,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${XLIB_INCLUDES})
 
     target_link_libraries(${TEST_NAME} PUBLIC
+        ${CONAN_LIBS}
         ${cmXLIB_SYS_LIBRARIES}
         # ${cmXLIB_EXTRA_LIBRARIES}
         ${cmXLIB_LIBRARIES} # "C:/Program Files/xLib/lib/xLib.lib" # xLib
