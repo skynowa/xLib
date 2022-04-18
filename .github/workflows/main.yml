@@ -163,21 +163,6 @@ jobs:
         run: sudo apt-get install -y --no-install-recommends libx11-xcb-dev
         shell: bash
 
-      # Trace (github.workspace)
-      - name: Trace - github.workspace
-        run: echo "github.workspace - ${{github.workspace}}" && ls -la
-        shell: bash
-
-      # Trace (conanbuildinfo.cmake)
-      # - name: Trace - conanbuildinfo.cmake
-      #   run: cat conanbuildinfo.cmake
-      #   shell: bash
-
-      # Trace (conan_paths.cmake)
-      # - name: Trace - conan_paths.cmake
-      #   run: cat conan_paths.cmake
-      #   shell: bash
-
       # xLib (Generate)
       - name: xLib - Generate
         run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.gen_script }}

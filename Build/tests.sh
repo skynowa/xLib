@@ -54,8 +54,11 @@ ctest -C Debug --output-on-failure
 # objdump -f "C:/Program Files/xLib/lib/libssh2.lib"
 # objdump -f "C:/Program Files/xLib/lib/iconv.lib"
 #--------------------------------------------------------------------------------------------------
-echo -e "\n:::::::::: xLib_tests_build ::::::::::"
-ls -ls "D:/a/xLib/xLib/xLib_tests_build"
+echo -e "\n:::::::::: xLib ::::::::::"
+ls -ls "D:/a/xLib/xLib"
+
+# cat conanbuildinfo.cmake
+# cat conan_paths.cmake
 
 echo -e "\n:::::::::: xLib_tests_build / Bin ::::::::::"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/bin"
