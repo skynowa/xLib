@@ -43,16 +43,16 @@ message(STATUS "\n::::: Conan :::::")
 set(XLIB_TESTS_LOCATION ${CMAKE_SOURCE_DIR})
 message(STATUS "XLIB_TESTS_LOCATION: ${XLIB_TESTS_LOCATION}")
 
-# CONAN_PATHS
-set(CONAN_PATHS "${XLIB_TESTS_LOCATION}/../../conan_paths.cmake")
+#-- CONAN_PATHS
+# set(CONAN_PATHS "${XLIB_TESTS_LOCATION}/../../conan_paths.cmake")
 
-if (EXISTS ${CONAN_PATHS})
-    include(${CONAN_PATHS})
-else()
-    message(WARNING "CONAN_PATHS: ${CONAN_PATHS} - not exists")
-endif()
+# if (EXISTS ${CONAN_PATHS})
+#     include(${CONAN_PATHS})
+# else()
+#     message(WARNING "CONAN_PATHS: ${CONAN_PATHS} - not exists")
+# endif()
 
-message(STATUS "CONAN_PATHS: ${CONAN_PATHS}")
+# message(STATUS "CONAN_PATHS: ${CONAN_PATHS}")
 
 include(${XLIB_TESTS_LOCATION}/../../conanbuildinfo.cmake)
 conan_basic_setup()
@@ -118,7 +118,7 @@ if (ENV_UNIX)
     endif()
 endif()
 #--------------------------------------------------------------------------------------------------
-### message(STATUS "\n::::: CTest :::::")
+message(STATUS "\n::::: CTest :::::")
 
 include(CTest)
 enable_testing()
