@@ -117,7 +117,6 @@ jobs:
           conan profile new default --detect --force
           conan profile list
           conan profile show default
-          conan info .
         shell: bash
 
       ##############################################################################################
