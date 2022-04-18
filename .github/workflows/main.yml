@@ -178,11 +178,6 @@ jobs:
       #   run: cat conanbuildinfo.txt
       #   shell: bash
 
-      # Trace (conan_paths.cmake)
-      - name: Trace - conan_paths.cmake
-        run: cat conan_paths.cmake
-        shell: bash
-
       # xLib (Generate)
       - name: xLib - Generate
         run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.gen_script }}
