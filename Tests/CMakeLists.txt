@@ -179,7 +179,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     target_link_libraries(${TEST_NAME} PUBLIC
         ${CONAN_LIBS}
         ${cmXLIB_SYS_LIBRARIES}
-        ${cmXLIB_EXTRA_LIBRARIES}   ###
+        ${cmXLIB_EXTRA_LIBRARIES} ###
         ${cmXLIB_LIBRARIES} # "C:/Program Files/xLib/lib/xLib.lib" # xLib
 
         ${LIBXML2_LIBRARIES}
