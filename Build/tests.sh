@@ -57,21 +57,9 @@ ctest -C Debug --output-on-failure
 echo -e "\n:::::::::: xLib_tests_build ::::::::::"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build"
 
-echo -e "\n:::::::::: Release ::::::::::"
-ls -ls "D:/a/xLib/xLib/xLib_tests_build/Release"
-
 echo -e "\n:::::::::: Release / Bin ::::::::::"
 ls -ls "D:/a/xLib/xLib/xLib_tests_build/bin"
 
-echo -e "\n:::::::::: CMakeFiles ::::::::::"
-ls -ls "D:/a/xLib/xLib/xLib_tests_build/CMakeFiles"
-
-echo -e "\n:::::::::: x64/Release/ALL_BUILD ::::::::::"
-ls -ls "D:/a/xLib/xLib/xLib_tests_build/x64/Release/ALL_BUILD"
-
 # echo -e "\n:::::::::: CMakeError.log ::::::::::"
 # cat "D:/a/xLib/xLib/xLib_tests_build/CMakeFiles/CMakeError.log"
-
-# echo -e "\n:::::::::: objdump Test_Xml.obj  ::::::::::"
-# objdump -f "D:/a/xLib/xLib/xLib_tests_build/Test_Xml.dir/Release/Test_Xml.obj"
 #--------------------------------------------------------------------------------------------------

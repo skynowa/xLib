@@ -212,8 +212,3 @@ jobs:
       - name: xLib - Tests
         run: cd "${{github.workspace}}/xLib/Build" && ./tests.sh
         shell: bash
-
-      # Trace (xLib_tests_build)
-      - name: Trace - xLib_tests_build
-        run: cd "${{github.workspace}}/xLib_tests_build" && ls -la
-        shell: bash
