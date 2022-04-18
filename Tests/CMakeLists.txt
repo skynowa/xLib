@@ -12,7 +12,7 @@ project(xLib_tests DESCRIPTION "xLib library tests")
 message(STATUS "\n::::: Config :::::")
 
 include(../Config.cmake)
-unset(cmOPTION_PROJECT_LIB_TYPE)
+unset(cmOPTION_PROJECT_LIB_TYPE CACHE)
 #--------------------------------------------------------------------------------------------------
 # Options
 set(cmOPTION_BUILD_TESTS 1)
