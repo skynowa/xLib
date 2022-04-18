@@ -137,7 +137,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     # [Debug]
     message(STATUS "\n::::: Unit test :::::")
 
-    if (1)
+    if (0)
         message(STATUS "")
         message(STATUS "::::: Project :::::")
         message(STATUS "IT_SOURCE: ${IT_SOURCE}")
