@@ -32,15 +32,7 @@ endif()
 set(cmCMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE})
 #--------------------------------------------------------------------------------------------------
 # options
-set(cmOPTION_PROJECT_LIB_TYPE STATIC)	# STATIC/SHARED/MODULE
-set(cmOPTION_BUILD_TESTS      1)
-
-# Local host - No tests
-cmake_host_system_information(RESULT cmHOST_NAME QUERY HOSTNAME)
-if (${cmHOST_NAME} STREQUAL "skynowa-pc")
-	set(cmOPTION_BUILD_TESTS 1)
-endif()
-
+set(cmOPTION_PROJECT_LIB_TYPE      STATIC) # STATIC/SHARED/MODULE
 set(OPTION_UNICODE                 0)
 set(cmOPTION_DEBUG_MODE_MSGBOX     0)
 set(cmOPTION_DEBUG_MODE_STDOUT     1)
@@ -73,8 +65,6 @@ message(STATUS "CMAKE_SOURCE_DIR               : ${CMAKE_SOURCE_DIR}")
 message("")
 message("Options")
 message(STATUS "cmOPTION_PROJECT_LIB_TYPE      : ${cmOPTION_PROJECT_LIB_TYPE}")
-message(STATUS "cmOPTION_BUILD_TESTS           : ${cmOPTION_BUILD_TESTS}")
-message("")
 message(STATUS "OPTION_UNICODE                 : ${OPTION_UNICODE}")
 message(STATUS "cmOPTION_DEBUG_MODE_MSGBOX     : ${cmOPTION_DEBUG_MODE_MSGBOX}")
 message(STATUS "cmOPTION_DEBUG_MODE_STDOUT     : ${cmOPTION_DEBUG_MODE_STDOUT}")
