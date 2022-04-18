@@ -8,7 +8,7 @@ libmysqlclient/8.0.25
 
 [generators]
 cmake
-cmake_paths
+#-- cmake_paths
 # cmake_find_package
 
 [options]
