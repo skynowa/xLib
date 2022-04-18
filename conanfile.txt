@@ -7,9 +7,9 @@ libxml2/2.9.13
 libmysqlclient/8.0.25
 
 [generators]
+cmake
 cmake_paths
 # cmake_find_package
-# cmake
 
 [options]
 # libcurl - Possible options are
