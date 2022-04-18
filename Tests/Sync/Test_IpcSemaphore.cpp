@@ -60,8 +60,8 @@ Test_IpcSemaphore::unit()
 		xTEST_PTR(semaphore.handle());
 
 	#if   xENV_WIN
-		uintptr_t puiRv = ::_beginthreadex(nullptr, 0, &Worker::exec, &semaphore, 0, nullptr);
-		xTEST_PTR(puiRv);
+		HANDLE puiRv = (HANDLE)::_beginthreadex(nullptr, 0, &Worker::exec, &semaphore, 0, nullptr);
+		xTEST(puiRv != 0);
 	#elif xENV_UNIX
 		pthread_t id {};
 		int_t iRv = ::pthread_create(&id, nullptr, &Worker::exec, &semaphore);
