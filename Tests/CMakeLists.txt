@@ -14,6 +14,7 @@ message(STATUS "\n::::: Config :::::")
 include(../Config.cmake)
 
 set(cmOPTION_PROJECT_LIB_TYPE "")
+set(cmXLIB_DATA_DIR           "/home/runner/work/xLib/xLib/Data")   # Github CI
 #--------------------------------------------------------------------------------------------------
 # Modules
 message(STATUS "\n::::: Modules :::::")
