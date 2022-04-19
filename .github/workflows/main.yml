@@ -33,16 +33,16 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        # - {
-        #     name: "Ubuntu-20.04 (GCC)",
-        #     os: ubuntu-20.04,
-        #     cc: "gcc",
-        #     cxx: "g++",
-        #     gen_script: "./gen_eclipse.sh",
-        #     gen_tests_script: "./gen_tests_eclipse.sh",
-        #     conan_profile: "conan_profile_linux.txt",
-        #     conan_file: "conan_file.txt"
-        #   }
+        - {
+            name: "Ubuntu-20.04 (GCC)",
+            os: ubuntu-20.04,
+            cc: "gcc",
+            cxx: "g++",
+            gen_script: "./gen_eclipse.sh",
+            gen_tests_script: "./gen_tests_eclipse.sh",
+            conan_profile: "conan_profile_linux.txt",
+            conan_file: "conan_file.txt"
+          }
 
         # - {
         #     name: "Ubuntu-20.04 (Clang)",
