@@ -109,6 +109,7 @@ jobs:
 
       - name: Conan install
         run: |
+          pip install --user conan
           pip install conan
           pip install conan --upgrade
         shell: bash
