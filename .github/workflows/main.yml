@@ -66,15 +66,15 @@ jobs:
         #     conan_file: "conan_file.txt"
         #   }
 
-        - {
-            name: "Windows-2019 (MinGW)",
-            os: windows-2019,
-            cc: "gcc",
-            cxx: "g++",
-            gen_script: "./gen_eclipse.sh",
-            conan_profile: "conan_profile_win_mingw.txt",
-            conan_file: "conan_file.txt"
-          }
+        # - {
+        #     name: "Windows-2019 (MinGW)",
+        #     os: windows-2019,
+        #     cc: "gcc",
+        #     cxx: "g++",
+        #     gen_script: "./gen_eclipse.sh",
+        #     conan_profile: "conan_profile_win_mingw.txt",
+        #     conan_file: "conan_file.txt"
+        #   }
 
         # - {
         #     name: "MacOS-10.15 (Clang)",
