@@ -225,8 +225,7 @@ target_sources            (${PROJECT_NAME} PUBLIC ${XLIB_SOURCES})
 target_link_libraries(${PROJECT_NAME} PUBLIC
     ${CONAN_LIBS}
     ${XLIB_SYS_LIBRARIES}
-    ${XLIB_LIBRARIES}
-    ${CMAKE_DL_LIBS})
+    ${XLIB_LIBRARIES})
 #--------------------------------------------------------------------------------------------------
 
 
