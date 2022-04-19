@@ -155,7 +155,6 @@
 #include <xLib/Package/Xml.h>
 #include <xLib/Package/Translate.h>
 #include <xLib/Package/GitClient.h>
-#include <xLib/Package/PrivatBankApi.h>
 
 #include <xLib/Package/Curl/Types.h>
 #include <xLib/Package/Curl/Version.h>
