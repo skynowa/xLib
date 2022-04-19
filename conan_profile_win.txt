@@ -1,3 +1,7 @@
-include(conan_file.txt)
+include(conan_profile.txt)
 
-[requires]
+[settings]
+os=Windows
+os_build=Windows
+compiler="Visual Studio"
+compiler.version=16
