@@ -76,16 +76,16 @@ jobs:
         #     conan_file: "conan_file.txt"
         #   }
 
-        # - {
-        #     name: "MacOS-10.15 (Clang)",
-        #     os: macos-10.15,
-        #     cc: "clang",
-        #     cxx: "clang++",
-        #     gen_script: "./gen_eclipse.sh"
-        #     gen_tests_script: "./gen_tests_eclipse.sh",
-        #     conan_profile: "",
-        #     conan_file: "conan_file.txt"
-        #   }
+        - {
+            name: "MacOS-10.15 (Clang)",
+            os: macos-10.15,
+            cc: "clang",
+            cxx: "clang++",
+            gen_script: "./gen_eclipse.sh",
+            gen_tests_script: "./gen_tests_eclipse.sh",
+            conan_profile: "conan_profile_macos_clang.txt",
+            conan_file: "conan_file.txt"
+          }
 
     steps:
       ##############################################################################################
