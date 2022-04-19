@@ -3,6 +3,6 @@ include(conan_profile.txt)
 [settings]
 os=Linux
 os_build=Linux
-compiler=clang++
+compiler=clang
 compiler.version=9
 compiler.libcxx=libstdc++11
