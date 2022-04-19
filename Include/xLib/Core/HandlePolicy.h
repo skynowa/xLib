@@ -26,7 +26,7 @@ namespace xl::core
 {
 
 template<typename T, HandlePolicyType valueT>
-struct HandlePolicy;
+class HandlePolicy;
     /// handle error
 //-------------------------------------------------------------------------------------------------
 ///\name Factory
