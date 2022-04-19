@@ -118,6 +118,8 @@ jobs:
 
       - name: Conan - Setup
         run: |
+          set -ex
+
           CC="${{ matrix.config.cc }}"
           CXX="${{ matrix.config.cxx }}"
 
