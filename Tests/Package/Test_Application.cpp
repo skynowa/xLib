@@ -29,12 +29,13 @@ private:
 int_t
 Failer::bug_DivideByZero()
 {
-	cint_t a = 1;
-	cint_t b = 0;
+	int a = 1;
+	int b = 0;
 
 #if xCOMPILER_MS
 	#pragma warning(push)
 	#pragma warning(disable: 4723) // C4723: potential divide by 0
+	#pragma warning(disable: 2124) // C2124: divide or mod by zero
 #endif
 
 	return a / b;

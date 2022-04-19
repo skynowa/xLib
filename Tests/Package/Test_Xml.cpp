@@ -6,7 +6,7 @@
 
 #include <xLib/xLib.h>
 
-#if 1
+#if 0
 
 int main(int a_argsNum, char *a_args[])
 {
