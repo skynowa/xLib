@@ -33,16 +33,16 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - {
-            name: "Ubuntu-20.04 (GCC)",
-            os: ubuntu-20.04,
-            cc: "gcc",
-            cxx: "g++",
-            gen_script: "./gen_eclipse.sh",
-            gen_tests_script: "./gen_tests_eclipse.sh",
-            conan_profile: "conan_profile_linux.txt",
-            conan_file: "conan_file.txt"
-          }
+        # - {
+        #     name: "Ubuntu-20.04 (GCC)",
+        #     os: ubuntu-20.04,
+        #     cc: "gcc",
+        #     cxx: "g++",
+        #     gen_script: "./gen_eclipse.sh",
+        #     gen_tests_script: "./gen_tests_eclipse.sh",
+        #     conan_profile: "conan_profile_linux.txt",
+        #     conan_file: "conan_file.txt"
+        #   }
 
         # - {
         #     name: "Ubuntu-20.04 (Clang)",
@@ -55,17 +55,16 @@ jobs:
         #     conan_file: "conan_file.txt"
         #   }
 
-        # - {
-        #     name: "Windows-2019 (MSVC)",
-        #     os: windows-2019,
-        #     cc: "cl",
-        #     cxx: "cl",
-        #     gen_script: "./gen_msvc2019.sh",
-        #     gen_tests_script: "./gen_tests_msvc2019.sh",
-        #     environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat", ### vcvars32.bat
-        #     conan_profile: "conan_profile_win.txt",
-        #     conan_file: "conan_file.txt"
-        #   }
+        - {
+            name: "Windows-2019 (MSVC)",
+            os: windows-2019,
+            cc: "cl",
+            cxx: "cl",
+            gen_script: "./gen_msvc2019.sh",
+            gen_tests_script: "./gen_tests_msvc2019.sh",
+            conan_profile: "conan_profile_win.txt",
+            conan_file: "conan_file.txt"
+          }
 
         # - {
         #     name: "Windows-2019 (MinGW)",
