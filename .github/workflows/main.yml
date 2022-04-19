@@ -40,7 +40,7 @@ jobs:
         #     cxx: "g++",
         #     gen_script: "./gen_eclipse.sh",
         #     gen_tests_script: "./gen_tests_eclipse.sh",
-        #     conan_profile: "conan_profile_linux.txt",
+        #     conan_profile: "conan_profile_ubuntu_gcc.txt",
         #     conan_file: "conan_file.txt"
         #   }
 
@@ -51,28 +51,28 @@ jobs:
         #     cxx: "clang++",
         #     gen_script: "./gen_eclipse.sh",
         #     gen_tests_script: "./gen_tests_eclipse.sh",
-        #     conan_profile: "conan_profile_linux_clang.txt",
+        #     conan_profile: "conan_profile_ubuntu_clang.txt",
         #     conan_file: "conan_file.txt"
         #   }
 
         # - {
-        #     name: "Windows-2019 (MSVC)",
+        #     name: "Windows-2019 (VS)",
         #     os: windows-2019,
         #     cc: "cl",
         #     cxx: "cl",
-        #     gen_script: "./gen_msvc2019.sh",
-        #     gen_tests_script: "./gen_tests_msvc2019.sh",
-        #     conan_profile: "conan_profile_win.txt",
+        #     gen_script: "./gen_vs2019.sh",
+        #     gen_tests_script: "./gen_tests_vs2019.sh",
+        #     conan_profile: "conan_profile_win_vs.txt",
         #     conan_file: "conan_file.txt"
         #   }
 
         - {
-            name: "Windows-2019 (MinGW)",
+            name: "Windows-2019 (GCC)",
             os: windows-2019,
             cc: "gcc",
             cxx: "g++",
             gen_script: "./gen_eclipse.sh",
-            conan_profile: "conan_profile_win_mingw.txt",
+            conan_profile: "conan_profile_win_gcc.txt",
             conan_file: "conan_file.txt"
           }
 
