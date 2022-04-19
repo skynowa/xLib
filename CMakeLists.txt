@@ -221,7 +221,11 @@ add_library               (${PROJECT_NAME} ${cmOPTION_PROJECT_LIB_TYPE})
 target_compile_definitions(${PROJECT_NAME} PUBLIC ${XLIB_DEFINITIONS})
 target_include_directories(${PROJECT_NAME} PUBLIC ${XLIB_INCLUDES})
 target_sources            (${PROJECT_NAME} PUBLIC ${XLIB_SOURCES})
-target_link_libraries     (${PROJECT_NAME} PUBLIC ${CONAN_LIBS} ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
+
+target_link_libraries(${PROJECT_NAME}
+    PUBLIC ${CONAN_LIBS}
+    PUBLIC ${XLIB_SYS_LIBRARIES}
+    PUBLIC ${XLIB_LIBRARIES})
 #--------------------------------------------------------------------------------------------------
 
 
