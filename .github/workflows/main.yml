@@ -40,7 +40,8 @@ jobs:
         #     cxx: "g++",
         #     gen_script: "./gen_eclipse.sh"
         #     gen_tests_script: "./gen_tests_eclipse.sh",
-        #     conan_profile: "conan_profile_linux.txt"
+        #     conan_profile: "conan_profile_linux.txt",
+        #     conan_file: "conan_file_unix.txt"
         #   }
         # - {
         #     name: "Ubuntu-20.04 (Clang)",
@@ -49,6 +50,7 @@ jobs:
         #     cxx: "clang++",
         #     gen_script: "./gen_eclipse.sh"
         #     gen_tests_script: "./gen_tests_eclipse.sh",
+        #     conan_file: "conan_file_unix.txt",
         #     conan_profile: ""
         #   }
 
@@ -60,7 +62,8 @@ jobs:
             gen_script: "./gen_msvc2019.sh",
             gen_tests_script: "./gen_tests_msvc2019.sh",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat", ### vcvars32.bat
-            conan_profile: "conan_profile_win.txt"
+            conan_profile: "conan_profile_win.txt",
+            conan_file: "conan_file_win.txt"
           }
 
         # - {
@@ -69,7 +72,8 @@ jobs:
         #     cc: "gcc",
         #     cxx: "g++",
         #     gen_script: "./gen_eclipse.sh",
-        #     conan_profile: ""
+        #     conan_profile: "",
+        #     conan_file: "conan_file_unix.txt"
         #   }
         # - {
         #     name: "MacOS-10.15 (Clang)",
@@ -78,7 +82,8 @@ jobs:
         #     cxx: "clang++",
         #     gen_script: "./gen_eclipse.sh"
         #     gen_tests_script: "./gen_tests_eclipse.sh",
-        #     conan_profile: ""
+        #     conan_profile: "",
+        #     conan_file: ""
         #   }
 
     steps:
@@ -152,16 +157,16 @@ jobs:
       # Libs (Extra)
       - name: Libs (Extra) - Install
         run: >-
-            conan install "${{github.workspace}}/xLib"
+            conan install "${{github.workspace}}/xLib/${{ matrix.config.conan_file }}"
             --profile "${{github.workspace}}/xLib/${{ matrix.config.conan_profile }}"
             --build=missing
         shell: bash
 
-      # Libs (libx11-xcb-dev)
-      - name: Libs (libx11-xcb-dev) - Install
-        if: matrix.config.cxx != 'cl'
-        run: sudo apt-get install -y --no-install-recommends libx11-xcb-dev
-        shell: bash
+      #-- Libs (libx11-xcb-dev)
+      # - name: Libs (libx11-xcb-dev) - Install
+      #   if: matrix.config.cxx != 'cl'
+      #   run: sudo apt-get install -y --no-install-recommends libx11-xcb-dev
+      #   shell: bash
 
       # xLib (Generate)
       - name: xLib - Generate

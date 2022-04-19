@@ -1,0 +1,3 @@
+include(conan_file.txt)
+
+[requires]
