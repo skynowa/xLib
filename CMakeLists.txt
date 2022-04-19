@@ -229,7 +229,7 @@ target_link_libraries     (${PROJECT_NAME} PUBLIC ${CONAN_LIBS} ${XLIB_SYS_LIBRA
 #--------------------------------------------------------------------------------------------------
 # Lib
 install(TARGETS ${PROJECT_NAME}   DESTINATION "lib")
-install(FILES   ${XLIB_LIBRARIES} DESTINATION "lib")  # TODO: xxx
+##-- install(FILES   ${XLIB_LIBRARIES} DESTINATION "lib")  # TODO: xxx
 
 # Sources
 install(
