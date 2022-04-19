@@ -126,14 +126,6 @@ jobs:
         shell: bash
 
       ##############################################################################################
-      # xLib-data
-      - name: xLib-data - Checkout
-        uses: actions/checkout@v3
-        with:
-          repository: skynowa/xLib-data
-          path: ${{github.workspace}}/xLib-data
-
-      ##############################################################################################
       # CMakeLib
       - name: CMakeLib - Checkout
         uses: actions/checkout@v3

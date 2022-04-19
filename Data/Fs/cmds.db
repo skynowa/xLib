@@ -1,0 +1,8 @@
+{"api/",       "./api-quick.sh"},
+{"booked/",    "./booked-quick.sh"},
+{"core/",      "./core-quick.sh"},
+{"flights/",   "./flights-quick.sh"},
+{"suppliers/", "./suppliers-services-quick.sh"},
+{"secure/",    "./secure-quick.sh"},
+{"visagw/",    "./visagw-quick.sh"},
+{"widgets/",   "./widgets-quick.sh"}

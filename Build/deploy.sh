@@ -10,4 +10,10 @@ mkdir -p ${DIR_BUILD}
 cd ${DIR_BUILD}
 
 # build
-sudo cmake --build . --target install --config Release
+SUDO="sudo"
+
+if [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]] ; then
+	SUDO=""
+fi
+
+${SUDO} cmake --build . --target install --config Release

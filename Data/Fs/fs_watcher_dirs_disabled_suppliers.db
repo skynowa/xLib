@@ -1,0 +1,9 @@
+// suppliers
+"/home/httpd/triptake-all/suppliers/cms",
+"/home/httpd/triptake-all/suppliers/config",
+"/home/httpd/triptake-all/suppliers/scripts",
+"/home/httpd/triptake-all/suppliers/compiled",
+"/home/httpd/triptake-all/suppliers/release",
+"/home/httpd/triptake-all/suppliers/gen",
+"/home/httpd/triptake-all/suppliers/gen-data",
+"/home/httpd/triptake-all/suppliers/databases"
