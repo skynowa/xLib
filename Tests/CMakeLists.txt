@@ -183,12 +183,14 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     target_link_libraries(${TEST_NAME} PUBLIC
         ${CONAN_LIBS}
+        ${LIBXML2_LIBRARIES}
+        ${CURL_LIBRARIES}
+        ${XLIB_LIBRARIES}
+
         ${cmXLIB_SYS_LIBRARIES}
         ${cmXLIB_EXTRA_LIBRARIES} ###
         ${cmXLIB_LIBRARIES} # "C:/Program Files/xLib/lib/xLib.lib" # xLib
 
-        ${LIBXML2_LIBRARIES}
-        ${CURL_LIBRARIES}
             #++ "C:\\Program Files\\xLib\\lib\\libxml2_a.lib"
             #-- libxml2 (libxml2.lib)
             #++ LibXml2::LibXml2
@@ -197,7 +199,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
             #-- libxml2_a (libxml2_a.lib)
             #-- libxml2_a.lib
 
-        ${XLIB_LIBRARIES}
     )
 
     add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
