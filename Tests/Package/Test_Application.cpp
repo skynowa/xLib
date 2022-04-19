@@ -32,16 +32,17 @@ Failer::bug_DivideByZero()
 	int a = 1;
 	int b = 0;
 
-//#if xCOMPILER_MS
-	#pragma warning( push )
-	#pragma warning( disable : 4723 ) // C4723: potential divide by 0
-//#endif
+#if xCOMPILER_MS
+	xxxxx
+	#pragma warning(push)
+	#pragma warning(disable: 4723) // C4723: potential divide by 0
+#endif
 
 	return a / b;
 
-//#if xCOMPILER_MS
-	#pragma warning( pop )
-//#endif
+#if xCOMPILER_MS
+	#pragma warning(pop)
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 int_t
