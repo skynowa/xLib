@@ -35,7 +35,6 @@ Failer::bug_DivideByZero()
 #if xCOMPILER_MS
 	#pragma warning(push)
 	#pragma warning(disable: 4723) // C4723: potential divide by 0
-	#pragma warning(disable: 2124) // C2124: divide or mod by zero
 #endif
 
 	return a / b;
