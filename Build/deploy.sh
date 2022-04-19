@@ -10,4 +10,4 @@ mkdir -p ${DIR_BUILD}
 cd ${DIR_BUILD}
 
 # build
-sudo cmake --build . --target install --config Release
+cmake --build . --target install --config Release
