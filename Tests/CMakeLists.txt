@@ -12,7 +12,7 @@ project(xLib_tests DESCRIPTION "xLib library tests")
 message(STATUS "\n::::: Config :::::")
 
 include(../Config.cmake)
-set(cmOPTION_PROJECT_LIB_TYPE "")
+unset(cmOPTION_PROJECT_LIB_TYPE PARENT_SCOPE)
 #--------------------------------------------------------------------------------------------------
 # Options
 set(cmOPTION_BUILD_TESTS 1)
@@ -71,16 +71,22 @@ if (OPENSSL_FOUND)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${OPENSSL_LIBRARIES})
 endif()
 
+message(STATUS "OPENSSL_FOUND: ${OPENSSL_FOUND}")
+
 if (CURL_FOUND)
     set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${CURL_INCLUDE_DIRS})
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CURL_LIBRARIES})
 endif()
+
+message(STATUS "CURL_FOUND: ${CURL_FOUND}")
 
 if (LIBXML2_FOUND)
     set(XLIB_INCLUDES    ${XLIB_INCLUDES}    ${LIBXML2_INCLUDE_DIRS})
     set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   ${LIBXML2_LIBRARIES})
     set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} ${LIBXML2_DEFINITIONS})
 endif()
+
+message(STATUS "LIBXML2_FOUND: ${LIBXML2_FOUND}")
 
 # CMakeLib
 if (cmMYSQL_FOUND)
