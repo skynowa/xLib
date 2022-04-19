@@ -161,8 +161,14 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${cmXLIB_INCLUDES}
         ${XLIB_INCLUDES})
 
-    target_link_libraries(${TEST_NAME}
-        PUBLIC "${CONAN_LIBS} ${LIBXML2_LIBRARIES} ${CURL_LIBRARIES} ${XLIB_LIBRARIES} ${cmXLIB_SYS_LIBRARIES} ${cmXLIB_EXTRA_LIBRARIES} ${cmXLIB_LIBRARIES}"
+    target_link_libraries(${TEST_NAME} PUBLIC
+        ${CONAN_LIBS}
+        ${LIBXML2_LIBRARIES}
+        ${CURL_LIBRARIES}
+        ${XLIB_LIBRARIES}
+        ${cmXLIB_SYS_LIBRARIES}
+        ${cmXLIB_EXTRA_LIBRARIES}
+        ${cmXLIB_LIBRARIES}
     )
 
     add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
