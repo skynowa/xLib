@@ -1,0 +1,8 @@
+include(conan_profile.txt)
+
+[settings]
+os=MacOS
+os_build=MacOS
+compiler=clang
+compiler.version=9
+compiler.libcxx=libstdc++11
