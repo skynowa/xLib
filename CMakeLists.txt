@@ -206,10 +206,10 @@ message(STATUS "XLIB_SYS_LIBRARIES:    ${XLIB_SYS_LIBRARIES}")
 
 #--------------------------------------------------------------------------------------------------
 add_library               (${PROJECT_NAME} ${cmOPTION_PROJECT_LIB_TYPE})
-target_compile_definitions(${PROJECT_NAME} PRIVATE ${XLIB_DEFINITIONS})
-target_include_directories(${PROJECT_NAME} PRIVATE ${XLIB_INCLUDES})
-target_sources            (${PROJECT_NAME} PRIVATE ${XLIB_SOURCES})
-target_link_libraries     (${PROJECT_NAME} PRIVATE ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
+target_compile_definitions(${PROJECT_NAME} PUBLIC ${XLIB_DEFINITIONS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${XLIB_INCLUDES})
+target_sources            (${PROJECT_NAME} PUBLIC ${XLIB_SOURCES})
+target_link_libraries     (${PROJECT_NAME} PUBLIC ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
 #--------------------------------------------------------------------------------------------------
 
 

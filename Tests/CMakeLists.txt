@@ -12,7 +12,8 @@ project(xLib_tests DESCRIPTION "xLib library tests")
 message(STATUS "\n::::: Config :::::")
 
 include(../Config.cmake)
-unset(cmOPTION_PROJECT_LIB_TYPE PARENT_SCOPE)
+unset(cmOPTION_PROJECT_LIB_TYPE CACHE)
+set(cmOPTION_PROJECT_LIB_TYPE "")
 #--------------------------------------------------------------------------------------------------
 # Options
 set(cmOPTION_BUILD_TESTS 1)
@@ -184,6 +185,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${cmXLIB_LIBRARIES} # "C:/Program Files/xLib/lib/xLib.lib" # xLib
 
         ${LIBXML2_LIBRARIES}
+        ${CURL_LIBRARIES}
             #++ "C:\\Program Files\\xLib\\lib\\libxml2_a.lib"
             #-- libxml2 (libxml2.lib)
             #++ LibXml2::LibXml2
