@@ -111,9 +111,9 @@ jobs:
         run: |
           set -ex
 
-          pip install conan
-          pip install conan --upgrade
+          # pip install conan
           pip install --user conan
+          pip install conan --upgrade
         shell: bash
 
       - name: Conan - Setup
