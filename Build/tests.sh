@@ -32,7 +32,7 @@ elif [ "$UNAME" == "Darwin" ] ; then
 fi
 
 # Run
-ctest -C Debug --output-on-failure
+## ctest -C Debug --output-on-failure
 
 #--------------------------------------------------------------------------------------------------
 # echo ""
