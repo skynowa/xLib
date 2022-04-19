@@ -18,22 +18,6 @@ set(cmOPTION_PROJECT_LIB_TYPE "")
 
 message(STATUS "cmOPTION_PROJECT_LIB_TYPE (tests): ${cmOPTION_PROJECT_LIB_TYPE}")
 #--------------------------------------------------------------------------------------------------
-# Options
-set(cmOPTION_BUILD_TESTS 1)
-
-# Local host - No tests
-cmake_host_system_information(RESULT cmHOST_NAME QUERY HOSTNAME)
-if (${cmHOST_NAME} STREQUAL "skynowa-pc")
-	set(cmOPTION_BUILD_TESTS 1)
-endif()
-
-message(STATUS "cmOPTION_BUILD_TESTS: ${cmOPTION_BUILD_TESTS}")
-
-if (NOT cmOPTION_BUILD_TESTS)
-    message(STATUS "Tests - skip")
-    return()
-endif()
-#--------------------------------------------------------------------------------------------------
 # Modules
 message(STATUS "\n::::: Modules :::::")
 
