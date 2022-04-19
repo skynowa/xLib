@@ -46,7 +46,16 @@ set(CONAN_PATHS "${XLIB_LOCATION}/../conan_paths.cmake")
 
 if (EXISTS ${CONAN_PATHS})
     include(${CONAN_PATHS})
+else()
+    message(WARNING "CONAN_PATHS: ${CONAN_PATHS} - not exists")
 endif()
+
+message(STATUS "CONAN_PATHS: ${CONAN_PATHS}")
+
+# CONAN_LIBS
+include(${XLIB_LOCATION}/../conanbuildinfo.cmake)
+conan_basic_setup()
+message(STATUS "CONAN_LIBS: ${CONAN_LIBS}")
 #--------------------------------------------------------------------------------------------------
 
 
@@ -206,10 +215,10 @@ message(STATUS "XLIB_SYS_LIBRARIES:    ${XLIB_SYS_LIBRARIES}")
 
 #--------------------------------------------------------------------------------------------------
 add_library               (${PROJECT_NAME} ${cmOPTION_PROJECT_LIB_TYPE})
-target_compile_definitions(${PROJECT_NAME} PRIVATE ${XLIB_DEFINITIONS})
-target_include_directories(${PROJECT_NAME} PRIVATE ${XLIB_INCLUDES})
-target_sources            (${PROJECT_NAME} PRIVATE ${XLIB_SOURCES})
-target_link_libraries     (${PROJECT_NAME} PRIVATE ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
+target_compile_definitions(${PROJECT_NAME} PUBLIC ${XLIB_DEFINITIONS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${XLIB_INCLUDES})
+target_sources            (${PROJECT_NAME} PUBLIC ${XLIB_SOURCES})
+target_link_libraries     (${PROJECT_NAME} PUBLIC ${CONAN_LIBS} ${XLIB_SYS_LIBRARIES} ${XLIB_LIBRARIES})
 #--------------------------------------------------------------------------------------------------
 
 
