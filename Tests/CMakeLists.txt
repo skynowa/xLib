@@ -167,8 +167,6 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${cmXLIB_EXTRA_LIBRARIES}
 
         ${CONAN_LIBS}
-        ${LIBXML2_LIBRARIES}
-        ${CURL_LIBRARIES}
         ${XLIB_LIBRARIES}   ###
     )
 
