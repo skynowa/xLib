@@ -163,7 +163,10 @@ endif()
 #--------------------------------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------------------------------
-set(XLIB_SYS_LIBRARIES ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
+set(XLIB_SYS_LIBRARIES
+    ${CMAKE_THREAD_LIBS_INIT}
+    ${CMAKE_THREAD_LIBS}
+    ${CMAKE_DL_LIBS})
 
 if     (MSVC)
     set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid ole32 mpr dbghelp crypt32)
