@@ -12,7 +12,7 @@ cd ${DIR_BUILD}
 # build
 SUDO="sudo"
 
-if [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]] ; then
+if [[ "${OSTYPE}" == "win"* || "${OSTYPE}" == "msys"* ]]; then
 	SUDO=""
 fi
 
