@@ -41,7 +41,7 @@ jobs:
         #     gen_script: "./gen_eclipse.sh"
         #     gen_tests_script: "./gen_tests_eclipse.sh",
         #     conan_profile: "conan_profile_linux.txt",
-        #     conan_file: "conan_file_unix.txt"
+        #     conan_file: "conan_file.txt"
         #   }
         # - {
         #     name: "Ubuntu-20.04 (Clang)",
@@ -50,8 +50,8 @@ jobs:
         #     cxx: "clang++",
         #     gen_script: "./gen_eclipse.sh"
         #     gen_tests_script: "./gen_tests_eclipse.sh",
-        #     conan_file: "conan_file_unix.txt",
-        #     conan_profile: ""
+        #     conan_profile: "",
+        #     conan_file: "conan_file.txt"
         #   }
 
         - {
@@ -63,7 +63,7 @@ jobs:
             gen_tests_script: "./gen_tests_msvc2019.sh",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat", ### vcvars32.bat
             conan_profile: "conan_profile_win.txt",
-            conan_file: "conan_file_win.txt"
+            conan_file: "conan_file.txt"
           }
 
         # - {
@@ -73,7 +73,7 @@ jobs:
         #     cxx: "g++",
         #     gen_script: "./gen_eclipse.sh",
         #     conan_profile: "",
-        #     conan_file: "conan_file_unix.txt"
+        #     conan_file: "conan_file.txt"
         #   }
         # - {
         #     name: "MacOS-10.15 (Clang)",
@@ -83,7 +83,7 @@ jobs:
         #     gen_script: "./gen_eclipse.sh"
         #     gen_tests_script: "./gen_tests_eclipse.sh",
         #     conan_profile: "",
-        #     conan_file: ""
+        #     conan_file: "conan_file.txt"
         #   }
 
     steps:
@@ -163,10 +163,10 @@ jobs:
         shell: bash
 
       #-- Libs (libx11-xcb-dev)
-      # - name: Libs (libx11-xcb-dev) - Install
-      #   if: matrix.config.cxx != 'cl'
-      #   run: sudo apt-get install -y --no-install-recommends libx11-xcb-dev
-      #   shell: bash
+      - name: Libs (libx11-xcb-dev) - Install
+        if: matrix.config.cxx != 'cl'
+        run: sudo apt-get install -y --no-install-recommends libx11-xcb-dev
+        shell: bash
 
       # xLib (Generate)
       - name: xLib - Generate
