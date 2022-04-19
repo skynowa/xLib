@@ -114,6 +114,7 @@ jobs:
           # pip install conan
           pip install --user conan
           pip install conan --upgrade
+          source ~/.profile
         shell: bash
 
       - name: Conan - Setup
