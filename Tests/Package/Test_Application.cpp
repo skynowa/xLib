@@ -29,10 +29,18 @@ private:
 int_t
 Failer::bug_DivideByZero()
 {
+#if xCOMPILER_MS
+    #pragma warning(disable: 4723) // potential divide by 0
+#endif
+
 	int a = 1;
 	int b = 0;
 
 	return a / b;
+
+#if xCOMPILER_MS
+	#pragma warning(default: 4723)
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 int_t
