@@ -30,7 +30,8 @@ int_t
 Failer::bug_DivideByZero()
 {
 //#if xCOMPILER_MS
-    #pragma warning(disable: C4723) // potential divide by 0
+	#pragma warning(push)
+	#pragma warning(disable: 4723) // C4723: potential divide by 0
 //#endif
 
 	int a = 1;
@@ -39,7 +40,7 @@ Failer::bug_DivideByZero()
 	return a / b;
 
 //#if xCOMPILER_MS
-	#pragma warning(default: C4723)
+	#pragma warning(pop)
 //#endif
 }
 //-------------------------------------------------------------------------------------------------
