@@ -29,8 +29,8 @@ private:
 int_t
 Failer::bug_DivideByZero()
 {
-	int a = 1;
-	int b = 0;
+	cint_t a = 1;
+	cint_t b = 0;
 
 #if xCOMPILER_MS
 	xxxxx
