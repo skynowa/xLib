@@ -126,9 +126,8 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     # endif()
 
     # [Debug]
-    # message(STATUS "\n::::: Unit test :::::")
-
     if (0)
+        message(STATUS "\n::::: Unit test :::::")
         message(STATUS "")
         message(STATUS "::::: Project :::::")
         message(STATUS "IT_SOURCE: ${IT_SOURCE}")
@@ -164,22 +163,13 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     target_link_libraries(${TEST_NAME} PUBLIC
         ${CONAN_LIBS}
-        ${LIBXML2_LIBRARIES}
+        ${LIBXML2_LIBRARIES}    # LibXml2::LibXml2
         ${CURL_LIBRARIES}
         ${XLIB_LIBRARIES}
 
         ${cmXLIB_SYS_LIBRARIES}
-        ${cmXLIB_EXTRA_LIBRARIES} ###
-        ${cmXLIB_LIBRARIES} # "C:/Program Files/xLib/lib/xLib.lib" # xLib
-
-            #++ "C:\\Program Files\\xLib\\lib\\libxml2_a.lib"
-            #-- libxml2 (libxml2.lib)
-            #++ LibXml2::LibXml2
-            #-- xml2_a
-            #-- xml2_a.lib
-            #-- libxml2_a (libxml2_a.lib)
-            #-- libxml2_a.lib
-
+        ${cmXLIB_EXTRA_LIBRARIES}
+        ${cmXLIB_LIBRARIES}
     )
 
     add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
