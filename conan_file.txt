@@ -18,7 +18,7 @@ cmake_paths
 # Possible values are
 # ['False', 'darwinssl', 'openssl', 'schannel', 'wolfssl']
 
-libcurl:with_ssl=openssl
-libcurl:with_crypto_auth=True
+# libcurl:with_ssl=openssl
+# libcurl:with_crypto_auth=True
 
 [imports]
