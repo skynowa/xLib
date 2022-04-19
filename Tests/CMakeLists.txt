@@ -197,7 +197,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
             #-- libxml2_a (libxml2_a.lib)
             #-- libxml2_a.lib
 
-        # ${XLIB_LIBRARIES}
+        ${XLIB_LIBRARIES}
     )
 
     add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
