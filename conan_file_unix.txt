@@ -1,4 +1,0 @@
-include(conan_file.txt)
-
-[requires]
-libx11-xcb-dev
