@@ -94,7 +94,7 @@ Type::name(
 //-------------------------------------------------------------------------------------------------
 template<typename T1, class T2>
 /* static */
-bool_t
+constexpr bool_t
 Type::isEqual(
     const T1 /* a_obj1T */,
     const T2 /* a_obj2T */
