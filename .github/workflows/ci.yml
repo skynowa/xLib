@@ -91,8 +91,8 @@ jobs:
     steps:
       ##############################################################################################
       # Cancel
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.5.0
+      - name: Previous Runs - Cancel
+        uses: styfle/cancel-workflow-action@0.9.1
         with:
           access_token: ${{github.token}}
 
