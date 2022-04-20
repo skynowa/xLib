@@ -4,6 +4,7 @@
 
 [+] xLib_static -> xLib
 [ ] LibEvent - rm
+[ ] FreeBSD - job
 [+] Split tests
 [ ] Full build/run tests
 [ ] Crossplatform
