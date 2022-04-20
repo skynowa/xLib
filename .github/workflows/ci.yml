@@ -161,8 +161,8 @@ jobs:
         run: >-
             conan install
             "${{github.workspace}}/xLib/${{ matrix.config.conan_file }}"
-            --install-folder "${{github.workspace}}/xLib/xLib_conan"
-            --output-folder  "${{github.workspace}}/xLib/xLib_conan"
+            --install-folder "${{github.workspace}}/xLib_conan"
+            --output-folder  "${{github.workspace}}/xLib_conan"
             --profile "${{github.workspace}}/xLib/${{ matrix.config.conan_profile }}"
             --build=missing
         shell: bash
