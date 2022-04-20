@@ -6,20 +6,6 @@
 
 #include <xLib/xLib.h>
 
-#if 0
-
-int main(int a_argsNum, char *a_args[])
-{
-	LIBXML_TEST_VERSION
-
-	auto doc = ::xmlParseFile("");
-	xUNUSED(doc);
-
-	std::cout << __FUNCTION__ << std::endl;
-
-	return EXIT_SUCCESS;
-}
-#else
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Xml)
 //-------------------------------------------------------------------------------------------------
@@ -193,4 +179,3 @@ Test_Xml::unit()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-#endif
