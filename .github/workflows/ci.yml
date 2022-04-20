@@ -106,9 +106,8 @@ jobs:
           echo github.event_name:   ${{ github.event_name }}
 
           # echo "ENVs: $(printenv)"
-          echo "GITHUB_ENV: `cat $GITHUB_ENV`"
+          echo "GITHUB_ENV: ${GITHUB_ENV}"
           echo "OS: $(uname -s)"
-          echo "CMake version: $(cmake --version)"
           echo ""
           echo "CC=${{ matrix.config.cc }}"   >> $GITHUB_ENV
           echo "CXX=${{ matrix.config.cxx }}" >> $GITHUB_ENV
