@@ -149,9 +149,6 @@ set(XLIB_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR})
 #--------------------------------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------------------------------
-# TOOD: flags
-include(CxxFlags)
-
 if (OPTION_UNICODE)
     set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} -DUNICODE=1 -D_UNICODE=1)
 endif()
