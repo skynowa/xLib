@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 #
+# Dev: skynowa-pc
+#
 
 
 # vars
@@ -10,5 +12,5 @@ conan install \
 	conan_file.txt \
 	--install-folder "${DIR_INSTALL}" \
 	--output-folder  "${DIR_BUILD}" \
-	--profile conan_profile_skynowa-pc_gcc.txt \
+	--profile conan_profile_dev.txt \
 	--build=missing
