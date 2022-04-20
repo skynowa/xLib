@@ -159,7 +159,10 @@ jobs:
       # Libs (Extra)
       - name: Libs (Extra) - Install
         run: >-
-            conan install "${{github.workspace}}/xLib/${{ matrix.config.conan_file }}"
+            conan install
+            "${{github.workspace}}/xLib/${{ matrix.config.conan_file }}"
+            --install-folder "${{github.workspace}}/xLib/xLib_conan"
+            --output-folder  "${{github.workspace}}/xLib/xLib_conan"
             --profile "${{github.workspace}}/xLib/${{ matrix.config.conan_profile }}"
             --build=missing
         shell: bash
