@@ -4,5 +4,5 @@ include(conan_profile.txt)
 os=Windows
 os_build=Windows
 compiler=clang
-compiler.version=11
+compiler.version=13
 compiler.libcxx=libstdc++11
