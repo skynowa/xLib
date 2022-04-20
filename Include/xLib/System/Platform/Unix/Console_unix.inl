@@ -181,8 +181,8 @@ Console::_setAttributes_impl(
 		attrs = String::join(values, xT(';'));
     }
 
-	sRv += _escapeValue( Format::str(xT("\e[{};{}m"), attrs, static_cast<int>(foregroundColor)) ); // TODO: [skynowa] StdStreamV2
-	sRv += _escapeValue( Format::str(xT("\e[{}m"), static_cast<int>(backgroundColor)) );           // TODO: [skynowa] StdStreamV2
+	sRv += _escapeValue( Format::str(xT("\033[{};{}m"), attrs, static_cast<int>(foregroundColor)) ); // TODO: [skynowa] StdStreamV2
+	sRv += _escapeValue( Format::str(xT("\033[{}m"), static_cast<int>(backgroundColor)) );           // TODO: [skynowa] StdStreamV2
 
 	return sRv;
 }
@@ -190,7 +190,7 @@ Console::_setAttributes_impl(
 std::tstring_t
 Console::_clearAttributes_impl() const
 {
-	return _escapeValue(xT("\e[0;0m"));
+	return _escapeValue(xT("\033[0;0m"));
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -226,7 +226,7 @@ Console::_clear_impl() const
  * set-title()
  * {
  *     ORIG=$PS1
- * 	   TITLE="\e]2;$@\a"
+ * 	   TITLE="\033]2;$@\a"
  * 	   PS1=${ORIG}${TITLE}
  * }
  *
@@ -243,7 +243,7 @@ Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
 {
-    write( _escapeValue(Format::str(xT("\e]0;{}\a"), a_title)) );
+    write( _escapeValue(Format::str(xT("\033]0;{}\a"), a_title)) );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
