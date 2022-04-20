@@ -5,7 +5,8 @@
 
 
 # vars
-DIR_BUILD="/home/skynowa/Projects/xLib_conan"
+PROJECT_NAME="xLib"
+DIR_BUILD="../${PROJECT_NAME}_conan"
 
 conan install \
 	conan_file.txt \
