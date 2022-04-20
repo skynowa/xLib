@@ -130,8 +130,8 @@ jobs:
           conan --version
 
           # conan profile new default --detect --force
+          # conan profile show default
           conan profile list
-          conan profile show default
         shell: bash
 
       ##############################################################################################
