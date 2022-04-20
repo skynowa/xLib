@@ -5,4 +5,4 @@ os=Windows
 os_build=Windows
 compiler=gcc
 compiler.version=8.1
-compiler.libcxx=libstdc++11 default
+compiler.libcxx=libstdc++11
