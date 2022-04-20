@@ -235,8 +235,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 
 #--------------------------------------------------------------------------------------------------
 # Lib
-install(TARGETS ${PROJECT_NAME}   DESTINATION "lib")
-##-- install(FILES   ${XLIB_LIBRARIES} DESTINATION "lib")  # TODO: xxx
+install(TARGETS ${PROJECT_NAME} DESTINATION "lib")
 
 # Sources
 install(
