@@ -62,7 +62,7 @@ Test_FileType::unit()
         FileType type(filePath);
 
         const auto attr  = FileType::Type::Hidden;
-        const auto value = FileType::Type::ReadOnly;
+        const auto value_ = FileType::Type::ReadOnly;
 
         type.clear();
         type.add(attr);
@@ -70,15 +70,15 @@ Test_FileType::unit()
         m_bRv = type.isExists(attr);
         xTEST(m_bRv);
 
-        type.add(value);
+        type.add(value_);
 
-        m_bRv = type.isExists(value);
+        m_bRv = type.isExists(value_);
         xTEST(m_bRv);
 
         // remove
-        type.remove(value);
+        type.remove(value_);
 
-        m_bRv = type.isExists(value);
+        m_bRv = type.isExists(value_);
         xTEST(m_bRv);
 
         m_bRv = type.isExists(attr);

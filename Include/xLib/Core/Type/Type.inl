@@ -100,6 +100,9 @@ Type::isEqual(
     const T2 &a_obj2T
 )
 {
+	xUNUSED(a_obj1T)
+	xUNUSED(a_obj2T)
+
 	return std::is_same<T1, T2>::value;
 }
 //-------------------------------------------------------------------------------------------------

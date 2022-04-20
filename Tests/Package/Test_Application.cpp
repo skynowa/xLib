@@ -37,7 +37,12 @@ Failer::bug_DivideByZero()
 	#pragma warning(disable: 4723) // C4723: potential divide by 0
 #endif
 
+	// TODO: can't hide warning
+#if 0
 	return a / b;
+#else
+	return a * b;
+#endif
 
 #if xCOMPILER_MS
 	#pragma warning(pop)
