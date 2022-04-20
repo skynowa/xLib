@@ -481,75 +481,75 @@ Ssh2Client::_convertStdToHtml(
     std::map_tstring_t colorsCodes;
 
     // Attributes set
-    colorsCodes[xT("\e[1m")]    = xT(""); // Bold/Bright
-    colorsCodes[xT("\e[2m")]    = xT(""); // Dim
-    colorsCodes[xT("\e[4m")]    = xT(""); // Underlined
-    colorsCodes[xT("\e[5m")]    = xT(""); // Blink
-    colorsCodes[xT("\e[7m")]    = xT(""); // Reverse (invert the foreground and background colors)
-    colorsCodes[xT("\e[8m")]    = xT(""); // Hidden (usefull for passwords)
+    colorsCodes[xT("\033[1m")]    = xT(""); // Bold/Bright
+    colorsCodes[xT("\033[2m")]    = xT(""); // Dim
+    colorsCodes[xT("\033[4m")]    = xT(""); // Underlined
+    colorsCodes[xT("\033[5m")]    = xT(""); // Blink
+    colorsCodes[xT("\033[7m")]    = xT(""); // Reverse (invert the foreground and background colors)
+    colorsCodes[xT("\033[8m")]    = xT(""); // Hidden (usefull for passwords)
 
     // Attributes Reset
-    colorsCodes[xT("\e[0m")]    = xT(""); // Reset all attributes
-    colorsCodes[xT("\e[21m")]   = xT(""); // Reset bold/bright
-    colorsCodes[xT("\e[22m")]   = xT(""); // Reset dim
-    colorsCodes[xT("\e[24m")]   = xT(""); // Reset underlined
-    colorsCodes[xT("\e[25m")]   = xT(""); // Reset blink
-    colorsCodes[xT("\e[27m")]   = xT(""); // Reset reverse
-    colorsCodes[xT("\e[28m")]   = xT(""); // Reset hidden
+    colorsCodes[xT("\033[0m")]    = xT(""); // Reset all attributes
+    colorsCodes[xT("\033[21m")]   = xT(""); // Reset bold/bright
+    colorsCodes[xT("\033[22m")]   = xT(""); // Reset dim
+    colorsCodes[xT("\033[24m")]   = xT(""); // Reset underlined
+    colorsCodes[xT("\033[25m")]   = xT(""); // Reset blink
+    colorsCodes[xT("\033[27m")]   = xT(""); // Reset reverse
+    colorsCodes[xT("\033[28m")]   = xT(""); // Reset hidden
 
     // Regular
-    colorsCodes[xT("\e[0;30m")] = xT("Black");
-    colorsCodes[xT("\e[0;31m")] = xT("Red");
-    colorsCodes[xT("\e[0;32m")] = xT("Green");
-    colorsCodes[xT("\e[0;33m")] = xT("Yellow");
-    colorsCodes[xT("\e[0;34m")] = xT("Blue");
-    colorsCodes[xT("\e[0;35m")] = xT("Purple");
-    colorsCodes[xT("\e[0;36m")] = xT("Cyan");
-    colorsCodes[xT("\e[0;37m")] = xT("White");
+    colorsCodes[xT("\033[0;30m")] = xT("Black");
+    colorsCodes[xT("\033[0;31m")] = xT("Red");
+    colorsCodes[xT("\033[0;32m")] = xT("Green");
+    colorsCodes[xT("\033[0;33m")] = xT("Yellow");
+    colorsCodes[xT("\033[0;34m")] = xT("Blue");
+    colorsCodes[xT("\033[0;35m")] = xT("Purple");
+    colorsCodes[xT("\033[0;36m")] = xT("Cyan");
+    colorsCodes[xT("\033[0;37m")] = xT("White");
 
-    colorsCodes[xT("\e[0;1;30m")] = xT("Black");
-    colorsCodes[xT("\e[0;1;31m")] = xT("Red");
-    colorsCodes[xT("\e[0;1;32m")] = xT("Green");
-    colorsCodes[xT("\e[0;1;33m")] = xT("Yellow");
-    colorsCodes[xT("\e[0;1;34m")] = xT("Blue");
-    colorsCodes[xT("\e[0;1;35m")] = xT("Purple");
-    colorsCodes[xT("\e[0;1;36m")] = xT("Cyan");
-    colorsCodes[xT("\e[0;1;37m")] = xT("White");
+    colorsCodes[xT("\033[0;1;30m")] = xT("Black");
+    colorsCodes[xT("\033[0;1;31m")] = xT("Red");
+    colorsCodes[xT("\033[0;1;32m")] = xT("Green");
+    colorsCodes[xT("\033[0;1;33m")] = xT("Yellow");
+    colorsCodes[xT("\033[0;1;34m")] = xT("Blue");
+    colorsCodes[xT("\033[0;1;35m")] = xT("Purple");
+    colorsCodes[xT("\033[0;1;36m")] = xT("Cyan");
+    colorsCodes[xT("\033[0;1;37m")] = xT("White");
 
     // Bold
-    colorsCodes[xT("\e[1;30m")] = xT("Black");
-    colorsCodes[xT("\e[1;31m")] = xT("Red");
-    colorsCodes[xT("\e[1;32m")] = xT("Green");
-    colorsCodes[xT("\e[1;33m")] = xT("Yellow");
-    colorsCodes[xT("\e[1;34m")] = xT("Blue");
-    colorsCodes[xT("\e[1;35m")] = xT("Purple");
-    colorsCodes[xT("\e[1;36m")] = xT("Cyan");
-    colorsCodes[xT("\e[1;37m")] = xT("White");
+    colorsCodes[xT("\033[1;30m")] = xT("Black");
+    colorsCodes[xT("\033[1;31m")] = xT("Red");
+    colorsCodes[xT("\033[1;32m")] = xT("Green");
+    colorsCodes[xT("\033[1;33m")] = xT("Yellow");
+    colorsCodes[xT("\033[1;34m")] = xT("Blue");
+    colorsCodes[xT("\033[1;35m")] = xT("Purple");
+    colorsCodes[xT("\033[1;36m")] = xT("Cyan");
+    colorsCodes[xT("\033[1;37m")] = xT("White");
 
     // Underline
-    colorsCodes[xT("\e[4;30m")] = xT("Black");
-    colorsCodes[xT("\e[4;31m")] = xT("Red");
-    colorsCodes[xT("\e[4;32m")] = xT("Green");
-    colorsCodes[xT("\e[4;33m")] = xT("Yellow");
-    colorsCodes[xT("\e[4;34m")] = xT("Blue");
-    colorsCodes[xT("\e[4;35m")] = xT("Purple");
-    colorsCodes[xT("\e[4;36m")] = xT("Cyan");
-    colorsCodes[xT("\e[4;37m")] = xT("White");
+    colorsCodes[xT("\033[4;30m")] = xT("Black");
+    colorsCodes[xT("\033[4;31m")] = xT("Red");
+    colorsCodes[xT("\033[4;32m")] = xT("Green");
+    colorsCodes[xT("\033[4;33m")] = xT("Yellow");
+    colorsCodes[xT("\033[4;34m")] = xT("Blue");
+    colorsCodes[xT("\033[4;35m")] = xT("Purple");
+    colorsCodes[xT("\033[4;36m")] = xT("Cyan");
+    colorsCodes[xT("\033[4;37m")] = xT("White");
 
     // Background
-    colorsCodes[xT("\e[40m")]   = xT("Black");
-    colorsCodes[xT("\e[41m")]   = xT("Red");
-    colorsCodes[xT("\e[42m")]   = xT("Green");
-    colorsCodes[xT("\e[43m")]   = xT("Yellow");
-    colorsCodes[xT("\e[44m")]   = xT("Blue");
-    colorsCodes[xT("\e[45m")]   = xT("Purple");
-    colorsCodes[xT("\e[46m")]   = xT("Cyan");
-    colorsCodes[xT("\e[47m")]   = xT("White");
+    colorsCodes[xT("\033[40m")]   = xT("Black");
+    colorsCodes[xT("\033[41m")]   = xT("Red");
+    colorsCodes[xT("\033[42m")]   = xT("Green");
+    colorsCodes[xT("\033[43m")]   = xT("Yellow");
+    colorsCodes[xT("\033[44m")]   = xT("Blue");
+    colorsCodes[xT("\033[45m")]   = xT("Purple");
+    colorsCodes[xT("\033[46m")]   = xT("Cyan");
+    colorsCodes[xT("\033[47m")]   = xT("White");
 
     for (const auto &[code, name] : colorsCodes) {
         std::tstring_t htmlTag;
         {
-            if (code == xT("\e[0m")) {
+            if (code == xT("\033[0m")) {
                 htmlTag = xT("</font>");
             } else {
                 htmlTag = xT("<font color=\"") + name + xT("\">");
