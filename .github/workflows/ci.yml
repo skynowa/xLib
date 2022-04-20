@@ -99,6 +99,9 @@ jobs:
       # GITHUB_ENV
       - name: GITHUB_ENV
         run: |
+          echo github.event.action: ${{ github.event.action }}
+          echo github.event_name:   ${{ github.event_name }}
+
           # echo "ENVs: $(printenv)"
           echo "GITHUB_ENV: `cat $GITHUB_ENV`"
           echo "OS: $(uname -s)"
@@ -152,8 +155,8 @@ jobs:
       - name: Libs (Extra) - Install
         run: >-
             conan install "${{github.workspace}}/xLib/${{ matrix.config.conan_file }}"
-              --profile "${{github.workspace}}/xLib/${{ matrix.config.conan_profile }}"
-              --build=missing
+            --profile "${{github.workspace}}/xLib/${{ matrix.config.conan_profile }}"
+            --build=missing
         shell: bash
 
       # TODO: Libs (libx11-xcb-dev)
