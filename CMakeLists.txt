@@ -42,7 +42,7 @@ list(APPEND CMAKE_MODULE_PATH "${XLIB_LOCATION}/CMake")
 include(CMake/Config.cmake)
 
 # CONAN_PATHS
-set(CONAN_PATHS "${XLIB_LOCATION}/../conan_paths.cmake")
+set(CONAN_PATHS "${XLIB_LOCATION}/../xLib_conan/conan_paths.cmake")
 
 if (EXISTS ${CONAN_PATHS})
     include(${CONAN_PATHS})
@@ -53,7 +53,7 @@ endif()
 message(STATUS "CONAN_PATHS: ${CONAN_PATHS}")
 
 # CONAN_LIBS
-include(${XLIB_LOCATION}/../conanbuildinfo.cmake)
+include(${XLIB_LOCATION}/../xLib_conan/conanbuildinfo.cmake)
 conan_basic_setup()
 message(STATUS "CONAN_LIBS: ${CONAN_LIBS}")
 #--------------------------------------------------------------------------------------------------
