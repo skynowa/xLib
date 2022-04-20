@@ -165,6 +165,7 @@ jobs:
             --output-folder  "${{github.workspace}}/xLib_conan"
             --profile "${{github.workspace}}/xLib/${{ matrix.config.conan_profile }}"
             --build=missing
+            --update
         shell: bash
 
       # TODO: Libs (libx11-xcb-dev)
