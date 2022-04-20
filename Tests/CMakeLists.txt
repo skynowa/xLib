@@ -11,7 +11,7 @@ project(xLib_tests DESCRIPTION "xLib library tests")
 #--------------------------------------------------------------------------------------------------
 message(STATUS "\n::::: Config :::::")
 
-include(../Config.cmake)
+include(../CMake/Config.cmake)
 
 set(cmOPTION_PROJECT_LIB_TYPE "")
 #--------------------------------------------------------------------------------------------------
