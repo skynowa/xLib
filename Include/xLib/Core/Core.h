@@ -52,7 +52,7 @@ namespace crypt {}
 namespace db {}
 namespace debug {}
 namespace fs {}
-namespace algos {};
+namespace algos {}
 namespace ui {}
 namespace log {}
 namespace net {}
