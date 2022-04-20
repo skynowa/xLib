@@ -106,8 +106,8 @@ jobs:
           echo "GITHUB_ENV: ${GITHUB_ENV}"
           echo "OS: $(uname -s)"
           echo ""
-          echo "CC=${{ matrix.config.cc }}"   >> $GITHUB_ENV
-          echo "CXX=${{ matrix.config.cxx }}" >> $GITHUB_ENV
+          # echo "CC=${{ matrix.config.cc }}"   >> $GITHUB_ENV
+          # echo "CXX=${{ matrix.config.cxx }}" >> $GITHUB_ENV
         shell: bash
 
       # Conan - Install
@@ -123,7 +123,6 @@ jobs:
           CXX="${{ matrix.config.cxx }}"
 
           conan --version
-
           # conan profile new default --detect --force
           # conan profile show default
           conan profile list
