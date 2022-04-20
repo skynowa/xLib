@@ -43,9 +43,9 @@
 
 #cmakedefine cmXLIB_COMPILER_FLAGS xT("@cmXLIB_COMPILER_FLAGS@")
     ///< Compiler flags
-#cmakedefine cmXLIB_LIBRARIES      xT("@cmXLIB_LIBRARIES@")
+#cmakedefine cmXLIB_LIBRARIES xT("@cmXLIB_LIBRARIES@")
     ///< xLib linked libraries
-#cmakedefine cmCMAKE_VERSION       xT("@cmCMAKE_VERSION@")
+#cmakedefine cmCMAKE_VERSION xT("@cmCMAKE_VERSION@")
     ///< CMake version
 
 ///@name detecting features
