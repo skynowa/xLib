@@ -113,7 +113,7 @@ jobs:
       # Conan - Install
       - name: Conan - Install
         run: |
-          pip install conan
+          pip install conan --upgrade
         shell: bash
 
       # Conan - Setup
