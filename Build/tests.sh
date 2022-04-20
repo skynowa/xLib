@@ -3,6 +3,9 @@
 
 # set -ex
 
+# Params
+UNIT_TEST_NAME=$*
+
 # vars
 PROJECT_NAME="xLib_tests"
 DIR_PROJECT="../xLib/Tests"
@@ -18,6 +21,16 @@ cd ${DIR_BUILD}
 # build
 UNAME=$(uname)
 
+# Single test
+if [[ "$UNIT_TEST_NAME" != "" ]]; then
+	cmake --build . --target "Test_${UNIT_TEST_NAME}"
+
+	ctest -R "^Test_${UNIT_TEST_NAME}$"
+
+	exit 0
+fi
+
+# All tests
 if   [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]] ; then
 	echo "OS: Windows"
 	cmake --build . --target ALL_BUILD --config Release --parallel ${JOBS_NUM}
