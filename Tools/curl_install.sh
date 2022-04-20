@@ -1,8 +1,9 @@
 
 #!/bin/bash
 #
-# Install AMP C++
+# CURL - install
 #
+
 
 set -ex
 
