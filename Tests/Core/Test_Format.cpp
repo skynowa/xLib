@@ -141,11 +141,11 @@ Test_Format::unit()
 
         // various string size
         for (size_t i = 1; i < 1024 * 2; ++ i) {
-            std::ctstring_t _data(i, xT('s'));
+            std::ctstring_t data_(i, xT('s'));
 
-            m_sRv = FormatC::str(xT("%s"), _data.c_str());
-            xTEST_EQ(m_sRv.size(), _data.size());
-            xTEST_EQ(m_sRv,        _data);
+            m_sRv = FormatC::str(xT("%s"), data_.c_str());
+            xTEST_EQ(m_sRv.size(), data_.size());
+            xTEST_EQ(m_sRv,        data_);
         }
     }
 
@@ -655,9 +655,11 @@ Test_Format::unit()
 
     xTEST_CASE("enum")
     {
-        EnumTest value0 = EnumTest::etUnknown;
-        EnumTest value1 = EnumTest::etOne;
-        EnumTest value2 = EnumTest::etTwo;
+	#if 0
+		EnumTest value0 = EnumTest::etUnknown;
+		EnumTest value1 = EnumTest::etOne;
+		EnumTest value2 = EnumTest::etTwo;
+	#endif
 
         m_sRv = Format::str(xT("{}, {}, {}"), EnumTest::etUnknown, EnumTest::etOne, EnumTest::etTwo);
         xTEST_EQ(m_sRv, std::tstring_t(xT("etUnknown, etOne, etTwo")));
