@@ -119,8 +119,8 @@ jobs:
       # Conan - Setup
       - name: Conan - Setup
         run: |
-          CC="${{ matrix.config.cc }}"
-          CXX="${{ matrix.config.cxx }}"
+          # CC="${{ matrix.config.cc }}"
+          # CXX="${{ matrix.config.cxx }}"
 
           conan --version
           # conan profile new default --detect --force
