@@ -96,6 +96,9 @@ jobs:
         with:
           access_token: ${{github.token}}
 
+      ##############################################################################################
+      # Env
+
       # GITHUB_ENV
       - name: GITHUB_ENV
         run: |
@@ -111,12 +114,14 @@ jobs:
           echo "CXX=${{ matrix.config.cxx }}" >> $GITHUB_ENV
         shell: bash
 
-      - name: Conan install
+      # Conan - Install
+      - name: Conan - Install
         run: |
           pip install conan
           pip install conan --upgrade
         shell: bash
 
+      # Conan - Setup
       - name: Conan - Setup
         run: |
           CC="${{ matrix.config.cc }}"
@@ -131,6 +136,8 @@ jobs:
 
       ##############################################################################################
       # CMakeLib
+
+      # Checkout
       - name: CMakeLib - Checkout
         uses: actions/checkout@v3
         with:
@@ -138,12 +145,14 @@ jobs:
           path:        ${{github.workspace}}/CMakeLib
           fetch-depth: 1
 
+      # Install
       - name: CMakeLib - Install
         run: cd "${{github.workspace}}/CMakeLib" && ./install.sh
         shell: bash
 
       ##############################################################################################
       # xLib
+
       # Checkout
       - name: xLib - Checkout
         uses: actions/checkout@v3
@@ -166,27 +175,27 @@ jobs:
         run: sudo apt-get install -y --no-install-recommends libx11-xcb-dev
         shell: bash
 
-      # xLib (Generate)
+      # Generate
       - name: xLib - Generate
         run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.gen_script }}
         shell: bash
 
-      # xLib (Build)
+      # Build
       - name: xLib - Build
         run: cd "${{github.workspace}}/xLib/Build" && ./build.sh
         shell: bash
 
-      # xLib (Deploy)
+      # Deploy
       - name: xLib - Deploy
         run: cd "${{github.workspace}}/xLib/Build" && ./deploy.sh
         shell: bash
 
-      # xLib - Tests (Generate)
+      # Tests (Generate)
       - name: xLib - Tests (Generate)
         run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.gen_tests_script }}
         shell: bash
 
-      # xLib - Tests
+      # Tests
       - name: xLib - Tests
         run: cd "${{github.workspace}}/xLib/Build" && ./tests.sh
         shell: bash
