@@ -96,11 +96,11 @@ template<typename T1, class T2>
 /* static */
 bool_t
 Type::isEqual(
-    const T1 & /* a_obj1T */,
-    const T2 & /* a_obj2T */
+    const T1 /* a_obj1T */,
+    const T2 /* a_obj2T */
 )
 {
-	return std::is_same<T1, T2>::value;
+	return std::is_same_v<T1, T2>;
 }
 //-------------------------------------------------------------------------------------------------
 
