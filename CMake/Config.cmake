@@ -41,7 +41,8 @@ set(cmOPTION_DEBUG_MODE_STDOUT_LOG 0)
 set(cmOPTION_DEBUG_MODE_EXCEPTION  0)
 set(cmOPTION_DEBUG_MODE_NO         0)
 set(cmOPTION_BUILD_MSG             0)
-set(cmXLIB_DATA_DIR                "/home/runner/work/xLib/xLib/xLib/Data")   # Github CI
+# set(cmXLIB_DATA_DIR                "/home/runner/work/xLib/xLib/xLib/Data")   # Github CI
+get_filename_component(cmXLIB_DATA_DIR "./Data" ABSOLUTE)
 #--------------------------------------------------------------------------------------------------
 # Trace
 message("-------------------------------------------------")
