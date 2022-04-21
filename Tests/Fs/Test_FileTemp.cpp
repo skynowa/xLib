@@ -19,7 +19,7 @@ Test_FileTemp::unit()
 
     	FileIO fileWorker(filePath);
 
-        FileTemp fileTemp(filePath, getData().tempDirPath, true);
+        FileTemp fileTemp(filePath, data().tempDirPath, true);
         fileTemp.create(&fileWorker);
         xTEST(FileInfo(fileWorker).isEmpty());
 

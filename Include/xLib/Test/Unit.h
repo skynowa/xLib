@@ -70,7 +70,7 @@ public:
 	xNO_DEFAULT_CONSTRUCT(Unit)
 	xNO_COPY_ASSIGN(Unit)
 
-	UnitData &data();
+	const UnitData &data() const;
 ///\}
 
 	bool_t         isGithubCI() const;

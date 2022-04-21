@@ -15,7 +15,7 @@ Test_Profiler::unit()
 {
     xTEST_CASE("setLogPath")
     {
-        std::ctstring_t filePath = getData().tempDirPath + Const::slash() + xT("ProfilerLog.log");
+        std::ctstring_t filePath = data().tempDirPath + Const::slash() + xT("ProfilerLog.log");
 
 		{
 			FileIO file(filePath);
