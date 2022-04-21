@@ -56,9 +56,7 @@
 #include <xLib/Crypt/Random.h>
 
 // Db
-#if cmMYSQL_FOUND
-    #include <xLib/Db/MySql/Common.h>
-#endif
+#include <xLib/Db/MySql/Common.h>
 
 // Debug
 #include <xLib/Debug/Debug.h>
