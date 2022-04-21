@@ -29,7 +29,10 @@ namespace xl::test
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Unit::Unit()
+Unit::Unit(
+	const UnitData &a_data
+) :
+	_data{a_data}
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -41,19 +44,7 @@ Unit::~Unit() /* = 0 */
 UnitData &
 Unit::getData()
 {
-	return _data;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Unit::setData(
-    cUnitData &a_data
-)
-{
-    _data.name        = a_data.name;
-    _data.unitLoops   = a_data.unitLoops;
-    _data.caseLoops   = a_data.caseLoops;
-    _data.testDirPath = a_data.testDirPath;
-    _data.tempDirPath = a_data.tempDirPath;
+   return _data;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -89,6 +80,7 @@ Unit::run()
 
     cbool_t isRandomPostfix {true};
     cbool_t isAutoDelete    {true};
+
     DirTemp dirTemp(tempDirPath, isRandomPostfix, isAutoDelete);
     dirTemp.create();
 

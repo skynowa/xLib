@@ -234,9 +234,14 @@
 		public Unit \
 	{ \
 	public: \
-			   unitClassName() = default; \
-			  ~unitClassName() = default; \
-		bool_t unit() override; \
+		unitClassName(const UnitData &a_data) : \
+			Unit(a_data) \
+		{ \
+		} \
+		\
+	   ~unitClassName() = default; \
+		\
+		bool_t unit() final; \
 	}; \
 	\
     int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[]) \
@@ -253,8 +258,7 @@
         unitData.testDirPath = cmXLIB_DATA_DIR; \
         unitData.tempDirPath = {}; \
         \
-        unitClassName unit; \
-        unit.setData(unitData); \
+        unitClassName unit(unitData); \
         \
         try {  \
             bRv = unit.run(); \
