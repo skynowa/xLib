@@ -48,7 +48,9 @@
 ///\}
 //-------------------------------------------------------------------------------------------------
 /**
- * xNO_VTABLE - disable class virtual table (only: Windows)
+ * xNO_VTABLE - disable class virtual table (only: MS compiler)
+ *
+ * Applied ONLY to pure interface classes. Classes that will never be instantiated on their own
  *
  * https://habr.com/ru/post/442340/
  */
