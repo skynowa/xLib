@@ -13,7 +13,7 @@ namespace xl::interface_
 {
 
 template <typename ErrorT>
-class xNO_VTABLE ILastError
+class ILastError
     /// last error
 {
 public:

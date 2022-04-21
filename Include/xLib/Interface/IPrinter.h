@@ -13,7 +13,7 @@ namespace xl::interface_
 {
 
 template <typename StreamT>
-class xNO_VTABLE IPrinter
+class IPrinter
     /// Printable
 {
 public:

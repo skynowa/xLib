@@ -11,7 +11,7 @@
 namespace xl::crypt
 {
 
-class xNO_VTABLE ISeedPolicy
+class ISeedPolicy
     /// seed policy
 {
 public:

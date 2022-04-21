@@ -13,7 +13,7 @@ namespace xl::interface_
 {
 
 template <typename StreamT>
-class xNO_VTABLE IOStream
+class IOStream
 	/// ostream
 {
 public:

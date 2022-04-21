@@ -11,7 +11,7 @@
 namespace xl::log
 {
 
-class xNO_VTABLE ILog
+class ILog
     /// logging
     /// TODO: https://oopscenities.net/2011/04/30/c-the-curiously-recurring-template-pattern/#more-21
 {

@@ -13,7 +13,7 @@ namespace xl::interface_
 {
 
 template<typename T>
-class xNO_VTABLE ISync
+class ISync
     /// handle
 {
 public:

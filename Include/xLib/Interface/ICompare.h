@@ -21,7 +21,7 @@ namespace xl::interface_
 {
 
 template <typename T>
-class xNO_VTABLE ICompare
+class ICompare
 	/// Comparable
 {
 public:
