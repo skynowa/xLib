@@ -28,9 +28,13 @@ public:
 bool_t
 Test_MySql::unit()
 {
+	if ( isGithubCI() ) {
+		Cout() << "GithubCI - skip";
+		return true;
+	}
+
 	using namespace mysql;
 
-#if cmMYSQL_FOUND
 	FabricaOptions options;
 	Db             db(options);
 	Connection     conn(options);
@@ -183,7 +187,6 @@ Test_MySql::unit()
 			xTEST_EQ(m_sRv, it_expect);
 		}
 	}
-#endif
 
     return true;
 }
