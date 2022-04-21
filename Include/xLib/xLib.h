@@ -139,7 +139,6 @@
 // Test
 #include <xLib/Test/Data.h>
 #include <xLib/Test/Unit.h>
-#include <xLib/Test/Manager.h>
 #include <xLib/Test/Test.h>
 
 // Package
