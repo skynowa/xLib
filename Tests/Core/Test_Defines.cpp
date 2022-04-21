@@ -125,15 +125,15 @@ Test_Defines::unit()
 
     xTEST_CASE("xNO_VTABLE")
     {
-    #if   xENV_WIN
         culong_t valueBase    {1};
         culong_t valueDerived {2};
 
-        class Base {
+        class Base
+        {
         public:
             ulong_t value {};
 
-            Base() = default;
+                     Base() = default;
             virtual ~Base() = default;
 
             virtual void_t func()
@@ -146,7 +146,7 @@ Test_Defines::unit()
             public Base
         {
         public:
-            virtual void_t func()
+            void_t func() final
             {
                 value = valueDerived;
             }
@@ -157,16 +157,14 @@ Test_Defines::unit()
         xTEST_EQ(d.value, valueDerived);
 
         (&d)->func();
+        xTEST_PTR((&d));
         xTEST_EQ(d.value, valueDerived);
 
         Derived *d2 = &d;
+        xTEST_PTR(d2);
+
         d2->func();
         xTEST_DIFF(d.value, valueBase);
-    #elif xENV_UNIX
-        xNA
-    #elif xENV_APPLE
-        xNA
-    #endif
     }
 
     xTEST_CASE("xT2U")
