@@ -13,7 +13,7 @@ namespace xl::interface_
 {
 
 template<typename T>
-class xNO_VTABLE IHandle
+class IHandle
     /// handle
 {
 public:

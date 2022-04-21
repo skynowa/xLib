@@ -12,7 +12,7 @@ namespace xl::interface_
 {
 
 template<typename T>
-class xNO_VTABLE IContainer
+class IContainer
 	/// Container
 {
 public:

@@ -13,7 +13,7 @@ namespace xl::interface_
 {
 
 //-------------------------------------------------------------------------------------------------
-class xNO_VTABLE IDataValid
+class IDataValid
     /// Data
 {
 public:
@@ -27,7 +27,7 @@ public:
         ///< check validness
 };
 //-------------------------------------------------------------------------------------------------
-class xNO_VTABLE IDataClear
+class IDataClear
     /// Data
 {
 public:
@@ -41,7 +41,7 @@ public:
         ///< clear data
 };
 //-------------------------------------------------------------------------------------------------
-class xNO_VTABLE IDataPrint
+class IDataPrint
     /// Data
     /// std::tostream_t, core::OStream
 {
@@ -59,7 +59,7 @@ protected:
         ///< print data
 };
 //-------------------------------------------------------------------------------------------------
-class xNO_VTABLE IData :
+class IData :
 	public IDataValid,
 	public IDataClear,
 	public IDataPrint

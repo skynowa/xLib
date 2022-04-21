@@ -47,21 +47,6 @@
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
-/**
- * xNO_VTABLE - disable class virtual table (only: MS compiler)
- *
- * Applied ONLY to pure interface classes. Classes that will never be instantiated on their own
- *
- * https://habr.com/ru/post/442340/
- */
-#if xCOMPILER_MS
-	#define xNO_VTABLE \
-		__declspec(novtable)
-#else
-	#define xNO_VTABLE \
-		xNOT_AVAILABLE
-#endif
-//-------------------------------------------------------------------------------------------------
 // xSTDCALL
 #if   xENV_WIN
     #define xSTDCALL \

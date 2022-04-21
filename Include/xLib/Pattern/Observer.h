@@ -13,7 +13,7 @@ namespace xl::patterns
 {
 
 template<typename T>
-class xNO_VTABLE IObserver
+class IObserver
     /// observer
 {
 public:
