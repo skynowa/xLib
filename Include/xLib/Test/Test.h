@@ -224,7 +224,7 @@
 
 #define xTEST_CASE(caseName) \
 	Trace() << xT("\tCase: ") << xT(caseName); \
-	for (size_t caseLoops = 0; caseLoops < getData().caseLoops; ++ caseLoops)
+	for (size_t caseLoops = 0; caseLoops < data().caseLoops; ++ caseLoops)
     ///< test case
 
 #define xTEST_UNIT(unitClassName) \
