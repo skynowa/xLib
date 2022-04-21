@@ -64,16 +64,15 @@ public:
 
 ///\name ctors, dtor
 ///\{
-			 Unit();
+			 Unit(const UnitData &data);
 	virtual ~Unit() = 0;
 
+	xNO_DEFAULT_CONSTRUCT(Unit)
 	xNO_COPY_ASSIGN(Unit)
+
+	UnitData &getData();
 ///\}
 
-    UnitData      &getData();
-        ///< get data
-    void_t         setData(cUnitData &data);
-        ///< set data
 	bool_t         isGithubCI() const;
        ///< check Github CI
     void_t         cfg(std::map_tstring_t *values) const;
