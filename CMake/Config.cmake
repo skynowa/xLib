@@ -75,6 +75,7 @@ message(STATUS "cmOPTION_DEBUG_MODE_STDOUT_LOG : ${cmOPTION_DEBUG_MODE_STDOUT_LO
 message(STATUS "cmOPTION_DEBUG_MODE_EXCEPTION  : ${cmOPTION_DEBUG_MODE_EXCEPTION}")
 message(STATUS "cmOPTION_DEBUG_MODE_NO         : ${cmOPTION_DEBUG_MODE_NO}")
 message(STATUS "cmOPTION_BUILD_MSG             : ${cmOPTION_BUILD_MSG}")
+message(STATUS "cmXLIB_DATA_DIR                : ${cmXLIB_DATA_DIR}")
 message("-------------------------------------------------")
 message("")
 #--------------------------------------------------------------------------------------------------
