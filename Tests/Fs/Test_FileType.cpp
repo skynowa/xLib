@@ -13,8 +13,8 @@ xTEST_UNIT(Test_FileType)
 bool_t
 Test_FileType::unit()
 {
-    std::ctstring_t filePath = getData().tempDirPath + Const::slash() + xT("Test.txt");
-    std::ctstring_t dirPath  = getData().tempDirPath;
+    std::ctstring_t filePath = data().tempDirPath + Const::slash() + xT("Test.txt");
+    std::ctstring_t dirPath  = data().tempDirPath;
     const auto      value    = FileType::Type::RegularFile;
 
     // prepare
@@ -151,7 +151,7 @@ Test_FileType::unit()
         m_bRv = FileType(filePath).isFile();
         xTEST(m_bRv);
 
-        m_bRv = FileType(getData().tempDirPath).isFile();
+        m_bRv = FileType(data().tempDirPath).isFile();
         xTEST(!m_bRv);
     }
 

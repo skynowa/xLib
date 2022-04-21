@@ -14,7 +14,7 @@ xTEST_UNIT(Test_File)
 bool_t
 Test_File::unit()
 {
-    std::ctstring_t filePath = getData().tempDirPath + Const::slash() + xT("Test.txt");
+    std::ctstring_t filePath = data().tempDirPath + Const::slash() + xT("Test.txt");
 
     /*******************************************************************************
     *    prepare
@@ -33,7 +33,7 @@ Test_File::unit()
 
 	xTEST_CASE("rename")
 	{
-		std::ctstring_t newFilePath = getData().tempDirPath + Const::slash() + xT("New.Test.txt");
+		std::ctstring_t newFilePath = data().tempDirPath + Const::slash() + xT("New.Test.txt");
 
 		File(filePath).textWrite(xT("Simple text"), FileIO::OpenMode::Write);
 
@@ -52,7 +52,7 @@ Test_File::unit()
 
 	xTEST_CASE("copy")
 	{
-		std::ctstring_t sFilePathFrom = getData().tempDirPath + Const::slash() + xT("test_copy.txt");
+		std::ctstring_t sFilePathFrom = data().tempDirPath + Const::slash() + xT("test_copy.txt");
 		std::ctstring_t sFilePathTo   = sFilePathFrom + xT("_addition_to_name.txt");
 
 		{
@@ -79,16 +79,16 @@ Test_File::unit()
 
 	xTEST_CASE("move")
 	{
-		std::ctstring_t newFilePath = getData().tempDirPath + Const::slash() + xT("New.Test.txt");
+		std::ctstring_t newFilePath = data().tempDirPath + Const::slash() + xT("New.Test.txt");
 
 		File(newFilePath).textWrite(xT("Simple text"), FileIO::OpenMode::Write);
 
 		{
-			File(getData().tempDirPath + Const::slash() + newFilePath).remove();
+			File(data().tempDirPath + Const::slash() + newFilePath).remove();
 		}
 
 		{
-			File(newFilePath).move(getData().tempDirPath);
+			File(newFilePath).move(data().tempDirPath);
 		}
 	}
 
@@ -106,7 +106,7 @@ Test_File::unit()
 
 	xTEST_CASE("remove")
 	{
-		std::ctstring_t newFilePath = getData().tempDirPath + Const::slash() + xT("New.Test.txt");
+		std::ctstring_t newFilePath = data().tempDirPath + Const::slash() + xT("New.Test.txt");
 
 		File(newFilePath).remove();
 		File(newFilePath).remove();
@@ -114,7 +114,7 @@ Test_File::unit()
 
 	xTEST_CASE("tryRemove")
 	{
-		std::ctstring_t tryfilePath = getData().tempDirPath + Const::slash() + xT("New.Test.txt");
+		std::ctstring_t tryfilePath = data().tempDirPath + Const::slash() + xT("New.Test.txt");
 
 		for (size_t i = 0; i < 20; ++ i) {
 			if (i < 10) {
