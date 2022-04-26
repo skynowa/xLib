@@ -598,14 +598,14 @@ DateTime::format(
 	Cout() << xTRACE_VAR(a_formatMsec);
 #endif
 
-    size_t uiRv = xSTRFTIME(buff, sizeof(buff) - 1, a_format.c_str(), &date);
+    std::csize_t buffSize = xSTRFTIME(&buff[0], sizeof(buff) - 1, a_format.c_str(), &date);
     xTRACE_POINT
 
-    xCHECK_RET(uiRv == 0, std::tstring_t());
+    xCHECK_RET(buffSize == 0, std::tstring_t());
 
     xTRACE_POINT
 
-    sRv.assign(&buff[0], uiRv);
+    sRv.assign(&buff[0], buffSize);
 
     xTRACE_POINT
 
