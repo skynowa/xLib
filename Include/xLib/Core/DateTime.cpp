@@ -580,8 +580,8 @@ DateTime::format(
 	date.tm_min   = _minute;
 	date.tm_hour  = _hour;
 	date.tm_mday  = _day;
-	date.tm_mon   = _month - 1;
-	date.tm_year  = _year  - 1900;
+	date.tm_mon   = _month + 1;
+	date.tm_year  = _year  + 1900;
 	date.tm_wday  = {};
 	date.tm_yday  = {};
 	date.tm_isdst = {};
