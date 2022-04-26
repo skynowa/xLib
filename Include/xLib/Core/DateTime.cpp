@@ -585,6 +585,9 @@ DateTime::format(
 
     xTRACE_POINT
 
+	Cout() << xTRACE_VAR(a_format);
+	Cout() << xTRACE_VAR(a_formatMsec);
+
     size_t uiRv = xSTRFTIME(buff, sizeof(buff) - 1, a_format.c_str(), &date);
     xTRACE_POINT
 
