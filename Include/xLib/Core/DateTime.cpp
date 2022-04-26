@@ -575,17 +575,19 @@ DateTime::format(
 
     xTRACE_POINT
 
-    std::tm time {};
-    time.tm_year = _year  - 1900;
-    time.tm_mon  = _month - 1;
-    time.tm_mday = _day;
-    time.tm_hour = _hour;
-    time.tm_min  = _minute;
-    time.tm_sec  = _second;
+    std::tm date {};
+    date.tm_year = _year  - 1900;
+    date.tm_mon  = _month - 1;
+    date.tm_mday = _day;
+    date.tm_hour = _hour;
+    date.tm_min  = _minute;
+    date.tm_sec  = _second;
 
     xTRACE_POINT
 
-    size_t uiRv = xSTRFTIME(buff, sizeof(buff) - 1, a_format.c_str(), &time);
+    size_t uiRv = xSTRFTIME(buff, sizeof(buff) - 1, a_format.c_str(), &date);
+    xTRACE_POINT
+
     xCHECK_RET(uiRv == 0, std::tstring_t());
 
     xTRACE_POINT
