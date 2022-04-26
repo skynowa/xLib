@@ -607,6 +607,7 @@ DateTime::format(
 #endif
 
     std::csize_t buffSize = xSTRFTIME(&buff[0], sizeof(buff) - 1, a_format.c_str(), date);
+    Cout() << xTRACE_VAR(buffSize);
     xTRACE_POINT
 
     xCHECK_RET(buffSize == 0, std::tstring_t());
