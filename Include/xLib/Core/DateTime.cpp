@@ -575,6 +575,7 @@ DateTime::format(
 
     xTRACE_POINT
 
+#if 0
 	std::tm date {};
 	date.tm_sec   = _second;
 	date.tm_min   = _minute;
@@ -585,6 +586,18 @@ DateTime::format(
 	date.tm_wday  = {};
 	date.tm_yday  = {};
 	date.tm_isdst = {};
+#else
+	std::tm *date = new std::tm();
+	date->tm_sec   = _second;
+	date->tm_min   = _minute;
+	date->tm_hour  = _hour;
+	date->tm_mday  = _day;
+	date->tm_mon   = _month - 1;
+	date->tm_year  = _year  - 1900;
+	date->tm_wday  = {};
+	date->tm_yday  = {};
+	date->tm_isdst = {};
+#endif
 
     xTRACE_POINT
 
@@ -593,7 +606,7 @@ DateTime::format(
 	Cout() << xTRACE_VAR(a_formatMsec);
 #endif
 
-    std::csize_t buffSize = xSTRFTIME(&buff[0], sizeof(buff) - 1, a_format.c_str(), &date);
+    std::csize_t buffSize = xSTRFTIME(&buff[0], sizeof(buff) - 1, a_format.c_str(), date);
     xTRACE_POINT
 
     xCHECK_RET(buffSize == 0, std::tstring_t());
