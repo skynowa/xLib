@@ -69,7 +69,7 @@ public:
 			 DateTime(cint_t year, cint_t month, cint_t day);
 			 DateTime(cint_t year, cint_t month, cint_t day, cint_t hour, cint_t minute,
 				 cint_t second, cint_t msec);
-	virtual ~DateTime() {}
+	virtual ~DateTime() = default;
 ///\}
 
     // comparison operators
