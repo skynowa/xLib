@@ -650,6 +650,8 @@ DateTime::format(
     xTRACE_POINT
 
 	std::cout << "tttttttttttttttttttttttt" << std::flush;
+	std::cout << "sizeof: " << sizeof(tttttttttttttttttttttttt) << std::flush;
+
     try {
 		std::cout << tttttttttttttttttttttttt   << std::flush << std::endl;
 		xTRACE_POINT
