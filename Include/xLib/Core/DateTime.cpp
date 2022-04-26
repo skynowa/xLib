@@ -582,13 +582,13 @@ DateTime::format(
 		.tm_hour   = _hour,
 		.tm_mday   = _day,
 		.tm_mon    = _month - 1,
-		.tm_year   = _year  - 1900
-
-	#if 0
-		,
+		.tm_year   = _year  - 1900,
 		.tm_wday   = {},
 		.tm_yday   = {},
 		.tm_isdst  = {},
+
+	#if 0
+		,
 		.tm_gmtoff = {},
 		.tm_zone   = {}
 	#endif
