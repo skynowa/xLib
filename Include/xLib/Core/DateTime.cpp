@@ -650,8 +650,18 @@ DateTime::format(
     xTRACE_POINT
 
 	std::cout << "tttttttttttttttttttttttt" << std::flush;
-	std::cout << tttttttttttttttttttttttt   << std::flush << std::endl;
-    xTRACE_POINT
+    try {
+		std::cout << tttttttttttttttttttttttt   << std::flush << std::endl;
+		xTRACE_POINT
+	}
+	catch (const std::exception &a_e) {
+		Cout() << xTRACE_VAR(a_e.what());
+	}
+	catch (...) {
+		Cout() << "Unknown error";
+	}
+
+	xTRACE_POINT
 
 	ss << tttttttttttttttttttttttt;
     xTRACE_POINT
