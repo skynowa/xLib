@@ -646,7 +646,10 @@ DateTime::format(
 	std::stringstream ss;
     xTRACE_POINT
 
-	ss << std::put_time(&date, a_format.c_str());
+	auto t = std::put_time(&date, a_format.c_str());
+    xTRACE_POINT
+
+	ss << t;
     xTRACE_POINT
 
 	sRv = ss.str();
