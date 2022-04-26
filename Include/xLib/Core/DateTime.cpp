@@ -562,12 +562,18 @@ DateTime::format(
     std::ctstring_t &a_formatMsec /* = xT(".%03d") */  ///< milliseconds format
 ) const
 {
+	xTRACE_POINT
+
     xTESTS_NA;
     xTEST(!a_format.empty());
     xTEST_NA(a_formatMsec);
 
+    xTRACE_POINT
+
     std::tstring_t sRv;
     tchar_t        buff[80 + 1] {};
+
+    xTRACE_POINT
 
     std::tm time {};
     time.tm_year = _year  - 1900;
@@ -577,14 +583,22 @@ DateTime::format(
     time.tm_min  = _minute;
     time.tm_sec  = _second;
 
+    xTRACE_POINT
+
     size_t uiRv = xSTRFTIME(buff, sizeof(buff) - 1, a_format.c_str(), &time);
     xCHECK_RET(uiRv == 0, std::tstring_t());
 
+    xTRACE_POINT
+
     sRv.assign(&buff[0], uiRv);
+
+    xTRACE_POINT
 
     if ( !a_formatMsec.empty() ) {
         sRv += FormatC::str(a_formatMsec.c_str(), _msec);
     }
+
+    xTRACE_POINT
 
     return sRv;
 }
