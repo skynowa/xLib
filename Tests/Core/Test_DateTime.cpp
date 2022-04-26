@@ -118,8 +118,7 @@ Test_DateTime::unit()
 
     	xTRACE_POINT
 
-        /// m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        m_sRv = datetime.format(xT("%d-%m-%Y %T"));
+        m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
 
     	xTRACE_POINT
 
