@@ -603,7 +603,7 @@ DateTime::format(
 	Cout() << xTRACE_VAR(a_formatMsec);
 #endif
 
-    std::csize_t buffSize = xSTRFTIME(&buff[0], sizeof(buff) - 1, a_format.c_str(), date);
+    std::csize_t buffSize = xSTRFTIME(&buff[0], sizeof(buff) - 1, a_format.c_str(), &date);
     Cout() << xTRACE_VAR(buffSize);
     xTRACE_POINT
 
