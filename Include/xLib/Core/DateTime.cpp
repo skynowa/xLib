@@ -649,6 +649,9 @@ DateTime::format(
 	auto t = std::put_time(&date, a_format.c_str());
     xTRACE_POINT
 
+	std::cout << xTRACE_VAR(t) << std::flush << std::endl;
+    xTRACE_POINT
+
 	ss << t;
     xTRACE_POINT
 
