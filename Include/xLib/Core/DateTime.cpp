@@ -575,18 +575,28 @@ DateTime::format(
 
     xTRACE_POINT
 
-    std::tm date {};
-    date.tm_year = _year  - 1900;
-    date.tm_mon  = _month - 1;
-    date.tm_mday = _day;
-    date.tm_hour = _hour;
-    date.tm_min  = _minute;
-    date.tm_sec  = _second;
+	const std::tm date
+	{
+		.tm_sec    = _second,
+		.tm_min    = _minute,
+		.tm_hour   = _hour,
+		.tm_mday   = _day,
+		.tm_mon    = _month - 1,
+		.tm_year   = _year  - 1900,
+
+		.tm_wday   = {},
+		.tm_yday   = {},
+		.tm_isdst  = {},
+		.tm_gmtoff = {},
+		.tm_zone   = {}
+	};
 
     xTRACE_POINT
 
+#if 1
 	Cout() << xTRACE_VAR(a_format);
 	Cout() << xTRACE_VAR(a_formatMsec);
+#endif
 
     size_t uiRv = xSTRFTIME(buff, sizeof(buff) - 1, a_format.c_str(), &date);
     xTRACE_POINT
