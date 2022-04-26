@@ -571,7 +571,9 @@ DateTime::format(
     xTRACE_POINT
 
     std::tstring_t sRv;
-    tchar_t        buff[128 + 1] {};
+#if 0
+	tchar_t        buff[128 + 1] {};
+#endif
 
     xTRACE_POINT
 
