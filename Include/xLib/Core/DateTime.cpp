@@ -575,24 +575,21 @@ DateTime::format(
 
     xTRACE_POINT
 
-	const std::tm date
-	{
-		.tm_sec    = _second,
-		.tm_min    = _minute,
-		.tm_hour   = _hour,
-		.tm_mday   = _day,
-		.tm_mon    = _month - 1,
-		.tm_year   = _year  - 1900,
-		.tm_wday   = {},
-		.tm_yday   = {},
-		.tm_isdst  = {},
+	std::tm date {};
+	date.tm_sec    = _second;
+	date.tm_min    = _minute;
+	date.tm_hour   = _hour;
+	date.tm_mday   = _day;
+	date.tm_mon    = _month - 1;
+	date.tm_year   = _year  - 1900;
+	date.tm_wday   = {};
+	date.tm_yday   = {};
+	date.tm_isdst  = {};
 
-	#if 0
-		,
-		.tm_gmtoff = {},
-		.tm_zone   = {}
-	#endif
-	};
+#if 0
+	date.tm_gmtoff = {};
+	date.tm_zone   = {};
+#endif
 
     xTRACE_POINT
 
