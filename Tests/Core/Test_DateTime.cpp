@@ -135,6 +135,7 @@ Test_DateTime::unit()
         DateTime datetime(1000 * 60 * 60);
 
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
+        Cout() << xTRACE_VAR(m_sRv);
         xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0 01:00:00.000")));
     }
 
