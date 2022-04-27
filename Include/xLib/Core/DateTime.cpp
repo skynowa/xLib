@@ -218,22 +218,28 @@ DateTimeValidator::dateOrTime(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-DateTime::DateTime()
+DateTime::DateTime() :
+	DateTime(::yearMin, ::monthMin, ::dayMin, ::hourMin, ::minuteMin, ::secondMin, ::msecMin)
 {
-    set(::yearMin, ::monthMin, ::dayMin, ::hourMin, ::minuteMin, ::secondMin, ::msecMin);
+#if 0
+	set(::yearMin, ::monthMin, ::dayMin, ::hourMin, ::minuteMin, ::secondMin, ::msecMin);
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
     const DateTime &a_datetime
 ) :
-    DateTime()
+    DateTime(a_datetime._year, a_datetime._month,  a_datetime._day,
+        a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec)
 {
-    xTEST(DateTimeValidator::date(a_datetime._year, a_datetime._month, a_datetime._day) &&
-        DateTimeValidator::time(a_datetime._hour, a_datetime._minute, a_datetime._second,
-        a_datetime._msec));
+#if 0
+	xTEST(DateTimeValidator::date(a_datetime._year, a_datetime._month, a_datetime._day) &&
+		DateTimeValidator::time(a_datetime._hour, a_datetime._minute, a_datetime._second,
+		a_datetime._msec));
 
-    set(a_datetime._year, a_datetime._month,  a_datetime._day,
-        a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec);
+	set(a_datetime._year, a_datetime._month,  a_datetime._day,
+		a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec);
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
@@ -241,7 +247,7 @@ DateTime::DateTime(
 ) :
     DateTime()
 {
-    set(a_msec);
+    /// set(a_msec);
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
@@ -250,11 +256,13 @@ DateTime::DateTime(
     cint_t a_second,
     cint_t a_msec
 ) :
-    DateTime()
+    DateTime(0, 0, 0, a_hour, a_minute, a_second, a_msec)
 {
-    xTEST(DateTimeValidator::time(a_hour, a_minute, a_second, a_msec));
+#if 0
+	xTEST(DateTimeValidator::time(a_hour, a_minute, a_second, a_msec));
 
-    set(0, 0, 0, a_hour, a_minute, a_second, a_msec);
+	set(0, 0, 0, a_hour, a_minute, a_second, a_msec);
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
@@ -262,11 +270,13 @@ DateTime::DateTime(
     cint_t a_month,
     cint_t a_day
 ) :
-    DateTime()
+    DateTime(a_year, a_month, a_day, 0, 0, 0, 0)
 {
-    xTEST(DateTimeValidator::date(a_year, a_month, a_day));
+#if 0
+	xTEST(DateTimeValidator::date(a_year, a_month, a_day));
 
-    set(a_year, a_month, a_day, 0, 0, 0, 0);
+	set(a_year, a_month, a_day, 0, 0, 0, 0);
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
@@ -278,13 +288,29 @@ DateTime::DateTime(
     cint_t a_second,
     cint_t a_msec
 ) :
-    DateTime()
+#if 0
+	DateTime()
 {
-    xTEST(DateTimeValidator::date(a_year, a_month, a_day) &&
-        DateTimeValidator::time(a_hour, a_minute, a_second, a_msec));
+	xTEST(DateTimeValidator::date(a_year, a_month, a_day) &&
+		DateTimeValidator::time(a_hour, a_minute, a_second, a_msec));
 
-    set(a_year, a_month, a_day, a_hour, a_minute, a_second, a_msec);
+	set(a_year, a_month, a_day, a_hour, a_minute, a_second, a_msec);
 }
+#else
+    // datetime
+    _year  {a_year},
+    _month {a_month},
+    _day   {a_day},
+    _hour  {a_hour},
+    _minute{a_minute},
+    _second{a_second},
+    _msec  {a_msec},
+
+    // REVIEW: datetime msec member (convert to msec)
+    _thisMSec {}
+{
+}
+#endif
 //-------------------------------------------------------------------------------------------------
 
 
@@ -371,7 +397,8 @@ DateTime::operator = (
         return *this;
     }
 
-    set(a_datetime._thisMSec);
+    // TODO: fix
+    __set(a_datetime._thisMSec);
 
     return *this;
 }
@@ -381,7 +408,8 @@ DateTime::operator = (
     culonglong_t a_msec
 )
 {
-    set(a_msec);
+    // TODO: fix
+	__set(a_msec);
 
     return *this;
 }
@@ -409,7 +437,8 @@ DateTime::operator += (
 {
     _thisMSec += a_datetime._thisMSec;
 
-    set(_thisMSec);
+    // TODO: fix
+    __set(_thisMSec);
 
     return *this;
 }
@@ -421,7 +450,8 @@ DateTime::operator -= (
 {
     _thisMSec -= a_datetime._thisMSec;
 
-    set(_thisMSec);
+    // TODO: fix
+    __set(_thisMSec);
 
     return *this;
 }
@@ -480,7 +510,7 @@ DateTime::toMsec() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-DateTime::set(
+DateTime::__set(
     culonglong_t a_msec
 )
 {
@@ -515,7 +545,7 @@ DateTime::set(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-DateTime::set(
+DateTime::_set(
     cint_t a_year,
     cint_t a_month,
     cint_t a_day,
@@ -584,8 +614,6 @@ DateTime::format(
     xTEST(!a_format.empty());
     xTEST_NA(a_formatMsec);
 
-    xTRACE_POINT
-
     std::tstring_t sRv;
 
 	std::tm date {};
@@ -599,9 +627,9 @@ DateTime::format(
 	date.tm_yday  = {};
 	date.tm_isdst = {};
 
+#if 0
     xTRACE_POINT
 
-#if 0
 	Cout() << xTRACE_VAR(date.tm_sec);
 	Cout() << xTRACE_VAR(date.tm_min);
 	Cout() << xTRACE_VAR(date.tm_hour);

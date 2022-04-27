@@ -112,24 +112,14 @@ Test_DateTime::unit()
 
     xTEST_CASE("DateTime")
     {
-    	xTRACE_POINT
-
         DateTime datetime;
-
-    	xTRACE_POINT
-
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-
-    	xTRACE_POINT
-
-        xTEST_EQ(m_sRv, std::tstring_t(xT("00-01-0 00:00:00.000")));
+        xTEST_EQ(m_sRv, std::tstring_t(xT("01-01-0 00:00:00.000")));
 
         xTRACE_POINT
     }
 
-// TODO: rm
-return 0;
-
+#if 0
     xTEST_CASE("DateTime(const DateTime &)")
     {
         DateTime datetime1(2010, 7, 8, 3, 15, 6, 111);
@@ -680,6 +670,7 @@ return 0;
             xTEST_EQ(m_iRv, - 1);
         }
     }
+#endif
 
     return true;
 }
