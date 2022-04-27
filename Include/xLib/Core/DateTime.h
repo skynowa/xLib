@@ -89,9 +89,6 @@ public:
         ///< get day of week, days since Sunday 0-6
     void_t          __set(culonglong_t msec);
         ///< set DateTime by milliseconds
-    void_t          _set(cint_t year, cint_t month, cint_t day,
-                        cint_t hour, cint_t minute, cint_t second, cint_t msec);
-        ///< set DateTime by datetime data
 
     // converting
     ulonglong_t     toMsec() const;
