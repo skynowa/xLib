@@ -589,28 +589,11 @@ DateTime::format(
     xTRACE_POINT
 
     std::tstring_t sRv;
-#if 0
+#if 1
 	tchar_t        buff[80 + 1] {};
 #endif
 
     xTRACE_POINT
-
-#if 0
-    setenv("TZ", "/usr/share/zoneinfo/America/Los_Angeles", 1); // POSIX-specific
-
-    std::tm tm {};
-    tm.tm_year  = 2020-1900; // 2020
-    tm.tm_mon   = 2-1; // February
-    tm.tm_mday  = 15; // 15th
-    tm.tm_hour  = 10;
-    tm.tm_min   = 15;
-    tm.tm_isdst = 0; // Not daylight saving
-
-    std::time_t t     = std::mktime(&tm);
-    std::tm     local = *std::localtime(&t);
-
-    std::cout << "local: " << std::put_time(&local, "%c %Z") << '\n';
-#endif
 
 	std::tm date {};
 	date.tm_sec   = _second;
@@ -618,18 +601,14 @@ DateTime::format(
 	date.tm_hour  = _hour;
 	date.tm_mday  = _day;
 	date.tm_mon   = _month - 1;
-#if 0
-	date.tm_year  = _year  + 1900 + 1900;
-#else
 	date.tm_year  = _year  - 1900;
-#endif
 	date.tm_wday  = {};
 	date.tm_yday  = {};
 	date.tm_isdst = {};
 
     xTRACE_POINT
 
-#if 1
+#if 0
 	Cout() << xTRACE_VAR(date.tm_sec);
 	Cout() << xTRACE_VAR(date.tm_min);
 	Cout() << xTRACE_VAR(date.tm_hour);
@@ -644,52 +623,22 @@ DateTime::format(
 	Cout() << xTRACE_VAR(a_formatMsec);
 #endif
 
-#if 0
+#if 1
 	std::csize_t buffSize = xSTRFTIME(&buff[0], sizeof(buff) - 1, a_format.c_str(), &date);
-	Cout() << xTRACE_VAR(buffSize);
-	xTRACE_POINT
-
 	xCHECK_RET(buffSize == 0, std::tstring_t());
 
-	xTRACE_POINT
-
 	sRv.assign(&buff[0], buffSize);
-
-	xTRACE_POINT
 
 	if ( !a_formatMsec.empty() ) {
 		sRv += FormatC::str(a_formatMsec.c_str(), _msec);
 	}
-
-	xTRACE_POINT
 #else
     xTRACE_POINT
 
-	std::stringstream ss;
-    xTRACE_POINT
-
 	const auto &dateFmt = std::put_time(&date, a_format.c_str());
-    xTRACE_POINT
 
-
-
-    try {
-		std::cout << "dateFmt:" << std::flush << std::endl;
-		std::cout << dateFmt    << std::flush << std::endl;
-
-		xTRACE_POINT
-	}
-	catch (const std::exception &a_e) {
-		Cout() << xTRACE_VAR(a_e.what());
-	}
-	catch (...) {
-		Cout() << "Unknown error";
-	}
-
-	xTRACE_POINT
-
+	std::stringstream ss;
 	ss << dateFmt;
-    xTRACE_POINT
 
 	sRv = ss.str();
 
