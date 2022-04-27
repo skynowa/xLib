@@ -242,12 +242,12 @@ DateTime::DateTime(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
+// TODO: review
 DateTime::DateTime(
     culonglong_t a_msec
-) :
-    DateTime()
+)
 {
-    _set(a_msec);
+    _construct(a_msec);
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
@@ -298,20 +298,16 @@ DateTime::DateTime(
 }
 #else
     // datetime
-    _year  {a_year},
-    _month {a_month},
-    _day   {a_day},
-    _hour  {a_hour},
-    _minute{a_minute},
-    _second{a_second},
-    _msec  {a_msec},
+    _year    {a_year},
+    _month   {a_month},
+    _day     {a_day},
+    _hour    {a_hour},
+    _minute  {a_minute},
+    _second  {a_second},
+    _msec    {a_msec},
 
     // REVIEW: datetime msec member (convert to msec)
-#if 0
-	_thisMSec = _toMsec();
-#else
-	_thisMSec {}
-#endif
+	_thisMSec{ _toMsec() }
 {
 	xTEST(DateTimeValidator::date(a_year, a_month, a_day));
 	xTEST(DateTimeValidator::time(a_hour, a_minute, a_second, a_msec));
@@ -404,7 +400,7 @@ DateTime::operator = (
     }
 
     // TODO: fix
-    _set(a_datetime._thisMSec);
+    _construct(a_datetime._thisMSec);
 
     return *this;
 }
@@ -415,7 +411,7 @@ DateTime::operator = (
 )
 {
     // TODO: fix
-	_set(a_msec);
+	_construct(a_msec);
 
     return *this;
 }
@@ -444,7 +440,7 @@ DateTime::operator += (
     _thisMSec += a_datetime._thisMSec;
 
     // TODO: fix
-    _set(_thisMSec);
+    _construct(_thisMSec);
 
     return *this;
 }
@@ -457,7 +453,7 @@ DateTime::operator -= (
     _thisMSec -= a_datetime._thisMSec;
 
     // TODO: fix
-    _set(_thisMSec);
+    _construct(_thisMSec);
 
     return *this;
 }
@@ -515,8 +511,16 @@ DateTime::toMsec() const
     return _thisMSec;
 }
 //-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*    converting
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
 void_t
-DateTime::_set(
+DateTime::_construct(
     culonglong_t a_msec
 )
 {
@@ -550,19 +554,9 @@ DateTime::_set(
     _msec    = static_cast<int_t>( msec );
 }
 //-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*    converting
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
 ulonglong_t
 DateTime::_toMsec() const
 {
-    xTESTS_NA
-
     ulonglong_t ullRv {};
 
     ullRv += xYEAR(_year);    // TODO: [skynowa] DateTime::_toMsec() - days in month 30 or 31 ???
