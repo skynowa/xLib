@@ -562,7 +562,7 @@ DateTime::format(
 	date.tm_yday  = {};
 	date.tm_isdst = {};
 
-#if 1
+#if 0
 	Cout() << date;
 	Cout() << xTRACE_VAR(a_format);
 	Cout() << xTRACE_VAR(a_formatMsec);
