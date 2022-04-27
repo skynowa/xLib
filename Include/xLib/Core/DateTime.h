@@ -87,7 +87,7 @@ public:
         ///< get datetime data
     int_t           dayOfWeek() const;
         ///< get day of week, days since Sunday 0-6
-    void_t          __set(culonglong_t msec);
+    void_t          _set(culonglong_t msec);
         ///< set DateTime by milliseconds
 
     // converting
