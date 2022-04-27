@@ -24,6 +24,39 @@
     #include "Platform/Unix/DateTime_unix.inl"
 #endif
 
+//-------------------------------------------------------------------------------------------------
+namespace
+{
+
+xl::cint_t yearMin     = 0;
+xl::cint_t yearMax     = 9999;
+
+xl::cint_t monthMin    = 1;
+xl::cint_t monthMax    = 12;
+
+xl::cint_t dayMin      = 1;
+xl::cint_t dayMax      = 31;
+
+xl::cint_t hourMin     = 0;
+xl::cint_t hourMax     = 23;
+
+xl::cint_t minuteMin   = 0;
+xl::cint_t minuteMax   = 59;
+
+xl::cint_t secondMin   = 0;
+xl::cint_t secondMax   = 60;	// (1 leap second)
+
+xl::cint_t msecMin     = 0;
+xl::cint_t msecMax     = 999;
+
+xl::cint_t microsecMin = 0;
+xl::cint_t microsecMax = 999;
+
+xl::cint_t weekDayMin  = 0;
+xl::cint_t weekDayMax  = 6;
+
+} // namespace
+//-------------------------------------------------------------------------------------------------
 
 namespace xl::core
 {
@@ -34,44 +67,12 @@ namespace xl::core
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-namespace
-{
-
-cint_t yearMin     = 0;
-cint_t yearMax     = 9999;
-
-cint_t monthMin    = 1;
-cint_t monthMax    = 12;
-
-cint_t dayMin      = 1;
-cint_t dayMax      = 31;
-
-cint_t hourMin     = 0;
-cint_t hourMax     = 23;
-
-cint_t minuteMin   = 0;
-cint_t minuteMax   = 59;
-
-cint_t secondMin   = 0;
-cint_t secondMax   = 60;	// (1 leap second)
-
-cint_t msecMin     = 0;
-cint_t msecMax     = 999;
-
-cint_t microsecMin = 0;
-cint_t microsecMax = 999;
-
-cint_t weekDayMin  = 0;
-cint_t weekDayMax  = 6;
-
-} // namespace
-//-------------------------------------------------------------------------------------------------
 bool_t
 DateTimeValidator::year(
     cint_t a_year
 )
 {
-    return (a_year >= yearMin && a_year <= yearMax);
+    return (a_year >= ::yearMin && a_year <= ::yearMax);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -79,7 +80,7 @@ DateTimeValidator::month(
     cint_t a_month
 )
 {
-    return (a_month >= monthMin && a_month <= monthMax);
+    return (a_month >= ::monthMin && a_month <= ::monthMax);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -87,7 +88,7 @@ DateTimeValidator::day(
     cint_t a_day
 )
 {
-    return (a_day >= dayMin && a_day <= dayMax);
+    return (a_day >= ::dayMin && a_day <= ::dayMax);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -95,7 +96,7 @@ DateTimeValidator::hour(
     cint_t a_hour
 )
 {
-    return (a_hour >= hourMin && a_hour <= hourMax);
+    return (a_hour >= ::hourMin && a_hour <= ::hourMax);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -103,7 +104,7 @@ DateTimeValidator::minute(
     cint_t a_minute
 )
 {
-    return (a_minute >= minuteMin && a_minute <= minuteMax);
+    return (a_minute >= ::minuteMin && a_minute <= ::minuteMax);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -111,7 +112,7 @@ DateTimeValidator::second(
     cint_t a_second
 )
 {
-    return (a_second >= secondMin && a_second <= secondMax);
+    return (a_second >= ::secondMin && a_second <= ::secondMax);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -119,7 +120,7 @@ DateTimeValidator::msec(
     cint_t a_msec
 )
 {
-    return (a_msec >= msecMin && a_msec <= msecMax);
+    return (a_msec >= ::msecMin && a_msec <= ::msecMax);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -127,7 +128,7 @@ DateTimeValidator::weekDay(
     cint_t a_weekDay
 )
 {
-    return (a_weekDay >= weekDayMin && a_weekDay <= weekDayMax);
+    return (a_weekDay >= ::weekDayMin && a_weekDay <= ::weekDayMax);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -217,7 +218,7 @@ DateTime::DateTime()
 
 	*/
 
-    set(yearMin, monthMin, 0, hourMin, minuteMin, secondMin, msecMin);
+    set(::yearMin, ::monthMin, ::dayMin, ::hourMin, ::minuteMin, ::secondMin, ::msecMin);
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
@@ -296,7 +297,7 @@ DateTime::operator == (
     const DateTime &a_datetime
 ) const
 {
-	xTESTS_NA;
+	xTESTS_NA
 
     return (_thisMSec == a_datetime._thisMSec);
 }
@@ -306,7 +307,7 @@ DateTime::operator != (
     const DateTime &a_datetime
 ) const
 {
-	xTESTS_NA;
+	xTESTS_NA
 
     return (_thisMSec != a_datetime._thisMSec);
 }
@@ -316,7 +317,7 @@ DateTime::operator < (
     const DateTime &a_datetime
 ) const
 {
-	xTESTS_NA;
+	xTESTS_NA
 
     return (_thisMSec < a_datetime._thisMSec);
 }
@@ -326,7 +327,7 @@ DateTime::operator <= (
     const DateTime &a_datetime
 ) const
 {
-	xTESTS_NA;
+	xTESTS_NA
 
     return (_thisMSec <= a_datetime._thisMSec);
 }
@@ -336,7 +337,7 @@ DateTime::operator > (
     const DateTime &a_datetime
 ) const
 {
-	xTESTS_NA;
+	xTESTS_NA
 
     return (_thisMSec > a_datetime._thisMSec);
 }
@@ -346,7 +347,7 @@ DateTime::operator >= (
     const DateTime &a_datetime
 ) const
 {
-	xTESTS_NA;
+	xTESTS_NA
 
     return (_thisMSec >= a_datetime._thisMSec);
 }
@@ -364,7 +365,9 @@ DateTime::operator = (
     const DateTime &a_datetime
 )
 {
-    xCHECK_RET(this == &a_datetime, *this);
+    if (this == &a_datetime) {
+        return *this;
+    }
 
     set(a_datetime._thisMSec);
 
@@ -440,7 +443,7 @@ DateTime::get(
     int_t *a_msec
 ) const
 {
-    xTESTS_NA;
+    xTESTS_NA
 
     Utils::ptrAssignT(a_year,   _year);
     Utils::ptrAssignT(a_month,  _month);
@@ -456,19 +459,15 @@ DateTime::dayOfWeek() const
 {
     xTEST(DateTimeValidator::datetime(*this));
 
-    int_t   iRv {};
     std::tm timeInfo {};
-
     timeInfo.tm_year = _year  - 1900;
     timeInfo.tm_mon  = _month - 1;
     timeInfo.tm_mday = _day;
 
-    time_t time = std::mktime(&timeInfo);
-    xTEST_DIFF(static_cast<time_t>(- 1), time);
+    const time_t time = std::mktime(&timeInfo);
+    xTEST_DIFF(time, static_cast<time_t>(- 1));
 
-    iRv = timeInfo.tm_wday;
-
-    return iRv;
+    return timeInfo.tm_wday;
 }
 //-------------------------------------------------------------------------------------------------
 // TODO: [skynowa] toMsec
@@ -483,10 +482,10 @@ DateTime::set(
     culonglong_t a_msec
 )
 {
-    xTESTS_NA;
+    xTESTS_NA
 
     // datetime msec member
-    _thisMSec = a_msec;
+    this->_thisMSec = a_msec;
 
     // datetime members
     ulonglong_t msec = a_msec;
@@ -524,7 +523,7 @@ DateTime::set(
     cint_t a_msec
 )
 {
-    xTESTS_NA;
+    xTESTS_NA
 
     // datetime members
     _year   = a_year;
@@ -550,7 +549,7 @@ DateTime::set(
 ulonglong_t
 DateTime::_toMsec() const
 {
-    xTESTS_NA;
+    xTESTS_NA
 
     ulonglong_t ullRv {};
 
@@ -581,7 +580,7 @@ DateTime::format(
 {
 	xTRACE_POINT
 
-    xTESTS_NA;
+    xTESTS_NA
     xTEST(!a_format.empty());
     xTEST_NA(a_formatMsec);
 
@@ -722,7 +721,7 @@ DateTime::daysInMonth(
 {
     xCHECK_RET(a_month == 2 && isLeapYear(a_year), 29);
 
-    const std::array<int_t, monthMax + 1> monthsDays =
+    const std::array<int_t, ::monthMax + 1> monthsDays =
     {{
         31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
     }};
@@ -761,7 +760,7 @@ DateTime::monthStr(
 
     if (!a_isShortName) {
         // months numbering: 1-12
-        const std::array<std::tstring_t, monthMax + 1> longMonths =
+        const std::array<std::tstring_t, ::monthMax + 1> longMonths =
         {{
             xT("January"),
             xT("February"),
@@ -780,7 +779,7 @@ DateTime::monthStr(
         sRv = longMonths[static_cast<std::size_t>(a_month) - 1];
     } else {
         // months numbering: 1-12
-        const std::array<std::tstring_t, monthMax + 1> shortMonths =
+        const std::array<std::tstring_t, ::monthMax + 1> shortMonths =
         {{
             xT("Jan"),
             xT("Feb"),
@@ -813,7 +812,7 @@ DateTime::monthNum(
     xTEST_NA(a_isShortName);
 
     // months numbering: 0-11
-    const std::array<std::tstring_t, monthMax + 1> longMonths =
+    const std::array<std::tstring_t, ::monthMax + 1> longMonths =
     {{
         xT("January"),
         xT("February"),
@@ -830,7 +829,7 @@ DateTime::monthNum(
     }};
 
     // months numbering: 0-11
-    const std::array<std::tstring_t, monthMax + 1> shortMonths =
+    const std::array<std::tstring_t, ::monthMax + 1> shortMonths =
     {{
         xT("Jan"),
         xT("Feb"),
@@ -872,7 +871,7 @@ DateTime::weekDayStr(
     std::tstring_t sRv;
 
     if (!a_isShortName) {
-        const std::array<std::tstring_t, weekDayMax + 1> longDays =
+        const std::array<std::tstring_t, ::weekDayMax + 1> longDays =
         {{
             xT("Sunday"),
             xT("Monday"),
@@ -885,7 +884,7 @@ DateTime::weekDayStr(
 
         sRv = longDays[ static_cast<std::size_t>(a_week_day) ];
     } else {
-        const std::array<std::tstring_t, weekDayMax + 1> shortDays =
+        const std::array<std::tstring_t, ::weekDayMax + 1> shortDays =
         {{
             xT("Sun"),
             xT("Mon"),
@@ -912,7 +911,7 @@ DateTime::weekDayNum(
     xTEST_NA(a_week_day);
     xTEST_NA(a_isShortName);
 
-    const std::array<std::tstring_t, weekDayMax + 1> longDays =
+    const std::array<std::tstring_t, ::weekDayMax + 1> longDays =
     {{
         xT("Monday"),
         xT("Tuesday"),
@@ -923,7 +922,7 @@ DateTime::weekDayNum(
         xT("Sunday")
     }};
 
-    const std::array<std::tstring_t, weekDayMax + 1> shortDays =
+    const std::array<std::tstring_t, ::weekDayMax + 1> shortDays =
     {{
         xT("Mon"),
         xT("Tue"),
