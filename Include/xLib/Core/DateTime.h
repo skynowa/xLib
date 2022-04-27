@@ -27,36 +27,23 @@ public:
 	xNO_COPY_ASSIGN(DateTimeValidator);
 ///\}
 
-	static
-	bool_t year(cint_t year);
-	static
-	bool_t month(cint_t month);
-	static
-	bool_t day(cint_t day);
-	static
-	bool_t hour(cint_t hour);
-	static
-	bool_t minute(cint_t minute);
-	static
-	bool_t second(cint_t second);
-	static
-	bool_t msec(cint_t msec);
+	static bool_t year(cint_t year);
+	static bool_t month(cint_t month);
+	static bool_t day(cint_t day);
+	static bool_t hour(cint_t hour);
+	static bool_t minute(cint_t minute);
+	static bool_t second(cint_t second);
+	static bool_t msec(cint_t msec);
 
-	static
-	bool_t weekDay(cint_t weekDay);
+	static bool_t weekDay(cint_t weekDay);
 
-	static
-	bool_t time(cint_t hour, cint_t minute, cint_t second, cint_t msec);
-	static
-	bool_t date(cint_t year, cint_t month, cint_t day);
-	static
-	bool_t datetime(cint_t year, cint_t month, cint_t day, cint_t hour,
-			   cint_t minute, cint_t second, cint_t msec);
-	static
-	bool_t datetime(const DateTime &datetime);
-	static
-	bool_t dateOrTime(cint_t year, cint_t month, cint_t day, cint_t hour, cint_t minute,
-				cint_t second, cint_t msec);
+	static bool_t time(cint_t hour, cint_t minute, cint_t second, cint_t msec);
+	static bool_t date(cint_t year, cint_t month, cint_t day);
+	static bool_t datetime(cint_t year, cint_t month, cint_t day, cint_t hour,
+					cint_t minute, cint_t second, cint_t msec);
+	static bool_t datetime(const DateTime &datetime);
+	static bool_t dateOrTime(cint_t year, cint_t month, cint_t day, cint_t hour, cint_t minute,
+					cint_t second, cint_t msec);
 };
 //-------------------------------------------------------------------------------------------------
 class DateTime
