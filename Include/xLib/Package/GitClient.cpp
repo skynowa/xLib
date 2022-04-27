@@ -298,6 +298,51 @@ GitClient::stashesNum() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
+GitClient::modifiedFiles(
+	std::cvec_tstring_t &a_filterFileExts,	///<
+	std::vec_tstring_t  *out_filePathes		///< [out]
+) const
+{
+	/// xCHECK_RET(!isGitDir(), 0);
+	xCHECK_DO(out_filePathes == nullptr, return);
+
+	out_filePathes->clear();
+
+	bool_t bRv {};
+
+	std::cvec_tstring_t params {"status", "--short"};
+	std::tstring_t      stdOut;
+	std::tstring_t      stdError;
+
+	Process::execute(_gitPath(), params, {}, xTIMEOUT_INFINITE, &stdOut, &stdError);
+#if 0
+	Cout() << xTRACE_VAR(stdOut);
+	Cout() << xTRACE_VAR(stdError);
+#endif
+
+	std::vec_tstring_t values;
+	String::split(String::trimSpace(stdOut), Const::nl(), &values);
+	xCHECK_DO(values.empty(), return);
+
+	for (const auto &it_value : values) {
+		std::ctstring_t &filePath = String::trimSpace(it_value);
+
+		{
+			std::ctstring_t &fileExt = Path(filePath).ext();
+			/// TODO: test - rm
+		#if 1
+			xTEST(fileExt.size() >= 1 && fileExt.size() <= 3);
+		#endif
+
+			bRv = Algos::isContains(a_filterFileExts, fileExt);
+			xCHECK_DO(!bRv, continue);
+		}
+
+		out_filePathes->push_back(filePath);
+	} // for (values)
+}
+//-------------------------------------------------------------------------------------------------
+void_t
 GitClient::trackedFiles(
 	std::cvec_tstring_t &a_filterFileExts,	///<
 	std::vec_tstring_t  *out_filePathes		///< [out]
