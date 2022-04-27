@@ -646,17 +646,15 @@ DateTime::format(
 	std::stringstream ss;
     xTRACE_POINT
 
-	const auto &[t1, t2] = std::put_time(&date, a_format.c_str());
+	const auto &dateFmt = std::put_time(&date, a_format.c_str());
     xTRACE_POINT
 
 
 
     try {
-		std::cout << "ttttt:" << std::endl;
-		Cout() << xTRACE_VAR(t1);
-		Cout() << xTRACE_VAR(t2);
+		std::cout << "dateFmt:" << std::endl;
+		std::cout << dateFmt    << std::flush << std::endl;
 
-		/// std::cout << ttttt   << std::flush << std::endl;
 		xTRACE_POINT
 	}
 	catch (const std::exception &a_e) {
@@ -668,8 +666,8 @@ DateTime::format(
 
 	xTRACE_POINT
 
-	/// ss << ttttt;
-    /// xTRACE_POINT
+	ss << dateFmt;
+    xTRACE_POINT
 
 	sRv = ss.str();
 
