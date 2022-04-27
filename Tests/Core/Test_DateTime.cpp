@@ -290,32 +290,58 @@ Test_DateTime::unit()
 
     xTEST_CASE("get")
     {
-		cint_t year   = 2010;
-		cint_t month  = 1;
-		cint_t day    = 14;
-		cint_t hour   = 17;
-		cint_t minute = 0;
-		cint_t second = 55;
-		cint_t msec   = 666;
+		{
+			culonglong_t oneHourSec {1000 * 60 * 60};
+			cint_t       oneHour    {1};
 
-		DateTime datetime(year, month, day, hour, minute, second, msec);
+			DateTime datetime(oneHourSec);
 
-		int_t year_   {};
-		int_t month_  {};
-		int_t day_    {};
-		int_t hour_   {};
-		int_t minute_ {};
-		int_t second_ {};
-		int_t msec_   {};
-		datetime.get(&year_, &month_, &day_, &hour_, &minute_, &second_, &msec_);
+			int_t year   {};
+			int_t month  {};
+			int_t day    {};
+			int_t hour   {};
+			int_t minute {};
+			int_t second {};
+			int_t msec   {};
 
-		xTEST_EQ(year_,   year);
-		xTEST_EQ(month_,  month);
-		xTEST_EQ(day_,    day);
-		xTEST_EQ(hour_,   hour);
-		xTEST_EQ(minute_, minute);
-		xTEST_EQ(second_, second);
-		xTEST_EQ(msec_,   msec);
+			datetime.get(&year, &month, &day, &hour, &minute, &second, &msec);
+			xTEST_EQ(year,   0);
+			xTEST_EQ(month,  0);
+			xTEST_EQ(day,    0);
+			xTEST_EQ(hour,   oneHour);
+			xTEST_EQ(minute, 0);
+			xTEST_EQ(second, 0);
+			xTEST_EQ(msec,   0);
+		}
+
+		{
+			cint_t year   = 2010;
+			cint_t month  = 1;
+			cint_t day    = 14;
+			cint_t hour   = 17;
+			cint_t minute = 0;
+			cint_t second = 55;
+			cint_t msec   = 666;
+
+			DateTime datetime(year, month, day, hour, minute, second, msec);
+
+			int_t year_   {};
+			int_t month_  {};
+			int_t day_    {};
+			int_t hour_   {};
+			int_t minute_ {};
+			int_t second_ {};
+			int_t msec_   {};
+
+			datetime.get(&year_, &month_, &day_, &hour_, &minute_, &second_, &msec_);
+			xTEST_EQ(year_,   year);
+			xTEST_EQ(month_,  month);
+			xTEST_EQ(day_,    day);
+			xTEST_EQ(hour_,   hour);
+			xTEST_EQ(minute_, minute);
+			xTEST_EQ(second_, second);
+			xTEST_EQ(msec_,   msec);
+		}
     }
 
     xTEST_CASE("toMsec")
@@ -339,34 +365,6 @@ Test_DateTime::unit()
                 xTEST_EQ(m_ullRv, msecs[i]);
             }
         }
-    }
-
-    xTEST_CASE("set")
-    {
-    	/// TODO: test
-	#if 0
-		DateTime datetime;
-
-		ulonglong_t datetimeValue = 1000 * 60 * 60; // 1 hour
-		int_t       year   = 0;
-		int_t       month  = 0;
-		int_t       day    = 0;
-		int_t       hour   = 0;
-		int_t       minute = 0;
-		int_t       second = 0;
-		int_t       msec   = 0;
-
-		datetime.set(datetimeValue);
-		datetime.get(&year, &month, &day, &hour, &minute, &second, &msec);
-
-		xTEST_EQ(0, year);
-		xTEST_EQ(0, month);
-		xTEST_EQ(0, day);
-		xTEST_EQ(1, hour);
-		xTEST_EQ(0, minute);
-		xTEST_EQ(0, second);
-		xTEST_EQ(0, msec);
-	#endif
     }
 
     xTEST_CASE("dayOfWeek")
