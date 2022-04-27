@@ -404,7 +404,7 @@ DateTime::operator = (
     }
 
     // TODO: fix
-    __set(a_datetime._thisMSec);
+    _set(a_datetime._thisMSec);
 
     return *this;
 }
@@ -415,7 +415,7 @@ DateTime::operator = (
 )
 {
     // TODO: fix
-	__set(a_msec);
+	_set(a_msec);
 
     return *this;
 }
@@ -444,7 +444,7 @@ DateTime::operator += (
     _thisMSec += a_datetime._thisMSec;
 
     // TODO: fix
-    __set(_thisMSec);
+    _set(_thisMSec);
 
     return *this;
 }
@@ -457,7 +457,7 @@ DateTime::operator -= (
     _thisMSec -= a_datetime._thisMSec;
 
     // TODO: fix
-    __set(_thisMSec);
+    _set(_thisMSec);
 
     return *this;
 }
@@ -516,7 +516,7 @@ DateTime::toMsec() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-DateTime::__set(
+DateTime::_set(
     culonglong_t a_msec
 )
 {
