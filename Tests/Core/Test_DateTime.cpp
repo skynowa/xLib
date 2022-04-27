@@ -117,7 +117,6 @@ Test_DateTime::unit()
         /// TODO: xTEST_EQ(m_sRv, std::tstring_t(xT("01-01-0 00:00:00.000")));
     }
 
-#if 1
     xTEST_CASE("DateTime(const DateTime &)")
     {
         DateTime datetime1(2010, 7, 8, 3, 15, 6, 111);
@@ -683,7 +682,6 @@ Test_DateTime::unit()
             xTEST_EQ(m_iRv, - 1);
         }
     }
-#endif
 
     return true;
 }
