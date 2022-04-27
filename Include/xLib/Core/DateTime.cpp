@@ -307,7 +307,11 @@ DateTime::DateTime(
     _msec  {a_msec},
 
     // REVIEW: datetime msec member (convert to msec)
-    _thisMSec {}
+#if 0
+	_thisMSec = _toMsec();
+#else
+	_thisMSec {}
+#endif
 {
 	xTEST(DateTimeValidator::date(a_year, a_month, a_day));
 	xTEST(DateTimeValidator::time(a_hour, a_minute, a_second, a_msec));
@@ -544,32 +548,6 @@ DateTime::__set(
 
     msec    %= 1000ULL;
     _msec    = static_cast<int_t>( msec );
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-DateTime::_set(
-    cint_t a_year,
-    cint_t a_month,
-    cint_t a_day,
-    cint_t a_hour,
-    cint_t a_minute,
-    cint_t a_second,
-    cint_t a_msec
-)
-{
-    xTESTS_NA
-
-    // datetime members
-    _year   = a_year;
-    _month  = a_month;
-    _day    = a_day;
-    _hour   = a_hour;
-    _minute = a_minute;
-    _second = a_second;
-    _msec   = a_msec;
-
-    // REVIEW: datetime msec member (convert to msec)
-    _thisMSec = _toMsec();
 }
 //-------------------------------------------------------------------------------------------------
 
