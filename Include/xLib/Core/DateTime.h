@@ -87,8 +87,6 @@ public:
         ///< get datetime data
     int_t           dayOfWeek() const;
         ///< get day of week, days since Sunday 0-6
-    void_t          _set(culonglong_t msec);
-        ///< set DateTime by milliseconds
 
     // converting
     ulonglong_t     toMsec() const;
@@ -151,6 +149,8 @@ private:
 
     ulonglong_t _thisMSec {};///< datetime in milliseconds
 
+    void_t      _construct(culonglong_t msec);
+        ///< set DateTime by milliseconds
     ulonglong_t _toMsec() const;
         ///< convert to milliseconds
 
