@@ -230,14 +230,6 @@ DateTime::DateTime(
     DateTime(a_datetime._year, a_datetime._month,  a_datetime._day,
         a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec)
 {
-#if 0
-	xTEST(DateTimeValidator::date(a_datetime._year, a_datetime._month, a_datetime._day) &&
-		DateTimeValidator::time(a_datetime._hour, a_datetime._minute, a_datetime._second,
-		a_datetime._msec));
-
-	set(a_datetime._year, a_datetime._month,  a_datetime._day,
-		a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 // TODO: review
@@ -256,11 +248,6 @@ DateTime::DateTime(
 ) :
     DateTime(0, 0, 0, a_hour, a_minute, a_second, a_msec)
 {
-#if 0
-	xTEST(DateTimeValidator::time(a_hour, a_minute, a_second, a_msec));
-
-	set(0, 0, 0, a_hour, a_minute, a_second, a_msec);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
@@ -270,11 +257,6 @@ DateTime::DateTime(
 ) :
     DateTime(a_year, a_month, a_day, 0, 0, 0, 0)
 {
-#if 0
-	xTEST(DateTimeValidator::date(a_year, a_month, a_day));
-
-	set(a_year, a_month, a_day, 0, 0, 0, 0);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
@@ -286,15 +268,6 @@ DateTime::DateTime(
     cint_t a_second,
     cint_t a_msec
 ) :
-#if 0
-	DateTime()
-{
-	xTEST(DateTimeValidator::date(a_year, a_month, a_day) &&
-		DateTimeValidator::time(a_hour, a_minute, a_second, a_msec));
-
-	set(a_year, a_month, a_day, a_hour, a_minute, a_second, a_msec);
-}
-#else
     // datetime
     _year    {a_year},
     _month   {a_month},
@@ -312,7 +285,6 @@ DateTime::DateTime(
 	xTEST(DateTimeValidator::time(a_hour, a_minute, a_second, a_msec));
 #endif
 }
-#endif
 //-------------------------------------------------------------------------------------------------
 
 
@@ -327,8 +299,6 @@ DateTime::operator == (
     const DateTime &a_datetime
 ) const
 {
-	xTESTS_NA
-
     return (_thisMSec == a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
@@ -337,8 +307,6 @@ DateTime::operator != (
     const DateTime &a_datetime
 ) const
 {
-	xTESTS_NA
-
     return (_thisMSec != a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
@@ -347,8 +315,6 @@ DateTime::operator < (
     const DateTime &a_datetime
 ) const
 {
-	xTESTS_NA
-
     return (_thisMSec < a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
@@ -357,8 +323,6 @@ DateTime::operator <= (
     const DateTime &a_datetime
 ) const
 {
-	xTESTS_NA
-
     return (_thisMSec <= a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
@@ -367,8 +331,6 @@ DateTime::operator > (
     const DateTime &a_datetime
 ) const
 {
-	xTESTS_NA
-
     return (_thisMSec > a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
@@ -377,8 +339,6 @@ DateTime::operator >= (
     const DateTime &a_datetime
 ) const
 {
-	xTESTS_NA
-
     return (_thisMSec >= a_datetime._thisMSec);
 }
 //-------------------------------------------------------------------------------------------------
@@ -554,12 +514,13 @@ DateTime::_construct(
     _msec    = static_cast<int_t>( msec );
 }
 //-------------------------------------------------------------------------------------------------
+// TODO: [skynowa] DateTime::_toMsec() - days in month 30 or 31 ???
 ulonglong_t
 DateTime::_toMsec() const
 {
     ulonglong_t ullRv {};
 
-    ullRv += xYEAR(_year);    // TODO: [skynowa] DateTime::_toMsec() - days in month 30 or 31 ???
+    ullRv += xYEAR(_year);
     ullRv += xMONTH(_month);
     ullRv += xDAY(_day);
     ullRv += xHOUR(_hour);
@@ -601,19 +562,8 @@ DateTime::format(
 	date.tm_yday  = {};
 	date.tm_isdst = {};
 
-#if 0
-    xTRACE_POINT
-
-	Cout() << xTRACE_VAR(date.tm_sec);
-	Cout() << xTRACE_VAR(date.tm_min);
-	Cout() << xTRACE_VAR(date.tm_hour);
-	Cout() << xTRACE_VAR(date.tm_mday);
-	Cout() << xTRACE_VAR(date.tm_mon);
-	Cout() << xTRACE_VAR(date.tm_year);
-	Cout() << xTRACE_VAR(date.tm_wday);
-	Cout() << xTRACE_VAR(date.tm_yday);
-	Cout() << xTRACE_VAR(date.tm_isdst);
-
+#if 1
+	Cout() << date;
 	Cout() << xTRACE_VAR(a_format);
 	Cout() << xTRACE_VAR(a_formatMsec);
 #endif
