@@ -92,12 +92,6 @@ public:
     ulonglong_t     toMsec() const;
         ///< convert DateTime to milliseconds
 
-    // TODO: [skynowa] ToUniversalTime, ToLocalTime
-#if xTODO
-	ToUniversalTime();
-	ToLocalTime();
-#endif
-
     // formatting
     std::tstring_t  format(std::ctstring_t &format, std::ctstring_t &formatMsec = xT(".%03d")) const;
         ///< formatting
@@ -164,4 +158,10 @@ xPLATFORM_IMPL:
 };
 
 } // namespace
+//-------------------------------------------------------------------------------------------------
+/**
+ * TODO:
+ *
+ * - ToUniversalTime, ToLocalTime
+ */
 //-------------------------------------------------------------------------------------------------
