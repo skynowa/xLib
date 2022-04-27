@@ -182,8 +182,6 @@ DateTimeValidator::datetime(
     cint_t a_msec
 )
 {
-    xUNUSED(a_day);
-
     return (date(a_year, a_month, a_day) && time(a_hour, a_minute, a_second, a_msec));
 }
 //-------------------------------------------------------------------------------------------------
