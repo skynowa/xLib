@@ -572,7 +572,7 @@ DateTime::format(
 
     std::tstring_t sRv;
 #if 0
-	tchar_t        buff[128 + 1] {};
+	tchar_t        buff[80 + 1] {};
 #endif
 
     xTRACE_POINT
@@ -652,7 +652,7 @@ DateTime::format(
 
 
     try {
-		std::cout << "dateFmt:" << std::endl;
+		std::cout << "dateFmt:" << std::flush << std::endl;
 		std::cout << dateFmt    << std::flush << std::endl;
 
 		xTRACE_POINT
