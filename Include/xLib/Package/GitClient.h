@@ -39,9 +39,9 @@ public:
 		///< get number commits ahead behind
 	std::size_t    stashesNum() const;
 		///< get stashes number
-	void_t         modifiedFiles(std::cvec_tstring_t &filterFileExts,
+	void_t         trackedFiles(std::cvec_tstring_t &filterFileExts,
 						std::vec_tstring_t *filePathes) const;
-		///< get modified files
+		///< get tracked files
 	void_t         modifiedFilesLineFilter() const;
 		///< get modified lines line filter (JSON)
 
