@@ -580,8 +580,6 @@ DateTime::format(
     std::ctstring_t &a_formatMsec /* = xT(".%03d") */  ///< milliseconds format
 ) const
 {
-	xTRACE_POINT
-
     xTESTS_NA
     xTEST(!a_format.empty());
     xTEST_NA(a_formatMsec);
@@ -589,11 +587,6 @@ DateTime::format(
     xTRACE_POINT
 
     std::tstring_t sRv;
-#if 1
-	tchar_t        buff[80 + 1] {};
-#endif
-
-    xTRACE_POINT
 
 	std::tm date {};
 	date.tm_sec   = _second;
@@ -623,7 +616,8 @@ DateTime::format(
 	Cout() << xTRACE_VAR(a_formatMsec);
 #endif
 
-#if 1
+	tchar_t buff[80 + 1] {};
+
 	std::csize_t buffSize = xSTRFTIME(&buff[0], sizeof(buff) - 1, a_format.c_str(), &date);
 	xCHECK_RET(buffSize == 0, std::tstring_t());
 
@@ -632,18 +626,6 @@ DateTime::format(
 	if ( !a_formatMsec.empty() ) {
 		sRv += FormatC::str(a_formatMsec.c_str(), _msec);
 	}
-#else
-    xTRACE_POINT
-
-	const auto &dateFmt = std::put_time(&date, a_format.c_str());
-
-	std::stringstream ss;
-	ss << dateFmt;
-
-	sRv = ss.str();
-
-    xTRACE_POINT
-#endif
 
     return sRv;
 }
