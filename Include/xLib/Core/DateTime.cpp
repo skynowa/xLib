@@ -524,7 +524,7 @@ DateTime::_construct(
     culonglong_t a_msec
 )
 {
-    xTESTS_NA
+    xTEST_NA(a_msec);
 
     // datetime msec member
     this->_thisMSec = a_msec;
