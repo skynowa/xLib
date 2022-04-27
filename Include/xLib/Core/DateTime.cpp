@@ -309,8 +309,10 @@ DateTime::DateTime(
     // REVIEW: datetime msec member (convert to msec)
 	_thisMSec{ _toMsec() }
 {
+#if 0
 	xTEST(DateTimeValidator::date(a_year, a_month, a_day));
 	xTEST(DateTimeValidator::time(a_hour, a_minute, a_second, a_msec));
+#endif
 }
 #endif
 //-------------------------------------------------------------------------------------------------
