@@ -536,7 +536,7 @@ DateTime::set(
     _second = a_second;
     _msec   = a_msec;
 
-    // datetime msec member (convert to msec)
+    // REVIEW: datetime msec member (convert to msec)
     _thisMSec = _toMsec();
 }
 //-------------------------------------------------------------------------------------------------
