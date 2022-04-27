@@ -298,7 +298,7 @@ GitClient::stashesNum() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-GitClient::modifiedFiles(
+GitClient::trackedFiles(
 	std::cvec_tstring_t &a_filterFileExts,	///<
 	std::vec_tstring_t  *out_filePathes		///< [out]
 ) const
