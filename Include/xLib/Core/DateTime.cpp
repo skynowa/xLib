@@ -47,32 +47,32 @@ namespace
  *   The extra range is to accommodate for leap seconds in certain systems
  */
 
-xl::cint_t yearMin     = 0;
-xl::cint_t yearMax     = 9999;
+constexpr xl::int_t yearMin     = 0;
+constexpr xl::int_t yearMax     = 9999;
 
-xl::cint_t monthMin    = 1;
-xl::cint_t monthMax    = 12;
+constexpr xl::int_t monthMin    = 1;
+constexpr xl::int_t monthMax    = 12;
 
-xl::cint_t dayMin      = 1;
-xl::cint_t dayMax      = 31;
+constexpr xl::int_t dayMin      = 1;
+constexpr xl::int_t dayMax      = 31;
 
-xl::cint_t hourMin     = 0;
-xl::cint_t hourMax     = 23;
+constexpr xl::int_t hourMin     = 0;
+constexpr xl::int_t hourMax     = 23;
 
-xl::cint_t minuteMin   = 0;
-xl::cint_t minuteMax   = 59;
+constexpr xl::int_t minuteMin   = 0;
+constexpr xl::int_t minuteMax   = 59;
 
-xl::cint_t secondMin   = 0;
-xl::cint_t secondMax   = 60;	// (1 leap second)
+constexpr xl::int_t secondMin   = 0;
+constexpr xl::int_t secondMax   = 60;	// (1 leap second)
 
-xl::cint_t msecMin     = 0;
-xl::cint_t msecMax     = 999;
+constexpr xl::int_t msecMin     = 0;
+constexpr xl::int_t msecMax     = 999;
 
-xl::cint_t microsecMin = 0;
-xl::cint_t microsecMax = 999;
+constexpr xl::int_t microsecMin = 0;
+constexpr xl::int_t microsecMax = 999;
 
-xl::cint_t weekDayMin  = 0;
-xl::cint_t weekDayMax  = 6;
+constexpr xl::int_t weekDayMin  = 0;
+constexpr xl::int_t weekDayMax  = 6;
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
