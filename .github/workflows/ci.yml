@@ -159,21 +159,21 @@ jobs:
       # xLib
 
       # Checkout
-      - name: xLib - Checkout
+      - name: ${{github.event.repository.name}} - Checkout
         uses: actions/checkout@v3
         with:
           repository:  ${{github.repository}} # skynowa/xLib
-          path:        ${{github.workspace}}/xLib
+          path:        ${{github.workspace}}/${{github.event.repository.name}}
           fetch-depth: 1
 
       # Libs (Extra)
       - name: Libs (Extra) - Install
         run: >-
             conan install
-            "${{github.workspace}}/xLib/${{ matrix.config.conan_file }}"
-            --install-folder "${{github.workspace}}/xLib_conan"
-            --output-folder  "${{github.workspace}}/xLib_conan"
-            --profile "${{github.workspace}}/xLib/${{ matrix.config.conan_profile }}"
+            "${{github.workspace}}/${{github.event.repository.name}}/${{ matrix.config.conan_file }}"
+            --install-folder "${{github.workspace}}/${{github.event.repository.name}}_conan"
+            --output-folder  "${{github.workspace}}/${{github.event.repository.name}}_conan"
+            --profile "${{github.workspace}}/${{github.event.repository.name}}/${{ matrix.config.conan_profile }}"
             --build=missing
             --update
         shell: bash
@@ -185,27 +185,27 @@ jobs:
         shell: bash
 
       # Generate
-      - name: xLib - Generate
-        run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.gen_script }}
+      - name: ${{github.event.repository.name}} - Generate
+        run: cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ${{ matrix.config.gen_script }}
         shell: bash
 
       # Build
-      - name: xLib - Build
-        run: cd "${{github.workspace}}/xLib/Build" && ./build.sh
+      - name: ${{github.event.repository.name}} - Build
+        run: cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ./build.sh
         shell: bash
 
       # Deploy
-      - name: xLib - Deploy
-        run: cd "${{github.workspace}}/xLib/Build" && ./deploy.sh
+      - name: ${{github.event.repository.name}} - Deploy
+        run: cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ./deploy.sh
         shell: bash
 
       # Tests (Generate)
-      - name: xLib - Tests (Generate)
-        run: cd "${{github.workspace}}/xLib/Build" && ${{ matrix.config.gen_tests_script }}
+      - name: ${{github.event.repository.name}} - Tests (Generate)
+        run: cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ${{ matrix.config.gen_tests_script }}
         shell: bash
 
       # Tests
-      - name: xLib - Tests
-        run: cd "${{github.workspace}}/xLib/Build" && ./tests.sh
+      - name: ${{github.event.repository.name}} - Tests
+        run: cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ./tests.sh
         shell: bash
 #--------------------------------------------------------------------------------------------------
