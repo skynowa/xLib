@@ -2,6 +2,8 @@
 
 ## CMake
 
+[ ] CONAN_BUILD_INFO - mv from CppTest
+[ ] Conan - use CMAKE_BINARY_DIR for builds (rm Conan build dir)
 [ ] LibEvent - rm
 [ ] Full build/run tests
 [ ] Crossplatform
