@@ -12,6 +12,6 @@ conan install \
 	conan_file.txt \
 	--install-folder="${DIR_BUILD}" \
 	--output-folder="${DIR_BUILD}" \
-	--profile=conan_profile_win_vs.txt \
+	--profile=conan_profile_dev.txt \
 	--build=missing \
 	--update
