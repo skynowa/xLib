@@ -6,8 +6,6 @@
 
 #include <xLib/Package/Curl/SmtpClient.h>
 
-#include <xLib/Core/Const.h>
-#include <xLib/Core/String.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::package::curl
 {
