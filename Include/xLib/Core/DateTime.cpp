@@ -219,9 +219,6 @@ DateTimeValidator::dateOrTime(
 DateTime::DateTime() :
 	DateTime(::yearMin, ::monthMin, ::dayMin, ::hourMin, ::minuteMin, ::secondMin, ::msecMin)
 {
-#if 0
-	set(::yearMin, ::monthMin, ::dayMin, ::hourMin, ::minuteMin, ::secondMin, ::msecMin);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 DateTime::DateTime(
