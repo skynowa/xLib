@@ -132,6 +132,10 @@ xPUBLIC_STATIC:
                    const std::set<std::pair_tstring_t> &envs, culong_t waitTimeoutMsec,
                    std::tstring_t *stdOut, std::tstring_t *stdError);
         ///< create, wait process
+    static
+    void_t     execute(std::ctstring_t &filePath, std::cvec_tstring_t &params,
+                   std::tstring_t *stdOut, std::tstring_t *stdError);
+        ///< create, wait process (Without envs, with infinite wait timeout)
 
 private:
     handle_t _handle {};
