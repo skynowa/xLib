@@ -97,7 +97,7 @@ Test_DateTime::unit()
                 cint_t second = nonValid[i][5];
                 cint_t msec   = nonValid[i][6];
 
-                // Trace() << xTRACE_VAR_8(i, year, month, day, hour, minute, second, msec);
+                // Trace() << xSTD_TRACE_VAR_8(i, year, month, day, hour, minute, second, msec);
 
                 m_bRv = DateTimeValidator::datetime(year, month, day, hour, minute, second, msec);
                 xTEST(!m_bRv);
@@ -135,7 +135,7 @@ Test_DateTime::unit()
         DateTime datetime(1000 * 60 * 60);
 
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        Cout() << xTRACE_VAR(m_sRv);
+        Cout() << xSTD_TRACE_VAR(m_sRv);
         xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0 01:00:00.000")));
     }
 

@@ -18,7 +18,7 @@ Test_Bitset::unit()
     xTEST_CASE("Bitset")
     {
         Bitset bits(2);
-        std::tcout << xTRACE_VAR(bits) << std::endl;
+        std::tcout << xSTD_TRACE_VAR(bits) << std::endl;
     }
 
     return true;

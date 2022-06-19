@@ -29,8 +29,8 @@ Test_Process::unit()
     	std::tstring_t stdError;
         proc.create(filePath, cmdLine, {}, &stdOut, &stdError);
 
-		Cout() << xTRACE_VAR(stdOut);
-		Cout() << xTRACE_VAR(stdError);
+		Cout() << xSTD_TRACE_VAR(stdOut);
+		Cout() << xSTD_TRACE_VAR(stdError);
 
         Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
         xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Ok);
@@ -115,7 +115,7 @@ Test_Process::unit()
         Process::id_t id = Process::idByName(procName);
         xTEST_DIFF(static_cast<ulong_t>(id), 0UL);
 
-        // Cout() << xTRACE_VAR(id);
+        // Cout() << xSTD_TRACE_VAR(id);
     }
 
     xTEST_CASE("ids")
@@ -171,8 +171,8 @@ Test_Process::unit()
 		for (auto &it_data : datas) {
 			Process::execute(it_data.filePath, it_data.params, it_data.envs, xTIMEOUT_INFINITE,
 				&it_data.stdOut, &it_data.stdError);
-			Cout() << xTRACE_VAR(it_data.stdOut);
-			Cout() << xTRACE_VAR(it_data.stdError);
+			Cout() << xSTD_TRACE_VAR(it_data.stdOut);
+			Cout() << xSTD_TRACE_VAR(it_data.stdError);
 		} // for (datas)
 	}
 

@@ -316,8 +316,8 @@ GitClient::modifiedFiles(
 
 	Process::execute(_gitPath(), params, &stdOut, &stdError);
 #if 0
-	Cout() << xTRACE_VAR(stdOut);
-	Cout() << xTRACE_VAR(stdError);
+	Cout() << xSTD_TRACE_VAR(stdOut);
+	Cout() << xSTD_TRACE_VAR(stdError);
 #endif
 
 	std::vec_tstring_t values;
@@ -361,8 +361,8 @@ GitClient::trackedFiles(
 
 	Process::execute(_gitPath(), params_master_diff, &stdOut, &stdError);
 #if 0
-	Cout() << xTRACE_VAR(stdOut);
-	Cout() << xTRACE_VAR(stdError);
+	Cout() << xSTD_TRACE_VAR(stdOut);
+	Cout() << xSTD_TRACE_VAR(stdError);
 #endif
 
 	std::vec_tstring_t values;

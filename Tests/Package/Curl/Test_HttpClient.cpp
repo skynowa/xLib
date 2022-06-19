@@ -34,16 +34,16 @@ Test_HttpClient::unit()
 
 		if (0) {
 			Cout()
-				<< xTRACE_VAR(dataIn.request)       << std::endl
+				<< xSTD_TRACE_VAR(dataIn.request)       << std::endl
 				<< xT("\n")
-				<< xTRACE_VAR(dataOut.contentType)  << std::endl
-				<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
-				<< xTRACE_VAR(dataOut.responseCode) << std::endl
-				<< xTRACE_VAR(dataOut.totalTimeSec) << std::endl
+				<< xSTD_TRACE_VAR(dataOut.contentType)  << std::endl
+				<< xSTD_TRACE_VAR(dataOut.effectiveUrl) << std::endl
+				<< xSTD_TRACE_VAR(dataOut.responseCode) << std::endl
+				<< xSTD_TRACE_VAR(dataOut.totalTimeSec) << std::endl
 				<< xT("\n")
-				<< xTRACE_VAR(dataOut.headers)      << std::endl
-				<< xTRACE_VAR(dataOut.body.size())  << std::endl
-				<< xTRACE_VAR(dataOut.body)         << std::endl;
+				<< xSTD_TRACE_VAR(dataOut.headers)      << std::endl
+				<< xSTD_TRACE_VAR(dataOut.body.size())  << std::endl
+				<< xSTD_TRACE_VAR(dataOut.body)         << std::endl;
 		}
     }
 

@@ -59,9 +59,9 @@ Process::create(
 )
 {
 #if 0
-	Cout() << xTRACE_VAR(a_filePath) << std::endl;
-	Cout() << xTRACE_VAR(a_params) << std::endl;
-	Cout() << xTRACE_VAR(a_envs) << std::endl;
+	Cout() << xSTD_TRACE_VAR(a_filePath) << std::endl;
+	Cout() << xSTD_TRACE_VAR(a_params) << std::endl;
+	Cout() << xSTD_TRACE_VAR(a_envs) << std::endl;
 #endif
 
     xTEST_EQ(a_filePath.empty(), false);
@@ -71,9 +71,9 @@ Process::create(
     xTEST_NA(out_stdError);
 
 	xCHECK_DO(!FileInfo(a_filePath).isExists(),
-		Cout() << xTRACE_VAR(a_filePath) << xT(" not exists"); return);
+		Cout() << xSTD_TRACE_VAR(a_filePath) << xT(" not exists"); return);
 	xCHECK_DO(!FileType(a_filePath).isExecutable(),
-		Cout() << xTRACE_VAR(a_filePath) << xT(" not executable"); return);
+		Cout() << xSTD_TRACE_VAR(a_filePath) << xT(" not executable"); return);
 
     _create_impl(a_filePath, a_params, a_envs, out_stdOut, out_stdError);
 }
@@ -97,7 +97,7 @@ Process::kill(
 		return;
 	}
 
-	Cout() << xT("Kill: ") << xTRACE_VAR(_pid) << std::endl;
+	Cout() << xT("Kill: ") << xSTD_TRACE_VAR(_pid) << std::endl;
 
     _kill_impl(a_timeoutMsec);
 }

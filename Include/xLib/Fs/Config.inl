@@ -75,7 +75,7 @@ Config::setValue(
 		_value = String::cast( std::tstring_t(a_value.cbegin(), a_value.cend()), 16);
 	}
 	else {
-		Cout() << xTRACE_VAR(a_value);
+		Cout() << xSTD_TRACE_VAR(a_value);
 
 	    _config[a_key] = a_value;
 	}

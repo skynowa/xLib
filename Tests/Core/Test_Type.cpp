@@ -25,11 +25,11 @@ Test_Type::unit()
 
 		Cout()
 			<< xT("Print vars:")   << std::endl
-			<< xTRACE_VAR(m_fRv)   << std::endl
-			<< xTRACE_VAR(m_sRv)   << std::endl
-			<< xTRACE_VAR(m_msRv)  << std::endl
-			<< xTRACE_VAR(m_mmsRv) << std::endl
-			<< xTRACE_VAR(m_vsRv)  << std::endl << std::endl;
+			<< xSTD_TRACE_VAR(m_fRv)   << std::endl
+			<< xSTD_TRACE_VAR(m_sRv)   << std::endl
+			<< xSTD_TRACE_VAR(m_msRv)  << std::endl
+			<< xSTD_TRACE_VAR(m_mmsRv) << std::endl
+			<< xSTD_TRACE_VAR(m_vsRv)  << std::endl << std::endl;
 
 		if (0) {
 			Cout()

@@ -173,7 +173,7 @@ Test_SystemInfo::unit()
         m_sRv = SystemInfo().glibcVersion();
         xTEST(!m_sRv.empty());
 
-        // Trace() << xTRACE_VAR(m_sRv);
+        // Trace() << xSTD_TRACE_VAR(m_sRv);
     }
 #endif
 
@@ -183,7 +183,7 @@ Test_SystemInfo::unit()
         m_sRv = SystemInfo().libPthreadVersion();
         xTEST(!m_sRv.empty());
 
-        // Trace() << xTRACE_VAR(m_sRv);
+        // Trace() << xSTD_TRACE_VAR(m_sRv);
     }
 #endif
 

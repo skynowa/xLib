@@ -32,12 +32,12 @@ DebugData::print(
 ) const
 {
 	a_os
-		<< xTRACE_VAR(text)      << xT("\n")
-		<< xTRACE_VAR(headerIn)  << xT("\n")
-		<< xTRACE_VAR(headerOut) << xT("\n")
-		<< xTRACE_VAR(dataOut)   << xT("\n")
-		<< xTRACE_VAR(sslDataIn) << xT("\n")
-		<< xTRACE_VAR(sslDataOut);
+		<< xSTD_TRACE_VAR(text)      << xT("\n")
+		<< xSTD_TRACE_VAR(headerIn)  << xT("\n")
+		<< xSTD_TRACE_VAR(headerOut) << xT("\n")
+		<< xSTD_TRACE_VAR(dataOut)   << xT("\n")
+		<< xSTD_TRACE_VAR(sslDataIn) << xT("\n")
+		<< xSTD_TRACE_VAR(sslDataOut);
 }
 //-------------------------------------------------------------------------------------------------
 
