@@ -49,7 +49,7 @@ Test_DnsClient::unit()
 		std::tstring_t name;
 		std::tstring_t port;
         DnsClient::nameInfo(family, hostAddr, hostPort, &name, &port);
-        Cout() << xTRACE_VAR_2(name, port) << std::endl;
+        Cout() << xSTD_TRACE_VAR_2(name, port) << std::endl;
         xTEST(!name.empty());
         xTEST(!port.empty());
     }

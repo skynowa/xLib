@@ -288,10 +288,10 @@ Ssh2Client::_channelStdStreamReadLine(
         ssize_t read = 0;
         if (a_stdOutOrErr) {
             read = ::libssh2_channel_read(_channel, block, blockSizeMin);
-            // Trace() << "stdout: " << xTRACE_VAR(read);
+            // Trace() << "stdout: " << xSTD_TRACE_VAR(read);
         } else {
             read = ::libssh2_channel_read_stderr(_channel, block, blockSizeMin);
-            // Trace() << "stderr: " << xTRACE_VAR(read);
+            // Trace() << "stderr: " << xSTD_TRACE_VAR(read);
         }
 
         if (read == LIBSSH2_ERROR_EAGAIN) {

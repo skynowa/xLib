@@ -100,7 +100,7 @@ Test_Finder::unit()
                 entries.push_back(finder.entryName());
             }
 
-            // Cout() << filter << "\n" << xTRACE_VAR(rootDirPath) << entries;
+            // Cout() << filter << "\n" << xSTD_TRACE_VAR(rootDirPath) << entries;
             xTEST_EQ(it_data.expect, entries.size());
         }
     }
@@ -208,7 +208,7 @@ Test_Finder::unit()
 
 		for (const auto &it_data : data) {
 			m_sRv = Finder::file(it_data.dirPaths, it_data.fileName, it_data.isRecursively);
-			// Cout() << xTRACE_VAR(m_sRv);
+			// Cout() << xSTD_TRACE_VAR(m_sRv);
 			xTEST_EQ(m_sRv, it_data.expect);
 		}
 	}

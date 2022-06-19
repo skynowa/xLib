@@ -25,10 +25,10 @@ Test_Backup::unit()
             file.setSize(100L);
 
         #if 0
-            Tracer() << xTRACE_VAR(DateTime::current().format(xT("%Y-%m-%d_%H"), xT("")));
-            Tracer() << xTRACE_VAR(DateTime::current().format(xT("%Y-%m-%d"), xT("")));
-            Tracer() << xTRACE_VAR(DateTime::current().format(xT("%Y_%U"), xT("")));
-            Tracer() << xTRACE_VAR(DateTime::current().format(xT("%Y-%m"), xT("")));
+            Tracer() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m-%d_%H"), xT("")));
+            Tracer() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m-%d"), xT("")));
+            Tracer() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y_%U"), xT("")));
+            Tracer() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m"), xT("")));
         #endif
         }
 
