@@ -75,25 +75,27 @@
 
 // C++11
 #include <array>
-#include <atomic>
 #include <chrono>
 #include <codecvt>
-#include <condition_variable>
 #include <forward_list>
-#include <future>
 #include <initializer_list>
-#include <mutex>
 #include <random>
 #include <ratio>
 #include <regex>
 #include <scoped_allocator>
 #include <system_error>
-#include <thread>
 #include <tuple>
 #include <typeindex>
 #include <type_traits>
 #include <unordered_map>
 #include <unordered_set>
+
+// C++11 - MT / IPC
+#include <thread>
+#include <atomic>
+#include <condition_variable>
+#include <mutex>
+#include <future>
 
 #if (__cplusplus >= 201402L)	// xLANG_CPP14
 #include <shared_mutex>
