@@ -121,7 +121,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     get_filename_component(TEST_NAME ${IT_SOURCE} NAME_WE)
 
     # TODO: temp test
-    if (NOT "${TEST_NAME}" MATCHES "Test_DateTime")
+    if (NOT "${TEST_NAME}" MATCHES "Test_HttpClient")
         continue()
     endif()
 

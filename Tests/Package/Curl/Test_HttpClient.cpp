@@ -16,6 +16,56 @@ xTEST_UNIT(Test_HttpClient)
 bool_t
 Test_HttpClient::unit()
 {
+    xTEST_CASE("translate.google.com (Get)")
+    {
+	   /**
+		https://translate.google.com.vn/translate_tts?
+		ie=UTF-8&
+		q=%D0%B1%D0%BE%D0%BB%D0%B3%D0%B0%D1%80%D0%BA%D0%B0&
+		tl=en&
+		client=tw-ob
+		*/
+
+		cbool_t isDebug {false};
+
+		HttpClient http(isDebug);
+
+		DataIn dataIn;
+		dataIn.url     = xT("https://translate.google.com.vn/translate_tts");
+		dataIn.request = Format::str("ie={}&q={}&tl={}&client={}",
+							"UTF-8",
+							http.escape("comma-separated list of guest names"),
+							"en",
+							"tw-ob");
+
+		DataOut dataOut;
+
+
+		m_bRv = http.get(dataIn, &dataOut);
+		xTEST(m_bRv);
+		xTEST(!dataOut.headers.empty());
+		xTEST(!dataOut.body.empty());
+
+		std::custring_t body(dataOut.body.cbegin(), dataOut.body.cend());
+
+		File file("./test.mp3");
+		file.binWrite(body, xl::fs::FileIO::OpenMode::BinWrite);
+
+		if (0) {
+			Cout()
+				<< xSTD_TRACE_VAR(dataIn.request)       << std::endl
+				<< xT("\n")
+				<< xSTD_TRACE_VAR(dataOut.contentType)  << std::endl
+				<< xSTD_TRACE_VAR(dataOut.effectiveUrl) << std::endl
+				<< xSTD_TRACE_VAR(dataOut.responseCode) << std::endl
+				<< xSTD_TRACE_VAR(dataOut.totalTimeSec) << std::endl
+				<< xT("\n")
+				<< xSTD_TRACE_VAR(dataOut.headers)      << std::endl
+				<< xSTD_TRACE_VAR(dataOut.body.size())  << std::endl
+				<< xSTD_TRACE_VAR(dataOut.body)         << std::endl;
+		}
+	}
+
     xTEST_CASE("request (Get)")
     {
 		cbool_t isDebug {false};
