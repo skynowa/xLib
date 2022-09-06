@@ -59,6 +59,10 @@ Double<T>::operator = (
     const Double &a_value
 )
 {
+	if (this == &a_value) {
+		return *this;
+	}
+
     _value = a_value._value;
 
     return *this;
@@ -70,6 +74,10 @@ Double<T>::operator = (
     Double &&a_value
 )
 {
+	if (this == &a_value) {
+		return *this;
+	}
+
     _value = std::move(a_value._value);
 
     return *this;
