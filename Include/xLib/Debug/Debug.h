@@ -75,10 +75,12 @@
 	xSTD_TRACE_VAR_8(v1, v2, v3, v4, v5, v6, v7, v8) <<  xT(", ") << xSTD_TRACE_VAR(v9)
 #define xSTD_TRACE_VAR_10(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10) \
 	xSTD_TRACE_VAR_9(v1, v2, v3, v4, v5, v6, v7, v8, v9) <<  xT(", ") << xSTD_TRACE_VAR(v10)
+///\}
 
+///\name Trace variables with label
+///\{
 #define xPRINT_VAR(v) \
 	#v xT(": [") << (v) << xT("]")
-	///< trace variable with delimiters ("[var]")
 #define xUNKNOWN_VAR(v) \
 	xT("Unknown ") << xSTD_TRACE_VAR(v)
 #define xINVALID_VAR(v) \
