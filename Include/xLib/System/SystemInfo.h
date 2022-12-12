@@ -117,6 +117,8 @@ public:
         ///< get Size of a page (bytes)
 
     // Power supply
+    bool_t         isPowerSupply() const;
+        ///< Check for power supply
     std::size_t    powerSupplyLevel() const;
         ///< get level (pct) of power supply
 
@@ -160,6 +162,7 @@ xPLATFORM_IMPL:
     ulong_t        _pageSize_impl() const;
 
     // Power supply
+    bool_t         _isPowerSupply_impl() const;
     std::size_t    _powerSupplyLevel_impl() const;
 };
 

@@ -283,6 +283,19 @@ SystemInfo::_ramUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
+bool_t
+SystemInfo::_isPowerSupply_impl() const
+{
+	bool_t bRv {};
+
+    std::ctstring_t dirPath = xT("/sys/class/power_supply");
+
+    Dir dir(dirPath);
+    bRv = dir.isExists();
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
 std::size_t
 SystemInfo::_powerSupplyLevel_impl() const
 {
