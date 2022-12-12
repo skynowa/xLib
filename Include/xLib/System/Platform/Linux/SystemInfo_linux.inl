@@ -311,10 +311,10 @@ SystemInfo::_powerSupplyLevel_impl() const
         xCHECK_RET(file == nullptr, 0);
 
         // UNICODE: SystemInfo - fix
-    #if xANSI
+    /// #if xANSI
         int_t iRv = std::fscanf(file, xPR_I64u, &uiRv);
         xTEST_DIFF(iRv, - 1);
-    #endif
+    /// #endif
 
         iRv = std::fclose(file);
         xTEST_DIFF(iRv, - 1);
