@@ -313,7 +313,7 @@ SystemInfo::_powerSupplyLevel_impl() const
 
         // UNICODE: SystemInfo - fix
     /// #if xANSI
-        int_t iRv = std::fscanf(file, "%"xPR_I64u, &uiRv);
+        int_t iRv = std::fscanf(file, "%" xPR_I64u, &uiRv);
         xTEST_DIFF(iRv, - 1);
     /// #endif
 
