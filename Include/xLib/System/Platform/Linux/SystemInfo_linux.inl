@@ -286,29 +286,17 @@ SystemInfo::_ramUsage_impl() const
 std::size_t
 SystemInfo::_powerSupplyLevel_impl() const
 {
-	std::size_t uiRv {};
+    std::size_t uiRv {};
 
-	std::ctstring_t filePath = xT("/sys/class/power_supply/BAT0/capacity");
+    std::ctstring_t filePath = xT("/sys/class/power_supply/BAT0/capacity");
 
-#if 0
-	FileInfo fileInfo(filePath);
-	xCHECK_RET(!fileInfo.isExists(), 0.0);
+    FileInfo fileInfo(filePath);
+    xCHECK_RET(!fileInfo.isExists(), 0.0);
 
-	std::tstring_t capacity_pct;
-	{
-		File file(filePath);
-		file.textRead(&capacity_pct);
-		xTEST(!capacity_pct.empty());
-
-		xCHECK_RET(capacity_pct.empty(), 0.0);
-	}
-
-	uiRv = String::cast<std::size_t>(capacity_pct);
-#else
-    // read proc file for the next times
+    // read file
     {
         FILE *file = std::fopen(filePath.c_str(), "r");
-        xCHECK_RET(file == nullptr, 0);
+        xTEST_PTR(file);
 
         // UNICODE: SystemInfo - fix
     /// #if xANSI
@@ -319,7 +307,6 @@ SystemInfo::_powerSupplyLevel_impl() const
         iRv = std::fclose(file);
         xTEST_DIFF(iRv, - 1);
     }
-#endif
 
     return uiRv;
 }
