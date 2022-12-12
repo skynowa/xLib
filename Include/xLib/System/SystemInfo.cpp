@@ -174,5 +174,11 @@ SystemInfo::pageSize() const
     return _pageSize_impl();
 }
 //-------------------------------------------------------------------------------------------------
+double
+SystemInfo::powerSupplyLevel() const
+{
+    return _powerSupplyLevel_impl();
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
