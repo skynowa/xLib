@@ -174,7 +174,7 @@ SystemInfo::pageSize() const
     return _pageSize_impl();
 }
 //-------------------------------------------------------------------------------------------------
-double
+std::size_t
 SystemInfo::powerSupplyLevel() const
 {
     return _powerSupplyLevel_impl();

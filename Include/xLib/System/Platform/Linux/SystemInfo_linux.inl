@@ -283,19 +283,28 @@ SystemInfo::_ramUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-double
+std::size_t
 SystemInfo::_powerSupplyLevel_impl() const
 {
-	double dRv {};
+	std::size_t uiRv {};
 
-	std::vec_tstring_t fileLines;
-    Path::proc(xT("/sys/class/power_supply/BAT0/capacity"), &fileLines);
-    xCHECK_RET(fileLines.empty(), 0.0);
-    xTEST_EQ(fileLines.size(), 1);
+	std::ctstring_t filePath = xT("/sys/class/power_supply/BAT0/capacity");
 
-    dRv = String::cast<double>(fileLines.at(0));
+	FileInfo fileInfo(filePath);
+	xCHECK_RET(!fileInfo.isExists(), 0.0);
 
-    return dRv;
+	std::tstring_t capacity_pct;
+	{
+		File file(filePath);
+		file.textRead(&capacity_pct);
+		xTEST(!capacity_pct.empty());
+
+		xCHECK_RET(capacity_pct.empty(), 0.0);
+	}
+
+	uiRv = String::cast<std::size_t>(capacity_pct);
+
+    return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
 

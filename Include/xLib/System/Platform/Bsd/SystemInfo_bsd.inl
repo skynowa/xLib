@@ -224,7 +224,7 @@ SystemInfo::_ramUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-double
+std::size_t
 SystemInfo::_powerSupplyLevel_impl() const
 {
 	double dRv {};
