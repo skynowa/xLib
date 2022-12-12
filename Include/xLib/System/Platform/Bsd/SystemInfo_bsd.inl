@@ -224,5 +224,16 @@ SystemInfo::_ramUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
+double
+SystemInfo::_powerSupplyLevel() const
+{
+	double dRv {};
+
+    // TODO: [skynowa] SystemInfo::_powerSupplyLevel()
+    xNOT_IMPLEMENTED
+
+    return dRv;
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace

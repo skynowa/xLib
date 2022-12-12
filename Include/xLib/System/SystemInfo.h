@@ -116,6 +116,10 @@ public:
     ulong_t        pageSize() const;
         ///< get Size of a page (bytes)
 
+    // Power supply
+    double         powerSupplyLevel() const;
+        ///< get level (pct) of power supply
+
     // Libs
 #if xENV_UNIX
     std::tstring_t glibcVersion() const;
@@ -154,6 +158,9 @@ xPLATFORM_IMPL:
 
     // HDD
     ulong_t        _pageSize_impl() const;
+
+    // Power supply
+    double         _powerSupplyLevel_impl() const;
 };
 
 } // namespace

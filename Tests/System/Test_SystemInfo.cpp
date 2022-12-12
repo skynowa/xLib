@@ -167,6 +167,13 @@ Test_SystemInfo::unit()
         xTEST_LESS(0UL, m_ulRv);
     }
 
+    xTEST_CASE("powerSupplyLevel")
+    {
+        m_dRv = SystemInfo().powerSupplyLevel();
+        Trace() << xSTD_TRACE_VAR(m_dRv);
+        // xTEST_GR(m_ulRv, 0.0);
+    }
+
 #if xENV_UNIX
     xTEST_CASE("glibcVersion")
     {

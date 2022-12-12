@@ -283,5 +283,20 @@ SystemInfo::_ramUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
+double
+SystemInfo::_powerSupplyLevel() const
+{
+	double dRv {};
+
+	std::vec_tstring_t fileLines;
+    Path::proc(xT("/sys/class/power_supply/BAT0/capacity"), &fileLines);
+    xCHECK_RET(fileLines.empty(), 0.0);
+    xTEST_EQ(fileLines.size(), 1);
+
+    dRv = String::cast<double>(fileLines.at(0));
+
+    return dRv;
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
