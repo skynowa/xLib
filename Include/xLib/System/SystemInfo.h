@@ -117,7 +117,7 @@ public:
         ///< get Size of a page (bytes)
 
     // Power supply
-    double         powerSupplyLevel() const;
+    std::size_t    powerSupplyLevel() const;
         ///< get level (pct) of power supply
 
     // Libs
@@ -160,7 +160,7 @@ xPLATFORM_IMPL:
     ulong_t        _pageSize_impl() const;
 
     // Power supply
-    double         _powerSupplyLevel_impl() const;
+    std::size_t    _powerSupplyLevel_impl() const;
 };
 
 } // namespace
