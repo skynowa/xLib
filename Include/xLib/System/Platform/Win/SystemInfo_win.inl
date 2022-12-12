@@ -428,12 +428,12 @@ SystemInfo::_isPowerSupply_impl() const
 std::size_t
 SystemInfo::_powerSupplyLevel_impl() const
 {
-	double dRv {};
+	std::size_t uiRv {};
 
     // TODO: [skynowa] SystemInfo::_powerSupplyLevel_impl()
     xNOT_IMPLEMENTED
 
-    return dRv;
+    return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
 
