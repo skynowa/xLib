@@ -167,11 +167,14 @@ Test_SystemInfo::unit()
         xTEST_LESS(0UL, m_ulRv);
     }
 
-    xTEST_CASE("powerSupplyLevel")
+    xTEST_CASE("isPowerSupply, powerSupplyLevel")
     {
-        m_dRv = SystemInfo().powerSupplyLevel();
-        Trace() << xSTD_TRACE_VAR(m_dRv);
-        // xTEST_GR(m_ulRv, 0.0);
+		SystemInfo sysInfo;
+
+		if ( sysInfo.isPowerSupply() ) {
+			m_stRv = sysInfo.powerSupplyLevel();
+			xTEST_GR(m_stRv, 0ULL);
+		}
     }
 
 #if xENV_UNIX

@@ -11,6 +11,7 @@
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Fs/Path.h>
+#include <xLib/Fs/Dir.h>
 #include <xLib/Fs/Dll.h>
 #include <xLib/Fs/File.h>
 #include <xLib/System/Environment.h>
@@ -172,6 +173,12 @@ ulong_t
 SystemInfo::pageSize() const
 {
     return _pageSize_impl();
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+SystemInfo::isPowerSupply() const
+{
+    return _isPowerSupply_impl();
 }
 //-------------------------------------------------------------------------------------------------
 std::size_t

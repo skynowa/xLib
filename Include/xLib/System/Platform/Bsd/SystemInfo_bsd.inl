@@ -224,6 +224,17 @@ SystemInfo::_ramUsage_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
+bool_t
+SystemInfo::_isPowerSupply_impl() const
+{
+	bool_t bRv {};
+
+    // TODO: [skynowa] SystemInfo::_isPowerSupply_impl()
+    xNOT_IMPLEMENTED
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
 std::size_t
 SystemInfo::_powerSupplyLevel_impl() const
 {
