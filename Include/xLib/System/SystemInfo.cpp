@@ -184,6 +184,8 @@ SystemInfo::isPowerSupply() const
 std::size_t
 SystemInfo::powerSupplyLevel() const
 {
+	xCHECK_RET(!isPowerSupply(), 0);
+
     return _powerSupplyLevel_impl();
 }
 //-------------------------------------------------------------------------------------------------
