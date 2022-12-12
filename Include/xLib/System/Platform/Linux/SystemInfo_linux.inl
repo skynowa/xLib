@@ -290,6 +290,7 @@ SystemInfo::_powerSupplyLevel_impl() const
 
 	std::ctstring_t filePath = xT("/sys/class/power_supply/BAT0/capacity");
 
+#if 0
 	FileInfo fileInfo(filePath);
 	xCHECK_RET(!fileInfo.isExists(), 0.0);
 
@@ -303,6 +304,22 @@ SystemInfo::_powerSupplyLevel_impl() const
 	}
 
 	uiRv = String::cast<std::size_t>(capacity_pct);
+#else
+    // read proc file for the next times
+    {
+        FILE *file = std::fopen(filePath.c_str(), "r");
+        xCHECK_RET(file == nullptr, 0);
+
+        // UNICODE: SystemInfo - fix
+    #if xANSI
+        int_t iRv = std::fscanf(file, xPR_I64u, &uiRv);
+        xTEST_DIFF(iRv, - 1);
+    #endif
+
+        iRv = std::fclose(file);
+        xTEST_DIFF(iRv, - 1);
+    }
+#endif
 
     return uiRv;
 }
