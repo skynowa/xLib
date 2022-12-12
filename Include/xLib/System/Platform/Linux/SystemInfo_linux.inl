@@ -296,10 +296,13 @@ SystemInfo::_powerSupplyLevel_impl() const
 	std::tstring_t capacity_pct;
 	{
 		File file(filePath);
-		file.textRead(&capacity_pct);
-		xTEST(!capacity_pct.empty());
 
-		xCHECK_RET(capacity_pct.empty(), 0.0);
+		std::vec_tstring_t content;
+		file.textRead(&content);
+		xTEST(!content.empty());
+		xCHECK_RET(content.empty(), 0.0);
+
+		capacity_pct = content.at(0);
 	}
 
 	uiRv = String::cast<std::size_t>(capacity_pct);
