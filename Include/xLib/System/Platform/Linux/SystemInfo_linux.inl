@@ -291,7 +291,7 @@ SystemInfo::_isPowerSupply_impl() const
     std::ctstring_t dirPath = xT("/sys/class/power_supply");
 
     Dir dir(dirPath);
-    bRv = !dir.isEmpty();
+    bRv = !dir.isEmpty(Const::maskAll());
 
     return bRv;
 }
