@@ -284,7 +284,7 @@ SystemInfo::_ramUsage_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 double
-SystemInfo::_powerSupplyLevel() const
+SystemInfo::_powerSupplyLevel_impl() const
 {
 	double dRv {};
 

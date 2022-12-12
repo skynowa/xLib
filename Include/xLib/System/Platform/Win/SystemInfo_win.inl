@@ -415,11 +415,11 @@ SystemInfo::_pageSize_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 double
-SystemInfo::_powerSupplyLevel() const
+SystemInfo::_powerSupplyLevel_impl() const
 {
 	double dRv {};
 
-    // TODO: [skynowa] SystemInfo::_powerSupplyLevel()
+    // TODO: [skynowa] SystemInfo::_powerSupplyLevel_impl()
     xNOT_IMPLEMENTED
 
     return dRv;
