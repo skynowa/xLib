@@ -265,7 +265,7 @@ FileIO::readV(
 	va_list args;
 	xVA_START(args, a_format);
 
-	iRv = std::vfscanf(_handle.get(), a_format, args);
+	iRv = xTVFSCANF(_handle.get(), a_format, args);
 	xTEST_GR(iRv, - 1);
 
 	xVA_END(args);
