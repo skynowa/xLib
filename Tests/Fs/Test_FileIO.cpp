@@ -299,22 +299,24 @@ Test_FileIO::unit()
 
         std::ctstring_t str = xT("zzz");
 
+        // writeV
 		{
 			FileIO file(filePath);
 			file.open(FileIO::OpenMode::ReadWrite);
 
-			Writer::doV(file, xT("%s"), str);
+			Writer::doV(file, xT("%s"), str.c_str());
 		}
 
+		// readV
 		{
 			FileIO file(filePath);
 			file.open(FileIO::OpenMode::ReadOnly);
 
-			tchar_t buff[str.size() + 1];
-			file.readV("%s", &buff);
+			tchar_t buff[str.size() * 1];
+			file.readV(xT("%s"), &buff[0]);
 
-			std::ctstring_t status = buff;
-			xTEST_EQ(status, str);
+			std::ctstring_t buffStr(&buff[0]);
+			xTEST_EQ(buffStr, str);
 		}
     }
 
