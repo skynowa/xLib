@@ -38,7 +38,6 @@ set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 
 #--------------------------------------------------------------------------------------------------
 list(APPEND CMAKE_MODULE_PATH "${XLIB_LOCATION}/CMake")
-list(APPEND CMAKE_MODULE_PATH "~/Projects/CMakeLib")
 
 include(CMake/Config.cmake)
 
