@@ -280,7 +280,7 @@ Test_FileIO::unit()
         xTEST_EQ(content.size(), size_t(iRv));
     }
 
-    xTEST_CASE("writeV")
+    xTEST_CASE("writeV, readV")
     {
         struct Writer
         {
@@ -297,9 +297,25 @@ Test_FileIO::unit()
             };
         };
 
-        FileIO file(filePath);
-        file.open(FileIO::OpenMode::ReadWrite);
-        Writer::doV(file, xT("%s"), xT("zzz"));
+        std::ctstring_t str = xT("zzz");
+
+		{
+			FileIO file(filePath);
+			file.open(FileIO::OpenMode::ReadWrite);
+
+			Writer::doV(file, xT("%s"), str);
+		}
+
+		{
+			FileIO file(filePath);
+			file.open(FileIO::OpenMode::ReadOnly);
+
+			tchar_t buff[str.size() + 1];
+			file.readV("%s", &buff);
+
+			std::ctstring_t status = buff;
+			xTEST_EQ(status, str);
+		}
     }
 
     /*******************************************************************************
