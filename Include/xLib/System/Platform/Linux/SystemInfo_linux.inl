@@ -351,7 +351,7 @@ SystemInfo::_powerSupplyStatus_impl() const
     // read file
 	FileIO file(filePath);
 	file.open(FileIO::OpenMode::ReadOnly);
-	file.readV("%" xPR_SIZET, &chRv);
+	file.readV("%s", &chRv);
 
 	Cout() << xSTD_TRACE_VAR(chRv);
 
