@@ -38,6 +38,7 @@
     #define xTVSPRINTF    std::_vswprintf
     #define xTVPRINTF     std::vwprintf
     #define xTVFPRINTF    std::vfwprintf
+    #define xTVFSCANF     std::vfwscanf
     #define xTFGETC       std::getwc
     #define xTPUTS        std::_putws
     #define xTPUTCHAR     std::putwchar
