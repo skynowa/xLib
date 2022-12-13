@@ -255,6 +255,24 @@ FileIO::writeV(
     return iRv;
 }
 //-------------------------------------------------------------------------------------------------
+int_t
+FileIO::readV(
+    cptr_ctchar_t a_format, ...
+) const
+{
+    int_t iRv {};
+
+	va_list args;
+	xVA_START(args, a_format);
+
+	iRv = std::vfscanf(_handle.get(), a_format, args);
+	xTEST_GR(iRv, - 1);
+
+	xVA_END(args);
+
+	return iRv;
+}
+//-------------------------------------------------------------------------------------------------
 void_t
 FileIO::readLine(
     std::tstring_t *a_str,
