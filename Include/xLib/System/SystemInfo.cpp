@@ -189,5 +189,13 @@ SystemInfo::powerSupplyLevel() const
     return _powerSupplyLevel_impl();
 }
 //-------------------------------------------------------------------------------------------------
+std::size_t
+SystemInfo::powerSupplyStatus() const
+{
+	xCHECK_RET(!isPowerSupply(), 0);
+
+    return _powerSupplyStatus_impl();
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace

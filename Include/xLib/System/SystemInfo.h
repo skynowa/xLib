@@ -121,6 +121,8 @@ public:
         ///< Check for power supply
     std::size_t    powerSupplyLevel() const;
         ///< get level (pct) of power supply
+    std::size_t    powerSupplyStatus() const;
+        ///< get status of power supply
 
     // Libs
 #if xENV_UNIX
@@ -164,6 +166,7 @@ xPLATFORM_IMPL:
     // Power supply
     bool_t         _isPowerSupply_impl() const;
     std::size_t    _powerSupplyLevel_impl() const;
+    std::size_t    _powerSupplyStatus_impl() const;
 };
 
 } // namespace
