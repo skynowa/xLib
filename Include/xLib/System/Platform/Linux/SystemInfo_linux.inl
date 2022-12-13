@@ -298,7 +298,10 @@ SystemInfo::_isPowerSupply_impl() const
 //-------------------------------------------------------------------------------------------------
 /**
  * \code{.sh}
- * `cat /sys/class/power_supply/BAT0/uevent`
+ * cat /sys/class/power_supply/BAT0/uevent
+ *
+ * cat /sys/class/power_supply/BAT0/capacity
+ * cat /sys/class/power_supply/BAT0/status
  * \endcode
  */
 std::size_t
@@ -313,17 +316,23 @@ SystemInfo::_powerSupplyLevel_impl() const
 
     // read file
     {
-        FILE *file = std::fopen(filePath.c_str(), "r");
-        xTEST_PTR(file);
+	#if 0
+		FILE *file = std::fopen(filePath.c_str(), "r");
+		xTEST_PTR(file);
 
-        // UNICODE: SystemInfo - fix
-    /// #if xANSI
-        int_t iRv = std::fscanf(file, "%" xPR_SIZET, &uiRv);
-        xTEST_DIFF(iRv, - 1);
-    /// #endif
+		// UNICODE: SystemInfo - fix
+		/// #if xANSI
+		int_t iRv = std::fscanf(file, "%" xPR_SIZET, &uiRv);
+		xTEST_DIFF(iRv, - 1);
+		/// #endif
 
-        iRv = std::fclose(file);
-        xTEST_DIFF(iRv, - 1);
+		iRv = std::fclose(file);
+		xTEST_DIFF(iRv, - 1);
+	#else
+		FileIO file(filePath);
+		file.open(FileIO::OpenMode::ReadOnly);
+		file.readV("%" xPR_SIZET, &uiRv);
+	#endif
     }
 
     return uiRv;

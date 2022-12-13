@@ -111,8 +111,12 @@ public:
         ///< read to std::tstring_t
     int_t          write(cptr_ctchar_t format, ...) const;
         ///< write formatted output to stream
+
     int_t          writeV(cptr_ctchar_t format, va_list arg) const;
         ///< write formatted variable argument list to stream
+    int_t          readV(cptr_ctchar_t format, ...) const;
+        ///< read formatted variables
+
     void_t         readLine(std::tstring_t *str, std::csize_t maxCount) const;
         ///< read string to newline or to the end of file
     void_t         writeLine(std::ctstring_t &str) const;
