@@ -296,6 +296,11 @@ SystemInfo::_isPowerSupply_impl() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
+/**
+ * \code{.sh}
+ * `cat /sys/class/power_supply/BAT0/uevent`
+ * \endcode
+ */
 std::size_t
 SystemInfo::_powerSupplyLevel_impl() const
 {
