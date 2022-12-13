@@ -338,5 +338,25 @@ SystemInfo::_powerSupplyLevel_impl() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
+std::size_t
+SystemInfo::_powerSupplyStatus_impl() const
+{
+    tchar_t chRv[64 + 1];
+
+    std::ctstring_t filePath = xT("/sys/class/power_supply/BAT0/status");
+
+    FileInfo fileInfo(filePath);
+    xCHECK_RET(!fileInfo.isExists(), 0.0);
+
+    // read file
+	FileIO file(filePath);
+	file.open(FileIO::OpenMode::ReadOnly);
+	file.readV("%" xPR_SIZET, &chRv);
+
+	Cout() << xSTD_TRACE_VAR(chRv);
+
+    return 0;
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
