@@ -129,5 +129,16 @@ SystemInfo::_powerSupplyLevel_impl() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
+std::size_t
+SystemInfo::_powerSupplyStatus_impl() const
+{
+	std::size_t uiRv {};
+
+    // TODO: [skynowa] SystemInfo::_powerSupplyLevel_impl()
+    xNOT_IMPLEMENTED
+
+    return uiRv;
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
