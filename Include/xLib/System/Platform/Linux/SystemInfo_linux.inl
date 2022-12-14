@@ -322,22 +322,15 @@ SystemInfo::_powerSupplyLevel_impl() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-/**
- * 0 - Unknown
- * 1 - Discharging
- * 2 - Charging
- * 3 - Full
- * 4 - [Todo]
- */
-std::size_t
+SystemInfo::PowerSupplyStatus
 SystemInfo::_powerSupplyStatus_impl() const
 {
-	std::size_t uiRv {};
+	PowerSupplyStatus psRv {};
 
     std::ctstring_t filePath = xT("/sys/class/power_supply/BAT0/status");
 
     FileInfo fileInfo(filePath);
-    xCHECK_RET(!fileInfo.isExists(), 0.0);
+    xCHECK_RET(!fileInfo.isExists(), PowerSupplyStatus::Unknown);
 
     // read file
 	std::tstring_t status;
@@ -352,24 +345,24 @@ SystemInfo::_powerSupplyStatus_impl() const
 	}
 
 	if      ( StringCI::compare(status, xT("Unknown")) ) {
-		uiRv = 0;
+		psRv = PowerSupplyStatus::Unknown;
 	}
 	else if ( StringCI::compare(status, xT("Discharging")) ) {
-		uiRv = 1;
+		psRv = PowerSupplyStatus::Discharging;
 	}
 	else if ( StringCI::compare(status, xT("Charging")) ) {
-		uiRv = 2;
+		psRv = PowerSupplyStatus::Charging;
 	}
 	else if ( StringCI::compare(status, xT("Full")) ) {
-		uiRv = 3;
+		psRv = PowerSupplyStatus::Full;
 	}
 	else {
 		Cout() << xUNKNOWN_VAR(status);
 
-		uiRv = 4;
+		psRv = static_cast<PowerSupplyStatus>(4);
 	}
 
-    return uiRv;
+    return psRv;
 }
 //-------------------------------------------------------------------------------------------------
 

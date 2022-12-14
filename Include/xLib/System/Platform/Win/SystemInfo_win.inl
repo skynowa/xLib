@@ -432,15 +432,15 @@ SystemInfo::_powerSupplyLevel_impl() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-std::size_t
+SystemInfo::PowerSupplyStatus
 SystemInfo::_powerSupplyStatus_impl() const
 {
-	std::size_t uiRv {};
+	PowerSupplyStatus psRv {};
 
-    // TODO: [skynowa] SystemInfo::_powerSupplyLevel_impl()
-    xNOT_IMPLEMENTED
+	// TODO: [skynowa] SystemInfo::_powerSupplyLevel_impl()
+	xNOT_IMPLEMENTED
 
-    return uiRv;
+	return psRv;
 }
 //-------------------------------------------------------------------------------------------------
 

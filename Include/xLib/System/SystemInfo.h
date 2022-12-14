@@ -15,6 +15,16 @@ class SystemInfo
     /// system information
 {
 public:
+///\name ctors, dtor
+///\{
+			 SystemInfo() = default;
+	virtual ~SystemInfo() = default;
+
+	xNO_COPY_ASSIGN(SystemInfo)
+///\}
+
+///\name OS
+///\{
     enum class OsType
         /// OS type
     {
@@ -52,25 +62,6 @@ public:
     };
     xUSING_CONST(OsArch);
 
-    enum class CpuVendor
-        /// CPU type
-    {
-        Unknown,
-        Intel,
-        Amd
-    };
-    xUSING_CONST(CpuVendor);
-
-///\name ctors, dtor
-///\{
-			 SystemInfo() = default;
-	virtual ~SystemInfo() = default;
-
-	xNO_COPY_ASSIGN(SystemInfo)
-///\}
-
-///\name OS
-///\{
 	OsType         os();
 		///< get information about the current OS
 	std::tstring_t formatOs() ;
@@ -95,6 +86,15 @@ public:
 
 ///\name CPU
 ///\{
+    enum class CpuVendor
+        /// CPU type
+    {
+        Unknown,
+        Intel,
+        Amd
+    };
+    xUSING_CONST(CpuVendor);
+
 	ulong_t        cpusNum() const;
 		///< get num of CPUs
 	ulong_t        currentCpuNum() const;
@@ -128,11 +128,21 @@ public:
 
 ///\name Power supply
 ///\{
-	bool_t         isPowerSupply() const;
+	enum class PowerSupplyStatus
+		/// Power supply status
+	{
+		Unknown     = 0,
+		Discharging = 1,
+		Charging    = 2,
+		Full        = 3
+	};
+    xUSING_CONST(PowerSupplyStatus);
+
+	bool_t            isPowerSupply() const;
 		///< Check for power supply
-	std::size_t    powerSupplyLevel() const;
+	std::size_t       powerSupplyLevel() const;
 		///< get level (pct) of power supply
-	std::size_t    powerSupplyStatus() const;
+	PowerSupplyStatus powerSupplyStatus() const;
 		///< get status of power supply
 ///\}
 
@@ -176,7 +186,7 @@ xPLATFORM_IMPL:
     // Power supply
     bool_t         _isPowerSupply_impl() const;
     std::size_t    _powerSupplyLevel_impl() const;
-    std::size_t    _powerSupplyStatus_impl() const;
+    PowerSupplyStatus _powerSupplyStatus_impl() const;
 };
 
 } // namespace
