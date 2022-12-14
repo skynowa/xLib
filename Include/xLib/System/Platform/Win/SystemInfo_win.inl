@@ -145,8 +145,6 @@ SystemInfo::_osArch_impl()
     oaRv = OsArch::Unknown;
 #endif
 
-    _osArch = oaRv;
-
     return oaRv;
 }
 //-------------------------------------------------------------------------------------------------

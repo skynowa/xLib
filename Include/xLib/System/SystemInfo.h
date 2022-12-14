@@ -133,8 +133,6 @@ public:
 #endif
 
 private:
-    OsArch _osArch {};
-
 xPLATFORM_IMPL:
     // OS
     OsType         _os_impl();

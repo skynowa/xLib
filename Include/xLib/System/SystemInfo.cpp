@@ -61,9 +61,7 @@ SystemInfo::distro()
 SystemInfo::OsArch
 SystemInfo::osArch()
 {
-    _osArch = _osArch_impl();
-
-    return _osArch;
+    return _osArch_impl();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -71,7 +69,7 @@ SystemInfo::formatOsArch()
 {
     std::tstring_t sRv;
 
-    OsArch arch = (_osArch == OsArch::Unknown) ? osArch() : _osArch;
+    cOsArch arch = osArch();
     switch (arch) {
     case OsArch::bit32:
         sRv = xT("32-bit");
