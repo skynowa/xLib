@@ -69,70 +69,83 @@ public:
 	xNO_COPY_ASSIGN(SystemInfo)
 ///\}
 
-    // OS
-    OsType         os();
-        ///< get information about the current OS
-    std::tstring_t formatOs() ;
-        ///< format OS type
-    std::tstring_t distro() ;
-        ///< distributive info
+///\name OS
+///\{
+	OsType         os();
+		///< get information about the current OS
+	std::tstring_t formatOs() ;
+		///< format OS type
+	std::tstring_t distro() ;
+		///< distributive info
 
-    OsArch         osArch();
-        ///< get OS architecture
-    std::tstring_t formatOsArch();
-        ///< format get OS architecture
+	OsArch         osArch();
+		///< get OS architecture
+	std::tstring_t formatOsArch();
+		///< format get OS architecture
 
-    std::tstring_t desktopName() const;
-        ///< desktop environments
+	std::tstring_t desktopName() const;
+		///< desktop environments
+///\}
 
-    // Users
-    std::tstring_t hostName() const;
-        ///< get the NetBIOS name of the local computer
+///\name Users
+///\{
+	std::tstring_t hostName() const;
+		///< get the NetBIOS name of the local computer
+///\}
 
-    // CPU
-    ulong_t        cpusNum() const;
-        ///< get num of CPUs
-    ulong_t        currentCpuNum() const;
-        ///< get the number of the processor the current thread was running on during
-        ///< the call to this function
-    CpuVendor      cpuVendor() const;
-        ///< get CPU vendor
-    std::tstring_t cpuModel() const;
-        ///< get CPU model name
-    ulong_t        cpuSpeed() const;
-        ///< get CPU speed (MHz)
-    ulong_t        cpuUsage() const;
-        ///< get CPU usage (percentage)
+///\name CPU
+///\{
+	ulong_t        cpusNum() const;
+		///< get num of CPUs
+	ulong_t        currentCpuNum() const;
+		///< get the number of the processor the current thread was running on during
+		///< the call to this function
+	CpuVendor      cpuVendor() const;
+		///< get CPU vendor
+	std::tstring_t cpuModel() const;
+		///< get CPU model name
+	ulong_t        cpuSpeed() const;
+		///< get CPU speed (MHz)
+	ulong_t        cpuUsage() const;
+		///< get CPU usage (percentage)
+///\}
 
-    // RAM
-    ulonglong_t    ramTotal() const;
-        ///< get total RAM (bytes)
-    ulonglong_t    ramAvailable() const;
-        ///< get available RAM (bytes)
-    ulong_t        ramUsage() const;
-        ///< get RAM usage (percentage)
+///\name RAM
+///\{
+	ulonglong_t    ramTotal() const;
+		///< get total RAM (bytes)
+	ulonglong_t    ramAvailable() const;
+		///< get available RAM (bytes)
+	ulong_t        ramUsage() const;
+		///< get RAM usage (percentage)
+///\}
 
-    // HDD
-    ulong_t        pageSize() const;
-        ///< get Size of a page (bytes)
+///\name HDD
+///\{
+	ulong_t        pageSize() const;
+		///< get Size of a page (bytes)
+///\}
 
-    // Power supply
-    bool_t         isPowerSupply() const;
-        ///< Check for power supply
-    std::size_t    powerSupplyLevel() const;
-        ///< get level (pct) of power supply
-    std::size_t    powerSupplyStatus() const;
-        ///< get status of power supply
+///\name Power supply
+///\{
+	bool_t         isPowerSupply() const;
+		///< Check for power supply
+	std::size_t    powerSupplyLevel() const;
+		///< get level (pct) of power supply
+	std::size_t    powerSupplyStatus() const;
+		///< get status of power supply
+///\}
 
-    // Libs
 #if xENV_UNIX
-    std::tstring_t glibcVersion() const;
-        ///< get glibc version available on the system
-    std::tstring_t libPthreadVersion() const;
-        ///< get POSIX implementation supplied by C library ("NPTL 2.3.4" or "linuxthreads-0.10")
+///\name Libs
+///\{
+	std::tstring_t glibcVersion() const;
+		///< get glibc version available on the system
+	std::tstring_t libPthreadVersion() const;
+		///< get POSIX implementation supplied by C library ("NPTL 2.3.4" or "linuxthreads-0.10")
+///\}
 #endif
 
-private:
 xPLATFORM_IMPL:
     // OS
     OsType         _os_impl();
