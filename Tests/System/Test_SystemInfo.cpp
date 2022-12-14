@@ -174,6 +174,9 @@ Test_SystemInfo::unit()
 		if ( sysInfo.isPowerSupply() ) {
 			m_stRv = sysInfo.powerSupplyLevel();
 			xTEST_GR(m_stRv, 0ULL);
+
+			SystemInfo::cPowerSupplyStatus psRv = sysInfo.powerSupplyStatus();
+			xTEST(psRv != SystemInfo::PowerSupplyStatus::Unknown);
 		}
     }
 
