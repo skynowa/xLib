@@ -344,25 +344,21 @@ SystemInfo::_powerSupplyStatus_impl() const
 		status = chRv;
 	}
 
-	if      ( StringCI::compare(status, xT("Unknown")) ) {
-		psRv = PowerSupplyStatus::Unknown;
-	}
-	else if ( StringCI::compare(status, xT("Discharging")) ) {
-		psRv = PowerSupplyStatus::Discharging;
-	}
-	else if ( StringCI::compare(status, xT("Charging")) ) {
-		psRv = PowerSupplyStatus::Charging;
-	}
-	else if ( StringCI::compare(status, xT("Full")) ) {
-		psRv = PowerSupplyStatus::Full;
-	}
-	else {
+	static const std::map<std::tstring_t, PowerSupplyStatus> statuses
+	{
+		{xT("Unknown"),     PowerSupplyStatus::Unknown},
+		{xT("Discharging"), PowerSupplyStatus::Discharging},
+		{xT("Charging"),    PowerSupplyStatus::Charging},
+		{xT("Full"),        PowerSupplyStatus::Full}
+	};
+
+	auto it = statuses.find(status);
+	if (it == statuses.cend()) {
 		Cout() << xUNKNOWN_VAR(status);
-
-		psRv = static_cast<PowerSupplyStatus>(4);
+		return static_cast<PowerSupplyStatus>(4);
 	}
 
-    return psRv;
+    return it->second;
 }
 //-------------------------------------------------------------------------------------------------
 
