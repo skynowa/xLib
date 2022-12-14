@@ -233,7 +233,7 @@ FileIO::write(
     xVA_START(args, a_format);
 
     int_t iRv = xTVFPRINTF(_handle.get(), a_format, args);
-    xTEST_LESS(- 1, iRv);
+    xTEST_GR(iRv, - 1);
 
     xVA_END(args);
 
@@ -250,7 +250,7 @@ FileIO::writeV(
     xTEST_NA(a_args);
 
     int_t iRv = xTVFPRINTF(_handle.get(), a_format, a_args);
-    xTEST_LESS(- 1, iRv);
+    xTEST_GR(iRv, - 1);
 
     return iRv;
 }
