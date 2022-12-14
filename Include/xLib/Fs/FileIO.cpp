@@ -257,7 +257,8 @@ FileIO::writeV(
 //-------------------------------------------------------------------------------------------------
 int_t
 FileIO::readV(
-    cptr_ctchar_t a_format, ...
+    cptr_ctchar_t a_format,	///<
+	...						///< [out]
 ) const
 {
     int_t iRv {};
