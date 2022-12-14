@@ -85,7 +85,7 @@ public:
     std::tstring_t desktopName() const;
         ///< desktop environments
 
-    // users
+    // Users
     std::tstring_t hostName() const;
         ///< get the NetBIOS name of the local computer
 
@@ -141,7 +141,7 @@ xPLATFORM_IMPL:
     OsArch         _osArch_impl();
     std::tstring_t _hostName_impl() const;
 
-    // users
+    // Users
     std::tstring_t _desktopName_impl() const;
 
     // CPU
