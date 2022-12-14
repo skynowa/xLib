@@ -315,25 +315,9 @@ SystemInfo::_powerSupplyLevel_impl() const
     xCHECK_RET(!fileInfo.isExists(), 0.0);
 
     // read file
-    {
-	#if 0
-		FILE *file = std::fopen(filePath.c_str(), "r");
-		xTEST_PTR(file);
-
-		// UNICODE: SystemInfo - fix
-		/// #if xANSI
-		int_t iRv = std::fscanf(file, "%" xPR_SIZET, &uiRv);
-		xTEST_DIFF(iRv, - 1);
-		/// #endif
-
-		iRv = std::fclose(file);
-		xTEST_DIFF(iRv, - 1);
-	#else
-		FileIO file(filePath);
-		file.open(FileIO::OpenMode::ReadOnly);
-		file.readV("%" xPR_SIZET, &uiRv);
-	#endif
-    }
+    FileIO file(filePath);
+    file.open(FileIO::OpenMode::ReadOnly);
+    file.readV("%" xPR_SIZET, &uiRv);
 
     return uiRv;
 }
