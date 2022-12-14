@@ -133,7 +133,6 @@ public:
 #endif
 
 private:
-    OsType _osType {};
     OsArch _osArch {};
 
 xPLATFORM_IMPL:
@@ -172,9 +171,11 @@ xPLATFORM_IMPL:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO: https://github.com/joyent/node/blob/master/src/platform_linux.cc
- * TODO: Thread(s) per core:  1 (lscpu)
- * TODO: Core(s) per socket:  4 (lscpu)
- * TODO: Socket(s):           1 (lscpu)
+ * TODO
+ *
+ * - https://github.com/joyent/node/blob/master/src/platform_linux.cc
+ * - Thread(s) per core:  1 (lscpu)
+ * - Core(s) per socket:  4 (lscpu)
+ * - Socket(s):           1 (lscpu)
  */
-
+//-------------------------------------------------------------------------------------------------

@@ -54,8 +54,6 @@ SystemInfo::_os_impl()
         break;
     }
 
-    _osType = otRv;
-
     return otRv;
 }
 //-------------------------------------------------------------------------------------------------
@@ -64,7 +62,7 @@ SystemInfo::_formatOs_impl()
 {
     std::tstring_t sRv;
 
-    cOsType type = (_osType == OsType::Unknown) ? os() : _osType;
+    cOsType type = os();
     switch (type) {
     case OsType::Windows3:
         sRv = xT("Windows 3.1");
