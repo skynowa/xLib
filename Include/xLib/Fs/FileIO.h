@@ -115,7 +115,7 @@ public:
     int_t          writeV(cptr_ctchar_t format, va_list arg) const;
         ///< write formatted variable argument list to stream
     int_t          readV(cptr_ctchar_t format, ...) const;
-        ///< read formatted variables
+        ///< read formatted variables (as vfscanf)
 
     void_t         readLine(std::tstring_t *str, std::csize_t maxCount) const;
         ///< read string to newline or to the end of file
