@@ -227,10 +227,10 @@ SystemInfo::powerSupplyLevel() const
     return _powerSupplyLevel_impl();
 }
 //-------------------------------------------------------------------------------------------------
-std::size_t
+SystemInfo::PowerSupplyStatus
 SystemInfo::powerSupplyStatus() const
 {
-	xCHECK_RET(!isPowerSupply(), 0);
+	xCHECK_RET(!isPowerSupply(), PowerSupplyStatus::Unknown);
 
     return _powerSupplyStatus_impl();
 }
