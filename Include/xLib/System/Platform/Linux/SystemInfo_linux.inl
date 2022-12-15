@@ -317,7 +317,7 @@ SystemInfo::_powerSupplyLevel_impl() const
     // read file
     FileIO file(filePath);
     file.open(FileIO::OpenMode::ReadOnly);
-    file.readV("%" xPR_SIZET, &uiRv);
+    file.readV(xT("%") xPR_SIZET, &uiRv);
 
     return uiRv;
 }
@@ -338,10 +338,10 @@ SystemInfo::_powerSupplyStatus_impl() const
 		FileIO file(filePath);
 		file.open(FileIO::OpenMode::ReadOnly);
 
-		tchar_t chRv[64 + 1];
-		file.readV("%s", &chRv);
+		tchar_t szRv[64 + 1];
+		file.readV(xT("%s"), &szRv);
 
-		status = chRv;
+		status = szRv;
 	}
 
 	static const std::map<std::tstring_t, PowerSupplyStatus> statuses
