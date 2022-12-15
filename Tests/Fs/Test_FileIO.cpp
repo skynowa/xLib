@@ -280,7 +280,7 @@ Test_FileIO::unit()
         xTEST_EQ(content.size(), size_t(iRv));
     }
 
-    xTEST_CASE("writeV, readV")
+    xTEST_CASE("writeV, scanf")
     {
         struct Writer
         {
@@ -307,13 +307,13 @@ Test_FileIO::unit()
 			Writer::doV(file, xT("%s"), str.c_str());
 		}
 
-		// readV
+		// scanf
 		{
 			FileIO file(filePath);
 			file.open(FileIO::OpenMode::ReadOnly);
 
 			tchar_t buff[str.size() * 1];
-			file.readV(xT("%s"), &buff[0]);
+			file.scanf(xT("%s"), &buff[0]);
 
 			std::ctstring_t buffStr(&buff[0]);
 			xTEST_EQ(buffStr, str);
