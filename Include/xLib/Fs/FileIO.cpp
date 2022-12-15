@@ -318,7 +318,7 @@ FileIO::readChar() const
 //-------------------------------------------------------------------------------------------------
 void_t
 FileIO::writeChar(
-    ctchar_t &a_ch
+    ctchar_t a_ch
 ) const
 {
     xTEST_NA(a_ch);
@@ -330,7 +330,7 @@ FileIO::writeChar(
 //-------------------------------------------------------------------------------------------------
 void_t
 FileIO::ungetChar(
-    ctchar_t &a_ch
+    ctchar_t a_ch
 ) const
 {
     xTEST_NA(a_ch);
