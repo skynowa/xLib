@@ -317,7 +317,7 @@ SystemInfo::_powerSupplyLevel_impl() const
     // read file
     FileIO file(filePath);
     file.open(FileIO::OpenMode::ReadOnly);
-    file.readV(xT("%") xPR_SIZET, &uiRv);
+    file.scanf(xT("%") xPR_SIZET, &uiRv);
 
     return uiRv;
 }
@@ -339,7 +339,7 @@ SystemInfo::_powerSupplyStatus_impl() const
 		file.open(FileIO::OpenMode::ReadOnly);
 
 		tchar_t szRv[64 + 1];
-		file.readV(xT("%s"), &szRv);
+		file.scanf(xT("%s"), &szRv);
 
 		status = szRv;
 	}

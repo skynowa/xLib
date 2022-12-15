@@ -256,7 +256,7 @@ FileIO::writeV(
 }
 //-------------------------------------------------------------------------------------------------
 int_t
-FileIO::readV(
+FileIO::scanf(
     cptr_ctchar_t a_format,	///<
 	...						///< [out]
 ) const
