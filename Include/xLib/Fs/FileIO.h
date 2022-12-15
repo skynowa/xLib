@@ -123,9 +123,9 @@ public:
         ///< write string and end of line
     tchar_t        readChar() const;
         ///< get character
-    void_t         writeChar(ctchar_t &ch) const;
+    void_t         writeChar(ctchar_t ch) const;
         ///< write character
-    void_t         ungetChar(ctchar_t &ch) const;
+    void_t         ungetChar(ctchar_t ch) const;
         ///< unget character from stream
     void_t         clear() const;
         ///< clear content
