@@ -223,6 +223,25 @@ FileIO::read(
 }
 //-------------------------------------------------------------------------------------------------
 int_t
+FileIO::scanf(
+    cptr_ctchar_t a_format,	///<
+	...						///< [out]
+) const
+{
+    int_t iRv {};
+
+	va_list args;
+	xVA_START(args, a_format);
+
+	iRv = xTVFSCANF(_handle.get(), a_format, args);
+	xTEST_GR(iRv, - 1);
+
+	xVA_END(args);
+
+	return iRv;
+}
+//-------------------------------------------------------------------------------------------------
+int_t
 FileIO::write(
     cptr_ctchar_t a_format, ...
 ) const
@@ -253,25 +272,6 @@ FileIO::writeV(
     xTEST_GR(iRv, - 1);
 
     return iRv;
-}
-//-------------------------------------------------------------------------------------------------
-int_t
-FileIO::scanf(
-    cptr_ctchar_t a_format,	///<
-	...						///< [out]
-) const
-{
-    int_t iRv {};
-
-	va_list args;
-	xVA_START(args, a_format);
-
-	iRv = xTVFSCANF(_handle.get(), a_format, args);
-	xTEST_GR(iRv, - 1);
-
-	xVA_END(args);
-
-	return iRv;
 }
 //-------------------------------------------------------------------------------------------------
 void_t

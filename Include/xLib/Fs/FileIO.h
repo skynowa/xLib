@@ -109,13 +109,12 @@ public:
         ///< write from std::ustring_t
     void_t         read(std::tstring_t *buff) const;
         ///< read to std::tstring_t
-    int_t          write(cptr_ctchar_t format, ...) const;
-        ///< write formatted output to stream
-
-    int_t          writeV(cptr_ctchar_t format, va_list arg) const;
-        ///< write formatted variable argument list to stream
     int_t          scanf(cptr_ctchar_t format, ...) const;
         ///< read formatted variables (as vfscanf)
+    int_t          write(cptr_ctchar_t format, ...) const;
+        ///< write formatted output to stream
+    int_t          writeV(cptr_ctchar_t format, va_list arg) const;
+        ///< write formatted variable argument list to stream
 
     void_t         readLine(std::tstring_t *str, std::csize_t maxCount) const;
         ///< read string to newline or to the end of file
