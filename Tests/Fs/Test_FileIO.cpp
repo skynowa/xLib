@@ -297,14 +297,14 @@ Test_FileIO::unit()
             };
         };
 
-        std::ctstring_t str = xT("zzz");
+        std::ctstring_t content = xT("zzz");
 
         // writeV
 		{
 			FileIO file(filePath);
 			file.open(FileIO::OpenMode::ReadWrite);
 
-			Writer::doV(file, xT("%s"), str.c_str());
+			Writer::doV(file, xT("%s"), content.c_str());
 		}
 
 		// scanf
@@ -312,11 +312,11 @@ Test_FileIO::unit()
 			FileIO file(filePath);
 			file.open(FileIO::OpenMode::ReadOnly);
 
-			tchar_t buff[str.size() * 1];
+			tchar_t buff[content.size() * 1];
 			file.scanf(xT("%s"), &buff[0]);
 
 			std::ctstring_t buffStr(&buff[0]);
-			xTEST_EQ(buffStr, str);
+			xTEST_EQ(buffStr, content);
 		}
     }
 
