@@ -71,10 +71,10 @@ SystemInfo::formatOsArch() const
 
     cOsArch arch = osArch();
     switch (arch) {
-    case OsArch::bit32:
+    case OsArch::Bit32:
         sRv = xT("32-bit");
         break;
-    case OsArch::bit64:
+    case OsArch::Bit64:
         sRv = xT("64-bit");
         break;
     case OsArch::Unknown:
