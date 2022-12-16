@@ -62,16 +62,16 @@ public:
     };
     xUSING_CONST(OsArch);
 
-	OsType         os();
+	OsType         os() const;
 		///< get information about the current OS
-	std::tstring_t formatOs() ;
+	std::tstring_t formatOs() const;
 		///< format OS type
-	std::tstring_t distro() ;
+	std::tstring_t distro() const;
 		///< distributive info
 
-	OsArch         osArch();
+	OsArch         osArch() const;
 		///< get OS architecture
-	std::tstring_t formatOsArch();
+	std::tstring_t formatOsArch() const;
 		///< format get OS architecture
 
 	std::tstring_t desktopName() const;
@@ -158,10 +158,10 @@ public:
 
 xPLATFORM_IMPL:
     // OS
-    OsType         _os_impl();
-    std::tstring_t _formatOs_impl();
-    std::tstring_t _distro_impl();
-    OsArch         _osArch_impl();
+    OsType         _os_impl() const;
+    std::tstring_t _formatOs_impl() const;
+    std::tstring_t _distro_impl() const;
+    OsArch         _osArch_impl() const;
     std::tstring_t _hostName_impl() const;
 
     // Users

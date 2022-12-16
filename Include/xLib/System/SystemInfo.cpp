@@ -41,31 +41,31 @@ namespace xl::system
 
 //-------------------------------------------------------------------------------------------------
 SystemInfo::OsType
-SystemInfo::os()
+SystemInfo::os() const
 {
     return _os_impl();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-SystemInfo::formatOs()
+SystemInfo::formatOs() const
 {
     return _formatOs_impl();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-SystemInfo::distro()
+SystemInfo::distro() const
 {
     return _distro_impl();
 }
 //-------------------------------------------------------------------------------------------------
 SystemInfo::OsArch
-SystemInfo::osArch()
+SystemInfo::osArch() const
 {
     return _osArch_impl();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-SystemInfo::formatOsArch()
+SystemInfo::formatOsArch() const
 {
     std::tstring_t sRv;
 
