@@ -72,27 +72,27 @@ SystemInfo::_osArch_impl() const
 
     // 32-bit checks
     if      (StringCI::compare(infoMachine, xT("i386"))) {
-        oaRv = OsArch::bit32;
+        oaRv = OsArch::Bit32;
     }
     else if (StringCI::compare(infoMachine, xT("i486"))) {
-        oaRv = OsArch::bit32;
+        oaRv = OsArch::Bit32;
     }
     else if (StringCI::compare(infoMachine, xT("i586"))) {
-        oaRv = OsArch::bit32;
+        oaRv = OsArch::Bit32;
     }
     else if (StringCI::compare(infoMachine, xT("i686"))) {
-        oaRv = OsArch::bit32;
+        oaRv = OsArch::Bit32;
     }
 
     // 64-bit checks
     else if (StringCI::compare(infoMachine, xT("x86_64"))) {
-        oaRv = OsArch::bit64;
+        oaRv = OsArch::Bit64;
     }
     else if (StringCI::compare(infoMachine, xT("ia64"))) {
-        oaRv = OsArch::bit64;
+        oaRv = OsArch::Bit64;
     }
     else if (StringCI::compare(infoMachine, xT("amd64"))) {
-        oaRv = OsArch::bit64;
+        oaRv = OsArch::Bit64;
     }
 
     // unknown

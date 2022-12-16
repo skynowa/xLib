@@ -57,8 +57,8 @@ public:
         /// OS architecture
     {
         Unknown,
-        bit32,
-        bit64
+        Bit32,
+        Bit64
     };
     xUSING_CONST(OsArch);
 

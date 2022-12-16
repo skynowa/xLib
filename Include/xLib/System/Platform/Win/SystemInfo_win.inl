@@ -137,7 +137,7 @@ SystemInfo::_osArch_impl() const
     BOOL is64BitOs      = FALSE;
     BOOL isWow64Process = ::IsWow64Process(::GetCurrentProcess(), &is64BitOs);
 
-    oaRv = (isFuncExist && isWow64Process && is64BitOs) ? OsArch::bit64 : OsArch::bit32;
+    oaRv = (isFuncExist && isWow64Process && is64BitOs) ? OsArch::Bit64 : OsArch::Bit32;
 #elif xARCH_BITS_64
     oaRv = OsArch::bit64;
 #else
