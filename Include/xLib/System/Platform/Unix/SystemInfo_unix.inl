@@ -14,7 +14,7 @@ namespace xl::system
 
 //-------------------------------------------------------------------------------------------------
 SystemInfo::OsType
-SystemInfo::_os_impl()
+SystemInfo::_os_impl() const
 {
     OsType otRv = OsType::Unknown;
 
@@ -40,7 +40,7 @@ SystemInfo::_os_impl()
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-SystemInfo::_formatOs_impl()
+SystemInfo::_formatOs_impl() const
 {
     std::tstring_t sRv;
 
@@ -56,7 +56,7 @@ SystemInfo::_formatOs_impl()
 }
 //-------------------------------------------------------------------------------------------------
 SystemInfo::OsArch
-SystemInfo::_osArch_impl()
+SystemInfo::_osArch_impl() const
 {
     OsArch oaRv = OsArch::Unknown;
 
