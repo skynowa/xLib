@@ -23,6 +23,10 @@
 	#include <mysql.h>
 	#include <errmsg.h>
 	#include <mysqld_error.h>
+#elif xENV_APPLE
+	#include <mysql.h>
+	#include <errmsg.h>
+	#include <mysqld_error.h>
 #else
 	#include <mysql/mysql.h>
 	#include <mysql/errmsg.h>
