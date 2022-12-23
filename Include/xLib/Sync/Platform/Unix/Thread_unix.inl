@@ -37,7 +37,7 @@ Thread::_create_impl(
 
     iRv = ::pthread_create(&hid, &attrs, &_s_jobEntry, this);
     xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
-    xTEST_EQ_MSG(true, hid > 0, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_MSG(hid > 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     iRv = ::pthread_attr_destroy(&attrs);
     xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
