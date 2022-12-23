@@ -86,7 +86,7 @@
     #elif xENV_BSD
         #define xSTATVFS     ::statvfs
     #elif xENV_APPLE
-        #define xSTATVFS     statfs64
+        #define xSTATVFS     statfs
     #endif
 #endif
     ///< filesystem statfs (struct and function)
