@@ -30,8 +30,11 @@ public:
 
 /// TODO: sighandler_t - review
 #if xENV_APPLE
-    using sighandler_t            = void (*) (int);
-    using std::unexpected_handler = void (*) ();
+    using sighandler_t = void (*) (int);
+
+    namespace std {
+	    using unexpected_handler = void (*) ();
+	}
 #endif
 
 ///\name ctors, dtor
