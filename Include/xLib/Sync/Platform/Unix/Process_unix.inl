@@ -326,6 +326,9 @@ Process::_name_impl() const
     Utils::free(proc, std::free);
 
     return sRv;
+#elif xENV_APPLE
+    /// TOOD: [MacOS] _name_impl
+    return {};
 #endif
 }
 //-------------------------------------------------------------------------------------------------
