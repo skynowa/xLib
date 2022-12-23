@@ -76,7 +76,12 @@ Signal::connect(
 	{
 		action.sa_handler = a_onSignals;
 
+		/// TODO: [xENV_APPLE]
+	#if xENV_APPLE
+		iRv = sigemptyset(&action.sa_mask);
+	#else
 		iRv = ::sigemptyset(&action.sa_mask);
+	#endif
 		xTEST_DIFF(iRv, - 1);
 
 		action.sa_flags = SA_RESTART | SA_SIGINFO;
@@ -153,7 +158,12 @@ Signal::connectInfo(
 		// Block other terminal-generated signals while handler runs
 		sigset_t blockMask;
 		{
+			/// TODO: [xENV_APPLE]
+		#if xENV_APPLE
+			iRv = sigemptyset(&blockMask);
+		#else
 			iRv = ::sigemptyset(&blockMask);
+		#endif
 			xTEST_DIFF(iRv, - 1);
 
 			for (const auto &it : a_signalNums) {
