@@ -43,7 +43,7 @@ bosal_sem_t;
 
 int sem_init(sem_t *psem, int flags, unsigned count)
 {
-    bosal_sem_t *pnewsem;
+    bosal_sem_t *pnewsem {};
     int result;
 
     pnewsem = (bosal_sem_t *)malloc(sizeof(bosal_sem_t));
@@ -71,7 +71,7 @@ int sem_init(sem_t *psem, int flags, unsigned count)
 
 int sem_destroy(sem_t *psem)
 {
-    bosal_sem_t *poldsem;
+    bosal_sem_t *poldsem {};
 
     if (! psem)
     {
@@ -87,7 +87,7 @@ int sem_destroy(sem_t *psem)
 
 int sem_post(sem_t *psem)
 {
-     bosal_sem_t *pxsem;
+     bosal_sem_t *pxsem {};
     int result, xresult;
 
     if (! psem)
@@ -119,7 +119,7 @@ int sem_post(sem_t *psem)
 
 int sem_trywait(sem_t *psem)
 {
-    bosal_sem_t *pxsem;
+    bosal_sem_t *pxsem {};
     int result, xresult;
 
     if (! psem)
@@ -158,7 +158,7 @@ int sem_trywait(sem_t *psem)
 
 int sem_wait(sem_t *psem)
 {
-    bosal_sem_t *pxsem;
+    bosal_sem_t *pxsem {};
     int result, xresult;
 
     if (! psem)
@@ -200,7 +200,7 @@ int sem_wait(sem_t *psem)
 
 int sem_timedwait(sem_t *psem, const struct timespec *abstim)
 {
-    bosal_sem_t *pxsem;
+    bosal_sem_t *pxsem {};
     int result, xresult;
 
     if (! psem)
