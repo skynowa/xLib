@@ -16,8 +16,9 @@
 #if xENV_APPLE
     using sighandler_t = void (*) (int);
 
-    namespace std {
-	    using unexpected_handler = void (*) ();
+    namespace std
+	{
+	using unexpected_handler = void (*) ();
 	}
 #endif
 
