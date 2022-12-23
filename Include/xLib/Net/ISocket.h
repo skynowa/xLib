@@ -63,7 +63,19 @@ public:
             afBluetooth   = AF_BTH
         #endif
     #elif xENV_UNIX
-        #if xOS_FREEBSD
+		#if   xENV_LINUX
+            afUnix        = AF_UNIX,
+            afLocal       = AF_LOCAL,
+            afInet        = AF_INET,
+            afInet6       = AF_INET6,
+            afIpx         = AF_IPX,
+            /// afNetlink     = AF_NETLINK, /// TODO: not in MacOS
+            afX25         = AF_X25,
+            afAX25        = AF_AX25,
+            afAtmpvc      = AF_ATMPVC,
+            afAppletalk   = AF_APPLETALK,
+            afPacket      = AF_PACKET
+		#elif xENV_BSD
             afLocal     = PF_LOCAL,
             afUnix      = PF_UNIX,
             afInet      = PF_INET,
@@ -80,29 +92,16 @@ public:
             afNatm      = PF_NATM,
             afAtm       = PF_ATM,
             afNetgraph  = PF_NETGRAPH,
-        #else
-            afUnix        = AF_UNIX,
-            afLocal       = AF_LOCAL,
-            afInet        = AF_INET,
-            afInet6       = AF_INET6,
-            afIpx         = AF_IPX,
-            /// afNetlink     = AF_NETLINK, /// TODO: not in MacOS
-            afX25         = AF_X25,
-            afAX25        = AF_AX25,
-            afAtmpvc      = AF_ATMPVC,
-            afAppletalk   = AF_APPLETALK,
-            afPacket      = AF_PACKET
-        #endif
-    #elif xENV_APPLE
-        afUnix        = AF_UNIX,
-        afLocal       = AF_LOCAL,
-        afInet        = AF_INET,
-        afInet6       = AF_INET6,
-        afIpx         = AF_IPX,
-        afAppletalk   = AF_APPLETALK
+		#elif xENV_APPLE
+	        afUnix        = AF_UNIX,
+	        afLocal       = AF_LOCAL,
+	        afInet        = AF_INET,
+	        afInet6       = AF_INET6,
+	        afIpx         = AF_IPX,
+	        afAppletalk   = AF_APPLETALK
 
-        // TODO: [skynowa] ISocket - add AP-*
-    #endif
+	        // TODO: [skynowa] ISocket - add AP-*
+        #endif
     };
     xUSING_CONST(AddressFamily);
 
