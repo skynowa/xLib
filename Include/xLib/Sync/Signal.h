@@ -19,6 +19,8 @@
 	namespace std
 	{
 	using unexpected_handler = void (*) ();
+
+	unexpected_handler set_unexpected(unexpected_handler);
 	}
 #endif
 

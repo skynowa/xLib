@@ -29,17 +29,6 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
 
-
-/// TODO: sighandler_t - review
-#if xENV_APPLE
-	using sighandler_t = void (*) (int);
-
-	namespace std
-	{
-	using unexpected_handler = void (*) ();
-	}
-#endif
-
 #if xENV_UNIX
 
 namespace xl::sync
