@@ -28,6 +28,11 @@ public:
     using on_exit_t = void_t (*)();
         ///< exit handler type
 
+/// TODO: sighandler_t - review
+#if xENV_APPLE
+    using sighandler_t = void (*__sighandler_t) (int);
+#endif
+
 ///\name ctors, dtor
 ///\{
 			 Signal() = default;
