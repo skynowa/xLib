@@ -266,7 +266,12 @@ Process::currenQuicktExit(
     cuint_t &a_exitCode
 )
 {
-    std::quick_exit( static_cast<int_t>(a_exitCode) );
+	/// TOOD: [xENV_APPLE] currenQuicktExit
+#if xENV_APPLE
+	std::exit( static_cast<int_t>(a_exitCode) );
+#else
+	std::quick_exit( static_cast<int_t>(a_exitCode) );
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 

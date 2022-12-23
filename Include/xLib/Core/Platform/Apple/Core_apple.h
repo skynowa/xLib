@@ -31,6 +31,7 @@
 #endif
 
 
+/// TODO: [MacOS] https://stackoverflow.com/questions/641126/posix-semaphores-on-mac-os-x-sem-timedwait-alternative
 #ifdef __APPLE__
 
 typedef struct
