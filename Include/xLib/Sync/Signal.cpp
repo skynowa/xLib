@@ -171,7 +171,12 @@ Signal::connectInfo(
 					continue;
 				}
 
+				/// TODO: [xENV_APPLE]
+			#if xENV_APPLE
+				iRv = sigaddset(&blockMask, it);
+			#else
 				iRv = ::sigaddset(&blockMask, it);
+			#endif
 				xTEST_DIFF(iRv, - 1);
 			}
 		}
