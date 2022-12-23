@@ -65,7 +65,7 @@ int sem_init(sem_t *psem, int flags, unsigned count)
         return result;
     }
     pnewsem->count = count;
-    *psem = (sem_t)pnewsem;
+    *psem = reinterpret_cast<sem_t>(pnewsem);
     return 0;
 }
 
