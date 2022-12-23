@@ -77,7 +77,7 @@ int sem_destroy(sem_t *psem)
     {
         return EINVAL;
     }
-    poldsem = (bosal_sem_t *)*psem;
+    /// poldsem = (bosal_sem_t *)*psem;
 
     pthread_mutex_destroy(&poldsem->count_lock);
     pthread_cond_destroy(&poldsem->count_bump);
