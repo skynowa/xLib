@@ -115,7 +115,8 @@
             defined(__bsdi__) || defined(__DragonFly__)
         #define xENV_BSD 1
             ///< BSD environment
-    #elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
+    #elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__APPLE_CC__) || \
+			defined(__MACH__) || defined(__OSX__)
         #define xENV_APPLE 1
             ///< Apple environment
 
