@@ -12,6 +12,15 @@
 //-------------------------------------------------------------------------------------------------
 #if xENV_UNIX
 
+/// TODO: sighandler_t - review
+#if xENV_APPLE
+    using sighandler_t = void (*) (int);
+
+    namespace std {
+	    using unexpected_handler = void (*) ();
+	}
+#endif
+
 namespace xl::sync
 {
 
@@ -27,15 +36,6 @@ public:
         ///< signal info handler type
     using on_exit_t = void_t (*)();
         ///< exit handler type
-
-/// TODO: sighandler_t - review
-#if xENV_APPLE
-    using sighandler_t = void (*) (int);
-
-    namespace std {
-	    using unexpected_handler = void (*) ();
-	}
-#endif
 
 ///\name ctors, dtor
 ///\{
