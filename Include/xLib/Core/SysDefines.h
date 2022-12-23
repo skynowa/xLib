@@ -98,12 +98,13 @@
 ///\}
 //-------------------------------------------------------------------------------------------------
 ///\name OS environment
+///\see  https://stackoverflow.com/questions/5919996/how-to-detect-reliably-mac-os-x-ios-linux-windows-in-c-preprocessor
 ///\{
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || \
         defined(__WINDOWS__)
     #define xENV_WIN 1
         ///< Windows environment
-#elif defined(__unix__) || defined(__unix)
+#elif defined(__unix__) || defined(__unix) || defined(__APPLE__)
     #define xENV_UNIX 1
         ///< Unix environment
 
@@ -117,6 +118,20 @@
     #elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
         #define xENV_APPLE 1
             ///< Apple environment
+
+		#include <TargetConditionals.h>
+
+		#if   defined(TARGET_IPHONE_SIMULATOR)
+			// iOS, tvOS, or watchOS Simulator
+		#elif defined(TARGET_OS_MACCATALYST)
+			// Mac's Catalyst (ports iOS API into Mac, like UIKit).
+		#elif defined(TARGET_OS_IPHONE)
+			// iOS, tvOS, or watchOS device
+		#elif defined(TARGET_OS_MAC)
+			// Other kinds of Apple platforms
+		#else
+			#error xLib: Unknown Apple platform
+		#endif
     #else
         #error xLib: unsupported OS environment
     #endif
