@@ -18,6 +18,10 @@
     #include <tar.h>
     #include <sys/msg.h>
 
+    // Fs
+	#include <sys/param.h>
+	#include <sys/mount.h>
+
     // thread
     #include <sys/sem.h>
 
