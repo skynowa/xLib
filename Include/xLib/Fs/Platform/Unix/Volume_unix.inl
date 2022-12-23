@@ -69,7 +69,7 @@ Volume::_isReady_impl() const
 *
 **************************************************************************************************/
 
-#if xENV_APPLE
+#if 1
 	// Fs
 	#include <sys/param.h>
 	#include <sys/mount.h>
