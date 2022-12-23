@@ -207,12 +207,15 @@ Thread::_setCpuAffinity_impl(
 {
 #if   xENV_LINUX
     cpu_set_t cpuSet;
-#elif xENV_BSD
-    cpuset_t  cpuSet;
-#endif
-
     CPU_ZERO(&cpuSet);
     CPU_SET(a_procNum, &cpuSet);
+#elif xENV_BSD
+    cpuset_t cpuSet;
+    CPU_ZERO(&cpuSet);
+    CPU_SET(a_procNum, &cpuSet);
+#elif xENV_APPLE
+    /// TOOD: [xENV_APPLE] _setCpuAffinity_impl
+#endif
 
     // ANDROID: ::sched_setaffinity
 #if xTODO_ANDROID && 0
