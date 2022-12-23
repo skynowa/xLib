@@ -30,7 +30,7 @@ public:
 
 /// TODO: sighandler_t - review
 #if xENV_APPLE
-    using sighandler_t = void (*sig_t) (int);
+    using sighandler_t = void (*) (int);
 #endif
 
 ///\name ctors, dtor
