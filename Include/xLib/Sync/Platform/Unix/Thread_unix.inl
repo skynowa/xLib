@@ -155,7 +155,7 @@ Thread::_setPriority_impl(
         return;
     }
 
-    sched_param param = {0};
+    sched_param param {};
     param.sched_priority = static_cast<int>(a_priority);
 
     int_t iRv = ::pthread_setschedparam(id(), SCHED_FIFO, &param);
@@ -165,7 +165,7 @@ Thread::_setPriority_impl(
 Thread::Priority
 Thread::_priority_impl() const
 {
-    sched_param param  = {0};
+    sched_param param {};
     int_t       policy = SCHED_FIFO;
 
     int_t iRv = ::pthread_getschedparam(id(), &policy, &param);
@@ -351,8 +351,8 @@ Thread::_currentSleep_impl(
     culong_t &a_timeoutMsec
 )
 {
-    timespec timeSleep  = {0, 0};
-    timespec timeRemain = {0, 0};
+    timespec timeSleep  {};
+    timespec timeRemain {0};
 
     timeSleep.tv_sec  = a_timeoutMsec / 1000;
     timeSleep.tv_nsec = (a_timeoutMsec % 1000) * (1000 * 1000);
