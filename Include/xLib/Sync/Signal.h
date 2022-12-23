@@ -20,7 +20,7 @@
 	{
 	using unexpected_handler = void (*) ();
 
-	unexpected_handler set_unexpected(unexpected_handler);
+	unexpected_handler set_unexpected(unexpected_handler) { /* todo */};
 	}
 #endif
 
