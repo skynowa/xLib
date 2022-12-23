@@ -20,4 +20,8 @@
 
     // thread
     #include <sys/sem.h>
+
+    // Net
+    #include <sys/socket.h>
+    #include <netdb.h>
 #endif
