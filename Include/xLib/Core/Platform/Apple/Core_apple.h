@@ -46,7 +46,7 @@ int sem_init(sem_t *psem, int flags, unsigned count)
     bosal_sem_t *pnewsem {};
     int result;
 
-    pnewsem = (bosal_sem_t *)malloc(sizeof(bosal_sem_t));
+    /// pnewsem = (bosal_sem_t *)malloc(sizeof(bosal_sem_t));
     if (! pnewsem)
     {
         return -1;
@@ -94,7 +94,7 @@ int sem_post(sem_t *psem)
     {
         return EINVAL;
     }
-    pxsem = (bosal_sem_t *)*psem;
+    /// pxsem = (bosal_sem_t *)*psem;
 
     result = pthread_mutex_lock(&pxsem->count_lock);
     if (result)
@@ -126,7 +126,7 @@ int sem_trywait(sem_t *psem)
     {
         return EINVAL;
     }
-    pxsem = (bosal_sem_t *)*psem;
+    /// pxsem = (bosal_sem_t *)*psem;
 
     result = pthread_mutex_lock(&pxsem->count_lock);
     if (result)
@@ -165,7 +165,7 @@ int sem_wait(sem_t *psem)
     {
         return EINVAL;
     }
-    pxsem = (bosal_sem_t *)*psem;
+    /// pxsem = (bosal_sem_t *)*psem;
 
     result = pthread_mutex_lock(&pxsem->count_lock);
     if (result)
@@ -207,7 +207,7 @@ int sem_timedwait(sem_t *psem, const struct timespec *abstim)
     {
         return EINVAL;
     }
-    pxsem = (bosal_sem_t *)*psem;
+    /// pxsem = (bosal_sem_t *)*psem;
 
     result = pthread_mutex_lock(&pxsem->count_lock);
     if (result)
