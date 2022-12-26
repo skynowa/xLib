@@ -18,7 +18,7 @@ SystemInfo::_os_impl() const
 {
     OsType otRv = OsType::Unknown;
 
-    OSVERSIONINFO info = {0};
+    OSVERSIONINFO info {};
     info.dwOSVersionInfoSize = sizeof(info);
 
     BOOL blRv = ::GetVersionEx(&info);
@@ -129,7 +129,6 @@ SystemInfo::_osArch_impl() const
     BOOL isFuncExist = FALSE;
     {
         Dll dll;
-
         dll.load(xT("kernel32.dll"));
         isFuncExist = dll.isProcExists(xT("IsWow64Process"));
     }
@@ -179,7 +178,7 @@ SystemInfo::_hostName_impl() const
     std::tstring_t sRv;
 
     ulong_t buffSize                 = xHOST_NAME_MAX;
-    tchar_t buff[xHOST_NAME_MAX + 1] = {0};
+    tchar_t buff[xHOST_NAME_MAX + 1] {};
 
     BOOL blRv = ::GetComputerName(buff, &buffSize);
     xTEST_DIFF(blRv, FALSE);
@@ -192,7 +191,7 @@ SystemInfo::_hostName_impl() const
 ulong_t
 SystemInfo::_cpusNum_impl() const
 {
-    SYSTEM_INFO sysInfo = {{0}};
+    SYSTEM_INFO sysInfo {};
 
     (void_t)::GetNativeSystemInfo(&sysInfo);
 
@@ -207,7 +206,6 @@ SystemInfo::_currentCpuNum_impl() const
     using func_t = DWORD (WINAPI *)(void_t);
 
     Dll dll;
-
     dll.load(xT("kernel32.dll"));
 
     bool_t bRv = dll.isProcExists(xT("GetCurrentProcessorNumber"));
@@ -228,8 +226,8 @@ SystemInfo::_cpuVendor_impl() const
     std::tstring_t value;
 
 #if   xCOMPILER_MINGW || xCOMPILER_MS
-    int_t  cpuInfo[4] = {0};
-    char   man[13]    = {0};
+    int_t  cpuInfo[4] {};
+    char   man[13]    {};
 
     (void_t)::__cpuid(cpuInfo, 0);
 
@@ -250,11 +248,11 @@ SystemInfo::_cpuModel_impl() const
     std::tstring_t sRv;
 
 #if   xCOMPILER_MINGW || xCOMPILER_MS
-    char man[13] = {0};
+    char man[13] {};
 
     // get highest feature
     {
-        int_t cpuInfo[4] = {0};
+        int_t cpuInfo[4] {};
 
         (void_t)::__cpuid(cpuInfo, 0);
 
@@ -264,7 +262,7 @@ SystemInfo::_cpuModel_impl() const
     }
 
     // get highest extended feature
-    int_t cpuInfo[4] = {0};
+    int_t cpuInfo[4] {};
 
     (void_t)::__cpuid(cpuInfo, 0x80000000);
 
@@ -272,7 +270,7 @@ SystemInfo::_cpuModel_impl() const
 
     // get processor brand name
     if (highestFeatureEx >= 0x80000004) {
-        char buff[49] = {0};
+        char buff[49] {};
 
         (void_t)::__cpuid(reinterpret_cast<int_t *>( &buff[0]  ), 0x80000002);
         (void_t)::__cpuid(reinterpret_cast<int_t *>( &buff[16] ), 0x80000003);
@@ -292,9 +290,9 @@ SystemInfo::_cpuModel_impl() const
 ulong_t
 SystemInfo::_cpuSpeed_impl() const
 {
-    DWORD cpuSpeedMHz = 0UL;
+    DWORD cpuSpeedMHz {};
     DWORD buffSize    = sizeof(cpuSpeedMHz);
-    HKEY  key         = nullptr;
+    HKEY  key         {};
 
     LONG lRv = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, xT("HARDWARE\\DESCRIPTION\\System\\"
         "CentralProcessor\\0"), 0UL, KEY_READ, &key);
@@ -315,20 +313,19 @@ SystemInfo::_cpuSpeed_impl() const
 ulong_t
 SystemInfo::_cpuUsage_impl() const
 {
-    double                dRv            = 0.0;
+    double                dRv            {};
 
-    FILETIME              sysIdle        = {0};
-    FILETIME              sysKernel      = {0};
-    FILETIME              sysUser        = {0};
+    FILETIME              sysIdle        {};
+    FILETIME              sysKernel      {};
+    FILETIME              sysUser        {};
 
-    ULARGE_INTEGER        ulSysIdle      = {{0}};
-    ULARGE_INTEGER        ulSysKernel    = {{0}};
-    ULARGE_INTEGER        ulSysUser      = {{0}};
+    ULARGE_INTEGER        ulSysIdle      {};
+    ULARGE_INTEGER        ulSysKernel    {};
+    ULARGE_INTEGER        ulSysUser      {};
 
-    static ULARGE_INTEGER s_sysIdleOld   = {{0}};
-    static ULARGE_INTEGER s_sysKernelOld = {{0}};
-    static ULARGE_INTEGER s_sysUserOld   = {{0}};
-
+    static ULARGE_INTEGER s_sysIdleOld   {};
+    static ULARGE_INTEGER s_sysKernelOld {};
+    static ULARGE_INTEGER s_sysUserOld   {};
 
     BOOL blRv = ::GetSystemTimes(&sysIdle, &sysKernel, &sysUser);
     xTEST_DIFF(blRv, FALSE);
@@ -358,7 +355,7 @@ SystemInfo::_cpuUsage_impl() const
 ulonglong_t
 SystemInfo::_ramTotal_impl() const
 {
-    MEMORYSTATUSEX status = {0};
+    MEMORYSTATUSEX status {};
     status.dwLength = sizeof(status);
 
     BOOL blRv = ::GlobalMemoryStatusEx(&status);
@@ -372,7 +369,7 @@ SystemInfo::_ramTotal_impl() const
 ulonglong_t
 SystemInfo::_ramAvailable_impl() const
 {
-    MEMORYSTATUSEX status = {0};
+    MEMORYSTATUSEX status {};
     status.dwLength = sizeof(status);
 
     BOOL blRv = ::GlobalMemoryStatusEx(&status);
@@ -386,7 +383,7 @@ SystemInfo::_ramAvailable_impl() const
 ulong_t
 SystemInfo::_ramUsage_impl() const
 {
-    MEMORYSTATUSEX status = {0};
+    MEMORYSTATUSEX status {};
     status.dwLength = sizeof(status);
 
     BOOL blRv = ::GlobalMemoryStatusEx(&status);
@@ -400,7 +397,7 @@ SystemInfo::_ramUsage_impl() const
 ulong_t
 SystemInfo::_pageSize_impl() const
 {
-    SYSTEM_INFO sysInfo = {{0}};
+    SYSTEM_INFO sysInfo {};
 
     (void_t)::GetNativeSystemInfo(&sysInfo);
 
