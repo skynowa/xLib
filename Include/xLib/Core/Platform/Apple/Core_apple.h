@@ -1,6 +1,6 @@
 /**
  * \file  Core_apple.h
- * \brief Mac core header for xLib
+ * \brief Apple core header for xLib
  */
 
 
@@ -30,8 +30,7 @@
     #include <netdb.h>
 #endif
 
-
-/// TODO: [MacOS] https://stackoverflow.com/questions/641126/posix-semaphores-on-mac-os-x-sem-timedwait-alternative
+/// TODO: [Apple] https://stackoverflow.com/questions/641126/posix-semaphores-on-mac-os-x-sem-timedwait-alternative
 #ifdef __APPLE__
 
 typedef struct

@@ -327,7 +327,7 @@ Process::_name_impl() const
 
     return sRv;
 #elif xENV_APPLE
-    /// TOOD: [MacOS] _name_impl
+    /// TOOD: [Apple] _name_impl
     return {};
 #endif
 }

@@ -69,7 +69,7 @@ public:
 			afInet        = AF_INET,
 			afInet6       = AF_INET6,
 			afIpx         = AF_IPX,
-			/// afNetlink     = AF_NETLINK, /// TODO: not in MacOS
+			/// afNetlink     = AF_NETLINK, /// TODO: not in Apple
 			afX25         = AF_X25,
 			afAX25        = AF_AX25,
 			afAtmpvc      = AF_ATMPVC,

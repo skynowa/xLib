@@ -98,7 +98,7 @@ Thread::_isRunning_impl() const
 
     bool_t bCond1 = (_handle != 0UL);
 #if xENV_APPLE
-	/// TOOD: [MacOS] _isRunning_impl
+	/// TOOD: [Apple] _isRunning_impl
 	bool_t bCond2 = true;
 #else
 	bool_t bCond2 = (_id > 0);
