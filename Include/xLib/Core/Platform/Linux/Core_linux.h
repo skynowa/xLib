@@ -6,7 +6,6 @@
 
 #pragma once
 
-
 #include <linux/version.h>
 #include <gnu/libc-version.h>
 #include <sys/vfs.h>
