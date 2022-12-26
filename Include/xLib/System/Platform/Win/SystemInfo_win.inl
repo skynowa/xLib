@@ -139,7 +139,7 @@ SystemInfo::_osArch_impl() const
 
     oaRv = (isFuncExist && isWow64Process && is64BitOs) ? OsArch::Bit64 : OsArch::Bit32;
 #elif xARCH_BITS_64
-    oaRv = OsArch::bit64;
+    oaRv = OsArch::Bit64;
 #else
     // 64-bit Windows does not support Win16
     oaRv = OsArch::Unknown;
