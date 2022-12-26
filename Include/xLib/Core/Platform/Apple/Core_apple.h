@@ -6,32 +6,30 @@
 
 #pragma once
 
-#if xOS_MACOSX
-    #include <sys/mount.h>
-    #include <sys/statvfs.h>
-    #include <sys/resource.h>
-    #include <sys/sysctl.h>
-    #include <sys/user.h>       // for struct kinfo_proc
+#include <sys/mount.h>
+#include <sys/statvfs.h>
+#include <sys/resource.h>
+#include <sys/sysctl.h>
+#include <sys/user.h> // for struct kinfo_proc
 
-    // POSIX
-    #include <cpio.h>
-    #include <tar.h>
-    #include <sys/msg.h>
+// POSIX
+#include <cpio.h>
+#include <tar.h>
+#include <sys/msg.h>
 
-    // Fs
-	#include <sys/param.h>
-	#include <sys/mount.h>
+// Fs
+#include <sys/param.h>
+#include <sys/mount.h>
 
-    // thread
-    #include <sys/sem.h>
+// thread
+#include <sys/sem.h>
 
-    // Net
-    #include <sys/socket.h>
-    #include <netdb.h>
-#endif
+// Net
+#include <sys/socket.h>
+#include <netdb.h>
 
 /// TODO: [Apple] https://stackoverflow.com/questions/641126/posix-semaphores-on-mac-os-x-sem-timedwait-alternative
-#ifdef __APPLE__
+#if 1
 
 typedef struct
 {
@@ -47,7 +45,7 @@ int sem_init(sem_t *psem, int flags, unsigned count)
 	bosal_sem_t *pnewsem {};
 	int result;
 
-	/// pnewsem = (bosal_sem_t *)malloc(sizeof(bosal_sem_t));
+	pnewsem = (bosal_sem_t *)malloc(sizeof(bosal_sem_t));
 	if (! pnewsem)
 	{
 		return -1;
@@ -66,7 +64,7 @@ int sem_init(sem_t *psem, int flags, unsigned count)
 		return result;
 	}
 	pnewsem->count = count;
-	/// *psem = static_cast<sem_t>(pnewsem);
+	*psem = static_cast<sem_t>(pnewsem);
 #endif
 
     return 0;
@@ -81,7 +79,7 @@ int sem_destroy(sem_t *psem)
 	{
 		return EINVAL;
 	}
-	/// poldsem = (bosal_sem_t *)*psem;
+	poldsem = (bosal_sem_t *)*psem;
 
 	pthread_mutex_destroy(&poldsem->count_lock);
 	pthread_cond_destroy(&poldsem->count_bump);
@@ -101,7 +99,7 @@ int sem_post(sem_t *psem)
 	{
 	   return EINVAL;
 	}
-	/// pxsem = (bosal_sem_t *)*psem;
+	pxsem = (bosal_sem_t *)*psem;
 
 	result = pthread_mutex_lock(&pxsem->count_lock);
 	if (result)
@@ -137,7 +135,7 @@ int sem_trywait(sem_t *psem)
 	{
 		return EINVAL;
 	}
-	/// pxsem = (bosal_sem_t *)*psem;
+	pxsem = (bosal_sem_t *)*psem;
 
 	result = pthread_mutex_lock(&pxsem->count_lock);
 	if (result)
@@ -179,7 +177,7 @@ int sem_wait(sem_t *psem)
 	{
 		return EINVAL;
 	}
-	/// pxsem = (bosal_sem_t *)*psem;
+	pxsem = (bosal_sem_t *)*psem;
 
 	result = pthread_mutex_lock(&pxsem->count_lock);
 	if (result)
@@ -224,7 +222,7 @@ int sem_timedwait(sem_t *psem, const struct timespec *abstim)
 	{
 		return EINVAL;
 	}
-	/// pxsem = (bosal_sem_t *)*psem;
+	pxsem = (bosal_sem_t *)*psem;
 
 	result = pthread_mutex_lock(&pxsem->count_lock);
 	if (result)
