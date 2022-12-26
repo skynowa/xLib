@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-# set -ex
+set -ex
 
 # Params
 UNIT_TEST_NAME=$*
