@@ -137,7 +137,7 @@ StackTrace::_addr2Line(
     ulong_t        *out_sourceLine
 )
 {
-#if cmADDR2LINE_FOUND
+#if cmADDR2LINE_FOUND || cmATOS_FOUND
    /**
     * FAQ: addr2line
     *

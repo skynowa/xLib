@@ -76,8 +76,12 @@
 #cmakedefine cmMYSQL_FOUND 1
 #cmakedefine cmEXECINFO_FOUND 1
 #cmakedefine cmXCB_FOUND 1
+
 #cmakedefine cmADDR2LINE_FOUND 1
 #cmakedefine cmADDR2LINE_FILE_PATH xT("@cmADDR2LINE_FILE_PATH@")
+
+#cmakedefine cmATOS_FOUND 1
+#cmakedefine cmATOS_FILE_PATH xT("@cmATOS_FILE_PATH@")
 ///@}
 //-------------------------------------------------------------------------------------------------
 ///@name OS specific defines

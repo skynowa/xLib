@@ -50,6 +50,8 @@ if (ENV_UNIX)
     if (_xCONFSTR AND _xCS_GNU_LIBPTHREAD_VERSION)
         set(cmCS_GNU_LIBPTHREAD_VERSION_FOUND 1)
     endif()
+elseif(ENV_APPLE)
+    find_package(Atos QUIET REQUIRED)
 endif()
 #--------------------------------------------------------------------------------------------------
 # includes (CMakeLib)
