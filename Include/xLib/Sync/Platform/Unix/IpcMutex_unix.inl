@@ -76,8 +76,8 @@ IpcMutex::_lock_impl(
     };
 
 
-    int_t    iRv         = - 1;
-    timespec timeoutMsec = {0, 0};
+    int_t    iRv         {- 1};
+    timespec timeoutMsec {};
 
     // add msec to timespec
     {
