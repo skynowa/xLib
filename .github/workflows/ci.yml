@@ -124,8 +124,8 @@ jobs:
       # Conan - Install
       - name: Conan - Install
         run: |
-          pip3 install --user conan --upgrade
-          pip3 show conan
+          pip install --user conan --upgrade
+          pip show conan
         shell: bash
 
       # Conan - Setup
