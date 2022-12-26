@@ -82,7 +82,7 @@ private:
 
     double time_in_seconds()
     {
-        timespec tp;
+        timespec tp {};
         clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &tp);
         return tp.tv_sec + .000000001 * tp.tv_nsec;
     }

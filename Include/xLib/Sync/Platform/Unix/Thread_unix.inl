@@ -355,7 +355,7 @@ Thread::_currentSleep_impl(
 )
 {
     timespec timeSleep  {};
-    timespec timeRemain {0};
+    timespec timeRemain {};
 
     timeSleep.tv_sec  = a_timeoutMsec / 1000;
     timeSleep.tv_nsec = (a_timeoutMsec % 1000) * (1000 * 1000);

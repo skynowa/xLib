@@ -99,7 +99,7 @@ Event::_wait_impl(
 
     {
         // if (!_isSignaled) {
-            timespec timeoutMsec = {0, 0};
+            timespec timeoutMsec {};
 
             if (a_timeoutMs != xTIMEOUT_INFINITE) {
                 timeval timeNow  = {0, 0};
