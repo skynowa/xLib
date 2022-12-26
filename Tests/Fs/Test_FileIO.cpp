@@ -312,7 +312,9 @@ Test_FileIO::unit()
 			FileIO file(filePath);
 			file.open(FileIO::OpenMode::ReadOnly);
 
-			tchar_t buff[content.size() + 1];
+			std::tstring_t buff;
+			buff.resize(content.size() + 1);
+
 			file.scanf(xT("%s"), &buff[0]);
 
 			std::ctstring_t buffStr(&buff[0]);
