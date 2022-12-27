@@ -331,6 +331,7 @@ Signal::infoDescription(
 	#if !ENV_APPLE
 		{_KERNEL, SI_KERNEL,     xLEX_TO_STR(SI_KERNEL),     xT("Send by kernel")},
 	#endif
+
 		// SIGILL
 		{SIGILL,  ILL_ILLOPC,    xLEX_TO_STR(ILL_ILLOPC),    xT("Illegal opcode")},
 		{SIGILL,  ILL_ILLOPN,    xLEX_TO_STR(ILL_ILLOPN),    xT("Illegal operand")},
