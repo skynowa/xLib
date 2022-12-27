@@ -315,7 +315,7 @@ Signal::infoDescription(
 	std::tstring_t sRv;
 	cint_t         _KERNEL = - 1;
 
-	const _SignalInfo signalInfos[] =
+	constexpr _SignalInfo signalInfos[] =
 	{
 		// _KERNEL
 	#if !xENV_BSD && !xENV_APPLE
