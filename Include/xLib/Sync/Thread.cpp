@@ -710,7 +710,7 @@ Thread::isTimeToExit()
 //-------------------------------------------------------------------------------------------------
 /* static */
 Thread::exit_status_t xSTDCALL
-Thread::_s_jobEntry(
+Thread::_func(
     void_t *a_param
 )
 {
@@ -740,7 +740,7 @@ Thread::_s_jobEntry(
     static uint_t exitStatus = 0U;
     {
         {
-            // TODO: [skynowa] Thread::_s_jobEntry() - begin of thread function
+            // TODO: [skynowa] Thread::_func() - begin of thread function
         }
 
         // run thread function
@@ -756,7 +756,7 @@ Thread::_s_jobEntry(
         }
 
         {
-            // TODO: [skynowa] Thread::_s_jobEntry() - end of thread function
+            // TODO: [skynowa] Thread::_func() - end of thread function
         }
     }
 

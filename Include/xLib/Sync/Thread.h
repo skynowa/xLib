@@ -219,7 +219,7 @@ private:
     Event  _eventExit {true,  false};   ///< exit event
 
     static
-    exit_status_t xSTDCALL _s_jobEntry(void_t *param);
+    exit_status_t xSTDCALL _func(void_t *param);
         ///< callback
     bool_t _waitResumption();
         ///< waiting for reset pause
