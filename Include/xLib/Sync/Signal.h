@@ -20,7 +20,11 @@
 	{
 	using unexpected_handler = void (*) ();
 
-	unexpected_handler set_unexpected(unexpected_handler) { /* todo */ return {}; };
+	inline unexpected_handler
+	set_unexpected(unexpected_handler)
+	{
+		// TOOD: [Apple] set_unexpected
+		return {};
 	}
 #endif
 
