@@ -1,7 +1,7 @@
 [requires]
 ## libx11-xcb-dev
 zlib/1.2.12
-openssl/1.1.1s
+## openssl/1.1.1s
 libssh2/1.10.0
 libcurl/7.79.0
 libxml2/2.9.13
