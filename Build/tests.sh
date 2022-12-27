@@ -41,7 +41,7 @@ elif [ "$UNAME" == "Linux" ] ; then
 	cmake --build . --config Release -- -j${JOBS_NUM}
 elif [ "$UNAME" == "Darwin" ] ; then
 	echo "OS: Darwin"
-	cmake --build . --target ${PROJECT_NAME} --config Release -- -j${JOBS_NUM}
+	cmake --build . --config Release -- -j${JOBS_NUM}
 fi
 
 # Run
