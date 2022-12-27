@@ -49,7 +49,7 @@ Test_Signal::unit()
         signalNums.push_back(SIGWINCH);
         signalNums.push_back(SIGIO);
         signalNums.push_back(SIGSYS);
-	#if !xENV_BSD
+	#if !xENV_BSD && !xENV_APPLE
         signalNums.push_back(SIGPOLL);
         signalNums.push_back(SIGPWR);
         signalNums.push_back(SIGSTKFLT);
