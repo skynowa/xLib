@@ -63,7 +63,7 @@ public:
         ///< set data tag
     ulong_t         tag() const;
         ///< get data tag
-    void_t          create(cbool_t isPaused, cuint_t &stackSizeBytes, void_t *param);
+    void_t          create(cbool_t isPaused, cuint_t stackSizeBytes, void_t *param);
         ///< start
     void_t          resume();
         ///< resume
@@ -71,9 +71,9 @@ public:
         ///< pause
     void_t          exit();
         ///< exit (set flag "exit")
-    void_t          kill(culong_t &timeoutMsec);
+    void_t          kill(culong_t timeoutMsec);
         ///< kill
-    void_t          wait(culong_t &timeoutMsec) const;
+    void_t          wait(culong_t timeoutMsec) const;
         ///< wait
 
     // flags
@@ -121,9 +121,9 @@ public:
         ///< disables/enables the ability of the system to temporarily boost the priority of a thread
 
     // CPU
-    void_t          setCpuAffinity(cint_t &procNum) const;
+    void_t          setCpuAffinity(cint_t procNum) const;
         ///< set processor affinity
-    void_t          setCpuIdeal(culong_t &idealCpu) const;
+    void_t          setCpuIdeal(culong_t idealCpu) const;
         ///< sets preferred processor for a thread
     ulong_t         cpuIdeal() const;
         ///< get current ideal processor without changing it
@@ -153,7 +153,7 @@ public:
 
     // static
     static
-    handle_t        open(culong_t &access, cbool_t isInheritHandle, culong_t &id);
+    handle_t        open(culong_t access, cbool_t isInheritHandle, culong_t id);
         ///< opens an existing thread object
 
     // current thread
@@ -170,7 +170,7 @@ public:
     void_t          currentYield();
         ///< yield
     static
-    void_t          currentSleep(culong_t &timeoutMsec);
+    void_t          currentSleep(culong_t timeoutMsec);
         ///< sleep
 
 protected:
@@ -223,7 +223,7 @@ private:
         ///< callback
     bool_t _waitResumption();
         ///< waiting for reset pause
-    void_t _clear(cuint_t &a_exitStatus);
+    void_t _clear(cuint_t a_exitStatus);
         ///< clear class data
 
     // static
