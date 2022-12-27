@@ -318,7 +318,7 @@ Signal::infoDescription(
 	const _SignalInfo signalInfos[] =
 	{
 		// _KERNEL
-	#if !xENV_BSD && !ENV_APPLE
+	#if !xENV_BSD && !xENV_APPLE
 		{_KERNEL, SI_ASYNCNL,    xLEX_TO_STR(SI_ASYNCNL),    xT("Sent by asynch name lookup completion")},
 		{_KERNEL, SI_TKILL,      xLEX_TO_STR(SI_TKILL),      xT("Sent by tkill")},
 		{_KERNEL, SI_SIGIO,      xLEX_TO_STR(SI_SIGIO),      xT("Sent by queued SIGIO")},
@@ -328,7 +328,7 @@ Signal::infoDescription(
 		{_KERNEL, SI_TIMER,      xLEX_TO_STR(SI_TIMER),      xT("Sent by timer expiration")},
 		{_KERNEL, SI_QUEUE,      xLEX_TO_STR(SI_QUEUE),      xT("Sent by sigqueue")},
 		{_KERNEL, SI_USER,       xLEX_TO_STR(SI_USER),       xT("Sent by kill, sigsend")},
-	#if !ENV_APPLE
+	#if !xENV_APPLE
 		{_KERNEL, SI_KERNEL,     xLEX_TO_STR(SI_KERNEL),     xT("Send by kernel")},
 	#endif
 
@@ -360,7 +360,7 @@ Signal::infoDescription(
 		{SIGBUS,  BUS_ADRALN,    xLEX_TO_STR(BUS_ADRALN),    xT("Invalid address alignment")},
 		{SIGBUS,  BUS_ADRERR,    xLEX_TO_STR(BUS_ADRERR),    xT("Non-existant physical address")},
 		{SIGBUS,  BUS_OBJERR,    xLEX_TO_STR(BUS_OBJERR),    xT("Object specific hardware error")},
-	#if !xENV_BSD && !ENV_APPLE
+	#if !xENV_BSD && !xENV_APPLE
 		{SIGBUS,  BUS_MCEERR_AR, xLEX_TO_STR(BUS_MCEERR_AR), xT("Hardware memory error: action required")},
 		{SIGBUS,  BUS_MCEERR_AO, xLEX_TO_STR(BUS_MCEERR_AO), xT("Hardware memory error: action optional")},
 	#endif
@@ -378,7 +378,7 @@ Signal::infoDescription(
 		{SIGCHLD, CLD_CONTINUED, xLEX_TO_STR(CLD_CONTINUED), xT("Stopped child has continued")}
 
 		// SIGPOLL
-	#if !xENV_BSD && !ENV_APPLE
+	#if !xENV_BSD && !xENV_APPLE
 		,
 		{SIGPOLL, POLL_IN,       xLEX_TO_STR(POLL_IN),       xT("Data input available")},
 		{SIGPOLL, POLL_OUT,      xLEX_TO_STR(POLL_OUT),      xT("Output buffers available")},
