@@ -165,7 +165,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${CONAN_LIBS}
 
         ${cmXLIB_LIBRARIES}
-        ${cmXLIB_EXTRA_LIBRARIES}
+        # ${cmXLIB_EXTRA_LIBRARIES}
         ${cmXLIB_SYS_LIBRARIES}
 
         # ${XLIB_LIBRARIES}   ###
