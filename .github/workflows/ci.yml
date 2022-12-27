@@ -124,9 +124,9 @@ jobs:
       # Conan - Install
       - name: Conan - Install
         run: |
-          ${{if matrix.os = 'macos-10.15'}}:
+          ${{ if eq(matrix.os, 'macos-10.15') }}:
             pip install --user conan --upgrade
-          ${{else}}:
+          ${{ else }}:
             pip install conan --upgrade
 
           pip show conan
