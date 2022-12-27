@@ -58,10 +58,22 @@ User::_loginName_impl() const
 
     // try API
     {
-    #if cmHAVE_GETLOGIN_R && defined(LOGIN_NAME_MAX)
-        constexpr int_t buffSize       {LOGIN_NAME_MAX + 1};
-        char            buff[buffSize] {};
+    #if cmHAVE_GETLOGIN_R
+        long_t buffSize {};
+        {
+        #if   defined(LOGIN_NAME_MAX)
+            buffSize = LOGIN_NAME_MAX + 1;
+		#elif defined(_SC_LOGIN_NAME_MAX)
+			buffSize = ::sysconf(_SC_LOGIN_NAME_MAX);
+			if (buffSize == - 1L) {
+				buffSize = 256L;
+			}
+		#endif
 
+            xTEST_GR(buffSize, 0L);
+        }
+
+        char buff[buffSize] {};
         int_t iRv = ::getlogin_r(buff, buffSize);
         if (iRv == 0) {
             sRv = xA2T(buff);
