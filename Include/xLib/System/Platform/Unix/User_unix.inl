@@ -73,8 +73,10 @@ User::_loginName_impl() const
             xTEST_GR(buffSize, 0L);
         }
 
-        char buff[buffSize] {};
-        int_t iRv = ::getlogin_r(buff, buffSize);
+        std::string buff;
+        buff.resize(buffSize);
+
+        int_t iRv = ::getlogin_r(buff, &buffSize[0]);
         if (iRv == 0) {
             sRv = xA2T(buff);
             return sRv;
