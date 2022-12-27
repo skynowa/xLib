@@ -25,7 +25,7 @@
     #elif xENV_BSD
         #include "Platform/Bsd/Process_bsd.inl"
     #elif xENV_APPLE
-        /// #include "Platform/Unix/Process_apple.inl"
+        #include "Platform/Apple/Process_apple.inl"
     #endif
 #endif
 
