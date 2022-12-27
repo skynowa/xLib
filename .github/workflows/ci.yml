@@ -123,14 +123,14 @@ jobs:
 
       # Conan - Install
       - name: Conan - Install (MacOS)
-        if: matrix.os == 'macos-10.15'
+        if: matrix.config..os == 'macos-10.15'
         run: |
           pip install --user conan --upgrade
           pip show conan
         shell: bash
 
       - name: Conan - Install
-        if: matrix.os != 'macos-10.15'
+        if: matrix.config.os != 'macos-10.15'
         run: |
           pip install conan --upgrade
           pip show conan
