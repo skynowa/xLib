@@ -19,7 +19,7 @@ Thread::_create_impl(
 )
 {
     int_t          iRv = - 1;
-    id_t           hid;
+    id_t           id;
     pthread_attr_t attrs {};
 
     iRv = ::pthread_attr_init(&attrs);
@@ -35,15 +35,15 @@ Thread::_create_impl(
         xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
     }
 
-    iRv = ::pthread_create(&hid, &attrs, &_s_jobEntry, this);
+    iRv = ::pthread_create(&id, &attrs, &_s_jobEntry, this);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 	xTEST_MSG(isIdValid(hid), NativeError::format( static_cast<ulong_t>(iRv) ));
 
     iRv = ::pthread_attr_destroy(&attrs);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
-    _handle = hid;  // TODO: [skynowa] Thread::_create_impl() - is it right?
-    _id     = hid;
+    _handle = id;  // TODO: [skynowa] Thread::_create_impl() - is it right?
+    _id     = id;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
