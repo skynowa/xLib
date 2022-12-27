@@ -30,7 +30,13 @@
 #include <ccomplex>
 #include <cfenv>
 #include <cinttypes>
-#include <cstdalign>
+
+#if defined(__APPLE__)
+	//
+#else
+	#include <cstdalign>
+#endif
+
 #include <cstdbool>
 #include <cstdint>
 #include <ctgmath>
