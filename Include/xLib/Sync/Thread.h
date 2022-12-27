@@ -240,8 +240,8 @@ xPLATFORM_IMPL:
     void_t   _wait_impl(culong_t &timeoutMsec) const;
     bool_t   _isCreated_impl() const;
     bool_t   _isRunning_impl() const;
-    bool_t   _isPaused_impl();
-    bool_t   _isExited_impl();
+    bool_t   _isPaused_impl() const;
+    bool_t   _isExited_impl() const;
     void_t   _setPriority_impl(const Priority priority) const;
     Priority _priority_impl() const;
     bool_t   _isPriorityBoost_impl() const;

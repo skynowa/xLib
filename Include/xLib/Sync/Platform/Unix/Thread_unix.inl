@@ -82,7 +82,7 @@ Thread::_wait_impl(
 bool_t
 Thread::_isCreated_impl() const
 {
-    bool_t bRv = _state.isCreated && (_handle != 0UL);
+    bool_t bRv = _state.isCreated && isHandleValid();
 
     return bRv;
 }
@@ -92,7 +92,7 @@ Thread::_isRunning_impl() const
 {
     bool_t bRv {};
 
-    bool_t bCond1 = (_handle != 0UL);
+    bool_t bCond1 = isHandleValid();
 	bool_t bCond2 = isIdValid();
     bool_t bCond3 = (_state.isRunning);
 
@@ -107,17 +107,17 @@ Thread::_isRunning_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Thread::_isPaused_impl()
+Thread::_isPaused_impl() const
 {
-    bool_t bRv = !_eventPause.isSignaled() /* && (0UL != _handle) */;
+    bool_t bRv = !_eventPause.isSignaled() /* && isHandleValid() */;
 
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Thread::_isExited_impl()
+Thread::_isExited_impl() const
 {
-    bool_t bRv = _eventExit.isSignaled() && (0UL != _handle);
+    bool_t bRv = _eventExit.isSignaled() && isHandleValid();
 
     return bRv;
 }
