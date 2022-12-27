@@ -319,7 +319,7 @@ Thread::id_t
 Thread::_currentId_impl()
 {
     id_t ulRv = ::pthread_self();
-    xTEST_EQ(isIdValid(ulRv), true);
+    xTEST(isIdValid(ulRv));
 
     return ulRv;
 }
@@ -328,7 +328,7 @@ Thread::handle_t
 Thread::_currentHandle_impl()
 {
     handle_t hRv = ::pthread_self();
-    xTEST_EQ(isHandleValid(hRv), true);
+    xTEST(isHandleValid(hRv));
 
     return hRv;
 }
