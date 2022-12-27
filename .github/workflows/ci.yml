@@ -122,17 +122,14 @@ jobs:
         shell: bash
 
       # Conan - Install
-      - name: Conan - Install (MacOS)
-        if: matrix.config.os == 'Macos-10.15'
-        run: |
-          brew install conan
-        shell: bash
-
       - name: Conan - Install
-        if: matrix.config.os != 'macos-10.15'
-        run: |
-          pip install conan --upgrade
-          pip show conan
+      - run: |
+          if [ ${{ matrix.config.os }} == 'Macos-10.15' ]; then
+            brew install conan
+          else
+            pip install conan --upgrade
+            pip show conan
+          fi
         shell: bash
 
       # Conan - Setup
