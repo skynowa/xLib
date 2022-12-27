@@ -84,8 +84,8 @@ Thread::tag() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::create(
-    cbool_t a_isPaused,
-    cuint_t &a_stackSizeBytes,
+    cbool_t  a_isPaused,
+    cuint_t  a_stackSizeBytes,
     void_t  *a_param
 )
 {
@@ -186,7 +186,7 @@ Thread::exit()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::kill(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 )
 {
     _kill_impl(a_timeoutMsec);
@@ -195,7 +195,7 @@ Thread::kill(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::wait(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 ) const
 {
     _wait_impl(a_timeoutMsec);
@@ -407,7 +407,7 @@ Thread::setPriorityBoost(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::setCpuAffinity(
-    cint_t &a_procNum
+    cint_t a_procNum
 ) const
 {
     _setCpuAffinity_impl(a_procNum);
@@ -415,7 +415,7 @@ Thread::setCpuAffinity(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::setCpuIdeal(
-    culong_t &a_idealCpu    ///< value is zero-based
+    culong_t a_idealCpu    ///< value is zero-based
 ) const
 {
     _setCpuIdeal_impl(a_idealCpu);
@@ -575,9 +575,9 @@ Thread::setDebugName(
 /* static */
 Thread::handle_t
 Thread::open(
-    culong_t &a_access,
-    cbool_t   a_isInheritHandle,
-    culong_t &a_id
+    culong_t a_access,
+    cbool_t  a_isInheritHandle,
+    culong_t a_id
 )
 {
     xTEST_NA(a_access);
@@ -629,7 +629,7 @@ Thread::currentYield()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::currentSleep(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 )
 {
     // n/a
@@ -792,7 +792,7 @@ Thread::_waitResumption()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_clear(
-    cuint_t &a_exitStatus
+    cuint_t a_exitStatus
 )
 {
     _tag        = 0UL;
