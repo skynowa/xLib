@@ -136,6 +136,10 @@ public:
         ///< get handle
     id_t            id() const;
         ///< get ID
+    bool_t          isHandleValid() const;
+        ///< Check handle
+    bool_t          isIdValid() const;
+        ///< Check ID
     bool_t          isCurrent() const;
         ///< is current
     ulong_t         exitStatus() const;
