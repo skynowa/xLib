@@ -23,20 +23,20 @@ Thread::_create_impl(
     pthread_attr_t attrs {};
 
     iRv = ::pthread_attr_init(&attrs);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     // TODO: [skynowa] Thread::_create_impl() - PTHREAD_CREATE_DETACHED
     iRv = ::pthread_attr_setdetachstate(&attrs, PTHREAD_CREATE_JOINABLE);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     if (a_stackSizeBytes != 0U) {
         // TODO: [skynowa] Thread::_create_impl() - size_t size = PTHREAD_STACK_MIN + 0x4000;
         iRv = ::pthread_attr_setstacksize(&attrs, a_stackSizeBytes);
-        xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+        xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
     }
 
     iRv = ::pthread_create(&hid, &attrs, &_s_jobEntry, this);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 #if xENV_APPLE
 	/// TODO: xTEST_MSG
 #else
@@ -44,7 +44,7 @@ Thread::_create_impl(
 #endif
 
     iRv = ::pthread_attr_destroy(&attrs);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     _handle = hid;  // TODO: [skynowa] Thread::_create_impl() - is it right?
     _id     = hid;
@@ -56,7 +56,7 @@ Thread::_kill_impl(
 )
 {
     int_t iRv = ::pthread_kill(_id, SIGALRM);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     currentSleep(a_timeoutMsec);
 }
@@ -72,7 +72,7 @@ Thread::_wait_impl(
     // FIX:  Thread::_wait_impl(( - a_timeoutMsec
 
     int_t iRv = ::pthread_join(_id, nullptr);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -159,7 +159,7 @@ Thread::_setPriority_impl(
     param.sched_priority = static_cast<int>(a_priority);
 
     int_t iRv = ::pthread_setschedparam(id(), SCHED_FIFO, &param);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
 Thread::Priority
@@ -169,7 +169,7 @@ Thread::_priority_impl() const
     int_t       policy = SCHED_FIFO;
 
     int_t iRv = ::pthread_getschedparam(id(), &policy, &param);
-    xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     Thread::Priority tpRv = static_cast<Priority>( param.sched_priority );
 
