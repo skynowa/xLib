@@ -94,7 +94,7 @@ User::_loginName_impl() const
 
     // try system environment
 	{
-		const std::array envVars{xT("LOGNAME"), xT("USER")};
+		constexpr std::array envVars{xT("LOGNAME"), xT("USER")};
 
 		for (const auto &it_envVar : envVars) {
 			Environment env(it_envVar);
