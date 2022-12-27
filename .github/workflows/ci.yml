@@ -124,7 +124,7 @@ jobs:
       # Conan - Install
       - name: Conan - Install
         run: |
-          pip install --user conan --upgrade
+          pip install conan --upgrade
           pip show conan
         shell: bash
 
