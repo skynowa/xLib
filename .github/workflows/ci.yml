@@ -125,8 +125,9 @@ jobs:
       - name: Conan - Install (MacOS)
         if: matrix.config.os == 'macos-10.15'
         run: |
-          pip3 install --user conan --upgrade
-          pip3 show conan
+          # pip3 install --user conan --upgrade
+          # pip3 show conan
+          brew install conan
         shell: bash
 
       - name: Conan - Install
