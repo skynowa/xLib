@@ -58,7 +58,7 @@ User::_loginName_impl() const
 
     // try API
     {
-    #if cmHAVE_GETLOGIN_R
+    #if cmHAVE_GETLOGIN_R && defined(LOGIN_NAME_MAX)
         constexpr int_t buffSize       {LOGIN_NAME_MAX + 1};
         char            buff[buffSize] {};
 
