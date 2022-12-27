@@ -131,15 +131,19 @@ public:
     ulong_t         cpuCount();
         ///< get CPU count on machine
 
+    // Checks
+    bool_t          isHandleValid() const;
+    bool_t          isIdValid() const;
+    static
+    bool_t          isHandleValid(const handle_t &handle);
+    static
+    bool_t          isIdValid(const id_t &id);
+
     // other
     handle_t        handle() const;
         ///< get handle
     id_t            id() const;
         ///< get ID
-    bool_t          isHandleValid() const;
-        ///< Check handle
-    bool_t          isIdValid() const;
-        ///< Check ID
     bool_t          isCurrent() const;
         ///< is current
     ulong_t         exitStatus() const;

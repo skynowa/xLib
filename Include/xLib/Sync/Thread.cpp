@@ -448,6 +448,68 @@ Thread::cpuCount()
 
 
 /**************************************************************************************************
+*   public: Checks
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+bool_t
+Thread::isHandleValid() const
+{
+    return isHandleValid(_handle);
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Thread::isIdValid() const
+{
+    return isIdValid(_id);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+Thread::isHandleValid(
+	const handle_t &a_handle
+)
+{
+	bool_t bRv {};
+
+#if   xENV_WIN
+	bRv = (a_handle != xNATIVE_HANDLE_NULL);
+#elif xENV_UNIX
+	#if xENV_APPLE
+		bRv = (a_handle != nullptr);
+	#else
+		bRv = (a_handle > 0);
+	#endif
+#endif
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+Thread::isIdValid(
+	const id_t &a_id
+)
+{
+	bool_t bRv {};
+
+#if   xENV_WIN
+	bRv = (a_id != xNATIVE_HANDLE_NULL);
+#elif xENV_UNIX
+	#if xENV_APPLE
+		bRv = (a_id != nullptr);
+	#else
+		bRv = (a_id > 0);
+	#endif
+#endif
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
 *    public: other
 *
 **************************************************************************************************/
@@ -469,42 +531,6 @@ Thread::id() const
 #endif
 
     return _id;
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-Thread::isHandleValid() const
-{
-	bool_t bRv {};
-
-#if   xENV_WIN
-	bRv = (_handle != xNATIVE_HANDLE_NULL);
-#elif xENV_UNIX
-	#if xENV_APPLE
-		bRv = (_handle != nullptr);
-	#else
-		bRv = (_handle > 0);
-	#endif
-#endif
-
-    return bRv;
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-Thread::isIdValid() const
-{
-	bool_t bRv {};
-
-#if   xENV_WIN
-	bRv = (_id != xNATIVE_HANDLE_NULL);
-#elif xENV_UNIX
-	#if xENV_APPLE
-		bRv = (_id != nullptr);
-	#else
-		bRv = (_id > 0);
-	#endif
-#endif
-
-    return bRv;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
