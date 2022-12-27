@@ -89,8 +89,8 @@ jobs:
         #   }
 
         - {
-            name:             "MacOS-10.15 (Clang)",
-            os:               Macos-10.15,
+            name:             "MacOS-11.3 (Clang)",
+            os:               Macos-11.3,  # 10.15, 11.3
             cc:               "clang",
             cxx:              "clang++",
             gen_script:       "./gen_eclipse.sh",
