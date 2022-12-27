@@ -205,7 +205,7 @@ Thread::_setCpuAffinity_impl(
     CPU_ZERO(&cpuSet);
     CPU_SET(a_procNum, &cpuSet);
 #elif xENV_APPLE
-    /// TOOD: [xENV_APPLE] _setCpuAffinity_impl
+    /// TOOD: [Apple] _setCpuAffinity_impl
 #endif
 
     // ANDROID: ::sched_setaffinity
