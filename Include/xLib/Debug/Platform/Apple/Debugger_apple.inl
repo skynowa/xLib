@@ -1,5 +1,5 @@
 /**
- * \file  Debugger_bsd.inl
+ * \file  Debugger_apple.inl
  * \brief debugger
  */
 
