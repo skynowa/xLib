@@ -1,5 +1,5 @@
 /**
- * \file  NativeError_bsd.inl
+ * \file  NativeError_apple.inl
  * \brief system last error
  */
 
