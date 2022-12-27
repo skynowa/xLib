@@ -15,7 +15,7 @@ namespace xl::sync
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_create_impl(
-    cuint_t &a_stackSizeBytes
+    cuint_t a_stackSizeBytes
 )
 {
     int_t          iRv = - 1;
@@ -48,7 +48,7 @@ Thread::_create_impl(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_kill_impl(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 )
 {
     int_t iRv = ::pthread_kill(_id, SIGALRM);
@@ -59,7 +59,7 @@ Thread::_kill_impl(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_wait_impl(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 ) const
 {
     xUNUSED(a_timeoutMsec);
@@ -193,7 +193,7 @@ Thread::_setPriorityBoost_impl(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_setCpuAffinity_impl(
-    cint_t &a_procNum
+    cint_t a_procNum
 ) const
 {
 #if   xENV_LINUX
@@ -219,7 +219,7 @@ Thread::_setCpuAffinity_impl(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_setCpuIdeal_impl(
-    culong_t &a_idealCpu    ///< value is zero-based
+    culong_t a_idealCpu    ///< value is zero-based
 ) const
 {
     xUNUSED(a_idealCpu);
@@ -281,9 +281,9 @@ Thread::_setDebugName_impl(
 /* static */
 Thread::handle_t
 Thread::_open_impl(
-    culong_t &a_access,
-    cbool_t   a_isInheritHandle,
-    culong_t &a_id
+    culong_t a_access,
+    cbool_t  a_isInheritHandle,
+    culong_t a_id
 )
 {
     xUNUSED(a_access);
@@ -342,7 +342,7 @@ Thread::_currentYield_impl()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_currentSleep_impl(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 )
 {
     timespec timeSleep  {};

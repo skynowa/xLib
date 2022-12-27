@@ -16,7 +16,7 @@ namespace xl::sync
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_create_impl(
-    cuint_t &a_stackSizeBytes
+    cuint_t a_stackSizeBytes
 )
 {
     id_t id = 0UL;
@@ -34,7 +34,7 @@ Thread::_create_impl(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_kill_impl(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 )
 {
     xTEST(_handle != xNATIVE_HANDLE_NULL);
@@ -65,7 +65,7 @@ Thread::_kill_impl(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_wait_impl(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 ) const
 {
     xTEST(_handle != xNATIVE_HANDLE_NULL);
@@ -315,7 +315,7 @@ Thread::_setPriorityBoost_impl(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_setCpuAffinity_impl(
-    cint_t &a_procNum
+    cint_t a_procNum
 ) const
 {
     xTEST(_handle != xNATIVE_HANDLE_NULL);
@@ -447,9 +447,9 @@ Thread::_setDebugName_impl(
 /* static */
 Thread::handle_t
 Thread::_open_impl(
-    culong_t &a_access,
-    cbool_t   a_isInheritHandle,
-    culong_t &a_id
+    culong_t a_access,
+    cbool_t  a_isInheritHandle,
+    culong_t a_id
 )
 {
     handle_t hRv = ::OpenThread(a_access, a_isInheritHandle, a_id);
@@ -502,7 +502,7 @@ Thread::_currentYield_impl()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_currentSleep_impl(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 )
 {
     (void_t)::Sleep(a_timeoutMsec);
