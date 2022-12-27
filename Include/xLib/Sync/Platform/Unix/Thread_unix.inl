@@ -220,7 +220,7 @@ Thread::_setCpuAffinity_impl(
     // ANDROID: ::sched_setaffinity
 #if xTODO_ANDROID && 0
     int_t iRv = ::sched_setaffinity(static_cast<pid_t>( id() ), sizeof(cpuSet), &cpuSet);
-    xTEST_DIFF_MSG(- 1, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_DIFF_MSG(iRv, - 1, NativeError::format( static_cast<ulong_t>(iRv) ));
 #endif
 
     // pthread_setaffinity_np
@@ -346,7 +346,7 @@ void_t
 Thread::_currentYield_impl()
 {
     int_t iRv = ::sched_yield();
-    xTEST_DIFF_MSG(- 1, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_DIFF_MSG(iRv, - 1, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -374,7 +374,7 @@ int_t
 Thread::_priorityMin_impl()
 {
     int_t iRv = ::sched_get_priority_min(SCHED_FIFO);
-    xTEST_DIFF_MSG(- 1, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_DIFF_MSG(iRv, - 1, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     return iRv;
 }
@@ -384,7 +384,7 @@ int_t
 Thread::_priorityMax_impl()
 {
     int_t iRv = ::sched_get_priority_max(SCHED_FIFO);
-    xTEST_DIFF_MSG(- 1, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
+    xTEST_DIFF_MSG(iRv, - 1, NativeError::format( static_cast<ulong_t>(iRv) ));
 
     return iRv;
 }
