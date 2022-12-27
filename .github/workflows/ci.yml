@@ -124,7 +124,7 @@ jobs:
       # Conan - Install
       - name: Conan - Install
         run: |
-          if [[ "${{ matrix.config.os }}" =~ "Macos" ]]; then
+          if [[ "${{ matrix.config.os }}" =~ "macos" ]]; then
             brew install conan
           else
             pip install conan --upgrade
