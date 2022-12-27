@@ -59,24 +59,26 @@ User::_loginName_impl() const
     // try API
     {
     #if cmHAVE_GETLOGIN_R
-        long_t buffSize {};
+    	std::size_t buffSize {};
         {
         #if   defined(LOGIN_NAME_MAX)
-            buffSize = LOGIN_NAME_MAX + 1;
+            buffSize = LOGIN_NAME_MAX + 1U;
 		#elif defined(_SC_LOGIN_NAME_MAX)
-			buffSize = ::sysconf(_SC_LOGIN_NAME_MAX);
-			if (buffSize == - 1L) {
-				buffSize = 256L;
+			clong_t liRv = ::sysconf(_SC_LOGIN_NAME_MAX);
+			if (liRv == - 1L) {
+				buffSize = 256U;
+			} else {
+				buffSize = static_cast<std::size_t>(liRv);
 			}
 		#endif
 
-            xTEST_GR(buffSize, 0L);
+            xTEST_GR(buffSize, std::size_t{0});
         }
 
         std::string buff;
-        buff.resize( static_cast<std::size_t>(buffSize) );
+        buff.resize(buffSize);
 
-        int_t iRv = ::getlogin_r(buff, &buffSize[0]);
+        int_t iRv = ::getlogin_r(&buff[0], buffSize);
         if (iRv == 0) {
             sRv = xA2T(buff);
             return sRv;
