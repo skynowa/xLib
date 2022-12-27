@@ -472,6 +472,42 @@ Thread::id() const
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
+Thread::isHandleValid() const
+{
+	bool_t bRv {};
+
+#if   xENV_WIN
+	bRv = (_handle != xNATIVE_HANDLE_NULL);
+#elif xENV_UNIX
+	#if xENV_APPLE
+		bRv = (_handle != nullptr);
+	#else
+		bRv = (_handle > 0);
+	#endif
+#endif
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Thread::isIdValid() const
+{
+	bool_t bRv {};
+
+#if   xENV_WIN
+	bRv = (_id != xNATIVE_HANDLE_NULL);
+#elif xENV_UNIX
+	#if xENV_APPLE
+		bRv = (_id != nullptr);
+	#else
+		bRv = (_id > 0);
+	#endif
+#endif
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
 Thread::isCurrent() const
 {
     return isCurrent( currentId() );
