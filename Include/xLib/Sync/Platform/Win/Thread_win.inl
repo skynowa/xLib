@@ -22,7 +22,7 @@ Thread::_create_impl(
     id_t id = 0UL;
 
     HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(nullptr, a_stackSizeBytes,
-        _s_jobEntry, this, 0U, (uint_t *)&id) );
+        _func, this, 0U, (uint_t *)&id) );
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
     xTEST_LESS(0UL, id);
 
