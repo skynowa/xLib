@@ -97,12 +97,7 @@ Thread::_isRunning_impl() const
     bool_t bRv {};
 
     bool_t bCond1 = (_handle != 0UL);
-#if xENV_APPLE
-	/// TOOD: [Apple] _isRunning_impl
-	bool_t bCond2 = true;
-#else
-	bool_t bCond2 = (_id > 0);
-#endif
+	bool_t bCond2 = isIdValid();
     bool_t bCond3 = (_state.isRunning);
 
 #if xTODO
@@ -150,7 +145,7 @@ Thread::_setPriority_impl(
     const Priority a_priority
 ) const
 {
-    if (!User().isAdmin()) {
+    if ( !User().isAdmin() ) {
         Trace() << xT("::: xLib: warning (Thread::setPriority fail, need root) :::");
         return;
     }
