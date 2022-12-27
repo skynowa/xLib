@@ -156,8 +156,8 @@ jobs:
           fetch-depth: 1
 
       # Install
-      - name: CMakeLib - Install
-        run: cd "${{github.workspace}}/CMakeLib" && ./install.sh
+      - name:  CMakeLib - Install
+        run:   cd "${{github.workspace}}/CMakeLib" && ./install.sh
         shell: bash
 
       ##############################################################################################
@@ -190,27 +190,27 @@ jobs:
         shell: bash
 
       # Generate
-      - name: ${{github.event.repository.name}} - Generate
-        run: cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ${{matrix.config.gen_script}}
+      - name:  ${{github.event.repository.name}} - Generate
+        run:   cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ${{matrix.config.gen_script}}
         shell: bash
 
       # Build
-      - name: ${{github.event.repository.name}} - Build
-        run: cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ./build.sh
+      - name:  ${{github.event.repository.name}} - Build
+        run:   cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ./build.sh
         shell: bash
 
       # Deploy
-      - name: ${{github.event.repository.name}} - Deploy
-        run: cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ./deploy.sh
+      - name:  ${{github.event.repository.name}} - Deploy
+        run:   cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ./deploy.sh
         shell: bash
 
       # Tests (Generate)
-      - name: ${{github.event.repository.name}} - Tests (Generate)
-        run: cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ${{matrix.config.gen_tests_script}}
+      - name:  ${{github.event.repository.name}} - Tests (Generate)
+        run:   cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ${{matrix.config.gen_tests_script}}
         shell: bash
 
       # Tests
-      - name: ${{github.event.repository.name}} - Tests
-        run: cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ./tests.sh
+      - name:  ${{github.event.repository.name}} - Tests
+        run:   cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ./tests.sh
         shell: bash
 #--------------------------------------------------------------------------------------------------
