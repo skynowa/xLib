@@ -74,7 +74,7 @@ User::_loginName_impl() const
         }
 
         std::string buff;
-        buff.resize(buffSize);
+        buff.resize( static_cast<std::size_t>(buffSize) );
 
         int_t iRv = ::getlogin_r(buff, &buffSize[0]);
         if (iRv == 0) {
