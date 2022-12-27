@@ -37,11 +37,7 @@ Thread::_create_impl(
 
     iRv = ::pthread_create(&hid, &attrs, &_s_jobEntry, this);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
-#if xENV_APPLE
-	/// TODO: xTEST_MSG
-#else
-	xTEST_MSG(hid > 0, NativeError::format( static_cast<ulong_t>(iRv) ));
-#endif
+	xTEST_MSG(isIdValid(hid), NativeError::format( static_cast<ulong_t>(iRv) ));
 
     iRv = ::pthread_attr_destroy(&attrs);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
@@ -294,7 +290,7 @@ Thread::_open_impl(
     xUNUSED(a_isInheritHandle);
     xUNUSED(a_id);
 
-    handle_t hRv = 0;
+    handle_t hRv {};
 
     // TODO: [skynowa] Thread::_open_impl()
 
@@ -323,7 +319,7 @@ Thread::id_t
 Thread::_currentId_impl()
 {
     id_t ulRv = ::pthread_self();
-    xTEST_EQ(ulRv > 0, true);
+    xTEST_EQ(isIdValid(ulRv), true);
 
     return ulRv;
 }
@@ -332,7 +328,7 @@ Thread::handle_t
 Thread::_currentHandle_impl()
 {
     handle_t hRv = ::pthread_self();
-    xTEST_EQ(hRv > 0, true);
+    xTEST_EQ(isHandleValid(hRv), true);
 
     return hRv;
 }
