@@ -29,7 +29,7 @@
     #elif xENV_BSD
         #include "Platform/Bsd/Debugger_bsd.inl"
     #elif xENV_APPLE
-        #include "Platform/Unix/Debugger_apple.inl"
+        #include "Platform/Apple/Debugger_apple.inl"
     #endif
 #endif
 

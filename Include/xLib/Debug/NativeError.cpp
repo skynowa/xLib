@@ -25,7 +25,7 @@
     #elif xENV_BSD
         #include "Platform/Bsd/NativeError_bsd.inl"
     #elif xENV_APPLE
-        #include "Platform/Unix/NativeError_apple.inl"
+        #include "Platform/Apple/NativeError_apple.inl"
     #endif
 #endif
 
