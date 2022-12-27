@@ -16,6 +16,7 @@ namespace xl::debug
 bool_t
 Debugger::_isActive_impl() const
 {
+	// TOOD: [Apple] _ids_impl
     xNOT_IMPLEMENTED
 
     return false;
