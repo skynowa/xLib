@@ -33,9 +33,14 @@ find_package(Iconv       QUIET REQUIRED)
 
 if (ENV_UNIX)
     # Custom (CMakeLib)
-    find_package(ExecInfo  QUIET REQUIRED)
-    find_package(XCB       QUIET REQUIRED)
-    find_package(Addr2Line QUIET REQUIRED)
+    find_package(ExecInfo QUIET REQUIRED)
+    find_package(XCB      QUIET REQUIRED)
+
+    if (ENV_APPLE)
+        find_package(Atos QUIET REQUIRED)
+    else()
+        find_package(Addr2Line QUIET REQUIRED)
+    endif()
 
     # cmGNU_GET_LIBC_FOUND
     CHECK_FUNCTION_EXISTS(gnu_get_libc_version _xGNU_GET_LIBC_VERSION)
@@ -50,8 +55,6 @@ if (ENV_UNIX)
     if (_xCONFSTR AND _xCS_GNU_LIBPTHREAD_VERSION)
         set(cmCS_GNU_LIBPTHREAD_VERSION_FOUND 1)
     endif()
-elseif(ENV_APPLE)
-    find_package(Atos QUIET REQUIRED)
 endif()
 #--------------------------------------------------------------------------------------------------
 # includes (CMakeLib)
