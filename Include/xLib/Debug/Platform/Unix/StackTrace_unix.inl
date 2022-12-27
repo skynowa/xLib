@@ -4,6 +4,7 @@
  */
 
 
+#include <xLib/Core/FormatC.h>
 #include <xLib/Fs/Path.h>
 
 #if cmEXECINFO_FOUND
