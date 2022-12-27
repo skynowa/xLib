@@ -263,7 +263,7 @@ Thread::messageWaitQueue(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_setPriority_impl(
-    const Priority a_priority
+    cPriority a_priority
 ) const
 {
     xTEST(_handle != xNATIVE_HANDLE_NULL);

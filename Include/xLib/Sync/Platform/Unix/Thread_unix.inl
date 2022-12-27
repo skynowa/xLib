@@ -138,7 +138,7 @@ Thread::_isExited_impl() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_setPriority_impl(
-    const Priority a_priority
+    cPriority a_priority
 ) const
 {
     if ( !User().isAdmin() ) {

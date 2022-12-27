@@ -251,7 +251,7 @@ Thread::isExited()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::setPriority(
-    const Priority a_priority
+    cPriority a_priority
 ) const
 {
     _setPriority_impl(a_priority);
@@ -274,7 +274,7 @@ Thread::priorityString() const
 {
     // n/a
 
-    auto iRv = priority();
+    const auto iRv = priority();
     switch (iRv) {
     case Priority::tpIdle:
         return xT("Idle");

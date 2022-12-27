@@ -40,6 +40,7 @@ public:
         tpTimeCritical
     #endif
     };
+    xUSING_CONST(Priority);
 
 #if   xENV_WIN
     using handle_t = HANDLE;	///< handle
@@ -105,7 +106,7 @@ public:
 #endif
 
     // priority
-    void_t          setPriority(const Priority priority) const;
+    void_t          setPriority(cPriority priority) const;
         ///< set priority (under Linux must use admin privilege)
     Priority        priority() const;
         ///< get priority
@@ -242,7 +243,7 @@ xPLATFORM_IMPL:
     bool_t   _isRunning_impl() const;
     bool_t   _isPaused_impl() const;
     bool_t   _isExited_impl() const;
-    void_t   _setPriority_impl(const Priority priority) const;
+    void_t   _setPriority_impl(cPriority priority) const;
     Priority _priority_impl() const;
     bool_t   _isPriorityBoost_impl() const;
     void_t   _setPriorityBoost_impl(cbool_t isEnabled) const;
