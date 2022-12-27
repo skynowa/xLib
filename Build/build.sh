@@ -10,6 +10,7 @@ DIR_BUILD="../../${PROJECT_NAME}_build"
 JOBS_NUM=$(($(nproc) * 2))
 
 echo "Jobs: $JOBS_NUM"
+echo "OS ver: $(uname -a)"
 
 # prepare
 mkdir -p ${DIR_BUILD}
