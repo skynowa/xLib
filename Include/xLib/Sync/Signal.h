@@ -12,12 +12,13 @@
 //-------------------------------------------------------------------------------------------------
 #if xENV_UNIX
 
-/// TODO: sighandler_t - review
 #if xENV_APPLE
+	// TODO:  [Apple] sighandler_t - review
 	using sighandler_t = void (*) (int);
 
 	namespace std
 	{
+
 	using unexpected_handler = void (*) ();
 
 	inline unexpected_handler
@@ -26,6 +27,8 @@
 		// TOOD: [Apple] set_unexpected
 		return {};
 	}
+
+	} // std
 #endif
 
 namespace xl::sync
