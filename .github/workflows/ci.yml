@@ -183,8 +183,8 @@ jobs:
             --update
         shell: bash
 
-      # Libs (libx11-xcb-dev)
-      - name:  Libs (libx11-xcb-dev) - Install
+      # Libs (Ubuntu)
+      - name:  Libs (Ubuntu) - Install
         if:    contains(matrix.config.os, 'ubuntu')
         run:   sudo apt-get install -y --no-install-recommends libx11-xcb-dev
         shell: bash
