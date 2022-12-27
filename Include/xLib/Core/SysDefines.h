@@ -101,10 +101,10 @@
 ///\see  https://stackoverflow.com/questions/5919996/how-to-detect-reliably-mac-os-x-ios-linux-windows-in-c-preprocessor
 ///\{
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(_WIN64) || \
-         defined(__WINDOWS__) || defined(__NT__) || defined(__TOS_WIN__)
+         defined(__WINDOWS__) || defined(__NT__) || defined(__TOS_WIN__) || defined(__CYGWIN__)
     #define xENV_WIN 1
         ///< Windows environment
-#elif defined(__unix__) || defined(__unix) || defined(__APPLE__)
+#elif defined(unix)  || defined(__unix) || defined(__unix__) || defined(__APPLE__)
     #define xENV_UNIX 1
         ///< Unix environment
 
