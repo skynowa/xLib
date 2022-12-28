@@ -495,7 +495,7 @@ Thread::isIdValid(
 	bool_t bRv {};
 
 #if   xENV_WIN
-	bRv = (a_id != xNATIVE_HANDLE_NULL);
+	bRv = (a_id != 0UL);
 #elif xENV_UNIX
 	#if xENV_APPLE
 		bRv = (a_id != nullptr);
