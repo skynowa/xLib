@@ -6,6 +6,8 @@
 
 #include "Functions.h"
 
+#include <xLib/Core/Core.h>
+
 #if   xENV_WIN
     #include "Platform/Win/Functions_win.inl"
 #elif xENV_UNIX
