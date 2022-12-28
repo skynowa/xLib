@@ -24,6 +24,8 @@ public:
     using handle_t = pthread_t; ///< handle
     using id_t     = pthread_t;	///< ID
 #endif
+    xUSING_CONST(handle_t);
+    xUSING_CONST(id_t);
 
     enum class Priority
         /// priotity
@@ -179,6 +181,7 @@ private:
 #elif xENV_UNIX
     using exit_status_t = void_t *;
 #endif
+    xUSING_CONST(exit_status_t);
 
     // constants
     static culong_t _s_stillActiveTimeoutMsec = 2UL;

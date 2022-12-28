@@ -693,9 +693,9 @@ Thread::_func(
     xCHECK_DO(self->_isAutoDelete, Utils::ptrDeleteT(self));
 
 #if   xENV_WIN
-    exit_status_t esRv = exitStatus;
+    cexit_status_t esRv = exitStatus;
 #elif xENV_UNIX
-    exit_status_t esRv = &exitStatus;
+    cexit_status_t esRv = &exitStatus;
 #endif
 
     return esRv;
