@@ -726,7 +726,7 @@ Thread::_clear(
 {
     _tag        = 0UL;
 
-#if   xENV_WIN1
+#if   xENV_WIN
     ::CloseHandle(_handle);
     _handle = xNATIVE_HANDLE_NULL;
 #elif xENV_UNIX
