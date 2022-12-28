@@ -60,7 +60,7 @@ public:
 ///\}
 
     // actions
-    void_t          setTag(culong_t &tag);
+    void_t          setTag(culong_t tag);
         ///< set data tag
     ulong_t         tag() const;
         ///< get data tag
