@@ -17,6 +17,14 @@ class Thread
     /// thread
 {
 public:
+#if   xENV_WIN
+    using handle_t = HANDLE;	///< handle
+    using id_t     = DWORD;     ///< ID
+#elif xENV_UNIX
+    using handle_t = pthread_t; ///< handle
+    using id_t     = pthread_t;	///< ID
+#endif
+
     enum class Priority
         /// priotity
     {
@@ -41,14 +49,6 @@ public:
     #endif
     };
     xUSING_CONST(Priority);
-
-#if   xENV_WIN
-    using handle_t = HANDLE;	///< handle
-    using id_t     = DWORD;     ///< ID
-#elif xENV_UNIX
-    using handle_t = pthread_t; ///< handle
-    using id_t     = pthread_t;	///< ID
-#endif
 
 ///\name ctors, dtor
 ///\{
@@ -159,7 +159,7 @@ public:
 
     // current thread
     static
-    bool_t          isCurrent(const Thread::id_t &id);
+    bool_t          isCurrent(const id_t &id);
         ///< is current id
     static
     id_t            currentId();
@@ -257,7 +257,7 @@ xPLATFORM_IMPL:
     static
     handle_t _open_impl(culong_t access, cbool_t isInheritHandle, culong_t id);
     static
-    bool_t   _isCurrent_impl(const Thread::id_t &id);
+    bool_t   _isCurrent_impl(const id_t &id);
     static
     id_t     _currentId_impl();
     static
