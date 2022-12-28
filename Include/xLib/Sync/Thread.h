@@ -165,12 +165,12 @@ public:
         ///< sleep
 
 protected:
-    // events
     // BUG: Thread::onRun() - must pure virtual
     virtual uint_t  onRun(void_t *param) /* = 0 */;
         ///< work thread function, must be override
 
-    bool_t          isTimeToExit();
+    // events
+    bool_t isTimeToExit();
         ///< is need to exit from work thread function
 
 private:
