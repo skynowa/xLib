@@ -23,3 +23,5 @@
         #include "Platform/Apple/Functions_apple.inl"
     #endif
 #endif
+
+void foo() {}
