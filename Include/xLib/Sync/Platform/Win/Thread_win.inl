@@ -21,8 +21,8 @@ Thread::_create_impl(
 {
     id_t id {};
 
-    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(nullptr, a_stackSizeBytes,
-        _func, this, 0U, (uint_t *)&id) );
+    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(nullptr, a_stackSizeBytes, _func, this,
+        0U, (uint_t *)&id) );
     xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
     xTEST_LESS(0UL, id);
 
@@ -57,7 +57,7 @@ Thread::_kill_impl(
 
     for ( ; ; ) {
         ulong_t ulRv = exitStatus();
-        xCHECK_DO(STILL_ACTIVE != ulRv, break);
+        xCHECK_DO(ulRv != STILL_ACTIVE, break);
 
         currentSleep(a_timeoutMsec);
     }
@@ -73,10 +73,10 @@ Thread::_wait_impl(
 
     // flags
     xTEST_DIFF(_id, currentId());
-    xCHECK_DO(currentId() == _id, return);
+    xCHECK_DO(_id == currentId(), return);
 
     DWORD dwRv = ::WaitForSingleObject(_handle, a_timeoutMsec);
-    xTEST_EQ(WAIT_OBJECT_0, dwRv);
+    xTEST_EQ(dwRv, WAIT_OBJECT_0);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -100,11 +100,11 @@ Thread::_isRunning_impl() const
 {
     bool_t bRv {};
 
-    DWORD dwRv = 0UL;
+    DWORD dwRv {};
     (void_t)::GetExitCodeThread(_handle, &dwRv);
 
     bool_t bCond1 = (_handle != xNATIVE_HANDLE_NULL);
-    bool_t bCond2 = _id > 0UL;
+    bool_t bCond2 = (_id > 0UL);
     bool_t bCond3 = _state.isRunning;
     bool_t bCond4 = (::WaitForSingleObject(_handle, 0UL) != WAIT_OBJECT_0);
     bool_t bCond5 = (dwRv == STILL_ACTIVE);
@@ -233,12 +233,12 @@ Thread::messageWaitQueue(
 ) const
 {
     xTEST(_handle != xNATIVE_HANDLE_NULL);
-    xTEST_EQ(a_msgs.empty(), false);
+    xTEST(!a_msgs.empty());
 
     BOOL blRv {FALSE};
     MSG  msg  {};
 
-    while ((blRv = ::GetMessage(&msg, nullptr, 0, 0 )) == TRUE) {
+    while ((blRv = ::GetMessage(&msg, nullptr, 0, 0)) == TRUE) {
         xTEST_DIFF(blRv, - 1);
 
         for (size_t i = 0; i < a_msgs.size(); ++ i) {
@@ -275,7 +275,7 @@ Thread::_setPriority_impl(
 Thread::Priority
 Thread::_priority_impl() const
 {
-    Thread::Priority tpRv = static_cast<Priority>( ::GetThreadPriority(_handle) );
+    cPriority tpRv = static_cast<Priority>( ::GetThreadPriority(_handle) );
     xTEST_DIFF(static_cast<int_t>(tpRv), static_cast<int_t>(Priority::tpError));
 
     return tpRv;
@@ -339,7 +339,7 @@ Thread::_setCpuAffinity_impl(
     xTEST(!static_cast<bool_t>(pdwRv));
 #endif
 
-    xTEST(ERROR_INVALID_PARAMETER != pdwRv);
+    xTEST(pdwRv != ERROR_INVALID_PARAMETER);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -414,7 +414,7 @@ Thread::_setDebugName_impl(
     info.dwType = 0x1000;
 #if xUNICODE
     // TODO: [skynowa] Thread::setDebugName() - convert from Unicode to Ansi
-    //// info.pszName    = xT2A(csName).c_str();
+    //// info.pszName    = xT2A(a_name).c_str();
     info.pszName    = "[Unknown]";
 #else
     info.pszName    = a_name.c_str();
