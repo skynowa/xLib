@@ -506,7 +506,7 @@ Thread::handle_t
 Thread::open(
     culong_t a_access,
     cbool_t  a_isInheritHandle,
-    culong_t a_id
+    cid_t    a_id
 )
 {
     xTEST_NA(a_access);

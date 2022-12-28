@@ -283,7 +283,7 @@ Thread::handle_t
 Thread::_open_impl(
     culong_t a_access,
     cbool_t  a_isInheritHandle,
-    culong_t a_id
+	cid_t    a_id
 )
 {
     xUNUSED(a_access);
