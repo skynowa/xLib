@@ -281,9 +281,9 @@ Thread::_setDebugName_impl(
 /* static */
 Thread::handle_t
 Thread::_open_impl(
-    culong_t a_access,
-    cbool_t  a_isInheritHandle,
-	cid_t    a_id
+    culong_t  a_access,
+    cbool_t   a_isInheritHandle,
+	cid_t    &a_id
 )
 {
     xUNUSED(a_access);
@@ -307,7 +307,7 @@ Thread::_open_impl(
 //-------------------------------------------------------------------------------------------------
 bool_t
 Thread::_isCurrent_impl(
-    const Thread::id_t &a_id
+    cid_t &a_id
 )
 {
     bool_t bRv = ::pthread_equal(currentId(), a_id);

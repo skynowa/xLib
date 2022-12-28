@@ -447,9 +447,9 @@ Thread::_setDebugName_impl(
 /* static */
 Thread::handle_t
 Thread::_open_impl(
-    culong_t a_access,
-    cbool_t  a_isInheritHandle,
-	cid_t    a_id
+    culong_t  a_access,
+    cbool_t   a_isInheritHandle,
+	cid_t    &a_id
 )
 {
     handle_t hRv = ::OpenThread(a_access, a_isInheritHandle, a_id);
@@ -468,7 +468,7 @@ Thread::_open_impl(
 //-------------------------------------------------------------------------------------------------
 bool_t
 Thread::_isCurrent_impl(
-    const Thread::id_t &a_id
+    cid_t &a_id
 )
 {
     bool_t bRv = (currentId() == a_id);

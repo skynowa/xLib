@@ -401,7 +401,7 @@ Thread::isIdValid() const
 /* static */
 bool_t
 Thread::isHandleValid(
-	const handle_t &a_handle
+	chandle_t &a_handle
 )
 {
 	bool_t bRv {};
@@ -504,9 +504,9 @@ Thread::setDebugName(
 /* static */
 Thread::handle_t
 Thread::open(
-    culong_t a_access,
-    cbool_t  a_isInheritHandle,
-    cid_t    a_id
+    culong_t  a_access,
+    cbool_t   a_isInheritHandle,
+    cid_t    &a_id
 )
 {
     xTEST_NA(a_access);
