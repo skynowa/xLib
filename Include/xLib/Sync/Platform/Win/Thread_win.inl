@@ -19,11 +19,11 @@ Thread::_create_impl(
     cuint_t a_stackSizeBytes
 )
 {
-    id_t id = 0UL;
+    id_t id {};
 
     HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(nullptr, a_stackSizeBytes,
         _func, this, 0U, (uint_t *)&id) );
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
     xTEST_LESS(0UL, id);
 
     _handle = hRv;
@@ -72,7 +72,7 @@ Thread::_wait_impl(
     xTEST_NA(a_timeoutMsec);
 
     // flags
-    xTEST_DIFF(currentId(), _id);
+    xTEST_DIFF(_id, currentId());
     xCHECK_DO(currentId() == _id, return);
 
     DWORD dwRv = ::WaitForSingleObject(_handle, a_timeoutMsec);
@@ -147,8 +147,8 @@ Thread::postMessage(
 ) const
 {
     xTEST((_handle != xNATIVE_HANDLE_NULL));
-    xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, a_wnd);
-    xTEST_DIFF(FALSE, ::IsWindow(a_wnd));
+    xTEST_DIFF(a_wnd, xWND_NATIVE_HANDLE_NULL);
+    xTEST_DIFF(::IsWindow(a_wnd), FALSE);
 
     BOOL blRv = ::PostMessage(a_wnd, a_msg, static_cast<WPARAM>( a_param1 ),
         static_cast<LPARAM>( a_param2 ));
@@ -164,12 +164,12 @@ Thread::sendMessage(
 ) const
 {
     xTEST(_handle != xNATIVE_HANDLE_NULL);
-    xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, a_wnd);
-    xTEST_DIFF(FALSE, ::IsWindow(a_wnd));
+    xTEST_DIFF(a_wnd, xWND_NATIVE_HANDLE_NULL);
+    xTEST_DIFF(::IsWindow(a_wnd), FALSE);
 
     (void_t)::SendMessage(a_wnd, a_msg, static_cast<WPARAM>( a_param1 ),
         static_cast<LPARAM>( a_param2 ));
-    xTEST_EQ(0UL, NativeError::get());
+    xTEST_EQ(NativeError::get(), 0UL);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -291,7 +291,7 @@ Thread::_isPriorityBoost_impl() const
     BOOL blRv = ::GetThreadPriorityBoost(_handle, &isDisablePriorityBoost);
     xTEST_DIFF(blRv, FALSE);
 
-    return ! isDisablePriorityBoost;
+    return !isDisablePriorityBoost;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -328,7 +328,7 @@ Thread::_setCpuAffinity_impl(
 
     DWORD_PTR pdwRv = ::SetThreadAffinityMask(_handle, mask);
 #if xARCH_BITS_32
-    xTEST_DIFF(0UL, pdwRv);
+    xTEST_DIFF(pdwRv, 0UL);
 #else
    /**
     * \note
@@ -339,7 +339,7 @@ Thread::_setCpuAffinity_impl(
     xTEST(!static_cast<bool_t>(pdwRv));
 #endif
 
-    xTEST_EQ(ERROR_INVALID_PARAMETER != pdwRv, true);
+    xTEST(ERROR_INVALID_PARAMETER != pdwRv);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -350,14 +350,14 @@ Thread::_setCpuIdeal_impl(
     xTEST(_handle != xNATIVE_HANDLE_NULL);
 
     DWORD dwRv = ::SetThreadIdealProcessor(_handle, a_idealCpu);
-    xTEST_DIFF((DWORD) - 1, dwRv);
+    xTEST_DIFF(dwRv, (DWORD) - 1);
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
 Thread::_cpuIdeal_impl() const
 {
     ulong_t ulRv = ::SetThreadIdealProcessor(_handle, MAXIMUM_PROCESSORS);
-    xTEST_DIFF((ulong_t) - 1, ulRv);
+    xTEST_DIFF(ulRv, (ulong_t) - 1);
 
     return ulRv;
 }
@@ -383,7 +383,7 @@ Thread::_exitStatus_impl() const
 {
     xTEST(_handle != xNATIVE_HANDLE_NULL);
 
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     BOOL blRv = ::GetExitCodeThread(_handle, &ulRv);
     xTEST_DIFF(blRv, FALSE);
@@ -410,7 +410,7 @@ Thread::_setDebugName_impl(
     };
 #pragma pack(pop)
 
-    tagTHREADNAME_INFO info = {0};
+    tagTHREADNAME_INFO info {};
     info.dwType = 0x1000;
 #if xUNICODE
     // TODO: [skynowa] Thread::setDebugName() - convert from Unicode to Ansi
@@ -453,7 +453,7 @@ Thread::_open_impl(
 )
 {
     handle_t hRv = ::OpenThread(a_access, a_isInheritHandle, a_id);
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
 
     return hRv;
 }
@@ -489,7 +489,7 @@ Thread::handle_t
 Thread::_currentHandle_impl()
 {
     handle_t hRv = ::GetCurrentThread();
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
 
     return hRv;
 }
