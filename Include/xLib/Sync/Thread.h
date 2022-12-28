@@ -62,21 +62,21 @@ public:
 ///\}
 
     // actions
-    void_t setTag(culong_t tag);
+    void_t  setTag(culong_t tag);
         ///< set data tag
     ulong_t tag() const;
         ///< get data tag
-    void_t create(cbool_t isPaused, cuint_t stackSizeBytes, void_t *param);
+    void_t  create(cbool_t isPaused, cuint_t stackSizeBytes, void_t *param);
         ///< start
-    void_t resume();
+    void_t  resume();
         ///< resume
-    void_t pause();
+    void_t  pause();
         ///< pause
-    void_t exit();
+    void_t  exit();
         ///< exit (set flag "exit")
-    void_t kill(culong_t timeoutMsec);
+    void_t  kill(culong_t timeoutMsec);
         ///< kill
-    void_t wait(culong_t timeoutMsec) const;
+    void_t  wait(culong_t timeoutMsec) const;
         ///< wait
 
     // flags
@@ -151,7 +151,7 @@ public:
         ///< set name your threads in the debugger thread list
 
     // static
-    static handle_t open(culong_t access, cbool_t isInheritHandle, culong_t id);
+    static handle_t open(culong_t access, cbool_t isInheritHandle, cid_t id);
         ///< opens an existing thread object
 
     // current thread
@@ -239,7 +239,7 @@ xPLATFORM_IMPL:
     ulong_t  _exitStatus_impl() const;
     void_t   _setDebugName_impl(std::ctstring_t &name) const;
 
-    static handle_t _open_impl(culong_t access, cbool_t isInheritHandle, culong_t id);
+    static handle_t _open_impl(culong_t access, cbool_t isInheritHandle, cid_t id);
     static bool_t   _isCurrent_impl(const id_t &id);
     static id_t     _currentId_impl();
     static handle_t _currentHandle_impl();
