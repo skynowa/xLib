@@ -166,9 +166,9 @@ set(XLIB_SYS_LIBRARIES
     ${CMAKE_DL_LIBS})
 
 if     (MSVC)
-    set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid ole32 mpr dbghelp crypt32)
+    set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid mpr dbghelp crypt32)
 elseif (MINGW)
-    set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid ole32 mpr dbghelp crypt32)
+    set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid mpr dbghelp crypt32)
 elseif (CMAKE_COMPILER_IS_CLANGXX)
     # -stdlib=libc++ or -stdlib=libstdc++ will probably work
     set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} -stdlib=libstdc++ c++abi pthread rt m z)

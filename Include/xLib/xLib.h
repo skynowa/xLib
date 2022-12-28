@@ -19,9 +19,6 @@
 #include <xLib/Core/Type/Type.h>
 #include <xLib/Core/Functions.h>
 #include <xLib/Core/ScopeExit.h>
-#if xENV_WIN
-	#include <xLib/Core/Win/Com.h>
-#endif
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Double.h>
