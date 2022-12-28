@@ -81,11 +81,7 @@ Thread::create(
     void_t  *a_param
 )
 {
-#if   xENV_WIN
-    xTEST_EQ(_handle != xNATIVE_HANDLE_NULL, false);
-#elif xENV_UNIX
-
-#endif
+    xTEST(!isHandleValid());
     xTEST_NA(a_isPaused);
     xTEST_NA(a_stackSizeBytes);
     xTEST_NA(a_param);
@@ -93,10 +89,11 @@ Thread::create(
     _param = a_param;
 
     // events
-    _eventStarter = new Event(true, false);
-    xTEST_PTR(_eventStarter);
-
+    cbool_t isAutoReset {true};
+	cbool_t isSignaled  {false};
+    _eventStarter = new Event(isAutoReset, isSignaled);
     _eventStarter->create();
+
     _eventPause.create();
     _eventExit.create();
 
