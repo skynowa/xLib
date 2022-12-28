@@ -107,7 +107,6 @@
 
 // Sem API
 #if xENV_APPLE
-	xxx
 int sem_init(sem_t *psem, int flags, unsigned count);
 int sem_destroy(sem_t *psem);
 int sem_post(sem_t *psem);
