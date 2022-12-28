@@ -162,7 +162,7 @@ Thread::_priority_impl() const
     int_t iRv = ::pthread_getschedparam(id(), &policy, &param);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
-    Thread::Priority tpRv = static_cast<Priority>( param.sched_priority );
+    cPriority tpRv = static_cast<Priority>( param.sched_priority );
 
     return tpRv;
 }
@@ -179,8 +179,6 @@ Thread::_setPriorityBoost_impl(
 ) const
 {
     xUNUSED(a_isEnabled);
-
-    return;
 }
 //-------------------------------------------------------------------------------------------------
 
