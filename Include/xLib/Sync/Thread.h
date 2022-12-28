@@ -60,116 +60,116 @@ public:
 ///\}
 
     // actions
-    void_t          setTag(culong_t tag);
+    void_t setTag(culong_t tag);
         ///< set data tag
-    ulong_t         tag() const;
+    ulong_t tag() const;
         ///< get data tag
-    void_t          create(cbool_t isPaused, cuint_t stackSizeBytes, void_t *param);
+    void_t create(cbool_t isPaused, cuint_t stackSizeBytes, void_t *param);
         ///< start
-    void_t          resume();
+    void_t resume();
         ///< resume
-    void_t          pause();
+    void_t pause();
         ///< pause
-    void_t          exit();
+    void_t exit();
         ///< exit (set flag "exit")
-    void_t          kill(culong_t timeoutMsec);
+    void_t kill(culong_t timeoutMsec);
         ///< kill
-    void_t          wait(culong_t timeoutMsec) const;
+    void_t wait(culong_t timeoutMsec) const;
         ///< wait
 
     // flags
-    bool_t          isCreated() const;
+    bool_t isCreated() const;
         ///< is created
-    bool_t          isRunning() const;
+    bool_t sRunning() const;
         ///< is running
-    bool_t          isPaused();
+    bool_t isPaused();
         ///< is paused
-    bool_t          isExited();
+    bool_t isExited();
         ///< is exited (is set flag "exit")
 
 #if xENV_WIN
     // messages
-    void_t          postMessage(HWND wnd, uint_t msg, uint_t param1, long_t param2) const;
+    void_t postMessage(HWND wnd, uint_t msg, uint_t param1, long_t param2) const;
         ///< post message from thread to window
-    void_t          sendMessage(HWND wnd, uint_t msg, uint_t param1, long_t param2) const;
+    void_t sendMessage(HWND wnd, uint_t msg, uint_t param1, long_t param2) const;
         ///< send message from thread to window
-    void_t          postThreadMessage(uint_t msg, uint_t param1, long_t param2) const;
+    void_t postThreadMessage(uint_t msg, uint_t param1, long_t param2) const;
         ///< post message from thread to thread
-    bool_t          tryPostThreadMessage(uint_t msg, uint_t param1, long_t param2,
-                        ulong_t attempsNum, ulong_t attempTimeoutMsec) const;
+    bool_t tryPostThreadMessage(uint_t msg, uint_t param1, long_t param2, ulong_t attempsNum,
+                ulong_t attempTimeoutMsec) const;
         ///< try post message from thread to thread
-    void_t          messageWaitQueue(uint_t msg, uint_t *param1, long_t *param2) const;
+    void_t messageWaitQueue(uint_t msg, uint_t *param1, long_t *param2) const;
         ///< waiting for message with params from other thread
-    void_t          messageWaitQueue(const std::vector<uint_t> &msgs, uint_t *msg, uint_t *param1,
-                        long_t *param2) const;
+    void_t messageWaitQueue(const std::vector<uint_t> &msgs, uint_t *msg, uint_t *param1,
+                long_t *param2) const;
         ///< waiting for message with params from other thread
 #endif
 
     // priority
-    void_t          setPriority(cPriority priority) const;
+    void_t   setPriority(cPriority priority) const;
         ///< set priority (under Linux must use admin privilege)
-    Priority        priority() const;
+    Priority priority() const;
         ///< get priority
-    void_t          priorityUp() const;
+    void_t   priorityUp() const;
         ///< increase priority on one level
-    void_t          priorityDown() const;
+    void_t   priorityDown() const;
         ///< decrease priority on one level
-    bool_t          isPriorityBoost() const;
+    bool_t   isPriorityBoost() const;
         ///< get priority boost control state
-    void_t          setPriorityBoost(cbool_t isEnabled) const;
+    void_t   setPriorityBoost(cbool_t isEnabled) const;
         ///< disables/enables the ability of the system to temporarily boost the priority of a thread
 
     // CPU
-    void_t          setCpuAffinity(cint_t procNum) const;
+    void_t  setCpuAffinity(cint_t procNum) const;
         ///< set processor affinity
-    void_t          setCpuIdeal(culong_t idealCpu) const;
+    void_t  setCpuIdeal(culong_t idealCpu) const;
         ///< sets preferred processor for a thread
-    ulong_t         cpuIdeal() const;
+    ulong_t cpuIdeal() const;
         ///< get current ideal processor without changing it
     static
-    ulong_t         cpuCount();
+    ulong_t cpuCount();
         ///< get CPU count on machine
 
     // Checks
-    bool_t          isHandleValid() const;
-    bool_t          isIdValid() const;
+    bool_t isHandleValid() const;
+    bool_t isIdValid() const;
     static
-    bool_t          isHandleValid(const handle_t &handle);
+    bool_t isHandleValid(const handle_t &handle);
     static
-    bool_t          isIdValid(const id_t &id);
+    bool_t isIdValid(const id_t &id);
 
     // other
-    handle_t        handle() const;
+    handle_t handle() const;
         ///< get handle
-    id_t            id() const;
+    id_t     id() const;
         ///< get ID
-    bool_t          isCurrent() const;
+    bool_t   isCurrent() const;
         ///< is current
-    ulong_t         exitStatus() const;
+    ulong_t  exitStatus() const;
         ///< get termination status
-    void_t          setDebugName(std::ctstring_t &name) const;
+    void_t   setDebugName(std::ctstring_t &name) const;
         ///< set name your threads in the debugger thread list
 
     // static
     static
-    handle_t        open(culong_t access, cbool_t isInheritHandle, culong_t id);
+    handle_t open(culong_t access, cbool_t isInheritHandle, culong_t id);
         ///< opens an existing thread object
 
     // current thread
     static
-    bool_t          isCurrent(const id_t &id);
+    bool_t   isCurrent(const id_t &id);
         ///< is current id
     static
-    id_t            currentId();
+    id_t     currentId();
         ///< get the thread identifier of the calling thread
     static
-    handle_t        currentHandle();
+    handle_t currentHandle();
         ///< get pseudo handle for the calling thread
     static
-    void_t          currentYield();
+    void_t   currentYield();
         ///< yield
     static
-    void_t          currentSleep(culong_t timeoutMsec);
+    void_t   currentSleep(culong_t timeoutMsec);
         ///< sleep
 
 protected:
@@ -190,20 +190,19 @@ private:
 
     // constants
     static
-    culong_t        _s_stillActiveTimeoutMsec = 2UL;
+    culong_t _s_stillActiveTimeoutMsec = 2UL;
         ///< still active timeout (msec)
     static
-    culong_t        _s_exitTimeoutMsec = 5000UL;
+    culong_t _s_exitTimeoutMsec = 5000UL;
         ///< exit timeout (msec)
 
     // thread data
     volatile ulong_t _tag {};          ///< data tag
-
-    handle_t        _handle {};        ///< native handle
-    id_t            _id {};            ///< ID
-    uint_t          _exitStatus {};    ///< exit code
-    void_t         *_param {};         ///< param for job function
-    cbool_t         _isAutoDelete {};  ///< is auto delete thread object
+    handle_t         _handle {};       ///< native handle
+    id_t             _id {};           ///< ID
+    uint_t           _exitStatus {};   ///< exit code
+    void_t          *_param {};        ///< param for job function
+    cbool_t          _isAutoDelete {}; ///< is auto delete thread object
 
     struct State
         ///< thread state flags
