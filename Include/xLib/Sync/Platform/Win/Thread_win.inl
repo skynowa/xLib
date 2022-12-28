@@ -115,7 +115,7 @@ Thread::_isRunning_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Thread::_isPaused_impl()
+Thread::_isPaused_impl() const
 {
     bool_t bRv = !_eventPause.isSignaled() && (_handle != xNATIVE_HANDLE_NULL);
 
@@ -123,7 +123,7 @@ Thread::_isPaused_impl()
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Thread::_isExited_impl()
+Thread::_isExited_impl() const
 {
     bool_t bRv = _eventExit.isSignaled() && (_handle != xNATIVE_HANDLE_NULL);
 
