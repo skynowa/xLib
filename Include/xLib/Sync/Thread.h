@@ -135,8 +135,8 @@ public:
     bool_t isHandleValid() const;
     bool_t isIdValid() const;
 
-    static bool_t isHandleValid(const handle_t &handle);
-    static bool_t isIdValid(const id_t &id);
+    static bool_t isHandleValid(chandle_t &handle);
+    static bool_t isIdValid(cid_t &id);
 
     // other
     handle_t handle() const;
@@ -151,11 +151,11 @@ public:
         ///< set name your threads in the debugger thread list
 
     // static
-    static handle_t open(culong_t access, cbool_t isInheritHandle, cid_t id);
+    static handle_t open(culong_t access, cbool_t isInheritHandle, cid_t &id);
         ///< opens an existing thread object
 
     // current thread
-    static bool_t   isCurrent(const id_t &id);
+    static bool_t   isCurrent(cid_t &id);
         ///< is current id
     static id_t     currentId();
         ///< get the thread identifier of the calling thread
@@ -239,8 +239,8 @@ xPLATFORM_IMPL:
     ulong_t  _exitStatus_impl() const;
     void_t   _setDebugName_impl(std::ctstring_t &name) const;
 
-    static handle_t _open_impl(culong_t access, cbool_t isInheritHandle, cid_t id);
-    static bool_t   _isCurrent_impl(const id_t &id);
+    static handle_t _open_impl(culong_t access, cbool_t isInheritHandle, cid_t &id);
+    static bool_t   _isCurrent_impl(cid_t &id);
     static id_t     _currentId_impl();
     static handle_t _currentHandle_impl();
     static void_t   _currentYield_impl();
