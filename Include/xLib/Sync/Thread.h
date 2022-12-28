@@ -126,17 +126,15 @@ public:
         ///< sets preferred processor for a thread
     ulong_t cpuIdeal() const;
         ///< get current ideal processor without changing it
-    static
-    ulong_t cpuCount();
+    static ulong_t cpuCount();
         ///< get CPU count on machine
 
     // Checks
     bool_t isHandleValid() const;
     bool_t isIdValid() const;
-    static
-    bool_t isHandleValid(const handle_t &handle);
-    static
-    bool_t isIdValid(const id_t &id);
+
+    static bool_t isHandleValid(const handle_t &handle);
+    static bool_t isIdValid(const id_t &id);
 
     // other
     handle_t handle() const;
@@ -151,25 +149,19 @@ public:
         ///< set name your threads in the debugger thread list
 
     // static
-    static
-    handle_t open(culong_t access, cbool_t isInheritHandle, culong_t id);
+    static handle_t open(culong_t access, cbool_t isInheritHandle, culong_t id);
         ///< opens an existing thread object
 
     // current thread
-    static
-    bool_t   isCurrent(const id_t &id);
+    static bool_t   isCurrent(const id_t &id);
         ///< is current id
-    static
-    id_t     currentId();
+    static id_t     currentId();
         ///< get the thread identifier of the calling thread
-    static
-    handle_t currentHandle();
+    static handle_t currentHandle();
         ///< get pseudo handle for the calling thread
-    static
-    void_t   currentYield();
+    static void_t   currentYield();
         ///< yield
-    static
-    void_t   currentSleep(culong_t timeoutMsec);
+    static void_t   currentSleep(culong_t timeoutMsec);
         ///< sleep
 
 protected:
@@ -189,11 +181,9 @@ private:
 #endif
 
     // constants
-    static
-    culong_t _s_stillActiveTimeoutMsec = 2UL;
+    static culong_t _s_stillActiveTimeoutMsec = 2UL;
         ///< still active timeout (msec)
-    static
-    culong_t _s_exitTimeoutMsec = 5000UL;
+    static culong_t _s_exitTimeoutMsec = 5000UL;
         ///< exit timeout (msec)
 
     // thread data
@@ -216,8 +206,7 @@ private:
     Event  _eventPause {false, false};  ///< pause event
     Event  _eventExit {true,  false};   ///< exit event
 
-    static
-    exit_status_t xSTDCALL _func(void_t *param);
+    static exit_status_t xSTDCALL _func(void_t *param);
         ///< callback
     bool_t _waitResumption();
         ///< waiting for reset pause
@@ -225,12 +214,8 @@ private:
         ///< clear class data
 
     // static
-    static
-    int_t _priorityMin();
-        ///<
-    static
-    int_t _priorityMax();
-        ///<
+    static int_t _priorityMin();
+    static int_t _priorityMax();
 
 xPLATFORM_IMPL:
     void_t   _create_impl(cuint_t stackSizeBytes);
@@ -251,22 +236,14 @@ xPLATFORM_IMPL:
     ulong_t  _exitStatus_impl() const;
     void_t   _setDebugName_impl(std::ctstring_t &name) const;
 
-    static
-    handle_t _open_impl(culong_t access, cbool_t isInheritHandle, culong_t id);
-    static
-    bool_t   _isCurrent_impl(const id_t &id);
-    static
-    id_t     _currentId_impl();
-    static
-    handle_t _currentHandle_impl();
-    static
-    void_t   _currentYield_impl();
-    static
-    void_t   _currentSleep_impl(culong_t timeoutMsec);
-    static
-    int_t    _priorityMin_impl();
-    static
-    int_t    _priorityMax_impl();
+    static handle_t _open_impl(culong_t access, cbool_t isInheritHandle, culong_t id);
+    static bool_t   _isCurrent_impl(const id_t &id);
+    static id_t     _currentId_impl();
+    static handle_t _currentHandle_impl();
+    static void_t   _currentYield_impl();
+    static void_t   _currentSleep_impl(culong_t timeoutMsec);
+    static int_t    _priorityMin_impl();
+    static int_t    _priorityMax_impl();
 };
 
 } // namespace
