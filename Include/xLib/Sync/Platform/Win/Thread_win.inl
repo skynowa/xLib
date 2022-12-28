@@ -344,7 +344,7 @@ Thread::_setCpuAffinity_impl(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_setCpuIdeal_impl(
-    culong_t &a_idealCpu    ///< value is zero-based
+    culong_t a_idealCpu    ///< value is zero-based
 ) const
 {
     xTEST(_handle != xNATIVE_HANDLE_NULL);
