@@ -80,7 +80,7 @@ public:
     // flags
     bool_t isCreated() const;
         ///< is created
-    bool_t sRunning() const;
+    bool_t isRunning() const;
         ///< is running
     bool_t isPaused();
         ///< is paused
