@@ -126,8 +126,8 @@ Thread::resume()
 
     // states
     {
-        /* _state.isCreated */// n/a
-        /* _state.isRunning */// n/a
+        // _state.isCreated - n/a
+        // _state.isRunning - n/a
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -140,8 +140,8 @@ Thread::pause()
 
     // states
     {
-        /* _state.isCreated */// n/a
-        /* _state.isRunning */// n/a
+        // _state.isCreated - n/a
+        // _state.isRunning - n/a
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -154,8 +154,8 @@ Thread::exit()
 
     // states
     {
-        /* _state.isCreated */ // n/a
-        /* _state.isRunning */ // n/a
+        // _state.isCreated - n/a
+        // _state.isRunning - n/a
 
         xCHECK_DO(isPaused(), resume());
     }
@@ -456,7 +456,7 @@ Thread::isIdValid(
 	bool_t bRv {};
 
 #if   xENV_WIN
-	bRv = (a_id != 0UL);
+	bRv = (a_id > 0UL);
 #elif xENV_UNIX
 	#if xENV_APPLE
 		bRv = (a_id != nullptr);
@@ -539,7 +539,7 @@ Thread::open(
 {
     xTEST_NA(a_access);
     xTEST_NA(a_isInheritHandle);
-    xTEST_LESS(0UL, a_id);
+    xTEST(isIdValid(a_id));
 
     return _open_impl(a_access, a_isInheritHandle, a_id);
 }
@@ -614,7 +614,7 @@ Thread::onRun(
 
     xTEST_FAIL_MSG(xT("It's virtual method"));
 
-    uint_t uiRv = 0U;
+    uint_t uiRv {};
 
 #if xTEMP_DISABLED
     for ( ; ; ) {
@@ -704,8 +704,8 @@ Thread::_func(
         try {
             exitStatus = self->onRun(self->_param);
         }
-        catch (std::exception &e) {
-            std::string what = e.what();
+        catch (std::exception &a_exc) {
+            std::cstring_t &what = a_exc.what();
             xTEST_FAIL_MSG(xA2T(what));
         }
         catch (...) {
@@ -734,11 +734,11 @@ Thread::_waitResumption()
 {
     // states
     {
-        /* _state.isCreated */// n/a
-        /* _state.isRunning */// n/a
+        // _state.isCreated - n/a
+        // _state.isRunning - n/a
     }
 
-    Event::ObjectState osRv = _eventPause.wait();
+    const Event::ObjectState osRv = _eventPause.wait();
     // TODO: [skynowa] StdStreamV2
     ///-- xTEST_DIFF(Event::ObjectState::osFailed, osRv);
     ///-- xTEST_DIFF(Event::ObjectState::osTimeout, osRv);
