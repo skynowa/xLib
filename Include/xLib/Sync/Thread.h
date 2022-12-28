@@ -110,8 +110,6 @@ public:
         ///< set priority (under Linux must use admin privilege)
     Priority        priority() const;
         ///< get priority
-    std::tstring_t  priorityString() const;
-        ///< get priority as string
     void_t          priorityUp() const;
         ///< increase priority on one level
     void_t          priorityDown() const;

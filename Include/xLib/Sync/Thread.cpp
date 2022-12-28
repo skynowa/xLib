@@ -242,34 +242,6 @@ Thread::priority() const
     return _priority_impl();
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
-Thread::priorityString() const
-{
-    // n/a
-
-    const auto iRv = priority();
-    switch (iRv) {
-    case Priority::tpIdle:
-        return xT("Idle");
-    case Priority::tpLowest:
-        return xT("Lowest");
-    case Priority::tpBelowNormal:
-        return xT("Below normal");
-    case Priority::tpNormal:
-        return xT("Normal");
-    case Priority::tpAboveNormal:
-        return xT("Above normal");
-    case Priority::tpHighest:
-        return xT("Highest");
-    case Priority::tpTimeCritical:
-        return xT("Time critical");
-    case Priority::tpError:
-        return xT("<Error>");
-    }
-
-    return xT("N/A");
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 Thread::priorityUp() const
 {
