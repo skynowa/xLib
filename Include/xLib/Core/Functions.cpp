@@ -22,7 +22,6 @@
     #elif xENV_BSD
         #include "Platform/Bsd/Functions_bsd.inl"
     #elif xENV_APPLE
-sadfasdf
         #include "Platform/Apple/Functions_apple.inl"
     #endif
 #endif
