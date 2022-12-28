@@ -148,15 +148,6 @@ Test_Thread::unit()
         #endif
     }
 
-    xTEST_CASE("priorityString")
-    {
-        // TEST: Thread::priorityString()
-        #if xTODO
-            m_sRv = pthT->priorityString();
-            xTEST_EQ(std::tstring_t(xT("Lowest")), m_sRv);
-        #endif
-    }
-
     xTEST_CASE("priorityUp, priorityDown")
     {
         #if   xENV_WIN
