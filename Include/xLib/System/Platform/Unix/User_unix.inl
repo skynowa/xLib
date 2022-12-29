@@ -80,6 +80,9 @@ User::_loginName_impl() const
 
         int_t iRv = ::getlogin_r(&buff[0], buffSize);
         if (iRv == 0) {
+            // '\0' - trim
+            buff.assign(buff.c_str());
+
             sRv = xA2T(buff);
             return sRv;
         }
