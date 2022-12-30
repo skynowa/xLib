@@ -34,17 +34,13 @@ public:
         ///< delete var
 
 xPUBLIC_STATIC:
-    static
-    void_t         setVars(const std::set<std::pair_tstring_t> &vars);
+    static void_t         setVars(const std::set<std::pair_tstring_t> &vars);
         ///< set or change values
-    static
-    void_t         vars(std::vec_tstring_t *values);
+    static void_t         vars(std::vec_tstring_t *values);
         ///< get all values
-    static
-    std::tstring_t expandVars(std::ctstring_t &strWithVars);
+    static std::tstring_t expandVars(std::ctstring_t &strWithVars);
         ///< expands strings by separator "%"
-    static
-    void_t         varPath(std::vec_tstring_t *dirPaths);
+    static void_t         varPath(std::vec_tstring_t *dirPaths);
         ///< get PATH value (/usr/bin ... pathes)
 
 private:
@@ -66,8 +62,7 @@ xPLATFORM_IMPL:
     void_t         _setVar_impl(std::ctstring_t &value) const;
     void_t         _removeVar_impl() const;
 
-    static
-    void_t         _vars_impl(std::vec_tstring_t *values);
+    static void_t _vars_impl(std::vec_tstring_t *values);
 };
 
 } // namespace
