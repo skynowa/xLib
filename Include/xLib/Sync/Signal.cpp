@@ -41,7 +41,7 @@ Signal::state() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Signal::setState(
-    const std::sig_atomic_t &a_state	///<
+    const std::sig_atomic_t a_state	///<
 )
 {
     // ANDROID: SIG_ATOMIC_MIN, SIG_ATOMIC_MAX
@@ -262,7 +262,7 @@ Signal::connectUnexpected(
 //-------------------------------------------------------------------------------------------------
 void_t
 Signal::raise(
-    cint_t &a_signalNum	///<
+    cint_t a_signalNum	///<
 ) const
 {
     int_t iRv = std::raise(a_signalNum);
@@ -280,7 +280,7 @@ Signal::raise(
 /* static */
 bool_t
 Signal::isValid(
-    cint_t &a_signalNum ///< signal number
+    cint_t a_signalNum ///< signal number
 )
 {
 	return (::sigaction(a_signalNum, nullptr, nullptr) == 0);
@@ -421,7 +421,7 @@ Signal::infoDescription(
 /* static */
 std::tstring_t
 Signal::decription(
-    cint_t &a_signalNum ///< signal number
+    cint_t a_signalNum ///< signal number
 )
 {
     return Format::str(xT("{} - {}"), a_signalNum, _decription_impl(a_signalNum));
