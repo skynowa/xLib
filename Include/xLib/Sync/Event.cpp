@@ -12,14 +12,6 @@
     #include "Platform/Win/Event_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/Event_unix.inl"
-
-    #if   xENV_LINUX
-        // #include "Platform/Linux/Event_linux.inl"
-    #elif xENV_BSD
-        // #include "Platform/Bsd/Event_bsd.inl"
-    #elif xENV_APPLE
-        // #include "Platform/Unix/Event_apple.inl"
-    #endif
 #endif
 
 namespace xl::sync

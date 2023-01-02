@@ -19,14 +19,6 @@
     #include "Platform/Win/Locale_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/Locale_unix.inl"
-
-    #if   xENV_LINUX
-
-    #elif xENV_BSD
-
-    #elif xENV_APPLE
-
-    #endif
 #endif
 
 

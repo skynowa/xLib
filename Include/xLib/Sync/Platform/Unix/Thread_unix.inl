@@ -265,6 +265,8 @@ Thread::_setDebugName_impl(
     xTEST_DIFF(iRv, - 1);
 #elif xENV_BSD
     (void_t)pthread_set_name_np(id(), a_name.c_str());
+#elif xENV_APPLE
+    /// TOOD: [Apple] _setDebugName_impl
 #endif
 }
 //-------------------------------------------------------------------------------------------------

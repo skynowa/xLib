@@ -19,14 +19,6 @@
     #include "Platform/Win/ThreadStorage_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/ThreadStorage_unix.inl"
-
-    #if   xENV_LINUX
-        // #include "Platform/Linux/ThreadStorage_linux.inl"
-    #elif xENV_BSD
-        // #include "Platform/Bsd/ThreadStorage_bsd.inl"
-    #elif xENV_APPLE
-        // #include "Platform/Unix/ThreadStorage_apple.inl"
-    #endif
 #endif
 
 
