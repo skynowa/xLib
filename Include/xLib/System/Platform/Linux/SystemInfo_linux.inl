@@ -372,7 +372,7 @@ SystemInfo::_powerSupplyStatus_impl() const
 bool_t
 SystemInfo::_isVpnActive_impl() const
 {
-    std::ctstring_t filePath = xT("/sys/class/net/tun0");
+    std::ctstring_t filePath = xT("/sys/class/net/tun0/tun_flags");
 
     FileInfo fileInfo(filePath);
     xCHECK_RET(!fileInfo.isExists(), false);
