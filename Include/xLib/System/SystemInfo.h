@@ -146,6 +146,12 @@ public:
 		///< get status of power supply
 ///\}
 
+///@name Network
+///@{
+	bool_t isVpnActive() const;
+		///< detect VPN
+///@}
+
 ///\name Libs
 ///\{
 #if xENV_UNIX
@@ -187,6 +193,9 @@ xPLATFORM_IMPL:
     bool_t         _isPowerSupply_impl() const;
     std::size_t    _powerSupplyLevel_impl() const;
     PowerSupplyStatus _powerSupplyStatus_impl() const;
+
+    // Net
+    bool_t         _isVpnActive_impl() const;
 };
 
 } // namespace

@@ -180,6 +180,12 @@ Test_SystemInfo::unit()
 		}
     }
 
+    xTEST_CASE("isVpnConnected")
+    {
+        m_bRv = SystemInfo().isVpnConnected();
+        xTEST(m_bRv);
+    }
+
 #if xENV_UNIX
     xTEST_CASE("glibcVersion")
     {
