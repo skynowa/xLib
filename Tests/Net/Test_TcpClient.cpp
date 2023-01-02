@@ -13,6 +13,11 @@ xTEST_UNIT(Test_TcpClient)
 bool_t
 Test_TcpClient::unit()
 {
+	if ( isGithubCI() ) {
+		Cout() << "GithubCI - skip";
+		return true;
+	}
+
     ISocket::cAddressFamily addressFamily = ISocket::AddressFamily::afInet;
     ISocket::cType          type          = ISocket::Type::tpStream;
     ISocket::cProtocol      ptProtocol    = ISocket::Protocol::ptIp;
@@ -38,25 +43,17 @@ Test_TcpClient::unit()
 
 	xTEST_CASE("isServerAlive")
 	{
-		if ( isGithubCI() ) {
-			// TEST: Github CI
-		} else {
-			m_bRv = TcpClient::isServerAlive(ip, port);
-			xTEST(m_bRv);
+		m_bRv = TcpClient::isServerAlive(ip, port);
+		xTEST(m_bRv);
 
-			std::tstring_t ipFromDns;
-			DnsClient::hostAddrByName(hostName, &ipFromDns);
-			xTEST_EQ(ip, ipFromDns);
-		}
+		std::tstring_t ipFromDns;
+		DnsClient::hostAddrByName(hostName, &ipFromDns);
+		xTEST_EQ(ip, ipFromDns);
 	}
 
 	xTEST_CASE("connect")
 	{
-		if ( isGithubCI() ) {
-			// TEST: Github CI
-		} else {
-			tcpClient.connect(ip, port);
-		}
+		tcpClient.connect(ip, port);
 	}
 
 	xTEST_CASE("isReadable")
@@ -73,14 +70,10 @@ Test_TcpClient::unit()
 
 	xTEST_CASE("peerName")
     {
-		if ( isGithubCI() ) {
-			// TEST: Github CI
-		} else {
-			std::tstring_t _ip;
-			ushort_t       _port {};
+		std::tstring_t _ip;
+		ushort_t       _port {};
 
-			tcpClient.peerName(&_ip, &_port);
-		}
+		tcpClient.peerName(&_ip, &_port);
     }
 
 	xTEST_CASE("socketName")
@@ -132,12 +125,8 @@ Test_TcpClient::unit()
 
 	xTEST_CASE("nativeError")
 	{
-		if ( isGithubCI() ) {
-			// TEST: Github CI
-		} else {
-			m_iRv = TcpClient::nativeError();
-			xTEST_EQ(m_iRv, 0);
-		}
+		m_iRv = TcpClient::nativeError();
+		xTEST_EQ(m_iRv, 0);
 	}
 
     return true;
