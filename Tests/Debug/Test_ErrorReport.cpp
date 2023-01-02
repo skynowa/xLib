@@ -25,6 +25,8 @@ Test_ErrorReport::unit()
         std::ctstring_t &stackTrace     = StackTrace().str();
 
         ErrorReport report(ErrorReport::Type::Stdout, nativeError, sourceInfo, stackTrace, xT(""));
+        m_sRv = report.str();
+        xTEST(!m_sRv.empty());
     }
 
     return true;
