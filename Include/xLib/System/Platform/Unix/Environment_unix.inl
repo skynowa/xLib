@@ -57,6 +57,8 @@ Environment::_removeVar_impl() const
     xTEST_DIFF(iRv, - 1);
 #elif xENV_BSD
     (void_t)::unsetenv(xT2A(_varName).c_str());
+#elif xENV_APPLE
+    /// TODO: [Apple] _removeVar_impl
 #endif
 }
 //-------------------------------------------------------------------------------------------------

@@ -342,6 +342,8 @@ Process::_setName_impl(
     xTEST_DIFF(iRv, - 1);
 #elif xENV_BSD
     (void_t)::setproctitle("%s", xT2A(a_name).c_str());
+#elif xENV_APPLE
+    /// TOOD: [Apple] _setName_impl
 #endif
 }
 //-------------------------------------------------------------------------------------------------
