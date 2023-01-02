@@ -10,7 +10,9 @@
 
 #include <xLib/Core/Core.h>
 //-------------------------------------------------------------------------------------------------
-#if xENV_UNIX
+#if   xENV_WIN
+    // TODO: [Win] Signal
+#elif xENV_UNIX
 
 #if xENV_APPLE
    /**
