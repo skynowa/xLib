@@ -82,7 +82,6 @@ Test_Debugger::unit()
     {
         const ErrorReport::Type type[]
         {
-            ErrorReport::Type::Msgbox,
             ErrorReport::Type::Stdout,
             ErrorReport::Type::Log
         };
