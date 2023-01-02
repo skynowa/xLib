@@ -16,7 +16,6 @@
 #include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Ui/MsgBox.h>
 #include <xLib/System/Environment.h>
 
 #if   xENV_WIN
@@ -107,9 +106,6 @@ Debugger::reportMake(
     culong_t nativeError = NativeError::get();
 
     switch ( a_report.type() ) {
-    case ErrorReport::Type::Msgbox:
-        _msgboxPlain(a_report);
-        break;
     case ErrorReport::Type::Stdout:
         _stdoutPlain(a_report);
         break;
@@ -139,37 +135,6 @@ Debugger::reportMake(
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-void_t
-Debugger::_msgboxPlain(
-    const ErrorReport &a_report
-) const
-{
-    xCHECK_DO(!isEnabled(), return);
-
-    MsgBox msgBox;
-    MsgBox::cModalResult mrRv = msgBox.show(a_report.str(), xT("xLib"),
-    	MsgBox::Type::AbortRetryIgnore);
-    switch (mrRv) {
-    case MsgBox::ModalResult::Abort:
-        (void_t)::exit(EXIT_FAILURE);
-        break;
-    default:
-    case MsgBox::ModalResult::Ignore:
-        xNA;
-        break;
-    case MsgBox::ModalResult::Retry:
-        if ( isActive() ) {
-            breakPoint();
-        } else {
-            MsgBox::cModalResult nrRv = MsgBox().show(xT("Debugger is not present.\n"
-                "The application will be terminated."), xT("xLib"));
-            xUNUSED(nrRv);
-            (void_t)::exit(EXIT_FAILURE);
-        }
-        break;
-    }
-}
 //-------------------------------------------------------------------------------------------------
 void_t
 Debugger::_stdoutPlain(
