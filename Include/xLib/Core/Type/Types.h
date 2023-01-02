@@ -167,10 +167,9 @@ namespace xl
 	xUSING_PTR_CONST(uchar_t);
 
 	// sighandler_t
-#if xENV_BSD
-	#if !defined(sighandler_t)
-		using sighandler_t = void (*)(int);
-	#endif
+	// TODO: [Apple] sighandler_t - review
+#if !defined(sighandler_t)
+	using sighandler_t = void (*)(int);
 #endif
 
 } // namespace

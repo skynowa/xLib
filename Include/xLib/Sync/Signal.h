@@ -13,9 +13,10 @@
 #if xENV_UNIX
 
 #if xENV_APPLE
-	// TODO:  [Apple] sighandler_t - review
-	using sighandler_t = void (*) (int);
-
+   /**
+	* TODO: [Apple] unexpected_handler - review
+	* \see Types.h
+	*/
 	namespace std
 	{
 
