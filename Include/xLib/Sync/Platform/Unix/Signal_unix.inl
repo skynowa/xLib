@@ -20,7 +20,7 @@ namespace xl::sync
 /* static */
 std::tstring_t
 Signal::_decription_impl(
-    cint_t &a_signalNum
+    cint_t a_signalNum
 )
 {
    /**
