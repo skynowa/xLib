@@ -180,9 +180,9 @@ Test_SystemInfo::unit()
 		}
     }
 
-    xTEST_CASE("isVpnConnected")
+    xTEST_CASE("isVpnActive")
     {
-        m_bRv = SystemInfo().isVpnConnected();
+        m_bRv = SystemInfo().isVpnActive();
         xTEST(m_bRv);
     }
 
