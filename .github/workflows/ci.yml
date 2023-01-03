@@ -45,16 +45,16 @@ jobs:
             conan_file:       "conan_file.txt"
           }
 
-        - {
-            name:             "Ubuntu-20.04 (Clang)",
-            os:                ubuntu-20.04,
-            cc:               "clang",
-            cxx:              "clang++",
-            gen_script:       "./gen_eclipse.sh",
-            gen_tests_script: "./gen_tests_eclipse.sh",
-            conan_profile:    "conan_profile_ubuntu_clang.txt",
-            conan_file:       "conan_file.txt"
-          }
+        # - {
+        #     name:             "Ubuntu-20.04 (Clang)",
+        #     os:                ubuntu-20.04,
+        #     cc:               "clang",
+        #     cxx:              "clang++",
+        #     gen_script:       "./gen_eclipse.sh",
+        #     gen_tests_script: "./gen_tests_eclipse.sh",
+        #     conan_profile:    "conan_profile_ubuntu_clang.txt",
+        #     conan_file:       "conan_file.txt"
+        #   }
 
         - {
             name:             "Windows-2019 (VS)",
@@ -67,27 +67,27 @@ jobs:
             conan_file:       "conan_file.txt"
           }
 
-        - {
-            name:             "Windows-2019 (GCC)",
-            os:                windows-2019,
-            cc:               "gcc",
-            cxx:              "g++",
-            gen_script:       "./gen_eclipse.sh",
-            gen_tests_script: "./gen_tests_eclipse.sh",
-            conan_profile:    "conan_profile_win_gcc.txt",
-            conan_file:       "conan_file.txt"
-          }
+        # - {
+        #     name:             "Windows-2019 (GCC)",
+        #     os:                windows-2019,
+        #     cc:               "gcc",
+        #     cxx:              "g++",
+        #     gen_script:       "./gen_eclipse.sh",
+        #     gen_tests_script: "./gen_tests_eclipse.sh",
+        #     conan_profile:    "conan_profile_win_gcc.txt",
+        #     conan_file:       "conan_file.txt"
+        #   }
 
-        - {
-            name:             "Windows-2019 (Clang)",
-            os:                windows-2019,
-            cc:               "clang",
-            cxx:              "clang++",
-            gen_script:       "./gen_eclipse.sh",
-            gen_tests_script: "./gen_tests_eclipse.sh",
-            conan_profile:    "conan_profile_win_clang.txt",
-            conan_file:       "conan_file.txt"
-          }
+        # - {
+        #     name:             "Windows-2019 (Clang)",
+        #     os:                windows-2019,
+        #     cc:               "clang",
+        #     cxx:              "clang++",
+        #     gen_script:       "./gen_eclipse.sh",
+        #     gen_tests_script: "./gen_tests_eclipse.sh",
+        #     conan_profile:    "conan_profile_win_clang.txt",
+        #     conan_file:       "conan_file.txt"
+        #   }
 
         - {
             name:             "MacOS-11 (Clang)",
