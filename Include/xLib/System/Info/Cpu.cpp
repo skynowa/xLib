@@ -10,6 +10,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
+#include <xLib/Fs/Dll.h>
 
 #if   xENV_WIN
     #include <xLib/System/Info/Platform/Win/Cpu_win.inl>
