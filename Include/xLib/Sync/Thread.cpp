@@ -8,7 +8,7 @@
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Utils.h>
-#include <xLib/System/SystemInfo.h>
+#include <xLib/System/Info/Cpu.h>
 #include <xLib/System/User.h>
 #include <xLib/Log/Trace.h>
 
@@ -370,7 +370,7 @@ Thread::cpuIdeal() const
 ulong_t
 Thread::cpuCount()
 {
-    ulong_t ulRv = SystemInfo().cpusNum();
+    ulong_t ulRv = Cpu().cpusNum();
     xCHECK_RET(ulRv < 1UL || ulRv > 32UL, 1UL);
 
     // TODO: [skynowa] Thread::cpuCount() - make constant 32UL

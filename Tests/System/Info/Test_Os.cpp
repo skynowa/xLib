@@ -1,5 +1,5 @@
 /**
- * \file   Test_SystemInfo.cpp
+ * \file   Test_Os.cpp
  * \brief
  */
 
@@ -7,13 +7,13 @@
 #include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
-xTEST_UNIT(Test_SystemInfo)
+xTEST_UNIT(Test_Os)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
 Test_SystemInfo::unit()
 {
-	SystemInfo sysInfo;
+	Os sysInfo;
 
     xTEST_CASE("os")
     {
@@ -70,107 +70,6 @@ Test_SystemInfo::unit()
         m_sRv = sysInfo.formatOsArch();
         xTEST(!m_sRv.empty());
     }
-
-    xTEST_CASE("hostName")
-    {
-        m_sRv = sysInfo.hostName();
-        xTEST(!m_sRv.empty());
-    }
-
-    xTEST_CASE("cpusNum")
-    {
-        m_ulRv = sysInfo.cpusNum();
-        xTEST_GR(m_ulRv, 0UL);
-    }
-
-    xTEST_CASE("currentCpuNum")
-    {
-        m_ulRv = sysInfo.currentCpuNum();
-        xTEST_GR(sysInfo.cpusNum(), m_ulRv);
-    }
-
-    xTEST_CASE("cpuVendor")
-    {
-        SystemInfo::cCpuVendor cvType = sysInfo.cpuVendor();
-        xTEST(cvType == SystemInfo::CpuVendor::Intel || cvType == SystemInfo::CpuVendor::Amd);
-    }
-
-    xTEST_CASE("cpuModel")
-    {
-        m_sRv = sysInfo.cpuModel();
-        xTEST(!m_sRv.empty());
-    }
-
-    xTEST_CASE("cpuSpeed")
-    {
-        m_ulRv = sysInfo.cpuSpeed();
-        xTEST_GR(m_ulRv, 0UL);
-    }
-
-    xTEST_CASE("ramTotal")
-    {
-        m_ullRv = sysInfo.ramTotal();
-        xTEST_GR(m_ullRv, 0ULL);
-    }
-
-    xTEST_CASE("ramAvailable")
-    {
-        m_ullRv = sysInfo.ramAvailable();
-        xTEST_GR(m_ullRv, 0ULL);
-    }
-
-    xTEST_CASE("cpuUsage")
-    {
-        for (size_t i = 0; i < 5; ++ i) {
-            m_ulRv = sysInfo.cpuUsage();
-            xTEST_NA(m_ulRv);
-        }
-    }
-
-    xTEST_CASE("ramUsage")
-    {
-        for (size_t i = 0; i < 5; ++ i) {
-            m_ulRv = sysInfo.ramUsage();
-            xTEST_NA(m_ulRv);
-        }
-    }
-
-    xTEST_CASE("pageSize")
-    {
-        m_ulRv = sysInfo.pageSize();
-        xTEST_GR(m_ulRv, 0UL);
-    }
-
-    xTEST_CASE("isPowerSupply, powerSupplyLevel")
-    {
-		if ( sysInfo.isPowerSupply() ) {
-			m_stRv = sysInfo.powerSupplyLevel();
-			xTEST_GR(m_stRv, 0ULL);
-
-			SystemInfo::cPowerSupplyStatus psRv = sysInfo.powerSupplyStatus();
-			xTEST_DIFF((int)psRv, (int)SystemInfo::PowerSupplyStatus::Unknown);
-		}
-    }
-
-    xTEST_CASE("isVpnActive")
-    {
-        m_bRv = sysInfo.isVpnActive();
-        xTEST_NA(m_bRv);
-    }
-
-#if xENV_UNIX
-    xTEST_CASE("glibcVersion")
-    {
-        m_sRv = sysInfo.glibcVersion();
-        xTEST(!m_sRv.empty());
-    }
-
-    xTEST_CASE("libPthreadVersion")
-    {
-        m_sRv = sysInfo.libPthreadVersion();
-        xTEST(!m_sRv.empty());
-    }
-#endif
 
     return true;
 }
