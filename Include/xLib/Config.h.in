@@ -18,8 +18,6 @@
 ///@name debug mode (only one mode can be activated)
 ///@{
 // log mode (only one mode can be activated)
-#cmakedefine cmOPTION_DEBUG_MODE_MSGBOX 1
-    ///< debug mode "message box"
 #cmakedefine cmOPTION_DEBUG_MODE_STDOUT 1
     ///< debug mode "std::cout"
 #cmakedefine cmOPTION_DEBUG_MODE_LOG 1
