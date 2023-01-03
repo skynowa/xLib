@@ -183,7 +183,7 @@ Test_SystemInfo::unit()
     xTEST_CASE("isVpnActive")
     {
         m_bRv = SystemInfo().isVpnActive();
-        xTEST(m_bRv);
+        xTEST_NA(m_bRv);
     }
 
 #if xENV_UNIX

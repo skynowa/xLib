@@ -163,7 +163,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${cmXLIB_EXTRA_LIBRARIES}
         ${cmXLIB_SYS_LIBRARIES}
 
-        # ${XLIB_LIBRARIES}   ###
+        ${XLIB_LIBRARIES}
     )
 
     add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
