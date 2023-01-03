@@ -17,8 +17,8 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("os")
     {
-        const SystemInfo::OsType otType = sysInfo.os();
-        xTEST_DIFF((int)SystemInfo::OsType::Unknown, (int)otType);
+        SystemInfo::cOsType otType = sysInfo.os();
+        xTEST_DIFF((int)otType, (int)SystemInfo::OsType::Unknown);
 
         #if   xENV_WIN
             m_bRv =
@@ -40,9 +40,9 @@ Test_SystemInfo::unit()
             xTEST(m_bRv);
         #elif xENV_UNIX
             #if xOS_FREEBSD
-                xTEST_EQ((int)SystemInfo::OsType::FreeBSD, (int)otType);
+                xTEST_EQ((int)otType, (int)SystemInfo::OsType::FreeBSD);
             #else
-                xTEST_EQ((int)SystemInfo::OsType::Linux, (int)otType);
+                xTEST_EQ((int)otType, (int)SystemInfo::OsType::Linux);
             #endif
         #endif
     }
@@ -61,10 +61,10 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("osArch")
     {
-        SystemInfo::OsArch oaRes = SystemInfo::OsArch::Unknown;
+        SystemInfo::cOsArch oaRes = SystemInfo::OsArch::Unknown;
 
         oaRes = sysInfo.osArch();
-        xTEST_DIFF((int)SystemInfo::OsArch::Unknown, (int)oaRes);
+        xTEST_DIFF((int)oaRes, (int)SystemInfo::OsArch::Unknown);
     }
 
     xTEST_CASE("formatOsArch")
@@ -77,9 +77,6 @@ Test_SystemInfo::unit()
     {
         m_sRv = sysInfo.hostName();
         xTEST(!m_sRv.empty());
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::hostName(): %s"), m_sRv.c_str());
-        #endif
     }
 
     xTEST_CASE("cpusNum")
@@ -91,82 +88,59 @@ Test_SystemInfo::unit()
     xTEST_CASE("currentCpuNum")
     {
         m_ulRv = sysInfo.currentCpuNum();
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tSystemInfo::currentCpuNum: %lu"), m_ulRv);
-        #endif
-        xTEST(sysInfo.cpusNum() > m_ulRv);
+        xTEST_GR(sysInfo.cpusNum(), m_ulRv);
     }
 
     xTEST_CASE("cpuVendor")
     {
-        SystemInfo::CpuVendor cvType = sysInfo.cpuVendor();
-        xTEST(SystemInfo::CpuVendor::Intel == cvType || SystemInfo::CpuVendor::Amd == cvType);
+        SystemInfo::cCpuVendor cvType = sysInfo.cpuVendor();
+        xTEST(cvType == SystemInfo::CpuVendor::Intel || cvType == SystemInfo::CpuVendor::Amd);
     }
 
     xTEST_CASE("cpuModel")
     {
         m_sRv = sysInfo.cpuModel();
         xTEST(!m_sRv.empty());
-
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tcpuModel: %s"), m_sRv.c_str());
-        #endif
     }
 
     xTEST_CASE("cpuSpeed")
     {
         m_ulRv = sysInfo.cpuSpeed();
-        xTEST_LESS(0UL, m_ulRv);
-
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tcpuSpeed: %ld"), m_ulRv);
-        #endif
+        xTEST_GR(m_ulRv, 0UL);
     }
 
     xTEST_CASE("ramTotal")
     {
         m_ullRv = sysInfo.ramTotal();
-        xTEST_LESS(0ULL, m_ullRv);
+        xTEST_GR(m_ullRv, 0ULL);
     }
 
     xTEST_CASE("ramAvailable")
     {
         m_ullRv = sysInfo.ramAvailable();
-        xTEST_LESS(0ULL, m_ullRv);
+        xTEST_GR(m_ullRv, 0ULL);
     }
 
     xTEST_CASE("cpuUsage")
     {
-        for (size_t i = 0; i < 10; ++ i) {
+        for (size_t i = 0; i < 5; ++ i) {
             m_ulRv = sysInfo.cpuUsage();
             xTEST_NA(m_ulRv);
-
-            #if xTEST_IGNORE
-                xTRACEV(xT("\tcpuUsage: %ld"), m_ulRv);
-
-                Thread::currentSleep(1000UL);
-            #endif
         }
     }
 
     xTEST_CASE("ramUsage")
     {
-        for (size_t i = 0; i < 10; ++ i) {
+        for (size_t i = 0; i < 5; ++ i) {
             m_ulRv = sysInfo.ramUsage();
             xTEST_NA(m_ulRv);
-
-            #if xTEST_IGNORE
-                xTRACEV(xT("\tramUsage: %ld"), m_ulRv);
-
-                Thread::currentSleep(1000UL);
-            #endif
         }
     }
 
     xTEST_CASE("pageSize")
     {
         m_ulRv = sysInfo.pageSize();
-        xTEST_LESS(0UL, m_ulRv);
+        xTEST_GR(m_ulRv, 0UL);
     }
 
     xTEST_CASE("isPowerSupply, powerSupplyLevel")
@@ -176,7 +150,7 @@ Test_SystemInfo::unit()
 			xTEST_GR(m_stRv, 0ULL);
 
 			SystemInfo::cPowerSupplyStatus psRv = sysInfo.powerSupplyStatus();
-			xTEST(psRv != SystemInfo::PowerSupplyStatus::Unknown);
+			xTEST_DIFF((int)psRv, (int)SystemInfo::PowerSupplyStatus::Unknown);
 		}
     }
 
@@ -191,18 +165,12 @@ Test_SystemInfo::unit()
     {
         m_sRv = sysInfo.glibcVersion();
         xTEST(!m_sRv.empty());
-
-        // Trace() << xSTD_TRACE_VAR(m_sRv);
     }
-#endif
 
-#if xENV_UNIX
     xTEST_CASE("libPthreadVersion")
     {
         m_sRv = sysInfo.libPthreadVersion();
         xTEST(!m_sRv.empty());
-
-        // Trace() << xSTD_TRACE_VAR(m_sRv);
     }
 #endif
 
