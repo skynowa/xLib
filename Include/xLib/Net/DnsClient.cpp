@@ -63,7 +63,7 @@ DnsClient::hostAddrByName(
 void_t
 DnsClient::hostNameByAddr(
     std::ctstring_t              &a_hostAddr,
-    const ISocket::AddressFamily &a_family,
+    const ISocket::AddressFamily  a_family,
     std::tstring_t               *out_hostName
 )
 {
@@ -139,9 +139,9 @@ DnsClient::localHostName(
 /* static */
 void_t
 DnsClient::nameInfo(
-    ISocket::cAddressFamily &a_family,		///< address family
+    ISocket::cAddressFamily  a_family,		///< address family
     std::ctstring_t         &a_hostAddr,	///< IP address
-    cushort_t               &a_hostPort,	///< port
+    cushort_t                a_hostPort,	///< port
 	std::tstring_t          *out_name,		///< [out] host name
 	std::tstring_t          *out_port		///< [out] service name
 )
@@ -241,7 +241,7 @@ DnsClient::protocolByName(
 /* static */
 void_t
 DnsClient::protocolByNumber(
-    cint_t             &a_number,
+    cint_t              a_number,
     std::tstring_t     *a_name,
     std::vec_tstring_t *a_aliases,
     int_t              *a_number_rv
@@ -322,7 +322,7 @@ DnsClient::serviceByName(
 /* static */
 void_t
 DnsClient::serviceByPort(
-    cushort_t          &a_port,
+    cushort_t           a_port,
     std::ctstring_t    &a_protocolName,
     std::tstring_t     *a_name,
     std::vec_tstring_t *a_aliases,
@@ -367,7 +367,7 @@ DnsClient::serviceByPort(
 /* static */
 bool_t
 DnsClient::isOnLan(
-    cuint_t &a_ip
+    cuint_t a_ip
 )
 {
     cuint_t localIp = INADDR_ANY;  // IP of local interfaCe (network order)
@@ -379,7 +379,7 @@ DnsClient::isOnLan(
 /* static */
 bool_t
 DnsClient::isBroadcast(
-    cuint_t &a_ip
+    cuint_t a_ip
 )
 {
     cuint_t netMask = INADDR_NONE; // net mask for IP (network order)
