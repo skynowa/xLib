@@ -11,7 +11,7 @@ xTEST_UNIT(Test_Ram)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_SystemInfo::unit()
+Test_Ram::unit()
 {
 	Ram sysInfo;
 

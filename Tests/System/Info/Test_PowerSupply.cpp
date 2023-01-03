@@ -11,7 +11,7 @@ xTEST_UNIT(Test_PowerSupply)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_SystemInfo::unit()
+Test_PowerSupply::unit()
 {
 	PowerSupply sysInfo;
 

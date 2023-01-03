@@ -11,7 +11,7 @@ xTEST_UNIT(Test_Os)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_SystemInfo::unit()
+Test_Os::unit()
 {
 	Os sysInfo;
 

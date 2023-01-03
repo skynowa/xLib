@@ -11,7 +11,7 @@ xTEST_UNIT(Test_Cpu)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_SystemInfo::unit()
+Test_Cpu::unit()
 {
 	Cpu sysInfo;
 

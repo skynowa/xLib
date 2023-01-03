@@ -11,7 +11,7 @@ xTEST_UNIT(Test_Net)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_SystemInfo::unit()
+Test_Net::unit()
 {
 	Net sysInfo;
 

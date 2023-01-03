@@ -11,7 +11,7 @@ xTEST_UNIT(Test_Host)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_SystemInfo::unit()
+Test_Host::unit()
 {
 	Host sysInfo;
 

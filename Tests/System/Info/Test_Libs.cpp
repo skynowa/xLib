@@ -11,7 +11,7 @@ xTEST_UNIT(Test_Libs)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_SystemInfo::unit()
+Test_Libs::unit()
 {
 	Libs sysInfo;
 

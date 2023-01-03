@@ -11,7 +11,7 @@ xTEST_UNIT(Test_Storage)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_SystemInfo::unit()
+Test_Storage::unit()
 {
 	Storage sysInfo;
 
