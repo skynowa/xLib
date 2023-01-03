@@ -10,14 +10,14 @@
 // _xREPORT_TYPE
 #if   cmOPTION_DEBUG_MODE_STDOUT
     #define _xREPORT_TYPE ErrorReport::Type::Stdout
-#elif cmOPTION_DEBUG_MODE_MSGBOX
-    #define _xREPORT_TYPE ErrorReport::Type::Msgbox
 #elif cmOPTION_DEBUG_MODE_LOG
     #define _xREPORT_TYPE ErrorReport::Type::Log
 #elif cmOPTION_DEBUG_MODE_STDOUT_LOG
     #define _xREPORT_TYPE ErrorReport::Type::StdoutLog
 #elif cmOPTION_DEBUG_MODE_EXCEPTION
     #define _xREPORT_TYPE ErrorReport::Type::Exception
+#else
+	#error "xLib: cmOPTION_DEBUG_MODE_<unknown>"
 #endif
 //-------------------------------------------------------------------------------------------------
 #define xTEST_EQ_MSG_PRIVATE(op, reportType, val1, val2, msg) \
@@ -78,14 +78,14 @@
 
 #define xTEST_FAIL_MSG_IMPL(reportType, msg) \
     if (true) { \
-        culong_t         nativeError    { NativeError::get() }; \
-        cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER, \
+        culong_t         nativeError__    { NativeError::get() }; \
+        cSourceInfoData  sourceInfoData__ {xFILE, xLINE, xFUNCTION, xCOUNTER, \
             xLEX_TO_STR(false), {}, {}, {}, {}}; \
-        SourceInfo       sourceInfo(sourceInfoData); \
-        std::ctstring_t &stackTrace     = StackTrace().str(); \
+        SourceInfo       sourceInfo__(sourceInfoData__); \
+        std::ctstring_t &stackTrace__ = StackTrace().str(); \
         \
-        ErrorReport report(reportType, nativeError, sourceInfo, stackTrace, (msg)); \
-        Debugger().reportMake(report); \
+        ErrorReport report__(reportType, nativeError__, sourceInfo__, stackTrace__, (msg)); \
+        Debugger().reportMake(report__); \
     }
 
 #define xTEST_EQ(val1, val2) \
