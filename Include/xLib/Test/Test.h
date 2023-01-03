@@ -22,9 +22,9 @@
 //-------------------------------------------------------------------------------------------------
 #define xTEST_EQ_MSG_PRIVATE(op, reportType, val1, val2, msg) \
 	if ( !((val1) op (val2)) ) { \
-		culong_t         nativeError    { NativeError::get() }; \
+		culong_t         nativeError__ { NativeError::get() }; \
 		\
-		cSourceInfoData  sourceInfoData \
+		cSourceInfoData  sourceInfoData__ \
 		{ \
 			xFILE, xLINE, xFUNCTION, xCOUNTER, \
 			xT(#val1), xT(#val2), \
@@ -32,18 +32,18 @@
 			xLEX_TO_STR(op) \
 		}; \
 		\
-		SourceInfo       sourceInfo(sourceInfoData); \
-		std::ctstring_t &stackTrace = StackTrace().str(); \
+		SourceInfo       sourceInfo__(sourceInfoData__); \
+		std::ctstring_t &stackTrace__ = StackTrace().str(); \
 		\
-		ErrorReport report(reportType, nativeError, sourceInfo, stackTrace, (msg)); \
-		Debugger().reportMake(report); \
+		ErrorReport report__(reportType, nativeError__, sourceInfo__, stackTrace__, (msg)); \
+		Debugger().reportMake(report__); \
 	}
 
 #define xTEST_PTR_MSG_PRIVATE(op, reportType, ptr, msg) \
     if ( !(ptr op nullptr) ) { \
-        culong_t         nativeError    { NativeError::get() }; \
+        culong_t         nativeError__ { NativeError::get() }; \
         \
-        cSourceInfoData  sourceInfoData \
+        cSourceInfoData  sourceInfoData__ \
         { \
             xFILE, xLINE, xFUNCTION, xCOUNTER, \
             xT(#ptr), xLEX_TO_STR(nullptr), \
@@ -51,11 +51,11 @@
             xLEX_TO_STR(op) \
         }; \
         \
-        SourceInfo       sourceInfo(sourceInfoData); \
-        std::ctstring_t &stackTrace = StackTrace().str(); \
+        SourceInfo       sourceInfo__(sourceInfoData__); \
+        std::ctstring_t &stackTrace__ = StackTrace().str(); \
         \
-        ErrorReport report(reportType, nativeError, sourceInfo, stackTrace, (msg)); \
-        Debugger().reportMake(report); \
+        ErrorReport report__(reportType, nativeError__, sourceInfo__, stackTrace__, (msg)); \
+        Debugger().reportMake(report__); \
     }
 
 #define xTEST_EQ_MSG_IMPL(reportType, val1, val2, msg) \
