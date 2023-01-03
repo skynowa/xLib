@@ -171,8 +171,6 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("isPowerSupply, powerSupplyLevel")
     {
-		SystemInfo sysInfo;
-
 		if ( sysInfo.isPowerSupply() ) {
 			m_stRv = sysInfo.powerSupplyLevel();
 			xTEST_GR(m_stRv, 0ULL);
