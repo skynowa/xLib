@@ -53,7 +53,6 @@ namespace db {}
 namespace debug {}
 namespace fs {}
 namespace algos {}
-namespace ui {}
 namespace log {}
 namespace net {}
 namespace patterns {}
@@ -71,7 +70,6 @@ using namespace xl::db;
 using namespace xl::debug;
 using namespace xl::fs;
 using namespace xl::algos;
-using namespace xl::ui;
 using namespace xl::log;
 using namespace xl::net;
 using namespace xl::patterns;
