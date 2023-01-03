@@ -34,9 +34,9 @@ Test_TcpServer::unit()
     ISocket::cType          tpType     = ISocket::Type::tpStream;
     ISocket::cProtocol      ptProtocol = ISocket::Protocol::ptIp;
 
-    std::ctstring_t         csDomain        = xT("127.0.0.1");
-    std::tstring_t          sIp             = xT("");
-    cushort_t               usPort          = 80;
+    std::ctstring_t         csDomain   = xT("127.0.0.1");
+    std::tstring_t          sIp        = xT("");
+    cushort_t               usPort     = 80;
 
     std::tstring_t          sSendBuff       = xT("TEST_STRING");
     tchar_t                 szRecvBuff[1024 * sizeof(tchar_t)] {};
@@ -46,9 +46,10 @@ Test_TcpServer::unit()
     TcpServer  objClientSocket;
 
     objListenSocket.create(afAf, tpType, ptProtocol);
-    DnsClient::hostAddrByName(csDomain, &sIp);
     objListenSocket.bind(usPort);
     objListenSocket.listen(xSOCKET_LISTEN_CONNECTIONS_MAX);
+
+    DnsClient::hostAddrByName(csDomain, &sIp);
     objListenSocket.accept(&objClientSocket, &sIp);
 
     for ( ; ; ) {
