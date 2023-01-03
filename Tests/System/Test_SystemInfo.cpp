@@ -13,9 +13,11 @@ xTEST_UNIT(Test_SystemInfo)
 bool_t
 Test_SystemInfo::unit()
 {
+	SystemInfo sysInfo;
+
     xTEST_CASE("os")
     {
-        const SystemInfo::OsType otType = SystemInfo().os();
+        const SystemInfo::OsType otType = sysInfo.os();
         xTEST_DIFF((int)SystemInfo::OsType::Unknown, (int)otType);
 
         #if   xENV_WIN
@@ -47,13 +49,13 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("formatOs")
     {
-        m_sRv = SystemInfo().formatOs();
+        m_sRv = sysInfo.formatOs();
         xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("distro")
     {
-        m_sRv = SystemInfo().distro();
+        m_sRv = sysInfo.distro();
         xTEST(!m_sRv.empty());
     }
 
@@ -61,19 +63,19 @@ Test_SystemInfo::unit()
     {
         SystemInfo::OsArch oaRes = SystemInfo::OsArch::Unknown;
 
-        oaRes = SystemInfo().osArch();
+        oaRes = sysInfo.osArch();
         xTEST_DIFF((int)SystemInfo::OsArch::Unknown, (int)oaRes);
     }
 
     xTEST_CASE("formatOsArch")
     {
-        m_sRv = SystemInfo().formatOsArch();
+        m_sRv = sysInfo.formatOsArch();
         xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("hostName")
     {
-        m_sRv = SystemInfo().hostName();
+        m_sRv = sysInfo.hostName();
         xTEST(!m_sRv.empty());
         #if xTEST_IGNORE
             xTRACEV(xT("\tSystemInfo::hostName(): %s"), m_sRv.c_str());
@@ -82,28 +84,28 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("cpusNum")
     {
-        m_ulRv = SystemInfo().cpusNum();
+        m_ulRv = sysInfo.cpusNum();
         xTEST_GR(m_ulRv, 0UL);
     }
 
     xTEST_CASE("currentCpuNum")
     {
-        m_ulRv = SystemInfo().currentCpuNum();
+        m_ulRv = sysInfo.currentCpuNum();
         #if xTEST_IGNORE
             xTRACEV(xT("\tSystemInfo::currentCpuNum: %lu"), m_ulRv);
         #endif
-        xTEST(SystemInfo().cpusNum() > m_ulRv);
+        xTEST(sysInfo.cpusNum() > m_ulRv);
     }
 
     xTEST_CASE("cpuVendor")
     {
-        SystemInfo::CpuVendor cvType = SystemInfo().cpuVendor();
+        SystemInfo::CpuVendor cvType = sysInfo.cpuVendor();
         xTEST(SystemInfo::CpuVendor::Intel == cvType || SystemInfo::CpuVendor::Amd == cvType);
     }
 
     xTEST_CASE("cpuModel")
     {
-        m_sRv = SystemInfo().cpuModel();
+        m_sRv = sysInfo.cpuModel();
         xTEST(!m_sRv.empty());
 
         #if xTEST_IGNORE
@@ -113,7 +115,7 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("cpuSpeed")
     {
-        m_ulRv = SystemInfo().cpuSpeed();
+        m_ulRv = sysInfo.cpuSpeed();
         xTEST_LESS(0UL, m_ulRv);
 
         #if xTEST_IGNORE
@@ -123,20 +125,20 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("ramTotal")
     {
-        m_ullRv = SystemInfo().ramTotal();
+        m_ullRv = sysInfo.ramTotal();
         xTEST_LESS(0ULL, m_ullRv);
     }
 
     xTEST_CASE("ramAvailable")
     {
-        m_ullRv = SystemInfo().ramAvailable();
+        m_ullRv = sysInfo.ramAvailable();
         xTEST_LESS(0ULL, m_ullRv);
     }
 
     xTEST_CASE("cpuUsage")
     {
         for (size_t i = 0; i < 10; ++ i) {
-            m_ulRv = SystemInfo().cpuUsage();
+            m_ulRv = sysInfo.cpuUsage();
             xTEST_NA(m_ulRv);
 
             #if xTEST_IGNORE
@@ -150,7 +152,7 @@ Test_SystemInfo::unit()
     xTEST_CASE("ramUsage")
     {
         for (size_t i = 0; i < 10; ++ i) {
-            m_ulRv = SystemInfo().ramUsage();
+            m_ulRv = sysInfo.ramUsage();
             xTEST_NA(m_ulRv);
 
             #if xTEST_IGNORE
@@ -163,7 +165,7 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("pageSize")
     {
-        m_ulRv = SystemInfo().pageSize();
+        m_ulRv = sysInfo.pageSize();
         xTEST_LESS(0UL, m_ulRv);
     }
 
@@ -182,14 +184,14 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("isVpnActive")
     {
-        m_bRv = SystemInfo().isVpnActive();
+        m_bRv = sysInfo.isVpnActive();
         xTEST_NA(m_bRv);
     }
 
 #if xENV_UNIX
     xTEST_CASE("glibcVersion")
     {
-        m_sRv = SystemInfo().glibcVersion();
+        m_sRv = sysInfo.glibcVersion();
         xTEST(!m_sRv.empty());
 
         // Trace() << xSTD_TRACE_VAR(m_sRv);
@@ -199,7 +201,7 @@ Test_SystemInfo::unit()
 #if xENV_UNIX
     xTEST_CASE("libPthreadVersion")
     {
-        m_sRv = SystemInfo().libPthreadVersion();
+        m_sRv = sysInfo.libPthreadVersion();
         xTEST(!m_sRv.empty());
 
         // Trace() << xSTD_TRACE_VAR(m_sRv);
