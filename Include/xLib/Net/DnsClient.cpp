@@ -160,7 +160,7 @@ DnsClient::nameInfo(
     tchar_t hostName[NI_MAXHOST + 1] = {0};
     tchar_t hostPort[NI_MAXSERV + 1] = {0};
 
-    int_t iRv = xGETNAMEINFO(reinterpret_cast<sockaddr *>(&socketAddr), sizeof(socketAddr),
+    int_t iRv = xNAME_INFO_GET(reinterpret_cast<sockaddr *>(&socketAddr), sizeof(socketAddr),
         &hostName[0], NI_MAXHOST, &hostPort[0], NI_MAXSERV, NI_NUMERICSERV);
 #if   xENV_WIN
     xTEST_EQ(iRv, 0);
