@@ -18,15 +18,15 @@ Test_ErrorReport::unit()
         culong_t val1 {10};
         culong_t val2 {20};
 
-        ulong_t          nativeError_    { NativeError::get() };
-        cSourceInfoData  sourceInfoData_ {xFILE, xLINE, xFUNCTION, xCOUNTER,
+        ulong_t          nativeError    { NativeError::get() };
+        cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER,
             xLEX_TO_STR(val1), xLEX_TO_STR(val), std::to_string(val1), std::to_string(val2),
             xT("==")};
-        SourceInfo       sourceInfo_(sourceInfoData_);
-        std::ctstring_t &stackTrace_ = StackTrace().str();
+        SourceInfo       sourceInfo(sourceInfoData);
+        std::ctstring_t &stackTrace = StackTrace().str();
 
-        ErrorReport report_(ErrorReport::Type::Stdout, nativeError_, sourceInfo_, stackTrace_, {});
-        m_sRv = report_.str();
+        ErrorReport report(ErrorReport::Type::Stdout, nativeError, sourceInfo, stackTrace, {});
+        m_sRv = report.str();
         xTEST(!m_sRv.empty());
     }
 
