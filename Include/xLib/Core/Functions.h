@@ -56,6 +56,17 @@
     #define xGETADDRINFO     ::getaddrinfo
 #endif
 
+// xFREEADDRINFO
+#if   xENV_WIN
+	#if xCOMPILER_MS
+		#define xFREEADDRINFO ::FreeAddrInfo;
+	#else
+		#define xFREEADDRINFO ::freeaddrinfo;
+	#endif
+#elif xENV_UNIX
+	   #define xFREEADDRINFO ::freeaddrinfo;
+#endif
+
 // xGETNAMEINFO
 #if   xCOMPILER_MINGW
     #define xGETNAMEINFO     ::getnameinfo

@@ -41,6 +41,11 @@ Test_MySql::unit()
 		return true;
 	}
 
+	if ( !isVpnActive() ) {
+		Cout() << "VPN off - skip";
+		return true;
+	}
+
 	using namespace mysql;
 
 	FabricaOptions options;
