@@ -76,7 +76,6 @@ using namespace xl::net;
 using namespace xl::patterns;
 using namespace xl::sync;
 using namespace xl::system;
-using namespace xl::system::info;
 using namespace xl::test;
 using namespace xl::package;
 
