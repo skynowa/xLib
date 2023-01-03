@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Net)
 bool_t
 Test_Net::unit()
 {
-	Net sysInfo;
+	info::Net sysInfo;
 
     xTEST_CASE("isVpnActive")
     {

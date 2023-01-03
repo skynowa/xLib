@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Host)
 bool_t
 Test_Host::unit()
 {
-	Host sysInfo;
+	info::Host sysInfo;
 
     xTEST_CASE("hostName")
     {

@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Ram)
 bool_t
 Test_Ram::unit()
 {
-	Ram sysInfo;
+	info::Ram sysInfo;
 
     xTEST_CASE("ramTotal")
     {

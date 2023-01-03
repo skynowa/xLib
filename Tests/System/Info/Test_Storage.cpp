@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Storage)
 bool_t
 Test_Storage::unit()
 {
-	Storage sysInfo;
+	info::Storage sysInfo;
 
     xTEST_CASE("pageSize")
     {

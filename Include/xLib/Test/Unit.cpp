@@ -57,7 +57,7 @@ Unit::isGithubCI() const
 bool_t
 Unit::isVpnActive() const
 {
-	Net net;
+	info::Net net;
 
 	return net.isVpnActive();
 }

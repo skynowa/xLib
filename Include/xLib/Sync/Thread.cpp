@@ -370,7 +370,7 @@ Thread::cpuIdeal() const
 ulong_t
 Thread::cpuCount()
 {
-    ulong_t ulRv = Cpu().cpusNum();
+    ulong_t ulRv = info::Cpu().cpusNum();
     xCHECK_RET(ulRv < 1UL || ulRv > 32UL, 1UL);
 
     // TODO: [skynowa] Thread::cpuCount() - make constant 32UL

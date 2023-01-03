@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Cpu)
 bool_t
 Test_Cpu::unit()
 {
-	Cpu sysInfo;
+	info::Cpu sysInfo;
 
     xTEST_CASE("cpusNum")
     {

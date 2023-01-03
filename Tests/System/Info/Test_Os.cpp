@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Os)
 bool_t
 Test_Os::unit()
 {
-	Os sysInfo;
+	info::Os sysInfo;
 
     xTEST_CASE("os")
     {

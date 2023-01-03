@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Libs)
 bool_t
 Test_Libs::unit()
 {
-	Libs sysInfo;
+	info::Libs sysInfo;
 
 #if xENV_UNIX
     xTEST_CASE("glibcVersion")

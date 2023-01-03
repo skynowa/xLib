@@ -13,7 +13,7 @@ xTEST_UNIT(Test_PowerSupply)
 bool_t
 Test_PowerSupply::unit()
 {
-	PowerSupply sysInfo;
+	info::PowerSupply sysInfo;
 
     xTEST_CASE("isPowerSupply, powerSupplyLevel")
     {
