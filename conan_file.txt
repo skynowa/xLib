@@ -1,7 +1,6 @@
 [requires]
 
 ## Dependencies
-# libx11-xcb-dev - \see ci.yml
 zlib/1.2.13
 openssl/1.1.1s
 

@@ -38,7 +38,6 @@ ErrorReport::ErrorReport(
     _construct(a_type, a_sourceInfo, a_nativeError, a_stackTrace, a_comment);
 
     switch (a_type) {
-    case Type::Msgbox:
     case Type::Stdout:
     case Type::Log:
     case Type::StdoutLog:

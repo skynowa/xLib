@@ -22,7 +22,6 @@ public:
         /// type
     {
         Unknown,  ///< unknown
-        Msgbox,   ///< as message box
         Stdout,   ///< to std::cout
         Log,      ///< to log
         StdoutLog,///< to std::cout and log
