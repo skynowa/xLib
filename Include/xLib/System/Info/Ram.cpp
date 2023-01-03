@@ -1,5 +1,5 @@
 /**
- * \file  Ram.inl
+ * \file  Ram.cpp
  * \brief system information
  */
 

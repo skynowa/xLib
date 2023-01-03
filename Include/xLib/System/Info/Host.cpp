@@ -1,5 +1,5 @@
 /**
- * \file  Host.inl
+ * \file  Host.cpp
  * \brief system information
  */
 

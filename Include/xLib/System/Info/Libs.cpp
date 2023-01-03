@@ -1,5 +1,5 @@
 /**
- * \file  Libs.inl
+ * \file  Libs.cpp
  * \brief system information
  */
 

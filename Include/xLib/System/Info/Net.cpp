@@ -1,5 +1,5 @@
 /**
- * \file  Net.inl
+ * \file  Net.cpp
  * \brief system information
  */
 

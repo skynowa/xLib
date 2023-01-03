@@ -1,5 +1,5 @@
 /**
- * \file  Cpu.inl
+ * \file  Cpu.cpp
  * \brief system information
  */
 

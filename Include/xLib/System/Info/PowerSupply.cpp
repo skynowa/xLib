@@ -1,5 +1,5 @@
 /**
- * \file  PowerSupply.inl
+ * \file  PowerSupply.cpp
  * \brief system information
  */
 
