@@ -18,6 +18,7 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/System/Environment.h>
+#include <xLib/System/SystemInfo.h>
 
 
 namespace xl::test
@@ -51,6 +52,14 @@ bool_t
 Unit::isGithubCI() const
 {
 	return Environment(xT("GITHUB_WORKSPACE")).isExists();
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Unit::isVpnActive() const
+{
+	SystemInfo sysInfo;
+
+	return sysInfo.isVpnActive();
 }
 //-------------------------------------------------------------------------------------------------
 void_t

@@ -72,15 +72,7 @@ Test_DnsClient::unit()
         DnsClient::hostAddrInfo(hostName, port, &hints, &result);
         xTEST_PTR(result);
 
-	#if   xENV_WIN
-		#if xCOMPILER_MS
-			::FreeAddrInfo(result);
-		#else
-			freeaddrinfo(result);
-		#endif
-	#elif xENV_UNIX
-		   freeaddrinfo(result);
-	#endif
+        xGETADDRINFO(result);
     }
 
     xTEST_CASE("protocolByName")
@@ -111,7 +103,7 @@ Test_DnsClient::unit()
 
     xTEST_CASE("protocolByNumber")
     {
-        cint_t ciProtocolNumbers[] = {
+        constexpr cint_t ciProtocolNumbers[] = {
             0, 1, 3, 6, 8, 12, 17, 20, 22, 27
         };
 

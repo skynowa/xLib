@@ -18,6 +18,11 @@ Test_TcpClient::unit()
 		return true;
 	}
 
+	if ( !isVpnActive() ) {
+		Cout() << "VPN off - skip";
+		return true;
+	}
+
     ISocket::cAddressFamily addressFamily = ISocket::AddressFamily::afInet;
     ISocket::cType          type          = ISocket::Type::tpStream;
     ISocket::cProtocol      ptProtocol    = ISocket::Protocol::ptIp;

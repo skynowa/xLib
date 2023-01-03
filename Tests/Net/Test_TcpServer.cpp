@@ -13,6 +13,16 @@ xTEST_UNIT(Test_TcpServer)
 bool_t
 Test_TcpServer::unit()
 {
+	if ( isGithubCI() ) {
+		Cout() << "GithubCI - skip";
+		return true;
+	}
+
+	if ( !isVpnActive() ) {
+		Cout() << "VPN off - skip";
+		return true;
+	}
+
 	{
 		// TODO: Test_TcpServer - fix tests
 		xTRACE_NOT_IMPLEMENTED
