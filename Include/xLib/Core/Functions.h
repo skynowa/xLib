@@ -59,12 +59,12 @@
 // xADDR_INFO_FREE
 #if   xENV_WIN
 	#if xCOMPILER_MS
-		#define xADDR_INFO_FREE ::FreeAddrInfo;
+		#define xADDR_INFO_FREE ::FreeAddrInfo
 	#else
-		#define xADDR_INFO_FREE ::freeaddrinfo;
+		#define xADDR_INFO_FREE ::freeaddrinfo
 	#endif
 #elif xENV_UNIX
-	   #define xADDR_INFO_FREE ::freeaddrinfo;
+	#define xADDR_INFO_FREE ::freeaddrinfo
 #endif
 
 // xNAME_INFO_GET
