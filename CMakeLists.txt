@@ -125,11 +125,6 @@ endif()
 #--------------------------------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------------------------------
-if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
-    set(CMAKE_COMPILER_IS_CLANGCC 1)
-    set(CMAKE_COMPILER_IS_CLANGXX 1)
-endif()
-
 # CMAKE_INSTALL_PREFIX
 # - UNIX    "/usr/local"
 # - Windows "C:/Program Files/${PROJECT_NAME}"
@@ -160,17 +155,22 @@ set(XLIB_SYS_LIBRARIES
     ${CMAKE_THREAD_LIBS}
     ${CMAKE_DL_LIBS})
 
-if     (MSVC)
+if     (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid mpr dbghelp crypt32)
-elseif (MINGW)
-    set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid mpr dbghelp crypt32)
-elseif (CMAKE_COMPILER_IS_CLANGXX)
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # -stdlib=libc++ or -stdlib=libstdc++ will probably work
     set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} -stdlib=libstdc++ c++abi pthread rt m z)
-elseif (CMAKE_COMPILER_IS_GNUCXX)
-    set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} pthread rt m z)
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
+    # -stdlib=libc++ or -stdlib=libstdc++ will probably work
+    set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} -stdlib=libstdc++ c++abi pthread rt m z)
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    if (ENV_WIN)
+        set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} advapi32 ws2_32 netapi32 psapi uuid mpr dbghelp crypt32)
+    else()
+        set(XLIB_SYS_LIBRARIES ${XLIB_SYS_LIBRARIES} pthread rt m z)
+    endif()
 else()
-    message(FATAL_ERROR "xLib: unknown compiler")
+    message("xLib: ${CMAKE_CXX_COMPILER_ID} - unknown compiler")
 endif()
 
 if (OS_ANDROID)
