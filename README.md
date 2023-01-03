@@ -33,13 +33,6 @@
 - https://github.com/skynowa/xLib
 - https://sourceforge.net/projects/x-lib/
 
-## Dependecies
+## Dependencies
 
 - https://github.com/skynowa/CMakeLib
-
-
-
-
-
-
-
