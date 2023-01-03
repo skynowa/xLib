@@ -29,8 +29,8 @@ Test_Cpu::unit()
 
     xTEST_CASE("cpuVendor")
     {
-        Cpu::cCpuVendor cvType = sysInfo.cpuVendor();
-        xTEST(cvType == Cpu::CpuVendor::Intel || cvType == Cpu::CpuVendor::Amd);
+    	info::Cpu::cCpuVendor cvType = sysInfo.cpuVendor();
+        xTEST(cvType == info::Cpu::CpuVendor::Intel || cvType == info::Cpu::CpuVendor::Amd);
     }
 
     xTEST_CASE("cpuModel")

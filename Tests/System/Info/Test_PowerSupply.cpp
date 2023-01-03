@@ -21,8 +21,8 @@ Test_PowerSupply::unit()
 			m_stRv = sysInfo.powerSupplyLevel();
 			xTEST_GR(m_stRv, 0ULL);
 
-			PowerSupply::cPowerSupplyStatus psRv = sysInfo.powerSupplyStatus();
-			xTEST_DIFF((int)psRv, (int)PowerSupply::PowerSupplyStatus::Unknown);
+			info::PowerSupply::cPowerSupplyStatus psRv = sysInfo.powerSupplyStatus();
+			xTEST_DIFF((int)psRv, (int)info::PowerSupply::PowerSupplyStatus::Unknown);
 		}
     }
 
