@@ -61,9 +61,7 @@ Test_SystemInfo::unit()
 
     xTEST_CASE("osArch")
     {
-        SystemInfo::cOsArch oaRes = SystemInfo::OsArch::Unknown;
-
-        oaRes = sysInfo.osArch();
+        SystemInfo::cOsArch oaRes = sysInfo.osArch();
         xTEST_DIFF((int)oaRes, (int)SystemInfo::OsArch::Unknown);
     }
 
