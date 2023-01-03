@@ -67,19 +67,19 @@
 	   #define xADDR_INFO_FREE ::freeaddrinfo;
 #endif
 
-// xGETNAMEINFO
+// xNAME_INFO_GET
 #if   xCOMPILER_MINGW
-    #define xGETNAMEINFO     ::getnameinfo
+    #define xNAME_INFO_GET     ::getnameinfo
 #elif xCOMPILER_MS
-    #define xGETNAMEINFO     ::GetNameInfo
+    #define xNAME_INFO_GET     ::GetNameInfo
 #elif xCOMPILER_GNUC
     #if xUNICODE
-        #define xGETNAMEINFO xl::core::getnameinfoW
+        #define xNAME_INFO_GET xl::core::getnameinfoW
     #else
-        #define xGETNAMEINFO ::getnameinfo
+        #define xNAME_INFO_GET ::getnameinfo
     #endif
 #else
-    #define xGETNAMEINFO     ::getnameinfo
+    #define xNAME_INFO_GET     ::getnameinfo
 #endif
 
 // xSTATVFS (struct and function)
