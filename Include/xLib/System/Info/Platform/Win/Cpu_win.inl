@@ -13,7 +13,7 @@ Cpu::_cpusNum_impl() const
 {
     SYSTEM_INFO sysInfo {};
 
-    (void_t)::GetNativeCpu(&sysInfo);
+    (void_t)::GetNativeSystemInfo(&sysInfo);
 
     ulong_t ulRv = sysInfo.dwNumberOfProcessors;
 

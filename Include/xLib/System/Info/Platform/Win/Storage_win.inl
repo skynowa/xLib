@@ -13,7 +13,7 @@ Storage::_pageSize_impl() const
 {
     SYSTEM_INFO sysInfo {};
 
-    (void_t)::GetNativeStorage(&sysInfo);
+    (void_t)::GetNativeSystemInfo(&sysInfo);
 
     ulong_t ulRv = sysInfo.dwPageSize;
     xTEST_LESS(0UL, ulRv);
