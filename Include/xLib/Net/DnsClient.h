@@ -26,15 +26,15 @@ public:
     void_t   hostAddrByName(std::ctstring_t &hostName, std::tstring_t *hostAddr);
         ///< get host address by name
     static
-    void_t   hostNameByAddr(std::ctstring_t &hostAddr, const ISocket::AddressFamily &family,
+    void_t   hostNameByAddr(std::ctstring_t &hostAddr, const ISocket::AddressFamily family,
                  std::tstring_t *hostName);
         ///< get host name by address
     static
     void_t   localHostName(std::tstring_t *hostName);
         ///< get local host name
     static
-    void_t   nameInfo(ISocket::cAddressFamily &family, std::ctstring_t &hostAddr,
-    			cushort_t &hostPort, std::tstring_t *name, std::tstring_t *port);
+    void_t   nameInfo(ISocket::cAddressFamily family, std::ctstring_t &hostAddr,
+    			cushort_t hostPort, std::tstring_t *name, std::tstring_t *port);
         ///< get name info
     static
     void_t   hostAddrInfo(std::ctstring_t &hostName, std::ctstring_t &port, caddrinfo_t *hints,
@@ -47,7 +47,7 @@ public:
                  std::vec_tstring_t *aliases, int_t *number);
         ///< get protocol by name
     static
-    void_t   protocolByNumber(cint_t &number, std::tstring_t *name, std::vec_tstring_t *aliases,
+    void_t   protocolByNumber(cint_t number, std::tstring_t *name, std::vec_tstring_t *aliases,
                  int_t *number_rv);
         ///< get protocol by number
 
@@ -58,15 +58,15 @@ public:
                  std::tstring_t *protocolName_rv);
         ///< get service by name
     static
-    void_t   serviceByPort(cushort_t &port, std::ctstring_t &protocolName, std::tstring_t *name,
+    void_t   serviceByPort(cushort_t port, std::ctstring_t &protocolName, std::tstring_t *name,
                  std::vec_tstring_t *aliases, short_t *port_rv, std::tstring_t *protocolName_rv);
         ///< get service by port
 
     static
-    bool_t   isOnLan(cuint_t &ip);
+    bool_t   isOnLan(cuint_t ip);
         ///< return true if IP is on this LAN
     static
-    bool_t   isBroadcast(cuint_t &ip);
+    bool_t   isBroadcast(cuint_t ip);
         ///< return true if IP is a (directed) IP-broadcast address
     static
     bool_t   isAddressIpv4(std::ctstring_t &ip);
