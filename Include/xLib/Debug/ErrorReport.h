@@ -70,7 +70,7 @@ private:
     // comment
     std::tstring_t _comment;          ///< comment
 
-    void_t _construct(cType type, const SourceInfo &sourceInfo, culong_t &nativeError,
+    void_t _construct(cType type, const SourceInfo &sourceInfo, culong_t nativeError,
                 std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< initiate class members
     void_t _initPlain();

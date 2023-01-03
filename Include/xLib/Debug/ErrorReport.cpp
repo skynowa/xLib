@@ -73,7 +73,7 @@ void_t
 ErrorReport::_construct(
     cType             a_type,
     const SourceInfo &a_sourceInfo,
-    culong_t         &a_nativeError,
+    culong_t          a_nativeError,
     std::ctstring_t  &a_stackTrace,
     std::ctstring_t  &a_comment
 )
