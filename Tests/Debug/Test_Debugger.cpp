@@ -80,11 +80,11 @@ Test_Debugger::unit()
 
     xTEST_CASE("reportMake")
     {
-        const ErrorReport::Type type[]
+        constexpr ErrorReport::Type type[]
         {
-            ErrorReport::Type::Msgbox,
             ErrorReport::Type::Stdout,
-            ErrorReport::Type::Log
+            ErrorReport::Type::Log,
+            ErrorReport::Type::StdoutLog
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(type); ++ i) {

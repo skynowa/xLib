@@ -93,11 +93,6 @@ if (cmICONV_FOUND)
 endif()
 
 if (ENV_UNIX)
-    if (cmXCB_FOUND)
-        set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${cmXCB_INCLUDE_DIR})
-        set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmXCB_LIBRARIES})
-    endif()
-
     if (cmEXECINFO_FOUND)
         set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${cmEXECINFO_INCLUDES})
         ## set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmEXECINFO_LIBRARIES})

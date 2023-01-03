@@ -184,12 +184,6 @@ jobs:
             --update
         shell: bash
 
-      # Libs (Ubuntu)
-      - name:  Libs (Ubuntu) - Install
-        if:    contains(matrix.config.os, 'ubuntu')
-        run:   sudo apt-get install -y --no-install-recommends libx11-xcb-dev
-        shell: bash
-
       # Generate
       - name:  ${{github.event.repository.name}} - Generate
         run:   cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ${{matrix.config.gen_script}}

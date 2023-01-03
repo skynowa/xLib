@@ -20,11 +20,14 @@ Test_ErrorReport::unit()
 
         ulong_t          nativeError    { NativeError::get() };
         cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER,
-            xLEX_TO_STR(val1), xLEX_TO_STR(val), std::to_string(val1), std::to_string(val2), xT("==")};
+            xLEX_TO_STR(val1), xLEX_TO_STR(val), std::to_string(val1), std::to_string(val2),
+            xT("==")};
         SourceInfo       sourceInfo(sourceInfoData);
-        std::ctstring_t &stackTrace     = StackTrace().str();
+        std::ctstring_t &stackTrace = StackTrace().str();
 
-        ErrorReport report(ErrorReport::Type::Msgbox, nativeError, sourceInfo, stackTrace, xT(""));
+        ErrorReport report(ErrorReport::Type::Stdout, nativeError, sourceInfo, stackTrace, {});
+        m_sRv = report.str();
+        xTEST(!m_sRv.empty());
     }
 
     return true;

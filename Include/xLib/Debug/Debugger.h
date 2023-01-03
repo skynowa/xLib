@@ -48,8 +48,6 @@ private:
     std::tstring_t _logPath;
         ///< log path
 
-    void_t         _msgboxPlain(const ErrorReport &report) const;
-        ///< show message box with plain report
     void_t         _stdoutPlain(const ErrorReport &report) const;
         ///< show plain report in std::cout
     void_t         _loggingPlain(const ErrorReport &report) const;

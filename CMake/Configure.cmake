@@ -34,7 +34,6 @@ find_package(Iconv       QUIET REQUIRED)
 if (ENV_UNIX)
     # Custom (CMakeLib)
     find_package(ExecInfo QUIET REQUIRED)
-    find_package(XCB      QUIET REQUIRED)
 
     if (ENV_APPLE)
         find_package(Atos QUIET REQUIRED)
