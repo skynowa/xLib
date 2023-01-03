@@ -41,30 +41,30 @@
     #define xIOCTLSOCKET ::ioctl
 #endif
 
-// xGETADDRINFO
+// xADDR_INFO_GET
 #if   xCOMPILER_MINGW
-    #define xGETADDRINFO     ::getaddrinfo
+    #define xADDR_INFO_GET     ::getaddrinfo
 #elif xCOMPILER_MS
-    #define xGETADDRINFO     ::GetAddrInfo
+    #define xADDR_INFO_GET     ::GetAddrInfo
 #elif xCOMPILER_GNUC
     #if xUNICODE
-        #define xGETADDRINFO xl::core::getaddrinfoW
+        #define xADDR_INFO_GET xl::core::getaddrinfoW
     #else
-        #define xGETADDRINFO ::getaddrinfo
+        #define xADDR_INFO_GET ::getaddrinfo
     #endif
 #else
-    #define xGETADDRINFO     ::getaddrinfo
+    #define xADDR_INFO_GET     ::getaddrinfo
 #endif
 
-// xFREEADDRINFO
+// xADDR_INFO_FREE
 #if   xENV_WIN
 	#if xCOMPILER_MS
-		#define xFREEADDRINFO ::FreeAddrInfo;
+		#define xADDR_INFO_FREE ::FreeAddrInfo;
 	#else
-		#define xFREEADDRINFO ::freeaddrinfo;
+		#define xADDR_INFO_FREE ::freeaddrinfo;
 	#endif
 #elif xENV_UNIX
-	   #define xFREEADDRINFO ::freeaddrinfo;
+	   #define xADDR_INFO_FREE ::freeaddrinfo;
 #endif
 
 // xGETNAMEINFO

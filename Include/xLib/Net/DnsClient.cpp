@@ -194,7 +194,7 @@ DnsClient::hostAddrInfo(
     xTEST_NA(out_hints);
     xTEST_PTR(out_addrInfo);
 
-    int_t iRv = xGETADDRINFO(a_hostName.c_str(), a_port.c_str(), out_hints, out_addrInfo);
+    int_t iRv = xADDR_INFO_GET(a_hostName.c_str(), a_port.c_str(), out_hints, out_addrInfo);
 #if   xENV_WIN
     xTEST_EQ(iRv, 0);
 #elif xENV_UNIX

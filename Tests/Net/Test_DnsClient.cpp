@@ -72,7 +72,8 @@ Test_DnsClient::unit()
         DnsClient::hostAddrInfo(hostName, port, &hints, &result);
         xTEST_PTR(result);
 
-        xGETADDRINFO(result);
+        xADDR_INFO_FREE(result);
+        result = nullptr;
     }
 
     xTEST_CASE("protocolByName")
