@@ -16,6 +16,11 @@ xTEST_UNIT(Test_HttpClient)
 bool_t
 Test_HttpClient::unit()
 {
+	if ( isGithubCI() ) {
+		Cout() << "GithubCI - skip";
+		return true;
+	}
+
     xTEST_CASE("translate.google.com (Get)")
     {
 	   /**
