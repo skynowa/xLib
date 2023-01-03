@@ -56,7 +56,6 @@ namespace net {}
 namespace patterns {}
 namespace sync {}
 namespace system {}
-namespace system::info {}
 namespace test {}
 namespace package {}
 
