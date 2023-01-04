@@ -33,28 +33,23 @@ public:
 	xNO_COPY_ASSIGN(Archive)
 ///\}
 
-	static
-	bool_t fileCompress(const Type type, std::ctstring_t &sourceFilePath,
+	static bool_t fileCompress(const Type type, std::ctstring_t &sourceFilePath,
 				std::ctstring_t &destFilePath, cbool_t isRemoveSourceFile);
 		///< compress file
-	static
-	bool_t dirCompress(const Type type, std::ctstring_t &sourceDirPath,
+	static bool_t dirCompress(const Type type, std::ctstring_t &sourceDirPath,
 				std::ctstring_t &destFilePath, cbool_t isRemoveSourceDir);
 		///< compress dir
 
-	static
-	bool_t fileUncompress(const Type type, std::ctstring_t &sourceFilePath,
+	static bool_t fileUncompress(const Type type, std::ctstring_t &sourceFilePath,
 				std::ctstring_t &destDirPath, cbool_t isRemoveSourceFile, cbool_t isAutoDetectType);
 		///< uncompress file
-	static
-	bool_t dirUncompress(const Type type, std::ctstring_t &sourceDirPath,
+	static bool_t dirUncompress(const Type type, std::ctstring_t &sourceDirPath,
 				std::ctstring_t &fileShellFilter, std::ctstring_t &destDirPath,
 				cbool_t isRemoveSourceFiles, cbool_t isAutoDetectType);
 		///< uncompress dir
 
 private:
-    static
-    Type  	_detectType(std::ctstring_t &sourceFilePath);
+    static Type _detectType(std::ctstring_t &sourceFilePath);
     	///< auto detect archive type by file extention
 };
 
