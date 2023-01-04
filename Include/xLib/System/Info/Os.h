@@ -1,0 +1,87 @@
+/**
+ * \file  Os.h
+ * \brief system information
+ */
+
+
+#pragma once
+
+#include <xLib/Core/Core.h>
+//-------------------------------------------------------------------------------------------------
+namespace xl::system::info
+{
+
+class Os
+    /// system information
+{
+public:
+///\name ctors, dtor
+///\{
+			 Os() = default;
+	virtual ~Os() = default;
+
+	xNO_COPY_ASSIGN(Os)
+///\}
+
+    enum class OsType
+        /// OS type
+    {
+        Unknown,
+        // windows family
+        Windows3,
+        Windows95,
+        Windows98,
+        WindowsNT,
+        Windows2000,
+        WindowsXP,
+        WindowsXPProx64Edition,
+        WindowsServer2003,
+        WindowsHomeServer,
+        WindowsServer2003R2,
+        WindowsVista,
+        WindowsServer2008,
+        WindowsServer2008R2,
+        Windows7,
+        // Linux  family
+        Linux,
+        // BSD family
+        FreeBSD,
+        // Apple family
+        Mac
+    };
+    xUSING_CONST(OsType);
+
+    enum class OsArch
+        /// OS architecture
+    {
+        Unknown,
+        Bit32,
+        Bit64
+    };
+    xUSING_CONST(OsArch);
+
+	OsType         os() const;
+		///< get information about the current OS
+	std::tstring_t formatOs() const;
+		///< format OS type
+	std::tstring_t distro() const;
+		///< distributive info
+
+	OsArch         osArch() const;
+		///< get OS architecture
+	std::tstring_t formatOsArch() const;
+		///< format get OS architecture
+
+	std::tstring_t desktopName() const;
+		///< desktop environments
+
+xPLATFORM_IMPL:
+    OsType         _os_impl() const;
+    std::tstring_t _formatOs_impl() const;
+    std::tstring_t _distro_impl() const;
+    OsArch         _osArch_impl() const;
+    std::tstring_t _desktopName_impl() const;
+};
+
+} // namespace
+//-------------------------------------------------------------------------------------------------

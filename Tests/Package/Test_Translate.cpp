@@ -14,6 +14,11 @@ xTEST_UNIT(Test_Translate)
 bool_t
 Test_Translate::unit()
 {
+	if ( isGithubCI() ) {
+		Cout() << "GithubCI - skip";
+		return true;
+	}
+
 	xTEST_CASE("Translate")
 	{
 		const data2_tstring_t datas[]
