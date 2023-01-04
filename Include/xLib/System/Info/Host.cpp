@@ -1,6 +1,6 @@
 /**
  * \file  Host.cpp
- * \brief system information
+ * \brief Host information
  */
 
 
@@ -31,9 +31,9 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Host::hostName() const
+Host::name() const
 {
-    return _hostName_impl();
+    return _name_impl();
 }
 //-------------------------------------------------------------------------------------------------
 

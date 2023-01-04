@@ -15,22 +15,22 @@ Test_Ram::unit()
 {
 	info::Ram sysInfo;
 
-    xTEST_CASE("ramTotal")
+    xTEST_CASE("total")
     {
-        m_ullRv = sysInfo.ramTotal();
+        m_ullRv = sysInfo.total();
         xTEST_GR(m_ullRv, 0ULL);
     }
 
-    xTEST_CASE("ramAvailable")
+    xTEST_CASE("available")
     {
-        m_ullRv = sysInfo.ramAvailable();
+        m_ullRv = sysInfo.available();
         xTEST_GR(m_ullRv, 0ULL);
     }
 
-    xTEST_CASE("ramUsage")
+    xTEST_CASE("usage")
     {
         for (size_t i = 0; i < 5; ++ i) {
-            m_ulRv = sysInfo.ramUsage();
+            m_ulRv = sysInfo.usage();
             xTEST_NA(m_ulRv);
         }
     }

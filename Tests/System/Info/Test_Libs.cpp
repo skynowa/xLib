@@ -22,9 +22,9 @@ Test_Libs::unit()
         xTEST(!m_sRv.empty());
     }
 
-    xTEST_CASE("libPthreadVersion")
+    xTEST_CASE("pthreadVersion")
     {
-        m_sRv = sysInfo.libPthreadVersion();
+        m_sRv = sysInfo.pthreadVersion();
         xTEST(!m_sRv.empty());
     }
 #endif

@@ -1,6 +1,6 @@
 /**
  * \file  Ram.h
- * \brief system information
+ * \brief RAM information
  */
 
 
@@ -12,7 +12,7 @@ namespace xl::system::info
 {
 
 class Ram
-    /// system information
+    /// RAM information
 {
 public:
 ///\name ctors, dtor
@@ -23,17 +23,17 @@ public:
 	xNO_COPY_ASSIGN(Ram)
 ///\}
 
-	ulonglong_t ramTotal() const;
+	ulonglong_t total() const;
 		///< get total RAM (bytes)
-	ulonglong_t ramAvailable() const;
+	ulonglong_t available() const;
 		///< get available RAM (bytes)
-	ulong_t     ramUsage() const;
+	ulong_t     usage() const;
 		///< get RAM usage (percentage)
 
 xPLATFORM_IMPL:
-    ulonglong_t _ramTotal_impl() const;
-    ulonglong_t _ramAvailable_impl() const;
-    ulong_t     _ramUsage_impl() const;
+    ulonglong_t _total_impl() const;
+    ulonglong_t _available_impl() const;
+    ulong_t     _usage_impl() const;
 };
 
 } // namespace

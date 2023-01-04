@@ -9,7 +9,7 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_cpusNum_impl() const
+Cpu::_num_impl() const
 {
     ulong_t ulRv {};
 
@@ -23,7 +23,7 @@ Cpu::_cpusNum_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Cpu::_cpuVendor_impl() const
+Cpu::_vendor_impl() const
 {
     std::tstring_t value;
 
@@ -79,7 +79,7 @@ Cpu::_cpuVendor_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Cpu::_cpuModel_impl() const
+Cpu::_model_impl() const
 {
     std::tstring_t sRv;
 
@@ -103,11 +103,11 @@ Cpu::_cpuModel_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_cpuSpeed_impl() const
+Cpu::_speed_impl() const
 {
     ulong_t ulRv {};
 
-    ulong_t cpuSpeedMHz     = {};
+    ulong_t cpuSpeedMHz     {};
     size_t  cpuSpeedMHzSize = sizeof(cpuSpeedMHz);
 
     int_t iRv = ::sysctlbyname("hw.clockrate", &cpuSpeedMHz, &cpuSpeedMHzSize, nullptr, 0);
@@ -119,9 +119,9 @@ Cpu::_cpuSpeed_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_cpuUsage_impl() const
+Cpu::_usage_impl() const
 {
-    double         cpuUsage           {};
+    double_t       usage              {};
 
     static ulong_t s_totalOld         {- 1UL};
     static ulong_t s_usedOld          {- 1UL};
@@ -135,15 +135,15 @@ Cpu::_cpuUsage_impl() const
     int_t iRv = ::sysctlbyname("kern.cp_time", &cpuTime, &cpuTimeSize, nullptr, 0);
     xTEST_DIFF(iRv, - 1);
 
-    used       = cpuTime[CP_USER] + cpuTime[CP_NICE] + cpuTime[CP_SYS];
-    total      = cpuTime[CP_USER] + cpuTime[CP_NICE] + cpuTime[CP_SYS] + cpuTime[CP_IDLE];
+    used  = cpuTime[CP_USER] + cpuTime[CP_NICE] + cpuTime[CP_SYS];
+    total = cpuTime[CP_USER] + cpuTime[CP_NICE] + cpuTime[CP_SYS] + cpuTime[CP_IDLE];
 
-    cpuUsage   = Utils::intSafeDiv(used - s_usedOld, total - s_totalOld) * 100.0;
+    usage = Utils::intSafeDiv(used - s_usedOld, total - s_totalOld) * 100.0;
 
     s_usedOld  = used;
     s_totalOld = total;
 
-    ulong_t ulRv = Utils::roundIntT<ulong_t>( cpuUsage );
+    ulong_t ulRv = Utils::roundIntT<ulong_t>( usage );
 
     return ulRv;
 }

@@ -1,6 +1,6 @@
 /**
  * \file  PowerSupply.h
- * \brief system information
+ * \brief Power supply information
  */
 
 
@@ -12,7 +12,7 @@ namespace xl::system::info
 {
 
 class PowerSupply
-    /// system information
+    /// Power supply information
 {
 public:
 ///\name ctors, dtor
@@ -23,27 +23,27 @@ public:
 	xNO_COPY_ASSIGN(PowerSupply)
 ///\}
 
-	enum class PowerSupplyStatus
-		/// Power supply status
+	enum class Status
+		/// Status
 	{
-		Unknown     = 0,///< Unknown
-		Discharging = 1,///< Discharging
-		Charging    = 2,///< Charging
-		Full        = 3 ///< Full
+		Unknown     = 0, ///< Unknown
+		Discharging = 1, ///< Discharging
+		Charging    = 2, ///< Charging
+		Full        = 3  ///< Full
 	};
-    xUSING_CONST(PowerSupplyStatus);
+    xUSING_CONST(Status);
 
-	bool_t            isPowerSupply() const;
-		///< Check for power supply
-	std::size_t       powerSupplyLevel() const;
-		///< get level (pct) of power supply
-	PowerSupplyStatus powerSupplyStatus() const;
-		///< get status of power supply
+	bool_t      isExists() const;
+		///< Check existance
+	std::size_t level() const;
+		///< get level (pct)
+	Status      status() const;
+		///< get status
 
 xPLATFORM_IMPL:
-    bool_t         _isPowerSupply_impl() const;
-    std::size_t    _powerSupplyLevel_impl() const;
-    PowerSupplyStatus _powerSupplyStatus_impl() const;
+    bool_t      _isExists_impl() const;
+    std::size_t _level_impl() const;
+    Status      _status_impl() const;
 };
 
 } // namespace

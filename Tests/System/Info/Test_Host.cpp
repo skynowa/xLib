@@ -15,9 +15,9 @@ Test_Host::unit()
 {
 	info::Host sysInfo;
 
-    xTEST_CASE("hostName")
+    xTEST_CASE("name")
     {
-        m_sRv = sysInfo.hostName();
+        m_sRv = sysInfo.name();
         xTEST(!m_sRv.empty());
     }
 

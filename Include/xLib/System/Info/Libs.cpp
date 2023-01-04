@@ -1,6 +1,6 @@
 /**
  * \file  Libs.cpp
- * \brief system information
+ * \brief Libraries information
  */
 
 
