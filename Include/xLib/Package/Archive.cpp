@@ -16,7 +16,7 @@
 namespace
 {
 
-// TODO: use CMake
+// TODO: bins - use CMake
 std::ctstring_t zipPath    = xT("zip");
 std::ctstring_t zip7Path   = xT("7z");
 std::ctstring_t tarPath    = xT("tar");
@@ -52,15 +52,15 @@ Archive::fileCompress(
 	xTEST(!a_destFilePath.empty());
 	xTEST_NA(a_isRemoveSourceFile);
 
-	std::ctstring_t dest_dir = Path(a_destFilePath).dir();
-	Dir(dest_dir).pathCreate();
+	std::ctstring_t destDir = Path(a_destFilePath).dir();
+	Dir(destDir).pathCreate();
 
 	std::tstring_t     binPath;
 	std::vec_tstring_t params;
 	{
 		switch (a_type) {
 		case Type::Zip:
-			binPath = zipPath;
+			binPath = ::zipPath;
 			params  = {"-9", "-Dj", a_destFilePath, a_sourceFilePath};
 			break;
 		case Type::zip7:
@@ -111,15 +111,15 @@ Archive::dirCompress(
 	xTEST(!a_destFilePath.empty());
 	xTEST_NA(a_isRemoveSourceDir);
 
-	std::ctstring_t dest_dir = Path(a_destFilePath).dir();
-	Dir(dest_dir).pathCreate();
+	std::ctstring_t destDir = Path(a_destFilePath).dir();
+	Dir(destDir).pathCreate();
 
 	std::tstring_t     binPath;
 	std::vec_tstring_t params;
 	{
 		switch (a_type) {
 		case Type::Zip:
-			binPath = zipPath;
+			binPath = ::zipPath;
 			params  = {"-9", "-r", "-Dj", a_destFilePath, a_sourceDirPath};
 			break;
 		case Type::zip7:
@@ -182,25 +182,25 @@ Archive::fileUncompress(
 	{
 		switch (type) {
 		case Type::Zip:
-			binPath = unzipPath;
+			binPath = ::unzipPath;
 			params  = {a_sourceFilePath, "-d", a_destDirPath};
 			break;
 		case Type::zip7:
-			binPath = zip7Path;
+			binPath = ::zip7Path;
 			params  = {"x", a_sourceFilePath, "-o", a_destDirPath};
 			break;
 		case Type::Rar:
-			binPath = unrarPath;
+			binPath = ::unrarPath;
 			params  = {"x", a_sourceFilePath, a_destDirPath};
 			break;
 		case Type::Gz:
 			xUNUSED(a_isRemoveSourceFile);
 
-			binPath = gunzipPath;
+			binPath = ::gunzipPath;
 			params  = {a_sourceFilePath};
 			break;
 		case Type::TarBz2:
-			binPath = tarPath;
+			binPath = ::tarPath;
 			params  = {"xvjf", a_sourceFilePath, "-C", a_destDirPath};
 			break;
 		case Type::Unknown:
@@ -226,7 +226,7 @@ Archive::fileUncompress(
 	if (type == Type::Zip &&
 		!Dir(a_destDirPath).isExists())
 	{
-		std::ctstring_t     binPathFixed = chmodPath;
+		std::ctstring_t     binPathFixed = ::chmodPath;
 		std::cvec_tstring_t paramsFixed  = {xT("-R"), xT("0777"), a_destDirPath};
 
 		Process::execute(binPathFixed, paramsFixed, {}, xTIMEOUT_INFINITE, nullptr, nullptr);
