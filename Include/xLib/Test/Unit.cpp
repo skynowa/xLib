@@ -18,7 +18,7 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/System/Environment.h>
-#include <xLib/System/SystemInfo.h>
+#include <xLib/System/Info/Net.h>
 
 
 namespace xl::test
@@ -57,9 +57,9 @@ Unit::isGithubCI() const
 bool_t
 Unit::isVpnActive() const
 {
-	SystemInfo sysInfo;
+	info::Net net;
 
-	return sysInfo.isVpnActive();
+	return net.isVpnActive();
 }
 //-------------------------------------------------------------------------------------------------
 void_t

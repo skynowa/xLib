@@ -126,8 +126,16 @@
 #include <xLib/System/Console.h>
 #include <xLib/System/Environment.h>
 #include <xLib/System/ProcessInfo.h>
-#include <xLib/System/SystemInfo.h>
 #include <xLib/System/User.h>
+
+#include <xLib/System/Info/Cpu.h>
+#include <xLib/System/Info/Host.h>
+#include <xLib/System/Info/Libs.h>
+#include <xLib/System/Info/Net.h>
+#include <xLib/System/Info/Os.h>
+#include <xLib/System/Info/PowerSupply.h>
+#include <xLib/System/Info/Ram.h>
+#include <xLib/System/Info/Storage.h>
 
 // Test
 #include <xLib/Test/Data.h>

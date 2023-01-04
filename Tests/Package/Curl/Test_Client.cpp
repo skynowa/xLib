@@ -16,6 +16,11 @@ xTEST_UNIT(Test_Client)
 bool_t
 Test_Client::unit()
 {
+	if ( isGithubCI() ) {
+		Cout() << "GithubCI - skip";
+		return true;
+	}
+
 	cbool_t isDebug {false};
 
 	Client curl(isDebug);

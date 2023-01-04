@@ -13,11 +13,9 @@
  * \author  author:  skynowa \n
  *          e-mail:  skynowa@gmail.com \n
  *          skype:   skynowa777 \n
- *          jabber:  skynowa@jabber.ru \n
- *          ICQ:     627713628 \n
  *          web:     https://github.com/skynowa/xLib
  *
- * \date    2008 - 2016
+ * \date    2008 - 2023
  *
  * \section sec_code_convention Code conventions
  */
