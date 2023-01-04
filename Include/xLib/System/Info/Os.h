@@ -1,6 +1,6 @@
 /**
  * \file  Os.h
- * \brief system information
+ * \brief OS information
  */
 
 
@@ -12,7 +12,7 @@ namespace xl::system::info
 {
 
 class Os
-    /// system information
+    /// OS information
 {
 public:
 ///\name ctors, dtor

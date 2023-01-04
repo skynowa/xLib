@@ -1,6 +1,6 @@
 /**
  * \file  Ram.h
- * \brief system information
+ * \brief RAM information
  */
 
 
@@ -12,7 +12,7 @@ namespace xl::system::info
 {
 
 class Ram
-    /// system information
+    /// RAM information
 {
 public:
 ///\name ctors, dtor

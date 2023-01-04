@@ -1,6 +1,6 @@
 /**
  * \file  Host.cpp
- * \brief system information
+ * \brief Host information
  */
 
 

@@ -1,6 +1,6 @@
 /**
  * \file  Libs.h
- * \brief system information
+ * \brief Libraries information
  */
 
 
@@ -12,7 +12,7 @@ namespace xl::system::info
 {
 
 class Libs
-    /// system information
+    /// Libraries information
 {
 public:
 ///\name ctors, dtor

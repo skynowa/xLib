@@ -1,6 +1,6 @@
 /**
  * \file  Net.cpp
- * \brief system information
+ * \brief Network information
  */
 
 

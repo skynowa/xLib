@@ -1,6 +1,6 @@
 /**
  * \file  Cpu.h
- * \brief system information
+ * \brief CPU information
  */
 
 
@@ -12,7 +12,7 @@ namespace xl::system::info
 {
 
 class Cpu
-    /// system information
+    /// CPU information
 {
 public:
 ///\name ctors, dtor
@@ -24,7 +24,7 @@ public:
 ///\}
 
     enum class Vendor
-        /// CPU type
+        /// Vendor
     {
         Unknown,
         Intel,

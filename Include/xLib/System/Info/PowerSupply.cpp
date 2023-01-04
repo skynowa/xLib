@@ -1,6 +1,6 @@
 /**
  * \file  PowerSupply.cpp
- * \brief system information
+ * \brief Power supply information
  */
 
 

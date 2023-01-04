@@ -1,6 +1,6 @@
 /**
  * \file  Cpu.cpp
- * \brief system information
+ * \brief CPU information
  */
 
 

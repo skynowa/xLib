@@ -1,6 +1,6 @@
 /**
  * \file  Os.cpp
- * \brief system information
+ * \brief OS information
  */
 
 

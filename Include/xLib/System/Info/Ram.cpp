@@ -1,6 +1,6 @@
 /**
  * \file  Ram.cpp
- * \brief system information
+ * \brief RAM information
  */
 
 

@@ -1,6 +1,6 @@
 /**
  * \file  Host.h
- * \brief system information
+ * \brief Host information
  */
 
 
@@ -12,7 +12,7 @@ namespace xl::system::info
 {
 
 class Host
-    /// system information
+    /// Host information
 {
 public:
 ///\name ctors, dtor
