@@ -15,40 +15,40 @@ Test_Cpu::unit()
 {
 	info::Cpu sysInfo;
 
-    xTEST_CASE("cpusNum")
+    xTEST_CASE("num")
     {
-        m_ulRv = sysInfo.cpusNum();
+        m_ulRv = sysInfo.num();
         xTEST_GR(m_ulRv, 0UL);
     }
 
-    xTEST_CASE("currentCpuNum")
+    xTEST_CASE("currentNum")
     {
-        m_ulRv = sysInfo.currentCpuNum();
-        xTEST_GR(sysInfo.cpusNum(), m_ulRv);
+        m_ulRv = sysInfo.currentNum();
+        xTEST_GR(sysInfo.num(), m_ulRv);
     }
 
-    xTEST_CASE("cpuVendor")
+    xTEST_CASE("vendor")
     {
-    	info::Cpu::cCpuVendor cvType = sysInfo.cpuVendor();
-        xTEST(cvType == info::Cpu::CpuVendor::Intel || cvType == info::Cpu::CpuVendor::Amd);
+    	info::Cpu::cVendor cvType = sysInfo.vendor();
+        xTEST(cvType == info::Cpu::Vendor::Intel || cvType == info::Cpu::Vendor::Amd);
     }
 
-    xTEST_CASE("cpuModel")
+    xTEST_CASE("model")
     {
-        m_sRv = sysInfo.cpuModel();
+        m_sRv = sysInfo.model();
         xTEST(!m_sRv.empty());
     }
 
-    xTEST_CASE("cpuSpeed")
+    xTEST_CASE("speed")
     {
-        m_ulRv = sysInfo.cpuSpeed();
+        m_ulRv = sysInfo.speed();
         xTEST_GR(m_ulRv, 0UL);
     }
 
-    xTEST_CASE("cpuUsage")
+    xTEST_CASE("usage")
     {
         for (size_t i = 0; i < 5; ++ i) {
-            m_ulRv = sysInfo.cpuUsage();
+            m_ulRv = sysInfo.usage();
             xTEST_NA(m_ulRv);
         }
     }

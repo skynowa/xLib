@@ -32,7 +32,7 @@ namespace xl::system::info
 {
 
 //-------------------------------------------------------------------------------------------------
-Os::OsType
+Os::Type
 Os::os() const
 {
     return _os_impl();
@@ -50,26 +50,26 @@ Os::distro() const
     return _distro_impl();
 }
 //-------------------------------------------------------------------------------------------------
-Os::OsArch
-Os::osArch() const
+Os::Arch
+Os::arch() const
 {
-    return _osArch_impl();
+    return _arch_impl();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Os::formatOsArch() const
+Os::formatArch() const
 {
     std::tstring_t sRv;
 
-    cOsArch arch = osArch();
-    switch (arch) {
-    case OsArch::Bit32:
+    cArch arch_ = arch();
+    switch (arch_) {
+    case Arch::Bit32:
         sRv = xT("32-bit");
         break;
-    case OsArch::Bit64:
+    case Arch::Bit64:
         sRv = xT("64-bit");
         break;
-    case OsArch::Unknown:
+    case Arch::Unknown:
         sRv = Const::strUnknown();
         break;
     default:

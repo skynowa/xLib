@@ -9,7 +9,7 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_cpusNum_impl() const
+Cpu::_num_impl() const
 {
     SYSTEM_INFO sysInfo {};
 
@@ -21,7 +21,7 @@ Cpu::_cpusNum_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_currentCpuNum_impl() const
+Cpu::_currentNum_impl() const
 {
     using func_t = DWORD (WINAPI *)(void_t);
 
@@ -41,7 +41,7 @@ Cpu::_currentCpuNum_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Cpu::_cpuVendor_impl() const
+Cpu::_vendor_impl() const
 {
     std::tstring_t value;
 
@@ -63,7 +63,7 @@ Cpu::_cpuVendor_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Cpu::_cpuModel_impl() const
+Cpu::_model_impl() const
 {
     std::tstring_t sRv;
 
@@ -108,7 +108,7 @@ Cpu::_cpuModel_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_cpuSpeed_impl() const
+Cpu::_speed_impl() const
 {
     DWORD cpuSpeedMHz {};
     DWORD buffSize    = sizeof(cpuSpeedMHz);
@@ -131,7 +131,7 @@ Cpu::_cpuSpeed_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_cpuUsage_impl() const
+Cpu::_usage_impl() const
 {
     double                dRv            {};
 

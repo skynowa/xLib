@@ -14,33 +14,33 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 ulonglong_t
-Ram::_ramTotal_impl() const
+Ram::_total_impl() const
 {
     ulonglong_t ullRv = 0ULL;
 
-    // TODO: [skynowa] Ram::_ramTotal_impl()
+    // TODO: [skynowa] Ram::_total_impl()
     xNOT_IMPLEMENTED
 
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
 ulonglong_t
-Ram::_ramAvailable_impl() const
+Ram::_available_impl() const
 {
     ulonglong_t ullRv = 0ULL;
 
-    // TODO: [skynowa] Ram::_ramAvailable_impl()
+    // TODO: [skynowa] Ram::_available_impl()
     xNOT_IMPLEMENTED
 
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Ram::_ramUsage_impl() const
+Ram::_usage_impl() const
 {
     ulong_t ulRv = 0UL;
 
-    // TODO: [skynowa] Ram::_ramUsage_impl()
+    // TODO: [skynowa] Ram::_usage_impl()
     xNOT_IMPLEMENTED
 
     return ulRv;

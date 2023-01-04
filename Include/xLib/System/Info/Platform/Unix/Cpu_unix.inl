@@ -11,7 +11,7 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_currentCpuNum_impl() const
+Cpu::_currentNum_impl() const
 {
     ulong_t ulRv {};
 
@@ -41,7 +41,7 @@ Cpu::_currentCpuNum_impl() const
 
     ulRv = static_cast<ulong_t>( liRv );
 #else
-    #pragma message("xLib: Cpu::_currentCpuNum_impl() - n/a")
+    #pragma message("xLib: Cpu::_currentNum_impl() - n/a")
     ulRv = 0UL;
 #endif
 

@@ -15,14 +15,14 @@ Test_PowerSupply::unit()
 {
 	info::PowerSupply sysInfo;
 
-    xTEST_CASE("isPowerSupply, powerSupplyLevel")
+    xTEST_CASE("isExists, level")
     {
-		if ( sysInfo.isPowerSupply() ) {
-			m_stRv = sysInfo.powerSupplyLevel();
+		if ( sysInfo.isExists() ) {
+			m_stRv = sysInfo.level();
 			xTEST_GR(m_stRv, 0ULL);
 
-			info::PowerSupply::cPowerSupplyStatus psRv = sysInfo.powerSupplyStatus();
-			xTEST_DIFF((int)psRv, (int)info::PowerSupply::PowerSupplyStatus::Unknown);
+			info::PowerSupply::cStatus psRv = sysInfo.status();
+			xTEST_DIFF((int)psRv, (int)info::PowerSupply::Status::Unknown);
 		}
     }
 

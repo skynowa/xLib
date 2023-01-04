@@ -9,7 +9,7 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_cpusNum_impl() const
+Cpu::_num_impl() const
 {
     long_t liRv = ::sysconf(_SC_NPROCESSORS_ONLN);
     xTEST_DIFF(liRv, - 1L);
@@ -18,7 +18,7 @@ Cpu::_cpusNum_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Cpu::_cpuVendor_impl() const
+Cpu::_vendor_impl() const
 {
     // target proc line: "vendor_id : GenuineIntel"
     std::tstring_t sRv = Path::procValue(xT("/proc/cpuinfo"), xT("vendor_id"));
@@ -28,7 +28,7 @@ Cpu::_cpuVendor_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Cpu::_cpuModel_impl() const
+Cpu::_model_impl() const
 {
     // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
     std::tstring_t sRv = Path::procValue(xT("/proc/cpuinfo"), xT("model name"));
@@ -38,7 +38,7 @@ Cpu::_cpuModel_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_cpuSpeed_impl() const
+Cpu::_speed_impl() const
 {
     // target proc line: "cpu MHz         : 2796.380"
     std::ctstring_t value = Path::procValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
@@ -52,7 +52,7 @@ Cpu::_cpuSpeed_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_cpuUsage_impl() const
+Cpu::_usage_impl() const
 {
     double             dRv             = 0.0;
     int_t              iRv             = - 1;

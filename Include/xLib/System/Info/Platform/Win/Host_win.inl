@@ -9,7 +9,7 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Host::_hostName_impl() const
+Host::_name_impl() const
 {
     std::tstring_t sRv;
 

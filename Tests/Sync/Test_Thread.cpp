@@ -190,9 +190,9 @@ Test_Thread::unit()
 
     xTEST_CASE("setCpuAffinity")
     {
-        culong_t cpusNum = info::Cpu().cpusNum();
+        culong_t num = info::Cpu().num();
 
-        for (ulong_t i = 0; i < cpusNum; ++ i) {
+        for (ulong_t i = 0; i < num; ++ i) {
             pthT->setCpuAffinity(static_cast<int_t>(i));
         }
     }
@@ -203,7 +203,7 @@ Test_Thread::unit()
             pthT->setCpuIdeal(0);
 
             m_ulRv = pthT->cpuIdeal();
-            xTEST(info::Cpu().cpusNum() > m_ulRv);
+            xTEST(info::Cpu().num() > m_ulRv);
         #elif xENV_UNIX
 
         #endif

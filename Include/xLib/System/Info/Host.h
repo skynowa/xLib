@@ -23,11 +23,11 @@ public:
 	xNO_COPY_ASSIGN(Host)
 ///\}
 
-	std::tstring_t hostName() const;
+	std::tstring_t name() const;
 		///< get the NetBIOS name of the local computer
 
 xPLATFORM_IMPL:
-    std::tstring_t _hostName_impl() const;
+    std::tstring_t _name_impl() const;
 };
 
 } // namespace

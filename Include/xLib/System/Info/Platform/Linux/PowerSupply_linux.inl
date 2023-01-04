@@ -9,7 +9,7 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 bool_t
-PowerSupply::_isPowerSupply_impl() const
+PowerSupply::_isExists_impl() const
 {
 	bool_t bRv {};
 
@@ -30,7 +30,7 @@ PowerSupply::_isPowerSupply_impl() const
  * \endcode
  */
 std::size_t
-PowerSupply::_powerSupplyLevel_impl() const
+PowerSupply::_level_impl() const
 {
     std::size_t uiRv {};
 
@@ -47,15 +47,15 @@ PowerSupply::_powerSupplyLevel_impl() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-PowerSupply::PowerSupplyStatus
-PowerSupply::_powerSupplyStatus_impl() const
+PowerSupply::Status
+PowerSupply::_status_impl() const
 {
-	PowerSupplyStatus psRv {};
+	Status psRv {};
 
     std::ctstring_t filePath = xT("/sys/class/power_supply/BAT0/status");
 
     FileInfo fileInfo(filePath);
-    xCHECK_RET(!fileInfo.isExists(), PowerSupplyStatus::Unknown);
+    xCHECK_RET(!fileInfo.isExists(), Status::Unknown);
 
     // read file
 	std::tstring_t status;
@@ -69,18 +69,18 @@ PowerSupply::_powerSupplyStatus_impl() const
 		status = szRv;
 	}
 
-	static const std::map<std::tstring_t, PowerSupplyStatus> statuses
+	static const std::map<std::tstring_t, Status> statuses
 	{
-		{xT("Unknown"),     PowerSupplyStatus::Unknown},
-		{xT("Discharging"), PowerSupplyStatus::Discharging},
-		{xT("Charging"),    PowerSupplyStatus::Charging},
-		{xT("Full"),        PowerSupplyStatus::Full}
+		{xT("Unknown"),     Status::Unknown},
+		{xT("Discharging"), Status::Discharging},
+		{xT("Charging"),    Status::Charging},
+		{xT("Full"),        Status::Full}
 	};
 
 	auto it = statuses.find(status);
 	if (it == statuses.cend()) {
 		Cout() << xUNKNOWN_VAR(status);
-		return static_cast<PowerSupplyStatus>(4);
+		return static_cast<Status>(4);
 	}
 
     return it->second;

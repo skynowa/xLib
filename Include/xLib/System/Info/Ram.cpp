@@ -31,21 +31,21 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 ulonglong_t
-Ram::ramTotal() const
+Ram::total() const
 {
-    return _ramTotal_impl();
+    return _total_impl();
 }
 //-------------------------------------------------------------------------------------------------
 ulonglong_t
-Ram::ramAvailable() const
+Ram::available() const
 {
-    return _ramAvailable_impl();
+    return _available_impl();
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Ram::ramUsage() const
+Ram::usage() const
 {
-    return _ramUsage_impl();
+    return _usage_impl();
 }
 //-------------------------------------------------------------------------------------------------
 

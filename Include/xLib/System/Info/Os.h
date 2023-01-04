@@ -23,7 +23,7 @@ public:
 	xNO_COPY_ASSIGN(Os)
 ///\}
 
-    enum class OsType
+    enum class Type
         /// OS type
     {
         Unknown,
@@ -49,37 +49,37 @@ public:
         // Apple family
         Mac
     };
-    xUSING_CONST(OsType);
+    xUSING_CONST(Type);
 
-    enum class OsArch
+    enum class Arch
         /// OS architecture
     {
         Unknown,
         Bit32,
         Bit64
     };
-    xUSING_CONST(OsArch);
+    xUSING_CONST(Arch);
 
-	OsType         os() const;
+	Type           os() const;
 		///< get information about the current OS
 	std::tstring_t formatOs() const;
 		///< format OS type
 	std::tstring_t distro() const;
 		///< distributive info
 
-	OsArch         osArch() const;
+	Arch           arch() const;
 		///< get OS architecture
-	std::tstring_t formatOsArch() const;
+	std::tstring_t formatArch() const;
 		///< format get OS architecture
 
 	std::tstring_t desktopName() const;
 		///< desktop environments
 
 xPLATFORM_IMPL:
-    OsType         _os_impl() const;
+    Type           _os_impl() const;
     std::tstring_t _formatOs_impl() const;
     std::tstring_t _distro_impl() const;
-    OsArch         _osArch_impl() const;
+    Arch           _arch_impl() const;
     std::tstring_t _desktopName_impl() const;
 };
 

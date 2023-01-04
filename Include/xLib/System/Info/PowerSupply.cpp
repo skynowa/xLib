@@ -33,25 +33,25 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 bool_t
-PowerSupply::isPowerSupply() const
+PowerSupply::isExists() const
 {
-    return _isPowerSupply_impl();
+    return _isExists_impl();
 }
 //-------------------------------------------------------------------------------------------------
 std::size_t
-PowerSupply::powerSupplyLevel() const
+PowerSupply::level() const
 {
-	xCHECK_RET(!isPowerSupply(), 0);
+	xCHECK_RET(!isExists(), 0);
 
-    return _powerSupplyLevel_impl();
+    return _level_impl();
 }
 //-------------------------------------------------------------------------------------------------
-PowerSupply::PowerSupplyStatus
-PowerSupply::powerSupplyStatus() const
+PowerSupply::Status
+PowerSupply::status() const
 {
-	xCHECK_RET(!isPowerSupply(), PowerSupplyStatus::Unknown);
+	xCHECK_RET(!isExists(), Status::Unknown);
 
-    return _powerSupplyStatus_impl();
+    return _status_impl();
 }
 //-------------------------------------------------------------------------------------------------
 

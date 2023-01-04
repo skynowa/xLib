@@ -32,52 +32,52 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::cpusNum() const
+Cpu::num() const
 {
-    return _cpusNum_impl();
+    return _num_impl();
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::currentCpuNum() const
+Cpu::currentNum() const
 {
-    return _currentCpuNum_impl();
+    return _currentNum_impl();
 }
 //-------------------------------------------------------------------------------------------------
-Cpu::CpuVendor
-Cpu::cpuVendor() const
+Cpu::Vendor
+Cpu::vendor() const
 {
-    CpuVendor       cvRv  = CpuVendor::Unknown;
-    std::ctstring_t value = _cpuVendor_impl();
+    Vendor       cvRv  = Vendor::Unknown;
+    std::ctstring_t value = _vendor_impl();
 
     if      (value == std::tstring_t(xT("GenuineIntel"))) {
-        cvRv = CpuVendor::Intel;
+        cvRv = Vendor::Intel;
     }
     else if (value == std::tstring_t(xT("AuthenticAMD"))) {
-        cvRv = CpuVendor::Amd;
+        cvRv = Vendor::Amd;
     }
     else {
-        cvRv = CpuVendor::Unknown;
+        cvRv = Vendor::Unknown;
     }
 
     return cvRv;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Cpu::cpuModel() const
+Cpu::model() const
 {
-    return _cpuModel_impl();
+    return _model_impl();
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::cpuSpeed() const
+Cpu::speed() const
 {
-    return _cpuSpeed_impl();
+    return _speed_impl();
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::cpuUsage() const
+Cpu::usage() const
 {
-    return _cpuUsage_impl();
+    return _usage_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
