@@ -1,6 +1,6 @@
 /**
  * \file  Storage.cpp
- * \brief system information
+ * \brief Storage information
  */
 
 

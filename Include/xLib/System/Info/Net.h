@@ -1,6 +1,6 @@
 /**
  * \file  Net.h
- * \brief system information
+ * \brief Network information
  */
 
 
@@ -12,7 +12,7 @@ namespace xl::system::info
 {
 
 class Net
-    /// system information
+    /// Network information
 {
 public:
 ///\name ctors, dtor

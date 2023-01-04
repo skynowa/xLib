@@ -9,52 +9,51 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_cpusNum_impl() const
+Cpu::_num_impl() const
 {
-    long_t liRv = ::sysconf(_SC_NPROCESSORS_ONLN);
+    clong_t liRv = ::sysconf(_SC_NPROCESSORS_ONLN);
     xTEST_DIFF(liRv, - 1L);
 
     return static_cast<ulong_t>( liRv );
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Cpu::_cpuVendor_impl() const
+Cpu::_vendor_impl() const
 {
     // target proc line: "vendor_id : GenuineIntel"
-    std::tstring_t sRv = Path::procValue(xT("/proc/cpuinfo"), xT("vendor_id"));
-    xTEST_EQ(sRv.empty(), false);
+    std::ctstring_t sRv = Path::procValue(xT("/proc/cpuinfo"), xT("vendor_id"));
+    xTEST(!sRv.empty());
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Cpu::_cpuModel_impl() const
+Cpu::_model_impl() const
 {
     // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
-    std::tstring_t sRv = Path::procValue(xT("/proc/cpuinfo"), xT("model name"));
-    xTEST_EQ(sRv.empty(), false);
+    std::ctstring_t sRv = Path::procValue(xT("/proc/cpuinfo"), xT("model name"));
+    xTEST(!sRv.empty());
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_cpuSpeed_impl() const
+Cpu::_speed_impl() const
 {
     // target proc line: "cpu MHz         : 2796.380"
     std::ctstring_t value = Path::procValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
-    xTEST_EQ(value.empty(), false);
+    xTEST(!value.empty());
 
     cdouble_t cpuSpeedMHz = String::cast<double>( value );
-
-    ulong_t ulRv = Utils::roundIntT<ulong_t>( cpuSpeedMHz );
+    culong_t  ulRv        = Utils::roundIntT<ulong_t>( cpuSpeedMHz );
 
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Cpu::_cpuUsage_impl() const
+Cpu::_usage_impl() const
 {
-    double             dRv             = 0.0;
+    double_t           dRv             = 0.0;
     int_t              iRv             = - 1;
 
     static bool_t      isFirstRun      = true;

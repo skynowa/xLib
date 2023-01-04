@@ -48,7 +48,7 @@ Libs::glibcVersion() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Libs::libPthreadVersion() const
+Libs::pthreadVersion() const
 {
     std::tstring_t sRv;
 
@@ -71,7 +71,7 @@ Libs::libPthreadVersion() const
 
     sRv = xA2T(buff);
 #else
-    xBUILD_IMPL("Libs::libPthreadVersion()");
+    xBUILD_IMPL("Libs::pthreadVersion()");
     sRv = Const::strUnknown();
 #endif
 

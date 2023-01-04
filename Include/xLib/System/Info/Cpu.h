@@ -1,6 +1,6 @@
 /**
  * \file  Cpu.h
- * \brief system information
+ * \brief CPU information
  */
 
 
@@ -12,7 +12,7 @@ namespace xl::system::info
 {
 
 class Cpu
-    /// system information
+    /// CPU information
 {
 public:
 ///\name ctors, dtor
@@ -23,36 +23,36 @@ public:
 	xNO_COPY_ASSIGN(Cpu)
 ///\}
 
-    enum class CpuVendor
-        /// CPU type
+    enum class Vendor
+        /// Vendor
     {
         Unknown,
         Intel,
         Amd
     };
-    xUSING_CONST(CpuVendor);
+    xUSING_CONST(Vendor);
 
-	ulong_t        cpusNum() const;
+	ulong_t        num() const;
 		///< get num of CPUs
-	ulong_t        currentCpuNum() const;
+	ulong_t        currentNum() const;
 		///< get the number of the processor the current thread was running on during
 		///< the call to this function
-	CpuVendor      cpuVendor() const;
+	Vendor         vendor() const;
 		///< get CPU vendor
-	std::tstring_t cpuModel() const;
+	std::tstring_t model() const;
 		///< get CPU model name
-	ulong_t        cpuSpeed() const;
+	ulong_t        speed() const;
 		///< get CPU speed (MHz)
-	ulong_t        cpuUsage() const;
+	ulong_t        usage() const;
 		///< get CPU usage (percentage)
 
 xPLATFORM_IMPL:
-    ulong_t        _cpusNum_impl() const;
-    ulong_t        _currentCpuNum_impl() const;
-    std::tstring_t _cpuVendor_impl() const;
-    std::tstring_t _cpuModel_impl() const;
-    ulong_t        _cpuSpeed_impl() const;
-    ulong_t        _cpuUsage_impl() const;
+    ulong_t        _num_impl() const;
+    ulong_t        _currentNum_impl() const;
+    std::tstring_t _vendor_impl() const;
+    std::tstring_t _model_impl() const;
+    ulong_t        _speed_impl() const;
+    ulong_t        _usage_impl() const;
 };
 
 } // namespace

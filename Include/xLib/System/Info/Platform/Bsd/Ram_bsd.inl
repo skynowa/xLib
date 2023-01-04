@@ -9,7 +9,7 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 ulonglong_t
-Ram::_ramTotal_impl() const
+Ram::_total_impl() const
 {
     ulonglong_t ullRv {};
 
@@ -27,7 +27,7 @@ Ram::_ramTotal_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulonglong_t
-Ram::_ramAvailable_impl() const
+Ram::_available_impl() const
 {
     ulonglong_t availPhysPages     {};
     size_t      availPhysPagesSize = sizeof(availPhysPages);
@@ -42,7 +42,7 @@ Ram::_ramAvailable_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
-Ram::_ramUsage_impl() const
+Ram::_usage_impl() const
 {
     ulonglong_t ramTotal {};
     {
@@ -53,7 +53,7 @@ Ram::_ramUsage_impl() const
         xTEST_DIFF(iRv, - 1);
     }
 
-    ulonglong_t ramFree = 0ULL;
+    ulonglong_t ramFree {};
     {
         ulonglong_t availPhysPages     {};
         size_t      availPhysPagesSize = sizeof(availPhysPages);
@@ -65,7 +65,7 @@ Ram::_ramUsage_impl() const
         ramFree = availPhysPages * pageSize();
     }
 
-    ulonglong_t ramUsage = ramTotal - ramFree;
+    culonglong_t ramUsage = ramTotal - ramFree;
 
     ulong_t ulRv = static_cast<ulong_t>( Utils::intSafeDiv(ramUsage * 100.0, ramTotal) );
     xTEST_EQ(ramTotal, ramUsage + ramFree);

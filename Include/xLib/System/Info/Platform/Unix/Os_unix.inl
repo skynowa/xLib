@@ -15,10 +15,10 @@ namespace xl::system::info
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Os::OsType
+Os::Type
 Os::_os_impl() const
 {
-    OsType otRv = OsType::Unknown;
+    Type otRv = Type::Unknown;
 
     utsname info {};
 
@@ -26,16 +26,16 @@ Os::_os_impl() const
     xTEST_DIFF(iRv, - 1);
 
     if      (StringCI::compare(xA2T(info.sysname), xT("Linux"))) {
-        otRv = OsType::Linux;
+        otRv = Type::Linux;
     }
     else if (StringCI::compare(xA2T(info.sysname), xT("FreeBSD"))) {
-        otRv = OsType::FreeBSD;
+        otRv = Type::FreeBSD;
     }
     else if (StringCI::compare(xA2T(info.sysname), xT("Darwin"))) {
-        otRv = OsType::Mac;
+        otRv = Type::Mac;
     }
     else {
-        otRv = OsType::Unknown;
+        otRv = Type::Unknown;
     }
 
     return otRv;
@@ -57,10 +57,10 @@ Os::_formatOs_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-Os::OsArch
-Os::_osArch_impl() const
+Os::Arch
+Os::_arch_impl() const
 {
-    OsArch oaRv = OsArch::Unknown;
+    Arch oaRv = Arch::Unknown;
 
     std::tstring_t infoMachine;
     {
@@ -74,32 +74,32 @@ Os::_osArch_impl() const
 
     // 32-bit checks
     if      (StringCI::compare(infoMachine, xT("i386"))) {
-        oaRv = OsArch::Bit32;
+        oaRv = Arch::Bit32;
     }
     else if (StringCI::compare(infoMachine, xT("i486"))) {
-        oaRv = OsArch::Bit32;
+        oaRv = Arch::Bit32;
     }
     else if (StringCI::compare(infoMachine, xT("i586"))) {
-        oaRv = OsArch::Bit32;
+        oaRv = Arch::Bit32;
     }
     else if (StringCI::compare(infoMachine, xT("i686"))) {
-        oaRv = OsArch::Bit32;
+        oaRv = Arch::Bit32;
     }
 
     // 64-bit checks
     else if (StringCI::compare(infoMachine, xT("x86_64"))) {
-        oaRv = OsArch::Bit64;
+        oaRv = Arch::Bit64;
     }
     else if (StringCI::compare(infoMachine, xT("ia64"))) {
-        oaRv = OsArch::Bit64;
+        oaRv = Arch::Bit64;
     }
     else if (StringCI::compare(infoMachine, xT("amd64"))) {
-        oaRv = OsArch::Bit64;
+        oaRv = Arch::Bit64;
     }
 
     // unknown
     else {
-        oaRv = OsArch::Unknown;
+        oaRv = Arch::Unknown;
     }
 
     return oaRv;

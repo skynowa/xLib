@@ -1,6 +1,6 @@
 /**
  * \file  Storage.h
- * \brief system information
+ * \brief Storage information
  */
 
 
@@ -12,7 +12,7 @@ namespace xl::system::info
 {
 
 class Storage
-    /// system information
+    /// Storage information
 {
 public:
 ///\name ctors, dtor

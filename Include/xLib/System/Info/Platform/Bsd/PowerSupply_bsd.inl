@@ -9,33 +9,33 @@ namespace xl::system::info
 
 //-------------------------------------------------------------------------------------------------
 bool_t
-PowerSupply::_isPowerSupply_impl() const
+PowerSupply::_isExists_impl() const
 {
 	bool_t bRv {};
 
-    // TODO: [skynowa] PowerSupply::_isPowerSupply_impl()
+    // TODO: [skynowa] PowerSupply::_isExists_impl()
     xNOT_IMPLEMENTED
 
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
 std::size_t
-PowerSupply::_powerSupplyLevel_impl() const
+PowerSupply::_level_impl() const
 {
 	std::size_t uiRv {};
 
-    // TODO: [skynowa] PowerSupply::_powerSupplyLevel_impl()
+    // TODO: [skynowa] PowerSupply::_level_impl()
     xNOT_IMPLEMENTED
 
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-PowerSupply::PowerSupplyStatus
-PowerSupply::_powerSupplyStatus_impl() const
+PowerSupply::Status
+PowerSupply::_status_impl() const
 {
-	PowerSupplyStatus psRv {};
+	Status psRv {};
 
-	// TODO: [skynowa] PowerSupply::_powerSupplyLevel_impl()
+	// TODO: [skynowa] PowerSupply::_level_impl()
 	xNOT_IMPLEMENTED
 
 	return psRv;
