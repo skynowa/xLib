@@ -15,10 +15,10 @@ Storage::_pageSize_impl() const
 {
     long_t liRv = ::sysconf(xPAGE_SIZE);
     xTEST_DIFF(liRv, - 1L);
-    xTEST_LESS(0L,   liRv);
+    xTEST_GR(liRv, 0L);
 
     ulong_t ulRv = static_cast<ulong_t>( liRv );
-    xTEST_LESS(0UL, ulRv);
+    xTEST_GR(ulRv, 0UL);
 
     return ulRv;
 }

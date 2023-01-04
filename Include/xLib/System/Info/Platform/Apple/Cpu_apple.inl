@@ -11,7 +11,7 @@ namespace xl::system::info
 ulong_t
 Cpu::_num_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     // TODO: [skynowa] Cpu::_num_impl()
     xNOT_IMPLEMENTED
@@ -44,7 +44,7 @@ Cpu::_model_impl() const
 ulong_t
 Cpu::_speed_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     // TODO: [skynowa] Cpu::_speed_impl()
     xNOT_IMPLEMENTED
@@ -55,7 +55,7 @@ Cpu::_speed_impl() const
 ulong_t
 Cpu::_usage_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     // TODO: [skynowa] Cpu::_usage_impl()
     xNOT_IMPLEMENTED

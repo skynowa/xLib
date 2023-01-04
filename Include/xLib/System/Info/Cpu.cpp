@@ -46,7 +46,7 @@ Cpu::currentNum() const
 Cpu::Vendor
 Cpu::vendor() const
 {
-    Vendor       cvRv  = Vendor::Unknown;
+    Vendor          cvRv  = Vendor::Unknown;
     std::ctstring_t value = _vendor_impl();
 
     if      (value == std::tstring_t(xT("GenuineIntel"))) {
